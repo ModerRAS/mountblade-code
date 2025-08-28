@@ -983,8 +983,8 @@ int FUN_180032d30(void)
   longlong lVar1;
   uint64_t in_R9;
   
-  _DAT_180bf7e90 = &unknown_var_3480_ptr;
-  _DAT_180bf7e98 = &system_memory_7ea8;
+  init_system_control_resource = &unknown_var_3480_ptr;
+  init_system_control_resource = &system_memory_7ea8;
 
 
 

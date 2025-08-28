@@ -49,7 +49,7 @@ void extend_render_data_structure_capacity(longlong *render_context, ulonglong r
     temp_ptr = (uint64_t *)0x0;
     if (new_capacity != 0) {
       temp_ptr = (uint64_t *)
-               allocate_rendering_memory(_DAT_180c8ed18,new_capacity * 0x98,(char)render_context[3],0x6bca1af286bca1b,
+               allocate_rendering_memory(system_memory_pool_ptr,new_capacity * 0x98,(char)render_context[3],0x6bca1af286bca1b,
                              0xfffffffffffffffe);
       current_data_ptr = (uint64_t *)render_context[1];
       allocated_buffer = (uint64_t *)*render_context;
@@ -187,7 +187,7 @@ longlong * create_rendering_context(longlong context_params,longlong *context_ha
   longlong *context_ptr;
   void *name_ptr;
   
-  memory_handle = allocate_rendering_memory(_DAT_180c8ed18,0x470,0x10,0x15,0,0xfffffffffffffffe);
+  memory_handle = allocate_rendering_memory(system_memory_pool_ptr,0x470,0x10,0x15,0,0xfffffffffffffffe);
   context_ptr = (longlong *)initialize_rendering_context_internal(memory_handle);
   *context_handle = (longlong)context_ptr;
   if (context_ptr != (longlong *)0x0) {
@@ -239,14 +239,14 @@ void update_rendering_state(longlong render_state,uint64_t param_2,uint64_t para
       (**(code **)(*render_context + 0x38))();
     }
     *(int8_t *)(*(longlong *)(render_state + 0xb0) + 0xb1) = 1;
-    texture_offset = _DAT_180c86930;
+    texture_offset = system_resource_state;
     context_ptr = *(longlong **)(render_state + 0xb0);
     comparison_result = (**(code **)(*context_ptr + 0x60))(context_ptr);
     *(int8_t *)((longlong)context_ptr + 0xb2) = 1;
     update_texture_data((longlong)comparison_result * 0x98 + texture_offset + 8,context_ptr);
   }
-  texture_manager = (uint64_t *)(_DAT_180c8a9d0 + 0x180);
-  texture_list = *(uint64_t **)(_DAT_180c8a9d0 + 400);
+  texture_manager = (uint64_t *)(render_system_data_buffer + 0x180);
+  texture_list = *(uint64_t **)(render_system_data_buffer + 400);
   current_texture = texture_manager;
   if (texture_list != (uint64_t *)0x0) {
     do {
@@ -372,7 +372,7 @@ void process_rendering_buffer(longlong buffer_manager,uint64_t param_2,uint64_t 
   }
   buffer_end = (longlong *)(*(longlong *)(buffer_manager + 0xb0) + 0x10);
   (**(code **)(*buffer_end + 0x10))(buffer_end,buffer_name);
-  buffer_size = _DAT_180c86930;
+  buffer_size = system_resource_state;
   buffer_end = *(longlong **)(buffer_manager + 0xb0);
   operation_result = (**(code **)(*buffer_end + 0x60))(buffer_end);
   *(int8_t *)((longlong)buffer_end + 0xb2) = 1;
@@ -401,7 +401,7 @@ void process_rendering_buffer(longlong buffer_manager,uint64_t param_2,uint64_t 
   if (buffer_size == 0) {
     buffer_size = 1;
 LAB_1802abea0:
-    item_ptr = (longlong *)allocate_rendering_memory(_DAT_180c8ed18,buffer_size * 8,(char)buffer_data[3],param_4,memory_flag);
+    item_ptr = (longlong *)allocate_rendering_memory(system_memory_pool_ptr,buffer_size * 8,(char)buffer_data[3],param_4,memory_flag);
     next_item = (longlong *)buffer_data[1];
     buffer_start = (longlong *)*buffer_data;
     buffer_end = item_ptr;
@@ -464,7 +464,7 @@ uint64_t * create_rendering_object(uint64_t object_params,longlong template_data
   uint64_t texture_data;
   uint64_t *render_object;
   
-  render_object = (uint64_t *)allocate_rendering_memory(_DAT_180c8ed18,0x1c8,8,3,0xfffffffffffffffe);
+  render_object = (uint64_t *)allocate_rendering_memory(system_memory_pool_ptr,0x1c8,8,3,0xfffffffffffffffe);
   *render_object = &unknown_var_5192_ptr;
   *render_object = &unknown_var_8792_ptr;
   *(int32_t *)(render_object + 1) = 0;

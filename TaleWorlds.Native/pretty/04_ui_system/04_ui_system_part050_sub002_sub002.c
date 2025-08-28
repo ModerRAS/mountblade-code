@@ -20,20 +20,20 @@
 // =============================================================================
 
 // SIMD处理系数常量 - 用于图像卷积和色彩空间转换
-#define UI_SIMD_COEFFICIENT_1      _DAT_1809480d0  // 第一个处理系数
-#define UI_SIMD_COEFFICIENT_2      _DAT_1809480a0  // 第二个处理系数
-#define UI_SIMD_COEFFICIENT_3      _DAT_180947510  // 第三个处理系数
-#define UI_SIMD_COEFFICIENT_4      _DAT_180947500  // 第四个处理系数
-#define UI_SIMD_COEFFICIENT_5      _DAT_1809474f0  // 第五个处理系数
-#define UI_SIMD_COEFFICIENT_6      _DAT_1809474e0  // 第六个处理系数
-#define UI_SIMD_COEFFICIENT_7      _DAT_1809474d0  // 第七个处理系数
-#define UI_SIMD_COEFFICIENT_8      _DAT_1809474c0  // 第八个处理系数
-#define UI_SIMD_COEFFICIENT_9      _DAT_1809474b0  // 第九个处理系数
-#define UI_SIMD_COEFFICIENT_10     _DAT_1809474a0  // 第十个处理系数
+#define UI_SIMD_COEFFICIENT_1      ui_system_ui  // 第一个处理系数
+#define UI_SIMD_COEFFICIENT_2      ui_system_ui  // 第二个处理系数
+#define UI_SIMD_COEFFICIENT_3      ui_system_ui  // 第三个处理系数
+#define UI_SIMD_COEFFICIENT_4      ui_system_ui  // 第四个处理系数
+#define UI_SIMD_COEFFICIENT_5      ui_system_ui  // 第五个处理系数
+#define UI_SIMD_COEFFICIENT_6      ui_system_ui  // 第六个处理系数
+#define UI_SIMD_COEFFICIENT_7      ui_system_ui  // 第七个处理系数
+#define UI_SIMD_COEFFICIENT_8      ui_system_ui  // 第八个处理系数
+#define UI_SIMD_COEFFICIENT_9      ui_system_ui  // 第九个处理系数
+#define UI_SIMD_COEFFICIENT_10     ui_system_ui  // 第十个处理系数
 
 // 初始化常量
-#define UI_SIMD_INIT_CONSTANT       _DAT_180a3f880  // SIMD初始化常量
-#define UI_SIMD_CONTROL_CONSTANT    _DAT_1809480e0  // 控制参数常量
+#define UI_SIMD_INIT_CONSTANT       ui_system_ui  // SIMD初始化常量
+#define UI_SIMD_CONTROL_CONSTANT    ui_system_ui  // 控制参数常量
 
 // 算法参数常量
 #define UI_SIMD_SHIFT_FACTOR       0x2000          // SIMD位移因子 (8192)

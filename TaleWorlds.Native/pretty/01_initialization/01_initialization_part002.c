@@ -178,7 +178,7 @@ void system_string_processor(uint32 string_type, char *buffer, uint32 buffer_siz
     
     /* 执行字符串处理 */
     strcpy_s(stack_buffer, 0x80, &unknown_var_5216_ptr, in_R9, 0xfffffffffffffffe);
-    _DAT_180c9190c = FUN_180623800(&stack_ptr_a0);
+    init_system_file = FUN_180623800(&stack_ptr_a0);
 }
 
 /* ============================================================================
@@ -920,8 +920,8 @@ void register_system_debugging_components_third(void)
 int system_initialization_main(void)
 {
     /* 初始化系统全局状态 */
-    _DAT_180bf64d0 = &unknown_var_7512_ptr;
-    _DAT_180bf64d8 = &system_buffer_64e8;
+    init_system_control_file = &unknown_var_7512_ptr;
+    init_system_control_file = &system_buffer_64e8;
     
     /* 注册所有系统组件 */
     register_system_core_components();

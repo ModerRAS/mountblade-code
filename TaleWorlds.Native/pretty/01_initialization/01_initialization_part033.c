@@ -48,7 +48,7 @@ void initialize_console_output_system(int *output_counter)
   lStack_160 = 0;
   uStack_158 = 0;
   uStack_150 = 3;
-  lVar4 = FUN_180627ae0(&puStack_188,_DAT_180c86870 + 0x2c0);
+  lVar4 = FUN_180627ae0(&puStack_188,system_main_module_state + 0x2c0);
   uStack_190 = 1;
   auStack_1b8[0] = 0x20;
   if (*(longlong *)(resource_handle + 8) != 0) {
@@ -213,7 +213,7 @@ void process_initialization_command(longlong command_data)
       uStack_58 = 0;
       puStack_68 = (uint64_t *)0x0;
       uStack_60 = 0;
-      puVar5 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+      puVar5 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
       *(int8_t *)puVar5 = 0;
       puStack_68 = puVar5;
       uVar3 = FUN_18064e990(puVar5);
@@ -244,10 +244,10 @@ code_r0x0001800630e9:
       FUN_180639250(*(longlong *)(param_1 + 0x20) + 0x20);
       if (((*(byte *)(*(longlong *)(param_1 + 0x20) + 8) & 2) != 0) &&
          (iRam0000000180c912e0 = iRam0000000180c912e0 + -1, iRam0000000180c912e0 == 0)) {
-        _DAT_180c912f0 = 0;
+        init_system_data_buffer = 0;
         lRam0000000180c912e8 = 0;
         LOCK();
-        _DAT_180d48d28 = 0;
+        init_system_config_buffer = 0;
         UNLOCK();
         FreeConsole();
       }
@@ -277,7 +277,7 @@ code_r0x0001800630e9:
       break;
     case 5:
       iVar8 = *(int *)(param_1 + 0x58);
-      if ((*(int *)(_DAT_180c8a9c8 + 0x150) <= iVar8) &&
+      if ((*(int *)(init_system_data_buffer + 0x150) <= iVar8) &&
          (puVar5 = *(uint64_t **)(param_1 + 0x20),
          (*(ulonglong *)(param_1 + 0x60) & puVar5[2]) != 0)) {
         uVar2 = *(uint *)(param_1 + 0x40);
@@ -288,11 +288,11 @@ code_r0x0001800630e9:
         if ((*(byte *)(puVar5 + 1) & 2) != 0) {
           FUN_180062ee0((ulonglong)*(uint *)(&system_buffer_3480 + (longlong)(int)uVar1 * 4) +
                         0x180000000,*(int32_t *)(param_1 + 0x50));
-          iVar4 = WriteConsoleA(_DAT_180c912f0,puVar9,uVar2,auStackX_20,0);
+          iVar4 = WriteConsoleA(init_system_data_buffer,puVar9,uVar2,auStackX_20,0);
           if ((iVar4 == 0) || (auStackX_20[0] < uVar2)) {
             FUN_18005d3a0(&unknown_var_92_ptr,puVar9);
           }
-          iVar4 = SetConsoleTextAttribute(_DAT_180c912f0,0xf);
+          iVar4 = SetConsoleTextAttribute(init_system_data_buffer,0xf);
           if (iVar4 == 0) {
             FUN_18005d3a0(&unknown_var_9952_ptr);
           }
@@ -318,9 +318,9 @@ code_r0x0001800630e9:
       *(uint64_t *)(*(longlong *)(param_1 + 0x20) + 0x10) = *(uint64_t *)(param_1 + 0x60);
       break;
     case 8:
-      if ((_DAT_180c912f0 != 0) && (lRam0000000180c912e8 != 0)) {
+      if ((init_system_data_buffer != 0) && (lRam0000000180c912e8 != 0)) {
         auStackX_8[0] = *(uint *)(param_1 + 0x68);
-        SetConsoleScreenBufferSize(_DAT_180c912f0,auStackX_8[0]);
+        SetConsoleScreenBufferSize(init_system_data_buffer,auStackX_8[0]);
       }
     }
   }
@@ -540,7 +540,7 @@ void initialize_system_buffers(uint64_t system_param)
   stack_cookie = 0xfffffffffffffffe;
   security_check = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   param_value = system_param;
-  initialize_buffer_manager(config_buffer,_DAT_180c86928 + 0x28);
+  initialize_buffer_manager(config_buffer,system_message_context + 0x28);
                     // WARNING: Subroutine does not return
   memset(zero_buffer,0,0x200);
 }
@@ -858,7 +858,7 @@ void FUN_180064010(uint64_t param_1)
     puVar3 = puStack_258;
   }
   FUN_18062dee0(&uStack_2e0,puVar3,&unknown_var_572_ptr);
-  FUN_1800ae730(_DAT_180c868b0,&uStack_2e0);
+  FUN_1800ae730(init_system_data_buffer,&uStack_2e0);
   if (lStack_2d8 != 0) {
     fclose();
     lStack_2d8 = 0;
@@ -938,7 +938,7 @@ ulonglong process_file_operations(uint64_t file_handle)
   file_list3 = file_array2;
   file_list2 = file_array1;
   if ((status_char == '\0') || (file_array1 == file_array2)) {
-    log_system_message(_DAT_180c86928,5,3,&unknown_var_736_ptr);
+    log_system_message(system_message_context,5,3,&unknown_var_736_ptr);
     operation_result = get_operation_result();
     file_list1 = file_list2;
   }

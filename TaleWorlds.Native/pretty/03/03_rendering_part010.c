@@ -86,7 +86,7 @@ void resize_render_object_array(render_context_t *render_context, size_t new_siz
     if (growth_factor != 0) {
       // 分配新的内存空间
       new_array_start = (render_object_t *)
-               allocate_render_memory(&_DAT_180c8ed18, growth_factor * sizeof(render_object_t), 
+               allocate_render_memory(&system_memory_pool_ptr, growth_factor * sizeof(render_object_t), 
                                     render_context->render_flags, 0x6bca1af286bca1b, 0xfffffffffffffffe);
       old_array_end = render_context->array_end;
       new_array_ptr = render_context->object_array;
@@ -278,7 +278,7 @@ render_object_t **create_render_object_instance(render_context_t *render_context
   char *name_string;
   
   // 分配渲染对象内存
-  memory_handle = allocate_render_object_memory(&_DAT_180c8ed18, 0x470, 0x10, 0x15, 0, 0xfffffffffffffffe);
+  memory_handle = allocate_render_object_memory(&system_memory_pool_ptr, 0x470, 0x10, 0x15, 0, 0xfffffffffffffffe);
   
   // 初始化渲染对象实例
   new_instance = (render_object_t *)initialize_render_object_instance(memory_handle);
@@ -342,14 +342,14 @@ void setup_render_object_properties(render_context_t *render_context, void *para
       (**(code **)(*instance_ptr + 0x38))();
     }
     *(int8_t *)(*(longlong *)(render_context + 0xb0) + 0xb1) = 1;
-    base_address = _DAT_180c86930;
+    base_address = system_resource_state;
     render_manager = *(longlong **)(render_context + 0xb0);
     compare_result = (**(code **)(*render_manager + 0x60))(render_manager);
     *(int8_t *)((longlong)render_manager + 0xb2) = 1;
     register_render_object((longlong)compare_result * 0x98 + base_address + 8,render_manager);
   }
-  texture_list = (uint64_t *)(_DAT_180c8a9d0 + 0x180);
-  current_node = *(uint64_t **)(_DAT_180c8a9d0 + 400);
+  texture_list = (uint64_t *)(render_system_data_resource + 0x180);
+  current_node = *(uint64_t **)(render_system_data_resource + 400);
   parent_node = texture_list;
   if (current_node != (uint64_t *)0x0) {
     do {
@@ -466,7 +466,7 @@ void process_render_object_creation(longlong render_context, uint64_t param2, ui
   }
   array_data = (longlong *)(*(longlong *)(render_context + 0xb0) + 0x10);
   (**(code **)(*array_data + 0x10))(array_data,object_name);
-  buffer_size = _DAT_180c86930;
+  buffer_size = system_resource_state;
   array_data = *(longlong **)(render_context + 0xb0);
   mutex_result = (**(code **)(*array_data + 0x60))(array_data);
   *(int8_t *)((longlong)array_data + 0xb2) = 1;
@@ -495,7 +495,7 @@ void process_render_object_creation(longlong render_context, uint64_t param2, ui
   if (buffer_size == 0) {
     buffer_size = 1;
 LAB_1802abea0:
-    object_instance = (longlong *)allocate_render_object_memory(_DAT_180c8ed18,buffer_size * 8,(char)buffer_ptr[3],param4,cleanup_flag);
+    object_instance = (longlong *)allocate_render_object_memory(system_memory_pool_ptr,buffer_size * 8,(char)buffer_ptr[3],param4,cleanup_flag);
     queue_head = (longlong *)buffer_ptr[1];
     array_data = (longlong *)*buffer_ptr;
     buffer_ptr = object_instance;
@@ -552,7 +552,7 @@ uint64_t * clone_render_object_data(uint64_t source_object, longlong clone_flags
   uint64_t data_ptr;
   uint64_t *new_object;
   
-  new_object = (uint64_t *)allocate_render_object_memory(_DAT_180c8ed18,0x1c8,8,3,0xfffffffffffffffe);
+  new_object = (uint64_t *)allocate_render_object_memory(system_memory_pool_ptr,0x1c8,8,3,0xfffffffffffffffe);
   *new_object = &unknown_var_5192_ptr;
   *new_object = &unknown_var_8792_ptr;
   *(int32_t *)(new_object + 1) = 0;

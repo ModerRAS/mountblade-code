@@ -5,9 +5,9 @@
 // 本文件包含2个函数，主要用于材质加载、纹理处理和资源管理
 
 // 全局变量声明
-extern uint64_t _DAT_180c8aa58;    // 材质管理器数据指针
-extern uint64_t _DAT_180a04ee4;    // 材质字符串常量
-extern uint64_t _DAT_180d48d24;    // 默认材质路径
+extern uint64_t core_system_data_material;    // 材质管理器数据指针
+extern uint64_t core_system_temp_material;    // 材质字符串常量
+extern uint64_t core_system_config_material;    // 默认材质路径
 
 /**
  * 处理材质加载和纹理资源管理
@@ -70,9 +70,9 @@ void process_material_loading(uint64_t material_context, longlong material_base,
   
   stack_config_2 = 0xfffffffffffffffe;
   texture_size = 0;
-  stack_ptr_6 = _DAT_180c8aa58;
+  stack_ptr_6 = core_system_data_material;
   stack_value_1 = (longlong)material_count;
-  resource_ptr = _DAT_180c8aa58;
+  resource_ptr = core_system_data_material;
   if (0 < material_count) {
     do {
       temp_name = (char *)0x0;
@@ -290,7 +290,7 @@ LAB_180209f34:
                       }
                     }
                   }
-                  material_ptr = (longlong *)FUN_1800b08e0(_DAT_180c86930,&stack_ptr_5,&stack_resource_4,1);
+                  material_ptr = (longlong *)FUN_1800b08e0(system_resource_state,&stack_ptr_5,&stack_resource_4,1);
                   path_length = *material_ptr;
                   *material_ptr = 0;
                   material_ptr = (longlong *)*resource_ptr;
@@ -356,7 +356,7 @@ LAB_18020a094:
                         }
                       }
                     }
-                    material_ptr = (longlong *)FUN_1800b08e0(_DAT_180c86930,&stack_ptr_4,&stack_resource_5,1);
+                    material_ptr = (longlong *)FUN_1800b08e0(system_resource_state,&stack_ptr_4,&stack_resource_5,1);
                     path_length = *material_ptr;
                     *material_ptr = 0;
                     stack_ptr_2 = (longlong *)resource_ptr[1];
@@ -422,7 +422,7 @@ LAB_18020a1f4:
                           }
                         }
                       }
-                      material_ptr = (longlong *)FUN_1800b08e0(_DAT_180c86930,&stack_ptr_3,&stack_resource_1,1);
+                      material_ptr = (longlong *)FUN_1800b08e0(system_resource_state,&stack_ptr_3,&stack_resource_1,1);
                       path_length = *material_ptr;
                       *material_ptr = 0;
                       stack_ptr_1 = (longlong *)resource_ptr[2];

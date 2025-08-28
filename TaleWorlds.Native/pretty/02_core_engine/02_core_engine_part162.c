@@ -4,7 +4,7 @@
 // 02_core_engine_part162.c - 核心引擎边界框计算模块
 
 // 全局变量和常量定义
-// _DAT_180c8ed18 - 内存分配器/池管理器
+// system_memory_pool_ptr - 内存分配器/池管理器
 #define MEMORY_POOL_MANAGER ((void *)0x180c8ed18)
 // 边界框相关偏移量
 #define BBOX_MIN_X_OFFSET (-0x79)

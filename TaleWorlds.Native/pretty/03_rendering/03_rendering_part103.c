@@ -176,7 +176,7 @@ void RenderingSystemDataCollector(longlong render_context, longlong *data_buffer
                     buffer_size = 1;
                 LAB_18032b0f4:
                     // 分配新的缓冲区
-                    temp_buffer = (int32_t *)FUN_18062b420(_DAT_180c8ed18, buffer_size * 4, (char)data_buffer[3]);
+                    temp_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, buffer_size * 4, (char)data_buffer[3]);
                     source_buffer = (int32_t *)data_buffer[1];
                     temp_buffer = (int32_t *)*data_buffer;
                 }
@@ -319,7 +319,7 @@ void RenderingSystemAdvancedDataProcessor(longlong render_context, longlong *dat
                     buffer_size = 1;
                 LAB_18032b314:
                     // 分配新的缓冲区
-                    temp_buffer = (int32_t *)FUN_18062b420(_DAT_180c8ed18, buffer_size * 4, (char)data_buffer[3]);
+                    temp_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, buffer_size * 4, (char)data_buffer[3]);
                     source_buffer = (int32_t *)data_buffer[1];
                     temp_buffer = (int32_t *)*data_buffer;
                 }
@@ -478,7 +478,7 @@ int32_t RenderingSystemResourceFinder(longlong resource_manager, ulonglong resou
     }
     
     // 获取当前计数器值
-    lock_result = _DAT_180d48e20;
+    lock_result = render_system_config_buffer;
     
     // 计算哈希索引
     hash_index = resource_id % (ulonglong)*(uint *)(resource_manager + 0x338);
@@ -499,7 +499,7 @@ int32_t RenderingSystemResourceFinder(longlong resource_manager, ulonglong resou
 LAB_18032b522:
     // 检查是否需要调整哈希表大小
     if (current_entry == *(ulonglong **)(hash_table_base + table_size * 8)) {
-        _DAT_180d48e20 = _DAT_180d48e20 + 1;
+        render_system_config_buffer = render_system_config_buffer + 1;
         
         // 再次检查哈希链
         for (current_entry = hash_entry; current_entry != (ulonglong *)0x0; current_entry = (ulonglong *)current_entry[2]) {
@@ -510,7 +510,7 @@ LAB_18032b522:
         }
         
         // 创建新的哈希条目
-        current_entry = (ulonglong *)FUN_18062b420(_DAT_180c8ed18, 0x18, *(int8_t *)(resource_manager + 0x354));
+        current_entry = (ulonglong *)FUN_18062b420(system_memory_pool_ptr, 0x18, *(int8_t *)(resource_manager + 0x354));
         resource_data = (int32_t)resource_id;
         data_high = (int32_t)(resource_id >> 0x20);
         
@@ -606,7 +606,7 @@ LAB_18032b6ff:
     // 检查是否需要创建新资源
     if (current_entry == *(uint **)(hash_table_base + table_size * 8)) {
         // 分配资源内存
-        resource_data = FUN_18062b1e0(_DAT_180c8ed18, 0x80, 8, 3);
+        resource_data = FUN_18062b1e0(system_memory_pool_ptr, 0x80, 8, 3);
         resource_data = FUN_18033ac00(resource_data);
         
         // 计算哈希索引
@@ -622,7 +622,7 @@ LAB_18032b6ff:
         }
         
         // 创建新的资源条目
-        current_entry = (uint *)FUN_18062b420(_DAT_180c8ed18, 0x18, *(int8_t *)(resource_manager + 0xa1c));
+        current_entry = (uint *)FUN_18062b420(system_memory_pool_ptr, 0x18, *(int8_t *)(resource_manager + 0xa1c));
         resource_data_low = (uint)resource_data;
         resource_data_high = (uint)((ulonglong)resource_data >> 0x20);
         
@@ -683,11 +683,11 @@ longlong RenderingSystemResourceSetter(longlong resource_manager, uint resource_
     
     // 检查线程局部存储
     if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-                 0x48) < _DAT_180d496d0) && (FUN_1808fcb90(&system_memory_96d0), _DAT_180d496d0 == -1)) {
+                 0x48) < render_system_config_buffer) && (FUN_1808fcb90(&system_memory_96d0), render_system_config_buffer == -1)) {
         // 初始化线程局部数据
-        _DAT_180d49730 = &unknown_var_3480_ptr;
-        _DAT_180d49738 = &system_memory_9748;
-        _DAT_180d49740 = 0;
+        render_system_config_buffer = &unknown_var_3480_ptr;
+        render_system_config_buffer = &system_memory_9748;
+        render_system_config_buffer = 0;
     }
     
     // 这里继续函数的实现，但由于代码截断，我们提供一个简化的实现
@@ -720,7 +720,7 @@ void RenderingSystemFileWriter(longlong render_context, uint64_t file_handle)
     file_info = file_handle;
     
     // 创建文件头
-    file_header = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x18, 8, 3);
+    file_header = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x18, 8, 3);
     file_info = FUN_180334500(render_context, &file_stack);
     
     // 确定文件格式
@@ -747,7 +747,7 @@ void RenderingSystemFileWriter(longlong render_context, uint64_t file_handle)
     _fseeki64(file_header[1], 0, 0);
     
     // 分配临时缓冲区
-    temp_buffer = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+    temp_buffer = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
     *(int8_t *)temp_buffer = 0;
     FUN_18064e990(temp_buffer);
     
@@ -882,7 +882,7 @@ void RenderingSystemResourceLoader(longlong render_context, longlong file_handle
     
     // 获取文件信息
     FUN_180334500(render_context, resource_info);
-    resource_buffer = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x18, 8, 3);
+    resource_buffer = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x18, 8, 3);
     resource_format = &system_buffer_ptr;
     if (resource_stack != (void *)0x0) {
         resource_format = resource_stack;
@@ -933,7 +933,7 @@ void RenderingSystemResourceLoader(longlong render_context, longlong file_handle
                     mutex_handle = 1;
                 LAB_18032c711:
                     temp_buffer = (uint64_t *)
-                                 FUN_18062b420(_DAT_180c8ed18, mutex_handle * 8, *(int8_t *)(render_context + 0x278));
+                                 FUN_18062b420(system_memory_pool_ptr, mutex_handle * 8, *(int8_t *)(render_context + 0x278));
                     resource_data = *(uint64_t **)(render_context + 0x268);
                     temp_buffer = (uint64_t *)*resource_pointer;
                 }
@@ -986,7 +986,7 @@ void RenderingSystemResourceLoader(longlong render_context, longlong file_handle
                           *(int32_t *)(render_context + 0x9a0), 1);
             
             // 创建新的资源条目
-            resource_entry = (int *)FUN_18062b420(_DAT_180c8ed18, 0x10, *(int8_t *)(render_context + 0x9b4));
+            resource_entry = (int *)FUN_18062b420(system_memory_pool_ptr, 0x10, *(int8_t *)(render_context + 0x9b4));
             *resource_entry = mutex_handle;
             resource_entry[1] = 0;
             resource_entry[2] = 0;
@@ -1222,7 +1222,7 @@ void RenderingSystemDataSerializer(longlong render_context, longlong file_handle
     buffer_start = _ftelli64(*(uint64_t *)(file_handle + 8));
     
     // 更新文件信息
-    FUN_180062300(_DAT_180c86928, &unknown_var_7576_ptr, data_flags, buffer_start - offset,
+    FUN_180062300(system_message_context, &unknown_var_7576_ptr, data_flags, buffer_start - offset,
                   *(uint64_t *)(render_context + 0x2d0));
 }
 

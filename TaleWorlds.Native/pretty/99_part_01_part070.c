@@ -692,7 +692,7 @@ ulonglong * FUN_1800e9ae0(ulonglong param_1)
   if (param_1 == 0) {
     return (ulonglong *)0x0;
   }
-  puVar1 = (ulonglong *)FUN_18062b420(_DAT_180c8ed18,param_1 * 8 + 0x10,3);
+  puVar1 = (ulonglong *)FUN_18062b420(system_memory_pool_ptr,param_1 * 8 + 0x10,3);
   *puVar1 = param_1 << 0x20 | 8;
   iVar3 = 0;
   puVar2 = puVar1 + 2;

@@ -158,7 +158,7 @@ void FUN_1802bcd60(longlong *param_1,float param_2)
                           fVar23 * *(float *)(param_1 + 0x1b));
   }
   pfVar18 = *(float **)(lVar5 + 0x81f0);
-  fVar26 = ((float)_DAT_180c8ed30 * 1e-05 +
+  fVar26 = ((float)system_error_code * 1e-05 +
            ABS(*(float *)((longlong)param_1 + 0xe4) + *(float *)(param_1 + 0x1c))) * 8.0;
   uVar8 = (uint)fVar26;
   uVar9 = uVar8 & 0x800000ff;
@@ -596,7 +596,7 @@ void FUN_1802bdf30(longlong *param_1,ulonglong param_2)
     }
     lVar1 = 0;
     if (uVar6 != 0) {
-      lVar1 = FUN_18062b420(_DAT_180c8ed18,uVar6 * 0xc,(char)param_1[3]);
+      lVar1 = FUN_18062b420(system_memory_pool_ptr,uVar6 * 0xc,(char)param_1[3]);
       puVar5 = (int32_t *)*param_1;
       puVar4 = (int32_t *)param_1[1];
     }
@@ -669,7 +669,7 @@ void FUN_1802bdf82(longlong param_1,uint64_t param_2,uint64_t param_3,longlong p
   }
   lVar3 = 0;
   if (uVar4 != 0) {
-    lVar3 = FUN_18062b420(_DAT_180c8ed18,uVar4 * 0xc,(char)unaff_RSI[3]);
+    lVar3 = FUN_18062b420(system_memory_pool_ptr,uVar4 * 0xc,(char)unaff_RSI[3]);
     param_4 = *unaff_RSI;
     unaff_RBX = unaff_RSI[1];
   }

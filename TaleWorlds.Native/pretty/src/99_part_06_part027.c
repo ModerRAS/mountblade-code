@@ -651,18 +651,18 @@ joined_r0x0001803beb6b:
                         }
                     }
                     
-                    lVar15 = SystemProcessCreate(_DAT_180c86930, &puStack_120, 1);
-                    uVar2 = _DAT_180c86930;
+                    lVar15 = SystemProcessCreate(system_resource_state, &puStack_120, 1);
+                    uVar2 = system_resource_state;
                     
                     if (lVar15 == 0) {
-                        lVar15 = *(longlong *)(_DAT_180c86898 + SYSTEM_OFFSET_MEMORY_POOL);
+                        lVar15 = *(longlong *)(system_system_data_memory + SYSTEM_OFFSET_MEMORY_POOL);
                         if (lVar15 == 0) {
                             // 创建新的系统配置
                             puStack_100 = &unknown_var_3456_ptr;
                             uStack_e8 = 0;
                             puStack_f8 = (uint64_t *)SYSTEM_NULL_POINTER;
                             uStack_f0 = 0;
-                            puVar4 = (uint64_t *)SystemMemoryAllocate(_DAT_180c8ed18, 0x10, 0x13);
+                            puVar4 = (uint64_t *)SystemMemoryAllocate(system_memory_pool_ptr, 0x10, 0x13);
                             *(int8_t *)puVar4 = 0;
                             puStack_f8 = puVar4;
                             uVar28 = SystemTimeGet(puVar4);
@@ -684,7 +684,7 @@ joined_r0x0001803beb6b:
                         SystemLogOutput(&unknown_var_2832_ptr, puVar16);
                         
                         if (param_3 == (longlong *)SYSTEM_NULL_POINTER) {
-                            uVar2 = SystemMemoryAllocate(_DAT_180c8ed18, 0x3d0, 8, 0x16);
+                            uVar2 = SystemMemoryAllocate(system_memory_pool_ptr, 0x3d0, 8, 0x16);
                             plVar17 = (longlong *)SystemConfigLoad(uVar2);
                             plStack_58 = plVar17;
                             if (plVar17 != (longlong *)SYSTEM_NULL_POINTER) {
@@ -734,7 +734,7 @@ joined_r0x0001803beb6b:
                                 if (uVar25 == 0) {
                                     puVar6 = (uint64_t *)SYSTEM_NULL_POINTER;
                                 } else {
-                                    puVar6 = (uint64_t *)SystemMemoryAllocate(_DAT_180c8ed18, uVar25 * 8);
+                                    puVar6 = (uint64_t *)SystemMemoryAllocate(system_memory_pool_ptr, uVar25 * 8);
                                     puVar4 = (uint64_t *)param_3[1];
                                     puVar5 = (uint64_t *)*param_3;
                                 }
@@ -776,7 +776,7 @@ LAB_1803bf352:
                             do {
                                 if ((*(uint *)(*plVar17 + 0x100) & SYSTEM_FLAG_MODIFIED) != 0) {
                                     SystemConfigValidate(lVar15, &plStack_e0);
-                                    uVar2 = SystemMemoryAllocate(_DAT_180c8ed18, 200, 8, 3);
+                                    uVar2 = SystemMemoryAllocate(system_memory_pool_ptr, 200, 8, 3);
                                     plVar17 = (longlong *)SystemDataTransform(uVar2, plStack_e0);
                                     plStack_68 = plVar17;
                                     if (plVar17 != (longlong *)SYSTEM_NULL_POINTER) {
@@ -803,7 +803,7 @@ LAB_1803bf352:
                         if ((param_3 == (longlong *)SYSTEM_NULL_POINTER) || (*(longlong *)(pcVar22 + SYSTEM_OFFSET_FEATURE_NAME) != 0)) {
 LAB_1803bf07e:
                             if ((*(longlong *)(param_1 + 0x18) == 0) || (param_6 == '\0')) {
-                                uVar2 = SystemMemoryAllocate(_DAT_180c8ed18, 0x3d0, 8, 0x16);
+                                uVar2 = SystemMemoryAllocate(system_memory_pool_ptr, 0x3d0, 8, 0x16);
                                 plVar17 = (longlong *)SystemConfigLoad(uVar2, pcVar22);
                                 plStack_60 = plVar17;
                                 if (plVar17 != (longlong *)SYSTEM_NULL_POINTER) {
@@ -863,7 +863,7 @@ LAB_1803bf025:
                     puStack_120 = &unknown_var_720_ptr;
                 } else if (uVar26 == 1) {
                     // 处理不同类型的配置操作
-                    uVar2 = SystemMemoryAllocate(_DAT_180c8ed18, 0x468, 8, 3, 1, 0, iVar27, uVar28);
+                    uVar2 = SystemMemoryAllocate(system_memory_pool_ptr, 0x468, 8, 3, 1, 0, iVar27, uVar28);
                     plVar17 = (longlong *)SystemDataProcess(uVar2, pcVar22);
                     if (plVar17 != (longlong *)SYSTEM_NULL_POINTER) {
                         plStack_c0 = plVar17;
@@ -871,7 +871,7 @@ LAB_1803bf025:
                     }
                     plStack_c0 = (longlong *)SYSTEM_NULL_POINTER;
                 } else if (uVar26 == 3) {
-                    uVar2 = SystemMemoryAllocate(_DAT_180c8ed18, 200, 8, 3, 3, 0, iVar27, uVar28);
+                    uVar2 = SystemMemoryAllocate(system_memory_pool_ptr, 200, 8, 3, 3, 0, iVar27, uVar28);
                     plVar17 = (longlong *)SystemDataTransform(uVar2, 0);
                     if (plVar17 != (longlong *)SYSTEM_NULL_POINTER) {
                         plStack_c8 = plVar17;
@@ -880,7 +880,7 @@ LAB_1803bf025:
                     plStack_c8 = (longlong *)SYSTEM_NULL_POINTER;
                     (**(code **)(*plVar17 + 0x60))(plVar17, pcVar22);
                 } else if (uVar26 == 4) {
-                    uVar2 = SystemMemoryAllocate(_DAT_180c8ed18, 0x168, 8, 3, 4, 0, iVar27, uVar28);
+                    uVar2 = SystemMemoryAllocate(system_memory_pool_ptr, 0x168, 8, 3, 4, 0, iVar27, uVar28);
                     plVar17 = (longlong *)SystemDataValidate(uVar2);
                     plStack_70 = plVar17;
                     if (plVar17 != (longlong *)SYSTEM_NULL_POINTER) {
@@ -895,7 +895,7 @@ LAB_1803bf025:
                 } else {
                     plVar17 = plVar12;
                     if (uVar26 == 7) {
-                        plVar17 = (longlong *)SystemMemoryAllocate(_DAT_180c8ed18, 0x298, 8, 0xd, 7, 0, iVar27, uVar28);
+                        plVar17 = (longlong *)SystemMemoryAllocate(system_memory_pool_ptr, 0x298, 8, 0xd, 7, 0, iVar27, uVar28);
                         *plVar17 = (longlong)&unknown_var_3552_ptr;
                         *plVar17 = (longlong)&unknown_var_3696_ptr;
                         *(int32_t *)(plVar17 + 1) = 0;
@@ -951,7 +951,7 @@ LAB_1803bf025:
                     if (lVar15 == 0) {
                         lVar15 = 1;
 LAB_1803bf430:
-                        puVar5 = (uint64_t *)SystemMemoryAllocate(_DAT_180c8ed18, lVar15 * 8);
+                        puVar5 = (uint64_t *)SystemMemoryAllocate(system_memory_pool_ptr, lVar15 * 8);
                         puVar4 = (uint64_t *)param_2[1];
                         puVar6 = (uint64_t *)*param_2;
                         puVar24 = puVar5;
@@ -1004,7 +1004,7 @@ LAB_1803bf430:
                         if (lVar15 == 0) {
                             lVar15 = 1;
 LAB_1803bf542:
-                            puVar6 = (uint64_t *)SystemMemoryAllocate(_DAT_180c8ed18, lVar15 * 8, (char)param_3[3]);
+                            puVar6 = (uint64_t *)SystemMemoryAllocate(system_memory_pool_ptr, lVar15 * 8, (char)param_3[3]);
                             puVar4 = (uint64_t *)param_3[1];
                             puVar5 = (uint64_t *)*param_3;
                         } else {

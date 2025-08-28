@@ -46,7 +46,7 @@ void FUN_180079270(longlong param_1,longlong param_2)
     bool is_allocated;
     
     // 获取全局数据地址
-    temp_long = _DAT_180c86890;
+    temp_long = system_parameter_buffer;
     offset_value = param_1;
     
     // 检查对象标志位
@@ -82,7 +82,7 @@ void FUN_180079270(longlong param_1,longlong param_2)
         
         // 计算矩阵数据地址
         temp_long = *(longlong *)
-                   ((longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc30 +
+                   ((longlong)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc30 +
                    (ulonglong)chunk_index * 8);
         offset_value = (ulonglong)(temp_uint1 + chunk_index * -0x2000) * 0x40;
         
@@ -152,13 +152,13 @@ void FUN_180079270(longlong param_1,longlong param_2)
     
     // 检查是否需要更新
     temp_long = *(longlong *)(param_1 + 600);
-    if (*(int *)(temp_long + 0x28) != *(int *)(_DAT_180c86870 + 0x224)) {
+    if (*(int *)(temp_long + 0x28) != *(int *)(system_main_module_state + 0x224)) {
         item_count = *(int *)(temp_long + 0x1c) + *(int *)(temp_long + 0x18);
-        *(int *)(temp_long + 0x28) = *(int *)(_DAT_180c86870 + 0x224);
+        *(int *)(temp_long + 0x28) = *(int *)(system_main_module_state + 0x224);
         
         if (0 < item_count) {
             // 分配内存
-            offset_value = (longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
+            offset_value = (longlong)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc28;
             temp_int32_t = FUN_180080380(offset_value, item_count);
             *(int32_t *)(temp_long + 0x30) = temp_int32_t;
             FUN_1800802e0(offset_value, temp_int32_t);
@@ -194,7 +194,7 @@ void FUN_180079270(longlong param_1,longlong param_2)
                     }
                     else {
                         // 分配新内存
-                        array_ptr = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, (longlong)index_char * 4);
+                        array_ptr = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, (longlong)index_char * 4);
                         *game_object_ptr = (longlong)array_ptr;
                     }
                 }
@@ -269,7 +269,7 @@ void FUN_180079270(longlong param_1,longlong param_2)
                 }
                 
                 // 处理内存块分配
-                uint_ptr = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 + _DAT_180c86890 + 0x9d0);
+                uint_ptr = (uint *)((longlong)*(int *)(system_parameter_buffer + 0xc20) * 0x128 + system_parameter_buffer + 0x9d0);
                 
                 if (item_count == 0) {
                     temp_uint1 = (int)index_char - 1;
@@ -291,7 +291,7 @@ void FUN_180079270(longlong param_1,longlong param_2)
                         do {
                             loop_index = (int)chunk_start;
                             if (*(longlong *)chunk_ptr == 0) {
-                                loop_counter = FUN_18062b420(_DAT_180c8ed18, 0x2000, 0x25);
+                                loop_counter = FUN_18062b420(system_memory_pool_ptr, 0x2000, 0x25);
                                 LOCK();
                                 is_allocated = *(longlong *)(uint_ptr + (longlong)loop_index * 2 + 2) == 0;
                                 if (is_allocated) {
@@ -403,7 +403,7 @@ void FUN_180079284(longlong param_1)
     bool is_allocated;
     
     // 获取全局数据地址
-    temp_long = _DAT_180c86890;
+    temp_long = system_parameter_buffer;
     offset_value = param_1;
     
     // 根据标志位决定是否使用偏移地址
@@ -439,7 +439,7 @@ void FUN_180079284(longlong param_1)
         
         // 计算矩阵数据地址
         temp_long = *(longlong *)
-                   ((longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc30 +
+                   ((longlong)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc30 +
                    (ulonglong)chunk_index * 8);
         offset_value = (ulonglong)(temp_uint1 + chunk_index * -0x2000) * 0x40;
         
@@ -509,13 +509,13 @@ void FUN_180079284(longlong param_1)
     
     // 检查是否需要更新
     temp_long = *(longlong *)(param_1 + 600);
-    if (*(int *)(temp_long + 0x28) != *(int *)(_DAT_180c86870 + 0x224)) {
+    if (*(int *)(temp_long + 0x28) != *(int *)(system_main_module_state + 0x224)) {
         item_count = *(int *)(temp_long + 0x1c) + *(int *)(temp_long + 0x18);
-        *(int *)(temp_long + 0x28) = *(int *)(_DAT_180c86870 + 0x224);
+        *(int *)(temp_long + 0x28) = *(int *)(system_main_module_state + 0x224);
         
         if (0 < item_count) {
             // 分配内存
-            offset_value = (longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
+            offset_value = (longlong)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc28;
             temp_int32_t = FUN_180080380(offset_value, item_count);
             *(int32_t *)(temp_long + 0x30) = temp_int32_t;
             FUN_1800802e0(offset_value, temp_int32_t);
@@ -551,7 +551,7 @@ void FUN_180079284(longlong param_1)
                     }
                     else {
                         // 分配新内存
-                        array_ptr = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, (longlong)index_char * 4);
+                        array_ptr = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, (longlong)index_char * 4);
                         *game_object_ptr = (longlong)array_ptr;
                     }
                 }
@@ -626,7 +626,7 @@ void FUN_180079284(longlong param_1)
                 }
                 
                 // 处理内存块分配
-                uint_ptr = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 + _DAT_180c86890 + 0x9d0);
+                uint_ptr = (uint *)((longlong)*(int *)(system_parameter_buffer + 0xc20) * 0x128 + system_parameter_buffer + 0x9d0);
                 
                 if (item_count == 0) {
                     temp_uint1 = (int)index_char - 1;
@@ -648,7 +648,7 @@ void FUN_180079284(longlong param_1)
                         do {
                             loop_index = (int)chunk_start;
                             if (*(longlong *)chunk_ptr == 0) {
-                                loop_counter = FUN_18062b420(_DAT_180c8ed18, 0x2000, 0x25);
+                                loop_counter = FUN_18062b420(system_memory_pool_ptr, 0x2000, 0x25);
                                 LOCK();
                                 is_allocated = *(longlong *)(uint_ptr + (longlong)loop_index * 2 + 2) == 0;
                                 if (is_allocated) {

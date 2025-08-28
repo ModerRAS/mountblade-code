@@ -249,7 +249,7 @@ void FUN_18035ce30(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_
     }
     
     // 分配渲染资源
-    uVar7 = FUN_18062b1e0(_DAT_180c8ed18, MEMORY_ALLOCATION_SIZE_664, 8, 3);
+    uVar7 = FUN_18062b1e0(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_664, 8, 3);
     plVar9 = (longlong *)FUN_1802f5f70(uVar7);
     plVar8 = (longlong *)FUN_1802ed2b0(*(uint64_t *)(param_1 + 0x18), &plStackX_8, 0, 0);
     plVar8 = (longlong *)*plVar8;
@@ -331,7 +331,7 @@ void FUN_18035ce30(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_
     }
     
     // 分配渲染资源
-    uVar7 = FUN_18062b1e0(_DAT_180c8ed18, MEMORY_ALLOCATION_SIZE_664, 8, 3);
+    uVar7 = FUN_18062b1e0(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_664, 8, 3);
     plVar8 = (longlong *)FUN_1802f5f70(uVar7);
     plVar9 = (longlong *)FUN_1802ed2b0(*(uint64_t *)(param_1 + 0x18), &plStackX_8, 0, 0);
     plVar9 = (longlong *)*plVar9;
@@ -570,7 +570,7 @@ void FUN_18035d370(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64
     }
     
     // 分配渲染资源
-    uVar7 = FUN_18062b1e0(_DAT_180c8ed18, MEMORY_ALLOCATION_SIZE_664, 8, 3);
+    uVar7 = FUN_18062b1e0(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_664, 8, 3);
     plVar9 = (longlong *)FUN_1802f5f70(uVar7);
     plVar8 = (longlong *)FUN_1802ed2b0(param_1[3], &plStackX_8, 0, 0);
     plVar8 = (longlong *)*plVar8;
@@ -652,7 +652,7 @@ void FUN_18035d370(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64
     }
     
     // 分配渲染资源
-    uVar7 = FUN_18062b1e0(_DAT_180c8ed18, MEMORY_ALLOCATION_SIZE_664, 8, 3);
+    uVar7 = FUN_18062b1e0(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_664, 8, 3);
     plVar8 = (longlong *)FUN_1802f5f70(uVar7);
     plVar9 = (longlong *)FUN_1802ed2b0(param_1[3], &plStackX_8, 0, 0);
     plVar9 = (longlong *)*plVar9;
@@ -797,7 +797,7 @@ void FUN_18035d3f0(uint64_t *param_1)
   uStack_70 = 0;
   
   // 分配字符串资源
-  puVar3 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, MEMORY_ALLOCATION_SIZE_16, MEMORY_ALLOCATION_SIZE_19);
+  puVar3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_16, MEMORY_ALLOCATION_SIZE_19);
   *(int8_t *)puVar3 = 0;
   puStack_78 = puVar3;
   uVar2 = FUN_18064e990(puVar3);
@@ -894,7 +894,7 @@ void FUN_18035d710(uint64_t param_1, uint64_t param_2)
   uint64_t uStack_68;
   
   // 分配渲染资源
-  puVar4 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, MEMORY_ALLOCATION_SIZE_200, 8, 3);
+  puVar4 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_200, 8, 3);
   uVar5 = 0xfffffffffffffffe;
   puVar3 = puVar4;
   FUN_1803456e0(puVar4, param_2, param_1);
@@ -927,7 +927,7 @@ void FUN_18035d710(uint64_t param_1, uint64_t param_2)
   uStack_70 = 0;
   
   // 分配字符串资源
-  puVar3 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, MEMORY_ALLOCATION_SIZE_16, MEMORY_ALLOCATION_SIZE_19);
+  puVar3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_16, MEMORY_ALLOCATION_SIZE_19);
   *(int8_t *)puVar3 = 0;
   puStack_78 = puVar3;
   uVar2 = FUN_18064e990(puVar3);
@@ -1169,7 +1169,7 @@ void FUN_18035dac0(uint64_t param_1, longlong param_2, uint64_t param_3, uint64_
     
     // 分配参数资源
     puVar4 = (int32_t *)
-             FUN_18062b420(_DAT_180c8ed18, (int)lVar3 + 0xb, &unknown_var_3699_ptr, param_4, 0xfffffffffffffffe);
+             FUN_18062b420(system_memory_pool_ptr, (int)lVar3 + 0xb, &unknown_var_3699_ptr, param_4, 0xfffffffffffffffe);
     *(int8_t *)puVar4 = 0;
     puStack_58 = puVar4;
     uVar2 = FUN_18064e990(puVar4);
@@ -1198,7 +1198,7 @@ void FUN_18035dac0(uint64_t param_1, longlong param_2, uint64_t param_3, uint64_
     uStack_30 = 0;
     
     // 分配第二组参数资源
-    puVar4 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, MEMORY_ALLOCATION_SIZE_16, MEMORY_ALLOCATION_SIZE_19, param_4, uVar5);
+    puVar4 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_16, MEMORY_ALLOCATION_SIZE_19, param_4, uVar5);
     *(int8_t *)puVar4 = 0;
     puStack_38 = puVar4;
     uVar2 = FUN_18064e990(puVar4);
@@ -1345,9 +1345,9 @@ void FUN_18035dd60(longlong param_1)
   uStack_ac = *(int32_t *)(lVar1 + 0xac);
   
   // 获取渲染参数
-  fVar7 = *(float *)(_DAT_180c86878 + 0x1b8);
-  fVar2 = *(float *)(_DAT_180c86878 + 0x1bc);
-  fVar3 = *(float *)(_DAT_180c86878 + 0x1c0);
+  fVar7 = *(float *)(render_system_data_config + 0x1b8);
+  fVar2 = *(float *)(render_system_data_config + 0x1bc);
+  fVar3 = *(float *)(render_system_data_config + 0x1c0);
   
   if (plVar5 == (longlong *)0x0) {
     return;

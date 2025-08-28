@@ -22,7 +22,7 @@
 #define UI_MAX_UINT_VALUE 0x7fffffff
 
 // 全局变量引用
-extern const void* _DAT_180c86938;     // UI系统全局数据
+extern const void* system_message_buffer;     // UI系统全局数据
 extern const void* GET_SECURITY_COOKIE();     // UI系统配置数据
 
 /**

@@ -71,7 +71,7 @@ void Engine_ExpandDataStructure(void)
     }
     puVar15 = puVar14;
     if (uVar13 != 0) {
-      puVar14 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,uVar13 << 4,(char)unaff_RBP[3]);
+      puVar14 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,uVar13 << 4,(char)unaff_RBP[3]);
       puVar8 = (uint64_t *)*unaff_RBP;
       puVar15 = puVar14;
     }
@@ -696,7 +696,7 @@ longlong FUN_18008e700(longlong *param_1,longlong *param_2,int param_3,uint64_t 
   }
   else {
     if (param_3 == 1) {
-      lVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x38,8,system_allocation_flags);
+      lVar1 = FUN_18062b1e0(system_memory_pool_ptr,0x38,8,system_allocation_flags);
       FUN_18008e9e0(lVar1,*param_2);
       *param_1 = lVar1;
       return 0;

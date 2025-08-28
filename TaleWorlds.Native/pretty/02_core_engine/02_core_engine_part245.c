@@ -17,9 +17,9 @@ extern uint64_t global_var_2392_ptr;    // 虚函数表指针
 extern uint64_t global_var_720_ptr;    // 线程局部存储
 extern uint64_t global_var_7512_ptr;    // 内存管理器
 extern uint64_t global_var_3456_ptr;    // 线程调度器
-extern longlong _DAT_180c8ed18;     // 内存池标识符
-extern longlong _DAT_180c82868;     // 同步对象标识符
-extern longlong _DAT_180c86938;     // 锁管理器
+extern longlong system_memory_pool_ptr;     // 内存池标识符
+extern longlong system_context_ptr;     // 同步对象标识符
+extern longlong system_message_buffer;     // 锁管理器
 extern longlong __tls_index;        // 线程局部存储索引
 extern uint64_t ThreadLocalStoragePointer; // 线程局部存储指针
 
@@ -497,7 +497,7 @@ void start_thread_execution(longlong thread_handle)
     longlong *plVar3;
     
     *(int8_t *)(thread_handle + 0x58) = 1;
-    uVar1 = FUN_18062b1e0(_DAT_180c8ed18, 0x10, 8, 3, DEFAULT_TIMEOUT);
+    uVar1 = FUN_18062b1e0(system_memory_pool_ptr, 0x10, 8, 3, DEFAULT_TIMEOUT);
     plVar3 = (longlong *)FUN_1808fc418(0x10);
     *plVar3 = thread_handle;
     plVar3[1] = (longlong)&global_var_1688_ptr;
@@ -644,7 +644,7 @@ uint64_t process_task_request(longlong task_manager, uint64_t param2, uint64_t p
     WaitForSingleObject(**(uint64_t **)(task_manager + 0x1f0), 1, param3, param4, DEFAULT_TIMEOUT);
     cVar2 = FUN_180060e40(*(uint64_t *)(task_manager + 0x60), task_manager + 0x78, &plStackX_8);
     plVar1 = plStackX_8;
-    uVar3 = _DAT_180c82868;
+    uVar3 = system_context_ptr;
     if (cVar2 != '\0') {
         if (((ulonglong)plStackX_8[3] >> (*(ulonglong *)(task_manager + 0x50) & 0x3f) & 1) != 0) {
             ((void (*)(void))(*(code **)(*plStackX_8 + 0x60)))(plStackX_8);
@@ -700,7 +700,7 @@ uint64_t execute_task_scheduling(longlong task_manager, char force)
         }
         cVar3 = FUN_180060e40(*(uint64_t *)(task_manager + 0x60), task_manager + 0x78, &ppplStackX_18);
         pppplVar7 = (longlong ****)ppplStackX_18;
-        uVar8 = _DAT_180c82868;
+        uVar8 = system_context_ptr;
         if (cVar3 != '\0') {
             if (((ulonglong)ppplStackX_18[3] >> (*(ulonglong *)(task_manager + 0x50) & 0x3f) & 1) != 0) {
                 ((void (*)(void))(*(code *)(*ppplStackX_18)[0xc]))(ppplStackX_18);
@@ -761,7 +761,7 @@ uint64_t execute_task_scheduling(longlong task_manager, char force)
         if (iVar4 != 0) {
             __Throw_C_error_std__YAXH_Z(iVar4);
         }
-        uVar8 = _DAT_180c82868;
+        uVar8 = system_context_ptr;
         if (pppplVar7 != (longlong ****)0x0) {
             if (((ulonglong)pppplVar7[3] >> (*(ulonglong *)(task_manager + 0x50) & 0x3f) & 1) != 0) {
                 ((void (*)(void))(*(code *)(*pppplVar7)[0xc]))(pppplVar7);
@@ -1010,7 +1010,7 @@ void create_task_execution_environment(uint64_t *context_ptr)
     plStack_d8 = alStack_70;
     _Mtx_init_in_situ(alStack_70, 2);
     uStack_20 = 0;
-    plVar2 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 200, 8, 3);
+    plVar2 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, 200, 8, 3);
     plStack_d8 = plVar2;
     FUN_180049830(plVar2);
     *plVar2 = (longlong)&global_var_2248_ptr;
@@ -1052,7 +1052,7 @@ uint64_t process_task_completion(longlong task_manager, char force)
     if (force == '\0') {
         cVar1 = FUN_180060e40(*(uint64_t *)(task_manager + 0x60), task_manager + 0x78, &plStackX_18);
         plVar4 = plStackX_18;
-        uVar6 = _DAT_180c82868;
+        uVar6 = system_context_ptr;
         if (cVar1 != '\0') {
             if (((ulonglong)plStackX_18[3] >> (*(ulonglong *)(task_manager + 0x50) & 0x3f) & 1) != 0) {
                 ((void (*)(void))(*(code **)(*plStackX_18 + 0x60)))(plStackX_18);
@@ -1108,7 +1108,7 @@ uint64_t process_task_completion(longlong task_manager, char force)
                 __Throw_C_error_std__YAXH_Z(iVar2);
             }
             if (plVar4 != (longlong *)0x0) {
-                lVar5 = _DAT_180c86938 + 0x20;
+                lVar5 = system_message_buffer + 0x20;
                 iVar2 = _Mtx_lock(lVar5);
                 if (iVar2 != 0) {
                     __Throw_C_error_std__YAXH_Z(iVar2);

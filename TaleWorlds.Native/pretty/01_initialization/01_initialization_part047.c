@@ -647,7 +647,7 @@ longlong * clone_object(longlong *source_object, longlong *target_object)
   temp_ptr_2 = target_object;
   
   // 分配内存用于克隆对象
-  memory_block = FUN_18062b1e0(_DAT_180c8ed18, 0x300, 0x10, 9, 0, 0xfffffffffffffffe);
+  memory_block = FUN_18062b1e0(system_memory_pool_ptr, 0x300, 0x10, 9, 0, 0xfffffffffffffffe);
   cloned_object = (longlong *)FUN_180075030(memory_block, 0, 0);
   *target_object = (longlong)cloned_object;
   

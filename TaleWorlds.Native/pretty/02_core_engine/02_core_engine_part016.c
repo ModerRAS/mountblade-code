@@ -54,7 +54,7 @@ void resize_buffer(longlong *buffer_info, ulonglong required_size)
   if (new_size == 0) {
     new_buffer = 0;
   } else {
-    new_buffer = allocate_memory(_DAT_180c8ed18, new_size * 8, (char)buffer_info[3]);
+    new_buffer = allocate_memory(system_memory_pool_ptr, new_size * 8, (char)buffer_info[3]);
     current_start = *buffer_info;
     current_end = buffer_info[1];
   }
@@ -121,7 +121,7 @@ void expand_buffer_capacity(longlong current_size, ulonglong required_size, uint
   if (new_capacity == 0) {
     new_buffer = 0;
   } else {
-    new_buffer = allocate_memory(_DAT_180c8ed18, new_capacity * 8, (char)unaff_RBX[3]);
+    new_buffer = allocate_memory(system_memory_pool_ptr, new_capacity * 8, (char)unaff_RBX[3]);
     capacity_info = *unaff_RBX;
     unaff_RDI = unaff_RBX[1];
   }
@@ -831,7 +831,7 @@ longlong * create_and_compare_string(longlong source_info, longlong *result_info
   uint64_t comparison_result;
   char temp_buffer [8];
   
-  new_string = allocate_string_memory(_DAT_180c8ed18, 0x40, *(int8_t *)(source_info + 0x28));
+  new_string = allocate_string_memory(system_memory_pool_ptr, 0x40, *(int8_t *)(source_info + 0x28));
   initialize_string_memory(new_string + 0x20, comparison_flag);
   existing_string = find_existing_string(source_info, temp_buffer, new_string + 0x20);
   
@@ -914,7 +914,7 @@ void release_string_resources(uint64_t *string_ptr)
 uint64_t * initialize_string_processing(uint64_t *string_ptr, uint length, uint64_t param3, uint64_t param4)
 {
   *string_ptr = &string_start_marker;
-  process_string_segment(_DAT_180c82868, string_ptr[0x28], param3, param4, 0xfffffffffffffffe);
+  process_string_segment(system_context_ptr, string_ptr[0x28], param3, param4, 0xfffffffffffffffe);
   string_ptr[0x28] = 0;
   string_ptr[0x29] = &empty_string_marker;
   

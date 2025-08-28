@@ -170,7 +170,7 @@ void RenderingSystemImageDifferenceCalculator(uint32_t* source_data, int32_t sou
     int32_t accumulator[8];              // 8个累加器用于SIMD运算
     uint8_t simd_temp[16];
     
-    data_config = _DAT_180bf00b0;        // 获取数据配置
+    data_config = render_system_control_ui;        // 获取数据配置
     iteration_count = 8;
     
     do {

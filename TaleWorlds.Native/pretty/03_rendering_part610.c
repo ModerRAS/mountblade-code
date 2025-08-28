@@ -265,7 +265,7 @@ void RenderingSystemAdvancedParameterProcessor(
   
   // 检查参数变化并进行处理
   if (validation_result != param_value) {
-    if ((((_DAT_180c92514 != 1) && (_DAT_180c92514 != 4)) &&
+    if ((((system_status_flag != 1) && (system_status_flag != 4)) &&
         (system_data_ptr = *(longlong *)(registry_ptr + 0x9e8 + (longlong)param_index * 8), system_data_ptr != 0)) &&
        ((*(uint *)((longlong)*(int *)(system_data_ptr + 0xf0) * 0xa0 + 0x58 + *(longlong *)(system_data_ptr + 0xd0)) &
         0x3000) != 0)) {
@@ -372,8 +372,8 @@ void RenderingSystemAdvancedCalculator(longlong system_handle)
               state_ptr = *(longlong **)(system_handle + 0x590);
               state_index = (int)state_ptr[0x493];
               if (state_index != -1) {
-                if ((*(int *)((longlong)state_index * 0x68 + 0x58 + _DAT_180c96150) == 0x10) ||
-                   (state_index = *(int *)((longlong)state_index * 0x68 + 0x58 + _DAT_180c96150), state_index == 0x11)
+                if ((*(int *)((longlong)state_index * 0x68 + 0x58 + render_system_config) == 0x10) ||
+                   (state_index = *(int *)((longlong)state_index * 0x68 + 0x58 + render_system_config), state_index == 0x11)
                    ) {
                   system_state = (**(code **)(*state_ptr + 0x128))(state_ptr,1);
                   float_value1 = *(float *)(system_state + 0x1d8);
@@ -387,7 +387,7 @@ void RenderingSystemAdvancedCalculator(longlong system_handle)
                   system_state = (**(code **)(*state_ptr + 0x128))(state_ptr,1);
                   state_ptr = *(longlong **)(system_handle + 0x590);
                   if (((int)state_ptr[0x493] == -1) ||
-                     (*(char *)((longlong)(int)state_ptr[0x493] * 0x68 + 0x60 + _DAT_180c96150) !=
+                     (*(char *)((longlong)(int)state_ptr[0x493] * 0x68 + 0x60 + render_system_config) !=
                       '\x04')) goto LAB_RENDERING_CONDITION_HANDLER;
                   float_value1 = (float)(**(code **)(*state_ptr + 0x90))(state_ptr,1);
                   condition_equal = float_value1 == *(float *)(system_state + 0x1d8);
@@ -418,7 +418,7 @@ LAB_RENDERING_STATE_CHECK:
               if (state_index == current_index) {
                 state_ptr = *(longlong **)(system_handle + 0x590);
                 if (((int)state_ptr[0x493] == -1) ||
-                   (*(int *)((longlong)(int)state_ptr[0x493] * 0x68 + 0x58 + _DAT_180c96150) != 0x12))
+                   (*(int *)((longlong)(int)state_ptr[0x493] * 0x68 + 0x58 + render_system_config) != 0x12))
                 {
                   if ((*data_ptr != 0) &&
                      ((*(int *)(*data_ptr + 0x30) == *(int *)(system_state + 0x38 + item_offset) &&
@@ -431,7 +431,7 @@ LAB_RENDERING_STATE_CHECK:
                   system_state = (**(code **)(*state_ptr + 0x128))(state_ptr,1);
                   state_ptr = *(longlong **)(system_handle + 0x590);
                   if (((((int)state_ptr[0x493] != -1) &&
-                       (*(char *)((longlong)(int)state_ptr[0x493] * 0x68 + 0x60 + _DAT_180c96150) ==
+                       (*(char *)((longlong)(int)state_ptr[0x493] * 0x68 + 0x60 + render_system_config) ==
                         '\x04')) &&
                       (float_value1 = (float)(**(code **)(*state_ptr + 0x90))(state_ptr,1),
                       *(float *)(system_state + 0x1d8) <= float_value1 && float_value1 != *(float *)(system_state + 0x1d8)))
@@ -499,7 +499,7 @@ void RenderingSystemStateManager(longlong system_handle)
   FUN_180540440(data_ptr,system_handle);
   
   // 如果系统处于特定状态，更新渲染标志
-  if (((_DAT_180c92514 != 1) && (_DAT_180c92514 != 4)) && (*(int *)(system_handle + 0x570) == 1)) {
+  if (((system_status_flag != 1) && (system_status_flag != 4)) && (*(int *)(system_handle + 0x570) == 1)) {
     flag_ptr = (ushort *)(*(longlong *)(system_handle + 0x6e0) + 0x130);
     *flag_ptr = *flag_ptr | 1;
   }
@@ -599,8 +599,8 @@ void RenderingSystemFlagChecker(
               state_ptr = *(longlong **)(system_handle + 0x590);
               state_index = (int)state_ptr[0x493];
               if (state_index != -1) {
-                if ((*(int *)((longlong)state_index * 0x68 + 0x58 + _DAT_180c96150) == 0x10) ||
-                   (state_index = *(int *)((longlong)state_index * 0x68 + 0x58 + _DAT_180c96150), state_index == 0x11)
+                if ((*(int *)((longlong)state_index * 0x68 + 0x58 + render_system_config) == 0x10) ||
+                   (state_index = *(int *)((longlong)state_index * 0x68 + 0x58 + render_system_config), state_index == 0x11)
                    ) {
                   system_state = (**(code **)(*state_ptr + 0x128))(state_ptr,1);
                   float_value1 = *(float *)(system_state + 0x1d8);
@@ -614,7 +614,7 @@ void RenderingSystemFlagChecker(
                   system_state = (**(code **)(*state_ptr + 0x128))(state_ptr,1);
                   state_ptr = *(longlong **)(system_handle + 0x590);
                   if (((int)state_ptr[0x493] == -1) ||
-                     (*(char *)((longlong)(int)state_ptr[0x493] * 0x68 + 0x60 + _DAT_180c96150) !=
+                     (*(char *)((longlong)(int)state_ptr[0x493] * 0x68 + 0x60 + render_system_config) !=
                       '\x04')) goto LAB_RENDERING_FLAG_PROCESSOR;
                   float_value1 = (float)(**(code **)(*state_ptr + 0x90))(state_ptr,1);
                   condition_equal = float_value1 == *(float *)(system_state + 0x1d8);
@@ -645,7 +645,7 @@ LAB_RENDERING_FLAG_CHECK:
               if (state_index == current_index) {
                 state_ptr = *(longlong **)(system_handle + 0x590);
                 if (((int)state_ptr[0x493] == -1) ||
-                   (*(int *)((longlong)(int)state_ptr[0x493] * 0x68 + 0x58 + _DAT_180c96150) != 0x12))
+                   (*(int *)((longlong)(int)state_ptr[0x493] * 0x68 + 0x58 + render_system_config) != 0x12))
                 {
                   if ((*data_ptr != 0) &&
                      ((*(int *)(*data_ptr + 0x30) == *(int *)(system_state + 0x38 + item_offset) &&
@@ -658,7 +658,7 @@ LAB_RENDERING_FLAG_CHECK:
                   system_state = (**(code **)(*state_ptr + 0x128))(state_ptr,1);
                   state_ptr = *(longlong **)(system_handle + 0x590);
                   if (((((int)state_ptr[0x493] != -1) &&
-                       (*(char *)((longlong)(int)state_ptr[0x493] * 0x68 + 0x60 + _DAT_180c96150) ==
+                       (*(char *)((longlong)(int)state_ptr[0x493] * 0x68 + 0x60 + render_system_config) ==
                         '\x04')) &&
                       (float_value1 = (float)(**(code **)(*state_ptr + 0x90))(state_ptr,1),
                       *(float *)(system_state + 0x1d8) <= float_value1 && float_value1 != *(float *)(system_state + 0x1d8)))
@@ -726,7 +726,7 @@ void RenderingSystemConditionHandler(
     (**(code **)(*param4 + 0x28))();
   }
   stack_ptr_ptr = &stack_ptr;
-  temp_var1 = FUN_18062b1e0(_DAT_180c8ed18,0x1f8,8,3);
+  temp_var1 = FUN_18062b1e0(system_memory_pool_ptr,0x1f8,8,3);
   temp_var2 = FUN_18058f390(temp_var1);
   stack_ptr2 = &param4;
   param4 = stack_ptr;
@@ -932,9 +932,9 @@ void FUN_1806007a0(longlong param_1)
   longlong lVar3;
   longlong *plVar4;
   
-  if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
+  if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
     iVar1 = *(int *)(param_1 + 0x10);
-    plVar4 = (longlong *)(**(code **)(_DAT_180c925a0 + 0x20))(&system_memory_25a0);
+    plVar4 = (longlong *)(**(code **)(render_system_config + 0x20))(&system_memory_25a0);
     lVar3 = *plVar4;
     if (lVar3 != 0) {
       uVar2 = *(int32_t *)(lVar3 + 0x4b80);
@@ -1335,7 +1335,7 @@ void FUN_180601160(longlong param_1)
   }
   if (*(longlong *)plVar2[0x1f] == 0) {
                     // WARNING: Subroutine does not return
-    FUN_180062300(_DAT_180c86928,&unknown_var_1944_ptr);
+    FUN_180062300(system_message_context,&unknown_var_1944_ptr);
   }
   lVar3 = FUN_18040db80(*(longlong *)plVar2[0x1f]);
   fVar7 = 0.0;

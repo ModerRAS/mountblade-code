@@ -43,7 +43,7 @@ void rendering_system_resource_processor(longlong render_context, longlong *reso
   resource_flag = RENDERING_RESOURCE_FLAG_INVALID;
   
   // 尝试获取资源管理器
-  FUN_1800b30d0(_DAT_180c86930, &stack_resource_ptr, process_param, 0);
+  FUN_1800b30d0(system_resource_state, &stack_resource_ptr, process_param, 0);
   
   if (stack_resource_ptr == (longlong *)0x0) {
     // 资源管理器为空时的错误处理
@@ -715,11 +715,11 @@ LAB_1803281b2:
     
     do {
       // 检查线程局部存储状态
-      if ((*(int *)(offset_diff + 0x48) < _DAT_180d48e24) &&
-         (FUN_1808fcb90(&system_flag_8e24), _DAT_180d48e24 == -1)) {
-        _DAT_180d48e60 = &unknown_var_3480_ptr;
-        _DAT_180d48e68 = &system_flag_8e78;
-        _DAT_180d48e70 = 0;
+      if ((*(int *)(offset_diff + 0x48) < render_system_config_pointer) &&
+         (FUN_1808fcb90(&system_flag_8e24), render_system_config_pointer == -1)) {
+        render_system_config_pointer = &unknown_var_3480_ptr;
+        render_system_config_pointer = &system_flag_8e78;
+        render_system_config_pointer = 0;
         
         // 继续处理剩余的数据块
         // ... (此处省略了部分代码实现)

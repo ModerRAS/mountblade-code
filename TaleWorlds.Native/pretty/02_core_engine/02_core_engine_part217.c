@@ -566,7 +566,7 @@ create_material_property_array(ulonglong array_size, uint64_t param_2, uint64_t 
   else {
     // 为材质属性数组分配内存
     puVar3 = (ulonglong *)
-             FUN_18062b420(_DAT_180c8ed18,array_size * 0x68 + 0x10,3,param_4,0xfffffffffffffffe);
+             FUN_18062b420(system_memory_pool_ptr,array_size * 0x68 + 0x10,3,param_4,0xfffffffffffffffe);
     *puVar3 = array_size << 0x20 | 0x68;
     puVar2 = puVar3 + 2;
     iVar4 = 0;
@@ -649,7 +649,7 @@ void resize_material_property_array(longlong *array_info, ulonglong new_size, ui
     lVar2 = 0;
   }
   else {
-    lVar2 = FUN_18062b420(_DAT_180c8ed18,uVar6 << 5,(char)array_info[3]);
+    lVar2 = FUN_18062b420(system_memory_pool_ptr,uVar6 << 5,(char)array_info[3]);
     lVar3 = *array_info;
     lVar5 = array_info[1];
   }
@@ -716,7 +716,7 @@ void expand_material_property_array(longlong array_base)
     lVar2 = 0;
   }
   else {
-    lVar2 = FUN_18062b420(_DAT_180c8ed18,uVar6 << 5,(char)unaff_R14[3]);
+    lVar2 = FUN_18062b420(system_memory_pool_ptr,uVar6 << 5,(char)unaff_R14[3]);
     array_base = *unaff_R14;
     unaff_RBX = unaff_R14[1];
   }
@@ -782,7 +782,7 @@ void grow_material_property_array(longlong array_base)
     lVar2 = 0;
   }
   else {
-    lVar2 = FUN_18062b420(_DAT_180c8ed18,uVar6 << 5,(char)unaff_R14[3]);
+    lVar2 = FUN_18062b420(system_memory_pool_ptr,uVar6 << 5,(char)unaff_R14[3]);
     array_base = *unaff_R14;
     unaff_RBX = unaff_R14[1];
   }
@@ -1050,14 +1050,14 @@ uint64_t process_material_property_callback(longlong *callback_data, uint64_t pa
   uint64_t uVar9;
   longlong lVar10;
   
-  lVar3 = _DAT_180c868f0;
+  lVar3 = core_system_data_ui;
   uVar9 = 0xfffffffffffffffe;
   iVar7 = 0;
   uVar8 = 0;
   plStackX_8 = callback_data;
   uStackX_10 = param_2;
-  lVar10 = _DAT_180c868f0;
-  iVar4 = _Mtx_lock(_DAT_180c868f0);
+  lVar10 = core_system_data_ui;
+  iVar4 = _Mtx_lock(core_system_data_ui);
   if (iVar4 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar4);
   }

@@ -29,7 +29,7 @@ void process_character_data_encoding(uint64_t context_ptr, longlong data_source,
   int16_t *stack_buffer_1;
   int16_t *stack_buffer_2;
   
-  global_ptr = _DAT_180c86878;
+  global_ptr = core_system_data_pointer;
   stack_buffer_1 = (int16_t *)0x0;
   stack_buffer_2 = (int16_t *)0x0;
   processed_size = (int)((ulonglong)(longlong)data_size >> 1);
@@ -37,7 +37,7 @@ void process_character_data_encoding(uint64_t context_ptr, longlong data_source,
   
   // 分配缓冲区
   if (processed_size != 0) {
-    stack_buffer_1 = (int16_t *)allocate_memory_block(_DAT_180c8ed18, buffer_capacity * 2, 3);
+    stack_buffer_1 = (int16_t *)allocate_memory_block(system_memory_pool_ptr, buffer_capacity * 2, 3);
     stack_buffer_2 = stack_buffer_1 + buffer_capacity;
   }
   
@@ -63,7 +63,7 @@ void process_character_data_encoding(uint64_t context_ptr, longlong data_source,
           temp_ptr = 1;
 LAB_BUFFER_REALLOC:
           stack_buffer_1 = (int16_t *)
-                         allocate_memory_block(_DAT_180c8ed18, temp_ptr * 2,
+                         allocate_memory_block(system_memory_pool_ptr, temp_ptr * 2,
                                              CONCAT71((int7)((ulonglong)stack_buffer_2 >> 8), 3));
         }
         else {
@@ -133,7 +133,7 @@ ulonglong *create_engine_data_structure(ulonglong item_count, uint64_t param2, u
   
   // 分配主结构内存
   structure_ptr = (ulonglong *)
-                 allocate_memory_block(_DAT_180c8ed18, item_count * 0x3088 + 0x10, 3, param4, 0xfffffffffffffffe);
+                 allocate_memory_block(system_memory_pool_ptr, item_count * 0x3088 + 0x10, 3, param4, 0xfffffffffffffffe);
   
   *structure_ptr = item_count << 0x20 | 0x3088;
   index = 0;
@@ -562,7 +562,7 @@ uint64_t *insert_hash_table_item(longlong table_ptr, uint64_t *key_ptr, int *val
   uint64_t temp_data;
   
   // 创建新的哈希项
-  current_item = (int *)allocate_memory_block(_DAT_180c8ed18, 0x18, *(int8_t *)(table_ptr + 0x2c));
+  current_item = (int *)allocate_memory_block(system_memory_pool_ptr, 0x18, *(int8_t *)(table_ptr + 0x2c));
   *current_item = *value_ptr;
   *(uint64_t *)(current_item + 2) = *(uint64_t *)(value_ptr + 2);
   value_ptr[2] = 0;
@@ -633,7 +633,7 @@ void process_batch_data_operation(uint64_t param1, int start_index, int end_inde
   int8_t temp_buffer2 [16];
   
   max_batch_size = 0x7fffffff;
-  if (*(int *)(_DAT_180c8a9c8 + 0x310) == 0) {
+  if (*(int *)(core_system_data_pointer + 0x310) == 0) {
     max_batch_size = batch_size;
   }
   
@@ -641,7 +641,7 @@ void process_batch_data_operation(uint64_t param1, int start_index, int end_inde
   if (0 < total_items) {
     if (max_batch_size <= total_items) {
       batch_count = total_items / max_batch_size + 1;
-      items_per_batch = (int)(*(longlong *)(_DAT_180c82868 + 0x10) - *(longlong *)(_DAT_180c82868 + 8) >> 3);
+      items_per_batch = (int)(*(longlong *)(system_context_ptr + 0x10) - *(longlong *)(system_context_ptr + 8) >> 3);
       
       if (batch_count < items_per_batch) {
         items_per_batch = batch_count;
@@ -656,7 +656,7 @@ void process_batch_data_operation(uint64_t param1, int start_index, int end_inde
       }
       
       // 创建批处理数据结构
-      batch_data = (longlong *)allocate_memory_block(_DAT_180c8ed18, 0x18, 8, 3);
+      batch_data = (longlong *)allocate_memory_block(system_memory_pool_ptr, 0x18, 8, 3);
       initialize_batch_data(batch_data);
       
       // 设置批处理参数
@@ -683,7 +683,7 @@ void process_batch_data_operation(uint64_t param1, int start_index, int end_inde
         calculate_batch_progress(result, temp_buffer1);
       }
       
-      processing_ptr = allocate_memory_block(_DAT_180c8ed18, 0x58, 8, 3);
+      processing_ptr = allocate_memory_block(system_memory_pool_ptr, 0x58, 8, 3);
       memset(processing_ptr + 8, 0, 0x50);
     }
     
@@ -709,7 +709,7 @@ void expand_hash_table(longlong table_ptr, longlong new_size)
 {
   uint64_t new_table;
   
-  new_table = allocate_memory_block(_DAT_180c8ed18, new_size * 8 + 8, 8, *(int8_t *)(table_ptr + 0x2c));
+  new_table = allocate_memory_block(system_memory_pool_ptr, new_size * 8 + 8, 8, *(int8_t *)(table_ptr + 0x2c));
   memset(new_table, 0, new_size * 8);
 }
 
@@ -745,7 +745,7 @@ void resize_dynamic_array(uint64_t *array_ptr, longlong new_size)
   }
   
   new_array = (uint64_t *)
-              allocate_memory_block(_DAT_180c8ed18, current_size * 0x28, *(int8_t *)(array_ptr + 3), array_start,
+              allocate_memory_block(system_memory_pool_ptr, current_size * 0x28, *(int8_t *)(array_ptr + 3), array_start,
                                     0xfffffffffffffffe);
   
 LAB_REALLOC_DONE:
@@ -835,7 +835,7 @@ longlong process_engine_object_operation(longlong *object_ptr, longlong *param2,
   else {
     if (operation == 1) {
       // 复制对象
-      new_object = (uint64_t *)allocate_memory_block(_DAT_180c8ed18, 0x18, 8, system_allocation_flags, 0xfffffffffffffffe);
+      new_object = (uint64_t *)allocate_memory_block(system_memory_pool_ptr, 0x18, 8, system_allocation_flags, 0xfffffffffffffffe);
       temp_ptr = (uint64_t *)*param2;
       temp_data = temp_ptr[1];
       *new_object = *temp_ptr;
@@ -883,7 +883,7 @@ longlong process_engine_object_reference(longlong *object_ptr, longlong *param2,
   else {
     if (operation == 1) {
       // 创建引用
-      new_object = (uint64_t *)allocate_memory_block(_DAT_180c8ed18, 0x18, 8, system_allocation_flags, 0xfffffffffffffffe);
+      new_object = (uint64_t *)allocate_memory_block(system_memory_pool_ptr, 0x18, 8, system_allocation_flags, 0xfffffffffffffffe);
       temp_ptr = (uint64_t *)*param2;
       temp_data = temp_ptr[1];
       *new_object = *temp_ptr;

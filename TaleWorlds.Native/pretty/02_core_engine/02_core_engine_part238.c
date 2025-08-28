@@ -5,9 +5,9 @@
 
 // 全局变量声明
 extern uint64_t SYSTEM_STATE_MANAGER;    // 引擎全局数据结构指针
-extern uint64_t _DAT_180c8ed18;    // 内存池标识符
-extern uint64_t _DAT_180c86890;    // 资源管理器数据指针
-extern uint64_t _DAT_180c86870;    // 渲染配置数据指针
+extern uint64_t system_memory_pool_ptr;    // 内存池标识符
+extern uint64_t system_parameter_buffer;    // 资源管理器数据指针
+extern uint64_t system_main_module_state;    // 渲染配置数据指针
 extern int8_t global_state_1920_ptr;      // 格式化字符串常量
 
 /**
@@ -909,7 +909,7 @@ void process_resource_manager_advanced_data(longlong *resource_manager, ulonglon
                   *(int32_t *)(temp_long4 + 8 + stack_long3) = *(int32_t *)(temp_long3 + 0x1c);
                   *(byte *)(temp_long2 + 0xfe) = *(byte *)(temp_long2 + 0xfe) & 0xf7;
                   *(uint *)(temp_long2 + 0x100) = *(uint *)(temp_long2 + 0x100) | 0x800;
-                  temp_ullong = _DAT_180c8ed18;
+                  temp_ullong = system_memory_pool_ptr;
                   *(int32_t *)(temp_long2 + 0x10c) = temp_uint1;
                   if (temp_long1 == 0) {
                     temp_byte = 8;
@@ -930,8 +930,8 @@ void process_resource_manager_advanced_data(longlong *resource_manager, ulonglon
 resource_skip_label:
                   if (temp_int < 0) goto resource_complete_label;
                 }
-                ptr_uint = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0x9c8) * 0x488 +
-                                  _DAT_180c86890 + 0xb8);
+                ptr_uint = (uint *)((longlong)*(int *)(system_parameter_buffer + 0x9c8) * 0x488 +
+                                  system_parameter_buffer + 0xb8);
                 if ((int)ullong_counter3 == 0) {
                   temp_uint5 = 0xffffffff;
                 }
@@ -949,7 +949,7 @@ resource_skip_label:
                     do {
                       temp_int = (int)ullong_counter1;
                       if (*(longlong *)ptr_uint2 == 0) {
-                        temp_long1 = allocate_resource_chunk(_DAT_180c8ed18, 0x4000, 0x25);
+                        temp_long1 = allocate_resource_chunk(system_memory_pool_ptr, 0x4000, 0x25);
                         LOCK();
                         bool_flag = *(longlong *)(ptr_uint + (longlong)temp_int * 2 + 2) == 0;
                         if (bool_flag) {
@@ -994,7 +994,7 @@ resource_skip_label:
                 *(int *)(*(longlong *)(temp_long2 + 0x2d0) + 0x14) = (int)ullong_counter3;
                 *(uint *)(*(longlong *)(temp_long2 + 0x2d0) + 0x18) = temp_uint5;
                 *(int32_t *)(*(longlong *)(temp_long2 + 0x2d0) + 0xc) =
-                     *(int32_t *)(_DAT_180c86870 + 0x224);
+                     *(int32_t *)(system_main_module_state + 0x224);
                 temp_uint4 = stack_uint1;
                 if (0 < (int)ullong_counter3) {
                   ptr_float = (float *)(resource_manager + 9);

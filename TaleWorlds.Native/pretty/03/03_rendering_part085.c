@@ -281,10 +281,10 @@ void rendering_system_advanced_data_processor(longlong data_processor, char proc
     }
     
     // 调用数据处理函数
-    FUN_18029b390(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), 
+    FUN_18029b390(*(uint64_t *)(system_message_buffer + 0x1cd8), 
                   *(uint64_t *)(data_processor + OFFSET_DATA_PROCESSOR_2),
                   output_buffer_2);
-    FUN_18029b390(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), 
+    FUN_18029b390(*(uint64_t *)(system_message_buffer + 0x1cd8), 
                   *(uint64_t *)(data_processor + OFFSET_DATA_PROCESSOR_3),
                   output_buffer_1);
     
@@ -336,7 +336,7 @@ void rendering_system_initialize_state(longlong render_context)
   context_data = *(longlong *)(render_context + 0x9650);
   
   // 设置全局状态变量
-  _DAT_180bf02a0 = 0x80;
+  render_system_control_resource = 0x80;
   
   // 函数继续执行到下一个函数
   // 注意：此函数与下一个函数在原始代码中是连续的
@@ -680,7 +680,7 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
     *(int8_t *)(shader_params + 0x718) = 1;
     
     // 执行渲染函数
-    render_flag = func_0x0001800e2bf0(_DAT_180c86890, shader_params);
+    render_flag = func_0x0001800e2bf0(system_parameter_buffer, shader_params);
     *(int8_t *)((longlong)shader_params + 0x1c61) = render_flag;
     
     // 检查渲染状态
@@ -761,7 +761,7 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
   data_ptr = (uint64_t *)0x0;
   buffer_param = 0;
   
-  vertex_data = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+  vertex_data = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
   *(int8_t *)vertex_data = 0;
   data_ptr = vertex_data;
   mode_param = FUN_18064e990(vertex_data);

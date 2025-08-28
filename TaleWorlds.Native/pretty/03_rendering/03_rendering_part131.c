@@ -273,7 +273,7 @@ void rendering_system_resize_render_pool(uint64_t *pool_header, longlong pool_da
   }
   // 分配新的池内存
   new_pool_ptr = (uint64_t *)
-           FUN_18062b420(_DAT_180c8ed18, pool_size * RENDER_POOL_SIZE_48, *(int8_t *)(pool_header + 3), pool_start_ptr, 0xfffffffffffffffe);
+           FUN_18062b420(system_memory_pool_ptr, pool_size * RENDER_POOL_SIZE_48, *(int8_t *)(pool_header + 3), pool_start_ptr, 0xfffffffffffffffe);
   temp_pool_ptr = (uint64_t *)pool_header[1];
   pool_start_ptr = (uint64_t *)*pool_header;
 LAB_1803464ba:
@@ -554,7 +554,7 @@ void rendering_system_initialize_render_parameter_system(uint64_t *system_ptr)
   error_handler_data_ptr = (uint64_t *)0x0;
   error_handler_size = 0;
   // 分配错误处理内存
-  temp_ptr = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, RENDER_POOL_SIZE_16, 0x13);
+  temp_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, RENDER_POOL_SIZE_16, 0x13);
   *(int8_t *)temp_ptr = 0;
   error_handler_data_ptr = temp_ptr;
   init_param_1 = FUN_18064e990(temp_ptr);

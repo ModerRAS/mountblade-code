@@ -291,16 +291,16 @@ uint64_t get_callback_address(void);
 
 /* 全局变量声明 */
 extern uint64_t GET_SECURITY_COOKIE();    // 栈保护cookie
-extern uint64_t _DAT_180c8ed08;    // 全局数据指针
+extern uint64_t render_system_data_string;    // 全局数据指针
 extern void *global_var_424;         // 虚表地址
-extern uint64_t _DAT_180c8a9c8;     // 配置数据
-extern uint64_t _DAT_180c8ed18;     // 内存池基地址
-extern uint64_t _DAT_180bf90c0;     // 最大名称长度
+extern uint64_t render_system_data_string;     // 配置数据
+extern uint64_t system_memory_pool_ptr;     // 内存池基地址
+extern uint64_t render_system_control_string;     // 最大名称长度
 extern void *global_var_3432;         // 字符串虚表
 extern void *system_buffer_ptr;         // 默认字符串数据
-extern uint64_t _DAT_180bf90b8;     // 名称缓冲区指针
-extern uint64_t _DAT_180bf5b98;     // 扩展数据长度
-extern uint64_t _DAT_180bf5b90;     // 扩展数据指针
-extern uint64_t _DAT_180c86930;     // 回调地址
-extern uint64_t _DAT_180c8ed30;     // 全局配置值
+extern uint64_t render_system_control_string;     // 名称缓冲区指针
+extern uint64_t render_system_control_string;     // 扩展数据长度
+extern uint64_t render_system_control_string;     // 扩展数据指针
+extern uint64_t system_resource_state;     // 回调地址
+extern uint64_t system_error_code;     // 全局配置值
 extern uint8_t system_debug_flag;       // 调试标志

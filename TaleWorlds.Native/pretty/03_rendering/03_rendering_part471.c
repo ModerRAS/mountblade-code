@@ -403,10 +403,10 @@ typedef struct {
  *  @{
  */
 extern UInt64   GET_SECURITY_COOKIE();                ///< 全局数据变量1
-extern UInt32   _DAT_180c8ed38;                ///< 全局数据变量2
-extern UInt32   _DAT_180c92514;                ///< 全局数据变量3
-extern UInt64   _DAT_180c925a0;                ///< 全局数据变量4
-extern UInt32   _DAT_180c95ff0;                ///< 全局数据变量5
+extern UInt32   render_system_data_ui;                ///< 全局数据变量2
+extern UInt32   system_status_flag;                ///< 全局数据变量3
+extern UInt64   render_system_ui;                ///< 全局数据变量4
+extern UInt32   render_system_ui;                ///< 全局数据变量5
 /** @} */
 
 // ============================================================================
@@ -619,7 +619,7 @@ void RenderingSystem_StateManager(UInt32 stateParameter, Int32* controlPointer) 
                     *(UInt64*)(dataContext + 0x4fc) = textureData4;
                     
                     // 设置渲染比例
-                    *(Float32*)(*(Int64*)(rcx + 0x728) + 0x564) = (Float32)_DAT_180c8ed38 * 1e-05;
+                    *(Float32*)(*(Int64*)(rcx + 0x728) + 0x564) = (Float32)render_system_data_ui * 1e-05;
                     
                     // 处理多纹理渲染
                     dataContext = *(Int64*)(rcx + SYSTEM_RESOURCE_OFFSET);
@@ -699,7 +699,7 @@ void RenderingSystem_StateManager(UInt32 stateParameter, Int32* controlPointer) 
                        ((dataContext = *(Int64*)(*(Int64*)(rcx + 0x8f8) + 0x9e8), dataContext != 0 &&
                         (*(UInt8*)((Int64)
                                    *(Int32*)((Int64)*(Int32*)(dataContext + 0xf0) * 0xa0 + 100 +
-                                           *(Int64*)(dataContext + 0xd0)) * 0x170 + 0x135 + _DAT_180c95ff0) !=
+                                           *(Int64*)(dataContext + 0xd0)) * 0x170 + 0x135 + render_system_ui) !=
                          '\0')))) {
                         bufferSize = 8;
                         if (*(Int32*)(rcx + 0x1fc) != 0) {
@@ -723,7 +723,7 @@ void RenderingSystem_StateManager(UInt32 stateParameter, Int32* controlPointer) 
     }
     
     // 高级渲染特性处理
-    if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
+    if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
         currentParam = *controlPointer;
         UInt64 processingContext = *(Int64*)(rcx + 0x590);
         UInt64 additionalData = *(UInt64*)(controlPointer + 2);
@@ -802,7 +802,7 @@ void RenderingSystem_StateManager(UInt32 stateParameter, Int32* controlPointer) 
             }
             
             // 调用内存系统资源管理器
-            MemorySystem_ResourceManager(&_DAT_180c925a0, *(UInt32*)(rcx + 0x10), stateParameter, dataPointer);
+            MemorySystem_ResourceManager(&render_system_ui, *(UInt32*)(rcx + 0x10), stateParameter, dataPointer);
         }
     }
     
@@ -904,7 +904,7 @@ void RenderingSystem_ContextProcessor(Int64* contextPointer) {
     // [包含复杂的状态管理、数据处理、资源分配等逻辑...]
     
     // 高级上下文处理
-    if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
+    if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
         Int32 currentParam = *rsi;
         UInt64 processingContext = *(Int64*)(rbx + 0x590);
         UInt64 additionalData = *(UInt64*)(rsi + 2);
@@ -989,7 +989,7 @@ void RenderingSystem_ContextProcessor(Int64* contextPointer) {
             }
             
             // 调用内存系统资源管理器
-            MemorySystem_ResourceManager(&_DAT_180c925a0, *(UInt32*)(rbx + 0x10), stateParam, dataPointer,
+            MemorySystem_ResourceManager(&render_system_ui, *(UInt32*)(rbx + 0x10), stateParam, dataPointer,
                                           (extraFlag | processingFlag) & 1);
         }
     }

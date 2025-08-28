@@ -776,7 +776,7 @@ void FUN_1803415f0(uint64_t param_1, longlong param_2, longlong param_3, uint64_
 #define g_DefaultDataBuffer        system_buffer_ptr    // 默认数据缓冲区
 #define g_FileStreamConfig         system_memory_c7ec    // 文件流配置
 #define g_ShaderTextureData        unknown_var_640    // 着色器纹理数据
-#define g_GlobalMemoryPool         _DAT_180c8ed18   // 全局内存池
+#define g_GlobalMemoryPool         system_memory_pool_ptr   // 全局内存池
 #define g_SecurityChecksum        GET_SECURITY_COOKIE()   // 安全校验和
 #define g_FileHandleCounter       SYSTEM_FILE_COUNTER_ADDR   // 文件句柄计数器
 

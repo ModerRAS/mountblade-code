@@ -968,7 +968,7 @@ void EntityManager_ProcessEntities(longlong param_1, longlong* param_2)
                             array_params[0] = 1 << ((byte)*(int32_t*)(param_1 + 0x3054) & 0x1f);
                             stack_buffer[0] = 1;
                             
-                            entity_handle = FUN_18062b1e0(_DAT_180c8ed18, 0x70, 8, 
+                            entity_handle = FUN_18062b1e0(system_memory_pool_ptr, 0x70, 8, 
                                                          CONCAT71((int7)((ulonglong)entity_id >> 8), 3));
                             entity_handle = FUN_18039fc00(entity_handle);
                             *(uint64_t*)(param_1 + 600) = entity_handle;
@@ -979,7 +979,7 @@ void EntityManager_ProcessEntities(longlong param_1, longlong* param_2)
                             stack_uint64_2 = stack_params;
                             int_ptr = array_params;
                             
-                            stack_string = (char*)FUN_18062b1e0(_DAT_180c8ed18, 0x28, 8, system_allocation_flags);
+                            stack_string = (char*)FUN_18062b1e0(system_memory_pool_ptr, 0x28, 8, system_allocation_flags);
                             *(longlong**)stack_string = stack_ptr;
                             *(longlong*)(stack_string + 8) = stack_long;
                             *(int32_t*)(stack_string + 0x10) = (int32_t)stack_uint64_1;
@@ -1159,7 +1159,7 @@ void EntityManager_ProcessEntities(longlong param_1, longlong* param_2)
                                 array_params[0] = 1 << ((byte)*(int32_t*)(param_1 + 0x3054) & 0x1f);
                                 stack_buffer[0] = 1;
                                 
-                                entity_handle = FUN_18062b1e0(_DAT_180c8ed18, 0x70, 8, 
+                                entity_handle = FUN_18062b1e0(system_memory_pool_ptr, 0x70, 8, 
                                                              CONCAT71((int7)((ulonglong)entity_id >> 8), 3));
                                 entity_handle = FUN_18039fc00(entity_handle);
                                 *(uint64_t*)(param_1 + 600) = entity_handle;
@@ -1170,7 +1170,7 @@ void EntityManager_ProcessEntities(longlong param_1, longlong* param_2)
                                 stack_uint64_2 = stack_params;
                                 int_ptr = array_params;
                                 
-                                stack_string = (char*)FUN_18062b1e0(_DAT_180c8ed18, 0x28, 8, system_allocation_flags);
+                                stack_string = (char*)FUN_18062b1e0(system_memory_pool_ptr, 0x28, 8, system_allocation_flags);
                                 *(longlong**)stack_string = stack_ptr;
                                 *(longlong*)(stack_string + 8) = stack_long;
                                 *(int32_t*)(stack_string + 0x10) = (int32_t)stack_uint64_1;
@@ -1347,7 +1347,7 @@ process_entity_init:
     array_params[0] = 1 << ((byte)*(int32_t*)(param_1 + 0x3054) & 0x1f);
     stack_buffer[0] = 1;
     
-    entity_handle = FUN_18062b1e0(_DAT_180c8ed18, 0x70, 8, 
+    entity_handle = FUN_18062b1e0(system_memory_pool_ptr, 0x70, 8, 
                                  CONCAT71((int7)((ulonglong)entity_id >> 8), 3));
     entity_handle = FUN_18039fc00(entity_handle);
     *(uint64_t*)(param_1 + 600) = entity_handle;
@@ -1358,7 +1358,7 @@ process_entity_init:
     stack_uint64_2 = stack_params;
     int_ptr = array_params;
     
-    stack_string = (char*)FUN_18062b1e0(_DAT_180c8ed18, 0x28, 8, system_allocation_flags);
+    stack_string = (char*)FUN_18062b1e0(system_memory_pool_ptr, 0x28, 8, system_allocation_flags);
     *(longlong**)stack_string = stack_ptr;
     *(longlong*)(stack_string + 8) = stack_long;
     *(int32_t*)(stack_string + 0x10) = (int32_t)stack_uint64_1;
@@ -1392,7 +1392,7 @@ process_game_entity:
             array_params[0] = 1 << ((byte)*(int32_t*)(param_1 + 0x3054) & 0x1f);
             stack_buffer[0] = 1;
             
-            entity_handle = FUN_18062b1e0(_DAT_180c8ed18, 0x70, 8, 
+            entity_handle = FUN_18062b1e0(system_memory_pool_ptr, 0x70, 8, 
                                          CONCAT71((int7)((ulonglong)entity_id >> 8), 3));
             entity_handle = FUN_18039fc00(entity_handle);
             *(uint64_t*)(param_1 + 600) = entity_handle;
@@ -1403,7 +1403,7 @@ process_game_entity:
             stack_uint64_2 = stack_params;
             int_ptr = array_params;
             
-            stack_string = (char*)FUN_18062b1e0(_DAT_180c8ed18, 0x28, 8, system_allocation_flags);
+            stack_string = (char*)FUN_18062b1e0(system_memory_pool_ptr, 0x28, 8, system_allocation_flags);
             *(longlong**)stack_string = stack_ptr;
             *(longlong*)(stack_string + 8) = stack_long;
             *(int32_t*)(stack_string + 0x10) = (int32_t)stack_uint64_1;
@@ -1614,7 +1614,7 @@ void ArrayProcessor_ProcessArrays(uint64_t* param_1, int param_2, int param_3)
             resource_handle = *resource_ptr;
             
             // 创建配置句柄
-            config_handle = FUN_18062b1e0(_DAT_180c8ed18, 0x2f0, 0x10, 0xd);
+            config_handle = FUN_18062b1e0(system_memory_pool_ptr, 0x2f0, 0x10, 0xd);
             config_ptr = (longlong*)FUN_1802e6b00(config_handle, 4);
             stack_ptr3 = config_ptr;
             

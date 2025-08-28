@@ -398,7 +398,7 @@ longlong *create_data_buffer(longlong context, longlong *buffer_ptr, uint64_t pa
   
   // 分配缓冲区内存
   if (current_pos != 0) {
-    data_length = FUN_18062b420(_DAT_180c8ed18, current_pos * 0x98, buffer_size & 0xff, param4, 0, 0xfffffffffffffffe);
+    data_length = FUN_18062b420(system_memory_pool_ptr, current_pos * 0x98, buffer_size & 0xff, param4, 0, 0xfffffffffffffffe);
   }
   
   // 设置缓冲区指针
@@ -517,7 +517,7 @@ void format_error_message(int error_code, longlong error_message)
   buffer_info = 0;
   buffer_data = (uint64_t *)0x0;
   buffer_capacity = 0;
-  buffer_data = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+  buffer_data = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
   *(int8_t *)buffer_data = 0;
   format_result = FUN_18064e990(buffer_data);
   buffer_info = CONCAT44(buffer_info._4_4_, format_result);
@@ -541,12 +541,12 @@ void format_error_message(int error_code, longlong error_message)
       if ((int)temp_size < 0x10) {
         temp_size = 0x10;
       }
-      buffer_data = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)temp_size, 0x13);
+      buffer_data = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)(int)temp_size, 0x13);
       *(int8_t *)buffer_data = 0;
     }
     else {
       if (temp_size <= (uint)buffer_info) goto LAB_180211b66;
-      buffer_data = (uint64_t *)FUN_18062b8b0(_DAT_180c8ed18, buffer_data, temp_size, 0x10, 0x13);
+      buffer_data = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr, buffer_data, temp_size, 0x10, 0x13);
     }
     format_result = FUN_18064e990(buffer_data);
     buffer_info = CONCAT44(buffer_info._4_4_, format_result);
@@ -565,12 +565,12 @@ LAB_180211b66:
       if ((int)temp_size < 0x10) {
         temp_size = 0x10;
       }
-      buffer_data = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)temp_size, 0x13);
+      buffer_data = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)(int)temp_size, 0x13);
       *(int8_t *)buffer_data = 0;
     }
     else {
       if (temp_size <= (uint)buffer_info) goto LAB_180211be9;
-      buffer_data = (uint64_t *)FUN_18062b8b0(_DAT_180c8ed18, buffer_data, temp_size, 0x10, 0x13);
+      buffer_data = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr, buffer_data, temp_size, 0x10, 0x13);
     }
     format_result = FUN_18064e990(buffer_data);
     buffer_info = CONCAT44(buffer_info._4_4_, format_result);
@@ -596,12 +596,12 @@ LAB_180211be9:
           if ((int)message_length < 0x10) {
             message_length = 0x10;
           }
-          buffer_data = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)message_length, 0x13);
+          buffer_data = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)(int)message_length, 0x13);
           *(int8_t *)buffer_data = 0;
         }
         else {
           if (message_length <= (uint)buffer_info) goto LAB_180211c85;
-          buffer_data = (uint64_t *)FUN_18062b8b0(_DAT_180c8ed18, buffer_data, message_length, 0x10, 0x13);
+          buffer_data = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr, buffer_data, message_length, 0x10, 0x13);
         }
         format_result = FUN_18064e990(buffer_data);
         buffer_info = CONCAT44(buffer_info._4_4_, format_result);
@@ -621,12 +621,12 @@ LAB_180211c85:
       if ((int)message_length < 0x10) {
         message_length = 0x10;
       }
-      buffer_data = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)message_length, 0x13);
+      buffer_data = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)(int)message_length, 0x13);
       *(int8_t *)buffer_data = 0;
     }
     else {
       if (message_length <= (uint)buffer_info) goto LAB_180211d03;
-      buffer_data = (uint64_t *)FUN_18062b8b0(_DAT_180c8ed18, buffer_data, message_length, 0x10, 0x13);
+      buffer_data = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr, buffer_data, message_length, 0x10, 0x13);
     }
     format_result = FUN_18064e990(buffer_data);
     buffer_info = CONCAT44(buffer_info._4_4_, format_result);
@@ -655,12 +655,12 @@ LAB_180211d03:
           if ((int)message_length < 0x10) {
             message_length = 0x10;
           }
-          buffer_data = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)message_length, 0x13);
+          buffer_data = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)(int)message_length, 0x13);
           *(int8_t *)buffer_data = 0;
         }
         else {
           if (message_length <= (uint)buffer_info) goto LAB_180211da7;
-          buffer_data = (uint64_t *)FUN_18062b8b0(_DAT_180c8ed18, buffer_data, message_length, 0x10, 0x13);
+          buffer_data = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr, buffer_data, message_length, 0x10, 0x13);
         }
         format_result = FUN_18064e990(buffer_data);
         buffer_info = CONCAT44(buffer_info._4_4_, format_result);
@@ -680,12 +680,12 @@ LAB_180211da7:
       if ((int)message_length < 0x10) {
         message_length = 0x10;
       }
-      buffer_data = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)message_length, 0x13);
+      buffer_data = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)(int)message_length, 0x13);
       *(int8_t *)buffer_data = 0;
     }
     else {
       if (message_length <= (uint)buffer_info) goto LAB_180211e24;
-      buffer_data = (uint64_t *)FUN_18062b8b0(_DAT_180c8ed18, buffer_data, message_length, 0x10, 0x13);
+      buffer_data = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr, buffer_data, message_length, 0x10, 0x13);
     }
     format_result = FUN_18064e990(buffer_data);
     buffer_info = CONCAT44(buffer_info._4_4_, format_result);
@@ -700,7 +700,7 @@ LAB_180211e24:
   buffer_capacity = result;
   
   // 输出错误消息
-  FUN_1800623b0(_DAT_180c86928, 0, 0x1000000000000, 3, buffer_ptr);
+  FUN_1800623b0(system_message_context, 0, 0x1000000000000, 3, buffer_ptr);
   stack_ptr = &unknown_var_3456_ptr;
   
   // 释放缓冲区
@@ -746,7 +746,7 @@ uint64_t process_parameter_data(uint64_t param1, int param2, uint64_t param3, ui
  */
 void reallocate_memory(uint64_t memory_ptr, int32_t new_size)
 {
-  FUN_18062b8b0(_DAT_180c8ed18, memory_ptr, new_size, 0x10, 7);
+  FUN_18062b8b0(system_memory_pool_ptr, memory_ptr, new_size, 0x10, 7);
   return;
 }
 
@@ -928,7 +928,7 @@ void cleanup_thread_manager(uint64_t *manager_ptr)
       // 创建新资源
       FUN_18066c220(manager_ptr + 10, &temp_resource, (ulonglong)*(uint *)(manager_ptr + 8),
                     *(int32_t *)(manager_ptr + 9), 1);
-      data_ptr = (int *)FUN_18062b420(_DAT_180c8ed18, 0x18, *(int8_t *)((longlong)manager_ptr + 0x5c));
+      data_ptr = (int *)FUN_18062b420(system_memory_pool_ptr, 0x18, *(int8_t *)((longlong)manager_ptr + 0x5c));
       *data_ptr = lock_result;
       data_ptr[2] = 0;
       data_ptr[3] = 0;

@@ -22,7 +22,7 @@ void initialize_resource_manager(longlong context_ptr, ulonglong resource_id, lo
     uint64_t temp_stack_48;
     
     // 计算资源基础指针
-    resource_base_ptr = (resource_id & 0xff) * 0x1c0 + _DAT_180c86938;
+    resource_base_ptr = (resource_id & 0xff) * 0x1c0 + system_message_buffer;
     resource_count = *(int *)(resource_base_ptr + 0x70);
     resource_array_ptr = (longlong)resource_count;
     
@@ -297,7 +297,7 @@ void set_initialization_parameter(longlong context_ptr, char parameter_type, uin
     *(uint64_t *)(parameter_table_ptr + 0x10) = 0;
     
     if (parameter_size != 0) {
-        temp_var = FUN_18062b1e0(_DAT_180c8ed18, parameter_size, 0x10, CONCAT71((int7)((ulonglong)parameter_table_ptr >> 8), 3));
+        temp_var = FUN_18062b1e0(system_memory_pool_ptr, parameter_size, 0x10, CONCAT71((int7)((ulonglong)parameter_table_ptr >> 8), 3));
     }
     
     *(uint64_t *)(*(longlong *)(context_ptr + 600) + 0x10) = temp_var;
@@ -314,7 +314,7 @@ void initialize_memory_block(longlong context_ptr)
     
     if (*(longlong *)(context_ptr + 0x2c8) == 0) {
         *(uint *)(context_ptr + 0x100) = *(uint *)(context_ptr + 0x100) | 8;
-        memory_ptr = FUN_18062b1e0(_DAT_180c8ed18, 0xd0, 4, 9);
+        memory_ptr = FUN_18062b1e0(system_memory_pool_ptr, 0xd0, 4, 9);
         memset(memory_ptr, 0, 0xd0);
     }
     
@@ -356,7 +356,7 @@ void resize_parameter_table(longlong context_ptr, int new_size)
         *table_ptr = 0;
         
         if (new_size != 0) {
-            new_memory_ptr = FUN_18062b1e0(_DAT_180c8ed18, (longlong)new_size << 6, 0x10, 4);
+            new_memory_ptr = FUN_18062b1e0(system_memory_pool_ptr, (longlong)new_size << 6, 0x10, 4);
         }
         
         **(uint64_t **)(context_ptr + 600) = new_memory_ptr;
@@ -463,7 +463,7 @@ code *get_or_create_context_handler(longlong context_ptr, char handler_type)
             if (temp_stack_30 != context_ptr) {
                 temp_stack_28 = 0;
                 FUN_18007f770(&temp_stack_30);
-                temp_var = FUN_18062b1e0(_DAT_180c8ed18, 0xf0, 8, 3);
+                temp_var = FUN_18062b1e0(system_memory_pool_ptr, 0xf0, 8, 3);
                 temp_var = FUN_18007f2f0(temp_var);
                 FUN_180056f10(return_value, temp_var);
                 FUN_1800860f0(*(longlong *)return_value + 0x10, (longlong)temp_stack_20 + 0x10);
@@ -484,7 +484,7 @@ code *get_or_create_context_handler(longlong context_ptr, char handler_type)
         
         if (*(longlong *)(context_ptr + 0xa8) == 0) {
             if ((*(byte *)(context_ptr + 0xfd) & 4) != 0) {
-                temp_var = FUN_18062b1e0(_DAT_180c8ed18, 0xf0, 8, 3);
+                temp_var = FUN_18062b1e0(system_memory_pool_ptr, 0xf0, 8, 3);
                 temp_ptr = (longlong *)FUN_18007f2f0(temp_var);
                 temp_stack_18 = (code *)0xfffffffffffffffe;
                 
@@ -574,19 +574,19 @@ void process_data_sync(longlong context_ptr)
     longlong target_data_ptr;
     
     target_data_ptr = *(longlong *)(context_ptr + 0x2d0);
-    current_version = *(int *)(_DAT_180c86870 + 0x224);
+    current_version = *(int *)(system_main_module_state + 0x224);
     
     if (*(int *)(target_data_ptr + 0xc) != current_version) {
         if (*(int *)(target_data_ptr + 8) < 1) {
             if (*(int *)(target_data_ptr + 0xc) == current_version + -1) {
-                target_count = *(int *)(_DAT_180c86890 + 0x9c8) + 1U & 0x80000001;
+                target_count = *(int *)(system_parameter_buffer + 0x9c8) + 1U & 0x80000001;
                 
                 if ((int)target_count < 0) {
                     target_count = (target_count - 1 | 0xfffffffe) + 1;
                 }
                 
-                source_data_ptr = (longlong)(int)target_count * 0x488 + _DAT_180c86890 + 0xb8;
-                data_ptr = (longlong)*(int *)(_DAT_180c86890 + 0x9c8) * 0x488 + _DAT_180c86890 + 0xb8;
+                source_data_ptr = (longlong)(int)target_count * 0x488 + system_parameter_buffer + 0xb8;
+                data_ptr = (longlong)*(int *)(system_parameter_buffer + 0x9c8) * 0x488 + system_parameter_buffer + 0xb8;
                 target_offset = FUN_180080480(data_ptr, *(int32_t *)(target_data_ptr + 0x14));
                 dest_index = (int)target_offset;
                 item_count = target_offset & 0xffffffff;
@@ -634,7 +634,7 @@ void process_data_sync(longlong context_ptr)
             }
         }
         else {
-            target_data_ptr = (longlong)*(int *)(_DAT_180c86890 + 0x9c8) * 0x488 + _DAT_180c86890 + 0xb8;
+            target_data_ptr = (longlong)*(int *)(system_parameter_buffer + 0x9c8) * 0x488 + system_parameter_buffer + 0xb8;
             remaining_items = FUN_180080480(target_data_ptr);
             source_count = remaining_items >> 0xb;
             target_count = *(uint *)(*(uint64_t **)(context_ptr + 0x2d0) + 1);
@@ -689,14 +689,14 @@ void process_batch_data_update(longlong data_ptr, int batch_size, int version_id
     
     if (batch_size < 1) {
         if (version_id == source_offset + -1) {
-            target_count = *(int *)(_DAT_180c86890 + 0x9c8) + 1U & 0x80000001;
+            target_count = *(int *)(system_parameter_buffer + 0x9c8) + 1U & 0x80000001;
             
             if ((int)target_count < 0) {
                 target_count = (target_count - 1 | 0xfffffffe) + 1;
             }
             
-            source_data_ptr = (longlong)(int)target_count * 0x488 + _DAT_180c86890 + 0xb8;
-            target_data_ptr = (longlong)*(int *)(_DAT_180c86890 + 0x9c8) * 0x488 + _DAT_180c86890 + 0xb8;
+            source_data_ptr = (longlong)(int)target_count * 0x488 + system_parameter_buffer + 0xb8;
+            target_data_ptr = (longlong)*(int *)(system_parameter_buffer + 0x9c8) * 0x488 + system_parameter_buffer + 0xb8;
             target_offset_val = FUN_180080480(target_data_ptr, *(int32_t *)(data_ptr + 0x14));
             dest_index = (int)target_offset_val;
             item_count = target_offset_val & 0xffffffff;
@@ -745,7 +745,7 @@ void process_batch_data_update(longlong data_ptr, int batch_size, int version_id
         }
     }
     else {
-        target_data_ptr = (longlong)*(int *)(_DAT_180c86890 + 0x9c8) * 0x488 + _DAT_180c86890 + 0xb8;
+        target_data_ptr = (longlong)*(int *)(system_parameter_buffer + 0x9c8) * 0x488 + system_parameter_buffer + 0xb8;
         remaining_items = FUN_180080480(target_data_ptr);
         source_index = remaining_items >> 0xb;
         target_count = *(uint *)(*(uint64_t **)(source_offset + 0x2d0) + 1);
@@ -898,7 +898,7 @@ void initialize_data_array(longlong context_ptr, longlong data_ptr, int array_si
         dest_ptr = alloc_ptr;
         
         if (array_size != 0) {
-            dest_ptr = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, total_items * 8, 3);
+            dest_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, total_items * 8, 3);
             temp_ptr = dest_ptr;
             current_ptr = alloc_ptr;
             
@@ -969,7 +969,7 @@ void optimized_initialize_data_array(void)
         dest_ptr = (ulonglong *)(context_offset & 0xffffffff);
     }
     else {
-        dest_ptr = (ulonglong *)FUN_18062b420(_DAT_180c8ed18, total_items * 8, 3);
+        dest_ptr = (ulonglong *)FUN_18062b420(system_memory_pool_ptr, total_items * 8, 3);
         source_value = context_offset & 0xffffffff;
         temp_ptr = dest_ptr;
         

@@ -599,10 +599,10 @@ typedef struct {
 /** @defgroup GlobalVariables 全局变量
  *  @{
  */
-extern UInt64   _DAT_180bfaea0;                ///< 全局数据指针1
-extern UInt64   _DAT_180bfaea8;                ///< 全局数据指针2
-extern UInt64   _DAT_180bfaed0;                ///< 全局数据指针3
-extern UInt64   _DAT_180c92050;                ///< 全局数据指针4
+extern UInt64   system_system_control_ui;                ///< 全局数据指针1
+extern UInt64   system_system_control_ui;                ///< 全局数据指针2
+extern UInt64   system_system_control_ui;                ///< 全局数据指针3
+extern UInt64   system_system_ui;                ///< 全局数据指针4
 extern UInt8    global_state_3456_ptr;                 ///< 全局未知数据1
 extern UInt8    global_state_720_ptr;                 ///< 全局未知数据2
 extern VoidPtr  ExceptionList;                 ///< 异常列表指针
@@ -692,7 +692,7 @@ void System_Initializer(Void) {
     UInt64 addressValue;                ///< 地址值
     
     // 设置全局系统指针
-    _DAT_180c92050 = &global_state_720_ptr;
+    system_system_ui = &global_state_720_ptr;
     
     // 执行系统清理操作（注意：此处可能有间接跳转）
     _Mtx_destroy_in_situ();
@@ -793,7 +793,7 @@ UInt64 System_MemoryAllocator(UInt32 size, UInt32 alignment, UInt32 flags) {
     adjustedAlignment = (alignment < MEMORY_ALIGNMENT) ? MEMORY_ALIGNMENT : alignment;
     
     // 检查内存池
-    memoryPool = *(UInt64*)(_DAT_180bfaea0 + 8);
+    memoryPool = *(UInt64*)(system_system_control_ui + 8);
     if (memoryPool == 0) {
         return 0;  // 内存池无效
     }
@@ -902,17 +902,17 @@ UInt32 System_StateManager(UInt32 currentState, UInt32 targetState, UInt32 state
     
     // 执行状态转换
     validationFlags = 0;
-    systemFlags = *(UInt32*)(_DAT_180c92050 + 4);
+    systemFlags = *(UInt32*)(system_system_ui + 4);
     
     // 更新系统状态
     if (stateFlags & 0x01) {
         // 强制状态转换
-        *(UInt32*)(_DAT_180c92050 + 8) = targetState;
+        *(UInt32*)(system_system_ui + 8) = targetState;
         validationFlags |= 0x01;
     } else {
         // 正常状态转换
         if (systemFlags & 0x02) {
-            *(UInt32*)(_DAT_180c92050 + 8) = targetState;
+            *(UInt32*)(system_system_ui + 8) = targetState;
             validationFlags |= 0x02;
         } else {
             return SYSTEM_ERROR_BUSY;
@@ -920,7 +920,7 @@ UInt32 System_StateManager(UInt32 currentState, UInt32 targetState, UInt32 state
     }
     
     // 验证状态转换结果
-    if (*(UInt32*)(_DAT_180c92050 + 8) == targetState) {
+    if (*(UInt32*)(system_system_ui + 8) == targetState) {
         validationFlags |= 0x04;
         return SYSTEM_ERROR_NONE;
     } else {
@@ -954,7 +954,7 @@ void System_CleanupHandler(UInt32 cleanupFlags) {
     // 检查清理标志
     if (cleanupFlags & 0x01) {
         // 清理资源
-        resourcePointer = *(UInt64**)(_DAT_180bfaea0 + 0x10);
+        resourcePointer = *(UInt64**)(system_system_control_ui + 0x10);
         while (resourcePointer != NULL && iterationCount < SYSTEM_MAX_THREADS) {
             
             // 释放资源
@@ -976,17 +976,17 @@ void System_CleanupHandler(UInt32 cleanupFlags) {
     
     if (cleanupFlags & 0x02) {
         // 清理内存池
-        if (*(UInt64*)(_DAT_180bfaea0 + 8) != 0) {
-            Memory_SystemAllocator(*(UInt64*)(_DAT_180bfaea0 + 8), 0, 0, 0, 0xfffffffffffffffc);
-            *(UInt64*)(_DAT_180bfaea0 + 8) = 0;
+        if (*(UInt64*)(system_system_control_ui + 8) != 0) {
+            Memory_SystemAllocator(*(UInt64*)(system_system_control_ui + 8), 0, 0, 0, 0xfffffffffffffffc);
+            *(UInt64*)(system_system_control_ui + 8) = 0;
             cleanupStatus |= 0x02;
         }
     }
     
     if (cleanupFlags & 0x04) {
         // 重置系统状态
-        *(UInt32*)(_DAT_180c92050 + 8) = SYSTEM_STATE_UNINITIALIZED;
-        *(UInt32*)(_DAT_180c92050 + 4) = 0;
+        *(UInt32*)(system_system_ui + 8) = SYSTEM_STATE_UNINITIALIZED;
+        *(UInt32*)(system_system_ui + 4) = 0;
         cleanupStatus |= 0x04;
     }
     
@@ -1037,7 +1037,7 @@ UInt32 System_Validator(UInt32 validationType, UInt64 validationData) {
             
         case 0x02:
             // 系统状态验证
-            if (*(UInt32*)(_DAT_180c92050 + 8) > SYSTEM_STATE_TERMINATED) {
+            if (*(UInt32*)(system_system_ui + 8) > SYSTEM_STATE_TERMINATED) {
                 validationResult = SYSTEM_ERROR_INTERNAL;
                 validationFlags |= 0x02;
             }

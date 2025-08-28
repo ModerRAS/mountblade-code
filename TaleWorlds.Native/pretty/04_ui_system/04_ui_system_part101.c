@@ -847,7 +847,7 @@ ulonglong ui_system_advanced_data_encoder(longlong data_array1, longlong data_ar
     running_sum = 0;
     
     // 使用SIMD指令进行批量处理
-    if (((0 < (int)data_size) && (iteration_count = 0, 7 < data_size)) && (1 < _DAT_180bf00b0)) {
+    if (((0 < (int)data_size) && (iteration_count = 0, 7 < data_size)) && (1 < ui_system_control_ui)) {
         iteration_index = 0;
         vector_sum1 = 0;
         vector_sum2 = 0;

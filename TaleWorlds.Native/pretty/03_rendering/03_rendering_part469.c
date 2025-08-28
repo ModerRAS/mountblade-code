@@ -559,25 +559,25 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
                  *(uint *)(param_1 + 0x748) = random_seed,
                  (float)(random_seed - 1) * 2.3283064e-10 < *(float *)(param_2 + 0xc0) + *(float *)(param_2 + 0xc0))) {
                 
-                if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48) < _DAT_180d49ec8) && 
-                    (FUN_1808fcb90(&system_memory_9ec8), _DAT_180d49ec8 == -1)) {
+                if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48) < render_system_config_config) && 
+                    (FUN_1808fcb90(&system_memory_9ec8), render_system_config_config == -1)) {
                     transform_output_1 = &unknown_var_3456_ptr;
                     transform_param_3 = 0.0;
                     transform_param_4 = 0.0;
                     transform_output_2 = (int32_t *)0x0;
                     transform_param_1 = 0.0;
-                    pixel_data = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+                    pixel_data = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
                     *(int8_t *)pixel_data = 0;
                     transform_output_2 = pixel_data;
                     transform_param_3 = (float)FUN_18064e990(pixel_data);
                     *pixel_data = 0x6e696150;
                     *(int8_t *)(pixel_data + 1) = 0;
                     transform_param_1 = 5.60519e-45;
-                    _DAT_180d49ecc = FUN_180571e20(&system_memory_60c0, &transform_output_1);
+                    render_system_config_config = FUN_180571e20(&system_memory_60c0, &transform_output_1);
                     transform_output_1 = &unknown_var_3456_ptr;
                     FUN_18064e900(pixel_data);
                 }
-                FUN_180508510(param_1, _DAT_180d49ecc, 2, 0);
+                FUN_180508510(param_1, render_system_config_config, 2, 0);
             }
             FUN_1808fd400();
         }
@@ -601,9 +601,9 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
             
             if (stack_buffer_8[0] != '\0') {
                 texture_id = FUN_18053a410(&system_memory_5f30, *(int32_t *)(*(longlong *)(param_1 + 0x590) + 0xac), stack_int_20[0]);
-                texture_id = *(int *)(_DAT_180c95f68 + (longlong)texture_id * 4);
+                texture_id = *(int *)(render_system_config + (longlong)texture_id * 4);
                 if (texture_id != -1) {
-                    effect_data = *(ulonglong *)(_DAT_180c95f88 + (longlong)texture_id * 8);
+                    effect_data = *(ulonglong *)(render_system_config + (longlong)texture_id * 8);
                 }
                 
                 shader_ptr = *(longlong *)(param_1 + 0x8d8) + 0x30a0 + (longlong)*(int *)(param_1 + 0x564) * 0xa60;
@@ -622,8 +622,8 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
                 *(uint *)(param_1 + 0x584) = *(uint *)(effect_data + 0x1d8) ^ 0x80000000;
                 FUN_18052e130(shader_ptr, 0xffffffff, 0x180c8ed01);
                 
-                if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
-                    FUN_1805ed670(_DAT_180c92514, 0, *(int32_t *)(param_1 + 0x564), 0xffffffff, CONCAT44(render_flags, 0xffffffff), (ulonglong)transform_buffer_2 & 0xffffffff00000000);
+                if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
+                    FUN_1805ed670(system_status_flag, 0, *(int32_t *)(param_1 + 0x564), 0xffffffff, CONCAT44(render_flags, 0xffffffff), (ulonglong)transform_buffer_2 & 0xffffffff00000000);
                 }
                 FUN_1805b8920(*(uint64_t *)(shader_ptr + 0x6e0));
                 *(int32_t *)(*(longlong *)(shader_ptr + 0x738) + 0xa4) = *(int32_t *)(*(longlong *)(shader_ptr + 0x6e0) + 0x14a8);
@@ -670,7 +670,7 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
                 *(float *)(param_1 + 0x57c) = vertex_w + *(float *)(param_1 + 0x57c);
                 
                 // 处理渲染管线
-                if ((((_DAT_180c92514 - 2U < 2) && (*(longlong **)(param_1 + 0x8e8) != (longlong *)0x0)) && (**(longlong **)(param_1 + 0x8e8) != 0)) && (shader_ptr = **(longlong **)(**(longlong **)(param_1 + 0x8e0) + 0x8e8), shader_ptr != 0)) {
+                if ((((system_status_flag - 2U < 2) && (*(longlong **)(param_1 + 0x8e8) != (longlong *)0x0)) && (**(longlong **)(param_1 + 0x8e8) != 0)) && (shader_ptr = **(longlong **)(**(longlong **)(param_1 + 0x8e0) + 0x8e8), shader_ptr != 0)) {
                     if (*(char *)(shader_ptr + 0x31) == '\0') {
                         material_id = _Mtx_lock(shader_ptr + 0x5990);
                         if (material_id != 0) {
@@ -716,10 +716,10 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
                 color_r = vertex_data[1];
                 color_g = vertex_data[2];
                 color_b = vertex_data[3];
-                normal_y = _DAT_180c964d0;
+                normal_y = render_system_config;
                 
-                if ((((!transform_needed) && (texture_id = func_0x00018051cd90(extraout_XMM0_Qa, param_2), normal_y = _DAT_180c964d0, texture_id != 0)) && (normal_y = _DAT_180c964d4, texture_id != 1)) && (normal_y = _DAT_180c964dc, texture_id == 2)) {
-                    normal_y = _DAT_180c964d8;
+                if ((((!transform_needed) && (texture_id = func_0x00018051cd90(extraout_XMM0_Qa, param_2), normal_y = render_system_config, texture_id != 0)) && (normal_y = render_system_config, texture_id != 1)) && (normal_y = render_system_config, texture_id == 2)) {
+                    normal_y = render_system_config;
                 }
                 
                 normal_x = normal_y * *(float *)(param_2 + 0x80);
@@ -734,24 +734,24 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
             
             render_flags = 0;
             if ((*(byte *)(param_2 + 0xac) & 0x40) == 0) {
-                if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48) < _DAT_180d49ed0) && (FUN_1808fcb90(&system_memory_9ed0), _DAT_180d49ed0 == -1)) {
+                if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48) < render_system_config_config) && (FUN_1808fcb90(&system_memory_9ed0), render_system_config_config == -1)) {
                     transform_output_1 = &unknown_var_3456_ptr;
                     transform_param_3 = 0.0;
                     transform_param_4 = 0.0;
                     transform_output_2 = (int32_t *)0x0;
                     transform_param_1 = 0.0;
-                    pixel_data = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+                    pixel_data = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
                     *(int8_t *)pixel_data = 0;
                     transform_output_2 = pixel_data;
                     transform_param_3 = (float)FUN_18064e990(pixel_data);
                     *pixel_data = 0x6e696150;
                     *(int8_t *)(pixel_data + 1) = 0;
                     transform_param_1 = 5.60519e-45;
-                    _DAT_180d49ed4 = FUN_180571e20(&system_memory_60c0, &transform_output_1);
+                    render_system_config_config = FUN_180571e20(&system_memory_60c0, &transform_output_1);
                     transform_output_1 = &unknown_var_3456_ptr;
                     FUN_18064e900(pixel_data);
                 }
-                FUN_180508510(param_1, _DAT_180d49ed4, 2);
+                FUN_180508510(param_1, render_system_config_config, 2);
             }
             
             if ((material_id == -1) && (stack_int_128[0] == -1)) {
@@ -1012,7 +1012,7 @@ void RenderingSystem_EffectController(longlong param_1, byte param_2, int param_
     FUN_18051fa40(param_1, param_2 + 3);
     
     // 准备特效渲染参数
-    effect_ptr = _DAT_180c8ece0;
+    effect_ptr = render_system_data_config;
     effect_params[0] = CONCAT31(effect_params[0]._1_3_, 0xff);
     effect_params[1] = 0xffffffff;
     effect_params[2] = CONCAT31(effect_params[2]._1_3_, 0xff);
@@ -1028,8 +1028,8 @@ void RenderingSystem_EffectController(longlong param_1, byte param_2, int param_
     effect_slot = *(int *)(param_1 + 0x18);
     
     // 处理渲染回调
-    if ((effect_slot != 0) && (_DAT_180c8f008 != 0)) {
-        (**(code **)(_DAT_180c8f008 + 0x30))(effect_slot);
+    if ((effect_slot != 0) && (system_cache_buffer != 0)) {
+        (**(code **)(system_cache_buffer + 0x30))(effect_slot);
     }
     
     // 初始化特效缓冲区
@@ -1053,8 +1053,8 @@ void RenderingSystem_EffectController(longlong param_1, byte param_2, int param_
     (**(code **)(effect_ptr + 0x238))(*(int32_t *)(*(longlong *)(param_1 + 0x8d8) + 0x98d928), effect_slot, 0, effect_id, &effect_memory[0]);
     
     // 清理渲染状态
-    if ((effect_slot != 0) && (_DAT_180c8f008 != 0)) {
-        (**(code **)(_DAT_180c8f008 + 0x18))(effect_slot);
+    if ((effect_slot != 0) && (system_cache_buffer != 0)) {
+        (**(code **)(system_cache_buffer + 0x18))(effect_slot);
     }
     return;
 }

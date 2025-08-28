@@ -503,7 +503,7 @@ void apply_render_matrix_transformations(longlong* target_context, longlong* sou
                 if (transform_offset == 0) {
                     transform_offset = 1;
 expand_render_queue:
-                    world_matrix = (longlong*)FUN_18062b420(_DAT_180c8ed18, transform_offset << 4, (char)target_context[10]);
+                    world_matrix = (longlong*)FUN_18062b420(system_memory_pool_ptr, transform_offset << 4, (char)target_context[10]);
                     camera_matrix = (longlong*)target_context[8];
                     matrix_ptr = (longlong*)target_context[7];
                     object_data = world_matrix;
@@ -704,16 +704,16 @@ void advanced_render_processing(longlong render_target, uint64_t material_data, 
     
     // 材质系统处理
     if (0 < *(int*)(render_params + 0xc0)) {
-        texture_handle = FUN_1800b6de0(_DAT_180c86930, render_params + 0xb0, 0);
-        material_system = _DAT_180c868f0;
+        texture_handle = FUN_1800b6de0(system_resource_state, render_params + 0xb0, 0);
+        material_system = render_system_data_material;
         if (texture_handle != 0) {
             if (*(float*)(render_params + 0x1b8) <= -1.0) {
                 FUN_180275a60(texture_handle, render_target, 1);
             }
             else {
                 batch_count = (int)*(float*)(render_params + 0x1b8);
-                material_system = _DAT_180c868f0;
-                material_flags = _Mtx_lock(_DAT_180c868f0);
+                material_system = render_system_data_material;
+                material_flags = _Mtx_lock(render_system_data_material);
                 if (material_flags != 0) {
                     __Throw_C_error_std__YAXH_Z(material_flags);
                 }
@@ -767,7 +767,7 @@ void advanced_render_processing(longlong render_target, uint64_t material_data, 
             render_flags = (int)frame_hash;
             if (*(int*)(texture_hash + 0x70 + texture_handle) == 0) {
                 frame_counter = 0;
-                FUN_1800b32c0(_DAT_180c86930, &shadow_cache, (longlong)render_flags * 0x1a0 + texture_handle, 1);
+                FUN_1800b32c0(system_resource_state, &shadow_cache, (longlong)render_flags * 0x1a0 + texture_handle, 1);
                 FUN_1800763c0(shadow_cache, &texture_cache);
                 material_system = &shader_cache;
                 shader_cache = texture_cache;
@@ -851,9 +851,9 @@ material_processing_complete:
 
 // 渲染系统全局数据
 static uint64_t GET_SECURITY_COOKIE() = 0;        // 渲染系统数据指针
-static uint64_t _DAT_180c86930 = 0;        // 材质系统数据指针
-static uint64_t _DAT_180c868f0 = 0;        // 材质缓存系统指针
-static uint64_t _DAT_180c8ed18 = 0;        // 渲染队列系统指针
+static uint64_t system_resource_state = 0;        // 材质系统数据指针
+static uint64_t render_system_data_material = 0;        // 材质缓存系统指针
+static uint64_t system_memory_pool_ptr = 0;        // 渲染队列系统指针
 
 // 渲染系统字符串常量
 static char system_buffer_d580[64] = "RenderSystem_v1.0";  // 渲染系统版本字符串

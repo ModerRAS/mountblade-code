@@ -45,7 +45,7 @@ void create_file_with_completion_port(longlong engine_context, longlong file_par
       puVar4 = *(void **)(param_2 + 8);
     }
                     // WARNING: Subroutine does not return
-    FUN_180062300(_DAT_180c86928,&unknown_var_1800_ptr,puVar4);
+    FUN_180062300(system_message_context,&unknown_var_1800_ptr,puVar4);
   }
   lVar3 = CreateIoCompletionPort(lVar2,*(uint64_t *)(param_1 + 0x213430),0,0);
   if (lVar3 != *(longlong *)(param_1 + 0x213430)) {
@@ -54,7 +54,7 @@ void create_file_with_completion_port(longlong engine_context, longlong file_par
       puVar4 = *(void **)(param_2 + 8);
     }
                     // WARNING: Subroutine does not return
-    FUN_180062300(_DAT_180c86928,&unknown_var_1856_ptr,puVar4);
+    FUN_180062300(system_message_context,&unknown_var_1856_ptr,puVar4);
   }
   lVar3 = param_1 + 0x2133e0;
   lStack_2a8 = lVar3;
@@ -70,12 +70,12 @@ void create_file_with_completion_port(longlong engine_context, longlong file_par
       if (iVar1 != 0) {
         __Throw_C_error_std__YAXH_Z(iVar1);
       }
-      _DAT_00000018 = *(int32_t *)(param_2 + 0x10);
+      core_system_config = *(int32_t *)(param_2 + 0x10);
       puVar4 = &system_buffer_ptr;
       if (*(void **)(param_2 + 8) != (void *)0x0) {
         puVar4 = *(void **)(param_2 + 8);
       }
-      strcpy_s(_DAT_00000010,0x100,puVar4);
+      strcpy_s(core_system_config,0x100,puVar4);
       uVar8 = uVar6;
       if (0 < *(int *)(param_2 + 0x10)) {
         do {
@@ -149,11 +149,11 @@ uint64_t process_memory_block(longlong memory_context, longlong block_param, lon
         return_value = 0;
       }
       else {
-        _DAT_00000000 = 0;
-        _DAT_00000008 = 0;
-        _DAT_00000018 = 0;
+        core_system_config = 0;
+        core_system_config = 0;
+        core_system_config = 0;
         LOCK();
-        _DAT_00000010 = alignment;
+        core_system_config = alignment;
         uRam00000000000001c8 = block_size;
         uRam00000000000001d0 = total_size;
         uRam00000000000001d8 = alignment;
@@ -164,12 +164,12 @@ uint64_t process_memory_block(longlong memory_context, longlong block_param, lon
                          0);
         if (lock_result != 0) {
                     // WARNING: Subroutine does not return
-          throw_file_error(_DAT_180c86928,&unknown_var_1960_ptr);
+          throw_file_error(system_message_context,&unknown_var_1960_ptr);
         }
         lock_result = GetLastError();
         if (lock_result != 0x3e5) {
                     // WARNING: Subroutine does not return
-          throw_file_error(_DAT_180c86928,&unknown_var_1904_ptr,lock_result);
+          throw_file_error(system_message_context,&unknown_var_1904_ptr,lock_result);
         }
         return_value = 1;
       }
@@ -399,12 +399,12 @@ longlong *create_hash_table_entry(longlong hash_table, longlong *entry_data, uin
   if (lVar3 == 0) {
     FUN_18066c220(param_1 + 0x20,&param_5,*(int32_t *)(param_1 + 0x10),
                   *(int32_t *)(param_1 + 0x18),1);
-    lVar3 = FUN_18062b420(_DAT_180c8ed18,0x128,*(int8_t *)(param_1 + 0x2c));
+    lVar3 = FUN_18062b420(system_memory_pool_ptr,0x128,*(int8_t *)(param_1 + 0x2c));
     FUN_180068ff0(lVar3,param_4);
     *(uint64_t *)(lVar3 + 0x118) = 0;
     *(uint64_t *)(lVar3 + 0x120) = 0;
     if ((char)param_5 != '\0') {
-      uVar4 = FUN_18062b1e0(_DAT_180c8ed18,(ulonglong)param_5._4_4_ * 8 + 8,8,
+      uVar4 = FUN_18062b1e0(system_memory_pool_ptr,(ulonglong)param_5._4_4_ * 8 + 8,8,
                             *(int8_t *)(param_1 + 0x2c));
                     // WARNING: Subroutine does not return
       memset(uVar4,0,(ulonglong)param_5._4_4_ * 8);
@@ -693,7 +693,7 @@ longlong handle_resource_lifecycle(longlong *resource_ptr, longlong *event_data,
     }
     else {
       if (param_3 == 1) {
-        lVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x20,8,system_allocation_flags);
+        lVar1 = FUN_18062b1e0(system_memory_pool_ptr,0x20,8,system_allocation_flags);
         lVar2 = *param_2;
         *(uint64_t *)(lVar1 + 0x10) = 0;
         *(code **)(lVar1 + 0x18) = _guard_check_icall;

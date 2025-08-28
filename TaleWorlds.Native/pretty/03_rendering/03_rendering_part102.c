@@ -123,7 +123,7 @@ uint64_t RenderingSystemProcessResourceRequest(longlong render_context, longlong
             if (mutex_result != RENDERING_SYSTEM_MUTEX_LOCK_SUCCESS) {
                 __Throw_C_error_std__YAXH_Z(mutex_result);
             }
-            return_value = FUN_18062b1e0(_DAT_180c8ed18, 0x3d0, 8, 3);
+            return_value = FUN_18062b1e0(system_memory_pool_ptr, 0x3d0, 8, 3);
             temp_ptr3 = (longlong *)FUN_180275090(return_value);
             stack_ptr2 = (longlong *)CONCAT44(stack_ptr2._4_4_, stack_ptr1._0_4_);
             stack_ptr3 = temp_ptr3;
@@ -144,7 +144,7 @@ uint64_t RenderingSystemProcessResourceRequest(longlong render_context, longlong
             if (mutex_result != RENDERING_SYSTEM_MUTEX_LOCK_SUCCESS) {
                 __Throw_C_error_std__YAXH_Z(mutex_result);
             }
-            return_value = FUN_18062b1e0(_DAT_180c8ed18, 0x468, 8, 3);
+            return_value = FUN_18062b1e0(system_memory_pool_ptr, 0x468, 8, 3);
             temp_ptr3 = (longlong *)FUN_1803dd0f0(return_value);
             stack_ptr2 = (longlong *)CONCAT44(stack_ptr2._4_4_, stack_ptr1._0_4_);
             stack_ptr3 = temp_ptr3;
@@ -156,7 +156,7 @@ uint64_t RenderingSystemProcessResourceRequest(longlong render_context, longlong
             
             // 处理纹理资源相关操作
             if (*(int *)(resource_params + 0x160) != 0) {
-                temp_ptr2 = (uint64_t *)FUN_1800b32c0(_DAT_180c86930, &stack_ptr2, resource_params + 0x150, 1, &unknown_var_7656_ptr);
+                temp_ptr2 = (uint64_t *)FUN_1800b32c0(system_resource_state, &stack_ptr2, resource_params + 0x150, 1, &unknown_var_7656_ptr);
                 FUN_1800763c0(*temp_ptr2, &stack_ptr1);
                 if (stack_ptr2 != (longlong *)0x0) {
                     (**(code **)(*stack_ptr2 + 0x38))();
@@ -177,7 +177,7 @@ uint64_t RenderingSystemProcessResourceRequest(longlong render_context, longlong
             }
             
             if (*(int *)(resource_params + 0x1b8) != 0) {
-                temp_ptr2 = (uint64_t *)FUN_1800b30d0(_DAT_180c86930, &stack_ptr4, resource_params + 0x1a8, 1);
+                temp_ptr2 = (uint64_t *)FUN_1800b30d0(system_resource_state, &stack_ptr4, resource_params + 0x1a8, 1);
                 FUN_18022cb40(*temp_ptr2, &stack_ptr5);
                 if (stack_ptr4 != (longlong *)0x0) {
                     (**(code **)(*stack_ptr4 + 0x38))();
@@ -206,7 +206,7 @@ uint64_t RenderingSystemProcessResourceRequest(longlong render_context, longlong
             if (mutex_result != RENDERING_SYSTEM_MUTEX_LOCK_SUCCESS) {
                 __Throw_C_error_std__YAXH_Z(mutex_result);
             }
-            return_value = FUN_18062b1e0(_DAT_180c8ed18, 0xf0, 8, 3);
+            return_value = FUN_18062b1e0(system_memory_pool_ptr, 0xf0, 8, 3);
             temp_ptr3 = (longlong *)FUN_18039dda0(return_value);
             stack_ptr2 = (longlong *)CONCAT44(stack_ptr2._4_4_, stack_ptr1._0_4_);
             stack_ptr3 = temp_ptr3;
@@ -227,7 +227,7 @@ uint64_t RenderingSystemProcessResourceRequest(longlong render_context, longlong
             if (mutex_result != RENDERING_SYSTEM_MUTEX_LOCK_SUCCESS) {
                 __Throw_C_error_std__YAXH_Z(mutex_result);
             }
-            return_value = FUN_18062b1e0(_DAT_180c8ed18, 0x168, 8, 3);
+            return_value = FUN_18062b1e0(system_memory_pool_ptr, 0x168, 8, 3);
             temp_ptr3 = (longlong *)FUN_1802ac390(return_value);
             stack_ptr2 = (longlong *)CONCAT44(stack_ptr2._4_4_, stack_ptr1._0_4_);
             stack_ptr3 = temp_ptr3;
@@ -256,7 +256,7 @@ uint64_t RenderingSystemProcessResourceRequest(longlong render_context, longlong
             stack_array2[2] = 0;
             stack_value3 = RENDERING_SYSTEM_DEFAULT_BUFFER_SIZE;
             stack_value1 = RENDERING_SYSTEM_DEFAULT_BUFFER_SIZE;
-            temp_ptr3 = (longlong *)(*_DAT_180c917d8)(stack_array4, &system_buffer_17c0);
+            temp_ptr3 = (longlong *)(*render_system_buffer)(stack_array4, &system_buffer_17c0);
             if (stack_array2[0] != 0) {
                 // 错误处理
                 FUN_18064e900();
@@ -692,7 +692,7 @@ void RenderingSystemCleanupResources(longlong render_context)
             if ((int)temp_long1 == 1) {
                 temp_char1 = (**(code **)(*temp_ptr1 + 0x58))(temp_ptr1);
                 if (temp_char1 == '\0') {
-                    (**(code **)(*(longlong *)*_DAT_180c8ed08 + 0x60))((longlong *)*_DAT_180c8ed08, temp_ptr1);
+                    (**(code **)(*(longlong *)*render_system_data_buffer + 0x60))((longlong *)*render_system_data_buffer, temp_ptr1);
                 }
                 else {
                     temp_long1 = __RTCastToVoid(temp_ptr1);
@@ -703,12 +703,12 @@ void RenderingSystemCleanupResources(longlong render_context)
                 }
             }
             else if ((int)temp_long1 == 2) {
-                temp_ptr3 = _DAT_180c8ed58;
-                if (_DAT_180c8ed58 == (longlong *)0x0) {
+                temp_ptr3 = render_system_data_buffer;
+                if (render_system_data_buffer == (longlong *)0x0) {
                     QueryPerformanceCounter(&stack_ptr1);
                     temp_ptr3 = stack_ptr1;
                 }
-                temp_ptr1[0x4e] = (longlong)((double)((longlong)temp_ptr3 - _DAT_180c8ed48) * _DAT_180c8ed50);
+                temp_ptr1[0x4e] = (longlong)((double)((longlong)temp_ptr3 - render_system_data_buffer) * render_system_data_buffer);
             }
         }
         else {
@@ -733,7 +733,7 @@ void RenderingSystemCleanupResources(longlong render_context)
             stack_ptr1 = (longlong *)0x0;
         }
         else {
-            stack_ptr1 = (longlong *)FUN_18062b420(_DAT_180c8ed18, temp_long1 * 8, *(uint *)(temp_long2 + 0x40) & 0xff);
+            stack_ptr1 = (longlong *)FUN_18062b420(system_memory_pool_ptr, temp_long1 * 8, *(uint *)(temp_long2 + 0x40) & 0xff);
         }
         temp_long1 = *(longlong *)(temp_long2 + 0x28);
         if (temp_long1 != *(longlong *)(temp_long2 + 0x30)) {
@@ -777,7 +777,7 @@ void RenderingSystemCleanupResources(longlong render_context)
                 stack_ptr1 = (longlong *)0x0;
             }
             else {
-                stack_ptr1 = (longlong *)FUN_18062b420(_DAT_180c8ed18, temp_long1 * 8, *(uint *)(temp_long2 + 0x40) & 0xff);
+                stack_ptr1 = (longlong *)FUN_18062b420(system_memory_pool_ptr, temp_long1 * 8, *(uint *)(temp_long2 + 0x40) & 0xff);
             }
             temp_long1 = *(longlong *)(temp_long2 + 0x28);
             if (temp_long1 != *(longlong *)(temp_long2 + 0x30)) {
@@ -824,7 +824,7 @@ void RenderingSystemCleanupResources(longlong render_context)
                 stack_ptr1 = (longlong *)0x0;
             }
             else {
-                stack_ptr1 = (longlong *)FUN_18062b420(_DAT_180c8ed18, temp_long1 * 8, *(uint *)(temp_long2 + 0x40) & 0xff);
+                stack_ptr1 = (longlong *)FUN_18062b420(system_memory_pool_ptr, temp_long1 * 8, *(uint *)(temp_long2 + 0x40) & 0xff);
             }
             temp_long1 = *(longlong *)(temp_long2 + 0x28);
             if (temp_long1 != *(longlong *)(temp_long2 + 0x30)) {
@@ -897,7 +897,7 @@ void RenderingSystemCleanupResources(longlong render_context)
                     if (temp_long2 == 0) {
                         temp_long2 = 1;
 parameter_allocation_label:
-                        int_ptr1 = (int *)FUN_18062b420(_DAT_180c8ed18, temp_long2 * 4,
+                        int_ptr1 = (int *)FUN_18062b420(system_memory_pool_ptr, temp_long2 * 4,
                                                        CONCAT71((int7)((ulonglong)stack_ptr3 >> 8), 3), int_ptr9,
                                                        temp_int8_t, int_ptr6, int_ptr7, int_ptr8, temp_int16_t);
                     }

@@ -809,7 +809,7 @@ void FUN_180174340(void **param_1,void **param_2,longlong param_3)
 LAB_180174517:
     ppuVar16 = ppuStack_e0;
     ppuVar5 = (void **)
-              FUN_18062b420(_DAT_180c8ed18,(longlong)ppuStack_e0 * 0x70,
+              FUN_18062b420(system_memory_pool_ptr,(longlong)ppuStack_e0 * 0x70,
                             (char)((longlong *)param_1)[3]);
   }
   else {

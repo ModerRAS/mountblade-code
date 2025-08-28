@@ -508,19 +508,19 @@ void empty_function(void)
 // 常量定义
 #define RESOURCE_VTABLE_INITIAL &global_state_3456_ptr
 #define RESOURCE_VTABLE_READY &global_state_720_ptr
-#define RENDER_FLAG_ADDRESS _DAT_180c8a9c8
+#define RENDER_FLAG_ADDRESS core_system_data_resource
 #define RENDER_CONSTANTS global_state_2208
 #define UNUSED_RENDER_DATA global_state_2192
 
 // 全局变量引用
 extern uint64_t global_state_3456_ptr;
 extern uint64_t global_state_720_ptr;
-extern uint64_t _DAT_180c8a9c8;
+extern uint64_t core_system_data_resource;
 extern uint64_t global_state_2208;
 extern uint64_t global_state_2192;
-extern uint64_t _DAT_180c82868;
-extern uint64_t _DAT_180c86870;
-extern uint64_t _DAT_180c8a9c0;
+extern uint64_t system_context_ptr;
+extern uint64_t system_main_module_state;
+extern uint64_t core_system_data_resource;
 
 // 外部函数声明
 void trigger_critical_error(void);

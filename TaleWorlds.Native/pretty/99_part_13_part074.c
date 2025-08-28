@@ -1742,7 +1742,7 @@ void FloatingPoint_ProcessData(void* param_1)
   
   /* 精度阈值检查 */
   if (FLOAT_PRECISION_THRESHOLD <= fabsf(raw_value)) {
-    scale_factor = _DAT_180bef7b0 * raw_value;
+    scale_factor = system_system_buffer_ui * raw_value;
   }
   else {
     scale_factor = 0.0f;

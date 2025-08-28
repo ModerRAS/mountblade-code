@@ -505,7 +505,7 @@ void calculate_render_transform(longlong *param_1, longlong *param_2)
         if (array_size == 0) {
           array_size = 1;
         allocate_new_matrix:
-          temp_matrix_2 = (longlong *)FUN_18062b420(_DAT_180c8ed18, array_size << 4, (char)param_1[10]);
+          temp_matrix_2 = (longlong *)FUN_18062b420(system_memory_pool_ptr, array_size << 4, (char)param_1[10]);
           temp_matrix_5 = (longlong *)param_1[8];
           temp_matrix_3 = (longlong *)param_1[7];
           temp_matrix_4 = temp_matrix_2;
@@ -716,8 +716,8 @@ void setup_render_context(longlong param_1, uint64_t param_2, longlong param_3)
   
   // 检查配置有效性
   if (0 < *(int *)(param_3 + 0xc0)) {
-    config_data = FUN_1800b6de0(_DAT_180c86930, param_3 + 0xb0, 0);
-    context_array = _DAT_180c868f0;
+    config_data = FUN_1800b6de0(system_resource_state, param_3 + 0xb0, 0);
+    context_array = render_system_data_camera;
     if (config_data != 0) {
       // 检查浮点参数
       if (*(float *)(param_3 + 0x1b8) <= -1.0) {
@@ -725,8 +725,8 @@ void setup_render_context(longlong param_1, uint64_t param_2, longlong param_3)
       }
       else {
         config_index = (int)*(float *)(param_3 + 0x1b8);
-        temp_array = _DAT_180c868f0;
-        lock_result = _Mtx_lock(_DAT_180c868f0);
+        temp_array = render_system_data_camera;
+        lock_result = _Mtx_lock(render_system_data_camera);
         if (lock_result != 0) {
           __Throw_C_error_std__YAXH_Z(lock_result);
         }
@@ -782,7 +782,7 @@ void setup_render_context(longlong param_1, uint64_t param_2, longlong param_3)
       batch_count = (int)item_index;
       if (*(int *)(hash_key + 0x70 + config_data) == 0) {
         context_param = 0;
-        FUN_1800b32c0(_DAT_180c86930, &temp_manager, (longlong)batch_count * 0x1a0 + config_data, 1);
+        FUN_1800b32c0(system_resource_state, &temp_manager, (longlong)batch_count * 0x1a0 + config_data, 1);
         FUN_1800763c0(temp_manager, &temp_processor);
         temp_array = &temp_context;
         temp_context = temp_processor;

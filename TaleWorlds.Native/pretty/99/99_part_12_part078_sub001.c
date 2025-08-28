@@ -119,7 +119,7 @@
 #define System_AdvancedParameterManager FUN_1808a04a0
 
 // 全局变量引用
-extern uint64_t _DAT_180c8ed18;
+extern uint64_t system_memory_pool_ptr;
 extern uint8_t global_state_4472;
 extern char system_memory_0300;
 extern uint8_t global_state_2984;

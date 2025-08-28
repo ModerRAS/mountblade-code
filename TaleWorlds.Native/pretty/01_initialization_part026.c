@@ -169,7 +169,7 @@ void FUN_180059bc0(void)
 {
   longlong lVar1;
   
-  lVar1 = FUN_18062b420(_DAT_180c8ed18,0x1ae8,10);
+  lVar1 = FUN_18062b420(system_memory_pool_ptr,0x1ae8,10);
   if (lVar1 == 0) {
     return;
   }
@@ -865,7 +865,7 @@ void FUN_18005a200(uint64_t *param_1)
   param_1[0x67] = &system_data_0000;
   param_1[0x69] = 0;
   *(int32_t *)(param_1 + 0x6b) = 0;
-  uVar2 = FUN_18062b1e0(_DAT_180c8ed18,0xc0,8,4);
+  uVar2 = FUN_18062b1e0(system_memory_pool_ptr,0xc0,8,4);
                     // WARNING: Subroutine does not return
   memset(uVar2,0,0xc0);
 }
@@ -914,7 +914,7 @@ void FUN_18005a500(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   uStack_38 = 0;
   puStack_48 = (uint64_t *)0x0;
   uStack_40 = 0;
-  puVar2 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13,param_4,0xfffffffffffffffe);
+  puVar2 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13,param_4,0xfffffffffffffffe);
   *(int8_t *)puVar2 = 0;
   puStack_48 = puVar2;
   uVar1 = FUN_18064e990(puVar2);
@@ -1080,7 +1080,7 @@ void FUN_18005ac00(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   uStack_38 = 0;
   puStack_48 = (int32_t *)0x0;
   uStack_40 = 0;
-  puVar2 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,0x13,0x13,param_4,0xfffffffffffffffe);
+  puVar2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x13,0x13,param_4,0xfffffffffffffffe);
   *(int8_t *)puVar2 = 0;
   puStack_48 = puVar2;
   uVar1 = FUN_18064e990(puVar2);

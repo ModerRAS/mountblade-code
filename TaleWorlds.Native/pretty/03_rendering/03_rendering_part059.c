@@ -22,9 +22,9 @@
 
 // 全局变量声明
 extern uint64_t SYSTEM_STATE_MANAGER;
-extern uint64_t _DAT_180c86938;
-extern uint64_t _DAT_180c82868;
-extern uint64_t _DAT_180c8ed18;
+extern uint64_t system_message_buffer;
+extern uint64_t system_context_ptr;
+extern uint64_t system_memory_pool_ptr;
 extern uint64_t GET_SECURITY_COOKIE();
 extern uint64_t global_state_928_ptr;
 extern uint64_t global_state_2024_ptr;
@@ -431,15 +431,15 @@ void render_state_initialize(longlong *render_context)
   }
   
   // 设置默认渲染状态
-  (**(code **)(*render_context + 0x110))(render_context,0,0x37,*(uint64_t *)(_DAT_180c86938 + 0x1c70));
-  (**(code **)(*render_context + 0x110))(render_context,9,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1cb8));
-  (**(code **)(*render_context + 0x110))(render_context,1,0x13,*(uint64_t *)(_DAT_180c86938 + 0x1c80));
-  (**(code **)(*render_context + 0x110))(render_context,2,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1c88));
-  (**(code **)(*render_context + 0x110))(render_context,3,1,*(uint64_t *)(_DAT_180c86938 + 0x1c78));
-  (**(code **)(*render_context + 0x110))(render_context,4,0x17,*(uint64_t *)(_DAT_180c86938 + 0x1c90));
-  (**(code **)(*render_context + 0x110))(render_context,5,1,*(uint64_t *)(_DAT_180c86938 + 0x1c98));
-  (**(code **)(*render_context + 0x110))(render_context,6,0x17,*(uint64_t *)(_DAT_180c86938 + 0x1ca0));
-  (**(code **)(*render_context + 0x110))(render_context,7,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1ca8));
+  (**(code **)(*render_context + 0x110))(render_context,0,0x37,*(uint64_t *)(system_message_buffer + 0x1c70));
+  (**(code **)(*render_context + 0x110))(render_context,9,0x11,*(uint64_t *)(system_message_buffer + 0x1cb8));
+  (**(code **)(*render_context + 0x110))(render_context,1,0x13,*(uint64_t *)(system_message_buffer + 0x1c80));
+  (**(code **)(*render_context + 0x110))(render_context,2,0x11,*(uint64_t *)(system_message_buffer + 0x1c88));
+  (**(code **)(*render_context + 0x110))(render_context,3,1,*(uint64_t *)(system_message_buffer + 0x1c78));
+  (**(code **)(*render_context + 0x110))(render_context,4,0x17,*(uint64_t *)(system_message_buffer + 0x1c90));
+  (**(code **)(*render_context + 0x110))(render_context,5,1,*(uint64_t *)(system_message_buffer + 0x1c98));
+  (**(code **)(*render_context + 0x110))(render_context,6,0x17,*(uint64_t *)(system_message_buffer + 0x1ca0));
+  (**(code **)(*render_context + 0x110))(render_context,7,0x11,*(uint64_t *)(system_message_buffer + 0x1ca8));
   
   // 加载配置参数
   config_base = SYSTEM_STATE_MANAGER;
@@ -564,15 +564,15 @@ void render_state_initialize_alt(longlong *render_context)
   }
   
   // 设置默认渲染状态
-  (**(code **)(*render_context + 0x110))(render_context,0,0x37,*(uint64_t *)(_DAT_180c86938 + 0x1c70));
-  (**(code **)(*render_context + 0x110))(render_context,9,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1cb8));
-  (**(code **)(*render_context + 0x110))(render_context,1,0x13,*(uint64_t *)(_DAT_180c86938 + 0x1c80));
-  (**(code **)(*render_context + 0x110))(render_context,2,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1c88));
-  (**(code **)(*render_context + 0x110))(render_context,3,1,*(uint64_t *)(_DAT_180c86938 + 0x1c78));
-  (**(code **)(*render_context + 0x110))(render_context,4,0x17,*(uint64_t *)(_DAT_180c86938 + 0x1c90));
-  (**(code **)(*render_context + 0x110))(render_context,5,1,*(uint64_t *)(_DAT_180c86938 + 0x1c98));
-  (**(code **)(*render_context + 0x110))(render_context,6,0x17,*(uint64_t *)(_DAT_180c86938 + 0x1ca0));
-  (**(code **)(*render_context + 0x110))(render_context,7,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1ca8));
+  (**(code **)(*render_context + 0x110))(render_context,0,0x37,*(uint64_t *)(system_message_buffer + 0x1c70));
+  (**(code **)(*render_context + 0x110))(render_context,9,0x11,*(uint64_t *)(system_message_buffer + 0x1cb8));
+  (**(code **)(*render_context + 0x110))(render_context,1,0x13,*(uint64_t *)(system_message_buffer + 0x1c80));
+  (**(code **)(*render_context + 0x110))(render_context,2,0x11,*(uint64_t *)(system_message_buffer + 0x1c88));
+  (**(code **)(*render_context + 0x110))(render_context,3,1,*(uint64_t *)(system_message_buffer + 0x1c78));
+  (**(code **)(*render_context + 0x110))(render_context,4,0x17,*(uint64_t *)(system_message_buffer + 0x1c90));
+  (**(code **)(*render_context + 0x110))(render_context,5,1,*(uint64_t *)(system_message_buffer + 0x1c98));
+  (**(code **)(*render_context + 0x110))(render_context,6,0x17,*(uint64_t *)(system_message_buffer + 0x1ca0));
+  (**(code **)(*render_context + 0x110))(render_context,7,0x11,*(uint64_t *)(system_message_buffer + 0x1ca8));
   
   // 加载配置参数
   config_base = SYSTEM_STATE_MANAGER;
@@ -673,15 +673,15 @@ void render_state_update_batch(void)
   } while ((int)state_index < 0x80);
   
   // 批量设置渲染状态
-  update_result = (**(code **)(*render_context + 0x110))(update_result,0,0x37,*(uint64_t *)(_DAT_180c86938 + 0x1c70));
-  update_result = (**(code **)(*render_context + 0x110))(update_result,9,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1cb8));
-  update_result = (**(code **)(*render_context + 0x110))(update_result,1,0x13,*(uint64_t *)(_DAT_180c86938 + 0x1c80));
-  update_result = (**(code **)(*render_context + 0x110))(update_result,2,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1c88));
-  update_result = (**(code **)(*render_context + 0x110))(update_result,3,1,*(uint64_t *)(_DAT_180c86938 + 0x1c78));
-  update_result = (**(code **)(*render_context + 0x110))(update_result,4,0x17,*(uint64_t *)(_DAT_180c86938 + 0x1c90));
-  update_result = (**(code **)(*render_context + 0x110))(update_result,5,1,*(uint64_t *)(_DAT_180c86938 + 0x1c98));
-  (**(code **)(*render_context + 0x110))(update_result,6,0x17,*(uint64_t *)(_DAT_180c86938 + 0x1ca0));
-  (**(code **)(*render_context + 0x110))(update_result,7,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1ca8));
+  update_result = (**(code **)(*render_context + 0x110))(update_result,0,0x37,*(uint64_t *)(system_message_buffer + 0x1c70));
+  update_result = (**(code **)(*render_context + 0x110))(update_result,9,0x11,*(uint64_t *)(system_message_buffer + 0x1cb8));
+  update_result = (**(code **)(*render_context + 0x110))(update_result,1,0x13,*(uint64_t *)(system_message_buffer + 0x1c80));
+  update_result = (**(code **)(*render_context + 0x110))(update_result,2,0x11,*(uint64_t *)(system_message_buffer + 0x1c88));
+  update_result = (**(code **)(*render_context + 0x110))(update_result,3,1,*(uint64_t *)(system_message_buffer + 0x1c78));
+  update_result = (**(code **)(*render_context + 0x110))(update_result,4,0x17,*(uint64_t *)(system_message_buffer + 0x1c90));
+  update_result = (**(code **)(*render_context + 0x110))(update_result,5,1,*(uint64_t *)(system_message_buffer + 0x1c98));
+  (**(code **)(*render_context + 0x110))(update_result,6,0x17,*(uint64_t *)(system_message_buffer + 0x1ca0));
+  (**(code **)(*render_context + 0x110))(update_result,7,0x11,*(uint64_t *)(system_message_buffer + 0x1ca8));
   
   // 加载配置参数
   config_base = SYSTEM_STATE_MANAGER;
@@ -753,15 +753,15 @@ void render_parameter_update(int32_t update_param)
   float clamped_value;
   
   // 设置渲染状态
-  update_result = (**(code **)(*render_context + 0x110))(update_param,0,0x37,*(uint64_t *)(_DAT_180c86938 + 0x1c70));
-  update_result = (**(code **)(*render_context + 0x110))(update_result,9,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1cb8));
-  update_result = (**(code **)(*render_context + 0x110))(update_result,1,0x13,*(uint64_t *)(_DAT_180c86938 + 0x1c80));
-  update_result = (**(code **)(*render_context + 0x110))(update_result,2,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1c88));
-  update_result = (**(code **)(*render_context + 0x110))(update_result,3,1,*(uint64_t *)(_DAT_180c86938 + 0x1c78));
-  update_result = (**(code **)(*render_context + 0x110))(update_result,4,0x17,*(uint64_t *)(_DAT_180c86938 + 0x1c90));
-  update_result = (**(code **)(*render_context + 0x110))(update_result,5,1,*(uint64_t *)(_DAT_180c86938 + 0x1c98));
-  (**(code **)(*render_context + 0x110))(update_result,6,0x17,*(uint64_t *)(_DAT_180c86938 + 0x1ca0));
-  (**(code **)(*render_context + 0x110))(update_result,7,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1ca8));
+  update_result = (**(code **)(*render_context + 0x110))(update_param,0,0x37,*(uint64_t *)(system_message_buffer + 0x1c70));
+  update_result = (**(code **)(*render_context + 0x110))(update_result,9,0x11,*(uint64_t *)(system_message_buffer + 0x1cb8));
+  update_result = (**(code **)(*render_context + 0x110))(update_result,1,0x13,*(uint64_t *)(system_message_buffer + 0x1c80));
+  update_result = (**(code **)(*render_context + 0x110))(update_result,2,0x11,*(uint64_t *)(system_message_buffer + 0x1c88));
+  update_result = (**(code **)(*render_context + 0x110))(update_result,3,1,*(uint64_t *)(system_message_buffer + 0x1c78));
+  update_result = (**(code **)(*render_context + 0x110))(update_result,4,0x17,*(uint64_t *)(system_message_buffer + 0x1c90));
+  update_result = (**(code **)(*render_context + 0x110))(update_result,5,1,*(uint64_t *)(system_message_buffer + 0x1c98));
+  (**(code **)(*render_context + 0x110))(update_result,6,0x17,*(uint64_t *)(system_message_buffer + 0x1ca0));
+  (**(code **)(*render_context + 0x110))(update_result,7,0x11,*(uint64_t *)(system_message_buffer + 0x1ca8));
   
   // 加载配置参数
   config_base = SYSTEM_STATE_MANAGER;
@@ -887,15 +887,15 @@ void render_callback_execute(uint64_t param_1,code *callback_ptr)
   callback_result = (*callback_ptr)();
   
   // 设置渲染状态
-  callback_result = (**(code **)(*render_context + 0x110))(callback_result,0,0x37,*(uint64_t *)(_DAT_180c86938 + 0x1c70));
-  callback_result = (**(code **)(*render_context + 0x110))(callback_result,9,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1cb8));
-  callback_result = (**(code **)(*render_context + 0x110))(callback_result,1,0x13,*(uint64_t *)(_DAT_180c86938 + 0x1c80));
-  callback_result = (**(code **)(*render_context + 0x110))(callback_result,2,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1c88));
-  callback_result = (**(code **)(*render_context + 0x110))(callback_result,3,1,*(uint64_t *)(_DAT_180c86938 + 0x1c78));
-  callback_result = (**(code **)(*render_context + 0x110))(callback_result,4,0x17,*(uint64_t *)(_DAT_180c86938 + 0x1c90));
-  callback_result = (**(code **)(*render_context + 0x110))(callback_result,5,1,*(uint64_t *)(_DAT_180c86938 + 0x1c98));
-  (**(code **)(*render_context + 0x110))(callback_result,6,0x17,*(uint64_t *)(_DAT_180c86938 + 0x1ca0));
-  (**(code **)(*render_context + 0x110))(callback_result,7,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1ca8));
+  callback_result = (**(code **)(*render_context + 0x110))(callback_result,0,0x37,*(uint64_t *)(system_message_buffer + 0x1c70));
+  callback_result = (**(code **)(*render_context + 0x110))(callback_result,9,0x11,*(uint64_t *)(system_message_buffer + 0x1cb8));
+  callback_result = (**(code **)(*render_context + 0x110))(callback_result,1,0x13,*(uint64_t *)(system_message_buffer + 0x1c80));
+  callback_result = (**(code **)(*render_context + 0x110))(callback_result,2,0x11,*(uint64_t *)(system_message_buffer + 0x1c88));
+  callback_result = (**(code **)(*render_context + 0x110))(callback_result,3,1,*(uint64_t *)(system_message_buffer + 0x1c78));
+  callback_result = (**(code **)(*render_context + 0x110))(callback_result,4,0x17,*(uint64_t *)(system_message_buffer + 0x1c90));
+  callback_result = (**(code **)(*render_context + 0x110))(callback_result,5,1,*(uint64_t *)(system_message_buffer + 0x1c98));
+  (**(code **)(*render_context + 0x110))(callback_result,6,0x17,*(uint64_t *)(system_message_buffer + 0x1ca0));
+  (**(code **)(*render_context + 0x110))(callback_result,7,0x11,*(uint64_t *)(system_message_buffer + 0x1ca8));
   
   // 加载配置参数
   config_base = SYSTEM_STATE_MANAGER;
@@ -993,7 +993,7 @@ void render_thread_safe_operation(longlong *render_context,uint64_t operation_pa
   stack_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
   
   // 检查是否在主线程
-  main_thread_id = *(int *)(*(longlong *)(*(longlong *)(_DAT_180c82868 + 8) + 8) + 0x48);
+  main_thread_id = *(int *)(*(longlong *)(*(longlong *)(system_context_ptr + 8) + 8) + 0x48);
   current_thread_id = _Thrd_id();
   if (current_thread_id == main_thread_id) {
     // 主线程直接执行
@@ -1025,7 +1025,7 @@ void render_thread_safe_operation(longlong *render_context,uint64_t operation_pa
     }
     
     // 创建任务
-    task_handle = FUN_18062b1e0(_DAT_180c8ed18,0x100,8,3);
+    task_handle = FUN_18062b1e0(system_memory_pool_ptr,0x100,8,3);
     task_ptr = (void **)FUN_18005ce30(task_handle,&puStack_128);
     ppuStack_130 = task_ptr;
     if (task_ptr != (void **)0x0) {
@@ -1033,7 +1033,7 @@ void render_thread_safe_operation(longlong *render_context,uint64_t operation_pa
     }
     
     // 提交任务到线程池
-    task_data = _DAT_180c82868;
+    task_data = system_context_ptr;
     pppuStack_140 = &ppuStack_148;
     ppuStack_148 = task_ptr;
     if (task_ptr != (void **)0x0) {
@@ -1096,7 +1096,7 @@ void render_thread_operation_alt(longlong *render_context,uint64_t operation_par
   stack_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_148;
   
   // 检查是否在主线程
-  main_thread_id = *(int *)(*(longlong *)(*(longlong *)(_DAT_180c82868 + 8) + 8) + 0x48);
+  main_thread_id = *(int *)(*(longlong *)(*(longlong *)(system_context_ptr + 8) + 8) + 0x48);
   current_thread_id = _Thrd_id();
   if (current_thread_id == main_thread_id) {
     // 主线程直接执行操作
@@ -1126,7 +1126,7 @@ void render_thread_operation_alt(longlong *render_context,uint64_t operation_par
     }
     
     // 创建任务
-    task_handle = FUN_18062b1e0(_DAT_180c8ed18,0x100,8,3);
+    task_handle = FUN_18062b1e0(system_memory_pool_ptr,0x100,8,3);
     task_ptr = (void **)FUN_18005ce30(task_handle,&puStack_108);
     ppuStack_110 = task_ptr;
     if (task_ptr != (void **)0x0) {
@@ -1134,7 +1134,7 @@ void render_thread_operation_alt(longlong *render_context,uint64_t operation_par
     }
     
     // 提交任务到线程池
-    task_data = _DAT_180c82868;
+    task_data = system_context_ptr;
     pppuStack_120 = &ppuStack_128;
     ppuStack_128 = task_ptr;
     if (task_ptr != (void **)0x0) {

@@ -280,8 +280,8 @@ void Cleanup_Resource_Array(uint64_t context, uint64_t param_2, uint64_t param_3
   int item_count;
   longlong item_index;
   
-  array_context = _DAT_180c8a9f0;
-  item_count = (int)(*(longlong *)(_DAT_180c8a9f0 + 0x38) - *(longlong *)(_DAT_180c8a9f0 + 0x30) >> 3);
+  array_context = init_system_data_config;
+  item_count = (int)(*(longlong *)(init_system_data_config + 0x38) - *(longlong *)(init_system_data_config + 0x30) >> 3);
   item_index = 0;
   if (0 < item_count) {
     do {
@@ -1078,7 +1078,7 @@ uint64_t * Initialize_Advanced_System_Object(uint64_t *system_object)
         lVar4 = 1;
 LAB_18004c7ef:
         puVar5 = (int32_t *)
-                 FUN_18062b420(_DAT_180c8ed18,lVar4 * 4,*(int8_t *)(param_1 + 0x24));
+                 FUN_18062b420(system_memory_pool_ptr,lVar4 * 4,*(int8_t *)(param_1 + 0x24));
         puVar9 = (int32_t *)param_1[0x22];
         puVar8 = (int32_t *)*plVar1;
       }
@@ -1113,12 +1113,12 @@ LAB_18004c7ef:
       *(int8_t *)((longlong)param_1 + 0x22c) = 0;
       *(int32_t *)(param_1 + 0x40) = 0;
       param_1[0x41] = 0;
-      puVar6 = _DAT_180c8ed58;
-      if (_DAT_180c8ed58 == (uint64_t *)0x0) {
+      puVar6 = init_system_data_config;
+      if (init_system_data_config == (uint64_t *)0x0) {
         QueryPerformanceCounter(apuStackX_10);
         puVar6 = apuStackX_10[0];
       }
-      param_1[0x42] = (double)((longlong)puVar6 - _DAT_180c8ed48) * _DAT_180c8ed50;
+      param_1[0x42] = (double)((longlong)puVar6 - init_system_data_config) * init_system_data_config;
       *(int32_t *)(param_1 + 0x44) = 0;
       *(int8_t *)((longlong)param_1 + 0x264) = 0;
       *(int32_t *)(param_1 + 0x4d) = 0;
@@ -1127,7 +1127,7 @@ LAB_18004c7ef:
       *(int8_t *)((longlong)param_1 + 0x1fc) = 0;
       param_1[0x7b] = 0;
       param_1[0x57] = 0;
-      lVar10 = FUN_18062b1e0(_DAT_180c8ed18,0xc,4,3);
+      lVar10 = FUN_18062b1e0(system_memory_pool_ptr,0xc,4,3);
       *(int8_t *)(lVar10 + 8) = 0;
       param_1[6] = lVar10;
       param_1[0x27] = 0;
@@ -1135,7 +1135,7 @@ LAB_18004c7ef:
       *(int32_t *)((longlong)param_1 + 0x3c) = 0xffffffff;
       param_1[0x43] = 0;
       *(int32_t *)(param_1 + 0x26) = 0xffffffff;
-      puVar6 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x30,8,3);
+      puVar6 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x30,8,3);
       puVar6[1] = 0;
       puVar6[2] = 0;
       puVar6[3] = 0;

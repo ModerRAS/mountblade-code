@@ -949,7 +949,7 @@ void UISystem_AdvancedGraphicsRenderer(float *param_1, uint param_2, longlong pa
     ulonglong auStack_b8 [22];
     
     puVar30 = auStack_b8;
-    auStack_b8[0] = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
+    auStack_b8[0] = system_stack_cookie ^ (ulonglong)auStack_b8;
     uVar28 = (ulonglong)param_1 & MEMORY_ALIGNMENT_MASK;
     
     // 处理未对齐的数据

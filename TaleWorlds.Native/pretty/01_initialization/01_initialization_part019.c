@@ -76,20 +76,20 @@ void perform_system_cleanup(void)
     int8_t temp_buffer[16];
     ulonglong stack_cookie;
     
-    system_context = _DAT_180c86870;
+    system_context = system_main_module_state;
     uStack_60 = 0xfffffffffffffffe;
     stack_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
-    FUN_18005e630(_DAT_180c82868);
+    FUN_18005e630(system_context_ptr);
     do {
-        cleanup_flag = _DAT_180c82868;
-        system_context = FUN_18005e890(_DAT_180c82868);
+        cleanup_flag = system_context_ptr;
+        system_context = FUN_18005e890(system_context_ptr);
         if (system_context == 0) break;
         thread_pool = (longlong *)FUN_18005e890(cleanup_flag);
         cleanup_result = (**(code **)(*thread_pool + 0x20))(thread_pool,1);
     } while (cleanup_result != '\0');
-    FUN_18005e630(_DAT_180c82868);
-    resource_manager = _DAT_180c86960;
-    if (*(char *)(_DAT_180c86960 + 7) != '\0') {
+    FUN_18005e630(system_context_ptr);
+    resource_manager = init_system_data_buffer;
+    if (*(char *)(init_system_data_buffer + 7) != '\0') {
         thread_pool = (longlong *)0x180c91970;
         lock_result = _Mtx_lock(0x180c91970);
         if (lock_result != 0) {
@@ -140,8 +140,8 @@ void initialize_engine_core(void)
     uint64_t stack_var6;
     ulonglong resource_index;
     
-    performance_counter = _DAT_180c868d0;
-    engine_context = _DAT_180c86870;
+    performance_counter = init_system_data_buffer;
+    engine_context = system_main_module_state;
     if (system_debug_flag != '\0') {
         FUN_180050b30();
         return;
@@ -180,7 +180,7 @@ void initialize_engine_partial(longlong engine_context)
     uint64_t stack_var6;
     ulonglong loop_counter;
     
-    local_counter = _DAT_180c868d0;
+    local_counter = init_system_data_buffer;
     stack_var5 = 0xfffffffffffffffe;
     // ... 其余实现保持原样
 }
@@ -230,9 +230,9 @@ void update_performance_counter(longlong system_context, uint64_t time_delta)
     performance_info = 0xfffffffffffffffe;
     stack_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
     performance_value = (float)time_delta;
-    _DAT_180c8ed20 = (longlong)(performance_value * 100000.0);
-    _DAT_180c8ed30 = _DAT_180c8ed30 + _DAT_180c8ed20;
-    _DAT_180bf3ff8 = performance_value;
+    system_stack_size = (longlong)(performance_value * 100000.0);
+    system_error_code = system_error_code + system_stack_size;
+    init_system_control_buffer = performance_value;
     performance_metric = FUN_180091020();
     performance_metric = FUN_1801ed510(performance_metric,time_delta);
     system_status1 = FUN_180160500(performance_metric,0x52);
@@ -317,7 +317,7 @@ uint64_t * copy_resource_data(uint64_t *destination, uint64_t *source)
                 copy_size = 0;
             }
             else {
-                copy_size = FUN_18062b420(_DAT_180c8ed18,required_size * 4,*(int8_t *)(destination + 0x46));
+                copy_size = FUN_18062b420(system_memory_pool_ptr,required_size * 4,*(int8_t *)(destination + 0x46));
             }
             if (source_end != source_start) {
                 memmove(copy_size,source_end,copy_size);
@@ -379,7 +379,7 @@ void expand_resource_array(longlong array_start, longlong array_end, longlong ca
             new_buffer = 0;
         }
         else {
-            new_buffer = FUN_18062b420(_DAT_180c8ed18,required_size * 4,(char)context_ptr[3]);
+            new_buffer = FUN_18062b420(system_memory_pool_ptr,required_size * 4,(char)context_ptr[3]);
         }
         if (source_end != source_start) {
             memmove(new_buffer,source_end,buffer_size);
@@ -435,7 +435,7 @@ void reallocate_resource_array(longlong new_buffer, longlong source_data, longlo
         data_size = 0;
     }
     else {
-        data_size = FUN_18062b420(_DAT_180c8ed18,buffer_size * 4,(char)resource_ptr[3]);
+        data_size = FUN_18062b420(system_memory_pool_ptr,buffer_size * 4,(char)resource_ptr[3]);
     }
     if (source_data != dest_data) {
         memmove(data_size);
@@ -574,7 +574,7 @@ STATUS_VALID:
 // 原始实现: FUN_180052020 - 初始化系统模块
 uint64_t initialize_system_module(uint64_t module_handle, uint64_t module_data, uint64_t init_params, uint64_t context_data)
 {
-    FUN_180627ae0(module_data,_DAT_180c86870 + 0x2c0,init_params,context_data,0,0xfffffffffffffffe);
+    FUN_180627ae0(module_data,system_main_module_state + 0x2c0,init_params,context_data,0,0xfffffffffffffffe);
     return module_data;
 }
 
@@ -595,7 +595,7 @@ void execute_module_initialization(longlong module_context)
     stack_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
     init_flag = 0;
     context_ptr = module_context;
-    FUN_180627ae0(module_context,_DAT_180c86870 + 0x170);
+    FUN_180627ae0(module_context,system_main_module_state + 0x170);
     init_flag = 1;
     init_result = *(int *)(module_context + 0x10) + 8;
     FUN_1806277c0(module_context,init_result);
@@ -652,7 +652,7 @@ void process_module_data(longlong module_context, longlong data_source, uint64_t
     source_data = 0;
     source_buffer = (uint64_t *)0x0;
     source_flag = 0;
-    data_buffer = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13,context_data,0xfffffffffffffffe);
+    data_buffer = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13,context_data,0xfffffffffffffffe);
     *(int8_t *)data_buffer = 0;
     source_buffer = data_buffer;
     process_flag = FUN_18064e990(data_buffer);
@@ -667,7 +667,7 @@ void process_module_data(longlong module_context, longlong data_source, uint64_t
         target_data = 0;
         target_buffer = (uint64_t *)0x0;
         target_flag = 0;
-        data_buffer = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13,context_data,transfer_status);
+        data_buffer = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13,context_data,transfer_status);
         *(int8_t *)data_buffer = 0;
         target_buffer = data_buffer;
         process_flag = FUN_18064e990(data_buffer);
@@ -701,16 +701,16 @@ uint64_t register_system_module(uint64_t module_handle, uint64_t module_data)
     int32_t source_flag;
     uint64_t source_data;
     
-    system_context = _DAT_180c86870;
-    if (*(int *)(_DAT_180c86870 + 200) != 0) {
-        FUN_180627ae0(module_data,_DAT_180c86870 + 0xb8);
+    system_context = system_main_module_state;
+    if (*(int *)(system_main_module_state + 200) != 0) {
+        FUN_180627ae0(module_data,system_main_module_state + 0xb8);
         return module_data;
     }
     source_ptr = &unknown_var_3456_ptr;
     source_data = 0;
     source_buffer = (uint64_t *)0x0;
     source_flag = 0;
-    module_info = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+    module_info = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
     *(int8_t *)module_info = 0;
     source_buffer = module_info;
     register_flag = FUN_18064e990(module_info);
@@ -725,7 +725,7 @@ uint64_t register_system_module(uint64_t module_handle, uint64_t module_data)
         target_data = 0;
         target_buffer = (uint64_t *)0x0;
         target_flag = 0;
-        module_info = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+        module_info = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
         *(int8_t *)module_info = 0;
         target_buffer = module_info;
         register_flag = FUN_18064e990(module_info);

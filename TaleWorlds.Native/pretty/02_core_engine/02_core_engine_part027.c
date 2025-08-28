@@ -8,13 +8,13 @@
 extern char system_debug_flag;       // 调试模式标志
 extern char system_event_handler;       // 日志系统标志
 extern char system_context_ptr;       // 线程安全标志
-extern void* _DAT_180c86950;     // 引擎实例指针
-extern void* _DAT_180c86870;     // 系统配置指针
-extern void* _DAT_180c868d0;     // 路径配置指针
-extern void* _DAT_180c8ed08;     // 系统接口指针
-extern void* _DAT_180c91900;     // 同步信号量
-extern void* _DAT_180c86928;     // 日志系统指针
-extern void* _DAT_180c8ed18;     // 内存管理器指针
+extern void* system_operation_state;     // 引擎实例指针
+extern void* system_main_module_state;     // 系统配置指针
+extern void* core_system_data_buffer;     // 路径配置指针
+extern void* core_system_data_buffer;     // 系统接口指针
+extern void* core_system_buffer;     // 同步信号量
+extern void* system_message_context;     // 日志系统指针
+extern void* system_memory_pool_ptr;     // 内存管理器指针
 
 // 常量定义
 #define MAX_ERROR_MESSAGE_SIZE 1024
@@ -86,7 +86,7 @@ void report_runtime_error(void* engine_context, const char* error_message, int e
   debug_mode = is_debug_mode_active(temp_pointer);
   if (debug_mode == '\0') {
     // 等待调试器响应
-    wait_result = WaitForSingleObject(_DAT_180c91900, 0);
+    wait_result = WaitForSingleObject(core_system_buffer, 0);
     if (wait_result == 0) {
       // 调试器处理逻辑
       char debugger_handled = invoke_debugger_handler();
@@ -98,7 +98,7 @@ void report_runtime_error(void* engine_context, const char* error_message, int e
       }
       
       // 执行调试后处理
-      if (_DAT_180c82868 == 0) {
+      if (system_context_ptr == 0) {
         // 主线程处理
         execute_main_thread_debug_logic();
       } else {
@@ -250,7 +250,7 @@ bool handle_system_error(void* error_context, void** error_data)
   int string_length = 0;
   
   // 等待系统资源
-  WaitForSingleObject(_DAT_180c91900, 300000);
+  WaitForSingleObject(core_system_buffer, 300000);
   
   // 获取错误处理上下文
   void* error_handler_context = get_error_handler_context();
@@ -336,19 +336,19 @@ void handle_system_exception(void* exception_context, void* exception_data)
     void* exception_info = get_exception_info(exception_data);
     
     // 获取系统接口
-    system_interface = *(void**)_DAT_180c8ed08;
+    system_interface = *(void**)core_system_data_buffer;
     
     // 检查接口类型
     if (system_interface == &global_config_424_ptr) {
       is_debug_mode = (get_debug_flag() != 0);
     } else {
-      is_debug_mode = (**(code **)(system_interface + 0x50))((void**)_DAT_180c8ed08);
+      is_debug_mode = (**(code **)(system_interface + 0x50))((void**)core_system_data_buffer);
     }
     
     // 如果不是调试模式，调用异常处理器
     if (is_debug_mode == '\0') {
-      (**(code **)(*(longlong *)_DAT_180c8ed08[1] + 0x18))
-                ((longlong *)_DAT_180c8ed08[1], &exception_info, debug_info);
+      (**(code **)(*(longlong *)core_system_data_buffer[1] + 0x18))
+                ((longlong *)core_system_data_buffer[1], &exception_info, debug_info);
     }
     
     // 清理资源

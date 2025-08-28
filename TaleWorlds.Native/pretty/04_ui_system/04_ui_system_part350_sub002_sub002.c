@@ -1326,12 +1326,12 @@ LAB_180857f18:
 LAB_1808580a0:
   do {
     while( true ) {
-      if ((*piStack_100 < _DAT_180c4ea98) && (FUN_1808fcb90(&system_buffer_ea98), _DAT_180c4ea98 == -1))
+      if ((*piStack_100 < ui_system_memory) && (FUN_1808fcb90(&system_buffer_ea98), ui_system_memory == -1))
       {
-        _DAT_180c4ea94 = 0;
+        ui_system_memory = 0;
         FUN_1808fcb30(&system_buffer_ea98);
       }
-      if (uVar27 <= _DAT_180c4ea94) {
+      if (uVar27 <= ui_system_memory) {
         return 0;
       }
       if (*(longlong *)(param_1 + 0x140) == 0) break;
@@ -1483,12 +1483,12 @@ LAB_1808580a0:
         uVar6 = uStack_168;
         uStack_158 = uVar7;
       }
-      if ((*(int *)(*plStack_c8 + 0x48) < _DAT_180c4ea98) &&
-         (FUN_1808fcb90(&system_buffer_ea98), _DAT_180c4ea98 == -1)) {
-        _DAT_180c4ea94 = 0;
+      if ((*(int *)(*plStack_c8 + 0x48) < ui_system_memory) &&
+         (FUN_1808fcb90(&system_buffer_ea98), ui_system_memory == -1)) {
+        ui_system_memory = 0;
         FUN_1808fcb30(&system_buffer_ea98);
       }
-      if (_DAT_180c4ea94 < uStack_158) {
+      if (ui_system_memory < uStack_158) {
         uVar10 = 0;
         if ((char)uStack_150 != '\0') {
           uVar10 = uStack_80;
@@ -1546,12 +1546,12 @@ LAB_180859163:
           }
           return uVar19;
         }
-        if ((*(int *)(*plStack_c8 + 0x48) < _DAT_180c4ea98) &&
-           (FUN_1808fcb90(&system_buffer_ea98), _DAT_180c4ea98 == -1)) {
-          _DAT_180c4ea94 = uVar7;
+        if ((*(int *)(*plStack_c8 + 0x48) < ui_system_memory) &&
+           (FUN_1808fcb90(&system_buffer_ea98), ui_system_memory == -1)) {
+          ui_system_memory = uVar7;
           FUN_1808fcb30(&system_buffer_ea98);
         }
-        *(uint *)(param_1 + 0x148) = _DAT_180c4ea94;
+        *(uint *)(param_1 + 0x148) = ui_system_memory;
         uVar7 = FUN_180855810(param_1,uVar26);
         uVar19 = (ulonglong)uVar7;
         if (uVar7 != 0) goto LAB_180859163;
@@ -1687,13 +1687,13 @@ LAB_180858c20:
           return uVar19;
         }
       }
-      if ((*(int *)(*plStack_c8 + 0x48) < _DAT_180c4ea98) &&
-         (FUN_1808fcb90(&system_buffer_ea98), _DAT_180c4ea98 == -1)) {
-        _DAT_180c4ea94 = 0;
+      if ((*(int *)(*plStack_c8 + 0x48) < ui_system_memory) &&
+         (FUN_1808fcb90(&system_buffer_ea98), ui_system_memory == -1)) {
+        ui_system_memory = 0;
         FUN_1808fcb30(&system_buffer_ea98);
       }
       uVar27 = uStack_15c;
-      if (*(uint *)(lVar14 + 0xa0) != _DAT_180c4ea94) {
+      if (*(uint *)(lVar14 + 0xa0) != ui_system_memory) {
         puVar13 = (int32_t *)FUN_18084da10();
         uVar7 = auStack_140[0];
         plVar17 = (longlong *)(param_1 + 0x70);
@@ -1927,12 +1927,12 @@ LAB_180858e04:
     }
     *(uint *)(param_1 + 8) = uVar7;
     *(int32_t *)(param_1 + 0xc) = 2;
-    if ((*(int *)(lStack_c0 + 0x48) < _DAT_180c4ea98) &&
-       (FUN_1808fcb90(&system_buffer_ea98), _DAT_180c4ea98 == -1)) {
-      _DAT_180c4ea94 = 0;
+    if ((*(int *)(lStack_c0 + 0x48) < ui_system_memory) &&
+       (FUN_1808fcb90(&system_buffer_ea98), ui_system_memory == -1)) {
+      ui_system_memory = 0;
       FUN_1808fcb30(&system_buffer_ea98);
     }
-    uVar27 = _DAT_180c4ea94;
+    uVar27 = ui_system_memory;
     plVar17 = (longlong *)(param_1 + 0x70);
     if (bVar29) {
       uVar21 = *(uint *)(*(longlong *)(param_1 + 0x168) + 0x774);
@@ -2066,15 +2066,15 @@ FUN_18085acd0(longlong param_1,longlong *param_2,uint *param_3,ulonglong *param_
       return 0;
     }
     bVar3 = false;
-    if ((*(int *)(*plVar1 + 0x48) < _DAT_180c4ea98) &&
-       (FUN_1808fcb90(&system_buffer_ea98), _DAT_180c4ea98 == -1)) {
-      _DAT_180c4ea94 = 0;
+    if ((*(int *)(*plVar1 + 0x48) < ui_system_memory) &&
+       (FUN_1808fcb90(&system_buffer_ea98), ui_system_memory == -1)) {
+      ui_system_memory = 0;
       FUN_1808fcb30(&system_buffer_ea98);
     }
     uVar8 = *(uint *)(uVar13 + 0x10);
     uVar4 = *param_3;
     if ((uVar8 < uVar4) || (uVar9 = uVar8, param_3[1] <= uVar8)) {
-      uVar10 = _DAT_180c4ea94;
+      uVar10 = ui_system_memory;
       if ((param_6 != '\0') && (uVar8 <= uVar4)) {
         uVar6 = 0xffffffff;
         if ((ulonglong)*(uint *)(uVar13 + 0x14) + (ulonglong)uVar8 < 0x100000000) {

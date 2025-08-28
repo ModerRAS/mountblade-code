@@ -848,7 +848,7 @@ int find_resource_index(longlong resource_ptr, longlong search_key)
     if (*(void **)(search_key + 8) != (void *)0x0) {
         error_message = *(void **)(search_key + 8);
     }
-    log_error_message(_DAT_180c86928, 0, 0x1000000000000, 3, &error_not_found_template, error_message);
+    log_error_message(system_message_context, 0, 0x1000000000000, 3, &error_not_found_template, error_message);
     return -1;
 }
 
@@ -908,7 +908,7 @@ int find_extended_resource_index(longlong resource_ptr, uint64_t param2, uint64_
     if (*(void **)(param2 + 8) != (void *)0x0) {
         error_message = *(void **)(param2 + 8);
     }
-    log_error_message(_DAT_180c86928, 0, 0x1000000000000, 3, &error_not_found_template);
+    log_error_message(system_message_context, 0, 0x1000000000000, 3, &error_not_found_template);
     return -1;
 }
 
@@ -974,7 +974,7 @@ int find_sub_resource_index(longlong resource_ptr, longlong search_key)
     if (*(void **)(search_key + 8) != (void *)0x0) {
         error_message = *(void **)(search_key + 8);
     }
-    log_error_message(_DAT_180c86928, 0, 0x1000000000000, 3, &sub_resource_error_template, error_message);
+    log_error_message(system_message_context, 0, 0x1000000000000, 3, &sub_resource_error_template, error_message);
     return -1;
 }
 
@@ -1035,21 +1035,21 @@ void initialize_resource_manager(void)
     
     stack_guard = 0xfffffffffffffffe;
     init_flag = 0;
-    _DAT_180c8aa60 = allocate_memory(g_memory_allocator, 0x30, 8, 3);
-    *(int32_t *)(_DAT_180c8aa60 + 0x19) = 0;
-    *(int16_t *)(_DAT_180c8aa60 + 0x1d) = 0;
-    *(int8_t *)(_DAT_180c8aa60 + 0x1f) = 0;
-    *(int32_t *)(_DAT_180c8aa60 + 0x28) = 3;
-    *(longlong *)_DAT_180c8aa60 = _DAT_180c8aa60;
-    *(longlong *)(_DAT_180c8aa60 + 8) = _DAT_180c8aa60;
-    *(uint64_t *)(_DAT_180c8aa60 + 0x10) = 0;
-    *(int8_t *)(_DAT_180c8aa60 + 0x18) = 0;
-    *(uint64_t *)(_DAT_180c8aa60 + 0x20) = 0;
-    table_size = *(longlong *)(*_DAT_180c86870 + 0x890) - *(longlong *)(*_DAT_180c86870 + 0x888) >> 5;
+    core_system_data_pointer = allocate_memory(g_memory_allocator, 0x30, 8, 3);
+    *(int32_t *)(core_system_data_pointer + 0x19) = 0;
+    *(int16_t *)(core_system_data_pointer + 0x1d) = 0;
+    *(int8_t *)(core_system_data_pointer + 0x1f) = 0;
+    *(int32_t *)(core_system_data_pointer + 0x28) = 3;
+    *(longlong *)core_system_data_pointer = core_system_data_pointer;
+    *(longlong *)(core_system_data_pointer + 8) = core_system_data_pointer;
+    *(uint64_t *)(core_system_data_pointer + 0x10) = 0;
+    *(int8_t *)(core_system_data_pointer + 0x18) = 0;
+    *(uint64_t *)(core_system_data_pointer + 0x20) = 0;
+    table_size = *(longlong *)(*system_main_module_state + 0x890) - *(longlong *)(*system_main_module_state + 0x888) >> 5;
     resource_flag = 0;
     if (0 < (int)table_size) {
-        resource_count = *(longlong *)(*_DAT_180c86870 + 0x888);
-        if (*(longlong *)(*_DAT_180c86870 + 0x890) - resource_count >> 5 == 0) {
+        resource_count = *(longlong *)(*system_main_module_state + 0x888);
+        if (*(longlong *)(*system_main_module_state + 0x890) - resource_count >> 5 == 0) {
             resource_count = generate_unique_id();
         }
         resource_content = &default_empty_string;

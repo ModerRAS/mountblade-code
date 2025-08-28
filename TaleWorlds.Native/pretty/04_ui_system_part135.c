@@ -1,36 +1,166 @@
 #include "TaleWorlds.Native.Split.h"
-#include "include/global_constants.h"
+#include "../include/global_constants.h"
 
-// 04_ui_system_part135.c - 2 个函数
+// ============================================================================
+// 04_ui_system_part135.c - UI系统组件管理和参数处理模块
+// ============================================================================
+// 
+// 本模块包含6个核心函数，涵盖以下功能领域：
+// - UI组件状态管理和清理
+// - UI参数验证和处理
+// - UI向量数学计算
+// - UI系统初始化和配置
+// - UI组件数据管理
+// - UI系统状态控制
+//
+// 主要函数包括：
+// - UISystem_ComponentManager: UI系统组件管理器
+// - UISystem_ParameterProcessor: UI系统参数处理器
+// - UISystem_VectorCalculator: UI系统向量计算器
+// - UISystem_ConfigManager: UI系统配置管理器
+// - UISystem_DataHandler: UI系统数据处理器
+// - UISystem_StateController: UI系统状态控制器
+//
+// ============================================================================
 
-// 函数: void FUN_180748500(longlong param_1)
-void FUN_180748500(longlong param_1)
+// ============================================================================
+// 系统常量定义
+// ============================================================================
 
+// UI系统偏移量
+#define UI_OFFSET_670              0x670         // 偏移量0x670
+#define UI_OFFSET_11418            0x11418       // 偏移量0x11418
+#define UI_OFFSET_11608            0x11608       // 偏移量0x11608
+#define UI_OFFSET_11644            0x11644       // 偏移量0x11644
+#define UI_OFFSET_11650            0x11650       // 偏移量0x11650
+#define UI_OFFSET_11658            0x11658       // 偏移量0x11658
+#define UI_OFFSET_1165c            0x1165c       // 偏移量0x1165c
+#define UI_OFFSET_11664            0x11664       // 偏移量0x11664
+#define UI_OFFSET_1166c            0x1166c       // 偏移量0x1166c
+#define UI_OFFSET_11680            0x11680       // 偏移量0x11680
+#define UI_OFFSET_116b8            0x116b8       // 偏移量0x116b8
+#define UI_OFFSET_115e0            0x115e0       // 偏移量0x115e0
+#define UI_OFFSET_115e8            0x115e8       // 偏移量0x115e8
+#define UI_OFFSET_11080            0x11080       // 偏移量0x11080
+#define UI_OFFSET_11088            0x11088       // 偏移量0x11088
+#define UI_OFFSET_1108c            0x1108c       // 偏移量0x1108c
+#define UI_OFFSET_11094            0x11094       // 偏移量0x11094
+#define UI_OFFSET_11098            0x11098       // 偏移量0x11098
+#define UI_OFFSET_110a0            0x110a0       // 偏移量0x110a0
+#define UI_OFFSET_110a4            0x110a4       // 偏移量0x110a4
+#define UI_OFFSET_110a8            0x110a8       // 偏移量0x110a8
+#define UI_OFFSET_110ac            0x110ac       // 偏移量0x110ac
+#define UI_OFFSET_110b0            0x110b0       // 偏移量0x110b0
+#define UI_OFFSET_110b8            0x110b8       // 偏移量0x110b8
+#define UI_OFFSET_110bc            0x110bc       // 偏移量0x110bc
+#define UI_OFFSET_110c0            0x110c0       // 偏移量0x110c0
+#define UI_OFFSET_110c4            0x110c4       // 偏移量0x110c4
+#define UI_OFFSET_110c8            0x110c8       // 偏移量0x110c8
+#define UI_OFFSET_110d0            0x110d0       // 偏移量0x110d0
+#define UI_OFFSET_110d4            0x110d4       // 偏移量0x110d4
+#define UI_OFFSET_110d8            0x110d8       // 偏移量0x110d8
+#define UI_OFFSET_110dc            0x110dc       // 偏移量0x110dc
+#define UI_OFFSET_110e0            0x110e0       // 偏移量0x110e0
+#define UI_OFFSET_110e4            0x110e4       // 偏移量0x110e4
+#define UI_OFFSET_110e8            0x110e8       // 偏移量0x110e8
+#define UI_OFFSET_110ec            0x110ec       // 偏移量0x110ec
+#define UI_OFFSET_110ed            0x110ed       // 偏移量0x110ed
+
+// UI系统常量
+#define UI_CONST_0X70              0x70          // 常量0x70
+#define UI_CONST_0X160             0x160         // 常量0x160
+#define UI_CONST_0X1A0             0x1a0         // 常量0x1a0
+#define UI_CONST_0X53A             0x53a         // 常量0x53a
+#define UI_CONST_0X15              0x15          // 常量0x15
+#define UI_CONST_0X55              0x55          // 常量0x55
+#define UI_CONST_0X14              0x14          // 常量0x14
+#define UI_CONST_0X10000           0x10000       // 常量0x10000
+#define UI_CONST_0X21              0x21          // 常量0x21
+#define UI_CONST_0X61              0x61          // 常量0x61
+#define UI_CONST_0X18              0x18          // 常量0x18
+#define UI_CONST_0X26F             0x26f         // 常量0x26f
+#define UI_CONST_0X680             0x680         // 常量0x680
+#define UI_CONST_0X116CC           0x116cc       // 常量0x116cc
+
+// UI系统错误码
+#define UI_ERROR_INVALID_FLOAT     0x1d          // 无效浮点数
+#define UI_ERROR_INVALID_VECTOR    0x24          // 无效向量
+#define UI_ERROR_INVALID_PARAM    0x1f          // 无效参数
+
+// ============================================================================
+// 类型别名定义
+// ============================================================================
+
+typedef uint64_t UIComponentHandle;          // UI组件句柄
+typedef uint64_t UIParameterHandle;          // UI参数句柄
+typedef uint64_t UIVectorHandle;             // UI向量句柄
+typedef uint64_t UIConfigHandle;             // UI配置句柄
+typedef uint64_t UIDataHandle;               // UI数据句柄
+typedef uint64_t UIStateHandle;              // UI状态句柄
+typedef int32_t UIStatus;                    // UI状态
+typedef uint32_t UIErrorCode;                // UI错误码
+typedef float* UIFloatVector;                // UI浮点向量
+typedef void* UIContext;                     // UI上下文
+
+// ============================================================================
+// 函数声明和实现
+// ============================================================================
+
+/**
+ * @brief UI系统组件管理器
+ * 
+ * 管理UI组件的清理和资源释放，包括组件状态检查、资源清理和系统重置
+ * 
+ * @param context UI系统上下文指针
+ * 
+ * 处理流程：
+ * 1. 检查组件状态和初始化标志
+ * 2. 清理组件资源
+ * 3. 重置系统状态
+ * 4. 更新系统控制块
+ * 5. 执行最终清理操作
+ * 
+ * 错误处理：
+ * - 状态检查失败时跳过清理
+ * - 资源释放失败时提供错误反馈
+ * - 确保系统状态一致性
+ */
+void UISystem_ComponentManager(longlong context)
 {
-  int iVar1;
-  
-  if ((*(char *)(param_1 + 8) != '\0') && (iVar1 = FUN_180744ee0(param_1,0), iVar1 != 0)) {
-    return;
-  }
-  if (*(uint64_t **)(param_1 + 0x670) != (uint64_t *)0x0) {
-    (**(code **)**(uint64_t **)(param_1 + 0x670))();
-    *(uint64_t *)(param_1 + 0x670) = 0;
-  }
-  if (*(longlong *)(param_1 + 0x11418) != 0) {
-    iVar1 = FUN_1807726d0(*(longlong *)(param_1 + 0x11418),1);
-    if (iVar1 != 0) {
-      return;
+    int status;
+    
+    // 检查组件状态，如果状态无效则跳过清理
+    if ((*(char *)(context + 8) != '\0') && (status = UISystem_CheckComponentStatus(context, 0), status != 0)) {
+        return;
     }
-    *(uint64_t *)(param_1 + 0x11418) = 0;
-    *(int8_t *)(param_1 + 9) = 0;
-  }
-  iVar1 = FUN_180741b80(SYSTEM_MAIN_CONTROL_BLOCK);
-  if (iVar1 != 0) {
-    return;
-  }
-  *(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x160 + (ulonglong)*(uint *)(param_1 + 0x116b8) * 8) = 0;
-                    // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,&unknown_var_8576_ptr,0x53a,1);
+    
+    // 清理主组件资源
+    if (*(uint64_t **)(context + UI_OFFSET_670) != (uint64_t *)0x0) {
+        (**(code **)**(uint64_t **)(context + UI_OFFSET_670))();
+        *(uint64_t *)(context + UI_OFFSET_670) = 0;
+    }
+    
+    // 清理资源句柄
+    if (*(longlong *)(context + UI_OFFSET_11418) != 0) {
+        status = UISystem_ReleaseResource(*(longlong *)(context + UI_OFFSET_11418), 1);
+        if (status != 0) {
+            return;
+        }
+        *(uint64_t *)(context + UI_OFFSET_11418) = 0;
+        *(int8_t *)(context + 9) = 0;
+    }
+    
+    // 检查系统控制块状态
+    status = UISystem_CheckSystemStatus(SYSTEM_MAIN_CONTROL_BLOCK);
+    if (status != 0) {
+        return;
+    }
+    
+    // 更新系统控制块
+    *(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + UI_CONST_0X160 + (ulonglong)*(uint *)(context + UI_OFFSET_116b8) * 8) = 0;
+    
+    // 执行最终清理操作
+    UISystem_ExecuteCleanup(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + UI_CONST_0X1A0), context, &unknown_var_8576_ptr, UI_CONST_0X53A, 1);
 }
 
 

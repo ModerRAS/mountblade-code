@@ -212,7 +212,7 @@ longlong manage_material_cache(longlong material_system)
             cache_size = 1;
 LAB_cache_allocate:
             cache_start = (uint64_t *)
-                     allocate_cache_memory(_DAT_180c8ed18,cache_size * 0x58,*(int8_t *)(material_system + 0x380),
+                     allocate_cache_memory(system_memory_pool_ptr,cache_size * 0x58,*(int8_t *)(material_system + 0x380),
                                    cache_position,material_info);
             cache_index = *(ulonglong *)(material_system + 0x370);
             material_offset = *cache_ptr;
@@ -358,9 +358,9 @@ void switch_scene_materials(longlong scene_context,uint64_t new_scene,longlong s
     if (((*material_list != 0) || (material_list[1] != 0)) &&
        (*(int *)(*(longlong *)(scene_context + 0x1e0) + 0x1c40 + texture_offset) != 0)) {
       material_slot = find_scene_material(*(uint64_t *)(scene_context + 0xa8),&unknown_var_1168_ptr);
-      material_handle = _DAT_180c86898;
+      material_handle = core_system_data_material;
       if (material_slot == 0) {
-        if (*(longlong *)(_DAT_180c86898 + 0x98) == 0) {
+        if (*(longlong *)(core_system_data_material + 0x98) == 0) {
           texture_system = (uint64_t *)create_texture_manager(texture_flags,&texture_count,&unknown_var_9256_ptr,1);
           old_material = *texture_system;
           *texture_system = 0;
@@ -456,10 +456,10 @@ void switch_scene_materials(longlong scene_context,uint64_t new_scene,longlong s
   *(int32_t *)(scene_context + 0x280) = *(int32_t *)(scene_data + 0x1c0);
   *(int32_t *)(scene_context + 0x284) = *(int32_t *)(scene_data + 0x1c4);
   texture_offset = *(longlong *)(scene_context + 0xa8);
-  texture_system = (uint64_t *)(_DAT_180c8a9d0 + 0x180);
+  texture_system = (uint64_t *)(core_system_data_material + 0x180);
   texture_cache = texture_system;
-  texture_system = *(uint64_t **)(_DAT_180c8a9d0 + 400);
-  if (*(uint64_t **)(_DAT_180c8a9d0 + 400) != (uint64_t *)0x0) {
+  texture_system = *(uint64_t **)(core_system_data_material + 400);
+  if (*(uint64_t **)(core_system_data_material + 400) != (uint64_t *)0x0) {
     do {
       material_index = memcmp(texture_system + 4,texture_offset + 0xc,0x10);
       if (material_index < 0) {

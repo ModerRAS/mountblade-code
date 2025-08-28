@@ -328,7 +328,7 @@ longlong * FUN_1802ffb00(uint64_t param_1,longlong *param_2,int8_t param_3)
   plStackX_10 = param_2;
   FUN_1802e8c60(param_2,&lStack_1b8);
   FUN_18005ea90(&lStack_1b8,&plStackX_10);
-  uVar2 = FUN_18062b1e0(_DAT_180c8ed18,0xf0,8,3);
+  uVar2 = FUN_18062b1e0(system_memory_pool_ptr,0xf0,8,3);
   plVar3 = (longlong *)FUN_18039dda0(uVar2);
   if (plVar3 != (longlong *)0x0) {
     (**(code **)(*plVar3 + 0x28))(plVar3);
@@ -520,7 +520,7 @@ void FUN_1802fffb0(longlong param_1,char param_2)
   uVar10 = 0xfffffffffffffffe;
   FUN_1803001a0();
   *(char *)(param_1 + 0x20) = param_2;
-  uVar10 = FUN_18062b1e0(_DAT_180c8ed18,(longlong)param_2 << 8,0x10,4,uVar10);
+  uVar10 = FUN_18062b1e0(system_memory_pool_ptr,(longlong)param_2 << 8,0x10,4,uVar10);
   *(uint64_t *)(param_1 + 0x18) = uVar10;
   uVar8 = 0;
   uVar4 = uVar8;

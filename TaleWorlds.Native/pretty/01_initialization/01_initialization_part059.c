@@ -82,7 +82,7 @@ void process_vertex_data_conversion(uint data_type, longlong context_ptr, longlo
     }
     temp_int1 = *(int *)(context_ptr + 0x60);
     temp_long6 = (longlong)temp_int1;
-    long_ptr2 = (longlong *)create_vertex_buffer(&_DAT_180c8a998, &stack_ptr, temp_int1 * temp_int2);
+    long_ptr2 = (longlong *)create_vertex_buffer(&init_system_data_buffer, &stack_ptr, temp_int1 * temp_int2);
     long_ptr2 = (longlong *)*long_ptr2;
     if (long_ptr2 != (longlong *)0x0) {
         (**(code **)(*long_ptr2 + 0x28))(long_ptr2);

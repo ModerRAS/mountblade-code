@@ -169,7 +169,7 @@ LAB_id_found:
       new_record = current_record;
       if (current_record == (uint64_t *)0x0) {
 LAB_create_new_record:
-        new_record = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x48,8,3);
+        new_record = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x48,8,3);
         *new_record = &unknown_var_720_ptr;
         new_record[1] = 0;
         *(int32_t *)(new_record + 2) = 0;
@@ -253,7 +253,7 @@ LAB_insert_position:
             name_offset = 1;
 LAB_resize_array:
             temp_record = (uint64_t *)
-                      FUN_18062b420(_DAT_180c8ed18,name_offset * 8,*(int8_t *)(node_index + 0x48));
+                      FUN_18062b420(system_memory_pool_ptr,name_offset * 8,*(int8_t *)(node_index + 0x48));
             current_record = *(uint64_t **)(node_index + 0x38);
             new_record = *(uint64_t **)(node_index + 0x30);
           }
@@ -385,8 +385,8 @@ LAB_skip_record:
         new_record = *(uint64_t **)(*(longlong *)(node_index + 0x30) + (longlong)*(int *)(new_record + 8) * 8)
         ;
       }
-      (**(code **)(**(longlong **)(_DAT_180c86870 + 0x2b0) + 0x58))
-                (*(longlong **)(_DAT_180c86870 + 0x2b0),new_record,*animation_records_ptr);
+      (**(code **)(**(longlong **)(system_main_module_state + 0x2b0) + 0x58))
+                (*(longlong **)(system_main_module_state + 0x2b0),new_record,*animation_records_ptr);
       search_name = "face_animation_record";
       do {
         name_end = search_name;
@@ -650,7 +650,7 @@ LAB_creation_complete:
   }
   search_param = 1;
 LAB_skip_validation:
-  string_length = FUN_18062b420(_DAT_180c8ed18,0x68,*(int8_t *)(record_manager + 5));
+  string_length = FUN_18062b420(system_memory_pool_ptr,0x68,*(int8_t *)(record_manager + 5));
   FUN_180627ae0(string_length + 0x20,search_criteria);
   parent_node = (uint64_t *)(string_length + 0x40);
   *parent_node = 0;
@@ -699,7 +699,7 @@ void insert_animation_record(longlong record_manager, uint64_t param_2, longlong
   }
   insert_param = 1;
 LAB_skip_duplicate_check:
-  string_length = FUN_18062b420(_DAT_180c8ed18,0x68,*(int8_t *)(record_manager + 0x28),param_4,
+  string_length = FUN_18062b420(system_memory_pool_ptr,0x68,*(int8_t *)(record_manager + 0x28),param_4,
                         0xfffffffffffffffe);
   FUN_180627ae0(string_length + 0x20,search_criteria);
   record_node = (uint64_t *)(string_length + 0x40);

@@ -80,7 +80,7 @@ void process_system_queue_elements(longlong *queue_manager, uint64_t param2, uin
         }
         else {
             // 分配新缓冲区并移动元素
-            active_elements = (int32_t *)allocate_system_memory(_DAT_180c8ed18, element_count_div * 4, 3);
+            active_elements = (int32_t *)allocate_system_memory(system_memory_pool_ptr, element_count_div * 4, 3);
             if (buffer_offset != buffer_start) {
                 // 移动元素到新缓冲区
                 memmove(active_elements, buffer_offset, element_count, param4, process_flag);
@@ -127,7 +127,7 @@ void process_system_queue_elements(longlong *queue_manager, uint64_t param2, uin
                 if (element_count_div == 0) {
                     element_count_div = 1;
                     reallocate_buffer:
-                    pending_elements = (int32_t *)allocate_system_memory(_DAT_180c8ed18, element_count_div * 4, (int8_t)queue_size_98);
+                    pending_elements = (int32_t *)allocate_system_memory(system_memory_pool_ptr, element_count_div * 4, (int8_t)queue_size_98);
                 }
                 else {
                     element_count_div = element_count_div * 2;
@@ -165,7 +165,7 @@ void process_system_queue_elements(longlong *queue_manager, uint64_t param2, uin
                     if (element_count_div == 0) {
                         element_count_div = 1;
                         reallocate_failure_buffer:
-                        buffer_start = (int32_t *)allocate_system_memory(_DAT_180c8ed18, element_count_div * 4, 3);
+                        buffer_start = (int32_t *)allocate_system_memory(system_memory_pool_ptr, element_count_div * 4, 3);
                     }
                     else {
                         element_count_div = element_count_div * 2;
@@ -369,7 +369,7 @@ uint64_t *initialize_system_resources(uint64_t *resource_manager, uint64_t param
     initialize_resource_manager(resource_manager);
     
     // 分配配置内存
-    config_pointer = (longlong *)allocate_system_memory(_DAT_180c8ed18, 0x60, 8, 3);
+    config_pointer = (longlong *)allocate_system_memory(system_memory_pool_ptr, 0x60, 8, 3);
     *config_pointer = (longlong)&system_config_table;
     *config_pointer = (longlong)&system_parameter_table;
     *(int32_t *)(config_pointer + 1) = 0;
@@ -645,7 +645,7 @@ void process_system_message(uint64_t system_handle, longlong message_data, int8_
     uint64_t message_flags;
     int8_t message_type;
     
-    system_table = _DAT_180c86878;
+    system_table = core_system_data_buffer;
     log_message = &system_log_prefix;
     message_flags = 0;
     message_buffer = 0;
@@ -767,7 +767,7 @@ void process_system_event(uint64_t system_handle, longlong event_data, int8_t no
     uint64_t event_flags;
     int8_t event_type;
     
-    system_table = _DAT_180c86878;
+    system_table = core_system_data_buffer;
     log_message = &system_log_prefix;
     event_flags = 0;
     event_buffer = 0;

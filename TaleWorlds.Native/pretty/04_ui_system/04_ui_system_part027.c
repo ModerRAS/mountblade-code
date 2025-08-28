@@ -72,9 +72,9 @@
 
 // UI系统全局数据
 extern ulonglong GET_SECURITY_COOKIE();                 // UI系统全局数据指针
-extern uint64_t _DAT_180946ae0;               // UI系统配置数据
-extern uint64_t _DAT_180946af8;               // UI系统状态数据
-extern uint64_t _DAT_180946b10;               // UI系统控制数据
+extern uint64_t ui_system_ui;               // UI系统配置数据
+extern uint64_t ui_system_ui;               // UI系统状态数据
+extern uint64_t ui_system_ui;               // UI系统控制数据
 
 // ==================== UI系统事件处理器 ====================
 // 

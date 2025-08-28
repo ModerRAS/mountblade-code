@@ -216,7 +216,7 @@ PATH_SEPARATOR_FOUND:
         }
         fread(temp_array2, 4, 1, file_handle[1]);
         fread(&texture_name, 4, 1, file_handle[1]);
-        material_params = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18, (longlong)(int)texture_name << 2, 0x10, 3);
+        material_params = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr, (longlong)(int)texture_name << 2, 0x10, 3);
         fread(material_params, 4, (longlong)(int)texture_name);
         material_found = false;
         param_offset = 0;
@@ -243,7 +243,7 @@ LAB_18027c5be:
               if (entry_count < 0x10) {
                 entry_count = 0x10;
               }
-              texture_path = (char *)FUN_18062b420(_DAT_180c8ed18, (longlong)entry_count,
+              texture_path = (char *)FUN_18062b420(system_memory_pool_ptr, (longlong)entry_count,
                                                   CONCAT71((uint7)(uint3)((uint)param_index >> 8), 0x13));
               *texture_path = '\0';
               param_value = FUN_18064e990(texture_path);
@@ -460,12 +460,12 @@ LAB_18027c306:
   else if (0 < temp_indices[0]) {
     do {
       fread(&temp_handle, 4, 1, file_handle[1]);
-      array_index = FUN_18062b1e0(_DAT_180c8ed18, (longlong)((int)temp_handle + 1), 0x10, 3);
+      array_index = FUN_18062b1e0(system_memory_pool_ptr, (longlong)((int)temp_handle + 1), 0x10, 3);
       fread(array_index, 1, (longlong)(int)temp_handle, file_handle[1]);
       *(int8_t *)((int)temp_handle + array_index) = 0;
       fread(temp_array1, 4, 1, file_handle[1]);
       fread(texture_indices, 4, 1, file_handle[1]);
-      material_params = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18, (longlong)texture_indices[0] << 2, 0x10, 3);
+      material_params = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr, (longlong)texture_indices[0] << 2, 0x10, 3);
       fread(material_params, 4, (longlong)texture_indices[0], file_handle[1]);
       material_entry = *(longlong **)(file_position + *(longlong *)(render_context + 0x38));
       FUN_18007ea10(material_entry, 0);

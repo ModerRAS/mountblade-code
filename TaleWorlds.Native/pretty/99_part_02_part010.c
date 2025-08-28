@@ -1003,7 +1003,7 @@ void system_resource_initializer(longlong param_1)
     // 检查是否需要初始化资源管理器
     if (*(longlong *)(param_1 + 0x28) == 0) {
         // 创建资源管理器实例
-        uVar2 = FUN_18062b1e0(_DAT_180c8ed18, 0x178, 8, 0x1c);
+        uVar2 = FUN_18062b1e0(system_memory_pool_ptr, 0x178, 8, 0x1c);
         uVar2 = FUN_1800ee510(uVar2);
         // 更新状态标志
         *(byte *)(param_1 + 0x2e9) = *(byte *)(param_1 + 0x2e9) & 0xfb;
@@ -1128,7 +1128,7 @@ void advanced_resource_processor(uint64_t param_1, longlong *param_2, int8_t par
     uVar5 = 0xfffffffffffffffe;
     
     // 创建资源处理器实例
-    uVar1 = FUN_18062b1e0(_DAT_180c8ed18, 0x3d0, 8, 3, 0xfffffffffffffffe);
+    uVar1 = FUN_18062b1e0(system_memory_pool_ptr, 0x3d0, 8, 3, 0xfffffffffffffffe);
     plVar2 = (longlong *)FUN_180275090(uVar1);
     plVar6 = plVar2;
     

@@ -687,39 +687,39 @@ void FUN_18066d410(code *param_1)
   longlong lVar3;
   bool bVar4;
   
-  if (_DAT_180c0c1cc == 0) {
+  if (render_system_memory == 0) {
     LOCK();
-    _DAT_180c0c1c8 = _DAT_180c0c1c8 + 1;
+    render_system_memory = render_system_memory + 1;
     UNLOCK();
     lVar3 = malloc(0x28);
     InitializeCriticalSection(lVar3);
     LOCK();
-    bVar4 = _DAT_180c0c1c0 != 0;
+    bVar4 = render_system_memory != 0;
     lVar2 = lVar3;
     if (bVar4) {
-      lVar2 = _DAT_180c0c1c0;
+      lVar2 = render_system_memory;
     }
-    _DAT_180c0c1c0 = lVar2;
+    render_system_memory = lVar2;
     UNLOCK();
     if (bVar4) {
       DeleteCriticalSection(lVar3);
       free(lVar3);
     }
-    EnterCriticalSection(_DAT_180c0c1c0);
-    if (_DAT_180c0c1cc == 0) {
+    EnterCriticalSection(render_system_memory);
+    if (render_system_memory == 0) {
       (*param_1)();
-      _DAT_180c0c1cc = 1;
+      render_system_memory = 1;
     }
-    LeaveCriticalSection(_DAT_180c0c1c0);
+    LeaveCriticalSection(render_system_memory);
     LOCK();
-    iVar1 = _DAT_180c0c1c8 + -1;
+    iVar1 = render_system_memory + -1;
     UNLOCK();
-    bVar4 = _DAT_180c0c1c8 == 1;
-    _DAT_180c0c1c8 = iVar1;
+    bVar4 = render_system_memory == 1;
+    render_system_memory = iVar1;
     if (bVar4) {
-      DeleteCriticalSection(_DAT_180c0c1c0);
-      free(_DAT_180c0c1c0);
-      _DAT_180c0c1c0 = 0;
+      DeleteCriticalSection(render_system_memory);
+      free(render_system_memory);
+      render_system_memory = 0;
     }
   }
   return;
@@ -742,37 +742,37 @@ void FUN_18066d426(void)
   bool bVar4;
   
   LOCK();
-  _DAT_180c0c1c8 = _DAT_180c0c1c8 + 1;
+  render_system_memory = render_system_memory + 1;
   UNLOCK();
   lVar3 = malloc(0x28);
   InitializeCriticalSection(lVar3);
   LOCK();
-  bVar4 = _DAT_180c0c1c0 != 0;
+  bVar4 = render_system_memory != 0;
   lVar2 = lVar3;
   if (bVar4) {
-    lVar2 = _DAT_180c0c1c0;
+    lVar2 = render_system_memory;
   }
-  _DAT_180c0c1c0 = lVar2;
+  render_system_memory = lVar2;
   UNLOCK();
   if (bVar4) {
     DeleteCriticalSection(lVar3);
     free(lVar3);
   }
-  EnterCriticalSection(_DAT_180c0c1c0);
-  if (_DAT_180c0c1cc == 0) {
+  EnterCriticalSection(render_system_memory);
+  if (render_system_memory == 0) {
     (*unaff_RDI)();
-    _DAT_180c0c1cc = 1;
+    render_system_memory = 1;
   }
-  LeaveCriticalSection(_DAT_180c0c1c0);
+  LeaveCriticalSection(render_system_memory);
   LOCK();
-  iVar1 = _DAT_180c0c1c8 + -1;
+  iVar1 = render_system_memory + -1;
   UNLOCK();
-  bVar4 = _DAT_180c0c1c8 == 1;
-  _DAT_180c0c1c8 = iVar1;
+  bVar4 = render_system_memory == 1;
+  render_system_memory = iVar1;
   if (bVar4) {
-    DeleteCriticalSection(_DAT_180c0c1c0);
-    free(_DAT_180c0c1c0);
-    _DAT_180c0c1c0 = 0;
+    DeleteCriticalSection(render_system_memory);
+    free(render_system_memory);
+    render_system_memory = 0;
   }
   return;
 }
@@ -792,17 +792,17 @@ void FUN_18066d483(void)
   bool bVar2;
   
   (*unaff_RDI)();
-  _DAT_180c0c1cc = 1;
-  LeaveCriticalSection(_DAT_180c0c1c0);
+  render_system_memory = 1;
+  LeaveCriticalSection(render_system_memory);
   LOCK();
-  iVar1 = _DAT_180c0c1c8 + -1;
+  iVar1 = render_system_memory + -1;
   UNLOCK();
-  bVar2 = _DAT_180c0c1c8 == 1;
-  _DAT_180c0c1c8 = iVar1;
+  bVar2 = render_system_memory == 1;
+  render_system_memory = iVar1;
   if (bVar2) {
-    DeleteCriticalSection(_DAT_180c0c1c0);
-    free(_DAT_180c0c1c0);
-    _DAT_180c0c1c0 = 0;
+    DeleteCriticalSection(render_system_memory);
+    free(render_system_memory);
+    render_system_memory = 0;
   }
   return;
 }
@@ -842,56 +842,56 @@ void FUN_18066d4e0(void)
       cpuid_Extended_Feature_Enumeration_info(7);
     }
   }
-  _DAT_180d4a9b0 = &unknown_var_7287_ptr;
+  render_system_config_global_data = &unknown_var_7287_ptr;
   if (bVar4) {
-    _DAT_180d4a9b0 = &unknown_var_656_ptr;
+    render_system_config_global_data = &unknown_var_656_ptr;
   }
-  _DAT_180d4a9a8 = &unknown_var_7997_ptr;
+  render_system_config_memory = &unknown_var_7997_ptr;
   if (bVar4) {
-    _DAT_180d4a9a8 = &unknown_var_1412_ptr;
+    render_system_config_memory = &unknown_var_1412_ptr;
   }
-  _DAT_180d4a990 = &unknown_var_2384_ptr;
+  render_system_config_memory = &unknown_var_2384_ptr;
   if (bVar6) {
-    _DAT_180d4a990 = &unknown_var_2608_ptr;
+    render_system_config_memory = &unknown_var_2608_ptr;
   }
-  _DAT_180d4a9c8 = FUN_1806714a0;
+  render_system_config_memory = FUN_1806714a0;
   if (bVar6) {
-    _DAT_180d4a9c8 = FUN_1806718d0;
+    render_system_config_memory = FUN_1806718d0;
   }
-  _DAT_180d4a9c0 = FUN_180673220;
+  render_system_config_memory = FUN_180673220;
   if (bVar4) {
-    _DAT_180d4a9c0 = FUN_180673850;
+    render_system_config_memory = FUN_180673850;
   }
-  _DAT_180d4a9b8 = FUN_180671eb0;
+  render_system_config_memory = FUN_180671eb0;
   if (bVar6) {
-    _DAT_180d4a9b8 = FUN_1806721d0;
+    render_system_config_memory = FUN_1806721d0;
   }
   if (bVar5) {
-    _DAT_180d4a9b8 = FUN_1806725c0;
+    render_system_config_memory = FUN_1806725c0;
   }
-  _DAT_180d4a9a0 = FUN_180672a50;
+  render_system_config_memory = FUN_180672a50;
   if (bVar6) {
-    _DAT_180d4a9a0 = FUN_180672da0;
+    render_system_config_memory = FUN_180672da0;
   }
-  _DAT_180d4a998 = FUN_180673360;
+  render_system_config_memory = FUN_180673360;
   if (bVar5) {
-    _DAT_180d4a998 = FUN_180673970;
+    render_system_config_memory = FUN_180673970;
   }
-  _DAT_180d4a988 = FUN_180673e10;
+  render_system_config_memory = FUN_180673e10;
   if (bVar4) {
-    _DAT_180d4a988 = FUN_180673f50;
+    render_system_config_memory = FUN_180673f50;
   }
-  _DAT_180d4a980 = FUN_180674040;
+  render_system_config_memory = FUN_180674040;
   if (bVar4) {
-    _DAT_180d4a980 = FUN_180674120;
+    render_system_config_memory = FUN_180674120;
   }
-  _DAT_180d4a978 = FUN_1806742a0;
+  render_system_config_memory = FUN_1806742a0;
   if (bVar4) {
-    _DAT_180d4a978 = FUN_1806743e0;
+    render_system_config_memory = FUN_1806743e0;
   }
-  _DAT_180d4a970 = FUN_1806744d0;
+  render_system_config_memory = FUN_1806744d0;
   if (bVar4) {
-    _DAT_180d4a970 = FUN_180674610;
+    render_system_config_memory = FUN_180674610;
   }
   return;
 }
@@ -911,39 +911,39 @@ void FUN_18066d6f0(code *param_1)
   longlong lVar3;
   bool bVar4;
   
-  if (_DAT_180c0c1dc == 0) {
+  if (render_system_memory == 0) {
     LOCK();
-    _DAT_180c0c1d8 = _DAT_180c0c1d8 + 1;
+    render_system_memory = render_system_memory + 1;
     UNLOCK();
     lVar3 = malloc(0x28);
     InitializeCriticalSection(lVar3);
     LOCK();
-    bVar4 = _DAT_180c0c1d0 != 0;
+    bVar4 = render_system_memory != 0;
     lVar2 = lVar3;
     if (bVar4) {
-      lVar2 = _DAT_180c0c1d0;
+      lVar2 = render_system_memory;
     }
-    _DAT_180c0c1d0 = lVar2;
+    render_system_memory = lVar2;
     UNLOCK();
     if (bVar4) {
       DeleteCriticalSection(lVar3);
       free(lVar3);
     }
-    EnterCriticalSection(_DAT_180c0c1d0);
-    if (_DAT_180c0c1dc == 0) {
+    EnterCriticalSection(render_system_memory);
+    if (render_system_memory == 0) {
       (*param_1)();
-      _DAT_180c0c1dc = 1;
+      render_system_memory = 1;
     }
-    LeaveCriticalSection(_DAT_180c0c1d0);
+    LeaveCriticalSection(render_system_memory);
     LOCK();
-    iVar1 = _DAT_180c0c1d8 + -1;
+    iVar1 = render_system_memory + -1;
     UNLOCK();
-    bVar4 = _DAT_180c0c1d8 == 1;
-    _DAT_180c0c1d8 = iVar1;
+    bVar4 = render_system_memory == 1;
+    render_system_memory = iVar1;
     if (bVar4) {
-      DeleteCriticalSection(_DAT_180c0c1d0);
-      free(_DAT_180c0c1d0);
-      _DAT_180c0c1d0 = 0;
+      DeleteCriticalSection(render_system_memory);
+      free(render_system_memory);
+      render_system_memory = 0;
     }
   }
   return;
@@ -966,37 +966,37 @@ void FUN_18066d706(void)
   bool bVar4;
   
   LOCK();
-  _DAT_180c0c1d8 = _DAT_180c0c1d8 + 1;
+  render_system_memory = render_system_memory + 1;
   UNLOCK();
   lVar3 = malloc(0x28);
   InitializeCriticalSection(lVar3);
   LOCK();
-  bVar4 = _DAT_180c0c1d0 != 0;
+  bVar4 = render_system_memory != 0;
   lVar2 = lVar3;
   if (bVar4) {
-    lVar2 = _DAT_180c0c1d0;
+    lVar2 = render_system_memory;
   }
-  _DAT_180c0c1d0 = lVar2;
+  render_system_memory = lVar2;
   UNLOCK();
   if (bVar4) {
     DeleteCriticalSection(lVar3);
     free(lVar3);
   }
-  EnterCriticalSection(_DAT_180c0c1d0);
-  if (_DAT_180c0c1dc == 0) {
+  EnterCriticalSection(render_system_memory);
+  if (render_system_memory == 0) {
     (*unaff_RDI)();
-    _DAT_180c0c1dc = 1;
+    render_system_memory = 1;
   }
-  LeaveCriticalSection(_DAT_180c0c1d0);
+  LeaveCriticalSection(render_system_memory);
   LOCK();
-  iVar1 = _DAT_180c0c1d8 + -1;
+  iVar1 = render_system_memory + -1;
   UNLOCK();
-  bVar4 = _DAT_180c0c1d8 == 1;
-  _DAT_180c0c1d8 = iVar1;
+  bVar4 = render_system_memory == 1;
+  render_system_memory = iVar1;
   if (bVar4) {
-    DeleteCriticalSection(_DAT_180c0c1d0);
-    free(_DAT_180c0c1d0);
-    _DAT_180c0c1d0 = 0;
+    DeleteCriticalSection(render_system_memory);
+    free(render_system_memory);
+    render_system_memory = 0;
   }
   return;
 }
@@ -1016,17 +1016,17 @@ void FUN_18066d763(void)
   bool bVar2;
   
   (*unaff_RDI)();
-  _DAT_180c0c1dc = 1;
-  LeaveCriticalSection(_DAT_180c0c1d0);
+  render_system_memory = 1;
+  LeaveCriticalSection(render_system_memory);
   LOCK();
-  iVar1 = _DAT_180c0c1d8 + -1;
+  iVar1 = render_system_memory + -1;
   UNLOCK();
-  bVar2 = _DAT_180c0c1d8 == 1;
-  _DAT_180c0c1d8 = iVar1;
+  bVar2 = render_system_memory == 1;
+  render_system_memory = iVar1;
   if (bVar2) {
-    DeleteCriticalSection(_DAT_180c0c1d0);
-    free(_DAT_180c0c1d0);
-    _DAT_180c0c1d0 = 0;
+    DeleteCriticalSection(render_system_memory);
+    free(render_system_memory);
+    render_system_memory = 0;
   }
   return;
 }

@@ -26,7 +26,7 @@ void FUN_1805906f0(longlong *param_1,ulonglong param_2)
     }
     lVar1 = 0;
     if (uVar5 != 0) {
-      lVar1 = FUN_18062b420(_DAT_180c8ed18,uVar5 * 0xa0,(char)param_1[3]);
+      lVar1 = FUN_18062b420(system_memory_pool_ptr,uVar5 * 0xa0,(char)param_1[3]);
       puVar4 = (uint64_t *)*param_1;
       puVar2 = (uint64_t *)param_1[1];
     }
@@ -142,7 +142,7 @@ void FUN_180590744(longlong param_1,uint64_t param_2,uint64_t param_3,longlong p
   }
   lVar3 = 0;
   if (uVar4 != 0) {
-    lVar3 = FUN_18062b420(_DAT_180c8ed18,uVar4 * 0xa0,(char)unaff_RSI[3]);
+    lVar3 = FUN_18062b420(system_memory_pool_ptr,uVar4 * 0xa0,(char)unaff_RSI[3]);
     param_4 = *unaff_RSI;
     unaff_RBX = unaff_RSI[1];
   }

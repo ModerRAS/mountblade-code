@@ -53,10 +53,10 @@
 #define RENDER_MAX_UNSIGNED_FLOAT 0x7f7fffff
 
 // 全局变量引用
-#define global_render_context _DAT_180c8ed18
-#define global_string_constants _DAT_180c86890
+#define global_render_context system_memory_pool_ptr
+#define global_string_constants system_parameter_buffer
 #define global_render_settings SYSTEM_STATE_MANAGER
-#define global_render_state _DAT_180c86950
+#define global_render_state system_operation_state
 
 /**
  * 设置渲染系统参数

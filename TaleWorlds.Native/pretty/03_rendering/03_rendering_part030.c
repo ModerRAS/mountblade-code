@@ -143,7 +143,7 @@ void process_render_objects_batch(longlong****** render_context, longlong*******
         material_cache = (longlong*******)0x0;
     }
     else {
-        material_cache = (longlong*******)FUN_18062b420(_DAT_180c8ed18, object_range << 4, stack_68 & 0xff);
+        material_cache = (longlong*******)FUN_18062b420(system_memory_pool_ptr, object_range << 4, stack_68 & 0xff);
         render_result = temp_result;
     }
     
@@ -242,7 +242,7 @@ void process_render_objects_batch(longlong****** render_context, longlong*******
                 // 创建新对象或使用现有对象
                 if (object_start == (longlong*****)0xffffffffffffffff) {
                     // 创建新对象
-                    uint64_t new_object = FUN_18062b1e0(_DAT_180c8ed18, MEMORY_BLOCK_SIZE, MEMORY_ALIGNMENT);
+                    uint64_t new_object = FUN_18062b1e0(system_memory_pool_ptr, MEMORY_BLOCK_SIZE, MEMORY_ALIGNMENT);
                     temp_material = (longlong*******)FUN_180075030(new_object, 0, 1);
                     
                     if (temp_material != (longlong*******)0x0) {
@@ -320,7 +320,7 @@ void process_render_objects_batch(longlong****** render_context, longlong*******
                 
                 // 设置对象关系
                 temp_material[0x15] = (longlong******)render_context[6];
-                object_offset = _DAT_180c86930;
+                object_offset = system_resource_state;
                 
                 // 处理材质系统更新
                 if ((*(char *)((longlong)render_context + 0x322) != '\0') && (*(char *)render_context[6][0x11][1] == '\0')) {
@@ -842,7 +842,7 @@ void process_render_system_component_update(longlong render_system, longlong com
     }
     
     // 处理系统数据
-    system_handle = FUN_1800b6de0(_DAT_180c86930, &stack_source, 1);
+    system_handle = FUN_1800b6de0(system_resource_state, &stack_source, 1);
     data_size = stack_size;
     
     if (system_handle == 0) {
@@ -907,7 +907,7 @@ void process_render_system_component_update(longlong render_system, longlong com
             *(longlong*)(component_data + 8) = *(longlong*)(component_data + 8) + (ulonglong)data_size;
         }
         
-        component_ptr = (longlong*)FUN_1800b30d0(_DAT_180c86930, &stack_data, &stack_buffer, 1);
+        component_ptr = (longlong*)FUN_1800b30d0(system_resource_state, &stack_data, &stack_buffer, 1);
         component_ptr = (longlong*)*component_ptr;
         
         if (component_ptr != (longlong*)0x0) {
@@ -952,7 +952,7 @@ void process_render_system_component_update(longlong render_system, longlong com
                 component_offset = *(longlong*)(*(longlong*)(render_system + 0x38) + processed_size);
             }
             else {
-                temp_value = FUN_18062b1e0(_DAT_180c8ed18, MEMORY_BLOCK_SIZE, MEMORY_ALIGNMENT, 9);
+                temp_value = FUN_18062b1e0(system_memory_pool_ptr, MEMORY_BLOCK_SIZE, MEMORY_ALIGNMENT, 9);
                 component_offset = FUN_180075030(temp_value, 0, 1);
             }
             
@@ -982,7 +982,7 @@ void process_render_system_component_update(longlong render_system, longlong com
                 *(longlong*)(component_data + 8) = *(longlong*)(component_data + 8) + (ulonglong)data_size;
             }
             
-            temp_value = FUN_1800b30d0(_DAT_180c86930, &stack_data, &stack_buffer, 1);
+            temp_value = FUN_1800b30d0(system_resource_state, &stack_data, &stack_buffer, 1);
             FUN_180076910(component_offset, temp_value);
             
             if (stack_data != (longlong*)0x0) {

@@ -503,18 +503,18 @@ void copy_error_message(uint64_t dest, uint64_t size, char *src,
 
 /* 全局变量声明 */
 extern uint64_t GET_SECURITY_COOKIE();    // 栈保护cookie
-extern uint64_t _DAT_180c8ed08;    // 全局数据指针
+extern uint64_t render_system_data_camera;    // 全局数据指针
 extern void *global_state_424;         // 虚表地址
-extern uint64_t _DAT_180c8a9c8;     // 配置数据
-extern uint64_t _DAT_180c8ed18;     // 内存池基地址
+extern uint64_t render_system_data_camera;     // 配置数据
+extern uint64_t system_memory_pool_ptr;     // 内存池基地址
 extern void *global_state_2600;         // 异常处理虚表
 extern void *global_state_9816;         // 异常基地址
 extern void *global_state_9840;         // 异常虚表地址
 extern void *global_state_9840;         // 错误消息
 extern void *global_state_9912;         // 异常消息地址
 extern void *system_memory_6c50;         // 默认错误消息数据
-extern uint64_t _DAT_180c86928;     // 错误上下文
-extern uint64_t _DAT_180d48d28;     // 全局内存状态
+extern uint64_t system_message_context;     // 错误上下文
+extern uint64_t render_system_config_camera;     // 全局内存状态
 extern void *global_state_720;         // 错误处理器基地址
 extern void *global_state_3432;         // 错误处理器虚表
 extern char *error_message;          // 错误消息

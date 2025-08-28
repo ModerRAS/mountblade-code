@@ -141,7 +141,7 @@ int32_t *RenderingSystem_MaterialProcessor(int32_t *param_1, longlong *param_2)
   int32_t uStack_3c;
   int32_t uStack_34;
   
-  plVar2 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x48, 8, 3, 0xfffffffffffffffe);
+  plVar2 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, 0x48, 8, 3, 0xfffffffffffffffe);
   *plVar2 = (longlong)&unknown_var_3552_ptr;
   *plVar2 = (longlong)&unknown_var_3696_ptr;
   *(int32_t *)(plVar2 + 1) = 0;

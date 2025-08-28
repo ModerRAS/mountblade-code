@@ -150,10 +150,10 @@ void utilities_initialize_global_variables(uint64_t param_1, uint64_t param_2, u
     uint64_t* data_ptr2;
     
     // 调用系统初始化函数处理数据
-    FUN_18005d260(&system_memory_aec0, _DAT_180bfaed0, param_3, param_4, 0xfffffffffffffffe);
+    FUN_18005d260(&system_memory_aec0, system_control_pointer_data_aed0, param_3, param_4, 0xfffffffffffffffe);
     
-    data_ptr1 = _DAT_180bfaea8;
-    data_ptr2 = _DAT_180bfaea0;
+    data_ptr1 = system_control_pointer_data_aea8;
+    data_ptr2 = system_control_pointer_data_aea0;
     
     // 循环处理数据结构，初始化全局变量
     while (data_ptr2 != data_ptr1) {
@@ -173,7 +173,7 @@ void utilities_initialize_global_variables(uint64_t param_1, uint64_t param_2, u
     }
     
     // 最终状态检查
-    if (_DAT_180bfaea0 != (uint64_t*)0x0) {
+    if (system_control_pointer_data_aea0 != (uint64_t*)0x0) {
         // 系统错误处理函数调用
         FUN_18064e900();
     }
@@ -190,7 +190,7 @@ void utilities_initialize_global_variables(uint64_t param_1, uint64_t param_2, u
 void utilities_mutex_destroy(void)
 {
     // 设置全局互斥量状态
-    _DAT_180c92050 = &unknown_var_720_ptr;
+    system_pointer_data_2050 = &unknown_var_720_ptr;
     
     // 调用互斥量销毁函数
     _Mtx_destroy_in_situ();
@@ -206,7 +206,7 @@ void utilities_mutex_destroy(void)
 void utilities_set_global_variable_1(void)
 {
     // 设置全局变量状态
-    _DAT_180bfaef0 = &unknown_var_720_ptr;
+    system_control_pointer_data_aef0 = &unknown_var_720_ptr;
 }
 
 /**
@@ -219,7 +219,7 @@ void utilities_set_global_variable_1(void)
 void utilities_set_global_variable_2(void)
 {
     // 设置全局变量状态
-    _DAT_180bfb310 = &unknown_var_720_ptr;
+    system_control_pointer_data_b310 = &unknown_var_720_ptr;
 }
 
 /**
@@ -232,7 +232,7 @@ void utilities_set_global_variable_2(void)
 void utilities_set_global_variable_3(void)
 {
     // 设置全局变量状态
-    _DAT_180bfb730 = &unknown_var_720_ptr;
+    system_control_pointer_data_b730 = &unknown_var_720_ptr;
 }
 
 /**
@@ -245,7 +245,7 @@ void utilities_set_global_variable_3(void)
 void utilities_set_global_variable_4(void)
 {
     // 设置全局变量状态
-    _DAT_180d499d0 = &unknown_var_720_ptr;
+    system_config_pointer_data_99d0 = &unknown_var_720_ptr;
 }
 
 /**
@@ -258,7 +258,7 @@ void utilities_set_global_variable_4(void)
 void utilities_set_global_variable_5(void)
 {
     // 设置全局变量状态
-    _DAT_180d49bf0 = &unknown_var_720_ptr;
+    system_config_pointer_data_9bf0 = &unknown_var_720_ptr;
 }
 
 /**
@@ -276,7 +276,7 @@ void utilities_manage_reference_count_1(void)
     int64_t ref_value;
     int64_t* resource_ptr;
     
-    resource_ptr = _DAT_180c92478;
+    resource_ptr = system_pointer_data_2478;
     
     // 检查资源指针有效性
     if (resource_ptr != (int64_t*)0x0) {
@@ -379,7 +379,7 @@ void utilities_manage_reference_count_3(void)
     int64_t ref_value;
     int64_t* resource_ptr;
     
-    resource_ptr = _DAT_180c92498;
+    resource_ptr = system_pointer_data_2498;
     
     // 检查资源指针有效性
     if (resource_ptr != (int64_t*)0x0) {
@@ -481,7 +481,7 @@ void utilities_manage_reference_count_5(void)
     int64_t ref_value;
     int64_t* resource_ptr;
     
-    resource_ptr = _DAT_180c92488;
+    resource_ptr = system_pointer_data_2488;
     
     // 检查资源指针有效性
     if (resource_ptr != (int64_t*)0x0) {
@@ -581,18 +581,18 @@ void utilities_memory_cleanup_1(void)
     int64_t mem_ptr2;
     
     // 检查内存块大小
-    if (0xf < _DAT_180bfc188) {
+    if (0xf < system_control_pointer_data_c188) {
         mem_ptr1 = CONCAT71(uRam0000000180bfc171, system_memory_c170);
         mem_ptr2 = mem_ptr1;
         
         // 检查内存块大小是否超过安全边界
-        if (0xfff < _DAT_180bfc188 + 1) {
+        if (0xfff < system_control_pointer_data_c188 + 1) {
             mem_ptr2 = *(int64_t*)(mem_ptr1 + -8);
             
             // 检查内存安全性
             if (0x1f < (mem_ptr1 - mem_ptr2) - 8U) {
                 // 内存安全性错误处理
-                _invalid_parameter_noinfo_noreturn(mem_ptr1 - mem_ptr2, _DAT_180bfc188 + 0x28);
+                _invalid_parameter_noinfo_noreturn(mem_ptr1 - mem_ptr2, system_control_pointer_data_c188 + 0x28);
             }
         }
         
@@ -600,8 +600,8 @@ void utilities_memory_cleanup_1(void)
     }
     
     // 重置内存状态
-    _DAT_180bfc180 = 0;
-    _DAT_180bfc188 = 0xf;
+    system_control_pointer_data_c180 = 0;
+    system_control_pointer_data_c188 = 0xf;
 }
 
 /**
@@ -709,7 +709,7 @@ void utilities_mutex_destroy_2(void)
 void utilities_set_global_variable_6(void)
 {
     // 设置全局变量状态
-    _DAT_180bf6048 = &unknown_var_720_ptr;
+    system_control_pointer_data_6048 = &unknown_var_720_ptr;
 }
 
 /**
@@ -722,7 +722,7 @@ void utilities_set_global_variable_6(void)
 void utilities_set_global_variable_7(void)
 {
     // 设置全局变量状态
-    _DAT_180bf6498 = &unknown_var_720_ptr;
+    system_control_pointer_data_6498 = &unknown_var_720_ptr;
 }
 
 /**
@@ -741,12 +741,12 @@ void utilities_process_parameters_1(uint64_t param_1, uint64_t param_2, uint64_t
 {
     uint64_t* data_ptr;
     
-    data_ptr = _DAT_180d49e18;
+    data_ptr = system_config_pointer_data_9e18;
     
     // 检查数据指针有效性
     if (data_ptr != (uint64_t*)0x0) {
         // 调用参数处理函数
-        FUN_1804a9b80(param_1, *_DAT_180d49e18, param_3, param_4, 0xfffffffffffffffe);
+        FUN_1804a9b80(param_1, *system_config_pointer_data_9e18, param_3, param_4, 0xfffffffffffffffe);
         
         // 系统错误处理函数调用
         FUN_18064e900(data_ptr);
@@ -779,8 +779,8 @@ void utilities_check_system_state_2(void)
 {
     // 检查系统状态标志
     if (system_memory_6008 != '\0') {
-        FUN_180552e70(_DAT_180c95ff0);
-        _DAT_180c95ff0 = 0;
+        FUN_180552e70(system_pointer_data_5ff0);
+        system_pointer_data_5ff0 = 0;
     }
 }
 
@@ -795,11 +795,11 @@ void utilities_check_system_state_3(void)
 {
     // 检查系统状态标志
     if (system_memory_6028 != '\0') {
-        if (_DAT_180c96010 != 0) {
+        if (system_pointer_data_6010 != 0) {
             // 系统错误处理函数调用
             FUN_18064e900();
         }
-        _DAT_180c96010 = 0;
+        system_pointer_data_6010 = 0;
     }
 }
 
@@ -814,8 +814,8 @@ void utilities_check_system_state_4(void)
 {
     // 检查系统状态标志
     if (system_memory_6048 != '\0') {
-        FUN_180555430(_DAT_180c96030);
-        _DAT_180c96030 = 0;
+        FUN_180555430(system_pointer_data_6030);
+        system_pointer_data_6030 = 0;
     }
 }
 
@@ -830,8 +830,8 @@ void utilities_check_system_state_5(void)
 {
     // 检查系统状态标志
     if (system_memory_6068 != '\0') {
-        FUN_180555430(_DAT_180c96050);
-        _DAT_180c96050 = 0;
+        FUN_180555430(system_pointer_data_6050);
+        system_pointer_data_6050 = 0;
     }
 }
 
@@ -848,9 +848,9 @@ void utilities_check_system_state_6(void)
     if (system_memory_6098 != '\0') {
         FUN_180057830();
         
-        if (_DAT_180c96070 != (int64_t*)0x0) {
+        if (system_pointer_data_6070 != (int64_t*)0x0) {
             // 调用回调函数
-            ((void (*)(void))(*_DAT_180c96070 + 0x38))();
+            ((void (*)(void))(*system_pointer_data_6070 + 0x38))();
         }
     }
 }
@@ -866,8 +866,8 @@ void utilities_check_system_state_7(void)
 {
     // 检查系统状态标志
     if (system_memory_60b8 != '\0') {
-        FUN_18055a350(_DAT_180c960a0);
-        _DAT_180c960a0 = 0;
+        FUN_18055a350(system_pointer_data_60a0);
+        system_pointer_data_60a0 = 0;
     }
 }
 
@@ -898,20 +898,20 @@ void utilities_check_system_state_9(void)
 {
     int64_t state_ptr;
     
-    state_ptr = _DAT_180c96138;
+    state_ptr = system_pointer_data_6138;
     
     // 检查系统状态标志
     if (system_memory_6140 != '\0') {
-        if (_DAT_180c96120 != 0) {
+        if (system_pointer_data_6120 != 0) {
             // 系统错误处理函数调用
             FUN_18064e900();
         }
         
-        _DAT_180c96120 = 0;
+        system_pointer_data_6120 = 0;
         
-        if (_DAT_180c96138 != 0) {
+        if (system_pointer_data_6138 != 0) {
             // 调用系统清理函数
-            FUN_1808fc8a8(_DAT_180c96138 + 0x360, 0xcc8, 8, FUN_1804aa030, 0xfffffffffffffffe);
+            FUN_1808fc8a8(system_pointer_data_6138 + 0x360, 0xcc8, 8, FUN_1804aa030, 0xfffffffffffffffe);
             _Mtx_destroy_in_situ();
             _Cnd_destroy_in_situ();
             FUN_1804a9f00(state_ptr + 0x60);
@@ -921,7 +921,7 @@ void utilities_check_system_state_9(void)
             FUN_18064e900(state_ptr);
         }
         
-        _DAT_180c96138 = 0;
+        system_pointer_data_6138 = 0;
     }
 }
 
@@ -952,24 +952,24 @@ void utilities_check_system_state_11(void)
 {
     int64_t* resource_ptr;
     
-    resource_ptr = _DAT_180c95f18;
+    resource_ptr = system_pointer_data_5f18;
     
     // 检查系统状态标志
     if (system_memory_5f28 != '\0') {
-        _DAT_180c95f20 = 0xffffffff;
-        _DAT_180c95f18 = (int64_t*)0x0;
+        system_pointer_data_5f20 = 0xffffffff;
+        system_pointer_data_5f18 = (int64_t*)0x0;
         
         if (resource_ptr != (int64_t*)0x0) {
             // 调用资源清理函数
             ((void (*)(void))(*resource_ptr + 0x38))();
         }
         
-        if (_DAT_180c95f18 != (int64_t*)0x0) {
+        if (system_pointer_data_5f18 != (int64_t*)0x0) {
             // 调用资源清理函数
-            ((void (*)(void))(*_DAT_180c95f18 + 0x38))();
+            ((void (*)(void))(*system_pointer_data_5f18 + 0x38))();
         }
         
-        if (_DAT_180c95ef8 != 0) {
+        if (system_pointer_data_5ef8 != 0) {
             // 系统错误处理函数调用
             FUN_18064e900();
         }
@@ -987,7 +987,7 @@ void utilities_check_system_state_12(void)
 {
     // 检查系统状态标志
     if (system_memory_5fe8 != '\0') {
-        if (_DAT_180c95fc8 != 0) {
+        if (system_pointer_data_5fc8 != 0) {
             // 系统错误处理函数调用
             FUN_18064e900();
         }
@@ -1019,7 +1019,7 @@ void utilities_check_system_state_13(void)
 void utilities_set_global_variable_8(void)
 {
     // 设置全局变量状态
-    _DAT_180bf64f8 = &unknown_var_720_ptr;
+    system_control_pointer_data_64f8 = &unknown_var_720_ptr;
 }
 
 /**
@@ -1032,7 +1032,7 @@ void utilities_set_global_variable_8(void)
 void utilities_set_global_variable_9(void)
 {
     // 设置全局变量状态
-    _DAT_180bf6558 = &unknown_var_720_ptr;
+    system_control_pointer_data_6558 = &unknown_var_720_ptr;
 }
 
 /**
@@ -1084,7 +1084,7 @@ void utilities_mutex_destroy_5(void)
 void utilities_set_global_variable_10(void)
 {
     // 设置全局变量状态
-    _DAT_180d49f80 = &unknown_var_720_ptr;
+    system_config_pointer_data_9f80 = &unknown_var_720_ptr;
 }
 
 /**
@@ -1097,7 +1097,7 @@ void utilities_set_global_variable_10(void)
 void utilities_set_global_variable_11(void)
 {
     // 设置全局变量状态
-    _DAT_180d49fe0 = &unknown_var_720_ptr;
+    system_config_pointer_data_9fe0 = &unknown_var_720_ptr;
 }
 
 /**
@@ -1110,17 +1110,17 @@ void utilities_set_global_variable_11(void)
 void utilities_cleanup_data_1(void)
 {
     // 设置数据状态
-    _DAT_180d4a068 = &unknown_var_3456_ptr;
+    system_config_pointer_data_a068 = &unknown_var_3456_ptr;
     
-    if (_DAT_180d4a070 != 0) {
+    if (system_config_pointer_data_a070 != 0) {
         // 系统错误处理函数调用
         FUN_18064e900();
     }
     
     // 重置数据状态
-    _DAT_180d4a070 = 0;
-    _DAT_180d4a080 = 0;
-    _DAT_180d4a068 = &unknown_var_720_ptr;
+    system_config_pointer_data_a070 = 0;
+    system_config_pointer_data_a080 = 0;
+    system_config_pointer_data_a068 = &unknown_var_720_ptr;
 }
 
 /**
@@ -1165,12 +1165,12 @@ void utilities_process_parameters_2(uint64_t param_1, uint64_t param_2, uint64_t
 {
     uint64_t* data_ptr;
     
-    data_ptr = _DAT_180c967a0;
+    data_ptr = system_pointer_data_67a0;
     
     // 检查数据指针有效性
     if (data_ptr != (uint64_t*)0x0) {
         // 调用参数处理函数
-        FUN_180651560(&system_memory_6790, *_DAT_180c967a0, param_3, param_4, 0xfffffffffffffffe);
+        FUN_180651560(&system_memory_6790, *system_pointer_data_67a0, param_3, param_4, 0xfffffffffffffffe);
         FUN_18063cfe0(data_ptr + 5);
         
         // 系统错误处理函数调用
@@ -1222,7 +1222,7 @@ void utilities_process_parameters_3(uint64_t param_1, uint64_t param_2, uint64_t
 {
     uint64_t* data_ptr;
     
-    data_ptr = _DAT_180c967f0;
+    data_ptr = system_pointer_data_67f0;
     
     // 检查数据指针有效性
     if (data_ptr == (uint64_t*)0x0) {
@@ -1230,7 +1230,7 @@ void utilities_process_parameters_3(uint64_t param_1, uint64_t param_2, uint64_t
     }
     
     // 调用参数处理函数
-    FUN_180657620(&system_memory_67e0, *_DAT_180c967f0, param_3, param_4, 0xfffffffffffffffe);
+    FUN_180657620(&system_memory_67e0, *system_pointer_data_67f0, param_3, param_4, 0xfffffffffffffffe);
     
     // 设置数据状态
     data_ptr[4] = &unknown_var_3456_ptr;

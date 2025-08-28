@@ -10,7 +10,7 @@
 // - 系统初始化函数
 
 // 全局变量：SIMD指令支持标志
-extern int _DAT_180bf00b0;  // SIMD指令支持标志
+extern int render_system_control_buffer;  // SIMD指令支持标志
 
 // 函数别名定义
 typedef void (*ImageDifferenceCalculator)(uint *src_data, int src_stride, uint *ref_data, int ref_stride, int *result);
@@ -56,7 +56,7 @@ void rendering_system_image_difference_calculator_simd(uint *src_data, int src_s
   uint *current_ref;
   longlong block_count;
   
-  simd_support = _DAT_180bf00b0;
+  simd_support = render_system_control_buffer;
   block_count = 8;
   current_ref = ref_data;
   

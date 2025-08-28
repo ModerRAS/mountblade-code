@@ -66,8 +66,8 @@
 
 // 全局变量引用
 extern ulonglong GET_SECURITY_COOKIE();      // 渲染系统全局数据指针
-extern longlong _DAT_180c86938;      // 渲染系统核心数据指针
-extern longlong _DAT_180c86870;      // 渲染系统参数指针
+extern longlong system_message_buffer;      // 渲染系统核心数据指针
+extern longlong system_main_module_state;      // 渲染系统参数指针
 extern char system_buffer_2846;           // 渲染系统状态标志
 
 // 渲染系统状态更新函数
@@ -81,7 +81,7 @@ void FUN_18029ccc0(longlong param_1,int param_2,int32_t param_3,uint param_4)
   uint64_t render_state_stack[RENDER_BUFFER_SIZE_SMALL/8];
   
   // 获取渲染状态数据
-  render_state_stack[0] = *(uint64_t *)(_DAT_180c86938 + RENDER_OFFSET_TEXTURE_DATA + (longlong)param_2 * 8);
+  render_state_stack[0] = *(uint64_t *)(system_message_buffer + RENDER_OFFSET_TEXTURE_DATA + (longlong)param_2 * 8);
   
   // 根据标志位更新相应的渲染状态
   if ((param_4 & RENDER_STATE_FLAG_TEXTURE) != 0) {
@@ -131,19 +131,19 @@ void FUN_18029cdd0(longlong param_1,uint64_t *param_2)
   
   // 计算材质句柄
   material_handle = *(longlong *)
-           (_DAT_180c86938 + 0x1e50 +
+           (system_message_buffer + 0x1e50 +
            ((ulonglong)*(byte *)((longlong)param_2 + 0x16) +
            (((ulonglong)*(byte *)((longlong)param_2 + 0x14) +
             ((ulonglong)*(byte *)((longlong)param_2 + 0x15) +
             (ulonglong)*(byte *)((longlong)param_2 + 0x12) * 4) * 2) * 3 +
            (ulonglong)*(byte *)((longlong)param_2 + 0x13)) * 2) * 8);
   
-  render_core = _DAT_180c86938;
+  render_core = system_message_buffer;
   
   // 更新材质句柄
   if (material_handle != *(longlong *)(param_1 + 0x8418)) {
     (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x158))(*(longlong **)(param_1 + 0x8400),material_handle);
-    render_core = _DAT_180c86938;
+    render_core = system_message_buffer;
     *(longlong *)(param_1 + 0x8418) = material_handle;
   }
   
@@ -170,7 +170,7 @@ void FUN_18029cdd0(longlong param_1,uint64_t *param_2)
   if ((material_handle != *(longlong *)(param_1 + 0x8420)) || ((uint)material_type != *(uint *)(param_1 + 0x8428))) {
     (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x120))
               (*(longlong **)(param_1 + 0x8400),material_handle,material_type);
-    render_core = _DAT_180c86938;
+    render_core = system_message_buffer;
     *(longlong *)(param_1 + 0x8420) = material_handle;
     *(uint *)(param_1 + 0x8428) = (uint)material_type;
   }
@@ -184,7 +184,7 @@ void FUN_18029cdd0(longlong param_1,uint64_t *param_2)
     default_float_params[3] = RENDER_PARAM_DEFAULT_FLOAT;
     (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x118))
               (*(longlong **)(param_1 + 0x8400),material_handle,default_float_params,0xffffffff);
-    render_core = _DAT_180c86938;
+    render_core = system_message_buffer;
     *(longlong *)(param_1 + 0x8430) = material_handle;
   }
   
@@ -363,7 +363,7 @@ void FUN_18029d150(longlong param_1,int param_2,longlong param_3,int param_4,int
   if (param_2 == 0x21) {
     if (param_3 != 0) {
       // 设置状态数据的帧计数器
-      *(longlong *)(param_3 + 0x340) = (longlong)*(int *)(_DAT_180c86870 + 0x224);
+      *(longlong *)(param_3 + 0x340) = (longlong)*(int *)(system_main_module_state + 0x224);
       state_data_ptr = param_3 + 0x1a0;  // 指向参数数组
     }
   }
@@ -697,7 +697,7 @@ void FUN_18029d760(longlong param_1,int param_2,char param_3,longlong param_4,in
   
   // 处理目标数据
   if (param_4 != 0) {
-    frame_counter = (int *)(_DAT_180c86870 + 0x224);
+    frame_counter = (int *)(system_main_module_state + 0x224);
     *(longlong *)(param_4 + 0x340) = (longlong)*frame_counter;  // 设置帧计数器
     
     // 获取目标数据
@@ -795,7 +795,7 @@ void FUN_18029d930(longlong param_1,uint64_t param_2,char param_3,longlong param
   // 处理纹理数据
   if (param_4 != 0) {
     texture_data = *(uint64_t *)(param_4 + 0x20);  // 获取纹理数据
-    *(int32_t *)(param_4 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);  // 设置帧计数器
+    *(int32_t *)(param_4 + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);  // 设置帧计数器
   }
   
   render_core = *(longlong **)(param_1 + 0x8400);
@@ -954,7 +954,7 @@ void FUN_18029dca0(longlong param_1,ulonglong param_2,uint param_3,longlong para
   if ((param_3 & 1) != 0) {
     render_core = *(longlong **)(param_1 + 0x8400);
     render_function = *(code **)(*render_core + 0x38);
-    *(int32_t *)(param_4 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+    *(int32_t *)(param_4 + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
     (*render_function)(render_core, param_2, 1, param_4 + 0x10);
   }
   
@@ -962,7 +962,7 @@ void FUN_18029dca0(longlong param_1,ulonglong param_2,uint param_3,longlong para
   if ((param_3 & 4) != 0) {
     render_core = *(longlong **)(param_1 + 0x8400);
     render_function = *(code **)(*render_core + 0x1f0);
-    *(int32_t *)(param_4 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+    *(int32_t *)(param_4 + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
     (*render_function)(render_core, flag_value, 1, param_4 + 0x10);
   }
   
@@ -970,7 +970,7 @@ void FUN_18029dca0(longlong param_1,ulonglong param_2,uint param_3,longlong para
   if ((param_3 & 2) != 0) {
     render_core = *(longlong **)(param_1 + 0x8400);
     render_function = *(code **)(*render_core + 0x210);
-    *(int32_t *)(param_4 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+    *(int32_t *)(param_4 + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
     (*render_function)(render_core, flag_value, 1, param_4 + 0x10);
   }
   
@@ -978,7 +978,7 @@ void FUN_18029dca0(longlong param_1,ulonglong param_2,uint param_3,longlong para
   if ((param_3 & 0x10) != 0) {
     render_core = *(longlong **)(param_1 + 0x8400);
     render_function = *(code **)(*render_core + 0x80);
-    *(int32_t *)(param_4 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+    *(int32_t *)(param_4 + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
     (*render_function)(render_core, flag_value, 1, param_4 + 0x10);
   }
   
@@ -986,7 +986,7 @@ void FUN_18029dca0(longlong param_1,ulonglong param_2,uint param_3,longlong para
   if ((param_3 & 0x20) != 0) {
     render_core = *(longlong **)(param_1 + 0x8400);
     render_function = *(code **)(*render_core + 0x238);
-    *(int32_t *)(param_4 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+    *(int32_t *)(param_4 + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
     (*render_function)(render_core, flag_value, 1, param_4 + 0x10);
   }
   return;
@@ -1170,7 +1170,7 @@ void FUN_18029e110(longlong param_1)
   // 检查渲染系统是否就绪
   if (system_buffer_2846 == '\0') {
     // 获取当前上下文数据
-    context_data = *(longlong *)(*(longlong *)(_DAT_180c86938 + 0x1d50) + 0x18);
+    context_data = *(longlong *)(*(longlong *)(system_message_buffer + 0x1d50) + 0x18);
     
     // 检查上下文是否需要更新
     if (*(longlong *)(param_1 + 0x8240) != context_data) {
@@ -1318,7 +1318,7 @@ bool FUN_18029e2f0(longlong param_1,longlong param_2,uint param_3,longlong param
   uint64_t check_output[2];
   
   // 设置帧计数器
-  *(int32_t *)(param_2 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+  *(int32_t *)(param_2 + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
   
   // 根据能力类型设置检查参数
   if (param_3 == 0) {

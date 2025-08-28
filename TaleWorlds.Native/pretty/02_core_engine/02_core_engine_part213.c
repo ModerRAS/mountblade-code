@@ -288,7 +288,7 @@ uint64_t * create_string_sort_entry(longlong *param_1,longlong param_2,uint64_t 
       goto joined_r0x0001801906da;
     }
   }
-  lVar8 = allocate_string_table_memory(_DAT_180c8ed18,lVar9 * 0x348,(char)param_1[3]);
+  lVar8 = allocate_string_table_memory(system_memory_pool_ptr,lVar9 * 0x348,(char)param_1[3]);
   puVar6 = (uint64_t *)param_1[1];
   puVar7 = (uint64_t *)*param_1;
   lVar10 = lVar8;
@@ -347,7 +347,7 @@ void expand_string_sort_array(longlong param_1)
       goto joined_r0x0001801906da;
     }
   }
-  lVar4 = allocate_string_table_memory(_DAT_180c8ed18,lVar2 * 0x348,(char)unaff_RSI[3]);
+  lVar4 = allocate_string_table_memory(system_memory_pool_ptr,lVar2 * 0x348,(char)unaff_RSI[3]);
   unaff_RBP = unaff_RSI[1];
   unaff_RBX = *unaff_RSI;
   lVar5 = lVar4;

@@ -55,16 +55,16 @@
 
 // 全局变量声明
 extern longlong SYSTEM_STATE_MANAGER;  // 渲染系统全局状态指针
-extern longlong _DAT_180c82868;  // 渲染系统内存管理器
-extern longlong _DAT_180c86930;  // 渲染系统设备上下文
-extern longlong _DAT_180c8ed18;  // 渲染系统字符串管理器
-extern longlong _DAT_18098bc73;  // 渲染系统默认字符串指针
-extern longlong _DAT_180a3c3e0;  // 渲染系统空字符串指针
-extern longlong _DAT_180a19e88;  // 渲染系统错误消息指针
-extern longlong _DAT_180a19e48;  // 渲染系统状态消息指针
-extern longlong _DAT_180a18dd0;  // 渲染系统配置消息指针
-extern longlong _DAT_180a18dc8;  // 渲染系统数据消息指针
-extern longlong _DAT_180a02cc0;  // 渲染系统统计消息指针
+extern longlong system_context_ptr;  // 渲染系统内存管理器
+extern longlong system_resource_state;  // 渲染系统设备上下文
+extern longlong system_memory_pool_ptr;  // 渲染系统字符串管理器
+extern longlong system_buffer_ptr;  // 渲染系统默认字符串指针
+extern longlong render_system_resource;  // 渲染系统空字符串指针
+extern longlong render_system_resource;  // 渲染系统错误消息指针
+extern longlong render_system_resource;  // 渲染系统状态消息指针
+extern longlong render_system_resource;  // 渲染系统配置消息指针
+extern longlong render_system_resource;  // 渲染系统数据消息指针
+extern longlong render_system_temp_resource;  // 渲染系统统计消息指针
 
 /**
  * 渲染系统质量参数更新函数
@@ -549,7 +549,7 @@ void rendering_system_initialize_render_context(longlong render_context, unsigne
             stack_value_64 = 0;
             stack_buffer_32 = (int32_t *)0x0;
             stack_value_32 = 0;
-            string_buffer = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x18, 0x13);
+            string_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x18, 0x13);
             *(unsigned char *)string_buffer = 0;
             stack_buffer_32 = string_buffer;
             adjusted_flags = FUN_18064e990(string_buffer);
@@ -572,7 +572,7 @@ void rendering_system_initialize_render_context(longlong render_context, unsigne
             stack_value_64_2 = 0;
             stack_buffer_64 = (uint64_t *)0x0;
             stack_value_32_2 = 0;
-            string_buffer_64 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+            string_buffer_64 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
             *(unsigned char *)string_buffer_64 = 0;
             stack_buffer_64 = string_buffer_64;
             adjusted_flags = FUN_18064e990(string_buffer_64);
@@ -592,7 +592,7 @@ void rendering_system_initialize_render_context(longlong render_context, unsigne
             stack_value_64_3 = 0;
             stack_buffer_32_3 = (int32_t *)0x0;
             stack_value_32_3 = 0;
-            string_buffer = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x1a, 0x13);
+            string_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x1a, 0x13);
             *(unsigned char *)string_buffer = 0;
             stack_buffer_32_3 = string_buffer;
             adjusted_flags = FUN_18064e990(string_buffer);
@@ -623,7 +623,7 @@ void rendering_system_initialize_render_context(longlong render_context, unsigne
         stack_value_64_4 = 0;
         stack_buffer_32_4 = (int32_t *)0x0;
         stack_value_32_4 = 0;
-        string_buffer = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x11, 0x13);
+        string_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x11, 0x13);
         *(unsigned char *)string_buffer = 0;
         stack_buffer_32_4 = string_buffer;
         adjusted_flags = FUN_18064e990(string_buffer);
@@ -649,7 +649,7 @@ void rendering_system_initialize_render_context(longlong render_context, unsigne
     stack_value_64_5 = 0;
     stack_buffer_32_5 = (int32_t *)0x0;
     stack_value_32_5 = 0;
-    string_buffer = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+    string_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
     *(unsigned char *)string_buffer = 0;
     stack_buffer_32_5 = string_buffer;
     adjusted_flags = FUN_18064e990(string_buffer);
@@ -871,24 +871,24 @@ void rendering_system_remove_render_object(longlong *render_object, char removal
             }
             
             // 清理全局资源
-            if (_DAT_180c82868 != 0) {
-                FUN_18005e630(_DAT_180c82868);
+            if (system_context_ptr != 0) {
+                FUN_18005e630(system_context_ptr);
             }
-            if (_DAT_180c86930 != 0) {
+            if (system_resource_state != 0) {
                 FUN_1800b4ec0();
             }
-            if (_DAT_180c82868 != 0) {
-                FUN_18005e630(_DAT_180c82868);
+            if (system_context_ptr != 0) {
+                FUN_18005e630(system_context_ptr);
             }
         }
         
-        render_context = _DAT_180c82868;
+        render_context = system_context_ptr;
         *(int16_t *)(render_object + 0x104) = 0;
         *(int32_t *)(render_object + 0x1f) = *(int32_t *)((longlong)render_object + 0xfc);
         
         object_manager = render_object[0xd9];
         if (object_manager != 0) {
-            cleanup_handle = FUN_18062b1e0(_DAT_180c8ed18, 0xe0, 8, 3, cleanup_handle, &stack_object);
+            cleanup_handle = FUN_18062b1e0(system_memory_pool_ptr, 0xe0, 8, 3, cleanup_handle, &stack_object);
             stack_pointer = &global_state_5280_ptr;
             cleanup_callback = FUN_180304860;
             cleanup_buffer[0] = object_manager;
@@ -912,7 +912,7 @@ void rendering_system_remove_render_object(longlong *render_object, char removal
         alternate_pointer = resource_pointer;
     }
     
-    FUN_180062300(_DAT_180c86928, &global_state_2824_ptr, alternate_pointer);
+    FUN_180062300(system_message_context, &global_state_2824_ptr, alternate_pointer);
 }
 
 /**
@@ -1170,7 +1170,7 @@ void rendering_system_reset_render_state(longlong render_context, uint64_t reset
         FUN_180304100(*(uint64_t *)(render_context + 200), 1, 1);
     }
     else {
-        FUN_18005e630(_DAT_180c82868);
+        FUN_18005e630(system_context_ptr);
         reset_callback = *(code **)(**(longlong **)(render_context + 200) + 0xb8);
         
         if (reset_callback == (code *)&global_state_128_ptr) {

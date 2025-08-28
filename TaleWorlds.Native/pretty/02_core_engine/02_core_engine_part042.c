@@ -667,7 +667,7 @@ void expand_dynamic_array_4byte_typeA(longlong source_array, longlong *target_pt
   stack_flag = 0;
   array_size = **(int **)(source_array + 8);
   *(int **)(source_array + 8) = *(int **)(source_array + 8) + 1;
-  system_data = _DAT_180c8a998;
+  system_data = core_system_data_buffer;
   if (array_size != 0) {
     array_size = array_size * 4;  // 4字节元素
     // 设置栈参数
@@ -680,7 +680,7 @@ void expand_dynamic_array_4byte_typeA(longlong source_array, longlong *target_pt
     stack_ptr1 = &unknown_var_720_ptr;
     
     // 分配新内存
-    allocated_memory = FUN_18062b1e0(_DAT_180c8ed18, array_size, 0x10, 0x1e);
+    allocated_memory = FUN_18062b1e0(system_memory_pool_ptr, array_size, 0x10, 0x1e);
     FUN_180082aa0(system_data, &temp_buffer);
     new_buffer = temp_buffer;
     temp_buffer[2] = allocated_memory;
@@ -746,7 +746,7 @@ void expand_dynamic_array_4byte_typeB(longlong source_array, longlong *target_pt
   stack_flag = 0;
   array_size = **(int **)(source_array + 8);
   *(int **)(source_array + 8) = *(int **)(source_array + 8) + 1;
-  system_data = _DAT_180c8a998;
+  system_data = core_system_data_buffer;
   if (array_size != 0) {
     // 设置栈参数
     stack_ptr1 = &unknown_var_3480_ptr;
@@ -758,7 +758,7 @@ void expand_dynamic_array_4byte_typeB(longlong source_array, longlong *target_pt
     stack_ptr1 = &unknown_var_720_ptr;
     
     // 分配新内存
-    allocated_memory = FUN_18062b1e0(_DAT_180c8ed18, array_size, 0x10, 0x1e);
+    allocated_memory = FUN_18062b1e0(system_memory_pool_ptr, array_size, 0x10, 0x1e);
     FUN_1800828d0(system_data, &temp_buffer);
     new_buffer = temp_buffer;
     temp_buffer[2] = allocated_memory;
@@ -824,7 +824,7 @@ void expand_dynamic_array_2byte(longlong source_array, longlong *target_ptr)
   stack_flag = 0;
   array_size = **(int **)(source_array + 8);
   *(int **)(source_array + 8) = *(int **)(source_array + 8) + 1;
-  system_data = _DAT_180c8a998;
+  system_data = core_system_data_buffer;
   if (array_size != 0) {
     array_size = array_size * 2;  // 2字节元素
     // 设置栈参数
@@ -837,7 +837,7 @@ void expand_dynamic_array_2byte(longlong source_array, longlong *target_ptr)
     stack_ptr1 = &unknown_var_720_ptr;
     
     // 分配新内存
-    allocated_memory = FUN_18062b1e0(_DAT_180c8ed18, array_size, 0x10, 0x1e);
+    allocated_memory = FUN_18062b1e0(system_memory_pool_ptr, array_size, 0x10, 0x1e);
     FUN_180082c20(system_data, &temp_buffer);
     new_buffer = temp_buffer;
     temp_buffer[2] = allocated_memory;
@@ -918,7 +918,7 @@ void expand_and_manage_array_typeA(longlong *array_info, ulonglong required_spac
     if (new_capacity != 0) {
       // 分配新的内存空间
       new_memory = (uint64_t *)
-               FUN_18062b420(_DAT_180c8ed18, new_capacity << 5, (char)array_info[3], memory_flags, 0xfffffffffffffffe);
+               FUN_18062b420(system_memory_pool_ptr, new_capacity << 5, (char)array_info[3], memory_flags, 0xfffffffffffffffe);
       old_end = (uint64_t *)array_info[1];
       old_start = (uint64_t *)*array_info;
     }
@@ -1054,7 +1054,7 @@ void expand_and_manage_array_typeB(longlong *array_info, ulonglong required_spac
     if (new_capacity != 0) {
       // 分配新的内存空间
       new_memory = (uint64_t *)
-               FUN_18062b420(_DAT_180c8ed18, new_capacity << 5, (char)array_info[3], memory_flags, 0xfffffffffffffffe);
+               FUN_18062b420(system_memory_pool_ptr, new_capacity << 5, (char)array_info[3], memory_flags, 0xfffffffffffffffe);
       old_end = (uint64_t *)array_info[1];
       old_start = (uint64_t *)*array_info;
     }

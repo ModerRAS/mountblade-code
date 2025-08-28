@@ -207,7 +207,7 @@ void priority_queue_insert(uint64_t *queue_head,uint64_t element,ulonglong *prio
   uint64_t direction;
   bool should_insert_left;
   
-  new_node = FUN_18062b420(_DAT_180c8ed18,0x28,*(int8_t *)(queue_head + 5));
+  new_node = FUN_18062b420(system_memory_pool_ptr,0x28,*(int8_t *)(queue_head + 5));
   current_priority = *priority;
   should_insert_left = true;
   *(ulonglong *)(new_node + 0x20) = current_priority;
@@ -411,7 +411,7 @@ ALLOCATE_NEW_NODE:
   else {
     operation_flag = 1;
   }
-  allocation_size = FUN_18062b420(_DAT_180c8ed18,0x38,(char)structure_head[5]);
+  allocation_size = FUN_18062b420(system_memory_pool_ptr,0x38,(char)structure_head[5]);
   data_field1 = node_data[1];
   data_field2 = node_data[2];
   data_field3 = node_data[3];
@@ -442,7 +442,7 @@ void data_copy_and_initialize(int32_t source_data)
   if (source_ptr != base_offset) {
     memcmp(source_data,source_ptr + 0x20,0x10);
   }
-  new_node = FUN_18062b420(_DAT_180c8ed18,0x38,*(int8_t *)(base_offset + 0x28));
+  new_node = FUN_18062b420(system_memory_pool_ptr,0x38,*(int8_t *)(base_offset + 0x28));
   copy_field1 = data_ptr[1];
   copy_field2 = data_ptr[2];
   copy_field3 = data_ptr[3];
@@ -503,7 +503,7 @@ void dynamic_array_cleanup(longlong *array_ptr,ulonglong clear_count)
     total_elements = 0;
   }
   else {
-    total_elements = FUN_18062b420(_DAT_180c8ed18,clear_count * 0x30,(char)array_ptr[3]);
+    total_elements = FUN_18062b420(system_memory_pool_ptr,clear_count * 0x30,(char)array_ptr[3]);
     element_count = *array_ptr;
     array_end = array_ptr[1];
   }
@@ -553,7 +553,7 @@ void dynamic_array_expand(void)
     new_size = 0;
   }
   else {
-    new_size = FUN_18062b420(_DAT_180c8ed18,expansion_factor * 0x30,(char)array_ptr[3]);
+    new_size = FUN_18062b420(system_memory_pool_ptr,expansion_factor * 0x30,(char)array_ptr[3]);
     new_capacity = *array_ptr;
     old_end = array_ptr[1];
   }
@@ -627,7 +627,7 @@ void complex_data_structure_rebuild(longlong *structure_ptr,longlong data_size,u
     if (stack_offset == 0) goto ALLOCATION_COMPLETE;
   }
   element_ptr = (uint64_t *)
-           FUN_18062b420(_DAT_180c8ed18,stack_offset * 0x60,(char)structure_ptr[3],param_4,
+           FUN_18062b420(system_memory_pool_ptr,stack_offset * 0x60,(char)structure_ptr[3],param_4,
                          expansion_flag);
   next_element = (uint64_t *)structure_ptr[1];
   current_element = (uint64_t *)*structure_ptr;
@@ -712,7 +712,7 @@ void data_structure_node_insert(longlong structure_ptr,uint64_t param_2,longlong
   if ((insert_flag == '\0') && (insert_pos != structure_ptr)) {
     memcmp(node_data,insert_pos + 0x20,0x10,0,0xfffffffffffffffe);
   }
-  new_node = FUN_18062b420(_DAT_180c8ed18,0xc0,*(int8_t *)(structure_ptr + 0x28));
+  new_node = FUN_18062b420(system_memory_pool_ptr,0xc0,*(int8_t *)(structure_ptr + 0x28));
   data_field1 = node_data[1];
   data_field2 = node_data[2];
   data_field3 = node_data[3];
@@ -748,7 +748,7 @@ void data_structure_node_insert_variant(longlong structure_ptr,uint64_t param_2,
   }
   insert_direction = 0;
 DETERMINE_DIRECTION:
-  new_node = FUN_18062b420(_DAT_180c8ed18,0x38,*(int8_t *)(structure_ptr + 0x28));
+  new_node = FUN_18062b420(system_memory_pool_ptr,0x38,*(int8_t *)(structure_ptr + 0x28));
   data_field1 = node_data[1];
   data_field2 = node_data[2];
   data_field3 = node_data[3];
@@ -809,7 +809,7 @@ void complex_data_structure_merge(longlong *target_ptr,uint64_t *source_ptr,long
       }
       temp_array = new_array;
       if (total_elements != 0) {
-        new_array = (int32_t *)FUN_18062b420(_DAT_180c8ed18,total_elements << 4,(char)target_ptr[3]);
+        new_array = (int32_t *)FUN_18062b420(system_memory_pool_ptr,total_elements << 4,(char)target_ptr[3]);
         merge_target = (uint64_t *)*target_ptr;
         temp_array = new_array;
       }

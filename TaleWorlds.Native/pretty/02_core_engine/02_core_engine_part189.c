@@ -6,11 +6,11 @@
 
 // 全局变量
 uint64_t GET_SECURITY_COOKIE();  // 栈保护变量
-uint64_t _DAT_180c8ed18;  // 内存分配器
-uint64_t _DAT_180c82868;  // 引擎上下文
+uint64_t system_memory_pool_ptr;  // 内存分配器
+uint64_t system_context_ptr;  // 引擎上下文
 uint64_t SYSTEM_STATE_MANAGER;  // 系统配置
-uint64_t _DAT_180c86950;  // 渲染配置
-uint64_t _DAT_180c868d0;  // 线程状态
+uint64_t system_operation_state;  // 渲染配置
+uint64_t core_system_data_resource;  // 线程状态
 
 // 函数指针和常量
 uint64_t unknown_var_7512;   // 虚函数表
@@ -175,7 +175,7 @@ void initialize_render_system(longlong render_context, uint64_t *init_params)
   longlong **handler_array;
   
   // 分配消息处理器内存
-  message_handler = (longlong *)allocate_message_handler(_DAT_180c8ed18, 0x218, 8, 3);
+  message_handler = (longlong *)allocate_message_handler(system_memory_pool_ptr, 0x218, 8, 3);
   
   // 设置虚函数表
   setup_virtual_table(message_handler, &unknown_var_9056_ptr);
@@ -191,10 +191,10 @@ void initialize_render_system(longlong render_context, uint64_t *init_params)
   setup_render_callback(*(uint64_t *)(render_context + 0x140));
   
   // 注册事件处理器
-  register_event_handler(_DAT_180c82868 + 0x48, &handler_array);
+  register_event_handler(system_context_ptr + 0x48, &handler_array);
   
   // 分配渲染器内存
-  message_handler = (longlong *)allocate_message_handler(_DAT_180c8ed18, 200, 8, 3);
+  message_handler = (longlong *)allocate_message_handler(system_memory_pool_ptr, 200, 8, 3);
   initialize_renderer(message_handler);
   
   // 设置渲染器参数
@@ -207,7 +207,7 @@ void initialize_render_system(longlong render_context, uint64_t *init_params)
   register_renderer_to_system(*(uint64_t *)(render_context + 0x140));
   
   // 标记渲染系统为已初始化
-  *(int8_t *)(_DAT_180c868d0 + 0x2028) = 1;
+  *(int8_t *)(core_system_data_resource + 0x2028) = 1;
   
   // 执行渲染器初始化完成回调
   complete_renderer_initialization(message_handler);
@@ -274,7 +274,7 @@ uint64_t add_monitor_to_system(longlong display_context, longlong monitor_info)
   }
   
   // 创建监视器对象
-  monitor_object = (longlong *)create_monitor_object(_DAT_180c8ed18, 0x48, 8, 3, 0xfffffffffffffffe);
+  monitor_object = (longlong *)create_monitor_object(system_memory_pool_ptr, 0x48, 8, 3, 0xfffffffffffffffe);
   setup_monitor_object(monitor_object);
   
   // 初始化监视器对象
@@ -321,7 +321,7 @@ uint64_t update_monitor_configuration(longlong display_context, uint64_t config_
   }
   
   // 创建配置对象
-  config_object = (longlong *)create_config_object(_DAT_180c8ed18, 0x48, 8, 3, 0xfffffffffffffffe);
+  config_object = (longlong *)create_config_object(system_memory_pool_ptr, 0x48, 8, 3, 0xfffffffffffffffe);
   setup_config_object(config_object);
   
   // 初始化配置对象
@@ -363,7 +363,7 @@ void refresh_monitor_display(longlong display_context)
   longlong **ptr_array;
   
   // 创建刷新对象
-  refresh_object = (longlong *)create_refresh_object(_DAT_180c8ed18, 0x48, 8, 3, 0xfffffffffffffffe);
+  refresh_object = (longlong *)create_refresh_object(system_memory_pool_ptr, 0x48, 8, 3, 0xfffffffffffffffe);
   setup_refresh_object(refresh_object);
   
   // 初始化刷新对象
@@ -402,7 +402,7 @@ void reset_monitor_state(longlong display_context)
   longlong **ptr_array;
   
   // 创建重置对象
-  reset_object = (longlong *)create_reset_object(_DAT_180c8ed18, 0x48, 8, 3, 0xfffffffffffffffe);
+  reset_object = (longlong *)create_reset_object(system_memory_pool_ptr, 0x48, 8, 3, 0xfffffffffffffffe);
   setup_reset_object(reset_object);
   
   // 初始化重置对象
@@ -441,7 +441,7 @@ void calibrate_monitor_color(longlong display_context)
   longlong **ptr_array;
   
   // 创建校准对象
-  calibrate_object = (longlong *)create_calibrate_object(_DAT_180c8ed18, 0x48, 8, 3, 0xfffffffffffffffe);
+  calibrate_object = (longlong *)create_calibrate_object(system_memory_pool_ptr, 0x48, 8, 3, 0xfffffffffffffffe);
   setup_calibrate_object(calibrate_object);
   
   // 初始化校准对象
@@ -530,7 +530,7 @@ void apply_monitor_settings(longlong display_context, int32_t setting_id, int32_
   longlong *object_ptr;
   
   // 创建设置对象
-  setting_object = (longlong *)create_setting_object(_DAT_180c8ed18, 0x48, 8, 3, 0xfffffffffffffffe);
+  setting_object = (longlong *)create_setting_object(system_memory_pool_ptr, 0x48, 8, 3, 0xfffffffffffffffe);
   setup_setting_object(setting_object);
   
   // 初始化设置对象
@@ -625,7 +625,7 @@ uint64_t configure_monitor_parameters(longlong display_context, int32_t *config_
   longlong *config_ptr;
   
   // 创建配置对象
-  config_object = (longlong *)create_config_object(_DAT_180c8ed18, 0x48, 8, 3, 0xfffffffffffffffe);
+  config_object = (longlong *)create_config_object(system_memory_pool_ptr, 0x48, 8, 3, 0xfffffffffffffffe);
   setup_config_object(config_object);
   
   // 初始化配置对象
@@ -690,7 +690,7 @@ int8_t set_cursor_shape(longlong display_context, int32_t cursor_type)
   
   if (main_thread_id != handler_thread_id) {
     // 不在主线程，创建光标对象
-    cursor_object = (longlong *)create_cursor_object(_DAT_180c8ed18, 0x48, 8, 3, thread_id);
+    cursor_object = (longlong *)create_cursor_object(system_memory_pool_ptr, 0x48, 8, 3, thread_id);
     setup_cursor_object(cursor_object);
     
     // 初始化光标对象
@@ -720,8 +720,8 @@ int8_t set_cursor_shape(longlong display_context, int32_t cursor_type)
   ScreenToClient(*(uint64_t *)(display_context + 8), &cursor_pos);
   
   // 检查鼠标是否在窗口范围内
-  if ((-1 < (int)cursor_pos) && ((float)(int)cursor_pos < *(float *)(_DAT_180c86950 + 0x17ec))) {
-    if ((-1 < (longlong)cursor_pos) && ((float)cursor_pos._4_4_ < *(float *)(_DAT_180c86950 + 0x17f0))) {
+  if ((-1 < (int)cursor_pos) && ((float)(int)cursor_pos < *(float *)(system_operation_state + 0x17ec))) {
+    if ((-1 < (longlong)cursor_pos) && ((float)cursor_pos._4_4_ < *(float *)(system_operation_state + 0x17f0))) {
       // 根据光标类型设置相应的光标
       switch(cursor_type) {
       case 0:
@@ -801,8 +801,8 @@ void control_cursor_visibility(longlong display_context, char show_flag, int32_t
     }
     else {
       // 显示光标
-      if (**(char **)(_DAT_180c868d0 + 0x2010) != '\0') {
-        **(char **)(_DAT_180c868d0 + 0x2010) = '\0';
+      if (**(char **)(core_system_data_resource + 0x2010) != '\0') {
+        **(char **)(core_system_data_resource + 0x2010) = '\0';
       }
       set_cursor_shape(display_context, cursor_type);
       do {
@@ -812,7 +812,7 @@ void control_cursor_visibility(longlong display_context, char show_flag, int32_t
   }
   else {
     // 不在主线程，创建光标控制对象
-    cursor_object = (longlong *)create_cursor_control_object(_DAT_180c8ed18, 0x48, 8, 3, thread_id);
+    cursor_object = (longlong *)create_cursor_control_object(system_memory_pool_ptr, 0x48, 8, 3, thread_id);
     setup_cursor_control_object(cursor_object);
     
     // 初始化光标控制对象
@@ -850,7 +850,7 @@ void set_monitor_property(longlong display_context, int32_t property_id, longlon
   longlong *object_ptr;
   
   // 创建属性对象
-  property_object = (longlong *)create_property_object(_DAT_180c8ed18, 0x48, 8, 3, 0xfffffffffffffffe);
+  property_object = (longlong *)create_property_object(system_memory_pool_ptr, 0x48, 8, 3, 0xfffffffffffffffe);
   setup_property_object(property_object);
   
   // 初始化属性对象
@@ -894,7 +894,7 @@ void update_monitor_status(longlong display_context, int32_t state_id, int32_t s
   longlong *object_ptr;
   
   // 创建状态对象
-  status_object = (longlong *)create_status_object(_DAT_180c8ed18, 0x48, 8, 3, 0xfffffffffffffffe);
+  status_object = (longlong *)create_status_object(system_memory_pool_ptr, 0x48, 8, 3, 0xfffffffffffffffe);
   setup_status_object(status_object);
   
   // 初始化状态对象
@@ -941,7 +941,7 @@ void register_monitor_event(longlong display_context, uint64_t event_data)
   longlong *event_ptr;
   
   // 创建事件对象
-  event_object = (longlong *)create_event_object(_DAT_180c8ed18, 0x48, 8, 3, 0xfffffffffffffffe);
+  event_object = (longlong *)create_event_object(system_memory_pool_ptr, 0x48, 8, 3, 0xfffffffffffffffe);
   setup_event_object(event_object);
   
   // 初始化事件对象

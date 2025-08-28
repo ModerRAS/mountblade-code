@@ -190,8 +190,8 @@ EngineEvent_Create(longlong *param_1,longlong *param_2,longlong param_3,uint64_t
   plStackX_10 = param_2;
   lStackX_18 = param_3;
   uStackX_20 = param_4;
-  if ((char)_DAT_180c86878[0x42] != '\0') {
-    plVar2 = (longlong *)_DAT_180c86878[0x3d];
+  if ((char)core_system_data_memory[0x42] != '\0') {
+    plVar2 = (longlong *)core_system_data_memory[0x3d];
     *param_2 = (longlong)plVar2;
     if (plVar2 == (longlong *)0x0) {
       return param_2;
@@ -199,13 +199,13 @@ EngineEvent_Create(longlong *param_1,longlong *param_2,longlong param_3,uint64_t
     (**(code **)(*plVar2 + 0x28))();
     return param_2;
   }
-  plVar1 = _DAT_180c86878 + 0x1a;
+  plVar1 = core_system_data_memory + 0x1a;
   plStack_58 = plVar1;
   iVar4 = _Mtx_lock(plVar1);
   if (iVar4 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar4);
   }
-  if (*(int *)(_DAT_180c8a9c8 + 0x9a0) != 0) {
+  if (*(int *)(core_system_data_memory + 0x9a0) != 0) {
     puStack_c8 = &g_sEmptyStringBuffer;  // 空字符串缓冲区
     uStack_b0 = 0;
     puStack_c0 = (uint64_t *)0x0;
@@ -283,7 +283,7 @@ LAB_180157585:
   iVar4 = (int)plVar2[5];
   *(int *)(plVar2 + 5) = iVar4 + 1;
   EngineContext_CreateEvent(plVar2,&plStackX_8,auStack_a0,iVar4,param_4);  // 调用引擎事件创建函数
-  if (*(int *)(_DAT_180c8a9c8 + 0x9a0) != 0) {
+  if (*(int *)(core_system_data_memory + 0x9a0) != 0) {
     puStack_c8 = &g_sEmptyStringBuffer;  // 空字符串缓冲区
     uStack_b0 = 0;
     puStack_c0 = (uint64_t *)0x0;
@@ -491,7 +491,7 @@ EngineTimerEvent_Create(longlong *param_1,longlong *param_2,int param_3,uint64_t
   plStackX_8 = param_1;
   plStackX_10 = param_2;
   if ((char)g_pEngineContext[0x42] != '\0') {
-    plVar2 = (longlong *)_DAT_180c86878[0x3d];
+    plVar2 = (longlong *)core_system_data_memory[0x3d];
     *param_2 = (longlong)plVar2;
     if (plVar2 == (longlong *)0x0) {
       return param_2;
@@ -499,7 +499,7 @@ EngineTimerEvent_Create(longlong *param_1,longlong *param_2,int param_3,uint64_t
     (**(code **)(*plVar2 + 0x28))();
     return param_2;
   }
-  plVar1 = _DAT_180c86878 + 0x1a;
+  plVar1 = core_system_data_memory + 0x1a;
   plStack_40 = plVar1;
   iVar5 = _Mtx_lock(plVar1);
   if (iVar5 != 0) {
@@ -645,7 +645,7 @@ EngineRenderEvent_Create(longlong *param_1,longlong *param_2,uint64_t param_3,lo
   plStackX_8 = param_1;
   plStackX_10 = param_2;
   if ((char)g_pEngineContext[0x42] == '\0') {
-    plVar1 = _DAT_180c86878 + 0x1a;
+    plVar1 = core_system_data_memory + 0x1a;
     plStack_60 = plVar1;
     iVar4 = _Mtx_lock(plVar1);
     if (iVar4 != 0) {
@@ -691,7 +691,7 @@ EngineRenderEvent_Create(longlong *param_1,longlong *param_2,uint64_t param_3,lo
     }
   }
   else {
-    plVar2 = (longlong *)_DAT_180c86878[0x3d];
+    plVar2 = (longlong *)core_system_data_memory[0x3d];
     *param_2 = (longlong)plVar2;
     if (plVar2 != (longlong *)0x0) {
       (**(code **)(*plVar2 + 0x28))();
@@ -814,22 +814,22 @@ longlong * TimerManager_ExpandPool(uint64_t param_1,longlong *param_2,longlong p
   g_nRandomSeed = g_nRandomSeed << 0xd ^ g_nRandomSeed;  // XOR移位随机数生成算法
   g_nRandomSeed = g_nRandomSeed >> 0x11 ^ g_nRandomSeed;
   g_nRandomSeed = g_nRandomSeed << 5 ^ g_nRandomSeed;
-  fVar4 = (float)(_DAT_180bf65b8 - 1) * 2.3283064e-10 * fVar3;
+  fVar4 = (float)(system_memory_flags - 1) * 2.3283064e-10 * fVar3;
   *param_2 = 0;
   lVar2 = *(longlong *)(param_3 + 0x20);
   do {
     if (lVar2 == *(longlong *)(param_3 + 0x28)) {
 LAB_180158404:
-      _DAT_180bf65b8 = _DAT_180bf65b8 << 0xd ^ _DAT_180bf65b8;
-      _DAT_180bf65b8 = _DAT_180bf65b8 >> 0x11 ^ _DAT_180bf65b8;
-      _DAT_180bf65b8 = _DAT_180bf65b8 << 5 ^ _DAT_180bf65b8;
+      system_memory_flags = system_memory_flags << 0xd ^ system_memory_flags;
+      system_memory_flags = system_memory_flags >> 0x11 ^ system_memory_flags;
+      system_memory_flags = system_memory_flags << 5 ^ system_memory_flags;
       Timer_SetPositionX((longlong *)*param_2,  // 设置定时器X位置
                        (float)(g_nRandomSeed - 1) * 2.3283064e-10 *
                        (*(float *)(param_3 + 0x48) - *(float *)(param_3 + 0x44)) +
                        *(float *)(param_3 + 0x44));
-      _DAT_180bf65b8 = _DAT_180bf65b8 << 0xd ^ _DAT_180bf65b8;
-      _DAT_180bf65b8 = _DAT_180bf65b8 >> 0x11 ^ _DAT_180bf65b8;
-      _DAT_180bf65b8 = _DAT_180bf65b8 << 5 ^ _DAT_180bf65b8;
+      system_memory_flags = system_memory_flags << 0xd ^ system_memory_flags;
+      system_memory_flags = system_memory_flags >> 0x11 ^ system_memory_flags;
+      system_memory_flags = system_memory_flags << 5 ^ system_memory_flags;
       Timer_SetPositionY((longlong *)*param_2,  // 设置定时器Y位置
                        (float)(g_nRandomSeed - 1) * 2.3283064e-10 *
                        (*(float *)(param_3 + 0x50) - *(float *)(param_3 + 0x4c)) +

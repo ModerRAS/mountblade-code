@@ -916,8 +916,8 @@ int FUN_18002e3e0(void)
   longlong lVar1;
   uint64_t in_R9;
   
-  _DAT_180bf64d0 = &unknown_var_7512_ptr;
-  _DAT_180bf64d8 = &system_memory_64e8;
+  init_system_control_ui = &unknown_var_7512_ptr;
+  init_system_control_ui = &system_memory_64e8;
   return 0;
 }
 
@@ -936,7 +936,7 @@ void FUN_18002e8e0(void)
   auStack_88[0] = 0;
   uStack_90 = 0xb;
   strcpy_s(auStack_88,0x80,&unknown_var_7352_ptr,in_R9,0xfffffffffffffffe);
-  _DAT_180c9196c = FUN_180623800(&puStack_a0);
+  init_system_ui = FUN_180623800(&puStack_a0);
   return;
 }
 

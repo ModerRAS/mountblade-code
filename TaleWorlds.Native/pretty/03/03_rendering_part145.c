@@ -64,7 +64,7 @@ extern char system_memory_ecd0;
 extern uint8_t global_state_4472_ptr;
 extern char system_memory_0300;
 extern uint8_t global_state_2984_ptr;
-extern uint64_t _DAT_180c8ed18;
+extern uint64_t system_memory_pool_ptr;
 
 /**
  * 渲染系统参数处理器
@@ -832,7 +832,7 @@ void RenderingSystem_StateManager(longlong render_context)
     object_ptr = *(uint64_t *)(*(longlong *)(render_context + RENDER_CONTEXT_OFFSET_3) + BUFFER_OFFSET_1);
     
     // 分配渲染资源
-    resource_handle = RenderingSystem_MemoryAllocator(_DAT_180c8ed18, 0x2f0, 0x10, 0xd);
+    resource_handle = RenderingSystem_MemoryAllocator(system_memory_pool_ptr, 0x2f0, 0x10, 0xd);
     object_instance = (longlong *)RenderingSystem_ObjectInitializer(resource_handle, 4);
     component_array = object_instance;
     

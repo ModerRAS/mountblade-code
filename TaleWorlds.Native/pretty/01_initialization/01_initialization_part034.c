@@ -18,19 +18,19 @@
 #define MAX_PATH_LENGTH 0x80
 
 // 全局数据引用
-extern longlong *_DAT_180c8f008;      // 日志系统全局状态
-extern longlong *_DAT_180c8a9c0;      // 字符串处理系统
-extern longlong _DAT_180c8ed18;       // 内存分配器
-extern longlong _DAT_180c86870;       // 引擎核心数据
-extern longlong _DAT_180c8ed48;       // 性能计数器基准
-extern double _DAT_180c8ed50;         // 性能计数器频率
-extern longlong _DAT_180c8ed58;       // 性能计数器缓存
+extern longlong *system_cache_buffer;      // 日志系统全局状态
+extern longlong *init_system_data_memory;      // 字符串处理系统
+extern longlong system_memory_pool_ptr;       // 内存分配器
+extern longlong system_main_module_state;       // 引擎核心数据
+extern longlong init_system_data_memory;       // 性能计数器基准
+extern double init_system_data_memory;         // 性能计数器频率
+extern longlong init_system_data_memory;       // 性能计数器缓存
 extern longlong SYSTEM_FILE_COUNTER_ADDR;       // 文件句柄计数器
-extern longlong _DAT_180c8ed08;       // 引擎管理器
+extern longlong init_system_data_memory;       // 引擎管理器
 extern longlong SYSTEM_STATE_MANAGER;       // 路径配置
-extern longlong _DAT_180c868b0;       // 系统配置
-extern longlong _DAT_180c86928;       // 启动参数配置
-extern longlong _DAT_180c82868;       // 默认配置数据
+extern longlong init_system_data_memory;       // 系统配置
+extern longlong system_message_context;       // 启动参数配置
+extern longlong system_context_ptr;       // 默认配置数据
 
 extern char system_buffer_ptr;            // 空字符串常量
 extern char global_var_720_ptr;            // 字符串常量
@@ -337,7 +337,7 @@ void ProcessStringAndMemoryManagement(longlong *param_1, longlong param_2, longl
       lVar11 = 1;
 LAB_180064eed:
       // 扩展容器
-      lVar10 = FUN_18062b420(_DAT_180c8ed18, lVar11 << 5, (char)param_1[3]);
+      lVar10 = FUN_18062b420(system_memory_pool_ptr, lVar11 << 5, (char)param_1[3]);
       puVar4 = (uint64_t *)param_1[1];
       lVar12 = *param_1;
     }
@@ -548,13 +548,13 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   FUN_180052020(uVar20, &puStack_200);
   
   // 检查日志系统状态
-  if ((_DAT_180c8f008 == (longlong *)0x0) ||
-     (cVar7 = (**(code **)(*_DAT_180c8f008 + 0x28))(), cVar7 == '\0')) {
+  if ((system_cache_buffer == (longlong *)0x0) ||
+     (cVar7 = (**(code **)(*system_cache_buffer + 0x28))(), cVar7 == '\0')) {
     puVar16 = &global_var_832_ptr;
   }
   else {
     // 获取当前模块名称
-    lVar9 = (**(code **)(_DAT_180c8a9c0 + 0x30))();
+    lVar9 = (**(code **)(init_system_data_memory + 0x30))();
     puVar16 = &system_buffer_ptr;
     if (*(void **)(lVar9 + 8) != (void *)0x0) {
       puVar16 = *(void **)(lVar9 + 8);
@@ -565,13 +565,13 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   FUN_180627910(&puStack_1c0, puVar16);
   
   // 检查日志系统状态并获取版本信息
-  if ((_DAT_180c8f008 == (longlong *)0x0) ||
-     (cVar7 = (**(code **)(*_DAT_180c8f008 + 0x28))(), cVar7 == '\0')) {
+  if ((system_cache_buffer == (longlong *)0x0) ||
+     (cVar7 = (**(code **)(*system_cache_buffer + 0x28))(), cVar7 == '\0')) {
     puVar16 = &global_var_856_ptr;
   }
   else {
     // 获取版本信息
-    lVar9 = (**(code **)(_DAT_180c8a9c0 + 0x20))();
+    lVar9 = (**(code **)(init_system_data_memory + 0x20))();
     puVar16 = &system_buffer_ptr;
     if (*(void **)(lVar9 + 8) != (void *)0x0) {
       puVar16 = *(void **)(lVar9 + 8);
@@ -669,7 +669,7 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   FUN_180628040(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_936_ptr);
   
   // 获取性能计数器信息
-  lVar9 = _DAT_180c86870;
+  lVar9 = system_main_module_state;
   puStack_308 = &global_var_3456_ptr;
   if (puStack_300 != (void *)0x0) {
     FUN_18064e900();
@@ -689,13 +689,13 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   puStack_2c0 = &global_var_720_ptr;
   
   // 计算启动时间
-  lVar14 = _DAT_180c8ed58;
-  if (_DAT_180c8ed58 == 0) {
+  lVar14 = init_system_data_memory;
+  if (init_system_data_memory == 0) {
     QueryPerformanceCounter(&lStack_268);
     lVar14 = lStack_268;
   }
   puStack_348 = (void *)
-                ((double)(lVar14 - _DAT_180c8ed48) * _DAT_180c8ed50 - *(double *)(lVar9 + 0x210));
+                ((double)(lVar14 - init_system_data_memory) * init_system_data_memory - *(double *)(lVar9 + 0x210));
   FUN_180628040(&puStack_330, &global_var_968_ptr, &global_var_48_ptr, &global_var_952_ptr);
   
   // 添加配置信息到日志
@@ -751,13 +751,13 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   uVar10 = (longlong)puStack_218 - (longlong)puVar4 >> 5;
   if (uVar10 != 0) {
     // 检查日志系统状态
-    if ((_DAT_180c8f008 == (longlong *)0x0) ||
-       (cVar7 = (**(code **)(*_DAT_180c8f008 + 0x28))(), cVar7 == '\0')) {
+    if ((system_cache_buffer == (longlong *)0x0) ||
+       (cVar7 = (**(code **)(*system_cache_buffer + 0x28))(), cVar7 == '\0')) {
       puVar16 = &global_var_1000_ptr;
     }
     else {
       // 获取进程ID
-      lVar9 = (**(code **)(_DAT_180c8a9c0 + 0x28))();
+      lVar9 = (**(code **)(init_system_data_memory + 0x28))();
       puVar16 = &system_buffer_ptr;
       if (*(void **)(lVar9 + 8) != (void *)0x0) {
         puVar16 = *(void **)(lVar9 + 8);
@@ -915,7 +915,7 @@ LAB_180065a3e:
   }
   
   // 检查是否需要显示启动信息
-  if ((_DAT_180c8a9c0 == 0) || (*(int *)(_DAT_180c86870 + 0x340) == 0)) {
+  if ((init_system_data_memory == 0) || (*(int *)(system_main_module_state + 0x340) == 0)) {
     bVar3 = false;
   }
   else {
@@ -923,8 +923,8 @@ LAB_180065a3e:
   }
   
   // 如果需要显示启动信息
-  if (((_DAT_180c86870 != 0) && (*(int *)(_DAT_180c86870 + 0x340) == 1)) && (bVar3)) {
-    lVar9 = (**(code **)(_DAT_180c8a9c0 + 0x18))();
+  if (((system_main_module_state != 0) && (*(int *)(system_main_module_state + 0x340) == 1)) && (bVar3)) {
+    lVar9 = (**(code **)(init_system_data_memory + 0x18))();
     puVar16 = &system_buffer_ptr;
     if (*(void **)(lVar9 + 8) != (void *)0x0) {
       puVar16 = *(void **)(lVar9 + 8);
@@ -1096,10 +1096,10 @@ void ProcessStartupParametersAndInitialize(uint64_t param_1, longlong param_2, u
   uStack_48 = 0xfffffffffffffffe;
   
   // 获取引擎管理器
-  plStack_b0 = *(longlong **)(_DAT_180c8ed08 + 0x18);
+  plStack_b0 = *(longlong **)(init_system_data_memory + 0x18);
   
   // 初始化参数缓冲区
-  FUN_180627ae0(&puStack_a8, _DAT_180c86870 + 0x170, param_3, param_4, 0);
+  FUN_180627ae0(&puStack_a8, system_main_module_state + 0x170, param_3, param_4, 0);
   iVar5 = uStack_98 + 3;
   FUN_1806277c0(&puStack_a8, iVar5);
   
@@ -1119,11 +1119,11 @@ void ProcessStartupParametersAndInitialize(uint64_t param_1, longlong param_2, u
   
   // 添加系统路径配置
   FUN_180066140(&ppuStack_68, SYSTEM_STATE_MANAGER, &system_memory_c7d8);
-  FUN_180066140(&ppuStack_68, _DAT_180c868b0, &system_memory_cfc0);
+  FUN_180066140(&ppuStack_68, init_system_data_memory, &system_memory_cfc0);
   
   // 执行引擎初始化
   pcVar1 = *(code **)(*plStack_b0 + 0x40);
-  uVar3 = FUN_180627ae0(&ppuStack_68, _DAT_180c86928 + 0x28);
+  uVar3 = FUN_180627ae0(&ppuStack_68, system_message_context + 0x28);
   (*pcVar1)(plStack_b0, uVar3);
   
   // 清理临时参数
@@ -1137,7 +1137,7 @@ void ProcessStartupParametersAndInitialize(uint64_t param_1, longlong param_2, u
   
   // 执行引擎核心初始化
   pcVar1 = *(code **)(*plStack_b0 + 0x40);
-  uVar3 = FUN_180627ae0(&puStack_88, _DAT_180c86928 + 0xe0);
+  uVar3 = FUN_180627ae0(&puStack_88, system_message_context + 0xe0);
   (*pcVar1)(plStack_b0, uVar3);
   puStack_88 = &global_var_3456_ptr;
   if (lStack_80 != 0) {
@@ -1150,7 +1150,7 @@ void ProcessStartupParametersAndInitialize(uint64_t param_1, longlong param_2, u
   // 处理启动参数
   if (param_2 == 0) {
     // 使用默认配置
-    lVar4 = FUN_18005e890(_DAT_180c82868);
+    lVar4 = FUN_18005e890(system_context_ptr);
     (**(code **)(*plStack_b0 + 8))(plStack_b0, param_1, *(int32_t *)(lVar4 + 0x38));
   }
   else {

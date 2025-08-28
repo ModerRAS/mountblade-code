@@ -652,9 +652,9 @@ void initialize_rendering_system(void) {
 }
 
 // 常量定义
-#define GLOBAL_RENDER_CONTEXT _DAT_180c8ed18
+#define GLOBAL_RENDER_CONTEXT system_memory_pool_ptr
 #define GLOBAL_SECURITY_COOKIE GET_SECURITY_COOKIE()
-#define GLOBAL_TEXTURE_MANAGER _DAT_180c86930
+#define GLOBAL_TEXTURE_MANAGER system_resource_state
 #define DEFAULT_MATERIAL_NAME &system_buffer_ptr
 #define DEFAULT_TEXTURE_NAME &system_buffer_ptr
 #define MATERIAL_PATH_DELIMITER &system_memory_ff10

@@ -1498,7 +1498,7 @@ void FUN_180030870(void)
     strcpy_s(stack_buffer, 0x80, &unknown_var_2216_ptr, register_value, 0xfffffffffffffffe);
     
     // 设置全局配置变量
-    _DAT_180c919e0 = FUN_180623800(&config_data_ptr);
+    init_system_pointer = FUN_180623800(&config_data_ptr);
 }
 
 /**
@@ -1514,8 +1514,8 @@ int FUN_180030900(void)
     uint64_t register_value;
     
     // 设置系统状态指针
-    _DAT_180bf6750 = &unknown_var_3480_ptr;
-    _DAT_180bf6758 = &system_memory_6768;
+    init_system_control_pointer = &unknown_var_3480_ptr;
+    init_system_control_pointer = &system_memory_6768;
     
     return (int)status_result;
 }

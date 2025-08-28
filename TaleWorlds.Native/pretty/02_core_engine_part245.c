@@ -353,7 +353,7 @@ void FUN_18020e840(longlong param_1)
   longlong *plVar3;
   
   *(int8_t *)(param_1 + 0x58) = 1;
-  uVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x10,8,3,0xfffffffffffffffe);
+  uVar1 = FUN_18062b1e0(system_memory_pool_ptr,0x10,8,3,0xfffffffffffffffe);
   plVar3 = (longlong *)FUN_1808fc418(0x10);
   *plVar3 = param_1;
   plVar3[1] = (longlong)&unknown_var_1688_ptr;
@@ -506,7 +506,7 @@ uint64_t FUN_18020eae0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64
   WaitForSingleObject(**(uint64_t **)(param_1 + 0x1f0),1,param_3,param_4,0xfffffffffffffffe);
   cVar2 = FUN_180060e40(*(uint64_t *)(param_1 + 0x60),param_1 + 0x78,&plStackX_8);
   plVar1 = plStackX_8;
-  uVar3 = _DAT_180c82868;
+  uVar3 = system_context_ptr;
   if (cVar2 != '\0') {
     if (((ulonglong)plStackX_8[3] >> (*(ulonglong *)(param_1 + 0x50) & 0x3f) & 1) != 0) {
       (**(code **)(*plStackX_8 + 0x60))(plStackX_8);
@@ -561,7 +561,7 @@ uint64_t FUN_18020eba0(longlong param_1,char param_2)
     }
     cVar3 = FUN_180060e40(*(uint64_t *)(param_1 + 0x60),param_1 + 0x78,&ppplStackX_18);
     pppplVar7 = (longlong ****)ppplStackX_18;
-    uVar8 = _DAT_180c82868;
+    uVar8 = system_context_ptr;
     if (cVar3 != '\0') {
       if (((ulonglong)ppplStackX_18[3] >> (*(ulonglong *)(param_1 + 0x50) & 0x3f) & 1) != 0) {
         (*(code *)(*ppplStackX_18)[0xc])(ppplStackX_18);
@@ -623,7 +623,7 @@ uint64_t FUN_18020eba0(longlong param_1,char param_2)
     if (iVar4 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar4);
     }
-    uVar8 = _DAT_180c82868;
+    uVar8 = system_context_ptr;
     if (pppplVar7 != (longlong ****)0x0) {
       if (((ulonglong)pppplVar7[3] >> (*(ulonglong *)(param_1 + 0x50) & 0x3f) & 1) != 0) {
         (*(code *)(*pppplVar7)[0xc])(pppplVar7);
@@ -874,7 +874,7 @@ void FUN_18020f150(uint64_t *param_1)
   plStack_d8 = alStack_70;
   _Mtx_init_in_situ(alStack_70,2);
   uStack_20 = 0;
-  plVar2 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,200,8,3);
+  plVar2 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,200,8,3);
   plStack_d8 = plVar2;
   FUN_180049830(plVar2);
   *plVar2 = (longlong)&unknown_var_2248_ptr;
@@ -916,7 +916,7 @@ uint64_t FUN_18020f2b0(longlong param_1,char param_2)
   if (param_2 == '\0') {
     cVar1 = FUN_180060e40(*(uint64_t *)(param_1 + 0x60),param_1 + 0x78,&plStackX_18);
     plVar4 = plStackX_18;
-    uVar6 = _DAT_180c82868;
+    uVar6 = system_context_ptr;
     if (cVar1 != '\0') {
       if (((ulonglong)plStackX_18[3] >> (*(ulonglong *)(param_1 + 0x50) & 0x3f) & 1) != 0) {
         (**(code **)(*plStackX_18 + 0x60))(plStackX_18);
@@ -973,7 +973,7 @@ uint64_t FUN_18020f2b0(longlong param_1,char param_2)
         __Throw_C_error_std__YAXH_Z(iVar2);
       }
       if (plVar4 != (longlong *)0x0) {
-        lVar5 = _DAT_180c86938 + 0x20;
+        lVar5 = system_message_buffer + 0x20;
         iVar2 = _Mtx_lock(lVar5);
         if (iVar2 != 0) {
           __Throw_C_error_std__YAXH_Z(iVar2);

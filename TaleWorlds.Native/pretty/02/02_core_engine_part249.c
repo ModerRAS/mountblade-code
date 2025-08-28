@@ -838,10 +838,10 @@ int32_t get_render_object_status(uint64_t render_object, uint64_t status_id)
 #define DEFAULT_STRING_CONST system_buffer_ptr
 #define EMPTY_STRING_CONST unknown_var_3456
 #define GLOBAL_STRING_CONST unknown_var_720
-#define GLOBAL_MEMORY_POOL _DAT_180c8ed18
-#define GLOBAL_LOGGER_HANDLE _DAT_180c86928
-#define GLOBAL_DEBUG_FLAG _DAT_180c8a9c8
-#define GLOBAL_RESOURCE_COUNTER _DAT_180c967dc
+#define GLOBAL_MEMORY_POOL system_memory_pool_ptr
+#define GLOBAL_LOGGER_HANDLE system_message_context
+#define GLOBAL_DEBUG_FLAG core_system_data_buffer
+#define GLOBAL_RESOURCE_COUNTER core_system_buffer
 #define EVENT_HANDLER_DEFAULT system_memory_02f0
 #define MATERIAL_NOT_FOUND unknown_var_4496
 #define TEXTURE_NOT_FOUND unknown_var_4680

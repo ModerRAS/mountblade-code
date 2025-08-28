@@ -123,7 +123,7 @@ void UI_Component_Process_Config(longlong ui_context, longlong *config_ptr, uint
   if (stack_ptr_28 != (void *)0x0) {
     data_ptr1 = stack_ptr_28;
   }
-  (**(code **)(_DAT_180c8f008 + 0xe8))(data_ptr1, data_ptr2);
+  (**(code **)(system_cache_buffer + 0xe8))(data_ptr1, data_ptr2);
   (**(code **)*config_ptr)(config_ptr);
   stack_ptr_50 = &unknown_var_3456_ptr;
   if (stack_ptr_48 != (void *)0x0) {
@@ -164,7 +164,7 @@ void UI_System_Handle_Event(longlong ui_context, longlong event_source, longlong
   void *event_data_ptr1;
   void *event_data_ptr2;
   
-  callback_ptr = _DAT_180c8f018;
+  callback_ptr = ui_system_data_buffer;
   *(int8_t *)(ui_context + 0x189) = 1;
   if (callback_ptr == (code *)0x0) {
     System_Event_Default_Handler(&unknown_var_9680_ptr);
@@ -178,16 +178,16 @@ void UI_System_Handle_Event(longlong ui_context, longlong event_source, longlong
     if (*(void **)(event_data + 8) != (void *)0x0) {
       event_data_ptr2 = *(void **)(event_data + 8);
     }
-    (*callback_ptr)(event_data_ptr1, event_data_ptr2, _DAT_180c8ecfc, _DAT_180bf3ff4);
+    (*callback_ptr)(event_data_ptr1, event_data_ptr2, ui_system_data_buffer, ui_system_control_buffer);
   }
-  if (_DAT_180c8f010 == (code *)0x0) {
+  if (ui_system_data_buffer == (code *)0x0) {
     System_Event_Initialize(&unknown_var_9720_ptr);
-    if (_DAT_180c8f010 == (code *)0x0) {
+    if (ui_system_data_buffer == (code *)0x0) {
       System_Event_Default_Handler(&unknown_var_9680_ptr);
       goto event_processed;
     }
   }
-  (*_DAT_180c8f010)();
+  (*ui_system_data_buffer)();
 event_processed:
   *(longlong *)(ui_context + 0x10) = ui_context;
   (**(code **)(ui_context + 0x78))(0, UI_Callback_Function_01);
@@ -492,8 +492,8 @@ int * UI_Batch_Process(longlong ui_context, int *result_count, longlong *item_ar
   current_index = 0;
   batch_size = (**(code **)(ui_context + 0x60))(item_array[1] - *item_array >> 5);
   *result_count = batch_size;
-  if ((batch_size != 0) && (_DAT_180c8f008 != 0)) {
-    (**(code **)(_DAT_180c8f008 + 0x30))(batch_size);
+  if ((batch_size != 0) && (system_cache_buffer != 0)) {
+    (**(code **)(system_cache_buffer + 0x30))(batch_size);
   }
   item_flags = 1;
   array_start = *item_array;
@@ -530,7 +530,7 @@ int * UI_Batch_Process(longlong ui_context, int *result_count, longlong *item_ar
 uint64_t Get_FTDN_Managed_Interface(void)
 {
                     // 0x6523f0  33  get_ftdn_managed_interface
-  return _DAT_180c8f008;
+  return system_cache_buffer;
 }
 
 
@@ -627,7 +627,7 @@ void UI_Parse_Config_Data(longlong *config_context, longlong config_source)
             if (long_value2 == 0) {
               long_value2 = 1;
 resize_buffer:
-              data_ptr4 = (uint64_t *)System_Allocate_Buffer(_DAT_180c8ed18, long_value2 * 0x18, (char)config_context[3]);
+              data_ptr4 = (uint64_t *)System_Allocate_Buffer(system_memory_pool_ptr, long_value2 * 0x18, (char)config_context[3]);
               data_ptr5 = (uint64_t *)config_context[1];
               long_value3 = *config_context;
             }
@@ -1015,7 +1015,7 @@ void UI_Memory_Allocate(longlong element_size, longlong element_count)
 {
   uint64_t memory_handle;
   
-  memory_handle = System_Allocate_Buffer(_DAT_180c8ed18, element_size * element_count, 0x19);
+  memory_handle = System_Allocate_Buffer(system_memory_pool_ptr, element_size * element_count, 0x19);
                     // WARNING: Subroutine does not return
   memset(memory_handle, 0, element_size * element_count);
 }
@@ -1039,14 +1039,14 @@ void UI_Mono_Allocator_Initialize(void)
   uint64_t *allocator_table;
   int32_t *environment_var;
   
-  allocator_table = (uint64_t *)System_Allocate_Handle(_DAT_180c8ed18, 0x28, 8, 3, 0xfffffffffffffffe);
+  allocator_table = (uint64_t *)System_Allocate_Handle(system_memory_pool_ptr, 0x28, 8, 3, 0xfffffffffffffffe);
   *allocator_table = 1;
   allocator_table[1] = UI_Memory_Allocate;
   allocator_table[2] = UI_Memory_Reallocate;
   allocator_table[3] = UI_Memory_Free;
   allocator_table[4] = UI_Memory_Allocate_Array;
   mono_set_allocator_vtable(allocator_table);
-  environment_var = (int32_t *)System_Allocate_Buffer(_DAT_180c8ed18, 0x13, 0x13);
+  environment_var = (int32_t *)System_Allocate_Buffer(system_memory_pool_ptr, 0x13, 0x13);
   *(int8_t *)environment_var = 0;
   System_String_Sanitize(environment_var);
   *environment_var = 0x7372756e;
@@ -1055,7 +1055,7 @@ void UI_Mono_Allocator_Initialize(void)
   environment_var[3] = 0x3931383d;
   *(int16_t *)(environment_var + 4) = 0x6b32;
   *(int8_t *)((longlong)environment_var + 0x12) = 0;
-  allocator_table = (uint64_t *)System_Allocate_Buffer(_DAT_180c8ed18, 0x10, 0x13);
+  allocator_table = (uint64_t *)System_Allocate_Buffer(system_memory_pool_ptr, 0x10, 0x13);
   *(int8_t *)allocator_table = 0;
   System_String_Sanitize(allocator_table);
   *allocator_table = 0x5f43475f4f4e4f4d;
@@ -1103,7 +1103,7 @@ void UI_Load_Assembly(void)
   uint64_t stack_value_50;
   ulonglong stack_guard;
   
-  domain_handle = _DAT_180c91020;
+  domain_handle = ui_system_buffer;
   stack_value_50 = 0xfffffffffffffffe;
   stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   stack_value_98 = 0;
@@ -1126,7 +1126,7 @@ void UI_Load_Assembly(void)
   if (stack_ptr_b0 != (int32_t *)0x0) {
     namespace_ptr = stack_ptr_b0;
   }
-  assembly_handle = mono_domain_assembly_open(_DAT_180c91028, namespace_ptr);
+  assembly_handle = mono_domain_assembly_open(ui_system_buffer, namespace_ptr);
   stack_ptr_b8 = &unknown_var_3456_ptr;
   if (assembly_name != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -1149,7 +1149,7 @@ void UI_Load_Assembly(void)
   stack_value_78 = 0;
   stack_ptr_88 = (uint64_t *)0x0;
   stack_value_80 = 0;
-  class_name = (uint64_t *)System_Allocate_Buffer(_DAT_180c8ed18, 0x10, 0x13);
+  class_name = (uint64_t *)System_Allocate_Buffer(system_memory_pool_ptr, 0x10, 0x13);
   *(int8_t *)class_name = 0;
   stack_ptr_88 = class_name;
   name_length = System_String_Sanitize(class_name);
@@ -1162,7 +1162,7 @@ void UI_Load_Assembly(void)
   stack_size_a0 = 0;
   stack_ptr_b0 = (int32_t *)0x0;
   stack_size_a8 = 0;
-  namespace_ptr = (int32_t *)System_Allocate_Buffer(_DAT_180c8ed18, 0x12, 0x13);
+  namespace_ptr = (int32_t *)System_Allocate_Buffer(system_memory_pool_ptr, 0x12, 0x13);
   *(int8_t *)namespace_ptr = 0;
   stack_ptr_b0 = namespace_ptr;
   name_length = System_String_Sanitize(namespace_ptr);
@@ -1253,7 +1253,7 @@ void UI_Manage_Buffer(longlong buffer_context, uint64_t data_source, int data_si
         buffer_start = 0;
       }
       else {
-        buffer_start = System_Allocate_Buffer(_DAT_180c8ed18, new_size, *(int8_t *)(buffer_context + 0x28));
+        buffer_start = System_Allocate_Buffer(system_memory_pool_ptr, new_size, *(int8_t *)(buffer_context + 0x28));
         buffer_end = *(longlong *)(buffer_context + 0x10);
         buffer_capacity = *(longlong *)(buffer_context + 0x18);
       }
@@ -1333,7 +1333,7 @@ void UI_Dynamic_Buffer_Manage(longlong target_pos, longlong source_pos, uint64_t
       buffer_start = 0;
     }
     else {
-      buffer_start = System_Allocate_Buffer(_DAT_180c8ed18, new_capacity, *(int8_t *)(buffer_context + 0x28));
+      buffer_start = System_Allocate_Buffer(system_memory_pool_ptr, new_capacity, *(int8_t *)(buffer_context + 0x28));
       target_pos = *(longlong *)(buffer_context + 0x10);
       new_buffer = *buffer_ptr;
     }

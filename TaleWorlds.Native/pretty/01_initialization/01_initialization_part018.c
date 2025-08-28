@@ -6,18 +6,18 @@
 
 // 全局变量声明
 uint64_t SYSTEM_STATE_MANAGER;  // 引擎配置数据
-uint64_t _DAT_180c86918;  // 全局状态指针
-uint64_t _DAT_180c86950;  // 配置参数指针
-uint64_t _DAT_180c86870;  // 主引擎指针
-uint64_t _DAT_180c868b0;  // 子系统配置指针
-uint64_t _DAT_180c86890;  // 扩展配置指针
-uint64_t _DAT_180c82868;  // 基础配置指针
-uint64_t _DAT_180c86930;  // 高级配置指针
-uint64_t _DAT_180c868a8;  // 替代配置指针
-uint64_t _DAT_180c8ed08;  // 外部接口指针
-uint64_t _DAT_180c8ed18;  // 内存管理器
+uint64_t init_system_data_pointer;  // 全局状态指针
+uint64_t system_operation_state;  // 配置参数指针
+uint64_t system_main_module_state;  // 主引擎指针
+uint64_t init_system_data_pointer;  // 子系统配置指针
+uint64_t system_parameter_buffer;  // 扩展配置指针
+uint64_t system_context_ptr;  // 基础配置指针
+uint64_t system_resource_state;  // 高级配置指针
+uint64_t init_system_data_pointer;  // 替代配置指针
+uint64_t init_system_data_pointer;  // 外部接口指针
+uint64_t system_memory_pool_ptr;  // 内存管理器
 uint64_t GET_SECURITY_COOKIE();  // 安全验证数据
-uint64_t _DAT_180bf65b8;  // 时间戳数据
+uint64_t system_memory_flags;  // 时间戳数据
 
 /**
  * 计算并设置渲染质量参数
@@ -133,7 +133,7 @@ void cleanup_resource_manager(longlong *config_ptr)
   if (resource_ptr != (uint64_t *)0x0) {
     temp_var = __RTCastToVoid(resource_ptr);
     *resource_ptr = &unknown_var_2976_ptr;
-    FUN_18005e570(_DAT_180c82868, resource_ptr[0x28]);
+    FUN_18005e570(system_context_ptr, resource_ptr[0x28]);
     resource_ptr[0x28] = 0;
     
     // 清理附加资源
@@ -164,17 +164,17 @@ void cleanup_resource_manager(longlong *config_ptr)
   *config_ptr = 0;
   
   // 清理全局状态
-  temp_var = _DAT_180c86918;
-  if (_DAT_180c86918 != 0) {
+  temp_var = init_system_data_pointer;
+  if (init_system_data_pointer != 0) {
     FUN_180057550();
     // 警告：子程序不返回
     FUN_18064e900(temp_var);
   }
-  _DAT_180c86918 = 0;
+  init_system_data_pointer = 0;
   
   // 清理配置参数
   FUN_1800578a0();
-  _DAT_180c86950 = 0;
+  system_operation_state = 0;
   
   // 清理系统配置
   if (config_ptr[6] != 0) {
@@ -451,12 +451,12 @@ void parse_config_string(uint64_t config_handle, longlong string_param)
   int8_t auStack_80 [72];
   ulonglong uStack_38;
   
-  lVar24 = _DAT_180c86870;
+  lVar24 = system_main_module_state;
   uStack_a8 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_368;
   puVar11 = (int8_t *)0x0;
   uStack_334 = 0;
-  lStack_260 = _DAT_180c86870;
+  lStack_260 = system_main_module_state;
   cStack_338 = '\0';
   puVar17 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
@@ -474,8 +474,8 @@ void parse_config_string(uint64_t config_handle, longlong string_param)
   uStack_300 = 0;
   puStack_268 = puVar17;
   uStack_150 = uVar21;
-  (**(code **)(*(longlong *)(_DAT_180c86870 + 0x2c0) + 0x10))
-            ((longlong *)(_DAT_180c86870 + 0x2c0),puVar17);
+  (**(code **)(*(longlong *)(system_main_module_state + 0x2c0) + 0x10))
+            ((longlong *)(system_main_module_state + 0x2c0),puVar17);
   uStack_2f0 = 0;
   puVar14 = puVar11;
   if (uVar21 != 0) {
@@ -484,7 +484,7 @@ void parse_config_string(uint64_t config_handle, longlong string_param)
       uVar8 = (uint)puVar14;
       if ((bVar1 & 0xdf) == 0) {
         lVar20 = lVar24 + 0x2e0;
-        lVar9 = FUN_18062b420(_DAT_180c8ed18,0x40,*(int8_t *)(lVar24 + 0x308));
+        lVar9 = FUN_18062b420(system_memory_pool_ptr,0x40,*(int8_t *)(lVar24 + 0x308));
         FUN_180627ae0(lVar9 + 0x20,&puStack_310);
         lVar10 = FUN_1800590b0(lVar20,&cStack_337,lVar9 + 0x20);
         if (cStack_337 != '\0') {
@@ -525,13 +525,13 @@ void update_render_config(longlong config_ptr)
   dimension_ptr = (int *)(config_ptr + 0x3d0);
   
   // 检查配置是否已更改
-  if (((int)*(float *)(_DAT_180c86950 + 0x17ec) == *(int *)(config_ptr + 0x3cc)) &&
-     ((int)*(float *)(_DAT_180c86950 + 0x17f0) == *dimension_ptr)) {
+  if (((int)*(float *)(system_operation_state + 0x17ec) == *(int *)(config_ptr + 0x3cc)) &&
+     ((int)*(float *)(system_operation_state + 0x17f0) == *dimension_ptr)) {
     needs_update = false;
   }
   else {
     needs_update = true;
-    FUN_180092820(_DAT_180c86950, *(int *)(config_ptr + 0x3cc), *dimension_ptr);
+    FUN_180092820(system_operation_state, *(int *)(config_ptr + 0x3cc), *dimension_ptr);
   }
   
   // 处理渲染模式2
@@ -541,7 +541,7 @@ void update_render_config(longlong config_ptr)
       FUN_18005ca20(SYSTEM_STATE_MANAGER, 0);
       FUN_1801725e0(*(uint64_t *)(config_ptr + 8), *(int32_t *)(config_ptr + 0x3cc), *dimension_ptr,
                     *(int8_t *)(config_ptr + 0x3d5));
-      FUN_1800a3880(_DAT_180c86938, *(int32_t *)(config_ptr + 0x3cc), *dimension_ptr, 1);
+      FUN_1800a3880(system_message_buffer, *(int32_t *)(config_ptr + 0x3cc), *dimension_ptr, 1);
       FUN_18005ca20(SYSTEM_STATE_MANAGER, temp_config);
       FUN_1801725e0(*(uint64_t *)(config_ptr + 8), *(int32_t *)(config_ptr + 0x3cc), *dimension_ptr,
                     *(int8_t *)(config_ptr + 0x3d5));
@@ -571,12 +571,12 @@ void update_render_config(longlong config_ptr)
   
 APPLY_CHANGES:
   // 应用配置更改
-  FUN_1800a3880(_DAT_180c86938, *(int32_t *)(config_ptr + 0x3cc), *dimension_ptr, use_secondary);
+  FUN_1800a3880(system_message_buffer, *(int32_t *)(config_ptr + 0x3cc), *dimension_ptr, use_secondary);
   if (!needs_update) {
     return;
   }
   // 警告：子程序不返回
-  FUN_180062300(_DAT_180c86928, &unknown_var_5656_ptr, *(int32_t *)(config_ptr + 0x3cc), *dimension_ptr);
+  FUN_180062300(system_message_context, &unknown_var_5656_ptr, *(int32_t *)(config_ptr + 0x3cc), *dimension_ptr);
 }
 
 
@@ -610,13 +610,13 @@ uint initialize_graphics_driver_config(void)
   int8_t temp_buffer1 [32]; // 临时缓冲区1
   int8_t temp_buffer2 [40]; // 临时缓冲区2
   
-  main_engine = _DAT_180c86870;
+  main_engine = system_main_module_state;
   stack_guard2 = 0xfffffffffffffffe;
   
   // 读取第一个配置数据块
   config_data = *(int8_t (*) [16])
-            (*(longlong *)(_DAT_180c86870 + 8) + 0xcc +
-            (ulonglong)(*(uint *)(*(longlong *)(_DAT_180c86870 + 8) + 0x13c) & 1) * 0x48);
+            (*(longlong *)(system_main_module_state + 8) + 0xcc +
+            (ulonglong)(*(uint *)(*(longlong *)(system_main_module_state + 8) + 0x13c) & 1) * 0x48);
   
   // 处理第一个配置块
   if ((config_data._12_4_ != 0) && (config_data._8_4_ != 0)) {
@@ -646,7 +646,7 @@ uint initialize_graphics_driver_config(void)
     
     FUN_180628380(&cleanup_ptr, config_data._8_8_ >> 0x20);
     resource_ptr = (uint64_t *)FUN_180627ae0(temp_buffer1, &cleanup_ptr);
-    FUN_18005c8a0(_DAT_180c868b0 + 0xe30, resource_ptr);
+    FUN_18005c8a0(init_system_data_pointer + 0xe30, resource_ptr);
     
     // 清理资源
     *resource_ptr = &unknown_var_3456_ptr;
@@ -697,7 +697,7 @@ uint initialize_graphics_driver_config(void)
     
     FUN_180628380(&string_ptr, config_data._8_8_ >> 0x20);
     resource_ptr = (uint64_t *)FUN_180627ae0(temp_buffer2, &string_ptr);
-    FUN_18005c8a0(_DAT_180c868b0 + 0xef0, resource_ptr);
+    FUN_18005c8a0(init_system_data_pointer + 0xef0, resource_ptr);
     
     // 清理资源
     *resource_ptr = &unknown_var_3456_ptr;
@@ -787,7 +787,7 @@ void manage_config_buffers(uint64_t param_1, uint64_t param_2, uint64_t param_3,
   uint buffer_size_total;     // 总缓冲区大小
   uint64_t result_flags;    // 结果标志
   
-  config_ptr1 = _DAT_180c868b0;
+  config_ptr1 = init_system_data_pointer;
   cleanup_ptr = &unknown_var_3456_ptr;
   result_flags = 0;
   buffer_ptr = 0;
@@ -795,9 +795,9 @@ void manage_config_buffers(uint64_t param_1, uint64_t param_2, uint64_t param_3,
   
   // 处理第一个配置块
   if (*(int *)(SYSTEM_STATE_MANAGER + 0x1ea0) == 0) {
-    buffer_size1 = *(uint *)(_DAT_180c868b0 + 0xe40);
+    buffer_size1 = *(uint *)(init_system_data_pointer + 0xe40);
     data_size = (ulonglong)buffer_size1;
-    if (*(longlong *)(_DAT_180c868b0 + 0xe38) != 0) {
+    if (*(longlong *)(init_system_data_pointer + 0xe38) != 0) {
       FUN_1806277c0(&cleanup_ptr, data_size, param_3, param_4, 0xfffffffffffffffe);
     }
     if (buffer_size1 != 0) {
@@ -811,11 +811,11 @@ void manage_config_buffers(uint64_t param_1, uint64_t param_2, uint64_t param_3,
   }
   
   // 处理第二个配置块
-  config_ptr1 = _DAT_180c868b0;
+  config_ptr1 = init_system_data_pointer;
   buffer_size_total = 0;
-  buffer_size1 = *(uint *)(_DAT_180c868b0 + 0xf00);
+  buffer_size1 = *(uint *)(init_system_data_pointer + 0xf00);
   data_size = (ulonglong)buffer_size1;
-  if (*(longlong *)(_DAT_180c868b0 + 0xef8) != 0) {
+  if (*(longlong *)(init_system_data_pointer + 0xef8) != 0) {
     FUN_1806277c0(&cleanup_ptr, data_size);
   }
   if (buffer_size1 != 0) {
@@ -827,12 +827,12 @@ void manage_config_buffers(uint64_t param_1, uint64_t param_2, uint64_t param_3,
   }
   
   // 处理第三个配置块
-  config_ptr2 = _DAT_180c868b0;
+  config_ptr2 = init_system_data_pointer;
   result_flags = CONCAT44(*(int32_t *)(config_ptr1 + 0xf0c), (int32_t)result_flags);
-  buffer_size2 = *(uint *)(_DAT_180c868b0 + 0xfc0);
+  buffer_size2 = *(uint *)(init_system_data_pointer + 0xfc0);
   data_size = (ulonglong)buffer_size2;
   buffer_size_total = buffer_size1;
-  if (*(longlong *)(_DAT_180c868b0 + 0xfb8) != 0) {
+  if (*(longlong *)(init_system_data_pointer + 0xfb8) != 0) {
     FUN_1806277c0(&cleanup_ptr, data_size);
   }
   if (buffer_size2 != 0) {
@@ -895,31 +895,31 @@ void initialize_system_parameters(void)
   int8_t temp_buffer3 [264]; // 临时缓冲区3
   ulonglong security_hash;   // 安全哈希
   
-  main_engine = _DAT_180c86870;
+  main_engine = system_main_module_state;
   stack_guard = 0xfffffffffffffffe;
   security_hash = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer1;
   
   // 检查系统状态并设置时间戳
-  if (*(void **)*_DAT_180c8ed08 == &unknown_var_424_ptr) {
-    is_enabled = *(int *)(_DAT_180c8a9c8 + 0xe0) != 0;
+  if (*(void **)*init_system_data_pointer == &unknown_var_424_ptr) {
+    is_enabled = *(int *)(init_system_data_pointer + 0xe0) != 0;
   }
   else {
-    is_enabled = (**(code **)(*(void **)*_DAT_180c8ed08 + 0x48))();
+    is_enabled = (**(code **)(*(void **)*init_system_data_pointer + 0x48))();
   }
   
   // 设置时间戳
   if (is_enabled == '\0') {
-    _DAT_180bf65b8 = timeGetTime();
+    system_memory_flags = timeGetTime();
   }
   else {
-    _DAT_180bf65b8 = 0xb061;
+    system_memory_flags = 0xb061;
   }
   
   engine_config = SYSTEM_STATE_MANAGER;
-  _DAT_180bf65b8 = _DAT_180bf65b8 ^ 0x41c64e6d;
+  system_memory_flags = system_memory_flags ^ 0x41c64e6d;
   
   // 计算缩放因子
-  if ((*(longlong *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(SYSTEM_STATE_MANAGER + 0x540) < 1)) {
+  if ((*(longlong *)(system_parameter_buffer + 0x7ab8) == 0) || (*(int *)(SYSTEM_STATE_MANAGER + 0x540) < 1)) {
     if (*(int *)(SYSTEM_STATE_MANAGER + 0x2140) == 0) {
       scale_factor = *(float *)(SYSTEM_STATE_MANAGER + 0x20d0);
     }
@@ -940,7 +940,7 @@ void initialize_system_parameters(void)
   // 处理特殊渲染模式
   if (*(int *)(engine_config + 0x1ea0) == 1) {
     temp_int = *(int *)(engine_config + 0x1d50);
-    config_ptr = (int *)FUN_180171f10(*(uint64_t *)(_DAT_180c86870 + 8), temp_buffer2);
+    config_ptr = (int *)FUN_180171f10(*(uint64_t *)(system_main_module_state + 8), temp_buffer2);
     quality_factor = (float)temp_int / (float)*config_ptr;
     scale_factor = quality_factor * *(float *)(main_engine + 0x234);
     quality_factor = quality_factor * *(float *)(main_engine + 0x238);
@@ -983,14 +983,14 @@ void initialize_system_parameters(void)
   *(uint64_t *)(main_engine + 0x25c) = 0x3f8000003f800000;
   
   // 初始化子系统配置
-  subsystem_config = _DAT_180c86890;
-  engine_config = _DAT_180c82868;
+  subsystem_config = system_parameter_buffer;
+  engine_config = system_context_ptr;
   cleanup_ptr = &unknown_var_7512_ptr;
   data_ptr = temp_buffer3;
   temp_buffer3[0] = 0;
   data_size = 0xd;
   strcpy_s(temp_buffer3, 0x10, &unknown_var_3392_ptr);
-  puVar6 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x208,8,3);
+  puVar6 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x208,8,3);
   lStack_1e8 = lVar2 + 0x70;
   apuStack_1c8[0] = puVar6;
   FUN_18020e0e0(puVar6,&puStack_168,3,lVar2 + 0x2e0);
@@ -1004,10 +1004,10 @@ void initialize_system_parameters(void)
   if (*(void **)(lVar3 + 0x278) != (void *)0x0) {
     puVar8 = *(void **)(lVar3 + 0x278);
   }
-  (**(code **)(*(longlong *)(_DAT_180c86930 + 0x560) + 0x10))
-            ((longlong *)(_DAT_180c86930 + 0x560),puVar8);
-  lVar3 = _DAT_180c868a8;
-  lStack_1d8 = FUN_18062b1e0(_DAT_180c8ed18,0x30,8,3);
+  (**(code **)(*(longlong *)(system_resource_state + 0x560) + 0x10))
+            ((longlong *)(system_resource_state + 0x560),puVar8);
+  lVar3 = init_system_data_pointer;
+  lStack_1d8 = FUN_18062b1e0(system_memory_pool_ptr,0x30,8,3);
   *(uint64_t *)(lStack_1d8 + 0x28) = 3;
   *(int32_t *)(lStack_1d8 + 0x19) = 0;
   *(int16_t *)(lStack_1d8 + 0x1d) = 0;
@@ -1019,22 +1019,22 @@ void initialize_system_parameters(void)
   *(uint64_t *)(lStack_1d8 + 0x20) = 0;
   *(longlong *)(lVar3 + 0xa8) = lStack_1d8;
   lStack_1d0 = lStack_1d8;
-  FUN_1802567b0(*(uint64_t *)(_DAT_180c868a8 + 0xa8),&system_buffer_12e0,&unknown_var_7552_ptr,FUN_180086670);
-  FUN_1802567b0(*(uint64_t *)(_DAT_180c868a8 + 0xa8),&system_buffer_02e0,&system_buffer_0410,FUN_1800868d0);
-  FUN_1802567b0(*(uint64_t *)(_DAT_180c868a8 + 0xa8),&system_buffer_12f0,&unknown_var_7536_ptr,FUN_180086600);
-  FUN_1802567b0(*(uint64_t *)(_DAT_180c868a8 + 0xa8),&system_buffer_0ef8,&unknown_var_7760_ptr,FUN_180086960);
-  FUN_1802567b0(*(uint64_t *)(_DAT_180c868a8 + 0xa8),&unknown_var_312_ptr,&unknown_var_7808_ptr,FUN_180086a00);
-  FUN_1802567b0(*(uint64_t *)(_DAT_180c868a8 + 0xa8),&system_buffer_1228,&system_buffer_0360,FUN_180086740);
-  FUN_1802567b0(*(uint64_t *)(_DAT_180c868a8 + 0xa8),&system_buffer_0c90,&unknown_var_7856_ptr,FUN_180086aa0);
-  FUN_1802567b0(*(uint64_t *)(_DAT_180c868a8 + 0xa8),&unknown_var_9448_ptr,&unknown_var_9464_ptr,FUN_1800900c0);
-  FUN_1802567b0(*(uint64_t *)(_DAT_180c868a8 + 0xa8),&unknown_var_1168_ptr,&unknown_var_7576_ptr,FUN_180086830);
-  FUN_1802567b0(*(uint64_t *)(_DAT_180c868a8 + 0xa8),&system_buffer_09f0,&unknown_var_9264_ptr,FUN_180090020);
-  FUN_1802567b0(*(uint64_t *)(_DAT_180c868a8 + 0xa8),&system_buffer_0c80,&unknown_var_7872_ptr,FUN_180086b40);
+  FUN_1802567b0(*(uint64_t *)(init_system_data_pointer + 0xa8),&system_buffer_12e0,&unknown_var_7552_ptr,FUN_180086670);
+  FUN_1802567b0(*(uint64_t *)(init_system_data_pointer + 0xa8),&system_buffer_02e0,&system_buffer_0410,FUN_1800868d0);
+  FUN_1802567b0(*(uint64_t *)(init_system_data_pointer + 0xa8),&system_buffer_12f0,&unknown_var_7536_ptr,FUN_180086600);
+  FUN_1802567b0(*(uint64_t *)(init_system_data_pointer + 0xa8),&system_buffer_0ef8,&unknown_var_7760_ptr,FUN_180086960);
+  FUN_1802567b0(*(uint64_t *)(init_system_data_pointer + 0xa8),&unknown_var_312_ptr,&unknown_var_7808_ptr,FUN_180086a00);
+  FUN_1802567b0(*(uint64_t *)(init_system_data_pointer + 0xa8),&system_buffer_1228,&system_buffer_0360,FUN_180086740);
+  FUN_1802567b0(*(uint64_t *)(init_system_data_pointer + 0xa8),&system_buffer_0c90,&unknown_var_7856_ptr,FUN_180086aa0);
+  FUN_1802567b0(*(uint64_t *)(init_system_data_pointer + 0xa8),&unknown_var_9448_ptr,&unknown_var_9464_ptr,FUN_1800900c0);
+  FUN_1802567b0(*(uint64_t *)(init_system_data_pointer + 0xa8),&unknown_var_1168_ptr,&unknown_var_7576_ptr,FUN_180086830);
+  FUN_1802567b0(*(uint64_t *)(init_system_data_pointer + 0xa8),&system_buffer_09f0,&unknown_var_9264_ptr,FUN_180090020);
+  FUN_1802567b0(*(uint64_t *)(init_system_data_pointer + 0xa8),&system_buffer_0c80,&unknown_var_7872_ptr,FUN_180086b40);
   puVar7 = (int32_t *)FUN_18008d660(lVar3 + 0xe0,&system_buffer_09f0);
   *puVar7 = 1;
   puVar7 = (int32_t *)FUN_18008d660(lVar3 + 0xe0,&system_buffer_12f0);
   *puVar7 = 1;
-  lStack_1d0 = FUN_18062b1e0(_DAT_180c8ed18,0x3878,8,3);
+  lStack_1d0 = FUN_18062b1e0(system_memory_pool_ptr,0x3878,8,3);
                     // WARNING: Subroutine does not return
   memset(lStack_1d0,0,0x3878);
 }

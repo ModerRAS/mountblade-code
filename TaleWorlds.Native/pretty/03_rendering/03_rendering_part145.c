@@ -508,7 +508,7 @@ void rendering_system_advanced_initializer_and_state_manager(
     render_data = *(uint64_t *)(*(longlong *)(render_context + 0x18) + 0x20);
     
     // 内存分配操作
-    temp_value = FUN_18062b1e0(_DAT_180c8ed18, MEMORY_ALLOC_SIZE_0x2f0, MEMORY_ALLOC_SIZE_0x10, MEMORY_ALLOC_SIZE_0xd);
+    temp_value = FUN_18062b1e0(system_memory_pool_ptr, MEMORY_ALLOC_SIZE_0x2f0, MEMORY_ALLOC_SIZE_0x10, MEMORY_ALLOC_SIZE_0xd);
     memory_pointer = (longlong *)FUN_1802e6b00(temp_value, 4);
     stack_pointer_2 = memory_pointer;
     

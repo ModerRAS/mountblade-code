@@ -339,7 +339,7 @@ process_engine_version_info(uint64_t param_1, uint64_t *param_2, uint64_t param_
     local_var1 = 0;
     temp_ptr2 = (uint64_t *)0x0;
     buffer_size1 = 0;
-    data_ptr = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+    data_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
     *(int8_t *)data_ptr = 0;
     temp_ptr2 = data_ptr;
     temp_flag = FUN_18064e990(data_ptr);
@@ -359,7 +359,7 @@ process_engine_version_info(uint64_t param_1, uint64_t *param_2, uint64_t param_
     local_var2 = 0;
     temp_ptr4 = (uint64_t *)0x0;
     buffer_size2 = 0;
-    data_ptr = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+    data_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
     *(int8_t *)data_ptr = 0;
     temp_ptr4 = data_ptr;
     temp_flag = FUN_18064e990(data_ptr);
@@ -379,7 +379,7 @@ process_engine_version_info(uint64_t param_1, uint64_t *param_2, uint64_t param_
     local_var1 = 0;
     temp_ptr2 = (uint64_t *)0x0;
     buffer_size1 = 0;
-    data_ptr = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+    data_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
     *(int8_t *)data_ptr = 0;
     temp_ptr2 = data_ptr;
     temp_flag = FUN_18064e990(data_ptr);

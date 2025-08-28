@@ -851,7 +851,7 @@ uint64_t Validate_Render_Object_State(longlong render_context)
     if ((*(byte *)((longlong)plVar1 + 0xfd) & 0x20) == 0) {
       plVar3 = (longlong *)func_0x000180085de0(plVar1[0x36]);
     }
-    uVar8 = *(ulonglong *)(_DAT_180c86870 + 0x98);
+    uVar8 = *(ulonglong *)(system_main_module_state + 0x98);
     if (uVar8 != 0) {
       puVar7 = (uint64_t *)(uVar8 + 0x30);
       if (plVar3 != (longlong *)0x0) {
@@ -930,7 +930,7 @@ void Reset_Rendering_Flags(longlong render_context, uint flags_to_reset)
         lVar3 = *plVar7;
         if (*(longlong *)(lVar3 + 0x1b8) != 0) {
           lVar6 = 0xb8;
-          lVar5 = _DAT_180c86870;
+          lVar5 = system_main_module_state;
           do {
             lVar4 = *(longlong *)(lVar6 + *(longlong *)(lVar3 + 0x1b8));
             if ((((lVar4 != 0) && (*(longlong *)(lVar6 + 0x328 + *(longlong *)(lVar3 + 0x1b8)) == 0)
@@ -938,7 +938,7 @@ void Reset_Rendering_Flags(longlong render_context, uint flags_to_reset)
                (*(longlong *)(lVar4 + 0x370) == 0)) {
               if (*(longlong *)(lVar4 + 0x1d8) == 0) {
                 FUN_18023b050(lVar4,0);
-                lVar5 = _DAT_180c86870;
+                lVar5 = system_main_module_state;
                 piVar1 = (int *)(*(longlong *)(lVar6 + *(longlong *)(lVar3 + 0x1b8)) + 0x3a8);
                 *piVar1 = *piVar1 + 1;
               }

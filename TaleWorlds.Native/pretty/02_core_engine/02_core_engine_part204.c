@@ -4,7 +4,7 @@
 // 02_core_engine_part204.c - 核心引擎内存管理和数据处理模块 (17个函数)
 
 // 全局变量声明
-extern uint64_t _DAT_180c8a9e0;    // 核心引擎数据结构指针
+extern uint64_t core_system_data_string;    // 核心引擎数据结构指针
 extern uint64_t GET_SECURITY_COOKIE();    // 安全检查相关数据
 extern int8_t global_var_3456_ptr;     // 空字符串标记
 extern int8_t global_var_720_ptr;      // 字符串常量
@@ -17,7 +17,7 @@ extern int8_t global_var_536_ptr;      // 结果处理标记
 extern int8_t global_var_872_ptr;      // 节点类型标记
 extern int8_t global_var_952_ptr;      // 链表类型标记
 extern int8_t global_var_1032_ptr;      // 特殊处理标记
-extern uint64_t _DAT_180c8ed18;    // 内存池标识
+extern uint64_t system_memory_pool_ptr;    // 内存池标识
 extern int8_t system_buffer_ptr;      // 默认字符串数据
 
 /**
@@ -146,11 +146,11 @@ void format_and_process_string_data(uint64_t context, uint64_t *data_ptr)
   void **string_pointer;
   ulonglong security_xor;
   
-  engine_data = _DAT_180c8a9e0;
+  engine_data = core_system_data_string;
   cleanup_flag = 0xfffffffffffffffe;
   security_xor = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   output_data = data_ptr;
-  if (*(longlong *)(_DAT_180c8a9e0 + 8) == 0) {
+  if (*(longlong *)(core_system_data_string + 8) == 0) {
     *data_ptr = &global_var_3456_ptr;
     if (data_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -302,12 +302,12 @@ void process_dual_parameter_formatting(uint64_t context, uint64_t *first_data, u
   uint64_t second_size;
   ulonglong security_xor;
   
-  engine_data = _DAT_180c8a9e0;
+  engine_data = core_system_data_string;
   cleanup_flag = 0xfffffffffffffffe;
   security_xor = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   output_first = first_data;
   output_second = second_data;
-  if (*(longlong *)(_DAT_180c8a9e0 + 8) == 0) {
+  if (*(longlong *)(core_system_data_string + 8) == 0) {
     *first_data = &global_var_3456_ptr;
     if (first_data[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -439,12 +439,12 @@ void process_quad_parameter_formatting(uint64_t context, uint64_t *first_data, u
   int32_t param2_value;
   ulonglong security_xor;
   
-  engine_data = _DAT_180c8a9e0;
+  engine_data = core_system_data_string;
   cleanup_flag = 0xfffffffffffffffe;
   security_xor = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   output_first = first_data;
   output_second = second_data;
-  if (*(longlong *)(_DAT_180c8a9e0 + 8) == 0) {
+  if (*(longlong *)(core_system_data_string + 8) == 0) {
     *first_data = &global_var_3456_ptr;
     if (first_data[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -554,10 +554,10 @@ void process_array_data_formatting(uint64_t context, longlong array_data, ulongl
   void **format_pointer;
   ulonglong security_xor;
   
-  engine_data = _DAT_180c8a9e0;
+  engine_data = core_system_data_string;
   cleanup_flag = 0xfffffffffffffffe;
   security_xor = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
-  if (*(longlong *)(_DAT_180c8a9e0 + 8) != 0) {
+  if (*(longlong *)(core_system_data_string + 8) != 0) {
     array_head = (void **)0x0;
     array_tail = (void **)0x0;
     array_index = 0;
@@ -636,7 +636,7 @@ void initialize_memory_pool_structure(void)
 {
   longlong pool_memory;
   
-  pool_memory = FUN_18062b1e0(_DAT_180c8ed18,0x88,8,3,0xfffffffffffffffe);
+  pool_memory = FUN_18062b1e0(system_memory_pool_ptr,0x88,8,3,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
   memset(pool_memory + 0x14,0,0x74);
 }
@@ -668,9 +668,9 @@ void remove_entry_from_string_map(uint64_t context, uint64_t *string_data)
   uint64_t *map_start;
   longlong string_offset;
   
-  engine_data = _DAT_180c8a9e0;
-  map_start = *(uint64_t **)(_DAT_180c8a9e0 + 0x18);
-  if (map_start != *(uint64_t **)(_DAT_180c8a9e0 + 0x20)) {
+  engine_data = core_system_data_string;
+  map_start = *(uint64_t **)(core_system_data_string + 0x18);
+  if (map_start != *(uint64_t **)(core_system_data_string + 0x20)) {
     target_length = *(int *)(string_data + 2);
     do {
       map_entry = (uint64_t *)*map_start;
@@ -726,7 +726,7 @@ ENTRY_FOUND:
       }
       else if (entry_length == 0) goto ENTRY_FOUND;
       map_start = map_start + 1;
-    } while (map_start != *(uint64_t **)(_DAT_180c8a9e0 + 0x20));
+    } while (map_start != *(uint64_t **)(core_system_data_string + 0x20));
   }
   FUN_180187390(engine_data,&global_var_276_ptr);
   *string_data = &global_var_3456_ptr;

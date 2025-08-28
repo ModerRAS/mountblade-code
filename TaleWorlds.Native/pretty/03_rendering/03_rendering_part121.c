@@ -413,7 +413,7 @@ longlong* rendering_system_array_data_copy(longlong** dest_ptr, longlong* src_st
             
             // 分配内存（如果需要）
             if (array_size != 0) {
-                data_offset = FUN_18062b420(_DAT_180c8ed18, array_size * 8, element_value & 0xff);
+                data_offset = FUN_18062b420(system_memory_pool_ptr, array_size * 8, element_value & 0xff);
             }
             
             // 设置数组指针
@@ -662,7 +662,7 @@ void rendering_system_memory_allocator(longlong context_ptr, longlong size) {
     uint64_t* allocated_memory;
     
     // 分配内存（包含对齐和初始化）
-    allocated_memory = FUN_18062b1e0(_DAT_180c8ed18, size * 8 + 8, RENDERING_SYSTEM_MEMORY_ALIGNMENT, *(int8_t *)(context_ptr + 0x2c));
+    allocated_memory = FUN_18062b1e0(system_memory_pool_ptr, size * 8 + 8, RENDERING_SYSTEM_MEMORY_ALIGNMENT, *(int8_t *)(context_ptr + 0x2c));
     
     // 初始化内存块
     memset(allocated_memory, 0, size * 8);

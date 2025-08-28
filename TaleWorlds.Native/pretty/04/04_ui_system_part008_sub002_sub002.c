@@ -53,7 +53,7 @@ extern char FUN_18063e7e0(longlong *param_1, uint64_t *param_2);
 extern void FUN_18064e900(uint64_t *param_1);
 
 // 全局变量引用
-#define GLOBAL_MEMORY_POOL _DAT_180c8ed18
+#define GLOBAL_MEMORY_POOL system_memory_pool_ptr
 
 /**
  * UI系统高级数据结构处理器

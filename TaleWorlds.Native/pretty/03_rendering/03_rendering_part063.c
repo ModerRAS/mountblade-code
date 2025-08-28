@@ -19,31 +19,31 @@ void rendering_system_bit_flag_processor(longlong rendering_context_ptr, int32_t
   if ((bit_flags & 1) != 0) {
     render_device_ptr = *(longlong **)(rendering_context_ptr + 0x8400);
     render_function_ptr = *(code **)(*render_device_ptr + 0x38);
-    *(int32_t *)(result_buffer_ptr + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+    *(int32_t *)(result_buffer_ptr + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
     (*render_function_ptr)(render_device_ptr, render_param, 1, result_buffer_ptr + 0x10);
   }
   if ((bit_flags & 4) != 0) {
     render_device_ptr = *(longlong **)(rendering_context_ptr + 0x8400);
     render_function_ptr = *(code **)(*render_device_ptr + 0x1f0);
-    *(int32_t *)(result_buffer_ptr + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+    *(int32_t *)(result_buffer_ptr + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
     (*render_function_ptr)(render_device_ptr, render_param, 1, result_buffer_ptr + 0x10);
   }
   if ((bit_flags & 2) != 0) {
     render_device_ptr = *(longlong **)(rendering_context_ptr + 0x8400);
     render_function_ptr = *(code **)(*render_device_ptr + 0x210);
-    *(int32_t *)(result_buffer_ptr + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+    *(int32_t *)(result_buffer_ptr + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
     (*render_function_ptr)(render_device_ptr, render_param, 1, result_buffer_ptr + 0x10);
   }
   if ((bit_flags & 0x10) != 0) {
     render_device_ptr = *(longlong **)(rendering_context_ptr + 0x8400);
     render_function_ptr = *(code **)(*render_device_ptr + 0x80);
-    *(int32_t *)(result_buffer_ptr + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+    *(int32_t *)(result_buffer_ptr + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
     (*render_function_ptr)(render_device_ptr, render_param, 1, result_buffer_ptr + 0x10);
   }
   if ((bit_flags & 0x20) != 0) {
     render_device_ptr = *(longlong **)(rendering_context_ptr + 0x8400);
     render_function_ptr = *(code **)(*render_device_ptr + 0x238);
-    *(int32_t *)(result_buffer_ptr + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+    *(int32_t *)(result_buffer_ptr + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
     (*render_function_ptr)(render_device_ptr, render_param, 1, result_buffer_ptr + 0x10);
   }
   return;
@@ -97,7 +97,7 @@ void rendering_system_parameter_initializer(longlong rendering_context_ptr, long
   uint64_t temp_buffer[2];           // 临时缓冲区
   
   // 设置结果缓冲区的状态
-  *(int32_t *)(result_buffer_ptr + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+  *(int32_t *)(result_buffer_ptr + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
   
   // 调用渲染设备的初始化函数
   init_result = (**(code **)(**(longlong **)(rendering_context_ptr + 0x8400) + 0x70))
@@ -500,7 +500,7 @@ LAB_18029ffc7:
   
   allocation_result = 0;
 LAB_1802a0010:
-  key_offset = FUN_18062b420(_DAT_180c8ed18, 0x158, (char)resource_manager_ptr[5]);
+  key_offset = FUN_18062b420(system_memory_pool_ptr, 0x158, (char)resource_manager_ptr[5]);
   FUN_180068ff0(key_offset + 0x20, resource_data_ptr);
   *(uint64_t *)(key_offset + 0x138) = 0;
   *(uint64_t *)(key_offset + 0x140) = 0;
@@ -1060,9 +1060,9 @@ void rendering_system_mutex_manager(longlong mutex_context_ptr, longlong target_
   tls_data_ptr = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
   
   // 初始化互斥量
-  if ((*(int *)(tls_data_ptr + 0x48) < _DAT_180d49678) &&
+  if ((*(int *)(tls_data_ptr + 0x48) < render_system_config_pointer) &&
      (FUN_1808fcb90(&system_memory_9678, target_mutex_ptr, (ulonglong)__tls_index, tls_data_ptr, 0xfffffffffffffffe),
-     _DAT_180d49678 == -1)) {
+     render_system_config_pointer == -1)) {
     _Mtx_init_in_situ(0x180d49680, 2);
     FUN_1808fc820(FUN_180941da0);
     FUN_1808fcb30(&system_memory_9678);
@@ -1093,7 +1093,7 @@ void rendering_system_mutex_manager(longlong mutex_context_ptr, longlong target_
     if (array_size == 0) {
       array_size = 1;
 LAB_1803007a9:
-      new_array_ptr = (longlong *)FUN_18062b420(_DAT_180c8ed18, array_size * 8, *(int8_t *)(tls_data_ptr + 0x2a08));
+      new_array_ptr = (longlong *)FUN_18062b420(system_memory_pool_ptr, array_size * 8, *(int8_t *)(tls_data_ptr + 0x2a08));
       mutex_array_ptr = *(longlong **)(tls_data_ptr + 0x29f8);
       old_array_ptr = *(longlong **)(tls_data_ptr + 0x29f0);
     }

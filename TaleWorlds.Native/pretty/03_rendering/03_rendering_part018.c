@@ -326,7 +326,7 @@ void RenderingSystemParameterInitializer(render_context_t context, render_resour
     *(render_flag_t*)((uint8_t*)context + RENDERING_OFFSET_CONFIG_DATA + 0x38) = RENDERING_DEFAULT_MASK_VALUE;
     
     // 分配新资源
-    resource_ptr2 = (render_resource_t*)FUN_18062b1e0(_DAT_180c8ed18, RENDERING_SYSTEM_QUEUE_SIZE, 8, 0x1e);
+    resource_ptr2 = (render_resource_t*)FUN_18062b1e0(system_memory_pool_ptr, RENDERING_SYSTEM_QUEUE_SIZE, 8, 0x1e);
     *resource_ptr2 = (render_resource_t)&unknown_var_3552_ptr;
     *resource_ptr2 = (render_resource_t)&unknown_var_3696_ptr;
     *(render_flag_t*)(resource_ptr2 + 1) = 0;
@@ -498,7 +498,7 @@ void parse_material_data(longlong render_context, longlong material_manager, lon
                 // 创建材质数据条目
                 material_data = (int32_t *)create_material_entry(render_context);
                 *material_data = 2;  // 设置材质类型为路径
-                attribute_list = (uint64_t *)create_texture_resource(_DAT_180c86930, &stack_resource, &string_handler, 1);
+                attribute_list = (uint64_t *)create_texture_resource(system_resource_state, &stack_resource, &string_handler, 1);
                 *(uint64_t *)(material_data + 2) = *attribute_list;
                 
                 // 释放临时资源
@@ -796,7 +796,7 @@ void parse_material_data(longlong render_context, longlong material_manager, lon
                 // 创建材质数据条目
                 material_data = (int32_t *)create_material_entry(render_context);
                 *material_data = 1;  // 设置材质类型为引用
-                attribute_list = (uint64_t *)create_texture_resource(_DAT_180c86930, resource_array, &string_handler, 1);
+                attribute_list = (uint64_t *)create_texture_resource(system_resource_state, resource_array, &string_handler, 1);
                 *(uint64_t *)(material_data + 2) = *attribute_list;
                 
                 // 释放临时资源
@@ -868,7 +868,7 @@ process_material_reference:
     process_material_reference(&string_handler, result2);
     material_data = (int32_t *)create_material_entry(render_context);
     *material_data = 1;
-    attribute_list = (uint64_t *)create_texture_resource(_DAT_180c86930, resource_array, &string_handler, 1);
+    attribute_list = (uint64_t *)create_texture_resource(system_resource_state, resource_array, &string_handler, 1);
     *(uint64_t *)(material_data + 2) = *attribute_list;
     if (resource_array[0] != (longlong *)0x0) {
         (**(code **)(*resource_array[0] + 0x38))();

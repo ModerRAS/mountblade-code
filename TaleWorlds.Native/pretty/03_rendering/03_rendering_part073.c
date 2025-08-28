@@ -1075,11 +1075,11 @@ void rendering_system_advanced_control
 ==============================================================================*/
 
 // 渲染系统全局变量
-uint32_t _DAT_180bf65b8 = 0;              // 渲染系统随机数种子
+uint32_t system_memory_flags = 0;              // 渲染系统随机数种子
 float* SYSTEM_STATE_MANAGER = NULL;              // 渲染系统数据指针
-float* _DAT_180c86870 = NULL;              // 渲染系统配置指针
-float* _DAT_180c8a980 = NULL;              // 渲染系统状态指针
-float* _DAT_180c8ed30 = NULL;              // 渲染系统参数指针
+float* system_main_module_state = NULL;              // 渲染系统配置指针
+float* render_system_data_camera = NULL;              // 渲染系统状态指针
+float* system_error_code = NULL;              // 渲染系统参数指针
 float* global_state_5296 = NULL;               // 渲染系统查找表
 float* global_state_9304 = NULL;               // 渲染系统引用表
 void* global_state_2528 = NULL;                // 渲染系统函数表

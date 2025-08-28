@@ -495,7 +495,7 @@ void FUN_1805c4a90(longlong *param_1,uint64_t *param_2,int8_t *param_3)
     param_1[0x273] = *(longlong *)(&system_error_code + (longlong)(int)lVar15 * 8);
     lVar15 = *param_1;
     iVar10 = *(int *)(*(longlong *)(lVar15 + 0x590) + 0x2498);
-    if (((iVar10 == -1) || (*(int *)((longlong)iVar10 * 0x68 + 0x58 + _DAT_180c96150) != 0x21)) &&
+    if (((iVar10 == -1) || (*(int *)((longlong)iVar10 * 0x68 + 0x58 + system_system_config) != 0x21)) &&
        (0.12 < (float)(*(longlong *)(&system_error_code + (longlong)(int)param_1[0x276] * 8) -
                       param_1[0x275]) * 1e-05)) {
       *(int32_t *)(param_1 + 0x277) = 0;
@@ -691,7 +691,7 @@ void FUN_1805c4a9b(longlong *param_1,uint64_t *param_2,int8_t *param_3,uint64_t 
     param_1[0x273] = *(longlong *)(&system_error_code + (longlong)(int)lVar15 * 8);
     lVar15 = *param_1;
     iVar10 = *(int *)(*(longlong *)(lVar15 + 0x590) + 0x2498);
-    if (((iVar10 == -1) || (*(int *)((longlong)iVar10 * 0x68 + 0x58 + _DAT_180c96150) != 0x21)) &&
+    if (((iVar10 == -1) || (*(int *)((longlong)iVar10 * 0x68 + 0x58 + system_system_config) != 0x21)) &&
        (0.12 < (float)(*(longlong *)(&system_error_code + (longlong)(int)param_1[0x276] * 8) -
                       param_1[0x275]) * 1e-05)) {
       *(int32_t *)(param_1 + 0x277) = 0;

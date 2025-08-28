@@ -366,7 +366,7 @@ uint64_t * initialize_rendering_pool(uint64_t *pool_data)
         
         do {
             allocation_size = pool_data[9];
-            memory_alignment = FUN_18062b420(_DAT_180c8ed18, allocation_size * 0x1c + 0xaa, 3);
+            memory_alignment = FUN_18062b420(system_memory_pool_ptr, allocation_size * 0x1c + 0xaa, 3);
             memory_block = block_pointer;
             
             if (memory_alignment != 0) {
@@ -408,7 +408,7 @@ uint64_t * initialize_rendering_pool(uint64_t *pool_data)
     
     // 线程安全初始化
     LOCK();
-    _DAT_180d48d28 = 0;
+    render_system_config_camera = 0;
     UNLOCK();
     
     return pool_data;
@@ -436,7 +436,7 @@ void set_rendering_state(char *state_ptr, int param1, int param2)
     }
     
     // 状态冲突，抛出异常
-    FUN_180062300(_DAT_180c86928, &unknown_var_9840_ptr, *(int *)(state_ptr + 4), 
+    FUN_180062300(system_message_context, &unknown_var_9840_ptr, *(int *)(state_ptr + 4), 
                  *(int32_t *)(state_ptr + 8), param1, param2);
 }
 

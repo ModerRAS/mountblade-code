@@ -926,13 +926,13 @@ int RenderingSystemStateQuerier(longlong param_1)
         // 获取状态信息
         iVar1 = *(int *)((longlong)*(int *)(param_1 + 0x564) * 0xa60 + 0x30b8 +
                         *(longlong *)(param_1 + 0x8d8));
-        if ((iVar1 != 0) && (_DAT_180c8f008 != 0)) {
+        if ((iVar1 != 0) && (system_cache_buffer != 0)) {
             // 执行状态处理函数
-            (**(code **)(_DAT_180c8f008 + 0x30))(iVar1);
+            (**(code **)(system_cache_buffer + 0x30))(iVar1);
         }
-        if ((iVar1 != 0) && (_DAT_180c8f008 != 0)) {
+        if ((iVar1 != 0) && (system_cache_buffer != 0)) {
             // 执行状态清理函数
-            (**(code **)(_DAT_180c8f008 + 0x18))(iVar1);
+            (**(code **)(system_cache_buffer + 0x18))(iVar1);
         }
         return iVar1;
     }

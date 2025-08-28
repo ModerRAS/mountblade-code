@@ -811,7 +811,7 @@ void rendering_system_advanced_pixel_difference_calculator(longlong param_1, int
     longlong lStack_48;         // 栈变量
     
     // 获取系统配置参数
-    iVar1 = _DAT_180bf00b0;
+    iVar1 = render_system_control_config;
     lStack_48 = 3;              // 处理块数
     lStackX_18 = param_3;       // 目标图像指针
     

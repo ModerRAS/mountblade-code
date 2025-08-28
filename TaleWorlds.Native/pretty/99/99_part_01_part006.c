@@ -286,7 +286,7 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
     stack_memory_size2 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer1;
     
     // 获取系统配置和线程ID
-    status2 = *(int *)(*(longlong *)(*(longlong *)(_DAT_180c82868 + 8) + 8) + 0x48);
+    status2 = *(int *)(*(longlong *)(*(longlong *)(system_context_ptr + 8) + 8) + 0x48);
     status1 = _Thrd_id();
     temp_memory_size = 0;
     
@@ -306,7 +306,7 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
     }
     else {
         // 子线程处理逻辑
-        FUN_18005e630(_DAT_180c82868);  // 执行线程同步函数
+        FUN_18005e630(system_context_ptr);  // 执行线程同步函数
         stack_handle_ptr3 = stack_handle_array;
         stack_ptr1 = &unknown_var_2816_ptr;
         code_ptr = FUN_1800adc50;
@@ -330,8 +330,8 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
             stack_int3 = MAX_RESOURCE_COUNT;
             stack_int2 = SYSTEM_CONFIG_PRIORITY;
             data_val4 = 3.4028235e+38;  // 最大浮点数
-            temp_handle2 = *(longlong *)(_DAT_180c86870 + 0x78);
-            memory_size2 = *(longlong *)(_DAT_180c86870 + 0x80) - temp_handle2 >> 4;
+            temp_handle2 = *(longlong *)(system_main_module_state + 0x78);
+            memory_size2 = *(longlong *)(system_main_module_state + 0x80) - temp_handle2 >> 4;
             
             if (memory_size2 != 0) {
                 memory_size1 = temp_memory_size;
@@ -431,7 +431,7 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
         (**(code **)(**(longlong **)(handle + 0x1d78) + 0x48))
                   (*(longlong **)(handle + 0x1d78), stack_handle_ptr1, 0, &stack_data1);
         
-        temp_data1 = FUN_18062b1e0(_DAT_180c8ed18, MEMORY_POOL_SIZE, MEMORY_CHUNK_SIZE, MEMORY_ALLOC_TYPE_3);
+        temp_data1 = FUN_18062b1e0(system_memory_pool_ptr, MEMORY_POOL_SIZE, MEMORY_CHUNK_SIZE, MEMORY_ALLOC_TYPE_3);
         stack_handle_ptr3 = (longlong *)FUN_18023a2e0(temp_data1, 4);
         
         if (stack_handle_ptr3 != (longlong *)0x0) {
@@ -463,7 +463,7 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
         *(longlong *)(*(longlong *)(handle + 0x121e0) + 0x168) = *(longlong *)(handle + 0x121e0);
         
         // 分配和初始化资源数据
-        resource_ptr1 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, MEMORY_ALLOC_TYPE_3);
+        resource_ptr1 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, MEMORY_ALLOC_TYPE_3);
         resource_ptr2 = resource_ptr1;
         
         do {
@@ -479,15 +479,15 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
         temp_handle2 = *(longlong *)(handle + 0x121e0);
         *(int8_t *)(temp_handle2 + 0x335) = 1;
         *(int32_t *)(temp_handle2 + 0x35c) = 1;
-        temp_handle1 = _DAT_180c86870;
+        temp_handle1 = system_main_module_state;
         temp_handle2 = *(longlong *)(*(longlong *)(handle + 0x121e0) + 0x1d8);
         
         if (temp_handle2 == 0) {
             temp_handle2 = 0;
         }
-        else if (_DAT_180c86870 != 0) {
+        else if (system_main_module_state != 0) {
             *(longlong *)(*(longlong *)(handle + 0x121e0) + 0x340) =
-                 (longlong)*(int *)(_DAT_180c86870 + 0x224);
+                 (longlong)*(int *)(system_main_module_state + 0x224);
         }
         
         *(uint64_t *)(temp_handle2 + 8) = stack_data1;
@@ -505,9 +505,9 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
         // 执行系统初始化
         FUN_18023ce10(*(uint64_t *)(handle + 0x121e0));
         
-        if ((*(longlong *)(*(longlong *)(handle + 0x121e0) + 0x1d8) != 0) && (_DAT_180c86870 != 0)) {
+        if ((*(longlong *)(*(longlong *)(handle + 0x121e0) + 0x1d8) != 0) && (system_main_module_state != 0)) {
             *(longlong *)(*(longlong *)(handle + 0x121e0) + 0x340) =
-                 (longlong)*(int *)(_DAT_180c86870 + 0x224);
+                 (longlong)*(int *)(system_main_module_state + 0x224);
         }
         
         // 完成资源初始化
@@ -525,8 +525,8 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
         if (stack_handle_ptr3 == (longlong *)0x0) {
             stack_handle_ptr3 = (longlong *)0x0;
         }
-        else if (_DAT_180c86870 != 0) {
-            *(longlong *)(temp_handle2 + 0x340) = (longlong)*(int *)(_DAT_180c86870 + 0x224);
+        else if (system_main_module_state != 0) {
+            *(longlong *)(temp_handle2 + 0x340) = (longlong)*(int *)(system_main_module_state + 0x224);
             temp_handle2 = *(longlong *)(handle + 0x121e0);
         }
         
@@ -565,7 +565,7 @@ uint64_t SystemResourceManager(SystemHandle handle, uint64_t *config_data)
     int config_array[2];                           ///< 配置数组
     
     // 执行系统初始化
-    FUN_1802055a0(_DAT_180c8aa50);
+    FUN_1802055a0(system_system_data_pointer);
     status2 = *(int *)(SYSTEM_STATE_MANAGER + 0x1f80);
     
     // 检查资源状态
@@ -1055,7 +1055,7 @@ void SystemStateSynchronizer(void **resource_ptrs, uint *resource_ids, longlong 
         data_ptr1 = (uint64_t *)0x0;
     }
     else {
-        data_ptr1 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, (ulonglong)uint_var5 << 4, MEMORY_ALLOC_TYPE_5);
+        data_ptr1 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, (ulonglong)uint_var5 << 4, MEMORY_ALLOC_TYPE_5);
         status1 = 0;
         data_ptr2 = data_ptr1;
         do {
@@ -1097,11 +1097,11 @@ LAB_1800a46f5:
                     stack_handle1 = 0;
                     (**(code **)(*(longlong *)temp_ptr_ptr1[0x3af] + 0x48))
                             (temp_ptr_ptr1[0x3af], *(uint64_t *)(sync_handle + 0x170), &stack_val1, &stack_handle1);
-                    temp_handle1 = _DAT_180c86870;
+                    temp_handle1 = system_main_module_state;
                     handle_ptr1 = handle_ptr2;
                     if (*(longlong *)(sync_handle + 0x1d8) != 0) {
-                        if (_DAT_180c86870 != 0) {
-                            *(longlong *)(sync_handle + 0x340) = (longlong)*(int *)(_DAT_180c86870 + 0x224);
+                        if (system_main_module_state != 0) {
+                            *(longlong *)(sync_handle + 0x340) = (longlong)*(int *)(system_main_module_state + 0x224);
                         }
                         handle_ptr1 = (longlong *)
                                   ((longlong)(int)(*(byte *)(sync_handle + 0x335) * uint_var5 + status1) * 0x10 +
@@ -1124,8 +1124,8 @@ LAB_1800a46f5:
                     stack_ptr1 = &unknown_var_720_ptr;
                     handle_ptr1 = handle_ptr2;
                     if (*(longlong *)(sync_handle + 0x1d8) != 0) {
-                        if (_DAT_180c86870 != 0) {
-                            *(longlong *)(sync_handle + 0x340) = (longlong)*(int *)(_DAT_180c86870 + 0x224);
+                        if (system_main_module_state != 0) {
+                            *(longlong *)(sync_handle + 0x340) = (longlong)*(int *)(system_main_module_state + 0x224);
                         }
                         handle_ptr1 = (longlong *)
                                   ((longlong)(int)(*(byte *)(sync_handle + 0x335) * uint_var5 + status1) * 0x10 +
@@ -1154,7 +1154,7 @@ LAB_1800a46f5:
             uint_var2 = uint_var5;
         }
         if (uint_var2 * data_word1 != 0) {
-            temp_data1 = FUN_18062b420(_DAT_180c8ed18, (ulonglong)(uint_var2 * data_word1) * 8,
+            temp_data1 = FUN_18062b420(system_memory_pool_ptr, (ulonglong)(uint_var2 * data_word1) * 8,
                            CONCAT71((uint7)(byte)(data_word1 >> 8), 3));
             uint_var6 = (uint)*(byte *)(sync_handle + 0x335);
             uint_var5 = *(uint *)(sync_handle + 0x35c);
@@ -1226,7 +1226,7 @@ LAB_1800a46f5:
             temp_data1 = 0;
         }
         else {
-            temp_data1 = FUN_18062b420(_DAT_180c8ed18, (ulonglong)(uint_var2 * data_word1) * 8,
+            temp_data1 = FUN_18062b420(system_memory_pool_ptr, (ulonglong)(uint_var2 * data_word1) * 8,
                            CONCAT71((uint7)(byte)(data_word1 >> 8), 3));
             uint_var6 = (uint)*(byte *)(sync_handle + 0x335);
             uint_var5 = *(uint *)(sync_handle + 0x35c);
@@ -1291,9 +1291,9 @@ LAB_1800a46f5:
     // 完成系统同步操作
     FUN_18023ce10(sync_handle);
     LOCK();
-    _DAT_180d48d28 = 0;
+    system_system_config_pointer = 0;
     UNLOCK();
-    *(longlong *)(sync_handle + 0x340) = (longlong)*(int *)(_DAT_180c86870 + 0x224);
+    *(longlong *)(sync_handle + 0x340) = (longlong)*(int *)(system_main_module_state + 0x224);
     LOCK();
     *(int32_t *)(sync_handle + 0x380) = 2;
     UNLOCK();

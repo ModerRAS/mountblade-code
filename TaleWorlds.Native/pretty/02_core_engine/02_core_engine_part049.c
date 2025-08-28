@@ -20,12 +20,12 @@ extern uint64_t global_var_7512_ptr;     // 字符串构造器
 extern uint64_t global_var_2588_ptr;     // 路径分隔符
 extern uint64_t global_var_720_ptr;     // 字符串清理对象
 extern uint64_t system_buffer_ptr;     // 默认空指针
-extern uint64_t _DAT_180c8ed18;    // 内存分配器
-extern uint64_t _DAT_180c86870;    // 资源管理器
+extern uint64_t system_memory_pool_ptr;    // 内存分配器
+extern uint64_t system_main_module_state;    // 资源管理器
 extern uint64_t global_var_8064_ptr;     // 资源标识符
 extern uint64_t global_var_8480_ptr;     // 错误处理对象
-extern uint64_t _DAT_180bf6658;    // 默认路径前缀
-extern uint64_t _DAT_180c86928;    // 系统调用接口
+extern uint64_t core_system_control_pointer;    // 默认路径前缀
+extern uint64_t system_message_context;    // 系统调用接口
 
 /**
  * 处理路径和资源队列的主要函数
@@ -402,7 +402,7 @@ found_separator:
                             if (temp_long == 0) {
                                 temp_long = 1;
                             expand_queue:
-                                resource_array = (longlong *)allocate_memory(_DAT_180c8ed18, temp_long * 8, (char)resource_ptr[3]);
+                                resource_array = (longlong *)allocate_memory(system_memory_pool_ptr, temp_long * 8, (char)resource_ptr[3]);
                                 iterator_ptr = (longlong *)resource_ptr[1];
                                 temp_resource = (longlong *)*resource_ptr;
                             }
@@ -436,14 +436,14 @@ found_separator:
                     data_block = 0;
                     ptr2 = (int8_t *)0x0;
                     stack_value5 = 0;
-                    process_external_resource(*_DAT_180c86870, &stack_ptr7, &stack_ptr16);
+                    process_external_resource(*system_main_module_state, &stack_ptr7, &stack_ptr16);
                     stack_value5 = 0;
                     if (ptr2 != (int8_t *)0x0) {
                         *ptr2 = 0;
                     }
                     stack_ptr1 = &system_buffer_ptr;
-                    if (_DAT_180bf6658 != (void *)0x0) {
-                        stack_ptr1 = _DAT_180bf6658;
+                    if (core_system_control_pointer != (void *)0x0) {
+                        stack_ptr1 = core_system_control_pointer;
                     }
                     temp_ptr = &system_buffer_ptr;
                     if (stack_ptr15 != (void *)0x0) {
@@ -843,7 +843,7 @@ ulonglong release_resource_cache(longlong heap_handle, longlong *cache_ptr, uint
         stack_item_count = used_items;
         
         if (total_items != 0) {
-            stack_item_count = allocate_memory(_DAT_180c8ed18, total_items * 8, stack_flags & 0xff);
+            stack_item_count = allocate_memory(system_memory_pool_ptr, total_items * 8, stack_flags & 0xff);
         }
         
         stack_free_items = stack_item_count + total_items * 8;
@@ -930,7 +930,7 @@ void process_resource_batch(longlong heap_handle, longlong *queue_ptr)
     stack_processed_items = total_items;
     
     if (queue_size != 0) {
-        stack_total_items = allocate_memory(_DAT_180c8ed18, total_items * 8, 3);
+        stack_total_items = allocate_memory(system_memory_pool_ptr, total_items * 8, 3);
         stack_processed_items = total_items * 8 + stack_total_items;
     }
     
@@ -951,7 +951,7 @@ void process_resource_batch(longlong heap_handle, longlong *queue_ptr)
         }
         
         // 执行系统清理操作
-        execute_system_cleanup(_DAT_180c86928, &global_var_8520_ptr);
+        execute_system_cleanup(system_message_context, &global_var_8520_ptr);
     }
     
     stack_value4 = 0;
@@ -960,7 +960,7 @@ void process_resource_batch(longlong heap_handle, longlong *queue_ptr)
     stack_item_count = stack_total_items;
     stack_resource_id = resource_id;
     
-    total_items = allocate_memory(_DAT_180c8ed18, 0x28, *(int8_t *)(heap_handle + 0xd8));
+    total_items = allocate_memory(system_memory_pool_ptr, 0x28, *(int8_t *)(heap_handle + 0xd8));
     *(ulonglong *)(total_items + 0x20) = resource_id;
     insert_before = true;
     cache_node = resource_ptr;

@@ -268,14 +268,14 @@ void RenderingSystemAdvancedPipelineInitializer(RenderingSystemHandle param_1)
         FUN_18020c010(param_1, stack_buffer, param_1);
         
         // 执行高级管线初始化
-        (**(RenderingSystemCallback *)(*_DAT_180c8f008 + RENDERING_SYSTEM_OFFSET_BASE))
-            (_DAT_180c8f008, stack_buffer[0] + RENDERING_SYSTEM_OFFSET_EXTENDED);
+        (**(RenderingSystemCallback *)(*system_cache_buffer + RENDERING_SYSTEM_OFFSET_BASE))
+            (system_cache_buffer, stack_buffer[0] + RENDERING_SYSTEM_OFFSET_EXTENDED);
         return;
     }
     
     // 执行标准管线初始化
-    (**(RenderingSystemCallback *)(*_DAT_180c8f008 + RENDERING_SYSTEM_OFFSET_BASE))
-        (_DAT_180c8f008, param_1 + RENDERING_OFFSET_PARAM_1);
+    (**(RenderingSystemCallback *)(*system_cache_buffer + RENDERING_SYSTEM_OFFSET_BASE))
+        (system_cache_buffer, param_1 + RENDERING_OFFSET_PARAM_1);
     return;
 }
 
@@ -302,7 +302,7 @@ RenderingSystemStatePtr RenderingSystemResourceStateSynchronizer(
     RenderingSystemState stack_state_3;
     
     // 分配资源参数
-    resource_param = FUN_18062b1e0(_DAT_180c8ed18, 
+    resource_param = FUN_18062b1e0(system_memory_pool_ptr, 
         RENDERING_SYSTEM_MEMORY_POOL_SIZE, 
         RENDERING_SYSTEM_RESOURCE_TYPE_SIZE, 
         3);
@@ -374,13 +374,13 @@ RenderingSystemParameterPtr RenderingSystemAdvancedPipelineManager(
     // 初始化参数
     stack_param = RENDERING_SYSTEM_HANDLE_INVALID;
     FUN_180627910(&data_ptr, param_3);
-    pipeline_handle = FUN_18020bef0(_DAT_180c868e8, &data_ptr);
+    pipeline_handle = FUN_18020bef0(render_system_data_render, &data_ptr);
     stack_ptr_2 = (RenderingSystemHandlePtr)0x0;
     
     if (pipeline_handle != 0) {
         if (param_2 == 0) {
             // 创建标准管线
-            config_param = FUN_18062b1e0(_DAT_180c8ed18, 
+            config_param = FUN_18062b1e0(system_memory_pool_ptr, 
                 RENDERING_SYSTEM_MEMORY_POOL_SIZE, 
                 RENDERING_SYSTEM_RESOURCE_TYPE_SIZE, 
                 0xd);
@@ -518,7 +518,7 @@ RenderingSystemHandlePtr RenderingSystemMemoryCleaner(
     // 初始化参数
     stack_param = RENDERING_SYSTEM_HANDLE_INVALID;
     FUN_180627910(&stack_param_1, param_3);
-    memory_handle = FUN_18020bef0(_DAT_180c868e8, &stack_param_1);
+    memory_handle = FUN_18020bef0(render_system_data_render, &stack_param_1);
     if (memory_handle != 0) {
         stack_flag[0] = *(RenderingSystemFlag *)(memory_handle + 0x2e5);
         resource_ptr = (RenderingSystemHandlePtr)FUN_1801af320(
@@ -610,8 +610,8 @@ RenderingSystemState RenderingSystemStateUpdater(
     }
     
     // 执行状态更新
-    result_state = (**(RenderingSystemCallback)(*_DAT_180c8f008 + RENDERING_SYSTEM_OFFSET_BASE))
-        (_DAT_180c8f008, &data_ptr);
+    result_state = (**(RenderingSystemCallback)(*system_cache_buffer + RENDERING_SYSTEM_OFFSET_BASE))
+        (system_cache_buffer, &data_ptr);
     data_ptr = &unknown_var_3456_ptr;
     if (memory_handle != 0) {
         FUN_18064e900();
@@ -1220,7 +1220,7 @@ void RenderingSystemAdvancedRenderer(
     resource_base = 0;
     if (-1 < param_7) {
         resource_base = (RenderingSystemHandle)param_7 * 0x68 + 
-            *(RenderingSystemHandle)(_DAT_180c8aa00 + 0x38);
+            *(RenderingSystemHandle)(render_system_data_render + 0x38);
     }
     
     if ((*(RenderingSystemHandle *)(param_1 + 0x20) != 0) && 

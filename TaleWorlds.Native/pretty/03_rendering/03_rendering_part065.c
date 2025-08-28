@@ -31,13 +31,13 @@
 #define RenderingSystem_CompleteRenderShutdown FUN_180303590
 
 // 全局变量引用
-extern longlong _DAT_180c8ed30;    // 渲染时间数据
-extern longlong _DAT_180c8ed18;    // 渲染上下文数据
-extern longlong _DAT_180c86950;    // 渲染配置数据
-extern longlong _DAT_180c86890;    // 系统状态数据
-extern longlong _DAT_180c8a9c8;    // 渲染器状态数据
+extern longlong system_error_code;    // 渲染时间数据
+extern longlong system_memory_pool_ptr;    // 渲染上下文数据
+extern longlong system_operation_state;    // 渲染配置数据
+extern longlong system_parameter_buffer;    // 系统状态数据
+extern longlong render_system_data_string;    // 渲染器状态数据
 extern longlong SYSTEM_STATE_MANAGER;    // 渲染参数数据
-extern longlong _DAT_180c82868;    // 渲染缓存数据
+extern longlong system_context_ptr;    // 渲染缓存数据
 extern longlong GET_SECURITY_COOKIE();    // 栈保护数据
 
 // 字符串常量
@@ -175,7 +175,7 @@ void RenderingSystem_AdvancedParameterControl(longlong render_context, uint64_t 
     }
     
     // 更新渲染时间
-    *(float *)(render_context + 0xe4) = (float)(_DAT_180c8ed30 % RENDERING_TIME_MODULO) * RENDERING_FLOAT_PRECISION;
+    *(float *)(render_context + 0xe4) = (float)(system_error_code % RENDERING_TIME_MODULO) * RENDERING_FLOAT_PRECISION;
   }
   
   // 设置渲染参数
@@ -204,7 +204,7 @@ uint64_t RenderingSystem_ExecuteRenderCommand(longlong *render_params)
     if ((((*(longlong **)(context_data + 0x318) != (longlong *)0x0) && 
          (*(char *)(context_data + 0x2a61) != '\0')) &&
         (*(char *)(context_data + 0x2a62) != '\0')) && 
-        (*(int *)(_DAT_180c8a9c8 + 0xaf0) != 0)) {
+        (*(int *)(render_system_data_string + 0xaf0) != 0)) {
       
       // 执行渲染命令
       (**(code **)(**(longlong **)(context_data + 0x318) + 0x38))();
@@ -328,7 +328,7 @@ float *RenderingSystem_CalculateTextureCoordinates(longlong render_context, floa
   result_z = source_coords[1] - *(float *)(render_context + 0x7d4);
   matrix_value_1 = *(float *)(render_context + 0x28);
   matrix_value_2 = *(float *)(render_context + 0x20);
-  matrix_value_3 = *(float *)(_DAT_180c86950 + 0x17f0);
+  matrix_value_3 = *(float *)(system_operation_state + 0x17f0);
   
   // 应用矩阵变换
   result_x = *(float *)(render_context + 0x7a4) * coord_diff_z + 
@@ -357,7 +357,7 @@ float *RenderingSystem_CalculateTextureCoordinates(longlong render_context, floa
   coord_diff_y = *(float *)(render_context + 0x7ec);
   *target_coords = ((result_x - *(float *)(render_context + 0x7e4)) *
                    ((*(float *)(render_context + 0x24) - *(float *)(render_context + 0x1c)) /
-                    *(float *)(_DAT_180c86950 + 0x17ec))) /
+                    *(float *)(system_operation_state + 0x17ec))) /
                    (*(float *)(render_context + 0x7e8) - *(float *)(render_context + 0x7e4));
   target_coords[1] = 1.0 - ((result_y - coord_diff_z) * ((matrix_value_1 - matrix_value_2) / matrix_value_3)) / (coord_diff_y - coord_diff_z);
   return target_coords;
@@ -479,7 +479,7 @@ void RenderingSystem_ComplexResourceManagement(longlong *render_context, longlon
   ulonglong checksum_value;
   
   stack_value_8 = RENDERING_STACK_GUARD_VALUE;
-  checksum_value = _DAT_180c86890 ^ (ulonglong)data_buffer;
+  checksum_value = system_parameter_buffer ^ (ulonglong)data_buffer;
   context_manager = render_context[0xa3];
   resource_manager = render_context[0xda];
   dimension_param = 0;
@@ -514,7 +514,7 @@ void RenderingSystem_ComplexResourceManagement(longlong *render_context, longlon
   *(int8_t *)(resource_manager + 0x10) = 0;
   buffer_size_2 = (int)*(float *)(context_manager + 0x11c24);
   buffer_size_1 = (int)*(float *)(context_manager + 0x11c20);
-  resource_manager = *(longlong *)(_DAT_180c82868 + 0x7ab8);
+  resource_manager = *(longlong *)(system_context_ptr + 0x7ab8);
   
   // 检查系统状态
   if ((resource_manager == 0) || 
@@ -635,7 +635,7 @@ void RenderingSystem_ComplexResourceManagement(longlong *render_context, longlon
         buffer_param_5 = width_param;
         buffer_param_6 = height_param;
         FUN_18005e6a0(global_state_6552, (longlong **)0x0, 0);
-        object_pointer = (longlong *)FUN_1800b1d80(_DAT_180c8ed18, &buffer_pointer_6, &data_pointer_1, &buffer_param_5);
+        object_pointer = (longlong *)FUN_1800b1d80(system_memory_pool_ptr, &buffer_pointer_6, &data_pointer_1, &buffer_param_5);
         resource_manager = *object_pointer;
         *object_pointer = 0;
         buffer_pointer_7 = (longlong *)render_context[0xca];
@@ -724,7 +724,7 @@ void RenderingSystem_ComplexResourceManagement(longlong *render_context, longlon
   }
   
   if ((render_context[0xa3] != 0) && (resource_manager = render_context[0xa6], resource_manager != 0)) {
-    if (*(char *)(_DAT_180c82868 + 0x1504) == '\0') {
+    if (*(char *)(system_context_ptr + 0x1504) == '\0') {
       if ((char)render_context[0x21] == '\x01') {
         *(int8_t *)(render_context + 0x21) = 0;
         *(int32_t *)(resource_manager + 0x94) = *(int32_t *)((longlong)render_context + 0x104);
@@ -805,7 +805,7 @@ uint64_t RenderingSystem_InitializeRenderState(longlong render_context)
   ulonglong checksum_value;
   
   stack_param = RENDERING_STACK_GUARD_VALUE;
-  checksum_value = _DAT_180c86890 ^ (ulonglong)data_buffer;
+  checksum_value = system_parameter_buffer ^ (ulonglong)data_buffer;
   *(int8_t *)(render_context + 0x878) = 1;
   // 初始化内存块
   memset(render_context + 0x118, 0, 0x400);
@@ -975,9 +975,9 @@ void RenderingSystem_CompleteRenderShutdown(uint64_t *render_context, uint64_t p
   longlong memory_block;
   
   *render_context = &global_state_720_ptr;
-  if ((_DAT_180c82868 != 0) && 
-      (*(int8_t **)(_DAT_180c82868 + 0x7ab8) != (int8_t *)0x0)) {
-    **(int8_t **)(_DAT_180c82868 + 0x7ab8) = 1;
+  if ((system_context_ptr != 0) && 
+      (*(int8_t **)(system_context_ptr + 0x7ab8) != (int8_t *)0x0)) {
+    **(int8_t **)(system_context_ptr + 0x7ab8) = 1;
   }
   if (render_context[0xda] != 0) {
     FUN_18024cb50(render_context[0xda], render_context);

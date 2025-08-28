@@ -327,10 +327,10 @@ void rendering_system_effect_processor(int effect_context, uint effect_type, flo
   // 构建特效标识符
   stack_array[0] = (effect_context << 8 | effect_type) << 8 | effect_level;
   pointer_value1 = (uint64_t *)0x180c95e98;
-  pointer_value2 = _DAT_180c95ea8;
+  pointer_value2 = render_system_pointer;
   
   // 在特效链表中查找合适的位置
-  if (_DAT_180c95ea8 != (uint64_t *)0x0) {
+  if (render_system_pointer != (uint64_t *)0x0) {
     do {
       if (*(uint *)(pointer_value2 + 4) < stack_array[0]) {
         pointer_value2 = (uint64_t *)*pointer_value2;
@@ -373,7 +373,7 @@ void rendering_system_effect_processor(int effect_context, uint effect_type, flo
   stack_value2 = 0;
   stack_pointer2 = (int32_t *)0x0;
   stack_value1 = 0;
-  stack_pointer2 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x17, 0x13);
+  stack_pointer2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x17, 0x13);
   *(int8_t *)stack_pointer2 = 0;
   temp_value2 = FUN_18064e990(stack_pointer2);
   stack_value2 = CONCAT44(stack_value2._4_4_, temp_value2);
@@ -397,12 +397,12 @@ void rendering_system_effect_processor(int effect_context, uint effect_type, flo
       if ((int)temp_value3 < 0x10) {
         temp_value3 = 0x10;
       }
-      stack_pointer2 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)temp_value3, 0x13);
+      stack_pointer2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)(int)temp_value3, 0x13);
       *(int8_t *)stack_pointer2 = 0;
     }
     else {
       if (temp_value3 <= (uint)stack_value2) goto EFFECT_PROCESSOR_LABEL1;
-      stack_pointer2 = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18, stack_pointer2, temp_value3, 0x10, 0x13);
+      stack_pointer2 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, stack_pointer2, temp_value3, 0x10, 0x13);
     }
     temp_value2 = FUN_18064e990(stack_pointer2);
     stack_value2 = CONCAT44(stack_value2._4_4_, temp_value2);
@@ -424,12 +424,12 @@ EFFECT_PROCESSOR_LABEL1:
       if ((int)temp_value3 < 0x10) {
         temp_value3 = 0x10;
       }
-      stack_pointer2 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)temp_value3, 0x13);
+      stack_pointer2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)(int)temp_value3, 0x13);
       *(int8_t *)stack_pointer2 = 0;
     }
     else {
       if (temp_value3 <= (uint)stack_value2) goto EFFECT_PROCESSOR_LABEL2;
-      stack_pointer2 = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18, stack_pointer2, temp_value3, 0x10, 0x13);
+      stack_pointer2 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, stack_pointer2, temp_value3, 0x10, 0x13);
     }
     temp_value2 = FUN_18064e990(stack_pointer2);
     stack_value2 = CONCAT44(stack_value2._4_4_, temp_value2);
@@ -453,12 +453,12 @@ EFFECT_PROCESSOR_LABEL2:
         if ((int)effect_level < 0x10) {
           effect_level = 0x10;
         }
-        stack_pointer2 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)effect_level, 0x13);
+        stack_pointer2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)(int)effect_level, 0x13);
         *(int8_t *)stack_pointer2 = 0;
       }
       else {
         if (effect_level <= (uint)stack_value2) goto EFFECT_PROCESSOR_LABEL3;
-        stack_pointer2 = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18, stack_pointer2, effect_level, 0x10, 0x13);
+        stack_pointer2 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, stack_pointer2, effect_level, 0x10, 0x13);
       }
       temp_value2 = FUN_18064e990(stack_pointer2);
       stack_value2 = CONCAT44(stack_value2._4_4_, temp_value2);
@@ -486,12 +486,12 @@ EFFECT_PROCESSOR_LABEL3:
       if ((int)effect_level < 0x10) {
         effect_level = 0x10;
       }
-      stack_pointer2 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)effect_level, 0x13);
+      stack_pointer2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)(int)effect_level, 0x13);
       *(int8_t *)stack_pointer2 = 0;
     }
     else {
       if (effect_level <= (uint)stack_value2) goto EFFECT_PROCESSOR_LABEL4;
-      stack_pointer2 = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18, stack_pointer2, effect_level, 0x10, 0x13);
+      stack_pointer2 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, stack_pointer2, effect_level, 0x10, 0x13);
     }
     temp_value2 = FUN_18064e990(stack_pointer2);
     stack_value2 = CONCAT44(stack_value2._4_4_, temp_value2);
@@ -573,11 +573,11 @@ int rendering_system_resource_finder(longlong resource_name)
   bool is_match;
   
   result_index = 0;
-  temp_index = (int)((_DAT_180c960e8 - _DAT_180c960e0) / RENDER_RESOURCE_SIZE_BASE);
+  temp_index = (int)((render_system_pointer - render_system_pointer) / RENDER_RESOURCE_SIZE_BASE);
   resource_index = (longlong)temp_index;
   
   if (0 < temp_index) {
-    resource_pointer = (uint64_t *)(_DAT_180c960e0 + RENDER_RESOURCE_OFFSET_DATA);
+    resource_pointer = (uint64_t *)(render_system_pointer + RENDER_RESOURCE_OFFSET_DATA);
     do {
       string_length = -1;
       do {
@@ -642,9 +642,9 @@ void rendering_system_resource_collector(longlong resource_context, int *output_
   ulonglong output_index;
   
   resource_index = 0;
-  string_length1 = (int)((_DAT_180c960e8 - _DAT_180c960e0) / RENDER_RESOURCE_SIZE_BASE);
+  string_length1 = (int)((render_system_pointer - render_system_pointer) / RENDER_RESOURCE_SIZE_BASE);
   array_size = (longlong)string_length1;
-  base_address = _DAT_180c960e0;
+  base_address = render_system_pointer;
   output_index = resource_index;
   
   if (0 < string_length1) {
@@ -672,7 +672,7 @@ RESOURCE_COLLECTOR_LABEL1:
         if (string_length2 == 0) {
           *output_array = (int)output_index;
           output_array = output_array + 1;
-          base_address = _DAT_180c960e0;
+          base_address = render_system_pointer;
         }
       }
       else if (string_length1 == 0) goto RESOURCE_COLLECTOR_LABEL1;
@@ -726,7 +726,7 @@ RESOURCE_PROCESSOR_LABEL1:
       if (string_length2 == 0) {
         *in_R11 = in_R10D;
         in_R11 = in_R11 + 1;
-        unaff_RSI = _DAT_180c960e0;
+        unaff_RSI = render_system_pointer;
       }
     }
     else if (string_length1 == 0) goto RESOURCE_PROCESSOR_LABEL1;
@@ -749,24 +749,24 @@ void rendering_system_time_initializer(void)
   uint time_value;
   char is_enabled;
   
-  _DAT_180c92510 = 0;
+  render_system_pointer = 0;
   
   // 检查是否启用时间同步
-  if (*(void **)*_DAT_180c8ed08 == &unknown_var_424_ptr) {
-    is_enabled = *(int *)(_DAT_180c8a9c8 + 0xe0) != 0;
+  if (*(void **)*render_system_data_pointer == &unknown_var_424_ptr) {
+    is_enabled = *(int *)(render_system_data_pointer + 0xe0) != 0;
   }
   else {
-    is_enabled = (**(code **)(*(void **)*_DAT_180c8ed08 + 0x48))();
+    is_enabled = (**(code **)(*(void **)*render_system_data_pointer + 0x48))();
   }
   
   if (is_enabled != '\0') {
-    _DAT_180bf65b8 = RENDER_TIME_KEY;
+    system_memory_flags = RENDER_TIME_KEY;
     return;
   }
   
   // 获取当前时间并应用掩码
   time_value = timeGetTime();
-  _DAT_180bf65b8 = time_value ^ RENDER_TIME_MASK;
+  system_memory_flags = time_value ^ RENDER_TIME_MASK;
   return;
 }
 

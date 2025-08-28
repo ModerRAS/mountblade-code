@@ -87,7 +87,7 @@ void process_game_object_rendering(longlong game_context)
   initialize_render_system(game_context + 0x607e0);
   render_queue = (ulonglong *)0x0;
   stack_array_1[0] = 0;
-  stack_array_1[0] = allocate_render_memory(_DAT_180c8ed18, 0x100000, 0xd);
+  stack_array_1[0] = allocate_render_memory(system_memory_pool_ptr, 0x100000, 0xd);
   LOCK();
   stack_array_1[1] = 0;
   UNLOCK();

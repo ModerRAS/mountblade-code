@@ -419,7 +419,7 @@ void *threadsafe_insert_element(longlong container, unsigned int element, void *
   void *end_ptr;
   unsigned long long capacity;
   
-  element_ptr = FUN_18062b420(_DAT_180c8ed18, element, 3, attr2, MUTEX_TIMEOUT_INFINITE);
+  element_ptr = FUN_18062b420(system_memory_pool_ptr, element, 3, attr2, MUTEX_TIMEOUT_INFINITE);
   lock_result = _Mtx_lock(container + 40);
   if (lock_result != 0) {
     __Throw_C_error_std__YAXH_Z(lock_result);
@@ -436,7 +436,7 @@ void *threadsafe_insert_element(longlong container, unsigned int element, void *
     capacity = 1;
 resize_container:
     new_element_ptr = (void *)
-             FUN_18062b420(_DAT_180c8ed18, capacity * 8, *(unsigned char *)(container + 32), attr2, MUTEX_TIMEOUT_INFINITE);
+             FUN_18062b420(system_memory_pool_ptr, capacity * 8, *(unsigned char *)(container + 32), attr2, MUTEX_TIMEOUT_INFINITE);
     current_ptr = *(void **)(container + 16);
     new_container_ptr = *(void **)(container + 8);
   }
@@ -502,7 +502,7 @@ void *allocate_resource(longlong resource_ptr, void *resource)
   void *allocated_resource;
   longlong resource_size;
   
-  allocated_resource = FUN_18062b1e0(_DAT_180c8ed18, resource, 16, 6);
+  allocated_resource = FUN_18062b1e0(system_memory_pool_ptr, resource, 16, 6);
   resource_size = FUN_18064e990(allocated_resource);
   *(longlong *)(resource_ptr + 8) = *(longlong *)(resource_ptr + 8) + resource_size;
   return allocated_resource;
@@ -630,7 +630,7 @@ void initialize_engine_system(void)
   config_ptr[2] = 0x2e676966;  // "fig."
   config_ptr[3] = 0x747874;  // "txt"
   path_length = buffer_size;
-  config_file = (void *)FUN_18062b1e0(_DAT_180c8ed18, 24, 8, 3);
+  config_file = (void *)FUN_18062b1e0(system_memory_pool_ptr, 24, 8, 3);
   temp_ptr = &default_string_18098bc73;
   if (temp_ptr != (void *)0x0) {
     temp_ptr = temp_ptr;
@@ -642,7 +642,7 @@ void initialize_engine_system(void)
     // 释放配置文件
     FUN_18064e900(config_file);
   }
-  FUN_1800aecf0(_DAT_180c868b0, config_file);
+  FUN_1800aecf0(init_system_data_string, config_file);
   FUN_18062de90(config_file);
   if (((void **)config_file)[1] != 0) {
     fclose();
@@ -660,11 +660,11 @@ void initialize_memory_allocator(void)
 {
   void *allocator;
   
-  allocator = FUN_18062b1e0(_DAT_180c8ed18, 0xd20, 8, 3);
-  _DAT_180c86930 = FUN_1800b4a40(allocator);
-  allocator = FUN_18062b1e0(_DAT_180c8ed18, 0x138, 8, 3);
-  _DAT_180c868a8 = FUN_180086ca0(allocator);
-  allocator = FUN_18062b1e0(_DAT_180c8ed18, 0x50, 8, 3);
+  allocator = FUN_18062b1e0(system_memory_pool_ptr, 0xd20, 8, 3);
+  system_resource_state = FUN_1800b4a40(allocator);
+  allocator = FUN_18062b1e0(system_memory_pool_ptr, 0x138, 8, 3);
+  init_system_data_string = FUN_180086ca0(allocator);
+  allocator = FUN_18062b1e0(system_memory_pool_ptr, 0x50, 8, 3);
   // 清零内存
   memset(allocator, 0, 0x50);
 }
@@ -707,7 +707,7 @@ void cleanup_path_string(void)
     } while (length < length);
   }
   file_path[char_count] = 0;
-  path_ptr = (void **)FUN_18062b1e0(_DAT_180c8ed18, 40, 8, CONCAT71((int7)(path_length >> 8), 3));
+  path_ptr = (void **)FUN_18062b1e0(system_memory_pool_ptr, 40, 8, CONCAT71((int7)(path_length >> 8), 3));
   temp_ptr = &default_string_18098bc73;
   if (file_path != (void *)0x0) {
     temp_ptr = file_path;
@@ -726,7 +726,7 @@ void cleanup_path_string(void)
     } while (path_str[path_len] != '\0');
   }
   *path_ptr = 0;
-  _DAT_180c82858 = path_ptr;
+  system_callback_ptr = path_ptr;
   if (system_memory_0101 != '\0') {
     GetLastError();
     temp_ptr = &default_string_18098bc73;
@@ -748,12 +748,12 @@ void shutdown_engine_system(void)
   void in_R9;
   void *component_ptr;
   
-  if ((_DAT_180c86878 != (longlong *)0x0) && ((char)_DAT_180c86878[0x42] == '\0')) {
-    ((void (**)(void))(*_DAT_180c86878 + 0x38))();
+  if ((init_system_data_string != (longlong *)0x0) && ((char)init_system_data_string[0x42] == '\0')) {
+    ((void (**)(void))(*init_system_data_string + 0x38))();
   }
-  engine_state = _DAT_180c8a990;
-  ((void (**)(void *, longlong))(*(longlong **)(_DAT_180c8a990 + 32) + 264))
-            (*(longlong **)(_DAT_180c8a990 + 32), _DAT_180c8a990 + 192);
+  engine_state = init_system_data_string;
+  ((void (**)(void *, longlong))(*(longlong **)(init_system_data_string + 32) + 264))
+            (*(longlong **)(init_system_data_string + 32), init_system_data_string + 192);
   engine_ptr = *(longlong ***)(engine_state + 48);
   if (engine_ptr != (longlong **)0x0) {
     component_state = __RTCastToVoid(engine_ptr);
@@ -769,8 +769,8 @@ void shutdown_engine_system(void)
     ((void (*)(void))(*(void **)(engine_state + 40)))();
     *(void *)(engine_state + 40) = 0;
   }
-  engine_state = _DAT_180c8a990;
-  if (_DAT_180c8a990 != 0) {
+  engine_state = init_system_data_string;
+  if (init_system_data_string != 0) {
     FUN_18004b730();
     *(void **)(engine_state + 192) = &global_vtable_1809fcc88;
     cleanup_thread_container(engine_state + 72);
@@ -780,15 +780,15 @@ void shutdown_engine_system(void)
     // 释放引擎
     FUN_18064e900(engine_state);
   }
-  _DAT_180c8a990 = 0;
+  init_system_data_string = 0;
   timeEndPeriod(1);
-  engine_state = _DAT_180c86930;
-  if (_DAT_180c86930 != 0) {
-    FUN_1800b4550(_DAT_180c86930);
+  engine_state = system_resource_state;
+  if (system_resource_state != 0) {
+    FUN_1800b4550(system_resource_state);
     // 释放内存分配器
     FUN_18064e900(engine_state);
   }
-  _DAT_180c86930 = 0;
+  system_resource_state = 0;
   return;
 }
 
@@ -849,7 +849,7 @@ void load_configuration_file(char config_type)
   
   if (config_type == '\0') {
     if ((void *)*SYSTEM_STATE_MANAGER == &global_vtable_180a062e0) {
-      if ((SYSTEM_STATE_MANAGER[0x16] == 0) && (*(char *)(_DAT_180c86870 + 496) != '\0')) {
+      if ((SYSTEM_STATE_MANAGER[0x16] == 0) && (*(char *)(system_main_module_state + 496) != '\0')) {
         config_status = '\x01';
       }
       else {
@@ -920,11 +920,11 @@ bool check_main_thread(void)
   int current_thread;
   
   current_thread = _Thrd_id();
-  if (_DAT_180c9105c == 0) {
-    return current_thread == *(int *)(*(longlong **)(_DAT_180c82868 + 8) + 72);
+  if (init_system_string == 0) {
+    return current_thread == *(int *)(*(longlong **)(system_context_ptr + 8) + 72);
   }
-  if ((current_thread != *(int *)(*(longlong **)(_DAT_180c82868 + 8) + 72)) && 
-      (current_thread != _DAT_180c9105c)) {
+  if ((current_thread != *(int *)(*(longlong **)(system_context_ptr + 8) + 72)) && 
+      (current_thread != init_system_string)) {
     return false;
   }
   return true;
@@ -998,8 +998,8 @@ longlong *initialize_system_config(longlong *config_obj, void *attr1, void *attr
   config_obj[3] = 0;
   config_obj[1] = 0;
   *(unsigned int *)((char *)config_obj + 8) = 0;
-  if (*(char *)(_DAT_180c8a9a0 + 34) != '\0') {
-    FUN_180627be0(config_obj, _DAT_180c8a9a0 + 40);
+  if (*(char *)(init_system_data_string + 34) != '\0') {
+    FUN_180627be0(config_obj, init_system_data_string + 40);
     return config_obj;
   }
   ((void (**)(void *, void *, void *, void, void))(*config_obj + 16))
@@ -1013,10 +1013,10 @@ void set_thread_identifier(unsigned int *thread_id)
   int main_thread;
   int current_thread;
   
-  main_thread = *(int *)(*(longlong **)(_DAT_180c82868 + 8) + 72);
+  main_thread = *(int *)(*(longlong **)(system_context_ptr + 8) + 72);
   current_thread = _Thrd_id();
   if (current_thread != main_thread) {
-    _DAT_180c9105c = *thread_id;
+    init_system_string = *thread_id;
   }
   return;
 }

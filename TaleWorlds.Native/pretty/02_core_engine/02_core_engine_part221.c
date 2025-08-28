@@ -19,9 +19,9 @@
 #define GLOBAL_ENGINE_VTABLE_1 (&unknown_var_7040_ptr)
 #define GLOBAL_ENGINE_VTABLE_2 (&unknown_var_3696_ptr)
 #define GLOBAL_ENGINE_VTABLE_3 (&unknown_var_3552_ptr)
-#define GLOBAL_EVENT_SYSTEM_HANDLE (_DAT_180c8a9c0)
-#define GLOBAL_MEMORY_ALLOCATOR (_DAT_180c8ed18)
-#define GLOBAL_EVENT_MANAGER (_DAT_180c8f008)
+#define GLOBAL_EVENT_SYSTEM_HANDLE (core_system_data_string)
+#define GLOBAL_MEMORY_ALLOCATOR (system_memory_pool_ptr)
+#define GLOBAL_EVENT_MANAGER (system_cache_buffer)
 
 /* 函数声明 */
 void cleanup_engine_resources(uint64_t *engine_context);

@@ -11,7 +11,7 @@
 #define MAX_COMPONENT_INDEX 15
 #define OBJECT_NAME_MAX_LENGTH 128
 #define EVENT_STRING_MAX_LENGTH 32
-#define LIFETIME_EVENT_ENABLED _DAT_180c8a9d0
+#define LIFETIME_EVENT_ENABLED core_system_data_resource
 #define DEFAULT_STACK_PROTECTION 0xfffffffffffffffe
 #define FULL_COMPONENT_MASK 0xffff
 
@@ -264,7 +264,7 @@ void 复制场景对象组件数据(longlong target_object, longlong source_obje
     stack_context_ptr_2 = (int32_t *)0x0;
     stack_temp_value_1 = 0;
     
-    event_string_ptr = (int32_t *)allocate_event_string(_DAT_180c8ed18, 0x16, 0x13);
+    event_string_ptr = (int32_t *)allocate_event_string(system_memory_pool_ptr, 0x16, 0x13);
     *(int8_t *)event_string_ptr = 0;
     stack_context_ptr_2 = event_string_ptr;
     
@@ -359,7 +359,7 @@ void 复制场景对象组件数据(longlong target_object, longlong source_obje
       stack_context_ptr_2 = (int32_t *)0x0;
       stack_temp_value_1 = 0;
       
-      event_string_ptr = (int32_t *)allocate_event_string(_DAT_180c8ed18, 0x26, 0x13);
+      event_string_ptr = (int32_t *)allocate_event_string(system_memory_pool_ptr, 0x26, 0x13);
       *(int8_t *)event_string_ptr = 0;
       stack_context_ptr_2 = event_string_ptr;
       
@@ -512,7 +512,7 @@ void 创建场景对象实例(longlong scene_data, longlong *object_ptr) {
   
   // 第一阶段：分配对象内存并初始化
   // 分配0x470字节的内存，对齐到0x10字节
-  allocated_memory = allocate_object_memory(_DAT_180c8ed18, 0x470, 0x10, 0x15);
+  allocated_memory = allocate_object_memory(system_memory_pool_ptr, 0x470, 0x10, 0x15);
   object_instance_ptr = (longlong *)initialize_object_instance(allocated_memory);
   *object_ptr = (longlong)object_instance_ptr;
   
@@ -732,7 +732,7 @@ void 设置对象组件(longlong object_ptr, int component_index, longlong *comp
     stack_context_ptr_2 = (int32_t *)0x0;
     stack_temp_value_1 = 0;
     
-    event_string_ptr = (int32_t *)allocate_event_string(_DAT_180c8ed18, 0x16, 0x13);
+    event_string_ptr = (int32_t *)allocate_event_string(system_memory_pool_ptr, 0x16, 0x13);
     *(int8_t *)event_string_ptr = 0;
     stack_context_ptr_2 = event_string_ptr;
     
@@ -827,7 +827,7 @@ void 设置对象组件(longlong object_ptr, int component_index, longlong *comp
       stack_context_ptr_2 = (int32_t *)0x0;
       stack_temp_value_1 = 0;
       
-      event_string_ptr = (int32_t *)allocate_event_string(_DAT_180c8ed18, 0x26, 0x13);
+      event_string_ptr = (int32_t *)allocate_event_string(system_memory_pool_ptr, 0x26, 0x13);
       *(int8_t *)event_string_ptr = 0;
       stack_context_ptr_2 = event_string_ptr;
       
@@ -959,7 +959,7 @@ void 销毁场景对象(longlong object_ptr) {
     stack_context_ptr_2 = (int32_t *)0x0;
     stack_temp_value_1 = 0;
     
-    event_string_ptr = (int32_t *)allocate_event_string(_DAT_180c8ed18, 0x16, 0x13);
+    event_string_ptr = (int32_t *)allocate_event_string(system_memory_pool_ptr, 0x16, 0x13);
     *(int8_t *)event_string_ptr = 0;
     stack_context_ptr_2 = event_string_ptr;
     
@@ -1054,7 +1054,7 @@ void 销毁场景对象(longlong object_ptr) {
       stack_context_ptr_2 = (int32_t *)0x0;
       stack_temp_value_1 = 0;
       
-      event_string_ptr = (int32_t *)allocate_event_string(_DAT_180c8ed18, 0x26, 0x13);
+      event_string_ptr = (int32_t *)allocate_event_string(system_memory_pool_ptr, 0x26, 0x13);
       *(int8_t *)event_string_ptr = 0;
       stack_context_ptr_2 = event_string_ptr;
       

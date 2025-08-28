@@ -42,398 +42,398 @@ void FUN_18066d7c0(void)
       }
     }
   }
-  _DAT_180d4a758 = FUN_180674f40;
+  render_system_config_config = FUN_180674f40;
   if (bVar6) {
-    _DAT_180d4a758 = FUN_180676930;
+    render_system_config_config = FUN_180676930;
   }
   if (bVar4) {
-    _DAT_180d4a758 = FUN_180677190;
+    render_system_config_config = FUN_180677190;
   }
-  _DAT_180d4a710 = FUN_180674930;
+  render_system_config_config = FUN_180674930;
   if (bVar6) {
-    _DAT_180d4a710 = FUN_180676320;
+    render_system_config_config = FUN_180676320;
   }
-  _DAT_180d4a6d0 = FUN_180674700;
+  render_system_config_config = FUN_180674700;
   if (bVar6) {
-    _DAT_180d4a6d0 = FUN_1806760f0;
+    render_system_config_config = FUN_1806760f0;
   }
-  _DAT_180d4a6a8 = FUN_180674aa0;
+  render_system_config_config = FUN_180674aa0;
   if (bVar6) {
-    _DAT_180d4a6a8 = FUN_180676490;
+    render_system_config_config = FUN_180676490;
   }
-  _DAT_180d4a950 = FUN_180674d10;
+  render_system_config_config = FUN_180674d10;
   if (bVar6) {
-    _DAT_180d4a950 = FUN_180676700;
+    render_system_config_config = FUN_180676700;
   }
   if (bVar4) {
-    _DAT_180d4a950 = FUN_180677300;
+    render_system_config_config = FUN_180677300;
   }
-  _DAT_180d4a918 = FUN_1806750b0;
+  render_system_config_config = FUN_1806750b0;
   if (bVar6) {
-    _DAT_180d4a918 = FUN_180676aa0;
+    render_system_config_config = FUN_180676aa0;
   }
   if (bVar4) {
-    _DAT_180d4a918 = FUN_180677530;
+    render_system_config_config = FUN_180677530;
   }
-  _DAT_180d4a890 = FUN_1806780c0;
+  render_system_config_config = FUN_1806780c0;
   if (bVar6) {
-    _DAT_180d4a890 = (code *)&unknown_var_4960_ptr;
+    render_system_config_config = (code *)&unknown_var_4960_ptr;
   }
-  _DAT_180d4a880 = FUN_1806782c0;
+  render_system_config_config = FUN_1806782c0;
   if (bVar6) {
-    _DAT_180d4a880 = (code *)&unknown_var_5408_ptr;
+    render_system_config_config = (code *)&unknown_var_5408_ptr;
   }
-  _DAT_180d4a868 = FUN_180678430;
+  render_system_config_config = FUN_180678430;
   if (bVar6) {
-    _DAT_180d4a868 = (code *)&unknown_var_4576_ptr;
+    render_system_config_config = (code *)&unknown_var_4576_ptr;
   }
-  _DAT_180d4a850 = FUN_180678540;
+  render_system_config_config = FUN_180678540;
   if (bVar6) {
-    _DAT_180d4a850 = (code *)&unknown_var_4704_ptr;
+    render_system_config_config = (code *)&unknown_var_4704_ptr;
   }
-  _DAT_180d4a838 = FUN_180678810;
+  render_system_config_config = FUN_180678810;
   if (bVar6) {
-    _DAT_180d4a838 = (code *)&unknown_var_6960_ptr;
+    render_system_config_config = (code *)&unknown_var_6960_ptr;
   }
-  _DAT_180d4a810 = FUN_1806789c0;
+  render_system_config_config = FUN_1806789c0;
   if (bVar6) {
-    _DAT_180d4a810 = (code *)&unknown_var_7232_ptr;
+    render_system_config_config = (code *)&unknown_var_7232_ptr;
   }
-  _DAT_180d4a7f8 = FUN_180678b10;
+  render_system_config_config = FUN_180678b10;
   if (bVar6) {
-    _DAT_180d4a7f8 = (code *)&unknown_var_6688_ptr;
+    render_system_config_config = (code *)&unknown_var_6688_ptr;
   }
-  _DAT_180d4a7d0 = FUN_180678bc0;
+  render_system_config_config = FUN_180678bc0;
   if (bVar6) {
-    _DAT_180d4a7d0 = (code *)&unknown_var_6784_ptr;
+    render_system_config_config = (code *)&unknown_var_6784_ptr;
   }
-  _DAT_180d4a7b8 = FUN_180678e20;
+  render_system_config_config = FUN_180678e20;
   if (bVar6) {
-    _DAT_180d4a7b8 = (code *)&unknown_var_3312_ptr;
+    render_system_config_config = (code *)&unknown_var_3312_ptr;
   }
-  _DAT_180d4a7a8 = FUN_180678ef0;
+  render_system_config_config = FUN_180678ef0;
   if (bVar6) {
-    _DAT_180d4a7a8 = (code *)&unknown_var_3504_ptr;
+    render_system_config_config = (code *)&unknown_var_3504_ptr;
   }
-  _DAT_180d4a798 = FUN_180678fc0;
+  render_system_config_config = FUN_180678fc0;
   if (bVar6) {
-    _DAT_180d4a798 = (code *)&unknown_var_3088_ptr;
+    render_system_config_config = (code *)&unknown_var_3088_ptr;
   }
-  _DAT_180d4a780 = FUN_1806790b0;
+  render_system_config_config = FUN_1806790b0;
   if (bVar6) {
-    _DAT_180d4a780 = (code *)&unknown_var_3184_ptr;
+    render_system_config_config = (code *)&unknown_var_3184_ptr;
   }
-  _DAT_180d4a748 = FUN_180679310;
+  render_system_config_config = FUN_180679310;
   if (bVar6) {
-    _DAT_180d4a748 = (code *)&unknown_var_4176_ptr;
+    render_system_config_config = (code *)&unknown_var_4176_ptr;
   }
-  _DAT_180d4a730 = FUN_180679480;
+  render_system_config_config = FUN_180679480;
   if (bVar6) {
-    _DAT_180d4a730 = (code *)&unknown_var_4304_ptr;
+    render_system_config_config = (code *)&unknown_var_4304_ptr;
   }
-  _DAT_180d4a718 = FUN_1806795f0;
+  render_system_config_config = FUN_1806795f0;
   if (bVar6) {
-    _DAT_180d4a718 = (code *)&unknown_var_3904_ptr;
+    render_system_config_config = (code *)&unknown_var_3904_ptr;
   }
-  _DAT_180d4a6f8 = FUN_1806796f0;
+  render_system_config_config = FUN_1806796f0;
   if (bVar6) {
-    _DAT_180d4a6f8 = (code *)&unknown_var_4000_ptr;
+    render_system_config_config = (code *)&unknown_var_4000_ptr;
   }
-  _DAT_180d4a8f8 = FUN_18067c470;
+  render_system_config_config = FUN_18067c470;
   if (bVar4) {
-    _DAT_180d4a8f8 = FUN_1806844a0;
+    render_system_config_config = FUN_1806844a0;
   }
-  _DAT_180d4a8e0 = FUN_180679d30;
+  render_system_config_config = FUN_180679d30;
   if (bVar4) {
-    _DAT_180d4a8e0 = FUN_18068b080;
+    render_system_config_config = FUN_18068b080;
   }
-  _DAT_180d4a8c8 = FUN_180683f90;
+  render_system_config_config = FUN_180683f90;
   if (bVar6) {
-    _DAT_180d4a8c8 = (code *)&unknown_var_8096_ptr;
+    render_system_config_config = (code *)&unknown_var_8096_ptr;
   }
-  _DAT_180d4a888 = FUN_18068d2b0;
+  render_system_config_config = FUN_18068d2b0;
   if (bVar4) {
-    _DAT_180d4a888 = FUN_1806905c0;
+    render_system_config_config = FUN_1806905c0;
   }
-  _DAT_180d4a848 = FUN_180679ac0;
+  render_system_config_config = FUN_180679ac0;
   if (bVar6) {
-    _DAT_180d4a848 = (code *)&unknown_var_2944_ptr;
+    render_system_config_config = (code *)&unknown_var_2944_ptr;
   }
-  _DAT_180d4a828 = FUN_180679b20;
+  render_system_config_config = FUN_180679b20;
   if (bVar6) {
-    _DAT_180d4a828 = (code *)&unknown_var_3008_ptr;
+    render_system_config_config = (code *)&unknown_var_3008_ptr;
   }
-  _DAT_180d4a808 = &unknown_var_960_ptr;
+  render_system_config_config = &unknown_var_960_ptr;
   if (bVar6) {
-    _DAT_180d4a808 = &unknown_var_2816_ptr;
+    render_system_config_config = &unknown_var_2816_ptr;
   }
-  _DAT_180d4a7f0 = &unknown_var_1008_ptr;
+  render_system_config_config = &unknown_var_1008_ptr;
   if (bVar6) {
-    _DAT_180d4a7f0 = &unknown_var_2880_ptr;
+    render_system_config_config = &unknown_var_2880_ptr;
   }
-  _DAT_180d4a790 = FUN_1806917c0;
+  render_system_config_config = FUN_1806917c0;
   if (bVar6) {
-    _DAT_180d4a790 = (code *)&unknown_var_1552_ptr;
+    render_system_config_config = (code *)&unknown_var_1552_ptr;
   }
-  _DAT_180d4a760 = FUN_180691db0;
+  render_system_config_config = FUN_180691db0;
   if (bVar6) {
-    _DAT_180d4a760 = (code *)&unknown_var_9840_ptr;
+    render_system_config_config = (code *)&unknown_var_9840_ptr;
   }
-  _DAT_180d4a728 = FUN_180694010;
+  render_system_config_config = FUN_180694010;
   if (bVar4) {
-    _DAT_180d4a728 = FUN_180695530;
+    render_system_config_config = FUN_180695530;
   }
-  _DAT_180d4a938 = FUN_18068d480;
+  render_system_config_config = FUN_18068d480;
   if (bVar4) {
-    _DAT_180d4a938 = FUN_180695560;
+    render_system_config_config = FUN_180695560;
   }
-  _DAT_180d4a8b8 = FUN_180695bf0;
+  render_system_config_config = FUN_180695bf0;
   if (bVar6) {
-    _DAT_180d4a8b8 = (code *)&unknown_var_2512_ptr;
+    render_system_config_config = (code *)&unknown_var_2512_ptr;
   }
   if (bVar5) {
-    _DAT_180d4a8b8 = (code *)&unknown_var_4432_ptr;
+    render_system_config_config = (code *)&unknown_var_4432_ptr;
   }
-  _DAT_180d4a860 = FUN_180695f70;
+  render_system_config_config = FUN_180695f70;
   if (bVar6) {
-    _DAT_180d4a860 = (code *)&unknown_var_3392_ptr;
+    render_system_config_config = (code *)&unknown_var_3392_ptr;
   }
   if (bVar5) {
-    _DAT_180d4a860 = (code *)&unknown_var_5920_ptr;
+    render_system_config_config = (code *)&unknown_var_5920_ptr;
   }
-  _DAT_180d4a800 = FUN_1806961a0;
+  render_system_config_config = FUN_1806961a0;
   if (bVar8) {
-    _DAT_180d4a800 = (code *)&unknown_var_7008_ptr;
+    render_system_config_config = (code *)&unknown_var_7008_ptr;
   }
   if (bVar6) {
-    _DAT_180d4a800 = (code *)&unknown_var_9600_ptr;
+    render_system_config_config = (code *)&unknown_var_9600_ptr;
   }
-  _DAT_180d4a7c8 = FUN_180696370;
+  render_system_config_config = FUN_180696370;
   if (bVar7) {
-    _DAT_180d4a7c8 = (code *)&unknown_var_5776_ptr;
+    render_system_config_config = (code *)&unknown_var_5776_ptr;
   }
-  _DAT_180d4a768 = FUN_180696540;
+  render_system_config_config = FUN_180696540;
   if (bVar8) {
-    _DAT_180d4a768 = (code *)&unknown_var_7893_ptr;
+    render_system_config_config = (code *)&unknown_var_7893_ptr;
   }
   if (bVar6) {
-    _DAT_180d4a768 = (code *)&unknown_var_6989_ptr;
+    render_system_config_config = (code *)&unknown_var_6989_ptr;
   }
-  _DAT_180d4a738 = FUN_180696710;
+  render_system_config_config = FUN_180696710;
   if (bVar7) {
-    _DAT_180d4a738 = (code *)&unknown_var_7206_ptr;
+    render_system_config_config = (code *)&unknown_var_7206_ptr;
   }
-  _DAT_180d4a720 = (code *)&unknown_var_160_ptr;
+  render_system_config_config = (code *)&unknown_var_160_ptr;
   if (bVar4) {
-    _DAT_180d4a720 = FUN_180697340;
+    render_system_config_config = FUN_180697340;
   }
-  _DAT_180d4a6e8 = (code *)&unknown_var_560_ptr;
+  render_system_config_config = (code *)&unknown_var_560_ptr;
   if (bVar4) {
-    _DAT_180d4a6e8 = FUN_1806972a0;
+    render_system_config_config = FUN_1806972a0;
   }
-  _DAT_180d4a6c8 = (code *)&unknown_var_48_ptr;
+  render_system_config_config = (code *)&unknown_var_48_ptr;
   if (bVar4) {
-    _DAT_180d4a6c8 = FUN_180697460;
+    render_system_config_config = FUN_180697460;
   }
-  _DAT_180d4a6c0 = (code *)&unknown_var_416_ptr;
+  render_system_config_config = (code *)&unknown_var_416_ptr;
   if (bVar4) {
-    _DAT_180d4a6c0 = FUN_1806973c0;
+    render_system_config_config = FUN_1806973c0;
   }
-  _DAT_180d4a6a0 = (code *)&unknown_var_5920_ptr;
+  render_system_config_config = (code *)&unknown_var_5920_ptr;
   if (bVar4) {
-    _DAT_180d4a6a0 = FUN_1806977e0;
+    render_system_config_config = FUN_1806977e0;
   }
-  _DAT_180d4a960 = (code *)&unknown_var_9936_ptr;
+  render_system_config_config = (code *)&unknown_var_9936_ptr;
   if (bVar4) {
-    _DAT_180d4a960 = FUN_180697580;
+    render_system_config_config = FUN_180697580;
   }
-  _DAT_180d4a940 = (code *)&unknown_var_272_ptr;
+  render_system_config_config = (code *)&unknown_var_272_ptr;
   if (bVar4) {
-    _DAT_180d4a940 = FUN_1806974e0;
+    render_system_config_config = FUN_1806974e0;
   }
-  _DAT_180d4a908 = FUN_1806968e0;
+  render_system_config_config = FUN_1806968e0;
   if (bVar8) {
-    _DAT_180d4a908 = (code *)&unknown_var_9412_ptr;
+    render_system_config_config = (code *)&unknown_var_9412_ptr;
   }
-  _DAT_180d4a8e8 = FUN_180696a60;
+  render_system_config_config = FUN_180696a60;
   if (bVar7) {
-    _DAT_180d4a8e8 = (code *)&unknown_var_9212_ptr;
+    render_system_config_config = (code *)&unknown_var_9212_ptr;
   }
-  _DAT_180d4a8a0 = (code *)&unknown_var_9536_ptr;
+  render_system_config_config = (code *)&unknown_var_9536_ptr;
   if (bVar4) {
-    _DAT_180d4a8a0 = FUN_180697680;
+    render_system_config_config = FUN_180697680;
   }
-  _DAT_180d4a878 = (code *)&unknown_var_9792_ptr;
+  render_system_config_config = (code *)&unknown_var_9792_ptr;
   if (bVar4) {
-    _DAT_180d4a878 = FUN_180697600;
+    render_system_config_config = FUN_180697600;
   }
-  _DAT_180d4a840 = (code *)&unknown_var_9424_ptr;
+  render_system_config_config = (code *)&unknown_var_9424_ptr;
   if (bVar4) {
-    _DAT_180d4a840 = FUN_180697770;
+    render_system_config_config = FUN_180697770;
   }
-  _DAT_180d4a818 = (code *)&unknown_var_9648_ptr;
+  render_system_config_config = (code *)&unknown_var_9648_ptr;
   if (bVar4) {
-    _DAT_180d4a818 = FUN_1806976f0;
+    render_system_config_config = FUN_1806976f0;
   }
-  _DAT_180d4a7d8 = (code *)&unknown_var_2672_ptr;
+  render_system_config_config = (code *)&unknown_var_2672_ptr;
   if (bVar4) {
-    _DAT_180d4a7d8 = FUN_1806978b0;
+    render_system_config_config = FUN_1806978b0;
   }
-  _DAT_180d4a7a0 = FUN_180696be0;
+  render_system_config_config = FUN_180696be0;
   if (bVar8) {
-    _DAT_180d4a7a0 = (code *)&unknown_var_8370_ptr;
+    render_system_config_config = (code *)&unknown_var_8370_ptr;
   }
-  _DAT_180d4a770 = FUN_180696d90;
+  render_system_config_config = FUN_180696d90;
   if (bVar7) {
-    _DAT_180d4a770 = (code *)&unknown_var_8398_ptr;
+    render_system_config_config = (code *)&unknown_var_8398_ptr;
   }
-  _DAT_180d4a6f0 = FUN_180696f40;
+  render_system_config_config = FUN_180696f40;
   if (bVar8) {
-    _DAT_180d4a6f0 = (code *)&unknown_var_9055_ptr;
+    render_system_config_config = (code *)&unknown_var_9055_ptr;
   }
-  _DAT_180d4a6d8 = FUN_1806970f0;
+  render_system_config_config = FUN_1806970f0;
   if (bVar7) {
-    _DAT_180d4a6d8 = (code *)&unknown_var_7956_ptr;
+    render_system_config_config = (code *)&unknown_var_7956_ptr;
   }
-  _DAT_180d4a6b0 = FUN_180697dd0;
+  render_system_config_config = FUN_180697dd0;
   if (bVar6) {
-    _DAT_180d4a6b0 = FUN_180677100;
+    render_system_config_config = FUN_180677100;
   }
-  _DAT_180d4a930 = FUN_18068d4b0;
+  render_system_config_config = FUN_18068d4b0;
   if (bVar6) {
-    _DAT_180d4a930 = FUN_18068d530;
+    render_system_config_config = FUN_18068d530;
   }
-  _DAT_180d4a900 = FUN_18068d5b0;
+  render_system_config_config = FUN_18068d5b0;
   if (bVar6) {
-    _DAT_180d4a900 = FUN_18068d630;
+    render_system_config_config = FUN_18068d630;
   }
-  _DAT_180d4a8d8 = FUN_18068d6b0;
+  render_system_config_config = FUN_18068d6b0;
   if (bVar6) {
-    _DAT_180d4a8d8 = FUN_18068d730;
+    render_system_config_config = FUN_18068d730;
   }
-  _DAT_180d4a8b0 = FUN_18068d7b0;
+  render_system_config_config = FUN_18068d7b0;
   if (bVar6) {
-    _DAT_180d4a8b0 = FUN_18068d8d0;
+    render_system_config_config = FUN_18068d8d0;
   }
-  _DAT_180d4a870 = FUN_18068d9f0;
+  render_system_config_config = FUN_18068d9f0;
   if (bVar6) {
-    _DAT_180d4a870 = FUN_18068db10;
+    render_system_config_config = FUN_18068db10;
   }
   if (bVar4) {
-    _DAT_180d4a870 = FUN_180695590;
+    render_system_config_config = FUN_180695590;
   }
-  _DAT_180d4a830 = FUN_18068dc30;
+  render_system_config_config = FUN_18068dc30;
   if (bVar6) {
-    _DAT_180d4a830 = FUN_18068dd50;
+    render_system_config_config = FUN_18068dd50;
   }
-  _DAT_180d4a7e8 = FUN_18068de70;
+  render_system_config_config = FUN_18068de70;
   if (bVar6) {
-    _DAT_180d4a7e8 = FUN_18068def0;
+    render_system_config_config = FUN_18068def0;
   }
-  _DAT_180d4a7c0 = FUN_18068df70;
+  render_system_config_config = FUN_18068df70;
   if (bVar6) {
-    _DAT_180d4a7c0 = FUN_18068dff0;
+    render_system_config_config = FUN_18068dff0;
   }
-  _DAT_180d4a788 = FUN_18068e070;
+  render_system_config_config = FUN_18068e070;
   if (bVar6) {
-    _DAT_180d4a788 = FUN_18068e250;
+    render_system_config_config = FUN_18068e250;
   }
-  _DAT_180d4a740 = FUN_18068e430;
+  render_system_config_config = FUN_18068e430;
   if (bVar6) {
-    _DAT_180d4a740 = FUN_18068e610;
+    render_system_config_config = FUN_18068e610;
   }
   if (bVar4) {
-    _DAT_180d4a740 = FUN_180695600;
+    render_system_config_config = FUN_180695600;
   }
-  _DAT_180d4a700 = FUN_18068e7f0;
+  render_system_config_config = FUN_18068e7f0;
   if (bVar6) {
-    _DAT_180d4a700 = FUN_18068e870;
+    render_system_config_config = FUN_18068e870;
   }
-  _DAT_180d4a6e0 = FUN_18068e8f0;
+  render_system_config_config = FUN_18068e8f0;
   if (bVar6) {
-    _DAT_180d4a6e0 = FUN_18068e970;
+    render_system_config_config = FUN_18068e970;
   }
-  _DAT_180d4a6b8 = FUN_18068e9f0;
+  render_system_config_config = FUN_18068e9f0;
   if (bVar6) {
-    _DAT_180d4a6b8 = FUN_18068ea70;
+    render_system_config_config = FUN_18068ea70;
   }
-  _DAT_180d4a968 = FUN_18068eaf0;
+  render_system_config_config = FUN_18068eaf0;
   if (bVar6) {
-    _DAT_180d4a968 = FUN_18068eb60;
+    render_system_config_config = FUN_18068eb60;
   }
-  _DAT_180d4a948 = FUN_18068ebd0;
+  render_system_config_config = FUN_18068ebd0;
   if (bVar6) {
-    _DAT_180d4a948 = FUN_18068ec40;
+    render_system_config_config = FUN_18068ec40;
   }
-  _DAT_180d4a920 = FUN_18068ecb0;
+  render_system_config_config = FUN_18068ecb0;
   if (bVar6) {
-    _DAT_180d4a920 = FUN_18068ed20;
+    render_system_config_config = FUN_18068ed20;
   }
-  _DAT_180d4a8f0 = FUN_18068ed90;
+  render_system_config_config = FUN_18068ed90;
   if (bVar6) {
-    _DAT_180d4a8f0 = FUN_18068ee80;
+    render_system_config_config = FUN_18068ee80;
   }
-  _DAT_180d4a8d0 = FUN_18068ef70;
+  render_system_config_config = FUN_18068ef70;
   if (bVar6) {
-    _DAT_180d4a8d0 = FUN_18068f060;
+    render_system_config_config = FUN_18068f060;
   }
   if (bVar4) {
-    _DAT_180d4a8d0 = FUN_180695700;
+    render_system_config_config = FUN_180695700;
   }
-  _DAT_180d4a898 = FUN_18068f150;
+  render_system_config_config = FUN_18068f150;
   if (bVar6) {
-    _DAT_180d4a898 = FUN_18068f240;
+    render_system_config_config = FUN_18068f240;
   }
-  _DAT_180d4a858 = FUN_18068f330;
+  render_system_config_config = FUN_18068f330;
   if (bVar6) {
-    _DAT_180d4a858 = FUN_18068f3a0;
+    render_system_config_config = FUN_18068f3a0;
   }
-  _DAT_180d4a820 = FUN_18068f410;
+  render_system_config_config = FUN_18068f410;
   if (bVar6) {
-    _DAT_180d4a820 = FUN_18068f480;
+    render_system_config_config = FUN_18068f480;
   }
-  _DAT_180d4a7e0 = FUN_18068f4f0;
+  render_system_config_config = FUN_18068f4f0;
   if (bVar6) {
-    _DAT_180d4a7e0 = FUN_18068f680;
+    render_system_config_config = FUN_18068f680;
   }
-  _DAT_180d4a7b0 = FUN_18068f810;
+  render_system_config_config = FUN_18068f810;
   if (bVar6) {
-    _DAT_180d4a7b0 = FUN_18068f9a0;
+    render_system_config_config = FUN_18068f9a0;
   }
   if (bVar4) {
-    _DAT_180d4a7b0 = FUN_180695750;
+    render_system_config_config = FUN_180695750;
   }
-  _DAT_180d4a778 = FUN_18068fb30;
+  render_system_config_config = FUN_18068fb30;
   if (bVar6) {
-    _DAT_180d4a778 = FUN_18068fba0;
+    render_system_config_config = FUN_18068fba0;
   }
-  _DAT_180d4a750 = FUN_18068fc10;
+  render_system_config_config = FUN_18068fc10;
   if (bVar6) {
-    _DAT_180d4a750 = FUN_18068fc80;
+    render_system_config_config = FUN_18068fc80;
   }
-  _DAT_180d4a708 = FUN_18068fcf0;
+  render_system_config_config = FUN_18068fcf0;
   if (bVar6) {
-    _DAT_180d4a708 = FUN_18068fd60;
+    render_system_config_config = FUN_18068fd60;
   }
-  _DAT_180d4a958 = FUN_18068fdd0;
+  render_system_config_config = FUN_18068fdd0;
   if (bVar4) {
-    _DAT_180d4a958 = FUN_180695820;
+    render_system_config_config = FUN_180695820;
   }
-  _DAT_180d4a928 = FUN_18068fe10;
+  render_system_config_config = FUN_18068fe10;
   if (bVar4) {
-    _DAT_180d4a928 = FUN_180695870;
+    render_system_config_config = FUN_180695870;
   }
-  _DAT_180d4a910 = FUN_18068ff60;
+  render_system_config_config = FUN_18068ff60;
   if (bVar4) {
-    _DAT_180d4a910 = FUN_1806958c0;
+    render_system_config_config = FUN_1806958c0;
   }
-  _DAT_180d4a8c0 = FUN_180690200;
+  render_system_config_config = FUN_180690200;
   if (bVar4) {
-    _DAT_180d4a8c0 = FUN_180695990;
+    render_system_config_config = FUN_180695990;
   }
-  _DAT_180d4a8a8 = FUN_1806903c0;
+  render_system_config_config = FUN_1806903c0;
   if (bVar4) {
-    _DAT_180d4a8a8 = FUN_180695ac0;
+    render_system_config_config = FUN_180695ac0;
   }
   return;
 }
@@ -453,39 +453,39 @@ void FUN_18066e230(code *param_1)
   longlong lVar3;
   bool bVar4;
   
-  if (_DAT_180c0c1ec == 0) {
+  if (render_system_config == 0) {
     LOCK();
-    _DAT_180c0c1e8 = _DAT_180c0c1e8 + 1;
+    render_system_config = render_system_config + 1;
     UNLOCK();
     lVar3 = malloc(0x28);
     InitializeCriticalSection(lVar3);
     LOCK();
-    bVar4 = _DAT_180c0c1e0 != 0;
+    bVar4 = render_system_config != 0;
     lVar2 = lVar3;
     if (bVar4) {
-      lVar2 = _DAT_180c0c1e0;
+      lVar2 = render_system_config;
     }
-    _DAT_180c0c1e0 = lVar2;
+    render_system_config = lVar2;
     UNLOCK();
     if (bVar4) {
       DeleteCriticalSection(lVar3);
       free(lVar3);
     }
-    EnterCriticalSection(_DAT_180c0c1e0);
-    if (_DAT_180c0c1ec == 0) {
+    EnterCriticalSection(render_system_config);
+    if (render_system_config == 0) {
       (*param_1)();
-      _DAT_180c0c1ec = 1;
+      render_system_config = 1;
     }
-    LeaveCriticalSection(_DAT_180c0c1e0);
+    LeaveCriticalSection(render_system_config);
     LOCK();
-    iVar1 = _DAT_180c0c1e8 + -1;
+    iVar1 = render_system_config + -1;
     UNLOCK();
-    bVar4 = _DAT_180c0c1e8 == 1;
-    _DAT_180c0c1e8 = iVar1;
+    bVar4 = render_system_config == 1;
+    render_system_config = iVar1;
     if (bVar4) {
-      DeleteCriticalSection(_DAT_180c0c1e0);
-      free(_DAT_180c0c1e0);
-      _DAT_180c0c1e0 = 0;
+      DeleteCriticalSection(render_system_config);
+      free(render_system_config);
+      render_system_config = 0;
     }
   }
   return;
@@ -508,37 +508,37 @@ void FUN_18066e246(void)
   bool bVar4;
   
   LOCK();
-  _DAT_180c0c1e8 = _DAT_180c0c1e8 + 1;
+  render_system_config = render_system_config + 1;
   UNLOCK();
   lVar3 = malloc(0x28);
   InitializeCriticalSection(lVar3);
   LOCK();
-  bVar4 = _DAT_180c0c1e0 != 0;
+  bVar4 = render_system_config != 0;
   lVar2 = lVar3;
   if (bVar4) {
-    lVar2 = _DAT_180c0c1e0;
+    lVar2 = render_system_config;
   }
-  _DAT_180c0c1e0 = lVar2;
+  render_system_config = lVar2;
   UNLOCK();
   if (bVar4) {
     DeleteCriticalSection(lVar3);
     free(lVar3);
   }
-  EnterCriticalSection(_DAT_180c0c1e0);
-  if (_DAT_180c0c1ec == 0) {
+  EnterCriticalSection(render_system_config);
+  if (render_system_config == 0) {
     (*unaff_RDI)();
-    _DAT_180c0c1ec = 1;
+    render_system_config = 1;
   }
-  LeaveCriticalSection(_DAT_180c0c1e0);
+  LeaveCriticalSection(render_system_config);
   LOCK();
-  iVar1 = _DAT_180c0c1e8 + -1;
+  iVar1 = render_system_config + -1;
   UNLOCK();
-  bVar4 = _DAT_180c0c1e8 == 1;
-  _DAT_180c0c1e8 = iVar1;
+  bVar4 = render_system_config == 1;
+  render_system_config = iVar1;
   if (bVar4) {
-    DeleteCriticalSection(_DAT_180c0c1e0);
-    free(_DAT_180c0c1e0);
-    _DAT_180c0c1e0 = 0;
+    DeleteCriticalSection(render_system_config);
+    free(render_system_config);
+    render_system_config = 0;
   }
   return;
 }
@@ -558,17 +558,17 @@ void FUN_18066e2a3(void)
   bool bVar2;
   
   (*unaff_RDI)();
-  _DAT_180c0c1ec = 1;
-  LeaveCriticalSection(_DAT_180c0c1e0);
+  render_system_config = 1;
+  LeaveCriticalSection(render_system_config);
   LOCK();
-  iVar1 = _DAT_180c0c1e8 + -1;
+  iVar1 = render_system_config + -1;
   UNLOCK();
-  bVar2 = _DAT_180c0c1e8 == 1;
-  _DAT_180c0c1e8 = iVar1;
+  bVar2 = render_system_config == 1;
+  render_system_config = iVar1;
   if (bVar2) {
-    DeleteCriticalSection(_DAT_180c0c1e0);
-    free(_DAT_180c0c1e0);
-    _DAT_180c0c1e0 = 0;
+    DeleteCriticalSection(render_system_config);
+    free(render_system_config);
+    render_system_config = 0;
   }
   return;
 }
@@ -898,10 +898,10 @@ uint64_t FUN_18066ea80(void)
 void FUN_18066ebc0(void)
 
 {
-  if (_DAT_180c0c200 == 0) {
+  if (render_system_config == 0) {
     func_0x00018066e220();
     func_0x00018069c2d0();
-    _DAT_180c0c200 = 1;
+    render_system_config = 1;
   }
   return;
 }
@@ -921,39 +921,39 @@ void FUN_18066ebf0(code *param_1)
   longlong lVar3;
   bool bVar4;
   
-  if (_DAT_180c0c1fc == 0) {
+  if (render_system_config == 0) {
     LOCK();
-    _DAT_180c0c1f8 = _DAT_180c0c1f8 + 1;
+    render_system_config = render_system_config + 1;
     UNLOCK();
     lVar3 = malloc(0x28);
     InitializeCriticalSection(lVar3);
     LOCK();
-    bVar4 = _DAT_180c0c1f0 != 0;
+    bVar4 = render_system_config != 0;
     lVar2 = lVar3;
     if (bVar4) {
-      lVar2 = _DAT_180c0c1f0;
+      lVar2 = render_system_config;
     }
-    _DAT_180c0c1f0 = lVar2;
+    render_system_config = lVar2;
     UNLOCK();
     if (bVar4) {
       DeleteCriticalSection(lVar3);
       free(lVar3);
     }
-    EnterCriticalSection(_DAT_180c0c1f0);
-    if (_DAT_180c0c1fc == 0) {
+    EnterCriticalSection(render_system_config);
+    if (render_system_config == 0) {
       (*param_1)();
-      _DAT_180c0c1fc = 1;
+      render_system_config = 1;
     }
-    LeaveCriticalSection(_DAT_180c0c1f0);
+    LeaveCriticalSection(render_system_config);
     LOCK();
-    iVar1 = _DAT_180c0c1f8 + -1;
+    iVar1 = render_system_config + -1;
     UNLOCK();
-    bVar4 = _DAT_180c0c1f8 == 1;
-    _DAT_180c0c1f8 = iVar1;
+    bVar4 = render_system_config == 1;
+    render_system_config = iVar1;
     if (bVar4) {
-      DeleteCriticalSection(_DAT_180c0c1f0);
-      free(_DAT_180c0c1f0);
-      _DAT_180c0c1f0 = 0;
+      DeleteCriticalSection(render_system_config);
+      free(render_system_config);
+      render_system_config = 0;
     }
   }
   return;
@@ -976,37 +976,37 @@ void FUN_18066ec06(void)
   bool bVar4;
   
   LOCK();
-  _DAT_180c0c1f8 = _DAT_180c0c1f8 + 1;
+  render_system_config = render_system_config + 1;
   UNLOCK();
   lVar3 = malloc(0x28);
   InitializeCriticalSection(lVar3);
   LOCK();
-  bVar4 = _DAT_180c0c1f0 != 0;
+  bVar4 = render_system_config != 0;
   lVar2 = lVar3;
   if (bVar4) {
-    lVar2 = _DAT_180c0c1f0;
+    lVar2 = render_system_config;
   }
-  _DAT_180c0c1f0 = lVar2;
+  render_system_config = lVar2;
   UNLOCK();
   if (bVar4) {
     DeleteCriticalSection(lVar3);
     free(lVar3);
   }
-  EnterCriticalSection(_DAT_180c0c1f0);
-  if (_DAT_180c0c1fc == 0) {
+  EnterCriticalSection(render_system_config);
+  if (render_system_config == 0) {
     (*unaff_RDI)();
-    _DAT_180c0c1fc = 1;
+    render_system_config = 1;
   }
-  LeaveCriticalSection(_DAT_180c0c1f0);
+  LeaveCriticalSection(render_system_config);
   LOCK();
-  iVar1 = _DAT_180c0c1f8 + -1;
+  iVar1 = render_system_config + -1;
   UNLOCK();
-  bVar4 = _DAT_180c0c1f8 == 1;
-  _DAT_180c0c1f8 = iVar1;
+  bVar4 = render_system_config == 1;
+  render_system_config = iVar1;
   if (bVar4) {
-    DeleteCriticalSection(_DAT_180c0c1f0);
-    free(_DAT_180c0c1f0);
-    _DAT_180c0c1f0 = 0;
+    DeleteCriticalSection(render_system_config);
+    free(render_system_config);
+    render_system_config = 0;
   }
   return;
 }
@@ -1026,17 +1026,17 @@ void FUN_18066ec63(void)
   bool bVar2;
   
   (*unaff_RDI)();
-  _DAT_180c0c1fc = 1;
-  LeaveCriticalSection(_DAT_180c0c1f0);
+  render_system_config = 1;
+  LeaveCriticalSection(render_system_config);
   LOCK();
-  iVar1 = _DAT_180c0c1f8 + -1;
+  iVar1 = render_system_config + -1;
   UNLOCK();
-  bVar2 = _DAT_180c0c1f8 == 1;
-  _DAT_180c0c1f8 = iVar1;
+  bVar2 = render_system_config == 1;
+  render_system_config = iVar1;
   if (bVar2) {
-    DeleteCriticalSection(_DAT_180c0c1f0);
-    free(_DAT_180c0c1f0);
-    _DAT_180c0c1f0 = 0;
+    DeleteCriticalSection(render_system_config);
+    free(render_system_config);
+    render_system_config = 0;
   }
   return;
 }

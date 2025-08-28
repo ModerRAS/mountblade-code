@@ -56,7 +56,7 @@ void process_engine_memory_allocation(void)
     }
     temp_ptr2 = temp_ptr1;
     if (new_size != 0) {
-      temp_ptr1 = (int32_t *)allocate_memory(_DAT_180c8ed18,new_size << 4,(char)buffer_ptr[3]);
+      temp_ptr1 = (int32_t *)allocate_memory(system_memory_pool_ptr,new_size << 4,(char)buffer_ptr[3]);
       dest_ptr = (uint64_t *)*buffer_ptr;
       temp_ptr2 = temp_ptr1;
     }
@@ -652,7 +652,7 @@ longlong engine_object_manager(longlong *object_ptr,longlong *param2,int operati
   }
   else {
     if (operation_code == 1) {
-      object_handle = allocate_object(_DAT_180c8ed18,0x38,8,system_allocation_flags);
+      object_handle = allocate_object(system_memory_pool_ptr,0x38,8,system_allocation_flags);
       initialize_object(object_handle,*param2);
       *object_ptr = object_handle;
       return 0;

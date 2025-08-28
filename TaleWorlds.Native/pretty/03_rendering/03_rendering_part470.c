@@ -245,27 +245,27 @@ void RenderingSystem_AdvancedMaterialTextureProcessor(longlong render_context, l
                 FUN_180645c10(0x180c95578, render_state, &unknown_var_3424_ptr);
             }
             context_data = *(longlong*)(*material_ptr + 0x8e8);
-            *(ulonglong*)&_DAT_180c95b3c = *(ulonglong*)&_DAT_180c95b3c & 0xffffffff00000000;
-            material_index = (int)((_DAT_180c92ce0 - _DAT_180c92cd8) >> 3);
+            *(ulonglong*)&render_system_material = *(ulonglong*)&render_system_material & 0xffffffff00000000;
+            material_index = (int)((render_system_material - render_system_material) >> 3);
             if (0 < material_index) {
                 resource_handle = 0;
-                texture_handle = _DAT_180c92cd8;
+                texture_handle = render_system_material;
                 do {
                     context_data = *(longlong*)(texture_handle + resource_handle * 8);
                     if (((context_data != 0) && 
                          (*(char*)(*(longlong*)(context_data + 0x58f8) + 0x1c) != '\0')) &&
                         (*(longlong*)(context_data + 0x58f8) != context_data)) {
                         FUN_1805b59d0(context_data, 0x180c95578);
-                        texture_handle = _DAT_180c92cd8;
+                        texture_handle = render_system_material;
                     }
                     resource_handle = resource_handle + 1;
                 } while (resource_handle < material_index);
             }
-            if (_DAT_180c96070 != 0) {
-                FUN_180567f30(_DAT_180c92580, 0x180c95578);
+            if (render_system_material != 0) {
+                FUN_180567f30(render_system_material, 0x180c95578);
             }
-            *(ulonglong*)&_DAT_180c95b3c = 0;
-            memset(_DAT_180c95b10, 0, (longlong)(_DAT_180c95b08 >> 3));
+            *(ulonglong*)&render_system_material = 0;
+            memset(render_system_material, 0, (longlong)(render_system_material >> 3));
         }
     }
     
@@ -303,14 +303,14 @@ LABEL_TEXTURE_PROCESS:
     /* 处理材质状态变化 */
     if ((((material_quality & 2) != 0) && 
          (material_quality = material_quality & 0xfffffffd, texture_size = material_quality, 
-          texture_size != 0)) && (_DAT_180c8f008 != 0)) {
-        (**(code**)(_DAT_180c8f008 + 0x18))();
+          texture_size != 0)) && (system_cache_buffer != 0)) {
+        (**(code**)(system_cache_buffer + 0x18))();
     }
     
     if ((((material_quality & 1) != 0) && 
          (material_quality = material_quality & 0xfffffffe, texture_size = material_quality, 
-          (int)stack_context != 0)) && (_DAT_180c8f008 != 0)) {
-        (**(code**)(_DAT_180c8f008 + 0x18))();
+          (int)stack_context != 0)) && (system_cache_buffer != 0)) {
+        (**(code**)(system_cache_buffer + 0x18))();
     }
     
     /* 获取纹理参数 */
@@ -342,7 +342,7 @@ LABEL_TEXTURE_PROCESS:
                 ((((longlong)(int)texture_size != -1 && (material_quality != 0xffffffff)) &&
                  ((context_data = *(longlong*)
                              ((longlong)*(int*)(*(longlong*)(render_context + 0x590) + 0xac) * 0xe0 +
-                              _DAT_180c95fb0 + 0x78),
+                              render_system_material + 0x78),
                   material_index = *(int*)(context_data + 4 + (longlong)(int)texture_size * 8),
                   material_index == *(int*)(context_data + 4 + (longlong)(int)material_quality * 8) && 
                   (material_index != -1)))))) {
@@ -369,12 +369,12 @@ LABEL_TEXTURE_PROCESS:
     /* 计算材质权重参数 */
     render_state = *(int32_t*)(*(longlong*)(render_context + 0x590) + 0xac);
     material_index = FUN_18053a410(&system_memory_5f30, render_state, texture_size);
-    material_index = *(int*)(_DAT_180c95f68 + (longlong)material_index * 4);
+    material_index = *(int*)(render_system_material + (longlong)material_index * 4);
     
     if (material_index == -1) {
         context_data = 0;
     } else {
-        context_data = *(longlong*)(_DAT_180c95f88 + (longlong)material_index * 8);
+        context_data = *(longlong*)(render_system_material + (longlong)material_index * 8);
     }
     
     /* 计算材质权重 */
@@ -388,12 +388,12 @@ LABEL_TEXTURE_PROCESS:
         specular_weight = specular_weight + shininess;
         material_index = FUN_18053a410(&system_memory_5f30, render_state, 
                                        *(int32_t*)(context_data + 0x1f0));
-        material_index = *(int*)(_DAT_180c95f68 + (longlong)material_index * 4);
+        material_index = *(int*)(render_system_material + (longlong)material_index * 4);
         
         if (material_index == -1) {
             texture_handle = 0;
         } else {
-            texture_handle = *(longlong*)(_DAT_180c95f88 + (longlong)material_index * 8);
+            texture_handle = *(longlong*)(render_system_material + (longlong)material_index * 8);
         }
         
         diffuse_weight = *(float*)(texture_handle + 0x1d8);
@@ -413,12 +413,12 @@ LABEL_TEXTURE_PROCESS:
             ambient_weight = ambient_weight + shininess;
             material_index = FUN_18053a410(&system_memory_5f30, render_state, 
                                            *(int32_t*)(context_data + 0x1f0));
-            material_index = *(int*)(_DAT_180c95f68 + (longlong)material_index * 4);
+            material_index = *(int*)(render_system_material + (longlong)material_index * 4);
             
             if (material_index == -1) {
                 texture_handle = 0;
             } else {
-                texture_handle = *(longlong*)(_DAT_180c95f88 + (longlong)material_index * 8);
+                texture_handle = *(longlong*)(render_system_material + (longlong)material_index * 8);
             }
             
             diffuse_weight = *(float*)(texture_handle + 0x1e0);
@@ -447,27 +447,27 @@ LABEL_TEXTURE_PROCESS:
         
         /* 检查线程安全性 */
         if ((*(int*)(*(longlong*)((longlong)ThreadLocalStoragePointer + 
-                               (ulonglong)__tls_index * 8) + 0x48) < _DAT_180d49ed8) && 
-            (FUN_1808fcb90(&system_memory_9ed8), _DAT_180d49ed8 == -1)) {
+                               (ulonglong)__tls_index * 8) + 0x48) < render_system_config_material) && 
+            (FUN_1808fcb90(&system_memory_9ed8), render_system_config_material == -1)) {
             stack_ptr = &unknown_var_3456_ptr;
             stack_param_4 = 0;
             stack_param_5 = 0;
             stack_param_ptr = (int32_t*)0x0;
             stack_param_2 = 0;
-            param_ptr = (int32_t*)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+            param_ptr = (int32_t*)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
             *(int8_t*)param_ptr = 0;
             stack_param_ptr = param_ptr;
             stack_param_4 = FUN_18064e990(param_ptr);
             *param_ptr = 0x74616544;
             *(int16_t*)(param_ptr + 1) = 0x68;
             stack_param_2 = 5;
-            _DAT_180d49edc = FUN_180571e20(&system_memory_60c0, &stack_ptr);
+            render_system_config_material = FUN_180571e20(&system_memory_60c0, &stack_ptr);
             stack_ptr = &unknown_var_3456_ptr;
             FUN_18064e900(param_ptr);
         }
         
         context_data = 0;
-        FUN_180508510(render_context, _DAT_180d49edc, 0, 0);
+        FUN_180508510(render_context, render_system_config_material, 0, 0);
         stack_param_2 = 0;
         stack_param_1 = 0x1000000;
         stack_param_3 = 0;
@@ -486,10 +486,10 @@ LABEL_TEXTURE_PROCESS:
         material_index = FUN_18053a410(&system_memory_5f30, 
                                        *(int32_t*)(*(longlong*)(render_context + 0x590) + 0xac),
                                        material_quality);
-        material_index = *(int*)(_DAT_180c95f68 + (longlong)material_index * 4);
+        material_index = *(int*)(render_system_material + (longlong)material_index * 4);
         
         if (material_index != -1) {
-            context_data = *(longlong*)(_DAT_180c95f88 + (longlong)material_index * 8);
+            context_data = *(longlong*)(render_system_material + (longlong)material_index * 8);
         }
         
         /* 处理特殊材质效果 */
@@ -522,12 +522,12 @@ LABEL_TEXTURE_PROCESS:
             material_index = FUN_18053a410(&system_memory_5f30, 
                                            *(int32_t*)(*(longlong*)(texture_handle + 0x590) + 0xac),
                                            material_quality);
-            material_index = *(int*)(_DAT_180c95f68 + (longlong)material_index * 4);
+            material_index = *(int*)(render_system_material + (longlong)material_index * 4);
             
             if (material_index == -1) {
                 resource_handle = 0;
             } else {
-                resource_handle = *(longlong*)(_DAT_180c95f88 + (longlong)material_index * 8);
+                resource_handle = *(longlong*)(render_system_material + (longlong)material_index * 8);
             }
             
             if (stack_thread_id == 1) {
@@ -617,12 +617,12 @@ LABEL_TEXTURE_PROCESS:
             context_info = texture_data[10];
         }
         
-        stack_thread_context = _DAT_180c8ece0;
+        stack_thread_context = render_system_data_material;
         thread_id = *(int*)(render_context + 0x18);
         stack_context = CONCAT44(stack_context._4_4_, thread_id);
         
-        if ((thread_id != 0) && (_DAT_180c8f008 != 0)) {
-            (**(code**)(_DAT_180c8f008 + 0x30))(thread_id);
+        if ((thread_id != 0) && (system_cache_buffer != 0)) {
+            (**(code**)(system_cache_buffer + 0x30))(thread_id);
         }
         
         texture_size = material_quality | 8;
@@ -631,8 +631,8 @@ LABEL_TEXTURE_PROCESS:
                        texture_handle, thread_id, render_state, context_info);
         texture_size = material_quality;
         
-        if ((thread_id != 0) && (_DAT_180c8f008 != 0)) {
-            (**(code**)(_DAT_180c8f008 + 0x18))(thread_id);
+        if ((thread_id != 0) && (system_cache_buffer != 0)) {
+            (**(code**)(system_cache_buffer + 0x18))(thread_id);
         }
         
         FUN_18051fa40(render_context, texture_index);
@@ -642,44 +642,44 @@ LABEL_TEXTURE_PROCESS:
         
         /* 处理渲染结果 */
         if (texture_index == 4) {
-            param_flag = _DAT_180d49ee4;
-            if ((thread_id < _DAT_180d49ee0) &&
-                (FUN_1808fcb90(&system_memory_9ee0), param_flag = _DAT_180d49ee4, 
-                 _DAT_180d49ee0 == -1)) {
+            param_flag = render_system_config_material;
+            if ((thread_id < render_system_config_material) &&
+                (FUN_1808fcb90(&system_memory_9ee0), param_flag = render_system_config_material, 
+                 render_system_config_material == -1)) {
                 stack_ptr = &unknown_var_3456_ptr;
                 stack_param_4 = 0;
                 stack_param_5 = 0;
                 stack_param_ptr = (int32_t*)0x0;
                 stack_param_2 = 0;
-                param_ptr = (int32_t*)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+                param_ptr = (int32_t*)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
                 *(int8_t*)param_ptr = 0;
                 stack_param_ptr = param_ptr;
                 stack_param_4 = FUN_18064e990(param_ptr);
                 *param_ptr = 0x74616544;
                 *(int16_t*)(param_ptr + 1) = 0x68;
                 stack_param_2 = 5;
-                _DAT_180d49ee4 = FUN_180571e20(&system_memory_60c0, &stack_ptr);
+                render_system_config_material = FUN_180571e20(&system_memory_60c0, &stack_ptr);
                 stack_ptr = &unknown_var_3456_ptr;
                 FUN_18064e900(param_ptr);
             }
         } else {
-            param_flag = _DAT_180d49eec;
-            if ((thread_id < _DAT_180d49ee8) &&
-                (FUN_1808fcb90(&system_memory_9ee8), param_flag = _DAT_180d49eec, 
-                 _DAT_180d49ee8 == -1)) {
+            param_flag = render_system_config_material;
+            if ((thread_id < render_system_config_material) &&
+                (FUN_1808fcb90(&system_memory_9ee8), param_flag = render_system_config_material, 
+                 render_system_config_material == -1)) {
                 stack_ptr = &unknown_var_3456_ptr;
                 stack_param_4 = 0;
                 stack_param_5 = 0;
                 stack_param_ptr = (int32_t*)0x0;
                 stack_param_2 = 0;
-                param_ptr = (int32_t*)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+                param_ptr = (int32_t*)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
                 *(int8_t*)param_ptr = 0;
                 stack_param_ptr = param_ptr;
                 stack_param_4 = FUN_18064e990(param_ptr);
                 *param_ptr = 0x6e757453;
                 *(int8_t*)(param_ptr + 1) = 0;
                 stack_param_2 = 4;
-                _DAT_180d49eec = FUN_180571e20(&system_memory_60c0, &stack_ptr);
+                render_system_config_material = FUN_180571e20(&system_memory_60c0, &stack_ptr);
                 stack_ptr = &unknown_var_3456_ptr;
                 FUN_18064e900(param_ptr);
             }
@@ -696,11 +696,11 @@ LABEL_TEXTURE_PROCESS:
         material_index = FUN_18053a410(&system_memory_5f30, 
                                        *(int32_t*)(*(longlong*)(render_context + 0x590) + 0xac),
                                        texture_size);
-        material_index = *(int*)(_DAT_180c95f68 + (longlong)material_index * 4);
+        material_index = *(int*)(render_system_material + (longlong)material_index * 4);
         context_data = 0;
         
         if (material_index != -1) {
-            context_data = *(longlong*)(_DAT_180c95f88 + (longlong)material_index * 8);
+            context_data = *(longlong*)(render_system_material + (longlong)material_index * 8);
         }
         
         /* 处理纹理坐标变换 */
@@ -849,7 +849,7 @@ LABEL_TEXTURE_PROCESS:
     }
     
     /* 应用最终材质权重 */
-    diffuse_weight = _DAT_180c96488;
+    diffuse_weight = render_system_material;
     material_quality = 0xffffffff;
     
     if ((*(uint*)(render_context + 0x56c) == 1) || (*(uint*)(render_context + 0x56c) == 4)) {
@@ -931,9 +931,9 @@ LABEL_TEXTURE_PROCESS:
         }
         FUN_1805ae650(0x180c95578, *(int32_t*)(*material_ptr + 0x10), &stack_resource[3]);
         texture_handle = 0;
-        *(ulonglong*)&_DAT_180c95b3c = *(ulonglong*)&_DAT_180c95b3c & 0xffffffff00000000;
-        material_index = (int)((_DAT_180c92ce0 - _DAT_180c92cd8) >> 3);
-        context_data = _DAT_180c92cd8;
+        *(ulonglong*)&render_system_material = *(ulonglong*)&render_system_material & 0xffffffff00000000;
+        material_index = (int)((render_system_material - render_system_material) >> 3);
+        context_data = render_system_material;
         
         if (0 < material_index) {
             resource_handle = 0;
@@ -942,21 +942,21 @@ LABEL_TEXTURE_PROCESS:
                 if ((memory_usage != 0) && 
                     (*(char*)(*(longlong*)(memory_usage + 0x58f8) + 0x1c) != '\0')) {
                     FUN_1805b59d0(memory_usage, 0x180c95578);
-                    context_data = _DAT_180c92cd8;
+                    context_data = render_system_material;
                 }
                 resource_handle = resource_handle + 1;
             } while (resource_handle < material_index);
         }
         
-        if (_DAT_180c96070 != 0) {
-            FUN_180567f30(_DAT_180c92580, 0x180c95578);
+        if (render_system_material != 0) {
+            FUN_180567f30(render_system_material, 0x180c95578);
         }
-        *(ulonglong*)&_DAT_180c95b3c = 0;
-        memset(_DAT_180c95b10, 0, (longlong)(_DAT_180c95b08 >> 3));
+        *(ulonglong*)&render_system_material = 0;
+        memset(render_system_material, 0, (longlong)(render_system_material >> 3));
     }
     
     /* 应用最终变换 */
-    *(float*)(render_context + 0xa30) = _DAT_180c96488 * *(float*)(render_context + 0xa30);
+    *(float*)(render_context + 0xa30) = render_system_material * *(float*)(render_context + 0xa30);
     *(float*)(render_context + 0xa34) = diffuse_weight * *(float*)(render_context + 0xa34);
     *(float*)(render_context + 0xa38) = diffuse_weight * *(float*)(render_context + 0xa38);
     
@@ -969,20 +969,20 @@ LABEL_TEXTURE_PROCESS:
                                  *(longlong*)(render_context + 0x8d8));
         material_quality = material_quality;
         
-        if ((material_index != 0) && (_DAT_180c8f008 != 0)) {
+        if ((material_index != 0) && (system_cache_buffer != 0)) {
             stack_context._0_4_ = material_index;
-            (**(code**)(_DAT_180c8f008 + 0x30))(material_index);
+            (**(code**)(system_cache_buffer + 0x30))(material_index);
         }
     }
     
     texture_size = material_quality;
-    context_data = _DAT_180c8ece0;
+    context_data = render_system_data_material;
     render_state = *(int32_t*)(render_context + 0x568);
     thread_id = *(int*)(render_context + 0x18);
     stack_context = CONCAT44(stack_context._4_4_, thread_id);
     
-    if ((thread_id != 0) && (_DAT_180c8f008 != 0)) {
-        (**(code**)(_DAT_180c8f008 + 0x30))(thread_id);
+    if ((thread_id != 0) && (system_cache_buffer != 0)) {
+        (**(code**)(system_cache_buffer + 0x30))(thread_id);
     }
     
     texture_size = material_quality | 0x20;
@@ -1012,16 +1012,16 @@ LABEL_TEXTURE_PROCESS:
     
     texture_size = material_quality;
     
-    if ((thread_id != 0) && (_DAT_180c8f008 != 0)) {
-        (**(code**)(_DAT_180c8f008 + 0x18))(thread_id);
+    if ((thread_id != 0) && (system_cache_buffer != 0)) {
+        (**(code**)(system_cache_buffer + 0x18))(thread_id);
     }
     
-    if ((material_index != 0) && (_DAT_180c8f008 != 0)) {
-        (**(code**)(_DAT_180c8f008 + 0x18))(material_index);
+    if ((material_index != 0) && (system_cache_buffer != 0)) {
+        (**(code**)(system_cache_buffer + 0x18))(material_index);
     }
     
-    if ((texture_handle != 0) && (_DAT_180c8f008 != 0)) {
-        (**(code**)(_DAT_180c8f008 + 0x18))();
+    if ((texture_handle != 0) && (system_cache_buffer != 0)) {
+        (**(code**)(system_cache_buffer + 0x18))();
     }
     
     return;

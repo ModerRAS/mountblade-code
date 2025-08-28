@@ -517,7 +517,7 @@ uint64_t FUN_180323d00(RenderContext* context, uint32_t param2, uint32_t param3)
             if (long_val4 == 0) {
                 stack_val_c8 = 0;
             } else {
-                stack_val_c8 = FUN_18062b420(_DAT_180c8ed18, long_val4 << 4, stack_val_b0 & RENDER_RESOURCE_FLAGS_MASK);
+                stack_val_c8 = FUN_18062b420(system_memory_pool_ptr, long_val4 << 4, stack_val_b0 & RENDER_RESOURCE_FLAGS_MASK);
             }
             stack_val_b8 = long_val4 * RENDER_RESOURCE_ALIGNMENT + stack_val_c8;
             long_val4 = resource_ptr3[5];
@@ -568,7 +568,7 @@ uint64_t FUN_180323d00(RenderContext* context, uint32_t param2, uint32_t param3)
     stack_val100 = context;
     
     // 分配批处理缓冲区
-    stack_array_a8[0] = (uint32_t*)FUN_18062b1e0(_DAT_180c8ed18, RENDER_RESOURCE_POOL_SIZE, RENDER_MEMORY_ALIGNMENT, system_allocation_flags);
+    stack_array_a8[0] = (uint32_t*)FUN_18062b1e0(system_memory_pool_ptr, RENDER_RESOURCE_POOL_SIZE, RENDER_MEMORY_ALIGNMENT, system_allocation_flags);
     *stack_array_a8[0] = (uint32_t)stack_val108;
     stack_array_a8[0][1] = stack_val108._4_4_;
     stack_array_a8[0][2] = (uint32_t)stack_val100;
@@ -602,7 +602,7 @@ uint64_t FUN_180323d00(RenderContext* context, uint32_t param2, uint32_t param3)
     stack_val138 = context;
     
     // 分配第二轮批处理缓冲区
-    stack_array88[0] = (uint32_t*)FUN_18062b1e0(_DAT_180c8ed18, RENDER_RESOURCE_POOL_SIZE, RENDER_MEMORY_ALIGNMENT, system_allocation_flags);
+    stack_array88[0] = (uint32_t*)FUN_18062b1e0(system_memory_pool_ptr, RENDER_RESOURCE_POOL_SIZE, RENDER_MEMORY_ALIGNMENT, system_allocation_flags);
     *stack_array88[0] = (uint32_t)stack_val140;
     stack_array88[0][1] = stack_val140._4_4_;
     stack_array88[0][2] = (uint32_t)stack_val138;
@@ -621,8 +621,8 @@ uint64_t FUN_180323d00(RenderContext* context, uint32_t param2, uint32_t param3)
     }
     
     // 执行系统状态更新和优化
-    if ((*(int64_t*)(_DAT_180c86870 + 0x3d8) != 0) &&
-        (*(int*)(*(int64_t*)(_DAT_180c86870 + 0x3d8) + 0x110) == 3)) {
+    if ((*(int64_t*)(system_main_module_state + 0x3d8) != 0) &&
+        (*(int*)(*(int64_t*)(system_main_module_state + 0x3d8) + 0x110) == 3)) {
         // 执行渲染状态更新
         resource_ptr = (void**)(context + RENDER_CONTEXT_OFFSET_848);
         int_val = *(int*)(context + RENDER_CONTEXT_OFFSET_150);
@@ -673,8 +673,8 @@ uint64_t FUN_180323d00(RenderContext* context, uint32_t param2, uint32_t param3)
     }
     
     // 执行更多系统状态更新操作
-    if ((*(int64_t*)(_DAT_180c86870 + 0x3d8) != 0) &&
-        (*(int*)(*(int64_t*)(_DAT_180c86870 + 0x3d8) + 0x110) == 3)) {
+    if ((*(int64_t*)(system_main_module_state + 0x3d8) != 0) &&
+        (*(int*)(*(int64_t*)(system_main_module_state + 0x3d8) + 0x110) == 3)) {
         // 执行第二个状态更新操作
         resource_ptr = (void**)(context + RENDER_CONTEXT_OFFSET_878);
         int_val = *(int*)(context + RENDER_CONTEXT_OFFSET_150);
@@ -725,8 +725,8 @@ uint64_t FUN_180323d00(RenderContext* context, uint32_t param2, uint32_t param3)
     }
     
     // 执行第三个状态更新操作
-    if ((*(int64_t*)(_DAT_180c86870 + 0x3d8) != 0) &&
-        (*(int*)(*(int64_t*)(_DAT_180c86870 + 0x3d8) + 0x110) == 3)) {
+    if ((*(int64_t*)(system_main_module_state + 0x3d8) != 0) &&
+        (*(int*)(*(int64_t*)(system_main_module_state + 0x3d8) + 0x110) == 3)) {
         // 执行第三个状态更新操作
         resource_ptr = (void**)(context + RENDER_CONTEXT_OFFSET_8A8);
         int_val = *(int*)(context + RENDER_CONTEXT_OFFSET_150);

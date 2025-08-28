@@ -111,7 +111,7 @@ ulonglong update_render_state(longlong render_context, uint *state_flags, float 
   
   // 初始化渲染状态
   if (*(char *)(render_context + 0xf9) == '\0') {
-    shader_program = create_shader_program(_DAT_180c8ed18, 0xc0, 8, 9);
+    shader_program = create_shader_program(system_memory_pool_ptr, 0xc0, 8, 9);
     shader_program = compile_shader(shader_program);
     *(uint64_t *)(render_context + 0x1d8) = shader_program;
     LOCK();
@@ -181,11 +181,11 @@ ulonglong update_render_state(longlong render_context, uint *state_flags, float 
       if (((render_state >> 0x19 & 1) != 0) ||
          ((*(longlong *)(render_context + 600) != 0 && (0 < *(int *)(*(longlong *)(render_context + 600) + 0x1c)))
          )) {
-        frame_index = *(int *)(_DAT_180c86870 + 0x224);
+        frame_index = *(int *)(system_main_module_state + 0x224);
         vertex_buffer = *(uint64_t **)(render_context + 600);
         
         if (vertex_buffer == (uint64_t *)0x0) {
-          vertex_buffer = (uint64_t *)create_vertex_buffer(_DAT_180c8ed18, 0x58, 8, 3);
+          vertex_buffer = (uint64_t *)create_vertex_buffer(system_memory_pool_ptr, 0x58, 8, 3);
           *(uint64_t *)((longlong)vertex_buffer + 0x2c) = 0xffffffffffffffff;
           *(int32_t *)(vertex_buffer + 9) = 0xffffffff;
           *vertex_buffer = 0;
@@ -212,8 +212,8 @@ ulonglong update_render_state(longlong render_context, uint *state_flags, float 
             }
             
             // 处理渲染队列
-            command_list = _DAT_180c86890 + 0x5868;
-            render_queue = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0x6a78) * 0x908 + command_list);
+            command_list = system_parameter_buffer + 0x5868;
+            render_queue = (uint *)((longlong)*(int *)(system_parameter_buffer + 0x6a78) * 0x908 + command_list);
             LOCK();
             render_state = *render_queue;
             *render_queue = *render_queue + 1;
@@ -228,7 +228,7 @@ ulonglong update_render_state(longlong render_context, uint *state_flags, float 
             do {
               frame_index = (int)texture_index;
               if (*(longlong *)constant_buffer == 0) {
-                device_context = create_render_target(_DAT_180c8ed18, 0xc000, 0x25);
+                device_context = create_render_target(system_memory_pool_ptr, 0xc000, 0x25);
                 LOCK();
                 queue_modified = *(longlong *)(render_queue + (longlong)frame_index * 2 + 2) == 0;
                 if (queue_modified) {
@@ -436,7 +436,7 @@ ulonglong update_render_state(longlong render_context, uint *state_flags, float 
     // 应用渲染状态
     apply_render_state(&render_target, state_flags + 0xc, *(int8_t *)(render_context + 0xf7), matrix_data);
     render_state = state_flags[0x6f6];
-    frame_index = *(int *)(_DAT_180c86870 + 0x224);
+    frame_index = *(int *)(system_main_module_state + 0x224);
     
     if (((*(byte *)(render_context + 0xfd) & 1) == 0) &&
        ((*(int *)(render_context + 0x1d0) == frame_index || (*(int *)(render_context + 0x1d0) == frame_index + -1)))) {
@@ -556,8 +556,8 @@ void execute_render_postprocess(longlong render_context, longlong state_data, fl
     flush_render_cache();
   }
   
-  in_stack_00000050 = _DAT_180c86890 + 0x5868;
-  render_queue = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0x6a78) * 0x908 + in_stack_00000050);
+  in_stack_00000050 = system_parameter_buffer + 0x5868;
+  render_queue = (uint *)((longlong)*(int *)(system_parameter_buffer + 0x6a78) * 0x908 + in_stack_00000050);
   
   LOCK();
   render_flags = *render_queue;
@@ -574,7 +574,7 @@ void execute_render_postprocess(longlong render_context, longlong state_data, fl
   do {
     frame_index = (int)texture_index;
     if (*(longlong *)constant_buffer == 0) {
-      device_context = create_render_target(_DAT_180c8ed18, 0xc000, 0x25);
+      device_context = create_render_target(system_memory_pool_ptr, 0xc000, 0x25);
       LOCK();
       queue_modified = *(longlong *)(render_queue + (longlong)frame_index * 2 + 2) == 0;
       if (queue_modified) {
@@ -790,7 +790,7 @@ void execute_render_postprocess(longlong render_context, longlong state_data, fl
   in_stack_00000060 = in_stack_00000060;
   
   texture_bound = *(byte *)(state_data + 0x1bd8);
-  frame_index = *(int *)(_DAT_180c86870 + 0x224);
+  frame_index = *(int *)(system_main_module_state + 0x224);
   
   if (((*(byte *)(render_context + 0xfd) & 1) == 0) &&
      ((*(int *)(render_context + 0x1d0) == frame_index || (*(int *)(render_context + 0x1d0) == frame_index + -1)))) {

@@ -108,16 +108,16 @@ extern void func_0x00018001b1ed(void* param1, ...);
 // 全局变量声明
 // ============================================================================
 extern ulonglong GET_SECURITY_COOKIE();              // 数据基址
-extern ulonglong _DAT_180c0c210;              // 临界区指针
-extern int _DAT_180c0c218;                    // 引用计数
-extern int _DAT_180c0c21c;                    // 初始化标志
+extern ulonglong render_system_config;              // 临界区指针
+extern int render_system_config;                    // 引用计数
+extern int render_system_config;                    // 初始化标志
 extern byte global_var_8608_ptr[];                   // 未知数据表
-extern int8_t _DAT_180d9e5c0[16];          // 数据掩码
-extern int8_t _DAT_180d9e5d0[16];          // 数据基准
-extern int8_t _DAT_180d9e5f0[16];          // 偏移量1
-extern int8_t _DAT_180d9e600[16];          // 偏移量2
-extern int8_t _DAT_180d9e640[16];          // 掩码1
-extern int8_t _DAT_180d9e650[16];          // 掩码2
+extern int8_t render_system_config[16];          // 数据掩码
+extern int8_t render_system_config[16];          // 数据基准
+extern int8_t render_system_config[16];          // 偏移量1
+extern int8_t render_system_config[16];          // 偏移量2
+extern int8_t render_system_config[16];          // 掩码1
+extern int8_t render_system_config[16];          // 掩码2
 
 // ============================================================================
 // SIMD函数声明
@@ -379,9 +379,9 @@ void FUN_18069bfb0(code *param_1)
     bool cs_exists;
     
     // 检查是否已经初始化
-    if (_DAT_180c0c21c == 0) {
+    if (render_system_config == 0) {
         LOCK();
-        _DAT_180c0c218 = _DAT_180c0c218 + 1;
+        render_system_config = render_system_config + 1;
         UNLOCK();
         
         // 创建新的临界区
@@ -389,12 +389,12 @@ void FUN_18069bfb0(code *param_1)
         InitializeCriticalSection(critical_section);
         
         LOCK();
-        cs_exists = _DAT_180c0c210 != 0;
+        cs_exists = render_system_config != 0;
         existing_cs = critical_section;
         if (cs_exists) {
-            existing_cs = _DAT_180c0c210;
+            existing_cs = render_system_config;
         }
-        _DAT_180c0c210 = existing_cs;
+        render_system_config = existing_cs;
         UNLOCK();
         
         // 清理重复的临界区
@@ -404,23 +404,23 @@ void FUN_18069bfb0(code *param_1)
         }
         
         // 执行初始化
-        EnterCriticalSection(_DAT_180c0c210);
-        if (_DAT_180c0c21c == 0) {
+        EnterCriticalSection(render_system_config);
+        if (render_system_config == 0) {
             (*param_1)();
-            _DAT_180c0c21c = 1;
+            render_system_config = 1;
         }
-        LeaveCriticalSection(_DAT_180c0c210);
+        LeaveCriticalSection(render_system_config);
         
         // 清理引用计数
         LOCK();
-        ref_count = _DAT_180c0c218 + -1;
+        ref_count = render_system_config + -1;
         UNLOCK();
-        cs_exists = _DAT_180c0c218 == 1;
-        _DAT_180c0c218 = ref_count;
+        cs_exists = render_system_config == 1;
+        render_system_config = ref_count;
         if (cs_exists) {
-            DeleteCriticalSection(_DAT_180c0c210);
-            free(_DAT_180c0c210);
-            _DAT_180c0c210 = 0;
+            DeleteCriticalSection(render_system_config);
+            free(render_system_config);
+            render_system_config = 0;
         }
     }
     
@@ -442,7 +442,7 @@ void FUN_18069bfc6(void)
     
     // 增加引用计数
     LOCK();
-    _DAT_180c0c218 = _DAT_180c0c218 + 1;
+    render_system_config = render_system_config + 1;
     UNLOCK();
     
     // 创建临界区
@@ -450,12 +450,12 @@ void FUN_18069bfc6(void)
     InitializeCriticalSection(critical_section);
     
     LOCK();
-    cs_exists = _DAT_180c0c210 != 0;
+    cs_exists = render_system_config != 0;
     existing_cs = critical_section;
     if (cs_exists) {
-        existing_cs = _DAT_180c0c210;
+        existing_cs = render_system_config;
     }
-    _DAT_180c0c210 = existing_cs;
+    render_system_config = existing_cs;
     UNLOCK();
     
     // 清理重复临界区
@@ -465,23 +465,23 @@ void FUN_18069bfc6(void)
     }
     
     // 执行目标函数
-    EnterCriticalSection(_DAT_180c0c210);
-    if (_DAT_180c0c21c == 0) {
+    EnterCriticalSection(render_system_config);
+    if (render_system_config == 0) {
         (*target_function)();
-        _DAT_180c0c21c = 1;
+        render_system_config = 1;
     }
-    LeaveCriticalSection(_DAT_180c0c210);
+    LeaveCriticalSection(render_system_config);
     
     // 清理引用计数
     LOCK();
-    ref_count = _DAT_180c0c218 + -1;
+    ref_count = render_system_config + -1;
     UNLOCK();
-    cs_exists = _DAT_180c0c218 == 1;
-    _DAT_180c0c218 = ref_count;
+    cs_exists = render_system_config == 1;
+    render_system_config = ref_count;
     if (cs_exists) {
-        DeleteCriticalSection(_DAT_180c0c210);
-        free(_DAT_180c0c210);
-        _DAT_180c0c210 = 0;
+        DeleteCriticalSection(render_system_config);
+        free(render_system_config);
+        render_system_config = 0;
     }
     
     return;
@@ -500,19 +500,19 @@ void FUN_18069c023(void)
     
     // 执行目标函数并设置标志
     (*target_function)();
-    _DAT_180c0c21c = 1;
-    LeaveCriticalSection(_DAT_180c0c210);
+    render_system_config = 1;
+    LeaveCriticalSection(render_system_config);
     
     // 清理资源
     LOCK();
-    ref_count = _DAT_180c0c218 + -1;
+    ref_count = render_system_config + -1;
     UNLOCK();
-    cleanup_needed = _DAT_180c0c218 == 1;
-    _DAT_180c0c218 = ref_count;
+    cleanup_needed = render_system_config == 1;
+    render_system_config = ref_count;
     if (cleanup_needed) {
-        DeleteCriticalSection(_DAT_180c0c210);
-        free(_DAT_180c0c210);
-        _DAT_180c0c210 = 0;
+        DeleteCriticalSection(render_system_config);
+        free(render_system_config);
+        render_system_config = 0;
     }
     
     return;
@@ -965,7 +965,7 @@ void FUN_18069c990(longlong param_1, int param_2, int8_t (*param_3) [16])
     int8_t pixel_data11[16];
     
     // 初始化基础向量
-    base_vector = _DAT_180d9e5d0;
+    base_vector = render_system_config;
     current_pixel = (int8_t (*) [16])(param_2 * 4 + param_1);
     data_offset = (longlong)param_2;
     
@@ -976,7 +976,7 @@ void FUN_18069c990(longlong param_1, int param_2, int8_t (*param_3) [16])
     // 计算像素差异
     pixel_data4 = psubusb(pixel_data5, pixel_data7);
     pixel_data6 = psubusb(pixel_data7, pixel_data5);
-    pixel_data4 = (pixel_data6 | pixel_data4) & _DAT_180d9e5c0;
+    pixel_data4 = (pixel_data6 | pixel_data4) & render_system_config;
     
     // 执行位移操作
     pixel_data10._0_2_ = pixel_data4._0_2_ >> 1;
@@ -1016,13 +1016,13 @@ void FUN_18069c990(longlong param_1, int param_2, int8_t (*param_3) [16])
     pixel_data8[0xf] = -(pixel_data10[0xf] == '\0');
     
     // 执行符号运算
-    pixel_data7 = psubsb(pixel_data7 ^ _DAT_180d9e5d0, pixel_data5 ^ _DAT_180d9e5d0);
-    pixel_data5 = psubsb(pixel_data6 ^ _DAT_180d9e5d0, pixel_data4 ^ _DAT_180d9e5d0);
+    pixel_data7 = psubsb(pixel_data7 ^ render_system_config, pixel_data5 ^ render_system_config);
+    pixel_data5 = psubsb(pixel_data6 ^ render_system_config, pixel_data4 ^ render_system_config);
     pixel_data7 = paddsb(pixel_data7, pixel_data5);
     pixel_data7 = paddsb(pixel_data7, pixel_data5);
     pixel_data5 = paddsb(pixel_data7, pixel_data5);
-    pixel_data10 = paddsb(pixel_data8 & pixel_data5, _DAT_180d9e5f0);
-    pixel_data5 = paddsb(pixel_data8 & pixel_data5, _DAT_180d9e600);
+    pixel_data10 = paddsb(pixel_data8 & pixel_data5, render_system_config);
+    pixel_data5 = paddsb(pixel_data8 & pixel_data5, render_system_config);
     
     // 生成符号掩码
     pixel_data9[0] = -(pixel_data5[0] < '\0');
@@ -1053,7 +1053,7 @@ void FUN_18069c990(longlong param_1, int param_2, int8_t (*param_3) [16])
     pixel_data7._14_2_ = pixel_data5._14_2_ >> 3;
     
     // 应用掩码和运算
-    pixel_data5 = psubsb(pixel_data6 ^ _DAT_180d9e5d0, pixel_data7 & _DAT_180d9e650 | pixel_data9 & _DAT_180d9e640);
+    pixel_data5 = psubsb(pixel_data6 ^ render_system_config, pixel_data7 & render_system_config | pixel_data9 & render_system_config);
     
     // 生成最终符号掩码
     pixel_data11[0] = -(pixel_data10[0] < '\0');
@@ -1084,8 +1084,8 @@ void FUN_18069c990(longlong param_1, int param_2, int8_t (*param_3) [16])
     pixel_data6._14_2_ = pixel_data10._14_2_ >> 3;
     
     // 最终像素处理
-    pixel_data7 = paddsb(pixel_data4 ^ _DAT_180d9e5d0, pixel_data6 & _DAT_180d9e650 | pixel_data11 & _DAT_180d9e640);
-    *current_pixel = pixel_data5 ^ _DAT_180d9e5d0;
+    pixel_data7 = paddsb(pixel_data4 ^ render_system_config, pixel_data6 & render_system_config | pixel_data11 & render_system_config);
+    *current_pixel = pixel_data5 ^ render_system_config;
     *(int8_t (*) [16])((longlong)current_pixel + -data_offset) = pixel_data7 ^ base_vector;
     
     return;

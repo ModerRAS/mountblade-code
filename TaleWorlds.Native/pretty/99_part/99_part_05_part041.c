@@ -265,7 +265,7 @@ BADSPACEBASE *SpaceBaseAddressAllocatorFunc(longlong param_1, longlong param_2, 
         uStack_28 = 3;
         
         // 分配内存空间
-        lVar4 = FUN_18062b420(_DAT_180c8ed18, 0x400, 3, param_4, 0xfffffffffffffffe);
+        lVar4 = FUN_18062b420(system_memory_pool_ptr, 0x400, 3, param_4, 0xfffffffffffffffe);
         
         // 内存块数据移动
         if (lStack_40 != lStack_38) {
@@ -640,7 +640,7 @@ void DataStructureTraversalFunc(longlong *param_1, longlong param_2)
     if (lVar9 == 0) {
         lVar9 = 1;
 LAB_1802f2a4b:
-        puVar10 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, lVar9 * 8, *(int8_t *)(param_2 + 0x88));
+        puVar10 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, lVar9 * 8, *(int8_t *)(param_2 + 0x88));
         puVar13 = *(uint64_t **)(param_2 + 0x78);
         puVar11 = *(uint64_t **)(param_2 + 0x70);
     }
@@ -1214,7 +1214,7 @@ void DataRemovalAndArrayManagementFunc(longlong param_1, longlong param_2)
                     }
                     
                     if (uVar9 != 0) {
-                        uVar2 = FUN_18062b420(_DAT_180c8ed18, uVar9 * 8, *(int8_t *)(param_1 + 0x238));
+                        uVar2 = FUN_18062b420(system_memory_pool_ptr, uVar9 * 8, *(int8_t *)(param_1 + 0x238));
                         lVar6 = *(longlong *)(param_1 + 0x220);
                         lVar5 = *(longlong *)(param_1 + 0x228);
                     }
@@ -1293,7 +1293,7 @@ void DataRemovalAndArrayManagementFunc(longlong param_1, longlong param_2)
                 lVar1 = 0;
             }
             else {
-                lVar1 = FUN_18062b420(_DAT_180c8ed18, uVar8 * 8, *(int8_t *)(lVar5 + 0x5cb0));
+                lVar1 = FUN_18062b420(system_memory_pool_ptr, uVar8 * 8, *(int8_t *)(lVar5 + 0x5cb0));
                 lVar6 = *plVar3;
                 lVar10 = *(longlong *)(lVar5 + 0x5ca0);
             }

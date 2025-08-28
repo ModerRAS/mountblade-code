@@ -49,7 +49,7 @@ void render_system_buffer_reallocator(longlong *buffer_context, uint64_t config_
     }
   }
   // 分配新的缓冲区空间
-  stack_offset18 = FUN_18062b420(_DAT_180c8ed18, stack_offset20 * 0x128, (char)buffer_context[3]);
+  stack_offset18 = FUN_18062b420(system_memory_pool_ptr, stack_offset20 * 0x128, (char)buffer_context[3]);
   buffer_end = buffer_context[1];
   buffer_start = *buffer_context;
 LAB_18030cb58:
@@ -289,7 +289,7 @@ uint64_t * render_system_advanced_resource_manager(uint64_t *resource_context)
   *(int8_t *)(resource_context + 0x3a) = 0;
   resource_context[0x3b] = 0;
   // 分配资源管理内存
-  temp_ptr3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x20, 8, 3);
+  temp_ptr3 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x20, 8, 3);
   *temp_ptr3 = 0;
   temp_ptr3[1] = 0;
   temp_ptr3[2] = 0;
@@ -304,17 +304,17 @@ uint64_t * render_system_advanced_resource_manager(uint64_t *resource_context)
     (**(code **)(*callback_ptr + 0x38))();
   }
   *(int32_t *)((longlong)resource_context + 0xcc) = 0;
-  global_data = _DAT_180c86880;
-  if (_DAT_180c86880 == 0) {
+  global_data = render_system_data_buffer;
+  if (render_system_data_buffer == 0) {
     return resource_context;
   }
-  temp_ptr3 = *(uint64_t **)(_DAT_180c86880 + 0x20);
-  if (temp_ptr3 < *(uint64_t **)(_DAT_180c86880 + 0x28)) {
-    *(uint64_t **)(_DAT_180c86880 + 0x20) = temp_ptr3 + 1;
+  temp_ptr3 = *(uint64_t **)(render_system_data_buffer + 0x20);
+  if (temp_ptr3 < *(uint64_t **)(render_system_data_buffer + 0x28)) {
+    *(uint64_t **)(render_system_data_buffer + 0x20) = temp_ptr3 + 1;
     *temp_ptr3 = resource_context;
     return resource_context;
   }
-  temp_ptr6 = *(uint64_t **)(_DAT_180c86880 + 0x18);
+  temp_ptr6 = *(uint64_t **)(render_system_data_buffer + 0x18);
   buffer_size = (longlong)temp_ptr3 - (longlong)temp_ptr6 >> 3;
   if (buffer_size == 0) {
     buffer_size = 1;
@@ -324,7 +324,7 @@ uint64_t * render_system_advanced_resource_manager(uint64_t *resource_context)
     if (buffer_size == 0) goto LAB_18030d0ba;
   }
   // 重新分配缓冲区
-  temp_ptr5 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, buffer_size * 8, *(int8_t *)(_DAT_180c86880 + 0x30));
+  temp_ptr5 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, buffer_size * 8, *(int8_t *)(render_system_data_buffer + 0x30));
   temp_ptr3 = *(uint64_t **)(global_data + 0x20);
   temp_ptr6 = *(uint64_t **)(global_data + 0x18);
 LAB_18030d0ba:
@@ -397,9 +397,9 @@ void render_system_resource_cleaner(uint64_t *resource_context)
   // 重置资源上下文
   *resource_context = &unknown_var_5008_ptr;
   temp_counter = 0;
-  if (_DAT_180c86880 != 0) {
-    temp_ptr1 = *(uint64_t **)(_DAT_180c86880 + 0x20);
-    temp_ptr2 = *(uint64_t **)(_DAT_180c86880 + 0x18);
+  if (render_system_data_buffer != 0) {
+    temp_ptr1 = *(uint64_t **)(render_system_data_buffer + 0x20);
+    temp_ptr2 = *(uint64_t **)(render_system_data_buffer + 0x18);
     iteration_count = (longlong)temp_ptr1 - (longlong)temp_ptr2 >> 3;
     block_size = temp_counter;
     temp_ptr5 = temp_ptr2;
@@ -412,7 +412,7 @@ void render_system_resource_cleaner(uint64_t *resource_context)
             // 移动剩余数据
             memmove(temp_ptr2 + (int)block_size, temp_ptr5, (longlong)temp_ptr1 - (longlong)temp_ptr5, (longlong)temp_ptr1 - (longlong)temp_ptr5, 0xfffffffffffffffe);
           }
-          *(uint64_t **)(_DAT_180c86880 + 0x20) = temp_ptr1 + -1;
+          *(uint64_t **)(render_system_data_buffer + 0x20) = temp_ptr1 + -1;
           break;
         }
         temp_index = (int)temp_counter + 1;
@@ -545,7 +545,7 @@ uint64_t render_system_render_object_creator(longlong render_context)
   longlong *stack_ptr8;
   
   // 分配渲染对象内存
-  render_obj = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 200, 8, 3, 0xfffffffffffffffe);
+  render_obj = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, 200, 8, 3, 0xfffffffffffffffe);
   FUN_180049830(render_obj);
   *render_obj = (longlong)&unknown_var_5304_ptr;
   render_obj[0x18] = render_context;
@@ -557,7 +557,7 @@ uint64_t render_system_render_object_creator(longlong render_context)
   if (stack_ptr8 != (longlong *)0x0) {
     (**(code **)(*stack_ptr8 + 0x38))();
   }
-  temp_var1 = _DAT_180c82868;
+  temp_var1 = system_context_ptr;
   stack_ptr8 = *(longlong **)(render_context + 0x1b0);
   if (stack_ptr8 != (longlong *)0x0) {
     (**(code **)(*stack_ptr8 + 0x28))();
@@ -620,7 +620,7 @@ void render_system_render_data_processor(longlong render_context)
   
   outer_counter = 0;
   data_ptr = *(longlong *)(render_context + 0xc0);
-  temp_var1 = *(uint64_t *)(_DAT_180c86880 + 0x38);
+  temp_var1 = *(uint64_t *)(render_system_data_buffer + 0x38);
   inner_counter = outer_counter;
   if ((*(longlong **)(data_ptr + 0x110))[1] - **(longlong **)(data_ptr + 0x110) >> 3 != 0) {
     do {
@@ -864,7 +864,7 @@ void render_system_data_structure_manager(longlong render_context, longlong *dat
   data_ptr4 = (longlong *)0x0;
   if (*data_ptr6 != data_ptr6[1]) goto LAB_18030d811;
   // 分配新的数据结构
-  stack_ptr8 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x28, 8, CONCAT71((int7)((ulonglong)data_ptr6 >> 8), 3));
+  stack_ptr8 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, 0x28, 8, CONCAT71((int7)((ulonglong)data_ptr6 >> 8), 3));
   stack_ptr10 = stack_ptr8 + 1;
   *stack_ptr10 = 0;
   stack_ptr8[2] = 0;
@@ -882,7 +882,7 @@ void render_system_data_structure_manager(longlong render_context, longlong *dat
   if (data_start == 0) {
     data_start = 1;
 LAB_18030d7a4:
-    data_ptr4 = (longlong *)FUN_18062b420(_DAT_180c8ed18, data_start * 8, (char)temp_ptr1[3]);
+    data_ptr4 = (longlong *)FUN_18062b420(system_memory_pool_ptr, data_start * 8, (char)temp_ptr1[3]);
     data_ptr6 = (longlong *)temp_ptr1[1];
     data_ptr5 = (longlong *)*temp_ptr1;
   }
@@ -1027,7 +1027,7 @@ void render_system_advanced_render_controller(uint64_t render_id, longlong rende
         *(float *)(temp_long4 + 0x244) = (float)((uint)temp_float2 >> 0x18) * 0.003921569;
         if (*(longlong *)(temp_long4 + 0x2c8) == 0) {
           *(uint *)(temp_long4 + 0x100) = *(uint *)(temp_long4 + 0x100) | 8;
-          temp_var5 = FUN_18062b1e0(_DAT_180c8ed18, 0xd0, 4, 9);
+          temp_var5 = FUN_18062b1e0(system_memory_pool_ptr, 0xd0, 4, 9);
           // 初始化渲染缓冲区
           memset(temp_var5, 0, 0xd0);
         }

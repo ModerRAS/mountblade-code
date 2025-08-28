@@ -176,7 +176,7 @@ longlong * create_engine_event_handler(uint64_t engine_instance, longlong *event
   else {
     // 复杂模式：初始化事件栈和回调
     FUN_1801a0860(engine_instance, &stack_handler_ptr2);
-    temp_address = FUN_18062b1e0(_DAT_180c8ed18, 0x3d0, 8, 3);
+    temp_address = FUN_18062b1e0(system_memory_pool_ptr, 0x3d0, 8, 3);
     event_handler = (longlong *)FUN_180275090(temp_address);
     if (event_handler != (longlong *)0x0) {
       stack_handler_ptr = event_handler;

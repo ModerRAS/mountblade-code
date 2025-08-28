@@ -5,15 +5,15 @@
 // 本文件包含数据结构操作、内存管理、数组操作和对象创建功能
 
 // 全局变量声明
-uint64_t _DAT_180c8ed18;  // 内存管理器
-uint64_t _DAT_180c86870;  // 引擎配置数据
+uint64_t system_memory_pool_ptr;  // 内存管理器
+uint64_t system_main_module_state;  // 引擎配置数据
 uint64_t unknown_var_3456_ptr;   // 全局数据指针
 uint64_t unknown_var_720_ptr;   // 函数表指针
 uint64_t unknown_var_3696_ptr;   // 虚函数表指针
 uint64_t unknown_var_3552_ptr;   // 虚函数表指针
 uint64_t unknown_var_7520;   // 比较数据指针
 uint64_t unknown_var_659;   // 默认配置指针
-uint64_t _DAT_180bf6658;  // 配置覆盖指针
+uint64_t core_system_control_pointer;  // 配置覆盖指针
 uint64_t unknown_var_8064_ptr;   // 初始化函数指针
 uint64_t unknown_var_3432_ptr;   // 字符串函数表指针
 
@@ -56,7 +56,7 @@ void process_data_structure_initialization(void)
         data_count = 0;
     }
     else {
-        alloc_size = allocate_memory(_DAT_180c8ed18, input_param * 4, 0xf);
+        alloc_size = allocate_memory(system_memory_pool_ptr, input_param * 4, 0xf);
         data_count = (int16_t)data_struct2[2];
     }
     
@@ -383,7 +383,7 @@ void resize_array_20byte_elements(int *array_info)
         return;
     }
     
-    new_buffer = allocate_memory(_DAT_180c8ed18, (longlong)array_info[1] * 0x14, (char)array_info[8]);
+    new_buffer = allocate_memory(system_memory_pool_ptr, (longlong)array_info[1] * 0x14, (char)array_info[8]);
     if (*(longlong *)(array_info + 2) != 0) {
         memcpy(new_buffer, *(longlong *)(array_info + 2), (longlong)*array_info * 0x14);
     }
@@ -479,7 +479,7 @@ void resize_array_12byte_elements(int *array_info)
         return;
     }
     
-    new_buffer = allocate_memory(_DAT_180c8ed18, (longlong)array_info[1] * 0xc, (char)array_info[8]);
+    new_buffer = allocate_memory(system_memory_pool_ptr, (longlong)array_info[1] * 0xc, (char)array_info[8]);
     if (*(longlong *)(array_info + 2) != 0) {
         memcpy(new_buffer, *(longlong *)(array_info + 2), (longlong)*array_info * 0xc);
     }
@@ -575,7 +575,7 @@ void resize_array_92byte_elements(int *array_info)
         return;
     }
     
-    new_buffer = allocate_memory(_DAT_180c8ed18, (longlong)array_info[1] * 0x5c, (char)array_info[8]);
+    new_buffer = allocate_memory(system_memory_pool_ptr, (longlong)array_info[1] * 0x5c, (char)array_info[8]);
     if (*(longlong *)(array_info + 2) != 0) {
         memcpy(new_buffer, *(longlong *)(array_info + 2), (longlong)*array_info * 0x5c);
     }
@@ -747,7 +747,7 @@ void add_element_to_array_24byte(ulonglong *array_info, uint64_t *element_data)
         }
     }
     
-    dest_ptr = (int32_t *)allocate_memory(_DAT_180c8ed18, capacity * 0x18, (char)array_info[3]);
+    dest_ptr = (int32_t *)allocate_memory(system_memory_pool_ptr, capacity * 0x18, (char)array_info[3]);
     base_ptr = (uint64_t *)*array_info;
     write_ptr = (uint64_t *)array_info[1];
     
@@ -804,7 +804,7 @@ void add_element_to_array_24byte_offset(longlong offset, uint64_t element1, uint
         }
     }
     
-    dest_ptr = (int32_t *)allocate_memory(_DAT_180c8ed18, capacity * 0x18, (char)array_info[3]);
+    dest_ptr = (int32_t *)allocate_memory(system_memory_pool_ptr, capacity * 0x18, (char)array_info[3]);
     param4 = *array_info;
     current_pos = array_info[1];
     
@@ -884,7 +884,7 @@ void add_element_to_array_16byte(ulonglong *array_info, uint64_t *element_data)
         }
     }
     
-    dest_ptr = (int32_t *)allocate_memory(_DAT_180c8ed18, capacity << 4, (char)array_info[3]);
+    dest_ptr = (int32_t *)allocate_memory(system_memory_pool_ptr, capacity << 4, (char)array_info[3]);
     base_ptr = (uint64_t *)*array_info;
     write_ptr = (uint64_t *)array_info[1];
     
@@ -991,7 +991,7 @@ uint64_t *create_object_typeA(uint64_t param1, int32_t param2)
 {
     uint64_t *new_object;     // 新对象指针
     
-    new_object = (uint64_t *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
+    new_object = (uint64_t *)allocate_object_memory(system_memory_pool_ptr, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
     *new_object = &unknown_var_2712_ptr;
     new_object[0x16] = 0;
@@ -1009,7 +1009,7 @@ uint64_t *create_object_typeB(uint64_t param1, int32_t param2)
 {
     uint64_t *new_object;     // 新对象指针
     
-    new_object = (uint64_t *)allocate_object_memory(_DAT_180c8ed18, 0xb0, 8, 0x1a, 0xfffffffffffffffe);
+    new_object = (uint64_t *)allocate_object_memory(system_memory_pool_ptr, 0xb0, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
     *new_object = &unknown_var_1376_ptr;
     return new_object;
@@ -1045,7 +1045,7 @@ uint64_t *create_object_typeC(uint64_t param1, int32_t param2)
 {
     uint64_t *new_object;     // 新对象指针
     
-    new_object = (uint64_t *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
+    new_object = (uint64_t *)allocate_object_memory(system_memory_pool_ptr, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
     *new_object = &unknown_var_1192_ptr;
     new_object[0x16] = 0;
@@ -1085,7 +1085,7 @@ uint64_t *create_object_typeD(uint64_t param1, int32_t param2)
 {
     uint64_t *new_object;     // 新对象指针
     
-    new_object = (uint64_t *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
+    new_object = (uint64_t *)allocate_object_memory(system_memory_pool_ptr, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
     *new_object = &unknown_var_1008_ptr;
     new_object[0x16] = 0;
@@ -1103,7 +1103,7 @@ uint64_t *create_object_typeE(uint64_t param1, int32_t param2)
 {
     uint64_t *new_object;     // 新对象指针
     
-    new_object = (uint64_t *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
+    new_object = (uint64_t *)allocate_object_memory(system_memory_pool_ptr, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
     *new_object = &unknown_var_560_ptr;
     new_object[0x16] = 0;
@@ -1121,7 +1121,7 @@ uint64_t *create_object_typeF(uint64_t param1, int32_t param2)
 {
     uint64_t *new_object;     // 新对象指针
     
-    new_object = (uint64_t *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
+    new_object = (uint64_t *)allocate_object_memory(system_memory_pool_ptr, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
     *new_object = &unknown_var_376_ptr;
     new_object[0x16] = 0;
@@ -1139,7 +1139,7 @@ uint64_t *create_object_typeG(uint64_t param1, int32_t param2)
 {
     uint64_t *new_object;     // 新对象指针
     
-    new_object = (uint64_t *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
+    new_object = (uint64_t *)allocate_object_memory(system_memory_pool_ptr, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
     *new_object = &unknown_var_152_ptr;
     new_object[0x16] = 0;
@@ -1157,7 +1157,7 @@ uint64_t *create_object_typeH(uint64_t param1, int32_t param2)
 {
     uint64_t *new_object;     // 新对象指针
     
-    new_object = (uint64_t *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
+    new_object = (uint64_t *)allocate_object_memory(system_memory_pool_ptr, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
     *new_object = &unknown_var_9944_ptr;
     new_object[0x16] = 0;
@@ -1175,7 +1175,7 @@ uint64_t *create_object_typeI(uint64_t param1, int32_t param2)
 {
     uint64_t *new_object;     // 新对象指针
     
-    new_object = (uint64_t *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
+    new_object = (uint64_t *)allocate_object_memory(system_memory_pool_ptr, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
     *new_object = &unknown_var_9744_ptr;
     new_object[0x16] = 0;
@@ -1202,10 +1202,10 @@ void initialize_render_configuration(longlong config_ptr, uint64_t param2, longl
         **(int8_t **)(config_ptr + 8) = 0;
     }
     
-    create_render_context(*_DAT_180c86870, &stack_param1, param2);
+    create_render_context(*system_main_module_state, &stack_param1, param2);
     config_param1 = &system_buffer_ptr;
-    if (_DAT_180bf6658 != (void *)0x0) {
-        config_param1 = _DAT_180bf6658;
+    if (core_system_control_pointer != (void *)0x0) {
+        config_param1 = core_system_control_pointer;
     }
     
     config_param3 = &system_buffer_ptr;

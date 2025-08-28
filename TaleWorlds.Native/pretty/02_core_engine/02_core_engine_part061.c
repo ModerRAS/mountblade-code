@@ -116,28 +116,28 @@ void process_render_state(longlong render_context, longlong scene_data)
     }
     if (lVar32 + lVar29 + lVar27 != 0) {
       FUN_180099100(param_1);
-      lVar17 = _DAT_180c86938;
-      uVar1 = *(int32_t *)(_DAT_180c86950 + 0x17ec);
-      uVar2 = *(int32_t *)(_DAT_180c86950 + 0x17f0);
-      plVar19 = *(longlong **)(_DAT_180c86938 + 0x1cd8);
-      plVar22 = *(longlong **)(*(longlong *)(_DAT_180c86938 + 0x121e0) + 0x1d8);
+      lVar17 = system_message_buffer;
+      uVar1 = *(int32_t *)(system_operation_state + 0x17ec);
+      uVar2 = *(int32_t *)(system_operation_state + 0x17f0);
+      plVar19 = *(longlong **)(system_message_buffer + 0x1cd8);
+      plVar22 = *(longlong **)(*(longlong *)(system_message_buffer + 0x121e0) + 0x1d8);
       if (plVar22 == (longlong *)0x0) {
         plVar22 = (longlong *)0x0;
       }
       else {
-        if (_DAT_180c86870 != 0) {
-          *(longlong *)(*(longlong *)(_DAT_180c86938 + 0x121e0) + 0x340) =
-               (longlong)*(int *)(_DAT_180c86870 + 0x224);
+        if (system_main_module_state != 0) {
+          *(longlong *)(*(longlong *)(system_message_buffer + 0x121e0) + 0x340) =
+               (longlong)*(int *)(system_main_module_state + 0x224);
         }
         if (*plVar22 != 0) {
           (**(code **)(*plVar19 + 0x70))(plVar19,*plVar22,1);
-          lVar17 = _DAT_180c86938;
+          lVar17 = system_message_buffer;
         }
       }
       plVar19[0x1077] = (longlong)plVar22;
       FUN_18029de40(*(uint64_t *)(lVar17 + 0x1cd8),1);
       *(int32_t *)(param_1 + 0x84) =
-           *(int32_t *)(*(longlong *)(_DAT_180c86938 + 0x121e0) + 0x324);
+           *(int32_t *)(*(longlong *)(system_message_buffer + 0x121e0) + 0x324);
       *(int32_t *)(param_1 + 0xa4) = 1;
       uStack_270 = 0;
       uStack_26c = 0;
@@ -151,9 +151,9 @@ void process_render_state(longlong render_context, longlong scene_data)
       pcStack_2d8 = (code *)&uStack_268;
       FUN_1802072b0(pcStack_2d8,*(uint64_t *)(*(longlong *)(param_1 + 0x18) + 0x18));
       plVar19 = plStack_2b0;
-      puVar28 = *(int32_t **)(auStack_238[*(int *)(_DAT_180c86938 + 0x8c)] + 0x10);
-      puVar30 = *(int32_t **)(auStack_238[*(int *)(_DAT_180c86938 + 0x80)] + 0x10);
-      uVar20 = auStack_238[*(int *)(_DAT_180c86938 + 0x78)];
+      puVar28 = *(int32_t **)(auStack_238[*(int *)(system_message_buffer + 0x8c)] + 0x10);
+      puVar30 = *(int32_t **)(auStack_238[*(int *)(system_message_buffer + 0x80)] + 0x10);
+      uVar20 = auStack_238[*(int *)(system_message_buffer + 0x78)];
       puVar23 = *(int32_t **)(uVar20 + 0x10);
       lStack_2a0 = plStack_2b0[2];
       iVar33 = 0;
@@ -236,29 +236,29 @@ void process_render_state(longlong render_context, longlong scene_data)
       uVar38 = FUN_180207110(uVar20,*(uint64_t *)(*(longlong *)(param_1 + 0x10) + 0x18),
                              auStack_238);
       FUN_180207400(uVar38,*(uint64_t *)(*(longlong *)(param_1 + 0x18) + 0x18),&plStack_2b0);
-      lVar17 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-      lVar24 = *(longlong *)(_DAT_180c86938 + 0x1ca8);
+      lVar17 = *(longlong *)(system_message_buffer + 0x1cd8);
+      lVar24 = *(longlong *)(system_message_buffer + 0x1ca8);
       plVar22 = *(longlong **)(lVar17 + 0x8400);
       pcVar4 = *(code **)(*plVar22 + 0x38);
-      *(int32_t *)(lVar24 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+      *(int32_t *)(lVar24 + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
       (*pcVar4)(plVar22,7,1,lVar24 + 0x10);
       plVar22 = *(longlong **)(lVar17 + 0x8400);
       pcVar4 = *(code **)(*plVar22 + 0x1f0);
-      *(int32_t *)(lVar24 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+      *(int32_t *)(lVar24 + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
       (*pcVar4)(plVar22,7,1,lVar24 + 0x10);
       plVar22 = *(longlong **)(lVar17 + 0x8400);
       pcVar4 = *(code **)(*plVar22 + 0x210);
-      *(int32_t *)(lVar24 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+      *(int32_t *)(lVar24 + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
       (*pcVar4)(plVar22,7,1,lVar24 + 0x10);
       plVar22 = *(longlong **)(lVar17 + 0x8400);
       pcVar4 = *(code **)(*plVar22 + 0x80);
-      *(int32_t *)(lVar24 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+      *(int32_t *)(lVar24 + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
       (*pcVar4)(plVar22,7,1,lVar24 + 0x10);
       plVar22 = *(longlong **)(lVar17 + 0x8400);
       pcVar4 = *(code **)(*plVar22 + 0x238);
-      *(int32_t *)(lVar24 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+      *(int32_t *)(lVar24 + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
       (*pcVar4)(plVar22,7,1,lVar24 + 0x10);
-      lVar24 = _DAT_180c86938;
+      lVar24 = system_message_buffer;
       uVar38 = *(uint64_t *)(param_1 + 0x28);
       uVar21 = *(int32_t *)(param_1 + 0x30);
       uVar6 = *(int32_t *)(param_1 + 0x34);
@@ -272,7 +272,7 @@ void process_render_state(longlong render_context, longlong scene_data)
       uVar14 = *(int32_t *)(param_1 + 0x54);
       uVar15 = *(int32_t *)(param_1 + 0x58);
       uVar16 = *(int32_t *)(param_1 + 0x5c);
-      lVar17 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+      lVar17 = *(longlong *)(system_message_buffer + 0x1cd8);
       *(uint64_t *)(lVar17 + 0x80) = *(uint64_t *)(param_1 + 0x20);
       *(uint64_t *)(lVar17 + 0x88) = uVar38;
       *(int32_t *)(lVar17 + 0x90) = uVar21;
@@ -305,8 +305,8 @@ void process_render_state(longlong render_context, longlong scene_data)
               plVar19 = (longlong *)0x0;
               puVar36 = (uint *)(*(longlong *)(piVar5 + 2) + lStack_290);
               if ((*(uint *)(*(longlong *)(puVar36 + 6) + 0x328) >> 0xd & 1) == 0) {
-                FUN_18029cdd0(*(uint64_t *)(_DAT_180c86938 + 0x1cd8));
-                lVar17 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+                FUN_18029cdd0(*(uint64_t *)(system_message_buffer + 0x1cd8));
+                lVar17 = *(longlong *)(system_message_buffer + 0x1cd8);
                 plVar18 = (longlong *)FUN_18023a940();
                 plVar22 = plVar19;
                 if (((plVar18 != (longlong *)0x0) && (plVar22 = plVar18, plVar18[1] == 0)) &&
@@ -329,8 +329,8 @@ void process_render_state(longlong render_context, longlong scene_data)
                 }
               }
               else {
-                FUN_18029cdd0(*(uint64_t *)(_DAT_180c86938 + 0x1cd8),param_1 + 0xa8);
-                lVar17 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+                FUN_18029cdd0(*(uint64_t *)(system_message_buffer + 0x1cd8),param_1 + 0xa8);
+                lVar17 = *(longlong *)(system_message_buffer + 0x1cd8);
                 plVar18 = (longlong *)FUN_18023a940();
                 plVar22 = plVar19;
                 if (((plVar18 != (longlong *)0x0) && (plVar22 = plVar18, plVar18[1] == 0)) &&
@@ -351,18 +351,18 @@ void process_render_state(longlong render_context, longlong scene_data)
                   *(int32_t *)(lVar17 + 0x8ab4) = 0x10;
                   *(int *)(lVar17 + 0x82b4) = *(int *)(lVar17 + 0x82b4) + 1;
                 }
-                lVar24 = _DAT_180c86938;
+                lVar24 = system_message_buffer;
                 iVar33 = iVar25 + (iVar25 / 6 + (iVar25 >> 0x1f) +
                                   (int)(((longlong)iVar25 / 6 + ((longlong)iVar25 >> 0x3f) &
                                         0xffffffffU) >> 0x1f)) * -6;
                 iVar25 = iVar25 + 1;
-                *(float *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0xc0) = (float)iVar33;
+                *(float *)(*(longlong *)(system_message_buffer + 0x1cd8) + 0xc0) = (float)iVar33;
                 lVar17 = *(longlong *)(lVar24 + 0x1cd8);
                 iStack_2c4 = iVar25;
                 FUN_18029fc10(lVar17,*(uint64_t *)(lVar24 + 0x1ca8),lVar17 + 0x80,0x80);
               }
               if (*(code **)(puVar36 + 8) == (code *)0x0) {
-                lVar17 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+                lVar17 = *(longlong *)(system_message_buffer + 0x1cd8);
                 lVar24 = *(longlong *)(*(longlong *)(param_1 + 0x10) + 0x18);
                 if (*(longlong *)(lVar17 + 0x8240) != lVar24) {
                   *(longlong *)(lVar17 + 0x8240) = lVar24;
@@ -372,12 +372,12 @@ void process_render_state(longlong render_context, longlong scene_data)
                             (*(longlong **)(lVar17 + 0x8400),0,*(int32_t *)(lVar24 + 0x188),
                              lVar24 + 0x1a0);
                 }
-                lVar17 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+                lVar17 = *(longlong *)(system_message_buffer + 0x1cd8);
                 lVar24 = *(longlong *)(*(longlong *)(param_1 + 0x18) + 0x18);
                 if (*(longlong *)(lVar17 + 0x8238) != lVar24) {
                   *(longlong *)(lVar17 + 0x8238) = lVar24;
                   lVar27 = *(longlong *)(lVar24 + 0x18);
-                  *(int32_t *)(lVar27 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+                  *(int32_t *)(lVar27 + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
                   if ((*(byte *)(lVar24 + 4) & 1) == 0) {
                     uVar21 = 0x39;
                     iVar33 = *(int *)(lVar24 + 8) * 2;
@@ -394,7 +394,7 @@ void process_render_state(longlong render_context, longlong scene_data)
                 uVar37 = (uint)(float)puVar36[2];
                 uVar34 = (uint)(float)puVar36[3];
                 uVar31 = (uint)(float)puVar36[4];
-                uVar3 = *(ushort *)(*(longlong *)(_DAT_180c86938 + 0x121e0) + 0x32c);
+                uVar3 = *(ushort *)(*(longlong *)(system_message_buffer + 0x121e0) + 0x32c);
                 if ((int)uVar35 < 0) {
                   uVar35 = 0;
                 }
@@ -407,7 +407,7 @@ void process_render_state(longlong render_context, longlong scene_data)
                 else if ((int)(uint)uVar3 < (int)uVar34) {
                   uVar34 = (uint)uVar3;
                 }
-                uVar3 = *(ushort *)(*(longlong *)(_DAT_180c86938 + 0x121e0) + 0x32e);
+                uVar3 = *(ushort *)(*(longlong *)(system_message_buffer + 0x121e0) + 0x32e);
                 if ((int)uVar37 < 0) {
                   uVar37 = 0;
                 }
@@ -420,7 +420,7 @@ void process_render_state(longlong render_context, longlong scene_data)
                 else if ((int)(uint)uVar3 < (int)uVar31) {
                   uVar31 = (uint)uVar3;
                 }
-                lVar17 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+                lVar17 = *(longlong *)(system_message_buffer + 0x1cd8);
                 uStack_268 = 0;
                 uStack_258 = 0;
                 uStack_254 = 0x3f800000;
@@ -437,7 +437,7 @@ void process_render_state(longlong render_context, longlong scene_data)
                 param_1 = lStack_298;
                 iVar25 = iStack_2c4;
                 if (system_memory_2846 == '\0') {
-                  plVar19 = *(longlong **)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x8400);
+                  plVar19 = *(longlong **)(*(longlong *)(system_message_buffer + 0x1cd8) + 0x8400);
                   (**(code **)(*plVar19 + 0x60))(plVar19,(*puVar36 / 3) * 3,iStack_2c8,0);
                   param_1 = lStack_298;
                   iVar25 = iStack_2c4;
@@ -458,8 +458,8 @@ void process_render_state(longlong render_context, longlong scene_data)
           plVar19 = plStack_2b0;
         } while (iVar33 < *(int *)(lStack_2a8 + 0x10));
       }
-      plStack_278 = *(longlong **)(_DAT_180c86960 + 0x10);
-      *(uint64_t *)(_DAT_180c86960 + 0x10) = 0;
+      plStack_278 = *(longlong **)(core_system_data_memory + 0x10);
+      *(uint64_t *)(core_system_data_memory + 0x10) = 0;
       if (plStack_278 != (longlong *)0x0) {
         (**(code **)(*plStack_278 + 0x38))();
       }
@@ -499,21 +499,21 @@ allocate_render_resources(uint64_t param_1, uint64_t param_2, uint64_t param_3, 
   
   cleanup_flag = 0xfffffffffffffffe;
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-              0x48) < _DAT_180d49210) {
+              0x48) < core_system_config_memory) {
     FUN_1808fcb90(&system_memory_9210);
-    if (_DAT_180d49210 == -1) {
-      _DAT_180d49218 = &unknown_var_3456_ptr;
-      _DAT_180d49230 = 0;
-      _DAT_180d49220 = (void *)0x0;
-      _DAT_180d49228 = 0;
+    if (core_system_config_memory == -1) {
+      core_system_config_memory = &unknown_var_3456_ptr;
+      core_system_config_memory = 0;
+      core_system_config_memory = (void *)0x0;
+      core_system_config_memory = 0;
       FUN_1808fc820(FUN_1809419e0);
       FUN_1808fcb30(&system_memory_9210);
     }
   }
-  FUN_1801717e0(*(uint64_t *)(_DAT_180c86870 + 8),&system_memory_9218,param_3,param_4,cleanup_flag);
+  FUN_1801717e0(*(uint64_t *)(system_main_module_state + 8),&system_memory_9218,param_3,param_4,cleanup_flag);
   resource_ptr = &system_buffer_ptr;
-  if (_DAT_180d49220 != (void *)0x0) {
-    resource_ptr = _DAT_180d49220;
+  if (core_system_config_memory != (void *)0x0) {
+    resource_ptr = core_system_config_memory;
   }
   return resource_ptr;
 }

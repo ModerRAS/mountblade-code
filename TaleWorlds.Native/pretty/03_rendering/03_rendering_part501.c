@@ -263,12 +263,12 @@ void FUN_180535970(longlong *param_1, uint64_t param_2, uint64_t param_3)
         /* 验证渲染系统结果 */
         if (*(int *)(*(longlong *)
                       ((longlong)*(int *)(*(longlong *)(context_value + 0x590) + 0xac) * 0xe0 + 0x78 +
-                      _DAT_180c95fb0) + (longlong)index_result * 8) < 0) {
+                      render_system_render) + (longlong)index_result * 8) < 0) {
             return;  /* 结果无效，直接返回 */
         }
         
         /* 执行渲染系统调试操作 */
-        if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
+        if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
             FUN_1805ed8d0(*(RenderingSystemParam *)(context_value + 0x8e0));
         }
         
@@ -287,7 +287,7 @@ void FUN_180535970(longlong *param_1, uint64_t param_2, uint64_t param_3)
     /* 处理渲染系统状态标志 */
     system_param = 0;
     if ((((*(uint *)(context_value + RENDERING_SYSTEM_FLAG_OFFSET) >> 0xe & 1) != 0) && 
-         (_DAT_180c92514 != 1)) && (_DAT_180c92514 != 4)) {
+         (system_status_flag != 1)) && (system_status_flag != 4)) {
         
         /* 处理渲染系统资源指针 */
         RenderingSystemResourcePtr resource_ptr = (RenderingSystemResourcePtr *)
@@ -310,7 +310,7 @@ void FUN_180535970(longlong *param_1, uint64_t param_2, uint64_t param_3)
     }
     
     /* 执行渲染系统状态检查 */
-    if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
+    if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
         FUN_1805ed8d0(*(RenderingSystemParam *)(context_value + 0x8e0));
     }
     
@@ -527,12 +527,12 @@ void FUN_18053598c(int32_t param_1)
         /* 验证渲染系统结果 */
         if (*(int *)(*(longlong *)
                       ((longlong)*(int *)(*(longlong *)(context_value + 0x590) + 0xac) * 0xe0 + 0x78 +
-                      _DAT_180c95fb0) + (longlong)stack_index * 8) < 0) {
+                      render_system_render) + (longlong)stack_index * 8) < 0) {
             return;  /* 结果无效，直接返回 */
         }
         
         /* 执行渲染系统调试操作 */
-        if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
+        if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
             FUN_1805ed8d0(*(RenderingSystemParam *)(context_value + 0x8e0));
         }
         
@@ -545,7 +545,7 @@ void FUN_18053598c(int32_t param_1)
     /* 处理渲染系统状态标志 */
     loop_counter = 0;
     if ((((*(uint *)(context_value + RENDERING_SYSTEM_FLAG_OFFSET) >> 0xe & 1) != 0) && 
-         (_DAT_180c92514 != 1)) && (_DAT_180c92514 != 4)) {
+         (system_status_flag != 1)) && (system_status_flag != 4)) {
         
         /* 处理渲染系统资源指针 */
         resource_ptr = (RenderingSystemResourcePtr *)
@@ -568,7 +568,7 @@ void FUN_18053598c(int32_t param_1)
     }
     
     /* 执行渲染系统状态检查 */
-    if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
+    if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
         FUN_1805ed8d0(*(RenderingSystemParam *)(context_value + 0x8e0));
     }
     
@@ -753,12 +753,12 @@ void FUN_1805359c5(void)
         /* 验证渲染系统结果 */
         if (*(int *)(*(longlong *)
                       ((longlong)*(int *)(*(longlong *)(context_value + 0x590) + 0xac) * 0xe0 + 0x78 +
-                      _DAT_180c95fb0) + (longlong)stack_index * 8) < 0) {
+                      render_system_render) + (longlong)stack_index * 8) < 0) {
             return;  /* 结果无效，直接返回 */
         }
         
         /* 执行渲染系统调试操作 */
-        if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
+        if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
             FUN_1805ed8d0(*(RenderingSystemParam *)(context_value + 0x8e0));
         }
         
@@ -771,7 +771,7 @@ void FUN_1805359c5(void)
     /* 处理渲染系统状态标志 */
     loop_counter = 0;
     if ((((*(uint *)(context_value + RENDERING_SYSTEM_FLAG_OFFSET) >> 0xe & 1) != 0) && 
-         (_DAT_180c92514 != 1)) && (_DAT_180c92514 != 4)) {
+         (system_status_flag != 1)) && (system_status_flag != 4)) {
         
         /* 处理渲染系统资源指针 */
         resource_ptr = (RenderingSystemResourcePtr *)
@@ -794,7 +794,7 @@ void FUN_1805359c5(void)
     }
     
     /* 执行渲染系统状态检查 */
-    if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
+    if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
         FUN_1805ed8d0(*(RenderingSystemParam *)(context_value + 0x8e0));
     }
     

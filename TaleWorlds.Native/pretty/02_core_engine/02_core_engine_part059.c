@@ -71,7 +71,7 @@ void initialize_core_engine_data(uint64_t engine_context, int32_t param2, int32_
   uint64_t temp_value;
   
   // 获取引擎数据结构指针
-  engine_data_ptr = _DAT_180c86960;
+  engine_data_ptr = core_system_data_resource;
   temp_value = 0xfffffffffffffffe;
   
   // 加锁以确保线程安全
@@ -86,7 +86,7 @@ void initialize_core_engine_data(uint64_t engine_context, int32_t param2, int32_
   FUN_180290fd0(0);
   
   // 分配和初始化第一个数据块
-  temp_value = FUN_18062b1e0(_DAT_180c8ed18, 0xe8, 8, 3, temp_value);
+  temp_value = FUN_18062b1e0(system_memory_pool_ptr, 0xe8, 8, 3, temp_value);
   temp_value = FUN_180095350(temp_value, timestamp);
   *engine_data_ptr = temp_value;
   
@@ -94,7 +94,7 @@ void initialize_core_engine_data(uint64_t engine_context, int32_t param2, int32_
   temp_value = FUN_180124730();
   SYSTEM_DATA_MANAGER_A = temp_value;
   FUN_180290fd0(0);
-  timestamp = FUN_18062b1e0(_DAT_180c8ed18, 0xe8, 8, 3);
+  timestamp = FUN_18062b1e0(system_memory_pool_ptr, 0xe8, 8, 3);
   temp_value = FUN_180095350(timestamp, temp_value);
   engine_data_ptr[1] = temp_value;
   

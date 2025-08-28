@@ -550,7 +550,7 @@ uint64_t * RenderingSystem_MemoryAllocator(void)
   uint64_t *puVar1;
   
   // 分配内存
-  puVar1 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, RENDERING_SYSTEM_BUFFER_SIZE_0XF8, 8, 3, 0xfffffffffffffffe);
+  puVar1 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, RENDERING_SYSTEM_BUFFER_SIZE_0XF8, 8, 3, 0xfffffffffffffffe);
   
   // 调用预处理函数
   FUN_180320470(puVar1);
@@ -693,7 +693,7 @@ void RenderingSystem_BufferReader(longlong param_1, longlong param_2)
           lVar3 = 1;
 LAB_180339fdc:
           puVar4 = (uint64_t *)
-                   FUN_18062b420(_DAT_180c8ed18, lVar3 * 8, *(int8_t *)(param_1 + RENDERING_SYSTEM_BUFFER_SIZE_0XD0));
+                   FUN_18062b420(system_memory_pool_ptr, lVar3 * 8, *(int8_t *)(param_1 + RENDERING_SYSTEM_BUFFER_SIZE_0XD0));
           puVar5 = *(uint64_t **)(param_1 + RENDERING_SYSTEM_BUFFER_SIZE_0XB8);
           puVar6 = *(uint64_t **)(param_1 + RENDERING_SYSTEM_BUFFER_SIZE_0XC0);
         }
@@ -765,7 +765,7 @@ void RenderingSystem_ArrayProcessor(uint param_1)
         lVar2 = 1;
 LAB_180339fdc:
         puVar3 = (uint64_t *)
-                 FUN_18062b420(_DAT_180c8ed18, lVar2 * 8, *(int8_t *)(unaff_RBX + RENDERING_SYSTEM_BUFFER_SIZE_0XD0));
+                 FUN_18062b420(system_memory_pool_ptr, lVar2 * 8, *(int8_t *)(unaff_RBX + RENDERING_SYSTEM_BUFFER_SIZE_0XD0));
         puVar4 = *(uint64_t **)(unaff_RBX + RENDERING_SYSTEM_BUFFER_SIZE_0XB8);
         puVar5 = *(uint64_t **)(unaff_RBX + RENDERING_SYSTEM_BUFFER_SIZE_0XC0);
       }
@@ -821,7 +821,7 @@ uint64_t * RenderingSystem_HandleAllocator(void)
   uint64_t *puVar1;
   
   // 分配句柄内存
-  puVar1 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, RENDERING_SYSTEM_BUFFER_SIZE_0XD8, 8, 3, 0xfffffffffffffffe);
+  puVar1 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, RENDERING_SYSTEM_BUFFER_SIZE_0XD8, 8, 3, 0xfffffffffffffffe);
   
   // 调用预处理函数
   FUN_180320470(puVar1);
@@ -1233,7 +1233,7 @@ LAB_18033a781:
       // 创建新条目
       FUN_18066c220(param_1 + 0x20, acStackX_8, (ulonglong)*(uint *)(param_1 + RENDERING_SYSTEM_BUFFER_SIZE_0X10),
                     *(int32_t *)(param_1 + 0x18), 1);
-      puVar2 = (uint *)FUN_18062b420(_DAT_180c8ed18, 0x18, *(int8_t *)(param_1 + 0x2c));
+      puVar2 = (uint *)FUN_18062b420(system_memory_pool_ptr, 0x18, *(int8_t *)(param_1 + 0x2c));
       *puVar2 = *param_2;
       puVar2[2] = 0;
       puVar2[3] = 0;
@@ -1292,7 +1292,7 @@ int32_t * RenderingSystem_HashTableInserter(void)
   
   // 分配内存
   puVar1 = (int32_t *)
-           FUN_18062b420(_DAT_180c8ed18, 0x18, *(int8_t *)(unaff_RBX + 0x2c), in_R9, uVar2);
+           FUN_18062b420(system_memory_pool_ptr, 0x18, *(int8_t *)(unaff_RBX + 0x2c), in_R9, uVar2);
   
   // 设置数据
   *puVar1 = *unaff_R14;
@@ -1343,7 +1343,7 @@ int32_t * RenderingSystem_HashTableFinder(longlong param_1, uint64_t param_2, ui
   FUN_18066c220(param_1 + 0x20, &stack0x00000050, param_3, *(int32_t *)(unaff_RBX + 0x18), 1);
   
   // 分配内存
-  puVar1 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x18, *(int8_t *)(unaff_RBX + 0x2c));
+  puVar1 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x18, *(int8_t *)(unaff_RBX + 0x2c));
   
   // 设置数据
   *puVar1 = *unaff_R14;
@@ -1420,7 +1420,7 @@ void RenderingSystem_VectorExpander(longlong *param_1, ulonglong param_2)
   // 分配新内存
   puVar2 = (uint64_t *)0x0;
   if (uVar6 != 0) {
-    puVar2 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, uVar6 * 8, (char)param_1[3]);
+    puVar2 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, uVar6 * 8, (char)param_1[3]);
     puVar4 = (uint64_t *)*param_1;
     puVar5 = (uint64_t *)param_1[1];
   }
@@ -1497,7 +1497,7 @@ void RenderingSystem_VectorResizer(longlong param_1, uint64_t *param_2)
   // 分配新内存
   puVar1 = (uint64_t *)0x0;
   if (uVar4 != 0) {
-    puVar1 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, uVar4 * 8, (char)unaff_R14[3]);
+    puVar1 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, uVar4 * 8, (char)unaff_R14[3]);
     param_2 = (uint64_t *)*unaff_R14;
     unaff_RBX = (uint64_t *)unaff_R14[1];
   }

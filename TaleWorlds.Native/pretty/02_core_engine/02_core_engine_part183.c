@@ -114,7 +114,7 @@ longlong CoreEngineDataCopier(longlong dest_ptr, longlong src_ptr) {
     // 分配第一个数据块
     lVar4 = lVar3;
     if (lVar5 != 0) {
-        lVar4 = FUN_18062b420(_DAT_180c8ed18, lVar5 * 0x98, uVar1 & 0xff);
+        lVar4 = FUN_18062b420(system_memory_pool_ptr, lVar5 * 0x98, uVar1 & 0xff);
     }
     
     // 设置数据块指针
@@ -167,7 +167,7 @@ longlong CoreEngineDataCopier(longlong dest_ptr, longlong src_ptr) {
     *(uint *)(param_1 + 400) = uVar1;
     lVar4 = lVar3;
     if (lVar5 != 0) {
-        lVar4 = FUN_18062b420(_DAT_180c8ed18, lVar5 * 0x98, uVar1 & 0xff);
+        lVar4 = FUN_18062b420(system_memory_pool_ptr, lVar5 * 0x98, uVar1 & 0xff);
     }
     
     // 设置第二个数据块指针
@@ -214,7 +214,7 @@ longlong CoreEngineDataCopier(longlong dest_ptr, longlong src_ptr) {
     *(uint *)(param_1 + 0x4a8) = uVar1;
     lVar4 = lVar3;
     if (lVar5 != 0) {
-        lVar4 = FUN_18062b420(_DAT_180c8ed18, lVar5 * 0x98, uVar1 & 0xff);
+        lVar4 = FUN_18062b420(system_memory_pool_ptr, lVar5 * 0x98, uVar1 & 0xff);
     }
     
     // 设置第三个数据块指针
@@ -265,7 +265,7 @@ longlong CoreEngineDataCopier(longlong dest_ptr, longlong src_ptr) {
     uVar1 = *(uint *)(param_2 + 0x10d0);
     *(uint *)(param_1 + 0x10d0) = uVar1;
     if (lVar4 != 0) {
-        lVar3 = FUN_18062b420(_DAT_180c8ed18, lVar4 * 0x98, uVar1 & 0xff);
+        lVar3 = FUN_18062b420(system_memory_pool_ptr, lVar4 * 0x98, uVar1 & 0xff);
     }
     
     // 设置第四个数据块指针
@@ -350,7 +350,7 @@ longlong *CoreEngineDataManager(uint64_t resource_type, longlong *resource_ptr, 
     int32_t uStack_40;
     
     // 初始化数据管理器
-    lVar3 = _DAT_180c868f8;
+    lVar3 = core_system_data_memory;
     FUN_1806279c0(&puStack_78, param_3, param_3, param_4, 0, 0xfffffffffffffffe);
     lVar4 = FUN_180169350(lVar3, &puStack_78);
     puStack_78 = &unknown_var_3456_ptr;
@@ -540,7 +540,7 @@ longlong CoreEngineDataValidator(longlong *context_ptr, longlong string_data) {
         uStack_68 = 0;
         puStack_78 = (int16_t *)0x0;
         uStack_70 = 0;
-        puVar4 = (int16_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+        puVar4 = (int16_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
         *(int8_t *)puVar4 = 0;
         puStack_78 = puVar4;
         uVar1 = FUN_18064e990(puVar4);
@@ -645,12 +645,12 @@ longlong *CoreEngineStringProcessor(longlong *config_ptr, longlong input_data) {
                                 if ((int)uVar4 < 0x10) {
                                     uVar4 = 0x10;
                                 }
-                                puVar5 = (int8_t *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)uVar4, 0x13);
+                                puVar5 = (int8_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)(int)uVar4, 0x13);
                                 *puVar5 = 0;
                             }
                             else {
                                 if (uVar4 <= (uint)puVar7) goto LAB_180169e1e;
-                                puVar5 = (int8_t *)FUN_18062b8b0(_DAT_180c8ed18, puVar5, uVar4, 0x10, 0x13);
+                                puVar5 = (int8_t *)FUN_18062b8b0(system_memory_pool_ptr, puVar5, uVar4, 0x10, 0x13);
                             }
                             uVar11 = (ulonglong)puVar5 & 0xffffffffffc00000;
                             if (uVar11 == 0) {
@@ -809,7 +809,7 @@ longlong *CoreEnginePathParser(uint64_t manager_type, longlong *data_ptr, uint64
     uint64_t uStack_48;
     
     // 初始化路径解析器
-    uVar2 = _DAT_180c868f8;
+    uVar2 = core_system_data_memory;
     uStack_48 = 0xfffffffffffffffe;
     plVar12 = (longlong *)0x0;
     uStack_d8 = 0;
@@ -1021,7 +1021,7 @@ LAB_18016a086:
                     if (lVar3 == 0) {
                         lVar3 = 1;
                     LAB_18016a555:
-                        lVar5 = FUN_18062b420(_DAT_180c8ed18, lVar3 << 5, (char)param_2[3]);
+                        lVar5 = FUN_18062b420(system_memory_pool_ptr, lVar3 << 5, (char)param_2[3]);
                         uVar7 = param_2[1];
                     }
                     else {

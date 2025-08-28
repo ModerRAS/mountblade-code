@@ -88,7 +88,7 @@ void process_resource_data(longlong param_1,uint64_t param_2,longlong param_3,ui
   }
   uVar5 = 1;
 LAB_180142a82:
-  lVar4 = FUN_18062b420(_DAT_180c8ed18,0x60,*(int8_t *)(param_1 + 0x28),param_4,
+  lVar4 = FUN_18062b420(system_memory_pool_ptr,0x60,*(int8_t *)(param_1 + 0x28),param_4,
                         0xfffffffffffffffe);
   FUN_180627ae0(lVar4 + 0x20,param_5);
   *(uint64_t *)(lVar4 + 0x40) = &unknown_var_720_ptr;
@@ -628,7 +628,7 @@ LAB_1801436c2:
   uStack_140 = 0;
   puStack_150 = (int32_t *)0x0;
   uStack_148 = 0;
-  puVar3 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+  puVar3 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
   *(int8_t *)puVar3 = 0;
   puStack_150 = puVar3;
   uVar1 = FUN_18064e990(puVar3);
@@ -721,7 +721,7 @@ LAB_1801452ee:
   uStack_38 = 0;
   puStack_48 = (uint64_t *)0x0;
   uStack_40 = 0;
-  puVar3 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13,pcVar7,0xfffffffffffffffe);
+  puVar3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13,pcVar7,0xfffffffffffffffe);
   *(int8_t *)puVar3 = 0;
   puStack_48 = puVar3;
   uVar1 = FUN_18064e990(puVar3);
@@ -787,7 +787,7 @@ LAB_180146224:
           puStack_48 = (int32_t *)0x0;
           uStack_40 = 0;
           puVar2 = (int32_t *)
-                   FUN_18062b420(_DAT_180c8ed18,0x14,CONCAT71((int7)((ulonglong)pcVar3 >> 8),0x13),
+                   FUN_18062b420(system_memory_pool_ptr,0x14,CONCAT71((int7)((ulonglong)pcVar3 >> 8),0x13),
                                  pcVar6,0xfffffffffffffffe);
           *(int8_t *)puVar2 = 0;
           puStack_48 = puVar2;
@@ -875,7 +875,7 @@ LAB_180146a6e:
   uStack_38 = 0;
   puStack_48 = (int32_t *)0x0;
   uStack_40 = 0;
-  puVar3 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13,pcVar7,0xfffffffffffffffe);
+  puVar3 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13,pcVar7,0xfffffffffffffffe);
   *(int8_t *)puVar3 = 0;
   puStack_48 = puVar3;
   uVar1 = FUN_18064e990(puVar3);
@@ -943,7 +943,7 @@ POSTFX_PROCESS:
           puStack_48 = (int32_t *)0x0;
           uStack_40 = 0;
           puVar3 = (int32_t *)
-                   FUN_18062b420(_DAT_180c8ed18,0x15,CONCAT71((int7)((ulonglong)pcVar2 >> 8),0x13),
+                   FUN_18062b420(system_memory_pool_ptr,0x15,CONCAT71((int7)((ulonglong)pcVar2 >> 8),0x13),
                                  pcVar6,0xfffffffffffffffe);
           *(int8_t *)puVar3 = 0;
           puStack_48 = puVar3;
@@ -1033,7 +1033,7 @@ CUBEMAP_FOUND:
   do {
     if (puVar5 == (uint64_t *)0x0) {
 ENV_MAP_PROCESS:
-      puVar5 = (uint64_t *)FUN_1800b08e0(_DAT_180c86930,&plStackX_18,param_1 + 0x188,1);
+      puVar5 = (uint64_t *)FUN_1800b08e0(system_resource_state,&plStackX_18,param_1 + 0x188,1);
       uVar1 = *puVar5;
       *puVar5 = 0;
       plVar2 = *(longlong **)(param_1 + 0x1a8);
@@ -1101,10 +1101,10 @@ void * initialize_thread_local_storage(int param_1,uint64_t param_2,uint64_t par
   
   uVar1 = 0xfffffffffffffffe;
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-              0x48) < _DAT_180d49288) {
+              0x48) < core_system_config_config) {
     FUN_1808fcb90(&system_memory_9288);
-    if (_DAT_180d49288 == -1) {
-      _DAT_180d49290 = &unknown_var_3480_ptr;
-      _DAT_180d49298 = &system_memory_92a8;
+    if (core_system_config_config == -1) {
+      core_system_config_config = &unknown_var_3480_ptr;
+      core_system_config_config = &system_memory_92a8;
 
 

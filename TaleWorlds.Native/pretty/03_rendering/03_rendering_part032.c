@@ -96,7 +96,7 @@
  * ============================================================================ */
 
 // 系统数据区域
-extern uint64_t _DAT_180c8ed18;
+extern uint64_t system_memory_pool_ptr;
 extern uint64_t global_state_3456;
 extern uint64_t global_state_720;
 extern uint64_t global_state_3480;
@@ -157,7 +157,7 @@ void add_render_container_element(ulonglong *container_ptr, uint64_t *element_pt
   }
   
   // 分配新的容器空间
-  new_container_ptr = (uint64_t *)allocate_render_memory(_DAT_180c8ed18, element_count << 4, (char)container_ptr[3]);
+  new_container_ptr = (uint64_t *)allocate_render_memory(system_memory_pool_ptr, element_count << 4, (char)container_ptr[3]);
   current_ptr = (uint64_t *)container_ptr[1];
   container_start_ptr = (uint64_t *)*container_ptr;
   container_data_ptr = new_container_ptr;
@@ -227,7 +227,7 @@ void resize_render_container(longlong *container_ptr, ulonglong new_size)
     if (allocated_size != 0) {
       // 分配新内存
       new_data_ptr = (uint64_t *)
-               allocate_render_memory(_DAT_180c8ed18, allocated_size << 4, (char)container_ptr[3], current_ptr, 0xfffffffffffffffe);
+               allocate_render_memory(system_memory_pool_ptr, allocated_size << 4, (char)container_ptr[3], current_ptr, 0xfffffffffffffffe);
       current_ptr = (uint64_t *)container_ptr[1];
       old_data_ptr = (uint64_t *)*container_ptr;
     }

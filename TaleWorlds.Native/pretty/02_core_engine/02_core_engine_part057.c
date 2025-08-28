@@ -44,7 +44,7 @@ void update_render_state_and_resources(longlong render_context, longlong scene_m
     stack_value2 = 3;
     
     // 获取场景中的对象列表
-    get_scene_objects(_DAT_180c86890, scene_manager, &stack_ptr1, resource_flags, 0xfffffffffffffffe);
+    get_scene_objects(system_parameter_buffer, scene_manager, &stack_ptr1, resource_flags, 0xfffffffffffffffe);
     
     object_count = stack_offset2 - (longlong)stack_ptr1 >> 3;
     resource_array = temp_ptr6;
@@ -67,7 +67,7 @@ void update_render_state_and_resources(longlong render_context, longlong scene_m
     temp_long3 = scene_manager;
 LAB_180092bbb:
     activate_render_context(temp_long3 + 0x11a50);
-    scene_offset = _DAT_180c8ed68;
+    scene_offset = core_system_data_buffer;
     temp_int = (int)(stack_offset2 - (longlong)stack_ptr1 >> 3) + -1;
     temp_long2 = (longlong)temp_int;
     
@@ -130,11 +130,11 @@ LAB_180092c16:
         __Throw_C_error_std__YAXH_Z(temp_int);
     }
     
-    cleanup_render_resources(_DAT_180c8ed68);
+    cleanup_render_resources(core_system_data_buffer);
     
     // 检查是否启用细节渲染
     if (*(char *)(render_context + 0x1610) == '\0') {
-        render_distance = (float)_DAT_180c8ed30 * 1e-05;
+        render_distance = (float)system_error_code * 1e-05;
         scene_offset = *(longlong *)(temp_long3 + 0x11ae8);
         temp_long1 = *(longlong *)(temp_long3 + 0x11af0) - scene_offset;
         temp_long2 = temp_long1 >> 0x3f;
@@ -144,12 +144,12 @@ LAB_180092c16:
         // 处理可见对象
         if (temp_long1 / 0x30 + temp_long2 != temp_long2) {
             do {
-                temp_long2 = _DAT_180c8ed68;
+                temp_long2 = core_system_data_buffer;
                 distance_threshold = *(float *)(scene_offset + 0x2c + (longlong)resource_array);
                 if ((distance_threshold != 0.0) && (render_distance - *(float *)(scene_offset + 0x28 + (longlong)resource_array) < distance_threshold)) {
-                    temp_ptr8 = *(uint64_t **)(_DAT_180c8ed68 + 0xa0);
-                    if (temp_ptr8 < *(uint64_t **)(_DAT_180c8ed68 + 0xa8)) {
-                        *(uint64_t **)(_DAT_180c8ed68 + 0xa0) = temp_ptr8 + 6;
+                    temp_ptr8 = *(uint64_t **)(core_system_data_buffer + 0xa0);
+                    if (temp_ptr8 < *(uint64_t **)(core_system_data_buffer + 0xa8)) {
+                        *(uint64_t **)(core_system_data_buffer + 0xa0) = temp_ptr8 + 6;
                         temp_ptr8[4] = 0xffffffffffffffff;
                         temp_ulong1 = ((uint64_t *)(scene_offset + (longlong)resource_array))[1];
                         *temp_ptr8 = *(uint64_t *)(scene_offset + (longlong)resource_array);
@@ -169,12 +169,12 @@ LAB_180092c16:
                     }
                     else {
                         // 扩展可见对象缓冲区
-                        temp_ptr5 = *(uint64_t **)(_DAT_180c8ed68 + 0x98);
+                        temp_ptr5 = *(uint64_t **)(core_system_data_buffer + 0x98);
                         temp_long1 = ((longlong)temp_ptr8 - (longlong)temp_ptr5) / 0x30;
                         if (temp_long1 == 0) {
                             temp_long1 = 1;
 LAB_180092e59:
-                            temp_ptr3 = (uint64_t *)allocate_memory(_DAT_180c8ed18, temp_long1 * 0x30, *(int8_t *)(_DAT_180c8ed68 + 0xb0));
+                            temp_ptr3 = (uint64_t *)allocate_memory(system_memory_pool_ptr, temp_long1 * 0x30, *(int8_t *)(core_system_data_buffer + 0xb0));
                             temp_ptr8 = *(uint64_t **)(temp_long2 + 0xa0);
                             temp_ptr5 = *(uint64_t **)(temp_long2 + 0x98);
                         }
@@ -257,13 +257,13 @@ LAB_180092e59:
             do {
                 distance_threshold = *(float *)(temp_long3 + 0x48 + (longlong)temp_ptr6);
                 if ((distance_threshold != 0.0) && (render_distance - *(float *)(temp_long3 + 0x44 + (longlong)temp_ptr6) < distance_threshold)) {
-                    temp_ulong1 = *(ulonglong *)(_DAT_180c8ed68 + 0x180);
-                    if (temp_ulong1 < *(ulonglong *)(_DAT_180c8ed68 + 0x188)) {
-                        *(ulonglong *)(_DAT_180c8ed68 + 0x180) = temp_ulong1 + 0x50;
+                    temp_ulong1 = *(ulonglong *)(core_system_data_buffer + 0x180);
+                    if (temp_ulong1 < *(ulonglong *)(core_system_data_buffer + 0x188)) {
+                        *(ulonglong *)(core_system_data_buffer + 0x180) = temp_ulong1 + 0x50;
                         FUN_1800940b0(temp_ulong1);
                     }
                     else {
-                        FUN_180093d90(_DAT_180c8ed68 + 0x178, (longlong)resource_array * 0x50 + temp_long3);
+                        FUN_180093d90(core_system_data_buffer + 0x178, (longlong)resource_array * 0x50 + temp_long3);
                     }
                 }
                 temp_counter = (int)temp_ptr7 + 1;
@@ -292,8 +292,8 @@ longlong * get_scene_object_info(uint64_t scene_context, longlong *object_info, 
     longlong *object_ptr;
     
     // 检查对象索引是否在有效范围内
-    if (object_index < (ulonglong)((*(longlong *)(_DAT_180c86950 + 0x1870) - *(longlong *)(_DAT_180c86950 + 0x1868)) >> 3)) {
-        object_ptr = *(longlong **)(*(longlong *)(_DAT_180c86950 + 0x1868) + object_index * 8);
+    if (object_index < (ulonglong)((*(longlong *)(system_operation_state + 0x1870) - *(longlong *)(system_operation_state + 0x1868)) >> 3)) {
+        object_ptr = *(longlong **)(*(longlong *)(system_operation_state + 0x1868) + object_index * 8);
         *object_info = (longlong)object_ptr;
         if (object_ptr != (longlong *)0x0) {
             // 调用对象的初始化函数
@@ -324,9 +324,9 @@ void process_render_event(uint64_t event_context, int event_x, int event_y)
     uint64_t event_params;
     longlong *event_result;
     
-    render_state1 = *(longlong *)(_DAT_180c86870 + 8);
+    render_state1 = *(longlong *)(system_main_module_state + 8);
     viewport_x = (ulonglong)(*(uint *)(render_state1 + 0x13c) & 1);
-    render_state2 = *(longlong *)(_DAT_180c86870 + 8);
+    render_state2 = *(longlong *)(system_main_module_state + 8);
     viewport_y = (ulonglong)(*(uint *)(render_state2 + 0x13c) & 1);
     
     // 计算事件坐标相对于视口的偏移
@@ -337,9 +337,9 @@ void process_render_event(uint64_t event_context, int event_x, int event_y)
     
     // 检查事件是否在有效区域内
     if ((0 < (int)((delta_x ^ clip_x) - clip_x)) || (0 < (int)((delta_y ^ clip_y) - clip_y))) {
-        render_state2 = *(longlong *)(_DAT_180c86870 + 8);
+        render_state2 = *(longlong *)(system_main_module_state + 8);
         event_params = CONCAT44(event_y, event_x);
-        event_queue = (longlong *)allocate_event_memory(_DAT_180c8ed18, 0x48, 8, CONCAT71((int7)((ulonglong)render_state1 >> 8), 3), 0xfffffffffffffffe);
+        event_queue = (longlong *)allocate_event_memory(system_memory_pool_ptr, 0x48, 8, CONCAT71((int7)((ulonglong)render_state1 >> 8), 3), 0xfffffffffffffffe);
         
         // 设置事件队列
         *event_queue = (longlong)&unknown_var_3552_ptr;
@@ -376,25 +376,25 @@ void initialize_render_system(void)
     longlong system_state;
     uint64_t init_params;
     
-    system_base = _DAT_180c86950;
+    system_base = system_operation_state;
     init_params = 0xfffffffffffffffe;
-    mutex_handle = _DAT_180c86950 + 0x1808;
+    mutex_handle = system_operation_state + 0x1808;
     lock_result = _Mtx_lock(mutex_handle);
     if (lock_result != 0) {
         __Throw_C_error_std__YAXH_Z(lock_result);
     }
     
-    render_config = _DAT_180c86870;
-    *(int8_t *)(_DAT_180c86870 + 0x1ec) = 0;
+    render_config = system_main_module_state;
+    *(int8_t *)(system_main_module_state + 0x1ec) = 0;
     system_state = *(longlong *)(system_base + 0x1800);
     
     // 初始化渲染缓冲区
     if (system_state == 0) {
-        init_params = allocate_system_memory(_DAT_180c8ed18, 0x160, 8, 3, init_params);
+        init_params = allocate_system_memory(system_memory_pool_ptr, 0x160, 8, 3, init_params);
         init_params = initialize_render_buffers(init_params);
         set_render_buffer_ptr(system_base + 0x1800, init_params);
         system_state = *(longlong *)(system_base + 0x1800);
-        render_config = _DAT_180c86870;
+        render_config = system_main_module_state;
     }
     
     // 设置渲染参数
@@ -418,15 +418,15 @@ void shutdown_render_system(uint64_t system_context, uint64_t shutdown_param1, u
     int lock_result;
     longlong render_config;
     
-    system_base = _DAT_180c86950;
-    mutex_handle = _DAT_180c86950 + 0x1808;
+    system_base = system_operation_state;
+    mutex_handle = system_operation_state + 0x1808;
     lock_result = _Mtx_lock(mutex_handle, shutdown_param1, shutdown_param2, shutdown_param3, 0xfffffffffffffffe);
     if (lock_result != 0) {
         __Throw_C_error_std__YAXH_Z(lock_result);
     }
     
-    render_config = _DAT_180c86870;
-    *(int8_t *)(_DAT_180c86870 + 0x1ec) = 1;  // 标记为关闭状态
+    render_config = system_main_module_state;
+    *(int8_t *)(system_main_module_state + 0x1ec) = 1;  // 标记为关闭状态
     
     // 清理渲染缓冲区
     render_buffer = *(longlong **)(system_base + 0x1800);
@@ -434,7 +434,7 @@ void shutdown_render_system(uint64_t system_context, uint64_t shutdown_param1, u
         *(int8_t *)((longlong)render_buffer + 0xdd) = 0;  // 禁用渲染
         (**(code **)(*render_buffer + 0xc0))();  // 调用清理函数
         *(int8_t *)(*(longlong *)(system_base + 0x1800) + 0xf0) = 1;  // 标记已清理
-        render_config = _DAT_180c86870;
+        render_config = system_main_module_state;
     }
     
     // 重置渲染配置

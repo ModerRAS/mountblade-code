@@ -721,7 +721,7 @@ LAB_18021a863:
     }
   }
   FUN_180217db0(param_1 + 0x260);
-  allocated_buffer = FUN_18062b1e0(_DAT_180c8ed18, 0x58, 8, 3);
+  allocated_buffer = FUN_18062b1e0(system_memory_pool_ptr, 0x58, 8, 3);
                     // WARNING: Subroutine does not return
   memset(allocated_buffer, 0, 0x58);
 }
@@ -962,7 +962,7 @@ LAB_18021ae8e:
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     error_handler = *(void **)(param_2 + 8);
   }
-  FUN_1800623b0(_DAT_180c86928, 0, 0x1000000000000, 3, &unknown_var_4496_ptr, error_handler);
+  FUN_1800623b0(system_message_context, 0, 0x1000000000000, 3, &unknown_var_4496_ptr, error_handler);
   return -1;
 }
 
@@ -1029,7 +1029,7 @@ LAB_18021ae8e:
   if (*(void **)(unaff_RSI + 8) != (void *)0x0) {
     error_handler = *(void **)(unaff_RSI + 8);
   }
-  FUN_1800623b0(_DAT_180c86928, 0, 0x1000000000000, 3, &unknown_var_4496_ptr);
+  FUN_1800623b0(system_message_context, 0, 0x1000000000000, 3, &unknown_var_4496_ptr);
   return -1;
 }
 
@@ -1105,7 +1105,7 @@ LAB_18021af9e:
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     error_handler = *(void **)(param_2 + 8);
   }
-  FUN_1800623b0(_DAT_180c86928, 0, 0x1000000000000, 3, &unknown_var_4680_ptr, error_handler);
+  FUN_1800623b0(system_message_context, 0, 0x1000000000000, 3, &unknown_var_4680_ptr, error_handler);
   return -1;
 }
 
@@ -1216,28 +1216,28 @@ void initialize_message_system(void)
   stack_cookie = 0xfffffffffffffffe;
   security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer1;
   queue_size = 0;
-  _DAT_180c8aa60 = FUN_18062b1e0(_DAT_180c8ed18, 0x30, 8, 3);
-  *(int32_t *)(_DAT_180c8aa60 + 0x19) = 0;
-  *(int16_t *)(_DAT_180c8aa60 + 0x1d) = 0;
-  *(int8_t *)(_DAT_180c8aa60 + 0x1f) = 0;
-  *(int32_t *)(_DAT_180c8aa60 + 0x28) = 3;
-  *(longlong *)_DAT_180c8aa60 = _DAT_180c8aa60;
-  *(longlong *)(_DAT_180c8aa60 + 8) = _DAT_180c8aa60;
-  *(uint64_t *)(_DAT_180c8aa60 + 0x10) = 0;
-  *(int8_t *)(_DAT_180c8aa60 + 0x18) = 0;
-  *(uint64_t *)(_DAT_180c8aa60 + 0x20) = 0;
-  queue_capacity = *(longlong *)(*_DAT_180c86870 + 0x890) - *(longlong *)(*_DAT_180c86870 + 0x888) >> 5;
+  core_system_data_config = FUN_18062b1e0(system_memory_pool_ptr, 0x30, 8, 3);
+  *(int32_t *)(core_system_data_config + 0x19) = 0;
+  *(int16_t *)(core_system_data_config + 0x1d) = 0;
+  *(int8_t *)(core_system_data_config + 0x1f) = 0;
+  *(int32_t *)(core_system_data_config + 0x28) = 3;
+  *(longlong *)core_system_data_config = core_system_data_config;
+  *(longlong *)(core_system_data_config + 8) = core_system_data_config;
+  *(uint64_t *)(core_system_data_config + 0x10) = 0;
+  *(int8_t *)(core_system_data_config + 0x18) = 0;
+  *(uint64_t *)(core_system_data_config + 0x20) = 0;
+  queue_capacity = *(longlong *)(*system_main_module_state + 0x890) - *(longlong *)(*system_main_module_state + 0x888) >> 5;
   max_messages = 0;
   if (0 < (int)queue_capacity) {
-    queue_start = *(longlong *)(*_DAT_180c86870 + 0x888);
-    if (*(longlong *)(*_DAT_180c86870 + 0x890) - queue_start >> 5 == 0) {
+    queue_start = *(longlong *)(*system_main_module_state + 0x888);
+    if (*(longlong *)(*system_main_module_state + 0x890) - queue_start >> 5 == 0) {
       queue_start = FUN_180628ca0();
     }
     message_ptr = &unknown_var_3456_ptr;
     message_timeout = 0;
     message_buffer = (uint64_t *)0x0;
     message_count = 0;
-    message_handler = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+    message_handler = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
     *(int8_t *)message_handler = 0;
     message_buffer = message_handler;
     message_flags = FUN_18064e990(message_handler);

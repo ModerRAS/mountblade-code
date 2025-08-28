@@ -485,7 +485,7 @@ LAB_180276376:
           temp_float2 = *(longlong *)(object_index + object_ptr[7]);
           if ((temp_float2 != 0) && ((*(uint *)(object_index + 8 + object_ptr[7]) & bitmask_flag) != 0)) {
             if (((render_flags[0x6f6] & 0x20) != 0) && ((*(uint *)(temp_float2 + 0x100) & 0x400000) != 0)) {
-              *(int32_t *)(object_ptr + 0x65) = *(int32_t *)(_DAT_180c86870 + 0x224);
+              *(int32_t *)(object_ptr + 0x65) = *(int32_t *)(system_main_module_state + 0x224);
             }
             collision_result = FUN_180077750(temp_float2, render_flags, &stack_vertices[0], collision_param, &stack_transform[0]);
             object_type = object_type & collision_result;
@@ -522,7 +522,7 @@ LAB_180276376:
           temp_float2 = *(longlong *)(object_index + object_ptr[7]);
           if ((temp_float2 != 0) && ((*(uint *)(object_index + 8 + object_ptr[7]) & bitmask_flag) != 0)) {
             if (((render_flags[0x6f6] & 0x20) != 0) && ((*(uint *)(temp_float2 + 0x100) & 0x400000) != 0)) {
-              *(int32_t *)(object_ptr + 0x65) = *(int32_t *)(_DAT_180c86870 + 0x224);
+              *(int32_t *)(object_ptr + 0x65) = *(int32_t *)(system_main_module_state + 0x224);
             }
             if ((*(byte *)(temp_float2 + 0x100) & 0x20) == 0) {
               collision_result = FUN_180077750(temp_float2, render_flags, position_data, collision_param, &stack_transform[0]);
@@ -665,7 +665,7 @@ ulonglong process_rendering_transform(uint64_t transform_param1, uint64_t transf
       if ((context_ptr != 0) && ((*(uint *)(render_context + 8 + transform_ptr[7]) & render_flag) != 0)) {
         if (((*(byte *)(object_buffer + 0x1bd8) & 0x20) != 0) &&
            ((*(uint *)(context_ptr + 0x100) & 0x400000) != 0)) {
-          *(int32_t *)(transform_ptr + 0x65) = *(int32_t *)(_DAT_180c86870 + 0x224);
+          *(int32_t *)(transform_ptr + 0x65) = *(int32_t *)(system_main_module_state + 0x224);
         }
         collision_result = FUN_180077750();
         visibility_flag = visibility_flag & collision_result;
@@ -739,7 +739,7 @@ ulonglong optimize_rendering_objects(void)
       if ((object_ptr != 0) && ((*(uint *)(render_index + 8 + render_context[7]) & render_flag) != 0)) {
         if (((*(byte *)(render_buffer + 0x1bd8) & 0x20) != 0) &&
            ((*(uint *)(object_ptr + 0x100) & 0x400000) != 0)) {
-          *(int32_t *)(render_context + 0x65) = *(int32_t *)(_DAT_180c86870 + 0x224);
+          *(int32_t *)(render_context + 0x65) = *(int32_t *)(system_main_module_state + 0x224);
         }
         optimization_result = FUN_180077750();
         visibility_flag = visibility_flag & optimization_result;
@@ -784,7 +784,7 @@ byte update_rendering_state(void)
          ((*(uint *)(render_index + 8 + *(longlong *)(render_context + 0x38)) & render_flag) != 0)) {
         if (((*(byte *)(render_buffer + 0x1bd8) & 0x20) != 0) &&
            ((*(uint *)(object_ptr + 0x100) & 0x400000) != 0)) {
-          *(int32_t *)(render_context + 0x328) = *(int32_t *)(_DAT_180c86870 + 0x224);
+          *(int32_t *)(render_context + 0x328) = *(int32_t *)(system_main_module_state + 0x224);
         }
         if ((*(byte *)(object_ptr + 0x100) & 0x20) == 0) {
           update_result = FUN_180077750();

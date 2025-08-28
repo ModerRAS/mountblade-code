@@ -680,7 +680,7 @@ void expand_queue_capacity(longlong *queue_header, longlong *new_element)
       }
       
       data_size = available_space + 2 + data_size;
-      queue_size = allocate_queue_memory(_DAT_180c8ed18, data_size * 8, (char)queue_header[10], queue_size, allocation_flags);
+      queue_size = allocate_queue_memory(system_memory_pool_ptr, data_size * 8, (char)queue_header[10], queue_size, allocation_flags);
       write_position = (longlong *)(queue_size + (queue_header[5] - *queue_header >> 3) * 8);
       
       if (*queue_header != 0) {
@@ -699,7 +699,7 @@ void expand_queue_capacity(longlong *queue_header, longlong *new_element)
       queue_header[8] = queue_size + MAX_QUEUE_SIZE;
     }
     
-    allocation_flags = allocate_queue_memory(_DAT_180c8ed18, MAX_QUEUE_SIZE, (char)queue_header[10]);
+    allocation_flags = allocate_queue_memory(system_memory_pool_ptr, MAX_QUEUE_SIZE, (char)queue_header[10]);
     *(uint64_t *)(queue_header[9] + 8) = allocation_flags;
     *(longlong **)queue_header[6] = new_element;
     queue_size = queue_header[9];
@@ -753,8 +753,8 @@ void initialize_queue_operation(longlong queue_manager, longlong *queue_data, ui
   UNLOCK();
   
   semaphore_handle = *(uint64_t **)(queue_manager + 0x1f0);
-  semaphore_count = *(longlong *)(_DAT_180c82868 + 0x10);
-  initial_count = *(longlong *)(_DAT_180c82868 + 8);
+  semaphore_count = *(longlong *)(system_context_ptr + 0x10);
+  initial_count = *(longlong *)(system_context_ptr + 8);
   
   do {
     lock_result = ReleaseSemaphore(*semaphore_handle, semaphore_count - initial_count >> 3 & 0xffffffff, 0, param4, operation_flags, lock_address, lock_acquired);
@@ -870,18 +870,18 @@ void initialize_engine_core(uint64_t engine_param, longlong config_data)
   int8_t large_buffer[256];
   ulonglong checksum;
   
-  system_address = _DAT_180c86928;
-  engine_base = _DAT_180c82868;
+  system_address = system_message_context;
+  engine_base = system_context_ptr;
   buffer_flags = TIMEOUT_INFINITE;
   checksum = GET_SECURITY_COOKIE() ^ (ulonglong)local_config;
-  stack_config = _DAT_180c86928;
+  stack_config = system_message_context;
   stack_pointer = &unknown_var_7512_ptr;
   config_pointer = local_buffer;
   local_buffer[0] = 0;
   config_type = 6;
   strcpy_s(local_buffer, 0x10, &unknown_var_9216_ptr);
   
-  component_handle = (uint64_t *)allocate_engine_component(_DAT_180c8ed18, 0x208, 8, 3);
+  component_handle = (uint64_t *)allocate_engine_component(system_memory_pool_ptr, 0x208, 8, 3);
   config_size = engine_base + 0x70;
   config_ptr = component_handle;
   initialize_engine_component(component_handle, &stack_pointer, 3, engine_base + 0x2e0);
@@ -892,7 +892,7 @@ void initialize_engine_core(uint64_t engine_param, longlong config_data)
   *(uint64_t **)(system_address + 400) = component_handle;
   
   stack_pointer = &unknown_var_720_ptr;
-  setup_engine_config(_DAT_180c86870 + 0x170, temp_config, &system_memory_c8c8);
+  setup_engine_config(system_main_module_state + 0x170, temp_config, &system_memory_c8c8);
   
   if (0 < *(int *)(config_data + 0x10)) {
     expand_engine_config(temp_config, config_length + *(int *)(config_data + 0x10));
@@ -924,9 +924,9 @@ void process_engine_event(longlong *event_data)
   longlong *queued_event;
   longlong *processed_item;
   
-  engine_address = _DAT_180c86928;
+  engine_address = system_message_context;
   processed_event = event_data;
-  event_flags = allocate_engine_component(_DAT_180c8ed18, 0x70, 8, 3, TIMEOUT_INFINITE);
+  event_flags = allocate_engine_component(system_memory_pool_ptr, 0x70, 8, 3, TIMEOUT_INFINITE);
   event_processor = (longlong *)create_event_processor(event_flags, 0, engine_address);
   queued_event = event_processor;
   
@@ -945,7 +945,7 @@ void process_engine_event(longlong *event_data)
   
   (*handler_code)(event_handler, &processed_event);
   
-  event_flags = allocate_engine_component(_DAT_180c8ed18, 0x70, 8, 3);
+  event_flags = allocate_engine_component(system_memory_pool_ptr, 0x70, 8, 3);
   event_source = (longlong *)create_event_processor(event_flags, 4, engine_address);
   processed_item = event_source;
   
@@ -964,7 +964,7 @@ void process_engine_event(longlong *event_data)
   
   (*handler_code)(event_handler, &processed_event);
   
-  event_flags = allocate_engine_component(_DAT_180c8ed18, 0x70, 8, 3);
+  event_flags = allocate_engine_component(system_memory_pool_ptr, 0x70, 8, 3);
   event_target = (longlong *)create_event_processor(event_flags, 0, engine_address);
   
   if (event_target != (longlong *)0x0) {
@@ -1020,9 +1020,9 @@ void process_engine_system_event(longlong *system_event)
   longlong *queued_event;
   longlong *processed_item;
   
-  engine_address = _DAT_180c86928;
+  engine_address = system_message_context;
   processed_event = system_event;
-  event_flags = allocate_engine_component(_DAT_180c8ed18, 0x70, 8, 3, TIMEOUT_INFINITE);
+  event_flags = allocate_engine_component(system_memory_pool_ptr, 0x70, 8, 3, TIMEOUT_INFINITE);
   event_processor = (longlong *)create_event_processor(event_flags, 0, engine_address);
   queued_event = event_processor;
   
@@ -1041,7 +1041,7 @@ void process_engine_system_event(longlong *system_event)
   
   (*handler_code)(event_handler, &processed_event);
   
-  event_flags = allocate_engine_component(_DAT_180c8ed18, 0x70, 8, 3);
+  event_flags = allocate_engine_component(system_memory_pool_ptr, 0x70, 8, 3);
   event_source = (longlong *)create_event_processor(event_flags, 3, engine_address);
   processed_item = event_source;
   
@@ -1060,7 +1060,7 @@ void process_engine_system_event(longlong *system_event)
   
   (*handler_code)(event_handler, &processed_event);
   
-  event_flags = allocate_engine_component(_DAT_180c8ed18, 0x70, 8, 3);
+  event_flags = allocate_engine_component(system_memory_pool_ptr, 0x70, 8, 3);
   event_target = (longlong *)create_event_processor(event_flags, 0, engine_address);
   
   if (event_target != (longlong *)0x0) {
@@ -1197,10 +1197,10 @@ void process_engine_state_event(longlong *state_data)
   longlong *processed_event;
   longlong **event_reference;
   
-  engine_address = _DAT_180c86928;
-  if (*(char *)(_DAT_180c86928 + 0x18) != '\0') {
+  engine_address = system_message_context;
+  if (*(char *)(system_message_context + 0x18) != '\0') {
     processed_event = state_data;
-    event_flags = allocate_engine_component(_DAT_180c8ed18, 0x70, 8, 3, TIMEOUT_INFINITE);
+    event_flags = allocate_engine_component(system_memory_pool_ptr, 0x70, 8, 3, TIMEOUT_INFINITE);
     event_processor = (longlong *)create_event_processor(event_flags, 6, engine_address);
     processed_event = event_processor;
     
@@ -1246,7 +1246,7 @@ void execute_engine_time_sync(void)
   daylight_info = TIMEOUT_INFINITE;
   sync_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)time_buffer;
   sync_flags = 0;
-  timezone_info = _DAT_180c86928;
+  timezone_info = system_message_context;
   current_time = _time64(0);
   local_time = _localtime64(&current_time);
   memset(sync_data, 0, 0xff);

@@ -312,10 +312,10 @@ void FUN_18064c570(ulonglong param_1, longlong param_2)
   do {
     if ((uint *)(param_1 + 0x80 + resource_count * 0x50) <= resource_pool_ptr) {
       // 执行最终清理
-      if (_DAT_180bfbe8c == 0) {
+      if (render_system_control_memory == 0) {
         FUN_180650490(&system_memory_be88);
       }
-      FUN_18064b460(param_1, _DAT_180bfbe88 != 0);
+      FUN_18064b460(param_1, render_system_control_memory != 0);
       func_0x000180646ff0(*(longlong *)(param_2 + 0x398) + 0xc0, 1);
       FUN_18064ae40(*(int *)(param_1 + 0x58) * -0x10000, param_2);
       
@@ -327,23 +327,23 @@ void FUN_18064c570(ulonglong param_1, longlong param_2)
       *(uint64_t *)(param_1 + 0x40) = 1;
       
       // 更新全局状态
-      resource_base = _DAT_180ca8b80;
+      resource_base = render_system_memory;
       do {
         *(ulonglong *)(param_1 + 0x28) = resource_base & 0xffffffffffc00000;
         LOCK();
-        cleanup_complete = resource_base != _DAT_180ca8b80;
+        cleanup_complete = resource_base != render_system_memory;
         resource_base = (int)resource_base + 1U & 0x3fffff | param_1;
         if (cleanup_complete) {
-          resource_base = _DAT_180ca8b80;
-          resource_base = _DAT_180ca8b80;
+          resource_base = render_system_memory;
+          resource_base = render_system_memory;
         }
-        _DAT_180ca8b80 = resource_base;
+        render_system_memory = resource_base;
         UNLOCK();
       } while (cleanup_complete);
       
       // 更新计数器
       LOCK();
-      _DAT_180d48d00 = _DAT_180d48d00 + 1;
+      render_system_config_memory = render_system_config_memory + 1;
       UNLOCK();
       return;
     }
@@ -997,21 +997,21 @@ LAB_cleanup_complete:
         }
         if (3 < *(ulonglong *)(allocation_size + 0x40)) goto LAB_cleanup_complete;
         FUN_18064b460(allocation_size, 0);
-        current_size = _DAT_180c9e8c0;
+        current_size = render_system_memory;
         do {
           *(longlong *)(allocation_size + 0x28) = current_size;
           LOCK();
-          resource_allocated = current_size != _DAT_180c9e8c0;
+          resource_allocated = current_size != render_system_memory;
           temp_resource = allocation_size;
           if (resource_allocated) {
-            current_size = _DAT_180c9e8c0;
-            temp_resource = _DAT_180c9e8c0;
+            current_size = render_system_memory;
+            temp_resource = render_system_memory;
           }
-          _DAT_180c9e8c0 = temp_resource;
+          render_system_memory = temp_resource;
           UNLOCK();
         } while (resource_allocated);
         LOCK();
-        _DAT_180c9eb40 = _DAT_180c9eb40 + 1;
+        render_system_memory = render_system_memory + 1;
         UNLOCK();
       }
     } while (0 < bit_position);

@@ -38,8 +38,8 @@ void ui_system_data_copier(longlong destination_ptr, uint64_t source_ptr1, uint6
  */
 void ui_system_callback_trigger(int *callback_flag_ptr)
 {
-  if ((*callback_flag_ptr != 0) && (_DAT_180c8f008 != 0)) {
-    (**(code **)(_DAT_180c8f008 + 0x18))();
+  if ((*callback_flag_ptr != 0) && (system_cache_buffer != 0)) {
+    (**(code **)(system_cache_buffer + 0x18))();
   }
   return;
 }
@@ -87,7 +87,7 @@ void ui_system_resource_manager(void)
   resource_data_ptr = (int8_t *)0x0;
   resource_count = 0;
   temp_resource_type = 0;
-  temp_hash_value = _DAT_180c91030;
+  temp_hash_value = ui_system_pointer;
   temp_ptr1 = &unknown_var_7512_ptr;
   temp_string_ptr = temp_data_buffer;
   temp_data_buffer[0] = 0;
@@ -751,8 +751,8 @@ void ui_system_property_extractor(int property_index, uint64_t *property_data_pt
   uint64_t property_value19;
   longlong array_index;
   
-  property_offset = *_DAT_180c8ecf0;
-  if ((ulonglong)(longlong)property_index < (ulonglong)((_DAT_180c8ecf0[1] - property_offset) / 0x84)) {
+  property_offset = *ui_system_data_pointer;
+  if ((ulonglong)(longlong)property_index < (ulonglong)((ui_system_data_pointer[1] - property_offset) / 0x84)) {
     array_index = (longlong)property_index * 0x84;
     property_table_ptr = (uint64_t *)(array_index + 0x60 + property_offset);
     property_value1 = *property_table_ptr;
@@ -1184,7 +1184,7 @@ int32_t ui_system_event_processor(longlong event_data, uint64_t param_2, uint64_
   longlong buffer_data;
   
   initialize_event_buffer(&temp_buffer_ptr, event_data + 0x10, param_3, param_4, 0xfffffffffffffffe);
-  process_result = (**(code **)(*_DAT_180c8f008 + 0x70))(_DAT_180c8f008, &temp_buffer_ptr);
+  process_result = (**(code **)(*system_cache_buffer + 0x70))(system_cache_buffer, &temp_buffer_ptr);
   temp_buffer_ptr = &unknown_var_3456_ptr;
   if (buffer_data != 0) {
                     // WARNING: Subroutine does not return

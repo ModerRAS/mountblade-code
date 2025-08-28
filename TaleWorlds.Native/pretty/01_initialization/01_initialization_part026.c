@@ -200,7 +200,7 @@ void initialize_system_structures(void)
   longlong structure_ptr;
   
   // 分配系统结构体内存（1ae8字节）
-  structure_ptr = FUN_18062b420(_DAT_180c8ed18, 0x1ae8, 10);
+  structure_ptr = FUN_18062b420(system_memory_pool_ptr, 0x1ae8, 10);
   if (structure_ptr == 0) {
     return;
   }
@@ -828,7 +828,7 @@ void initialize_thread_manager(uint64_t *thread_manager_ptr)
   *(int32_t *)(thread_manager_ptr + 0x6b) = 0;  // 清空保留字段
   
   // 分配并初始化同步对象内存
-  sync_obj = FUN_18062b1e0(_DAT_180c8ed18, 0xc0, 8, 4);  // 分配192字节
+  sync_obj = FUN_18062b1e0(system_memory_pool_ptr, 0xc0, 8, 4);  // 分配192字节
   memset(sync_obj, 0, 0xc0);  // 清空内存
 }
 
@@ -888,7 +888,7 @@ void process_engine_definition(uint64_t param_1, uint64_t param_2, uint64_t para
   stack_length = 0;
   
   // 分配引擎字符串内存
-  engine_string = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13, param_4, 0xfffffffffffffffe);
+  engine_string = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13, param_4, 0xfffffffffffffffe);
   *(int8_t *)engine_string = 0;  // 初始化字符串
   stack_ptr2 = engine_string;
   
@@ -1082,7 +1082,7 @@ void process_device_definition(uint64_t param_1, uint64_t param_2, uint64_t para
   stack_length = 0;
   
   // 分配设备字符串内存
-  device_string = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x13, 0x13, param_4, 0xfffffffffffffffe);
+  device_string = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x13, 0x13, param_4, 0xfffffffffffffffe);
   *(int8_t *)device_string = 0;  // 初始化字符串
   stack_ptr2 = device_string;
   

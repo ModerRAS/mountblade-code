@@ -143,7 +143,7 @@ LAB_ALLOCATE_BUFFER:
     }
     
     // 分配内存缓冲区
-    message_buffer = (int8_t *)allocate_buffer_memory(_DAT_180c8ed18, (longlong)allocation_size, 0x13);
+    message_buffer = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (longlong)allocation_size, 0x13);
     *message_buffer = 0;
     description_buffer = message_buffer;
     buffer_size = get_buffer_handle(message_buffer);
@@ -181,13 +181,13 @@ LAB_ALLOCATE_BUFFER:
           if ((int)message_length < 0x10) {
             message_length = 0x10;
           }
-          message_buffer = (int8_t *)allocate_buffer_memory(_DAT_180c8ed18, (longlong)(int)message_length, 0x13);
+          message_buffer = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (longlong)(int)message_length, 0x13);
           *message_buffer = 0;
         }
         else {
           if (message_length <= buffer_size) goto LAB_APPEND_DESCRIPTION;
           local_buffer = (int8_t *)CONCAT71(local_buffer._1_7_, 0x13);
-          message_buffer = (int8_t *)reallocate_buffer_memory(_DAT_180c8ed18, message_buffer, message_length, 0x10);
+          message_buffer = (int8_t *)reallocate_buffer_memory(system_memory_pool_ptr, message_buffer, message_length, 0x10);
         }
         
         description_buffer = message_buffer;
@@ -242,8 +242,8 @@ LAB_APPEND_DESCRIPTION:
   }
   
   // 等待信号量
-  wait_result = WaitForSingleObject(_DAT_180c91900, 1);
-  string_index = _DAT_180c82868;
+  wait_result = WaitForSingleObject(core_system_buffer, 1);
+  string_index = system_context_ptr;
   
   if (wait_result != 0) {
     local_pointer = &StandardEmptyString;
@@ -254,7 +254,7 @@ LAB_APPEND_DESCRIPTION:
   }
   
   // 获取当前线程上下文
-  thread_context = _DAT_180c82868;
+  thread_context = system_context_ptr;
   local_pointer = &StandardEmptyString;
   temp_value4._0_4_ = 0;
   buffer_ptr = (int8_t *)0x0;
@@ -283,7 +283,7 @@ LAB_APPEND_DESCRIPTION:
       }
       
       // 分配前缀缓冲区
-      buffer_ptr = (int8_t *)allocate_buffer_memory(_DAT_180c8ed18, (longlong)allocation_size, 0x13);
+      buffer_ptr = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (longlong)allocation_size, 0x13);
       *buffer_ptr = 0;
       temp_value2 = get_buffer_handle(buffer_ptr);
       temp_value4._0_4_ = temp_value2;
@@ -294,7 +294,7 @@ LAB_APPEND_DESCRIPTION:
   }
   
   // 分配格式化消息缓冲区
-  buffer_ptr = (int8_t *)allocate_buffer_memory(_DAT_180c8ed18, 0x10, 0x13);
+  buffer_ptr = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, 0x10, 0x13);
   *buffer_ptr = 0;
   buffer_size = get_buffer_handle(buffer_ptr);
   temp_value4._0_4_ = buffer_size;
@@ -307,7 +307,7 @@ LAB_APPEND_DESCRIPTION:
   // 扩展缓冲区以容纳更多内容
   if (buffer_ptr == (int8_t *)0x0) {
     message_length = 1;
-    buffer_ptr = (int8_t *)allocate_buffer_memory(_DAT_180c8ed18, 0x10, 0x13);
+    buffer_ptr = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, 0x10, 0x13);
     *buffer_ptr = 0;
 LAB_REALLOCATE_BUFFER:
     temp_value2 = get_buffer_handle(buffer_ptr);
@@ -316,7 +316,7 @@ LAB_REALLOCATE_BUFFER:
   else if (buffer_size < 3) {
     local_buffer = (int8_t *)CONCAT71(local_buffer._1_7_, 0x13);
     message_length = 1;
-    buffer_ptr = (int8_t *)reallocate_buffer_memory(_DAT_180c8ed18, buffer_ptr, 3, 0x10);
+    buffer_ptr = (int8_t *)reallocate_buffer_memory(system_memory_pool_ptr, buffer_ptr, 3, 0x10);
     goto LAB_REALLOCATE_BUFFER;
   }
   
@@ -343,7 +343,7 @@ LAB_REALLOCATE_BUFFER:
             security_cookie = 0x10;
           }
           message_length = buffer_size;
-          buffer_ptr = (int8_t *)allocate_buffer_memory(_DAT_180c8ed18, (longlong)(int)security_cookie, 0x13);
+          buffer_ptr = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (longlong)(int)security_cookie, 0x13);
           *buffer_ptr = 0;
         }
         else {
@@ -351,7 +351,7 @@ LAB_REALLOCATE_BUFFER:
           if (security_cookie <= (uint)temp_value4) goto LAB_APPEND_ERROR_MESSAGE;
           local_buffer = (int8_t *)CONCAT71(local_buffer._1_7_, 0x13);
           message_length = buffer_size;
-          buffer_ptr = (int8_t *)reallocate_buffer_memory(_DAT_180c8ed18, buffer_ptr, security_cookie, 0x10);
+          buffer_ptr = (int8_t *)reallocate_buffer_memory(system_memory_pool_ptr, buffer_ptr, security_cookie, 0x10);
         }
         
         temp_value2 = get_buffer_handle(buffer_ptr);
@@ -368,7 +368,7 @@ LAB_APPEND_ERROR_MESSAGE:
   // 添加分隔符
   if (buffer_ptr == (int8_t *)0x0) {
     message_length = buffer_size;
-    buffer_ptr = (int8_t *)allocate_buffer_memory(_DAT_180c8ed18, 0x10, 0x13);
+    buffer_ptr = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, 0x10, 0x13);
     *buffer_ptr = 0;
 LAB_APPEND_SEPARATOR:
     temp_value2 = get_buffer_handle(buffer_ptr);
@@ -377,7 +377,7 @@ LAB_APPEND_SEPARATOR:
   else if ((uint)temp_value4 < 4) {
     local_buffer = (int8_t *)CONCAT71(local_buffer._1_7_, 0x13);
     message_length = buffer_size;
-    buffer_ptr = (int8_t *)reallocate_buffer_memory(_DAT_180c8ed18, buffer_ptr, 4, 0x10);
+    buffer_ptr = (int8_t *)reallocate_buffer_memory(system_memory_pool_ptr, buffer_ptr, 4, 0x10);
     goto LAB_APPEND_SEPARATOR;
   }
   
@@ -395,13 +395,13 @@ LAB_APPEND_SEPARATOR:
       if ((int)allocation_size < 0x10) {
         allocation_size = 0x10;
       }
-      buffer_ptr = (int8_t *)allocate_buffer_memory(_DAT_180c8ed18, (longlong)(int)allocation_size, 0x13);
+      buffer_ptr = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (longlong)(int)allocation_size, 0x13);
       *buffer_ptr = 0;
     }
     else {
       if (allocation_size <= (uint)temp_value4) goto LAB_FORMAT_ERROR_CODE;
       local_buffer = (int8_t *)CONCAT71(local_buffer._1_7_, 0x13);
-      buffer_ptr = (int8_t *)reallocate_buffer_memory(_DAT_180c8ed18, buffer_ptr, allocation_size, 0x10);
+      buffer_ptr = (int8_t *)reallocate_buffer_memory(system_memory_pool_ptr, buffer_ptr, allocation_size, 0x10);
     }
     temp_value2 = get_buffer_handle(buffer_ptr);
     temp_value4._0_4_ = temp_value2;
@@ -418,13 +418,13 @@ LAB_FORMAT_ERROR_CODE:
       if ((int)allocation_size < 0x10) {
         allocation_size = 0x10;
       }
-      buffer_ptr = (int8_t *)allocate_buffer_memory(_DAT_180c8ed18, (longlong)(int)allocation_size, 0x13);
+      buffer_ptr = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (longlong)(int)allocation_size, 0x13);
       *buffer_ptr = 0;
     }
     else {
       if (allocation_size <= (uint)temp_value4) goto LAB_APPEND_EXPRESS_INFO;
       local_buffer = (int8_t *)CONCAT71(local_buffer._1_7_, 0x13);
-      buffer_ptr = (int8_t *)reallocate_buffer_memory(_DAT_180c8ed18, buffer_ptr, allocation_size, 0x10);
+      buffer_ptr = (int8_t *)reallocate_buffer_memory(system_memory_pool_ptr, buffer_ptr, allocation_size, 0x10);
     }
     temp_value2 = get_buffer_handle(buffer_ptr);
     temp_value4._0_4_ = temp_value2;
@@ -456,13 +456,13 @@ LAB_APPEND_EXPRESS_INFO:
           if ((int)buffer_size < 0x10) {
             buffer_size = 0x10;
           }
-          buffer_ptr = (int8_t *)allocate_buffer_memory(_DAT_180c8ed18, (longlong)(int)buffer_size, 0x13);
+          buffer_ptr = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (longlong)(int)buffer_size, 0x13);
           *buffer_ptr = 0;
         }
         else {
           if (buffer_size <= (uint)temp_value4) goto LAB_APPEND_THREAD_CONTEXT;
           local_buffer = (int8_t *)CONCAT71(local_buffer._1_7_, 0x13);
-          buffer_ptr = (int8_t *)reallocate_buffer_memory(_DAT_180c8ed18, buffer_ptr, buffer_size, 0x10);
+          buffer_ptr = (int8_t *)reallocate_buffer_memory(system_memory_pool_ptr, buffer_ptr, buffer_size, 0x10);
         }
         temp_value2 = get_buffer_handle(buffer_ptr);
         temp_value4._0_4_ = temp_value2;
@@ -480,13 +480,13 @@ LAB_APPEND_THREAD_CONTEXT:
       if ((int)buffer_size < 0x10) {
         buffer_size = 0x10;
       }
-      buffer_ptr = (int8_t *)allocate_buffer_memory(_DAT_180c8ed18, (longlong)(int)buffer_size, 0x13);
+      buffer_ptr = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (longlong)(int)buffer_size, 0x13);
       *buffer_ptr = 0;
     }
     else {
       if (buffer_size <= (uint)temp_value4) goto LAB_FINAL_NEWLINE;
       local_buffer = (int8_t *)CONCAT71(local_buffer._1_7_, 0x13);
-      buffer_ptr = (int8_t *)reallocate_buffer_memory(_DAT_180c8ed18, buffer_ptr, buffer_size, 0x10);
+      buffer_ptr = (int8_t *)reallocate_buffer_memory(system_memory_pool_ptr, buffer_ptr, buffer_size, 0x10);
     }
     temp_value2 = get_buffer_handle(buffer_ptr);
     temp_value4._0_4_ = temp_value2;
@@ -503,18 +503,18 @@ LAB_FINAL_NEWLINE:
   
   allocation_flag = 1;
   thread_flag = '\x01';
-  validation_result = (**(code **)**(uint64_t **)(_DAT_180c8ed08 + 0x18))();
+  validation_result = (**(code **)**(uint64_t **)(core_system_data_buffer + 0x18))();
   
   if ((validation_result != '\0') || (allocation_size = IsDebuggerPresent(), allocation_size == 0)) {
     allocation_flag = 0;
   }
   
   // 检查引擎状态
-  if (_DAT_180c86870 == 0) {
+  if (system_main_module_state == 0) {
     dialog_flag = '\0';
   }
   else {
-    dialog_flag = *(char *)(_DAT_180c86870 + 0x24);
+    dialog_flag = *(char *)(system_main_module_state + 0x24);
   }
   
   is_main_thread = true;
@@ -525,17 +525,17 @@ LAB_FINAL_NEWLINE:
     is_main_thread = (bool)thread_flag;
   }
   
-  string_index = _DAT_180c86950;
+  string_index = system_operation_state;
   
   // 处理调试信息
   if ((system_debug_flag2 == '\0') && (is_main_thread)) {
-    if ((_DAT_180c86950 != 0) && (*(char *)(_DAT_180c86950 + 0x1609) != '\x01')) {
-      process_debug_information(*(uint64_t *)(_DAT_180c86870 + 8), *(char *)(_DAT_180c868d0 + 0x2028) != '\0',
-                                 *(int32_t *)(_DAT_180c86950 + 0x160c));
+    if ((system_operation_state != 0) && (*(char *)(system_operation_state + 0x1609) != '\x01')) {
+      process_debug_information(*(uint64_t *)(system_main_module_state + 8), *(char *)(core_system_data_buffer + 0x2028) != '\0',
+                                 *(int32_t *)(system_operation_state + 0x160c));
       *(int8_t *)(string_index + 0x1609) = 1;
     }
     
-    if (*(longlong *)(_DAT_180c86870 + 8) != 0) {
+    if (*(longlong *)(system_main_module_state + 8) != 0) {
       initialize_debug_context();
     }
   }
@@ -568,21 +568,21 @@ LAB_FINAL_NEWLINE:
   message_buffer = description_buffer;
   
   // 记录错误日志
-  log_error_message(_DAT_180c86928, 5, 0xffffffff00000000, &ErrorLogLocation);
+  log_error_message(system_message_context, 5, 0xffffffff00000000, &ErrorLogLocation);
   
   local_buffer = &DefaultErrorMessage;
   if (buffer_ptr != (int8_t *)0x0) {
     local_buffer = buffer_ptr;
   }
   
-  log_error_message(_DAT_180c86928, 4, 0xffffffff00000000, &ErrorLogLocation);
+  log_error_message(system_message_context, 4, 0xffffffff00000000, &ErrorLogLocation);
   
   local_buffer = &DefaultErrorMessage;
   if (message_buffer != (int8_t *)0x0) {
     local_buffer = message_buffer;
   }
   
-  log_error_with_flags(_DAT_180c86928, 4, 0xffffffff00000000, 3);
+  log_error_with_flags(system_message_context, 4, 0xffffffff00000000, 3);
   finalize_error_logging();
   
   error_message = &DefaultErrorMessage;
@@ -597,7 +597,7 @@ LAB_FINAL_NEWLINE:
   // 处理错误显示逻辑
   if (system_debug_flag != '\0') {
     if (allocation_flag != 0) {
-      if (((dialog_flag == '\0') && (param_6 != '\0')) && (*(int *)(_DAT_180c86870 + 0x340) != 2)) {
+      if (((dialog_flag == '\0') && (param_6 != '\0')) && (*(int *)(system_main_module_state + 0x340) != 2)) {
         dialog_flag = 1;
       }
       else if (system_memory_2851 == '\0') {
@@ -607,8 +607,8 @@ LAB_FINAL_NEWLINE:
       }
     }
     
-    if ((_DAT_180c86948 == 0) || (*(int *)(_DAT_180c86948 + 0x168) == 2)) {
-      log_error_message(_DAT_180c86928, 4, 0xffffffff00000000, &DebugMessageLocation);
+    if ((core_system_data_buffer == 0) || (*(int *)(core_system_data_buffer + 0x168) == 2)) {
+      log_error_message(system_message_context, 4, 0xffffffff00000000, &DebugMessageLocation);
       finalize_error_logging();
       
       allocation_size = IsDebuggerPresent();
@@ -637,11 +637,11 @@ LAB_FINAL_NEWLINE:
         if (((system_debug_flag == '\0') || (allocation_size = IsDebuggerPresent(), allocation_size != 0)) &&
             (system_debug_flag2 == '\0')) break;
         
-        if (*(char *)(_DAT_180c86928 + 0x18) != '\0') {
+        if (*(char *)(system_message_context + 0x18) != '\0') {
           local_buffer = &ExtendedErrorInfo;
           local_pointer = context_pointer;
           buffer_ptr = error_message;
-          log_error_with_flags(_DAT_180c86928, 3, 0xffffffff00000000, 0xd);
+          log_error_with_flags(system_message_context, 3, 0xffffffff00000000, 0xd);
         }
       }
       
@@ -679,14 +679,14 @@ LAB_FINAL_NEWLINE:
             (system_debug_flag2 == '\0')) {
           MessageBoxA(0, error_message, &RetryErrorMessageTitle, 0x41010);
         }
-        else if (*(char *)(_DAT_180c86928 + 0x18) != '\0') {
+        else if (*(char *)(system_message_context + 0x18) != '\0') {
           local_pointer = &RetryErrorMessageTitle;
           local_buffer = &ExtendedErrorInfo;
           buffer_ptr = error_message;
-          log_error_with_flags(_DAT_180c86928, 3, 0xffffffff00000000, 0xd);
+          log_error_with_flags(system_message_context, 3, 0xffffffff00000000, 0xd);
         }
       }
-      else if (((param_6 == '\0') || (*(int *)(_DAT_180c86870 + 0x340) == 2)) &&
+      else if (((param_6 == '\0') || (*(int *)(system_main_module_state + 0x340) == 2)) &&
               (system_memory_2851 == '\0')) {
         error_handler = (code *)swi(3);
         (*error_handler)();
@@ -695,11 +695,11 @@ LAB_FINAL_NEWLINE:
     }
     else if (allocation_size == 3) goto LAB_TERMINATE_PROCESS;
     
-    if (_DAT_180c86870 == 0) {
+    if (system_main_module_state == 0) {
       validation_result = '\x01';
     }
     else {
-      validation_result = *(char *)(_DAT_180c86870 + 0x29);
+      validation_result = *(char *)(system_main_module_state + 0x29);
     }
     
     if (dialog_flag != '\0') {
@@ -710,16 +710,16 @@ LAB_FINAL_NEWLINE:
     }
     
     if (validation_result != '\0') {
-      _DAT_180c82854 = 5;
+      core_system_data_buffer = 5;
     }
     
     if ((system_debug_flag2 == '\0') && (thread_flag != '\0')) {
-      if (*(longlong *)(_DAT_180c86870 + 8) != 0) {
+      if (*(longlong *)(system_main_module_state + 8) != 0) {
         cleanup_engine_resources();
       }
       
-      if (_DAT_180c86950 != 0) {
-        cleanup_debug_context(_DAT_180c86950, *(int8_t *)(_DAT_180c86950 + 0x160a));
+      if (system_operation_state != 0) {
+        cleanup_debug_context(system_operation_state, *(int8_t *)(system_operation_state + 0x160a));
       }
     }
     
@@ -729,7 +729,7 @@ LAB_FINAL_NEWLINE:
     
     // 释放信号量
     do {
-      allocation_size = ReleaseSemaphore(_DAT_180c91900, 1);
+      allocation_size = ReleaseSemaphore(core_system_buffer, 1);
     } while (allocation_size == 0);
     
     // 清理资源
@@ -774,7 +774,7 @@ LAB_TERMINATE_PROCESS:
   }
   
   temp_value2 = get_error_code(context_pointer);
-  terminate_process_with_error(_DAT_180c86928, &ErrorMessageTermination, allocation_flag ^ 1, temp_value2);
+  terminate_process_with_error(system_message_context, &ErrorMessageTermination, allocation_flag ^ 1, temp_value2);
 }
 
 
@@ -809,7 +809,7 @@ void log_assertion_failure(uint64_t param_1, longlong param_2, int32_t param_3, 
   int32_t local_param3;
   
   // 等待信号量获取访问权限
-  wait_result = WaitForSingleObject(_DAT_180c91900, 0);
+  wait_result = WaitForSingleObject(core_system_buffer, 0);
   if (wait_result != 0) {
     return;
   }
@@ -851,7 +851,7 @@ void log_assertion_failure(uint64_t param_1, longlong param_2, int32_t param_3, 
   local_size = 0;
   
   // 分配消息缓冲区
-  message_buffer = (int8_t *)allocate_buffer_memory(_DAT_180c8ed18, 0x12, 0x13);
+  message_buffer = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, 0x12, 0x13);
   *message_buffer = 0;
   buffer_size = get_buffer_handle(message_buffer);
   buffer_capacity._0_4_ = buffer_size;
@@ -868,7 +868,7 @@ void log_assertion_failure(uint64_t param_1, longlong param_2, int32_t param_3, 
   // 扩展缓冲区以容纳换行符
   if (message_buffer == (int8_t *)0x0) {
     local_size = 0x11;
-    message_buffer = (int8_t *)allocate_buffer_memory(_DAT_180c8ed18, 0x13, 0x13);
+    message_buffer = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, 0x13, 0x13);
     *message_buffer = 0;
 LAB_EXPAND_BUFFER:
     formatted_value = get_buffer_handle(message_buffer);
@@ -876,7 +876,7 @@ LAB_EXPAND_BUFFER:
   }
   else if (buffer_size < 0x13) {
     local_size = 0x11;
-    message_buffer = (int8_t *)reallocate_buffer_memory(_DAT_180c8ed18, message_buffer, 0x13, 0x10, 0x13);
+    message_buffer = (int8_t *)reallocate_buffer_memory(system_memory_pool_ptr, message_buffer, 0x13, 0x10, 0x13);
     goto LAB_EXPAND_BUFFER;
   }
   
@@ -904,14 +904,14 @@ LAB_EXPAND_BUFFER:
             temp_size = 0x10;
           }
           local_size = buffer_size;
-          message_buffer = (int8_t *)allocate_buffer_memory(_DAT_180c8ed18, (longlong)(int)temp_size, 0x13);
+          message_buffer = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (longlong)(int)temp_size, 0x13);
           *message_buffer = 0;
         }
         else {
           new_size = local_size;
           if (temp_size <= (uint)buffer_capacity) goto LAB_APPEND_ASSERTION_DESC;
           local_size = buffer_size;
-          message_buffer = (int8_t *)reallocate_buffer_memory(_DAT_180c8ed18, message_buffer, temp_size, 0x10, 0x13);
+          message_buffer = (int8_t *)reallocate_buffer_memory(system_memory_pool_ptr, message_buffer, temp_size, 0x10, 0x13);
         }
         
         formatted_value = get_buffer_handle(message_buffer);
@@ -928,7 +928,7 @@ LAB_APPEND_ASSERTION_DESC:
   // 添加分隔符
   if (message_buffer == (int8_t *)0x0) {
     local_size = buffer_size;
-    message_buffer = (int8_t *)allocate_buffer_memory(_DAT_180c8ed18, 0x15, 0x13);
+    message_buffer = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, 0x15, 0x13);
     *message_buffer = 0;
 LAB_ADD_SEPARATOR:
     formatted_value = get_buffer_handle(message_buffer);
@@ -936,7 +936,7 @@ LAB_ADD_SEPARATOR:
   }
   else if ((uint)buffer_capacity < 0x15) {
     local_size = buffer_size;
-    message_buffer = (int8_t *)reallocate_buffer_memory(_DAT_180c8ed18, message_buffer, 0x15, 0x10, 0x13);
+    message_buffer = (int8_t *)reallocate_buffer_memory(system_memory_pool_ptr, message_buffer, 0x15, 0x10, 0x13);
     goto LAB_ADD_SEPARATOR;
   }
   
@@ -954,12 +954,12 @@ LAB_ADD_SEPARATOR:
       if ((int)temp_size < 0x10) {
         temp_size = 0x10;
       }
-      message_buffer = (int8_t *)allocate_buffer_memory(_DAT_180c8ed18, (longlong)(int)temp_size, 0x13);
+      message_buffer = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (longlong)(int)temp_size, 0x13);
       *message_buffer = 0;
     }
     else {
       if (temp_size <= (uint)buffer_capacity) goto LAB_FORMAT_ASSERTION_CODE;
-      message_buffer = (int8_t *)reallocate_buffer_memory(_DAT_180c8ed18, message_buffer, temp_size, 0x10, 0x13);
+      message_buffer = (int8_t *)reallocate_buffer_memory(system_memory_pool_ptr, message_buffer, temp_size, 0x10, 0x13);
     }
     formatted_value = get_buffer_handle(message_buffer);
     buffer_capacity._0_4_ = formatted_value;
@@ -976,12 +976,12 @@ LAB_FORMAT_ASSERTION_CODE:
       if ((int)new_size < 0x10) {
         new_size = 0x10;
       }
-      message_buffer = (int8_t *)allocate_buffer_memory(_DAT_180c8ed18, (longlong)(int)new_size, 0x13);
+      message_buffer = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (longlong)(int)new_size, 0x13);
       *message_buffer = 0;
     }
     else {
       if (new_size <= (uint)buffer_capacity) goto LAB_APPEND_EXPRESS_PREFIX;
-      message_buffer = (int8_t *)reallocate_buffer_memory(_DAT_180c8ed18, message_buffer, new_size, 0x10, 0x13);
+      message_buffer = (int8_t *)reallocate_buffer_memory(system_memory_pool_ptr, message_buffer, new_size, 0x10, 0x13);
     }
     formatted_value = get_buffer_handle(message_buffer);
     buffer_capacity._0_4_ = formatted_value;
@@ -1013,12 +1013,12 @@ LAB_APPEND_EXPRESS_PREFIX:
           if ((int)buffer_size < 0x10) {
             buffer_size = 0x10;
           }
-          message_buffer = (int8_t *)allocate_buffer_memory(_DAT_180c8ed18, (longlong)(int)buffer_size, 0x13);
+          message_buffer = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (longlong)(int)buffer_size, 0x13);
           *message_buffer = 0;
         }
         else {
           if (buffer_size <= (uint)buffer_capacity) goto LAB_APPEND_ADDITIONAL_INFO;
-          message_buffer = (int8_t *)reallocate_buffer_memory(_DAT_180c8ed18, message_buffer, buffer_size, 0x10, 0x13);
+          message_buffer = (int8_t *)reallocate_buffer_memory(system_memory_pool_ptr, message_buffer, buffer_size, 0x10, 0x13);
         }
         formatted_value = get_buffer_handle(message_buffer);
         buffer_capacity._0_4_ = formatted_value;
@@ -1036,12 +1036,12 @@ LAB_APPEND_ADDITIONAL_INFO:
       if ((int)new_size < 0x10) {
         new_size = 0x10;
       }
-      message_buffer = (int8_t *)allocate_buffer_memory(_DAT_180c8ed18, (longlong)(int)new_size, 0x13);
+      message_buffer = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (longlong)(int)new_size, 0x13);
       *message_buffer = 0;
     }
     else {
       if (new_size <= (uint)buffer_capacity) goto LAB_FINAL_NEWLINE;
-      message_buffer = (int8_t *)reallocate_buffer_memory(_DAT_180c8ed18, message_buffer, new_size, 0x10, 0x13);
+      message_buffer = (int8_t *)reallocate_buffer_memory(system_memory_pool_ptr, message_buffer, new_size, 0x10, 0x13);
     }
     formatted_value = get_buffer_handle(message_buffer);
     buffer_capacity._0_4_ = formatted_value;
@@ -1052,21 +1052,21 @@ LAB_FINAL_NEWLINE:
   local_size = buffer_size + 0xe;
   
   // 记录错误日志
-  log_error_message(_DAT_180c86928, 5, 0xffffffff00000000, &ErrorLogLocation);
+  log_error_message(system_message_context, 5, 0xffffffff00000000, &ErrorLogLocation);
   
   description_buffer = &DefaultErrorMessage;
   if (message_buffer != (int8_t *)0x0) {
     description_buffer = message_buffer;
   }
   
-  log_error_message(_DAT_180c86928, 4, 0xffffffff00000000, &ErrorLogLocation, description_buffer);
+  log_error_message(system_message_context, 4, 0xffffffff00000000, &ErrorLogLocation, description_buffer);
   
   context_pointer = &DefaultErrorMessage;
   if (temp_pointer != (void *)0x0) {
     context_pointer = temp_pointer;
   }
   
-  log_error_with_flags(_DAT_180c86928, 4, 0xffffffff00000000, 3, context_pointer);
+  log_error_with_flags(system_message_context, 4, 0xffffffff00000000, 3, context_pointer);
   finalize_error_logging();
   
   description_buffer = &DefaultErrorMessage;
@@ -1079,7 +1079,7 @@ LAB_FINAL_NEWLINE:
   
   // 释放信号量
   do {
-    wait_result = ReleaseSemaphore(_DAT_180c91900, 1);
+    wait_result = ReleaseSemaphore(core_system_buffer, 1);
   } while (wait_result == 0);
   
   // 清理资源

@@ -444,7 +444,7 @@ ObjectPointer* HashTableInsert(SystemHandle param_1, ObjectPointer* param_2,
                   *(ObjectPointer*)(param_1 + 0x18), 1);
     
     // 分配新节点内存
-    bucket_ptr = (ObjectPointer*)MemoryAllocate(_DAT_180c8ed18, 0x68, 
+    bucket_ptr = (ObjectPointer*)MemoryAllocate(system_memory_pool_ptr, 0x68, 
                                               *(Byte*)(param_1 + 0x2c));
     
     // 初始化新节点
@@ -621,7 +621,7 @@ ObjectPointer HashTableFind(longlong param_1, longlong* param_2, uint param_3)
     context_ptr = param_2;
     
     // 分配字符串内存
-    result_ptr = (ObjectPointer*)MemoryAllocate(_DAT_180c8ed18, 0x10, 0x13);
+    result_ptr = (ObjectPointer*)MemoryAllocate(system_memory_pool_ptr, 0x10, 0x13);
     *(Byte*)result_ptr = 0;
     string_length = FUN_18064e990(result_ptr);
     string_handle = CONCAT44(string_handle._4_4_, string_length);
@@ -632,12 +632,12 @@ ObjectPointer HashTableFind(longlong param_1, longlong* param_2, uint param_3)
     string_length = 8;
     
     if (result_ptr == (ObjectPointer*)0x0) {
-        result_ptr = (ObjectPointer*)MemoryAllocate(_DAT_180c8ed18, 0x14, 0x13);
+        result_ptr = (ObjectPointer*)MemoryAllocate(system_memory_pool_ptr, 0x14, 0x13);
         *(Byte*)result_ptr = 0;
     }
     else {
         if (0x13 < string_length) goto BUILD_STRING;
-        result_ptr = (ObjectPointer*)MemoryReallocate(_DAT_180c8ed18, result_ptr, 0x14, 0x10, 0x13);
+        result_ptr = (ObjectPointer*)MemoryReallocate(system_memory_pool_ptr, result_ptr, 0x14, 0x10, 0x13);
     }
     
     string_length = FUN_18064e990(result_ptr);
@@ -665,7 +665,7 @@ BUILD_STRING:
     }
     
     // 执行查找操作
-    result_ptr = (ObjectPointer*)FUN_1800b08e0(_DAT_180c86930, &context_ptr, &string_allocator, 0);
+    result_ptr = (ObjectPointer*)FUN_1800b08e0(system_resource_state, &context_ptr, &string_allocator, 0);
     result_value = *result_ptr;
     
     // 清理上下文
@@ -771,7 +771,7 @@ ObjectPointer HashTableClear(longlong param_1, longlong* param_2, uint param_3)
     context_ptr = param_2;
     
     // 分配字符串内存
-    result_ptr = (ObjectPointer*)MemoryAllocate(_DAT_180c8ed18, 0x10, 0x13);
+    result_ptr = (ObjectPointer*)MemoryAllocate(system_memory_pool_ptr, 0x10, 0x13);
     *(Byte*)result_ptr = 0;
     string_length = FUN_18064e990(result_ptr);
     string_handle = CONCAT44(string_handle._4_4_, string_length);
@@ -782,12 +782,12 @@ ObjectPointer HashTableClear(longlong param_1, longlong* param_2, uint param_3)
     string_length = 8;
     
     if (result_ptr == (ObjectPointer*)0x0) {
-        result_ptr = (ObjectPointer*)MemoryAllocate(_DAT_180c8ed18, 0x17, 0x13);
+        result_ptr = (ObjectPointer*)MemoryAllocate(system_memory_pool_ptr, 0x17, 0x13);
         *(Byte*)result_ptr = 0;
     }
     else {
         if (0x16 < string_length) goto BUILD_STRING;
-        result_ptr = (ObjectPointer*)MemoryReallocate(_DAT_180c8ed18, result_ptr, 0x17, 0x10, 0x13);
+        result_ptr = (ObjectPointer*)MemoryReallocate(system_memory_pool_ptr, result_ptr, 0x17, 0x10, 0x13);
     }
     
     string_length = FUN_18064e990(result_ptr);
@@ -818,7 +818,7 @@ BUILD_STRING:
     }
     
     // 执行清理操作
-    target_node = (ObjectPointer*)FUN_1800b08e0(_DAT_180c86930, &context_ptr, &string_allocator, 0);
+    target_node = (ObjectPointer*)FUN_1800b08e0(system_resource_state, &context_ptr, &string_allocator, 0);
     result_value = *target_node;
     
     // 清理上下文

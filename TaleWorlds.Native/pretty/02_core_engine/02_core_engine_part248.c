@@ -79,7 +79,7 @@ void process_resource_cleanup_and_management(uint64_t *context_ptr)
       timeout_value = timeout_value + -1;
     } while (timeout_value != 0);
   }
-  if (-1 < *(int *)(*(longlong *)(_DAT_180c868d0 + 0x2018) + 0x330)) {
+  if (-1 < *(int *)(*(longlong *)(core_system_data_buffer + 0x2018) + 0x330)) {
     process_system_tasks(context_ptr[0x6d],&unknown_var_4464_ptr,&resource_ptr2);
     execute_task_queue(resource_ptr2,&resource_ptr1);
     if (resource_ptr1 == (longlong *)0x0) {
@@ -238,7 +238,7 @@ process_float_array_optimization(uint64_t target_ptr,int array_size,longlong sou
         }
       } while (array_size != 0);
     }
-    temp_var1 = *(longlong *)(_DAT_180c868d0 + 0x2018);
+    temp_var1 = *(longlong *)(core_system_data_buffer + 0x2018);
     element_count = *(int *)(temp_var1 + 100);
     if (element_count == 1) {
       optimization_factor = 0.1;
@@ -338,7 +338,7 @@ uint64_t optimized_float_array_processing(float *input_array,float *output_array
       }
     } while (iteration_count != 0);
   }
-  system_context = *(longlong *)(_DAT_180c868d0 + 0x2018);
+  system_context = *(longlong *)(core_system_data_buffer + 0x2018);
   array_size = *(int *)(system_context + 100);
   if (array_size == 1) {
     optimization_factor = 0.1;
@@ -432,7 +432,7 @@ uint64_t advanced_float_array_optimization(float *source_array,float *destinatio
       } while (remaining_elements != 0);
     }
   } while (iteration_count != 0);
-  system_context = *(longlong *)(_DAT_180c868d0 + 0x2018);
+  system_context = *(longlong *)(core_system_data_buffer + 0x2018);
   processed_elements = *(int *)(system_context + 100);
   if (processed_elements == 1) {
     optimization_factor = 0.1;
@@ -459,7 +459,7 @@ uint64_t apply_optimization_settings(void)
   float current_max;
   float optimization_factor;
   
-  system_context = *(longlong *)(_DAT_180c868d0 + 0x2018);
+  system_context = *(longlong *)(core_system_data_buffer + 0x2018);
   config_value = *(int *)(system_context + 100);
   if (config_value == 1) {
     optimization_factor = 0.1;
@@ -551,7 +551,7 @@ void generate_error_report(longlong error_context)
   system_handle = 0;
   report_buffer = (uint64_t *)0x0;
   buffer_capacity = 0;
-  report_buffer = (uint64_t *)allocate_report_buffer(_DAT_180c8ed18,0x10,0x13);
+  report_buffer = (uint64_t *)allocate_report_buffer(system_memory_pool_ptr,0x10,0x13);
   *(int8_t *)report_buffer = 0;
   report_id = get_buffer_size(report_buffer);
   system_handle = CONCAT44(system_handle._4_4_,report_id);
@@ -569,12 +569,12 @@ void generate_error_report(longlong error_context)
       if ((int)message_length < 0x10) {
         message_length = 0x10;
       }
-      report_buffer = (uint64_t *)allocate_report_buffer(_DAT_180c8ed18,(longlong)(int)message_length,0x13);
+      report_buffer = (uint64_t *)allocate_report_buffer(system_memory_pool_ptr,(longlong)(int)message_length,0x13);
       *(int8_t *)report_buffer = 0;
     }
     else {
       if (message_length <= (uint)system_handle) goto CONTINUE_PROCESSING;
-      report_buffer = (uint64_t *)resize_report_buffer(_DAT_180c8ed18,report_buffer,message_length,0x10,0x13);
+      report_buffer = (uint64_t *)resize_report_buffer(system_memory_pool_ptr,report_buffer,message_length,0x10,0x13);
     }
     report_id = get_buffer_size(report_buffer);
     system_handle = CONCAT44(system_handle._4_4_,report_id);
@@ -590,12 +590,12 @@ CONTINUE_PROCESSING:
       if ((int)required_size < 0x10) {
         required_size = 0x10;
       }
-      report_buffer = (uint64_t *)allocate_report_buffer(_DAT_180c8ed18,(longlong)(int)required_size,0x13);
+      report_buffer = (uint64_t *)allocate_report_buffer(system_memory_pool_ptr,(longlong)(int)required_size,0x13);
       *(int8_t *)report_buffer = 0;
     }
     else {
       if (required_size <= (uint)system_handle) goto APPEND_ERROR_CODE;
-      report_buffer = (uint64_t *)resize_report_buffer(_DAT_180c8ed18,report_buffer,required_size,0x10,0x13);
+      report_buffer = (uint64_t *)resize_report_buffer(system_memory_pool_ptr,report_buffer,required_size,0x10,0x13);
     }
     report_id = get_buffer_size(report_buffer);
     system_handle = CONCAT44(system_handle._4_4_,report_id);
@@ -617,12 +617,12 @@ APPEND_ERROR_CODE:
         if ((int)buffer_size < 0x10) {
           buffer_size = 0x10;
         }
-        report_buffer = (uint64_t *)allocate_report_buffer(_DAT_180c8ed18,(longlong)(int)buffer_size,0x13);
+        report_buffer = (uint64_t *)allocate_report_buffer(system_memory_pool_ptr,(longlong)(int)buffer_size,0x13);
         *(int8_t *)report_buffer = 0;
       }
       else {
         if (buffer_size <= (uint)system_handle) goto COPY_ERROR_MESSAGE;
-        report_buffer = (uint64_t *)resize_report_buffer(_DAT_180c8ed18,report_buffer,buffer_size,0x10,0x13);
+        report_buffer = (uint64_t *)resize_report_buffer(system_memory_pool_ptr,report_buffer,buffer_size,0x10,0x13);
       }
       report_id = get_buffer_size(report_buffer);
       system_handle = CONCAT44(system_handle._4_4_,report_id);
@@ -639,12 +639,12 @@ COPY_ERROR_MESSAGE:
       if ((int)buffer_size < 0x10) {
         buffer_size = 0x10;
       }
-      report_buffer = (uint64_t *)allocate_report_buffer(_DAT_180c8ed18,(longlong)(int)buffer_size,0x13);
+      report_buffer = (uint64_t *)allocate_report_buffer(system_memory_pool_ptr,(longlong)(int)buffer_size,0x13);
       *(int8_t *)report_buffer = 0;
     }
     else {
       if (buffer_size <= (uint)system_handle) goto ADD_FORMATTING;
-      report_buffer = (uint64_t *)resize_report_buffer(_DAT_180c8ed18,report_buffer,buffer_size,0x10,0x13);
+      report_buffer = (uint64_t *)resize_report_buffer(system_memory_pool_ptr,report_buffer,buffer_size,0x10,0x13);
     }
     report_id = get_buffer_size(report_buffer);
     system_handle = CONCAT44(system_handle._4_4_,report_id);
@@ -668,12 +668,12 @@ ADD_FORMATTING:
           if ((int)buffer_size < 0x10) {
             buffer_size = 0x10;
           }
-          report_buffer = (uint64_t *)allocate_report_buffer(_DAT_180c8ed18,(longlong)(int)buffer_size,0x13);
+          report_buffer = (uint64_t *)allocate_report_buffer(system_memory_pool_ptr,(longlong)(int)buffer_size,0x13);
           *(int8_t *)report_buffer = 0;
         }
         else {
           if (buffer_size <= (uint)system_handle) goto COPY_ERROR_DETAILS;
-          report_buffer = (uint64_t *)resize_report_buffer(_DAT_180c8ed18,report_buffer,buffer_size,0x10,0x13);
+          report_buffer = (uint64_t *)resize_report_buffer(system_memory_pool_ptr,report_buffer,buffer_size,0x10,0x13);
         }
         report_id = get_buffer_size(report_buffer);
         system_handle = CONCAT44(system_handle._4_4_,report_id);
@@ -691,12 +691,12 @@ COPY_ERROR_DETAILS:
       if ((int)buffer_size < 0x10) {
         buffer_size = 0x10;
       }
-      report_buffer = (uint64_t *)allocate_report_buffer(_DAT_180c8ed18,(longlong)(int)buffer_size,0x13);
+      report_buffer = (uint64_t *)allocate_report_buffer(system_memory_pool_ptr,(longlong)(int)buffer_size,0x13);
       *(int8_t *)report_buffer = 0;
     }
     else {
       if (buffer_size <= (uint)system_handle) goto FINALIZE_REPORT;
-      report_buffer = (uint64_t *)resize_report_buffer(_DAT_180c8ed18,report_buffer,buffer_size,0x10,0x13);
+      report_buffer = (uint64_t *)resize_report_buffer(system_memory_pool_ptr,report_buffer,buffer_size,0x10,0x13);
     }
     report_id = get_buffer_size(report_buffer);
     system_handle = CONCAT44(system_handle._4_4_,report_id);
@@ -708,7 +708,7 @@ FINALIZE_REPORT:
     message_buffer = report_buffer;
   }
   buffer_capacity = error_code;
-  log_error_message(_DAT_180c86928,0,0x1000000000000,3,message_buffer);
+  log_error_message(system_message_context,0,0x1000000000000,3,message_buffer);
   output_stream = &unknown_var_3456_ptr;
   if (report_buffer == (uint64_t *)0x0) {
     return;

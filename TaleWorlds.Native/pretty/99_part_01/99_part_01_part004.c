@@ -1308,7 +1308,7 @@ void StreamInitializerConfig(longlong param_1,longlong param_2,int param_3)
     *(uint64_t *)(param_1 + 0x50) = uStackX_20;
     *(uint64_t *)(param_1 + 0x58) = uStackX_20;
   }
-  *(uint64_t *)(param_1 + 0x74) = _DAT_180d48d38;
+  *(uint64_t *)(param_1 + 0x74) = system_system_config_config;
   *(longlong *)(param_1 + 0x80) = param_2;
   *(uint64_t *)(param_1 + 0x68) = 0;
   return;
@@ -1351,7 +1351,7 @@ longlong FileCloseProcessor(longlong param_1)
   *(int8_t *)(param_1 + 0x7c) = 0;
   *(int8_t *)(param_1 + 0x71) = 0;
   __Init___basic_streambuf_DU__char_traits_D_std___std__IEAAXXZ(param_1);
-  *(uint64_t *)(param_1 + 0x74) = _DAT_180d48d38;
+  *(uint64_t *)(param_1 + 0x74) = system_system_config_config;
   *(uint64_t *)(param_1 + 0x80) = 0;
   *(uint64_t *)(param_1 + 0x68) = 0;
   return lVar3;

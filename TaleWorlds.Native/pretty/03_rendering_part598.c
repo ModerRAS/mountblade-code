@@ -39,7 +39,7 @@ void FUN_180597510(float param_1,uint64_t param_2,float param_3,longlong param_4
     *(longlong *)(in_RCX + 0x1c) = uStackX_8;
     return;
   }
-  if (((_DAT_180c92514 != 1) && (_DAT_180c92514 != 4)) || (*(int *)(param_4 + 0x17c) == 2)) {
+  if (((system_status_flag != 1) && (system_status_flag != 4)) || (*(int *)(param_4 + 0x17c) == 2)) {
     *(uint64_t *)(in_RCX + 0x38) = 0;
     uVar2 = *(uint *)(param_4 + 0xb4);
     if ((uVar2 & 0x30) == 0) {
@@ -91,7 +91,7 @@ void FUN_180597510(float param_1,uint64_t param_2,float param_3,longlong param_4
         (((*(byte *)(param_4 + 0xb4) & 1) != 0 || (0.0 < *(float *)(param_4 + 0xbc))))))) &&
       ((*(byte *)(param_4 + 0xb4) & 2) == 0)) &&
      (0.0 < *(float *)(param_4 + 0xbc) || *(float *)(param_4 + 0xbc) == 0.0)) {
-    if ((_DAT_180c92514 == 1) || (*(int *)(param_4 + 0x17c) == 2)) {
+    if ((system_status_flag == 1) || (*(int *)(param_4 + 0x17c) == 2)) {
       fVar4 = 0.7;
     }
     else {
@@ -99,7 +99,7 @@ void FUN_180597510(float param_1,uint64_t param_2,float param_3,longlong param_4
     }
     fVar4 = fVar4 * *(float *)(in_RCX + 0x8c);
     if (fVar4 < *(float *)(in_RCX + 0x20) || fVar4 == *(float *)(in_RCX + 0x20)) {
-      if (_DAT_180c92514 == 1) {
+      if (system_status_flag == 1) {
         if (uVar2 == 0x10000) {
           *(uint *)(in_RCX + 8) = *(uint *)(in_RCX + 8) | 0x10000000;
         }
@@ -405,7 +405,7 @@ void FUN_1805975ca(longlong param_1,uint64_t param_2,uint64_t param_3,longlong p
         ))) && ((*(byte *)(unaff_RDI + 0xb4) & 2) == 0)) &&
      (unaff_XMM6_Da < *(float *)(unaff_RDI + 0xbc) || unaff_XMM6_Da == *(float *)(unaff_RDI + 0xbc))
      ) {
-    if (((int)_DAT_180c92514 == 1) || (*(int *)(unaff_RDI + 0x17c) == 2)) {
+    if (((int)system_status_flag == 1) || (*(int *)(unaff_RDI + 0x17c) == 2)) {
       fVar6 = 0.7;
     }
     else {
@@ -413,7 +413,7 @@ void FUN_1805975ca(longlong param_1,uint64_t param_2,uint64_t param_3,longlong p
     }
     fVar6 = fVar6 * *(float *)(unaff_RBX + 0x8c);
     if (fVar6 < *(float *)(unaff_RBX + 0x20) || fVar6 == *(float *)(unaff_RBX + 0x20)) {
-      if ((int)_DAT_180c92514 == 1) {
+      if ((int)system_status_flag == 1) {
         if (uVar3 == 0x10000) {
           *(uint *)(unaff_RBX + 8) = *(uint *)(unaff_RBX + 8) | 0x10000000;
         }

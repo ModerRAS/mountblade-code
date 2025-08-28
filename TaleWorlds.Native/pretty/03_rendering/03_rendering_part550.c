@@ -325,7 +325,7 @@ void RenderingSystemParameterProcessor(RenderingHandle system_handle, int param_
     }
     
     // 设置资源值
-    resource_value = _DAT_180c966e8;
+    resource_value = render_system_render;
     
     // 计算参数数据指针
     param_data_ptr = (int32_t*)((longlong)param_offset * 0xe0 + current_data);
@@ -496,7 +496,7 @@ ulonglong RenderingSystemOptimizationEngine(longlong* state_ptr, uint64_t resour
     uVar14 = (uint)((state_ptr[1] - lVar8) / 0x5d8);
     
     // 检查是否需要优化
-    if (((0 < (int)uVar14) && (7 < uVar14)) && (1 < _DAT_180bf00b0)) {
+    if (((0 < (int)uVar14) && (7 < uVar14)) && (1 < render_system_control_render)) {
         // 初始化优化数据
         uVar17 = 0; uVar18 = 0; uVar20 = 0; uVar19 = 0;
         uVar21 = 0; uVar22 = 0; uVar23 = 0; uVar24 = 0;
@@ -607,7 +607,7 @@ ulonglong RenderingSystemAdvancedProcessor(longlong* state_ptr, uint64_t resourc
     uVar8 = (uint)((state_ptr[1] - *state_ptr) / 0x5d8);
     
     // 检查是否需要高级处理
-    if (((0 < (int)uVar8) && (7 < uVar8)) && (1 < _DAT_180bf00b0)) {
+    if (((0 < (int)uVar8) && (7 < uVar8)) && (1 < render_system_control_render)) {
         // 初始化处理数据
         uVar17 = 0; uVar18 = 0; uVar20 = 0; uVar19 = 0;
         uVar21 = 0; uVar22 = 0; uVar23 = 0; uVar24 = 0;

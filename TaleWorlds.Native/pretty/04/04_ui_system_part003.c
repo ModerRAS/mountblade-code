@@ -1074,9 +1074,9 @@ void ui_load_library_with_resource_check(longlong library_info)
   library_handle = (short *)LoadLibraryA(library_path_ptr);
   if (library_handle != (short *)0x0) {
     insert_position_ptr = (uint64_t *)&system_memory_6790;
-    library_node_ptr = _DAT_180c967a0;
+    library_node_ptr = ui_system_pointer;
     loaded_library_handle = library_handle;
-    if (_DAT_180c967a0 != (uint64_t *)0x0) {
+    if (ui_system_pointer != (uint64_t *)0x0) {
       do {
         if ((short *)library_node_ptr[4] < library_handle) {
           next_node_ptr = (uint64_t *)*library_node_ptr;
@@ -1111,7 +1111,7 @@ void ui_load_library_with_resource_check(longlong library_info)
       ui_parse_pe_header(resource_data,module_base_ptr,module_base_ptr);
     }
     insert_position_ptr = (uint64_t *)&system_memory_6790;
-    library_node_ptr = _DAT_180c967a0;
+    library_node_ptr = ui_system_pointer;
     while (library_node_ptr != (uint64_t *)0x0) {
       if ((short *)library_node_ptr[4] < library_handle) {
         library_node_ptr = (uint64_t *)*library_node_ptr;
@@ -1206,7 +1206,7 @@ void ui_tree_operation_wrapper(uint64_t operation_data, uint64_t root_node,
                              uint64_t param_3, uint64_t param_4)
 
 {
-  ui_perform_tree_node_operation(operation_data,_DAT_180c967a0,param_3,param_4,0xfffffffffffffffe);  // _DAT_180c967a0: 库资源树根节点指针
+  ui_perform_tree_node_operation(operation_data,ui_system_pointer,param_3,param_4,0xfffffffffffffffe);  // ui_system_pointer: 库资源树根节点指针
   return;
 }
 
@@ -1262,10 +1262,10 @@ void ui_tree_cleanup_operation(uint64_t param_1, uint64_t *node_ptr,
   int32_t insertion_flag;
   bool should_insert_left;
   
-  if ((param_4 == _DAT_180c96790) || (param_4 == (longlong *)&system_memory_6790)) {
-    // _DAT_180c96790: 库资源树头节点指针
-    // _DAT_180c967b0: 库资源树节点计数器
-    if ((_DAT_180c967b0 != 0) && (param_4 = _DAT_180c96790, (ulonglong)_DAT_180c96790[4] < *param_5)
+  if ((param_4 == ui_system_pointer) || (param_4 == (longlong *)&system_memory_6790)) {
+    // ui_system_pointer: 库资源树头节点指针
+    // ui_system_pointer: 库资源树节点计数器
+    if ((ui_system_pointer != 0) && (param_4 = ui_system_pointer, (ulonglong)ui_system_pointer[4] < *param_5)
        ) goto node_found;
   }
   else {
@@ -1283,8 +1283,8 @@ node_found:
   }
   insert_position_ptr = (uint64_t *)&system_memory_6790;
   should_insert_left = true;
-  if (_DAT_180c967a0 != (uint64_t *)0x0) {
-    current_node_ptr = _DAT_180c967a0;
+  if (ui_system_pointer != (uint64_t *)0x0) {
+    current_node_ptr = ui_system_pointer;
     do {
       insert_position_ptr = current_node_ptr;
       should_insert_left = *param_5 < (ulonglong)insert_position_ptr[4];
@@ -1298,7 +1298,7 @@ node_found:
   }
   current_node_ptr = insert_position_ptr;
   if (should_insert_left) {
-    if (insert_position_ptr == _DAT_180c96798) {  // _DAT_180c96798: 库资源树尾节点指针
+    if (insert_position_ptr == ui_system_pointer) {  // ui_system_pointer: 库资源树尾节点指针
       search_key = *param_5;
       goto create_new_node;
     }
@@ -1317,7 +1317,7 @@ create_new_node:
     insertion_flag = 1;
   }
   // 使用内存分配器和树节点类型信息分配新节点
-  new_node_ptr = ui_allocate_library_node(_DAT_180c8ed18, 0xd8, system_memory_67b8);
+  new_node_ptr = ui_allocate_library_node(system_memory_pool_ptr, 0xd8, system_memory_67b8);
   *(ulonglong *)(new_node_ptr + 0x20) = *param_5;
   ui_initialize_node_data(new_node_ptr + 0x28);
   // 将新节点插入到树中
@@ -1354,7 +1354,7 @@ create_new_node:
     uVar2 = 0;
   }
   // 使用内存分配器和树节点类型信息分配新节点
-  lVar1 = ui_allocate_library_node(_DAT_180c8ed18, 0xd8, system_memory_67b8, param_4, 0xfffffffffffffffe);
+  lVar1 = ui_allocate_library_node(system_memory_pool_ptr, 0xd8, system_memory_67b8, param_4, 0xfffffffffffffffe);
   *(ulonglong *)(lVar1 + 0x20) = *param_5;
   ui_initialize_node_data(lVar1 + 0x28);
   // 将新节点插入到树中
@@ -1450,8 +1450,8 @@ void pass_managed_library_callback_method_pointers(uint64_t callback_data)
 
 {
   // 通过托管库函数指针表调用回调方法
-  // _DAT_180c8f008: 托管库函数指针表
-  (**(code **)(*_DAT_180c8f008 + 0x40))(_DAT_180c8f008, callback_data);
+  // system_cache_buffer: 托管库函数指针表
+  (**(code **)(*system_cache_buffer + 0x40))(system_cache_buffer, callback_data);
   return;
 }
 
@@ -1469,8 +1469,8 @@ void pass_controller_methods(uint64_t controller_methods)
 
 {
   // 注册控制器方法到全局变量
-  // _DAT_180c8f018: 控制器方法指针
-  _DAT_180c8f018 = controller_methods;
+  // ui_system_data_pointer: 控制器方法指针
+  ui_system_data_pointer = controller_methods;
   return;
 }
 
@@ -1488,8 +1488,8 @@ void pass_managed_initialize_method_pointer(uint64_t init_method_ptr)
 
 {
   // 注册初始化方法到全局变量
-  // _DAT_180c8f010: 初始化方法指针
-  _DAT_180c8f010 = init_method_ptr;
+  // ui_system_data_pointer: 初始化方法指针
+  ui_system_data_pointer = init_method_ptr;
   return;
 }
 
@@ -1532,7 +1532,7 @@ void ui_cleanup_global_data_structure(uint64_t *global_ptr)
   // 重置全局数据结构为默认值
   *global_ptr = &unknown_var_9808_ptr;
   // 重置托管库函数指针表
-  _DAT_180c8f008 = 0;                  // _DAT_180c8f008: 托管库函数指针表（重置）
+  system_cache_buffer = 0;                  // system_cache_buffer: 托管库函数指针表（重置）
   if (global_ptr[0x2d] != 0) {
     // 释放资源内存
     ui_cleanup_resource_memory();

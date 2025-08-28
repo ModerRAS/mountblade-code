@@ -90,7 +90,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
       uStack_178 = 0;
       puStack_188 = (int16_t *)0x0;
       uStack_180 = 0;
-      string_buffer = (int16_t *)FUN_18062b420(_DAT_180c8ed18,0x10,CONCAT71((int7)(string_length >> 8),0x13));
+      string_buffer = (int16_t *)FUN_18062b420(system_memory_pool_ptr,0x10,CONCAT71((int7)(string_length >> 8),0x13));
       *(int8_t *)string_buffer = 0;
       puStack_188 = string_buffer;
       operation_result = allocate_buffer(string_buffer);
@@ -158,7 +158,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
         if (compare_result < 0x10) {
           request_type = 0x10;
         }
-        puStack_1b0 = (int8_t *)FUN_18062b420(_DAT_180c8ed18,(longlong)request_type,0x13);
+        puStack_1b0 = (int8_t *)FUN_18062b420(system_memory_pool_ptr,(longlong)request_type,0x13);
         *puStack_1b0 = 0;
         operation_result = allocate_buffer(puStack_1b0);
         uStack_1a0 = CONCAT44(uStack_1a0._4_4_,operation_result);
@@ -239,7 +239,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
         if (compare_result < 0x10) {
           request_type = 0x10;
         }
-        char_ptr = (int8_t *)FUN_18062b420(_DAT_180c8ed18,(longlong)request_type,0x13);
+        char_ptr = (int8_t *)FUN_18062b420(system_memory_pool_ptr,(longlong)request_type,0x13);
         *char_ptr = 0;
         puStack_1b0 = char_ptr;
         uStack_160 = allocate_buffer(char_ptr);
@@ -270,7 +270,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
           array_index = 1;
 LAB_18010b692:
           config_data = (uint64_t *)
-                   FUN_18062b420(_DAT_180c8ed18,array_index << 5,*(int8_t *)(context_ptr + 0x277));
+                   FUN_18062b420(system_memory_pool_ptr,array_index << 5,*(int8_t *)(context_ptr + 0x277));
           memory_ptr = (uint64_t *)context_ptr[0x275];
           string_pos = *array_ptr;
         }

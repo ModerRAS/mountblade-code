@@ -62,7 +62,7 @@ void release_texture_resources(longlong texture_context)
   }
   else {
     // 分配新的纹理缓冲区
-    new_buffer = allocate_texture_buffer(_DAT_180c8ed18,(longlong)(dimensions[0] * 3) * 4,3);
+    new_buffer = allocate_texture_buffer(system_memory_pool_ptr,(longlong)(dimensions[0] * 3) * 4,3);
   }
   
   *(uint64_t *)(texture_manager + 0xb0) = new_buffer;
@@ -99,7 +99,7 @@ void initialize_texture_object(longlong render_context)
   longlong init_params[3];
   
   // 分配纹理对象内存
-  texture_object = (longlong *)allocate_texture_object(_DAT_180c8ed18,0xd0,8,3);
+  texture_object = (longlong *)allocate_texture_object(system_memory_pool_ptr,0xd0,8,3);
   *texture_object = (longlong)&texture_vtable_base;
   *texture_object = (longlong)&texture_vtable_extended;
   *(int32_t *)(texture_object + 1) = 0;
@@ -142,7 +142,7 @@ void initialize_texture_object(longlong render_context)
   }
   
   texture_methods = *(longlong **)(render_context + 0xb0);
-  setup_texture_resources(_DAT_180c8a9e8,init_params);
+  setup_texture_resources(core_system_data_texture,init_params);
   (**(code **)(*texture_methods + 0x28))(texture_methods);
   
   // 更新资源链表
@@ -174,16 +174,16 @@ void remove_texture_from_hash_table(longlong texture_context)
   
   // 获取哈希表信息
   hash_table = *(longlong *)(*(longlong *)(texture_context + 0xb0) + 0xa8);
-  hash_key1 = *(longlong *)(_DAT_180c8a9e8 + 8);
+  hash_key1 = *(longlong *)(core_system_data_texture + 8);
   current_entry = (longlong *)
            (hash_key1 + ((*(ulonglong *)(hash_table + 0x14) ^ *(ulonglong *)(hash_table + 0xc)) %
-                    (ulonglong)*(uint *)(_DAT_180c8a9e8 + 0x10)) * 8);
+                    (ulonglong)*(uint *)(core_system_data_texture + 0x10)) * 8);
   next_entry = (longlong *)*current_entry;
   
   do {
     if (next_entry == (longlong *)0x0) {
 LAB_18018b92f:
-      hash_table = *(longlong *)(_DAT_180c8a9e8 + 0x10);
+      hash_table = *(longlong *)(core_system_data_texture + 0x10);
       current_entry = (longlong *)(hash_key1 + hash_table * 8);
       next_entry = (longlong *)*current_entry;
 LAB_18018b93a:
@@ -223,7 +223,7 @@ LAB_18018b93a:
     // 检查是否找到目标条目
     if ((*(longlong *)(hash_table + 0xc) == *next_entry) && (*(longlong *)(hash_table + 0x14) == next_entry[1])) {
       if (next_entry != (longlong *)0x0) {
-        hash_table = *(longlong *)(_DAT_180c8a9e8 + 0x10);
+        hash_table = *(longlong *)(core_system_data_texture + 0x10);
         goto LAB_18018b93a;
       }
       goto LAB_18018b92f;
@@ -614,7 +614,7 @@ LAB_18018bee2:
                     *(int32_t *)(hash_table + 0x18),1);
       
       // 创建新的纹理条目
-      new_texture = (int32_t *)create_texture_entry(_DAT_180c8ed18,0x20,*(int8_t *)(hash_table + 0x2c));
+      new_texture = (int32_t *)create_texture_entry(system_memory_pool_ptr,0x20,*(int8_t *)(hash_table + 0x2c));
       texture_format = *(int32_t *)((longlong)texture_data + 4);
       hash_index = texture_data[1];
       texture_quality = *(int32_t *)((longlong)texture_data + 0xc);
@@ -638,7 +638,7 @@ LAB_18018bee2:
       }
       
       // 处理哈希冲突
-      new_texture_id = create_collision_list(_DAT_180c8ed18,(ulonglong)hash_value._4_4_ * 8 + 8,8,
+      new_texture_id = create_collision_list(system_memory_pool_ptr,(ulonglong)hash_value._4_4_ * 8 + 8,8,
                             *(int8_t *)(hash_table + 0x2c));
       // 初始化冲突列表
       memset(new_texture_id,0,(ulonglong)hash_value._4_4_ * 8);

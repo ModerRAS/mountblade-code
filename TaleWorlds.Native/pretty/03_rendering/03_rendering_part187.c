@@ -523,7 +523,7 @@ void RenderingSystem_AdvancedParticleProcessor(void)
                         undef_ptr = &unknown_var_3824_ptr;
                     }
                     
-                    FUN_180062300(_DAT_180c86928, undef_ptr, temp_long / 0x28, undef_ptr2);
+                    FUN_180062300(system_message_context, undef_ptr, temp_long / 0x28, undef_ptr2);
                 }
                 
                 random_val = 0;
@@ -750,7 +750,7 @@ void RenderingSystem_DataSearchProcessor(longlong param_1, ulonglong *param_2, i
                     if (temp_long1 == 0) {
                         temp_long1 = 1;
                     LAB_180378603:
-                        ptr2 = (Undefined8Pointer)FUN_18062b420(_DAT_180c8ed18, temp_long1 * 8, (char)param_2[3]);
+                        ptr2 = (Undefined8Pointer)FUN_18062b420(system_memory_pool_ptr, temp_long1 * 8, (char)param_2[3]);
                         ptr4 = (Undefined8Pointer)*param_2;
                         ptr5 = (Undefined8Pointer)param_2[1];
                     }
@@ -831,7 +831,7 @@ void RenderingSystem_AlternateDataSearch(uint64_t param_1, longlong param_2, int
                 if (temp_long1 == 0) {
                     temp_long1 = 1;
                 LAB_180378603:
-                    ptr2 = (Undefined8Pointer)FUN_18062b420(_DAT_180c8ed18, temp_long1 * 8, (char)register_rbx[3]);
+                    ptr2 = (Undefined8Pointer)FUN_18062b420(system_memory_pool_ptr, temp_long1 * 8, (char)register_rbx[3]);
                     ptr3 = (Undefined8Pointer)*register_rbx;
                     ptr4 = (Undefined8Pointer)register_rbx[1];
                 }

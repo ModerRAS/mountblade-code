@@ -6,8 +6,8 @@
 
 // 全局变量定义
 ulonglong g_string_buffer_size = GET_SECURITY_COOKIE();  // 字符串缓冲区大小
-longlong g_memory_allocator = _DAT_180c868e8;     // 内存分配器
-longlong g_string_constants = _DAT_180c8ed18;     // 字符串常量池
+longlong g_memory_allocator = core_system_data_memory;     // 内存分配器
+longlong g_string_constants = system_memory_pool_ptr;     // 字符串常量池
 char g_empty_string[] = "";                       // 空字符串常量
 uint64_t g_string_suffix = unknown_var_3456;        // 字符串后缀标记
 uint64_t g_string_prefix = unknown_var_2176;        // 字符串前缀标记

@@ -647,7 +647,7 @@ int insert_into_dynamic_array(longlong array_ptr,longlong element_ptr)
   if (old_end == 0) {
     old_end = 1;
 LAB_EXPAND_ARRAY:
-    new_memory = FUN_18062b420(_DAT_180c8ed18,old_end << 8,*(int8_t *)(array_ptr + 0x20));
+    new_memory = FUN_18062b420(system_memory_pool_ptr,old_end << 8,*(int8_t *)(array_ptr + 0x20));
     current_pos = *(ulonglong *)(array_ptr + 0x10);
     old_base = *(longlong *)(array_ptr + 8);
   }
@@ -810,20 +810,20 @@ void initialize_system_components(longlong *system_ptr,uint64_t *config_ptr)
   temp_ptr = system_ptr;
   config = config_ptr;
   FUN_180047fc0();
-  new_system = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,200,8,3,flags,stack_guard);
+  new_system = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,200,8,3,flags,stack_guard);
   temp_ptr = new_system;
   FUN_180049830(new_system);
   *new_system = (longlong)&unknown_var_3136_ptr;
   new_system[0x18] = (longlong)&unknown_var_1200_ptr;
   vtable_ptr = new_system;
   (**(code **)(*new_system + 0x28))(new_system);
-  stack_guard = _DAT_180c82868;
+  stack_guard = system_context_ptr;
   callback_ptr = &temp_ptr;
   temp_ptr = new_system;
   (**(code **)(*new_system + 0x28))(new_system);
   FUN_18005e300(stack_guard,&temp_ptr);
   (**(code **)(*new_system + 0x38))(new_system);
-  _DAT_180bf52b0 = (longlong)*(int *)(_DAT_180c86870 + 0x224);
+  core_system_control_pointer = (longlong)*(int *)(system_main_module_state + 0x224);
   FUN_180627be0(&system_memory_52c0,config_ptr);
   *config_ptr = &unknown_var_3456_ptr;
   if (config_ptr[1] != 0) {
@@ -917,19 +917,19 @@ void initialize_game_engine(void)
   stack_guard = 0xfffffffffffffffe;
   stack_hash = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_698;
   temp_flag = 0;
-  if (*(int *)(_DAT_180c86870 + 0x224) - _DAT_180bf52b0 < 0xfb) {
+  if (*(int *)(system_main_module_state + 0x224) - core_system_control_pointer < 0xfb) {
                     // WARNING: Subroutine does not return
     FUN_1808fc050(stack_hash ^ (ulonglong)auStack_698);
   }
-  *(int8_t *)(_DAT_180c86960 + 0x39) = 1;
-  engine_obj = (longlong ***)FUN_18062b1e0(_DAT_180c8ed18,200,8,3);
+  *(int8_t *)(core_system_data_pointer + 0x39) = 1;
+  engine_obj = (longlong ***)FUN_18062b1e0(system_memory_pool_ptr,200,8,3);
   temp_engine = engine_obj;
   FUN_180049830(engine_obj);
   *engine_obj = (longlong **)&unknown_var_3136_ptr;
   engine_obj[0x18] = (longlong **)&unknown_var_5120_ptr;
   engine_instance = (longlong **)engine_obj;
   (*(code *)(*engine_obj)[5])(engine_obj);
-  system_handle = _DAT_180c82868;
+  system_handle = system_context_ptr;
   temp_flag = 1;
   temp_engine = &temp_engine2;
   temp_engine2 = (longlong **)engine_obj;
@@ -954,30 +954,30 @@ void initialize_game_engine(void)
   temp_string[0] = 0;
   string_size = 0x18;
   strcpy_s(temp_string,0x40,&unknown_var_2296_ptr);
-  FUN_180097d40(_DAT_180c86960,&temp_ptr6,&context_ptr);
+  FUN_180097d40(core_system_data_pointer,&temp_ptr6,&context_ptr);
   temp_ptr6 = &unknown_var_720_ptr;
   temp_ptr7 = &unknown_var_3480_ptr;
   temp_buffer2 = temp_string2;
   temp_string2[0] = 0;
   temp_size2 = 0xb;
   strcpy_s(temp_string2,0x40,&unknown_var_2256_ptr);
-  FUN_180097d40(_DAT_180c86960,&temp_ptr7,&context_ptr);
+  FUN_180097d40(core_system_data_pointer,&temp_ptr7,&context_ptr);
   temp_ptr7 = &unknown_var_720_ptr;
   temp_ptr8 = &unknown_var_3480_ptr;
   temp_buffer3 = temp_string3;
   temp_string3[0] = 0;
   temp_size3 = 0x18;
   config_id = strcpy_s(temp_string3,0x40,&unknown_var_2296_ptr);
-  _DAT_180bf52b8 = (float)FUN_180095480(config_id,&temp_ptr8);
-  _DAT_180bf52b8 = 1.0 / _DAT_180bf52b8;
+  core_system_control_pointer = (float)FUN_180095480(config_id,&temp_ptr8);
+  core_system_control_pointer = 1.0 / core_system_control_pointer;
   temp_ptr8 = &unknown_var_720_ptr;
   temp_ptr9 = &unknown_var_3480_ptr;
   temp_buffer4 = temp_string4;
   temp_string4[0] = 0;
   temp_size4 = 0xb;
   config_id = strcpy_s(temp_string4,0x40,&unknown_var_2256_ptr);
-  _DAT_180bf52bc = (float)FUN_180095480(config_id,&temp_ptr9);
-  _DAT_180bf52bc = 1.0 / _DAT_180bf52bc;
+  core_system_control_pointer = (float)FUN_180095480(config_id,&temp_ptr9);
+  core_system_control_pointer = 1.0 / core_system_control_pointer;
   temp_ptr9 = &unknown_var_720_ptr;
   temp_ptr10 = &unknown_var_3480_ptr;
   temp_buffer5 = temp_string5;
@@ -994,8 +994,8 @@ void initialize_game_engine(void)
   scale_y = (float)FUN_180095720(config_id,&temp_ptr11);
   temp_ptr11 = &unknown_var_720_ptr;
   timestamp = FUN_180623ce0();
-  if (0 < _DAT_180bf52d0) {
-    FUN_180629a40(&system_memory_52c0,&temp_ptr3,0,_DAT_180bf52d0 + -1);
+  if (0 < core_system_control_pointer) {
+    FUN_180629a40(&system_memory_52c0,&temp_ptr3,0,core_system_control_pointer + -1);
     temp_index = temp_index + -1;
     file_offset = (longlong)temp_index;
     index = -1;
@@ -1014,17 +1014,17 @@ void initialize_game_engine(void)
       index = FUN_180046890(&system_memory_5240,&temp_ptr4);
     }
     file_offset = (longlong)index * 0x100;
-    temp_engine = (longlong ***)(_DAT_180bf5248 + 0x30 + file_offset);
+    temp_engine = (longlong ***)(core_system_control_pointer + 0x30 + file_offset);
     engine_ptr_ptr = param_array;
     temp_ptr5 = &unknown_var_2640_ptr;
     callback_func = FUN_1800adba0;
     param_array[0] = (longlong ***)&temp_engine;
     FUN_18005c650(param_array);
-    *(double *)(file_offset + 0xa0 + _DAT_180bf5248) = (double)(1.0 / scale_y);
-    *(double *)(file_offset + 0xb8 + _DAT_180bf5248) = (double)(1.0 / scale_x);
-    *(int *)(file_offset + 0xb0 + _DAT_180bf5248) = (int)(longlong)_DAT_180bf52b8;
-    *(int *)(file_offset + 200 + _DAT_180bf5248) = (int)(longlong)_DAT_180bf52bc;
-    *(double *)(file_offset + 0x20 + _DAT_180bf5248) = (double)(timestamp >> 0x14);
+    *(double *)(file_offset + 0xa0 + core_system_control_pointer) = (double)(1.0 / scale_y);
+    *(double *)(file_offset + 0xb8 + core_system_control_pointer) = (double)(1.0 / scale_x);
+    *(int *)(file_offset + 0xb0 + core_system_control_pointer) = (int)(longlong)core_system_control_pointer;
+    *(int *)(file_offset + 200 + core_system_control_pointer) = (int)(longlong)core_system_control_pointer;
+    *(double *)(file_offset + 0x20 + core_system_control_pointer) = (double)(timestamp >> 0x14);
     temp_ptr4 = &unknown_var_3456_ptr;
     if (temp_offset2 != 0) {
                     // WARNING: Subroutine does not return
@@ -1072,7 +1072,7 @@ void initialize_game_engine(void)
   value_ptr[3] = 0x78742e67;
   *(int16_t *)(value_ptr + 4) = 0x74;
   buffer_size = index;
-  config_ptr = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,3);
+  config_ptr = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,3);
   buffer_ptr = &system_buffer_ptr;
   if (temp_buffer != (int8_t *)0x0) {
     buffer_ptr = temp_buffer;
@@ -1177,7 +1177,7 @@ void register_resource(uint64_t system_handle,uint64_t resource_name,longlong re
   if (result == -1) {
     result = FUN_180046890(&system_memory_5240,resource_name);
   }
-  resource_ptr = (uint64_t *)(_DAT_180bf5248 + 0xd0 + (longlong)result * 0x100);
+  resource_ptr = (uint64_t *)(core_system_control_pointer + 0xd0 + (longlong)result * 0x100);
   current_ptr = resource_ptr;
   if ((uint64_t *)resource_ptr[2] != (uint64_t *)0x0) {
     next_ptr = (uint64_t *)resource_ptr[2];

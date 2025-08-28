@@ -33,12 +33,12 @@
 // 全局变量引用
 // ============================================================================
 
-extern uint64_t _DAT_180c8aa08;    // 全局数据表指针
-extern uint64_t _DAT_180c82868;    // 系统状态标志
-extern uint64_t _DAT_180c8ed18;    // 内存分配器句柄
-extern uint64_t _DAT_180c86870;    // 渲染系统状态
+extern uint64_t system_global_data_ptr;    // 全局数据表指针
+extern uint64_t system_context_ptr;    // 系统状态标志
+extern uint64_t system_memory_pool_ptr;    // 内存分配器句柄
+extern uint64_t system_main_module_state;    // 渲染系统状态
 extern uint64_t system_stack_cookie;     // 安全检查常量
-extern uint64_t _DAT_180c86908;    // 系统配置状态
+extern uint64_t system_module_state;    // 系统配置状态
 extern char system_debug_flag;            // 调试模式标志
 extern char system_debug_flag2;            // 错误处理标志
 
@@ -101,7 +101,7 @@ void string_comparison_processor(uint64_t **param_1, longlong param_2)
     uint64_t stack_var1;
     
     // 初始化全局指针
-    global_ptr = _DAT_180c8aa08;
+    global_ptr = system_global_data_ptr;
     stack_var1 = 0xfffffffffffffffe;
     match_flag = 0;
     string_length = *(int *)(param_2 + 0x10);
@@ -142,20 +142,20 @@ void string_comparison_processor(uint64_t **param_1, longlong param_2)
     match_flag = 1;
 final_mismatch:
     // 执行系统初始化
-    FUN_18005e630(_DAT_180c82868);
+    FUN_18005e630(system_context_ptr);
     FUN_1801c9940(global_ptr);
     
     // 分配内存资源
-    temp_var = FUN_18062b1e0(_DAT_180c8ed18, 0x580, 8, 3);
+    temp_var = FUN_18062b1e0(system_memory_pool_ptr, 0x580, 8, 3);
     allocated_ptr = (longlong *)FUN_1803e8a40(temp_var, param_2);
     *global_ptr = allocated_ptr;
     
     // 执行初始化回调
     (**(code **)(*allocated_ptr + 0x28))(allocated_ptr);
-    *(int8_t *)(_DAT_180c86870 + 0x60) = 1;
+    *(int8_t *)(system_main_module_state + 0x60) = 1;
     
     // 分配更多资源并处理
-    temp_var = FUN_18062b1e0(_DAT_180c8ed18, 0xe0, 8, 3);
+    temp_var = FUN_18062b1e0(system_memory_pool_ptr, 0xe0, 8, 3);
     temp_ptr2 = ptr_array;
     temp_ptr3 = (uint64_t ***)&stack_ptr3;
     stack_ptr3 = global_ptr;
@@ -173,7 +173,7 @@ final_mismatch:
     func_ptr2 = FUN_1801eb560;
     
     // 分配最终处理结构
-    result_ptr = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x30, 8, system_stack_cookie);
+    result_ptr = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x30, 8, system_stack_cookie);
     *result_ptr = stack_ptr1;
     *(int8_t *)(result_ptr + 1) = stack_flag1;
     temp_ptr5 = result_ptr;
@@ -213,7 +213,7 @@ final_mismatch:
         (*(code *)(*temp_ptr2)[7])();
     }
     *(uint64_t *)(global_ptr[9] + 0x18) = 0xfffffffffffffffd;
-    temp_var = _DAT_180c82868;
+    temp_var = system_context_ptr;
     temp_ptr3 = &temp_ptr2;
     temp_ptr2 = (uint64_t **)global_ptr[9];
     
@@ -343,13 +343,13 @@ void file_data_processor(uint64_t param_1, longlong param_2)
     ulonglong stack_ulong3;
     
     // 初始化全局变量和栈变量
-    temp_long2 = _DAT_180c8aa08;
+    temp_long2 = system_global_data_ptr;
     stack_var8 = 0xfffffffffffffffe;
     stack_ulong3 = system_stack_cookie ^ (ulonglong)temp_buffer1;
-    stack_long3 = _DAT_180c8aa08;
+    stack_long3 = system_global_data_ptr;
     
     // 执行初始化操作
-    FUN_1801d8e90(_DAT_180c8aa08, param_2, 0);
+    FUN_1801d8e90(system_global_data_ptr, param_2, 0);
     stack_ptr1 = &global_config_3456_ptr;
     stack_ulong1 = 0;
     stack_ptr2 = (void *)0x0;
@@ -745,12 +745,12 @@ bool file_validator(longlong param_1)
     
     // 错误处理
     if (((system_debug_flag == '\0') && (validation_result == false)) &&
-       ((*(int *)(_DAT_180c86908 + 0x620) == 0 && (param_1 == 0)))) {
+       ((*(int *)(system_module_state + 0x620) == 0 && (param_1 == 0)))) {
         if (system_debug_flag2 == '\0') {
             MessageBoxA(0, &global_config_9600_ptr, &global_config_9792_ptr, 0x41040);
         }
-        else if (*(char *)(_DAT_180c86928 + 0x18) != '\0') {
-            FUN_1800623b0(_DAT_180c86928, 3, 0xffffffff00000000, 0xd, &global_config_6936_ptr, &global_config_9792_ptr,
+        else if (*(char *)(system_message_context + 0x18) != '\0') {
+            FUN_1800623b0(system_message_context, 3, 0xffffffff00000000, 0xd, &global_config_6936_ptr, &global_config_9792_ptr,
                           &global_config_9600_ptr);
         }
     }
@@ -852,7 +852,7 @@ void shader_cache_processor(uint64_t param_1)
             fread(&stack_int1, 4, 1, temp_long1);
             if (stack_int1 < 9) {
                 if (stack_int1 + 1 != 0) {
-                    temp_var1 = FUN_18062b420(_DAT_180c8ed18, (longlong)(stack_int1 + 1), 3);
+                    temp_var1 = FUN_18062b420(system_memory_pool_ptr, (longlong)(stack_int1 + 1), 3);
                 }
                 memset(temp_var1, 0, (longlong)(stack_int1 + 1));
             }
@@ -925,7 +925,7 @@ void configuration_file_handler(void)
     stack_ulong3 = system_stack_cookie ^ (ulonglong)temp_buffer1;
     temp_array1[1] = 0;
     
-    if (*(char *)(_DAT_180c86870 + 0x168) == '\0') {
+    if (*(char *)(system_main_module_state + 0x168) == '\0') {
         stack_ptr3 = &global_config_3456_ptr;
         stack_ulong2 = 0;
         stack_long1 = 0;
@@ -975,7 +975,7 @@ void configuration_file_handler(void)
             temp_long1 = stack_long2;
             
             if (stack_long2 == 0) {
-                FUN_180062300(_DAT_180c86928, &global_config_9856_ptr);
+                FUN_180062300(system_message_context, &global_config_9856_ptr);
             }
             
             // 写入文件头

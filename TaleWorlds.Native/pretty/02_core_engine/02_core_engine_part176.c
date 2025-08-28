@@ -470,24 +470,24 @@ char 检查碰撞属性匹配(int32_t 属性ID,int 对象ID)
   bool 条件标志;
   int32_t 额外输出;
   
-  哈希表指针 = _DAT_180c86900[0xb];
+  哈希表指针 = core_system_data_ui[0xb];
   for (对象指针 = *(int **)(哈希表指针 + ((ulonglong)(longlong)对象ID %
-                                  (ulonglong)*(uint *)(_DAT_180c86900 + 0xc)) * 8);
+                                  (ulonglong)*(uint *)(core_system_data_ui + 0xc)) * 8);
       对象指针 != (int *)0x0; 对象指针 = *(int **)(对象指针 + 0x10)) {
     if (对象ID == *对象指针) {
-      哈希表指针 = _DAT_180c86900[0xc];
+      哈希表指针 = core_system_data_ui[0xc];
       goto LAB_180160546;
     }
   }
-  哈希表指针 = _DAT_180c86900[0xc];
+  哈希表指针 = core_system_data_ui[0xc];
   对象指针 = *(int **)(哈希表指针 + 哈希表指针 * 8);
 LAB_180160546:
   if (对象指针 == *(int **)(哈希表指针 + 哈希表指针 * 8)) {
     return '\0';
   }
   if ((char)对象指针[0xe] != '\0') {
-    数组指针 = (uint64_t *)*_DAT_180c86900;
-    数组大小 = _DAT_180c86900[1] - (longlong)数组指针 >> 3;
+    数组指针 = (uint64_t *)*core_system_data_ui;
+    数组大小 = core_system_data_ui[1] - (longlong)数组指针 >> 3;
     循环索引 = 0;
     if (数组大小 != 0) {
       do {
@@ -520,17 +520,17 @@ LAB_18016064a:
         if (当前对象 < 0) {
           if (匹配结果 != '\0') {
 LAB_180160689:
-            if ((*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) == '\0') &&
-               ((浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18),
+            if ((*(char *)(core_system_data_ui + 0x18 + 数组大小 * 0x18) == '\0') &&
+               ((浮点指针 = (float *)(core_system_data_ui + 4 + 数组大小 * 0x18),
                 0.7 < *浮点指针 || *浮点指针 == 0.7 ||
-                ((*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 1) != 0)))) goto LAB_180160797;
+                ((*(byte *)(core_system_data_ui + 0x14 + 数组大小 * 0x18) & 1) != 0)))) goto LAB_180160797;
           }
           goto LAB_1801606a6;
         }
         if (匹配结果 == '\0') goto LAB_1801606a6;
-        if ((*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) != '\0') ||
-           ((浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18), *浮点指针 <= 0.7 && *浮点指针 != 0.7
-            && ((*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 1) == 0)))) {
+        if ((*(char *)(core_system_data_ui + 0x18 + 数组大小 * 0x18) != '\0') ||
+           ((浮点指针 = (float *)(core_system_data_ui + 4 + 数组大小 * 0x18), *浮点指针 <= 0.7 && *浮点指针 != 0.7
+            && ((*(byte *)(core_system_data_ui + 0x14 + 数组大小 * 0x18) & 1) == 0)))) {
           数组大小 = (ulonglong)*(uint *)(&unknown_var_7584_ptr + 当前对象 * 4);
           goto LAB_180160689;
         }
@@ -539,40 +539,40 @@ LAB_180160797:
       }
       else {
         if (循环索引 == 1) {
-          if ((匹配结果 != '\0') && (*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) == '\0')) {
-            浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18);
+          if ((匹配结果 != '\0') && (*(char *)(core_system_data_ui + 0x18 + 数组大小 * 0x18) == '\0')) {
+            浮点指针 = (float *)(core_system_data_ui + 4 + 数组大小 * 0x18);
             if ((0.7 < *浮点指针 || *浮点指针 == 0.7) &&
-               (浮点指针 = (float *)(_DAT_180c868d0 + 0xc + 数组大小 * 0x18),
+               (浮点指针 = (float *)(core_system_data_ui + 0xc + 数组大小 * 0x18),
                *浮点指针 <= 0.7 && *浮点指针 != 0.7)) goto LAB_180160797;
 LAB_1801606f2:
-            条件标志 = (*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 3) == 3;
+            条件标志 = (*(byte *)(core_system_data_ui + 0x14 + 数组大小 * 0x18) & 3) == 3;
 LAB_180160791:
             if (条件标志) goto LAB_180160797;
           }
         }
         else if (循环索引 == 2) {
-          if ((匹配结果 != '\0') && (*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) == '\0')) {
-            浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18);
+          if ((匹配结果 != '\0') && (*(char *)(core_system_data_ui + 0x18 + 数组大小 * 0x18) == '\0')) {
+            浮点指针 = (float *)(core_system_data_ui + 4 + 数组大小 * 0x18);
             if (0.7 < *浮点指针 || *浮点指针 == 0.7) goto LAB_1801606f2;
-            浮点指针 = (float *)(_DAT_180c868d0 + 0xc + 数组大小 * 0x18);
+            浮点指针 = (float *)(core_system_data_ui + 0xc + 数组大小 * 0x18);
             if (0.7 < *浮点指针 || *浮点指针 == 0.7) goto LAB_180160797;
-            条件标志 = (*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 3) == 3;
+            条件标志 = (*(byte *)(core_system_data_ui + 0x14 + 数组大小 * 0x18) & 3) == 3;
             goto LAB_180160791;
           }
         }
         else {
           if (循环索引 != 3) goto LAB_1801606a8;
           if ((匹配结果 != '\0') &&
-             ((*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) != '\0' ||
-              ((浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18),
+             ((*(char *)(core_system_data_ui + 0x18 + 数组大小 * 0x18) != '\0' ||
+              ((浮点指针 = (float *)(core_system_data_ui + 4 + 数组大小 * 0x18),
                *浮点指针 <= 0.7 && *浮点指针 != 0.7 &&
-               ((*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 1) == 0)))))) {
+               ((*(byte *)(core_system_data_ui + 0x14 + 数组大小 * 0x18) & 1) == 0)))))) {
             if ((当前对象 < 0) ||
                (数组大小 = (ulonglong)*(uint *)(&unknown_var_7584_ptr + 当前对象 * 4),
-               *(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) != '\0')) goto LAB_180160797;
-            浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18);
+               *(char *)(core_system_data_ui + 0x18 + 数组大小 * 0x18) != '\0')) goto LAB_180160797;
+            浮点指针 = (float *)(core_system_data_ui + 4 + 数组大小 * 0x18);
             if (*浮点指针 <= 0.7 && *浮点指针 != 0.7) {
-              条件标志 = (*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 1) == 0;
+              条件标志 = (*(byte *)(core_system_data_ui + 0x14 + 数组大小 * 0x18) & 1) == 0;
               goto LAB_180160791;
             }
           }
@@ -647,17 +647,17 @@ LAB_18016064a:
         if (当前对象 < 0) {
           if (验证结果 != '\0') {
 LAB_180160689:
-            if ((*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) == '\0') &&
-               ((浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18),
+            if ((*(char *)(core_system_data_ui + 0x18 + 数组大小 * 0x18) == '\0') &&
+               ((浮点指针 = (float *)(core_system_data_ui + 4 + 数组大小 * 0x18),
                 0.7 < *浮点指针 || *浮点指针 == 0.7 ||
-                ((*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 1) != 0)))) goto LAB_180160797;
+                ((*(byte *)(core_system_data_ui + 0x14 + 数组大小 * 0x18) & 1) != 0)))) goto LAB_180160797;
           }
           goto LAB_1801606a6;
         }
         if (验证结果 == '\0') goto LAB_1801606a6;
-        if ((*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) != '\0') ||
-           ((浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18), *浮点指针 <= 0.7 && *浮点指针 != 0.7
-            && ((*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 1) == 0)))) {
+        if ((*(char *)(core_system_data_ui + 0x18 + 数组大小 * 0x18) != '\0') ||
+           ((浮点指针 = (float *)(core_system_data_ui + 4 + 数组大小 * 0x18), *浮点指针 <= 0.7 && *浮点指针 != 0.7
+            && ((*(byte *)(core_system_data_ui + 0x14 + 数组大小 * 0x18) & 1) == 0)))) {
           数组大小 = (ulonglong)*(uint *)(&unknown_var_7584_ptr + 当前对象 * 4);
           goto LAB_180160689;
         }
@@ -666,40 +666,40 @@ LAB_180160797:
       }
       else {
         if (循环索引 == 1) {
-          if ((验证结果 != '\0') && (*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) == '\0')) {
-            浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18);
+          if ((验证结果 != '\0') && (*(char *)(core_system_data_ui + 0x18 + 数组大小 * 0x18) == '\0')) {
+            浮点指针 = (float *)(core_system_data_ui + 4 + 数组大小 * 0x18);
             if ((0.7 < *浮点指针 || *浮点指针 == 0.7) &&
-               (浮点指针 = (float *)(_DAT_180c868d0 + 0xc + 数组大小 * 0x18),
+               (浮点指针 = (float *)(core_system_data_ui + 0xc + 数组大小 * 0x18),
                *浮点指针 <= 0.7 && *浮点指针 != 0.7)) goto LAB_180160797;
 LAB_1801606f2:
-            条件标志 = (*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 3) == 3;
+            条件标志 = (*(byte *)(core_system_data_ui + 0x14 + 数组大小 * 0x18) & 3) == 3;
 LAB_180160791:
             if (条件标志) goto LAB_180160797;
           }
         }
         else if (循环索引 == 2) {
-          if ((验证结果 != '\0') && (*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) == '\0')) {
-            浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18);
+          if ((验证结果 != '\0') && (*(char *)(core_system_data_ui + 0x18 + 数组大小 * 0x18) == '\0')) {
+            浮点指针 = (float *)(core_system_data_ui + 4 + 数组大小 * 0x18);
             if (0.7 < *浮点指针 || *浮点指针 == 0.7) goto LAB_1801606f2;
-            浮点指针 = (float *)(_DAT_180c868d0 + 0xc + 数组大小 * 0x18);
+            浮点指针 = (float *)(core_system_data_ui + 0xc + 数组大小 * 0x18);
             if (0.7 < *浮点指针 || *浮点指针 == 0.7) goto LAB_180160797;
-            条件标志 = (*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 3) == 3;
+            条件标志 = (*(byte *)(core_system_data_ui + 0x14 + 数组大小 * 0x18) & 3) == 3;
             goto LAB_180160791;
           }
         }
         else {
           if (循环索引 != 3) goto LAB_1801606a8;
           if ((验证结果 != '\0') &&
-             ((*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) != '\0' ||
-              ((浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18),
+             ((*(char *)(core_system_data_ui + 0x18 + 数组大小 * 0x18) != '\0' ||
+              ((浮点指针 = (float *)(core_system_data_ui + 4 + 数组大小 * 0x18),
                *浮点指针 <= 0.7 && *浮点指针 != 0.7 &&
-               ((*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 1) == 0)))))) {
+               ((*(byte *)(core_system_data_ui + 0x14 + 数组大小 * 0x18) & 1) == 0)))))) {
             if ((当前对象 < 0) ||
                (数组大小 = (ulonglong)*(uint *)(&unknown_var_7584_ptr + 当前对象 * 4),
-               *(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) != '\0')) goto LAB_180160797;
-            浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18);
+               *(char *)(core_system_data_ui + 0x18 + 数组大小 * 0x18) != '\0')) goto LAB_180160797;
+            浮点指针 = (float *)(core_system_data_ui + 4 + 数组大小 * 0x18);
             if (*浮点指针 <= 0.7 && *浮点指针 != 0.7) {
-              条件标志 = (*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 1) == 0;
+              条件标志 = (*(byte *)(core_system_data_ui + 0x14 + 数组大小 * 0x18) & 1) == 0;
               goto LAB_180160791;
             }
           }
@@ -761,17 +761,17 @@ LAB_18016064a:
         if (当前对象 < 0) {
           if (验证结果) {
 LAB_180160689:
-            if ((*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) == '\0') &&
-               ((浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18),
+            if ((*(char *)(core_system_data_ui + 0x18 + 数组大小 * 0x18) == '\0') &&
+               ((浮点指针 = (float *)(core_system_data_ui + 4 + 数组大小 * 0x18),
                 0.7 < *浮点指针 || *浮点指针 == 0.7 ||
-                ((*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 1) != 0)))) goto LAB_180160797;
+                ((*(byte *)(core_system_data_ui + 0x14 + 数组大小 * 0x18) & 1) != 0)))) goto LAB_180160797;
           }
           goto LAB_1801606a6;
         }
         if (!验证结果) goto LAB_1801606a6;
-        if ((*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) != '\0') ||
-           ((浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18), *浮点指针 <= 0.7 && *浮点指针 != 0.7
-            && ((*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 1) == 0)))) {
+        if ((*(char *)(core_system_data_ui + 0x18 + 数组大小 * 0x18) != '\0') ||
+           ((浮点指针 = (float *)(core_system_data_ui + 4 + 数组大小 * 0x18), *浮点指针 <= 0.7 && *浮点指针 != 0.7
+            && ((*(byte *)(core_system_data_ui + 0x14 + 数组大小 * 0x18) & 1) == 0)))) {
           数组大小 = (ulonglong)*(uint *)(&unknown_var_7584_ptr + 当前对象 * 4);
           goto LAB_180160689;
         }
@@ -780,40 +780,40 @@ LAB_180160797:
       }
       else {
         if (循环索引 == 1) {
-          if ((验证结果) && (*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) == '\0')) {
-            浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18);
+          if ((验证结果) && (*(char *)(core_system_data_ui + 0x18 + 数组大小 * 0x18) == '\0')) {
+            浮点指针 = (float *)(core_system_data_ui + 4 + 数组大小 * 0x18);
             if ((0.7 < *浮点指针 || *浮点指针 == 0.7) &&
-               (浮点指针 = (float *)(_DAT_180c868d0 + 0xc + 数组大小 * 0x18),
+               (浮点指针 = (float *)(core_system_data_ui + 0xc + 数组大小 * 0x18),
                *浮点指针 <= 0.7 && *浮点指针 != 0.7)) goto LAB_180160797;
 LAB_1801606f2:
-            验证结果 = (*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 3) == 3;
+            验证结果 = (*(byte *)(core_system_data_ui + 0x14 + 数组大小 * 0x18) & 3) == 3;
 LAB_180160791:
             if (验证结果) goto LAB_180160797;
           }
         }
         else if (循环索引 == 2) {
-          if ((验证结果) && (*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) == '\0')) {
-            浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18);
+          if ((验证结果) && (*(char *)(core_system_data_ui + 0x18 + 数组大小 * 0x18) == '\0')) {
+            浮点指针 = (float *)(core_system_data_ui + 4 + 数组大小 * 0x18);
             if (0.7 < *浮点指针 || *浮点指针 == 0.7) goto LAB_1801606f2;
-            浮点指针 = (float *)(_DAT_180c868d0 + 0xc + 数组大小 * 0x18);
+            浮点指针 = (float *)(core_system_data_ui + 0xc + 数组大小 * 0x18);
             if (0.7 < *浮点指针 || *浮点指针 == 0.7) goto LAB_180160797;
-            验证结果 = (*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 3) == 3;
+            验证结果 = (*(byte *)(core_system_data_ui + 0x14 + 数组大小 * 0x18) & 3) == 3;
             goto LAB_180160791;
           }
         }
         else {
           if (循环索引 != 3) goto LAB_1801606a8;
           if ((验证结果) &&
-             ((*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) != '\0' ||
-              ((浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18),
+             ((*(char *)(core_system_data_ui + 0x18 + 数组大小 * 0x18) != '\0' ||
+              ((浮点指针 = (float *)(core_system_data_ui + 4 + 数组大小 * 0x18),
                *浮点指针 <= 0.7 && *浮点指针 != 0.7 &&
-               ((*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 1) == 0)))))) {
+               ((*(byte *)(core_system_data_ui + 0x14 + 数组大小 * 0x18) & 1) == 0)))))) {
             if ((当前对象 < 0) ||
                (数组大小 = (ulonglong)*(uint *)(&unknown_var_7584_ptr + 当前对象 * 4),
-               *(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) != '\0')) goto LAB_180160797;
-            浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18);
+               *(char *)(core_system_data_ui + 0x18 + 数组大小 * 0x18) != '\0')) goto LAB_180160797;
+            浮点指针 = (float *)(core_system_data_ui + 4 + 数组大小 * 0x18);
             if (*浮点指针 <= 0.7 && *浮点指针 != 0.7) {
-              验证结果 = (*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 1) == 0;
+              验证结果 = (*(byte *)(core_system_data_ui + 0x14 + 数组大小 * 0x18) & 1) == 0;
               goto LAB_180160791;
             }
           }

@@ -65,7 +65,7 @@ void initialize_resource_manager(longlong *engine_context,longlong resource_para
   FUN_180627c50(&stack_string_ptr,resource_data);
   stack_resource_value = 0;
   stack_capacity = stack_capacity & 0xffffff00;
-  resource_handle = FUN_18062b1e0(_DAT_180c8ed18,0x60d30,0x10,0x1f);
+  resource_handle = FUN_18062b1e0(system_memory_pool_ptr,0x60d30,0x10,0x1f);
   resource_ptr = (longlong *)FUN_1801954d0(resource_handle,&stack_string_ptr);
   stack_ptr_ptr = (void **)resource_ptr;
   if (resource_ptr != (longlong *)0x0) {
@@ -151,7 +151,7 @@ void initialize_resource_manager(longlong *engine_context,longlong resource_para
   stack_flags = 0xffffffff;
   stack_size = resource_size;
   stack_control._4_4_ = *(uint *)(resource_offset + 0x1c);
-  FUN_1801a6440(resource_ptr,_DAT_180c868e8,&stack_buffer_ptr,&stack_resource_flags);
+  FUN_1801a6440(resource_ptr,init_system_data_file,&stack_buffer_ptr,&stack_resource_flags);
   FUN_18019e260(resource_ptr);
   (**(code **)(*(longlong *)engine_context[0x56] + 0x138))((longlong *)engine_context[0x56],resource_ptr);
   FUN_180199500(resource_ptr,0x3d072b02,1);
@@ -247,8 +247,8 @@ void process_shader_files(void)
   
   shader_config = 0xfffffffffffffffe;
   stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)shader_buffer;
-  global_engine_ptr = _DAT_180c86870;
-  total_files = *(longlong *)(*_DAT_180c86870 + 0x890) - *(longlong *)(*_DAT_180c86870 + 0x888) >> 5;
+  global_engine_ptr = system_main_module_state;
+  total_files = *(longlong *)(*system_main_module_state + 0x890) - *(longlong *)(*system_main_module_state + 0x888) >> 5;
   file_count = 0;
   file_count_limit = total_files;
   if (0 < (int)total_files) {
@@ -260,8 +260,8 @@ LAB_file_processing_error:
         file_offset = FUN_180628ca0();
       }
       else {
-        file_offset = *(longlong *)(*_DAT_180c86870 + 0x888);
-        if ((ulonglong)(*(longlong *)(*_DAT_180c86870 + 0x890) - file_offset >> 5) <=
+        file_offset = *(longlong *)(*system_main_module_state + 0x888);
+        if ((ulonglong)(*(longlong *)(*system_main_module_state + 0x890) - file_offset >> 5) <=
             (ulonglong)(longlong)file_count) goto LAB_file_processing_error;
         file_offset = (longlong)file_count * 0x20 + file_offset;
       }
@@ -286,8 +286,8 @@ LAB_path_processing_error:
         file_offset = FUN_180628ca0();
       }
       else {
-        file_offset = *(longlong *)(*_DAT_180c86870 + 0x8a8);
-        if ((ulonglong)(*(longlong *)(*_DAT_180c86870 + 0x8b0) - file_offset >> 5) <
+        file_offset = *(longlong *)(*system_main_module_state + 0x8a8);
+        if ((ulonglong)(*(longlong *)(*system_main_module_state + 0x8b0) - file_offset >> 5) <
             (ulonglong)(longlong)shader_index) goto LAB_path_processing_error;
         file_offset = (longlong)shader_index * 0x20 + file_offset;
       }
@@ -462,7 +462,7 @@ LAB_shader_processing:
 LAB_shader_path_found:
                 FUN_180629a40(shader_data + (longlong)file_id * 4,&temp_buffer,shader_index + 1,0xffffffff);
                 file_type = FUN_180054360(engine_ptr,&temp_buffer);
-                if (_DAT_180c82854 != 0) {
+                if (init_system_data_file != 0) {
                   FUN_18005c1c0(file_type,&resource_handle);
                   shader_reader = &unknown_var_3456_ptr;
                   file_data = 0;
@@ -486,7 +486,7 @@ LAB_shader_path_found:
                   }
                   FUN_180628040(&shader_reader,&unknown_var_6576_ptr,file_handle);
                   FUN_18062db60(&shader_reader,&resource_handle);
-                  _DAT_180c82854 = 0;
+                  init_system_data_file = 0;
                   shader_reader = &unknown_var_3456_ptr;
                   if (file_content != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -596,7 +596,7 @@ void initialize_render_pipeline(void)
   uint64_t render_config;
   longlong mutex_data;
   
-  render_state = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x198,8,3);
+  render_state = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x198,8,3);
   render_target = render_state + 4;
   FUN_180637560(render_target);
   *render_target = &unknown_var_6384_ptr;
@@ -615,26 +615,26 @@ void initialize_render_pipeline(void)
   *(int8_t *)(render_state + 3) = 0;
   render_state[2] = 0xffffffff00000000;
   *(int32_t *)(render_state + 1) = 0xe;
-  _DAT_180c86928 = render_state;
-  render_config = FUN_18062b1e0(_DAT_180c8ed18,0x480,8,3);
-  _DAT_180c8a9f8 = FUN_18004bd10(render_config);
-  render_config = FUN_18062b1e0(_DAT_180c8ed18,0x10420,8,3);
-  _DAT_180c868c0 = FUN_18005c090(render_config);
-  _DAT_180c868d8 = FUN_18062b1e0(_DAT_180c8ed18,0x30,8,3);
-  *(int32_t *)(_DAT_180c868d8 + 0x19) = 0;
-  *(int16_t *)(_DAT_180c868d8 + 0x1d) = 0;
-  *(int8_t *)(_DAT_180c868d8 + 0x1f) = 0;
-  *(int32_t *)(_DAT_180c868d8 + 0x28) = 3;
-  *(longlong *)_DAT_180c868d8 = _DAT_180c868d8;
-  *(longlong *)(_DAT_180c868d8 + 8) = _DAT_180c868d8;
-  *(uint64_t *)(_DAT_180c868d8 + 0x10) = 0;
-  *(int8_t *)(_DAT_180c868d8 + 0x18) = 0;
-  *(uint64_t *)(_DAT_180c868d8 + 0x20) = 0;
-  _DAT_180c86910 = FUN_18062b1e0(_DAT_180c8ed18,8,4,3);
-  *(int32_t *)(_DAT_180c86910 + 4) = 0;
-  render_config = FUN_18062b1e0(_DAT_180c8ed18,0x80,8,3);
-  _DAT_180c86900 = FUN_18015c450(render_config);
-  mutex_data = FUN_18062b1e0(_DAT_180c8ed18,0xe8,8,3);
+  system_message_context = render_state;
+  render_config = FUN_18062b1e0(system_memory_pool_ptr,0x480,8,3);
+  init_system_data_file = FUN_18004bd10(render_config);
+  render_config = FUN_18062b1e0(system_memory_pool_ptr,0x10420,8,3);
+  init_system_data_file = FUN_18005c090(render_config);
+  init_system_data_file = FUN_18062b1e0(system_memory_pool_ptr,0x30,8,3);
+  *(int32_t *)(init_system_data_file + 0x19) = 0;
+  *(int16_t *)(init_system_data_file + 0x1d) = 0;
+  *(int8_t *)(init_system_data_file + 0x1f) = 0;
+  *(int32_t *)(init_system_data_file + 0x28) = 3;
+  *(longlong *)init_system_data_file = init_system_data_file;
+  *(longlong *)(init_system_data_file + 8) = init_system_data_file;
+  *(uint64_t *)(init_system_data_file + 0x10) = 0;
+  *(int8_t *)(init_system_data_file + 0x18) = 0;
+  *(uint64_t *)(init_system_data_file + 0x20) = 0;
+  init_system_data_file = FUN_18062b1e0(system_memory_pool_ptr,8,4,3);
+  *(int32_t *)(init_system_data_file + 4) = 0;
+  render_config = FUN_18062b1e0(system_memory_pool_ptr,0x80,8,3);
+  init_system_data_file = FUN_18015c450(render_config);
+  mutex_data = FUN_18062b1e0(system_memory_pool_ptr,0xe8,8,3);
   _Mtx_init_in_situ(mutex_data,2);
   _Mtx_init_in_situ(mutex_data + 0x50,2);
   *(uint64_t *)(mutex_data + 0xa0) = 0;
@@ -646,8 +646,8 @@ void initialize_render_pipeline(void)
   *(uint64_t *)(mutex_data + 0xd0) = 0;
   *(int32_t *)(mutex_data + 0xd8) = 0x20;
   *(int32_t *)(mutex_data + 0xe0) = 0;
-  _DAT_180c8a998 = mutex_data;
-  render_config = FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3);
+  init_system_data_file = mutex_data;
+  render_config = FUN_18062b1e0(system_memory_pool_ptr,0x70,8,3);
                     // WARNING: Subroutine does not return
   memset(render_config,0,0x70);
 }
@@ -826,8 +826,8 @@ void emergency_exit(uint64_t exit_code,int32_t exit_status)
 {
   code *exit_handler;
   
-  if (_DAT_180c8f008 != 0) {
-    func_0x00018005a410(_DAT_180c8f008 + 8);
+  if (system_cache_buffer != 0) {
+    func_0x00018005a410(system_cache_buffer + 8);
   }
   Sleep(2000);
   _Exit(exit_status);
@@ -855,10 +855,10 @@ void finalize_initialization(void)
   uint64_t unused_param;
   uint64_t stack_guard;
   
-  config_data = _DAT_180c8a9d8;
+  config_data = init_system_data_file;
   stack_guard = 0xfffffffffffffffe;
-  if (*_DAT_180c8a9d8 != '\0') {
-    global_ptr = (uint64_t *)*_DAT_180c86960;
+  if (*init_system_data_file != '\0') {
+    global_ptr = (uint64_t *)*init_system_data_file;
     lock_status = _Mtx_lock(0x180c91970);
     if (lock_status != 0) {
       __Throw_C_error_std__YAXH_Z(lock_status);

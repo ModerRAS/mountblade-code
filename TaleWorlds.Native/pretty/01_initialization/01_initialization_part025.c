@@ -79,11 +79,11 @@ void initialize_resource_manager(longlong *context_ptr)
   uint64_t uStack_30;
   
   uStack_30 = 0x180059023;
-  uVar9 = FUN_18062b1e0(_DAT_180c8ed18,0x270,8,3);
+  uVar9 = FUN_18062b1e0(system_memory_pool_ptr,0x270,8,3);
   uStack_30 = 0x18005902b;
   lVar10 = FUN_180175aa0(uVar9);
   uVar7 = *(int32_t *)(SYSTEM_STATE_MANAGER + 0x1dc0);
-  _DAT_180c8a9d0 = lVar10;
+  init_system_data_memory = lVar10;
   *(int32_t *)(lVar10 + 0x1e0) = *(int32_t *)(SYSTEM_STATE_MANAGER + 0x1d50);
   *(int32_t *)(lVar10 + 0x1e4) = uVar7;
   uStack_30 = 0x180059066;
@@ -91,15 +91,15 @@ void initialize_resource_manager(longlong *context_ptr)
   uStack_298 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_3b8;
   uStack_378 = 0;
-  lStack_310 = _DAT_180c8a9d0;
-  *(uint64_t *)(_DAT_180c8a9d0 + 0xf0) = 0;
+  lStack_310 = init_system_data_memory;
+  *(uint64_t *)(init_system_data_memory + 0xf0) = 0;
   uStack_338 = 3;
   ppppppuStack_360 = &ppppppuStack_360;
   ppppppuStack_358 = &ppppppuStack_360;
   ppppppuStack_350 = (uint64_t *******)0x0;
   uStack_348 = 0;
   uStack_340 = 0;
-  lStack_2b8 = *_DAT_180c86870;
+  lStack_2b8 = *system_main_module_state;
   iStack_370 = 0;
   lVar10 = *(longlong *)(lStack_2b8 + 0x8a8);
   if (*(longlong *)(lStack_2b8 + 0x8b0) - lVar10 >> 5 != 0) {
@@ -128,7 +128,7 @@ void initialize_resource_manager(longlong *context_ptr)
           if (iVar20 < 0x10) {
             iVar8 = 0x10;
           }
-          puVar11 = (int8_t *)FUN_18062b420(_DAT_180c8ed18,(longlong)iVar8,0x13);
+          puVar11 = (int8_t *)FUN_18062b420(system_memory_pool_ptr,(longlong)iVar8,0x13);
           *puVar11 = 0;
           puStack_390 = puVar11;
           uVar7 = FUN_18064e990(puVar11);
@@ -209,7 +209,7 @@ void initialize_resource_manager(longlong *context_ptr)
             if (iVar20 < 0x10) {
               iVar8 = 0x10;
             }
-            puStack_328 = (void *)FUN_18062b420(_DAT_180c8ed18,(longlong)iVar8,0x13);
+            puStack_328 = (void *)FUN_18062b420(system_memory_pool_ptr,(longlong)iVar8,0x13);
             *puStack_328 = 0;
             uVar22 = (ulonglong)puStack_328 & 0xffffffffffc00000;
             if (uVar22 != 0) {
@@ -274,7 +274,7 @@ void initialize_resource_manager(longlong *context_ptr)
                 if ((pppppppuVar14 != &ppppppuStack_360) && (*(int *)(pppppppuVar14 + 6) == 0)) {
                   uVar7 = 1;
                 }
-                lVar10 = FUN_18062b420(_DAT_180c8ed18,0x60,(int8_t)uStack_338);
+                lVar10 = FUN_18062b420(system_memory_pool_ptr,0x60,(int8_t)uStack_338);
                 puStack_2b0 = (uint64_t *)(lVar10 + 0x20);
                 *puStack_2b0 = &unknown_var_720_ptr;
                 *(uint64_t *)(lVar10 + 0x28) = 0;
@@ -389,7 +389,7 @@ void initialize_resource_manager(longlong *context_ptr)
               if (iVar8 < 0x10) {
                 iVar8 = 0x10;
               }
-              puStack_390 = (int8_t *)FUN_18062b420(_DAT_180c8ed18,(longlong)iVar8,0x13);
+              puStack_390 = (int8_t *)FUN_18062b420(system_memory_pool_ptr,(longlong)iVar8,0x13);
               *puStack_390 = 0;
               uVar24 = (ulonglong)puStack_390 & 0xffffffffffc00000;
               if (uVar24 == 0) {

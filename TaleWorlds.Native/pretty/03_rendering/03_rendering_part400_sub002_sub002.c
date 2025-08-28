@@ -340,7 +340,7 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
     
     // 配置SIMD处理参数
     texture_coord_temp6._16_48_ = texture_temp1;
-    texture_coord_temp6._0_16_ = _DAT_180a40780;
+    texture_coord_temp6._0_16_ = render_system_texture;
     
     // 计算第三组纹理坐标
     texture_coord_array3[0] = texture_coord_stack7 * sampler_param4;
@@ -353,8 +353,8 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
     texture_coord_stack17 = texture_coord_stack10 * sampler_param7;
     
     // 设置纹理处理常量
-    texture_temp8 = _DAT_180a40490;
-    texture_temp6 = _DAT_180a40740;
+    texture_temp8 = render_system_texture;
+    texture_temp6 = render_system_texture;
     
     // 开始SIMD优化的纹理坐标处理循环
     do {
@@ -528,8 +528,8 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
     texture_temp4._4_4_ = movmskps(simd_processing_index * 2, texture_temp3);
     if (texture_temp4._4_4_ == TEXTURE_MASK_FULL) {
         // 应用纹理坐标范围限制
-        texture_temp6 = minps(texture_temp6, _DAT_180a403e0);
-        texture_temp8 = maxps(texture_temp8, _DAT_180a40720);
+        texture_temp6 = minps(texture_temp6, render_system_texture);
+        texture_temp8 = maxps(texture_temp8, render_system_texture);
         uv_mapping_temp1 = texture_temp6._8_4_;
         
         // 执行纹理坐标范围检查
@@ -835,7 +835,7 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
                             stack_temp19._8_4_ = texture_temp5._8_4_ * texture_temp3._8_4_;
                             stack_temp19._12_4_ = texture_temp5._12_4_ * texture_temp3._12_4_;
                             texture_temp8 = vpmaxsd_avx(texture_temp8, texture_temp4);
-                            stack_temp20 = vpminsd_avx(texture_temp8, _DAT_180a3f840);
+                            stack_temp20 = vpminsd_avx(texture_temp8, render_system_texture);
                             
                             // 执行最终的纹理坐标计算
                             texture_coord_array4[0] = texture_temp5._0_4_ * texture_temp3._0_4_;
@@ -845,17 +845,17 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
                             
                             // 更新纹理坐标范围
                             texture_temp8 = vpmaxsd_avx(texture_temp9, ZEXT416(0) << 0x20);
-                            stack_temp21 = vpand_avx(texture_temp8, _DAT_180a40760);
+                            stack_temp21 = vpand_avx(texture_temp8, render_system_texture);
                             texture_temp8 = vpminsd_avx(texture_temp4, texture_temp6);
                             texture_temp9 = vpminsd_avx(texture_temp8, texture_temp11);
                             texture_temp8 = vpmaxsd_avx(texture_temp4, texture_temp6);
                             texture_temp6 = vpmaxsd_avx(texture_temp9, ZEXT416(0) << 0x20);
                             texture_temp8 = vpmaxsd_avx(texture_temp8, texture_temp11);
-                            stack_temp22 = vpand_avx(texture_temp6, _DAT_180a40770);
+                            stack_temp22 = vpand_avx(texture_temp6, render_system_texture);
                             
                             // 执行纹理坐标块处理
                             texture_coord_index1 = 0;
-                            stack_temp23 = vpminsd_avx(texture_temp8, _DAT_180a3f820);
+                            stack_temp23 = vpminsd_avx(texture_temp8, render_system_texture);
                             do {
                                 if (0 < *(int *)(stack_temp3 + texture_coord_index1)) {
                                     // 处理纹理坐标块
@@ -945,12 +945,12 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
                                     texture_temp8 = vpshufd_avx(ZEXT416(uv_mapping_index1), 0);
                                     texture_temp7._16_16_ = texture_temp8;
                                     texture_temp7._0_16_ = texture_temp8;
-                                    texture_temp7 = vpaddd_avx2(texture_temp7, _DAT_180a407e0);
+                                    texture_temp7 = vpaddd_avx2(texture_temp7, render_system_texture);
                                     texture_temp5 = vpmulld_avx2(texture_temp7, texture_temp9);
                                     texture_temp8 = vpshufd_avx(ZEXT416(uv_mapping_index2), 0);
                                     texture_temp6._16_16_ = texture_temp8;
                                     texture_temp6._0_16_ = texture_temp8;
-                                    texture_temp6 = vpaddd_avx2(texture_temp6, _DAT_180a40820);
+                                    texture_temp6 = vpaddd_avx2(texture_temp6, render_system_texture);
                                     texture_processing_flags = *(int32_t *)(stack_temp10 + texture_coord_index1);
                                     texture_temp9._4_4_ = texture_processing_flags;
                                     texture_temp9._0_4_ = texture_processing_flags;
@@ -1057,7 +1057,7 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
                                         }
                                         
                                         // 检查纹理坐标处理状态
-                                        if ((_DAT_180a40880 & texture_temp9) != (int8_t [32])0x0) goto LAB_18048f1aa;
+                                        if ((render_system_texture & texture_temp9) != (int8_t [32])0x0) goto LAB_18048f1aa;
                                         
                                         // 更新纹理坐标处理结果
                                         _stack_temp16 = vpaddd_avx2(_stack_temp16, stack_temp6);

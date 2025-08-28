@@ -452,8 +452,8 @@ LAB_180299f92:
       if ((uVar6 >> 9 & 1) == 0) {
         uStack_60 = uVar14;
       }
-      if ((*(int *)(_DAT_180c86908 + 0x620) == 0) &&
-         (*(char *)((longlong)_DAT_180c8aa08 + 10) == '\0')) {
+      if ((*(int *)(system_module_state + 0x620) == 0) &&
+         (*(char *)((longlong)system_global_data_ptr + 10) == '\0')) {
         bVar4 = false;
       }
       else {
@@ -466,9 +466,9 @@ LAB_180299f92:
           puVar12 = *(void **)(*param_3 + 0x18);
         }
                     // WARNING: Subroutine does not return
-        FUN_180062300(_DAT_180c86928,&unknown_var_776_ptr,puVar12);
+        FUN_180062300(system_message_context,&unknown_var_776_ptr,puVar12);
       }
-      if ((iVar2 == 2) || (*_DAT_180c8aa08 != 0)) {
+      if ((iVar2 == 2) || (*system_global_data_ptr != 0)) {
         pplVar1 = (longlong **)(lVar10 + 0x30);
         pplStack_1f8 = pplVar1;
         iVar7 = _Mtx_lock(pplVar1);
@@ -489,13 +489,13 @@ LAB_180299f92:
         }
       }
       else {
-        uVar15 = FUN_18062b1e0(_DAT_180c8ed18,0x178,8,3);
+        uVar15 = FUN_18062b1e0(system_memory_pool_ptr,0x178,8,3);
         plVar11 = (longlong *)FUN_18041bf60(uVar15,lVar10,auStack_108);
         plStack_1d8 = plVar11;
         if (plVar11 != (longlong *)0x0) {
           (**(code **)(*plVar11 + 0x28))(plVar11);
         }
-        uVar15 = _DAT_180c82868;
+        uVar15 = system_context_ptr;
         pplStack_1f8 = &plStack_200;
         plStack_200 = plVar11;
         if (bVar4) {
@@ -530,7 +530,7 @@ LAB_180299f92:
       }
     }
     else if (((iVar2 == 2) && (cVar13 == '\0')) && (*(char *)(lVar10 + 0x81) == '\0')) {
-      FUN_1801d7510(_DAT_180c8aa08);
+      FUN_1801d7510(system_global_data_ptr);
     }
   }
   FUN_18009e960(param_3);
@@ -809,7 +809,7 @@ longlong render_hash_table_lookup(longlong hash_table,longlong *key_data,int8_t 
   longlong temp_array[4];
   
   // 初始化哈希表查找参数和内存分配器
-  uVar3 = _DAT_180c8ed18; // 获取内存分配器
+  uVar3 = system_memory_pool_ptr; // 获取内存分配器
   uVar1 = *(uint *)(param_1 + 0x10); // 获取哈希表大小
   lVar4 = *(longlong *)(param_1 + 8); // 获取哈希表基址
   // 计算哈希桶索引并开始查找
@@ -885,7 +885,7 @@ uint64_t *render_hash_table_insert(longlong hash_table,uint64_t *result_buffer,u
   // 更新哈希表统计信息并分配新条目内存
   FUN_18066c220(param_1 + 0x20,&param_5,(ulonglong)*(uint *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x18),1); // 更新统计
-  puVar5 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,0x20,*(int8_t *)(param_1 + 0x2c)); // 分配条目内存
+  puVar5 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x20,*(int8_t *)(param_1 + 0x2c)); // 分配条目内存
   // 复制键值数据到新条目
   uVar3 = *(int32_t *)((longlong)param_4 + 4); // 获取键的次部分
   lVar1 = param_4[1]; // 获取键的第三部分
@@ -899,7 +899,7 @@ uint64_t *render_hash_table_insert(longlong hash_table,uint64_t *result_buffer,u
   *(uint64_t *)(puVar5 + 6) = 0; // 清空链表指针
   if ((char)param_5 != '\0') {
     // 为条目分配额外的数据内存
-    uVar6 = FUN_18062b1e0(_DAT_180c8ed18,(ulonglong)param_5._4_4_ * 8 + 8,8,
+    uVar6 = FUN_18062b1e0(system_memory_pool_ptr,(ulonglong)param_5._4_4_ * 8 + 8,8,
                           *(int8_t *)(param_1 + 0x2c));
     memset(uVar6,0,(ulonglong)param_5._4_4_ * 8); // 清空数据内存
   }
@@ -943,7 +943,7 @@ void render_hash_table_add(uint64_t hash_table,uint64_t result_buffer,uint64_t p
   
   // 更新哈希表统计信息并分配新条目内存
   FUN_18066c220(param_1,&stack0x00000080,in_R10D,param_4,1); // 更新统计信息
-  puVar5 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,0x20,*(int8_t *)(unaff_RDI + 0x2c)); // 分配条目内存
+  puVar5 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x20,*(int8_t *)(unaff_RDI + 0x2c)); // 分配条目内存
   // 复制键值数据到新条目
   uVar2 = unaff_RBX[1]; // 获取键的次部分
   uVar3 = unaff_RBX[2]; // 获取键的第三部分
@@ -957,7 +957,7 @@ void render_hash_table_add(uint64_t hash_table,uint64_t result_buffer,uint64_t p
   *(uint64_t *)(puVar5 + 6) = 0; // 清空链表指针
   if (cStack0000000000000080 != '\0') {
     // 为条目分配额外的数据内存
-    uVar6 = FUN_18062b1e0(_DAT_180c8ed18,(ulonglong)uStack0000000000000084 * 8 + 8,8,
+    uVar6 = FUN_18062b1e0(system_memory_pool_ptr,(ulonglong)uStack0000000000000084 * 8 + 8,8,
                           *(int8_t *)(unaff_RDI + 0x2c));
     memset(uVar6,0,(ulonglong)uStack0000000000000084 * 8); // 清空数据内存
   }

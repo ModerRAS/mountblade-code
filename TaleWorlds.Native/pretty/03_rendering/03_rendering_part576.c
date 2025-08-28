@@ -164,12 +164,12 @@
 // ============================================================================
 
 /** 渲染系统全局数据引用 */
-extern uint64_t _DAT_180c8ed30;
-extern uint64_t _DAT_180c8ed18;
+extern uint64_t system_error_code;
+extern uint64_t system_memory_pool_ptr;
 extern uint64_t GET_SECURITY_COOKIE();
-extern uint64_t _DAT_180c8aa00;
-extern uint64_t _DAT_180c92514;
-extern uint64_t _DAT_180c8ece0;
+extern uint64_t render_system_data_render;
+extern uint64_t system_status_flag;
+extern uint64_t render_system_data_render;
 
 // ============================================================================
 // 外部函数声明

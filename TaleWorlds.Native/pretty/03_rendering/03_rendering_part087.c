@@ -99,11 +99,11 @@ void rendering_system_advanced_parameter_setup(uint64_t param_1, longlong param_
   
   // 初始化纹理参数
   FUN_1802c22a0(alignment_pad, &unknown_var_6264_ptr);
-  context_base = _DAT_180c86938;
+  context_base = system_message_buffer;
   
   // 计算分辨率值
   resolution_value = RENDERING_SYSTEM_MAX_RESOLUTION >> ((byte)param_3 & 0x1f);
-  resource_manager = *(longlong **)(_DAT_180c86938 + 0x1cd8);
+  resource_manager = *(longlong **)(system_message_buffer + 0x1cd8);
   
   // 检查并设置渲染状态
   if (*(longlong *)(param_2 + 0x1d8) == 0) {
@@ -111,8 +111,8 @@ void rendering_system_advanced_parameter_setup(uint64_t param_1, longlong param_
   }
   else {
     // 更新渲染参数
-    if (_DAT_180c86870 != 0) {
-      *(longlong *)(param_2 + 0x340) = (longlong)*(int *)(_DAT_180c86870 + 0x224);
+    if (system_main_module_state != 0) {
+      *(longlong *)(param_2 + 0x340) = (longlong)*(int *)(system_main_module_state + 0x224);
     }
     
     // 计算纹理索引
@@ -123,7 +123,7 @@ void rendering_system_advanced_parameter_setup(uint64_t param_1, longlong param_
     // 激活纹理状态
     if ((render_state != (longlong *)0x0) && (*render_state != 0)) {
       (**(code **)(*resource_manager + 0x70))(resource_manager, *render_state, 1);
-      context_base = _DAT_180c86938;
+      context_base = system_message_buffer;
     }
   }
   
@@ -135,14 +135,14 @@ void rendering_system_advanced_parameter_setup(uint64_t param_1, longlong param_
   // 初始化清除颜色
   clear_color_r = 0;
   clear_color_g = 0;
-  FUN_18029c8a0(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), 1, 0xff000000, RENDERING_SYSTEM_FLOAT_ONE);
+  FUN_18029c8a0(*(uint64_t *)(system_message_buffer + 0x1cd8), 1, 0xff000000, RENDERING_SYSTEM_FLOAT_ONE);
   
-  context_base = _DAT_180c86938;
+  context_base = system_message_buffer;
   render_scale = (float)resolution_value;
   scale_factor = 1.0 / render_scale;
   
   // 设置缩放参数
-  *(float *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1be0) = scale_factor * 0.5;
+  *(float *)(*(longlong *)(system_message_buffer + 0x1cd8) + 0x1be0) = scale_factor * 0.5;
   *(float *)(*(longlong *)(context_base + 0x1cd8) + 0x1be4) = scale_factor * 0.5;
   *(float *)(*(longlong *)(context_base + 0x1cd8) + 0x1be8) = scale_factor;
   *(float *)(*(longlong *)(context_base + 0x1cd8) + 0x1bec) = scale_factor;
@@ -161,7 +161,7 @@ void rendering_system_advanced_parameter_setup(uint64_t param_1, longlong param_
   texture_height = resolution_value;
   (**(code **)(*resource_manager + 0x168))(resource_manager, 1, &texture_ptr_ptr);
   
-  context_base = _DAT_180c86938;
+  context_base = system_message_buffer;
   color_r = RENDERING_SYSTEM_FLOAT_NAN;
   color_g = RENDERING_SYSTEM_FLOAT_NAN;
   color_b = RENDERING_SYSTEM_FLOAT_NAN;
@@ -226,7 +226,7 @@ apply_top_colors:
 apply_final_colors:
   
   // 应用颜色设置到渲染上下文
-  *(int32_t *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1bf0) = color_r;
+  *(int32_t *)(*(longlong *)(system_message_buffer + 0x1cd8) + 0x1bf0) = color_r;
   *(int32_t *)(*(longlong *)(context_base + 0x1cd8) + 0x1bf4) = color_g;
   *(int32_t *)(*(longlong *)(context_base + 0x1cd8) + 0x1bf8) = param_x;
   *(int32_t *)(*(longlong *)(context_base + 0x1cd8) + 0x1bfc) = RENDERING_SYSTEM_FLOAT_ONE;
@@ -241,8 +241,8 @@ apply_final_colors:
   
   // 处理纹理参数
   rendering_system_texture_generation_and_coord_calculation(resource_ptrs, param_5);
-  FUN_18029fc10(*(longlong *)(_DAT_180c86938 + 0x1cd8), *(uint64_t *)(_DAT_180c86938 + 0x1c88),
-                *(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1be0, 0x230);
+  FUN_18029fc10(*(longlong *)(system_message_buffer + 0x1cd8), *(uint64_t *)(system_message_buffer + 0x1c88),
+                *(longlong *)(system_message_buffer + 0x1cd8) + 0x1be0, 0x230);
   
   // 设置渲染管线
   render_target_ptr = &unknown_var_3480_ptr;
@@ -250,7 +250,7 @@ apply_final_colors:
   shader_buffer[4] = 0;
   shader_type = 0xd;
   strcpy_s(shader_buffer + 4, RENDERING_SYSTEM_STRING_LENGTH, &unknown_var_984_ptr);
-  FUN_1800b4910(_DAT_180c86930, &texture_ptr, &render_target_ptr);
+  FUN_1800b4910(system_resource_state, &texture_ptr, &render_target_ptr);
   render_target_ptr = &unknown_var_720_ptr;
   
   // 初始化渲染配置
@@ -303,17 +303,17 @@ apply_final_colors:
   clear_color_r = 0xffffffff;
   
   // 应用渲染设置
-  FUN_18029d150(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), 5, param_1, 0x10);
+  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8), 5, param_1, 0x10);
   clear_color_r = 0xffffffff;
-  FUN_18029d150(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), 0, resource_ptrs[0], 0x10);
-  FUN_18029d000(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), 4);
-  FUN_18029cdd0(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), &render_target_ptr);
+  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8), 0, resource_ptrs[0], 0x10);
+  FUN_18029d000(*(uint64_t *)(system_message_buffer + 0x1cd8), 4);
+  FUN_18029cdd0(*(uint64_t *)(system_message_buffer + 0x1cd8), &render_target_ptr);
   
-  context_base = _DAT_180c86938;
+  context_base = system_message_buffer;
   stream_position = strnlen(&unknown_var_6216_ptr, 0x3f);
   strncpy(context_base + 0x1ce0, &unknown_var_6216_ptr, stream_position);
   *(int8_t *)(stream_position + 0x1ce0 + context_base) = 0;
-  FUN_18029e110(*(uint64_t *)(_DAT_180c86938 + 0x1cd8));
+  FUN_18029e110(*(uint64_t *)(system_message_buffer + 0x1cd8));
   
   // 清理资源
   if (render_target != (longlong *)0x0) {
@@ -335,8 +335,8 @@ apply_final_colors:
     if (resource_ptrs[0] != (longlong *)0x0) {
       (**(code **)(*resource_ptrs[0] + 0x38))();
     }
-    _DAT_180c8695c = _DAT_180c8695c + -1;
-    (**(code **)(*_DAT_180c86968 + 0x20))();
+    render_system_data_texture = render_system_data_texture + -1;
+    (**(code **)(*render_system_data_texture + 0x20))();
     // 安全检查：验证堆栈保护
     FUN_1808fc050(security_cookie ^ (ulonglong)stack_canary_check);
   }
@@ -443,7 +443,7 @@ void rendering_system_batch_process_and_apply(uint64_t *param_1, longlong param_
   buffer_size = resolution_level;
   vertex_count = resolution_level;
   strcpy_s(vertex_buffer, RENDERING_SYSTEM_STRING_LENGTH, render_target);
-  FUN_1800b1230(_DAT_180c86930, param_1, &shader_code, &texture_height);
+  FUN_1800b1230(system_resource_state, param_1, &shader_code, &texture_height);
   
   render_param1 = 1;
   shader_code = &unknown_var_720_ptr;
@@ -578,7 +578,7 @@ void rendering_system_texture_generation_and_coord_calculation(uint64_t *param_1
   } while (v_coord < 32.0);
   
   // 创建纹理对象
-  texture_handle = FUN_18062b1e0(_DAT_180c8ed18, RENDERING_SYSTEM_BUFFER_SIZE, 0x10, 
+  texture_handle = FUN_18062b1e0(system_memory_pool_ptr, RENDERING_SYSTEM_BUFFER_SIZE, 0x10, 
                                 CONCAT71((uint7)(uint3)((uint)x_coord >> 8), 3));
   texture_manager = (longlong *)FUN_18023a2e0(texture_handle, 0);
   *param_1 = texture_manager;
@@ -591,7 +591,7 @@ void rendering_system_texture_generation_and_coord_calculation(uint64_t *param_1
   texture_param2 = 1;
   render_context = *param_1;
   texture_param1 = param_2;
-  FUN_1800a5810(_DAT_180c86938, &pixel_data, 1, 0);
+  FUN_1800a5810(system_message_buffer, &pixel_data, 1, 0);
   
   // 清理纹理数据
   if (texture_width._1_1_ == '\0') {

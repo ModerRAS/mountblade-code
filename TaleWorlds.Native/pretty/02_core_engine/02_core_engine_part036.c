@@ -5,7 +5,7 @@
 // 包含4个函数，主要处理3D变换、矩阵运算和骨骼动画
 
 // 全局变量声明
-uint64_t _DAT_180c8aa00;  // 数据表指针
+uint64_t core_system_data_pointer;  // 数据表指针
 uint64_t unknown_var_3456_ptr;  // 默认对象模板
 uint64_t unknown_var_720_ptr;  // 基础对象模板
 uint64_t unknown_var_5392_ptr;  // 字符串处理模板
@@ -78,8 +78,8 @@ void initialize_3d_object_transform(uint64_t *object_ptr, longlong config_ptr)
     
     // 获取变换矩阵数据
     local_var1 = get_transform_matrix(config_ptr, &local_var2);
-    transform_data = _DAT_180c8aa00;
-    bone_index = find_matrix_index(_DAT_180c8aa00, local_var1);
+    transform_data = core_system_data_pointer;
+    bone_index = find_matrix_index(core_system_data_pointer, local_var1);
     
     // 查找或创建矩阵
     if ((bone_index == -1) || 
@@ -101,7 +101,7 @@ void initialize_3d_object_transform(uint64_t *object_ptr, longlong config_ptr)
     
     // 确保矩阵指针有效
     if (matrix_ptr == 0) {
-        matrix_ptr = *(longlong *)(_DAT_180c8aa00 + 0x38);
+        matrix_ptr = *(longlong *)(core_system_data_pointer + 0x38);
     }
     
     // 设置对象变换矩阵

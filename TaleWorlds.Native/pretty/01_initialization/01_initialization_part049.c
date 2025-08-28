@@ -155,7 +155,7 @@ ulonglong ProcessObjectRendering(longlong rendererContext, uint *materialParams,
   
   // 初始化渲染器上下文（如果需要）
   if (*(char *)(rendererContext + 0xf9) == '\0') {
-    tempPointer = FUN_18062b1e0(_DAT_180c8ed18, 0xc0, 8, 9);
+    tempPointer = FUN_18062b1e0(system_memory_pool_ptr, 0xc0, 8, 9);
     tempPointer = FUN_180084ea0(tempPointer);
     *(uint64_t *)(rendererContext + 0x1d8) = tempPointer;
     LOCK();
@@ -227,11 +227,11 @@ prepare_rendering:
       if (((materialFlags >> 0x19 & 1) != 0) ||
          ((*(longlong *)(rendererContext + 600) != 0 && (0 < *(int *)(*(longlong *)(rendererContext + 600) + 0x1c)))
          )) {
-        frameIndex = *(int *)(_DAT_180c86870 + 0x224);
+        frameIndex = *(int *)(system_main_module_state + 0x224);
         renderBuffer = *(uint64_t **)(rendererContext + 600);
         if (renderBuffer == (uint64_t *)0x0) {
           // 初始化渲染缓冲区
-          renderBuffer = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x58, 8, 3);
+          renderBuffer = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x58, 8, 3);
           *(uint64_t *)((longlong)renderBuffer + 0x2c) = 0xffffffffffffffff;
           *(int32_t *)(renderBuffer + 9) = 0xffffffff;
           *renderBuffer = 0;
@@ -258,8 +258,8 @@ prepare_rendering:
             }
             
             // 处理渲染批处理
-            renderContext = _DAT_180c86890 + 0x5868;
-            counterPtr = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0x6a78) * 0x908 + renderContext);
+            renderContext = system_parameter_buffer + 0x5868;
+            counterPtr = (uint *)((longlong)*(int *)(system_parameter_buffer + 0x6a78) * 0x908 + renderContext);
             LOCK();
             materialFlags = *counterPtr;
             *counterPtr = *counterPtr + 1;
@@ -274,7 +274,7 @@ prepare_rendering:
             do {
               frameIndex = (int)bufferOffset;
               if (*(longlong *)bufferPtr == 0) {
-                objectContext = FUN_18062b420(_DAT_180c8ed18, 0xc000, 0x25);
+                objectContext = FUN_18062b420(system_memory_pool_ptr, 0xc000, 0x25);
                 LOCK();
                 isAllocated = *(longlong *)(counterPtr + (longlong)frameIndex * 2 + 2) == 0;
                 if (isAllocated) {
@@ -495,7 +495,7 @@ prepare_rendering:
     
     // 更新渲染状态
     materialFlags = materialParams[0x6f6];
-    frameIndex = *(int *)(_DAT_180c86870 + 0x224);
+    frameIndex = *(int *)(system_main_module_state + 0x224);
     
     // 检查是否需要更新帧索引
     if (((*(byte *)(rendererContext + 0xfd) & 1) == 0) &&
@@ -670,8 +670,8 @@ void ProcessSceneBatchRendering(void)
   }
   
   // 设置渲染上下文
-  renderContext = _DAT_180c86890 + 0x5868;
-  counterPtr = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0x6a78) * 0x908 + renderContext);
+  renderContext = system_parameter_buffer + 0x5868;
+  counterPtr = (uint *)((longlong)*(int *)(system_parameter_buffer + 0x6a78) * 0x908 + renderContext);
   
   // 更新渲染计数器
   LOCK();
@@ -689,7 +689,7 @@ void ProcessSceneBatchRendering(void)
   do {
     frameIndex = (int)bufferOffset;
     if (*(longlong *)bufferPtr == 0) {
-      objectContext = FUN_18062b420(_DAT_180c8ed18, 0xc000, 0x25);
+      objectContext = FUN_18062b420(system_memory_pool_ptr, 0xc000, 0x25);
       LOCK();
       isAllocated = *(longlong *)(counterPtr + (longlong)frameIndex * 2 + 2) == 0;
       if (isAllocated) {
@@ -915,7 +915,7 @@ void ProcessSceneBatchRendering(void)
   transformResult1 = transformResult[0];
   
   visibilityFlags1 = *(byte *)(sceneContext + 0x1bd8);
-  frameIndex = *(int *)(_DAT_180c86870 + 0x224);
+  frameIndex = *(int *)(system_main_module_state + 0x224);
   
   // 检查是否需要更新帧索引
   if (((*(byte *)(rendererContext + 0xfd) & 1) == 0) &&

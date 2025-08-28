@@ -27,16 +27,16 @@ void FUN_1804a5260(void)
   ulonglong uStack_38;
   uint64_t uStack_30;
   
-  if (_DAT_180c92590 != 0) {
+  if (system_system_memory != 0) {
     uStack_30 = 0x1804a5275;
     FUN_18056de00();
   }
-  if (_DAT_180c92598 != 0) {
+  if (system_system_memory != 0) {
     uStack_30 = 0x1804a5286;
     FUN_1805f6af0();
   }
   uStack_30 = 0x1804a5297;
-  cVar3 = (**(code **)(_DAT_180c925c8 + 0x30))(&system_counter_25c8);
+  cVar3 = (**(code **)(system_system_memory + 0x30))(&system_counter_25c8);
   if (cVar3 == '\0') {
     return;
   }
@@ -55,7 +55,7 @@ void FUN_1804a5260(void)
           do {
             iVar8 = (int)uVar11;
             if ((*(longlong *)(uVar13 + lRam0000000180c95b78) != 0) &&
-               (uVar12 = _DAT_180c92ce0 - (longlong)_DAT_180c92cd8 >> 3, plVar5 = _DAT_180c92cd8,
+               (uVar12 = system_system_memory - (longlong)system_system_memory >> 3, plVar5 = system_system_memory,
                uVar11 = uVar9, uVar12 != 0)) {
               do {
                 if (*plVar5 == *(longlong *)(uVar13 + lRam0000000180c95b78)) {
@@ -84,18 +84,18 @@ void FUN_1804a5260(void)
                    (ulonglong)((longlong)(uRam0000000180c95b80 - lRam0000000180c95b78) >> 3));
         }
         uVar11 = uVar9;
-        if (_DAT_180c92ce0 - (longlong)_DAT_180c92cd8 >> 3 != 0) {
+        if (system_system_memory - (longlong)system_system_memory >> 3 != 0) {
           do {
             iVar8 = (int)uVar9;
-            lVar10 = *(longlong *)(uVar11 + (longlong)_DAT_180c92cd8);
+            lVar10 = *(longlong *)(uVar11 + (longlong)system_system_memory);
             if (*(char *)(lVar10 + 0x31) == '\0') {
-              lVar4 = _DAT_180c8ed58;
-              if (_DAT_180c8ed58 == 0) {
+              lVar4 = system_system_data_memory;
+              if (system_system_data_memory == 0) {
                 QueryPerformanceCounter(&lStack_140);
                 lVar4 = lStack_140;
               }
               if (*(double *)(lVar10 + 0x20) + 20.0 <
-                  (double)(lVar4 - _DAT_180c8ed48) * _DAT_180c8ed50) {
+                  (double)(lVar4 - system_system_data_memory) * system_system_data_memory) {
                 FUN_18055c930(&system_counter_25a0,uVar9,1);
                 iVar8 = iVar8 + -1;
                 uVar11 = uVar11 - 8;
@@ -104,7 +104,7 @@ void FUN_1804a5260(void)
             uVar9 = (ulonglong)(iVar8 + 1U);
             uVar11 = uVar11 + 8;
           } while ((ulonglong)(longlong)(int)(iVar8 + 1U) <
-                   (ulonglong)(_DAT_180c92ce0 - (longlong)_DAT_180c92cd8 >> 3));
+                   (ulonglong)(system_system_memory - (longlong)system_system_memory >> 3));
         }
                     // WARNING: Subroutine does not return
         FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_178);

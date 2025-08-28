@@ -227,9 +227,9 @@ void FUN_1802dd2b0(longlong param_1,longlong param_2)
   if ((((*(uint *)(param_1 + 0x1cc) & 0x400000) != 0) &&
       (lVar27 = *(longlong *)(param_1 + 0x1b8), lVar27 != 0)) && (*(char *)(lVar27 + 0x13d) != '\0')
      ) {
-    lVar27 = FUN_1800f4560(_DAT_180c8a980,*(int32_t *)(lVar27 + 0x24));
+    lVar27 = FUN_1800f4560(system_system_data_config,*(int32_t *)(lVar27 + 0x24));
     *(int32_t *)(*(longlong *)(param_1 + 0x288) + 0x98) = *(int32_t *)(lVar27 + 4);
-    lVar28 = FUN_1800f44d0(_DAT_180c8a980,*(int32_t *)(*(longlong *)(param_1 + 0x1b8) + 0x18));
+    lVar28 = FUN_1800f44d0(system_system_data_config,*(int32_t *)(*(longlong *)(param_1 + 0x1b8) + 0x18));
     *(int32_t *)(*(longlong *)(param_1 + 0x290) + 0xe0) = *(int32_t *)(lVar28 + 0x180);
     *(int32_t *)(*(longlong *)(param_1 + 0x290) + 0xe4) = *(int32_t *)(lVar28 + 0x184);
     *(int32_t *)(*(longlong *)(param_1 + 0x290) + 0xe8) = *(int32_t *)(lVar28 + 0x188);
@@ -238,13 +238,13 @@ void FUN_1802dd2b0(longlong param_1,longlong param_2)
     *(uint64_t *)(lVar27 + 0xf0) = *(uint64_t *)(lVar28 + 400);
     *(uint64_t *)(lVar27 + 0xf8) = uVar33;
     *(int32_t *)(*(longlong *)(param_1 + 0x290) + 0xfc) = *(int32_t *)(param_1 + 0x2dc);
-    lVar27 = _DAT_180c8a980;
+    lVar27 = system_system_data_config;
     if (*(int *)(*(longlong *)(param_1 + 0x1b8) + 0x14) == 0) {
       *(int32_t *)(*(longlong *)(param_1 + 0x288) + 0x90) = *(int32_t *)(lVar28 + 0xcc);
     }
     else {
       iVar8 = *(int *)(*(longlong *)(param_1 + 0x1b8) + 0x1c);
-      lVar28 = _DAT_180c8a980 + 0x2b8;
+      lVar28 = system_system_data_config + 0x2b8;
       uStack_c0 = CONCAT71(uStack_c0._1_7_,1);
       uStack_c8 = (void *)lVar28;
       AcquireSRWLockShared(lVar28);
@@ -301,11 +301,11 @@ void FUN_1802dd2b0(longlong param_1,longlong param_2)
   *(int32_t *)(lVar27 + 0x38) = uVar11;
   *(int32_t *)(lVar27 + 0x3c) = uVar12;
   if (((((*(uint *)(param_2 + 4) & 0x10000000) == 0) &&
-       ((_DAT_180c8a9d0 == 0 || (*(char *)(_DAT_180c8a9d0 + 0x1f1) == '\0')))) &&
+       ((system_system_data_config == 0 || (*(char *)(system_system_data_config + 0x1f1) == '\0')))) &&
       (*(char *)(lVar9 + 0x1d8) == '\0')) &&
      ((*(int *)(lVar9 + 0x1d0) != -1 && (*(int *)(lVar9 + 0x1d0) != 0)))) {
     lVar27 = *(longlong *)(param_1 + 0x280);
-    if ((*(longlong *)(lVar27 + 0x3c8) == 0) && (_DAT_180c8a9d0 != 0)) {
+    if ((*(longlong *)(lVar27 + 0x3c8) == 0) && (system_system_data_config != 0)) {
       uVar33 = FUN_1806279c0(&uStack_c8,lVar27 + 0x160);
       uVar33 = FUN_180177da0(uVar33,&uStack_c8);
       *(uint64_t *)(lVar27 + 0x3c8) = uVar33;
@@ -501,7 +501,7 @@ void FUN_1802ddd80(longlong param_1,longlong *param_2)
   uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_108;
   if (system_data_2846 == '\0') {
     lVar3 = FUN_1800bd5c0();
-    uVar1 = *(uint64_t *)(_DAT_180c86938 + 0x1cd8);
+    uVar1 = *(uint64_t *)(system_message_buffer + 0x1cd8);
     if ((longlong *)*param_2 == (longlong *)0x0) {
       uStack_c8 = 0x7f0000;
       puVar4 = &uStack_d8;

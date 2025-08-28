@@ -102,27 +102,27 @@ void process_engine_command_dispatcher(longlong context_ptr)
   switch(command_type) {
   case 0:
     // 初始化引擎系统
-    validation_flag = check_system_initialization(_DAT_180c8aa08);
+    validation_flag = check_system_initialization(system_global_data_ptr);
     if (validation_flag != '\0') {
       // 系统已初始化，触发初始化错误
-      trigger_initialization_error(_DAT_180c86928,&unknown_var_6208_ptr);
+      trigger_initialization_error(system_message_context,&unknown_var_6208_ptr);
     }
     break;
   case 1:
     // 创建渲染窗口
-    create_render_window(_DAT_180c86938,*(uint64_t *)(context_ptr + 0xa0),*(uint64_t *)(context_ptr + 0xa8));
+    create_render_window(system_message_buffer,*(uint64_t *)(context_ptr + 0xa0),*(uint64_t *)(context_ptr + 0xa8));
     break;
   case 2:
     // 设置渲染目标
     render_target_ptr = *(int32_t ***)(context_ptr + 0xc0);
     stack_guard = CONCAT44(stack_guard._4_4_,*(int32_t *)(context_ptr + 0xb0));
-    setup_render_target(*(uint64_t *)(_DAT_180c86938 + 0x1cd8),*(uint64_t *)(context_ptr + 0xa0),
+    setup_render_target(*(uint64_t *)(system_message_buffer + 0x1cd8),*(uint64_t *)(context_ptr + 0xa0),
                        *(int32_t *)(context_ptr + 0xa8),*(int32_t *)(context_ptr + 0xac));
     (**(code **)(**(longlong **)(context_ptr + 0xc0) + 0x38))();
     break;
   case 3:
     // 处理纹理上传
-    texture_manager_ptr = *(longlong **)(_DAT_180c86938 + 0x1cd8);
+    texture_manager_ptr = *(longlong **)(system_message_buffer + 0x1cd8);
     resource_manager_ptr = *(longlong **)(context_ptr + 0xc0);
     texture_index = *(int *)(context_ptr + 0xb0);
     image_height = *(int *)(context_ptr + 0xac);
@@ -160,7 +160,7 @@ void process_engine_command_dispatcher(longlong context_ptr)
   case 4:
     // 设置视口参数
     stack_guard = *(ulonglong *)(context_ptr + 0xc0);
-    configure_viewport_parameters(*(uint64_t *)(_DAT_180c86938 + 0x1cd8),*(uint64_t *)(context_ptr + 0xa0),
+    configure_viewport_parameters(*(uint64_t *)(system_message_buffer + 0x1cd8),*(uint64_t *)(context_ptr + 0xa0),
                                  *(int32_t *)(context_ptr + 0xa8),*(int32_t *)(context_ptr + 0xac));
     (**(code **)(**(longlong **)(context_ptr + 0xc0) + 0x38))();
     break;
@@ -171,12 +171,12 @@ void process_engine_command_dispatcher(longlong context_ptr)
     network_manager_ptr = (longlong *)CONCAT44(network_manager_ptr._4_4_,*(int32_t *)(context_ptr + 0xb4));
     render_target_ptr = *(int32_t ***)(context_ptr + 0xa8);
     stack_guard = CONCAT44(stack_guard._4_4_,*(int32_t *)(context_ptr + 0xc4));
-    compile_shader_program(*(uint64_t *)(_DAT_180c86938 + 0x1cd8),*(uint64_t *)(context_ptr + 0xa0),
+    compile_shader_program(*(uint64_t *)(system_message_buffer + 0x1cd8),*(uint64_t *)(context_ptr + 0xa0),
                          *(int32_t *)(context_ptr + 0xc0),*(int32_t *)(context_ptr + 0xbc));
     break;
   case 6:
     // 绑定着色器
-    activate_shader_program(*(uint64_t *)(_DAT_180c86938 + 0x1cd8),*(uint64_t *)(context_ptr + 0xa0),
+    activate_shader_program(*(uint64_t *)(system_message_buffer + 0x1cd8),*(uint64_t *)(context_ptr + 0xa0),
                           *(uint64_t *)(context_ptr + 0xa8));
     (**(code **)(**(longlong **)(context_ptr + 0xa0) + 0x38))();
     (**(code **)(**(longlong **)(context_ptr + 0xa8) + 0x38))();
@@ -185,7 +185,7 @@ void process_engine_command_dispatcher(longlong context_ptr)
     // 设置着色器常量
     render_target_ptr = (int32_t **)CONCAT44(render_target_ptr._4_4_,*(int32_t *)(context_ptr + 0xb8));
     stack_guard = CONCAT44(stack_guard._4_4_,*(int32_t *)(context_ptr + 0xb4));
-    set_shader_constants(*(uint64_t *)(_DAT_180c86938 + 0x1cd8),*(uint64_t *)(context_ptr + 0xa0),
+    set_shader_constants(*(uint64_t *)(system_message_buffer + 0x1cd8),*(uint64_t *)(context_ptr + 0xa0),
                         *(uint64_t *)(context_ptr + 0xa8),*(int32_t *)(context_ptr + 0xb0));
     (**(code **)(**(longlong **)(context_ptr + 0xa0) + 0x38))();
     (**(code **)(**(longlong **)(context_ptr + 0xa8) + 0x38))();
@@ -194,28 +194,28 @@ void process_engine_command_dispatcher(longlong context_ptr)
     // 设置纹理采样器
     render_target_ptr = (int32_t **)CONCAT71(render_target_ptr._1_7_,*(int *)(context_ptr + 0xb0) != 0);
     stack_guard = CONCAT44(stack_guard._4_4_,*(int32_t *)(context_ptr + 0xac));
-    configure_texture_sampler(*(uint64_t *)(_DAT_180c86938 + 0x1cd8),*(uint64_t *)(context_ptr + 0xa0),
+    configure_texture_sampler(*(uint64_t *)(system_message_buffer + 0x1cd8),*(uint64_t *)(context_ptr + 0xa0),
                               *(int32_t *)(context_ptr + 0xa8),
                               *(uint64_t *)(*(longlong *)(context_ptr + 0xc0) + 0x10));
     (**(code **)(**(longlong **)(context_ptr + 0xc0) + 0x38))();
     break;
   case 9:
     // 绘制几何体
-    render_geometry(*(uint64_t *)(_DAT_180c86938 + 0x1cd8),*(uint64_t *)(context_ptr + 0xa0),
+    render_geometry(*(uint64_t *)(system_message_buffer + 0x1cd8),*(uint64_t *)(context_ptr + 0xa0),
                    *(uint64_t *)(*(longlong *)(context_ptr + 0xa8) + 0x10),
                    *(int32_t *)(context_ptr + 0xb0));
     (**(code **)(**(longlong **)(context_ptr + 0xa8) + 0x38))();
     break;
   case 10:
     // 实例化绘制
-    instanced_rendering(*(uint64_t *)(_DAT_180c86938 + 0x1cd8),*(uint64_t *)(context_ptr + 0xa0),
+    instanced_rendering(*(uint64_t *)(system_message_buffer + 0x1cd8),*(uint64_t *)(context_ptr + 0xa0),
                        *(uint64_t *)(context_ptr + 0xa8),*(int32_t *)(context_ptr + 0xb0));
     break;
   case 0xb:
     // 创建顶点缓冲区
     memory_address = *(longlong *)(context_ptr + 0xa0);
-    allocation_size = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    *(int32_t *)(memory_address + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+    allocation_size = *(longlong *)(system_message_buffer + 0x1cd8);
+    *(int32_t *)(memory_address + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
     physics_manager_ptr = *(longlong **)(allocation_size + 0x8400);
     render_target_ptr = vertex_buffer_array;
     stack_guard = (ulonglong)stack_guard._4_4_ << 0x20;
@@ -232,16 +232,16 @@ void process_engine_command_dispatcher(longlong context_ptr)
       // 复制顶点数据
       memcpy(vertex_buffer_array[0],**(uint64_t **)(context_ptr + 0xa8),(longlong)error_code_ptr);
     }
-    physics_manager_ptr = *(longlong **)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x8400);
+    physics_manager_ptr = *(longlong **)(*(longlong *)(system_message_buffer + 0x1cd8) + 0x8400);
     cleanup_callback = *(code **)(*physics_manager_ptr + 0x78);
-    *(int32_t *)(memory_address + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+    *(int32_t *)(memory_address + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
     (*cleanup_callback)(physics_manager_ptr,*(uint64_t *)(memory_address + 0x10),0);
     break;
   case 0xc:
     // 创建索引缓冲区
     memory_address = *(longlong *)(context_ptr + 0xa0);
-    allocation_size = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    *(int32_t *)(memory_address + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+    allocation_size = *(longlong *)(system_message_buffer + 0x1cd8);
+    *(int32_t *)(memory_address + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
     physics_manager_ptr = *(longlong **)(allocation_size + 0x8400);
     render_target_ptr = index_buffer_array;
     allocation_size = 0;
@@ -346,9 +346,9 @@ void process_engine_command_dispatcher(longlong context_ptr)
       data_length = (ulonglong)texture_count;
       allocation_size = allocation_size + 8;
     }
-    physics_manager_ptr = *(longlong **)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x8400);
+    physics_manager_ptr = *(longlong **)(*(longlong *)(system_message_buffer + 0x1cd8) + 0x8400);
     cleanup_callback = *(code **)(*physics_manager_ptr + 0x78);
-    *(int32_t *)(memory_address + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+    *(int32_t *)(memory_address + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
     (*cleanup_callback)(physics_manager_ptr,*(uint64_t *)(memory_address + 0x10),0);
     break;
   case 0xd:
@@ -395,7 +395,7 @@ memory_free_handler:
     // 设置渲染状态
     render_target_ptr = *(int32_t ***)(context_ptr + 200);
     stack_guard = *(ulonglong *)(context_ptr + 0xb8);
-    set_render_state(*(uint64_t *)(_DAT_180c86938 + 0x1cd8),*(uint64_t *)(context_ptr + 0xa0),
+    set_render_state(*(uint64_t *)(system_message_buffer + 0x1cd8),*(uint64_t *)(context_ptr + 0xa0),
                      *(int32_t *)(context_ptr + 0xac),*(int32_t *)(context_ptr + 0xa8));
     break;
   case 0x16:
@@ -407,7 +407,7 @@ memory_free_handler:
     stack_guard = CONCAT44(stack_guard._4_4_,(int)physics_manager_ptr[8]);
     network_manager_ptr = texture_manager_ptr;
     audio_manager_ptr = physics_manager_ptr;
-    destroy_render_resources(_DAT_180c86938,*(int32_t *)(context_ptr + 0xa8),*(int32_t *)(context_ptr + 0xac),
+    destroy_render_resources(system_message_buffer,*(int32_t *)(context_ptr + 0xa8),*(int32_t *)(context_ptr + 0xac),
                            *(int32_t *)((longlong)physics_manager_ptr + 0x3c));
     if (texture_manager_ptr != (longlong *)0x0) {
       (**(code **)(*texture_manager_ptr + 0x38))(texture_manager_ptr);
@@ -431,8 +431,8 @@ memory_free_handler:
     audio_buffer_ptr = 0;
     audio_device_ptr = 0;
     network_buffer_ptr = 0;
-    resource_handle = get_audio_manager_instance(*(uint64_t *)(_DAT_180c86938 + 0x121e0));
-    initialize_audio_system(_DAT_180c86938,resource_handle,&audio_time);
+    resource_handle = get_audio_manager_instance(*(uint64_t *)(system_message_buffer + 0x121e0));
+    initialize_audio_system(system_message_buffer,resource_handle,&audio_time);
     if ((((int)network_socket_ptr == 1) || ((int)network_socket_ptr - 7U < 2)) && (0 < (int)(audio_data_size >> 2))) {
       buffer_ptr = (int8_t *)(audio_time + 3);
       data_length = audio_data_size >> 2 & 0xffffffff;
@@ -457,28 +457,28 @@ memory_free_handler:
     break;
   case 0x18:
     // 更新物理系统
-    update_physics_system(*(uint64_t *)(_DAT_180c86938 + 0x1cd8),*(uint64_t *)(context_ptr + 0xa0));
+    update_physics_system(*(uint64_t *)(system_message_buffer + 0x1cd8),*(uint64_t *)(context_ptr + 0xa0));
     break;
   case 0x19:
     // 更新游戏逻辑
-    if (*(int *)(_DAT_180c8a9c8 + 0x3f0) == 0) {
-      memory_address = _DAT_180c86890 + 0x68;
+    if (*(int *)(core_system_data_pointer + 0x3f0) == 0) {
+      memory_address = system_parameter_buffer + 0x68;
       camera_position = memory_address;
       error_code_ptr = _Mtx_lock(memory_address);
       if (error_code_ptr != 0) {
         __Throw_C_error_std__YAXH_Z(error_code_ptr);
       }
-      if (*(longlong *)(_DAT_180c86890 + 0x60) != 0) {
+      if (*(longlong *)(system_parameter_buffer + 0x60) != 0) {
         while( true ) {
-          cleanup_callback = *(code **)(**(longlong **)(_DAT_180c86890 + 0x60) + 0x68);
+          cleanup_callback = *(code **)(**(longlong **)(system_parameter_buffer + 0x60) + 0x68);
           if (cleanup_callback == (code *)&unknown_var_9696_ptr) {
-            validation_flag = (char)(*(longlong **)(_DAT_180c86890 + 0x60))[2] != '\0';
+            validation_flag = (char)(*(longlong **)(system_parameter_buffer + 0x60))[2] != '\0';
           }
           else {
             validation_flag = (*cleanup_callback)();
           }
           if (validation_flag != '\0') break;
-          resource_handle = get_event_manager_instance(_DAT_180c82868);
+          resource_handle = get_event_manager_instance(system_context_ptr);
           process_event_queue(resource_handle);
         }
       }
@@ -488,24 +488,24 @@ memory_free_handler:
       }
     }
     resource_handle = get_performance_counter();
-    *(uint64_t *)(_DAT_180c86890 + 0x1528) = resource_handle;
+    *(uint64_t *)(system_parameter_buffer + 0x1528) = resource_handle;
     update_game_logic(*(uint64_t *)(context_ptr + 0xa0));
-    memory_address = _DAT_180c86890;
-    allocation_size = _DAT_180c86890;
-    if (*(char *)(_DAT_180c86890 + 0x12e7) == '\0') {
+    memory_address = system_parameter_buffer;
+    allocation_size = system_parameter_buffer;
+    if (*(char *)(system_parameter_buffer + 0x12e7) == '\0') {
       if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8)
                    + 0x48) < iRam0000000180d49260) &&
          (check_performance_threshold(0x180d49260), iRam0000000180d49260 == -1)) {
         dRam0000000180d49268 = *(double *)(memory_address + 0x1528);
         clear_performance_flag(0x180d49260);
       }
-      buffer_size = _DAT_180c8ed58;
-      if (_DAT_180c8ed58 == 0) {
+      buffer_size = core_system_data_pointer;
+      if (core_system_data_pointer == 0) {
         QueryPerformanceCounter(&camera_position);
         buffer_size = camera_position;
       }
-      allocation_size = _DAT_180c86890;
-      frame_time = (double)(buffer_size - _DAT_180c8ed48) * _DAT_180c8ed50;
+      allocation_size = system_parameter_buffer;
+      frame_time = (double)(buffer_size - core_system_data_pointer) * core_system_data_pointer;
       delta_time = frame_time - *(double *)(memory_address + 0x1528);
       *(double *)(memory_address + 0x1530) = delta_time;
       delta_time = delta_time + dRam0000000180d49268;
@@ -535,7 +535,7 @@ memory_free_handler:
     break;
   case 0x1b:
     // 关闭网络系统
-    shutdown_network_system(_DAT_180c86938);
+    shutdown_network_system(system_message_buffer);
     break;
   case 0x1c:
     // 初始化网络连接
@@ -548,7 +548,7 @@ memory_free_handler:
     primitive_count = *(int32_t *)(context_ptr + 200);
     draw_call_flags = *(int32_t *)(context_ptr + 0xcc);
     debug_info_ptr = *(uint64_t *)(context_ptr + 0xd0);
-    initialize_network_connection(_DAT_180c86938,&transform_matrix,*(uint64_t *)(context_ptr + 0xd8));
+    initialize_network_connection(system_message_buffer,&transform_matrix,*(uint64_t *)(context_ptr + 0xd8));
     (**(code **)(**(longlong **)(context_ptr + 0xd8) + 0x38))();
     break;
   case 0x1d:
@@ -559,7 +559,7 @@ memory_free_handler:
     texture_flags = *(int32_t *)(context_ptr + 0xac);
     frame_timestamp = *(uint64_t *)(context_ptr + 0xb0);
     render_state_flags = *(int32_t *)(context_ptr + 0xb8);
-    send_network_data(_DAT_180c86938,&vertex_buffer_flags,*(uint64_t *)(context_ptr + 0xc0));
+    send_network_data(system_message_buffer,&vertex_buffer_flags,*(uint64_t *)(context_ptr + 0xc0));
     break;
   case 0x1e:
   case 0x29:
@@ -574,7 +574,7 @@ memory_free_handler:
     if (ui_manager_ptr != (longlong *)0x0) {
       (**(code **)(*ui_manager_ptr + 0x38))();
     }
-    *(int32_t *)(physics_manager_ptr[0x20] + 0x3a8) = *(int32_t *)(_DAT_180c86890 + 0x1500);
+    *(int32_t *)(physics_manager_ptr[0x20] + 0x3a8) = *(int32_t *)(system_parameter_buffer + 0x1500);
     *(int32_t *)((longlong)physics_manager_ptr + 0x4c) = 0x14;
     (**(code **)(*physics_manager_ptr + 0x38))(physics_manager_ptr);
     break;
@@ -898,7 +898,7 @@ void initialize_engine_module(uint64_t module_handle,uint64_t init_flags,uint64_
   resource_handle = 0;
   module_resources = (int32_t *)0x0;
   resource_count = 0;
-  module_config = (int32_t *)allocate_engine_memory(_DAT_180c8ed18,0x12,0x13,version_info,0xfffffffffffffffe);
+  module_config = (int32_t *)allocate_engine_memory(system_memory_pool_ptr,0x12,0x13,version_info,0xfffffffffffffffe);
   *(int8_t *)module_config = 0;
   module_resources = module_config;
   init_result = validate_engine_module(module_config);

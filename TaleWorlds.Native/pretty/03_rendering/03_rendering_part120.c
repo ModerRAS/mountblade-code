@@ -75,8 +75,8 @@
 
 /** 渲染系统全局数据引用 */
 extern uint64_t GET_SECURITY_COOKIE();
-extern uint64_t _DAT_180c86938;
-extern uint64_t _DAT_180c8ed18;
+extern uint64_t system_message_buffer;
+extern uint64_t system_memory_pool_ptr;
 extern uint64_t system_allocation_flags;
 extern uint64_t global_var_3456;
 extern uint64_t global_var_720;

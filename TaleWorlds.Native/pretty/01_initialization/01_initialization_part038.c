@@ -333,7 +333,7 @@ LAB_18006c852:
             string_buffer = name_buffer;
           }
                     // WARNING: Subroutine does not return
-          FUN_180062300(_DAT_180c86928,&unknown_var_3520_ptr,total_processed,string_buffer);
+          FUN_180062300(system_message_context,&unknown_var_3520_ptr,total_processed,string_buffer);
         }
         
         // 执行资源分配
@@ -432,7 +432,7 @@ LAB_18006ca44:
         if (capacity == 0) {
           capacity = 1;
 LAB_18006c9ac:
-          offset = FUN_18062b420(_DAT_180c8ed18,capacity * 0x1a8,*(int8_t *)(context + 0x3e0));
+          offset = FUN_18062b420(system_memory_pool_ptr,capacity * 0x1a8,*(int8_t *)(context + 0x3e0));
           total_processed = *(ulonglong *)(context + 0x3d0);
           time_value = *resource_ptr;
         }
@@ -615,7 +615,7 @@ ulonglong ResourceQueue_Allocate(longlong *queue_ptr,longlong resource_data)
       goto expand_queue;
     }
   }
-  old_buffer = FUN_18062b420(_DAT_180c8ed18,queue_start * 0x1a8,(char)queue_ptr[3]);
+  old_buffer = FUN_18062b420(system_memory_pool_ptr,queue_start * 0x1a8,(char)queue_ptr[3]);
   current_pos = queue_ptr[1];
   new_buffer = *queue_ptr;
 expand_queue:
@@ -678,7 +678,7 @@ void ResourceQueue_Expand(uint64_t param1,uint64_t param2,longlong *queue_ptr)
   }
   
   // 分配新的缓冲区
-  new_buffer = FUN_18062b420(_DAT_180c8ed18,capacity * 0x1a8,(char)queue_ptr[3]);
+  new_buffer = FUN_18062b420(system_memory_pool_ptr,capacity * 0x1a8,(char)queue_ptr[3]);
   range_end = queue_ptr[1];
   range_start = *queue_ptr;
 expand_complete:

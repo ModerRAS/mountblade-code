@@ -776,7 +776,7 @@ void FUN_180631420(ulonglong param_1,uint64_t param_2,longlong *param_3)
         uVar11 = uVar9 + uVar10;
       }
       if (uVar11 != 0) {
-        lVar5 = FUN_18062b420(_DAT_180c8ed18,uVar11,(char)param_3[3]);
+        lVar5 = FUN_18062b420(system_memory_pool_ptr,uVar11,(char)param_3[3]);
         lVar6 = param_3[1];
         lVar7 = *param_3;
       }

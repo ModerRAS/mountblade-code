@@ -165,7 +165,7 @@ struct ObjectContext {
    ============================================== */
 
 /** 系统数据引用 */
-extern ObjectHandle _DAT_180be0050;       /**< 系统数据句柄 */
+extern ObjectHandle system_system_buffer_resource;       /**< 系统数据句柄 */
 extern void* global_state_5616;               /**< 未知数据引用 */
 extern void* global_state_5360;               /**< 未知数据引用 */
 extern void* global_state_5048;               /**< 未知数据引用 */

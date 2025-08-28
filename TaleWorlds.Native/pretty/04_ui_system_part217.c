@@ -390,9 +390,9 @@ void * FUN_180791b60(void)
 
 {
   FUN_180791040();
-  _DAT_180c10a88 = 0x20;
-  _DAT_180c10a70 = 0x180be2b40;
-  _DAT_180c10a80 = 0x40;
+  ui_system_config = 0x20;
+  ui_system_config = 0x180be2b40;
+  ui_system_config = 0x40;
   return &system_data_0a70;
 }
 

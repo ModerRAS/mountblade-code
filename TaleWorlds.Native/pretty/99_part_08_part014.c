@@ -49,7 +49,7 @@ void FUN_1804eced9(void)
     if (((lVar15 != 0) && (*(char *)(lVar15 + 0x8be) != '\0')) &&
        (*(longlong *)(lVar12 + 0x3630 + unaff_RDI) != 0)) {
       *(uint64_t *)(in_R11 + 0x20) = unaff_RBX;
-      lVar7 = _DAT_180c92590;
+      lVar7 = system_system_ui;
       *(uint64_t *)(in_R11 + -0x28) = unaff_R13;
       lVar12 = unaff_RDI + 0x30a0 + lVar12;
       lVar15 = *(longlong *)(lVar7 + 0x4c4d0);
@@ -252,14 +252,14 @@ void FUN_1804eced9(void)
                 FUN_180590fc0(puVar18);
                 FUN_180593ce0(puVar18,*(int32_t *)(lVar15 + 0x18));
                 uVar21 = *(int32_t *)(lVar15 + 0x18);
-                if ((_DAT_180c92514 == 0) || (_DAT_180c92514 == 5)) {
+                if ((system_status_flag == 0) || (system_status_flag == 5)) {
                   uVar10 = 1;
                 }
                 else {
                   uVar10 = 0;
                 }
                 *(int8_t *)(unaff_RDI + 0x87d208) = uVar10;
-                if ((_DAT_180c92514 == 1) || (_DAT_180c92514 == 4)) {
+                if ((system_status_flag == 1) || (system_status_flag == 4)) {
                   uVar10 = 1;
                 }
                 else {
@@ -347,7 +347,7 @@ void FUN_1804ecf1a(void)
   longlong in_stack_00000058;
   
   *(uint64_t *)(in_R11 + 0x20) = unaff_RBX;
-  lVar7 = _DAT_180c92590;
+  lVar7 = system_system_ui;
   *(uint64_t *)(in_R11 + -0x28) = unaff_R13;
   lVar20 = unaff_RDI + 0x30a0 + in_RAX;
   lVar14 = *(longlong *)(lVar7 + 0x4c4d0);
@@ -548,14 +548,14 @@ void FUN_1804ecf1a(void)
             FUN_180590fc0(puVar17);
             FUN_180593ce0(puVar17,*(int32_t *)(lVar14 + 0x18));
             uVar21 = *(int32_t *)(lVar14 + 0x18);
-            if ((_DAT_180c92514 == 0) || (_DAT_180c92514 == 5)) {
+            if ((system_status_flag == 0) || (system_status_flag == 5)) {
               uVar10 = 1;
             }
             else {
               uVar10 = 0;
             }
             *(int8_t *)(unaff_RDI + 0x87d208) = uVar10;
-            if ((_DAT_180c92514 == 1) || (_DAT_180c92514 == 4)) {
+            if ((system_status_flag == 1) || (system_status_flag == 4)) {
               uVar10 = 1;
             }
             else {

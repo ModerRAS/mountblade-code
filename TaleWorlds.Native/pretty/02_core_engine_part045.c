@@ -168,7 +168,7 @@ void Engine_ProcessBatchData_0856c7(void)
         type_info = 0;
     }
     else {
-        allocated_size = Memory_AllocateAligned(_DAT_180c8ed18, input_param * 4, 0xf);
+        allocated_size = Memory_AllocateAligned(system_memory_pool_ptr, input_param * 4, 0xf);
         type_info = (int16_t)dst_base[2];
     }
     
@@ -514,7 +514,7 @@ void Engine_AllocateStructArray_085e30(int *array_ptr)
     }
     
     // 分配新内存
-    new_memory = Memory_AllocateAligned(_DAT_180c8ed18, (longlong)array_ptr[1] * STRUCT_SIZE_20, (char)array_ptr[8]);
+    new_memory = Memory_AllocateAligned(system_memory_pool_ptr, (longlong)array_ptr[1] * STRUCT_SIZE_20, (char)array_ptr[8]);
     
     // 复制现有数据
     if (*(longlong *)(array_ptr + 2) != 0) {
@@ -628,7 +628,7 @@ void Engine_AllocateInt32Array_085f20(int *array_ptr)
     }
     
     // 分配新内存
-    new_memory = Memory_AllocateAligned(_DAT_180c8ed18, (longlong)array_ptr[1] * STRUCT_SIZE_12, (char)array_ptr[8]);
+    new_memory = Memory_AllocateAligned(system_memory_pool_ptr, (longlong)array_ptr[1] * STRUCT_SIZE_12, (char)array_ptr[8]);
     
     // 复制现有数据
     if (*(longlong *)(array_ptr + 2) != 0) {
@@ -740,7 +740,7 @@ void Engine_AllocateComplexArray_086010(int *array_ptr)
     }
     
     // 分配新内存
-    new_memory = Memory_AllocateAligned(_DAT_180c8ed18, (longlong)array_ptr[1] * STRUCT_SIZE_92, (char)array_ptr[8]);
+    new_memory = Memory_AllocateAligned(system_memory_pool_ptr, (longlong)array_ptr[1] * STRUCT_SIZE_92, (char)array_ptr[8]);
     
     // 复制现有数据
     if (*(longlong *)(array_ptr + 2) != 0) {
@@ -936,7 +936,7 @@ void Engine_PushTripleData_086270(ulonglong *container_ptr, uint64_t *data_ptr)
         }
     }
     
-    new_buffer = (int32_t *)Memory_AllocateAligned(_DAT_180c8ed18, current_size * TRIPLE_DATA_SIZE, (char)container_ptr[3]);
+    new_buffer = (int32_t *)Memory_AllocateAligned(system_memory_pool_ptr, current_size * TRIPLE_DATA_SIZE, (char)container_ptr[3]);
     buffer_start = (uint64_t *)*container_ptr;
     current_pos = (uint64_t *)container_ptr[1];
     
@@ -998,7 +998,7 @@ void Engine_InsertTripleData_0862bb(longlong param_1, uint64_t param_2, uint64_t
         }
     }
     
-    new_buffer = (int32_t *)Memory_AllocateAligned(_DAT_180c8ed18, new_size * TRIPLE_DATA_SIZE, (char)container_ptr[3]);
+    new_buffer = (int32_t *)Memory_AllocateAligned(system_memory_pool_ptr, new_size * TRIPLE_DATA_SIZE, (char)container_ptr[3]);
     param_4 = *container_ptr;
     current_end = container_ptr[1];
     
@@ -1082,7 +1082,7 @@ void Engine_PushDoubleData_0863a0(ulonglong *container_ptr, uint64_t *data_ptr)
         }
     }
     
-    new_buffer = (int32_t *)Memory_AllocateAligned(_DAT_180c8ed18, current_size << 4, (char)container_ptr[3]);
+    new_buffer = (int32_t *)Memory_AllocateAligned(system_memory_pool_ptr, current_size << 4, (char)container_ptr[3]);
     buffer_start = (uint64_t *)*container_ptr;
     current_pos = (uint64_t *)container_ptr[1];
     
@@ -1208,7 +1208,7 @@ uint64_t *Engine_CreateMatrixObject_086600(uint64_t param_1, int32_t param_2)
 {
     uint64_t *matrix_obj;
     
-    matrix_obj = (uint64_t *)Memory_AllocateObject(_DAT_180c8ed18, OBJECT_SIZE_184, 8, 0x1a, 0xfffffffffffffffe);
+    matrix_obj = (uint64_t *)Memory_AllocateObject(system_memory_pool_ptr, OBJECT_SIZE_184, 8, 0x1a, 0xfffffffffffffffe);
     Object_InitializeBase(matrix_obj, param_1, param_2);
     *matrix_obj = &global_var_2712_ptr;
     matrix_obj[0x16] = 0;
@@ -1230,7 +1230,7 @@ uint64_t *Engine_CreateVectorObject_086670(uint64_t param_1, int32_t param_2)
 {
     uint64_t *vector_obj;
     
-    vector_obj = (uint64_t *)Memory_AllocateObject(_DAT_180c8ed18, OBJECT_SIZE_176, 8, 0x1a, 0xfffffffffffffffe);
+    vector_obj = (uint64_t *)Memory_AllocateObject(system_memory_pool_ptr, OBJECT_SIZE_176, 8, 0x1a, 0xfffffffffffffffe);
     Object_InitializeBase(vector_obj, param_1, param_2);
     *vector_obj = &global_var_1376_ptr;
     return vector_obj;
@@ -1276,7 +1276,7 @@ uint64_t *Engine_CreateTransformObject_086740(uint64_t param_1, int32_t param_2)
 {
     uint64_t *transform_obj;
     
-    transform_obj = (uint64_t *)Memory_AllocateObject(_DAT_180c8ed18, OBJECT_SIZE_184, 8, 0x1a, 0xfffffffffffffffe);
+    transform_obj = (uint64_t *)Memory_AllocateObject(system_memory_pool_ptr, OBJECT_SIZE_184, 8, 0x1a, 0xfffffffffffffffe);
     Object_InitializeBase(transform_obj, param_1, param_2);
     *transform_obj = &global_var_1192_ptr;
     transform_obj[0x16] = 0;
@@ -1326,7 +1326,7 @@ uint64_t *Engine_CreateQuaternionObject_086830(uint64_t param_1, int32_t param_2
 {
     uint64_t *quaternion_obj;
     
-    quaternion_obj = (uint64_t *)Memory_AllocateObject(_DAT_180c8ed18, OBJECT_SIZE_184, 8, 0x1a, 0xfffffffffffffffe);
+    quaternion_obj = (uint64_t *)Memory_AllocateObject(system_memory_pool_ptr, OBJECT_SIZE_184, 8, 0x1a, 0xfffffffffffffffe);
     Object_InitializeBase(quaternion_obj, param_1, param_2);
     *quaternion_obj = &global_var_1008_ptr;
     quaternion_obj[0x16] = 0;
@@ -1348,7 +1348,7 @@ uint64_t *Engine_CreateColorObject_0868d0(uint64_t param_1, int32_t param_2)
 {
     uint64_t *color_obj;
     
-    color_obj = (uint64_t *)Memory_AllocateObject(_DAT_180c8ed18, OBJECT_SIZE_184, 8, 0x1a, 0xfffffffffffffffe);
+    color_obj = (uint64_t *)Memory_AllocateObject(system_memory_pool_ptr, OBJECT_SIZE_184, 8, 0x1a, 0xfffffffffffffffe);
     Object_InitializeBase(color_obj, param_1, param_2);
     *color_obj = &global_var_560_ptr;
     color_obj[0x16] = 0;
@@ -1370,7 +1370,7 @@ uint64_t *Engine_CreateBoundingBoxObject_086960(uint64_t param_1, int32_t param_
 {
     uint64_t *bbox_obj;
     
-    bbox_obj = (uint64_t *)Memory_AllocateObject(_DAT_180c8ed18, OBJECT_SIZE_184, 8, 0x1a, 0xfffffffffffffffe);
+    bbox_obj = (uint64_t *)Memory_AllocateObject(system_memory_pool_ptr, OBJECT_SIZE_184, 8, 0x1a, 0xfffffffffffffffe);
     Object_InitializeBase(bbox_obj, param_1, param_2);
     *bbox_obj = &global_var_376_ptr;
     bbox_obj[0x16] = 0;
@@ -1392,7 +1392,7 @@ uint64_t *Engine_CreatePlaneObject_086a00(uint64_t param_1, int32_t param_2)
 {
     uint64_t *plane_obj;
     
-    plane_obj = (uint64_t *)Memory_AllocateObject(_DAT_180c8ed18, OBJECT_SIZE_184, 8, 0x1a, 0xfffffffffffffffe);
+    plane_obj = (uint64_t *)Memory_AllocateObject(system_memory_pool_ptr, OBJECT_SIZE_184, 8, 0x1a, 0xfffffffffffffffe);
     Object_InitializeBase(plane_obj, param_1, param_2);
     *plane_obj = &global_var_152_ptr;
     plane_obj[0x16] = 0;
@@ -1414,7 +1414,7 @@ uint64_t *Engine_CreateRayObject_086aa0(uint64_t param_1, int32_t param_2)
 {
     uint64_t *ray_obj;
     
-    ray_obj = (uint64_t *)Memory_AllocateObject(_DAT_180c8ed18, OBJECT_SIZE_184, 8, 0x1a, 0xfffffffffffffffe);
+    ray_obj = (uint64_t *)Memory_AllocateObject(system_memory_pool_ptr, OBJECT_SIZE_184, 8, 0x1a, 0xfffffffffffffffe);
     Object_InitializeBase(ray_obj, param_1, param_2);
     *ray_obj = &global_var_9944_ptr;
     ray_obj[0x16] = 0;
@@ -1436,7 +1436,7 @@ uint64_t *Engine_CreateSphereObject_086b40(uint64_t param_1, int32_t param_2)
 {
     uint64_t *sphere_obj;
     
-    sphere_obj = (uint64_t *)Memory_AllocateObject(_DAT_180c8ed18, OBJECT_SIZE_184, 8, 0x1a, 0xfffffffffffffffe);
+    sphere_obj = (uint64_t *)Memory_AllocateObject(system_memory_pool_ptr, OBJECT_SIZE_184, 8, 0x1a, 0xfffffffffffffffe);
     Object_InitializeBase(sphere_obj, param_1, param_2);
     *sphere_obj = &global_var_9744_ptr;
     sphere_obj[0x16] = 0;
@@ -1467,10 +1467,10 @@ void Engine_InitializeRenderObject_086bd0(longlong obj_ptr, uint64_t param_2, lo
         **(int8_t **)(obj_ptr + 8) = 0;
     }
     
-    String_ParseArguments(*_DAT_180c86870, &stack_ptr1, param_2);
+    String_ParseArguments(*system_main_module_state, &stack_ptr1, param_2);
     texture_ptr = &system_buffer_ptr;
-    if (_DAT_180bf6658 != (void *)0x0) {
-        texture_ptr = _DAT_180bf6658;
+    if (core_system_control_pointer != (void *)0x0) {
+        texture_ptr = core_system_control_pointer;
     }
     
     render_ptr = &system_buffer_ptr;

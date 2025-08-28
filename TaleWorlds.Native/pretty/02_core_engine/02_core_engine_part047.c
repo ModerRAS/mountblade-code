@@ -52,13 +52,13 @@ void process_system_resources(uint64_t param_1, int8_t param_2)
   int32_t buffer_size_6;         // 缓冲区大小6
   ulonglong security_cookie;        // 安全cookie
   
-  data_array_ptr = _DAT_180c868a8;
+  data_array_ptr = core_system_data_pointer;
   stack_data_4 = 0xfffffffffffffffe;
   security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
   total_items = 0;
-  array_base_ptr = _DAT_180c868a8;
+  array_base_ptr = core_system_data_pointer;
   processing_index = 0;
-  item_count = (int)((_DAT_180c868a8[2] - _DAT_180c868a8[1]) / 0x60);
+  item_count = (int)((core_system_data_pointer[2] - core_system_data_pointer[1]) / 0x60);
   processed_count = (longlong)item_count;
   param_storage = param_2;
   stack_data_1 = processed_count;
@@ -67,8 +67,8 @@ void process_system_resources(uint64_t param_1, int8_t param_2)
       item_offset = data_array_ptr[1];
       item_count = *(int *)(item_offset + 0x5c + total_items);
       if ((item_count < 0) ||
-         (resource_base = *(longlong *)(*_DAT_180c86870 + 0x888),
-         (ulonglong)(*(longlong *)(*_DAT_180c86870 + 0x890) - resource_base >> 5) <=
+         (resource_base = *(longlong *)(*system_main_module_state + 0x888),
+         (ulonglong)(*(longlong *)(*system_main_module_state + 0x890) - resource_base >> 5) <=
          (ulonglong)(longlong)item_count)) {
         resource_base = FUN_180628ca0();
       }
@@ -140,8 +140,8 @@ void process_system_resources(uint64_t param_1, int8_t param_2)
       item_count = *(int *)(processed_count + 0x5c + resource_base);
       array_size = resource_base;
       if ((item_count < 0) ||
-         (resource_limit = *(longlong *)(*_DAT_180c86870 + 0x888),
-         (ulonglong)(*(longlong *)(*_DAT_180c86870 + 0x890) - resource_limit >> 5) <=
+         (resource_limit = *(longlong *)(*system_main_module_state + 0x888),
+         (ulonglong)(*(longlong *)(*system_main_module_state + 0x890) - resource_limit >> 5) <=
          (ulonglong)(longlong)item_count)) {
         resource_limit = FUN_180628ca0();
       }
@@ -194,7 +194,7 @@ void process_system_resources(uint64_t param_1, int8_t param_2)
           resource_data_ptr = buffer_ptr_3;
         }
                     // WARNING: Subroutine does not return
-        FUN_180062300(_DAT_180c86928, &unknown_var_8208_ptr, resource_data_ptr);
+        FUN_180062300(system_message_context, &unknown_var_8208_ptr, resource_data_ptr);
       }
       buffer_ptr_2 = &unknown_var_3456_ptr;
       if (buffer_ptr_3 != (void *)0x0) {
@@ -261,7 +261,7 @@ LAB_180088ac9:
     } while (next_item_ptr != array_base_ptr + 0x16);
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(_DAT_180c86928, &unknown_var_8288_ptr);
+  FUN_180062300(system_message_context, &unknown_var_8288_ptr);
 }
 
 
@@ -530,10 +530,10 @@ void batch_process_system_data(void)
   int item_index;                   // 项目索引
   ulonglong security_cookie;        // 安全cookie
   
-  data_limit = _DAT_180c868a8;
+  data_limit = core_system_data_pointer;
   stack_data_1 = 0xfffffffffffffffe;
   security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
-  data_base = *_DAT_180c86870;
+  data_base = *system_main_module_state;
   data_offset = 0;
   item_count = (int)(*(longlong *)(data_base + 0x8b0) - *(longlong *)(data_base + 0x8a8) >> 5);
   total_size = (longlong)item_count;

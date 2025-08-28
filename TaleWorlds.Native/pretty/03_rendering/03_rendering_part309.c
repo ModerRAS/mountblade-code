@@ -331,7 +331,7 @@ typedef struct {
 // ============================================================================
 
 /** 系统全局变量 */
-extern int _DAT_180c8ec8c;                              /**< 数据标志全局变量 */
+extern int render_system_data_texture;                              /**< 数据标志全局变量 */
 extern void* global_state_4272_ptr;                              /**< 未知数据指针 */
 extern void* global_state_4240_ptr;                              /**< 未知数据指针 */
 extern void* global_state_5009_ptr;                              /**< 未知数据指针 */
@@ -640,7 +640,7 @@ void RenderingAdvancedImageProcessor(void)
                         if (processingCount <= stackParam4) {
                             encodingStep = processingCount + -1;
                         }
-                        if (_DAT_180c8ec8c != 0) {
+                        if (render_system_data_texture != 0) {
                             encodingStep = (processingCount - encodingStep) + -1;
                         }
                         encodingStep = encodingStep * stackParam2;
@@ -826,7 +826,7 @@ void ImageColorSpaceConverter(int param_1, int param_2, longlong param_3)
                     if (param_2 <= param_1) {
                         processingCount = param_2 + -1;
                     }
-                    if (_DAT_180c8ec8c != 0) {
+                    if (render_system_data_texture != 0) {
                         processingCount = (param_2 - processingCount) + -1;
                     }
                     processingCount = processingCount * stackParam2;

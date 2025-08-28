@@ -336,7 +336,7 @@ uint64_t * create_memory_manager_object(uint64_t memory_pool, int32_t config_fla
   uint64_t *manager_ptr;
   
   // 分配内存管理器对象
-  manager_ptr = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
+  manager_ptr = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
   
   // 初始化管理器配置
   FUN_1802565b0(manager_ptr, memory_pool, config_flags);
@@ -367,7 +367,7 @@ uint64_t * create_advanced_memory_manager_object(uint64_t memory_pool, int32_t c
   uint64_t *manager_ptr;
   
   // 分配高级内存管理器对象
-  manager_ptr = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
+  manager_ptr = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
   
   // 初始化管理器配置
   FUN_1802565b0(manager_ptr, memory_pool, config_flags);
@@ -424,7 +424,7 @@ uint64_t * initialize_thread_manager(uint64_t *thread_manager)
   // 循环初始化线程对象
   do {
     // 创建主线程对象
-    new_object = FUN_18062b1e0(_DAT_180c8ed18, 0x3d0, 8, 3);
+    new_object = FUN_18062b1e0(system_memory_pool_ptr, 0x3d0, 8, 3);
     thread_object = (longlong *)FUN_180275090(new_object);
     if (thread_object != (longlong *)0x0) {
       // 调用线程对象的初始化函数
@@ -440,7 +440,7 @@ uint64_t * initialize_thread_manager(uint64_t *thread_manager)
     }
     
     // 创建辅助线程对象
-    new_object = FUN_18062b1e0(_DAT_180c8ed18, 0x300, 0x10, 3);
+    new_object = FUN_18062b1e0(system_memory_pool_ptr, 0x300, 0x10, 3);
     thread_object = (longlong *)FUN_180075030(new_object, 1);
     if (thread_object != (longlong *)0x0) {
       // 调用辅助线程对象的初始化函数
@@ -1033,7 +1033,7 @@ longlong * create_render_manager(longlong *render_manager)
   // 设置资源管理参数
   render_manager[0x1a4] = 0;           // 资源对象指针
   *(int32_t *)(render_manager + 0x1a6) = 0;  // 资源计数器
-  render_manager[0x1a5] = _DAT_180c8ed30;      // 资源基地址
+  render_manager[0x1a5] = system_error_code;      // 资源基地址
   
   // 清理旧的资源对象
   resource_object = (longlong *)render_manager[0x1a4];
@@ -1076,7 +1076,7 @@ longlong * create_render_manager(longlong *render_manager)
   *(int32_t *)(render_manager + 5) = 0xff101010;   // 渲染模式
   
   // 创建新的渲染对象（768字节，16字节对齐）
-  new_object = FUN_18062b1e0(_DAT_180c8ed18, 0x300, 0x10, 3);
+  new_object = FUN_18062b1e0(system_memory_pool_ptr, 0x300, 0x10, 3);
   resource_object = (longlong *)FUN_180075030(new_object, 1);
   
   // 初始化新创建的渲染对象
@@ -1241,16 +1241,16 @@ void main_render_loop(void)
   ulonglong security_cookie;
   
   // 获取引擎上下文
-  engine_context = _DAT_180c86950;
+  engine_context = system_operation_state;
   cleanup_flag = 0xfffffffffffffffe;
   security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_d8;
   
   // 保存当前渲染状态
-  *(int8_t *)(_DAT_180c86950 + 0x1889) = *(int8_t *)(_DAT_180c86950 + 0x1888);
+  *(int8_t *)(system_operation_state + 0x1889) = *(int8_t *)(system_operation_state + 0x1888);
   
   // 获取新的渲染状态
-  current_state = *(char *)(*(longlong *)(_DAT_180c86870 + 8) + 0xbc +
-                          (ulonglong)(*(uint *)(*(longlong *)(_DAT_180c86870 + 8) + 0x13c) & 1) * 0x48);
+  current_state = *(char *)(*(longlong *)(system_main_module_state + 8) + 0xbc +
+                          (ulonglong)(*(uint *)(*(longlong *)(system_main_module_state + 8) + 0x13c) & 1) * 0x48);
   
   // 更新状态寄存器
   *(char *)(engine_context + 0x1888) = current_state;
@@ -1285,7 +1285,7 @@ void main_render_loop(void)
     
 RENDER_CONTINUE:
     // 继续渲染循环
-    (**(code **)(*_DAT_180c86878 + 0x10))();
+    (**(code **)(*core_system_data_string + 0x10))();
   }
   else {
 ACTIVE_RENDERING:
@@ -1301,8 +1301,8 @@ ACTIVE_RENDERING:
   }
   
   // 状态变化处理
-  if (((current_state != previous_state) && (_DAT_180c8a9c0 != 0)) && (*(longlong *)(_DAT_180c8a9c0 + 0x10) != 0)) {
-    (**(code **)(_DAT_180c8a9c0 + 0x80))(*(int8_t *)(engine_context + 0x1888));
+  if (((current_state != previous_state) && (core_system_data_string != 0)) && (*(longlong *)(core_system_data_string + 0x10) != 0)) {
+    (**(code **)(core_system_data_string + 0x80))(*(int8_t *)(engine_context + 0x1888));
   }
   
 RENDER_CONTINUE:
@@ -1311,21 +1311,21 @@ RENDER_CONTINUE:
   FUN_1800905f0(engine_context + 0x30);
   
   // 检查是否需要更新显示设置
-  if ((system_debug_flag == '\0') && (*(int *)(_DAT_180c86908 + 0x7e0) == 0)) {
+  if ((system_debug_flag == '\0') && (*(int *)(system_module_state + 0x7e0) == 0)) {
     // 如果显示配置为空或无效，使用默认设置
-    if ((**(char **)(_DAT_180c868d0 + 0x2010) == '\0') ||
-       (*(char *)(*(longlong *)(_DAT_180c86870 + 8) + 0xbc +
-                 (ulonglong)(*(uint *)(*(longlong *)(_DAT_180c86870 + 8) + 0x13c) & 1) * 0x48) ==
+    if ((**(char **)(core_system_data_string + 0x2010) == '\0') ||
+       (*(char *)(*(longlong *)(system_main_module_state + 8) + 0xbc +
+                 (ulonglong)(*(uint *)(*(longlong *)(system_main_module_state + 8) + 0x13c) & 1) * 0x48) ==
         '\0')) {
-      FUN_180171fb0(*(uint64_t *)(_DAT_180c86870 + 8), 0);
+      FUN_180171fb0(*(uint64_t *)(system_main_module_state + 8), 0);
     }
     else {
       // 计算显示参数
-      context_ptr1 = *(longlong *)(_DAT_180c86870 + 8);
+      context_ptr1 = *(longlong *)(system_main_module_state + 8);
       context_index1 = (ulonglong)(*(uint *)(context_ptr1 + 0x13c) & 1);
-      context_ptr2 = *(longlong *)(_DAT_180c86870 + 8);
+      context_ptr2 = *(longlong *)(system_main_module_state + 8);
       context_index2 = (ulonglong)(*(uint *)(context_ptr2 + 0x13c) & 1);
-      context_ptr3 = *(longlong *)(_DAT_180c86870 + 8);
+      context_ptr3 = *(longlong *)(system_main_module_state + 8);
       context_index3 = (ulonglong)(*(uint *)(context_ptr3 + 0x13c) & 1);
       
       // 计算渲染尺寸
@@ -1335,16 +1335,16 @@ RENDER_CONTINUE:
       viewport_y = *(int )(context_ptr3 + 0xec + context_index3 * 0x48) + *(int )(context_ptr1 + 0xb4 + context_index1 * 0x48);
       
       // 更新显示设置
-      FUN_180171fb0(*(uint64_t *)(_DAT_180c86870 + 8), &render_height);
+      FUN_180171fb0(*(uint64_t *)(system_main_module_state + 8), &render_height);
       
       // 更新显示比例
-      context_ptr1 = *(longlong *)(_DAT_180c868d0 + 0x2010);
+      context_ptr1 = *(longlong *)(core_system_data_string + 0x2010);
       FUN_180093780(context_ptr1, *(int32_t *)(context_ptr1 + 4), *(int32_t *)(context_ptr1 + 8));
-      context_ptr1 = _DAT_180c868d0;
+      context_ptr1 = core_system_data_string;
       
       // 计算并设置宽高比
       *(float *)(engine_context + 0x17e0) =
-           (float)*(int *)(*(longlong *)(_DAT_180c868d0 + 0x2010) + 4) / *(float *)(engine_context + 0x17ec);
+           (float)*(int *)(*(longlong *)(core_system_data_string + 0x2010) + 4) / *(float *)(engine_context + 0x17ec);
       *(float *)(engine_context + 0x17e4) =
            (float)*(int *)(*(longlong *)(context_ptr1 + 0x2010) + 8) / *(float *)(engine_context + 0x17f0);
     }
@@ -1373,11 +1373,11 @@ void update_render_parameters(void)
   int new_height;
   
   // 获取配置指针
-  config_ptr = *(char **)(_DAT_180c868d0 + 0x2010);
+  config_ptr = *(char **)(core_system_data_string + 0x2010);
   
   // 计算新的分辨率（基于当前显示比例）
-  new_width = (int)(*(float *)(_DAT_180c86950 + 0x17f0) * *(float *)(_DAT_180c86950 + 0x17e4));
-  new_height = (int)(*(float *)(_DAT_180c86950 + 0x17ec) * *(float *)(_DAT_180c86950 + 0x17e0));
+  new_width = (int)(*(float *)(system_operation_state + 0x17f0) * *(float *)(system_operation_state + 0x17e4));
+  new_height = (int)(*(float *)(system_operation_state + 0x17ec) * *(float *)(system_operation_state + 0x17e0));
   
   // 如果配置未初始化，设置初始参数
   if (*config_ptr == '\0') {
@@ -1395,7 +1395,7 @@ void update_render_parameters(void)
   
   // 分辨率发生变化，触发重新配置
   // 注意：此函数可能不返回，将触发系统重新初始化
-  FUN_180062300(_DAT_180c86928, &unknown_var_9840_ptr, *(int *)(config_ptr + 4), 
+  FUN_180062300(system_message_context, &unknown_var_9840_ptr, *(int *)(config_ptr + 4), 
                 *(int32_t *)(config_ptr + 8), new_height, new_width);
 }
 

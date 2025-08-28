@@ -220,7 +220,7 @@ void ReallocateTransformArray(uint64_t *array_container, ulonglong additional_el
     new_array = (longlong *)0x0;
     if (new_capacity != 0) {
       new_array = (longlong *)
-               FUN_18062b420(_DAT_180c8ed18,new_capacity * 0x24,*(int8_t *)(array_container + 3),current_end,
+               FUN_18062b420(system_memory_pool_ptr,new_capacity * 0x24,*(int8_t *)(array_container + 3),current_end,
                              0xfffffffffffffffe);
       current_end = (uint64_t *)array_container[1];
       old_start = (uint64_t *)*array_container;
@@ -577,7 +577,7 @@ uint64_t * InitializeComplexTransformObject(uint64_t *object, char param2, char 
   *(int32_t *)(param_1 + 0x35) = 0x3f800000;
   *(int32_t *)((longlong)param_1 + 0x1ac) = 0x7f7fffff;
   *(int32_t *)(param_1 + 0x3a) = 0xffffffff;
-  plVar3 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x70,8,9,plVar4,plVar3);
+  plVar3 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,0x70,8,9,plVar4,plVar3);
   *plVar3 = (longlong)&unknown_var_3552_ptr;
   *plVar3 = (longlong)&unknown_var_3696_ptr;
   *(int32_t *)(plVar3 + 1) = 0;

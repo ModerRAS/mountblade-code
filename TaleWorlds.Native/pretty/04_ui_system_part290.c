@@ -83,7 +83,7 @@ void FUN_18082c7de(uint64_t param_1,int param_2,int param_3,uint *param_4)
   uint in_stack_000001a0;
   
   iVar31 = param_2 >> 2;
-  auVar8 = _DAT_180980640;
+  auVar8 = ui_system_memory_config;
   for (param_3 = param_3 >> 3; param_3 != 0; param_3 = param_3 + -1) {
     auVar7 = *(int8_t (*) [32])(unaff_RDI + -0x20);
     in_ZMM9 = ZEXT3264(auVar7);
@@ -96,7 +96,7 @@ void FUN_18082c7de(uint64_t param_1,int param_2,int param_3,uint *param_4)
     fVar25 = unaff_RBX[6];
     unaff_RDI = unaff_RDI + -0x20;
     param_4 = param_4 + -8;
-    _DAT_180980640 = auVar8;
+    ui_system_memory_config = auVar8;
     if (iVar31 != 0) {
       iVar39 = 0x800;
       iVar35 = 0x400;
@@ -227,9 +227,9 @@ void FUN_18082c7de(uint64_t param_1,int param_2,int param_3,uint *param_4)
     in_R10 = in_R10 + 8;
     unaff_ESI = in_stack_00000190;
     in_stack_00000168 = unaff_RBX;
-    auVar8 = _DAT_180980640;
+    auVar8 = ui_system_memory_config;
   }
-  for (uVar30 = unaff_ESI & 7; _DAT_180980640 = auVar8, uVar30 != 0; uVar30 = uVar30 - 1) {
+  for (uVar30 = unaff_ESI & 7; ui_system_memory_config = auVar8, uVar30 != 0; uVar30 = uVar30 - 1) {
     uVar5 = *(uint *)(unaff_RDI + -4);
     fVar6 = *unaff_RBX;
     in_ZMM4 = ZEXT464((uint)fVar6);
@@ -251,7 +251,7 @@ void FUN_18082c7de(uint64_t param_1,int param_2,int param_3,uint *param_4)
     }
     in_R10 = in_R10 + 1;
     unaff_RBX = unaff_RBX + 1;
-    auVar8 = _DAT_180980640;
+    auVar8 = ui_system_memory_config;
     in_stack_00000168 = unaff_RBX;
   }
   for (iVar37 = (int)in_stack_00000198 >> 3; iVar37 != 0; iVar37 = iVar37 + -1) {

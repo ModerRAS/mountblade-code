@@ -77,13 +77,13 @@ void release_engine_resources(longlong *resource_ptr)
             resource_cache[0] = 0;
             operation_type = 0x24;
             resource_id = ref_count;
-            resource_handle = FUN_18062b1e0(_DAT_180c8ed18, ENGINE_RESOURCE_TABLE_SIZE, 8, 3);
+            resource_handle = FUN_18062b1e0(system_memory_pool_ptr, ENGINE_RESOURCE_TABLE_SIZE, 8, 3);
             resource_interface = (void **)FUN_18005ce30(resource_handle, &resource_type);
             temp_interface = resource_interface;
             if (resource_interface != (void **)0x0) {
                 (**(code **)(*resource_interface + 0x28))(resource_interface);
             }
-            resource_handle = _DAT_180c82868;
+            resource_handle = system_context_ptr;
             interface_ptr = &resource_list;
             resource_list = resource_interface;
             if (resource_interface != (void **)0x0) {
@@ -104,13 +104,13 @@ void release_engine_resources(longlong *resource_ptr)
             metadata_size = 0;
             metadata_buffer[0] = 0;
             alloc_size = 0x26;
-            resource_handle = FUN_18062b1e0(_DAT_180c8ed18, ENGINE_RESOURCE_TABLE_SIZE, 8, 3);
+            resource_handle = FUN_18062b1e0(system_memory_pool_ptr, ENGINE_RESOURCE_TABLE_SIZE, 8, 3);
             resource_data = (longlong *)FUN_18005ce30(resource_handle, &resource_properties);
             temp_resource = resource_data;
             if (resource_data != (longlong *)0x0) {
                 (**(code **)(*resource_data + 0x28))(resource_data);
             }
-            resource_handle = _DAT_180c82868;
+            resource_handle = system_context_ptr;
             interface_ptr = (void ***)&resource_manager;
             resource_manager = resource_data;
             if (resource_data != (longlong *)0x0) {
@@ -237,7 +237,7 @@ uint allocate_memory_page_8k(uint *allocator_ptr, int request_size)
         do {
             page_index = (int)start_page;
             if (*(longlong *)page_entry == 0) {
-                new_page = FUN_18062b420(_DAT_180c8ed18, ENGINE_PAGE_SIZE_32K, 0x25);
+                new_page = FUN_18062b420(system_memory_pool_ptr, ENGINE_PAGE_SIZE_32K, 0x25);
                 LOCK();
                 page_allocated = *(longlong *)(allocator_ptr + (longlong)page_index * 2 + 2) == 0;
                 if (page_allocated) {
@@ -301,7 +301,7 @@ int32_t initialize_memory_pages_8k(longlong allocator_base)
     do {
         page_idx = (int)page_counter;
         if (*current_entry == 0) {
-            new_page = FUN_18062b420(_DAT_180c8ed18, ENGINE_PAGE_SIZE_32K, 0x25);
+            new_page = FUN_18062b420(system_memory_pool_ptr, ENGINE_PAGE_SIZE_32K, 0x25);
             page_entry = (longlong *)(allocator_ptr + 8 + (longlong)page_idx * 8);
             LOCK();
             page_ready = *page_entry == 0;
@@ -388,7 +388,7 @@ uint allocate_memory_page_2k(uint *allocator_ptr, int request_size)
         do {
             page_index = (int)end_page;
             if (*(longlong *)page_entry == 0) {
-                new_page = FUN_18062b420(_DAT_180c8ed18, ENGINE_PAGE_SIZE_16K, 0x25);
+                new_page = FUN_18062b420(system_memory_pool_ptr, ENGINE_PAGE_SIZE_16K, 0x25);
                 LOCK();
                 page_allocated = *(longlong *)(allocator_ptr + (longlong)page_index * 2 + 2) == 0;
                 if (page_allocated) {
@@ -461,7 +461,7 @@ int32_t initialize_memory_pages_2k(longlong allocator_base)
     do {
         page_index = (int)page_counter;
         if (*current_entry == 0) {
-            new_page = FUN_18062b420(_DAT_180c8ed18, ENGINE_PAGE_SIZE_16K, 0x25);
+            new_page = FUN_18062b420(system_memory_pool_ptr, ENGINE_PAGE_SIZE_16K, 0x25);
             page_entry = (longlong *)(allocator_ptr + 8 + (longlong)page_index * 8);
             LOCK();
             page_ready = *page_entry == 0;
@@ -783,11 +783,11 @@ void cleanup_system_a(longlong *system_ptr)
         FUN_18064e900(resource_ptr);
     }
     *system_ptr = 0;
-    system_id = _DAT_180c8a980;
+    system_id = core_system_data_resource;
     if (*(int *)((longlong)system_ptr + 0xc) != -1) {
         resource_handle = (longlong)(int)*(uint *)((longlong)system_ptr + 0xc);
         temp_ptr_8 = (longlong *)(ulonglong)*(uint *)((longlong)system_ptr + 0xc);
-        resource_count = _DAT_180c8a980 + 0x2b8;
+        resource_count = core_system_data_resource + 0x2b8;
         AcquireSRWLockExclusive(resource_count);
         *(int8_t *)(system_id + 2) = 1;
         **(int8_t **)(*(longlong *)(system_id + 0x160) + resource_handle * 8) = 0;
@@ -835,11 +835,11 @@ void cleanup_system_b(longlong *system_ptr)
         FUN_18064e900(resource_id);
     }
     *system_ptr = 0;
-    resource_flag = _DAT_180c8a980;
+    resource_flag = core_system_data_resource;
     if (*(int *)((longlong)system_ptr + 0xc) != -1) {
         system_index[0] = *(int *)((longlong)system_ptr + 0xc);
         resource_id = (longlong)system_index[0];
-        system_flag = _DAT_180c8a980 + 0x2b8;
+        system_flag = core_system_data_resource + 0x2b8;
         AcquireSRWLockExclusive(system_flag);
         *resource_flag = 1;
         **(int8_t **)(*(longlong *)(resource_flag + 0x140) + resource_id * 8) = 0;
@@ -890,7 +890,7 @@ void expand_dynamic_array(longlong *array_info, ulonglong required_size)
                 current_end = 0;
             }
             else {
-                current_end = FUN_18062b420(_DAT_180c8ed18, growth_factor << 4, (char)array_info[3]);
+                current_end = FUN_18062b420(system_memory_pool_ptr, growth_factor << 4, (char)array_info[3]);
                 array_start = *array_info;
                 new_capacity = array_info[1];
             }
@@ -947,7 +947,7 @@ void reallocate_dynamic_array(longlong element_count, longlong array_info)
         new_buffer = 0;
     }
     else {
-        new_buffer = FUN_18062b420(_DAT_180c8ed18, new_capacity << 4, (char)array_info[3]);
+        new_buffer = FUN_18062b420(system_memory_pool_ptr, new_capacity << 4, (char)array_info[3]);
         array_start = *array_info;
         current_end = array_info[1];
     }
@@ -1105,7 +1105,7 @@ void expand_buffer_capacity(longlong *buffer_info, ulonglong required_size)
         new_buffer = 0;
     }
     else {
-        new_buffer = FUN_18062b420(_DAT_180c8ed18, new_capacity * 4, (char)buffer_info[3]);
+        new_buffer = FUN_18062b420(system_memory_pool_ptr, new_capacity * 4, (char)buffer_info[3]);
         buffer_start = *buffer_info;
         current_end = buffer_info[1];
     }
@@ -1165,7 +1165,7 @@ void reallocate_buffer(longlong old_size, ulonglong new_size, uint64_t alignment
         new_buffer = 0;
     }
     else {
-        new_buffer = FUN_18062b420(_DAT_180c8ed18, size_difference * 4, (char)buffer_ptr[3]);
+        new_buffer = FUN_18062b420(system_memory_pool_ptr, size_difference * 4, (char)buffer_ptr[3]);
         buffer_start = *buffer_ptr;
         buffer_info = buffer_ptr[1];
     }
@@ -1288,7 +1288,7 @@ void map_resource_to_location(uint *resource_id, int *resource_data, longlong *r
     resource_index = current_id >> 0xb;
     page_offset = (ulonglong)resource_index;
     if (*(longlong *)(resource_id + (ulonglong)resource_index * 2 + 2) == 0) {
-        page_address = FUN_18062b420(_DAT_180c8ed18, ENGINE_PAGE_SIZE_32K, 0x25);
+        page_address = FUN_18062b420(system_memory_pool_ptr, ENGINE_PAGE_SIZE_32K, 0x25);
         LOCK();
         page_mapped = *(longlong *)(resource_id + page_offset * 2 + 2) == 0;
         if (page_mapped) {

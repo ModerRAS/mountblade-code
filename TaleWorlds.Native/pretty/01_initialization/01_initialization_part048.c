@@ -259,7 +259,7 @@ int ProcessObjectOperations(longlong object_ptr, longlong *operation_params)
   hash_entry_ptr1 = operation_params + 5;
   list_ptr = operation_params[7] - *hash_entry_ptr1;
   if ((ulonglong)(list_ptr / 0x18) < 0x100) {
-    temp_ptr = FUN_18062b420(_DAT_180c8ed18, 0x1800, (char)operation_params[8]);
+    temp_ptr = FUN_18062b420(system_memory_pool_ptr, 0x1800, (char)operation_params[8]);
     list_ptr = *hash_entry_ptr1;
     if (list_ptr != operation_params[6]) {
                     // WARNING: Subroutine does not return
@@ -374,14 +374,14 @@ ulonglong CleanupObjectState(longlong object_ptr)
   // 清理组件状态
   if (*(longlong *)(object_ptr + 0x1b8) != 0) {
     component_offset = 0xb8;
-    temp_ptr = _DAT_180c86870;
+    temp_ptr = system_main_module_state;
     do {
       component_ptr = *(longlong *)(component_offset + *(longlong *)(object_ptr + 0x1b8));
       if ((((component_ptr != 0) && (*(longlong *)(*(longlong *)(object_ptr + 0x1b8) + 0x328 + component_offset) == 0)) &&
           ((*(uint *)(component_ptr + 0x328) & 0x20000000) == 0)) && (*(longlong *)(component_ptr + 0x370) == 0)) {
         if (*(longlong *)(component_ptr + 0x1d8) == 0) {
           FUN_18023b050(component_ptr, 0);  // 初始化组件
-          temp_ptr = _DAT_180c86870;
+          temp_ptr = system_main_module_state;
           status_counter = (int *)(*(longlong *)(component_offset + *(longlong *)(object_ptr + 0x1b8)) + 0x3a8);
           *status_counter = *status_counter + 1;
         }
@@ -645,7 +645,7 @@ uint64_t ProcessDeviceStatusUpdate(longlong device_ptr, longlong context_ptr)
             
             // 检查是否需要分配新的哈希表项
             if (*(longlong *)(component_ptr + 0x3f70 + (ulonglong)hash_index * 8) == 0) {
-              component_ptr = FUN_18062b420(_DAT_180c8ed18, 0x2000, 0x25);
+              component_ptr = FUN_18062b420(system_memory_pool_ptr, 0x2000, 0x25);
               data_ptr = (longlong *)(component_ptr + 0x3f70 + hash_value * 8);
               LOCK();
               entry_found = *data_ptr == 0;

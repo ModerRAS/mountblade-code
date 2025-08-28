@@ -288,7 +288,7 @@ void rendering_system_initialize_render_context(uint64_t *render_context)
     stack_value_1f8 = 0;
     
     // 分配内存池
-    context_pointer = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+    context_pointer = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
     *(int8_t *)context_pointer = 0;
     stack_pointer_200 = context_pointer;
     initialization_result = FUN_18064e990(context_pointer);
@@ -476,7 +476,7 @@ void rendering_system_update_render_system(longlong render_context)
             strcpy_s(parameter_buffer, 0x80, &unknown_var_3312_ptr);
             
             // 处理渲染参数
-            FUN_1800b1230(_DAT_180c86930, &render_parameter, &string_buffer, &render_width);
+            FUN_1800b1230(system_resource_state, &render_parameter, &string_buffer, &render_width);
             string_buffer = &unknown_var_720_ptr;
             
             // 执行渲染操作
@@ -615,7 +615,7 @@ void rendering_system_process_render_parameters(longlong render_context, longlon
                 alignment_value = 0x2d;
                 data_value_48 = 3;
                 buffer_position = parameter_index + 5;
-                parameter_value = FUN_18062b1e0(_DAT_180c8ed18, 0x20, 8, 3);
+                parameter_value = FUN_18062b1e0(system_memory_pool_ptr, 0x20, 8, 3);
                 data_value_70 = FUN_180627ae0(parameter_value, &buffer_pointer);
                 data_pointer = (uint64_t *)(**(code **)(**(longlong **)(render_context + 0x1b0) + 0x60))();
                 if ((void *)*data_pointer == &unknown_var_8720_ptr) {
@@ -627,13 +627,13 @@ void rendering_system_process_render_parameters(longlong render_context, longlon
                     (**(code **)((void *)*data_pointer + 0x28))(data_pointer);
                 }
                 data_value_78 = (**(code **)(**(longlong **)(render_context + 0x1b0) + 0x60))();
-                parameter_value = FUN_18062b1e0(_DAT_180c8ed18, 0x100, 8, 3);
+                parameter_value = FUN_18062b1e0(system_memory_pool_ptr, 0x100, 8, 3);
                 parameter_pointer = (void **)FUN_18005ce30(parameter_value, &output_buffer);
                 output_pointer = parameter_pointer;
                 if (parameter_pointer != (void **)0x0) {
                     (**(code **)(*parameter_pointer + 0x28))(parameter_pointer);
                 }
-                parameter_value = _DAT_180c82868;
+                parameter_value = system_context_ptr;
                 parameter_array_pointer = parameter_array;
                 parameter_array[0] = parameter_pointer;
                 if (parameter_pointer != (void **)0x0) {
@@ -1157,7 +1157,7 @@ void rendering_system_manage_render_resources(longlong render_context)
         stack_value_190 = 0;
         stack_pointer_1a0 = (uint64_t *)0x0;
         stack_value_198 = 0;
-        resource_pointer = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+        resource_pointer = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
         *(int8_t *)resource_pointer = 0;
         stack_pointer_1a0 = resource_pointer;
         resource_id = FUN_18064e990(resource_pointer);
@@ -1177,7 +1177,7 @@ void rendering_system_manage_render_resources(longlong render_context)
             operation_result = (int)data_pointer;
             if ((operation_result != -10) && (resource_id < operation_result + 0xbU)) {
                 stack_value_1b8 = CONCAT71(stack_value_1b8._1_7_, 0x13);
-                resource_pointer = (uint64_t *)FUN_18062b8b0(_DAT_180c8ed18, resource_pointer, operation_result + 0xbU, 0x10);
+                resource_pointer = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr, resource_pointer, operation_result + 0xbU, 0x10);
                 stack_pointer_1a0 = resource_pointer;
                 stack_value_190._0_4_ = FUN_18064e990(resource_pointer);
             }
@@ -1192,9 +1192,9 @@ void rendering_system_manage_render_resources(longlong render_context)
         stack_value_164 = 0x7f7fffff;
         stack_value_1b0 = 0;
         stack_value_1b8 = 0;
-        FUN_180632d00(_DAT_180c8ed68, &stack_value_170, &buffer_pointer, _DAT_180bf6648);
-        data_pointer = _DAT_180c8ed68;
-        resource_value = _DAT_180bf6648;
+        FUN_180632d00(render_system_data_resource, &stack_value_170, &buffer_pointer, render_system_control_resource);
+        data_pointer = render_system_data_resource;
+        resource_value = render_system_control_resource;
         stack_value_138 = 0x3f800000;
         stack_value_130 = 0;
         stack_value_128 = 0x3f80000000000000;
@@ -1209,9 +1209,9 @@ void rendering_system_manage_render_resources(longlong render_context)
         stack_value_fc = 0x3f800000;
         
         // 执行资源操作
-        if (*(char *)(_DAT_180c8ed68 + 0x50) != '\0') {
-            stack_value_170 = _DAT_180c8ed68;
-            operation_result = _Mtx_lock(_DAT_180c8ed68);
+        if (*(char *)(render_system_data_resource + 0x50) != '\0') {
+            stack_value_170 = render_system_data_resource;
+            operation_result = _Mtx_lock(render_system_data_resource);
             if (operation_result != 0) {
                 __Throw_C_error_std__YAXH_Z(operation_result);
             }

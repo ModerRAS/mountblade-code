@@ -108,7 +108,7 @@ LAB_1802f6db4:
   }
   if (0 < iStack_138) {
     pcVar1 = *(code **)(*param_1 + 0x118);
-    uVar2 = FUN_1800b30d0(_DAT_180c86930,aplStackX_18,&puStack_148,1);
+    uVar2 = FUN_1800b30d0(system_resource_state,aplStackX_18,&puStack_148,1);
     (*pcVar1)(param_1,uVar2);
     if (aplStackX_18[0] != (longlong *)0x0) {
       (**(code **)(*aplStackX_18[0] + 0x38))();

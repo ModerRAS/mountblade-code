@@ -724,7 +724,7 @@ uint64_t * create_render_object_with_material_params(uint64_t *render_obj, uint6
     *(uint32_t *)(render_obj + 1) = 0;
     
     // 处理材质参数
-    material_handle = FUN_1800b6de0(_DAT_180c86930, param1, 1);
+    material_handle = FUN_1800b6de0(system_resource_state, param1, 1);
     if (material_handle != 0) {
         FUN_180275a60(material_handle, render_obj, 1);
     }
@@ -957,7 +957,7 @@ uint64_t * create_render_object_copy(uint64_t param1, uint64_t *render_obj_ptr)
     longlong *created_obj;
     
     // 分配新对象内存
-    new_obj = FUN_18062b1e0(_DAT_180c8ed18, 0x3d0, 8, 0x16, 0, 0xfffffffffffffffe);
+    new_obj = FUN_18062b1e0(system_memory_pool_ptr, 0x3d0, 8, 0x16, 0, 0xfffffffffffffffe);
     created_obj = (longlong *)FUN_180275090(new_obj);
     *render_obj_ptr = created_obj;
     

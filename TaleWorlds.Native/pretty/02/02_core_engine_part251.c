@@ -69,7 +69,7 @@ void initialize_engine_manager(longlong manager_context)
   int8_t temp_array_2 [200];
   
   // 分配管理器内存
-  allocated_memory = FUN_18062b1e0(_DAT_180c8ed18,0xb8,8,3);
+  allocated_memory = FUN_18062b1e0(system_memory_pool_ptr,0xb8,8,3);
   manager_ptr = (longlong *)FUN_180211930(allocated_memory);
   
   if (manager_ptr != (longlong *)0x0) {
@@ -155,7 +155,7 @@ void process_engine_queue(longlong queue_context,uint64_t param_2,uint64_t param
   
   // 检查队列是否有数据需要处理
   if (*(longlong *)(queue_context + 0x2b8) - *(longlong *)(queue_context + 0x2b0) >> 4 != 0) {
-    FUN_180062300(_DAT_180c86928,&unknown_var_5328_ptr,0,param_4,queue_param);
+    FUN_180062300(system_message_context,&unknown_var_5328_ptr,0,param_4,queue_param);
   }
   
   // 释放队列锁
@@ -347,7 +347,7 @@ void process_engine_components(longlong component_context)
         temp_uint_1 = 0;
         
         // 创建临时字符串
-        temp_ptr_2 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+        temp_ptr_2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
         *(int8_t *)temp_ptr_2 = 0;
         temp_uint = FUN_18064e990(temp_ptr_2);
         temp_ulonglong = CONCAT44(temp_ulonglong._4_4_,temp_uint);
@@ -510,7 +510,7 @@ void resize_object_array(longlong *object_array_ptr,uint64_t param_2,uint64_t pa
   if ((ulonglong)((object_array_ptr[2] - *object_array_ptr) / 0x98) < 0x514) {
     // 分配新的对象数组
     new_array_ptr = (uint64_t *)
-             FUN_18062b420(_DAT_180c8ed18,0x303e0,(char)object_array_ptr[3],param_4,0xfffffffffffffffe);
+             FUN_18062b420(system_memory_pool_ptr,0x303e0,(char)object_array_ptr[3],param_4,0xfffffffffffffffe);
     
     old_array_ptr = (uint64_t *)*object_array_ptr;
     new_object_ptr = (uint64_t *)object_array_ptr[1];
@@ -602,7 +602,7 @@ void expand_object_array(longlong *object_array_ptr,uint64_t param_2,uint64_t pa
   element_count = (element_count >> 2) - (element_count >> 0x3f);
   
   if (element_count != 0) {
-    new_start = FUN_18062b420(_DAT_180c8ed18,element_count * 0x98,element_flags & 0xff,param_4,0xfffffffffffffffe,0,0,0,element_flags);
+    new_start = FUN_18062b420(system_memory_pool_ptr,element_count * 0x98,element_flags & 0xff,param_4,0xfffffffffffffffe,0,0,0,element_flags);
   }
   
   allocation_size = element_count * 0x98 + new_start;
@@ -697,7 +697,7 @@ void insert_into_object_array(ulonglong *object_array_ptr,uint64_t param_2,uint6
   
   // 分配新的数组内存
   new_ptr = (uint64_t *)
-           FUN_18062b420(_DAT_180c8ed18,new_size * 0x98,(char)object_array_ptr[3],param_4,0xfffffffffffffffe);
+           FUN_18062b420(system_memory_pool_ptr,new_size * 0x98,(char)object_array_ptr[3],param_4,0xfffffffffffffffe);
   
   current_pos = object_array_ptr[1];
   array_size = *object_array_ptr;
@@ -845,7 +845,7 @@ longlong *find_or_create_hash_entry(longlong hash_table_ptr,longlong *result_ptr
   if (entry_ptr == 0) {
     // 创建新条目
     FUN_18066c220(hash_table_ptr + 0x20,&key,*(int32_t *)(hash_table_ptr + 0x10),*(int32_t *)(hash_table_ptr + 0x18),1);
-    entry_ptr = FUN_18062b420(_DAT_180c8ed18,0x88,*(int8_t *)(hash_table_ptr + 0x2c));
+    entry_ptr = FUN_18062b420(system_memory_pool_ptr,0x88,*(int8_t *)(hash_table_ptr + 0x2c));
     FUN_180627ae0(entry_ptr,param_4);
     memset(entry_ptr + 0x20,0,0x60);
   }
@@ -1016,7 +1016,7 @@ SEARCH_DIRECTION:
   
   temp_uint = 0;
 INSERT_NODE:
-  tree_data = FUN_18062b420(_DAT_180c8ed18,0x30,(char)tree_ptr[5]);
+  tree_data = FUN_18062b420(system_memory_pool_ptr,0x30,(char)tree_ptr[5]);
   *(ulonglong *)(tree_data + 0x20) = *key_ptr;
   *(int32_t *)(tree_data + 0x28) = 0;
   FUN_18066bdc0(tree_data,current_node,tree_ptr,temp_uint);

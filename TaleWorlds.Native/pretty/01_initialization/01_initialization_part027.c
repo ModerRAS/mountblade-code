@@ -375,7 +375,7 @@ longlong initialize_memory_pool(longlong pool)
  */
 uint64_t process_engine_command(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-  FUN_180627ae0(param_2, _DAT_180c86928 + 0xe0, param_3, param_4, 0, 0xfffffffffffffffe);
+  FUN_180627ae0(param_2, system_message_context + 0xe0, param_3, param_4, 0, 0xfffffffffffffffe);
   return param_2;
 }
 
@@ -648,7 +648,7 @@ void execute_component_callback(longlong *param_1)
   
   uStack_d8 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_128;
-  iVar1 = *(int *)(*(longlong *)(*(longlong *)(_DAT_180c82868 + 8) + 8) + 0x48);
+  iVar1 = *(int *)(*(longlong *)(*(longlong *)(system_context_ptr + 8) + 8) + 0x48);
   plStack_d0 = param_1;
   iVar3 = _Thrd_id();
   if (iVar3 == iVar1) {
@@ -660,7 +660,7 @@ void execute_component_callback(longlong *param_1)
     plStack_108 = alStack_70;
     _Mtx_init_in_situ(alStack_70, 2);
     uStack_20 = 0;
-    uVar4 = allocate_callback_memory(_DAT_180c8ed18, 0xe8, 8, 3);
+    uVar4 = allocate_callback_memory(system_memory_pool_ptr, 0xe8, 8, 3);
     plStack_108 = alStack_f8;
     pcStack_e8 = (code *)0x0;
     pcStack_e0 = _guard_check_icall;
@@ -678,7 +678,7 @@ void execute_component_callback(longlong *param_1)
     if (plVar5 != (longlong *)0x0) {
       (**(code **)(*plVar5 + 0x28))(plVar5);
     }
-    lVar2 = _DAT_180c82868;
+    lVar2 = system_context_ptr;
     pplStack_100 = &plStack_108;
     plStack_108 = plVar5;
     if (plVar5 != (longlong *)0x0) {
@@ -716,11 +716,11 @@ void generate_timestamp_hash(uint *hash_value)
   uint uVar1;
   char cVar2;
   
-  if (*(void **)*_DAT_180c8ed08 == &unknown_var_424_ptr) {
-    cVar2 = *(int *)(_DAT_180c8a9c8 + 0xe0) != 0;
+  if (*(void **)*init_system_data_config == &unknown_var_424_ptr) {
+    cVar2 = *(int *)(init_system_data_config + 0xe0) != 0;
   }
   else {
-    cVar2 = (**(code **)(*(void **)*_DAT_180c8ed08 + 0x48))();
+    cVar2 = (**(code **)(*(void **)*init_system_data_config + 0x48))();
   }
   if (cVar2 != '\0') {
     *hash_value = 0x41c6fe0c;
@@ -780,7 +780,7 @@ void insert_node_into_structure(uint64_t *root_node, uint64_t param_2, int *valu
   uint64_t *puVar5;
   uint64_t uVar6;
   
-  lVar4 = FUN_18062b420(_DAT_180c8ed18,0x28,*(int8_t *)(param_1 + 5));
+  lVar4 = FUN_18062b420(system_memory_pool_ptr,0x28,*(int8_t *)(param_1 + 5));
   iVar1 = *value;
   bVar2 = true;
   *(int *)(lVar4 + 0x20) = iVar1; // 存储要插入的值
@@ -944,10 +944,10 @@ void register_or_add_component(void **registry, uint64_t param_2, uint64_t param
   longlong lStack_40;
   int32_t uStack_30;
   
-  lVar3 = _DAT_180c8a9a0;
+  lVar3 = init_system_data_config;
   acStackX_20[0] = (char)param_4;
   uVar8 = 0;
-  ppuVar6 = (void **)(_DAT_180c8a9a0 + 0x70);
+  ppuVar6 = (void **)(init_system_data_config + 0x70);
   ppuStackX_8 = param_1;
   FUN_180058080(ppuVar6,&ppuStackX_8,param_2,param_4,0,0xfffffffffffffffe);
   if (ppuStackX_8 != ppuVar6) {
@@ -957,7 +957,7 @@ void register_or_add_component(void **registry, uint64_t param_2, uint64_t param
   FUN_180627ae0(&puStack_68,param_2);
   FUN_180627ae0(&puStack_48,param_3);
   uVar9 = 1;
-  lVar3 = FUN_18062b420(_DAT_180c8ed18,0x60,*(int8_t *)(lVar3 + 0x98));
+  lVar3 = FUN_18062b420(system_memory_pool_ptr,0x60,*(int8_t *)(lVar3 + 0x98));
   FUN_18005caa0(lVar3 + 0x20,&puStack_68);
   ppuVar4 = (void **)FUN_1800590b0(ppuVar6,acStackX_20,lVar3 + 0x20);
   if (acStackX_20[0] == '\0') {
@@ -1135,8 +1135,8 @@ int get_multi_thread_values(void)
   int iVar6;
   int iVar7;
   
-  lVar2 = _DAT_180c86930; // 获取全局上下文
-  lVar1 = _DAT_180c86930 + 0x770;
+  lVar2 = system_resource_state; // 获取全局上下文
+  lVar1 = system_resource_state + 0x770;
   iVar3 = _Mtx_lock(lVar1);
   if (iVar3 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar3);
@@ -1251,7 +1251,7 @@ void format_value_to_buffer(ulonglong value, longlong buffer)
   else {
     iVar8 = iVar8 + 1;
     if (iVar8 != 0) {
-      lVar5 = FUN_18062b420(_DAT_180c8ed18,(longlong)iVar8,3);
+      lVar5 = FUN_18062b420(system_memory_pool_ptr,(longlong)iVar8,3);
     }
     FUN_18004b9b0(lVar5,(longlong)iVar8,&unknown_var_8600_ptr,&dStackX_18);
     FUN_1806281a0(param_2,lVar5);

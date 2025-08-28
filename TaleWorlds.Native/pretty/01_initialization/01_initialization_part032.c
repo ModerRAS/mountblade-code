@@ -626,7 +626,7 @@ void FUN_180060fc0(longlong *param_1,longlong *param_2)
         lVar6 = 1;
       }
       lVar6 = lVar4 + 2 + lVar6;
-      lVar7 = FUN_18062b420(_DAT_180c8ed18,lVar6 * 8,(char)param_1[10],lVar7,uVar10);
+      lVar7 = FUN_18062b420(system_memory_pool_ptr,lVar6 * 8,(char)param_1[10],lVar7,uVar10);
       plVar1 = (longlong *)(lVar7 + (param_1[5] - *param_1 >> 3) * 8);
       if (*param_1 != 0) {
                     // WARNING: Subroutine does not return
@@ -643,7 +643,7 @@ void FUN_180060fc0(longlong *param_1,longlong *param_2)
       param_1[7] = lVar7;
       param_1[8] = lVar7 + 0x100;
     }
-    uVar10 = FUN_18062b420(_DAT_180c8ed18,0x100,(char)param_1[10]);
+    uVar10 = FUN_18062b420(system_memory_pool_ptr,0x100,(char)param_1[10]);
     *(uint64_t *)(param_1[9] + 8) = uVar10;
     *(longlong **)param_1[6] = param_2;
     lVar7 = param_1[9];
@@ -694,8 +694,8 @@ void FUN_1800611a0(longlong param_1,longlong *param_2,uint64_t param_3,uint64_t 
   *(int *)(param_1 + 0x140) = *(int *)(param_1 + 0x140) + 1;
   UNLOCK();
   puVar1 = *(uint64_t **)(param_1 + 0x1f0);
-  lVar2 = *(longlong *)(_DAT_180c82868 + 0x10);
-  lVar3 = *(longlong *)(_DAT_180c82868 + 8);
+  lVar2 = *(longlong *)(system_context_ptr + 0x10);
+  lVar3 = *(longlong *)(system_context_ptr + 8);
   do {
     iVar4 = ReleaseSemaphore(*puVar1,lVar2 - lVar3 >> 3 & 0xffffffff,0,param_4,uVar6,lVar5,uVar7);
   } while (iVar4 == 0);
@@ -827,17 +827,17 @@ void 初始化线程池资源(uint64_t param1,longlong config_ptr)
   int8_t auStack_138 [256];
   ulonglong uStack_38;
   
-  lVar2 = _DAT_180c86928;
-  lVar1 = _DAT_180c82868;
+  lVar2 = system_message_context;
+  lVar1 = system_context_ptr;
   uStack_1b8 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_268;
-  lStack_210 = _DAT_180c86928;
+  lStack_210 = system_message_context;
   puStack_1a8 = &unknown_var_7512_ptr;
   puStack_1a0 = auStack_190;
   auStack_190[0] = 0;
   uStack_198 = 6;
   strcpy_s(auStack_190,0x10,&unknown_var_9216_ptr);
-  puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x208,8,3);
+  puVar3 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x208,8,3);
   lStack_248 = lVar1 + 0x70;
   puStack_238 = puVar3;
   FUN_18020e0e0(puVar3,&puStack_1a8,3,lVar1 + 0x2e0);
@@ -847,7 +847,7 @@ void 初始化线程池资源(uint64_t param1,longlong config_ptr)
   FUN_18005ea90(lVar1 + 0x48,&puStack_238);
   *(uint64_t **)(lVar2 + 400) = puVar3;
   puStack_1a8 = &unknown_var_720_ptr;
-  FUN_180627e10(_DAT_180c86870 + 0x170,auStack_230,&system_buffer_c8c8);
+  FUN_180627e10(system_main_module_state + 0x170,auStack_230,&system_buffer_c8c8);
   if (0 < *(int *)(param_2 + 0x10)) {
     FUN_1806277c0(auStack_230,uStack_220 + *(int *)(param_2 + 0x10));
                     // WARNING: Subroutine does not return
@@ -886,9 +886,9 @@ void 处理线程池任务类型4(longlong *task_ptr)
   longlong *plStackX_18;
   longlong *plStackX_20;
   
-  lVar3 = _DAT_180c86928;
+  lVar3 = system_message_context;
   plStackX_8 = param_1;
-  uVar4 = FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3,0xfffffffffffffffe);
+  uVar4 = FUN_18062b1e0(system_memory_pool_ptr,0x70,8,3,0xfffffffffffffffe);
   plVar5 = (longlong *)FUN_1800636f0(uVar4,0,lVar3);
   plStackX_18 = plVar5;
   if (plVar5 != (longlong *)0x0) {
@@ -902,7 +902,7 @@ void 处理线程池任务类型4(longlong *task_ptr)
     (**(code **)(*plVar5 + 0x28))(plVar5);
   }
   (*pcVar2)(puVar1,&plStackX_8);
-  uVar4 = FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3);
+  uVar4 = FUN_18062b1e0(system_memory_pool_ptr,0x70,8,3);
   plVar6 = (longlong *)FUN_1800636f0(uVar4,4,lVar3);
   plStackX_20 = plVar6;
   if (plVar6 != (longlong *)0x0) {
@@ -916,7 +916,7 @@ void 处理线程池任务类型4(longlong *task_ptr)
     (**(code **)(*plVar6 + 0x28))(plVar6);
   }
   (*pcVar2)(puVar1,&plStackX_8);
-  uVar4 = FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3);
+  uVar4 = FUN_18062b1e0(system_memory_pool_ptr,0x70,8,3);
   plVar7 = (longlong *)FUN_1800636f0(uVar4,0,lVar3);
   if (plVar7 != (longlong *)0x0) {
     pplStackX_10 = (longlong **)plVar7;
@@ -971,9 +971,9 @@ void 处理线程池任务类型3(longlong *task_ptr)
   longlong *plStackX_18;
   longlong *plStackX_20;
   
-  lVar3 = _DAT_180c86928;
+  lVar3 = system_message_context;
   plStackX_8 = param_1;
-  uVar4 = FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3,0xfffffffffffffffe);
+  uVar4 = FUN_18062b1e0(system_memory_pool_ptr,0x70,8,3,0xfffffffffffffffe);
   plVar5 = (longlong *)FUN_1800636f0(uVar4,0,lVar3);
   plStackX_18 = plVar5;
   if (plVar5 != (longlong *)0x0) {
@@ -987,7 +987,7 @@ void 处理线程池任务类型3(longlong *task_ptr)
     (**(code **)(*plVar5 + 0x28))(plVar5);
   }
   (*pcVar2)(puVar1,&plStackX_8);
-  uVar4 = FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3);
+  uVar4 = FUN_18062b1e0(system_memory_pool_ptr,0x70,8,3);
   plVar6 = (longlong *)FUN_1800636f0(uVar4,3,lVar3);
   plStackX_20 = plVar6;
   if (plVar6 != (longlong *)0x0) {
@@ -1001,7 +1001,7 @@ void 处理线程池任务类型3(longlong *task_ptr)
     (**(code **)(*plVar6 + 0x28))(plVar6);
   }
   (*pcVar2)(puVar1,&plStackX_8);
-  uVar4 = FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3);
+  uVar4 = FUN_18062b1e0(system_memory_pool_ptr,0x70,8,3);
   plVar7 = (longlong *)FUN_1800636f0(uVar4,0,lVar3);
   if (plVar7 != (longlong *)0x0) {
     pplStackX_10 = (longlong **)plVar7;
@@ -1163,10 +1163,10 @@ void 处理线程池任务类型6(longlong *task_ptr)
   longlong *plStackX_10;
   longlong **pplStackX_18;
   
-  lVar3 = _DAT_180c86928;
-  if (*(char *)(_DAT_180c86928 + 0x18) != '\0') {
+  lVar3 = system_message_context;
+  if (*(char *)(system_message_context + 0x18) != '\0') {
     plStackX_8 = param_1;
-    uVar4 = FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3,0xfffffffffffffffe);
+    uVar4 = FUN_18062b1e0(system_memory_pool_ptr,0x70,8,3,0xfffffffffffffffe);
     plVar5 = (longlong *)FUN_1800636f0(uVar4,6,lVar3);
     plStackX_10 = plVar5;
     if (plVar5 != (longlong *)0x0) {
@@ -1213,7 +1213,7 @@ void 初始化时间相关资源(void)
   uStack_178 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_208;
   uStack_1d8 = 0;
-  uStack_180 = _DAT_180c86928;
+  uStack_180 = system_message_context;
   uStack_190 = _time64(0);
   uStack_188 = _localtime64(&uStack_190);
                     // WARNING: Subroutine does not return

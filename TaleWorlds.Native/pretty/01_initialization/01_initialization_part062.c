@@ -73,7 +73,7 @@ void process_buffer_with_offset(void* context, longlong buffer_base)
         *buffer_ptr = 0;
       }
       else {
-        alloc_ptr = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, (longlong)char_val * 4);
+        alloc_ptr = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, (longlong)char_val * 4);
         *buffer_ptr = (longlong)alloc_ptr;
       }
     }
@@ -148,7 +148,7 @@ void process_buffer_with_offset(void* context, longlong buffer_base)
     }
     
     // 获取全局缓冲区指针
-    uint_ptr = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 + _DAT_180c86890 + 0x9d0);
+    uint_ptr = (uint *)((longlong)*(int *)(system_parameter_buffer + 0xc20) * 0x128 + system_parameter_buffer + 0x9d0);
     if (capacity == 0) {
       array_size = (int)char_val - 1;
     }
@@ -172,7 +172,7 @@ void process_buffer_with_offset(void* context, longlong buffer_base)
           temp_counter = (int)block_start;
           if (*(longlong *)temp_uint_ptr == 0) {
             // 分配新的内存块
-            mem_ptr = FUN_18062b420(_DAT_180c8ed18, 0x2000, 0x25);
+            mem_ptr = FUN_18062b420(system_memory_pool_ptr, 0x2000, 0x25);
             LOCK();
             is_allocated = *(longlong *)(uint_ptr + (longlong)temp_counter * 2 + 2) == 0;
             if (is_allocated) {
@@ -286,7 +286,7 @@ void initialize_buffer_data(void* context, ulonglong size)
       *buffer_ptr = 0;
     }
     else {
-      alloc_ptr = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, (longlong)(char)buffer_count * 4);
+      alloc_ptr = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, (longlong)(char)buffer_count * 4);
       *buffer_ptr = (longlong)alloc_ptr;
     }
   }
@@ -360,7 +360,7 @@ void initialize_buffer_data(void* context, ulonglong size)
   }
   
   // 获取全局缓冲区指针
-  global_ptr = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 + _DAT_180c86890 + 0x9d0);
+  global_ptr = (uint *)((longlong)*(int *)(system_parameter_buffer + 0xc20) * 0x128 + system_parameter_buffer + 0x9d0);
   if (array_size == 0) {
     remaining_size = 0xffffffff;
   }
@@ -384,7 +384,7 @@ void initialize_buffer_data(void* context, ulonglong size)
         temp_counter = (int)block_start;
         if (*(longlong *)block_ptr == 0) {
           // 分配新的内存块
-          mem_ptr = FUN_18062b420(_DAT_180c8ed18, 0x2000, 0x25);
+          mem_ptr = FUN_18062b420(system_memory_pool_ptr, 0x2000, 0x25);
           LOCK();
           is_allocated = *(longlong *)(global_ptr + (longlong)temp_counter * 2 + 2) == 0;
           if (is_allocated) {
@@ -498,7 +498,7 @@ void process_buffer_with_size(void* context, int size_param, ulonglong data_size
       *buffer_ptr = 0;
     }
     else {
-      alloc_ptr = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, (longlong)(char)ebx_val * 4);
+      alloc_ptr = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, (longlong)(char)ebx_val * 4);
       *buffer_ptr = (longlong)alloc_ptr;
     }
   }
@@ -572,7 +572,7 @@ void process_buffer_with_size(void* context, int size_param, ulonglong data_size
   }
   
   // 获取全局缓冲区指针
-  global_ptr = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 + _DAT_180c86890 + 0x9d0);
+  global_ptr = (uint *)((longlong)*(int *)(system_parameter_buffer + 0xc20) * 0x128 + system_parameter_buffer + 0x9d0);
   if (array_size == 0) {
     remaining_size = 0xffffffff;
   }
@@ -596,7 +596,7 @@ void process_buffer_with_size(void* context, int size_param, ulonglong data_size
         temp_counter = (int)block_start;
         if (*(longlong *)block_ptr == 0) {
           // 分配新的内存块
-          mem_ptr = FUN_18062b420(_DAT_180c8ed18, 0x2000, 0x25);
+          mem_ptr = FUN_18062b420(system_memory_pool_ptr, 0x2000, 0x25);
           LOCK();
           is_allocated = *(longlong *)(global_ptr + (longlong)temp_counter * 2 + 2) == 0;
           if (is_allocated) {
@@ -700,7 +700,7 @@ void allocate_and_copy_buffer(void* context, uint *global_buffer, uint data_size
       block_index = (int)block_start;
       if (*(longlong *)block_ptr == 0) {
         // 分配新的内存块
-        mem_ptr = FUN_18062b420(_DAT_180c8ed18, 0x2000, 0x25);
+        mem_ptr = FUN_18062b420(system_memory_pool_ptr, 0x2000, 0x25);
         LOCK();
         is_allocated = *(longlong *)(global_buffer + (longlong)block_index * 2 + 2) == 0;
         if (is_allocated) {
@@ -905,7 +905,7 @@ void create_and_initialize_object(uint64_t param_1, uint64_t param_2, uint64_t p
   longlong *instance_ptr;
   
   // 创建对象
-  object_ptr = FUN_18062b1e0(_DAT_180c8ed18, 0xf0, 8, 3, 0xfffffffffffffffe);
+  object_ptr = FUN_18062b1e0(system_memory_pool_ptr, 0xf0, 8, 3, 0xfffffffffffffffe);
   instance_ptr = (longlong *)FUN_18007f2f0(object_ptr);
   
   if (instance_ptr != (longlong *)0x0) {

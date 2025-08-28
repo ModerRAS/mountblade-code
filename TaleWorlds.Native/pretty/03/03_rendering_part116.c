@@ -266,7 +266,7 @@ void RenderingSystem_AdvancedSerializeData(longlong *render_context, longlong da
         if (offset == 0) {
           offset = 1;
 LAB_180338b93:
-          qword_ptr3 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, offset << 6, (char)render_context[0x2d]);
+          qword_ptr3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, offset << 6, (char)render_context[0x2d]);
           qword_ptr2 = (uint64_t *)*flag_ptr;
           qword_ptr = (uint64_t *)render_context[0x2b];
         }
@@ -311,7 +311,7 @@ LAB_180338b93:
       array_size = 0;
     }
     else {
-      array_size = FUN_18062b420(_DAT_180c8ed18, total_size, (char)render_context[0x31]);
+      array_size = FUN_18062b420(system_memory_pool_ptr, total_size, (char)render_context[0x31]);
       offset = render_context[0x2e];
     }
     if (offset != render_context[0x2f]) {
@@ -339,7 +339,7 @@ LAB_180338b93:
         if ((longlong)byte_ptr3 - (longlong)byte_ptr2 == 0) {
           offset = 1;
 LAB_180338d21:
-          byte_ptr = (int8_t *)FUN_18062b420(_DAT_180c8ed18, offset, (char)render_context[0x31]);
+          byte_ptr = (int8_t *)FUN_18062b420(system_memory_pool_ptr, offset, (char)render_context[0x31]);
           byte_ptr2 = (int8_t *)render_context[0x2e];
           byte_ptr3 = (int8_t *)render_context[0x2f];
         }

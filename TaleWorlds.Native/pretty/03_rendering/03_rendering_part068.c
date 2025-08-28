@@ -92,7 +92,7 @@ void rendering_system_initialize_render_context(longlong render_context, longlon
         do {
           system_state = *resource_manager;
           if (*(longlong *)(system_state + 0x90) - *(longlong *)(system_state + 0x88) >> 3 != 0) {
-            system_state = *(longlong *)(_DAT_180c86870 + 0x3d8);
+            system_state = *(longlong *)(system_main_module_state + 0x3d8);
             if ((system_state == 0) ||
                ((*(int *)(system_state + 0x110) != 2 && ((system_state == 0 || (*(int *)(system_state + 0x110) != 3))))))
             {
@@ -104,7 +104,7 @@ void rendering_system_initialize_render_context(longlong render_context, longlon
             LOCK();
             *(int32_t *)(system_state + 0xa8) = 0;
             UNLOCK();
-            system_state = *(longlong *)(_DAT_180c86870 + 0x3d8);
+            system_state = *(longlong *)(system_main_module_state + 0x3d8);
             if ((system_state == 0) || (*(int *)(system_state + 0x110) != 1)) {
               priority_levels[0] = 1;
               priority_levels[1] = 10;
@@ -160,7 +160,7 @@ void rendering_system_initialize_render_context(longlong render_context, longlon
             entry_point = FUN_1803089a0;
             exit_handler = &unknown_var_1888_ptr;
             queue_capacity = render_context;
-            resource_table[0] = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x38, 8, system_allocation_flags);
+            resource_table[0] = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, 0x38, 8, system_allocation_flags);
             *resource_table[0] = (longlong)render_target;
             resource_table[0][1] = (longlong)visibility_flag;
             resource_table[0][2] = (longlong)quality_parameter;
@@ -180,7 +180,7 @@ void rendering_system_initialize_render_context(longlong render_context, longlon
       if (lock_result != 0) {
         __Throw_C_error_std__YAXH_Z(lock_result);
       }
-      if (*(char *)(_DAT_180c86870 + 0xf9) == '\0') {
+      if (*(char *)(system_main_module_state + 0xf9) == '\0') {
         *(int32_t *)(queue_size + 0x124b8) = 0;
       }
       else {
@@ -277,7 +277,7 @@ LAB_1803066f9:
         UNLOCK();
         priority_bits = render_flags >> 0xb;
         if (*(longlong *)(render_context + 0x80 + (ulonglong)priority_bits * 8) == 0) {
-          allocated_memory = FUN_18062b420(_DAT_180c8ed18,0x4000,0x25);
+          allocated_memory = FUN_18062b420(system_memory_pool_ptr,0x4000,0x25);
           render_buffer = (longlong *)(render_context + 0x80 + (ulonglong)priority_bits * 8);
           LOCK();
           allocation_success = *render_buffer == 0;
@@ -406,7 +406,7 @@ LAB_1803066f9:
       UNLOCK();
       priority_bits = render_flags >> 0xb;
       if (*(longlong *)(render_context + 0x80 + (ulonglong)priority_bits * 8) == 0) {
-        allocated_memory = FUN_18062b420(_DAT_180c8ed18,0x4000,0x25);
+        allocated_memory = FUN_18062b420(system_memory_pool_ptr,0x4000,0x25);
         render_buffer = (longlong *)(render_context + 0x80 + (ulonglong)priority_bits * 8);
         LOCK();
         allocation_success = *render_buffer == 0;

@@ -33,10 +33,10 @@
 #define BUFFER_SIZE_48 48                      // 48字节缓冲区
 
 // 全局变量引用
-extern uint64_t _DAT_180c8ed18;     // 内存管理器实例
-extern uint64_t _DAT_180c8ed48;     // 性能计数器基准时间
-extern double _DAT_180c8ed50;          // 性能计数器频率
-extern uint64_t _DAT_180c8ed58;     // 性能计数器状态
+extern uint64_t system_memory_pool_ptr;     // 内存管理器实例
+extern uint64_t render_system_data_config;     // 性能计数器基准时间
+extern double render_system_data_config;          // 性能计数器频率
+extern uint64_t render_system_data_config;     // 性能计数器状态
 extern uint64_t GET_SECURITY_COOKIE();     // 安全检查cookie
 
 // 函数别名定义
@@ -229,7 +229,7 @@ longlong * FindResourceInHashTable(longlong param_1, longlong *param_2, uint64_t
       // 哈希表中不存在该资源，执行插入操作
       FUN_18066c220(param_1 + 0x20, acStackX_8, (ulonglong)*(uint *)(param_1 + 0x10),
                     *(int32_t *)(param_1 + 0x18), 1);
-      lVar7 = FUN_18062b420(_DAT_180c8ed18, 0x30, *(int8_t *)(param_1 + 0x2c));
+      lVar7 = FUN_18062b420(system_memory_pool_ptr, 0x30, *(int8_t *)(param_1 + 0x2c));
       lStackX_10 = lVar7;
       FUN_180627ae0(lVar7);
       
@@ -327,7 +327,7 @@ void CopyResourcePoolData(longlong *param_1, uint64_t param_2, uint64_t param_3,
   
   // 分配新的资源池内存
   if (lVar10 != 0) {
-    lVar5 = FUN_18062b420(_DAT_180c8ed18, lVar10 * RESOURCE_POOL_SIZE, uVar1 & 0xff, param_4,
+    lVar5 = FUN_18062b420(system_memory_pool_ptr, lVar10 * RESOURCE_POOL_SIZE, uVar1 & 0xff, param_4,
                           0xfffffffffffffffe, 0, 0, 0, uVar1);
   }
   
@@ -408,7 +408,7 @@ void InitializeResourcePool(longlong param_1, longlong param_2)
   uint64_t uVar1;
   
   // 分配资源池内存（8字节对齐）
-  uVar1 = FUN_18062b1e0(_DAT_180c8ed18, param_2 * 8 + 8, 8, *(int8_t *)(param_1 + 0x2c));
+  uVar1 = FUN_18062b1e0(system_memory_pool_ptr, param_2 * 8 + 8, 8, *(int8_t *)(param_1 + 0x2c));
   // 零初始化分配的内存（不返回的函数调用）
   memset(uVar1, 0, param_2 * 8);
 }
@@ -431,7 +431,7 @@ void AllocateResourceMemory(uint64_t param_1, longlong param_2)
   uint64_t uVar1;
   
   // 分配内存（8字节对齐）
-  uVar1 = FUN_18062b1e0(_DAT_180c8ed18, param_2 * 8 + 8, 8);
+  uVar1 = FUN_18062b1e0(system_memory_pool_ptr, param_2 * 8 + 8, 8);
   // 零初始化分配的内存（不返回的函数调用）
   memset(uVar1, 0, param_2 * 8);
 }
@@ -612,7 +612,7 @@ void InsertResourceIntoPool(uint64_t *param_1, longlong param_2, uint64_t param_
   
   // 分配新的资源池内存
   puVar2 = (uint64_t *)
-           FUN_18062b420(_DAT_180c8ed18, lVar9 * RESOURCE_POOL_SIZE, *(int8_t *)(param_1 + 3), param_4,
+           FUN_18062b420(system_memory_pool_ptr, lVar9 * RESOURCE_POOL_SIZE, *(int8_t *)(param_1 + 3), param_4,
                          0xfffffffffffffffe);
   
   puVar7 = (uint64_t *)param_1[1];
@@ -727,10 +727,10 @@ InitializePerformanceCounter(uint64_t *param_1, uint64_t param_2, uint64_t param
   
   puVar7 = (int32_t *)*plVar1;
   param_1[2] = puVar7;
-  lVar8 = _DAT_180c8ed58;
+  lVar8 = render_system_data_config;
   
   // 获取性能计数器基准时间
-  if (_DAT_180c8ed58 == 0) {
+  if (render_system_data_config == 0) {
     plStackX_10 = plVar1;
     QueryPerformanceCounter(alStackX_18, param_2, param_3, param_4, 0xfffffffffffffffe);
     puVar7 = (int32_t *)param_1[2];
@@ -738,7 +738,7 @@ InitializePerformanceCounter(uint64_t *param_1, uint64_t param_2, uint64_t param
   }
   
   // 计算时间缩放因子
-  dVar3 = (double)(lVar8 - _DAT_180c8ed48) * _DAT_180c8ed50;
+  dVar3 = (double)(lVar8 - render_system_data_config) * render_system_data_config;
   plStackX_10 = (longlong *)0x1000ffffff87;
   uStack_44 = uStack_44 & 0xffffff00;
   dVar2 = dVar3 - 1.0;
@@ -759,7 +759,7 @@ InitializePerformanceCounter(uint64_t *param_1, uint64_t param_2, uint64_t param
     puVar6 = (int32_t *)*plVar1;
     lVar4 = (longlong)puVar7 - (longlong)puVar6 >> 5;
     if ((lVar4 == 0) || (lVar8 = lVar4 * 2, lVar8 != 0)) {
-      puVar5 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, lVar8 << 5, *(int8_t *)(param_1 + 4));
+      puVar5 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, lVar8 << 5, *(int8_t *)(param_1 + 4));
       puVar7 = (int32_t *)param_1[2];
       puVar6 = (int32_t *)*plVar1;
     }
@@ -852,12 +852,12 @@ void UpdatePerformanceMetrics(longlong param_1, int *param_2, double param_3)
   }
   
   // 获取当前时间戳
-  lVar3 = _DAT_180c8ed58;
-  if (_DAT_180c8ed58 == 0) {
+  lVar3 = render_system_data_config;
+  if (render_system_data_config == 0) {
     QueryPerformanceCounter(&lStackX_8);
     lVar3 = lStackX_8;
   }
-  dVar11 = (double)(lVar3 - _DAT_180c8ed48) * _DAT_180c8ed50;
+  dVar11 = (double)(lVar3 - render_system_data_config) * render_system_data_config;
   
   // 更新性能状态
   FUN_1805f7390(param_1);
@@ -949,12 +949,12 @@ void UpdatePerformanceMetricsEx(uint64_t param_1, longlong param_2, double param
   }
   
   // 获取当前时间戳
-  lVar2 = _DAT_180c8ed58;
-  if (_DAT_180c8ed58 == 0) {
+  lVar2 = render_system_data_config;
+  if (render_system_data_config == 0) {
     QueryPerformanceCounter(&stack0x00000040);
     lVar2 = in_stack_00000040;
   }
-  dVar9 = (double)(lVar2 - _DAT_180c8ed48) * _DAT_180c8ed50;
+  dVar9 = (double)(lVar2 - render_system_data_config) * render_system_data_config;
   
   // 更新性能状态
   FUN_1805f7390();
@@ -1032,12 +1032,12 @@ void UpdatePerformanceMetricsAlt(uint64_t param_1, uint64_t param_2, longlong pa
   }
   
   // 获取当前时间戳
-  lVar2 = _DAT_180c8ed58;
-  if (_DAT_180c8ed58 == 0) {
+  lVar2 = render_system_data_config;
+  if (render_system_data_config == 0) {
     QueryPerformanceCounter(&stack0x00000040);
     lVar2 = in_stack_00000040;
   }
-  dVar7 = (double)(lVar2 - _DAT_180c8ed48) * _DAT_180c8ed50;
+  dVar7 = (double)(lVar2 - render_system_data_config) * render_system_data_config;
   
   // 更新性能状态
   FUN_1805f7390();
@@ -1114,12 +1114,12 @@ void CalculateTimeDelta(double param_1, double param_2, double param_3)
   }
   
   // 获取当前时间戳
-  lVar2 = _DAT_180c8ed58;
-  if (_DAT_180c8ed58 == 0) {
+  lVar2 = render_system_data_config;
+  if (render_system_data_config == 0) {
     QueryPerformanceCounter(&stack0x00000040);
     lVar2 = in_stack_00000040;
   }
-  dVar7 = (double)(lVar2 - _DAT_180c8ed48) * _DAT_180c8ed50;
+  dVar7 = (double)(lVar2 - render_system_data_config) * render_system_data_config;
   
   // 更新性能状态
   FUN_1805f7390();
@@ -1298,15 +1298,15 @@ void ProcessResourceUpdateLoop(longlong param_1)
             iVar7 = (int)uVar8;
             lVar6 = *(longlong *)(uVar9 + lVar6);
             if (*(char *)(lVar6 + 0x31) == '\0') {
-              lVar2 = _DAT_180c8ed58;
-              if (_DAT_180c8ed58 == 0) {
+              lVar2 = render_system_data_config;
+              if (render_system_data_config == 0) {
                 QueryPerformanceCounter(&lStack_140);
                 lVar2 = lStack_140;
               }
               
               // 检查资源是否过期
               if (*(double *)(lVar6 + 0x20) + 20.0 <
-                  (double)(lVar2 - _DAT_180c8ed48) * _DAT_180c8ed50) {
+                  (double)(lVar2 - render_system_data_config) * render_system_data_config) {
                 FUN_18055c930(param_1, uVar8, 1);
                 iVar7 = iVar7 + -1;
                 uVar9 = uVar9 - 8;

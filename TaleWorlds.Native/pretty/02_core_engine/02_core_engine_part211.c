@@ -53,7 +53,7 @@ void process_string_search_and_scoring(uint64_t param_1, longlong param_2, longl
   puStack_118 = (ulonglong *)0x0;
   puStack_110 = (ulonglong *)0x0;
   uStack_108 = 3;
-  lVar8 = (*(longlong *)(_DAT_180c8a9f8 + 0x3a8) - *(longlong *)(_DAT_180c8a9f8 + 0x3a0)) / 0x348;
+  lVar8 = (*(longlong *)(core_system_data_config + 0x3a8) - *(longlong *)(core_system_data_config + 0x3a0)) / 0x348;
   uStack_140 = uStack_140 & 0xffffffff00000000;
   puVar11 = puStack_120;
   lStack_138 = param_3;
@@ -67,7 +67,7 @@ void process_string_search_and_scoring(uint64_t param_1, longlong param_2, longl
     puVar14 = puVar10;
     do {
       iVar13 = (int)puVar6;
-      lVar12 = (longlong)iVar13 * 0x348 + *(longlong *)(_DAT_180c8a9f8 + 0x3a0);
+      lVar12 = (longlong)iVar13 * 0x348 + *(longlong *)(core_system_data_config + 0x3a0);
       puStack_160 = &unknown_var_3456_ptr;
       uStack_148 = 0;
       puStack_158 = (int8_t *)0x0;
@@ -149,7 +149,7 @@ void process_string_search_and_scoring(uint64_t param_1, longlong param_2, longl
             lVar8 = 1;
 LAB_18018e486:
             // 动态内存分配
-            puVar6 = (ulonglong *)FUN_18062b420(_DAT_180c8ed18, lVar8 * 8, 3);
+            puVar6 = (ulonglong *)FUN_18062b420(system_memory_pool_ptr, lVar8 * 8, 3);
           }
           else {
             lVar8 = lVar8 * 2;
@@ -247,7 +247,7 @@ LAB_18018e486:
   lVar8 = lStack_138;
   // 调用结果处理函数
   FUN_18018e7e0(param_2, (longlong)*(int *)((longlong)puVar11 + 4) * 0x348 +
-                        *(longlong *)(_DAT_180c8a9f8 + 0x3a0));
+                        *(longlong *)(core_system_data_config + 0x3a0));
   uStack_130 = 1;
   alStack_e8[0] = 3;
   alStack_e8[1] = 0x200000001;

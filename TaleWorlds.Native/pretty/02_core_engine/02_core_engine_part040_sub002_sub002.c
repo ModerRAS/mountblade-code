@@ -1220,6 +1220,6 @@ LAB_UPDATE_BONE_MAPPING:
 }
 
 // 常量定义
-#define VERTEX_INDEX_ALLOCATOR _DAT_180c8ed18
-#define MATRIX_ALLOCATOR _DAT_180c8ed18
-#define ZERO_VECTOR _DAT_180a001d0
+#define VERTEX_INDEX_ALLOCATOR system_memory_pool_ptr
+#define MATRIX_ALLOCATOR system_memory_pool_ptr
+#define ZERO_VECTOR core_system_temp_pointer

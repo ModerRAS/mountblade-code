@@ -642,10 +642,10 @@ uint64_t * render_system_advanced_resource_manager(uint64_t *resource_context, u
   
   temp_var4 = 0xfffffffffffffffe;
   *resource_context = &unknown_var_4072_ptr;
-  resource_table = _DAT_180c8a980;
+  resource_table = render_system_data_texture;
   resource_indices[0] = *(int *)(resource_context + 2);
   resource_ptr = (longlong)resource_indices[0];
-  lock_address = _DAT_180c8a980 + 0x2b8;
+  lock_address = render_system_data_texture + 0x2b8;
   lock_handle = lock_address;
   // 获取独占锁
   AcquireSRWLockExclusive(lock_address);
@@ -747,7 +747,7 @@ int * render_system_memory_allocator(int *memory_context, int *allocation_result
     block_size = *(longlong *)(memory_context + 4);
     if ((block_size == 0) || (*(int *)(block_size + 0x14) + *(int *)(block_size + 0x10) != total_size)) {
       // 创建新的内存块
-      new_block = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x18, 8, CONCAT71((uint7)(uint3)((uint)total_size >> 8), 3), temp_var9);
+      new_block = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x18, 8, CONCAT71((uint7)(uint3)((uint)total_size >> 8), 3), temp_var9);
       *new_block = 0;
       new_block[1] = 0;
       *(int32_t *)(new_block + 2) = 0;
@@ -820,7 +820,7 @@ void render_system_memory_block_manager(longlong memory_context, uint64_t block_
       last_block = *(longlong *)(memory_context + 0x10);
       if (last_block == 0) {
         // 创建新的内存块
-        new_block = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x18, 8, 3, temp_var8);
+        new_block = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x18, 8, 3, temp_var8);
         *(int *)((longlong)new_block + 0x14) = mutex_result;
         *(int *)(new_block + 2) = stack_size;
         *new_block = 0;
@@ -835,7 +835,7 @@ LAB_18030a65e:
       }
       else {
         // 创建新的块并链接
-        new_block = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x18, 8, 3, temp_var8);
+        new_block = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x18, 8, 3, temp_var8);
         new_block[1] = 0;
         *(int *)((longlong)new_block + 0x14) = mutex_result;
         *(int *)(new_block + 2) = stack_size;
@@ -857,7 +857,7 @@ LAB_18030a662:
       if (next_block == (longlong *)0x0) {
         if (stack_size + mutex_result != block_index) {
           // 创建新的块
-          new_block = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x18, 8, 3, temp_var8);
+          new_block = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x18, 8, 3, temp_var8);
           *(int *)((longlong)new_block + 0x14) = mutex_result;
           *(int *)(new_block + 2) = stack_size;
           *new_block = current_block;
@@ -896,7 +896,7 @@ LAB_18030a662:
         }
         else {
           // 在块之间插入新块
-          new_block = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x18, 8, 3, temp_var8);
+          new_block = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x18, 8, 3, temp_var8);
           *(int *)((longlong)new_block + 0x14) = mutex_result;
           *(int *)(new_block + 2) = stack_size;
           *new_block = current_block;

@@ -14,8 +14,8 @@
 #define RENDERER_LOCK_TABLE           (&unknown_var_9288_ptr)
 #define RENDER_STATE_NULL             (&unknown_var_720_ptr)
 #define RENDER_MATERIAL_TABLE         (&unknown_var_3456_ptr)
-#define RENDER_SPECIAL_TABLE          (_DAT_180c86930)
-#define RENDER_ALLOC_TABLE            (_DAT_180c8ed18)
+#define RENDER_SPECIAL_TABLE          (system_resource_state)
+#define RENDER_ALLOC_TABLE            (system_memory_pool_ptr)
 #define RENDER_CHECK_FUNCTION         (&unknown_var_9120_ptr)
 
 // 函数别名定义

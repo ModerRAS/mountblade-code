@@ -740,7 +740,7 @@ config_complete:
                         if ((temp_mask & mask_bit) != 0) {
                             // 处理每个掩码位
                             void* mask_processor = &unknown_var_3456_ptr;
-                            void* mask_data = FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+                            void* mask_data = FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
                             
                             *(char*)mask_data = 0;
                             uint32_t mask_hash = FUN_18064e990(mask_data);

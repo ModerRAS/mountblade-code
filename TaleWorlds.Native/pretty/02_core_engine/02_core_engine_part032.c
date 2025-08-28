@@ -214,7 +214,7 @@ int process_resource_hash_table_operations(longlong param_1, longlong *param_2)
     plVar1 = param_2 + 5;
     lVar9 = param_2[7] - *plVar1;
     if ((ulonglong)(lVar9 / 0x18) < 0x100) {
-        lVar7 = FUN_18062b420(_DAT_180c8ed18,0x1800,(char)param_2[8]);
+        lVar7 = FUN_18062b420(system_memory_pool_ptr,0x1800,(char)param_2[8]);
         lVar9 = *plVar1;
         if (lVar9 != param_2[6]) {
                     // WARNING: 此函数不会返回
@@ -317,14 +317,14 @@ ulonglong update_resource_status_manager(longlong param_1)
     
     if (*(longlong *)(param_1 + 0x1b8) != 0) {
         lVar6 = 0xb8;
-        lVar5 = _DAT_180c86870;
+        lVar5 = system_main_module_state;
         do {
             lVar3 = *(longlong *)(lVar6 + *(longlong *)(param_1 + 0x1b8));
             if ((((lVar3 != 0) && (*(longlong *)(*(longlong *)(param_1 + 0x1b8) + 0x328 + lVar6) == 0)) &&
                 ((*(uint *)(lVar3 + 0x328) & 0x20000000) == 0)) && (*(longlong *)(lVar3 + 0x370) == 0)) {
                 if (*(longlong *)(lVar3 + 0x1d8) == 0) {
                     FUN_18023b050(lVar3,0);
-                    lVar5 = _DAT_180c86870;
+                    lVar5 = system_main_module_state;
                     piVar1 = (int *)(*(longlong *)(lVar6 + *(longlong *)(param_1 + 0x1b8)) + 0x3a8);
                     *piVar1 = *piVar1 + 1;
                 }
@@ -572,7 +572,7 @@ uint64_t process_resource_loading_status(longlong param_1, longlong param_2)
                         uVar9 = uVar3 >> 10;
                         uVar14 = (ulonglong)uVar9;
                         if (*(longlong *)(lVar11 + 0x3f70 + (ulonglong)uVar9 * 8) == 0) {
-                            lVar10 = FUN_18062b420(_DAT_180c8ed18,0x2000,0x25);
+                            lVar10 = FUN_18062b420(system_memory_pool_ptr,0x2000,0x25);
                             plVar2 = (longlong *)(lVar11 + 0x3f70 + uVar14 * 8);
                             LOCK();
                             bVar16 = *plVar2 == 0;

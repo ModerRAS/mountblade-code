@@ -6,13 +6,13 @@
 
 // 全局变量引用
 extern uint64_t SYSTEM_STATE_MANAGER;  // 引擎配置数据
-extern uint64_t _DAT_180c8ed18;  // 引擎内存管理器
-extern uint64_t _DAT_180c82868;  // 引擎状态标志
-extern uint64_t _DAT_180c86870;  // 引擎主控制块
-extern uint64_t _DAT_180c86890;  // 引擎渲染状态
-extern uint64_t _DAT_180c868d0;  // 引擎设备信息
-extern uint64_t _DAT_180c86928;  // 引擎初始化参数
-extern uint64_t _DAT_180c86938;  // 引擎更新标志
+extern uint64_t system_memory_pool_ptr;  // 引擎内存管理器
+extern uint64_t system_context_ptr;  // 引擎状态标志
+extern uint64_t system_main_module_state;  // 引擎主控制块
+extern uint64_t system_parameter_buffer;  // 引擎渲染状态
+extern uint64_t core_system_data_render;  // 引擎设备信息
+extern uint64_t system_message_context;  // 引擎初始化参数
+extern uint64_t system_message_buffer;  // 引擎更新标志
 extern uint64_t SYSTEM_FILE_COUNTER_ADDR;  // 引擎文件句柄计数
 
 // 函数：初始化引擎状态
@@ -32,7 +32,7 @@ void initialize_engine_state(longlong *engine_context, int8_t init_flag)
     temp_context = engine_context;
     
     // 分配内存资源
-    memory_handle = allocate_engine_memory(_DAT_180c8ed18, 0xe0, 8, 3, 0xfffffffffffffffe);
+    memory_handle = allocate_engine_memory(system_memory_pool_ptr, 0xe0, 8, 3, 0xfffffffffffffffe);
     temp_context = &stack_data[0];
     
     // 设置初始化参数
@@ -48,13 +48,13 @@ void initialize_engine_state(longlong *engine_context, int8_t init_flag)
     // 创建引擎实例
     allocated_memory = (longlong *)create_engine_instance(memory_handle, &stack_data[0]);
     temp_context = allocated_memory;
-    config_data = _DAT_180c82868;
+    config_data = system_context_ptr;
     
     // 初始化引擎实例
     if (allocated_memory != (longlong *)0x0) {
         // 调用引擎初始化函数
         (**(code **)(*allocated_memory + 0x28))(allocated_memory);
-        config_data = _DAT_180c82868;
+        config_data = system_context_ptr;
         temp_context = allocated_memory;
         (**(code **)(*allocated_memory + 0x28))(allocated_memory);
         temp_context = temp_context;
@@ -118,7 +118,7 @@ uint64_t update_render_parameters(longlong *render_context)
         // 检查渲染模式
         if (*(int *)(render_config + 0x1ea0) != 2) {
             buffer_ptr = (void *)0x180103af0;
-            get_max_resolution(*(uint64_t *)(_DAT_180c86870 + 8), stack_params);
+            get_max_resolution(*(uint64_t *)(system_main_module_state + 8), stack_params);
             
             // 调整分辨率
             if ((int)stack_params[0] < resolution_x) {
@@ -130,8 +130,8 @@ uint64_t update_render_parameters(longlong *render_context)
         }
         
         // 设置渲染配置
-        render_config = _DAT_180c86870;
-        *(bool *)(_DAT_180c86870 + 0x3d5) = *(int *)(*render_context + 0x1f14) != *(int *)(*render_context + 0x1f10);
+        render_config = system_main_module_state;
+        *(bool *)(system_main_module_state + 0x3d5) = *(int *)(*render_context + 0x1f14) != *(int *)(*render_context + 0x1f10);
         *(int *)(render_config + 0x3cc) = resolution_x;
         *(int *)(render_config + 0x3d0) = resolution_y;
         *(int8_t *)(render_config + 0x3d4) = 1;
@@ -143,7 +143,7 @@ uint64_t update_render_parameters(longlong *render_context)
         
         // 初始化渲染管线
         buffer_ptr = &global_state_4713_ptr;
-        initialize_render_pipeline(_DAT_180c86928, &global_state_6584_ptr, resolution_x, resolution_y);
+        initialize_render_pipeline(system_message_context, &global_state_6584_ptr, resolution_x, resolution_y);
     }
     
     // 更新渲染配置
@@ -156,7 +156,7 @@ uint64_t update_render_parameters(longlong *render_context)
     }
     
     // 检查纹理启用状态
-    if ((*(longlong *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(render_config + 0x540) < 1)) {
+    if ((*(longlong *)(system_parameter_buffer + 0x7ab8) == 0) || (*(int *)(render_config + 0x540) < 1)) {
         enable_texture = *(int *)(render_config + 0x2140) != 0;
     } else {
         enable_texture = false;
@@ -164,7 +164,7 @@ uint64_t update_render_parameters(longlong *render_context)
     
     // 设置纹理质量
     if ((!enable_texture) || (*(int *)(render_config + 0x2144) == *(int *)(render_config + 0x2140))) {
-        if (((*(longlong *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(render_config + 0x540) < 1)) &&
+        if (((*(longlong *)(system_parameter_buffer + 0x7ab8) == 0) || (*(int *)(render_config + 0x540) < 1)) &&
             (*(int *)(render_config + 0x2140) == 0)) {
             quality_factor = *(float *)(render_config + 0x20d0);
         } else {
@@ -190,7 +190,7 @@ apply_texture_settings:
         ((*(int *)(render_config + 0x2144) != *(int *)(render_config + 0x2140) ||
           (*(int *)(render_config + 0x544) != *(int *)(render_config + 0x540))))) {
         buffer_ptr = (void *)0x180103c8e;
-        update_render_state(_DAT_180c86938);
+        update_render_state(system_message_buffer);
         render_config = *render_context;
     }
     
@@ -198,14 +198,14 @@ apply_texture_settings:
     if (*(int *)(render_config + 0x1b94) != *(int *)(render_config + 0x1b90)) {
         quality_factor = (float)*(int *)(render_config + 0x1b90);
         if (quality_factor <= 0.0) {
-            *(float *)(_DAT_180c86870 + 0x200) = 1.0 / (float)(int)SYSTEM_STATE_MANAGER[0x372];
+            *(float *)(system_main_module_state + 0x200) = 1.0 / (float)(int)SYSTEM_STATE_MANAGER[0x372];
         } else {
-            *(float *)(_DAT_180c86870 + 0x200) = 1.0 / quality_factor;
+            *(float *)(system_main_module_state + 0x200) = 1.0 / quality_factor;
         }
     }
     
     // 检查设备状态
-    if (-1 < *(int *)(*(longlong *)(_DAT_180c868d0 + 0x2018) + 0x330)) {
+    if (-1 < *(int *)(*(longlong *)(core_system_data_render + 0x2018) + 0x330)) {
         buffer_ptr = (void *)0x180103d14;
         check_device_status();
     }
@@ -218,7 +218,7 @@ apply_texture_settings:
     
     render_mode = 0;
     if ((void *)*SYSTEM_STATE_MANAGER == &global_state_2016_ptr) {
-        if ((SYSTEM_STATE_MANAGER[0x16] == 0) && (*(char *)(_DAT_180c86870 + 0x1f0) != '\0')) {
+        if ((SYSTEM_STATE_MANAGER[0x16] == 0) && (*(char *)(system_main_module_state + 0x1f0) != '\0')) {
             status_flag = '\x01';
         } else {
             status_flag = '\0';
@@ -295,7 +295,7 @@ void set_engine_configuration(void)
     
     // 检查渲染模式
     if (*(int *)(context_data + 0x1ea0) != 2) {
-        get_max_resolution(*(uint64_t *)(_DAT_180c86870 + 8), &stack_res_x);
+        get_max_resolution(*(uint64_t *)(system_main_module_state + 8), &stack_res_x);
         if (stack_res_x < resolution_y) {
             resolution_y = stack_res_x;
         }
@@ -305,8 +305,8 @@ void set_engine_configuration(void)
     }
     
     // 更新配置数据
-    config_data = _DAT_180c86870;
-    *(bool *)(_DAT_180c86870 + 0x3d5) = *(int *)(*context_data + 0x1f14) != *(int *)(*context_data + 0x1f10);
+    config_data = system_main_module_state;
+    *(bool *)(system_main_module_state + 0x3d5) = *(int *)(*context_data + 0x1f14) != *(int *)(*context_data + 0x1f10);
     *(int *)(config_data + 0x3cc) = resolution_y;
     *(int *)(config_data + 0x3d0) = resolution_x;
     *(int8_t *)(config_data + 0x3d4) = 1;
@@ -317,7 +317,7 @@ void set_engine_configuration(void)
     UNLOCK();
     
     // 初始化渲染管线
-    initialize_render_pipeline(_DAT_180c86928, &global_state_6584_ptr, resolution_y, resolution_x);
+    initialize_render_pipeline(system_message_context, &global_state_6584_ptr, resolution_y, resolution_x);
 }
 
 // 函数：处理引擎属性
@@ -351,7 +351,7 @@ uint64_t process_engine_properties(void)
     }
     
     // 检查纹理启用状态
-    if ((*(longlong *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(render_config + 0x540) < 1)) {
+    if ((*(longlong *)(system_parameter_buffer + 0x7ab8) == 0) || (*(int *)(render_config + 0x540) < 1)) {
         enable_texture = *(int *)(render_config + 0x2140) != 0;
     } else {
         enable_texture = false;
@@ -359,7 +359,7 @@ uint64_t process_engine_properties(void)
     
     // 设置纹理质量
     if ((!enable_texture) || (*(int *)(render_config + 0x2144) == *(int *)(render_config + 0x2140))) {
-        if (((*(longlong *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(render_config + 0x540) < 1)) &&
+        if (((*(longlong *)(system_parameter_buffer + 0x7ab8) == 0) || (*(int *)(render_config + 0x540) < 1)) &&
             (*(int *)(render_config + 0x2140) == 0)) {
             quality_factor = *(float *)(render_config + 0x20d0);
         } else {
@@ -385,7 +385,7 @@ apply_settings:
         ((*(int *)(render_config + 0x2144) != *(int *)(render_config + 0x2140) ||
           (*(int *)(render_config + 0x544) != *(int *)(render_config + 0x540))))) {
         buffer_ptr = (void *)0x180103c8e;
-        update_render_state(_DAT_180c86938);
+        update_render_state(system_message_buffer);
         render_config = *context_ptr;
     }
     
@@ -393,14 +393,14 @@ apply_settings:
     if (*(int *)(render_config + 0x1b94) != *(int *)(render_config + 0x1b90)) {
         quality_factor = (float)*(int *)(render_config + 0x1b90);
         if (quality_factor <= 0.0) {
-            *(float *)(_DAT_180c86870 + 0x200) = 1.0 / (float)(int)SYSTEM_STATE_MANAGER[0x372];
+            *(float *)(system_main_module_state + 0x200) = 1.0 / (float)(int)SYSTEM_STATE_MANAGER[0x372];
         } else {
-            *(float *)(_DAT_180c86870 + 0x200) = 1.0 / quality_factor;
+            *(float *)(system_main_module_state + 0x200) = 1.0 / quality_factor;
         }
     }
     
     // 检查设备状态
-    if (-1 < *(int *)(*(longlong *)(_DAT_180c868d0 + 0x2018) + 0x330)) {
+    if (-1 < *(int *)(*(longlong *)(core_system_data_render + 0x2018) + 0x330)) {
         buffer_ptr = (void *)0x180103d14;
         check_device_status();
     }
@@ -413,7 +413,7 @@ apply_settings:
     
     render_mode = 0;
     if ((void *)*SYSTEM_STATE_MANAGER == &global_state_2016_ptr) {
-        if ((SYSTEM_STATE_MANAGER[0x16] == 0) && (*(char *)(_DAT_180c86870 + 0x1f0) != '\0')) {
+        if ((SYSTEM_STATE_MANAGER[0x16] == 0) && (*(char *)(system_main_module_state + 0x1f0) != '\0')) {
             status_flag = '\x01';
         } else {
             status_flag = '\0';
@@ -578,8 +578,8 @@ void initialize_render_system(uint64_t renderer_instance, int render_mode)
     
 apply_mode_settings:
     // 获取显示信息
-    display_info = *(longlong *)(*(longlong *)(_DAT_180c86870 + 8) + 0x18);
-    screen_height = (int)((*(longlong *)(*(longlong *)(_DAT_180c86870 + 8) + 0x20) - display_info) / 0x70);
+    display_info = *(longlong *)(*(longlong *)(system_main_module_state + 8) + 0x18);
+    screen_height = (int)((*(longlong *)(*(longlong *)(system_main_module_state + 8) + 0x20) - display_info) / 0x70);
     
     // 确定屏幕分辨率
     if ((screen_height < 2) || (screen_height <= *(int *)(SYSTEM_STATE_MANAGER + 0x1f10))) {
@@ -732,7 +732,7 @@ void initialize_render_pipeline(longlong renderer_instance)
     temp_buffer[0] = 0;
     buffer_value = 0xb;
     strcpy_s(temp_buffer, 0x20, &global_state_8504_ptr);
-    config_found = read_config_value(_DAT_180c86870, &buffer_ptr);
+    config_found = read_config_value(system_main_module_state, &buffer_ptr);
     buffer_ptr = &global_state_720_ptr;
     
     if (config_found != '\0') {
@@ -800,7 +800,7 @@ void initialize_render_pipeline(longlong renderer_instance)
     config_buffer[0] = 0;
     temp_value = 0x14;
     strcpy_s(config_buffer, 0x20, &global_state_4960_ptr);
-    config_found = read_config_value(_DAT_180c86870, &temp_ptr);
+    config_found = read_config_value(system_main_module_state, &temp_ptr);
     temp_ptr = &global_state_720_ptr;
     config_value = 100;
     
@@ -810,7 +810,7 @@ void initialize_render_pipeline(longlong renderer_instance)
         temp_buffer[0] = 0;
         buffer_value = 8;
         strcpy_s(temp_buffer, 0x20, &global_state_4752_ptr);
-        config_found = read_config_value(_DAT_180c86870, &buffer_ptr);
+        config_found = read_config_value(system_main_module_state, &buffer_ptr);
         buffer_ptr = &global_state_720_ptr;
         if (config_found != '\0') {
             stack_config[0] = 100;
@@ -868,7 +868,7 @@ use_default_config:
     strcpy_s(render_buffer, 0x20, &global_state_8488_ptr);
     render_flags = 1;
     render_flags = 1;
-    config_found = read_config_value(_DAT_180c86870, &pipeline_ptr);
+    config_found = read_config_value(system_main_module_state, &pipeline_ptr);
     
     if (config_found == '\0') {
         config_ptr = &global_state_672_ptr;
@@ -878,7 +878,7 @@ use_default_config:
         strcpy_s(config_buffer, 0x20, &global_state_8536_ptr);
         render_flags = 3;
         render_flags = 3;
-        config_found = read_config_value(_DAT_180c86870, &config_ptr);
+        config_found = read_config_value(system_main_module_state, &config_ptr);
         if (config_found == '\0') {
             effect_ptr = &global_state_672_ptr;
             effect_buffer[0] = 0;
@@ -887,7 +887,7 @@ use_default_config:
             strcpy_s(effect_buffer, 0x20, &global_state_8520_ptr);
             render_flags = 7;
             render_flags = 7;
-            config_found = read_config_value(_DAT_180c86870, &effect_ptr);
+            config_found = read_config_value(system_main_module_state, &effect_ptr);
             if (config_found == '\0') {
                 buffer_ptr = &global_state_672_ptr;
                 string_ptr = temp_buffer;
@@ -896,7 +896,7 @@ use_default_config:
                 strcpy_s(temp_buffer, 0x20, &global_state_8576_ptr);
                 render_flags = 0xf;
                 render_flags = 0xf;
-                config_found = read_config_value(_DAT_180c86870, &buffer_ptr);
+                config_found = read_config_value(system_main_module_state, &buffer_ptr);
                 if (config_found == '\0') goto finalize_pipeline;
             }
         }
@@ -977,7 +977,7 @@ finalize_pipeline:
     config_buffer[0] = 0;
     temp_value = 8;
     strcpy_s(config_buffer, 0x20, &global_state_4752_ptr);
-    config_found = read_config_value(_DAT_180c86870, &temp_ptr);
+    config_found = read_config_value(system_main_module_state, &temp_ptr);
     temp_ptr = &global_state_720_ptr;
     
     if (config_found != '\0') {
@@ -1026,7 +1026,7 @@ finalize_pipeline:
     }
     
     // 完成初始化
-    finalize_engine_setup(_DAT_180c86870);
+    finalize_engine_setup(system_main_module_state);
     update_render_system(renderer_instance);
     
     // 使用校验和验证

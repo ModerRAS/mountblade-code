@@ -892,21 +892,21 @@ uint64_t AudioSystem_EffectGenerator(longlong param_1, longlong param_2, longlon
                 effect_type = *(int *)(param_1 + 0x25ec);
                 process_count = (int)effect_index;
                 if (effect_type == 0) {
-                    (*(code *)*_DAT_180c2bca0)
+                    (*(code *)*system_system_audio)
                             (param_3 + effect_index * 4, param_2 + effect_index * 4, param_4, param_5, process_count, param_1 + 0x5a0,
                              param_1 + 0x15a0, param_1 + 0xda0, param_1 + 0x1da0,
                              *(int32_t *)(param_1 + 0x25a4), *(int32_t *)(param_1 + 0x25b8),
                              *(int32_t *)(param_1 + 0x25cc));
                 }
                 else if (effect_type == 1) {
-                    (*(code *)_DAT_180c2bca0[1])
+                    (*(code *)system_system_audio[1])
                             (param_3 + effect_index * 4, param_2 + effect_index * 4, param_4, param_5, process_count, param_1 + 0x5a0,
                              param_1 + 0x15a0, param_1 + 0xda0, param_1 + 0x1da0,
                              *(int32_t *)(param_1 + 0x25a4), *(int32_t *)(param_1 + 0x25b8),
                              *(int32_t *)(param_1 + 0x25cc));
                 }
                 else if (effect_type == 2) {
-                    (*(code *)_DAT_180c2bca0[2])
+                    (*(code *)system_system_audio[2])
                             (param_3 + effect_index * 4, param_2 + effect_index * 4, param_4, param_5, process_count, param_1 + 0x5a0,
                              param_1 + 0x15a0, param_1 + 0xda0, param_1 + 0x1da0,
                              *(int32_t *)(param_1 + 0x25a4), *(int32_t *)(param_1 + 0x25b8),
@@ -1040,17 +1040,17 @@ uint64_t AudioSystem_ParameterController(longlong param_1, float param_2)
                 effect_type = *(int *)(unaff_RBX + 0x25ec);
                 process_count = (int)unaff_RDI;
                 if (effect_type == 0) {
-                    (*(code *)*_DAT_180c2bca0)
+                    (*(code *)*system_system_audio)
                             (unaff_R12 + unaff_RDI * 4, unaff_R15 + unaff_RDI * 4, unaff_R14D,
                              in_stack_000000b0, process_count);
                 }
                 else if (effect_type == 1) {
-                    (*(code *)_DAT_180c2bca0[1])
+                    (*(code *)system_system_audio[1])
                             (unaff_R12 + unaff_RDI * 4, unaff_R15 + unaff_RDI * 4, unaff_R14D,
                              in_stack_000000b0, process_count);
                 }
                 else if (effect_type == 2) {
-                    (*(code *)_DAT_180c2bca0[2])
+                    (*(code *)system_system_audio[2])
                             (unaff_R12 + unaff_RDI * 4, unaff_R15 + unaff_RDI * 4, unaff_R14D,
                              in_stack_000000b0, process_count);
                 }
@@ -1119,17 +1119,17 @@ uint64_t AudioSystem_StateManager(int32_t param_1)
                 effect_type = *(int *)(unaff_RBX + 0x25ec);
                 process_count = (int)unaff_RDI;
                 if (effect_type == 0) {
-                    (*(code *)*_DAT_180c2bca0)
+                    (*(code *)*system_system_audio)
                             (unaff_R12 + unaff_RDI * 4, unaff_R15 + unaff_RDI * 4, unaff_R14D,
                              in_stack_000000b0, process_count);
                 }
                 else if (effect_type == 1) {
-                    (*(code *)_DAT_180c2bca0[1])
+                    (*(code *)system_system_audio[1])
                             (unaff_R12 + unaff_RDI * 4, unaff_R15 + unaff_RDI * 4, unaff_R14D,
                              in_stack_000000b0, process_count);
                 }
                 else if (effect_type == 2) {
-                    (*(code *)_DAT_180c2bca0[2])
+                    (*(code *)system_system_audio[2])
                             (unaff_R12 + unaff_RDI * 4, unaff_R15 + unaff_RDI * 4, unaff_R14D,
                              in_stack_000000b0, process_count);
                 }

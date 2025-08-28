@@ -96,10 +96,10 @@ uint64_t process_event_trigger(longlong event_context, longlong trigger_data, ch
   context_backup = event_context;
   
   // 检查是否启用调试模式
-  if (*(int *)(_DAT_180c8a9c8 + 0x9a0) == 0) goto skip_debug_logging;
+  if (*(int *)(core_system_data_buffer + 0x9a0) == 0) goto skip_debug_logging;
   
   // 创建调试消息缓冲区
-  message_buffer = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+  message_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
   *(int8_t *)message_buffer = 0;
   buffer_size = FUN_18064e990(message_buffer);
   
@@ -112,7 +112,7 @@ uint64_t process_event_trigger(longlong event_context, longlong trigger_data, ch
   string_length = *(int *)(trigger_data + 0x10);
   if (0 < string_length) {
     if ((string_length != -0xf) && (buffer_size < string_length + 0x10U)) {
-      message_buffer = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18, message_buffer, string_length + 0x10U, 0x10, 0x13);
+      message_buffer = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, message_buffer, string_length + 0x10U, 0x10, 0x13);
       FUN_18064e990(message_buffer);
       string_length = *(int *)(trigger_data + 0x10);
     }
@@ -121,13 +121,13 @@ uint64_t process_event_trigger(longlong event_context, longlong trigger_data, ch
   }
   
   if (message_buffer == (int32_t *)0x0) {
-    message_buffer = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x11, 0x13);
+    message_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x11, 0x13);
     *(int8_t *)message_buffer = 0;
 build_message:
     FUN_18064e990(message_buffer);
   }
   else if (buffer_size < 0x11) {
-    message_buffer = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18, message_buffer, 0x11, 0x10, 0x13);
+    message_buffer = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, message_buffer, 0x11, 0x10, 0x13);
     goto build_message;
   }
   
@@ -139,7 +139,7 @@ build_message:
   }
   
   // 输出调试消息
-  FUN_1800623b0(_DAT_180c86928, 0, 0x1000000000000, 3, temp_buffer);
+  FUN_1800623b0(system_message_context, 0, 0x1000000000000, 3, temp_buffer);
   if (message_buffer != (int32_t *)0x0) {
     FUN_18064e900(message_buffer);
   }
@@ -204,7 +204,7 @@ longlong process_event_type(longlong event_context, int event_type, char is_enab
   uint temp_size;
   uint64_t result_code;
   
-  if (*(int *)(_DAT_180c8a9c8 + 0x9a0) == 0) goto skip_debug_logging;
+  if (*(int *)(core_system_data_buffer + 0x9a0) == 0) goto skip_debug_logging;
   
   string_data = &unknown_var_3456_ptr;
   result_code = 0;
@@ -212,7 +212,7 @@ longlong process_event_type(longlong event_context, int event_type, char is_enab
   temp_size = 0;
   
   // 创建调试消息缓冲区
-  temp_buffer = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+  temp_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
   *(int8_t *)temp_buffer = 0;
   buffer_size = FUN_18064e990(temp_buffer);
   
@@ -233,12 +233,12 @@ longlong process_event_type(longlong event_context, int event_type, char is_enab
       if ((int)buffer_size < 0x10) {
         buffer_size = 0x10;
       }
-      temp_buffer = (int32_t *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)buffer_size, 0x13);
+      temp_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)(int)buffer_size, 0x13);
       *(int8_t *)temp_buffer = 0;
     }
     else {
       if (buffer_size <= (uint)result_code) goto buffer_ready;
-      temp_buffer = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18, temp_buffer, buffer_size, 0x10, 0x13);
+      temp_buffer = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, temp_buffer, buffer_size, 0x10, 0x13);
     }
     result_code._0_4_ = FUN_18064e990(temp_buffer);
   }
@@ -253,7 +253,7 @@ buffer_ready:
   temp_size = total_length;
   
   // 输出调试消息
-  FUN_1800623b0(_DAT_180c86928, 0, 0x1000000000000, 3, message_buffer);
+  FUN_1800623b0(system_message_context, 0, 0x1000000000000, 3, message_buffer);
   string_data = &unknown_var_3456_ptr;
   if (temp_buffer != (int32_t *)0x0) {
     FUN_18064e900();
@@ -299,10 +299,10 @@ uint64_t check_event_system_state(longlong event_context, longlong state_data)
     return 0;
   }
   
-  if (*(int *)(_DAT_180c8a9c8 + 0x9a0) == 0) goto skip_debug_logging;
+  if (*(int *)(core_system_data_buffer + 0x9a0) == 0) goto skip_debug_logging;
   
   // 创建调试消息缓冲区
-  message_buffer = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x16, 0x13);
+  message_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x16, 0x13);
   *(int8_t *)message_buffer = 0;
   buffer_size = FUN_18064e990(message_buffer);
   
@@ -317,7 +317,7 @@ uint64_t check_event_system_state(longlong event_context, longlong state_data)
   string_length = *(int *)(state_data + 0x10);
   if (0 < string_length) {
     if ((string_length != -0x15) && (buffer_size < string_length + 0x16U)) {
-      message_buffer = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18, message_buffer, string_length + 0x16U, 0x10, 0x13);
+      message_buffer = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, message_buffer, string_length + 0x16U, 0x10, 0x13);
       FUN_18064e990(message_buffer);
       string_length = *(int *)(state_data + 0x10);
     }
@@ -327,13 +327,13 @@ uint64_t check_event_system_state(longlong event_context, longlong state_data)
   }
   
   if (message_buffer == (int32_t *)0x0) {
-    message_buffer = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x17, 0x13);
+    message_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x17, 0x13);
     *(int8_t *)message_buffer = 0;
 build_message:
     FUN_18064e990(message_buffer);
   }
   else if (buffer_size < 0x17) {
-    message_buffer = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18, message_buffer, 0x17, 0x10, 0x13);
+    message_buffer = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, message_buffer, 0x17, 0x10, 0x13);
     goto build_message;
   }
   
@@ -345,7 +345,7 @@ build_message:
   }
   
   // 输出调试消息
-  FUN_1800623b0(_DAT_180c86928, 0, 0x1000000000000, 3, temp_buffer);
+  FUN_1800623b0(system_message_context, 0, 0x1000000000000, 3, temp_buffer);
   if (message_buffer != (int32_t *)0x0) {
     FUN_18064e900(message_buffer);
   }
@@ -361,7 +361,7 @@ skip_debug_logging:
   FUN_180211a30(string_length, string_ptr);
   
   if (string_length != 0) {
-    FUN_1800623b0(_DAT_180c86928, 0, 0, 3, &unknown_var_3528_ptr, result_code, error_code);
+    FUN_1800623b0(system_message_context, 0, 0, 3, &unknown_var_3528_ptr, result_code, error_code);
     return 0;
   }
   return result_code;
@@ -396,7 +396,7 @@ uint64_t process_thread_safe_event_operation(longlong event_context, int32_t ope
     __Throw_C_error_std__YAXH_Z(lock_result);
   }
   
-  if (*(int *)(_DAT_180c8a9c8 + 0x9a0) == 0) goto skip_debug_logging;
+  if (*(int *)(core_system_data_buffer + 0x9a0) == 0) goto skip_debug_logging;
   
   string_data = &unknown_var_3456_ptr;
   debug_result = 0;
@@ -404,7 +404,7 @@ uint64_t process_thread_safe_event_operation(longlong event_context, int32_t ope
   temp_size = 0;
   
   // 创建调试消息缓冲区
-  temp_buffer = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x16, 0x13);
+  temp_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x16, 0x13);
   *(int8_t *)temp_buffer = 0;
   buffer_size = FUN_18064e990(temp_buffer);
   
@@ -427,12 +427,12 @@ uint64_t process_thread_safe_event_operation(longlong event_context, int32_t ope
       if ((int)buffer_size < 0x10) {
         buffer_size = 0x10;
       }
-      temp_buffer = (int32_t *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)buffer_size, 0x13);
+      temp_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)(int)buffer_size, 0x13);
       *(int8_t *)temp_buffer = 0;
     }
     else {
       if (buffer_size <= (uint)debug_result) goto buffer_ready;
-      temp_buffer = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18, temp_buffer, buffer_size, 0x10, 0x13);
+      temp_buffer = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, temp_buffer, buffer_size, 0x10, 0x13);
     }
     debug_result._0_4_ = FUN_18064e990(temp_buffer);
   }
@@ -447,7 +447,7 @@ buffer_ready:
   temp_size = lock_result;
   
   // 输出调试消息
-  FUN_1800623b0(_DAT_180c86928, 0, 0x1000000000000, 3, message_buffer);
+  FUN_1800623b0(system_message_context, 0, 0x1000000000000, 3, message_buffer);
   string_data = &unknown_var_3456_ptr;
   if (temp_buffer != (int32_t *)0x0) {
     FUN_18064e900();
@@ -463,7 +463,7 @@ skip_debug_logging:
   process_result = result_code;
   
   if (lock_result != 0) {
-    FUN_1800623b0(_DAT_180c86928, 0, 0x1000000000000, 3, &unknown_var_3552_ptr, result_code);
+    FUN_1800623b0(system_message_context, 0, 0x1000000000000, 3, &unknown_var_3552_ptr, result_code);
     process_result = 0;
   }
   
@@ -582,7 +582,7 @@ process_special_event:
   if (search_result == 0) {
     search_result = 1;
 calculate_new_size:
-    new_queue = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, search_result * 8, *(int8_t *)(event_context + 0x390));
+    new_queue = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, search_result * 8, *(int8_t *)(event_context + 0x390));
     queue_end = *(uint64_t **)(event_context + 0x380);
     queue_start = *(uint64_t **)(event_context + 0x378);
   }

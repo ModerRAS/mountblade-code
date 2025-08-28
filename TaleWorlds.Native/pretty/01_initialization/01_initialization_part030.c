@@ -5,7 +5,7 @@
 // 包含8个函数，主要涉及动态数组、线程本地存储、内存池管理等初始化功能
 
 // 全局变量声明
-extern void *_DAT_180c8ed18;  // 内存分配器指针
+extern void *system_memory_pool_ptr;  // 内存分配器指针
 extern void *global_var_9040_ptr;   // 未知数据结构指针
 extern void *global_var_9024_ptr;   // 未知数据结构指针  
 extern void *global_var_9008_ptr;   // 未知数据结构指针
@@ -54,7 +54,7 @@ void dynamic_array_add_element(ulonglong *array_info, uint64_t *element)
   }
   
   // 分配新内存
-  new_data = (uint64_t *)memory_allocate(_DAT_180c8ed18, current_capacity * 8, (char)array_info[3]);
+  new_data = (uint64_t *)memory_allocate(system_memory_pool_ptr, current_capacity * 8, (char)array_info[3]);
   
 reallocate_complete:
   data_ptr = (uint64_t *)*array_info;
@@ -178,7 +178,7 @@ longlong thread_local_storage_get_value(longlong tls_base)
           } while ((old_size & 0x7fffffffffffffff) <= slot_index);
           
           // 分配新表
-          hash_table = (ulonglong *)memory_allocate(_DAT_180c8ed18, new_size * 0x20 + 0x1f, 10);
+          hash_table = (ulonglong *)memory_allocate(system_memory_pool_ptr, new_size * 0x20 + 0x1f, 10);
           if (hash_table == (ulonglong *)0x0) {
             LOCK();
             *(longlong *)(tls_base + 0x38) = *(longlong *)(tls_base + 0x38) + -1;
@@ -294,7 +294,7 @@ longlong thread_local_storage_get_value_internal(void)
           } while ((old_size & 0x7fffffffffffffff) <= slot_index);
           
           // 分配新表
-          unaff_RDI = (ulonglong *)memory_allocate(_DAT_180c8ed18, old_size * 0x20 + 0x1f, 10);
+          unaff_RDI = (ulonglong *)memory_allocate(system_memory_pool_ptr, old_size * 0x20 + 0x1f, 10);
           if (unaff_RDI == (ulonglong *)0x0) {
             LOCK();
             *(longlong *)(unaff_R14 + 0x38) = *(longlong *)(unaff_R14 + 0x38) + -1;
@@ -490,7 +490,7 @@ longlong thread_local_storage_expand_table(void)
     } while ((old_size & 0x7fffffffffffffff) <= unaff_RBP);
     
     // 分配新表
-    unaff_RDI = (ulonglong *)memory_allocate(_DAT_180c8ed18, old_size * 0x20 + 0x1f, 10);
+    unaff_RDI = (ulonglong *)memory_allocate(system_memory_pool_ptr, old_size * 0x20 + 0x1f, 10);
     if (unaff_RDI == (ulonglong *)0x0) break;
     
     // 初始化新表
@@ -539,7 +539,7 @@ uint64_t *allocate_thread_local_value(longlong *tls_base, char param_2, int8_t *
       *param_3 = 0;
       if (param_2 == '\0') {
         // 创建标准条目
-        new_entry = (uint64_t *)memory_allocate(_DAT_180c8ed18, 0x68, 10, 0, 0xfffffffffffffffe);
+        new_entry = (uint64_t *)memory_allocate(system_memory_pool_ptr, 0x68, 10, 0, 0xfffffffffffffffe);
         if (new_entry == (uint64_t *)0x0) {
           return (uint64_t *)0x0;
         }
@@ -562,7 +562,7 @@ uint64_t *allocate_thread_local_value(longlong *tls_base, char param_2, int8_t *
       }
       else {
         // 创建扩展条目
-        new_entry = (uint64_t *)memory_allocate(_DAT_180c8ed18, 0x88, 10, 0, 0xfffffffffffffffe);
+        new_entry = (uint64_t *)memory_allocate(system_memory_pool_ptr, 0x88, 10, 0, 0xfffffffffffffffe);
         if (new_entry == (uint64_t *)0x0) {
           return (uint64_t *)0x0;
         }
@@ -823,7 +823,7 @@ uint64_t resize_event_queue(longlong queue_ptr, longlong param_2)
   
   old_capacity = *(longlong *)(queue_ptr + 0x68);
   *(longlong *)(queue_ptr + 0x68) = old_capacity * 2;
-  new_array = (uint64_t *)memory_allocate(_DAT_180c8ed18, old_capacity * 0x20 + 0x27, 10);
+  new_array = (uint64_t *)memory_allocate(system_memory_pool_ptr, old_capacity * 0x20 + 0x27, 10);
   if (new_array == (uint64_t *)0x0) {
     *(ulonglong *)(queue_ptr + 0x68) = *(ulonglong)(queue_ptr + 0x68) >> 1;
     return 0;
@@ -892,7 +892,7 @@ uint64_t *initialize_thread_local_entry(longlong entry_ptr)
   }
   
   // 分配新条目
-  new_entry = (uint64_t *)memory_allocate(_DAT_180c8ed18, (old_capacity + new_capacity * 2) * 8 + 0x36, 10);
+  new_entry = (uint64_t *)memory_allocate(system_memory_pool_ptr, (old_capacity + new_capacity * 2) * 8 + 0x36, 10);
   new_data = new_entry;
   if (new_entry != (uint64_t *)0x0) {
     // 计算对齐的哈希表位置

@@ -112,7 +112,7 @@ void InitializeRenderingSystem(uint64_t *renderContext)
   *(int8_t *)((longlong)renderContext + 0x11c) = 1;  // 渲染启用标志
   *(int8_t *)(renderContext + 0x1e) = 0;            // 垂直同步关闭
   *(int32_t *)(renderContext + 0x23) = 0;             // 清除颜色
-  deviceHandle = _DAT_180c86930;
+  deviceHandle = system_resource_state;
   
   // 创建设备接口
   vertexData = &unknown_var_3480_ptr;
@@ -177,7 +177,7 @@ void InitializeRenderingSystem(uint64_t *renderContext)
         renderFlags = frameIndex;
         renderInterface = (uint64_t *)0x0;
         FUN_180627ae0(&vertexData,(longlong)frameIndex * 0x20 + renderContext[0x27]);
-        FUN_1800b08e0(_DAT_180c86930,&renderTarget,&vertexData,1);
+        FUN_1800b08e0(system_resource_state,&renderTarget,&vertexData,1);
         *(uint *)(renderTarget + 0x65) = *(uint *)(renderTarget + 0x65) | 0x20000000;
         
         // 管理纹理缓冲区
@@ -197,7 +197,7 @@ void InitializeRenderingSystem(uint64_t *renderContext)
             bufferSize = 1;
 LAB_18028834f:
             renderInterface = (uint64_t *)
-                     FUN_18062b420(_DAT_180c8ed18,bufferSize * 8,*(int8_t *)(renderContext + 0x22));
+                     FUN_18062b420(system_memory_pool_ptr,bufferSize * 8,*(int8_t *)(renderContext + 0x22));
             renderInterface = (uint64_t *)renderContext[0x20];
             memoryInterface = (uint64_t *)*bufferManager;
             deviceInterface = renderInterface;
@@ -303,7 +303,7 @@ LAB_18028843a:
   }
   
   // 第二阶段渲染初始化
-  deviceHandle = _DAT_180c86930;
+  deviceHandle = system_resource_state;
   depthStencil = &unknown_var_3480_ptr;
   renderTargetView = renderTargetArray;
   renderTargetArray[0] = 0;
@@ -540,7 +540,7 @@ longlong RenderFrame(longlong renderContext, longlong frameData)
   // 检查并更新渲染状态
   if (*(char *)(renderContext + 0x11c) != '\0') {
     *(int8_t *)(renderContext + 0x11c) = 0;
-    *(float *)(renderContext + 0x15c) = (float)_DAT_180c8ed30 * 1e-05;
+    *(float *)(renderContext + 0x15c) = (float)system_error_code * 1e-05;
   }
   
   if (*(char *)(renderContext + 0x130) != '\0') {
@@ -586,7 +586,7 @@ longlong RenderFrame(longlong renderContext, longlong frameData)
   FUN_180094b30(frameTime,&system_memory_6c50);
   
   // 管理渲染资源
-  resourceManager = *(longlong **)(_DAT_180c86938 + 0x121e0);
+  resourceManager = *(longlong **)(system_message_buffer + 0x121e0);
   if (resourceManager != (longlong *)0x0) {
     (**(code **)(*resourceManager + 0x28))(resourceManager);
   }
@@ -610,9 +610,9 @@ longlong RenderFrame(longlong renderContext, longlong frameData)
   *(uint64_t *)(frameTime + 0x11c28) = *(uint64_t *)(renderContext + 0x2c);
   
   // 计算投影矩阵
-  projectionData = _DAT_180c86950;
-  aspectRatio = *(float *)(_DAT_180c86950 + 0x17ec);
-  screenWidth = aspectRatio / *(float *)(_DAT_180c86950 + 0x17f0);
+  projectionData = system_operation_state;
+  aspectRatio = *(float *)(system_operation_state + 0x17ec);
+  screenWidth = aspectRatio / *(float *)(system_operation_state + 0x17f0);
   viewHeight = 0.0;
   viewWidth = 1.0;
   farPlane = 0.0;
@@ -628,8 +628,8 @@ longlong RenderFrame(longlong renderContext, longlong frameData)
     viewHeight = (1.0 - 1.7777778 / screenWidth) * 0.5;
   }
   
-  screenWidth = *(float *)(_DAT_180c86950 + 0x17f0);
-  farPlane = farPlane * *(float *)(_DAT_180c86950 + 0x17f0);
+  screenWidth = *(float *)(system_operation_state + 0x17f0);
+  farPlane = farPlane * *(float *)(system_operation_state + 0x17f0);
   
   // 设置渲染矩阵
   *(float *)(frameTime + 0x11c18) = viewHeight * aspectRatio;
@@ -653,7 +653,7 @@ longlong RenderFrame(longlong renderContext, longlong frameData)
   }
   
   *(uint *)(frameTime + 4) = textureFlags;
-  *(float *)(frameTime + 0x124e4) = (float)(_DAT_180c8ed30 % 1000000000) * 1e-05;
+  *(float *)(frameTime + 0x124e4) = (float)(system_error_code % 1000000000) * 1e-05;
   
   // 复制渲染数据
   viewportData = 2;
@@ -768,7 +768,7 @@ longlong RenderFrame(longlong renderContext, longlong frameData)
   domainShader = domainShader;
   computeShader = computeShader;
   
-  renderFlags = func_0x0001800e2bf0(_DAT_180c86890,frameTime);
+  renderFlags = func_0x0001800e2bf0(system_parameter_buffer,frameTime);
   *(int8_t *)(frameTime + 0x1c61) = renderFlags;
   
   if (*(int *)(frameTime + 8) != -1) {
@@ -902,7 +902,7 @@ ulonglong CleanupRenderResources(longlong renderContext)
   resourceSize = *(longlong *)(renderContext + 0x128);
   if (*(longlong *)(resourceSize + 0x1b8) != 0) {
     resourcePtr = 0xb8;
-    resourceData = _DAT_180c86870;
+    resourceData = system_main_module_state;
     
     do {
       resourceOffset = *(longlong *)(resourcePtr + *(longlong *)(resourceSize + 0x1b8));
@@ -910,7 +910,7 @@ ulonglong CleanupRenderResources(longlong renderContext)
           ((*(uint *)(resourceOffset + 0x328) & 0x20000000) == 0)) && (*(longlong *)(resourceOffset + 0x370) == 0)) {
         if (*(longlong *)(resourceOffset + 0x1d8) == 0) {
           FUN_18023b050(resourceOffset,0);
-          resourceData = _DAT_180c86870;
+          resourceData = system_main_module_state;
           resourceCounter = (int *)(*(longlong *)(resourcePtr + *(longlong *)(resourceSize + 0x1b8)) + 0x3a8);
           *resourceCounter = *resourceCounter + 1;
         }

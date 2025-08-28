@@ -186,9 +186,9 @@ void system_state_processor(uint64_t param_1, int8_t param_2, int32_t param_3, i
   }
   
   /* 系统数据处理流程 - 处理多个状态参数 */
-  FUN_1800623b0(_DAT_180c86928, 0, 4, 10, &unknown_var_2936_ptr, param_2);
-  FUN_1800623b0(_DAT_180c86928, 0, 4, 10, &unknown_var_2888_ptr, param_3);
-  FUN_1800623b0(_DAT_180c86928, 0, 4, 10, &unknown_var_2992_ptr, param_4);
+  FUN_1800623b0(system_message_context, 0, 4, 10, &unknown_var_2936_ptr, param_2);
+  FUN_1800623b0(system_message_context, 0, 4, 10, &unknown_var_2888_ptr, param_3);
+  FUN_1800623b0(system_message_context, 0, 4, 10, &unknown_var_2992_ptr, param_4);
   
   /* 系统状态验证 - 多层次状态检查 */
   system_status_flag = FUN_180645c10(0x180c95578, 0, &unknown_var_3504_ptr);
@@ -201,21 +201,21 @@ void system_state_processor(uint64_t param_1, int8_t param_2, int32_t param_3, i
     
     /* 系统哈希值计算 - 用于数据索引和查找 */
     system_hash_value = FUN_18055f6f0(&unknown_var_3232_ptr, param_6);
-    system_bit_offset = _DAT_180c95b3c >> 0x1f & 0x1f;
-    system_result_code = _DAT_180c95b3c + system_bit_offset;
-    system_data_pointer = (ulonglong *)(_DAT_180c95b10 + (longlong)(system_result_code >> 5) * 4);
+    system_bit_offset = system_system_config >> 0x1f & 0x1f;
+    system_result_code = system_system_config + system_bit_offset;
+    system_data_pointer = (ulonglong *)(system_system_config + (longlong)(system_result_code >> 5) * 4);
     *system_data_pointer = *system_data_pointer | (ulonglong)system_hash_value << (((byte)system_result_code & 0x1f) - (char)system_bit_offset & 0x3f);
     
     /* 系统数据更新 - 更新数据指针和计数器 */
-    _DAT_180c95b40 = _DAT_180c95b40 + 8;
-    _DAT_180c95b3c = (ulonglong)_DAT_180c95b40 << 0x20;
+    system_system_config = system_system_config + 8;
+    system_system_config = (ulonglong)system_system_config << 0x20;
   }
   
   /* 系统数据清理和重置 - 准备资源处理 */
   system_iterator = 0;
-  _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
-  system_result_code = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
-  system_base_address = _DAT_180c92cd8;
+  system_system_config = system_system_config & 0xffffffff00000000;
+  system_result_code = (int)(system_system_config - system_system_config >> 3);
+  system_base_address = system_system_config;
   
   /* 系统资源处理循环 - 清理和释放资源 */
   if (0 < system_result_code) {
@@ -223,20 +223,20 @@ void system_state_processor(uint64_t param_1, int8_t param_2, int32_t param_3, i
       longlong resource_handle = *(longlong *)(system_base_address + system_iterator * 8);
       if ((resource_handle != 0) && (*(char *)(*(longlong *)(resource_handle + 0x58f8) + 0x1c) != '\0')) {
         FUN_1805b59d0(resource_handle, 0x180c95578);
-        system_base_address = _DAT_180c92cd8;
+        system_base_address = system_system_config;
       }
       system_iterator = system_iterator + 1;
     } while (system_iterator < system_result_code);
   }
   
   /* 系统最终清理 - 执行最终的资源清理 */
-  if (_DAT_180c96070 != 0) {
-    FUN_180567f30(_DAT_180c92580, 0x180c95578);
+  if (system_system_config != 0) {
+    FUN_180567f30(system_system_config, 0x180c95578);
   }
   
-  _DAT_180c95b3c = 0;
+  system_system_config = 0;
   /* 系统内存清理 - 清理数据缓冲区 */
-  memset(_DAT_180c95b10, 0, (longlong)(_DAT_180c95b08 >> 3));
+  memset(system_system_config, 0, (longlong)(system_system_config >> 3));
 }
 
 /**
@@ -298,33 +298,33 @@ void system_data_validator(longlong *param_1)
   }
   
   /* 系统数据处理 - 准备资源清理 */
-  _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
-  system_result_code = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
+  system_system_config = system_system_config & 0xffffffff00000000;
+  system_result_code = (int)(system_system_config - system_system_config >> 3);
   
   /* 系统资源处理循环 - 清理无效资源 */
   if (0 < system_result_code) {
     system_iterator = 0;
-    system_base_address = _DAT_180c92cd8;
+    system_base_address = system_system_config;
     do {
       system_data_handle = *(longlong *)(system_base_address + system_iterator * 8);
       if (((system_data_handle != 0) && 
            (*(char *)(*(longlong *)(system_data_handle + 0x58f8) + 0x1c) != '\0')) &&
           (*(longlong *)(system_data_handle + 0x58f8) != system_target_address)) {
         FUN_1805b59d0(system_data_handle, 0x180c95578);
-        system_base_address = _DAT_180c92cd8;
+        system_base_address = system_system_config;
       }
       system_iterator = system_iterator + 1;
     } while (system_iterator < system_result_code);
   }
   
   /* 系统最终清理 - 执行最终资源清理 */
-  if (_DAT_180c96070 != 0) {
-    FUN_180567f30(_DAT_180c92580, 0x180c95578);
+  if (system_system_config != 0) {
+    FUN_180567f30(system_system_config, 0x180c95578);
   }
   
-  _DAT_180c95b3c = 0;
+  system_system_config = 0;
   /* 系统内存清理 - 清理数据缓冲区 */
-  memset(_DAT_180c95b10, 0, (longlong)(_DAT_180c95b08 >> 3));
+  memset(system_system_config, 0, (longlong)(system_system_config >> 3));
 }
 
 /**
@@ -387,33 +387,33 @@ void system_resource_manager(longlong *param_1, uint64_t param_2, longlong param
   }
   
   /* 系统资源数据处理 - 准备资源清理 */
-  _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
-  system_result_code = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
+  system_system_config = system_system_config & 0xffffffff00000000;
+  system_result_code = (int)(system_system_config - system_system_config >> 3);
   
   /* 系统资源处理循环 - 清理无效资源 */
   if (0 < system_result_code) {
     system_iterator = 0;
-    system_base_address = _DAT_180c92cd8;
+    system_base_address = system_system_config;
     do {
       system_data_handle = *(longlong *)(system_base_address + system_iterator * 8);
       if (((system_data_handle != 0) && 
            (*(char *)(*(longlong *)(system_data_handle + 0x58f8) + 0x1c) != '\0')) &&
           (*(longlong *)(system_data_handle + 0x58f8) != system_target_address)) {
         FUN_1805b59d0(system_data_handle, 0x180c95578);
-        system_base_address = _DAT_180c92cd8;
+        system_base_address = system_system_config;
       }
       system_iterator = system_iterator + 1;
     } while (system_iterator < system_result_code);
   }
   
   /* 系统最终清理 - 执行最终资源清理 */
-  if (_DAT_180c96070 != 0) {
-    FUN_180567f30(_DAT_180c92580, 0x180c95578);
+  if (system_system_config != 0) {
+    FUN_180567f30(system_system_config, 0x180c95578);
   }
   
-  _DAT_180c95b3c = 0;
+  system_system_config = 0;
   /* 系统内存清理 - 清理数据缓冲区 */
-  memset(_DAT_180c95b10, 0, (longlong)(_DAT_180c95b08 >> 3));
+  memset(system_system_config, 0, (longlong)(system_system_config >> 3));
 }
 
 /**
@@ -436,13 +436,13 @@ void system_resource_manager(longlong *param_1, uint64_t param_2, longlong param
 void system_cleanup_manager(void)
 {
   /* 系统资源清理 - 执行资源清理操作 */
-  FUN_180567f30(_DAT_180c92580, 0x180c95578);
+  FUN_180567f30(system_system_config, 0x180c95578);
   
   /* 系统状态重置 - 重置数据计数器 */
-  _DAT_180c95b3c = 0;
+  system_system_config = 0;
   
   /* 系统内存清理 - 清理数据缓冲区 */
-  memset(_DAT_180c95b10, 0, (longlong)(_DAT_180c95b08 >> 3));
+  memset(system_system_config, 0, (longlong)(system_system_config >> 3));
 }
 
 /**
@@ -478,10 +478,10 @@ void system_parameter_handler(longlong *param_1, longlong param_2, int32_t param
   *(int32_t *)(param_1 + 3) = param_3;
   
   /* 系统资源关联处理 - 处理资源关联关系 */
-  if (((_DAT_180c96070 != 0) && (-1 < (int)system_index)) &&
+  if (((system_system_config != 0) && (-1 < (int)system_index)) &&
      (system_index = (longlong)(int)system_index * SYSTEM_DATA_BUFFER_SIZE,
-     *(longlong **)(system_index + 0x3988 + _DAT_180c96070) == param_1)) {
-    FUN_180520b40(_DAT_180c96070 + 0x30a0 + system_index, 0);
+     *(longlong **)(system_index + 0x3988 + system_system_config) == param_1)) {
+    FUN_180520b40(system_system_config + 0x30a0 + system_index, 0);
   }
   
   /* 系统资源重新分配 - 处理资源重新分配 */
@@ -493,10 +493,10 @@ void system_parameter_handler(longlong *param_1, longlong param_2, int32_t param
   
   /* 系统哈希计算 - 计算参数哈希值 */
   system_resource_handle = *param_1;
-  _DAT_180bf65b8 = _DAT_180bf65b8 << SYSTEM_BIT_SHIFT_13 ^ _DAT_180bf65b8;
-  _DAT_180bf65b8 = _DAT_180bf65b8 >> SYSTEM_BIT_SHIFT_17 ^ _DAT_180bf65b8;
-  _DAT_180bf65b8 = _DAT_180bf65b8 << SYSTEM_BIT_SHIFT_5 ^ _DAT_180bf65b8;
-  system_hash_value = _DAT_180bf65b8 - 1 & SYSTEM_FLAG_MASK_0x3ff;
+  system_memory_flags = system_memory_flags << SYSTEM_BIT_SHIFT_13 ^ system_memory_flags;
+  system_memory_flags = system_memory_flags >> SYSTEM_BIT_SHIFT_17 ^ system_memory_flags;
+  system_memory_flags = system_memory_flags << SYSTEM_BIT_SHIFT_5 ^ system_memory_flags;
+  system_hash_value = system_memory_flags - 1 & SYSTEM_FLAG_MASK_0x3ff;
   *(uint *)((longlong)param_1 + 0xc) = system_hash_value;
   *(uint *)(param_1 + 1) = system_hash_value;
   
@@ -1008,7 +1008,7 @@ void system_state_updater(longlong param_1, float param_2, longlong param_3)
           resource_pointer2 = (uint64_t *)
                    FUN_1800b3590(state_count, &stack_pointer,
                                  *(longlong *)
-                                  (*(longlong *)(_DAT_180c8a9f0 + 0x30) + (longlong)state_id2 * 8) +
+                                  (*(longlong *)(system_system_data_config + 0x30) + (longlong)state_id2 * 8) +
                                  0x20, 0, 0xfffffffffffffffe);
           system_context = *resource_pointer2;
           if (stack_pointer != (longlong *)0x0) {
@@ -1061,7 +1061,7 @@ state_update_complete:
       *(float *)(param_1 + 0x2c) + *(float *)(param_1 + 0x30) + *(float *)(param_1 + 0x34) + 5.0 <
       state_value1)) &&
      ((state_id2 < 0 ||
-      ((*(byte *)(*(longlong *)(*(longlong *)(_DAT_180c8a9f0 + 0x30) + (longlong)state_id2 * 8) + 0x40)
+      ((*(byte *)(*(longlong *)(*(longlong *)(system_system_data_config + 0x30) + (longlong)state_id2 * 8) + 0x40)
        & 1) != 0)))) {
     /* 系统随机数生成 - 生成随机数 */
     state_hash = *(uint *)(param_1 + 0x1148) << SYSTEM_BIT_SHIFT_13 ^ *(uint *)(param_1 + 0x1148);

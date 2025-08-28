@@ -5,9 +5,9 @@
 // 包含8个函数，主要处理数据序列化和反序列化操作
 
 // 全局变量声明
-uint64_t _DAT_180c8ed18;  // 内存分配器引用
+uint64_t system_memory_pool_ptr;  // 内存分配器引用
 uint64_t GET_SECURITY_COOKIE();  // 加密密钥相关
-uint64_t _DAT_180c86930;  // 初始化地址
+uint64_t system_resource_state;  // 初始化地址
 uint64_t unknown_var_5192_ptr;  // 对象模板
 uint64_t unknown_var_5080;  // 对象模板
 uint64_t unknown_var_3552_ptr;  // 上下文模板
@@ -204,7 +204,7 @@ uint64_t *create_data_object(uint64_t template, longlong config)
     uint64_t *object_ptr;
     
     // 分配对象内存
-    object_ptr = (uint64_t *)allocate_memory(_DAT_180c8ed18, 0x38, 8, 3, 0xfffffffffffffffe);
+    object_ptr = (uint64_t *)allocate_memory(system_memory_pool_ptr, 0x38, 8, 3, 0xfffffffffffffffe);
     
     // 初始化对象（简化实现）
     *object_ptr = &unknown_var_5192_ptr;
@@ -234,7 +234,7 @@ void initialize_data_processor(longlong processor)
     // 检查是否已经初始化
     if (*(char *)(*(longlong *)(processor + 0x20) + 0x28) == '\0') {
         // 创建处理器对象（简化实现）
-        handler_ptr = (longlong *)allocate_memory(_DAT_180c8ed18, 0xc0, 0x10, 4, 0xfffffffffffffffe);
+        handler_ptr = (longlong *)allocate_memory(system_memory_pool_ptr, 0xc0, 0x10, 4, 0xfffffffffffffffe);
         
         // 设置处理器回调
         *handler_ptr = (longlong)&unknown_var_3552_ptr;

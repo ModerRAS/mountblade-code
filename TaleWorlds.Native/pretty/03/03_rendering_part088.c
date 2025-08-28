@@ -199,7 +199,7 @@ void rendering_system_state_manager(uint64_t *render_context, longlong render_pa
   }
   
   // 获取渲染引擎引用
-  render_engine = _DAT_180c86890;
+  render_engine = system_parameter_buffer;
   resource_object = *(longlong *)(temp_var1 + 0x38);
   
   // 检查引擎状态
@@ -376,13 +376,13 @@ void rendering_system_state_manager(uint64_t *render_context, longlong render_pa
         temp_buffer4[0] = 0;
         temp_param27 = 0x18;
         temp_var11 = render_context[0x24];
-        stack_data = rendering_system_create_resource_object(_DAT_180c8ed18, 0x100, 8, 3);
+        stack_data = rendering_system_create_resource_object(system_memory_pool_ptr, 0x100, 8, 3);
         resource_ptr = (longlong *)rendering_system_initialize_resource(stack_data, &temp_resource5);
         resource_array2 = (longlong **)resource_ptr;
         if (resource_ptr != (longlong *)0x0) {
           (**(code **)(*resource_ptr + FUNCTION_POINTER_OFFSET))(resource_ptr);
         }
-        stack_data = _DAT_180c82868;
+        stack_data = system_context_ptr;
         resource_array1 = &temp_resource_block1;
         temp_resource_block1 = resource_ptr;
         if (resource_ptr != (longlong *)0x0) {
@@ -416,13 +416,13 @@ void rendering_system_state_manager(uint64_t *render_context, longlong render_pa
         else {
           (**(code **)((void *)*render_context + FUNCTION_POINTER_OFFSET))(render_context);
         }
-        stack_data = rendering_system_create_resource_object(_DAT_180c8ed18, 0x100, 8, 3);
+        stack_data = rendering_system_create_resource_object(system_memory_pool_ptr, 0x100, 8, 3);
         resource_ptr = (longlong *)rendering_system_initialize_resource(stack_data, &temp_resource3);
         resource_array3 = (longlong **)resource_ptr;
         if (resource_ptr != (longlong *)0x0) {
           (**(code **)(*resource_ptr + FUNCTION_POINTER_OFFSET))(resource_ptr);
         }
-        stack_data = _DAT_180c82868;
+        stack_data = system_context_ptr;
         resource_array2 = &temp_resource_block2;
         temp_resource_block2 = resource_ptr;
         if (resource_ptr != (longlong *)0x0) {
@@ -488,13 +488,13 @@ void rendering_system_state_manager(uint64_t *render_context, longlong render_pa
             temp_buffer5[0] = 0;
             temp_param29 = 0x18;
             temp_var12 = render_context[0x22];
-            stack_data = rendering_system_create_resource_object(_DAT_180c8ed18, 0x100, 8, 3);
+            stack_data = rendering_system_create_resource_object(system_memory_pool_ptr, 0x100, 8, 3);
             resource_ptr = (longlong *)rendering_system_initialize_resource(stack_data, &temp_resource6);
             resource_array4 = (longlong **)resource_ptr;
             if (resource_ptr != (longlong *)0x0) {
               (**(code **)(*resource_ptr + FUNCTION_POINTER_OFFSET))(resource_ptr);
             }
-            stack_data = _DAT_180c82868;
+            stack_data = system_context_ptr;
             resource_array3 = &temp_resource_block3;
             temp_resource_block3 = resource_ptr;
             if (resource_ptr != (longlong *)0x0) {
@@ -528,13 +528,13 @@ void rendering_system_state_manager(uint64_t *render_context, longlong render_pa
             else {
               (**(code **)((void *)*render_context + FUNCTION_POINTER_OFFSET))(render_context);
             }
-            stack_data = rendering_system_create_resource_object(_DAT_180c8ed18, 0x100, 8, 3);
+            stack_data = rendering_system_create_resource_object(system_memory_pool_ptr, 0x100, 8, 3);
             resource_ptr = (longlong *)rendering_system_initialize_resource(stack_data, &temp_resource4);
             resource_array5 = (longlong **)resource_ptr;
             if (resource_ptr != (longlong *)0x0) {
               (**(code **)(*resource_ptr + FUNCTION_POINTER_OFFSET))(resource_ptr);
             }
-            stack_data = _DAT_180c82868;
+            stack_data = system_context_ptr;
             resource_array4 = &temp_resource_block4;
             temp_resource_block4 = resource_ptr;
             if (resource_ptr != (longlong *)0x0) {
@@ -610,13 +610,13 @@ void rendering_system_state_manager(uint64_t *render_context, longlong render_pa
               temp_buffer6[0] = 0;
               temp_param31 = 0x18;
               temp_var13 = render_context[0x21];
-              stack_data = rendering_system_create_resource_object(_DAT_180c8ed18, 0x100, 8, 3);
+              stack_data = rendering_system_create_resource_object(system_memory_pool_ptr, 0x100, 8, 3);
               resource_ptr = (longlong *)rendering_system_initialize_resource(stack_data, &temp_resource7);
               resource_array6 = (longlong **)resource_ptr;
               if (resource_ptr != (longlong *)0x0) {
                 (**(code **)(*resource_ptr + FUNCTION_POINTER_OFFSET))(resource_ptr);
               }
-              stack_data = _DAT_180c82868;
+              stack_data = system_context_ptr;
               resource_array5 = &temp_resource_block5;
               temp_resource_block5 = resource_ptr;
               if (resource_ptr != (longlong *)0x0) {
@@ -650,13 +650,13 @@ void rendering_system_state_manager(uint64_t *render_context, longlong render_pa
               else {
                 (**(code **)((void *)*render_context + FUNCTION_POINTER_OFFSET))(render_context);
               }
-              stack_data = rendering_system_create_resource_object(_DAT_180c8ed18, 0x100, 8, 3);
+              stack_data = rendering_system_create_resource_object(system_memory_pool_ptr, 0x100, 8, 3);
               resource_ptr = (longlong *)rendering_system_initialize_resource(stack_data, &temp_ptr6);
               temp_ptr19 = (void **)resource_ptr;
               if (resource_ptr != (longlong *)0x0) {
                 (**(code **)(*resource_ptr + FUNCTION_POINTER_OFFSET))(resource_ptr);
               }
-              stack_data = _DAT_180c82868;
+              stack_data = system_context_ptr;
               resource_array6 = &temp_resource_block6;
               temp_resource_block6 = resource_ptr;
               if (resource_ptr != (longlong *)0x0) {

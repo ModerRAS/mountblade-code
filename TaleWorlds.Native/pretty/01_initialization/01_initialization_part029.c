@@ -87,7 +87,7 @@ void release_resource_and_unlock_mutex(longlong object_ptr)
   longlong mutex_address;
   
   FUN_18020f150(*(uint64_t *)(*(longlong *)(object_ptr + 8) + 8));
-  mutex_address = _DAT_180c86938 + 0x20;
+  mutex_address = system_message_buffer + 0x20;
   lock_result = _Mtx_lock(mutex_address);
   if (lock_result != 0) {
     __Throw_C_error_std__YAXH_Z(lock_result);

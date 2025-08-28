@@ -17,11 +17,11 @@
 #define RENDERING_MAX_FLOAT_VALUE 3.4028235e+38
 
 // 全局变量
-extern longlong _DAT_180c86938;
+extern longlong system_message_buffer;
 extern longlong GET_SECURITY_COOKIE();
-extern longlong _DAT_180bf02a0;
-extern longlong _DAT_180c86890;
-extern longlong _DAT_180c8ed18;
+extern longlong render_system_control_buffer;
+extern longlong system_parameter_buffer;
+extern longlong system_memory_pool_ptr;
 extern uint64_t global_state_5488_ptr;
 extern uint64_t global_state_5720_ptr;
 extern uint64_t global_state_5680_ptr;
@@ -233,9 +233,9 @@ void rendering_system_process_advanced_transforms(longlong transform_context, ch
         }
         
         // 处理渲染批次
-        FUN_18029b390(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), 
+        FUN_18029b390(*(uint64_t *)(system_message_buffer + 0x1cd8), 
                       *(uint64_t *)(transform_context + 0x40), target_array_2);
-        FUN_18029b390(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), 
+        FUN_18029b390(*(uint64_t *)(system_message_buffer + 0x1cd8), 
                       *(uint64_t *)(transform_context + 0x48), target_array_1);
         
         // 清理临时资源
@@ -279,7 +279,7 @@ void rendering_system_initialize_state(longlong render_context)
     config_offset = *(longlong *)(render_context + 0x9650);
     
     // 设置系统标志
-    _DAT_180bf02a0 = 0x80;
+    render_system_control_buffer = 0x80;
     
     // 函数在此处被截断，实际的初始化代码应该继续执行
     // 这可能是一个代码分析器产生的函数片段
@@ -623,7 +623,7 @@ void rendering_system_advanced_render_control(longlong render_engine, longlong r
         
         // 启用渲染特性
         *(int8_t *)(render_buffer + 0x718) = 1;
-        mode_flag = func_0x0001800e2bf0(_DAT_180c86890, render_buffer);
+        mode_flag = func_0x0001800e2bf0(system_parameter_buffer, render_buffer);
         *(int8_t *)((longlong)render_buffer + 0x1c61) = mode_flag;
         
         // 检查渲染状态
@@ -707,7 +707,7 @@ void rendering_system_advanced_render_control(longlong render_engine, longlong r
     stack_value_1 = 0;
     stack_data_ptr = (uint64_t *)0x0;
     stack_param_1 = 0;
-    texture_ptr = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+    texture_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
     *(int8_t *)texture_ptr = 0;
     stack_data_ptr = texture_ptr;
     render_quality = FUN_18064e990(texture_ptr);

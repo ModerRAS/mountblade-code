@@ -4,9 +4,9 @@
 // 01_initialization_part054.c - 渲染系统初始化相关函数
 
 // 全局变量重命名
-#define render_global_data _DAT_180c86890
-#define render_config_data _DAT_180c86870
-#define render_tls_value _DAT_180d49158
+#define render_global_data system_parameter_buffer
+#define render_config_data system_main_module_state
+#define render_tls_value init_system_config_render
 #define default_render_context unknown_var_3432
 
 /**
@@ -178,7 +178,7 @@ void process_render_data(void)
             longlong *thread_data = (longlong *)0x0;
             *thread_ptr = 0;
           } else {
-            longlong *thread_data = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, (longlong)thread_count * 4);
+            longlong *thread_data = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, (longlong)thread_count * 4);
             *thread_ptr = (longlong)thread_data;
           }
         }
@@ -277,7 +277,7 @@ void process_render_data(void)
               int current_block = (int)start_block;
               if (*(longlong *)block_ptr == 0) {
                 // 分配新的队列块
-                longlong new_block = FUN_18062b420(_DAT_180c8ed18, 0x2000, 0x25);
+                longlong new_block = FUN_18062b420(system_memory_pool_ptr, 0x2000, 0x25);
                 LOCK();
                 bool block_allocated = *(longlong *)(render_queue + (longlong)current_block * 2 + 2) == 0;
                 if (block_allocated) {
@@ -478,12 +478,12 @@ void update_render_matrix(longlong param_1, uint param_2, uint64_t param_3, floa
   param_4[10] = t31 * m23 + t32 * m13 + t33 * m33;
   param_4[0xb] = t31 * m24 + t32 * m14 + t33 * m34;
   lVar15 = *(longlong *)(unaff_RBX + 600);
-  if (*(int *)(lVar15 + 0x28) != *(int *)(_DAT_180c86870 + 0x224)) {
+  if (*(int *)(lVar15 + 0x28) != *(int *)(system_main_module_state + 0x224)) {
     iVar39 = *(int *)(lVar15 + 0x1c) + *(int *)(lVar15 + 0x18);
-    *(int *)(lVar15 + 0x28) = *(int *)(_DAT_180c86870 + 0x224);
+    *(int *)(lVar15 + 0x28) = *(int *)(system_main_module_state + 0x224);
     if (0 < iVar39) {
       uStack0000000000000050 = in_stack_00000058;
-      lVar31 = (longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
+      lVar31 = (longlong)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc28;
       uVar29 = FUN_180080380(lVar31,iVar39,param_1,param_4,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
       *(int32_t *)(lVar15 + 0x30) = uVar29;
       FUN_1800802e0(lVar31,uVar29);
@@ -513,7 +513,7 @@ void update_render_matrix(longlong param_1, uint param_2, uint64_t param_3, floa
             *plVar1 = 0;
           }
           else {
-            plVar32 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,(longlong)cVar14 * 4);
+            plVar32 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,(longlong)cVar14 * 4);
             *plVar1 = (longlong)plVar32;
           }
         }
@@ -574,8 +574,8 @@ void update_render_matrix(longlong param_1, uint param_2, uint64_t param_3, floa
             } while (lVar31 < iVar42);
           }
         }
-        puVar38 = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 +
-                          _DAT_180c86890 + 0x9d0);
+        puVar38 = (uint *)((longlong)*(int *)(system_parameter_buffer + 0xc20) * 0x128 +
+                          system_parameter_buffer + 0x9d0);
         if (iVar39 == 0) {
           uVar40 = (int)cVar14 - 1;
         }
@@ -593,7 +593,7 @@ void update_render_matrix(longlong param_1, uint param_2, uint64_t param_3, floa
             do {
               iVar42 = (int)uVar45;
               if (*(longlong *)puVar44 == 0) {
-                lVar33 = FUN_18062b420(_DAT_180c8ed18,0x2000,0x25);
+                lVar33 = FUN_18062b420(system_memory_pool_ptr,0x2000,0x25);
                 LOCK();
                 bVar47 = *(longlong *)(puVar38 + (longlong)iVar42 * 2 + 2) == 0;
                 if (bVar47) {
@@ -693,12 +693,12 @@ void initialize_render_buffers(void)
   uint64_t in_stack_00000058;
   
   lVar5 = *(longlong *)(unaff_RBX + 600);
-  if (*(int *)(lVar5 + 0x28) != *(int *)(_DAT_180c86870 + 0x224)) {
+  if (*(int *)(lVar5 + 0x28) != *(int *)(system_main_module_state + 0x224)) {
     iVar16 = *(int *)(lVar5 + 0x1c) + *(int *)(lVar5 + 0x18);
-    *(int *)(lVar5 + 0x28) = *(int *)(_DAT_180c86870 + 0x224);
+    *(int *)(lVar5 + 0x28) = *(int *)(system_main_module_state + 0x224);
     if (0 < iVar16) {
       uStack0000000000000050 = in_stack_00000058;
-      lVar12 = (longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
+      lVar12 = (longlong)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc28;
       uVar6 = FUN_180080380(lVar12,iVar16);
       *(int32_t *)(lVar5 + 0x30) = uVar6;
       FUN_1800802e0(lVar12,uVar6);
@@ -728,7 +728,7 @@ void initialize_render_buffers(void)
             *plVar1 = 0;
           }
           else {
-            plVar8 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,(longlong)cVar4 * 4);
+            plVar8 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,(longlong)cVar4 * 4);
             *plVar1 = (longlong)plVar8;
           }
         }
@@ -789,8 +789,8 @@ void initialize_render_buffers(void)
             } while (lVar12 < iVar19);
           }
         }
-        puVar15 = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 +
-                          _DAT_180c86890 + 0x9d0);
+        puVar15 = (uint *)((longlong)*(int *)(system_parameter_buffer + 0xc20) * 0x128 +
+                          system_parameter_buffer + 0x9d0);
         if (iVar16 == 0) {
           uVar17 = (int)cVar4 - 1;
         }
@@ -808,7 +808,7 @@ void initialize_render_buffers(void)
             do {
               iVar19 = (int)uVar22;
               if (*(longlong *)puVar21 == 0) {
-                lVar9 = FUN_18062b420(_DAT_180c8ed18,0x2000,0x25);
+                lVar9 = FUN_18062b420(system_memory_pool_ptr,0x2000,0x25);
                 LOCK();
                 bVar24 = *(longlong *)(puVar15 + (longlong)iVar19 * 2 + 2) == 0;
                 if (bVar24) {
@@ -892,8 +892,8 @@ void *get_render_context(longlong param_1, uint64_t param_2, uint64_t param_3, u
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48) < render_tls_value) {
     FUN_1808fcb90(&system_buffer_9158);
     if (render_tls_value == -1) {
-      _DAT_180d49160 = &default_render_context;
-      _DAT_180d49168 = &system_buffer_9178;
+      init_system_config_render = &default_render_context;
+      init_system_config_render = &system_buffer_9178;
     }
   }
   

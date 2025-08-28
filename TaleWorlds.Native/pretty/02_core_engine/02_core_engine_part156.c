@@ -305,14 +305,14 @@ longlong read_clipboard_unicode_text(void)
   
   // 检查是否需要初始化剪贴板功能
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-               0x48) < _DAT_180d49270) && (FUN_1808fcb90(&system_memory_9270), _DAT_180d49270 == -1)) {
-    _DAT_180d49278 = 0;
-    _DAT_180d49280 = 0;
+               0x48) < core_system_config_resource) && (FUN_1808fcb90(&system_memory_9270), core_system_config_resource == -1)) {
+    core_system_config_resource = 0;
+    core_system_config_resource = 0;
     FUN_1808fc820(&unknown_var_7056_ptr);
     FUN_1808fcb30(&system_memory_9270);
   }
-  clipboard_data = _DAT_180d49280;
-  if (_DAT_180d49280 == 0) {
+  clipboard_data = core_system_config_resource;
+  if (core_system_config_resource == 0) {
     text_length = OpenClipboard(0);
     if (text_length != 0) {
       clipboard_data = GetClipboardData(0xd);  // CF_UNICODETEXT
@@ -340,41 +340,41 @@ longlong read_clipboard_unicode_text(void)
             char_value = *text_ptr;
           }
           required_size = text_length + 1;
-          if (_DAT_180d4927c < (int)required_size) {
-            if (_DAT_180d4927c == 0) {
+          if (core_system_config_resource < (int)required_size) {
+            if (core_system_config_resource == 0) {
               buffer_size = 8;
             }
             else {
-              buffer_size = _DAT_180d4927c / 2 + _DAT_180d4927c;
+              buffer_size = core_system_config_resource / 2 + core_system_config_resource;
             }
             allocated_size = required_size;
             if ((int)required_size < (int)buffer_size) {
               allocated_size = buffer_size;
             }
-            if (_DAT_180d4927c < (int)allocated_size) {
+            if (core_system_config_resource < (int)allocated_size) {
               if (SYSTEM_DATA_MANAGER_A != 0) {
                 *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
               }
               new_buffer = func_0x000180120ce0((longlong)(int)allocated_size,SYSTEM_DATA_MANAGER_B);
-              if (_DAT_180d49280 != 0) {
-                memcpy(new_buffer,_DAT_180d49280,(longlong)_DAT_180d49278);
+              if (core_system_config_resource != 0) {
+                memcpy(new_buffer,core_system_config_resource,(longlong)core_system_config_resource);
               }
-              _DAT_180d49278 = (ulonglong)allocated_size << 0x20;
-              _DAT_180d49280 = new_buffer;
+              core_system_config_resource = (ulonglong)allocated_size << 0x20;
+              core_system_config_resource = new_buffer;
             }
           }
-          _DAT_180d49278 = CONCAT44(_DAT_180d4927c,required_size);
-          FUN_180121c40(_DAT_180d49280,required_size,unicode_text,0);
+          core_system_config_resource = CONCAT44(core_system_config_resource,required_size);
+          FUN_180121c40(core_system_config_resource,required_size,unicode_text,0);
         }
         GlobalUnlock(clipboard_data);
         CloseClipboard();
-        return _DAT_180d49280;
+        return core_system_config_resource;
       }
       CloseClipboard();
     }
     return 0;
   }
-  _DAT_180d49278 = 0;
+  core_system_config_resource = 0;
   if (SYSTEM_DATA_MANAGER_A != 0) {
     *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
   }

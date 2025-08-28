@@ -197,7 +197,7 @@ void RenderingSystem_ProcessResourceData(longlong render_context, longlong outpu
                     }
                     
                     if (size_diff != 0) {
-                        temp_buffer_ptr = (ulonglong *)FUN_18062b420(_DAT_180c8ed18, size_diff * 4, (int8_t)RENDERING_THREAD_SAFE);
+                        temp_buffer_ptr = (ulonglong *)FUN_18062b420(system_memory_pool_ptr, size_diff * 4, (int8_t)RENDERING_THREAD_SAFE);
                     }
                     else {
                         temp_buffer_ptr = (ulonglong *)0x0;
@@ -233,7 +233,7 @@ void RenderingSystem_ProcessResourceData(longlong render_context, longlong outpu
                     }
                     
                     if (data_size != 0) {
-                        temp_buffer_ptr = (uint *)FUN_18062b420(_DAT_180c8ed18, data_size * 8, RENDERING_THREAD_SAFE);
+                        temp_buffer_ptr = (uint *)FUN_18062b420(system_memory_pool_ptr, data_size * 8, RENDERING_THREAD_SAFE);
                     }
                     else {
                         temp_buffer_ptr = (uint *)0x0;
@@ -385,7 +385,7 @@ void RenderingSystem_ProcessResourceData(longlong render_context, longlong outpu
                     }
                     
                     if (memory_size != 0) {
-                        data_buffer_ptr = (ulonglong *)FUN_18062b420(_DAT_180c8ed18, memory_size * 4, RENDERING_THREAD_SAFE);
+                        data_buffer_ptr = (ulonglong *)FUN_18062b420(system_memory_pool_ptr, memory_size * 4, RENDERING_THREAD_SAFE);
                     }
                     else {
                         data_buffer_ptr = (ulonglong *)0x0;
@@ -421,7 +421,7 @@ void RenderingSystem_ProcessResourceData(longlong render_context, longlong outpu
                     }
                     
                     if (block_size != 0) {
-                        data_buffer_ptr = (ulonglong *)FUN_18062b420(_DAT_180c8ed18, block_size * 8, RENDERING_THREAD_SAFE);
+                        data_buffer_ptr = (ulonglong *)FUN_18062b420(system_memory_pool_ptr, block_size * 8, RENDERING_THREAD_SAFE);
                     }
                     else {
                         data_buffer_ptr = (ulonglong *)0x0;
@@ -728,7 +728,7 @@ void RenderingSystem_ExecuteBatchOperations(uint64_t *param_1, int param_2, int 
                                 data_offset = data_offset * 2;
                                 memory_ptr_1 = (longlong *)0x0;
                                 if (data_offset != 0) {
-                                    memory_ptr_1 = (longlong *)FUN_18062b420(_DAT_180c8ed18, data_offset * 8);
+                                    memory_ptr_1 = (longlong *)FUN_18062b420(system_memory_pool_ptr, data_offset * 8);
                                 }
                             }
                             

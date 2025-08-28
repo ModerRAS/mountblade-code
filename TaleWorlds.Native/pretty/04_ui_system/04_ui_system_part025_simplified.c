@@ -659,9 +659,9 @@ void ui_system_null_operator(void)
 void ui_system_thread_synchronizer(code *sync_func)
 {
     // 检查同步状态
-    if (_DAT_180c0c1cc == 0) {
+    if (ui_system_ui == 0) {
         LOCK();
-        _DAT_180c0c1c8 = _DAT_180c0c1c8 + 1;
+        ui_system_ui = ui_system_ui + 1;
         UNLOCK();
         
         // 创建临界区
@@ -669,14 +669,14 @@ void ui_system_thread_synchronizer(code *sync_func)
         InitializeCriticalSection(critical_section);
         
         LOCK();
-        bool section_exists = _DAT_180c0c1c0 != 0;
+        bool section_exists = ui_system_ui != 0;
         longlong section_ptr = critical_section;
         
         if (section_exists) {
-            section_ptr = _DAT_180c0c1c0;
+            section_ptr = ui_system_ui;
         }
         
-        _DAT_180c0c1c0 = section_ptr;
+        ui_system_ui = section_ptr;
         UNLOCK();
         
         if (section_exists) {
@@ -685,25 +685,25 @@ void ui_system_thread_synchronizer(code *sync_func)
         }
         
         // 执行同步操作
-        EnterCriticalSection(_DAT_180c0c1c0);
-        if (_DAT_180c0c1cc == 0) {
+        EnterCriticalSection(ui_system_ui);
+        if (ui_system_ui == 0) {
             (*sync_func)();
-            _DAT_180c0c1cc = 1;
+            ui_system_ui = 1;
         }
-        LeaveCriticalSection(_DAT_180c0c1c0);
+        LeaveCriticalSection(ui_system_ui);
         
         // 清理同步资源
         LOCK();
-        int ref_count = _DAT_180c0c1c8 + -1;
+        int ref_count = ui_system_ui + -1;
         UNLOCK();
         
-        bool should_cleanup = _DAT_180c0c1c8 == 1;
-        _DAT_180c0c1c8 = ref_count;
+        bool should_cleanup = ui_system_ui == 1;
+        ui_system_ui = ref_count;
         
         if (should_cleanup) {
-            DeleteCriticalSection(_DAT_180c0c1c0);
-            free(_DAT_180c0c1c0);
-            _DAT_180c0c1c0 = 0;
+            DeleteCriticalSection(ui_system_ui);
+            free(ui_system_ui);
+            ui_system_ui = 0;
         }
     }
 }
@@ -728,7 +728,7 @@ void ui_system_system_initializer(void)
     
     // 初始化引用计数
     LOCK();
-    _DAT_180c0c1c8 = _DAT_180c0c1c8 + 1;
+    ui_system_ui = ui_system_ui + 1;
     UNLOCK();
     
     // 创建系统资源
@@ -736,14 +736,14 @@ void ui_system_system_initializer(void)
     InitializeCriticalSection(temp_var2);
     
     LOCK();
-    resource_exists = _DAT_180c0c1c0 != 0;
+    resource_exists = ui_system_ui != 0;
     temp_var1 = temp_var2;
     
     if (resource_exists) {
-        temp_var1 = _DAT_180c0c1c0;
+        temp_var1 = ui_system_ui;
     }
     
-    _DAT_180c0c1c0 = temp_var1;
+    ui_system_ui = temp_var1;
     UNLOCK();
     
     if (resource_exists) {
@@ -752,25 +752,25 @@ void ui_system_system_initializer(void)
     }
     
     // 执行初始化操作
-    EnterCriticalSection(_DAT_180c0c1c0);
-    if (_DAT_180c0c1cc == 0) {
+    EnterCriticalSection(ui_system_ui);
+    if (ui_system_ui == 0) {
         (*init_func)();
-        _DAT_180c0c1cc = 1;
+        ui_system_ui = 1;
     }
-    LeaveCriticalSection(_DAT_180c0c1c0);
+    LeaveCriticalSection(ui_system_ui);
     
     // 清理初始化资源
     LOCK();
-    ref_count = _DAT_180c0c1c8 + -1;
+    ref_count = ui_system_ui + -1;
     UNLOCK();
     
-    bool should_cleanup = _DAT_180c0c1c8 == 1;
-    _DAT_180c0c1c8 = ref_count;
+    bool should_cleanup = ui_system_ui == 1;
+    ui_system_ui = ref_count;
     
     if (should_cleanup) {
-        DeleteCriticalSection(_DAT_180c0c1c0);
-        free(_DAT_180c0c1c0);
-        _DAT_180c0c1c0 = 0;
+        DeleteCriticalSection(ui_system_ui);
+        free(ui_system_ui);
+        ui_system_ui = 0;
     }
 }
 
@@ -791,21 +791,21 @@ void ui_system_system_executor(void)
     
     // 执行系统任务
     (*exec_func)();
-    _DAT_180c0c1cc = 1;
-    LeaveCriticalSection(_DAT_180c0c1c0);
+    ui_system_ui = 1;
+    LeaveCriticalSection(ui_system_ui);
     
     // 清理执行资源
     LOCK();
-    ref_count = _DAT_180c0c1c8 + -1;
+    ref_count = ui_system_ui + -1;
     UNLOCK();
     
-    should_cleanup = _DAT_180c0c1c8 == 1;
-    _DAT_180c0c1c8 = ref_count;
+    should_cleanup = ui_system_ui == 1;
+    ui_system_ui = ref_count;
     
     if (should_cleanup) {
-        DeleteCriticalSection(_DAT_180c0c1c0);
-        free(_DAT_180c0c1c0);
-        _DAT_180c0c1c0 = 0;
+        DeleteCriticalSection(ui_system_ui);
+        free(ui_system_ui);
+        ui_system_ui = 0;
     }
 }
 
@@ -849,69 +849,69 @@ void ui_system_cpu_feature_detector(void)
     }
     
     // 配置优化参数
-    _DAT_180d4a9b0 = &unknown_var_7287_ptr;
+    ui_system_config_global_data = &unknown_var_7287_ptr;
     if (has_sse2) {
-        _DAT_180d4a9b0 = &unknown_var_656_ptr;
+        ui_system_config_global_data = &unknown_var_656_ptr;
     }
     
-    _DAT_180d4a9a8 = &unknown_var_7997_ptr;
+    ui_system_config_ui = &unknown_var_7997_ptr;
     if (has_sse2) {
-        _DAT_180d4a9a8 = &unknown_var_1412_ptr;
+        ui_system_config_ui = &unknown_var_1412_ptr;
     }
     
-    _DAT_180d4a990 = &unknown_var_2384_ptr;
+    ui_system_config_ui = &unknown_var_2384_ptr;
     if (has_sse2) {
-        _DAT_180d4a990 = &unknown_var_2608_ptr;
+        ui_system_config_ui = &unknown_var_2608_ptr;
     }
     
     // 设置系统函数指针
-    _DAT_180d4a9c8 = FUN_1806714a0;
+    ui_system_config_ui = FUN_1806714a0;
     if (has_sse2) {
-        _DAT_180d4a9c8 = FUN_1806718d0;
+        ui_system_config_ui = FUN_1806718d0;
     }
     
-    _DAT_180d4a9c0 = FUN_180673220;
+    ui_system_config_ui = FUN_180673220;
     if (has_sse2) {
-        _DAT_180d4a9c0 = FUN_180673850;
+        ui_system_config_ui = FUN_180673850;
     }
     
-    _DAT_180d4a9b8 = FUN_180671eb0;
+    ui_system_config_ui = FUN_180671eb0;
     if (has_sse2) {
-        _DAT_180d4a9b8 = FUN_1806721d0;
+        ui_system_config_ui = FUN_1806721d0;
     }
     
     if (has_avx) {
-        _DAT_180d4a9b8 = FUN_1806725c0;
+        ui_system_config_ui = FUN_1806725c0;
     }
     
-    _DAT_180d4a9a0 = FUN_180672a50;
+    ui_system_config_ui = FUN_180672a50;
     if (has_sse2) {
-        _DAT_180d4a9a0 = FUN_180672da0;
+        ui_system_config_ui = FUN_180672da0;
     }
     
-    _DAT_180d4a998 = FUN_180673360;
+    ui_system_config_ui = FUN_180673360;
     if (has_avx) {
-        _DAT_180d4a998 = FUN_180673970;
+        ui_system_config_ui = FUN_180673970;
     }
     
-    _DAT_180d4a988 = FUN_180673e10;
+    ui_system_config_ui = FUN_180673e10;
     if (has_sse2) {
-        _DAT_180d4a988 = FUN_180673f50;
+        ui_system_config_ui = FUN_180673f50;
     }
     
-    _DAT_180d4a980 = FUN_180674040;
+    ui_system_config_ui = FUN_180674040;
     if (has_sse2) {
-        _DAT_180d4a980 = FUN_180674120;
+        ui_system_config_ui = FUN_180674120;
     }
     
-    _DAT_180d4a978 = FUN_1806742a0;
+    ui_system_config_ui = FUN_1806742a0;
     if (has_sse2) {
-        _DAT_180d4a978 = FUN_1806743e0;
+        ui_system_config_ui = FUN_1806743e0;
     }
     
-    _DAT_180d4a970 = FUN_1806744d0;
+    ui_system_config_ui = FUN_1806744d0;
     if (has_sse2) {
-        _DAT_180d4a970 = FUN_180674610;
+        ui_system_config_ui = FUN_180674610;
     }
 }
 
@@ -931,9 +931,9 @@ void ui_system_cpu_feature_detector(void)
 void ui_system_secure_synchronizer(code *sync_func)
 {
     // 检查同步状态
-    if (_DAT_180c0c1dc == 0) {
+    if (ui_system_ui == 0) {
         LOCK();
-        _DAT_180c0c1d8 = _DAT_180c0c1d8 + 1;
+        ui_system_ui = ui_system_ui + 1;
         UNLOCK();
         
         // 创建安全临界区
@@ -941,14 +941,14 @@ void ui_system_secure_synchronizer(code *sync_func)
         InitializeCriticalSection(critical_section);
         
         LOCK();
-        bool section_exists = _DAT_180c0c1d0 != 0;
+        bool section_exists = ui_system_ui != 0;
         longlong section_ptr = critical_section;
         
         if (section_exists) {
-            section_ptr = _DAT_180c0c1d0;
+            section_ptr = ui_system_ui;
         }
         
-        _DAT_180c0c1d0 = section_ptr;
+        ui_system_ui = section_ptr;
         UNLOCK();
         
         if (section_exists) {
@@ -957,25 +957,25 @@ void ui_system_secure_synchronizer(code *sync_func)
         }
         
         // 执行安全同步
-        EnterCriticalSection(_DAT_180c0c1d0);
-        if (_DAT_180c0c1dc == 0) {
+        EnterCriticalSection(ui_system_ui);
+        if (ui_system_ui == 0) {
             (*sync_func)();
-            _DAT_180c0c1dc = 1;
+            ui_system_ui = 1;
         }
-        LeaveCriticalSection(_DAT_180c0c1d0);
+        LeaveCriticalSection(ui_system_ui);
         
         // 清理同步资源
         LOCK();
-        int ref_count = _DAT_180c0c1d8 + -1;
+        int ref_count = ui_system_ui + -1;
         UNLOCK();
         
-        bool should_cleanup = _DAT_180c0c1d8 == 1;
-        _DAT_180c0c1d8 = ref_count;
+        bool should_cleanup = ui_system_ui == 1;
+        ui_system_ui = ref_count;
         
         if (should_cleanup) {
-            DeleteCriticalSection(_DAT_180c0c1d0);
-            free(_DAT_180c0c1d0);
-            _DAT_180c0c1d0 = 0;
+            DeleteCriticalSection(ui_system_ui);
+            free(ui_system_ui);
+            ui_system_ui = 0;
         }
     }
 }
@@ -1000,7 +1000,7 @@ void ui_system_secure_initializer(void)
     
     // 初始化引用计数
     LOCK();
-    _DAT_180c0c1d8 = _DAT_180c0c1d8 + 1;
+    ui_system_ui = ui_system_ui + 1;
     UNLOCK();
     
     // 创建安全资源
@@ -1008,14 +1008,14 @@ void ui_system_secure_initializer(void)
     InitializeCriticalSection(temp_var2);
     
     LOCK();
-    resource_exists = _DAT_180c0c1d0 != 0;
+    resource_exists = ui_system_ui != 0;
     temp_var1 = temp_var2;
     
     if (resource_exists) {
-        temp_var1 = _DAT_180c0c1d0;
+        temp_var1 = ui_system_ui;
     }
     
-    _DAT_180c0c1d0 = temp_var1;
+    ui_system_ui = temp_var1;
     UNLOCK();
     
     if (resource_exists) {
@@ -1024,25 +1024,25 @@ void ui_system_secure_initializer(void)
     }
     
     // 执行安全初始化
-    EnterCriticalSection(_DAT_180c0c1d0);
-    if (_DAT_180c0c1dc == 0) {
+    EnterCriticalSection(ui_system_ui);
+    if (ui_system_ui == 0) {
         (*init_func)();
-        _DAT_180c0c1dc = 1;
+        ui_system_ui = 1;
     }
-    LeaveCriticalSection(_DAT_180c0c1d0);
+    LeaveCriticalSection(ui_system_ui);
     
     // 清理初始化资源
     LOCK();
-    ref_count = _DAT_180c0c1d8 + -1;
+    ref_count = ui_system_ui + -1;
     UNLOCK();
     
-    bool should_cleanup = _DAT_180c0c1d8 == 1;
-    _DAT_180c0c1d8 = ref_count;
+    bool should_cleanup = ui_system_ui == 1;
+    ui_system_ui = ref_count;
     
     if (should_cleanup) {
-        DeleteCriticalSection(_DAT_180c0c1d0);
-        free(_DAT_180c0c1d0);
-        _DAT_180c0c1d0 = 0;
+        DeleteCriticalSection(ui_system_ui);
+        free(ui_system_ui);
+        ui_system_ui = 0;
     }
 }
 
@@ -1063,20 +1063,20 @@ void ui_system_secure_executor(void)
     
     // 执行安全任务
     (*exec_func)();
-    _DAT_180c0c1dc = 1;
-    LeaveCriticalSection(_DAT_180c0c1d0);
+    ui_system_ui = 1;
+    LeaveCriticalSection(ui_system_ui);
     
     // 清理执行资源
     LOCK();
-    ref_count = _DAT_180c0c1d8 + -1;
+    ref_count = ui_system_ui + -1;
     UNLOCK();
     
-    should_cleanup = _DAT_180c0c1d8 == 1;
-    _DAT_180c0c1d8 = ref_count;
+    should_cleanup = ui_system_ui == 1;
+    ui_system_ui = ref_count;
     
     if (should_cleanup) {
-        DeleteCriticalSection(_DAT_180c0c1d0);
-        free(_DAT_180c0c1d0);
-        _DAT_180c0c1d0 = 0;
+        DeleteCriticalSection(ui_system_ui);
+        free(ui_system_ui);
+        ui_system_ui = 0;
     }
 }

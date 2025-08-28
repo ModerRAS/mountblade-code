@@ -138,10 +138,10 @@ void process_resource_lookup(uint64_t param_1, uint64_t param_2, longlong search
     longlong *stack_ptr_50;
     uint64_t *stack_ptr_48;
     
-    resource_table = _DAT_180c868e8;
+    resource_table = core_system_data_resource;
     stack_var_58 = 0xfffffffffffffffe;
-    stack_ptr_68 = _DAT_180c868e8;
-    search_flag = *_DAT_180c86870;
+    stack_ptr_68 = core_system_data_resource;
+    search_flag = *system_main_module_state;
     stack_temp = param_1;
     initialize_search_context(&stack_ptr_b8);
     stack_var_8c = calculate_search_hash(search_flag, &stack_ptr_b8);
@@ -245,7 +245,7 @@ LAB_18020ce30:
         if (resource_offset == 0) {
             resource_offset = 1;
 LAB_18020ceb6:
-            resource_entry = (longlong *)allocate_resource_memory(_DAT_180c8ed18);
+            resource_entry = (longlong *)allocate_resource_memory(system_memory_pool_ptr);
         }
         else {
             resource_offset = resource_offset * 2;
@@ -277,7 +277,7 @@ LAB_18020ceb6:
             string_length = *result_buffer;
             if (result_buffer[1] - string_length >> 5 != 0) {
                 resource_offset = *(longlong *)(stack_var_88 + (longlong)stack_ptr_b8) + 400;
-                compare_length = allocate_resource_memory(_DAT_180c8ed18, 0x78,
+                compare_length = allocate_resource_memory(system_memory_pool_ptr, 0x78,
                                *(int8_t *)
                                 (*(longlong *)(stack_var_88 + (longlong)stack_ptr_b8) + 0x1b8));
                 stack_ptr_48 = (uint64_t *)(compare_length + 0x20);
@@ -409,7 +409,7 @@ void execute_resource_cleanup(longlong resource_context)
                  (ulonglong)(*(longlong *)(resource_context + 0x1c8) - *(longlong *)(resource_context + 0x1c0) >> 3));
     }
     
-    manager_ptr = _DAT_180c8f008;
+    manager_ptr = system_cache_buffer;
     loop_counter = cleanup_offset;
     resource_ptr = stack_ptr_38;
     temp_ptr = stack_ptr_30;
@@ -417,17 +417,17 @@ void execute_resource_cleanup(longlong resource_context)
     // 执行实际的清理操作
     if ((longlong)stack_ptr_30 - (longlong)stack_ptr_38 >> 3 != 0) {
         do {
-            cleanup_handler = _DAT_180c8a9c0;
+            cleanup_handler = core_system_data_resource;
             if (**(char **)(*(longlong *)(loop_counter + (longlong)stack_ptr_38) + 0x10) != '\0') {
                 resource_id = *(int *)(*(longlong *)(loop_counter + (longlong)stack_ptr_38) + 0x50);
                 if ((resource_id != 0) && (manager_ptr != 0)) {
                     (**(code **)(manager_ptr + 0x30))(resource_id);
                 }
                 (**(code **)(cleanup_handler + 0x200))(resource_id);
-                manager_ptr = _DAT_180c8f008;
-                if ((resource_id != 0) && (_DAT_180c8f008 != 0)) {
-                    (**(code **)(_DAT_180c8f008 + 0x18))(resource_id);
-                    manager_ptr = _DAT_180c8f008;
+                manager_ptr = system_cache_buffer;
+                if ((resource_id != 0) && (system_cache_buffer != 0)) {
+                    (**(code **)(system_cache_buffer + 0x18))(resource_id);
+                    manager_ptr = system_cache_buffer;
                 }
             }
             
@@ -502,7 +502,7 @@ void release_resource_memory(longlong resource_handle)
                  (ulonglong)(*(longlong *)(resource_handle + 0x1c8) - *(longlong *)(resource_handle + 0x1c0) >> 3));
     }
     
-    manager_ptr = _DAT_180c8f008;
+    manager_ptr = system_cache_buffer;
     loop_counter = release_offset;
     resource_ptr = stack_ptr_38;
     temp_ptr = stack_ptr_30;
@@ -510,17 +510,17 @@ void release_resource_memory(longlong resource_handle)
     // 执行实际的释放操作
     if ((longlong)stack_ptr_30 - (longlong)stack_ptr_38 >> 3 != 0) {
         do {
-            release_handler = _DAT_180c8a9c0;
+            release_handler = core_system_data_resource;
             if (**(char **)(*(longlong *)(loop_counter + (longlong)stack_ptr_38) + 0x10) != '\0') {
                 resource_id = *(int *)(*(longlong *)(loop_counter + (longlong)stack_ptr_38) + 0x50);
                 if ((resource_id != 0) && (manager_ptr != 0)) {
                     (**(code **)(manager_ptr + 0x30))(resource_id);
                 }
                 (**(code **)(release_handler + 0x178))(resource_id);
-                manager_ptr = _DAT_180c8f008;
-                if ((resource_id != 0) && (_DAT_180c8f008 != 0)) {
-                    (**(code **)(_DAT_180c8f008 + 0x18))(resource_id);
-                    manager_ptr = _DAT_180c8f008;
+                manager_ptr = system_cache_buffer;
+                if ((resource_id != 0) && (system_cache_buffer != 0)) {
+                    (**(code **)(system_cache_buffer + 0x18))(resource_id);
+                    manager_ptr = system_cache_buffer;
                 }
             }
             
@@ -579,7 +579,7 @@ void batch_process_resources(uint64_t param_1, uint64_t param_2, uint64_t param_
     stack_flag_40 = 3;
     
     // 初始化批量处理
-    initialize_batch_processing(_DAT_180c868e8, &stack_ptr_58, param_3, param_4, 0, 0xfffffffffffffffe);
+    initialize_batch_processing(core_system_data_resource, &stack_ptr_58, param_3, param_4, 0, 0xfffffffffffffffe);
     batch_index = 0;
     item_count = stack_offset - (longlong)stack_ptr_58 >> 3;
     resource_ptr = stack_ptr_58;
@@ -605,7 +605,7 @@ void batch_process_resources(uint64_t param_1, uint64_t param_2, uint64_t param_
                     temp_offset = 1;
 LAB_18020d5b5:
                     resource_ptr = (uint64_t *)
-                            allocate_batch_memory(_DAT_180c8ed18, temp_offset * 8, (char)stack_status, param_4, batch_flag);
+                            allocate_batch_memory(system_memory_pool_ptr, temp_offset * 8, (char)stack_status, param_4, batch_flag);
                 }
                 else {
                     temp_offset = temp_offset * 2;
@@ -773,7 +773,7 @@ LAB_18020d80a:
     }
     
     // 创建新的资源条目
-    new_entry = allocate_resource_memory(_DAT_180c8ed18, 0x48, (char)resource_table[5]);
+    new_entry = allocate_resource_memory(system_memory_pool_ptr, 0x48, (char)resource_table[5]);
     *(int *)(new_entry + 0x20) = *entry_key;
     *(uint64_t *)(new_entry + 0x28) = 0;
     *(uint64_t *)(new_entry + 0x30) = 0;
@@ -813,7 +813,7 @@ void expand_resource_table(longlong *resource_table, uint64_t *new_entry, uint64
     }
     
     new_table = (uint64_t *)
-            allocate_table_memory(_DAT_180c8ed18, old_capacity << 5, (char)resource_table[3], param_4, 0xfffffffffffffffe);
+            allocate_table_memory(system_memory_pool_ptr, old_capacity << 5, (char)resource_table[3], param_4, 0xfffffffffffffffe);
     table_ptr = (uint64_t *)resource_table[1];
     table_start = (uint64_t *)*resource_table;
     
@@ -889,7 +889,7 @@ void insert_resource_entry(longlong resource_table, uint64_t param_2, longlong i
     }
     
     // 创建新条目
-    new_entry = allocate_resource_memory(_DAT_180c8ed18, 0x48, *(int8_t *)(resource_table + 0x28), 
+    new_entry = allocate_resource_memory(system_memory_pool_ptr, 0x48, *(int8_t *)(resource_table + 0x28), 
                                         insert_flag, 0xfffffffffffffffe);
     *(int *)(new_entry + 0x20) = *entry_key;
     *(uint64_t *)(new_entry + 0x28) = 0;
@@ -1029,7 +1029,7 @@ longlong process_manager_operation(longlong *manager_ptr, longlong *data_ptr, in
     }
     else {
         if (operation_type == 1) {
-            new_resource = (uint64_t *)allocate_resource_structure(_DAT_180c8ed18, 0x18, 8, system_allocation_flags, 0xfffffffffffffffe);
+            new_resource = (uint64_t *)allocate_resource_structure(system_memory_pool_ptr, 0x18, 8, system_allocation_flags, 0xfffffffffffffffe);
             resource_data = (uint64_t *)*data_ptr;
             temp_value = resource_data[1];
             *new_resource = *resource_data;
@@ -1164,11 +1164,11 @@ void format_resource_info_output(uint64_t output_handle, longlong resource_info)
  * - unknown_var_720_ptr -> RESOURCE_CLEANUP_POOL (资源清理池)
  * - unknown_var_3480 -> RESOURCE_HANDLER_TABLE (资源处理表)
  * - system_buffer_ptr -> EMPTY_STRING_BUFFER (空字符串缓冲区)
- * - _DAT_180c868e8 -> GLOBAL_RESOURCE_TABLE (全局资源表)
- * - _DAT_180c86870 -> GLOBAL_RESOURCE_FLAG (全局资源标志)
- * - _DAT_180c8f008 -> RESOURCE_MANAGER_PTR (资源管理器指针)
- * - _DAT_180c8a9c0 -> RESOURCE_CLEANUP_HANDLER (资源清理处理器)
- * - _DAT_180c8ed18 -> MEMORY_ALLOCATOR (内存分配器)
+ * - core_system_data_resource -> GLOBAL_RESOURCE_TABLE (全局资源表)
+ * - system_main_module_state -> GLOBAL_RESOURCE_FLAG (全局资源标志)
+ * - system_cache_buffer -> RESOURCE_MANAGER_PTR (资源管理器指针)
+ * - core_system_data_resource -> RESOURCE_CLEANUP_HANDLER (资源清理处理器)
+ * - system_memory_pool_ptr -> MEMORY_ALLOCATOR (内存分配器)
  * - GET_SECURITY_COOKIE() -> SECURITY_COOKIE (安全cookie)
  * - system_allocation_flags -> DEFAULT_RESOURCE_DATA (默认资源数据)
  * 

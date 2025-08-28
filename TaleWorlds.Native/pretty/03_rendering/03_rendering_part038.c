@@ -48,7 +48,7 @@ void update_render_animation_time(longlong render_context, uint64_t param_2, uin
   int32_t stack_flags[4];
   longlong result_flag;
   
-  current_time = (float)_DAT_180c8ed30;
+  current_time = (float)system_error_code;
   time_diff = current_time * GLOBAL_RENDER_TIME_SCALE - *(float *)(render_context + 0x15c);
   render_data_ptr = *(longlong *)(render_context + 0x120);
   *(float *)(render_data_ptr + 0x2a8) = time_diff;
@@ -221,7 +221,7 @@ longlong create_render_object(longlong object_params, longlong render_manager)
   texture_data[1] = MAX_RENDER_QUEUE_SIZE;
   render_context = FUN_1800daa50();
   FUN_180094b30(render_context, &system_buffer_6c38);
-  resource_ptr1 = *(longlong **)(_DAT_180c86938 + 0x121e0);
+  resource_ptr1 = *(longlong **)(system_message_buffer + 0x121e0);
   if (resource_ptr1 != (longlong *)0x0) {
     (**(code **)(*resource_ptr1 + 0x28))(resource_ptr1);
   }
@@ -243,8 +243,8 @@ longlong create_render_object(longlong object_params, longlong render_manager)
   *(int8_t *)(render_context + 0x9a31) = 0;
   data_offset = 2;
   *(int32_t *)(render_context + 4) = 2;
-  *(float *)(render_context + 0x124e4) = (float)(_DAT_180c8ed30 % MAX_RENDER_OBJECTS) * GLOBAL_RENDER_TIME_SCALE;
-  data_ptr1 = (uint64_t *)(_DAT_180c86950 + 0x16a0);
+  *(float *)(render_context + 0x124e4) = (float)(system_error_code % MAX_RENDER_OBJECTS) * GLOBAL_RENDER_TIME_SCALE;
+  data_ptr1 = (uint64_t *)(system_operation_state + 0x16a0);
   data_ptr2 = (uint64_t *)(render_context + 0x30);
   
   // 复制纹理数据
@@ -311,8 +311,8 @@ longlong create_render_object(longlong object_params, longlong render_manager)
   render_params[1] = 0;
   render_params[2] = 0x3f800000; // 1.0f
   data_offset = *(longlong *)(*(longlong *)(*(longlong *)(object_params + 0xf0) + 0x1b8) + 0xb8);
-  texture_height = (float)*(ushort *)(data_offset + 0x32e) / *(float *)(_DAT_180c86950 + 0x17f0);
-  texture_width = (float)*(ushort *)(data_offset + 0x32c) / *(float *)(_DAT_180c86950 + 0x17ec);
+  texture_height = (float)*(ushort *)(data_offset + 0x32e) / *(float *)(system_operation_state + 0x17f0);
+  texture_width = (float)*(ushort *)(data_offset + 0x32c) / *(float *)(system_operation_state + 0x17ec);
   
   // 设置颜色值
   color_values[0] = texture_width * 1.0 + 0.0 + 0.0;
@@ -628,10 +628,10 @@ void initialize_render_array(int *array_ptr, int start_index, int end_index, lon
   int8_t temp_data2[16];
   int8_t vector_result2[16];
   
-  vector_data = _DAT_180a3f750;
+  vector_data = render_system_resource;
   vector_size = capacity - 1;
   current_index = 0;
-  if (((0 < (int)vector_size) && (current_index = 0, 3 < vector_size)) && (1 < _DAT_180bf00b0)) {
+  if (((0 < (int)vector_size) && (current_index = 0, 3 < vector_size)) && (1 < render_system_control_resource)) {
     aligned_size = vector_size & 0x80000003;
     if ((int)aligned_size < 0) {
       aligned_size = (aligned_size - 1 | 0xfffffffc) + 1;

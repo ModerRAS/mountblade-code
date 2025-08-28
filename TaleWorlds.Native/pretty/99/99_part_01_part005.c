@@ -711,23 +711,23 @@ void system_memory_allocator_and_resource_manager(longlong system_handle)
     local_stack_value3 = 0;
     
     // 内存池分配
-    local_var3 = FUN_18062b1e0(_DAT_180c8ed18, 8, 8, 3);
+    local_var3 = FUN_18062b1e0(system_memory_pool_ptr, 8, 8, 3);
     *(uint64_t *)(system_handle + 0x10) = local_var3;
     
     // 资源内存分配
-    local_var3 = FUN_18062b1e0(_DAT_180c8ed18, 0x120, 8, 3);
+    local_var3 = FUN_18062b1e0(system_memory_pool_ptr, 0x120, 8, 3);
     local_var3 = FUN_1800ae430(local_var3);
     *(uint64_t *)(system_handle + 8) = local_var3;
     
     // 系统资源管理器
-    local_var1 = _DAT_180c86898;
+    local_var1 = system_system_data_memory;
     local_stack_ptr1 = &unknown_var_3456_ptr;
     local_stack_value2 = 0;
     local_stack_ptr2 = (int32_t *)0x0;
     local_stack_value1 = 0;
     
     // 资源标识符创建
-    local_var4 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x12, 0x13);
+    local_var4 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x12, 0x13);
     *(int8_t *)local_var4 = 0;
     local_stack_ptr2 = local_var4;
     
@@ -891,7 +891,7 @@ void resource_configurator_and_state_manager(longlong system_handle, int32_t par
             // 配置应用
             (**(code **)(**(longlong **)(system_handle + 0x1d68) + 0x78))
                       (*(longlong **)(system_handle + 0x1d68), *(uint64_t *)(system_handle + 0x1d78),
-                       *(uint64_t *)(*(longlong *)(_DAT_180c86870 + 8) + 8), &local_stack_value4);
+                       *(uint64_t *)(*(longlong *)(system_main_module_state + 8) + 8), &local_stack_value4);
             *(uint64_t *)(system_handle + 0x1d70) = local_stack_value3;
             goto LAB_1800a326b;
         }
@@ -903,7 +903,7 @@ LAB_1800a31d1:
     local_stack_value7 = *(int32_t *)(system_handle + 0x1d80);
     local_stack_value13 = 0;
     local_stack_value18 = 0;
-    local_var1 = *(uint64_t *)(*(longlong *)(_DAT_180c86870 + 8) + 8);
+    local_var1 = *(uint64_t *)(*(longlong *)(system_main_module_state + 8) + 8);
     local_stack_value14 = (int32_t)local_var1;
     local_stack_value15 = (int32_t)((ulonglong)local_var1 >> 0x20);
     local_stack_value10 = 1;
@@ -922,7 +922,7 @@ LAB_1800a31d1:
 LAB_1800a326b:
     // 系统状态更新
     (**(code **)(**(longlong **)(system_handle + 0x1d68) + 0x40))
-            (*(longlong **)(system_handle + 0x1d68), *(uint64_t *)(*(longlong *)(_DAT_180c86870 + 8) + 8), 2);
+            (*(longlong **)(system_handle + 0x1d68), *(uint64_t *)(*(longlong *)(system_main_module_state + 8) + 8), 2);
     // WARNING: Subroutine does not return
     FUN_1808fc050(stack_canary ^ (ulonglong)local_stack_buffer1);
 }

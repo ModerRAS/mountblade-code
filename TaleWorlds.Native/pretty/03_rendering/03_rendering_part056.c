@@ -410,16 +410,16 @@ void render_boundary_processing(uint64_t param_1, float *param_2, float *param_3
 void render_memory_copy_optimized(ulonglong param_1, uint param_2)
 
 {
-  if (_DAT_180c96838 < param_2 + _DAT_180c96850) {
-    _DAT_180c96850 = param_2 + _DAT_180c96850;
+  if (render_system_config < param_2 + render_system_config) {
+    render_system_config = param_2 + render_system_config;
     return;
   }
-  if (param_1 < _DAT_180c96848) {
-    _DAT_180c96850 = _DAT_180c96838 + 1;
+  if (param_1 < render_system_config) {
+    render_system_config = render_system_config + 1;
     return;
   }
                     // WARNING: Subroutine does not return
-  memcpy(_DAT_180c96850,param_1);
+  memcpy(render_system_config,param_1);
 }
 
 
@@ -442,11 +442,11 @@ byte * render_data_decompress(byte *param_1)
   bVar1 = *param_1;
   if (0x1f < bVar1) {
     if (0x7f < bVar1) {
-      func_0x000180298bc0((_DAT_180c96850 - (ulonglong)param_1[1]) + -1,bVar1 - 0x7f);
+      func_0x000180298bc0((render_system_config - (ulonglong)param_1[1]) + -1,bVar1 - 0x7f);
       return param_1 + 2;
     }
     if (0x3f < bVar1) {
-      func_0x000180298bc0(((_DAT_180c96850 + (ulonglong)bVar1 * -0x100) - (ulonglong)param_1[1]) +
+      func_0x000180298bc0(((render_system_config + (ulonglong)bVar1 * -0x100) - (ulonglong)param_1[1]) +
                           0x3fff,param_1[2] + 1);
       return param_1 + 3;
     }
@@ -454,12 +454,12 @@ byte * render_data_decompress(byte *param_1)
     return param_1 + ((ulonglong)*param_1 - 0x1e);
   }
   if (0x17 < bVar1) {
-    func_0x000180298bc0(((_DAT_180c96850 + (ulonglong)CONCAT11(bVar1,param_1[1]) * -0x100) -
+    func_0x000180298bc0(((render_system_config + (ulonglong)CONCAT11(bVar1,param_1[1]) * -0x100) -
                         (ulonglong)param_1[2]) + 0x17ffff,param_1[3] + 1);
     return param_1 + 4;
   }
   if (0xf < bVar1) {
-    func_0x000180298bc0(((_DAT_180c96850 + (ulonglong)CONCAT11(bVar1,param_1[1]) * -0x100) -
+    func_0x000180298bc0(((render_system_config + (ulonglong)CONCAT11(bVar1,param_1[1]) * -0x100) -
                         (ulonglong)param_1[2]) + 0xfffff,
                         (uint)param_1[4] + (uint)param_1[3] * 0x100 + 1);
     return param_1 + 5;
@@ -473,12 +473,12 @@ byte * render_data_decompress(byte *param_1)
     return param_1 + (ulonglong)param_1[1] * 0x100 + 4 + (ulonglong)param_1[2];
   }
   if (bVar1 == 6) {
-    func_0x000180298bc0(((_DAT_180c96850 + (ulonglong)CONCAT11(param_1[1],param_1[2]) * -0x100) -
+    func_0x000180298bc0(((render_system_config + (ulonglong)CONCAT11(param_1[1],param_1[2]) * -0x100) -
                         (ulonglong)param_1[3]) + -1,param_1[4] + 1);
     return param_1 + 5;
   }
   if (bVar1 == 4) {
-    func_0x000180298bc0(((_DAT_180c96850 + (ulonglong)CONCAT11(param_1[1],param_1[2]) * -0x100) -
+    func_0x000180298bc0(((render_system_config + (ulonglong)CONCAT11(param_1[1],param_1[2]) * -0x100) -
                         (ulonglong)param_1[3]) + -1,(uint)param_1[5] + (uint)param_1[4] * 0x100 + 1)
     ;
     param_1 = param_1 + 6;
@@ -532,17 +532,17 @@ uint render_checksum_validation(byte *param_1, byte *param_2)
     offset_value = (uint)param_2[8] * 0x1000000 + (uint)param_2[9] * 0x10000 + (uint)param_2[10] * 0x100 +
                  (uint)param_2[0xb];
     data_end_ptr = param_1 + offset_value;
-    _DAT_180c96838 = data_end_ptr;
-    _DAT_180c96840 = param_1;
-    _DAT_180c96848 = param_2;
-    _DAT_180c96850 = param_1;
+    render_system_config = data_end_ptr;
+    render_system_config = param_1;
+    render_system_config = param_2;
+    render_system_config = param_1;
     decompressed_ptr = (byte *)render_data_decompress(param_2 + 0x10);
     current_ptr = decompressed_ptr;
     
     // 解压缩数据验证循环
     if (decompressed_ptr != param_2 + 0x10) {
       do {
-        if (data_end_ptr < _DAT_180c96850) {
+        if (data_end_ptr < render_system_config) {
           return 0;
         }
         decompressed_ptr = (byte *)render_data_decompress(current_ptr);
@@ -552,7 +552,7 @@ uint render_checksum_validation(byte *param_1, byte *param_2)
     }
     
     // 验证数据结束标记
-    if (((*decompressed_ptr == 5) && (decompressed_ptr[1] == 0xfa)) && (_DAT_180c96850 == data_end_ptr)) {
+    if (((*decompressed_ptr == 5) && (decompressed_ptr[1] == 0xfa)) && (render_system_config == data_end_ptr)) {
       checksum_accumulator = 0;
       cumulative_sum = 1;
       data_length = offset_value;

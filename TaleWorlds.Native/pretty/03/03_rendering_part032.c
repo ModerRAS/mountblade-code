@@ -5,7 +5,7 @@
 // 本文件包含9个函数，主要处理渲染数据结构管理、缓冲区操作和资源清理
 
 // 全局变量声明
-uint64_t _DAT_180c8ed18;  // 内存分配器
+uint64_t system_memory_pool_ptr;  // 内存分配器
 uint64_t SYSTEM_FILE_COUNTER_ADDR;  // 渲染上下文
 uint64_t SYSTEM_DATA_MANAGER_A;  // 引擎状态数据
 uint64_t unknown_var_3456_ptr;   // 渲染资源管理器
@@ -63,7 +63,7 @@ void insert_rendering_data_item(ulonglong *data_struct_ptr, uint64_t *data_item_
   }
   
   // 分配新内存
-  dest_ptr = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, capacity << 4, (char)data_struct_ptr[3]);
+  dest_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, capacity << 4, (char)data_struct_ptr[3]);
   current_ptr = (uint64_t *)data_struct_ptr[1];
   source_ptr = (uint64_t *)*data_struct_ptr;
   buffer_ptr = dest_ptr;
@@ -133,7 +133,7 @@ void reserve_rendering_buffer(longlong *buffer_ptr, ulonglong reserve_size)
     }
     
     // 分配新缓冲区
-    new_buffer = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, required_size << 4, (char)buffer_ptr[3]);
+    new_buffer = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, required_size << 4, (char)buffer_ptr[3]);
     buffer_end = (uint64_t *)buffer_ptr[1];
     buffer_start = (uint64_t *)*buffer_ptr;
     temp_ptr = new_buffer;

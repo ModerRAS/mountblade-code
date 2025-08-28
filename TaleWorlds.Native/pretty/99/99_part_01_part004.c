@@ -1357,7 +1357,7 @@ void SystemStreamInitializer(longlong stream_handle, longlong param2, int mode_f
     *(uint64_t *)(stream_handle + 0x58) = stack_value2;
   }
   
-  *(uint64_t *)(stream_handle + 0x74) = _DAT_180d48d38;
+  *(uint64_t *)(stream_handle + 0x74) = system_system_config_file;
   *(longlong *)(stream_handle + 0x80) = param2;
   *(uint64_t *)(stream_handle + 0x68) = 0;
   return;
@@ -1401,7 +1401,7 @@ longlong SystemStreamDestructor(longlong stream_handle)
   *(int8_t *)(stream_handle + 0x7c) = 0;
   *(int8_t *)(stream_handle + 0x71) = 0;
   __Init___basic_streambuf_DU__char_traits_D_std___std__IEAAXXZ(stream_handle);
-  *(uint64_t *)(stream_handle + 0x74) = _DAT_180d48d38;
+  *(uint64_t *)(stream_handle + 0x74) = system_system_config_file;
   *(uint64_t *)(stream_handle + 0x80) = 0;
   *(uint64_t *)(stream_handle + 0x68) = 0;
   

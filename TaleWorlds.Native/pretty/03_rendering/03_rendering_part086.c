@@ -19,17 +19,17 @@ static const int RENDERING_MODE_COUNT = 6;                      // 渲染模式�
 
 // 全局变量引用
 extern const void* GET_SECURITY_COOKIE();     // 渲染系统配置数据 (原 GET_SECURITY_COOKIE())
-extern const void* _DAT_180c8ed18;     // 渲染系统资源数据 (原 _DAT_180c8ed18)
-extern const void* _DAT_180a1aa00;     // 渲染模式0数据 (原 global_var_5760)
-extern const void* _DAT_180a1aaf8;     // 渲染模式1数据 (原 global_var_6008)
-extern const void* _DAT_180a1aad8;     // 渲染模式2数据 (原 global_var_5976)
-extern const void* _DAT_180a1aab8;     // 渲染模式3数据 (原 global_var_5944)
-extern const void* _DAT_180a1aa98;     // 渲染模式4数据 (原 global_var_5912)
-extern const void* _DAT_180a1ab80;     // 渲染模式5数据 (原 global_var_6144)
-extern const void* _DAT_180a1ab48;     // 错误处理数据 (原 global_var_6088)
-extern const void* _DAT_180a1ab38;     // 材质控制数据 (原 global_var_6072)
-extern const void* _DAT_180a1ab18;     // 特效控制数据 (原 global_var_6040)
-extern const void* _DAT_180a0d598;     // 字符串数据 (原 system_flag_d598)
+extern const void* system_memory_pool_ptr;     // 渲染系统资源数据 (原 system_memory_pool_ptr)
+extern const void* render_system_config;     // 渲染模式0数据 (原 global_var_5760)
+extern const void* render_system_config;     // 渲染模式1数据 (原 global_var_6008)
+extern const void* render_system_config;     // 渲染模式2数据 (原 global_var_5976)
+extern const void* render_system_config;     // 渲染模式3数据 (原 global_var_5944)
+extern const void* render_system_config;     // 渲染模式4数据 (原 global_var_5912)
+extern const void* render_system_config;     // 渲染模式5数据 (原 global_var_6144)
+extern const void* render_system_config;     // 错误处理数据 (原 global_var_6088)
+extern const void* render_system_config;     // 材质控制数据 (原 global_var_6072)
+extern const void* render_system_config;     // 特效控制数据 (原 global_var_6040)
+extern const void* render_system_temp_config;     // 字符串数据 (原 system_flag_d598)
 
 /**
  * 渲染系统高级渲染控制函数
@@ -130,7 +130,7 @@ longlong* rendering_system_manage_resources(longlong param_1)
     // 原实现包含复杂的资源分配和管理逻辑
     
     // 分配资源内存
-    longlong resource = (longlong)0x18062b1e0(_DAT_180c8ed18, 0x150, 8, 3, 0xfffffffffffffffe);
+    longlong resource = (longlong)0x18062b1e0(system_memory_pool_ptr, 0x150, 8, 3, 0xfffffffffffffffe);
     longlong* resource_ptr = (longlong*)0x18031ba60(resource, param_1);
     
     // 设置资源标志
@@ -160,7 +160,7 @@ longlong* rendering_system_manage_resources(longlong param_1)
         }
         
         // 分配新数组
-        longlong* new_array = (longlong*)0x18062b420(_DAT_180c8ed18, array_size * 8, *(char*)(param_1 + 0x28));
+        longlong* new_array = (longlong*)0x18062b420(system_memory_pool_ptr, array_size * 8, *(char*)(param_1 + 0x28));
         
         // 复制数据
         for (; array_start != array_ptr; array_start++) {

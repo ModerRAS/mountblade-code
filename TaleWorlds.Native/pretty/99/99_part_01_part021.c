@@ -100,11 +100,11 @@ void SystemResourceBatchProcessor(uint64_t param_1, char param_2, char param_3) 
     longlong alStack_48 [4];
     
     // 初始化系统资源管理器
-    lVar4 = _DAT_180c86930;
+    lVar4 = system_resource_state;
     uStack_50 = 0xfffffffffffffffe;
     alStack_48[3] = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_c8;
-    lStack_a0 = _DAT_180c86930;
-    lStack_58 = _DAT_180c86930 + 0x770;
+    lStack_a0 = system_resource_state;
+    lStack_58 = system_resource_state + 0x770;
     cStack_a8 = param_2;
     
     // 获取多个互斥锁以确保线程安全
@@ -188,7 +188,7 @@ void SystemResourceBatchProcessor(uint64_t param_1, char param_2, char param_3) 
                 if ((((*(int *)(lVar2 + 8) == 1) && (*(int *)(lVar2 + 0x380) == 2)) &&
                     ((*(uint *)(lVar2 + 0x328) & 0x20000000) == 0)) &&
                    ((*(longlong *)(lVar2 + 0x340) + 5U <
-                     (ulonglong)(longlong)*(int *)(_DAT_180c86870 + 0x224) || (param_2 == '\0')))) {
+                     (ulonglong)(longlong)*(int *)(system_main_module_state + 0x224) || (param_2 == '\0')))) {
                     // 移动资源以进行清理
                     puVar1 = (uint64_t *)(*plVar8 + (longlong)plVar12 * 8);
                     lVar2 = *plVar8 + lVar13 * 8;
@@ -239,7 +239,7 @@ void SystemResourceBatchProcessor(uint64_t param_1, char param_2, char param_3) 
             // 分配新的内存池
             plVar12 = plVar6;
             if (uVar16 != 0) {
-                plVar6 = (longlong *)FUN_18062b420(_DAT_180c8ed18, uVar16 * 8, (char)plVar8[3]);
+                plVar6 = (longlong *)FUN_18062b420(system_memory_pool_ptr, uVar16 * 8, (char)plVar8[3]);
                 plVar7 = (longlong *)plVar8[1];
                 plVar9 = (longlong *)*plVar8;
                 plVar12 = plVar6;
@@ -321,7 +321,7 @@ LAB_1800b5291:
                 do {
                     lVar2 = *(longlong *)(*(longlong *)(lVar15 + 0x28) + (longlong)plVar6 * 8);
                     if ((*(int *)(lVar2 + 8) == 1) &&
-                       ((*(int *)(lVar2 + 0x16c) + 5 < *(int *)(_DAT_180c86870 + 0x224) || (param_2 == '\0')))) {
+                       ((*(int *)(lVar2 + 0x16c) + 5 < *(int *)(system_main_module_state + 0x224) || (param_2 == '\0')))) {
                         // 移动资源以进行清理
                         puVar1 = (uint64_t *)(*(longlong *)(lVar15 + 0x28) + (longlong)plVar6 * 8);
                         lVar2 = *(longlong *)(lVar15 + 0x28) + lVar13 * 8;
@@ -373,7 +373,7 @@ LAB_1800b5291:
                 plVar12 = plVar7;
                 if (uVar16 != 0) {
                     plVar6 = (longlong *)
-                             FUN_18062b420(_DAT_180c8ed18, uVar16 * 8, *(int8_t *)(lVar15 + 0x40));
+                             FUN_18062b420(system_memory_pool_ptr, uVar16 * 8, *(int8_t *)(lVar15 + 0x40));
                     plVar8 = *(longlong **)(lVar15 + 0x30);
                     plVar9 = *(longlong **)(lVar15 + 0x28);
                     plVar12 = plVar6;
@@ -519,7 +519,7 @@ char SystemEventHandler(uint64_t param_1, longlong *param_2) {
     uint64_t uVar14;
     
     // 初始化事件处理器
-    lVar3 = _DAT_180c86930;
+    lVar3 = system_resource_state;
     uVar14 = 0xfffffffffffffffe;
     iVar4 = (**(code **)(*(longlong *)*param_2 + 0x60))();
     puVar8 = (ulonglong *)(lVar3 + 8 + (longlong)iVar4 * 0x98);
@@ -677,13 +677,13 @@ void SystemMemoryManager(uint64_t param_1, longlong *param_2) {
     // 初始化内存管理器
     uStack_a0 = 0xfffffffffffffffe;
     uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
-    lStack_a8 = _DAT_180c86930;
-    plVar7 = *(longlong **)(_DAT_180c86930 + 0x1d0);
-    lVar8 = _DAT_180c86930;
+    lStack_a8 = system_resource_state;
+    plVar7 = *(longlong **)(system_resource_state + 0x1d0);
+    lVar8 = system_resource_state;
     plStack_b0 = param_2;
     
     // 遍历内存池列表
-    if (plVar7 != *(longlong **)(_DAT_180c86930 + 0x1d8)) {
+    if (plVar7 != *(longlong **)(system_resource_state + 0x1d8)) {
         do {
             // 初始化内存块信息
             puStack_98 = &unknown_var_3480_ptr;
@@ -725,7 +725,7 @@ void SystemMemoryManager(uint64_t param_1, longlong *param_2) {
                     lVar10 = 1;
 LAB_1800b5909:
                     // 分配新的内存池
-                    puVar1 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, lVar10 * 0x58, (char)param_2[3]);
+                    puVar1 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, lVar10 * 0x58, (char)param_2[3]);
                     puVar4 = (uint64_t *)param_2[1];
                     puVar3 = (uint64_t *)*param_2;
                 }
@@ -850,12 +850,12 @@ void SystemStatusMonitor(uint64_t param_1, longlong *param_2, float param_3) {
     ulonglong uStack_40;
     
     // 初始化状态监控器
-    lVar1 = _DAT_180c86930;
+    lVar1 = system_resource_state;
     uStack_60 = 0xfffffffffffffffe;
     uStack_40 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_b8;
     iVar7 = 0;
     uStack_98 = 0;
-    plVar6 = (longlong *)(_DAT_180c86930 + 0xc60);
+    plVar6 = (longlong *)(system_resource_state + 0xc60);
     plStack_58 = param_2;
     
     // 检查是否需要初始化监控器
@@ -968,7 +968,7 @@ void SystemResourceRegistrar(uint64_t param_1, longlong *param_2, uint64_t param
     uint64_t uVar10;
     
     // 初始化资源注册器
-    lVar6 = _DAT_180c86930;
+    lVar6 = system_resource_state;
     iVar2 = (**(code **)(*param_2 + 0x60))(param_2);
     *(int8_t *)((longlong)param_2 + 0xb2) = 1;
     plVar5 = (longlong *)((longlong)iVar2 * 0x98 + lVar6 + 8);
@@ -1002,7 +1002,7 @@ void SystemResourceRegistrar(uint64_t param_1, longlong *param_2, uint64_t param
         lVar6 = 1;
 LAB_1802abea0:
         // 分配新的注册表空间
-        puVar3 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, lVar6 * 8, (char)plVar5[3], param_4, uVar10);
+        puVar3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, lVar6 * 8, (char)plVar5[3], param_4, uVar10);
         puVar8 = (uint64_t *)plVar5[1];
         puVar4 = (uint64_t *)*plVar5;
         puVar9 = puVar3;
@@ -1087,11 +1087,11 @@ void SystemResourceCleaner(uint64_t param_1, longlong *param_2) {
     longlong *plVar7;
     
     // 初始化资源清理器
-    lVar1 = _DAT_180c86930;
-    plVar6 = *(longlong **)(_DAT_180c86930 + 0x300);
+    lVar1 = system_resource_state;
+    plVar6 = *(longlong **)(system_resource_state + 0x300);
     
     // 遍历资源清理队列
-    if (plVar6 != *(longlong **)(_DAT_180c86930 + 0x308)) {
+    if (plVar6 != *(longlong **)(system_resource_state + 0x308)) {
         do {
             plVar2 = (longlong *)0x0;
             plVar4 = (longlong *)param_2[1];
@@ -1116,7 +1116,7 @@ void SystemResourceCleaner(uint64_t param_1, longlong *param_2) {
                     lVar3 = 1;
 LAB_1800b5da5:
                     // 分配新的清理队列空间
-                    plVar2 = (longlong *)FUN_18062b420(_DAT_180c8ed18, lVar3 * 8);
+                    plVar2 = (longlong *)FUN_18062b420(system_memory_pool_ptr, lVar3 * 8);
                     plVar4 = (longlong *)param_2[1];
                     plVar5 = (longlong *)*param_2;
                     plVar7 = plVar2;
@@ -1228,7 +1228,7 @@ uint64_t SystemConfigurator(uint64_t param_1, uint64_t param_2, uint64_t param_3
     // 技术说明：本函数实现系统配置的管理和更新
     
     // 执行系统配置操作
-    FUN_1800be9a0(_DAT_180c86898, param_2, 0, param_4, 0, 0xfffffffffffffffe);
+    FUN_1800be9a0(system_system_data_memory, param_2, 0, param_4, 0, 0xfffffffffffffffe);
     
     return param_2;
 }

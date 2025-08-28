@@ -271,7 +271,7 @@ void FUN_18007c8e0(longlong param_1, byte param_2, longlong *param_3, longlong *
   longlong *stack_resource_8;
   
   stack_data_2 = 0xfffffffffffffffe;
-  main_thread_id = *(int *)(*(longlong *)(*(longlong *)(_DAT_180c82868 + 8) + 8) + 0x48);
+  main_thread_id = *(int *)(*(longlong *)(*(longlong *)(system_context_ptr + 8) + 8) + 0x48);
   current_thread_id = _Thrd_id();
   
   // 根据线程ID选择不同的处理路径
@@ -300,7 +300,7 @@ void FUN_18007c8e0(longlong param_1, byte param_2, longlong *param_3, longlong *
   }
   else {
     // 非主线程处理路径
-    resource_data = FUN_18062b1e0(_DAT_180c8ed18, 0x40, 8, 0x20);
+    resource_data = FUN_18062b1e0(system_memory_pool_ptr, 0x40, 8, 0x20);
     resource_pointer = resource_array;
     stack_resource_2 = &stack_context;
     stack_resource_4 = (longlong *)*param_3;
@@ -323,7 +323,7 @@ void FUN_18007c8e0(longlong param_1, byte param_2, longlong *param_3, longlong *
     stack_resource_1 = &stack_data_1;
     callback_func_1 = FUN_180082e70;
     callback_func_2 = FUN_180082da0;
-    stack_resource_3 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x20, 8, system_allocation_flags);
+    stack_resource_3 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, 0x20, 8, system_allocation_flags);
     *stack_resource_3 = stack_data_1;
     *(byte *)(stack_resource_3 + 1) = stack_byte_2;
     stack_resource_3[2] = (longlong)stack_resource_6;
@@ -347,7 +347,7 @@ void FUN_18007c8e0(longlong param_1, byte param_2, longlong *param_3, longlong *
     if (temp_resource != (longlong *)0x0) {
       (**(code **)(*temp_resource + 0x28))(temp_resource);
     }
-    FUN_18005e370(_DAT_180c82868, &stack_resource_2);
+    FUN_18005e370(system_context_ptr, &stack_resource_2);
     status_flag = (char *)(*(longlong *)(param_1 + 0x1e0) + 0x15 + (ulonglong)param_2 * 0x18);
     LOCK();
     if (*status_flag == '\x01') {

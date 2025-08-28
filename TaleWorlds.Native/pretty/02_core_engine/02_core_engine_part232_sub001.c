@@ -795,7 +795,7 @@ void execute_performance_analysis(longlong context_ptr)
   stack_value2 = 0;
   stack_ptr2 = (int32_t *)0x0;
   stack_value1 = 0;
-  uint_ptr1 = (int32_t *)allocate_table_entry(_DAT_180c8ed18,0x10,0x13);
+  uint_ptr1 = (int32_t *)allocate_table_entry(system_memory_pool_ptr,0x10,0x13);
   
   *(int8_t *)uint_ptr1 = 0;
   stack_ptr2 = uint_ptr1;

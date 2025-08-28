@@ -96,7 +96,7 @@ void initialize_rendering_manager(uint64_t *render_manager)
     *(int32_t *)(render_manager + 0x23) = 0;
     
     // 获取渲染资源句柄
-    resource_handle = _DAT_180c86930;
+    resource_handle = system_resource_state;
     stack_render_ptr = &unknown_var_3480_ptr;
     stack_texture_ptr2 = stack_buffer_array;
     stack_buffer_array[0] = 0;
@@ -158,7 +158,7 @@ void initialize_rendering_manager(uint64_t *render_manager)
                 texture_index = stack_index;
                 material_ptr = (uint64_t *)0x0;
                 FUN_180627ae0(&stack_data_ptr, (longlong)stack_index * 0x20 + render_manager[0x27]);
-                FUN_1800b08e0(_DAT_180c86930, &stack_buffer_ptr, &stack_data_ptr, 1);
+                FUN_1800b08e0(system_resource_state, &stack_buffer_ptr, &stack_data_ptr, 1);
                 *(uint *)(stack_buffer_ptr + 0x65) = *(uint *)(stack_buffer_ptr + 0x65) | 0x20000000;
                 
                 // 添加纹理到队列
@@ -178,7 +178,7 @@ void initialize_rendering_manager(uint64_t *render_manager)
                         buffer_size = 1;
                     LAB_18028834f:
                     material_ptr = (uint64_t *)
-                            FUN_18062b420(_DAT_180c8ed18, buffer_size * 8, *(int8_t *)(render_manager + 0x22));
+                            FUN_18062b420(system_memory_pool_ptr, buffer_size * 8, *(int8_t *)(render_manager + 0x22));
                     texture_ptr = (uint64_t *)render_manager[0x20];
                     shader_ptr = (uint64_t *)*buffer_ptr;
                     resource_ptr = material_ptr;
@@ -278,7 +278,7 @@ void initialize_rendering_manager(uint64_t *render_manager)
     }
     
     // 第二阶段渲染初始化
-    resource_handle = _DAT_180c86930;
+    resource_handle = system_resource_state;
     stack_material_ptr2 = &unknown_var_3480_ptr;
     stack_color_ptr = stack_array;
     stack_array[0] = 0;
@@ -514,7 +514,7 @@ longlong create_rendering_scene(longlong scene_param, longlong renderer_ptr)
     stack_scene_handle = 0xfffffffffffffffe;
     if (*(char *)(scene_param + 0x11c) != '\0') {
         *(int8_t *)(scene_param + 0x11c) = 0;
-        *(float *)(scene_param + 0x15c) = (float)_DAT_180c8ed30 * 1e-05;
+        *(float *)(scene_param + 0x15c) = (float)system_error_code * 1e-05;
     }
     
     if (*(char *)(scene_param + 0x130) != '\0') {
@@ -557,7 +557,7 @@ longlong create_rendering_scene(longlong scene_param, longlong renderer_ptr)
     FUN_180094b30(scene_id, &system_buffer_6c50);
     
     // 获取渲染资源
-    resource_list1 = *(longlong **)(_DAT_180c86938 + 0x121e0);
+    resource_list1 = *(longlong **)(system_message_buffer + 0x121e0);
     if (resource_list1 != (longlong *)0x0) {
         (**(code **)(*resource_list1 + 0x28))(resource_list1);
     }
@@ -579,9 +579,9 @@ longlong create_rendering_scene(longlong scene_param, longlong renderer_ptr)
     *(uint64_t *)(scene_id + 0x11c28) = *(uint64_t *)(scene_param + 0x2c);
     
     // 计算投影参数
-    resource_size = _DAT_180c86950;
-    aspect_ratio = *(float *)(_DAT_180c86950 + 0x17ec);
-    viewport_width = aspect_ratio / *(float *)(_DAT_180c86950 + 0x17f0);
+    resource_size = system_operation_state;
+    aspect_ratio = *(float *)(system_operation_state + 0x17ec);
+    viewport_width = aspect_ratio / *(float *)(system_operation_state + 0x17f0);
     ortho_width = 0.0;
     viewport_height = 1.0;
     ortho_height = 0.0;
@@ -598,8 +598,8 @@ longlong create_rendering_scene(longlong scene_param, longlong renderer_ptr)
         ortho_width = (1.0 - 1.7777778 / viewport_width) * 0.5;
     }
     
-    viewport_width = *(float *)(_DAT_180c86950 + 0x17f0);
-    ortho_height = ortho_height * *(float *)(_DAT_180c86950 + 0x17f0);
+    viewport_width = *(float *)(system_operation_state + 0x17f0);
+    ortho_height = ortho_height * *(float *)(system_operation_state + 0x17f0);
     *(float *)(scene_id + 0x11c18) = ortho_width * aspect_ratio;
     *(float *)(scene_id + 0x11c1c) = ortho_height;
     *(float *)(scene_id + 0x11c20) = viewport_height * aspect_ratio - ortho_width * aspect_ratio;
@@ -619,7 +619,7 @@ longlong create_rendering_scene(longlong scene_param, longlong renderer_ptr)
         texture_index = texture_index & 0xfffffffe | 0x10010082;
     }
     *(uint *)(scene_id + 4) = texture_index;
-    *(float *)(scene_id + 0x124e4) = (float)(_DAT_180c8ed30 % 1000000000) * 1e-05;
+    *(float *)(scene_id + 0x124e4) = (float)(system_error_code % 1000000000) * 1e-05;
     
     // 复制场景数据
     resource_size = 2;
@@ -733,7 +733,7 @@ longlong create_rendering_scene(longlong scene_param, longlong renderer_ptr)
     stack_param43 = stack_param1;
     stack_param44 = stack_param33;
     stack_param45 = stack_param32;
-    resource_flag = func_0x0001800e2bf0(_DAT_180c86890, scene_id);
+    resource_flag = func_0x0001800e2bf0(system_parameter_buffer, scene_id);
     *(int8_t *)(scene_id + 0x1c61) = resource_flag;
     
     if (*(int *)(scene_id + 8) != -1) {
@@ -854,14 +854,14 @@ ulonglong process_rendering_events(longlong event_data)
     
     if (*(longlong *)(event_base + 0x1b8) != 0) {
         resource_offset = 0xb8;
-        resource_size = _DAT_180c86870;
+        resource_size = system_main_module_state;
         do {
             event_offset = *(longlong *)(resource_offset + *(longlong *)(event_base + 0x1b8));
             if ((((event_offset != 0) && (*(longlong *)(*(longlong *)(event_base + 0x1b8) + 0x328 + resource_offset) == 0)) &&
                 ((*(uint *)(event_offset + 0x328) & 0x20000000) == 0)) && (*(longlong *)(event_offset + 0x370) == 0)) {
                 if (*(longlong *)(event_offset + 0x1d8) == 0) {
                     FUN_18023b050(event_offset, 0);
-                    resource_size = _DAT_180c86870;
+                    resource_size = system_main_module_state;
                     event_counter = (int *)(*(longlong *)(resource_offset + *(longlong *)(event_base + 0x1b8)) + 0x3a8);
                     *event_counter = *event_counter + 1;
                 }

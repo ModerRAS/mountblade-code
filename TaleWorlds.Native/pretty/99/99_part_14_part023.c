@@ -270,7 +270,7 @@ void SystemRandomInitializer(void) {
     }
     
     // 设置反码值
-    _DAT_180bf00a0 = ~GET_SECURITY_COOKIE();
+    system_system_control_file = ~GET_SECURITY_COOKIE();
     
     return;
 }
@@ -481,7 +481,7 @@ ulonglong AdvancedTrigonometricCalculator(uint64_t param_1, int32_t param_2) {
     
     vector_component = input_vector._0_4_;
     mask_result = input_vector._4_4_;
-    loop_vector = input_vector & _DAT_180d9f600;
+    loop_vector = input_vector & system_system_file;
     final_x = (float)system_memory_f5d0;
     
     // 检查输入范围
@@ -526,7 +526,7 @@ ulonglong AdvancedTrigonometricCalculator(uint64_t param_1, int32_t param_2) {
     temp_index = (int)(input_vector._8_4_ * FLOAT_PRECISION_1);
     final_index = (int)(input_vector._12_4_ * FLOAT_PRECISION_1);
     
-    loop_vector = input_vector & _DAT_180d9f600;
+    loop_vector = input_vector & system_system_file;
     temp_x = loop_vector._0_4_;
     final_vector._0_4_ = -(uint)(FLOAT_LARGE_CHECK_VALUE < (int)temp_x);
     optimized_x = loop_vector._4_4_;
@@ -543,11 +543,11 @@ ulonglong AdvancedTrigonometricCalculator(uint64_t param_1, int32_t param_2) {
             temp_result._4_4_ = 0;
             temp_result._8_4_ = (int)((double)optimized_x * 0.6366197723675814) + 1;
             temp_result._12_4_ = 0;
-            temp_result = temp_result & _DAT_180d9f680;
+            temp_result = temp_result & system_system_file;
             
             // 执行高精度计算
-            double temp_val = SUB168(_DAT_180d9f670 | temp_result, 0) - 6755399441055744.0;
-            double final_val = SUB168(_DAT_180d9f670 | temp_result, 8) - 6755399441055744.0;
+            double temp_val = SUB168(system_system_file | temp_result, 0) - 6755399441055744.0;
+            double final_val = SUB168(system_system_file | temp_result, 8) - 6755399441055744.0;
             
             // 计算三角函数值
             double angle_diff_x = (double)temp_x - temp_val * 1.5707950592041016;
@@ -578,7 +578,7 @@ ulonglong AdvancedTrigonometricCalculator(uint64_t param_1, int32_t param_2) {
                           FLOAT_PRECISION_7) * result_y * mask_result + mask_result,
                           (((result_x * FLOAT_PRECISION_4 + FLOAT_PRECISION_5) * result_x + FLOAT_PRECISION_6) * result_x +
                           FLOAT_PRECISION_7) * result_x * vector_component + vector_component) ^
-                 CONCAT44(SUB164(_DAT_180d9f610 & final_vector, 0xc), SUB164(_DAT_180d9f610 & final_vector, 4)) ^
+                 CONCAT44(SUB164(system_system_file & final_vector, 0xc), SUB164(system_system_file & final_vector, 4)) ^
                  stack_value;
         } else {
             // 混合精度计算路径
@@ -593,14 +593,14 @@ ulonglong AdvancedTrigonometricCalculator(uint64_t param_1, int32_t param_2) {
             temp_result._4_4_ = 0;
             temp_result._8_4_ = (int)((double)optimized_x * 0.6366197723675814) + 1;
             temp_result._12_4_ = 0;
-            temp_result = temp_result & _DAT_180d9f680;
+            temp_result = temp_result & system_system_file;
             
             // 计算高精度值
-            double temp_val = SUB168(_DAT_180d9f670 | temp_result, 0) - 6755399441055744.0;
-            double final_val = SUB168(_DAT_180d9f670 | temp_result, 8) - 6755399441055744.0;
+            double temp_val = SUB168(system_system_file | temp_result, 0) - 6755399441055744.0;
+            double final_val = SUB168(system_system_file | temp_result, 8) - 6755399441055744.0;
             
-            stack_flags[0] = SUB164(temp_result ^ _DAT_180d9f6b0, 0);
-            stack_flags[1] = SUB164(temp_result ^ _DAT_180d9f6b0, 4);
+            stack_flags[0] = SUB164(temp_result ^ system_system_file, 0);
+            stack_flags[1] = SUB164(temp_result ^ system_system_file, 4);
             
             // 应用修正
             double angle_diff_x = (double)temp_x - temp_val * 1.5707950592041016;
@@ -631,7 +631,7 @@ ulonglong AdvancedTrigonometricCalculator(uint64_t param_1, int32_t param_2) {
                           FLOAT_PRECISION_7) * final_y * mask_result + mask_result,
                           (((result_x * FLOAT_PRECISION_4 + FLOAT_PRECISION_5) * result_x + FLOAT_PRECISION_6) * result_x +
                           FLOAT_PRECISION_7) * result_x * vector_component + vector_component) ^
-                 ((CONCAT44(SUB164(_DAT_180d9f610 & final_vector, 0xc), SUB164(_DAT_180d9f610 & final_vector, 4)) ^
+                 ((CONCAT44(SUB164(system_system_file & final_vector, 0xc), SUB164(system_system_file & final_vector, 4)) ^
                   stack_value) & temp_result._0_8_ |
                  CONCAT44(final_index << 0x1f & stack_flags[1], index_x << 0x1f & stack_flags[0]));
         }
@@ -760,7 +760,7 @@ ulonglong FloatingPointOptimizer(uint64_t param_1, int32_t param_2) {
     int8_t result_matrix[3][16];
     int8_t final_vector[16];
     
-    temp_vector = input_vector & _DAT_180d9fd20;
+    temp_vector = input_vector & system_system_file;
     final_x = temp_vector._0_4_;
     final_y = temp_vector._4_4_;
     result_y = temp_vector._12_4_;
@@ -804,7 +804,7 @@ ulonglong FloatingPointOptimizer(uint64_t param_1, int32_t param_2) {
     }
     
     // 设置向量化参数
-    angle_values[0] = input_vector & _DAT_180d9fd20;
+    angle_values[0] = input_vector & system_system_file;
     temp_x = angle_values[0]._0_4_;
     final_vector._0_4_ = -(uint)(FLOAT_LARGE_CHECK_VALUE < (int)temp_x);
     temp_y = angle_values[0]._4_4_;
@@ -821,11 +821,11 @@ ulonglong FloatingPointOptimizer(uint64_t param_1, int32_t param_2) {
             result_matrix[0]._4_4_ = 0;
             result_matrix[0]._8_4_ = (int)((double)temp_y * 0.6366197723675814);
             result_matrix[0]._12_4_ = 0;
-            result_matrix[0] = result_matrix[0] | _DAT_180d9fda0;
+            result_matrix[0] = result_matrix[0] | system_system_file;
             
             // 高精度计算
-            double temp_val = SUB168(_DAT_180d9fd90 | result_matrix[0], 0) - 6755399441055744.0;
-            double final_val = SUB168(_DAT_180d9fd90 | result_matrix[0], 8) - 6755399441055744.0;
+            double temp_val = SUB168(system_system_file | result_matrix[0], 0) - 6755399441055744.0;
+            double final_val = SUB168(system_system_file | result_matrix[0], 8) - 6755399441055744.0;
             
             // 计算角度差值
             double angle_diff_x = (double)temp_x - temp_val * 1.5707950592041016;
@@ -853,7 +853,7 @@ ulonglong FloatingPointOptimizer(uint64_t param_1, int32_t param_2) {
             angle_diff_x = angle_diff_x - temp_val * FLOAT_PRECISION_10;
             angle_diff_y = angle_diff_y - final_val * FLOAT_PRECISION_10;
             
-            temp_vector = _DAT_180d9fd30 & final_vector ^ _DAT_180d9fd30;
+            temp_vector = system_system_file & final_vector ^ system_system_file;
             
             final_x = (float)((angle_diff_x + (angle_diff_x - angle_diff_x) +
                              ((angle_diff_x - angle_diff_x) - temp_val * FLOAT_PRECISION_10)) -
@@ -878,18 +878,18 @@ ulonglong FloatingPointOptimizer(uint64_t param_1, int32_t param_2) {
             result_x = ((final_x - result_x * angle_x) - final_y * angle_x) - angle_x * FLOAT_PRECISION_2;
             final_y = ((final_y - result_y * result_y) - final_y * result_y) - result_y * FLOAT_PRECISION_2;
             
-            stack_flags[0] = SUB164(temp_vector ^ _DAT_180d9fdc0, 0);
-            stack_flags[1] = SUB164(temp_vector ^ _DAT_180d9fdc0, 4);
+            stack_flags[0] = SUB164(temp_vector ^ system_system_file, 0);
+            stack_flags[1] = SUB164(temp_vector ^ system_system_file, 4);
             
             loop_vector._0_4_ = (uint)((double)temp_x * 0.6366197723675814);
             loop_vector._4_4_ = 0;
             loop_vector._8_4_ = (int)((double)temp_y * 0.6366197723675814);
             loop_vector._12_4_ = 0;
-            loop_vector = loop_vector | _DAT_180d9fda0;
+            loop_vector = loop_vector | system_system_file;
             
             // 高精度计算
-            double temp_val = SUB168(_DAT_180d9fd90 | loop_vector, 0) - 6755399441055744.0;
-            double final_val = SUB168(_DAT_180d9fd90 | loop_vector, 8) - 6755399441055744.0;
+            double temp_val = SUB168(system_system_file | loop_vector, 0) - 6755399441055744.0;
+            double final_val = SUB168(system_system_file | loop_vector, 8) - 6755399441055744.0;
             
             double angle_diff_x = (double)temp_x - temp_val * 1.5707950592041016;
             double angle_diff_y = (double)temp_y - final_val * 1.5707950592041016;
@@ -904,7 +904,7 @@ ulonglong FloatingPointOptimizer(uint64_t param_1, int32_t param_2) {
             final_vector._0_8_ = loop_vector._0_8_ << 0x3e;
             final_vector._8_8_ = loop_vector._8_8_ << 0x3e;
             
-            final_vector = _DAT_180d9fd30 & final_vector ^ _DAT_180d9fd30;
+            final_vector = system_system_file & final_vector ^ system_system_file;
             
             result_y = (float)((angle_diff_x + (angle_diff_x - angle_diff_x) +
                                ((angle_diff_x - angle_diff_x) - temp_val * FLOAT_PRECISION_10)) -

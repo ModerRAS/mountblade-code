@@ -98,7 +98,7 @@ void process_config_string_data(longlong *config_ptr)
   }
   
   // 解析处理后的字符串
-  temp_long1 = FUN_1800b6de0(_DAT_180c86930, &temp_stack_ptr1, 0);
+  temp_long1 = FUN_1800b6de0(system_resource_state, &temp_stack_ptr1, 0);
   
   if (temp_long1 != 0) {
     temp_long3 = config_ptr[2];
@@ -113,7 +113,7 @@ void process_config_string_data(longlong *config_ptr)
       }
       
       // 调用处理函数
-      FUN_1800b32c0(_DAT_180c86930, &temp_stack_ptr, temp_long3, 0, 0);
+      FUN_1800b32c0(system_resource_state, &temp_stack_ptr, temp_long3, 0, 0);
       if (temp_stack_ptr != (longlong *)0x0) {
         invoke_callback_function((void *)(*temp_stack_ptr + OFFSET_0X38));
       }
@@ -140,7 +140,7 @@ void process_config_string_data(longlong *config_ptr)
           if (temp_long3 == 0) {
             temp_long3 = 1;
           LAB_180209615:
-            temp_ptr1 = (uint64_t *)allocate_data_block(_DAT_180c8ed18, temp_long3 * OFFSET_0XC, (char)config_ptr[OFFSET_0XE]);
+            temp_ptr1 = (uint64_t *)allocate_data_block(system_memory_pool_ptr, temp_long3 * OFFSET_0XC, (char)config_ptr[OFFSET_0XE]);
             temp_ptr2 = (uint64_t *)config_ptr[OFFSET_0XC];
             temp_ptr3 = (uint64_t *)config_ptr[OFFSET_0XB];
           }
@@ -269,7 +269,7 @@ longlong *add_data_structure_element(longlong *data_struct_ptr, longlong *elemen
       temp_long2 = 0;
     }
     else {
-      temp_long2 = allocate_data_block(_DAT_180c8ed18, temp_long3 * OFFSET_0XC, temp_uint1 & 0xff);
+      temp_long2 = allocate_data_block(system_memory_pool_ptr, temp_long3 * OFFSET_0XC, temp_uint1 & 0xff);
     }
     
     temp_ptr2[OFFSET_0XB] = temp_long2;
@@ -305,7 +305,7 @@ longlong *add_data_structure_element(longlong *data_struct_ptr, longlong *elemen
     }
   }
   
-  temp_long1 = allocate_data_block(_DAT_180c8ed18, temp_long2 * DATA_BLOCK_SIZE_0X78, (char)data_struct_ptr[3]);
+  temp_long1 = allocate_data_block(system_memory_pool_ptr, temp_long2 * DATA_BLOCK_SIZE_0X78, (char)data_struct_ptr[3]);
   temp_ptr2 = (longlong *)data_struct_ptr[1];
   temp_long3 = *data_struct_ptr;
   
@@ -375,7 +375,7 @@ void expand_data_structure_capacity(uint64_t struct_ptr, uint64_t param2, longlo
   }
   
   // 分配新的内存块
-  temp_long3 = allocate_data_block(_DAT_180c8ed18, temp_long4 * DATA_BLOCK_SIZE_0X78, 
+  temp_long3 = allocate_data_block(system_memory_pool_ptr, temp_long4 * DATA_BLOCK_SIZE_0X78, 
                                   (char)unaff_rdi[3]);
   size_factor = unaff_rdi[1];
   temp_r10 = *unaff_rdi;
@@ -499,7 +499,7 @@ longlong *copy_data_structure_element(longlong *dest_ptr, longlong *src_ptr, uin
     temp_long1 = 0;
   }
   else {
-    temp_long1 = allocate_data_block(_DAT_180c8ed18, temp_long2 * OFFSET_0XC, 
+    temp_long1 = allocate_data_block(system_memory_pool_ptr, temp_long2 * OFFSET_0XC, 
                                    temp_uint1 & 0xff, param4, temp_uint8_1);
   }
   
@@ -600,7 +600,7 @@ longlong *batch_copy_data_elements(longlong *dest_ptr, longlong *src_start_ptr,
         temp_long1 = 0;
       }
       else {
-        temp_long1 = allocate_data_block(_DAT_180c8ed18, temp_long2 * OFFSET_0XC, temp_uint1 & 0xff);
+        temp_long1 = allocate_data_block(system_memory_pool_ptr, temp_long2 * OFFSET_0XC, temp_uint1 & 0xff);
       }
       
       dest_base_ptr[OFFSET_0XB] = temp_long1;
@@ -630,8 +630,8 @@ longlong *batch_copy_data_elements(longlong *dest_ptr, longlong *src_start_ptr,
 
 // 全局变量声明（简化实现）
 static const longlong system_memory_ff10 = 0;  // 字符串匹配模式
-static const longlong _DAT_180c86930 = 0; // 配置数据基址
-static const longlong _DAT_180c8ed18 = 0; // 内存分配器基址
+static const longlong system_resource_state = 0; // 配置数据基址
+static const longlong system_memory_pool_ptr = 0; // 内存分配器基址
 static const longlong unknown_var_3456_ptr = 0;  // 未知常量
 
 // 简化实现 - 这些函数在实际代码中应该有完整的实现

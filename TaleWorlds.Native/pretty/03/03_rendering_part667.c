@@ -322,12 +322,12 @@ void rendering_system_resource_cleaner(ulonglong param_1, longlong param_2)
     do {
         if ((uint *)(param_1 + 0x80 + lVar2 * RENDERING_MEMORY_BLOCK_SIZE) <= puVar4) {
             // 检查是否需要初始化清理器
-            if (_DAT_180bfbe8c == 0) {
+            if (render_system_control_config == 0) {
                 FUN_180650490(&system_memory_be88);
             }
             
             // 调用内存清理函数
-            FUN_18064b460(param_1, _DAT_180bfbe88 != 0);
+            FUN_18064b460(param_1, render_system_control_config != 0);
             func_0x000180646ff0(*(longlong *)(param_2 + 0x398) + 0xc0, 1);
             FUN_18064ae40(*(int *)(param_1 + 0x58) * -0x10000, param_2);
             
@@ -340,27 +340,27 @@ void rendering_system_resource_cleaner(ulonglong param_1, longlong param_2)
             *(uint64_t *)(param_1 + 0x40) = 1;
             
             // 重置全局计数器
-            uVar6 = _DAT_180ca8b80;
+            uVar6 = render_system_config;
             
             do {
                 *(ulonglong *)(param_1 + 0x28) = uVar6 & RENDERING_ALIGNMENT_MASK;
                 
                 LOCK();
-                bVar8 = uVar6 != _DAT_180ca8b80;
+                bVar8 = uVar6 != render_system_config;
                 uVar5 = (int)uVar6 + 1U & 0x3fffff | param_1;
                 
                 if (bVar8) {
-                    uVar6 = _DAT_180ca8b80;
-                    uVar5 = _DAT_180ca8b80;
+                    uVar6 = render_system_config;
+                    uVar5 = render_system_config;
                 }
                 
-                _DAT_180ca8b80 = uVar5;
+                render_system_config = uVar5;
                 UNLOCK();
             } while (bVar8);
             
             // 更新系统统计
             LOCK();
-            _DAT_180d48d00 = _DAT_180d48d00 + 1;
+            render_system_config_config = render_system_config_config + 1;
             UNLOCK();
             
             return;
@@ -1194,27 +1194,27 @@ LAB_18064ce1d:
                 if (3 < *(ulonglong *)(lVar6 + 0x40)) goto LAB_18064ce1d;
                 
                 FUN_18064b460(lVar6, 0);
-                lVar7 = _DAT_180c9e8c0;
+                lVar7 = render_system_config;
                 
                 // 添加到全局列表
                 do {
                     *(longlong *)(lVar6 + 0x28) = lVar7;
                     LOCK();
-                    bVar13 = lVar7 != _DAT_180c9e8c0;
+                    bVar13 = lVar7 != render_system_config;
                     lVar2 = lVar6;
                     
                     if (bVar13) {
-                        lVar7 = _DAT_180c9e8c0;
-                        lVar2 = _DAT_180c9e8c0;
+                        lVar7 = render_system_config;
+                        lVar2 = render_system_config;
                     }
                     
-                    _DAT_180c9e8c0 = lVar2;
+                    render_system_config = lVar2;
                     UNLOCK();
                 } while (bVar13);
                 
                 // 更新全局统计
                 LOCK();
-                _DAT_180c9eb40 = _DAT_180c9eb40 + 1;
+                render_system_config = render_system_config + 1;
                 UNLOCK();
             }
         } while (0 < iVar9);

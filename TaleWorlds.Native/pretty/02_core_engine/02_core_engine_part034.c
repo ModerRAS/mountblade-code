@@ -5,8 +5,8 @@
 // 本文件包含矩阵变换计算、渲染状态管理和骨骼动画相关功能
 
 // 全局变量声明
-uint64_t _DAT_180c86870;  // 引擎配置数据
-uint64_t _DAT_180c86928;  // 文件错误处理
+uint64_t system_main_module_state;  // 引擎配置数据
+uint64_t system_message_context;  // 文件错误处理
 uint64_t unknown_var_1960;  // 错误消息指针
 uint64_t unknown_var_1904;  // 错误消息指针
 
@@ -78,7 +78,7 @@ void process_bone_animation_transform(void)
     apply_transform_to_render_context(render_context, animation_state, matrix_params);
     
     // 处理渲染标志
-    render_flags = *(int *)(_DAT_180c86870 + 0x224);
+    render_flags = *(int *)(system_main_module_state + 0x224);
     update_render_flags(bone_system, render_flags);
     
     // 保存变换状态
@@ -118,7 +118,7 @@ void process_conditional_matrix_transform(void)
     apply_render_transform(render_context, matrix_source);
     
     // 处理渲染状态
-    render_flags = *(int *)(_DAT_180c86870 + 0x224);
+    render_flags = *(int *)(system_main_module_state + 0x224);
     update_render_flags(bone_system, render_flags);
     
     // 保存和恢复矩阵状态
@@ -161,7 +161,7 @@ void process_simplified_matrix_transform(void)
     apply_transform_to_render_context(bone_system, animation_params);
     
     // 处理渲染状态
-    render_flags = *(int *)(_DAT_180c86870 + 0x224);
+    render_flags = *(int *)(system_main_module_state + 0x224);
     update_render_flags(bone_system, render_flags);
     
     // 清理状态
@@ -187,7 +187,7 @@ void process_basic_matrix_transform(void)
     apply_basic_transform(render_context);
     
     // 处理渲染状态
-    render_flags = *(int *)(_DAT_180c86870 + 0x224);
+    render_flags = *(int *)(system_main_module_state + 0x224);
     update_render_flags(bone_system, render_flags);
     
     // 保存和恢复状态

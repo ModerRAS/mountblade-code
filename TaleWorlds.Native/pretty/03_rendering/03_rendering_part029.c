@@ -19,8 +19,8 @@
 #define RENDER_STRING_PTR       system_memory_ff10
 #define RENDER_EMPTY_STRING     system_buffer_ptr
 #define RENDER_SECURITY_KEY      GET_SECURITY_COOKIE()
-#define RENDER_CONFIG_DATA       _DAT_180c8ed18
-#define RENDER_RESOURCE_DATA    _DAT_180c86930
+#define RENDER_CONFIG_DATA       system_memory_pool_ptr
+#define RENDER_RESOURCE_DATA    system_resource_state
 
 // 函数别名定义
 // 渲染对象处理函数

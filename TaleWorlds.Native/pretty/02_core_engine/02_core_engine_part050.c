@@ -68,7 +68,7 @@ void process_engine_data_stream(uint64_t param_1, longlong param_2, longlong *pa
     cVar1 = *(char *)((longlong)param_3 + 0x44);
     if (cVar1 != '\0') {
       puStack_268 = &unknown_var_8576_ptr;
-      initialize_memory_manager(_DAT_180c86928, 0, 0x80000000000, 9);
+      initialize_memory_manager(system_message_context, 0, 0x80000000000, 9);
       cVar1 = *(char *)((longlong)param_3 + 0x44);
     }
     lStack_240 = param_4[1];
@@ -133,7 +133,7 @@ void process_engine_data_stream(uint64_t param_1, longlong param_2, longlong *pa
   // 执行数据流转换
   pcStack_a0 = execute_data_conversion;
   pcStack_98 = validate_data_conversion;
-  uVar3 = allocate_memory_buffer(_DAT_180c8ed18, 0x38, 8, system_allocation_flags);
+  uVar3 = allocate_memory_buffer(system_memory_pool_ptr, 0x38, 8, system_allocation_flags);
   process_data_buffer(uVar3, &lStack_240);
   auStack_b0[0] = uVar3;
   
@@ -152,7 +152,7 @@ void process_engine_data_stream(uint64_t param_1, longlong param_2, longlong *pa
   }
   
   // 完成数据流处理
-  lVar8 = *(longlong *)(_DAT_180c86940 + 8);
+  lVar8 = *(longlong *)(core_system_data_memory + 8);
   lVar4 = allocate_thread_local_storage(lVar8 + 200);
   if (lVar4 != 0) {
     process_thread_local_data(lVar4, &puStack_1f8);
@@ -262,7 +262,7 @@ void process_file_data_read(uint64_t param_1, longlong param_2, longlong *param_
   if (param_4 != (longlong *)0x0) {
     if (*(char *)((longlong)param_3 + 0x44) != '\0') {
       puStack_308 = &unknown_var_8576_ptr;
-      initialize_memory_manager(_DAT_180c86928, 0, 0x80000000000, 9);
+      initialize_memory_manager(system_message_context, 0, 0x80000000000, 9);
       if (*(char *)((longlong)param_3 + 0x44) != '\0') goto LAB_18008c01e;
     }
     lVar7 = lVar7 + *param_4;
@@ -272,7 +272,7 @@ LAB_18008c01e:
   
   // 设置文件指针位置
   SetFilePointerEx(lVar6, lVar7, auStack_2b0, 0);
-  plVar3 = (longlong *)allocate_memory_buffer(_DAT_180c8ed18, 0x20, 8, 3);
+  plVar3 = (longlong *)allocate_memory_buffer(system_memory_pool_ptr, 0x20, 8, 3);
   *plVar3 = 0;
   plVar3[1] = 0;
   plVar3[2] = 0;
@@ -315,7 +315,7 @@ LAB_18008c01e:
   }
   
   // 创建输出缓冲区
-  plVar4 = (longlong *)allocate_memory_buffer(_DAT_180c8ed18, 0x20, 8, 3);
+  plVar4 = (longlong *)allocate_memory_buffer(system_memory_pool_ptr, 0x20, 8, 3);
   *plVar4 = 0;
   plVar4[1] = 0;
   plVar4[2] = 0;
@@ -433,7 +433,7 @@ void insert_data_structure_item(longlong param_1, longlong *param_2)
   uStack_8ac = (int32_t)param_2[2];
   uStack_8a8 = *(int32_t *)((longlong)param_2 + 0x14);
   uStack_8a4 = (int32_t)param_2[3];
-  lVar6 = allocate_data_structure(_DAT_180c8ed18, 0x38, *(int8_t *)(puVar5 + 0xb));
+  lVar6 = allocate_data_structure(system_memory_pool_ptr, 0x38, *(int8_t *)(puVar5 + 0xb));
   *(int32_t *)(lVar6 + 0x20) = uStack_8b0;
   *(int32_t *)(lVar6 + 0x24) = uStack_8ac;
   *(int32_t *)(lVar6 + 0x28) = uStack_8a8;
@@ -572,7 +572,7 @@ LAB_18008cc42:
     plStack_80 = (longlong *)0x0;
     uStack_78 = 3;
     if (lStack_50 != 0) {
-      plStack_88 = (longlong *)allocate_memory_buffer(_DAT_180c8ed18, lStack_50 * 0x10, 3);
+      plStack_88 = (longlong *)allocate_memory_buffer(system_memory_pool_ptr, lStack_50 * 0x10, 3);
       plStack_80 = plStack_88 + lVar8 * 2;
     }
     ppppuStackX_10 = &ppppuStack_70;
@@ -655,7 +655,7 @@ LAB_18008ce20:
           if (lVar22 == 0) {
             lVar22 = 1;
 LAB_18008ce85:
-            plVar13 = (longlong *)allocate_memory_buffer(_DAT_180c8ed18, lVar22 * 8, (char)param_2[3]);
+            plVar13 = (longlong *)allocate_memory_buffer(system_memory_pool_ptr, lVar22 * 8, (char)param_2[3]);
             plVar18 = (longlong *)param_2[1];
             plVar16 = (longlong *)*param_2;
           }
@@ -723,7 +723,7 @@ LAB_18008caf0:
   
   // 创建搜索结果节点
   ppppuVar4 = *(uint64_t *****)(*param_2);
-  lVar8 = allocate_data_structure(_DAT_180c8ed18, 0x30, (int8_t)uStack_48);
+  lVar8 = allocate_data_structure(system_memory_pool_ptr, 0x30, (int8_t)uStack_48);
   *(uint64_t *****)(lVar8 + 0x20) = ppppuVar4;
   *(int *)(lVar8 + 0x28) = iVar14 << 0x10;
   bVar24 = true;
@@ -912,12 +912,12 @@ void sort_data_structure_helper3(void)
 void * get_thread_local_data(void)
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-              0x48) < _DAT_180d491f8) {
+              0x48) < core_system_config_memory) {
     initialize_thread_local_storage(&system_memory_91f8);
-    if (_DAT_180d491f8 == -1) {
-      _DAT_180d49200 = 0;
-      _DAT_180d49208 = 0;
-      _DAT_180d49200 = create_thread_local_storage();
+    if (core_system_config_memory == -1) {
+      core_system_config_memory = 0;
+      core_system_config_memory = 0;
+      core_system_config_memory = create_thread_local_storage();
       register_thread_cleanup_callback(FUN_180941920);
       finalize_thread_local_storage(&system_memory_91f8);
       return &system_memory_9200;
@@ -937,13 +937,13 @@ void free_thread_local_data(uint64_t param_1, uint64_t param_2, uint64_t param_3
 {
   longlong *plVar1;
   
-  plVar1 = _DAT_180d49200;
-  release_thread_local_storage(param_1, _DAT_180d49200[1], param_3, param_4, 0xfffffffffffffffe);
-  _DAT_180d49200[1] = (longlong)plVar1;
-  *_DAT_180d49200 = (longlong)plVar1;
-  _DAT_180d49200[2] = (longlong)plVar1;
-  _DAT_180d49208 = 0;
-  free(_DAT_180d49200, 0x58);
+  plVar1 = core_system_config_memory;
+  release_thread_local_storage(param_1, core_system_config_memory[1], param_3, param_4, 0xfffffffffffffffe);
+  core_system_config_memory[1] = (longlong)plVar1;
+  *core_system_config_memory = (longlong)plVar1;
+  core_system_config_memory[2] = (longlong)plVar1;
+  core_system_config_memory = 0;
+  free(core_system_config_memory, 0x58);
   return;
 }
 
@@ -952,7 +952,7 @@ void free_thread_local_data(uint64_t param_1, uint64_t param_2, uint64_t param_3
  */
 void destroy_thread_local_data(void)
 {
-  free(_DAT_180d49200, 0x58);
+  free(core_system_config_memory, 0x58);
   return;
 }
 

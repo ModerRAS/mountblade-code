@@ -38,7 +38,7 @@ void initialize_with_default_params(uint64_t system_handle, uint64_t config_para
   longlong stack_check;            // 栈检查值
   
   // 调用系统初始化函数
-  FUN_1800623b0(_DAT_180c86928, 0, 0x100000000, 1, &unknown_var_4968_ptr, config_param, 0xfffffffffffffffe);
+  FUN_1800623b0(system_message_context, 0, 0x100000000, 1, &unknown_var_4968_ptr, config_param, 0xfffffffffffffffe);
   
   // 检查系统状态
   if (system_debug_flag == '\0') {
@@ -49,22 +49,22 @@ void initialize_with_default_params(uint64_t system_handle, uint64_t config_para
     FUN_180627910(&stack_buffer, config_param);
     
     // 获取系统指针
-    system_ptr = *(void **)*_DAT_180c8ed08;
+    system_ptr = *(void **)*init_system_data_config;
     
     // 检查系统指针状态
     if (system_ptr == &unknown_var_424_ptr) {
       // 使用系统配置检查初始化状态
-      initialization_flag = *(int *)(_DAT_180c8a9c8 + 0xc40) != 0;
+      initialization_flag = *(int *)(init_system_data_config + 0xc40) != 0;
     }
     else {
       // 使用自定义函数检查初始化状态
-      initialization_flag = (**(code **)(system_ptr + 0x50))((uint64_t *)*_DAT_180c8ed08);
+      initialization_flag = (**(code **)(system_ptr + 0x50))((uint64_t *)*init_system_data_config);
     }
     
     // 如果未初始化，则进行初始化
     if (initialization_flag == '\0') {
-      (**(code **)(*(longlong *)_DAT_180c8ed08[1] + 0x18))
-                ((longlong *)_DAT_180c8ed08[1], &stack_buffer, default_params);
+      (**(code **)(*(longlong *)init_system_data_config[1] + 0x18))
+                ((longlong *)init_system_data_config[1], &stack_buffer, default_params);
     }
     
     // 设置缓冲区指针
@@ -105,7 +105,7 @@ void initialize_with_custom_params(uint64_t system_handle, int32_t custom_param,
   longlong stack_check;            // 栈检查值
   
   // 调用系统初始化函数（使用自定义参数模式）
-  FUN_1800623b0(_DAT_180c86928, 0, 0x100000000, 0xc, &unknown_var_5000_ptr, additional_config, 0xfffffffffffffffe);
+  FUN_1800623b0(system_message_context, 0, 0x100000000, 0xc, &unknown_var_5000_ptr, additional_config, 0xfffffffffffffffe);
   
   // 检查系统状态
   if (system_debug_flag == '\0') {
@@ -116,22 +116,22 @@ void initialize_with_custom_params(uint64_t system_handle, int32_t custom_param,
     FUN_180627910(&stack_buffer, additional_config);
     
     // 获取系统指针
-    system_ptr = *(void **)*_DAT_180c8ed08;
+    system_ptr = *(void **)*init_system_data_config;
     
     // 检查系统指针状态
     if (system_ptr == &unknown_var_424_ptr) {
       // 使用系统配置检查初始化状态
-      initialization_flag = *(int *)(_DAT_180c8a9c8 + 0xc40) != 0;
+      initialization_flag = *(int *)(init_system_data_config + 0xc40) != 0;
     }
     else {
       // 使用自定义函数检查初始化状态
-      initialization_flag = (**(code **)(system_ptr + 0x50))((uint64_t *)*_DAT_180c8ed08);
+      initialization_flag = (**(code **)(system_ptr + 0x50))((uint64_t *)*init_system_data_config);
     }
     
     // 如果未初始化，则进行初始化
     if (initialization_flag == '\0') {
-      (**(code **)(*(longlong *)_DAT_180c8ed08[1] + 0x18))
-                ((longlong *)_DAT_180c8ed08[1], &stack_buffer, custom_params);
+      (**(code **)(*(longlong *)init_system_data_config[1] + 0x18))
+                ((longlong *)init_system_data_config[1], &stack_buffer, custom_params);
     }
     
     // 设置缓冲区指针

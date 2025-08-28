@@ -136,7 +136,7 @@ void UI_SystemEventHandler(longlong param_1, int param_2, int32_t *param_3, long
 uint64_t UI_SystemInitializer(void)
 {
   // 调用系统初始化回调函数
-  (**(code **)(_DAT_180c0c6d0 + 8))();
+  (**(code **)(ui_system_ui + 8))();
   return 0;
 }
 

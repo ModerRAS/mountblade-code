@@ -370,11 +370,11 @@ void SystemResourceProcessor_Initialize(void)
     SystemInt64 *resource_iterator;                  /* 资源迭代器 */
     
     /* 获取系统全局数据结构 */
-    global_data = _DAT_180c86930;
-    resource_iterator = *(SystemInt64 **)(_DAT_180c86930 + 0xa0);
+    global_data = system_resource_state;
+    resource_iterator = *(SystemInt64 **)(system_resource_state + 0xa0);
     
     /* 遍历系统资源列表进行初始化 */
-    if (resource_iterator != *(SystemInt64 **)(_DAT_180c86930 + 0xa8)) {
+    if (resource_iterator != *(SystemInt64 **)(system_resource_state + 0xa8)) {
         do {
             SystemInt64 resource_handle;             /* 资源句柄 */
             
@@ -716,13 +716,13 @@ void SystemDataProcessor_Type1(SystemInt64 *param_1)
     SystemUInt32 operation_count;                     /* 操作计数 */
     
     /* 获取期望的线程ID */
-    expected_thread_id = *(SystemInt32 *)(**(SystemInt64 **)(_DAT_180c82868 + 8) + 0x48));
+    expected_thread_id = *(SystemInt32 *)(**(SystemInt64 **)(system_context_ptr + 8) + 0x48));
     thread_id = _Thrd_id();
-    previous_thread_id = _DAT_180c9105c;
+    previous_thread_id = system_system_resource;
     
     /* 检查线程ID并更新 */
     if (thread_id != expected_thread_id) {
-        _DAT_180c9105c = _Thrd_id();
+        system_system_resource = _Thrd_id();
         previous_thread_id = expected_thread_id;
     }
     
@@ -872,19 +872,19 @@ void SystemDataProcessor_Type1(SystemInt64 *param_1)
     }
     
     /* 处理系统句柄 */
-    system_handle = _DAT_180c86898;
-    if (_DAT_180c86898 != 0) {
-        FUN_1800bc4a0(_DAT_180c86898);
+    system_handle = system_system_data_resource;
+    if (system_system_data_resource != 0) {
+        FUN_1800bc4a0(system_system_data_resource);
         FUN_18064e900(system_handle);
     }
     
     /* 重置系统句柄 */
-    _DAT_180c86898 = 0;
+    system_system_data_resource = 0;
     
     /* 重新初始化系统句柄 */
     system_handle = 8;
-    state_handle = FUN_18062b1e0(_DAT_180c8ed18, 0x470, 8, 3);
-    _DAT_180c86898 = FUN_1800bc180(state_handle);
+    state_handle = FUN_18062b1e0(system_memory_pool_ptr, 0x470, 8, 3);
+    system_system_data_resource = FUN_1800bc180(state_handle);
     
     /* 处理内存管理器 */
     system_handle = *param_1;
@@ -896,7 +896,7 @@ void SystemDataProcessor_Type1(SystemInt64 *param_1)
     
     /* 重新初始化内存管理器 */
     *param_1 = 0;
-    system_handle = FUN_18062b1e0(_DAT_180c8ed18, 0xa0, 8, 3);
+    system_handle = FUN_18062b1e0(system_memory_pool_ptr, 0xa0, 8, 3);
     _Mtx_init_in_situ(system_handle, 2);
     _Mtx_init_in_situ(system_handle + 0x50, 2);
     *param_1 = system_handle;
@@ -931,8 +931,8 @@ void SystemDataProcessor_Type1(SystemInt64 *param_1)
     param_1 = param_1 + 0xa1;
     do {
         if (param_1[-7] - param_1[-8] >> 3 != 0) {
-            FUN_18020f150(*(SystemUInt8 *)(*(SystemInt64 *)(_DAT_180c82868 + 8) + 8));
-            system_handle = _DAT_180c86938 + 0x20;
+            FUN_18020f150(*(SystemUInt8 *)(*(SystemInt64 *)(system_context_ptr + 8) + 8));
+            system_handle = system_message_buffer + 0x20;
             lock_result = _Mtx_lock(system_handle);
             if (lock_result != 0) {
                 __Throw_C_error_std__YAXH_Z(lock_result);
@@ -942,12 +942,12 @@ void SystemDataProcessor_Type1(SystemInt64 *param_1)
                 __Throw_C_error_std__YAXH_Z(lock_result);
             }
             
-            if (_DAT_180c86948 != 0) {
+            if (system_system_data_resource != 0) {
                 FUN_18006eb30();
             }
             
-            FUN_18020f150(*(SystemUInt8 *)(*(SystemInt64 *)(_DAT_180c82868 + 8) + 8));
-            system_handle = _DAT_180c86938 + 0x20;
+            FUN_18020f150(*(SystemUInt8 *)(*(SystemInt64 *)(system_context_ptr + 8) + 8));
+            system_handle = system_message_buffer + 0x20;
             lock_result = _Mtx_lock(system_handle);
             if (lock_result != 0) {
                 __Throw_C_error_std__YAXH_Z(lock_result);
@@ -989,10 +989,10 @@ void SystemDataProcessor_Type1(SystemInt64 *param_1)
     } while (-1 < system_handle);
     
     /* 恢复线程ID */
-    expected_thread_id = *(SystemInt32 *)(**(SystemInt64 **)(_DAT_180c82868 + 8) + 0x48));
+    expected_thread_id = *(SystemInt32 *)(**(SystemInt64 **)(system_context_ptr + 8) + 0x48));
     thread_id = _Thrd_id();
     if (thread_id != expected_thread_id) {
-        _DAT_180c9105c = previous_thread_id;
+        system_system_resource = previous_thread_id;
     }
     
     return;
@@ -1599,7 +1599,7 @@ SystemInt64* SystemErrorProcessor(SystemInt64 param_1, SystemInt64 *param_2, Sys
     /* 检查资源状态 */
     if (*param_2 == 0) {
         if (*(SystemInt64 *)(param_1 + 0xc58) == 0) {
-            FUN_1800be9a0(_DAT_180c86898, &stack_resource_ptr, 0);
+            FUN_1800be9a0(system_system_data_resource, &stack_resource_ptr, 0);
             system_handle = stack_resource_ptr[0x3c];
             
             if (stack_resource_ptr != (SystemInt64 *)0x0) {
@@ -1935,7 +1935,7 @@ void SystemCleanupHandler(SystemUInt64 param_1, SystemInt64 *param_2, SystemUInt
     
     /* 获取资源类型 */
     operation_result = (**(code **)(*param_2 + 0x60))(param_2);
-    system_data = _DAT_180c8a9b8;
+    system_data = system_system_data_resource;
     
     /* 根据资源类型进行清理 */
     if (operation_result == 1) {
@@ -1952,7 +1952,7 @@ void SystemCleanupHandler(SystemUInt64 param_1, SystemInt64 *param_2, SystemUInt
     }
     else {
         if (operation_result == 4) {
-            resource_handle = _DAT_180c8a9b8 + 0x38;
+            resource_handle = system_system_data_resource + 0x38;
             operation_result = _Mtx_lock(resource_handle);
             if (operation_result != 0) {
                 __Throw_C_error_std__YAXH_Z(operation_result);

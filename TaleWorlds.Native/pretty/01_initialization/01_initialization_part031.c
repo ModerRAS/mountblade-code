@@ -175,7 +175,7 @@ joined_r0x00018005f6ef:
     if (0x8000000000000000 < nextObject) {
       capacity = *poolInfo;
       *poolInfo = capacity * 2;
-      nextPool = (longlong *)AllocateMemoryFromPool(_DAT_180c8ed18,capacity * 0x20 + 0x27,10);
+      nextPool = (longlong *)AllocateMemoryFromPool(system_memory_pool_ptr,capacity * 0x20 + 0x27,10);
       if (nextPool != (longlong *)0x0) {
         destBlock = (int32_t *)((ulonglong)(-(int)(nextPool + 4) & 7) + (longlong)(nextPool + 4));
         processedItems = 0;
@@ -288,7 +288,7 @@ LAB_18005f8c7:
       goto LAB_18005f84c;
     }
 LAB_18005f8e3:
-    nextObject = AllocateMemoryFromPool(_DAT_180c8ed18,0x148,CONCAT71((int7)(nextObject >> 8),10));
+    nextObject = AllocateMemoryFromPool(system_memory_pool_ptr,0x148,CONCAT71((int7)(nextObject >> 8),10));
     if (nextObject != 0) {
       *(uint64_t *)(nextObject + 0x100) = 0;
       *(uint64_t *)(nextObject + 0x108) = 0;
@@ -522,7 +522,7 @@ LAB_18005fcf9:
     goto LAB_18005fc81;
   }
 LAB_18005fd0d:
-  uVar14 = FUN_18062b420(_DAT_180c8ed18,0x148,CONCAT71((int7)((ulonglong)lVar6 >> 8),10));
+  uVar14 = FUN_18062b420(system_memory_pool_ptr,0x148,CONCAT71((int7)((ulonglong)lVar6 >> 8),10));
   if (uVar14 != 0) {
     *(uint64_t *)(uVar14 + 0x100) = 0;
     *(uint64_t *)(uVar14 + 0x108) = 0;
@@ -592,7 +592,7 @@ LAB_18005ff87:
     lVar9 = lVar6;
     if (lVar9 == 0) {
 LAB_180060026:
-      lVar6 = FUN_18062b420(_DAT_180c8ed18,0x148,10);
+      lVar6 = FUN_18062b420(system_memory_pool_ptr,0x148,10);
       if (lVar6 == 0) {
         return 0;
       }

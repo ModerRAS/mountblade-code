@@ -748,7 +748,7 @@ void FUN_180191df0(longlong param_1,int param_2)
   uint uVar4;
   ulonglong uVar5;
   
-  lVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x30,8,3,0xfffffffffffffffe);
+  lVar1 = FUN_18062b1e0(system_memory_pool_ptr,0x30,8,3,0xfffffffffffffffe);
   uVar3 = 0;
   *(int32_t *)(lVar1 + 0x19) = 0;
   *(int16_t *)(lVar1 + 0x1d) = 0;

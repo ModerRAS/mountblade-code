@@ -516,7 +516,7 @@ longlong * clone_entity(longlong *source_entity, longlong *target_entity)
   int32_t temp_uint5;
   
   temp_stackX_10 = target_entity;
-  temp_ullong6 = allocate_entity_memory(_DAT_180c8ed18, 0x300, 0x10, 9, 0, 0xfffffffffffffffe);
+  temp_ullong6 = allocate_entity_memory(system_memory_pool_ptr, 0x300, 0x10, 9, 0, 0xfffffffffffffffe);
   cloned_entity = (longlong *)initialize_entity_data(temp_ullong6, 0, 0);
   *target_entity = (longlong)cloned_entity;
   if (cloned_entity != (longlong *)0x0) {

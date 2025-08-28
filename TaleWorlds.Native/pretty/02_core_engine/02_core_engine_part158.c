@@ -39,7 +39,7 @@ void process_string_comparison_and_memory_allocation(longlong context_ptr, uint6
   comparison_result = 0;
 finalize_allocation:
   // 分配内存并初始化
-  allocated_memory = allocate_memory_structure(_DAT_180c8ed18, 0x48, *(int8_t *)(context_ptr + 0x28), 
+  allocated_memory = allocate_memory_structure(system_memory_pool_ptr, 0x48, *(int8_t *)(context_ptr + 0x28), 
                                              flag_param, 0xfffffffffffffffe);
   copy_memory_data(allocated_memory + 0x20, source_ptr);
   *(uint64_t *)(allocated_memory + 0x40) = 0;
@@ -145,7 +145,7 @@ void process_module_path_and_configuration(longlong module_context)
   security_param = 0xfffffffffffffffe;
   security_hash = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   operation_flag = 0;
-  initialize_module_component(module_context + 0x20, _DAT_180c86870 + 0x290);
+  initialize_module_component(module_context + 0x20, system_main_module_state + 0x290);
   ptr_to_stack_ptr = &stack_ptr;
   buffer_handle = create_string_buffer(&stack_ptr, module_context + 0x20);
   config_result = lookup_configuration_entry(module_context, buffer_handle);
@@ -159,7 +159,7 @@ void process_module_path_and_configuration(longlong module_context)
   temp_value = 0;
   buffer_ptr = (uint64_t *)0x0;
   buffer_size = 0;
-  string_buffer = (uint64_t *)allocate_memory_structure(_DAT_180c8ed18, 0x10, 0x13);
+  string_buffer = (uint64_t *)allocate_memory_structure(system_memory_pool_ptr, 0x10, 0x13);
   *(int8_t *)string_buffer = 0;
   buffer_ptr = string_buffer;
   string_length = get_string_length(string_buffer);
@@ -374,7 +374,7 @@ ulonglong process_path_normalization(longlong *path_data)
   buffer_capacity = 0;
   buffer_ptr = (uint64_t *)0x0;
   buffer_flag = 0;
-  main_buffer = (uint64_t *)allocate_memory_structure(_DAT_180c8ed18, 0x10, 0x13);
+  main_buffer = (uint64_t *)allocate_memory_structure(system_memory_pool_ptr, 0x10, 0x13);
   *(int8_t *)main_buffer = 0;
   buffer_ptr = main_buffer;
   temp_result = get_string_length(main_buffer);
@@ -390,7 +390,7 @@ ulonglong process_path_normalization(longlong *path_data)
     separator_value = 0;
     separator_ptr = (int16_t *)0x0;
     separator_size = 0;
-    path_separator = (int16_t *)allocate_memory_structure(_DAT_180c8ed18, 0x10, 0x13);
+    path_separator = (int16_t *)allocate_memory_structure(system_memory_pool_ptr, 0x10, 0x13);
     *(int8_t *)path_separator = 0;
     separator_ptr = path_separator;
     temp_result = get_string_length(path_separator);
@@ -403,7 +403,7 @@ ulonglong process_path_normalization(longlong *path_data)
     buffer_handle = 0;
     char_buffer = (int8_t *)0x0;
     char_buffer_size = 0;
-    string_buffer = (int8_t *)allocate_memory_structure(_DAT_180c8ed18, 0x10, 0x13);
+    string_buffer = (int8_t *)allocate_memory_structure(system_memory_pool_ptr, 0x10, 0x13);
     *string_buffer = 0;
     char_buffer = string_buffer;
     buffer_size = get_string_length(string_buffer);
@@ -414,7 +414,7 @@ ulonglong process_path_normalization(longlong *path_data)
     comparison_result = *(int *)(current_offset + 0x10);
     if (comparison_result < 1) {
       if (string_buffer != (int8_t *)0x0) {
-        temp_string_ptr = (int8_t *)allocate_memory_structure(_DAT_180c8ed18, 0x10, 0x13);
+        temp_string_ptr = (int8_t *)allocate_memory_structure(system_memory_pool_ptr, 0x10, 0x13);
         *temp_string_ptr = 0;
         get_string_length(temp_string_ptr);
       }
@@ -422,7 +422,7 @@ ulonglong process_path_normalization(longlong *path_data)
       copy_memory_data(temp_string_ptr, string_buffer, 1);
     }
     if ((comparison_result != -1) && (buffer_size < comparison_result + 2U)) {
-      string_buffer = (int8_t *)expand_memory_buffer(_DAT_180c8ed18, string_buffer, 
+      string_buffer = (int8_t *)expand_memory_buffer(system_memory_pool_ptr, string_buffer, 
                                                          comparison_result + 2U, 0x10, 0x13);
       char_buffer = string_buffer;
       temp_result = get_string_length(string_buffer);
@@ -465,13 +465,13 @@ ulonglong process_path_normalization(longlong *path_data)
         buffer_size = 0x10;
       }
       path_string = (int8_t *)
-                   allocate_memory_structure(_DAT_180c8ed18, (longlong)(int)buffer_size,
+                   allocate_memory_structure(system_memory_pool_ptr, (longlong)(int)buffer_size,
                                  CONCAT71((uint7)(uint3)(path_size >> 8), 0x13));
       *path_string = 0;
     }
     else {
       if (buffer_size <= buffer_size) goto buffer_sufficient;
-      path_string = (int8_t *)expand_memory_buffer(_DAT_180c8ed18, path_string, 
+      path_string = (int8_t *)expand_memory_buffer(system_memory_pool_ptr, path_string, 
                                                        buffer_size, 0x10, 0x13);
     }
     temp_result = get_string_length(path_string);
@@ -511,7 +511,7 @@ path_complete:
         if (string_length < 0x10) {
           string_length = 0x10;
         }
-        string_buffer = (int8_t *)allocate_memory_structure(_DAT_180c8ed18, (longlong)string_length, 0x13);
+        string_buffer = (int8_t *)allocate_memory_structure(system_memory_pool_ptr, (longlong)string_length, 0x13);
         *string_buffer = 0;
         if (*(int *)(current_offset + 0x10) != 0) {
           // 复制组件数据（不返回）
@@ -659,7 +659,7 @@ void process_module_configuration_update(longlong module_context, uint64_t *conf
   string_ptr = (int16_t *)0x0;
   ptr_size = 0;
   main_buffer = config_buffer;
-  path_buffer = (int16_t *)allocate_memory_structure(_DAT_180c8ed18, 0x10, 0x13);
+  path_buffer = (int16_t *)allocate_memory_structure(system_memory_pool_ptr, 0x10, 0x13);
   *(int8_t *)path_buffer = 0;
   string_ptr = path_buffer;
   path_length = get_string_length(path_buffer);
@@ -682,7 +682,7 @@ void process_module_configuration_update(longlong module_context, uint64_t *conf
     config_length = string_length + 2;
     if ((config_length != 0) && (buffer_index = string_length + 3, path_length < buffer_index)) {
       buffer_type = 0x13;
-      path_buffer = (int16_t *)expand_memory_buffer(_DAT_180c8ed18, path_buffer, 
+      path_buffer = (int16_t *)expand_memory_buffer(system_memory_pool_ptr, path_buffer, 
                                                        buffer_index, 0x10);
       string_ptr = path_buffer;
       temp_value._0_4_ = get_string_length(path_buffer);

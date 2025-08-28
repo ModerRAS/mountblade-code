@@ -153,10 +153,10 @@ typedef enum {
  * ============================================================================ */
 
 // 全局变量声明
-extern ulonglong _DAT_180c8ed30;      // 全局时间计数器
-extern longlong _DAT_180c86938;        // 渲染设备基础地址
-extern longlong _DAT_180c86950;        // 渲染资源管理器地址
-extern int _DAT_180bf00b0;             // 渲染配置标志
+extern ulonglong system_error_code;      // 全局时间计数器
+extern longlong system_message_buffer;        // 渲染设备基础地址
+extern longlong system_operation_state;        // 渲染资源管理器地址
+extern int render_system_control_buffer;             // 渲染配置标志
 extern uint64_t global_state_720_ptr;       // 未知数据结构引用
 extern uint64_t global_state_3432_ptr;       // 未知数据结构引用
 extern uint64_t global_state_9944;       // 字符串常量引用
@@ -194,7 +194,7 @@ void UpdateRenderTimestampAndQueue(longlong renderContext, uint64_t unknownParam
   longlong result;
   
   // 计算时间差
-  currentTime = (float)_DAT_180c8ed30;
+  currentTime = (float)system_error_code;
   timeDelta = currentTime * 1e-05 - *(float *)(renderContext + 0x15c);
   renderDevice = *(longlong *)(renderContext + 0x120);
   
@@ -431,7 +431,7 @@ longlong CreateAdvancedRenderDevice(longlong deviceConfig, longlong deviceManage
   RenderSystem_RegisterDevice(deviceHandle, &system_memory_6c38);  // 注册设备
   
   // 切换设备上下文
-  oldDevice = *(longlong **)(_DAT_180c86938 + 0x121e0);
+  oldDevice = *(longlong **)(system_message_buffer + 0x121e0);
   if (oldDevice != (longlong *)0x0) {
     (**(code **)(*oldDevice + 0x28))(oldDevice);  // 释放旧设备
   }
@@ -461,10 +461,10 @@ longlong CreateAdvancedRenderDevice(longlong deviceConfig, longlong deviceManage
   // 设置设备版本
   resourceCount = 2;
   *(int32_t *)(deviceHandle + 4) = 2;
-  *(float *)(deviceHandle + 0x124e4) = (float)(_DAT_180c8ed30 % 1000000000) * 1e-05;
+  *(float *)(deviceHandle + 0x124e4) = (float)(system_error_code % 1000000000) * 1e-05;
   
   // 复制渲染状态数据
-  sourcePointer = (uint64_t *)(_DAT_180c86950 + 0x16a0);
+  sourcePointer = (uint64_t *)(system_operation_state + 0x16a0);
   destPointer = (uint64_t *)(deviceHandle + 0x30);
   do {
     textureData = destPointer;
@@ -535,8 +535,8 @@ longlong CreateAdvancedRenderDevice(longlong deviceConfig, longlong deviceManage
   clearParams[1] = 0;        // 清空参数2
   clearParams[2] = 0x3f800000; // 1.0f
   resourceCount = *(longlong *)(*(longlong *)(*(longlong *)(deviceConfig + 0xf0) + 0x1b8) + 0xb8);
-  heightRatio = (float)*(ushort *)(resourceCount + 0x32e) / *(float *)(_DAT_180c86950 + 0x17f0);
-  widthRatio = (float)*(ushort *)(resourceCount + 0x32c) / *(float *)(_DAT_180c86950 + 0x17ec);
+  heightRatio = (float)*(ushort *)(resourceCount + 0x32e) / *(float *)(system_operation_state + 0x17f0);
+  widthRatio = (float)*(ushort *)(resourceCount + 0x32c) / *(float *)(system_operation_state + 0x17ec);
   
   // 设置投影矩阵
   matrixData[0] = widthRatio * 1.0 + 0.0 + 0.0;
@@ -1021,7 +1021,7 @@ void SetupRenderBufferLayout(int *bufferLayout, int startOffset, int endOffset, 
   currentIndex = 0;
   
   // 检查是否需要进行SIMD优化
-  if (((0 < (int)alignmentMask) && (currentIndex = 0, 3 < alignmentMask)) && (1 < _DAT_180bf00b0)) {
+  if (((0 < (int)alignmentMask) && (currentIndex = 0, 3 < alignmentMask)) && (1 < render_system_control_buffer)) {
     alignedSize = alignmentMask & 0x80000003;
     if ((int)alignedSize < 0) {
       alignedSize = (alignedSize - 1 | 0xfffffffc) + 1;

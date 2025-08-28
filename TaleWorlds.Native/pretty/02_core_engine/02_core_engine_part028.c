@@ -15,7 +15,7 @@ void process_packet_type_1(uint64_t param_1, uint64_t param_2)
   longlong buffer_size;        // 缓冲区大小
   
   // 记录调试信息并初始化数据包处理
-  log_debug_info(_DAT_180c86928, 0, 0x100000000, 1, &DEBUG_PACKET_TYPE_1, param_2, 0xfffffffffffffffe);
+  log_debug_info(system_message_context, 0, 0x100000000, 1, &DEBUG_PACKET_TYPE_1, param_2, 0xfffffffffffffffe);
   
   // 检查系统状态是否允许处理
   if (SYSTEM_READY_FLAG == '\0') {
@@ -63,7 +63,7 @@ void process_packet_type_2(uint64_t param_1, int32_t param_2, uint64_t param_3)
   longlong buffer_size;        // 缓冲区大小
   
   // 记录调试信息并初始化数据包处理
-  log_debug_info(_DAT_180c86928, 0, 0x100000000, 0xc, &DEBUG_PACKET_TYPE_2, param_3, 0xfffffffffffffffe);
+  log_debug_info(system_message_context, 0, 0x100000000, 0xc, &DEBUG_PACKET_TYPE_2, param_3, 0xfffffffffffffffe);
   
   // 检查系统状态是否允许处理
   if (SYSTEM_READY_FLAG == '\0') {

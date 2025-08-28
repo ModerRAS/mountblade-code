@@ -255,7 +255,7 @@ longlong *process_render_resource(longlong render_context, longlong *output_ptr,
     format_string3 = 0;
     format_buffer3 = (uint64_t *)0x0;
     format_length3 = 0;
-    string_buffer = (uint64_t *)allocate_string_buffer(_DAT_180c8ed18, 0x10, 0x13);
+    string_buffer = (uint64_t *)allocate_string_buffer(system_memory_pool_ptr, 0x10, 0x13);
     *(int8_t *)string_buffer = 0;
     format_buffer3 = string_buffer;
     process_result = get_string_length(string_buffer);
@@ -270,7 +270,7 @@ longlong *process_render_resource(longlong render_context, longlong *output_ptr,
     format_string2 = 0;
     format_buffer2 = (uint64_t *)0x0;
     format_length2 = 0;
-    string_buffer = (uint64_t *)allocate_string_buffer(_DAT_180c8ed18, 0x37, 0x13);
+    string_buffer = (uint64_t *)allocate_string_buffer(system_memory_pool_ptr, 0x37, 0x13);
     *(int8_t *)string_buffer = 0;
     format_buffer2 = string_buffer;
     process_result = get_string_length(string_buffer);
@@ -312,7 +312,7 @@ STRING_COPY_LOOP:
       if (search_result < 0x10) {
         search_result = 0x10;
       }
-      message_ptr = (int8_t *)allocate_string_buffer(_DAT_180c8ed18, (longlong)search_result, 0x13);
+      message_ptr = (int8_t *)allocate_string_buffer(system_memory_pool_ptr, (longlong)search_result, 0x13);
       *message_ptr = 0;
       string_length = get_string_length(message_ptr);
       goto STRING_COPY_LOOP;
@@ -328,12 +328,12 @@ STRING_COPY_LOOP:
         if ((int)buffer_size < 0x10) {
           buffer_size = 0x10;
         }
-        message_ptr = (int8_t *)allocate_string_buffer(_DAT_180c8ed18, (longlong)(int)buffer_size, 0x13);
+        message_ptr = (int8_t *)allocate_string_buffer(system_memory_pool_ptr, (longlong)(int)buffer_size, 0x13);
         *message_ptr = 0;
       }
       else {
         if (buffer_size <= allocated_size) goto FINALIZE_STRING;
-        message_ptr = (int8_t *)reallocate_string_buffer(_DAT_180c8ed18, message_ptr, buffer_size, 0x10, 0x13);
+        message_ptr = (int8_t *)reallocate_string_buffer(system_memory_pool_ptr, message_ptr, buffer_size, 0x10, 0x13);
       }
       get_string_length(message_ptr);
     }
@@ -380,7 +380,7 @@ RESOURCE_FOUND:
     process_render_command(render_context, output_ptr);
     process_result = 8;
     if (*output_ptr == 0) {
-      result_ptr = (longlong *)allocate_resource_structure(_DAT_180c8ed18, 0xb8, 8, 3);
+      result_ptr = (longlong *)allocate_resource_structure(system_memory_pool_ptr, 0xb8, 8, 3);
       *result_ptr = (longlong)&RESOURCE_VTABLE_START;
       *result_ptr = (longlong)&RESOURCE_VTABLE_END;
       *(int32_t *)(result_ptr + 1) = 0;
@@ -390,9 +390,9 @@ RESOURCE_FOUND:
       *(int32_t *)(result_ptr + 10) = process_flag;
       result_ptr[0xb] = additional_data;
       
-      if (*(int *)(_DAT_180c8a9c8 + 0x9a0) != 0) {
-        _DAT_180c967dc = _DAT_180c967dc + 1;
-        log_resource_event(_DAT_180c86928, 0, 0x1000000000000, 3, &RESOURCE_EVENT_ID, _DAT_180c967dc, process_result, temp_result);
+      if (*(int *)(core_system_data_string + 0x9a0) != 0) {
+        core_system_string = core_system_string + 1;
+        log_resource_event(system_message_context, 0, 0x1000000000000, 3, &RESOURCE_EVENT_ID, core_system_string, process_result, temp_result);
       }
       
       *result_ptr = (longlong)&RESOURCE_PROCESSOR_START;
@@ -425,7 +425,7 @@ RESOURCE_FOUND:
   format_string1 = 0;
   format_buffer1 = (uint64_t *)0x0;
   format_length1 = 0;
-  string_buffer = (uint64_t *)allocate_string_buffer(_DAT_180c8ed18, 0x10, 0x13);
+  string_buffer = (uint64_t *)allocate_string_buffer(system_memory_pool_ptr, 0x10, 0x13);
   *(int8_t *)string_buffer = 0;
   format_buffer1 = string_buffer;
   process_result = get_string_length(string_buffer);
@@ -439,7 +439,7 @@ RESOURCE_FOUND:
   format_string3 = 0;
   format_buffer3 = (uint64_t *)0x0;
   format_length3 = 0;
-  string_buffer = (uint64_t *)allocate_string_buffer(_DAT_180c8ed18, 0x37, 0x13);
+  string_buffer = (uint64_t *)allocate_string_buffer(system_memory_pool_ptr, 0x37, 0x13);
   *(int8_t *)string_buffer = 0;
   format_buffer3 = string_buffer;
   process_result = get_string_length(string_buffer);
@@ -481,7 +481,7 @@ STRING_COPY_LOOP_2:
     if (search_result < 0x10) {
       search_result = 0x10;
     }
-    message_ptr = (int8_t *)allocate_string_buffer(_DAT_180c8ed18, (longlong)search_result, 0x13);
+    message_ptr = (int8_t *)allocate_string_buffer(system_memory_pool_ptr, (longlong)search_result, 0x13);
     *message_ptr = 0;
     string_length = get_string_length(message_ptr);
     goto STRING_COPY_LOOP_2;
@@ -497,12 +497,12 @@ STRING_COPY_LOOP_2:
       if ((int)buffer_size < 0x10) {
         buffer_size = 0x10;
       }
-      message_ptr = (int8_t *)allocate_string_buffer(_DAT_180c8ed18, (longlong)(int)buffer_size, 0x13);
+      message_ptr = (int8_t *)allocate_string_buffer(system_memory_pool_ptr, (longlong)(int)buffer_size, 0x13);
       *message_ptr = 0;
     }
     else {
       if (buffer_size <= allocated_size) goto FINALIZE_STRING_2;
-      message_ptr = (int8_t *)reallocate_string_buffer(_DAT_180c8ed18, message_ptr, buffer_size, 0x10, 0x13);
+      message_ptr = (int8_t *)reallocate_string_buffer(system_memory_pool_ptr, message_ptr, buffer_size, 0x10, 0x13);
     }
     get_string_length(message_ptr);
   }
@@ -657,7 +657,7 @@ int find_shader_program_index(longlong shader_context, longlong shader_info)
     if (*(void **)(shader_info + 8) != (void *)0x0) {
       error_msg_ptr = *(void **)(shader_info + 8);
     }
-    log_shader_error(_DAT_180c86928, 0, 0x1000000000000, 3, &SHADER_NOT_FOUND_ID, error_msg_ptr, error_param);
+    log_shader_error(system_message_context, 0, 0x1000000000000, 3, &SHADER_NOT_FOUND_ID, error_msg_ptr, error_param);
     comparison_result = -1;
     
 SHADER_FOUND:
@@ -731,7 +731,7 @@ int find_texture_index(longlong texture_context, longlong texture_info)
   if (*(void **)(texture_info + 8) != (void *)0x0) {
     error_msg_ptr = *(void **)(texture_info + 8);
   }
-  log_texture_error(_DAT_180c86928, 0, 0x1000000000000, 3, &TEXTURE_NOT_FOUND_ID, error_msg_ptr);
+  log_texture_error(system_message_context, 0, 0x1000000000000, 3, &TEXTURE_NOT_FOUND_ID, error_msg_ptr);
   return -1;
 }
 
@@ -752,7 +752,7 @@ void update_texture_cache_state(longlong texture_context)
       *(uint64_t *)(texture_context + 0x380) = *(uint64_t *)(texture_context + 0x378);
       return;
     }
-    log_texture_cache_error(_DAT_180c86928, 0, 0x1000000000000, 3, &CACHE_UPDATE_ERROR_ID);
+    log_texture_cache_error(system_message_context, 0, 0x1000000000000, 3, &CACHE_UPDATE_ERROR_ID);
   }
   return;
 }
@@ -792,7 +792,7 @@ ulonglong process_render_resource_creation(longlong render_context, longlong res
   longlong temp_value;
   
   if ((*(char *)(render_context + 0x210) == '\0') &&
-      (render_state = _DAT_180c8a9c8, *(int *)(_DAT_180c8a9c8 + 0xb60) == 1)) {
+      (render_state = core_system_data_string, *(int *)(core_system_data_string + 0xb60) == 1)) {
     
     // 如果有资源句柄且参数有效
     if ((*(longlong *)(render_context + 0x18) != 0) && (0 < *(int *)(resource_params + 0x10))) {
@@ -818,7 +818,7 @@ ulonglong process_render_resource_creation(longlong render_context, longlong res
     if (*(void **)(resource_params + 8) != (void *)0x0) {
       error_msg_ptr = *(void **)(resource_params + 8);
     }
-    creation_result = log_resource_creation_error(_DAT_180c86928, 0, 0x1000000000000, 3, &RESOURCE_CREATION_FAILED_ID, error_msg_ptr);
+    creation_result = log_resource_creation_error(system_message_context, 0, 0x1000000000000, 3, &RESOURCE_CREATION_FAILED_ID, error_msg_ptr);
     return creation_result & 0xffffffffffffff00;
   }
   return render_state & 0xffffffffffffff00;
@@ -852,7 +852,7 @@ ulonglong create_default_render_resource(void)
       return creation_result;
     }
   }
-  creation_result = log_resource_creation_error(_DAT_180c86928, 0, 0x1000000000000, 3, &RESOURCE_CREATION_FAILED_ID);
+  creation_result = log_resource_creation_error(system_message_context, 0, 0x1000000000000, 3, &RESOURCE_CREATION_FAILED_ID);
   return creation_result & 0xffffffffffffff00;
 }
 
@@ -874,7 +874,7 @@ ulonglong create_alternative_render_resource(void)
   if (*(longlong *)(resource_handle + 8) != 0) {
     stack_param = *(longlong *)(resource_handle + 8);
   }
-  creation_result = log_resource_creation_error(_DAT_180c86928, 0, 0x1000000000000, 3, &RESOURCE_CREATION_FAILED_ID);
+  creation_result = log_resource_creation_error(system_message_context, 0, 0x1000000000000, 3, &RESOURCE_CREATION_FAILED_ID);
   return creation_result & 0xffffffffffffff00;
 }
 
@@ -932,7 +932,7 @@ uint64_t process_indexed_render_resource(longlong render_context, int resource_i
   longlong resource_data;
   longlong *temp_ptr;
   
-  if ((*(char *)(render_context + 0x210) == '\0') && (*(int *)(_DAT_180c8a9c8 + 0xb60) == 1)) {
+  if ((*(char *)(render_context + 0x210) == '\0') && (*(int *)(core_system_data_string + 0xb60) == 1)) {
     int max_index = *(int *)(*(longlong *)(render_context + 0x1f8) + 0x50);
     if (resource_index < max_index) {
       // 如果有资源句柄且索引有效

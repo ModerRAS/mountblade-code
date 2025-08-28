@@ -308,13 +308,13 @@ void initialize_render_pipeline(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 全局变量定义
-longlong *global_render_context = _DAT_180c86950;
+longlong *global_render_context = system_operation_state;
 ulonglong performance_counter_value = GET_SECURITY_COOKIE();
 char performance_timer_enabled = system_buffer_2853;
-longlong performance_timer_address = _DAT_180c86870;
-longlong performance_counter_base = _DAT_180c8ed48;
-double performance_frequency = _DAT_180c8ed50;
-longlong performance_counter_value = _DAT_180c8ed58;
+longlong performance_timer_address = system_main_module_state;
+longlong performance_counter_base = core_system_data_material;
+double performance_frequency = core_system_data_material;
+longlong performance_counter_value = core_system_data_material;
 void *debug_device_name = unknown_var_3432;
 void *device_init_string = unknown_var_1632;
 void *device_config_path = system_buffer_ptr;
@@ -322,12 +322,12 @@ void *render_target_name = unknown_var_720;
 void *target_config_string = unknown_var_1736;
 void *debug_output_prefix = unknown_var_3456;
 void *debug_message_target = unknown_var_1752;
-longlong *global_render_manager = _DAT_180c86938;
-longlong *render_context_pool = _DAT_180c86890;
-longlong *render_queue_head = _DAT_180c82868;
-longlong *render_queue_config = _DAT_180c8a9c8;
-longlong *debug_log_source = _DAT_180c8ed18;
-longlong *debug_output_buffer = _DAT_180c8aa08;
+longlong *global_render_manager = system_message_buffer;
+longlong *render_context_pool = system_parameter_buffer;
+longlong *render_queue_head = system_context_ptr;
+longlong *render_queue_config = core_system_data_material;
+longlong *debug_log_source = system_memory_pool_ptr;
+longlong *debug_output_buffer = system_global_data_ptr;
 
 // 函数映射（简化实现）
 // 注意：以下函数是简化实现，用于保持代码结构清晰

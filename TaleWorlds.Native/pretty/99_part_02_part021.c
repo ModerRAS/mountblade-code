@@ -104,7 +104,7 @@ LAB_1800fa3e0:
       if ((int)(bVar1 - uVar4) < 1) goto LAB_1800fa3e0;
     }
   }
-  lVar6 = FUN_18062b420(_DAT_180c8ed18,0x48,*(int8_t *)(param_1 + 5));
+  lVar6 = FUN_18062b420(system_memory_pool_ptr,0x48,*(int8_t *)(param_1 + 5));
   FUN_180627ae0(lVar6 + 0x20,param_4);
   *(int32_t *)(lVar6 + 0x40) = *(int32_t *)(param_4 + 0x20);
   if (puVar3 != param_1) {

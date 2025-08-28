@@ -110,11 +110,11 @@ LAB_18018d08e:
           if ((longlong)(int)char_ptr5 * 0x348 + long_var3 != 0) {
             if ((param_4 < 0) ||
                ((ulonglong)
-                (*(longlong *)(*_DAT_180c86870 + 0x890) - *(longlong *)(*_DAT_180c86870 + 0x888) >>
+                (*(longlong *)(*system_main_module_state + 0x890) - *(longlong *)(*system_main_module_state + 0x888) >>
                 5) <= (ulonglong)(longlong)param_4)) {
               FUN_180628ca0();
             }
-            ulong_ptr1 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x36,0x13);
+            ulong_ptr1 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x36,0x13);
             *(int8_t *)ulong_ptr1 = 0;
             FUN_18064e990(ulong_ptr1);
             *ulong_ptr1 = 0x6576616820756f59;
@@ -129,7 +129,7 @@ LAB_18018d08e:
             *(int32_t *)((longlong)ulong_ptr1 + 0x2c) = 0x6e20676e;
             *(int32_t *)(ulong_ptr1 + 6) = 0x20656d61;
             *(int16_t *)((longlong)ulong_ptr1 + 0x34) = 0x22;
-            ulong_ptr2 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x36,0x13);
+            ulong_ptr2 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x36,0x13);
             *(int8_t *)ulong_ptr2 = 0;
             uint_var4 = FUN_18064e990(ulong_ptr2);
             ulong_var1 = ulong_ptr1[1];
@@ -153,7 +153,7 @@ LAB_18018d08e:
             *(int8_t *)((longlong)ulong_ptr2 + 0x34) = *(int8_t *)((longlong)ulong_ptr1 + 0x34);
             *(int8_t *)((longlong)ulong_ptr2 + 0x35) = 0;
             if (local_int1 < 1) {
-              uint_ptr1 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,0x1e,0x13,0x10);
+              uint_ptr1 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x1e,0x13,0x10);
               *(int8_t *)uint_ptr1 = 0;
               FUN_18064e990(uint_ptr1);
               *uint_ptr1 = 0x54202e22;
@@ -165,7 +165,7 @@ LAB_18018d08e:
               *(int16_t *)(uint_ptr1 + 7) = 0x22;
               byte_ptr3 = (int8_t *)0x0;
               if (ulong_ptr2 != (uint64_t *)0x0) {
-                byte_ptr3 = (int8_t *)FUN_18062b420(_DAT_180c8ed18,0x36,0x13);
+                byte_ptr3 = (int8_t *)FUN_18062b420(system_memory_pool_ptr,0x36,0x13);
                 *byte_ptr3 = 0;
                 FUN_18064e990(byte_ptr3);
               }
@@ -174,7 +174,7 @@ LAB_18018d08e:
             }
             if ((local_int1 != -0x35) && (uint_var4 < local_int1 + 0x36U)) {
               ulong_ptr2 = (uint64_t *)
-                        FUN_18062b8b0(_DAT_180c8ed18,ulong_ptr2,local_int1 + 0x36U,0x10,0x13);
+                        FUN_18062b8b0(system_memory_pool_ptr,ulong_ptr2,local_int1 + 0x36U,0x10,0x13);
               FUN_18064e990(ulong_ptr2);
             }
                     // WARNING: Subroutine does not return
@@ -436,8 +436,8 @@ longlong find_scene_object_by_name(uint64_t param_1, longlong name_data)
   ulonglong ulong_var2;
   
   ulong_var1 = 0;
-  long_var1 = *(longlong *)(_DAT_180c8a9f8 + 0x3a0);
-  int_var3 = (int)((*(longlong *)(_DAT_180c8a9f8 + 0x3a8) - long_var1) / 0x348);
+  long_var1 = *(longlong *)(core_system_data_resource + 0x3a0);
+  int_var3 = (int)((*(longlong *)(core_system_data_resource + 0x3a8) - long_var1) / 0x348);
   if (0 < int_var3) {
     int_var1 = *(int *)(name_data + 0x10);
     ulong_ptr1 = (uint64_t *)(long_var1 + 0x10);

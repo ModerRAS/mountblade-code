@@ -157,7 +157,7 @@ void DeserializeObjectArray(longlong *object_manager, longlong *data_stream)
         }
         *(longlong *)((longlong)param_1 + 0x5a) = lVar5;
         if (uVar6 != 0) {
-          lVar7 = FUN_18062b420(_DAT_180c8ed18,uVar6 << 4,4);
+          lVar7 = FUN_18062b420(system_memory_pool_ptr,uVar6 << 4,4);
         }
         *(longlong *)((longlong)param_1 + 0x52) = lVar7;
                     // WARNING: Subroutine does not return
@@ -188,7 +188,7 @@ void DeserializeObjectArray(longlong *object_manager, longlong *data_stream)
     }
     param_1[9] = lVar5;
     if (uVar6 != 0) {
-      lVar7 = FUN_18062b420(_DAT_180c8ed18,uVar6 << 4,4);
+      lVar7 = FUN_18062b420(system_memory_pool_ptr,uVar6 << 4,4);
     }
     param_1[8] = lVar7;
                     // WARNING: Subroutine does not return
@@ -344,7 +344,7 @@ void DeserializeObjectArrayVariant(longlong *object_manager)
         }
         *(longlong *)((longlong)param_1 + 0x5a) = lVar5;
         if (uVar6 != 0) {
-          lVar7 = FUN_18062b420(_DAT_180c8ed18,uVar6 << 4,4);
+          lVar7 = FUN_18062b420(system_memory_pool_ptr,uVar6 << 4,4);
         }
         *(longlong *)((longlong)param_1 + 0x52) = lVar7;
                     // WARNING: Subroutine does not return
@@ -375,7 +375,7 @@ void DeserializeObjectArrayVariant(longlong *object_manager)
     }
     param_1[9] = lVar5;
     if (uVar6 != 0) {
-      lVar7 = FUN_18062b420(_DAT_180c8ed18,uVar6 << 4,4);
+      lVar7 = FUN_18062b420(system_memory_pool_ptr,uVar6 << 4,4);
     }
     param_1[8] = lVar7;
                     // WARNING: Subroutine does not return
@@ -540,7 +540,7 @@ void BatchDeserializeObjects(longlong data_start)
     }
     *(ulonglong *)(unaff_R15 + 0x48) = uVar2;
     if (uVar5 != 0) {
-      unaff_RSI = FUN_18062b420(_DAT_180c8ed18,uVar5 << 4,4);
+      unaff_RSI = FUN_18062b420(system_memory_pool_ptr,uVar5 << 4,4);
     }
     *(ulonglong *)(unaff_R15 + 0x40) = unaff_RSI;
                     // WARNING: Subroutine does not return
@@ -628,7 +628,7 @@ void DeserializeSingleObject(longlong data_start)
     }
     *(uint64_t *)(unaff_R15 + 0x48) = uVar2;
     if (string_length != 0) {
-      unaff_RSI = FUN_18062b420(_DAT_180c8ed18,uVar3 << 4,4);
+      unaff_RSI = FUN_18062b420(system_memory_pool_ptr,uVar3 << 4,4);
     }
     *(uint64_t *)(unaff_R15 + 0x40) = unaff_RSI;
                     // WARNING: Subroutine does not return

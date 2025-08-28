@@ -638,5 +638,5 @@ LAB_18027c306:
 #define FILE_OPERATION_TABLE (&unknown_var_4880_ptr)      // 文件操作表
 #define MODEL_LOADING_LOGGER (&unknown_var_9040_ptr)      // 模型加载日志器
 #define MATERIAL_LOGGER (&unknown_var_8944_ptr)           // 材质日志器
-#define GLOBAL_MEMORY_MANAGER (_DAT_180c8ed18)      // 全局内存管理器
+#define GLOBAL_MEMORY_MANAGER (system_memory_pool_ptr)      // 全局内存管理器
 #define GLOBAL_FILE_COUNTER (SYSTEM_FILE_COUNTER_ADDR)       // 全局文件计数器

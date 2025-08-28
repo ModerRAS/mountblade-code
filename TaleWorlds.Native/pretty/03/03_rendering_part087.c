@@ -157,11 +157,11 @@ void render_system_texture_mapper(uint64_t render_context, longlong texture_data
     
     // 初始化纹理数据
     FUN_1802c22a0(alignment_buffer, &unknown_var_6264_ptr);
-    texture_offset = _DAT_180c86938;
+    texture_offset = system_message_buffer;
     
     // 计算纹理步长
     texture_step = RENDER_TEXTURE_SIZE_BASE >> ((byte)texture_index & 0x1f);
-    texture_buffer = *(longlong **)(_DAT_180c86938 + 0x1cd8);
+    texture_buffer = *(longlong **)(system_message_buffer + 0x1cd8);
     
     // 检查纹理数据有效性
     if (*(longlong *)(texture_data + 0x1d8) == 0) {
@@ -169,8 +169,8 @@ void render_system_texture_mapper(uint64_t render_context, longlong texture_data
     }
     else {
         // 设置纹理参数
-        if (_DAT_180c86870 != 0) {
-            *(longlong *)(texture_data + 0x340) = (longlong)*(int *)(_DAT_180c86870 + 0x224);
+        if (system_main_module_state != 0) {
+            *(longlong *)(texture_data + 0x340) = (longlong)*(int *)(system_main_module_state + 0x224);
         }
         
         // 计算纹理偏移
@@ -181,7 +181,7 @@ void render_system_texture_mapper(uint64_t render_context, longlong texture_data
         // 激活纹理资源
         if ((resource_ptr != (longlong *)0x0) && (*resource_ptr != 0)) {
             (**(code **)(*texture_buffer + 0x70))(texture_buffer, *resource_ptr, 1);
-            texture_offset = _DAT_180c86938;
+            texture_offset = system_message_buffer;
         }
     }
     
@@ -193,14 +193,14 @@ void render_system_texture_mapper(uint64_t render_context, longlong texture_data
     FUN_18029de40(*(uint64_t *)(texture_offset + 0x1cd8), 1);
     buffer_size_1 = 0;
     buffer_size_2 = 0;
-    FUN_18029c8a0(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), 1, 0xff000000, 0x3f800000);
+    FUN_18029c8a0(*(uint64_t *)(system_message_buffer + 0x1cd8), 1, 0xff000000, 0x3f800000);
     
-    texture_offset = _DAT_180c86938;
+    texture_offset = system_message_buffer;
     texture_scale = (float)texture_step;
     param_y = 1.0 / texture_scale;
     
     // 设置纹理坐标缩放
-    *(float *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1be0) = param_y * RENDER_TEXTURE_COORD_HALF;
+    *(float *)(*(longlong *)(system_message_buffer + 0x1cd8) + 0x1be0) = param_y * RENDER_TEXTURE_COORD_HALF;
     *(float *)(*(longlong *)(texture_offset + 0x1cd8) + 0x1be4) = param_y * RENDER_TEXTURE_COORD_HALF;
     *(float *)(*(longlong *)(texture_offset + 0x1cd8) + 0x1be8) = param_y;
     *(float *)(*(longlong *)(texture_offset + 0x1cd8) + 0x1bec) = param_y;
@@ -222,7 +222,7 @@ void render_system_texture_mapper(uint64_t render_context, longlong texture_data
     data_capacity = texture_step;
     (**(code **)(*texture_manager + 0x168))(texture_manager, 1, &data_cache);
     
-    texture_offset = _DAT_180c86938;
+    texture_offset = system_message_buffer;
     param_x = 0x7fc00000;
     param_y = 0x7fc00000;
     param_z = 0x7fc00000;
@@ -286,7 +286,7 @@ set_coordinates_r2:
     param_u = 0;
 apply_parameters:
     // 应用渲染参数
-    *(int32_t *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1bf0) = param_x;
+    *(int32_t *)(*(longlong *)(system_message_buffer + 0x1cd8) + 0x1bf0) = param_x;
     *(int32_t *)(*(longlong *)(texture_offset + 0x1cd8) + 0x1bf4) = param_y;
     *(int32_t *)(*(longlong *)(texture_offset + 0x1cd8) + 0x1bf8) = param_v;
     *(int32_t *)(*(longlong *)(texture_offset + 0x1cd8) + 0x1bfc) = 0x3f800000;
@@ -301,8 +301,8 @@ apply_parameters:
     
     // 处理纹理数据
     FUN_18031a240(texture_cache, render_flags);
-    FUN_18029fc10(*(longlong *)(_DAT_180c86938 + 0x1cd8), *(uint64_t *)(_DAT_180c86938 + 0x1c88),
-                  *(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1be0, 0x230);
+    FUN_18029fc10(*(longlong *)(system_message_buffer + 0x1cd8), *(uint64_t *)(system_message_buffer + 0x1c88),
+                  *(longlong *)(system_message_buffer + 0x1cd8) + 0x1be0, 0x230);
     
     // 设置数据源
     data_source = &unknown_var_3480_ptr;
@@ -312,7 +312,7 @@ apply_parameters:
     strcpy_s(data_buffer + 4, 0x40, &unknown_var_984_ptr);
     
     // 初始化渲染资源
-    FUN_1800b4910(_DAT_180c86930, &texture_ptr, &data_source);
+    FUN_1800b4910(system_resource_state, &texture_ptr, &data_source);
     data_source = &unknown_var_720_ptr;
     texture_params = 0;
     texture_scale = 0.0;
@@ -362,19 +362,19 @@ apply_parameters:
     buffer_size_1 = 0xffffffff;
     
     // 应用纹理映射
-    FUN_18029d150(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), 5, render_context, 0x10);
+    FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8), 5, render_context, 0x10);
     buffer_size_1 = 0xffffffff;
-    FUN_18029d150(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), 0, texture_cache[0], 0x10);
-    FUN_18029d000(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), 4);
-    FUN_18029cdd0(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), &data_source);
+    FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8), 0, texture_cache[0], 0x10);
+    FUN_18029d000(*(uint64_t *)(system_message_buffer + 0x1cd8), 4);
+    FUN_18029cdd0(*(uint64_t *)(system_message_buffer + 0x1cd8), &data_source);
     
-    texture_offset = _DAT_180c86938;
+    texture_offset = system_message_buffer;
     texture_handle = strnlen(&unknown_var_6216_ptr, 0x3f);
     strncpy(texture_offset + 0x1ce0, &unknown_var_6216_ptr, texture_handle);
     *(int8_t *)(texture_handle + 0x1ce0 + texture_offset) = 0;
     
     // 完成纹理处理
-    FUN_18029e110(*(uint64_t *)(_DAT_180c86938 + 0x1cd8));
+    FUN_18029e110(*(uint64_t *)(system_message_buffer + 0x1cd8));
     
     if (texture_manager != (longlong *)0x0) {
         (**(code **)(*texture_manager + 0x38))();
@@ -400,8 +400,8 @@ apply_parameters:
             (**(code **)(*texture_cache[0] + 0x38))();
         }
         
-        _DAT_180c8695c = _DAT_180c8695c + -1;
-        (**(code **)(*_DAT_180c86968 + 0x20))();
+        render_system_data_texture = render_system_data_texture + -1;
+        (**(code **)(*render_system_data_texture + 0x20))();
         
         // 清理资源
         FUN_1808fc050(memory_checksum ^ (ulonglong)stack_protector);
@@ -510,7 +510,7 @@ void render_system_parameter_processor(uint64_t *render_context, longlong textur
     strcpy_s(data_block, 0x80, param_source);
     
     // 初始化渲染参数
-    FUN_1800b1230(_DAT_180c86930, render_context, &param_source, &data_width);
+    FUN_1800b1230(system_resource_state, render_context, &param_source, &data_width);
     data_height = 1;
     param_source = &unknown_var_720_ptr;
     texture_size = 0;
@@ -646,7 +646,7 @@ void render_system_texture_allocator(uint64_t *texture_handle, int32_t texture_f
     } while (texture_coord < 32.0);
     
     // 分配纹理内存
-    texture_data = FUN_18062b1e0(_DAT_180c8ed18, RENDER_MEMORY_POOL_SIZE, RENDER_MEMORY_BLOCK_SIZE, 
+    texture_data = FUN_18062b1e0(system_memory_pool_ptr, RENDER_MEMORY_POOL_SIZE, RENDER_MEMORY_BLOCK_SIZE, 
                                   CONCAT71((uint7)(uint3)((uint)buffer_x >> 8), 3));
     texture_manager = (longlong *)FUN_18023a2e0(texture_data, 0);
     *texture_handle = texture_manager;
@@ -660,7 +660,7 @@ void render_system_texture_allocator(uint64_t *texture_handle, int32_t texture_f
     buffer_size = texture_flags;
     
     // 应用纹理设置
-    FUN_1800a5810(_DAT_180c86938, &float_ptr, 1, 0);
+    FUN_1800a5810(system_message_buffer, &float_ptr, 1, 0);
     
     if (texture_type._1_1_ == '\0') {
         if (((char)texture_type == '\0') && (float_ptr != (float *)0x0)) {

@@ -91,10 +91,10 @@ void RenderingSystemAdvancedResourceCleaner(void)
   FUN_1804e5f80(&system_memory_5ed0);
   uVar4 = 0;
   uVar6 = uVar4;
-  if ((_DAT_180c95ed8 - _DAT_180c95ed0) / 0x68 != 0) {
+  if ((render_system_memory - render_system_memory) / 0x68 != 0) {
     do {
-      lVar2 = _DAT_180c95ed0;
-      puVar1 = *(uint64_t **)(_DAT_180c95ed0 + 0x18 + uVar4);
+      lVar2 = render_system_memory;
+      puVar1 = *(uint64_t **)(render_system_memory + 0x18 + uVar4);
       if (puVar1 != (uint64_t *)0x0) {
         lVar3 = __RTCastToVoid(puVar1);
         (**(code **)*puVar1)(puVar1,0);
@@ -107,13 +107,13 @@ void RenderingSystemAdvancedResourceCleaner(void)
       uVar5 = (int)uVar6 + 1;
       uVar4 = uVar4 + 0x68;
       uVar6 = (ulonglong)uVar5;
-    } while ((ulonglong)(longlong)(int)uVar5 < (ulonglong)((_DAT_180c95ed8 - _DAT_180c95ed0) / 0x68)
+    } while ((ulonglong)(longlong)(int)uVar5 < (ulonglong)((render_system_memory - render_system_memory) / 0x68)
             );
   }
-  uVar6 = _DAT_180c91d30;
-  lVar2 = _DAT_180c91d28;
+  uVar6 = render_system_memory;
+  lVar2 = render_system_memory;
   uVar4 = 0;
-  if (_DAT_180c91d30 != 0) {
+  if (render_system_memory != 0) {
     do {
       lVar3 = *(longlong *)(lVar2 + uVar4 * 8);
       if (lVar3 != 0) {
@@ -172,15 +172,15 @@ void RenderingSystemMemoryManager(void)
       }
     }
     *(ulonglong *)(unaff_RSI + 0x18 + uVar5) = unaff_R15;
-    uVar2 = _DAT_180c91d30;
-    lVar3 = _DAT_180c91d28;
+    uVar2 = render_system_memory;
+    lVar3 = render_system_memory;
     unaff_R14D = unaff_R14D + 1;
     uVar5 = uVar5 + 0x68;
-    lVar4 = SUB168(SEXT816(unaff_R12) * SEXT816(_DAT_180c95ed8 - _DAT_180c95ed0),8);
-    unaff_RSI = _DAT_180c95ed0;
+    lVar4 = SUB168(SEXT816(unaff_R12) * SEXT816(render_system_memory - render_system_memory),8);
+    unaff_RSI = render_system_memory;
   } while ((ulonglong)(longlong)unaff_R14D < (ulonglong)((lVar4 >> 5) - (lVar4 >> 0x3f)));
   uVar5 = 0;
-  if (_DAT_180c91d30 != 0) {
+  if (render_system_memory != 0) {
     do {
       lVar4 = *(longlong *)(lVar3 + uVar5 * 8);
       if (lVar4 != 0) {
@@ -222,10 +222,10 @@ void RenderingSystemObjectLifecycleManager(void)
   ulonglong uVar4;
   longlong *plStack0000000000000040;
   
-  uVar3 = _DAT_180c91d30;
-  lVar2 = _DAT_180c91d28;
+  uVar3 = render_system_memory;
+  lVar2 = render_system_memory;
   uVar4 = 0;
-  if (_DAT_180c91d30 != 0) {
+  if (render_system_memory != 0) {
     do {
       lVar1 = *(longlong *)(lVar2 + uVar4 * 8);
       if (lVar1 != 0) {
@@ -272,12 +272,12 @@ void RenderingSystemResourceRecycler(void)
   uint64_t uStack_48;
   
   uStack_48 = 0xfffffffffffffffe;
-  uVar2 = FUN_18062b1e0(_DAT_180c8ed18,0x88,8,3);
+  uVar2 = FUN_18062b1e0(system_memory_pool_ptr,0x88,8,3);
   puStack_288 = &unknown_var_3456_ptr;
   uStack_270 = 0;
   puStack_280 = (uint64_t *)0x0;
   uStack_278 = 0;
-  puVar3 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+  puVar3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
   *(int8_t *)puVar3 = 0;
   puStack_280 = puVar3;
   uVar1 = FUN_18064e990(puVar3);

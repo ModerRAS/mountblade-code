@@ -233,10 +233,10 @@ void SystemResourceStateManager_SyncResourceLifecycle(longlong systemContext, ui
   }
   
   /* 检查系统状态转换条件 */
-  systemDataPointer = _DAT_180c868d0;
-  if ((*(char *)(_DAT_180c868d0 + 0x480) == '\0') &&
-     (((0.7 < *(float *)(_DAT_180c868d0 + 0x46c) || *(float *)(_DAT_180c868d0 + 0x46c) == 0.7 ||
-       ((*(byte *)(_DAT_180c868d0 + 0x47c) & 1) != 0)) && (currentState == 0)))) {
+  systemDataPointer = system_system_data_resource;
+  if ((*(char *)(system_system_data_resource + 0x480) == '\0') &&
+     (((0.7 < *(float *)(system_system_data_resource + 0x46c) || *(float *)(system_system_data_resource + 0x46c) == 0.7 ||
+       ((*(byte *)(system_system_data_resource + 0x47c) & 1) != 0)) && (currentState == 0)))) {
     *(int32_t *)(systemContext + 0x474) = 1;
     currentState = 1;
   }
@@ -250,8 +250,8 @@ void SystemResourceStateManager_SyncResourceLifecycle(longlong systemContext, ui
   }
   
   /* 更新渲染系统参数 */
-  systemDataPointer = _DAT_180c86938;
-  *(float *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1c90) = (float)currentState + 0.2;
+  systemDataPointer = system_message_buffer;
+  *(float *)(*(longlong *)(system_message_buffer + 0x1cd8) + 0x1c90) = (float)currentState + 0.2;
   *(int32_t *)(*(longlong *)(systemDataPointer + 0x1cd8) + 0x1c80) = *(int32_t *)(resourceManager + 0x12c00);
   *(int32_t *)(*(longlong *)(systemDataPointer + 0x1cd8) + 0x1c84) = *(int32_t *)(resourceManager + 0x12c04);
   
@@ -346,7 +346,7 @@ void SystemRenderer_UpdateRenderParameters(longlong *rendererContext, uint64_t r
   /* 安全检查和初始化 */
   securityChecksum = GET_SECURITY_COOKIE() ^ (ulonglong)securityBuffer;
   qualityLevel = (int)rendererContext[0x8b];
-  renderSystem = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+  renderSystem = *(longlong *)(system_message_buffer + 0x1cd8);
   
   /* 质量设置矩阵初始化 */
   qualityMatrix1 = 0x3f5555553e2aaaab;
@@ -553,7 +553,7 @@ void UIEventHandler_ProcessEvent(longlong *uiContext, longlong eventData)
         if (param_1[0x85] != 0) goto LAB_1803f8744;
         /* 调用事件处理函数 */
         (**(code **)(*uiContext + 8))(uiContext, &eventX, eventData);
-        eventResult = UIEventSystem_RegisterEvent(_DAT_180c86930, &resourceManager, &uiResource, &eventX);
+        eventResult = UIEventSystem_RegisterEvent(system_resource_state, &resourceManager, &uiResource, &eventX);
         UIEventSystem_SetEventCallback(uiContext + 0x85, eventResult);
       }
       else {
@@ -573,7 +573,7 @@ void UIEventHandler_ProcessEvent(longlong *uiContext, longlong eventData)
         
         /* 调用事件处理函数 */
         (**(code **)(*uiContext + 8))(uiContext, &eventX, eventData);
-        eventResult = UIEventSystem_RegisterEvent(_DAT_180c86930, &resourceManager, &uiResource, &eventX);
+        eventResult = UIEventSystem_RegisterEvent(system_resource_state, &resourceManager, &uiResource, &eventX);
         UIEventSystem_SetEventCallback(uiContext + 0x85, eventResult);
       }
     }
@@ -756,7 +756,7 @@ void SystemResourceCleaner_CleanupAndUnload(longlong *resourceContext, uint64_t 
   /* 如果资源存在，添加到清理列表 */
   if (resourceName != (void *)0x0) {
     ResourceCleaner_AddToCleanupList(&currentResource, resourceName);
-    ResourceCleaner_RegisterForCleanup(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x7f20, &currentResource);
+    ResourceCleaner_RegisterForCleanup(*(longlong *)(system_message_buffer + 0x1cd8) + 0x7f20, &currentResource);
   }
   
   /* 检查是否需要立即清理 */
@@ -768,7 +768,7 @@ void SystemResourceCleaner_CleanupAndUnload(longlong *resourceContext, uint64_t 
     /* 执行清理操作 */
     (**(code **)(*resourceContext + 0x50))
               (resourceContext, contextData, (int)resourceContext[0x8a], *(int32_t *)((longlong)resourceContext + 0x454));
-    ResourceCleaner_ProcessCleanup(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), resourceContext[0x85]);
+    ResourceCleaner_ProcessCleanup(*(uint64_t *)(system_message_buffer + 0x1cd8), resourceContext[0x85]);
   }
   else {
     /* 递减清理计数器 */
@@ -970,7 +970,7 @@ longlong ResourceManager_Clone(longlong sourceManager)
   longlong *resourcePointer;
   
   /* 分配新的资源管理器内存 */
-  newManager = MemoryManager_AllocateResourceMemory(_DAT_180c8ed18, 0x478, 8, 3, 0xfffffffffffffffe);
+  newManager = MemoryManager_AllocateResourceMemory(system_memory_pool_ptr, 0x478, 8, 3, 0xfffffffffffffffe);
   
   /* 初始化新的资源管理器 */
   newResourceManager = ResourceManager_Constructor(newManager, *(int32_t *)(sourceManager + 0x450), *(int32_t *)(sourceManager + 0x454));
@@ -1109,8 +1109,8 @@ void SystemStateManager_ResetState(longlong *systemContext, uint64_t resetFlags,
       (**(code **)(*plStack_50 + 0x38))();
     }
   }
-  lVar4 = _DAT_180c86938;
-  *(uint64_t *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x83b8) = 0;
+  lVar4 = system_message_buffer;
+  *(uint64_t *)(*(longlong *)(system_message_buffer + 0x1cd8) + 0x83b8) = 0;
   *(uint64_t *)(*(longlong *)(lVar4 + 0x1cd8) + 0x83c0) = 0;
   *(uint64_t *)(*(longlong *)(lVar4 + 0x1cd8) + 0x83c8) = 0;
   *(uint64_t *)(*(longlong *)(lVar4 + 0x1cd8) + 0x83d0) = 0;
@@ -1214,7 +1214,7 @@ void UIResourceManager_ManageUIResources(longlong *uiManager, longlong eventData
       textureInfo[0] = 0;
       textureSize = 0xe;
       strcpy_s(textureInfo, 0x80, &UITexture_DefaultPath);
-      resourceHandler = (longlong *)UIResourceManager_RegisterTexture(_DAT_180c86930, &textureResource, &textureManager, &resourceWidth);
+      resourceHandler = (longlong *)UIResourceManager_RegisterTexture(system_resource_state, &textureResource, &textureManager, &resourceWidth);
       resourceSize = *resourceHandler;
       *resourceHandler = 0;
       textureResource = (longlong *)uiManager[0x8b];
@@ -1235,7 +1235,7 @@ void UIResourceManager_ManageUIResources(longlong *uiManager, longlong eventData
       fontData[0] = 0;
       fontSize = 0xe;
       strcpy_s(fontData, 0x80, &UIFont_DefaultPath);
-      resourceHandler = (longlong *)UIResourceManager_RegisterFont(_DAT_180c86930, &fontResource, &fontManager, &resourceWidth);
+      resourceHandler = (longlong *)UIResourceManager_RegisterFont(system_resource_state, &fontResource, &fontManager, &resourceWidth);
       resourceSize = *resourceHandler;
       *resourceHandler = 0;
       textureResource = (longlong *)uiManager[0x8c];
@@ -1268,7 +1268,7 @@ void UIResourceManager_ManageUIResources(longlong *uiManager, longlong eventData
     fontData[0] = 0;
     fontSize = 0xe;
     strcpy_s(fontData, 0x80, &UITexture_DefaultPath);
-    resourceHandler = (longlong *)UIResourceManager_RegisterTexture(_DAT_180c86930, &textureResource, &fontManager, &resourceWidth);
+    resourceHandler = (longlong *)UIResourceManager_RegisterTexture(system_resource_state, &textureResource, &fontManager, &resourceWidth);
     resourceSize = *resourceHandler;
     *resourceHandler = 0;
     fontResource = (longlong *)uiManager[0x8b];
@@ -1287,7 +1287,7 @@ void UIResourceManager_ManageUIResources(longlong *uiManager, longlong eventData
     textureInfo[0] = 0;
     textureSize = 0xe;
     strcpy_s(textureInfo, 0x80, &UIFont_DefaultPath);
-    resourceHandler = (longlong *)UIResourceManager_RegisterFont(_DAT_180c86930, &fontResource, &textureManager, &resourceWidth);
+    resourceHandler = (longlong *)UIResourceManager_RegisterFont(system_resource_state, &fontResource, &textureManager, &resourceWidth);
     resourceSize = *resourceHandler;
     *resourceHandler = 0;
     fontResource = (longlong *)uiManager[0x8c];

@@ -1124,8 +1124,8 @@ void move_data_block(longlong param_1, longlong *param_2)
 #define GLOBAL_MEMORY_TABLE_002      unknown_var_5056
 #define GLOBAL_MEMORY_TABLE_003      unknown_var_5088
 #define GLOBAL_MEMORY_TABLE_004      unknown_var_5168
-#define GLOBAL_MEMORY_MANAGER        _DAT_180c8ed18
-#define GLOBAL_EVENT_QUEUE           _DAT_180c82868
+#define GLOBAL_MEMORY_MANAGER        system_memory_pool_ptr
+#define GLOBAL_EVENT_QUEUE           system_context_ptr
 #define GLOBAL_DATA_TABLE_001        system_memory_c740
 #define GLOBAL_CLEANUP_ROUTINE_001   unknown_var_7712
 #define GLOBAL_CLEANUP_ROUTINE_002   unknown_var_7696

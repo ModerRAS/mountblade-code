@@ -5,8 +5,8 @@
 // 本模块包含29个函数，主要用于内存分配、数据结构操作和容器管理
 
 // 全局变量和常量定义
-extern longlong* _DAT_180c8ed18;  // 内存分配器实例
-extern longlong _DAT_180c8aa00;    // 默认数据模板
+extern longlong* system_memory_pool_ptr;  // 内存分配器实例
+extern longlong core_system_data_pointer;    // 默认数据模板
 extern uint64_t global_state_3456_ptr;    // 虚函数表指针
 extern uint64_t global_state_720_ptr;    // 空对象引用
 
@@ -64,7 +64,7 @@ longlong* resize_dynamic_array(longlong *array_ptr, longlong *new_size_ptr)
             if (available_size == 0) {
                 new_buffer = 0;
             } else {
-                new_buffer = allocate_memory(_DAT_180c8ed18, available_size << 5, (char)array_ptr[3]);
+                new_buffer = allocate_memory(system_memory_pool_ptr, available_size << 5, (char)array_ptr[3]);
             }
             
             // 复制现有数据
@@ -132,7 +132,7 @@ void insert_data_block(longlong insert_pos, longlong *data_ptr)
         if (available_capacity == 0) {
             new_buffer = 0;
         } else {
-            new_buffer = allocate_memory(_DAT_180c8ed18, available_capacity << 5, (char)data_ptr[3]);
+            new_buffer = allocate_memory(system_memory_pool_ptr, available_capacity << 5, (char)data_ptr[3]);
         }
         
         if (data_start != data_end) {
@@ -186,7 +186,7 @@ void reallocate_container_memory(void)
     if (new_capacity == 0) {
         new_buffer = 0;
     } else {
-        new_buffer = allocate_memory(_DAT_180c8ed18, new_capacity << 5, (char)container_data[3]);
+        new_buffer = allocate_memory(system_memory_pool_ptr, new_capacity << 5, (char)container_data[3]);
     }
     
     if (old_capacity != new_capacity) {
@@ -482,7 +482,7 @@ uint64_t* initialize_array_object(uint64_t *array_ptr, longlong context_ptr)
     array_ptr[2] = array_element_destructor;
     array_ptr[3] = &array_vtable;
     
-    allocation_flag = allocate_memory_with_flags(_DAT_180c8ed18, 0x28, 8, default_allocator, allocation_flag);
+    allocation_flag = allocate_memory_with_flags(system_memory_pool_ptr, 0x28, 8, default_allocator, allocation_flag);
     initialize_context(allocation_flag, context_data);
     
     *array_ptr = allocation_flag;
@@ -517,7 +517,7 @@ void resize_triple_array(longlong *array_ptr, ulonglong new_capacity)
         if (new_capacity == 0) {
             new_buffer = (int32_t *)0x0;
         } else {
-            new_buffer = (int32_t *)allocate_memory(_DAT_180c8ed18, new_capacity * 0xc, (char)array_ptr[3]);
+            new_buffer = (int32_t *)allocate_memory(system_memory_pool_ptr, new_capacity * 0xc, (char)array_ptr[3]);
             start_pos = *array_ptr;
         }
         
@@ -564,7 +564,7 @@ void batch_copy_triples(longlong dest_ptr, uint64_t src_ptr, uint64_t count, lon
     if (count == 0) {
         dest_buffer = (int32_t *)0x0;
     } else {
-        dest_buffer = (int32_t *)allocate_memory(_DAT_180c8ed18, count * 0xc, *(int8_t *)(dest_ptr + 0x18));
+        dest_buffer = (int32_t *)allocate_memory(system_memory_pool_ptr, count * 0xc, *(int8_t *)(dest_ptr + 0x18));
         context = *src_ptr;
     }
     
@@ -617,7 +617,7 @@ void resize_integer_array(longlong *array_ptr, ulonglong new_size)
         if (new_size == 0) {
             new_buffer = 0;
         } else {
-            new_buffer = allocate_memory(_DAT_180c8ed18, new_size * 4, (char)array_ptr[3]);
+            new_buffer = allocate_memory(system_memory_pool_ptr, new_size * 4, (char)array_ptr[3]);
             start_pos = *array_ptr;
         }
         
@@ -651,7 +651,7 @@ void move_integer_array_data(longlong dest_pos, longlong src_pos)
     if (src_pos == 0) {
         new_buffer = 0;
     } else {
-        new_buffer = allocate_memory(_DAT_180c8ed18, src_pos * 4, (char)array_ptr[3]);
+        new_buffer = allocate_memory(system_memory_pool_ptr, src_pos * 4, (char)array_ptr[3]);
         dest_pos = *array_ptr;
     }
     
@@ -714,7 +714,7 @@ void resize_object_array(longlong *array_ptr, ulonglong new_capacity)
     longlong new_start;
     ulonglong allocated_capacity;
     
-    template_data = _DAT_180c8aa00;
+    template_data = core_system_data_pointer;
     current_end = array_ptr[1];
     
     if (new_capacity <= (ulonglong)((array_ptr[2] - current_end) / 0x30)) {
@@ -747,12 +747,12 @@ void resize_object_array(longlong *array_ptr, ulonglong new_capacity)
     if (allocated_capacity == 0) {
         current_size = 0;
     } else {
-        current_size = allocate_memory(_DAT_180c8ed18, allocated_capacity * 0x30, (char)array_ptr[3]);
+        current_size = allocate_memory(system_memory_pool_ptr, allocated_capacity * 0x30, (char)array_ptr[3]);
         start_pos = *array_ptr;
         current_end = array_ptr[1];
     }
     
-    template_data = _DAT_180c8aa00;
+    template_data = core_system_data_pointer;
     
     if (start_pos == current_end) {
         if (new_capacity != 0) {
@@ -810,12 +810,12 @@ void extend_object_array(longlong array_ptr, uint64_t base_ptr, uint64_t context
     if (required_capacity == 0) {
         new_size = 0;
     } else {
-        new_size = allocate_memory(_DAT_180c8ed18, required_capacity * 0x30, (char)array_data[3]);
+        new_size = allocate_memory(system_memory_pool_ptr, required_capacity * 0x30, (char)array_data[3]);
         extension_size = *array_data;
         array_end = array_data[1];
     }
     
-    array_start = _DAT_180c8aa00;
+    array_start = core_system_data_pointer;
     
     if (extension_size != array_end) {
         memmove(new_size, extension_size, array_end - extension_size);
@@ -854,7 +854,7 @@ void append_to_object_array(void)
     longlong array_end;
     longlong element_count;
     
-    template_data = _DAT_180c8aa00;
+    template_data = core_system_data_pointer;
     
     if (element_count != 0) {
         object_ptr = (uint64_t *)(array_end + 0x28);
@@ -887,7 +887,7 @@ void resize_struct_array(longlong *array_ptr, ulonglong new_capacity)
     ulonglong allocated_capacity;
     longlong start_pos;
     
-    template_data = _DAT_180c8aa00;
+    template_data = core_system_data_pointer;
     current_end = array_ptr[1];
     
     if (new_capacity <= (ulonglong)(array_ptr[2] - current_end >> 5)) {
@@ -920,12 +920,12 @@ void resize_struct_array(longlong *array_ptr, ulonglong new_capacity)
     if (required_capacity == 0) {
         current_size = 0;
     } else {
-        current_size = allocate_memory(_DAT_180c8ed18, required_capacity << 5, (char)array_ptr[3]);
+        current_size = allocate_memory(system_memory_pool_ptr, required_capacity << 5, (char)array_ptr[3]);
         start_pos = *array_ptr;
         current_end = array_ptr[1];
     }
     
-    template_data = _DAT_180c8aa00;
+    template_data = core_system_data_pointer;
     
     if (start_pos == current_end) {
         if (new_capacity != 0) {
@@ -982,12 +982,12 @@ void extend_struct_array(longlong array_ptr, uint64_t base_ptr, uint64_t context
     if (required_capacity == 0) {
         current_size = 0;
     } else {
-        current_size = allocate_memory(_DAT_180c8ed18, required_capacity << 5, *(int8_t *)(array_ptr + 0x18));
+        current_size = allocate_memory(system_memory_pool_ptr, required_capacity << 5, *(int8_t *)(array_ptr + 0x18));
         extension_size = *array_data;
         array_end = array_data[1];
     }
     
-    array_start = _DAT_180c8aa00;
+    array_start = core_system_data_pointer;
     
     if (extension_size != array_end) {
         memmove(current_size, extension_size, array_end - extension_size);
@@ -1026,7 +1026,7 @@ void append_to_struct_array(void)
     longlong array_end;
     longlong element_count;
     
-    template_data = _DAT_180c8aa00;
+    template_data = core_system_data_pointer;
     
     if (element_count != 0) {
         struct_ptr = (uint64_t *)(array_end + 0x18);
@@ -1084,7 +1084,7 @@ void expand_compound_container(uint64_t *container_ptr, ulonglong extension_size
         current_element = (longlong *)0x0;
         
         if (new_capacity != 0) {
-            current_element = (longlong *)allocate_memory(_DAT_180c8ed18, new_capacity * 0x38, *(int8_t *)(container_ptr + 3), 0x4924924924924925, 0xfffffffffffffffe);
+            current_element = (longlong *)allocate_memory(system_memory_pool_ptr, new_capacity * 0x38, *(int8_t *)(container_ptr + 3), 0x4924924924924925, 0xfffffffffffffffe);
             element_end = (longlong *)container_ptr[1];
             element_start = (longlong *)*container_ptr;
         }
@@ -1106,7 +1106,7 @@ void expand_compound_container(uint64_t *container_ptr, ulonglong extension_size
                 temp_element = (longlong *)0x0;
                 
                 if (sub_element_size != 0) {
-                    temp_element = (longlong *)allocate_memory(_DAT_180c8ed18, sub_element_size * 8, element_flags & 0xff);
+                    temp_element = (longlong *)allocate_memory(system_memory_pool_ptr, sub_element_size * 8, element_flags & 0xff);
                 }
                 
                 *sub_element_ptr = temp_element;
@@ -1217,7 +1217,7 @@ void insert_elements_in_range(longlong *array_ptr, longlong range_start, longlon
         if (range_size == 0) {
             new_buffer = 0;
         } else {
-            new_buffer = allocate_memory(_DAT_180c8ed18, range_size * 0x88, (char)array_ptr[3]);
+            new_buffer = allocate_memory(system_memory_pool_ptr, range_size * 0x88, (char)array_ptr[3]);
         }
         
         copy_elements(&temp_buffer, range_start, range_end, new_buffer);
@@ -1280,7 +1280,7 @@ void reallocate_element_array(void)
     if (array_capacity == 0) {
         current_start = 0;
     } else {
-        current_start = allocate_memory(_DAT_180c8ed18, array_capacity * 0x88, (char)array_data[3]);
+        current_start = allocate_memory(system_memory_pool_ptr, array_capacity * 0x88, (char)array_data[3]);
     }
     
     copy_elements(&stack0x00000050);

@@ -796,7 +796,7 @@ void RenderingSystemAdvancedParameterProcessor(longlong param_1, int param_2, in
     lVar3 = *(longlong *)(param_1 + 0x8f8);
     iVar1 = *(int *)(lVar3 + 0x9e0 + (longlong)param_2 * 4);
     if (iVar1 != param_3) {
-        if ((((_DAT_180c92514 != 1) && (_DAT_180c92514 != 4)) &&
+        if ((((system_status_flag != 1) && (system_status_flag != 4)) &&
             (lVar2 = *(longlong *)(lVar3 + 0x9e8 + (longlong)param_2 * 8), lVar2 != 0)) &&
            ((*(uint *)((longlong)*(int *)(lVar2 + 0xf0) * 0xa0 + 0x58 + *(longlong *)(lVar2 + 0xd0)) &
             0x3000) != 0)) {
@@ -893,8 +893,8 @@ void RenderingSystemFlagChecker(longlong param_1)
                             plVar4 = *(longlong **)(param_1 + 0x590);
                             iVar8 = (int)plVar4[0x493];
                             if (iVar8 != -1) {
-                                if ((*(int *)((longlong)iVar8 * 0x68 + 0x58 + _DAT_180c96150) == 0x10) ||
-                                   (iVar8 = *(int *)((longlong)iVar8 * 0x68 + 0x58 + _DAT_180c96150), iVar8 == 0x11)
+                                if ((*(int *)((longlong)iVar8 * 0x68 + 0x58 + render_system_render) == 0x10) ||
+                                   (iVar8 = *(int *)((longlong)iVar8 * 0x68 + 0x58 + render_system_render), iVar8 == 0x11)
                                    ) {
                                     lVar9 = (**(code **)(*plVar4 + 0x128))(plVar4, 1);
                                     fVar19 = *(float *)(lVar9 + 0x1d8);
@@ -908,7 +908,7 @@ void RenderingSystemFlagChecker(longlong param_1)
                                     lVar9 = (**(code **)(*plVar4 + 0x128))(plVar4, 1);
                                     plVar4 = *(longlong **)(param_1 + 0x590);
                                     if (((int)plVar4[0x493] == -1) ||
-                                       (*(char *)((longlong)(int)plVar4[0x493] * 0x68 + 0x60 + _DAT_180c96150) !=
+                                       (*(char *)((longlong)(int)plVar4[0x493] * 0x68 + 0x60 + render_system_render) !=
                                         '\x04')) goto LAB_1805407d6;
                                     fVar19 = (float)(**(code **)(*plVar4 + 0x90))(plVar4, 1);
                                     bVar18 = fVar19 == *(float *)(lVar9 + 0x1d8);
@@ -939,7 +939,7 @@ LAB_18054079f:
                             if (iVar8 == iVar14) {
                                 plVar4 = *(longlong **)(param_1 + 0x590);
                                 if (((int)plVar4[0x493] == -1) ||
-                                   (*(int *)((longlong)(int)plVar4[0x493] * 0x68 + 0x58 + _DAT_180c96150) != 0x12))
+                                   (*(int *)((longlong)(int)plVar4[0x493] * 0x68 + 0x58 + render_system_render) != 0x12))
                                 {
                                     if ((*plVar2 != 0) &&
                                        ((*(int *)(*plVar2 + 0x30) == *(int *)(lVar9 + 0x38 + lVar12) &&
@@ -952,7 +952,7 @@ LAB_18054079f:
                                     lVar9 = (**(code **)(*plVar4 + 0x128))(plVar4, 1);
                                     plVar4 = *(longlong **)(param_1 + 0x590);
                                     if (((((int)plVar4[0x493] != -1) &&
-                                         (*(char *)((longlong)(int)plVar4[0x493] * 0x68 + 0x60 + _DAT_180c96150) ==
+                                         (*(char *)((longlong)(int)plVar4[0x493] * 0x68 + 0x60 + render_system_render) ==
                                           '\x04')) &&
                                         (fVar19 = (float)(**(code **)(*plVar4 + 0x90))(plVar4, 1),
                                         *(float *)(lVar9 + 0x1d8) <= fVar19 && fVar19 != *(float *)(lVar9 + 0x1d8)))
@@ -1009,7 +1009,7 @@ void RenderingSystemConditionHandler(longlong param_1)
     *(int8_t *)(lVar2 + 0x848) = uVar3;
     FUN_180543e30(lVar2);
     FUN_180540440(lVar2, param_1);
-    if (((_DAT_180c92514 != 1) && (_DAT_180c92514 != 4)) && (*(int *)(param_1 + 0x570) == 1)) {
+    if (((system_status_flag != 1) && (system_status_flag != 4)) && (*(int *)(param_1 + 0x570) == 1)) {
         puVar1 = (ushort *)(*(longlong *)(param_1 + 0x6e0) + 0x130);
         *puVar1 = *puVar1 | 1;
     }
@@ -1093,8 +1093,8 @@ void RenderingSystemFloatCalculator(longlong param_1, int param_2, uint64_t para
                             plVar4 = *(longlong **)(param_1 + 0x590);
                             iVar8 = (int)plVar4[0x493];
                             if (iVar8 != -1) {
-                                if ((*(int *)((longlong)iVar8 * 0x68 + 0x58 + _DAT_180c96150) == 0x10) ||
-                                   (iVar8 = *(int *)((longlong)iVar8 * 0x68 + 0x58 + _DAT_180c96150), iVar8 == 0x11)
+                                if ((*(int *)((longlong)iVar8 * 0x68 + 0x58 + render_system_render) == 0x10) ||
+                                   (iVar8 = *(int *)((longlong)iVar8 * 0x68 + 0x58 + render_system_render), iVar8 == 0x11)
                                    ) {
                                     lVar9 = (**(code **)(*plVar4 + 0x128))(plVar4, 1);
                                     fVar20 = *(float *)(lVar9 + 0x1d8);
@@ -1108,7 +1108,7 @@ void RenderingSystemFloatCalculator(longlong param_1, int param_2, uint64_t para
                                     lVar9 = (**(code **)(*plVar4 + 0x128))(plVar4, 1);
                                     plVar4 = *(longlong **)(param_1 + 0x590);
                                     if (((int)plVar4[0x493] == -1) ||
-                                       (*(char *)((longlong)(int)plVar4[0x493] * 0x68 + 0x60 + _DAT_180c96150) !=
+                                       (*(char *)((longlong)(int)plVar4[0x493] * 0x68 + 0x60 + render_system_render) !=
                                         '\x04')) goto LAB_1805407d6;
                                     fVar20 = (float)(**(code **)(*plVar4 + 0x90))(plVar4, 1);
                                     bVar19 = fVar20 == *(float *)(lVar9 + 0x1d8);
@@ -1139,7 +1139,7 @@ LAB_18054079f:
                             if (iVar8 == iVar15) {
                                 plVar4 = *(longlong **)(param_1 + 0x590);
                                 if (((int)plVar4[0x493] == -1) ||
-                                   (*(int *)((longlong)(int)plVar4[0x493] * 0x68 + 0x58 + _DAT_180c96150) != 0x12))
+                                   (*(int *)((longlong)(int)plVar4[0x493] * 0x68 + 0x58 + render_system_render) != 0x12))
                                 {
                                     if ((*plVar2 != 0) &&
                                        ((*(int *)(*plVar2 + 0x30) == *(int *)(lVar9 + 0x38 + lVar13) &&
@@ -1152,7 +1152,7 @@ LAB_18054079f:
                                     lVar9 = (**(code **)(*plVar4 + 0x128))(plVar4, 1);
                                     plVar4 = *(longlong **)(param_1 + 0x590);
                                     if (((((int)plVar4[0x493] != -1) &&
-                                         (*(char *)((longlong)(int)plVar4[0x493] * 0x68 + 0x60 + _DAT_180c96150) ==
+                                         (*(char *)((longlong)(int)plVar4[0x493] * 0x68 + 0x60 + render_system_render) ==
                                           '\x04')) &&
                                         (fVar20 = (float)(**(code **)(*plVar4 + 0x90))(plVar4, 1),
                                         *(float *)(lVar9 + 0x1d8) <= fVar20 && fVar20 != *(float *)(lVar9 + 0x1d8)))
@@ -1214,7 +1214,7 @@ void RenderingSystemMemoryAccessor(longlong param_1, uint64_t param_2, uint64_t 
         (**(code **)(*param_5 + 0x28))();
     }
     pplStack_28 = &plStackX_8;
-    uVar1 = FUN_18062b1e0(_DAT_180c8ed18, 0x1f8, 8, 3);
+    uVar1 = FUN_18062b1e0(system_memory_pool_ptr, 0x1f8, 8, 3);
     lVar2 = FUN_18058f390(uVar1);
     puStack_20 = &param_5;
     param_5 = plStackX_8;
@@ -1439,9 +1439,9 @@ void RenderingSystemConfigurationManager(longlong param_1)
     longlong lVar3;
     longlong *plVar4;
     
-    if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
+    if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
         iVar1 = *(int *)(param_1 + 0x10);
-        plVar4 = (longlong *)(**(code **)(_DAT_180c925a0 + 0x20))(&system_memory_25a0);
+        plVar4 = (longlong *)(**(code **)(render_system_render + 0x20))(&system_memory_25a0);
         lVar3 = *plVar4;
         if (lVar3 != 0) {
             uVar2 = *(int32_t *)(lVar3 + 0x4b80);
@@ -1917,7 +1917,7 @@ void RenderingSystemOptimizer(longlong param_1)
     }
     if (*(longlong *)plVar2[0x1f] == 0) {
         // WARNING: Subroutine does not return
-        FUN_180062300(_DAT_180c86928, &unknown_var_1944_ptr);
+        FUN_180062300(system_message_context, &unknown_var_1944_ptr);
     }
     lVar3 = FUN_18040db80(*(longlong *)plVar2[0x1f]);
     fVar7 = 0.0;

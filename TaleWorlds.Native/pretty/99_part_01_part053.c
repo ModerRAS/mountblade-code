@@ -1,10 +1,128 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
-// 99_part_01_part053.c - 8 个函数
+// ============================================================================
+// 99_part_01_part053.c - 高级数据处理和资源管理模块
+// ============================================================================
 
-// 函数: void FUN_1800da760(uint64_t param_1,longlong param_2,ulonglong *param_3)
-void FUN_1800da760(uint64_t param_1,longlong param_2,ulonglong *param_3)
+/**
+ * @file 99_part_01_part053.c
+ * @brief 高级数据处理和资源管理模块
+ * 
+ * 本模块实现了游戏引擎中的高级数据处理、资源管理、内存分配和系统状态管理功能。
+ * 包含数据结构操作、递归处理、内存池管理、资源清理和系统参数配置等核心功能。
+ * 
+ * 主要功能：
+ * - 高级数据结构处理和排序
+ * - 递归数据处理算法
+ * - 内存池分配和管理
+ * - 系统资源清理和释放
+ * - 参数验证和状态管理
+ * - 高级内存管理策略
+ * 
+ * @version 1.0
+ * @author Claude Code
+ * @date 2025-08-28
+ */
+
+// 系统常量定义
+#define SYSTEM_MAX_ITERATIONS 0x1000000
+#define SYSTEM_MEMORY_POOL_SIZE 0x12c300
+#define SYSTEM_RESOURCE_THRESHOLD 0x1d
+#define SYSTEM_STACK_BUFFER_SIZE 0x80
+#define SYSTEM_ARRAY_SIZE_512 0x200
+#define SYSTEM_SHIFT_MASK_16 0xfffffff0
+#define SYSTEM_SHIFT_MASK_9 0xfffffe00
+#define SYSTEM_PARAM_OFFSET_0x11a48 0x11a48
+#define SYSTEM_PARAM_OFFSET_0x9a48 0x9a48
+#define SYSTEM_PARAM_OFFSET_0x9b28 0x9b28
+#define SYSTEM_PARAM_OFFSET_0x9a2c 0x9a2c
+#define SYSTEM_PARAM_OFFSET_0x4648 0x4648
+#define SYSTEM_PARAM_OFFSET_0x5860 0x5860
+#define SYSTEM_PARAM_OFFSET_0x6b20 0x6b20
+#define SYSTEM_PARAM_OFFSET_0x7618 0x7618
+#define SYSTEM_PARAM_OFFSET_0x3d38 0x3d38
+#define SYSTEM_PARAM_OFFSET_0x6a80 0x6a80
+#define SYSTEM_PARAM_OFFSET_0x74e8 0x74e8
+
+// 内存管理常量
+#define MEMORY_BLOCK_SIZE_0x66000 0x66000
+#define MEMORY_BLOCK_SIZE_0x5e000 0x5e000
+#define MEMORY_BLOCK_SIZE_0x1f800 0x1f800
+#define MEMORY_BLOCK_SIZE_0x12c30 0x12c30
+#define MEMORY_BLOCK_SIZE_0x330 0x330
+#define MEMORY_BLOCK_SIZE_0x2f0 0x2f0
+#define MEMORY_BLOCK_SIZE_0xfc 0xfc
+
+// 系统状态常量
+#define SYSTEM_STATE_ACTIVE 1
+#define SYSTEM_STATE_INACTIVE 0
+#define SYSTEM_STATE_ERROR -1
+#define SYSTEM_STATE_INITIALIZING 2
+#define SYSTEM_STATE_CLEANUP 0xc
+
+// 函数别名定义
+#define DataStructureProcessor FUN_1800da760
+#define DataStructureProcessorVariant FUN_1800da770
+#define SystemCleanupExecutor FUN_1800da98f
+#define SystemParameterHandler FUN_1800da9b0
+#define MemoryPoolManager FUN_1800daa50
+#define ResourceCleanupManager FUN_1800dabf0
+#define MemoryManager_AllocateMediumPool FUN_1800dae20
+#define MemoryManager_AllocateSmallPool FUN_1800daf60
+#define MemoryManager_AllocateLargePool FUN_1800db0a0
+#define ResourceManager_Handler FUN_1800db220
+#define ParameterValidator FUN_1800db370
+#define AdvancedResourceManager FUN_1800db460
+
+// 辅助函数别名
+#define DataStructureComparator func_0x0001800da750
+#define MemoryAllocator FUN_18062b420
+#define SystemInitializer FUN_1800e9790
+#define MemoryManager FUN_1800e9540
+#define MemoryPoolInitializer FUN_1800e9360
+#define ResourceStateHandler FUN_180246810
+#define SystemErrorHandler FUN_18064e900
+#define SecurityChecker FUN_1808fc050
+#define SystemContextInitializer FUN_18005e630
+#define SystemParameterProcessor FUN_18005c650
+#define SystemStateManager FUN_18005ea90
+#define ResourceAllocator FUN_1800b1230
+#define ParameterHandler FUN_1800b1d80
+
+// 数据结构别名
+#define DataBufferComparator FUN_1800eb380
+#define DataSorter FUN_1800ea4a0
+#define SystemBufferInitializer FUN_1800ea780
+
+// 全局变量别名
+#define SystemParameterBuffer system_parameter_buffer
+#define SystemContextPtr system_context_ptr
+#define SystemMemoryPoolPtr system_memory_pool_ptr
+#define SystemSystemMemory system_system_memory
+#define SystemStateManager SYSTEM_STATE_MANAGER
+
+// ============================================================================
+// 核心函数实现
+// ============================================================================
+
+/**
+ * @brief 高级数据结构处理器
+ * 
+ * 本函数实现了复杂的数据结构处理算法，包括数据排序、递归处理和内存管理。
+ * 使用高级算法对数据结构进行优化处理，支持大数据量的高效处理。
+ * 
+ * @param param_1 系统标识符
+ * @param param_2 数据结构基础地址
+ * @param param_3 输出参数缓冲区
+ * 
+ * 算法特点：
+ * - 使用高效的排序算法
+ * - 支持递归数据处理
+ * - 实现内存优化管理
+ * - 包含错误处理机制
+ */
+void DataStructureProcessor(uint64_t param_1, longlong param_2, ulonglong *param_3)
 
 {
   bool bVar1;
@@ -28,24 +146,24 @@ void FUN_1800da760(uint64_t param_1,longlong param_2,ulonglong *param_3)
     for (lVar3 = lVar7; lVar3 != 0; lVar3 = lVar3 >> 1) {
       iVar5 = iVar5 + 1;
     }
-    FUN_1800eb380(plVar10,plVar8,(longlong)(iVar5 + -1) * 2);
-    if (lVar7 < 0x1d) {
-      FUN_1800ea4a0(plVar10,plVar8);
+    DataBufferComparator(plVar10, plVar8, (longlong)(iVar5 + -1) * 2);
+    if (lVar7 < SYSTEM_RESOURCE_THRESHOLD) {
+      DataSorter(plVar10, plVar8);
     }
     else {
-      plVar6 = (longlong *)(param_2 + 0x9b28);
-      FUN_1800ea4a0(plVar10,plVar6);
+      plVar6 = (longlong *)(param_2 + SYSTEM_PARAM_OFFSET_0x9b28);
+      DataSorter(plVar10, plVar6);
       for (; plVar6 != plVar8; plVar6 = plVar6 + 1) {
         lVar3 = *plVar6;
         plVar4 = plVar6 + -1;
-        cVar2 = func_0x0001800da750(lVar3,*plVar4);
+        cVar2 = DataStructureComparator(lVar3, *plVar4);
         plVar9 = plVar6;
         while (cVar2 != '\0') {
           lVar7 = *plVar4;
           plVar4 = plVar4 + -1;
           *plVar9 = lVar7;
           plVar9 = plVar9 + -1;
-          cVar2 = func_0x0001800da750(lVar3,*plVar4);
+          cVar2 = DataStructureComparator(lVar3, *plVar4);
         }
         *plVar9 = lVar3;
       }
@@ -54,14 +172,14 @@ void FUN_1800da760(uint64_t param_1,longlong param_2,ulonglong *param_3)
   bVar1 = false;
   iVar5 = 0;
   do {
-    if (*(int *)(param_2 + 0x11a48) <= iVar5) {
+    if (*(int *)(param_2 + SYSTEM_PARAM_OFFSET_0x11a48) <= iVar5) {
       if (!bVar1) {
-        FUN_18005ea90(param_3,&lStackX_10);
+        SystemStateManager(param_3, &lStackX_10);
       }
       return;
     }
     lVar3 = *plVar10;
-    if ((-1 < *(int *)(lVar3 + 0x9a2c)) && (!bVar1)) {
+    if ((-1 < *(int *)(lVar3 + SYSTEM_PARAM_OFFSET_0x9a2c)) && (!bVar1)) {
       plVar8 = (longlong *)param_3[1];
       bVar1 = true;
       if (plVar8 < (longlong *)param_3[2]) {
@@ -74,7 +192,7 @@ void FUN_1800da760(uint64_t param_1,longlong param_2,ulonglong *param_3)
         if (lVar7 == 0) {
           lVar7 = 1;
 LAB_1800da8e0:
-          plVar4 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar7 * 8,(char)param_3[3]);
+          plVar4 = (longlong *)MemoryAllocator(SystemMemoryPoolPtr, lVar7 * 8, (char)param_3[3]);
           plVar6 = (longlong *)*param_3;
           plVar8 = (longlong *)param_3[1];
         }
@@ -85,19 +203,19 @@ LAB_1800da8e0:
         }
         if (plVar6 != plVar8) {
                     // WARNING: Subroutine does not return
-          memmove(plVar4,plVar6,(longlong)plVar8 - (longlong)plVar6);
+          memmove(plVar4, plVar6, (longlong)plVar8 - (longlong)plVar6);
         }
         *plVar4 = lStackX_10;
         if (*param_3 != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          SystemErrorHandler();
         }
         *param_3 = (ulonglong)plVar4;
         param_3[2] = (ulonglong)(plVar4 + lVar7);
         param_3[1] = (ulonglong)(plVar4 + 1);
       }
     }
-    FUN_1800da760(param_1,lVar3,param_3);
+    DataStructureProcessor(param_1, lVar3, param_3);
     iVar5 = iVar5 + 1;
     plVar10 = plVar10 + 1;
   } while( true );
@@ -110,8 +228,17 @@ LAB_1800da8e0:
 
 
 
-// 函数: void FUN_1800da770(uint64_t param_1,longlong param_2,ulonglong *param_3)
-void FUN_1800da770(uint64_t param_1,longlong param_2,ulonglong *param_3)
+/**
+ * @brief 数据结构处理器变体
+ * 
+ * 本函数是DataStructureProcessor的变体实现，针对特定的数据处理场景进行优化。
+ * 包含额外的寄存器处理和栈管理，适用于复杂的数据处理环境。
+ * 
+ * @param param_1 系统标识符
+ * @param param_2 数据结构基础地址
+ * @param param_3 输出参数缓冲区
+ */
+void DataStructureProcessorVariant(uint64_t param_1, longlong param_2, ulonglong *param_3)
 
 {
   longlong *plVar1;
@@ -157,26 +284,26 @@ void FUN_1800da770(uint64_t param_1,longlong param_2,ulonglong *param_3)
     for (lVar6 = lVar10; lVar6 != 0; lVar6 = lVar6 >> 1) {
       iVar8 = iVar8 + 1;
     }
-    FUN_1800eb380(plVar14,plVar1,(longlong)(iVar8 + -1) * 2);
-    if (lVar10 < 0x1d) {
-      FUN_1800ea4a0(plVar14,plVar1);
+    DataBufferComparator(plVar14, plVar1, (longlong)(iVar8 + -1) * 2);
+    if (lVar10 < SYSTEM_RESOURCE_THRESHOLD) {
+      DataSorter(plVar14, plVar1);
       param_2 = in_stack_00000078;
     }
     else {
-      plVar13 = (longlong *)(lVar2 + 0x9b28);
-      FUN_1800ea4a0(plVar14,plVar13);
+      plVar13 = (longlong *)(lVar2 + SYSTEM_PARAM_OFFSET_0x9b28);
+      DataSorter(plVar14, plVar13);
       param_2 = in_stack_00000078;
       for (; in_stack_00000078 = param_2, plVar13 != plVar1; plVar13 = plVar13 + 1) {
         lVar2 = *plVar13;
         plVar4 = plVar13 + -1;
-        cVar5 = func_0x0001800da750(lVar2,*plVar4);
+        cVar5 = DataStructureComparator(lVar2, *plVar4);
         plVar12 = plVar13;
         while (cVar5 != '\0') {
           lVar6 = *plVar4;
           plVar4 = plVar4 + -1;
           *plVar12 = lVar6;
           plVar12 = plVar12 + -1;
-          cVar5 = func_0x0001800da750(lVar2,*plVar4);
+          cVar5 = DataStructureComparator(lVar2, *plVar4);
         }
         *plVar12 = lVar2;
         param_2 = in_stack_00000078;
@@ -186,14 +313,14 @@ void FUN_1800da770(uint64_t param_1,longlong param_2,ulonglong *param_3)
   bVar3 = false;
   iVar8 = 0;
   do {
-    if (*(int *)(param_2 + 0x11a48) <= iVar8) {
+    if (*(int *)(param_2 + SYSTEM_PARAM_OFFSET_0x11a48) <= iVar8) {
       if (!bVar3) {
-        FUN_18005ea90(param_3,&stack0x00000068);
+        SystemStateManager(param_3, &stack0x00000068);
       }
       return;
     }
     lVar2 = *plVar14;
-    if ((-1 < *(int *)(lVar2 + 0x9a2c)) && (!bVar3)) {
+    if ((-1 < *(int *)(lVar2 + SYSTEM_PARAM_OFFSET_0x9a2c)) && (!bVar3)) {
       puVar11 = (uint64_t *)param_3[1];
       bVar3 = true;
       if (puVar11 < (uint64_t *)param_3[2]) {
@@ -206,7 +333,7 @@ void FUN_1800da770(uint64_t param_1,longlong param_2,ulonglong *param_3)
         if (lVar6 == 0) {
           lVar6 = 1;
 LAB_1800da8e0:
-          puVar7 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,lVar6 * 8,(char)param_3[3]);
+          puVar7 = (uint64_t *)MemoryAllocator(SystemMemoryPoolPtr, lVar6 * 8, (char)param_3[3]);
           puVar9 = (uint64_t *)*param_3;
           puVar11 = (uint64_t *)param_3[1];
         }
@@ -217,19 +344,19 @@ LAB_1800da8e0:
         }
         if (puVar9 != puVar11) {
                     // WARNING: Subroutine does not return
-          memmove(puVar7,puVar9,(longlong)puVar11 - (longlong)puVar9);
+          memmove(puVar7, puVar9, (longlong)puVar11 - (longlong)puVar9);
         }
         *puVar7 = in_stack_00000068;
         if (*param_3 != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          SystemErrorHandler();
         }
         *param_3 = (ulonglong)puVar7;
         param_3[2] = (ulonglong)(puVar7 + lVar6);
         param_3[1] = (ulonglong)(puVar7 + 1);
       }
     }
-    FUN_1800da760(in_stack_00000060,lVar2,param_3);
+    DataStructureProcessor(in_stack_00000060, lVar2, param_3);
     iVar8 = iVar8 + 1;
     plVar14 = plVar14 + 1;
     param_2 = in_stack_00000078;
@@ -265,23 +392,23 @@ void FUN_1800da9b0(void)
   void *puStack_20;
   code *pcStack_18;
   
-  lVar1 = _DAT_180c86890;
-  if (*(int *)(_DAT_180c86890 + 8) == 0) {
-    FUN_18005e630(_DAT_180c82868);
+  lVar1 = system_parameter_buffer;
+  if (*(int *)(system_parameter_buffer + 8) == 0) {
+    FUN_18005e630(system_context_ptr);
     puStack_20 = &unknown_var_1632_ptr;
     pcStack_18 = FUN_1800ea780;
     alStack_30[0] = lVar1;
     FUN_18005c650(alStack_30);
   }
-  else if (*(int *)(_DAT_180c86890 + 8) == 2) {
-    *(int32_t *)(_DAT_180c86890 + 8) = 1;
+  else if (*(int *)(system_parameter_buffer + 8) == 2) {
+    *(int32_t *)(system_parameter_buffer + 8) = 1;
   }
-  if (_DAT_00000010 != (longlong *)0x0) {
-    (**(code **)(*_DAT_00000010 + 0x18))();
+  if (system_system_memory != (longlong *)0x0) {
+    (**(code **)(*system_system_memory + 0x18))();
   }
                     // WARNING: Could not recover jumptable at 0x0001800daa3e. Too many branches
                     // WARNING: Treating indirect jump as call
-  (**(code **)(_DAT_00000000 + 0x30))(0);
+  (**(code **)(system_system_memory + 0x30))(0);
   return;
 }
 
@@ -304,9 +431,9 @@ longlong FUN_1800daa50(void)
   uint *puVar10;
   bool bVar11;
   
-  lVar2 = _DAT_180c86890;
-  lVar5 = _DAT_180c86890 + 0x3d38;
-  puVar7 = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0x4648) * 0x488 + lVar5);
+  lVar2 = system_parameter_buffer;
+  lVar5 = system_parameter_buffer + 0x3d38;
+  puVar7 = (uint *)((longlong)*(int *)(system_parameter_buffer + 0x4648) * 0x488 + lVar5);
   LOCK();
   uVar1 = *puVar7;
   *puVar7 = *puVar7 + 1;
@@ -318,7 +445,7 @@ longlong FUN_1800daa50(void)
   do {
     iVar8 = (int)uVar9;
     if (*(longlong *)puVar10 == 0) {
-      lVar4 = FUN_18062b420(_DAT_180c8ed18,0x12c300,0x25);
+      lVar4 = FUN_18062b420(system_memory_pool_ptr,0x12c300,0x25);
       LOCK();
       bVar11 = *(longlong *)(puVar7 + (longlong)iVar8 * 2 + 2) == 0;
       if (bVar11) {
@@ -381,8 +508,8 @@ void FUN_1800dabf0(void)
   ulonglong uVar9;
   ulonglong uVar8;
   
-  lVar3 = _DAT_180c86890;
-  FUN_18005e630(_DAT_180c82868);
+  lVar3 = system_parameter_buffer;
+  FUN_18005e630(system_context_ptr);
   uVar9 = 0;
   plVar6 = (longlong *)((longlong)*(int *)(lVar3 + 0x5860) * 0x908 + lVar3 + 0x4658);
   uVar5 = uVar9;
@@ -468,9 +595,9 @@ longlong FUN_1800dae20(void)
   uint *puVar10;
   bool bVar11;
   
-  lVar2 = _DAT_180c86890;
-  lVar5 = _DAT_180c86890 + 18000;
-  puVar7 = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0x5860) * 0x908 + lVar5);
+  lVar2 = system_parameter_buffer;
+  lVar5 = system_parameter_buffer + 18000;
+  puVar7 = (uint *)((longlong)*(int *)(system_parameter_buffer + 0x5860) * 0x908 + lVar5);
   LOCK();
   uVar1 = *puVar7;
   *puVar7 = *puVar7 + 1;
@@ -482,7 +609,7 @@ longlong FUN_1800dae20(void)
   do {
     iVar8 = (int)uVar9;
     if (*(longlong *)puVar10 == 0) {
-      lVar4 = FUN_18062b420(_DAT_180c8ed18,0x66000,0x25);
+      lVar4 = FUN_18062b420(system_memory_pool_ptr,0x66000,0x25);
       LOCK();
       bVar11 = *(longlong *)(puVar7 + (longlong)iVar8 * 2 + 2) == 0;
       if (bVar11) {
@@ -536,9 +663,9 @@ longlong FUN_1800daf60(void)
   uint *puVar10;
   bool bVar11;
   
-  lVar2 = _DAT_180c86890;
-  lVar5 = _DAT_180c86890 + 0x6a80;
-  puVar7 = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0x6b20) * 0x50 + lVar5);
+  lVar2 = system_parameter_buffer;
+  lVar5 = system_parameter_buffer + 0x6a80;
+  puVar7 = (uint *)((longlong)*(int *)(system_parameter_buffer + 0x6b20) * 0x50 + lVar5);
   LOCK();
   uVar1 = *puVar7;
   *puVar7 = *puVar7 + 1;
@@ -550,7 +677,7 @@ longlong FUN_1800daf60(void)
   do {
     iVar8 = (int)uVar9;
     if (*(longlong *)puVar10 == 0) {
-      lVar4 = FUN_18062b420(_DAT_180c8ed18,0x5e000,0x25);
+      lVar4 = FUN_18062b420(system_memory_pool_ptr,0x5e000,0x25);
       LOCK();
       bVar11 = *(longlong *)(puVar7 + (longlong)iVar8 * 2 + 2) == 0;
       if (bVar11) {
@@ -606,9 +733,9 @@ longlong FUN_1800db0a0(void)
   uint *puVar13;
   bool bVar14;
   
-  lVar3 = _DAT_180c86890;
-  lVar12 = _DAT_180c86890 + 0x74e8;
-  puVar11 = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0x7618) * 0x98 + lVar12);
+  lVar3 = system_parameter_buffer;
+  lVar12 = system_parameter_buffer + 0x74e8;
+  puVar11 = (uint *)((longlong)*(int *)(system_parameter_buffer + 0x7618) * 0x98 + lVar12);
   LOCK();
   uVar2 = *puVar11;
   *puVar11 = *puVar11 + 1;
@@ -620,7 +747,7 @@ longlong FUN_1800db0a0(void)
   do {
     iVar9 = (int)uVar10;
     if (*(longlong *)puVar13 == 0) {
-      lVar6 = FUN_18062b420(_DAT_180c8ed18,0x1f800,0x25);
+      lVar6 = FUN_18062b420(system_memory_pool_ptr,0x1f800,0x25);
       LOCK();
       bVar14 = *(longlong *)(puVar11 + (longlong)iVar9 * 2 + 2) == 0;
       if (bVar14) {
@@ -705,7 +832,7 @@ void FUN_1800db220(longlong param_1,longlong *param_2,uint64_t param_3)
     cVar1 = func_0x0001800ba3b0(lVar4 + 0x108,param_3);
     if ((cVar1 != '\0') && (*(int *)(lVar4 + 0x380) != 0)) goto LAB_1800db339;
   }
-  plVar2 = (longlong *)FUN_1800b1230(_DAT_180c86930,&plStack_d8,&puStack_c8,param_3);
+  plVar2 = (longlong *)FUN_1800b1230(system_resource_state,&plStack_d8,&puStack_c8,param_3);
   uStack_e8 = 1;
   lVar4 = *plVar2;
   *plVar2 = 0;
@@ -836,7 +963,7 @@ void FUN_1800db460(longlong param_1,longlong *param_2,uint64_t param_3,uint64_t 
       puVar3 = *(void **)(param_1 + 8);
     }
     strcpy_s(auStack_c0,0x80,puVar3);
-    plVar2 = (longlong *)FUN_1800b1230(_DAT_180c86930,&plStack_f0,&puStack_d8,&uStack_138);
+    plVar2 = (longlong *)FUN_1800b1230(system_resource_state,&plStack_f0,&puStack_d8,&uStack_138);
     lVar1 = *plVar2;
     *plVar2 = 0;
     plStack_f8 = (longlong *)*param_2;

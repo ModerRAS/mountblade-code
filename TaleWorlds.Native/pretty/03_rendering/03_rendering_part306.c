@@ -646,7 +646,7 @@ void RenderingSystem_AdvancedImageCompressor(uint64_t compression_context, uint6
                     
                     // SIMD优化处理
                     if (((0 < (int)row_size) && (current_score = 0, 7 < row_size)) && 
-                        (pixel_offset = 0, 1 < _DAT_180bf00b0)) {
+                        (pixel_offset = 0, 1 < render_system_control_buffer)) {
                         alignment_val = row_size & 0x80000007;
                         if ((int)alignment_val < 0) {
                             alignment_val = (alignment_val - 1 | 0xfffffff8) + 1;
@@ -864,7 +864,7 @@ void RenderingSystem_MemoryCleanup(void) {
             total_sum = base_offset;
             
             // SIMD优化处理
-            if (((0 < (int)data_size) && (7 < data_size)) && (1 < _DAT_180bf00b0)) {
+            if (((0 < (int)data_size) && (7 < data_size)) && (1 < render_system_control_buffer)) {
                 alignment_value = data_size & 0x80000007;
                 if ((int)alignment_value < 0) {
                     alignment_value = (alignment_value - 1 | 0xfffffff8) + 1;

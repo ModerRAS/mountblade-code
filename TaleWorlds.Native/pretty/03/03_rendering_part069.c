@@ -181,7 +181,7 @@ void rendering_system_advanced_initialize(uint64_t *render_context, int init_par
   local_stack_array_3[0] = 0;
   local_stack_var_3 = 0x15;
   strcpy_s(local_stack_array_3, 0x20, &unknown_var_3800_ptr);
-  local_var_1 = FUN_180051f00(_DAT_180c86870, &local_stack_ptr_5);
+  local_var_1 = FUN_180051f00(system_main_module_state, &local_stack_ptr_5);
   *(int8_t *)(render_context + 0x38a) = local_var_1;
   
   // 初始化渲染资源处理器
@@ -281,7 +281,7 @@ void rendering_system_advanced_cleanup(uint64_t *render_context, uint64_t param_
   }
   else {
     // 分配内存用于资源转移
-    local_long_2 = FUN_18062b420(_DAT_180c8ed18, local_long_2 * 8, *(uint *)(render_context + 0x375) & 0xff, param_4, local_var_1);
+    local_long_2 = FUN_18062b420(system_memory_pool_ptr, local_long_2 * 8, *(uint *)(render_context + 0x375) & 0xff, param_4, local_var_1);
   }
   
   // 转移资源数据
@@ -364,22 +364,22 @@ void rendering_system_advanced_data_processor(longlong render_context, uint64_t 
   uint64_t local_stack_var_11;
   
   // 计算数据块大小
-  local_long_2 = ((longlong)_DAT_180bfaea8 - (longlong)_DAT_180bfaea0) / 0x38;
-  local_stack_var_5 = _DAT_180bfaeb8;
+  local_long_2 = ((longlong)render_system_control_config - (longlong)render_system_control_config) / 0x38;
+  local_stack_var_5 = render_system_control_config;
   if (local_long_2 == 0) {
     local_long_1 = 0;
   }
   else {
     // 分配内存用于数据处理
-    local_long_1 = FUN_18062b420(_DAT_180c8ed18, local_long_2 * 0x38, _DAT_180bfaeb8 & 0xff, param_4, 0, 0xfffffffffffffffe);
+    local_long_1 = FUN_18062b420(system_memory_pool_ptr, local_long_2 * 0x38, render_system_control_config & 0xff, param_4, 0, 0xfffffffffffffffe);
   }
   
   // 处理数据块
-  local_ptr_2 = _DAT_180bfaea8;
+  local_ptr_2 = render_system_control_config;
   local_stack_var_4 = local_long_2 * 0x38 + local_long_1;
   local_stack_var_2 = local_long_1;
-  if (_DAT_180bfaea0 != _DAT_180bfaea8) {
-    local_ptr_6 = _DAT_180bfaea0 + 9;
+  if (render_system_control_config != render_system_control_config) {
+    local_ptr_6 = render_system_control_config + 9;
     local_stack_var_3 = local_long_1;
     do {
       // 复制数据块
@@ -404,7 +404,7 @@ void rendering_system_advanced_data_processor(longlong render_context, uint64_t 
     local_stack_var_1 = 0;
     do {
       // 分配队列内存
-      local_var_1 = FUN_18062b1e0(_DAT_180c8ed18, 0x560, 8, 3, local_var_2);
+      local_var_1 = FUN_18062b1e0(system_memory_pool_ptr, 0x560, 8, 3, local_var_2);
       local_long_2 = local_stack_var_1 + local_stack_var_2;
       
       // 处理队列数据
@@ -433,7 +433,7 @@ void rendering_system_advanced_data_processor(longlong render_context, uint64_t 
           local_long_2 = 1;
         LAB_1803075e0:
           local_ptr_3 = (uint64_t *)
-                   FUN_18062b420(_DAT_180c8ed18, local_long_2 * 8, *(int8_t *)(render_context + 0x1ba8));
+                   FUN_18062b420(system_memory_pool_ptr, local_long_2 * 8, *(int8_t *)(render_context + 0x1ba8));
           local_ptr_5 = *(uint64_t **)(render_context + 0x1b98);
           local_ptr_4 = *(uint64_t **)(render_context + 0x1b90);
         }

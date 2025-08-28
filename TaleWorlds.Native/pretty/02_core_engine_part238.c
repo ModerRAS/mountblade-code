@@ -736,7 +736,7 @@ void FUN_180208720(longlong *param_1,ulonglong param_2,float *param_3,int param_
                   *(int32_t *)(lVar20 + 8 + lStack_48) = *(int32_t *)(lVar16 + 0x1c);
                   *(byte *)(lVar10 + 0xfe) = *(byte *)(lVar10 + 0xfe) & 0xf7;
                   *(uint *)(lVar10 + 0x100) = *(uint *)(lVar10 + 0x100) | 0x800;
-                  uVar4 = _DAT_180c8ed18;
+                  uVar4 = system_memory_pool_ptr;
                   *(int32_t *)(lVar10 + 0x10c) = uVar2;
                   if (lVar8 == 0) {
                     bVar6 = 8;
@@ -757,8 +757,8 @@ void FUN_180208720(longlong *param_1,ulonglong param_2,float *param_3,int param_
 LAB_180208aa2:
                   if (iVar14 < 0) goto LAB_180208d4a;
                 }
-                puVar18 = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0x9c8) * 0x488 +
-                                  _DAT_180c86890 + 0xb8);
+                puVar18 = (uint *)((longlong)*(int *)(system_parameter_buffer + 0x9c8) * 0x488 +
+                                  system_parameter_buffer + 0xb8);
                 if ((int)uVar24 == 0) {
                   uVar26 = 0xffffffff;
                 }
@@ -776,7 +776,7 @@ LAB_180208aa2:
                     do {
                       iVar14 = (int)uVar22;
                       if (*(longlong *)puVar27 == 0) {
-                        lVar8 = FUN_18062b420(_DAT_180c8ed18,0x4000,0x25);
+                        lVar8 = FUN_18062b420(system_memory_pool_ptr,0x4000,0x25);
                         LOCK();
                         bVar28 = *(longlong *)(puVar18 + (longlong)iVar14 * 2 + 2) == 0;
                         if (bVar28) {
@@ -821,7 +821,7 @@ LAB_180208aa2:
                 *(int *)(*(longlong *)(lVar10 + 0x2d0) + 0x14) = (int)uVar24;
                 *(uint *)(*(longlong *)(lVar10 + 0x2d0) + 0x18) = uVar26;
                 *(int32_t *)(*(longlong *)(lVar10 + 0x2d0) + 0xc) =
-                     *(int32_t *)(_DAT_180c86870 + 0x224);
+                     *(int32_t *)(system_main_module_state + 0x224);
                 uVar19 = uStack_68;
                 if (0 < (int)uVar24) {
                   pfVar9 = (float *)(param_1 + 9);

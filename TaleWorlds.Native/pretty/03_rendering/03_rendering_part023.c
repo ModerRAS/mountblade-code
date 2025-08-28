@@ -151,7 +151,7 @@ uint64_t *create_rendering_manager(uint64_t manager_type, uint64_t *output_ptr)
   uint64_t manager_handle;
   longlong *manager_ptr;
   
-  manager_handle = FUN_18062b1e0(_DAT_180c8ed18, 0x3d0, 8, 0x16, 0, 0xfffffffffffffffe);
+  manager_handle = FUN_18062b1e0(system_memory_pool_ptr, 0x3d0, 8, 0x16, 0, 0xfffffffffffffffe);
   manager_ptr = (longlong *)FUN_180275090(manager_handle);
   if (manager_ptr != (longlong *)0x0) {
     (**(code **)(*manager_ptr + 0x28))(manager_ptr);

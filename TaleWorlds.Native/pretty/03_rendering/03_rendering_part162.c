@@ -169,7 +169,7 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         
         // 分配字符串缓冲区
         buffer_ptr = (uint32_t*)
-                    FUN_18062b420(_DAT_180c8ed18, (int)temp_counter + RENDERING_SYSTEM_BUFFER_SIZE_12, 
+                    FUN_18062b420(system_memory_pool_ptr, (int)temp_counter + RENDERING_SYSTEM_BUFFER_SIZE_12, 
                                  &unknown_var_1379_ptr, param_4, RENDERING_SYSTEM_FLAG_0xfffffffffffffffe);
         
         // 初始化缓冲区
@@ -206,7 +206,7 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         stack_uint_30 = 0;
         
         // 分配第二个字符串缓冲区
-        buffer_ptr = (uint32_t*)FUN_18062b420(_DAT_180c8ed18, RENDERING_SYSTEM_BUFFER_SIZE_16, 
+        buffer_ptr = (uint32_t*)FUN_18062b420(system_memory_pool_ptr, RENDERING_SYSTEM_BUFFER_SIZE_16, 
                                              0x13, param_4, flag_value);
         *(uint8_t*)buffer_ptr = 0;
         stack_buffer_38 = buffer_ptr;
@@ -237,7 +237,7 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         stack_uint_50 = 0;
         
         // 分配第三个字符串缓冲区
-        buffer_ptr = (uint32_t*)FUN_18062b420(_DAT_180c8ed18, RENDERING_SYSTEM_BUFFER_SIZE_16, 0x13);
+        buffer_ptr = (uint32_t*)FUN_18062b420(system_memory_pool_ptr, RENDERING_SYSTEM_BUFFER_SIZE_16, 0x13);
         *(uint8_t*)buffer_ptr = 0;
         stack_buffer_58 = buffer_ptr;
         string_hash = FUN_18064e990(buffer_ptr);
@@ -269,7 +269,7 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         stack_uint_30 = 0;
         
         // 分配第四个字符串缓冲区
-        buffer_ptr = (uint32_t*)FUN_18062b420(_DAT_180c8ed18, RENDERING_SYSTEM_BUFFER_SIZE_23, 0x13);
+        buffer_ptr = (uint32_t*)FUN_18062b420(system_memory_pool_ptr, RENDERING_SYSTEM_BUFFER_SIZE_23, 0x13);
         *(uint8_t*)buffer_ptr = 0;
         stack_buffer_38 = buffer_ptr;
         string_hash = FUN_18064e990(buffer_ptr);
@@ -357,7 +357,7 @@ void rendering_system_advanced_object_manager(int64_t object_data)
     ulong_val3 = *(uint64_t*)(*(int64_t*)(object_data + 0x18) + 0x20);
     
     // 创建内存管理器
-    ulong_val = FUN_18062b1e0(_DAT_180c8ed18, 0x2f0, 0x10, 0xd);
+    ulong_val = FUN_18062b1e0(system_memory_pool_ptr, 0x2f0, 0x10, 0xd);
     long_ptr2 = (int64_t*)FUN_1802e6b00(ulong_val, 4);
     stack_long_ptr2 = long_ptr2;
     

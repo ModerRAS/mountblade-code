@@ -633,7 +633,7 @@ void expand_dynamic_array(longlong *param_1, int32_t *param_2)
     if (temp_long3 == 0) goto LAB_18016d07b;
   }
   src_ptr = (int32_t *)
-           allocate_memory_block(_DAT_180c8ed18, temp_long3 * 0x28, (char)param_1[3], temp_long1, 0xfffffffffffffffe);
+           allocate_memory_block(system_memory_pool_ptr, temp_long3 * 0x28, (char)param_1[3], temp_long1, 0xfffffffffffffffe);
   temp_long2 = param_1[1];
   temp_long1 = *param_1;
 LAB_18016d07b:
@@ -862,7 +862,7 @@ void insert_into_data_structure(longlong *param_1, uint64_t *param_2, longlong p
     temp_long3 = temp_long3 * 2;
     if (temp_long3 == 0) goto LAB_18016d59c;
   }
-  temp_long1 = allocate_memory_block(_DAT_180c8ed18, temp_long3 << 5, (char)param_1[3], param_4, 0xfffffffffffffffe);
+  temp_long1 = allocate_memory_block(system_memory_pool_ptr, temp_long3 << 5, (char)param_1[3], param_4, 0xfffffffffffffffe);
 LAB_18016d59c:
   temp_ptr1 = (uint64_t *)(((longlong)param_2 - temp_long2 & 0xffffffffffffffe0U) + temp_long1);
   *temp_ptr1 = &unknown_var_720_ptr;
@@ -999,10 +999,10 @@ initialize_data_structure(uint64_t *param_1, uint64_t param_2, ulonglong param_3
   ulonglong temp_ulong1;
   uint temp_uint1;
   
-  char_ptr = _DAT_180c82868;
+  char_ptr = system_context_ptr;
   temp_ulong1 = 0;
-  if ((*_DAT_180c82868 == '\0') &&
-     (*_DAT_180c82868 = '\x01', param_4 = temp_ulong1,
+  if ((*system_context_ptr == '\0') &&
+     (*system_context_ptr = '\x01', param_4 = temp_ulong1,
      *(longlong *)(char_ptr + 0x10) - *(longlong *)(char_ptr + 8) >> 3 != 0)) {
     do {
       *(uint64_t *)(*(longlong *)(*(longlong *)(char_ptr + 8) + temp_ulong1) + 0x1f8) = 0x3f1a36e2eb1c432d;

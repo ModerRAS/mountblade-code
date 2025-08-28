@@ -56,7 +56,7 @@ void process_save_data(uint64_t **data_ptr, longlong context_ptr)
     code *function_ptr2;
     uint64_t stack_data11;
     
-    global_data = _DAT_180c8aa08;
+    global_data = system_global_data_ptr;
     stack_data11 = 0xfffffffffffffffe;
     stack_data2 = 0;
     context_type = *(int *)(context_ptr + 0x10);
@@ -93,16 +93,16 @@ validation_failed2:
     }
     stack_data2 = 1;
 final_validation:
-    FUN_18005e630(_DAT_180c82868);
+    FUN_18005e630(system_context_ptr);
     FUN_1801c9940(global_data);
-    allocated_buffer = FUN_18062b1e0(_DAT_180c8ed18, SERIALIZATION_BUFFER_SIZE, 8, 3);
+    allocated_buffer = FUN_18062b1e0(system_memory_pool_ptr, SERIALIZATION_BUFFER_SIZE, 8, 3);
     processed_data = (longlong *)FUN_1803e8a40(allocated_buffer, context_ptr);
     *global_data = processed_data;
     (**(code **)(*processed_data + 0x28))(processed_data);
-    *(int8_t *)(_DAT_180c86870 + 0x60) = 1;
+    *(int8_t *)(system_main_module_state + 0x60) = 1;
     
     // 分配数据缓冲区
-    allocated_buffer = FUN_18062b1e0(_DAT_180c8ed18, DATA_BUFFER_SIZE, 8, 3);
+    allocated_buffer = FUN_18062b1e0(system_memory_pool_ptr, DATA_BUFFER_SIZE, 8, 3);
     temp_ptr1 = stack_array1;
     temp_ptr2 = (uint64_t ***)&stack_data6;
     stack_data6 = global_data;
@@ -118,7 +118,7 @@ final_validation:
     function_ptr2 = FUN_1801eb560;
     
     // 创建处理结构
-    temp_ptr4 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, SMALL_BUFFER_SIZE, 8, system_allocation_flags);
+    temp_ptr4 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, SMALL_BUFFER_SIZE, 8, system_allocation_flags);
     *temp_ptr4 = stack_data1;
     *(int8_t *)(temp_ptr4 + 1) = stack_data2;
     stack_data1 = temp_ptr4;
@@ -158,7 +158,7 @@ final_validation:
         (*(code *)(*temp_ptr1)[7])();
     }
     *(uint64_t *)(global_data[9] + 0x18) = 0xfffffffffffffffd;
-    allocated_buffer = _DAT_180c82868;
+    allocated_buffer = system_context_ptr;
     temp_ptr2 = &temp_ptr1;
     temp_ptr1 = (uint64_t **)global_data[9];
     if (temp_ptr1 != (uint64_t **)0x0) {
@@ -270,11 +270,11 @@ void load_game_data(uint64_t param1, longlong context_ptr)
     int32_t stack_data56;
     ulonglong stack_data57;
     
-    temp_long1 = _DAT_180c8aa08;
+    temp_long1 = system_global_data_ptr;
     stack_data51 = 0xfffffffffffffffe;
     stack_data57 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_data1;
-    stack_data22 = _DAT_180c8aa08;
-    FUN_1801d8e90(_DAT_180c8aa08, context_ptr, 0);
+    stack_data22 = system_global_data_ptr;
+    FUN_1801d8e90(system_global_data_ptr, context_ptr, 0);
     stack_data8 = &unknown_var_3456_ptr;
     stack_data11 = 0;
     stack_data9 = (void *)0x0;
@@ -615,12 +615,12 @@ bool validate_save_file(longlong file_handle)
     }
     temp_long1 = stack_array4[0];
     if (((system_debug_flag == '\0') && (validation_result == false)) &&
-       ((*(int *)(_DAT_180c86908 + 0x620) == 0 && (file_handle == 0)))) {
+       ((*(int *)(system_module_state + 0x620) == 0 && (file_handle == 0)))) {
         if (system_debug_flag2 == '\0') {
             MessageBoxA(0, &unknown_var_9600_ptr, &unknown_var_9792_ptr, 0x41040);
         }
-        else if (*(char *)(_DAT_180c86928 + 0x18) != '\0') {
-            FUN_1800623b0(_DAT_180c86928, 3, 0xffffffff00000000, 0xd, &unknown_var_6936_ptr, &unknown_var_9792_ptr,
+        else if (*(char *)(system_message_context + 0x18) != '\0') {
+            FUN_1800623b0(system_message_context, 3, 0xffffffff00000000, 0xd, &unknown_var_6936_ptr, &unknown_var_9792_ptr,
                           &unknown_var_9600_ptr);
         }
     }
@@ -706,7 +706,7 @@ void process_save_chunk(uint64_t param1)
             fread(&stack_data2, 4, 1, temp_long1);
             if (stack_data2 < 9) {
                 if (stack_data2 + 1 != 0) {
-                    temp_data1 = FUN_18062b420(_DAT_180c8ed18, (longlong)(stack_data2 + 1), 3);
+                    temp_data1 = FUN_18062b420(system_memory_pool_ptr, (longlong)(stack_data2 + 1), 3);
                 }
                 memset(temp_data1, 0, (longlong)(stack_data2 + 1));
             }
@@ -770,7 +770,7 @@ void create_save_file(void)
     stack_data12 = 0xfffffffffffffffe;
     stack_data17 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_data1;
     stack_array1[1] = 0;
-    if (*(char *)(_DAT_180c86870 + 0x168) == '\0') {
+    if (*(char *)(system_main_module_state + 0x168) == '\0') {
         stack_data6 = &unknown_var_3456_ptr;
         stack_data9 = 0;
         stack_data7 = 0;
@@ -813,7 +813,7 @@ void create_save_file(void)
             FUN_18062dee0(&stack_data10, temp_ptr2, &unknown_var_9772_ptr);
             temp_long1 = stack_data11;
             if (stack_data11 == 0) {
-                FUN_180062300(_DAT_180c86928, &unknown_var_9856_ptr);
+                FUN_180062300(system_message_context, &unknown_var_9856_ptr);
             }
             stack_array2[0] = FILE_SIGNATURE_1;
             fwrite(stack_array2, 4, 1, stack_data11);

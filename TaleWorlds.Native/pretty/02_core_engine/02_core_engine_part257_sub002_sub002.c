@@ -124,7 +124,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
   else {
     FUN_180226020(param_2,&puStack_148);
   }
-  iVar1 = *(int *)(_DAT_180c86938 + 0x1d44);
+  iVar1 = *(int *)(system_message_buffer + 0x1d44);
   if (iVar1 == 0) {
     puVar6 = &unknown_var_6472_ptr;
   }

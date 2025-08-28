@@ -206,11 +206,11 @@ void rendering_system_resource_initializer(
             param_count = FUN_18053a410(
                 &system_memory_5f30, *(uint32_t*)((uint8_t*)context + 0xac), allocation_result
             );
-            param_count = *(int*)(_DAT_180c95f68 + (longlong)param_count * 4);
+            param_count = *(int*)(render_system_ui + (longlong)param_count * 4);
             temp_resource = (void*)resource_data;
             
             if (param_count != -1) {
-                temp_resource = *(void**)(_DAT_180c95f88 + (longlong)param_count * 8);
+                temp_resource = *(void**)(render_system_ui + (longlong)param_count * 8);
             }
             
             // 设置资源指针
@@ -219,11 +219,11 @@ void rendering_system_resource_initializer(
             
             allocation_result = FUN_180557990(hash_table_ptr, 1, param_index, 0xffffffff, allocation_success);
             param_count = FUN_18053a410(&system_memory_5f30, *(uint32_t*)((uint8_t*)context + 0xac), allocation_result);
-            param_count = *(int*)(_DAT_180c95f68 + (longlong)param_count * 4);
+            param_count = *(int*)(render_system_ui + (longlong)param_count * 4);
             temp_resource = (void*)resource_data;
             
             if (param_count != -1) {
-                temp_resource = *(void**)(_DAT_180c95f88 + (longlong)param_count * 8);
+                temp_resource = *(void**)(render_system_ui + (longlong)param_count * 8);
             }
             
             hash_table_ptr = *(uint64_t*)((uint8_t*)context + 0xb0);
@@ -231,11 +231,11 @@ void rendering_system_resource_initializer(
             
             allocation_result = FUN_180557990(hash_table_ptr, 0, param_index, 0xffffffff, allocation_success);
             param_count = FUN_18053a410(&system_memory_5f30, *(uint32_t*)((uint8_t*)context + 0xac), allocation_result);
-            param_count = *(int*)(_DAT_180c95f68 + (longlong)param_count * 4);
+            param_count = *(int*)(render_system_ui + (longlong)param_count * 4);
             temp_resource = (void*)resource_data;
             
             if (param_count != -1) {
-                temp_resource = *(void**)(_DAT_180c95f88 + (longlong)param_count * 8);
+                temp_resource = *(void**)(render_system_ui + (longlong)param_count * 8);
             }
             
             hash_table_ptr = *(uint64_t*)((uint8_t*)context + 0xb0);
@@ -243,11 +243,11 @@ void rendering_system_resource_initializer(
             
             allocation_result = FUN_180557990(hash_table_ptr, 5, param_index, 0xffffffff, allocation_success);
             param_index = FUN_18053a410(&system_memory_5f30, *(uint32_t*)((uint8_t*)context + 0xac), allocation_result);
-            param_index = *(int*)(_DAT_180c95f68 + (longlong)param_index * 4);
+            param_index = *(int*)(render_system_ui + (longlong)param_index * 4);
             temp_resource = (void*)resource_data;
             
             if (param_index != -1) {
-                temp_resource = *(void**)(_DAT_180c95f88 + (longlong)param_index * 8);
+                temp_resource = *(void**)(render_system_ui + (longlong)param_index * 8);
             }
             
             max_params = *(uint64_t*)((uint8_t*)context + 0xb0);
@@ -274,11 +274,11 @@ void rendering_system_resource_initializer(
             param_index = FUN_18053a410(
                 &system_memory_5f30, *(uint32_t*)((uint8_t*)context + 0xac), *(uint32_t*)(*hash_table_ptr + 4)
             );
-            param_index = *(int*)(_DAT_180c95f68 + (longlong)param_index * 4);
+            param_index = *(int*)(render_system_ui + (longlong)param_index * 4);
             temp_resource = (void*)resource_data;
             
             if (param_index != -1) {
-                temp_resource = *(void**)(_DAT_180c95f88 + (longlong)param_index * 8);
+                temp_resource = *(void**)(render_system_ui + (longlong)param_index * 8);
             }
             
             max_params = *(uint64_t*)((uint8_t*)context + 0xb0);
@@ -308,7 +308,7 @@ void rendering_system_resource_initializer(
             param_index = FUN_18053a410(
                 &system_memory_5f30, *(uint32_t*)((uint8_t*)context + 0xac), *(uint32_t*)(*hash_table_ptr + 4)
             );
-            param_index = *(int*)(_DAT_180c95f68 + (longlong)param_index * 4);
+            param_index = *(int*)(render_system_ui + (longlong)param_index * 4);
             
             if (param_index == -1) {
                 max_params = *(uint64_t*)((uint8_t*)context + 0x2590);
@@ -316,7 +316,7 @@ void rendering_system_resource_initializer(
                 params = (RenderingParameterBlock*)((uint8_t*)max_params);
             } else {
                 max_params = *(uint64_t*)((uint8_t*)context + 0x2590);
-                ((void**)params)[3] = *(void**)(_DAT_180c95f88 + (longlong)param_index * 8);
+                ((void**)params)[3] = *(void**)(render_system_ui + (longlong)param_index * 8);
                 params = (RenderingParameterBlock*)((uint8_t*)max_params);
             }
         } else {
@@ -332,7 +332,7 @@ void rendering_system_resource_initializer(
                   (void*)((uint8_t*)params + 0x70), *(uint32_t*)((uint8_t*)max_params + 8));
     
     max_params = *(uint64_t*)((uint8_t*)context + 0x2590);
-    uint64_t function_ptr = *(uint64_t*)((uint64_t)*(int*)((uint8_t*)context + 0xac) * 0xe0 + 0x68 + _DAT_180c95fb0);
+    uint64_t function_ptr = *(uint64_t*)((uint64_t)*(int*)((uint8_t*)context + 0xac) * 0xe0 + 0x68 + render_system_ui);
     param_index = *(int*)((uint8_t*)max_params + 8);
     
     *(void**)((uint8_t*)max_params + 0x18) = (void*)resource_data;
@@ -523,28 +523,28 @@ void rendering_system_resource_cleaner(
     uint32_t current_value = 0;
     uint64_t cleanup_param = 0;
     
-    thread_id1 = *(int*)(**(uint64_t**)(_DAT_180c82868 + 8) + 0x48);
+    thread_id1 = *(int*)(**(uint64_t**)(system_context_ptr + 8) + 0x48);
     thread_id2 = _Thrd_id();
-    original_value = _DAT_180c9105c;
+    original_value = render_system_ui;
     current_value = 0;
     
     if (thread_id2 != thread_id1) {
-        _DAT_180c9105c = _Thrd_id();
+        render_system_ui = _Thrd_id();
         current_value = original_value;
     }
     
     // 等待资源清理完成
     do {
-    } while (*(int*)(_DAT_180c86870 + 0x224) + 2 < *(int*)(_DAT_180c86870 + 0x224));
+    } while (*(int*)(system_main_module_state + 0x224) + 2 < *(int*)(system_main_module_state + 0x224));
     
     cleanup_param = 0xfffffffffffffffe;
     FUN_1804e7130(*(uint64_t*)(param1 + 0xc0), param1 + 200, param3, param4, cleanup_param);
     
-    thread_id1 = *(int*)(**(uint64_t**)(_DAT_180c82868 + 8) + 0x48);
+    thread_id1 = *(int*)(**(uint64_t**)(system_context_ptr + 8) + 0x48);
     thread_id2 = _Thrd_id();
     
     if (thread_id2 != thread_id1) {
-        _DAT_180c9105c = current_value;
+        render_system_ui = current_value;
     }
 }
 
@@ -562,9 +562,9 @@ void rendering_system_thread_synchronizer(uint64_t param1) {
     uint32_t stack_flags = 0;
     void* function_ptr = NULL;
     
-    context_data = _DAT_180c8a990;
-    resource_data = _DAT_180c8a990 + 0x38;
-    *(uint64_t*)(param1 + 0x10) = *(uint64_t*)(_DAT_180c8a990 + 0x20);
+    context_data = render_system_data_ui;
+    resource_data = render_system_data_ui + 0x38;
+    *(uint64_t*)(param1 + 0x10) = *(uint64_t*)(render_system_data_ui + 0x20);
     
     func_0x0001803cf530(stack_data, resource_data);
     stack_flags = 0xc11ce560;
@@ -699,7 +699,7 @@ void rendering_system_data_validator(
     stack_float9 = (float)stack_data2[0] - stack_float9;
     
     // 初始化验证数据
-    stack_data2[0] = *(uint64_t*)(_DAT_180c8a990 + 200);
+    stack_data2[0] = *(uint64_t*)(render_system_data_ui + 200);
     stack_flags2 = 0x7f7fffff;
     stack_flags8 = 0x7f7fffff;
     stack_flags3 = 0x7f7fffff;

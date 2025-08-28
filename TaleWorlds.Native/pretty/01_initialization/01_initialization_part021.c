@@ -83,7 +83,7 @@ void process_resource_initialization(longlong *engine_context, longlong resource
   FUN_180627c50(&module_name, resource_name);
   buffer_size = 0;
   buffer_capacity = buffer_capacity & 0xffffff00;  // 对齐到256字节边界
-  uint64_t alloc_result = FUN_18062b1e0(_DAT_180c8ed18,0x60d30,0x10,0x1f);
+  uint64_t alloc_result = FUN_18062b1e0(system_memory_pool_ptr,0x60d30,0x10,0x1f);
   longlong *resource_manager = (longlong *)FUN_1801954d0(alloc_result,&puStack_1c0);
   ppuStack_170 = (void **)resource_manager;
   if (resource_manager != (longlong *)0x0) {
@@ -176,7 +176,7 @@ void process_resource_initialization(longlong *engine_context, longlong resource
   uStack_218 = 0xffffffff;
   uStack_1d0 = uVar1;
   uStack_1c8._4_4_ = *(uint *)(lVar6 + 0x1c);
-  FUN_1801a6440(resource_manager,_DAT_180c868e8,&puStack_1e0,&uStack_148);
+  FUN_1801a6440(resource_manager,init_system_data_memory,&puStack_1e0,&uStack_148);
   FUN_18019e260(resource_manager);
   (**(code **)(*(longlong *)engine_context[0x56] + 0x138))((longlong *)engine_context[0x56],resource_manager);
   FUN_180199500(resource_manager,0x3d072b02,1);
@@ -289,8 +289,8 @@ void batch_initialize_game_modules(void)
   
   uStack_38 = 0xfffffffffffffffe;
   uStack_30 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
-  plStack_a8 = _DAT_180c86870;
-  lVar14 = *(longlong *)(*_DAT_180c86870 + 0x890) - *(longlong *)(*_DAT_180c86870 + 0x888) >> 5;
+  plStack_a8 = system_main_module_state;
+  lVar14 = *(longlong *)(*system_main_module_state + 0x890) - *(longlong *)(*system_main_module_state + 0x888) >> 5;
   iStack_f8 = 0;
   lStack_a0 = lVar14;
   if (0 < (int)lVar14) {
@@ -302,8 +302,8 @@ LAB_18005485e:
         lVar10 = FUN_180628ca0();
       }
       else {
-        lVar10 = *(longlong *)(*_DAT_180c86870 + 0x888);
-        if ((ulonglong)(*(longlong *)(*_DAT_180c86870 + 0x890) - lVar10 >> 5) <=
+        lVar10 = *(longlong *)(*system_main_module_state + 0x888);
+        if ((ulonglong)(*(longlong *)(*system_main_module_state + 0x890) - lVar10 >> 5) <=
             (ulonglong)(longlong)iStack_f8) goto LAB_18005485e;
         lVar10 = (longlong)iStack_f8 * 0x20 + lVar10;
       }
@@ -328,8 +328,8 @@ LAB_180054912:
         lVar10 = FUN_180628ca0();
       }
       else {
-        lVar10 = *(longlong *)(*_DAT_180c86870 + 0x8a8);
-        if ((ulonglong)(*(longlong *)(*_DAT_180c86870 + 0x8b0) - lVar10 >> 5) <
+        lVar10 = *(longlong *)(*system_main_module_state + 0x8a8);
+        if ((ulonglong)(*(longlong *)(*system_main_module_state + 0x8b0) - lVar10 >> 5) <
             (ulonglong)(longlong)iVar9) goto LAB_180054912;
         lVar10 = (longlong)iVar9 * 0x20 + lVar10;
       }
@@ -504,7 +504,7 @@ LAB_180054d28:
 LAB_180054d57:
                 FUN_180629a40(puVar3 + (longlong)iVar13 * 4,&puStack_98,iVar9 + 1,0xffffffff);
                 uVar17 = FUN_180054360(plVar2,&puStack_98);
-                if (_DAT_180c82854 != 0) {
+                if (init_system_data_memory != 0) {
                   FUN_18005c1c0(uVar17,&puStack_78);
                   puStack_f0 = &unknown_var_3456_ptr;
                   uStack_d8 = 0;
@@ -528,7 +528,7 @@ LAB_180054d57:
                   }
                   FUN_180628040(&puStack_f0,&unknown_var_6576_ptr,puVar16);
                   FUN_18062db60(&puStack_f0,&puStack_78);
-                  _DAT_180c82854 = 0;
+                  init_system_data_memory = 0;
                   puStack_f0 = &unknown_var_3456_ptr;
                   if (puStack_e8 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -643,7 +643,7 @@ void initialize_system_core(void)
   longlong mutex_handle;        // 互斥体句柄
   
   // 分配并初始化系统表1（408字节）
-  memory_pool = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x198,8,3);
+  memory_pool = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x198,8,3);
   system_handle = memory_pool + 4;
   FUN_180637560(system_handle);
   *system_handle = &unknown_var_6384_ptr;
@@ -666,38 +666,38 @@ void initialize_system_core(void)
   *(int8_t *)(memory_pool + 3) = 0;
   memory_pool[2] = 0xffffffff00000000;
   *(int32_t *)(memory_pool + 1) = 0xe;  // 表大小标记
-  _DAT_180c86928 = memory_pool;
+  system_message_context = memory_pool;
   
   // 初始化渲染系统（1152字节）
-  pool_size = FUN_18062b1e0(_DAT_180c8ed18,0x480,8,3);
-  _DAT_180c8a9f8 = FUN_18004bd10(pool_size);
+  pool_size = FUN_18062b1e0(system_memory_pool_ptr,0x480,8,3);
+  init_system_data_memory = FUN_18004bd10(pool_size);
   
   // 初始化场景系统（66592字节）
-  pool_size = FUN_18062b1e0(_DAT_180c8ed18,0x10420,8,3);
-  _DAT_180c868c0 = FUN_18005c090(pool_size);
+  pool_size = FUN_18062b1e0(system_memory_pool_ptr,0x10420,8,3);
+  init_system_data_memory = FUN_18005c090(pool_size);
   
   // 初始化调试系统（48字节）
-  _DAT_180c868d8 = FUN_18062b1e0(_DAT_180c8ed18,0x30,8,3);
-  *(int32_t *)(_DAT_180c868d8 + 0x19) = 0;
-  *(int16_t *)(_DAT_180c868d8 + 0x1d) = 0;
-  *(int8_t *)(_DAT_180c868d8 + 0x1f) = 0;
-  *(int32_t *)(_DAT_180c868d8 + 0x28) = 3;  // 调试级别
-  *(longlong *)_DAT_180c868d8 = _DAT_180c868d8;  // 自引用指针
-  *(longlong *)(_DAT_180c868d8 + 8) = _DAT_180c868d8;
-  *(uint64_t *)(_DAT_180c868d8 + 0x10) = 0;
-  *(int8_t *)(_DAT_180c868d8 + 0x18) = 0;
-  *(uint64_t *)(_DAT_180c868d8 + 0x20) = 0;
+  init_system_data_memory = FUN_18062b1e0(system_memory_pool_ptr,0x30,8,3);
+  *(int32_t *)(init_system_data_memory + 0x19) = 0;
+  *(int16_t *)(init_system_data_memory + 0x1d) = 0;
+  *(int8_t *)(init_system_data_memory + 0x1f) = 0;
+  *(int32_t *)(init_system_data_memory + 0x28) = 3;  // 调试级别
+  *(longlong *)init_system_data_memory = init_system_data_memory;  // 自引用指针
+  *(longlong *)(init_system_data_memory + 8) = init_system_data_memory;
+  *(uint64_t *)(init_system_data_memory + 0x10) = 0;
+  *(int8_t *)(init_system_data_memory + 0x18) = 0;
+  *(uint64_t *)(init_system_data_memory + 0x20) = 0;
   
   // 初始化输入系统（8字节）
-  _DAT_180c86910 = FUN_18062b1e0(_DAT_180c8ed18,8,4,3);
-  *(int32_t *)(_DAT_180c86910 + 4) = 0;
+  init_system_data_memory = FUN_18062b1e0(system_memory_pool_ptr,8,4,3);
+  *(int32_t *)(init_system_data_memory + 4) = 0;
   
   // 初始化音频系统（128字节）
-  pool_size = FUN_18062b1e0(_DAT_180c8ed18,0x80,8,3);
-  _DAT_180c86900 = FUN_18015c450(pool_size);
+  pool_size = FUN_18062b1e0(system_memory_pool_ptr,0x80,8,3);
+  init_system_data_memory = FUN_18015c450(pool_size);
   
   // 初始化线程池互斥锁（232字节）
-  mutex_handle = FUN_18062b1e0(_DAT_180c8ed18,0xe8,8,3);
+  mutex_handle = FUN_18062b1e0(system_memory_pool_ptr,0xe8,8,3);
   _Mtx_init_in_situ(mutex_handle,2);           // 主互斥锁
   _Mtx_init_in_situ(mutex_handle + 0x50,2);     // 次互斥锁
   
@@ -711,10 +711,10 @@ void initialize_system_core(void)
   *(uint64_t *)(mutex_handle + 0xd0) = 0;     // 完成任务数
   *(int32_t *)(mutex_handle + 0xd8) = 0x20; // 任务超时时间
   *(int32_t *)(mutex_handle + 0xe0) = 0;     // 线程优先级
-  _DAT_180c8a998 = mutex_handle;
+  init_system_data_memory = mutex_handle;
   
   // 初始化日志系统（112字节）
-  pool_size = FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3);
+  pool_size = FUN_18062b1e0(system_memory_pool_ptr,0x70,8,3);
   memset(pool_size,0,0x70);  // 清零初始化
 }
 
@@ -932,8 +932,8 @@ void emergency_exit_handler(uint64_t exit_context, int32_t exit_code)
   // 退出处理变量
   code *system_call_handler;  // 系统调用处理函数
   
-  if (_DAT_180c8f008 != 0) {
-    func_0x00018005a410(_DAT_180c8f008 + 8);  // 调用清理函数
+  if (system_cache_buffer != 0) {
+    func_0x00018005a410(system_cache_buffer + 8);  // 调用清理函数
   }
   Sleep(2000);  // 等待2秒确保清理完成
   _Exit(exit_code);  // 退出程序
@@ -965,10 +965,10 @@ void perform_system_cleanup(void)
   uint64_t register_value;  // 寄存器值
   uint64_t security_cookie;  // 安全cookie
   
-  config_data = _DAT_180c8a9d8;
+  config_data = init_system_data_memory;
   security_cookie = 0xfffffffffffffffe;
-  if (*_DAT_180c8a9d8 != '\0') {
-    cleanup_list = (uint64_t *)*_DAT_180c86960;
+  if (*init_system_data_memory != '\0') {
+    cleanup_list = (uint64_t *)*init_system_data_memory;
     lock_result = _Mtx_lock(0x180c91970);
     if (lock_result != 0) {
       __Throw_C_error_std__YAXH_Z(lock_result);  // 锁定失败，抛出异常

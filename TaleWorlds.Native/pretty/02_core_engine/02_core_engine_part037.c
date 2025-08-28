@@ -24,9 +24,9 @@
 #define INDEX_BUFFER_ALIGNMENT 0x800
 
 // 全局变量引用
-extern void* _DAT_180c86890;           // 渲染系统全局数据结构
-extern void* _DAT_180c86870;           // 渲染上下文数据
-extern void* _DAT_180c8ed18;           // 内存分配器上下文
+extern void* system_parameter_buffer;           // 渲染系统全局数据结构
+extern void* system_main_module_state;           // 渲染上下文数据
+extern void* system_memory_pool_ptr;           // 内存分配器上下文
 
 /**
  * 处理渲染管线数据
@@ -79,7 +79,7 @@ void process_render_pipeline_data(long long render_context, long long pipeline_d
     bool allocation_success;
     
     // 获取渲染系统全局数据
-    material_data = _DAT_180c86890;
+    material_data = system_parameter_buffer;
     buffer_offset = render_context;
     
     // 检查渲染状态标志
@@ -115,7 +115,7 @@ void process_render_pipeline_data(long long render_context, long long pipeline_d
         
         // 计算顶点缓冲区位置
         material_data = *(long long *)
-                  ((long long)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc30 +
+                  ((long long)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc30 +
                   (ulonglong)vertex_offset * 8);
         buffer_offset = (ulonglong)(texture_id + vertex_offset * -0x2000) * 0x40;
         
@@ -190,13 +190,13 @@ void process_render_pipeline_data(long long render_context, long long pipeline_d
     
     // 检查渲染状态变化
     material_data = *(long long *)(render_context + 600);
-    if (*(int *)(material_data + 0x28) != *(int *)(_DAT_180c86870 + 0x224)) {
+    if (*(int *)(material_data + 0x28) != *(int *)(system_main_module_state + 0x224)) {
         index_count = *(int *)(material_data + 0x1c) + *(int *)(material_data + 0x18);
-        *(int *)(material_data + 0x28) = *(int *)(_DAT_180c86870 + 0x224);
+        *(int *)(material_data + 0x28) = *(int *)(system_main_module_state + 0x224);
         
         if (0 < index_count) {
             // 计算顶点缓冲区基地址
-            buffer_offset = (long long)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
+            buffer_offset = (long long)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc28;
             matrix_index = FUN_180080380(buffer_offset, index_count);
             *(int *)(material_data + 0x30) = matrix_index;
             FUN_1800802e0(buffer_offset, matrix_index);
@@ -230,7 +230,7 @@ void process_render_pipeline_data(long long render_context, long long pipeline_d
                         *render_data = 0;
                     }
                     else {
-                        vertex_buffer = (long long *)FUN_18062b1e0(_DAT_180c8ed18, (long long)texture_index * 4);
+                        vertex_buffer = (long long *)FUN_18062b1e0(system_memory_pool_ptr, (long long)texture_index * 4);
                         *render_data = (long long)vertex_buffer;
                     }
                 }
@@ -306,8 +306,8 @@ void process_render_pipeline_data(long long render_context, long long pipeline_d
                 }
                 
                 // 处理索引缓冲区分页
-                index_buffer = (uint *)((long long)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 +
-                                  _DAT_180c86890 + 0x9d0);
+                index_buffer = (uint *)((long long)*(int *)(system_parameter_buffer + 0xc20) * 0x128 +
+                                  system_parameter_buffer + 0x9d0);
                 
                 if (index_count == 0) {
                     vertex_offset = (int)texture_index - 1;
@@ -330,7 +330,7 @@ void process_render_pipeline_data(long long render_context, long long pipeline_d
                         do {
                             material_id = (int)page_index;
                             if (*(long long *)index_ptr == 0) {
-                                long long new_buffer = FUN_18062b420(_DAT_180c8ed18, MEMORY_BLOCK_SIZE_8K, 0x25);
+                                long long new_buffer = FUN_18062b420(system_memory_pool_ptr, MEMORY_BLOCK_SIZE_8K, 0x25);
                                 LOCK();
                                 allocation_success = *(long long *)(index_buffer + (long long)material_id * 2 + 2) == 0;
                                 if (allocation_success) {
@@ -444,7 +444,7 @@ void process_render_pipeline_optimized(long long render_context)
     long long pipeline_data;  // 通过寄存器传递的参数
     
     // 获取渲染系统全局数据
-    material_data = _DAT_180c86890;
+    material_data = system_parameter_buffer;
     buffer_offset = render_context;
     
     // 检查零标志（优化路径）
@@ -480,7 +480,7 @@ void process_render_pipeline_optimized(long long render_context)
         
         // 计算顶点缓冲区位置
         material_data = *(long long *)
-                  ((long long)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc30 +
+                  ((long long)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc30 +
                   (ulonglong)vertex_offset * 8);
         buffer_offset = (ulonglong)(texture_id + vertex_offset * -0x2000) * 0x40;
         
@@ -555,13 +555,13 @@ void process_render_pipeline_optimized(long long render_context)
     
     // 检查渲染状态变化（优化版本）
     material_data = *(long long *)(render_context + 600);
-    if (*(int *)(material_data + 0x28) != *(int *)(_DAT_180c86870 + 0x224)) {
+    if (*(int *)(material_data + 0x28) != *(int *)(system_main_module_state + 0x224)) {
         index_count = *(int *)(material_data + 0x1c) + *(int *)(material_data + 0x18);
-        *(int *)(material_data + 0x28) = *(int *)(_DAT_180c86870 + 0x224);
+        *(int *)(material_data + 0x28) = *(int *)(system_main_module_state + 0x224);
         
         if (0 < index_count) {
             // 计算顶点缓冲区基地址
-            buffer_offset = (long long)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
+            buffer_offset = (long long)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc28;
             matrix_index = FUN_180080380(buffer_offset, index_count);
             *(int *)(material_data + 0x30) = matrix_index;
             FUN_1800802e0(buffer_offset, matrix_index);
@@ -594,7 +594,7 @@ void process_render_pipeline_optimized(long long render_context)
                         *render_data = 0;
                     }
                     else {
-                        vertex_buffer = (long long *)FUN_18062b1e0(_DAT_180c8ed18, (long long)texture_index * 4);
+                        vertex_buffer = (long long *)FUN_18062b1e0(system_memory_pool_ptr, (long long)texture_index * 4);
                         *render_data = (long long)vertex_buffer;
                     }
                 }
@@ -670,8 +670,8 @@ void process_render_pipeline_optimized(long long render_context)
                 }
                 
                 // 处理索引缓冲区分页（优化版本）
-                index_buffer = (uint *)((long long)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 +
-                                  _DAT_180c86890 + 0x9d0);
+                index_buffer = (uint *)((long long)*(int *)(system_parameter_buffer + 0xc20) * 0x128 +
+                                  system_parameter_buffer + 0x9d0);
                 
                 if (index_count == 0) {
                     vertex_offset = (int)texture_index - 1;
@@ -694,7 +694,7 @@ void process_render_pipeline_optimized(long long render_context)
                         do {
                             material_id = (int)page_index;
                             if (*(long long *)index_ptr == 0) {
-                                long long new_buffer = FUN_18062b420(_DAT_180c8ed18, MEMORY_BLOCK_SIZE_8K, 0x25);
+                                long long new_buffer = FUN_18062b420(system_memory_pool_ptr, MEMORY_BLOCK_SIZE_8K, 0x25);
                                 LOCK();
                                 allocation_success = *(long long *)(index_buffer + (long long)material_id * 2 + 2) == 0;
                                 if (allocation_success) {

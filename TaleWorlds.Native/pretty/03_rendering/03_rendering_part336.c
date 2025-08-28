@@ -272,7 +272,7 @@ void RenderingSystem_ObjectCleaner(longlong param_1)
     if (param_1 != 0) {
         // 初始化清理器
         FUN_180627910(&puStack_28);
-        FUN_1800b30d0(_DAT_180c86930, aplStackX_8, &puStack_28, 1);
+        FUN_1800b30d0(system_resource_state, aplStackX_8, &puStack_28, 1);
         FUN_180076910(param_1, aplStackX_8);
         
         // 清理对象
@@ -450,7 +450,7 @@ int32_t * RenderingSystem_DataProcessor1(int32_t *param_1, uint64_t param_2, uin
     FUN_180627910(&puStack_48);
     
     if (iStack_38 < 1) {
-        puVar2 = (uint64_t *)FUN_1800befa0(_DAT_180c86898, &plStackX_20);
+        puVar2 = (uint64_t *)FUN_1800befa0(render_system_data_config, &plStackX_20);
         plVar3 = (longlong *)*puVar2;
         *puVar2 = 0;
 LAB_18044751c:
@@ -463,7 +463,7 @@ LAB_18044751c:
         }
     }
     else {
-        plVar1 = (longlong *)FUN_1800b33d0(_DAT_180c86930, &plStackX_20, &puStack_48, param_4, uVar4, uVar5);
+        plVar1 = (longlong *)FUN_1800b33d0(system_resource_state, &plStackX_20, &puStack_48, param_4, uVar4, uVar5);
         plVar3 = (longlong *)*plVar1;
         *plVar1 = 0;
         if (plStackX_20 != (longlong *)0x0) {
@@ -471,7 +471,7 @@ LAB_18044751c:
         }
         if (plVar3 == (longlong *)0x0) {
             FUN_180627020(&unknown_var_9992_ptr, param_2);
-            puVar2 = (uint64_t *)FUN_1800befa0(_DAT_180c86898, &plStackX_20);
+            puVar2 = (uint64_t *)FUN_1800befa0(render_system_data_config, &plStackX_20);
             plVar3 = (longlong *)*puVar2;
             *puVar2 = 0;
             goto LAB_18044751c;
@@ -574,7 +574,7 @@ int32_t * RenderingSystem_ObjectCreator1(int32_t *param_1, int8_t param_2)
     int32_t uStack_14;
     
     // 创建对象
-    uVar2 = FUN_18062b1e0(_DAT_180c8ed18, 0x300, 0x10, 3, 0xfffffffffffffffe);
+    uVar2 = FUN_18062b1e0(system_memory_pool_ptr, 0x300, 0x10, 3, 0xfffffffffffffffe);
     plVar3 = (longlong *)FUN_180075030(uVar2, param_2, 1);
     
     if (plVar3 != (longlong *)0x0) {
@@ -622,7 +622,7 @@ int32_t * RenderingSystem_ObjectCreator2(int32_t *param_1, longlong *param_2)
     int32_t uStack_14;
     
     // 创建对象
-    uVar2 = FUN_18062b1e0(_DAT_180c8ed18, 0x300, 0x10, 3, 0xfffffffffffffffe);
+    uVar2 = FUN_18062b1e0(system_memory_pool_ptr, 0x300, 0x10, 3, 0xfffffffffffffffe);
     plVar3 = (longlong *)FUN_180075030(uVar2, 1);
     plStackX_10 = plVar3;
     
@@ -1190,7 +1190,7 @@ void RenderingSystem_ObjectProcessor(longlong *param_1)
         if ((void *)plStack_40[3] != (void *)0x0) {
             puVar3 = (void *)plStack_40[3];
         }
-        FUN_1800623b0(_DAT_180c86928, 0, 0x80000000000, 3, &unknown_var_5472_ptr, iVar2, puVar3, (int)plStack_38[0xc],
+        FUN_1800623b0(system_message_context, 0, 0x80000000000, 3, &unknown_var_5472_ptr, iVar2, puVar3, (int)plStack_38[0xc],
                       uVar4);
     }
     

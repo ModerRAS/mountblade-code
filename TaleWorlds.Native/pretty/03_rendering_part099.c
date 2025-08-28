@@ -336,14 +336,14 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
             }
             
             // 资源管理和状态处理
-            uVar26 = FUN_1800b33d0(_DAT_180c86930,&plStack_118,&puStack_108);
+            uVar26 = FUN_1800b33d0(system_resource_state,&plStack_118,&puStack_108);
             uStack_110 = 1;
             if (plStack_118 == (longlong *)0x0) {
                 if (((uint)uStack_f8 == 0xb) && (iVar13 = strcmp(lStack_100,&unknown_var_9000_ptr), iVar13 == 0)) {
                     uVar26 = FUN_180626ee0(&unknown_var_7584_ptr,&unknown_var_9000_ptr);
                 }
                 else {
-                    puVar14 = (uint64_t *)FUN_1800befa0(_DAT_180c86898,&plStack_c8);
+                    puVar14 = (uint64_t *)FUN_1800befa0(render_system_data_config,&plStack_c8);
                     plVar16 = (longlong *)*puVar14;
                     *puVar14 = 0;
                     plStack_120 = plStack_118;
@@ -414,7 +414,7 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
                     goto LAB_180326da7;
                 }
                 uStack_148 = 0;
-                plVar16 = (longlong *)FUN_1800b32c0(_DAT_180c86930,&plStack_120,plVar16 + 10,0);
+                plVar16 = (longlong *)FUN_1800b32c0(system_resource_state,&plStack_120,plVar16 + 10,0);
                 lVar17 = *plVar16;
                 uVar26 = extraout_XMM0_Da_01;
                 if (plStack_120 != (longlong *)0x0) {
@@ -446,7 +446,7 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
             *(int32_t *)(param_3 + 0x110) = uVar21;
             
             // 分配和初始化渲染资源
-            puVar14 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,3);
+            puVar14 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x20,8,3);
             *puVar14 = 0;
             *(int32_t *)(puVar14 + 1) = 0;
             *(int32_t *)((longlong)puVar14 + 0xc) = 0xffffffff;

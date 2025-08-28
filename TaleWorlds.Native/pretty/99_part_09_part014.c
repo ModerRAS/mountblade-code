@@ -53,14 +53,14 @@ LAB_1805c307a:
     *(int8_t *)(param_1 + 0x43d) = 1;
     *(int *)((longlong)param_1 + 0x21ec) = iVar1;
     if ((param_2 == 8) || (iVar1 == 8)) {
-      pcVar3 = *(code **)(_DAT_180c8ece0 + 200);
+      pcVar3 = *(code **)(system_system_data_config + 200);
       iVar1 = *(int *)(*param_1 + 0x18);
-      if ((iVar1 != 0) && (_DAT_180c8f008 != 0)) {
-        (**(code **)(_DAT_180c8f008 + 0x30))(iVar1);
+      if ((iVar1 != 0) && (system_cache_buffer != 0)) {
+        (**(code **)(system_cache_buffer + 0x30))(iVar1);
       }
       (*pcVar3)(iVar1,param_2 == 8);
-      if ((iVar1 != 0) && (_DAT_180c8f008 != 0)) {
-        (**(code **)(_DAT_180c8f008 + 0x18))(iVar1);
+      if ((iVar1 != 0) && (system_cache_buffer != 0)) {
+        (**(code **)(system_cache_buffer + 0x18))(iVar1);
       }
       uVar11 = (int)uStackX_18;
     }

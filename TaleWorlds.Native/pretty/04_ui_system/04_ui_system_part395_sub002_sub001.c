@@ -267,7 +267,7 @@ int UISystemAdvancedSubmoduleInitializer(void* system_context, void* config_para
     }
     
     // 分配UI管理器内存
-    manager = (UIManager*)FUN_18062b1e0(_DAT_180c8ed18, sizeof(UIManager), 0x10, 0xd);
+    manager = (UIManager*)FUN_18062b1e0(system_memory_pool_ptr, sizeof(UIManager), 0x10, 0xd);
     if (manager == NULL) {
         return 0x1c; // 错误码：内存分配失败
     }
@@ -282,7 +282,7 @@ int UISystemAdvancedSubmoduleInitializer(void* system_context, void* config_para
     manager->system_context = system_context;
     
     // 分配组件数组内存
-    memory_pool = FUN_18062b1e0(_DAT_180c8ed18, 
+    memory_pool = FUN_18062b1e0(system_memory_pool_ptr, 
         sizeof(UIComponent) * manager->max_components, 0x10, 0xd);
     if (memory_pool == NULL) {
         FUN_1808fc050(manager); // 释放管理器内存

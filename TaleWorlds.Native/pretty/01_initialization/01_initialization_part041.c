@@ -1024,16 +1024,16 @@ void perform_emergency_exit(uint64_t param1, uint64_t error_message)
 
 
 // 重命名的全局变量和常量
-#define global_thread_context _DAT_180c82868
-#define global_debug_system _DAT_180c8ed08
-#define global_semaphore_handle _DAT_180c91900
-#define global_log_system _DAT_180c86928
-#define global_system_object _DAT_180c86870
-#define global_config_data _DAT_180c868d0
-#define global_error_handler _DAT_180c86950
-#define global_error_report_system _DAT_180c8ed18
-#define global_module_state _DAT_180c86908
-#define global_exit_code _DAT_180c82854
+#define global_thread_context system_context_ptr
+#define global_debug_system init_system_data_buffer
+#define global_semaphore_handle init_system_buffer
+#define global_log_system system_message_context
+#define global_system_object system_main_module_state
+#define global_config_data init_system_data_buffer
+#define global_error_handler system_operation_state
+#define global_error_report_system system_memory_pool_ptr
+#define global_module_state system_module_state
+#define global_exit_code init_system_data_buffer
 
 #define debug_mode_enabled system_memory_aa69
 #define error_dialog_suppressed system_debug_flag2

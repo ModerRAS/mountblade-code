@@ -13,8 +13,8 @@
 #define UI_PROCESSING_CHUNK_SIZE 16
 
 // 全局变量定义
-#define UI_FLOAT_ARRAY_MAX _DAT_180a401b0
-#define UI_FLOAT_ARRAY_MIN _DAT_18094ed40
+#define UI_FLOAT_ARRAY_MAX ui_system_counter
+#define UI_FLOAT_ARRAY_MIN ui_system_counter
 
 // 函数别名定义
 #define ui_system_calculate_audio_data_size func_0x0001807104d0

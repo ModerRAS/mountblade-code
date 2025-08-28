@@ -849,7 +849,7 @@ ulonglong * create_array_structure(ulonglong size)
   if (size == 0) {
     return (ulonglong *)0x0;
   }
-  puVar1 = (ulonglong *)allocate_system_memory(_DAT_180c8ed18,size * 8 + MEMORY_ALLOC_BASE_SIZE,3);
+  puVar1 = (ulonglong *)allocate_system_memory(system_memory_pool_ptr,size * 8 + MEMORY_ALLOC_BASE_SIZE,3);
   *puVar1 = size << 0x20 | 8;
   iVar3 = 0;
   puVar2 = puVar1 + 2;

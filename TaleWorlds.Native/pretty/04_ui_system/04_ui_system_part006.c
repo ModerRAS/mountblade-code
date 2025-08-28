@@ -19,8 +19,8 @@
 // 12. 资源节点插入：ui_insert_resource_node - 插入UI系统的资源节点
 
 // 全局常量定义
-#define MEMORY_POOL_HANDLE      _DAT_180c8ed18
-#define RESOURCE_MANAGER_HANDLE _DAT_180c967f0
+#define MEMORY_POOL_HANDLE      system_memory_pool_ptr
+#define RESOURCE_MANAGER_HANDLE ui_system_buffer
 #define EMPTY_STRING_PTR       unknown_var_3456_ptr
 #define NULL_STRING_PTR        unknown_var_720_ptr
 #define ERROR_FORMAT_PTR       unknown_var_3432
@@ -52,7 +52,7 @@
 #define insert_resource_node    FUN_18066bdc0
 
 // 全局变量定义
-#define GLOBAL_MANAGER_CONTEXT _DAT_180c91038
+#define GLOBAL_MANAGER_CONTEXT ui_system_buffer
 #define STACK_POINTER_78        plStack_78
 #define STACK_POINTER_70        plStack_70
 #define STACK_POINTER_68        plStack_68
@@ -254,12 +254,12 @@ void ui_execute_resource_manager(longlong *manager_context)
   allocation_mode = 3;
   initialize_resource_stack(&STACK_POINTER_78);
   resource_collection = STACK_POINTER_70;
-  if (_DAT_180c91038 != (longlong *)0x0) {
+  if (ui_system_buffer != (longlong *)0x0) {
     resource_list = (uint64_t *)0x0;
     resource_end = (uint64_t *)0x0;
     resource_count_var = 0;
     temp_flag = 3;
-    (**(code **)(*_DAT_180c91038 + 0x18))(_DAT_180c91038, &resource_list);
+    (**(code **)(*ui_system_buffer + 0x18))(ui_system_buffer, &resource_list);
     temp_ptr = resource_list;
     next_resource = resource_end;
     resource_array = plStack_70;
@@ -327,7 +327,7 @@ void ui_execute_resource_manager(longlong *manager_context)
             if (resource_data == 0) {
               resource_data = 1;
 LAB_180656abd:
-              manager_ptr = (longlong *)FUN_18062b420(_DAT_180c8ed18, resource_data * 8, (int8_t)allocation_flag);
+              manager_ptr = (longlong *)FUN_18062b420(system_memory_pool_ptr, resource_data * 8, (int8_t)allocation_flag);
             }
             else {
               resource_data = resource_data * 2;
@@ -425,11 +425,11 @@ LAB_180656abd:
           array_size = array_size + 1;
         } while (resource_count < string_length);
       }
-      temp_buffer = _DAT_180c967f0;
-      if (_DAT_180c967f0 == (byte *)0x0) {
+      temp_buffer = ui_system_buffer;
+      if (ui_system_buffer == (byte *)0x0) {
 LAB_180656d5b:
         buffer_ptr = &system_memory_67e0;
-        char_buffer = _DAT_180c967f0;
+        char_buffer = ui_system_buffer;
         while (temp_string = buffer_ptr, char_buffer != (byte *)0x0) {
           if (string_length == 0) {
             comparison_result = false;
@@ -684,7 +684,7 @@ void ui_initialize_resource_loader(ulonglong *param_1)
           if (temp_long == 0) {
             temp_long = 1;
 LAB_1806572f9:
-            current_config = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, temp_long * 8, (char)param_1[3]);
+            current_config = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, temp_long * 8, (char)param_1[3]);
             prev_config = (uint64_t *)param_1[1];
             start_config = (uint64_t *)*param_1;
           }
@@ -818,7 +818,7 @@ ui_process_path_string(uint64_t param_1, uint64_t param_2, uint64_t param_3, uin
 void ui_cleanup_resource_cache(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
-  FUN_180657620(param_1, _DAT_180c967f0, param_3, param_4, 0xfffffffffffffffe);
+  FUN_180657620(param_1, ui_system_buffer, param_3, param_4, 0xfffffffffffffffe);
   return;
 }
 
@@ -843,8 +843,8 @@ uint64_t * ui_find_resource_by_name(uint64_t param_1, uint64_t *param_2, longlon
   uint64_t *current_resource;
   uint64_t *found_resource;
   
-  if (_DAT_180c967f0 != (uint64_t *)0x0) {
-    resource_ptr = _DAT_180c967f0;
+  if (ui_system_buffer != (uint64_t *)0x0) {
+    resource_ptr = ui_system_buffer;
     found_resource = (uint64_t *)&system_memory_67e0;
     do {
       if (*(int *)(param_3 + 0x10) == 0) {
@@ -950,13 +950,13 @@ ui_insert_resource_node(ulonglong param_1, uint64_t *param_2, uint64_t param_3, 
   ulonglong node_flags;
   uint64_t insert_flag;
   
-  if ((param_4 == _DAT_180c967e0) || (param_4 == (longlong *)&system_memory_67e0)) {
-    if ((_DAT_180c96800 != 0) && (*(int *)(param_5 + 0x10) != 0)) {
-      next_node = _DAT_180c967e0;
+  if ((param_4 == ui_system_buffer) || (param_4 == (longlong *)&system_memory_67e0)) {
+    if ((ui_system_buffer != 0) && (*(int *)(param_5 + 0x10) != 0)) {
+      next_node = ui_system_buffer;
       node_ptr = param_4;
-      if ((int)_DAT_180c967e0[6] != 0) {
+      if ((int)ui_system_buffer[6] != 0) {
         name_ptr = *(byte **)(param_5 + 8);
-        node_ptr = (longlong *)(_DAT_180c967e0[5] - (longlong)name_ptr);
+        node_ptr = (longlong *)(ui_system_buffer[5] - (longlong)name_ptr);
         do {
           char_val = *name_ptr;
           param_1 = (ulonglong)name_ptr[(longlong)node_ptr];
@@ -1012,7 +1012,7 @@ LAB_1806577da:
 LAB_1806577f1:
   comparison_result = true;
   new_node = (uint64_t *)&system_memory_67e0;
-  current_node = _DAT_180c967f0;
+  current_node = ui_system_buffer;
   while (current_node != (uint64_t *)0x0) {
     new_node = current_node;
     if (*(int *)(current_node + 6) == 0) {
@@ -1041,7 +1041,7 @@ LAB_180657812:
   }
   current_node = new_node;
   if (comparison_result) {
-    if (new_node != _DAT_180c96800) {
+    if (new_node != ui_system_buffer) {
       current_node = (uint64_t *)func_0x00018066b9a0(new_node);
       goto LAB_180657835;
     }
@@ -1085,7 +1085,7 @@ LAB_1806578a7:
   }
   insert_flag = 0;
 LAB_1806578f0:
-  name_offset = FUN_18062b420(_DAT_180c8ed18, 0x48, system_memory_6808);
+  name_offset = FUN_18062b420(system_memory_pool_ptr, 0x48, system_memory_6808);
   FUN_180627ae0(name_offset + 0x20, param_5);
   *(uint64_t *)(name_offset + 0x40) = 0;
   // 警告：子函数不返回

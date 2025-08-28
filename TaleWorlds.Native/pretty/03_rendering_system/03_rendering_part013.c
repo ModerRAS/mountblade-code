@@ -447,7 +447,7 @@ LAB_180276376:
           bone_array_length = *(longlong *)(bone_array_length + render_object[7]);
           if ((bone_array_length != 0) && ((*(uint *)(bone_array_length + 8 + render_object[7]) & bone_bitmask) != 0)) {
             if (((visibility_flags[0x6f6] & 0x20) != 0) && ((*(uint *)(bone_array_length + 0x100) & 0x400000) != 0)) {
-              *(int32_t *)(render_object + 0x65) = *(int32_t *)(_DAT_180c86870 + 0x224);
+              *(int32_t *)(render_object + 0x65) = *(int32_t *)(system_main_module_state + 0x224);
             }
             bone_visibility = FUN_180077750(bone_array_length, visibility_flags, &stack_float1, param_3, &stack_transform);
             bone_visibility = bone_visibility & bone_visibility;
@@ -486,7 +486,7 @@ LAB_180276376:
           bone_array_length = *(longlong *)(bone_array_length + render_object[7]);
           if ((bone_array_length != 0) && ((*(uint *)(bone_array_length + 8 + render_object[7]) & bone_bitmask) != 0)) {
             if (((visibility_flags[0x6f6] & 0x20) != 0) && ((*(uint *)(bone_array_length + 0x100) & 0x400000) != 0)) {
-              *(int32_t *)(render_object + 0x65) = *(int32_t *)(_DAT_180c86870 + 0x224);
+              *(int32_t *)(render_object + 0x65) = *(int32_t *)(system_main_module_state + 0x224);
             }
             if ((*(byte *)(bone_array_length + 0x100) & 0x20) == 0) {
               bone_visibility = FUN_180077750(bone_array_length, visibility_flags, transform_matrix, param_3, &stack_transform);
@@ -620,7 +620,7 @@ ulonglong process_vertex_transform_visibility(uint64_t param_1, uint64_t param_2
       if ((bone_ref != 0) && ((*(uint *)(unaff_RDI + 8 + unaff_RBX[7]) & unaff_R13D) != 0)) {
         if (((*(byte *)(unaff_RSI + 0x1bd8) & 0x20) != 0) &&
            ((*(uint *)(bone_ref + 0x100) & 0x400000) != 0)) {
-          *(int32_t *)(unaff_RBX + 0x65) = *(int32_t *)(_DAT_180c86870 + 0x224);
+          *(int32_t *)(unaff_RBX + 0x65) = *(int32_t *)(system_main_module_state + 0x224);
         }
         visibility_result = FUN_180077750();
         unaff_R14B = unaff_R14B & visibility_result;
@@ -689,7 +689,7 @@ ulonglong process_bone_visibility_simple(void)
       if ((bone_ref != 0) && ((*(uint *)(unaff_RDI + 8 + unaff_RBX[7]) & unaff_R13D) != 0)) {
         if (((*(byte *)(unaff_RSI + 0x1bd8) & 0x20) != 0) &&
            ((*(uint *)(bone_ref + 0x100) & 0x400000) != 0)) {
-          *(int32_t *)(unaff_RBX + 0x65) = *(int32_t *)(_DAT_180c86870 + 0x224);
+          *(int32_t *)(unaff_RBX + 0x65) = *(int32_t *)(system_main_module_state + 0x224);
         }
         bone_visibility = FUN_180077750();
         unaff_R14B = unaff_R14B & bone_visibility;
@@ -727,7 +727,7 @@ byte process_bone_array_visibility(void)
          ((*(uint *)(unaff_RDI + 8 + *(longlong *)(unaff_RBX + 0x38)) & unaff_R13D) != 0)) {
         if (((*(byte *)(unaff_RSI + 0x1bd8) & 0x20) != 0) &&
            ((*(uint *)(bone_ref + 0x100) & 0x400000) != 0)) {
-          *(int32_t *)(unaff_RBX + 0x328) = *(int32_t *)(_DAT_180c86870 + 0x224);
+          *(int32_t *)(unaff_RBX + 0x328) = *(int32_t *)(system_main_module_state + 0x224);
         }
         if ((*(byte *)(bone_ref + 0x100) & 0x20) == 0) {
           bone_visibility = FUN_180077750();

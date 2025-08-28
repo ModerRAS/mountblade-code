@@ -405,7 +405,7 @@ LAB_18030c93f:
                     
                     // 执行渲染资源清理
                     if (*(char *)(lVar10 + 0x14) != '\0') {
-                        FUN_1800f4980(_DAT_180c8a980,*(int32_t *)(lVar10 + 0x10),lVar10);
+                        FUN_1800f4980(render_system_data_memory,*(int32_t *)(lVar10 + 0x10),lVar10);
                     }
                     
                     // 资源清理和状态重置

@@ -53,7 +53,7 @@ void create_file_handle_with_completion_port(longlong engine_context, longlong f
       file_path = *(void **)(file_params + 8);
     }
     // 错误处理：文件创建失败
-    throw_file_error(_DAT_180c86928, &ERROR_FILE_CREATE_FAILED, file_path);
+    throw_file_error(system_message_context, &ERROR_FILE_CREATE_FAILED, file_path);
   }
   
   // 创建I/O完成端口
@@ -65,7 +65,7 @@ void create_file_handle_with_completion_port(longlong engine_context, longlong f
       file_path = *(void **)(file_params + 8);
     }
     // 错误处理：I/O完成端口创建失败
-    throw_file_error(_DAT_180c86928, &ERROR_COMPLETION_PORT_FAILED, file_path);
+    throw_file_error(system_message_context, &ERROR_COMPLETION_PORT_FAILED, file_path);
   }
   
   // 获取文件表互斥锁
@@ -87,14 +87,14 @@ void create_file_handle_with_completion_port(longlong engine_context, longlong f
       }
       
       // 准备错误信息
-      _DAT_00000018 = *(int32_t *)(file_params + 0x10);
+      init_system_buffer = *(int32_t *)(file_params + 0x10);
       file_path = &system_buffer_ptr;
       if (*(void **)(file_params + 8) != (void *)0x0) {
         file_path = *(void **)(file_params + 8);
       }
       
       // 复制文件路径到错误缓冲区
-      strcpy_s(_DAT_00000010, 0x100, file_path);
+      strcpy_s(init_system_buffer, 0x100, file_path);
       
       // 计算文件路径哈希值用于错误处理
       file_count = hash_value;
@@ -204,14 +204,14 @@ uint64_t allocate_buffer_and_read_file(longlong buffer_manager, longlong file_ha
         lock_result = ReadFile(*(uint64_t *)(file_handle + 0x128), read_buffer_ptr, aligned_size & 0xffffffff, 0, 0);
         if (lock_result != 0) {
           // 读取失败
-          throw_file_error(_DAT_180c86928, &ERROR_FILE_READ_FAILED);
+          throw_file_error(system_message_context, &ERROR_FILE_READ_FAILED);
         }
         
         // 检查错误状态
         lock_result = GetLastError();
         if (lock_result != 0x3e5) {  // ERROR_IO_PENDING
           // 读取过程中发生错误
-          throw_file_error(_DAT_180c86928, &ERROR_READ_OPERATION_FAILED, lock_result);
+          throw_file_error(system_message_context, &ERROR_READ_OPERATION_FAILED, lock_result);
         }
         
         read_result = 1;  // 读取成功
@@ -505,7 +505,7 @@ create_file_table_entry(longlong file_table_manager, longlong *file_entry, uint6
                                 *(int32_t *)(file_table_manager + 0x18), 1);
     
     // 分配新的文件表项内存
-    new_entry = allocate_memory_block(_DAT_180c8ed18, 0x128, *(int8_t *)(file_table_manager + 0x2c));
+    new_entry = allocate_memory_block(system_memory_pool_ptr, 0x128, *(int8_t *)(file_table_manager + 0x2c));
     
     // 初始化文件读取上下文
     initialize_file_read_context(new_entry, param_4);
@@ -516,7 +516,7 @@ create_file_table_entry(longlong file_table_manager, longlong *file_entry, uint6
     
     // 如果有扩展数据，分配并初始化
     if ((char)hash_key != '\0') {
-      extension_data = allocate_memory_block(_DAT_180c8ed18, (ulonglong)hash_key._4_4_ * 8 + 8, 8,
+      extension_data = allocate_memory_block(system_memory_pool_ptr, (ulonglong)hash_key._4_4_ * 8 + 8, 8,
                                             *(int8_t *)(file_table_manager + 0x2c));
       // WARNING: 子函数不返回
       memset(extension_data, 0, (ulonglong)hash_key._4_4_ * 8);
@@ -863,7 +863,7 @@ longlong memory_management_operation(longlong *target_block, longlong *source_bl
     else {
       if (operation_type == 1) {
         // 复制构造内存块
-        result = allocate_memory_block(_DAT_180c8ed18, 0x20, 8, system_allocation_flags);
+        result = allocate_memory_block(system_memory_pool_ptr, 0x20, 8, system_allocation_flags);
         source_value = *source_block;
         *(uint64_t *)(result + 0x10) = 0;
         *(code **)(result + 0x18) = _guard_check_icall;

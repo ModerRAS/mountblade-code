@@ -69,7 +69,7 @@ configure_engine_parameters(uint64_t *config_ptr,uint64_t param2,uint64_t param3
 {
   int32_t *instance_data;
   
-  *(int32_t *)(_DAT_180c8a980 + 0x2f8) = *(int32_t *)(_DAT_180c86870 + 0x224);
+  *(int32_t *)(core_system_data_config + 0x2f8) = *(int32_t *)(system_main_module_state + 0x224);
   *config_ptr = &unknown_var_720_ptr;
   config_ptr[1] = 0;
   *(int32_t *)(config_ptr + 2) = 0;
@@ -206,16 +206,16 @@ configure_engine_display_settings(uint64_t *param_1)
   ulonglong uStack_48;
   ulonglong uVar6;
   
-  lVar3 = _DAT_180c86950;
+  lVar3 = system_operation_state;
   uStack_b0 = 0xfffffffffffffffe;
   uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
   uVar6 = 0;
   uStack_b8 = 0;
-  lVar4 = *(longlong *)(_DAT_180c86950 + 0x1868);
+  lVar4 = *(longlong *)(system_operation_state + 0x1868);
   uVar7 = uVar6;
   uVar8 = uVar6;
   puStack_a8 = param_1;
-  if (*(longlong *)(_DAT_180c86950 + 0x1870) - lVar4 >> 3 != 0) {
+  if (*(longlong *)(system_operation_state + 0x1870) - lVar4 >> 3 != 0) {
     do {
       plVar1 = *(longlong **)(uVar8 + lVar4);
       if ((((*(char *)((longlong)plVar1 + 0xde) == '\0') &&
@@ -232,7 +232,7 @@ configure_engine_display_settings(uint64_t *param_1)
              (ulonglong)(*(longlong *)(lVar3 + 0x1870) - lVar4 >> 3));
     if (1 < (int)uVar7) {
                     // WARNING: Subroutine does not return
-      FUN_180062300(_DAT_180c86928,&unknown_var_1760_ptr);
+      FUN_180062300(system_message_context,&unknown_var_1760_ptr);
     }
   }
   *param_1 = &unknown_var_720_ptr;
@@ -285,9 +285,9 @@ uint64_t * initialize_engine_audio_system(uint64_t *param_1)
   longlong lVar3;
   int iVar4;
   
-  FUN_180176060(_DAT_180c8a9d0);
-  lVar3 = _DAT_180c8a9d0;
-  lVar1 = _DAT_180c8a9d0 + 0x100;
+  FUN_180176060(core_system_data_config);
+  lVar3 = core_system_data_config;
+  lVar1 = core_system_data_config + 0x100;
   iVar4 = _Mtx_lock(lVar1);
   if (iVar4 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar4);
@@ -489,13 +489,13 @@ create_engine_scene_manager(uint64_t *param_1,uint64_t param_2,uint64_t *param_3
   int8_t auStack_68 [32];
   int8_t auStack_48 [32];
   
-  uVar4 = _DAT_180c8aa08;
+  uVar4 = system_global_data_ptr;
   uStack_88 = 0xfffffffffffffffe;
   plStackX_20 = param_4;
   FUN_1806279c0(&puStack_a8,*param_3,param_3,(char)param_4,0);
   FUN_180627ae0(&puStack_c8,&puStack_a8);
-  uVar2 = _DAT_180c82868;
-  uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0xe0,8,3);
+  uVar2 = system_context_ptr;
+  uVar3 = FUN_18062b1e0(system_memory_pool_ptr,0xe0,8,3);
   puStack_80 = auStack_48;
   puStack_78 = &uStack_70;
   uStack_70 = uVar4;
@@ -601,10 +601,10 @@ create_engine_lighting_system(uint64_t *param_1,uint64_t param_2,uint64_t param_
   int32_t uVar5;
   uint64_t uVar6;
   
-  lVar2 = _DAT_180c868e8;
+  lVar2 = core_system_data_config;
   uVar6 = 0xfffffffffffffffe;
   uVar5 = 0;
-  for (lVar3 = *(longlong *)(_DAT_180c868e8 + 8); lVar3 != lVar2; lVar3 = func_0x00018066bd70(lVar3)
+  for (lVar3 = *(longlong *)(core_system_data_config + 8); lVar3 != lVar2; lVar3 = func_0x00018066bd70(lVar3)
       ) {
     iVar4 = 0;
     if (*(longlong *)(lVar3 + 0x30) - *(longlong *)(lVar3 + 0x28) >> 3 != 0) {
@@ -702,7 +702,7 @@ uint64_t process_engine_render_queue(uint64_t param_1,uint64_t param_2,longlong 
     puVar1 = &unknown_var_9908_ptr;
   }
   else {
-    FUN_18032c450(*(uint64_t *)(_DAT_180c86870 + 0x3d8));
+    FUN_18032c450(*(uint64_t *)(system_main_module_state + 0x3d8));
     puVar1 = &unknown_var_9916_ptr;
   }
   FUN_180627910(param_1,puVar1);
@@ -738,7 +738,7 @@ uint64_t manage_engine_texture_resources(uint64_t param_1,uint64_t param_2,longl
     uStack_20 = 0;
     puStack_30 = (void *)0x0;
     uStack_28 = 0;
-    FUN_180628420(&puStack_38,*(int32_t *)(*(longlong *)(_DAT_180c86870 + 0x3d8) + 0x160),param_3
+    FUN_180628420(&puStack_38,*(int32_t *)(*(longlong *)(system_main_module_state + 0x3d8) + 0x160),param_3
                   ,param_4,0,0xfffffffffffffffe);
     puVar4 = &system_buffer_ptr;
     if (puStack_30 != (void *)0x0) {
@@ -754,7 +754,7 @@ uint64_t manage_engine_texture_resources(uint64_t param_1,uint64_t param_2,longl
     puStack_38 = &unknown_var_720_ptr;
   }
   else {
-    lVar1 = *(longlong *)(_DAT_180c86870 + 0x3d8);
+    lVar1 = *(longlong *)(system_main_module_state + 0x3d8);
     uVar2 = atoi(*(uint64_t *)(*param_3 + 8));
     if (*(int *)(lVar1 + 0x110) == 3) {
       FUN_1803214c0(lVar1);
@@ -802,8 +802,8 @@ initialize_engine_shader_system(uint64_t *param_1,uint64_t param_2,uint64_t para
 {
   int32_t *puVar1;
   
-  FUN_180321e80(*(longlong *)(_DAT_180c86870 + 0x3d8),
-                1.0 / *(float *)(*(longlong *)(_DAT_180c86870 + 0x3d8) + 0x13c),param_3,param_4,0,
+  FUN_180321e80(*(longlong *)(system_main_module_state + 0x3d8),
+                1.0 / *(float *)(*(longlong *)(system_main_module_state + 0x3d8) + 0x13c),param_3,param_4,0,
                 0xfffffffffffffffe);
   *param_1 = &unknown_var_720_ptr;
   param_1[1] = 0;
@@ -842,7 +842,7 @@ create_engine_buffer_manager(uint64_t *param_1,uint64_t param_2,uint64_t param_3
   longlong lStack_20;
   int32_t uStack_10;
   
-  FUN_18032c0b0(*(uint64_t *)(_DAT_180c86870 + 0x3d8),&puStack_28,param_3,param_4,0,
+  FUN_18032c0b0(*(uint64_t *)(system_main_module_state + 0x3d8),&puStack_28,param_3,param_4,0,
                 0xfffffffffffffffe);
   puStack_28 = &unknown_var_3456_ptr;
   if (lStack_20 != 0) {
@@ -897,13 +897,13 @@ manage_engine_shader_parameters(uint64_t *param_1,uint64_t param_2,longlong *par
   iVar7 = 0;
   uStackX_20 = param_4;
   if ((param_3[1] - *param_3 & 0xffffffffffffffe0U) == 0) {
-    *(bool *)(*(longlong *)(_DAT_180c86870 + 0x3d8) + 0xae0) =
-         *(char *)(*(longlong *)(_DAT_180c86870 + 0x3d8) + 0xae0) == '\0';
+    *(bool *)(*(longlong *)(system_main_module_state + 0x3d8) + 0xae0) =
+         *(char *)(*(longlong *)(system_main_module_state + 0x3d8) + 0xae0) == '\0';
   }
   else {
     iVar5 = atoi(*(uint64_t *)(*param_3 + 8));
     uStackX_20 = CONCAT44(uStackX_20._4_4_,iVar5);
-    lVar2 = *(longlong *)(_DAT_180c86870 + 0x3d8);
+    lVar2 = *(longlong *)(system_main_module_state + 0x3d8);
     piVar3 = *(int **)(lVar2 + 0xac8);
     piVar6 = *(int **)(lVar2 + 0xac0);
     uVar8 = (longlong)piVar3 - (longlong)piVar6 >> 2;
@@ -1025,7 +1025,7 @@ create_engine_render_pipeline(uint64_t *param_1,uint64_t param_2,uint64_t param_
 {
   int32_t *puVar1;
   
-  *(int8_t *)(_DAT_180c86950 + 0x1610) = 1;
+  *(int8_t *)(system_operation_state + 0x1610) = 1;
   *param_1 = &unknown_var_720_ptr;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;
@@ -1060,8 +1060,8 @@ initialize_engine_framebuffer(uint64_t *param_1,uint64_t param_2,uint64_t param_
   int32_t *puVar1;
   longlong lVar2;
   
-  lVar2 = _DAT_180c8a988;
-  FUN_180058370(_DAT_180c8a988,*(uint64_t *)(_DAT_180c8a988 + 0x10),param_3,param_4,0,
+  lVar2 = core_system_data_config;
+  FUN_180058370(core_system_data_config,*(uint64_t *)(core_system_data_config + 0x10),param_3,param_4,0,
                 0xfffffffffffffffe);
   *(longlong *)lVar2 = lVar2;
   *(longlong *)(lVar2 + 8) = lVar2;
@@ -1101,7 +1101,7 @@ configure_engine_depth_buffer(uint64_t *param_1,uint64_t param_2,uint64_t param_
 {
   int32_t *puVar1;
   
-  *(int8_t *)(_DAT_180c86870 + 0x2a) = 0;
+  *(int8_t *)(system_main_module_state + 0x2a) = 0;
   *param_1 = &unknown_var_720_ptr;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;
@@ -1162,8 +1162,8 @@ create_engine_render_target(uint64_t *param_1,uint64_t param_2,uint64_t param_3,
   
   uVar2 = 0xfffffffffffffffe;
   uVar1 = 0;
-  if (*(longlong **)(_DAT_180c8ed08 + 0x18) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(_DAT_180c8ed08 + 0x18) + 0x50))();
+  if (*(longlong **)(core_system_data_config + 0x18) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(core_system_data_config + 0x18) + 0x50))();
   }
   *param_1 = &unknown_var_720_ptr;
   param_1[1] = 0;
@@ -1229,7 +1229,7 @@ uint64_t configure_engine_scissor_region(uint64_t param_1,uint64_t param_2,longl
   code *pcStack_28;
   
   plStackX_18 = param_3;
-  uVar1 = FUN_18062b1e0(_DAT_180c8ed18,0xe0,8,3,0,0xfffffffffffffffe);
+  uVar1 = FUN_18062b1e0(system_memory_pool_ptr,0xe0,8,3,0,0xfffffffffffffffe);
   plStackX_18 = alStack_40;
   alStack_40[0] = *param_4;
   puStack_30 = &unknown_var_6656_ptr;
@@ -1240,7 +1240,7 @@ uint64_t configure_engine_scissor_region(uint64_t param_1,uint64_t param_2,longl
     (**(code **)(*plVar2 + 0x28))(plVar2);
   }
   *(int32_t *)*param_4 = 1;
-  uVar1 = _DAT_180c82868;
+  uVar1 = system_context_ptr;
   plStackX_18 = plVar2;
   if (plVar2 != (longlong *)0x0) {
     (**(code **)(*plVar2 + 0x28))(plVar2);
@@ -1287,7 +1287,7 @@ initialize_engine_clear_operation(uint64_t param_1,uint64_t param_2,uint64_t par
 {
   void *puVar1;
   
-  if (*(int *)(_DAT_180c86908 + 0x3f0) == 0) {
+  if (*(int *)(system_module_state + 0x3f0) == 0) {
     puVar1 = &unknown_var_9688_ptr;
   }
   else {
@@ -1334,8 +1334,8 @@ create_engine_index_buffer(uint64_t *param_1,uint64_t param_2,uint64_t param_3,u
 {
   int32_t *puVar1;
   
-  if (*(int *)(_DAT_180c86890 + 8) == 1) {
-    *(int32_t *)(_DAT_180c86890 + 8) = 2;
+  if (*(int *)(system_parameter_buffer + 8) == 1) {
+    *(int32_t *)(system_parameter_buffer + 8) = 2;
   }
   *param_1 = &unknown_var_720_ptr;
   param_1[1] = 0;

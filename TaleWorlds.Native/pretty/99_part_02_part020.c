@@ -516,7 +516,7 @@ int32_t* FUN_1800f9010(int32_t *param_1, int32_t param_2, uint64_t param_3, int8
     _Mtx_init_in_situ(param_1 + 6, 2, param_3, param_4, LOCK_TIMEOUT_INFINITE);
     
     /* 分配资源 */
-    resource_ptr = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x18, 8, 3);
+    resource_ptr = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x18, 8, 3);
     *(int32_t *)((longlong)resource_ptr + 0x14) = 0;
     *resource_ptr = 0;
     resource_ptr[1] = 0;
@@ -577,12 +577,12 @@ void FUN_1800f9350(void)
     uint64_t cleanup_flag;
     
     /* 获取系统数据 */
-    system_data = _DAT_180c82868;
+    system_data = system_context_ptr;
     lock_timeout = LOCK_TIMEOUT_INFINITE;
     
     /* 检查系统状态 */
-    if ((_DAT_180c8a9c0 != 0) && 
-        (resource_ptr = *(longlong **)(_DAT_180c8a9c0 + 0x220), resource_ptr != (longlong *)0x0)) {
+    if ((system_system_data_config != 0) && 
+        (resource_ptr = *(longlong **)(system_system_data_config + 0x220), resource_ptr != (longlong *)0x0)) {
         
         /* 执行资源清理 */
         resource_ptr_ptr = &resource_ptr;
@@ -595,8 +595,8 @@ void FUN_1800f9350(void)
         FUN_18005e6a0(system_data, &resource_ptr, 0, cleanup_flag, lock_timeout);
         
         /* 清理资源引用 */
-        resource_ptr = *(longlong **)(_DAT_180c8a9c0 + 0x220);
-        *(uint64_t *)(_DAT_180c8a9c0 + 0x220) = 0;
+        resource_ptr = *(longlong **)(system_system_data_config + 0x220);
+        *(uint64_t *)(system_system_data_config + 0x220) = 0;
         
         /* 释放资源 */
         if (resource_ptr != (longlong *)0x0) {
@@ -707,8 +707,8 @@ uint64_t FUN_1800f93e0(uint64_t param_1, uint64_t param_2, uint64_t param_3, uin
     }
     
     /* 使用系统消息处理 */
-    if (*(char *)(_DAT_180c86928 + 0x18) != '\0') {
-        FUN_1800623b0(_DAT_180c86928, 3, 0xffffffff00000000, 0xd, &unknown_var_6936_ptr, param_3, param_2);
+    if (*(char *)(system_message_context + 0x18) != '\0') {
+        FUN_1800623b0(system_message_context, 3, 0xffffffff00000000, 0xd, &unknown_var_6936_ptr, param_3, param_2);
     }
     
     /* 根据标志返回结果 */

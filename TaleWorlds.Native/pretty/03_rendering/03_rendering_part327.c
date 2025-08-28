@@ -144,19 +144,19 @@ typedef struct {
 // ============================================================================
 
 /** 渲染系统全局数据指针 */
-extern uint64_t _DAT_180c8ed00;
+extern uint64_t render_system_data_config;
 
 /** 渲染系统状态指针 */
-extern uint64_t _DAT_180c8ed68;
+extern uint64_t render_system_data_config;
 
 /** 渲染系统备用数据指针 */
-extern uint64_t _DAT_180c8ed08;
+extern uint64_t render_system_data_config;
 
 /** 渲染系统配置数据指针 */
-extern uint64_t _DAT_180c8ed18;
+extern uint64_t system_memory_pool_ptr;
 
 /** 渲染系统地址常量 */
-extern uint64_t _DAT_180c86928;
+extern uint64_t system_message_context;
 
 /** 渲染系统魔数地址 */
 extern uint64_t GET_SECURITY_COOKIE();
@@ -212,7 +212,7 @@ void FUN_18043bff0(uint64_t param_1)
     longlong *plVar1;
     
     // 获取系统句柄
-    plVar1 = (longlong *)(**(code **)(*_DAT_180c8ed00 + RENDERING_SYSTEM_OFFSET_0X70))(_DAT_180c8ed00, &system_memory_cc18);
+    plVar1 = (longlong *)(**(code **)(*render_system_data_config + RENDERING_SYSTEM_OFFSET_0X70))(render_system_data_config, &system_memory_cc18);
     
     // WARNING: 无法恢复0x00018043c01b处的跳转表，分支过多
     // WARNING: 将间接跳转作为调用处理
@@ -256,9 +256,9 @@ void FUN_18043c020(int32_t *param_1, int32_t *param_2, int32_t param_3, int8_t p
     uStack_1c = param_2[3];
     
     // 检查渲染系统状态
-    if (*(char *)(_DAT_180c8ed68 + RENDERING_SYSTEM_OFFSET_0X50) != '\0') {
+    if (*(char *)(render_system_data_config + RENDERING_SYSTEM_OFFSET_0X50) != '\0') {
         auStackX_18[0] = param_3;
-        FUN_180636790(_DAT_180c8ed68, &uStack_18, &uStack_28, auStackX_18, param_4);
+        FUN_180636790(render_system_data_config, &uStack_18, &uStack_28, auStackX_18, param_4);
     }
     return;
 }
@@ -295,7 +295,7 @@ void FUN_18043c060(int32_t *param_1, uint64_t *param_2, int32_t param_3, int8_t 
     uStack_c = param_1[3];
     
     // 调用矩阵处理函数
-    FUN_180633110(_DAT_180c8ed68, &uStack_18, &uStack_28, param_3, param_4, param_5);
+    FUN_180633110(render_system_data_config, &uStack_18, &uStack_28, param_3, param_4, param_5);
     return;
 }
 
@@ -325,7 +325,7 @@ void FUN_18043c0b0(int32_t *param_1, int32_t param_2, int32_t param_3, int8_t pa
     uStack_c = param_1[3];
     
     // 调用向量处理函数
-    FUN_1806345f0(_DAT_180c8ed68, &uStack_18, param_2, param_3, param_4, param_5);
+    FUN_1806345f0(render_system_data_config, &uStack_18, param_2, param_3, param_4, param_5);
     return;
 }
 
@@ -362,7 +362,7 @@ void FUN_18043c0f0(int32_t *param_1, uint64_t *param_2, int32_t param_3, int32_t
     uStack_c = param_1[3];
     
     // 调用渲染队列处理函数
-    FUN_1806336a0(_DAT_180c8ed68, &uStack_18, &uStack_28, param_3, param_4, param_5, param_6);
+    FUN_1806336a0(render_system_data_config, &uStack_18, &uStack_28, param_3, param_4, param_5, param_6);
     return;
 }
 
@@ -399,7 +399,7 @@ void FUN_18043c160(int32_t *param_1, uint64_t param_2, int32_t param_3, int32_t 
     uStack_38 = param_1[2];
     uStack_34 = param_1[3];
     uStackX_8 = param_4;
-    FUN_180632d00(_DAT_180c8ed68, &uStack_40, &puStack_30, param_3, &uStackX_8, param_6, uVar1);
+    FUN_180632d00(render_system_data_config, &uStack_40, &puStack_30, param_3, &uStackX_8, param_6, uVar1);
     puStack_30 = &global_state_3456_ptr;
     if (lStack_28 != 0) {
         // WARNING: 子函数不返回
@@ -460,7 +460,7 @@ void FUN_18043c290(int32_t param_1, int32_t param_2, int32_t param_3, int32_t pa
     uStack_1c = param_4;
     
     // 调用渲染处理函数
-    FUN_1806371f0(_DAT_180c8ed68 + RENDERING_SYSTEM_OFFSET_0X158, &uStack_28);
+    FUN_1806371f0(render_system_data_config + RENDERING_SYSTEM_OFFSET_0X158, &uStack_28);
     return;
 }
 
@@ -492,7 +492,7 @@ void FUN_18043c2e0(int32_t param_1, int32_t param_2, int32_t param_3, int32_t pa
     uStack_1c = param_4;
     
     // 调用扩展处理函数
-    FUN_1806371f0(_DAT_180c8ed68 + RENDERING_SYSTEM_OFFSET_0X158, &uStack_28);
+    FUN_1806371f0(render_system_data_config + RENDERING_SYSTEM_OFFSET_0X158, &uStack_28);
     return;
 }
 
@@ -508,7 +508,7 @@ void FUN_18043c350(void)
     code *pcVar1;
     
     // 初始化渲染核心
-    func_0x0001800624b0(_DAT_180c86928);
+    func_0x0001800624b0(system_message_context);
     FUN_180055f70();
     
     // 执行系统调用
@@ -591,7 +591,7 @@ void FUN_18043c3b0(int32_t *param_1, int32_t *param_2, int32_t param_3, int8_t p
     int32_t uStack_20;
     ulonglong uStack_18;
     
-    lVar1 = _DAT_180c8ed68;
+    lVar1 = render_system_data_config;
     uStack_a8 = INVALID_HANDLE;
     uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_f8;
     uStack_b8 = *param_2;
@@ -604,9 +604,9 @@ void FUN_18043c3b0(int32_t *param_1, int32_t *param_2, int32_t param_3, int8_t p
     uStack_bc = param_1[3];
     
     // 检查渲染系统状态
-    if (*(char *)(_DAT_180c8ed68 + RENDERING_SYSTEM_OFFSET_0X50) != '\0') {
-        lStack_a0 = _DAT_180c8ed68;
-        iVar2 = _Mtx_lock(_DAT_180c8ed68);
+    if (*(char *)(render_system_data_config + RENDERING_SYSTEM_OFFSET_0X50) != '\0') {
+        lStack_a0 = render_system_data_config;
+        iVar2 = _Mtx_lock(render_system_data_config);
         if (iVar2 != SUCCESS_STATUS) {
             __Throw_C_error_std__YAXH_Z(iVar2);
         }
@@ -690,7 +690,7 @@ void FUN_18043c510(uint64_t *param_1, uint64_t *param_2, uint64_t *param_3, int3
     int8_t auStack_98[BUFFER_SIZE_128];
     ulonglong uStack_18;
     
-    lVar1 = _DAT_180c8ed68;
+    lVar1 = render_system_data_config;
     uStack_108 = INVALID_HANDLE;
     uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_138;
     uStack_f8 = *param_2;
@@ -711,9 +711,9 @@ void FUN_18043c510(uint64_t *param_1, uint64_t *param_2, uint64_t *param_3, int3
     uStack_9c = *(int32_t *)((longlong)param_3 + 0x3c);
     
     // 检查渲染系统状态
-    if (*(char *)(_DAT_180c8ed68 + RENDERING_SYSTEM_OFFSET_0X50) != '\0') {
-        lStack_100 = _DAT_180c8ed68;
-        iVar2 = _Mtx_lock(_DAT_180c8ed68);
+    if (*(char *)(render_system_data_config + RENDERING_SYSTEM_OFFSET_0X50) != '\0') {
+        lStack_100 = render_system_data_config;
+        iVar2 = _Mtx_lock(render_system_data_config);
         if (iVar2 != SUCCESS_STATUS) {
             __Throw_C_error_std__YAXH_Z(iVar2);
         }
@@ -745,8 +745,8 @@ void FUN_18043c510(uint64_t *param_1, uint64_t *param_2, uint64_t *param_3, int3
  */
 void FUN_18043c6b0(uint64_t param_1, uint64_t param_2, uint64_t param_3, int32_t param_4)
 {
-    (**(code **)(*(longlong *)*_DAT_180c8ed08 + VTABLE_OFFSET_PARAM_PROCESS_0X20))
-            ((longlong *)*_DAT_180c8ed08, param_2, param_4, param_1, 0, 1);
+    (**(code **)(*(longlong *)*render_system_data_config + VTABLE_OFFSET_PARAM_PROCESS_0X20))
+            ((longlong *)*render_system_data_config, param_2, param_4, param_1, 0, 1);
     return;
 }
 
@@ -764,8 +764,8 @@ void FUN_18043c6b0(uint64_t param_1, uint64_t param_2, uint64_t param_3, int32_t
  */
 void FUN_18043c6e0(uint64_t param_1, uint64_t param_2, uint64_t param_3, int32_t param_4, int8_t param_5)
 {
-    (**(code **)(*(longlong *)*_DAT_180c8ed08 + VTABLE_OFFSET_PARAM_PROCESS_0X28))
-            ((longlong *)*_DAT_180c8ed08, param_2, param_4, param_1, param_5, 1);
+    (**(code **)(*(longlong *)*render_system_data_config + VTABLE_OFFSET_PARAM_PROCESS_0X28))
+            ((longlong *)*render_system_data_config, param_2, param_4, param_1, param_5, 1);
     return;
 }
 
@@ -845,7 +845,7 @@ int32_t *FUN_18043c820(int32_t *param_1, longlong param_2)
     int32_t uStack_14;
     
     // 分配资源内存
-    uVar2 = FUN_18062b1e0(_DAT_180c8ed18, 0x298, MEMORY_ALIGNMENT_8, 3, INVALID_HANDLE);
+    uVar2 = FUN_18062b1e0(system_memory_pool_ptr, 0x298, MEMORY_ALIGNMENT_8, 3, INVALID_HANDLE);
     plVar3 = (longlong *)FUN_1802f5f70(uVar2);
     if (plVar3 != (longlong *)0x0) {
         (**(code **)(*plVar3 + VTABLE_OFFSET_PROCESS_DATA))(plVar3);

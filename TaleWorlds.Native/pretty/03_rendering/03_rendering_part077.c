@@ -63,7 +63,7 @@ void rendering_system_process_render_objects_batch(longlong *render_context, uin
       goto memory_allocation_complete;
     }
   }
-  allocated_memory = FUN_18062b420(_DAT_180c8ed18, batch_size * RENDER_OBJECT_POOL_SIZE, (char)render_context[3]);
+  allocated_memory = FUN_18062b420(system_memory_pool_ptr, batch_size * RENDER_OBJECT_POOL_SIZE, (char)render_context[3]);
   context_start = render_context[1];
   context_end = *render_context;
 memory_allocation_complete:
@@ -248,7 +248,7 @@ uint64_t *rendering_system_initialize_render_object_controller(uint64_t *control
   controller_ptr[0x39] = 0;
   *(int8_t *)(controller_ptr + 0x3a) = 0;
   controller_ptr[0x3b] = 0;
-  object_ptr = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x20, 8, 3);
+  object_ptr = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x20, 8, 3);
   *object_ptr = 0;
   object_ptr[1] = 0;
   object_ptr[2] = 0;
@@ -263,17 +263,17 @@ uint64_t *rendering_system_initialize_render_object_controller(uint64_t *control
     ((**(code **)(*temp_ptr + 0x38))();
   }
   *(int32_t *)((longlong)controller_ptr + 0xcc) = 0;
-  temp_var = _DAT_180c86880;
-  if (_DAT_180c86880 == 0) {
+  temp_var = render_system_data_resource;
+  if (render_system_data_resource == 0) {
     return controller_ptr;
   }
-  object_ptr = *(uint64_t **)(_DAT_180c86880 + 0x20);
-  if (object_ptr < *(uint64_t **)(_DAT_180c86880 + 0x28)) {
-    *(uint64_t **)(_DAT_180c86880 + 0x20) = object_ptr + 1;
+  object_ptr = *(uint64_t **)(render_system_data_resource + 0x20);
+  if (object_ptr < *(uint64_t **)(render_system_data_resource + 0x28)) {
+    *(uint64_t **)(render_system_data_resource + 0x20) = object_ptr + 1;
     *object_ptr = controller_ptr;
     return controller_ptr;
   }
-  temp_ptr3 = *(uint64_t **)(_DAT_180c86880 + 0x18);
+  temp_ptr3 = *(uint64_t **)(render_system_data_resource + 0x18);
   loop_var = (longlong)object_ptr - (longlong)temp_ptr3 >> 3;
   if (loop_var == 0) {
     loop_var = 1;
@@ -282,7 +282,7 @@ uint64_t *rendering_system_initialize_render_object_controller(uint64_t *control
     loop_var = loop_var * 2;
     if (loop_var == 0) goto memory_allocation_complete;
   }
-  temp_ptr2 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, loop_var * 8, *(int8_t *)(_DAT_180c86880 + 0x30));
+  temp_ptr2 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, loop_var * 8, *(int8_t *)(render_system_data_resource + 0x30));
   object_ptr = *(uint64_t **)(temp_var + 0x20);
   temp_ptr3 = *(uint64_t **)(temp_var + 0x18);
 memory_allocation_complete:
@@ -337,9 +337,9 @@ void rendering_system_cleanup_render_object_controller(uint64_t *controller_ptr)
   
   *controller_ptr = &unknown_var_5008_ptr;
   index = 0;
-  if (_DAT_180c86880 != 0) {
-    object_ptr = *(uint64_t **)(_DAT_180c86880 + 0x20);
-    temp_ptr = *(uint64_t **)(_DAT_180c86880 + 0x18);
+  if (render_system_data_resource != 0) {
+    object_ptr = *(uint64_t **)(render_system_data_resource + 0x20);
+    temp_ptr = *(uint64_t **)(render_system_data_resource + 0x18);
     loop_var = (longlong)object_ptr - (longlong)temp_ptr >> 3;
     array_size = index;
     array_ptr = temp_ptr;
@@ -351,7 +351,7 @@ void rendering_system_cleanup_render_object_controller(uint64_t *controller_ptr)
             memmove(temp_ptr + (int)array_size, array_ptr, (longlong)object_ptr - (longlong)array_ptr,
                     (longlong)object_ptr - (longlong)array_ptr, RENDER_OBJECT_FLAG_MASK);
           }
-          *(uint64_t **)(_DAT_180c86880 + 0x20) = object_ptr + -1;
+          *(uint64_t **)(render_system_data_resource + 0x20) = object_ptr + -1;
           break;
         }
         loop_counter = (int)array_size + 1;
@@ -459,7 +459,7 @@ uint64_t rendering_system_create_render_object_manager(longlong manager_handle)
   longlong *manager_ptr;
   longlong *temp_ptr;
   
-  manager_ptr = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 200, 8, 3, RENDER_OBJECT_FLAG_MASK);
+  manager_ptr = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, 200, 8, 3, RENDER_OBJECT_FLAG_MASK);
   FUN_180049830(manager_ptr);
   *manager_ptr = (longlong)&unknown_var_5304_ptr;
   manager_ptr[0x18] = manager_handle;
@@ -470,7 +470,7 @@ uint64_t rendering_system_create_render_object_manager(longlong manager_handle)
   if (temp_ptr != (longlong *)0x0) {
     ((**(code **)(*temp_ptr + 0x38))();
   }
-  return_value = _DAT_180c82868;
+  return_value = system_context_ptr;
   temp_ptr = *(longlong **)(manager_handle + 0x1b0);
   if (temp_ptr != (longlong *)0x0) {
     ((**(code **)(*temp_ptr + 0x28))());
@@ -525,7 +525,7 @@ void rendering_system_process_render_objects_batch_helper(longlong render_contex
   
   object_count = 0;
   object_array = *(longlong *)(render_context + 0xc0);
-  render_manager = *(uint64_t *)(_DAT_180c86880 + 0x38);
+  render_manager = *(uint64_t *)(render_system_data_resource + 0x38);
   array_index = object_count;
   if ((*(longlong **)(object_array + 0x110))[1] - **(longlong **)(object_array + 0x110) >> 3 != 0) {
     do {
@@ -746,7 +746,7 @@ void rendering_system_add_render_object_to_queue(longlong render_context, longlo
   queue_ptr = *(longlong **)(render_context + 0x110);
   new_entry = (longlong *)0x0;
   if (*queue_ptr != queue_ptr[1]) goto LAB_18030d811;
-  temp_ptr = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x28, 8, CONCAT71((int7)((ulonglong)queue_ptr >> 8), 3));
+  temp_ptr = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, 0x28, 8, CONCAT71((int7)((ulonglong)queue_ptr >> 8), 3));
   new_entry = temp_ptr + 1;
   *new_entry = 0;
   temp_ptr[2] = 0;
@@ -764,7 +764,7 @@ void rendering_system_add_render_object_to_queue(longlong render_context, longlo
   if (data_ptr == 0) {
     data_ptr = 1;
 LAB_18030d7a4:
-    new_entry = (longlong *)FUN_18062b420(_DAT_180c8ed18, data_ptr * 8, (char)array_ptr[3]);
+    new_entry = (longlong *)FUN_18062b420(system_memory_pool_ptr, data_ptr * 8, (char)array_ptr[3]);
     queue_ptr = (longlong *)array_ptr[1];
     existing_entry = (longlong *)*array_ptr;
   }
@@ -893,7 +893,7 @@ void rendering_system_render_objects_with_parameters(uint64_t render_context, lo
         *(float *)(object_handle + 0x244) = (float)((uint)position_offset >> 0x18) * 0.003921569;
         if (*(longlong *)(object_handle + 0x2c8) == 0) {
           *(uint *)(object_handle + 0x100) = *(uint *)(object_handle + 0x100) | 8;
-          color_data = FUN_18062b1e0(_DAT_180c8ed18, RENDER_OBJECT_DATA_SIZE, 4, 9);
+          color_data = FUN_18062b1e0(system_memory_pool_ptr, RENDER_OBJECT_DATA_SIZE, 4, 9);
           memset(color_data, 0, RENDER_OBJECT_DATA_SIZE);
         }
         transform_matrix[0x1b] = texture_coord[-7] - texture_coord[-9];

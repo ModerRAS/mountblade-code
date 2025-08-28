@@ -186,7 +186,7 @@ void ui_system_simd_processor(void)
     auVar48[0] = (int8_t)uVar2;
     auVar48[1] = (char)uVar1;
     auVar47 = *(int8_t (*) [16])((ulonglong)(unaff_EBX & 0xf) * 0x10 + in_stack_00000070);
-    auVar16 = pshufb(auVar47,_DAT_180946f70);
+    auVar16 = pshufb(auVar47,ui_system_config);
     auVar56 = pmaddubsw(auVar48,auVar16);
     uVar1 = *(uint64_t *)((longlong)puVar13 + unaff_R14 * 5);
     uVar2 = *(ulonglong *)((longlong)puVar13 + unaff_R14 * 6);
@@ -226,7 +226,7 @@ void ui_system_simd_processor(void)
     auVar46[2] = (char)(uVar3 >> 8);
     auVar46[0] = (int8_t)uVar3;
     auVar46[1] = (char)uVar1;
-    auVar16 = pshufb(auVar47,_DAT_180946f90);
+    auVar16 = pshufb(auVar47,ui_system_config);
     auVar46 = pmaddubsw(auVar46,auVar16);
     uVar1 = *(uint64_t *)(unaff_R14 * 7 + (longlong)puVar13);
     auVar37._8_6_ = 0;
@@ -265,8 +265,8 @@ void ui_system_simd_processor(void)
     auVar38[2] = (char)(uVar2 >> 8);
     auVar38[0] = (int8_t)uVar2;
     auVar38[1] = (char)uVar1;
-    auVar16 = pshufb(auVar47,_DAT_180946fa0);
-    auVar47 = pshufb(auVar47,_DAT_180946f40);
+    auVar16 = pshufb(auVar47,ui_system_config);
+    auVar47 = pshufb(auVar47,ui_system_config);
     auVar38 = pmaddubsw(auVar38,auVar16);
     uVar1 = *(uint64_t *)((longlong)puVar13 + unaff_R14);
     auVar30._8_6_ = 0;
@@ -341,7 +341,7 @@ void ui_system_simd_processor(void)
     auVar16 = paddsw(auVar38,auVar16);
     auVar47 = paddsw(auVar16,auVar47);
     auVar47 = paddsw(auVar47,auVar56);
-    auVar47 = pmulhrsw(auVar47,_DAT_180946f30);
+    auVar47 = pmulhrsw(auVar47,ui_system_config);
     sVar5 = auVar47._0_2_;
     sVar6 = auVar47._2_2_;
     sVar7 = auVar47._4_2_;
@@ -888,9 +888,9 @@ void ui_system_control_state_updater(longlong param_1,longlong param_2,int32_t *
   int8_t in_XMM5 [16];
   int8_t unaff_XMM6 [16];
   
-  auVar11 = _DAT_180946f20;
-  auVar10 = _DAT_180946ed0;
-  auVar9 = _DAT_180946ec0;
+  auVar11 = ui_system_config;
+  auVar10 = ui_system_config;
+  auVar9 = ui_system_config;
   auVar21 = packsswb(*param_6,*param_6);
   auVar15 = pshuflw(in_XMM0,auVar21,0);
   auVar21 = pshuflw(auVar21,auVar21,0xaa);

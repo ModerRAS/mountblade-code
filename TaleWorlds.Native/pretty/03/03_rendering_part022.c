@@ -123,7 +123,7 @@ LAB_18027c7bb:
       }
       FUN_180630b20(render_context_ptr, component_data_ptr, &system_buffer_3a84, string_ptr2);
     }
-    stack_mesh_ptr = (uint64_t *)FUN_1800b6de0(_DAT_180c86930, mesh_component_ptr + 0x3e, 1);
+    stack_mesh_ptr = (uint64_t *)FUN_1800b6de0(system_resource_state, mesh_component_ptr + 0x3e, 1);
     if (stack_mesh_ptr == (uint64_t *)0x0) {
       return;
     }
@@ -301,7 +301,7 @@ LAB_18027c801:
               int_val = 0x10;
             }
             stack_char_ptr2 = data_ptr;
-            data_ptr = (int8_t *)FUN_18062b420(_DAT_180c8ed18, (longlong)int_val, 0x13);
+            data_ptr = (int8_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)int_val, 0x13);
             *data_ptr = 0;
             ulong_val = (ulonglong)data_ptr & 0xffffffffffc00000;
             if (ulong_val == 0) {
@@ -431,7 +431,7 @@ LAB_18027cd98:
                       int_val2 = 0x10;
                     }
                     stack_char_ptr2 = (int8_t *)
-                                 FUN_18062b420(_DAT_180c8ed18, (longlong)int_val2, 0x13);
+                                 FUN_18062b420(system_memory_pool_ptr, (longlong)int_val2, 0x13);
                     *stack_char_ptr2 = 0;
                     uint_val = FUN_18064e990(stack_char_ptr2);
                     stack_ulong2 = CONCAT44(stack_ulong2._4_4_, uint_val);
@@ -747,7 +747,7 @@ LAB_18027d492:
   path_length = index;
   
   // 创建文件句柄
-  file_handle = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x18, 8, 3);
+  file_handle = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x18, 8, 3);
   data_ptr = &system_buffer_ptr;
   if (path_ptr != (void *)0x0) {
     data_ptr = path_ptr;
@@ -781,7 +781,7 @@ LAB_18027d492:
       file_offset = temp_size;
       header_array[0] = *(int *)(temp_size + 0x60);
       fwrite(header_array, 4, 1, file_handle[1]);
-      buffer_ptr = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18, (longlong)header_array[0] << 2, 0x10);
+      buffer_ptr = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr, (longlong)header_array[0] << 2, 0x10);
       index = 0;
       if (0 < header_array[0]) {
         mesh_offset = 0;

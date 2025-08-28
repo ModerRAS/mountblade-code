@@ -85,7 +85,7 @@ void InitializationSystem_ConfigRegistrationManager1(void)
   auStack_88[0] = 0;
   uStack_90 = 0x16;
   strcpy_s(auStack_88,0x80,&unknown_var_7304_ptr,in_R9,0xfffffffffffffffe);
-  _DAT_180c91f68 = FUN_180623800(&puStack_a0);
+  init_system_ui = FUN_180623800(&puStack_a0);
   return;
 }
 
@@ -115,8 +115,8 @@ int InitializationSystem_GlobalDataInitializer1(void)
   longlong lVar1;
   uint64_t in_R9;
   
-  _DAT_180bf91b0 = &unknown_var_3480_ptr;
-  _DAT_180bf91b8 = &system_memory_91c8;
+  init_system_control_ui = &unknown_var_3480_ptr;
+  init_system_control_ui = &system_memory_91c8;
   
   return lVar1;
 }
@@ -758,7 +758,7 @@ void InitializationSystem_ConfigRegistrationManager2(void)
   auStack_88[0] = 0;
   uStack_90 = 0x12;
   strcpy_s(auStack_88,0x80,&unknown_var_4992_ptr,in_R9,0xfffffffffffffffe);
-  _DAT_180c91f6c = FUN_180623800(&puStack_a0);
+  init_system_ui = FUN_180623800(&puStack_a0);
   return;
 }
 
@@ -796,7 +796,7 @@ void InitializationSystem_ConfigRegistrationManager3(void)
   auStack_88[0] = 0;
   uStack_90 = 8;
   strcpy_s(auStack_88,0x80,&unknown_var_6248_ptr,in_R9,0xfffffffffffffffe);
-  _DAT_180c91fcc = FUN_180623800(&puStack_a0);
+  init_system_ui = FUN_180623800(&puStack_a0);
   return;
 }
 
@@ -1295,8 +1295,8 @@ int InitializationSystem_GlobalDataInitializer2(void)
   longlong lVar1;
   uint64_t in_R9;
   
-  _DAT_180bfa350 = &unknown_var_3432_ptr;
-  _DAT_180bfa358 = &system_memory_a368;
+  init_system_control_ui = &unknown_var_3432_ptr;
+  init_system_control_ui = &system_memory_a368;
   
   return lVar1;
 }

@@ -25,7 +25,7 @@ void Cleanup_Render_Objects_And_Resources(void)
       // 检查对象是否有插槽数据
       if (*(longlong *)(render_obj + 0x1b8) != 0) {
         slot_offset = 0xb8;
-        global_context = _DAT_180c86870;
+        global_context = system_main_module_state;
         // 遍历所有插槽（0xb8 到 0x138，步长 8）
         do {
           slot_data = *(longlong *)(slot_offset + *(longlong *)(render_obj + 0x1b8));
@@ -36,7 +36,7 @@ void Cleanup_Render_Objects_And_Resources(void)
             // 如果插槽没有引用计数，则进行清理
             if (*(longlong *)(slot_data + 0x1d8) == 0) {
               FUN_18023b050(slot_data,0);  // 清理插槽数据
-              global_context = _DAT_180c86870;
+              global_context = system_main_module_state;
               render_count_ptr = (int *)(*(longlong *)(slot_offset + *(longlong *)(render_obj + 0x1b8)) + 0x3a8);
               *render_count_ptr = *render_count_ptr + 1;  // 增加渲染计数
             }
@@ -314,7 +314,7 @@ void Process_Render_Object_Bitmap_Memory(longlong render_context,uint bit_mask)
             array_offset = 1;
 LAB_180277c31:
             object_ptr = (longlong *)
-                     FUN_18062b420(_DAT_180c8ed18,array_offset << 4,
+                     FUN_18062b420(system_memory_pool_ptr,array_offset << 4,
                                    CONCAT71((uint7)(uint3)(bit_mask >> 8),0x16));
           }
           else {
@@ -421,7 +421,7 @@ void Collect_Render_Object_Array(longlong render_context,ulonglong *result_array
           if (array_size == 0) {
             array_size = 1;
 LAB_180277eb2:
-            new_array_ptr = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,array_size * 8,(char)result_array[3]);
+            new_array_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,array_size * 8,(char)result_array[3]);
             old_array_ptr = (uint64_t *)*result_array;
             array_current = (uint64_t *)result_array[1];
           }
@@ -483,7 +483,7 @@ void Collect_Render_Object_Array_Empty(void)
         if (array_size == 0) {
           array_size = 1;
 LAB_180277eb2:
-          new_array_ptr = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,array_size * 8,(char)result_array[3]);
+          new_array_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,array_size * 8,(char)result_array[3]);
           old_array_ptr = (uint64_t *)*result_array;
           temp_array_ptr = (uint64_t *)result_array[1];
         }
@@ -568,7 +568,7 @@ void Transform_Render_Object_Matrix(longlong render_context,ulonglong *result_ar
           if (array_size == 0) {
             array_size = 1;
 LAB_180277fef:
-            new_array_ptr = (longlong *)FUN_18062b420(_DAT_180c8ed18,array_size * 8,(char)result_array[3]);
+            new_array_ptr = (longlong *)FUN_18062b420(system_memory_pool_ptr,array_size * 8,(char)result_array[3]);
             old_array_ptr = (longlong *)*result_array;
             array_ptr = (longlong *)result_array[1];
           }
@@ -659,7 +659,7 @@ LAB_180277fef:
           if (array_size == 0) {
             array_size = 1;
 LAB_1802781a7:
-            matrix_elements = (float *)FUN_18062b420(_DAT_180c8ed18,array_size << 6,(char)transform_array[3]);
+            matrix_elements = (float *)FUN_18062b420(system_memory_pool_ptr,array_size << 6,(char)transform_array[3]);
             old_transform_ptr = (float *)*transform_array;
             transform_ptr = (float *)transform_array[1];
           }
@@ -770,7 +770,7 @@ void Transform_Render_Object_Matrix_Empty(void)
         if (array_size == 0) {
           array_size = 1;
 LAB_180277fef:
-          new_array_ptr = (longlong *)FUN_18062b420(_DAT_180c8ed18,array_size * 8,(char)result_array[3]);
+          new_array_ptr = (longlong *)FUN_18062b420(system_memory_pool_ptr,array_size * 8,(char)result_array[3]);
           old_array_ptr = (longlong *)*result_array;
           array_ptr = (longlong *)result_array[1];
         }
@@ -862,7 +862,7 @@ LAB_180277fef:
         if (array_size == 0) {
           array_size = 1;
 LAB_1802781a7:
-          matrix_elements = (float *)FUN_18062b420(_DAT_180c8ed18,array_size << 6,(char)transform_array[3]);
+          matrix_elements = (float *)FUN_18062b420(system_memory_pool_ptr,array_size << 6,(char)transform_array[3]);
           old_transform_ptr = (float *)*transform_array;
           transform_ptr = (float *)transform_array[1];
         }

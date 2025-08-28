@@ -185,7 +185,7 @@ void reset_engine_configuration(void)
   // ... 其他配置重置函数
   
   // 根据条件调用额外的重置函数
-  // if (*(int *)(_DAT_180c8a9c8 + 0xcb0) != 0) {
+  // if (*(int *)(core_system_data_string + 0xcb0) != 0) {
   //   FUN_18010d270();
   // }
   // ... 其他条件检查
@@ -215,7 +215,7 @@ void validate_engine_configuration(void)
   // ... 其他配置验证函数
   
   // 根据条件调用额外的验证函数
-  // if (*(int *)(_DAT_180c8a9c8 + 0xcb0) != unaff_EDI) {
+  // if (*(int *)(core_system_data_string + 0xcb0) != unaff_EDI) {
   //   FUN_18010d270();
   // }
   // ... 其他条件检查
@@ -245,7 +245,7 @@ void optimize_engine_configuration(void)
   // ... 其他配置优化函数
   
   // 根据条件调用额外的优化函数
-  // if (*(int *)(_DAT_180c8a9c8 + 0xcb0) != unaff_EDI) {
+  // if (*(int *)(core_system_data_string + 0xcb0) != unaff_EDI) {
   //   FUN_18010d270();
   // }
   // ... 其他条件检查
@@ -275,7 +275,7 @@ void perform_engine_status_check(void)
   // ... 其他状态检查函数
   
   // 根据条件调用额外的检查函数
-  // if (*(int *)(_DAT_180c8a9c8 + 0xcb0) != unaff_EDI) {
+  // if (*(int *)(core_system_data_string + 0xcb0) != unaff_EDI) {
   //   FUN_18010d270();
   // }
   // ... 其他条件检查
@@ -303,7 +303,7 @@ void update_engine_runtime_parameters(void)
   // FUN_18010d2f0();
   
   // 根据条件调用额外的更新函数
-  // if (*(int *)(_DAT_180c8a9c8 + 0xcb0) != unaff_EDI) {
+  // if (*(int *)(core_system_data_string + 0xcb0) != unaff_EDI) {
   //   FUN_18010d270();
   // }
   // ... 其他条件检查
@@ -331,7 +331,7 @@ void synchronize_engine_state(void)
   // FUN_18010d270();
   
   // 根据条件调用额外的同步函数
-  // if (*(int *)(_DAT_180c8a9c8 + 0xd20) != unaff_EDI) {
+  // if (*(int *)(core_system_data_string + 0xd20) != unaff_EDI) {
   //   FUN_18010d1f0();
   // }
   // ... 其他条件检查

@@ -31,8 +31,8 @@
 #define UI_ZERO_THRESHOLD 0.0f
 
 // 全局变量引用
-extern const void* _DAT_180c86938;     // UI系统全局数据
-extern const void* _DAT_180c8ed00;     // UI系统配置数据
+extern const void* system_message_buffer;     // UI系统全局数据
+extern const void* ui_system_data_config;     // UI系统配置数据
 extern const void* GET_SECURITY_COOKIE();     // UI系统安全数据
 
 // 函数声明

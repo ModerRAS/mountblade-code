@@ -405,7 +405,7 @@ void FUN_180430124(void)
             if (iVar17 <= iVar23) {
               iVar21 = iVar17 + -1;
             }
-            if (_DAT_180c8ec8c != 0) {
+            if (render_system_data_memory != 0) {
               iVar21 = (iVar17 - iVar21) + -1;
             }
             iVar21 = iVar21 * unaff_EBX;
@@ -602,7 +602,7 @@ void FUN_180430a4b(int param_1,int param_2,longlong param_3)
           if (param_2 <= param_1) {
             iVar10 = param_2 + -1;
           }
-          if (_DAT_180c8ec8c != 0) {
+          if (render_system_data_memory != 0) {
             iVar10 = (param_2 - iVar10) + -1;
           }
           iVar10 = iVar10 * unaff_EBX;
