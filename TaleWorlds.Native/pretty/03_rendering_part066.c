@@ -993,7 +993,7 @@ void FUN_1803046e0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   else {
     FUN_18005e630(system_context_ptr);
     pcVar1 = *(code **)(**(int64_t **)(param_1 + 200) + 0xb8);
-    if (pcVar1 == (code *)&unknown_var_128_ptr) {
+    if (pcVar1 == (code *)&rendering_adapter_ptr) {
       plVar3 = (int64_t *)(*(int64_t **)(param_1 + 200))[0xda];
     }
     else {
