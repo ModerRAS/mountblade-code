@@ -340,48 +340,77 @@ void FUN_18029d0a0(longlong param_1,undefined8 *param_2,undefined4 *param_3)
 
 
 
-// 函数: void FUN_18029d150(longlong param_1,int param_2,longlong param_3,int param_4,int param_5)
+// 渲染系统状态更新函数
+// 更新渲染系统的各种状态参数
+// param_1: 渲染系统上下文指针
+// param_2: 状态类型标识符
+// param_3: 状态数据指针
+// param_4: 状态参数1
+// param_5: 状态参数2
 void FUN_18029d150(longlong param_1,int param_2,longlong param_3,int param_4,int param_5)
-
 {
-  longlong lVar1;
-  longlong lVar2;
-  longlong lVar3;
-  longlong lVar4;
+  longlong state_type;
+  longlong state_data_ptr;
+  longlong state_value;
+  longlong render_state_ptr;
   
-  lVar4 = (longlong)param_2;
-  lVar3 = 0;
-  lVar2 = lVar3;
+  state_type = (longlong)param_2;
+  state_value = 0;
+  state_data_ptr = state_value;
+  
+  // 特殊状态类型处理（类型0x21）
   if (param_2 == 0x21) {
     if (param_3 != 0) {
+      // 设置状态数据的帧计数器
       *(longlong *)(param_3 + 0x340) = (longlong)*(int *)(_DAT_180c86870 + 0x224);
-      lVar2 = param_3 + 0x1a0;
+      state_data_ptr = param_3 + 0x1a0;  // 指向参数数组
     }
   }
-  else if ((((param_3 != 0) && (lVar1 = FUN_18023a940(), lVar1 != 0)) &&
-           (lVar2 = lVar1, *(longlong *)(lVar1 + 8) == 0)) && (*(longlong *)(lVar1 + 0x10) == 0)) {
-    lVar2 = 0;
+  // 其他状态类型的处理
+  else if ((((param_3 != 0) && 
+            (render_state_ptr = FUN_18023a940(), render_state_ptr != 0)) &&
+           (state_data_ptr = render_state_ptr, 
+            *(longlong *)(render_state_ptr + 8) == 0)) &&          // 检查状态指针有效性
+          (*(longlong *)(render_state_ptr + 0x10) == 0)) {         // 检查状态数据有效性
+    state_data_ptr = 0;  // 无效状态数据
   }
-  if (((*(longlong *)(param_1 + 0x8438 + lVar4 * 8) != lVar2) ||
-      (*(int *)(param_1 + 0x8838 + lVar4 * 4) != param_5)) ||
-     (*(int *)(param_1 + 0x8a38 + lVar4 * 4) != param_4)) {
-    if (lVar2 != 0) {
-      if ((*(longlong *)(lVar2 + 8) == 0) && (*(longlong *)(lVar2 + 0x10) == 0)) {
-        return;
+  
+  // 检查状态是否需要更新
+  if (((*(longlong *)(param_1 + 0x8438 + state_type * 8) != state_data_ptr) ||
+      (*(int *)(param_1 + 0x8838 + state_type * 4) != param_5)) ||
+     (*(int *)(param_1 + 0x8a38 + state_type * 4) != param_4)) {
+    
+    // 处理有效的状态数据
+    if (state_data_ptr != 0) {
+      // 检查状态数据是否完整
+      if ((*(longlong *)(state_data_ptr + 8) == 0) && 
+          (*(longlong *)(state_data_ptr + 0x10) == 0)) {
+        return;  // 状态数据不完整，直接返回
       }
-      if (lVar2 != 0) {
+      
+      // 提取状态值
+      if (state_data_ptr != 0) {
         if (param_5 == -1) {
-          lVar3 = *(longlong *)(lVar2 + 0x10);
+          // 使用默认状态值
+          state_value = *(longlong *)(state_data_ptr + 0x10);
         }
         else {
-          lVar3 = *(longlong *)(*(longlong *)(lVar2 + 0x18) + (longlong)param_5 * 8);
+          // 使用索引状态值
+          state_value = *(longlong *)(*(longlong *)(state_data_ptr + 0x18) + 
+                                    (longlong)param_5 * 8);
         }
       }
     }
-    FUN_18029fb10(param_1,param_2,lVar3,param_4);
-    *(longlong *)(param_1 + 0x8438 + lVar4 * 8) = lVar2;
-    *(int *)(param_1 + 0x8838 + lVar4 * 4) = param_5;
-    *(int *)(param_1 + 0x8a38 + lVar4 * 4) = param_4;
+    
+    // 调用渲染系统状态更新函数
+    FUN_18029fb10(param_1, param_2, state_value, param_4);
+    
+    // 更新渲染系统状态缓存
+    *(longlong *)(param_1 + 0x8438 + state_type * 8) = state_data_ptr;
+    *(int *)(param_1 + 0x8838 + state_type * 4) = param_5;
+    *(int *)(param_1 + 0x8a38 + state_type * 4) = param_4;
+    
+    // 增加状态更新计数器
     *(int *)(param_1 + 0x82b4) = *(int *)(param_1 + 0x82b4) + 1;
   }
   return;
@@ -393,110 +422,129 @@ void FUN_18029d150(longlong param_1,int param_2,longlong param_3,int param_4,int
 
 
 
-// 函数: void FUN_18029d280(longlong param_1,longlong param_2)
+// 渲染系统信息生成函数
+// 生成渲染系统的详细信息和状态报告
+// param_1: 渲染系统上下文指针
+// param_2: 报告数据缓冲区指针
 void FUN_18029d280(longlong param_1,longlong param_2)
-
 {
-  uint uVar1;
-  longlong lVar2;
-  undefined4 *puVar3;
-  undefined8 *puVar4;
-  undefined2 *puVar5;
-  int iVar6;
-  int iVar7;
-  undefined *puVar8;
-  longlong *plVar9;
-  uint *puVar10;
-  undefined1 auStack_108 [40];
-  undefined8 uStack_e0;
-  undefined *apuStack_d8 [20];
-  ulonglong uStack_38;
+  uint render_flags;
+  longlong render_info;
+  undefined4 *report_data;
+  undefined8 *report_data64;
+  undefined2 *report_data16;
+  int slot_index;
+  int buffer_size;
+  undefined *info_string;
+  longlong *render_slots;
+  uint *render_flags_array;
+  undefined1 security_buffer[RENDER_BUFFER_SIZE_LARGE];
+  undefined8 magic_value;
+  undefined *info_array[RENDER_PARAM_MAX_SLOTS];
+  ulonglong security_key;
   
-  uStack_e0 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_108;
-  iVar6 = 0;
-  iVar7 = *(int *)(param_2 + 0x10) + 0x14;
-  FUN_1806277c0(param_2,iVar7);
-  puVar3 = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
-  *puVar3 = 0x74786554;
-  puVar3[1] = 0x20657275;
-  puVar3[2] = 0x746f6c53;
-  puVar3[3] = 0x73694c20;
-  puVar3[4] = 0xa3a2074;
-  *(undefined1 *)(puVar3 + 5) = 0;
-  *(int *)(param_2 + 0x10) = iVar7;
-  puVar10 = (uint *)(param_1 + 0x8a38);
-  plVar9 = (longlong *)(param_1 + 0x8438);
+  magic_value = 0xfffffffffffffffe;
+  security_key = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  slot_index = 0;
+  
+  // 初始化报告缓冲区
+  buffer_size = *(int *)(param_2 + 0x10) + 0x14;
+  FUN_1806277c0(param_2, buffer_size);
+  
+  // 写入报告标题
+  report_data = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  *report_data = 0x74786554;        // "Text"
+  report_data[1] = 0x20657275;       // "ure "
+  report_data[2] = 0x746f6c53;       // "Slot"
+  report_data[3] = 0x73694c20;       // "Lis "
+  report_data[4] = 0xa3a2074;        // "t" + 终止符
+  *(undefined1 *)(report_data + 5) = 0;
+  *(int *)(param_2 + 0x10) = buffer_size;
+  
+  // 获取渲染插槽和标志数组
+  render_flags_array = (uint *)(param_1 + 0x8a38);
+  render_slots = (longlong *)(param_1 + 0x8438);
+  
+  // 遍历所有渲染插槽（最大128个）
   do {
-    if (*plVar9 != 0) {
-      lVar2 = FUN_1802a05d0(*plVar9,apuStack_d8);
-      puVar8 = &DAT_18098bc73;
-      if (*(undefined **)(lVar2 + 8) != (undefined *)0x0) {
-        puVar8 = *(undefined **)(lVar2 + 8);
+    if (*render_slots != 0) {
+      // 获取渲染信息
+      render_info = FUN_1802a05d0(*render_slots, info_array);
+      info_string = &DAT_18098bc73;
+      if (*(undefined **)(render_info + 8) != (undefined *)0x0) {
+        info_string = *(undefined **)(render_info + 8);
       }
-      FUN_180628040(param_2,&UNK_180a172e0,iVar6,puVar8);
-      apuStack_d8[0] = &UNK_18098bcb0;
-      uVar1 = *puVar10;
-      if ((uVar1 & 1) != 0) {
-        iVar7 = *(int *)(param_2 + 0x10) + 7;
-        FUN_1806277c0(param_2,iVar7);
+      
+      // 写入插槽信息
+      FUN_180628040(param_2, &UNK_180a172e0, slot_index, info_string);
+      info_array[0] = &UNK_18098bcb0;
+      
+      render_flags = *render_flags_array;
+      
+      // 根据标志位写入不同的渲染属性
+      if ((render_flags & 1) != 0) {
+        buffer_size = *(int *)(param_2 + 0x10) + 7;
+        FUN_1806277c0(param_2, buffer_size);
         *(undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) =
-             0x20786574726576;
-        *(int *)(param_2 + 0x10) = iVar7;
+             0x20786574726576;  // "vertex "
+        *(int *)(param_2 + 0x10) = buffer_size;
       }
-      if ((uVar1 & 2) != 0) {
-        iVar7 = *(int *)(param_2 + 0x10) + 7;
-        FUN_1806277c0(param_2,iVar7);
+      if ((render_flags & 2) != 0) {
+        buffer_size = *(int *)(param_2 + 0x10) + 7;
+        FUN_1806277c0(param_2, buffer_size);
         *(undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) =
-             0x206e69616d6f64;
-        *(int *)(param_2 + 0x10) = iVar7;
+             0x206e69616d6f64;  // "domain "
+        *(int *)(param_2 + 0x10) = buffer_size;
       }
-      if ((uVar1 & 4) != 0) {
-        iVar7 = *(int *)(param_2 + 0x10) + 5;
-        FUN_1806277c0(param_2,iVar7);
-        puVar3 = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
-        *puVar3 = 0x6c6c7568;
-        *(undefined2 *)(puVar3 + 1) = 0x20;
-        *(int *)(param_2 + 0x10) = iVar7;
+      if ((render_flags & 4) != 0) {
+        buffer_size = *(int *)(param_2 + 0x10) + 5;
+        FUN_1806277c0(param_2, buffer_size);
+        report_data = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+        *report_data = 0x6c6c7568;  // "hull"
+        *(undefined2 *)(report_data + 1) = 0x20;
+        *(int *)(param_2 + 0x10) = buffer_size;
       }
-      if ((uVar1 & 8) != 0) {
-        iVar7 = *(int *)(param_2 + 0x10) + 9;
-        FUN_1806277c0(param_2,iVar7);
-        puVar4 = (undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
-        *puVar4 = 0x797274656d6f6567;
-        *(undefined2 *)(puVar4 + 1) = 0x20;
-        *(int *)(param_2 + 0x10) = iVar7;
+      if ((render_flags & 8) != 0) {
+        buffer_size = *(int *)(param_2 + 0x10) + 9;
+        FUN_1806277c0(param_2, buffer_size);
+        report_data64 = (undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+        *report_data64 = 0x797274656d6f6567;  // "geometry "
+        *(undefined2 *)(report_data64 + 1) = 0x20;
+        *(int *)(param_2 + 0x10) = buffer_size;
       }
-      if ((uVar1 & 0x10) != 0) {
-        iVar7 = *(int *)(param_2 + 0x10) + 6;
-        FUN_1806277c0(param_2,iVar7);
-        puVar3 = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
-        *puVar3 = 0x65786970;
-        *(undefined2 *)(puVar3 + 1) = 0x206c;
-        *(undefined1 *)((longlong)puVar3 + 6) = 0;
-        *(int *)(param_2 + 0x10) = iVar7;
+      if ((render_flags & 0x10) != 0) {
+        buffer_size = *(int *)(param_2 + 0x10) + 6;
+        FUN_1806277c0(param_2, buffer_size);
+        report_data = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+        *report_data = 0x65786970;  // "pixel"
+        *(undefined2 *)(report_data + 1) = 0x206c;
+        *(undefined1 *)((longlong)report_data + 6) = 0;
+        *(int *)(param_2 + 0x10) = buffer_size;
       }
-      iVar7 = *(int *)(param_2 + 0x10);
-      if ((uVar1 & 0x20) != 0) {
-        iVar7 = iVar7 + 8;
-        FUN_1806277c0(param_2,iVar7);
-        puVar4 = (undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
-        *puVar4 = 0x20657475706d6f63;
-        *(undefined1 *)(puVar4 + 1) = 0;
-        *(int *)(param_2 + 0x10) = iVar7;
+      buffer_size = *(int *)(param_2 + 0x10);
+      if ((render_flags & 0x20) != 0) {
+        buffer_size = buffer_size + 8;
+        FUN_1806277c0(param_2, buffer_size);
+        report_data64 = (undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+        *report_data64 = 0x20657475706d6f63;  // "compute "
+        *(undefined1 *)(report_data64 + 1) = 0;
+        *(int *)(param_2 + 0x10) = buffer_size;
       }
-      FUN_1806277c0(param_2,iVar7 + 2);
-      puVar5 = (undefined2 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
-      *puVar5 = 0xa29;
-      *(undefined1 *)(puVar5 + 1) = 0;
-      *(int *)(param_2 + 0x10) = iVar7 + 2;
+      
+      // 写入行结束符
+      FUN_1806277c0(param_2, buffer_size + 2);
+      report_data16 = (undefined2 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+      *report_data16 = 0xa29;  // 换行符
+      *(undefined1 *)(report_data16 + 1) = 0;
+      *(int *)(param_2 + 0x10) = buffer_size + 2;
     }
-    iVar6 = iVar6 + 1;
-    plVar9 = plVar9 + 1;
-    puVar10 = puVar10 + 1;
-  } while (iVar6 < 0x80);
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_108);
+    slot_index = slot_index + 1;
+    render_slots = render_slots + 1;
+    render_flags_array = render_flags_array + 1;
+  } while (slot_index < 0x80);  // 最大128个插槽
+  
+  // 清理安全缓冲区（函数不返回）
+  FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
 }
 
 
