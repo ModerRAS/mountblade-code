@@ -316,22 +316,42 @@ longlong ExtendedResourceCleanup(longlong resource_ptr, ulonglong cleanup_flags)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined8 FUN_1808d9de0(int param_1,longlong *param_2)
+/**
+ * @brief 引用计数初始化函数
+ * 
+ * 为指定类型的引用计数对象分配内存并初始化。
+ * 实现自动内存管理的基础设施。
+ * 
+ * 功能特点：
+ * - 自动分配引用对象内存
+ * - 初始化引用计数为1
+ * - 设置对象类型标识
+ * - 返回引用对象指针
+ * 
+ * @param ref_type 引用类型标识符
+ * @param ref_ptr 引用指针输出参数
+ * @return 状态码（0: 成功，0x26: 内存分配失败）
+ */
+undefined8 ReferenceCountInitialize(int ref_type, longlong *ref_ptr)
 
 {
   int *piVar1;
   
-  piVar1 = (int *)FUN_180741d10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_1 + 0x10,0x10,
-                                &UNK_180988980,0x3e,0,0);
+  // 分配引用计数对象内存（16字节）
+  piVar1 = (int *)FUN_180741d10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), ref_type + 0x10, 0x10,
+                                &UNK_180988980, 0x3e, 0, 0);
+  
+  // 检查内存分配是否成功
   if (piVar1 == (int *)0x0) {
-    return 0x26;
+    return 0x26;  // 内存分配失败
   }
-  *piVar1 = param_1;
-  piVar1[1] = 0;
-  *param_2 = (longlong)piVar1;
-  return 0;
+  
+  // 初始化引用对象
+  *piVar1 = ref_type;      // 设置引用类型
+  piVar1[1] = 0;          // 初始化引用计数为0
+  *ref_ptr = (longlong)piVar1;  // 返回引用对象指针
+  
+  return 0;  // 成功
 }
 
 
