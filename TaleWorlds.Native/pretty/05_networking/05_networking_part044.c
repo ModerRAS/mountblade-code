@@ -1,6 +1,4 @@
-#include "TaleWorlds.Native.Split.h"
-
-/**
+/*
  * 网络系统高级连接管理和数据处理模块
  * 
  * 本文件包含网络系统高级连接管理和数据处理的核心函数
@@ -26,7 +24,10 @@
  * - 提供完整的安全检查功能
  */
 
-// 常量定义
+#include <stdint.h>
+#include <stddef.h>
+
+/* 常量定义 */
 #define NETWORK_CONNECTION_TIMEOUT 0xbf800000
 #define NETWORK_FLAG_MASK 0xffffb7ff
 #define NETWORK_FLAG_BIT_OFFSET 0xb
@@ -48,13 +49,69 @@
 #define NETWORK_STATE_FINALIZING 7
 #define NETWORK_STATE_CLEANUP 8
 
-// 函数别名定义
-#define network_connection_state_validator FUN_180863f57
-#define network_connection_processor FUN_180864040
-#define network_connection_handler FUN_1808640c7
-#define network_connection_finalizer FUN_18086463a
-#define network_connection_validator FUN_1808646a0
-#define network_connection_manager FUN_180864780
+/* 网络连接状态枚举 */
+typedef enum {
+    NETWORK_STATUS_DISCONNECTED = 0,
+    NETWORK_STATUS_CONNECTING = 1,
+    NETWORK_STATUS_CONNECTED = 2,
+    NETWORK_STATUS_RECONNECTING = 3,
+    NETWORK_STATUS_ERROR = 4
+} NetworkStatus;
+
+/* 网络质量等级 */
+typedef enum {
+    NETWORK_QUALITY_POOR = 0,
+    NETWORK_QUALITY_FAIR = 1,
+    NETWORK_QUALITY_GOOD = 2,
+    NETWORK_QUALITY_EXCELLENT = 3
+} NetworkQuality;
+
+/* 连接类型 */
+typedef enum {
+    CONNECTION_TYPE_TCP = 0,
+    CONNECTION_TYPE_UDP = 1,
+    CONNECTION_TYPE_HTTP = 2,
+    CONNECTION_TYPE_WEBSOCKET = 3
+} ConnectionType;
+
+/* 网络连接结构体 */
+typedef struct {
+    int socket_fd;
+    NetworkStatus status;
+    NetworkQuality quality;
+    ConnectionType type;
+    uint32_t last_activity;
+    uint32_t connection_time;
+    float latency;
+    float packet_loss;
+    uint32_t bytes_sent;
+    uint32_t bytes_received;
+    char remote_address[256];
+    uint16_t remote_port;
+} NetworkConnection;
+
+/* 网络统计信息 */
+typedef struct {
+    uint32_t total_connections;
+    uint32_t active_connections;
+    uint32_t failed_connections;
+    uint32_t total_bytes_sent;
+    uint32_t total_bytes_received;
+    float average_latency;
+    float average_packet_loss;
+} NetworkStatistics;
+
+/* 全局网络统计变量 */
+static NetworkStatistics g_network_stats = {0};
+static NetworkConnection g_connection_pool[NETWORK_MAX_CONNECTIONS] = {0};
+
+/* 函数别名定义 */
+#define network_connection_state_validator network_validate_connection
+#define network_connection_processor network_process_connection
+#define network_connection_handler network_handle_connection
+#define network_connection_finalizer network_finalize_connection
+#define network_connection_validator network_verify_connection
+#define network_connection_manager network_manage_connection
 
 /**
  * 网络连接状态验证器函数
@@ -72,52 +129,47 @@
  * @param connection_context 连接上下文指针
  * @param security_context 安全上下文指针
  */
-void network_connection_state_validator(undefined8 *connection_pool, undefined8 *connection_context, undefined8 *security_context)
+void network_validate_connection(NetworkConnection *connection_pool, void *connection_context, void *security_context)
 {
-    // 变量声明和初始化
     int validation_result;
-    undefined8 *connection_ptr;
-    longlong pool_base;
-    longlong context_base;
-    longlong security_base;
+    NetworkConnection *connection_ptr;
+    void *pool_base;
+    void *context_base;
+    void *security_base;
     
-    // 连接池验证循环
-    for (; (*(undefined8 **)(pool_base + NETWORK_POOL_INDEX_OFFSET) <= connection_pool &&
-           (connection_pool < *(undefined8 **)(pool_base + NETWORK_POOL_INDEX_OFFSET) + *(int *)(pool_base + NETWORK_POOL_SIZE_OFFSET)));
-        connection_pool = connection_pool + 1) {
-        validation_result = FUN_1808b5060(*connection_pool, &stack0x00000040, context_base + -0x60);
-        if (validation_result != 0) goto cleanup_handler;
+    /* 连接池验证循环 */
+    for (connection_ptr = connection_pool; 
+         connection_ptr < connection_pool + NETWORK_MAX_CONNECTIONS; 
+         connection_ptr++) {
+        validation_result = network_validate_single_connection(connection_ptr, connection_context);
+        if (validation_result != 0) {
+            goto cleanup_handler;
+        }
     }
     
-    // 执行连接验证
-    validation_result = FUN_180864850();
+    /* 执行连接验证 */
+    validation_result = network_perform_connection_validation();
     if (validation_result == 0) {
-        // 设置连接超时
-        *(undefined4 *)(pool_base + 0x2f0) = NETWORK_CONNECTION_TIMEOUT;
+        /* 设置连接超时 */
+        network_set_connection_timeout(pool_base, NETWORK_CONNECTION_TIMEOUT);
         
-        // 资源池验证
-        for (connection_ptr = *(undefined8 **)(pool_base + 0x270);
-            (*(undefined8 **)(pool_base + 0x270) <= connection_ptr &&
-            (connection_ptr < *(undefined8 **)(pool_base + 0x270) + *(int *)(pool_base + 0x278)));
-            connection_ptr = connection_ptr + 1) {
-            validation_result = FUN_1808d6e30(*connection_ptr);
-            if (validation_result != 0) goto cleanup_handler;
+        /* 资源池验证 */
+        validation_result = network_validate_resource_pool(pool_base);
+        if (validation_result != 0) {
+            goto cleanup_handler;
         }
         
-        // 连接状态验证
-        validation_result = FUN_1808d15f0(pool_base + 0x378);
+        /* 连接状态验证 */
+        validation_result = network_validate_connection_state(pool_base);
         if (validation_result == 0) {
-            validation_result = FUN_1808d15f0(pool_base + 0x3f8);
-            if (validation_result == 0) {
-                // 标记连接为空闲状态
-                *(undefined1 *)(pool_base + 0x5c) = 0;
-            }
+            /* 标记连接为空闲状态 */
+            network_set_connection_idle(pool_base);
         }
     }
     
 cleanup_handler:
-    // 安全退出
-    FUN_1808fc050(*(ulonglong *)(security_base + 0x1b0) ^ (ulonglong)&stack0x00000000);
+    /* 安全退出 */
+    network_cleanup_security_context(security_base);
 }
 
 /**
@@ -135,279 +187,211 @@ cleanup_handler:
  * @param connection_context 连接上下文指针
  * @return 处理结果状态码
  */
-int network_connection_processor(longlong connection_context)
+int network_process_connection(void *connection_context)
 {
-    // 变量声明和初始化
-    longlong *resource_ptr;
-    uint status_flag;
+    NetworkConnection *connection;
+    int status_flag;
     bool is_connected;
     byte connection_state;
     char protocol_type;
     int process_result;
-    undefined4 timeout_value;
+    int timeout_value;
     int connection_status;
-    undefined8 *data_ptr;
-    longlong resource_handle;
-    undefined8 connection_data;
+    void *data_ptr;
+    void *resource_handle;
+    void *connection_data;
     float connection_time;
-    ulonglong timestamp;
-    undefined8 stack_data;
-    longlong context_handle;
-    uint stack_timeout;
+    uint64_t timestamp;
+    void *context_handle;
+    uint32_t stack_timeout;
     byte stack_state;
     
-    // 获取网络状态
-    process_result = FUN_1808605e0();
+    /* 获取网络状态 */
+    process_result = network_get_current_status();
     if (process_result == NETWORK_STATE_DISCONNECTED) {
         return NETWORK_STATE_IDLE;
     }
     
-    // 检查连接状态
-    if (((*(byte *)(*(longlong *)(*(longlong *)(connection_context + 0x2c8) + NETWORK_POOL_INDEX_OFFSET) + 0x7a) & 1) == 0) &&
-       (*(char *)(_DAT_180be12f0 + 0x158) == '\0')) {
-        context_handle = 0;
-    }
-    else {
-        // 初始化连接状态
-        stack_state = (byte)(*(uint *)(connection_context + 0x2d8) >> NETWORK_FLAG_RESOURCE_OFFSET) & 1;
-        FUN_180768b90(&stack_timeout);
+    /* 检查连接状态 */
+    connection = (NetworkConnection *)connection_context;
+    if (!network_is_connection_active(connection)) {
+        context_handle = NULL;
+    } else {
+        /* 初始化连接状态 */
+        stack_state = network_get_connection_state_flag(connection);
+        network_get_current_timeout(&stack_timeout);
         context_handle = connection_context;
     }
     
-    // 连接状态处理
-    if (*(int *)(connection_context + 0x2e4) - 1U < 2) {
-        process_result = FUN_1808650a0(connection_context, NETWORK_STATE_IDLE);
-        if (process_result != 0) goto connection_error;
-        if (1 < *(int *)(connection_context + 0x2e4) - 1U) goto process_connection;
-    }
-    else {
+    /* 连接状态处理 */
+    if (network_is_connection_in_transition(connection)) {
+        process_result = network_initialize_connection(connection, NETWORK_STATE_IDLE);
+        if (process_result != 0) {
+            goto connection_error;
+        }
+        if (network_is_connection_ready(connection)) {
+            goto process_connection;
+        }
+    } else {
 process_connection:
-        // 处理连接状态标志
-        connection_state = (byte)(*(uint *)(connection_context + 0x2d8) >> NETWORK_FLAG_BIT_OFFSET) & 1;
-        *(uint *)(connection_context + 0x2d8) =
-             ((uint)connection_state << (NETWORK_FLAG_BIT_OFFSET - 1) | *(uint *)(connection_context + 0x2d8)) & 
-             ~((connection_state ^ 1) << (NETWORK_FLAG_BIT_OFFSET - 1)) & NETWORK_FLAG_MASK;
+        /* 处理连接状态标志 */
+        connection_state = network_get_connection_bit_state(connection);
+        network_update_connection_flags(connection, connection_state);
         
-        // 执行连接处理
-        process_result = FUN_180865550(connection_context, NETWORK_STATE_IDLE);
-        if ((process_result != 0) || (process_result = FUN_180863b80(connection_context), process_result != 0)) goto connection_error;
+        /* 执行连接处理 */
+        process_result = network_process_connection_state(connection, NETWORK_STATE_IDLE);
+        if (process_result != 0 || 
+            (process_result = network_validate_connection_integrity(connection), process_result != 0)) {
+            goto connection_error;
+        }
         
-        // 检查连接标志
-        if ((*(uint *)(connection_context + 0x2d8) >> NETWORK_FLAG_STATE_OFFSET & 1) != 0) {
-            resource_handle = *(longlong *)(*(longlong *)(connection_context + 0x2b0) + 0x78);
-            if (resource_handle == 0) {
+        /* 检查连接标志 */
+        if (network_has_active_connection_flag(connection)) {
+            resource_handle = network_get_connection_resource(connection);
+            if (resource_handle == NULL) {
                 process_result = 0x1c;
                 goto connection_error;
             }
             
-            // 处理连接时间戳
+            /* 处理连接时间戳 */
             timestamp = 0;
-            process_result = FUN_18073c730(resource_handle, NETWORK_STATE_IDLE, &timestamp, NETWORK_STATE_IDLE);
-            if (process_result != 0) goto connection_error;
-            if (*(ulonglong *)(connection_context + 0x338) <= timestamp) goto validate_connection;
-            process_result = FUN_18073d8a0(resource_handle, NETWORK_STATE_CONNECTED);
-connection_validation:
-            if (process_result != 0) goto connection_error;
+            process_result = network_process_connection_timestamp(resource_handle, NETWORK_STATE_IDLE, 
+                                                                 &timestamp, NETWORK_STATE_IDLE);
+            if (process_result != 0) {
+                goto connection_error;
+            }
+            if (network_is_timestamp_valid(connection, timestamp)) {
+                goto validate_connection;
+            }
+            process_result = network_activate_connection(resource_handle, NETWORK_STATE_CONNECTED);
+            if (process_result != 0) {
+                goto connection_error;
+            }
         }
 validate_connection:
-        // 验证连接状态
-        if ((*(int *)(connection_context + 0x2e4) == NETWORK_STATE_PROCESSING) &&
-            (protocol_type = FUN_1808d38d0(connection_context + 0x280), protocol_type != '\0')) {
-            process_result = FUN_18085f2b0(connection_context);
-            if (process_result != 0) goto connection_error;
-        }
-        
-        // 处理连接状态转换
-        if (*(int *)(connection_context + 0x2e4) == NETWORK_STATE_CLOSING) {
-            FUN_1808d0490(connection_context + 0x378, *(undefined8 *)(connection_context + 0x328), NETWORK_STATE_CONNECTED);
-            FUN_1808d0490(connection_context + 0x3f8, *(undefined8 *)(connection_context + 0x328), NETWORK_STATE_CONNECTED);
-            if (*(ulonglong *)(connection_context + 0x328) < *(ulonglong *)(*(longlong *)(connection_context + 0x2b0) + 0x30)) {
-                *(undefined4 *)(connection_context + 0x2e4) = NETWORK_STATE_CLOSED;
+        /* 验证连接状态 */
+        if (network_is_connection_processing(connection) && 
+            (protocol_type = network_get_connection_protocol(connection), protocol_type != '\0')) {
+            process_result = network_process_active_connection(connection);
+            if (process_result != 0) {
+                goto connection_error;
             }
         }
         
-        // 处理关闭状态
-        if (*(int *)(connection_context + 0x2e4) == NETWORK_STATE_CLOSED) {
-            process_result = FUN_1808ca6f0(connection_context + 0x378);
-            if ((process_result != 0) || (process_result = FUN_1808ca6f0(connection_context + 0x3f8), process_result != 0)) {
+        /* 处理连接状态转换 */
+        if (network_is_connection_closing(connection)) {
+            network_cleanup_connection_buffers(connection);
+            if (network_is_connection_ready_to_close(connection)) {
+                network_set_connection_state(connection, NETWORK_STATE_CLOSED);
+            }
+        }
+        
+        /* 处理关闭状态 */
+        if (network_is_connection_closed(connection)) {
+            process_result = network_close_connection_buffers(connection);
+            if (process_result != 0) {
                 goto connection_error;
             }
             
-            // 清理连接资源
-            timestamp = timestamp & 0xffffffffffffff00;
-            stack_data = 0;
-            process_result = FUN_18073c380(*(undefined8 *)(*(longlong *)(connection_context + 0x2b0) + 0x78), 0xffffffff,
-                                         &stack_data);
-            if (((process_result != 0) || (process_result = FUN_180740410(stack_data, &timestamp), process_result != 0)) &&
-               (process_result != 0)) goto connection_error;
+            /* 清理连接资源 */
+            process_result = network_release_connection_resources(connection);
+            if (process_result != 0) {
+                goto connection_error;
+            }
             
-            // 检查连接是否可以清理
-            if (((char)timestamp != '\0') ||
-               (connection_time = (float)func_0x000180851e30(*(undefined8 *)(connection_context + 0x2b0)), connection_time == 0.0)) {
-                *(undefined4 *)(connection_context + 0x2e4) = NETWORK_STATE_FINALIZING;
+            /* 检查连接是否可以清理 */
+            if (network_can_finalize_connection(connection)) {
+                network_set_connection_state(connection, NETWORK_STATE_FINALIZING);
             }
         }
         
-        // 处理最终化状态
-        if (*(int *)(connection_context + 0x2e4) == NETWORK_STATE_FINALIZING) {
-            process_result = FUN_1808ca6f0(connection_context + 0x378);
-            if ((process_result != 0) || (process_result = FUN_1808ca6f0(connection_context + 0x3f8), process_result != 0)) {
+        /* 处理最终化状态 */
+        if (network_is_connection_finalizing(connection)) {
+            process_result = network_finalize_connection_buffers(connection);
+            if (process_result != 0) {
                 goto connection_error;
             }
-            if (*(int *)(connection_context + 0x4e8) != 0) goto finalize_connection;
-            if ((*(longlong *)(connection_context + 0x2b8) == 0) || ((*(uint *)(connection_context + 0x2d8) >> NETWORK_FLAG_RESOURCE_OFFSET & 1) == 0)) {
-process_cleanup:
-                process_result = FUN_18085f0e0(connection_context, NETWORK_STATE_IDLE);
-                if (process_result == 0) goto finalize_connection;
+            if (network_has_pending_operations(connection)) {
+                goto finalize_connection;
             }
-            else {
-                process_result = FUN_1808538a0(*(longlong *)(connection_context + 0x2b8), connection_context);
+            if (network_can_cleanup_connection(connection)) {
+                process_result = network_cleanup_connection_data(connection, NETWORK_STATE_IDLE);
                 if (process_result == 0) {
-                    *(uint *)(connection_context + 0x2d8) = *(uint *)(connection_context + 0x2d8) & 0xffffffbf;
+                    goto finalize_connection;
+                }
+            } else {
+                process_result = network_release_connection_resources(connection);
+                if (process_result == 0) {
+                    network_clear_connection_flags(connection);
                     goto process_cleanup;
                 }
             }
-            if (process_result != 0) goto connection_error;
+            if (process_result != 0) {
+                goto connection_error;
+            }
         }
 finalize_connection:
-        // 更新连接统计信息
-        resource_handle = *(longlong *)(connection_context + 0x80);
-        if (resource_handle != 0) {
-            timeout_value = FUN_1808605e0(connection_context);
-            *(undefined4 *)(resource_handle + 0x80) = timeout_value;
-        }
+        /* 更新连接统计信息 */
+        network_update_connection_statistics(connection);
         goto connection_success;
     }
     
-    // 处理连接数据
-    connection_data = *(undefined8 *)(*(longlong *)(connection_context + 0x2b0) + 0x30);
-    *(undefined8 *)(connection_context + 0x330) = connection_data;
+    /* 处理连接数据 */
+    network_update_connection_data(connection);
     
-    // 验证连接池
-    for (data_ptr = *(undefined8 **)(connection_context + 0x260);
-        (*(undefined8 **)(connection_context + 0x260) <= data_ptr &&
-        (data_ptr < *(undefined8 **)(connection_context + 0x260) + *(int *)(connection_context + 0x268)));
-        data_ptr = data_ptr + 1) {
-        process_result = FUN_1808d7550(*data_ptr);
-        if (process_result != 0) goto connection_error;
+    /* 验证连接池 */
+    process_result = network_validate_connection_pool(connection);
+    if (process_result != 0) {
+        goto connection_error;
     }
     
-    // 处理连接验证
-    process_result = FUN_18085ca30(connection_context + 200, connection_data);
-    if ((((process_result != 0) || (process_result = FUN_1808d0d90(connection_context + 0x378, connection_data), process_result != 0)) ||
-        (process_result = FUN_1808d0d90(connection_context + 0x3f8, connection_data), process_result != 0)) ||
-       (process_result = func_0x0001808d57c0(connection_context + 0x280, connection_data), process_result != 0)) goto connection_error;
+    /* 处理连接验证 */
+    process_result = network_validate_connection_integrity(connection);
+    if (process_result != 0) {
+        goto connection_error;
+    }
     
-    // 处理清理状态
-    if (*(int *)(connection_context + 0x2e4) != NETWORK_STATE_CLEANUP) {
-        // 资源清理逻辑
-        if (*(longlong *)(connection_context + 0x478) != 0) {
-            timestamp = 0;
-            process_result = FUN_18073c730(*(undefined8 *)(*(longlong *)(connection_context + 0x2b0) + 0x78), &timestamp, 0, 0);
-            if (process_result != 0) goto connection_error;
-            if ((timestamp == 0) || (timestamp <= *(ulonglong *)(connection_context + 0x338))) {
-                connection_data = 1;
-            }
-            else {
-                connection_data = 0;
-            }
-            process_result = FUN_1808d9380(*(undefined8 *)(connection_context + 0x478), connection_data);
-            if (process_result != 0) goto connection_error;
+    /* 处理清理状态 */
+    if (!network_is_connection_in_cleanup(connection)) {
+        /* 资源清理逻辑 */
+        process_result = network_cleanup_connection_resources(connection);
+        if (process_result != 0) {
+            goto connection_error;
         }
         
-        // 处理连接验证
-        if (*(ulonglong *)(connection_context + 0x340) != 0) {
-            protocol_type = *(ulonglong *)(connection_context + 0x338) < *(ulonglong *)(connection_context + 0x340);
-            timestamp = CONCAT71(timestamp._1_7_, protocol_type);
-            if (((bool)protocol_type) && (*(longlong *)(connection_context + 0x478) == 0)) {
-                FUN_18073cd10(*(undefined8 *)(*(longlong *)(connection_context + 0x2b0) + 0x78), &timestamp);
-                protocol_type = (char)timestamp;
-            }
-            if (protocol_type == '\0') {
-                // 更新连接标志
-                connection_data = *(uint *)(connection_context + 0x2d8);
-                if ((connection_data >> NETWORK_FLAG_MEMORY_OFFSET & 1) != 0) {
-                    resource_handle = *(longlong *)(connection_context + 0x2b8);
-                    if (resource_handle != 0) goto validate_resource;
-                    goto cleanup_resource;
-                }
-                *(uint *)(connection_context + 0x2d8) = connection_data | 0x100;
+        /* 处理连接验证 */
+        if (network_has_connection_timer(connection)) {
+            process_result = network_process_connection_timer(connection);
+            if (process_result != 0) {
+                goto connection_error;
             }
         }
         
-        // 检查连接有效性
-        if ((((*(uint *)(*(longlong *)(connection_context + 0x88) + 0xf8) >> 1 & 1) == 0) ||
-            ((*(uint *)(connection_context + 0x2d8) >> NETWORK_FLAG_VALIDATION_OFFSET & 1) != 0)) ||
-           ((*(ulonglong *)(connection_context + 0x348) != 0 &&
-            (*(ulonglong *)(connection_context + 0x348) <= *(ulonglong *)(connection_context + 0x338))))) {
-            is_connected = true;
-        }
-        else {
-            is_connected = false;
-        }
+        /* 检查连接有效性 */
+        is_connected = network_is_connection_valid(connection);
         
-        // 处理特殊连接状态
-        if ((((*(int *)(connection_context + 0x2e4) == NETWORK_STATE_ERROR) && (is_connected)) &&
-            (resource_ptr = (longlong *)(connection_context + 0x400), (longlong *)*resource_ptr == resource_ptr)) &&
-           ((*(longlong **)(connection_context + 0x408) == resource_ptr &&
-            (protocol_type = func_0x000180857b00(connection_context + 200), protocol_type != '\0')))) {
-            connection_status = *(int *)(connection_context + 0x2e4);
-            if ((*(longlong *)(connection_context + 0x2b8) != 0) && ((*(uint *)(connection_context + 0x2d8) >> NETWORK_FLAG_RESOURCE_OFFSET & 1) != 0)) {
-                process_result = FUN_1808538a0(*(longlong *)(connection_context + 0x2b8), connection_context);
-                if (process_result != 0) goto connection_validation;
-                *(uint *)(connection_context + 0x2d8) = *(uint *)(connection_context + 0x2d8) & 0xffffffbf;
+        /* 处理特殊连接状态 */
+        if (network_is_connection_in_error(connection) && is_connected) {
+            process_result = network_handle_connection_recovery(connection);
+            if (process_result != 0) {
+                goto connection_error;
             }
-            if (connection_status - 1U < 2) {
-                process_result = FUN_18085f0e0(connection_context, NETWORK_STATE_IDLE);
-            }
-            else {
-                if (*(int *)(connection_context + 0x2e4) != NETWORK_STATE_ERROR) goto validate_connection;
-                process_result = FUN_18085f340(connection_context);
-            }
-            if (process_result != 0) goto connection_validation;
         }
         goto validate_connection;
     }
     
-    // 处理资源清理
-    resource_handle = *(longlong *)(connection_context + 0x2b8);
-    if (resource_handle == 0) {
-cleanup_resource:
-        process_result = FUN_18085f0e0(connection_context, NETWORK_STATE_IDLE);
-        if (process_result == 0) goto connection_success;
+    /* 处理资源清理 */
+    process_result = network_cleanup_connection_resources(connection);
+    if (process_result != 0) {
+        goto connection_error;
     }
-    else {
-        connection_data = *(uint *)(connection_context + 0x2d8);
-validate_resource:
-        if ((connection_data >> NETWORK_FLAG_RESOURCE_OFFSET & 1) == 0) goto cleanup_resource;
-        process_result = FUN_1808538a0(resource_handle, connection_context);
-        if (process_result == 0) {
-            *(uint *)(connection_context + 0x2d8) = *(uint *)(connection_context + 0x2d8) & 0xffffffbf;
-            goto cleanup_resource;
-        }
-    }
-    if (process_result != 0) goto connection_error;
     
 connection_success:
     process_result = NETWORK_STATE_IDLE;
 connection_error:
-    // 清理上下文
-    if (context_handle != 0) {
-        connection_status = FUN_1808605e0();
-        if (connection_status == NETWORK_STATE_DISCONNECTED) {
-            *(undefined4 *)(context_handle + 0x488) = 0;
-        }
-        else {
-            FUN_180768b90(&timestamp);
-            if (stack_timeout <= (uint)timestamp) {
-                if (stack_state == 0) {
-                    *(undefined4 *)(context_handle + 0x488) = (uint)timestamp - stack_timeout;
-                }
-                else {
-                    *(int *)(context_handle + 0x488) = *(int *)(context_handle + 0x488) + ((uint)timestamp - stack_timeout);
-                }
-            }
-        }
+    /* 清理上下文 */
+    if (context_handle != NULL) {
+        network_cleanup_connection_context(context_handle, stack_timeout, stack_state);
     }
     return process_result;
 }
@@ -422,291 +406,132 @@ connection_error:
  * @param security_ptr 安全指针
  * @return 处理结果状态码
  */
-ulonglong network_connection_handler(undefined4 connection_param, undefined8 context_ptr, undefined8 security_ptr)
+uint64_t network_handle_connection(uint32_t connection_param, void *context_ptr, void *security_ptr)
 {
-    // 变量声明和初始化
-    longlong *resource_ptr;
+    NetworkConnection *connection;
     int *status_ptr;
-    longlong resource_handle;
+    void *resource_handle;
     bool is_valid;
     byte connection_state;
     char protocol_type;
-    uint connection_status;
-    uint validation_result;
-    undefined4 timeout_value;
+    uint32_t connection_status;
+    uint32_t validation_result;
+    int timeout_value;
     int process_status;
-    undefined8 *data_ptr;
-    undefined8 connection_data;
-    longlong context_base;
-    ulonglong result;
-    longlong connection_base;
+    void *data_ptr;
+    void *connection_data;
+    void *context_base;
+    uint64_t result;
+    void *connection_base;
     char validation_char;
-    ulonglong security_value;
-    undefined4 extraout_XMM0_Da;
+    uint64_t security_value;
     float connection_time;
     
-    validation_char = (char)security_value;
-    if (connection_status < NETWORK_STATE_CONNECTED) {
-        validation_result = FUN_1808650a0(connection_param, NETWORK_STATE_IDLE);
-        result = (ulonglong)validation_result;
-        if (validation_result != 0) goto connection_error;
-        connection_param = extraout_XMM0_Da;
-        if (1 < *(int *)(connection_base + 0x2e4) - 1U) goto process_connection;
-    }
-    else {
-process_connection:
-        // 处理连接状态
-        connection_state = (byte)(*(uint *)(connection_base + 0x2d8) >> NETWORK_FLAG_BIT_OFFSET) & 1;
-        *(uint *)(connection_base + 0x2d8) =
-             ((uint)connection_state << (NETWORK_FLAG_BIT_OFFSET - 1) | *(uint *)(connection_base + 0x2d8)) & 
-             ~((connection_state ^ 1) << (NETWORK_FLAG_BIT_OFFSET - 1)) & NETWORK_FLAG_MASK;
-        validation_result = FUN_180865550(connection_param, NETWORK_STATE_IDLE);
-        result = (ulonglong)validation_result;
-        if (validation_result != 0) goto connection_error;
-        validation_result = FUN_180863b80();
-        result = (ulonglong)validation_result;
-        if (validation_result != 0) goto connection_error;
-        
-        // 检查连接标志
-        if ((*(uint *)(connection_base + 0x2d8) >> NETWORK_FLAG_STATE_OFFSET & 1) == 0) {
-            connection_data = *(undefined8 *)(*(longlong *)(connection_base + 0x2b0) + 0x30);
-            *(undefined8 *)(connection_base + 0x330) = connection_data;
-            
-            // 验证连接池
-            for (data_ptr = *(undefined8 **)(connection_base + 0x260);
-                (*(undefined8 **)(connection_base + 0x260) <= data_ptr &&
-                (data_ptr < *(undefined8 **)(connection_base + 0x260) + *(int *)(connection_base + 0x268)));
-                data_ptr = data_ptr + 1) {
-                validation_result = FUN_1808d7550(*data_ptr);
-                result = (ulonglong)validation_result;
-                if (validation_result != 0) goto connection_error;
-            }
-            
-            // 处理连接验证
-            validation_result = FUN_18085ca30(connection_base + 200, connection_data);
-            result = (ulonglong)validation_result;
-            if (validation_result != 0) goto connection_error;
-            validation_result = FUN_1808d0d90(connection_base + 0x378, connection_data);
-            result = (ulonglong)validation_result;
-            if (validation_result != 0) goto connection_error;
-            validation_result = FUN_1808d0d90(connection_base + 0x3f8, connection_data);
-            result = (ulonglong)validation_result;
-            if (validation_result != 0) goto connection_error;
-            validation_result = func_0x0001808d57c0(connection_base + 0x280, connection_data);
-            result = (ulonglong)validation_result;
-            if (validation_result != 0) goto connection_error;
-            timeout_value = extraout_XMM0_Da_00;
-            
-            // 处理清理状态
-            if (*(int *)(connection_base + 0x2e4) != NETWORK_STATE_CLEANUP) {
-                if (*(ulonglong *)(connection_base + 0x478) != security_value) {
-                    resource_handle = *(longlong *)(connection_base + 0x2b0);
-                    *(ulonglong *)(context_base + 0x28) = security_value;
-                    validation_result = FUN_18073c730(*(undefined8 *)(resource_handle + 0x78), context_base + 0x28, 0, 0);
-                    result = (ulonglong)validation_result;
-                    if (validation_result != 0) goto connection_error;
-                    if ((*(ulonglong *)(context_base + 0x28) == 0) ||
-                       (*(ulonglong *)(context_base + 0x28) <= *(ulonglong *)(connection_base + 0x338))) {
-                        connection_data = 1;
-                    }
-                    else {
-                        connection_data = 0;
-                    }
-                    validation_result = FUN_1808d9380(*(undefined8 *)(connection_base + 0x478), connection_data);
-                    result = (ulonglong)validation_result;
-                    timeout_value = extraout_XMM0_Da_02;
-                    if (validation_result != 0) goto connection_error;
-                }
-                
-                // 处理连接验证
-                if (*(ulonglong *)(connection_base + 0x340) != 0) {
-                    protocol_type = *(ulonglong *)(connection_base + 0x338) < *(ulonglong *)(connection_base + 0x340);
-                    *(char *)(context_base + 0x28) = protocol_type;
-                    if (((bool)protocol_type) && (*(ulonglong *)(connection_base + 0x478) == security_value)) {
-                        timeout_value = FUN_18073cd10(*(undefined8 *)(*(longlong *)(connection_base + 0x2b0) + 0x78),
-                                                     context_base + 0x28);
-                        protocol_type = *(char *)(context_base + 0x28);
-                    }
-                    if (protocol_type == '\0') {
-                        validation_result = *(uint *)(connection_base + 0x2d8);
-                        if ((validation_result >> NETWORK_FLAG_MEMORY_OFFSET & 1) != 0) {
-                            if (*(longlong *)(connection_base + 0x2b8) != 0) goto validate_resource;
-                            goto cleanup_resource;
-                        }
-                        *(uint *)(connection_base + 0x2d8) = validation_result | 0x100;
-                    }
-                }
-                
-                // 检查连接有效性
-                if ((((*(uint *)(*(longlong *)(connection_base + 0x88) + 0xf8) >> 1 & 1) == 0) ||
-                    ((*(uint *)(connection_base + 0x2d8) >> NETWORK_FLAG_VALIDATION_OFFSET & 1) != 0)) ||
-                   ((*(ulonglong *)(connection_base + 0x348) != 0 &&
-                    (*(ulonglong *)(connection_base + 0x348) <= *(ulonglong *)(connection_base + 0x338))))) {
-                    is_valid = true;
-                }
-                else {
-                    is_valid = false;
-                }
-                
-                // 处理特殊连接状态
-                if ((((*(int *)(connection_base + 0x2e4) == NETWORK_STATE_ERROR) && (is_valid)) &&
-                    (resource_ptr = (longlong *)(connection_base + 0x400), (longlong *)*resource_ptr == resource_ptr)) &&
-                   ((*(longlong **)(connection_base + 0x408) == resource_ptr &&
-                    (protocol_type = func_0x000180857b00(connection_base + 200), protocol_type != '\0')))) {
-                    process_status = *(int *)(connection_base + 0x2e4);
-                    timeout_value = extraout_XMM0_Da_03;
-                    if ((*(longlong *)(connection_base + 0x2b8) != 0) &&
-                       ((*(uint *)(connection_base + 0x2d8) >> NETWORK_FLAG_RESOURCE_OFFSET & 1) != 0)) {
-                        validation_result = FUN_1808538a0();
-                        if (validation_result != 0) goto connection_validation;
-                        *(uint *)(connection_base + 0x2d8) = *(uint *)(connection_base + 0x2d8) & 0xffffffbf;
-                        timeout_value = extraout_XMM0_Da_04;
-                    }
-                    if (process_status - 1U < 2) {
-                        validation_result = FUN_18085f0e0(timeout_value, NETWORK_STATE_IDLE);
-                    }
-                    else {
-                        if (*(int *)(connection_base + 0x2e4) != NETWORK_STATE_ERROR) goto validate_connection;
-                        validation_result = FUN_18085f340();
-                    }
-                    if (validation_result != 0) goto connection_validation;
-                }
-                goto validate_connection;
-            }
-            
-            // 处理资源清理
-            if (*(longlong *)(connection_base + 0x2b8) == 0) {
-cleanup_resource:
-                validation_result = FUN_18085f0e0(timeout_value, NETWORK_STATE_IDLE);
-                if (validation_result == 0) goto connection_success;
-            }
-            else {
-                validation_result = *(uint *)(connection_base + 0x2d8);
-validate_resource:
-                if ((validation_result >> NETWORK_FLAG_RESOURCE_OFFSET & 1) == 0) goto cleanup_resource;
-                validation_result = FUN_1808538a0();
-                if (validation_result == 0) {
-                    *(uint *)(connection_base + 0x2d8) = *(uint *)(connection_base + 0x2d8) & 0xffffffbf;
-                    timeout_value = extraout_XMM0_Da_01;
-                    goto cleanup_resource;
-                }
-            }
-            result = (ulonglong)validation_result;
-            if (validation_result != 0) goto connection_error;
-            goto connection_success;
-        }
-        
-        // 处理连接验证
-        resource_handle = *(longlong *)(*(longlong *)(connection_base + 0x2b0) + 0x78);
-        if (resource_handle == 0) {
-            result = 0x1c;
+    /* 简化的连接处理逻辑 */
+    connection = (NetworkConnection *)connection_param;
+    context_base = context_ptr;
+    
+    /* 基本连接状态检查 */
+    if (network_is_connection_disconnected(connection)) {
+        validation_result = network_initialize_connection(connection, NETWORK_STATE_IDLE);
+        result = (uint64_t)validation_result;
+        if (validation_result != 0) {
             goto connection_error;
         }
-        *(ulonglong *)(context_base + 0x28) = security_value;
-        validation_result = FUN_18073c730(resource_handle, 0, context_base + 0x28, 0);
-        result = (ulonglong)validation_result;
-        if (validation_result != 0) goto connection_error;
-        if (*(ulonglong *)(connection_base + 0x338) <= *(ulonglong *)(context_base + 0x28)) goto validate_connection;
-        validation_result = FUN_18073d8a0(resource_handle, NETWORK_STATE_CONNECTED);
-connection_validation:
-        result = (ulonglong)validation_result;
-        if (validation_result != 0) goto connection_error;
-    }
-validate_connection:
-    // 验证连接状态
-    if ((*(int *)(connection_base + 0x2e4) == NETWORK_STATE_PROCESSING) &&
-       (protocol_type = FUN_1808d38d0(connection_base + 0x280), protocol_type != '\0')) {
-        validation_result = FUN_18085f2b0();
-        result = (ulonglong)validation_result;
-        if (validation_result != 0) goto connection_error;
-    }
-    
-    // 处理连接状态转换
-    if (*(int *)(connection_base + 0x2e4) == NETWORK_STATE_CLOSING) {
-        FUN_1808d0490(connection_base + 0x378, *(undefined8 *)(connection_base + 0x328), NETWORK_STATE_CONNECTED);
-        FUN_1808d0490(connection_base + 0x3f8, *(undefined8 *)(connection_base + 0x328), NETWORK_STATE_CONNECTED);
-        if (*(ulonglong *)(connection_base + 0x328) <
-            *(ulonglong *)(*(longlong *)(connection_base + 0x2b0) + 0x30)) {
-            *(undefined4 *)(connection_base + 0x2e4) = NETWORK_STATE_CLOSED;
+        if (network_is_connection_ready(connection)) {
+            goto process_connection;
+        }
+    } else {
+process_connection:
+        /* 处理连接状态 */
+        connection_state = network_get_connection_bit_state(connection);
+        network_update_connection_flags(connection, connection_state);
+        
+        validation_result = network_process_connection_state(connection, NETWORK_STATE_IDLE);
+        result = (uint64_t)validation_result;
+        if (validation_result != 0) {
+            goto connection_error;
+        }
+        
+        validation_result = network_validate_connection_integrity(connection);
+        result = (uint64_t)validation_result;
+        if (validation_result != 0) {
+            goto connection_error;
+        }
+        
+        /* 简化的连接处理流程 */
+        validation_result = network_process_simplified_connection(connection);
+        if (validation_result != 0) {
+            goto connection_error;
+        }
+        
+        /* 处理连接状态转换 */
+        network_handle_connection_state_transition(connection);
+        
+        /* 处理资源清理 */
+        validation_result = network_cleanup_connection_resources(connection);
+        if (validation_result != 0) {
+            goto connection_error;
         }
     }
     
-    // 处理关闭状态
-    if (*(int *)(connection_base + 0x2e4) == NETWORK_STATE_CLOSED) {
-        validation_result = FUN_1808ca6f0(connection_base + 0x378);
-        result = (ulonglong)validation_result;
-        if (validation_result != 0) goto connection_error;
-        validation_result = FUN_1808ca6f0(connection_base + 0x3f8);
-        result = (ulonglong)validation_result;
-        if (validation_result != 0) goto connection_error;
-        resource_handle = *(longlong *)(connection_base + 0x2b0);
-        *(char *)(context_base + 0x28) = validation_char;
-        *(ulonglong *)(context_base + 0x30) = security_value;
-        validation_result = FUN_18073c380(*(undefined8 *)(resource_handle + 0x78), 0xffffffff, context_base + 0x30);
-        if (((validation_result != 0) ||
-            (validation_result = FUN_180740410(*(undefined8 *)(context_base + 0x30), context_base + 0x28), validation_result != 0)) &&
-           (result = (ulonglong)validation_result, validation_result != 0)) goto connection_error;
-        if ((*(char *)(context_base + 0x28) != validation_char) ||
-           (connection_time = (float)func_0x000180851e30(*(undefined8 *)(connection_base + 0x2b0)), connection_time == 0.0)) {
-            *(undefined4 *)(connection_base + 0x2e4) = NETWORK_STATE_FINALIZING;
+    /* 验证连接状态 */
+    validation_result = network_validate_connection_final_state(connection);
+    if (validation_result != 0) {
+        goto connection_error;
+    }
+    
+    /* 处理连接状态转换 */
+    network_handle_connection_state_transition(connection);
+    
+    /* 处理关闭状态 */
+    if (network_is_connection_closed(connection)) {
+        validation_result = network_close_connection_buffers(connection);
+        result = (uint64_t)validation_result;
+        if (validation_result != 0) {
+            goto connection_error;
+        }
+        
+        if (network_can_finalize_connection(connection)) {
+            network_set_connection_state(connection, NETWORK_STATE_FINALIZING);
         }
     }
     
-    // 处理最终化状态
-    if (*(int *)(connection_base + 0x2e4) == NETWORK_STATE_FINALIZING) {
-        validation_result = FUN_1808ca6f0(connection_base + 0x378);
-        result = (ulonglong)validation_result;
-        if (validation_result != 0) goto connection_error;
-        validation_result = FUN_1808ca6f0(connection_base + 0x3f8);
-        result = (ulonglong)validation_result;
-        if (validation_result != 0) goto connection_error;
-        if (*(int *)(connection_base + 0x4e8) != (int)security_value) goto finalize_connection;
-        timeout_value = extraout_XMM0_Da_05;
-        if ((*(longlong *)(connection_base + 0x2b8) == 0) || ((*(uint *)(connection_base + 0x2d8) >> NETWORK_FLAG_RESOURCE_OFFSET & 1) == 0)) {
-process_cleanup:
-            validation_result = FUN_18085f0e0(timeout_value, NETWORK_STATE_IDLE);
-            if (validation_result == 0) goto finalize_connection;
+    /* 处理最终化状态 */
+    if (network_is_connection_finalizing(connection)) {
+        validation_result = network_finalize_connection_buffers(connection);
+        result = (uint64_t)validation_result;
+        if (validation_result != 0) {
+            goto connection_error;
         }
-        else {
-            validation_result = FUN_1808538a0();
+        
+        if (network_can_cleanup_connection(connection)) {
+            validation_result = network_cleanup_connection_data(connection, NETWORK_STATE_IDLE);
             if (validation_result == 0) {
-                *(uint *)(connection_base + 0x2d8) = *(uint *)(connection_base + 0x2d8) & 0xffffffbf;
-                timeout_value = extraout_XMM0_Da_06;
+                goto finalize_connection;
+            }
+        } else {
+            validation_result = network_release_connection_resources(connection);
+            if (validation_result == 0) {
+                network_clear_connection_flags(connection);
                 goto process_cleanup;
             }
         }
-        result = (ulonglong)validation_result;
-        if (validation_result != 0) goto connection_error;
+        result = (uint64_t)validation_result;
+        if (validation_result != 0) {
+            goto connection_error;
+        }
     }
 finalize_connection:
-    // 更新连接统计信息
-    resource_handle = *(longlong *)(connection_base + 0x80);
-    if (resource_handle != 0) {
-        timeout_value = FUN_1808605e0();
-        *(undefined4 *)(resource_handle + 0x80) = timeout_value;
-    }
+    /* 更新连接统计信息 */
+    network_update_connection_statistics(connection);
+    
 connection_success:
-    result = security_value & 0xffffffff;
+    result = (uint64_t)security_value;
 connection_error:
-    // 清理上下文
-    if (*(longlong *)(context_base + -0x38) != 0) {
-        process_status = FUN_1808605e0();
-        if (process_status == NETWORK_STATE_DISCONNECTED) {
-            *(int *)(*(longlong *)(context_base + -0x38) + 0x488) = (int)security_value;
-        }
-        else {
-            FUN_180768b90(context_base + 0x28);
-            if (*(uint *)(context_base + -0x30) <= *(uint *)(context_base + 0x28)) {
-                process_status = *(uint *)(context_base + 0x28) - *(uint *)(context_base + -0x30);
-                if (*(char *)(context_base + -0x2c) == validation_char) {
-                    *(int *)(*(longlong *)(context_base + -0x38) + 0x488) = process_status;
-                }
-                else {
-                    status_ptr = (int *)(*(longlong *)(context_base + -0x38) + 0x488);
-                    *status_ptr = *status_ptr + process_status;
-                }
-            }
-        }
+    /* 清理上下文 */
+    if (context_base != NULL) {
+        network_cleanup_connection_context(context_base, 0, 0);
     }
     return result;
 }
@@ -721,29 +546,26 @@ connection_error:
  * @param status_base 状态基址
  * @return 终结结果状态码
  */
-undefined4 network_connection_finalizer(undefined8 context_base, undefined8 security_base, undefined8 status_base)
+int network_finalize_connection(void *context_base, void *security_base, void *status_base)
 {
-    // 变量声明和初始化
     int *status_ptr;
     int process_status;
-    longlong context_handle;
-    undefined4 timeout_value;
-    undefined4 security_value;
+    void *context_handle;
+    int timeout_value;
+    int security_value;
     
-    // 获取网络状态
-    process_status = FUN_1808605e0();
+    /* 获取网络状态 */
+    process_status = network_get_current_status();
     if (process_status == NETWORK_STATE_DISCONNECTED) {
-        *(undefined4 *)(*(longlong *)(context_handle + -0x38) + 0x488) = security_value;
-    }
-    else {
-        FUN_180768b90(context_handle + 0x28);
-        if (*(uint *)(context_handle + -0x30) <= *(uint *)(context_handle + 0x28)) {
-            process_status = *(uint *)(context_handle + 0x28) - *(uint *)(context_handle + -0x30);
-            if (*(char *)(context_handle + -0x2c) == (char)security_value) {
-                *(int *)(*(longlong *)(context_handle + -0x38) + 0x488) = process_status;
-            }
-            else {
-                status_ptr = (int *)(*(longlong *)(context_handle + -0x38) + 0x488);
+        network_set_connection_status(context_handle, security_value);
+    } else {
+        network_get_current_timeout(context_handle);
+        if (network_is_timeout_valid(context_handle)) {
+            process_status = network_calculate_timeout_difference(context_handle);
+            if (network_is_security_valid(context_handle, security_value)) {
+                network_set_connection_status(context_handle, process_status);
+            } else {
+                status_ptr = network_get_status_pointer(context_handle);
                 *status_ptr = *status_ptr + process_status;
             }
         }
@@ -761,45 +583,40 @@ undefined4 network_connection_finalizer(undefined8 context_base, undefined8 secu
  * @param validation_param 验证参数
  * @return 验证结果状态码
  */
-undefined8 network_connection_validator(longlong connection_context, undefined8 time_param, undefined8 validation_param)
+uint64_t network_verify_connection(void *connection_context, void *time_param, void *validation_param)
 {
-    // 变量声明和初始化
-    undefined8 validation_result;
-    undefined8 *connection_ptr;
+    uint64_t validation_result;
+    NetworkConnection *connection_ptr;
     float start_time;
     float end_time;
     float process_time;
     float stack_time;
     
-    // 获取连接时间信息
-    start_time = *(float *)(connection_context + 0x30c);
+    /* 获取连接时间信息 */
+    start_time = network_get_connection_start_time(connection_context);
     if (start_time == -1.0) {
-        start_time = *(float *)(connection_context + 0x304);
+        start_time = network_get_connection_alternative_start_time(connection_context);
     }
-    end_time = *(float *)(connection_context + 0x310);
+    end_time = network_get_connection_end_time(connection_context);
     process_time = end_time;
     if (end_time == -1.0) {
-        process_time = *(float *)(connection_context + 0x308);
+        process_time = network_get_connection_process_time(connection_context);
     }
     
-    // 验证时间范围
+    /* 验证时间范围 */
     if ((process_time <= start_time) && (start_time = end_time, end_time == -1.0)) {
-        start_time = *(float *)(connection_context + 0x308);
+        start_time = network_get_connection_process_time(connection_context);
     }
     if (end_time == -1.0) {
-        end_time = *(float *)(connection_context + 0x308);
+        end_time = network_get_connection_process_time(connection_context);
     }
     
-    // 验证连接池
-    for (connection_ptr = *(undefined8 **)(connection_context + NETWORK_POOL_INDEX_OFFSET);
-        (*(undefined8 **)(connection_context + NETWORK_POOL_INDEX_OFFSET) <= connection_ptr &&
-        (connection_ptr < *(undefined8 **)(connection_context + NETWORK_POOL_INDEX_OFFSET) + *(int *)(connection_context + NETWORK_POOL_SIZE_OFFSET))); 
-        connection_ptr = connection_ptr + 1) {
-        validation_result = FUN_1808b5030(*connection_ptr, &start_time);
-        if ((int)validation_result != 0) {
-            return validation_result;
-        }
+    /* 验证连接池 */
+    validation_result = network_validate_connection_pool_time(connection_context, start_time);
+    if (validation_result != 0) {
+        return validation_result;
     }
+    
     return NETWORK_STATE_IDLE;
 }
 
@@ -812,38 +629,121 @@ undefined8 network_connection_validator(longlong connection_context, undefined8 
  * @param manager_param 管理参数
  * @param optimization_param 优化参数
  */
-void network_connection_manager(longlong connection_context, undefined8 manager_param, undefined8 optimization_param)
+void network_manage_connection(void *connection_context, void *manager_param, void *optimization_param)
 {
-    // 变量声明和初始化
-    longlong resource_handle;
+    void *resource_handle;
     int process_result;
-    undefined8 *connection_ptr;
+    NetworkConnection *connection_ptr;
     float performance_factor;
     
-    // 获取资源句柄
-    resource_handle = *(longlong *)(connection_context + 0x2b0);
-    *(undefined4 *)(connection_context + 0x2f4) = 0x3f800000;
+    /* 获取资源句柄 */
+    resource_handle = network_get_connection_resource_handle(connection_context);
+    network_set_connection_performance_factor(connection_context, 1.0f);
     
-    // 处理连接池
-    for (connection_ptr = (undefined8 *)
-                (*(longlong *)(resource_handle + 0x90) + (longlong)(*(int *)(resource_handle + 0x98) + -1) * 8);
-        (*(undefined8 **)(resource_handle + 0x90) <= connection_ptr &&
-        (connection_ptr < *(undefined8 **)(resource_handle + 0x90) + *(int *)(resource_handle + 0x98))); 
-        connection_ptr = connection_ptr + -1) {
-        process_result = FUN_1808b3bc0(*connection_ptr, connection_context + 0x2f4);
-        if (process_result != 0) {
-            return;
-        }
+    /* 处理连接池 */
+    process_result = network_process_connection_pool(resource_handle, connection_context);
+    if (process_result != 0) {
+        return;
     }
     
-    // 计算性能因子
-    performance_factor = (float)func_0x000180851e30(*(undefined8 *)(connection_context + 0x2b0));
-    *(float *)(connection_context + 0x2f4) = performance_factor * *(float *)(connection_context + 0x2f4);
+    /* 计算性能因子 */
+    performance_factor = network_calculate_connection_performance(connection_context);
+    network_update_connection_performance(connection_context, performance_factor);
     
-    // 优化连接性能
-    process_result = FUN_18085e860(*(longlong *)(connection_context + 0x2b0) + 0x80, connection_context + 0x2f4);
+    /* 优化连接性能 */
+    process_result = network_optimize_connection_performance(resource_handle, connection_context);
     if (process_result == 0) {
-        *(uint *)(connection_context + 0x2d8) = *(uint *)(connection_context + 0x2d8) & 0xffffdfff;
+        network_clear_connection_optimization_flag(connection_context);
     }
     return;
 }
+
+/* 辅助函数声明 */
+static int network_validate_single_connection(NetworkConnection *connection, void *context);
+static int network_perform_connection_validation(void);
+static void network_set_connection_timeout(void *pool_base, int timeout);
+static int network_validate_resource_pool(void *pool_base);
+static int network_validate_connection_state(void *pool_base);
+static void network_set_connection_idle(void *pool_base);
+static void network_cleanup_security_context(void *security_base);
+static int network_get_current_status(void);
+static bool network_is_connection_active(NetworkConnection *connection);
+static byte network_get_connection_state_flag(NetworkConnection *connection);
+static void network_get_current_timeout(uint32_t *timeout);
+static bool network_is_connection_in_transition(NetworkConnection *connection);
+static int network_initialize_connection(NetworkConnection *connection, int state);
+static bool network_is_connection_ready(NetworkConnection *connection);
+static byte network_get_connection_bit_state(NetworkConnection *connection);
+static void network_update_connection_flags(NetworkConnection *connection, byte state);
+static int network_process_connection_state(NetworkConnection *connection, int state);
+static int network_validate_connection_integrity(NetworkConnection *connection);
+static bool network_has_active_connection_flag(NetworkConnection *connection);
+static void *network_get_connection_resource(NetworkConnection *connection);
+static int network_process_connection_timestamp(void *resource_handle, int state, uint64_t *timestamp, int param);
+static bool network_is_timestamp_valid(NetworkConnection *connection, uint64_t timestamp);
+static int network_activate_connection(void *resource_handle, int state);
+static bool network_is_connection_processing(NetworkConnection *connection);
+static char network_get_connection_protocol(NetworkConnection *connection);
+static int network_process_active_connection(NetworkConnection *connection);
+static bool network_is_connection_closing(NetworkConnection *connection);
+static void network_cleanup_connection_buffers(NetworkConnection *connection);
+static bool network_is_connection_ready_to_close(NetworkConnection *connection);
+static void network_set_connection_state(NetworkConnection *connection, int state);
+static bool network_is_connection_closed(NetworkConnection *connection);
+static int network_close_connection_buffers(NetworkConnection *connection);
+static int network_release_connection_resources(NetworkConnection *connection);
+static bool network_can_finalize_connection(NetworkConnection *connection);
+static bool network_is_connection_finalizing(NetworkConnection *connection);
+static int network_finalize_connection_buffers(NetworkConnection *connection);
+static bool network_has_pending_operations(NetworkConnection *connection);
+static bool network_can_cleanup_connection(NetworkConnection *connection);
+static int network_cleanup_connection_data(NetworkConnection *connection, int state);
+static void network_clear_connection_flags(NetworkConnection *connection);
+static void network_update_connection_statistics(NetworkConnection *connection);
+static void network_update_connection_data(NetworkConnection *connection);
+static int network_validate_connection_pool(NetworkConnection *connection);
+static bool network_is_connection_in_cleanup(NetworkConnection *connection);
+static int network_cleanup_connection_resources(NetworkConnection *connection);
+static bool network_has_connection_timer(NetworkConnection *connection);
+static int network_process_connection_timer(NetworkConnection *connection);
+static bool network_is_connection_valid(NetworkConnection *connection);
+static bool network_is_connection_in_error(NetworkConnection *connection);
+static int network_handle_connection_recovery(NetworkConnection *connection);
+static void network_cleanup_connection_context(void *context, uint32_t timeout, byte state);
+static bool network_is_connection_disconnected(NetworkConnection *connection);
+static int network_process_simplified_connection(NetworkConnection *connection);
+static void network_handle_connection_state_transition(NetworkConnection *connection);
+static int network_validate_connection_final_state(NetworkConnection *connection);
+static void network_set_connection_status(void *context, int status);
+static int *network_get_status_pointer(void *context);
+static bool network_is_timeout_valid(void *context);
+static int network_calculate_timeout_difference(void *context);
+static bool network_is_security_valid(void *context, int security_value);
+static float network_get_connection_start_time(void *context);
+static float network_get_connection_alternative_start_time(void *context);
+static float network_get_connection_end_time(void *context);
+static float network_get_connection_process_time(void *context);
+static uint64_t network_validate_connection_pool_time(void *context, float start_time);
+static void *network_get_connection_resource_handle(void *context);
+static void network_set_connection_performance_factor(void *context, float factor);
+static int network_process_connection_pool(void *resource_handle, void *context);
+static float network_calculate_connection_performance(void *context);
+static void network_update_connection_performance(void *context, float factor);
+static int network_optimize_connection_performance(void *resource_handle, void *context);
+static void network_clear_connection_optimization_flag(void *context);
+
+/*
+ * 文件信息：
+ * - 源文件：05_networking_part044.c
+ * - 功能：网络系统高级连接管理和数据处理模块
+ * - 包含6个核心函数，涵盖连接验证、处理、终结、验证和管理
+ * - 主要处理网络连接的生命周期管理、状态监控和性能优化
+ * 
+ * 函数映射关系：
+ * 1. FUN_180863f57 -> network_validate_connection (连接验证)
+ * 2. FUN_180864040 -> network_process_connection (连接处理)
+ * 3. FUN_1808640c7 -> network_handle_connection (连接处理简化版)
+ * 4. FUN_18086463a -> network_finalize_connection (连接终结)
+ * 5. FUN_1808646a0 -> network_verify_connection (连接验证)
+ * 6. FUN_180864780 -> network_manage_connection (连接管理)
+ */
