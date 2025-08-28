@@ -1,6 +1,101 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part187.c - 4 个函数
+// 02_core_engine_part187.c - 引擎核心模块功能实现
+
+// 全局变量定义
+static undefined8 *default_engine_config = (undefined8 *)0x18098bcb0;
+static undefined8 *engine_resource_table = (undefined8 *)0x180a3c3e0;
+static undefined8 engine_context = 0x180c86870;
+static undefined8 engine_system_config = 0x180c86950;
+static undefined8 engine_manager_config = 0x180c8a9d0;
+static undefined8 engine_event_database = 0x180c8ed18;
+static undefined8 engine_memory_pool = 0x180c82868;
+static undefined8 engine_component_list = 0x180c868e8;
+static undefined8 engine_loading_config = 0x180c86890;
+static undefined8 engine_resource_manager = 0x180c8a988;
+static undefined8 engine_status_config = 0x180c86908;
+static undefined8 engine_error_handler = 0x180c86928;
+static undefined8 *engine_error_message = (undefined8 *)0x180a013c0;
+static undefined8 engine_stack_guard = 0x180bf00a8;
+static undefined8 *default_config_string = (undefined8 *)0x18098bc73;
+static undefined *default_config_info = (undefined *)0x180a081b4;
+static undefined *extended_config_info = (undefined *)0x180a081bc;
+static undefined *default_config_mode = (undefined *)0x180a089e8;
+static undefined *alternative_config_mode = (undefined *)0x180a08120;
+static undefined *default_status_info = (undefined *)0x180a080d8;
+static undefined *extended_status_info = (undefined *)0x180a08100;
+static undefined *status_config_data = (undefined *)0x180a080cc;
+static undefined *task_completion_callback = (undefined *)0x18016f9b0;
+static undefined8 engine_global_config = 0x180c8a980;
+
+// 函数声明
+void initialize_engine_components(undefined8, undefined8, undefined8, undefined8, undefined8, undefined8);
+void create_engine_instance(undefined8 *, undefined8, ...);
+void initialize_resource_buffer(undefined8 *, undefined **);
+void initialize_engine_system(void);
+void execute_engine_initialization(undefined8);
+void configure_engine_environment(undefined8, undefined8, undefined8, undefined8);
+void initialize_core_system_components(undefined8, undefined8, undefined8, undefined8, undefined8, undefined8);
+void initialize_engine_manager(undefined8);
+longlong acquire_mutex(longlong);
+longlong release_mutex(longlong);
+void throw_mutex_error(int);
+void prepare_engine_system(void);
+void initialize_resource_table(undefined8 *, undefined8, undefined8, undefined8, undefined8, undefined8);
+void cleanup_resource_manager(void);
+void setup_performance_settings(undefined8, undefined8, undefined8, undefined8, undefined8, undefined8);
+void setup_memory_management(undefined8, undefined8, undefined8, undefined8, undefined8, undefined8);
+void setup_configuration(undefined8, undefined *);
+void process_engine_config(undefined8);
+void configure_rendering_settings(undefined8, float, undefined8, undefined8, undefined8, undefined8);
+void setup_rendering_pipeline(undefined8, undefined *, undefined8, undefined8, undefined8, undefined8);
+void update_engine_system(undefined8, undefined8, undefined8, undefined8, undefined8, undefined8);
+void check_system_status(undefined8, undefined8, undefined8, undefined8, undefined8, undefined8);
+void sync_system_components(undefined8, undefined8, undefined8, undefined8, undefined8, undefined8);
+void optimize_system_performance(undefined8, undefined8, undefined8, undefined8, undefined8, undefined8);
+void setup_resource_manager(undefined8, undefined8, undefined8, undefined8, undefined8, undefined8);
+void apply_config_settings(undefined8, undefined *, undefined8, undefined8, undefined8, undefined8);
+void create_task_context(undefined8, undefined8, undefined8, undefined8, undefined8, undefined8);
+void cleanup_task_handler(undefined8, undefined8 **);
+void setup_task_completion(undefined8, undefined8 *);
+void finalize_task_processing(void);
+void setup_extended_status_info(undefined8, undefined *, undefined8, undefined8, undefined8, undefined8);
+void configure_status_info(undefined8, undefined *);
+void setup_audio_system(undefined8, undefined8, undefined8, undefined8, undefined8, undefined8);
+void prepare_data_loading_system(void);
+void handle_resource_error(void);
+void report_engine_error(undefined8, undefined8 *);
+void finalize_engine_initialization(undefined8);
+void initialize_engine_system_flow(undefined8, undefined8, undefined8, undefined8, undefined8, undefined8);
+void initialize_core_services(undefined8, undefined8, undefined8, undefined8, undefined8, undefined8);
+void get_engine_config_handle(void);
+void configure_core_module(undefined8, undefined8, undefined8, undefined8, undefined8, undefined8);
+void setup_engine_configuration(undefined8, undefined8);
+void get_engine_core_handle(void);
+void initialize_rendering_system(undefined8, undefined8, undefined8, undefined8, undefined8, undefined8);
+void get_next_component(undefined8);
+void initialize_component(undefined8, undefined8, undefined8, undefined8, undefined8, undefined8);
+void run_system_diagnostics(undefined8, undefined8, undefined8, undefined8, undefined8, undefined8);
+void initialize_config_manager(undefined8);
+void setup_config_buffers(undefined8, undefined8, undefined8);
+void process_config_data(undefined8);
+void acquire_mutex(longlong);
+void release_mutex(longlong);
+void throw_mutex_error(int);
+void apply_config_settings(undefined8, undefined *, undefined8, undefined8, undefined8, undefined8);
+void move_config_items(undefined8 *, undefined8 *, longlong);
+void add_config_item(undefined8 *, undefined8 *);
+void initialize_event_buffer(undefined8 *, undefined8 *, undefined8, char, undefined8);
+void process_event_data(undefined8 *, undefined8 **);
+void create_event_context(undefined8, undefined8, undefined8, undefined8, undefined8, undefined8);
+void process_event_buffer(undefined8 *, undefined8 **);
+void handle_event_processing(undefined8 *, undefined8 *);
+void register_event_handler(undefined8, undefined8);
+void cleanup_event_handler(undefined8, undefined8 **);
+void traverse_and_initialize_engine_components(undefined8 *, undefined8, undefined8, undefined8);
+void get_network_config_handle(void);
+void setup_network_configuration(undefined8, undefined8, undefined8, undefined8, undefined8, undefined8);
+
 
 /**
  * 初始化引擎核心模块并设置默认配置
