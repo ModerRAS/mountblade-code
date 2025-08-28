@@ -968,7 +968,7 @@ LAB_18071cb6a:
   *(int *)(param_1 + 0x1690) = (int)pcVar9[0x1d];
   FUN_1807054a0(param_2,(int)pcVar9[0x22],&unknown_var_9560_ptr,8);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_98);
+  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_98);
 }
 
 

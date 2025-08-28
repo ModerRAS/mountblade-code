@@ -948,7 +948,7 @@ LAB_18026d0a6:
             *(uint *)(param_1 + 0x11f) = *puVar13;
             *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + 4;
             // 函数结束，栈保护清理
-            FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_498);
+            SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_498);
         }
     } while( true );
 }

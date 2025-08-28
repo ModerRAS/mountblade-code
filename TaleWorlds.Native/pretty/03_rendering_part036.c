@@ -68,7 +68,7 @@ void FUN_180288040(uint64_t *param_1)
   uStack_1c8 = 0;
   puStack_100 = param_1;
   FUN_180244190();
-  *param_1 = &unknown_var_336_ptr;
+  *param_1 = &rendering_ripple_ptr;
   plVar1 = param_1 + 0x1f;
   *plVar1 = 0;
   param_1[0x20] = 0;
@@ -323,7 +323,7 @@ uint64_t * FUN_180288790(uint64_t *param_1,uint64_t param_2)
 {
   int64_t *plVar1;
   
-  *param_1 = &unknown_var_336_ptr;
+  *param_1 = &rendering_ripple_ptr;
   plVar1 = (int64_t *)param_1[0x25];
   param_1[0x25] = 0;
   if (plVar1 != (int64_t *)0x0) {

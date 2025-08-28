@@ -143,7 +143,7 @@ void FUN_18052dcf0(int64_t param_1,char param_2,int32_t param_3)
       }
       if (plVar8 != (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900(plVar8);
+        CoreEngineMemoryPoolCleaner(plVar8);
       }
     }
   }
@@ -711,7 +711,7 @@ void FUN_18052efb0(int64_t param_1)
     FUN_1808fd400(*(int32_t *)(lVar1 + 0x34));
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_c8 ^ (uint64_t)auStack_1d8);
+  SystemSecurityChecker(uStack_c8 ^ (uint64_t)auStack_1d8);
 }
 
 
