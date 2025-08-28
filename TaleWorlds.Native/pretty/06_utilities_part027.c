@@ -296,9 +296,22 @@ void FUN_1809414b5(uint64_t *param_1)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// 全局变量定义 - 系统状态管理
+static uint64_t* system_state_flag_ptr = (uint64_t*)0x180c821d0;          // 系统状态标志指针
+static uint64_t* module_state_ptr = (uint64_t*)0x180bf52c0;             // 模块状态指针
+static uint64_t* module_status_ptr = (uint64_t*)0x180bf52c8;            // 模块状态指针
+static uint64_t* module_cleanup_ptr = (uint64_t*)0x180bf52d8;           // 模块清理指针
+static uint64_t* module_base_ptr = (uint64_t*)0x180bf5248;              // 模块基地址指针
+static uint64_t* module_end_ptr = (uint64_t*)0x180bf5250;                // 模块结束地址指针
+static uint64_t* module_init_ptr = (uint64_t*)0x180bf5288;               // 模块初始化指针
+static uint64_t* system_handle_ptr = (uint64_t*)0x180c91900;             // 系统句柄指针
+static uint64_t* memory_pool_ptr = (uint64_t*)0x180d49200;              // 内存池指针
+static uint64_t* memory_pool_status_ptr = (uint64_t*)0x180d49208;        // 内存池状态指针
+static uint64_t* exception_handler_ptr = (uint64_t*)0x180d493f8;        // 异常处理器指针
 
-
+// 系统默认值常量
+static const uint64_t SYSTEM_DEFAULT_VALUE = 0x18098bcb0;               // 系统默认值
+static const uint64_t SYSTEM_INIT_VALUE = 0x180a3c3e0;                  // 系统初始化值
 
 // =============================================================================
 // 系统模块初始化器 (SystemModuleInitializer)
@@ -318,32 +331,32 @@ void FUN_1809414f0(void)
   // lVar2 -> module_ptr: 模块指针
   
   // 初始化系统模块
-  _DAT_180bf52c0 = &UNK_180a3c3e0;
+  module_state_ptr = (uint64_t*)SYSTEM_INIT_VALUE;
   
   // 检查模块状态
-  if (_DAT_180bf52c8 != 0) {
+  if (*module_status_ptr != 0) {
     // 模块状态异常，终止程序
     FUN_18064e900();
   }
   
   // 重置模块状态
-  _DAT_180bf52c8 = 0;
-  _DAT_180bf52d8 = 0;
-  _DAT_180bf52c0 = &UNK_18098bcb0;
+  *module_status_ptr = 0;
+  *module_cleanup_ptr = 0;
+  module_state_ptr = (uint64_t*)SYSTEM_DEFAULT_VALUE;
   
   // 检查模块初始化状态
-  if (_DAT_180bf5288 == 0) {
+  if (*module_init_ptr == 0) {
     // 执行模块初始化
     FUN_180048980();
     
     // 遍历模块并执行初始化
-    module_end = _DAT_180bf5250;
-    for (module_ptr = _DAT_180bf5248; module_ptr != module_end; module_ptr = module_ptr + 0x100) {
+    module_end = *module_end_ptr;
+    for (module_ptr = *module_base_ptr; module_ptr != module_end; module_ptr = module_ptr + 0x100) {
       FUN_180046b10(module_ptr);
     }
     
     // 检查模块基地址
-    if (_DAT_180bf5248 == 0) {
+    if (*module_base_ptr == 0) {
       return;
     }
     

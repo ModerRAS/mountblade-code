@@ -87,6 +87,27 @@ int UI_SetComponentProperties(void* context, uint32_t flags, void* properties, v
 #define UI_CreateRenderComponent FUN_18078de70
 #define UI_SetComponentProperties FUN_18078df30
 #define UI_SecurityCheck FUN_1808fc050
+#define UI_InitializeComponentMemory func_0x000180768c10
+
+// ==================== 地址别名定义 ====================
+#define UI_EVENT_QUEUE_CONFIG &UNK_18095aeb0
+#define UI_SYSTEM_POINTER &UNK_18095af28
+#define UI_DEFAULT_STRING &UNK_18095af38
+#define UI_COMPONENT_VTABLE &UNK_18095afe8
+#define UI_COMPONENT_RELEASED_VTABLE &UNK_180958ba0
+#define UI_TEXTURE_OBJECT_CONFIG &UNK_18095b430
+#define UI_SPECIAL_COMPONENT_VTABLE &UNK_18095b038
+#define UI_COMPONENT_TYPE_VALIDATOR &UNK_18095b4a8
+#define UI_CUSTOM_COMPONENT_VALIDATOR1 &UNK_18095b4b8
+#define UI_CUSTOM_COMPONENT_VALIDATOR2 &UNK_18095b4c0
+#define UI_CUSTOM_COMPONENT_VALIDATOR3 &UNK_18095b4d0
+#define UI_CUSTOM_COMPONENT_VALIDATOR4 &UNK_18095b4dc
+#define UI_CUSTOM_COMPONENT_VALIDATOR5 &UNK_18095b4e4
+#define UI_COMPOSITE_COMPONENT_VTABLE &UNK_18095af48
+#define UI_RENDER_COMPONENT_VTABLE &UNK_180958ec0
+#define UI_RESOURCE_CLEANUP_CONFIG &UNK_18095b500
+#define UI_GLOBAL_DATA_TABLE _DAT_180be12f0
+#define UI_GLOBAL_SECURITY_KEY _DAT_180bf00a8
 
 // ==================== 高级函数别名 ====================
 #define UI_ComponentCreationHandler UI_CreateComponent
@@ -187,7 +208,7 @@ void UI_CreateComponent(void* context, void* parent, void** component, char enab
     longlong debug_data[4];        // 调试数据
     
     // 初始化安全密钥
-    security_key = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+    security_key = UI_GLOBAL_SECURITY_KEY ^ (ulonglong)security_buffer;
     resource_allocator = (longlong *)0x0;
     state_manager = resource_allocator;
     
@@ -199,7 +220,7 @@ void UI_CreateComponent(void* context, void* parent, void** component, char enab
         resource_handle = UI_InitializeEventQueue(
             *(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
             0x250,  // 队列大小
-            &UNK_18095aeb0,  // 队列配置
+            UI_EVENT_QUEUE_CONFIG,  // 队列配置
             0x123   // 初始化参数
         );
         
@@ -284,7 +305,7 @@ void UI_CreateComponent(void* context, void* parent, void** component, char enab
             
             // 设置操作标志
             operation_flags = CONCAT31(operation_flags._1_3_, 1);
-            system_pointer = &UNK_18095af28;
+            system_pointer = UI_SYSTEM_POINTER;
             
             // 验证参数并处理组件
             result = UI_ValidateParameters(context, &system_table, resource_allocator, state_data);
@@ -320,7 +341,7 @@ void UI_CreateComponent(void* context, void* parent, void** component, char enab
                 // 检查特殊组件类型
                 state_manager = (longlong *)0x0;
                 if (parent != 0) {
-                    result = UI_CompareStrings(parent, &UNK_18095af38, 9);
+                    result = UI_CompareStrings(parent, UI_DEFAULT_STRING, 9);
                     if (result == 0) {
                         *(uint *)(component_manager + 9) = *(uint *)(component_manager + 9) | 0x40;
                         result = (**(code **)(*component_manager + 0x208))(component_manager);
@@ -634,7 +655,7 @@ void* UI_AllocateComponent(void* component)
     UI_InitializeComponentMemory();
     
     // 设置组件虚函数表
-    *component = &UNK_18095afe8;
+    *component = UI_COMPONENT_VTABLE;
     
     // 初始化组件数据字段
     component[0x3e] = 0;      // 组件标志
@@ -672,7 +693,7 @@ void* UI_AllocateComponent(void* component)
 void* UI_FreeComponent(void* component, ulonglong flags)
 {
     // 重置组件虚函数表为释放状态
-    *component = &UNK_180958ba0;
+    *component = UI_COMPONENT_RELEASED_VTABLE;
     
     // 根据标志决定是否实际释放内存
     if ((flags & 1) != 0) {
@@ -703,7 +724,7 @@ void* UI_FreeComponent(void* component, ulonglong flags)
 void* UI_ReleaseComponent(void* component, ulonglong flags)
 {
     // 重置组件虚函数表为释放状态
-    *component = &UNK_180958ba0;
+    *component = UI_COMPONENT_RELEASED_VTABLE;
     
     // 根据标志决定是否实际释放内存
     if ((flags & 1) != 0) {
@@ -1229,7 +1250,7 @@ LAB_18078d4e4:
                     return config_data;
                 }
                 resource_data = resource_data & 0xffffffff00000000;
-                component_config = UI_CreateTextureObject(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 0x38, &UNK_18095b430, 0x177, resource_data);
+                component_config = UI_CreateTextureObject(*(uint64_t *)(UI_GLOBAL_DATA_TABLE + 0x1a0), 0x38, UI_TEXTURE_OBJECT_CONFIG, 0x177, resource_data);
                 *(uint64_t *)(*(longlong *)(component_info + 0x120) + 0x138) = component_config;
                 component_info = *(longlong *)(*(longlong *)(component_info + 0x120) + 0x138);
                 if (component_info == 0) {
@@ -1306,7 +1327,7 @@ LAB_18078d4e4:
         }
         if (resource_info[0] != 0) {
             resource_data = CONCAT44((int)(resource_data >> 0x20), resource_info[1]);
-            component_info = UI_CreateRenderObject(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), resource_info[0] + 0x10, &UNK_18095b430, 0x1b6, resource_data);
+            component_info = UI_CreateRenderObject(*(uint64_t *)(UI_GLOBAL_DATA_TABLE + 0x1a0), resource_info[0] + 0x10, UI_TEXTURE_OBJECT_CONFIG, 0x1b6, resource_data);
             *(longlong *)(component_info + 0x130) = component_info;
             if (component_info == 0) {
                 return 0x26;  // 渲染对象创建失败
@@ -1336,7 +1357,7 @@ LAB_18078d946:
     }
     
     *(uint *)(component_info + 0x154) = status * template_result;
-    component_info = UI_CreateBufferObject(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), status * template_result + 0x10, &UNK_18095b430, 0x1c6, resource_data & 0xffffffff00000000);
+    component_info = UI_CreateBufferObject(*(uint64_t *)(UI_GLOBAL_DATA_TABLE + 0x1a0), status * template_result + 0x10, UI_TEXTURE_OBJECT_CONFIG, 0x1c6, resource_data & 0xffffffff00000000);
     *(longlong *)(component_info + 0x148) = component_info;
     if (component_info == 0) {
         return 0x26;  // 缓冲对象创建失败
@@ -1663,17 +1684,17 @@ uint64_t UI_CreateSpecializedComponent(longlong context, uint64_t type, longlong
     }
     
     // 验证组件类型
-    result = UI_ValidateComponentType(&UNK_18095b4a8, type, 0xf);
+    result = UI_ValidateComponentType(UI_COMPONENT_TYPE_VALIDATOR, type, 0xf);
     if (result == 0) {
         // 分配特殊组件
         special_component = (uint64_t *)
-                 UI_AllocateSpecialComponent(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 0x200, &UNK_18095b430, 0x1fc, 0, 0, 1);
+                 UI_AllocateSpecialComponent(*(uint64_t *)(UI_GLOBAL_DATA_TABLE + 0x1a0), 0x200, UI_TEXTURE_OBJECT_CONFIG, 0x1fc, 0, 0, 1);
         
         if (special_component != (uint64_t *)0x0) {
             // 初始化特殊组件
             UI_InitializeSpecialComponent(special_component);
             *(int32_t *)(special_component + 7) = 5;
-            *special_component = &UNK_18095b038;
+            *special_component = UI_SPECIAL_COMPONENT_VTABLE;
             
             // 设置组件属性
             UI_SetSpecialComponentProperties(special_component, context, 0, *(int32_t *)(context + 0x1175c));
@@ -1693,14 +1714,14 @@ uint64_t UI_CreateSpecializedComponent(longlong context, uint64_t type, longlong
         if ((*(char *)(context + 0x11758) == '\0') || ((parent != 0 && (*(int *)(parent + 200) != 0)))) {
             result = UI_ValidateCustomComponent(&DAT_180958c80, type, 7);
             if ((result == 0) ||
-                ((((result = UI_ValidateCustomComponent(&UNK_18095b4b8, type, 7), result == 0 ||
-                   (result = UI_ValidateCustomComponent(&UNK_18095b4c0, type, 8), result == 0)) ||
-                  (result = UI_ValidateCustomComponent(&UNK_18095b4d0, type, 8), result == 0)) ||
-                 ((result = UI_ValidateCustomComponent(&UNK_18095b4dc, type, 6), result == 0 ||
-                  (result = UI_ValidateCustomComponent(&UNK_18095b4e4, type, 6), result == 0)))))) {
+                ((((result = UI_ValidateCustomComponent(UI_CUSTOM_COMPONENT_VALIDATOR1, type, 7), result == 0 ||
+                   (result = UI_ValidateCustomComponent(UI_CUSTOM_COMPONENT_VALIDATOR2, type, 8), result == 0)) ||
+                  (result = UI_ValidateCustomComponent(UI_CUSTOM_COMPONENT_VALIDATOR3, type, 8), result == 0)) ||
+                 ((result = UI_ValidateCustomComponent(UI_CUSTOM_COMPONENT_VALIDATOR4, type, 6), result == 0 ||
+                  (result = UI_ValidateCustomComponent(UI_CUSTOM_COMPONENT_VALIDATOR5, type, 6), result == 0)))))) {
                 
                 // 分配自定义组件
-                component_info = UI_AllocateCustomComponent(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 0x2288, &UNK_18095b430, 0x22a, 0, 0, 1);
+                component_info = UI_AllocateCustomComponent(*(uint64_t *)(UI_GLOBAL_DATA_TABLE + 0x1a0), 0x2288, UI_TEXTURE_OBJECT_CONFIG, 0x22a, 0, 0, 1);
                 if (component_info != 0) {
                     special_component = (uint64_t *)UI_InitializeCustomComponent(component_info);
                 }
@@ -1716,12 +1737,12 @@ uint64_t UI_CreateSpecializedComponent(longlong context, uint64_t type, longlong
             else {
                 // 分配复合组件
                 component_ptr = (uint64_t *)
-                          UI_AllocateCompositeComponent(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 0x1f8, &UNK_18095b430, 0x237, 0, 0, 1);
+                          UI_AllocateCompositeComponent(*(uint64_t *)(UI_GLOBAL_DATA_TABLE + 0x1a0), 0x1f8, UI_TEXTURE_OBJECT_CONFIG, 0x237, 0, 0, 1);
                 
                 if (component_ptr != (uint64_t *)0x0) {
                     UI_InitializeCompositeComponent(component_ptr);
                     *(int32_t *)(component_ptr + 7) = 4;
-                    *component_ptr = &UNK_18095af48;
+                    *component_ptr = UI_COMPOSITE_COMPONENT_VTABLE;
                     component_ptr[0x3e] = 0;
                     special_component = component_ptr;
                 }
@@ -1731,7 +1752,7 @@ uint64_t UI_CreateSpecializedComponent(longlong context, uint64_t type, longlong
         }
         else {
             // 分配第三方组件
-            component_info = UI_AllocateThirdPartyComponent(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 0x238, &UNK_18095b430, 0x216, 0, 0, 1);
+            component_info = UI_AllocateThirdPartyComponent(*(uint64_t *)(UI_GLOBAL_DATA_TABLE + 0x1a0), 0x238, UI_TEXTURE_OBJECT_CONFIG, 0x216, 0, 0, 1);
             if (component_info != 0) {
                 special_component = (uint64_t *)UI_InitializeThirdPartyComponent(component_info);
             }
@@ -1746,7 +1767,7 @@ uint64_t UI_CreateSpecializedComponent(longlong context, uint64_t type, longlong
     }
     else {
         // 分配扩展组件
-        component_info = UI_AllocateExtendedComponent(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 0x238, &UNK_18095b430, 0x207, 0, 0, 1);
+        component_info = UI_AllocateExtendedComponent(*(uint64_t *)(UI_GLOBAL_DATA_TABLE + 0x1a0), 0x238, UI_TEXTURE_OBJECT_CONFIG, 0x207, 0, 0, 1);
         if (component_info != 0) {
             special_component = (uint64_t *)UI_InitializeExtendedComponent(component_info);
         }
@@ -1792,7 +1813,7 @@ LAB_18078ddf7:
     }
     
     // 清理组件资源
-    UI_CleanupComponentResources(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), special_component, &UNK_18095b500, 0xb8, 1);
+    UI_CleanupComponentResources(*(uint64_t *)(UI_GLOBAL_DATA_TABLE + 0x1a0), special_component, UI_RESOURCE_CLEANUP_CONFIG, 0xb8, 1);
 }
 
 /**
@@ -1822,7 +1843,7 @@ uint64_t UI_CreateRenderComponent(uint64_t context, uint64_t *render_data)
     
     // 分配渲染组件
     render_component = (uint64_t *)
-             UI_AllocateRenderComponent(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 0x200, &UNK_18095b430, 0x1e1,
+             UI_AllocateRenderComponent(*(uint64_t *)(UI_GLOBAL_DATA_TABLE + 0x1a0), 0x200, UI_TEXTURE_OBJECT_CONFIG, 0x1e1,
                                        stack_data & 0xffffffff00000000, 0, 1);
     
     if (render_component == (uint64_t *)0x0) {
@@ -1832,7 +1853,7 @@ uint64_t UI_CreateRenderComponent(uint64_t context, uint64_t *render_data)
         // 初始化渲染组件
         UI_InitializeRenderComponent(render_component);
         *(int32_t *)(render_component + 7) = 1;
-        *render_component = &UNK_180958ec0;
+        *render_component = UI_RENDER_COMPONENT_VTABLE;
         *(int32_t *)(render_component + 0x3e) = 0;
         render_component[0x3f] = 0;
         

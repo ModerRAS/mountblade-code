@@ -241,26 +241,26 @@ typedef struct {
 
 // 系统数据区域 - 主要系统状态信息
 extern uint8_t DAT_180d49830[0x100];         // 系统主数据区域 - 256字节系统核心数据
-extern uint64_t UNK_180d498a0;               // 系统控制块 - 主要系统控制信息
-extern int32_t UNK_180d498a8;                // 系统状态标志 - 当前系统状态位
-extern void *UNK_180d498b0;                  // 系统指针表 - 系统函数指针数组
-extern int8_t *UNK_180d498b8;               // 系统字节表 - 系统配置字节表
-extern int32_t UNK_180d498c0;                // 系统计数器 - 系统内部计数器
-extern int64_t UNK_180d49908;               // 系统时间戳1 - 系统启动时间戳
-extern int64_t UNK_180d49910;               // 系统时间戳2 - 系统运行时间戳
-extern int64_t UNK_180d49928;               // 系统性能计数器1 - CPU性能计数器
-extern int64_t UNK_180d49930;               // 系统性能计数器2 - 内存性能计数器
-extern int32_t UNK_180d49948;                // 系统错误代码 - 最后错误代码
-extern int32_t UNK_180d4994c;                // 系统警告代码 - 最后警告代码
+extern uint64_t system_control_block;               // 系统控制块 - 主要系统控制信息
+extern int32_t system_status_flags;                // 系统状态标志 - 当前系统状态位
+extern void *system_function_pointer_table;                  // 系统指针表 - 系统函数指针数组
+extern int8_t *system_config_byte_table;               // 系统字节表 - 系统配置字节表
+extern int32_t system_internal_counter;                // 系统计数器 - 系统内部计数器
+extern int64_t system_boot_timestamp;               // 系统时间戳1 - 系统启动时间戳
+extern int64_t system_runtime_timestamp;               // 系统时间戳2 - 系统运行时间戳
+extern int64_t system_cpu_performance_counter;               // 系统性能计数器1 - CPU性能计数器
+extern int64_t system_memory_performance_counter;               // 系统性能计数器2 - 内存性能计数器
+extern int32_t system_last_error_code;                // 系统错误代码 - 最后错误代码
+extern int32_t system_last_warning_code;                // 系统警告代码 - 最后警告代码
 extern uint8_t DAT_180d49950[0x20];          // 系统配置数据 - 32字节配置数据
 extern uint8_t DAT_180d49970[0x20];          // 系统资源数据 - 32字节资源数据
 extern uint8_t DAT_180bfc140[0x200];         // 系统缓存数据 - 512字节缓存区
 extern uint8_t DAT_1803f48b2[0x10];         // 系统临时数据 - 16字节临时数据
-extern uint8_t UNK_180d49d58[0x10];          // 系统保留区域1 - 16字节保留区域
-extern int64_t UNK_180d49d68;               // 系统统计信息1 - 内存使用统计
-extern uint64_t UNK_180d49d70;              // 系统统计信息2 - CPU使用统计
-extern int64_t UNK_180d49d78;               // 系统统计信息3 - 磁盘I/O统计
-extern void **UNK_180c96358;                 // 系统全局指针表 - 全局函数指针表
+extern uint8_t system_reserved_area[0x10];          // 系统保留区域1 - 16字节保留区域
+extern int64_t system_memory_usage_stats;               // 系统统计信息1 - 内存使用统计
+extern uint64_t system_cpu_usage_stats;              // 系统统计信息2 - CPU使用统计
+extern int64_t system_disk_io_stats;               // 系统统计信息3 - 磁盘I/O统计
+extern void **system_global_pointer_table;                 // 系统全局指针表 - 全局函数指针表
 
 /* ============================================================================
  * 函数声明
@@ -664,13 +664,13 @@ int32_t InitializationSystem_ComponentInitializer(void)
  * @param param_1 组件参数指针
  * @return void 无返回值
  */
-void FUN_180058c20(longlong param_1)
+void InitializationSystem_ComponentInitializer(longlong param_1)
 {
     // 调用初始化准备函数
     InitializationSystem_PrepareInit();
     
     // 设置组件虚函数表指针
-    *(uint64_t *)(param_1 + 8) = &UNK_180a3c3e0;
+    *(uint64_t *)(param_1 + 8) = &system_vtable_default;
     
     // 检查组件是否已经初始化
     if (*(longlong *)(param_1 + 0x10) != 0) {
@@ -685,7 +685,7 @@ void FUN_180058c20(longlong param_1)
     *(int32_t *)(param_1 + 0x20) = 0;
     
     // 设置组件默认状态
-    *(uint64_t *)(param_1 + 8) = &UNK_18098bcb0;
+    *(uint64_t *)(param_1 + 8) = &system_vtable_active;
     
     return;
 }
@@ -866,7 +866,7 @@ int32_t InitializationSystem_ConfigProcessor(void)
  * @param param_1 配置参数指针
  * @return void 无返回值
  */
-void FUN_18004bb30(longlong param_1)
+void InitializationSystem_ConfigProcessor(longlong param_1)
 {
     // 调用配置初始化函数
     InitializationSystem_InitConfig(param_1 + 0x60);
@@ -882,7 +882,7 @@ void FUN_18004bb30(longlong param_1)
  * @param param_1 资源参数指针
  * @return void 无返回值
  */
-void FUN_180058c30(long long param_1)
+void InitializationSystem_ResourceManager(long long param_1)
 {
     // 调用资源管理相关函数
     InitializationSystem_ManageResource(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
@@ -898,7 +898,7 @@ void FUN_180058c30(long long param_1)
  * @param param_1 监控参数指针
  * @return void 无返回值
  */
-void FUN_18004bb40(long long param_1)
+void InitializationSystem_StateMonitor(long long param_1)
 {
     // 调用状态监控相关函数
     InitializationSystem_ManageState(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
@@ -914,7 +914,7 @@ void FUN_18004bb40(long long param_1)
  * @param param_1 错误参数指针
  * @return void 无返回值
  */
-void FUN_180058c40(long long param_1)
+void InitializationSystem_ErrorHandler(long long param_1)
 {
     // 调用错误处理相关函数
     InitializationSystem_ProcessError(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
@@ -930,7 +930,7 @@ void FUN_180058c40(long long param_1)
  * @param param_1 验证参数指针
  * @return void 无返回值
  */
-void FUN_18004bb50(long long param_1)
+void InitializationSystem_ValidateConfig(long long param_1)
 {
     // 调用配置验证相关函数
     InitializationSystem_InitConfig(param_1 + 0x60);
@@ -946,7 +946,7 @@ void FUN_18004bb50(long long param_1)
  * @param param_1 分配参数指针
  * @return void 无返回值
  */
-void FUN_180058c50(long long param_1)
+void InitializationSystem_AllocateResource(long long param_1)
 {
     // 调用资源分配相关函数
     InitializationSystem_ManageResource(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
@@ -962,7 +962,7 @@ void FUN_180058c50(long long param_1)
  * @param param_1 释放参数指针
  * @return void 无返回值
  */
-void FUN_18004bb60(long long param_1)
+void InitializationSystem_ReleaseResource(long long param_1)
 {
     // 调用资源释放相关函数
     InitializationSystem_InitConfig(param_1 + 0x60);
@@ -978,7 +978,7 @@ void FUN_18004bb60(long long param_1)
  * @param param_1 更新参数指针
  * @return void 无返回值
  */
-void FUN_180058c60(long long param_1)
+void InitializationSystem_UpdateStatus(long long param_1)
 {
     // 调用状态更新相关函数
     InitializationSystem_ManageState(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
@@ -994,7 +994,7 @@ void FUN_180058c60(long long param_1)
  * @param param_1 记录参数指针
  * @return void 无返回值
  */
-void FUN_18004bb70(long long param_1)
+void InitializationSystem_LogEvent(long long param_1)
 {
     // 调用事件记录相关函数
     InitializationSystem_ProcessError(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
@@ -1010,7 +1010,7 @@ void FUN_18004bb70(long long param_1)
  * @param param_1 初始化参数指针
  * @return void 无返回值
  */
-void FUN_180058c70(long long param_1)
+void InitializationSystem_InternalInit(long long param_1)
 {
     // 调用内部初始化相关函数
     InitializationSystem_ManageResource(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
@@ -1026,7 +1026,7 @@ void FUN_180058c70(long long param_1)
  * @param param_1 清理参数指针
  * @return void 无返回值
  */
-void FUN_18004bb80(long long param_1)
+void InitializationSystem_Cleanup(long long param_1)
 {
     // 调用清理相关函数
     InitializationSystem_InitConfig(param_1 + 0x60);
@@ -1042,7 +1042,7 @@ void FUN_18004bb80(long long param_1)
  * @param param_1 验证参数指针
  * @return void 无返回值
  */
-void FUN_180058c80(long long param_1)
+void InitializationSystem_ValidateState(long long param_1)
 {
     // 调用状态验证相关函数
     InitializationSystem_ManageState(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
@@ -1058,7 +1058,7 @@ void FUN_180058c80(long long param_1)
  * @param param_1 处理参数指针
  * @return void 无返回值
  */
-void FUN_18004bb90(long long param_1)
+void InitializationSystem_HandleError(long long param_1)
 {
     // 调用错误处理相关函数
     InitializationSystem_ProcessError(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
