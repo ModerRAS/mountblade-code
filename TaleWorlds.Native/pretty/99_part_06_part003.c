@@ -1274,7 +1274,7 @@ int64_t ResourceAllocator(uint64_t param_1)
         SystemMemoryPoolReallocator(lVar3, unaff_RBX);
     }
 SystemResourceHandler:
-    plVar2 = (int64_t *)FUN_1803a6db0(param_1, auStackX_20);
+    plVar2 = (int64_t *)SystemResourceAllocator(param_1, auStackX_20);
     return *plVar2 + 0x2c;
 }
 
