@@ -334,189 +334,213 @@ undefined8 ui_system_data_validator_2(longlong param_1, longlong *param_2)
                     case 0x24:
                         type_switch_stack[0] = 0x24;
           }
-          uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))
-                            (*(undefined8 **)(*param_2 + 8),auStackX_18,4);
-          if (((int)uVar1 == 0) &&
-             (uVar1 = FUN_1808a7c90(param_2,param_1 + 0x40,0x3d), (int)uVar1 == 0)) {
+        validation_result = (**(code **)**(undefined8 **)(*param_2 + 8))
+                             (*(undefined8 **)(*param_2 + 8), type_switch_stack, 4);
+        if (((int)validation_result == 0) &&
+           (validation_result = FUN_1808a7c90(param_2, param_1 + UI_OFFSET_0x40, 0x3d), (int)validation_result == 0)) {
                     // WARNING: Subroutine does not return
-            FUN_1808de000(param_2,auStack_68);
+            FUN_1808de000(param_2, validation_buffer_64);
           }
         }
         else {
-          uVar1 = 0x1c;
+          validation_result = UI_VALIDATION_ERROR;
         }
       }
     }
     else {
-      uVar1 = 0x1c;
+      validation_result = UI_VALIDATION_ERROR;
     }
   }
-  return uVar1;
+  return validation_result;
 }
 
 
 
-undefined8 FUN_18089f112(void)
-
+/**
+ * UI系统数据验证器3
+ * 
+ * 执行UI系统数据的深度验证，支持多种数据类型的验证。
+ * 该函数通过状态检查和类型切换机制确保UI系统数据的完整性。
+ * 
+ * @param validation_context 验证上下文指针
+ * @param data_object 数据对象指针
+ * @return 验证结果：0表示成功，0x1c表示失败
+ */
+undefined8 ui_system_data_validator_3(longlong validation_context, longlong data_object)
 {
-  longlong in_RAX;
-  undefined8 uVar1;
-  longlong *unaff_RBX;
-  longlong unaff_RSI;
-  undefined4 in_stack_000000b0;
-  
-  if (*(int *)(in_RAX + 0x18) == 0) {
-    uVar1 = FUN_180899ef0(*unaff_RBX,unaff_RSI + 0x10);
-    if (((int)uVar1 == 0) &&
-       ((0x5a < *(uint *)(unaff_RBX + 8) || (uVar1 = FUN_1808afd90(), (int)uVar1 == 0)))) {
-      if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-        switch(*(undefined4 *)(unaff_RSI + 0x60)) {
-        default:
-          in_stack_000000b0 = 0;
-          break;
-        case 1:
-          in_stack_000000b0 = 1;
-          break;
-        case 2:
-          in_stack_000000b0 = 2;
-          break;
-        case 3:
-          in_stack_000000b0 = 3;
-          break;
-        case 4:
-          in_stack_000000b0 = 4;
-          break;
-        case 5:
-          in_stack_000000b0 = 5;
-          break;
-        case 6:
-          in_stack_000000b0 = 6;
-          break;
-        case 7:
-          in_stack_000000b0 = 7;
-          break;
-        case 8:
-          in_stack_000000b0 = 8;
-          break;
-        case 9:
-          in_stack_000000b0 = 9;
-          break;
-        case 10:
-          in_stack_000000b0 = 10;
-          break;
-        case 0xb:
-          in_stack_000000b0 = 0xb;
-          break;
-        case 0xc:
-          in_stack_000000b0 = 0xc;
-          break;
-        case 0xd:
-          in_stack_000000b0 = 0xd;
-          break;
-        case 0xe:
-          in_stack_000000b0 = 0xe;
-          break;
-        case 0xf:
-          in_stack_000000b0 = 0xf;
-          break;
-        case 0x10:
-          in_stack_000000b0 = 0x10;
-          break;
-        case 0x11:
-          in_stack_000000b0 = 0x11;
-          break;
-        case 0x12:
-          in_stack_000000b0 = 0x12;
-          break;
-        case 0x13:
-          in_stack_000000b0 = 0x13;
-          break;
-        case 0x14:
-          in_stack_000000b0 = 0x14;
-          break;
-        case 0x15:
-          in_stack_000000b0 = 0x15;
-          break;
-        case 0x16:
-          in_stack_000000b0 = 0x16;
-          break;
-        case 0x17:
-          in_stack_000000b0 = 0x17;
-          break;
-        case 0x18:
-          in_stack_000000b0 = 0x18;
-          break;
-        case 0x19:
-          in_stack_000000b0 = 0x19;
-          break;
-        case 0x1a:
-          in_stack_000000b0 = 0x1a;
-          break;
-        case 0x1b:
-          in_stack_000000b0 = 0x1b;
-          break;
-        case 0x1c:
-          in_stack_000000b0 = 0x1c;
-          break;
-        case 0x1d:
-          in_stack_000000b0 = 0x1d;
-          break;
-        case 0x1e:
-          in_stack_000000b0 = 0x1e;
-          break;
-        case 0x1f:
-          in_stack_000000b0 = 0x1f;
-          break;
-        case 0x20:
-          in_stack_000000b0 = 0x20;
-          break;
-        case 0x21:
-          in_stack_000000b0 = 0x21;
-          break;
-        case 0x22:
-          in_stack_000000b0 = 0x22;
-          break;
-        case 0x23:
-          in_stack_000000b0 = 0x23;
-          break;
-        case 0x24:
-          in_stack_000000b0 = 0x24;
-        }
-        uVar1 = (**(code **)**(undefined8 **)(*unaff_RBX + 8))
-                          (*(undefined8 **)(*unaff_RBX + 8),&stack0x000000b0,4);
-        if (((int)uVar1 == 0) && (uVar1 = FUN_1808a7c90(), (int)uVar1 == 0)) {
-                    // WARNING: Subroutine does not return
-          FUN_1808de000();
-        }
-      }
-      else {
-        uVar1 = 0x1c;
-      }
+    undefined8 validation_result;
+    undefined4 type_switch_stack[1];
+    
+    // 检查验证状态
+    if (*(int *)(validation_context + UI_OFFSET_0x18) != 0) {
+        return UI_VALIDATION_ERROR;
     }
-  }
-  else {
-    uVar1 = 0x1c;
-  }
-  return uVar1;
+    
+    validation_result = FUN_180899ef0(*((longlong **)(validation_context + 8)), data_object + UI_OFFSET_0x10);
+    if (((int)validation_result == 0) &&
+       ((UI_MAX_DATA_SIZE < *(uint *)((longlong **)(validation_context + 8) + 8) || 
+         (validation_result = FUN_1808afd90(), (int)validation_result == 0)))) {
+        
+        // 检查验证状态
+        if (*(int *)(*((longlong **)(validation_context + 8) + 1) + UI_OFFSET_0x18) == 0) {
+            // 根据数据类型进行切换处理
+            switch(*(undefined4 *)(data_object + UI_OFFSET_0x60)) {
+            default:
+                type_switch_stack[0] = 0;
+                break;
+            case 1:
+                type_switch_stack[0] = 1;
+                break;
+            case 2:
+                type_switch_stack[0] = 2;
+                break;
+            case 3:
+                type_switch_stack[0] = 3;
+                break;
+            case 4:
+                type_switch_stack[0] = 4;
+                break;
+            case 5:
+                type_switch_stack[0] = 5;
+                break;
+            case 6:
+                type_switch_stack[0] = 6;
+                break;
+            case 7:
+                type_switch_stack[0] = 7;
+                break;
+            case 8:
+                type_switch_stack[0] = 8;
+                break;
+            case 9:
+                type_switch_stack[0] = 9;
+                break;
+            case 10:
+                type_switch_stack[0] = 10;
+                break;
+            case 0xb:
+                type_switch_stack[0] = 0xb;
+                break;
+            case 0xc:
+                type_switch_stack[0] = 0xc;
+                break;
+            case 0xd:
+                type_switch_stack[0] = 0xd;
+                break;
+            case 0xe:
+                type_switch_stack[0] = 0xe;
+                break;
+            case 0xf:
+                type_switch_stack[0] = 0xf;
+                break;
+            case 0x10:
+                type_switch_stack[0] = 0x10;
+                break;
+            case 0x11:
+                type_switch_stack[0] = 0x11;
+                break;
+            case 0x12:
+                type_switch_stack[0] = 0x12;
+                break;
+            case 0x13:
+                type_switch_stack[0] = 0x13;
+                break;
+            case 0x14:
+                type_switch_stack[0] = 0x14;
+                break;
+            case 0x15:
+                type_switch_stack[0] = 0x15;
+                break;
+            case 0x16:
+                type_switch_stack[0] = 0x16;
+                break;
+            case 0x17:
+                type_switch_stack[0] = 0x17;
+                break;
+            case 0x18:
+                type_switch_stack[0] = 0x18;
+                break;
+            case 0x19:
+                type_switch_stack[0] = 0x19;
+                break;
+            case 0x1a:
+                type_switch_stack[0] = 0x1a;
+                break;
+            case 0x1b:
+                type_switch_stack[0] = 0x1b;
+                break;
+            case 0x1c:
+                type_switch_stack[0] = 0x1c;
+                break;
+            case 0x1d:
+                type_switch_stack[0] = 0x1d;
+                break;
+            case 0x1e:
+                type_switch_stack[0] = 0x1e;
+                break;
+            case 0x1f:
+                type_switch_stack[0] = 0x1f;
+                break;
+            case 0x20:
+                type_switch_stack[0] = 0x20;
+                break;
+            case 0x21:
+                type_switch_stack[0] = 0x21;
+                break;
+            case 0x22:
+                type_switch_stack[0] = 0x22;
+                break;
+            case 0x23:
+                type_switch_stack[0] = 0x23;
+                break;
+            case 0x24:
+                type_switch_stack[0] = 0x24;
+            }
+            validation_result = (**(code **)**(undefined8 **)(*((longlong **)(validation_context + 8)) + 8))
+                              (*((longlong **)(validation_context + 8)), type_switch_stack, 4);
+            if (((int)validation_result == 0) && 
+               (validation_result = FUN_1808a7c90(), (int)validation_result == 0)) {
+                        // WARNING: Subroutine does not return
+                FUN_1808de000();
+            }
+        }
+        else {
+            validation_result = UI_VALIDATION_ERROR;
+        }
+    }
+    else {
+        validation_result = UI_VALIDATION_ERROR;
+    }
+    return validation_result;
 }
 
 
 
 
 
-// 函数: void FUN_18089f31e(void)
-void FUN_18089f31e(void)
-
+/**
+ * UI系统数据处理器1
+ * 
+ * 执行UI系统数据的状态处理和验证，根据不同的处理类型执行相应的操作。
+ * 该函数是UI系统数据处理的核心函数，处理多种数据状态和类型。
+ * 
+ * @param process_type 处理类型（通过寄存器传递）
+ * @param system_context 系统上下文指针
+ * @param data_context 数据上下文指针
+ * @param validation_context 验证上下文指针
+ */
+void ui_system_data_processor_1(void)
 {
-  int in_EAX;
-  int iVar1;
-  int iVar2;
-  longlong *unaff_RBX;
-  int unaff_EBP;
-  longlong unaff_RSI;
-  undefined4 in_stack_000000b0;
-  
-  if (in_EAX == 0x1b) {
+    int process_type;
+    int validation_result;
+    int loop_counter;
+    longlong *system_context;
+    int processing_state;
+    longlong data_context;
+    undefined4 validation_parameter;
+    
+    // 处理类型0x1b
+    if (process_type == 0x1b) {
     if (*(uint *)(unaff_RBX + 8) < 0x3b) {
       iVar1 = FUN_1808a87d0();
       if (iVar1 != 0) {
