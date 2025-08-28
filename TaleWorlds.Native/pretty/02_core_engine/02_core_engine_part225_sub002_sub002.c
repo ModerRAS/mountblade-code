@@ -1331,13 +1331,25 @@ uint64_t EntityResourceCleanup(uint64_t resource_ptr, ResourceCleanupFlags clean
 
 
 
-// 函数: longlong * swap_entity_pointers(longlong *target_ptr_array, longlong *source_ptr_array)
-// 交换实体指针数组，安全地释放旧资源并设置新资源
-// 参数:
-//   target_ptr_array - 目标指针数组
-//   source_ptr_array - 源指针数组
-// 返回: 目标指针数组
-longlong * swap_entity_pointers(longlong *target_ptr_array, longlong *source_ptr_array)
+/**
+ * @brief 实体指针交换器
+ * 
+ * 安全地交换实体指针数组并管理资源：
+ * - 旧资源的释放和清理
+ * - 新资源的设置和初始化
+ * - 指针数组的批量交换
+ * - 状态标志的同步
+ * - 资源引用的安全管理
+ * 
+ * @param target_ptr_array 目标指针数组，要被替换的指针数组
+ * @param source_ptr_array 源指针数组，要设置的新指针数组
+ * @return EntityPtrArray 返回更新后的目标指针数组
+ * 
+ * @note 该函数确保指针交换的原子性和安全性
+ * @warning 错误的指针操作可能导致内存泄漏或系统崩溃
+ * @see EntityInitializationProcessor, EntityResourceCleanup
+ */
+longlong* EntityPointerSwap(EntityPtrArray target_ptr_array, EntityPtrArray source_ptr_array)
 
 {
   longlong *source_ptr;  // 源指针

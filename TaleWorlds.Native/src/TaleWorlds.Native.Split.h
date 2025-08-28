@@ -1,8 +1,21 @@
+/**
+ * @file TaleWorlds.Native.Split.h
+ * @brief TaleWorlds Native 分割文件主头文件
+ * 
+ * 本文件是 TaleWorlds Native DLL 的主头文件，用于统一包含所有
+ * 分割后的C源文件。由于原始文件过大，按照30KB大小限制
+ * 进行了分割，本文件提供了统一的包含接口。
+ * 
+ * @author Claude Code
+ * @date 2025-08-28
+ * @version 1.0
+ */
+
 #ifndef TALEWORLDS_NATIVE_SPLIT_H
 #define TALEWORLDS_NATIVE_SPLIT_H
 
-#include "TaleWorlds.Native.dll.h"
-#include "00_data_definitions.h"
+#include "../pretty/TaleWorlds.Native.dll.h"
+#include "../pretty/00_data_definitions.h"
 
 // 拆分后的函数文件 (30KB大小限制)
 // #include "01_initialization_part001.c"
