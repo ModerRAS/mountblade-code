@@ -149,7 +149,7 @@ static void* system_handler2_ptr = NULL;
 
 /** 未知变量指针（系统内部使用） */
 static void* unknown_var_3480_ptr = NULL;
-static void* unknown_var_720_ptr = NULL;
+static void* system_state_ptr = NULL;
 static void* unknown_var_6544_ptr = NULL;
 static void* unknown_var_2968_ptr = NULL;
 static void* unknown_var_3064_ptr = NULL;
@@ -1802,7 +1802,7 @@ void SystemModule_Initialize(void)
     
     /* 初始化所有未知变量指针 */
     unknown_var_3480_ptr = NULL;
-    unknown_var_720_ptr = NULL;
+    system_state_ptr = NULL;
     unknown_var_6544_ptr = NULL;
     unknown_var_2968_ptr = NULL;
     unknown_var_3064_ptr = NULL;
@@ -1854,7 +1854,7 @@ void SystemModule_Cleanup(void)
     
     /* 清理所有未知变量指针 */
     unknown_var_3480_ptr = NULL;
-    unknown_var_720_ptr = NULL;
+    system_state_ptr = NULL;
     unknown_var_6544_ptr = NULL;
     unknown_var_2968_ptr = NULL;
     unknown_var_3064_ptr = NULL;

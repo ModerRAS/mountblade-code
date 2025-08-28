@@ -849,7 +849,7 @@ uint64_t ui_system_resource_initializer(int64_t resource_context)
   func_0x00018066e360();
   
   if (*(int64_t *)(resource_context + 0x30) == 0) {
-    temp_ptr = FUN_18066e8f0(1);
+    temp_ptr = CoreSystem_MemoryController0(1);
     *(int64_t *)(resource_context + 0x30) = temp_ptr;
     *(int32_t *)(temp_ptr + 8) = *(int32_t *)(resource_context + 0x20);
     *(int32_t *)(temp_ptr + 0xe4) = 0x10;

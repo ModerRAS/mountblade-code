@@ -51,7 +51,7 @@
 
 // 外部函数声明
 extern void SystemDataOptimizer(void);
-extern void FUN_18066e8f0(int size, int64_t count);
+extern void CoreSystem_MemoryController0(int size, int64_t count);
 extern void FUN_18066e960(int size, int64_t count);
 extern void FUN_18066f810(int64_t context, uint64_t param, int flag);
 extern void FUN_180670510(int64_t context, uint64_t param, uint64_t texture_data, int32_t quality);
@@ -115,14 +115,14 @@ void ui_system_memory_allocator_initialization(void)
     }
     
     // 分配主要资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_4, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    resource_ptr = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_4, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_1) = resource_ptr;
     if (resource_ptr == 0) {
         SystemDataOptimizer();
     }
     
     // 分配二级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    resource_ptr = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2) = resource_ptr;
     if (resource_ptr == 0) {
         SystemDataOptimizer();
@@ -146,7 +146,7 @@ void ui_system_memory_allocator_initialization(void)
     }
     
     // 分配三级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    resource_ptr = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_3) = resource_ptr;
     if (resource_ptr == 0) {
         SystemDataOptimizer();
@@ -169,7 +169,7 @@ void ui_system_memory_allocator_initialization(void)
     }
     
     // 分配四级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    resource_ptr = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_4) = resource_ptr;
     if (resource_ptr == 0) {
         SystemDataOptimizer();
@@ -192,7 +192,7 @@ void ui_system_memory_allocator_initialization(void)
     }
     
     // 分配五级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    resource_ptr = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5) = resource_ptr;
     if (resource_ptr == 0) {
         SystemDataOptimizer();
@@ -203,7 +203,7 @@ void ui_system_memory_allocator_initialization(void)
     element_index = array_index;
     if (0 < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT)) {
         do {
-            memory_block = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_16, 1);
+            memory_block = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_16, 1);
             *(uint64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5)) = memory_block;
             if (*(int64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5)) == 0) {
                 SystemDataOptimizer();
@@ -215,7 +215,7 @@ void ui_system_memory_allocator_initialization(void)
     }
     
     // 分配六级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    resource_ptr = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6) = resource_ptr;
     if (resource_ptr == 0) {
         SystemDataOptimizer();
@@ -226,7 +226,7 @@ void ui_system_memory_allocator_initialization(void)
     element_index = array_index;
     if (0 < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT)) {
         do {
-            memory_block = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8);
+            memory_block = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_8);
             *(uint64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6)) = memory_block;
             if (*(int64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6)) == 0) {
                 SystemDataOptimizer();
@@ -238,7 +238,7 @@ void ui_system_memory_allocator_initialization(void)
     }
     
     // 分配七级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    resource_ptr = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7) = resource_ptr;
     if (resource_ptr == 0) {
         SystemDataOptimizer();
@@ -248,7 +248,7 @@ void ui_system_memory_allocator_initialization(void)
     loop_counter = array_index;
     if (0 < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT)) {
         do {
-            memory_block = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8);
+            memory_block = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_8);
             *(uint64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) = memory_block;
             if (*(int64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) == 0) {
                 SystemDataOptimizer();
@@ -315,14 +315,14 @@ void ui_system_resource_manager_initializer(void)
     }
     
     // 分配主要资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_4, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    resource_ptr = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_4, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_1) = resource_ptr;
     if (resource_ptr == 0) {
         SystemDataOptimizer();
     }
     
     // 分配二级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    resource_ptr = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_2) = resource_ptr;
     if (resource_ptr == 0) {
         SystemDataOptimizer();
@@ -346,7 +346,7 @@ void ui_system_resource_manager_initializer(void)
     }
     
     // 分配三级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    resource_ptr = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_3) = resource_ptr;
     if (resource_ptr == 0) {
         SystemDataOptimizer();
@@ -369,7 +369,7 @@ void ui_system_resource_manager_initializer(void)
     }
     
     // 分配四级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    resource_ptr = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_4) = resource_ptr;
     if (resource_ptr == 0) {
         SystemDataOptimizer();
@@ -392,7 +392,7 @@ void ui_system_resource_manager_initializer(void)
     }
     
     // 分配五级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    resource_ptr = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5) = resource_ptr;
     if (resource_ptr == 0) {
         SystemDataOptimizer();
@@ -403,7 +403,7 @@ void ui_system_resource_manager_initializer(void)
     element_index = array_index;
     if (0 < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT)) {
         do {
-            memory_block = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_16, 1);
+            memory_block = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_16, 1);
             *(uint64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5)) = memory_block;
             if (*(int64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5)) == 0) {
                 SystemDataOptimizer();
@@ -415,7 +415,7 @@ void ui_system_resource_manager_initializer(void)
     }
     
     // 分配六级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    resource_ptr = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6) = resource_ptr;
     if (resource_ptr == 0) {
         SystemDataOptimizer();
@@ -426,7 +426,7 @@ void ui_system_resource_manager_initializer(void)
     element_index = array_index;
     if (0 < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT)) {
         do {
-            memory_block = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8);
+            memory_block = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_8);
             *(uint64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6)) = memory_block;
             if (*(int64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6)) == 0) {
                 SystemDataOptimizer();
@@ -438,7 +438,7 @@ void ui_system_resource_manager_initializer(void)
     }
     
     // 分配七级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    resource_ptr = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7) = resource_ptr;
     if (resource_ptr == 0) {
         SystemDataOptimizer();
@@ -448,7 +448,7 @@ void ui_system_resource_manager_initializer(void)
     loop_counter = array_index;
     if (0 < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT)) {
         do {
-            memory_block = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8);
+            memory_block = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_8);
             *(uint64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) = memory_block;
             if (*(int64_t *)(loop_counter + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) == 0) {
                 SystemDataOptimizer();
@@ -501,7 +501,7 @@ void ui_system_memory_pool_allocator(void)
     // 在索引范围内分配内存池
     if (pool_index < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT)) {
         do {
-            memory_block = FUN_18066e8f0();
+            memory_block = CoreSystem_MemoryController0();
             *(uint64_t *)(array_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5)) = memory_block;
             if (*(uint64_t *)(array_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_5)) == pool_range) {
                 SystemDataOptimizer();
@@ -513,7 +513,7 @@ void ui_system_memory_pool_allocator(void)
     }
     
     // 分配六级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    resource_ptr = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6) = resource_ptr;
     if (resource_ptr == 0) {
         SystemDataOptimizer();
@@ -524,7 +524,7 @@ void ui_system_memory_pool_allocator(void)
     array_index = pool_range;
     if (pool_index < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT)) {
         do {
-            memory_block = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8);
+            memory_block = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_8);
             *(uint64_t *)(array_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6)) = memory_block;
             if (*(uint64_t *)(array_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6)) == pool_range) {
                 SystemDataOptimizer();
@@ -536,7 +536,7 @@ void ui_system_memory_pool_allocator(void)
     }
     
     // 分配七级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    resource_ptr = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7) = resource_ptr;
     if (resource_ptr == 0) {
         SystemDataOptimizer();
@@ -546,7 +546,7 @@ void ui_system_memory_pool_allocator(void)
     array_index = pool_range;
     if (pool_index < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT)) {
         do {
-            memory_block = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8);
+            memory_block = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_8);
             *(uint64_t *)(array_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) = memory_block;
             if (*(int64_t *)(array_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) == 0) {
                 SystemDataOptimizer();
@@ -597,7 +597,7 @@ void ui_system_resource_array_manager(void)
     // 在范围内管理六级资源数组
     if ((int)pool_range < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT)) {
         do {
-            memory_block = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8);
+            memory_block = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_8);
             *(uint64_t *)(array_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6)) = memory_block;
             if (*(uint64_t *)(array_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_6)) == pool_range) {
                 SystemDataOptimizer();
@@ -609,7 +609,7 @@ void ui_system_resource_array_manager(void)
     }
     
     // 分配七级资源数组
-    resource_ptr = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
+    resource_ptr = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_8, (int64_t)*(int *)(system_context + UI_CONTEXT_OFFSET_COUNT));
     *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7) = resource_ptr;
     if (resource_ptr == 0) {
         SystemDataOptimizer();
@@ -619,7 +619,7 @@ void ui_system_resource_array_manager(void)
     array_index = pool_range;
     if ((int)pool_range < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT)) {
         do {
-            memory_block = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8);
+            memory_block = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_8);
             *(uint64_t *)(array_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) = memory_block;
             if (*(int64_t *)(array_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) == 0) {
                 SystemDataOptimizer();
@@ -665,7 +665,7 @@ void ui_system_memory_cleanup_handler(void)
     array_index = pool_range;
     if ((int)pool_range < *(int *)(system_context + UI_CONTEXT_OFFSET_COUNT)) {
         do {
-            memory_block = FUN_18066e8f0(UI_ARRAY_ELEMENT_SIZE_8);
+            memory_block = CoreSystem_MemoryController0(UI_ARRAY_ELEMENT_SIZE_8);
             *(uint64_t *)(array_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) = memory_block;
             if (*(int64_t *)(array_index + *(int64_t *)(ui_context + UI_CONTEXT_OFFSET_RESOURCE_ARRAY_7)) == 0) {
                 SystemDataOptimizer();

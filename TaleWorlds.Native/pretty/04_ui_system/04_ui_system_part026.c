@@ -29,7 +29,7 @@
 #define ui_system_texture_manager FUN_18066e500
 #define ui_system_context_initializer FUN_18066e730
 #define ui_system_resource_cleaner FUN_18066e7a0
-#define ui_system_memory_allocator FUN_18066e8f0
+#define ui_system_memory_allocator CoreSystem_MemoryController0
 #define ui_system_memory_initializer FUN_18066e90c
 #define ui_system_empty_function_placeholder FUN_18066e938
 #define ui_system_aligned_memory_allocator FUN_18066e960
