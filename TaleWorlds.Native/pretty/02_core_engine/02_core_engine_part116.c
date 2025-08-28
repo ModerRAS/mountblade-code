@@ -1,10 +1,23 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part116.c - 2 个函数
+// 02_core_engine_part116.c - 核心引擎渲染元素处理与边界计算模块
+// 本文件包含8个函数，主要负责渲染元素的边界条件处理、队列管理、坐标变换等核心功能
 
-// 函数: void FUN_1801286d8(void)
-void FUN_1801286d8(void)
-
+/**
+ * 处理渲染元素边界条件
+ * 根据元素状态和边界条件进行相应的渲染处理
+ * 
+ * 参数说明：
+ * - 通过寄存器传递的参数：unaff_RBX, unaff_RBP, unaff_RDI
+ * - 通过寄存器传递的坐标参数：in_XMM5_Da, unaff_XMM7_Da, unaff_XMM8_Da, unaff_XMM9_Da
+ * 
+ * 处理逻辑：
+ * 1. 检查元素状态标志位
+ * 2. 根据边界条件设置渲染参数
+ * 3. 调整坐标偏移量
+ * 4. 执行相应的渲染操作
+ */
+void process_render_element_boundary_conditions(void)
 {
   int iVar1;
   longlong lVar2;
@@ -25,22 +38,26 @@ void FUN_1801286d8(void)
   
   lVar7 = _DAT_180c8a9b0;
   if ((*(char *)(unaff_RBX + 0x17d) == '\0') || ((*(uint *)(unaff_RBX + 0xc) & 0x800000) != 0)) {
+    // 获取边界矩形参数
     uVar3 = *(undefined4 *)(unaff_RBP + -0x50);
     uVar4 = *(undefined4 *)(unaff_RBP + -0x4c);
     uVar5 = *(undefined4 *)(unaff_RBP + -0x48);
     uVar6 = *(undefined4 *)(unaff_RBP + -0x44);
     lVar9 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
+    // 初始化渲染队列项
     *(undefined8 *)(lVar9 + 0x144) = 0;
     *(undefined4 *)(lVar9 + 0x14c) = uVar3;
     *(undefined4 *)(lVar9 + 0x150) = uVar4;
     *(undefined4 *)(lVar9 + 0x154) = uVar5;
     *(undefined4 *)(lVar9 + 0x158) = uVar6;
     lVar2 = *(longlong *)(lVar7 + 0x1af8);
+    // 检查边界条件
     if (((*(float *)(lVar2 + 0x22c) <= unaff_XMM9_Da && unaff_XMM9_Da != *(float *)(lVar2 + 0x22c))
         && (((unaff_XMM7_Da < *(float *)(lVar2 + 0x234) &&
              (*(float *)(lVar2 + 0x228) <= in_XMM5_Da && in_XMM5_Da != *(float *)(lVar2 + 0x228)))
             && (unaff_XMM8_Da < *(float *)(lVar2 + 0x230))))) || (*(char *)(lVar7 + 0x2e38) != '\0')
        ) {
+      // 执行边界检查操作
       cVar8 = FUN_180128040(unaff_RBP + -0x50,unaff_RBP + -0x48,1);
       if (cVar8 != '\0') {
         *(uint *)(lVar9 + 0x148) = *(uint *)(lVar9 + 0x148) | 1;
@@ -48,12 +65,15 @@ void FUN_1801286d8(void)
     }
   }
   else {
+    // 执行渲染操作
     FUN_180124190(unaff_RBP + -0x50,*(undefined4 *)(unaff_RBX + 0x88),0);
     if (*(int *)(unaff_RBX + 0x88) == *(int *)(_DAT_180c8a9b0 + 0x1ca0)) {
       FUN_1801230e0(unaff_RBP + -0x50,1);
     }
+    // 处理特殊边界情况
     if ((*(int *)(unaff_RBX + 0x174) == 0) && (unaff_RBX == *(longlong *)(unaff_RDI + 0x1c98))) {
       iVar1 = *(int *)(_DAT_180c8a9b0 + 0x1ca0);
+      // 调整边界偏移
       *(float *)(unaff_RBP + -0x48) = *(float *)(unaff_RBP + -0x48) + 2.0;
       *(float *)(unaff_RBP + -0x44) = *(float *)(unaff_RBP + -0x44) + 2.0;
       *(float *)(unaff_RBP + -0x50) = *(float *)(unaff_RBP + -0x50) - 2.0;
@@ -66,12 +86,23 @@ void FUN_1801286d8(void)
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined1 FUN_180128850(undefined4 param_1,undefined8 param_2)
-
+/**
+ * 更新渲染队列状态
+ * 管理渲染队列的状态更新和数据同步
+ * 
+ * 参数：
+ * - param_1: 渲染参数标识符
+ * - param_2: 渲染上下文数据
+ * 
+ * 返回值：
+ * - 操作状态标志
+ * 
+ * 功能说明：
+ * 1. 更新渲染队列的状态信息
+ * 2. 同步渲染数据
+ * 3. 管理渲染队列的生命周期
+ */
+undefined1 update_render_queue_status(undefined4 param_1,undefined8 param_2)
 {
   undefined8 *puVar1;
   undefined8 *puVar2;
@@ -90,16 +121,19 @@ undefined1 FUN_180128850(undefined4 param_1,undefined8 param_2)
   undefined4 uStack_18;
   
   lVar4 = _DAT_180c8a9b0;
+  // 初始化渲染参数
   uStack_28 = 3;
   uStack_24 = *(undefined4 *)(_DAT_180c8a9b0 + 0x16f8);
   uStack_20 = *(undefined4 *)(_DAT_180c8a9b0 + 0x16fc);
   uStack_1c = *(undefined4 *)(_DAT_180c8a9b0 + 0x1700);
   uStack_18 = *(undefined4 *)(_DAT_180c8a9b0 + 0x1704);
   FUN_18013e100(_DAT_180c8a9b0 + 0x1b80,&uStack_28);
+  // 更新渲染状态
   *(undefined4 *)(lVar4 + 0x16f8) = *(undefined4 *)(lVar4 + 0x1738);
   *(undefined4 *)(lVar4 + 0x16fc) = *(undefined4 *)(lVar4 + 0x173c);
   *(undefined4 *)(lVar4 + 0x1700) = *(undefined4 *)(lVar4 + 0x1740);
   *(undefined4 *)(lVar4 + 0x1704) = *(undefined4 *)(lVar4 + 0x1744);
+  // 执行渲染状态更新
   FUN_18012d9c0(6,*(undefined4 *)(lVar4 + 0x1664));
   FUN_18012d9c0(7,*(undefined4 *)(lVar4 + 0x1668));
   FUN_18012da40(1,lVar4 + 0x165c);
@@ -109,6 +143,7 @@ undefined1 FUN_180128850(undefined4 param_1,undefined8 param_2)
   lVar4 = *(longlong *)(_DAT_180c8a9b0 + 0x1b98);
   lVar9 = (longlong)*(int *)(lVar4 + -0xc + lVar8 * 0xc);
   uVar10 = (ulonglong)*(uint *)(&UNK_18098d188 + lVar9 * 0xc);
+  // 处理渲染队列项
   if (*(int *)(&UNK_18098d180 + lVar9 * 0xc) == 4) {
     if (*(int *)(&UNK_18098d184 + lVar9 * 0xc) == 1) {
       *(undefined4 *)(uVar10 + 0x1628 + _DAT_180c8a9b0) = *(undefined4 *)(lVar4 + -8 + lVar8 * 0xc);
@@ -118,12 +153,14 @@ undefined1 FUN_180128850(undefined4 param_1,undefined8 param_2)
       *(undefined4 *)(uVar10 + 0x162c + lVar6) = *(undefined4 *)(lVar4 + -4 + lVar8 * 0xc);
     }
   }
+  // 更新队列计数器
   iVar3 = *(int *)(lVar6 + 0x1b90);
   *(int *)(lVar6 + 0x1b90) = iVar3 + -1;
   lVar4 = (longlong)iVar3 + -2;
   lVar8 = *(longlong *)(lVar6 + 0x1b98);
   lVar9 = (longlong)*(int *)(lVar8 + lVar4 * 0xc);
   uVar10 = (ulonglong)*(uint *)(&UNK_18098d188 + lVar9 * 0xc);
+  // 处理第二个队列项
   if (*(int *)(&UNK_18098d180 + lVar9 * 0xc) == 4) {
     if (*(int *)(&UNK_18098d184 + lVar9 * 0xc) == 1) {
       *(undefined4 *)(uVar10 + 0x1628 + lVar6) = *(undefined4 *)(lVar8 + 4 + lVar4 * 0xc);
@@ -133,12 +170,14 @@ undefined1 FUN_180128850(undefined4 param_1,undefined8 param_2)
       *(undefined4 *)(uVar10 + 0x162c + lVar6) = *(undefined4 *)(lVar8 + 8 + lVar4 * 0xc);
     }
   }
+  // 继续更新队列状态
   iVar3 = *(int *)(lVar6 + 0x1b90);
   *(int *)(lVar6 + 0x1b90) = iVar3 + -1;
   lVar4 = (longlong)iVar3 + -2;
   lVar8 = *(longlong *)(lVar6 + 0x1b98);
   lVar9 = (longlong)*(int *)(lVar8 + lVar4 * 0xc);
   uVar10 = (ulonglong)*(uint *)(&UNK_18098d188 + lVar9 * 0xc);
+  // 处理第三个队列项
   if (*(int *)(&UNK_18098d180 + lVar9 * 0xc) == 4) {
     if (*(int *)(&UNK_18098d184 + lVar9 * 0xc) == 1) {
       *(undefined4 *)(uVar10 + 0x1628 + lVar6) = *(undefined4 *)(lVar8 + 4 + lVar4 * 0xc);
@@ -149,6 +188,7 @@ undefined1 FUN_180128850(undefined4 param_1,undefined8 param_2)
     }
   }
   *(int *)(lVar6 + 0x1b90) = *(int *)(lVar6 + 0x1b90) + -1;
+  // 清理队列项
   puVar1 = (undefined8 *)
            (*(longlong *)(lVar6 + 0x1b88) + -0x10 + (longlong)*(int *)(lVar6 + 0x1b80) * 0x14);
   uVar5 = puVar1[1];
@@ -163,12 +203,26 @@ undefined1 FUN_180128850(undefined4 param_1,undefined8 param_2)
   return uVar7;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-ulonglong FUN_180128bd0(undefined8 param_1,undefined8 param_2,ulonglong param_3,undefined8 param_4)
-
+/**
+ * 创建渲染元素实例
+ * 分配并初始化一个新的渲染元素实例
+ * 
+ * 参数：
+ * - param_1: 元素类型标识符
+ * - param_2: 元素位置数据
+ * - param_3: 元素属性标志
+ * - param_4: 渲染上下文
+ * 
+ * 返回值：
+ * - 新创建的元素实例指针
+ * 
+ * 功能说明：
+ * 1. 分配元素内存
+ * 2. 初始化元素属性
+ * 3. 设置元素位置和状态
+ * 4. 将元素添加到相应的管理结构中
+ */
+ulonglong create_render_element_instance(undefined8 param_1,undefined8 param_2,ulonglong param_3,undefined8 param_4)
 {
   undefined8 uVar1;
   int iVar2;
@@ -193,6 +247,7 @@ ulonglong FUN_180128bd0(undefined8 param_1,undefined8 param_2,ulonglong param_3,
   if (_DAT_180c8a9b0 != 0) {
     *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
   }
+  // 分配元素内存
   lVar7 = func_0x000180120ce0(0x438,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
   uVar9 = 0;
   iVar11 = 0;
@@ -206,9 +261,11 @@ ulonglong FUN_180128bd0(undefined8 param_1,undefined8 param_2,ulonglong param_3,
   lVar14 = _DAT_180c8a9b0;
   lVar7 = **(longlong **)(_DAT_180c8a9b0 + 0x1c70);
   fVar16 = *(float *)(lVar7 + 0xc);
+  // 设置元素位置
   *(float *)(uVar8 + 0x40) = *(float *)(lVar7 + 8) + 60.0;
   *(float *)(uVar8 + 0x44) = fVar16 + 60.0;
   uStackX_20 = param_2;
+  // 处理元素属性
   if (((uVar15 >> 8 & 1) == 0) && (iVar12 = *(int *)(lVar14 + 0x2e28), iVar12 != 0)) {
     lVar14 = *(longlong *)(lVar14 + 0x2e30);
     piVar13 = (int *)(lVar14 + 8);
@@ -250,6 +307,7 @@ ulonglong FUN_180128bd0(undefined8 param_1,undefined8 param_2,ulonglong param_3,
       piVar13 = piVar13 + 0xe;
     } while (uVar9 != (longlong)iVar12);
   }
+  // 设置元素坐标
   fVar17 = (float)(int)(float)uStackX_20;
   fVar16 = (float)(int)uStackX_20._4_4_;
   *(float *)(uVar8 + 0x58) = fVar17;
@@ -259,6 +317,7 @@ ulonglong FUN_180128bd0(undefined8 param_1,undefined8 param_2,ulonglong param_3,
   *(float *)(uVar8 + 0x48) = fVar17;
   *(float *)(uVar8 + 0x4c) = fVar16;
   *(undefined8 *)(uVar8 + 0x118) = *(undefined8 *)(uVar8 + 0x40);
+  // 处理边界检查
   if ((param_3 & 0x40) == 0) {
     if (fVar17 <= 0.0) {
       *(undefined4 *)(uVar8 + 0xc4) = 2;
@@ -279,6 +338,7 @@ ulonglong FUN_180128bd0(undefined8 param_1,undefined8 param_2,ulonglong param_3,
     *(undefined4 *)(uVar8 + 0xc4) = 2;
     *(undefined1 *)(uVar8 + 0xcc) = 0;
   }
+  // 添加到管理结构
   piVar13 = (int *)(lVar3 + 0x1ab0);
   iVar6 = *piVar13;
   iVar2 = *(int *)(lVar3 + 0x1ab4);
@@ -329,7 +389,7 @@ ulonglong FUN_180128bd0(undefined8 param_1,undefined8 param_2,ulonglong param_3,
         iVar6 = *piVar13;
       }
       if (0 < iVar6) {
-                    // WARNING: Subroutine does not return
+        // 移动现有元素
         memmove(*(longlong *)(lVar3 + 0x1aa8) + 8,*(longlong *)(lVar3 + 0x1aa8),(longlong)iVar6 << 3
                );
       }
@@ -347,12 +407,25 @@ LAB_180128faf:
   return uVar8;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined8 * FUN_180128fd0(undefined8 *param_1,longlong param_2,undefined8 param_3)
-
+/**
+ * 计算变换边界
+ * 计算元素在变换后的边界框
+ * 
+ * 参数：
+ * - param_1: 输出边界指针
+ * - param_2: 元素实例指针
+ * - param_3: 变换参数
+ * 
+ * 返回值：
+ * - 边界计算结果指针
+ * 
+ * 功能说明：
+ * 1. 获取元素的原始边界
+ * 2. 应用变换矩阵
+ * 3. 计算变换后的边界框
+ * 4. 处理边界约束条件
+ */
+undefined8 * calculate_transform_bounds(undefined8 *param_1,longlong param_2,undefined8 param_3)
 {
   longlong lVar1;
   undefined8 uVar2;
@@ -376,6 +449,7 @@ undefined8 * FUN_180128fd0(undefined8 *param_1,longlong param_2,undefined8 param
   uStack_30._4_4_ = uStackX_8._4_4_;
   uStack_30._0_4_ = (float)uStackX_8;
   uVar2 = param_3;
+  // 处理边界约束
   if (*(int *)(_DAT_180c8a9b0 + 0x1be0) != 0) {
     uStack_30._0_4_ = *(float *)(_DAT_180c8a9b0 + 0x1c18);
     uStack_30._4_4_ = *(float *)(_DAT_180c8a9b0 + 0x1c1c);
@@ -415,6 +489,7 @@ undefined8 * FUN_180128fd0(undefined8 *param_1,longlong param_2,undefined8 param
       uStackX_8 = CONCAT44(uStack_30._4_4_,(float)uStackX_8);
     }
     uVar2 = uStackX_8;
+    // 调用变换回调
     if (*(code **)(_DAT_180c8a9b0 + 0x1c28) != (code *)0x0) {
       uStack_40 = *(undefined4 *)(param_2 + 0x40);
       uStack_3c = *(undefined4 *)(param_2 + 0x44);
@@ -427,6 +502,7 @@ undefined8 * FUN_180128fd0(undefined8 *param_1,longlong param_2,undefined8 param
     }
   }
   uStackX_8 = uVar2;
+  // 计算变换边界
   if ((*(uint *)(param_2 + 0xc) & 0x1000040) == 0) {
     if ((*(longlong *)(param_2 + 0x410) == 0) ||
        (lVar3 = *(longlong *)(*(longlong *)(param_2 + 0x410) + 0x70), lVar3 == 0)) {
@@ -440,6 +516,7 @@ undefined8 * FUN_180128fd0(undefined8 *param_1,longlong param_2,undefined8 param
     if (*(float *)(lVar1 + 0x163c) <= (float)uStack_30) {
       fVar4 = (float)uStack_30;
     }
+    // 计算偏移量
     if ((*(uint *)(lVar3 + 0xc) & 1) == 0) {
       fVar8 = *(float *)(_DAT_180c8a9b0 + 0x19fc) * *(float *)(lVar3 + 0x2d8) *
               *(float *)(lVar3 + 0x2dc) +
@@ -473,12 +550,25 @@ undefined8 * FUN_180128fd0(undefined8 *param_1,longlong param_2,undefined8 param
   return param_1;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined8 * FUN_180129220(undefined8 *param_1,longlong param_2,float *param_3)
-
+/**
+ * 计算裁剪区域
+ * 计算元素的裁剪区域和可见性
+ * 
+ * 参数：
+ * - param_1: 输出裁剪区域指针
+ * - param_2: 元素实例指针
+ * - param_3: 原始边界数据
+ * 
+ * 返回值：
+ * - 裁剪区域计算结果指针
+ * 
+ * 功能说明：
+ * 1. 获取元素的裁剪参数
+ * 2. 计算可见区域
+ * 3. 处理裁剪约束
+ * 4. 返回最终的裁剪区域
+ */
+undefined8 * calculate_clipping_area(undefined8 *param_1,longlong param_2,float *param_3)
 {
   float fVar1;
   int iVar2;
@@ -493,6 +583,7 @@ undefined8 * FUN_180129220(undefined8 *param_1,longlong param_2,float *param_3)
   lVar3 = _DAT_180c8a9b0;
   fVar6 = *(float *)(_DAT_180c8a9b0 + 0x163c);
   fStackX_c = *(float *)(_DAT_180c8a9b0 + 0x1640);
+  // 处理裁剪限制
   if ((*(uint *)(param_2 + 0xc) & 0x14000000) != 0) {
     if (4.0 <= fVar6) {
       fVar6 = 4.0;
@@ -501,6 +592,7 @@ undefined8 * FUN_180129220(undefined8 *param_1,longlong param_2,float *param_3)
       fStackX_c = 4.0;
     }
   }
+  // 获取元素边界
   fVar4 = *(float *)(*(longlong *)(param_2 + 0x28) + 0x10);
   fVar5 = *(float *)(*(longlong *)(param_2 + 0x28) + 0x14);
   if (*(char *)(param_2 + 0xae) != '\0') {
@@ -512,6 +604,7 @@ undefined8 * FUN_180129220(undefined8 *param_1,longlong param_2,float *param_3)
     fVar4 = *(float *)(*(longlong *)(_DAT_180c8a9b0 + 0x1608) + 0x18 + (longlong)iVar2 * 0x24);
     fVar5 = *(float *)(*(longlong *)(_DAT_180c8a9b0 + 0x1608) + 0x1c + (longlong)iVar2 * 0x24);
   }
+  // 调整边界
   fVar4 = fVar4 - (*(float *)(_DAT_180c8a9b0 + 0x16b4) + *(float *)(_DAT_180c8a9b0 + 0x16b4));
   fVar1 = param_3[1];
   if (fVar4 <= fVar6) {
@@ -531,6 +624,7 @@ undefined8 * FUN_180129220(undefined8 *param_1,longlong param_2,float *param_3)
   if ((fVar6 <= fVar5) && (fVar6 = fVar4, fVar5 <= fVar4)) {
     fVar6 = fVar5;
   }
+  // 计算裁剪区域
   FUN_180128fd0(&fStackX_10,fVar4,CONCAT44(fStackX_c,fVar6));
   if (((fStackX_10 < *param_3) && ((*(uint *)(param_2 + 0xc) & 8) == 0)) &&
      ((*(uint *)(param_2 + 0xc) >> 0xb & 1) != 0)) {
@@ -545,12 +639,25 @@ undefined8 * FUN_180129220(undefined8 *param_1,longlong param_2,float *param_3)
   return param_1;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-float * FUN_1801293e0(float *param_1,longlong param_2,char param_3)
-
+/**
+ * 计算位置偏移
+ * 计算元素的位置偏移量
+ * 
+ * 参数：
+ * - param_1: 输出位置指针
+ * - param_2: 元素实例指针
+ * - param_3: 偏移标志
+ * 
+ * 返回值：
+ * - 位置偏移计算结果指针
+ * 
+ * 功能说明：
+ * 1. 获取元素的原始位置
+ * 2. 计算偏移量
+ * 3. 应用约束条件
+ * 4. 返回最终位置
+ */
+float * calculate_position_offset(float *param_1,longlong param_2,char param_3)
 {
   char cVar1;
   longlong lVar2;
@@ -584,6 +691,7 @@ float * FUN_1801293e0(float *param_1,longlong param_2,char param_3)
         fVar5 = *(float *)(param_2 + 100);
       }
     }
+    // 计算偏移因子
     if ((*(uint *)(param_2 + 0xc) & 1) == 0) {
       fVar6 = *(float *)(lVar2 + 0x19fc) * *(float *)(param_2 + 0x2d8) * *(float *)(param_2 + 0x2dc)
               + *(float *)(lVar2 + 0x1660) + *(float *)(lVar2 + 0x1660);
@@ -603,6 +711,7 @@ float * FUN_1801293e0(float *param_1,longlong param_2,char param_3)
             (*(float *)(param_2 + 0x54) - *(float *)(param_2 + 0xa8)) * fVar7;
     param_1[1] = fVar5;
   }
+  // 应用约束
   cVar1 = *(char *)(param_2 + 0xb2);
   if (fVar5 <= 0.0) {
     fVar5 = 0.0;
@@ -613,6 +722,7 @@ float * FUN_1801293e0(float *param_1,longlong param_2,char param_3)
   }
   param_1[1] = fVar5;
   *param_1 = fVar7;
+  // 处理边界约束
   if ((cVar1 == '\0') && (*(char *)(param_2 + 0xb4) == '\0')) {
     fVar4 = *(float *)(param_2 + 0x60) - (*(float *)(param_2 + 0x50) - *(float *)(param_2 + 0xa4));
     fVar6 = *(float *)(param_2 + 0x54);
@@ -636,10 +746,26 @@ float * FUN_1801293e0(float *param_1,longlong param_2,char param_3)
   return param_1;
 }
 
-
-
-float * FUN_180129445(float *param_1,longlong param_2,float param_3,float param_4)
-
+/**
+ * 应用元素变换
+ * 对元素应用变换矩阵
+ * 
+ * 参数：
+ * - param_1: 输出变换结果指针
+ * - param_2: 元素实例指针
+ * - param_3: 变换参数
+ * - param_4: 变换因子
+ * 
+ * 返回值：
+ * - 变换结果指针
+ * 
+ * 功能说明：
+ * 1. 应用变换矩阵
+ * 2. 处理变换约束
+ * 3. 计算最终位置
+ * 4. 返回变换结果
+ */
+float * apply_element_transform(float *param_1,longlong param_2,float param_3,float param_4)
 {
   float fVar1;
   float fVar2;
@@ -662,6 +788,7 @@ float * FUN_180129445(float *param_1,longlong param_2,float param_3,float param_
       param_3 = *(float *)(param_2 + 100);
     }
   }
+  // 计算变换因子
   if ((*(uint *)(param_2 + 0xc) & 1) == 0) {
     fVar6 = *(float *)(in_RAX + 0x19fc) * *(float *)(param_2 + 0x2d8) * *(float *)(param_2 + 0x2dc)
             + *(float *)(in_RAX + 0x1660) + *(float *)(in_RAX + 0x1660);
@@ -680,6 +807,7 @@ float * FUN_180129445(float *param_1,longlong param_2,float param_3,float param_
   fVar6 = (param_3 - (fVar4 + fVar6) * (1.0 - in_XMM5_Da)) -
           (*(float *)(param_2 + 0x54) - *(float *)(param_2 + 0xa8)) * in_XMM5_Da;
   param_1[1] = fVar6;
+  // 应用约束
   cVar3 = *(char *)(param_2 + 0xb2);
   if (fVar6 <= param_4) {
     fVar6 = param_4;
@@ -690,6 +818,7 @@ float * FUN_180129445(float *param_1,longlong param_2,float param_3,float param_
   }
   param_1[1] = fVar6;
   *param_1 = fVar4;
+  // 处理边界约束
   if ((cVar3 == '\0') && (*(char *)(param_2 + 0xb4) == '\0')) {
     fVar5 = *(float *)(param_2 + 0x60) - (*(float *)(param_2 + 0x50) - *(float *)(param_2 + 0xa4));
     fVar1 = *(float *)(param_2 + 0x54);
@@ -713,10 +842,26 @@ float * FUN_180129445(float *param_1,longlong param_2,float param_3,float param_
   return param_1;
 }
 
-
-
-float * FUN_180129529(float *param_1,longlong param_2,undefined8 param_3,float param_4)
-
+/**
+ * 设置位置约束
+ * 设置元素的位置约束条件
+ * 
+ * 参数：
+ * - param_1: 输出约束结果指针
+ * - param_2: 元素实例指针
+ * - param_3: 约束参数
+ * - param_4: 约束因子
+ * 
+ * 返回值：
+ * - 约束结果指针
+ * 
+ * 功能说明：
+ * 1. 应用位置约束
+ * 2. 处理边界限制
+ * 3. 计算最终位置
+ * 4. 返回约束结果
+ */
+float * set_position_constraint(float *param_1,longlong param_2,undefined8 param_3,float param_4)
 {
   float fVar1;
   float fVar2;
@@ -736,6 +881,7 @@ float * FUN_180129529(float *param_1,longlong param_2,undefined8 param_3,float p
   }
   param_1[1] = fVar6;
   *param_1 = fVar5;
+  // 处理边界约束
   if ((cVar3 == '\0') && (*(char *)(param_2 + 0xb4) == '\0')) {
     fVar4 = *(float *)(param_2 + 0x60) - (*(float *)(param_2 + 0x50) - *(float *)(param_2 + 0xa4));
     fVar1 = *(float *)(param_2 + 0x54);
@@ -759,14 +905,24 @@ float * FUN_180129529(float *param_1,longlong param_2,undefined8 param_3,float p
   return param_1;
 }
 
-
-
-
-
-// 函数: void FUN_1801295b0(longlong param_1,float *param_2,float *param_3,float *param_4,undefined8 *param_5
-void FUN_1801295b0(longlong param_1,float *param_2,float *param_3,float *param_4,undefined8 *param_5
-                  )
-
+/**
+ * 计算变换矩阵
+ * 计算元素的变换矩阵
+ * 
+ * 参数：
+ * - param_1: 元素实例指针
+ * - param_2: 原始位置数据
+ * - param_3: 变换参数
+ * - param_4: 输出变换结果指针
+ * - param_5: 输出变换矩阵指针
+ * 
+ * 功能说明：
+ * 1. 计算元素的边界
+ * 2. 应用变换矩阵
+ * 3. 计算变换后的位置
+ * 4. 返回变换结果
+ */
+void calculate_transform_matrix(longlong param_1,float *param_2,float *param_3,float *param_4,undefined8 *param_5)
 {
   float fVar1;
   float fVar2;
@@ -797,10 +953,27 @@ void FUN_1801295b0(longlong param_1,float *param_2,float *param_3,float *param_4
   return;
 }
 
-
-
-float * FUN_1801296e0(float *param_1,longlong param_2,int param_3,float param_4,float param_5)
-
+/**
+ * 应用四边形变换
+ * 对四边形元素应用变换
+ * 
+ * 参数：
+ * - param_1: 输出变换结果指针
+ * - param_2: 元素实例指针
+ * - param_3: 变换方向
+ * - param_4: X轴偏移
+ * - param_5: Y轴偏移
+ * 
+ * 返回值：
+ * - 变换结果指针
+ * 
+ * 功能说明：
+ * 1. 根据变换方向应用不同的变换
+ * 2. 计算四边形的顶点位置
+ * 3. 应用偏移量
+ * 4. 返回变换结果
+ */
+float * apply_quad_transform(float *param_1,longlong param_2,int param_3,float param_4,float param_5)
 {
   float fVar1;
   float fVar2;
@@ -815,6 +988,7 @@ float * FUN_1801296e0(float *param_1,longlong param_2,int param_3,float param_4,
     fVar3 = fVar3 - 1.0;
     fVar4 = fVar4 - 1.0;
   }
+  // 根据方向应用变换
   if (param_3 == 0) {
     *param_1 = fVar1 + param_4;
     param_1[1] = fVar2 - param_5;
@@ -843,16 +1017,10 @@ float * FUN_1801296e0(float *param_1,longlong param_2,int param_3,float param_4,
     param_1[3] = fVar4 - param_4;
     return param_1;
   }
+  // 无效方向，返回极大值
   *param_1 = 3.4028235e+38;
   param_1[1] = 3.4028235e+38;
   param_1[2] = -3.4028235e+38;
   param_1[3] = -3.4028235e+38;
   return param_1;
 }
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

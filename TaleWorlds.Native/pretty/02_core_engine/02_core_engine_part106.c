@@ -725,10 +725,10 @@ void process_advanced_bounding_box(float *bbox_coords, undefined8 display_params
                               ,0);
             }
             lVar9 = global_render_manager;
-            uVar6 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19ac);
-            uVar7 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19b0);
-            fVar2 = *(float *)(_DAT_180c8a9b0 + 0x19b4);
-            *(undefined4 *)(unaff_RBP + -0x59) = *(undefined4 *)(_DAT_180c8a9b0 + 0x19a8);
+            uVar6 = *(undefined4 *)(global_render_manager + 0x19ac);
+            uVar7 = *(undefined4 *)(global_render_manager + 0x19b0);
+            fVar2 = *(float *)(global_render_manager + 0x19b4);
+            *(undefined4 *)(unaff_RBP + -0x59) = *(undefined4 *)(global_render_manager + 0x19a8);
             *(undefined4 *)(unaff_RBP + -0x55) = uVar6;
             *(undefined4 *)(unaff_RBP + -0x51) = uVar7;
             *(float *)(unaff_RBP + -0x4d) = fVar2;
@@ -751,10 +751,10 @@ void process_advanced_bounding_box(float *bbox_coords, undefined8 display_params
         lVar9 = global_render_manager;
         if ((unaff_RDI & 2) != 0) {
             lVar5 = *(longlong *)(lVar5 + 0x2e8);
-            uVar6 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19ac);
-            uVar7 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19b0);
-            fVar2 = *(float *)(_DAT_180c8a9b0 + 0x19b4);
-            *(undefined4 *)(unaff_RBP + -0x59) = *(undefined4 *)(_DAT_180c8a9b0 + 0x19a8);
+            uVar6 = *(undefined4 *)(global_render_manager + 0x19ac);
+            uVar7 = *(undefined4 *)(global_render_manager + 0x19b0);
+            fVar2 = *(float *)(global_render_manager + 0x19b4);
+            *(undefined4 *)(unaff_RBP + -0x59) = *(undefined4 *)(global_render_manager + 0x19a8);
             *(undefined4 *)(unaff_RBP + -0x55) = uVar6;
             *(undefined4 *)(unaff_RBP + -0x51) = uVar7;
             *(float *)(unaff_RBP + -0x4d) = fVar2;
@@ -871,10 +871,10 @@ void process_enhanced_bounding_box(float *bbox_coords, undefined8 display_params
                           CONCAT44(fVar12,fVar14),0);
         }
         lVar9 = global_render_manager;
-        uVar6 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19ac);
-        uVar7 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19b0);
-        fVar2 = *(float *)(_DAT_180c8a9b0 + 0x19b4);
-        *(undefined4 *)(unaff_RBP + -0x59) = *(undefined4 *)(_DAT_180c8a9b0 + 0x19a8);
+        uVar6 = *(undefined4 *)(global_render_manager + 0x19ac);
+        uVar7 = *(undefined4 *)(global_render_manager + 0x19b0);
+        fVar2 = *(float *)(global_render_manager + 0x19b4);
+        *(undefined4 *)(unaff_RBP + -0x59) = *(undefined4 *)(global_render_manager + 0x19a8);
         *(undefined4 *)(unaff_RBP + -0x55) = uVar6;
         *(undefined4 *)(unaff_RBP + -0x51) = uVar7;
         *(float *)(unaff_RBP + -0x4d) = fVar2;
@@ -897,10 +897,10 @@ void process_enhanced_bounding_box(float *bbox_coords, undefined8 display_params
     lVar9 = global_render_manager;
     if ((unaff_RDI & 2) != 0) {
         lVar5 = *(longlong *)(unaff_RBX + 0x2e8);
-        uVar6 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19ac);
-        uVar7 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19b0);
-        fVar2 = *(float *)(_DAT_180c8a9b0 + 0x19b4);
-        *(undefined4 *)(unaff_RBP + -0x59) = *(undefined4 *)(_DAT_180c8a9b0 + 0x19a8);
+        uVar6 = *(undefined4 *)(global_render_manager + 0x19ac);
+        uVar7 = *(undefined4 *)(global_render_manager + 0x19b0);
+        fVar2 = *(float *)(global_render_manager + 0x19b4);
+        *(undefined4 *)(unaff_RBP + -0x59) = *(undefined4 *)(global_render_manager + 0x19a8);
         *(undefined4 *)(unaff_RBP + -0x55) = uVar6;
         *(undefined4 *)(unaff_RBP + -0x51) = uVar7;
         *(float *)(unaff_RBP + -0x4d) = fVar2;
@@ -964,20 +964,20 @@ void process_float_coordinate_bounding_box(float offset_x, float offset_y, float
     float unaff_XMM14_Da;
     
     // 计算偏移后的坐标
-    float result_x = camera_max_z - offset_x;
-    float result_z = camera_min_y + offset_x;
-    float result_y = camera_min_z + offset_x;
-    float adjusted_x = camera_max_w - offset_x;
+    float result_x = *(float *)(unaff_RBX + 0x230) - offset_x;
+    float result_z = *(float *)(unaff_RBX + 0x22c) + offset_x;
+    float result_y = *(float *)(unaff_RBX + 0x234) + offset_x;
+    float adjusted_x = *(float *)(unaff_RBX + 0x234) - offset_x;
     
     // 检查边界框是否有效
     bool is_valid = true;
     if ((((result_x < offset_w) || (adjusted_x < offset_z)) || (offset_y < result_z)) ||
-        (*(float *)(render_instance + 0x234) <= result_y && result_y != *(float *)(render_instance + 0x234))) {
+        (*(float *)(unaff_RBX + 0x234) <= result_y && result_y != *(float *)(unaff_RBX + 0x234))) {
         is_valid = false;
     }
     
     if (!is_valid) {
-        FUN_180291b40(*(undefined8 *)(render_instance + 0x2e8),CONCAT44(adjusted_x,result_x),CONCAT44(result_y,result_z),0);
+        FUN_180291b40(*(undefined8 *)(unaff_RBX + 0x2e8),CONCAT44(adjusted_x,result_x),CONCAT44(result_y,result_z),0);
     }
     
     // 设置边界框颜色
@@ -996,25 +996,25 @@ void process_float_coordinate_bounding_box(float offset_x, float offset_y, float
     uint render_flags = func_0x000180121e20(&bbox_color);
     
     // 计算渲染位置
-    float render_z = camera_min_y + 3.0;
-    float render_w = camera_min_z + 3.0;
-    float render_y = camera_max_w - 3.0;
-    float render_x = result_x + camera_offset;
+    float render_z = *(float *)(unaff_RBX + 0x22c) + 3.0;
+    float render_w = *(float *)(unaff_RBX + 0x230) + 3.0;
+    float render_y = *(float *)(unaff_RBX + 0x234) - 3.0;
+    float render_x = result_x + *(float *)(unaff_RBX + 0x228);
     
     if ((render_flags & 0xff000000) != 0) {
-        FUN_180293e80(*(undefined8 *)(render_instance + 0x2e8),&render_x,&render_z,render_flags);
+        FUN_180293e80(*(undefined8 *)(unaff_RBX + 0x2e8),&render_x,&render_z,render_flags);
     }
     
     if (!is_valid) {
-        int *counter = (int *)(*(longlong *)(render_instance + 0x2e8) + 0x60);
+        int *counter = (int *)(*(longlong *)(unaff_RBX + 0x2e8) + 0x60);
         *counter = *counter + -1;
         FUN_180291950();
     }
     
     // 处理高亮模式
     render_manager = global_render_manager;
-    if ((display_flags & 2) != 0) {
-        longlong render_data = *(longlong *)(render_instance + 0x2e8);
+    if ((unaff_RDI & 2) != 0) {
+        longlong render_data = *(longlong *)(unaff_RBX + 0x2e8);
         
         color_g = *(undefined4 *)(global_render_manager + 0x19ac);
         color_b = *(undefined4 *)(global_render_manager + 0x19b0);
@@ -1037,12 +1037,12 @@ void process_float_coordinate_bounding_box(float offset_x, float offset_y, float
                 result_y = result_y - 0.5;
             }
             
-            *(float *)(stack_frame + 0x77) = result_z;
-            *(float *)(stack_frame + 0x7b) = result_y;
-            *(float *)(stack_frame + 0x7f) = result_x + 0.5;
-            *(float *)(stack_frame + 0x83) = adjusted_x + 0.5;
+            *(float *)(unaff_RBP + 0x77) = result_z;
+            *(float *)(unaff_RBP + 0x7b) = result_y;
+            *(float *)(unaff_RBP + 0x7f) = result_x + 0.5;
+            *(float *)(unaff_RBP + 0x83) = adjusted_x + 0.5;
             
-            FUN_1802939e0(render_data,stack_frame + 0x7f,stack_frame + 0x77);
+            FUN_1802939e0(render_data,unaff_RBP + 0x7f,unaff_RBP + 0x77);
             FUN_1802923e0(render_data,*(undefined8 *)(render_data + 0x88),*(undefined4 *)(render_data + 0x80),render_flags,1);
             *(undefined4 *)(render_data + 0x80) = 0;
         }
