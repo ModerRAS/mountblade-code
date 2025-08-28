@@ -1045,16 +1045,22 @@ release_memory_block(undefined8 *memory_block, ulonglong release_flags, undefine
 
 
 
-// 函数: void FUN_180069220(longlong param_1,undefined8 param_2,int param_3)
-void FUN_180069220(longlong param_1,undefined8 param_2,int param_3)
+// 函数: 复制字符串数据
+// 功能: 安全地复制字符串数据到目标缓冲区，并确保字符串正确终止
+// 参数: param_1 - 目标字符串结构指针
+//       param_2 - 源字符串数据
+//       param_3 - 要复制的字符数
+void copy_string_data(longlong target_string, undefined8 source_data, int copy_length)
 
 {
-  if (param_3 + 1 < 0x100) {
-                    // WARNING: Subroutine does not return
-    memcpy(*(undefined1 **)(param_1 + 8),param_2,(longlong)param_3);
+  // 检查缓冲区大小是否足够
+  if (copy_length + 1 < 0x100) {
+    // WARNING: 子函数不返回
+    memcpy(*(undefined1 **)(target_string + 8), source_data, (longlong)copy_length);
   }
-  **(undefined1 **)(param_1 + 8) = 0;
-  *(undefined4 *)(param_1 + 0x10) = 0;
+  // 确保字符串正确终止
+  **(undefined1 **)(target_string + 8) = 0;
+  *(undefined4 *)(target_string + 0x10) = 0;
   return;
 }
 
@@ -1062,11 +1068,13 @@ void FUN_180069220(longlong param_1,undefined8 param_2,int param_3)
 
 
 
-// 函数: void FUN_180069241(void)
-void FUN_180069241(void)
+// 函数: 内存复制操作
+// 功能: 执行内存复制操作（简化实现）
+// 注意: 这是一个简化实现，原始实现可能包含更多参数和错误处理
+void memory_copy_operation(void)
 
 {
-                    // WARNING: Subroutine does not return
+  // WARNING: 子函数不返回
   memcpy();
 }
 
@@ -1074,14 +1082,18 @@ void FUN_180069241(void)
 
 
 
-// 函数: void FUN_180069266(undefined1 *param_1)
-void FUN_180069266(undefined1 *param_1)
+// 函数: 重置字符串
+// 功能: 重置字符串结构，清空字符串内容并重置长度
+// 参数: param_1 - 字符串结构指针
+void reset_string(undefined1 *string_struct)
 
 {
-  longlong unaff_RDI;
+  longlong string_base;
   
-  *param_1 = 0;
-  *(undefined4 *)(unaff_RDI + 0x10) = 0;
+  // 清空字符串内容
+  *string_struct = 0;
+  // 重置字符串长度
+  *(undefined4 *)(string_base + 0x10) = 0;
   return;
 }
 
