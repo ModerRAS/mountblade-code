@@ -1,6 +1,11 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part058.c - 8 个函数
+// 03_rendering_part058.c - 渲染系统高级数据处理和渲染控制模块
+// 包含8个核心函数，涵盖高级数据处理、渲染控制、资源管理、内存清理、哈希表操作等功能
+// 主要函数包括：render_advanced_data_processing_controller、render_empty_function_1、render_empty_function_2、
+// render_resource_manager_process、render_data_structure_copy、render_mutex_initialize、render_memory_cleanup、
+// render_cache_clear、render_hash_table_lookup、render_hash_table_insert、render_hash_table_add、
+// render_pointer_assign、render_hash_table_resize
 
 // 函数: void render_advanced_data_processing_controller(void)
 // 渲染系统高级数据处理和渲染控制模块
@@ -60,28 +65,6 @@ void render_advanced_data_processing_controller(void)
   float clip_plane_far;
   undefined8 render_state_flags;
   
-  // 渲染数据处理变量
-  undefined8 render_data_block_1;
-  undefined4 render_data_block_2;
-  float render_scale_factor;
-  undefined8 hash_value;
-  undefined8 combined_data;
-  undefined8 render_param_1;
-  undefined8 render_param_2;
-  undefined8 render_data_block_3;
-  int render_index;
-  int render_state_index;
-  longlong render_context_ptr;
-  int render_limit;
-  int render_max_index;
-  int render_index_limit;
-  int frame_count;
-  
-  // 渲染上下文变量
-  longlong render_resource_handle;
-  int render_context_id;
-  longlong render_texture_handle;
-  
   // 初始化渲染管线状态
   render_flag = FUN_180128040(&texture_handle,&render_mode,1);
   texture_id_2 = (undefined4)((ulonglong)render_target >> 0x20);
@@ -121,7 +104,6 @@ void render_advanced_data_processing_controller(void)
         viewport_height = uniform_buffer;
       } while (render_flags != 0);
     }
-    // 更新光照参数
     if (fVar25 == unaff_XMM10_Da) {
       *(float *)(unaff_RBP + 0xd0) = fVar18;
       fVar25 = fVar18;
@@ -130,45 +112,39 @@ void render_advanced_data_processing_controller(void)
       fVar26 = fVar24;
     }
   }
-  // 处理渲染数据结构
-  render_data_block_1 = *(undefined8 *)(unaff_RBX + 0x1738);
-  render_data_block_2 = *(undefined4 *)(unaff_RBX + 0x1740);
-  render_scale_factor = *(float *)(unaff_RBX + 0x1744) * *(float *)(unaff_RBX + 0x1628);
-  hash_value = func_0x000180121e20(&stack0x00000040);
-  combined_data = CONCAT44(uVar7,*(undefined4 *)(in_R11 + 0x1664));
-  FUN_180122960(CONCAT44(render_param_1,render_param_2),render_data_block_3,hash_value,1,
-                combined_data);
-  render_index = frame_count + -1;
-  render_state_index = -1;
-  render_context_ptr = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
-  render_limit = frame_count;
-  if ((int)unaff_XMM11_Da < frame_count) {
-    render_limit = (int)unaff_XMM11_Da;
+  in_stack_00000040 = *(undefined8 *)(unaff_RBX + 0x1738);
+  in_stack_00000048 = *(undefined4 *)(unaff_RBX + 0x1740);
+  fStack000000000000004c = *(float *)(unaff_RBX + 0x1744) * *(float *)(unaff_RBX + 0x1628);
+  uVar6 = func_0x000180121e20(&stack0x00000040);
+  uVar27 = CONCAT44(uVar7,*(undefined4 *)(in_R11 + 0x1664));
+  FUN_180122960(CONCAT44(fStack0000000000000074,fStack0000000000000070),in_stack_00000078,uVar6,1,
+                uVar27);
+  iVar9 = iVar16 + -1;
+  iStack0000000000000050 = -1;
+  lVar15 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
+  iVar13 = iVar16;
+  if ((int)unaff_XMM11_Da < iVar16) {
+    iVar13 = (int)unaff_XMM11_Da;
   }
-  render_max_index = render_limit - 1;
-  render_index_limit = render_max_index;
-  // 检查渲染状态标志
+  uVar12 = iVar13 - 1;
+  uStack000000000000005c = uVar12;
   if ((*(char *)(_DAT_180c8a9b0 + 0x1d07) == '\0') || (*(char *)(_DAT_180c8a9b0 + 0x1d06) != '\0'))
   {
-    // 验证渲染上下文状态
-    if ((((((*(byte *)(render_context_ptr + 0x148) & 1) == 0) ||
-          (render_resource_handle = *(longlong *)(render_context_ptr + 0x3a0), 
-           *(longlong *)(_DAT_180c8a9b0 + 0x1b08) != render_resource_handle))
-         || ((((render_context_id = *(int *)(_DAT_180c8a9b0 + 0x1b2c), render_context_id != 0 &&
-               (render_context_id != *(int *)(render_context_ptr + 0x144))) && 
-              (*(char *)(_DAT_180c8a9b0 + 0x1b3d) == '\0')
-              ) && (render_context_id != *(int *)(render_context_ptr + 0x84))))) ||
+    if ((((((*(byte *)(lVar15 + 0x148) & 1) == 0) ||
+          (lVar2 = *(longlong *)(lVar15 + 0x3a0), *(longlong *)(_DAT_180c8a9b0 + 0x1b08) != lVar2))
+         || ((((iVar13 = *(int *)(_DAT_180c8a9b0 + 0x1b2c), iVar13 != 0 &&
+               (iVar13 != *(int *)(lVar15 + 0x144))) && (*(char *)(_DAT_180c8a9b0 + 0x1b3d) == '\0')
+              ) && (iVar13 != *(int *)(lVar15 + 0x84))))) ||
         (((((*(longlong *)(_DAT_180c8a9b0 + 0x1c98) != 0 &&
-            (render_texture_handle = *(longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1c98) + 0x3a0), 
-             render_texture_handle != 0)) &&
-           (*(char *)(render_texture_handle + 0xb0) != '\0')) &&
-          ((render_texture_handle != render_resource_handle &&
-           (((*(uint *)(render_texture_handle + 0xc) >> 0x1b & 1) != 0 ||
-            ((*(uint *)(render_texture_handle + 0xc) >> 0x1a & 1) != 0)))))) ||
-         ((*(longlong *)(render_context_ptr + 0x28) != *(longlong *)(_DAT_180c8a9b0 + 0x1c80) &&
+            (lVar3 = *(longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1c98) + 0x3a0), lVar3 != 0)) &&
+           (*(char *)(lVar3 + 0xb0) != '\0')) &&
+          ((lVar3 != lVar2 &&
+           (((*(uint *)(lVar3 + 0xc) >> 0x1b & 1) != 0 ||
+            ((*(uint *)(lVar3 + 0xc) >> 0x1a & 1) != 0)))))) ||
+         ((*(longlong *)(lVar15 + 0x28) != *(longlong *)(_DAT_180c8a9b0 + 0x1c80) &&
           ((*(longlong *)(_DAT_180c8a9b0 + 0x1b78) == 0 ||
-           (render_resource_handle != *(longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1b78) + 0x3a0))))))))) ||
-       ((*(byte *)(render_context_ptr + 0x1a8) & 4) != 0)) goto LAB_180299abc;
+           (lVar2 != *(longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1b78) + 0x3a0))))))))) ||
+       ((*(byte *)(lVar15 + 0x1a8) & 4) != 0)) goto LAB_180299abc;
     if ((*(int *)(lVar15 + 0x144) == *(int *)(lVar15 + 8)) ||
        (*(int *)(lVar15 + 0x144) == *(int *)(lVar15 + 0x84))) {
       cVar5 = *(char *)(lVar15 + 0xb1);
@@ -314,10 +290,6 @@ LAB_180299abc:
   return;
 }
 
-
-
-
-
 // 函数: void render_empty_function_1(void)
 // 渲染系统空函数1 - 占位符函数
 void render_empty_function_1(void)
@@ -325,10 +297,6 @@ void render_empty_function_1(void)
 {
   return;
 }
-
-
-
-
 
 // 函数: void render_empty_function_2(void)
 // 渲染系统空函数2 - 占位符函数
@@ -338,11 +306,7 @@ void render_empty_function_2(void)
   return;
 }
 
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
 
 // 函数: void render_resource_manager_process(longlong resource_pool,longlong context_id,longlong *resource_data,undefined1 *status_flag)
 // 渲染资源管理器处理函数 - 管理渲染资源的分配、释放和状态跟踪
@@ -552,8 +516,6 @@ LAB_18029a2da:
   FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_228);
 }
 
-
-
 undefined8 *
 render_data_structure_copy(undefined8 *dest_buffer,undefined8 *src_buffer,undefined8 param_3,undefined8 param_4)
 // 渲染数据结构复制函数 - 在渲染系统之间复制数据结构
@@ -605,8 +567,6 @@ render_data_structure_copy(undefined8 *dest_buffer,undefined8 *src_buffer,undefi
   return param_1;
 }
 
-
-
 undefined8 * render_mutex_initialize(undefined8 *mutex_data)
 // 渲染互斥锁初始化函数 - 初始化渲染线程同步所需的互斥锁
 
@@ -629,10 +589,6 @@ undefined8 * render_mutex_initialize(undefined8 *mutex_data)
   mutex_data[5] = 0;
   return mutex_data;
 }
-
-
-
-
 
 // 函数: void render_memory_cleanup(longlong *memory_pool)
 // 渲染内存清理函数 - 清理渲染系统分配的内存资源
@@ -723,8 +679,6 @@ void render_memory_cleanup(longlong *memory_pool)
   return;
 }
 
-
-
 undefined8 render_cache_clear(longlong cache_manager)
 // 渲染缓存清理函数 - 清理渲染系统的各种缓存
 
@@ -788,8 +742,6 @@ undefined8 render_cache_clear(longlong cache_manager)
   return 1;
 }
 
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 longlong render_hash_table_lookup(longlong hash_table,longlong *key_data,undefined1 *found_flag)
@@ -834,8 +786,6 @@ LAB_18029a7f6:
     plVar2 = (longlong *)plVar2[3];
   } while( true );
 }
-
-
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
@@ -896,11 +846,7 @@ render_hash_table_insert(longlong hash_table,undefined8 *result_buffer,undefined
   return param_2;
 }
 
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
 
 // 函数: void render_hash_table_add(undefined8 hash_table,undefined8 result_buffer,undefined8 param_3,undefined8 param_4)
 // 渲染哈希表添加函数 - 添加新的条目到哈希表
@@ -948,10 +894,6 @@ void render_hash_table_add(undefined8 hash_table,undefined8 result_buffer,undefi
   return;
 }
 
-
-
-
-
 // 函数: void render_pointer_assign(undefined8 target_ptr,undefined8 source_ptr,undefined8 param_3)
 // 渲染指针赋值函数 - 为渲染相关的指针结构赋值
 void render_pointer_assign(undefined8 target_ptr,undefined8 source_ptr,undefined8 param_3)
@@ -964,10 +906,6 @@ void render_pointer_assign(undefined8 target_ptr,undefined8 source_ptr,undefined
   *(undefined1 *)(unaff_R15 + 2) = 0;
   return;
 }
-
-
-
-
 
 // 函数: void render_hash_table_resize(ulonglong new_size)
 // 渲染哈希表调整大小函数 - 调整哈希表的大小以优化性能
@@ -997,8 +935,3 @@ void render_hash_table_resize(ulonglong new_size)
   *(undefined1 *)(unaff_R15 + 2) = 1;
   return;
 }
-
-
-
-
-
