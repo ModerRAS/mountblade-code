@@ -796,7 +796,22 @@ longlong MemoryManager_AllocateSmallPool(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_1800db0a0(void)
+/**
+ * @brief 内存管理器-大池
+ * 
+ * 本函数负责管理大规模的内存池分配和初始化。实现高效的内存管理机制，
+ * 专门处理大规模内存块的分配、状态管理和资源回收，支持大容量内存分配。
+ * 
+ * 功能特点：
+ * * - 管理大规模内存池的分配
+ * * - 实现线程安全的内存操作
+ * * - 处理内存池的初始化和状态管理
+ * * - 支持大容量内存块的分配和回收
+ * * - 实现内存块的批量初始化
+ * 
+ * @return 返回分配的内存池地址
+ */
+longlong MemoryManager_AllocateLargePool(void)
 
 {
   int iVar1;
@@ -814,9 +829,9 @@ longlong FUN_1800db0a0(void)
   uint *puVar13;
   bool bVar14;
   
-  lVar3 = system_parameter_buffer;
-  lVar12 = system_parameter_buffer + 0x74e8;
-  puVar11 = (uint *)((longlong)*(int *)(system_parameter_buffer + 0x7618) * 0x98 + lVar12);
+  lVar3 = SystemParameterBuffer;
+  lVar12 = SystemParameterBuffer + SYSTEM_PARAM_OFFSET_0x74e8;
+  puVar11 = (uint *)((longlong)*(int *)(SystemParameterBuffer + SYSTEM_PARAM_OFFSET_0x7618) * 0x98 + lVar12);
   LOCK();
   uVar2 = *puVar11;
   *puVar11 = *puVar11 + 1;
@@ -828,7 +843,7 @@ longlong FUN_1800db0a0(void)
   do {
     iVar9 = (int)uVar10;
     if (*(longlong *)puVar13 == 0) {
-      lVar6 = FUN_18062b420(system_memory_pool_ptr,0x1f800,0x25);
+      lVar6 = MemoryAllocator(SystemMemoryPoolPtr, MEMORY_BLOCK_SIZE_0x1f800, 0x25);
       LOCK();
       bVar14 = *(longlong *)(puVar11 + (longlong)iVar9 * 2 + 2) == 0;
       if (bVar14) {
@@ -836,22 +851,22 @@ longlong FUN_1800db0a0(void)
       }
       UNLOCK();
       if (bVar14) {
-        uVar5 = iVar9 * 0x200;
-        iVar1 = uVar5 + 0x200;
+        uVar5 = iVar9 * SYSTEM_ARRAY_SIZE_512;
+        iVar1 = uVar5 + SYSTEM_ARRAY_SIZE_512;
         for (; (int)uVar5 < iVar1; uVar5 = uVar5 + 1) {
           lVar6 = *(longlong *)(puVar11 + (ulonglong)(uVar5 >> 9) * 2 + 2);
-          lVar7 = (longlong)(int)(uVar5 + (uVar5 >> 9) * -0x200) * 0xfc;
-          *(int8_t *)(lVar6 + lVar7) = 0;
+          lVar7 = (longlong)(int)(uVar5 + (uVar5 >> 9) * -SYSTEM_ARRAY_SIZE_512) * MEMORY_BLOCK_SIZE_0xfc;
+          *(int8_t *)(lVar6 + lVar7) = SYSTEM_STATE_INACTIVE;
           *(uint64_t *)(lVar6 + 0xf4 + lVar7) = 0xffffffffffffffff;
         }
         LOCK();
-        *(int8_t *)((longlong)iVar9 + 0x88 + (longlong)puVar11) = 0;
+        *(int8_t *)((longlong)iVar9 + 0x88 + (longlong)puVar11) = SYSTEM_STATE_INACTIVE;
         UNLOCK();
       }
       else {
         if (lVar6 != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          SystemErrorHandler();
         }
         do {
         } while (*pcVar8 != '\0');
@@ -866,8 +881,8 @@ longlong FUN_1800db0a0(void)
     puVar13 = puVar13 + 2;
   } while ((longlong)(pcVar8 + (-0x88 - (longlong)puVar11)) <= (longlong)(ulonglong)uVar4);
   return *(longlong *)
-          ((longlong)*(int *)(lVar3 + 0x7618) * 0x98 + lVar12 + 8 + (ulonglong)uVar4 * 8) +
-         (ulonglong)(uVar2 - (uVar2 & 0xfffffe00)) * 0xfc;
+          ((longlong)*(int *)(lVar3 + SYSTEM_PARAM_OFFSET_0x7618) * 0x98 + lVar12 + 8 + (ulonglong)uVar4 * 8) +
+         (ulonglong)(uVar2 - (uVar2 & SYSTEM_SHIFT_MASK_9)) * MEMORY_BLOCK_SIZE_0xfc;
 }
 
 
@@ -877,8 +892,7 @@ longlong FUN_1800db0a0(void)
 
 
 
-// 函数: void FUN_1800db220(longlong param_1,longlong *param_2,uint64_t param_3)
-void FUN_1800db220(longlong param_1,longlong *param_2,uint64_t param_3)
+void ResourceManager_Handler(longlong param_1, longlong *param_2, uint64_t param_3)
 
 {
   char cVar1;
@@ -913,7 +927,7 @@ void FUN_1800db220(longlong param_1,longlong *param_2,uint64_t param_3)
     cVar1 = func_0x0001800ba3b0(lVar4 + 0x108,param_3);
     if ((cVar1 != '\0') && (*(int *)(lVar4 + 0x380) != 0)) goto LAB_1800db339;
   }
-  plVar2 = (longlong *)FUN_1800b1230(system_resource_state,&plStack_d8,&puStack_c8,param_3);
+  plVar2 = (longlong *)ResourceAllocator(system_resource_state, &plStack_d8, &puStack_c8, param_3);
   uStack_e8 = 1;
   lVar4 = *plVar2;
   *plVar2 = 0;
