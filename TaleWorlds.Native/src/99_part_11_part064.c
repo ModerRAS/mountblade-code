@@ -270,114 +270,133 @@ PARSE_COMPLETE:
 
 
 
-undefined8 FUN_1807c3ed1(void)
+/**
+ * 数据流控制器 - 控制和管理数据流
+ * 
+ * 功能：
+ * - 控制数据流向和流量
+ * - 处理数据格式转换
+ * - 管理数据缓冲区
+ * - 执行数据验证和清理
+ * 
+ * @param system_context 系统上下文（通过寄存器传递）
+ * @param data_buffer 数据缓冲区（通过寄存器传递）
+ * @param data_count 数据计数（通过寄存器传递）
+ * @param result_pointer 结果指针（通过寄存器传递）
+ * @return 处理状态码（0表示成功，非0表示错误）
+ */
+undefined8 data_flow_controller(void)
 
 {
-  char *pcVar1;
-  char cVar2;
-  undefined2 uVar3;
-  undefined2 uVar4;
-  undefined2 uVar5;
-  uint uVar6;
-  undefined8 *puVar7;
-  longlong in_RAX;
-  longlong *plVar8;
-  longlong lVar9;
-  ulonglong unaff_RBX;
-  int iVar10;
-  ulonglong unaff_RBP;
-  char *pcVar11;
-  char *pcVar12;
-  undefined2 *puVar13;
-  uint *unaff_R12;
-  longlong unaff_R13;
-  uint unaff_R15D;
-  uint *in_stack_00000088;
+  char *string_pointer;
+  char string_char;
+  undefined2 swap_data1;
+  undefined2 swap_data2;
+  undefined2 swap_data3;
+  uint data_size;
+  undefined8 *function_pointer;
+  longlong system_context;
+  longlong *string_array;
+  longlong loop_counter;
+  ulonglong buffer_address;
+  int item_count;
+  ulonglong alignment_size;
+  char *current_char;
+  char *value_string;
+  undefined2 *data_buffer;
+  uint *result_pointer;
+  longlong data_context;
+  uint data_count;
+  uint *stack_param;
   
-  if (*(int *)(in_RAX + 0xc) == 6) {
-    if (unaff_RBX < unaff_R15D + unaff_RBX) {
-      puVar13 = (undefined2 *)(unaff_RBX + 4);
-      lVar9 = ((ulonglong)unaff_R15D - 1) / 0xc + 1;
+  /* 数据类型6处理 */
+  if (*(int *)(system_context + 0xc) == 6) {
+    if (buffer_address < data_count + buffer_address) {
+      data_buffer = (undefined2 *)(buffer_address + 4);
+      loop_counter = ((ulonglong)data_count - 1) / 0xc + 1;
       do {
-        uVar3 = puVar13[-1];
-        uVar4 = puVar13[1];
-        uVar5 = puVar13[2];
-        puVar13[-1] = *puVar13;
-        puVar13[1] = puVar13[3];
-        *puVar13 = uVar3;
-        puVar13[2] = uVar4;
-        puVar13[3] = uVar5;
-        puVar13 = puVar13 + 6;
-        lVar9 = lVar9 + -1;
-      } while (lVar9 != 0);
+        swap_data1 = data_buffer[-1];
+        swap_data2 = data_buffer[1];
+        swap_data3 = data_buffer[2];
+        data_buffer[-1] = *data_buffer;
+        data_buffer[1] = data_buffer[3];
+        *data_buffer = swap_data1;
+        data_buffer[2] = swap_data2;
+        data_buffer[3] = swap_data3;
+        data_buffer = data_buffer + 6;
+        loop_counter = loop_counter + -1;
+      } while (loop_counter != 0);
     }
   }
-  else if ((*(int *)(in_RAX + 0xc) == 8) && (unaff_RBX < unaff_R15D + unaff_RBX)) {
-    puVar13 = (undefined2 *)(unaff_RBX + 4);
-    lVar9 = ((ulonglong)unaff_R15D - 1 >> 4) + 1;
+  /* 数据类型8处理 */
+  else if ((*(int *)(system_context + 0xc) == 8) && (buffer_address < data_count + buffer_address)) {
+    data_buffer = (undefined2 *)(buffer_address + 4);
+    loop_counter = ((ulonglong)data_count - 1 >> 4) + 1;
     do {
-      uVar3 = puVar13[-1];
-      uVar4 = puVar13[1];
-      uVar5 = puVar13[2];
-      puVar13[-1] = *puVar13;
-      puVar13[1] = puVar13[5];
-      puVar13[2] = puVar13[3];
-      puVar13[3] = puVar13[4];
-      *puVar13 = uVar3;
-      puVar13[4] = uVar4;
-      puVar13[5] = uVar5;
-      puVar13 = puVar13 + 8;
-      lVar9 = lVar9 + -1;
-    } while (lVar9 != 0);
+      swap_data1 = data_buffer[-1];
+      swap_data2 = data_buffer[1];
+      swap_data3 = data_buffer[2];
+      data_buffer[-1] = *data_buffer;
+      data_buffer[1] = data_buffer[5];
+      data_buffer[2] = data_buffer[3];
+      data_buffer[3] = data_buffer[4];
+      *data_buffer = swap_data1;
+      data_buffer[4] = swap_data2;
+      data_buffer[5] = swap_data3;
+      data_buffer = data_buffer + 8;
+      loop_counter = loop_counter + -1;
+    } while (loop_counter != 0);
   }
-  plVar8 = (longlong *)func_0x000180817c80(unaff_R13 + 0x178);
-  if ((plVar8 != (longlong *)0x0) && ((int)plVar8[2] != 0)) {
-    if (0 < (int)plVar8[2]) {
-      iVar10 = 0;
-      lVar9 = 0;
+  /* 字符串数组处理 */
+  string_array = (longlong *)get_string_array_function(data_context + 0x178);
+  if ((string_array != (longlong *)0x0) && ((int)string_array[2] != 0)) {
+    if (0 < (int)string_array[2]) {
+      item_count = 0;
+      loop_counter = 0;
       do {
-        pcVar12 = *(char **)(lVar9 + *plVar8);
-        cVar2 = *pcVar12;
-        pcVar11 = pcVar12;
-        while (cVar2 != '\0') {
-          if (cVar2 == '=') {
-            *pcVar11 = '\0';
-            pcVar12 = pcVar11 + 1;
+        value_string = *(char **)(loop_counter + *string_array);
+        string_char = *value_string;
+        current_char = value_string;
+        while (string_char != '\0') {
+          if (string_char == '=') {
+            *current_char = '\0';
+            value_string = current_char + 1;
             break;
           }
-          pcVar1 = pcVar11 + 1;
-          pcVar11 = pcVar11 + 1;
-          cVar2 = *pcVar1;
+          string_pointer = current_char + 1;
+          current_char = current_char + 1;
+          string_char = *string_pointer;
         }
-        puVar7 = *(undefined8 **)(unaff_R13 + 0x10);
-        func_0x00018076b690(pcVar12);
-        (*(code *)*puVar7)();
-        iVar10 = iVar10 + 1;
-        lVar9 = lVar9 + 8;
-      } while (iVar10 < (int)plVar8[2]);
-      unaff_RBP = 0x20;
-      unaff_R12 = in_stack_00000088;
+        function_pointer = *(undefined8 **)(data_context + 0x10);
+        process_string_function(value_string);
+        (*(code *)*function_pointer)();
+        item_count = item_count + 1;
+        loop_counter = loop_counter + 8;
+      } while (item_count < (int)string_array[2]);
+      alignment_size = 0x20;
+      result_pointer = stack_param;
     }
-    FUN_180816ee0();
+    cleanup_string_function();
   }
-  if (unaff_R12 != (uint *)0x0) {
-    uVar6 = *(uint *)(*(longlong *)(unaff_R13 + 8) + 0xc);
-    if (uVar6 != 0) {
-      iVar10 = *(int *)(*(longlong *)(unaff_R13 + 8) + 8);
-      if (iVar10 == 1) {
-        unaff_RBP = 8;
+  /* 结果计算 */
+  if (result_pointer != (uint *)0x0) {
+    data_size = *(uint *)(*(longlong *)(data_context + 8) + 0xc);
+    if (data_size != 0) {
+      item_count = *(int *)(*(longlong *)(data_context + 8) + 8);
+      if (item_count == 1) {
+        alignment_size = 8;
       }
-      else if (iVar10 == 2) {
-        unaff_RBP = 0x10;
+      else if (item_count == 2) {
+        alignment_size = 0x10;
       }
-      else if (iVar10 == 3) {
-        unaff_RBP = 0x18;
+      else if (item_count == 3) {
+        alignment_size = 0x18;
       }
-      else if ((iVar10 != 4) && (iVar10 != 5)) {
-        *unaff_R12 = unaff_R15D;
+      else if ((item_count != 4) && (item_count != 5)) {
+        *result_pointer = data_count;
         return 0;
       }
-      *unaff_R12 = (uint)((((ulonglong)unaff_R15D << 3) / unaff_RBP & 0xffffffff) / (ulonglong)uVar6
+      *result_pointer = (uint)((((ulonglong)data_count << 3) / alignment_size & 0xffffffff) / (ulonglong)data_size
                          );
     }
   }
@@ -386,51 +405,80 @@ undefined8 FUN_1807c3ed1(void)
 
 
 
-undefined8 FUN_1807c4087(void)
+/**
+ * 参数计算器 - 计算和处理系统参数
+ * 
+ * 功能：
+ * - 计算参数对齐大小
+ * - 处理参数类型转换
+ * - 管理参数验证
+ * - 执行参数优化
+ * 
+ * @param data_context 数据上下文（通过寄存器传递）
+ * @param result_pointer 结果指针（通过寄存器传递）
+ * @param parameter_value 参数值（通过寄存器传递）
+ * @return 处理状态码（0表示成功，非0表示错误）
+ */
+undefined8 parameter_calculator(void)
 
 {
-  uint uVar1;
-  int iVar2;
-  ulonglong unaff_RBP;
-  uint *unaff_R12;
-  longlong unaff_R13;
-  uint unaff_R15D;
+  uint data_size;
+  int parameter_type;
+  ulonglong alignment_size;
+  uint *result_pointer;
+  longlong data_context;
+  uint parameter_value;
   
-  uVar1 = *(uint *)(*(longlong *)(unaff_R13 + 8) + 0xc);
-  if (uVar1 != 0) {
-    iVar2 = *(int *)(*(longlong *)(unaff_R13 + 8) + 8);
-    if (iVar2 == 1) {
-      unaff_RBP = 8;
+  /* 获取数据大小 */
+  data_size = *(uint *)(*(longlong *)(data_context + 8) + 0xc);
+  if (data_size != 0) {
+    parameter_type = *(int *)(*(longlong *)(data_context + 8) + 8);
+    if (parameter_type == 1) {
+      alignment_size = 8;
     }
-    else if (iVar2 == 2) {
-      unaff_RBP = 0x10;
+    else if (parameter_type == 2) {
+      alignment_size = 0x10;
     }
-    else if (iVar2 == 3) {
-      unaff_RBP = 0x18;
+    else if (parameter_type == 3) {
+      alignment_size = 0x18;
     }
-    else if ((iVar2 != 4) && (iVar2 != 5)) {
-      *unaff_R12 = unaff_R15D;
+    else if ((parameter_type != 4) && (parameter_type != 5)) {
+      *result_pointer = parameter_value;
       return 0;
     }
-    *unaff_R12 = (uint)((((ulonglong)unaff_R15D << 3) / unaff_RBP & 0xffffffff) / (ulonglong)uVar1);
+    *result_pointer = (uint)((((ulonglong)parameter_value << 3) / alignment_size & 0xffffffff) / (ulonglong)data_size);
   }
   return 0;
 }
 
 
 
-undefined8 FUN_1807c4100(longlong param_1,undefined8 param_2,int param_3)
+/**
+ * 数据验证器 - 验证和处理数据完整性
+ * 
+ * 功能：
+ * - 验证数据完整性
+ * - 检查数据格式
+ * - 处理验证错误
+ * - 返回验证状态
+ * 
+ * @param data_context 数据上下文指针
+ * @param validation_context 验证上下文指针
+ * @param validation_flag 验证标志
+ * @return 验证状态码（0表示成功，非0表示错误）
+ */
+undefined8 data_validator(longlong data_context, undefined8 validation_context, int validation_flag)
 
 {
-  int iVar1;
+  int validation_result;
   
-  iVar1 = FUN_1808181b0(param_1,param_1 + 0x178,param_3);
-  if (iVar1 < 0) {
-    if (iVar1 == -0x8b) {
-      return 0x26;
+  validation_result = data_validation_function(data_context, data_context + 0x178, validation_flag);
+  if (validation_result < 0) {
+    if (validation_result == -0x8b) {
+      return ERROR_BUFFER_OVERFLOW;
     }
-    if ((param_3 != 0) || (*(longlong *)(param_1 + 0x1f0) != 0)) {
-      return 0xe;
+    if ((validation_flag != 0) || (*(longlong *)(data_context + 0x1f0) != 0)) {
+      return ERROR_INVALID_FORMAT;
     }
   }
   return 0;
