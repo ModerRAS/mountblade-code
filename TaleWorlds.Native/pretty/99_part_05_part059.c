@@ -230,7 +230,7 @@ void FUN_1802fddb0(int64_t param_1)
           uVar23 = *(uint64_t *)(*(int64_t *)(param_1 + 0xd0) + 0x1000);
         }
         lStack_a70 = lVar19;
-        FUN_18005ea90(uVar23 + 600,&lStack_a70);
+        SystemInitializer(uVar23 + 600,&lStack_a70);
       }
       lVar19 = *(int64_t *)(param_1 + 0x208);
       uVar25 = (int)uVar21 + 1;
@@ -433,7 +433,7 @@ LAB_1802fe66e:
     (**(code **)(param_1 + 0x138))(*(int64_t *)(param_1 + 0x130),param_1);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_c8 ^ (uint64_t)auStack_ad8);
+  SystemSecurityChecker(uStack_c8 ^ (uint64_t)auStack_ad8);
 }
 
 
