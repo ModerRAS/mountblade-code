@@ -779,13 +779,17 @@ LAB_18006d9f6:
       *(undefined2 *)(lVar6 + 0x3540) = 0x100;
       return lVar6;
     }
+    // 检查描述符是否可用
     puVar2 = (uint *)(lVar9 + 0x3530);
     uVar5 = *puVar2;
     if ((uVar5 & 0x7fffffff) == 0) {
 LAB_18006d9d7:
-      lVar6 = *(longlong *)(param_1 + 0x28);
+      // 描述符不可用，继续查找
+      lVar6 = *(longlong *)(descriptor_pool + 0x28);
       goto LAB_18006d957;
     }
+    
+    // 尝试获取描述符所有权
     LOCK();
     uVar3 = *puVar2;
     if (uVar5 == uVar3) {
@@ -793,15 +797,19 @@ LAB_18006d9d7:
     }
     UNLOCK();
     if (uVar5 != uVar3) goto LAB_18006d9d7;
+    
+    // 从链表中移除描述符
     LOCK();
-    lVar6 = *(longlong *)(param_1 + 0x28);
+    lVar6 = *(longlong *)(descriptor_pool + 0x28);
     bVar10 = lVar9 == lVar6;
     if (bVar10) {
-      *(longlong *)(param_1 + 0x28) = *(longlong *)(lVar9 + 0x3538);
+      *(longlong *)(descriptor_pool + 0x28) = *(longlong *)(lVar9 + 0x3538);
       lVar6 = lVar9;
     }
     UNLOCK();
+    
     if (bVar10) {
+      // 成功获取描述符
       LOCK();
       *puVar2 = *puVar2 - 2;
       UNLOCK();
@@ -810,20 +818,24 @@ LAB_18006d9d7:
       }
       goto LAB_18006d9f6;
     }
+    
+    // 释放所有权并继续查找
     LOCK();
     uVar5 = *puVar2;
     *puVar2 = *puVar2 - 1;
     UNLOCK();
+    
     if (uVar5 == 0x80000001) {
-      lVar8 = *(longlong *)(param_1 + 0x28);
+      // 处理特殊的引用计数情况
+      lVar8 = *(longlong *)(descriptor_pool + 0x28);
       do {
         *(longlong *)(lVar9 + 0x3538) = lVar8;
         *puVar2 = 1;
         LOCK();
-        lVar7 = *(longlong *)(param_1 + 0x28);
+        lVar7 = *(longlong *)(descriptor_pool + 0x28);
         bVar10 = lVar8 == lVar7;
         if (bVar10) {
-          *(longlong *)(param_1 + 0x28) = lVar9;
+          *(longlong *)(descriptor_pool + 0x28) = lVar9;
           lVar7 = lVar8;
         }
         UNLOCK();
