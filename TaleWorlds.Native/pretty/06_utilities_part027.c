@@ -855,7 +855,7 @@ void utilities_system_parameter_pointer_resetter(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_180941880(void)
+void utilities_system_flag_pointer_resetter(void)
 
 {
   // 重置系统标志指针并设置为默认值
@@ -876,7 +876,7 @@ void FUN_180941880(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_1809418a0(void)
+void utilities_system_mode_pointer_resetter(void)
 
 {
   // 重置系统模式指针并设置为默认值
@@ -897,7 +897,7 @@ void FUN_1809418a0(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_1809418c0(void)
+void utilities_system_state_mode_resetter(void)
 
 {
   // 重置系统状态模式并设置为默认值
@@ -918,7 +918,7 @@ void FUN_1809418c0(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_1809418e0(void)
+void utilities_system_operation_mode_resetter(void)
 
 {
   // 重置系统操作模式并设置为默认值
@@ -939,7 +939,7 @@ void FUN_1809418e0(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_180941900(void)
+void utilities_system_control_mode_resetter(void)
 
 {
   // 重置系统控制模式并设置为默认值
@@ -1005,7 +1005,7 @@ void FUN_180941920(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_180941980(void)
+void utilities_system_data_mode_resetter(void)
 
 {
   // 重置系统数据模式并设置为默认值
@@ -1026,7 +1026,7 @@ void FUN_180941980(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_1809419a0(void)
+void utilities_system_function_mode_resetter(void)
 
 {
   // 重置系统功能模式并设置为默认值
@@ -1045,7 +1045,7 @@ void FUN_1809419a0(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_1809419c0(void)
+void utilities_system_mutex_destroyer(void)
 
 {
   // WARNING: Could not recover jumptable at 0x0001809419d8. Too many branches
@@ -1069,7 +1069,7 @@ void FUN_1809419c0(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_1809419e0(void)
+void utilities_system_module_state_manager(void)
 
 {
   // 初始化系统模块状态
@@ -1101,7 +1101,7 @@ void FUN_1809419e0(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_180941a30(void)
+void utilities_system_data_state_manager(void)
 
 {
   // 初始化系统数据状态
