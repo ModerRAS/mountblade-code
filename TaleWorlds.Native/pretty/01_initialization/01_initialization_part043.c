@@ -180,36 +180,44 @@ LAB_1800721e1:
   }
   cVar2 = get_debug_status(puVar15);
   if (cVar2 == '\0') {
-    iVar3 = WaitForSingleObject(_DAT_180c91900,0);
+    // 等待信号量
+    iVar3 = WaitForSingleObject(GLOBAL_SEMAPHORE, 0);
     if (iVar3 == 0) {
       cStack_117 = '\x01';
+      // 执行调试检查函数
       cVar2 = (**(code **)**(undefined8 **)(_DAT_180c8ed08 + 0x18))();
       if ((cVar2 == '\0') && (iVar3 = IsDebuggerPresent(), iVar3 != 0)) {
-        cVar2 = '\x01';
+        cVar2 = '\x01';  // 调试器存在
       }
       else {
         cVar2 = '\0';
       }
       cStack_118 = cVar2;
+      
+      // 检查全局状态
       if (_DAT_180c82868 == 0) {
 LAB_1800722f5:
         lVar9 = _DAT_180c86950;
         if ((_DAT_180c86950 != 0) && (*(char *)(_DAT_180c86950 + 0x1609) != '\x01')) {
-          FUN_1801723a0(*(undefined8 *)(_DAT_180c86870 + 8),
-                        *(char *)(_DAT_180c868d0 + 0x2028) != '\0',
-                        *(undefined4 *)(_DAT_180c86950 + 0x160c));
+          // 执行初始化检查
+          execute_initialization_check(*(undefined8 *)(_DAT_180c86870 + 8),
+                                      *(char *)(_DAT_180c868d0 + 0x2028) != '\0',
+                                      *(undefined4 *)(_DAT_180c86950 + 0x160c));
           *(undefined1 *)(lVar9 + 0x1609) = 1;
         }
         if (*(longlong *)(_DAT_180c86870 + 8) != 0) {
-          FUN_1801719d0();
+          execute_cleanup_routine();
         }
       }
       else {
+        // 检查线程ID
         iVar3 = *(int *)(**(longlong **)(_DAT_180c82868 + 8) + 0x48);
         iVar5 = _Thrd_id();
         cStack_117 = iVar5 == iVar3;
         if ((bool)cStack_117) goto LAB_1800722f5;
       }
+      
+      // 处理调试器状态
       if (cVar2 != '\0') {
         if ((param_6 == '\0') || (*(int *)(_DAT_180c86870 + 0x340) == 2)) {
           pcVar1 = (code *)swi(3);
