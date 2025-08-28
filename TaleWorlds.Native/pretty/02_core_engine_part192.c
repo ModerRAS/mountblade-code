@@ -227,8 +227,9 @@ void CoreEngineStringProcessor(uint64_t system_context,uint64_t string_data)
 
 
 
-// 函数: void FUN_180174f70(uint64_t param_1,uint64_t *param_2)
-void FUN_180174f70(uint64_t param_1,uint64_t *param_2)
+// 函数: void SystemResourceCleaner(uint64_t *resource_handle)
+// 功能: 系统资源清理器，负责释放系统资源、清理内存和销毁互斥锁
+void SystemResourceCleaner(uint64_t *resource_handle)
 
 {
   if (param_2 == (uint64_t *)0x0) {
