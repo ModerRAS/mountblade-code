@@ -97,12 +97,21 @@
 #define DataSorter FUN_1800ea4a0
 #define SystemBufferInitializer FUN_1800ea780
 
+// 系统函数别名
+#define ThreadIdentifier _Thrd_id
+#define SecurityCookieInitializer GET_SECURITY_COOKIE
+
 // 全局变量别名
 #define SystemParameterBuffer system_parameter_buffer
 #define SystemContextPtr system_context_ptr
 #define SystemMemoryPoolPtr system_memory_pool_ptr
 #define SystemSystemMemory system_system_memory
 #define SystemStateManager SYSTEM_STATE_MANAGER
+#define SystemContextVar1632 unknown_var_1632_ptr
+#define SystemContextVar3432 unknown_var_3432_ptr
+#define SystemContextVar720 unknown_var_720_ptr
+#define SystemBufferPtr system_buffer_ptr
+#define SystemResourceState system_resource_state
 
 // ============================================================================
 // 核心函数实现
