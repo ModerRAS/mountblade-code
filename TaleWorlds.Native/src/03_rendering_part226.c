@@ -135,90 +135,123 @@ void FUN_180395821(void)
 ulonglong FUN_180395830(longlong param_1, float *param_2, longlong *param_3)
 {
     // 局部变量声明
-    byte bVar1;                    // 字节变量，用于状态标志
-    longlong lVar2;                // 长整型变量，用于中间计算
-    char cVar3;                    // 字符变量，用于条件判断
-    int iVar4;                     // 整型变量，用于循环计数
-    int iVar5;                     // 整型变量，用于坐标计算
-    int iVar6;                     // 整型变量，用于索引计算
-    int iVar7;                     // 整型变量，用于边界检查
-    ulonglong *puVar8;             // 无符号长整型指针，用于数据访问
-    ulonglong uVar9;               // 无符号长整型，用于迭代控制
-    ulonglong uVar10;              // 无符号长整型，用于数据大小计算
-    ulonglong uVar11;              // 无符号长整型，用于结果存储
-    int iVar12;                    // 整型变量，用于循环控制
-    ulonglong uVar13;              // 无符号长整型，用于最佳匹配结果
-    ulonglong uVar14;              // 无符号长整型，用于纹理标志
-    float fVar15;                  // 浮点变量，用于距离计算
-    float fVar16;                  // 浮点变量，用于最小距离存储
-    float fVar17;                  // 浮点变量，用于最大浮点值
-    ulonglong *puStackX_20;        // 栈变量指针，用于临时存储
-    int iStack_a4;                 // 栈变量，用于数据访问
-    longlong lStack_a0;            // 栈变量，用于循环控制
+    byte bVar1;                    // 字节变量，用于纹理状态标志检查
+    longlong lVar2;                // 长整型变量，用于中间计算结果存储
+    char cVar3;                    // 字符变量，用于纹理坐标验证结果
+    int iVar4;                     // 整型变量，用于主循环计数器
+    int iVar5;                     // 整型变量，用于Y坐标计算和索引
+    int iVar6;                     // 整型变量，用于X坐标计算和索引
+    int iVar7;                     // 整型变量，用于边界检查和限制
+    ulonglong *puVar8;             // 无符号长整型指针，用于纹理数据数组访问
+    ulonglong uVar9;               // 无符号长整型，用于迭代控制和计数
+    ulonglong uVar10;              // 无符号长整型，用于数据大小和边界计算
+    ulonglong uVar11;              // 无符号长整型，用于数组索引和结果存储
+    int iVar12;                    // 整型变量，用于第二重循环控制
+    ulonglong uVar13;              // 无符号长整型，用于存储最佳匹配结果
+    ulonglong uVar14;              // 无符号长整型，用于纹理标志位解析
+    float fVar15;                  // 浮点变量，用于当前距离计算
+    float fVar16;                  // 浮点变量，用于存储最小距离值
+    float fVar17;                  // 浮点变量，用于最大浮点值比较
+    ulonglong *puStackX_20;        // 栈变量指针，用于临时纹理数据存储
+    int iStack_a4;                 // 栈变量，用于网格宽度边界检查
+    longlong lStack_a0;            // 栈变量，用于搜索方向循环控制
   
     // 初始化变量
-    uVar13 = 0;                    // 初始化最佳匹配结果为0
-    fVar17 = RENDERING_MAX_FLOAT_VALUE;  // 设置最大浮点值用于比较
-    fVar16 = RENDERING_MAX_FLOAT_VALUE;  // 设置最小距离初始值
+    uVar13 = 0;                    // 初始化最佳匹配结果为0，表示未找到匹配
+    fVar17 = RENDERING_MAX_FLOAT_VALUE;  // 设置最大浮点值用于距离比较
+    fVar16 = RENDERING_MAX_FLOAT_VALUE;  // 设置最小距离初始值为最大值
     
-    // 检查数据有效性
+    // 检查数据有效性 - 验证纹理数据数组是否为空
     if (*(longlong *)(param_1 + 0x480) - *(longlong *)(param_1 + 0x478) >> 3 == 0) {
-        return 0;  // 数据无效时返回0
+        return 0;  // 数据无效时返回0，表示无可用纹理数据
     }
     
-    // 初始化纹理数据访问指针
+    // 初始化纹理数据访问指针 - 获取纹理数据数组
     uVar9 = uVar13;
-    puStackX_20 = (ulonglong *)func_0x000180388c90(param_3);
-    uVar11 = uVar9 & 0xffffffff;
-    puVar8 = (ulonglong *)*puStackX_20;
+    puStackX_20 = (ulonglong *)func_0x000180388c90(param_3);  // 获取纹理数据指针
+    uVar11 = uVar9 & 0xffffffff;  // 初始化数组索引
+    puVar8 = (ulonglong *)*puStackX_20;  // 获取纹理数据数组起始地址
     
-    // 计算数据大小
+    // 计算数据大小 - 计算纹理数据数组的元素个数
     uVar10 = (ulonglong)((longlong)puStackX_20[1] + (7 - (longlong)puVar8)) >> 3;
     if ((ulonglong *)puStackX_20[1] < puVar8) {
-        uVar10 = uVar9;  // 数据越界时设置为0
+        uVar10 = uVar9;  // 数据越界时设置为0，防止数组越界
     }
+  // 第一阶段：遍历纹理数据寻找最佳匹配
   if (uVar10 != 0) {
     do {
+      // 获取当前纹理数据项
       uVar9 = *puVar8;
-      bVar1 = *(byte *)(uVar9 + 0x139);
-      uVar14 = (ulonglong)bVar1;
+      
+      // 提取纹理状态标志
+      bVar1 = *(byte *)(uVar9 + 0x139);  // 获取纹理标志字节
+      uVar14 = (ulonglong)bVar1;          // 转换为无符号长整型
+      
+      // 检查纹理是否有效且符合条件
+      // 条件1：纹理激活 (bVar1 & 1) != 0
+      // 条件2：纹理未被锁定 (bVar1 & 2) == 0
+      // 条件3：纹理坐标验证通过 FUN_18038d0a0
+      // 条件4：首次匹配或优先纹理 (uVar13 == 0 || (uVar14 & 4) != 0)
       if (((((bVar1 & 1) != 0) && ((bVar1 & 2) == 0)) &&
           (cVar3 = FUN_18038d0a0(uVar9,param_2), cVar3 != '\0')) &&
          ((uVar13 == 0 || ((uVar14 & 4) != 0)))) {
-        fVar15 = (float)func_0x00018038d2f0(uVar9,param_2);
-        fVar15 = ABS(param_2[2] - fVar15);
-        if ((fVar15 < 1.5) && (fVar15 < fVar16)) {
-          uVar13 = uVar9;
-          fVar16 = fVar15;
+        
+        // 计算纹理距离
+        fVar15 = (float)func_0x00018038d2f0(uVar9,param_2);  // 计算Z坐标距离
+        fVar15 = ABS(param_2[2] - fVar15);  // 计算绝对距离
+        
+        // 检查距离是否在阈值内且更优
+        if ((fVar15 < RENDERING_DISTANCE_THRESHOLD) && (fVar15 < fVar16)) {
+          uVar13 = uVar9;  // 更新最佳匹配结果
+          fVar16 = fVar15; // 更新最小距离
         }
       }
+      
+      // 移动到下一个纹理数据项
       puVar8 = puVar8 + 1;
       uVar11 = uVar11 + 1;
-    } while (uVar11 != uVar10);
+    } while (uVar11 != uVar10);  // 继续遍历直到处理完所有数据
+    
+    // 如果找到匹配，直接返回结果
     if (uVar13 != 0) {
       return uVar13;
     }
-    uVar9 = 0;
+    uVar9 = 0;  // 重置计数器
   }
-  uVar13 = 0;
-  iVar6 = (int)(((*param_2 - *(float *)(param_3 + 1)) - 1e-06) / *(float *)(param_3 + 3));
+  // 第二阶段：计算网格坐标索引
+  uVar13 = 0;  // 重置匹配结果
+  
+  // 计算Y坐标网格索引 - 使用精度偏移量避免边界问题
+  iVar6 = (int)(((*param_2 - *(float *)(param_3 + 1)) - RENDERING_COORDINATE_PRECISION) / *(float *)(param_3 + 3));
   iVar12 = (int)uVar9;
   iVar7 = iVar12;
+  
+  // 检查Y坐标边界，确保在有效范围内
   if ((-1 < iVar6) && (iVar7 = iVar6, (int)param_3[4] <= iVar6)) {
-    iVar7 = (int)param_3[4] + -1;
+    iVar7 = (int)param_3[4] + -1;  // 限制为最大有效索引
   }
-  iVar6 = (int)(((param_2[1] - *(float *)((longlong)param_3 + 0xc)) - 1e-06) /
+  
+  // 计算X坐标网格索引 - 使用精度偏移量避免边界问题
+  iVar6 = (int)(((param_2[1] - *(float *)((longlong)param_3 + 0xc)) - RENDERING_COORDINATE_PRECISION) /
                *(float *)((longlong)param_3 + 0x1c));
+  
+  // 检查X坐标边界，确保在有效范围内
   if ((-1 < iVar6) && (iVar12 = iVar6, *(int *)((longlong)param_3 + 0x24) <= iVar6)) {
-    iVar12 = *(int *)((longlong)param_3 + 0x24) + -1;
+    iVar12 = *(int *)((longlong)param_3 + 0x24) + -1;  // 限制为最大有效索引
   }
-  lVar2 = param_3[4];
-  iVar6 = -1;
-  iStack_a4 = (int)((ulonglong)lVar2 >> 0x20);
-  lStack_a0 = 9;
+  // 第三阶段：多方向纹理搜索
+  lVar2 = param_3[4];  // 获取网格高度
+  iVar6 = -1;          // 初始化搜索方向索引
+  iStack_a4 = (int)((ulonglong)lVar2 >> 0x20);  // 获取网格宽度
+  lStack_a0 = 9;       // 设置搜索方向计数器（8个方向 + 默认）
+  
+  // 开始多方向搜索循环
   do {
-    iVar4 = (int)lVar2;
+    iVar4 = (int)lVar2;  // 获取当前网格高度
+    
+    // 根据搜索方向执行不同的搜索策略
     switch(iVar6) {
+    // 方向0：向上搜索 (Y-1)
     case 0:
       iVar5 = iVar7;
 joined_r0x000180395b3d:
@@ -229,12 +262,16 @@ code_r0x000180395a7c:
         goto code_r0x000180395b5d;
       }
       break;
+      
+    // 方向1：向右搜索 (X+1)
     case 1:
       if (iVar12 + 1 < iStack_a4) {
         iVar4 = iVar7 * *(int *)((longlong)param_3 + 0x24) + 1;
         goto code_r0x000180395a7c;
       }
       break;
+      
+    // 方向2：向左搜索 (X-1)
     case 2:
       iVar5 = iVar7 + -1;
       if (0 < iVar7) {
@@ -245,14 +282,20 @@ code_r0x000180395ac1:
         goto code_r0x000180395b5d;
       }
       break;
+      
+    // 方向3：向下搜索 (Y+1)
     case 3:
       iVar5 = iVar7 + 1;
       if (iVar5 < iVar4) goto code_r0x000180395ac1;
       break;
+      
+    // 方向4：左上搜索 (Y-1, X-1)
     case 4:
       iVar5 = iVar7 + -1;
       if (0 < iVar7) goto joined_r0x000180395b3d;
       break;
+      
+    // 方向5：右上搜索 (Y-1, X+1)
     case 5:
       iVar5 = iVar7 + -1;
       if (0 < iVar7) {
@@ -263,14 +306,20 @@ code_r0x000180395b15:
         }
       }
       break;
+      
+    // 方向6：左下搜索 (Y+1, X-1)
     case 6:
       iVar5 = iVar7 + 1;
       if (iVar5 < iVar4) goto joined_r0x000180395b3d;
       break;
+      
+    // 方向7：右下搜索 (Y+1, X+1)
     case 7:
       iVar5 = iVar7 + 1;
       if (iVar5 < iVar4) goto code_r0x000180395b15;
       break;
+      
+    // 默认情况：执行最终搜索和距离计算
     default:
 code_r0x000180395b5d:
       puVar8 = (ulonglong *)*puStackX_20;
