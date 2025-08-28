@@ -115,65 +115,65 @@
 // 网络系统事件处理器
 #define NetworkingSystem_EventHandler FUN_18089ffe0
 
-// 网络系统连接状态检查器
-#define NetworkingSystem_ConnectionStatusChecker NetworkingSystem_ConnectionStatusChecker
+// 网络系统连接状态检查器 - 函数声明
+void NetworkingSystem_ConnectionStatusChecker(void);
 
-// 网络系统数据处理器
-#define NetworkingSystem_DataProcessor NetworkingSystem_DataProcessor
+// 网络系统数据处理器 - 函数声明
+void NetworkingSystem_DataProcessor(void);
 
-// 网络系统连接管理器
-#define NetworkingSystem_ConnectionManager2 NetworkingSystem_ConnectionManager2
+// 网络系统连接管理器2 - 函数声明
+void NetworkingSystem_ConnectionManager2(void);
 
-// 网络系统内存分配器
-#define NetworkingSystem_MemoryAllocator NetworkingSystem_MemoryAllocator
+// 网络系统内存分配器 - 函数声明
+void NetworkingSystem_MemoryAllocator(void);
 
-// 网络系统连接验证器2
-#define NetworkingSystem_ConnectionValidator2 NetworkingSystem_ConnectionValidator2
+// 网络系统连接验证器2 - 函数声明
+void NetworkingSystem_ConnectionValidator2(void);
 
-// 网络系统资源管理器
-#define NetworkingSystem_ResourceManager NetworkingSystem_ResourceManager
+// 网络系统资源管理器 - 函数声明
+void NetworkingSystem_ResourceManager(void);
 
-// 网络系统协议处理器2
-#define NetworkingSystem_ProtocolHandler2 NetworkingSystem_ProtocolHandler2
+// 网络系统协议处理器2 - 函数声明
+void NetworkingSystem_ProtocolHandler2(void);
 
-// 网络系统状态管理器
-#define NetworkingSystem_StateManager NetworkingSystem_StateManager
+// 网络系统状态管理器 - 函数声明
+void NetworkingSystem_StateManager(void);
 
-// 网络系统连接管理器3
-#define NetworkingSystem_ConnectionManager3 NetworkingSystem_ConnectionManager3
+// 网络系统连接管理器3 - 函数声明
+void NetworkingSystem_ConnectionManager3(void);
 
-// 网络系统会话处理器
-#define NetworkingSystem_SessionProcessor NetworkingSystem_SessionProcessor
+// 网络系统会话处理器 - 函数声明
+void NetworkingSystem_SessionProcessor(void);
 
-// 网络系统连接管理器4
-#define NetworkingSystem_ConnectionManager4 NetworkingSystem_ConnectionManager4
+// 网络系统连接管理器4 - 函数声明
+void NetworkingSystem_ConnectionManager4(void);
 
-// 网络系统连接管理器5
-#define NetworkingSystem_ConnectionManager5 NetworkingSystem_ConnectionManager5
+// 网络系统连接管理器5 - 函数声明
+void NetworkingSystem_ConnectionManager5(void);
 
-// 网络系统协议栈管理器2
-#define NetworkingSystem_ProtocolStackManager2 NetworkingSystem_ProtocolStackManager2
+// 网络系统协议栈管理器2 - 函数声明
+void NetworkingSystem_ProtocolStackManager2(void);
 
-// 网络系统连接管理器6
-#define NetworkingSystem_ConnectionManager6 NetworkingSystem_ConnectionManager6
+// 网络系统连接管理器6 - 函数声明
+void NetworkingSystem_ConnectionManager6(void);
 
-// 网络系统协议管理器2
-#define NetworkingSystem_ProtocolManager2 NetworkingSystem_ProtocolManager2
+// 网络系统协议管理器2 - 函数声明
+void NetworkingSystem_ProtocolManager2(void);
 
-// 网络系统性能优化器
-#define NetworkingSystem_PerformanceOptimizer NetworkingSystem_PerformanceOptimizer
+// 网络系统性能优化器 - 函数声明
+void NetworkingSystem_PerformanceOptimizer(void);
 
-// 网络系统连接管理器7
-#define NetworkingSystem_ConnectionManager7 NetworkingSystem_ConnectionManager7
+// 网络系统连接管理器7 - 函数声明
+void NetworkingSystem_ConnectionManager7(void);
 
-// 网络系统连接管理器8
-#define NetworkingSystem_ConnectionManager8 NetworkingSystem_ConnectionManager8
+// 网络系统连接管理器8 - 函数声明
+void NetworkingSystem_ConnectionManager8(void);
 
-// 网络系统协议栈管理器3
-#define NetworkingSystem_ProtocolStackManager3 NetworkingSystem_DataProcessor
+// 网络系统协议栈管理器3 - 函数声明
+void NetworkingSystem_ProtocolStackManager3(void);
 
-// 网络系统资源管理器2
-#define NetworkingSystem_ResourceManager2 NetworkingSystem_ResourceManager
+// 网络系统资源管理器2 - 函数声明
+void NetworkingSystem_ResourceManager2(void);
 
 /* ============================================================================
  * 常量定义
