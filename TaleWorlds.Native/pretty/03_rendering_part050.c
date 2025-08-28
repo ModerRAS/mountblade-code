@@ -294,7 +294,7 @@ void RenderResource_Cleanup(longlong resource_handle)
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) - 1;
     }
     // 释放资源内存
-    FUN_180059ba0(resource_data, SYSTEM_DATA_MANAGER_B);
+    SystemMemoryAllocator(resource_data, SYSTEM_DATA_MANAGER_B);
   }
   
   // 获取附加资源数据

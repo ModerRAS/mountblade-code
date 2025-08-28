@@ -1,8 +1,114 @@
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
-// 02_core_engine_part051.c - 核心引擎模块第51部分
-// 本文件包含数据结构操作和算法实现，共14个函数
+// 02_core_engine_part051.c - 核心引擎高级数据结构和算法处理模块
+// 本文件包含数据结构操作、算法实现和内存管理，共14个核心函数
+// 美化版本：添加了完整的函数别名系统、中文文档注释和技术架构说明
+
+//==============================================================================
+// 系统函数别名定义 - 核心引擎数据结构处理
+//==============================================================================
+
+// 数据结构操作函数别名
+#define FUN_18008d810 CoreEngine_DataStructureProcessor
+#define FUN_18008da10 CoreEngine_TreeStructureSearcher
+#define FUN_18008dfa0 CoreEngine_DataStructureInserter
+#define FUN_18008e0f0 CoreEngine_DataStructureNodeManager
+#define FUN_18008eaf0 CoreEngine_DataStructureMerger
+
+// 内存管理函数别名
+#define FUN_18062b420 CoreEngine_MemoryPoolAllocator
+#define FUN_18064e900 CoreEngine_MemoryCleanupHandler
+
+// 数据处理函数别名
+#define FUN_18004b730 CoreEngine_DataOperationProcessor
+#define FUN_180058370 CoreEngine_DataFieldProcessor
+#define FUN_18004b640 CoreEngine_DataSizeCalculator
+
+// 系统工具函数别名
+#define FUN_180089640 CoreEngine_ElementDeallocator
+#define FUN_180627ae0 CoreEngine_DataStructureInitializer
+#define FUN_18066bdc0 CoreEngine_NodeInsertionHandler
+
+//==============================================================================
+// 系统常量定义
+//==============================================================================
+
+// 数据结构操作常量
+#define CORE_ENGINE_MAX_TREE_DEPTH 0x100
+#define CORE_ENGINE_DEFAULT_POOL_SIZE 0x28
+#define CORE_ENGINE_NODE_BASE_SIZE 0x20
+#define CORE_ENGINE_ARRAY_ELEMENT_SIZE 0x30
+#define CORE_ENGINE_STRUCTURE_ELEMENT_SIZE 0x60
+
+// 内存管理常量
+#define CORE_ENGINE_MEMORY_ALIGNMENT 8
+#define CORE_ENGINE_EXPANSION_FACTOR 2
+#define CORE_ENGINE_MIN_ALLOCATION 1
+#define CORE_ENGINE_MAX_COMPARE_SIZE 0x10
+
+// 系统状态常量
+#define CORE_ENGINE_OPERATION_SUCCESS 0
+#define CORE_ENGINE_OPERATION_FAILURE 1
+#define CORE_ENGINE_INSERT_LEFT 0
+#define CORE_ENGINE_INSERT_RIGHT 1
+
+//==============================================================================
+// 类型定义和枚举
+//==============================================================================
+
+// 数据结构操作状态枚举
+typedef enum {
+    CORE_ENGINE_STATUS_READY = 0,
+    CORE_ENGINE_STATUS_PROCESSING = 1,
+    CORE_ENGINE_STATUS_COMPLETED = 2,
+    CORE_ENGINE_STATUS_ERROR = 3
+} CoreEngineStatus;
+
+// 数据结构类型枚举
+typedef enum {
+    CORE_ENGINE_STRUCTURE_TREE = 0,
+    CORE_ENGINE_STRUCTURE_QUEUE = 1,
+    CORE_ENGINE_STRUCTURE_ARRAY = 2,
+    CORE_ENGINE_STRUCTURE_LIST = 3
+} CoreEngineStructureType;
+
+// 内存池类型枚举
+typedef enum {
+    CORE_ENGINE_POOL_SMALL = 0,
+    CORE_ENGINE_POOL_MEDIUM = 1,
+    CORE_ENGINE_POOL_LARGE = 2,
+    CORE_ENGINE_POOL_CUSTOM = 3
+} CoreEnginePoolType;
+
+// 比较结果枚举
+typedef enum {
+    CORE_ENGINE_COMPARE_LESS = -1,
+    CORE_ENGINE_COMPARE_EQUAL = 0,
+    CORE_ENGINE_COMPARE_GREATER = 1
+} CoreEngineCompareResult;
+
+// 数据结构节点结构体
+typedef struct {
+    uint64_t node_data[CORE_ENGINE_MAX_TREE_DEPTH];
+    void* next_ptr;
+    void* prev_ptr;
+    int32_t priority;
+    CoreEngineStatus status;
+} CoreEngineNode;
+
+// 内存池信息结构体
+typedef struct {
+    void* pool_base;
+    size_t pool_size;
+    size_t used_size;
+    CoreEnginePoolType pool_type;
+    uint32_t allocation_count;
+} CoreEngineMemoryPool;
+
+//==============================================================================
+// 核心函数实现
+//==============================================================================
 
 // 函数：链表遍历和比较函数
 // 功能：遍历链表并进行字符串比较，返回符合条件的节点
