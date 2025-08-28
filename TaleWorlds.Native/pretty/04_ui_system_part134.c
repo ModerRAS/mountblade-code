@@ -760,18 +760,18 @@ ulonglong UISystem_DistanceBasedSearch_DistanceFilter(float param_1)
       in_stack_00000030 = plVar5;
     }
   }
-  uVar3 = FUN_18078cf50(param_1,unaff_R15D);
+  uVar3 = UISystem_SearchPreprocessor(param_1,unaff_R15D);
   if ((int)uVar3 == 0) {
-    uVar2 = FUN_180756aa0(in_stack_00000030);
+    uVar2 = UISystem_ComponentFilter(in_stack_00000030);
     if (uVar2 != 0) {
       if (unaff_RBX != (longlong *)0x0) {
         *unaff_RBX = 0;
       }
-      FUN_180758220(in_stack_00000030,0x52);
+      UISystem_ComponentStateSetter(in_stack_00000030,0x52);
       return (ulonglong)uVar2;
     }
-    uVar3 = FUN_180758960(in_stack_00000030);
-    if (((int)uVar3 == 0) && (uVar3 = func_0x000180756db0(in_stack_00000030,1), (int)uVar3 == 0)) {
+    uVar3 = UISystem_ComponentValidator(in_stack_00000030);
+    if (((int)uVar3 == 0) && (uVar3 = UISystem_ComponentVerifier(in_stack_00000030,1), (int)uVar3 == 0)) {
       if (unaff_RBX != (longlong *)0x0) {
         *unaff_RBX = in_stack_00000030[10];
       }

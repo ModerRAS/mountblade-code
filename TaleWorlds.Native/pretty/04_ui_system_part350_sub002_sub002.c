@@ -2951,7 +2951,7 @@ int UISystem_AdvancedDataProcessor(longlong system_context, uint data_size, long
       uVar8 = 1;
     }
     in_stack_ffffffffffffff90 = param_3;
-    iVar9 = FUN_18085b050(param_1,&lStack_50,auStackX_10,param_1 + 0x154,in_stack_ffffffffffffff88,
+    iVar9 = UISystem_BufferManager(param_1,&lStack_50,auStackX_10,param_1 + 0x154,in_stack_ffffffffffffff88,
                           param_3,1,uVar8);
     if (iVar9 != 0) goto LAB_18085b8b5;
     *(bool *)(param_1 + 0x13d) = param_3 != 0;
@@ -2989,7 +2989,7 @@ int UISystem_AdvancedDataProcessor(longlong system_context, uint data_size, long
       *(int *)(param_1 + 0x15c) = iVar10;
     }
     in_stack_ffffffffffffff90 = param_4;
-    iVar9 = FUN_18085b050(param_1,&lStack_50,auStackX_10,param_1 + 0x158,in_stack_ffffffffffffff88,
+    iVar9 = UISystem_BufferManager(param_1,&lStack_50,auStackX_10,param_1 + 0x158,in_stack_ffffffffffffff88,
                           param_4,0,uVar8);
     if (iVar9 != 0) goto LAB_18085b8b5;
     uVar5 = *(uint *)(param_1 + 0x148);
@@ -3248,7 +3248,7 @@ int UISystem_DataStreamProcessor(longlong system_context, uint stream_size, long
       iStack0000000000000050 = *(uint *)(param_1 + 0x154) + *(uint *)(lVar13 + 8);
     }
     uStack0000000000000030 = 1;
-    iVar7 = FUN_18085b050(param_1,&stack0x00000048,&stack0x000000a8,param_1 + 0x154,
+    iVar7 = UISystem_BufferManager(param_1,&stack0x00000048,&stack0x000000a8,param_1 + 0x154,
                           in_stack_00000020);
     if (iVar7 != 0) goto LAB_18085b8b5;
     *(bool *)(param_1 + 0x13d) = param_3 != 0;
@@ -3281,7 +3281,7 @@ int UISystem_DataStreamProcessor(longlong system_context, uint stream_size, long
       *(int *)(param_1 + 0x15c) = iVar8;
     }
     uStack0000000000000030 = 0;
-    iVar7 = FUN_18085b050(param_1,&stack0x00000048,&stack0x000000a8,param_1 + 0x158,
+    iVar7 = UISystem_BufferManager(param_1,&stack0x00000048,&stack0x000000a8,param_1 + 0x158,
                           in_stack_00000020);
     if (iVar7 != 0) goto LAB_18085b8b5;
     uVar4 = *(uint *)(param_1 + 0x148);
@@ -3302,7 +3302,7 @@ int UISystem_DataStreamProcessor(longlong system_context, uint stream_size, long
                         uVar9);
   if (iVar7 == 0) {
     uStack0000000000000030 = 0;
-    iVar7 = FUN_18085acd0(param_1,&stack0x00000048,&stack0x000000a0,lVar6 + 0x90,
+    iVar7 = UISystem_ConfigManager(param_1,&stack0x00000048,&stack0x000000a0,lVar6 + 0x90,
                           uVar9 & 0xffffffffffffff00);
     if (iVar7 != 0) goto LAB_18085b88c;
   }
