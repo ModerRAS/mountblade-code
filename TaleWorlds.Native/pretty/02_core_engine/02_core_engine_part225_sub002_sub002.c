@@ -642,7 +642,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
     ptr_uint64_t = (uint64_t *)entity_context[0x534];
     if (ptr_uint64_t != (uint64_t *)0x0) {
       // 检查组件类型并执行相应的清理操作
-      if ((void *)*ptr_uint64_t == &UNK_180a21cc8) {
+      if ((void *)*ptr_uint64_t == &COMPONENT_CLEANUP_FLAG) {
         LOCK();
         *(int8_t *)(ptr_uint64_t + 2) = 0;
         UNLOCK();
@@ -832,7 +832,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
   pplVar13 = (longlong **)ObjectCreator(_DAT,0xd0,8,3);
   uStack_300 = pplVar13;
   ObjectInitializer(pplVar13);
-  *pplVar13 = (longlong *)&UNK_180a0c3d8;
+  *pplVar13 = (longlong *)&ENTITY_PROCESSOR_VTABLE;
   pplVar13[0x18] = param_1;
   pplVar13[0x19] = param_2;
   pplStack_290 = pplVar13;
@@ -850,7 +850,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
     pplVar13 = (longlong **)ObjectCreator(_DAT,0xd0,8,3);
     uStack_300 = pplVar13;
     ObjectInitializer(pplVar13);
-    *pplVar13 = (longlong *)&UNK_180a0c348;
+    *pplVar13 = (longlong *)&DATA_TRANSFER_VTABLE;
     pplVar13[0x18] = param_1;
     pplVar13[0x19] = param_2;
     pplStack_288 = pplVar13;
@@ -1267,7 +1267,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
     }
     uVar16 = ObjectCreator(_DAT,0xe0,8,3);
     uStack_300 = &plStack_1d0;
-    puStack_1c0 = &UNK_1801bc960;
+    puStack_1c0 = &CALLBACK_DISPATCHER_VTABLE;
     pcStack_1b8 = CallbackProcessor;
     plStack_2e8 = param_1;
     plStack_2e0 = param_2;
@@ -1297,7 +1297,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
     else {
       (**(code **)(*plVar14 + 0x60))();
       plVar14 = (longlong *)param_1[0xc18e];
-      if (*(code **)(*plVar14 + 0x70) == (code *)&UNK_180049530) {
+      if (*(code **)(*plVar14 + 0x70) == (code *)&RESOURCE_CLEANUP_VTABLE) {
         LOCK();
         *(int8_t *)(plVar14 + 2) = 1;
         UNLOCK();
@@ -1309,8 +1309,8 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
     }
     uVar16 = ObjectCreator(_DAT,0xe0,8,3);
     uStack_300 = &plStack_1b0;
-    puStack_1a0 = &UNK_1801bc890;
-    puStack_198 = &UNK_1801bc880;
+    puStack_1a0 = &ENTITY_CONNECTOR_VTABLE;
+    puStack_198 = &ENTITY_MANAGER_VTABLE;
     plStack_2e8 = param_1;
     plStack_2e0 = param_2;
     plStack_1b0 = param_1;
@@ -1339,7 +1339,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
     else {
       (**(code **)(*plVar14 + 0x60))();
       plVar14 = (longlong *)param_1[0xc18f];
-      if (*(code **)(*plVar14 + 0x70) == (code *)&UNK_180049530) {
+      if (*(code **)(*plVar14 + 0x70) == (code *)&RESOURCE_CLEANUP_VTABLE) {
         LOCK();
         *(int8_t *)(plVar14 + 2) = 1;
         UNLOCK();
@@ -1360,7 +1360,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
       bVar24 = *(byte *)(param_2 + 0x37b);
       uStack_300 = pplVar13;
       ObjectInitializer(pplVar13);
-      *pplVar13 = (longlong *)&UNK_180a0c2b8;
+      *pplVar13 = (longlong *)&ENTITY_CALLBACK_VTABLE;
       pplVar13[0x18] = param_1;
       pplVar13[0x19] = param_2;
       *(byte *)(pplVar13 + 0x1a) = bVar24 >> 1 & 1;
@@ -1386,7 +1386,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
       else {
         (**(code **)(*plVar14 + 0x60))();
         puVar = (uint64_t *)param_1[0x4ce];
-        if ((void *)*puVar == &UNK_180a0c2b8) {
+        if ((void *)*puVar == &ENTITY_CALLBACK_VTABLE) {
           LOCK();
           *(int8_t *)(puVar + 2) = 1;
           UNLOCK();
@@ -1410,7 +1410,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
       do {
         plVar17 = *(longlong **)(lVar22 + uVar23 * 8);
         pcVar5 = *(code **)(*plVar17 + 0x68);
-        if (pcVar5 == (code *)&UNK_1800467f0) {
+        if (pcVar5 == (code *)&COMPONENT_CHECK_VTABLE) {
           cVar9 = (char)plVar17[2] != '\0';
         }
         else {
@@ -1423,7 +1423,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
           if (cVar9 == '\0') {
             plVar17 = *(longlong **)(*plVar14 + uVar23 * 8);
             pcVar5 = *(code **)(*plVar17 + 0x80);
-            if (pcVar5 == (code *)&UNK_180049760) {
+            if (pcVar5 == (code *)&COMPONENT_CLEANER_VTABLE) {
               ComponentCleaner(plVar17 + 4);
             }
             else {
