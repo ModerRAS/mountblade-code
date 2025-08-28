@@ -638,23 +638,25 @@ LAB_18021e424:
 
 
 
-// 函数: void FUN_18021e9a0(longlong *param_1)
-void FUN_18021e9a0(longlong *param_1)
+// 函数9: 清理对象链表
+void CleanupObjectList(longlong *objectList)
 
 {
-  longlong lVar1;
-  longlong lVar2;
+  longlong listEnd;
+  longlong currentNode;
   
-  lVar1 = param_1[1];
-  for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x20) {
-    if (*(longlong **)(lVar2 + 0x10) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(lVar2 + 0x10) + 0x38))();
+  listEnd = objectList[1];
+  // 遍历对象链表
+  for (currentNode = *objectList; currentNode != listEnd; currentNode = currentNode + 0x20) {
+    if (*(longlong **)(currentNode + 0x10) != (longlong *)0x0) {
+      // 调用对象的清理函数
+      (**(code **)(**(longlong **)(currentNode + 0x10) + 0x38))();
     }
   }
-  if (*param_1 == 0) {
+  if (*objectList == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
+  // 释放内存（不返回）
   FUN_18064e900();
 }
 
@@ -662,11 +664,11 @@ void FUN_18021e9a0(longlong *param_1)
 
 
 
-// 函数: void FUN_18021e9c0(void)
-void FUN_18021e9c0(void)
+// 函数10: 错误处理函数2
+void ErrorHandler2(void)
 
 {
-                    // WARNING: Subroutine does not return
+  // 调用系统错误处理函数（不返回）
   FUN_1808fd200();
 }
 
@@ -674,11 +676,11 @@ void FUN_18021e9c0(void)
 
 
 
-// 函数: void FUN_18021f200(void)
-void FUN_18021f200(void)
+// 函数11: 错误处理函数3
+void ErrorHandler3(void)
 
 {
-                    // WARNING: Subroutine does not return
+  // 调用系统错误处理函数（不返回）
   FUN_1808fd200();
 }
 
@@ -686,31 +688,34 @@ void FUN_18021f200(void)
 
 
 
-// 函数: void FUN_18021f430(longlong *param_1)
-void FUN_18021f430(longlong *param_1)
+// 函数12: 清理对象链表（变体）
+void CleanupObjectListVariant(longlong *objectList)
 
 {
-  longlong lVar1;
-  longlong lVar2;
+  longlong listEnd;
+  longlong currentNode;
   
-  lVar1 = param_1[1];
-  for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x20) {
-    if (*(longlong **)(lVar2 + 0x10) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(lVar2 + 0x10) + 0x38))();
+  listEnd = objectList[1];
+  // 遍历对象链表
+  for (currentNode = *objectList; currentNode != listEnd; currentNode = currentNode + 0x20) {
+    if (*(longlong **)(currentNode + 0x10) != (longlong *)0x0) {
+      // 调用对象的清理函数
+      (**(code **)(**(longlong **)(currentNode + 0x10) + 0x38))();
     }
   }
-  if (*param_1 == 0) {
+  if (*objectList == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
+  // 释放内存（不返回）
   FUN_18064e900();
 }
 
 
 
+// 函数13: 处理对象参数
 longlong *
-FUN_18021f4e0(undefined8 *param_1,longlong *param_2,undefined8 param_3,ulonglong param_4,
-             undefined8 param_5,undefined4 param_6)
+ProcessObjectParameters(undefined8 *objectType, longlong *outputBuffer, undefined8 param3, ulonglong param4,
+                         undefined8 param5, undefined4 param6)
 
 {
   int iVar1;
