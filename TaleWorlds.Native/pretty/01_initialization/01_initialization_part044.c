@@ -84,41 +84,61 @@ void initialize_with_default_params(undefined8 system_handle, undefined8 config_
 
 
 
-// 函数: void initialize_with_custom_params(undefined8 param_1,undefined4 param_2,undefined8 param_3)
-// 功能: 使用自定义参数初始化系统
-// 参数: param_1 - 系统句柄或上下文
-//       param_2 - 自定义配置参数
-//       param_3 - 附加配置数据
-// 返回: 无
-// 说明: 此函数允许使用自定义参数集初始化系统，提供了比默认初始化
-//       更灵活的配置选项，适用于需要特殊配置的场景。
-void initialize_with_custom_params(undefined8 param_1,undefined4 param_2,undefined8 param_3)
-
+/**
+ * 使用自定义参数初始化系统
+ * 主要功能：允许使用自定义参数集初始化系统，提供比默认初始化更灵活的配置选项
+ * 
+ * 原始实现：FUN_180073830
+ * 简化实现：系统自定义参数初始化函数
+ * 
+ * @param system_handle 系统句柄或上下文
+ * @param custom_param 自定义配置参数
+ * @param additional_config 附加配置数据
+ */
+void initialize_with_custom_params(undefined8 system_handle, undefined4 custom_param, undefined8 additional_config)
 {
-  undefined *puVar1;
-  char cVar2;
-  undefined4 auStackX_20 [2];
-  undefined *puStack_30;
-  longlong lStack_28;
+  undefined *system_ptr;           // 系统指针
+  char initialization_flag;        // 初始化标志
+  undefined4 custom_params[2];     // 自定义参数数组
+  undefined *stack_buffer;         // 栈缓冲区
+  longlong stack_check;            // 栈检查值
   
-  FUN_1800623b0(_DAT_180c86928,0,0x100000000,0xc,&UNK_1809ff958,param_3,0xfffffffffffffffe);
+  // 调用系统初始化函数（使用自定义参数模式）
+  FUN_1800623b0(_DAT_180c86928, 0, 0x100000000, 0xc, &UNK_1809ff958, additional_config, 0xfffffffffffffffe);
+  
+  // 检查系统状态
   if (DAT_180c82860 == '\0') {
-    auStackX_20[0] = param_2;
-    FUN_180627910(&puStack_30,param_3);
-    puVar1 = *(undefined **)*_DAT_180c8ed08;
-    if (puVar1 == &UNK_18098bb88) {
-      cVar2 = *(int *)(_DAT_180c8a9c8 + 0xc40) != 0;
+    // 设置自定义参数
+    custom_params[0] = custom_param;
+    
+    // 初始化栈缓冲区
+    FUN_180627910(&stack_buffer, additional_config);
+    
+    // 获取系统指针
+    system_ptr = *(undefined **)*_DAT_180c8ed08;
+    
+    // 检查系统指针状态
+    if (system_ptr == &UNK_18098bb88) {
+      // 使用系统配置检查初始化状态
+      initialization_flag = *(int *)(_DAT_180c8a9c8 + 0xc40) != 0;
     }
     else {
-      cVar2 = (**(code **)(puVar1 + 0x50))((undefined8 *)*_DAT_180c8ed08);
+      // 使用自定义函数检查初始化状态
+      initialization_flag = (**(code **)(system_ptr + 0x50))((undefined8 *)*_DAT_180c8ed08);
     }
-    if (cVar2 == '\0') {
+    
+    // 如果未初始化，则进行初始化
+    if (initialization_flag == '\0') {
       (**(code **)(*(longlong *)_DAT_180c8ed08[1] + 0x18))
-                ((longlong *)_DAT_180c8ed08[1],&puStack_30,auStackX_20);
+                ((longlong *)_DAT_180c8ed08[1], &stack_buffer, custom_params);
     }
-    puStack_30 = &UNK_180a3c3e0;
-    if (lStack_28 != 0) {
-                    // WARNING: Subroutine does not return
+    
+    // 设置缓冲区指针
+    stack_buffer = &UNK_180a3c3e0;
+    
+    // 检查栈状态
+    if (stack_check != 0) {
+      // 栈错误处理
       FUN_18064e900();
     }
   }
@@ -129,52 +149,65 @@ void initialize_with_custom_params(undefined8 param_1,undefined4 param_2,undefin
 
 
 
-// 函数: void initialize_complex_structure(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-// 功能: 初始化复杂的数据结构
-// 参数: param_1 - 主系统句柄
-//       param_2 - 基础配置参数
-//       param_3 - 网格数据句柄
-//       param_4 - 附加配置选项
-// 返回: 无
-// 说明: 此函数负责初始化一个复杂的多层次数据结构，包括内存分配、
-//       指针设置、子系统的初始化等。这是高级初始化流程的核心部分。
-void initialize_complex_structure(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 初始化复杂的数据结构
+ * 主要功能：初始化一个复杂的多层次数据结构，包括内存分配、指针设置、子系统的初始化等
+ * 
+ * 原始实现：FUN_180073930
+ * 简化实现：复杂数据结构初始化函数
+ * 
+ * @param main_handle 主系统句柄
+ * @param base_config 基础配置参数
+ * @param mesh_handle 网格数据句柄
+ * @param extra_options 附加配置选项
+ */
+void initialize_complex_structure(undefined8 main_handle, undefined8 base_config, undefined8 mesh_handle, undefined8 extra_options)
 {
-  undefined *puStack_88;
-  undefined8 uStack_80;
-  undefined4 uStack_78;
-  undefined8 uStack_70;
-  undefined8 uStack_68;
-  undefined8 uStack_60;
-  undefined8 uStack_58;
-  undefined4 uStack_50;
-  undefined8 uStack_48;
-  undefined8 uStack_40;
-  undefined2 uStack_38;
-  undefined8 uStack_36;
-  undefined8 uStack_2e;
-  undefined2 uStack_26;
-  undefined8 uStack_18;
+  // 复杂结构体的栈布局
+  undefined *structure_ptr;        // 主结构体指针
+  undefined8 config_flags;         // 配置标志
+  undefined4 operation_mode;       // 操作模式
+  undefined8 mesh_data_ptr;       // 网格数据指针
+  undefined8 buffer_handle;        // 缓冲区句柄
+  undefined8 serialization_ptr;   // 序列化指针
+  undefined8 validation_ptr;       // 验证指针
+  undefined4 data_format;          // 数据格式
+  undefined8 memory_pool;          // 内存池
+  undefined8 temp_buffer;          // 临时缓冲区
+  undefined2 version_info;         // 版本信息
+  undefined8 resource_handle;      // 资源句柄
+  undefined8 context_data;         // 上下文数据
+  undefined2 checksum;             // 校验和
+  undefined8 init_flag;            // 初始化标志
   
-  uStack_18 = 0xfffffffffffffffe;
-  puStack_88 = &UNK_180a3c3e0;
-  uStack_70 = 0;
-  uStack_80 = 0;
-  uStack_78 = 0;
-  uStack_68 = 0;
-  uStack_60 = 0;
-  uStack_58 = 0;
-  uStack_50 = 3;
-  uStack_38 = 0;
-  uStack_48 = 0;
-  uStack_40 = 0;
-  uStack_26 = 0;
-  uStack_36 = 0;
-  uStack_2e = 0;
-  FUN_180074090(&puStack_88,param_1,param_3,param_4,&uStack_68);
-  serialize_mesh_data(&puStack_88,param_3);
-  reset_structure_pointers(&puStack_88);
+  // 初始化基本参数
+  init_flag = 0xfffffffffffffffe;  // 初始化标志
+  structure_ptr = &UNK_180a3c3e0;  // 结构体指针
+  
+  // 清零所有配置字段
+  mesh_data_ptr = 0;              // 网格数据指针
+  config_flags = 0;               // 配置标志
+  operation_mode = 0;             // 操作模式
+  buffer_handle = 0;               // 缓冲区句柄
+  serialization_ptr = 0;          // 序列化指针
+  validation_ptr = 0;              // 验证指针
+  data_format = 3;                // 数据格式
+  version_info = 0;               // 版本信息
+  memory_pool = 0;                // 内存池
+  temp_buffer = 0;                // 临时缓冲区
+  checksum = 0;                   // 校验和
+  resource_handle = 0;            // 资源句柄
+  context_data = 0;               // 上下文数据
+  
+  // 调用复杂结构初始化函数
+  FUN_180074090(&structure_ptr, main_handle, mesh_handle, extra_options, &buffer_handle);
+  
+  // 序列化网格数据
+  serialize_mesh_data(&structure_ptr, mesh_handle);
+  
+  // 重置结构体指针
+  reset_structure_pointers(&structure_ptr);
+  
   return;
 }
 
@@ -182,45 +215,64 @@ void initialize_complex_structure(undefined8 param_1,undefined8 param_2,undefine
 
 
 
-// 函数: void reset_structure_pointers(undefined8 *param_1)
-// 功能: 重置结构体指针和状态
-// 参数: param_1 - 指向需要重置的结构体的指针
-// 返回: 无
-// 说明: 此函数负责将结构体的各个指针字段重置为安全状态，
-//       清理可能存在的内存引用，防止内存泄漏和野指针问题。
-//       在结构体重新初始化或销毁前调用。
-void reset_structure_pointers(undefined8 *param_1)
-
+/**
+ * 重置结构体指针和状态
+ * 主要功能：将结构体的各个指针字段重置为安全状态，清理可能存在的内存引用
+ * 
+ * 原始实现：FUN_1800739f0
+ * 简化实现：结构体指针重置函数
+ * 
+ * @param structure_ptr 指向需要重置的结构体的指针
+ */
+void reset_structure_pointers(undefined8 *structure_ptr)
 {
-  if (*(longlong *)((longlong)param_1 + 0x52) != 0) {
-                    // WARNING: Subroutine does not return
+  // 检查并重置偏移0x52处的指针
+  if (*(longlong *)((longlong)structure_ptr + 0x52) != 0) {
+    // 错误：指针不为空，可能存在内存泄漏
     FUN_18064e900();
   }
-  *(undefined8 *)((longlong)param_1 + 0x52) = 0;
-  if (*(longlong *)((longlong)param_1 + 0x5a) != 0) {
-                    // WARNING: Subroutine does not return
+  *(undefined8 *)((longlong)structure_ptr + 0x52) = 0;
+  
+  // 检查并重置偏移0x5a处的指针
+  if (*(longlong *)((longlong)structure_ptr + 0x5a) != 0) {
+    // 错误：指针不为空，可能存在内存泄漏
     FUN_18064e900();
   }
-  *(undefined8 *)((longlong)param_1 + 0x5a) = 0;
-  if (param_1[8] != 0) {
-                    // WARNING: Subroutine does not return
+  *(undefined8 *)((longlong)structure_ptr + 0x5a) = 0;
+  
+  // 检查并重置索引8处的指针
+  if (structure_ptr[8] != 0) {
+    // 错误：指针不为空，可能存在内存泄漏
     FUN_18064e900();
   }
-  param_1[8] = 0;
-  if (param_1[9] != 0) {
-                    // WARNING: Subroutine does not return
+  structure_ptr[8] = 0;
+  
+  // 检查并重置索引9处的指针
+  if (structure_ptr[9] != 0) {
+    // 错误：指针不为空，可能存在内存泄漏
     FUN_18064e900();
   }
-  param_1[9] = 0;
+  structure_ptr[9] = 0;
+  
+  // 调用清理函数
   FUN_180074a80();
-  *param_1 = &UNK_180a3c3e0;
-  if (param_1[1] != 0) {
-                    // WARNING: Subroutine does not return
+  
+  // 设置主指针
+  *structure_ptr = &UNK_180a3c3e0;
+  
+  // 检查并重置索引1处的指针
+  if (structure_ptr[1] != 0) {
+    // 错误：指针不为空，可能存在内存泄漏
     FUN_18064e900();
   }
-  param_1[1] = 0;
-  *(undefined4 *)(param_1 + 3) = 0;
-  *param_1 = &UNK_18098bcb0;
+  structure_ptr[1] = 0;
+  
+  // 重置其他字段
+  *(undefined4 *)(structure_ptr + 3) = 0;
+  
+  // 设置最终指针状态
+  *structure_ptr = &UNK_18098bcb0;
+  
   return;
 }
 
@@ -228,49 +280,71 @@ void reset_structure_pointers(undefined8 *param_1)
 
 
 
-// 函数: void cleanup_linked_structure(longlong *param_1)
-// 功能: 清理链接的结构体链
-// 参数: param_1 - 指向链表头部的指针
-// 返回: 无
-// 说明: 此函数遍历一个链接的结构体链，逐个清理每个节点的
-//       内存和指针，确保整个链表被安全地释放。这是内存管理
-//       的重要组成部分。
-void cleanup_linked_structure(longlong *param_1)
-
+/**
+ * 清理链接的结构体链
+ * 主要功能：遍历一个链接的结构体链，逐个清理每个节点的内存和指针
+ * 
+ * 原始实现：FUN_180073ab0
+ * 简化实现：链表结构清理函数
+ * 
+ * @param list_head 指向链表头部的指针
+ */
+void cleanup_linked_structure(longlong *list_head)
 {
-  longlong *plVar1;
-  longlong *plVar2;
+  longlong *list_tail;             // 链表尾部指针
+  longlong *current_node;          // 当前节点指针
   
-  plVar1 = (longlong *)param_1[1];
-  plVar2 = (longlong *)*param_1;
-  while( true ) {
-    if (plVar2 == plVar1) {
-      if (*param_1 != 0) {
-                    // WARNING: Subroutine does not return
+  // 获取链表尾部指针
+  list_tail = (longlong *)list_head[1];
+  
+  // 获取第一个节点
+  current_node = (longlong *)*list_head;
+  
+  // 遍历链表
+  while (true) {
+    // 检查是否到达链表尾部
+    if (current_node == list_tail) {
+      // 验证链表头部是否已清理
+      if (*list_head != 0) {
+        // 错误：链表头部未正确清理
         FUN_18064e900();
       }
       return;
     }
-    if (*(longlong *)((longlong)plVar2 + 0x12) != 0) {
-                    // WARNING: Subroutine does not return
+    
+    // 检查并清理偏移0x12处的指针
+    if (*(longlong *)((longlong)current_node + 0x12) != 0) {
+      // 错误：指针未清理
       FUN_18064e900();
     }
-    *(undefined8 *)((longlong)plVar2 + 0x12) = 0;
-    if (*(longlong *)((longlong)plVar2 + 0x1a) != 0) break;
-    *(undefined8 *)((longlong)plVar2 + 0x1a) = 0;
-    if (*plVar2 != 0) {
-                    // WARNING: Subroutine does not return
+    *(undefined8 *)((longlong)current_node + 0x12) = 0;
+    
+    // 检查偏移0x1a处的指针
+    if (*(longlong *)((longlong)current_node + 0x1a) != 0) {
+      // 错误：指针未清理，跳出循环
+      break;
+    }
+    *(undefined8 *)((longlong)current_node + 0x1a) = 0;
+    
+    // 检查并清理主指针
+    if (*current_node != 0) {
+      // 错误：主指针未清理
       FUN_18064e900();
     }
-    *plVar2 = 0;
-    if (plVar2[1] != 0) {
-                    // WARNING: Subroutine does not return
+    *current_node = 0;
+    
+    // 检查并清理索引1处的指针
+    if (current_node[1] != 0) {
+      // 错误：指针未清理
       FUN_18064e900();
     }
-    plVar2[1] = 0;
-    plVar2 = (longlong *)((longlong)plVar2 + 0x24);
+    current_node[1] = 0;
+    
+    // 移动到下一个节点（节点大小为0x24字节）
+    current_node = (longlong *)((longlong)current_node + 0x24);
   }
-                    // WARNING: Subroutine does not return
+  
+  // 错误处理
   FUN_18064e900();
 }
 
@@ -278,29 +352,31 @@ void cleanup_linked_structure(longlong *param_1)
 
 
 
-// 函数: void serialize_mesh_data(longlong param_1,longlong *param_2)
-// 功能: 序列化网格数据到缓冲区
-// 参数: param_1 - 网格数据源句柄
-//       param_2 - 目标缓冲区指针
-// 返回: 无
-// 说明: 此函数将复杂的网格数据结构序列化为连续的字节流，
-//       便于存储或网络传输。处理顶点数据、索引数据、材质信息等。
-//       是3D模型数据处理的核心函数。
-void serialize_mesh_data(longlong param_1,longlong *param_2)
-
+/**
+ * 序列化网格数据到缓冲区
+ * 主要功能：将复杂的网格数据结构序列化为连续的字节流，处理顶点数据、索引数据、材质信息等
+ * 
+ * 原始实现：FUN_180073ad0
+ * 简化实现：网格数据序列化函数
+ * 
+ * @param mesh_handle 网格数据源句柄
+ * @param buffer_ptr 目标缓冲区指针
+ */
+void serialize_mesh_data(longlong mesh_handle, longlong *buffer_ptr)
 {
-  ushort uVar1;
-  undefined8 uVar2;
-  int *piVar3;
-  undefined4 *puVar4;
-  uint *puVar5;
-  longlong lVar6;
-  longlong lVar7;
-  int iVar8;
-  ulonglong uVar9;
-  longlong lVar10;
+  ushort vertex_count;             // 顶点计数
+  undefined8 data_ptr;             // 数据指针
+  int *buffer_pos;                 // 缓冲区位置指针
+  undefined4 *data_writer;          // 数据写入器
+  uint *uint_writer;               // 无符号整数写入器
+  longlong mesh_size;              // 网格大小
+  longlong vertex_offset;          // 顶点偏移量
+  int element_count;               // 元素计数
+  ulonglong data_size;             // 数据大小
+  longlong loop_counter;           // 循环计数器
   
-  FUN_180639ec0(param_2,param_1);
+  // 初始化序列化过程
+  FUN_180639ec0(buffer_ptr, mesh_handle);
   lVar6 = *(longlong *)(param_1 + 0x28) - *(longlong *)(param_1 + 0x20);
   piVar3 = (int *)param_2[1];
   lVar6 = lVar6 / 0x12 + (lVar6 >> 0x3f);

@@ -975,8 +975,12 @@ POSTFX_PROCESS:
 
 
 
-// 函数: void FUN_180149590(longlong param_1,longlong param_2)
-void FUN_180149590(longlong param_1,longlong param_2)
+// 函数: void process_cubemap_texture_settings(longlong param_1,longlong param_2)
+// 功能: 处理立方体贴图纹理设置，配置环境映射参数
+// 参数: param_1 - 渲染管理器, param_2 - 配置数据指针
+// 返回: 无
+// 说明: 此函数负责处理和设置立方体贴图纹理，用于环境映射效果
+void process_cubemap_texture_settings(longlong param_1,longlong param_2)
 
 {
   undefined8 uVar1;
@@ -1006,16 +1010,16 @@ void FUN_180149590(longlong param_1,longlong param_2)
     }
     if (pcVar4 == pcVar8 + -0x180a071d7) {
       pcVar4 = pcVar4 + (longlong)pcVar7;
-      if (pcVar4 <= pcVar7) goto LAB_18014961e;
+      if (pcVar4 <= pcVar7) goto CUBEMAP_FOUND;
       lVar6 = (longlong)&UNK_180a071d8 - (longlong)pcVar7;
       while (*pcVar7 == pcVar7[lVar6]) {
         pcVar7 = pcVar7 + 1;
-        if (pcVar4 <= pcVar7) goto LAB_18014961e;
+        if (pcVar4 <= pcVar7) goto CUBEMAP_FOUND;
       }
     }
   }
   puVar5 = (undefined8 *)0x0;
-LAB_18014961e:
+CUBEMAP_FOUND:
   pcVar7 = "env_map_name";
   do {
     pcVar8 = pcVar7;
@@ -1024,7 +1028,7 @@ LAB_18014961e:
   puVar5 = (undefined8 *)puVar5[8];
   do {
     if (puVar5 == (undefined8 *)0x0) {
-LAB_1801496a3:
+ENV_MAP_PROCESS:
       puVar5 = (undefined8 *)FUN_1800b08e0(_DAT_180c86930,&plStackX_18,param_1 + 0x188,1);
       uVar1 = *puVar5;
       *puVar5 = 0;
@@ -1058,19 +1062,19 @@ LAB_1801496a3:
     if (pcVar4 == pcVar8 + -0x180a071c7) {
       pcVar4 = pcVar4 + (longlong)pcVar7;
       if (pcVar4 <= pcVar7) {
-LAB_180149684:
+ENV_MAP_APPLY:
         lVar6 = 0x180d48d24;
         if (puVar5[1] != 0) {
           lVar6 = puVar5[1];
         }
         (**(code **)(*(longlong *)(param_1 + 0x188) + 0x10))
                   (param_1 + 0x188,lVar6,pcVar4,puVar5,0xfffffffffffffffe);
-        goto LAB_1801496a3;
+        goto ENV_MAP_PROCESS;
       }
       lVar6 = (longlong)&UNK_180a071c8 - (longlong)pcVar7;
       while (*pcVar7 == pcVar7[lVar6]) {
         pcVar7 = pcVar7 + 1;
-        if (pcVar4 <= pcVar7) goto LAB_180149684;
+        if (pcVar4 <= pcVar7) goto ENV_MAP_APPLY;
       }
     }
     puVar5 = (undefined8 *)puVar5[6];
@@ -1081,7 +1085,12 @@ LAB_180149684:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined * FUN_180149750(int param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: undefined * initialize_thread_local_storage(int param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 功能: 初始化线程本地存储，设置线程特定的数据存储区域
+// 参数: param_1 - 线程ID, param_2-4 - 初始化参数
+// 返回: 线程本地存储指针
+// 说明: 此函数负责初始化和管理线程本地存储，用于多线程环境下的数据隔离
+undefined * initialize_thread_local_storage(int param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 uVar1;
