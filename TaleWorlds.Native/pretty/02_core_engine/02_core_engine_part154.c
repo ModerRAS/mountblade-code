@@ -880,89 +880,138 @@ void simple_cleanup(void)
 
 
 
-// 函数: void FUN_18013cdb3(void)
-void FUN_18013cdb3(void)
-
+/**
+ * 修改版配置文件解析器
+ * 与parse_config_file类似，但先跳过第一个字符后开始解析
+ * 
+ * 主要区别：
+ * - 开始时先跳过一个字符（unaff_RDI = unaff_RDI + 1）
+ * - 内层循环结构略有不同，但功能基本相同
+ * - 同样支持配置节解析和哈希查找
+ * 
+ * 简化实现说明：
+ * - 原始实现：与parse_config_file共享大部分逻辑，但有不同的入口处理
+ * - 简化实现：保持原有解析逻辑，添加中文注释说明差异点
+ */
+void parse_config_file_variant(void)
 {
-  char *pcVar1;
-  byte bVar2;
-  char *pcVar3;
-  uint uVar4;
-  undefined1 *puVar5;
-  longlong lVar6;
-  int iVar7;
-  uint *puVar8;
-  longlong unaff_RBP;
-  byte *pbVar9;
-  longlong unaff_RSI;
-  char *unaff_RDI;
-  byte *pbVar10;
-  char *unaff_R12;
-  longlong in_stack_00000058;
+  char *section_end;
+  byte current_char;
+  char *line_end;
+  uint hash_value;
+  undefined1 *bracket_pos;
+  longlong nested_bracket;
+  int entry_index;
+  uint *hash_table;
+  longlong handler_result;
+  byte *section_name;
+  longlong section_handler;
+  char *input_ptr;
+  byte *char_ptr;
+  char *input_end;
+  longlong stack_param;
   
   do {
-    unaff_RDI = unaff_RDI + 1;
-    while ((*unaff_RDI != '\n' && (pcVar3 = unaff_RDI, *unaff_RDI != '\r'))) {
-      for (; (pcVar3 < unaff_R12 && ((*pcVar3 != '\n' && (*pcVar3 != '\r')))); pcVar3 = pcVar3 + 1)
-      {
+    // 先跳过一个字符（与parse_config_file的主要区别）
+    input_ptr = input_ptr + 1;
+    
+    // 外层循环：处理非空行
+    while ((*input_ptr != '\n' && (line_end = input_ptr, *input_ptr != '\r'))) {
+      
+      // 内层循环：查找行尾
+      for (; (line_end < input_end && ((*line_end != '\n' && (*line_end != '\r')))); line_end = line_end + 1) {
       }
-      *pcVar3 = '\0';
-      if (*unaff_RDI != ';') {
-        if (((*unaff_RDI == '[') && (unaff_RDI < pcVar3)) &&
-           (pcVar1 = pcVar3 + -1, pcVar3[-1] == ']')) {
-          pbVar9 = (byte *)(unaff_RDI + 1);
-          *pcVar1 = '\0';
-          puVar5 = (undefined1 *)memchr(pbVar9,0x5d,(longlong)pcVar1 - (longlong)pbVar9);
-          if ((puVar5 == (undefined1 *)0x0) ||
-             (lVar6 = memchr(puVar5 + 1,0x5b,(longlong)pcVar1 - (longlong)(puVar5 + 1)), lVar6 == 0)
-             ) {
-            pbVar9 = &UNK_180a06474;
+      
+      // 在行尾放置字符串结束符
+      *line_end = '\0';
+      
+      // 跳过注释行（以;开头的行）
+      if (*input_ptr != ';') {
+        // 检查是否是配置节 [section_name]
+        if (((*input_ptr == '[') && (input_ptr < line_end)) &&
+           (section_end = line_end + -1, line_end[-1] == ']')) {
+          
+          // 提取节名（去掉方括号）
+          section_name = (byte *)(input_ptr + 1);
+          *section_end = '\0';
+          
+          // 查找右方括号位置
+          bracket_pos = (undefined1 *)memchr(section_name, 0x5d, (longlong)section_end - (longlong)section_name);
+          
+          // 检查是否有嵌套的方括号（无效格式）
+          if ((bracket_pos == (undefined1 *)0x0) ||
+             (nested_bracket = memchr(bracket_pos + 1, 0x5b, (longlong)section_end - (longlong)(bracket_pos + 1)), nested_bracket == 0)) {
+            // 如果格式无效，使用默认节名
+            section_name = &UNK_180a06474;
           }
           else {
-            *puVar5 = 0;
+            // 截断第一个右方括号处的字符串
+            *bracket_pos = 0;
           }
-          uVar4 = 0xffffffff;
-          bVar2 = *pbVar9;
-          while (bVar2 != 0) {
-            pbVar10 = pbVar9 + 1;
-            if (((bVar2 == 0x23) && (*pbVar10 == 0x23)) && (pbVar9[2] == 0x23)) {
-              uVar4 = 0xffffffff;
+          
+          // 计算节名的哈希值
+          hash_value = 0xffffffff;
+          current_char = *section_name;
+          while (current_char != 0) {
+            char_ptr = section_name + 1;
+            
+            // 遇到###标记时重置哈希值
+            if (((current_char == 0x23) && (*char_ptr == 0x23)) && (section_name[2] == 0x23)) {
+              hash_value = 0xffffffff;
             }
-            uVar4 = *(uint *)(&UNK_18098d290 + ((ulonglong)(uVar4 & 0xff) ^ (ulonglong)bVar2) * 4) ^
-                    uVar4 >> 8;
-            pbVar9 = pbVar10;
-            bVar2 = *pbVar10;
+            
+            // 使用查找表计算哈希值
+            hash_value = *(uint *)(&UNK_18098d290 + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
+                       hash_value >> 8;
+            
+            section_name = char_ptr;
+            current_char = *char_ptr;
           }
-          iVar7 = 0;
+          
+          // 在哈希表中查找匹配的处理函数
+          entry_index = 0;
           if (0 < *(int *)(_DAT_180c8a9b0 + 0x2e18)) {
-            puVar8 = (uint *)(*(longlong *)(_DAT_180c8a9b0 + 0x2e20) + 8);
+            hash_table = (uint *)(*(longlong *)(_DAT_180c8a9b0 + 0x2e20) + 8);
+            
             do {
-              if (*puVar8 == ~uVar4) {
-                unaff_RSI = (longlong)iVar7 * 0x30 + *(longlong *)(_DAT_180c8a9b0 + 0x2e20);
-                if (unaff_RSI == 0) goto LAB_18013ccf1;
-                unaff_RBP = (**(code **)(unaff_RSI + 0x10))();
-                goto LAB_18013cd32;
+              if (*hash_table == ~hash_value) {
+                // 找到匹配的节处理器
+                section_handler = (longlong)entry_index * 0x30 + *(longlong *)(_DAT_180c8a9b0 + 0x2e20);
+                if (section_handler == 0) goto handler_not_found;
+                
+                // 调用节处理函数
+                handler_result = (**(code **)(section_handler + 0x10))();
+                goto continue_parsing;
               }
-              iVar7 = iVar7 + 1;
-              puVar8 = puVar8 + 0xc;
-            } while (iVar7 < *(int *)(_DAT_180c8a9b0 + 0x2e18));
+              
+              entry_index = entry_index + 1;
+              hash_table = hash_table + 0xc;
+            } while (entry_index < *(int *)(_DAT_180c8a9b0 + 0x2e18));
           }
-          unaff_RSI = 0;
-LAB_18013ccf1:
-          unaff_RBP = 0;
+          
+          // 未找到匹配的处理器
+          section_handler = 0;
+handler_not_found:
+          handler_result = 0;
         }
-        else if ((unaff_RSI != 0) && (unaff_RBP != 0)) {
-          (**(code **)(unaff_RSI + 0x18))();
+        else if ((section_handler != 0) && (handler_result != 0)) {
+          // 调用节内的处理函数
+          (**(code **)(section_handler + 0x18))();
         }
       }
-LAB_18013cd32:
-      unaff_RDI = pcVar3 + 1;
-      if (unaff_R12 <= unaff_RDI) {
-        if ((in_stack_00000058 != 0) && (_DAT_180c8a9b0 != 0)) {
+      
+continue_parsing:
+      // 移动到下一行
+      input_ptr = line_end + 1;
+      
+      // 检查是否到达文件末尾
+      if (input_end <= input_ptr) {
+        // 清理资源并退出
+        if ((stack_param != 0) && (_DAT_180c8a9b0 != 0)) {
           *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
         }
-                    // WARNING: Subroutine does not return
-        FUN_180059ba0(in_stack_00000058,_DAT_180c8a9a8);
+        
+        FUN_180059ba0(stack_param, _DAT_180c8a9a8);
       }
     }
   } while( true );
