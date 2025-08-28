@@ -472,14 +472,14 @@ ulonglong FUN_1802abf70(longlong param_1,char *param_2)
 uint64_t * FUN_1802ac0a0(uint64_t *param_1)
 
 {
-  *param_1 = &UNK_180a21690;
-  *param_1 = &UNK_180a21720;
+  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &unknown_var_3696_ptr;
   *(int32_t *)(param_1 + 1) = 0;
-  *param_1 = &UNK_180a02e68;
-  param_1[2] = &UNK_18098bcb0;
+  *param_1 = &unknown_var_8584_ptr;
+  param_1[2] = &unknown_var_720_ptr;
   param_1[3] = 0;
   *(int32_t *)(param_1 + 4) = 0;
-  param_1[2] = &UNK_1809fcc28;
+  param_1[2] = &unknown_var_3432_ptr;
   param_1[3] = param_1 + 5;
   *(int32_t *)(param_1 + 4) = 0;
   *(int8_t *)(param_1 + 5) = 0;
@@ -487,7 +487,7 @@ uint64_t * FUN_1802ac0a0(uint64_t *param_1)
   *(int32_t *)(param_1 + 1) = 0;
   *(int16_t *)(param_1 + 0x16) = 0;
   param_1[0x15] = 0;
-  *param_1 = &UNK_180a17da8;
+  *param_1 = &unknown_var_4408_ptr;
   param_1[0x17] = 0;
   param_1[0x18] = 0;
   param_1[0x19] = 0;
@@ -505,12 +505,12 @@ FUN_1802ac160(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t para
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a17da8;
+  *param_1 = &unknown_var_4408_ptr;
   FUN_1800ff020();
-  *param_1 = &UNK_180a02e68;
-  param_1[2] = &UNK_18098bcb0;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
+  *param_1 = &unknown_var_8584_ptr;
+  param_1[2] = &unknown_var_720_ptr;
+  *param_1 = &unknown_var_3696_ptr;
+  *param_1 = &unknown_var_3552_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0xe0,param_3,param_4,uVar1);
   }
@@ -544,7 +544,7 @@ void FUN_1802ac200(uint64_t param_1,longlong *param_2,longlong param_3)
   uStack_e0 = 0xfffffffffffffffe;
   uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_108;
   uStack_e8 = 0;
-  puStack_c8 = &UNK_1809fcc28;
+  puStack_c8 = &unknown_var_3432_ptr;
   puStack_c0 = auStack_b0;
   uStack_b8 = 0;
   auStack_b0[0] = 0;
@@ -559,9 +559,9 @@ void FUN_1802ac200(uint64_t param_1,longlong *param_2,longlong param_3)
   }
   FUN_1800c1520(uVar1,param_2,&puStack_c8);
   uStack_e8 = 1;
-  puStack_c8 = &UNK_18098bcb0;
+  puStack_c8 = &unknown_var_720_ptr;
   if (*param_2 == 0) {
-    FUN_180627020(&UNK_180a17e18,param_3);
+    FUN_180627020(&unknown_var_4520_ptr,param_3);
   }
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_108);
@@ -573,14 +573,14 @@ uint64_t *
 FUN_1802ac310(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_2 = &UNK_18098bcb0;
+  *param_2 = &unknown_var_720_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &UNK_1809fcc28;
+  *param_2 = &unknown_var_3432_ptr;
   param_2[1] = param_2 + 3;
   *(int8_t *)(param_2 + 3) = 0;
   *(int32_t *)(param_2 + 2) = 0x1c;
-  strcpy_s(param_2[1],0x80,&UNK_180a17e48,param_4,0,0xfffffffffffffffe);
+  strcpy_s(param_2[1],0x80,&unknown_var_4568_ptr,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
 
@@ -589,16 +589,16 @@ FUN_1802ac310(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
 uint64_t * FUN_1802ac390(uint64_t *param_1)
 
 {
-  *param_1 = &UNK_180a21690;
-  *param_1 = &UNK_180a21720;
+  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &unknown_var_3696_ptr;
   *(int32_t *)(param_1 + 1) = 0;
-  *param_1 = &UNK_180a14860;
+  *param_1 = &unknown_var_768_ptr;
   *(int32_t *)(param_1 + 2) = 4;
   param_1[3] = 0;
   param_1[4] = 0;
   *(int32_t *)(param_1 + 1) = 0;
   param_1[5] = 0;
-  *param_1 = &UNK_180a18648;
+  *param_1 = &unknown_var_6616_ptr;
   param_1[9] = 0;
   *(int32_t *)(param_1 + 0x20) = 0;
   param_1[0x1a] = 0;
@@ -790,7 +790,7 @@ void FUN_1802ac800(uint64_t *param_1)
   char cVar4;
   longlong lVar5;
   
-  *param_1 = &UNK_180a18648;
+  *param_1 = &unknown_var_6616_ptr;
   plVar1 = param_1 + 0x27;
   lVar2 = param_1[0x28];
   lVar5 = *plVar1;
@@ -821,10 +821,10 @@ void FUN_1802ac800(uint64_t *param_1)
   if ((longlong *)param_1[9] != (longlong *)0x0) {
     (**(code **)(*(longlong *)param_1[9] + 0x38))();
   }
-  *param_1 = &UNK_180a14860;
+  *param_1 = &unknown_var_768_ptr;
   param_1[5] = 0;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
+  *param_1 = &unknown_var_3696_ptr;
+  *param_1 = &unknown_var_3552_ptr;
   return;
 }
 

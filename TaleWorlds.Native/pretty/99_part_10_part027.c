@@ -83,7 +83,7 @@ void FUN_1806b5c30(longlong param_1,int16_t param_2,ulonglong param_3)
       *puVar3 = (char)param_2;
       puVar3[1] = uStackX_10._1_1_;
       *(longlong *)(lVar2 + 0x18) = *(longlong *)(lVar2 + 0x18) + 2;
-      FUN_1806b6980(param_1 + -0x38,&UNK_18094b528,&uStackX_20,uVar11);
+      FUN_1806b6980(param_1 + -0x38,&unknown_var_6648_ptr,&uStackX_20,uVar11);
     }
     else {
       bVar10 = 3;
@@ -247,7 +247,7 @@ void FUN_1806b5c56(longlong param_1)
     *puVar3 = unaff_R13B;
     puVar3[1] = in_stack_00000088._1_1_;
     *(longlong *)(lVar2 + 0x18) = *(longlong *)(lVar2 + 0x18) + 2;
-    FUN_1806b6980(param_1 + -0x38,&UNK_18094b528,&stack0x00000098,uVar11);
+    FUN_1806b6980(param_1 + -0x38,&unknown_var_6648_ptr,&stack0x00000098,uVar11);
   }
   else {
     bVar10 = 3;
@@ -404,7 +404,7 @@ void FUN_1806b5c5a(longlong param_1)
     *puVar3 = unaff_R13B;
     puVar3[1] = in_stack_00000088._1_1_;
     *(longlong *)(lVar2 + 0x18) = *(longlong *)(lVar2 + 0x18) + 2;
-    FUN_1806b6980(param_1 + -0x38,&UNK_18094b528,&stack0x00000098,uVar11);
+    FUN_1806b6980(param_1 + -0x38,&unknown_var_6648_ptr,&stack0x00000098,uVar11);
   }
   else {
     bVar10 = 3;
@@ -533,7 +533,7 @@ void FUN_1806b5cf7(longlong param_1)
   *puVar2 = unaff_R13B;
   puVar2[1] = in_stack_00000088._1_1_;
   *(longlong *)(lVar1 + 0x18) = *(longlong *)(lVar1 + 0x18) + 2;
-  FUN_1806b6980(unaff_RBP + 0x78,&UNK_18094b528,&stack0x00000098,uVar5);
+  FUN_1806b6980(unaff_RBP + 0x78,&unknown_var_6648_ptr,&stack0x00000098,uVar5);
   if (*(uint *)(unaff_RBP + 0x50) <= (uint)(*(int *)(unaff_RBP + 0x28) - *(int *)(unaff_RBP + 0x20))
      ) {
     FUN_1806b4470();
@@ -770,7 +770,7 @@ void FUN_1806b5f60(longlong param_1,int16_t param_2,ulonglong param_3,int param_
       *puVar3 = (char)param_2;
       puVar3[1] = uStackX_10._1_1_;
       *(longlong *)(lVar2 + 0x18) = *(longlong *)(lVar2 + 0x18) + 2;
-      FUN_1806b6980(param_1 + -0x38,&UNK_18094b528,&uStack_58,uVar10);
+      FUN_1806b6980(param_1 + -0x38,&unknown_var_6648_ptr,&uStack_58,uVar10);
     }
     else {
       bVar9 = 3;

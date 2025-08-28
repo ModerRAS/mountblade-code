@@ -476,8 +476,8 @@ void FUN_180294610(longlong param_1,uint64_t *param_2,int32_t *param_3,int32_t *
         uStack_110 = 0x6c437967;
         uStack_114 = 0x676f7250;
         uStack_158 = 0x4150000000000000;
-        puStack_178 = &UNK_180a16f40;
-        lVar5 = FUN_180294c20(param_1,&UNK_18098e3b0,param_3,&uStack_168);
+        puStack_178 = &unknown_var_720_ptr;
+        lVar5 = FUN_180294c20(param_1,&unknown_var_704_ptr,param_3,&uStack_168);
         *(int32_t *)(lVar5 + 0xc) = 0x3f800000;
       }
       FUN_180294f50(param_1);
@@ -616,11 +616,11 @@ void FUN_180294638(longlong param_1,uint64_t *param_2,int32_t *param_3,uint64_t 
         if (bVar4) {
           param_8 = CONCAT44(0x41500000,(int)uVar5);
         }
-        puVar8 = &UNK_180a16f40;
+        puVar8 = &unknown_var_720_ptr;
         if (param_13 != (void *)0x0) {
           puVar8 = param_13;
         }
-        lVar6 = FUN_180294c20(param_1,&UNK_18098e3b0,param_3,&param_6,puVar8);
+        lVar6 = FUN_180294c20(param_1,&unknown_var_704_ptr,param_3,&param_6,puVar8);
         *(int32_t *)(lVar6 + 0xc) = 0x3f800000;
       }
       FUN_180294f50(param_1);
@@ -761,11 +761,11 @@ void FUN_18029463f(longlong param_1,uint64_t *param_2,int32_t *param_3,uint64_t 
         if (bVar4) {
           param_8 = CONCAT44(0x41500000,(int)uVar5);
         }
-        puVar8 = &UNK_180a16f40;
+        puVar8 = &unknown_var_720_ptr;
         if (param_13 != (void *)0x0) {
           puVar8 = param_13;
         }
-        lVar6 = FUN_180294c20(uVar10,&UNK_18098e3b0,param_3,&param_6,puVar8);
+        lVar6 = FUN_180294c20(uVar10,&unknown_var_704_ptr,param_3,&param_6,puVar8);
         *(int32_t *)(lVar6 + 0xc) = 0x3f800000;
       }
       FUN_180294f50();

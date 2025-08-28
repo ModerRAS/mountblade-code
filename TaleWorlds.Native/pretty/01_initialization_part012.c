@@ -60,24 +60,24 @@
  * 系统全局数据区域
  * 存储系统运行时的重要全局变量和状态信息
  */
-extern uint64_t UNK_180943070;            /* 系统全局指针1 */
-extern uint64_t UNK_180943080;            /* 系统全局指针2 */
-extern uint64_t UNK_180943090;            /* 系统全局指针3 */
-extern uint64_t UNK_1809430a0;            /* 系统全局指针4 */
-extern uint64_t UNK_1809430b0;            /* 系统全局指针5 */
-extern uint64_t UNK_1809430c0;            /* 系统全局指针6 */
-extern uint64_t UNK_1809430d0;            /* 系统全局指针7 */
-extern uint64_t UNK_1809430e0;            /* 系统全局指针8 */
-extern uint64_t UNK_1809430f0;            /* 系统全局指针9 */
-extern uint64_t UNK_180943100;            /* 系统全局指针10 */
-extern uint64_t UNK_180943110;            /* 系统全局指针11 */
-extern uint64_t UNK_180943120;            /* 系统全局指针12 */
-extern uint64_t UNK_180943130;            /* 系统全局指针13 */
-extern uint64_t UNK_180943140;            /* 系统全局指针14 */
-extern uint64_t UNK_180943150;            /* 系统全局指针15 */
-extern uint64_t UNK_180943160;            /* 系统全局指针16 */
-extern uint64_t UNK_180943170;            /* 系统全局指针17 */
-extern uint64_t UNK_180943180;            /* 系统全局指针18 */
+extern uint64_t global_state_2672;            /* 系统全局指针1 */
+extern uint64_t global_state_2688;            /* 系统全局指针2 */
+extern uint64_t global_state_2704;            /* 系统全局指针3 */
+extern uint64_t global_state_2720;            /* 系统全局指针4 */
+extern uint64_t global_state_2736;            /* 系统全局指针5 */
+extern uint64_t global_state_2752;            /* 系统全局指针6 */
+extern uint64_t global_state_2768;            /* 系统全局指针7 */
+extern uint64_t global_state_2784;            /* 系统全局指针8 */
+extern uint64_t global_state_2800;            /* 系统全局指针9 */
+extern uint64_t global_state_2816;            /* 系统全局指针10 */
+extern uint64_t global_state_2832;            /* 系统全局指针11 */
+extern uint64_t global_state_2848;            /* 系统全局指针12 */
+extern uint64_t global_state_2864_ptr;            /* 系统全局指针13 */
+extern uint64_t global_state_2880;            /* 系统全局指针14 */
+extern uint64_t global_state_2896;            /* 系统全局指针15 */
+extern uint64_t global_state_2912;            /* 系统全局指针16 */
+extern uint64_t global_state_2928;            /* 系统全局指针17 */
+extern uint64_t global_state_2944;            /* 系统全局指针18 */
 
 /**
  * 系统互斥锁和同步变量
@@ -135,35 +135,35 @@ extern void *FUN_1800868c0;           /* 系统函数指针1 */
  * 系统数据引用
  * 指向系统数据区域的指针
  */
-extern uint64_t UNK_180a2ca90;            /* 系统数据引用1 */
-extern uint64_t UNK_180a2cab0;            /* 系统数据引用2 */
-extern uint64_t UNK_1809ff978;            /* 系统数据引用3 */
-extern uint64_t UNK_1809ff990;            /* 系统数据引用4 */
-extern uint64_t UNK_180a00370;            /* 系统数据引用5 */
-extern uint64_t UNK_180a00388;            /* 系统数据引用6 */
-extern uint64_t UNK_180a003a0;            /* 系统数据引用7 */
-extern uint64_t UNK_180a003b8;            /* 系统数据引用8 */
-extern uint64_t UNK_180a003d0;            /* 系统数据引用9 */
-extern uint64_t UNK_180a003e8;            /* 系统数据引用10 */
-extern uint64_t UNK_180a00400;            /* 系统数据引用11 */
-extern uint64_t UNK_18098c790;            /* 系统数据引用12 */
-extern uint64_t UNK_18098c7a0;            /* 系统数据引用13 */
-extern uint64_t UNK_18098c7b8;            /* 系统数据引用14 */
-extern uint64_t UNK_18098c7c8;            /* 系统数据引用15 */
-extern uint64_t UNK_18098c7d8;            /* 系统数据引用16 */
-extern uint64_t UNK_18098c7f0;            /* 系统数据引用17 */
-extern uint64_t UNK_18098c810;            /* 系统数据引用18 */
-extern uint64_t UNK_18098c870;            /* 系统数据引用19 */
-extern uint64_t UNK_18098c880;            /* 系统数据引用20 */
-extern uint64_t UNK_18098c898;            /* 系统数据引用21 */
+extern uint64_t global_state_9632_ptr;            /* 系统数据引用1 */
+extern uint64_t global_state_9664_ptr;            /* 系统数据引用2 */
+extern uint64_t global_state_5032_ptr;            /* 系统数据引用3 */
+extern uint64_t global_state_5056_ptr;            /* 系统数据引用4 */
+extern uint64_t global_state_7584_ptr;            /* 系统数据引用5 */
+extern uint64_t global_state_7608_ptr;            /* 系统数据引用6 */
+extern uint64_t global_state_7632_ptr;            /* 系统数据引用7 */
+extern uint64_t global_state_7656_ptr;            /* 系统数据引用8 */
+extern uint64_t global_state_7680_ptr;            /* 系统数据引用9 */
+extern uint64_t global_state_7704_ptr;            /* 系统数据引用10 */
+extern uint64_t global_state_7728_ptr;            /* 系统数据引用11 */
+extern uint64_t global_state_3504_ptr;            /* 系统数据引用12 */
+extern uint64_t global_state_3520_ptr;            /* 系统数据引用13 */
+extern uint64_t global_state_3544_ptr;            /* 系统数据引用14 */
+extern uint64_t global_state_3560_ptr;            /* 系统数据引用15 */
+extern uint64_t global_state_3576_ptr;            /* 系统数据引用16 */
+extern uint64_t global_state_3600_ptr;            /* 系统数据引用17 */
+extern uint64_t global_state_3632_ptr;            /* 系统数据引用18 */
+extern uint64_t global_state_3728_ptr;            /* 系统数据引用19 */
+extern uint64_t global_state_3744_ptr;            /* 系统数据引用20 */
+extern uint64_t global_state_3768_ptr;            /* 系统数据引用21 */
 
 /**
  * 系统字符串常量
  * 用于系统配置和标识
  */
-extern uint64_t UNK_1809fcc28;            /* 系统字符串1 */
-extern uint64_t UNK_180a33fb0;            /* 系统字符串2 */
-extern uint64_t UNK_180a3c028;            /* 系统字符串3 */
+extern uint64_t global_state_3432_ptr;            /* 系统字符串1 */
+extern uint64_t global_state_9616_ptr;            /* 系统字符串2 */
+extern uint64_t global_state_2504_ptr;            /* 系统字符串3 */
 
 /*=============================================================================
  * 函数别名定义
@@ -339,7 +339,7 @@ uint8_t SystemCallbackRegister_1(void)
     // 设置回调参数
     puVar7[6] = CALLBACK_TYPE_SYSTEM_EVENT;  // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_SYSTEM;     // 事件标识符
-    puVar7[8] = &UNK_180a2ca90;              // 回调数据引用
+    puVar7[8] = &global_state_9632_ptr;              // 回调数据引用
     puVar7[9] = 2;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
     return 0;
@@ -404,7 +404,7 @@ uint8_t SystemCallbackRegister_2(void)
     // 设置回调参数
     puVar7[6] = CALLBACK_TYPE_INPUT_EVENT;   // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_INPUT;      // 事件标识符
-    puVar7[8] = &UNK_180a2cab0;              // 回调数据引用
+    puVar7[8] = &global_state_9664_ptr;              // 回调数据引用
     puVar7[9] = 2;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
     return 0;
@@ -469,7 +469,7 @@ uint8_t SystemCallbackRegister_3(void)
     // 设置回调参数
     puVar7[6] = CALLBACK_TYPE_SYSTEM_EVENT;  // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_SYSTEM;     // 事件标识符
-    puVar7[8] = &UNK_180a2ca90;              // 回调数据引用
+    puVar7[8] = &global_state_9632_ptr;              // 回调数据引用
     puVar7[9] = 2;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
     return 0;
@@ -534,7 +534,7 @@ uint8_t SystemCallbackRegister_4(void)
     // 设置回调参数
     puVar7[6] = CALLBACK_TYPE_INPUT_EVENT;   // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_INPUT;      // 事件标识符
-    puVar7[8] = &UNK_180a2cab0;              // 回调数据引用
+    puVar7[8] = &global_state_9664_ptr;              // 回调数据引用
     puVar7[9] = 2;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
     return 0;
@@ -599,7 +599,7 @@ uint8_t SystemCallbackRegister_5(void)
     // 设置回调参数
     puVar7[6] = CALLBACK_TYPE_RENDER_EVENT;  // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_RENDER;     // 事件标识符
-    puVar7[8] = &UNK_1809ff978;              // 回调数据引用
+    puVar7[8] = &global_state_5032_ptr;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = pcStackX_18;                // 回调函数指针
     return 0;
@@ -664,7 +664,7 @@ uint8_t SystemCallbackRegister_6(void)
     // 设置回调参数
     puVar7[6] = CALLBACK_TYPE_NETWORK_EVENT; // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_NETWORK;    // 事件标识符
-    puVar7[8] = &UNK_1809ff990;              // 回调数据引用
+    puVar7[8] = &global_state_5056_ptr;              // 回调数据引用
     puVar7[9] = 3;                           // 回调优先级
     puVar7[10] = pcStackX_18;                // 回调函数指针
     return 0;
@@ -729,7 +729,7 @@ uint8_t SystemCallbackRegister_7(void)
     // 设置回调参数
     puVar7[6] = CALLBACK_TYPE_AUDIO_EVENT;   // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_AUDIO;      // 事件标识符
-    puVar7[8] = &UNK_180a00370;              // 回调数据引用
+    puVar7[8] = &global_state_7584_ptr;              // 回调数据引用
     puVar7[9] = 1;                           // 回调优先级
     puVar7[10] = pcStackX_18;                // 回调函数指针
     return 0;
@@ -794,7 +794,7 @@ uint8_t SystemCallbackRegister_8(void)
     // 设置回调参数
     puVar7[6] = CALLBACK_TYPE_RENDER_EVENT;  // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_RENDER;     // 事件标识符
-    puVar7[8] = &UNK_180a00388;              // 回调数据引用
+    puVar7[8] = &global_state_7608_ptr;              // 回调数据引用
     puVar7[9] = 4;                           // 回调优先级
     puVar7[10] = pcStackX_18;                // 回调函数指针
     return 0;
@@ -859,7 +859,7 @@ uint8_t SystemCallbackRegister_9(void)
     // 设置回调参数
     puVar7[6] = CALLBACK_TYPE_NETWORK_EVENT; // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_NETWORK;    // 事件标识符
-    puVar7[8] = &UNK_180a003a0;              // 回调数据引用
+    puVar7[8] = &global_state_7632_ptr;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
     return 0;
@@ -924,7 +924,7 @@ uint8_t SystemCallbackRegister_10(void)
     // 设置回调参数
     puVar7[6] = CALLBACK_TYPE_AUDIO_EVENT;   // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_AUDIO;      // 事件标识符
-    puVar7[8] = &UNK_180a003b8;              // 回调数据引用
+    puVar7[8] = &global_state_7656_ptr;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = pcStackX_18;                // 回调函数指针
     return 0;
@@ -989,7 +989,7 @@ uint8_t SystemCallbackRegister_11(void)
     // 设置回调参数
     puVar7[6] = CALLBACK_TYPE_MEMORY_EVENT;  // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_MEMORY;     // 事件标识符
-    puVar7[8] = &UNK_180a003d0;              // 回调数据引用
+    puVar7[8] = &global_state_7680_ptr;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
     return 0;
@@ -1026,7 +1026,7 @@ uint8_t SystemCallbackRegister_12(void)
     plVar4 = (longlong *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-    puStackX_18 = &UNK_1800868c0;
+    puStackX_18 = &global_state_2048_ptr;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
     
@@ -1054,7 +1054,7 @@ uint8_t SystemCallbackRegister_12(void)
     // 设置回调参数
     puVar7[6] = CALLBACK_TYPE_THREAD_EVENT;  // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_THREAD;     // 事件标识符
-    puVar7[8] = &UNK_180a003e8;              // 回调数据引用
+    puVar7[8] = &global_state_7704_ptr;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = puStackX_18;                // 回调函数指针
     return 0;
@@ -1119,7 +1119,7 @@ uint8_t SystemCallbackRegister_13(void)
     // 设置回调参数
     puVar7[6] = CALLBACK_TYPE_SECURITY_EVENT; // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_SECURITY;    // 事件标识符
-    puVar7[8] = &UNK_180a00400;              // 回调数据引用
+    puVar7[8] = &global_state_7728_ptr;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
     return 0;
@@ -1184,7 +1184,7 @@ uint8_t SystemCallbackRegister_14(void)
     // 设置回调参数
     puVar7[6] = CALLBACK_TYPE_CONFIG_EVENT;  // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_CONFIG;     // 事件标识符
-    puVar7[8] = &UNK_18098c790;              // 回调数据引用
+    puVar7[8] = &global_state_3504_ptr;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = pcStackX_18;                // 回调函数指针
     return 0;
@@ -1249,7 +1249,7 @@ uint8_t SystemCallbackRegister_15(void)
     // 设置回调参数
     puVar7[6] = CALLBACK_TYPE_IO_EVENT;      // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_IO;         // 事件标识符
-    puVar7[8] = &UNK_18098c7a0;              // 回调数据引用
+    puVar7[8] = &global_state_3520_ptr;              // 回调数据引用
     puVar7[9] = 1;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
     return 0;
@@ -1314,7 +1314,7 @@ uint8_t SystemCallbackRegister_16(void)
     // 设置回调参数
     puVar7[6] = CALLBACK_TYPE_TIMER_EVENT;  // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_TIMER;     // 事件标识符
-    puVar7[8] = &UNK_18098c7b8;              // 回调数据引用
+    puVar7[8] = &global_state_3544_ptr;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
     return 0;
@@ -1379,7 +1379,7 @@ uint8_t SystemCallbackRegister_17(void)
     // 设置回调参数
     puVar7[6] = CALLBACK_TYPE_ERROR_EVENT;  // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_ERROR;     // 事件标识符
-    puVar7[8] = &UNK_18098c7c8;              // 回调数据引用
+    puVar7[8] = &global_state_3560_ptr;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
     return 0;
@@ -1444,7 +1444,7 @@ uint8_t SystemCallbackRegister_18(void)
     // 设置回调参数
     puVar7[6] = CALLBACK_TYPE_STATE_EVENT;  // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_STATE;     // 事件标识符
-    puVar7[8] = &UNK_18098c7d8;              // 回调数据引用
+    puVar7[8] = &global_state_3576_ptr;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
     return 0;
@@ -1509,7 +1509,7 @@ uint8_t SystemCallbackRegister_19(void)
     // 设置回调参数
     puVar7[6] = CALLBACK_TYPE_CUSTOM_EVENT; // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_CUSTOM;    // 事件标识符
-    puVar7[8] = &UNK_18098c7f0;              // 回调数据引用
+    puVar7[8] = &global_state_3600_ptr;              // 回调数据引用
     puVar7[9] = 3;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
     return 0;
@@ -1574,7 +1574,7 @@ uint8_t SystemCallbackRegister_20(void)
     // 设置回调参数
     puVar7[6] = CALLBACK_TYPE_PLUGIN_EVENT; // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_PLUGIN;    // 事件标识符
-    puVar7[8] = &UNK_18098c810;              // 回调数据引用
+    puVar7[8] = &global_state_3632_ptr;              // 回调数据引用
     puVar7[9] = 3;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
     return 0;
@@ -1639,7 +1639,7 @@ uint8_t SystemCallbackRegister_21(void)
     // 设置回调参数
     puVar7[6] = CALLBACK_TYPE_DATA_EVENT;   // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_DATA;      // 事件标识符
-    puVar7[8] = &UNK_18098c870;              // 回调数据引用
+    puVar7[8] = &global_state_3728_ptr;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
     return 0;
@@ -1704,7 +1704,7 @@ uint8_t SystemCallbackRegister_22(void)
     // 设置回调参数
     puVar7[6] = CALLBACK_TYPE_ASYNC_EVENT;  // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_ASYNC;     // 事件标识符
-    puVar7[8] = &UNK_18098c880;              // 回调数据引用
+    puVar7[8] = &global_state_3744_ptr;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = pcStackX_18;                // 回调函数指针
     return 0;
@@ -1769,7 +1769,7 @@ uint8_t SystemCallbackRegister_23(void)
     // 设置回调参数
     puVar7[6] = CALLBACK_TYPE_SYNC_EVENT;   // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_SYNC;      // 事件标识符
-    puVar7[8] = &UNK_18098c898;              // 回调数据引用
+    puVar7[8] = &global_state_3768_ptr;              // 回调数据引用
     puVar7[9] = 1;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
     return 0;
@@ -1800,13 +1800,13 @@ uint8_t SystemEventProcessor_1(void)
     int8_t auStack_88 [136];
     
     // 设置事件处理参数
-    puStack_a0 = &UNK_1809fcc28;
+    puStack_a0 = &global_state_3432_ptr;
     puStack_98 = auStack_88;
     auStack_88[0] = 0;
     uStack_90 = 0xd;
     
     // 调用系统核心处理函数
-    strcpy_s(auStack_88, 0x80, &UNK_180a33fb0, in_R9, 0xfffffffffffffffe);
+    strcpy_s(auStack_88, 0x80, &global_state_9616_ptr, in_R9, 0xfffffffffffffffe);
     system_memory_5ecc = SystemCoreFunction_4(&puStack_a0);
     return 0;
 }
@@ -1832,13 +1832,13 @@ uint8_t SystemEventProcessor_2(void)
     int8_t auStack_88 [136];
     
     // 设置事件处理参数
-    puStack_a0 = &UNK_1809fcc28;
+    puStack_a0 = &global_state_3432_ptr;
     puStack_98 = auStack_88;
     auStack_88[0] = 0;
     uStack_90 = 0x1b;
     
     // 调用系统核心处理函数
-    strcpy_s(auStack_88, 0x80, &UNK_180a3c028, in_R9, 0xfffffffffffffffe);
+    strcpy_s(auStack_88, 0x80, &global_state_2504_ptr, in_R9, 0xfffffffffffffffe);
     system_memory_606c = SystemCoreFunction_4(&puStack_a0);
     return 0;
 }
@@ -1884,7 +1884,7 @@ int SystemInitializer_2(void)
     
     // 调用系统初始化函数
     SystemCoreFunction_5();
-    lVar1 = SystemCoreFunction_6(&UNK_180943130);
+    lVar1 = SystemCoreFunction_6(&global_state_2864_ptr);
     return (lVar1 != 0) ? 1 : 0;
 }
 

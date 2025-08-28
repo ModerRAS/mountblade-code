@@ -104,7 +104,7 @@ LAB_18030dd85:
   }
   plStack_e0 = (longlong *)0x0;
   plStack_e8 = plVar15;
-  (**(code **)(plVar15[2] + 0x10))(plVar15 + 2,&UNK_180a1a6b0);
+  (**(code **)(plVar15[2] + 0x10))(plVar15 + 2,&unknown_var_4912_ptr);
   FUN_18007ea10(plVar15,1);
   FUN_18007e930(plVar15);
   plStack_d8 = (longlong *)0x0;
@@ -743,7 +743,7 @@ void FUN_18030eaf0(longlong param_1,longlong param_2,longlong param_3,longlong p
   if (plVar8 != (longlong *)0x0) {
     (**(code **)(*plVar8 + 0x28))(plVar8);
   }
-  (**(code **)(plVar8[2] + 0x10))(plVar8 + 2,&UNK_180a1a6f0);
+  (**(code **)(plVar8[2] + 0x10))(plVar8 + 2,&unknown_var_4976_ptr);
   if (*(char *)((longlong)plVar8 + 0xfb) != '\x01') {
     *(int8_t *)((longlong)plVar8 + 0xfb) = 1;
     FUN_180079520(plVar8);

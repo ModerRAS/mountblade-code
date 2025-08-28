@@ -118,7 +118,7 @@ typedef struct {
 void Network_SendPacket(longlong connection_ptr, uint64_t packet_type, int32_t packet_size)
 {
     /* 简化实现：调用底层网络发送函数 */
-    FUN_18083f7b0(packet_type, packet_size, &UNK_1809828f8, 
+    FUN_18083f7b0(packet_type, packet_size, &unknown_var_2904_ptr, 
                  *(int32_t *)(connection_ptr + 0x10),
                  *(int32_t *)(connection_ptr + 0x14));
     return;
@@ -148,7 +148,7 @@ int Network_SerializeConnectionData(longlong connection_ptr, longlong buffer_ptr
     connection_info2 = *(int32_t *)(connection_ptr + 0x10);
     
     /* 序列化连接头信息 */
-    processed_size = FUN_18074b880(buffer_ptr, buffer_size, &UNK_180982a98);
+    processed_size = FUN_18074b880(buffer_ptr, buffer_size, &unknown_var_3320_ptr);
     total_size = FUN_18074b880(processed_size + buffer_ptr, buffer_size - processed_size, &system_temp_buffer);
     processed_size = processed_size + total_size;
     
@@ -189,7 +189,7 @@ int Network_ProcessClientPacket(longlong connection_ptr, longlong packet_ptr, in
     validation_code = *(int32_t *)(connection_ptr + 0x20);
     
     /* 验证数据包头部 */
-    processed_size = FUN_18074b880(packet_ptr, packet_size, &UNK_180981fc0);
+    processed_size = FUN_18074b880(packet_ptr, packet_size, &unknown_var_544_ptr);
     total_size = FUN_18074b880(packet_ptr + processed_size, packet_size - processed_size, &system_temp_buffer);
     processed_size = processed_size + total_size;
     total_size = FUN_18074b650(processed_size + packet_ptr, packet_size - processed_size, &packet_header[0]);
@@ -228,7 +228,7 @@ int Network_HandleServerResponse(longlong connection_ptr, longlong response_ptr,
     response_code = *(int32_t *)(connection_ptr + 0x20);
     
     /* 处理响应数据 */
-    processed_size = FUN_18074b880(response_ptr, response_size, &UNK_180981dc0);
+    processed_size = FUN_18074b880(response_ptr, response_size, &unknown_var_32_ptr);
     total_size = FUN_18074b880(response_ptr + processed_size, response_size - processed_size, &system_temp_buffer);
     processed_size = processed_size + total_size;
     total_size = FUN_18074b650(processed_size + response_ptr, response_size - processed_size, &response_header[0]);
@@ -267,7 +267,7 @@ int Network_ManageConnectionPool(longlong connection_ptr, longlong pool_data_ptr
     pool_info = *(int32_t *)(connection_ptr + 0x20);
     
     /* 处理连接池数据 */
-    processed_size = FUN_18074b880(pool_data_ptr, pool_size, &UNK_180981f40);
+    processed_size = FUN_18074b880(pool_data_ptr, pool_size, &unknown_var_416_ptr);
     total_size = FUN_18074b880(pool_data_ptr + processed_size, pool_size - processed_size, &system_temp_buffer);
     processed_size = processed_size + total_size;
     total_size = FUN_18074b650(processed_size + pool_data_ptr, pool_size - processed_size, &pool_header[0]);
@@ -306,7 +306,7 @@ int Network_UpdateConnectionStatus(longlong connection_ptr, longlong status_data
     status_code = *(int32_t *)(connection_ptr + 0x20);
     
     /* 更新状态数据 */
-    processed_size = FUN_18074b880(status_data_ptr, status_size, &UNK_180981d40);
+    processed_size = FUN_18074b880(status_data_ptr, status_size, &unknown_var_9904_ptr);
     total_size = FUN_18074b880(status_data_ptr + processed_size, status_size - processed_size, &system_temp_buffer);
     processed_size = processed_size + total_size;
     total_size = FUN_18074b650(processed_size + status_data_ptr, status_size - processed_size, &status_header[0]);
@@ -340,7 +340,7 @@ int Network_ValidatePacketHeader(longlong packet_ptr, longlong header_data_ptr, 
     validation_info = *(int32_t *)(packet_ptr + 0x10);
     
     /* 验证数据包头部 */
-    processed_size = FUN_18074b880(header_data_ptr, header_size, &UNK_180982978);
+    processed_size = FUN_18074b880(header_data_ptr, header_size, &unknown_var_3032_ptr);
     total_size = FUN_18074b880(header_data_ptr + processed_size, header_size - processed_size, &system_temp_buffer);
     processed_size = processed_size + total_size;
     total_size = func_0x00018074b7d0(processed_size + header_data_ptr, header_size - processed_size, validation_info);
@@ -362,7 +362,7 @@ int Network_ValidatePacketHeader(longlong packet_ptr, longlong header_data_ptr, 
 void Network_SendServerCommand(longlong server_ptr, uint64_t command_type, int32_t command_data)
 {
     /* 简化实现：调用底层命令发送函数 */
-    FUN_18083f7b0(command_type, command_data, &UNK_180982a08, 
+    FUN_18083f7b0(command_type, command_data, &unknown_var_3176_ptr, 
                  *(int32_t *)(server_ptr + 0x10),
                  *(int32_t *)(server_ptr + 0x14));
     return;
@@ -395,7 +395,7 @@ int Network_ProcessGameData(longlong connection_ptr, longlong game_data_ptr, int
     game_code = *(int32_t *)(connection_ptr + 0x20);
     
     /* 处理游戏数据 */
-    processed_size = FUN_18074b880(game_data_ptr, game_data_size, &UNK_180982038);
+    processed_size = FUN_18074b880(game_data_ptr, game_data_size, &unknown_var_664_ptr);
     total_size = FUN_18074b880(game_data_ptr + processed_size, game_data_size - processed_size, &system_temp_buffer);
     processed_size = processed_size + total_size;
     total_size = FUN_18074b650(processed_size + game_data_ptr, game_data_size - processed_size, &game_header[0]);
@@ -434,7 +434,7 @@ int Network_HandlePlayerUpdate(longlong connection_ptr, longlong player_data_ptr
     player_code = *(int32_t *)(connection_ptr + 0x20);
     
     /* 处理玩家更新数据 */
-    processed_size = FUN_18074b880(player_data_ptr, player_data_size, &UNK_180981e40);
+    processed_size = FUN_18074b880(player_data_ptr, player_data_size, &unknown_var_160_ptr);
     total_size = FUN_18074b880(player_data_ptr + processed_size, player_data_size - processed_size, &system_temp_buffer);
     processed_size = processed_size + total_size;
     total_size = FUN_18074b650(processed_size + player_data_ptr, player_data_size - processed_size, &player_header[0]);
@@ -481,7 +481,7 @@ int Network_SerializeGameState(longlong game_state_ptr, longlong buffer_ptr, int
     state_data[4] = *(uint64_t *)(game_state_ptr + 0x40);
     
     /* 序列化游戏状态数据 */
-    processed_size = FUN_18074b880(buffer_ptr, buffer_size, &UNK_180982670);
+    processed_size = FUN_18074b880(buffer_ptr, buffer_size, &unknown_var_2256_ptr);
     total_size = FUN_18074b880(processed_size + buffer_ptr, buffer_size - processed_size, &system_temp_buffer);
     processed_size = processed_size + total_size;
     total_size = func_0x00018088ecd0(processed_size + buffer_ptr, buffer_size - processed_size, &state_data[0]);
@@ -521,7 +521,7 @@ int Network_ManageServerSlots(longlong server_ptr, longlong slot_data_ptr, int s
     slot_info2 = *(int32_t *)(server_ptr + 0x14);
     
     /* 处理插槽数据 */
-    processed_size = FUN_18074b880(slot_data_ptr, slot_size, &UNK_180982570);
+    processed_size = FUN_18074b880(slot_data_ptr, slot_size, &unknown_var_2000_ptr);
     total_size = FUN_18074b880(slot_data_ptr + processed_size, slot_size - processed_size, &system_temp_buffer);
     processed_size = processed_size + total_size;
     total_size = FUN_18074b880(processed_size + slot_data_ptr, slot_size - processed_size, server_ptr + 0x18);
@@ -564,7 +564,7 @@ int Network_HandleComplexPacket(longlong packet_ptr, longlong data_ptr, int data
     packet_data = *(uint64_t *)(packet_ptr + 0x10);
     
     /* 处理复杂数据包 */
-    processed_size = FUN_18074b880(data_ptr, data_size, &UNK_1809825f0);
+    processed_size = FUN_18074b880(data_ptr, data_size, &unknown_var_2128_ptr);
     total_size = FUN_18074b880(data_ptr + processed_size, data_size - processed_size, &system_temp_buffer);
     processed_size = processed_size + total_size;
     total_size = func_0x00018074bda0(processed_size + data_ptr, data_size - processed_size, packet_data);
@@ -626,7 +626,7 @@ int Network_ProcessSecureData(longlong security_ptr, longlong data_ptr, int data
     security_header[8] = *(int32_t *)(security_ptr + 0x40);
     
     /* 处理安全数据 */
-    processed_size = FUN_18074b880(data_ptr, data_size, &UNK_180982460);
+    processed_size = FUN_18074b880(data_ptr, data_size, &unknown_var_1728_ptr);
     total_size = FUN_18074b880(processed_size + data_ptr, data_size - processed_size, &system_temp_buffer);
     processed_size = processed_size + total_size;
     total_size = func_0x00018074b7d0(processed_size + data_ptr, data_size - processed_size, security_header[4]);
@@ -669,7 +669,7 @@ int Network_ManageClientSession(longlong session_ptr, longlong data_ptr, int dat
     session_info[1] = *(int32_t *)(session_ptr + 0x14);
     
     /* 管理会话数据 */
-    processed_size = FUN_18074b880(data_ptr, data_size, &UNK_1809824e8);
+    processed_size = FUN_18074b880(data_ptr, data_size, &unknown_var_1864_ptr);
     total_size = FUN_18074b880(data_ptr + processed_size, data_size - processed_size, &system_temp_buffer);
     processed_size = processed_size + total_size;
     total_size = func_0x00018074b7d0(processed_size + data_ptr, data_size - processed_size, session_info[0]);
@@ -703,7 +703,7 @@ int Network_ValidateConnection(longlong connection_ptr, longlong validation_data
     validation_info = *(int32_t *)(connection_ptr + 0x10);
     
     /* 验证连接 */
-    processed_size = FUN_18074b880(validation_data_ptr, validation_size, &UNK_1809823e0);
+    processed_size = FUN_18074b880(validation_data_ptr, validation_size, &unknown_var_1600_ptr);
     total_size = FUN_18074b880(validation_data_ptr + processed_size, validation_size - processed_size, &system_temp_buffer);
     processed_size = processed_size + total_size;
     total_size = func_0x00018074b7d0(processed_size + validation_data_ptr, validation_size - processed_size, validation_info);
@@ -737,7 +737,7 @@ int Network_HandleAuthPacket(longlong auth_ptr, longlong packet_ptr, int packet_
     auth_info = *(int32_t *)(auth_ptr + 0x18);
     
     /* 处理认证数据包 */
-    processed_size = FUN_18074b880(packet_ptr, packet_size, &UNK_180982128);
+    processed_size = FUN_18074b880(packet_ptr, packet_size, &unknown_var_904_ptr);
     total_size = FUN_18074b880(packet_ptr + processed_size, packet_size - processed_size, &system_temp_buffer);
     processed_size = processed_size + total_size;
     total_size = FUN_18088ece0(processed_size + packet_ptr, packet_size - processed_size, &auth_data);
@@ -777,7 +777,7 @@ int Network_ProcessDisconnect(longlong connection_ptr, longlong disconnect_data_
     disconnect_flag = *(int8_t *)(connection_ptr + 0x1c);
     
     /* 处理断开连接数据 */
-    processed_size = FUN_18074b880(disconnect_data_ptr, disconnect_size, &UNK_1809821b0);
+    processed_size = FUN_18074b880(disconnect_data_ptr, disconnect_size, &unknown_var_1040_ptr);
     total_size = FUN_18074b880(disconnect_data_ptr + processed_size, disconnect_size - processed_size, &system_temp_buffer);
     processed_size = processed_size + total_size;
     total_size = FUN_18088ece0(processed_size + disconnect_data_ptr, disconnect_size - processed_size, &connection_data);
@@ -817,7 +817,7 @@ int Network_HandleGameData(longlong game_ptr, longlong data_ptr, int data_size)
     game_info = *(int32_t *)(game_ptr + 0x10);
     
     /* 处理游戏数据 */
-    processed_size = FUN_18074b880(data_ptr, data_size, &UNK_1809822c8);
+    processed_size = FUN_18074b880(data_ptr, data_size, &unknown_var_1320_ptr);
     total_size = FUN_18074b880(data_ptr + processed_size, data_size - processed_size, &system_temp_buffer);
     processed_size = processed_size + total_size;
     total_size = FUN_18074b880(processed_size + data_ptr, data_size - processed_size, game_ptr + 0x20);
@@ -855,7 +855,7 @@ int Network_ProcessServerQuery(longlong server_ptr, longlong query_ptr, int quer
     query_flag = *(int8_t *)(server_ptr + 0x14);
     
     /* 处理查询数据 */
-    processed_size = FUN_18074b880(query_ptr, query_size, &UNK_180982350);
+    processed_size = FUN_18074b880(query_ptr, query_size, &unknown_var_1456_ptr);
     total_size = FUN_18074b880(query_ptr + processed_size, query_size - processed_size, &system_temp_buffer);
     processed_size = processed_size + total_size;
     total_size = FUN_18074b880(processed_size + query_ptr, query_size - processed_size, server_ptr + 0x20);
@@ -889,7 +889,7 @@ int Network_HandleSimplePacket(longlong packet_ptr, longlong data_ptr, int data_
     int total_size;
     
     /* 处理简单数据包 */
-    processed_size = FUN_18074b880(data_ptr, data_size, &UNK_180982770);
+    processed_size = FUN_18074b880(data_ptr, data_size, &unknown_var_2512_ptr);
     total_size = FUN_18074b880(data_ptr + processed_size, data_size - processed_size, &system_temp_buffer);
     processed_size = processed_size + total_size;
     total_size = FUN_18074b880(processed_size + data_ptr, data_size - processed_size, packet_ptr + 0x10);
@@ -920,7 +920,7 @@ int Network_ManageDataTransfer(longlong transfer_ptr, longlong data_ptr, int dat
     transfer_info[1] = *(int32_t *)(transfer_ptr + 0x18);
     
     /* 管理数据传输 */
-    processed_size = FUN_18074b880(data_ptr, data_size, &UNK_180984530);
+    processed_size = FUN_18074b880(data_ptr, data_size, &unknown_var_128_ptr);
     total_size = FUN_18074b880(data_ptr + processed_size, data_size - processed_size, &system_temp_buffer);
     processed_size = processed_size + total_size;
     total_size = func_0x00018074b800(processed_size + data_ptr, data_size - processed_size, transfer_info[0]);
@@ -966,7 +966,7 @@ void Network_GetServerInfo(ulonglong server_id, uint64_t *info_ptr)
         func_0x00018074bda0(message_buffer, 0x100, 0);
         message_ptr = message_buffer;
         /* 发送错误消息 */
-        FUN_180749ef0(0x1f, 0xd, server_id, &UNK_180984908);
+        FUN_180749ef0(0x1f, 0xd, server_id, &unknown_var_1112_ptr);
     }
     
     /* 初始化服务器查询 */
@@ -1040,7 +1040,7 @@ void Network_ConnectToServer(uint64_t server_id, longlong connection_ptr)
             func_0x00018074bda0(message_buffer, 0x100, 0);
             message_ptr = message_buffer;
             /* 发送错误消息 */
-            FUN_180749ef0(0x1f, 0xb, server_id, &UNK_1809846b0);
+            FUN_180749ef0(0x1f, 0xb, server_id, &unknown_var_512_ptr);
         }
         /* 安全检查失败，终止程序 */
         FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
@@ -1105,7 +1105,7 @@ void Network_SendGameCommand(uint64_t command_id, uint64_t command_data, uint64_
         func_0x00018074bda0(message_buffer + (processed_size + total_size), 0x100 - (processed_size + total_size), command_size);
         message_ptr = message_buffer;
         /* 发送游戏命令 */
-        FUN_180749ef0(status, 0xb, command_id, &UNK_180981fc0);
+        FUN_180749ef0(status, 0xb, command_id, &unknown_var_544_ptr);
     }
     
     /* 安全检查失败，终止程序 */
@@ -1194,7 +1194,7 @@ void Network_ValidateServerResponse(uint64_t server_id, int32_t *response_ptr, u
         total_size = FUN_18074b880(message_buffer + processed_size, 0x100 - processed_size, &system_temp_buffer);
         func_0x00018074bda0(message_buffer + (processed_size + total_size), 0x100 - (processed_size + total_size), response_data);
         message_ptr = message_buffer;
-        FUN_180749ef0(status, 0xb, server_id, &UNK_180957410);
+        FUN_180749ef0(status, 0xb, server_id, &unknown_var_5520_ptr);
     }
     
 LAB_1808453a2:
@@ -1271,7 +1271,7 @@ void Network_GetConnectionInfo(uint64_t connection_id, uint64_t *info_ptr)
         func_0x00018074bda0(message_buffer, 0x100, 0);
         message_ptr = message_buffer;
         /* 发送错误消息 */
-        FUN_180749ef0(0x1f, 0xf, connection_id, &UNK_1809842c8);
+        FUN_180749ef0(0x1f, 0xf, connection_id, &unknown_var_9512_ptr);
     }
     
     /* 初始化信息查询 */
@@ -1292,7 +1292,7 @@ LAB_180845484:
     /* 处理认证成功情况 */
     if ((auth_status == 0) &&
         (status = FUN_18088dec0(*(uint64_t *)(connection_info[0] + 0x98), request_info, 0x20), status == 0)) {
-        *request_info[0] = &UNK_180984260;
+        *request_info[0] = &unknown_var_9408_ptr;
         *(int32_t *)(request_info[0] + 1) = 0x20;
         *(int *)(request_info[0] + 2) = (int)connection_id;
         status = func_0x00018088e0d0(*(uint64_t *)(connection_info[0] + 0x98), request_info[0]);
@@ -1346,7 +1346,7 @@ void Network_GetServerStatus(uint64_t server_id, uint64_t *status_ptr)
     if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
         func_0x00018074bda0(message_buffer, 0x100, status_ptr);
         message_ptr = message_buffer;
-        FUN_180749ef0(status, 0xb, server_id, &UNK_180984648);
+        FUN_180749ef0(status, 0xb, server_id, &unknown_var_408_ptr);
     }
     
 LAB_1808455bc:

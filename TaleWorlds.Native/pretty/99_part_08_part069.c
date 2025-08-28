@@ -579,7 +579,7 @@ void FUN_1805b8920(longlong *param_1)
   *(int8_t *)((longlong)param_1 + 0x14a4) = 0;
   *(int32_t *)((longlong)param_1 + 0x1b6c) = 0;
   if ((char)param_1[0x386] != '\0') {
-    func_0x000180508000(param_1,&UNK_180a37508,&UNK_180a374e0,&UNK_180a30bd8,&UNK_180a30c20);
+    func_0x000180508000(param_1,&unknown_var_3272_ptr,&unknown_var_3232_ptr,&unknown_var_6344_ptr,&unknown_var_6416_ptr);
     *(int8_t *)(param_1 + 0x386) = 0;
     *(int32_t *)((longlong)param_1 + 0x1c0c) = 0xffffffff;
     *(int32_t *)((longlong)param_1 + 0x1c14) = 0xffffffff;

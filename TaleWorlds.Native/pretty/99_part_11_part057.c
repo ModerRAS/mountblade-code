@@ -88,16 +88,16 @@
 // ============================================================================
 
 extern uint64_t _DAT_180bf00a8;     // 安全检查常量
-extern uint64_t UNK_18097c258;      // 未知数据引用258
-extern uint64_t UNK_18097c268;      // 未知数据引用268
-extern uint64_t UNK_18097c278;      // 未知数据引用278
-extern uint64_t UNK_18097c288;      // 未知数据引用288
-extern uint64_t UNK_18097c294;      // 未知数据引用294
-extern uint64_t UNK_18097c29c;      // 未知数据引用29c
-extern uint64_t UNK_18097c2a8;      // 未知数据引用2a8
-extern uint64_t UNK_18097c2b8;      // 未知数据引用2b8
-extern uint64_t UNK_18097c2c8;      // 未知数据引用2c8
-extern uint64_t UNK_18097c2d8;      // 未知数据引用2d8
+extern uint64_t global_state_6632_ptr;      // 未知数据引用258
+extern uint64_t global_state_6648_ptr;      // 未知数据引用268
+extern uint64_t global_state_6664_ptr;      // 未知数据引用278
+extern uint64_t global_state_6680_ptr;      // 未知数据引用288
+extern uint64_t global_state_6692_ptr;      // 未知数据引用294
+extern uint64_t global_state_6700_ptr;      // 未知数据引用29c
+extern uint64_t global_state_6712_ptr;      // 未知数据引用2a8
+extern uint64_t global_state_6728_ptr;      // 未知数据引用2b8
+extern uint64_t global_state_6744_ptr;      // 未知数据引用2c8
+extern uint64_t global_state_6760_ptr;      // 未知数据引用2d8
 extern uint64_t system_memory_64c8;      // 数据引用64c8
 
 // ============================================================================
@@ -320,32 +320,32 @@ void FUN_1807bb100(longlong *param_1, char param_2, int8_t param_3)
                                             uStack_158 = 0;
                                             uStack_160 = 1;
                                             uStack_168 = 4;
-                                            data_serializer(*param_1, 7, &UNK_18097c258);
+                                            data_serializer(*param_1, 7, &global_state_6632_ptr);
                                         }
                                         break;
                                     case 2:
-                                        binary_data_processor(param_1, &UNK_18097c268, uVar8);
+                                        binary_data_processor(param_1, &global_state_6648_ptr, uVar8);
                                         break;
                                     case 3:
                                         // 特殊处理（不返回）
-                                        memory_initializer(auStack_138, 0x100, &UNK_18097c278, (int)param_1[3]);
+                                        memory_initializer(auStack_138, 0x100, &global_state_6664_ptr, (int)param_1[3]);
                                     case 4:
-                                        binary_data_processor(param_1, &UNK_18097c288, uVar8);
+                                        binary_data_processor(param_1, &global_state_6680_ptr, uVar8);
                                         break;
                                     case 5:
-                                        binary_data_processor(param_1, &UNK_18097c294, uVar8);
+                                        binary_data_processor(param_1, &global_state_6692_ptr, uVar8);
                                         break;
                                     case 6:
-                                        binary_data_processor(param_1, &UNK_18097c29c, uVar8);
+                                        binary_data_processor(param_1, &global_state_6700_ptr, uVar8);
                                         break;
                                     case 7:
-                                        binary_data_processor(param_1, &UNK_18097c2a8, uVar8);
+                                        binary_data_processor(param_1, &global_state_6712_ptr, uVar8);
                                         break;
                                     case 8:
-                                        binary_data_processor(param_1, &UNK_18097c2b8, uVar8);
+                                        binary_data_processor(param_1, &global_state_6728_ptr, uVar8);
                                         break;
                                     case 9:
-                                        binary_data_processor(param_1, &UNK_18097c2c8, uVar8);
+                                        binary_data_processor(param_1, &global_state_6744_ptr, uVar8);
                                         break;
                                     case 0x20:
                                         if (uVar7 < uVar11) goto code_r0x0001807bb4a3;
@@ -415,7 +415,7 @@ void FUN_1807bb100(longlong *param_1, char param_2, int8_t param_3)
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         break;
                                     case 0x7f:
-                                        binary_data_processor(param_1, &UNK_18097c2d8, uVar8);
+                                        binary_data_processor(param_1, &global_state_6760_ptr, uVar8);
                                     }
                                     goto LAB_1807bb778;
                                 }

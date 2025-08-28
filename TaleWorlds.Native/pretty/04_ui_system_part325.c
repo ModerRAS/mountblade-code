@@ -110,7 +110,7 @@ void FUN_180847690(uint64_t param_1,int32_t param_2,int32_t param_3,int32_t para
     func_0x00018074bda0(auStack_148 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_5);
     puStack_168 = auStack_148;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,0xb,param_1,&UNK_180984630);
+    FUN_180749ef0(iVar1,0xb,param_1,&unknown_var_384_ptr);
   }
 LAB_1808477fa:
                     // WARNING: Subroutine does not return
@@ -211,7 +211,7 @@ void FUN_180847890(ulonglong param_1,int8_t *param_2)
     FUN_18074be30(auStack_118,0x100,0);
     puStack_148 = auStack_118;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xc,param_1,&UNK_1809847f8);
+    FUN_180749ef0(0x1f,0xc,param_1,&unknown_var_840_ptr);
   }
   *param_2 = 0;
   uStack_128 = 0;
@@ -265,7 +265,7 @@ void FUN_1808479d0(longlong param_1,longlong *param_2,byte *param_3)
       FUN_18084b240(param_1 + 0x50,&puStack_58);
     }
     cStack_60 = '\0';
-    puStack_68 = &UNK_1809845a0;
+    puStack_68 = &unknown_var_240_ptr;
     iVar3 = FUN_18084b5a0(&puStack_68,lVar4 + 0x80,param_2);
     if ((iVar3 != 0) || (iVar3 = FUN_18084b5a0(&puStack_68,lVar4 + 0x90,param_2), iVar3 != 0))
     goto LAB_180847c35;
@@ -299,7 +299,7 @@ void FUN_1808479d0(longlong param_1,longlong *param_2,byte *param_3)
         if (cVar1 != '\0') goto LAB_180847bfb;
       }
       cStack_50 = '\0';
-      puStack_58 = &UNK_1809845c0;
+      puStack_58 = &unknown_var_272_ptr;
       plStack_48 = param_2;
       iVar3 = FUN_18084b990(&puStack_58,param_1,param_2);
       if ((iVar3 != 0) || (iVar3 = FUN_18084be00(&puStack_58,param_1,param_2), iVar3 != 0))
@@ -353,7 +353,7 @@ void FUN_180847c60(longlong param_1,longlong *param_2,byte *param_3)
     bVar7 = ~(byte)(*(uint *)(param_1 + 0xf8) >> 1) & 1;
     if (bVar7 != 0) {
       uStack_70 = 1;
-      puStack_78 = &UNK_180984540;
+      puStack_78 = &unknown_var_144_ptr;
       plStack_68 = param_2;
       iVar2 = FUN_18084b990(&puStack_78,param_1,param_2);
       if (iVar2 != 0) goto LAB_180847dc9;
@@ -428,7 +428,7 @@ void FUN_180847df0(ulonglong param_1,int8_t *param_2)
     FUN_18074be30(auStack_118,0x100,0);
     puStack_148 = auStack_118;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xc,param_1,&UNK_1809847d8);
+    FUN_180749ef0(0x1f,0xc,param_1,&unknown_var_808_ptr);
   }
   *param_2 = 0;
   uStack_128 = 0;
@@ -493,7 +493,7 @@ LAB_180847fc4:
   if ((iVar2 == 0) &&
      (iVar1 = FUN_18088dec0(*(uint64_t *)(alStack_138[0] + 0x98),apuStack_128,0x18), iVar1 == 0))
   {
-    *apuStack_128[0] = &UNK_180983c78;
+    *apuStack_128[0] = &unknown_var_7896_ptr;
     *(int32_t *)(apuStack_128[0] + 1) = 0x18;
     *(int *)(apuStack_128[0] + 2) = (int)param_1;
     func_0x00018088e0d0(*(uint64_t *)(alStack_138[0] + 0x98));
@@ -544,7 +544,7 @@ void FUN_180848090(ulonglong param_1,longlong param_2,int32_t param_3,uint64_t *
     func_0x00018074bda0(auStack_158 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_4);
     puStack_188 = auStack_158;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xb,param_1,&UNK_180982570);
+    FUN_180749ef0(0x1f,0xb,param_1,&unknown_var_2000_ptr);
   }
   uStack_170 = 0;
   iVar3 = func_0x00018088c590(param_1 & 0xffffffff,&lStack_168);
@@ -559,7 +559,7 @@ LAB_18084820e:
   }
   if ((iVar4 == 0) &&
      (iVar3 = FUN_18088dec0(*(uint64_t *)(lStack_168 + 0x98),&puStack_160,0x218), iVar3 == 0)) {
-    *puStack_160 = &UNK_180982508;
+    *puStack_160 = &unknown_var_1896_ptr;
     *(int32_t *)(puStack_160 + 2) = 0;
     *(int32_t *)(puStack_160 + 1) = 0x218;
     *(int32_t *)((longlong)puStack_160 + 0x14) = uStack_178;
@@ -604,7 +604,7 @@ LAB_180848354:
   if ((iVar2 == 0) &&
      (iVar1 = FUN_18088dec0(*(uint64_t *)(alStack_138[0] + 0x98),apuStack_128,0x18), iVar1 == 0))
   {
-    *apuStack_128[0] = &UNK_180982cc0;
+    *apuStack_128[0] = &unknown_var_3872_ptr;
     *(int32_t *)(apuStack_128[0] + 1) = 0x18;
     *(int *)(apuStack_128[0] + 2) = (int)param_1;
     func_0x00018088e0d0(*(uint64_t *)(alStack_138[0] + 0x98));

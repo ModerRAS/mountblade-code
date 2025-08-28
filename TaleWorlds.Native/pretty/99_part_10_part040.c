@@ -35,7 +35,7 @@ void FUN_1806c17d0(longlong *param_1,longlong param_2)
     uStackX_8 = 0;
     FUN_1806d7f00(auStack_68,uVar5,&uStackX_8);
     (**(code **)(param_2 + 0x10))(param_1[2],puStack_38,uVar5);
-    FUN_1806d7170(param_1,&UNK_18094c9a0);
+    FUN_1806d7170(param_1,&unknown_var_1888_ptr);
     if (uVar5 != 0) {
       uVar9 = (ulonglong)uVar5;
       lVar10 = 0;
@@ -46,16 +46,16 @@ void FUN_1806c17d0(longlong *param_1,longlong param_2)
         if ((lVar2 != 0) && (cVar4 = (**(code **)(*plVar8 + 0x20))(plVar8,lVar2), cVar4 == '\0')) {
           uVar6 = _getInstance_Foundation_shdfnd_physx__SAAEAV123_XZ();
           _error_Foundation_shdfnd_physx__QEAAXW4Enum_PxErrorCode_3_PEBDH1ZZ
-                    (uVar6,0x20,&UNK_18094c7d0,0x32,&UNK_18094c770,&UNK_18094c9a0);
+                    (uVar6,0x20,&unknown_var_1424_ptr,0x32,&unknown_var_1328_ptr,&unknown_var_1888_ptr);
         }
         lVar7 = 0;
         if ((lVar2 != 0) && (lVar7 = (**(code **)(*plVar8 + 0x68))(plVar8,lVar2), lVar7 == 0)) {
           lVar7 = lVar2;
         }
-        puStack_88 = &UNK_18094bec8;
+        puStack_88 = &unknown_var_9112_ptr;
         lStack_80 = lVar2;
         lStack_78 = lVar7;
-        (**(code **)(*plVar1 + 8))(plVar1,&UNK_18094c9a0,&puStack_88);
+        (**(code **)(*plVar1 + 8))(plVar1,&unknown_var_1888_ptr,&puStack_88);
         lVar10 = lVar10 + 8;
         uVar9 = uVar9 - 1;
       } while (uVar9 != 0);
@@ -127,16 +127,16 @@ void FUN_1806c17f7(void)
       if ((lVar2 != 0) && (cVar3 = (**(code **)(*plVar6 + 0x20))(plVar6,lVar2), cVar3 == '\0')) {
         uVar4 = _getInstance_Foundation_shdfnd_physx__SAAEAV123_XZ();
         _error_Foundation_shdfnd_physx__QEAAXW4Enum_PxErrorCode_3_PEBDH1ZZ
-                  (uVar4,0x20,&UNK_18094c7d0,0x32,&UNK_18094c770);
+                  (uVar4,0x20,&unknown_var_1424_ptr,0x32,&unknown_var_1328_ptr);
       }
       lVar5 = 0;
       if ((lVar2 != 0) && (lVar5 = (**(code **)(*plVar6 + 0x68))(plVar6,lVar2), lVar5 == 0)) {
         lVar5 = lVar2;
       }
-      in_stack_00000030 = &UNK_18094bec8;
+      in_stack_00000030 = &unknown_var_9112_ptr;
       in_stack_00000038 = lVar2;
       in_stack_00000040 = lVar5;
-      (**(code **)(*plVar1 + 8))(plVar1,&UNK_18094c9a0,&stack0x00000030);
+      (**(code **)(*plVar1 + 8))(plVar1,&unknown_var_1888_ptr,&stack0x00000030);
       lVar8 = lVar8 + 8;
       uVar7 = uVar7 - 1;
     } while (uVar7 != 0);
@@ -190,7 +190,7 @@ void FUN_1806c186e(void)
     if ((lVar2 != 0) && (cVar4 = (**(code **)(*plVar6 + 0x20))(plVar6,lVar2), cVar4 == '\0')) {
       uVar5 = _getInstance_Foundation_shdfnd_physx__SAAEAV123_XZ();
       _error_Foundation_shdfnd_physx__QEAAXW4Enum_PxErrorCode_3_PEBDH1ZZ
-                (uVar5,0x20,&UNK_18094c7d0,0x32,&UNK_18094c770);
+                (uVar5,0x20,&unknown_var_1424_ptr,0x32,&unknown_var_1328_ptr);
     }
     if (lVar2 != 0) {
       (**(code **)(*plVar6 + 0x68))(plVar6,lVar2);
@@ -342,7 +342,7 @@ void FUN_1806c19d0(longlong *param_1,longlong param_2)
           ;
           lVar7 = *param_1;
         }
-        puStack_278 = &UNK_18094bf90;
+        puStack_278 = &unknown_var_9312_ptr;
         uStack_270 = uStack_270 & 0xffffff00;
         if (*(uint *)(lVar7 + 0x10) < (*(uint *)(lVar7 + 0x14) & 0x7fffffff)) {
           puVar1 = (int32_t *)
@@ -364,15 +364,15 @@ void FUN_1806c19d0(longlong *param_1,longlong param_2)
           if (cVar5 == '\0') {
             uVar8 = _getInstance_Foundation_shdfnd_physx__SAAEAV123_XZ();
             _error_Foundation_shdfnd_physx__QEAAXW4Enum_PxErrorCode_3_PEBDH1ZZ
-                      (uVar8,0x20,&UNK_18094c7d0,0x32,&UNK_18094c770,&UNK_18094c840);
+                      (uVar8,0x20,&unknown_var_1424_ptr,0x32,&unknown_var_1328_ptr,&unknown_var_1536_ptr);
           }
           plStack_218 = (longlong *)(**(code **)(*plVar2 + 0x68))(plVar2,plVar9);
-          puStack_228 = &UNK_18094bf90;
+          puStack_228 = &unknown_var_9312_ptr;
           if (plStack_218 == (longlong *)0x0) {
             plStack_218 = plVar9;
           }
           plStack_220 = plVar9;
-          (**(code **)(*plVar3 + 8))(plVar3,&UNK_18094c840,&puStack_228);
+          (**(code **)(*plVar3 + 8))(plVar3,&unknown_var_1536_ptr,&puStack_228);
         }
         else {
           FUN_1806d2b80(*param_1,plVar9,param_1[1],param_1[3],plVar2);
@@ -456,7 +456,7 @@ void FUN_1806c1a05(void)
              1;
         lVar5 = *unaff_RBX;
       }
-      in_stack_00000030 = &UNK_18094bf90;
+      in_stack_00000030 = &unknown_var_9312_ptr;
       uStack0000000000000038 = uStack0000000000000038 & 0xffffff00;
       if (*(uint *)(lVar5 + 0x10) < (*(uint *)(lVar5 + 0x14) & 0x7fffffff)) {
         puVar1 = (int32_t *)
@@ -478,15 +478,15 @@ void FUN_1806c1a05(void)
         if (cVar4 == '\0') {
           uVar6 = _getInstance_Foundation_shdfnd_physx__SAAEAV123_XZ();
           _error_Foundation_shdfnd_physx__QEAAXW4Enum_PxErrorCode_3_PEBDH1ZZ
-                    (uVar6,0x20,&UNK_18094c7d0,0x32,&UNK_18094c770);
+                    (uVar6,0x20,&unknown_var_1424_ptr,0x32,&unknown_var_1328_ptr);
         }
         in_stack_00000090 = (longlong *)(**(code **)(*plVar2 + 0x68))(plVar2,plVar7);
-        in_stack_00000080 = &UNK_18094bf90;
+        in_stack_00000080 = &unknown_var_9312_ptr;
         if (in_stack_00000090 == (longlong *)0x0) {
           in_stack_00000090 = plVar7;
         }
         in_stack_00000088 = plVar7;
-        (**(code **)(*plVar3 + 8))(plVar3,&UNK_18094c840,&stack0x00000080);
+        (**(code **)(*plVar3 + 8))(plVar3,&unknown_var_1536_ptr,&stack0x00000080);
       }
       else {
         FUN_1806d2b80(*unaff_RBX,plVar7,unaff_RBX[1],unaff_RBX[3],plVar2);
@@ -558,7 +558,7 @@ void FUN_1806c1a5a(void)
       ;
       lVar6 = *unaff_RBX;
     }
-    in_stack_00000030 = &UNK_18094bf90;
+    in_stack_00000030 = &unknown_var_9312_ptr;
     uStack0000000000000038 = uStack0000000000000038 & 0xffffff00;
     if (*(uint *)(lVar6 + 0x10) < (*(uint *)(lVar6 + 0x14) & 0x7fffffff)) {
       puVar1 = (int32_t *)(*(longlong *)(lVar6 + 8) + (ulonglong)*(uint *)(lVar6 + 0x10) * 0x10);
@@ -579,15 +579,15 @@ void FUN_1806c1a5a(void)
       if (cVar5 == '\0') {
         uVar7 = _getInstance_Foundation_shdfnd_physx__SAAEAV123_XZ();
         _error_Foundation_shdfnd_physx__QEAAXW4Enum_PxErrorCode_3_PEBDH1ZZ
-                  (uVar7,0x20,&UNK_18094c7d0,0x32,&UNK_18094c770);
+                  (uVar7,0x20,&unknown_var_1424_ptr,0x32,&unknown_var_1328_ptr);
       }
       in_stack_00000090 = (longlong *)(**(code **)(*plVar2 + 0x68))(plVar2,plVar8);
-      in_stack_00000080 = &UNK_18094bf90;
+      in_stack_00000080 = &unknown_var_9312_ptr;
       if (in_stack_00000090 == (longlong *)0x0) {
         in_stack_00000090 = plVar8;
       }
       in_stack_00000088 = plVar8;
-      (**(code **)(*plVar3 + 8))(plVar3,&UNK_18094c840,&stack0x00000080);
+      (**(code **)(*plVar3 + 8))(plVar3,&unknown_var_1536_ptr,&stack0x00000080);
     }
     else {
       FUN_1806d2b80(*unaff_RBX,plVar8,unaff_RBX[1],unaff_RBX[3],plVar2);
@@ -702,7 +702,7 @@ void FUN_1806c1c70(longlong *param_1,uint64_t param_2,uint64_t *param_3,longlong
     if ((char)param_1[9] != '\0') {
       iVar1 = *(int *)(*param_1 + 0x10);
       if (iVar1 == 0) {
-        puVar5 = &UNK_18094c9c0;
+        puVar5 = &unknown_var_1920_ptr;
       }
       else {
         puVar5 = *(void **)(*(longlong *)(*param_1 + 8) + (ulonglong)(iVar1 - 1) * 0x18);
@@ -805,7 +805,7 @@ void FUN_1806c1c7e(uint64_t param_1,uint64_t param_2,longlong param_3,longlong *
     if ((char)unaff_RBX[9] != '\0') {
       iVar1 = *(int *)(*unaff_RBX + 0x10);
       if (iVar1 == 0) {
-        puVar5 = &UNK_18094c9c0;
+        puVar5 = &unknown_var_1920_ptr;
       }
       else {
         puVar5 = *(void **)(*(longlong *)(*unaff_RBX + 8) + (ulonglong)(iVar1 - 1) * 0x18);

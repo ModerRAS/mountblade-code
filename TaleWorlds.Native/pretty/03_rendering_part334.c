@@ -399,7 +399,7 @@ void FUN_180443b00(void)
     system_data = (longlong)*(int *)(_DAT_180c86938 + 0x1d40) * 0xd0 + *(longlong *)(_DAT_180c86938 + 0x1d20);
     
     // 设置纹理数据指针
-    stack_ptr_c8 = &UNK_1809fcc28;
+    stack_ptr_c8 = &unknown_var_3432_ptr;
     stack_ptr_c0 = stack_array_b0;
     stack_array_b0[0] = 0;
     stack_data_b8 = *(int32_t *)(system_data + 0x20);
@@ -419,7 +419,7 @@ void FUN_180443b00(void)
     }
     
     // 查找特定纹理标记
-    system_data = strstr(texture_ptr, &UNK_180a0a7b8);
+    system_data = strstr(texture_ptr, &unknown_var_9640_ptr);
     if (system_data != 0) {
         // 初始化渲染数据结构
         stack_data_168 = 0;
@@ -440,7 +440,7 @@ void FUN_180443b00(void)
         
         // 处理字符串数据
         do {
-            string_ptr = &UNK_1809fd0f9 + system_data;
+            string_ptr = &unknown_var_4665_ptr + system_data;
             system_data = system_data + 1;
         } while (*string_ptr != '\0');
         
@@ -449,7 +449,7 @@ void FUN_180443b00(void)
         stack_ptr_198 = (uint64_t *)0x100000000;
         stack_data_190 = 2;
         FUN_180189600(&stack_data_158, &stack_ptr_198, stack_array_18c);
-        stack_ptr_198 = (uint64_t *)&UNK_180186550;
+        stack_ptr_198 = (uint64_t *)&unknown_var_9744_ptr;
         stack_ptr_188 = context_manager;
         FUN_180188620(stack_array_138, &stack_ptr_198);
         stack_data_1b8 = 0;
@@ -463,15 +463,15 @@ void FUN_180443b00(void)
         
         if (-1 < stack_array_1d0[0]) {
             config_data = func_0x0001801836e0();
-            FUN_180062300(_DAT_180c86928, &UNK_180a0a800, config_data);
+            FUN_180062300(_DAT_180c86928, &unknown_var_9712_ptr, config_data);
         }
         
         config_data = func_0x0001801836e0();
-        FUN_180062300(_DAT_180c86928, &UNK_180a0a890, config_data);
+        FUN_180062300(_DAT_180c86928, &unknown_var_9856_ptr, config_data);
     }
     
     // 设置渲染配置
-    stack_ptr_c8 = &UNK_18098bcb0;
+    stack_ptr_c8 = &unknown_var_720_ptr;
     FUN_1808fc050(stack_data_28 ^ (ulonglong)stack_buffer_278);
 }
 
@@ -532,7 +532,7 @@ void FUN_180443b80(uint64_t param_1, int8_t param_2)
     parameter_ptr_a8 = parameter_ptr;
     
     if (*(longlong *)(_DAT_180c8a9e0 + 8) == 0) {
-        *parameter_ptr = &UNK_180a3c3e0;
+        *parameter_ptr = &unknown_var_3456_ptr;
         if (parameter_ptr[1] != 0) {
             FUN_18064e900();
         }
@@ -558,14 +558,14 @@ void FUN_180443b80(uint64_t param_1, int8_t param_2)
         FUN_1800671b0(parameter_buffer_40);
         parameter_manager = *(longlong **)(system_context + 8);
         parameter_ptr_b8 = &parameter_ptr_a0;
-        parameter_ptr_a0 = &UNK_180a0ac18;
+        parameter_ptr_a0 = &unknown_var_760_ptr;
         parameter_data_98 = system_context;
         parameter_ptr_68 = &parameter_ptr_a0;
         parameter_flag_20 = param_2;
         
         (**(code **)(*parameter_manager + 0x20))(parameter_manager, parameter_buffer_40, &parameter_ptr_a0, 0);
         FUN_180067070(parameter_buffer_40);
-        *parameter_ptr = &UNK_180a3c3e0;
+        *parameter_ptr = &unknown_var_3456_ptr;
         
         if (parameter_ptr[1] != 0) {
             FUN_18064e900();
@@ -574,7 +574,7 @@ void FUN_180443b80(uint64_t param_1, int8_t param_2)
         *(int32_t *)(parameter_ptr + 3) = 0;
     }
     
-    *parameter_ptr = &UNK_18098bcb0;
+    *parameter_ptr = &unknown_var_720_ptr;
     FUN_1808fc050(parameter_data_18 ^ (ulonglong)parameter_buffer_d8);
 }
 
@@ -653,7 +653,7 @@ void FUN_180443df0(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
     data_processor_9 = (longlong *)0x0;
     
     // 解析数据块
-    data_chunk = strtok(0, &UNK_180a2a43c, param_3, param_4, RENDERING_SYSTEM_FLAG_FFFFFFFE, 0, 0, 0, 3);
+    data_chunk = strtok(0, &unknown_var_9820_ptr, param_3, param_4, RENDERING_SYSTEM_FLAG_FFFFFFFE, 0, 0, 0, 3);
     data_processor_6 = data_processor_4;
     data_processor_5 = data_processor_4;
     data_status = extra_data;
@@ -701,7 +701,7 @@ void FUN_180443df0(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
         
         data_processor_6 = data_processor_1 + 1;
         data_processor_8 = data_processor_6;
-        data_chunk = strtok(0, &UNK_180a2a43c);
+        data_chunk = strtok(0, &unknown_var_9820_ptr);
         data_status = extra_data_00;
         data_processor_2 = data_processor_3;
         data_processor_1 = data_processor_6;
@@ -949,7 +949,7 @@ void FUN_1804443c0(uint64_t param_1, uint64_t param_2)
     
     batch_data_18[0] = 100;
     batch_data_20[0] = 1;
-    FUN_180114450(param_1, 0, param_2, batch_data_20, batch_data_18, &UNK_1809fd0a0, 0);
+    FUN_180114450(param_1, 0, param_2, batch_data_20, batch_data_18, &unknown_var_4576_ptr, 0);
     return;
 }
 
@@ -1028,7 +1028,7 @@ void FUN_180444600(uint64_t param_1, uint64_t param_2, float param_3, float para
     parameter_flag_39 = 0;
     
     if (-1 < param_5) {
-        FUN_180121200(&parameter_flag_48, 0x10, &UNK_180a063b8);
+        FUN_180121200(&parameter_flag_48, 0x10, &unknown_var_2232_ptr);
     }
     
     parameter_data_68 = 0x20000;
@@ -1082,7 +1082,7 @@ void FUN_180444700(uint64_t param_1, int32_t *param_2, int32_t *param_3, int par
     shader_flag_21 = 0;
     
     if (-1 < param_4) {
-        FUN_180121200(&shader_flag_30, 0x10, &UNK_180a063b8);
+        FUN_180121200(&shader_flag_30, 0x10, &unknown_var_2232_ptr);
     }
     
     shader_ptr_48 = &shader_flag_30;
@@ -1127,7 +1127,7 @@ void FUN_1804447c0(uint64_t param_1, int32_t *param_2, int32_t *param_3, int32_t
     effect_flag_39 = 0;
     
     if (-1 < param_5) {
-        FUN_180121200(&effect_flag_48, 0x10, &UNK_180a063b8);
+        FUN_180121200(&effect_flag_48, 0x10, &unknown_var_2232_ptr);
     }
     
     effect_ptr_68 = &effect_flag_48;
@@ -1176,7 +1176,7 @@ void FUN_1804448a0(uint64_t param_1, int32_t *param_2, int32_t *param_3, int32_t
     buffer_flag_39 = 0;
     
     if (-1 < param_6) {
-        FUN_180121200(&buffer_flag_48, 0x10, &UNK_180a063b8);
+        FUN_180121200(&buffer_flag_48, 0x10, &unknown_var_2232_ptr);
     }
     
     buffer_ptr_68 = &buffer_flag_48;
@@ -1420,14 +1420,14 @@ int32_t FUN_180445180(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint
     int32_t validation_data_20;
     uint64_t validation_data_18;
     
-    validation_ptr_30 = &UNK_180a3c3e0;
+    validation_ptr_30 = &unknown_var_3456_ptr;
     validation_data_18 = 0;
     validation_data_28 = 0;
     validation_data_20 = 0;
     
     FUN_1801717e0(*(uint64_t *)(_DAT_180c86870 + 8), &validation_ptr_30, param_3, param_4, RENDERING_SYSTEM_FLAG_FFFFFFFE);
     validation_result = (**(code **)(*_DAT_180c8f008 + 0x78))(_DAT_180c8f008, &validation_ptr_30);
-    validation_ptr_30 = &UNK_180a3c3e0;
+    validation_ptr_30 = &unknown_var_3456_ptr;
     
     if (validation_data_28 != 0) {
         FUN_18064e900();
@@ -1497,7 +1497,7 @@ void FUN_180445480(uint64_t *param_1, uint64_t *param_2)
 {
     uint64_t buffer_data_1;
     
-    if ((void *)*param_1 == &UNK_180a249c0) {
+    if ((void *)*param_1 == &unknown_var_6656_ptr) {
         param_1 = param_1 + 8;
     }
     else {

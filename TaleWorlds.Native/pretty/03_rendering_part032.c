@@ -76,11 +76,11 @@ typedef enum {
 // 全局数据引用
 #define RenderingSystemGlobalData _DAT_180c8ed18
 #define RenderingSystemDefaultData &DAT_18098bc73
-#define RenderingSystemVTableData1 &UNK_18098bcb0
-#define RenderingSystemVTableData2 &UNK_1809fcc58
-#define RenderingSystemVTableData3 &UNK_180a3c3e0
-#define RenderingSystemVTableData4 &UNK_180a21720
-#define RenderingSystemVTableData5 &UNK_180a21690
+#define RenderingSystemVTableData1 &unknown_var_720_ptr
+#define RenderingSystemVTableData2 &unknown_var_3480_ptr
+#define RenderingSystemVTableData3 &unknown_var_3456_ptr
+#define RenderingSystemVTableData4 &unknown_var_3696_ptr
+#define RenderingSystemVTableData5 &unknown_var_3552_ptr
 
 // ============================================================================
 // 函数声明

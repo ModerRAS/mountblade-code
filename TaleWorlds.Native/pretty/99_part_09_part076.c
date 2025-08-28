@@ -112,12 +112,12 @@ FUN_1805ef6e0(uint64_t *param_1,longlong param_2,longlong param_3,longlong *para
   uint64_t uStack_b8;
   
   uStack_c8 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a19ac8;
-  *param_1 = &UNK_180a199c8;
+  *param_1 = &unknown_var_1864_ptr;
+  *param_1 = &unknown_var_1608_ptr;
   uVar17 = 0;
   param_1[9] = 0;
   param_1[10] = 0;
-  *param_1 = &UNK_180a37968;
+  *param_1 = &unknown_var_4392_ptr;
   param_1[0xb] = 0xffffffffffffffff;
   param_1[0xc] = 0xffffffffffffffff;
   *(int32_t *)(param_1 + 0xd) = 0xffffffff;
@@ -179,7 +179,7 @@ FUN_1805ef6e0(uint64_t *param_1,longlong param_2,longlong param_3,longlong *para
         if (*(void **)(param_3 + 0x18) != (void *)0x0) {
           puVar24 = *(void **)(param_3 + 0x18);
         }
-        FUN_180626f80(&UNK_180a3bd30,puVar24,puVar29);
+        FUN_180626f80(&unknown_var_1744_ptr,puVar24,puVar29);
         goto LAB_1805ef98b;
       }
       uVar15 = (ulonglong)((int)uVar25 + 1);
@@ -199,7 +199,7 @@ FUN_1805ef6e0(uint64_t *param_1,longlong param_2,longlong param_3,longlong *para
   if (*(void **)(param_3 + 0x18) != (void *)0x0) {
     puVar24 = *(void **)(param_3 + 0x18);
   }
-  FUN_180626f80(&UNK_180a3bd70,puVar24);
+  FUN_180626f80(&unknown_var_1808_ptr,puVar24);
 LAB_1805ef98b:
   param_1[0x1b] = uVar17;
   *(int32_t *)((longlong)param_1 + 0x1e4) = 0xffffffff;
@@ -407,7 +407,7 @@ LAB_1805ef98b:
   uVar17 = uVar25;
   while( true ) {
     plVar21 = (longlong *)param_1[0x1b];
-    if ((void *)*plVar21 == &UNK_180a3beb8) {
+    if ((void *)*plVar21 == &unknown_var_2136_ptr) {
       iVar14 = (int)(plVar21[10] - plVar21[9] >> 3);
     }
     else {
@@ -575,7 +575,7 @@ void FUN_1805f0480(uint64_t *param_1)
   uint64_t *puVar1;
   longlong lVar2;
   
-  *param_1 = &UNK_180a37968;
+  *param_1 = &unknown_var_4392_ptr;
   puVar1 = (uint64_t *)param_1[0x1b];
   if (puVar1 != (uint64_t *)0x0) {
     lVar2 = __RTCastToVoid(puVar1);
@@ -609,8 +609,8 @@ void FUN_1805f0480(uint64_t *param_1)
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  *param_1 = &UNK_180a199c8;
-  *param_1 = &UNK_180a19ac8;
+  *param_1 = &unknown_var_1608_ptr;
+  *param_1 = &unknown_var_1864_ptr;
   return;
 }
 

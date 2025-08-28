@@ -73,25 +73,25 @@
  * ============================================================================ */
 
 // 系统数据区域
-extern int32_t UNK_180d498a8;
-extern void *UNK_180d498b0;
-extern int8_t *UNK_180d498b8;
-extern int32_t UNK_180d498c0;
-extern longlong UNK_180d49908;
-extern longlong UNK_180d49910;
-extern longlong UNK_180d49928;
-extern longlong UNK_180d49930;
-extern int32_t UNK_180d49948;
-extern int32_t UNK_180d4994c;
+extern int32_t global_config_3656;
+extern void *global_config_3664;
+extern int8_t *global_config_3672;
+extern int32_t global_config_3680;
+extern longlong global_config_3752;
+extern longlong global_config_3760;
+extern longlong global_config_3784;
+extern longlong global_config_3792;
+extern int32_t global_config_3816;
+extern int32_t global_config_3820;
 extern uint8_t system_resource_config;
 extern uint8_t system_module_config;
 extern uint8_t system_cache_config;
 extern uint8_t system_temp_config;
-extern uint8_t UNK_180d49d58;
-extern longlong UNK_180d49d68;
-extern uint64_t UNK_180d49d70;
-extern longlong UNK_180d49d78;
-extern longlong *UNK_180c96358;
+extern uint8_t global_config_4856;
+extern longlong global_config_4872;
+extern uint64_t global_config_4880;
+extern longlong global_config_4888;
+extern longlong *global_config_9112;
 
 /* ============================================================================
  * 函数声明

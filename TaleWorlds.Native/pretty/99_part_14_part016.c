@@ -645,10 +645,10 @@ void FUN_1808f8940(uint64_t *param_1,uint64_t *param_2)
   uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
   pcVar1 = *(code **)*param_1;
   _guard_check_icall(pcVar1);
-  iVar3 = (*pcVar1)(param_1,&UNK_180a026d0,&plStack_168);
+  iVar3 = (*pcVar1)(param_1,&unknown_var_6640_ptr,&plStack_168);
   plVar2 = plStack_168;
   if (iVar3 < 0) {
-    FUN_1808fb790(&UNK_18098a7d0,0x3c,&UNK_18098a7b0,&UNK_18098a788);
+    FUN_1808fb790(&unknown_var_5376_ptr,0x3c,&unknown_var_5344_ptr,&unknown_var_5304_ptr);
   }
   else {
     pcVar1 = *(code **)(*plStack_168 + 0x38);
@@ -659,7 +659,7 @@ void FUN_1808f8940(uint64_t *param_1,uint64_t *param_2)
       pcVar1 = *(code **)(*plStack_168 + 0x10);
       _guard_check_icall(pcVar1);
       (*pcVar1)(plStack_168);
-      FUN_1808fb790(&UNK_18098a7d0,0x45,&UNK_18098a7b0,&UNK_18098a828);
+      FUN_1808fb790(&unknown_var_5376_ptr,0x45,&unknown_var_5344_ptr,&unknown_var_5464_ptr);
     }
     else {
       pcVar1 = *(code **)(*plStack_160 + 0x40);
@@ -672,7 +672,7 @@ void FUN_1808f8940(uint64_t *param_1,uint64_t *param_2)
         pcVar1 = *(code **)(*plStack_168 + 0x10);
         _guard_check_icall(pcVar1);
         (*pcVar1)(plStack_168);
-        FUN_1808fb790(&UNK_18098a7d0,0x4f,&UNK_18098a7b0,&UNK_18098a850);
+        FUN_1808fb790(&unknown_var_5376_ptr,0x4f,&unknown_var_5344_ptr,&unknown_var_5504_ptr);
       }
       else {
         *param_2 = uStack_30;
@@ -714,7 +714,7 @@ void FUN_1808f89b5(void)
     pcVar1 = *(code **)(*plStackX_20 + 0x10);
     _guard_check_icall(pcVar1);
     (*pcVar1)(plStackX_20);
-    FUN_1808fb790(&UNK_18098a7d0,0x45,&UNK_18098a7b0,&UNK_18098a828);
+    FUN_1808fb790(&unknown_var_5376_ptr,0x45,&unknown_var_5344_ptr,&unknown_var_5464_ptr);
   }
   else {
     pcVar1 = *(code **)(*in_stack_00000028 + 0x40);
@@ -727,7 +727,7 @@ void FUN_1808f89b5(void)
       pcVar1 = *(code **)(*plStackX_20 + 0x10);
       _guard_check_icall(pcVar1);
       (*pcVar1)(plStackX_20);
-      FUN_1808fb790(&UNK_18098a7d0,0x4f,&UNK_18098a7b0,&UNK_18098a850);
+      FUN_1808fb790(&unknown_var_5376_ptr,0x4f,&unknown_var_5344_ptr,&unknown_var_5504_ptr);
     }
     else {
       *unaff_R14 = in_stack_00000158;

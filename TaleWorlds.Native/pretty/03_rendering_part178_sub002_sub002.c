@@ -536,7 +536,7 @@ LAB_1803763e0:
                                     if ((uVar25 >> 0x16 & 1) == 0) {
                                       fVar32 = 0.0;
                                     }
-                                    else if (*(code **)(*plVar10 + 0x198) == (code *)&UNK_18027d990)
+                                    else if (*(code **)(*plVar10 + 0x198) == (code *)&unknown_var_2544_ptr)
                                     {
                                       fVar32 = *(float *)((longlong)plVar10 + 0x244);
                                     }

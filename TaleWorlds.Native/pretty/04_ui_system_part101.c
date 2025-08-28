@@ -831,7 +831,7 @@ void FUN_180729d55(void)
     
     // 执行状态更新操作
     FUN_1807342b0(*(int16_t *)(unaff_RBX + 0xae2), *(int8_t *)(unaff_RBX + 0xae4));
-    lVar2 = *(longlong *)(&UNK_180954878 + (longlong)*(char *)(unaff_RBX + 0xae8) * 8);
+    lVar2 = *(longlong *)(&unknown_var_4360_ptr + (longlong)*(char *)(unaff_RBX + 0xae8) * 8);
     
     // 检查并更新状态
     if (unaff_EDI < *(int *)(unaff_RBX + 0x914)) {
@@ -853,7 +853,7 @@ void FUN_180729d55(void)
     
     // 更新状态信息
     *(int *)(unaff_RSI + 0x88) =
-         (int)*(short *)(&UNK_1809535e0 + (longlong)*(char *)(unaff_RBX + 0xae9) * 2);
+         (int)*(short *)(&unknown_var_9600_ptr + (longlong)*(char *)(unaff_RBX + 0xae9) * 2);
     
     // 执行安全退出检查
     FUN_1808fc050(in_stack_00000070 ^ (ulonglong)&stack0x00000000);

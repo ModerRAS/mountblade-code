@@ -73,7 +73,7 @@ void FUN_180852090(uint64_t *param_1,uint64_t *param_2)
       puStack_310 = (uint64_t *)CONCAT44(puStack_310._4_4_,(uint)uStack_2c8._6_2_);
       plStack_318 = (longlong *)CONCAT44(plStack_318._4_4_,(uint)uStack_2c8._4_2_);
                     // WARNING: Subroutine does not return
-      FUN_18076b390(auStack_78,0x27,&UNK_180958180,(ulonglong)uStack_2c8 & 0xffffffff);
+      FUN_18076b390(auStack_78,0x27,&unknown_var_8960_ptr,(ulonglong)uStack_2c8 & 0xffffffff);
     }
     param_1[8] = lVar6;
   }
@@ -104,13 +104,13 @@ LAB_1808522f9:
           lVar7 = (**(code **)*param_1)(param_1);
           iVar5 = *(int *)(lVar7 + 0xd0);
           if (iVar5 == 2) {
-            pcVar21 = (code *)&UNK_180863400;
+            pcVar21 = (code *)&unknown_var_6080_ptr;
 LAB_180852282:
             qsort(puVar2,lVar6,8,pcVar21);
           }
           else {
             if (iVar5 == 3) {
-              pcVar21 = (code *)&UNK_1808633a0;
+              pcVar21 = (code *)&unknown_var_5984_ptr;
               goto LAB_180852282;
             }
             if (iVar5 == 4) {
@@ -303,7 +303,7 @@ LAB_180852518:
         if ((0 < (int)uVar17) && (*plVar13 != 0)) {
           plStack_318 = (longlong *)CONCAT71(plStack_318._1_7_,1);
                     // WARNING: Subroutine does not return
-          FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*plVar13,&UNK_180957f70,0x100);
+          FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*plVar13,&unknown_var_8432_ptr,0x100);
         }
         *plVar13 = 0;
         *(int32_t *)((longlong)param_1 + 0x8c) = 0;
@@ -370,7 +370,7 @@ LAB_1808526bf:
       if ((0 < (int)uVar17) && (*plVar13 != 0)) {
         plStack_318 = (longlong *)CONCAT71(plStack_318._1_7_,1);
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*plVar13,&UNK_180957f70,0x100);
+        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*plVar13,&unknown_var_8432_ptr,0x100);
       }
       *plVar13 = 0;
       *(int32_t *)((longlong)param_1 + 0x9c) = 0;

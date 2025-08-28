@@ -396,12 +396,12 @@ StructureInitializerFunc StructureInitializerAndConfigurator_impl = StructureIni
  * - FUN_1806a6390：数据结构处理函数
  * 
  * 全局数据：
- * - UNK_18094a3e8：虚拟函数表
- * - UNK_18094a9a8：默认数据指针
- * - UNK_18094aef0：更新后的虚拟函数表
- * - UNK_18094af38：结构体模板
- * - UNK_18094b068：内存管理器配置
- * - UNK_18094b020：默认配置数据
+ * - unknown_var_2232_ptr：虚拟函数表
+ * - unknown_var_3704_ptr：默认数据指针
+ * - unknown_var_5056_ptr：更新后的虚拟函数表
+ * - unknown_var_5128_ptr：结构体模板
+ * - unknown_var_5432_ptr：内存管理器配置
+ * - unknown_var_5360_ptr：默认配置数据
  * - system_buffer_ptr：默认数据值
  * - _DAT_180be0050：全局管理器
  * 
@@ -546,7 +546,7 @@ void FUN_1806a93e0(longlong param_1,longlong param_2)
     puVar5 = *(uint64_t **)(param_1 + 0x70);
     puVar6 = puVar5 + (ulonglong)*(uint *)(param_1 + 0x78) * 0xf;
     for (; puVar5 < puVar6; puVar5 = puVar5 + 0xf) {
-      *puVar5 = &UNK_18094a9a8;
+      *puVar5 = &unknown_var_3704_ptr;
     }
     *(int32_t *)(param_1 + 0x78) = 0;
     if (*(uint *)(param_1 + 0x68) != 0) {
@@ -556,7 +556,7 @@ void FUN_1806a93e0(longlong param_1,longlong param_2)
         lVar9 = *(longlong *)(param_1 + 0x60) + uVar8;
         if ((uint)uVar7 < (*(uint *)(param_1 + 0x7c) & 0x7fffffff)) {
           puVar5 = (uint64_t *)(uVar7 * 0x78 + *(longlong *)(param_1 + 0x70));
-          *puVar5 = &UNK_18094a9a8;
+          *puVar5 = &unknown_var_3704_ptr;
           uVar4 = *(uint64_t *)(lVar9 + 0x10);
           puVar5[1] = *(uint64_t *)(lVar9 + 8);
           puVar5[2] = uVar4;
@@ -625,7 +625,7 @@ void FUN_1806a9570(uint64_t *param_1,longlong param_2)
   puVar5 = (uint64_t *)(param_2 + (longlong)param_1);
   if (param_1 < puVar5) {
     do {
-      *param_1 = &UNK_18094a9a8;
+      *param_1 = &unknown_var_3704_ptr;
       param_1 = param_1 + 0xf;
     } while (param_1 < puVar5);
   }
@@ -637,7 +637,7 @@ void FUN_1806a9570(uint64_t *param_1,longlong param_2)
       lVar6 = *(longlong *)(unaff_RBX + 0x60) + uVar7;
       if ((uint)unaff_RBP < (*(uint *)(unaff_RBX + 0x7c) & 0x7fffffff)) {
         puVar5 = (uint64_t *)((unaff_RBP & 0xffffffff) * 0x78 + *(longlong *)(unaff_RBX + 0x70));
-        *puVar5 = &UNK_18094a9a8;
+        *puVar5 = &unknown_var_3704_ptr;
         uVar4 = *(uint64_t *)(lVar6 + 0x10);
         puVar5[1] = *(uint64_t *)(lVar6 + 8);
         puVar5[2] = uVar4;
@@ -742,7 +742,7 @@ void FUN_1806a96a0(uint64_t *param_1,longlong *param_2)
   auStackX_8[0] = 4;
   (**(code **)(*(longlong *)param_1[1] + 8))((longlong *)param_1[1],auStackX_10,auStackX_8);
   uVar7 = 0;
-  puStack_a8 = &UNK_18094a9a8;
+  puStack_a8 = &unknown_var_3704_ptr;
   uStack_90 = 0xffffffff;
   puStack_a0 = &system_buffer_ptr;
   puStack_98 = &system_buffer_ptr;
@@ -1070,7 +1070,7 @@ uint64_t* StructureInitializerAndConfigurator(uint64_t* target_structure, longlo
     element_index = 0;
     
     // 设置结构体虚拟函数表
-    *target_structure = &UNK_18094a3e8;
+    *target_structure = &unknown_var_2232_ptr;
     
     // 获取数组管理器指针
     primary_array_manager = target_structure + 0x10;
@@ -1108,7 +1108,7 @@ uint64_t* StructureInitializerAndConfigurator(uint64_t* target_structure, longlo
     *(int8_t *)((longlong)target_structure + 0x69) = *(int8_t *)(source_config + 0x69);
     
     // 更新虚拟函数表
-    *target_structure = &UNK_18094aef0;
+    *target_structure = &unknown_var_5056_ptr;
     
     // 初始化数组计数器
     target_structure[0xe] = 0;
@@ -1173,7 +1173,7 @@ uint64_t * FUN_1806a9b80(uint64_t *param_1)
   uint64_t uVar2;
   
   uVar2 = 0;
-  *param_1 = &UNK_18094af38;
+  *param_1 = &unknown_var_5128_ptr;
   param_1[1] = 0;
   param_1[2] = 0;
   param_1[3] = 0;
@@ -1197,7 +1197,7 @@ uint64_t * FUN_1806a9b80(uint64_t *param_1)
   param_1[0x11] = 0;
   param_1[0x12] = 0;
   lVar1 = (**(code **)(*_DAT_180be0050 + 8))
-                    (_DAT_180be0050,0xb8,&UNK_18094b068,&UNK_18094b020,0x1ac);
+                    (_DAT_180be0050,0xb8,&unknown_var_5432_ptr,&unknown_var_5360_ptr,0x1ac);
   if (lVar1 != 0) {
     uVar2 = FUN_1806a9cc0(lVar1);
   }
@@ -1222,7 +1222,7 @@ uint64_t * FUN_1806a9b80(uint64_t *param_1)
 uint64_t * FUN_1806a9cc0(uint64_t *param_1)
 
 {
-  *param_1 = &UNK_18094aef8;
+  *param_1 = &unknown_var_5064_ptr;
   param_1[1] = 0;
   param_1[2] = 0;
   param_1[3] = 0;

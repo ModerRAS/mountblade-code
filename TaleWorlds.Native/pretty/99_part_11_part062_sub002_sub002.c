@@ -1583,7 +1583,7 @@ uint64_t FUN_1807c1d10(longlong param_1)
   if (*(longlong *)(param_1 + 0x1d0) != 0) {
                     // WARNING: Subroutine does not return
     FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(param_1 + 0x1d0),
-                  &UNK_18097c490,0x29f,1);
+                  &unknown_var_7200_ptr,0x29f,1);
   }
   return 0;
 }

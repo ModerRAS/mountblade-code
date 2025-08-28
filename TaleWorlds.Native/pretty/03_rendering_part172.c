@@ -33,11 +33,11 @@ void FUN_180373d90(longlong param_1)
             FUN_18064e900(lVar8);
           }
           *plVar1 = 0;
-          plVar1[2] = (longlong)&UNK_180a3c3e0;
+          plVar1[2] = (longlong)&unknown_var_3456_ptr;
           if (plVar1[3] == 0) {
             plVar1[3] = 0;
             *(int32_t *)(plVar1 + 5) = 0;
-            plVar1[2] = (longlong)&UNK_18098bcb0;
+            plVar1[2] = (longlong)&unknown_var_720_ptr;
                     // WARNING: Subroutine does not return
             FUN_18064e900(plVar1);
           }

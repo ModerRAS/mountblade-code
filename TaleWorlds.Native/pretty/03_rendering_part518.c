@@ -89,7 +89,7 @@ void FUN_180547e60(longlong param_1,int32_t param_2,uint64_t param_3,uint64_t pa
   FUN_18054a180();             // 执行系统初始化
   
   // 设置渲染上下文
-  puStack_20 = &UNK_18054a5b0; // 设置上下文指针
+  puStack_20 = &unknown_var_8384_ptr; // 设置上下文指针
   pcStack_18 = FUN_18054a540;  // 设置回调函数指针
   apuStack_30[0] = auStackX_10; // 设置参数数组
   
@@ -836,7 +836,7 @@ void FUN_180548880(longlong ******param_1,int8_t param_2)
     pppppplStack_58 = (longlong ******)param_1[0x30];
     pppppplStack_48 = (longlong ******)ppppppplVar4;
     FUN_180049830(ppppppplVar4);
-    *ppppppplVar4 = (longlong ******)&UNK_180a37f48;
+    *ppppppplVar4 = (longlong ******)&unknown_var_5896_ptr;
     ppppppplVar4[0x1c] = (longlong ******)0x0;
     ppppppplVar4[0x1d] = (longlong ******)0x0;
     ppppppplVar4[0x1e] = (longlong ******)0x0;

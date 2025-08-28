@@ -36,7 +36,7 @@ void FUN_1807141f0(longlong param_1,int param_2,int param_3,uint64_t param_4)
   iStack_68 = 0;
   uStack_84 = 0;
   if (in_stack_00000070 == 2) {
-    bVar1 = (&UNK_1809532b0)[param_3 - param_2];
+    bVar1 = (&unknown_var_8784_ptr)[param_3 - param_2];
     uStack_84 = (uint)bVar1;
     if (bVar1 == uStack_90 || (int)uStack_84 < (int)uStack_90) {
       iVar2 = uStack_90 - bVar1;
@@ -241,7 +241,7 @@ uint FUN_1807147f0(longlong param_1,int param_2,uint param_3,int param_4,longlon
       }
       iVar11 = iVar11 + param_13;
       if (0 < (int)param_13) {
-        param_13 = (uint)(byte)(&UNK_1809532b0)[lVar8 - uVar15];
+        param_13 = (uint)(byte)(&unknown_var_8784_ptr)[lVar8 - uVar15];
       }
       iVar11 = (iVar14 - iVar11) + param_13;
       iVar14 = iVar13;

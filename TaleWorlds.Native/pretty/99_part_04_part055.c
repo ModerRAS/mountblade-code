@@ -256,9 +256,9 @@ void FUN_1802b7d90(longlong *param_1,float param_2)
   fVar44 = pfVar14[1];
   iStack0000000000000050 = 0;
   lVar25 = (longlong)iVar23;
-  fVar34 = ((*(float *)(&UNK_180a18120 + (longlong)(int)uVar17 * 4) -
-            *(float *)(&UNK_180a18120 + (longlong)(int)uVar16 * 4)) * (fVar34 - (float)(int)uVar15)
-           + *(float *)(&UNK_180a18120 + (longlong)(int)uVar16 * 4)) * *pfVar14 + 1.0;
+  fVar34 = ((*(float *)(&unknown_var_5296_ptr + (longlong)(int)uVar17 * 4) -
+            *(float *)(&unknown_var_5296_ptr + (longlong)(int)uVar16 * 4)) * (fVar34 - (float)(int)uVar15)
+           + *(float *)(&unknown_var_5296_ptr + (longlong)(int)uVar16 * 4)) * *pfVar14 + 1.0;
   fStack000000000000006c = fVar2 * pfVar14[2] * fVar34;
   if (0 < iVar23) {
     lVar20 = lVar25 * 0x70;

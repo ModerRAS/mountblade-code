@@ -631,7 +631,7 @@ void FUN_180263040(int8_t *param_1,longlong param_2,uint param_3)
       }
       if (1 < param_3) {
         lVar3 = *plVar11;
-        puStack_468 = &UNK_18098bb30;
+        puStack_468 = &unknown_var_336_ptr;
         pbStack_460 = abStack_450;
         iStack_458 = 0;
         abStack_450[0] = 0;
@@ -670,7 +670,7 @@ LAB_18026328e:
           lVar15 = lVar15 + 1;
           plVar14 = plVar14 + 2;
         } while ((longlong)plVar14 < 0x180bf8eb0);
-        puStack_468 = &UNK_18098bcb0;
+        puStack_468 = &unknown_var_720_ptr;
       }
       if (param_3 != 0) {
         lVar3 = *plVar11;
@@ -819,14 +819,14 @@ void FUN_1802635b0(longlong param_1)
   FUN_18016ce50();
   puVar1 = *(uint64_t **)(param_1 + 0x10);
   for (puVar2 = *(uint64_t **)(param_1 + 8); puVar2 != puVar1; puVar2 = puVar2 + 8) {
-    *puVar2 = &UNK_180a3c3e0;
+    *puVar2 = &unknown_var_3456_ptr;
     if (puVar2[1] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     puVar2[1] = 0;
     *(int32_t *)(puVar2 + 3) = 0;
-    *puVar2 = &UNK_18098bcb0;
+    *puVar2 = &unknown_var_720_ptr;
   }
   if (*(longlong *)(param_1 + 8) != 0) {
                     // WARNING: Subroutine does not return
@@ -875,7 +875,7 @@ void FUN_1802635f0(longlong param_1,longlong param_2,uint param_3)
     *(uint *)(param_1 + 0x48) = (uint)(cVar3 == '\0');
   }
   else {
-    puStack_468 = &UNK_18098bb30;
+    puStack_468 = &unknown_var_336_ptr;
     pbStack_460 = abStack_450;
     iStack_458 = 0;
     abStack_450[0] = 0;
@@ -925,7 +925,7 @@ LAB_18026370e:
     *(int8_t *)(param_1 + 0x4d) = *puVar8;
     *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + 1;
   }
-  puStack_468 = &UNK_18098bb30;
+  puStack_468 = &unknown_var_336_ptr;
   pbStack_460 = abStack_450;
   iStack_458 = 0;
   abStack_450[0] = 0;
@@ -964,7 +964,7 @@ LAB_18026383e:
     plVar10 = plVar10 + 2;
     if (0x180bf8e4f < (longlong)plVar10) {
 LAB_18026384c:
-      puStack_468 = &UNK_18098bcb0;
+      puStack_468 = &unknown_var_720_ptr;
       uVar5 = **(int32_t **)(param_2 + 8);
       *(int32_t **)(param_2 + 8) = *(int32_t **)(param_2 + 8) + 1;
       FUN_180263040(param_1,param_2,uVar5);

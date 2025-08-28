@@ -549,7 +549,7 @@ void AdvancedDataProcessor(longlong param_1, uint64_t param_2, longlong param_3,
     // 检查数据状态
     if ((*(longlong *)(data_size + MEMORY_OFFSET_0x30) != SYSTEM_NULL_PTR) || (*(longlong *)(data_size + MEMORY_OFFSET_0x40) != SYSTEM_NULL_PTR)) {
         if (param_5 != SYSTEM_NULL_PTR) {
-            SystemDataValidator(param_2, data_size, &UNK_180a16930);
+            SystemDataValidator(param_2, data_size, &unknown_var_9168_ptr);
         }
         
         // 管理数据队列

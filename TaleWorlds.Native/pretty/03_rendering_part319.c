@@ -461,14 +461,14 @@ void FUN_1804375f0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   
   uVar1 = FUN_180627910(&puStack_30,param_3,param_3,param_4,0xfffffffffffffffe);
   uVar1 = FUN_18020bef0(_DAT_180c868e8,uVar1);
-  puStack_30 = &UNK_180a3c3e0;
+  puStack_30 = &unknown_var_3456_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_28 = 0;
   uStack_18 = 0;
-  puStack_30 = &UNK_18098bcb0;
+  puStack_30 = &unknown_var_720_ptr;
   FUN_18039eda0(param_1,param_2,uVar1);
   return;
 }

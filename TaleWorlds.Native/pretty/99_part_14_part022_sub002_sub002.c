@@ -317,19 +317,19 @@ ulonglong thunk_FUN_1808fd8e0(uint64_t param_1,int32_t param_2)
         }
         else {
           uVar2 = (ulonglong)(((uint)ABS(fVar13) >> 0x17) - 0x8e & 0xfff8);
-          dVar22 = (double)(*(ulonglong *)(&UNK_180d9f410 + uVar2 * 2) & 0xffffffffff000000) *
+          dVar22 = (double)(*(ulonglong *)(&unknown_var_4736_ptr + uVar2 * 2) & 0xffffffffff000000) *
                    dVar21;
-          dVar24 = (double)(*(ulonglong *)(&UNK_180d9f410 + uVar2 * 2) << 0x28) * dVar21;
+          dVar24 = (double)(*(ulonglong *)(&unknown_var_4736_ptr + uVar2 * 2) << 0x28) * dVar21;
           dVar23 = dVar22 + dVar24;
           iVar4 = SUB84(dVar23 + 6755399441055744.0,0);
           uVar35 = iVar4 * 2;
           uVar39 = (iVar4 << 0x19) >> 0x1f;
-          dVar21 = dVar21 * *(double *)(&UNK_180d9f418 + uVar2 * 2) + dVar24 + (dVar22 - dVar23) +
+          dVar21 = dVar21 * *(double *)(&unknown_var_4744_ptr + uVar2 * 2) + dVar24 + (dVar22 - dVar23) +
                    (dVar23 - ((dVar23 + 6755399441055744.0) - 6755399441055744.0));
           uVar2 = (ulonglong)((uVar35 + uVar39 ^ uVar39) & 0xfe);
           fVar13 = (float)((double)((ulonglong)
                                     ((3320.092545592124 - dVar21 * dVar21) *
-                                    *(double *)(&UNK_180d9f008 + uVar2 * 8)) ^
+                                    *(double *)(&unknown_var_3704_ptr + uVar2 * 8)) ^
                                    (ulonglong)((uVar35 & 0x100) << 0x17) << 0x20) +
                           *(double *)(&system_data_f000 + uVar2 * 8) * dVar21 *
                           (double)((ulonglong)(9960.277636776373 - dVar21 * dVar21) ^
@@ -575,19 +575,19 @@ ulonglong FUN_1808fd400(uint64_t param_1,int32_t param_2)
         }
         else {
           uVar2 = (ulonglong)(((uint)ABS(fVar12) >> 0x17) - 0x8e & 0xfff8);
-          dVar19 = (double)(*(ulonglong *)(&UNK_180d9f410 + uVar2 * 2) & 0xffffffffff000000) *
+          dVar19 = (double)(*(ulonglong *)(&unknown_var_4736_ptr + uVar2 * 2) & 0xffffffffff000000) *
                    dVar18;
-          dVar21 = (double)(*(ulonglong *)(&UNK_180d9f410 + uVar2 * 2) << 0x28) * dVar18;
+          dVar21 = (double)(*(ulonglong *)(&unknown_var_4736_ptr + uVar2 * 2) << 0x28) * dVar18;
           dVar20 = dVar19 + dVar21;
           iVar4 = SUB84(dVar20 + 6755399441055744.0,0);
           uVar32 = iVar4 * 2;
           uVar35 = (iVar4 << 0x19) >> 0x1f;
-          dVar18 = dVar18 * *(double *)(&UNK_180d9f418 + uVar2 * 2) + dVar21 + (dVar19 - dVar20) +
+          dVar18 = dVar18 * *(double *)(&unknown_var_4744_ptr + uVar2 * 2) + dVar21 + (dVar19 - dVar20) +
                    (dVar20 - ((dVar20 + 6755399441055744.0) - 6755399441055744.0));
           uVar2 = (ulonglong)((uVar32 + uVar35 ^ uVar35) & 0xfe);
           fVar12 = (float)((double)((ulonglong)
                                     ((3320.092545592124 - dVar18 * dVar18) *
-                                    *(double *)(&UNK_180d9f008 + uVar2 * 8)) ^
+                                    *(double *)(&unknown_var_3704_ptr + uVar2 * 8)) ^
                                    (ulonglong)((uVar32 & 0x100) << 0x17) << 0x20) +
                           *(double *)(&system_data_f000 + uVar2 * 8) * dVar18 *
                           (double)((ulonglong)(9960.277636776373 - dVar18 * dVar18) ^
@@ -832,21 +832,21 @@ ulonglong thunk_FUN_1808fe1a0(uint64_t param_1,int32_t param_2)
         }
         else {
           uVar2 = (ulonglong)(((uint)ABS(fVar16) >> 0x17) - 0x8e & 0xfff8);
-          dVar18 = (double)(*(ulonglong *)(&UNK_180d9fb10 + uVar2 * 2) & 0xffffffffff000000) *
+          dVar18 = (double)(*(ulonglong *)(&unknown_var_6528_ptr + uVar2 * 2) & 0xffffffffff000000) *
                    dVar17;
-          dVar21 = (double)(*(ulonglong *)(&UNK_180d9fb10 + uVar2 * 2) << 0x28) * dVar17;
+          dVar21 = (double)(*(ulonglong *)(&unknown_var_6528_ptr + uVar2 * 2) << 0x28) * dVar17;
           dVar19 = dVar18 + dVar21;
           iVar3 = SUB84(dVar19 + 6755399441055744.0,0);
           uVar38 = iVar3 * 2;
           uVar39 = (iVar3 << 0x19) >> 0x1f;
-          dVar17 = dVar17 * *(double *)(&UNK_180d9fb18 + uVar2 * 2) + dVar21 + (dVar18 - dVar19) +
+          dVar17 = dVar17 * *(double *)(&unknown_var_6536_ptr + uVar2 * 2) + dVar21 + (dVar18 - dVar19) +
                    (dVar19 - ((dVar19 + 6755399441055744.0) - 6755399441055744.0));
           uVar2 = (ulonglong)((uVar38 + uVar39 ^ uVar39) & 0xfe);
           fVar16 = (float)((double)((ulonglong)
                                     ((3320.092545592124 - dVar17 * dVar17) *
-                                    *(double *)(&UNK_180d9f708 + uVar2 * 8)) ^
+                                    *(double *)(&unknown_var_5496_ptr + uVar2 * 8)) ^
                                    (ulonglong)(((uVar38 & 0x180) + 0x80 & 0x100) << 0x17) << 0x20) +
-                          *(double *)(&UNK_180d9f700 + uVar2 * 8) * dVar17 *
+                          *(double *)(&unknown_var_5488_ptr + uVar2 * 8) * dVar17 *
                           (double)((ulonglong)(9960.277636776373 - dVar17 * dVar17) ^
                                   (ulonglong)((uVar38 & 0x100) << 0x17) << 0x20));
         }
@@ -967,19 +967,19 @@ void thunk_FUN_1808fea60(uint64_t param_1,uint64_t param_2)
   auVar18._0_8_ = dVar27;
   auVar18._12_4_ = (int)((ulonglong)dVar30 >> 0x20);
   dVar35 = (dVar34 + (dVar34 * 0.33333333333308374 + -0.49999999999988803) * dVar34 * dVar34 +
-            *(double *)(&UNK_18099a180 + (int)uVar7) +
+            *(double *)(&unknown_var_9296_ptr + (int)uVar7) +
            ((double)(uint)((ulonglong)dVar19 >> 0x34) - SUB168(auVar25 | _DAT_180da34c0,0)) *
            0.6931471805599453) * (double)afStack_100[0];
   dVar39 = (dVar38 + (dVar38 * 0.33333333333308374 + -0.49999999999988803) * dVar38 * dVar38 +
-            *(double *)(&UNK_18099a180 + (int)(uint)((ulonglong)dVar1 >> 0x28)) +
+            *(double *)(&unknown_var_9296_ptr + (int)(uint)((ulonglong)dVar1 >> 0x28)) +
            ((double)(uVar8 >> 0x14) - SUB168(auVar25 | _DAT_180da34c0,8)) * 0.6931471805599453) *
            (double)fVar33;
   dVar38 = (dVar27 + (dVar27 * 0.33333333333308374 + -0.49999999999988803) * dVar27 * dVar27 +
-            *(double *)(&UNK_18099a180 + (int)(uint)((ulonglong)dVar2 >> 0x28)) +
+            *(double *)(&unknown_var_9296_ptr + (int)(uint)((ulonglong)dVar2 >> 0x28)) +
            ((double)(uint)((ulonglong)(double)in_XMM0_Dc >> 0x34) -
            SUB168(auVar17 | _DAT_180da34c0,0)) * 0.6931471805599453) * (double)in_XMM1_Dc;
   dVar31 = (dVar30 + (dVar30 * 0.33333333333308374 + -0.49999999999988803) * auVar18._8_8_ * dVar30
-            + *(double *)(&UNK_18099a180 + (int)(uint)((ulonglong)dVar3 >> 0x28)) +
+            + *(double *)(&unknown_var_9296_ptr + (int)(uint)((ulonglong)dVar3 >> 0x28)) +
            ((double)(uVar26 >> 0x14) - SUB168(auVar17 | _DAT_180da34c0,8)) * 0.6931471805599453) *
            (double)in_XMM1_Dd;
   dVar30 = dVar35 * 2954.639443740597;
@@ -1021,32 +1021,32 @@ void thunk_FUN_1808fea60(uint64_t param_1,uint64_t param_2)
                                        ((dVar34 - (dVar27 - 6755399441055744.0)) *
                                         0.00033850805268231294 *
                                         *(double *)
-                                         (&UNK_180da3600 + (ulonglong)(SUB82(dVar27,0) & 0x7ff) * 8)
+                                         (&unknown_var_1616_ptr + (ulonglong)(SUB82(dVar27,0) & 0x7ff) * 8)
                                        + *(double *)
-                                          (&UNK_180da3600 + (ulonglong)(SUB82(dVar27,0) & 0x7ff) * 8
+                                          (&unknown_var_1616_ptr + (ulonglong)(SUB82(dVar27,0) & 0x7ff) * 8
                                           )) + (((ulonglong)dVar27 >> 0xb) << 0x34)),
                        (float)(double)((longlong)
                                        ((dVar30 - (dVar19 - 6755399441055744.0)) *
                                         0.00033850805268231294 *
                                         *(double *)
-                                         (&UNK_180da3600 + ((SUB84(dVar19,0) & 0x7ff) << 3)) +
+                                         (&unknown_var_1616_ptr + ((SUB84(dVar19,0) & 0x7ff) << 3)) +
                                        *(double *)
-                                        (&UNK_180da3600 + ((SUB84(dVar19,0) & 0x7ff) << 3))) +
+                                        (&unknown_var_1616_ptr + ((SUB84(dVar19,0) & 0x7ff) << 3))) +
                                       (((ulonglong)dVar19 >> 0xb) << 0x34)));
   uStack_b8 = CONCAT44((float)(double)((longlong)
                                        ((dVar3 - (dVar1 - 6755399441055744.0)) *
                                         0.00033850805268231294 *
                                         *(double *)
-                                         (&UNK_180da3600 + (ulonglong)(SUB82(dVar1,0) & 0x7ff) * 8)
+                                         (&unknown_var_1616_ptr + (ulonglong)(SUB82(dVar1,0) & 0x7ff) * 8)
                                        + *(double *)
-                                          (&UNK_180da3600 + (ulonglong)(SUB82(dVar1,0) & 0x7ff) * 8)
+                                          (&unknown_var_1616_ptr + (ulonglong)(SUB82(dVar1,0) & 0x7ff) * 8)
                                        ) + (((ulonglong)dVar1 >> 0xb) << 0x34)),
                        (float)(double)((longlong)
                                        ((dVar2 - (dVar4 - 6755399441055744.0)) *
                                         0.00033850805268231294 *
                                         *(double *)
-                                         (&UNK_180da3600 + ((SUB84(dVar4,0) & 0x7ff) << 3)) +
-                                       *(double *)(&UNK_180da3600 + ((SUB84(dVar4,0) & 0x7ff) << 3))
+                                         (&unknown_var_1616_ptr + ((SUB84(dVar4,0) & 0x7ff) << 3)) +
+                                       *(double *)(&unknown_var_1616_ptr + ((SUB84(dVar4,0) & 0x7ff) << 3))
                                        ) + (((ulonglong)dVar4 >> 0xb) << 0x34)));
   if ((uVar7 != 0) && (uVar7 != 0)) {
     uVar9 = 0;

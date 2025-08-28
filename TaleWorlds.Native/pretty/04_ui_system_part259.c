@@ -219,7 +219,7 @@ uint64_t FUN_1808156f0(longlong param_1,longlong param_2,int8_t *param_3,int32_t
     }
   }
   lVar4 = lVar4 + param_2;
-  iVar3 = func_0x00018076b6b0(lVar4,&UNK_18097f950,4);
+  iVar3 = func_0x00018076b6b0(lVar4,&unknown_var_704_ptr,4);
   if (iVar3 == 0) {
     bVar1 = *(byte *)(lVar4 + 7);
     puVar7 = (int8_t *)(lVar4 + 8);

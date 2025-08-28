@@ -285,7 +285,7 @@ uint64_t FUN_1806d54b0(longlong *param_1)
   if ((char)param_1[9] != '\0') {
     iVar1 = *(int *)(*param_1 + 0x10);
     if (iVar1 == 0) {
-      puVar3 = &UNK_18094c9c0;
+      puVar3 = &unknown_var_1920_ptr;
     }
     else {
       puVar3 = *(void **)(*(longlong *)(*param_1 + 8) + (ulonglong)(iVar1 - 1) * 0x18);
@@ -316,7 +316,7 @@ int8_t FUN_1806d5620(longlong *param_1)
   
   FUN_1806d56e0();
   lVar3 = *param_1;
-  puStack_28 = &UNK_18094c850;
+  puStack_28 = &unknown_var_1552_ptr;
   uStack_18 = (int8_t)param_1[9];
   uVar2 = *(uint *)(lVar3 + 0x10);
   uStack_20 = uStack_20 & 0xffffff00;
@@ -406,7 +406,7 @@ int32_t * FUN_1806d5770(uint64_t *param_1,int32_t *param_2)
   }
   puVar3 = (int32_t *)
            (**(code **)(**(longlong **)*param_1 + 8))
-                     (*(longlong **)*param_1,(ulonglong)uVar8 << 2,&UNK_18094b480,&UNK_18094a610,
+                     (*(longlong **)*param_1,(ulonglong)uVar8 << 2,&unknown_var_6480_ptr,&unknown_var_2784_ptr,
                       0x229);
 LAB_1806d57d8:
   uVar4 = (ulonglong)*(uint *)(param_1 + 2);
@@ -465,7 +465,7 @@ uint64_t * FUN_1806d5870(longlong *param_1,uint64_t *param_2)
     puVar3 = puVar8;
     if (uVar2 == 0) goto LAB_1806d58c8;
   }
-  puVar3 = (uint64_t *)FUN_1806d3660(param_1,(ulonglong)uVar9 << 3,&UNK_18094a610,0x229);
+  puVar3 = (uint64_t *)FUN_1806d3660(param_1,(ulonglong)uVar9 << 3,&unknown_var_2784_ptr,0x229);
 LAB_1806d58c8:
   uVar4 = (ulonglong)*(uint *)(param_1 + 1);
   puVar6 = (uint64_t *)*param_1;
@@ -587,7 +587,7 @@ uint64_t * FUN_1806d5a70(uint64_t *param_1,int32_t *param_2)
   }
   puVar7 = (uint64_t *)
            (**(code **)(**(longlong **)*param_1 + 8))
-                     (*(longlong **)*param_1,(ulonglong)uVar10 << 4,&UNK_18094b480,&UNK_18094a610,
+                     (*(longlong **)*param_1,(ulonglong)uVar10 << 4,&unknown_var_6480_ptr,&unknown_var_2784_ptr,
                       0x229);
 LAB_1806d5acf:
   uVar11 = (ulonglong)*(uint *)(param_1 + 2);
@@ -651,7 +651,7 @@ uint64_t * FUN_1806d5b60(uint64_t *param_1,int32_t *param_2)
   }
   puVar6 = (uint64_t *)
            (**(code **)(**(longlong **)*param_1 + 8))
-                     (*(longlong **)*param_1,(ulonglong)uVar10 * 0x18,&UNK_18094b480,&UNK_18094a610,
+                     (*(longlong **)*param_1,(ulonglong)uVar10 * 0x18,&unknown_var_6480_ptr,&unknown_var_2784_ptr,
                       0x229);
 LAB_1806d5bc4:
   uVar9 = (ulonglong)*(uint *)(param_1 + 2);

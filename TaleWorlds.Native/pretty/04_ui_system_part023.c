@@ -61,7 +61,7 @@ uint64_t *
 FUN_1806699e0(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &UNK_180a19ac8;
+  *param_1 = &unknown_var_1864_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x40,param_3,param_4,0xfffffffffffffffe);
   }

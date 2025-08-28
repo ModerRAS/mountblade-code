@@ -232,10 +232,10 @@ void RenderingSystem_LoadResourceData(longlong resource_context, longlong file_c
         puVar8 = (uint64_t *)0x0;
         puVar5 = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18,0xa8,8,3);
         plVar2 = (longlong *)(puVar5 + 0x22);
-        *plVar2 = (longlong)&UNK_18098bcb0;
+        *plVar2 = (longlong)&unknown_var_720_ptr;
         *(uint64_t *)(puVar5 + 0x24) = 0;
         puVar5[0x26] = 0;
-        *plVar2 = (longlong)&UNK_180a3c3e0;
+        *plVar2 = (longlong)&unknown_var_3456_ptr;
         *(uint64_t *)(puVar5 + 0x28) = 0;
         *(uint64_t *)(puVar5 + 0x24) = 0;
         puVar5[0x26] = 0;
@@ -516,10 +516,10 @@ void RenderingSystem_LoadResourceDataEx(longlong resource_context, longlong file
       do {
         puVar6 = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18,0x48,8,3);
         plVar1 = (longlong *)(puVar6 + 10);
-        *plVar1 = (longlong)&UNK_18098bcb0;
+        *plVar1 = (longlong)&unknown_var_720_ptr;
         *(uint64_t *)(puVar6 + 0xc) = 0;
         puVar6[0xe] = 0;
-        *plVar1 = (longlong)&UNK_180a3c3e0;
+        *plVar1 = (longlong)&unknown_var_3456_ptr;
         *(uint64_t *)(puVar6 + 0x10) = 0;
         *(uint64_t *)(puVar6 + 0xc) = 0;
         puVar6[0xe] = 0;
@@ -694,7 +694,7 @@ void RenderingSystem_ProcessResourceOperation(longlong resource_context, uint re
   uStack_68 = 0xfffffffffffffffe;
   plVar6 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0xe0,8,3);
   FUN_180049830(plVar6);
-  *plVar6 = (longlong)&UNK_180a1b248;
+  *plVar6 = (longlong)&unknown_var_7880_ptr;
   puVar1 = (ulonglong *)(plVar6 + 0x18);
   *puVar1 = 0;
   plVar6[0x19] = 0;
@@ -871,7 +871,7 @@ LAB_180333e7e:
 LAB_180333eb9:
       if (puVar8 != *(uint **)(lVar14 + lVar12 * 8)) {
         if (*(longlong *)(puVar8 + 2) != 0) {
-          *(void **)(*(longlong *)(puVar8 + 2) + 0x50) = &UNK_18098bcb0;
+          *(void **)(*(longlong *)(puVar8 + 2) + 0x50) = &unknown_var_720_ptr;
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
@@ -978,11 +978,11 @@ LAB_180333fbc:
     if (lVar10 != 0) {
       FUN_1808fc8a8(lVar10 + 0x38,0x30,4,FUN_18004a130);
       puStack_58 = (uint64_t *)(lVar10 + 0x18);
-      *puStack_58 = &UNK_180a3c3e0;
+      *puStack_58 = &unknown_var_3456_ptr;
       if (*(longlong *)(lVar10 + 0x20) == 0) {
         *(uint64_t *)(lVar10 + 0x20) = 0;
         *(int32_t *)(lVar10 + 0x30) = 0;
-        *puStack_58 = &UNK_18098bcb0;
+        *puStack_58 = &unknown_var_720_ptr;
                     // WARNING: Subroutine does not return
         FUN_18064e900(lVar10);
       }

@@ -366,7 +366,7 @@ uint64_t FUN_1801247c0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64
       lVar2 = FUN_18011fa30(lStackX_10,lVar1 + 0x1a00);
     }
     *(longlong *)(param_1 + 0x80) = lVar2;
-    *(void **)(lVar2 + 0x40) = &UNK_180a06468;
+    *(void **)(lVar2 + 0x40) = &unknown_var_2408_ptr;
   }
   if (*(int *)(param_1 + 0x58) != *(int *)(lVar1 + 0x1a90)) {
     FUN_180291500(*(uint64_t *)(param_1 + 0x80));

@@ -731,10 +731,10 @@ void FUN_18035b330(longlong param_1)
       *(int16_t *)(lVar2 + 0x2b0) = *(int16_t *)(lVar2 + 0x2b4);
     }
                     // WARNING: Subroutine does not return
-    FUN_180062300(_DAT_180c86928,&UNK_180a1edc0);
+    FUN_180062300(_DAT_180c86928,&unknown_var_3104_ptr);
   }
   pcVar1 = *(code **)(**(longlong **)(param_1 + 0xd0) + 0x198);
-  if (pcVar1 != (code *)&UNK_18027d990) {
+  if (pcVar1 != (code *)&unknown_var_2544_ptr) {
     (*pcVar1)(*(longlong **)(param_1 + 0xd0));
   }
                     // WARNING: Subroutine does not return

@@ -133,7 +133,7 @@ void RenderingSystem_ProcessResourceRequest(int param_1, uint param_2, float par
     } while ((int)uVar9 < *(int *)(lVar5 + 0x5d0));
     return;
   }
-  puStack_68 = &UNK_180a3c3e0;
+  puStack_68 = &unknown_var_3456_ptr;
   uStack_50 = 0;
   puStack_60 = (int32_t *)0x0;
   uStack_58 = 0;
@@ -223,14 +223,14 @@ LAB_18060e4bb:
     memcpy((int8_t *)((ulonglong)uStack_58 + (longlong)puStack_60),*(uint64_t *)(lVar5 + 8),
            (longlong)(*(int *)(lVar5 + 0x10) + 1));
   }
-  puStack_48 = &UNK_180a3c3e0;
+  puStack_48 = &unknown_var_3456_ptr;
   if (lStack_40 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_40 = 0;
   uStack_30 = 0;
-  puStack_48 = &UNK_18098bcb0;
+  puStack_48 = &unknown_var_720_ptr;
   iVar12 = uStack_58 + 0x2f;
   if (iVar12 != 0) {
     uVar9 = uStack_58 + 0x30;
@@ -266,7 +266,7 @@ LAB_18060e558:
   }
   uStack_58 = iVar12;
   FUN_180626f80(puVar8);
-  puStack_68 = &UNK_180a3c3e0;
+  puStack_68 = &unknown_var_3456_ptr;
   if (puStack_60 == (int32_t *)0x0) {
     return;
   }
@@ -296,7 +296,7 @@ int RenderingSystem_ValidateResourceData(uint64_t param_1, uint64_t param_2, uin
   
   FUN_180627910(&puStack_30, param_1, param_3, param_4, 0xfffffffffffffffe);
   sVar1 = FUN_180571e20(&system_buffer_60c0, &puStack_30);
-  puStack_30 = &UNK_180a3c3e0;
+  puStack_30 = &unknown_var_3456_ptr;
   if (lStack_28 != 0) {
     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -537,7 +537,7 @@ void RenderingSystem_InitializeResourceTable(void)
   char cVar2;
   
   _DAT_180c92510 = 0;
-  if (*(void **)*_DAT_180c8ed08 == &UNK_18098bb88) {
+  if (*(void **)*_DAT_180c8ed08 == &unknown_var_424_ptr) {
     cVar2 = *(int *)(_DAT_180c8a9c8 + 0xe0) != 0;
   }
   else {
@@ -950,7 +950,7 @@ void RenderingSystem_RemoveResourceFromTable(longlong param_1, char param_2, uin
                ((ulonglong)(uVar4 & 0xf) * RENDERING_SYSTEM_HASH_TABLE_SIZE +
                *(longlong *)(*(longlong *)(lVar3 + RENDERING_SYSTEM_DATA_OFFSET_0x5d0) + (ulonglong)(uVar4 >> 4) * 8));
       pcVar1 = *(code **)((void *)*puVar7 + 0x10);
-      if ((void *)*puVar7 == &UNK_180a308a0) {
+      if ((void *)*puVar7 == &unknown_var_5520_ptr) {
         puVar7[2] = 0;
         plVar2 = (longlong *)puVar7[3];
         puVar7[3] = 0;
@@ -1031,7 +1031,7 @@ void RenderingSystem_ReleaseResourceReference(uint64_t param_1)
            ((ulonglong)(uVar3 & 0xf) * RENDERING_SYSTEM_HASH_TABLE_SIZE +
            *(longlong *)(*(longlong *)(lVar2 + RENDERING_SYSTEM_DATA_OFFSET_0x5d0) + (ulonglong)(uVar3 >> 4) * 8));
   in_stack_00000038 = uVar3;
-  if ((void *)*puVar6 == &UNK_180a308a0) {
+  if ((void *)*puVar6 == &unknown_var_5520_ptr) {
     puVar6[2] = 0;
     plVar1 = (longlong *)puVar6[3];
     puVar6[3] = 0;
@@ -1143,7 +1143,7 @@ RenderingSystem_GetResourceProperty(uint64_t param_1,uint64_t param_2,uint64_t p
   
   uVar2 = FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
   uVar1 = FUN_180552800(&system_buffer_5ff0,uVar2);
-  puStack_30 = &UNK_180a3c3e0;
+  puStack_30 = &unknown_var_3456_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -1174,7 +1174,7 @@ byte RenderingSystem_CheckResourceCapability(uint64_t param_1,uint64_t param_2,u
   
   uVar2 = FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
   iVar1 = FUN_180552800(&system_buffer_5ff0,uVar2);
-  puStack_30 = &UNK_180a3c3e0;
+  puStack_30 = &unknown_var_3456_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -1206,7 +1206,7 @@ RenderingSystem_GetResourceExtendedProperty(uint64_t param_1,uint64_t param_2,ui
   
   uVar2 = FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
   uVar1 = FUN_1804c3680(&system_buffer_61b0,uVar2);
-  puStack_30 = &UNK_180a3c3e0;
+  puStack_30 = &unknown_var_3456_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -1279,7 +1279,7 @@ ulonglong RenderingSystem_GetResourceIdentifier(uint64_t param_1,uint64_t param_
   
   uVar2 = FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
   iVar1 = FUN_180552800(&system_buffer_5ff0,uVar2);
-  puStack_30 = &UNK_180a3c3e0;
+  puStack_30 = &unknown_var_3456_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -1380,7 +1380,7 @@ void RenderingSystem_ProcessResourceCommand(uint64_t param_1,uint64_t param_2,ui
   FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
   auStackX_10[0] = 0xffffffff;
   puVar1 = *(void **)*_DAT_180c8ed08;
-  if (puVar1 == &UNK_18098bb88) {
+  if (puVar1 == &unknown_var_424_ptr) {
     cVar2 = *(int *)(_DAT_180c8a9c8 + 0xc40) != 0;
   }
   else {
@@ -1390,7 +1390,7 @@ void RenderingSystem_ProcessResourceCommand(uint64_t param_1,uint64_t param_2,ui
     (**(code **)(*(longlong *)_DAT_180c8ed08[1] + 0x18))
               ((longlong *)_DAT_180c8ed08[1],&puStack_30,auStackX_10);
   }
-  puStack_30 = &UNK_180a3c3e0;
+  puStack_30 = &unknown_var_3456_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();

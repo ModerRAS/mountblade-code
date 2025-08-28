@@ -271,59 +271,59 @@ void InputSystem_SetDeadZone(float dead_zone);
 
 // 输入系统核心函数别名
 #define InputSystemInitializer FUN_18023e120
-#define InputSystemShutdown UNK_18023e110
-#define InputSystemUpdate UNK_180a13cc0
-#define InputSystemProcessEvents UNK_180a02d08
+#define InputSystemShutdown unknown_var_2320
+#define InputSystemUpdate unknown_var_7792
+#define InputSystemProcessEvents unknown_var_8232
 
 // 输入设备管理函数别名
-#define InputDeviceRegistrar UNK_180a02d28
-#define InputDeviceUnregistrar UNK_180a02d90
-#define InputDeviceFinder UNK_180a02c60
-#define InputDeviceInitializer UNK_180a02c78
-#define InputDeviceShutdowner UNK_180a02c98
+#define InputDeviceRegistrar unknown_var_8264
+#define InputDeviceUnregistrar unknown_var_8368
+#define InputDeviceFinder unknown_var_8064
+#define InputDeviceInitializer unknown_var_8088
+#define InputDeviceShutdowner unknown_var_8120
 
 // 输入事件处理函数别名
-#define InputEventPusher UNK_180a02cc0
-#define InputEventPopper UNK_180a02ce0
-#define InputEventPeeker UNK_180a02c38
-#define InputEventCleaner UNK_180a02c40
+#define InputEventPusher unknown_var_8160
+#define InputEventPopper unknown_var_8192
+#define InputEventPeeker unknown_var_8024
+#define InputEventCleaner unknown_var_8032
 
 // 输入状态查询函数别名
-#define InputSystemStateGetter UNK_180a02d70
-#define InputSystemDeviceCounter UNK_180a02db8
-#define InputSystemEventCounter UNK_180a02ed8
-#define InputSystemLatencyGetter UNK_180a02f10
+#define InputSystemStateGetter unknown_var_8336
+#define InputSystemDeviceCounter unknown_var_8408
+#define InputSystemEventCounter unknown_var_8696
+#define InputSystemLatencyGetter unknown_var_8752
 
 // 输入配置函数别名
-#define InputSystemConfigurator UNK_180a02f58
-#define InputSystemConfigGetter UNK_180a02f38
-#define InputSystemSensitivitySetter UNK_180a02f88
-#define InputSystemDeadZoneSetter UNK_180a02f70
+#define InputSystemConfigurator unknown_var_8824
+#define InputSystemConfigGetter unknown_var_8792
+#define InputSystemSensitivitySetter unknown_var_8872
+#define InputSystemDeadZoneSetter unknown_var_8848
 
 // 全局变量别名
 #define InputSystemGlobalState system_memory_8d40
 #define InputSystemGlobalConfig system_memory_2fe8
-#define InputDeviceRegistry UNK_180a03004
-#define InputEventQueue UNK_180a03028
-#define InputSystemStatus UNK_180a03018
-#define InputSystemStatistics UNK_180a03048
-#define InputSystemRuntime UNK_180a03070
-#define InputSystemErrorLog UNK_180a030b8
-#define InputSystemDebugInfo UNK_180a030c0
-#define InputSystemPerformance UNK_180a030e8
-#define InputSystemMemory UNK_180a030d8
-#define InputSystemThread UNK_180a030f8
-#define InputSystemMutex UNK_180a03120
-#define InputSystemSemaphore UNK_180a03140
-#define InputSystemEventQueue UNK_180a03150
-#define InputSystemCallback UNK_180a03190
-#define InputSystemTimer UNK_180a031c0
-#define InputSystemProfiler UNK_180a031d8
-#define InputSystemLogger UNK_180a031e8
-#define InputSystemMonitor UNK_180a03208
-#define InputSystemAllocator UNK_180a03220
-#define InputSystemDeallocator UNK_180a03240
-#define InputSystemValidator UNK_180a03260
+#define InputDeviceRegistry unknown_var_8996
+#define InputEventQueue unknown_var_9032
+#define InputSystemStatus unknown_var_9016
+#define InputSystemStatistics unknown_var_9064
+#define InputSystemRuntime unknown_var_9104
+#define InputSystemErrorLog unknown_var_9176
+#define InputSystemDebugInfo unknown_var_9184
+#define InputSystemPerformance unknown_var_9224
+#define InputSystemMemory unknown_var_9208
+#define InputSystemThread unknown_var_9240
+#define InputSystemMutex unknown_var_9280
+#define InputSystemSemaphore unknown_var_9312
+#define InputSystemEventQueue unknown_var_9328
+#define InputSystemCallback unknown_var_9392
+#define InputSystemTimer unknown_var_9440
+#define InputSystemProfiler unknown_var_9464
+#define InputSystemLogger unknown_var_9480
+#define InputSystemMonitor unknown_var_9512
+#define InputSystemAllocator unknown_var_9536
+#define InputSystemDeallocator unknown_var_9568
+#define InputSystemValidator unknown_var_9600
 
 //============================================================================
 // 核心函数实现

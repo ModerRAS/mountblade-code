@@ -228,38 +228,38 @@ typedef struct {
 // ============================================================================
 
 // 材质系统全局变量
-extern uint8_t UNK_1801792b0;                    // 材质系统数据1
-extern uint8_t UNK_180423a20;                    // 材质系统数据2
+extern uint8_t global_state_5824;                    // 材质系统数据1
+extern uint8_t global_state_1200;                    // 材质系统数据2
 
 // 渲染状态全局变量
-extern uint8_t UNK_18099553c;                    // 渲染状态数据1
-extern uint8_t UNK_1809955bc;                    // 渲染状态数据2
-extern uint8_t UNK_1809958c0;                    // 渲染状态数据3
-extern uint8_t UNK_180995b80;                    // 渲染状态数据4
-extern uint8_t UNK_180a29670;                    // 渲染状态数据5
-extern uint8_t UNK_180995a40;                    // 渲染状态数据6
-extern uint8_t UNK_180995a60;                    // 渲染状态数据7
-extern uint8_t UNK_180a29660;                    // 渲染状态数据8
-extern uint8_t UNK_1809958a8;                    // 渲染状态数据9
-extern uint8_t UNK_1809958b4;                    // 渲染状态数据10
-extern uint8_t UNK_180a27cf8;                    // 渲染状态数据11
-extern uint8_t UNK_180a27d08;                    // 渲染状态数据12
-extern uint8_t UNK_180a27d10;                    // 渲染状态数据13
-extern uint8_t UNK_180a27d1c;                    // 渲染状态数据14
-extern uint8_t UNK_180a27d34;                    // 渲染状态数据15
-extern uint8_t UNK_180a27d38;                    // 渲染状态数据16
-extern uint8_t UNK_180a27d50;                    // 渲染状态数据17
-extern uint8_t UNK_180a27d24;                    // 渲染状态数据18
+extern uint8_t global_state_9772;                    // 渲染状态数据1
+extern uint8_t global_state_9900;                    // 渲染状态数据2
+extern uint8_t global_state_672;                    // 渲染状态数据3
+extern uint8_t global_state_1376;                    // 渲染状态数据4
+extern uint8_t global_state_6288;                    // 渲染状态数据5
+extern uint8_t global_state_1056;                    // 渲染状态数据6
+extern uint8_t global_state_1088;                    // 渲染状态数据7
+extern uint8_t global_state_6272;                    // 渲染状态数据8
+extern uint8_t global_state_648;                    // 渲染状态数据9
+extern uint8_t global_state_660;                    // 渲染状态数据10
+extern uint8_t global_state_9768;                    // 渲染状态数据11
+extern uint8_t global_state_9784;                    // 渲染状态数据12
+extern uint8_t global_state_9792;                    // 渲染状态数据13
+extern uint8_t global_state_9804;                    // 渲染状态数据14
+extern uint8_t global_state_9828;                    // 渲染状态数据15
+extern uint8_t global_state_9832;                    // 渲染状态数据16
+extern uint8_t global_state_9856;                    // 渲染状态数据17
+extern uint8_t global_state_9812;                    // 渲染状态数据18
 extern uint8_t system_memory_ec8c;                    // 渲染状态数据19
-extern uint8_t UNK_180a27d58;                    // 渲染状态数据20
+extern uint8_t global_state_9864;                    // 渲染状态数据20
 
 // 材质参数全局变量
-extern uint8_t UNK_180a29190;                    // 材质参数数据1
-extern uint8_t UNK_180a29194;                    // 材质参数数据2
-extern uint8_t UNK_180a291d0;                    // 材质参数数据3
-extern uint8_t UNK_180a291f0;                    // 材质参数数据4
-extern uint8_t UNK_180a291f4;                    // 材质参数数据5
-extern uint8_t UNK_180a29630;                    // 材质参数数据6
+extern uint8_t global_state_5040;                    // 材质参数数据1
+extern uint8_t global_state_5044;                    // 材质参数数据2
+extern uint8_t global_state_5104;                    // 材质参数数据3
+extern uint8_t global_state_5136;                    // 材质参数数据4
+extern uint8_t global_state_5140;                    // 材质参数数据5
+extern uint8_t global_state_6224;                    // 材质参数数据6
 
 // ============================================================================
 // 函数声明
@@ -303,8 +303,8 @@ uint8_t FUN_180423760;
 // 参数：无
 // 返回值：RenderingGeometry - 渲染几何对象
 uint8_t FUN_180423820;
-uint8_t UNK_1801792b0;
-uint8_t UNK_180423a20;
+uint8_t global_state_5824;
+uint8_t global_state_1200;
 
 
 // 渲染系统光照计算器 (RenderingSystem_LightingCalculator)
@@ -319,81 +319,81 @@ uint8_t FUN_180423450;
 // 参数：无
 // 返回值：RenderingEffect - 渲染效果对象
 uint8_t FUN_180423690;
-uint8_t UNK_18099553c;
-uint8_t UNK_1809955bc;
-uint8_t UNK_1809958c0;
-uint8_t UNK_180995b80;
-uint8_t UNK_180a29670;
-uint8_t UNK_180995a40;
-uint8_t UNK_180995a60;
-uint8_t UNK_180a29660;
-uint8_t UNK_1809958a8;
-uint8_t UNK_1809958b4;
-uint8_t UNK_180a27cf8;
-uint8_t UNK_180a27d08;
-uint8_t UNK_180a27d10;
-uint8_t UNK_180a27d1c;
-uint8_t UNK_180a27d34;
-uint8_t UNK_180a27d38;
-uint8_t UNK_180a27d50;
-uint8_t UNK_180a27d24;
+uint8_t global_state_9772;
+uint8_t global_state_9900;
+uint8_t global_state_672;
+uint8_t global_state_1376;
+uint8_t global_state_6288;
+uint8_t global_state_1056;
+uint8_t global_state_1088;
+uint8_t global_state_6272;
+uint8_t global_state_648;
+uint8_t global_state_660;
+uint8_t global_state_9768;
+uint8_t global_state_9784;
+uint8_t global_state_9792;
+uint8_t global_state_9804;
+uint8_t global_state_9828;
+uint8_t global_state_9832;
+uint8_t global_state_9856;
+uint8_t global_state_9812;
 uint8_t system_memory_ec8c;
-uint8_t UNK_180a27d58;
-uint8_t UNK_180a29190;
-uint8_t UNK_180a29194;
-uint8_t UNK_180a291d0;
-uint8_t UNK_180a291f0;
-uint8_t UNK_180a291f4;
-uint8_t UNK_180a29630;
+uint8_t global_state_9864;
+uint8_t global_state_5040;
+uint8_t global_state_5044;
+uint8_t global_state_5104;
+uint8_t global_state_5136;
+uint8_t global_state_5140;
+uint8_t global_state_6224;
 char system_memory_31ba;
-uint8_t UNK_180995860;
-uint8_t UNK_180995861;
-uint8_t UNK_180995862;
-uint8_t UNK_180995863;
-uint8_t UNK_180995864;
-uint8_t UNK_180995865;
-uint8_t UNK_180995866;
-uint8_t UNK_180995867;
-uint8_t UNK_180995868;
-uint8_t UNK_180995869;
-uint8_t UNK_18099586a;
-uint8_t UNK_18099586b;
-uint8_t UNK_18099586c;
-uint8_t UNK_18099586d;
-uint8_t UNK_18099586e;
-uint8_t UNK_18099586f;
-uint8_t UNK_180a27d70;
-uint8_t UNK_180a28170;
-uint8_t UNK_180a28219;
-uint8_t UNK_180a28230;
-uint8_t UNK_180a28241;
-uint8_t UNK_180a28260;
-uint8_t UNK_180a28660;
-uint8_t UNK_180a28a60;
-uint8_t UNK_180a28e60;
-uint8_t UNK_180a28e70;
-uint8_t UNK_180a28e90;
-uint8_t UNK_180a28eb0;
-uint8_t UNK_180a28eb4;
-uint8_t UNK_180a28eb8;
-uint8_t UNK_180a28ebc;
-uint8_t UNK_180a28ec0;
-uint8_t UNK_180a28ec4;
-uint8_t UNK_180a28ec8;
-uint8_t UNK_180a28ecc;
-uint8_t UNK_180a28fb0;
-uint8_t UNK_180a28fb4;
-uint8_t UNK_180a28fb8;
-uint8_t UNK_180a28fbc;
-uint8_t UNK_180a28fc0;
-uint8_t UNK_180a28fc4;
-uint8_t UNK_180a28fc8;
-uint8_t UNK_180a28fcc;
-uint8_t UNK_180a290b0;
-uint8_t UNK_180a29159;
-uint8_t UNK_180a29171;
-uint8_t UNK_180995ce0;
-uint8_t UNK_180a29698;
+uint8_t global_state_576;
+uint8_t global_state_577;
+uint8_t global_state_578;
+uint8_t global_state_579;
+uint8_t global_state_580;
+uint8_t global_state_581;
+uint8_t global_state_582;
+uint8_t global_state_583;
+uint8_t global_state_584;
+uint8_t global_state_585;
+uint8_t global_state_586;
+uint8_t global_state_587;
+uint8_t global_state_588;
+uint8_t global_state_589;
+uint8_t global_state_590;
+uint8_t global_state_591;
+uint8_t global_state_9888;
+uint8_t global_state_912;
+uint8_t global_state_1081;
+uint8_t global_state_1104;
+uint8_t global_state_1121;
+uint8_t global_state_1152;
+uint8_t global_state_2176;
+uint8_t global_state_3200;
+uint8_t global_state_4224;
+uint8_t global_state_4240;
+uint8_t global_state_4272;
+uint8_t global_state_4304;
+uint8_t global_state_4308;
+uint8_t global_state_4312;
+uint8_t global_state_4316;
+uint8_t global_state_4320;
+uint8_t global_state_4324;
+uint8_t global_state_4328;
+uint8_t global_state_4332;
+uint8_t global_state_4560;
+uint8_t global_state_4564;
+uint8_t global_state_4568;
+uint8_t global_state_4572;
+uint8_t global_state_4576;
+uint8_t global_state_4580;
+uint8_t global_state_4584;
+uint8_t global_state_4588;
+uint8_t global_state_4816;
+uint8_t global_state_4985;
+uint8_t global_state_5009;
+uint8_t global_state_1728;
+uint8_t global_state_6328;
 
 
 // 渲染系统队列管理器 (RenderingSystem_QueueManager)
@@ -408,48 +408,48 @@ uint8_t FUN_180431c60;
 // 参数：无
 // 返回值：RenderingParameter - 渲染参数对象
 uint8_t FUN_1804350f0;
-uint8_t UNK_180a2bf30;
-uint8_t UNK_180a296c8;
-uint8_t UNK_180a296f0;
-uint8_t UNK_180a29740;
-uint8_t UNK_180a29788;
-uint8_t UNK_180a29798;
-uint8_t UNK_180a297b8;
-uint8_t UNK_180a297d0;
-uint8_t UNK_180a297f0;
-uint8_t UNK_180a29800;
-uint8_t UNK_180a29810;
-uint8_t UNK_180a29828;
-uint8_t UNK_180a29840;
-uint8_t UNK_180a29858;
-uint8_t UNK_180a29868;
-uint8_t UNK_180a29878;
-uint8_t UNK_180a29890;
-uint8_t UNK_180a298b8;
-uint8_t UNK_180a298d8;
-uint8_t UNK_180a29900;
-uint8_t UNK_180a29920;
-uint8_t UNK_180a29930;
-uint8_t UNK_180a29944;
-uint8_t UNK_180a29948;
-uint8_t UNK_180a29970;
-uint8_t UNK_180a29990;
-uint8_t UNK_180a299a8;
-uint8_t UNK_180a299c0;
-uint8_t UNK_180a299d0;
-uint8_t UNK_180a299f0;
-uint8_t UNK_180a29a10;
-uint8_t UNK_180a29a38;
-uint8_t UNK_180a29a60;
-uint8_t UNK_180a29a88;
-uint8_t UNK_180a29a98;
-uint8_t UNK_180a29ab0;
-uint8_t UNK_180a29ac0;
-uint8_t UNK_180a29ad8;
-uint8_t UNK_180a29af0;
-uint8_t UNK_180a29b08;
-uint8_t UNK_180a29b18;
-uint8_t UNK_1809fd068;
+uint8_t global_state_6720;
+uint8_t global_state_6376;
+uint8_t global_state_6416;
+uint8_t global_state_6496;
+uint8_t global_state_6568;
+uint8_t global_state_6584;
+uint8_t global_state_6616;
+uint8_t global_state_6640;
+uint8_t global_state_6672;
+uint8_t global_state_6688;
+uint8_t global_state_6704;
+uint8_t global_state_6728;
+uint8_t global_state_6752;
+uint8_t global_state_6776;
+uint8_t global_state_6792;
+uint8_t global_state_6808;
+uint8_t global_state_6832;
+uint8_t global_state_6872;
+uint8_t global_state_6904;
+uint8_t global_state_6944;
+uint8_t global_state_6976;
+uint8_t global_state_6992;
+uint8_t global_state_7012;
+uint8_t global_state_7016;
+uint8_t global_state_7056;
+uint8_t global_state_7088;
+uint8_t global_state_7112;
+uint8_t global_state_7136;
+uint8_t global_state_7152;
+uint8_t global_state_7184;
+uint8_t global_state_7216;
+uint8_t global_state_7256;
+uint8_t global_state_7296;
+uint8_t global_state_7336;
+uint8_t global_state_7352;
+uint8_t global_state_7376;
+uint8_t global_state_7392;
+uint8_t global_state_7416;
+uint8_t global_state_7440;
+uint8_t global_state_7464;
+uint8_t global_state_7480;
+uint8_t global_state_4520;
 uint8_t system_memory_69f0;
 uint8_t system_memory_6a00;
 uint8_t system_memory_6a28;
@@ -458,149 +458,149 @@ uint8_t system_memory_6ea8;
 uint8_t system_memory_6ec0;
 uint8_t system_memory_6ed8;
 uint8_t system_memory_6ee8;
-uint8_t UNK_180a29b28;
-uint8_t UNK_180a29b38;
-uint8_t UNK_180a29b44;
-uint8_t UNK_180a29b48;
-uint8_t UNK_180a29b50;
-uint8_t UNK_180a29b60;
-uint8_t UNK_180a29b70;
-uint8_t UNK_180a29b80;
-uint8_t UNK_180a29b88;
-uint8_t UNK_180a29b8c;
-uint8_t UNK_180a29b98;
-uint8_t UNK_180a29bb0;
-uint8_t UNK_180a29bbc;
-uint8_t UNK_180a29bc0;
-uint8_t UNK_180a29bd0;
-uint8_t UNK_180a29bdc;
-uint8_t UNK_180a29be0;
-uint8_t UNK_180a29be8;
-uint8_t UNK_180a29bf0;
-uint8_t UNK_180a29c08;
-uint8_t UNK_180a29c10;
-uint8_t UNK_180a29c28;
-uint8_t UNK_180a29c40;
-uint8_t UNK_180a29c58;
-uint8_t UNK_180a29c70;
-uint8_t UNK_180a29c88;
-uint8_t UNK_180a29c98;
-uint8_t UNK_180a29cb0;
-uint8_t UNK_180a29cc8;
-uint8_t UNK_180a29ce0;
-uint8_t UNK_180a29cf8;
-uint8_t UNK_180a29d10;
-uint8_t UNK_180a29d28;
-uint8_t UNK_180a29d48;
-uint8_t UNK_180a29d58;
-uint8_t UNK_180a29d60;
-uint8_t UNK_180a29d70;
-uint8_t UNK_180a29d88;
-uint8_t UNK_180a29da8;
-uint8_t UNK_180a29dc8;
-uint8_t UNK_180a29dd8;
-uint8_t UNK_180a29de4;
+uint8_t global_state_7496;
+uint8_t global_state_7512;
+uint8_t global_state_7524;
+uint8_t global_state_7528;
+uint8_t global_state_7536;
+uint8_t global_state_7552;
+uint8_t global_state_7568;
+uint8_t global_state_7584;
+uint8_t global_state_7592;
+uint8_t global_state_7596;
+uint8_t global_state_7608;
+uint8_t global_state_7632;
+uint8_t global_state_7644;
+uint8_t global_state_7648;
+uint8_t global_state_7664;
+uint8_t global_state_7676;
+uint8_t global_state_7680;
+uint8_t global_state_7688;
+uint8_t global_state_7696;
+uint8_t global_state_7720;
+uint8_t global_state_7728;
+uint8_t global_state_7752;
+uint8_t global_state_7776;
+uint8_t global_state_7800;
+uint8_t global_state_7824;
+uint8_t global_state_7848;
+uint8_t global_state_7864;
+uint8_t global_state_7888;
+uint8_t global_state_7912;
+uint8_t global_state_7936;
+uint8_t global_state_7960;
+uint8_t global_state_7984;
+uint8_t global_state_8008;
+uint8_t global_state_8040;
+uint8_t global_state_8056;
+uint8_t global_state_8064;
+uint8_t global_state_8080;
+uint8_t global_state_8104;
+uint8_t global_state_8136;
+uint8_t global_state_8168;
+uint8_t global_state_8184;
+uint8_t global_state_8196;
 uint8_t system_memory_9de8;
-uint8_t UNK_180a29dec;
-uint8_t UNK_180a29df0;
-uint8_t UNK_180a29e00;
-uint8_t UNK_180a29e10;
+uint8_t global_state_8204;
+uint8_t global_state_8208;
+uint8_t global_state_8224;
+uint8_t global_state_8240;
 uint8_t system_memory_9e24;
-uint8_t UNK_180a29e28;
-uint8_t UNK_180a29e38;
-uint8_t UNK_180a29e50;
-uint8_t UNK_180a29e68;
-uint8_t UNK_180a29e88;
-uint8_t UNK_180a29e90;
-uint8_t UNK_180a29e98;
-uint8_t UNK_180a29ea0;
-uint8_t UNK_180a29eb0;
-uint8_t UNK_180a29ec0;
-uint8_t UNK_180a29ed8;
-uint8_t UNK_180a29ef0;
-uint8_t UNK_180a29f08;
-uint8_t UNK_180a29f18;
-uint8_t UNK_180a29f28;
-uint8_t UNK_180a29f38;
-uint8_t UNK_180a29f4c;
-uint8_t UNK_180a29f54;
-uint8_t UNK_180a29f5c;
-uint8_t UNK_180a29f64;
-uint8_t UNK_180a29f70;
-uint8_t UNK_180a29f80;
-uint8_t UNK_180a29f98;
-uint8_t UNK_180a29fb0;
-uint8_t UNK_180a29fc8;
-uint8_t UNK_180a29fd8;
-uint8_t UNK_180a29fe4;
-uint8_t UNK_180a29ff0;
-uint8_t UNK_180a2a000;
-uint8_t UNK_180a2a010;
-uint8_t UNK_180a2a028;
-uint8_t UNK_180a2a038;
-uint8_t UNK_180a2a048;
-uint8_t UNK_180a2a058;
-uint8_t UNK_180a2a070;
-uint8_t UNK_180a2a080;
-uint8_t UNK_180a2a088;
-uint8_t UNK_180a2a098;
-uint8_t UNK_180a2a0a8;
-uint8_t UNK_180a2a0b4;
-uint8_t UNK_180a2a0c0;
-uint8_t UNK_180a2a0d8;
-uint8_t UNK_180a2a0e0;
-uint8_t UNK_180a2a0f0;
-uint8_t UNK_180a2a100;
-uint8_t UNK_180a2a118;
-uint8_t UNK_180a2a130;
-uint8_t UNK_180a2a148;
-uint8_t UNK_180a2a158;
-uint8_t UNK_180a2a168;
-uint8_t UNK_180a2a178;
-uint8_t UNK_180a2a188;
-uint8_t UNK_180a2a1a8;
-uint8_t UNK_180a2a1b8;
-uint8_t UNK_180a2a1c8;
-uint8_t UNK_180a2a1d8;
-uint8_t UNK_180a2a1e8;
-uint8_t UNK_180a2a200;
-uint8_t UNK_180a2a210;
-uint8_t UNK_180a2a228;
-uint8_t UNK_180a2a234;
-uint8_t UNK_180a2a240;
-uint8_t UNK_180a2a250;
-uint8_t UNK_180a2a348;
-uint8_t UNK_180a2a260;
-uint8_t UNK_180a2a298;
-uint8_t UNK_180a2a318;
-uint8_t UNK_180a2a378;
-uint8_t UNK_1802f3c00;
-uint8_t UNK_180a2a3a0;
-uint8_t UNK_180a2a3e0;
+uint8_t global_state_8264;
+uint8_t global_state_8280;
+uint8_t global_state_8304;
+uint8_t global_state_8328;
+uint8_t global_state_8360;
+uint8_t global_state_8368;
+uint8_t global_state_8376;
+uint8_t global_state_8384;
+uint8_t global_state_8400;
+uint8_t global_state_8416;
+uint8_t global_state_8440;
+uint8_t global_state_8464;
+uint8_t global_state_8488;
+uint8_t global_state_8504;
+uint8_t global_state_8520;
+uint8_t global_state_8536;
+uint8_t global_state_8556;
+uint8_t global_state_8564;
+uint8_t global_state_8572;
+uint8_t global_state_8580;
+uint8_t global_state_8592;
+uint8_t global_state_8608;
+uint8_t global_state_8632;
+uint8_t global_state_8656;
+uint8_t global_state_8680;
+uint8_t global_state_8696;
+uint8_t global_state_8708;
+uint8_t global_state_8720;
+uint8_t global_state_8736;
+uint8_t global_state_8752;
+uint8_t global_state_8776;
+uint8_t global_state_8792;
+uint8_t global_state_8808;
+uint8_t global_state_8824;
+uint8_t global_state_8848;
+uint8_t global_state_8864;
+uint8_t global_state_8872;
+uint8_t global_state_8888;
+uint8_t global_state_8904;
+uint8_t global_state_8916;
+uint8_t global_state_8928;
+uint8_t global_state_8952;
+uint8_t global_state_8960;
+uint8_t global_state_8976;
+uint8_t global_state_8992;
+uint8_t global_state_9016;
+uint8_t global_state_9040;
+uint8_t global_state_9064;
+uint8_t global_state_9080;
+uint8_t global_state_9096;
+uint8_t global_state_9112;
+uint8_t global_state_9128;
+uint8_t global_state_9160;
+uint8_t global_state_9176;
+uint8_t global_state_9192;
+uint8_t global_state_9208;
+uint8_t global_state_9224;
+uint8_t global_state_9248;
+uint8_t global_state_9264;
+uint8_t global_state_9288;
+uint8_t global_state_9300;
+uint8_t global_state_9312;
+uint8_t global_state_9328;
+uint8_t global_state_9576;
+uint8_t global_state_9344;
+uint8_t global_state_9400;
+uint8_t global_state_9528;
+uint8_t global_state_9624;
+uint8_t global_state_6496;
+uint8_t global_state_9664;
+uint8_t global_state_9728;
 uint8_t system_memory_d0f8;
-uint8_t UNK_1809fd0f9;
-uint8_t UNK_180a0ac18;
-uint8_t UNK_180a2a43c;
-uint8_t UNK_180a063b8;
-uint8_t UNK_180995a3c;
-uint8_t UNK_180a2a448;
-uint8_t UNK_180a2a4e8;
-uint8_t UNK_180a2a500;
-uint8_t UNK_180a2a4a8;
+uint8_t global_state_4665;
+uint8_t global_state_760;
+uint8_t global_state_9820;
+uint8_t global_state_2232;
+uint8_t global_state_1052;
+uint8_t global_state_9832;
+uint8_t global_state_9992;
+uint8_t global_state_16;
+uint8_t global_state_9928;
 uint8_t system_memory_f0c8;
-uint8_t UNK_180a2a4d0;
-uint8_t UNK_180a2a558;
-uint8_t UNK_180a2a610;
-int32_t UNK_000002a8;
-int32_t UNK_000002ac;
-int32_t UNK_000002b0;
-int32_t UNK_000002b4;
-uint8_t UNK_180a2a510;
-uint8_t UNK_180a2a640;
-uint8_t UNK_180455ec0;
-uint8_t UNK_180455ed0;
-uint8_t UNK_18098c8a8;
-uint8_t UNK_180455e80;
+uint8_t global_state_9968;
+uint8_t global_state_104;
+uint8_t global_state_288;
+int32_t global_state_680;
+int32_t global_state_684;
+int32_t global_state_688;
+int32_t global_state_692;
+uint8_t global_state_32;
+uint8_t global_state_336;
+uint8_t global_state_7184;
+uint8_t global_state_7200;
+uint8_t global_state_3784;
+uint8_t global_state_7120;
 
 
 // 渲染系统帧缓冲管理器 (RenderingSystem_FramebufferManager)
@@ -608,17 +608,17 @@ uint8_t UNK_180455e80;
 // 参数：无
 // 返回值：RenderingFramebuffer - 渲染帧缓冲对象
 uint8_t FUN_180455de0;
-uint8_t UNK_180a2a738;
-uint8_t UNK_180a2a720;
-uint8_t UNK_180a2a688;
-uint8_t UNK_180a2a670;
-uint8_t UNK_180a2a6e8;
-uint8_t UNK_180a0c0e0;
-uint8_t UNK_180a2c0a0;
-uint8_t UNK_180a2a770;
-uint8_t UNK_180a2a7c0;
-uint8_t UNK_180a2c1a0;
-uint8_t UNK_18045af70;
+uint8_t global_state_584;
+uint8_t global_state_560;
+uint8_t global_state_408;
+uint8_t global_state_384;
+uint8_t global_state_504;
+uint8_t global_state_6080;
+uint8_t global_state_7088;
+uint8_t global_state_640;
+uint8_t global_state_720;
+uint8_t global_state_7344;
+uint8_t global_state_7840;
 
 
 // 渲染系统渲染缓冲管理器 (RenderingSystem_RenderbufferManager)
@@ -626,7 +626,7 @@ uint8_t UNK_18045af70;
 // 参数：无
 // 返回值：RenderingRenderbuffer - 渲染渲染缓冲对象
 uint8_t FUN_18045af40;
-uint8_t UNK_18045aec0;
+uint8_t global_state_7664;
 
 
 // 渲染系统程序管理器 (RenderingSystem_ProgramManager)
@@ -634,13 +634,13 @@ uint8_t UNK_18045aec0;
 // 参数：无
 // 返回值：RenderingProgram - 渲染程序对象
 uint8_t FUN_18045ae70;
-uint8_t UNK_180a2c1e8;
-uint8_t UNK_180a2a870;
-uint8_t UNK_180a2a800;
-uint8_t UNK_18045f230;
-uint8_t UNK_18045f240;
-uint8_t UNK_180a0de58;
-uint8_t UNK_180a2a860;
+uint8_t global_state_7416;
+uint8_t global_state_896;
+uint8_t global_state_784;
+uint8_t global_state_4928;
+uint8_t global_state_4944;
+uint8_t global_state_3624;
+uint8_t global_state_880;
 uint8_t system_memory_99c8;
 uint8_t system_memory_99d0;
 uint8_t system_memory_99d8;
@@ -654,15 +654,15 @@ uint8_t system_memory_c074;
 // 参数：无
 // 返回值：RenderingUniform - 渲染统一变量对象
 uint8_t FUN_18046f3b0;
-uint8_t UNK_18046f400;
-uint64_t UNK_180bfbb58;
-uint64_t UNK_180bfbb68;
-int32_t UNK_180bfbb74;
-int32_t UNK_180bfbb78;
-int32_t UNK_180bfbb7c;
-int32_t UNK_180bfbb84;
-int32_t UNK_180bfbb88;
-int32_t UNK_180bfbb8c;
+uint8_t global_state_928;
+uint64_t global_state_6280;
+uint64_t global_state_6296;
+int32_t global_state_6308;
+int32_t global_state_6312;
+int32_t global_state_6316;
+int32_t global_state_6324;
+int32_t global_state_6328;
+int32_t global_state_6332;
 uint8_t system_memory_0840;
 uint8_t system_memory_08a0;
 uint8_t system_memory_0800;
@@ -672,19 +672,19 @@ uint8_t system_memory_07e0;
 uint8_t system_memory_07a0;
 uint8_t system_memory_f790;
 uint null;
-uint8_t UNK_18046f5e0;
+uint8_t global_state_1408;
 uint8_t system_memory_bb90;
 uint8_t system_memory_bba0;
 uint8_t system_memory_bbb0;
 uint8_t system_memory_bbc0;
-uint8_t UNK_180470640;
-uint64_t UNK_180bfbb98;
-uint64_t UNK_180bfbba8;
-int32_t UNK_180bfbbb4;
-int32_t UNK_180bfbbb8;
-int32_t UNK_180bfbbbc;
-int32_t UNK_180bfbbc4;
-int32_t UNK_180bfbbc8;
+uint8_t global_state_5600;
+uint64_t global_state_6344;
+uint64_t global_state_6360;
+int32_t global_state_6372;
+int32_t global_state_6376;
+int32_t global_state_6380;
+int32_t global_state_6388;
+int32_t global_state_6392;
 
 
 // 渲染系统属性管理器 (RenderingSystem_AttributeManager)
@@ -692,104 +692,104 @@ int32_t UNK_180bfbbc8;
 // 参数：无
 // 返回值：RenderingAttribute - 渲染属性对象
 uint8_t FUN_1804705f0;
-int32_t UNK_180bfbbcc;
-uint8_t UNK_180a2b020;
-uint8_t UNK_180a2c868;
-uint8_t UNK_180a2c980;
-uint8_t UNK_180a2b5d0;
+int32_t global_state_6396;
+uint8_t global_state_2864;
+uint8_t global_state_9080;
+uint8_t global_state_9360;
+uint8_t global_state_4320;
 uint8_t system_memory_2488;
-uint8_t UNK_180a2b480;
-uint8_t UNK_180a2b5a0;
-uint8_t UNK_180a2b4b8;
-uint8_t UNK_180a2b4e0;
-uint8_t UNK_180a2b5b8;
-uint8_t UNK_180a2b670;
-uint8_t UNK_180a2b280;
-uint8_t UNK_180a2b2d0;
-uint8_t UNK_180a2b0e8;
-uint8_t UNK_180a2b100;
-uint8_t UNK_180a2b134;
-uint8_t UNK_180a2b150;
-uint8_t UNK_180a2b170;
-uint8_t UNK_180a2b200;
-uint8_t UNK_180a2b250;
+uint8_t global_state_3984;
+uint8_t global_state_4272;
+uint8_t global_state_4040;
+uint8_t global_state_4080;
+uint8_t global_state_4296;
+uint8_t global_state_4480;
+uint8_t global_state_3472;
+uint8_t global_state_3552;
+uint8_t global_state_3064;
+uint8_t global_state_3088;
+uint8_t global_state_3140;
+uint8_t global_state_3168;
+uint8_t global_state_3200;
+uint8_t global_state_3344;
+uint8_t global_state_3424;
 uint8_t system_memory_2478;
 uint8_t system_memory_2470;
-uint8_t UNK_180a2b1a0;
-uint8_t UNK_180a2b1b8;
-uint8_t UNK_180a2b1e8;
-uint8_t UNK_180a2b398;
-uint8_t UNK_180a2b3b8;
-uint8_t UNK_180a2b320;
-uint8_t UNK_180a2b330;
-uint8_t UNK_180a2b3d0;
-uint8_t UNK_180a2b3e0;
-uint8_t UNK_180a2b348;
-uint8_t UNK_180a2b368;
-uint8_t UNK_180a2b4f8;
-uint8_t UNK_180a2b608;
-uint8_t UNK_180a2b418;
-uint8_t UNK_180a2b430;
-uint8_t UNK_180a2b440;
-uint8_t UNK_1809f78a0;
-uint8_t UNK_180a2b408;
-uint8_t UNK_180a2b40c;
-uint8_t UNK_180a2b410;
-uint8_t UNK_180a2b414;
-uint8_t UNK_180a2b458;
-uint8_t UNK_180a2b45c;
-uint8_t UNK_180a2b460;
-uint8_t UNK_180a2b4a8;
-uint8_t UNK_180a2b520;
-uint8_t UNK_180a2b5e0;
-uint8_t UNK_180a2b620;
-uint8_t UNK_180a2b698;
-uint8_t UNK_180a2b5f0;
-uint8_t UNK_180a2b648;
-uint8_t UNK_180a2bd18;
-uint8_t UNK_180a2b998;
-uint8_t UNK_180a2bba8;
-uint8_t UNK_180a2b6a8;
-uint8_t UNK_180a2b6c0;
-uint8_t UNK_180a2b718;
-uint8_t UNK_180a2b6e0;
-uint8_t UNK_180a2b6f8;
-uint8_t UNK_180a2b738;
-uint8_t UNK_180a2b778;
-uint8_t UNK_180a2b790;
-uint8_t UNK_180a2b7b0;
-uint8_t UNK_180a2b7a4;
-uint8_t UNK_180a2b7a8;
-uint8_t UNK_180a2b854;
+uint8_t global_state_3248;
+uint8_t global_state_3272;
+uint8_t global_state_3320;
+uint8_t global_state_3752;
+uint8_t global_state_3784;
+uint8_t global_state_3632;
+uint8_t global_state_3648;
+uint8_t global_state_3808;
+uint8_t global_state_3824;
+uint8_t global_state_3672;
+uint8_t global_state_3704;
+uint8_t global_state_4104;
+uint8_t global_state_4376;
+uint8_t global_state_3880;
+uint8_t global_state_3904;
+uint8_t global_state_3920;
+uint8_t global_state_2048;
+uint8_t global_state_3864;
+uint8_t global_state_3868;
+uint8_t global_state_3872;
+uint8_t global_state_3876;
+uint8_t global_state_3944;
+uint8_t global_state_3948;
+uint8_t global_state_3952;
+uint8_t global_state_4024;
+uint8_t global_state_4144;
+uint8_t global_state_4336;
+uint8_t global_state_4400;
+uint8_t global_state_4520;
+uint8_t global_state_4352;
+uint8_t global_state_4440;
+uint8_t global_state_6184;
+uint8_t global_state_5288;
+uint8_t global_state_5816;
+uint8_t global_state_4536;
+uint8_t global_state_4560;
+uint8_t global_state_4648;
+uint8_t global_state_4592;
+uint8_t global_state_4616;
+uint8_t global_state_4680;
+uint8_t global_state_4744;
+uint8_t global_state_4768;
+uint8_t global_state_4800;
+uint8_t global_state_4788;
+uint8_t global_state_4792;
+uint8_t global_state_4964;
 uint8_t system_memory_8f10;
 void *PTR_?id@?$ctype@D@std@@2V0locale@2@A_1809445b0;
-uint8_t UNK_180a2bce8;
+uint8_t global_state_6136;
 void *PTR_??_7facet@locale@std@@6B@_1809445c0;
 void *PTR_??_7_Facet_base@std@@6B@_180944588;
-uint8_t UNK_180a2b9b8;
+uint8_t global_state_5320;
 uint8_t system_memory_8f08;
 void *PTR_?id@?$collate@D@std@@2V0locale@2@A_1809445b8;
-uint8_t UNK_180a2b860;
-uint8_t UNK_180a2bbb0;
-uint8_t UNK_180a2bb78;
-uint8_t UNK_180a2bcd8;
-uint8_t UNK_180a2bcf8;
-uint8_t UNK_180a2bb98;
-uint8_t UNK_180a2bb88;
-uint8_t UNK_180a2bd08;
-uint8_t UNK_180a2b9a8;
-uint8_t UNK_180a2bd28;
+uint8_t global_state_4976;
+uint8_t global_state_5824;
+uint8_t global_state_5768;
+uint8_t global_state_6120;
+uint8_t global_state_6152;
+uint8_t global_state_5800;
+uint8_t global_state_5784;
+uint8_t global_state_6168;
+uint8_t global_state_5304;
+uint8_t global_state_6200;
 uint8_t system_memory_b9f0;
-uint8_t UNK_180a2ba00;
-uint8_t UNK_180a2ba04;
-uint8_t UNK_180483d40;
-uint8_t UNK_180a2bd38;
-uint8_t UNK_180a2be10;
-uint8_t UNK_180a2be60;
-uint8_t UNK_180a2bde0;
-uint8_t UNK_180a2bd60;
-uint8_t UNK_180485500;
-uint8_t UNK_180a2beb0;
+uint8_t global_state_5392;
+uint8_t global_state_5396;
+uint8_t global_state_5216;
+uint8_t global_state_6216;
+uint8_t global_state_6432;
+uint8_t global_state_6512;
+uint8_t global_state_6384;
+uint8_t global_state_6256;
+uint8_t global_state_1296;
+uint8_t global_state_6592;
 
 
 // 渲染系统采样器管理器 (RenderingSystem_SamplerManager)
@@ -797,22 +797,22 @@ uint8_t UNK_180a2beb0;
 // 参数：无
 // 返回值：RenderingSampler - 渲染采样器对象
 uint8_t FUN_180485510;
-uint8_t UNK_180a2bf90;
-uint8_t UNK_180a2bf98;
-uint8_t UNK_180a2bfa0;
-uint8_t UNK_180a2bfa8;
-uint8_t UNK_180a2bfb4;
-uint8_t UNK_180a2bfc0;
-uint8_t UNK_180a2c010;
-uint8_t UNK_180a2c018;
-uint8_t UNK_180a2c028;
-uint8_t UNK_180a2c038;
-uint8_t UNK_180a2c008;
-uint8_t UNK_180a2c050;
-uint8_t UNK_180a2c1c0;
-uint8_t UNK_180a2c308;
-uint8_t UNK_180a2c320;
-uint8_t UNK_180a2c3f0;
+uint8_t global_state_6816;
+uint8_t global_state_6824;
+uint8_t global_state_6832;
+uint8_t global_state_6840;
+uint8_t global_state_6852;
+uint8_t global_state_6864;
+uint8_t global_state_6944;
+uint8_t global_state_6952;
+uint8_t global_state_6968;
+uint8_t global_state_6984;
+uint8_t global_state_6936;
+uint8_t global_state_7008;
+uint8_t global_state_7376;
+uint8_t global_state_7704;
+uint8_t global_state_7728;
+uint8_t global_state_7936;
 
 
 // 渲染系统相机管理器 (RenderingSystem_CameraManager)
@@ -820,7 +820,7 @@ uint8_t UNK_180a2c3f0;
 // 参数：无
 // 返回值：RenderingCamera - 渲染相机对象
 uint8_t FUN_180489130;
-uint8_t UNK_180a2c360;
+uint8_t global_state_7792;
 
 
 // 渲染系统效果管理器 (RenderingSystem_EffectManager)
@@ -835,8 +835,8 @@ uint8_t FUN_180489700;
 // 参数：无
 // 返回值：void - 无返回值
 uint8_t FUN_180489990;
-uint8_t UNK_180a2c528;
-uint8_t UNK_180a2c6a8;
+uint8_t global_state_8248;
+uint8_t global_state_8632;
 uint8_t system_memory_0740;
 uint8_t system_memory_0780;
 uint8_t system_memory_03e0;
@@ -846,52 +846,52 @@ uint8_t system_memory_0760;
 uint8_t system_memory_0770;
 uint8_t system_memory_f820;
 uint8_t system_memory_0880;
-uint8_t UNK_1809f7f20;
-uint8_t UNK_1809f7fb0;
-uint8_t UNK_1809f7fb4;
-uint8_t UNK_1809f7fb8;
-uint8_t UNK_1809f7fbc;
-uint8_t UNK_1809f7fd0;
-uint8_t UNK_1809f7fd4;
-uint8_t UNK_1809f7fd8;
-uint8_t UNK_1809f7fdc;
-uint8_t UNK_1809f7ff0;
-uint8_t UNK_1809f7ff4;
-uint8_t UNK_1809f7ff8;
-uint8_t UNK_1809f7ffc;
-uint8_t UNK_180a2c688;
+uint8_t global_state_3712;
+uint8_t global_state_3856;
+uint8_t global_state_3860;
+uint8_t global_state_3864;
+uint8_t global_state_3868;
+uint8_t global_state_3888;
+uint8_t global_state_3892;
+uint8_t global_state_3896;
+uint8_t global_state_3900;
+uint8_t global_state_3920;
+uint8_t global_state_3924;
+uint8_t global_state_3928;
+uint8_t global_state_3932;
+uint8_t global_state_8600;
 uint8_t system_memory_0860;
 uint8_t system_memory_07c0;
-uint8_t UNK_180a2c788;
-uint8_t UNK_1809f80a4;
-uint8_t UNK_1809f80a8;
-uint8_t UNK_1809f80ac;
-uint8_t UNK_1809f80c0;
-uint8_t UNK_1809f80c4;
-uint8_t UNK_1809f80c8;
-uint8_t UNK_1809f80cc;
-uint8_t UNK_1809f80e0;
-uint8_t UNK_1809f80e4;
-uint8_t UNK_1809f80e8;
-uint8_t UNK_1809f80ec;
+uint8_t global_state_8856;
+uint8_t global_state_4100;
+uint8_t global_state_4104;
+uint8_t global_state_4108;
+uint8_t global_state_4128;
+uint8_t global_state_4132;
+uint8_t global_state_4136;
+uint8_t global_state_4140;
+uint8_t global_state_4160;
+uint8_t global_state_4164;
+uint8_t global_state_4168;
+uint8_t global_state_4172;
 uint8_t system_memory_0570;
-uint8_t UNK_1809f8010;
-uint8_t UNK_1809f80a0;
+uint8_t global_state_3952;
+uint8_t global_state_4096;
 uint8_t system_memory_00d0;
-uint8_t UNK_1809f8100;
-uint8_t UNK_1809f8190;
-uint8_t UNK_1809f8194;
-uint8_t UNK_1809f8198;
-uint8_t UNK_1809f819c;
-uint8_t UNK_1809f81b0;
-uint8_t UNK_1809f81b4;
-uint8_t UNK_1809f81b8;
-uint8_t UNK_1809f81bc;
-uint8_t UNK_1809f81d0;
-uint8_t UNK_1809f81d4;
-uint8_t UNK_1809f81d8;
-uint8_t UNK_1809f81dc;
-uint8_t UNK_180a2c920;
+uint8_t global_state_4192;
+uint8_t global_state_4336;
+uint8_t global_state_4340;
+uint8_t global_state_4344;
+uint8_t global_state_4348;
+uint8_t global_state_4368;
+uint8_t global_state_4372;
+uint8_t global_state_4376;
+uint8_t global_state_4380;
+uint8_t global_state_4400;
+uint8_t global_state_4404;
+uint8_t global_state_4408;
+uint8_t global_state_4412;
+uint8_t global_state_9264;
 uint8_t system_memory_9da8;
 
 
@@ -907,18 +907,18 @@ uint8_t FUN_180499e70;
 // 参数：无
 // 返回值：void - 无返回值
 uint8_t FUN_180499f50;
-uint8_t UNK_180a2d6a0;
+uint8_t global_state_2720;
 uint8_t system_memory_ca38;
-uint8_t UNK_180a2dcc8;
-uint8_t UNK_180a2de60;
-uint8_t UNK_180a2d5c0;
+uint8_t global_state_4296;
+uint8_t global_state_4704;
+uint8_t global_state_2496;
 uint8_t system_memory_24d0;
 uint8_t system_memory_24e0;
 uint8_t system_memory_24d8;
 uint8_t system_memory_24f8;
 uint8_t system_memory_2500;
 uint8_t system_memory_250c;
-uint8_t UNK_180a2d448;
+uint8_t global_state_2120;
 uint8_t system_memory_24f0;
 char system_memory_6098;
 uint8_t system_memory_6070;
@@ -1024,13 +1024,13 @@ uint8_t system_memory_60e8;
 uint8_t system_memory_6158;
 uint8_t system_memory_5ed8;
 uint8_t system_memory_6080;
-uint64_t UNK_180c95f00;
-uint64_t UNK_180c95f78;
-uint64_t UNK_180c95f98;
-uint64_t UNK_180c961b8;
-uint8_t UNK_180a2ca80;
-uint8_t UNK_180a2d418;
-uint8_t UNK_180a2d430;
+uint64_t global_state_8000;
+uint64_t global_state_8120;
+uint64_t global_state_8152;
+uint64_t global_state_8696;
+uint8_t global_state_9616;
+uint8_t global_state_2072;
+uint8_t global_state_2096;
 
 
 // 渲染系统状态设置器 (RenderingSystem_StateSetter)
@@ -1039,13 +1039,13 @@ uint8_t UNK_180a2d430;
 // 返回值：bool - 设置成功返回true，失败返回false
 uint8_t FUN_18049d430;
 uint8_t system_memory_d688;
-uint8_t UNK_180a2ca60;
-uint8_t UNK_180a0ae48;
-uint8_t UNK_180a0ae58;
-uint8_t UNK_180a2cb60;
+uint8_t global_state_9584;
+uint8_t global_state_1320;
+uint8_t global_state_1336;
+uint8_t global_state_9840;
 uint8_t system_memory_ece0;
-uint8_t UNK_180a2e120;
-uint8_t UNK_180a2e130;
+uint8_t global_state_5408;
+uint8_t global_state_5424;
 
 
 // 渲染系统状态获取器 (RenderingSystem_StateGetter)
@@ -1103,15 +1103,15 @@ uint8_t FUN_18055ec20;
 // 返回值：bool - 绑定成功返回true，失败返回false
 uint8_t FUN_18055ec90;
 uint8_t system_memory_2cf8;
-uint8_t UNK_180a35a70;
-uint8_t UNK_180a36730;
-uint8_t UNK_180a36778;
+uint8_t global_state_6464;
+uint8_t global_state_9728;
+uint8_t global_state_9800;
 uint8_t system_memory_02a8;
-uint8_t UNK_180a2cf60;
-uint8_t UNK_180a2cf70;
-uint8_t UNK_180a2cd80;
-uint8_t UNK_180a2cde8;
-uint8_t UNK_180a2cdc8;
+uint8_t global_state_864;
+uint8_t global_state_880;
+uint8_t global_state_384;
+uint8_t global_state_488;
+uint8_t global_state_456;
 
 
 // 渲染系统缓冲区创建器 (RenderingSystem_BufferCreator)
@@ -1198,18 +1198,18 @@ uint8_t system_memory_6138;
 // 返回值：RenderingUniform - 统一变量对象
 uint8_t FUN_1805036d0;
 int8_t system_memory_ec8a;
-uint8_t UNK_180502b70;
-uint8_t UNK_180502c50;
-uint8_t UNK_180502c90;
-uint8_t UNK_180502cb0;
-uint8_t UNK_180502e30;
-uint8_t UNK_180502e70;
-uint8_t UNK_180502e80;
-uint8_t UNK_180502ec0;
-uint8_t UNK_180503060;
-uint8_t UNK_180503150;
-uint8_t UNK_180503200;
-uint8_t UNK_180a301b8;
+uint8_t global_state_4944;
+uint8_t global_state_5168;
+uint8_t global_state_5232;
+uint8_t global_state_5264;
+uint8_t global_state_5648;
+uint8_t global_state_5712;
+uint8_t global_state_5728;
+uint8_t global_state_5792;
+uint8_t global_state_6208;
+uint8_t global_state_6448;
+uint8_t global_state_6624;
+uint8_t global_state_3752;
 
 
 // 渲染系统属性设置器 (RenderingSystem_AttributeSetter)
@@ -1242,16 +1242,16 @@ uint8_t system_memory_5b3c;
 uint8_t system_memory_2580;
 uint8_t system_memory_5b08;
 uint8_t system_memory_5b10;
-uint8_t UNK_1809fa4a0;
-uint8_t UNK_1809fa4b0;
-uint8_t UNK_1809fa540;
-uint8_t UNK_1809fa560;
+uint8_t global_state_3312;
+uint8_t global_state_3328;
+uint8_t global_state_3472;
+uint8_t global_state_3504;
 uint8_t system_memory_bca0;
-uint8_t UNK_1809fa460;
-uint8_t UNK_1809fa4d0;
-uint8_t UNK_1809fa4e0;
-uint8_t UNK_1809fa510;
-uint8_t UNK_1809fa4c0;
+uint8_t global_state_3248;
+uint8_t global_state_3360;
+uint8_t global_state_3376;
+uint8_t global_state_3424;
+uint8_t global_state_3344;
 
 
 // 渲染系统绘制调用器 (RenderingSystem_DrawCaller)
@@ -1259,7 +1259,7 @@ uint8_t UNK_1809fa4c0;
 // 参数：无
 // 返回值：bool - 绘制成功返回true，失败返回false
 uint8_t FUN_180534590;
-uint8_t UNK_180a308a0;
+uint8_t global_state_5520;
 uint8_t system_memory_650c;
 uint8_t system_memory_6510;
 uint8_t system_memory_6514;
@@ -1281,8 +1281,8 @@ uint8_t FUN_18058f390;
 // 参数：无
 // 返回值：void - 无返回值
 uint8_t FUN_18058f420;
-uint8_t UNK_180502970;
-uint8_t UNK_180502a60;
+uint8_t global_state_4432;
+uint8_t global_state_4672;
 
 
 // 渲染系统视口获取器 (RenderingSystem_ViewportGetter)
@@ -1297,7 +1297,7 @@ uint8_t FUN_1805028c0;
 // 参数：无
 // 返回值：bool - 推送成功返回true，失败返回false
 uint8_t FUN_1805029b0;
-uint8_t UNK_180502880;
+uint8_t global_state_4192;
 
 
 // 渲染系统视口弹出器 (RenderingSystem_ViewportPopper)
@@ -1319,15 +1319,15 @@ uint8_t FUN_180522fd0;
 // 参数：无
 // 返回值：bool - 设置成功返回true，失败返回false
 uint8_t FUN_180523570;
-uint8_t UNK_180a30910;
-uint8_t UNK_180a30978;
+uint8_t global_state_5632;
+uint8_t global_state_5736;
 char system_memory_2588;
 uint8_t system_memory_68e0;
 uint8_t system_memory_5bf0;
 uint8_t system_memory_2d00;
 uint8_t system_memory_66e8;
 char system_memory_ec8a;
-uint8_t UNK_1809fa450;
+uint8_t global_state_3232;
 uint8_t system_memory_bc90;
 uint8_t system_memory_ad20;
 uint8_t system_memory_9e38;
@@ -1338,13 +1338,13 @@ uint8_t system_memory_9e4c;
 uint8_t system_memory_9e44;
 uint8_t system_memory_9e50;
 uint8_t system_memory_9e54;
-uint8_t UNK_180a305b0;
-uint8_t UNK_180a305b8;
-uint8_t UNK_180a305c0;
-uint8_t UNK_180a305e0;
-uint8_t UNK_180a30710;
-uint8_t UNK_180a30728;
-uint8_t UNK_180a30740;
+uint8_t global_state_4768;
+uint8_t global_state_4776;
+uint8_t global_state_4784;
+uint8_t global_state_4816;
+uint8_t global_state_5120;
+uint8_t global_state_5144;
+uint8_t global_state_5168;
 
 
 // 渲染系统混合获取器 (RenderingSystem_BlendGetter)
@@ -1352,30 +1352,30 @@ uint8_t UNK_180a30740;
 // 参数：无
 // 返回值：void - 无返回值
 uint8_t FUN_180502560;
-uint8_t UNK_180502550;
+uint8_t global_state_3376;
 uint8_t system_memory_9e58;
 uint8_t system_memory_9e5c;
-uint8_t UNK_180a306f0;
-uint8_t UNK_180a306d8;
-uint8_t UNK_1809f7764;
-uint8_t UNK_180a30f40;
-uint8_t UNK_180a30900;
-uint8_t UNK_180a30700;
-uint8_t UNK_180a30750;
+uint8_t global_state_5088;
+uint8_t global_state_5064;
+uint8_t global_state_1732;
+uint8_t global_state_7216;
+uint8_t global_state_5616;
+uint8_t global_state_5104;
+uint8_t global_state_5184;
 uint8_t system_temp_buffer;
-uint8_t UNK_180a0fd3c;
-uint8_t UNK_180a30208;
-uint8_t UNK_180a30398;
-uint8_t UNK_180a302d0;
-uint8_t UNK_180a30300;
-uint8_t UNK_180a304d0;
-uint8_t UNK_180a30510;
-uint8_t UNK_180a30428;
-uint8_t UNK_180a30458;
-uint8_t UNK_180a30478;
-uint8_t UNK_180a304a8;
-uint8_t UNK_180a30768;
-uint8_t UNK_18057c390;
+uint8_t global_state_1532;
+uint8_t global_state_3832;
+uint8_t global_state_4232;
+uint8_t global_state_4032;
+uint8_t global_state_4080;
+uint8_t global_state_4544;
+uint8_t global_state_4608;
+uint8_t global_state_4376;
+uint8_t global_state_4424;
+uint8_t global_state_4456;
+uint8_t global_state_4504;
+uint8_t global_state_5208;
+uint8_t global_state_2640;
 
 
 // 渲染系统混合推送器 (RenderingSystem_BlendPusher)
@@ -1383,12 +1383,12 @@ uint8_t UNK_18057c390;
 // 参数：无
 // 返回值：bool - 推送成功返回true，失败返回false
 uint8_t FUN_1805298f0;
-uint8_t UNK_180a30bd8;
-uint8_t UNK_180a30be0;
-uint8_t UNK_180a30c20;
-uint8_t UNK_180a30c70;
-uint8_t UNK_180a30c30;
-uint8_t UNK_180a30c80;
+uint8_t global_state_6344;
+uint8_t global_state_6352;
+uint8_t global_state_6416;
+uint8_t global_state_6496;
+uint8_t global_state_6432;
+uint8_t global_state_6512;
 uint8_t system_memory_bcd0;
 uint8_t system_memory_64f8;
 uint8_t system_memory_64f0;
@@ -1401,7 +1401,7 @@ uint8_t system_memory_9e60;
 // 返回值：bool - 弹出成功返回true，失败返回false
 uint8_t FUN_180516cb0;
 uint8_t system_memory_99a0;
-uint8_t UNK_180a30cd0;
+uint8_t global_state_6592;
 uint8_t system_memory_64b0;
 uint8_t system_memory_64b4;
 uint8_t system_memory_64ac;
@@ -1421,15 +1421,15 @@ uint8_t system_memory_9ee0;
 uint8_t system_memory_9ee4;
 uint8_t system_memory_9ee8;
 uint8_t system_memory_9eec;
-int32_t UNK_180c92518;
-uint8_t UNK_1809f89f0;
+int32_t global_state_3176;
+uint8_t global_state_6480;
 uint8_t system_memory_9ef0;
 uint8_t system_memory_9ef4;
-uint8_t UNK_180a378a0;
+uint8_t global_state_4192;
 uint8_t system_memory_9ef8;
 uint8_t system_memory_9efc;
-uint8_t UNK_180a30e00;
-uint8_t UNK_1809fa390;
+uint8_t global_state_6896;
+uint8_t global_state_3040;
 
 
 // 渲染系统混合重置器 (RenderingSystem_BlendResetter)
@@ -1437,7 +1437,7 @@ uint8_t UNK_1809fa390;
 // 参数：无
 // 返回值：void - 无返回值
 uint8_t FUN_180534540;
-uint8_t UNK_180a30de8;
+uint8_t global_state_6872;
 uint8_t system_memory_9f00;
 
 
@@ -1460,7 +1460,7 @@ uint8_t FUN_18053ef20;
 // 参数：无
 // 返回值：bool - 推送成功返回true，失败返回false
 uint8_t FUN_18053bb30;
-uint8_t UNK_18053ea20;
+uint8_t global_state_368;
 
 
 // 渲染系统深度弹出器 (RenderingSystem_DepthPopper)
@@ -1475,17 +1475,17 @@ uint8_t FUN_18053ecd0;
 // 参数：无
 // 返回值：void - 无返回值
 uint8_t FUN_18053ed70;
-uint8_t UNK_180a27090;
-uint8_t UNK_180a2e048;
-uint8_t UNK_180a33af8;
-uint8_t UNK_180a33a70;
-uint8_t UNK_180a33b30;
-uint8_t UNK_180a33ba0;
-uint8_t UNK_180a33d50;
-uint8_t UNK_180a33e00;
-uint8_t UNK_180a33e80;
-uint8_t UNK_180a33f00;
-uint8_t UNK_180a33ce0;
+uint8_t global_state_6592;
+uint8_t global_state_5192;
+uint8_t global_state_8408;
+uint8_t global_state_8272;
+uint8_t global_state_8464;
+uint8_t global_state_8576;
+uint8_t global_state_9008;
+uint8_t global_state_9184;
+uint8_t global_state_9312;
+uint8_t global_state_9440;
+uint8_t global_state_8896;
 uint8_t system_memory_ecdc;
 uint8_t system_memory_5ef4;
 
@@ -1502,7 +1502,7 @@ uint8_t FUN_180544dc0;
 // 参数：无
 // 返回值：void - 无返回值
 uint8_t FUN_180506660;
-uint8_t UNK_180a34058;
+uint8_t global_state_9784;
 
 
 // 渲染系统面剔除推送器 (RenderingSystem_CullFacePusher)
@@ -1510,18 +1510,18 @@ uint8_t UNK_180a34058;
 // 参数：无
 // 返回值：bool - 推送成功返回true，失败返回false
 uint8_t FUN_180541110;
-uint8_t UNK_180a34000;
-uint8_t UNK_180a33fc0;
-uint8_t UNK_180a34038;
+uint8_t global_state_9696;
+uint8_t global_state_9632;
+uint8_t global_state_9752;
 uint8_t system_memory_9f68;
 char system_memory_9f6c;
-uint8_t UNK_180a37d00;
-uint8_t UNK_180a37d10;
-uint8_t UNK_180a37d28;
-uint8_t UNK_180a37ce0;
-uint8_t UNK_180a34440;
-uint8_t UNK_18054ab80;
-uint8_t UNK_180a34228;
+uint8_t global_state_5312;
+uint8_t global_state_5328;
+uint8_t global_state_5352;
+uint8_t global_state_5280;
+uint8_t global_state_784;
+uint8_t global_state_9872;
+uint8_t global_state_248;
 
 
 // 渲染系统面剔除弹出器 (RenderingSystem_CullFacePopper)
@@ -1543,7 +1543,7 @@ uint8_t FUN_18054b4b0;
 // 参数：无
 // 返回值：bool - 设置成功返回true，失败返回false
 uint8_t FUN_18054b530;
-uint8_t UNK_18054b470;
+uint8_t global_state_2160;
 
 
 // 渲染系统多边形模式获取器 (RenderingSystem_PolygonModeGetter)
@@ -1551,7 +1551,7 @@ uint8_t UNK_18054b470;
 // 参数：无
 // 返回值：void - 无返回值
 uint8_t FUN_18054b3e0;
-uint8_t UNK_18054b3a0;
+uint8_t global_state_1952;
 
 
 // 渲染系统多边形模式推送器 (RenderingSystem_PolygonModePusher)
@@ -1559,8 +1559,8 @@ uint8_t UNK_18054b3a0;
 // 参数：无
 // 返回值：bool - 推送成功返回true，失败返回false
 uint8_t FUN_18054b330;
-uint8_t UNK_18054b290;
-uint8_t UNK_18054b310;
+uint8_t global_state_1680;
+uint8_t global_state_1808;
 
 
 // 渲染系统多边形模式弹出器 (RenderingSystem_PolygonModePopper)
@@ -1575,7 +1575,7 @@ uint8_t FUN_18054b230;
 // 参数：无
 // 返回值：void - 无返回值
 uint8_t FUN_18054b2b0;
-uint8_t UNK_18054b1f0;
+uint8_t global_state_1520;
 
 
 // 渲染系统点大小设置器 (RenderingSystem_PointSizeSetter)
@@ -1583,7 +1583,7 @@ uint8_t UNK_18054b1f0;
 // 参数：无
 // 返回值：bool - 设置成功返回true，失败返回false
 uint8_t FUN_18054b180;
-uint8_t UNK_18054b140;
+uint8_t global_state_1344;
 
 
 // 渲染系统点大小获取器 (RenderingSystem_PointSizeGetter)
@@ -1591,7 +1591,7 @@ uint8_t UNK_18054b140;
 // 参数：无
 // 返回值：void - 无返回值
 uint8_t FUN_18054b0d0;
-uint8_t UNK_18054afa0;
+uint8_t global_state_928;
 
 
 // 渲染系统点大小推送器 (RenderingSystem_PointSizePusher)
@@ -1599,7 +1599,7 @@ uint8_t UNK_18054afa0;
 // 参数：无
 // 返回值：bool - 推送成功返回true，失败返回false
 uint8_t FUN_18054af30;
-uint8_t UNK_18054aef0;
+uint8_t global_state_752;
 
 
 // 渲染系统点大小弹出器 (RenderingSystem_PointSizePopper)
@@ -1607,7 +1607,7 @@ uint8_t UNK_18054aef0;
 // 参数：无
 // 返回值：bool - 弹出成功返回true，失败返回false
 uint8_t FUN_18054ae80;
-uint8_t UNK_18054ae40;
+uint8_t global_state_576;
 
 
 // 渲染系统点大小重置器 (RenderingSystem_PointSizeResetter)
@@ -1622,8 +1622,8 @@ uint8_t FUN_18054add0;
 // 参数：无
 // 返回值：bool - 设置成功返回true，失败返回false
 uint8_t FUN_18054ad20;
-uint8_t UNK_18054ad90;
-uint8_t UNK_18054ace0;
+uint8_t global_state_400;
+uint8_t global_state_224;
 
 
 // 渲染系统线宽获取器 (RenderingSystem_LineWidthGetter)
@@ -1631,7 +1631,7 @@ uint8_t UNK_18054ace0;
 // 参数：无
 // 返回值：void - 无返回值
 uint8_t FUN_18054ac70;
-uint8_t UNK_18054ac30;
+uint8_t global_state_48;
 
 
 // 渲染系统线宽推送器 (RenderingSystem_LineWidthPusher)
@@ -1653,7 +1653,7 @@ uint8_t FUN_18054a960;
 // 参数：无
 // 返回值：void - 无返回值
 uint8_t FUN_18054a9d0;
-uint8_t UNK_18054a920;
+uint8_t global_state_9264;
 
 
 // 渲染系统裁剪平面设置器 (RenderingSystem_ClipPlaneSetter)
@@ -1661,7 +1661,7 @@ uint8_t UNK_18054a920;
 // 参数：无
 // 返回值：bool - 设置成功返回true，失败返回false
 uint8_t FUN_18054a8b0;
-uint8_t UNK_18054a870;
+uint8_t global_state_9088;
 
 
 // 渲染系统裁剪平面获取器 (RenderingSystem_ClipPlaneGetter)
@@ -1669,7 +1669,7 @@ uint8_t UNK_18054a870;
 // 参数：无
 // 返回值：void - 无返回值
 uint8_t FUN_18054a800;
-uint8_t UNK_18054a7c0;
+uint8_t global_state_8912;
 
 
 // 渲染系统裁剪平面推送器 (RenderingSystem_ClipPlanePusher)
@@ -1677,7 +1677,7 @@ uint8_t UNK_18054a7c0;
 // 参数：无
 // 返回值：bool - 推送成功返回true，失败返回false
 uint8_t FUN_18054a750;
-uint8_t UNK_18054a710;
+uint8_t global_state_8736;
 
 
 // 渲染系统裁剪平面弹出器 (RenderingSystem_ClipPlanePopper)
@@ -1685,7 +1685,7 @@ uint8_t UNK_18054a710;
 // 参数：无
 // 返回值：bool - 弹出成功返回true，失败返回false
 uint8_t FUN_18054a6a0;
-uint8_t UNK_18054a660;
+uint8_t global_state_8560;
 
 
 // 渲染系统资源清理器 (RenderingSystem_ResourceCleaner)
@@ -1693,7 +1693,7 @@ uint8_t UNK_18054a660;
 // 参数：无
 // 返回值：无
 uint8_t FUN_18054a5f0;
-uint8_t UNK_18054a5b0;
+uint8_t global_state_8384;
 
 // ============================================================================
 // 函数别名定义

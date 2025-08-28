@@ -429,7 +429,7 @@ FUN_1806bdc70(uint64_t param_1,longlong *param_2,int32_t *param_3,int param_4,
   if ((param_3 == (int32_t *)0x0) || (param_4 == 0)) {
     uVar2 = _getInstance_Foundation_shdfnd_physx__SAAEAV123_XZ();
     uVar5 = 0x15e;
-    puVar3 = &UNK_18094b8f0;
+    puVar3 = &unknown_var_7616_ptr;
   }
   else {
     fStack_78 = 0.0;
@@ -444,7 +444,7 @@ FUN_1806bdc70(uint64_t param_1,longlong *param_2,int32_t *param_3,int param_4,
       uVar4 = 1;
       if (fStack_78 != 0.0) {
         cVar1 = FUN_1806bb2e0(&uStack_a8,&uStack_c8,&uStack_b8,auStackX_10,&uStack_d8,
-                              param_5 != (int32_t *)0x0,param_2,&UNK_18094b8c8);
+                              param_5 != (int32_t *)0x0,param_2,&unknown_var_7576_ptr);
         uVar6 = uStack_d8;
         uVar7 = uStack_d4;
         uVar8 = uStack_d0;
@@ -461,10 +461,10 @@ FUN_1806bdc70(uint64_t param_1,longlong *param_2,int32_t *param_3,int param_4,
     }
     uVar2 = _getInstance_Foundation_shdfnd_physx__SAAEAV123_XZ();
     uVar5 = 0x156;
-    puVar3 = &UNK_18094b820;
+    puVar3 = &unknown_var_7408_ptr;
   }
   _error_Foundation_shdfnd_physx__QEAAXW4Enum_PxErrorCode_3_PEBDH1ZZ
-            (uVar2,4,&UNK_18094b6b0,uVar5,puVar3,&UNK_18094b8c8);
+            (uVar2,4,&unknown_var_7040_ptr,uVar5,puVar3,&unknown_var_7576_ptr);
   uVar4 = 0;
 LAB_1806bde40:
   (**(code **)(*param_2 + 0xe0))(param_2,uVar9);

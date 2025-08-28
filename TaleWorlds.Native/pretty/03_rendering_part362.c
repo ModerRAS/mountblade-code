@@ -516,27 +516,27 @@ int FUN_1804660e0(uint64_t param_1,uint64_t *param_2,void *param_3,void *param_4
   iVar1 = *(int *)(param_2 + 2);
   if (iVar1 == 6) {
     param_3 = (void *)param_2[1];
-    param_4 = &UNK_18098be5c;
+    param_4 = &unknown_var_1148_ptr;
     lVar2 = 0;
-    while (lVar3 = lVar2 + 1, param_3[lVar2] == (&UNK_18098be5c)[lVar2]) {
+    while (lVar3 = lVar2 + 1, param_3[lVar2] == (&unknown_var_1148_ptr)[lVar2]) {
       lVar2 = lVar3;
       if (lVar3 == 7) {
-        *param_2 = &UNK_180a3c3e0;
+        *param_2 = &unknown_var_3456_ptr;
         if (param_2[1] != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
         param_2[1] = 0;
         *(int32_t *)(param_2 + 3) = 0;
-        *param_2 = &UNK_18098bcb0;
+        *param_2 = &unknown_var_720_ptr;
         return 0;
       }
     }
   }
   if (iVar1 == 7) {
-    param_3 = &UNK_180a2aac8;
+    param_3 = &unknown_var_1496_ptr;
     lVar2 = 0;
-    while (lVar3 = lVar2, *(char *)(param_2[1] + lVar3) == (&UNK_180a2aac8)[lVar3]) {
+    while (lVar3 = lVar2, *(char *)(param_2[1] + lVar3) == (&unknown_var_1496_ptr)[lVar3]) {
       lVar2 = lVar3 + 1;
       if (lVar3 + 1 == 8) {
         FUN_180627b90(param_2);
@@ -545,7 +545,7 @@ int FUN_1804660e0(uint64_t param_1,uint64_t *param_2,void *param_3,void *param_4
     }
   }
   if (iVar1 == 9) {
-    iVar1 = strcmp(param_2[1],&UNK_180a2aad0,param_3,param_4,0xfffffffffffffffe);
+    iVar1 = strcmp(param_2[1],&unknown_var_1504_ptr,param_3,param_4,0xfffffffffffffffe);
     if (iVar1 == 0) {
       FUN_180627b90(param_2);
       return 1;

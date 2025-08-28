@@ -49,7 +49,7 @@ void FUN_1800b5f00(longlong param_1)
   
   uStack_40 = 0xfffffffffffffffe;
   puVar10 = (int8_t *)0x0;
-  puStack_100 = &UNK_180a3c3e0;
+  puStack_100 = &unknown_var_3456_ptr;
   uStack_e8 = 0;
   puStack_f8 = (int8_t *)0x0;
   uStack_f0 = 0;
@@ -60,7 +60,7 @@ void FUN_1800b5f00(longlong param_1)
   FUN_180627c50(&puStack_100,puVar13);
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
                0x48) < _DAT_180d49238) && (FUN_1808fcb90(&system_ptr_9238), _DAT_180d49238 == -1)) {
-    _DAT_180d49240 = &UNK_180a3c3e0;
+    _DAT_180d49240 = &unknown_var_3456_ptr;
     _DAT_180d49258 = 0;
     _DAT_180d49248 = (int32_t *)0x0;
     _DAT_180d49250 = 0;
@@ -79,7 +79,7 @@ void FUN_1800b5f00(longlong param_1)
     FUN_1808fc820(FUN_180941a30);
     FUN_1808fcb30(&system_ptr_9238);
   }
-  puStack_80 = &UNK_180a3c3e0;
+  puStack_80 = &unknown_var_3456_ptr;
   uStack_68 = 0;
   puStack_78 = (int8_t *)0x0;
   uStack_70 = 0;
@@ -107,7 +107,7 @@ void FUN_1800b5f00(longlong param_1)
     }
     uStack_68 = uStack_68 & 0xffffffff;
   }
-  puStack_a0 = &UNK_180a3c3e0;
+  puStack_a0 = &unknown_var_3456_ptr;
   uVar6 = 0;
   uStack_88 = 0;
   puStack_98 = (int8_t *)0x0;
@@ -140,7 +140,7 @@ LAB_1800b60e2:
   uVar4 = uStack_e8._4_4_;
   uStack_88 = CONCAT44(uStack_e8._4_4_,(int32_t)uStack_88);
   FUN_1806279c0(&puStack_60,param_1 + 0x10);
-  puStack_c0 = &UNK_180a3c3e0;
+  puStack_c0 = &unknown_var_3456_ptr;
   uStack_a8 = 0;
   puStack_b8 = (int8_t *)0x0;
   puVar11 = (int8_t *)0x0;
@@ -195,7 +195,7 @@ LAB_1800b62bf:
                     // WARNING: Subroutine does not return
     memcpy(puVar10 + uVar2,lStack_58,(longlong)(iStack_50 + 1));
   }
-  puStack_e0 = &UNK_180a3c3e0;
+  puStack_e0 = &unknown_var_3456_ptr;
   uStack_c8 = 0;
   puStack_d8 = (int8_t *)0x0;
   uStack_d0 = 0;
@@ -255,8 +255,8 @@ LAB_1800b63ec:
   uStack_d0 = 0;
   puStack_d8 = (int8_t *)0x0;
   uStack_c8 = 0;
-  puStack_e0 = &UNK_18098bcb0;
-  puStack_c0 = &UNK_180a3c3e0;
+  puStack_e0 = &unknown_var_720_ptr;
+  puStack_c0 = &unknown_var_3456_ptr;
   puStack_f8 = puVar11;
   uStack_f0 = iVar3;
   if (puVar10 != (int8_t *)0x0) {
@@ -265,31 +265,31 @@ LAB_1800b63ec:
   }
   puStack_b8 = (int8_t *)0x0;
   uStack_a8 = uStack_a8 & 0xffffffff00000000;
-  puStack_c0 = &UNK_18098bcb0;
-  puStack_60 = &UNK_180a3c3e0;
+  puStack_c0 = &unknown_var_720_ptr;
+  puStack_60 = &unknown_var_3456_ptr;
   if (lStack_58 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_58 = 0;
   uStack_48 = 0;
-  puStack_60 = &UNK_18098bcb0;
-  puStack_a0 = &UNK_180a3c3e0;
+  puStack_60 = &unknown_var_720_ptr;
+  puStack_a0 = &unknown_var_3456_ptr;
   if (puVar9 == (int8_t *)0x0) {
     puStack_98 = (int8_t *)0x0;
     uStack_88 = uStack_88 & 0xffffffff00000000;
-    puStack_a0 = &UNK_18098bcb0;
-    puStack_80 = &UNK_180a3c3e0;
+    puStack_a0 = &unknown_var_720_ptr;
+    puStack_80 = &unknown_var_3456_ptr;
     if (puVar8 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900(puVar8);
     }
     puStack_78 = (int8_t *)0x0;
     uStack_68 = uStack_68 & 0xffffffff00000000;
-    puStack_80 = &UNK_18098bcb0;
+    puStack_80 = &unknown_var_720_ptr;
     uVar12 = FUN_18023a940(param_1);
     FUN_180225ee0(extraout_XMM0_Da,&puStack_100,4,uVar12);
-    puStack_100 = &UNK_180a3c3e0;
+    puStack_100 = &unknown_var_3456_ptr;
     if (puStack_f8 == (int8_t *)0x0) {
       return;
     }
@@ -341,7 +341,7 @@ void FUN_1800b6620(void)
       do {
         plVar5 = *(longlong **)(uVar9 * 8 + lVar6);
         pcVar1 = *(code **)(*plVar5 + 0x68);
-        if (pcVar1 == (code *)&UNK_1800467f0) {
+        if (pcVar1 == (code *)&unknown_var_9696_ptr) {
           cVar11 = (char)plVar5[2] != '\0';
         }
         else {
@@ -354,7 +354,7 @@ void FUN_1800b6620(void)
           if (cVar11 == '\0') {
             plVar5 = *(longlong **)(uVar9 * 8 + *(longlong *)(lVar10 + lVar4));
             pcVar1 = *(code **)(*plVar5 + 0x80);
-            if (pcVar1 == (code *)&UNK_180049760) {
+            if (pcVar1 == (code *)&unknown_var_1840_ptr) {
               FUN_1800496b0(plVar5 + 4);
             }
             else {

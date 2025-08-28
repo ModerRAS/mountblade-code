@@ -169,11 +169,11 @@ void FUN_1803ca330(longlong param_1,uint64_t *param_2,uint64_t *param_3,longlong
   fVar3 = *pfVar16;
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
                0x48) < _DAT_180d49994) && (FUN_1808fcb90(&system_ptr_9994), _DAT_180d49994 == -1)) {
-    uStack_d8 = &UNK_1809fdc18;
+    uStack_d8 = &unknown_var_7512_ptr;
     uStack_d0 = afStack_c0;
     afStack_c0[0] = (float)((uint)afStack_c0[0] & 0xffffff00);
     fStack_c8 = 7.00649e-45;
-    strcpy_s(afStack_c0,0x10,&UNK_180a23c2c);
+    strcpy_s(afStack_c0,0x10,&unknown_var_3180_ptr);
     lVar13 = _DAT_180c8aa00;
     iVar8 = FUN_180191c00(_DAT_180c8aa00,&uStack_d8);
     if ((iVar8 == -1) ||
@@ -181,7 +181,7 @@ void FUN_1803ca330(longlong param_1,uint64_t *param_2,uint64_t *param_3,longlong
        ) {
       _DAT_180d49998 = *(ulonglong *)(lVar13 + 0x28);
     }
-    uStack_d8 = &UNK_18098bcb0;
+    uStack_d8 = &unknown_var_720_ptr;
     FUN_1808fcb30(&system_ptr_9994);
   }
   puVar17 = (uint64_t *)(_DAT_180c8a990 + 0xd8);

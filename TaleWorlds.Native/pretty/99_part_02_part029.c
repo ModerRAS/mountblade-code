@@ -480,7 +480,7 @@ void FUN_1801a0854(uint64_t param_1,code *param_2)
         iVar23 = (**(code **)(*unaff_RBX + 0x98))(unaff_RBX);
       } while ((iVar23 != 0) || ((int)unaff_RBX[0x42] == 0));
       param_2 = *(code **)(*unaff_RBX + 0x158);
-      if (param_2 != (code *)&UNK_18027d980) break;
+      if (param_2 != (code *)&unknown_var_2528_ptr) break;
       pfVar20 = (float *)(unaff_RBX + 0x66);
     }
   } while( true );

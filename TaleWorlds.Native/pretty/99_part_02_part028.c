@@ -357,7 +357,7 @@ void FUN_1801a082f(void)
             plVar1 = *(longlong **)(lVar26 + uVar27);
             iVar22 = (**(code **)(*plVar1 + 0x98))(plVar1);
             if ((iVar22 == 0) && ((int)plVar1[0x42] != 0)) {
-              if (*(code **)(*plVar1 + 0x158) == (code *)&UNK_18027d980) {
+              if (*(code **)(*plVar1 + 0x158) == (code *)&unknown_var_2528_ptr) {
                 pfVar19 = (float *)(plVar1 + 0x66);
               }
               else {

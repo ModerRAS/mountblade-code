@@ -1084,10 +1084,10 @@ void RenderingSystem_DataDeserializer(longlong deserialize_context, longlong fil
         // 分配资源块
         block_ptr = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x68, 8, 3);
         data_ptr = (longlong *)(block_ptr + 0x12);
-        *data_ptr = (longlong)&UNK_18098bcb0;
+        *data_ptr = (longlong)&unknown_var_720_ptr;
         *(uint64_t *)(block_ptr + 0x14) = 0;
         block_ptr[0x16] = 0;
-        *data_ptr = (longlong)&UNK_180a3c3e0;
+        *data_ptr = (longlong)&unknown_var_3456_ptr;
         *(uint64_t *)(block_ptr + 0x18) = 0;
         *(uint64_t *)(block_ptr + 0x14) = 0;
         block_ptr[0x16] = 0;

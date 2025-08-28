@@ -78,26 +78,26 @@ extern uint64_t system_memory_0e28;
 extern uint64_t system_memory_f9e8;
 
 /** 系统函数指针地址 */
-extern uint64_t UNK_180a003d0;
-extern uint64_t UNK_180a003e8;
-extern uint64_t UNK_180a00400;
-extern uint64_t UNK_180a004a8;
-extern uint64_t UNK_180a004c0;
-extern uint64_t UNK_180a00370;
-extern uint64_t UNK_180a00388;
-extern uint64_t UNK_180a003a0;
-extern uint64_t UNK_180a003b8;
-extern uint64_t UNK_180a00460;
-extern uint64_t UNK_180a00430;
-extern uint64_t UNK_1809ff978;
+extern uint64_t global_var_7680_ptr;
+extern uint64_t global_var_7704_ptr;
+extern uint64_t global_var_7728_ptr;
+extern uint64_t global_var_7896_ptr;
+extern uint64_t global_var_7920_ptr;
+extern uint64_t global_var_7584_ptr;
+extern uint64_t global_var_7608_ptr;
+extern uint64_t global_var_7632_ptr;
+extern uint64_t global_var_7656_ptr;
+extern uint64_t global_var_7824_ptr;
+extern uint64_t global_var_7776_ptr;
+extern uint64_t global_var_5032_ptr;
 
 /** 系统字符串数据 */
-extern uint64_t UNK_180a13e48;
-extern uint64_t UNK_180a140f8;
-extern uint64_t UNK_180a14290;
-extern uint64_t UNK_180a14668;
-extern uint64_t UNK_180a14640;
-extern uint64_t UNK_180a14840;
+extern uint64_t global_var_8184_ptr;
+extern uint64_t global_var_8872_ptr;
+extern uint64_t global_var_9280_ptr;
+extern uint64_t global_var_264_ptr;
+extern uint64_t global_var_224;
+extern uint64_t global_var_736_ptr;
 
 /** 系统全局变量 */
 extern uint64_t _DAT_180c91d5c;
@@ -109,10 +109,10 @@ extern uint64_t _DAT_180c91d68;
 extern uint64_t _DAT_180c91d6c;
 extern uint64_t _DAT_180c91d70;
 
-extern uint64_t UNK_1809fcc28;
-extern uint64_t UNK_1809fcc58;
+extern uint64_t global_var_3432_ptr;
+extern uint64_t global_var_3480_ptr;
 extern uint64_t system_memory_7ea8;
-extern uint64_t UNK_1800868c0;
+extern uint64_t global_var_2048_ptr;
 
 // =============================================================================
 // 函数声明区域
@@ -216,7 +216,7 @@ void core_engine_system_initializer_type1(void)
     // 设置系统注册信息
     parent_node[6] = SYSTEM_REGISTRY_ID_1;
     parent_node[7] = SYSTEM_REGISTRY_ID_2;
-    parent_node[8] = &UNK_180a003d0;
+    parent_node[8] = &global_var_7680_ptr;
     parent_node[9] = 0;
     parent_node[10] = stack_value;
     
@@ -253,7 +253,7 @@ void core_engine_system_initializer_type2(void)
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
-    callback_function = &UNK_1800868c0;
+    callback_function = &global_var_2048_ptr;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
 
@@ -282,7 +282,7 @@ void core_engine_system_initializer_type2(void)
     // 设置系统注册信息
     parent_node[6] = SYSTEM_REGISTRY_ID_3;
     parent_node[7] = SYSTEM_REGISTRY_ID_4;
-    parent_node[8] = &UNK_180a003e8;
+    parent_node[8] = &global_var_7704_ptr;
     parent_node[9] = 0;
     parent_node[10] = callback_function;
     
@@ -348,7 +348,7 @@ void core_engine_system_initializer_type3(void)
     // 设置系统注册信息
     parent_node[6] = SYSTEM_REGISTRY_ID_5;
     parent_node[7] = SYSTEM_REGISTRY_ID_6;
-    parent_node[8] = &UNK_180a00400;
+    parent_node[8] = &global_var_7728_ptr;
     parent_node[9] = 0;
     parent_node[10] = stack_value;
     
@@ -374,13 +374,13 @@ void core_engine_system_initializer_type4(void)
     int8_t buffer_data[136];
 
     // 初始化字符串处理器
-    string_processor = &UNK_1809fcc28;
+    string_processor = &global_var_3432_ptr;
     buffer_pointer = buffer_data;
     buffer_data[0] = 0;
     buffer_size = 10;
 
     // 复制字符串数据到缓冲区
-    strcpy_s(buffer_data, BUFFER_SIZE, &UNK_180a13e48, parameter_register, 0xfffffffffffffffe);
+    strcpy_s(buffer_data, BUFFER_SIZE, &global_var_8184_ptr, parameter_register, 0xfffffffffffffffe);
     
     // 注册字符串处理器
     _DAT_180c91d5c = FUN_180623800(&string_processor);
@@ -404,7 +404,7 @@ int core_engine_system_initializer_type5(void)
     uint64_t parameter_register;
 
     // 设置系统状态指针
-    _DAT_180bf7e90 = &UNK_1809fcc58;
+    _DAT_180bf7e90 = &global_var_3480_ptr;
     _DAT_180bf7e98 = &system_memory_7ea8;
 
     return 0;
@@ -429,13 +429,13 @@ void core_engine_system_initializer_type6(void)
     int8_t buffer_data[136];
 
     // 初始化字符串处理器
-    string_processor = &UNK_1809fcc28;
+    string_processor = &global_var_3432_ptr;
     buffer_pointer = buffer_data;
     buffer_data[0] = 0;
     buffer_size = 9;
 
     // 复制字符串数据到缓冲区
-    strcpy_s(buffer_data, BUFFER_SIZE, &UNK_180a140f8, parameter_register, 0xfffffffffffffffe);
+    strcpy_s(buffer_data, BUFFER_SIZE, &global_var_8872_ptr, parameter_register, 0xfffffffffffffffe);
     
     // 注册字符串处理器
     _DAT_180c91d60 = FUN_180623800(&string_processor);
@@ -462,13 +462,13 @@ void core_engine_system_initializer_type7(void)
     int8_t buffer_data[136];
 
     // 初始化字符串处理器
-    string_processor = &UNK_1809fcc28;
+    string_processor = &global_var_3432_ptr;
     buffer_pointer = buffer_data;
     buffer_data[0] = 0;
     buffer_size = 0xf;
 
     // 复制字符串数据到缓冲区
-    strcpy_s(buffer_data, BUFFER_SIZE, &UNK_180a14290, parameter_register, 0xfffffffffffffffe);
+    strcpy_s(buffer_data, BUFFER_SIZE, &global_var_9280_ptr, parameter_register, 0xfffffffffffffffe);
     
     // 注册字符串处理器
     _DAT_180c91d64 = FUN_180623800(&string_processor);
@@ -495,13 +495,13 @@ void core_engine_system_initializer_type8(void)
     int8_t buffer_data[136];
 
     // 初始化字符串处理器
-    string_processor = &UNK_1809fcc28;
+    string_processor = &global_var_3432_ptr;
     buffer_pointer = buffer_data;
     buffer_data[0] = 0;
     buffer_size = 0xc;
 
     // 复制字符串数据到缓冲区
-    strcpy_s(buffer_data, BUFFER_SIZE, &UNK_180a14668, parameter_register, 0xfffffffffffffffe);
+    strcpy_s(buffer_data, BUFFER_SIZE, &global_var_264_ptr, parameter_register, 0xfffffffffffffffe);
     
     // 注册字符串处理器
     _DAT_180c91d68 = FUN_180623800(&string_processor);
@@ -528,7 +528,7 @@ void core_engine_system_initializer_type9(void)
     int8_t buffer_data[136];
 
     // 初始化字符串处理器
-    string_processor = &UNK_1809fcc28;
+    string_processor = &global_var_3432_ptr;
     buffer_pointer = buffer_data;
     buffer_data[0] = 0;
     buffer_size = 7;
@@ -561,13 +561,13 @@ void core_engine_system_initializer_type10(void)
     int8_t buffer_data[136];
 
     // 初始化字符串处理器
-    string_processor = &UNK_1809fcc28;
+    string_processor = &global_var_3432_ptr;
     buffer_pointer = buffer_data;
     buffer_data[0] = 0;
     buffer_size = 0x13;
 
     // 复制字符串数据到缓冲区
-    strcpy_s(buffer_data, BUFFER_SIZE, &UNK_180a14840, parameter_register, 0xfffffffffffffffe);
+    strcpy_s(buffer_data, BUFFER_SIZE, &global_var_736_ptr, parameter_register, 0xfffffffffffffffe);
     
     // 注册字符串处理器
     _DAT_180c91d70 = FUN_180623800(&string_processor);
@@ -634,7 +634,7 @@ void core_engine_system_initializer_type11(void)
     // 设置系统注册信息
     parent_node[6] = SYSTEM_REGISTRY_ID_7;
     parent_node[7] = SYSTEM_REGISTRY_ID_8;
-    parent_node[8] = &UNK_180a004a8;
+    parent_node[8] = &global_var_7896_ptr;
     parent_node[9] = 4;
     parent_node[10] = callback_function;
     
@@ -700,7 +700,7 @@ void core_engine_system_initializer_type12(void)
     // 设置系统注册信息
     parent_node[6] = SYSTEM_REGISTRY_ID_9;
     parent_node[7] = SYSTEM_REGISTRY_ID_10;
-    parent_node[8] = &UNK_180a004c0;
+    parent_node[8] = &global_var_7920_ptr;
     parent_node[9] = 3;
     parent_node[10] = callback_function;
     
@@ -766,7 +766,7 @@ void core_engine_system_initializer_type13(void)
     // 设置系统注册信息
     parent_node[6] = SYSTEM_REGISTRY_ID_11;
     parent_node[7] = SYSTEM_REGISTRY_ID_12;
-    parent_node[8] = &UNK_180a00370;
+    parent_node[8] = &global_var_7584_ptr;
     parent_node[9] = 1;
     parent_node[10] = callback_function;
     
@@ -832,7 +832,7 @@ void core_engine_system_initializer_type14(void)
     // 设置系统注册信息
     parent_node[6] = SYSTEM_REGISTRY_ID_13;
     parent_node[7] = SYSTEM_REGISTRY_ID_14;
-    parent_node[8] = &UNK_180a00388;
+    parent_node[8] = &global_var_7608_ptr;
     parent_node[9] = 4;
     parent_node[10] = callback_function;
     
@@ -898,7 +898,7 @@ void core_engine_system_initializer_type15(void)
     // 设置系统注册信息
     parent_node[6] = SYSTEM_REGISTRY_ID_15;
     parent_node[7] = SYSTEM_REGISTRY_ID_16;
-    parent_node[8] = &UNK_180a003a0;
+    parent_node[8] = &global_var_7632_ptr;
     parent_node[9] = 0;
     parent_node[10] = stack_value;
     
@@ -964,7 +964,7 @@ void core_engine_system_initializer_type16(void)
     // 设置系统注册信息
     parent_node[6] = SYSTEM_REGISTRY_ID_17;
     parent_node[7] = SYSTEM_REGISTRY_ID_18;
-    parent_node[8] = &UNK_180a003b8;
+    parent_node[8] = &global_var_7656_ptr;
     parent_node[9] = 0;
     parent_node[10] = callback_function;
     
@@ -1030,7 +1030,7 @@ void core_engine_system_initializer_type17(void)
     // 设置系统注册信息
     parent_node[6] = SYSTEM_REGISTRY_ID_1;
     parent_node[7] = SYSTEM_REGISTRY_ID_2;
-    parent_node[8] = &UNK_180a003d0;
+    parent_node[8] = &global_var_7680_ptr;
     parent_node[9] = 0;
     parent_node[10] = stack_value;
     
@@ -1067,7 +1067,7 @@ void core_engine_system_initializer_type18(void)
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
-    callback_function = &UNK_1800868c0;
+    callback_function = &global_var_2048_ptr;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
 
@@ -1096,7 +1096,7 @@ void core_engine_system_initializer_type18(void)
     // 设置系统注册信息
     parent_node[6] = SYSTEM_REGISTRY_ID_3;
     parent_node[7] = SYSTEM_REGISTRY_ID_4;
-    parent_node[8] = &UNK_180a003e8;
+    parent_node[8] = &global_var_7704_ptr;
     parent_node[9] = 0;
     parent_node[10] = callback_function;
     
@@ -1162,7 +1162,7 @@ void core_engine_system_initializer_type19(void)
     // 设置系统注册信息
     parent_node[6] = SYSTEM_REGISTRY_ID_5;
     parent_node[7] = SYSTEM_REGISTRY_ID_6;
-    parent_node[8] = &UNK_180a00400;
+    parent_node[8] = &global_var_7728_ptr;
     parent_node[9] = 0;
     parent_node[10] = stack_value;
     
@@ -1228,7 +1228,7 @@ void core_engine_system_initializer_type20(void)
     // 设置系统注册信息
     parent_node[6] = SYSTEM_REGISTRY_ID_11;
     parent_node[7] = SYSTEM_REGISTRY_ID_12;
-    parent_node[8] = &UNK_180a00370;
+    parent_node[8] = &global_var_7584_ptr;
     parent_node[9] = 1;
     parent_node[10] = callback_function;
     
@@ -1294,7 +1294,7 @@ void core_engine_system_initializer_type21(void)
     // 设置系统注册信息
     parent_node[6] = SYSTEM_REGISTRY_ID_13;
     parent_node[7] = SYSTEM_REGISTRY_ID_14;
-    parent_node[8] = &UNK_180a00388;
+    parent_node[8] = &global_var_7608_ptr;
     parent_node[9] = 4;
     parent_node[10] = callback_function;
     
@@ -1360,7 +1360,7 @@ void core_engine_system_initializer_type22(void)
     // 设置系统注册信息
     parent_node[6] = SYSTEM_REGISTRY_ID_15;
     parent_node[7] = SYSTEM_REGISTRY_ID_16;
-    parent_node[8] = &UNK_180a003a0;
+    parent_node[8] = &global_var_7632_ptr;
     parent_node[9] = 0;
     parent_node[10] = stack_value;
     
@@ -1426,7 +1426,7 @@ void core_engine_system_initializer_type23(void)
     // 设置系统注册信息
     parent_node[6] = SYSTEM_REGISTRY_ID_17;
     parent_node[7] = SYSTEM_REGISTRY_ID_18;
-    parent_node[8] = &UNK_180a003b8;
+    parent_node[8] = &global_var_7656_ptr;
     parent_node[9] = 0;
     parent_node[10] = callback_function;
     
@@ -1492,7 +1492,7 @@ void core_engine_system_initializer_type24(void)
     // 设置系统注册信息
     parent_node[6] = SYSTEM_REGISTRY_ID_1;
     parent_node[7] = SYSTEM_REGISTRY_ID_2;
-    parent_node[8] = &UNK_180a003d0;
+    parent_node[8] = &global_var_7680_ptr;
     parent_node[9] = 0;
     parent_node[10] = stack_value;
     
@@ -1629,7 +1629,7 @@ void core_engine_data_processor_type1(void)
     // 设置数据处理器配置
     parent_node[6] = 0x45425dc186a5d575;
     parent_node[7] = 0xfab48faa65382fa5;
-    parent_node[8] = &UNK_180a00460;
+    parent_node[8] = &global_var_7824_ptr;
     parent_node[9] = 0;
     parent_node[10] = callback_function;
     
@@ -1695,7 +1695,7 @@ void core_engine_data_processor_type2(void)
     // 设置数据处理器配置
     parent_node[6] = 0x449bafe9b77ddd3c;
     parent_node[7] = 0xc160408bde99e59f;
-    parent_node[8] = &UNK_180a00430;
+    parent_node[8] = &global_var_7776_ptr;
     parent_node[9] = 0;
     parent_node[10] = callback_function;
     
@@ -1761,7 +1761,7 @@ void core_engine_data_processor_type3(void)
     // 设置数据处理器配置
     parent_node[6] = 0x406be72011d07d37;
     parent_node[7] = 0x71876af946c867ab;
-    parent_node[8] = &UNK_1809ff978;
+    parent_node[8] = &global_var_5032_ptr;
     parent_node[9] = 0;
     parent_node[10] = callback_function;
     

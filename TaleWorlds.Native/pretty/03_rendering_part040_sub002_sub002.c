@@ -417,20 +417,20 @@ uint64_t FUN_18028b960(longlong param_1,longlong param_2,int32_t param_3)
   *(uint64_t *)(param_1 + 0x40) = 0;
   *(uint64_t *)(param_1 + 0x48) = 0;
   uStackX_18 = param_3;
-  uVar5 = FUN_18028b630(param_2,param_3,&UNK_180a16ee0);
-  iVar6 = FUN_18028b630(param_2,param_3,&UNK_180a16ef8);
+  uVar5 = FUN_18028b630(param_2,param_3,&unknown_var_624_ptr);
+  iVar6 = FUN_18028b630(param_2,param_3,&unknown_var_648_ptr);
   *(int *)(param_1 + 0x18) = iVar6;
-  iVar7 = FUN_18028b630(param_2,param_3,&UNK_180a13928);
+  iVar7 = FUN_18028b630(param_2,param_3,&unknown_var_6872_ptr);
   *(int *)(param_1 + 0x1c) = iVar7;
-  aiStackX_8[2] = FUN_18028b630(param_2,param_3,&UNK_180a16f00);
+  aiStackX_8[2] = FUN_18028b630(param_2,param_3,&unknown_var_656_ptr);
   *(int *)(param_1 + 0x20) = aiStackX_8[2];
-  iVar8 = FUN_18028b630(param_2,param_3,&UNK_180a16ee8);
+  iVar8 = FUN_18028b630(param_2,param_3,&unknown_var_632_ptr);
   *(int *)(param_1 + 0x24) = iVar8;
-  aiStackX_8[0] = FUN_18028b630(param_2,uStackX_18,&UNK_180a16ef0);
+  aiStackX_8[0] = FUN_18028b630(param_2,uStackX_18,&unknown_var_640_ptr);
   *(int *)(param_1 + 0x28) = aiStackX_8[0];
-  uVar9 = FUN_18028b630(param_2,uStackX_18,&UNK_180a16f18);
+  uVar9 = FUN_18028b630(param_2,uStackX_18,&unknown_var_680_ptr);
   *(int32_t *)(param_1 + 0x2c) = uVar9;
-  uVar9 = FUN_18028b630(param_2,uStackX_18,&UNK_180a16f20);
+  uVar9 = FUN_18028b630(param_2,uStackX_18,&unknown_var_688_ptr);
   *(int32_t *)(param_1 + 0x30) = uVar9;
   if (uVar5 == 0) {
     return 0;
@@ -454,7 +454,7 @@ uint64_t FUN_18028b960(longlong param_1,longlong param_2,int32_t param_3)
   aiStackX_8[0] = 2;
   aiStackX_20[0] = 0;
   aiStack_98[0] = 0;
-  uVar10 = FUN_18028b630(param_2,uStackX_18,&UNK_180a16f08);
+  uVar10 = FUN_18028b630(param_2,uStackX_18,&unknown_var_664_ptr);
   if (uVar10 == 0) {
     return 0;
   }
@@ -589,7 +589,7 @@ LAB_18028bd4c:
   *(uint64_t *)(param_1 + 0x50) = *puVar12;
   *(uint64_t *)(param_1 + 0x58) = uVar3;
 LAB_18028bd64:
-  uVar10 = FUN_18028b630(param_2,uStackX_18,&UNK_180a16f10);
+  uVar10 = FUN_18028b630(param_2,uStackX_18,&unknown_var_672_ptr);
   if (uVar10 == 0) {
     iVar6 = 0xffff;
   }

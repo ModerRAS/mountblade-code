@@ -464,7 +464,7 @@ FUN_18026ead0(uint64_t *param_1,longlong param_2,uint64_t param_3,uint64_t param
   uint64_t *puVar5;
   longlong lVar6;
   
-  *param_1 = &UNK_180a16270;
+  *param_1 = &unknown_var_7440_ptr;
   lVar6 = *(longlong *)(param_2 + 0x10) - *(longlong *)(param_2 + 8) >> 5;
   uVar2 = *(uint *)(param_2 + 0x20);
   *(uint *)(param_1 + 4) = uVar2;
@@ -507,7 +507,7 @@ FUN_18026eba0(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t para
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a16270;
+  *param_1 = &unknown_var_7440_ptr;
   FUN_1802708b0(param_1 + 1);
   if (param_1[1] != 0) {
                     // WARNING: Subroutine does not return

@@ -290,26 +290,26 @@ typedef struct {
 
 // 渲染数据区域
 extern uint8_t system_config_data;
-extern uint64_t UNK_180d498a0;
-extern int32_t UNK_180d498a8;
-extern void *UNK_180d498b0;
-extern int8_t *UNK_180d498b8;
-extern int32_t UNK_180d498c0;
-extern longlong UNK_180d49908;
-extern longlong UNK_180d49910;
-extern longlong UNK_180d49928;
-extern longlong UNK_180d49930;
-extern int32_t UNK_180d49948;
-extern int32_t UNK_180d4994c;
+extern uint64_t global_state_3648;
+extern int32_t global_state_3656;
+extern void *global_state_3664;
+extern int8_t *global_state_3672;
+extern int32_t global_state_3680;
+extern longlong global_state_3752;
+extern longlong global_state_3760;
+extern longlong global_state_3784;
+extern longlong global_state_3792;
+extern int32_t global_state_3816;
+extern int32_t global_state_3820;
 extern uint8_t system_resource_config;
 extern uint8_t system_module_config;
 extern uint8_t system_cache_config;
 extern uint8_t system_temp_config;
-extern uint8_t UNK_180d49d58;
-extern longlong UNK_180d49d68;
-extern uint64_t UNK_180d49d70;
-extern longlong UNK_180d49d78;
-extern longlong *UNK_180c96358;
+extern uint8_t global_state_4856;
+extern longlong global_state_4872;
+extern uint64_t global_state_4880;
+extern longlong global_state_4888;
+extern longlong *global_state_9112;
 
 /* ============================================================================
  * 函数声明

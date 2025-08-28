@@ -660,15 +660,15 @@ LAB_1800cc2f2:
   uVar18 = _DAT_180c86930;
   lVar11 = _DAT_180c86898;
   if (*(longlong *)(_DAT_180c86898 + 0xc0) == 0) {
-    puStack_b8 = &UNK_1809fcc58;
+    puStack_b8 = &unknown_var_3480_ptr;
     puStack_b0 = auStack_a0;
     auStack_a0[0] = 0;
     uStack_a8 = 0xd;
-    strcpy_s(auStack_a0,0x40,&UNK_180a03180);
+    strcpy_s(auStack_a0,0x40,&unknown_var_9376_ptr);
     FUN_1800b08e0(uVar18,&plStack_1e0,&puStack_b8,0);
     plVar14 = plStack_1e0;
     uStack_1e8 = 1;
-    puStack_b8 = &UNK_18098bcb0;
+    puStack_b8 = &unknown_var_720_ptr;
     plStack_1e0 = (longlong *)0x0;
     plStack_150 = *(longlong **)(lVar11 + 0xc0);
     *(longlong **)(lVar11 + 0xc0) = plVar14;

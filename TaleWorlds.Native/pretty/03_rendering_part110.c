@@ -97,7 +97,7 @@ void RenderingSystem_RemoveResourceData(longlong resource_context, uint resource
   uVar21 = (ulonglong)param_2;
   puVar7 = (ulonglong *)FUN_18062b1e0(_DAT_180c8ed18,0xe0,8,3);
   FUN_180049830(puVar7);
-  *puVar7 = (ulonglong)&UNK_180a1b248;
+  *puVar7 = (ulonglong)&unknown_var_7880_ptr;
   puVar1 = puVar7 + 0x18;
   *puVar1 = 0;
   puVar7[0x19] = 0;
@@ -279,7 +279,7 @@ LAB_180333eb9:
       if (puVar12 != *(uint **)(lVar15 + lVar13 * 8)) {
         ppuStackX_20 = *(ulonglong ***)(puVar12 + 2);
         if (ppuStackX_20 != (ulonglong **)0x0) {
-          *(void **)((longlong)ppuStackX_20 + 0x50) = &UNK_18098bcb0;
+          *(void **)((longlong)ppuStackX_20 + 0x50) = &unknown_var_720_ptr;
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
@@ -388,11 +388,11 @@ LAB_180333fbc:
     if (ppuVar5 != (ulonglong **)0x0) {
       FUN_1808fc8a8(ppuVar5 + 7,0x30,4,FUN_18004a130);
       ppuStack_58 = ppuVar5 + 3;
-      *ppuStack_58 = (ulonglong *)&UNK_180a3c3e0;
+      *ppuStack_58 = (ulonglong *)&unknown_var_3456_ptr;
       if (ppuVar5[4] == (ulonglong *)0x0) {
         ppuVar5[4] = (ulonglong *)0x0;
         *(int32_t *)(ppuVar5 + 6) = 0;
-        *ppuStack_58 = (ulonglong *)&UNK_18098bcb0;
+        *ppuStack_58 = (ulonglong *)&unknown_var_720_ptr;
                     // WARNING: Subroutine does not return
         FUN_18064e900(ppuVar5);
       }
@@ -518,13 +518,13 @@ void RenderingSystem_InitializeResourceHandler(longlong resource_manager, char i
   }
   puVar1 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,3,uVar5);
   if (param_2 == '\0') {
-    puVar4 = &UNK_180a1b238;
+    puVar4 = &unknown_var_7864_ptr;
     if (param_3 != '\0') {
-      puVar4 = &UNK_180a0cf4c;
+      puVar4 = &unknown_var_9772_ptr;
     }
   }
   else {
-    puVar4 = &UNK_180a01ff0;
+    puVar4 = &unknown_var_4880_ptr;
   }
   lVar2 = FUN_180334430(param_1,&puStack_40);
   puVar3 = &system_buffer_ptr;
@@ -535,7 +535,7 @@ void RenderingSystem_InitializeResourceHandler(longlong resource_manager, char i
   *(int8_t *)(puVar1 + 2) = 0;
   FUN_18062dee0(puVar1,puVar3,puVar4);
   *(uint64_t **)(param_1 + 0x200) = puVar1;
-  puStack_40 = &UNK_180a3c3e0;
+  puStack_40 = &unknown_var_3456_ptr;
   if (lStack_38 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -564,10 +564,10 @@ RenderingSystem_CreateResourcePath(longlong resource_context, uint64_t *path_buf
   int iVar1;
   uint64_t *puVar2;
   
-  *param_2 = &UNK_18098bcb0;
+  *param_2 = &unknown_var_720_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &UNK_180a3c3e0;
+  *param_2 = &unknown_var_3456_ptr;
   param_2[3] = 0;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
@@ -603,10 +603,10 @@ RenderingSystem_CreateDataPath(longlong resource_context, uint64_t *path_buffer,
   int iVar1;
   uint64_t *puVar2;
   
-  *param_2 = &UNK_18098bcb0;
+  *param_2 = &unknown_var_720_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &UNK_180a3c3e0;
+  *param_2 = &unknown_var_3456_ptr;
   param_2[3] = 0;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;

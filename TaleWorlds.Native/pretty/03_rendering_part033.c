@@ -78,7 +78,7 @@ void FUN_180285cf0(float *param_1,float *param_2,float *param_3)
 uint64_t * FUN_180285df0(uint64_t *param_1,ulonglong param_2)
 
 {
-  *param_1 = &UNK_180a169a8;
+  *param_1 = &unknown_var_9288_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x18);
   }
@@ -90,31 +90,31 @@ uint64_t * FUN_180285df0(uint64_t *param_1,ulonglong param_2)
 int32_t * FUN_180285e20(int32_t *param_1)
 
 {
-  *(void **)(param_1 + 6) = &UNK_18098bcb0;
+  *(void **)(param_1 + 6) = &unknown_var_720_ptr;
   *(uint64_t *)(param_1 + 8) = 0;
   param_1[10] = 0;
-  *(void **)(param_1 + 6) = &UNK_1809fcc28;
+  *(void **)(param_1 + 6) = &unknown_var_3432_ptr;
   *(int32_t **)(param_1 + 8) = param_1 + 0xc;
   param_1[10] = 0;
   *(int8_t *)(param_1 + 0xc) = 0;
-  *(void **)(param_1 + 0x2c) = &UNK_18098bcb0;
+  *(void **)(param_1 + 0x2c) = &unknown_var_720_ptr;
   *(uint64_t *)(param_1 + 0x2e) = 0;
   param_1[0x30] = 0;
-  *(void **)(param_1 + 0x2c) = &UNK_1809fcc28;
+  *(void **)(param_1 + 0x2c) = &unknown_var_3432_ptr;
   *(int32_t **)(param_1 + 0x2e) = param_1 + 0x32;
   param_1[0x30] = 0;
   *(int8_t *)(param_1 + 0x32) = 0;
-  *(void **)(param_1 + 0x52) = &UNK_18098bcb0;
+  *(void **)(param_1 + 0x52) = &unknown_var_720_ptr;
   *(uint64_t *)(param_1 + 0x54) = 0;
   param_1[0x56] = 0;
-  *(void **)(param_1 + 0x52) = &UNK_180a3c3e0;
+  *(void **)(param_1 + 0x52) = &unknown_var_3456_ptr;
   *(uint64_t *)(param_1 + 0x58) = 0;
   *(uint64_t *)(param_1 + 0x54) = 0;
   param_1[0x56] = 0;
-  *(void **)(param_1 + 0x5a) = &UNK_18098bcb0;
+  *(void **)(param_1 + 0x5a) = &unknown_var_720_ptr;
   *(uint64_t *)(param_1 + 0x5c) = 0;
   param_1[0x5e] = 0;
-  *(void **)(param_1 + 0x5a) = &UNK_180a3c3e0;
+  *(void **)(param_1 + 0x5a) = &unknown_var_3456_ptr;
   *(uint64_t *)(param_1 + 0x60) = 0;
   *(uint64_t *)(param_1 + 0x5c) = 0;
   param_1[0x5e] = 0;

@@ -211,9 +211,9 @@ void FUN_1802b7387(longlong *param_1,float param_2)
   uVar21 = 0;
   fVar3 = pfVar12[2];
   lVar30 = (longlong)iVar22;
-  fVar40 = ((*(float *)(&UNK_180a18120 + (longlong)(int)uVar17 * 4) -
-            *(float *)(&UNK_180a18120 + (longlong)(int)uVar16 * 4)) * (fVar40 - (float)(int)uVar15)
-           + *(float *)(&UNK_180a18120 + (longlong)(int)uVar16 * 4)) * *pfVar12 + 1.0;
+  fVar40 = ((*(float *)(&unknown_var_5296_ptr + (longlong)(int)uVar17 * 4) -
+            *(float *)(&unknown_var_5296_ptr + (longlong)(int)uVar16 * 4)) * (fVar40 - (float)(int)uVar15)
+           + *(float *)(&unknown_var_5296_ptr + (longlong)(int)uVar16 * 4)) * *pfVar12 + 1.0;
   fStack0000000000000034 = fVar2 * pfVar12[1] * fVar40;
   fStack0000000000000064 = fVar51;
   fStack000000000000006c = fVar51;

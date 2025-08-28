@@ -588,7 +588,7 @@ uint64_t FUN_180795b70(longlong *param_1,int param_2,int32_t *param_3,longlong p
     fVar2 = *(float *)(lVar1 + 0x22c);
   }
                     // WARNING: Subroutine does not return
-  FUN_18076b390(param_4,0x20,&UNK_180958d90,(double)fVar2);
+  FUN_18076b390(param_4,0x20,&unknown_var_2048_ptr,(double)fVar2);
 }
 
 

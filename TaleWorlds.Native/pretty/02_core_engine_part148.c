@@ -71,7 +71,7 @@ LAB_180137b1b:
       }
     }
     else {
-      iVar6 = strcmp(&UNK_180a06400,puVar10 + 3);
+      iVar6 = strcmp(&unknown_var_2304_ptr,puVar10 + 3);
       param_1 = extraout_XMM0_Da;
       if (iVar6 != 0) goto LAB_180137b1b;
       cVar5 = FUN_180138ed0(extraout_XMM0_Da,*(uint64_t *)*puVar10);

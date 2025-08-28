@@ -422,7 +422,7 @@ int32_t FUN_18060c6a0(int param_1,uint param_2,float param_3)
   if (puVar3[5] != 0) {
     return *(int32_t *)(puVar3[5] + 0x298);
   }
-  puStack_80 = &UNK_180a3c3e0;
+  puStack_80 = &unknown_var_3456_ptr;
   uStack_68 = 0;
   puStack_78 = (int32_t *)0x0;
   uStack_70 = 0;
@@ -512,14 +512,14 @@ LAB_18060c9b2:
     memcpy((int8_t *)((ulonglong)uStack_70 + (longlong)puStack_78),*(uint64_t *)(lVar4 + 8),
            (longlong)(*(int *)(lVar4 + 0x10) + 1));
   }
-  puStack_60 = &UNK_180a3c3e0;
+  puStack_60 = &unknown_var_3456_ptr;
   if (lStack_58 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_58 = 0;
   uStack_48 = 0;
-  puStack_60 = &UNK_18098bcb0;
+  puStack_60 = &unknown_var_720_ptr;
   iVar8 = uStack_70 + 0x2f;
   if (iVar8 != 0) {
     uVar7 = uStack_70 + 0x30;
@@ -555,7 +555,7 @@ LAB_18060ca50:
   }
   uStack_70 = iVar8;
   FUN_180626f80(puVar6);
-  puStack_80 = &UNK_180a3c3e0;
+  puStack_80 = &unknown_var_3456_ptr;
   if (puStack_78 == (int32_t *)0x0) {
     return 0;
   }
@@ -638,7 +638,7 @@ int32_t FUN_18060cb10(int param_1,uint param_2,uint64_t param_3)
   if (puVar3[5] != 0) {
     return *(int32_t *)(puVar3[5] + 0x9d8);
   }
-  puStack_80 = &UNK_180a3c3e0;
+  puStack_80 = &unknown_var_3456_ptr;
   uStack_68 = 0;
   puStack_78 = (int32_t *)0x0;
   uStack_70 = 0;
@@ -728,14 +728,14 @@ LAB_18060ce22:
     memcpy((int8_t *)((ulonglong)uStack_70 + (longlong)puStack_78),*(uint64_t *)(lVar4 + 8),
            (longlong)(*(int *)(lVar4 + 0x10) + 1));
   }
-  puStack_60 = &UNK_180a3c3e0;
+  puStack_60 = &unknown_var_3456_ptr;
   if (lStack_58 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_58 = 0;
   uStack_48 = 0;
-  puStack_60 = &UNK_18098bcb0;
+  puStack_60 = &unknown_var_720_ptr;
   iVar8 = uStack_70 + 0x25;
   if (iVar8 != 0) {
     uVar7 = uStack_70 + 0x26;
@@ -771,7 +771,7 @@ LAB_18060cec0:
   }
   uStack_70 = iVar8;
   FUN_180626f80(puVar6);
-  puStack_80 = &UNK_180a3c3e0;
+  puStack_80 = &unknown_var_3456_ptr;
   if (puStack_78 == (int32_t *)0x0) {
     return 0;
   }
@@ -809,7 +809,7 @@ int32_t FUN_18060cf50(void)
   puVar2 = (uint64_t *)0x180c95e98;
 LAB_18060cf9b:
   if (puVar2[5] == 0) {
-    FUN_180626f80(&UNK_180a2eac0);
+    FUN_180626f80(&unknown_var_7872_ptr);
     return 0;
   }
   return *(int32_t *)(puVar2[5] + 0x3c0);

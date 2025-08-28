@@ -40,14 +40,14 @@ void FUN_18034d990(longlong param_1)
         if (*(void **)(uVar8 + 0x1f8) != (void *)0x0) {
           puVar5 = *(void **)(uVar8 + 0x1f8);
         }
-        lVar3 = strstr(puVar5,&UNK_180a1db58);
+        lVar3 = strstr(puVar5,&unknown_var_8392_ptr);
         uVar11 = extraout_XMM0_Qa;
         if (lVar3 == 0) {
           puVar5 = &system_buffer_ptr;
           if (*(void **)(uVar8 + 0x1f8) != (void *)0x0) {
             puVar5 = *(void **)(uVar8 + 0x1f8);
           }
-          lVar3 = strstr(puVar5,&UNK_180a1dba8);
+          lVar3 = strstr(puVar5,&unknown_var_8472_ptr);
           uVar11 = extraout_XMM0_Qa_00;
           if (lVar3 == 0) goto LAB_18034da6e;
         }

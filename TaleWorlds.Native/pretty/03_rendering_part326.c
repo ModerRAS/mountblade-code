@@ -52,11 +52,11 @@
 extern longlong _DAT_180c86920;      /* 渲染系统全局数据指针 */
 extern char system_debug_flag;           /* 渲染系统标志位 */
 extern void *system_buffer_ptr;     /* 渲染系统默认数据指针 */
-extern uint64_t UNK_18098bc00;     /* 渲染系统未知数据 */
-extern uint8_t UNK_1809fcc28;      /* 渲染系统配置数据 */
-extern uint8_t UNK_1809fcc58;      /* 渲染系统扩展配置数据 */
-extern uint8_t UNK_18098bcb0;     /* 渲染系统缓冲区数据 */
-extern uint8_t UNK_1809fd0a0;     /* 渲染系统格式化数据 */
+extern uint64_t global_var_544_ptr;     /* 渲染系统未知数据 */
+extern uint8_t global_var_3432_ptr;      /* 渲染系统配置数据 */
+extern uint8_t global_var_3480_ptr;      /* 渲染系统扩展配置数据 */
+extern uint8_t global_var_720_ptr;     /* 渲染系统缓冲区数据 */
+extern uint8_t global_var_4576_ptr;     /* 渲染系统格式化数据 */
 
 /*=============================================================================
  * 渲染系统参数设置处理器1
@@ -88,7 +88,7 @@ void FUN_180439fb5(void)
       if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_470) != (void *)0x0) {
         data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_470);
       }
-      FUN_180626f80(&UNK_18098bc00, data_pointer);
+      FUN_180626f80(&global_var_544_ptr, data_pointer);
     }
     
     /* 更新渲染参数 */
@@ -132,7 +132,7 @@ void FUN_180439fd4(void)
       if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_2150) != (void *)0x0) {
         data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_2150);
       }
-      FUN_180626f80(&UNK_18098bc00, data_pointer);
+      FUN_180626f80(&global_var_544_ptr, data_pointer);
     }
     
     /* 更新高级渲染参数 */
@@ -1216,7 +1216,7 @@ void FUN_18043b930(int param_1, int param_2, int param_3, int param_4, int param
   
   /* 设置渲染缓冲区 */
   pointer_stack = &buffer_pointer;
-  buffer_pointer = &UNK_1809fcc28;
+  buffer_pointer = &global_var_3432_ptr;
   buffer_data = temp_buffer;
   temp_value = 0;
   temp_buffer[0] = 0;
@@ -1246,7 +1246,7 @@ void FUN_18043b930(int param_1, int param_2, int param_3, int param_4, int param
   }
   
   triple_pointer = (void ***)&buffer_pointer;
-  buffer_pointer = &UNK_18098bcb0;
+  buffer_pointer = &global_var_720_ptr;
   FUN_18004b1f0(0);
                     // WARNING: Subroutine does not return
   FUN_1808fc050(stack_guard ^ (ulonglong)temp_buffer);
@@ -1278,7 +1278,7 @@ void FUN_18043bbe0(int param_1)
   stack_guard = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
   
   base_address = (longlong)param_1 * 0x70 + *(longlong *)(*(longlong *)(_DAT_180c86870 + 8) + 0x18);
-  stack_pointer = &UNK_1809fcc58;
+  stack_pointer = &global_var_3480_ptr;
   string_buffer = work_buffer;
   work_buffer[0] = 0;
   buffer_size = *(uint *)(base_address + 0x10);
@@ -1297,7 +1297,7 @@ void FUN_18043bbe0(int param_1)
     buffer_size = buffer_size + 2;
   }
   
-  FUN_180060680(format_buffer, &UNK_1809fd0a0, param_1);
+  FUN_180060680(format_buffer, &global_var_4576_ptr, param_1);
   data_offset = -1;
   
   do {
@@ -1318,7 +1318,7 @@ void FUN_18043bbe0(int param_1)
   }
   
   (**(code **)(*_DAT_180c8f008 + 0x70))(_DAT_180c8f008, &stack_pointer);
-  stack_pointer = &UNK_18098bcb0;
+  stack_pointer = &global_var_720_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(stack_guard ^ (ulonglong)temp_buffer);
 }
@@ -1339,7 +1339,7 @@ void FUN_18043be00(longlong param_1, int32_t param_2)
   ulonglong stack_guard;
   
   stack_guard = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
-  FUN_180060680(format_buffer, &UNK_1809fd0a0, param_2);
+  FUN_180060680(format_buffer, &global_var_4576_ptr, param_2);
   
   data_offset = -1;
   do {
@@ -1418,7 +1418,7 @@ void FUN_18043be90(uint64_t param_1, int32_t param_2)
       if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_17B0) != (void *)0x0) {
         data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_17B0);
       }
-      FUN_180626f80(&UNK_18098bc00, data_pointer);
+      FUN_180626f80(&global_var_544_ptr, data_pointer);
     }
     
     *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_17A0) = 
@@ -1455,7 +1455,7 @@ void FUN_18043bf20(uint64_t param_1, int32_t param_2)
       if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_1120) != (void *)0x0) {
         data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_1120);
       }
-      FUN_180626f80(&UNK_18098bc00, data_pointer);
+      FUN_180626f80(&global_var_544_ptr, data_pointer);
     }
     
     *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_1110) = 
@@ -1475,7 +1475,7 @@ void FUN_18043bf20(uint64_t param_1, int32_t param_2)
  *=============================================================================*/
 void FUN_18043bfb0(int32_t param_1, uint64_t param_2, int32_t param_3, uint64_t param_4)
 {
-  FUN_1800623b0(_DAT_180c86928, param_1, param_4, param_3, &UNK_180a29740, param_2);
+  FUN_1800623b0(_DAT_180c86928, param_1, param_4, param_3, &global_var_6496_ptr, param_2);
   return;
 }
 

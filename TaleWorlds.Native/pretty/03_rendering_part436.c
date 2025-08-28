@@ -472,14 +472,14 @@ void FUN_180508010(longlong param_1)
   float fVar5;
   
   puVar4 = &system_error_code;
-  puVar2 = &UNK_180a30c20;
+  puVar2 = &unknown_var_6416_ptr;
   if (*(char *)(param_1 + 0x13bc) != '\0') {
-    puVar2 = &UNK_180a30bd8;
+    puVar2 = &unknown_var_6344_ptr;
   }
   fVar5 = (float)(*(longlong *)(&system_error_code + (longlong)*(int *)(param_1 + 0x13b0) * 8) -
                  *(longlong *)(param_1 + 0x13a8)) * 1e-05;
   lVar3 = param_1;
-  func_0x000180508000(fVar5,&UNK_180a30c70,&UNK_180a30be0,puVar2,
+  func_0x000180508000(fVar5,&unknown_var_6496_ptr,&unknown_var_6352_ptr,puVar2,
                       (double)*(float *)(param_1 + 0x13b8),(double)fVar5);
   if (*(char *)(param_1 + 0x13bc) == '\0') {
     *(int8_t *)(param_1 + 0x13bc) = 1;
@@ -507,11 +507,11 @@ void FUN_180508100(longlong param_1,float param_2,float param_3)
   void *puVar3;
   
   puVar3 = &system_error_code;
-  puVar1 = &UNK_180a30c20;
+  puVar1 = &unknown_var_6416_ptr;
   if (*(char *)(param_1 + 0x13bc) != '\0') {
-    puVar1 = &UNK_180a30bd8;
+    puVar1 = &unknown_var_6344_ptr;
   }
-  func_0x000180508000(param_1,&UNK_180a30c80,&UNK_180a30c30,(double)param_2,(double)param_3,puVar1,
+  func_0x000180508000(param_1,&unknown_var_6512_ptr,&unknown_var_6432_ptr,(double)param_2,(double)param_3,puVar1,
                       (double)*(float *)(param_1 + 0x13b8),
                       (double)((float)(*(longlong *)
                                         (&system_error_code + (longlong)*(int *)(param_1 + 0x13b0) * 8)
@@ -653,9 +653,9 @@ void FUN_180508510(longlong param_1,short param_2,int param_3,uint64_t param_4)
     fVar14 = *(float *)(*_DAT_180c96110 + 4 + (longlong)iVar8 * 0x14);
     uVar9 = FUN_18055caa0(&system_data_25a0);
     uVar1 = *(int32_t *)(param_1 + 0x10);
-    cVar7 = FUN_180645c10(uVar9,0,&UNK_1809fa560);
-    if ((((cVar7 != '\0') && (cVar7 = FUN_180645c10(uVar9,0x15,&UNK_1809fa540), cVar7 != '\0')) &&
-        (cVar7 = FUN_180645c10(uVar9,uVar1,&UNK_1809fa510), cVar7 != '\0')) &&
+    cVar7 = FUN_180645c10(uVar9,0,&unknown_var_3504_ptr);
+    if ((((cVar7 != '\0') && (cVar7 = FUN_180645c10(uVar9,0x15,&unknown_var_3472_ptr), cVar7 != '\0')) &&
+        (cVar7 = FUN_180645c10(uVar9,uVar1,&unknown_var_3424_ptr), cVar7 != '\0')) &&
        (cVar7 = FUN_180645c10(uVar9,(int)param_2,&system_data_bcd0), cVar7 != '\0')) {
       FUN_1805aea10(uVar9,param_4);
     }

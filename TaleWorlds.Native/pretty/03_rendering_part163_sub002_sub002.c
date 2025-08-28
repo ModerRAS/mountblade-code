@@ -295,13 +295,13 @@ void FUN_18036b380(longlong *******param_1)
     uStack_4b8 = 0;
     iStack_4a4 = 0;
     iStack_4a8 = 0;
-    puStack_138 = &UNK_1809fcc58;
+    puStack_138 = &unknown_var_3480_ptr;
     puStack_130 = auStack_120;
     auStack_120[0] = 0;
     uStack_128 = 10;
-    uVar13 = strcpy_s(auStack_120,0x40,&UNK_180a20f40);
+    uVar13 = strcpy_s(auStack_120,0x40,&unknown_var_1680_ptr);
     FUN_1800b3430(uVar13,&plStack_390,&puStack_138,1);
-    puStack_138 = &UNK_18098bcb0;
+    puStack_138 = &unknown_var_720_ptr;
     uStack_458 = (longlong ****)0x3f8000003f800000;
     uStack_450 = (longlong ****)0x3f800000;
     FUN_18014cb90();
@@ -343,7 +343,7 @@ void FUN_18036b380(longlong *******param_1)
           fStack_1e4 = fVar46;
           fStack_1e0 = fVar47;
           fStack_1dc = fVar35;
-          if (pppplVar5 == (longlong ****)&UNK_18027d990) {
+          if (pppplVar5 == (longlong ****)&unknown_var_2544_ptr) {
             puVar17 = (uint64_t *)((longlong)param_1[0x13] + 0x214);
           }
           else {

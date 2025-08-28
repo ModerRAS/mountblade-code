@@ -58,7 +58,7 @@ void FUN_1808782c0(longlong param_1,uint64_t param_2,longlong *param_3)
       lVar7 = (**(code **)(*param_3 + 0x318))(param_3,puVar1,1);
       if (lVar7 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18076b390(unaff_RBP + -9,0x27,&UNK_180958180,*(int32_t *)puVar1,
+        FUN_18076b390(unaff_RBP + -9,0x27,&unknown_var_8960_ptr,*(int32_t *)puVar1,
                       *(int16_t *)(lVar2 + 100));
       }
       if (*(int *)(lVar7 + 0x60) != 0x1f) goto LAB_180878734;
@@ -150,7 +150,7 @@ LAB_1808784e0:
                   if (iVar11 != 0) {
                     if ((0x3ffffffe < iVar11 * 0x10 - 1U) ||
                        (lVar10 = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar11 * 0x10
-                                               ,&UNK_180957f70,0xf4,0), lVar10 == 0))
+                                               ,&unknown_var_8432_ptr,0xf4,0), lVar10 == 0))
                     goto LAB_180878734;
                     if (*(int *)(lVar7 + 0x60) != 0) {
                     // WARNING: Subroutine does not return
@@ -161,7 +161,7 @@ LAB_1808784e0:
                   if ((0 < *(int *)(lVar7 + 100)) && (*(longlong *)(lVar7 + 0x58) != 0)) {
                     // WARNING: Subroutine does not return
                     FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),
-                                  *(longlong *)(lVar7 + 0x58),&UNK_180957f70,0x100,1);
+                                  *(longlong *)(lVar7 + 0x58),&unknown_var_8432_ptr,0x100,1);
                   }
                   *(longlong *)(lVar7 + 0x58) = lVar10;
                   *(int *)(lVar7 + 100) = iVar11;
@@ -342,7 +342,7 @@ LAB_1808784e0:
               if (iVar10 != 0) {
                 if ((0x3ffffffe < iVar10 * 0x10 - 1U) ||
                    (lVar7 = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar10 * 0x10,
-                                          &UNK_180957f70,0xf4,0), lVar7 == 0)) goto LAB_180878734;
+                                          &unknown_var_8432_ptr,0xf4,0), lVar7 == 0)) goto LAB_180878734;
                 if (*(int *)(lVar9 + 0x60) != 0) {
                     // WARNING: Subroutine does not return
                   memcpy(lVar7,*(uint64_t *)(lVar9 + 0x58),(longlong)*(int *)(lVar9 + 0x60) << 4);
@@ -351,7 +351,7 @@ LAB_1808784e0:
               if ((0 < *(int *)(lVar9 + 100)) && (*(longlong *)(lVar9 + 0x58) != 0)) {
                     // WARNING: Subroutine does not return
                 FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(lVar9 + 0x58),
-                              &UNK_180957f70,0x100,1);
+                              &unknown_var_8432_ptr,0x100,1);
               }
               *(longlong *)(lVar9 + 0x58) = lVar7;
               *(int *)(lVar9 + 100) = iVar10;

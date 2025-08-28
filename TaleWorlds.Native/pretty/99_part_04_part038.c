@@ -14,7 +14,7 @@ void FUN_1802aa4b0(longlong param_1)
   iVar1 = (**(code **)(**(longlong **)(param_1 + 200) + 0xc0))
                     (*(longlong **)(param_1 + 200),&uStackX_10,&plStackX_8);
   if (iVar1 < 0) {
-    FUN_180220810(iVar1,&UNK_180a17b38);
+    FUN_180220810(iVar1,&unknown_var_3784_ptr);
   }
   (**(code **)(**(longlong **)(param_1 + 0xd0) + 0xe0))(*(longlong **)(param_1 + 0xd0),plStackX_8);
   do {
@@ -89,19 +89,19 @@ FUN_1802aa550(char *param_1,longlong param_2,longlong param_3,longlong param_4,l
   }
   uVar7 = *(uint64_t *)(param_1 + 0xe0);
   uVar8 = *(uint64_t *)(param_1 + 0xe8);
-  NVSDK_NGX_Parameter_SetD3d11Resource(uVar7,&UNK_180a06428,uVar5);
-  NVSDK_NGX_Parameter_SetD3d11Resource(uVar7,&UNK_180a17b88,uVar2);
-  NVSDK_NGX_Parameter_SetD3d11Resource(uVar7,&UNK_180a17b98,uVar3);
-  NVSDK_NGX_Parameter_SetD3d11Resource(uVar7,&UNK_180a17b78,uVar10);
-  NVSDK_NGX_Parameter_SetD3d11Resource(uVar7,&UNK_180a06438,uVar6);
-  NVSDK_NGX_Parameter_SetD3d11Resource(uVar7,&UNK_180a17bc0,0);
-  NVSDK_NGX_Parameter_SetI(uVar7,&UNK_180a01714,uVar11);
-  NVSDK_NGX_Parameter_SetF(uVar7,&UNK_180a17bd8,0x3f800000);
-  NVSDK_NGX_Parameter_SetF(uVar7,&UNK_180a17ba0,0x3f800000);
-  NVSDK_NGX_Parameter_SetF(uVar7,&UNK_180a17bb0,param_10);
-  NVSDK_NGX_Parameter_SetF(uVar7,&UNK_180a17be8,param_11);
-  NVSDK_NGX_Parameter_SetF(uVar7,&UNK_180a17d90,fVar13 * (1.0 - fVar12) + fVar12);
-  NVSDK_NGX_Parameter_SetF(uVar7,&UNK_180a17bf8,fVar1 * 0.08);
+  NVSDK_NGX_Parameter_SetD3d11Resource(uVar7,&unknown_var_2344_ptr,uVar5);
+  NVSDK_NGX_Parameter_SetD3d11Resource(uVar7,&unknown_var_3864_ptr,uVar2);
+  NVSDK_NGX_Parameter_SetD3d11Resource(uVar7,&unknown_var_3880_ptr,uVar3);
+  NVSDK_NGX_Parameter_SetD3d11Resource(uVar7,&unknown_var_3848_ptr,uVar10);
+  NVSDK_NGX_Parameter_SetD3d11Resource(uVar7,&unknown_var_2360_ptr,uVar6);
+  NVSDK_NGX_Parameter_SetD3d11Resource(uVar7,&unknown_var_3920_ptr,0);
+  NVSDK_NGX_Parameter_SetI(uVar7,&unknown_var_2612_ptr,uVar11);
+  NVSDK_NGX_Parameter_SetF(uVar7,&unknown_var_3944_ptr,0x3f800000);
+  NVSDK_NGX_Parameter_SetF(uVar7,&unknown_var_3888_ptr,0x3f800000);
+  NVSDK_NGX_Parameter_SetF(uVar7,&unknown_var_3904_ptr,param_10);
+  NVSDK_NGX_Parameter_SetF(uVar7,&unknown_var_3960_ptr,param_11);
+  NVSDK_NGX_Parameter_SetF(uVar7,&unknown_var_4384_ptr,fVar13 * (1.0 - fVar12) + fVar12);
+  NVSDK_NGX_Parameter_SetF(uVar7,&unknown_var_3976_ptr,fVar1 * 0.08);
   uVar10 = NVSDK_NGX_D3D11_EvaluateFeature_C(uVar4,uVar8,uVar7,0);
   *param_1 = '\0';
   return uVar10;
@@ -134,33 +134,33 @@ FUN_1802aa800(longlong param_1,uint64_t *param_2,uint64_t *param_3,int32_t param
   uVar1 = *(int32_t *)param_3;
   uVar2 = *(int32_t *)((longlong)param_3 + 4);
   apcStack_38[0] = (code *)0x0;
-  NVSDK_NGX_Parameter_GetVoidPointer(uVar3,&UNK_180a17c60,apcStack_38);
+  NVSDK_NGX_Parameter_GetVoidPointer(uVar3,&unknown_var_4080_ptr,apcStack_38);
   if (apcStack_38[0] == (code *)0x0) {
     uVar4 = 0xbad0000c;
   }
   else {
     NVSDK_NGX_Parameter_SetUI(uVar3,&system_ptr_9e30,uVar1);
     NVSDK_NGX_Parameter_SetUI(uVar3,&system_ptr_9e38,uVar2);
-    NVSDK_NGX_Parameter_SetI(uVar3,&UNK_180a17c48,param_4);
-    NVSDK_NGX_Parameter_SetI(uVar3,&UNK_180a17cb8,0);
+    NVSDK_NGX_Parameter_SetI(uVar3,&unknown_var_4056_ptr,param_4);
+    NVSDK_NGX_Parameter_SetI(uVar3,&unknown_var_4168_ptr,0);
     uVar4 = (*apcStack_38[0])(uVar3);
     if ((uVar4 & 0xfff00000) != 0xbad00000) {
-      NVSDK_NGX_Parameter_GetUI(uVar3,&UNK_180a17cc8,&uStackX_8);
-      NVSDK_NGX_Parameter_GetUI(uVar3,&UNK_180a17c80,(longlong)&uStackX_8 + 4);
+      NVSDK_NGX_Parameter_GetUI(uVar3,&unknown_var_4184_ptr,&uStackX_8);
+      NVSDK_NGX_Parameter_GetUI(uVar3,&unknown_var_4112_ptr,(longlong)&uStackX_8 + 4);
       uStack_48 = uStackX_8;
       uStack_40 = uStackX_8;
-      NVSDK_NGX_Parameter_GetUI(uVar3,&UNK_180a17c90,&uStack_48);
-      NVSDK_NGX_Parameter_GetUI(uVar3,&UNK_180a17d00,(longlong)&uStack_48 + 4);
-      NVSDK_NGX_Parameter_GetUI(uVar3,&UNK_180a17d28,&uStack_40);
-      NVSDK_NGX_Parameter_GetUI(uVar3,&UNK_180a17cd8,(longlong)&uStack_40 + 4);
-      NVSDK_NGX_Parameter_GetF(uVar3,&UNK_180a17d90,param_1 + 0xf0);
+      NVSDK_NGX_Parameter_GetUI(uVar3,&unknown_var_4128_ptr,&uStack_48);
+      NVSDK_NGX_Parameter_GetUI(uVar3,&unknown_var_4240_ptr,(longlong)&uStack_48 + 4);
+      NVSDK_NGX_Parameter_GetUI(uVar3,&unknown_var_4280_ptr,&uStack_40);
+      NVSDK_NGX_Parameter_GetUI(uVar3,&unknown_var_4200_ptr,(longlong)&uStack_40 + 4);
+      NVSDK_NGX_Parameter_GetF(uVar3,&unknown_var_4384_ptr,param_1 + 0xf0);
     }
   }
   if (*(float *)(param_1 + 0xf0) <= 0.01 && *(float *)(param_1 + 0xf0) != 0.01) {
     *(int32_t *)(param_1 + 0xf0) = 0x3c23d70a;
   }
   if ((uVar4 & 0xfff00000) == 0xbad00000) {
-    FUN_180626f80(&UNK_180a17d50,uVar4);
+    FUN_180626f80(&unknown_var_4320_ptr,uVar4);
     uStackX_8 = *param_3;
     *(int32_t *)(param_1 + 0xf0) = 0x3c23d70a;
   }
@@ -195,32 +195,32 @@ void FUN_1802aa84c(longlong param_1,uint64_t param_2,int32_t *param_3,uint64_t p
   uVar1 = *param_3;
   uVar2 = param_3[1];
   pcStack0000000000000030 = in_RAX;
-  NVSDK_NGX_Parameter_GetVoidPointer(uVar3,&UNK_180a17c60,&stack0x00000030);
+  NVSDK_NGX_Parameter_GetVoidPointer(uVar3,&unknown_var_4080_ptr,&stack0x00000030);
   if (pcStack0000000000000030 == (code *)0x0) {
     uVar4 = 0xbad0000c;
   }
   else {
     NVSDK_NGX_Parameter_SetUI(uVar3,&system_ptr_9e30,uVar1);
     NVSDK_NGX_Parameter_SetUI(uVar3,&system_ptr_9e38,uVar2);
-    NVSDK_NGX_Parameter_SetI(uVar3,&UNK_180a17c48,unaff_R14D);
-    NVSDK_NGX_Parameter_SetI(uVar3,&UNK_180a17cb8,0);
+    NVSDK_NGX_Parameter_SetI(uVar3,&unknown_var_4056_ptr,unaff_R14D);
+    NVSDK_NGX_Parameter_SetI(uVar3,&unknown_var_4168_ptr,0);
     uVar4 = (*pcStack0000000000000030)(uVar3);
     if ((uVar4 & 0xfff00000) != 0xbad00000) {
-      NVSDK_NGX_Parameter_GetUI(uVar3,&UNK_180a17cc8,&stack0x00000070);
-      NVSDK_NGX_Parameter_GetUI(uVar3,&UNK_180a17c80,(longlong)&stack0x00000070 + 4);
+      NVSDK_NGX_Parameter_GetUI(uVar3,&unknown_var_4184_ptr,&stack0x00000070);
+      NVSDK_NGX_Parameter_GetUI(uVar3,&unknown_var_4112_ptr,(longlong)&stack0x00000070 + 4);
       param_5 = CONCAT44(uStack0000000000000074,uStack0000000000000070);
-      NVSDK_NGX_Parameter_GetUI(uVar3,&UNK_180a17c90,&stack0x00000020,param_4,param_5);
-      NVSDK_NGX_Parameter_GetUI(uVar3,&UNK_180a17d00,&stack0x00000024);
-      NVSDK_NGX_Parameter_GetUI(uVar3,&UNK_180a17d28,&param_5);
-      NVSDK_NGX_Parameter_GetUI(uVar3,&UNK_180a17cd8,(longlong)&param_5 + 4);
-      NVSDK_NGX_Parameter_GetF(uVar3,&UNK_180a17d90,unaff_RBX + 0xf0);
+      NVSDK_NGX_Parameter_GetUI(uVar3,&unknown_var_4128_ptr,&stack0x00000020,param_4,param_5);
+      NVSDK_NGX_Parameter_GetUI(uVar3,&unknown_var_4240_ptr,&stack0x00000024);
+      NVSDK_NGX_Parameter_GetUI(uVar3,&unknown_var_4280_ptr,&param_5);
+      NVSDK_NGX_Parameter_GetUI(uVar3,&unknown_var_4200_ptr,(longlong)&param_5 + 4);
+      NVSDK_NGX_Parameter_GetF(uVar3,&unknown_var_4384_ptr,unaff_RBX + 0xf0);
     }
   }
   if (*(float *)(unaff_RBX + 0xf0) <= 0.01 && *(float *)(unaff_RBX + 0xf0) != 0.01) {
     *(int32_t *)(unaff_RBX + 0xf0) = 0x3c23d70a;
   }
   if ((uVar4 & 0xfff00000) == 0xbad00000) {
-    FUN_180626f80(&UNK_180a17d50,uVar4);
+    FUN_180626f80(&unknown_var_4320_ptr,uVar4);
     uStack0000000000000070 = *unaff_RSI;
     uStack0000000000000074 = unaff_RSI[1];
     *(int32_t *)(unaff_RBX + 0xf0) = 0x3c23d70a;
@@ -247,7 +247,7 @@ void FUN_1802aa9ba(void)
   
   *(int32_t *)(unaff_RBX + 0xf0) = 0x3c23d70a;
   if ((unaff_R14D & 0xfff00000) == 0xbad00000) {
-    FUN_180626f80(&UNK_180a17d50,unaff_R14D);
+    FUN_180626f80(&unknown_var_4320_ptr,unaff_R14D);
     uStack0000000000000070 = *unaff_RSI;
     uStack0000000000000074 = unaff_RSI[1];
     *(int32_t *)(unaff_RBX + 0xf0) = 0x3c23d70a;

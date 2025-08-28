@@ -18,7 +18,7 @@ static const int AUDIO_CONFIG_OFFSET = 0x10c0;             // 音频配置偏移
 // 全局变量引用
 extern const float _g_audio_max_values[16];     // 音频最大值数组 (原 _DAT_180a401b0)
 extern const float _g_audio_min_values[16];     // 音频最小值数组 (原 _DAT_18094ed40)
-extern const void* _g_audio_format_table[16];  // 音频格式表 (原 UNK_180953620)
+extern const void* _g_audio_format_table[16];  // 音频格式表 (原 global_config_9664)
 
 /**
  * 处理音频信号裁剪和归一化

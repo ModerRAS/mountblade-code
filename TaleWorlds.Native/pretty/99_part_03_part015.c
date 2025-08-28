@@ -288,7 +288,7 @@ void DataFlowProcessor(longlong param_1, longlong param_2, longlong param_3)
     lStack_218 = param_2;
     
     /* 初始化数据结构 */
-    DataStructureInitializer(auStack_b8, &UNK_180a0da38);
+    DataStructureInitializer(auStack_b8, &unknown_var_2568_ptr);
     lVar22 = param_2;
     
     /* 处理参数选择逻辑 */
@@ -298,7 +298,7 @@ void DataFlowProcessor(longlong param_1, longlong param_2, longlong param_3)
     
     /* 初始化字符串处理缓冲区 */
     uVar19 = 0;
-    puStack_2c0 = &UNK_180a3c3e0;
+    puStack_2c0 = &unknown_var_3456_ptr;
     uStack_2a8 = 0;
     puStack_2b8 = (int8_t *)0x0;
     uStack_2b0 = 0;
@@ -736,7 +736,7 @@ LAB_1801d94be:
             
             /* 处理调试信息输出 */
             if ((*(char *)(_DAT_180c8aa08 + 9) != '\0') && (lStack_218 != 0)) {
-                puStack_298 = &UNK_180a3c3e0;
+                puStack_298 = &unknown_var_3456_ptr;
                 uStack_280 = 0;
                 puStack_290 = (int8_t *)0x0;
                 uStack_288 = 0;
@@ -832,13 +832,13 @@ LAB_1801d94be:
                     alStack_210[0] = -1;
                 }
                 
-                puStack_298 = &UNK_180a3c3e0;
+                puStack_298 = &unknown_var_3456_ptr;
                 if (puStack_290 != (int8_t *)0x0) {
                     SystemErrorHandler();
                 }
                 puStack_290 = (int8_t *)0x0;
                 uStack_280 = uStack_280 & 0xffffffff00000000;
-                puStack_298 = &UNK_18098bcb0;
+                puStack_298 = &unknown_var_720_ptr;
                 puVar21 = puStack_270;
             }
         }
@@ -850,11 +850,11 @@ LAB_1801d94be:
     }
     
     /* 清理资源 */
-    puStack_2c0 = &UNK_180a3c3e0;
+    puStack_2c0 = &unknown_var_3456_ptr;
     if (puStack_2b8 == (int8_t *)0x0) {
         puStack_2b8 = (int8_t *)0x0;
         uStack_2a8 = uStack_2a8 & 0xffffffff00000000;
-        puStack_2c0 = &UNK_18098bcb0;
+        puStack_2c0 = &unknown_var_720_ptr;
         DataStructureCleaner(auStack_b8);
         SystemCleanupHandler(uStack_50 ^ (ulonglong)auStack_2f8);
     }
@@ -925,7 +925,7 @@ void DataFlowValidator(uint64_t param_1, uint64_t param_2, uint64_t param_3)
     uStack_a0 = 3;
     
     /* 初始化路径字符串 */
-    puStack_68 = &UNK_1809fdc18;
+    puStack_68 = &unknown_var_7512_ptr;
     puStack_60 = auStack_50;
     auStack_50[0] = 0;
     uStack_58 = 2;
@@ -933,8 +933,8 @@ void DataFlowValidator(uint64_t param_1, uint64_t param_2, uint64_t param_3)
     
     /* 处理事件队列 */
     EventHandler(&puStack_b8, &puStack_68);
-    puStack_68 = &UNK_18098bcb0;
-    puStack_90 = &UNK_1809fdc18;
+    puStack_68 = &unknown_var_720_ptr;
+    puStack_90 = &unknown_var_7512_ptr;
     puStack_88 = auStack_78;
     auStack_78[0] = auStack_78[0] & 0xffffff00;
     uStack_80 = 2;
@@ -952,8 +952,8 @@ void DataFlowValidator(uint64_t param_1, uint64_t param_2, uint64_t param_3)
         puVar8 = puStack_b0;
     }
     
-    puStack_90 = &UNK_18098bcb0;
-    puStack_68 = &UNK_1809fdc18;
+    puStack_90 = &unknown_var_720_ptr;
+    puStack_68 = &unknown_var_7512_ptr;
     puStack_60 = auStack_50;
     auStack_50[0] = 0;
     uStack_58 = 2;
@@ -970,8 +970,8 @@ void DataFlowValidator(uint64_t param_1, uint64_t param_2, uint64_t param_3)
         puVar8 = puStack_b0;
     }
     
-    puStack_68 = &UNK_18098bcb0;
-    puStack_90 = &UNK_1809fdc18;
+    puStack_68 = &unknown_var_720_ptr;
+    puStack_90 = &unknown_var_7512_ptr;
     puStack_88 = auStack_78;
     auStack_78[0] = auStack_78[0] & 0xffffff00;
     uStack_80 = 2;
@@ -988,8 +988,8 @@ void DataFlowValidator(uint64_t param_1, uint64_t param_2, uint64_t param_3)
         puVar8 = puStack_b0;
     }
     
-    puStack_90 = &UNK_18098bcb0;
-    puStack_68 = &UNK_1809fdc18;
+    puStack_90 = &unknown_var_720_ptr;
+    puStack_68 = &unknown_var_7512_ptr;
     puStack_60 = auStack_50;
     auStack_50[0] = 0;
     uStack_58 = 2;
@@ -1006,8 +1006,8 @@ void DataFlowValidator(uint64_t param_1, uint64_t param_2, uint64_t param_3)
         puVar8 = puStack_b0;
     }
     
-    puStack_68 = &UNK_18098bcb0;
-    puStack_90 = &UNK_1809fdc18;
+    puStack_68 = &unknown_var_720_ptr;
+    puStack_90 = &unknown_var_7512_ptr;
     puStack_88 = auStack_78;
     auStack_78[0] = auStack_78[0] & 0xffffff00;
     uStack_80 = 2;
@@ -1024,7 +1024,7 @@ void DataFlowValidator(uint64_t param_1, uint64_t param_2, uint64_t param_3)
     }
     
     puVar8 = puStack_b8;
-    puStack_90 = &UNK_18098bcb0;
+    puStack_90 = &unknown_var_720_ptr;
     
     /* 计算处理范围 */
     lVar1 = (longlong)puVar5 - (longlong)puStack_b8 >> 0x3f;
@@ -1050,13 +1050,13 @@ void DataFlowValidator(uint64_t param_1, uint64_t param_2, uint64_t param_3)
     SystemResourceBinder(param_3, uVar4);
     
     /* 清理资源 */
-    puStack_90 = &UNK_180a3c3e0;
+    puStack_90 = &unknown_var_3456_ptr;
     if (puStack_88 != (uint *)0x0) {
         SystemErrorHandler();
     }
     puStack_88 = (uint *)0x0;
     auStack_78[0] = 0;
-    puStack_90 = &UNK_18098bcb0;
+    puStack_90 = &unknown_var_720_ptr;
     
     /* 执行剩余的回调 */
     for (puVar7 = puVar8; puVar7 != puVar5; puVar7 = puVar7 + 5) {
@@ -1184,7 +1184,7 @@ void DataFlowSynchronizer(uint64_t param_1, longlong param_2, uint64_t param_3, 
     uVar3 = *(uint64_t *)(param_2 + 0x1e0);
     
     /* 初始化通知系统 */
-    puStack_a8 = &UNK_1809fcc58;
+    puStack_a8 = &unknown_var_3480_ptr;
     puStack_a0 = auStack_90;
     auStack_90[0] = 0;
     uStack_98 = 0x1b;
@@ -1195,7 +1195,7 @@ void DataFlowSynchronizer(uint64_t param_1, longlong param_2, uint64_t param_3, 
     
     /* 处理通知消息 */
     uVar6 = NotificationHandler(uVar3, &puStack_a8, 0);
-    puStack_a8 = &UNK_18098bcb0;
+    puStack_a8 = &unknown_var_720_ptr;
     
     /* 执行同步处理 */
     if ((int)uVar11 != 0) {

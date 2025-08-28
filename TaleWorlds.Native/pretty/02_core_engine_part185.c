@@ -604,7 +604,7 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
                                   *(float *)(_DAT_180c8a9b0 + 0x19f8) + *(float *)(_DAT_180c8a9b0 + 0x1670)) << 0x20
                            ^ 0x8000000000000000);
         *(int8_t *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
-        resource_id = ResourceIdGetter(&UNK_180a088d8, 0,
+        resource_id = ResourceIdGetter(&unknown_var_1736_ptr, 0,
                                       *(int32_t *)
                                        (*(longlong *)(*(longlong *)(temp_offset + 0x1af8) + 0x220) + -4 +
                                         (longlong)*(int *)(*(longlong *)(temp_offset + 0x1af8) + 0x218) * 4));
@@ -615,9 +615,9 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
             *(int8_t *)(temp_offset + 0x1b3f) = 1;
         }
         stack_var22 = 0x800;
-        ResourceStatusSetter(&UNK_180a088d8, resource_id, &quad_stack_ptr8);
+        ResourceStatusSetter(&unknown_var_1736_ptr, resource_id, &quad_stack_ptr8);
         temp_offset = _DAT_180c8a9b0;
-        resource_id = ResourceIdGetter(&UNK_180a06510, 0,
+        resource_id = ResourceIdGetter(&unknown_var_2576_ptr, 0,
                                       *(int32_t *)
                                        (*(longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x220) + -4 +
                                         (longlong)*(int *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x218) * 4));
@@ -637,7 +637,7 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
         status_flag = PermissionValidator(resource_id, 0x141);
         if (status_flag != '\0') {
             quad_stack_ptr8 = (QuadPointer)0x0;
-            status_flag = AccessController(&UNK_180a088f4, 0, 0, &quad_stack_ptr8, stack_var22);
+            status_flag = AccessController(&unknown_var_1764_ptr, 0, 0, &quad_stack_ptr8, stack_var22);
             if (status_flag != '\0') {
                 data_array = (TriplePointer *)data_ptr[1];
                 temp_data_ptr = (TriplePointer *)*data_ptr;
@@ -645,7 +645,7 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
                 if (temp_data_ptr != data_array) {
                     do {
                         quad_stack_ptr10 = (QuadPointer)(temp_data_ptr + 1);
-                        *quad_stack_ptr10 = (TriplePointer *)&UNK_180a3c3e0;
+                        *quad_stack_ptr10 = (TriplePointer *)&unknown_var_3456_ptr;
                         if (temp_data_ptr[2] != (TriplePointer)0x0) {
                             quad_stack_ptr8 = (QuadPointer)temp_data_ptr;
                             // 调用错误处理函数
@@ -653,7 +653,7 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
                         }
                         temp_data_ptr[2] = (TriplePointer)0x0;
                         *(int32_t *)(temp_data_ptr + 4) = 0;
-                        *quad_stack_ptr10 = (TriplePointer *)&UNK_18098bcb0;
+                        *quad_stack_ptr10 = (TriplePointer *)&unknown_var_720_ptr;
                         quad_stack_ptr8 = (QuadPointer)(temp_data_ptr + 5);
                         temp_data_ptr = (TriplePointer *)quad_stack_ptr8;
                     } while (quad_stack_ptr8 != (QuadPointer)data_array);
@@ -696,7 +696,7 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
                     if (temp_ptr1 != (void *)0x0) {
                         temp_ptr2 = temp_ptr1;
                     }
-                    config_offset = strstr(temp_ptr2, &UNK_180a08850);
+                    config_offset = strstr(temp_ptr2, &unknown_var_1600_ptr);
                     if (config_offset != 0) {
                         stack_d8._4_4_ = 0x3ecccccd;
                         stack_d0 = 0x3ecccccd;
@@ -775,13 +775,13 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
         data_offset = (longlong)*(int *)(_DAT_180c8a9b0 + 0x1b90);
         temp_offset = *(longlong *)(_DAT_180c8a9b0 + 0x1b98);
         stream_offset = (longlong)*(int *)(temp_offset + -0xc + data_offset * 0xc);
-        temp_size = (ulonglong)*(uint *)(&UNK_18098d188 + stream_offset * 0xc);
-        if (*(int *)(&UNK_18098d180 + stream_offset * 0xc) == 4) {
-            if (*(int *)(&UNK_18098d184 + stream_offset * 0xc) == 1) {
+        temp_size = (ulonglong)*(uint *)(&unknown_var_6056_ptr + stream_offset * 0xc);
+        if (*(int *)(&unknown_var_6048_ptr + stream_offset * 0xc) == 4) {
+            if (*(int *)(&unknown_var_6052_ptr + stream_offset * 0xc) == 1) {
                 *(int32_t *)(temp_size + 0x1628 + _DAT_180c8a9b0) =
                      *(int32_t *)(temp_offset + -8 + data_offset * 0xc);
             }
-            else if (*(int *)(&UNK_18098d184 + stream_offset * 0xc) == 2) {
+            else if (*(int *)(&unknown_var_6052_ptr + stream_offset * 0xc) == 2) {
                 *(int32_t *)(temp_size + 0x1628 + _DAT_180c8a9b0) =
                      *(int32_t *)(temp_offset + -8 + data_offset * 0xc);
                 *(int32_t *)(temp_size + 0x162c + config_offset) = *(int32_t *)(temp_offset + -4 + data_offset * 0xc);
@@ -791,8 +791,8 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
         *config_item = *config_item + -1;
         SystemSynchronizer();
         quad_stack_ptr8 = (QuadPointer)0x0;
-        status_flag = EventHandler(&UNK_180a088ec, (longlong)data_ptr + 0x74, 0x400, &quad_stack_ptr8, 0x3e0,
-                                  &UNK_18016cd70, data_ptr);
+        status_flag = EventHandler(&unknown_var_1756_ptr, (longlong)data_ptr + 0x74, 0x400, &quad_stack_ptr8, 0x3e0,
+                                  &unknown_var_5328_ptr, data_ptr);
         temp_offset = _DAT_180c8a9b0;
         if (status_flag != '\0') {
             *(int8_t *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
@@ -877,12 +877,12 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
             system_data = (uint64_t *)StringInitializer(&int_stack_a8, &ptr_stack_c8);
             quad_stack_88 = (QuadPointer *)system_data;
             ResourceInitializer(quad_pointer);
-            *quad_pointer = (TriplePointer *)&UNK_180a08928;
+            *quad_pointer = (TriplePointer *)&unknown_var_1816_ptr;
             quad_stack_ptr10 = quad_pointer + 0x19;
-            *quad_stack_ptr10 = (TriplePointer *)&UNK_18098bcb0;
+            *quad_stack_ptr10 = (TriplePointer *)&unknown_var_720_ptr;
             quad_pointer[0x1a] = (TriplePointer)0x0;
             *(int32_t *)(quad_pointer + 0x1b) = 0;
-            *quad_stack_ptr10 = (TriplePointer *)&UNK_180a3c3e0;
+            *quad_stack_ptr10 = (TriplePointer *)&unknown_var_3456_ptr;
             quad_pointer[0x1c] = (TriplePointer)0x0;
             quad_pointer[0x1a] = (TriplePointer)0x0;
             *(int32_t *)(quad_pointer + 0x1b) = 0;
@@ -902,13 +902,13 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
             }
             *(int32_t *)((longlong)quad_pointer + 0xe4) = *(int32_t *)((longlong)system_data + 0x1c);
             quad_pointer[0x18] = data_ptr;
-            *system_data = &UNK_180a3c3e0;
+            *system_data = &unknown_var_3456_ptr;
             if (system_data[1] != 0) {
                 ErrorHandler();
             }
             system_data[1] = 0;
             *(int32_t *)(system_data + 3) = 0;
-            *system_data = &UNK_18098bcb0;
+            *system_data = &unknown_var_720_ptr;
             quad_stack_88 = quad_pointer;
             ((code *)(*quad_pointer)[5])(quad_pointer, temp_offset);
             temp_offset = _DAT_180c82868;
@@ -934,7 +934,7 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
             __Throw_C_error_std__YAXH_Z(resource_id);
         }
     }
-    ptr_stack_c8 = &UNK_180a3c3e0;
+    ptr_stack_c8 = &unknown_var_3456_ptr;
     if (long_stack_c0 == 0) {
         return;
     }
@@ -1067,13 +1067,13 @@ void core_engine_resource_cleaner(longlong resource_handle, uint64_t config_para
 longlong core_engine_memory_manager(longlong memory_ptr, ulonglong memory_flag)
 {
     // 重置内存状态
-    *(uint64_t *)(memory_ptr + 200) = &UNK_180a3c3e0;
+    *(uint64_t *)(memory_ptr + 200) = &unknown_var_3456_ptr;
     if (*(longlong *)(memory_ptr + 0xd0) != 0) {
         ErrorHandler();
     }
     *(uint64_t *)(memory_ptr + 0xd0) = 0;
     *(int32_t *)(memory_ptr + 0xe0) = 0;
-    *(uint64_t *)(memory_ptr + 200) = &UNK_18098bcb0;
+    *(uint64_t *)(memory_ptr + 200) = &unknown_var_720_ptr;
     DataValidator(memory_ptr);
     
     // 根据标志决定是否释放内存
@@ -1144,7 +1144,7 @@ void core_engine_data_synchronizer(longlong sync_handle, uint64_t *config_ptr, u
     *(int8_t *)(temp_offset + 0x1c14) = 1;
     *(uint64_t *)(temp_offset + 0x1c04) = *data_ptr;
     *(int32_t *)(temp_offset + 0x1bd4) = 1;
-    StringComparator(&UNK_180a08910, 0, 0x907);
+    StringComparator(&unknown_var_1792_ptr, 0, 0x907);
     temp_offset = _DAT_180c8a9b0;
     *(int8_t *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
     temp_offset = *(longlong *)(temp_offset + 0x1af8);
@@ -1161,7 +1161,7 @@ void core_engine_data_synchronizer(longlong sync_handle, uint64_t *config_ptr, u
         DataManager(_DAT_180c8a9b0 + 0x1b80, &int_stack_68);
         *(uint64_t *)(temp_offset + 0x1718) = 0x3f8000003f800000;
         *(uint64_t *)(temp_offset + 0x1720) = 0x3f8000003f800000;
-        ResourceMonitor(&UNK_180a08900);
+        ResourceMonitor(&unknown_var_1776_ptr);
         temp_offset = _DAT_180c8a9b0;
         config_data = (uint64_t *)
                      (*(longlong *)(_DAT_180c8a9b0 + 0x1b88) + -0x10 +
@@ -1255,15 +1255,15 @@ void core_engine_data_synchronizer(longlong sync_handle, uint64_t *config_ptr, u
     data_offset = (longlong)*(int *)(_DAT_180c8a9b0 + 0x1b90);
     temp_offset = *(longlong *)(_DAT_180c8a9b0 + 0x1b98);
     stream_offset = (longlong)*(int *)(temp_offset + -0xc + data_offset * 0xc);
-    temp_size = (ulonglong)*(uint *)(&UNK_18098d188 + stream_offset * 0xc);
-    if (*(int *)(&UNK_18098d180 + stream_offset * 0xc) == 4) {
-        if (*(int *)(&UNK_18098d184 + stream_offset * 0xc) == 1) {
+    temp_size = (ulonglong)*(uint *)(&unknown_var_6056_ptr + stream_offset * 0xc);
+    if (*(int *)(&unknown_var_6048_ptr + stream_offset * 0xc) == 4) {
+        if (*(int *)(&unknown_var_6052_ptr + stream_offset * 0xc) == 1) {
             *(int32_t *)(temp_size + 0x1628 + _DAT_180c8a9b0) =
                  *(int32_t *)(temp_offset + -8 + data_offset * 0xc);
             *(int *)(config_offset + 0x1b90) = *(int *)(config_offset + 0x1b90) + -1;
             return;
         }
-        if (*(int *)(&UNK_18098d184 + stream_offset * 0xc) == 2) {
+        if (*(int *)(&unknown_var_6052_ptr + stream_offset * 0xc) == 2) {
             *(int32_t *)(temp_size + 0x1628 + _DAT_180c8a9b0) =
                  *(int32_t *)(temp_offset + -8 + data_offset * 0xc);
             *(int32_t *)(temp_size + 0x162c + config_offset) = *(int32_t *)(temp_offset + -4 + data_offset * 0xc);

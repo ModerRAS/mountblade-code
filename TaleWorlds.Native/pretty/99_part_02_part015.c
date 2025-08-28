@@ -620,7 +620,7 @@ void FUN_1800f4ad0(uint64_t param_1,longlong *param_2,longlong param_3)
   uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_118;
   uStack_f8 = 0;
   puVar9 = (uint64_t *)(_DAT_180c8a980 + 0x4110);
-  puStack_d8 = &UNK_1809fcc28;
+  puStack_d8 = &unknown_var_3432_ptr;
   pbStack_d0 = abStack_c0;
   abStack_c0[0] = 0;
   iStack_c8 = *(int *)(param_3 + 0x10);
@@ -683,7 +683,7 @@ LAB_1800f4beb:
   }
   puVar5 = puVar9;
 LAB_1800f4c2c:
-  puStack_d8 = &UNK_18098bcb0;
+  puStack_d8 = &unknown_var_720_ptr;
   if (puVar5 == puVar9) {
     *param_2 = 0;
   }

@@ -357,7 +357,7 @@ void FUN_18061d314(void)
     lVar24 = 0;
     do {
       plVar3 = *(longlong **)(lVar12 + *(longlong *)(unaff_RDI + 0x48));
-      cVar10 = (**(code **)(*plVar3 + 0x20))(plVar3,&UNK_180a3bea0);
+      cVar10 = (**(code **)(*plVar3 + 0x20))(plVar3,&unknown_var_2112_ptr);
       plVar16 = (longlong *)0x0;
       if (cVar10 != '\0') {
         plVar16 = plVar3;
@@ -700,7 +700,7 @@ void FUN_18061d4e0(void)
     lVar23 = 0;
     do {
       plVar3 = *(longlong **)(lVar17 + *(longlong *)(unaff_RDI + 0x48));
-      cVar10 = (**(code **)(*plVar3 + 0x20))(plVar3,&UNK_180a3bea0);
+      cVar10 = (**(code **)(*plVar3 + 0x20))(plVar3,&unknown_var_2112_ptr);
       plVar15 = (longlong *)0x0;
       if (cVar10 != '\0') {
         plVar15 = plVar3;

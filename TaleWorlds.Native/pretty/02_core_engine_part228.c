@@ -381,7 +381,7 @@ longlong * FUN_18019eb80(longlong param_1,longlong *param_2)
           *(int32_t *)((longlong)pplVar15 + 0x15c) = uStack_31c;
           plVar11 = pplVar15[0x39];
           if (plVar11 != (longlong *)0x0) {
-            if (*(code **)(*plVar11 + 0x160) == (code *)&UNK_180277350) {
+            if (*(code **)(*plVar11 + 0x160) == (code *)&unknown_var_6368_ptr) {
               FUN_180276f30(plVar11,(longlong)plVar11 + 0x214,0);
             }
             else {
@@ -564,7 +564,7 @@ longlong * FUN_18019eb80(longlong param_1,longlong *param_2)
             *(int32_t *)((longlong)plVar11 + 0x15c) = uStack_31c;
             plVar11 = (longlong *)plVar11[0x39];
             if (plVar11 != (longlong *)0x0) {
-              if (*(code **)(*plVar11 + 0x160) == (code *)&UNK_180277350) {
+              if (*(code **)(*plVar11 + 0x160) == (code *)&unknown_var_6368_ptr) {
                 FUN_180276f30(plVar11,(longlong)plVar11 + 0x214,0);
               }
               else {

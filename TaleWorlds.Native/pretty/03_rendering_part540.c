@@ -200,7 +200,7 @@ void FUN_180561b50(longlong param_1,longlong *param_2)
     lVar9 = param_2[1];
   }
   param_2[1] = lVar9 + 4;
-  puVar13 = (uint64_t *)&UNK_1809f8e00;
+  puVar13 = (uint64_t *)&unknown_var_7520_ptr;
   uVar11 = uVar14;
   do {
     if ((puVar13[1] & uVar2) != 0) {
@@ -824,7 +824,7 @@ void FUN_180562f10(longlong param_1)
   uint64_t *puVar1;
   
   puVar1 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,3);
-  *puVar1 = &UNK_180a35f78;
+  *puVar1 = &unknown_var_7752_ptr;
   *(int32_t *)(puVar1 + 1) = *(int32_t *)(param_1 + 8);
   *(int32_t *)((longlong)puVar1 + 0xc) = *(int32_t *)(param_1 + 0xc);
   *(int32_t *)(puVar1 + 2) = *(int32_t *)(param_1 + 0x10);

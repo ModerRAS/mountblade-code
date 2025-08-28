@@ -674,7 +674,7 @@ longlong FUN_18032b880(longlong param_1,uint param_2,uint param_3)
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
                0x48) < _DAT_180d496d0) && (FUN_1808fcb90(&system_buffer_96d0), _DAT_180d496d0 == -1)) {
     // 初始化全局变量
-    _DAT_180d49730 = &UNK_1809fcc58;
+    _DAT_180d49730 = &unknown_var_3480_ptr;
     _DAT_180d49738 = &system_buffer_9748;
     _DAT_180d49740 = 0;
   }
@@ -725,17 +725,17 @@ void FUN_18032c0b0(longlong param_1,uint64_t param_2)
   // 初始化文件结构
   *puVar1 = 0;
   *(int8_t *)(puVar1 + 2) = 0;
-  FUN_18062dee0(puVar1,puVar4,&UNK_180a0cf4c);
+  FUN_18062dee0(puVar1,puVar4,&unknown_var_9772_ptr);
   
   // 设置文件操作参数
-  puStack_68 = &UNK_180a3c3e0;
+  puStack_68 = &unknown_var_3456_ptr;
   if (lStack_60 != 0) {
     FUN_18064e900();
   }
   
   lStack_60 = 0;
   uStack_50 = 0;
-  puStack_68 = &UNK_18098bcb0;
+  puStack_68 = &unknown_var_720_ptr;
   
   // 打开文件并定位到开始位置
   _fseeki64(puVar1[1],0,0);
@@ -891,11 +891,11 @@ void FUN_18032c450(longlong param_1,longlong param_2)
   // 初始化文件结构
   *puVar3 = 0;
   *(int8_t *)(puVar3 + 2) = 0;
-  FUN_18062dee0(puVar3,puVar8,&UNK_180a01ff0);
+  FUN_18062dee0(puVar3,puVar8,&unknown_var_4880_ptr);
   
   // 检查文件是否打开
   if (puVar3[1] == 0) {
-    FUN_180626f80(&UNK_180a1b150);
+    FUN_180626f80(&unknown_var_7632_ptr);
     if (puVar3[1] != 0) {
       fclose();
       puVar3[1] = 0;
@@ -1231,7 +1231,7 @@ void FUN_18032c9f0(longlong param_1,longlong param_2,longlong param_3,int32_t pa
   
   // 记录导出信息
   lVar7 = _ftelli64(*(uint64_t *)(param_2 + 8));
-  FUN_180062300(_DAT_180c86928,&UNK_180a1b118,param_4,lVar7 - param_3,
+  FUN_180062300(_DAT_180c86928,&unknown_var_7576_ptr,param_4,lVar7 - param_3,
                 *(uint64_t *)(param_1 + 0x2d0));
 }
 

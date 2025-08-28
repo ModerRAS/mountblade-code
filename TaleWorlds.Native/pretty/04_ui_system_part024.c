@@ -340,7 +340,7 @@ uint FUN_18066c0c0(float *param_1,uint param_2)
   uint *puVar4;
   float fVar5;
   
-  puVar4 = (uint *)&UNK_180946540;
+  puVar4 = (uint *)&unknown_var_6192_ptr;
   lVar3 = 0x100;
   do {
     lVar2 = lVar3 >> 1;
@@ -367,7 +367,7 @@ uint FUN_18066c160(float *param_1,uint param_2)
   uint *puVar4;
   float fVar5;
   
-  puVar4 = (uint *)&UNK_180946540;
+  puVar4 = (uint *)&unknown_var_6192_ptr;
   lVar3 = 0x100;
   do {
     lVar2 = lVar3 >> 1;
@@ -416,7 +416,7 @@ int8_t * FUN_18066c220(float *param_1,int8_t *param_2,uint param_3,int param_4,i
     param_1[2] = (float)(longlong)fVar7;
     return param_2;
   }
-  puVar4 = (uint *)&UNK_180946540;
+  puVar4 = (uint *)&unknown_var_6192_ptr;
   fVar6 = fVar5 * param_1[1];
   if (fVar5 * param_1[1] <= fVar8) {
     fVar6 = fVar8;

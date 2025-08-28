@@ -50,7 +50,7 @@ void FUN_18061dc3a(longlong param_1)
       lVar17 = 0;
       do {
         plVar3 = *(longlong **)(lVar13 + *(longlong *)(unaff_RDI + 0x48));
-        cVar12 = (**(code **)(*plVar3 + 0x20))(plVar3,&UNK_180a3bea0);
+        cVar12 = (**(code **)(*plVar3 + 0x20))(plVar3,&unknown_var_2112_ptr);
         plVar15 = (longlong *)0x0;
         if (cVar12 != '\0') {
           plVar15 = plVar3;

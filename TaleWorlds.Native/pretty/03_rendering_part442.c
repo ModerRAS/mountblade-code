@@ -219,7 +219,7 @@ void FUN_18050cca0(longlong param_1)
 LAB_18050cd1a:
   *(int8_t *)(*(longlong *)(param_1 + 0x8f8) + 0xa24) = 0xff;
   if ((*(char *)(*(longlong *)(param_1 + 0x8f8) + 0xa27) == '\0') || (!bVar3)) {
-    FUN_1800623b0(_DAT_180c86928,0,0x40,0xd,&UNK_180a30ce8);
+    FUN_1800623b0(_DAT_180c86928,0,0x40,0xd,&unknown_var_6616_ptr);
     lVar7 = *(longlong *)(param_1 + 0x8f8);
     iVar8 = *(int *)(lVar7 + 0x9f8 + (longlong)*(char *)(lVar7 + 0xa25) * 4);
     if (-1 < iVar8) {
@@ -432,7 +432,7 @@ void FUN_18050ccd5(longlong param_1,uint64_t param_2)
 LAB_18050cd1a:
   *(int8_t *)(*(longlong *)(unaff_RDI + 0x8f8) + 0xa24) = 0xff;
   if ((*(char *)(*(longlong *)(unaff_RDI + 0x8f8) + 0xa27) == '\0') || (!bVar3)) {
-    FUN_1800623b0(_DAT_180c86928,0,0x40,0xd,&UNK_180a30ce8);
+    FUN_1800623b0(_DAT_180c86928,0,0x40,0xd,&unknown_var_6616_ptr);
     lVar7 = *(longlong *)(unaff_RDI + 0x8f8);
     iVar8 = *(int *)(lVar7 + 0x9f8 + (longlong)*(char *)(lVar7 + 0xa25) * 4);
     if (-1 < iVar8) {

@@ -343,10 +343,10 @@ LAB_180614ba5:
         // 执行数据复制操作
         do {
             RenderingSystem_ProcessStringLength(lVar3, (longlong)puVar4 + lVar6 + -0x50);
-            puVar4[-1] = &UNK_18098bcb0;
+            puVar4[-1] = &unknown_var_720_ptr;
             *puVar4 = 0;
             *(int32_t *)(puVar4 + 1) = 0;
-            puVar4[-1] = &UNK_180a3c3e0;
+            puVar4[-1] = &unknown_var_3456_ptr;
             puVar4[2] = 0;
             *puVar4 = 0;
             *(int32_t *)(puVar4 + 1) = 0;
@@ -415,7 +415,7 @@ void RenderingSystem_GetIntegerParameter(uint64_t param_1, int32_t *param_2)
     // 检查系统状态
     if (_DAT_180c95dc8 == 0) {
         // 系统未初始化，执行初始化
-        RenderingSystem_InitializePort(auStack_218, 0x200, &UNK_180a3be00, &UNK_180a3b410);
+        RenderingSystem_InitializePort(auStack_218, 0x200, &unknown_var_1952_ptr, &unknown_var_9408_ptr);
         RenderingSystem_ValidateIntegerParameter(auStack_218);
     } else {
         // 系统已初始化，直接获取参数
@@ -445,7 +445,7 @@ void RenderingSystem_ValidateIntegerParameter(uint64_t param_1, int32_t *param_2
     // 检查系统状态
     if (_DAT_180c95dc8 == 0) {
         // 系统未初始化，执行初始化
-        RenderingSystem_InitializePort(auStack_218, 0x200, &UNK_180a3be00, &UNK_180a3b4d0);
+        RenderingSystem_InitializePort(auStack_218, 0x200, &unknown_var_1952_ptr, &unknown_var_9600_ptr);
         RenderingSystem_ValidateIntegerParameter(auStack_218);
     } else {
         // 系统已初始化，验证参数
@@ -475,7 +475,7 @@ void RenderingSystem_GetUnsignedParameter(uint64_t param_1, uint64_t *param_2)
     // 检查系统状态
     if (_DAT_180c95dc8 == 0) {
         // 系统未初始化，执行初始化
-        RenderingSystem_InitializePort(auStack_218, 0x200, &UNK_180a3be00, &UNK_180a3b470);
+        RenderingSystem_InitializePort(auStack_218, 0x200, &unknown_var_1952_ptr, &unknown_var_9504_ptr);
         RenderingSystem_ValidateIntegerParameter(auStack_218);
     } else {
         // 系统已初始化，获取参数
@@ -511,7 +511,7 @@ void RenderingSystem_ReadMemoryRegion(ulonglong *param_1, ulonglong *param_2)
     // 检查系统状态
     if (_DAT_180c95dc8 == 0) {
         // 系统未初始化，执行初始化
-        RenderingSystem_InitializePort(auStack_228, 0x200, &UNK_180a3be00, &UNK_180a3b2f0);
+        RenderingSystem_InitializePort(auStack_228, 0x200, &unknown_var_1952_ptr, &unknown_var_9120_ptr);
         RenderingSystem_ValidateIntegerParameter(auStack_228);
     } else {
         // 系统已初始化，读取内存区域
@@ -524,10 +524,10 @@ void RenderingSystem_ReadMemoryRegion(ulonglong *param_1, ulonglong *param_2)
             
             // 验证内存区域的有效性
             if ((((uVar1 <= param_1[1]) && (uVar1 < uVar2)) || (uVar1 < uVar2)) || (param_1[1] < uVar1)) {
-                puStack_240 = &UNK_18098c860;
+                puStack_240 = &unknown_var_3712_ptr;
                 uStack_248 = uVar1;
-                RenderingSystem_InitializePort(&UNK_180a3ba00, &UNK_180a3d320);
-                RenderingSystem_ReadMemoryRegion(&UNK_180a3baf0, *param_1, param_1[1]);
+                RenderingSystem_InitializePort(&unknown_var_928_ptr, &unknown_var_7360_ptr);
+                RenderingSystem_ReadMemoryRegion(&unknown_var_1168_ptr, *param_1, param_1[1]);
             }
             
             *param_2 = uVar1;
@@ -557,7 +557,7 @@ void RenderingSystem_GetBooleanParameter(uint64_t param_1, int32_t *param_2)
     // 检查系统状态
     if (_DAT_180c95dc8 == 0) {
         // 系统未初始化，执行初始化
-        RenderingSystem_InitializePort(auStack_218, 0x200, &UNK_180a3be00, &UNK_180a3b290);
+        RenderingSystem_InitializePort(auStack_218, 0x200, &unknown_var_1952_ptr, &unknown_var_9024_ptr);
         RenderingSystem_ValidateIntegerParameter(auStack_218);
     } else {
         // 系统已初始化，获取布尔参数
@@ -602,7 +602,7 @@ void RenderingSystem_GetStringParameter(char *param_1)
     // 检查系统状态
     if (_DAT_180c95dc8 == 0) {
         // 系统未初始化，执行初始化
-        RenderingSystem_InitializePort(acStack_838, 0x200, &UNK_180a3be00, &UNK_180a3b3b0);
+        RenderingSystem_InitializePort(acStack_838, 0x200, &unknown_var_1952_ptr, &unknown_var_9312_ptr);
         RenderingSystem_ValidateIntegerParameter(acStack_838);
     } else {
         // 系统已初始化，获取字符串参数
@@ -610,7 +610,7 @@ void RenderingSystem_GetStringParameter(char *param_1)
         *param_1 = cVar2;
         
         if (cVar2 != '\0') {
-            puStack_868 = &UNK_180a3c3e0;
+            puStack_868 = &unknown_var_3456_ptr;
             uStack_850 = 0;
             puStack_860 = (int8_t *)0x0;
             uStack_858 = 0;
@@ -642,7 +642,7 @@ void RenderingSystem_GetStringParameter(char *param_1)
             
             uStack_858 = 0;
             (**(code **)(*_DAT_180c8f008 + 0x70))(_DAT_180c8f008, &puStack_868);
-            puStack_868 = &UNK_180a3c3e0;
+            puStack_868 = &unknown_var_3456_ptr;
             
             if (puStack_860 != (int8_t *)0x0) {
                 RenderingSystem_ClearMemory();
@@ -650,7 +650,7 @@ void RenderingSystem_GetStringParameter(char *param_1)
             
             puStack_860 = (int8_t *)0x0;
             uStack_850 = uStack_850 & 0xffffffff00000000;
-            puStack_868 = &UNK_18098bcb0;
+            puStack_868 = &unknown_var_720_ptr;
             goto LAB_1806152c2;
         }
     }
@@ -685,16 +685,16 @@ void RenderingSystem_ValidateIntegerIndex(int param_1, int *param_2)
     
     // 验证索引范围
     if ((param_1 < *param_2) || (param_2[1] < param_1)) {
-        puStack_220 = &UNK_18098c830;
+        puStack_220 = &unknown_var_3664_ptr;
         iStack_228 = param_1;
-        RenderingSystem_InitializePort(&UNK_180a35a20, &UNK_180a3b6a0, *param_2, param_2[1]);
-        RenderingSystem_ReadMemoryRegion(&UNK_180a359a0, *param_2, param_2[1]);
+        RenderingSystem_InitializePort(&unknown_var_6384_ptr, &unknown_var_64_ptr, *param_2, param_2[1]);
+        RenderingSystem_ReadMemoryRegion(&unknown_var_6256_ptr, *param_2, param_2[1]);
     }
     
     // 检查系统状态
     if (_DAT_180c95dd0 == 0) {
         // 系统未初始化，执行初始化
-        RenderingSystem_InitializePort(auStack_218, 0x200, &UNK_180a3be00, &UNK_180a3b630);
+        RenderingSystem_InitializePort(auStack_218, 0x200, &unknown_var_1952_ptr, &unknown_var_9952_ptr);
         RenderingSystem_ValidateIntegerParameter(auStack_218);
     } else {
         // 系统已初始化，验证索引
@@ -724,16 +724,16 @@ void RenderingSystem_ValidateUnsignedIndex(uint param_1, uint *param_2)
     
     // 验证索引范围
     if ((param_1 < *param_2) || (param_2[1] < param_1)) {
-        puStack_220 = &UNK_18098c830;
+        puStack_220 = &unknown_var_3664_ptr;
         uStack_228 = param_1;
-        RenderingSystem_InitializePort(&UNK_180a3baa0, &UNK_180a3b728, *param_2, param_2[1]);
-        RenderingSystem_ReadMemoryRegion(&UNK_180a3bb90, *param_2, param_2[1]);
+        RenderingSystem_InitializePort(&unknown_var_1088_ptr, &unknown_var_200_ptr, *param_2, param_2[1]);
+        RenderingSystem_ReadMemoryRegion(&unknown_var_1328_ptr, *param_2, param_2[1]);
     }
     
     // 检查系统状态
     if (_DAT_180c95dd0 == 0) {
         // 系统未初始化，执行初始化
-        RenderingSystem_InitializePort(auStack_218, 0x200, &UNK_180a3be00, &UNK_180a3b6d0);
+        RenderingSystem_InitializePort(auStack_218, 0x200, &unknown_var_1952_ptr, &unknown_var_112_ptr);
         RenderingSystem_ValidateIntegerParameter(auStack_218);
     } else {
         // 系统已初始化，验证索引
@@ -763,16 +763,16 @@ void RenderingSystem_ValidateLongIndex(longlong param_1, longlong *param_2)
     
     // 验证索引范围
     if ((param_1 < *param_2) || (param_2[1] < param_1)) {
-        puStack_220 = &UNK_18098c830;
+        puStack_220 = &unknown_var_3664_ptr;
         lStack_228 = param_1;
-        RenderingSystem_InitializePort(&UNK_180a3bb40, &UNK_180a3b588, *param_2, param_2[1]);
-        RenderingSystem_ReadMemoryRegion(&UNK_180a3ba50, *param_2, param_2[1]);
+        RenderingSystem_InitializePort(&unknown_var_1248_ptr, &unknown_var_9784_ptr, *param_2, param_2[1]);
+        RenderingSystem_ReadMemoryRegion(&unknown_var_1008_ptr, *param_2, param_2[1]);
     }
     
     // 检查系统状态
     if (_DAT_180c95dd0 == 0) {
         // 系统未初始化，执行初始化
-        RenderingSystem_InitializePort(auStack_218, 0x200, &UNK_180a3be00, &UNK_180a3b530);
+        RenderingSystem_InitializePort(auStack_218, 0x200, &unknown_var_1952_ptr, &unknown_var_9696_ptr);
         RenderingSystem_ValidateIntegerParameter(auStack_218);
     } else {
         // 系统已初始化，验证索引
@@ -802,16 +802,16 @@ void RenderingSystem_ValidateUnsignedLongIndex(ulonglong param_1, ulonglong *par
     
     // 验证索引范围
     if ((param_1 < *param_2) || (param_2[1] < param_1)) {
-        puStack_220 = &UNK_18098c830;
+        puStack_220 = &unknown_var_3664_ptr;
         uStack_228 = param_1;
-        RenderingSystem_InitializePort(&UNK_180a3ba00, &UNK_180a3b608, *param_2, param_2[1]);
-        RenderingSystem_ReadMemoryRegion(&UNK_180a3baf0, *param_2, param_2[1]);
+        RenderingSystem_InitializePort(&unknown_var_928_ptr, &unknown_var_9912_ptr, *param_2, param_2[1]);
+        RenderingSystem_ReadMemoryRegion(&unknown_var_1168_ptr, *param_2, param_2[1]);
     }
     
     // 检查系统状态
     if (_DAT_180c95dd0 == 0) {
         // 系统未初始化，执行初始化
-        RenderingSystem_InitializePort(auStack_218, 0x200, &UNK_180a3be00, &UNK_180a3b5b0);
+        RenderingSystem_InitializePort(auStack_218, 0x200, &unknown_var_1952_ptr, &unknown_var_9824_ptr);
         RenderingSystem_ValidateIntegerParameter(auStack_218);
     } else {
         // 系统已初始化，验证索引
@@ -841,16 +841,16 @@ void RenderingSystem_ValidateFloatParameter(float param_1, float *param_2)
     
     // 验证浮点数范围
     if ((param_2[1] + param_2[2] * 0.5 < param_1) || (param_1 < *param_2 - param_2[2] * 0.5)) {
-        puStack_230 = &UNK_18098c830;
+        puStack_230 = &unknown_var_3664_ptr;
         dStack_238 = (double)param_1;
-        RenderingSystem_InitializePort(&UNK_180a35aa0, &UNK_180a3b898, (double)*param_2, (double)param_2[1]);
-        RenderingSystem_ReadMemoryRegion(&UNK_180a35af0, (double)*param_2, (double)param_2[1]);
+        RenderingSystem_InitializePort(&unknown_var_6512_ptr, &unknown_var_568_ptr, (double)*param_2, (double)param_2[1]);
+        RenderingSystem_ReadMemoryRegion(&unknown_var_6592_ptr, (double)*param_2, (double)param_2[1]);
     }
     
     // 检查系统状态
     if (_DAT_180c95dd0 == 0) {
         // 系统未初始化，执行初始化
-        RenderingSystem_InitializePort(auStack_228, 0x200, &UNK_180a3be00, &UNK_180a3b840);
+        RenderingSystem_InitializePort(auStack_228, 0x200, &unknown_var_1952_ptr, &unknown_var_480_ptr);
         RenderingSystem_ValidateIntegerParameter(auStack_228);
     } else {
         // 系统已初始化，验证参数
@@ -885,7 +885,7 @@ void RenderingSystem_ProcessStringLength(uint64_t param_1)
     // 检查系统状态
     if (_DAT_180c95dd0 == 0) {
         // 系统未初始化，执行初始化
-        RenderingSystem_InitializePort(auStack_218, 0x200, &UNK_180a3be00, &UNK_180a3b920);
+        RenderingSystem_InitializePort(auStack_218, 0x200, &unknown_var_1952_ptr, &unknown_var_704_ptr);
         RenderingSystem_ValidateIntegerParameter(auStack_218);
     } else {
         // 系统已初始化，处理字符串长度
@@ -916,7 +916,7 @@ void RenderingSystem_ProcessDataBlock(longlong *param_1, int param_2, int32_t pa
     // 检查系统状态
     if (_DAT_180c95dd0 == 0) {
         // 系统未初始化，执行初始化
-        RenderingSystem_InitializePort(auStack_228, 0x200, &UNK_180a3be00, &UNK_180a3b8c0);
+        RenderingSystem_InitializePort(auStack_228, 0x200, &unknown_var_1952_ptr, &unknown_var_608_ptr);
         RenderingSystem_ValidateIntegerParameter(auStack_228);
     } else {
         // 系统已初始化，处理数据块
@@ -947,7 +947,7 @@ void RenderingSystem_ReadPerformanceCounter(void)
         }
     } else {
         // 系统未初始化，执行初始化
-        RenderingSystem_InitializePort(auStack_218, 0x200, &UNK_180a3be00, &UNK_180a3b7a0);
+        RenderingSystem_InitializePort(auStack_218, 0x200, &unknown_var_1952_ptr, &unknown_var_320_ptr);
         RenderingSystem_ValidateIntegerParameter(auStack_218);
     }
     
@@ -980,11 +980,11 @@ void RenderingSystem_SetThreadStatus(int8_t param_1)
     // 检查系统状态
     if (_DAT_180c92514 == 1) {
         uVar2 = RenderingSystem_ProcessStringLength(_DAT_180c92590, param_1);
-        RenderingSystem_GetBooleanParameter(uVar2, 1, &UNK_1809faff8);
+        RenderingSystem_GetBooleanParameter(uVar2, 1, &unknown_var_6216_ptr);
         _DAT_180c95dd0 = uVar2;
     } else {
         // 系统未初始化，执行初始化
-        RenderingSystem_InitializePort(auStack_218, 0x200, &UNK_180a3be00, &UNK_180a3b750);
+        RenderingSystem_InitializePort(auStack_218, 0x200, &unknown_var_1952_ptr, &unknown_var_240_ptr);
         RenderingSystem_ValidateIntegerParameter(auStack_218);
     }
     
@@ -1015,7 +1015,7 @@ void RenderingSystem_ClearThreadStatus(int8_t param_1)
         RenderingSystem_ProcessStringLength(_DAT_180c92590, param_1);
     } else {
         // 系统未初始化，执行初始化
-        RenderingSystem_InitializePort(auStack_218, 0x200, &UNK_180a3be00, &UNK_180a3b800);
+        RenderingSystem_InitializePort(auStack_218, 0x200, &unknown_var_1952_ptr, &unknown_var_416_ptr);
         RenderingSystem_ValidateIntegerParameter(auStack_218);
     }
     
@@ -1049,7 +1049,7 @@ void RenderingSystem_InitializeThread(void)
     }
     
     // 初始化线程资源
-    RenderingSystem_GetBooleanParameter(0x180c95578, 1, &UNK_1809f8df0);
+    RenderingSystem_GetBooleanParameter(0x180c95578, 1, &unknown_var_7504_ptr);
     _DAT_180c95dd0 = 0x180c95578;
     
     return;
@@ -1142,7 +1142,7 @@ void RenderingSystem_ProcessNetworkAddress(void)
     }
     
     // 处理网络地址字符串
-    puStack_50 = &UNK_1809fdc18;
+    puStack_50 = &unknown_var_7512_ptr;
     puStack_48 = auStack_38;
     auStack_38[0] = 0;
     lVar2 = -1;
@@ -1159,7 +1159,7 @@ void RenderingSystem_ProcessNetworkAddress(void)
     
     // 执行网络地址处理
     (**(code **)(*_DAT_180c8f008 + 0x70))(_DAT_180c8f008, &puStack_50);
-    puStack_50 = &UNK_18098bcb0;
+    puStack_50 = &unknown_var_720_ptr;
     
     // 执行堆栈安全清理
     RenderingSystem_ClearMemory(uStack_18 ^ (ulonglong)auStack_78);
@@ -1397,7 +1397,7 @@ void RenderingSystem_ReadDataBlock(longlong *param_1, int param_2, int32_t param
     // 检查系统状态
     if (_DAT_180c95dc8 == 0) {
         // 系统未初始化，执行初始化
-        RenderingSystem_InitializePort(auStack_238, 0x200, &UNK_180a3be00, &UNK_180a3b350);
+        RenderingSystem_InitializePort(auStack_238, 0x200, &unknown_var_1952_ptr, &unknown_var_9216_ptr);
         RenderingSystem_ValidateIntegerParameter(auStack_238);
     } else {
         // 系统已初始化，读取数据块

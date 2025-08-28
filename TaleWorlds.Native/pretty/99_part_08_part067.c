@@ -203,7 +203,7 @@ ulonglong FUN_1805b6170(longlong param_1,uint64_t param_2)
   
   iVar6 = 0;
   auStackX_18[0] = 0;
-  cVar2 = FUN_18055f260(param_2,auStackX_18,&UNK_1809fb070);
+  cVar2 = FUN_18055f260(param_2,auStackX_18,&unknown_var_6336_ptr);
   bVar7 = cVar2 != '\0';
   plVar3 = (longlong *)FUN_180569670(param_2);
   uVar1 = auStackX_18[0];
@@ -213,7 +213,7 @@ ulonglong FUN_1805b6170(longlong param_1,uint64_t param_2)
   do {
     if (bVar7 == false) goto FUN_1805b62b8;
     auStackX_18[0] = 0;
-    uVar4 = FUN_18055f260(param_2,auStackX_18,&UNK_1809fb040);
+    uVar4 = FUN_18055f260(param_2,auStackX_18,&unknown_var_6288_ptr);
     bVar7 = (char)uVar4 != '\0';
     plVar3 = (longlong *)CONCAT71((int7)((ulonglong)uVar4 >> 8),bVar7);
     if (auStackX_18[0] == 0) {
@@ -222,7 +222,7 @@ FUN_1805b62b8:
         return (ulonglong)plVar3 & 0xffffffffffffff00;
       }
       auStackX_18[0] = 0xffff;
-      plVar3 = (longlong *)FUN_18055f260(param_2,auStackX_18,&UNK_1809fb0f0);
+      plVar3 = (longlong *)FUN_18055f260(param_2,auStackX_18,&unknown_var_6464_ptr);
       if ((char)plVar3 == '\0') goto FUN_1805b62b8;
       plVar3 = (longlong *)(ulonglong)auStackX_18[0];
       bVar7 = true;

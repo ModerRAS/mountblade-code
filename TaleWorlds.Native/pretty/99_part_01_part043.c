@@ -10,7 +10,7 @@ void FUN_1800cd350(uint64_t param_1,longlong param_2,uint64_t param_3,uint64_t p
   uint64_t uStackX_8;
   
   uStackX_8 = param_1;
-  FUN_1802c22a0(&uStackX_8,&UNK_180a03df0,param_3,param_4,0xfffffffffffffffe);
+  FUN_1802c22a0(&uStackX_8,&unknown_var_2560_ptr,param_3,param_4,0xfffffffffffffffe);
   if (*(char *)(param_2 + 0x129c1) != '\0') {
     if (((*(uint *)(param_2 + 4) & 0x10000000) == 0) && ((*(byte *)(param_2 + 0x1bd8) & 0x20) != 0))
     {

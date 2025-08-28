@@ -4,9 +4,9 @@
 
 // 函数: uint8_t FUN_180055ed0;
 uint8_t FUN_180055ed0;
-int32_t UNK_180d49150;
-uint8_t UNK_1800a0f67;
-uint8_t UNK_1800a127e;
+int32_t unknown_var_1776;
+uint8_t unknown_var_247;
+uint8_t unknown_var_1038;
 
 uint64_t FUN_180779434(void)
 

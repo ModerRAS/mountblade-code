@@ -259,7 +259,7 @@ void FUN_1805d67c0(longlong param_1,longlong *param_2,int32_t param_3)
   longlong lVar2;
   
   lVar2 = param_1;
-  func_0x000180508000(param_1,&UNK_180a37538,&UNK_180a37518,*(uint64_t *)(param_1 + 0x20f0),
+  func_0x000180508000(param_1,&unknown_var_3320_ptr,&unknown_var_3288_ptr,*(uint64_t *)(param_1 + 0x20f0),
                       param_2,*(int32_t *)(param_1 + 0x209c),param_3);
   *(int32_t *)(lVar2 + 0x209c) = param_3;
   if (param_2 != (longlong *)0x0) {

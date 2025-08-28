@@ -1052,22 +1052,22 @@ void FUN_18013f090(longlong param_1)
     } while (uVar4 < (ulonglong)(*(longlong *)(lVar2 + 0x368) - lVar3 >> 3));
   }
   *(longlong *)(lVar2 + 0x368) = lVar3;
-  *(uint64_t *)(lVar2 + 0x3a8) = &UNK_180a3c3e0;
+  *(uint64_t *)(lVar2 + 0x3a8) = &unknown_var_3456_ptr;
   if (*(longlong *)(lVar2 + 0x3b0) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   *(uint64_t *)(lVar2 + 0x3b0) = 0;
   *(int32_t *)(lVar2 + 0x3c0) = 0;
-  *(uint64_t *)(lVar2 + 0x3a8) = &UNK_18098bcb0;
-  *(uint64_t *)(lVar2 + 0x388) = &UNK_180a3c3e0;
+  *(uint64_t *)(lVar2 + 0x3a8) = &unknown_var_720_ptr;
+  *(uint64_t *)(lVar2 + 0x388) = &unknown_var_3456_ptr;
   if (*(longlong *)(lVar2 + 0x390) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   *(uint64_t *)(lVar2 + 0x390) = 0;
   *(int32_t *)(lVar2 + 0x3a0) = 0;
-  *(uint64_t *)(lVar2 + 0x388) = &UNK_18098bcb0;
+  *(uint64_t *)(lVar2 + 0x388) = &unknown_var_720_ptr;
   if (*plVar1 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();

@@ -150,7 +150,7 @@ void FUN_1805ea790(longlong *param_1,longlong param_2,longlong param_3,longlong 
     }
     plVar25 = (longlong *)param_1[0xc];
     if (plVar25 != (longlong *)0x0) {
-      if (*(code **)(*plVar25 + 0x130) == (code *)&UNK_180276a30) {
+      if (*(code **)(*plVar25 + 0x130) == (code *)&unknown_var_4032_ptr) {
         iVar16 = (int)plVar25[0x42];
       }
       else {
@@ -163,7 +163,7 @@ void FUN_1805ea790(longlong *param_1,longlong param_2,longlong param_3,longlong 
     }
     plVar25 = (longlong *)param_1[0xd];
     if (plVar25 != (longlong *)0x0) {
-      if (*(code **)(*plVar25 + 0x130) == (code *)&UNK_180276a30) {
+      if (*(code **)(*plVar25 + 0x130) == (code *)&unknown_var_4032_ptr) {
         iVar16 = (int)plVar25[0x42];
       }
       else {
@@ -176,7 +176,7 @@ void FUN_1805ea790(longlong *param_1,longlong param_2,longlong param_3,longlong 
     }
     plVar25 = (longlong *)param_1[0xe];
     if (plVar25 != (longlong *)0x0) {
-      if (*(code **)(*plVar25 + 0x130) == (code *)&UNK_180276a30) {
+      if (*(code **)(*plVar25 + 0x130) == (code *)&unknown_var_4032_ptr) {
         iVar16 = (int)plVar25[0x42];
       }
       else {
@@ -189,7 +189,7 @@ void FUN_1805ea790(longlong *param_1,longlong param_2,longlong param_3,longlong 
     }
     plVar25 = (longlong *)param_1[0xf];
     if (plVar25 != (longlong *)0x0) {
-      if (*(code **)(*plVar25 + 0x130) == (code *)&UNK_180276a30) {
+      if (*(code **)(*plVar25 + 0x130) == (code *)&unknown_var_4032_ptr) {
         iVar16 = (int)plVar25[0x42];
       }
       else {
@@ -392,7 +392,7 @@ void FUN_1805ea790(longlong *param_1,longlong param_2,longlong param_3,longlong 
     if (cStack_1d6 == '\0') {
       if ((longlong *)param_1[0xb] == (longlong *)0x0) {
                     // WARNING: Subroutine does not return
-        FUN_180062300(_DAT_180c86928,&UNK_180a37618);
+        FUN_180062300(_DAT_180c86928,&unknown_var_3544_ptr);
       }
       iVar16 = (**(code **)(*(longlong *)param_1[0xb] + 0x130))();
       if (iVar16 != 0) {
@@ -723,12 +723,12 @@ void FUN_1805ea790(longlong *param_1,longlong param_2,longlong param_3,longlong 
     (**(code **)(*(longlong *)param_1[0xb] + 0x150))((longlong *)param_1[0xb],&fStack_188);
     iVar16 = (**(code **)(*(longlong *)param_1[0xb] + 0x130))();
     if (iVar16 != 0x21) {
-      (**(code **)(*(longlong *)param_1[0xb] + 0x128))((longlong *)param_1[0xb],&UNK_1809f8a74);
+      (**(code **)(*(longlong *)param_1[0xb] + 0x128))((longlong *)param_1[0xb],&unknown_var_6612_ptr);
     }
   }
   plVar1 = (longlong *)param_1[0x10];
   if (plVar1 != (longlong *)0x0) {
-    if (*(code **)(*plVar1 + 0x130) == (code *)&UNK_180276a30) {
+    if (*(code **)(*plVar1 + 0x130) == (code *)&unknown_var_4032_ptr) {
       iVar16 = (int)plVar1[0x42];
     }
     else {

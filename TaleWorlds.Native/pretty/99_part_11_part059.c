@@ -379,7 +379,7 @@ LAB_1807bee43:
       if (puVar13[2] != 1) goto LAB_1807bef58;
       uVar5 = *puVar13;
       if (uVar5 < 0x8c) {
-        uVar11 = (ulonglong)*(uint *)(&UNK_1807bf0dc + (ulonglong)(byte)(&UNK_1807bf0e8)[uVar5] * 4)
+        uVar11 = (ulonglong)*(uint *)(&unknown_var_3532_ptr + (ulonglong)(byte)(&unknown_var_3544_ptr)[uVar5] * 4)
                  + 0x180000000;
         switch(uVar5) {
         case 0:
@@ -397,7 +397,7 @@ LAB_1807bee43:
       }
       uVar5 = puVar13[1];
       if (0x8b < uVar5) goto LAB_1807bef3c;
-      uVar11 = (ulonglong)*(uint *)(&UNK_1807bf174 + (ulonglong)(byte)(&UNK_1807bf194)[uVar5] * 4) +
+      uVar11 = (ulonglong)*(uint *)(&unknown_var_3684_ptr + (ulonglong)(byte)(&unknown_var_3716_ptr)[uVar5] * 4) +
                0x180000000;
       switch(uVar5) {
       case 0:

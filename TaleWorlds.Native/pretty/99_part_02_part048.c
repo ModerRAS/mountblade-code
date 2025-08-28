@@ -1226,7 +1226,7 @@ void array_cleaner(longlong param_1)
         do {
             puVar2 = *(uint64_t **)(lVar1 + uVar4 * 8);
             if (puVar2 != (uint64_t *)0x0) {
-                *puVar2 = &UNK_18098bcb0;
+                *puVar2 = &unknown_var_720_ptr;
                 // WARNING: Subroutine does not return
                 FUN_18064e900();
             }

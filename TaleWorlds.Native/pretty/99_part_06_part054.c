@@ -10,7 +10,7 @@ void FUN_1803dd4f0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   uint64_t uVar2;
   
   uVar2 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a249c0;
+  *param_1 = &unknown_var_6656_ptr;
   if (param_1[0x21] != 0) {
     plVar1 = (longlong *)param_1[0x21];
     param_1[0x21] = 0;
@@ -28,45 +28,45 @@ void FUN_1803dd4f0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   if ((longlong *)param_1[0x85] != (longlong *)0x0) {
     (**(code **)(*(longlong *)param_1[0x85] + 0x38))();
   }
-  param_1[0x81] = &UNK_180a3c3e0;
+  param_1[0x81] = &unknown_var_3456_ptr;
   if (param_1[0x82] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_1[0x82] = 0;
   *(int32_t *)(param_1 + 0x84) = 0;
-  param_1[0x81] = &UNK_18098bcb0;
+  param_1[0x81] = &unknown_var_720_ptr;
   if ((longlong *)param_1[0x80] != (longlong *)0x0) {
     (**(code **)(*(longlong *)param_1[0x80] + 0x38))();
   }
   FUN_1803e1c20(param_1 + 0x34,param_1[0x36],param_3,param_4,uVar2);
   FUN_1803e1c20(param_1 + 0x2e,param_1[0x30]);
-  param_1[0x27] = &UNK_180a3c3e0;
+  param_1[0x27] = &unknown_var_3456_ptr;
   if (param_1[0x28] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_1[0x28] = 0;
   *(int32_t *)(param_1 + 0x2a) = 0;
-  param_1[0x27] = &UNK_18098bcb0;
-  param_1[0x23] = &UNK_180a3c3e0;
+  param_1[0x27] = &unknown_var_720_ptr;
+  param_1[0x23] = &unknown_var_3456_ptr;
   if (param_1[0x24] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_1[0x24] = 0;
   *(int32_t *)(param_1 + 0x26) = 0;
-  param_1[0x23] = &UNK_18098bcb0;
+  param_1[0x23] = &unknown_var_720_ptr;
   if ((longlong *)param_1[0x22] != (longlong *)0x0) {
     (**(code **)(*(longlong *)param_1[0x22] + 0x38))();
   }
   if ((longlong *)param_1[0x21] != (longlong *)0x0) {
     (**(code **)(*(longlong *)param_1[0x21] + 0x38))();
   }
-  *param_1 = &UNK_180a14860;
+  *param_1 = &unknown_var_768_ptr;
   param_1[5] = 0;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
+  *param_1 = &unknown_var_3696_ptr;
+  *param_1 = &unknown_var_3552_ptr;
   return;
 }
 

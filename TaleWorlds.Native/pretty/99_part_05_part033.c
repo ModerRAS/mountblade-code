@@ -656,10 +656,10 @@ void FUN_1802ec6e0(longlong param_1,longlong param_2,char param_3,int8_t param_4
   lVar24 = param_1 + 400;
   lVar9 = FUN_18062b420(_DAT_180c8ed18,0x78,*(int8_t *)(param_1 + 0x1b8));
   puStack_58 = (uint64_t *)(lVar9 + 0x20);
-  *puStack_58 = &UNK_18098bcb0;
+  *puStack_58 = &unknown_var_720_ptr;
   *(uint64_t *)(lVar9 + 0x28) = 0;
   *(int32_t *)(lVar9 + 0x30) = 0;
-  *puStack_58 = &UNK_1809fcc58;
+  *puStack_58 = &unknown_var_3480_ptr;
   *(int8_t **)(lVar9 + 0x28) = (int8_t *)(lVar9 + 0x38);
   *(int32_t *)(lVar9 + 0x30) = 0;
   *(int8_t *)(lVar9 + 0x38) = 0;
@@ -673,7 +673,7 @@ void FUN_1802ec6e0(longlong param_1,longlong param_2,char param_3,int8_t param_4
   puStack_68 = (uint64_t *)lVar9;
   lVar10 = FUN_1800590b0(lVar24,acStack_b8,puStack_58);
   if (acStack_b8[0] == '\0') {
-    *puStack_58 = &UNK_18098bcb0;
+    *puStack_58 = &unknown_var_720_ptr;
                     // WARNING: Subroutine does not return
     FUN_18064e900(lVar9);
   }

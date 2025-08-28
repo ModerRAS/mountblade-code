@@ -476,7 +476,7 @@ FUN_18018aa30(longlong *param_1,uint64_t *param_2,char param_3,uint64_t *param_4
   
   if (0x2aaaaaaaaaaaaa8 < (ulonglong)param_1[1]) {
     FUN_18018a9a0(0x2aaaaaaaaaaaaa9,param_6);
-    __Xlength_error_std__YAXPEBD_Z(&UNK_180a009a8);
+    __Xlength_error_std__YAXPEBD_Z(&unknown_var_9176_ptr);
     pcVar3 = (code *)swi(3);
     puVar4 = (uint64_t *)(*pcVar3)();
     return puVar4;
@@ -775,7 +775,7 @@ FUN_18018af30(longlong *param_1,uint64_t *param_2,char param_3,uint64_t *param_4
   
   if (0x666666666666664 < (ulonglong)param_1[1]) {
     func_0x000180188610(0x666666666666665,param_6);
-    __Xlength_error_std__YAXPEBD_Z(&UNK_180a009a8);
+    __Xlength_error_std__YAXPEBD_Z(&unknown_var_9176_ptr);
     pcVar3 = (code *)swi(3);
     puVar4 = (uint64_t *)(*pcVar3)();
     return puVar4;
@@ -1023,7 +1023,7 @@ uint64_t *
 FUN_18018b3f0(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &UNK_1809ffa18;
+  *param_1 = &unknown_var_5192_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x30,param_3,param_4,0xfffffffffffffffe);
   }
@@ -1036,15 +1036,15 @@ uint64_t *
 FUN_18018b430(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &UNK_180a0ad90;
+  *param_1 = &unknown_var_1136_ptr;
   if (param_1[0x16] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_1[0x16] = 0;
-  param_1[2] = &UNK_18098bcb0;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
+  param_1[2] = &unknown_var_720_ptr;
+  *param_1 = &unknown_var_3696_ptr;
+  *param_1 = &unknown_var_3552_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0xd0,param_3,param_4,0xfffffffffffffffe);
   }
@@ -1062,8 +1062,8 @@ uint64_t * FUN_18018b4c0(uint64_t param_1,longlong param_2)
   uint64_t *puVar2;
   
   puVar2 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x30,8,3,0xfffffffffffffffe);
-  *puVar2 = &UNK_1809ffa18;
-  *puVar2 = &UNK_180a0adf8;
+  *puVar2 = &unknown_var_5192_ptr;
+  *puVar2 = &unknown_var_1240_ptr;
   *(int32_t *)(puVar2 + 1) = 0;
   *(int32_t *)((longlong)puVar2 + 0xc) = 0x539;
   *(int32_t *)((longlong)puVar2 + 0x1c) = 1;

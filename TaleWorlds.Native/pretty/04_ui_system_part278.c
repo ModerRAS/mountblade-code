@@ -353,17 +353,17 @@ LAB_180824fc5:
         if (uVar1 != 0) {
           if (uVar1 < 0x10000) {
             if (uVar1 < 0x100) {
-              uVar1 = (byte)(&UNK_18097fe20)[uVar1] + 0x18;
+              uVar1 = (byte)(&unknown_var_1936_ptr)[uVar1] + 0x18;
             }
             else {
-              uVar1 = (byte)(&UNK_18097fe20)[uVar1 >> 8] + 0x10;
+              uVar1 = (byte)(&unknown_var_1936_ptr)[uVar1 >> 8] + 0x10;
             }
           }
           else if (uVar1 < 0x1000000) {
-            uVar1 = (byte)(&UNK_18097fe20)[uVar1 >> 0x10] + 8;
+            uVar1 = (byte)(&unknown_var_1936_ptr)[uVar1 >> 0x10] + 8;
           }
           else {
-            uVar1 = (uint)(byte)(&UNK_18097fe20)[uVar1 >> 0x18];
+            uVar1 = (uint)(byte)(&unknown_var_1936_ptr)[uVar1 >> 0x18];
           }
           uVar7 = iVar6 + uVar1;
           uVar8 = uVar8 + 1 + uVar1;
@@ -399,17 +399,17 @@ LAB_180824fc5:
   } while( true );
   if (uVar1 < 0x10000) {
     if (uVar1 < 0x100) {
-      uVar1 = (byte)(&UNK_18097fe20)[uVar1] + 0x18;
+      uVar1 = (byte)(&unknown_var_1936_ptr)[uVar1] + 0x18;
     }
     else {
-      uVar1 = (byte)(&UNK_18097fe20)[uVar1 >> 8] + 0x10;
+      uVar1 = (byte)(&unknown_var_1936_ptr)[uVar1 >> 8] + 0x10;
     }
   }
   else if (uVar1 < 0x1000000) {
-    uVar1 = (byte)(&UNK_18097fe20)[uVar1 >> 0x10] + 8;
+    uVar1 = (byte)(&unknown_var_1936_ptr)[uVar1 >> 0x10] + 8;
   }
   else {
-    uVar1 = (uint)(byte)(&UNK_18097fe20)[uVar1 >> 0x18];
+    uVar1 = (uint)(byte)(&unknown_var_1936_ptr)[uVar1 >> 0x18];
   }
   uVar7 = iVar6 + uVar1;
   uVar8 = uVar8 + 1 + uVar1;
@@ -529,17 +529,17 @@ uint64_t FUN_180825370(uint64_t param_1,longlong *param_2,int *param_3)
         if (uVar4 != 0) {
           if (uVar4 < 0x10000) {
             if (uVar4 < 0x100) {
-              uVar4 = (byte)(&UNK_18097fe20)[uVar4] + 0x18;
+              uVar4 = (byte)(&unknown_var_1936_ptr)[uVar4] + 0x18;
             }
             else {
-              uVar4 = (byte)(&UNK_18097fe20)[uVar4 >> 8] + 0x10;
+              uVar4 = (byte)(&unknown_var_1936_ptr)[uVar4 >> 8] + 0x10;
             }
           }
           else if (uVar4 < 0x1000000) {
-            uVar4 = (byte)(&UNK_18097fe20)[uVar4 >> 0x10] + 8;
+            uVar4 = (byte)(&unknown_var_1936_ptr)[uVar4 >> 0x10] + 8;
           }
           else {
-            uVar4 = (uint)(byte)(&UNK_18097fe20)[uVar4 >> 0x18];
+            uVar4 = (uint)(byte)(&unknown_var_1936_ptr)[uVar4 >> 0x18];
           }
           *param_3 = *param_3 + uVar4;
           *(uint *)(param_2 + 3) = (int)param_2[3] + uVar4 + 1;
@@ -570,23 +570,23 @@ uint64_t FUN_180825370(uint64_t param_1,longlong *param_2,int *param_3)
       if (uVar4 != 0) {
         if (0xffff < uVar4) {
           if (uVar4 < 0x1000000) {
-            bVar1 = (&UNK_18097fe20)[uVar4 >> 0x10];
+            bVar1 = (&unknown_var_1936_ptr)[uVar4 >> 0x10];
             *param_3 = *param_3 + bVar1 + 8;
             *(uint *)(param_2 + 3) = (int)param_2[3] + bVar1 + 9;
             return 1;
           }
-          bVar1 = (&UNK_18097fe20)[uVar4 >> 0x18];
+          bVar1 = (&unknown_var_1936_ptr)[uVar4 >> 0x18];
           *param_3 = *param_3 + (uint)bVar1;
           *(uint *)(param_2 + 3) = (int)param_2[3] + bVar1 + 1;
           return 1;
         }
         if (uVar4 < 0x100) {
-          bVar1 = (&UNK_18097fe20)[uVar4];
+          bVar1 = (&unknown_var_1936_ptr)[uVar4];
           *param_3 = *param_3 + bVar1 + 0x18;
           *(uint *)(param_2 + 3) = (int)param_2[3] + bVar1 + 0x19;
           return 1;
         }
-        bVar1 = (&UNK_18097fe20)[uVar4 >> 8];
+        bVar1 = (&unknown_var_1936_ptr)[uVar4 >> 8];
         *param_3 = *param_3 + bVar1 + 0x10;
         *(uint *)(param_2 + 3) = (int)param_2[3] + bVar1 + 0x11;
         return 1;

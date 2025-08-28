@@ -217,11 +217,11 @@ LAB_1805b9a5e:
     cVar20 = 0 < iVar23;
     *(char *)(unaff_RBP + 0x130) = cVar20;
   }
-  puVar40 = &UNK_180a06420;
+  puVar40 = &unknown_var_2336_ptr;
   if (param_2 != '\0') {
-    puVar40 = &UNK_180a06418;
+    puVar40 = &unknown_var_2328_ptr;
   }
-  func_0x000180508000(param_1,&UNK_180a37490,puVar40,cVar20);
+  func_0x000180508000(param_1,&unknown_var_3152_ptr,puVar40,cVar20);
   if (cVar20 == '\0') {
     fVar48 = *(float *)((longlong)param_1 + 0x2c);
     lVar31 = param_1[6];

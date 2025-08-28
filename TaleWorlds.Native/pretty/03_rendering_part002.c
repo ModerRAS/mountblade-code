@@ -35,7 +35,7 @@
  * @details 负责初始化渲染管线的基本状态和配置
  */
 uint8_t FUN_1804475e0;
-uint8_t UNK_180454370;
+uint8_t unknown_var_192;
 
 
 /** 
@@ -43,98 +43,98 @@ uint8_t UNK_180454370;
  * @details 负责配置渲染设备的各项参数和状态
  */
 uint8_t FUN_180447660;
-uint8_t UNK_1804543a0;
+uint8_t unknown_var_240;
 
 /** 
  * @brief 渲染上下文创建函数
  * @details 创建和管理渲染上下文，为渲染操作提供必要的环境
  */
 uint8_t FUN_180447710;
-uint8_t UNK_180454ce0;
+uint8_t unknown_var_2608;
 
 /** 
  * @brief 渲染状态初始化函数
  * @details 初始化渲染状态机，设置默认的渲染状态
  */
 uint8_t FUN_1804477f0;
-uint8_t UNK_180454d60;
+uint8_t unknown_var_2736;
 
 /** 
  * @brief 渲染管线设置函数
  * @details 配置渲染管线的各个阶段和参数
  */
 uint8_t FUN_180447850;
-uint8_t UNK_180454e80;
+uint8_t unknown_var_3024;
 
 /** 
  * @brief 渲染参数验证函数
  * @details 验证渲染参数的有效性和兼容性
  */
 uint8_t FUN_180447990;
-uint8_t UNK_180455060;
+uint8_t unknown_var_3504;
 
 /** 
  * @brief 渲染资源初始化函数
  * @details 初始化渲染所需的各类资源，如缓冲区、纹理等
  */
 uint8_t FUN_180447b80;
-uint8_t UNK_180455780;
+uint8_t unknown_var_5328;
 
 /** 
  * @brief 渲染管线重置函数
  * @details 重置渲染管线到初始状态
  */
 uint8_t FUN_180447c00;
-uint8_t UNK_180455820;
+uint8_t unknown_var_5488;
 
 /** 
  * @brief 渲染状态切换函数
  * @details 在不同的渲染状态之间进行切换
  */
 uint8_t FUN_180447ca0;
-uint8_t UNK_180455880;
+uint8_t unknown_var_5584;
 
 /** 
  * @brief 渲染缓冲区管理函数
  * @details 管理渲染缓冲区的创建、绑定和释放
  */
 uint8_t FUN_180447d40;
-uint8_t UNK_1804558c0;
+uint8_t unknown_var_5648;
 
 /** 
  * @brief 渲染目标设置函数
  * @details 设置渲染目标及其相关参数
  */
 uint8_t FUN_180447de0;
-uint8_t UNK_180455900;
+uint8_t unknown_var_5712;
 
 /** 
  * @brief 渲染视口配置函数
  * @details 配置渲染视口的大小、位置和参数
  */
 uint8_t FUN_180447e10;
-uint8_t UNK_180455920;
+uint8_t unknown_var_5744;
 
 /** 
  * @brief 渲染裁剪设置函数
  * @details 设置渲染裁剪区域和参数
  */
 uint8_t FUN_180447e40;
-uint8_t UNK_180455930;
+uint8_t unknown_var_5760;
 
 /** 
  * @brief 渲染深度测试函数
  * @details 配置和管理深度测试相关的参数
  */
 uint8_t FUN_180447f70;
-uint8_t UNK_180455940;
+uint8_t unknown_var_5776;
 
 /** 
  * @brief 渲染混合模式函数
  * @details 配置和管理颜色混合模式
  */
 uint8_t FUN_180448110;
-uint8_t UNK_180455960;
+uint8_t unknown_var_5808;
 
 
 /*-----------------------------------------------------------------------------
@@ -1436,7 +1436,7 @@ uint8_t FUN_1804378e0;
  * @details 初始化高级渲染系统，包含复杂数据结构管理
  */
 uint8_t FUN_18031c260;
-uint8_t UNK_180a1a8c0;
+uint8_t unknown_var_5440;
 
 
 /** 
@@ -1447,40 +1447,40 @@ uint8_t UNK_180a1a8c0;
 uint8_t FUN_18031c300;
 
 /* 全局渲染数据结构变量 */
-uint8_t UNK_180a1a8d8;      // 渲染状态主数据结构
-uint8_t UNK_180a1a940;      // 材质数据结构数组
+uint8_t unknown_var_5464;      // 渲染状态主数据结构
+uint8_t unknown_var_5568;      // 材质数据结构数组
 uint8_t system_data_02a0;       // 渲染配置数据
 int8_t system_data_aa6a;     // 渲染系统状态标志
-uint8_t UNK_180a1a918;      // 纹理管理数据结构
-uint8_t UNK_180a1a8f0;      // 几何体管理数据结构
-uint8_t UNK_180a1a960;      // 着色器管理数据结构
-uint8_t UNK_180a1a988;      // 渲染目标管理数据结构
-uint8_t UNK_180a1a9b0;      // 缓冲区管理数据结构
-uint8_t UNK_180a1a9d8;      // 光照管理数据结构
-uint8_t UNK_180a1aa20;      // 相机管理数据结构
-uint8_t UNK_180a1aa38;      // 场景管理数据结构
-uint8_t UNK_180a1aa70;      // 渲染队列管理数据结构
+uint8_t unknown_var_5528;      // 纹理管理数据结构
+uint8_t unknown_var_5488;      // 几何体管理数据结构
+uint8_t unknown_var_5600;      // 着色器管理数据结构
+uint8_t unknown_var_5640;      // 渲染目标管理数据结构
+uint8_t unknown_var_5680;      // 缓冲区管理数据结构
+uint8_t unknown_var_5720;      // 光照管理数据结构
+uint8_t unknown_var_5792;      // 相机管理数据结构
+uint8_t unknown_var_5816;      // 场景管理数据结构
+uint8_t unknown_var_5872;      // 渲染队列管理数据结构
 uint8_t system_data_d598;       // 渲染性能统计数据
-uint8_t UNK_180a1aa00;      // 内存管理数据结构
-uint8_t UNK_180a1aa98;      // 资源缓存数据结构
-uint8_t UNK_180a1aab8;      // 纹理缓存数据结构
-uint8_t UNK_180a1aad8;      // 材质缓存数据结构
-uint8_t UNK_180a1aaf8;      // 网格缓存数据结构
-uint8_t UNK_180a1ab48;      // 着色器缓存数据结构
-uint8_t UNK_180a1ab80;      // 渲染目标缓存数据结构
-uint8_t UNK_180a1ab38;      // 缓冲区缓存数据结构
-uint8_t UNK_180a1ab18;      // 几何体缓存数据结构
-uint8_t UNK_180a0d408;      // 系统配置数据结构
-uint8_t UNK_180a1abc8;      // 渲染管线状态数据结构
-uint8_t UNK_180a1abf8;      // 渲染批次管理数据结构
+uint8_t unknown_var_5760;      // 内存管理数据结构
+uint8_t unknown_var_5912;      // 资源缓存数据结构
+uint8_t unknown_var_5944;      // 纹理缓存数据结构
+uint8_t unknown_var_5976;      // 材质缓存数据结构
+uint8_t unknown_var_6008;      // 网格缓存数据结构
+uint8_t unknown_var_6088;      // 着色器缓存数据结构
+uint8_t unknown_var_6144;      // 渲染目标缓存数据结构
+uint8_t unknown_var_6072;      // 缓冲区缓存数据结构
+uint8_t unknown_var_6040;      // 几何体缓存数据结构
+uint8_t unknown_var_984;      // 系统配置数据结构
+uint8_t unknown_var_6216;      // 渲染管线状态数据结构
+uint8_t unknown_var_6264;      // 渲染批次管理数据结构
 char system_data_aa6a;           // 调试标志字符
-uint8_t UNK_180317d20;      // 线程管理数据结构
-uint8_t UNK_180a1ac10;      // 同步对象数据结构
-uint8_t UNK_180a1ac28;      // 渲染命令队列数据结构
-uint8_t UNK_180a1ac38;      // 渲染状态栈数据结构
-uint8_t UNK_180a1ac88;      // 渲染上下文数据结构
-uint8_t UNK_180a1aca0;      // 渲染设备数据结构
-uint8_t UNK_180a1ad38;      // 渲染系统全局数据结构
+uint8_t unknown_var_4240;      // 线程管理数据结构
+uint8_t unknown_var_6288;      // 同步对象数据结构
+uint8_t unknown_var_6312;      // 渲染命令队列数据结构
+uint8_t unknown_var_6328;      // 渲染状态栈数据结构
+uint8_t unknown_var_6408;      // 渲染上下文数据结构
+uint8_t unknown_var_6432;      // 渲染设备数据结构
+uint8_t unknown_var_6584;      // 渲染系统全局数据结构
 
 
 /** 
@@ -1490,14 +1490,14 @@ uint8_t UNK_180a1ad38;      // 渲染系统全局数据结构
 uint8_t FUN_180317e00;
 
 /* 高级渲染系统管理数据结构 */
-uint8_t UNK_180a1ac70;      // 内存池管理数据结构
-uint8_t UNK_180a1acc0;      // 线程池管理数据结构
-uint8_t UNK_180a1ac48;      // 任务队列管理数据结构
-uint8_t UNK_180a1af58;      // 渲染管线状态数据结构
-uint8_t UNK_180a1aec8;      // 渲染上下文管理数据结构
-uint8_t UNK_180a1adb8;      // 渲染资源管理数据结构
-uint8_t UNK_180a1add8;      // 渲染性能监控数据结构
-uint8_t UNK_180a1adf0;      // 渲染调试管理数据结构
+uint8_t unknown_var_6384;      // 内存池管理数据结构
+uint8_t unknown_var_6464;      // 线程池管理数据结构
+uint8_t unknown_var_6344;      // 任务队列管理数据结构
+uint8_t unknown_var_7128;      // 渲染管线状态数据结构
+uint8_t unknown_var_6984;      // 渲染上下文管理数据结构
+uint8_t unknown_var_6712;      // 渲染资源管理数据结构
+uint8_t unknown_var_6744;      // 渲染性能监控数据结构
+uint8_t unknown_var_6768;      // 渲染调试管理数据结构
 
 
 /** 
@@ -1505,8 +1505,8 @@ uint8_t UNK_180a1adf0;      // 渲染调试管理数据结构
  * @details 配置和初始化渲染系统的各个组件
  */
 uint8_t FUN_18031ccb0;
-uint8_t UNK_180a1ad98;      // 系统配置数据结构
-uint8_t UNK_180a1ae38;      // 初始化参数数据结构
+uint8_t unknown_var_6680;      // 系统配置数据结构
+uint8_t unknown_var_6840;      // 初始化参数数据结构
 
 
 /** 
@@ -1516,16 +1516,16 @@ uint8_t UNK_180a1ae38;      // 初始化参数数据结构
 uint8_t FUN_18031d520;
 
 /* 渲染系统核心管理数据结构 */
-uint8_t UNK_180a1ae20;      // 核心状态管理数据结构
-uint8_t UNK_180a1ae60;      // 资源管理数据结构
-uint8_t UNK_180a1afe8;      // 性能优化数据结构
-uint8_t UNK_180a1b4b0;      // 内存管理数据结构
-uint8_t UNK_180a1b430;      // 缓存管理数据结构
-uint8_t UNK_180a1b470;      // 同步管理数据结构
-uint8_t UNK_180a1b3b0;      // 调试管理数据结构
-uint8_t UNK_180a1b3f0;      // 日志管理数据结构
-uint8_t UNK_180a1b038;      // 配置管理数据结构
-uint8_t UNK_180a1b090;      // 统计管理数据结构
+uint8_t unknown_var_6816;      // 核心状态管理数据结构
+uint8_t unknown_var_6880;      // 资源管理数据结构
+uint8_t unknown_var_7272;      // 性能优化数据结构
+uint8_t unknown_var_8496;      // 内存管理数据结构
+uint8_t unknown_var_8368;      // 缓存管理数据结构
+uint8_t unknown_var_8432;      // 同步管理数据结构
+uint8_t unknown_var_8240;      // 调试管理数据结构
+uint8_t unknown_var_8304;      // 日志管理数据结构
+uint8_t unknown_var_7352;      // 配置管理数据结构
+uint8_t unknown_var_7440;      // 统计管理数据结构
 
 
 /** 
@@ -1533,8 +1533,8 @@ uint8_t UNK_180a1b090;      // 统计管理数据结构
  * @details 管理渲染设备的创建、配置、状态等
  */
 uint8_t FUN_1803216f0;
-uint8_t UNK_18033d3d0;      // 设备配置数据结构
-uint8_t UNK_18033d410;      // 设备状态数据结构
+uint8_t unknown_var_7504;      // 设备配置数据结构
+uint8_t unknown_var_7568;      // 设备状态数据结构
 
 
 /** 
@@ -1542,7 +1542,7 @@ uint8_t UNK_18033d410;      // 设备状态数据结构
  * @details 初始化渲染设备和相关资源
  */
 uint8_t FUN_18033d370;
-uint8_t UNK_18098bc01;      // 设备初始化标志
+uint8_t unknown_var_545;      // 设备初始化标志
 
 
 /** 
@@ -1550,7 +1550,7 @@ uint8_t UNK_18098bc01;      // 设备初始化标志
  * @details 配置渲染设备的各项参数
  */
 uint8_t FUN_180321570;
-uint8_t UNK_180a1b070;      // 设备配置参数数据结构
+uint8_t unknown_var_7408;      // 设备配置参数数据结构
 
 
 /** 
@@ -1558,10 +1558,10 @@ uint8_t UNK_180a1b070;      // 设备配置参数数据结构
  * @details 管理渲染设备的状态和属性
  */
 uint8_t FUN_18033d250;
-uint8_t UNK_18033d2b0;      // 设备状态数据结构
-uint8_t UNK_180a09a40;      // 设备属性数据结构
-uint8_t UNK_180a1b100;      // 设备能力数据结构
-uint8_t UNK_180a1b368;      // 设备限制数据结构
+uint8_t unknown_var_7216;      // 设备状态数据结构
+uint8_t unknown_var_6192;      // 设备属性数据结构
+uint8_t unknown_var_7552;      // 设备能力数据结构
+uint8_t unknown_var_8168;      // 设备限制数据结构
 
 
 /** 
@@ -1576,9 +1576,9 @@ uint8_t FUN_18033d080;
  * @details 高级渲染资源管理，包含资源池、缓存等
  */
 uint8_t FUN_18033d170;
-uint8_t UNK_18033d070;      // 资源池数据结构
-uint8_t UNK_18033d160;      // 资源缓存数据结构
-uint8_t UNK_180a1b0f8;      // 资源管理数据结构
+uint8_t unknown_var_6640;      // 资源池数据结构
+uint8_t unknown_var_6880;      // 资源缓存数据结构
+uint8_t unknown_var_7544;      // 资源管理数据结构
 
 
 /** 
@@ -1588,7 +1588,7 @@ uint8_t UNK_180a1b0f8;      // 资源管理数据结构
 uint8_t FUN_18033ced0;
 
 /* 渲染内存管理数据结构 */
-uint8_t UNK_18033d030;      // 内存管理器数据结构
+uint8_t unknown_var_6576;      // 内存管理器数据结构
 uint8_t system_data_8e24;      // 内存池统计数据
 uint8_t system_data_8e60;      // 内存分配统计数据
 uint8_t system_data_8e68;      // 内存使用统计数据
@@ -1598,10 +1598,10 @@ uint8_t system_data_8eb8;      // 内存错误统计数据
 uint8_t system_data_8ec0;      // 内存警告统计数据
 uint8_t system_data_8ed0;      // 内存调试统计数据
 uint8_t system_data_8e30;      // 内存配置数据
-uint8_t UNK_180941dc0;      // 内存池数据结构
-uint64_t UNK_180d48ec8;    // 内存分配器数据结构
+uint8_t unknown_var_7888;      // 内存池数据结构
+uint64_t unknown_var_1128;    // 内存分配器数据结构
 uint8_t system_data_17d8;      // 内存限制数据
-uint8_t UNK_180a1b168;      // 内存管理配置数据结构
+uint8_t unknown_var_7656;      // 内存管理配置数据结构
 uint8_t system_data_17c0;      // 内存策略数据
 uint8_t system_data_8e20;      // 内存池配置数据
 uint8_t system_data_96d0;      // 内存分配器配置数据
@@ -1616,7 +1616,7 @@ uint8_t system_data_9748;      // 内存压缩配置数据
  * @details 渲染资源管理器的核心功能
  */
 uint8_t FUN_18033cd80;
-uint8_t UNK_18033cc80;      // 资源管理器数据结构
+uint8_t unknown_var_5632;      // 资源管理器数据结构
 
 
 /** 
@@ -1626,52 +1626,52 @@ uint8_t UNK_18033cc80;      // 资源管理器数据结构
 uint8_t FUN_18033cc90;
 
 /* 渲染资源高级管理数据结构 */
-uint8_t UNK_180a1b2d8;      // 资源池管理器数据结构
-uint8_t UNK_180a1b248;      // 资源缓存管理器数据结构
-uint8_t UNK_180a1b238;      // 资源生命周期管理器数据结构
-uint8_t UNK_180a1c060;      // 资源序列化器数据结构
-uint8_t UNK_180a1c078;      // 资源压缩器数据结构
-uint8_t UNK_180a1c090;      // 资源加密器数据结构
-uint8_t UNK_180a1c0b0;      // 资源验证器数据结构
-uint8_t UNK_180a1c0c8;      // 资源优化器数据结构
-uint8_t UNK_180a1c0e0;      // 资源分析器数据结构
-uint8_t UNK_180a1c0f8;      // 资源监控器数据结构
-uint8_t UNK_180a1bfb0;      // 资源统计器数据结构
-uint8_t UNK_180a1bfc8;      // 资源报告器数据结构
-uint8_t UNK_180a1bfe0;      // 资源调试器数据结构
-uint8_t UNK_180a1bff8;      // 资源日志器数据结构
-uint8_t UNK_180a1c010;      // 资源配置器数据结构
-uint8_t UNK_180a1c040;      // 资源调度器数据结构
-uint8_t UNK_180a1bab8;      // 资源优先级管理器数据结构
-uint8_t UNK_180a1bad8;      // 资源依赖管理器数据结构
-uint8_t UNK_180a1bd10;      // 资源版本管理器数据结构
-uint8_t UNK_1809935e0;      // 资源热重载管理器数据结构
-uint8_t UNK_180993650;      // 资源预加载管理器数据结构
-uint8_t UNK_180993690;      // 资源异步加载管理器数据结构
-uint8_t UNK_180993980;      // 资源流式加载管理器数据结构
-uint8_t UNK_1809939e0;      // 资源批量处理管理器数据结构
-uint8_t UNK_180a1cc50;      // 资源内存管理器数据结构
-uint8_t UNK_180a1cdc0;      // 资源磁盘管理器数据结构
+uint8_t unknown_var_8024;      // 资源池管理器数据结构
+uint8_t unknown_var_7880;      // 资源缓存管理器数据结构
+uint8_t unknown_var_7864;      // 资源生命周期管理器数据结构
+uint8_t unknown_var_1488;      // 资源序列化器数据结构
+uint8_t unknown_var_1512;      // 资源压缩器数据结构
+uint8_t unknown_var_1536;      // 资源加密器数据结构
+uint8_t unknown_var_1568;      // 资源验证器数据结构
+uint8_t unknown_var_1592;      // 资源优化器数据结构
+uint8_t unknown_var_1616;      // 资源分析器数据结构
+uint8_t unknown_var_1640;      // 资源监控器数据结构
+uint8_t unknown_var_1312;      // 资源统计器数据结构
+uint8_t unknown_var_1336;      // 资源报告器数据结构
+uint8_t unknown_var_1360;      // 资源调试器数据结构
+uint8_t unknown_var_1384;      // 资源日志器数据结构
+uint8_t unknown_var_1408;      // 资源配置器数据结构
+uint8_t unknown_var_1456;      // 资源调度器数据结构
+uint8_t unknown_var_40;      // 资源优先级管理器数据结构
+uint8_t unknown_var_72;      // 资源依赖管理器数据结构
+uint8_t unknown_var_640;      // 资源版本管理器数据结构
+uint8_t unknown_var_1744;      // 资源热重载管理器数据结构
+uint8_t unknown_var_1856;      // 资源预加载管理器数据结构
+uint8_t unknown_var_1920;      // 资源异步加载管理器数据结构
+uint8_t unknown_var_2672;      // 资源流式加载管理器数据结构
+uint8_t unknown_var_2768;      // 资源批量处理管理器数据结构
+uint8_t unknown_var_4544;      // 资源内存管理器数据结构
+uint8_t unknown_var_4912;      // 资源磁盘管理器数据结构
 uint8_t system_data_5f30;      // 资源网络管理器配置
-uint8_t UNK_180a1cf60;      // 资源数据库管理器数据结构
+uint8_t unknown_var_5328;      // 资源数据库管理器数据结构
 uint8_t system_data_cf38;      // 资源索引表数据
 uint8_t system_data_cf50;      // 资源元数据数据
-uint8_t UNK_180a1cf28;      // 资源搜索器数据结构
-uint8_t UNK_180a1d010;      // 资源分类器数据结构
-uint8_t UNK_180a1d060;      // 资源标签管理器数据结构
-uint8_t UNK_180a13bd8;      // 资源权限管理器数据结构
+uint8_t unknown_var_5272;      // 资源搜索器数据结构
+uint8_t unknown_var_5504;      // 资源分类器数据结构
+uint8_t unknown_var_5584;      // 资源标签管理器数据结构
+uint8_t unknown_var_7560;      // 资源权限管理器数据结构
 uint8_t system_data_d218;      // 资源配额数据
 uint8_t system_data_d220;      // 资源限制数据
 uint8_t system_data_d558;      // 资源使用统计数据
 uint8_t system_data_d570;      // 资源性能统计数据
 uint8_t system_data_d578;      // 资源错误统计数据
-uint8_t UNK_180a1d900;      // 资源优化器配置数据结构
-uint8_t UNK_180a1d958;      // 资源压缩器配置数据结构
+uint8_t unknown_var_7792;      // 资源优化器配置数据结构
+uint8_t unknown_var_7880;      // 资源压缩器配置数据结构
 uint8_t system_data_d880;      // 资源序列化配置数据
 uint8_t system_data_d890;      // 资源加密配置数据
 uint8_t system_data_d8a0;      // 资源验证配置数据
 uint8_t system_data_d988;      // 资源监控配置数据
-uint8_t UNK_180a1d8b0;      // 资源分析配置数据结构
+uint8_t unknown_var_7712;      // 资源分析配置数据结构
 uint8_t system_data_db08;      // 资源调试配置数据
 uint8_t system_data_db20;      // 资源日志配置数据
 uint8_t system_data_db38;      // 资源报告配置数据
@@ -1679,10 +1679,10 @@ uint8_t system_data_db48;      // 资源统计配置数据
 uint8_t system_data_db68;      // 资源性能配置数据
 uint8_t system_data_db80;      // 资源错误配置数据
 uint8_t system_data_db98;      // 资源警告配置数据
-uint8_t UNK_18034dc90;      // 资源内存池数据结构
-uint8_t UNK_18034dca0;      // 资源缓存池数据结构
-uint8_t UNK_180a1db58;      // 资源任务池数据结构
-uint8_t UNK_180a1dba8;      // 资源线程池数据结构
+uint8_t unknown_var_5280;      // 资源内存池数据结构
+uint8_t unknown_var_5296;      // 资源缓存池数据结构
+uint8_t unknown_var_8392;      // 资源任务池数据结构
+uint8_t unknown_var_8472;      // 资源线程池数据结构
 uint8_t system_data_dd30;      // 资源配置文件数据
 uint8_t system_data_deb0;      // 资源数据库连接数据
 uint8_t system_data_dec0;      // 资源网络连接数据
@@ -1708,8 +1708,8 @@ uint8_t system_data_e798;      // 资源压缩策略数据
 uint8_t system_data_6618;      // 资源错误处理策略数据
 uint8_t system_data_e938;      // 资源日志策略数据
 uint8_t system_data_ecc0;      // 资源监控策略数据
-uint8_t UNK_180a2ac38;      // 资源热重载策略数据结构
-uint8_t UNK_180a1ede0;      // 资源预加载策略数据结构
+uint8_t unknown_var_1864;      // 资源热重载策略数据结构
+uint8_t unknown_var_3136;      // 资源预加载策略数据结构
 uint8_t system_data_eb48;      // 资源异步加载策略数据
 uint8_t system_data_eb60;      // 资源流式加载策略数据
 uint8_t system_data_eb88;      // 资源批量处理策略数据
@@ -1724,36 +1724,36 @@ uint8_t system_data_ecb8;      // 资源任务管理策略数据
 uint8_t system_data_ecf8;      // 资源线程管理策略数据
 uint8_t system_data_ed18;      // 资源同步管理策略数据
 uint8_t system_data_ed30;      // 资源错误管理策略数据
-uint8_t UNK_180a1ed58;      // 资源调试管理策略数据结构
-uint8_t UNK_180a1ed70;      // 资源日志管理策略数据结构
-uint8_t UNK_180a1ed88;      // 资源报告管理策略数据结构
+uint8_t unknown_var_3000;      // 资源调试管理策略数据结构
+uint8_t unknown_var_3024;      // 资源日志管理策略数据结构
+uint8_t unknown_var_3048;      // 资源报告管理策略数据结构
 uint8_t system_data_eb78;      // 资源统计管理策略数据
 uint8_t system_data_eb98;      // 资源性能管理策略数据
 uint8_t system_data_ebd0;      // 资源分析管理策略数据
 uint8_t system_data_ebe8;      // 资源监控管理策略数据
 uint8_t system_data_ec00;      // 资源优化管理策略数据
 uint8_t system_data_ecd0;      // 资源验证管理策略数据
-uint8_t UNK_180a1ed48;      // 资源搜索管理策略数据结构
-uint8_t UNK_180a1edc0;      // 资源分类管理策略数据结构
-uint8_t UNK_180a1eda0;      // 资源标签管理策略数据结构
-uint8_t UNK_180a1edb0;      // 资源权限管理策略数据结构
+uint8_t unknown_var_2984;      // 资源搜索管理策略数据结构
+uint8_t unknown_var_3104;      // 资源分类管理策略数据结构
+uint8_t unknown_var_3072;      // 资源标签管理策略数据结构
+uint8_t unknown_var_3088;      // 资源权限管理策略数据结构
 uint8_t system_data_ef48;      // 资源配额管理策略数据
-uint8_t UNK_180276a30;      // 资源限制管理策略数据结构
-uint8_t UNK_180a1f0f8;      // 资源热重载管理器数据结构
+uint8_t unknown_var_4032;      // 资源限制管理策略数据结构
+uint8_t unknown_var_3928;      // 资源热重载管理器数据结构
 uint8_t system_data_f0c8;      // 资源预加载管理器配置
 uint8_t system_data_f0d0;      // 资源异步加载管理器配置
 uint8_t system_data_f0e0;      // 资源流式加载管理器配置
 uint8_t system_data_f0e4;      // 资源批量处理管理器配置
-uint8_t UNK_180a1f013;      // 资源优先级管理器数据结构
-uint8_t UNK_180a1f268;      // 资源依赖管理器数据结构
+uint8_t unknown_var_3699;      // 资源优先级管理器数据结构
+uint8_t unknown_var_4296;      // 资源依赖管理器数据结构
 uint8_t system_data_d7b0;      // 资源版本管理器配置
 uint8_t system_data_64d8;      // 资源生命周期管理器配置
-uint8_t UNK_180a1f3e8;      // 资源内存管理器数据结构
+uint8_t unknown_var_4680;      // 资源内存管理器数据结构
 uint8_t system_data_f3d0;      // 资源缓存管理器配置
-uint8_t UNK_180a1f578;      // 资源磁盘管理器数据结构
+uint8_t unknown_var_5080;      // 资源磁盘管理器数据结构
 uint8_t system_data_f550;      // 资源网络管理器配置
 uint8_t system_data_f560;      // 资源任务管理器配置
-uint8_t UNK_180a1f788;      // 资源线程管理器数据结构
+uint8_t unknown_var_5608;      // 资源线程管理器数据结构
 
 
 /** 
@@ -1763,15 +1763,15 @@ uint8_t UNK_180a1f788;      // 资源线程管理器数据结构
 uint8_t FUN_180360210;
 
 /* 高级渲染管线管理数据结构 */
-uint8_t UNK_180360300;      // 渲染管线状态管理器数据结构
-uint8_t UNK_180360340;      // 渲染管线配置管理器数据结构
-uint8_t UNK_180a1f6e0;      // 渲染管线优化器数据结构
-uint8_t UNK_180a1f6f0;      // 渲染管线分析器数据结构
-uint8_t UNK_180a1f758;      // 渲染管线监控器数据结构
-uint8_t UNK_180a1f770;      // 渲染管线调试器数据结构
+uint8_t unknown_var_656;      // 渲染管线状态管理器数据结构
+uint8_t unknown_var_720;      // 渲染管线配置管理器数据结构
+uint8_t unknown_var_5440;      // 渲染管线优化器数据结构
+uint8_t unknown_var_5456;      // 渲染管线分析器数据结构
+uint8_t unknown_var_5560;      // 渲染管线监控器数据结构
+uint8_t unknown_var_5584;      // 渲染管线调试器数据结构
 uint8_t system_data_f740;      // 渲染管线配置数据
 uint8_t system_data_f750;      // 渲染管线状态数据
-uint8_t UNK_180a1f978;      // 渲染管线性能管理器数据结构
+uint8_t unknown_var_6104;      // 渲染管线性能管理器数据结构
 uint8_t system_data_f8f0;      // 渲染管线统计数据
 uint8_t system_data_f8f8;      // 渲染管线性能数据
 uint8_t system_data_f910;      // 渲染管线内存数据
@@ -1780,12 +1780,12 @@ uint8_t system_data_f930;      // 渲染管线警告数据
 uint8_t system_data_f940;      // 渲染管线优化数据
 uint8_t system_data_f950;      // 渲染管线分析数据
 uint8_t system_data_f960;      // 渲染管线监控数据
-uint8_t UNK_180a1fae8;      // 渲染管线同步管理器数据结构
+uint8_t unknown_var_6472;      // 渲染管线同步管理器数据结构
 uint8_t system_data_64c8;      // 渲染管线线程配置数据
-uint8_t UNK_180a1fc70;      // 渲染管线任务管理器数据结构
+uint8_t unknown_var_6864;      // 渲染管线任务管理器数据结构
 uint8_t system_data_fc50;      // 渲染管线任务配置数据
 uint8_t system_data_fc58;      // 渲染管线任务状态数据
-uint8_t UNK_180a1fe08;      // 渲染管线内存管理器数据结构
+uint8_t unknown_var_7272;      // 渲染管线内存管理器数据结构
 uint8_t system_data_fdd8;      // 渲染管线内存配置数据
 uint8_t system_data_fdf0;      // 渲染管线内存统计数据
 uint8_t system_data_fdf8;      // 渲染管线内存性能数据
@@ -1794,46 +1794,46 @@ uint8_t system_data_ffa0;      // 渲染管线缓存统计数据
 uint8_t system_data_ffd8;      // 渲染管线缓存性能数据
 uint8_t system_data_ffe8;      // 渲染管线缓存优化数据
 uint8_t system_data_fff8;      // 渲染管线缓存监控数据
-uint8_t UNK_180363750;      // 渲染管线优化器配置数据结构
-uint8_t UNK_180a20298;      // 渲染管线分析器配置数据结构
-uint8_t UNK_180a201d0;      // 渲染管线监控器配置数据结构
-uint8_t UNK_180a201f8;      // 渲染管线调试器配置数据结构
+uint8_t unknown_var_4048;      // 渲染管线优化器配置数据结构
+uint8_t unknown_var_8440;      // 渲染管线分析器配置数据结构
+uint8_t unknown_var_8240;      // 渲染管线监控器配置数据结构
+uint8_t unknown_var_8280;      // 渲染管线调试器配置数据结构
 uint8_t system_data_0198;      // 渲染管线优化配置数据
 uint8_t system_data_0238;      // 渲染管线分析配置数据
-uint8_t UNK_180a20248;      // 渲染管线监控配置数据结构
-uint8_t UNK_180a20260;      // 渲染管线调试配置数据结构
-uint8_t UNK_180a20278;      // 渲染管线错误处理数据结构
+uint8_t unknown_var_8360;      // 渲染管线监控配置数据结构
+uint8_t unknown_var_8384;      // 渲染管线调试配置数据结构
+uint8_t unknown_var_8408;      // 渲染管线错误处理数据结构
 uint8_t system_data_01a8;      // 渲染管线日志配置数据
 uint8_t system_data_01c0;      // 渲染管线报告配置数据
-uint8_t UNK_180a20448;      // 渲染管线热重载数据结构
-uint8_t UNK_180a20758;      // 渲染管线预加载数据结构
-uint8_t UNK_180a09e08;      // 渲染管线异步加载数据结构
-uint8_t UNK_180a20970;      // 渲染管线流式加载数据结构
-uint8_t UNK_180a205b8;      // 渲染管线批处理数据结构
-uint8_t UNK_180a205d0;      // 渲染管线实例化数据结构
-uint8_t UNK_180a205f8;      // 渲染管线LOD数据结构
-uint8_t UNK_180a20610;      // 渲染管线剔除数据结构
-uint8_t UNK_180a20628;      // 渲染管线排序数据结构
-uint8_t UNK_180a20640;      // 渲染管线分组数据结构
-uint8_t UNK_180a20660;      // 渲染管线合并数据结构
-uint8_t UNK_180a20670;      // 渲染管线分割数据结构
-uint8_t UNK_180a20688;      // 渲染管线优化数据结构
-uint8_t UNK_180a20698;      // 渲染管线分析数据结构
-uint8_t UNK_180a206b0;      // 渲染管线监控数据结构
-uint8_t UNK_180a206c0;      // 渲染管线调试数据结构
-uint8_t UNK_180a206d8;      // 渲染管线错误处理数据结构
-uint8_t UNK_180a206f0;      // 渲染管线日志数据结构
-uint8_t UNK_180a20738;      // 渲染管线报告数据结构
-uint8_t UNK_180a20740;      // 渲染管线统计数据结构
-uint8_t UNK_180a0c280;      // 渲染管线性能数据结构
-uint8_t UNK_180a205b0;      // 渲染管线内存数据结构
-uint8_t UNK_180a205e8;      // 渲染管线缓存数据结构
-uint8_t UNK_180a205f0;      // 渲染管线任务数据结构
-uint8_t UNK_180a20720;      // 渲染管线线程数据结构
-uint8_t UNK_180a20710;      // 渲染管线同步数据结构
-uint8_t UNK_180a20748;      // 渲染管线优化器高级数据结构
-uint8_t UNK_180a20ae0;      // 渲染管线分析器高级数据结构
-uint8_t UNK_180a20cc0;      // 渲染管线监控器高级数据结构
+uint8_t unknown_var_8872;      // 渲染管线热重载数据结构
+uint8_t unknown_var_9656;      // 渲染管线预加载数据结构
+uint8_t unknown_var_7160;      // 渲染管线异步加载数据结构
+uint8_t unknown_var_192;      // 渲染管线流式加载数据结构
+uint8_t unknown_var_9240;      // 渲染管线批处理数据结构
+uint8_t unknown_var_9264;      // 渲染管线实例化数据结构
+uint8_t unknown_var_9304;      // 渲染管线LOD数据结构
+uint8_t unknown_var_9328;      // 渲染管线剔除数据结构
+uint8_t unknown_var_9352;      // 渲染管线排序数据结构
+uint8_t unknown_var_9376;      // 渲染管线分组数据结构
+uint8_t unknown_var_9408;      // 渲染管线合并数据结构
+uint8_t unknown_var_9424;      // 渲染管线分割数据结构
+uint8_t unknown_var_9448;      // 渲染管线优化数据结构
+uint8_t unknown_var_9464;      // 渲染管线分析数据结构
+uint8_t unknown_var_9488;      // 渲染管线监控数据结构
+uint8_t unknown_var_9504;      // 渲染管线调试数据结构
+uint8_t unknown_var_9528;      // 渲染管线错误处理数据结构
+uint8_t unknown_var_9552;      // 渲染管线日志数据结构
+uint8_t unknown_var_9624;      // 渲染管线报告数据结构
+uint8_t unknown_var_9632;      // 渲染管线统计数据结构
+uint8_t unknown_var_6496;      // 渲染管线性能数据结构
+uint8_t unknown_var_9232;      // 渲染管线内存数据结构
+uint8_t unknown_var_9288;      // 渲染管线缓存数据结构
+uint8_t unknown_var_9296;      // 渲染管线任务数据结构
+uint8_t unknown_var_9600;      // 渲染管线线程数据结构
+uint8_t unknown_var_9584;      // 渲染管线同步数据结构
+uint8_t unknown_var_9640;      // 渲染管线优化器高级数据结构
+uint8_t unknown_var_560;      // 渲染管线分析器高级数据结构
+uint8_t unknown_var_1040;      // 渲染管线监控器高级数据结构
 uint8_t system_data_0c88;      // 渲染管线优化器高级配置数据
 uint8_t system_data_0c48;      // 渲染管线分析器高级配置数据
 uint8_t system_data_0c58;      // 渲染管线监控器高级配置数据
@@ -1843,29 +1843,29 @@ uint8_t system_data_0c98;      // 渲染管线报告器高级配置数据
 uint8_t system_data_0ca8;      // 渲染管线统计器高级配置数据
 uint8_t system_data_1f50;      // 渲染管线性能器高级配置数据
 uint8_t system_data_1f48;      // 渲染管线错误处理高级配置数据
-uint8_t UNK_180a20f68;      // 渲染管线热重载高级数据结构
+uint8_t unknown_var_1720;      // 渲染管线热重载高级数据结构
 char system_data_aa6b;           // 渲染管线调试标志
 uint8_t system_data_0e58;      // 渲染管线热重载配置数据
-uint8_t UNK_180a20e68;      // 渲染管线预加载高级数据结构
+uint8_t unknown_var_1464;      // 渲染管线预加载高级数据结构
 uint8_t system_data_0e30;      // 渲染管线异步加载配置数据
 uint8_t system_data_0e40;      // 渲染管线流式加载配置数据
 uint8_t system_data_0e70;      // 渲染管线批处理配置数据
 uint8_t system_data_0e80;      // 渲染管线实例化配置数据
-uint8_t UNK_180a20e13;      // 渲染管线LOD高级数据结构
+uint8_t unknown_var_1379;      // 渲染管线LOD高级数据结构
 uint8_t system_data_0e48;      // 渲染管线剔除配置数据
-uint8_t UNK_180a20e90;      // 渲染管线排序高级数据结构
+uint8_t unknown_var_1504;      // 渲染管线排序高级数据结构
 uint8_t system_data_0f08;      // 渲染管线分组配置数据
 uint8_t system_data_0f20;      // 渲染管线合并配置数据
 uint8_t system_data_0f30;      // 渲染管线分割配置数据
-uint8_t UNK_180a20f40;      // 渲染管线优化高级数据结构
-uint8_t UNK_180a210d8;      // 渲染管线分析高级数据结构
-uint8_t UNK_180a21248;      // 渲染管线监控高级数据结构
-uint8_t UNK_180a213f8;      // 渲染管线调试高级数据结构
-uint8_t UNK_180a213b0;      // 渲染管线日志高级数据结构
-uint8_t UNK_180a213d8;      // 渲染管线报告高级数据结构
-uint8_t UNK_180a213c0;      // 渲染管线统计高级数据结构
-uint8_t UNK_180a21560;      // 渲染管线性能高级数据结构
-uint8_t UNK_180a21628;      // 渲染管线错误处理高级数据结构
+uint8_t unknown_var_1680;      // 渲染管线优化高级数据结构
+uint8_t unknown_var_2088;      // 渲染管线分析高级数据结构
+uint8_t unknown_var_2456;      // 渲染管线监控高级数据结构
+uint8_t unknown_var_2888;      // 渲染管线调试高级数据结构
+uint8_t unknown_var_2816;      // 渲染管线日志高级数据结构
+uint8_t unknown_var_2856;      // 渲染管线报告高级数据结构
+uint8_t unknown_var_2832;      // 渲染管线统计高级数据结构
+uint8_t unknown_var_3248;      // 渲染管线性能高级数据结构
+uint8_t unknown_var_3448;      // 渲染管线错误处理高级数据结构
 uint8_t system_data_02a0;      // 渲染管线最终配置数据
 
 
@@ -1885,7 +1885,7 @@ uint8_t FUN_180380510;
  * @details 渲染系统的最终清理和资源释放
  */
 uint8_t FUN_1803805e0;
-uint8_t UNK_180a2ada8;      // 最终清理配置数据结构
+uint8_t unknown_var_2232;      // 最终清理配置数据结构
 
 
 /** 
@@ -1900,9 +1900,9 @@ uint8_t FUN_180380430;
  * @details 优化渲染系统的性能和资源使用
  */
 uint8_t FUN_1803802e0;
-uint8_t UNK_180a21780;      // 优化配置数据结构
-uint8_t UNK_180a217a0;      // 优化统计数据结构
-uint8_t UNK_180a22a30;      // 优化算法数据结构
+uint8_t unknown_var_3792;      // 优化配置数据结构
+uint8_t unknown_var_3824;      // 优化统计数据结构
+uint8_t unknown_var_8576;      // 优化算法数据结构
 
 
 /** 
@@ -1917,11 +1917,11 @@ uint8_t FUN_1803800d0;
  * @details 处理渲染系统的错误和异常
  */
 uint8_t FUN_180380200;
-uint8_t UNK_180380090;      // 错误处理数据结构
-uint8_t UNK_180a217c0;      // 错误统计数据结构
-uint8_t UNK_180a17810;      // 错误日志数据结构
-uint8_t UNK_180a17814;      // 错误报告数据结构
-uint8_t UNK_180a218e0;      // 错误恢复数据结构
+uint8_t unknown_var_1104;      // 错误处理数据结构
+uint8_t unknown_var_3856;      // 错误统计数据结构
+uint8_t unknown_var_2976;      // 错误日志数据结构
+uint8_t unknown_var_2980;      // 错误报告数据结构
+uint8_t unknown_var_4144;      // 错误恢复数据结构
 
 
 /** 
@@ -1938,54 +1938,54 @@ uint8_t FUN_18037ac70;
 uint8_t FUN_18037ad00;
 
 /* 渲染系统核心管理器数据结构 */
-uint8_t UNK_180380040;      // 核心管理器主数据结构
-uint8_t UNK_180380050;      // 核心管理器配置数据结构
+uint8_t unknown_var_1024;      // 核心管理器主数据结构
+uint8_t unknown_var_1040;      // 核心管理器配置数据结构
 uint8_t system_data_1838;      // 状态管理数据
 uint8_t system_data_1858;      // 资源管理数据
-uint8_t UNK_18037d8a0;      // 性能管理数据结构
-uint8_t UNK_18037fff0;      // 内存管理数据结构
-uint8_t UNK_180380000;      // 缓存管理数据结构
-uint8_t UNK_180a21880;      // 任务管理数据结构
-uint8_t UNK_180a21950;      // 线程管理数据结构
-uint8_t UNK_180a21968;      // 同步管理数据结构
-uint8_t UNK_180a21978;      // 错误管理数据结构
-uint8_t UNK_180a21988;      // 调试管理数据结构
-uint8_t UNK_180a21990;      // 日志管理数据结构
-uint8_t UNK_180a219a0;      // 统计管理数据结构
-uint8_t UNK_180a219b8;      // 监控管理数据结构
-uint8_t UNK_180a219c8;      // 报告管理数据结构
-uint8_t UNK_18037ffa0;      // 优化管理数据结构
-uint8_t UNK_18037ffb0;      // 分析管理数据结构
-uint8_t UNK_180a219e0;      // 热重载管理数据结构
-uint8_t UNK_180a219f4;      // 预加载管理数据结构
-uint8_t UNK_180a21a30;      // 异步加载管理数据结构
-uint8_t UNK_180a21a40;      // 流式加载管理数据结构
-uint8_t UNK_180a21be8;      // 批处理管理数据结构
-uint8_t UNK_180a21a10;      // 实例化管理数据结构
-uint8_t UNK_180a16540;      // LOD管理数据结构
-uint8_t UNK_180a21a00;      // 剔除管理数据结构
-uint8_t UNK_180a21a48;      // 排序管理数据结构
-uint8_t UNK_180a21a58;      // 分组管理数据结构
-uint8_t UNK_180a21a70;      // 合并管理数据结构
-uint8_t UNK_180a21a80;      // 分割管理数据结构
-uint8_t UNK_180a21a90;      // 优先级管理数据结构
-uint8_t UNK_180a21aa8;      // 依赖管理数据结构
-uint8_t UNK_180a21ac8;      // 版本管理数据结构
-uint8_t UNK_180a21ae0;      // 生命周期管理数据结构
-uint8_t UNK_180a21b00;      // 权限管理数据结构
-uint8_t UNK_180a21b18;      // 配额管理数据结构
-uint8_t UNK_180a21b30;      // 限制管理数据结构
-uint8_t UNK_180a21b50;      // 策略管理数据结构
-uint8_t UNK_180a21b68;      // 算法管理数据结构
-uint8_t UNK_180a21b78;      // 缓存策略数据结构
-uint8_t UNK_180a21b98;      // 内存策略数据结构
-uint8_t UNK_180a21bb0;      // 磁盘策略数据结构
-uint8_t UNK_180a21bc0;      // 网络策略数据结构
-uint8_t UNK_180a21aa0;      // 任务策略数据结构
-uint8_t UNK_180a21b0c;      // 线程策略数据结构
-uint8_t UNK_180a21b60;      // 同步策略数据结构
-uint8_t UNK_180a21bd0;      // 错误策略数据结构
-uint8_t UNK_180a21c30;      // 调试策略数据结构
+uint8_t unknown_var_880;      // 性能管理数据结构
+uint8_t unknown_var_944;      // 内存管理数据结构
+uint8_t unknown_var_960;      // 缓存管理数据结构
+uint8_t unknown_var_4048;      // 任务管理数据结构
+uint8_t unknown_var_4256;      // 线程管理数据结构
+uint8_t unknown_var_4280;      // 同步管理数据结构
+uint8_t unknown_var_4296;      // 错误管理数据结构
+uint8_t unknown_var_4312;      // 调试管理数据结构
+uint8_t unknown_var_4320;      // 日志管理数据结构
+uint8_t unknown_var_4336;      // 统计管理数据结构
+uint8_t unknown_var_4360;      // 监控管理数据结构
+uint8_t unknown_var_4376;      // 报告管理数据结构
+uint8_t unknown_var_864;      // 优化管理数据结构
+uint8_t unknown_var_880;      // 分析管理数据结构
+uint8_t unknown_var_4400;      // 热重载管理数据结构
+uint8_t unknown_var_4420;      // 预加载管理数据结构
+uint8_t unknown_var_4480;      // 异步加载管理数据结构
+uint8_t unknown_var_4496;      // 流式加载管理数据结构
+uint8_t unknown_var_4920;      // 批处理管理数据结构
+uint8_t unknown_var_4448;      // 实例化管理数据结构
+uint8_t unknown_var_8160;      // LOD管理数据结构
+uint8_t unknown_var_4432;      // 剔除管理数据结构
+uint8_t unknown_var_4504;      // 排序管理数据结构
+uint8_t unknown_var_4520;      // 分组管理数据结构
+uint8_t unknown_var_4544;      // 合并管理数据结构
+uint8_t unknown_var_4560;      // 分割管理数据结构
+uint8_t unknown_var_4576;      // 优先级管理数据结构
+uint8_t unknown_var_4600;      // 依赖管理数据结构
+uint8_t unknown_var_4632;      // 版本管理数据结构
+uint8_t unknown_var_4656;      // 生命周期管理数据结构
+uint8_t unknown_var_4688;      // 权限管理数据结构
+uint8_t unknown_var_4712;      // 配额管理数据结构
+uint8_t unknown_var_4736;      // 限制管理数据结构
+uint8_t unknown_var_4768;      // 策略管理数据结构
+uint8_t unknown_var_4792;      // 算法管理数据结构
+uint8_t unknown_var_4808;      // 缓存策略数据结构
+uint8_t unknown_var_4840;      // 内存策略数据结构
+uint8_t unknown_var_4864;      // 磁盘策略数据结构
+uint8_t unknown_var_4880;      // 网络策略数据结构
+uint8_t unknown_var_4592;      // 任务策略数据结构
+uint8_t unknown_var_4700;      // 线程策略数据结构
+uint8_t unknown_var_4784;      // 同步策略数据结构
+uint8_t unknown_var_4896;      // 错误策略数据结构
+uint8_t unknown_var_4992;      // 调试策略数据结构
 
 
 /** 
@@ -2014,12 +2014,12 @@ uint8_t FUN_180388040;
  * @details 渲染系统的高级优化功能
  */
 uint8_t FUN_180388120;
-uint8_t UNK_180a21bf8;      // 优化配置数据结构
-uint8_t UNK_180a21c18;      // 优化统计数据结构
-uint8_t UNK_180a21c40;      // 优化算法数据结构
-uint8_t UNK_180a21c60;      // 优化策略数据结构
-uint8_t UNK_180389710;      // 优化管理器数据结构
-uint8_t UNK_180a1022c;      // 优化器数据结构
+uint8_t unknown_var_4936;      // 优化配置数据结构
+uint8_t unknown_var_4968;      // 优化统计数据结构
+uint8_t unknown_var_5008;      // 优化算法数据结构
+uint8_t unknown_var_5040;      // 优化策略数据结构
+uint8_t unknown_var_9632;      // 优化管理器数据结构
+uint8_t unknown_var_2796;      // 优化器数据结构
 
 
 /** 
@@ -2027,9 +2027,9 @@ uint8_t UNK_180a1022c;      // 优化器数据结构
  * @details 渲染系统的高级调试功能
  */
 uint8_t FUN_1803896b0;
-uint8_t UNK_180a2aea0;      // 调试配置数据结构
-uint8_t UNK_180a2af60;      // 调试统计数据结构
-uint8_t UNK_180396c80;      // 调试管理器数据结构
+uint8_t unknown_var_2480;      // 调试配置数据结构
+uint8_t unknown_var_2672;      // 调试统计数据结构
+uint8_t unknown_var_4272;      // 调试管理器数据结构
 
 
 /** 
@@ -2046,94 +2046,94 @@ uint8_t FUN_18038a340;
 uint8_t FUN_18038a630;
 
 /* 渲染系统终极管理数据结构 */
-uint8_t UNK_180a21d50;      // 终极管理器主数据结构
-uint8_t UNK_180a21d68;      // 终极配置数据结构
-uint8_t UNK_180a21d98;      // 终极状态数据结构
-uint8_t UNK_180a21dc0;      // 终极资源数据结构
-uint8_t UNK_180a21e50;      // 终极性能数据结构
-uint8_t UNK_180a21f48;      // 终极优化数据结构
-uint8_t UNK_180a21e98;      // 终极调试数据结构
+uint8_t unknown_var_5280;      // 终极管理器主数据结构
+uint8_t unknown_var_5304;      // 终极配置数据结构
+uint8_t unknown_var_5352;      // 终极状态数据结构
+uint8_t unknown_var_5392;      // 终极资源数据结构
+uint8_t unknown_var_5536;      // 终极性能数据结构
+uint8_t unknown_var_5784;      // 终极优化数据结构
+uint8_t unknown_var_5608;      // 终极调试数据结构
 uint8_t system_data_8ee8;      // 终极统计数据
 uint8_t system_data_8ee0;      // 终极性能数据
 uint8_t system_data_8ee4;      // 终极内存数据
-uint8_t UNK_180a1cbf0;      // 终极缓存数据结构
-uint8_t UNK_180a21fa0;      // 终极任务数据结构
-uint8_t UNK_180a21fc0;      // 终极线程数据结构
-uint8_t UNK_180a21fd0;      // 终极同步数据结构
-uint8_t UNK_180a21fe8;      // 终极错误数据结构
-uint8_t UNK_180a22000;      // 终极日志数据结构
-uint8_t UNK_180a22008;      // 终极报告数据结构
-uint8_t UNK_180a22018;      // 终极监控数据结构
-uint8_t UNK_180a22028;      // 终极分析数据结构
-uint8_t UNK_180a22040;      // 终极热重载数据结构
-uint8_t UNK_180a22050;      // 终极预加载数据结构
-uint8_t UNK_180a22070;      // 终极异步加载数据结构
-uint8_t UNK_180a22088;      // 终极流式加载数据结构
-uint8_t UNK_180a22098;      // 终极批处理数据结构
-uint8_t UNK_180a220a8;      // 终极实例化数据结构
-uint8_t UNK_180a220c8;      // 终极LOD数据结构
-uint8_t UNK_180a220e0;      // 终极剔除数据结构
-uint8_t UNK_180a22100;      // 终极排序数据结构
-uint8_t UNK_180a22120;      // 终极分组数据结构
-uint8_t UNK_180a22138;      // 终极合并数据结构
-uint8_t UNK_180a22148;      // 终极分割数据结构
-uint8_t UNK_180a22160;      // 终极优化数据结构
-uint8_t UNK_180a221c0;      // 终极分析数据结构
-uint8_t UNK_180a22180;      // 终极监控数据结构
-uint8_t UNK_180a22198;      // 终极调试数据结构
-uint8_t UNK_180a221b0;      // 终极日志数据结构
-uint8_t UNK_180a221e0;      // 终极报告数据结构
-uint8_t UNK_180a221f8;      // 终极统计数据结构
-uint8_t UNK_180a22210;      // 终极性能数据结构
-uint8_t UNK_180a22228;      // 终极内存数据结构
-uint8_t UNK_180a22240;      // 终极缓存数据结构
-uint8_t UNK_180a22268;      // 终极任务数据结构
-uint8_t UNK_180a22290;      // 终极线程数据结构
-uint8_t UNK_180a222b8;      // 终极同步数据结构
-uint8_t UNK_180a22348;      // 终极错误数据结构
-uint8_t UNK_180a22368;      // 终极配置数据结构
-uint8_t UNK_180a222e0;      // 终极状态数据结构
-uint8_t UNK_180a2233c;      // 终极资源数据结构
-uint8_t UNK_180a22380;      // 终极性能数据结构
-uint8_t UNK_180a22394;      // 终极优化数据结构
-uint8_t UNK_180a22398;      // 终极调试数据结构
-uint8_t UNK_180a2239c;      // 终极分析数据结构
-uint8_t UNK_180a223a8;      // 终极监控数据结构
-uint8_t UNK_180a223c8;      // 终极热重载数据结构
-uint8_t UNK_180a223e0;      // 终极预加载数据结构
-uint8_t UNK_180a22400;      // 终极异步加载数据结构
-uint8_t UNK_180a22418;      // 终极流式加载数据结构
-uint8_t UNK_180a22428;      // 终极批处理数据结构
-uint8_t UNK_180a22438;      // 终极实例化数据结构
-uint8_t UNK_180a22450;      // 终极LOD数据结构
-uint8_t UNK_180a2246c;      // 终极剔除数据结构
-uint8_t UNK_180a22478;      // 终极排序数据结构
-uint8_t UNK_180a22490;      // 终极分组数据结构
-uint8_t UNK_180a224a0;      // 终极合并数据结构
-uint8_t UNK_180a1cbf8;      // 终极分割数据结构
-uint8_t UNK_180a21874;      // 终极优化数据结构
-uint8_t UNK_180a217e8;      // 终极分析数据结构
-uint8_t UNK_180a224b8;      // 终极监控数据结构
-uint8_t UNK_180a22798;      // 终极调试数据结构
-uint8_t UNK_180a227b8;      // 终极日志数据结构
-uint8_t UNK_180a227f8;      // 终极报告数据结构
-uint8_t UNK_180a22820;      // 终极统计数据结构
-uint8_t UNK_180a22838;      // 终极性能数据结构
-uint8_t UNK_180a227d8;      // 终极内存数据结构
-uint8_t UNK_180a22870;      // 终极缓存数据结构
-uint8_t UNK_180a228a0;      // 终极任务数据结构
-uint8_t UNK_180a228c8;      // 终极线程数据结构
-uint8_t UNK_180a22858;      // 终极同步数据结构
-uint8_t UNK_180a22948;      // 终极错误数据结构
-uint8_t UNK_180a22ab0;      // 终极配置数据结构
-uint8_t UNK_180a22a98;      // 终极状态数据结构
-uint8_t UNK_180a22ac0;      // 终极资源数据结构
-uint8_t UNK_180a22ad8;      // 终极性能数据结构
-uint8_t UNK_180a22af0;      // 终极优化数据结构
-uint8_t UNK_180a22b10;      // 终极调试数据结构
-uint8_t UNK_180a22b28;      // 终极分析数据结构
-uint8_t UNK_180a3cb88;      // 终极监控数据结构
-uint8_t UNK_180a3cbe8;      // 终极报告数据结构
+uint8_t unknown_var_4448;      // 终极缓存数据结构
+uint8_t unknown_var_5872;      // 终极任务数据结构
+uint8_t unknown_var_5904;      // 终极线程数据结构
+uint8_t unknown_var_5920;      // 终极同步数据结构
+uint8_t unknown_var_5944;      // 终极错误数据结构
+uint8_t unknown_var_5968;      // 终极日志数据结构
+uint8_t unknown_var_5976;      // 终极报告数据结构
+uint8_t unknown_var_5992;      // 终极监控数据结构
+uint8_t unknown_var_6008;      // 终极分析数据结构
+uint8_t unknown_var_6032;      // 终极热重载数据结构
+uint8_t unknown_var_6048;      // 终极预加载数据结构
+uint8_t unknown_var_6080;      // 终极异步加载数据结构
+uint8_t unknown_var_6104;      // 终极流式加载数据结构
+uint8_t unknown_var_6120;      // 终极批处理数据结构
+uint8_t unknown_var_6136;      // 终极实例化数据结构
+uint8_t unknown_var_6168;      // 终极LOD数据结构
+uint8_t unknown_var_6192;      // 终极剔除数据结构
+uint8_t unknown_var_6224;      // 终极排序数据结构
+uint8_t unknown_var_6256;      // 终极分组数据结构
+uint8_t unknown_var_6280;      // 终极合并数据结构
+uint8_t unknown_var_6296;      // 终极分割数据结构
+uint8_t unknown_var_6320;      // 终极优化数据结构
+uint8_t unknown_var_6416;      // 终极分析数据结构
+uint8_t unknown_var_6352;      // 终极监控数据结构
+uint8_t unknown_var_6376;      // 终极调试数据结构
+uint8_t unknown_var_6400;      // 终极日志数据结构
+uint8_t unknown_var_6448;      // 终极报告数据结构
+uint8_t unknown_var_6472;      // 终极统计数据结构
+uint8_t unknown_var_6496;      // 终极性能数据结构
+uint8_t unknown_var_6520;      // 终极内存数据结构
+uint8_t unknown_var_6544;      // 终极缓存数据结构
+uint8_t unknown_var_6584;      // 终极任务数据结构
+uint8_t unknown_var_6624;      // 终极线程数据结构
+uint8_t unknown_var_6664;      // 终极同步数据结构
+uint8_t unknown_var_6808;      // 终极错误数据结构
+uint8_t unknown_var_6840;      // 终极配置数据结构
+uint8_t unknown_var_6704;      // 终极状态数据结构
+uint8_t unknown_var_6796;      // 终极资源数据结构
+uint8_t unknown_var_6864;      // 终极性能数据结构
+uint8_t unknown_var_6884;      // 终极优化数据结构
+uint8_t unknown_var_6888;      // 终极调试数据结构
+uint8_t unknown_var_6892;      // 终极分析数据结构
+uint8_t unknown_var_6904;      // 终极监控数据结构
+uint8_t unknown_var_6936;      // 终极热重载数据结构
+uint8_t unknown_var_6960;      // 终极预加载数据结构
+uint8_t unknown_var_6992;      // 终极异步加载数据结构
+uint8_t unknown_var_7016;      // 终极流式加载数据结构
+uint8_t unknown_var_7032;      // 终极批处理数据结构
+uint8_t unknown_var_7048;      // 终极实例化数据结构
+uint8_t unknown_var_7072;      // 终极LOD数据结构
+uint8_t unknown_var_7100;      // 终极剔除数据结构
+uint8_t unknown_var_7112;      // 终极排序数据结构
+uint8_t unknown_var_7136;      // 终极分组数据结构
+uint8_t unknown_var_7152;      // 终极合并数据结构
+uint8_t unknown_var_4456;      // 终极分割数据结构
+uint8_t unknown_var_4036;      // 终极优化数据结构
+uint8_t unknown_var_3896;      // 终极分析数据结构
+uint8_t unknown_var_7176;      // 终极监控数据结构
+uint8_t unknown_var_7912;      // 终极调试数据结构
+uint8_t unknown_var_7944;      // 终极日志数据结构
+uint8_t unknown_var_8008;      // 终极报告数据结构
+uint8_t unknown_var_8048;      // 终极统计数据结构
+uint8_t unknown_var_8072;      // 终极性能数据结构
+uint8_t unknown_var_7976;      // 终极内存数据结构
+uint8_t unknown_var_8128;      // 终极缓存数据结构
+uint8_t unknown_var_8176;      // 终极任务数据结构
+uint8_t unknown_var_8216;      // 终极线程数据结构
+uint8_t unknown_var_8104;      // 终极同步数据结构
+uint8_t unknown_var_8344;      // 终极错误数据结构
+uint8_t unknown_var_8704;      // 终极配置数据结构
+uint8_t unknown_var_8680;      // 终极状态数据结构
+uint8_t unknown_var_8720;      // 终极资源数据结构
+uint8_t unknown_var_8744;      // 终极性能数据结构
+uint8_t unknown_var_8768;      // 终极优化数据结构
+uint8_t unknown_var_8800;      // 终极调试数据结构
+uint8_t unknown_var_8824;      // 终极分析数据结构
+uint8_t unknown_var_5416;      // 终极监控数据结构
+uint8_t unknown_var_5512;      // 终极报告数据结构
 
 
 /*-----------------------------------------------------------------------------
@@ -2156,64 +2156,64 @@ uint8_t system_data_1fe8;      // 特殊初始化状态数据
 uint8_t FUN_180407960;
 
 /* 渲染系统高级特殊功能数据结构 */
-uint8_t UNK_180a12c50;      // 特殊功能主数据结构
-uint8_t UNK_180a271b0;      // 特殊功能配置数据结构
-uint8_t UNK_180a27220;      // 特殊功能状态数据结构
-uint8_t UNK_180a272b0;      // 特殊功能资源数据结构
-uint8_t UNK_180a272c8;      // 特殊功能缓存数据结构
-uint8_t UNK_180a272d8;      // 特殊功能任务数据结构
-uint8_t UNK_180a27318;      // 特殊功能线程数据结构
-uint8_t UNK_180a0af90;      // 特殊功能同步数据结构
-uint8_t UNK_180a27230;      // 特殊功能错误数据结构
-uint8_t UNK_180a27238;      // 特殊功能日志数据结构
-uint8_t UNK_180a27258;      // 特殊功能报告数据结构
-uint8_t UNK_180a27278;      // 特殊功能统计数据结构
-uint8_t UNK_180a27338;      // 特殊功能监控数据结构
-uint8_t UNK_180a27350;      // 特殊功能分析数据结构
-uint8_t UNK_180a27360;      // 特殊功能优化数据结构
-uint8_t UNK_180a27370;      // 特殊功能调试数据结构
-uint8_t UNK_180a27390;      // 特殊功能热重载数据结构
-uint8_t UNK_180a273a0;      // 特殊功能预加载数据结构
-uint8_t UNK_180a273b0;      // 特殊功能异步加载数据结构
-uint8_t UNK_180a27400;      // 特殊功能流式加载数据结构
-uint8_t UNK_180a27458;      // 特殊功能批处理数据结构
-uint8_t UNK_180a27480;      // 特殊功能实例化数据结构
-uint8_t UNK_180a274c8;      // 特殊功能LOD数据结构
-uint8_t UNK_180a274e0;      // 特殊功能剔除数据结构
-uint8_t UNK_180a27560;      // 特殊功能排序数据结构
-uint8_t UNK_180a27570;      // 特殊功能分组数据结构
-uint8_t UNK_180a275a0;      // 特殊功能合并数据结构
-uint8_t UNK_180a275d0;      // 特殊功能分割数据结构
-uint8_t UNK_180a27680;      // 特殊功能优先级数据结构
-uint8_t UNK_180a27618;      // 特殊功能依赖数据结构
-uint8_t UNK_180a27620;      // 特殊功能版本数据结构
-uint8_t UNK_180a27628;      // 特殊功能生命周期数据结构
-uint8_t UNK_180a27630;      // 特殊功能权限数据结构
-uint8_t UNK_180a2763c;      // 特殊功能配额数据结构
-uint8_t UNK_180a27644;      // 特殊功能限制数据结构
-uint8_t UNK_180a2764c;      // 特殊功能策略数据结构
-uint8_t UNK_180a27654;      // 特殊功能算法数据结构
-uint8_t UNK_180a2765c;      // 特殊功能缓存策略数据结构
-uint8_t UNK_180a27664;      // 特殊功能内存策略数据结构
-uint8_t UNK_180a27670;      // 特殊功能磁盘策略数据结构
+uint8_t unknown_var_3584;      // 特殊功能主数据结构
+uint8_t unknown_var_6880;      // 特殊功能配置数据结构
+uint8_t unknown_var_6992;      // 特殊功能状态数据结构
+uint8_t unknown_var_7136;      // 特殊功能资源数据结构
+uint8_t unknown_var_7160;      // 特殊功能缓存数据结构
+uint8_t unknown_var_7176;      // 特殊功能任务数据结构
+uint8_t unknown_var_7240;      // 特殊功能线程数据结构
+uint8_t unknown_var_1648;      // 特殊功能同步数据结构
+uint8_t unknown_var_7008;      // 特殊功能错误数据结构
+uint8_t unknown_var_7016;      // 特殊功能日志数据结构
+uint8_t unknown_var_7048;      // 特殊功能报告数据结构
+uint8_t unknown_var_7080;      // 特殊功能统计数据结构
+uint8_t unknown_var_7272;      // 特殊功能监控数据结构
+uint8_t unknown_var_7296;      // 特殊功能分析数据结构
+uint8_t unknown_var_7312;      // 特殊功能优化数据结构
+uint8_t unknown_var_7328;      // 特殊功能调试数据结构
+uint8_t unknown_var_7360;      // 特殊功能热重载数据结构
+uint8_t unknown_var_7376;      // 特殊功能预加载数据结构
+uint8_t unknown_var_7392;      // 特殊功能异步加载数据结构
+uint8_t unknown_var_7472;      // 特殊功能流式加载数据结构
+uint8_t unknown_var_7560;      // 特殊功能批处理数据结构
+uint8_t unknown_var_7600;      // 特殊功能实例化数据结构
+uint8_t unknown_var_7672;      // 特殊功能LOD数据结构
+uint8_t unknown_var_7696;      // 特殊功能剔除数据结构
+uint8_t unknown_var_7824;      // 特殊功能排序数据结构
+uint8_t unknown_var_7840;      // 特殊功能分组数据结构
+uint8_t unknown_var_7888;      // 特殊功能合并数据结构
+uint8_t unknown_var_7936;      // 特殊功能分割数据结构
+uint8_t unknown_var_8112;      // 特殊功能优先级数据结构
+uint8_t unknown_var_8008;      // 特殊功能依赖数据结构
+uint8_t unknown_var_8016;      // 特殊功能版本数据结构
+uint8_t unknown_var_8024;      // 特殊功能生命周期数据结构
+uint8_t unknown_var_8032;      // 特殊功能权限数据结构
+uint8_t unknown_var_8044;      // 特殊功能配额数据结构
+uint8_t unknown_var_8052;      // 特殊功能限制数据结构
+uint8_t unknown_var_8060;      // 特殊功能策略数据结构
+uint8_t unknown_var_8068;      // 特殊功能算法数据结构
+uint8_t unknown_var_8076;      // 特殊功能缓存策略数据结构
+uint8_t unknown_var_8084;      // 特殊功能内存策略数据结构
+uint8_t unknown_var_8096;      // 特殊功能磁盘策略数据结构
 int8_t system_data_aee8;     // 特殊功能网络策略数据
 uint8_t system_data_aeb0;      // 特殊功能任务策略数据
-uint8_t UNK_180a12d78;      // 特殊功能线程策略数据结构
-uint8_t UNK_180a12d88;      // 特殊功能同步策略数据结构
+uint8_t unknown_var_3880;      // 特殊功能线程策略数据结构
+uint8_t unknown_var_3896;      // 特殊功能同步策略数据结构
 int8_t system_data_aeb8;     // 特殊功能错误策略数据
-uint8_t UNK_180a27988;      // 特殊功能调试策略数据结构
-uint8_t UNK_180a279a8;      // 特殊功能日志策略数据结构
-uint8_t UNK_180a276f8;      // 特殊功能报告策略数据结构
-uint8_t UNK_180a27710;      // 特殊功能统计策略数据结构
-uint8_t UNK_180a27788;      // 特殊功能监控策略数据结构
+uint8_t unknown_var_8888;      // 特殊功能调试策略数据结构
+uint8_t unknown_var_8920;      // 特殊功能日志策略数据结构
+uint8_t unknown_var_8232;      // 特殊功能报告策略数据结构
+uint8_t unknown_var_8256;      // 特殊功能统计策略数据结构
+uint8_t unknown_var_8376;      // 特殊功能监控策略数据结构
 uint8_t system_data_39c8;      // 特殊功能分析策略数据
-uint8_t UNK_180994940;      // 特殊功能优化策略数据结构
-uint8_t UNK_180a27750;      // 特殊功能热重载策略数据结构
-uint8_t UNK_180a27a78;      // 特殊功能预加载策略数据结构
-uint8_t UNK_180a3d0d0;      // 特殊功能异步加载策略数据结构
-uint8_t UNK_180a27ab0;      // 特殊功能流式加载策略数据结构
-uint8_t UNK_180a27b40;      // 特殊功能批处理策略数据结构
-uint8_t UNK_180415710;      // 特殊功能实例化策略数据结构
+uint8_t unknown_var_6704;      // 特殊功能优化策略数据结构
+uint8_t unknown_var_8320;      // 特殊功能热重载策略数据结构
+uint8_t unknown_var_9128;      // 特殊功能预加载策略数据结构
+uint8_t unknown_var_6768;      // 特殊功能异步加载策略数据结构
+uint8_t unknown_var_9184;      // 特殊功能流式加载策略数据结构
+uint8_t unknown_var_9328;      // 特殊功能批处理策略数据结构
+uint8_t unknown_var_3072;      // 特殊功能实例化策略数据结构
 
 
 /** 
@@ -2221,13 +2221,13 @@ uint8_t UNK_180415710;      // 特殊功能实例化策略数据结构
  * @details 渲染系统的最终特殊功能，包含最复杂的特殊处理逻辑
  */
 uint8_t FUN_180415730;
-uint8_t UNK_180a27b60;      // 最终特殊功能主数据结构
-uint8_t UNK_180a063c4;      // 最终特殊功能配置数据结构
-uint8_t UNK_180a27bf8;      // 最终特殊功能状态数据结构
-uint8_t UNK_18041b520;      // 最终特殊功能资源数据结构
-uint8_t UNK_180a27b80;      // 最终特殊功能缓存数据结构
-uint8_t UNK_180a27b98;      // 最终特殊功能任务数据结构
-uint8_t UNK_180a27bb0;      // 最终特殊功能线程数据结构
+uint8_t unknown_var_9360;      // 最终特殊功能主数据结构
+uint8_t unknown_var_2244;      // 最终特殊功能配置数据结构
+uint8_t unknown_var_9512;      // 最终特殊功能状态数据结构
+uint8_t unknown_var_7152;      // 最终特殊功能资源数据结构
+uint8_t unknown_var_9392;      // 最终特殊功能缓存数据结构
+uint8_t unknown_var_9416;      // 最终特殊功能任务数据结构
+uint8_t unknown_var_9440;      // 最终特殊功能线程数据结构
 
 
 /** 
@@ -2235,17 +2235,17 @@ uint8_t UNK_180a27bb0;      // 最终特殊功能线程数据结构
  * @details 渲染系统的终极特殊功能，包含所有特殊处理逻辑的最终实现
  */
 uint8_t FUN_18041b4d0;
-uint8_t UNK_180a27bc8;      // 终极特殊功能主数据结构
-uint8_t UNK_180a27c28;      // 终极特殊功能配置数据结构
-uint8_t UNK_1809952a0;      // 终极特殊功能状态数据结构
-uint8_t UNK_180995320;      // 终极特殊功能资源数据结构
-uint8_t UNK_180994d24;      // 终极特殊功能缓存数据结构
-uint8_t UNK_180995024;      // 终极特殊功能任务数据结构
-uint8_t UNK_180995028;      // 终极特殊功能线程数据结构
-uint8_t UNK_180a27cd8;      // 终极特殊功能同步数据结构
-uint8_t UNK_180995c00;      // 终极特殊功能错误数据结构
-uint8_t UNK_180995c50;      // 终极特殊功能日志数据结构
-uint8_t UNK_180995c90;      // 终极特殊功能报告数据结构
+uint8_t unknown_var_9464;      // 终极特殊功能主数据结构
+uint8_t unknown_var_9560;      // 终极特殊功能配置数据结构
+uint8_t unknown_var_9104;      // 终极特殊功能状态数据结构
+uint8_t unknown_var_9232;      // 终极特殊功能资源数据结构
+uint8_t unknown_var_7700;      // 终极特殊功能缓存数据结构
+uint8_t unknown_var_8468;      // 终极特殊功能任务数据结构
+uint8_t unknown_var_8472;      // 终极特殊功能线程数据结构
+uint8_t unknown_var_9736;      // 终极特殊功能同步数据结构
+uint8_t unknown_var_1504;      // 终极特殊功能错误数据结构
+uint8_t unknown_var_1584;      // 终极特殊功能日志数据结构
+uint8_t unknown_var_1648;      // 终极特殊功能报告数据结构
 uint8_t system_data_06e0;      // 终极特殊功能统计数据
 uint8_t system_data_f940;      // 终极特殊功能性能数据
 uint8_t system_data_06c0;      // 终极特殊功能内存数据
@@ -2254,9 +2254,9 @@ uint8_t system_data_06d0;      // 终极特殊功能分析数据
 uint8_t system_data_f970;      // 终极特殊功能优化数据
 uint8_t system_data_0700;      // 终极特殊功能调试数据
 uint8_t system_data_f960;      // 终极特殊功能热重载数据
-uint8_t UNK_180a29654;      // 终极特殊功能预加载数据结构
-uint8_t UNK_180a29684;      // 终极特殊功能异步加载数据结构
-uint8_t UNK_180a29650;      // 终极特殊功能流式加载数据结构
+uint8_t unknown_var_6260;      // 终极特殊功能预加载数据结构
+uint8_t unknown_var_6308;      // 终极特殊功能异步加载数据结构
+uint8_t unknown_var_6256;      // 终极特殊功能流式加载数据结构
 
 
 /*=============================================================================

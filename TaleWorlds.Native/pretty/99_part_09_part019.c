@@ -301,7 +301,7 @@ LAB_1805c6da5:
           uStack_1d8 = 0x7f7fffff;
           uStack_1c0 = 2;
           uStack_1b8 = 0;
-          puStack_1c8 = &UNK_180a37560;
+          puStack_1c8 = &unknown_var_3360_ptr;
           uStack_1bc = 0x71b789;
           iStack_d8 = 0;
           uStack_190 = 0;

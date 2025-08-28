@@ -214,9 +214,9 @@ uint64_t * FUN_1807ff8a0(uint64_t *param_1)
 
 {
   func_0x0001808069a0();
-  *param_1 = &UNK_18097e938;
+  *param_1 = &unknown_var_6584_ptr;
   func_0x000180758fe0(param_1 + 0xe);
-  param_1[0xe] = &UNK_180958f68;
+  param_1[0xe] = &unknown_var_2520_ptr;
   param_1[0x5b] = 0;
   param_1[0x5c] = 0;
   param_1[0x5d] = 0;
@@ -235,7 +235,7 @@ uint64_t * FUN_1807ff920(uint64_t *param_1,ulonglong param_2)
 {
   func_0x000180759110(param_1 + 0x39);
   func_0x000180759110(param_1 + 0x35);
-  *param_1 = &UNK_18095cca8;
+  *param_1 = &unknown_var_8200_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x308);
   }

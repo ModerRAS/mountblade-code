@@ -96,7 +96,7 @@ void FUN_18057c8c0(longlong param_1,int32_t *param_2,uint64_t param_3)
   uVar17 = (uint)plVar18;
   if (((ulonglong)plVar18 & 1) != 0) {
     uVar17 = uVar17 & 0xfffffffe;
-    puStack_1e0 = &UNK_180a3c3e0;
+    puStack_1e0 = &unknown_var_3456_ptr;
     uStack_228 = uVar17;
     if (lStack_1d8 != 0) {
                     // WARNING: Subroutine does not return
@@ -104,7 +104,7 @@ void FUN_18057c8c0(longlong param_1,int32_t *param_2,uint64_t param_3)
     }
     lStack_1d8 = 0;
     uStack_1c8 = 0;
-    puStack_1e0 = &UNK_18098bcb0;
+    puStack_1e0 = &unknown_var_720_ptr;
   }
   if (*(longlong *)(param_2 + 0x24) == 0) {
     plStack_220 = (longlong *)0x0;
@@ -135,14 +135,14 @@ void FUN_18057c8c0(longlong param_1,int32_t *param_2,uint64_t param_3)
   }
   if ((uVar17 & 4) != 0) {
     uStack_228 = uVar17 & 0xfffffffb;
-    puStack_1c0 = &UNK_180a3c3e0;
+    puStack_1c0 = &unknown_var_3456_ptr;
     if (lStack_1b8 != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     lStack_1b8 = 0;
     uStack_1a8 = 0;
-    puStack_1c0 = &UNK_18098bcb0;
+    puStack_1c0 = &unknown_var_720_ptr;
   }
   uVar7 = *(int32_t *)((longlong)param_2 + 0x9e);
   uVar5 = *(int32_t *)((longlong)param_2 + 0xa2);
@@ -154,8 +154,8 @@ void FUN_18057c8c0(longlong param_1,int32_t *param_2,uint64_t param_3)
   *(int16_t *)(param_1 + 0x2588) = *(int16_t *)((longlong)param_2 + 0xaa);
   lVar20 = (longlong)*(int *)(param_1 + 0xac) * 0xe0 + _DAT_180c95fb0;
   plStack_210 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x40,8,3);
-  *plStack_210 = (longlong)&UNK_180a19ac8;
-  *plStack_210 = (longlong)&UNK_180a3e5b8;
+  *plStack_210 = (longlong)&unknown_var_1864_ptr;
+  *plStack_210 = (longlong)&unknown_var_2120_ptr;
   plStack_210[1] = 0;
   plStack_210[2] = 0;
   plStack_210[3] = 0;
@@ -174,7 +174,7 @@ void FUN_18057c8c0(longlong param_1,int32_t *param_2,uint64_t param_3)
     *(float *)((longlong)plStack_210 + 0x24) = fVar1 - fVar2;
   }
   puVar13 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0xc88,8,3);
-  *puVar13 = &UNK_180a3e530;
+  *puVar13 = &unknown_var_1984_ptr;
   puVar13[3] = 0;
   puVar11 = puVar13 + 9;
   lVar19 = 6;

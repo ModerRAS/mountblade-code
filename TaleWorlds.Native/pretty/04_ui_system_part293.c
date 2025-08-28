@@ -645,7 +645,7 @@ uint FUN_18082d710(int *param_1,uint param_2)
      ((uVar4 = uVar4 | (uint)pbVar2[3] << (0x18 - bVar3 & 0x1f), 0x20 < iVar5 && (iVar1 != 0)))) {
     uVar4 = uVar4 | (uint)pbVar2[4] << (0x20 - bVar3 & 0x1f);
   }
-  return uVar4 & *(uint *)(&UNK_180980680 + (longlong)(int)param_2 * 4);
+  return uVar4 & *(uint *)(&unknown_var_4080_ptr + (longlong)(int)param_2 * 4);
 }
 
 
@@ -662,7 +662,7 @@ uint FUN_18082d7f0(int *param_1,uint param_2)
   
   if (param_2 < 0x21) {
     iVar4 = param_1[1];
-    uVar1 = *(uint *)(&UNK_180980680 + (longlong)(int)param_2 * 4);
+    uVar1 = *(uint *)(&unknown_var_4080_ptr + (longlong)(int)param_2 * 4);
     param_2 = param_2 + iVar4;
     iVar2 = *param_1;
     if (param_1[6] + -4 <= iVar2) {

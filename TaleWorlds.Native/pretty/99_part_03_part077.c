@@ -99,7 +99,7 @@ void FUN_180242e60(uint64_t *param_1)
   
   uStack_268 = 0xfffffffffffffffe;
   uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_378;
-  if ((void *)*param_1 == &UNK_180a142c0) {
+  if ((void *)*param_1 == &unknown_var_9328_ptr) {
     puVar12 = (uint64_t *)param_1[0x110];
   }
   else {
@@ -138,7 +138,7 @@ void FUN_180242e60(uint64_t *param_1)
     }
     else {
       pplStack_310 = (longlong **)&puStack_118;
-      puStack_118 = &UNK_1809fcc28;
+      puStack_118 = &unknown_var_3432_ptr;
       puStack_110 = auStack_100;
       uStack_108 = 0;
       auStack_100[0] = 0;
@@ -153,7 +153,7 @@ void FUN_180242e60(uint64_t *param_1)
       uStack_4c = uStack_324;
       uStack_48 = CONCAT44(uStack_31c,uStack_320);
       puStack_40 = puVar12;
-      if ((void *)*puVar12 == &UNK_180a14060) {
+      if ((void *)*puVar12 == &unknown_var_8720_ptr) {
         LOCK();
         *(int *)(puVar12 + 1) = *(int *)(puVar12 + 1) + 1;
         UNLOCK();
@@ -178,17 +178,17 @@ void FUN_180242e60(uint64_t *param_1)
         (**(code **)(*plVar8 + 0x38))(plVar8);
       }
       ppuStack_358 = &puStack_118;
-      puStack_118 = &UNK_18098bcb0;
+      puStack_118 = &unknown_var_720_ptr;
     }
   }
   *(int *)((longlong)param_1 + 0x894) = iVar6;
-  if ((void *)*param_1 != &UNK_180a142c0) {
+  if ((void *)*param_1 != &unknown_var_9328_ptr) {
     (**(code **)((void *)*param_1 + 0x60))(param_1);
   }
   if (0 < (int)_DAT_180c86910[1]) goto LAB_18024346d;
-  if ((void *)*param_1 != &UNK_180a142c0) {
+  if ((void *)*param_1 != &unknown_var_9328_ptr) {
     (**(code **)((void *)*param_1 + 0x60))(param_1);
-    if ((void *)*param_1 != &UNK_180a142c0) {
+    if ((void *)*param_1 != &unknown_var_9328_ptr) {
       (**(code **)((void *)*param_1 + 0x60))(param_1);
     }
   }
@@ -354,10 +354,10 @@ uint64_t * FUN_180243550(uint64_t *param_1,uint64_t param_2)
 {
   uint64_t *apuStackX_10 [3];
   
-  *param_1 = &UNK_18098bcb0;
+  *param_1 = &unknown_var_720_ptr;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;
-  *param_1 = &UNK_180a3c3e0;
+  *param_1 = &unknown_var_3456_ptr;
   param_1[3] = 0;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;

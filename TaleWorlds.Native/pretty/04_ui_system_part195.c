@@ -460,7 +460,7 @@ uint64_t FUN_18077fef0(longlong *param_1,int param_2,int32_t *param_3,longlong p
     *param_3 = *(int32_t *)(lVar1 + 0x23d0);
     if (param_4 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18076b390(param_4,0x20,&UNK_1809fd0a0,*(int32_t *)(lVar1 + 0x23d0));
+      FUN_18076b390(param_4,0x20,&unknown_var_4576_ptr,*(int32_t *)(lVar1 + 0x23d0));
     }
   }
   else {
@@ -471,28 +471,28 @@ uint64_t FUN_18077fef0(longlong *param_1,int param_2,int32_t *param_3,longlong p
     if (param_4 != 0) {
       switch(*(int32_t *)(lVar1 + 0x2450)) {
       case 0:
-        puVar2 = &UNK_180a215c0;
+        puVar2 = &unknown_var_3344_ptr;
         break;
       case 1:
-        puVar2 = &UNK_18095a618;
+        puVar2 = &unknown_var_8328_ptr;
         break;
       case 2:
-        puVar2 = &UNK_18095a628;
+        puVar2 = &unknown_var_8344_ptr;
         break;
       case 3:
-        puVar2 = &UNK_18095a638;
+        puVar2 = &unknown_var_8360_ptr;
         break;
       case 4:
-        puVar2 = &UNK_18095a648;
+        puVar2 = &unknown_var_8376_ptr;
         break;
       case 5:
-        puVar2 = &UNK_18095a650;
+        puVar2 = &unknown_var_8384_ptr;
         break;
       case 6:
-        puVar2 = &UNK_18095a668;
+        puVar2 = &unknown_var_8408_ptr;
         break;
       case 7:
-        puVar2 = &UNK_18095a658;
+        puVar2 = &unknown_var_8392_ptr;
         break;
       default:
         goto LAB_18077ffcd;
@@ -518,7 +518,7 @@ uint64_t FUN_180780020(longlong *param_1,int param_2,int32_t *param_3,longlong p
   *param_3 = *(int32_t *)(lVar1 + 0x23cc + (longlong)param_2 * 4);
   if (param_4 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18076b390(param_4,0x20,&UNK_180958d90,
+    FUN_18076b390(param_4,0x20,&unknown_var_2048_ptr,
                   (double)*(float *)(lVar1 + 0x23cc + (longlong)param_2 * 4));
   }
   return 0;

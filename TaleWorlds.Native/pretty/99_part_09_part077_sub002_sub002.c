@@ -690,7 +690,7 @@ void FUN_1805f0650(longlong param_1,longlong param_2)
     fStack_a1c = fStack_6dc;
     if (*(char *)(param_1 + 0xd3) != '\0') {
       puVar3 = *(uint64_t **)(param_1 + 0xd8);
-      if ((void *)*puVar3 == &UNK_180a3beb8) {
+      if ((void *)*puVar3 == &unknown_var_2136_ptr) {
         puVar32 = (uint64_t *)((ulonglong)puVar15 & 0xffffffff);
         puVar14 = (uint64_t *)((longlong)(puVar3[10] - puVar3[9]) >> 3);
         if (puVar14 != (uint64_t *)0x0) {

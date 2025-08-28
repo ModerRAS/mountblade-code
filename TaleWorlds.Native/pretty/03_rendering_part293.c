@@ -116,7 +116,7 @@ LAB_180423f83:
       piVar19[2] = (int)((ulonglong)(uint)(iVar10 + -1 + iVar11) / (uVar18 & 0xffffffff));
       if (iVar11 == 1) {
         if (iVar12 == 1) {
-          pcVar14 = (code *)&UNK_1801792b0;
+          pcVar14 = (code *)&unknown_var_5824_ptr;
         }
         else {
           puVar15 = (uint *)0x1;
@@ -136,7 +136,7 @@ LAB_180424068:
       }
       else {
 LAB_18042407c:
-        pcVar14 = (code *)&UNK_180423a20;
+        pcVar14 = (code *)&unknown_var_1200_ptr;
       }
       *(code **)(piVar19 + -6) = pcVar14;
       lVar21 = lVar21 + 1;
@@ -525,7 +525,7 @@ LAB_180423f85:
       piVar18[2] = (int)((ulonglong)(uint)(iVar23 + -1 + iVar10) / (uVar17 & 0xffffffff));
       if (iVar10 == 1) {
         if (iVar11 == 1) {
-          pcVar13 = (code *)&UNK_1801792b0;
+          pcVar13 = (code *)&unknown_var_5824_ptr;
         }
         else {
           iVar23 = 1;
@@ -546,7 +546,7 @@ LAB_180424068:
       }
       else {
 LAB_18042407c:
-        pcVar13 = (code *)&UNK_180423a20;
+        pcVar13 = (code *)&unknown_var_1200_ptr;
       }
       *(code **)(piVar18 + -6) = pcVar13;
       lVar20 = lVar20 + 1;

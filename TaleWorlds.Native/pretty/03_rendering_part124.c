@@ -134,7 +134,7 @@ void ShaderFileGenerator(uint64_t param_1, longlong param_2, uint64_t param_3)
   }
   puStack_b8 = (void *)0x0;
   uStack_a8 = 0;
-  puStack_c0 = &UNK_18098bcb0;
+  puStack_c0 = &unknown_var_720_ptr;
   puStack_88 = &g_MemoryManager;
   if (puStack_80 != (void *)0x0) {
                     // WARNING: Subroutine does not return
@@ -303,13 +303,13 @@ uint64_t *ShaderPipelineGenerator(uint64_t param_1, uint64_t *param_2, uint64_t 
 // =============================================================================
 
 // 全局变量声明
-#define g_DefaultShaderConfig      UNK_1809fdc18    // 默认着色器配置
-#define g_ShaderTemplatePath       UNK_180a3c07c    // 着色器模板路径
-#define g_BufferAllocator          UNK_18098bcb0    // 缓冲区分配器
-#define g_MemoryManager            UNK_180a3c3e0    // 内存管理器
+#define g_DefaultShaderConfig      unknown_var_7512    // 默认着色器配置
+#define g_ShaderTemplatePath       unknown_var_2588    // 着色器模板路径
+#define g_BufferAllocator          unknown_var_720_ptr    // 缓冲区分配器
+#define g_MemoryManager            unknown_var_3456    // 内存管理器
 #define g_DefaultDataBuffer        system_buffer_ptr    // 默认数据缓冲区
 #define g_FileStreamConfig         system_memory_c7ec    // 文件流配置
-#define g_ShaderTextureData        UNK_180a1bd10    // 着色器纹理数据
+#define g_ShaderTextureData        unknown_var_640    // 着色器纹理数据
 #define g_GlobalMemoryPool         _DAT_180c8ed18   // 全局内存池
 #define g_SecurityChecksum        _DAT_180bf00a8   // 安全校验和
 #define g_FileHandleCounter       _DAT_180c8ed60   // 文件句柄计数器
@@ -821,13 +821,13 @@ void ShaderSourceCompiler(uint64_t param_1, longlong param_2, longlong param_3, 
 // =============================================================================
 
 // 全局变量声明
-#define g_DefaultShaderConfig      UNK_1809fdc18    // 默认着色器配置
-#define g_ShaderTemplatePath       UNK_180a3c07c    // 着色器模板路径
-#define g_BufferAllocator          UNK_18098bcb0    // 缓冲区分配器
-#define g_MemoryManager            UNK_180a3c3e0    // 内存管理器
+#define g_DefaultShaderConfig      unknown_var_7512    // 默认着色器配置
+#define g_ShaderTemplatePath       unknown_var_2588    // 着色器模板路径
+#define g_BufferAllocator          unknown_var_720_ptr    // 缓冲区分配器
+#define g_MemoryManager            unknown_var_3456    // 内存管理器
 #define g_DefaultDataBuffer        system_buffer_ptr    // 默认数据缓冲区
 #define g_FileStreamConfig         system_memory_c7ec    // 文件流配置
-#define g_ShaderTextureData        UNK_180a1bd10    // 着色器纹理数据
+#define g_ShaderTextureData        unknown_var_640    // 着色器纹理数据
 #define g_GlobalMemoryPool         _DAT_180c8ed18   // 全局内存池
 #define g_SecurityChecksum        _DAT_180bf00a8   // 安全校验和
 #define g_FileHandleCounter       _DAT_180c8ed60   // 文件句柄计数器

@@ -175,14 +175,14 @@ void SystemResourceCleanup(void)
   *plVar1 = (longlong)plVar1;
   
   // 设置系统状态标志
-  *unaff_R14 = &UNK_180986f68;
+  *unaff_R14 = &unknown_var_936_ptr;
   plVar1 = unaff_R14 + 4;
   plVar2 = (longlong *)*plVar1;
   
   // 检查是否需要立即清理
   if ((plVar2 == plVar1) && ((longlong *)unaff_R14[5] == plVar1)) {
     func_0x00018085dda0(plVar1);
-    *unaff_R14 = &UNK_180984ab8;
+    *unaff_R14 = &unknown_var_1544_ptr;
     *(int32_t *)(unaff_R14 + 1) = 0xdeadf00d;
     return;
   }
@@ -211,7 +211,7 @@ void SystemResourceCleanup(void)
   *plVar3 = (longlong)plVar3;
   
   // 执行最终的资源释放操作（不返回）
-  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar3,&UNK_180986f90,0x30);
+  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar3,&unknown_var_976_ptr,0x30);
 }
 
 /**
@@ -339,7 +339,7 @@ uint64_t ReferenceCountInitialize(int ref_type, longlong *ref_ptr)
   
   // 分配引用计数对象内存（16字节）
   piVar1 = (int *)FUN_180741d10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), ref_type + 0x10, 0x10,
-                                &UNK_180988980, 0x3e, 0, 0);
+                                &unknown_var_7616_ptr, 0x3e, 0, 0);
   
   // 检查内存分配是否成功
   if (piVar1 == (int *)0x0) {
@@ -392,7 +392,7 @@ uint64_t ReferenceCountRelease(longlong *ref_ptr)
     // 检查是否需要释放资源
     if (*(int *)(*ref_ptr + 4) == 0) {
       // 引用计数降为0，释放资源
-      FUN_180741df0(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *ref_ptr, &UNK_180988980, 0x89);
+      FUN_180741df0(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *ref_ptr, &unknown_var_7616_ptr, 0x89);
       *ref_ptr = 0;  // 清空引用指针
     }
   }
@@ -483,7 +483,7 @@ uint64_t FUN_1808da330(longlong param_1,longlong param_2,int param_3)
       iVar1 = *piVar2;
       if (iVar1 == 0) {
         puVar4 = (uint64_t *)
-                 FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x20,&UNK_1809869a0,0x112,0,0
+                 FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x20,&unknown_var_9456_ptr,0x112,0,0
                                ,1);
         if (puVar4 == (uint64_t *)0x0) {
           return 0x26;
@@ -491,7 +491,7 @@ uint64_t FUN_1808da330(longlong param_1,longlong param_2,int param_3)
         *(int32_t *)(puVar4 + 2) = 0;
 LAB_1808da52e:
         puVar4[1] = 0;
-        *puVar4 = &UNK_180986940;
+        *puVar4 = &unknown_var_9360_ptr;
         *(int32_t *)(puVar4 + 3) = 0;
         *(uint64_t **)(*(longlong *)(param_1 + 0x48) + lVar8 * 8) = puVar4;
         *(int *)(puVar4 + 3) = piVar2[0xe];
@@ -499,7 +499,7 @@ LAB_1808da52e:
       else {
         if (iVar1 == 1) {
           puVar4 = (uint64_t *)
-                   FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x20,&UNK_1809869a0,0x119,0
+                   FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x20,&unknown_var_9456_ptr,0x119,0
                                  ,0,1);
           if (puVar4 == (uint64_t *)0x0) {
             return 0x26;
@@ -509,13 +509,13 @@ LAB_1808da52e:
         }
         if (iVar1 == 2) {
           puVar4 = (uint64_t *)
-                   FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x20,&UNK_1809869a0,0x120,0
+                   FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x20,&unknown_var_9456_ptr,0x120,0
                                  ,0,1);
           if (puVar4 == (uint64_t *)0x0) {
             return 0x26;
           }
           puVar4[1] = 0;
-          *puVar4 = &UNK_180986940;
+          *puVar4 = &unknown_var_9360_ptr;
           *(int32_t *)(puVar4 + 2) = 2;
           *(int8_t *)(puVar4 + 3) = 0;
           *(uint64_t **)(*(longlong *)(param_1 + 0x48) + lVar8 * 8) = puVar4;
@@ -526,13 +526,13 @@ LAB_1808da52e:
             return 0x1c;
           }
           puVar4 = (uint64_t *)
-                   FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x20,&UNK_1809869a0,0x127,0
+                   FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x20,&unknown_var_9456_ptr,0x127,0
                                  ,0,1);
           if (puVar4 == (uint64_t *)0x0) {
             return 0x26;
           }
           puVar4[1] = 0;
-          *puVar4 = &UNK_180986948;
+          *puVar4 = &unknown_var_9368_ptr;
           *(int32_t *)(puVar4 + 2) = 3;
           puVar4[3] = 0;
           *(uint64_t **)(*(longlong *)(param_1 + 0x48) + lVar8 * 8) = puVar4;
@@ -614,7 +614,7 @@ uint64_t FUN_1808da7b0(longlong param_1,uint64_t *param_2,uint param_3,longlong 
     uVar2 = 0x1f;
   }
   else {
-    lVar1 = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x308,&UNK_180988a00,0x214,0,0,1);
+    lVar1 = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x308,&unknown_var_7744_ptr,0x214,0,0,1);
     if (lVar1 == 0) {
       uVar2 = 0x26;
     }
@@ -765,7 +765,7 @@ void FUN_1808da910(uint64_t *param_1,longlong *param_2)
     uStack_1c = 0;
     uStack_24 = 0xffff;
     uStack_28 = 0xffffffff;
-    func_0x00018076b450(&uStack_20,&UNK_180988af0,8);
+    func_0x00018076b450(&uStack_20,&unknown_var_7984_ptr,8);
     if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
                 0x48) < _DAT_180c4f508) {
       FUN_1808fcb90(&system_state_f508);
@@ -1137,7 +1137,7 @@ int FUN_1808dae30(longlong param_1,uint64_t *param_2)
   }
   (**(code **)*param_2)(param_2,0);
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_2,&UNK_180988a00,0x252,1);
+  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_2,&unknown_var_7744_ptr,0x252,1);
 }
 
 

@@ -433,7 +433,7 @@ joined_r0x000180876529:
          (iVar7 = FUN_180880350(puVar2,*(uint64_t *)(param_1 + 800)), iVar7 == 0)) {
         pplStack_978 = *(longlong ***)(param_1 + 800);
         pplVar17 = (longlong **)0x0;
-        plStack_980 = (longlong *)&UNK_180985c10;
+        plStack_980 = (longlong *)&unknown_var_5984_ptr;
         pplVar14 = pplStack_978;
         if (cVar5 != '\0') {
           pplVar14 = &plStack_980;
@@ -698,7 +698,7 @@ LAB_1808769aa:
       (**(code **)*puVar2)(puVar2,0);
       pplStack_9a8 = (longlong **)CONCAT71(pplStack_9a8._1_7_,1);
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),puVar2,&UNK_180985b90,0xd1b);
+      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),puVar2,&unknown_var_5856_ptr,0xd1b);
     }
   }
   goto LAB_180876b83;

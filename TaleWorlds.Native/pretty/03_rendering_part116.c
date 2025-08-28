@@ -480,25 +480,25 @@ uint64_t * FUN_180339110(uint64_t *param_1)
 
 {
   FUN_180320470();
-  *param_1 = &UNK_180a1b430;
-  param_1[0x16] = &UNK_18098bcb0;
+  *param_1 = &unknown_var_8368_ptr;
+  param_1[0x16] = &unknown_var_720_ptr;
   param_1[0x17] = 0;
   *(int32_t *)(param_1 + 0x18) = 0;
-  param_1[0x16] = &UNK_1809fcc58;
+  param_1[0x16] = &unknown_var_3480_ptr;
   param_1[0x17] = param_1 + 0x19;
   *(int32_t *)(param_1 + 0x18) = 0;
   *(int8_t *)(param_1 + 0x19) = 0;
-  param_1[0x21] = &UNK_18098bcb0;
+  param_1[0x21] = &unknown_var_720_ptr;
   param_1[0x22] = 0;
   *(int32_t *)(param_1 + 0x23) = 0;
-  param_1[0x21] = &UNK_1809fcc58;
+  param_1[0x21] = &unknown_var_3480_ptr;
   param_1[0x22] = param_1 + 0x24;
   *(int32_t *)(param_1 + 0x23) = 0;
   *(int8_t *)(param_1 + 0x24) = 0;
-  param_1[0x2c] = &UNK_18098bcb0;
+  param_1[0x2c] = &unknown_var_720_ptr;
   param_1[0x2d] = 0;
   *(int32_t *)(param_1 + 0x2e) = 0;
-  param_1[0x2c] = &UNK_1809fcc58;
+  param_1[0x2c] = &unknown_var_3480_ptr;
   param_1[0x2d] = param_1 + 0x2f;
   *(int32_t *)(param_1 + 0x2e) = 0;
   *(int8_t *)(param_1 + 0x2f) = 0;
