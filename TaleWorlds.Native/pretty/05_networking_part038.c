@@ -521,7 +521,7 @@ LAB_180860f7b:
                                    ((int64_t *)*puVar13,&stack0x00000078,1);
                 if (lVar14 == 0) {
                     // WARNING: Subroutine does not return
-                  FUN_18076b390(unaff_RBP + 8,0x27,&unknown_var_8960_ptr,
+                  SystemDataValidator(unaff_RBP + 8,0x27,&unknown_var_8960_ptr,
                                 (uint64_t)in_stack_00000078 & 0xffffffff,in_stack_00000078._4_2_);
                 }
                 plVar7[2] = lVar14;

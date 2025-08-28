@@ -465,7 +465,7 @@ uint64_t FUN_1807a5040(int64_t *param_1,int32_t param_2,int32_t *param_3,int64_t
       fVar2 = *(float *)(lVar1 + 0x3dc);
 code_r0x0001807a5150:
                     // WARNING: Subroutine does not return
-      FUN_18076b390(param_4,0x20,&unknown_var_2048_ptr,(double)fVar2);
+      SystemDataValidator(param_4,0x20,&unknown_var_2048_ptr,(double)fVar2);
     }
     break;
   case 1:

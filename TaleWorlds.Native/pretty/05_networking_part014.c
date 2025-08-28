@@ -30,7 +30,7 @@ void FUN_18084ee9a(void)
   uStack0000000000000030 = (uint)auVar1[8];
   uStack0000000000000028 = (uint)auVar1._6_2_;
                     // WARNING: Subroutine does not return
-  FUN_18076b390(&stack0x00000078,0x27,&unknown_var_8960_ptr,auVar1._0_8_,auVar1._4_4_ & 0xffff);
+  SystemDataValidator(&stack0x00000078,0x27,&unknown_var_8960_ptr,auVar1._0_8_,auVar1._4_4_ & 0xffff);
 }
 
 

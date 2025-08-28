@@ -443,7 +443,7 @@ void FUN_1808b7c00(uint64_t *param_1,int64_t param_2,int64_t *param_3,int64_t pa
       uStack_120 = (uint)uStack_ba;
       ppuStack_128 = (uint64_t **)CONCAT44(ppuStack_128._4_4_,(uint)uStack_bc);
                     // WARNING: Subroutine does not return
-      FUN_18076b390(auStack_a0,0x27,&unknown_var_8960_ptr,uStack_c0);
+      SystemDataValidator(auStack_a0,0x27,&unknown_var_8960_ptr,uStack_c0);
     }
   }
   auStack_b0[0] = 0;

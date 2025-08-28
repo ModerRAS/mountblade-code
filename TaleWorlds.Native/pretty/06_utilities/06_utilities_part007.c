@@ -607,7 +607,7 @@ void FUN_180894860(int64_t param_1,int32_t *param_2,int64_t *param_3)
       uStack_98 = uStack_50 & 0xff;
       uStack_a8 = uStack_54 & 0xffff;
                     // WARNING: Subroutine does not return
-      FUN_18076b390(auStack_40,0x27,&unknown_var_8960_ptr,uStack_58);
+      SystemDataValidator(auStack_40,0x27,&unknown_var_8960_ptr,uStack_58);
     }
     if (((*(byte *)(lVar3 + 0xc4) & 1) != 0) &&
        ((lStack_48 = *(int64_t *)(lVar3 + 0x68), lStack_48 != 0 ||
@@ -628,7 +628,7 @@ void FUN_18089492c(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_18076b390();
+  SystemDataValidator();
 }
 
 
@@ -696,7 +696,7 @@ void FUN_1808949c0(int64_t param_1,int32_t *param_2,int64_t *param_3)
       uStack_88 = uStack_40 & 0xff;
       uStack_98 = uStack_44 & 0xffff;
                     // WARNING: Subroutine does not return
-      FUN_18076b390(auStack_38,0x27,&unknown_var_8960_ptr,uStack_48);
+      SystemDataValidator(auStack_38,0x27,&unknown_var_8960_ptr,uStack_48);
     }
     if ((**(int **)(lVar3 + 0xd0) != 0) ||
        (iVar2 = FUN_18088c060(*(int32_t *)(param_1 + 0x18)), iVar2 == 0)) {
@@ -727,7 +727,7 @@ void FUN_180894a07(uint64_t param_1)
   lVar2 = (**(code **)(in_RAX + 0x288))();
   if (lVar2 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18076b390(&stack0x00000080,0x27,&unknown_var_8960_ptr,uStack0000000000000070 & 0xffffffff,
+    SystemDataValidator(&stack0x00000080,0x27,&unknown_var_8960_ptr,uStack0000000000000070 & 0xffffffff,
                   uStack0000000000000070._4_2_);
   }
   if (**(int **)(lVar2 + 0xd0) == 0) {
@@ -806,7 +806,7 @@ void FUN_180894b00(int64_t param_1,int32_t *param_2,int64_t *param_3)
       uStack_98 = uStack_50 & 0xff;
       uStack_a8 = uStack_54 & 0xffff;
                     // WARNING: Subroutine does not return
-      FUN_18076b390(auStack_40,0x27,&unknown_var_8960_ptr,uStack_58);
+      SystemDataValidator(auStack_40,0x27,&unknown_var_8960_ptr,uStack_58);
     }
     lStack_48 = *(int64_t *)(lVar3 + 0x48);
     if ((lStack_48 != 0) || (iVar2 = FUN_18088ca20(param_1,lVar3,&lStack_48), iVar2 == 0)) {
@@ -826,7 +826,7 @@ void FUN_180894bcc(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_18076b390();
+  SystemDataValidator();
 }
 
 

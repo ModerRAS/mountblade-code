@@ -191,7 +191,7 @@ void network_connection_status_checker(uint64_t param_1, int8_t param_2)
 void network_packet_sender(int32_t *param_1, uint64_t param_2)
 {
     // 发送数据包到目标地址
-    FUN_18076b390(param_2, PACKET_TYPE_DATA, &unknown_var_8960_ptr, *param_1, 
+    SystemDataValidator(param_2, PACKET_TYPE_DATA, &unknown_var_8960_ptr, *param_1, 
                  *(int16_t *)(param_1 + 1), *(int16_t *)((int64_t)param_1 + 6),
                  *(int8_t *)(param_1 + 2), *(int8_t *)((int64_t)param_1 + 9),
                  *(int8_t *)((int64_t)param_1 + 10), *(int8_t *)((int64_t)param_1 + 0xb),
@@ -394,7 +394,7 @@ void network_packet_processor(uint64_t param_1, uint64_t *param_2, int64_t *para
             packet_field_98 = (uint)*(ushort *)(packet_data + 1);
             
             // 发送数据包
-            FUN_18076b390(packet_buffer, PACKET_TYPE_DATA, &unknown_var_8960_ptr, *packet_data);
+            SystemDataValidator(packet_buffer, PACKET_TYPE_DATA, &unknown_var_8960_ptr, *packet_data);
         }
         
         // 执行数据处理
@@ -571,7 +571,7 @@ void network_message_processor(int64_t param_1, int64_t param_2)
             message_field_88 = (uint)*(ushort *)(current_message + 1);
             
             // 发送消息数据
-            FUN_18076b390(message_buffer, PACKET_TYPE_DATA, &unknown_var_8960_ptr, *current_message);
+            SystemDataValidator(message_buffer, PACKET_TYPE_DATA, &unknown_var_8960_ptr, *current_message);
         }
         
         // 执行消息处理
@@ -598,7 +598,7 @@ void network_message_processor(int64_t param_1, int64_t param_2)
 void network_system_terminator1(void)
 {
     // 终止网络系统
-    FUN_18076b390();
+    SystemDataValidator();
 }
 
 /**
@@ -713,7 +713,7 @@ void network_data_manager(int64_t *param_1, int64_t param_2, int64_t *param_3)
                 data_field_98 = (uint)data_field_8;
                 
                 // 发送数据
-                FUN_18076b390(data_buffer, PACKET_TYPE_DATA, &unknown_var_8960_ptr, data_field_11);
+                SystemDataValidator(data_buffer, PACKET_TYPE_DATA, &unknown_var_8960_ptr, data_field_11);
             }
             
             // 获取二级数据处理器
@@ -837,7 +837,7 @@ void network_connection_manager(int64_t param_1, int64_t param_2)
                 connection_field_98 = (uint)*(ushort *)(connection_data + 1);
                 
                 // 发送连接数据
-                FUN_18076b390(connection_buffer, PACKET_TYPE_DATA, &unknown_var_8960_ptr, *connection_data);
+                SystemDataValidator(connection_buffer, PACKET_TYPE_DATA, &unknown_var_8960_ptr, *connection_data);
             }
             
             // 执行连接管理
@@ -889,7 +889,7 @@ void network_data_receiver(uint64_t param_1, int64_t param_2)
         
         if (handler_pointer == (int64_t *)0x0) {
             // 发送数据
-            FUN_18076b390(&stack0x00000070, PACKET_TYPE_DATA, &unknown_var_8960_ptr, *data_pointer, *(int16_t *)(data_pointer + 1));
+            SystemDataValidator(&stack0x00000070, PACKET_TYPE_DATA, &unknown_var_8960_ptr, *data_pointer, *(int16_t *)(data_pointer + 1));
         }
         
         // 执行数据处理
@@ -922,7 +922,7 @@ void network_error_handler(void)
     error_code = (uint)*(ushort *)(unaff_R14 + 6);
     
     // 处理错误
-    FUN_18076b390();
+    SystemDataValidator();
 }
 
 /**
@@ -1065,7 +1065,7 @@ void network_buffer_manager(int64_t *param_1, int64_t param_2, int64_t *param_3)
                     buffer_field_a8 = (uint)*(ushort *)(buffer_data + 1);
                     
                     // 发送缓冲区数据
-                    FUN_18076b390(buffer_data_buffer, PACKET_TYPE_DATA, &unknown_var_8960_ptr, *buffer_data);
+                    SystemDataValidator(buffer_data_buffer, PACKET_TYPE_DATA, &unknown_var_8960_ptr, *buffer_data);
                 }
                 
                 // 执行二级缓冲区管理
@@ -1095,7 +1095,7 @@ buffer_management_complete:
 void network_system_terminator3(void)
 {
     // 终止网络系统
-    FUN_18076b390();
+    SystemDataValidator();
 }
 
 /**

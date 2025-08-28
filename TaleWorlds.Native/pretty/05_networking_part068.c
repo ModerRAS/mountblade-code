@@ -59,7 +59,7 @@ void FUN_1808782c0(int64_t param_1,uint64_t param_2,int64_t *param_3)
       lVar7 = (**(code **)(*param_3 + 0x318))(param_3,puVar1,1);
       if (lVar7 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18076b390(unaff_RBP + -9,0x27,&unknown_var_8960_ptr,*(int32_t *)puVar1,
+        SystemDataValidator(unaff_RBP + -9,0x27,&unknown_var_8960_ptr,*(int32_t *)puVar1,
                       *(int16_t *)(lVar2 + 100));
       }
       if (*(int *)(lVar7 + 0x60) != 0x1f) goto LAB_180878734;

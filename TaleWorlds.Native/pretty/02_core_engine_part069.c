@@ -199,7 +199,7 @@ typedef struct {
 
 /** 内部函数别名 */
 #define CoreEngine_InternalInit              FUN_18005d580     /**< 核心引擎内部初始化 */
-#define CoreEngine_ComponentInit             FUN_18005b7c0     /**< 核心引擎组件初始化 */
+#define CoreEngine_ComponentInit             DataCompressionEngine     /**< 核心引擎组件初始化 */
 #define CoreEngine_ConfigSetup               FUN_18005d260     /**< 核心引擎配置设置 */
 #define CoreEngine_ErrorHandler              CoreEngineMemoryPoolCleaner     /**< 核心引擎错误处理器 */
 

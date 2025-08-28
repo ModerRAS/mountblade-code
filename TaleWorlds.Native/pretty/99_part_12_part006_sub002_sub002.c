@@ -504,7 +504,7 @@ LAB_1807cbd3d:
                                                                 auStack_258,1,0x16);
                                           if (iVar3 == 0) {
                     // WARNING: Subroutine does not return
-                                            FUN_18076b390(auStack_138,0x100,&unknown_var_5872_ptr,
+                                            SystemDataValidator(auStack_138,0x100,&unknown_var_5872_ptr,
                                                           iStack_4b8);
                                           }
                                         }
