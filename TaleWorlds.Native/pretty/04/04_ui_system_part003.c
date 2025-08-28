@@ -1,6 +1,6 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part003.c - 23 个函数
+// 04_ui_system_part003.c - 32 个函数
 
 // 类型定义
 typedef struct {
@@ -1419,6 +1419,7 @@ void pass_managed_library_callback_method_pointers(undefined8 callback_data)
                     // 0x651890  36  pass_managed_library_callback_method_pointers
                     // WARNING: Could not recover jumptable at 0x00018065189d. Too many branches
                     // WARNING: Treating indirect jump as call
+  // _DAT_180c8f008: 托管库函数指针表
   (**(code **)(*_DAT_180c8f008 + 0x40))(_DAT_180c8f008,callback_data);
   return;
 }
@@ -1437,7 +1438,7 @@ void pass_controller_methods(undefined8 controller_methods)
 
 {
                     // 0x6518b0  34  pass_controller_methods
-  _DAT_180c8f018 = controller_methods;
+  _DAT_180c8f018 = controller_methods;  // _DAT_180c8f018: 控制器方法指针
   return;
 }
 
@@ -1455,7 +1456,7 @@ void pass_managed_initialize_method_pointer(undefined8 init_method_ptr)
 
 {
                     // 0x6518c0  35  pass_managed_initialize_method_pointer
-  _DAT_180c8f010 = init_method_ptr;
+  _DAT_180c8f010 = init_method_ptr;    // _DAT_180c8f010: 初始化方法指针
   return;
 }
 
@@ -1494,7 +1495,7 @@ void ui_cleanup_global_data_structure(undefined8 *global_ptr)
 
 {
   *param_1 = &UNK_180a3dcb0;
-  _DAT_180c8f008 = 0;
+  _DAT_180c8f008 = 0;                  // _DAT_180c8f008: 托管库函数指针表（重置）
   if (param_1[0x2d] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();

@@ -231,54 +231,76 @@ void Add_Rendering_Element(longlong *render_context, int element_index, longlong
 
 
 
-// 函数: void FUN_180275e10(longlong *param_1,uint param_2,longlong *param_3,char param_4)
-void FUN_180275e10(longlong *param_1,uint param_2,longlong *param_3,char param_4)
+/**
+ * 通过位掩码添加渲染元素
+ * 使用位掩码方式添加渲染元素到渲染上下文中，支持批量操作
+ * @param render_context 渲染上下文指针
+ * @param bitmask 元素位掩码
+ * @param element_data 元素数据指针
+ * @param should_update 是否更新渲染状态
+ */
+void Add_Rendering_Element_By_Bitmask(longlong *render_context, uint bitmask, longlong *element_data, char should_update)
 
 {
-  longlong *plVar1;
-  longlong lVar2;
-  int iVar3;
-  longlong *plStack_30;
-  uint uStack_28;
+  longlong *element_ptr;
+  longlong context_data;
+  int bit_position;
+  longlong *temp_stack_ptr;
+  uint original_bitmask;
   
-  plStack_30 = (longlong *)0x0;
-  plVar1 = (longlong *)*param_3;
-  uStack_28 = param_2;
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x28))(plVar1);
+  temp_stack_ptr = (longlong *)0x0;
+  element_ptr = (longlong *)*element_data;
+  original_bitmask = bitmask;
+  
+  if (element_ptr != (longlong *)0x0) {
+    // 增加元素的引用计数
+    (**(code **)(*element_ptr + 0x28))(element_ptr);
   }
-  plStack_30 = plVar1;
-  FUN_1802842e0(param_1 + 7,&plStack_30);
-  *(longlong **)(*param_3 + 0x1c8) = param_1;
-  iVar3 = -1;
-  if (param_2 != 0) {
+  
+  temp_stack_ptr = element_ptr;
+  
+  // 将元素添加到渲染上下文
+  FUN_1802842e0(render_context + 7, &temp_stack_ptr);
+  *(longlong **)(*element_data + 0x1c8) = render_context;
+  
+  // 计算位掩码中最高位的位置
+  bit_position = -1;
+  if (bitmask != 0) {
     do {
-      iVar3 = iVar3 + 1;
-      param_2 = param_2 >> 1;
-    } while (param_2 != 0);
+      bit_position = bit_position + 1;
+      bitmask = bitmask >> 1;
+    } while (bitmask != 0);
   }
-  if ((int)param_1[0xb] < iVar3 + 1) {
-    *(int *)(param_1 + 0xb) = iVar3 + 1;
+  
+  // 更新渲染上下文的最大位位置
+  if ((int)render_context[0xb] < bit_position + 1) {
+    *(int *)(render_context + 0xb) = bit_position + 1;
   }
-  if (param_4 != '\0') {
-    if (*(code **)(*param_1 + 0x160) == (code *)&UNK_180277350) {
-      FUN_180276f30(param_1,(longlong)param_1 + 0x214,0);
+  
+  // 如果需要更新渲染状态
+  if (should_update != '\0') {
+    if (*(code **)(*render_context + 0x160) == (code *)&STANDARD_RENDER_UPDATE_FUNCTION) {
+      FUN_180276f30(render_context, (longlong)render_context + 0x214, 0);
     }
     else {
-      (**(code **)(*param_1 + 0x160))(param_1);
+      (**(code **)(*render_context + 0x160))(render_context);
     }
-    lVar2 = param_1[5];
-    if ((lVar2 != 0) &&
-       (*(short *)(lVar2 + 0x2b0) = *(short *)(lVar2 + 0x2b0) + 1, *(longlong *)(lVar2 + 0x168) != 0
+    
+    // 更新渲染统计信息
+    context_data = render_context[5];
+    if ((context_data != 0) &&
+       (*(short *)(context_data + 0x2b0) = *(short *)(context_data + 0x2b0) + 1, *(longlong *)(context_data + 0x168) != 0
        )) {
-      func_0x0001802eeba0();
+      update_render_statistics();
     }
   }
-  if (plStack_30 != (longlong *)0x0) {
-    (**(code **)(*plStack_30 + 0x38))();
+  
+  // 清理临时指针
+  if (temp_stack_ptr != (longlong *)0x0) {
+    (**(code **)(*temp_stack_ptr + 0x38))();
   }
-  if ((longlong *)*param_3 != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*param_3 + 0x38))();
+  if ((longlong *)*element_data != (longlong *)0x0) {
+    (**(code **)(*(longlong *)*element_data + 0x38))();
   }
   return;
 }
