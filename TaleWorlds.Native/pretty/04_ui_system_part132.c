@@ -162,8 +162,8 @@ void UISystem_ProcessUIEvent_Simplified(longlong context_handle, uint64_t event_
 //==============================================================================
 
 // 函数: void FUN_180745ce1(void)
-void FUN_180745ce1(void)
-
+// UI系统初始化占位符函数
+void UI_System_Init_Placeholder(void)
 {
   return;
 }
@@ -173,8 +173,8 @@ void FUN_180745ce1(void)
 
 
 // 函数: void FUN_180745cff(void)
-void FUN_180745cff(void)
-
+// UI系统事件处理器注册函数
+void UI_System_EventHandler_Register(void)
 {
   longlong lVar1;
   uint64_t uVar2;

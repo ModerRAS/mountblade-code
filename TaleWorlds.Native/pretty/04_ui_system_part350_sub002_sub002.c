@@ -2712,7 +2712,7 @@ UISystem_BufferManager(longlong system_context, uint64_t buffer_data, uint *size
   if ((((int)uVar5 == 0) &&
       (uVar5 = FUN_18085acd0(param_1,param_2,&param_5,*(longlong *)(param_1 + 0x110) + 0x38,
                              (char)uVar5,uVar3,uVar2), (int)uVar5 == 0)) &&
-     (uVar5 = FUN_18085b200(param_1,&param_5,param_2), (int)uVar5 == 0)) {
+     (uVar5 = UISystem_StateChecker(param_1,&param_5,param_2), (int)uVar5 == 0)) {
     *(int32_t *)(param_1 + 0xc) = 2;
     if ((ulonglong)*puVar1 + (ulonglong)*param_3 < 0x100000000) {
       uVar7 = *param_3 + *puVar1;
@@ -2724,7 +2724,7 @@ UISystem_BufferManager(longlong system_context, uint64_t buffer_data, uint *size
         return 0x1c;
       }
       func_0x00018085c9a0(param_1,&param_5,param_5._4_4_,param_2);
-      uVar5 = FUN_18085c5b0(param_1,CONCAT44(param_5._4_4_,(int)param_5),lVar6 + 0x20,uVar2);
+      uVar5 = UISystem_DataSizeManager(param_1,CONCAT44(param_5._4_4_,(int)param_5),lVar6 + 0x20,uVar2);
       if ((int)uVar5 != 0) {
         return uVar5;
       }
