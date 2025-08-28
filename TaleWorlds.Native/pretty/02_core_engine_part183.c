@@ -152,7 +152,9 @@ typedef void (*code)(void);
  * 内存偏移量定义
  * ============================================================================ */
 
+#define CORE_OFFSET_0x0b 0x0b                    // 偏移量0x0b
 #define CORE_OFFSET_0x10 0x10                    // 偏移量0x10
+#define CORE_OFFSET_0x16 0x16                    // 偏移量0x16
 #define CORE_OFFSET_0x18 0x18                    // 偏移量0x18
 #define CORE_OFFSET_0x20 0x20                    // 偏移量0x20
 #define CORE_OFFSET_0x28 0x28                    // 偏移量0x28
