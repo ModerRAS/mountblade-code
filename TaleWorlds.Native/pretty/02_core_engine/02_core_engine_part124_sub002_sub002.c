@@ -3,13 +3,10 @@
 // 02_core_engine_part124_sub002_sub002.c - 游戏对象渲染更新函数
 // 核心引擎模块 - 渲染系统子模块
 
-/**
- * 更新游戏对象的渲染状态和位置
- * @param param_1 X坐标偏移量
- * @param param_2 X坐标最大值
- * @param param_3 Y坐标偏移量
- * @param param_4 Y坐标缩放因子
- */
+// 注意：这是一个简化实现，基于反编译代码的翻译
+// 原始实现：FUN_18012ae5a 函数，约1090行反编译代码
+// 简化实现：update_game_object_render 函数，保留了核心渲染逻辑
+// 主要功能：游戏对象的位置更新、边界框计算、深度测试、纹理处理等
 void update_game_object_render(float param_1, float param_2, float param_3, float param_4)
 
 {
@@ -332,105 +329,130 @@ LAB_18012b465:
   *(undefined8 *)(unaff_R14 + 0x48) = *(undefined8 *)(unaff_R14 + 0x50);
   unaff_R14 = object_data_ptr;
 LAB_18012b510:
+  // 纹理和材质处理
   if (*(char *)(unaff_R14 + 0xae) != '\0') {
+    // 更新纹理坐标
     if (*(char *)(*(longlong *)(unaff_R14 + 0x28) + 0x49) == '\0') {
       *(undefined8 *)(*(longlong *)(unaff_R14 + 0x28) + 8) = *(undefined8 *)(unaff_R14 + 0x40);
-      unaff_R14 = in_stack_00000040;
+      unaff_R14 = object_data_ptr;
     }
     if (*(char *)(*(longlong *)(unaff_R14 + 0x28) + 0x4a) == '\0') {
       *(undefined8 *)(*(longlong *)(unaff_R14 + 0x28) + 0x10) = *(undefined8 *)(unaff_R14 + 0x48);
-      unaff_R14 = in_stack_00000040;
+      unaff_R14 = object_data_ptr;
     }
-    puVar12 = (undefined8 *)func_0x00018011feb0(*(undefined8 *)(unaff_R14 + 0x28));
-    uVar22 = puVar12[1];
-    *(undefined8 *)(unaff_RBP + 4) = *puVar12;
-    *(undefined8 *)(unaff_RBP + 6) = uVar22;
-    unaff_R14 = in_stack_00000040;
+    
+    // 获取材质信息
+    matrix_ptr = (undefined8 *)func_0x00018011feb0(*(undefined8 *)(unaff_R14 + 0x28));
+    bounding_box = matrix_ptr[1];
+    *(undefined8 *)(unaff_RBP + 4) = *matrix_ptr;
+    *(undefined8 *)(unaff_RBP + 6) = bounding_box;
+    unaff_R14 = object_data_ptr;
   }
+  
+  // 更新对象变换矩阵
   *(undefined8 *)(unaff_R14 + 0x34) = *(undefined8 *)(*(longlong *)(unaff_R14 + 0x28) + 8);
-  if ((*(float *)(in_stack_00000040 + 0x48) <= unaff_XMM13_Da) ||
+  
+  // 计算缩放因子
+  if ((*(float *)(object_data_ptr + 0x48) <= unaff_XMM13_Da) ||
      (((uint)unaff_R15D & 0x2000040) != 0)) {
-    fVar27 = *(float *)(unaff_RSI + 0x19f8) * 16.0;
+    base_y_coord = *(float *)(unaff_RSI + 0x19f8) * 16.0;
   }
   else {
-    fVar27 = *(float *)(in_stack_00000040 + 0x48) * 0.65;
+    base_y_coord = *(float *)(object_data_ptr + 0x48) * 0.65;
   }
-  *(float *)(in_stack_00000040 + 0x284) = (float)(int)fVar27;
-  FUN_180291500(*(undefined8 *)(in_stack_00000040 + 0x2e8));
-  *(uint *)(*(longlong *)(in_stack_00000040 + 0x2e8) + 0x30) =
+  *(float *)(object_data_ptr + 0x284) = (float)(int)base_y_coord;
+  
+  // 初始化渲染目标
+  FUN_180291500(*(undefined8 *)(object_data_ptr + 0x2e8));
+  
+  // 设置渲染标志
+  *(uint *)(*(longlong *)(object_data_ptr + 0x2e8) + 0x30) =
        -(uint)(*(char *)(unaff_RSI + 0x16c1) != '\0') & 2 |
-       (uint)CONCAT71((int7)(unaff_RDI >> 8),*(char *)(unaff_RSI + 0x16c0) != '\0');
-  lVar13 = *(longlong *)(in_stack_00000040 + 0x2e8);
+       (uint)CONCAT71((int7)(unaff_RDI >> 8), *(char *)(unaff_RSI + 0x16c0) != '\0');
+  
+  // 设置渲染参数
+  global_data_ptr = *(longlong *)(object_data_ptr + 0x2e8);
   *(undefined8 *)(unaff_RBP + -0x14) =
        *(undefined8 *)(*(longlong *)(*(longlong *)(unaff_RSI + 0x19f0) + 0x58) + 8);
-  FUN_18011d9a0(lVar13 + 0x70,unaff_RBP + -0x14);
-  FUN_180291a50(lVar13);
+  FUN_18011d9a0(global_data_ptr + 0x70, unaff_RBP + -0x14);
+  FUN_180291a50(global_data_ptr);
+  
+  // 选择渲染缓冲区
   if ((((uint)unaff_R15D & 0x5000000) == 0x1000000) && (unaff_RBP[-4] != 3.761582e-37)) {
-    pfVar11 = (float *)(*(longlong *)(unaff_RBP + 8) + 0x228);
-    pfVar16 = (float *)(*(longlong *)(unaff_RBP + 8) + 0x230);
+    position_ptr = (float *)(*(longlong *)(unaff_RBP + 8) + 0x228);
+    screen_coords = (float *)(*(longlong *)(unaff_RBP + 8) + 0x230);
   }
   else {
-    pfVar11 = unaff_RBP + 4;
-    pfVar16 = unaff_RBP + 6;
+    position_ptr = unaff_RBP + 4;
+    screen_coords = unaff_RBP + 6;
   }
-  FUN_180126d10(pfVar11,pfVar16);
+  FUN_180126d10(position_ptr, screen_coords);
+  
+  // 检查是否需要深度测试
   if (((((uint)unaff_R15D >> 0x1b & 1) == 0) ||
-      (lVar13 = func_0x00018012ea90(), in_stack_00000040 != lVar13)) ||
-     (0 < *(int *)(in_stack_00000040 + 0xdc))) {
-    bVar19 = 0;
+      (global_data_ptr = func_0x00018012ea90(), object_data_ptr != global_data_ptr)) ||
+     (0 < *(int *)(object_data_ptr + 0xdc))) {
+    depth_test_flag = 0;
   }
   else {
-    bVar19 = 1;
+    depth_test_flag = 1;
   }
-  uVar6 = (undefined4)((ulonglong)in_stack_00000020 >> 0x20);
-  lVar13 = *(longlong *)(unaff_RSI + 0x1ce0);
-  if ((lVar13 == 0) ||
-     ((in_stack_00000040 != *(longlong *)(lVar13 + 0x3a0) &&
-      (((lVar20 = *(longlong *)(unaff_RSI + 0x1ce8), lVar20 == 0 || (in_stack_00000040 != lVar20))
-       || (*(longlong *)(lVar20 + 0x28) == *(longlong *)(lVar13 + 0x28))))))) {
-    bVar21 = false;
+  // 检查对象可见性和渲染条件
+  render_mode = (undefined4)((ulonglong)render_context >> 0x20);
+  global_data_ptr = *(longlong *)(unaff_RSI + 0x1ce0);
+  if ((global_data_ptr == 0) ||
+     ((object_data_ptr != *(longlong *)(global_data_ptr + 0x3a0) &&
+      (((lVar20 = *(longlong *)(unaff_RSI + 0x1ce8), lVar20 == 0 || (object_data_ptr != lVar20))
+       || (*(longlong *)(lVar20 + 0x28) == *(longlong *)(global_data_ptr + 0x28))))))) {
+    is_visible = false;
   }
   else {
-    bVar21 = true;
+    is_visible = true;
   }
-  if ((bVar19 != 0) || (bVar21)) {
-    fVar27 = *(float *)(unaff_RSI + 0x1dc8);
-    fVar26 = *(float *)(_DAT_180c8a9b0 + 0x1628);
-    pfVar11 = (float *)(_DAT_180c8a9b0 + 0x1628 + ((ulonglong)bVar19 + 0x3a) * 0x10);
-    fVar30 = pfVar11[1];
-    fVar28 = pfVar11[2];
-    fVar29 = pfVar11[3];
-    unaff_RBP[-0x20] = *pfVar11;
-    unaff_RBP[-0x1f] = fVar30;
-    unaff_RBP[-0x1e] = fVar28;
-    unaff_RBP[-0x1d] = fVar29;
-    unaff_RBP[-0x1d] = fVar29 * fVar27 * fVar26;
-    uVar5 = func_0x000180121e20(unaff_RBP + -0x20);
-    in_stack_00000020 = (undefined8 *)CONCAT44(uVar6,unaff_XMM13_Da);
-    FUN_180293f50(*(undefined8 *)(in_stack_00000040 + 0x2e8),unaff_RBP + 4,unaff_RBP + 6,uVar5,
-                  in_stack_00000020);
-    if ((bVar21) && (in_stack_00000040 == *(longlong *)(unaff_RSI + 0x1ce0))) {
-      func_0x00018010e720(in_stack_00000040,unaff_RBP + -0x18);
+  
+  // 如果对象可见，执行渲染
+  if ((depth_test_flag != 0) || (is_visible)) {
+    base_y_coord = *(float *)(unaff_RSI + 0x1dc8);
+    scaled_y_coord = *(float *)(_DAT_180c8a9b0 + 0x1628);
+    position_ptr = (float *)(_DAT_180c8a9b0 + 0x1628 + ((ulonglong)depth_test_flag + 0x3a) * 0x10);
+    temp_float2 = position_ptr[1];
+    temp_float3 = position_ptr[2];
+    temp_float1 = position_ptr[3];
+    unaff_RBP[-0x20] = *position_ptr;
+    unaff_RBP[-0x1f] = temp_float2;
+    unaff_RBP[-0x1e] = temp_float3;
+    unaff_RBP[-0x1d] = temp_float1;
+    unaff_RBP[-0x1d] = temp_float1 * base_y_coord * scaled_y_coord;
+    temp_color1 = func_0x000180121e20(unaff_RBP + -0x20);
+    render_context = (undefined8 *)CONCAT44(render_mode, unaff_XMM13_Da);
+    FUN_180293f50(*(undefined8 *)(object_data_ptr + 0x2e8), unaff_RBP + 4, unaff_RBP + 6, temp_color1,
+                  render_context);
+    
+    // 如果是主要可见对象，执行额外渲染
+    if ((is_visible) && (object_data_ptr == *(longlong *)(unaff_RSI + 0x1ce0))) {
+      func_0x00018010e720(object_data_ptr, unaff_RBP + -0x18);
       func_0x00018010e610(unaff_RBP + -0x18);
-      uVar6 = (undefined4)((ulonglong)in_stack_00000020 >> 0x20);
+      render_mode = (undefined4)((ulonglong)render_context >> 0x20);
+      
+      // 检查边界框是否在视锥体内
       if ((((unaff_RBP[4] < unaff_RBP[-0x18]) || (unaff_RBP[5] < unaff_RBP[-0x17])) ||
           (unaff_RBP[-0x16] <= unaff_RBP[6] && unaff_RBP[6] != unaff_RBP[-0x16])) ||
          (unaff_RBP[-0x15] <= unaff_RBP[7] && unaff_RBP[7] != unaff_RBP[-0x15])) {
-        fVar27 = *(float *)(unaff_RSI + 0x1cf4);
-        uVar22 = *(undefined8 *)(in_stack_00000040 + 0x2e8);
-        uVar5 = *(undefined4 *)(unaff_RSI + 0x1634);
-        fVar30 = *(float *)(_DAT_180c8a9b0 + 0x19bc);
-        fVar28 = *(float *)(_DAT_180c8a9b0 + 0x19c0);
-        fVar29 = *(float *)(_DAT_180c8a9b0 + 0x19c4);
-        fVar26 = *(float *)(_DAT_180c8a9b0 + 0x1628);
+        base_y_coord = *(float *)(unaff_RSI + 0x1cf4);
+        bounding_box = *(undefined8 *)(object_data_ptr + 0x2e8);
+        temp_color1 = *(undefined4 *)(unaff_RSI + 0x1634);
+        temp_float2 = *(float *)(_DAT_180c8a9b0 + 0x19bc);
+        temp_float3 = *(float *)(_DAT_180c8a9b0 + 0x19c0);
+        temp_float1 = *(float *)(_DAT_180c8a9b0 + 0x19c4);
+        scaled_y_coord = *(float *)(_DAT_180c8a9b0 + 0x1628);
         unaff_RBP[-0x20] = *(float *)(_DAT_180c8a9b0 + 0x19b8);
-        unaff_RBP[-0x1f] = fVar30;
-        unaff_RBP[-0x1e] = fVar28;
-        unaff_RBP[-0x1d] = fVar29;
-        unaff_RBP[-0x1d] = fVar29 * fVar27 * 0.25 * fVar26;
-        uVar7 = func_0x000180121e20(unaff_RBP + -0x20);
-        in_stack_00000020 = (undefined8 *)CONCAT44(uVar6,uVar5);
-        FUN_180293f50(uVar22,unaff_RBP + -0x18,unaff_RBP + -0x16,uVar7,in_stack_00000020);
+        unaff_RBP[-0x1f] = temp_float2;
+        unaff_RBP[-0x1e] = temp_float3;
+        unaff_RBP[-0x1d] = temp_float1;
+        unaff_RBP[-0x1d] = temp_float1 * base_y_coord * 0.25 * scaled_y_coord;
+        temp_color2 = func_0x000180121e20(unaff_RBP + -0x20);
+        render_context = (undefined8 *)CONCAT44(render_mode, temp_color1);
+        FUN_180293f50(bounding_box, unaff_RBP + -0x18, unaff_RBP + -0x16, temp_color2, render_context);
       }
     }
   }
