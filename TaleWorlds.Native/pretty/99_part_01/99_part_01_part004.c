@@ -118,7 +118,7 @@
  */
 void DataStreamProcessor(longlong *param_1,longlong *param_2,undefined8 *param_3,byte param_4,uint param_5)
 
-{
+{{
   undefined1 uVar1;
   longlong lVar2;
   undefined1 *puVar3;
@@ -256,7 +256,7 @@ void DataStreamProcessor(longlong *param_1,longlong *param_2,undefined8 *param_3
  */
 longlong * StreamOutputOperator(longlong *param_1,undefined1 param_2,undefined8 param_3,undefined8 param_4)
 
-{
+{{
   longlong *plVar1;
   char cVar2;
   longlong lVar3;
@@ -353,7 +353,7 @@ LAB_1800a0f0c:
  */
 undefined8 * StreamInitializer(undefined8 *param_1,longlong *param_2)
 
-{
+{{
   longlong *plVar1;
   longlong lVar2;
   
@@ -396,7 +396,7 @@ undefined8 * StreamInitializer(undefined8 *param_1,longlong *param_2)
  */
 void StreamUnlocker(longlong *param_1)
 
-{
+{{
   longlong *plVar1;
   
   plVar1 = *(longlong **)((longlong)*(int *)(*(longlong *)*param_1 + 4) + 0x48 + *param_1);
@@ -429,7 +429,7 @@ void StreamUnlocker(longlong *param_1)
  */
 void StreamCleaner(longlong *param_1)
 
-{
+{{
   longlong *plVar1;
   char cVar2;
   
@@ -467,7 +467,7 @@ void StreamCleaner(longlong *param_1)
  */
 longlong * StringStreamOutputter(longlong *param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
-{
+{{
   longlong *plVar1;
   char cVar2;
   int iVar3;
