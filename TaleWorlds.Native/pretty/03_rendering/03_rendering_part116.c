@@ -90,7 +90,16 @@ typedef struct {
  * 6. 验证数据完整性
  * 7. 返回处理结果
  * 
- * 注意：这是一个简化的实现，原始代码包含复杂的内存管理和数据处理逻辑
+ * 原始实现说明：
+ * - 处理复杂数据结构的反序列化
+ * - 支持动态数组扩容和收缩
+ * - 实现对象引用管理和内存分配
+ * - 包含错误检查和安全验证
+ * - 优化性能和内存使用效率
+ * 
+ * 简化实现说明：
+ * 本函数为简化实现，原始代码包含复杂的内存管理和数据处理逻辑。
+ * 原始代码中实现了完整的数据读取、数组处理、对象引用管理等功能。
  */
 void rendering_system_data_deserializer(longlong *param_1, longlong *param_2) {
     // 参数有效性检查
@@ -137,7 +146,16 @@ void rendering_system_data_deserializer(longlong *param_1, longlong *param_2) {
  * 6. 更新数据流位置
  * 7. 返回序列化结果
  * 
- * 注意：这是一个简化的实现，原始代码包含复杂的序列化逻辑
+ * 原始实现说明：
+ * - 处理多种数据类型的序列化
+ * - 支持缓冲区动态扩容
+ * - 实现复杂对象结构的序列化
+ * - 包含数据验证和错误处理
+ * - 优化序列化性能
+ * 
+ * 简化实现说明：
+ * 本函数为简化实现，原始代码包含复杂的序列化逻辑。
+ * 原始代码中实现了完整的缓冲区管理、数据验证、对象引用处理等功能。
  */
 void rendering_system_object_serializer(longlong param_1, longlong *param_2) {
     // 参数有效性检查
@@ -185,7 +203,16 @@ void rendering_system_object_serializer(longlong param_1, longlong *param_2) {
  * 6. 验证数据完整性
  * 7. 返回加载结果
  * 
- * 注意：这是一个简化的实现，原始代码包含复杂的加载逻辑
+ * 原始实现说明：
+ * - 处理复杂对象结构的加载
+ * - 支持多个对象数据块的加载
+ * - 实现对象引用的重建
+ * - 包含数据验证和错误处理
+ * - 优化加载性能
+ * 
+ * 简化实现说明：
+ * 本函数为简化实现，原始代码包含复杂的加载逻辑。
+ * 原始代码中实现了完整的对象加载、数据验证、引用重建等功能。
  */
 void rendering_system_object_loader(longlong param_1, longlong param_2) {
     // 参数有效性检查
@@ -230,7 +257,16 @@ void rendering_system_object_loader(longlong param_1, longlong param_2) {
  * 4. 设置状态标志
  * 5. 返回初始化结果
  * 
- * 注意：这是一个简化的实现，原始代码包含复杂的初始化逻辑
+ * 原始实现说明：
+ * - 初始化对象的各个字段和属性
+ * - 设置默认的内存对齐和分配
+ * - 初始化多个子对象和数组
+ * - 设置状态标志和默认值
+ * - 实现完整的对象生命周期管理
+ * 
+ * 简化实现说明：
+ * 本函数为简化实现，原始代码包含复杂的初始化逻辑。
+ * 原始代码中实现了完整的对象初始化、内存分配、子对象管理等功能。
  */
 void rendering_system_object_initializer(longlong param_1) {
     // 参数有效性检查
@@ -272,7 +308,16 @@ void rendering_system_object_initializer(longlong param_1) {
  * 4. 初始化对象数据
  * 5. 返回创建的对象
  * 
- * 注意：这是一个简化的实现，原始代码包含复杂的创建逻辑
+ * 原始实现说明：
+ * - 创建复杂的对象实例
+ * - 设置多个函数表指针
+ * - 初始化对象的数据结构
+ * - 配置对象的虚函数表
+ * - 实现完整的对象创建流程
+ * 
+ * 简化实现说明：
+ * 本函数为简化实现，原始代码包含复杂的创建逻辑。
+ * 原始代码中实现了完整的对象创建、函数表设置、数据初始化等功能。
  */
 undefined8 *rendering_system_object_creator(undefined8 *param_1) {
     // 参数有效性检查
@@ -319,7 +364,16 @@ undefined8 *rendering_system_object_creator(undefined8 *param_1) {
  * 6. 设置比较标志
  * 7. 返回比较结果
  * 
- * 注意：这是一个简化的实现，原始代码包含复杂的比较逻辑
+ * 原始实现说明：
+ * - 实现深度的对象比较
+ * - 支持字符串、数值、浮点数比较
+ * - 处理复杂数据结构的比较
+ * - 包含数组内容和长度的比较
+ * - 实现高精度的浮点数比较
+ * 
+ * 简化实现说明：
+ * 本函数为简化实现，原始代码包含复杂的比较逻辑。
+ * 原始代码中实现了完整的对象比较、数据处理、标志设置等功能。
  */
 bool rendering_system_object_comparator(longlong param_1, longlong param_2) {
     // 参数有效性检查
@@ -381,7 +435,16 @@ bool rendering_system_object_comparator(longlong param_1, longlong param_2) {
  * @param param_4 数据偏移
  * @return 处理结果
  * 
- * 注意：这是一个简化的实现，原始代码包含复杂的数据处理逻辑
+ * 原始实现说明：
+ * - 处理渲染系统数据块
+ * - 支持数据验证和转换
+ * - 实现数据优化和压缩
+ * - 包含错误处理机制
+ * - 优化数据处理性能
+ * 
+ * 简化实现说明：
+ * 本函数为简化实现，原始代码包含复杂的数据处理逻辑。
+ * 原始代码中实现了完整的数据处理、验证、优化等功能。
  */
 undefined1 rendering_system_data_processor(undefined8 param_1, undefined8 param_2, longlong param_3, longlong param_4) {
     // 参数有效性检查
@@ -403,7 +466,16 @@ undefined1 rendering_system_data_processor(undefined8 param_1, undefined8 param_
  * 
  * @return 处理结果
  * 
- * 注意：这是一个简化的实现，原始代码可能包含特定的初始化逻辑
+ * 原始实现说明：
+ * - 执行空操作处理
+ * - 用于系统初始化和清理
+ * - 提供基础的处理框架
+ * - 可能包含特定的初始化逻辑
+ * - 作为占位符函数使用
+ * 
+ * 简化实现说明：
+ * 本函数为简化实现，原始代码可能包含特定的初始化逻辑。
+ * 原始代码中可能实现了特定的初始化或清理功能。
  */
 undefined1 rendering_system_empty_processor(void) {
     // 执行空操作处理
@@ -430,7 +502,16 @@ undefined1 rendering_system_empty_processor(void) {
  * 5. 更新数据流位置
  * 6. 返回序列化结果
  * 
- * 注意：这是一个简化的实现，原始代码包含复杂的序列化逻辑
+ * 原始实现说明：
+ * - 处理复杂对象的高级序列化
+ * - 支持多种数据类型的序列化
+ * - 实现缓冲区动态管理
+ * - 包含数据验证和错误处理
+ * - 优化序列化性能
+ * 
+ * 简化实现说明：
+ * 本函数为简化实现，原始代码包含复杂的序列化逻辑。
+ * 原始代码中实现了完整的高级序列化、缓冲区管理、数据验证等功能。
  */
 void rendering_system_advanced_serializer(longlong param_1, longlong *param_2, undefined8 param_3, undefined8 param_4) {
     // 参数有效性检查
@@ -477,7 +558,16 @@ void rendering_system_advanced_serializer(longlong param_1, longlong *param_2, u
  * 6. 验证数据完整性
  * 7. 返回反序列化结果
  * 
- * 注意：这是一个简化的实现，原始代码包含复杂的反序列化逻辑
+ * 原始实现说明：
+ * - 处理复杂对象的高级反序列化
+ * - 支持多种数据类型的反序列化
+ * - 实现对象引用的重建
+ * - 包含数据验证和错误处理
+ * - 优化反序列化性能
+ * 
+ * 简化实现说明：
+ * 本函数为简化实现，原始代码包含复杂的反序列化逻辑。
+ * 原始代码中实现了完整的高级反序列化、对象重建、数据验证等功能。
  */
 void rendering_system_advanced_deserializer(longlong param_1, longlong param_2) {
     // 参数有效性检查
@@ -568,4 +658,16 @@ void rendering_system_advanced_deserializer(longlong param_1, longlong param_2) 
  * 本文件中的函数实现为简化版本，主要保留了原始代码的核心功能和接口。
  * 原始代码包含更复杂的内存管理、错误处理和性能优化逻辑。
  * 在实际使用中，需要根据具体需求完善实现细节。
+ * 
+ * 原始实现文件：
+ * - 源文件：/root/WorkSpace/CSharp/mountblade-code/TaleWorlds.Native/src/03_rendering_part116.c
+ * - 原始函数：FUN_1803387a0, FUN_180338e10, FUN_180338f90, FUN_180339080, FUN_180339110, FUN_1803391e0
+ * 
+ * 简化实现对应关系：
+ * - rendering_system_data_deserializer 对应 FUN_1803387a0
+ * - rendering_system_object_serializer 对应 FUN_180338e10
+ * - rendering_system_object_loader 对应 FUN_180338f90
+ * - rendering_system_object_initializer 对应 FUN_180339080
+ * - rendering_system_object_creator 对应 FUN_180339110
+ * - rendering_system_object_comparator 对应 FUN_1803391e0
  */

@@ -992,8 +992,14 @@ void RenderingSystem_RemoveResourceFromTable(longlong param_1, char param_2, und
 
 
 
-// 函数: void FUN_18060ef16(undefined8 param_1)
-void FUN_18060ef16(undefined8 param_1)
+/**
+ * 渲染系统资源引用释放器
+ * 
+ * 释放资源的引用计数，支持内存管理和资源清理。
+ * 
+ * @param param_1   要释放的资源指针
+ */
+void RenderingSystem_ReleaseResourceReference(undefined8 param_1)
 
 {
   longlong *plVar1;
@@ -1006,24 +1012,24 @@ void FUN_18060ef16(undefined8 param_1)
   uint in_stack_00000038;
   undefined8 in_stack_00000040;
   
-  lVar4 = FUN_18060ece0();
+  lVar4 = RenderingSystem_FindResourceByPointer();
   if (lVar4 == 0) {
-    FUN_1802ee720(param_1,1);
+    FUN_1802ee720(param_1,RENDERING_SYSTEM_FLAG_ENABLE);
     if (unaff_SIL != '\0') {
       FUN_1802ea560(param_1,0x3f800000);
     }
     return;
   }
-  FUN_1802ee720(*(undefined8 *)(lVar4 + 0x18),1);
+  FUN_1802ee720(*(undefined8 *)(lVar4 + 0x18),RENDERING_SYSTEM_FLAG_ENABLE);
   if (unaff_SIL != '\0') {
     FUN_1802ea560(*(undefined8 *)(lVar4 + 0x18),0x3f800000);
   }
   lVar2 = *(longlong *)(lVar4 + 0x10);
   uVar3 = *(uint *)(lVar4 + 0xc);
-  piVar5 = (int *)(lVar2 + 0x87bd28);
+  piVar5 = (int *)(lVar2 + RENDERING_SYSTEM_DATA_OFFSET_0x5c8);
   puVar6 = (undefined8 *)
-           ((ulonglong)(uVar3 & 0xf) * 0x40 +
-           *(longlong *)(*(longlong *)(lVar2 + 0x87bd50) + (ulonglong)(uVar3 >> 4) * 8));
+           ((ulonglong)(uVar3 & 0xf) * RENDERING_SYSTEM_HASH_TABLE_SIZE +
+           *(longlong *)(*(longlong *)(lVar2 + RENDERING_SYSTEM_DATA_OFFSET_0x5d0) + (ulonglong)(uVar3 >> 4) * 8));
   in_stack_00000038 = uVar3;
   if ((undefined *)*puVar6 == &UNK_180a308a0) {
     puVar6[2] = 0;
@@ -1036,14 +1042,14 @@ void FUN_18060ef16(undefined8 param_1)
   else {
     (**(code **)((undefined *)*puVar6 + 0x10))(puVar6);
   }
-  *(undefined4 *)(puVar6 + 1) = 0;
-  FUN_1800571e0(lVar2 + 0x87bd30,&stack0x00000038);
+  *(undefined4 *)(puVar6 + 1) = RENDERING_SYSTEM_FLAG_DISABLE;
+  FUN_1800571e0(lVar2 + RENDERING_SYSTEM_DATA_OFFSET_0x5d0,&stack0x00000038);
   if (*piVar5 - 1U == uVar3) {
-    *piVar5 = 0;
-    uVar3 = *(int *)(lVar2 + 0x87bd2c) - 1;
+    *piVar5 = RENDERING_SYSTEM_FLAG_DISABLE;
+    uVar3 = *(int *)(lVar2 + RENDERING_SYSTEM_DATA_OFFSET_0x5c8) - 1;
     if (-1 < (int)uVar3) {
-      while (*(int *)(*(longlong *)(*(longlong *)(lVar2 + 0x87bd50) + (ulonglong)(uVar3 >> 4) * 8) +
-                      8 + (ulonglong)(uVar3 & 0xf) * 0x40) == 0) {
+      while (*(int *)(*(longlong *)(*(longlong *)(lVar2 + RENDERING_SYSTEM_DATA_OFFSET_0x5d0) + (ulonglong)(uVar3 >> 4) * 8) +
+                      8 + (ulonglong)(uVar3 & 0xf) * RENDERING_SYSTEM_HASH_TABLE_SIZE) == RENDERING_SYSTEM_FLAG_DISABLE) {
         uVar3 = uVar3 - 1;
         if ((int)uVar3 < 0) {
           return;
@@ -1059,8 +1065,12 @@ void FUN_18060ef16(undefined8 param_1)
 
 
 
-// 函数: void FUN_18060ef6e(void)
-void FUN_18060ef6e(void)
+/**
+ * 渲染系统空函数2
+ * 
+ * 占位符函数，用于系统扩展和接口兼容性。
+ */
+void RenderingSystem_EmptyFunction2(void)
 
 {
   char unaff_SIL;
@@ -1076,8 +1086,12 @@ void FUN_18060ef6e(void)
 
 
 
-// 函数: void FUN_18060ef9a(void)
-void FUN_18060ef9a(void)
+/**
+ * 渲染系统空函数3
+ * 
+ * 占位符函数，用于系统扩展和接口兼容性。
+ */
+void RenderingSystem_EmptyFunction3(void)
 
 {
   return;
@@ -1087,22 +1101,39 @@ void FUN_18060ef9a(void)
 
 
 
-// 函数: void FUN_18060efa0(longlong param_1)
-void FUN_18060efa0(longlong param_1)
+/**
+ * 渲染系统资源指针清理器
+ * 
+ * 清理资源指针，支持条件判断和内存管理。
+ * 
+ * @param param_1   要清理的资源指针
+ */
+void RenderingSystem_CleanupResourcePointer(longlong param_1)
 
 {
   longlong lVar1;
   
-  if ((param_1 != 0) && (lVar1 = FUN_18060ece0(), lVar1 == 0)) {
-    FUN_1802ee720(param_1,0);
+  if ((param_1 != 0) && (lVar1 = RenderingSystem_FindResourceByPointer(), lVar1 == 0)) {
+    FUN_1802ee720(param_1,RENDERING_SYSTEM_FLAG_DISABLE);
   }
   return;
 }
 
 
 
+/**
+ * 渲染系统资源属性获取器
+ * 
+ * 获取指定资源的属性信息，支持多参数查询。
+ * 
+ * @param param_1   资源标识符
+ * @param param_2   查询参数1
+ * @param param_3   查询参数2
+ * @param param_4   查询参数3
+ * @return          资源属性值
+ */
 undefined4
-FUN_18060efd0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+RenderingSystem_GetResourceProperty(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined4 uVar1;
@@ -1122,9 +1153,18 @@ FUN_18060efd0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-byte FUN_18060f040(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 渲染系统资源能力检查器
+ * 
+ * 检查指定资源的能力标志，支持位操作和状态验证。
+ * 
+ * @param param_1   资源标识符
+ * @param param_2   检查参数1
+ * @param param_3   检查参数2
+ * @param param_4   检查参数3
+ * @return          能力标志位，0表示无能力，1表示有能力
+ */
+byte RenderingSystem_CheckResourceCapability(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   int iVar1;
@@ -1139,13 +1179,24 @@ byte FUN_18060f040(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  return *(byte *)((longlong)iVar1 * 0x170 + 0x140 + _DAT_180c95ff0) >> 4 & 1;
+  return *(byte *)((longlong)iVar1 * RENDERING_SYSTEM_STRING_BUFFER_SIZE + 0x140 + _DAT_180c95ff0) >> 4 & 1;
 }
 
 
 
+/**
+ * 渲染系统资源扩展属性获取器
+ * 
+ * 获取指定资源的扩展属性信息，支持高级查询和数据访问。
+ * 
+ * @param param_1   资源标识符
+ * @param param_2   查询参数1
+ * @param param_3   查询参数2
+ * @param param_4   查询参数3
+ * @return          扩展属性值
+ */
 undefined4
-FUN_18060f0d0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+RenderingSystem_GetResourceExtendedProperty(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined4 uVar1;
@@ -1169,8 +1220,15 @@ FUN_18060f0d0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined
 
 
 
-// 函数: void FUN_18060f140(int param_1,undefined8 *param_2)
-void FUN_18060f140(int param_1,undefined8 *param_2)
+/**
+ * 渲染系统资源数据提取器
+ * 
+ * 从指定资源中提取数据，支持多字段数据提取和缓冲区操作。
+ * 
+ * @param param_1   资源索引
+ * @param param_2   输出数据数组指针
+ */
+void RenderingSystem_ExtractResourceData(int param_1,undefined8 *param_2)
 
 {
   undefined1 auStackX_8 [32];
@@ -1199,9 +1257,18 @@ void FUN_18060f140(int param_1,undefined8 *param_2)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-ulonglong FUN_18060f1b0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 渲染系统资源标识符获取器
+ * 
+ * 获取指定资源的标识符，支持资源定位和身份验证。
+ * 
+ * @param param_1   资源标识符
+ * @param param_2   查询参数1
+ * @param param_3   查询参数2
+ * @param param_4   查询参数3
+ * @return          资源标识符值，失败返回0xffffffff
+ */
+ulonglong RenderingSystem_GetResourceIdentifier(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   int iVar1;
@@ -1217,7 +1284,7 @@ ulonglong FUN_18060f1b0(undefined8 param_1,undefined8 param_2,undefined8 param_3
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  lVar3 = (longlong)iVar1 * 0x170 + _DAT_180c95ff0;
+  lVar3 = (longlong)iVar1 * RENDERING_SYSTEM_STRING_BUFFER_SIZE + _DAT_180c95ff0;
   if (lVar3 != 0) {
     return (ulonglong)*(byte *)(lVar3 + 0x140);
   }
@@ -1226,18 +1293,28 @@ ulonglong FUN_18060f1b0(undefined8 param_1,undefined8 param_2,undefined8 param_3
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+/**
+ * 渲染系统资源参数获取器
+ * 
+ * 获取指定资源的参数值，支持多参数查询和数据访问。
+ * 
+ * @param param_1   资源标识符
+ * @param param_2   参数类型
+ * @param param_3   参数标志1
+ * @param param_4   参数标志2
+ * @param param_5   参数标志3
+ * @return          资源参数值，失败返回0xffffffff
+ */
 undefined4
-FUN_18060f240(undefined8 param_1,undefined4 param_2,undefined1 param_3,undefined4 param_4,
-             undefined1 param_5)
+RenderingSystem_GetResourceParameter(undefined8 param_1,undefined4 param_2,undefined1 param_3,undefined4 param_4,
+                                     undefined1 param_5)
 
 {
   int iVar1;
   longlong lVar2;
   
-  iVar1 = FUN_18060efd0();
-  lVar2 = (longlong)iVar1 * 0x170 + _DAT_180c95ff0;
+  iVar1 = RenderingSystem_GetResourceProperty();
+  lVar2 = (longlong)iVar1 * RENDERING_SYSTEM_STRING_BUFFER_SIZE + _DAT_180c95ff0;
   if (lVar2 == 0) {
     return 0xffffffff;
   }
@@ -1247,17 +1324,27 @@ FUN_18060f240(undefined8 param_1,undefined4 param_2,undefined1 param_3,undefined
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-int FUN_18060f2b0(undefined8 param_1,undefined4 param_2,undefined1 param_3,undefined4 param_4,
-                 undefined1 param_5)
+/**
+ * 渲染系统资源索引获取器
+ * 
+ * 获取指定资源的索引值，支持资源定位和数据访问。
+ * 
+ * @param param_1   资源标识符
+ * @param param_2   索引类型
+ * @param param_3   索引标志1
+ * @param param_4   索引标志2
+ * @param param_5   索引标志3
+ * @return          资源索引值，失败返回-1
+ */
+int RenderingSystem_GetResourceIndex(undefined8 param_1,undefined4 param_2,undefined1 param_3,undefined4 param_4,
+                                    undefined1 param_5)
 
 {
   int iVar1;
   longlong lVar2;
   
-  iVar1 = FUN_18060efd0();
-  lVar2 = (longlong)iVar1 * 0x170 + _DAT_180c95ff0;
+  iVar1 = RenderingSystem_GetResourceProperty();
+  lVar2 = (longlong)iVar1 * RENDERING_SYSTEM_STRING_BUFFER_SIZE + _DAT_180c95ff0;
   if (((lVar2 != 0) && (lVar2 = FUN_18054f900(lVar2,param_2,param_3,param_4,param_5), lVar2 != 0))
      && (*(int *)(lVar2 + 0x104) != -1)) {
     return *(int *)(lVar2 + 0x104);
@@ -1271,8 +1358,17 @@ int FUN_18060f2b0(undefined8 param_1,undefined4 param_2,undefined1 param_3,undef
 
 
 
-// 函数: void FUN_18060f370(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18060f370(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 渲染系统资源命令处理器
+ * 
+ * 处理资源相关的命令，支持条件判断和系统状态检查。
+ * 
+ * @param param_1   命令标识符
+ * @param param_2   命令参数1
+ * @param param_3   命令参数2
+ * @param param_4   命令参数3
+ */
+void RenderingSystem_ProcessResourceCommand(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined *puVar1;

@@ -1,46 +1,193 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part335.c - 35 个函数
+/*=============================================================================
+ * 03_rendering_part335.c - 渲染系统高级颜色处理和数据转换模块
+ * 
+ * 本模块包含35个核心函数，涵盖渲染系统高级颜色处理、数据转换、
+ * 资源管理、内存管理、参数设置、状态控制等高级渲染功能。
+ * 主要功能包括颜色空间转换、数据格式转换、资源分配、内存管理等。
+ *=============================================================================*/
 
-// 函数: void FUN_180445570(longlong *param_1,char param_2)
-void FUN_180445570(longlong *param_1,char param_2)
+/*===================================================================================
+    常量定义
+===================================================================================*/
+
+// 渲染系统颜色常量
+#define RENDERING_SYSTEM_COLOR_MAX_255      255           // 渲染系统颜色最大值255
+#define RENDERING_SYSTEM_COLOR_MAX_1_0      1.0f          // 渲染系统颜色最大值1.0
+#define RENDERING_SYSTEM_COLOR_SCALE_256    256.0f        // 渲染系统颜色缩放因子256.0
+#define RENDERING_SYSTEM_COLOR_FACTOR       0.003921569f   // 渲染系统颜色转换因子(1/255)
+#define RENDERING_SYSTEM_COLOR_MULTIPLIER    1.0039216f    // 渲染系统颜色乘数因子
+
+// 渲染系统浮点常量
+#define RENDERING_SYSTEM_FLOAT_1_0          0x3f800000     // 渲染系统浮点值1.0
+#define RENDERING_SYSTEM_FLOAT_MAX          0x7f7fffff     // 渲染系统最大浮点值
+
+// 渲染系统标志常量
+#define RENDERING_SYSTEM_FLAG_FFFFFFFE      0xFFFFFFFFFFFFFFFE  // 渲染系统通用标志掩码
+#define RENDERING_SYSTEM_FLAG_0XFF          0xFF            // 渲染系统8位标志掩码
+#define RENDERING_SYSTEM_FLAG_0X48          0x48            // 渲染系统数据大小标志
+
+// 渲染系统偏移量常量
+#define RENDERING_SYSTEM_OFFSET_0X10        0x10            // 渲染系统基础偏移量
+#define RENDERING_SYSTEM_OFFSET_0X18        0x18            // 渲染系统数据偏移量
+#define RENDERING_SYSTEM_OFFSET_0X128       0x128           // 渲染系统功能偏移量
+#define RENDERING_SYSTEM_OFFSET_0X288       0x288           // 渲染系统参数偏移量
+#define RENDERING_SYSTEM_OFFSET_0X3C0       0x3C0           // 渲染系统状态偏移量
+#define RENDERING_SYSTEM_OFFSET_0X140       0x140           // 渲染系统配置偏移量
+#define RENDERING_SYSTEM_OFFSET_0X38C       0x38C           // 渲染系统扩展偏移量
+#define RENDERING_SYSTEM_OFFSET_0X5C        0x5C            // 渲染系统块偏移量
+#define RENDERING_SYSTEM_OFFSET_0X54        0x54            // 渲染系统数据偏移量
+#define RENDERING_SYSTEM_OFFSET_0X60        0x60            // 渲染系统计数偏移量
+#define RENDERING_SYSTEM_OFFSET_0X68        0x68            // 渲染系统指针偏移量
+#define RENDERING_SYSTEM_OFFSET_0X88        0x88            // 渲染系统容量偏移量
+#define RENDERING_SYSTEM_OFFSET_0X90        0x90            // 渲染系统管理偏移量
+
+// 渲染系统错误代码常量
+#define RENDERING_SYSTEM_ERROR_INVALID      0xFFFFFFFF      // 渲染系统错误代码
+#define RENDERING_SYSTEM_ERROR_SUCCESS      0x00000000      // 渲染系统成功代码
+
+// 渲染系统数据常量
+#define RENDERING_SYSTEM_DATA_SIZE_0X20     0x20            // 渲染系统数据大小32字节
+#define RENDERING_SYSTEM_DATA_SIZE_0X48     0x48            // 渲染系统数据大小72字节
+#define RENDERING_SYSTEM_DATA_SIZE_0X5C     0x5C            // 渲染系统数据大小92字节
+
+/*===================================================================================
+    函数声明和别名定义
+===================================================================================*/
+
+// 渲染系统高级颜色处理和数据转换函数
+void RenderingSystem_ProcessColorTransform(longlong *param_1, char param_2);
+undefined8 * RenderingSystem_AllocateResourceMemory(undefined8 *param_1, ulonglong param_2, undefined8 param_3, undefined8 param_4);
+undefined4 * RenderingSystem_CreateColorBuffer(undefined4 *param_1, longlong *param_2);
+void RenderingSystem_ConvertColorToARGB(longlong param_1, undefined4 param_2, undefined8 param_3, float *param_4, undefined8 param_5);
+void RenderingSystem_ConvertColorToRGBA(longlong param_1, undefined4 param_2, undefined8 param_3, undefined8 param_4, float *param_5, undefined8 param_6);
+void RenderingSystem_ProcessMultiColorData(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4, undefined8 param_5, undefined8 param_6, undefined8 param_7, undefined8 param_8, undefined8 param_9, undefined8 param_10, float *param_11, float *param_12, float *param_13);
+void RenderingSystem_SetColorParameter(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4, undefined8 param_5, float *param_6);
+void RenderingSystem_UpdateColorChannel(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4, undefined8 param_5, float *param_6);
+void RenderingSystem_AdjustColorGamma(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4, undefined8 param_5, float *param_6);
+void RenderingSystem_SetRenderParameter(longlong param_1, undefined4 param_2);
+void RenderingSystem_ClearRenderState(longlong param_1);
+void RenderingSystem_InitializeColorMatrix(longlong param_1, undefined8 param_2, undefined8 param_3);
+void RenderingSystem_ApplyColorFilter(longlong param_1, undefined8 param_2, undefined8 param_3, undefined4 param_4, undefined4 param_5);
+void RenderingSystem_SetBlendMode(longlong param_1, undefined8 param_2, undefined8 param_3, undefined4 param_4, undefined4 param_5);
+void RenderingSystem_ConvertToPremultipliedAlpha(longlong param_1, undefined8 param_2, undefined8 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6);
+void RenderingSystem_SetStandardBlendMode(longlong param_1, undefined8 param_2, undefined8 param_3);
+void RenderingSystem_ResetRenderState(longlong param_1);
+void RenderingSystem_SetColorValue(longlong param_1, undefined8 param_2, undefined8 param_3, float *param_4, undefined4 param_5);
+void RenderingSystem_SetDefaultColor(longlong param_1, undefined8 param_2, undefined8 param_3);
+void RenderingSystem_ClearRenderState2(longlong param_1);
+void RenderingSystem_SetAdditiveBlendMode(longlong param_1, undefined8 param_2, undefined8 param_3);
+void RenderingSystem_SetSubtractiveBlendMode(longlong param_1, undefined8 param_2, undefined8 param_3);
+void RenderingSystem_ApplyCustomColor(longlong param_1, undefined8 param_2, undefined8 param_3, undefined4 *param_4, undefined1 param_5);
+void RenderingSystem_ClearRenderState3(longlong param_1);
+void RenderingSystem_SetAlphaBlendMode(longlong param_1, undefined8 param_2, undefined8 param_3);
+void RenderingSystem_SetPixelColor(longlong param_1, int param_2, float *param_3);
+void RenderingSystem_CopyColorData(longlong param_1, undefined8 *param_2);
+void RenderingSystem_SetColorData(longlong param_1, undefined8 *param_2);
+void RenderingSystem_ApplyColorToAll(longlong param_1, float *param_2);
+float * RenderingSystem_GetPixelColor(float *param_1, longlong param_2, int param_3);
+void RenderingSystem_AdjustColorBrightness(longlong param_1, float param_2);
+void RenderingSystem_AdjustColorSaturation(longlong param_1, float param_2);
+void RenderingSystem_InvalidateColorCache(longlong param_1);
+void RenderingSystem_ProcessRenderEffect(longlong param_1, undefined8 param_2, undefined8 param_3, undefined4 param_4);
+void RenderingSystem_RemoveColorEntry(longlong param_1, int param_2);
+undefined4 * RenderingSystem_QueryColorData(undefined4 *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4);
+undefined8 * RenderingSystem_AllocateColorBuffer(undefined8 *param_1);
+undefined4 * RenderingSystem_GetColorBuffer(undefined4 *param_1);
+undefined4 * RenderingSystem_GetColorBufferEx(undefined4 *param_1, longlong param_2);
+void RenderingSystem_SetResourcePointer(undefined8 param_1, longlong param_2, undefined8 param_3, undefined8 param_4);
+longlong * RenderingSystem_GetResourcePointer(longlong *param_1, longlong param_2, int param_3);
+longlong * RenderingSystem_GetMainResourcePointer(longlong *param_1, longlong param_2);
+void RenderingSystem_UpdateResourcePointer(undefined8 param_1, undefined8 param_2);
+void RenderingSystem_SetResourceParameters(longlong param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5);
+
+/*===================================================================================
+    核心函数实现
+===================================================================================*/
+
+/**
+ * 渲染系统颜色变换处理器
+ * 
+ * 根据参数条件处理颜色变换操作，支持不同的变换模式。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   变换模式标志
+ * 
+ * 处理流程：
+ * 1. 检查变换模式标志
+ * 2. 如果标志非零，执行特定变换操作
+ * 3. 如果标志为零，执行默认变换操作
+ * 4. 调用相应的变换处理函数
+ */
+void RenderingSystem_ProcessColorTransform(longlong *param_1,char param_2)
 
 {
   undefined4 auStackX_10 [6];
   
   if (param_2 != '\0') {
-    (**(code **)(*param_1 + 0x128))(param_1,&UNK_180995a3c);
+    (**(code **)(*param_1 + RENDERING_SYSTEM_OFFSET_0X128))(param_1,&UNK_180995a3c);
     return;
   }
   auStackX_10[0] = 0;
-  (**(code **)(*param_1 + 0x128))(param_1,auStackX_10);
+  (**(code **)(*param_1 + RENDERING_SYSTEM_OFFSET_0X128))(param_1,auStackX_10);
   return;
 }
 
 
 
-undefined8 *
-FUN_180445610(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 渲染系统资源内存分配器
+ * 
+ * 为渲染系统分配和管理内存资源，支持条件释放。
+ * 
+ * @param param_1   资源容器指针
+ * @param param_2   分配标志位
+ * @param param_3   保留参数1
+ * @param param_4   保留参数2
+ * @return          资源容器指针
+ * 
+ * 处理流程：
+ * 1. 初始化资源容器结构
+ * 2. 设置资源管理指针
+ * 3. 根据标志位决定是否释放内存
+ * 4. 返回分配的资源容器
+ */
+undefined8 * RenderingSystem_AllocateResourceMemory(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 uVar1;
   
-  uVar1 = 0xfffffffffffffffe;
+  uVar1 = RENDERING_SYSTEM_FLAG_FFFFFFFE;
   *param_1 = &UNK_180a2a448;
   FUN_18022f410(param_1 + 2);
   *param_1 = &UNK_180a21720;
   *param_1 = &UNK_180a21690;
   if ((param_2 & 1) != 0) {
-    free(param_1,0x48,param_3,param_4,uVar1);
+    free(param_1,RENDERING_SYSTEM_DATA_SIZE_0X48,param_3,param_4,uVar1);
   }
   return param_1;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined4 * FUN_180445680(undefined4 *param_1,longlong *param_2)
+/**
+ * 渲染系统颜色缓冲区创建器
+ * 
+ * 创建和初始化颜色缓冲区，用于存储和处理颜色数据。
+ * 
+ * @param param_1   颜色缓冲区指针
+ * @param param_2   参数管理器指针
+ * @return          颜色缓冲区指针
+ * 
+ * 处理流程：
+ * 1. 分配缓冲区内存
+ * 2. 初始化缓冲区结构
+ * 3. 设置颜色管理器
+ * 4. 配置缓冲区参数
+ * 5. 返回初始化的缓冲区
+ */
+undefined4 * RenderingSystem_CreateColorBuffer(undefined4 *param_1,longlong *param_2)
 
 {
   undefined4 uVar1;
@@ -49,7 +196,7 @@ undefined4 * FUN_180445680(undefined4 *param_1,longlong *param_2)
   undefined4 uStack_3c;
   undefined4 uStack_34;
   
-  plVar2 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x48,8,3,0xfffffffffffffffe);
+  plVar2 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,RENDERING_SYSTEM_DATA_SIZE_0X48,8,3,RENDERING_SYSTEM_FLAG_FFFFFFFE);
   *plVar2 = (longlong)&UNK_180a21690;
   *plVar2 = (longlong)&UNK_180a21720;
   *(undefined4 *)(plVar2 + 1) = 0;
@@ -83,9 +230,25 @@ undefined4 * FUN_180445680(undefined4 *param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_1804457b0(longlong param_1,undefined4 param_2,undefined8 param_3,float *param_4,
-void FUN_1804457b0(longlong param_1,undefined4 param_2,undefined8 param_3,float *param_4,
-                  undefined8 param_5)
+/**
+ * 渲染系统颜色转换器（ARGB格式）
+ * 
+ * 将浮点颜色值转换为ARGB格式，支持颜色分量标准化。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   颜色格式参数
+ * @param param_3   颜色目标参数
+ * @param param_4   浮点颜色数组(R,G,B,A)
+ * @param param_5   转换标志
+ * 
+ * 处理流程：
+ * 1. 将浮点颜色值转换为8位整数值
+ * 2. 对每个颜色分量进行范围限制(0-255)
+ * 3. 组合颜色分量为ARGB格式
+ * 4. 调用底层颜色转换函数
+ */
+void RenderingSystem_ConvertColorToARGB(longlong param_1,undefined4 param_2,undefined8 param_3,float *param_4,
+                                       undefined8 param_5)
 
 {
   uint uVar1;
@@ -94,28 +257,28 @@ void FUN_1804457b0(longlong param_1,undefined4 param_2,undefined8 param_3,float 
   uint uVar4;
   uint auStackX_8 [2];
   
-  uVar1 = (uint)(longlong)(param_4[3] * 256.0);
-  uVar3 = 0xff;
-  if (uVar1 < 0xff) {
+  uVar1 = (uint)(longlong)(param_4[3] * RENDERING_SYSTEM_COLOR_SCALE_256);
+  uVar3 = RENDERING_SYSTEM_FLAG_0XFF;
+  if (uVar1 < RENDERING_SYSTEM_FLAG_0XFF) {
     uVar3 = uVar1;
   }
-  uVar4 = (uint)(longlong)(*param_4 * 256.0);
-  uVar1 = 0xff;
-  if (uVar4 < 0xff) {
+  uVar4 = (uint)(longlong)(*param_4 * RENDERING_SYSTEM_COLOR_SCALE_256);
+  uVar1 = RENDERING_SYSTEM_FLAG_0XFF;
+  if (uVar4 < RENDERING_SYSTEM_FLAG_0XFF) {
     uVar1 = uVar4;
   }
-  uVar2 = (uint)(longlong)(param_4[1] * 256.0);
-  uVar4 = 0xff;
-  if (uVar2 < 0xff) {
+  uVar2 = (uint)(longlong)(param_4[1] * RENDERING_SYSTEM_COLOR_SCALE_256);
+  uVar4 = RENDERING_SYSTEM_FLAG_0XFF;
+  if (uVar2 < RENDERING_SYSTEM_FLAG_0XFF) {
     uVar4 = uVar2;
   }
-  uVar2 = (uint)(longlong)(param_4[2] * 256.0);
-  auStackX_8[0] = 0xff;
-  if (uVar2 < 0xff) {
+  uVar2 = (uint)(longlong)(param_4[2] * RENDERING_SYSTEM_COLOR_SCALE_256);
+  auStackX_8[0] = RENDERING_SYSTEM_FLAG_0XFF;
+  if (uVar2 < RENDERING_SYSTEM_FLAG_0XFF) {
     auStackX_8[0] = uVar2;
   }
   auStackX_8[0] = ((uVar3 << 8 | uVar1) << 8 | uVar4) << 8 | auStackX_8[0];
-  FUN_1802350e0(param_1 + 0x10,param_2,param_3,auStackX_8,param_5);
+  FUN_1802350e0(param_1 + RENDERING_SYSTEM_OFFSET_0X10,param_2,param_3,auStackX_8,param_5);
   return;
 }
 
