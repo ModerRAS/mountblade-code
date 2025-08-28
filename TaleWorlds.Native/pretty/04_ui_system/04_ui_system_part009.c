@@ -62,35 +62,55 @@ void normalize_and_scale_vector_array(longlong *vector_array, float scale_factor
 
 
 
-// 函数: void FUN_1806593d9(undefined8 param_1,longlong *param_2,undefined8 param_3,longlong param_4)
-void FUN_1806593d9(undefined8 param_1,longlong *param_2,undefined8 param_3,longlong param_4)
-
+/**
+ * UI向量处理变体函数
+ * 对向量数组进行归一化处理并应用预定义的缩放因子
+ * 
+ * @param context_ptr 上下文指针（未使用）
+ * @param vector_array 向量数组指针
+ * @param scale_param 缩放参数（未使用）
+ * @param base_offset 基础偏移量
+ */
+void ui_vector_process_variant(undefined8 context_ptr, longlong *vector_array, undefined8 scale_param, longlong base_offset)
 {
-  ulonglong uVar1;
-  uint in_R10D;
-  float fVar2;
-  float fVar3;
-  undefined1 auVar4 [16];
-  float unaff_XMM7_Da;
-  float fStack0000000000000050;
-  float fStack0000000000000054;
+  ulonglong current_offset;
+  uint element_index;
+  float vector_x;
+  float vector_y;
+  float vector_length_squared;
+  undefined1 inverse_sqrt_buffer[16];
+  float scale_factor;
+  float temp_vector_x;
+  float temp_vector_y;
   
-  uVar1 = (ulonglong)in_R10D;
+  current_offset = 0;
+  element_index = 0;
+  
+  // 遍历向量数组进行归一化处理
   do {
-    in_R10D = in_R10D + 1;
-    fStack0000000000000054 = (float)((ulonglong)*(undefined8 *)(uVar1 + param_4) >> 0x20);
-    fStack0000000000000050 = (float)*(undefined8 *)(uVar1 + param_4);
-    fVar2 = fStack0000000000000054 * fStack0000000000000054 +
-            fStack0000000000000050 * fStack0000000000000050;
-    auVar4 = rsqrtss(ZEXT416((uint)fVar2),ZEXT416((uint)fVar2));
-    fVar3 = auVar4._0_4_;
-    fVar2 = fVar3 * 0.5 * (3.0 - fVar2 * fVar3 * fVar3);
-    *(ulonglong *)(uVar1 + param_2[0x11]) =
-         CONCAT44(fVar2 * fStack0000000000000054 * unaff_XMM7_Da + *(float *)(uVar1 + 4 + param_4),
-                  fVar2 * fStack0000000000000050 * unaff_XMM7_Da + *(float *)(uVar1 + param_4));
-    uVar1 = uVar1 + 8;
-    param_4 = *param_2;
-  } while ((ulonglong)(longlong)(int)in_R10D < (ulonglong)(param_2[1] - param_4 >> 3));
+    element_index = element_index + 1;
+    
+    // 提取向量分量（高32位为Y，低32位为X）
+    temp_vector_y = (float)((ulonglong)*(undefined8 *)(current_offset + base_offset) >> 0x20);
+    temp_vector_x = (float)*(undefined8 *)(current_offset + base_offset);
+    
+    // 计算向量长度的平方
+    vector_length_squared = temp_vector_y * temp_vector_y + temp_vector_x * temp_vector_x;
+    
+    // 使用快速平方根倒数进行归一化
+    inverse_sqrt_buffer = rsqrtss(ZEXT416((uint)vector_length_squared), ZEXT416((uint)vector_length_squared));
+    scale_factor = inverse_sqrt_buffer._0_4_;
+    scale_factor = scale_factor * 0.5 * (3.0 - vector_length_squared * scale_factor * scale_factor);
+    
+    // 应用缩放并存储结果
+    *(ulonglong *)(current_offset + vector_array[0x11]) = 
+         CONCAT44(scale_factor * temp_vector_y * unaff_XMM7_Da + *(float *)(current_offset + 4 + base_offset),
+                  scale_factor * temp_vector_x * unaff_XMM7_Da + *(float *)(current_offset + base_offset));
+    
+    current_offset = current_offset + 8;
+    base_offset = *vector_array;
+  } while ((ulonglong)(longlong)(int)element_index < (ulonglong)(vector_array[1] - base_offset >> 3));
+  
   return;
 }
 
@@ -98,9 +118,11 @@ void FUN_1806593d9(undefined8 param_1,longlong *param_2,undefined8 param_3,longl
 
 
 
-// 函数: void FUN_1806594bd(void)
-void FUN_1806594bd(void)
-
+/**
+ * UI系统占位函数
+ * 空函数，用于系统架构占位
+ */
+void ui_system_placeholder_function(void)
 {
   return;
 }
