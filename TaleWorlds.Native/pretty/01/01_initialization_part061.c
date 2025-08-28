@@ -765,200 +765,202 @@ void UpdateDataTable(longlong table_handle)
 
 
 
-// 函数: void FUN_18007f90f(undefined4 param_1)
-void FUN_18007f90f(undefined4 param_1)
+/**
+ * 数据表更新函数（参数版本）- 更新数据表结构和索引
+ * 功能：检查版本号，分配内存，更新索引表，处理数据块复制
+ */
+void UpdateDataTableWithVersion(undefined4 version_number)
 
 {
-  longlong *plVar1;
-  longlong *plVar2;
-  byte *pbVar3;
-  char cVar4;
-  undefined4 uVar5;
-  uint uVar6;
-  longlong *plVar7;
-  longlong lVar8;
-  int iVar9;
-  int iVar10;
-  longlong lVar11;
-  ulonglong uVar12;
-  char *pcVar13;
-  uint *puVar14;
-  int iVar15;
-  uint uVar16;
-  longlong unaff_RDI;
-  int iVar17;
-  int iVar18;
-  undefined4 *puVar19;
-  uint *puVar20;
-  ulonglong uVar21;
-  ulonglong uVar22;
-  bool bVar23;
+  longlong *index_ptr;
+  longlong *temp_ptr;
+  byte *data_ptr;
+  char table_size;
+  undefined4 buffer_handle;
+  uint index_value;
+  longlong *data_buffer;
+  longlong allocated_memory;
+  int base_index;
+  int current_index;
+  longlong table_base;
+  ulonglong data_count;
+  char *status_ptr;
+  uint *global_counter;
+  int total_items;
+  uint current_offset;
+  int block_start;
+  int block_end;
+  undefined4 *source_data;
+  uint *target_ptr;
+  ulonglong start_block;
+  ulonglong end_block;
+  bool allocation_success;
+  longlong table_handle;
   
-  iVar15 = *(int *)(unaff_RDI + 0x1c) + *(int *)(unaff_RDI + 0x18);
-  *(undefined4 *)(unaff_RDI + 0x28) = param_1;
-  if (0 < iVar15) {
-    lVar11 = (longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
-    uVar5 = FUN_180080380(lVar11,iVar15);
-    *(undefined4 *)(unaff_RDI + 0x30) = uVar5;
-    FUN_1800802e0(lVar11,uVar5);
-    if (*(longlong *)(unaff_RDI + 0x10) == 0) {
-      if (*(int *)(unaff_RDI + 0x18) != 0) {
-        *(undefined4 *)(unaff_RDI + 0x2c) = *(undefined4 *)(unaff_RDI + 0x30);
+  total_items = *(int *)(table_handle + 0x1c) + *(int *)(table_handle + 0x18);
+  *(undefined4 *)(table_handle + 0x28) = version_number;
+  if (0 < total_items) {
+    table_base = (longlong)*(int )(GLOBAL_MEMORY_TABLE_180c86890 + 0xe78) * 0x128 + GLOBAL_MEMORY_TABLE_180c86890 + 0xc28;
+    buffer_handle = AllocateMemoryBlock(table_base,total_items);
+    *(undefined4 *)(table_handle + 0x30) = buffer_handle;
+    InitializeMemoryBlock(table_base,buffer_handle);
+    if (*(longlong *)(table_handle + 0x10) == 0) {
+      if (*(int )(table_handle + 0x18) != 0) {
+        *(undefined4 *)(table_handle + 0x2c) = *(undefined4 *)(table_handle + 0x30);
         return;
       }
     }
     else {
-      cVar4 = *(char *)(unaff_RDI + 0x44);
-      uVar12 = (ulonglong)cVar4;
-      plVar1 = (longlong *)(unaff_RDI + 0x38);
-      iVar15 = (int)cVar4;
-      if (*(int *)(unaff_RDI + 0x40) == (int)cVar4) {
-        plVar7 = (longlong *)*plVar1;
+      table_size = *(char *)(table_handle + 0x44);
+      data_count = (ulonglong)table_size;
+      index_ptr = (longlong *)(table_handle + 0x38);
+      total_items = (int)table_size;
+      if (*(int )(table_handle + 0x40) == (int)table_size) {
+        data_buffer = (longlong *)*index_ptr;
       }
       else {
-        *(int *)(unaff_RDI + 0x40) = iVar15;
-        if (*plVar1 != 0) {
+        *(int )(table_handle + 0x40) = total_items;
+        if (*index_ptr != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          HandleErrorCondition();
         }
-        *plVar1 = 0;
-        if (cVar4 == '\0') {
-          plVar7 = (longlong *)0x0;
-          *plVar1 = 0;
+        *index_ptr = 0;
+        if (table_size == '\0') {
+          data_buffer = (longlong *)0x0;
+          *index_ptr = 0;
         }
         else {
-          plVar7 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,(longlong)cVar4 * 4);
-          *plVar1 = (longlong)plVar7;
+          data_buffer = (longlong *)AllocateDataBuffer(GLOBAL_MEMORY_POOL_180c8ed18,(longlong)table_size * 4);
+          *index_ptr = (longlong)data_buffer;
         }
       }
-      if (plVar7 != (longlong *)0x0) {
-        iVar17 = 0;
-        uVar16 = (uint)cVar4;
-        iVar18 = iVar17;
-        if ((0 < iVar15) && (0xf < uVar16)) {
-          iVar10 = *(int *)(unaff_RDI + 0x2c);
-          plVar2 = (longlong *)((longlong)plVar7 + (longlong)(cVar4 + -1) * 4);
-          if ((((longlong *)(unaff_RDI + 0x2c) < plVar7) ||
-              (plVar2 < (longlong *)(unaff_RDI + 0x2c))) &&
-             ((plVar1 < plVar7 || (iVar18 = 0, plVar2 < plVar1)))) {
-            uVar6 = uVar16 & 0x8000000f;
-            if ((int)uVar6 < 0) {
-              uVar6 = (uVar6 - 1 | 0xfffffff0) + 1;
+      if (data_buffer != (longlong *)0x0) {
+        block_start = 0;
+        current_offset = (uint)table_size;
+        block_end = block_start;
+        if ((0 < total_items) && (0xf < current_offset)) {
+          current_index = *(int )(table_handle + 0x2c);
+          temp_ptr = (longlong *)((longlong)data_buffer + (longlong)(table_size + -1) * 4);
+          if ((((longlong *)(table_handle + 0x2c) < data_buffer) ||
+              (temp_ptr < (longlong *)(table_handle + 0x2c))) &&
+             ((index_ptr < data_buffer || (block_end = 0, temp_ptr < index_ptr)))) {
+            index_value = current_offset & 0x8000000f;
+            if ((int)index_value < 0) {
+              index_value = (index_value - 1 | 0xfffffff0) + 1;
             }
-            plVar7 = plVar7 + 4;
-            iVar9 = 8;
+            data_buffer = data_buffer + 4;
+            base_index = 8;
             do {
-              *(int *)(plVar7 + -4) = iVar17 + iVar10;
-              *(int *)((longlong)plVar7 + -0x1c) = iVar17 + 1 + iVar10;
-              *(int *)(plVar7 + -3) = iVar17 + 2 + iVar10;
-              *(int *)((longlong)plVar7 + -0x14) = iVar17 + 3 + iVar10;
-              iVar17 = iVar17 + 0x10;
-              *(int *)(plVar7 + -2) = iVar9 + -4 + iVar10;
-              *(int *)((longlong)plVar7 + -0xc) = iVar9 + -3 + iVar10;
-              *(int *)(plVar7 + -1) = iVar9 + -2 + iVar10;
-              *(int *)((longlong)plVar7 + -4) = iVar9 + -1 + iVar10;
-              *(int *)plVar7 = iVar9 + iVar10;
-              *(int *)((longlong)plVar7 + 4) = iVar9 + 1 + iVar10;
-              *(int *)(plVar7 + 1) = iVar9 + 2 + iVar10;
-              *(int *)((longlong)plVar7 + 0xc) = iVar9 + 3 + iVar10;
-              *(int *)(plVar7 + 2) = iVar9 + 4 + iVar10;
-              *(int *)((longlong)plVar7 + 0x14) = iVar9 + 5 + iVar10;
-              *(int *)(plVar7 + 3) = iVar9 + 6 + iVar10;
-              *(int *)((longlong)plVar7 + 0x1c) = iVar9 + 7 + iVar10;
-              plVar7 = plVar7 + 8;
-              iVar9 = iVar9 + 0x10;
-              iVar18 = iVar17;
-            } while (iVar17 < (int)(uVar16 - uVar6));
+              *(int *)(data_buffer + -4) = block_start + current_index;
+              *(int *)((longlong)data_buffer + -0x1c) = block_start + 1 + current_index;
+              *(int *)(data_buffer + -3) = block_start + 2 + current_index;
+              *(int *)((longlong)data_buffer + -0x14) = block_start + 3 + current_index;
+              block_start = block_start + 0x10;
+              *(int *)(data_buffer + -2) = base_index + -4 + current_index;
+              *(int *)((longlong)data_buffer + -0xc) = base_index + -3 + current_index;
+              *(int *)(data_buffer + -1) = base_index + -2 + current_index;
+              *(int *)((longlong)data_buffer + -4) = base_index + -1 + current_index;
+              *(int *)data_buffer = base_index + current_index;
+              *(int *)((longlong)data_buffer + 4) = base_index + 1 + current_index;
+              *(int *)(data_buffer + 1) = base_index + 2 + current_index;
+              *(int *)((longlong)data_buffer + 0xc) = base_index + 3 + current_index;
+              *(int *)(data_buffer + 2) = base_index + 4 + current_index;
+              *(int *)((longlong)data_buffer + 0x14) = base_index + 5 + current_index;
+              *(int *)(data_buffer + 3) = base_index + 6 + current_index;
+              *(int *)((longlong)data_buffer + 0x1c) = base_index + 7 + current_index;
+              data_buffer = data_buffer + 8;
+              base_index = base_index + 0x10;
+              block_end = block_start;
+            } while (block_start < (int)(current_offset - index_value));
           }
         }
-        for (lVar11 = (longlong)iVar18; lVar11 < (longlong)uVar12; lVar11 = lVar11 + 1) {
-          iVar17 = *(int *)(unaff_RDI + 0x2c) + iVar18;
-          iVar18 = iVar18 + 1;
-          *(int *)(*plVar1 + lVar11 * 4) = iVar17;
+        for (table_base = (longlong)block_end; table_base < (longlong)data_count; table_base = table_base + 1) {
+          block_start = *(int )(table_handle + 0x2c) + block_end;
+          block_end = block_end + 1;
+          *(int *)(*index_ptr + table_base * 4) = block_start;
         }
-        iVar18 = *(int *)(unaff_RDI + 0x18);
-        iVar17 = 0;
-        if (0 < (longlong)iVar18) {
-          lVar11 = 0;
+        block_end = *(int )(table_handle + 0x18);
+        block_start = 0;
+        if (0 < (longlong)block_end) {
+          table_base = 0;
           do {
-            iVar10 = *(int *)(unaff_RDI + 0x30) + iVar17;
-            iVar17 = iVar17 + 1;
-            pbVar3 = (byte *)(*(longlong *)(unaff_RDI + 0x10) + lVar11);
-            lVar11 = lVar11 + 1;
-            *(int *)(*plVar1 + (ulonglong)*pbVar3 * 4) = iVar10;
-          } while (lVar11 < iVar18);
+            current_index = *(int )(table_handle + 0x30) + block_start;
+            block_start = block_start + 1;
+            data_ptr = (byte *)(*(longlong *)(table_handle + 0x10) + table_base);
+            table_base = table_base + 1;
+            *(int *)(*index_ptr + (ulonglong)*data_ptr * 4) = current_index;
+          } while (table_base < block_end);
         }
       }
-      puVar14 = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 + _DAT_180c86890 + 0x9d0
-                        );
-      if (iVar15 == 0) {
-        uVar16 = (int)cVar4 - 1;
+      global_counter = (uint *)((longlong)*(int )(GLOBAL_MEMORY_TABLE_180c86890 + 0xc20) * 0x128 + GLOBAL_MEMORY_TABLE_180c86890 + 0x9d0);
+      if (total_items == 0) {
+        current_offset = (int)table_size - 1;
       }
       else {
         LOCK();
-        uVar16 = *puVar14;
-        *puVar14 = *puVar14 + (int)cVar4;
+        current_offset = *global_counter;
+        *global_counter = *global_counter + (int)table_size;
         UNLOCK();
-        uVar21 = (ulonglong)(uVar16 >> 0xb);
-        uVar22 = (ulonglong)(cVar4 + -1 + uVar16 >> 0xb);
-        if (uVar21 <= uVar22) {
-          pcVar13 = (char *)((longlong)puVar14 + uVar21 + 0x108);
-          lVar11 = (uVar22 - uVar21) + 1;
-          puVar20 = puVar14 + uVar21 * 2 + 2;
+        start_block = (ulonglong)(current_offset >> 0xb);
+        end_block = (ulonglong)(table_size + -1 + current_offset >> 0xb);
+        if (start_block <= end_block) {
+          status_ptr = (char *)((longlong)global_counter + start_block + 0x108);
+          table_base = (end_block - start_block) + 1;
+          target_ptr = global_counter + start_block * 2 + 2;
           do {
-            iVar18 = (int)uVar21;
-            if (*(longlong *)puVar20 == 0) {
-              lVar8 = FUN_18062b420(_DAT_180c8ed18,0x2000,0x25);
+            block_end = (int)start_block;
+            if (*(longlong *)target_ptr == 0) {
+              allocated_memory = AllocateLargeMemoryBlock(GLOBAL_MEMORY_POOL_180c8ed18,0x2000,0x25);
               LOCK();
-              bVar23 = *(longlong *)(puVar14 + (longlong)iVar18 * 2 + 2) == 0;
-              if (bVar23) {
-                *(longlong *)(puVar14 + (longlong)iVar18 * 2 + 2) = lVar8;
+              allocation_success = *(longlong *)(global_counter + (longlong)block_end * 2 + 2) == 0;
+              if (allocation_success) {
+                *(longlong *)(global_counter + (longlong)block_end * 2 + 2) = allocated_memory;
               }
               UNLOCK();
-              if (bVar23) {
+              if (allocation_success) {
                 LOCK();
-                *(undefined1 *)((longlong)iVar18 + 0x108 + (longlong)puVar14) = 0;
+                *(undefined1 *)((longlong)block_end + 0x108 + (longlong)global_counter) = 0;
                 UNLOCK();
               }
               else {
-                if (lVar8 != 0) {
+                if (allocated_memory != 0) {
                     // WARNING: Subroutine does not return
-                  FUN_18064e900();
+                  HandleErrorCondition();
                 }
                 do {
-                } while (*pcVar13 != '\0');
+                } while (*status_ptr != '\0');
               }
             }
             else {
               do {
-              } while (*pcVar13 != '\0');
+              } while (*status_ptr != '\0');
             }
-            uVar21 = (ulonglong)(iVar18 + 1);
-            puVar20 = puVar20 + 2;
-            pcVar13 = pcVar13 + 1;
-            lVar11 = lVar11 + -1;
-          } while (lVar11 != 0);
+            start_block = (ulonglong)(block_end + 1);
+            target_ptr = target_ptr + 2;
+            status_ptr = status_ptr + 1;
+            table_base = table_base + -1;
+          } while (table_base != 0);
         }
       }
-      puVar19 = *(undefined4 **)(unaff_RDI + 0x38);
-      uVar6 = uVar16 >> 0xb;
-      *(uint *)(unaff_RDI + 0x2c) = uVar16;
-      if (uVar6 == (int)cVar4 + uVar16 >> 0xb) {
+      source_data = *(undefined4 **)(table_handle + 0x38);
+      index_value = current_offset >> 0xb;
+      *(uint )(table_handle + 0x2c) = current_offset;
+      if (index_value == (int)table_size + current_offset >> 0xb) {
                     // WARNING: Subroutine does not return
-        memcpy(*(longlong *)(puVar14 + (ulonglong)uVar6 * 2 + 2) +
-               (ulonglong)(uVar16 + uVar6 * -0x800) * 4,puVar19,(uVar12 & 0xffffffff) << 2);
+        memcpy(*(longlong *)(global_counter + (ulonglong)index_value * 2 + 2) +
+               (ulonglong)(current_offset + index_value * -0x800) * 4,source_data,(data_count & 0xffffffff) << 2);
       }
-      if (iVar15 != 0) {
-        uVar12 = uVar12 & 0xffffffff;
+      if (total_items != 0) {
+        data_count = data_count & 0xffffffff;
         do {
-          uVar5 = *puVar19;
-          puVar19 = puVar19 + 1;
+          buffer_handle = *source_data;
+          source_data = source_data + 1;
           *(undefined4 *)
-           (*(longlong *)(puVar14 + (ulonglong)(uVar16 >> 0xb) * 2 + 2) +
-           (ulonglong)(uVar16 + (uVar16 >> 0xb) * -0x800) * 4) = uVar5;
-          uVar12 = uVar12 - 1;
-          uVar16 = uVar16 + 1;
-        } while (uVar12 != 0);
+           (*(longlong *)(global_counter + (ulonglong)(current_offset >> 0xb) * 2 + 2) +
+           (ulonglong)(current_offset + (current_offset >> 0xb) * -0x800) * 4) = buffer_handle;
+          data_count = data_count - 1;
+          current_offset = current_offset + 1;
+        } while (data_count != 0);
       }
     }
   }
