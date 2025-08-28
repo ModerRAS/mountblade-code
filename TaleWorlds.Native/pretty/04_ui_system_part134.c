@@ -1224,7 +1224,8 @@ uint64_t UISystem_AddComponent(longlong param_1,int param_2,longlong param_3,int
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_180748162(int32_t param_1)
+// 函数: uint64_t FUN_180748162(int32_t param_1) - UI组件添加简化函数
+uint64_t UISystem_AddComponentSimple(int32_t param_1)
 
 {
   int32_t *puVar1;
@@ -1287,8 +1288,8 @@ uint64_t FUN_180748162(int32_t param_1)
 
 
 
-// 函数: void FUN_18074817c(void)
-void FUN_18074817c(void)
+// 函数: void FUN_18074817c(void) - UI空操作函数1
+void UISystem_NoOperation1(void)
 
 {
   return;
@@ -1298,7 +1299,8 @@ void FUN_18074817c(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_180748192(int32_t param_1)
+// 函数: uint64_t FUN_180748192(int32_t param_1) - UI组件添加上下文函数
+uint64_t UISystem_AddComponentWithContext(int32_t param_1)
 
 {
   int32_t *puVar1;
@@ -1352,7 +1354,8 @@ uint64_t FUN_180748192(int32_t param_1)
 
 
 
-uint64_t FUN_180748279(void)
+// 函数: uint64_t FUN_180748279(void) - UI组件添加失败函数
+uint64_t UISystem_AddComponentFailed(void)
 
 {
   return 0x1f;
@@ -1362,7 +1365,8 @@ uint64_t FUN_180748279(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_180748290(longlong param_1,int param_2)
+// 函数: uint64_t FUN_180748290(longlong param_1,int param_2) - UI组件验证添加函数
+uint64_t UISystem_ValidateComponentAdd(longlong param_1,int param_2)
 
 {
   int iVar1;
@@ -1397,7 +1401,8 @@ uint64_t FUN_180748290(longlong param_1,int param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_1807482c8(void)
+// 函数: uint64_t FUN_1807482c8(void) - UI组件验证添加简化函数
+uint64_t UISystem_ValidateComponentAddSimple(void)
 
 {
   int iVar1;
@@ -1425,8 +1430,8 @@ uint64_t FUN_1807482c8(void)
 
 
 
-// 函数: void FUN_180748318(void)
-void FUN_180748318(void)
+// 函数: void FUN_180748318(void) - UI空操作函数2
+void UISystem_NoOperation2(void)
 
 {
   return;
@@ -1438,8 +1443,8 @@ void FUN_180748318(void)
 
 
 
-// 函数: void FUN_180748323(void)
-void FUN_180748323(void)
+// 函数: void FUN_180748323(void) - UI组件移除函数
+void UISystem_RemoveComponent(void)
 
 {
   longlong unaff_RBX;
@@ -1453,7 +1458,8 @@ void FUN_180748323(void)
 
 
 
-uint64_t FUN_180748383(void)
+// 函数: uint64_t FUN_180748383(void) - UI组件移除失败函数
+uint64_t UISystem_RemoveComponentFailed(void)
 
 {
   return 0x1f;
@@ -1461,7 +1467,8 @@ uint64_t FUN_180748383(void)
 
 
 
-uint64_t FUN_1807483a0(longlong param_1,longlong param_2,int32_t *param_3)
+// 函数: uint64_t FUN_1807483a0(longlong param_1,longlong param_2,int32_t *param_3) - UI组件类型匹配函数
+uint64_t UISystem_MatchComponentType(longlong param_1,longlong param_2,int32_t *param_3)
 
 {
   int iVar1;
