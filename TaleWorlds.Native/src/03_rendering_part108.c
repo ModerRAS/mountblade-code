@@ -524,188 +524,191 @@ LAB_180331b54:
 
 
 
-// 函数: void FUN_180332110(undefined8 *param_1,int param_2,int param_3)
-void FUN_180332110(undefined8 *param_1,int param_2,int param_3)
-
+/**
+ * @brief 渲染系统批量操作执行器
+ * 
+ * 该函数负责执行渲染系统的批量操作，包括数据处理、内存管理、
+ * 文件写入和线程同步等高级渲染功能。
+ * 
+ * @param batch_context 批处理上下文指针
+ * @param start_index 起始索引
+ * @param end_index 结束索引
+ * @return void
+ */
+void RenderingSystem_ExecuteBatchOperations(undefined8 *batch_context, int start_index, int end_index)
 {
-  int iVar1;
-  longlong *plVar2;
-  longlong *plVar3;
-  ulonglong uVar4;
-  ulonglong uVar5;
-  longlong lVar6;
-  longlong *plVar7;
-  longlong *plVar8;
-  longlong *plVar9;
-  int iVar10;
-  undefined **ppuVar11;
-  uint uVar12;
-  longlong lVar13;
-  int iStackX_10;
-  int aiStackX_20 [2];
-  longlong lStack_120;
-  longlong lStack_118;
-  undefined8 uStack_110;
-  undefined2 uStack_108;
-  undefined1 uStack_106;
-  ulonglong uStack_100;
-  undefined **ppuStack_f8;
-  longlong alStack_f0 [3];
-  undefined2 uStack_d8;
-  undefined1 uStack_d6;
-  longlong *plStack_d0;
-  longlong *plStack_c8;
-  longlong *plStack_c0;
-  undefined4 uStack_b8;
-  ulonglong uStack_b0;
-  undefined *puStack_a8;
-  undefined1 uStack_a0;
-  undefined8 uStack_98;
-  longlong lStack_90;
-  undefined1 auStack_88 [16];
-  ulonglong uStack_78;
-  undefined *puStack_68;
-  longlong lStack_60;
-  undefined4 uStack_50;
-  
-  if (param_2 < param_3) {
-    uStack_98 = 0xfffffffffffffffe;
-    iStackX_10 = param_2;
-    do {
-      plVar9 = (longlong *)0x0;
-      plStack_d0 = (longlong *)0x0;
-      plStack_c8 = (longlong *)0x0;
-      plStack_c0 = (longlong *)0x0;
-      uStack_b8 = 3;
-      lStack_120 = 0;
-      lStack_118 = 0;
-      uStack_110 = 0;
-      uStack_108 = 0;
-      uStack_106 = 3;
-      FUN_180639bf0(&lStack_120,0x100000);
-      aiStackX_20[0] = 0;
-      uVar12 = *(int *)*param_1 * iStackX_10;
-      iVar10 = iStackX_10 + 1;
-      lVar13 = lStack_120;
-      lVar6 = lStack_118;
-      plVar2 = plStack_d0;
-      if (uVar12 < (uint)(iVar10 * *(int *)*param_1)) {
-        ppuVar11 = (undefined **)((longlong)(int)uVar12 * 8);
-        plVar7 = plStack_d0;
-        plVar8 = plStack_c8;
+    int status_code;
+    longlong *data_ptr;
+    longlong *temp_ptr;
+    ulonglong data_size;
+    ulonglong buffer_size;
+    longlong offset;
+    longlong *current_ptr;
+    longlong *next_ptr;
+    longlong *end_ptr;
+    int current_index;
+    undefined **item_ptr;
+    uint item_counter;
+    longlong buffer_start;
+    int loop_index;
+    int count_array[2];
+    longlong memory_pool;
+    longlong memory_end;
+    undefined8 thread_counter;
+    undefined2 thread_flag;
+    undefined1 memory_flag;
+    ulonglong pool_size;
+    undefined **item_list;
+    longlong buffer_array[3];
+    undefined2 cleanup_flag;
+    undefined1 cleanup_mode;
+    longlong *data_buffer;
+    longlong *temp_buffer;
+    longlong *buffer_start_ptr;
+    undefined4 allocation_flag;
+    ulonglong total_size;
+    undefined *output_ptr;
+    undefined1 output_flag;
+    undefined8 context_data;
+    longlong mutex_address;
+    undefined1 temp_buffer_array[16];
+    ulonglong processed_size;
+    undefined *cleanup_ptr;
+    longlong cleanup_status;
+    undefined4 final_flag;
+    
+    if (start_index < end_index) {
+        context_data = 0xfffffffffffffffe;
+        loop_index = start_index;
         do {
-          plVar2 = plVar7;
-          ppuStack_f8 = ppuVar11;
-          if (*(uint *)param_1[1] <= uVar12) break;
-          if (*(longlong *)((longlong)ppuVar11 + *(longlong *)param_1[2]) != 0) {
-            plVar3 = (longlong *)(lVar6 - lVar13);
-            if (lVar13 == 0) {
-              plVar3 = (longlong *)0x0;
-            }
-            if (plVar8 < plVar9) {
-              *plVar8 = (longlong)plVar3;
-            }
-            else {
-              lVar13 = (longlong)plVar8 - (longlong)plVar7 >> 3;
-              if (lVar13 == 0) {
-                lVar13 = 1;
+            end_ptr = (longlong *)0x0;
+            data_buffer = (longlong *)0x0;
+            temp_buffer = (longlong *)0x0;
+            buffer_start_ptr = (longlong *)0x0;
+            allocation_flag = 3;
+            memory_pool = 0;
+            memory_end = 0;
+            thread_counter = 0;
+            thread_flag = 0;
+            memory_flag = 3;
+            FUN_180639bf0(&memory_pool, RENDERING_RESOURCE_POOL_SIZE);
+            count_array[0] = 0;
+            item_counter = *(int *)*batch_context * loop_index;
+            current_index = loop_index + 1;
+            buffer_start = memory_pool;
+            offset = memory_end;
+            data_ptr = data_buffer;
+            if (item_counter < (uint)(current_index * *(int *)*batch_context)) {
+                item_ptr = (undefined **)((longlong)(int)item_counter * 8);
+                current_ptr = data_buffer;
+                next_ptr = temp_buffer;
+                do {
+                    data_ptr = current_ptr;
+                    item_list = item_ptr;
+                    if (*(uint *)batch_context[1] <= item_counter) break;
+                    if (*(longlong *)((longlong)item_ptr + *(longlong *)batch_context[2]) != 0) {
+                        temp_ptr = (longlong *)(offset - buffer_start);
+                        if (buffer_start == 0) {
+                            temp_ptr = (longlong *)0x0;
+                        }
+                        if (next_ptr < end_ptr) {
+                            *next_ptr = (longlong)temp_ptr;
+                        }
+                        else {
+                            buffer_start = (longlong)next_ptr - (longlong)current_ptr >> 3;
+                            if (buffer_start == 0) {
+                                buffer_start = 1;
 LAB_180332267:
-                plVar2 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar13 * 8);
-              }
-              else {
-                lVar13 = lVar13 * 2;
-                plVar2 = (longlong *)0x0;
-                if (lVar13 != 0) goto LAB_180332267;
-              }
-              if (plVar7 != plVar8) {
-                    // WARNING: Subroutine does not return
-                memmove(plVar2,plVar7,(longlong)plVar8 - (longlong)plVar7);
-              }
-              *plVar2 = (longlong)plVar3;
-              if (plVar7 != (longlong *)0x0) {
-                    // WARNING: Subroutine does not return
-                FUN_18064e900(plVar7);
-              }
-              plVar9 = plVar2 + lVar13;
-              plStack_d0 = plVar2;
-              plStack_c0 = plVar9;
-              plVar8 = plVar2;
+                                data_ptr = (longlong *)FUN_18062b420(_DAT_180c8ed18, buffer_start * 8);
+                            }
+                            else {
+                                buffer_start = buffer_start * 2;
+                                data_ptr = (longlong *)0x0;
+                                if (buffer_start != 0) goto LAB_180332267;
+                            }
+                            if (current_ptr != next_ptr) {
+                                memmove(data_ptr, current_ptr, (longlong)next_ptr - (longlong)current_ptr);
+                            }
+                            *data_ptr = (longlong)temp_ptr;
+                            if (current_ptr != (longlong *)0x0) {
+                                FUN_18064e900(current_ptr);
+                            }
+                            end_ptr = data_ptr + buffer_start;
+                            data_buffer = data_ptr;
+                            buffer_start_ptr = end_ptr;
+                            next_ptr = data_ptr;
+                        }
+                        item_ptr = item_list;
+                        next_ptr = next_ptr + 1;
+                        temp_buffer = next_ptr;
+                        FUN_180336980(*(undefined8 *)((longlong)item_list + *(longlong *)batch_context[2]),
+                                      &memory_pool);
+                        count_array[0] = count_array[0] + 1;
+                        buffer_start = memory_pool;
+                        offset = memory_end;
+                    }
+                    item_counter = item_counter + 1;
+                    item_ptr = item_ptr + 1;
+                    current_ptr = data_ptr;
+                    item_list = item_ptr;
+                } while (item_counter < (uint)(*(int *)*batch_context * current_index));
             }
-            ppuVar11 = ppuStack_f8;
-            plVar8 = plVar8 + 1;
-            plStack_c8 = plVar8;
-            FUN_180336980(*(undefined8 *)((longlong)ppuStack_f8 + *(longlong *)param_1[2]),
-                          &lStack_120);
-            aiStackX_20[0] = aiStackX_20[0] + 1;
-            lVar13 = lStack_120;
-            lVar6 = lStack_118;
-          }
-          uVar12 = uVar12 + 1;
-          ppuVar11 = ppuVar11 + 1;
-          plVar7 = plVar2;
-          ppuStack_f8 = ppuVar11;
-        } while (uVar12 < (uint)(*(int *)*param_1 * iVar10));
-      }
-      uVar4 = lVar6 - lVar13;
-      if (lVar13 == 0) {
-        uVar4 = 0;
-      }
-      alStack_f0[0] = 0;
-      alStack_f0[1] = 0;
-      alStack_f0[2] = 0;
-      uStack_d8 = 0;
-      uStack_d6 = 3;
-      uVar5 = uVar4 & 0xffffffff;
-      FUN_180639bf0(alStack_f0,uVar5);
-      lVar13 = alStack_f0[0];
-      puStack_a8 = &UNK_1809ff4e0;
-      uStack_a0 = 0;
-      uStack_100 = uVar5;
-      uStack_b0 = uVar5;
-      FUN_18021f4e0(&puStack_a8,auStack_88,lStack_120,uVar4 & 0xffffffff,alStack_f0[0],uVar5);
-      uStack_100 = uStack_78;
-      lVar6 = param_1[3] + 0xa70;
-      lStack_90 = lVar6;
-      iVar1 = _Mtx_lock(lVar6);
-      if (iVar1 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar1);
-      }
-      fwrite(aiStackX_20,4,1,*(undefined8 *)(*(longlong *)param_1[4] + 8));
-      fwrite(*(longlong *)param_1[5] + (ulonglong)(uint)(*(int *)*param_1 * iStackX_10) * 4,4,
-             aiStackX_20[0],*(undefined8 *)(*(longlong *)param_1[4] + 8));
-      fwrite(plVar2,8,aiStackX_20[0],*(undefined8 *)(*(longlong *)param_1[4] + 8));
-      fwrite(&uStack_b0,8,1,*(undefined8 *)(*(longlong *)param_1[4] + 8));
-      fwrite(&uStack_100,8,1,*(undefined8 *)(*(longlong *)param_1[4] + 8));
-      fwrite(lVar13,uStack_100,1,*(undefined8 *)(*(longlong *)param_1[4] + 8));
-      iVar1 = _Mtx_unlock(lVar6);
-      if (iVar1 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar1);
-      }
-      ppuStack_f8 = &puStack_68;
-      puStack_68 = &UNK_180a3c3e0;
-      if (lStack_60 != 0) {
-                    // WARNING: Subroutine does not return
-        FUN_18064e900();
-      }
-      lStack_60 = 0;
-      uStack_50 = 0;
-      puStack_68 = &UNK_18098bcb0;
-      if (((char)uStack_d8 == '\0') && (lVar13 != 0)) {
-                    // WARNING: Subroutine does not return
-        FUN_18064e900(lVar13);
-      }
-      if (((char)uStack_108 == '\0') && (lStack_120 != 0)) {
-                    // WARNING: Subroutine does not return
-        FUN_18064e900();
-      }
-      if (plVar2 != (longlong *)0x0) {
-                    // WARNING: Subroutine does not return
-        FUN_18064e900(plVar2);
-      }
-      iStackX_10 = iVar10;
-    } while (iVar10 < param_3);
-  }
-  return;
+            data_size = offset - buffer_start;
+            if (buffer_start == 0) {
+                data_size = 0;
+            }
+            buffer_array[0] = 0;
+            buffer_array[1] = 0;
+            buffer_array[2] = 0;
+            cleanup_flag = 0;
+            cleanup_mode = 3;
+            buffer_size = data_size & 0xffffffff;
+            FUN_180639bf0(buffer_array, buffer_size);
+            buffer_start = buffer_array[0];
+            output_ptr = &UNK_1809ff4e0;
+            output_flag = 0;
+            pool_size = buffer_size;
+            total_size = buffer_size;
+            FUN_18021f4e0(&output_ptr, temp_buffer_array, memory_pool, data_size & 0xffffffff, buffer_array[0], buffer_size);
+            pool_size = processed_size;
+            offset = batch_context[3] + 0xa70;
+            mutex_address = offset;
+            status_code = _Mtx_lock(offset);
+            if (status_code != 0) {
+                __Throw_C_error_std__YAXH_Z(status_code);
+            }
+            fwrite(count_array, 4, 1, *(undefined8 *)(*(longlong *)batch_context[4] + 8));
+            fwrite(*(longlong *)batch_context[5] + (ulonglong)(uint)(*(int *)*batch_context * loop_index) * 4, 4,
+                   count_array[0], *(undefined8 *)(*(longlong *)batch_context[4] + 8));
+            fwrite(data_ptr, 8, count_array[0], *(undefined8 *)(*(longlong *)batch_context[4] + 8));
+            fwrite(&total_size, 8, 1, *(undefined8 *)(*(longlong *)batch_context[4] + 8));
+            fwrite(&pool_size, 8, 1, *(undefined8 *)(*(longlong *)batch_context[4] + 8));
+            fwrite(buffer_start, pool_size, 1, *(undefined8 *)(*(longlong *)batch_context[4] + 8));
+            status_code = _Mtx_unlock(offset);
+            if (status_code != 0) {
+                __Throw_C_error_std__YAXH_Z(status_code);
+            }
+            item_list = &cleanup_ptr;
+            cleanup_ptr = &UNK_180a3c3e0;
+            if (cleanup_status != 0) {
+                FUN_18064e900();
+            }
+            cleanup_status = 0;
+            final_flag = 0;
+            cleanup_ptr = &UNK_18098bcb0;
+            if (((char)cleanup_flag == '\0') && (buffer_start != 0)) {
+                FUN_18064e900(buffer_start);
+            }
+            if (((char)thread_flag == '\0') && (memory_pool != 0)) {
+                FUN_18064e900();
+            }
+            if (data_ptr != (longlong *)0x0) {
+                FUN_18064e900(data_ptr);
+            }
+            loop_index = current_index;
+        } while (current_index < end_index);
+    }
+    return;
 }
 
 
