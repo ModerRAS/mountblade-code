@@ -278,7 +278,33 @@ void handle_ui_system_shutdown(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// 全局变量和数据定义
+undefined SYSTEM_CONTROL_DATA;
+undefined UNK_180a3e3d8;
+undefined DAT_180c967d8;
+undefined UNK_180a3e3f0;
+undefined SYSTEM_CONFIG_AREA;
+undefined DAT_180c967e8;
+undefined DAT_180c967f0;
+undefined DAT_180c967f8;
+undefined SYSTEM_PARAM_DATA;
+undefined SYSTEM_BUFFER_SIZE;
+undefined STEAM_INTERFACE_PTR_1;
+undefined STEAM_INTERFACE_PTR_2;
+undefined STEAM_INTERFACE_PTR_3;
+undefined STEAM_INTERFACE_PTR_4;
+undefined UI_HANDLER_PTR;
+undefined SYSTEM_DATA_PTR;
+
+// 原始函数声明（保持与原始代码的兼容性）
+undefined FUN_180657970;
+undefined8 * FUN_180657a70;
+void FUN_180657aa0;
+void FUN_180657ad0;
+undefined8 * FUN_180657b00;
+void FUN_180657b70;
+void FUN_180657dd0;
+void FUN_180657fa0;
 
 
 
