@@ -321,19 +321,24 @@ void initialize_skeletal_animation_system(longlong animation_context)
     vertex_data_addr = transform_buffer._0_8_;  // 重置顶点数据地址
     current_bone = temp_addr2;                  // 更新当前骨骼
   } while (temp_addr2 < (longlong)matrix_buffer);  // 继续处理直到所有矩阵处理完毕
-  lStack_170 = 0;
-  plStack_168 = (longlong *)0x0;
-  plStack_160 = (longlong *)0x0;
-  uStack_158 = 3;
-  FUN_180081010(&lStack_170,(longlong)iVar27);
-  uVar41 = uVar36;
-  uStackX_20 = uVar28;
-  if (0 < (longlong)uVar28) {
+  main_frame_addr = 0;                    // 初始化主帧地址
+  frame_array_ptr = (longlong *)0x0;     // 初始化帧数组指针
+  temp_array_ptr2 = (longlong *)0x0;     // 初始化临时数组指针2
+  frame_flags = 3;                       // 初始化帧标志
+  
+  // 分配主帧地址空间
+  FUN_180081010(&main_frame_addr, (longlong)frame_index);
+  
+  temp_size1 = buffer_size1;              // 临时存储缓冲区大小1
+  remaining_bones = memory_size;          // 设置剩余骨骼数量
+  
+  // 处理骨骼影响权重
+  if (0 < (longlong)memory_size) {
     do {
-      lVar23 = lStack_170;
-      piVar13 = (int *)0x0;
-      lVar21 = *(longlong *)(param_1 + 0x90);
-      lVar31 = (ulonglong)*(uint *)(lVar21 + uVar36) * 0x20;
+      current_bone = main_frame_addr;     // 设置当前骨骼
+      array_ptr1 = (int *)0x0;            // 初始化数组指针1
+      vertex_data_addr = *(longlong *)(animation_context + 0x90);  // 获取顶点数据地址
+      data_offset = (ulonglong)*(uint *)(vertex_data_addr + buffer_size1) * 0x20;  // 计算数据偏移
       piVar20 = *(int **)(lVar31 + 8 + lStack_170);
       iVar27 = (int)uVar41;
       if (piVar20 < *(int **)(lVar31 + 0x10 + lStack_170)) {
