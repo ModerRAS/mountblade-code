@@ -56,198 +56,249 @@
 #define ui_system_performance_monitor FUN_18065ed75
 
 // 函数: void FUN_18065d7f0(longlong param_1,longlong param_2)
-void FUN_18065d7f0(longlong param_1,longlong param_2)
-
+// UI系统高级事件处理器 - 处理复杂的UI事件分发和动画状态管理
+// 该函数实现了高级的UI事件处理机制，包括动画状态计算、事件分发、参数处理等
+// 主要功能：计算动画插值、处理UI事件、管理控件状态、执行渲染优化
+void ui_system_advanced_event_processor(longlong ui_context_ptr,longlong event_data_ptr)
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  int iVar4;
-  int iVar5;
-  undefined8 *puVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
-  float fVar10;
-  float fVar11;
-  float fVar12;
+  // 动画插值计算变量
+  float animation_factor;        // 动画因子
+  float smooth_factor;           // 平滑因子
+  float blend_factor;            // 混合因子
+  int event_type;               // 事件类型
+  int control_state;            // 控件状态
+  undefined8 *widget_array;     // 控件数组指针
+  float threshold_value;        // 阈值
+  float position_x;             // X坐标
+  float position_y;             // Y坐标
+  float size_width;             // 宽度
+  float size_height;            // 高度
+  float interaction_strength;   // 交互强度
+  float visibility_factor;      // 可见性因子
   
-  fVar9 = *(float *)(param_1 + 0x2c);
-  fVar12 = (3.0 - (fVar9 + fVar9)) * fVar9 * fVar9;
-  fVar9 = 1.0 - fVar12;
-  if (*(int *)(param_1 + 0x10) == 1) {
-    FUN_180660070(*(longlong *)(param_1 + 0xc78) + 0x30,*(uint *)(param_1 + 0x18) & 0x7fffffff);
+  // 计算动画插值因子 - 使用三次贝塞尔曲线公式
+  animation_factor = *(float *)(ui_context_ptr + 0x2c);
+  smooth_factor = (UI_THREE_FLOAT - (animation_factor + animation_factor)) * animation_factor * animation_factor;
+  animation_factor = UI_ONE_FLOAT - smooth_factor;
+  
+  // 处理主控件事件类型
+  if (*(int *)(ui_context_ptr + 0x10) == 1) {
+    FUN_180660070(*(longlong *)(ui_context_ptr + 0xc78) + 0x30,*(uint *)(ui_context_ptr + 0x18) & 0x7fffffff);
   }
   else {
-    FUN_18065ffa0((longlong)*(int *)(param_1 + 0x10) * 0x30 + *(longlong *)(param_1 + 0xc78),
-                  *(undefined4 *)(param_1 + 0x1c));
+    FUN_18065ffa0((longlong)*(int *)(ui_context_ptr + 0x10) * UI_ANIMATION_BLOCK_SIZE + *(longlong *)(ui_context_ptr + 0xc78),
+                  *(undefined4 *)(ui_context_ptr + 0x1c));
   }
-  if (*(int *)(param_1 + 0x14) == 1) {
-    FUN_180660070(*(longlong *)(param_1 + 0xc78) + 0x30,*(uint *)(param_1 + 0x18) & 0x7fffffff);
+  
+  // 处理副控件事件类型
+  if (*(int *)(ui_context_ptr + 0x14) == 1) {
+    FUN_180660070(*(longlong *)(ui_context_ptr + 0xc78) + 0x30,*(uint *)(ui_context_ptr + 0x18) & 0x7fffffff);
   }
   else {
-    FUN_18065ffa0((longlong)*(int *)(param_1 + 0x14) * 0x30 + *(longlong *)(param_1 + 0xc78),
-                  *(undefined4 *)(param_1 + 0x1c));
+    FUN_18065ffa0((longlong)*(int *)(ui_context_ptr + 0x14) * UI_ANIMATION_BLOCK_SIZE + *(longlong *)(ui_context_ptr + 0xc78),
+                  *(undefined4 *)(ui_context_ptr + 0x1c));
   }
-  iVar5 = 0;
-  if (0.0 < fVar9) {
-    if (*(int *)(param_1 + 0x14) == 5) {
-      fVar10 = *(float *)(param_1 + 0x3c);
-      if (fVar10 < 1.0) {
-        fVar1 = *(float *)(param_1 + 0x34);
-        fVar2 = *(float *)(param_1 + 0x38);
-        fVar3 = *(float *)(param_1 + 0x30);
-        puVar6 = (undefined8 *)(*(longlong *)(param_1 + 0xc78) + 0xf0);
-        fVar8 = (1.0 - fVar1) - fVar2;
-        iVar4 = iVar5;
+  // 初始化控件状态索引
+  control_state = 0;
+  
+  // 如果动画因子有效，则处理控件交互
+  if (UI_ZERO_FLOAT < animation_factor) {
+    // 处理特殊控件类型（类型5）
+    if (*(int *)(ui_context_ptr + 0x14) == 5) {
+      threshold_value = *(float *)(ui_context_ptr + 0x3c);
+      
+      // 处理淡入效果
+      if (threshold_value < UI_ONE_FLOAT) {
+        position_x = *(float *)(ui_context_ptr + 0x34);
+        position_y = *(float *)(ui_context_ptr + 0x38);
+        size_width = *(float *)(ui_context_ptr + 0x30);
+        widget_array = (undefined8 *)(*(longlong *)(ui_context_ptr + 0xc78) + 0xf0);
+        blend_factor = (UI_ONE_FLOAT - position_x) - position_y;
+        event_type = control_state;
+        
+        // 处理6个控件区域
         do {
-          switch(iVar4) {
+          switch(event_type) {
           case 0:
-            fVar11 = fVar8 * fVar3;
+            interaction_strength = blend_factor * size_width;
             break;
           case 1:
-            fVar11 = (1.0 - fVar3) * fVar8;
+            interaction_strength = (UI_ONE_FLOAT - size_width) * blend_factor;
             break;
           case 2:
-            fVar11 = fVar1;
+            interaction_strength = position_x;
             break;
           case 3:
-            fVar11 = fVar2;
+            interaction_strength = position_y;
             break;
           default:
             goto LAB_18065da24;
           }
-          if (0.001 < (1.0 - fVar10) * fVar9 * fVar11) {
-            FUN_180403910(*puVar6,param_2);
+          
+          // 检查交互强度是否超过阈值
+          if (UI_POINT_ONE_FLOAT < (UI_ONE_FLOAT - threshold_value) * animation_factor * interaction_strength) {
+            FUN_180403910(*widget_array,event_data_ptr);
           }
 LAB_18065da24:
-          iVar4 = iVar4 + 1;
-          puVar6 = puVar6 + 1;
-        } while (iVar4 < 6);
-        fVar10 = *(float *)(param_1 + 0x3c);
+          event_type = event_type + 1;
+          widget_array = widget_array + 1;
+        } while (event_type < 6);
+        
+        threshold_value = *(float *)(ui_context_ptr + 0x3c);
       }
-      if (0.0 < fVar10) {
-        fVar1 = *(float *)(param_1 + 0x34);
-        fVar2 = *(float *)(param_1 + 0x38);
-        puVar6 = (undefined8 *)(*(longlong *)(param_1 + 0xc78) + 0x120);
-        fVar3 = *(float *)(param_1 + 0x30);
-        fVar8 = (1.0 - fVar1) - fVar2;
-        iVar4 = iVar5;
+      
+      // 处理淡出效果
+      if (UI_ZERO_FLOAT < threshold_value) {
+        position_x = *(float *)(ui_context_ptr + 0x34);
+        position_y = *(float *)(ui_context_ptr + 0x38);
+        widget_array = (undefined8 *)(*(longlong *)(ui_context_ptr + 0xc78) + 0x120);
+        size_width = *(float *)(ui_context_ptr + 0x30);
+        blend_factor = (UI_ONE_FLOAT - position_x) - position_y;
+        event_type = control_state;
+        
+        // 处理6个控件区域
         do {
-          switch(iVar4) {
+          switch(event_type) {
           case 0:
-            fVar11 = fVar8 * fVar3;
+            interaction_strength = blend_factor * size_width;
             break;
           case 1:
-            fVar11 = (1.0 - fVar3) * fVar8;
+            interaction_strength = (UI_ONE_FLOAT - size_width) * blend_factor;
             break;
           case 2:
-            fVar11 = fVar1;
+            interaction_strength = position_x;
             break;
           case 3:
-            fVar11 = fVar2;
+            interaction_strength = position_y;
             break;
           default:
             goto LAB_18065dae7;
           }
-          if (0.001 < fVar10 * fVar9 * fVar11) {
-            FUN_180403910(*puVar6,param_2);
+          
+          // 检查交互强度是否超过阈值
+          if (UI_POINT_ONE_FLOAT < threshold_value * animation_factor * interaction_strength) {
+            FUN_180403910(*widget_array,event_data_ptr);
           }
 LAB_18065dae7:
-          iVar4 = iVar4 + 1;
-          puVar6 = puVar6 + 1;
-        } while (iVar4 < 6);
+          event_type = event_type + 1;
+          widget_array = widget_array + 1;
+        } while (event_type < 6);
       }
     }
     else {
-      FUN_18065fdb0((longlong)*(int *)(param_1 + 0x14) * 0x30 + *(longlong *)(param_1 + 0xc78),
-                    param_2);
+      // 处理其他类型的控件
+      FUN_18065fdb0((longlong)*(int *)(ui_context_ptr + 0x14) * UI_ANIMATION_BLOCK_SIZE + *(longlong *)(ui_context_ptr + 0xc78),
+                    event_data_ptr);
     }
   }
-  if (*(int *)(param_1 + 0x10) == 5) {
-    fVar9 = *(float *)(param_1 + 0x3c);
-    fVar10 = -1.0;
-    if (fVar9 < 1.0) {
-      fVar1 = *(float *)(param_1 + 0x34);
-      fVar2 = *(float *)(param_1 + 0x38);
-      fVar3 = *(float *)(param_1 + 0x30);
-      fVar8 = (1.0 - fVar9) * fVar12;
-      puVar6 = (undefined8 *)(*(longlong *)(param_1 + 0xc78) + 0xf0);
-      fVar11 = (1.0 - fVar1) - fVar2;
-      fVar9 = -1.0;
+  // 处理主控件的特殊交互逻辑
+  if (*(int *)(ui_context_ptr + 0x10) == 5) {
+    visibility_factor = *(float *)(ui_context_ptr + 0x3c);
+    interaction_strength = -UI_ONE_FLOAT;
+    
+    // 处理淡入效果的反向计算
+    if (visibility_factor < UI_ONE_FLOAT) {
+      position_x = *(float *)(ui_context_ptr + 0x34);
+      position_y = *(float *)(ui_context_ptr + 0x38);
+      size_width = *(float *)(ui_context_ptr + 0x30);
+      blend_factor = (UI_ONE_FLOAT - visibility_factor) * smooth_factor;
+      widget_array = (undefined8 *)(*(longlong *)(ui_context_ptr + 0xc78) + 0xf0);
+      threshold_value = (UI_ONE_FLOAT - position_x) - position_y;
+      visibility_factor = -UI_ONE_FLOAT;
+      
+      // 处理6个控件区域的最大交互强度
       do {
-        switch(iVar5) {
+        switch(control_state) {
         case 0:
-          fVar7 = fVar11 * fVar3 * fVar8;
+          blend_factor = threshold_value * size_width * blend_factor;
           break;
         case 1:
-          fVar7 = (1.0 - fVar3) * fVar11 * fVar8;
+          blend_factor = (UI_ONE_FLOAT - size_width) * threshold_value * blend_factor;
           break;
         case 2:
-          fVar7 = fVar8 * fVar1;
+          blend_factor = blend_factor * position_x;
           break;
         case 3:
-          fVar7 = fVar8 * fVar2;
+          blend_factor = blend_factor * position_y;
           break;
         default:
-          fVar7 = 0.0;
+          blend_factor = UI_ZERO_FLOAT;
         }
-        if (((int *)(param_1 + 0xc84) != (int *)0x0) && (fVar9 < fVar7)) {
-          *(int *)(param_1 + 0xc84) = iVar5;
-          fVar9 = fVar7;
+        
+        // 更新最大交互强度和控件索引
+        if (((int *)(ui_context_ptr + 0xc84) != (int *)0x0) && (visibility_factor < blend_factor)) {
+          *(int *)(ui_context_ptr + 0xc84) = control_state;
+          visibility_factor = blend_factor;
         }
-        if (0.001 < fVar7) {
-          FUN_180403910(*puVar6,param_2);
+        
+        // 检查交互强度是否超过阈值
+        if (UI_POINT_ONE_FLOAT < blend_factor) {
+          FUN_180403910(*widget_array,event_data_ptr);
         }
-        iVar5 = iVar5 + 1;
-        puVar6 = puVar6 + 1;
-      } while (iVar5 < 6);
-      fVar9 = *(float *)(param_1 + 0x3c);
+        
+        control_state = control_state + 1;
+        widget_array = widget_array + 1;
+      } while (control_state < 6);
+      
+      visibility_factor = *(float *)(ui_context_ptr + 0x3c);
     }
-    iVar5 = 0;
-    if (0.0 < fVar9) {
-      fVar1 = *(float *)(param_1 + 0x34);
-      fVar2 = *(float *)(param_1 + 0x38);
-      puVar6 = (undefined8 *)(*(longlong *)(param_1 + 0xc78) + 0x120);
-      fVar3 = *(float *)(param_1 + 0x30);
-      fVar9 = fVar9 * fVar12;
-      fVar12 = (1.0 - fVar1) - fVar2;
+    
+    // 处理淡出效果的反向计算
+    control_state = 0;
+    if (UI_ZERO_FLOAT < visibility_factor) {
+      position_x = *(float *)(ui_context_ptr + 0x34);
+      position_y = *(float *)(ui_context_ptr + 0x38);
+      widget_array = (undefined8 *)(*(longlong *)(ui_context_ptr + 0xc78) + 0x120);
+      size_width = *(float *)(ui_context_ptr + 0x30);
+      visibility_factor = visibility_factor * smooth_factor;
+      smooth_factor = (UI_ONE_FLOAT - position_x) - position_y;
+      
+      // 处理6个控件区域的最大交互强度
       do {
-        switch(iVar5) {
+        switch(control_state) {
         case 0:
-          fVar8 = fVar12 * fVar3 * fVar9;
+          blend_factor = smooth_factor * size_width * visibility_factor;
           break;
         case 1:
-          fVar8 = (1.0 - fVar3) * fVar12 * fVar9;
+          blend_factor = (UI_ONE_FLOAT - size_width) * smooth_factor * visibility_factor;
           break;
         case 2:
-          fVar8 = fVar9 * fVar1;
+          blend_factor = visibility_factor * position_x;
           break;
         case 3:
-          fVar8 = fVar9 * fVar2;
+          blend_factor = visibility_factor * position_y;
           break;
         default:
-          fVar8 = 0.0;
+          blend_factor = UI_ZERO_FLOAT;
         }
-        if (((int *)(param_1 + 0xc84) != (int *)0x0) && (fVar10 < fVar8)) {
-          *(int *)(param_1 + 0xc84) = iVar5;
-          fVar10 = fVar8;
+        
+        // 更新最大交互强度和控件索引
+        if (((int *)(ui_context_ptr + 0xc84) != (int *)0x0) && (interaction_strength < blend_factor)) {
+          *(int *)(ui_context_ptr + 0xc84) = control_state;
+          interaction_strength = blend_factor;
         }
-        if (0.001 < fVar8) {
-          FUN_180403910(*puVar6,param_2);
+        
+        // 检查交互强度是否超过阈值
+        if (UI_POINT_ONE_FLOAT < blend_factor) {
+          FUN_180403910(*widget_array,event_data_ptr);
         }
-        iVar5 = iVar5 + 1;
-        puVar6 = puVar6 + 1;
-      } while (iVar5 < 6);
+        
+        control_state = control_state + 1;
+        widget_array = widget_array + 1;
+      } while (control_state < 6);
     }
   }
   else {
-    FUN_18065fdb0((longlong)*(int *)(param_1 + 0x10) * 0x30 + *(longlong *)(param_1 + 0xc78),param_2
-                 );
+    // 处理其他类型的主控件
+    FUN_18065fdb0((longlong)*(int *)(ui_context_ptr + 0x10) * UI_ANIMATION_BLOCK_SIZE + *(longlong *)(ui_context_ptr + 0xc78),
+                  event_data_ptr);
   }
-  if (*(longlong *)(param_2 + 0x808) != 0) {
-    func_0x000180435370(param_2);
+  
+  // 检查是否需要执行额外的清理工作
+  if (*(longlong *)(event_data_ptr + 0x808) != 0) {
+    func_0x000180435370(event_data_ptr);
   }
+  
   return;
 }
 
@@ -256,51 +307,54 @@ LAB_18065dae7:
 
 
 // 函数: void FUN_18065d804(longlong param_1,float param_2)
-void FUN_18065d804(longlong param_1,float param_2)
-
+// UI系统动画控制器 - 管理复杂的UI动画状态和控制逻辑
+// 该函数实现了高级的UI动画控制系统，包括动画状态管理、事件处理、参数计算等
+// 主要功能：动画插值计算、控件状态管理、事件分发、性能优化
+void ui_system_animation_controller(longlong animation_context_ptr,float time_factor)
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  longlong in_RAX;
-  undefined8 unaff_RBX;
-  undefined8 unaff_RSI;
-  int iVar4;
-  int iVar5;
-  longlong unaff_R12;
-  undefined8 unaff_R13;
-  undefined8 *puVar6;
-  undefined8 unaff_R15;
-  float fVar7;
-  undefined4 unaff_XMM6_Da;
-  float fVar8;
-  undefined4 unaff_XMM6_Db;
-  undefined4 unaff_XMM6_Dc;
-  undefined4 unaff_XMM6_Dd;
-  undefined4 unaff_XMM7_Da;
-  float fVar9;
-  undefined4 unaff_XMM7_Db;
-  undefined4 unaff_XMM7_Dc;
-  undefined4 unaff_XMM7_Dd;
-  float fVar10;
-  float fVar11;
-  undefined4 unaff_XMM12_Da;
-  undefined4 unaff_XMM12_Db;
-  undefined4 unaff_XMM12_Dc;
-  undefined4 unaff_XMM12_Dd;
-  undefined4 unaff_XMM13_Da;
-  undefined4 unaff_XMM13_Db;
-  undefined4 unaff_XMM13_Dc;
-  undefined4 unaff_XMM13_Dd;
-  undefined4 unaff_XMM14_Da;
-  undefined4 unaff_XMM14_Db;
-  undefined4 unaff_XMM14_Dc;
-  undefined4 unaff_XMM14_Dd;
-  undefined4 unaff_XMM15_Da;
-  float fVar12;
-  undefined4 unaff_XMM15_Db;
-  undefined4 unaff_XMM15_Dc;
-  undefined4 unaff_XMM15_Dd;
+  // 动画计算变量
+  float position_x;             // X坐标位置
+  float position_y;             // Y坐标位置
+  float size_width;             // 宽度尺寸
+  longlong context_ptr;         // 上下文指针
+  undefined8 register_rbx;       // 寄存器RBX备份
+  undefined8 register_rsi;       // 寄存器RSI备份
+  int frame_count;              // 帧计数
+  int animation_state;          // 动画状态
+  longlong register_r12;        // 寄存器R12备份
+  undefined8 register_r13;      // 寄存器R13备份
+  undefined8 *widget_array;     // 控件数组指针
+  undefined8 register_r15;      // 寄存器R15备份
+  float blend_factor;            // 混合因子
+  undefined4 xmm6_data_a;       // XMM6寄存器数据A
+  float interaction_strength;   // 交互强度
+  undefined4 xmm6_data_b;       // XMM6寄存器数据B
+  undefined4 xmm6_data_c;       // XMM6寄存器数据C
+  undefined4 xmm6_data_d;       // XMM6寄存器数据D
+  undefined4 xmm7_data_a;       // XMM7寄存器数据A
+  float smooth_factor;          // 平滑因子
+  undefined4 xmm7_data_b;       // XMM7寄存器数据B
+  undefined4 xmm7_data_c;       // XMM7寄存器数据C
+  undefined4 xmm7_data_d;       // XMM7寄存器数据D
+  float threshold_value;        // 阈值
+  float visibility_factor;      // 可见性因子
+  undefined4 xmm12_data_a;      // XMM12寄存器数据A
+  undefined4 xmm12_data_b;      // XMM12寄存器数据B
+  undefined4 xmm12_data_c;      // XMM12寄存器数据C
+  undefined4 xmm12_data_d;      // XMM12寄存器数据D
+  undefined4 xmm13_data_a;      // XMM13寄存器数据A
+  undefined4 xmm13_data_b;      // XMM13寄存器数据B
+  undefined4 xmm13_data_c;      // XMM13寄存器数据C
+  undefined4 xmm13_data_d;      // XMM13寄存器数据D
+  undefined4 xmm14_data_a;      // XMM14寄存器数据A
+  undefined4 xmm14_data_b;      // XMM14寄存器数据B
+  undefined4 xmm14_data_c;      // XMM14寄存器数据C
+  undefined4 xmm14_data_d;      // XMM14寄存器数据D
+  undefined4 xmm15_data_a;      // XMM15寄存器数据A
+  float animation_curve;        // 动画曲线值
+  undefined4 xmm15_data_b;      // XMM15寄存器数据B
+  undefined4 xmm15_data_c;      // XMM15寄存器数据C
+  undefined4 xmm15_data_d;      // XMM15寄存器数据D
   
   *(undefined8 *)(in_RAX + 8) = unaff_RBX;
   *(undefined8 *)(in_RAX + 0x18) = unaff_RSI;
