@@ -445,36 +445,55 @@ render_uint64_t *render_data_structure_initialize(render_uint64_t *param_1, rend
 
 
 
-// 函数: void FUN_18034fb70(int64_t param_1)
-void FUN_18034fb70(int64_t param_1)
+//==============================================================================
+// 渲染适配器初始化函数
+//==============================================================================
 
+/**
+ * @brief 初始化渲染适配器
+ * @param param_1 适配器参数
+ * @note 初始化渲染适配器的各项参数和状态
+ *       设置默认的渲染参数和内存管理
+ */
+void render_adapter_initialize_ex(int64_t param_1)
 {
-  uint64_t uVar1;
-  int32_t uVar2;
-  uint64_t *puVar3;
-  void *puStack_48;
-  uint64_t *puStack_40;
-  int32_t uStack_38;
-  uint64_t uStack_30;
-  
-  FUN_1802e9fa0(*(uint64_t *)(param_1 + 0x18),0,0,0);
-  uVar1 = system_resource_state;
-  puStack_48 = &system_data_buffer_ptr;
-  uStack_30 = 0;
-  puStack_40 = (uint64_t *)0x0;
-  uStack_38 = 0;
-  puVar3 = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13);
-  *(int8_t *)puVar3 = 0;
-  puStack_40 = puVar3;
-  uVar2 = CoreMemoryPoolCleaner(puVar3);
-  uStack_30 = CONCAT44(uStack_30._4_4_,uVar2);
-  *puVar3 = 0x6c616d5f64616568;
-  *(int32_t *)(puVar3 + 1) = 0x785f65;
-  uStack_38 = 0xb;
-  FUN_1800b6de0(uVar1,&puStack_48,1);
-  puStack_48 = &system_data_buffer_ptr;
-                    // WARNING: Subroutine does not return
-  CoreMemoryPoolInitializer(puVar3);
+    // 原始函数: void FUN_18034fb70(int64_t param_1)
+    uint64_t uVar1;
+    int32_t uVar2;
+    uint64_t *puVar3;
+    void *puStack_48;
+    uint64_t *puStack_40;
+    int32_t uStack_38;
+    uint64_t uStack_30;
+    
+    // 初始化渲染系统
+    render_system_initialize_ex(*(uint64_t *)(param_1 + 0x18), 0, 0, 0);
+    
+    // 获取系统资源状态
+    uVar1 = GET_SYSTEM_RESOURCE_STATE();
+    puStack_48 = &system_data_buffer_ptr;
+    uStack_30 = 0;
+    puStack_40 = (uint64_t *)0x0;
+    uStack_38 = 0;
+    
+    // 分配内存池
+    puVar3 = (uint64_t *)CoreMemoryPoolAllocator(SYSTEM_MEMORY_POOL_ADDR, 0x10, 0x13);
+    *(int8_t *)puVar3 = 0;
+    puStack_40 = puVar3;
+    uVar2 = CoreMemoryPoolCleaner(puVar3);
+    uStack_30 = CONCAT44(uStack_30._4_4_, uVar2);
+    
+    // 设置适配器标识
+    *puVar3 = 0x6c616d5f64616568;  // "head_mal"
+    *(int32_t *)(puVar3 + 1) = 0x785f65;  // "e_x"
+    uStack_38 = 0xb;
+    
+    // 注册系统组件
+    render_system_component_register(uVar1, &puStack_48, 1);
+    puStack_48 = &system_data_buffer_ptr;
+    
+    // 初始化内存池
+    CoreMemoryPoolInitializer(puVar3);
 }
 
 
@@ -492,7 +511,7 @@ void FUN_18034fd50(int64_t param_1)
   if ((*(char *)(param_1 + 0x70) == '\0') ||
      (*(int *)(SYSTEM_STATE_MANAGER + 0x770) != *(int *)(param_1 + 0x74))) {
     *(int32_t *)(param_1 + 0x74) = *(int32_t *)(SYSTEM_STATE_MANAGER + 0x770);
-    uVar1 = FUN_18034fb70(param_1);
+    uVar1 = render_adapter_initialize_ex(param_1);
     *(int8_t *)(param_1 + 0x70) = uVar1;
   }
   return;
@@ -500,19 +519,31 @@ void FUN_18034fd50(int64_t param_1)
 
 
 
-uint64_t *
-FUN_18034fd90(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+//==============================================================================
+// 渲染适配器创建函数
+//==============================================================================
 
+/**
+ * @brief 创建渲染适配器数据结构
+ * @param param_1 数据结构指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 初始化后的数据结构指针
+ * @note 创建渲染适配器的数据结构并进行初始化
+ */
+render_uint64_t *render_adapter_data_structure_create(render_uint64_t *param_1, render_uint64_t param_2, render_uint64_t param_3, render_uint64_t param_4)
 {
-  uint64_t uVar1;
-  
-  uVar1 = 0xfffffffffffffffe;
-  *param_1 = &rendering_adapter_ptr;
-  FUN_1803457d0();
-  if ((param_2 & 1) != 0) {
-    free(param_1,0xa8,param_3,param_4,uVar1);
-  }
-  return param_1;
+    // 原始函数: uint64_t * FUN_18034fd90(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+    uint64_t uVar1;
+    
+    uVar1 = 0xfffffffffffffffe;
+    *param_1 = &rendering_adapter_ptr;
+    render_system_cleanup();
+    if ((param_2 & 1) != 0) {
+        free(param_1, RENDER_ADAPTER_SIZE, param_3, param_4, uVar1);
+    }
+    return param_1;
 }
 
 

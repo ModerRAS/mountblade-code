@@ -804,7 +804,7 @@ void SystemGraphicsInitializer(uint64_t *graphics_context)
   
   uStack_70 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_c8;
-  *param_1 = &unknown_var_4920_ptr;
+  *param_1 = &system_graphics_data_ptr;
   puStack_a0 = param_1 + 1;
   puStack_98 = param_1;
   puStack_68 = param_1;
@@ -818,8 +818,8 @@ void SystemGraphicsInitializer(uint64_t *graphics_context)
   *(int8_t *)(param_1 + 0xe) = 0;
   param_1[0xf] = 0;
   puVar9 = param_1 + 0x11;
-  *puVar9 = &unknown_var_5088_ptr;
-  *puVar9 = &unknown_var_4880_ptr;
+  *puVar9 = &system_graphics_state_ptr;
+  *puVar9 = &system_graphics_config_ptr;
   puVar1 = param_1 + 0x12;
   *puVar1 = &unknown_var_5056_ptr;
   *puVar1 = &unknown_var_5024_ptr;
