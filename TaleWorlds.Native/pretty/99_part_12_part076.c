@@ -965,7 +965,7 @@ void FUN_1807ff354(void)
     freeaddrinfo();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x198) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x198) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -984,7 +984,7 @@ void FUN_1807ff4ab(void)
     freeaddrinfo();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x198) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x198) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -1000,7 +1000,7 @@ void FUN_1807ff4cd(void)
   
   freeaddrinfo();
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x198) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x198) ^ (uint64_t)&stack0x00000000);
 }
 
 

@@ -473,7 +473,7 @@ LAB_1805834b2:
   }
 LAB_180583b10:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_d8 ^ (uint64_t)auStack_2a8);
+  SystemSecurityChecker(uStack_d8 ^ (uint64_t)auStack_2a8);
 }
 
 

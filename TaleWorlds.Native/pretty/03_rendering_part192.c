@@ -128,11 +128,11 @@ extern void* system_buffer_ptr;          // 系统缓冲区指针
 /*========================== 函数别名映射 ==========================*/
 
 // 渲染系统核心函数
-#define RenderSystem_AllocateRenderBuffer      FUN_18062b1e0
+#define RenderSystem_AllocateRenderBuffer      CoreEngineMemoryPoolReallocator
 #define RenderSystem_CreateRenderResource      FUN_18023a2e0
 #define RenderSystem_SetRenderBuffer           FUN_18022cd30
-#define RenderSystem_FreeRenderResource        FUN_18064e900
-#define RenderSystem_AllocateMemory            FUN_18062b420
+#define RenderSystem_FreeRenderResource        CoreEngineMemoryPoolCleaner
+#define RenderSystem_AllocateMemory            CoreEngineMemoryPoolAllocator
 #define RenderSystem_ProcessRenderObject        FUN_18037ae90
 #define RenderSystem_ExecuteRenderCommand      FUN_18005c650
 #define RenderSystem_InitializeRenderContext    FUN_180372430
@@ -142,7 +142,7 @@ extern void* system_buffer_ptr;          // 系统缓冲区指针
 #define RenderSystem_LinkRenderResource        FUN_18066bdc0
 #define RenderSystem_FindRenderResource        FUN_180048980
 #define RenderSystem_ReleaseRenderMemory       FUN_18004b790
-#define RenderSystem_GetRenderData             FUN_180627ae0
+#define RenderSystem_GetRenderData             CoreEngineDataTransformer
 #define RenderSystem_NextRenderNode            func_0x00018066bd70
 #define RenderSystem_PrevRenderNode            func_0x00018066b9a0
 

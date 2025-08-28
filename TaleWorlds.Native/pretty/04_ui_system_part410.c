@@ -52,16 +52,16 @@ int FUN_180894380(int64_t param_1,int64_t param_2,int param_3)
   int iVar2;
   
   iVar1 = func_0x00018074b800(param_2,param_3,*(int32_t *)(param_1 + 0x10));
-  iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&system_temp_buffer);
+  iVar2 = SystemDataProcessor(param_2 + iVar1,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = func_0x00018074b7d0(iVar1 + param_2,param_3 - iVar1,*(int32_t *)(param_1 + 0x18));
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
+  iVar2 = SystemDataProcessor(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = FUN_18074b970(iVar1 + param_2,param_3 - iVar1,param_1 + 0x20,
                         *(int32_t *)(param_1 + 0x18));
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
+  iVar2 = SystemDataProcessor(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = FUN_18074bb00(iVar1 + param_2,param_3 - iVar1,
                         param_1 + 0x20 + (int64_t)*(int *)(param_1 + 0x18) * 4);
@@ -77,21 +77,21 @@ int FUN_180894460(int64_t param_1,int64_t param_2,int param_3)
   int iVar2;
   
   iVar1 = func_0x00018074b800(param_2,param_3,*(int32_t *)(param_1 + 0x10));
-  iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&system_temp_buffer);
+  iVar2 = SystemDataProcessor(param_2 + iVar1,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = func_0x00018074b7d0(iVar1 + param_2,param_3 - iVar1,*(int32_t *)(param_1 + 0x18));
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
+  iVar2 = SystemDataProcessor(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = FUN_18088ed70(iVar1 + param_2,param_3 - iVar1,param_1 + 0x20,
                         *(int32_t *)(param_1 + 0x18));
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
+  iVar2 = SystemDataProcessor(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = FUN_18074bb00(iVar1 + param_2,param_3 - iVar1,
                         param_1 + 0x20 + (int64_t)*(int *)(param_1 + 0x18) * 8);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
+  iVar2 = SystemDataProcessor(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = FUN_18074be90(iVar1 + param_2,param_3 - iVar1,*(int8_t *)(param_1 + 0x1c));
   return iVar2 + iVar1;
@@ -106,17 +106,17 @@ int FUN_180894570(int64_t param_1,int64_t param_2,int param_3)
   int iVar2;
   
   iVar1 = func_0x00018074b7d0(param_2,param_3,*(int32_t *)(param_1 + 0x10));
-  iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&system_temp_buffer);
+  iVar2 = SystemDataProcessor(param_2 + iVar1,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = FUN_18088ed70(iVar1 + param_2,param_3 - iVar1,param_1 + 0x18,
                         *(int32_t *)(param_1 + 0x10));
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
+  iVar2 = SystemDataProcessor(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = FUN_18074bb00(iVar1 + param_2,param_3 - iVar1,
                         param_1 + 0x18 + (int64_t)*(int *)(param_1 + 0x10) * 8);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
+  iVar2 = SystemDataProcessor(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = FUN_18074be90(iVar1 + param_2,param_3 - iVar1,*(int8_t *)(param_1 + 0x14));
   return iVar2 + iVar1;
@@ -130,12 +130,12 @@ int FUN_180894650(int64_t *param_1,int64_t param_2,int param_3)
   int iVar1;
   int iVar2;
   
-  iVar1 = FUN_18074b880(param_2,param_3,&unknown_var_7656_ptr);
-  iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&system_temp_buffer);
+  iVar1 = SystemDataProcessor(param_2,param_3,&unknown_var_7656_ptr);
+  iVar2 = SystemDataProcessor(param_2 + iVar1,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = func_0x00018074b7d0(iVar1 + param_2,param_3 - iVar1,(int)param_1[3] * 8 + 0x20);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
+  iVar2 = SystemDataProcessor(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = (**(code **)(*param_1 + 8))(param_1,iVar1 + param_2,param_3 - iVar1);
   return iVar2 + iVar1;
@@ -149,12 +149,12 @@ int FUN_180894700(int64_t *param_1,int64_t param_2,int param_3)
   int iVar1;
   int iVar2;
   
-  iVar1 = FUN_18074b880(param_2,param_3,&unknown_var_8816_ptr);
-  iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&system_temp_buffer);
+  iVar1 = SystemDataProcessor(param_2,param_3,&unknown_var_8816_ptr);
+  iVar2 = SystemDataProcessor(param_2 + iVar1,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = func_0x00018074b7d0(iVar1 + param_2,param_3 - iVar1,(int)param_1[3] * 0xc + 0x20);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
+  iVar2 = SystemDataProcessor(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = (**(code **)(*param_1 + 8))(param_1,iVar1 + param_2,param_3 - iVar1);
   return iVar2 + iVar1;
@@ -168,12 +168,12 @@ int FUN_1808947b0(int64_t *param_1,int64_t param_2,int param_3)
   int iVar1;
   int iVar2;
   
-  iVar1 = FUN_18074b880(param_2,param_3,&unknown_var_1184_ptr);
-  iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&system_temp_buffer);
+  iVar1 = SystemDataProcessor(param_2,param_3,&unknown_var_1184_ptr);
+  iVar2 = SystemDataProcessor(param_2 + iVar1,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = func_0x00018074b7d0(iVar1 + param_2,param_3 - iVar1,((int)param_1[2] + 2) * 0xc);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
+  iVar2 = SystemDataProcessor(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = (**(code **)(*param_1 + 8))(param_1,iVar1 + param_2,param_3 - iVar1);
   return iVar2 + iVar1;
@@ -240,7 +240,7 @@ void FUN_180894860(int64_t param_1,int32_t *param_2,int64_t *param_3)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_c8);
+  SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_c8);
 }
 
 
@@ -266,7 +266,7 @@ void FUN_18089494e(void)
   uint64_t in_stack_000000b0;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000b0 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_000000b0 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -328,7 +328,7 @@ void FUN_1808949c0(int64_t param_1,int32_t *param_2,int64_t *param_3)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (uint64_t)auStack_b8);
+  SystemSecurityChecker(uStack_10 ^ (uint64_t)auStack_b8);
 }
 
 
@@ -361,7 +361,7 @@ void FUN_180894a07(uint64_t param_1)
   *unaff_RSI = lVar2;
 LAB_180894aca:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000a8 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_000000a8 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -375,7 +375,7 @@ void FUN_180894ad2(void)
   uint64_t in_stack_000000a8;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000a8 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_000000a8 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -438,7 +438,7 @@ void FUN_180894b00(int64_t param_1,int32_t *param_2,int64_t *param_3)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_c8);
+  SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_c8);
 }
 
 
@@ -472,7 +472,7 @@ void FUN_180894bf5(void)
     *unaff_RDI = lStack0000000000000080;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000b0 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_000000b0 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -677,7 +677,7 @@ uint FUN_180894ef0(int64_t *param_1)
     }
     if ((0 < (int)uVar3) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
     }
     *param_1 = 0;
     uVar3 = 0;
@@ -700,7 +700,7 @@ uint FUN_180894ef0(int64_t *param_1)
   }
   if ((0 < *(int *)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
+    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
   }
   *param_1 = 0;
   *(int32_t *)((int64_t)param_1 + 0xc) = 0;
@@ -721,20 +721,20 @@ uint64_t FUN_180894fb0(int64_t param_1)
   
   FUN_18088c620();
   FUN_180840270(param_1 + 0xd8);
-  iVar2 = FUN_180744cc0(param_1 + 0x70);
+  iVar2 = SystemStatusChecker(param_1 + 0x70);
   if ((iVar2 == 0) && (iVar2 = FUN_180895130(param_1 + 0x80), iVar2 == 0)) {
     *(int32_t *)(param_1 + 0x90) = 0xffffffff;
     *(int32_t *)(param_1 + 0x94) = 0;
   }
   FUN_180895130(param_1 + 0x80);
-  FUN_180744cc0(param_1 + 0x70);
-  iVar2 = FUN_180744cc0(param_1 + 0x28);
+  SystemStatusChecker(param_1 + 0x70);
+  iVar2 = SystemStatusChecker(param_1 + 0x28);
   if ((iVar2 == 0) && (iVar2 = FUN_180895070(param_1 + 0x38), iVar2 == 0)) {
     *(int32_t *)(param_1 + 0x48) = 0xffffffff;
     *(int32_t *)(param_1 + 0x4c) = 0;
   }
   FUN_180895070(param_1 + 0x38);
-  FUN_180744cc0(param_1 + 0x28);
+  SystemStatusChecker(param_1 + 0x28);
   FUN_180894ef0(param_1 + 0x18);
   plVar1 = (int64_t *)(param_1 + 8);
   uVar4 = *(uint *)(param_1 + 0x14);
@@ -744,7 +744,7 @@ uint64_t FUN_180894fb0(int64_t param_1)
     }
     if ((0 < (int)uVar4) && (*plVar1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*plVar1,&unknown_var_8432_ptr,0x100,1);
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*plVar1,&unknown_var_8432_ptr,0x100,1);
     }
     *plVar1 = 0;
     uVar4 = 0;
@@ -781,7 +781,7 @@ uint64_t FUN_180895070(int64_t *param_1)
     }
     if ((0 < (int)uVar3) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
     }
     *param_1 = 0;
     uVar3 = 0;
@@ -820,7 +820,7 @@ uint64_t FUN_180895130(int64_t *param_1)
     }
     if ((0 < (int)uVar5) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
     }
     *param_1 = 0;
     *(int32_t *)((int64_t)param_1 + 0xc) = 0;

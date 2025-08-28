@@ -100,7 +100,7 @@ LAB_1803af5ea:
   uStack_30 = 0;
   puStack_40 = (int8_t *)0x0;
   iStack_38 = 0;
-  FUN_1806277c0(&puStack_48,system_system_control_config);
+  CoreEngineDataBufferProcessor(&puStack_48,system_system_control_config);
   if (0 < system_system_control_config) {
     puVar7 = &system_buffer_ptr;
     if (system_system_control_config != (void *)0x0) {
@@ -133,7 +133,7 @@ LAB_1803af6b0:
   puStack_48 = &system_data_buffer_ptr;
   if (puStack_40 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   puStack_40 = (int8_t *)0x0;
   uStack_30 = uStack_30 & 0xffffffff00000000;

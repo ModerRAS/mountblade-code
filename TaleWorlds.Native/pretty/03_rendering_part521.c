@@ -32,7 +32,7 @@ void FUN_18054b8c0(int64_t param_1,int64_t param_2)
   int iStack_50;
   uint64_t uStack_48;
   
-  lStackX_8 = FUN_18062b1e0(system_memory_pool_ptr,0x30,8,3);
+  lStackX_8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x30,8,3);
   pcVar18 = (char *)0x0;
   *(uint64_t *)(lStackX_8 + 0x28) = 3;
   *(int32_t *)(lStackX_8 + 0x19) = 0;
@@ -233,7 +233,7 @@ LAB_18054bc0b:
   puStack_60 = &system_data_buffer_ptr;
   if (pbStack_58 != (byte *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   pcVar17 = "bone_body_type";
   do {
@@ -500,7 +500,7 @@ LAB_18054c005:
   puStack_60 = &system_data_buffer_ptr;
   if (pbStack_58 != (byte *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   pcVar21 = "bone_body_type";
   do {
@@ -640,7 +640,7 @@ LAB_18054c400:
         if (puVar7 != (void *)0x0) {
           puVar5 = puVar7;
         }
-        FUN_180626f80(&unknown_var_976_ptr,puVar5);
+        SystemDataInitializer(&unknown_var_976_ptr,puVar5);
         return 0xff;
       }
     }
@@ -782,7 +782,7 @@ LAB_18054c696:
   do {
     if (pcVar7 == (char *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_4b8);
+      SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_4b8);
     }
     puStack_478 = &system_data_buffer_ptr;
     uStack_460 = 0;
@@ -977,7 +977,7 @@ LAB_18054ca62:
     puStack_498 = &system_data_buffer_ptr;
     if (lStack_490 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     lStack_490 = 0;
     uStack_480 = uStack_480 & 0xffffffff00000000;
@@ -985,7 +985,7 @@ LAB_18054ca62:
     puStack_478 = &system_data_buffer_ptr;
     if (puStack_470 != (void *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     puStack_470 = (void *)0x0;
     uStack_460 = uStack_460 & 0xffffffff00000000;

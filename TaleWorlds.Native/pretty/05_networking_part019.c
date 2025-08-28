@@ -425,7 +425,7 @@ LAB_180852a22:
     // 执行网络系统的错误处理和资源清理操作
 FUN_180852aaa:
     // 执行系统安全检查和资源清理
-    FUN_1808fc050(uStack_50 ^ (uint64_t)auStack_338);  // 安全检查和资源清理
+    SystemSecurityChecker(uStack_50 ^ (uint64_t)auStack_338);  // 安全检查和资源清理
     
     // 第十五阶段：网络连接处理和验证
     // 处理网络连接和执行连接验证操作
@@ -580,7 +580,7 @@ LAB_180852518:
                 if ((0 < (int)uVar17) && (*plVar13 != 0)) {
                     plStack_318 = (int64_t *)CONCAT71(plStack_318._1_7_, 1);  // 设置验证标志
                     // 执行数据验证操作
-                    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *plVar13, &unknown_var_8432_ptr, 0x100);
+                    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *plVar13, &unknown_var_8432_ptr, 0x100);
                 }
                 
                 // 清理数据指针
@@ -686,7 +686,7 @@ LAB_1808526bf:
             if ((0 < (int)uVar17) && (*plVar13 != 0)) {
                 plStack_318 = (int64_t *)CONCAT71(plStack_318._1_7_, 1);  // 设置验证标志
                 // 执行数据验证操作
-                FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *plVar13, &unknown_var_8432_ptr, 0x100);
+                SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *plVar13, &unknown_var_8432_ptr, 0x100);
             }
             
             // 清理第二组数据指针

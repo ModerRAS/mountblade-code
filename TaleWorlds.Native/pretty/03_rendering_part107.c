@@ -147,7 +147,7 @@ void RenderingSystem_TexturePathProcessor(int64_t render_context, int64_t file_h
         // 检查纹理数据指针有效性
         if (*(int64_t *)param_ptr == 0) {
             // 分配纹理数据内存
-            path_buffer = FUN_18062b420(system_memory_pool_ptr, 0x48000, 0x25);
+            path_buffer = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x48000, 0x25);
             LOCK();
             is_allocated = *(int64_t *)(param_ptr + (int64_t)path_index * 2 + 2) == 0;
             if (is_allocated) {
@@ -163,7 +163,7 @@ void RenderingSystem_TexturePathProcessor(int64_t render_context, int64_t file_h
             else {
                 // 清理未使用的内存
                 if (path_buffer != 0) {
-                    FUN_18064e900(path_buffer);
+                    CoreEngineMemoryPoolCleaner(path_buffer);
                 }
                 // 等待路径处理完成
                 do {
@@ -412,7 +412,7 @@ texture_processing_complete:
     }
     
     // 清理资源并返回
-    FUN_1808fc050(frame_sync ^ (uint64_t)workspace);
+    SystemSecurityChecker(frame_sync ^ (uint64_t)workspace);
 }
 
 // 函数别名：保持向后兼容性
@@ -686,7 +686,7 @@ void RenderingSystem_ParameterInterpolator(uint64_t render_context, float *targe
     target_buffer[0xf] = RENDERING_FLOAT_MAX_VALUE;
     
     // 清理资源
-    FUN_1808fc050(frame_sync, target_value2);
+    SystemSecurityChecker(frame_sync, target_value2);
 }
 
 // 函数别名：保持向后兼容性
@@ -879,7 +879,7 @@ void RenderingSystem_AdvancedMatrixTransformer(uint64_t param1, uint64_t param2,
     source_buffer[0xf] = RENDERING_FLOAT_MAX_VALUE;
     
     // 清理资源
-    FUN_1808fc050(*(uint64_t *)(transform_matrix + -0x50) ^ (uint64_t)&stack0x00000000, transform_factor6);
+    SystemSecurityChecker(*(uint64_t *)(transform_matrix + -0x50) ^ (uint64_t)&stack0x00000000, transform_factor6);
 }
 
 // 函数别名：保持向后兼容性
@@ -983,7 +983,7 @@ void RenderingSystem_QuaternionRotationProcessor(void)
     target_buffer[0xf] = RENDERING_FLOAT_MAX_VALUE;
     
     // 清理资源
-    FUN_1808fc050(*(uint64_t *)(transform_matrix + -0x50) ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(*(uint64_t *)(transform_matrix + -0x50) ^ (uint64_t)&stack0x00000000);
 }
 
 // 函数别名：保持向后兼容性
@@ -1108,7 +1108,7 @@ void RenderingSystem_VectorNormalizationProcessor(void)
     target_buffer[0xf] = RENDERING_FLOAT_MAX_VALUE;
     
     // 清理资源
-    FUN_1808fc050(*(uint64_t *)(transform_matrix + -0x50) ^ (uint64_t)&stack0x00000000, normalization_factor6);
+    SystemSecurityChecker(*(uint64_t *)(transform_matrix + -0x50) ^ (uint64_t)&stack0x00000000, normalization_factor6);
 }
 
 // 函数别名：保持向后兼容性
@@ -1197,7 +1197,7 @@ void RenderingSystem_FastTransformProcessor(void)
     target_buffer[0xf] = RENDERING_FLOAT_MAX_VALUE;
     
     // 清理资源
-    FUN_1808fc050(*(uint64_t *)(transform_matrix + -0x50) ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(*(uint64_t *)(transform_matrix + -0x50) ^ (uint64_t)&stack0x00000000);
 }
 
 // 函数别名：保持向后兼容性

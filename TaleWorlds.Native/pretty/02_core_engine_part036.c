@@ -64,7 +64,7 @@ void FUN_1800786e0(uint64_t *param_1,int64_t param_2)
       if (*(void **)(lVar1 + 0x18) != (void *)0x0) {
         puVar6 = *(void **)(lVar1 + 0x18);
       }
-      FUN_180626f80(&unknown_var_5392_ptr,puVar6);
+      SystemDataInitializer(&unknown_var_5392_ptr,puVar6);
     }
     iVar9 = iVar9 + 1;
     plVar8 = plVar8 + 1;
@@ -78,7 +78,7 @@ void FUN_1800786e0(uint64_t *param_1,int64_t param_2)
   uStack_58 = &system_data_buffer_ptr;
   if (uStack_50 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   uStack_50 = 0;
   uStack_40 = 0;

@@ -555,7 +555,7 @@ void FUN_1807dc910(float *param_1,float *param_2,int param_3,int64_t param_4,uin
     } while (param_3 != 0);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_d8);
+  SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_d8);
 }
 
 

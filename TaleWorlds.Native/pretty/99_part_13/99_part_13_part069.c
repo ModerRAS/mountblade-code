@@ -784,7 +784,7 @@ LAB_1808d856d:
 }
 
 // 函数别名定义
-#define SystemResourceCleanup FUN_180742250
+#define SystemResourceCleanup SystemDataValidator
 #define SystemMemoryRelease FUN_1808532e0
 #define SystemObjectRelease func_0x0001808d7970
 #define SystemObjectCleanup func_0x00018084e310
@@ -792,7 +792,7 @@ LAB_1808d856d:
 #define SystemObjectShutdown FUN_1808d8b60
 #define SystemComponentCleanup FUN_18084c680
 #define SystemObjectFinalize FUN_1808b1a30
-#define SystemMemoryAllocate FUN_180741e10
+#define SystemMemoryAllocate SystemResourceManager
 #define SystemObjectInitialize FUN_1808b89f0
 #define SystemDataCheck func_0x0001808d8b40
 #define SystemDataValidation FUN_1808b1c90

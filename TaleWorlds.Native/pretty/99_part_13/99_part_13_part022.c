@@ -491,7 +491,7 @@ void audio_processor_alternate(int64_t audio_context, int processing_mode, float
     }
     
     // 安全退出
-    FUN_1808fc050(security_token ^ (uint64_t)sample_buffer);
+    SystemSecurityChecker(security_token ^ (uint64_t)sample_buffer);
 }
 
 /**
@@ -637,7 +637,7 @@ void audio_processor_stream(int64_t *audio_stream, int processing_mode, float vo
     }
     
     // 安全退出
-    FUN_1808fc050(security_token ^ (uint64_t)stream_buffer);
+    SystemSecurityChecker(security_token ^ (uint64_t)stream_buffer);
 }
 
 /**
@@ -719,7 +719,7 @@ void audio_processor_parametric(uint64_t param1, uint64_t param2, int param3,
     }
     
     // 安全退出
-    FUN_1808fc050(param6 ^ (uint64_t)channel_mix);
+    SystemSecurityChecker(param6 ^ (uint64_t)channel_mix);
 }
 
 /**
@@ -793,7 +793,7 @@ void audio_processor_volume_adjust(float volume_input, int64_t audio_context, in
     }
     
     // 安全退出
-    FUN_1808fc050(security_token ^ (uint64_t)channel_mix);
+    SystemSecurityChecker(security_token ^ (uint64_t)channel_mix);
 }
 
 /**
@@ -838,7 +838,7 @@ void audio_processor_simple_mix(int64_t audio_context, float mix_volume,
     }
     
     // 安全退出
-    FUN_1808fc050(security_token ^ (uint64_t)final_volume);
+    SystemSecurityChecker(security_token ^ (uint64_t)final_volume);
 }
 
 /**
@@ -871,7 +871,7 @@ void audio_processor_direct_update(int64_t audio_context, int32_t update_value,
     }
     
     // 安全退出
-    FUN_1808fc050(security_token ^ (uint64_t)update_value);
+    SystemSecurityChecker(security_token ^ (uint64_t)update_value);
 }
 
 /**

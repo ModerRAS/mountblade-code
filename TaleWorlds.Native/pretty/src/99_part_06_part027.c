@@ -290,7 +290,7 @@ typedef struct SystemState {
  * @param param_1 系统上下文句柄
  * @param param_2 特征配置数据指针
  */
-void FUN_1803be690(int64_t param_1, int64_t param_2)
+void SystemFeatureProcessor(int64_t param_1, int64_t param_2)
 {
     int iVar1;
     char *pcVar2;
@@ -541,7 +541,7 @@ LAB_1803be98e:
  * @param param_5 配置标志位
  * @param param_6 配置模式参数
  */
-void FUN_1803be9f0(int64_t param_1, int64_t *param_2, int64_t *param_3, int64_t param_4,
+void SystemConfigManager(int64_t param_1, int64_t *param_2, int64_t *param_3, int64_t param_4,
                   uint64_t param_5, char param_6)
 {
     char cVar1;

@@ -542,7 +542,7 @@ void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,int64_t param_3,i
   }
                     // WARNING: Subroutine does not return
   *(uint64_t *)((int64_t)puVar18 + -8) = 0x180836966;
-  FUN_1808fc050(auStack_b8[0] ^ (uint64_t)auStack_b8);
+  SystemSecurityChecker(auStack_b8[0] ^ (uint64_t)auStack_b8);
 }
 
 

@@ -184,7 +184,7 @@ LAB_18013bc7c:
   *(int8_t *)(lVar15 + 0x1dd1) = 0;
 LAB_18013bf0b:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_2f8);
+  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_2f8);
 }
 
 
@@ -211,7 +211,7 @@ void FUN_18013bf40(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(lVar1,SYSTEM_DATA_MANAGER_B,param_3,param_4,uVar2);
+    SystemResourceCleaner(lVar1,SYSTEM_DATA_MANAGER_B,param_3,param_4,uVar2);
   }
   return;
 }

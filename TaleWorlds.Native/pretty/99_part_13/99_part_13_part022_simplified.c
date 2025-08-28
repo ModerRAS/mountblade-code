@@ -72,7 +72,7 @@ void audio_processor_simple(int64_t context, float volume, uint flags, uint64_t 
     *(float *)(context + 0x54) = final_output;
     
     // 安全退出
-    FUN_1808fc050(security ^ (uint64_t)&final_output);
+    SystemSecurityChecker(security ^ (uint64_t)&final_output);
 }
 
 /**
@@ -107,7 +107,7 @@ void audio_volume_adjust(float volume_input, int64_t context, uint64_t security)
     *(float *)(context + 0x54) = adjusted_volume;
     
     // 安全退出
-    FUN_1808fc050(security ^ (uint64_t)&adjusted_volume);
+    SystemSecurityChecker(security ^ (uint64_t)&adjusted_volume);
 }
 
 /**
@@ -148,7 +148,7 @@ void audio_effect_apply(uint64_t param1, uint64_t param2, int param3,
     *(float *)(param1 + 0x54) = result_value;
     
     // 安全退出
-    FUN_1808fc050(security ^ (uint64_t)&result_value);
+    SystemSecurityChecker(security ^ (uint64_t)&result_value);
 }
 
 /**

@@ -210,7 +210,7 @@ uint64_t FUN_180770580(int64_t param_1)
   if ((int)uVar2 == 0) {
     if (*(int64_t *)(param_1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x28),
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x28),
                     &unknown_var_2592_ptr,0x161,1);
     }
     uVar2 = 0;
@@ -250,7 +250,7 @@ uint64_t FUN_180770590(int64_t param_1)
   if ((int)uVar2 == 0) {
     if (*(int64_t *)(unaff_RBX + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(unaff_RBX + 0x28),
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(unaff_RBX + 0x28),
                     &unknown_var_2592_ptr,0x161,1);
     }
     uVar2 = 0;
@@ -287,7 +287,7 @@ uint64_t FUN_18077059c(void)
   if ((int)uVar2 == 0) {
     if (*(int64_t *)(unaff_RBX + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(unaff_RBX + 0x28),
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(unaff_RBX + 0x28),
                     &unknown_var_2592_ptr,0x161,1);
     }
     uVar2 = 0;
@@ -311,7 +311,7 @@ uint64_t FUN_1807705d4(void)
   if ((int)uVar1 == 0) {
     if (*(int64_t *)(unaff_RBX + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(unaff_RBX + 0x28),
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(unaff_RBX + 0x28),
                     &unknown_var_2592_ptr,0x161,1);
     }
     uVar1 = 0;
@@ -333,7 +333,7 @@ uint64_t FUN_1807705e8(void)
   if ((int)uVar1 == 0) {
     if (*(int64_t *)(unaff_RBX + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(unaff_RBX + 0x28),
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(unaff_RBX + 0x28),
                     &unknown_var_2592_ptr,0x161,1);
     }
     uVar1 = 0;

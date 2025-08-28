@@ -249,7 +249,7 @@ void SystemDataProcessor(uint64_t param_1, int64_t param_2, int64_t param_3, cha
     // 错误检查
     if (context1 != 0) {
         // 系统错误处理
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     
     context1 = 0;
@@ -364,7 +364,7 @@ LAB_180096e94:
         // 复杂数据处理逻辑
         FUN_1806279c0(temp_buffer2, param_2);
         lock_result = data_index + 6;
-        FUN_1806277c0(temp_buffer2, lock_result);
+        CoreEngineDataBufferProcessor(temp_buffer2, lock_result);
         data_buffer = (int32_t *)(data_ptr + data_index);
         *data_buffer = 0x61724720;
         *(int16_t *)(data_buffer + 1) = 0x6870;
@@ -404,7 +404,7 @@ LAB_180096e94:
         }
         core_data_ptr[4] = buffer_size - 4;
         
-        FUN_180626f80(system_resource_data_ptr);
+        SystemDataInitializer(system_resource_data_ptr);
         processing_value = (float)core_system_memory;
         FUN_1800571e0(core_data_ptr + 3, &processing_value);
         system_ptr3 = system_sync_data_ptr;
@@ -422,10 +422,10 @@ LAB_180096e94:
         stack_offset = processing_context + 0x30;
         
         // 内存分配和初始化
-        data_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
+        data_buffer = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x10, 0x13);
         *(int8_t *)data_buffer = 0;
         int_buffer = data_buffer;
-        memory_size = FUN_18064e990(data_buffer);
+        memory_size = CoreEngineSystemCleanup(data_buffer);
         buffer_offset = CONCAT44(buffer_offset._4_4_, memory_size);
         *data_buffer = 0x6c6c41;
         buffer_capacity = 3;
@@ -435,7 +435,7 @@ LAB_180096e94:
         buffer_ptr = &system_data_buffer_ptr;
         
         // 错误处理
-        FUN_18064e900(data_buffer);
+        CoreEngineMemoryPoolCleaner(data_buffer);
     }
     
     // 完成标志处理
@@ -481,7 +481,7 @@ LAB_180097ca1:
     }
     
     // 安全检查返回
-    FUN_1808fc050(security_cookie ^ (uint64_t)security_buffer);
+    SystemSecurityChecker(security_cookie ^ (uint64_t)security_buffer);
 }
 
 
@@ -623,7 +623,7 @@ void DataStructureCopier(int8_t *param_1)
     uint64_t array_index;
     
     // 分配目标结构内存
-    dest_struct = (int8_t *)FUN_18062b1e0(system_memory_pool_ptr, SYSTEM_DATA_BUFFER_SIZE, MEMORY_ALIGNMENT_8, 3);
+    dest_struct = (int8_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, SYSTEM_DATA_BUFFER_SIZE, MEMORY_ALIGNMENT_8, 3);
     array_index = 0;
     
     // 初始化目标结构
@@ -646,7 +646,7 @@ void DataStructureCopier(int8_t *param_1)
     
     // 分配数组内存
     if ((int64_t)*(int *)(param_1 + 0x10) != 0) {
-        array_size = FUN_18062b420(system_memory_pool_ptr, (int64_t)*(int *)(param_1 + 0x10) * 8, 3);
+        array_size = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, (int64_t)*(int *)(param_1 + 0x10) * 8, 3);
     }
     
     *(uint64_t *)(dest_struct + 8) = array_size;
@@ -659,7 +659,7 @@ void DataStructureCopier(int8_t *param_1)
             source_data = *(int64_t *)(array_size + *(int64_t *)(param_1 + 8));
             
             // 分配新元素内存
-            element_size = FUN_18062b1e0(system_memory_pool_ptr, SYSTEM_MESSAGE_BUFFER_SIZE, MEMORY_ALIGNMENT_8, 3);
+            element_size = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, SYSTEM_MESSAGE_BUFFER_SIZE, MEMORY_ALIGNMENT_8, 3);
             element_handle = FUN_18011fa30(element_size, 0);
             
             // 复制元素数据
@@ -717,7 +717,7 @@ void DataArrayProcessor(void)
         source_element = *(int64_t *)(array_pointer + *(int64_t *)(context_ptr2 + 8));
         
         // 分配目标元素内存
-        dest_element = FUN_18062b1e0(system_memory_pool_ptr, SYSTEM_MESSAGE_BUFFER_SIZE, MEMORY_ALIGNMENT_8, 3);
+        dest_element = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, SYSTEM_MESSAGE_BUFFER_SIZE, MEMORY_ALIGNMENT_8, 3);
         processed_element = FUN_18011fa30(dest_element, 0);
         
         // 应用数据处理
@@ -866,7 +866,7 @@ void SystemConfigurationManager(int64_t *param_1, int param_2, int param_3, uint
     *(code **)(system_context + 0xf8) = FUN_180099f90;
     
     // 初始化主处理器
-    memory_handle = FUN_18062b1e0(system_memory_pool_ptr, SYSTEM_CONFIG_BUFFER_SIZE, MEMORY_ALIGNMENT_8, 3);
+    memory_handle = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, SYSTEM_CONFIG_BUFFER_SIZE, MEMORY_ALIGNMENT_8, 3);
     processor1 = (int64_t *)FUN_1800842a0(memory_handle);
     core_processor1 = processor1;
     
@@ -879,7 +879,7 @@ void SystemConfigurationManager(int64_t *param_1, int param_2, int param_3, uint
     *(int16_t *)((int64_t)processor1 + 0x14) = 0x100;
     
     // 初始化配置处理器
-    processor2 = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x28, MEMORY_ALIGNMENT_8, 3);
+    processor2 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x28, MEMORY_ALIGNMENT_8, 3);
     config_buffer = &system_config_ptr;
     string_buffer = temp_buffer;
     temp_buffer[0] = 0;
@@ -923,7 +923,7 @@ void SystemConfigurationManager(int64_t *param_1, int param_2, int param_3, uint
     FUN_180255880(processor_context, &queue_ptr2);
     
     // 初始化辅助处理器
-    processor2 = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x30, MEMORY_ALIGNMENT_8, 3);
+    processor2 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x30, MEMORY_ALIGNMENT_8, 3);
     *processor2 = (int64_t)&system_handler1_ptr;
     *processor2 = (int64_t)&system_handler2_ptr;
     *(int32_t *)(processor2 + 1) = 0;
@@ -941,7 +941,7 @@ void SystemConfigurationManager(int64_t *param_1, int param_2, int param_3, uint
     *(int32_t *)((int64_t)processor2 + 0x14) = 2;
     
     // 初始化资源管理器
-    processor3 = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x20, MEMORY_ALIGNMENT_8, 3);
+    processor3 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x20, MEMORY_ALIGNMENT_8, 3);
     *processor3 = (int64_t)&system_handler1_ptr;
     *processor3 = (int64_t)&system_handler2_ptr;
     *(int32_t *)(processor3 + 1) = 0;
@@ -969,7 +969,7 @@ void SystemConfigurationManager(int64_t *param_1, int param_2, int param_3, uint
     FUN_180255b70(processor_context, &queue_ptr3);
     
     // 初始化大型缓冲区
-    memory_handle = FUN_18062b1e0(system_memory_pool_ptr, MEMORY_POOL_LARGE_SIZE, MEMORY_ALIGNMENT_16, 3);
+    memory_handle = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, MEMORY_POOL_LARGE_SIZE, MEMORY_ALIGNMENT_16, 3);
     processor3 = (int64_t *)FUN_18023a2e0(memory_handle, 1);
     
     if (processor3 != (int64_t *)0x0) {
@@ -1080,7 +1080,7 @@ void SystemConfigurationManager(int64_t *param_1, int param_2, int param_3, uint
     (**(code **)(*processor1 + 0x38))(processor1);
     
     // 安全检查返回
-    FUN_1808fc050(security_cookie ^ (uint64_t)security_buffer);
+    SystemSecurityChecker(security_cookie ^ (uint64_t)security_buffer);
 }
 
 

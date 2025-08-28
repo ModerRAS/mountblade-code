@@ -18,7 +18,7 @@
 
 // 渲染系统相关变量
 uint8_t FUN_180285080;                           // 渲染系统函数指针
-uint8_t FUN_18064e900;                           // 资源管理函数指针
+uint8_t CoreEngineMemoryPoolCleaner;                           // 资源管理函数指针
 
 //------------------------------------------------------------------------------
 // 常量定义
@@ -72,7 +72,7 @@ typedef uint64_t CleanupStateHandle;             // 清理状态句柄
 
 // 渲染系统函数别名
 #define RenderSystemCleanup                         FUN_180285080  // 渲染系统清理器
-#define ResourceManager                            FUN_18064e900  // 资源管理器
+#define ResourceManager                            CoreEngineMemoryPoolCleaner  // 资源管理器
 
 //------------------------------------------------------------------------------
 // 渲染系统资源清理核心函数

@@ -155,7 +155,7 @@ void FUN_180425040(void)
   }
 LAB_180425272:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000a00 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000a00 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -540,7 +540,7 @@ FUN_1804256d0(int64_t *param_1,byte *param_2,uint param_3,int param_4,uint param
   }
   else {
     puVar72 = (int16_t *)
-              FUN_18062b420(system_memory_pool_ptr,(int64_t)(int)(iVar79 * param_5 * param_6),
+              CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,(int64_t)(int)(iVar79 * param_5 * param_6),
                             CONCAT71((uint7)(uint3)(uStackX_8 >> 8),0x22));
   }
   param_1[3] = (int64_t)puVar72;

@@ -98,7 +98,7 @@ RingBuffer* InitializeRingBuffer(size_t capacity)
   }
   
   // 分配缓冲区内存
-  void* buffer = FUN_18062b420(g_render_context.global_allocator, 
+  void* buffer = CoreEngineMemoryPoolAllocator(g_render_context.global_allocator, 
                                actual_capacity * MEMORY_ALIGNMENT, 3);
   if (!buffer) {
     return NULL;
@@ -143,7 +143,7 @@ int RingBufferPush(RingBuffer* ring_buffer, void* data)
     }
     
     // 重新分配更大的缓冲区
-    void* new_buffer = FUN_18062b420(g_render_context.global_allocator,
+    void* new_buffer = CoreEngineMemoryPoolAllocator(g_render_context.global_allocator,
                                     new_capacity * MEMORY_ALIGNMENT, 3);
     if (!new_buffer) {
       return 0;
@@ -154,7 +154,7 @@ int RingBufferPush(RingBuffer* ring_buffer, void* data)
     
     // 释放旧缓冲区
     if (ring_buffer->buffer) {
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     
     // 更新缓冲区信息
@@ -214,7 +214,7 @@ void CopyRenderData(RenderBuffer* dest, RenderBuffer* src, size_t count)
     // 分配新缓冲区
     void* new_data = NULL;
     if (new_capacity > 0) {
-      new_data = FUN_18062b420(g_render_context.global_allocator,
+      new_data = CoreEngineMemoryPoolAllocator(g_render_context.global_allocator,
                              new_capacity * MEMORY_ALIGNMENT, (char)dest->flags);
     }
     
@@ -231,7 +231,7 @@ void CopyRenderData(RenderBuffer* dest, RenderBuffer* src, size_t count)
     
     // 释放旧缓冲区
     if (dest->data) {
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     
     // 更新目标缓冲区
@@ -296,7 +296,7 @@ void ProcessRenderBuffer(RenderBuffer* buffer_info, void* data_source)
       source_size = current_end;
       current_end = elements_needed;
       if (new_capacity != 0) {
-        current_end = FUN_18062b420(system_memory_pool_ptr, new_capacity * 8, (char)buffer_ptr[3]);
+        current_end = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, new_capacity * 8, (char)buffer_ptr[3]);
         buffer_start = *buffer_ptr;
         source_size = buffer_ptr[1];
       }
@@ -310,7 +310,7 @@ void ProcessRenderBuffer(RenderBuffer* buffer_info, void* data_source)
       }
       if (*buffer_ptr != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       *buffer_ptr = current_end;
       buffer_ptr[2] = current_end + new_capacity * 8;
@@ -377,7 +377,7 @@ void ReallocateRenderBuffer(size_t min_size, size_t current_size, size_t extra_s
   }
   source_offset = source_offset;
   if (new_capacity != 0) {
-    source_offset = FUN_18062b420(system_memory_pool_ptr, new_capacity * 8, (char)buffer_info[3]);
+    source_offset = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, new_capacity * 8, (char)buffer_info[3]);
     current_size = *buffer_info;
     source_end = buffer_info[1];
   }
@@ -407,7 +407,7 @@ void ReallocateRenderBuffer(size_t min_size, size_t current_size, size_t extra_s
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngineMemoryPoolCleaner();
 }
 
 
@@ -597,7 +597,7 @@ void FUN_1805608b0(uint64_t *param_1)
   param_1[0x32] = &system_data_buffer_ptr;
   if (param_1[0x33] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   param_1[0x33] = 0;
   *(int32_t *)(param_1 + 0x35) = 0;
@@ -605,19 +605,19 @@ void FUN_1805608b0(uint64_t *param_1)
   param_1[0x2e] = &system_data_buffer_ptr;
   if (param_1[0x2f] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   param_1[0x2f] = 0;
   *(int32_t *)(param_1 + 0x31) = 0;
   param_1[0x2e] = &system_state_ptr;
   if (param_1[0x2a] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   param_1[0x23] = &system_data_buffer_ptr;
   if (param_1[0x24] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   param_1[0x24] = 0;
   *(int32_t *)(param_1 + 0x26) = 0;
@@ -625,7 +625,7 @@ void FUN_1805608b0(uint64_t *param_1)
   param_1[0x1f] = &system_data_buffer_ptr;
   if (param_1[0x20] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   param_1[0x20] = 0;
   *(int32_t *)(param_1 + 0x22) = 0;
@@ -633,7 +633,7 @@ void FUN_1805608b0(uint64_t *param_1)
   param_1[0x1b] = &system_data_buffer_ptr;
   if (param_1[0x1c] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   param_1[0x1c] = 0;
   *(int32_t *)(param_1 + 0x1e) = 0;
@@ -641,7 +641,7 @@ void FUN_1805608b0(uint64_t *param_1)
   param_1[0x17] = &system_data_buffer_ptr;
   if (param_1[0x18] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   param_1[0x18] = 0;
   *(int32_t *)(param_1 + 0x1a) = 0;
@@ -649,7 +649,7 @@ void FUN_1805608b0(uint64_t *param_1)
   param_1[0x13] = &system_data_buffer_ptr;
   if (param_1[0x14] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   param_1[0x14] = 0;
   *(int32_t *)(param_1 + 0x16) = 0;
@@ -657,7 +657,7 @@ void FUN_1805608b0(uint64_t *param_1)
   param_1[0xf] = &system_data_buffer_ptr;
   if (param_1[0x10] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   param_1[0x10] = 0;
   *(int32_t *)(param_1 + 0x12) = 0;
@@ -665,7 +665,7 @@ void FUN_1805608b0(uint64_t *param_1)
   param_1[0xb] = &system_data_buffer_ptr;
   if (param_1[0xc] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   param_1[0xc] = 0;
   *(int32_t *)(param_1 + 0xe) = 0;
@@ -684,7 +684,7 @@ int64_t FUN_180560a90(int64_t param_1)
   int64_t lVar1;
   void *puVar2;
   
-  lVar1 = FUN_18062b1e0(system_memory_pool_ptr,0x208,8,4,0xfffffffffffffffe);
+  lVar1 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x208,8,4,0xfffffffffffffffe);
   FUN_18034dd90();
   *(uint64_t *)(lVar1 + 0x1b0) = &system_state_ptr;
   *(uint64_t *)(lVar1 + 0x1b8) = 0;
@@ -882,7 +882,7 @@ int8_t FUN_180560d50(int64_t param_1)
     FUN_1800571e0(&system_memory_5f68,auStackX_8);
     *(int *)(lVar2 + 0x68) = render_system_buffer;
     render_system_buffer = render_system_buffer + 1;
-    FUN_18005ea90(&system_memory_5f88,&lStackX_10);
+    SystemInitializer(&system_memory_5f88,&lStackX_10);
   }
   else {
     if (*(int *)(render_system_buffer + (int64_t)*(int *)(alStack_38[0] + 0x58) * 4) != -1) {
@@ -895,7 +895,7 @@ int8_t FUN_180560d50(int64_t param_1)
     }
     *(int *)(render_system_buffer + (int64_t)*(int *)(alStack_38[0] + 0x58) * 4) =
          (int)(render_system_buffer - render_system_buffer >> 3);
-    FUN_18005ea90(&system_memory_5f88,&lStackX_10);
+    SystemInitializer(&system_memory_5f88,&lStackX_10);
   }
   return 1;
 }
@@ -913,7 +913,7 @@ int64_t FUN_180560df0(uint64_t param_1,int64_t param_2)
   uint64_t uVar4;
   int64_t lVar5;
   
-  uVar4 = FUN_18062b1e0(system_memory_pool_ptr,0x1b8,8,0x1a);
+  uVar4 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x1b8,8,0x1a);
   lVar5 = FUN_180560660(uVar4);
   if (param_2 != 0) {
     *(int32_t *)(lVar5 + 8) = *(int32_t *)(param_2 + 8);
@@ -1006,7 +1006,7 @@ uint64_t FUN_180560fa0(int64_t param_1)
     FUN_1800571e0(&system_memory_5f68,auStackX_8);
     *(int *)(lVar3 + 0x68) = render_system_buffer;
     render_system_buffer = render_system_buffer + 1;
-    FUN_18005ea90(&system_memory_5f88,&lStackX_10);
+    SystemInitializer(&system_memory_5f88,&lStackX_10);
   }
   else {
     if (*(int *)(render_system_buffer + (int64_t)*(int *)(alStack_38[0] + 0x58) * 4) != -1) {
@@ -1019,7 +1019,7 @@ uint64_t FUN_180560fa0(int64_t param_1)
     }
     *(int *)(render_system_buffer + (int64_t)*(int *)(alStack_38[0] + 0x58) * 4) =
          (int)(render_system_buffer - render_system_buffer >> 3);
-    FUN_18005ea90(&system_memory_5f88,&lStackX_10);
+    SystemInitializer(&system_memory_5f88,&lStackX_10);
   }
   return 1;
 }

@@ -63,7 +63,7 @@
 #define SystemParameterSetter FUN_1802cc890
 
 // 系统清理器
-#define SystemCleaner FUN_1808fc050
+#define SystemCleaner SystemSecurityChecker
 
 // 系统配置初始化器
 #define SystemConfigInitializer FUN_1800ca380

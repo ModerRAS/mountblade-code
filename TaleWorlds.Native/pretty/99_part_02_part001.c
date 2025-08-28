@@ -157,7 +157,7 @@ void SystemExceptionHandler(void)
   
   // 警告：子函数不返回
   // 调用系统异常处理函数，传递偏移地址
-  FUN_18064e900(unaff_RSI + -SYSTEM_STACK_OFFSET_0x10);
+  CoreEngineMemoryPoolCleaner(unaff_RSI + -SYSTEM_STACK_OFFSET_0x10);
 }
 
 /**

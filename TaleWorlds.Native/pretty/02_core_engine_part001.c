@@ -249,7 +249,7 @@ uint8_t unknown_var_8432;   // 引擎核心服务7
 ==============================================================================*/
 
 // 函数: 系统服务管理器
-uint8_t FUN_180059ba0;  // SystemServiceManager - 系统服务管理器
+uint8_t SystemResourceCleaner;  // SystemServiceManager - 系统服务管理器
 uint8_t unknown_var_4276;   // 服务注册表指针
 
 // 函数: 组件生命周期管理器

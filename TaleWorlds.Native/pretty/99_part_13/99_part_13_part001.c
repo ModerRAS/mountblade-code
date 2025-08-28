@@ -119,19 +119,19 @@ uint64_t DataStructureProcessor(uint64_t *param_1, int64_t *param_2)
                     if (*(int *)(param_1[1] + 0x18) == 0) {
                         uVar2 = *param_1;
                         lVar5 = (int64_t)iVar7 * 0x10 + *param_2;
-                        uVar3 = FUN_1808aed00(uVar2, lVar5, 4);
+                        uVar3 = SystemErrorHandler(uVar2, lVar5, 4);
                         if ((int)uVar3 != 0) {
                             return uVar3;
                         }
-                        uVar3 = FUN_1808aed00(uVar2, lVar5 + 4, 2);
+                        uVar3 = SystemErrorHandler(uVar2, lVar5 + 4, 2);
                         if ((int)uVar3 != 0) {
                             return uVar3;
                         }
-                        uVar3 = FUN_1808aed00(uVar2, lVar5 + 6, 2);
+                        uVar3 = SystemErrorHandler(uVar2, lVar5 + 6, 2);
                         if ((int)uVar3 != 0) {
                             return uVar3;
                         }
-                        uVar2 = FUN_1808aed00(uVar2, lVar5 + 8, 8);
+                        uVar2 = SystemErrorHandler(uVar2, lVar5 + 8, 8);
                     }
                     else {
                         uVar2 = 0x1c;
@@ -204,19 +204,19 @@ uint64_t MemoryManager(void)
                     if (*(int *)(unaff_R14[1] + 0x18) == 0) {
                         uVar1 = *unaff_R14;
                         lVar3 = (int64_t)iVar5 * 0x10 + *unaff_R13;
-                        uVar2 = FUN_1808aed00(uVar1, lVar3, 4);
+                        uVar2 = SystemErrorHandler(uVar1, lVar3, 4);
                         if ((int)uVar2 != 0) {
                             return uVar2;
                         }
-                        uVar2 = FUN_1808aed00(uVar1, lVar3 + 4, 2);
+                        uVar2 = SystemErrorHandler(uVar1, lVar3 + 4, 2);
                         if ((int)uVar2 != 0) {
                             return uVar2;
                         }
-                        uVar2 = FUN_1808aed00(uVar1, lVar3 + 6, 2);
+                        uVar2 = SystemErrorHandler(uVar1, lVar3 + 6, 2);
                         if ((int)uVar2 != 0) {
                             return uVar2;
                         }
-                        uVar2 = FUN_1808aed00(uVar1, lVar3 + 8, 8);
+                        uVar2 = SystemErrorHandler(uVar1, lVar3 + 8, 8);
                     }
                     else {
                         uVar2 = 0x1c;
@@ -272,19 +272,19 @@ uint64_t ObjectLifecycleHandler(void)
             if (*(int *)(unaff_R14[1] + 0x18) == 0) {
                 uVar1 = *unaff_R14;
                 lVar3 = (int64_t)(int)unaff_EBX * 0x10 + *unaff_R13;
-                uVar2 = FUN_1808aed00(uVar1, lVar3, 4);
+                uVar2 = SystemErrorHandler(uVar1, lVar3, 4);
                 if ((int)uVar2 != 0) {
                     return uVar2;
                 }
-                uVar2 = FUN_1808aed00(uVar1, lVar3 + 4, 2);
+                uVar2 = SystemErrorHandler(uVar1, lVar3 + 4, 2);
                 if ((int)uVar2 != 0) {
                     return uVar2;
                 }
-                uVar2 = FUN_1808aed00(uVar1, lVar3 + 6, 2);
+                uVar2 = SystemErrorHandler(uVar1, lVar3 + 6, 2);
                 if ((int)uVar2 != 0) {
                     return uVar2;
                 }
-                uVar1 = FUN_1808aed00(uVar1, lVar3 + 8, 8);
+                uVar1 = SystemErrorHandler(uVar1, lVar3 + 8, 8);
             }
             else {
                 uVar1 = 0x1c;
@@ -380,35 +380,35 @@ uint64_t AdvancedDataProcessor(uint64_t *param_1, int64_t *param_2)
                     // 处理系统对象状态
                     if (*(int *)(param_1[1] + 0x18) == 0) {
                         uVar2 = *param_1;
-                        uVar3 = FUN_1808aed00(uVar2, lVar4, 4);
+                        uVar3 = SystemErrorHandler(uVar2, lVar4, 4);
                         if ((int)uVar3 != 0) {
                             return uVar3;
                         }
-                        uVar3 = FUN_1808aed00(uVar2, lVar4 + 4, 2);
+                        uVar3 = SystemErrorHandler(uVar2, lVar4 + 4, 2);
                         if ((int)uVar3 != 0) {
                             return uVar3;
                         }
-                        uVar3 = FUN_1808aed00(uVar2, lVar4 + 6, 2);
+                        uVar3 = SystemErrorHandler(uVar2, lVar4 + 6, 2);
                         if ((int)uVar3 != 0) {
                             return uVar3;
                         }
-                        uVar3 = FUN_1808aed00(uVar2, lVar4 + 8, 8);
+                        uVar3 = SystemErrorHandler(uVar2, lVar4 + 8, 8);
                         if ((int)uVar3 != 0) {
                             return uVar3;
                         }
-                        uVar3 = FUN_1808aed00(uVar2, lVar4 + 0x10, 4);
+                        uVar3 = SystemErrorHandler(uVar2, lVar4 + 0x10, 4);
                         if ((int)uVar3 != 0) {
                             return uVar3;
                         }
-                        uVar3 = FUN_1808aed00(uVar2, lVar4 + 0x14, 4);
+                        uVar3 = SystemErrorHandler(uVar2, lVar4 + 0x14, 4);
                         if ((int)uVar3 != 0) {
                             return uVar3;
                         }
-                        uVar3 = FUN_1808aed00(uVar2, lVar4 + 0x18, 4);
+                        uVar3 = SystemErrorHandler(uVar2, lVar4 + 0x18, 4);
                         if ((int)uVar3 != 0) {
                             return uVar3;
                         }
-                        uVar2 = FUN_1808995c0(uVar2, lVar4 + 0x1c);
+                        uVar2 = SystemConfigManager(uVar2, lVar4 + 0x1c);
                     }
                     else {
                         uVar2 = 0x1c;
@@ -465,35 +465,35 @@ uint64_t ExtendedMemoryManager(void)
                 // 处理系统对象状态
                 if (*(int *)(unaff_R14[1] + 0x18) == 0) {
                     uVar1 = *unaff_R14;
-                    uVar2 = FUN_1808aed00(uVar1, lVar3, 4);
+                    uVar2 = SystemErrorHandler(uVar1, lVar3, 4);
                     if ((int)uVar2 != 0) {
                         return uVar2;
                     }
-                    uVar2 = FUN_1808aed00(uVar1, lVar3 + 4, 2);
+                    uVar2 = SystemErrorHandler(uVar1, lVar3 + 4, 2);
                     if ((int)uVar2 != 0) {
                         return uVar2;
                     }
-                    uVar2 = FUN_1808aed00(uVar1, lVar3 + 6, 2);
+                    uVar2 = SystemErrorHandler(uVar1, lVar3 + 6, 2);
                     if ((int)uVar2 != 0) {
                         return uVar2;
                     }
-                    uVar2 = FUN_1808aed00(uVar1, lVar3 + 8, 8);
+                    uVar2 = SystemErrorHandler(uVar1, lVar3 + 8, 8);
                     if ((int)uVar2 != 0) {
                         return uVar2;
                     }
-                    uVar2 = FUN_1808aed00(uVar1, lVar3 + 0x10, 4);
+                    uVar2 = SystemErrorHandler(uVar1, lVar3 + 0x10, 4);
                     if ((int)uVar2 != 0) {
                         return uVar2;
                     }
-                    uVar2 = FUN_1808aed00(uVar1, lVar3 + 0x14, 4);
+                    uVar2 = SystemErrorHandler(uVar1, lVar3 + 0x14, 4);
                     if ((int)uVar2 != 0) {
                         return uVar2;
                     }
-                    uVar2 = FUN_1808aed00(uVar1, lVar3 + 0x18, 4);
+                    uVar2 = SystemErrorHandler(uVar1, lVar3 + 0x18, 4);
                     if ((int)uVar2 != 0) {
                         return uVar2;
                     }
-                    uVar1 = FUN_1808995c0(uVar1, lVar3 + 0x1c);
+                    uVar1 = SystemConfigManager(uVar1, lVar3 + 0x1c);
                 }
                 else {
                     uVar1 = 0x1c;
@@ -549,35 +549,35 @@ uint64_t ResourceAllocator(void)
             // 处理系统对象状态
             if (*(int *)(unaff_R14[1] + 0x18) == 0) {
                 uVar1 = *unaff_R14;
-                uVar2 = FUN_1808aed00(uVar1, lVar3, 4);
+                uVar2 = SystemErrorHandler(uVar1, lVar3, 4);
                 if ((int)uVar2 != 0) {
                     return uVar2;
                 }
-                uVar2 = FUN_1808aed00(uVar1, lVar3 + 4, 2);
+                uVar2 = SystemErrorHandler(uVar1, lVar3 + 4, 2);
                 if ((int)uVar2 != 0) {
                     return uVar2;
                 }
-                uVar2 = FUN_1808aed00(uVar1, lVar3 + 6, 2);
+                uVar2 = SystemErrorHandler(uVar1, lVar3 + 6, 2);
                 if ((int)uVar2 != 0) {
                     return uVar2;
                 }
-                uVar2 = FUN_1808aed00(uVar1, lVar3 + 8, 8);
+                uVar2 = SystemErrorHandler(uVar1, lVar3 + 8, 8);
                 if ((int)uVar2 != 0) {
                     return uVar2;
                 }
-                uVar2 = FUN_1808aed00(uVar1, lVar3 + 0x10, 4);
+                uVar2 = SystemErrorHandler(uVar1, lVar3 + 0x10, 4);
                 if ((int)uVar2 != 0) {
                     return uVar2;
                 }
-                uVar2 = FUN_1808aed00(uVar1, lVar3 + 0x14, 4);
+                uVar2 = SystemErrorHandler(uVar1, lVar3 + 0x14, 4);
                 if ((int)uVar2 != 0) {
                     return uVar2;
                 }
-                uVar2 = FUN_1808aed00(uVar1, lVar3 + 0x18, 4);
+                uVar2 = SystemErrorHandler(uVar1, lVar3 + 0x18, 4);
                 if ((int)uVar2 != 0) {
                     return uVar2;
                 }
-                uVar1 = FUN_1808995c0(uVar1, lVar3 + 0x1c);
+                uVar1 = SystemConfigManager(uVar1, lVar3 + 0x1c);
             }
             else {
                 uVar1 = 0x1c;
@@ -863,7 +863,7 @@ uint64_t SystemResourceManager(uint64_t *param_1, int64_t param_2)
                 
                 // 分配内存资源
                 plVar2 = (int64_t *)
-                         FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x28, &unknown_var_816_ptr, 0x269, 0,
+                         SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x28, &unknown_var_816_ptr, 0x269, 0,
                                        (char)uVar1, 1);
                 if (plVar2 == (int64_t *)0x0) {
                     return 0x26;
@@ -884,7 +884,7 @@ uint64_t SystemResourceManager(uint64_t *param_1, int64_t param_2)
                         iVar4 = 0x1c;
                         goto LAB_1808a674a;
                     }
-                    iVar4 = FUN_1808995c0(*param_1, plVar2 + 4);
+                    iVar4 = SystemConfigManager(*param_1, plVar2 + 4);
                     if (iVar4 != 0) goto LAB_1808a674a;
                 }
                 else {
@@ -901,7 +901,7 @@ LAB_1808a674a:
                         plVar2[1] = (int64_t)plVar2;
                         *plVar2 = (int64_t)plVar2;
                         // 释放资源
-                        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_2144_ptr, 0xc6, 1);
+                        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_2144_ptr, 0xc6, 1);
                     }
                 }
                 
@@ -924,7 +924,7 @@ LAB_1808a674a:
                         plVar2[1] = (int64_t)plVar2;
                         *plVar2 = (int64_t)plVar2;
                         // 释放资源
-                        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_2144_ptr, 0xc6, 1);
+                        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_2144_ptr, 0xc6, 1);
                     }
                 }
                 
@@ -980,7 +980,7 @@ LAB_1808a68ad:
         while (uVar1 = FUN_1808dde10(), (int)uVar1 == 0) {
             // 分配动态内存
             plVar2 = (int64_t *)
-                     FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x28, &unknown_var_816_ptr, 0x269,
+                     SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x28, &unknown_var_816_ptr, 0x269,
                                    (int)unaff_RDI);
             if (plVar2 == (int64_t *)0x0) {
                 return 0x26;
@@ -1001,7 +1001,7 @@ LAB_1808a68ad:
                     iVar4 = 0x1c;
                     goto LAB_1808a674a;
                 }
-                iVar4 = FUN_1808995c0(*unaff_R14, plVar2 + 4);
+                iVar4 = SystemConfigManager(*unaff_R14, plVar2 + 4);
                 if (iVar4 != 0) goto LAB_1808a674a;
             }
             else {
@@ -1018,7 +1018,7 @@ LAB_1808a674a:
                     plVar2[1] = (int64_t)plVar2;
                     *plVar2 = (int64_t)plVar2;
                     // 释放内存
-                    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_2144_ptr, 0xc6, 1);
+                    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_2144_ptr, 0xc6, 1);
                 }
             }
             
@@ -1041,7 +1041,7 @@ LAB_1808a674a:
                     plVar2[1] = (int64_t)plVar2;
                     *plVar2 = (int64_t)plVar2;
                     // 释放内存
-                    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_2144_ptr, 0xc6, 1);
+                    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_2144_ptr, 0xc6, 1);
                 }
             }
             

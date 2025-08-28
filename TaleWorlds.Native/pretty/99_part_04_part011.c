@@ -380,7 +380,7 @@ void DataStructureProcessor(uint64_t context_ptr, int64_t data_buffer, uint *res
     }
     
     // 清理和保护栈
-    FUN_1808fc050(stack_checksum ^ (uint64_t)stack_buffer);
+    SystemSecurityChecker(stack_checksum ^ (uint64_t)stack_buffer);
 }
 
 /**
@@ -504,7 +504,7 @@ void ContainerResizer(int64_t *container_ptr, uint64_t new_capacity)
             do {
                 *(uint64_t *)(new_end_position + 0x28) = &system_data_buffer_ptr;
                 if (*(int64_t *)(new_end_position + 0x30) != 0) {
-                    FUN_18064e900();
+                    CoreEngineMemoryPoolCleaner();
                 }
                 *(uint64_t *)(new_end_position + 0x30) = 0;
                 *(int32_t *)(new_end_position + 0x40) = 0;
@@ -566,7 +566,7 @@ void SmallContainerResizer(int64_t *container_ptr, uint64_t new_capacity)
             do {
                 *(uint64_t *)(new_end_position + 0x18) = &system_data_buffer_ptr;
                 if (*(int64_t *)(new_end_position + 0x20) != 0) {
-                    FUN_18064e900();
+                    CoreEngineMemoryPoolCleaner();
                 }
                 *(uint64_t *)(new_end_position + 0x20) = 0;
                 *(int32_t *)(new_end_position + 0x30) = 0;
@@ -621,7 +621,7 @@ void ContainerCleaner(int64_t *container_ptr)
     }
     
     // 完全释放容器内存
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
 }
 
 /**
@@ -751,7 +751,7 @@ void SmallDataContainerManager(int64_t *container_ptr, uint64_t required_space)
         current_capacity = 0;
     }
     else {
-        current_capacity = FUN_18062b420(system_memory_pool_ptr, new_capacity * CONTAINER_SIZE_0x18, 
+        current_capacity = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, new_capacity * CONTAINER_SIZE_0x18, 
                                        (char)container_ptr[3]);
         container_start = *container_ptr;
         container_end = container_ptr[1];
@@ -771,7 +771,7 @@ void SmallDataContainerManager(int64_t *container_ptr, uint64_t required_space)
         
         // 释放旧内存
         if (*container_ptr != 0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         
         // 更新容器信息
@@ -835,7 +835,7 @@ void SmallDataExpander(void)
         calculated_size = 0;
     }
     else {
-        calculated_size = FUN_18062b420(system_memory_pool_ptr, required_capacity * CONTAINER_SIZE_0x18, 
+        calculated_size = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, required_capacity * CONTAINER_SIZE_0x18, 
                                        (char)container_ptr[3]);
         data_pointer = *container_ptr;
         index_pointer = container_ptr[1];
@@ -859,7 +859,7 @@ void SmallDataExpander(void)
     
     // 释放旧内存
     if (*container_ptr != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     
     // 更新容器信息
@@ -967,7 +967,7 @@ void LargeContainerManager(int64_t *container_ptr, uint64_t required_capacity)
         // 分配新内存
         current_capacity = 0;
         if (new_capacity != 0) {
-            current_capacity = FUN_18062b420(system_memory_pool_ptr, new_capacity * CONTAINER_SIZE_0x88, 
+            current_capacity = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, new_capacity * CONTAINER_SIZE_0x88, 
                                            (char)container_ptr[3]);
             data_ptr = (uint64_t *)container_ptr[1];
             container_start = *container_ptr;
@@ -1020,7 +1020,7 @@ void LargeContainerManager(int64_t *container_ptr, uint64_t required_capacity)
         
         // 释放旧内存
         if (current_capacity != 0) {
-            FUN_18064e900(current_capacity);
+            CoreEngineMemoryPoolCleaner(current_capacity);
         }
         
         // 更新容器信息
@@ -1114,7 +1114,7 @@ void IndexedContainerManager(int64_t *container_ptr, uint64_t required_capacity)
         // 分配新内存
         container_start = 0;
         if (available_capacity != 0) {
-            container_start = FUN_18062b420(system_memory_pool_ptr, available_capacity * CONTAINER_SIZE_0x14, 
+            container_start = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, available_capacity * CONTAINER_SIZE_0x14, 
                                            (char)container_ptr[3]);
             temp_ptr = (int32_t *)*container_ptr;
             index_ptr = (int32_t *)container_ptr[1];
@@ -1140,7 +1140,7 @@ void IndexedContainerManager(int64_t *container_ptr, uint64_t required_capacity)
         
         // 释放旧内存
         if (*container_ptr != 0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         
         // 更新容器信息
@@ -1218,7 +1218,7 @@ void IndexedContainerExpander(int64_t param_1, uint64_t param_2, uint64_t param_
     // 分配新内存
     calculated_size = 0;
     if (required_capacity != 0) {
-        calculated_size = FUN_18062b420(system_memory_pool_ptr, required_capacity * CONTAINER_SIZE_0x14, 
+        calculated_size = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, required_capacity * CONTAINER_SIZE_0x14, 
                                        (char)container_ptr[3]);
         param_4 = *container_ptr;
         current_position = container_ptr[1];
@@ -1251,7 +1251,7 @@ void IndexedContainerExpander(int64_t param_1, uint64_t param_2, uint64_t param_
     }
     
     // 释放旧内存
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
 }
 
 /**
@@ -1353,7 +1353,7 @@ void MediumContainerManager(int64_t *container_ptr, uint64_t required_capacity)
         // 分配新内存
         current_capacity = 0;
         if (new_capacity != 0) {
-            current_capacity = FUN_18062b420(system_memory_pool_ptr, new_capacity * CONTAINER_SIZE_0x60, 
+            current_capacity = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, new_capacity * CONTAINER_SIZE_0x60, 
                                            (char)container_ptr[3]);
             data_ptr = (uint64_t *)container_ptr[1];
             container_start = *container_ptr;
@@ -1409,7 +1409,7 @@ void MediumContainerManager(int64_t *container_ptr, uint64_t required_capacity)
         
         // 释放旧内存
         if (current_capacity != 0) {
-            FUN_18064e900(current_capacity);
+            CoreEngineMemoryPoolCleaner(current_capacity);
         }
         
         // 更新容器信息
@@ -1492,7 +1492,7 @@ void LargeContainerExpander(int64_t *container_ptr, uint64_t required_capacity)
         temp_ptr1 = (int32_t *)0x0;
         if (new_capacity != 0) {
             temp_ptr1 = (int32_t *)
-                     FUN_18062b420(system_memory_pool_ptr, new_capacity * CONTAINER_SIZE_0x48, 
+                     CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, new_capacity * CONTAINER_SIZE_0x48, 
                                    (char)container_ptr[3], temp_ptr5, MEMORY_STACK_GUARD);
             temp_ptr5 = (uint64_t *)container_ptr[1];
             temp_ptr4 = (uint64_t *)*container_ptr;
@@ -1569,7 +1569,7 @@ void LargeContainerExpander(int64_t *container_ptr, uint64_t required_capacity)
             do {
                 *(uint64_t *)(current_position + 0x28) = &system_data_buffer_ptr;
                 if (*(int64_t *)(current_position + 0x30) != 0) {
-                    FUN_18064e900();
+                    CoreEngineMemoryPoolCleaner();
                 }
                 *(uint64_t *)(current_position + 0x30) = 0;
                 *(int32_t *)(current_position + 0x40) = 0;
@@ -1581,7 +1581,7 @@ void LargeContainerExpander(int64_t *container_ptr, uint64_t required_capacity)
         
         // 释放旧内存
         if (current_position != 0) {
-            FUN_18064e900(current_position);
+            CoreEngineMemoryPoolCleaner(current_position);
         }
         
         // 更新容器信息
@@ -1683,7 +1683,7 @@ void MediumContainerExpander(int64_t *container_ptr, uint64_t required_capacity)
         temp_ptr1 = (int32_t *)0x0;
         if (new_capacity != 0) {
             temp_ptr1 = (int32_t *)
-                     FUN_18062b420(system_memory_pool_ptr, new_capacity * CONTAINER_SIZE_0x38, 
+                     CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, new_capacity * CONTAINER_SIZE_0x38, 
                                    (char)container_ptr[3], temp_ptr5, MEMORY_STACK_GUARD);
             temp_ptr5 = (uint64_t *)container_ptr[1];
             temp_ptr4 = (uint64_t *)*container_ptr;
@@ -1754,7 +1754,7 @@ void MediumContainerExpander(int64_t *container_ptr, uint64_t required_capacity)
             do {
                 *(uint64_t *)(current_position + 0x18) = &system_data_buffer_ptr;
                 if (*(int64_t *)(current_position + 0x20) != 0) {
-                    FUN_18064e900();
+                    CoreEngineMemoryPoolCleaner();
                 }
                 *(uint64_t *)(current_position + 0x20) = 0;
                 *(int32_t *)(current_position + 0x30) = 0;
@@ -1766,7 +1766,7 @@ void MediumContainerExpander(int64_t *container_ptr, uint64_t required_capacity)
         
         // 释放旧内存
         if (current_position != 0) {
-            FUN_18064e900(current_position);
+            CoreEngineMemoryPoolCleaner(current_position);
         }
         
         // 更新容器信息
