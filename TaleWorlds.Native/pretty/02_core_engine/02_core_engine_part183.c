@@ -959,6 +959,106 @@ process_data_type_conversion(longlong *input_data, undefined8 *output_buffer, un
   return output_buffer;
 }
 
+// ========================== 常量定义 ==========================
+
+// 内存管理常量
+#define DEFAULT_OBJECT_PTR &UNK_18098bcb0
+#define CLEANUP_CONTEXT &UNK_180a3c3e0
+#define MEMORY_POOL_HANDLE _DAT_180c8ed18
+#define DEFAULT_STRING_DATA &DAT_18098bc73
+#define CONTEXT_DATA_ADDRESS _DAT_180c868f8
+#define FILE_CONTEXT_HANDLE _DAT_180c868f8
+#define FLOAT_CONVERSION_TABLE &UNK_180a0888c
+#define FLOAT_CONVERSION_ADDRESS &UNK_180a0888c
+
+// 标志常量
+#define CONTEXT_CLEANUP_FLAG 0xfffffffffffffffe
+#define STRING_TYPE_FLAG 0x13
+#define DATA_PROCESSOR_OFFSET 0x10
+
+// 默认请求常量
+#define DEFAULT_REQUEST_HANDLE &UNK_180a08868
+#define DEFAULT_REQUEST_DATA &UNK_180a08850
+
+// 错误处理常量
+#define UNCLOSED_QUOTES_ERROR &UNK_180a08898
+
+// ========================== 函数引用声明 ==========================
+
+// 内存管理函数
+void initialize_memory_manager(void);
+longlong allocate_data_block(longlong pool_id, longlong size, char flags);
+void setup_data_pointers(longlong *dest, longlong buffer_ptr, longlong element_count);
+void copy_data_content(undefined8 *data_block, longlong *src, longlong *dest);
+void copy_basic_attributes(longlong *dest, longlong *src);
+void process_second_data_region(longlong *dest, longlong *src);
+void process_third_data_region(longlong *dest, longlong *src);
+void copy_additional_data_blocks(longlong *dest, longlong *src);
+void process_fourth_data_region(longlong *dest, longlong *src);
+void setup_final_state(longlong *dest, longlong *src);
+longlong calculate_data_region_size(longlong *end_ptr, longlong *start_ptr);
+longlong calculate_element_count(longlong size_calc);
+
+// 资源处理函数
+void initialize_processing_context(undefined **context, longlong input, longlong param3, 
+                                 undefined8 param4, longlong param5, undefined8 flags);
+longlong validate_input_data(longlong manager, undefined **context);
+void create_default_request(undefined8 *handle, undefined *data_source);
+longlong process_validated_data(longlong validation, undefined **buffer, longlong input, 
+                               undefined8 flags, char mode);
+void apply_processed_data(longlong *output, undefined8 data);
+void copy_data_to_buffer(undefined **context, undefined4 size);
+void process_buffer_expansion(undefined8 *structure, undefined8 *processor, undefined **context);
+
+// 字符串验证函数
+void initialize_validation_context(undefined **context);
+longlong split_string_validation(longlong *input, undefined **buffer, longlong param3);
+undefined4 validate_extension(undefined2 *checker);
+void cleanup_validation_buffer(undefined2 *buffer);
+longlong allocate_validation_buffer(longlong pool_id, longlong size, char flags);
+
+// 命令行处理函数
+longlong allocate_command_buffer(longlong pool_id, longlong size, char flags);
+undefined8 *resize_command_buffer(longlong pool_id, undefined8 *buffer, longlong new_size, 
+                                 longlong min_size, char flags);
+void expand_parameter_array(longlong *array, undefined **stack_data);
+void free_command_buffer(undefined8 *buffer);
+void report_unclosed_quotes_error(void);
+void cleanup_parameter_array(longlong *array);
+void finalize_parameter_array(longlong *array);
+
+// 文件处理函数
+void initialize_file_processor(undefined **context, undefined8 flags);
+longlong extract_filename_part(undefined **input, longlong **output, longlong start, longlong end);
+longlong extract_extension_part(undefined **input, longlong **output, longlong start, longlong end);
+longlong extract_extension_data(longlong input, undefined **output, undefined **param3);
+longlong combine_extension_parts(undefined **input, undefined **output, longlong param3);
+longlong allocate_output_array(longlong pool_id, longlong size, char flags);
+void finalize_extension_processing(longlong *param1, longlong param2, longlong param3);
+
+// 数据缓冲区函数
+undefined8 get_memory_context(void);
+undefined8 allocate_temp_buffer(undefined1 *buffer, undefined8 context);
+void process_data_initialization(undefined8 input, undefined8 *output, undefined8 context, 
+                                 undefined8 flags, undefined4 priority, undefined8 cleanup);
+void initialize_empty_buffer(undefined8 *buffer, undefined8 context);
+void copy_string_data(undefined8 *dest, undefined8 *src, longlong data);
+void convert_integer_data(undefined8 context, undefined8 *output, undefined4 data);
+void convert_float_data(undefined *context, undefined8 *table, double value, 
+                       undefined8 flags, longlong param5, undefined8 cleanup_flag);
+
+// 错误处理函数
+void throw_processing_error(void);
+void throw_validation_error(void);
+void throw_memory_error(void);
+void throw_file_processing_error(void);
+
+// 工具函数
+void copy_memory_block(undefined8 dest, undefined8 *src);
+longlong expand_data_array(longlong *array, longlong current, longlong new_size);
+void copy_string_data(undefined8 *dest, undefined4 size);
+}
+
 
 
 

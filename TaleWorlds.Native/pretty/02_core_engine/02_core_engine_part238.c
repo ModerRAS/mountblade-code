@@ -155,40 +155,50 @@ void initialize_engine_resource_manager(undefined8 engine_context, longlong *res
 
 
 
-// 函数: void FUN_180208160(undefined8 param_1,longlong *param_2,undefined8 param_3,longlong *param_4,
-void FUN_180208160(undefined8 param_1,longlong *param_2,undefined8 param_3,longlong *param_4,
-                  undefined8 *param_5)
+/**
+ * 处理高级引擎资源管理器和配置系统
+ * 执行复杂的资源管理操作，包括初始化、配置和状态更新
+ * 
+ * @param engine_context 引擎上下文指针
+ * @param primary_manager 主资源管理器指针
+ * @param config_data 配置数据
+ * @param secondary_manager 次要资源管理器指针
+ * @param config_params 配置参数数组
+ */
+void process_engine_resource_manager_advanced(undefined8 engine_context, longlong *primary_manager, 
+                                            undefined8 config_data, longlong *secondary_manager,
+                                            undefined8 *config_params)
 
 {
-  uint *puVar1;
-  longlong lVar2;
-  longlong *plVar3;
-  int iVar4;
-  longlong lVar5;
-  ulonglong uVar6;
-  ulonglong uVar7;
-  uint uVar8;
-  ulonglong uVar9;
-  longlong *plStack_b8;
-  undefined8 uStack_b0;
-  longlong *plStack_a8;
-  undefined8 uStack_a0;
-  undefined8 uStack_98;
-  undefined8 uStack_90;
-  undefined8 uStack_88;
-  undefined4 uStack_80;
-  undefined4 uStack_7c;
-  undefined4 uStack_78;
-  undefined4 uStack_74;
-  undefined4 uStack_70;
-  undefined4 uStack_6c;
-  undefined4 uStack_68;
-  undefined4 uStack_64;
-  longlong lStack_60;
-  undefined8 uStack_58;
-  undefined8 uStack_50;
-  undefined4 uStack_48;
-  undefined8 uStack_38;
+  uint *status_flag_ptr;
+  longlong resource_offset;
+  longlong *resource_manager_ptr;
+  int resource_count;
+  longlong temp_value;
+  ulonglong loop_counter;
+  ulonglong config_offset;
+  uint item_count;
+  ulonglong total_items;
+  longlong *stack_resource_ptr;
+  undefined8 stack_config_1;
+  longlong *stack_resource_ptr2;
+  undefined8 stack_config_2;
+  undefined8 stack_config_3;
+  undefined8 stack_config_4;
+  undefined8 stack_config_5;
+  undefined4 stack_config_6;
+  undefined4 stack_config_7;
+  undefined4 stack_config_8;
+  undefined4 stack_config_9;
+  undefined4 stack_config_10;
+  undefined4 stack_config_11;
+  undefined4 stack_config_12;
+  undefined4 stack_config_13;
+  longlong stack_config_14;
+  undefined8 stack_config_15;
+  undefined8 stack_config_16;
+  undefined4 stack_config_17;
+  undefined8 stack_config_18;
   
   uVar6 = 0;
   uStack_38 = 0xfffffffffffffffe;
