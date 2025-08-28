@@ -183,242 +183,422 @@ longlong data_structure_initializer(longlong data_structure)
 
 
 
-// 函数: void FUN_1800edde0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1800edde0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * @brief 系统调用分发器类型3
+ * @param system_context 系统上下文指针
+ * @param interface_ptr 接口指针
+ * @param param3 第三个参数
+ * @param param4 第四个参数
+ * @return 无返回值
+ * 
+ * 该函数用于分发系统调用到具体的处理函数，主要功能包括：
+ * - 获取系统上下文中的接口指针
+ * - 调用底层系统调用处理函数080
+ * - 处理系统调用结果
+ */
+void system_call_dispatcher_type3(longlong system_context, undefined8 interface_ptr, undefined8 param3, undefined8 param4)
 {
-  FUN_1800ee080(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
-  return;
-}
-
-
-
-
-
-
-// 函数: void FUN_1800ede00(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1800ede00(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
-{
-  FUN_1800ee130(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
-  return;
-}
-
-
-
-
-
-
-// 函数: void FUN_1800ede20(longlong *param_1)
-void FUN_1800ede20(longlong *param_1)
-
-{
-  longlong lVar1;
-  longlong lVar2;
-  longlong *plVar3;
-  
-  lVar1 = param_1[2];
-  lVar2 = param_1[4];
-  plVar3 = (longlong *)param_1[5];
-  if (lVar1 != param_1[6]) {
-    do {
-      FUN_1800edd10(lVar1);
-      lVar1 = lVar1 + 0x78;
-      if (lVar1 == lVar2) {
-        plVar3 = plVar3 + 1;
-        lVar1 = *plVar3;
-        lVar2 = lVar1 + 0x1e0;
-      }
-    } while (lVar1 != param_1[6]);
-  }
-  if (*param_1 != 0) {
-    plVar3 = (longlong *)param_1[5];
-    while (plVar3 < (longlong *)(param_1[9] + 8)) {
-      lVar2 = *plVar3;
-      plVar3 = plVar3 + 1;
-      if (lVar2 != 0) {
-                    // WARNING: Subroutine does not return
-        FUN_18064e900();
-      }
-    }
-    if (*param_1 != 0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900();
-    }
-    *param_1 = 0;
-  }
-  return;
-}
-
-
-
-
-
-
-// 函数: void FUN_1800edf70(void)
-void FUN_1800edf70(void)
-
-{
-  ulonglong uVar1;
-  ulonglong uVar2;
-  ulonglong *unaff_RSI;
-  longlong unaff_RDI;
-  
-  while( true ) {
-    uVar2 = *unaff_RSI;
-    uVar1 = uVar2 + 0x1e0;
-    if (uVar2 < uVar1) {
-      do {
-        FUN_1800edd10(uVar2);
-        uVar2 = uVar2 + 0x78;
-      } while (uVar2 < uVar1);
-      uVar2 = *unaff_RSI;
-    }
-    if (uVar2 != 0) break;
-    unaff_RSI = unaff_RSI + 1;
-    if (*(ulonglong **)(unaff_RDI + 0x48) <= unaff_RSI) {
-      *(undefined8 *)(unaff_RDI + 0x30) = *(undefined8 *)(unaff_RDI + 0x10);
-      *(undefined8 *)(unaff_RDI + 0x38) = *(undefined8 *)(unaff_RDI + 0x18);
-      *(undefined8 *)(unaff_RDI + 0x40) = *(undefined8 *)(unaff_RDI + 0x20);
-      *(undefined8 *)(unaff_RDI + 0x48) = *(undefined8 *)(unaff_RDI + 0x28);
-      return;
-    }
-  }
-                    // WARNING: Subroutine does not return
-  FUN_18064e900(uVar2);
-}
-
-
-
-
-
-
-// 函数: void FUN_1800edfc0(void)
-void FUN_1800edfc0(void)
-
-{
-  longlong unaff_RDI;
-  
-  *(undefined8 *)(unaff_RDI + 0x30) = *(undefined8 *)(unaff_RDI + 0x10);
-  *(undefined8 *)(unaff_RDI + 0x38) = *(undefined8 *)(unaff_RDI + 0x18);
-  *(undefined8 *)(unaff_RDI + 0x40) = *(undefined8 *)(unaff_RDI + 0x20);
-  *(undefined8 *)(unaff_RDI + 0x48) = *(undefined8 *)(unaff_RDI + 0x28);
-  return;
-}
-
-
-
-
-
-
-// 函数: void FUN_1800edfe0(longlong *param_1)
-void FUN_1800edfe0(longlong *param_1)
-
-{
-  longlong *plVar1;
-  longlong *plVar2;
-  
-  plVar1 = (longlong *)param_1[1];
-  for (plVar2 = (longlong *)*param_1; plVar2 != plVar1; plVar2 = plVar2 + 4) {
-    if ((longlong *)plVar2[3] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)plVar2[3] + 0x38))();
-    }
-    if ((longlong *)plVar2[2] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)plVar2[2] + 0x38))();
-    }
-    if ((longlong *)plVar2[1] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)plVar2[1] + 0x38))();
-    }
-    if ((longlong *)*plVar2 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar2 + 0x38))();
-    }
-  }
-  if (*param_1 == 0) {
+    // 调用系统调用处理函数080
+    system_call_handler_080(system_context, *(undefined8 *)(system_context + OFFSET_0x10), param3, param4, INVALID_HANDLE);
     return;
-  }
-                    // WARNING: Subroutine does not return
-  FUN_18064e900();
 }
 
+// 函数别名
+#define system_call_dispatcher_3    system_call_dispatcher_type3
 
 
 
 
 
-// 函数: void FUN_1800ee080(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1800ee080(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
 
+/**
+ * @brief 系统调用分发器类型4
+ * @param system_context 系统上下文指针
+ * @param interface_ptr 接口指针
+ * @param param3 第三个参数
+ * @param param4 第四个参数
+ * @return 无返回值
+ * 
+ * 该函数用于分发系统调用到具体的处理函数，主要功能包括：
+ * - 获取系统上下文中的接口指针
+ * - 调用底层系统调用处理函数130
+ * - 处理系统调用结果
+ */
+void system_call_dispatcher_type4(longlong system_context, undefined8 interface_ptr, undefined8 param3, undefined8 param4)
 {
-  if (param_2 == (undefined8 *)0x0) {
+    // 调用系统调用处理函数130
+    system_call_handler_130(system_context, *(undefined8 *)(system_context + OFFSET_0x10), param3, param4, INVALID_HANDLE);
     return;
-  }
-  FUN_1800ee080(param_1,*param_2,param_3,param_4,0xfffffffffffffffe);
-  param_2[5] = &UNK_180a3c3e0;
-  if (param_2[6] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
-  }
-  param_2[6] = 0;
-  *(undefined4 *)(param_2 + 8) = 0;
-  param_2[5] = &UNK_18098bcb0;
-                    // WARNING: Subroutine does not return
-  FUN_18064e900(param_2);
 }
 
+// 函数别名
+#define system_call_dispatcher_4    system_call_dispatcher_type4
 
 
 
 
 
-// 函数: void FUN_1800ee130(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1800ee130(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
 
+/**
+ * @brief 容器批量清理函数
+ * @param container_info 容器信息结构指针
+ * @return 无返回值
+ * 
+ * 该函数用于批量清理容器中的资源，主要功能包括：
+ * - 遍历容器中的所有块
+ * - 清理每个块中的资源
+ * - 验证资源释放结果
+ * - 重置容器状态
+ */
+void container_batch_cleanup(longlong *container_info)
 {
-  if (param_2 != (undefined8 *)0x0) {
-    FUN_1800ee130(param_1,*param_2,param_3,param_4,0xfffffffffffffffe);
-    if ((longlong *)param_2[5] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)param_2[5] + 0x38))();
+    longlong current_block;
+    longlong block_end;
+    longlong *block_ptr;
+    
+    // 获取容器的基本信息
+    current_block = container_info[2];      // 当前块起始地址
+    block_end = container_info[4];          // 当前块结束地址
+    block_ptr = (longlong *)container_info[5]; // 块指针数组
+    
+    // 遍历所有块进行清理
+    if (current_block != container_info[6]) {  // 如果不是结束状态
+        do {
+            // 清理当前块
+            resource_cleanup_and_reset(current_block, 0, 0, 0);
+            current_block = current_block + CONTAINER_BLOCK_SIZE;  // 移动到下一个块
+            
+            // 检查是否需要切换到下一个块组
+            if (current_block == block_end) {
+                block_ptr = block_ptr + 1;          // 移动到下一个块指针
+                current_block = *block_ptr;          // 获取新的块起始地址
+                block_end = current_block + CONTAINER_CHUNK_SIZE;  // 计算新的块结束地址
+            }
+        } while (current_block != container_info[6]);  // 直到遍历完所有块
     }
-                    // WARNING: Subroutine does not return
-    FUN_18064e900(param_2);
-  }
-  return;
-}
-
-
-
-
-
-
-// 函数: void FUN_1800ee1a0(longlong *param_1)
-void FUN_1800ee1a0(longlong *param_1)
-
-{
-  longlong lVar1;
-  longlong *plVar2;
-  
-  lVar1 = *param_1;
-  if (lVar1 != 0) {
-    plVar2 = (longlong *)param_1[5];
-    if (plVar2 < (longlong *)(param_1[9] + 8)) {
-      do {
-        lVar1 = *plVar2;
-        plVar2 = plVar2 + 1;
-        if (lVar1 != 0) {
-                    // WARNING: Subroutine does not return
-          FUN_18064e900();
+    
+    // 验证所有资源都已释放
+    if (*container_info != 0) {
+        block_ptr = (longlong *)container_info[5];
+        while (block_ptr < (longlong *)(container_info[9] + 8)) {
+            longlong block_check = *block_ptr;
+            block_ptr = block_ptr + 1;
+            if (block_check != 0) {
+                // 如果还有未释放的资源，调用错误处理函数
+                error_handler_critical();
+            }
         }
-      } while (plVar2 < (longlong *)(param_1[9] + 8));
-      lVar1 = *param_1;
+        
+        // 再次验证容器状态
+        if (*container_info != 0) {
+            // 如果容器未正确清理，调用错误处理函数
+            error_handler_critical();
+        }
+        
+        // 重置容器状态
+        *container_info = 0;
     }
-    if (lVar1 != 0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900();
-    }
-    *param_1 = 0;
-  }
-  return;
+    
+    return;
 }
+
+// 函数别名
+#define container_cleanup_batch    container_batch_cleanup
+
+
+
+
+
+
+/**
+ * @brief 容器管理器清理函数
+ * @return 无返回值
+ * 
+ * 该函数用于清理容器管理器中的所有资源，主要功能包括：
+ * - 遍历容器管理器中的所有容器
+ * - 清理每个容器中的资源
+ * - 重置容器管理器状态
+ * - 处理错误情况
+ */
+void container_manager_cleanup(void)
+{
+    ulonglong container_start;
+    ulonglong container_end;
+    ulonglong *container_ptr;
+    longlong manager_context;
+    
+    // 无限循环遍历所有容器
+    while (true) {
+        container_start = *container_ptr;           // 获取容器起始地址
+        container_end = container_start + CONTAINER_CHUNK_SIZE;  // 计算容器结束地址
+        
+        // 清理当前容器中的所有块
+        if (container_start < container_end) {
+            do {
+                // 清理当前块
+                resource_cleanup_and_reset(container_start, 0, 0, 0);
+                container_start = container_start + CONTAINER_BLOCK_SIZE;  // 移动到下一个块
+            } while (container_start < container_end);
+            container_start = *container_ptr;  // 重新获取容器起始地址
+        }
+        
+        // 检查容器是否为空
+        if (container_start != 0) break;  // 如果容器不为空，跳出循环
+        
+        // 移动到下一个容器
+        container_ptr = container_ptr + 1;
+        
+        // 检查是否已经遍历完所有容器
+        if (*(ulonglong **)(manager_context + OFFSET_0x48) <= container_ptr) {
+            // 重置容器管理器状态
+            *(undefined8 *)(manager_context + OFFSET_0x30) = *(undefined8 *)(manager_context + OFFSET_0x10);
+            *(undefined8 *)(manager_context + OFFSET_0x38) = *(undefined8 *)(manager_context + OFFSET_0x18);
+            *(undefined8 *)(manager_context + OFFSET_0x40) = *(undefined8 *)(manager_context + OFFSET_0x20);
+            *(undefined8 *)(manager_context + OFFSET_0x48) = *(undefined8 *)(manager_context + OFFSET_0x28);
+            return;
+        }
+    }
+    
+    // 如果容器不为空，调用错误处理函数
+    error_handler_critical(container_start);
+}
+
+// 函数别名
+#define container_manager_clean    container_manager_cleanup
+
+
+
+
+
+
+/**
+ * @brief 容器管理器状态重置函数
+ * @return 无返回值
+ * 
+ * 该函数用于重置容器管理器的状态，主要功能包括：
+ * - 备份当前状态到工作区域
+ * - 重置管理器的各个状态字段
+ * - 确保状态一致性
+ */
+void container_manager_state_reset(void)
+{
+    longlong manager_context;
+    
+    // 重置容器管理器的状态字段
+    *(undefined8 *)(manager_context + OFFSET_0x30) = *(undefined8 *)(manager_context + OFFSET_0x10);  // 重置30偏移处状态
+    *(undefined8 *)(manager_context + OFFSET_0x38) = *(undefined8 *)(manager_context + OFFSET_0x18);  // 重置38偏移处状态
+    *(undefined8 *)(manager_context + OFFSET_0x40) = *(undefined8 *)(manager_context + OFFSET_0x20);  // 重置40偏移处状态
+    *(undefined8 *)(manager_context + OFFSET_0x48) = *(undefined8 *)(manager_context + OFFSET_0x28);  // 重置48偏移处状态
+    
+    return;
+}
+
+// 函数别名
+#define container_state_reset      container_manager_state_reset
+
+
+
+
+
+
+/**
+ * @brief 资源组清理函数
+ * @param resource_group 资源组指针
+ * @return 无返回值
+ * 
+ * 该函数用于清理资源组中的所有资源，主要功能包括：
+ * - 遍历资源组中的所有资源项
+ * - 调用每个资源的清理函数
+ * - 验证资源组状态
+ * - 处理错误情况
+ */
+void resource_group_cleanup(longlong *resource_group)
+{
+    longlong *resource_end;
+    longlong *resource_current;
+    
+    // 获取资源组的基本信息
+    resource_end = (longlong *)resource_group[1];  // 资源组结束地址
+    
+    // 遍历资源组中的所有资源项
+    for (resource_current = (longlong *)*resource_group; resource_current != resource_end; resource_current = resource_current + 4) {
+        // 清理资源项中的各个资源
+        if ((longlong *)resource_current[3] != (longlong *)0x0) {
+            (**(code **)(*(longlong *)resource_current[3] + OFFSET_0x30))();  // 清理第三个资源
+        }
+        if ((longlong *)resource_current[2] != (longlong *)0x0) {
+            (**(code **)(*(longlong *)resource_current[2] + OFFSET_0x30))();  // 清理第二个资源
+        }
+        if ((longlong *)resource_current[1] != (longlong *)0x0) {
+            (**(code **)(*(longlong *)resource_current[1] + OFFSET_0x30))();  // 清理第一个资源
+        }
+        if ((longlong *)*resource_current != (longlong *)0x0) {
+            (**(code **)(*(longlong *)*resource_current + OFFSET_0x30))();    // 清理主资源
+        }
+    }
+    
+    // 验证资源组状态
+    if (*resource_group == 0) {
+        return;  // 资源组已正确清理
+    }
+    
+    // 如果资源组未正确清理，调用错误处理函数
+    error_handler_critical();
+}
+
+// 函数别名
+#define resource_group_clean      resource_group_cleanup
+
+
+
+
+
+
+/**
+ * @brief 递归内存清理函数类型1
+ * @param context 上下文指针
+ * @param memory_block 内存块指针
+ * @param param3 第三个参数
+ * @param param4 第四个参数
+ * @return 无返回值
+ * 
+ * 该函数用于递归清理内存块，主要功能包括：
+ * - 检查内存块有效性
+ * - 递归清理子内存块
+ * - 设置清理标记
+ * - 验证清理结果
+ */
+void recursive_memory_cleanup_type1(undefined8 context, undefined8 *memory_block, undefined8 param3, undefined8 param4)
+{
+    // 检查内存块有效性
+    if (memory_block == (undefined8 *)0x0) {
+        return;  // 内存块为空，直接返回
+    }
+    
+    // 递归清理子内存块
+    recursive_memory_cleanup_type1(context, *memory_block, param3, param4, INVALID_HANDLE);
+    
+    // 设置清理标记
+    memory_block[5] = &CLEANUP_FLAG_ACTIVE;
+    
+    // 检查内存块是否已被占用
+    if (memory_block[6] != 0) {
+        // 如果内存块被占用，调用错误处理函数
+        error_handler_critical();
+    }
+    
+    // 重置内存块状态
+    memory_block[6] = 0;
+    *(undefined4 *)(memory_block + 8) = 0;
+    memory_block[5] = &CLEANUP_FLAG_INACTIVE;
+    
+    // 验证内存块清理结果
+    error_handler_critical(memory_block);
+}
+
+// 函数别名
+#define memory_cleanup_recursive_1  recursive_memory_cleanup_type1
+
+
+
+
+
+
+/**
+ * @brief 递归内存清理函数类型2
+ * @param context 上下文指针
+ * @param memory_block 内存块指针
+ * @param param3 第三个参数
+ * @param param4 第四个参数
+ * @return 无返回值
+ * 
+ * 该函数用于递归清理内存块，主要功能包括：
+ * - 检查内存块有效性
+ * - 递归清理子内存块
+ * - 调用内存块的清理回调函数
+ * - 释放内存块
+ */
+void recursive_memory_cleanup_type2(undefined8 context, undefined8 *memory_block, undefined8 param3, undefined8 param4)
+{
+    // 检查内存块有效性
+    if (memory_block != (undefined8 *)0x0) {
+        // 递归清理子内存块
+        recursive_memory_cleanup_type2(context, *memory_block, param3, param4, INVALID_HANDLE);
+        
+        // 调用内存块的清理回调函数
+        if ((longlong *)memory_block[5] != (longlong *)0x0) {
+            (**(code **)(*(longlong *)memory_block[5] + OFFSET_0x30))();
+        }
+        
+        // 释放内存块
+        error_handler_critical(memory_block);
+    }
+    
+    return;
+}
+
+// 函数别名
+#define memory_cleanup_recursive_2  recursive_memory_cleanup_type2
+
+
+
+
+
+
+/**
+ * @brief 容器完整性验证函数
+ * @param container_info 容器信息结构指针
+ * @return 无返回值
+ * 
+ * 该函数用于验证容器的完整性，主要功能包括：
+ * - 检查容器是否已正确清理
+ * - 验证容器中的所有块都已释放
+ * - 重置容器状态
+ * - 处理验证失败情况
+ */
+void container_integrity_verify(longlong *container_info)
+{
+    longlong container_state;
+    longlong *block_ptr;
+    
+    // 获取容器状态
+    container_state = *container_info;
+    
+    // 检查容器是否已清理
+    if (container_state != 0) {
+        // 获取块指针数组
+        block_ptr = (longlong *)container_info[5];
+        
+        // 验证所有块都已释放
+        if (block_ptr < (longlong *)(container_info[9] + 8)) {
+            do {
+                container_state = *block_ptr;
+                block_ptr = block_ptr + 1;
+                if (container_state != 0) {
+                    // 如果还有未释放的块，调用错误处理函数
+                    error_handler_critical();
+                }
+            } while (block_ptr < (longlong *)(container_info[9] + 8));
+            
+            // 重新获取容器状态
+            container_state = *container_info;
+        }
+        
+        // 最终验证容器状态
+        if (container_state != 0) {
+            // 如果容器未正确清理，调用错误处理函数
+            error_handler_critical();
+        }
+        
+        // 重置容器状态
+        *container_info = 0;
+    }
+    
+    return;
+}
+
+// 函数别名
+#define container_verify_integrity  container_integrity_verify
 
 
 

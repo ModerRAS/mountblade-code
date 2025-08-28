@@ -1364,143 +1364,205 @@ undefined8 ui_system_data_processor_14(longlong data_object, undefined8 *context
 
 
 
-undefined8 FUN_18089fd30(longlong param_1,longlong *param_2)
-
+/**
+ * UI系统数据处理器15
+ * 
+ * 执行UI系统数据的验证和处理，支持多种数据类型的处理。
+ * 该函数通过多层验证确保UI系统数据的完整性。
+ * 
+ * @param data_object 数据对象指针
+ * @param context_ptr 上下文指针数组
+ * @return 处理结果：0表示成功，0x1c表示失败
+ */
+undefined8 ui_system_data_processor_15(longlong data_object, longlong *context_ptr)
 {
-  undefined8 uVar1;
-  undefined4 auStackX_10 [6];
-  
-  if (*(uint *)(param_2 + 8) < 0x55) {
-    if (*(int *)(param_2[1] + 0x18) != 0) {
-      return 0x1c;
-    }
-    auStackX_10[0] = *(undefined4 *)(param_1 + 0x50);
-    uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))
-                      (*(undefined8 **)(*param_2 + 8),auStackX_10,4);
-    if ((int)uVar1 != 0) {
-      return uVar1;
-    }
-    if (*(int *)(param_2[1] + 0x18) != 0) {
-      return 0x1c;
-    }
-    auStackX_10[0] = *(undefined4 *)(param_1 + 0x54);
-    uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))
-                      (*(undefined8 **)(*param_2 + 8),auStackX_10,4);
-    if ((int)uVar1 != 0) {
-      return uVar1;
-    }
-  }
-  else {
-    if (*(int *)(param_2[1] + 0x18) != 0) {
-      return 0x1c;
-    }
-    auStackX_10[0] = *(undefined4 *)(param_1 + 0x78);
-    uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))
-                      (*(undefined8 **)(*param_2 + 8),auStackX_10,4);
-    if ((int)uVar1 != 0) {
-      return uVar1;
-    }
-  }
-  if (*(int *)(param_2[1] + 0x18) != 0) {
-    return 0x1c;
-  }
-  auStackX_10[0] = *(undefined4 *)(param_1 + 0x58);
-  uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))(*(undefined8 **)(*param_2 + 8),auStackX_10,4)
-  ;
-  if ((int)uVar1 != 0) {
-    return uVar1;
-  }
-  if (*(int *)(param_2[1] + 0x18) != 0) {
-    return 0x1c;
-  }
-  auStackX_10[0] = *(undefined4 *)(param_1 + 0x5c);
-  uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))(*(undefined8 **)(*param_2 + 8),auStackX_10,4)
-  ;
-  if ((int)uVar1 == 0) {
-    if (*(uint *)(param_2 + 8) < 0x53) {
-      if (*(int *)(param_2[1] + 0x18) != 0) {
-        return 0x1c;
-      }
-      uVar1 = FUN_180899ef0(*param_2,param_1 + 0x60);
-      if ((int)uVar1 != 0) {
-        return uVar1;
-      }
+    undefined8 uVar1;
+    undefined4 auStackX_10 [6];
+    
+    // 根据数据大小进行不同的验证路径
+    if (*(uint *)(context_ptr + 8) < UI_EXTENDED_DATA_SIZE_0x55) {
+        if (*(int *)(context_ptr[1] + UI_OFFSET_0x18) != 0) {
+            return UI_VALIDATION_ERROR;
+        }
+        
+        // 验证数据对象的其他字段
+        auStackX_10[0] = *(undefined4 *)(data_object + UI_OFFSET_0x50);
+        uVar1 = (**(code **)**(undefined8 **)(*context_ptr + 8))
+                  (*(undefined8 **)(*context_ptr + 8), auStackX_10, 4);
+        if ((int)uVar1 != 0) {
+            return uVar1;
+        }
+        
+        // 检查验证状态
+        if (*(int *)(context_ptr[1] + UI_OFFSET_0x18) != 0) {
+            return UI_VALIDATION_ERROR;
+        }
+        
+        // 验证数据对象的其他字段
+        auStackX_10[0] = *(undefined4 *)(data_object + UI_OFFSET_0x54);
+        uVar1 = (**(code **)**(undefined8 **)(*context_ptr + 8))
+                  (*(undefined8 **)(*context_ptr + 8), auStackX_10, 4);
+        if ((int)uVar1 != 0) {
+            return uVar1;
+        }
     }
     else {
-      uVar1 = FUN_180898eb0(param_2,param_1 + 0x70);
-      if ((int)uVar1 != 0) {
-        return uVar1;
-      }
-      uVar1 = FUN_180898eb0(param_2,param_1 + 0x74);
-      if ((int)uVar1 != 0) {
-        return uVar1;
-      }
-    }
-    uVar1 = FUN_1808a7c90(param_2,param_1 + 0x7c,0x7d);
-    return uVar1;
-  }
-  return uVar1;
-}
-
-
-
-undefined8 FUN_18089fed0(longlong param_1,undefined8 *param_2)
-
-{
-  undefined8 uVar1;
-  undefined1 auStack_48 [32];
-  undefined1 auStack_28 [32];
-  
-  uVar1 = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x54495645);
-  if (((int)uVar1 == 0) &&
-     (uVar1 = FUN_1808ddd30(param_2,auStack_48,0,0x42495645,0), (int)uVar1 == 0)) {
-    if (*(int *)(param_2[1] + 0x18) != 0) {
-      return 0x1c;
-    }
-    uVar1 = FUN_180899ef0(*param_2,param_1 + 0x10);
-    if ((int)uVar1 == 0) {
-      if (*(int *)(param_2[1] + 0x18) != 0) {
-        return 0x1c;
-      }
-      uVar1 = FUN_180899ef0(*param_2,param_1 + 0xd8);
-      if ((((int)uVar1 == 0) && (uVar1 = FUN_180898eb0(param_2,param_1 + 0xf8), (int)uVar1 == 0)) &&
-         (uVar1 = FUN_1808a6e50(param_2,param_1 + 0xe8,1,param_1), (int)uVar1 == 0)) {
-                    // WARNING: Subroutine does not return
-        FUN_1808de000(param_2,auStack_48);
-      }
-    }
-  }
-  return uVar1;
-}
-
-
-
-undefined8 FUN_18089ffe0(undefined8 param_1,longlong param_2)
-
-{
-  undefined8 uVar1;
-  undefined1 auStack_28 [32];
-  
-  if (*(uint *)(param_2 + 0x40) < 0x31) {
-    uVar1 = FUN_1808a3d50(param_1,param_2,0x544e5645);
-    if ((int)uVar1 == 0) {
-      uVar1 = 0;
-    }
-  }
-  else {
-    uVar1 = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x544e5645);
-    if ((int)uVar1 == 0) {
-      uVar1 = FUN_1808a3d50(param_1,param_2,0x42545645);
-      if ((int)uVar1 == 0) {
-        uVar1 = FUN_1808a1610(param_1,param_2);
-        if ((int)uVar1 == 0) {
-                    // WARNING: Subroutine does not return
-          FUN_1808de000(param_2,auStack_28);
+        if (*(int *)(context_ptr[1] + UI_OFFSET_0x18) != 0) {
+            return UI_VALIDATION_ERROR;
         }
-      }
+        
+        // 验证数据对象的其他字段
+        auStackX_10[0] = *(undefined4 *)(data_object + UI_OFFSET_0x78);
+        uVar1 = (**(code **)**(undefined8 **)(*context_ptr + 8))
+                  (*(undefined8 **)(*context_ptr + 8), auStackX_10, 4);
+        if ((int)uVar1 != 0) {
+            return uVar1;
+        }
     }
-  }
-  return uVar1;
+    
+    // 检查验证状态
+    if (*(int *)(context_ptr[1] + UI_OFFSET_0x18) != 0) {
+        return UI_VALIDATION_ERROR;
+    }
+    
+    // 验证数据对象的其他字段
+    auStackX_10[0] = *(undefined4 *)(data_object + UI_OFFSET_0x58);
+    uVar1 = (**(code **)**(undefined8 **)(*context_ptr + 8))
+              (*(undefined8 **)(*context_ptr + 8), auStackX_10, 4);
+    if ((int)uVar1 != 0) {
+        return uVar1;
+    }
+    
+    // 检查验证状态
+    if (*(int *)(context_ptr[1] + UI_OFFSET_0x18) != 0) {
+        return UI_VALIDATION_ERROR;
+    }
+    
+    // 验证数据对象的其他字段
+    auStackX_10[0] = *(undefined4 *)(data_object + UI_OFFSET_0x5c);
+    uVar1 = (**(code **)**(undefined8 **)(*context_ptr + 8))
+              (*(undefined8 **)(*context_ptr + 8), auStackX_10, 4);
+    if ((int)uVar1 == 0) {
+        // 根据数据大小进行不同的验证路径
+        if (*(uint *)(context_ptr + 8) < UI_EXTENDED_DATA_SIZE_0x53) {
+            if (*(int *)(context_ptr[1] + UI_OFFSET_0x18) != 0) {
+                return UI_VALIDATION_ERROR;
+            }
+            
+            // 验证数据对象的其他字段
+            uVar1 = FUN_180899ef0(*context_ptr, data_object + UI_OFFSET_0x60);
+            if ((int)uVar1 != 0) {
+                return uVar1;
+            }
+        }
+        else {
+            // 验证数据对象的其他字段
+            uVar1 = FUN_180898eb0(context_ptr, data_object + UI_OFFSET_0x70);
+            if ((int)uVar1 != 0) {
+                return uVar1;
+            }
+            
+            // 验证数据对象的其他字段
+            uVar1 = FUN_180898eb0(context_ptr, data_object + UI_OFFSET_0x74);
+            if ((int)uVar1 != 0) {
+                return uVar1;
+            }
+        }
+        
+        // 验证数据对象的其他字段
+        uVar1 = FUN_1808a7c90(context_ptr, data_object + UI_OFFSET_0x7c, UI_EXTENDED_DATA_SIZE_0x7d);
+        return uVar1;
+    }
+    return uVar1;
+}
+
+
+
+/**
+ * UI系统数据处理器16
+ * 
+ * 执行UI系统数据的验证和处理，支持SIL和VIVE数据类型的处理。
+ * 该函数通过多层验证确保UI系统数据的完整性。
+ * 
+ * @param data_object 数据对象指针
+ * @param context_ptr 上下文指针数组
+ * @return 处理结果：0表示成功，0x1c表示失败
+ */
+undefined8 ui_system_data_processor_16(longlong data_object, undefined8 *context_ptr)
+{
+    undefined8 uVar1;
+    undefined1 auStack_48 [32];
+    undefined1 auStack_28 [32];
+    
+    // 验证SIL和VIVE数据类型
+    uVar1 = FUN_1808ddd30(context_ptr, auStack_28, 1, UI_DATA_TYPE_SIL, UI_DATA_TYPE_VIVE);
+    if (((int)uVar1 == 0) &&
+       (uVar1 = FUN_1808ddd30(context_ptr, auStack_48, 0, UI_DATA_TYPE_BIVE, 0), (int)uVar1 == 0)) {
+        
+        // 检查验证状态
+        if (*(int *)(context_ptr[1] + UI_OFFSET_0x18) != 0) {
+            return UI_VALIDATION_ERROR;
+        }
+        
+        // 验证数据对象的其他字段
+        uVar1 = FUN_180899ef0(*context_ptr, data_object + UI_OFFSET_0x10);
+        if ((int)uVar1 == 0) {
+            if (*(int *)(context_ptr[1] + UI_OFFSET_0x18) != 0) {
+                return UI_VALIDATION_ERROR;
+            }
+            
+            // 验证数据对象的其他字段
+            uVar1 = FUN_180899ef0(*context_ptr, data_object + UI_OFFSET_0xd8);
+            if ((((int)uVar1 == 0) && 
+                 (uVar1 = FUN_180898eb0(context_ptr, data_object + UI_OFFSET_0xf8), (int)uVar1 == 0)) &&
+                (uVar1 = FUN_1808a6e50(context_ptr, data_object + UI_OFFSET_0xe8, 1, data_object), (int)uVar1 == 0)) {
+                // WARNING: Subroutine does not return
+                FUN_1808de000(context_ptr, auStack_48);
+            }
+        }
+    }
+    return uVar1;
+}
+
+
+
+/**
+ * UI系统数据处理器17
+ * 
+ * 执行UI系统数据的验证和处理，支持TNVE和BTVB数据类型的处理。
+ * 该函数通过多层验证确保UI系统数据的完整性。
+ * 
+ * @param data_object 数据对象指针
+ * @param context_ptr 上下文指针数组
+ * @return 处理结果：0表示成功，0x1c表示失败
+ */
+undefined8 ui_system_data_processor_17(undefined8 data_object, longlong context_ptr)
+{
+    undefined8 uVar1;
+    undefined1 auStack_28 [32];
+    
+    // 根据数据大小进行不同的验证路径
+    if (*(uint *)(context_ptr + UI_OFFSET_0x40) < UI_EXTENDED_DATA_SIZE_0x31) {
+        uVar1 = FUN_1808a3d50(data_object, context_ptr, UI_DATA_TYPE_TNVE);
+        if ((int)uVar1 == 0) {
+            uVar1 = 0;
+        }
+    }
+    else {
+        // 验证SIL和TNVE数据类型
+        uVar1 = FUN_1808ddd30(context_ptr, auStack_28, 1, UI_DATA_TYPE_SIL, UI_DATA_TYPE_TNVE);
+        if ((int)uVar1 == 0) {
+            uVar1 = FUN_1808a3d50(data_object, context_ptr, UI_DATA_TYPE_BTVB);
+            if ((int)uVar1 == 0) {
+                uVar1 = FUN_1808a1610(data_object, context_ptr);
+                if ((int)uVar1 == 0) {
+                    // WARNING: Subroutine does not return
+                    FUN_1808de000(context_ptr, auStack_28);
+                }
+            }
+        }
+    }
+    return uVar1;
 }
 
 
