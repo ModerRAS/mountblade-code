@@ -1007,135 +1007,108 @@ undefined FUN_1806844a0;                           // UI系统着色器优化器
 undefined FUN_18068b080;                           // UI系统着色器缓存器 - 缓存着色器
 
 
-// 函数: undefined FUN_18068d2b0;
-undefined FUN_18068d2b0;
+//------------------------------------------------------------------------------
+// UI系统着色器管理函数组（续）
+//------------------------------------------------------------------------------
 
+// UI系统着色器管理函数
+undefined FUN_18068d2b0;                           // UI系统着色器管理器 - 管理着色器资源
 
-// 函数: undefined FUN_18068d480;
-undefined FUN_18068d480;
+// UI系统着色器验证函数
+undefined FUN_18068d480;                           // UI系统着色器验证器 - 验证着色器
 
+// UI系统着色器加载函数
+undefined FUN_18068d4b0;                           // UI系统着色器加载器 - 加载着色器
 
-// 函数: undefined FUN_18068d4b0;
-undefined FUN_18068d4b0;
+// UI系统着色器卸载函数
+undefined FUN_18068d530;                           // UI系统着色器卸载器 - 卸载着色器
 
+// UI系统着色器重载函数
+undefined FUN_18068d5b0;                           // UI系统着色器重载器 - 重载着色器
 
-// 函数: undefined FUN_18068d530;
-undefined FUN_18068d530;
+// UI系统着色器切换函数
+undefined FUN_18068d630;                           // UI系统着色器切换器 - 切换着色器
 
+// UI系统着色器混合函数
+undefined FUN_18068d6b0;                           // UI系统着色器混合器 - 混合着色器
 
-// 函数: undefined FUN_18068d5b0;
-undefined FUN_18068d5b0;
+// UI系统着色器参数函数
+undefined FUN_18068d730;                           // UI系统着色器参数器 - 设置着色器参数
 
+// UI系统着色器常量函数
+undefined FUN_18068d7b0;                           // UI系统着色器常量器 - 设置着色器常量
 
-// 函数: undefined FUN_18068d630;
-undefined FUN_18068d630;
+// UI系统着色器变量函数
+undefined FUN_18068d8d0;                           // UI系统着色器变量器 - 管理着色器变量
 
+// UI系统着色器属性函数
+undefined FUN_18068d9f0;                           // UI系统着色器属性器 - 管理着色器属性
 
-// 函数: undefined FUN_18068d6b0;
-undefined FUN_18068d6b0;
+// UI系统着色器统一变量函数
+undefined FUN_18068db10;                           // UI系统着色器统一变量器 - 管理统一变量
 
+// UI系统着色器采样器函数
+undefined FUN_18068dc30;                           // UI系统着色器采样器器 - 管理采样器
 
-// 函数: undefined FUN_18068d730;
-undefined FUN_18068d730;
+// UI系统着色器纹理函数
+undefined FUN_18068dd50;                           // UI系统着色器纹理器 - 管理着色器纹理
 
+// UI系统着色器缓冲区函数
+undefined FUN_18068de70;                           // UI系统着色器缓冲区器 - 管理着色器缓冲区
 
-// 函数: undefined FUN_18068d7b0;
-undefined FUN_18068d7b0;
+// UI系统着色器图像函数
+undefined FUN_18068def0;                           // UI系统着色器图像器 - 管理着色器图像
 
+// UI系统着色器原子函数
+undefined FUN_18068df70;                           // UI系统着色器原子器 - 管理着色器原子操作
 
-// 函数: undefined FUN_18068d8d0;
-undefined FUN_18068d8d0;
+// UI系统着色器屏障函数
+undefined FUN_18068dff0;                           // UI系统着色器屏障器 - 管理着色器屏障
 
+// UI系统着色器同步函数
+undefined FUN_18068e070;                           // UI系统着色器同步器 - 同步着色器操作
 
-// 函数: undefined FUN_18068d9f0;
-undefined FUN_18068d9f0;
+// UI系统着色器内存函数
+undefined FUN_18068e250;                           // UI系统着色器内存器 - 管理着色器内存
 
+// UI系统着色器工作组函数
+undefined FUN_18068e430;                           // UI系统着色器工作组器 - 管理着色器工作组
 
-// 函数: undefined FUN_18068db10;
-undefined FUN_18068db10;
+// UI系统着色器调度函数
+undefined FUN_18068e610;                           // UI系统着色器调度器 - 调度着色器执行
 
+// UI系统着色器执行函数
+undefined FUN_18068e7f0;                           // UI系统着色器执行器 - 执行着色器
 
-// 函数: undefined FUN_18068dc30;
-undefined FUN_18068dc30;
+// UI系统着色器完成函数
+undefined FUN_18068e870;                           // UI系统着色器完成器 - 完成着色器执行
 
+// UI系统着色器等待函数
+undefined FUN_18068e8f0;                           // UI系统着色器等待器 - 等待着色器完成
 
-// 函数: undefined FUN_18068dd50;
-undefined FUN_18068dd50;
+// UI系统着色器状态函数
+undefined FUN_18068e970;                           // UI系统着色器状态器 - 查询着色器状态
 
+// UI系统着色器结果函数
+undefined FUN_18068e9f0;                           // UI系统着色器结果器 - 获取着色器结果
 
-// 函数: undefined FUN_18068de70;
-undefined FUN_18068de70;
+// UI系统着色器分析函数
+undefined FUN_18068ea70;                           // UI系统着色器分析器 - 分析着色器性能
 
+// UI系统着色器优化函数
+undefined FUN_18068eaf0;                           // UI系统着色器优化器 - 优化着色器性能
 
-// 函数: undefined FUN_18068def0;
-undefined FUN_18068def0;
+// UI系统着色器调试函数
+undefined FUN_18068eb60;                           // UI系统着色器调试器 - 调试着色器
 
+// UI系统着色器测试函数
+undefined FUN_18068ebd0;                           // UI系统着色器测试器 - 测试着色器
 
-// 函数: undefined FUN_18068df70;
-undefined FUN_18068df70;
+// UI系统着色器基准函数
+undefined FUN_18068ec40;                           // UI系统着色器基准器 - 基准测试着色器
 
-
-// 函数: undefined FUN_18068dff0;
-undefined FUN_18068dff0;
-
-
-// 函数: undefined FUN_18068e070;
-undefined FUN_18068e070;
-
-
-// 函数: undefined FUN_18068e250;
-undefined FUN_18068e250;
-
-
-// 函数: undefined FUN_18068e430;
-undefined FUN_18068e430;
-
-
-// 函数: undefined FUN_18068e610;
-undefined FUN_18068e610;
-
-
-// 函数: undefined FUN_18068e7f0;
-undefined FUN_18068e7f0;
-
-
-// 函数: undefined FUN_18068e870;
-undefined FUN_18068e870;
-
-
-// 函数: undefined FUN_18068e8f0;
-undefined FUN_18068e8f0;
-
-
-// 函数: undefined FUN_18068e970;
-undefined FUN_18068e970;
-
-
-// 函数: undefined FUN_18068e9f0;
-undefined FUN_18068e9f0;
-
-
-// 函数: undefined FUN_18068ea70;
-undefined FUN_18068ea70;
-
-
-// 函数: undefined FUN_18068eaf0;
-undefined FUN_18068eaf0;
-
-
-// 函数: undefined FUN_18068eb60;
-undefined FUN_18068eb60;
-
-
-// 函数: undefined FUN_18068ebd0;
-undefined FUN_18068ebd0;
-
-
-// 函数: undefined FUN_18068ec40;
-undefined FUN_18068ec40;
-
-
-// 函数: undefined FUN_18068ecb0;
+// UI系统着色器配置函数
+undefined FUN_18068ecb0;                           // UI系统着色器配置器 - 配置着色器
 undefined FUN_18068ecb0;
 
 

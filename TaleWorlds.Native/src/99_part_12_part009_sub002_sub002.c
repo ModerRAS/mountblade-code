@@ -1273,25 +1273,29 @@ undefined8 AdvancedDataProcessingCoordinator(undefined8 system_context, undefine
       context_ptr = (longlong *)0x180be7ac0; /* 默认系统处理器 */
     }
     *(longlong **)(unaff_RBP + 0x7f) = context_ptr;
-    if ((int)(uint)*(byte *)(lVar6 + 0xd0) < *(int *)(unaff_R14 + 0x8f8)) {
-      lVar23 = (ulonglong)*(byte *)(lVar6 + 0xd0) * 0x618 + *(longlong *)(unaff_R14 + 0x900);
-      bVar18 = *(byte *)((ulonglong)*(byte *)(lVar6 + 0xd1) + 0x3a0 + lVar23);
-      if (bVar18 < 0x10) {
-        puVar10 = (undefined *)((ulonglong)bVar18 * 0x38 + 0x20 + lVar23);
-        puVar13 = &DAT_180be7a80;
-        if (puVar10 != (undefined *)0x0) {
-          puVar13 = puVar10;
+    /* 资源分配和配置管理 */
+    if ((int)(uint)*(byte *)(system_state + 0xd0) < *(int *)(unaff_R14 + 0x8f8)) {
+      /* 计算资源偏移地址 */
+      calculation_result = (ulonglong)*(byte *)(system_state + 0xd0) * 0x618 + *(longlong *)(unaff_R14 + 0x900);
+      control_byte = *(byte *)((ulonglong)*(byte *)(system_state + 0xd1) + 0x3a0 + calculation_result);
+      
+      /* 根据控制字节选择配置数据 */
+      if (control_byte < 0x10) {
+        configuration_data = (undefined *)((ulonglong)control_byte * 0x38 + 0x20 + calculation_result);
+        resource_handle = &DAT_180be7a80;
+        if (configuration_data != (undefined *)0x0) {
+          resource_handle = configuration_data;
         }
-        *(undefined **)(unaff_RBP + -9) = puVar13;
+        *(undefined **)(unaff_RBP + -9) = resource_handle;
       }
       else {
-        *(undefined **)(unaff_RBP + -9) = &DAT_180be7a80;
+        *(undefined **)(unaff_RBP + -9) = &DAT_180be7a80; /* 默认配置 */
       }
     }
     else {
-      lVar23 = 0x180be7b90;
+      calculation_result = 0x180be7b90; /* 默认资源地址 */
       *(undefined **)(unaff_RBP + -9) = &DAT_180be7a80;
-      _DAT_180be7a80 = param_3;
+      _DAT_180be7a80 = processing_params;
     }
     uVar4 = *(undefined1 *)(unaff_RDI + 3);
     bVar18 = *(byte *)(unaff_RDI + 4);
