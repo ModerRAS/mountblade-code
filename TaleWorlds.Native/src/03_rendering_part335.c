@@ -2003,10 +2003,6 @@ void RenderingSystem_SetResourceParameters(longlong param_1,undefined4 param_2,u
     函数别名定义
 ===================================================================================*/
 
-/*===================================================================================
-    函数别名定义
-===================================================================================*/
-
 // 渲染系统颜色处理函数
 #define RenderingSystem_ProcessColorTransform          FUN_180445570  // 渲染系统颜色变换处理器
 #define RenderingSystem_AllocateResourceMemory          FUN_180445610  // 渲染系统资源内存分配器
