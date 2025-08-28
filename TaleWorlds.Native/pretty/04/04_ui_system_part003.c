@@ -1234,6 +1234,8 @@ FUN_1806515e0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,longlong
   bool bVar7;
   
   if ((param_4 == _DAT_180c96790) || (param_4 == (longlong *)&DAT_180c96790)) {
+    // _DAT_180c96790: 库资源树头节点指针
+    // _DAT_180c967b0: 库资源树节点计数器
     if ((_DAT_180c967b0 != 0) && (param_4 = _DAT_180c96790, (ulonglong)_DAT_180c96790[4] < *param_5)
        ) goto LAB_18065166c;
   }
@@ -1267,7 +1269,7 @@ LAB_18065166c:
   }
   puVar2 = puVar5;
   if (bVar7) {
-    if (puVar5 == _DAT_180c96798) {
+    if (puVar5 == _DAT_180c96798) {  // _DAT_180c96798: 库资源树尾节点指针
       uVar3 = *param_5;
       goto LAB_1806516e0;
     }
@@ -1285,6 +1287,8 @@ LAB_1806516e0:
   else {
     uVar6 = 1;
   }
+  // _DAT_180c8ed18: 内存分配器指针
+  // DAT_180c967b8: 库资源树节点类型信息
   lVar4 = FUN_18062b420(_DAT_180c8ed18,0xd8,DAT_180c967b8);
   *(ulonglong *)(lVar4 + 0x20) = *param_5;
   FUN_18063ccc0(lVar4 + 0x28);
@@ -1323,6 +1327,8 @@ void ui_tree_node_insert(undefined8 param_1, undefined8 param_2, undefined *para
   else {
     uVar2 = 0;
   }
+  // _DAT_180c8ed18: 内存分配器指针
+  // DAT_180c967b8: 库资源树节点类型信息
   lVar1 = FUN_18062b420(_DAT_180c8ed18,0xd8,DAT_180c967b8,param_4,0xfffffffffffffffe);
   *(ulonglong *)(lVar1 + 0x20) = *param_5;
   FUN_18063ccc0(lVar1 + 0x28);
