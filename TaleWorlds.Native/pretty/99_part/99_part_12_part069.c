@@ -247,7 +247,7 @@ void AdvancedMathCalculator_Optimized(Float32* output, Float32* input, UInt32 co
     Float32 f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14;
     Float32 temp1, temp2, temp3, temp4;
     Int64 matrixPtr, dataPtr;
-    Int32 i, j, k;
+    Int32 i, iVar16, iVar17, iVar18;
     Int32 stride2, stride3;
     
     // 参数验证
@@ -256,81 +256,84 @@ void AdvancedMathCalculator_Optimized(Float32* output, Float32* input, UInt32 co
         return;
     }
     
-    // 初始化步长变量
-    stride2 = stride * 2;
-    stride3 = stride * 3;
-    
-    // 主循环处理 - 每次处理4个元素（循环展开优化）
-    i = (Int32)(count >> 2);
-    if (i != 0) {
+    // 初始化变量
+    iVar18 = (Int32)(count >> 2);
+    if (iVar18 != 0) {
+        stride2 = stride * 2;
+        stride3 = stride * 3;
+        
         do {
-            // 处理第一个数据集
+            // ============ 第一个元素处理 ============
+            
+            // 从矩阵1中读取数据并进行向量变换
             matrixPtr = *(Int64*)(context1 + 8 + index * 0x10);
             f1 = *(Float32*)(context1 + index * 0x10);
             f2 = *(Float32*)(context1 + 4 + index * 0x10);
             f3 = *(Float32*)(matrixPtr + 0x18);
             f4 = *(Float32*)(matrixPtr + 0x14);
             
-            // 计算第一个中间值
+            // 计算向量变换结果: result = inputVector - (f1 * matrix[0x1c] + f2 * matrix[0x20])
             temp1 = (*input - f1 * *(Float32*)(matrixPtr + 0x1c)) - f2 * *(Float32*)(matrixPtr + 0x20);
             f5 = *(Float32*)(matrixPtr + 0x10);
             
-            // 更新第一个数据集
+            // 更新矩阵1中的数据
             *(Float32*)(context1 + 4 + index * 0x10) = f1;
             *(Float32*)(context1 + index * 0x10) = temp1;
             
-            // 处理第二个数据集
+            // 从矩阵3中读取数据并进行向量变换
             matrixPtr = *(Int64*)(context3 + 8 + index * 0x10);
             f6 = *(Float32*)(context3 + index * 0x10);
             f7 = *(Float32*)(matrixPtr + 0x14);
             f8 = *(Float32*)(context3 + 4 + index * 0x10);
             f9 = *(Float32*)(matrixPtr + 0x18);
             
-            // 计算第二个中间值
+            // 计算向量变换结果
             temp2 = (*input - f6 * *(Float32*)(matrixPtr + 0x1c)) - f8 * *(Float32*)(matrixPtr + 0x20);
             f10 = *(Float32*)(matrixPtr + 0x10);
             
-            // 更新第二个数据集
+            // 更新矩阵3中的数据
             *(Float32*)(context3 + 4 + index * 0x10) = f6;
             *(Float32*)(context3 + index * 0x10) = temp2;
             
-            // 处理第三个数据集
+            // 从矩阵2中读取数据并进行复合计算
             matrixPtr = *(Int64*)(context2 + 8 + index * 0x10);
             f11 = *(Float32*)(context2 + 4 + index * 0x10);
             f12 = *(Float32*)(matrixPtr + 0x18);
             f13 = *(Float32*)(context2 + index * 0x10);
             f14 = *(Float32*)(matrixPtr + 0x14);
             
-            // 计算第三个中间值
+            // 复合计算: result = (f6*f7 + temp2*f10 + f8*f9) - (f13*matrix[0x1c] + f11*matrix[0x20])
             temp3 = ((f6 * f7 + temp2 * f10 + f8 * f9) - f13 * *(Float32*)(matrixPtr + 0x1c)) - 
                     f11 * *(Float32*)(matrixPtr + 0x20);
             f6 = *(Float32*)(matrixPtr + 0x10);
             
-            // 更新第三个数据集
+            // 更新矩阵2中的数据
             *(Float32*)(context2 + 4 + index * 0x10) = f13;
             *(Float32*)(context2 + index * 0x10) = temp3;
             
-            // 处理第四个数据集
+            // 从矩阵4中读取数据并进行向量变换
             matrixPtr = *(Int64*)(context4 + 8 + index * 0x10);
             f7 = *(Float32*)(context4 + index * 0x10);
             f8 = *(Float32*)(context4 + 4 + index * 0x10);
             f9 = *(Float32*)(matrixPtr + 0x18);
             f10 = *(Float32*)(matrixPtr + 0x14);
             
-            // 计算第四个中间值
+            // 计算向量变换结果
             temp4 = (*input - f7 * *(Float32*)(matrixPtr + 0x1c)) - f8 * *(Float32*)(matrixPtr + 0x20);
             f2 = *(Float32*)(matrixPtr + 0x10);
             
-            // 更新第四个数据集
+            // 更新矩阵4中的数据
             *(Float32*)(context4 + 4 + index * 0x10) = f7;
             *(Float32*)(context4 + index * 0x10) = temp4;
             
-            // 计算最终结果并存储
-            *output = ((f1 * f4 + temp1 * f5 + f2 * f3) * weight1 -
-                       (f13 * f14 + temp3 * f6 + f11 * f12) * weight2) +
+            // 最终加权计算: output = (f1*f5 + temp1*f4 + f2*f3) * weight1 - 
+            //                         (f13*f14 + temp3*f6 + f11*f12) * weight2 + 
+            //                         (temp4*f2 + f7*f10 + f8*f9) * weight3
+            *output = ((f1 * f5 + temp1 * f4 + f2 * f3) * weight1 - 
+                       (f13 * f14 + temp3 * f6 + f11 * f12) * weight2) + 
                       (temp4 * f2 + f7 * f10 + f8 * f9) * weight3;
             
-            // 处理第二个位置的元素
+            // ============ 第二个元素处理 ============
             matrixPtr = *(Int64*)(context1 + 8 + index * 0x10);
             f1 = *(Float32*)(context1 + index * 0x10);
             f2 = *(Float32*)(context1 + 4 + index * 0x10);
@@ -344,14 +347,173 @@ void AdvancedMathCalculator_Optimized(Float32* output, Float32* input, UInt32 co
             *(Float32*)(context1 + 4 + index * 0x10) = f1;
             *(Float32*)(context1 + index * 0x10) = temp1;
             
-            // 继续处理其他位置（类似模式）...
-            // 这里省略了重复的计算模式以保持代码简洁
+            matrixPtr = *(Int64*)(context3 + 8 + index * 0x10);
+            f6 = *(Float32*)(context3 + index * 0x10);
+            f7 = *(Float32*)(context3 + 4 + index * 0x10);
+            f8 = *(Float32*)(matrixPtr + 0x18);
+            f9 = *(Float32*)(matrixPtr + 0x14);
+            temp2 = (input[stride] - f6 * *(Float32*)(matrixPtr + 0x1c)) - 
+                    f7 * *(Float32*)(matrixPtr + 0x20);
+            f10 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(context3 + 4 + index * 0x10) = f6;
+            *(Float32*)(context3 + index * 0x10) = temp2;
+            
+            matrixPtr = *(Int64*)(context2 + 8 + index * 0x10);
+            f11 = *(Float32*)(context2 + 4 + index * 0x10);
+            f12 = *(Float32*)(matrixPtr + 0x18);
+            f13 = *(Float32*)(context2 + index * 0x10);
+            f14 = *(Float32*)(matrixPtr + 0x14);
+            temp3 = ((temp2 * f10 + f6 * f9 + f7 * f8) - f13 * *(Float32*)(matrixPtr + 0x1c)) - 
+                    f11 * *(Float32*)(matrixPtr + 0x20);
+            f6 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(context2 + 4 + index * 0x10) = f13;
+            *(Float32*)(context2 + index * 0x10) = temp3;
+            
+            matrixPtr = *(Int64*)(context4 + 8 + index * 0x10);
+            f7 = *(Float32*)(context4 + index * 0x10);
+            f8 = *(Float32*)(context4 + 4 + index * 0x10);
+            f9 = *(Float32*)(matrixPtr + 0x18);
+            f10 = *(Float32*)(matrixPtr + 0x14);
+            temp4 = (input[stride] - f7 * *(Float32*)(matrixPtr + 0x1c)) - 
+                    f8 * *(Float32*)(matrixPtr + 0x20);
+            f2 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(context4 + 4 + index * 0x10) = f7;
+            *(Float32*)(context4 + index * 0x10) = temp4;
+            
+            // 计算第二个元素的最终结果
+            output[stride] = ((temp1 * f5 + f1 * f4 + f2 * f3) * weight1 - 
+                             (f13 * f14 + temp3 * f6 + f11 * f12) * weight2) + 
+                            (f7 * f9 + temp4 * f2 + f8 * f10) * weight3;
+            
+            // ============ 第三个元素处理 ============
+            iVar17 = stride2;
+            matrixPtr = *(Int64*)(context1 + 8 + index * 0x10);
+            f1 = *(Float32*)(context1 + index * 0x10);
+            f2 = *(Float32*)(context1 + 4 + index * 0x10);
+            f3 = *(Float32*)(matrixPtr + 0x18);
+            f4 = *(Float32*)(matrixPtr + 0x14);
+            temp1 = (input[iVar17] - f1 * *(Float32*)(matrixPtr + 0x1c)) - 
+                    f2 * *(Float32*)(matrixPtr + 0x20);
+            f5 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(context1 + index * 0x10) = temp1;
+            *(Float32*)(context1 + 4 + index * 0x10) = f1;
+            
+            matrixPtr = *(Int64*)(context3 + 8 + index * 0x10);
+            f6 = *(Float32*)(context3 + index * 0x10);
+            f7 = *(Float32*)(matrixPtr + 0x14);
+            f8 = *(Float32*)(context3 + 4 + index * 0x10);
+            f9 = *(Float32*)(matrixPtr + 0x18);
+            temp2 = (input[iVar17] - f6 * *(Float32*)(matrixPtr + 0x1c)) - 
+                    f8 * *(Float32*)(matrixPtr + 0x20);
+            f10 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(context3 + index * 0x10) = temp2;
+            *(Float32*)(context3 + 4 + index * 0x10) = f6;
+            
+            matrixPtr = *(Int64*)(context2 + 8 + index * 0x10);
+            f11 = *(Float32*)(context2 + 4 + index * 0x10);
+            f12 = *(Float32*)(matrixPtr + 0x18);
+            f13 = *(Float32*)(context2 + index * 0x10);
+            f14 = *(Float32*)(matrixPtr + 0x14);
+            temp3 = ((f6 * f7 + temp2 * f10 + f8 * f9) - f13 * *(Float32*)(matrixPtr + 0x1c)) - 
+                    f11 * *(Float32*)(matrixPtr + 0x20);
+            f6 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(context2 + index * 0x10) = temp3;
+            *(Float32*)(context2 + 4 + index * 0x10) = f13;
+            
+            matrixPtr = *(Int64*)(context4 + 8 + index * 0x10);
+            f7 = *(Float32*)(context4 + index * 0x10);
+            f8 = *(Float32*)(context4 + 4 + index * 0x10);
+            f9 = *(Float32*)(matrixPtr + 0x14);
+            f10 = *(Float32*)(matrixPtr + 0x18);
+            temp4 = (input[iVar17] - f7 * *(Float32*)(matrixPtr + 0x1c)) - 
+                    f8 * *(Float32*)(matrixPtr + 0x20);
+            f2 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(context4 + index * 0x10) = temp4;
+            *(Float32*)(context4 + 4 + index * 0x10) = f7;
+            
+            // 计算第三个元素的最终结果
+            output[iVar17] = ((f1 * f4 + temp1 * f5 + f2 * f3) * weight1 - 
+                            (f13 * f14 + temp3 * f6 + f11 * f12) * weight2) + 
+                           (temp4 * f2 + f7 * f10 + f8 * f9) * weight3;
+            
+            // ============ 第四个元素处理 ============
+            iVar16 = stride3;
+            matrixPtr = *(Int64*)(context1 + 8 + index * 0x10);
+            f1 = *(Float32*)(context1 + index * 0x10);
+            f2 = *(Float32*)(context1 + 4 + index * 0x10);
+            f3 = *(Float32*)(matrixPtr + 0x18);
+            f4 = *(Float32*)(matrixPtr + 0x14);
+            temp1 = (input[iVar16] - f1 * *(Float32*)(matrixPtr + 0x1c)) - 
+                    f2 * *(Float32*)(matrixPtr + 0x20);
+            f5 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(context1 + index * 0x10) = temp1;
+            *(Float32*)(context1 + 4 + index * 0x10) = f1;
+            
+            matrixPtr = *(Int64*)(context3 + 8 + index * 0x10);
+            f6 = *(Float32*)(context3 + index * 0x10);
+            f7 = *(Float32*)(matrixPtr + 0x18);
+            f8 = *(Float32*)(context3 + 4 + index * 0x10);
+            f9 = *(Float32*)(matrixPtr + 0x14);
+            temp2 = (input[iVar16] - f6 * *(Float32*)(matrixPtr + 0x1c)) - 
+                    f8 * *(Float32*)(matrixPtr + 0x20);
+            f10 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(context3 + index * 0x10) = temp2;
+            *(Float32*)(context3 + 4 + index * 0x10) = f6;
+            
+            matrixPtr = *(Int64*)(context2 + 8 + index * 0x10);
+            f11 = *(Float32*)(context2 + 4 + index * 0x10);
+            f12 = *(Float32*)(matrixPtr + 0x18);
+            f13 = *(Float32*)(context2 + index * 0x10);
+            f14 = *(Float32*)(matrixPtr + 0x14);
+            temp3 = ((temp2 * f10 + f6 * f9 + f7 * f8) - f13 * *(Float32*)(matrixPtr + 0x1c)) - 
+                    f11 * *(Float32*)(matrixPtr + 0x20);
+            f6 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(context2 + index * 0x10) = temp3;
+            *(Float32*)(context2 + 4 + index * 0x10) = f13;
+            
+            matrixPtr = *(Int64*)(context4 + 8 + index * 0x10);
+            f7 = *(Float32*)(context4 + index * 0x10);
+            f8 = *(Float32*)(context4 + 4 + index * 0x10);
+            f9 = *(Float32*)(matrixPtr + 0x18);
+            f10 = *(Float32*)(matrixPtr + 0x14);
+            temp4 = (input[iVar16] - f7 * *(Float32*)(matrixPtr + 0x1c)) - 
+                    f8 * *(Float32*)(matrixPtr + 0x20);
+            f2 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(context4 + index * 0x10) = temp4;
+            *(Float32*)(context4 + 4 + index * 0x10) = f7;
+            
+            // 计算第四个元素的最终结果
+            output[iVar16] = ((f1 * f4 + temp1 * f5 + f2 * f3) * weight1 - 
+                            (f13 * f14 + temp3 * f6 + f11 * f12) * weight2) + 
+                           (f7 * f9 + temp4 * f2 + f8 * f10) * weight3;
             
             // 更新指针和计数器
             output = output + stride * 4;
             input = input + stride * 4;
-            i--;
-        } while (i != 0);
+            iVar18--;
+        } while (iVar18 != 0);
     }
     
     // 处理剩余元素
@@ -361,8 +523,62 @@ void AdvancedMathCalculator_Optimized(Float32* output, Float32* input, UInt32 co
         matrixPtr = (Int64)output - (Int64)input;
         
         do {
-            // 处理剩余元素的逻辑
-            // 这里省略了具体的计算实现
+            // 处理剩余元素的完整计算逻辑
+            matrixPtr = *(Int64*)(context1 + 8 + dataPtr * 0x10);
+            f1 = *(Float32*)(context1 + dataPtr * 0x10);
+            f2 = *(Float32*)(context1 + 4 + dataPtr * 0x10);
+            f3 = *(Float32*)(matrixPtr + 0x18);
+            f4 = *(Float32*)(matrixPtr + 0x14);
+            temp1 = (*input - f1 * *(Float32*)(matrixPtr + 0x1c)) - f2 * *(Float32*)(matrixPtr + 0x20);
+            f5 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(context1 + dataPtr * 0x10) = temp1;
+            *(Float32*)(context1 + 4 + dataPtr * 0x10) = f1;
+            
+            matrixPtr = *(Int64*)(context3 + 8 + dataPtr * 0x10);
+            f6 = *(Float32*)(context3 + dataPtr * 0x10);
+            f7 = *(Float32*)(context3 + 4 + dataPtr * 0x10);
+            f8 = *(Float32*)(matrixPtr + 0x18);
+            f9 = *(Float32*)(matrixPtr + 0x14);
+            temp2 = (*input - f6 * *(Float32*)(matrixPtr + 0x1c)) - f7 * *(Float32*)(matrixPtr + 0x20);
+            f10 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(context3 + dataPtr * 0x10) = temp2;
+            *(Float32*)(context3 + 4 + dataPtr * 0x10) = f6;
+            
+            matrixPtr = *(Int64*)(context2 + 8 + dataPtr * 0x10);
+            f11 = *(Float32*)(context2 + 4 + dataPtr * 0x10);
+            f12 = *(Float32*)(matrixPtr + 0x18);
+            f13 = *(Float32*)(context2 + dataPtr * 0x10);
+            f14 = *(Float32*)(matrixPtr + 0x14);
+            temp3 = ((temp2 * f10 + f6 * f9 + f7 * f8) - f13 * *(Float32*)(matrixPtr + 0x1c)) - 
+                    f11 * *(Float32*)(matrixPtr + 0x20);
+            f6 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(context2 + dataPtr * 0x10) = temp3;
+            *(Float32*)(context2 + 4 + dataPtr * 0x10) = f13;
+            
+            matrixPtr = *(Int64*)(context4 + 8 + dataPtr * 0x10);
+            f7 = *(Float32*)(context4 + dataPtr * 0x10);
+            f8 = *(Float32*)(context4 + 4 + dataPtr * 0x10);
+            f9 = *(Float32*)(matrixPtr + 0x14);
+            f10 = *(Float32*)(matrixPtr + 0x18);
+            temp4 = (*input - f7 * *(Float32*)(matrixPtr + 0x1c)) - f8 * *(Float32*)(matrixPtr + 0x20);
+            f2 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(context4 + dataPtr * 0x10) = temp4;
+            *(Float32*)(context4 + 4 + dataPtr * 0x10) = f7;
+            
+            // 计算最终结果
+            *(Float32*)(matrixPtr + (Int64)input) = 
+                ((temp1 * f5 + f1 * f4 + f2 * f3) * weight1 - 
+                 (f13 * f14 + temp3 * f6 + f11 * f12) * weight2) + 
+                (f7 * f9 + temp4 * f2 + f8 * f10) * weight3;
+            
             input = input + stride;
             count--;
         } while (count != 0);
@@ -388,7 +604,7 @@ void DataProcessingEngine_Advanced(UInt64 handle, Float32* data, UInt32 count, I
     Float32 f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14;
     Float32 temp1, temp2, temp3, temp4;
     Int64 matrixPtr, dataPtr;
-    Int32 i, j, k;
+    Int32 i, iVar16, iVar17, iVar18;
     Int32 stride2, stride3;
     
     // 寄存器变量（用于优化）
@@ -397,6 +613,10 @@ void DataProcessingEngine_Advanced(UInt64 handle, Float32* data, UInt32 count, I
     register Int64 r10 asm("r10");
     register Int64 r11 asm("r11");
     register UInt64 r15 asm("r15");
+    register Int64 r12 asm("r12");
+    register Int64 r13 asm("r13");
+    register Int64 rbp asm("rbp");
+    register Int64 rdi asm("rdi");
     
     // 栈变量
     UInt32 stack_param1;
@@ -409,24 +629,268 @@ void DataProcessingEngine_Advanced(UInt64 handle, Float32* data, UInt32 count, I
         return;
     }
     
-    // 初始化寄存器变量
-    *(UInt64*)(rax + 8) = *(UInt64*)(rbx);
-    i = (Int32)(count >> 2);
+    // 初始化寄存器变量和栈
+    *(UInt64*)(rax + 8) = *(UInt64*)(rbp);
+    iVar18 = (Int32)(count >> 2);
     *(UInt64*)(rax + -0x28) = *(UInt64*)(r15);
     
     // 主循环处理
-    if (i != 0) {
+    if (iVar18 != 0) {
         *(UInt64*)(rax + 0x10) = *(UInt64*)(r12);
         *(UInt64*)(rax + 0x18) = *(UInt64*)(r13);
         stride2 = stride * 2;
         stride3 = stride * 3;
         
         do {
-            // 批量数据处理逻辑
-            // 这里省略了具体的计算实现以保持代码简洁
+            // ============ 批量数据处理逻辑 ============
             
-            i--;
-        } while (i != 0);
+            // 从第一个上下文读取数据
+            matrixPtr = *(Int64*)(stack_param2 + 8 + r15 * 0x10);
+            f1 = *(Float32*)(stack_param2 + r15 * 0x10);
+            f2 = *(Float32*)(stack_param2 + 4 + r15 * 0x10);
+            f3 = *(Float32*)(matrixPtr + 0x18);
+            f4 = *(Float32*)(matrixPtr + 0x14);
+            
+            // 计算第一个中间值
+            temp1 = (*data - f1 * *(Float32*)(matrixPtr + 0x1c)) - f2 * *(Float32*)(matrixPtr + 0x20);
+            f5 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新第一个上下文数据
+            *(Float32*)(stack_param2 + 4 + r15 * 0x10) = f1;
+            *(Float32*)(stack_param2 + r15 * 0x10) = temp1;
+            
+            // 从第二个上下文读取数据
+            matrixPtr = *(Int64*)(r11 + 8 + r15 * 0x10);
+            f6 = *(Float32*)(r11 + r15 * 0x10);
+            f7 = *(Float32*)(matrixPtr + 0x14);
+            f8 = *(Float32*)(r11 + 4 + r15 * 0x10);
+            f9 = *(Float32*)(matrixPtr + 0x18);
+            
+            // 计算第二个中间值
+            temp2 = (*data - f6 * *(Float32*)(matrixPtr + 0x1c)) - f8 * *(Float32*)(matrixPtr + 0x20);
+            f10 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新第二个上下文数据
+            *(Float32*)(r11 + 4 + r15 * 0x10) = f6;
+            *(Float32*)(r11 + r15 * 0x10) = temp2;
+            
+            // 从第三个上下文读取数据
+            matrixPtr = *(Int64*)(rbx + 8 + r15 * 0x10);
+            f11 = *(Float32*)(rbx + 4 + r15 * 0x10);
+            f12 = *(Float32*)(matrixPtr + 0x18);
+            f13 = *(Float32*)(rbx + r15 * 0x10);
+            f14 = *(Float32*)(matrixPtr + 0x14);
+            
+            // 计算第三个中间值
+            temp3 = ((f6 * f7 + temp2 * f10 + f8 * f9) - f13 * *(Float32*)(matrixPtr + 0x1c)) - 
+                    f11 * *(Float32*)(matrixPtr + 0x20);
+            f6 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新第三个上下文数据
+            *(Float32*)(rbx + 4 + r15 * 0x10) = f13;
+            *(Float32*)(rbx + r15 * 0x10) = temp3;
+            
+            // 从第四个上下文读取数据
+            matrixPtr = *(Int64*)(r10 + 8 + r15 * 0x10);
+            f7 = *(Float32*)(r10 + r15 * 0x10);
+            f8 = *(Float32*)(r10 + 4 + r15 * 0x10);
+            f9 = *(Float32*)(matrixPtr + 0x18);
+            f10 = *(Float32*)(matrixPtr + 0x14);
+            
+            // 计算第四个中间值
+            temp4 = (*data - f7 * *(Float32*)(matrixPtr + 0x1c)) - f8 * *(Float32*)(matrixPtr + 0x20);
+            f2 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新第四个上下文数据
+            *(Float32*)(r10 + 4 + r15 * 0x10) = f7;
+            *(Float32*)(r10 + r15 * 0x10) = temp4;
+            
+            // 计算最终结果并存储
+            *rdi = ((f1 * f4 + temp1 * f5 + f2 * f3) * xmm10 - 
+                   (f13 * f14 + temp3 * f6 + f11 * f12) * xmm9) + 
+                  (temp4 * f2 + f7 * f10 + f8 * f9) * xmm8;
+            
+            // ============ 处理第二个位置 ============
+            matrixPtr = *(Int64*)(stack_param2 + 8 + r15 * 0x10);
+            f1 = *(Float32*)(stack_param2 + r15 * 0x10);
+            f2 = *(Float32*)(stack_param2 + 4 + r15 * 0x10);
+            f3 = *(Float32*)(matrixPtr + 0x18);
+            f4 = *(Float32*)(matrixPtr + 0x14);
+            temp1 = (data[stride] - f1 * *(Float32*)(matrixPtr + 0x1c)) - 
+                    f2 * *(Float32*)(matrixPtr + 0x20);
+            f5 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(stack_param2 + 4 + r15 * 0x10) = f1;
+            *(Float32*)(stack_param2 + r15 * 0x10) = temp1;
+            
+            matrixPtr = *(Int64*)(r11 + 8 + r15 * 0x10);
+            f6 = *(Float32*)(r11 + r15 * 0x10);
+            f7 = *(Float32*)(r11 + 4 + r15 * 0x10);
+            f8 = *(Float32*)(matrixPtr + 0x18);
+            f9 = *(Float32*)(matrixPtr + 0x14);
+            temp2 = (data[stride] - f6 * *(Float32*)(matrixPtr + 0x1c)) - 
+                    f7 * *(Float32*)(matrixPtr + 0x20);
+            f10 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(r11 + 4 + r15 * 0x10) = f6;
+            *(Float32*)(r11 + r15 * 0x10) = temp2;
+            
+            matrixPtr = *(Int64*)(rbx + 8 + r15 * 0x10);
+            f11 = *(Float32*)(rbx + 4 + r15 * 0x10);
+            f12 = *(Float32*)(matrixPtr + 0x18);
+            f13 = *(Float32*)(rbx + r15 * 0x10);
+            f14 = *(Float32*)(matrixPtr + 0x14);
+            temp3 = ((temp2 * f10 + f6 * f9 + f7 * f8) - f13 * *(Float32*)(matrixPtr + 0x1c)) - 
+                    f11 * *(Float32*)(matrixPtr + 0x20);
+            f6 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(rbx + 4 + r15 * 0x10) = f13;
+            *(Float32*)(rbx + r15 * 0x10) = temp3;
+            
+            matrixPtr = *(Int64*)(r10 + 8 + r15 * 0x10);
+            f7 = *(Float32*)(r10 + r15 * 0x10);
+            f8 = *(Float32*)(r10 + 4 + r15 * 0x10);
+            f9 = *(Float32*)(matrixPtr + 0x14);
+            f10 = *(Float32*)(matrixPtr + 0x18);
+            temp4 = (data[stride] - f7 * *(Float32*)(matrixPtr + 0x1c)) - 
+                    f8 * *(Float32*)(matrixPtr + 0x20);
+            f2 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(r10 + 4 + r15 * 0x10) = f7;
+            *(Float32*)(r10 + r15 * 0x10) = temp4;
+            
+            // 计算第二个位置的最终结果
+            rdi[stride] = ((temp1 * f5 + f1 * f4 + f2 * f3) * xmm10 - 
+                          (f13 * f14 + temp3 * f6 + f11 * f12) * xmm9) + 
+                         (f7 * f9 + temp4 * f2 + f8 * f10) * xmm8;
+            
+            // ============ 处理第三个位置 ============
+            iVar17 = stride2;
+            matrixPtr = *(Int64*)(stack_param2 + 8 + r15 * 0x10);
+            f1 = *(Float32*)(stack_param2 + r15 * 0x10);
+            f2 = *(Float32*)(stack_param2 + 4 + r15 * 0x10);
+            f3 = *(Float32*)(matrixPtr + 0x18);
+            f4 = *(Float32*)(matrixPtr + 0x14);
+            temp1 = (data[iVar17] - f1 * *(Float32*)(matrixPtr + 0x1c)) - 
+                    f2 * *(Float32*)(matrixPtr + 0x20);
+            f5 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(stack_param2 + r15 * 0x10) = temp1;
+            *(Float32*)(stack_param2 + 4 + r15 * 0x10) = f1;
+            
+            matrixPtr = *(Int64*)(r11 + 8 + r15 * 0x10);
+            f6 = *(Float32*)(r11 + r15 * 0x10);
+            f7 = *(Float32*)(matrixPtr + 0x14);
+            f8 = *(Float32*)(r11 + 4 + r15 * 0x10);
+            f9 = *(Float32*)(matrixPtr + 0x18);
+            temp2 = (data[iVar17] - f6 * *(Float32*)(matrixPtr + 0x1c)) - 
+                    f8 * *(Float32*)(matrixPtr + 0x20);
+            f10 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(r11 + r15 * 0x10) = temp2;
+            *(Float32*)(r11 + 4 + r15 * 0x10) = f6;
+            
+            matrixPtr = *(Int64*)(rbx + 8 + r15 * 0x10);
+            f11 = *(Float32*)(rbx + 4 + r15 * 0x10);
+            f12 = *(Float32*)(matrixPtr + 0x18);
+            f13 = *(Float32*)(rbx + r15 * 0x10);
+            f14 = *(Float32*)(matrixPtr + 0x14);
+            temp3 = ((f6 * f7 + temp2 * f10 + f8 * f9) - f13 * *(Float32*)(matrixPtr + 0x1c)) - 
+                    f11 * *(Float32*)(matrixPtr + 0x20);
+            f6 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(rbx + r15 * 0x10) = temp3;
+            *(Float32*)(rbx + 4 + r15 * 0x10) = f13;
+            
+            matrixPtr = *(Int64*)(r10 + 8 + r15 * 0x10);
+            f7 = *(Float32*)(r10 + r15 * 0x10);
+            f8 = *(Float32*)(r10 + 4 + r15 * 0x10);
+            f9 = *(Float32*)(matrixPtr + 0x18);
+            f10 = *(Float32*)(matrixPtr + 0x14);
+            temp4 = (data[iVar17] - f7 * *(Float32*)(matrixPtr + 0x1c)) - 
+                    f8 * *(Float32*)(matrixPtr + 0x20);
+            f2 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(r10 + r15 * 0x10) = temp4;
+            *(Float32*)(r10 + 4 + r15 * 0x10) = f7;
+            
+            // 计算第三个位置的最终结果
+            rdi[iVar17] = ((f1 * f4 + temp1 * f5 + f2 * f3) * xmm10 - 
+                          (f13 * f14 + temp3 * f6 + f11 * f12) * xmm9) + 
+                         (temp4 * f2 + f7 * f10 + f8 * f9) * xmm8;
+            
+            // ============ 处理第四个位置 ============
+            iVar16 = stride3;
+            matrixPtr = *(Int64*)(stack_param2 + 8 + r15 * 0x10);
+            f1 = *(Float32*)(stack_param2 + r15 * 0x10);
+            f2 = *(Float32*)(stack_param2 + 4 + r15 * 0x10);
+            f3 = *(Float32*)(matrixPtr + 0x18);
+            f4 = *(Float32*)(matrixPtr + 0x14);
+            temp1 = (data[iVar16] - f1 * *(Float32*)(matrixPtr + 0x1c)) - 
+                    f2 * *(Float32*)(matrixPtr + 0x20);
+            f5 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(stack_param2 + r15 * 0x10) = temp1;
+            *(Float32*)(stack_param2 + 4 + r15 * 0x10) = f1;
+            
+            matrixPtr = *(Int64*)(r11 + 8 + r15 * 0x10);
+            f6 = *(Float32*)(r11 + r15 * 0x10);
+            f7 = *(Float32*)(r11 + 4 + r15 * 0x10);
+            f8 = *(Float32*)(matrixPtr + 0x18);
+            f9 = *(Float32*)(matrixPtr + 0x14);
+            temp2 = (data[iVar16] - f6 * *(Float32*)(matrixPtr + 0x1c)) - 
+                    f7 * *(Float32*)(matrixPtr + 0x20);
+            f10 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(r11 + r15 * 0x10) = temp2;
+            *(Float32*)(r11 + 4 + r15 * 0x10) = f6;
+            
+            matrixPtr = *(Int64*)(rbx + 8 + r15 * 0x10);
+            f11 = *(Float32*)(rbx + 4 + r15 * 0x10);
+            f12 = *(Float32*)(matrixPtr + 0x18);
+            f13 = *(Float32*)(rbx + r15 * 0x10);
+            f14 = *(Float32*)(matrixPtr + 0x14);
+            temp3 = ((temp2 * f10 + f6 * f9 + f7 * f8) - f13 * *(Float32*)(matrixPtr + 0x1c)) - 
+                    f11 * *(Float32*)(matrixPtr + 0x20);
+            f6 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(rbx + r15 * 0x10) = temp3;
+            *(Float32*)(rbx + 4 + r15 * 0x10) = f13;
+            
+            matrixPtr = *(Int64*)(r10 + 8 + r15 * 0x10);
+            f7 = *(Float32*)(r10 + r15 * 0x10);
+            f8 = *(Float32*)(r10 + 4 + r15 * 0x10);
+            f9 = *(Float32*)(matrixPtr + 0x14);
+            f10 = *(Float32*)(matrixPtr + 0x18);
+            temp4 = (data[iVar16] - f7 * *(Float32*)(matrixPtr + 0x1c)) - 
+                    f8 * *(Float32*)(matrixPtr + 0x20);
+            f2 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(r10 + r15 * 0x10) = temp4;
+            *(Float32*)(r10 + 4 + r15 * 0x10) = f7;
+            
+            // 计算第四个位置的最终结果
+            rdi[iVar16] = ((f1 * f4 + temp1 * f5 + f2 * f3) * xmm10 - 
+                          (f13 * f14 + temp3 * f6 + f11 * f12) * xmm9) + 
+                         (temp4 * f2 + f7 * f10 + f8 * f9) * xmm8;
+            
+            // 更新指针和计数器
+            rdi = rdi + stride * 4;
+            data = data + stride * 4;
+            iVar18--;
+        } while (iVar18 != 0);
         
         r15 = (UInt64)stack_param1;
     }
@@ -435,11 +899,64 @@ void DataProcessingEngine_Advanced(UInt64 handle, Float32* data, UInt32 count, I
     count = count & 3;
     if (count != 0) {
         matrixPtr = (Int64)(Int32)r15;
-        dataPtr = (Int64)data - (Int64)data;
+        dataPtr = (Int64)rdi - (Int64)data;
         
         do {
-            // 剩余数据处理逻辑
-            // 这里省略了具体的计算实现
+            // 处理剩余元素的完整计算逻辑
+            matrixPtr = *(Int64*)(stack_param2 + 8 + matrixPtr * 0x10);
+            f1 = *(Float32*)(stack_param2 + matrixPtr * 0x10);
+            f2 = *(Float32*)(stack_param2 + 4 + matrixPtr * 0x10);
+            f3 = *(Float32*)(matrixPtr + 0x18);
+            f4 = *(Float32*)(matrixPtr + 0x14);
+            temp1 = (*data - f1 * *(Float32*)(matrixPtr + 0x1c)) - f2 * *(Float32*)(matrixPtr + 0x20);
+            f5 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(stack_param2 + matrixPtr * 0x10) = temp1;
+            *(Float32*)(stack_param2 + 4 + matrixPtr * 0x10) = f1;
+            
+            matrixPtr = *(Int64*)(r11 + 8 + matrixPtr * 0x10);
+            f6 = *(Float32*)(r11 + matrixPtr * 0x10);
+            f7 = *(Float32*)(r11 + 4 + matrixPtr * 0x10);
+            f8 = *(Float32*)(matrixPtr + 0x18);
+            f9 = *(Float32*)(matrixPtr + 0x14);
+            temp2 = (*data - f6 * *(Float32*)(matrixPtr + 0x1c)) - f7 * *(Float32*)(matrixPtr + 0x20);
+            f10 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(r11 + matrixPtr * 0x10) = temp2;
+            *(Float32*)(r11 + 4 + matrixPtr * 0x10) = f6;
+            
+            matrixPtr = *(Int64*)(rbx + 8 + matrixPtr * 0x10);
+            f11 = *(Float32*)(rbx + 4 + matrixPtr * 0x10);
+            f12 = *(Float32*)(matrixPtr + 0x18);
+            f13 = *(Float32*)(rbx + matrixPtr * 0x10);
+            f14 = *(Float32*)(matrixPtr + 0x14);
+            temp3 = ((temp2 * f10 + f6 * f9 + f7 * f8) - f13 * *(Float32*)(matrixPtr + 0x1c)) - 
+                    f11 * *(Float32*)(matrixPtr + 0x20);
+            f6 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(rbx + matrixPtr * 0x10) = temp3;
+            *(Float32*)(rbx + 4 + matrixPtr * 0x10) = f13;
+            
+            matrixPtr = *(Int64*)(r10 + 8 + matrixPtr * 0x10);
+            f7 = *(Float32*)(r10 + matrixPtr * 0x10);
+            f8 = *(Float32*)(r10 + 4 + matrixPtr * 0x10);
+            f9 = *(Float32*)(matrixPtr + 0x14);
+            f10 = *(Float32*)(matrixPtr + 0x18);
+            temp4 = (*data - f7 * *(Float32*)(matrixPtr + 0x1c)) - f8 * *(Float32*)(matrixPtr + 0x20);
+            f2 = *(Float32*)(matrixPtr + 0x10);
+            
+            // 更新数据
+            *(Float32*)(r10 + matrixPtr * 0x10) = temp4;
+            *(Float32*)(r10 + 4 + matrixPtr * 0x10) = f7;
+            
+            // 计算最终结果
+            *(Float32*)(dataPtr + (Int64)data) = 
+                ((temp1 * f5 + f1 * f4 + f2 * f3) * xmm10 - 
+                 (f13 * f14 + temp3 * f6 + f11 * f12) * xmm9) + 
+                (f7 * f9 + temp4 * f2 + f8 * f10) * xmm8;
             
             data = data + stride;
             count--;
