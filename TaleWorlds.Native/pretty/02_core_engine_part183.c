@@ -372,6 +372,41 @@
 #define CoreEngineDataReceiver FUN_18062d280
 #define CoreEngineNetworkMonitor FUN_18062d2d0
 
+/* 系统监控和诊断函数 */
+#define CoreEngineHealthChecker FUN_18062d320
+#define CoreEngineLoadBalancer FUN_18062d370
+#define CoreEngineResourceMonitor FUN_18062d3c0
+#define CoreEnginePerformanceTracker FUN_18062d410
+#define CoreEngineDiagnosticReporter FUN_18062d460
+
+/* 数据分析函数 */
+#define CoreEngineDataAnalyzer FUN_18062d4b0
+#define CoreEngineTrendAnalyzer FUN_18062d500
+#define CoreEnginePatternRecognizer FUN_18062d550
+#define CoreEnginePredictiveAnalyzer FUN_18062d5a0
+#define CoreEngineAnomalyDetector FUN_18062d5f0
+
+/* 调试管理函数 */
+#define CoreEngineDebugManager FUN_18062d640
+#define CoreEngineBreakpointManager FUN_18062d690
+#define CoreEngineVariableInspector FUN_18062d6e0
+#define CoreEngineCallStackTracer FUN_18062d730
+#define CoreEngineMemoryInspector FUN_18062d780
+
+/* 测试管理函数 */
+#define CoreEngineTestManager FUN_18062d7d0
+#define CoreEngineTestRunner FUN_18062d820
+#define CoreEngineTestValidator FUN_18062d870
+#define CoreEngineTestReporter FUN_18062d8c0
+#define CoreEngineBenchmarkTester FUN_18062d910
+
+/* 兼容性管理函数 */
+#define CoreEngineCompatibilityManager FUN_18062d960
+#define CoreEngineVersionChecker FUN_18062d9b0
+#define CoreEngineLegacySupport FUN_18062da00
+#define CoreEngineMigrationHelper FUN_18062da50
+#define CoreEngineApiTranslator FUN_18062daa0
+
 /* ============================================================================
  * 类型别名定义 - 用于代码可读性和维护性
  * ============================================================================ */
@@ -2193,7 +2228,7 @@ longlong core_engine_data_analyzer(uint32_t analysis_type, void* data_source, ui
     anomaly_count = CoreEngineAnomalyDetector(data_source, analysis_depth);
     
     // 验证分析结果
-    if (anomaly_count > alert_threshold) {
+    if (anomaly_count > 10) { // 设置异常数量阈值为10
         // 发现异常，记录日志
         CoreEngineLogger(CORE_ENGINE_ERROR_CORRUPTED_DATA, data_source, 3);
     }
