@@ -622,7 +622,7 @@ void AudioEffectApplier(void)
     
     // 执行音频效果处理
     if (((effect_flags & 1) == 0) || ((process_flags & 1) == 0)) {
-        if (((uint8_t)(process_flags & 1) == ((uint8_t)effect_flags & 1)) {
+        if (((uint8_t)(process_flags & 1) == ((uint8_t)effect_flags & 1))) {
             return;
         }
         
@@ -676,6 +676,93 @@ void AudioEffectApplier(void)
                 FUN_1806e3720(*(uint32_t*)(spatial_data + 0x108), *(uint32_t*)(spatial_data + 0x6c), 
                               &stack_buffer, effect_intensity, *(uint32_t*)(spatial_data + 0x108));
             }
+            else {
+                if (state_flag == '\0') {
+                    // 执行音频效果处理
+                    audio_params = (float*)FUN_1800fcb90(spatial_data + 0x80, spatial_data + 0x18, spatial_data + 0x28);
+                    stack_buffer[0] = *audio_params;
+                    stack_buffer[1] = audio_params[1];
+                    stack_buffer[2] = audio_params[2];
+                    stack_buffer[3] = audio_params[3];
+                    spatial_data[0x70] = *(uint32_t*)(spatial_data + 0x70);
+                    spatial_data[0x6c] = *(uint32_t*)(spatial_data + 0x6c);
+                    spatial_data[0x78] = *(uint32_t*)(spatial_data + 0x68);
+                    
+                    // 执行音频效果处理
+                    FUN_1806e30c0(spatial_data[0x78], *(uint32_t*)(spatial_data + 0x108), &stack_buffer);
+                    return;
+                }
+            }
+        }
+        else {
+            if ((process_flags & 0x20) == 0) {
+                if (state_flag != '\0') {
+                    return;
+                }
+                
+                // 执行音频效果处理
+                audio_params = (float*)FUN_1800fcb90(spatial_data + 0x80, spatial_data + 0x18, spatial_data + 0x28);
+                stack_buffer[0] = *audio_params;
+                stack_buffer[1] = audio_params[1];
+                stack_buffer[2] = audio_params[2];
+                spatial_data[0x70] = *(uint32_t*)(spatial_data + 0x70);
+                stack_buffer[3] = audio_params[3];
+                spatial_data[0x78] = *(uint32_t*)(spatial_data + 0x68);
+                
+                // 计算音频效果结果
+                effect_intensity = transform_data[2] * spatial_data[0] +
+                                spatial_data[0x4c] * spatial_data[0x60] +
+                                spatial_data[0x48] * spatial_data[0x50];
+                
+                // 应用音频效果
+                FUN_1806e3720(*(uint32_t*)(spatial_data + 0x104), *(uint32_t*)(spatial_data + 0x6c), 
+                              &stack_buffer, effect_intensity, *(uint32_t*)(spatial_data + 0x104));
+            }
+            else {
+                if (state_flag == '\0') {
+                    // 执行音频效果处理
+                    audio_params = (float*)FUN_1800fcb90(spatial_data + 0x80, spatial_data + 0x18, spatial_data + 0x40);
+                    stack_buffer[0] = *audio_params;
+                    stack_buffer[1] = audio_params[1];
+                    stack_buffer[2] = audio_params[2];
+                    stack_buffer[3] = audio_params[3];
+                    spatial_data[0x70] = *(uint32_t*)(spatial_data + 0x70);
+                    spatial_data[0x6c] = *(uint32_t*)(spatial_data + 0x6c);
+                    spatial_data[0x78] = *(uint32_t*)(spatial_data + 0x68);
+                    
+                    // 执行音频效果处理
+                    FUN_1806e30c0(spatial_data[0x78], *(uint32_t*)(spatial_data + 0x104), &stack_buffer);
+                    return;
+                }
+            }
+        }
+    }
+    else {
+        if (*(char*)(spatial_data + 0x1de) != '\0') {
+            effect_intensity = atan2f(process_flags & 0xffffff01, transform_data[3] + volume_param);
+            pan_param = atan2f(effect_intensity, transform_data[3] + volume_param);
+            
+            // 应用音频状态参数
+            if ((*(float*)(spatial_data + 0xfc) <= volume_param) && (*(float*)(spatial_data + 0xf8) <= volume_param)) {
+                volume_param = *(float*)(spatial_data + 0x100);
+            }
+            
+            // 计算音频状态强度
+            effect_intensity = *(float*)(spatial_data + 0x108);
+            pan_param = (fabsf(pan_param * 4.0f) + volume_param) / effect_intensity;
+            volume_param = (fabsf(effect_intensity * 4.0f) + volume_param) / *(float*)(spatial_data + 0x104);
+            
+            // 应用音频状态变换
+            result_vector[0] = tanf(*(float*)(spatial_data + 0x104) * 0.25f);
+            result_vector[1] = tanf(effect_intensity * 0.25f);
+            
+            // 执行音频状态同步
+            system_context = *(longlong**)(spatial_data + 0x14);
+            FUN_1806e3720(result_vector[1], spatial_data + 0x80, result_vector[1], result_vector[0], 
+                          volume_param < pan_param * pan_param + volume_param * volume_param);
+        }
+        if (*(char*)(spatial_data + 0x1df) == '\0') {
+            return;
         }
     }
     
@@ -709,8 +796,8 @@ void AudioStateSynchronizer(void)
     float result_vector[2];
     
     // 计算音频状态参数
-    effect_intensity = atan2f(effect_flags & 0xffffff01, transform_data[3] + volume_param);
-    pan_param = atan2f();
+    effect_intensity = atan2f(process_flags & 0xffffff01, transform_data[3] + volume_param);
+    pan_param = atan2f(effect_intensity, transform_data[3] + volume_param);
     
     // 应用音频状态参数
     if ((*(float*)(spatial_data + 0xfc) <= volume_param) && (*(float*)(spatial_data + 0xf8) <= volume_param)) {
@@ -729,7 +816,7 @@ void AudioStateSynchronizer(void)
     // 执行音频状态同步
     system_context = *(longlong**)(spatial_data + 0x14);
     FUN_1806e3720(result_vector[1], spatial_data + 0x80, result_vector[1], result_vector[0], 
-                  volume_param < pan_param * pan_param + volume_param * volume_param);
+                  volume_param < pan_param * pan_param + effect_intensity * effect_intensity);
     
     // 执行最终清理
     if (*(char*)(spatial_data + 0x1df) != '\0') {
@@ -752,9 +839,11 @@ void AudioResourceCleanup(void)
     // 局部变量声明
     longlong* system_context;
     char cleanup_flag;
+    char* system_data;
     
     // 检查是否需要清理
-    if (*(char*)(system_context + 0x1df) != '\0') {
+    system_data = (char*)system_context;
+    if (*(system_data + 0x1df) != '\0') {
         cleanup_flag = 1;
         FUN_1806df8b0();
     }
