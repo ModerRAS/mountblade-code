@@ -115,12 +115,12 @@
 // 系统消息常量
 #define system_message_title system_error_title_string         // 系统消息标题
 #define system_message_text system_error_message_string           // 系统消息文本
-#define system_message_format UNK_180a04f08        // 系统消息格式
-#define system_init_params UNK_180a0cfa0          // 系统初始化参数
-#define system_file_params UNK_180a0cf4c           // 系统文件参数
+#define system_message_format system_message_format_string        // 系统消息格式
+#define system_init_params system_initialization_params          // 系统初始化参数
+#define system_file_params system_file_validation_params           // 系统文件参数
 
 // 系统缓冲区常量
-#define system_buffer_start UNK_18098bc80           // 系统缓冲区起始地址
+#define system_buffer_start system_buffer_start_addr           // 系统缓冲区起始地址
 #define system_buffer_end UNK_18098bc73            // 系统缓冲区结束地址
 
 // 系统全局变量
