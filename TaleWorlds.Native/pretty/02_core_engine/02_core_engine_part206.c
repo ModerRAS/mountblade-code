@@ -814,16 +814,15 @@ void conditional_free_24bytes(undefined8 memory_ptr, char should_free, undefined
 
 
 
-// 函数: void FUN_180189ee0(undefined8 param_1,undefined4 *param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180189ee0(undefined8 param_1,undefined4 *param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数：处理错误信息类型1
+void process_error_message_type1(undefined8 param_1, undefined4 *error_code, undefined8 param_3, undefined8 param_4)
 {
-  undefined8 uStackX_18;
-  undefined8 uStackX_20;
+  undefined8 stack_var_1;
+  undefined8 stack_var_2;
   
-  uStackX_18 = func_0x0001801836e0(*param_2);
-  uStackX_20 = param_4;
-  FUN_180061f80(_DAT_180c86928,0,0xffffffff00000000,0xd,&UNK_180a0a9b0,&uStackX_18);
+  stack_var_1 = get_error_message_data(*error_code);
+  stack_var_2 = param_4;
+  log_error_message(error_log_handle, 0, 0xffffffff00000000, 0xd, &error_message_format_1, &stack_var_1);
   return;
 }
 
@@ -833,16 +832,15 @@ void FUN_180189ee0(undefined8 param_1,undefined4 *param_2,undefined8 param_3,und
 
 
 
-// 函数: void FUN_180189f10(undefined8 param_1,undefined4 *param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180189f10(undefined8 param_1,undefined4 *param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数：处理错误信息类型2
+void process_error_message_type2(undefined8 param_1, undefined4 *error_code, undefined8 param_3, undefined8 param_4)
 {
-  undefined8 uStackX_18;
-  undefined8 uStackX_20;
+  undefined8 stack_var_1;
+  undefined8 stack_var_2;
   
-  uStackX_18 = func_0x0001801836e0(*param_2);
-  uStackX_20 = param_4;
-  FUN_180061f80(_DAT_180c86928,0,0xffffffff00000000,0xd,&UNK_180a0aa20,&uStackX_18);
+  stack_var_1 = get_error_message_data(*error_code);
+  stack_var_2 = param_4;
+  log_error_message(error_log_handle, 0, 0xffffffff00000000, 0xd, &error_message_format_2, &stack_var_1);
   return;
 }
 
@@ -852,16 +850,15 @@ void FUN_180189f10(undefined8 param_1,undefined4 *param_2,undefined8 param_3,und
 
 
 
-// 函数: void FUN_180189f40(undefined8 param_1,undefined4 *param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180189f40(undefined8 param_1,undefined4 *param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数：处理错误信息类型3
+void process_error_message_type3(undefined8 param_1, undefined4 *error_code, undefined8 param_3, undefined8 param_4)
 {
-  undefined8 uStackX_18;
-  undefined8 uStackX_20;
+  undefined8 stack_var_1;
+  undefined8 stack_var_2;
   
-  uStackX_18 = func_0x0001801836e0(*param_2);
-  uStackX_20 = param_4;
-  FUN_180061f80(_DAT_180c86928,0,0xffffffff00000000,0xd,&UNK_180a0aa58,&uStackX_18);
+  stack_var_1 = get_error_message_data(*error_code);
+  stack_var_2 = param_4;
+  log_error_message(error_log_handle, 0, 0xffffffff00000000, 0xd, &error_message_format_3, &stack_var_1);
   return;
 }
 
@@ -871,16 +868,15 @@ void FUN_180189f40(undefined8 param_1,undefined4 *param_2,undefined8 param_3,und
 
 
 
-// 函数: void FUN_180189f70(undefined8 param_1,undefined4 *param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180189f70(undefined8 param_1,undefined4 *param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数：处理错误信息类型4
+void process_error_message_type4(undefined8 param_1, undefined4 *error_code, undefined8 param_3, undefined8 param_4)
 {
-  undefined8 uStackX_18;
-  undefined8 uStackX_20;
+  undefined8 stack_var_1;
+  undefined8 stack_var_2;
   
-  uStackX_18 = func_0x0001801836e0(*param_2);
-  uStackX_20 = param_4;
-  FUN_180061f80(_DAT_180c86928,0,0xffffffff00000000,0xd,&UNK_180a0aa40,&uStackX_18);
+  stack_var_1 = get_error_message_data(*error_code);
+  stack_var_2 = param_4;
+  log_error_message(error_log_handle, 0, 0xffffffff00000000, 0xd, &error_message_format_4, &stack_var_1);
   return;
 }
 
@@ -890,16 +886,15 @@ void FUN_180189f70(undefined8 param_1,undefined4 *param_2,undefined8 param_3,und
 
 
 
-// 函数: void FUN_180189fa0(undefined8 param_1,undefined4 *param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180189fa0(undefined8 param_1,undefined4 *param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数：处理错误信息类型5
+void process_error_message_type5(undefined8 param_1, undefined4 *error_code, undefined8 param_3, undefined8 param_4)
 {
-  undefined8 uStackX_18;
-  undefined8 uStackX_20;
+  undefined8 stack_var_1;
+  undefined8 stack_var_2;
   
-  uStackX_18 = func_0x0001801836e0(*param_2);
-  uStackX_20 = param_4;
-  FUN_180061f80(_DAT_180c86928,0,0xffffffff00000000,0xd,&UNK_180a0aa90,&uStackX_18);
+  stack_var_1 = get_error_message_data(*error_code);
+  stack_var_2 = param_4;
+  log_error_message(error_log_handle, 0, 0xffffffff00000000, 0xd, &error_message_format_5, &stack_var_1);
   return;
 }
 
@@ -909,16 +904,15 @@ void FUN_180189fa0(undefined8 param_1,undefined4 *param_2,undefined8 param_3,und
 
 
 
-// 函数: void FUN_180189fd0(undefined8 param_1,undefined4 *param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180189fd0(undefined8 param_1,undefined4 *param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数：处理错误信息类型6
+void process_error_message_type6(undefined8 param_1, undefined4 *error_code, undefined8 param_3, undefined8 param_4)
 {
-  undefined8 uStackX_18;
-  undefined8 uStackX_20;
+  undefined8 stack_var_1;
+  undefined8 stack_var_2;
   
-  uStackX_18 = func_0x0001801836e0(*param_2);
-  uStackX_20 = param_4;
-  FUN_180061f80(_DAT_180c86928,0,0xffffffff00000000,0xd,&UNK_180a0aa70,&uStackX_18);
+  stack_var_1 = get_error_message_data(*error_code);
+  stack_var_2 = param_4;
+  log_error_message(error_log_handle, 0, 0xffffffff00000000, 0xd, &error_message_format_6, &stack_var_1);
   return;
 }
 
