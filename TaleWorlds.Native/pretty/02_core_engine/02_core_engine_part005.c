@@ -1019,50 +1019,61 @@ void initialize_music_system_registry(void)
 
 
 
-// 函数: void FUN_180037980(void)
-void FUN_180037980(void)
-
+/**
+ * 初始化语音系统注册表项
+ * 注册ID: 180037980
+ * 功能：设置语音系统相关的参数和回调函数
+ */
+void initialize_voice_system_registry(void)
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  char registry_flag;
+  undefined8 *registry_root;
+  int compare_result;
+  longlong *registry_manager;
+  longlong allocation_size;
+  undefined8 *current_node;
+  undefined8 *previous_node;
+  undefined8 *next_node;
+  undefined8 *new_entry;
+  undefined8 callback_parameter;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_18098c940,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  // 获取注册表管理器实例
+  registry_manager = (longlong *)get_registry_manager();
+  registry_root = (undefined8 *)*registry_manager;
+  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  callback_parameter = 0;
+  previous_node = registry_root;
+  current_node = (undefined8 *)registry_root[1];
+  
+  // 在注册表中查找匹配的条目
+  while (registry_flag == '\0') {
+    compare_result = memcmp(current_node + 4, &VOICE_SYSTEM_SIGNATURE, 0x10);
+    if (compare_result < 0) {
+      next_node = (undefined8 *)current_node[2];
+      current_node = previous_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      next_node = (undefined8 *)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    previous_node = current_node;
+    current_node = next_node;
+    registry_flag = *(char *)((longlong)next_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c940,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果需要创建新的注册表条目
+  if ((previous_node == registry_root) || 
+      (compare_result = memcmp(&VOICE_SYSTEM_SIGNATURE, previous_node + 4, 0x10), compare_result < 0)) {
+    allocation_size = allocate_registry_entry(registry_manager);
+    insert_registry_entry(registry_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
+    previous_node = new_entry;
   }
-  puVar7[6] = 0x46ecbd4daf41613e;
-  puVar7[7] = 0xdc42c056bbde8482;
-  puVar7[8] = &UNK_18098c7c8;
-  puVar7[9] = 0;
-  puVar7[10] = uStackX_18;
+  
+  // 设置注册表条目的参数
+  previous_node[6] = 0x46ecbd4daf41613e;  // 语音系统标识符
+  previous_node[7] = 0xdc42c056bbde8482;  // 语音系统版本信息
+  previous_node[8] = &voice_system_vtable;  // 虚函数表指针
+  previous_node[9] = 0;  // 保留字段
+  previous_node[10] = callback_parameter;  // 回调参数
   return;
 }
 
@@ -1070,50 +1081,61 @@ void FUN_180037980(void)
 
 
 
-// 函数: void FUN_180037a80(void)
-void FUN_180037a80(void)
-
+/**
+ * 初始化视频播放系统注册表项
+ * 注册ID: 180037a80
+ * 功能：设置视频播放相关的参数和回调函数
+ */
+void initialize_video_playback_registry(void)
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  char registry_flag;
+  undefined8 *registry_root;
+  int compare_result;
+  longlong *registry_manager;
+  longlong allocation_size;
+  undefined8 *current_node;
+  undefined8 *previous_node;
+  undefined8 *next_node;
+  undefined8 *new_entry;
+  undefined8 callback_parameter;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_18098c918,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  // 获取注册表管理器实例
+  registry_manager = (longlong *)get_registry_manager();
+  registry_root = (undefined8 *)*registry_manager;
+  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  callback_parameter = 0;
+  previous_node = registry_root;
+  current_node = (undefined8 *)registry_root[1];
+  
+  // 在注册表中查找匹配的条目
+  while (registry_flag == '\0') {
+    compare_result = memcmp(current_node + 4, &VIDEO_PLAYBACK_SIGNATURE, 0x10);
+    if (compare_result < 0) {
+      next_node = (undefined8 *)current_node[2];
+      current_node = previous_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      next_node = (undefined8 *)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    previous_node = current_node;
+    current_node = next_node;
+    registry_flag = *(char *)((longlong)next_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c918,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果需要创建新的注册表条目
+  if ((previous_node == registry_root) || 
+      (compare_result = memcmp(&VIDEO_PLAYBACK_SIGNATURE, previous_node + 4, 0x10), compare_result < 0)) {
+    allocation_size = allocate_registry_entry(registry_manager);
+    insert_registry_entry(registry_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
+    previous_node = new_entry;
   }
-  puVar7[6] = 0x4c868a42644030f6;
-  puVar7[7] = 0xc29193aa9d9b35b9;
-  puVar7[8] = &UNK_18098c7d8;
-  puVar7[9] = 0;
-  puVar7[10] = uStackX_18;
+  
+  // 设置注册表条目的参数
+  previous_node[6] = 0x4c868a42644030f6;  // 视频播放系统标识符
+  previous_node[7] = 0xc29193aa9d9b35b9;  // 视频播放系统版本信息
+  previous_node[8] = &video_playback_vtable;  // 虚函数表指针
+  previous_node[9] = 0;  // 保留字段
+  previous_node[10] = callback_parameter;  // 回调参数
   return;
 }
 
@@ -1121,50 +1143,61 @@ void FUN_180037a80(void)
 
 
 
-// 函数: void FUN_180037b80(void)
-void FUN_180037b80(void)
-
+/**
+ * 初始化音频流处理系统注册表项
+ * 注册ID: 180037b80
+ * 功能：设置音频流处理相关的参数和回调函数
+ */
+void initialize_audio_stream_registry(void)
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  char registry_flag;
+  undefined8 *registry_root;
+  int compare_result;
+  longlong *registry_manager;
+  longlong allocation_size;
+  undefined8 *current_node;
+  undefined8 *previous_node;
+  undefined8 *next_node;
+  undefined8 *new_entry;
+  undefined8 callback_parameter;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_18098c968,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  // 获取注册表管理器实例
+  registry_manager = (longlong *)get_registry_manager();
+  registry_root = (undefined8 *)*registry_manager;
+  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  callback_parameter = 0;
+  previous_node = registry_root;
+  current_node = (undefined8 *)registry_root[1];
+  
+  // 在注册表中查找匹配的条目
+  while (registry_flag == '\0') {
+    compare_result = memcmp(current_node + 4, &AUDIO_STREAM_SIGNATURE, 0x10);
+    if (compare_result < 0) {
+      next_node = (undefined8 *)current_node[2];
+      current_node = previous_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      next_node = (undefined8 *)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    previous_node = current_node;
+    current_node = next_node;
+    registry_flag = *(char *)((longlong)next_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c968,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果需要创建新的注册表条目
+  if ((previous_node == registry_root) || 
+      (compare_result = memcmp(&AUDIO_STREAM_SIGNATURE, previous_node + 4, 0x10), compare_result < 0)) {
+    allocation_size = allocate_registry_entry(registry_manager);
+    insert_registry_entry(registry_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
+    previous_node = new_entry;
   }
-  puVar7[6] = 0x40ea3a798283cbbb;
-  puVar7[7] = 0x7f74eb2c5a7fadae;
-  puVar7[8] = &UNK_18098c7f0;
-  puVar7[9] = 3;
-  puVar7[10] = uStackX_18;
+  
+  // 设置注册表条目的参数
+  previous_node[6] = 0x40ea3a798283cbbb;  // 音频流处理标识符
+  previous_node[7] = 0x7f74eb2c5a7fadae;  // 音频流处理版本信息
+  previous_node[8] = &audio_stream_vtable;  // 虚函数表指针
+  previous_node[9] = 3;  // 音频流处理配置参数
+  previous_node[10] = callback_parameter;  // 回调参数
   return;
 }
 

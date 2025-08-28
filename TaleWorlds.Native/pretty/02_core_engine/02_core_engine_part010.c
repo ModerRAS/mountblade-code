@@ -20,58 +20,60 @@ void initialize_flag_zero(undefined1 *flag_ptr)
 
 
 
-// 函数: void FUN_180045fc0(longlong param_1,longlong param_2,longlong param_3)
-void FUN_180045fc0(longlong param_1,longlong param_2,longlong param_3)
+// 函数: 字符串处理函数
+// 功能: 处理字符串，查找子串并进行复制操作
+void process_string_operation(longlong param_1,longlong param_2,longlong param_3)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  longlong lVar3;
+  longlong substr_ptr;
+  longlong len2;
+  longlong len3;
   undefined1 auStack_498 [32];
-  undefined8 uStack_478;
-  undefined *puStack_468;
-  undefined1 *puStack_460;
-  undefined4 uStack_458;
+  undefined8 stack_guard;
+  undefined *debug_ptr;
+  undefined1 *buffer_ptr;
+  undefined4 buffer_size;
   undefined1 auStack_450 [1032];
-  ulonglong uStack_48;
+  ulonglong stack_hash;
   
-  uStack_478 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_498;
-  puStack_468 = &UNK_18098bb30;
-  puStack_460 = auStack_450;
-  uStack_458 = 0;
+  stack_guard = 0xfffffffffffffffe;
+  stack_hash = _DAT_180bf00a8 ^ (ulonglong)auStack_498;
+  debug_ptr = &UNK_18098bb30;
+  buffer_ptr = auStack_450;
+  buffer_size = 0;
   auStack_450[0] = 0;
-  lVar1 = strstr(*(undefined8 *)(param_1 + 8));
-  if (lVar1 != 0) {
-    lVar2 = -1;
-    lVar3 = -1;
+  substr_ptr = strstr(*(undefined8 *)(param_1 + 8));
+  if (substr_ptr != 0) {
+    len2 = -1;
+    len3 = -1;
     do {
-      lVar3 = lVar3 + 1;
-    } while (*(char *)(param_2 + lVar3) != '\0');
+      len3 = len3 + 1;
+    } while (*(char *)(param_2 + len3) != '\0');
     do {
-      lVar2 = lVar2 + 1;
-    } while (*(char *)(lVar2 + param_3) != '\0');
+      len2 = len2 + 1;
+    } while (*(char *)(len2 + param_3) != '\0');
                     // WARNING: Subroutine does not return
-    memcpy(puStack_460,*(longlong *)(param_1 + 8),lVar1 - *(longlong *)(param_1 + 8));
+    memcpy(buffer_ptr,*(longlong *)(param_1 + 8),substr_ptr - *(longlong *)(param_1 + 8));
   }
-  puStack_468 = &UNK_18098bcb0;
+  debug_ptr = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_498);
+  FUN_1808fc050(stack_hash ^ (ulonglong)auStack_498);
 }
 
 
 
 
 
-// 函数: void FUN_180046130(undefined8 *param_1,undefined4 param_2)
-void FUN_180046130(undefined8 *param_1,undefined4 param_2)
+// 函数: 信号量释放函数
+// 功能: 循环释放信号量直到成功
+void release_semaphore(undefined8 *semaphore_ptr,undefined4 count)
 
 {
-  int iVar1;
+  int result;
   
   do {
-    iVar1 = ReleaseSemaphore(*param_1,param_2,0);
-  } while (iVar1 == 0);
+    result = ReleaseSemaphore(*semaphore_ptr,count,0);
+  } while (result == 0);
   return;
 }
 
@@ -79,16 +81,17 @@ void FUN_180046130(undefined8 *param_1,undefined4 param_2)
 
 
 
-// 函数: void FUN_180046160(undefined8 *param_1)
-void FUN_180046160(undefined8 *param_1)
+// 函数: 互斥锁解锁函数
+// 功能: 解锁互斥锁并处理错误
+void unlock_mutex(undefined8 *mutex_ptr)
 
 {
-  int iVar1;
+  int result;
   
-  if (*(char *)(param_1 + 1) != '\0') {
-    iVar1 = _Mtx_unlock(*param_1);
-    if (iVar1 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar1);
+  if (*(char *)(mutex_ptr + 1) != '\0') {
+    result = _Mtx_unlock(*mutex_ptr);
+    if (result != 0) {
+      __Throw_C_error_std__YAXH_Z(result);
     }
   }
   return;
@@ -96,66 +99,70 @@ void FUN_180046160(undefined8 *param_1)
 
 
 
-undefined8 FUN_180046190(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: 条件等待函数
+// 功能: 等待条件变量满足，使用互斥锁同步
+undefined8 wait_for_condition(longlong cond_ptr,undefined8 timeout,undefined8 param_3,undefined8 param_4)
 
 {
-  char cVar1;
-  int iVar2;
-  longlong lVar3;
-  undefined8 uVar4;
-  undefined1 uVar5;
+  char status;
+  int result;
+  longlong mutex_ptr;
+  undefined8 ret_value;
+  undefined1 flag;
   
-  uVar4 = 0xfffffffffffffffe;
-  lVar3 = param_1 + 0x48;
-  iVar2 = _Mtx_lock();
-  if (iVar2 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar2);
+  ret_value = 0xfffffffffffffffe;
+  mutex_ptr = cond_ptr + 0x48;
+  result = _Mtx_lock();
+  if (result != 0) {
+    __Throw_C_error_std__YAXH_Z(result);
   }
-  uVar5 = 1;
-  if (*(char *)(param_1 + 0x98) != '\x01') {
-    cVar1 = *(char *)(param_1 + 0x98);
-    while (cVar1 == '\0') {
-      iVar2 = _Cnd_wait(param_1,lVar3,param_3,param_4,uVar4,lVar3,uVar5);
-      if (iVar2 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar2);
+  flag = 1;
+  if (*(char *)(cond_ptr + 0x98) != '\x01') {
+    status = *(char *)(cond_ptr + 0x98);
+    while (status == '\0') {
+      result = _Cnd_wait(cond_ptr,mutex_ptr,param_3,param_4,ret_value,mutex_ptr,flag);
+      if (result != 0) {
+        __Throw_C_error_std__YAXH_Z(result);
       }
-      cVar1 = *(char *)(param_1 + 0x98);
+      status = *(char *)(cond_ptr + 0x98);
     }
   }
-  *(undefined1 *)(param_1 + 0x98) = 0;
-  iVar2 = _Mtx_unlock(lVar3);
-  if (iVar2 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar2);
+  *(undefined1 *)(cond_ptr + 0x98) = 0;
+  result = _Mtx_unlock(mutex_ptr);
+  if (result != 0) {
+    __Throw_C_error_std__YAXH_Z(result);
   }
   return 1;
 }
 
 
 
-longlong FUN_180046240(undefined4 *param_1,undefined4 *param_2)
+// 函数: 数据处理函数
+// 功能: 处理数据结构，进行条件检查和更新操作
+longlong process_data_structure(undefined4 *data_ptr,undefined4 *input_ptr)
 
 {
-  undefined4 uVar1;
-  char cVar2;
-  undefined *puVar3;
+  undefined4 data_value;
+  char success;
+  undefined *error_msg;
   
-  if (*(longlong *)(param_1 + 0x18) != 0) {
-    cVar2 = (**(code **)(param_1 + 0x1a))(param_2,param_1 + 0x14);
-    if (cVar2 == '\0') {
+  if (*(longlong *)(data_ptr + 0x18) != 0) {
+    success = (**(code **)(data_ptr + 0x1a))(input_ptr,data_ptr + 0x14);
+    if (success == '\0') {
       if (DAT_180c82860 == '\0') {
-        puVar3 = &DAT_18098bc73;
-        if (*(undefined **)(param_1 + 4) != (undefined *)0x0) {
-          puVar3 = *(undefined **)(param_1 + 4);
+        error_msg = &DAT_18098bc73;
+        if (*(undefined **)(data_ptr + 4) != (undefined *)0x0) {
+          error_msg = *(undefined **)(data_ptr + 4);
         }
-        FUN_180626f80(&UNK_18098bc00,puVar3);
+        FUN_180626f80(&UNK_18098bc00,error_msg);
       }
-      *param_1 = param_1[0x12];
-      return (ulonglong)(uint3)((uint)param_1[0x12] >> 8) << 8;
+      *data_ptr = data_ptr[0x12];
+      return (ulonglong)(uint3)((uint)data_ptr[0x12] >> 8) << 8;
     }
   }
-  uVar1 = *param_2;
-  *param_1 = uVar1;
-  return CONCAT71((uint7)(uint3)((uint)uVar1 >> 8),1);
+  data_value = *input_ptr;
+  *data_ptr = data_value;
+  return CONCAT71((uint7)(uint3)((uint)data_value >> 8),1);
 }
 
 
@@ -164,75 +171,79 @@ longlong FUN_180046240(undefined4 *param_1,undefined4 *param_2)
 
 
 
-// 函数: void FUN_1800462c0(undefined8 param_1,undefined4 param_2)
-void FUN_1800462c0(undefined8 param_1,undefined4 param_2)
+// 函数: 系统参数设置函数
+// 功能: 设置系统参数，进行条件检查和错误处理
+void set_system_parameter(undefined8 system_handle,undefined4 parameter)
 
 {
-  longlong lVar1;
-  char cVar2;
-  undefined *puVar3;
-  undefined4 auStackX_10 [6];
+  longlong system_base;
+  char check_result;
+  undefined *error_msg;
+  undefined4 param_array [6];
   
-  lVar1 = _DAT_180c86920;
+  system_base = _DAT_180c86920;
   if ((*(longlong *)(_DAT_180c86920 + 0x22f0) != 0) &&
-     (auStackX_10[0] = param_2, cVar2 = (**(code **)(_DAT_180c86920 + 0x22f8))(auStackX_10),
-     param_2 = auStackX_10[0], cVar2 == '\0')) {
+     (param_array[0] = parameter, check_result = (**(code **)(_DAT_180c86920 + 0x22f8))(param_array),
+     parameter = param_array[0], check_result == '\0')) {
     if (DAT_180c82860 == '\0') {
-      puVar3 = &DAT_18098bc73;
-      if (*(undefined **)(lVar1 + 0x22a0) != (undefined *)0x0) {
-        puVar3 = *(undefined **)(lVar1 + 0x22a0);
+      error_msg = &DAT_18098bc73;
+      if (*(undefined **)(system_base + 0x22a0) != (undefined *)0x0) {
+        error_msg = *(undefined **)(system_base + 0x22a0);
       }
-      FUN_180626f80(&UNK_18098bc00,puVar3);
+      FUN_180626f80(&UNK_18098bc00,error_msg);
     }
-    *(undefined4 *)(lVar1 + 0x2290) = *(undefined4 *)(lVar1 + 0x22d8);
+    *(undefined4 *)(system_base + 0x2290) = *(undefined4 *)(system_base + 0x22d8);
     return;
   }
-  *(undefined4 *)(lVar1 + 0x2290) = param_2;
+  *(undefined4 *)(system_base + 0x2290) = parameter;
   return;
 }
 
 
 
+// 函数: 内存释放函数
+// 功能: 释放内存并根据条件标志执行清理
 undefined8 *
-FUN_180046340(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+free_memory_block(undefined8 *mem_ptr,ulonglong flags,undefined8 param_3,undefined8 param_4)
 
 {
-  *param_1 = &UNK_18098bcb0;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x38,param_3,param_4,0xfffffffffffffffe);
+  *mem_ptr = &UNK_18098bcb0;
+  if ((flags & 1) != 0) {
+    free(mem_ptr,0x38,param_3,param_4,0xfffffffffffffffe);
   }
-  return param_1;
+  return mem_ptr;
 }
 
 
 
 
 
-// 函数: void FUN_180046380(longlong param_1,longlong param_2)
-void FUN_180046380(longlong param_1,longlong param_2)
+// 函数: 字符串初始化函数
+// 功能: 初始化字符串数据，处理长度检查和复制操作
+void initialize_string_data(longlong str_ptr,longlong input_str)
 
 {
-  longlong lVar1;
+  longlong str_len;
   
-  if (param_2 == 0) {
-    *(undefined4 *)(param_1 + 0x10) = 0;
-    **(undefined1 **)(param_1 + 8) = 0;
+  if (input_str == 0) {
+    *(undefined4 *)(str_ptr + 0x10) = 0;
+    **(undefined1 **)(str_ptr + 8) = 0;
     return;
   }
-  lVar1 = -1;
+  str_len = -1;
   do {
-    lVar1 = lVar1 + 1;
-  } while (*(char *)(param_2 + lVar1) != '\0');
-  if ((int)lVar1 < 0x20) {
-    *(int *)(param_1 + 0x10) = (int)lVar1;
+    str_len = str_len + 1;
+  } while (*(char *)(input_str + str_len) != '\0');
+  if ((int)str_len < 0x20) {
+    *(int *)(str_ptr + 0x10) = (int)str_len;
                     // WARNING: Could not recover jumptable at 0x0001800463b7. Too many branches
                     // WARNING: Treating indirect jump as call
-    strcpy_s(*(undefined8 *)(param_1 + 8),0x20);
+    strcpy_s(*(undefined8 *)(str_ptr + 8),0x20);
     return;
   }
-  FUN_180626f80(&UNK_18098bc48,0x20,param_2);
-  *(undefined4 *)(param_1 + 0x10) = 0;
-  **(undefined1 **)(param_1 + 8) = 0;
+  FUN_180626f80(&UNK_18098bc48,0x20,input_str);
+  *(undefined4 *)(str_ptr + 0x10) = 0;
+  **(undefined1 **)(str_ptr + 8) = 0;
   return;
 }
 
@@ -240,16 +251,17 @@ void FUN_180046380(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180046400(longlong param_1,undefined8 param_2,int param_3)
-void FUN_180046400(longlong param_1,undefined8 param_2,int param_3)
+// 函数: 字符串复制函数
+// 功能: 安全地复制字符串数据到目标缓冲区
+void copy_string_data(longlong dest_ptr,undefined8 src_ptr,int length)
 
 {
-  if (param_3 + 1 < 0x20) {
+  if (length + 1 < 0x20) {
                     // WARNING: Subroutine does not return
-    memcpy(*(undefined1 **)(param_1 + 8),param_2,(longlong)param_3);
+    memcpy(*(undefined1 **)(dest_ptr + 8),src_ptr,(longlong)length);
   }
-  **(undefined1 **)(param_1 + 8) = 0;
-  *(undefined4 *)(param_1 + 0x10) = 0;
+  **(undefined1 **)(dest_ptr + 8) = 0;
+  *(undefined4 *)(dest_ptr + 0x10) = 0;
   return;
 }
 
@@ -257,8 +269,9 @@ void FUN_180046400(longlong param_1,undefined8 param_2,int param_3)
 
 
 
-// 函数: void FUN_18004641f(void)
-void FUN_18004641f(void)
+// 函数: 内存复制包装函数
+// 功能: 内存复制操作的包装函数，无实际实现
+void memory_copy_wrapper(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -269,30 +282,33 @@ void FUN_18004641f(void)
 
 
 
-// 函数: void FUN_180046444(undefined1 *param_1)
-void FUN_180046444(undefined1 *param_1)
+// 函数: 数据清零函数
+// 功能: 清零数据和相关的上下文信息
+void clear_data(undefined1 *data_ptr)
 
 {
-  longlong unaff_RDI;
+  longlong context_ptr;
   
-  *param_1 = 0;
-  *(undefined4 *)(unaff_RDI + 0x10) = 0;
+  *data_ptr = 0;
+  *(undefined4 *)(context_ptr + 0x10) = 0;
   return;
 }
 
 
 
-undefined8 * FUN_180046480(undefined8 *param_1)
+// 函数: 数据结构初始化函数
+// 功能: 初始化数据结构，设置链表指针
+undefined8 * initialize_data_structure(undefined8 *data_ptr)
 
 {
-  *param_1 = &UNK_18098bcb0;
-  param_1[1] = 0;
-  *(undefined4 *)(param_1 + 2) = 0;
-  *param_1 = &UNK_18098bc80;
-  param_1[1] = param_1 + 3;
-  *(undefined4 *)(param_1 + 2) = 0;
-  *(undefined1 *)(param_1 + 3) = 0;
-  return param_1;
+  *data_ptr = &UNK_18098bcb0;
+  data_ptr[1] = 0;
+  *(undefined4 *)(data_ptr + 2) = 0;
+  *data_ptr = &UNK_18098bc80;
+  data_ptr[1] = data_ptr + 3;
+  *(undefined4 *)(data_ptr + 2) = 0;
+  *(undefined1 *)(data_ptr + 3) = 0;
+  return data_ptr;
 }
 
 
