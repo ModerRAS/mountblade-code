@@ -2,6 +2,35 @@
 
 // 02_core_engine_part162.c - 核心引擎边界框计算模块
 
+// 全局变量和常量定义
+// _DAT_180c8ed18 - 内存分配器/池管理器
+#define MEMORY_POOL_MANAGER ((void *)0x180c8ed18)
+// 边界框相关偏移量
+#define BBOX_MIN_X_OFFSET (-0x79)
+#define BBOX_MIN_Y_OFFSET (-0x75)
+#define BBOX_MIN_Z_OFFSET (-0x71)
+#define BBOX_MAX_X_OFFSET (-0x69)
+#define BBOX_MAX_Y_OFFSET (-0x65)
+#define BBOX_MAX_Z_OFFSET (-0x61)
+#define BBOX_RESULT_OFFSET (-0x49)
+#define BBOX_RESULT_Y_OFFSET (-0x45)
+#define BBOX_RESULT_Z_OFFSET (-0x41)
+#define BBOX_TEMP_OFFSET (-0x59)
+#define BBOX_TEMP_Y_OFFSET (-0x55)
+#define BBOX_TEMP_Z_OFFSET (-0x51)
+// 空间索引结构体偏移量
+#define SPATIAL_INDEX_DATA_OFFSET 0x20
+#define SPATIAL_INDEX_SIZE_OFFSET 0x28
+#define SPATIAL_INDEX_RESULT_OFFSET 0xf8
+#define SPATIAL_INDEX_BLOCK_SIZE 0x30
+#define SPATIAL_INDEX_SMALL_BLOCK_SIZE 0x20
+#define SPATIAL_INDEX_LARGE_BLOCK_SIZE 0x88
+#define SPATIAL_NODE_KEY_OFFSET 0x20
+#define SPATIAL_NODE_LEFT_OFFSET 0x0
+#define SPATIAL_NODE_RIGHT_OFFSET 0x8
+#define SPATIAL_NODE_ROOT_OFFSET 0x10
+#define SPATIAL_NODE_TYPE_OFFSET 0x14
+
 /**
  * 计算边界框的最小最大值
  * @param count 元素数量
@@ -388,8 +417,15 @@ void calculate_bounding_box_simple(unsigned long long param1, unsigned long long
 
 /**
  * 处理空间分区数据
- * @param spatial_data 空间数据指针
- * @param tree_node 树节点指针
+ * @param spatial_data 空间数据指针，包含三个数据块的信息
+ * @param tree_node 树节点指针，用于构建空间索引树
+ * 
+ * 该函数处理三种不同大小的空间数据块：
+ * 1. 主要数据块：0x30字节块，从spatial_data[0]开始
+ * 2. 第二数据块：0x20字节块，从spatial_data[4]开始
+ * 3. 第三数据块：0x88字节块，从spatial_data[8]开始，包含嵌套的子数据块
+ * 
+ * 每个数据块都通过二叉树索引结构进行组织，支持快速空间查询
  */
 void process_spatial_partition_data(long long *spatial_data, unsigned long long *tree_node)
 {
@@ -405,177 +441,207 @@ void process_spatial_partition_data(long long *spatial_data, unsigned long long 
     int sub_index;
     bool is_smaller;
     
-    start_addr = *spatial_data;
-    index = 0;
-    current_offset = spatial_data[1] - start_addr >> 0x3f;
+    // 第一阶段：处理主要数据块（0x30字节块）
+    start_addr = *spatial_data;                             // 数据块起始地址
+    index = 0;                                               // 索引计数器
+    current_offset = spatial_data[1] - start_addr >> 0x3f;  // 计算偏移量
     
-    // 处理主要数据块
-    if ((spatial_data[1] - start_addr) / 0x30 + current_offset != current_offset) {
+    // 检查是否有主要数据块需要处理
+    if ((spatial_data[1] - start_addr) / SPATIAL_INDEX_BLOCK_SIZE + current_offset != current_offset) {
         current_offset = 0;
         do {
+            // 从数据块中提取键值（位于块内0x28偏移处）
             key_value = *(unsigned long long *)(start_addr + 0x28 + current_offset);
             is_smaller = true;
-            parent_ptr = (unsigned long long *)tree_node[2];
-            node_ptr = tree_node;
+            parent_ptr = (unsigned long long *)tree_node[2];  // 树的根节点
+            node_ptr = tree_node;                              // 当前节点
             
-            // 在树中查找合适位置
+            // 在二叉搜索树中查找合适的插入位置
             while (parent_ptr != (unsigned long long *)0x0) {
-                is_smaller = key_value < (unsigned long long)parent_ptr[4];
-                node_ptr = parent_ptr;
+                is_smaller = key_value < (unsigned long long)parent_ptr[4];  // 比较键值
+                node_ptr = parent_ptr;  // 保存父节点
                 if (is_smaller) {
-                    parent_ptr = (unsigned long long *)parent_ptr[1];
+                    parent_ptr = (unsigned long long *)parent_ptr[SPATIAL_NODE_RIGHT_OFFSET];  // 右子树
                 }
                 else {
-                    parent_ptr = (unsigned long long *)*parent_ptr;
+                    parent_ptr = (unsigned long long *)*parent_ptr;  // 左子树
                 }
             }
             
-            node_ptr = node_ptr;
+            node_ptr = node_ptr;  // 最终位置
             if (is_smaller) {
-                if (node_ptr == (unsigned long long *)tree_node[1]) {
-                    goto insert_new_node_1;
+                if (node_ptr == (unsigned long long *)tree_node[SPATIAL_NODE_ROOT_OFFSET]) {
+                    goto insert_new_node_1;  // 需要插入新节点
                 }
-                node_ptr = (unsigned long long *)func_0x00018066b9a0(node_ptr);
+                node_ptr = (unsigned long long *)func_0x00018066b9a0(node_ptr);  // 获取前驱节点
             }
             
+            // 检查是否需要插入新节点
             if ((unsigned long long)node_ptr[4] < key_value) {
             insert_new_node_1:
-                start_addr = FUN_18062b420(_DAT_180c8ed18, 0x28, *(unsigned char *)(tree_node + 5));
-                *(unsigned long long *)(start_addr + 0x20) = key_value;
+                // 分配新节点内存
+                start_addr = FUN_18062b420(MEMORY_POOL_MANAGER, SPATIAL_INDEX_BLOCK_SIZE, *(unsigned char *)(tree_node + SPATIAL_NODE_TYPE_OFFSET));
+                *(unsigned long long *)(start_addr + SPATIAL_NODE_KEY_OFFSET) = key_value;  // 设置键值
                 
+                // 确定插入位置（左子树还是右子树）
                 if ((node_ptr == tree_node) || (key_value < (unsigned long long)node_ptr[4])) {
-                    flags = 0;
+                    flags = 0;  // 左子树
                 }
                 else {
-                    flags = 1;
+                    flags = 1;  // 右子树
                 }
                 
-                // 插入新节点
+                // 插入新节点到树中
                 FUN_18066bdc0(start_addr, node_ptr, tree_node, flags);
             }
             
-            start_addr = *spatial_data;
-            index = index + 1;
-            current_offset = current_offset + 0x30;
-        } while ((unsigned long long)(long long)index < (unsigned long long)((spatial_data[1] - start_addr) / 0x30));
+            start_addr = *spatial_data;  // 重新获取起始地址
+            index = index + 1;            // 增加索引
+            current_offset = current_offset + SPATIAL_INDEX_BLOCK_SIZE;  // 移动到下一个块
+        } while ((unsigned long long)(long long)index < (unsigned long long)((spatial_data[1] - start_addr) / SPATIAL_INDEX_BLOCK_SIZE));
     }
     
-    // 处理第二数据块
-    start_addr = spatial_data[4];
+    // 第二阶段：处理第二数据块（0x20字节块）
+    start_addr = spatial_data[4];  // 第二数据块起始地址
     index = 0;
+    // 检查是否有第二数据块需要处理
     if (spatial_data[5] - start_addr >> 5 != 0) {
         current_offset = 0;
         do {
             is_smaller = true;
+            // 从第二数据块中提取键值（位于块内0x18偏移处）
             key_value = *(unsigned long long *)(start_addr + 0x18 + current_offset);
-            parent_ptr = (unsigned long long *)tree_node[2];
-            node_ptr = tree_node;
+            parent_ptr = (unsigned long long *)tree_node[2];  // 树的根节点
+            node_ptr = tree_node;                              // 当前节点
             
+            // 在二叉搜索树中查找合适的插入位置
             while (parent_ptr != (unsigned long long *)0x0) {
-                is_smaller = key_value < (unsigned long long)parent_ptr[4];
-                node_ptr = parent_ptr;
+                is_smaller = key_value < (unsigned long long)parent_ptr[4];  // 比较键值
+                node_ptr = parent_ptr;  // 保存父节点
                 if (is_smaller) {
-                    parent_ptr = (unsigned long long *)parent_ptr[1];
+                    parent_ptr = (unsigned long long *)parent_ptr[SPATIAL_NODE_RIGHT_OFFSET];  // 右子树
                 }
                 else {
-                    parent_ptr = (unsigned long long *)*parent_ptr;
+                    parent_ptr = (unsigned long long *)*parent_ptr;  // 左子树
                 }
             }
             
-            node_ptr = node_ptr;
+            node_ptr = node_ptr;  // 最终位置
             if (is_smaller) {
-                if (node_ptr == (unsigned long long *)tree_node[1]) {
-                    goto insert_new_node_2;
+                if (node_ptr == (unsigned long long *)tree_node[SPATIAL_NODE_ROOT_OFFSET]) {
+                    goto insert_new_node_2;  // 需要插入新节点
                 }
-                node_ptr = (unsigned long long *)func_0x00018066b9a0(node_ptr);
+                node_ptr = (unsigned long long *)func_0x00018066b9a0(node_ptr);  // 获取前驱节点
             }
             
+            // 检查是否需要插入新节点
             if ((unsigned long long)node_ptr[4] < key_value) {
             insert_new_node_2:
-                start_addr = FUN_18062b420(_DAT_180c8ed18, 0x28, *(unsigned char *)(tree_node + 5));
-                *(unsigned long long *)(start_addr + 0x20) = key_value;
+                // 分配新节点内存
+                start_addr = FUN_18062b420(MEMORY_POOL_MANAGER, SPATIAL_INDEX_BLOCK_SIZE, *(unsigned char *)(tree_node + SPATIAL_NODE_TYPE_OFFSET));
+                *(unsigned long long *)(start_addr + SPATIAL_NODE_KEY_OFFSET) = key_value;  // 设置键值
                 
+                // 确定插入位置（左子树还是右子树）
                 if ((node_ptr == tree_node) || (key_value < (unsigned long long)node_ptr[4])) {
-                    flags = 0;
+                    flags = 0;  // 左子树
                 }
                 else {
-                    flags = 1;
+                    flags = 1;  // 右子树
                 }
                 
+                // 插入新节点到树中
                 FUN_18066bdc0(start_addr, node_ptr, tree_node, flags);
             }
             
-            start_addr = spatial_data[4];
-            index = index + 1;
-            current_offset = current_offset + 0x20;
+            start_addr = spatial_data[4];  // 重新获取起始地址
+            index = index + 1;            // 增加索引
+            current_offset = current_offset + SPATIAL_INDEX_SMALL_BLOCK_SIZE;  // 移动到下一个块
         } while ((unsigned long long)(long long)index < (unsigned long long)(spatial_data[5] - start_addr >> 5));
     }
     
-    // 处理第三数据块
-    start_addr = spatial_data[8];
+    // 第三阶段：处理第三数据块（0x88字节块，包含嵌套子数据块）
+    start_addr = spatial_data[8];  // 第三数据块起始地址
     index = 0;
-    current_offset = spatial_data[9] - start_addr >> 0x3f;
+    current_offset = spatial_data[9] - start_addr >> 0x3f;  // 计算偏移量
     
-    if ((spatial_data[9] - start_addr) / 0x88 + current_offset != current_offset) {
+    // 检查是否有第三数据块需要处理
+    if ((spatial_data[9] - start_addr) / SPATIAL_INDEX_LARGE_BLOCK_SIZE + current_offset != current_offset) {
         current_offset = 0;
         do {
-            end_addr = *(long long *)(current_offset + start_addr);
-            data_ptr = (long long *)(current_offset + start_addr);
-            sub_index = 0;
+            // 每个大块包含一个子数据块数组
+            end_addr = *(long long *)(current_offset + start_addr);      // 子数据块起始地址
+            data_ptr = (long long *)(current_offset + start_addr);       // 子数据块指针
+            sub_index = 0;                                              // 子数据块索引
             
+            // 处理子数据块中的键值数组（每个键值8字节）
             if (data_ptr[1] - end_addr >> 3 != 0) {
-                start_addr = 0;
+                start_addr = 0;  // 重置为子数据块内的偏移量
                 do {
                     is_smaller = true;
+                    // 从子数据块中提取键值
                     key_value = *(unsigned long long *)(start_addr + end_addr);
-                    parent_ptr = (unsigned long long *)tree_node[2];
-                    node_ptr = tree_node;
+                    parent_ptr = (unsigned long long *)tree_node[2];  // 树的根节点
+                    node_ptr = tree_node;                              // 当前节点
                     
+                    // 在二叉搜索树中查找合适的插入位置
                     while (parent_ptr != (unsigned long long *)0x0) {
-                        is_smaller = key_value < (unsigned long long)parent_ptr[4];
-                        node_ptr = parent_ptr;
+                        is_smaller = key_value < (unsigned long long)parent_ptr[4];  // 比较键值
+                        node_ptr = parent_ptr;  // 保存父节点
                         if (is_smaller) {
-                            parent_ptr = (unsigned long long *)parent_ptr[1];
+                            parent_ptr = (unsigned long long *)parent_ptr[SPATIAL_NODE_RIGHT_OFFSET];  // 右子树
                         }
                         else {
-                            parent_ptr = (unsigned long long *)*parent_ptr;
+                            parent_ptr = (unsigned long long *)*parent_ptr;  // 左子树
                         }
                     }
                     
-                    node_ptr = node_ptr;
+                    node_ptr = node_ptr;  // 最终位置
                     if (is_smaller) {
-                        if (node_ptr == (unsigned long long *)tree_node[1]) {
-                            goto insert_new_node_3;
+                        if (node_ptr == (unsigned long long *)tree_node[SPATIAL_NODE_ROOT_OFFSET]) {
+                            goto insert_new_node_3;  // 需要插入新节点
                         }
-                        node_ptr = (unsigned long long *)func_0x00018066b9a0(node_ptr);
+                        node_ptr = (unsigned long long *)func_0x00018066b9a0(node_ptr);  // 获取前驱节点
                     }
                     
+                    // 检查是否需要插入新节点
                     if ((unsigned long long)node_ptr[4] < key_value) {
                     insert_new_node_3:
-                        start_addr = FUN_18062b420(_DAT_180c8ed18, 0x28, *(unsigned char *)(tree_node + 5));
-                        *(unsigned long long *)(start_addr + 0x20) = key_value;
+                        // 分配新节点内存
+                        start_addr = FUN_18062b420(MEMORY_POOL_MANAGER, SPATIAL_INDEX_BLOCK_SIZE, *(unsigned char *)(tree_node + SPATIAL_NODE_TYPE_OFFSET));
+                        *(unsigned long long *)(start_addr + SPATIAL_NODE_KEY_OFFSET) = key_value;  // 设置键值
                         
+                        // 确定插入位置（左子树还是右子树）
                         if ((node_ptr == tree_node) || (key_value < (unsigned long long)node_ptr[4])) {
-                            flags = 0;
+                            flags = 0;  // 左子树
                         }
                         else {
-                            flags = 1;
+                            flags = 1;  // 右子树
                         }
                         
+                        // 插入新节点到树中
                         FUN_18066bdc0(start_addr, node_ptr, tree_node, flags);
                     }
                     
-                    end_addr = *data_ptr;
-                    sub_index = sub_index + 1;
-                    start_addr = start_addr + 8;
+                    end_addr = *data_ptr;  // 重新获取子数据块起始地址
+                    sub_index = sub_index + 1;  // 增加子数据块索引
+                    start_addr = start_addr + 8;  // 移动到下一个键值（8字节）
                 } while ((unsigned long long)(long long)sub_index < (unsigned long long)(data_ptr[1] - end_addr >> 3));
             }
             
-            index = index + 1;
-            current_offset = current_offset + 0x88;
-            start_addr = spatial_data[8];
-        } while ((unsigned long long)(long long)index < (unsigned long long)((spatial_data[9] - start_addr) / 0x88));
+            index = index + 1;  // 增加大块索引
+            current_offset = current_offset + SPATIAL_INDEX_LARGE_BLOCK_SIZE;  // 移动到下一个大块
+            start_addr = spatial_data[8];  // 重新获取起始地址
+        } while ((unsigned long long)(long long)index < (unsigned long long)((spatial_data[9] - start_addr) / SPATIAL_INDEX_LARGE_BLOCK_SIZE));
     }
     
     return;
 }
+
+// 函数说明：
+// FUN_1800b9f60 - 边界框处理函数，用于处理计算出的边界框数据
+// FUN_18062b420 - 内存分配函数，从内存池中分配指定大小的内存块
+// FUN_18066b9a0 - 树节点操作函数，获取树节点的前驱或后继节点
+// FUN_18066bdc0 - 树节点插入函数，将新节点插入到二叉搜索树中
+// 
+// 注意：这是一个简化实现，用于展示空间分区数据的基本处理逻辑。
+// 实际的游戏引擎实现会更复杂，包含更多优化和错误处理。
