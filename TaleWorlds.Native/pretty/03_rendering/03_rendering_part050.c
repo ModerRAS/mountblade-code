@@ -461,7 +461,7 @@ void initialize_render_parameters_with_resources(void *render_context, void **pa
     }
     
     // 栈安全检查
-    FUN_1808fc050(stack_cookie ^ (uint64_t)&render_context);
+    RenderingSystem_StackChecker(stack_cookie ^ (uint64_t)&render_context);
 }
 
 /**
@@ -559,7 +559,7 @@ void initialize_advanced_render_parameters(void *render_context, void **param_2,
     }
     
     // 栈安全检查
-    FUN_1808fc050(stack_cookie);
+    RenderingSystem_StackChecker(stack_cookie);
 }
 
 /**
@@ -620,11 +620,11 @@ void initialize_optimized_render_parameters(void *render_context, void **param_2
                 format_value = 0x676f7250; // "Prog"
                 
                 // 调用优化渲染配置函数
-                resource_ptr = FUN_180294c20(format_value, &global_config_704_ptr, param_3, optimized_params, 
+                resource_ptr = RenderingSystem_Configurator(format_value, &global_config_704_ptr, param_3, optimized_params, 
                                             param_13 != NULL ? param_13 : &global_config_720_ptr);
                 *(uint32_t *)((uint8_t *)resource_ptr + 0xc) = 0x3f800000; // 1.0f
             }
-            FUN_180294f50();
+            RenderingSystem_Processor();
         }
         
         // 处理像素数据（优化版本）
@@ -659,5 +659,5 @@ void initialize_optimized_render_parameters(void *render_context, void **param_2
     }
     
     // 栈安全检查
-    FUN_1808fc050(stack_cookie);
+    RenderingSystem_StackChecker(stack_cookie);
 }
