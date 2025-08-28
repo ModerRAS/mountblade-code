@@ -831,7 +831,7 @@ void system_deinitializer(uint64_t *param_1)
   }
   
   /* 系统错误处理 */
-  CoreMemoryPoolInitializer();
+  FUN_18064e900();
 }
 
 

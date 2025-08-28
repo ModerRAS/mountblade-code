@@ -437,7 +437,7 @@ void FUN_180797280(int64_t param_1,uint *param_2,float *param_3,float *param_4,f
   }
   *param_6 = SQRT(fVar25);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_98 ^ (uint64_t)afStack_d8);
+  SystemSecurityChecker(uStack_98 ^ (uint64_t)afStack_d8);
 }
 
 
@@ -759,7 +759,7 @@ void FUN_18079732a(uint64_t param_1,uint64_t param_2,float *param_3,float *param
   *unaff_RSI = in_XMM4_Da;
   *unaff_RBP = SQRT(param_3[2] * param_3[2] + *param_3 * *param_3);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000040 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000040 ^ (uint64_t)&stack0x00000000);
 }
 
 

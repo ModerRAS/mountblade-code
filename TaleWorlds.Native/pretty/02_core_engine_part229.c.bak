@@ -601,7 +601,7 @@ void FUN_18019fc10(int64_t param_1,float *param_2,float *param_3,int param_4,int
     } while ((uint64_t)(int64_t)iStack_440 < (uint64_t)(plStack_2e8[1] - lVar14 >> 3));
   }
                     // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_f8 ^ (uint64_t)auStack_498);
+  FUN_1808fc050(uStack_f8 ^ (uint64_t)auStack_498);
 }
 
 

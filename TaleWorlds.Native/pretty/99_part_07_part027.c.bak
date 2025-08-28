@@ -739,7 +739,7 @@ LAB_1804b68f6:
             puStack_50 = &system_data_buffer_ptr;
             if (puStack_48 != (void *)0x0) {
                     // WARNING: Subroutine does not return
-              CoreMemoryPoolInitializer();
+              FUN_18064e900();
             }
             uVar16 = (int)pcVar13 + 1;
             pcVar13 = (char *)(uint64_t)uVar16;

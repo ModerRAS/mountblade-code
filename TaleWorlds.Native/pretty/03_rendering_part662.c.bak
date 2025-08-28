@@ -370,7 +370,7 @@ void FUN_180647600(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
   }
   FUN_1806502b0(FUN_180647850,param_4,param_5,auStack_38);
                     // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_78);
+  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_78);
 }
 
 
