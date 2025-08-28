@@ -1,9 +1,11 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part049.c - 29 个函数
+// 03_rendering_part049.c - 渲染系统高级图形处理模块 - 29 个函数
 
 // 函数: void FUN_180293190(longlong param_1,undefined8 *param_2,uint param_3,uint param_4)
-void FUN_180293190(longlong param_1,undefined8 *param_2,uint param_3,uint param_4)
+// 功能: 渲染系统顶点索引缓冲区处理函数
+// 参数: param_1 - 渲染上下文指针, param_2 - 顶点数据数组, param_3 - 顶点数量, param_4 - 渲染标志
+void RenderingSystem_ProcessVertexIndexBuffer(longlong render_context, undefined8 *vertex_data, uint vertex_count, uint render_flags)
 
 {
   undefined4 uVar1;
@@ -18,9 +20,12 @@ void FUN_180293190(longlong param_1,undefined8 *param_2,uint param_3,uint param_
   int iStack_84;
   ulonglong uStack_80;
   
-  uStack_80 = _DAT_180bf00a8 ^ (ulonglong)&uStack_88;
-  uVar5 = (ulonglong)param_3;
-  if (2 < (int)param_3) {
+  // 栈保护机制初始化
+  uStack_80 = STACK_PROTECTION_COOKIE ^ (ulonglong)&uStack_88;
+  uVar5 = (ulonglong)vertex_count;
+  
+  // 处理顶点数量大于2的情况
+  if (2 < (int)vertex_count) {
     uVar1 = **(undefined4 **)(param_1 + 0x38);
     uVar2 = (*(undefined4 **)(param_1 + 0x38))[1];
     if ((*(byte *)(param_1 + 0x30) & 2) != 0) {
@@ -83,52 +88,58 @@ void FUN_180293190(longlong param_1,undefined8 *param_2,uint param_3,uint param_
 
 
 
-// 函数: void FUN_180293730(longlong param_1,float *param_2,float param_3,int param_4,int param_5)
-void FUN_180293730(longlong param_1,float *param_2,float param_3,int param_4,int param_5)
+// 函数: 渲染纹理坐标变换处理
+void RenderingSystem_TextureCoordinateTransform(longlong render_context, float *texture_coords, float scale_factor, int start_index, int end_index)
 
 {
-  int *piVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  int iVar6;
-  int iVar7;
-  int iVar8;
+  int *buffer_ptr;
+  float tex_coord_u;
+  float tex_coord_v;
+  float base_coord_u;
+  float base_coord_v;
+  int buffer_capacity;
+  int current_index;
+  int new_capacity;
+  int loop_counter;
   
-  if ((param_3 == 0.0) || (param_5 < param_4)) {
-    FUN_18011d9a0(param_1 + 0x80);
+  // 检查缩放因子和索引范围有效性
+  if ((scale_factor == 0.0) || (end_index < start_index)) {
+    clear_render_buffer(render_context + 0x80);
   }
   else {
-    piVar1 = (int *)(param_1 + 0x80);
-    FUN_18011dc70(piVar1,param_5 + 1 + (*piVar1 - param_4));
-    iVar8 = *piVar1;
+    buffer_ptr = (int *)(render_context + 0x80);
+    // 扩展缓冲区容量以容纳新的纹理坐标
+    expand_render_buffer(buffer_ptr, end_index + 1 + (*buffer_ptr - start_index));
+    loop_counter = *buffer_ptr;
     do {
-      iVar6 = *(int *)(param_1 + 0x84);
-      fVar2 = *(float *)(*(longlong *)(param_1 + 0x38) + 0x28 + (longlong)(param_4 % 0xc) * 8);
-      fVar3 = *(float *)(*(longlong *)(param_1 + 0x38) + 0x2c + (longlong)(param_4 % 0xc) * 8);
-      fVar4 = *param_2;
-      fVar5 = param_2[1];
-      if (iVar8 == iVar6) {
-        if (iVar6 == 0) {
-          iVar6 = 8;
+      buffer_capacity = *(int *)(render_context + 0x84);
+      // 获取基础纹理坐标
+      tex_coord_u = *(float *)(*(longlong *)(render_context + 0x38) + 0x28 + (longlong)(start_index % 0xc) * 8);
+      tex_coord_v = *(float *)(*(longlong *)(render_context + 0x38) + 0x2c + (longlong)(start_index % 0xc) * 8);
+      base_coord_u = *texture_coords;
+      base_coord_v = texture_coords[1];
+      if (loop_counter == buffer_capacity) {
+        // 动态调整缓冲区大小
+        if (buffer_capacity == 0) {
+          buffer_capacity = 8;
         }
         else {
-          iVar6 = iVar6 / 2 + iVar6;
+          buffer_capacity = buffer_capacity / 2 + buffer_capacity;
         }
-        iVar7 = iVar8 + 1;
-        if (iVar8 + 1 < iVar6) {
-          iVar7 = iVar6;
+        new_capacity = loop_counter + 1;
+        if (loop_counter + 1 < buffer_capacity) {
+          new_capacity = buffer_capacity;
         }
-        FUN_18011dc70(piVar1,iVar7);
-        iVar8 = *piVar1;
+        expand_render_buffer(buffer_ptr, new_capacity);
+        loop_counter = *buffer_ptr;
       }
-      param_4 = param_4 + 1;
-      *(ulonglong *)(*(longlong *)(param_1 + 0x88) + (longlong)iVar8 * 8) =
-           CONCAT44(param_3 * fVar3 + fVar5,param_3 * fVar2 + fVar4);
-      *piVar1 = *piVar1 + 1;
-      iVar8 = *piVar1;
-    } while (param_4 <= param_5);
+      start_index = start_index + 1;
+      // 应用缩放变换并存储变换后的纹理坐标
+      *(ulonglong *)(*(longlong *)(render_context + 0x88) + (longlong)loop_counter * 8) =
+           CONCAT44(scale_factor * tex_coord_v + base_coord_v, scale_factor * tex_coord_u + base_coord_u);
+      *buffer_ptr = *buffer_ptr + 1;
+      loop_counter = *buffer_ptr;
+    } while (start_index <= end_index);
   }
   return;
 }
