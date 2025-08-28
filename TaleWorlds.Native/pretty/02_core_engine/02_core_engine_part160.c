@@ -1,34 +1,46 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part160.c - 17 个函数
+// 02_core_engine_part160.c - 核心引擎模块第160部分
+// 本文件包含17个函数，主要涉及资源管理、数据处理和系统操作
 
-// 函数: void FUN_180149a10(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180149a10(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 处理引擎状态更新和回调执行
+ * @param engine_context 引擎上下文指针
+ * @param state_offset 状态偏移量
+ * @param callback_param1 回调参数1
+ * @param callback_param2 回调参数2
+ */
+void process_engine_state_update(undefined8 *engine_context, longlong state_offset, undefined8 callback_param1, undefined8 callback_param_2)
 
 {
-  longlong *plVar1;
-  longlong alStackX_10 [3];
-  undefined8 uStack_30;
-  undefined8 uStack_28;
-  code *pcStack_20;
-  code *pcStack_18;
+  longlong *callback_ptr;
+  longlong callback_params[3];
+  undefined8 cleanup_param1;
+  undefined8 cleanup_param2;
+  code *cleanup_func1;
+  code *cleanup_func2;
   
-  if (*(int *)(param_2 + 0x380) != 2) {
-    *(int *)*param_1 = *(int *)*param_1 + 1;
-    plVar1 = (longlong *)param_1[1];
-    if (*plVar1 != 0) {
-      alStackX_10[0] = param_2;
-      FUN_18005ea90(*plVar1,alStackX_10,param_3,param_4,0xfffffffffffffffe);
-      plVar1 = (longlong *)param_1[1];
+  // 检查状态是否允许更新
+  if (*(int *)(state_offset + 0x380) != 2) {
+    *(int *)*engine_context = *(int *)*engine_context + 1;
+    callback_ptr = (longlong *)engine_context[1];
+    
+    // 执行主回调函数
+    if (*callback_ptr != 0) {
+      callback_params[0] = state_offset;
+      execute_callback_chain(*callback_ptr, callback_params, callback_param1, callback_param2, 0xfffffffffffffffe);
+      callback_ptr = (longlong *)engine_context[1];
     }
-    if ((char)plVar1[2] != '\0') {
-      uStack_30 = 0;
-      uStack_28 = 0;
-      pcStack_20 = (code *)0x0;
-      pcStack_18 = _guard_check_icall;
-      FUN_1800b6f90();
-      if (pcStack_20 != (code *)0x0) {
-        (*pcStack_20)(&uStack_30,0,0);
+    
+    // 执行清理回调
+    if ((char)callback_ptr[2] != '\0') {
+      cleanup_param1 = 0;
+      cleanup_param2 = 0;
+      cleanup_func1 = (code *)0x0;
+      cleanup_func2 = _guard_check_icall;
+      execute_cleanup_function();
+      if (cleanup_func1 != (code *)0x0) {
+        (*cleanup_func1)(&cleanup_param1, 0, 0);
       }
     }
   }
@@ -37,14 +49,23 @@ void FUN_180149a10(undefined8 *param_1,longlong param_2,undefined8 param_3,undef
 
 
 
-undefined8 * FUN_180149ad0(undefined8 *param_1,ulonglong param_2)
-
+/**
+ * 释放引擎资源并清理内存
+ * @param resource_ptr 资源指针
+ * @param flags 释放标志位
+ * @return 返回资源指针
+ */
+undefined8 * release_engine_resources(undefined8 *resource_ptr, ulonglong flags)
 {
-  *param_1 = &UNK_180a07218;
-  if ((param_2 & 1) != 0) {
-    free(param_1,8);
+  // 设置资源指针指向全局资源管理器
+  *resource_ptr = &global_resource_manager;
+  
+  // 根据标志位决定是否释放内存
+  if ((flags & 1) != 0) {
+    free(resource_ptr, 8);
   }
-  return param_1;
+  
+  return resource_ptr;
 }
 
 
@@ -53,74 +74,91 @@ undefined8 * FUN_180149ad0(undefined8 *param_1,ulonglong param_2)
 
 
 
-// 函数: void FUN_180149b00(longlong param_1)
-void FUN_180149b00(longlong param_1)
-
+/**
+ * 处理引擎数据统计和计算
+ * @param context_ptr 引擎上下文指针
+ */
+void process_engine_data_statistics(longlong context_ptr)
 {
-  int *piVar1;
-  ushort uVar2;
-  ushort uVar3;
-  int iVar4;
-  uint *puVar5;
-  uint uVar6;
-  ulonglong uVar7;
-  uint uVar8;
-  ulonglong uVar9;
-  ulonglong uVar10;
-  ulonglong uVar11;
-  longlong lVar12;
-  undefined8 *puStackX_8;
+  int *counter_ptr;
+  ushort width;
+  ushort height;
+  int data_value;
+  uint *result_ptr;
+  uint valid_count;
+  ulonglong sum;
+  uint total_count;
+  ulonglong index;
+  ulonglong max_items;
+  ulonglong temp_sum;
+  longlong data_buffer;
+  undefined8 *temp_array;
   
-  lVar12 = *(longlong *)(param_1 + 0x98d8);
-  puVar5 = *(uint **)(param_1 + 0x9650);
-  if (lVar12 != 0) {
-    uVar2 = *(ushort *)(lVar12 + 0x32c);
-    uVar3 = *(ushort *)(lVar12 + 0x32e);
-    uVar11 = 0;
-    FUN_18029eb90(*(undefined8 *)(_DAT_180c86938 + 0x1cd8),lVar12,0,0,&puStackX_8,0);
-    uVar8 = 0;
-    lVar12 = (longlong)(int)((uint)uVar3 * (uint)uVar2);
-    uVar9 = uVar11;
-    uVar10 = uVar11;
-    uVar6 = uVar8;
-    if (0 < lVar12) {
+  // 获取数据缓冲区和结果指针
+  data_buffer = *(longlong *)(context_ptr + 0x98d8);
+  result_ptr = *(uint **)(context_ptr + 0x9650);
+  
+  if (data_buffer != 0) {
+    // 获取宽度和高度信息
+    width = *(ushort *)(data_buffer + 0x32c);
+    height = *(ushort *)(data_buffer + 0x32e);
+    
+    // 初始化统计变量
+    temp_sum = 0;
+    // 获取数据数组
+    get_data_array(*(undefined8 *)(global_data_table + 0x1cd8), data_buffer, 0, 0, &temp_array, 0);
+    
+    total_count = 0;
+    max_items = (longlong)(int)((uint)height * (uint)width);
+    index = temp_sum;
+    temp_sum = temp_sum;
+    valid_count = total_count;
+    
+    // 遍历数据数组进行统计
+    if (0 < max_items) {
       do {
-        iVar4 = *(int *)((longlong)puStackX_8 + uVar10 * 4);
-        uVar7 = (ulonglong)(uint)((int)uVar11 + iVar4);
-        if (iVar4 == 0) {
-          uVar7 = uVar11;
+        data_value = *(int *)((longlong)temp_array + index * 4);
+        sum = (ulonglong)(uint)((int)temp_sum + data_value);
+        if (data_value == 0) {
+          sum = temp_sum;
         }
-        uVar8 = (uint)uVar7;
-        uVar6 = (uint)uVar9 + 1;
-        if (iVar4 == 0) {
-          uVar6 = (uint)uVar9;
+        total_count = (uint)sum;
+        valid_count = (uint)temp_sum + 1;
+        if (data_value == 0) {
+          valid_count = (uint)temp_sum;
         }
-        uVar10 = uVar10 + 1;
-        uVar11 = uVar7;
-        uVar9 = (ulonglong)uVar6;
-      } while ((longlong)uVar10 < lVar12);
+        index = index + 1;
+        temp_sum = sum;
+        temp_sum = (ulonglong)valid_count;
+      } while ((longlong)index < max_items);
     }
-    *puVar5 = uVar6;
-    puVar5[1] = uVar8;
-    if (puStackX_8 != (undefined8 *)0x0) {
-      uVar11 = (ulonglong)puStackX_8 & 0xffffffffffc00000;
-      if (uVar11 != 0) {
-        lVar12 = uVar11 + 0x80 + ((longlong)puStackX_8 - uVar11 >> 0x10) * 0x50;
-        lVar12 = lVar12 - (ulonglong)*(uint *)(lVar12 + 4);
-        if ((*(void ***)(uVar11 + 0x70) == &ExceptionList) && (*(char *)(lVar12 + 0xe) == '\0')) {
-          *puStackX_8 = *(undefined8 *)(lVar12 + 0x20);
-          *(undefined8 **)(lVar12 + 0x20) = puStackX_8;
-          piVar1 = (int *)(lVar12 + 0x18);
-          *piVar1 = *piVar1 + -1;
-          if (*piVar1 == 0) {
-            FUN_18064d630();
+    
+    // 保存统计结果
+    *result_ptr = valid_count;
+    result_ptr[1] = total_count;
+    
+    // 清理临时数组
+    if (temp_array != (undefined8 *)0x0) {
+      temp_sum = (ulonglong)temp_array & 0xffffffffffc00000;
+      if (temp_sum != 0) {
+        data_buffer = temp_sum + 0x80 + ((longlong)temp_array - temp_sum >> 0x10) * 0x50;
+        data_buffer = data_buffer - (ulonglong)*(uint *)(data_buffer + 4);
+        if ((*(void ***)(temp_sum + 0x70) == &ExceptionList) && (*(char *)(data_buffer + 0xe) == '\0')) {
+          // 标准清理流程
+          *temp_array = *(undefined8 *)(data_buffer + 0x20);
+          *(undefined8 **)(data_buffer + 0x20) = temp_array;
+          counter_ptr = (int *)(data_buffer + 0x18);
+          *counter_ptr = *counter_ptr + -1;
+          if (*counter_ptr == 0) {
+            cleanup_memory_pool();
             return;
           }
         }
         else {
-          func_0x00018064e870(uVar11,CONCAT71(0xff000000,
-                                              *(void ***)(uVar11 + 0x70) == &ExceptionList),
-                              puStackX_8,uVar11,0xfffffffffffffffe);
+          // 异常清理流程
+          cleanup_memory_block(temp_sum, CONCAT71(0xff000000,
+                                                 *(void ***)(temp_sum + 0x70) == &ExceptionList),
+                              temp_array, temp_sum, 0xfffffffffffffffe);
         }
       }
       return;

@@ -520,35 +520,53 @@ void create_and_initialize_game_object(longlong context, undefined4 *obj_ptr)
 
 
 
-undefined4 * FUN_180136a10(undefined4 *param_1,undefined4 param_2)
+/**
+ * 初始化游戏对象结构
+ * @param obj_ptr 对象指针
+ * @param obj_type 对象类型
+ * @return 初始化后的对象指针
+ */
+undefined4 * initialize_game_object_structure(undefined4 *obj_ptr, undefined4 obj_type)
 
 {
-  *(undefined8 *)(param_1 + 8) = 0;
-  *(undefined8 *)(param_1 + 10) = 0;
-  *(undefined8 *)(param_1 + 0xe) = 0;
-  *(undefined8 *)(param_1 + 0x10) = 0;
-  *(undefined8 *)(param_1 + 0x12) = 0;
-  *(undefined8 *)(param_1 + 0x15) = 0;
-  *(undefined8 *)(param_1 + 0x17) = 0;
-  *(undefined1 *)(param_1 + 0x19) = 1;
-  *param_1 = param_2;
-  param_1[1] = 0;
-  *(undefined8 *)(param_1 + 6) = 0;
-  *(undefined8 *)(param_1 + 4) = 0;
-  *(undefined8 *)(param_1 + 2) = 0;
-  *(undefined8 *)(param_1 + 0xc) = 0;
-  param_1[0x14] = 0xffffffff;
-  *(undefined8 *)(param_1 + 0x1c) = 0;
-  *(undefined8 *)(param_1 + 0x1a) = 0;
-  *(undefined8 *)(param_1 + 0x20) = 0;
-  *(undefined8 *)(param_1 + 0x1e) = 0;
-  *(undefined8 *)(param_1 + 0x23) = 0xffffffffffffffff;
-  param_1[0x22] = 0xffffffff;
-  *(undefined8 *)(param_1 + 0x25) = 0;
-  param_1[0x27] = 0;
-  *(undefined1 *)(param_1 + 0x28) = 4;
-  *(byte *)((longlong)param_1 + 0xa1) = *(byte *)((longlong)param_1 + 0xa1) & 0xe0;
-  return param_1;
+  // 初始化指针成员为空
+  *(undefined8 *)(obj_ptr + 8) = 0;          // 指针1
+  *(undefined8 *)(obj_ptr + 10) = 0;         // 指针2
+  *(undefined8 *)(obj_ptr + 0xe) = 0;         // 指针3
+  *(undefined8 *)(obj_ptr + 0x10) = 0;        // 指针4
+  *(undefined8 *)(obj_ptr + 0x12) = 0;        // 指针5
+  *(undefined8 *)(obj_ptr + 0x15) = 0;        // 指针6
+  *(undefined8 *)(obj_ptr + 0x17) = 0;        // 指针7
+  
+  // 设置基本属性
+  *(undefined1 *)(obj_ptr + 0x19) = 1;        // 活跃标志
+  *obj_ptr = obj_type;                       // 对象类型
+  obj_ptr[1] = 0;                            // 保留字段1
+  
+  // 初始化更多指针和数据
+  *(undefined8 *)(obj_ptr + 6) = 0;          // 数据指针1
+  *(undefined8 *)(obj_ptr + 4) = 0;          // 数据指针2
+  *(undefined8 *)(obj_ptr + 2) = 0;          // 链接指针1
+  *(undefined8 *)(obj_ptr + 0xc) = 0;         // 链接指针2
+  
+  // 设置对象ID和状态
+  obj_ptr[0x14] = 0xffffffff;                // 对象ID
+  *(undefined8 *)(obj_ptr + 0x1c) = 0;        // 状态数据1
+  *(undefined8 *)(obj_ptr + 0x1a) = 0;        // 状态数据2
+  *(undefined8 *)(obj_ptr + 0x20) = 0;        // 扩展数据1
+  *(undefined8 *)(obj_ptr + 0x1e) = 0;        // 扩展数据2
+  
+  // 设置标志位和计数器
+  *(undefined8 *)(obj_ptr + 0x23) = 0xffffffffffffffff;  // 最大值标志
+  obj_ptr[0x22] = 0xffffffff;                // 计数器最大值
+  *(undefined8 *)(obj_ptr + 0x25) = 0;        // 保留字段2
+  obj_ptr[0x27] = 0;                         // 保留字段3
+  
+  // 设置对象状态字节
+  *(undefined1 *)(obj_ptr + 0x28) = 4;        // 初始状态
+  *(byte *)((longlong)obj_ptr + 0xa1) = *(byte *)((longlong)obj_ptr + 0xa1) & 0xe0;  // 清除低位标志
+  
+  return obj_ptr;
 }
 
 
@@ -557,25 +575,31 @@ undefined4 * FUN_180136a10(undefined4 *param_1,undefined4 param_2)
 
 
 
-// 函数: void FUN_180136ab0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180136ab0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 清理和释放游戏对象资源
+ * @param obj_ptr 对象指针
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ */
+void cleanup_game_object_resources(longlong obj_ptr, undefined8 param2, undefined8 param3, undefined8 param4)
 
 {
-  longlong lVar1;
-  undefined8 uVar2;
+  longlong resource_ptr;              // 资源指针
+  undefined8 cleanup_flag;             // 清理标志
   
-  uVar2 = 0xfffffffffffffffe;
-  FUN_18013ea00(*(undefined8 *)(param_1 + 0x30));
-  *(undefined8 *)(param_1 + 0x30) = 0;
-  *(undefined8 *)(param_1 + 0x18) = 0;
-  *(undefined8 *)(param_1 + 0x10) = 0;
-  lVar1 = *(longlong *)(param_1 + 0x28);
-  if (lVar1 != 0) {
+  cleanup_flag = 0xfffffffffffffffe;
+  FUN_18013ea00(*(undefined8 *)(obj_ptr + 0x30));  // 释放资源
+  *(undefined8 *)(obj_ptr + 0x30) = 0;             // 清空资源指针
+  *(undefined8 *)(obj_ptr + 0x18) = 0;             // 清空数据指针1
+  *(undefined8 *)(obj_ptr + 0x10) = 0;             // 清空数据指针2
+  resource_ptr = *(longlong *)(obj_ptr + 0x28);
+  if (resource_ptr != 0) {
     if (_DAT_180c8a9b0 != 0) {
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(lVar1,_DAT_180c8a9a8,param_3,param_4,uVar2);
+    FUN_180059ba0(resource_ptr, _DAT_180c8a9a8, param3, param4, cleanup_flag);
   }
   return;
 }
@@ -586,8 +610,14 @@ void FUN_180136ab0(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_180136b10(undefined4 *param_1,longlong param_2,char param_3,undefined8 param_4)
-void FUN_180136b10(undefined4 *param_1,longlong param_2,char param_3,undefined8 param_4)
+/**
+ * 添加游戏对象到容器
+ * @param container 容器指针
+ * @param obj_ptr 对象指针
+ * @param flag 标志
+ * @param param4 参数4
+ */
+void add_game_object_to_container(undefined4 *container, longlong obj_ptr, char flag, undefined8 param4)
 
 {
   int iVar1;
@@ -694,8 +724,13 @@ LAB_180136c0c:
 
 
 
-// 函数: void FUN_180136d40(int *param_1,longlong param_2,undefined4 param_3)
-void FUN_180136d40(int *param_1,longlong param_2,undefined4 param_3)
+/**
+ * 从容器中移除游戏对象
+ * @param container 容器指针
+ * @param obj_ptr 对象指针
+ * @param param3 参数3
+ */
+void remove_game_object_from_container(int *container, longlong obj_ptr, undefined4 param3)
 
 {
   undefined4 uVar1;
@@ -935,8 +970,12 @@ void FUN_180136d40(int *param_1,longlong param_2,undefined4 param_3)
 
 
 
-// 函数: void FUN_180136f60(longlong param_1,longlong param_2)
-void FUN_180136f60(longlong param_1,longlong param_2)
+/**
+ * 链接两个游戏对象
+ * @param obj1 对象1
+ * @param obj2 对象2
+ */
+void link_game_objects(longlong obj1, longlong obj2)
 
 {
   int *piVar1;

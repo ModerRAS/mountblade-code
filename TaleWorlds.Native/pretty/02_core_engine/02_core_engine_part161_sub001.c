@@ -1,14 +1,13 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part161_sub001.c - 7 个函数
+// 02_core_engine_part161_sub001.c - 核心引擎模块第161部分子文件1
+// 包含7个函数，主要处理内存分配、数据复制和边界框计算等功能
 
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part161.c - 7 个函数
-
-
 // 函数: void FUN_18014ae70(longlong param_1,longlong *param_2,longlong param_3,longlong param_4)
-void FUN_18014ae70(longlong param_1,longlong *param_2,longlong param_3,longlong param_4)
+// 功能: 调整数组大小并复制数据，处理内存重新分配
+void resize_and_copy_array(longlong param_1, longlong *param_2, longlong param_3, longlong param_4)
 
 {
   longlong lVar1;
@@ -23,22 +22,22 @@ void FUN_18014ae70(longlong param_1,longlong *param_2,longlong param_3,longlong 
   
   lVar2 = *param_2;
   lVar1 = param_2[1];
-  lVar3 = SUB168(SEXT816(in_RAX) * SEXT816(lVar1 - lVar2),8);
+  lVar3 = SUB168(SEXT816(in_RAX) * SEXT816(lVar1 - lVar2), 8);
   uVar5 = (lVar3 >> 3) - (lVar3 >> 0x3f);
-  lVar3 = SUB168(SEXT816(param_4) * SEXT816(param_1 - param_3),8);
+  lVar3 = SUB168(SEXT816(param_4) * SEXT816(param_1 - param_3), 8);
   if ((ulonglong)((lVar3 >> 3) - (lVar3 >> 0x3f)) < uVar5) {
     if (uVar5 == 0) {
       lVar3 = 0;
     }
     else {
-      lVar3 = FUN_18062b420(_DAT_180c8ed18,uVar5 * 0x30,(char)unaff_RDI[3]);
+      lVar3 = allocate_memory(_DAT_180c8ed18, uVar5 * 0x30, (char)unaff_RDI[3]);
     }
     if (lVar2 != lVar1) {
-                    // WARNING: Subroutine does not return
-      memmove(lVar3,lVar2,lVar1 - lVar2);
+      // WARNING: Subroutine does not return
+      memmove(lVar3, lVar2, lVar1 - lVar2);
     }
     if (*unaff_RDI != 0) {
-                    // WARNING: Subroutine does not return
+      // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     *unaff_RDI = lVar3;
@@ -47,30 +46,30 @@ void FUN_18014ae70(longlong param_1,longlong *param_2,longlong param_3,longlong 
     unaff_RDI[2] = lVar3;
   }
   else {
-    lVar3 = SUB168(SEXT816(param_4) * SEXT816(unaff_RDI[1] - param_3),8);
+    lVar3 = SUB168(SEXT816(param_4) * SEXT816(unaff_RDI[1] - param_3), 8);
     uVar4 = (lVar3 >> 3) - (lVar3 >> 0x3f);
     if (uVar4 < uVar5) {
       lVar3 = uVar4 * 0x30 + lVar2;
-      FUN_18014fb60(lVar2,lVar3);
-      lVar2 = FUN_18014fb60(lVar3,lVar1,unaff_RDI[1]);
+      FUN_18014fb60(lVar2, lVar3);
+      lVar2 = FUN_18014fb60(lVar3, lVar1, unaff_RDI[1]);
     }
     else {
-      lVar2 = FUN_18014fb60(lVar2,lVar1);
+      lVar2 = FUN_18014fb60(lVar2, lVar1);
     }
     unaff_RDI[1] = lVar2;
   }
-  FUN_18014e160(unaff_RDI + 4,unaff_RSI + 0x20);
+  FUN_18014e160(unaff_RDI + 4, unaff_RSI + 0x20);
   if (unaff_RDI + 8 != (longlong *)(unaff_RSI + 0x40)) {
-    FUN_18014eff0(unaff_RDI + 8,*(longlong *)(unaff_RSI + 0x40),*(undefined8 *)(unaff_RSI + 0x48));
+    FUN_18014eff0(unaff_RDI + 8, *(longlong *)(unaff_RSI + 0x40), *(undefined8 *)(unaff_RSI + 0x48));
   }
   *(undefined4 *)(unaff_RDI + 0xe) = *(undefined4 *)(unaff_RSI + 0x70);
   puVar6 = &DAT_18098bc73;
   if (*(undefined **)(unaff_RSI + 0x68) != (undefined *)0x0) {
     puVar6 = *(undefined **)(unaff_RSI + 0x68);
   }
-                    // WARNING: Could not recover jumptable at 0x00018014afdc. Too many branches
-                    // WARNING: Treating indirect jump as call
-  strcpy_s(unaff_RDI[0xd],0x80,puVar6);
+  // WARNING: Could not recover jumptable at 0x00018014afdc. Too many branches
+  // WARNING: Treating indirect jump as call
+  strcpy_s(unaff_RDI[0xd], 0x80, puVar6);
   return;
 }
 
@@ -80,9 +79,9 @@ void FUN_18014ae70(longlong param_1,longlong *param_2,longlong param_3,longlong 
 
 
 
-
 // 函数: void FUN_18014aec1(void)
-void FUN_18014aec1(void)
+// 功能: 初始化数组并设置默认值
+void initialize_array_with_defaults(void)
 
 {
   longlong lVar1;
@@ -97,32 +96,32 @@ void FUN_18014aec1(void)
     lVar1 = 0;
   }
   else {
-    lVar1 = FUN_18062b420(_DAT_180c8ed18,unaff_RBX * 0x30,(char)unaff_RDI[3]);
+    lVar1 = allocate_memory(_DAT_180c8ed18, unaff_RBX * 0x30, (char)unaff_RDI[3]);
   }
   if (unaff_R14 != unaff_R15) {
-                    // WARNING: Subroutine does not return
+    // WARNING: Subroutine does not return
     memmove(lVar1);
   }
   if (*unaff_RDI != 0) {
-                    // WARNING: Subroutine does not return
+    // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   *unaff_RDI = lVar1;
   lVar1 = unaff_RBX * 0x30 + lVar1;
   unaff_RDI[1] = lVar1;
   unaff_RDI[2] = lVar1;
-  FUN_18014e160(unaff_RDI + 4,unaff_RSI + 0x20);
+  FUN_18014e160(unaff_RDI + 4, unaff_RSI + 0x20);
   if (unaff_RDI + 8 != (longlong *)(unaff_RSI + 0x40)) {
-    FUN_18014eff0(unaff_RDI + 8,*(longlong *)(unaff_RSI + 0x40),*(undefined8 *)(unaff_RSI + 0x48));
+    FUN_18014eff0(unaff_RDI + 8, *(longlong *)(unaff_RSI + 0x40), *(undefined8 *)(unaff_RSI + 0x48));
   }
   *(undefined4 *)(unaff_RDI + 0xe) = *(undefined4 *)(unaff_RSI + 0x70);
   puVar2 = &DAT_18098bc73;
   if (*(undefined **)(unaff_RSI + 0x68) != (undefined *)0x0) {
     puVar2 = *(undefined **)(unaff_RSI + 0x68);
   }
-                    // WARNING: Could not recover jumptable at 0x00018014afdc. Too many branches
-                    // WARNING: Treating indirect jump as call
-  strcpy_s(unaff_RDI[0xd],0x80,puVar2);
+  // WARNING: Could not recover jumptable at 0x00018014afdc. Too many branches
+  // WARNING: Treating indirect jump as call
+  strcpy_s(unaff_RDI[0xd], 0x80, puVar2);
   return;
 }
 
@@ -130,9 +129,9 @@ void FUN_18014aec1(void)
 
 
 
-
 // 函数: void FUN_18014af28(undefined8 param_1,undefined8 param_2,longlong param_3,longlong param_4)
-void FUN_18014af28(undefined8 param_1,undefined8 param_2,longlong param_3,longlong param_4)
+// 功能: 调整缓冲区大小并处理数据迁移
+void adjust_buffer_size(undefined8 param_1, undefined8 param_2, longlong param_3, longlong param_4)
 
 {
   undefined8 uVar1;
@@ -144,7 +143,7 @@ void FUN_18014af28(undefined8 param_1,undefined8 param_2,longlong param_3,longlo
   undefined *puVar4;
   longlong unaff_R14;
   
-  lVar2 = SUB168(SEXT816(param_4) * SEXT816(*(longlong *)(unaff_RDI + 8) - param_3),8);
+  lVar2 = SUB168(SEXT816(param_4) * SEXT816(*(longlong *)(unaff_RDI + 8) - param_3), 8);
   uVar3 = (lVar2 >> 3) - (lVar2 >> 0x3f);
   if (uVar3 < unaff_RBX) {
     FUN_18014fb60();
@@ -154,9 +153,9 @@ void FUN_18014af28(undefined8 param_1,undefined8 param_2,longlong param_3,longlo
     uVar1 = FUN_18014fb60();
   }
   *(undefined8 *)(unaff_RDI + 8) = uVar1;
-  FUN_18014e160(unaff_RDI + 0x20,unaff_RSI + 0x20);
+  FUN_18014e160(unaff_RDI + 0x20, unaff_RSI + 0x20);
   if ((undefined8 *)(unaff_RDI + 0x40) != (undefined8 *)(unaff_RSI + 0x40)) {
-    FUN_18014eff0((undefined8 *)(unaff_RDI + 0x40),*(undefined8 *)(unaff_RSI + 0x40),
+    FUN_18014eff0((undefined8 *)(unaff_RDI + 0x40), *(undefined8 *)(unaff_RSI + 0x40),
                   *(undefined8 *)(unaff_RSI + 0x48));
   }
   *(undefined4 *)(unaff_RDI + 0x70) = *(undefined4 *)(unaff_RSI + 0x70);
@@ -164,9 +163,9 @@ void FUN_18014af28(undefined8 param_1,undefined8 param_2,longlong param_3,longlo
   if (*(undefined **)(unaff_RSI + 0x68) != (undefined *)0x0) {
     puVar4 = *(undefined **)(unaff_RSI + 0x68);
   }
-                    // WARNING: Could not recover jumptable at 0x00018014afdc. Too many branches
-                    // WARNING: Treating indirect jump as call
-  strcpy_s(*(undefined8 *)(unaff_RDI + 0x68),0x80,puVar4);
+  // WARNING: Could not recover jumptable at 0x00018014afdc. Too many branches
+  // WARNING: Treating indirect jump as call
+  strcpy_s(*(undefined8 *)(unaff_RDI + 0x68), 0x80, puVar4);
   return;
 }
 
@@ -174,18 +173,18 @@ void FUN_18014af28(undefined8 param_1,undefined8 param_2,longlong param_3,longlo
 
 
 
-
 // 函数: void FUN_18014af8f(void)
-void FUN_18014af8f(void)
+// 功能: 复制结构体数据并更新指针
+void copy_structure_data(void)
 
 {
   longlong unaff_RSI;
   longlong unaff_RDI;
   undefined *puVar1;
   
-  FUN_18014e160(unaff_RDI + 0x20,unaff_RSI + 0x20);
+  FUN_18014e160(unaff_RDI + 0x20, unaff_RSI + 0x20);
   if ((undefined8 *)(unaff_RDI + 0x40) != (undefined8 *)(unaff_RSI + 0x40)) {
-    FUN_18014eff0((undefined8 *)(unaff_RDI + 0x40),*(undefined8 *)(unaff_RSI + 0x40),
+    FUN_18014eff0((undefined8 *)(unaff_RDI + 0x40), *(undefined8 *)(unaff_RSI + 0x40),
                   *(undefined8 *)(unaff_RSI + 0x48));
   }
   *(undefined4 *)(unaff_RDI + 0x70) = *(undefined4 *)(unaff_RSI + 0x70);
@@ -193,9 +192,9 @@ void FUN_18014af8f(void)
   if (*(undefined **)(unaff_RSI + 0x68) != (undefined *)0x0) {
     puVar1 = *(undefined **)(unaff_RSI + 0x68);
   }
-                    // WARNING: Could not recover jumptable at 0x00018014afdc. Too many branches
-                    // WARNING: Treating indirect jump as call
-  strcpy_s(*(undefined8 *)(unaff_RDI + 0x68),0x80,puVar1);
+  // WARNING: Could not recover jumptable at 0x00018014afdc. Too many branches
+  // WARNING: Treating indirect jump as call
+  strcpy_s(*(undefined8 *)(unaff_RDI + 0x68), 0x80, puVar1);
   return;
 }
 
@@ -203,9 +202,9 @@ void FUN_18014af8f(void)
 
 
 
-
 // 函数: void FUN_18014aff0(undefined8 *param_1)
-void FUN_18014aff0(undefined8 *param_1)
+// 功能: 计算边界框并更新相关数据
+void calculate_bounding_box(undefined8 *param_1)
 
 {
   float fVar1;
@@ -448,10 +447,10 @@ void FUN_18014aff0(undefined8 *param_1)
   fStack_84 = fStack_b4;
   fStack_80 = fStack_b0;
   FUN_1800b9f60(&fStack_98);
-  param_1[0x1f] = CONCAT44(fStack_94,fStack_98);
-  param_1[0x20] = CONCAT44(uStack_8c,fStack_90);
-  param_1[0x21] = CONCAT44(fStack_84,fStack_88);
-  param_1[0x22] = CONCAT44(uStack_7c,fStack_80);
+  param_1[0x1f] = CONCAT44(fStack_94, fStack_98);
+  param_1[0x20] = CONCAT44(uStack_8c, fStack_90);
+  param_1[0x21] = CONCAT44(fStack_84, fStack_88);
+  param_1[0x22] = CONCAT44(uStack_7c, fStack_80);
   param_1[0x23] = uStack_78;
   param_1[0x24] = uStack_70;
   *(undefined4 *)(param_1 + 0x25) = uStack_68;
@@ -462,9 +461,9 @@ void FUN_18014aff0(undefined8 *param_1)
 
 
 
-
 // 函数: void FUN_18014b01e(undefined8 param_1,longlong param_2,undefined8 param_3)
-void FUN_18014b01e(undefined8 param_1,longlong param_2,undefined8 param_3)
+// 功能: 处理边界框数据的详细计算和更新
+void process_bounding_box_data(undefined8 param_1, longlong param_2, undefined8 param_3)
 
 {
   float fVar1;
@@ -762,9 +761,5 @@ void FUN_18014b01e(undefined8 param_1,longlong param_2,undefined8 param_3)
   *(undefined4 *)(unaff_RSI + 0x25) = uVar20;
   return;
 }
-
-
-
-
 
 
