@@ -417,7 +417,7 @@ void heap_build_unconditional(void)
     do {
       uStack0000000000000060 = unaff_R15[lVar2 + -1];
       lVar2 = lVar2 + -1;
-      FUN_18008fa70();
+      heap_sort_adjust_down(unaff_R15,lVar2,lVar1,lVar2,&uStack0000000000000060);
     } while (lVar2 != 0);
   }
   if (1 < lVar1) {
@@ -425,7 +425,7 @@ void heap_build_unconditional(void)
     do {
       uStack0000000000000060 = *puVar3;
       *puVar3 = *unaff_R15;
-      FUN_18008fa70();
+      heap_sort_adjust_down(unaff_R15,lVar2,lVar1,lVar2,&uStack0000000000000060);
       puVar3 = puVar3 + -1;
     } while (1 < (8 - (longlong)unaff_R15) + (longlong)puVar3 >> 3);
   }
