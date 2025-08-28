@@ -200,6 +200,34 @@ typedef ErrorCode (*ConflictResolver)(StateInfo* state1, StateInfo* state2, Stat
 typedef void (*StateChangeNotification)(ComponentId component_id, StateId state_id, StateVersion version);
 
 // ============================================================================
+// 函数声明
+// ============================================================================
+
+// 核心函数
+StateSyncContext* InitializeStateSync(const char* sync_name, const char* sync_description, uint32_t max_components);
+ErrorCode RegisterComponent(StateSyncContext* context, ComponentId component_id, 
+                          const char* component_name, const char* component_type,
+                          uint32_t max_states, uint32_t max_history);
+ErrorCode CreateState(StateSyncContext* context, ComponentId component_id,
+                    const char* state_name, const char* state_description,
+                    void* initial_data, uint32_t data_size, StateId* state_id);
+ErrorCode UpdateState(StateSyncContext* context, ComponentId component_id,
+                    StateId state_id, void* new_data, uint32_t data_size,
+                    const char* change_description);
+ErrorCode SyncState(StateSyncContext* context, StateSyncRequest* request, StateSyncResult* result);
+ErrorCode BatchSyncStates(StateSyncContext* context, StateSyncRequest* requests,
+                        uint32_t request_count, StateSyncResult* results);
+ErrorCode GetSyncStatistics(StateSyncContext* context, StateSyncStatistics* stats);
+ErrorCode CleanupStateSync(StateSyncContext* context);
+
+// 辅助函数
+static ComponentState* FindComponent(StateSyncContext* context, ComponentId component_id);
+static StateInfo* FindState(ComponentState* component, StateId state_id);
+static void AddStateHistory(ComponentState* component, StateInfo* state, const char* description);
+static ErrorCode PerformStateSync(StateInfo* source_state, StateInfo* target_state, SyncMode mode);
+static StateTimestamp GetCurrentTimestamp(void);
+
+// ============================================================================
 // 核心函数实现
 // ============================================================================
 

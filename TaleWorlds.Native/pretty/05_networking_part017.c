@@ -161,7 +161,7 @@
 #define NetworkingSystem_ConnectionPoolManagerInternal func_0x0001808bde90
 
 // TCP 协议处理器
-#define NetworkingSystem_TCPProtocolHandler network_tcp_handler_ptr
+#define NetworkingSystem_TCPProtocolHandler NetworkingSystem_TCPProtocolHandler
 
 // UDP 协议处理器
 #define NetworkingSystem_UDPProtocolHandler network_udp_handler_ptr
@@ -177,6 +177,9 @@
 
 // 网络配置指针
 #define NetworkingSystem_ConfigPtr UNK_18095af38
+
+// 系统安全Cookie变量 - 用于栈保护和安全检查
+#define NetworkingSystem_SecurityCookie _DAT_180bf00a8
 
 // 数据拼接宏 - 用于将不同位宽的数据拼接成完整数据
 #define NetworkingSystem_Concat32Low CONCAT44     // 32位数据拼接（低32位）
@@ -424,7 +427,7 @@ void NetworkingSystem_ConnectionProcessor(NetworkHandle *network_interface, Conn
   // 根据连接类型进行处理
   if (connection_status == CONNECTION_TYPE_TCP) {
     if ((*(NetworkByte *)(connection_context + 0xc4) & NETWORK_FLAG_CONNECTED) != 0) {
-      protocol_handler = &network_tcp_handler_ptr;
+      protocol_handler = &NetworkingSystem_TCPProtocolHandler;
       goto SETUP_PROTOCOL_HANDLER;
     }
 PROTOCOL_SETUP_COMPLETE:
@@ -833,7 +836,7 @@ void NetworkingSystem_ResourceCleaner(ConnectionContext connection_context)
   // 根据连接状态进行清理
   if (connection_status == CONNECTION_TYPE_TCP) {
     if ((*(NetworkByte *)(network_context + 0xc4) & NETWORK_FLAG_CONNECTED) != 0) {
-      protocol_handler = &network_tcp_handler_ptr;
+      protocol_handler = &NetworkingSystem_TCPProtocolHandler;
       goto CLEANUP_PROTOCOL_HANDLER;
     }
 CLEANUP_PROTOCOL_COMPLETE:
