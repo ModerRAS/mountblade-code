@@ -1409,7 +1409,7 @@ void InitializationSystem_RegistrySearchAndInsert20(void)
     registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
-    node_handler = FUN_18025e330;
+    node_handler = InitializationSystemNodeHandler6;
     parent_node = root_node;
     current_node = (void*)root_node[1];
     

@@ -781,7 +781,7 @@ void RenderSystem_Initialize(longlong system_handle, uint64_t *output_data, int3
         texture_manager = SystemResourceProcessor(system_handle, &unknown_var_704_ptr, param3, &texture_handle);
         *(int32_t *)(texture_manager + 0xc) = 0x3f800000;
       }
-      FUN_180294f50(system_handle);
+      SystemStateManager(system_handle);
     }
     
     // 处理纹理数据
@@ -816,7 +816,7 @@ void RenderSystem_Initialize(longlong system_handle, uint64_t *output_data, int3
   }
   
   // 清理安全缓冲区
-  FUN_1808fc050(security_cookie ^ (ulonglong)security_buffer);
+  SystemSecurityChecker(security_cookie ^ (ulonglong)security_buffer);
 }
 
 /**
@@ -958,7 +958,7 @@ void RenderSystem_ConfigureParameters(longlong system_handle, uint64_t *output_d
         *(int32_t *)(resource_manager + 0xc) = 0x3f800000;
       }
       
-      FUN_180294f50(system_handle);
+      SystemStateManager(system_handle);
     }
     
     // 处理纹理数据

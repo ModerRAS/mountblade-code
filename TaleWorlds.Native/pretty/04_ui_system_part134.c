@@ -1060,7 +1060,8 @@ LAB_180747fa4:
 
 
 
-uint64_t FUN_180747fef(void)
+// 函数: uint64_t FUN_180747fef(void) - UI数组容量调整64位失败函数
+uint64_t UISystem_ArrayCapacityAdjust64Failed(void)
 
 {
   return 0x26;
@@ -1070,7 +1071,8 @@ uint64_t FUN_180747fef(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_180748010(longlong *param_1,int param_2)
+// 函数: uint64_t FUN_180748010(longlong *param_1,int param_2) - UI数组容量调整128位函数
+uint64_t UISystem_AdjustArrayCapacity128(longlong *param_1,int param_2)
 
 {
   longlong lVar1;
@@ -1107,7 +1109,8 @@ LAB_1807480a0:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_180748034(uint64_t param_1,int param_2)
+// 函数: uint64_t FUN_180748034(uint64_t param_1,int param_2) - UI数组容量调整128位简化函数
+uint64_t UISystem_AdjustArrayCapacity128Simple(uint64_t param_1,int param_2)
 
 {
   longlong lVar1;
@@ -1141,7 +1144,8 @@ LAB_1807480a0:
 
 
 
-uint64_t FUN_1807480eb(void)
+// 函数: uint64_t FUN_1807480eb(void) - UI数组容量调整128位失败函数
+uint64_t UISystem_ArrayCapacityAdjust128Failed(void)
 
 {
   return 0x26;
@@ -1151,7 +1155,8 @@ uint64_t FUN_1807480eb(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_180748100(longlong param_1,int param_2,longlong param_3,int8_t param_4)
+// 函数: uint64_t FUN_180748100(longlong param_1,int param_2,longlong param_3,int8_t param_4) - UI组件添加函数
+uint64_t UISystem_AddComponent(longlong param_1,int param_2,longlong param_3,int8_t param_4)
 
 {
   int32_t *puVar1;
