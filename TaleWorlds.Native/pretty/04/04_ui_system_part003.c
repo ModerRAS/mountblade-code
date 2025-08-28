@@ -969,29 +969,34 @@ longlong ui_copy_library_data(library_data_t *dest_data, library_data_t *src_dat
 ulonglong ui_parse_pe_resource_section(longlong pe_header, longlong section_offset, longlong resource_data)
 
 {
-  uint uVar1;
-  uint uVar2;
-  uint uVar3;
-  ulonglong uVar4;
-  longlong lVar5;
-  int *piVar6;
-  uint uVar7;
-  ulonglong uVar8;
-  uint uVar9;
-  uint *puVar10;
+  uint pe_signature;
+  uint section_count;
+  uint resource_index;
+  ulonglong section_table_offset;
+  longlong optional_header_offset;
+  int *section_table_ptr;
+  uint resource_rva;
+  ulonglong resource_dir_offset;
+  uint resource_size;
+  uint *resource_data_ptr;
   
-  lVar5 = *(int *)(param_3 + 0x3c) + param_2;
-  *(undefined4 *)(param_1 + 0x50) = *(undefined4 *)(lVar5 + 0x50);
-  *(undefined4 *)(param_1 + 0x44) = *(undefined4 *)(lVar5 + 8);
-  if ((*(ushort *)(lVar5 + 0x16) & 0x200) != 0) {
-    *(undefined1 *)(param_1 + 0x40) = 1;
+  // 读取PE签名和可选头偏移
+  optional_header_offset = *(int *)(resource_data + 0x3c) + section_offset;
+  *(uint *)(pe_header + 0x50) = *(uint *)(optional_header_offset + 0x50);  // 资源表RVA
+  *(uint *)(pe_header + 0x44) = *(uint *)(optional_header_offset + 8);   // 节区对齐
+  
+  // 检查是否为可执行文件
+  if ((*(ushort *)(optional_header_offset + 0x16) & 0x200) != 0) {
+    *(uchar *)(pe_header + 0x40) = 1;  // 标记为可执行文件
   }
-  uVar8 = (ulonglong)*(uint *)(lVar5 + 0xbc);
-  uVar4 = uVar8 * 0x2492492492492493;
-  uVar7 = (uint)((uVar8 - uVar8 / 7 >> 1) + uVar8 / 7 >> 4);
-  if (uVar7 == 0) {
-LAB_180650c04:
-    uVar4 = uVar4 & 0xffffffffffffff00;
+  
+  // 计算资源目录偏移
+  resource_rva = *(uint *)(optional_header_offset + 0xbc);
+  section_table_offset = resource_rva * 0x2492492492492493;  // 除法优化
+  resource_size = (uint)((resource_rva - resource_rva / 7 >> 1) + resource_rva / 7 >> 4);
+  if (resource_size == 0) {
+resource_section_exit:
+    section_table_offset = section_table_offset & 0xffffffffffffff00;
   }
   else {
     uVar9 = 0;
