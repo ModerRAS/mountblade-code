@@ -456,7 +456,24 @@ LAB_18078cf29:
 
 
 
-undefined8 FUN_18078cf50(longlong param_1,int param_2,longlong *param_3,undefined8 *param_4)
+/**
+ * @brief 从模板创建UI组件
+ * 
+ * 这个函数根据提供的模板数据创建UI组件。它支持多种组件类型的创建，
+ * 包括系统组件和常规组件，并处理复杂的模板属性和资源管理。
+ * 
+ * @param context UI系统上下文指针，包含全局UI状态和管理器
+ * @param component_type 组件类型索引，负值表示系统组件
+ * @param template_data 模板数据指针，包含组件的配置信息
+ * @param component 输出参数，返回创建的组件指针
+ * 
+ * @return 创建结果状态码，0表示成功，其他值表示错误
+ * 
+ * @note 这是高级组件创建函数，支持复杂的模板解析和属性设置
+ * 
+ * @see UI_CreateComponent, UI_InitializeComponent, UI_ProcessComponentTemplate
+ */
+uint32_t UI_CreateComponentFromTemplate(void* context, int component_type, void* template_data, void** component)
 
 {
   longlong *plVar1;
