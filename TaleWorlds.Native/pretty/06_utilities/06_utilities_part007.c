@@ -244,7 +244,7 @@ void FUN_1808940f0(int64_t param_1,int64_t param_2)
   
   // 调用核心处理函数
   // WARNING: 该函数不会返回
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 

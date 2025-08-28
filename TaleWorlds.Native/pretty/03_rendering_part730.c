@@ -895,7 +895,7 @@ void RenderingSystemMultiReference64x64BlockDifferenceCalculator(uint8_t (*vecto
 void RenderingSystemEmergencyErrorHandler(void)
 {
     // WARNING: Subroutine does not return
-    FUN_1808fd200();
+    SystemCore_MemoryManager0();
 }
 
 /**

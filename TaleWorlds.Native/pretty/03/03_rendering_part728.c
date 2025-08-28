@@ -756,7 +756,7 @@ void rendering_system_error_handler(void)
 {
     // 警告：此子函数不返回
     // 调用系统错误处理函数
-    FUN_1808fd200();
+    SystemCore_MemoryManager0();
 }
 
 /**

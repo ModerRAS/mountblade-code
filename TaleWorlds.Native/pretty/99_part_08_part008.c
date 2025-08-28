@@ -260,7 +260,7 @@ void FUN_1804e1e20(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 
@@ -273,7 +273,7 @@ void FUN_1804e2190(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 
@@ -286,7 +286,7 @@ void FUN_1804e2550(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 
@@ -299,7 +299,7 @@ void FUN_1804e2890(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 
@@ -312,7 +312,7 @@ void FUN_1804e2be0(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 
@@ -411,7 +411,7 @@ void FUN_1804e4a10(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 

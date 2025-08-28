@@ -28,7 +28,7 @@ void FUN_18082a780(uint64_t param_1,int64_t *param_2)
   *(uint *)(param_2 + 2) = uVar2 & 7;
   *param_2 = *param_2 + ((int64_t)(int)uVar2 >> 3);
                     // WARNING: Subroutine does not return
-  FUN_1808fd200(iVar1 + 4U & 0xfffffffc);
+  SystemCore_MemoryManager0(iVar1 + 4U & 0xfffffffc);
 }
 
 
@@ -367,7 +367,7 @@ void FUN_18082aee0(int64_t *param_1,uint64_t param_2)
   uStack_80 = *(int32_t *)(lStack_70 + (int64_t)(int)param_1[5] * 4);
   uStack_50 = param_2;
                     // WARNING: Subroutine does not return
-  FUN_1808fd200((int64_t)*(int *)(lStack_38 + 4),0xffffffffffffff0);
+  SystemCore_MemoryManager0((int64_t)*(int *)(lStack_38 + 4),0xffffffffffffff0);
 }
 
 

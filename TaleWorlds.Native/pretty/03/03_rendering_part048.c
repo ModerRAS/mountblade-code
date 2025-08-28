@@ -1038,7 +1038,7 @@ void execute_float_interpolation_render(int64_t param1, int64_t param2, int para
             }
             FUN_1802921e0(param1,iVar7 * iVar9,iStack_d0);
                         // WARNING: Subroutine does not return
-            FUN_1808fd200();
+            SystemCore_MemoryManager0();
         }
         FUN_1802921e0(param1,iVar9 * 6,iVar9 * 4);
         if (0 < lVar10) {

@@ -366,7 +366,7 @@ void ui_system_system_call_handler_2(void)
     // 简化实现：系统调用处理器2
     // 原实现包含系统调用和底层操作逻辑
     
-    FUN_1808fd200();
+    SystemCore_MemoryManager0();
 }
 
 /**

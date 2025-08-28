@@ -839,7 +839,7 @@ void FUN_180723150(uint64_t param_1,uint64_t param_2,uint64_t param_3,int32_t pa
   auStack_48[0] = param_4;
   uStack_40 = param_1;
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 

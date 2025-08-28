@@ -943,7 +943,7 @@ void FUN_18055a540(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 

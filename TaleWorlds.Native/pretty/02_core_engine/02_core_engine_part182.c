@@ -5,7 +5,7 @@
 
 /**
  * 触发系统终止处理
- * 此函数调用另一个函数FUN_1808fd200()，该函数不返回，直接终止程序
+ * 此函数调用另一个函数SystemCore_MemoryManager0()，该函数不返回，直接终止程序
  */
 void trigger_system_termination(void)
 {

@@ -1062,7 +1062,7 @@ void FUN_180866550(uint64_t param_1, int64_t param_2)
         if (uVar3 <= uVar2) {
             uVar3 = 0xffffffffffffff0;
         }
-        FUN_1808fd200(uVar3 & 0xfffffffffffffff0);
+        SystemCore_MemoryManager0(uVar3 & 0xfffffffffffffff0);
     }
     SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_268);
 }

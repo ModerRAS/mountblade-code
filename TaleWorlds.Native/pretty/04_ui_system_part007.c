@@ -556,7 +556,7 @@ UISystem_DataStructureOperator(uint64_t *structure_ptr, uint64_t operation_flag,
 void UISystem_StateMonitor_Initialize(void)
 
 {
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 /**
@@ -664,7 +664,7 @@ void UISystem_DataProcessor(int64_t data_source, int64_t data_target, uint64_t p
 void UISystem_StateMonitor_Cleanup(void)
 
 {
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 /* ========================================

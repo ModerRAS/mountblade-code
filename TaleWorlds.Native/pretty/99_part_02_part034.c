@@ -1729,7 +1729,7 @@ void ArrayProcessor_ProcessArrays(uint64_t* param_1, int param_2, int param_3)
 void SystemCaller_InvokeSystem(void)
 {
     // WARNING: Subroutine does not return
-    FUN_1808fd200();
+    SystemCore_MemoryManager0();
 }
 
 // ============================================================================

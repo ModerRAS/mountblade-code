@@ -1479,8 +1479,8 @@ void rendering_system_empty_function2(void)
 
 // 系统初始化函数别名（假设存在）
 void rendering_system_core_initializer(void);
-void FUN_1808fd200(void);
-#define FUN_1808fd200  rendering_system_core_initializer
+void SystemCore_MemoryManager0(void);
+#define SystemCore_MemoryManager0  rendering_system_core_initializer
 
 // =============================================================================
 // 技术说明

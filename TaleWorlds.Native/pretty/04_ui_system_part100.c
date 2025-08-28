@@ -748,7 +748,7 @@ void FUN_180728160(uint64_t param_1,uint64_t param_2,uint64_t param_3,int param_
   
   uStack_d8 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_e8;
                     // WARNING: Subroutine does not return
-  FUN_1808fd200(param_1,(int64_t)param_4 * 4 + 0xc,0xffffffffffffff0);
+  SystemCore_MemoryManager0(param_1,(int64_t)param_4 * 4 + 0xc,0xffffffffffffff0);
 }
 
 
@@ -877,7 +877,7 @@ void FUN_180728720(int64_t param_1,uint64_t param_2,uint64_t param_3,int32_t par
   uStack_80 = param_3;
   uStack_78 = param_2;
                     // WARNING: Subroutine does not return
-  FUN_1808fd200(uVar2 & 0xfffffffffffffff0);
+  SystemCore_MemoryManager0(uVar2 & 0xfffffffffffffff0);
 }
 
 

@@ -424,7 +424,7 @@ void rendering_system_memory_manager(void) {
  */
 void rendering_system_function_dispatcher(void) {
     // 调用函数调度函数
-    FUN_1808fd200();
+    SystemCore_MemoryManager0();
 }
 
 /**
@@ -1160,7 +1160,7 @@ void rendering_system_data_validator_extended(
  * - FUN_18053a410: 参数处理函数
  * - FUN_18053a960: 资源清理函数
  * - FUN_1808fc050: 系统调用函数
- * - FUN_1808fd200: 函数调度函数
+ * - SystemCore_MemoryManager0: 函数调度函数
  * - FUN_1804e7130: 资源管理函数
  * - FUN_18057f1f0: 数据验证函数
  * - FUN_180645340: 向量处理函数

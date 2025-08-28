@@ -16,7 +16,7 @@ void FUN_18082ed00(int *param_1,uint64_t param_2,uint64_t param_3,int param_4)
   if (0 < param_1[2]) {
     lStack_48 = (int64_t)(param_4 / *param_1);
                     // WARNING: Subroutine does not return
-    FUN_1808fd200(param_1,0xffffffffffffff0);
+    SystemCore_MemoryManager0(param_1,0xffffffffffffff0);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(GET_SECURITY_COOKIE());

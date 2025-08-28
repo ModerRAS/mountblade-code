@@ -397,7 +397,7 @@ void ui_system_animation_optimizer(void)
 // 该函数实现了UI系统资源的清理功能，是一个简单的资源清理接口
 void ui_system_resource_cleanup_helper(void)
 {
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 // UI系统渲染初始化器 - 初始化UI系统的渲染参数

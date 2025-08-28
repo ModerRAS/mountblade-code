@@ -9,7 +9,7 @@
 #define execute_system_shutdown         FUN_180220810
 #define get_system_context              FUN_1800b0a10
 #define trigger_cleanup_callback        SystemSecurityChecker
-#define perform_system_termination      FUN_1808fd200
+#define perform_system_termination      SystemCore_MemoryManager0
 
 // 常量定义
 #define RESOURCE_HANDLE_OFFSET         0x1c70

@@ -502,7 +502,7 @@ void ui_system_control_initializer(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 /**
@@ -724,7 +724,7 @@ void ui_system_control_cleaner(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 /**

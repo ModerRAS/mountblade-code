@@ -553,7 +553,7 @@ void FUN_18083ad10(int param_1,uint64_t param_2)
   auStack_98[0] = (uint64_t)(uVar1 >> 1);
   uStack_88 = param_2;
                     // WARNING: Subroutine does not return
-  FUN_1808fd200(auStack_98[0] * 4 + 0x20,param_2,uVar2,0xffffffffffffff0);
+  SystemCore_MemoryManager0(auStack_98[0] * 4 + 0x20,param_2,uVar2,0xffffffffffffff0);
 }
 
 

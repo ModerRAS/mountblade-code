@@ -3,8 +3,8 @@
 
 // 99_part_14_part022_sub002_sub002.c - 1 个函数
 
-// 函数: void FUN_1808fd200(void)
-void FUN_1808fd200(void)
+// 函数: void SystemCore_MemoryManager0(void)
+void SystemCore_MemoryManager0(void)
 
 {
   int8_t *in_RAX;

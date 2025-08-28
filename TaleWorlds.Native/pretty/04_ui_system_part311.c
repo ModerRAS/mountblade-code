@@ -1000,7 +1000,7 @@ void UI_RenderTargetSetup(int param_1,uint64_t param_2)
   uStack_88 = uStack_88 >> 1;
   uStack_68 = param_2;
   // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 /**

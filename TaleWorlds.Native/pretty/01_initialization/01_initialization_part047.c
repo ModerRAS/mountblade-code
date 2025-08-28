@@ -987,7 +987,7 @@ void update_object_dependencies(int64_t object_ptr, int64_t *dependency_ptr)
     // 检查依赖状态是否有效
     if (*(char *)(object_ptr + 0xb1) != '\0') {
       // 错误：依赖状态异常
-      FUN_1808fd200();
+      SystemCore_MemoryManager0();
     }
     
     // 释放现有依赖资源

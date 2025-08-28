@@ -51,7 +51,7 @@ void FUN_18053cee0(uint64_t *param_1)
   cVar8 = FUN_18053c4b0();
   if (cVar8 == '\0') {
                     // WARNING: Subroutine does not return
-    FUN_1808fd200();
+    SystemCore_MemoryManager0();
   }
   uStack_178 = 0xfffffffffffffffe;
   uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_198;

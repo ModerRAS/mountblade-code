@@ -312,7 +312,7 @@ void FUN_180737240(uint64_t param_1,uint64_t param_2,short *param_3,uint64_t par
     uVar1 = 0xffffffffffffff0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fd200(uVar1 & 0xfffffffffffffff0);
+  SystemCore_MemoryManager0(uVar1 & 0xfffffffffffffff0);
 }
 
 

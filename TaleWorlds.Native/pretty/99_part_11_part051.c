@@ -657,7 +657,7 @@ void FUN_1807b0b00(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 
@@ -710,7 +710,7 @@ void FUN_1807b0f30(int64_t param_1,int64_t param_2,int *param_3,int *param_4)
           uVar3 = 0xffffffffffffff0;
         }
                     // WARNING: Subroutine does not return
-        FUN_1808fd200(uVar3 & 0xfffffffffffffff0);
+        SystemCore_MemoryManager0(uVar3 & 0xfffffffffffffff0);
       }
       func_0x00018080b970(auStack_78,lStack_80,uVar4);
       iVar1 = FUN_18080c230(*(uint64_t *)(param_1 + 0x1a0),auStack_78,1);

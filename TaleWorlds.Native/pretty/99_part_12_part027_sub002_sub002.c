@@ -1089,7 +1089,7 @@ void FUN_1807dace0(int64_t param_1,int64_t *param_2,int param_3,int param_4,uint
       }
 FUN_1807d90a0:
                     // WARNING: Subroutine does not return
-      FUN_1808fd200(param_1);
+      SystemCore_MemoryManager0(param_1);
     }
     if (param_4 == 1) {
       uVar80 = 0;

@@ -56,7 +56,7 @@ void process_rendering_index_buffer(int64_t render_context, uint64_t *data_ptr, 
         uVar5 = 0xffffffffffffff0;
       }
                     // WARNING: Subroutine does not return
-      FUN_1808fd200(uVar5 & 0xfffffffffffffff0);
+      SystemCore_MemoryManager0(uVar5 & 0xfffffffffffffff0);
     }
     FUN_1802921e0(render_context, (vertex_count - 2) * 3, uVar5);
     if (0 < (int)vertex_count) {

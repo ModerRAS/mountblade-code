@@ -871,7 +871,7 @@ void FUN_18082d9e0(uint64_t param_1,uint64_t *param_2,int32_t *param_3)
   if (0 < (int)uVar5) {
     auStack_48[0] = FUN_18082e5c0(param_1,*(uint64_t *)(param_3 + 2),param_3[1],uVar5);
                     // WARNING: Subroutine does not return
-    FUN_1808fd200();
+    SystemCore_MemoryManager0();
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uVar3);

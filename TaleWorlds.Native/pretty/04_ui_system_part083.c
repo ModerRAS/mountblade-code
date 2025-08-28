@@ -407,7 +407,7 @@ void FUN_1807160c0(uint64_t param_1,int param_2,int param_3)
   lStack_38 = (int64_t)(param_2 * param_3) * 4;
   uStack_50 = param_1;
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 
@@ -910,7 +910,7 @@ void FUN_180716aa0(uint64_t param_1,int param_2,int param_3)
   uStack_30 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_58;
   lStack_38 = (int64_t)(param_2 * param_3) * 4;
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 

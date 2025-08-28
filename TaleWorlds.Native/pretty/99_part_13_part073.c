@@ -13,7 +13,7 @@
 
 // 系统控制函数
 #define SystemController SystemSecurityChecker   // 系统控制器
-#define SystemCleanupInvoker FUN_1808fd200  // 系统清理调用器
+#define SystemCleanupInvoker SystemCore_MemoryManager0  // 系统清理调用器
 #define SystemDataManager FUN_1808dcd20  // 系统数据管理器
 #define SystemResourceHandler FUN_1808dbcd0  // 系统资源处理器
 #define SystemValidator FUN_1808db010   // 系统验证器

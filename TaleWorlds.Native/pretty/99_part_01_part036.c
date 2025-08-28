@@ -105,7 +105,7 @@ typedef enum {
 #define SystemCleanupAllResources            FUN_1800c5020
 
 // 系统初始化和配置函数
-#define SystemInitializer                     FUN_1808fd200
+#define SystemInitializer                     SystemCore_MemoryManager0
 
 // 数据处理和验证函数
 #define SystemDataValidator                   SystemDataInitializer

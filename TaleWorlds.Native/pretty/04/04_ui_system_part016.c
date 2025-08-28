@@ -103,7 +103,7 @@ extern const void* global_state_1984_ptr;       // UI系统内存数据
 extern void func_0x000180668820(int64_t param_1);
 extern void func_0x0001806689f0(int64_t param_1, int64_t param_2);
 extern void AdvancedSystemController(uint param_1);
-extern void FUN_1808fd200(void);
+extern void SystemCore_MemoryManager0(void);
 extern void FUN_180669700(int64_t param_1, void* param_2, uint64_t param_3, int param_4, uint64_t param_5);
 extern void SystemSecurityChecker(uint64_t param_1);
 extern uint64_t FUN_180660070(int64_t param_1, uint param_2);
@@ -547,7 +547,7 @@ void ui_system_system_call_handler(void)
     // 简化实现：系统调用处理器
     // 原实现包含系统调用和底层操作逻辑
     
-    FUN_1808fd200();
+    SystemCore_MemoryManager0();
 }
 
 /**

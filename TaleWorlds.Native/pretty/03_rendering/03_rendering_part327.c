@@ -532,7 +532,7 @@ void FUN_18043c370(int param_1)
     uVar1 = FUN_180623ce0();
     if ((uint64_t)(int64_t)param_1 < uVar1 >> COLOR_COMPONENT_BITS) {
         // WARNING: 子函数不返回
-        FUN_1808fd200();
+        SystemCore_MemoryManager0();
     }
     return;
 }

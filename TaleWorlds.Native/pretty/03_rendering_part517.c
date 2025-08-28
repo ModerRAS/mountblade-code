@@ -89,7 +89,7 @@ extern void* system_allocation_flags;                          // 数据区引�
 extern void* system_main_module_state;                         // 全局系统数据
 
 // 外部函数声明
-extern void FUN_1808fd200(void);                     // 系统初始化函数
+extern void SystemCore_MemoryManager0(void);                     // 系统初始化函数
 extern void* CoreMemoryPoolReallocator(void*, size_t, size_t, int); // 内存分配函数
 extern void* FUN_18054a4b0(void*, void*, ...);      // 渲染队列操作函数
 extern void FUN_180320470(void);                     // 系统配置函数
@@ -176,14 +176,14 @@ extern void FUN_180548880(void*, uint8);             // 渲染状态更新函数
  *   - 必须在渲染系统启动时调用
  * 
  * 简化实现：
- *   原始实现：直接调用系统初始化函数FUN_1808fd200()
+ *   原始实现：直接调用系统初始化函数SystemCore_MemoryManager0()
  *   简化实现：保持原有功能，添加了详细注释和错误处理说明
  =============================================================================*/
 void RenderSystem_Init(void)
 {
     // 调用系统核心初始化函数
     // 注意：此函数不会返回，用于启动整个渲染系统
-    FUN_1808fd200();
+    SystemCore_MemoryManager0();
 }
 
 

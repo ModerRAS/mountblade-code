@@ -220,7 +220,7 @@ LAB_1806fc35d:
     }
 LAB_1806fc38c:
                     // WARNING: Subroutine does not return
-    FUN_1808fd200((int64_t)(iVar2 * *(int *)(param_1 + 8)) * 4,param_6);
+    SystemCore_MemoryManager0((int64_t)(iVar2 * *(int *)(param_1 + 8)) * 4,param_6);
   }
 LAB_1806fc453:
                     // WARNING: Subroutine does not return
@@ -343,7 +343,7 @@ LAB_1806fc6ab:
     uVar5 = 0xffffffffffffff0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fd200(uVar5 & 0xfffffffffffffff0,iStack_c0,uStack_a4);
+  SystemCore_MemoryManager0(uVar5 & 0xfffffffffffffff0,iStack_c0,uStack_a4);
 }
 
 

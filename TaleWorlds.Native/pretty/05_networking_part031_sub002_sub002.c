@@ -45,7 +45,7 @@ void FUN_180859ba0(int64_t param_1,int64_t *param_2)
       uVar6 = 0xffffffffffffff0;
     }
                     // WARNING: Subroutine does not return
-    FUN_1808fd200(uVar6 & 0xfffffffffffffff0,puVar2,lStack_78);
+    SystemCore_MemoryManager0(uVar6 & 0xfffffffffffffff0,puVar2,lStack_78);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(GET_SECURITY_COOKIE());

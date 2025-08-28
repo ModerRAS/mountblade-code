@@ -183,9 +183,9 @@ typedef uint64_t UIAlgorithmHandle;               // UI算法句柄
 #define UISystemPermissionManager                 SystemSecurityChecker
 
 // UI系统内存对齐器
-#define UISystemMemoryAligner                     FUN_1808fd200
-#define UISystemAlignmentOptimizer                FUN_1808fd200
-#define UISystemBoundaryChecker                   FUN_1808fd200
+#define UISystemMemoryAligner                     SystemCore_MemoryManager0
+#define UISystemAlignmentOptimizer                SystemCore_MemoryManager0
+#define UISystemBoundaryChecker                   SystemCore_MemoryManager0
 
 //------------------------------------------------------------------------------
 // UI系统高级数据处理函数

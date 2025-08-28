@@ -983,7 +983,7 @@ void execute_system_shutdown(uint64_t param1)
 void execute_system_termination(void)
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 

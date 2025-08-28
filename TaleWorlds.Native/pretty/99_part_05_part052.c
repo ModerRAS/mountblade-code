@@ -311,7 +311,7 @@ void FUN_180300d00(void* param_1);
 void CoreEngineMemoryPoolAllocator(void* param_1, int64_t param_2, int param_3);
 void CoreEngineMemoryPoolCleaner(void);
 void SystemSecurityChecker(uint64_t param_1);
-void FUN_1808fd200(void);
+void SystemCore_MemoryManager0(void);
 
 // =============================================================================
 // 函数别名定义
@@ -378,7 +378,7 @@ void FUN_1808fd200(void);
 #define SystemCallProcessor SystemSecurityChecker
 
 /** 系统调试器别名 */
-#define SystemDebugger FUN_1808fd200
+#define SystemDebugger SystemCore_MemoryManager0
 
 // =============================================================================
 // 核心函数实现
@@ -700,7 +700,7 @@ void FUN_1802fabe4(void)
 void FUN_1802fac00(void)
 {
     // 系统终结实现
-    FUN_1808fd200();
+    SystemCore_MemoryManager0();
 }
 
 /**

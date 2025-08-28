@@ -1433,7 +1433,7 @@ void UI_System_AllocateControlResources(UI_System_ControlHandle param_1, UI_Syst
         if (allocation_size <= (uint64_t)(control_data * 4)) {
             allocation_size = 0xffffffffffffff0;
         }
-        FUN_1808fd200(control_data, allocation_size & 0xfffffffffffffff0);
+        SystemCore_MemoryManager0(control_data, allocation_size & 0xfffffffffffffff0);
     }
     SystemSecurityChecker(stack_checksum ^ (uint64_t)stack_data);
 }

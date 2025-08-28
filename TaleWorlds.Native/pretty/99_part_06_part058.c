@@ -307,7 +307,7 @@ LAB_1803e0d25:
           plStackX_18 = plVar18;
           plStackX_20 = param_4;
                     // WARNING: Subroutine does not return
-          FUN_1808fd200();
+          SystemCore_MemoryManager0();
         }
         FUN_180080810(lVar17 + 0x1b8);
         lVar4 = *(int64_t *)(lVar17 + 0x1b8);

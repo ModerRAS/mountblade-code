@@ -306,7 +306,7 @@ FUN_18083ccd0(uint64_t param_1,int64_t param_2,uint64_t *param_3,uint64_t *param
       }
       aiStack_78[0] = (iVar1 - *piStack_40) / iStack_6c;
                     // WARNING: Subroutine does not return
-      FUN_1808fd200((int64_t)(int)uVar5 * 8,
+      SystemCore_MemoryManager0((int64_t)(int)uVar5 * 8,
                     (int64_t)(aiStack_78[0] + -1 + *(int *)param_3[3]) %
                     (int64_t)*(int *)param_3[3] & 0xffffffff);
     }
@@ -352,7 +352,7 @@ FUN_18083ccea(uint64_t param_1,int64_t param_2,uint64_t *param_3,uint64_t *param
     }
     if (0 < iVar2 - *piVar1) {
                     // WARNING: Subroutine does not return
-      FUN_1808fd200((int64_t)(int)in_R11D * 8,
+      SystemCore_MemoryManager0((int64_t)(int)in_R11D * 8,
                     (int64_t)((iVar2 - *piVar1) / piVar1[2] + -1 + *(int *)param_3[3]) %
                     (int64_t)*(int *)param_3[3] & 0xffffffff);
     }
@@ -390,7 +390,7 @@ void FUN_18083cd26(uint64_t param_1,int64_t param_2,uint64_t *param_3)
   }
   if (0 < iVar2 - *piVar1) {
                     // WARNING: Subroutine does not return
-    FUN_1808fd200((int64_t)in_R11D * 8,
+    SystemCore_MemoryManager0((int64_t)in_R11D * 8,
                   (int64_t)((iVar2 - *piVar1) / piVar1[2] + -1 + *(int *)param_3[3]) %
                   (int64_t)*(int *)param_3[3] & 0xffffffff);
   }
@@ -450,7 +450,7 @@ FUN_18083cd60(uint64_t param_1,int64_t param_2,uint64_t *param_3,uint64_t *param
       }
       aiStack_78[0] = (iVar1 - *piStack_40) / iStack_6c;
                     // WARNING: Subroutine does not return
-      FUN_1808fd200((int64_t)(int)uVar5 * 8,
+      SystemCore_MemoryManager0((int64_t)(int)uVar5 * 8,
                     (int64_t)(aiStack_78[0] + -1 + *(int *)param_3[3]) %
                     (int64_t)*(int *)param_3[3] & 0xffffffff);
     }
@@ -496,7 +496,7 @@ FUN_18083cd7a(uint64_t param_1,int64_t param_2,uint64_t *param_3,uint64_t *param
     }
     if (0 < iVar2 - *piVar1) {
                     // WARNING: Subroutine does not return
-      FUN_1808fd200((int64_t)(int)in_R11D * 8,
+      SystemCore_MemoryManager0((int64_t)(int)in_R11D * 8,
                     (int64_t)((iVar2 - *piVar1) / piVar1[2] + -1 + *(int *)param_3[3]) %
                     (int64_t)*(int *)param_3[3] & 0xffffffff);
     }
@@ -534,7 +534,7 @@ void FUN_18083cdb6(uint64_t param_1,int64_t param_2,uint64_t *param_3)
   }
   if (0 < iVar2 - *piVar1) {
                     // WARNING: Subroutine does not return
-    FUN_1808fd200((int64_t)in_R11D * 8,
+    SystemCore_MemoryManager0((int64_t)in_R11D * 8,
                   (int64_t)((iVar2 - *piVar1) / piVar1[2] + -1 + *(int *)param_3[3]) %
                   (int64_t)*(int *)param_3[3] & 0xffffffff);
   }
@@ -673,7 +673,7 @@ void FUN_18083d030(uint64_t param_1,int64_t param_2,uint64_t *param_3,uint64_t p
   if (0 < iVar1 - *piStack_40) {
     aiStack_78[0] = (iVar1 - *piStack_40) / iStack_6c;
                     // WARNING: Subroutine does not return
-    FUN_1808fd200((int64_t)param_5 * 8,
+    SystemCore_MemoryManager0((int64_t)param_5 * 8,
                   (int64_t)(aiStack_78[0] + -1 + *(int *)param_3[3]) % (int64_t)*(int *)param_3[3]
                   & 0xffffffff);
   }
@@ -740,7 +740,7 @@ void FUN_18083d5d0(uint64_t param_1,int64_t param_2,uint64_t param_3)
   uStack_78 = param_3;
   uStack_50 = param_1;
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 

@@ -201,7 +201,7 @@ void FUN_180457be0(int64_t param_1,uint64_t param_2,int32_t param_3,int8_t param
         lVar1 = *(int64_t *)(param_1 + 0x10);
       }
                     // WARNING: Subroutine does not return
-      FUN_1808fd200(param_1,lVar1 + 0x70,0xbf800000);
+      SystemCore_MemoryManager0(param_1,lVar1 + 0x70,0xbf800000);
     }
     FUN_1802fa820(param_1,param_3,param_2);
     FUN_1803005b0(param_1);
@@ -394,7 +394,7 @@ void FUN_180457ea0(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 

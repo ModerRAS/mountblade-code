@@ -239,7 +239,7 @@ int64_t find_in_hash_table(int64_t hash_table, int64_t key_data)
  */
 void initialize_system(void)
 {
-  FUN_1808fd200();  // 调用系统初始化函数
+  SystemCore_MemoryManager0();  // 调用系统初始化函数
 }
 
 /**

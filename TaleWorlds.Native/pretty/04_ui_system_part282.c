@@ -367,12 +367,12 @@ void FUN_1808281a0(uint64_t param_1)
       iVar1 = FUN_18080b990(param_1,1);
       if (iVar1 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808fd200();
+        SystemCore_MemoryManager0();
       }
       if (iVar1 == 1) {
         FUN_18080b990(param_1,5);
                     // WARNING: Subroutine does not return
-        FUN_1808fd200();
+        SystemCore_MemoryManager0();
       }
     }
   }
@@ -425,7 +425,7 @@ void FUN_180828b00(uint64_t param_1,uint64_t param_2,uint64_t param_3,int64_t pa
       uVar2 = 0xffffffffffffff0;
     }
                     // WARNING: Subroutine does not return
-    FUN_1808fd200(uVar2 & 0xfffffffffffffff0);
+    SystemCore_MemoryManager0(uVar2 & 0xfffffffffffffff0);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(GET_SECURITY_COOKIE());
@@ -511,7 +511,7 @@ void FUN_180829400(uint64_t param_1,uint64_t param_2)
   auStack_48[0] = 0;
   FUN_18080b990(param_2,5);
                     // WARNING: Subroutine does not return
-  FUN_1808fd200(0xffffffffffffff0);
+  SystemCore_MemoryManager0(0xffffffffffffff0);
 }
 
 
@@ -926,7 +926,7 @@ void FUN_180829f10(uint64_t param_1,uint64_t param_2,ushort param_3)
   uStack_50 = param_2;
   uStack_40 = param_1;
                     // WARNING: Subroutine does not return
-  FUN_1808fd200(param_3);
+  SystemCore_MemoryManager0(param_3);
 }
 
 
@@ -1000,7 +1000,7 @@ void FUN_18082a180(int64_t *param_1,uint64_t param_2,int *param_3,uint64_t *para
           uVar6 = 0xffffffffffffff0;
         }
                     // WARNING: Subroutine does not return
-        FUN_1808fd200(uVar6 & 0xfffffffffffffff0);
+        SystemCore_MemoryManager0(uVar6 & 0xfffffffffffffff0);
       }
     }
   }
@@ -1019,7 +1019,7 @@ void FUN_18082a180(int64_t *param_1,uint64_t param_2,int *param_3,uint64_t *para
         uVar6 = 0xffffffffffffff0;
       }
                     // WARNING: Subroutine does not return
-      FUN_1808fd200(iVar4,uVar2 & 0xffffffff,uVar6 & 0xfffffffffffffff0);
+      SystemCore_MemoryManager0(iVar4,uVar2 & 0xffffffff,uVar6 & 0xfffffffffffffff0);
     }
   }
                     // WARNING: Subroutine does not return

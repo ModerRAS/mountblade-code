@@ -441,7 +441,7 @@ void RenderingSystemAdvancedDataProcessor(int64_t *param_1, int64_t param_2)
 void RenderingSystemCallProcessorType1(void)
 {
     // 执行系统初始化调用
-    FUN_1808fd200();
+    SystemCore_MemoryManager0();
 }
 
 /**

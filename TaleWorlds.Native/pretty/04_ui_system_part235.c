@@ -457,7 +457,7 @@ void FUN_180801ef0(int64_t param_1)
         uVar3 = 0xffffffffffffff0;
       }
                     // WARNING: Subroutine does not return
-      FUN_1808fd200(uVar3 & 0xfffffffffffffff0);
+      SystemCore_MemoryManager0(uVar3 & 0xfffffffffffffff0);
     }
     if ((alStack_270[0] == 0) || (iVar1 = RegCloseKey(), iVar1 == 0)) {
       *(int8_t *)(param_1 + 0x310) = 1;

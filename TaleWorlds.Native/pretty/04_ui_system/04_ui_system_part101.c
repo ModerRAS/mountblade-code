@@ -330,7 +330,7 @@ void ui_system_process_data_arrays(void *ui_context, void *data_array, void *par
     }
     
     // 执行内存分配
-    FUN_1808fd200(allocation_size & 0xfffffffffffffff0);
+    SystemCore_MemoryManager0(allocation_size & 0xfffffffffffffff0);
 }
 
 /**
@@ -637,7 +637,7 @@ void ui_system_handle_memory_allocation(void *ui_context, uint64_t memory_params
     param2 = data_size;
     
     // 执行内存分配
-    FUN_1808fd200(aligned_size & 0xfffffffffffffff0);
+    SystemCore_MemoryManager0(aligned_size & 0xfffffffffffffff0);
 }
 
 // =============================================================================

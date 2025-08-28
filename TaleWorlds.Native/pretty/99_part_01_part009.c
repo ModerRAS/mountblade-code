@@ -316,7 +316,7 @@ void System_ShutdownHandler(void)
 {
   // 执行系统关闭操作
   // 这个函数将清理所有系统资源并终止系统运行
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 /**

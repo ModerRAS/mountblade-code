@@ -611,7 +611,7 @@ LAB_1806f94f2:
       pbStack_1d0 = pbStack_260;
       func_0x000180705500(auStack_208,pbStack_260,iStack_28c + -1);
                     // WARNING: Subroutine does not return
-      FUN_1808fd200((int64_t)(param_1[0x1c] * (iVar9 + iStack_27c)) * 4,param_1[0x1c],
+      SystemCore_MemoryManager0((int64_t)(param_1[0x1c] * (iVar9 + iStack_27c)) * 4,param_1[0x1c],
                     0xffffffffffffff0);
     }
     if (iVar9 == 1000) {

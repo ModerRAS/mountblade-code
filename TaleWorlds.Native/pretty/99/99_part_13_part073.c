@@ -431,7 +431,7 @@ void system_data_processor_execute(int64_t processor_handle, void* command)
         command_result = FUN_180739cc0(command, *(int*)(processor_handle + 0x60), &stack_buffer[0]);
         if (command_result == 0) {
             // 处理执行失败的情况
-            FUN_1808fd200();
+            SystemCore_MemoryManager0();
         }
     }
     

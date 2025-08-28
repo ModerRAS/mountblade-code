@@ -503,7 +503,7 @@ void FUN_180719e00(int64_t param_1,int param_2,int param_3,int param_4,uint64_t 
   iStack_120 = param_2;
   lStack_118 = param_1;
                     // WARNING: Subroutine does not return
-  FUN_1808fd200(lVar2,0xffffffffffffff0);
+  SystemCore_MemoryManager0(lVar2,0xffffffffffffff0);
 }
 
 

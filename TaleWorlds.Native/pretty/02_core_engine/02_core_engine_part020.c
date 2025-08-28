@@ -1103,7 +1103,7 @@ void process_engine_system_event(int64_t *system_event)
  */
 void trigger_engine_fault(void)
 {
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 /**

@@ -198,7 +198,7 @@ void SystemInitializer(void)
 
 {
   // 调用系统初始化函数（不返回）
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 

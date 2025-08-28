@@ -822,7 +822,7 @@ void FUN_1806177c0(int64_t param_1,uint64_t param_2,int32_t param_3,uint64_t par
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fd200(&unknown_var_1584_ptr,param_2,lVar3,param_4,param_2,lVar3,param_4);
+  SystemCore_MemoryManager0(&unknown_var_1584_ptr,param_2,lVar3,param_4,param_2,lVar3,param_4);
 }
 
 
@@ -873,7 +873,7 @@ void FUN_180617970(int64_t param_1,uint64_t param_2,uint64_t param_3,int32_t par
   if (param_1 == 0) {
                     // WARNING: Subroutine does not return
     uStack_18 = 0x180626fa0;
-    FUN_1808fd200(&unknown_var_1528_ptr,param_2,param_3,0,param_2,param_3,0);
+    SystemCore_MemoryManager0(&unknown_var_1528_ptr,param_2,param_3,0,param_2,param_3,0);
   }
   iStack_34 = (int)param_3;
   if (-1 < iStack_34) {

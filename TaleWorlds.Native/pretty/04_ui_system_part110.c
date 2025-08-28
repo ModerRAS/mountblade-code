@@ -238,7 +238,7 @@ void FUN_1807333f0(int64_t param_1)
   iStack_54 = iStack_58 + iStack_54;
   lStack_88 = param_1;
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 

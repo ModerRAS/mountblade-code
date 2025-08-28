@@ -147,7 +147,7 @@ void ErrorHandler(void)
 
 {
   // 调用系统错误处理函数（不返回）
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 
@@ -670,7 +670,7 @@ void ErrorHandler2(void)
 
 {
   // 调用系统错误处理函数（不返回）
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 
@@ -682,7 +682,7 @@ void ErrorHandler3(void)
 
 {
   // 调用系统错误处理函数（不返回）
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 

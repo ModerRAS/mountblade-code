@@ -357,7 +357,7 @@ void UISystem_MemoryAllocator(uint64_t context_ptr, uint64_t param2, uint64_t pa
   memory_size = (int64_t)width * 4;
   
   // WARNING: Subroutine does not return
-  FUN_1808fd200(memory_size, height, 0xffffffffffffff0);
+  SystemCore_MemoryManager0(memory_size, height, 0xffffffffffffff0);
 }
 
 

@@ -758,7 +758,7 @@ uint64_t *cleanup_memory_resources(uint64_t *param_1, uint64_t param_2, uint64_t
 void system_terminate(void)
 {
     // 调用系统终止函数，不返回
-    FUN_1808fd200();
+    SystemCore_MemoryManager0();
 }
 
 
@@ -1508,7 +1508,7 @@ void initialize_memory_block(int8_t *param_1)
 void system_fast_terminate(void)
 {
     // WARNING: Subroutine does not return
-    FUN_1808fd200();
+    SystemCore_MemoryManager0();
 }
 
 

@@ -1441,7 +1441,7 @@ void RenderingSystem_DebugStringFormatter3(uint64_t param_1, uint64_t param_2, u
 void RenderingSystem_DebugFunctionExecutor1(void)
 {
     /* 执行调试系统初始化函数 */
-    FUN_1808fd200();
+    SystemCore_MemoryManager0();
 }
 
 
@@ -1631,7 +1631,7 @@ void RenderingSystem_DebugStringFormatter5(uint64_t param_1, uint64_t param_2, u
 void RenderingSystem_DebugFunctionExecutor2(void)
 {
     /* 执行调试系统初始化函数 */
-    FUN_1808fd200();
+    SystemCore_MemoryManager0();
 }
 
 
@@ -1744,7 +1744,7 @@ void RenderingSystem_DebugStringFormatter6(uint64_t param_1, uint64_t param_2, u
 void RenderingSystem_DebugFunctionExecutor3(void)
 {
     /* 执行调试系统初始化函数 */
-    FUN_1808fd200();
+    SystemCore_MemoryManager0();
 }
 
 

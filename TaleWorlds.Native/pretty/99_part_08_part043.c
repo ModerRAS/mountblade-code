@@ -550,7 +550,7 @@ LAB_1805a40f5:
   *(int32_t *)(param_4 + 0x44) = 2;
   *(int8_t *)(param_4 + 0x48) = 1;
                     // WARNING: Subroutine does not return
-  FUN_1808fd200(*(uint64_t *)(param_1 + 0x100),param_1,param_4);
+  SystemCore_MemoryManager0(*(uint64_t *)(param_1 + 0x100),param_1,param_4);
 }
 
 

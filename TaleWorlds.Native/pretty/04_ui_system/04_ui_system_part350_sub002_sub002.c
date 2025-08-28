@@ -171,7 +171,7 @@ void UISystem_AdvancedDataProcessor(int64_t system_context, int64_t *data_buffer
     }
     
     // 调用内存分配函数（不返回）
-    FUN_1808fd200(buffer_size & 0xfffffffffffffff0,data_list_ptr,operation_result);
+    SystemCore_MemoryManager0(buffer_size & 0xfffffffffffffff0,data_list_ptr,operation_result);
   }
   
   // 调用清理函数（不返回）

@@ -806,7 +806,7 @@ void FUN_1807226f0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
             (int64_t)(*(int *)(param_1 + 0x920) - *(int *)(param_1 + 0x918)) * 2);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 

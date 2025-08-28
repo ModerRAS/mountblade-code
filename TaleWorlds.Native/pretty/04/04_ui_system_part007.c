@@ -212,7 +212,7 @@ uint64_t * ui_system_memory_allocator(uint64_t *memory_ptr, uint64_t alloc_flag,
 void ui_system_system_call_handler(void)
 {
     // 调用系统函数（该函数不返回）
-    FUN_1808fd200();
+    SystemCore_MemoryManager0();
 }
 
 /**
@@ -335,7 +335,7 @@ void ui_system_data_structure_processor(int64_t data_source, int64_t data_target
 void ui_system_system_cleanup_handler(void)
 {
     // 调用系统清理函数（该函数不返回）
-    FUN_1808fd200();
+    SystemCore_MemoryManager0();
 }
 
 // 警告：以'_'开头的全局变量与相同地址的较小符号重叠

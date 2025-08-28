@@ -1035,7 +1035,7 @@ void rendering_system_priority_handler(int64_t priority_context_ptr)
   }
   
   // 处理优先级更新
-  FUN_1808fd200(priority_context_ptr, next_resource_ptr + 0x70, 0xbf800000);
+  SystemCore_MemoryManager0(priority_context_ptr, next_resource_ptr + 0x70, 0xbf800000);
 }
 
 // 函数: void rendering_system_mutex_manager(int64_t param_1, int64_t param_2)

@@ -268,7 +268,7 @@ void FUN_18071cde0(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 
@@ -655,7 +655,7 @@ void FUN_18071e260(int64_t param_1,int param_2)
       iStack_40 = iStack_40 * iStack_3c;
       iStack_3c = iStack_3c * param_2;
                     // WARNING: Subroutine does not return
-      FUN_1808fd200();
+      SystemCore_MemoryManager0();
     }
     FUN_18071b320(param_1 + 0x1698,*(int *)(param_1 + 0x11c8),param_2 * 1000,1);
   }

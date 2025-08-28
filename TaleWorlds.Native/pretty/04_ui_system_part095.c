@@ -21,7 +21,7 @@ void FUN_180723360(int64_t param_1,uint64_t param_2)
   }
   uStack_40 = param_2;
                     // WARNING: Subroutine does not return
-  FUN_1808fd200(uVar2 & 0xfffffffffffffff0);
+  SystemCore_MemoryManager0(uVar2 & 0xfffffffffffffff0);
 }
 
 

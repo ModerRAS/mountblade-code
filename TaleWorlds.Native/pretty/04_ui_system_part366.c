@@ -595,7 +595,7 @@ void FUN_180866550(uint64_t param_1,int64_t param_2)
       uVar3 = 0xffffffffffffff0;
     }
                     // WARNING: Subroutine does not return
-    FUN_1808fd200(uVar3 & 0xfffffffffffffff0);
+    SystemCore_MemoryManager0(uVar3 & 0xfffffffffffffff0);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_268);

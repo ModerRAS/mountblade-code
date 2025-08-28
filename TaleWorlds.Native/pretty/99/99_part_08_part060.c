@@ -74,7 +74,7 @@ void FUN_1806193b0(int64_t param_1,int param_2);
 void FUN_1805f7890(uint64_t param_1);
 void FUN_180646200(int64_t param_1);
 void SystemCore_ThreadManager0(int64_t param_1,void *param_2,void *param_3);
-void FUN_1808fd200(void);
+void SystemCore_MemoryManager0(void);
 void CoreMemoryPoolAllocator(uint64_t param_1,int64_t param_2,char param_3);
 void CoreMemoryPoolReallocator(uint64_t param_1,int64_t param_2,int64_t param_3,char param_4);
 
@@ -393,7 +393,7 @@ void TriggerSystemError(void)
 
 {
   // 执行系统错误处理
-  FUN_1808fd200();
+  SystemCore_MemoryManager0();
 }
 
 // 函数: void ProcessSystemData(int *data_array, int array_size, int64_t data_source, int64_t data_target, uint64_t config_param)

@@ -57,7 +57,7 @@ void FUN_1807141f0(int64_t param_1,int param_2,int param_3,uint64_t param_4)
   uStack_78 = param_4;
   iStack_6c = param_2;
                     // WARNING: Subroutine does not return
-  FUN_1808fd200((int64_t)iStack_88 * 4,0xffffffffffffff0);
+  SystemCore_MemoryManager0((int64_t)iStack_88 * 4,0xffffffffffffff0);
 }
 
 

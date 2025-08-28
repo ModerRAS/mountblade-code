@@ -192,7 +192,7 @@ LAB_180705c37:
       iVar10 = *(int *)((int64_t)param_1 + 0x11dc) * 1000;
       iStack_60 = *(int *)((int64_t)param_1 + 0x11dc) * iStack_78 * 10;
                     // WARNING: Subroutine does not return
-      FUN_1808fd200((int64_t)((*(int *)(param_1 + 0x239) * iStack_60) / iVar10) * 2,
+      SystemCore_MemoryManager0((int64_t)((*(int *)(param_1 + 0x239) * iStack_60) / iVar10) * 2,
                     (int64_t)(*(int *)(param_1 + 0x239) * iStack_60) % (int64_t)iVar10 &
                     0xffffffff);
     }
