@@ -770,7 +770,7 @@ void FUN_180174340(void **param_1,void **param_2,longlong param_3)
       do {
         *(int32_t *)(puVar8 + -0xd) = *(int32_t *)(puVar13 + -0xd);
         puVar15 = (void *)puVar13[-0xe];
-        puVar14 = &DAT_18098bc73;
+        puVar14 = &system_buffer_ptr;
         if (puVar15 != (void *)0x0) {
           puVar14 = puVar15;
         }
@@ -843,7 +843,7 @@ LAB_180174517:
       *(int32_t *)((longlong)ppuVar12 + lVar11 + 8) = 0;
       *puVar6 = 0;
       *(int32_t *)((longlong)ppuVar12 + lVar11 + 8) = *(int32_t *)(ppuVar12 + 1);
-      puVar15 = &DAT_18098bc73;
+      puVar15 = &system_buffer_ptr;
       if (*ppuVar12 != (void *)0x0) {
         puVar15 = *ppuVar12;
       }
@@ -880,7 +880,7 @@ LAB_180174517:
       *(int32_t *)(lVar11 + 8 + (longlong)ppuVar16) = 0;
       *puVar6 = 0;
       *(int32_t *)(lVar11 + 8 + (longlong)ppuVar16) = *(int32_t *)(ppuVar16 + 1);
-      puVar15 = &DAT_18098bc73;
+      puVar15 = &system_buffer_ptr;
       if (*ppuVar16 != (void *)0x0) {
         puVar15 = *ppuVar16;
       }

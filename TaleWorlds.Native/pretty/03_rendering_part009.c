@@ -811,7 +811,7 @@ void FUN_180272e40(longlong *param_1,ulonglong param_2)
         *(int8_t *)(puVar6 + 3) = 0;
         *(int32_t *)(puVar6 + 2) = *(int32_t *)((longlong)puVar6 + lVar9 + 0x10);
         puVar1 = *(void **)((longlong)puVar6 + lVar9 + 8);
-        puVar8 = &DAT_18098bc73;
+        puVar8 = &system_buffer_ptr;
         if (puVar1 != (void *)0x0) {
           puVar8 = puVar1;
         }

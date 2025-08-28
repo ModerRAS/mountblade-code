@@ -103,7 +103,7 @@ uint64_t FUN_180892270(longlong param_1,longlong param_2)
           return 0x1e;
         }
         if (*(int *)(lVar1 + 0x58) < 1) {
-          puVar4 = &DAT_18098bc73;
+          puVar4 = &system_buffer_ptr;
         }
         else {
           puVar4 = *(void **)(lVar1 + 0x50);
@@ -159,7 +159,7 @@ uint64_t FUN_1808922ad(void)
         return 0x1e;
       }
       if (*(int *)(lVar1 + 0x58) < 1) {
-        puVar4 = &DAT_18098bc73;
+        puVar4 = &system_buffer_ptr;
       }
       else {
         puVar4 = *(void **)(lVar1 + 0x50);

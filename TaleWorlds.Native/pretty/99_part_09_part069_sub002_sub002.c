@@ -244,7 +244,7 @@ void FUN_1805e8630(longlong *******param_1,longlong *******param_2,uint64_t para
         if (0 < iVar27) {
           do {
             if (((ulonglong)(*pppppplVar19)[0x20] & 0x400000) != 0) {
-              pppplVar20 = (longlong ****)&DAT_18098bc73;
+              pppplVar20 = (longlong ****)&system_buffer_ptr;
               if (pppppplVar11[lVar25 * 2 + -2][3] != (longlong ****)0x0) {
                 pppplVar20 = pppppplVar11[lVar25 * 2 + -2][3];
               }
@@ -303,7 +303,7 @@ void FUN_1805e8630(longlong *******param_1,longlong *******param_2,uint64_t para
             puStack_1c8 = (int32_t *)puVar12;
             uStack_1b8._0_4_ = FUN_18064e990();
             if (0 < iStack_a8) {
-              puVar23 = &DAT_18098bc73;
+              puVar23 = &system_buffer_ptr;
               if (puStack_b0 != (void *)0x0) {
                 puVar23 = puStack_b0;
               }
@@ -499,7 +499,7 @@ void FUN_1805e8630(longlong *******param_1,longlong *******param_2,uint64_t para
       param_1 = ppppppplStack_178;
     }
     iVar27 = 0;
-    puVar24 = (int32_t *)&DAT_18098bc73;
+    puVar24 = (int32_t *)&system_buffer_ptr;
     if (puVar14 != (int32_t *)0x0) {
       puVar24 = puVar14;
     }

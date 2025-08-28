@@ -545,7 +545,7 @@ void cleanup_resource_manager(longlong *resource_manager)
   cleanup_flag = 0xfffffffffffffffe;
   
   // 计算并设置资源管理器的基地址
-  resource_manager[0x1a5] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)resource_manager[0x1a6] * 8) + -100000;
+  resource_manager[0x1a5] = *(longlong *)(&system_error_code + (longlong)(int)resource_manager[0x1a6] * 8) + -100000;
   
   // 调用清理函数
   FUN_180090b80(resource_manager);
@@ -960,7 +960,7 @@ void initialize_render_parameters(longlong render_system, uint64_t param2, uint6
   
   // 设置渲染系统的基地址
   *(uint64_t *)(render_system + 0xd28) = 
-       *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(render_system + 0xd30) * 8);
+       *(uint64_t *)(&system_error_code + (longlong)*(int *)(render_system + 0xd30) * 8);
   
   // 清理旧的渲染资源
   old_resource = *(longlong **)(render_system + 0xd20);
@@ -980,7 +980,7 @@ void initialize_render_parameters(longlong render_system, uint64_t param2, uint6
   // 循环初始化80个资源对象
   do {
     // 调用每个资源的初始化函数
-    (**(code **)(*resource_array + 0x10))(resource_array, &DAT_18098bc73, param3, param4, cleanup_flag);
+    (**(code **)(*resource_array + 0x10))(resource_array, &system_buffer_ptr, param3, param4, cleanup_flag);
     resource_array = resource_array + 4;
     loop_counter = loop_counter + -1;
   } while (loop_counter != 0);
@@ -1310,7 +1310,7 @@ RENDER_CONTINUE:
   FUN_1800905f0(engine_context + 0x30);
   
   // 检查是否需要更新显示设置
-  if ((DAT_180c82860 == '\0') && (*(int *)(_DAT_180c86908 + 0x7e0) == 0)) {
+  if ((system_debug_flag == '\0') && (*(int *)(_DAT_180c86908 + 0x7e0) == 0)) {
     // 如果显示配置为空或无效，使用默认设置
     if ((**(char **)(_DAT_180c868d0 + 0x2010) == '\0') ||
        (*(char *)(*(longlong *)(_DAT_180c86870 + 8) + 0xbc +

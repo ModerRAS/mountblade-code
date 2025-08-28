@@ -227,7 +227,7 @@ LAB_1805b9d7c:
   if (param_2 == '\0') {
     iStack_1d0 = (*(int *)(lVar26 + 0x98d9d4) + 1) * 5;
   }
-  lVar38 = *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar26 + 0x87b790) * 8);
+  lVar38 = *(longlong *)(&system_error_code + (longlong)*(int *)(lVar26 + 0x87b790) * 8);
   lVar5 = *(longlong *)(lVar26 + 0x87b788);
   iVar43 = (int)param_1[0x402];
   uVar22 = (ulonglong)iVar43;
@@ -495,7 +495,7 @@ LAB_1805ba3d0:
     *(uint *)(param_1 + 0x272) = uVar18;
     uVar22 = 0;
     param_1[0x387] =
-         *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x388] * 8) -
+         *(longlong *)(&system_error_code + (longlong)(int)param_1[0x388] * 8) -
          (longlong)(((float)(uVar18 - 1) * 2.3283064e-05 + fVar40) - 50000.0);
     uVar24 = uVar22;
     uVar28 = uVar22;

@@ -89,7 +89,7 @@
 #define system_context_ptr _DAT_180c82868         // 系统上下文指针
 #define system_memory_pool_ptr _DAT_180c8ed18     // 系统内存池指针
 #define system_state_ptr system_main_module_state          // 系统状态指针
-#define system_allocation_flags DAT_180bf65bc     // 系统分配标志
+#define system_allocation_flags system_allocation_flags     // 系统分配标志
 
 // 系统配置字符串
 #define system_config_string_1 system_config_dash_string      // 系统配置字符串1
@@ -126,8 +126,8 @@
 // 系统全局变量
 #define system_file_counter _DAT_180c8ed60         // 系统文件计数器
 #define system_handle_counter _DAT_180c8ed64       // 系统句柄计数器
-#define system_debug_flag DAT_180c82860             // 系统调试标志
-#define system_debug_flag2 DAT_180c82842            // 系统调试标志2
+#define system_debug_flag system_debug_flag             // 系统调试标志
+#define system_debug_flag2 system_debug_flag2            // 系统调试标志2
 #define system_module_state _DAT_180c86908         // 系统模块状态
 #define system_message_context _DAT_180c86928      // 系统消息上下文
 #define system_main_module_state _DAT_180c86870    // 系统主模块状态

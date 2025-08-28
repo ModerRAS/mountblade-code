@@ -74,7 +74,7 @@ bool FUN_180649070(ulonglong param_1,longlong param_2,int8_t *param_3)
     }
     lVar4 = uVar2 - uVar5;
     if (0 < lVar4) {
-      func_0x000180646ff0(&DAT_180c8ede0,param_2);
+      func_0x000180646ff0(&system_data_ede0,param_2);
       LOCK();
       _DAT_180c8ef68 = _DAT_180c8ef68 + 1;
       UNLOCK();
@@ -106,7 +106,7 @@ bool FUN_1806490f8(void)
   longlong lVar2;
   longlong unaff_RDI;
   
-  func_0x000180646ff0(&DAT_180c8ede0);
+  func_0x000180646ff0(&system_data_ede0);
   LOCK();
   _DAT_180c8ef68 = _DAT_180c8ef68 + 1;
   UNLOCK();
@@ -174,7 +174,7 @@ bool FUN_1806491b0(longlong param_1,longlong param_2)
     }
     lVar3 = uVar2 - uVar4;
     if (0 < lVar3) {
-      func_0x000180646ff0(&DAT_180c8ede0,-param_2);
+      func_0x000180646ff0(&system_data_ede0,-param_2);
       iVar1 = VirtualFree(uVar4,lVar3,0x4000);
       if (iVar1 != 0) {
         return true;
@@ -197,7 +197,7 @@ bool FUN_180649229(void)
   int iVar1;
   uint64_t in_R9;
   
-  func_0x000180646ff0(&DAT_180c8ede0,in_R9);
+  func_0x000180646ff0(&system_data_ede0,in_R9);
   iVar1 = VirtualFree();
   if (iVar1 != 0) {
     return true;
@@ -256,7 +256,7 @@ uint64_t FUN_1806492c0(longlong param_1,longlong param_2)
       uVar2 = ((ulonglong)(param_1 + param_2) / _DAT_180bf66a8) * _DAT_180bf66a8;
     }
     if (0 < (longlong)(uVar2 - uVar1)) {
-      func_0x000180646ff0(&DAT_180c8ee00,uVar2 - uVar1);
+      func_0x000180646ff0(&system_data_ee00,uVar2 - uVar1);
       return 0;
     }
   }
@@ -1754,7 +1754,7 @@ uint64_t FUN_18064a180(ulonglong param_1)
     if (lVar2 != 0) {
       cVar1 = FUN_18064a040(lVar2,param_1,1,acStackX_18[0],pcVar6,0xffffffff,uVar7);
       if (cVar1 != '\0') {
-        puVar3 = &DAT_18098bc73;
+        puVar3 = &system_buffer_ptr;
         if (acStackX_18[0] != '\0') {
           puVar3 = &UNK_180a3d770;
         }

@@ -395,7 +395,7 @@ LAB_1800d6939:
             FUN_18029fc10(*(longlong *)(_DAT_180c86938 + 0x1cd8),
                           *(uint64_t *)(_DAT_180c86938 + 0x1c80),
                           *(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x19e0,0x200);
-            if (DAT_180c82846 == '\0') {
+            if (system_data_2846 == '\0') {
               plVar3 = *(longlong **)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x8400);
               uStack_228 = 0;
               (**(code **)(*plVar3 + 0xa8))

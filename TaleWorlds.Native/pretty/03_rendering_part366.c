@@ -429,7 +429,7 @@ LAB_180469096:
   auStackX_18[0] = 1;
   auStackX_18[1] = 2;
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-               0x48) < _DAT_180d49d0c) && (FUN_1808fcb90(&DAT_180d49d0c), _DAT_180d49d0c == -1)) {
+               0x48) < _DAT_180d49d0c) && (FUN_1808fcb90(&system_flag_9d0c), _DAT_180d49d0c == -1)) {
     _DAT_180d49d10 = &UNK_180a3c3e0;
     _DAT_180d49d28 = 0;
     _DAT_180d49d18 = (uint64_t *)0x0;
@@ -458,7 +458,7 @@ LAB_180469096:
     puVar3[3] = 0x6e6961;
     _DAT_180d49d40 = 0xf;
     FUN_1808fc820(&UNK_180942870);
-    FUN_1808fcb30(&DAT_180d49d0c);
+    FUN_1808fcb30(&system_flag_9d0c);
   }
   if (pcVar8 != (char *)0x0) {
     pcVar12 = "flag";
@@ -511,7 +511,7 @@ LAB_1804691e0:
                   FUN_180627c50(&puStack_50,lVar10,pcVar7,puVar13,uVar16);
                   break;
                 }
-                lVar10 = (longlong)&DAT_180a03a84 - (longlong)pcVar14;
+                lVar10 = (longlong)&system_flag_3a84 - (longlong)pcVar14;
                 while (*pcVar14 == pcVar14[lVar10]) {
                   pcVar14 = pcVar14 + 1;
                   if (pcVar7 <= pcVar14) goto LAB_1804691e0;

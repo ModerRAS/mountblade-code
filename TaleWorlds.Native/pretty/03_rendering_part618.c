@@ -204,7 +204,7 @@ LAB_18060d444:
   *(int32_t *)((longlong)puVar7 + 0x24) = 0x5f746e65;
   *(int32_t *)(puVar7 + 5) = 0x6e696f70;
   *(int32_t *)((longlong)puVar7 + 0x2c) = 0x217374;
-  puVar8 = (int32_t *)&DAT_18098bc73;
+  puVar8 = (int32_t *)&system_buffer_ptr;
   if (puStack_60 != (int32_t *)0x0) {
     puVar8 = puStack_60;
   }
@@ -408,7 +408,7 @@ LAB_18060d880:
   puVar6[8] = 0x6e756f63;
   *(int16_t *)(puVar6 + 9) = 0x2174;
   *(int8_t *)((longlong)puVar6 + 0x26) = 0;
-  puVar6 = (int32_t *)&DAT_18098bc73;
+  puVar6 = (int32_t *)&system_buffer_ptr;
   if (puStack_78 != (int32_t *)0x0) {
     puVar6 = puStack_78;
   }
@@ -681,7 +681,7 @@ LAB_18060ddd0:
   puVar6[7] = 0x635f726f;
   puVar6[8] = 0x746e756f;
   *(int16_t *)(puVar6 + 9) = 0x21;
-  puVar6 = (int32_t *)&DAT_18098bc73;
+  puVar6 = (int32_t *)&system_buffer_ptr;
   if (puStack_78 != (int32_t *)0x0) {
     puVar6 = puStack_78;
   }

@@ -648,7 +648,7 @@ void FUN_1808f1d10(longlong *param_1)
 int8_t FUN_1808f1d70(void)
 
 {
-  if (DAT_180c58850 != '\0') {
+  if (system_data_8850 != '\0') {
     return 1;
   }
   FUN_1808f6d00();
@@ -1004,9 +1004,9 @@ uint64_t FUN_1808f22b0(int32_t param_1,longlong param_2,int16_t param_3)
       if (bVar2 != 8) {
         bVar4 = bVar2;
       }
-      if ((*(char *)(lVar5 + 6) == '\x03') || (DAT_180c58852 != '\0')) {
+      if ((*(char *)(lVar5 + 6) == '\x03') || (system_data_8852 != '\0')) {
         if (*(ushort *)(lVar5 + 0x4c) < 0x220) {
-          if (DAT_180c58852 != '\0') {
+          if (system_data_8852 != '\0') {
             if (bVar4 == 0) {
               bVar4 = 3;
             }
@@ -1075,9 +1075,9 @@ uint64_t FUN_1808f22f5(void)
     if (bVar2 != 8) {
       bVar4 = bVar2;
     }
-    if ((*(char *)(unaff_RBX + 6) == '\x03') || (DAT_180c58852 != '\0')) {
+    if ((*(char *)(unaff_RBX + 6) == '\x03') || (system_data_8852 != '\0')) {
       if (*(ushort *)(unaff_RBX + 0x4c) < 0x220) {
-        if (DAT_180c58852 != '\0') {
+        if (system_data_8852 != '\0') {
           if (bVar4 == 0) {
             bVar4 = 3;
           }

@@ -124,7 +124,7 @@ void FUN_1804ec4e0(longlong param_1,longlong param_2,int param_3,longlong param_
       (**(code **)(*plVar15 + 0x28))(plVar15);
     }
     uStack_b0 = 0xffffffff;
-    fVar19 = (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x87b790) * 8) -
+    fVar19 = (float)(*(longlong *)(&system_error_code + (longlong)*(int *)(param_1 + 0x87b790) * 8) -
                     *(longlong *)(param_1 + 0x87b788)) * 1e-05;
     plStack_b8 = plVar15;
     fStack_ac = fVar19;

@@ -379,7 +379,7 @@ void advanced_system_resource_manager(uint64_t system_handle, uint64_t *resource
                         stack_value_c0 = 0;
                         FUN_1806277c0(&stack_ptr_d0, *(int32_t *)(data_offset + 0x20));
                         if (0 < *(int *)(data_offset + 0x20)) {
-                            data_ptr = &DAT_18098bc73;
+                            data_ptr = &system_buffer_ptr;
                             if (*(void **)(data_offset + 0x18) != (void *)0x0) {
                                 data_ptr = *(void **)(data_offset + 0x18);
                             }

@@ -77,14 +77,14 @@ void copy_rendering_object_properties(longlong source_object, longlong *target_o
   *(int32_t *)(target_object + 0x12) = *(int32_t *)(source_object + 0x90);
   
   // 复制对象名称
-  default_name = &DAT_18098bc73;
+  default_name = &system_buffer_ptr;
   if (*(void **)(source_object + 0x88) != (void *)0x0) {
     default_name = *(void **)(source_object + 0x88);
   }
   strcpy_s(target_object[0x11], 0x80, default_name);
   
   *(int32_t *)(target_object + 0x25) = *(int32_t *)(source_object + 0x128);
-  default_name = &DAT_18098bc73;
+  default_name = &system_buffer_ptr;
   if (*(void **)(source_object + 0x120) != (void *)0x0) {
     default_name = *(void **)(source_object + 0x120);
   }

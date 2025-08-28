@@ -404,7 +404,7 @@ LAB_18038f6d8:
   uStack_fc = 0x40000000;
   uStack_f4 = 3;
   uStack_110 = 1;
-  plStack_118 = (longlong *)&DAT_180be0000;
+  plStack_118 = (longlong *)&system_data_0000;
   uStack_108 = 0;
   uStack_f8 = 0;
   iStack_1a8 = 0;
@@ -690,7 +690,7 @@ LAB_18038ff34:
           iVar42 = uStack_1b8 + 1;
           FUN_1806277c0(&puStack_1c8,iVar42);
           *(int16_t *)((ulonglong)uStack_1b8 + (longlong)puStack_1c0) = 0x29;
-          puVar29 = (uint64_t *)&DAT_18098bc73;
+          puVar29 = (uint64_t *)&system_buffer_ptr;
           if (puStack_1c0 != (uint64_t *)0x0) {
             puVar29 = puStack_1c0;
           }

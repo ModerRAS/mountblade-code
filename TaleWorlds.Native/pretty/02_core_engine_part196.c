@@ -394,7 +394,7 @@ LAB_18017a372:
   apiStack_68[0] = piVar2;
   piStack_88 = piVar2;
   (**(code **)(**(longlong **)(param_2[0x15] + 0x88) + 0x70))
-            (*(longlong **)(param_2[0x15] + 0x88),&DAT_1809fc740,param_2 + 0x17,0,ppiVar13,ppiVar14)
+            (*(longlong **)(param_2[0x15] + 0x88),&system_data_c740,param_2 + 0x17,0,ppiVar13,ppiVar14)
   ;
   if (pcStack_78 != (code *)0x0) {
     (*pcStack_78)(&piStack_88,0,0);

@@ -956,7 +956,7 @@ void RenderingSystem_DataSerializer(longlong serialize_context, longlong file_co
         
         // 获取数据指针
         data_ptr = *(void **)(data_offset + 0x50);
-        next_ptr = &DAT_18098bc73;
+        next_ptr = &system_buffer_ptr;
         if (data_ptr != (void *)0x0) {
           next_ptr = data_ptr;
         }
@@ -1092,7 +1092,7 @@ void RenderingSystem_DataDeserializer(longlong deserialize_context, longlong fil
         *(uint64_t *)(block_ptr + 0x14) = 0;
         block_ptr[0x16] = 0;
         *block_ptr = 0xffffffff;
-        (**(code **)(*data_ptr + 0x10))(data_ptr, &DAT_18098bc73);
+        (**(code **)(*data_ptr + 0x10))(data_ptr, &system_buffer_ptr);
         *(uint64_t *)(block_ptr + 1) = 0x3f800000;
         *(uint64_t *)(block_ptr + 3) = 0;
         *(uint64_t *)(block_ptr + 5) = 0x3f80000000000000;

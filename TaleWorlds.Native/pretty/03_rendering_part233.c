@@ -273,7 +273,7 @@ LAB_18039b85d:
                 goto LAB_18039be43;
               }
             }
-            if (DAT_180c82842 == '\0') {
+            if (system_debug_flag2 == '\0') {
               puStack_158 = &UNK_180a3c3e0;
               uStack_140 = 0;
               puStack_150 = (uint64_t *)0x0;

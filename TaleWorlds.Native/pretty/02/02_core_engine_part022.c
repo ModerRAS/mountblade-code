@@ -57,7 +57,7 @@ void process_and_add_path_to_container(longlong *container_ptr, longlong source_
     stack_ulong9 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
     stack_uint2 = 0;
     FUN_180057110();
-    temp_ptr4 = &DAT_18098bc73;
+    temp_ptr4 = &system_buffer_ptr;
     if (*(void **)(source_path1 + 8) != (void *)0x0) {
         temp_ptr4 = *(void **)(source_path1 + 8);
     }
@@ -70,7 +70,7 @@ void process_and_add_path_to_container(longlong *container_ptr, longlong source_
         temp_long3 = temp_long3 + 1;
     } while (temp_ptr4[temp_long3] != '\0');
     FUN_1800671b0(&stack_byte1);
-    temp_ptr4 = &DAT_18098bc73;
+    temp_ptr4 = &system_buffer_ptr;
     if (*(void **)(source_path2 + 8) != (void *)0x0) {
         temp_ptr4 = *(void **)(source_path2 + 8);
     }
@@ -395,7 +395,7 @@ void generate_system_info_report(uint64_t report_param)
     FUN_180627e10(report_param, &stack_ptr19, &UNK_1809fe900);
     stack_ulong7 = 0;
     stack_long2 = 0;
-    temp_ptr4 = &DAT_18098bc73;
+    temp_ptr4 = &system_buffer_ptr;
     if (stack_ptr17 != (void *)0x0) {
         temp_ptr4 = stack_ptr17;
     }
@@ -411,7 +411,7 @@ void generate_system_info_report(uint64_t report_param)
     }
     else {
         temp_long1 = (**(code **)(_DAT_180c8a9c0 + 0x30))();
-        temp_ptr4 = &DAT_18098bc73;
+        temp_ptr4 = &system_buffer_ptr;
         if (*(void **)(temp_long1 + 8) != (void *)0x0) {
             temp_ptr4 = *(void **)(temp_long1 + 8);
         }
@@ -423,7 +423,7 @@ void generate_system_info_report(uint64_t report_param)
     }
     else {
         temp_long1 = (**(code **)(_DAT_180c8a9c0 + 0x20))();
-        temp_ptr4 = &DAT_18098bc73;
+        temp_ptr4 = &system_buffer_ptr;
         if (*(void **)(temp_long1 + 8) != (void *)0x0) {
             temp_ptr4 = *(void **)(temp_long1 + 8);
         }
@@ -435,7 +435,7 @@ void generate_system_info_report(uint64_t report_param)
     stack_buffer4[0] = 0;
     stack_uint1 = 4;
     FUN_18004b860(&stack_ptr28, &UNK_1809fd0a0, 0x130a7);
-    stack_ptr1 = &DAT_18098bc73;
+    stack_ptr1 = &system_buffer_ptr;
     if (stack_ptr29 != (void *)0x0) {
         stack_ptr1 = stack_ptr29;
     }
@@ -444,14 +444,14 @@ void generate_system_info_report(uint64_t report_param)
     stack_ptr28 = &UNK_18098bcb0;
     stack_ptr1 = &UNK_18098ba98;
     FUN_180628040(&stack_ptr2, &UNK_1809fe940, &UNK_18098ba10, &UNK_18098baa0);
-    stack_ptr1 = &DAT_18098ba28;
+    stack_ptr1 = &system_memory_ba28;
     FUN_180628040(&stack_ptr2, &UNK_1809fe940, &UNK_18098ba10, &UNK_18098ba40);
-    stack_ptr1 = &DAT_18098bc73;
+    stack_ptr1 = &system_buffer_ptr;
     if (stack_ptr18 != (void *)0x0) {
         stack_ptr1 = stack_ptr18;
     }
     FUN_180628040(&stack_ptr2, &UNK_1809fe940, &UNK_18098ba10, &UNK_18098ba70);
-    stack_ptr1 = &DAT_18098bc73;
+    stack_ptr1 = &system_buffer_ptr;
     if (stack_ptr16 != (void *)0x0) {
         stack_ptr1 = stack_ptr16;
     }
@@ -494,14 +494,14 @@ void generate_system_info_report(uint64_t report_param)
         temp_ulong1 = stack_ulong13;
     }
     FUN_180628040(&stack_ptr3, &UNK_1809fe8f8, temp_ulong1 / 0x100000 & 0xffffffff);
-    stack_ptr1 = &DAT_18098bc73;
+    stack_ptr1 = &system_buffer_ptr;
     FUN_180628040(&stack_ptr2, &UNK_1809fe940, &UNK_18098ba10, &UNK_1809fe950);
-    stack_ptr1 = &DAT_18098bc73;
+    stack_ptr1 = &system_buffer_ptr;
     if (stack_ptr6 != (void *)0x0) {
         stack_ptr1 = stack_ptr6;
     }
     FUN_180628040(&stack_ptr2, &UNK_1809fe940, &UNK_18098ba10, &UNK_1809fe968);
-    stack_ptr1 = &DAT_18098bc73;
+    stack_ptr1 = &system_buffer_ptr;
     if (stack_ptr4 != (void *)0x0) {
         stack_ptr1 = stack_ptr4;
     }
@@ -534,7 +534,7 @@ void generate_system_info_report(uint64_t report_param)
     stack_ptr1 = (void *)
                 ((double)(temp_long2 - _DAT_180c8ed48) * _DAT_180c8ed50 - *(double *)(temp_long1 + 0x210));
     FUN_180628040(&stack_ptr2, &UNK_1809fe998, &UNK_18098ba10, &UNK_1809fe988);
-    stack_ptr1 = &DAT_18098bc73;
+    stack_ptr1 = &system_buffer_ptr;
     if (stack_ptr15 != (void *)0x0) {
         stack_ptr1 = stack_ptr15;
     }
@@ -560,7 +560,7 @@ void generate_system_info_report(uint64_t report_param)
         stack_ptr25 = stack_buffer2;
         stack_buffer2[0] = 0;
         stack_uint14 = 1;
-        strcpy_s(stack_buffer2, 0x10, &DAT_1809fdf28);
+        strcpy_s(stack_buffer2, 0x10, &system_memory_df28);
         process_and_add_path_to_container(&stack_ptr12, temp_ptr8 + 4, &stack_ptr24);
         stack_ptr24 = &UNK_18098bcb0;
     }
@@ -582,7 +582,7 @@ void generate_system_info_report(uint64_t report_param)
         }
         else {
             temp_long1 = (**(code **)(_DAT_180c8a9c0 + 0x28))();
-            temp_ptr4 = &DAT_18098bc73;
+            temp_ptr4 = &system_buffer_ptr;
             if (*(void **)(temp_long1 + 8) != (void *)0x0) {
                 temp_ptr4 = *(void **)(temp_long1 + 8);
             }
@@ -653,11 +653,11 @@ void generate_system_info_report(uint64_t report_param)
                                 }
 STRING_MATCH_FOUND:
                                 if (temp_int3 == 0) {
-                                    stack_ptr1 = &DAT_18098bc73;
+                                    stack_ptr1 = &system_buffer_ptr;
                                     if ((void *)temp_ptr5[5] != (void *)0x0) {
                                         stack_ptr1 = (void *)temp_ptr5[5];
                                     }
-                                    temp_ptr4 = &DAT_18098bc73;
+                                    temp_ptr4 = &system_buffer_ptr;
                                     if ((void *)temp_ptr5[1] != (void *)0x0) {
                                         temp_ptr4 = (void *)temp_ptr5[1];
                                     }
@@ -735,12 +735,12 @@ STRING_MATCH_FOUND:
     }
     if (((_DAT_180c86870 != 0) && (*(int *)(_DAT_180c86870 + 0x340) == 1)) && (temp_bool)) {
         temp_long1 = (**(code **)(_DAT_180c8a9c0 + 0x18))();
-        temp_ptr4 = &DAT_18098bc73;
+        temp_ptr4 = &system_buffer_ptr;
         if (*(void **)(temp_long1 + 8) != (void *)0x0) {
             temp_ptr4 = *(void **)(temp_long1 + 8);
         }
         FUN_180627910(&stack_ptr14, temp_ptr4);
-        temp_ptr4 = &DAT_18098bc73;
+        temp_ptr4 = &system_buffer_ptr;
         if (stack_ptr19 != (void *)0x0) {
             temp_ptr4 = stack_ptr19;
         }
@@ -892,8 +892,8 @@ void execute_engine_core_operation(uint64_t operation_type, longlong operation_p
     }
     ptr_ptr = &ptr1;
     long_ptr_ptr_ptr = &long_ptr_ptr;
-    FUN_180066140(&ptr_ptr, _DAT_180c86920, &DAT_1809fc7d8);
-    FUN_180066140(&ptr_ptr, _DAT_180c868b0, &DAT_1809fcfc0);
+    FUN_180066140(&ptr_ptr, _DAT_180c86920, &system_memory_c7d8);
+    FUN_180066140(&ptr_ptr, _DAT_180c868b0, &system_memory_cfc0);
     code_ptr = *(code **)(*long_ptr_ptr + 0x40);
     temp_ulong = FUN_180627ae0(&ptr_ptr, _DAT_180c86928 + 0x28);
     (*code_ptr)(long_ptr_ptr, temp_ulong);

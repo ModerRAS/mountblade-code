@@ -43,7 +43,7 @@ void invoke_callback_function(void *func_ptr);
  * 
  * 该函数处理配置文件中的字符串数据，执行以下操作：
  * 1. 从配置中获取字符串缓冲区
- * 2. 移除字符串中的特定标记（DAT_180a0ff10）
+ * 2. 移除字符串中的特定标记（system_memory_ff10）
  * 3. 解析处理后的字符串数据
  * 4. 根据解析结果更新相关数据结构
  */
@@ -68,7 +68,7 @@ void process_config_string_data(longlong *config_ptr)
   
   // 循环处理字符串，移除特定标记
   while (0 < (int)temp_stack_uint1) {
-    temp_long1 = strstr(temp_stack_long1, &DAT_180a0ff10);
+    temp_long1 = strstr(temp_stack_long1, &system_memory_ff10);
     if (temp_long1 == 0) break;
     
     temp_int2 = 6;  // 标记长度
@@ -628,7 +628,7 @@ longlong *batch_copy_data_elements(longlong *dest_ptr, longlong *src_start_ptr,
 }
 
 // 全局变量声明（简化实现）
-static const longlong DAT_180a0ff10 = 0;  // 字符串匹配模式
+static const longlong system_memory_ff10 = 0;  // 字符串匹配模式
 static const longlong _DAT_180c86930 = 0; // 配置数据基址
 static const longlong _DAT_180c8ed18 = 0; // 内存分配器基址
 static const longlong UNK_180a3c3e0 = 0;  // 未知常量

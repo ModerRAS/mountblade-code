@@ -342,7 +342,7 @@ void FUN_1805ec620(ulonglong *param_1,char param_2,longlong *param_3,uint64_t pa
     }
     FUN_1805ec350(param_1,&fStack_88,0,param_4,param_5,param_2,uVar20);
     FUN_1802ea790(uVar19,&fStack_88);
-    (**(code **)(*(longlong *)param_1[0xb] + 0x148))((longlong *)param_1[0xb],&DAT_180a00300);
+    (**(code **)(*(longlong *)param_1[0xb] + 0x148))((longlong *)param_1[0xb],&system_data_0300);
     FUN_1805ea350(param_1);
     if ((param_2 == '\0') || (uStackX_8 = uStackX_8 & 0xffffffff00000000, param_1[0xe] == 0)) {
       uStackX_8 = CONCAT44(uStackX_8._4_4_,0x21);
@@ -488,7 +488,7 @@ void FUN_1805ec620(ulonglong *param_1,char param_2,longlong *param_3,uint64_t pa
     if (plVar1 != (longlong *)0x0) {
       (**(code **)(*plVar1 + 0x38))(plVar1);
     }
-    (**(code **)(*(longlong *)param_1[0xb] + 0x148))((longlong *)param_1[0xb],&DAT_180a00300);
+    (**(code **)(*(longlong *)param_1[0xb] + 0x148))((longlong *)param_1[0xb],&system_data_0300);
     iVar15 = (**(code **)(*(longlong *)param_1[0xb] + 0x130))();
     if (iVar15 == 0x21) goto LAB_1805ecb8d;
     puVar16 = (uint64_t *)&UNK_1809f8a74;

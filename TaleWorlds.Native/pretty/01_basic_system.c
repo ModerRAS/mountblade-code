@@ -73,20 +73,20 @@ void *ExceptionList;
  * 系统状态标志位
  * 用于跟踪系统运行状态和各子系统的初始化状态
  */
-char DAT_180bf0102;              /* 系统主状态标志 */
-char DAT_180c82860;              /* 渲染系统状态 */
-char DAT_180bf5240;              /* 内存管理状态 */
-char DAT_180bf0101;              /* 输入系统状态 */
+char system_memory_0102;              /* 系统主状态标志 */
+char system_debug_flag;              /* 渲染系统状态 */
+char system_memory_5240;              /* 内存管理状态 */
+char system_memory_0101;              /* 输入系统状态 */
 
 /**
  * 全局对象实例
  * 存储系统中重要的全局对象和单例
  */
 uint8_t UNK_180a22db0;         /* 全局对象1 */
-uint8_t DAT_180bf99f0;         /* 全局数据1 */
-uint8_t DAT_180bf99f8;         /* 全局数据2 */
-uint8_t DAT_180bf9a00;         /* 全局数据3 */
-uint8_t DAT_180bf9a08;         /* 全局数据4 */
+uint8_t system_memory_99f0;         /* 全局数据1 */
+uint8_t system_memory_99f8;         /* 全局数据2 */
+uint8_t system_memory_9a00;         /* 全局数据3 */
+uint8_t system_memory_9a08;         /* 全局数据4 */
 
 /*=============================================================================
  * 系统初始化函数
@@ -136,7 +136,7 @@ int SystemInitialize(void)
     }
     
     /* 设置系统状态标志 */
-    DAT_180bf0102 = SYSTEM_INITIALIZED;
+    system_memory_0102 = SYSTEM_INITIALIZED;
     
     return SUCCESS;
 }
@@ -154,7 +154,7 @@ int SystemInitialize(void)
 void SystemShutdown(void)
 {
     /* 设置系统关闭标志 */
-    DAT_180bf0102 |= SYSTEM_SHUTTING_DOWN;
+    system_memory_0102 |= SYSTEM_SHUTTING_DOWN;
     
     /* 关闭配置系统 */
     ConfigSystemShutdown();
@@ -172,7 +172,7 @@ void SystemShutdown(void)
     ExceptionList = NULL;
     
     /* 清除系统状态标志 */
-    DAT_180bf0102 = 0;
+    system_memory_0102 = 0;
 }
 
 /*=============================================================================
@@ -196,7 +196,7 @@ int MemoryManagerInitialize(void)
     /* 设置内存分配策略 */
     /* 初始化内存泄漏检测 */
     
-    DAT_180bf5240 = 1;  /* 标记内存管理器已初始化 */
+    system_memory_5240 = 1;  /* 标记内存管理器已初始化 */
     return SUCCESS;
 }
 
@@ -215,7 +215,7 @@ void MemoryManagerShutdown(void)
     /* 释放所有内存池 */
     /* 清理内存分配记录 */
     
-    DAT_180bf5240 = 0;  /* 标记内存管理器已关闭 */
+    system_memory_5240 = 0;  /* 标记内存管理器已关闭 */
 }
 
 /**
@@ -373,7 +373,7 @@ void RegisterSystemCallback(void* callback_data)
     
     /* 在链表中查找合适的位置 */
     while (status == '\0') {
-        compare_result = memcmp(current_ptr + 4, &DAT_1809fc740, 0x10);
+        compare_result = memcmp(current_ptr + 4, &system_memory_c740, 0x10);
         if (compare_result < 0) {
             next_ptr = (uint64_t *)current_ptr[2];
             current_ptr = prev_ptr;
@@ -386,7 +386,7 @@ void RegisterSystemCallback(void* callback_data)
     }
     
     /* 如果需要创建新的回调节点 */
-    if ((prev_ptr == base_ptr) || (compare_result = memcmp(&DAT_1809fc740, prev_ptr + 4, 0x10), compare_result < 0)) {
+    if ((prev_ptr == base_ptr) || (compare_result = memcmp(&system_memory_c740, prev_ptr + 4, 0x10), compare_result < 0)) {
         result = FUN_18008f0d0(manager_ptr);
         FUN_18008f140(manager_ptr, &new_callback, prev_ptr, result + 0x20, result);
         prev_ptr = new_callback;
@@ -432,7 +432,7 @@ void RegisterInputCallback(void* input_data)
     
     /* 在链表中查找合适的位置 */
     while (status == '\0') {
-        compare_result = memcmp(current_ptr + 4, &DAT_1809fc768, 0x10);
+        compare_result = memcmp(current_ptr + 4, &system_memory_c768, 0x10);
         if (compare_result < 0) {
             next_ptr = (uint64_t *)current_ptr[2];
             current_ptr = prev_ptr;
@@ -445,7 +445,7 @@ void RegisterInputCallback(void* input_data)
     }
     
     /* 如果需要创建新的回调节点 */
-    if ((prev_ptr == base_ptr) || (compare_result = memcmp(&DAT_1809fc768, prev_ptr + 4, 0x10), compare_result < 0)) {
+    if ((prev_ptr == base_ptr) || (compare_result = memcmp(&system_memory_c768, prev_ptr + 4, 0x10), compare_result < 0)) {
         result = FUN_18008f0d0(manager_ptr);
         FUN_18008f140(manager_ptr, &new_callback, prev_ptr, result + 0x20, result);
         prev_ptr = new_callback;
@@ -491,7 +491,7 @@ void RegisterRenderCallback(void* render_data)
     
     /* 在链表中查找合适的位置 */
     while (status == '\0') {
-        compare_result = memcmp(current_ptr + 4, &DAT_18098c9b8, 0x10);
+        compare_result = memcmp(current_ptr + 4, &system_memory_c9b8, 0x10);
         if (compare_result < 0) {
             next_ptr = (uint64_t *)current_ptr[2];
             current_ptr = prev_ptr;
@@ -504,7 +504,7 @@ void RegisterRenderCallback(void* render_data)
     }
     
     /* 如果需要创建新的回调节点 */
-    if ((prev_ptr == base_ptr) || (compare_result = memcmp(&DAT_18098c9b8, prev_ptr + 4, 0x10), compare_result < 0)) {
+    if ((prev_ptr == base_ptr) || (compare_result = memcmp(&system_memory_c9b8, prev_ptr + 4, 0x10), compare_result < 0)) {
         result = FUN_18008f0d0(manager_ptr);
         FUN_18008f140(manager_ptr, &new_callback, prev_ptr, result + 0x20, result);
         prev_ptr = new_callback;
@@ -532,7 +532,7 @@ void RegisterRenderCallback(void* render_data)
  */
 bool IsSystemInitialized(uint8_t system_flag)
 {
-    return (DAT_180bf0102 & system_flag) != 0;
+    return (system_memory_0102 & system_flag) != 0;
 }
 
 /**

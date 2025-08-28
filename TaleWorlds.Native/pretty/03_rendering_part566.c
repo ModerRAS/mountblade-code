@@ -48,14 +48,14 @@ void FUN_18057a3c0(longlong param_1,int param_2,uint64_t param_3,int32_t param_4
   if (*(int *)(param_1 + 0x8228) != iVar3) {
     lVar16 = (longlong)*(int *)(param_1 + 0xac) * 0xe0 + _DAT_180c95fb0;
     if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-                 0x48) < _DAT_180d4a038) && (FUN_1808fcb90(&DAT_180d4a038), _DAT_180d4a038 == -1)) {
+                 0x48) < _DAT_180d4a038) && (FUN_1808fcb90(&system_ptr_a038), _DAT_180d4a038 == -1)) {
       _DAT_180d4a040 = 0;
       FUN_1808fc820(&UNK_1809430d0);
-      FUN_1808fcb30(&DAT_180d4a038);
+      FUN_1808fcb30(&system_ptr_a038);
     }
-    puStack_118 = &DAT_180d4a040;
+    puStack_118 = &system_ptr_a040;
     uStack_110 = 1;
-    AcquireSRWLockShared(&DAT_180d4a040);
+    AcquireSRWLockShared(&system_ptr_a040);
     for (piVar7 = *(int **)(lVar16 + 0xd8); uVar14 = uVar11, piVar7 != (int *)0x0;
         piVar7 = *(int **)(piVar7 + 4)) {
       if (*piVar7 == iVar3) {
@@ -63,11 +63,11 @@ void FUN_18057a3c0(longlong param_1,int param_2,uint64_t param_3,int32_t param_4
         break;
       }
     }
-    ReleaseSRWLockShared(&DAT_180d4a040);
+    ReleaseSRWLockShared(&system_ptr_a040);
     if (uVar14 == 0) {
-      puStack_118 = &DAT_180d4a040;
+      puStack_118 = &system_ptr_a040;
       uStack_110 = 0;
-      AcquireSRWLockExclusive(&DAT_180d4a040);
+      AcquireSRWLockExclusive(&system_ptr_a040);
       uStack_110 = 1;
       for (piVar7 = *(int **)(lVar16 + 0xd8); piVar7 != (int *)0x0; piVar7 = *(int **)(piVar7 + 4))
       {
@@ -82,7 +82,7 @@ void FUN_18057a3c0(longlong param_1,int param_2,uint64_t param_3,int32_t param_4
       do {
         iStack_128 = (int)uVar11;
         uVar4 = FUN_18054f810(*(uint64_t *)(param_1 + 0x2518),param_4,uVar2,param_2);
-        iVar5 = FUN_18053a410(&DAT_180c95f30,*(int32_t *)(param_1 + 0xac),uVar4);
+        iVar5 = FUN_18053a410(&system_ptr_5f30,*(int32_t *)(param_1 + 0xac),uVar4);
         iVar5 = *(int *)(_DAT_180c95f68 + (longlong)iVar5 * 4);
         if (iVar5 == -1) {
           uVar9 = 0;
@@ -149,7 +149,7 @@ void FUN_18057a3c0(longlong param_1,int param_2,uint64_t param_3,int32_t param_4
         }
       }
 LAB_18057a6bc:
-      ReleaseSRWLockExclusive(&DAT_180d4a040);
+      ReleaseSRWLockExclusive(&system_ptr_a040);
     }
     if (*(int *)(param_1 + 0x8228) != iVar3) {
       *(int *)(param_1 + 0x8228) = iVar3;

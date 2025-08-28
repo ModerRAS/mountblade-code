@@ -241,7 +241,7 @@ ulonglong calculate_queue_position(longlong *queue_header, uint *queue_params)
     if (remaining_steps != 0) {
       do {
         if (current_node == (ulonglong *)0x0) {
-          current_node = (ulonglong *)&DAT_00000008;
+          current_node = (ulonglong *)&system_memory_0008;
         }
         temp_node = (ulonglong *)(*current_node - 8);
         if (*current_node == 0) {
@@ -271,7 +271,7 @@ ulonglong calculate_queue_position(longlong *queue_header, uint *queue_params)
   if ((int)step_count != 0) {
     do {
       if (current_node == (ulonglong *)0x0) {
-        current_node = (ulonglong *)&DAT_00000008;
+        current_node = (ulonglong *)&system_memory_0008;
       }
       step_count = *current_node;
       next_node = (ulonglong *)(step_count - 8);
@@ -550,7 +550,7 @@ uint64_t process_queue_request(uint64_t *queue_handle, longlong request_data, ui
     current_node = (longlong *)*queue_handle;
     queue_node = *(longlong **)(request_data + 0x10);
     if (queue_node == (longlong *)0x0) {
-      queue_node = (longlong *)&DAT_00000008;
+      queue_node = (longlong *)&system_memory_0008;
     }
     
     base_address = *queue_node;
@@ -891,7 +891,7 @@ void initialize_engine_core(uint64_t engine_param, longlong config_data)
   *(uint64_t **)(system_address + 400) = component_handle;
   
   stack_pointer = &UNK_18098bcb0;
-  setup_engine_config(_DAT_180c86870 + 0x170, temp_config, &DAT_1809fc8c8);
+  setup_engine_config(_DAT_180c86870 + 0x170, temp_config, &system_memory_c8c8);
   
   if (0 < *(int *)(config_data + 0x10)) {
     expand_engine_config(temp_config, config_length + *(int *)(config_data + 0x10));

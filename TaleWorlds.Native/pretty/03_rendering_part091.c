@@ -955,7 +955,7 @@ void RenderingSystem_DataTransfer(longlong source_context, longlong target_conte
   shader_data = user_buffer;
   user_buffer[0] = 0;
   data_size = 0x1b;
-  index_buffer = (uint64_t *)&DAT_18098bc73;
+  index_buffer = (uint64_t *)&system_buffer_ptr;
   if (vertex_buffer != (uint64_t *)0x0) {
     index_buffer = vertex_buffer;
   }
@@ -1100,7 +1100,7 @@ void RenderingSystem_MemoryManager(uint64_t **memory_pool, longlong *memory_cont
   FUN_18031f0e0(temp_block, temp_ptr);
   
   // 执行内存操作
-  (**(code **)(*memory_context + 0x10))(memory_context, &DAT_18098bc73);
+  (**(code **)(*memory_context + 0x10))(memory_context, &system_buffer_ptr);
   
   // 计算内存块数量
   block_count = (longlong)memory_end - (longlong)memory_ptr >> 5;
@@ -1117,7 +1117,7 @@ void RenderingSystem_MemoryManager(uint64_t **memory_pool, longlong *memory_cont
         string_compare = 0;
         do {
           string_length = string_compare + 1;
-          if (*(char *)(*(longlong *)(string_data + -2) + string_compare) != (&DAT_180a04ee4)[string_compare])
+          if (*(char *)(*(longlong *)(string_data + -2) + string_compare) != (&system_memory_4ee4)[string_compare])
           goto LAB_18031ee56;
           string_compare = string_length;
         } while (string_length != 5);

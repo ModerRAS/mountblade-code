@@ -865,7 +865,7 @@ void RenderingSystem_SerializeResources(longlong render_data, longlong *output_b
   *uint_ptr = data_size;
   temp_offset = output_buffer[1];
   output_buffer[1] = temp_offset + 4;
-  data_ptr = &DAT_18098bc73;
+  data_ptr = &system_buffer_ptr;
   if (*(void **)(render_data + 0x1b0) != (void *)0x0) {
     data_ptr = *(void **)(render_data + 0x1b0);
   }

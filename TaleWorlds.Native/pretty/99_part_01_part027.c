@@ -639,7 +639,7 @@ longlong FUN_1800ba230(longlong param_1)
   *(int32_t *)(param_1 + 0x24) = 0x40000000;
   *(int32_t *)(param_1 + 0x2c) = 3;
   *(uint64_t *)(param_1 + 0x10) = 1;
-  *(void **)(param_1 + 8) = &DAT_180be0000;
+  *(void **)(param_1 + 8) = &system_data_0000;
   *(uint64_t *)(param_1 + 0x18) = 0;
   *(int32_t *)(param_1 + 0x28) = 0;
   FUN_1806279c0(param_1 + 0x30);
@@ -926,7 +926,7 @@ void FUN_1800baa80(uint64_t *param_1)
   *puVar3 = 0x737265646168532f;
   *(int16_t *)(puVar3 + 1) = 0x2f;
   *(int *)(param_1 + 2) = iVar1 + 0x27;
-  if (DAT_180d48d40 == '\0') {
+  if (system_data_8d40 == '\0') {
 
 
 

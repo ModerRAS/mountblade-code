@@ -149,8 +149,8 @@ longlong process_data_structure(int32_t *data_ptr,int32_t *input_ptr)
   if (*(longlong *)(data_ptr + 0x18) != 0) {
     success = (**(code **)(data_ptr + 0x1a))(input_ptr,data_ptr + 0x14);
     if (success == '\0') {
-      if (DAT_180c82860 == '\0') {
-        error_msg = &DAT_18098bc73;
+      if (system_debug_flag == '\0') {
+        error_msg = &system_buffer_ptr;
         if (*(void **)(data_ptr + 4) != (void *)0x0) {
           error_msg = *(void **)(data_ptr + 4);
         }
@@ -185,8 +185,8 @@ void set_system_parameter(uint64_t system_handle,int32_t parameter)
   if ((*(longlong *)(_DAT_180c86920 + 0x22f0) != 0) &&
      (param_array[0] = parameter, check_result = (**(code **)(_DAT_180c86920 + 0x22f8))(param_array),
      parameter = param_array[0], check_result == '\0')) {
-    if (DAT_180c82860 == '\0') {
-      error_msg = &DAT_18098bc73;
+    if (system_debug_flag == '\0') {
+      error_msg = &system_buffer_ptr;
       if (*(void **)(system_base + 0x22a0) != (void *)0x0) {
         error_msg = *(void **)(system_base + 0x22a0);
       }
@@ -613,7 +613,7 @@ int insert_into_dynamic_array(longlong array_ptr,longlong element_ptr)
   uStack_58 = 0;
   uStack_50 = 0;
   uStack_48 = 0;
-  error_msg = &DAT_18098bc73;
+  error_msg = &system_buffer_ptr;
   if (*(void **)(element_ptr + 8) != (void *)0x0) {
     error_msg = *(void **)(element_ptr + 8);
   }
@@ -823,7 +823,7 @@ void initialize_system_components(longlong *system_ptr,uint64_t *config_ptr)
   FUN_18005e300(stack_guard,&temp_ptr);
   (**(code **)(*new_system + 0x38))(new_system);
   _DAT_180bf52b0 = (longlong)*(int *)(_DAT_180c86870 + 0x224);
-  FUN_180627be0(&DAT_180bf52c0,config_ptr);
+  FUN_180627be0(&system_memory_52c0,config_ptr);
   *config_ptr = &UNK_180a3c3e0;
   if (config_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -936,7 +936,7 @@ void initialize_game_engine(void)
   FUN_18005e300(system_handle,&temp_engine2);
   temp_flag = 0;
   (*(code *)(*engine_obj)[7])(engine_obj);
-  FUN_180627ae0(&context_ptr,&DAT_180bf52c0);
+  FUN_180627ae0(&context_ptr,&system_memory_52c0);
   if (data_size == 0) {
     (**(code **)(context_ptr + 0x10))(&context_ptr,&UNK_1809fc7a0);
     success = FUN_180624a00(&context_ptr);
@@ -994,7 +994,7 @@ void initialize_game_engine(void)
   temp_ptr11 = &UNK_18098bcb0;
   timestamp = FUN_180623ce0();
   if (0 < _DAT_180bf52d0) {
-    FUN_180629a40(&DAT_180bf52c0,&temp_ptr3,0,_DAT_180bf52d0 + -1);
+    FUN_180629a40(&system_memory_52c0,&temp_ptr3,0,_DAT_180bf52d0 + -1);
     temp_index = temp_index + -1;
     file_offset = (longlong)temp_index;
     index = -1;
@@ -1008,9 +1008,9 @@ void initialize_game_engine(void)
       } while (-1 < file_offset);
     }
     FUN_180629a40(&temp_ptr3,&temp_ptr4,index + 1,0xffffffff);
-    index = FUN_180046b80(&DAT_180bf5240,&temp_ptr4);
+    index = FUN_180046b80(&system_memory_5240,&temp_ptr4);
     if (index == -1) {
-      index = FUN_180046890(&DAT_180bf5240,&temp_ptr4);
+      index = FUN_180046890(&system_memory_5240,&temp_ptr4);
     }
     file_offset = (longlong)index * 0x100;
     temp_engine = (longlong ***)(_DAT_180bf5248 + 0x30 + file_offset);
@@ -1072,13 +1072,13 @@ void initialize_game_engine(void)
   *(int16_t *)(value_ptr + 4) = 0x74;
   buffer_size = index;
   config_ptr = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,3);
-  buffer_ptr = &DAT_18098bc73;
+  buffer_ptr = &system_buffer_ptr;
   if (temp_buffer != (int8_t *)0x0) {
     buffer_ptr = temp_buffer;
   }
   *config_ptr = 0;
   *(int8_t *)(config_ptr + 2) = 0;
-  FUN_18062dee0(config_ptr,buffer_ptr,&DAT_1809fc7ec);
+  FUN_18062dee0(config_ptr,buffer_ptr,&system_memory_c7ec);
   FUN_1800ae730(_DAT_180c86920,config_ptr);
   if (config_ptr[1] != 0) {
     fclose();
@@ -1172,9 +1172,9 @@ void register_resource(uint64_t system_handle,uint64_t resource_name,longlong re
   uint64_t resource_data_copy;
   
   resource_data_copy = system_handle;
-  result = FUN_180046b80(&DAT_180bf5240);
+  result = FUN_180046b80(&system_memory_5240);
   if (result == -1) {
-    result = FUN_180046890(&DAT_180bf5240,resource_name);
+    result = FUN_180046890(&system_memory_5240,resource_name);
   }
   resource_ptr = (uint64_t *)(_DAT_180bf5248 + 0xd0 + (longlong)result * 0x100);
   current_ptr = resource_ptr;

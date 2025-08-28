@@ -342,7 +342,7 @@ void FUN_1805279f0(longlong param_1,float *param_2,longlong param_3,int8_t param
     else {
       uStack_387 = *(int8_t *)(lVar19 + 0x25fb);
     }
-    iVar13 = FUN_18053a410(&DAT_180c95f30,*(int32_t *)(lVar19 + 0xac),fVar27);
+    iVar13 = FUN_18053a410(&system_data_5f30,*(int32_t *)(lVar19 + 0xac),fVar27);
     iVar13 = *(int *)(_DAT_180c95f68 + (longlong)iVar13 * 4);
     if (iVar13 == -1) {
       lVar19 = 0;

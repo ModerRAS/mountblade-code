@@ -272,7 +272,7 @@ LAB_180329ed7:
     plStack_c8 = (longlong *)CONCAT44(plStack_c8._4_4_,plStackX_18._0_4_);
     plStack_c0 = plVar5;
     FUN_18033b220(param_1 + 0x3a8,alStack_b0,&plStack_c8);
-    goto DAT_180329eb7;
+    goto system_memory_9eb7;
   case 3:
   case 5:
     goto code_r0x000180329ed1;
@@ -311,7 +311,7 @@ LAB_180329ed7:
     alStack_b0[2] = 0;
     uStack_50 = 3;
     uStack_98 = 3;
-    plVar5 = (longlong *)(*_DAT_180c917d8)(alStack_68,&DAT_180c917c0);
+    plVar5 = (longlong *)(*_DAT_180c917d8)(alStack_68,&system_memory_17c0);
     if (alStack_b0[0] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
@@ -431,7 +431,7 @@ void RenderingSystem_FullInitializerAndCleaner(longlong param_1)
   *(uint64_t *)(param_1 + 0x158) = 0xffffffffffffffff;
   *(uint64_t *)(param_1 + 0x150) = 0;
   *(uint64_t *)(param_1 + 0x160) = 0;
-  (**(code **)(*(longlong *)(param_1 + 0x208) + 0x10))((longlong *)(param_1 + 0x208),&DAT_18098bc73)
+  (**(code **)(*(longlong *)(param_1 + 0x208) + 0x10))((longlong *)(param_1 + 0x208),&system_buffer_ptr)
   ;
   *(int8_t *)(param_1 + 0x114) = 0;
   *(int32_t *)(param_1 + 0x140) = 0x3e4ccccd;
@@ -467,7 +467,7 @@ void RenderingSystem_FullInitializerAndCleaner(longlong param_1)
     __Throw_C_error_std__YAXH_Z(iVar6);
   }
   *(int32_t *)(param_1 + 0x228) = 0xffffffff;
-  (**(code **)(*(longlong *)(param_1 + 0x118) + 0x10))((longlong *)(param_1 + 0x118),&DAT_18098bc73)
+  (**(code **)(*(longlong *)(param_1 + 0x118) + 0x10))((longlong *)(param_1 + 0x118),&system_buffer_ptr)
   ;
   plVar2 = *(longlong **)(param_1 + 0x9f8);
   lVar10 = *plVar2;
@@ -724,7 +724,7 @@ void RenderingSystem_FullInitializerAndCleaner(longlong param_1)
     *(int32_t *)(plVar2 + 8) = 0;
     *(int32_t *)((longlong)plVar2 + 0x44) = 0;
     *(int32_t *)(plVar2 + 9) = 0x3f800000;
-    (**(code **)(plVar2[10] + 0x10))(plVar2 + 10,&DAT_18098bc73);
+    (**(code **)(plVar2[10] + 0x10))(plVar2 + 10,&system_buffer_ptr);
     *(int32_t *)(plVar2 + 0xe) = 0xffffffff;
     lVar9 = *(longlong *)(lVar9 + 0x10);
     while (lVar9 == 0) {

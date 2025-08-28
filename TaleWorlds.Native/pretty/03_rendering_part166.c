@@ -548,7 +548,7 @@ LAB_180373799:
           piVar12 = *(int **)*pauVar10;
           auStack_2e8 = *pauVar10;
         }
-        FUN_18063ad30(&uStack_178,*(longlong *)(piVar12 + 2) + 0x18,&DAT_180a00300);
+        FUN_18063ad30(&uStack_178,*(longlong *)(piVar12 + 2) + 0x18,&system_data_0300);
         lVar19 = FUN_180372570(param_1,uVar3 & 0xffffffff,uVar16 & 0xffffffff);
         lVar23 = *(longlong *)(param_1 + 0x110);
         iVar5 = *(int *)(param_1 + 0x58) * iVar7 + iVar5;

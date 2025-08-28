@@ -95,7 +95,7 @@ LAB_180209ba0:
         if (texture_ext != texture_path + -0x180a04ee3) goto LAB_180209c13;
         texture_ext = material_name + (longlong)texture_ext;
         if (material_name < texture_ext) {
-          path_length = (longlong)&DAT_180a04ee4 - (longlong)material_name;
+          path_length = (longlong)&system_flag_4ee4 - (longlong)material_name;
           while (*material_name == material_name[path_length]) {
             material_name = material_name + 1;
             if (texture_ext <= material_name) goto LAB_180209bd8;
@@ -122,7 +122,7 @@ LAB_180209bd8:
             temp_path = temp_path + (longlong)texture_name;
             texture_ext = material_name;
             if (temp_path <= texture_name) break;
-            path_length = (longlong)&DAT_18098c5e8 - (longlong)texture_name;
+            path_length = (longlong)&system_flag_c5e8 - (longlong)texture_name;
             while (*texture_name == texture_name[path_length]) {
               texture_name = texture_name + 1;
               if (temp_path <= texture_name) goto LAB_180209c65;
@@ -195,7 +195,7 @@ LAB_180209d30:
                   default_path = temp_path + (longlong)default_path;
                   texture_name = material_name;
                   if (default_path <= temp_path) break;
-                  path_length = (longlong)&DAT_180a0e8a0 - (longlong)temp_path;
+                  path_length = (longlong)&system_flag_e8a0 - (longlong)temp_path;
                   while (*temp_path == temp_path[path_length]) {
                     temp_path = temp_path + 1;
                     if (default_path <= temp_path) goto joined_r0x000180209daf;
@@ -282,7 +282,7 @@ LAB_180209f34:
                         FUN_180627c50(&stack_resource_4,path_length);
                         break;
                       }
-                      path_length = (longlong)&DAT_180a03a84 - (longlong)material_name;
+                      path_length = (longlong)&system_flag_3a84 - (longlong)material_name;
                       while (*material_name == material_name[path_length]) {
                         material_name = material_name + 1;
                         if (texture_path <= material_name) goto LAB_180209f34;
@@ -311,7 +311,7 @@ LAB_180209f34:
                 }
                 else {
                   if (texture_index == 9) {
-                    material_index = strcmp(path_length,&DAT_180a0ff18);
+                    material_index = strcmp(path_length,&system_flag_ff18);
                     is_match = material_index == 0;
                   }
                   else {
@@ -348,7 +348,7 @@ LAB_18020a094:
                           FUN_180627c50(&stack_resource_5,path_length);
                           break;
                         }
-                        path_length = (longlong)&DAT_180a03a84 - (longlong)material_name;
+                        path_length = (longlong)&system_flag_3a84 - (longlong)material_name;
                         while (*material_name == material_name[path_length]) {
                           material_name = material_name + 1;
                           if (texture_path <= material_name) goto LAB_18020a094;
@@ -414,7 +414,7 @@ LAB_18020a1f4:
                             FUN_180627c50(&stack_resource_1,path_length);
                             break;
                           }
-                          path_length = (longlong)&DAT_180a03a84 - (longlong)material_name;
+                          path_length = (longlong)&system_flag_3a84 - (longlong)material_name;
                           while (*material_name == material_name[path_length]) {
                             material_name = material_name + 1;
                             if (texture_path <= material_name) goto LAB_18020a1f4;
@@ -462,7 +462,7 @@ LAB_18020a1f4:
                     temp_path = temp_path + (longlong)texture_path;
                     texture_name = material_name;
                     if (temp_path <= texture_path) break;
-                    path_length = (longlong)&DAT_180a0e8a0 - (longlong)texture_path;
+                    path_length = (longlong)&system_flag_e8a0 - (longlong)texture_path;
                     while (*texture_path == texture_path[path_length]) {
                       texture_path = texture_path + 1;
                       if (temp_path <= texture_path) goto LAB_18020a31a;
@@ -568,7 +568,7 @@ LAB_18020a4d0:
                       FUN_180627c50(&stack_resource_2,path_length);
                       break;
                     }
-                    path_length = (longlong)&DAT_180a03a84 - (longlong)temp_name;
+                    path_length = (longlong)&system_flag_3a84 - (longlong)temp_name;
                     while (*temp_name == temp_name[path_length]) {
                       temp_name = temp_name + 1;
                       if (texture_name <= temp_name) goto LAB_18020a4d0;
@@ -581,7 +581,7 @@ LAB_18020a4d0:
                   path_length = 0;
                   do {
                     material_offset = path_length + 1;
-                    if (*(char *)(stack_offset_2 + path_length) != (&DAT_180a0b57c)[path_length])
+                    if (*(char *)(stack_offset_2 + path_length) != (&system_flag_b57c)[path_length])
                     goto LAB_18020a528;
                     path_length = material_offset;
                   } while (material_offset != 5);

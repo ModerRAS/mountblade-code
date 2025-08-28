@@ -787,7 +787,7 @@ void FUN_1802ca920(longlong *param_1)
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   uStack_d8 = 0x1d;
-  strcpy_s(auStack_d0,0x40,&DAT_180a0d498);
+  strcpy_s(auStack_d0,0x40,&system_data_d498);
   plVar2 = (longlong *)FUN_1800b31f0(_DAT_180c86930,&pplStack_130,&puStack_e8,1);
   lVar1 = *plVar2;
   *plVar2 = 0;

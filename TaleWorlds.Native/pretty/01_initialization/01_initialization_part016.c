@@ -726,7 +726,7 @@ void cleanup_path_string(void)
   }
   *path_ptr = 0;
   _DAT_180c82858 = path_ptr;
-  if (DAT_180bf0101 != '\0') {
+  if (system_memory_0101 != '\0') {
     GetLastError();
     temp_ptr = &default_string_18098bc73;
     if ((void *)path_ptr[2] != (void *)0x0) {

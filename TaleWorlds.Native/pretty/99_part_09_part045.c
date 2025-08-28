@@ -371,7 +371,7 @@ LAB_1805d1bc2:
       }
       else {
         lVar15 = unaff_RSI[0x2b6];
-        plVar12 = (longlong *)&DAT_1809ff0c8;
+        plVar12 = (longlong *)&system_data_f0c8;
       }
       unaff_RSI[0x2b2] = *plVar12;
       lVar16 = lVar15 + 0x48;
@@ -465,7 +465,7 @@ void FUN_1805d1ac0(uint64_t param_1,char param_2)
     }
     else {
       lVar4 = unaff_RSI[0x2b6];
-      plVar3 = (longlong *)&DAT_1809ff0c8;
+      plVar3 = (longlong *)&system_data_f0c8;
     }
     unaff_RSI[0x2b2] = *plVar3;
     lVar5 = lVar4 + 0x48;
@@ -516,7 +516,7 @@ void FUN_1805d1c80(longlong *param_1,int *param_2,int32_t param_3)
     *(int32_t *)((longlong)param_1 + 0x2c) = 0xbf800000;
     param_1[6] = 0;
     *(int32_t *)(param_1 + 7) = 0xffffffff;
-    param_1[0x292] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x293] * 8);
+    param_1[0x292] = *(longlong *)(&system_error_code + (longlong)(int)param_1[0x293] * 8);
     *(int8_t *)((longlong)param_1 + 0x14a4) = 0;
     if (iVar1 < 0) {
       *(int32_t *)((longlong)param_1 + 0x178c) = 0;

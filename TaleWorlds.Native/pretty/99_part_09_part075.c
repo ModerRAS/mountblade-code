@@ -718,7 +718,7 @@ void FUN_1805ef2e0(longlong param_1,int param_2,longlong param_3,uint64_t param_
   iStack_40 = 0;
   FUN_1806277c0(&puStack_50,*(int32_t *)(param_3 + 0x10),param_3,param_4,0xfffffffffffffffe);
   if (0 < *(int *)(param_3 + 0x10)) {
-    puVar6 = &DAT_18098bc73;
+    puVar6 = &system_buffer_ptr;
     if (*(void **)(param_3 + 8) != (void *)0x0) {
       puVar6 = *(void **)(param_3 + 8);
     }
@@ -778,7 +778,7 @@ LAB_1805ef418:
       iVar8 = *(int *)(puVar3 + 8);
       goto LAB_1805ef490;
     }
-    pbVar4 = &DAT_18098bc73;
+    pbVar4 = &system_buffer_ptr;
     if (pbStack_48 != (byte *)0x0) {
       pbVar4 = pbStack_48;
     }

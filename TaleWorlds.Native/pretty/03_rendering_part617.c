@@ -351,7 +351,7 @@ void FUN_18060c590(int param_1,longlong param_2,int32_t param_3,int32_t param_4,
     puVar3 = (uint64_t *)*puVar3;
   }
   puVar2 = *(void **)(*(longlong *)(puVar3[5] + 0x290) + 0x28 + (longlong)param_1 * 0xa8);
-  puVar4 = &DAT_18098bc73;
+  puVar4 = &system_buffer_ptr;
   if (puVar2 != (void *)0x0) {
     puVar4 = puVar2;
   }
@@ -549,7 +549,7 @@ LAB_18060ca50:
   *(int32_t *)((longlong)puVar5 + 0x24) = 0x5f736563;
   *(int32_t *)(puVar5 + 5) = 0x676e656c;
   *(int32_t *)((longlong)puVar5 + 0x2c) = 0x216874;
-  puVar6 = (int32_t *)&DAT_18098bc73;
+  puVar6 = (int32_t *)&system_buffer_ptr;
   if (puStack_78 != (int32_t *)0x0) {
     puVar6 = puStack_78;
   }
@@ -765,7 +765,7 @@ LAB_18060cec0:
   puVar6[7] = 0x635f726f;
   puVar6[8] = 0x746e756f;
   *(int16_t *)(puVar6 + 9) = 0x21;
-  puVar6 = (int32_t *)&DAT_18098bc73;
+  puVar6 = (int32_t *)&system_buffer_ptr;
   if (puStack_78 != (int32_t *)0x0) {
     puVar6 = puStack_78;
   }

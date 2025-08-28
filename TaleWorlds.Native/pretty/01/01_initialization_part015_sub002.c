@@ -129,12 +129,12 @@ typedef struct {
  * ============================================================================ */
 
 // 互斥锁管理数据区域
-extern int32_t DAT_1800497f0;              // 互斥锁状态标志
+extern int32_t system_memory_97f0;              // 互斥锁状态标志
 extern uint64_t UNK_1800497f8;               // 互斥锁控制块
 extern void *UNK_180049800;               // 互斥锁指针表
 extern int32_t UNK_180049808;               // 互斥锁计数器
-extern uint8_t DAT_180049810;                // 互斥锁配置数据
-extern uint8_t DAT_180049830;                // 互斥锁资源数据
+extern uint8_t system_memory_9810;                // 互斥锁配置数据
+extern uint8_t system_memory_9830;                // 互斥锁资源数据
 
 /* ============================================================================
  * 函数声明

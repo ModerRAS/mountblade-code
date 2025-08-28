@@ -909,7 +909,7 @@ FUN_1805de4c2:
   fVar26 = fVar26 + (float)(fVar26 <= 1.1754944e-38) * 1.1754944e-38;
   auVar23 = rsqrtss(ZEXT416((uint)fVar26),ZEXT416((uint)fVar26));
   fVar20 = auVar23._0_4_;
-  fVar20 = fVar20 * 0.5 * ((float)DAT_180a401f0 - fVar26 * fVar20 * fVar20);
+  fVar20 = fVar20 * 0.5 * ((float)system_data_01f0 - fVar26 * fVar20 * fVar20);
   fVar25 = fVar20 * fVar25;
   fVar24 = fVar20 * fVar24;
   uVar30 = CONCAT44(fVar24,fVar25);

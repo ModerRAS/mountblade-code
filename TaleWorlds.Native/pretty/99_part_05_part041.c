@@ -747,7 +747,7 @@ LAB_1802f2dc5:
                                 FUN_180627c50(&puStack_490, lVar4);
                                 goto LAB_1802f2de0;
                             }
-                            lVar4 = (longlong)&DAT_180a03a84 - (longlong)pcVar6;
+                            lVar4 = (longlong)&system_memory_3a84 - (longlong)pcVar6;
                             while (*pcVar6 == pcVar6[lVar4]) {
                                 pcVar6 = pcVar6 + 1;
                                 if (pcVar2 <= pcVar6) goto LAB_1802f2dc5;

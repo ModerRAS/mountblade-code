@@ -66,7 +66,7 @@ void FUN_1805df1f8(float param_1,uint64_t param_2,uint64_t param_3,longlong para
     if (((*(int *)(param_4 + 0x5f8) == 0) &&
         ((*(byte *)(*(longlong *)(in_R10 + 0x20) + 0x40) & 1) != 0)) &&
        (cVar5 = func_0x000180522f60(in_R10), param_1 = extraout_XMM0_Da, cVar5 == '\0')) {
-      uVar15 = FUN_1805e6940(extraout_XMM0_Da,unaff_RBP + 10,&DAT_1809ff0c8);
+      uVar15 = FUN_1805e6940(extraout_XMM0_Da,unaff_RBP + 10,&system_data_f0c8);
       param_1 = (float)FUN_1805e5240(uVar15,unaff_RBP + 0xb);
       goto LAB_1805df643;
     }

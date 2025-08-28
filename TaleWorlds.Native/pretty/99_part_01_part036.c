@@ -66,7 +66,7 @@ LAB_1800c46c3:
       iVar9 = iVar9 + 1;
     } while (iVar9 < iVar6);
   }
-  puVar5 = &DAT_18098bc73;
+  puVar5 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar5 = *(void **)(param_2 + 8);
   }

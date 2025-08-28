@@ -302,7 +302,7 @@ LAB_18007b454:
       (**(code **)(*current_ptr + 0x28))(current_ptr);
       callback_func = GetProcessingCallback;
       stack_ptr1 = &CALLBACK_DISPATCHER;
-      stack_var7 = (longlong *)AllocateMemory(GLOBAL_MEMORY_POOL, 0x20, 8, DAT_180bf65bc);
+      stack_var7 = (longlong *)AllocateMemory(GLOBAL_MEMORY_POOL, 0x20, 8, system_allocation_flags);
       *stack_var7 = object_context;
       *(byte *)(stack_var7 + 1) = state_param;
       stack_var7[2] = (longlong)temp_ptr;

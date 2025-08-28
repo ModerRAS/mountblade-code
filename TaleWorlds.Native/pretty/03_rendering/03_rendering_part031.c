@@ -135,7 +135,7 @@ void serialize_rendering_data(longlong *render_obj, longlong *output_buf, uint64
             }
             
             // 清理字符串数据
-            while ((0 < (int)stack_str_size && (array_size = strstr(stack_str_ptr, &DAT_180a0ff10), array_size != 0))) {
+            while ((0 < (int)stack_str_size && (array_size = strstr(stack_str_ptr, &system_buffer_ff10), array_size != 0))) {
                 item_index = 6;
                 item_count = (int)array_size - (int)stack_str_ptr;
                 if (stack_str_size < item_count + 6U) {
@@ -165,14 +165,14 @@ void serialize_rendering_data(longlong *render_obj, longlong *output_buf, uint64
             *uint_ptr = buffer_size;
             array_size = output_buf[1];
             output_buf[1] = array_size + 4;
-            str_ptr = &DAT_18098bc73;
+            str_ptr = &system_buffer_ptr;
             if (stack_str_ptr != (int8_t *)0x0) {
                 str_ptr = stack_str_ptr;
             }
             memcpy(array_size + 4, str_ptr, total_size);
         }
         
-        data_ptr = &DAT_18098bc73;
+        data_ptr = &system_buffer_ptr;
         if (*(void **)(array_size + 8) != (void *)0x0) {
             data_ptr = *(void **)(array_size + 8);
         }
@@ -1111,7 +1111,7 @@ find_in_rendering_hash_table(longlong hash_table, uint64_t *result_ptr, uint64_t
     item_ptr[0xd] = 3;
     item_ptr[6] = 1;
     item_ptr[7] = 0;
-    *(void **)(item_ptr + 4) = &DAT_180be0000;
+    *(void **)(item_ptr + 4) = &system_buffer_0000;
     item_ptr[8] = 0;
     item_ptr[9] = 0;
     item_ptr[0xc] = 0;

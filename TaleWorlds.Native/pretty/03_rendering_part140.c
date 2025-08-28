@@ -424,7 +424,7 @@ void FUN_180350270(uint64_t param_1)
   puStack_1a0 = auStack_190;
   auStack_190[0] = 0;
   uStack_198 = 0xb;
-  strcpy_s(auStack_190,0x40,&DAT_180a1e1c8);
+  strcpy_s(auStack_190,0x40,&system_data_e1c8);
   FUN_1800b8300(apuStack_208,&puStack_1a8);
   uStack_1b0 = 1;
   uStack_228 = 1;
@@ -437,7 +437,7 @@ void FUN_180350270(uint64_t param_1)
   puStack_140 = auStack_130;
   auStack_130[0] = 0;
   uStack_138 = 0xd;
-  strcpy_s(auStack_130,0x40,&DAT_180a1e208);
+  strcpy_s(auStack_130,0x40,&system_data_e208);
   FUN_1800b8300(apuStack_208,&puStack_148);
   uStack_1b0 = 1;
   uStack_228 = 2;
@@ -450,7 +450,7 @@ void FUN_180350270(uint64_t param_1)
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   uStack_d8 = 0x12;
-  strcpy_s(auStack_d0,0x40,&DAT_180a1e1f0);
+  strcpy_s(auStack_d0,0x40,&system_data_e1f0);
   FUN_1800b8300(apuStack_208,&puStack_e8);
   uStack_1b0 = 1;
   uStack_228 = 4;
@@ -463,7 +463,7 @@ void FUN_180350270(uint64_t param_1)
   puStack_80 = auStack_70;
   auStack_70[0] = 0;
   uStack_78 = 0x15;
-  strcpy_s(auStack_70,0x40,&DAT_180a1e1d8);
+  strcpy_s(auStack_70,0x40,&system_data_e1d8);
   FUN_1800b8300(apuStack_208,&puStack_88);
   uStack_1b0 = 1;
   uStack_228 = 8;
@@ -690,7 +690,7 @@ void FUN_1803508f0(uint64_t param_1,longlong param_2,uint64_t param_3,uint64_t p
   uint64_t uStack_28;
   
   if ((*(int *)(param_2 + 0x10) == 8) &&
-     (iVar1 = strcmp(*(uint64_t *)(param_2 + 8),&DAT_180a1e3a0,(char)param_3,param_4,
+     (iVar1 = strcmp(*(uint64_t *)(param_2 + 8),&system_data_e3a0,(char)param_3,param_4,
                      0xfffffffffffffffe), iVar1 == 0)) {
     puStack_60 = &UNK_180a3c3e0;
     uStack_48 = 0;
@@ -891,7 +891,7 @@ void FUN_180351010(uint64_t param_1)
   puStack_d0 = auStack_c0;
   auStack_c0[0] = 0;
   uStack_c8 = 8;
-  strcpy_s(auStack_c0,0x40,&DAT_180a1e3a0);
+  strcpy_s(auStack_c0,0x40,&system_data_e3a0);
   FUN_1800b8300(apuStack_78,&puStack_d8);
   uStack_20 = 9;
   uStack_f8 = 1;
@@ -917,7 +917,7 @@ void FUN_180351120(uint64_t param_1,longlong param_2)
   longlong lVar3;
   
   if ((*(int *)(param_2 + 0x10) != 8) ||
-     (iVar1 = strcmp(*(uint64_t *)(param_2 + 8),&DAT_180a1e3a0), iVar1 != 0)) {
+     (iVar1 = strcmp(*(uint64_t *)(param_2 + 8),&system_data_e3a0), iVar1 != 0)) {
     if (*(int *)(param_2 + 0x10) != 5) {
       return;
     }

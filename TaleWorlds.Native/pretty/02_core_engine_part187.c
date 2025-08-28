@@ -126,7 +126,7 @@ void initialize_engine_core_module(uint64_t *module_config)
   name_buffer[0] = 0;
   buffer_size = 0;
   module_ptr = module_config;
-  strcpy_s(name_buffer,0x10,&DAT_18098bc73);
+  strcpy_s(name_buffer,0x10,&system_buffer_ptr);
   initialize_resource_buffer(temp_buffer_2,&resource_ptr);
   initialize_engine_system();
   resource_ptr = &UNK_18098bcb0;

@@ -174,7 +174,7 @@ void RenderingSystem_MatrixProcessor(longlong param_1, longlong param_2, uint64_
                 
                 // 设置矩阵参数
                 *puVar5 = 0xffffffff;
-                (**(code **)(*plVar2 + 0x10))(plVar2, &DAT_18098bc73);
+                (**(code **)(*plVar2 + 0x10))(plVar2, &system_buffer_ptr);
                 
                 // 矩阵运算
                 FUN_18033a3f0(puVar5, &lStack_70);
@@ -348,7 +348,7 @@ void RenderingSystem_MemoryProcessor(longlong param_1, longlong param_2, uint64_
                 
                 // 设置内存参数
                 *puVar6 = 0xffffffff;
-                (**(code **)(*plVar1 + 0x10))(plVar1, &DAT_18098bc73);
+                (**(code **)(*plVar1 + 0x10))(plVar1, &system_buffer_ptr);
                 
                 // 内存处理
                 int32_t uVar16 = 0;

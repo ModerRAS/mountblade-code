@@ -422,7 +422,7 @@ void rendering_system_process_render_pipeline(
                 *(float *)(pipeline_data + 0xc0) + *(float *)(pipeline_data + 0xc0))) {
                 if ((*(int *)(*(longlong *)
                                ((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48) <
-                     _DAT_180d49ec8) && (FUN_1808fcb90(&DAT_180d49ec8), _DAT_180d49ec8 == -1)) {
+                     _DAT_180d49ec8) && (FUN_1808fcb90(&system_memory_9ec8), _DAT_180d49ec8 == -1)) {
                     render_settings = &UNK_180a3c3e0;
                     gpu_time = 0.0;
                     cpu_time = 0.0;
@@ -435,7 +435,7 @@ void rendering_system_process_render_pipeline(
                     *index_buffer = 0x6e696150;
                     *(int8_t *)(index_buffer + 1) = 0;
                     frame_time = 5.60519e-45;
-                    _DAT_180d49ecc = FUN_180571e20(&DAT_180c960c0, &render_settings);
+                    _DAT_180d49ecc = FUN_180571e20(&system_memory_60c0, &render_settings);
                     render_settings = &UNK_180a3c3e0;
                     FUN_18064e900(index_buffer);
                 }
@@ -464,7 +464,7 @@ void rendering_system_process_render_pipeline(
                          shader_source, vertex_shader, &render_settings);
             render_state = (int32_t)((ulonglong)shader_source >> 0x20);
             if (texture_filter[0] != '\0') {
-                render_pass_count = FUN_18053a410(&DAT_180c95f30, *(int32_t *)(*(longlong *)(render_context + 0x590) + 0xac),
+                render_pass_count = FUN_18053a410(&system_memory_5f30, *(int32_t *)(*(longlong *)(render_context + 0x590) + 0xac),
                               render_targets[0]);
                 render_pass_count = *(int *)(_DAT_180c95f68 + (longlong)render_pass_count * 4);
                 if (render_pass_count != -1) {
@@ -481,10 +481,10 @@ void rendering_system_process_render_pipeline(
                     memory_usage = *(float *)(texture_handle + 0x188);
                 }
                 *(longlong *)(frame_buffer_ptr + 0x6c8) =
-                     *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(frame_buffer_ptr + 0x6d0) * 8) -
+                     *(longlong *)(&system_error_code + (longlong)*(int *)(frame_buffer_ptr + 0x6d0) * 8) -
                      (longlong)(memory_usage * -RENDERING_SYSTEM_DISTANCE_COEFFICIENT);
                 *(longlong *)(frame_buffer_ptr + 0x6b8) =
-                     *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(frame_buffer_ptr + 0x6c0) * 8) + 200000;
+                     *(longlong *)(&system_error_code + (longlong)*(int *)(frame_buffer_ptr + 0x6c0) * 8) + 200000;
                 *(int32_t *)(render_context + 0x670) = 0xffffffff;
                 *(uint *)(render_context + 0x584) = *(uint *)(texture_handle + 0x1d8) ^ 0x80000000;
                 FUN_18052e130(frame_buffer_ptr, 0xffffffff, 0x180c8ed01);
@@ -506,7 +506,7 @@ void rendering_system_process_render_pipeline(
         render_pass_count = render_targets[0];
         lighting_mode = lighting_config[0];
         if ((((*(byte *)(render_context + 0x56c) & 0x80) == 0) ||
-            ((float)(*(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(render_context + 0x6c0) * 8) -
+            ((float)(*(longlong *)(&system_error_code + (longlong)*(int *)(render_context + 0x6c0) * 8) -
                     *(longlong *)(render_context + 0x6b8)) * 1e-05 <= 0.0)) ||
            ((*(int *)(render_context + 0x564) != -1 || (texture_format = func_0x000180522f60(render_context), texture_format != '\0'))))
         {
@@ -607,7 +607,7 @@ void rendering_system_process_render_pipeline(
             if ((*(byte *)(pipeline_data + 0xac) & 0x40) == 0) {
                 if ((*(int *)(*(longlong *)
                                ((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48) <
-                     _DAT_180d49ed0) && (FUN_1808fcb90(&DAT_180d49ed0), _DAT_180d49ed0 == -1)) {
+                     _DAT_180d49ed0) && (FUN_1808fcb90(&system_memory_9ed0), _DAT_180d49ed0 == -1)) {
                     render_settings = &UNK_180a3c3e0;
                     gpu_time = 0.0;
                     cpu_time = 0.0;
@@ -620,7 +620,7 @@ void rendering_system_process_render_pipeline(
                     *index_buffer = 0x6e696150;
                     *(int8_t *)(index_buffer + 1) = 0;
                     frame_time = 5.60519e-45;
-                    _DAT_180d49ed4 = FUN_180571e20(&DAT_180c960c0, &render_settings);
+                    _DAT_180d49ed4 = FUN_180571e20(&system_memory_60c0, &render_settings);
                     render_settings = &UNK_180a3c3e0;
                     FUN_18064e900(index_buffer);
                 }

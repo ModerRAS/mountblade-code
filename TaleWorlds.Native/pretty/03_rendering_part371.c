@@ -627,7 +627,7 @@ void FUN_18046de20(longlong param_1,uint64_t *param_2,uint64_t *param_3,uint par
   *(int32_t *)(lVar2 + 0x38) = uVar4;
   *(int32_t *)(lVar2 + 0x3c) = uVar5;
   uVar6 = FUN_1800946d0(param_2,auStack_48);
-  FUN_1800946d0(uVar6,&uStack_88,&DAT_180bfbb50);
+  FUN_1800946d0(uVar6,&uStack_88,&system_data_bb50);
   puVar1 = *(uint64_t **)(param_1 + 0x1e8 + uVar7 * 8);
   *puVar1 = uStack_88;
   puVar1[1] = uStack_80;

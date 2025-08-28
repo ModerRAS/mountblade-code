@@ -835,7 +835,7 @@ void FUN_180476b10(uint64_t param_1,longlong *param_2,uint64_t param_3,uint64_t 
     param_2 = (longlong *)*param_2;
     if (((param_2 != (longlong *)0x0) &&
         (puVar10 = (void *)(**(code **)(*param_2 + 8))(param_2,0x180d48ef4),
-        puVar10 != (void *)0x0)) && (puVar10 != &DAT_180bfc170)) {
+        puVar10 != (void *)0x0)) && (puVar10 != &system_data_c170)) {
       FUN_180476990(param_1,puVar10);
       return;
     }

@@ -74,8 +74,8 @@ void FUN_180402a70(longlong param_1,uint64_t param_2,longlong param_3,float para
   auStack_e0[0] = 0;
   uStack_e8 = 0xc;
   afStack_250[0] = param_4;
-  strcpy_s(auStack_e0,0x80,&DAT_180a0eb68);
-  puVar7 = &DAT_18098bc73;
+  strcpy_s(auStack_e0,0x80,&system_data_eb68);
+  puVar7 = &system_buffer_ptr;
   if (*(void **)(param_1 + 0x18) != (void *)0x0) {
     puVar7 = *(void **)(param_1 + 0x18);
   }
@@ -88,12 +88,12 @@ void FUN_180402a70(longlong param_1,uint64_t param_2,longlong param_3,float para
                     // WARNING: Subroutine does not return
     memcpy(puStack_f0 + uStack_e8,puVar7,(longlong)(iVar16 + 1));
   }
-  puVar7 = &DAT_18098bc73;
+  puVar7 = &system_buffer_ptr;
   if (puStack_f0 != (void *)0x0) {
     puVar7 = puStack_f0;
   }
   FUN_1802c22a0(acStack_258,puVar7);
-  puVar7 = &DAT_18098bc73;
+  puVar7 = &system_buffer_ptr;
   if (*(void **)(param_1 + 0x18) != (void *)0x0) {
     puVar7 = *(void **)(param_1 + 0x18);
   }

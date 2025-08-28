@@ -353,7 +353,7 @@ void FUN_180514200(longlong param_1,ushort param_2,float *param_3,uint64_t param
     *(float *)(*(longlong *)(param_1 + 0x728) + 0x598) = param_7;
     *(longlong *)(*(longlong *)(param_1 + 0x728) + 0x578) =
          *(longlong *)
-          (&DAT_180c8ed30 + (longlong)*(int *)(*(longlong *)(param_1 + 0x728) + 0x580) * 8) -
+          (&system_error_code + (longlong)*(int *)(*(longlong *)(param_1 + 0x728) + 0x580) * 8) -
          (longlong)(param_7 * -100000.0);
     lVar4 = *(longlong *)(param_1 + 0x728);
     *(float *)(lVar4 + 0x10) = fStack_240;
@@ -792,7 +792,7 @@ void FUN_180514263(longlong param_1,uint64_t param_2,uint64_t param_3,longlong p
   *(float *)(*(longlong *)(unaff_RBX + 0x728) + 0x598) = fVar23;
   *(longlong *)(*(longlong *)(unaff_RBX + 0x728) + 0x578) =
        *(longlong *)
-        (&DAT_180c8ed30 + (longlong)*(int *)(*(longlong *)(unaff_RBX + 0x728) + 0x580) * 8) -
+        (&system_error_code + (longlong)*(int *)(*(longlong *)(unaff_RBX + 0x728) + 0x580) * 8) -
        (longlong)(fVar23 * -100000.0);
   lVar5 = *(longlong *)(unaff_RBX + 0x728);
   *(float *)(lVar5 + 0x10) = in_stack_00000078;

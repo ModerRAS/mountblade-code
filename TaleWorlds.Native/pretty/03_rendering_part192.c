@@ -50,7 +50,7 @@ void FUN_18037c8d0(longlong param_1,uint64_t param_2)
         if (plVar3 != (longlong *)0x0) {
           (**(code **)(*plVar3 + 0x28))(plVar3);
         }
-        (**(code **)(plVar3[2] + 0x10))(plVar3 + 2,&DAT_180a21858);
+        (**(code **)(plVar3[2] + 0x10))(plVar3 + 2,&system_data_1858);
         FUN_18022cd30(lVar4,0,plVar3);
         (**(code **)(*plVar3 + 0x38))(plVar3);
       }
@@ -60,7 +60,7 @@ void FUN_18037c8d0(longlong param_1,uint64_t param_2)
         if (plVar3 != (longlong *)0x0) {
           (**(code **)(*plVar3 + 0x28))(plVar3);
         }
-        (**(code **)(plVar3[2] + 0x10))(plVar3 + 2,&DAT_180a21838);
+        (**(code **)(plVar3[2] + 0x10))(plVar3 + 2,&system_data_1838);
         FUN_18022cd30(lVar4,2,plVar3);
         (**(code **)(*plVar3 + 0x38))(plVar3);
       }
@@ -525,7 +525,7 @@ LAB_18037d26b:
         puStack_160 = &UNK_18037fff0;
         apuStack_178[0] = &uStack_158;
         (*(code *)(*pppppuVar3[0x11])[0xc])
-                  (pppppuVar3[0x11],&DAT_180a01028,(longlong)pppppuVar3 + 0xc,0,apuStack_178);
+                  (pppppuVar3[0x11],&system_data_1028,(longlong)pppppuVar3 + 0xc,0,apuStack_178);
         if (pcStack_168 != (code *)0x0) {
           (*pcStack_168)(apuStack_178,0,0);
         }
@@ -658,7 +658,7 @@ LAB_18037d51b:
   if (((longlong)puStack_1e0 - lStack_1e8) / 0x28 != 0) {
     do {
       puVar5 = *(void **)(lStack_1e8 + 8 + uVar16);
-      puVar19 = &DAT_18098bc73;
+      puVar19 = &system_buffer_ptr;
       if (puVar5 != (void *)0x0) {
         puVar19 = puVar5;
       }

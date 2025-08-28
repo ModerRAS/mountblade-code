@@ -306,12 +306,12 @@ void PrefabConfigManager(void* prefab_data, void* config_data, uint64_t config_f
                     
                     if (validation_result == 0) {
                         // 处理验证失败的情况
-                        void* error_handler = &DAT_18098bc73;
+                        void* error_handler = &system_buffer_ptr;
                         if (*(void**)((char*)(*(long long*)((char*)prefab_data + 0x30)) + 0x4e0) != NULL) {
                             error_handler = *(void**)((char*)(*(long long*)((char*)prefab_data + 0x30)) + 0x4e0);
                         }
                         
-                        void* current_attr_value = &DAT_18098bc73;
+                        void* current_attr_value = &system_buffer_ptr;
                         if (attr_value != NULL) {
                             current_attr_value = attr_value;
                         }
@@ -406,7 +406,7 @@ void PrefabConfigManager(void* prefab_data, void* config_data, uint64_t config_f
                     bool char_match = name_compare[(long long)name_attr_value] == name_compare[0x180a0b198];
                     if (!char_match) break;
                     name_compare++;
-                } while (name_compare != &DAT_00000008);
+                } while (name_compare != &system_memory_0008);
                 
                 name_valid = name_compare[(long long)name_attr_value] == name_compare[0x180a0b198];
             }
@@ -414,7 +414,7 @@ void PrefabConfigManager(void* prefab_data, void* config_data, uint64_t config_f
             if (!name_valid) {
                 // 调用名称处理函数
                 void** name_handler = (void**)((char*)(*(long long*)((char*)prefab_data + SCENE_DATA_OFFSET)) + SCENE_NAME_OFFSET);
-                void* name_processor = &DAT_18098bc73;
+                void* name_processor = &system_buffer_ptr;
                 
                 if (name_attr_value != NULL) {
                     name_processor = name_attr_value;
@@ -515,7 +515,7 @@ void PrefabConfigManager(void* prefab_data, void* config_data, uint64_t config_f
                     
                     // 验证GUID字符
                     while (true) {
-                        void* guid_processor = &DAT_18098bc73;
+                        void* guid_processor = &system_buffer_ptr;
                         if (guid_attr_value != NULL) {
                             guid_processor = guid_attr_value;
                         }
@@ -540,7 +540,7 @@ void PrefabConfigManager(void* prefab_data, void* config_data, uint64_t config_f
                     guid_buffer[0] = 0;
                     
                     int guid_buffer_size = guid_attr_count;
-                    void* guid_final_value = &DAT_18098bc73;
+                    void* guid_final_value = &system_buffer_ptr;
                     
                     if (guid_attr_value != NULL) {
                         guid_final_value = guid_attr_value;
@@ -666,7 +666,7 @@ config_complete:
                     lod_bias_value_data = (void*)lod_bias_attr_array[1];
                 }
                 
-                FUN_18010cbc0(lod_bias_value_data, &DAT_180a06430, &lod_bias_factor);
+                FUN_18010cbc0(lod_bias_value_data, &system_memory_6430, &lod_bias_factor);
                 
                 // 限制LOD偏置因子范围
                 if (lod_bias_factor < LOD_BIAS_FACTOR_MIN) {
@@ -839,13 +839,13 @@ config_complete:
     }
     
     // 最终配置处理
-    if (DAT_180c82860 == '\0') {
-        void* final_processor = &DAT_18098bc73;
+    if (system_debug_flag == '\0') {
+        void* final_processor = &system_buffer_ptr;
         if (*(void**)((char*)(*(long long*)((char*)prefab_data + SCENE_DATA_OFFSET)) + 0x290) != NULL) {
             final_processor = *(void**)((char*)(*(long long*)((char*)prefab_data + SCENE_DATA_OFFSET)) + 0x290);
         }
         
-        void* final_value = &DAT_18098bc73;
+        void* final_value = &system_buffer_ptr;
         if (guid_attr_value != NULL) {
             final_value = guid_attr_value;
         }

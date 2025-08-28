@@ -448,11 +448,11 @@ void FUN_1803bff20(longlong param_1,uint64_t param_2,uint64_t param_3)
   lVar8 = *(longlong *)(lVar10 + 0x268);
   if (lVar8 == 0) {
 LAB_1803bff9f:
-    puVar9 = &DAT_18098bc73;
+    puVar9 = &system_buffer_ptr;
     if (*(void **)(lVar10 + 0x290) != (void *)0x0) {
       puVar9 = *(void **)(lVar10 + 0x290);
     }
-    FUN_180630b20(param_2,param_3,&DAT_180a03a84,puVar9);
+    FUN_180630b20(param_2,param_3,&system_flag_3a84,puVar9);
     lVar10 = *(longlong *)(param_1 + 8);
   }
   else {
@@ -474,7 +474,7 @@ LAB_1803bff9f:
     if (iVar6 != 0) goto LAB_1803bff9f;
   }
   if (*(longlong *)(lVar10 + 0x268) == 0) {
-    puVar9 = &DAT_18098bc73;
+    puVar9 = &system_buffer_ptr;
     if (*(void **)(lVar10 + 0x248) != (void *)0x0) {
       puVar9 = *(void **)(lVar10 + 0x248);
     }
@@ -483,7 +483,7 @@ LAB_1803bff9f:
   }
   if (*(longlong *)(lVar10 + 0x170) != 0) {
     lVar8 = FUN_1802267d0();
-    puVar9 = &DAT_18098bc73;
+    puVar9 = &system_buffer_ptr;
     if (*(void **)(lVar8 + 8) != (void *)0x0) {
       puVar9 = *(void **)(lVar8 + 8);
     }
@@ -494,7 +494,7 @@ LAB_1803bff9f:
      ((*(longlong *)(lVar10 + 0x168) == 0 ||
       (*(longlong *)(*(longlong *)(lVar10 + 0x168) + 0x268) == 0)))) {
     puVar9 = *(void **)(*(longlong *)(lVar10 + 0x268) + 0x290);
-    puVar7 = &DAT_18098bc73;
+    puVar7 = &system_buffer_ptr;
     if (puVar9 != (void *)0x0) {
       puVar7 = puVar9;
     }
@@ -593,17 +593,17 @@ void FUN_1803c0180(longlong param_1,longlong param_2,longlong param_3)
     pbStack_100 = abStack_f0;
     abStack_f0[0] = 0;
     iStack_f8 = 0;
-    strcpy_s(abStack_f0,0x40,&DAT_18098bc73);
+    strcpy_s(abStack_f0,0x40,&system_buffer_ptr);
     if (*(longlong *)(lVar3 + 0x10) != 0) {
       puVar5 = *(void **)(*(longlong *)(lVar3 + 0x10) + 0x18);
-      puVar13 = &DAT_18098bc73;
+      puVar13 = &system_buffer_ptr;
       if (puVar5 != (void *)0x0) {
         puVar13 = puVar5;
       }
       (**(code **)(puStack_108 + 0x10))(&puStack_108,puVar13);
     }
     if (iStack_f8 != 0) {
-      pbVar7 = &DAT_18098bc73;
+      pbVar7 = &system_buffer_ptr;
       if (pbStack_100 != (byte *)0x0) {
         pbVar7 = pbStack_100;
       }
@@ -615,10 +615,10 @@ void FUN_1803c0180(longlong param_1,longlong param_2,longlong param_3)
   pbStack_100 = abStack_f0;
   abStack_f0[0] = 0;
   iStack_f8 = 0;
-  strcpy_s(abStack_f0,0x40,&DAT_18098bc73);
+  strcpy_s(abStack_f0,0x40,&system_buffer_ptr);
   if (*(longlong *)(lVar3 + 0x10) != 0) {
     puVar5 = *(void **)(*(longlong *)(lVar3 + 0x10) + 0x18);
-    puVar13 = &DAT_18098bc73;
+    puVar13 = &system_buffer_ptr;
     if (puVar5 != (void *)0x0) {
       puVar13 = puVar5;
     }
@@ -628,11 +628,11 @@ void FUN_1803c0180(longlong param_1,longlong param_2,longlong param_3)
   puStack_a0 = auStack_90;
   auStack_90[0] = 0;
   iStack_98 = 0;
-  strcpy_s(auStack_90,0x40,&DAT_18098bc73);
+  strcpy_s(auStack_90,0x40,&system_buffer_ptr);
   lVar3 = *(longlong *)(lVar4 + 0x10);
   if (lVar3 != 0) {
     puVar5 = *(void **)(lVar3 + 0x18);
-    puVar13 = &DAT_18098bc73;
+    puVar13 = &system_buffer_ptr;
     if (puVar5 != (void *)0x0) {
       puVar13 = puVar5;
     }
@@ -655,7 +655,7 @@ LAB_1803c02ed:
   else {
     if (iStack_f8 == 0) goto LAB_1803c02ed;
 LAB_1803c02ef:
-    pbVar7 = &DAT_18098bc73;
+    pbVar7 = &system_buffer_ptr;
     if (pbStack_100 != (byte *)0x0) {
       pbVar7 = pbStack_100;
     }
@@ -698,7 +698,7 @@ LAB_1803c03a8:
       } while (*pcVar9 != '\0');
       *puVar11 = &UNK_180a23580;
       puVar11[2] = pcVar10 + -0x180a2357f;
-      FUN_180630b20(lVar6,puVar11,&DAT_180a03a84,&UNK_180a16540);
+      FUN_180630b20(lVar6,puVar11,&system_flag_3a84,&UNK_180a16540);
       if (puVar8[6] == 0) {
         puVar11[10] = 0;
         puVar8[6] = puVar11;
@@ -726,7 +726,7 @@ LAB_1803c03a8:
       } while (*pcVar9 != '\0');
       *puVar11 = &UNK_180a23580;
       puVar11[2] = pcVar10 + -0x180a2357f;
-      FUN_180630b20(lVar6,puVar11,&DAT_180a03a84,&UNK_180a21a48);
+      FUN_180630b20(lVar6,puVar11,&system_flag_3a84,&UNK_180a21a48);
       if (puVar8[6] == 0) {
         puVar11[10] = 0;
         puVar8[6] = puVar11;

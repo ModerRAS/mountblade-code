@@ -823,7 +823,7 @@ ulonglong FUN_180544200(longlong param_1,int param_2,uint64_t param_3,uint64_t *
       uStack_40 = 0;
       uStack_38 = CONCAT44((int)((ulonglong)uStack_78 >> 0x20),param_6);
       if (-1 < (int)uVar1) {
-        uVar5 = FUN_180545140(&DAT_180c96110,&uStack_68,param_3,param_5);
+        uVar5 = FUN_180545140(&system_data_6110,&uStack_68,param_3,param_5);
         return uVar5;
       }
     }

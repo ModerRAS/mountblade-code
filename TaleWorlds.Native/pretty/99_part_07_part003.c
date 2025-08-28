@@ -467,7 +467,7 @@ void ConfigurationManager(longlong *param_1, uint64_t param_2, longlong param_3,
     StringCopy(config_buffer, &UNK_180a266c8);
     
     // 获取配置名称
-    pointer_t config_name = &DAT_18098bc73;
+    pointer_t config_name = &system_buffer_ptr;
     if ((pointer_t)param_1[3] != (pointer_t)0x0) {
         config_name = (pointer_t)param_1[3];
     }
@@ -594,7 +594,7 @@ void ResourceAllocator(longlong param_1, longlong param_2) {
         memset(render_buffer, 0, sizeof(render_buffer));
         
         // 获取配置名称
-        pointer_t config_name = &DAT_18098bc73;
+        pointer_t config_name = &system_buffer_ptr;
         if (*(pointer_t**)(param_1 + 0x18) != (pointer_t*)0x0) {
             config_name = *(pointer_t*)(param_1 + 0x18);
         }
@@ -692,7 +692,7 @@ void SystemInitializer(longlong *param_1, longlong param_2) {
     memset(string_buffer, 0, sizeof(string_buffer));
     
     // 获取系统名称
-    pointer_t system_name = &DAT_18098bc73;
+    pointer_t system_name = &system_buffer_ptr;
     if ((pointer_t)param_1[3] != (pointer_t)0x0) {
         system_name = (pointer_t)param_1[3];
     }
@@ -714,7 +714,7 @@ void SystemInitializer(longlong *param_1, longlong param_2) {
     }
     
     // 获取附加字符串
-    pointer_t additional_string = &DAT_18098bc73;
+    pointer_t additional_string = &system_buffer_ptr;
     if (*(pointer_t**)(param_2 + 0x3528) != (pointer_t*)0x0) {
         additional_string = *(pointer_t*)(param_2 + 0x3528);
     }

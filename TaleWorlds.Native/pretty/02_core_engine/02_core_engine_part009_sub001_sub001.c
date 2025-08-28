@@ -90,8 +90,8 @@ int initialize_global_data_structure(void)
     
     // 设置全局数据结构初始值
     _DAT_180c967b8 = 3;
-    _DAT_180c96790 = &DAT_180c96790;
-    _DAT_180c96798 = &DAT_180c96790;
+    _DAT_180c96790 = &system_memory_6790;
+    _DAT_180c96798 = &system_memory_6790;
     _DAT_180c967a0 = 0;
     _DAT_180c967a8 = 0;
     _DAT_180c967b0 = 0;
@@ -255,8 +255,8 @@ int initialize_second_global_data_structure(void)
     
     // 设置第二个全局数据结构初始值
     _DAT_180c96808 = 3;
-    _DAT_180c967e0 = &DAT_180c967e0;
-    _DAT_180c967e8 = &DAT_180c967e0;
+    _DAT_180c967e0 = &system_memory_67e0;
+    _DAT_180c967e8 = &system_memory_67e0;
     _DAT_180c967f0 = 0;
     _DAT_180c967f8 = 0;
     _DAT_180c96800 = 0;
@@ -893,11 +893,11 @@ LAB_180044db8:
         }
         
         // 设置系统信息
-        puStack_218 = &DAT_18098bc73;
+        puStack_218 = &system_buffer_ptr;
         if (puStack_1f0 != (void *)0x0) {
             puStack_218 = puStack_1f0;
         }
-        puStack_220 = &DAT_18098bc73;
+        puStack_220 = &system_buffer_ptr;
         if (puStack_1d0 != (void *)0x0) {
             puStack_220 = puStack_1d0;
         }
@@ -909,7 +909,7 @@ LAB_180044db8:
         auStack_170[0] = 0;
         uStack_200 = 2;
         FUN_18004b860(&puStack_188, &UNK_1809fd0a0, 0x130a7);
-        puStack_220 = &DAT_18098bc73;
+        puStack_220 = &system_buffer_ptr;
         if (puStack_180 != (void *)0x0) {
             puStack_220 = puStack_180;
         }
@@ -1022,7 +1022,7 @@ void initialize_debug_and_performance(uint64_t param_1, longlong param_2)
     
     SymSetOptions(0x2017);
     FUN_180629090(&puStack_b8);
-    puVar13 = &DAT_18098bc73;
+    puVar13 = &system_buffer_ptr;
     if (puStack_b0 != (void *)0x0) {
         puVar13 = puStack_b0;
     }
@@ -1057,7 +1057,7 @@ LAB_180044ee3:
         }
         
         // 初始化符号系统
-        puVar13 = &DAT_18098bc73;
+        puVar13 = &system_buffer_ptr;
         if (puStack_b0 != (void *)0x0) {
             puVar13 = puStack_b0;
         }
@@ -1119,7 +1119,7 @@ LAB_180044faf:
     QueryPerformanceCounter(&lStackX_20);
     
     // 更新性能计数器状态
-    if (DAT_180bf0102 != '\0') {
+    if (system_memory_0102 != '\0') {
         _DAT_180c8ed48 = _DAT_180c8ed48 + (lStackX_20 - _DAT_180c8ed58);
     }
     _DAT_180c8ed58 = 0;

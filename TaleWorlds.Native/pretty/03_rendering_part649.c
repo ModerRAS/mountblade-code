@@ -801,9 +801,9 @@ void FUN_180636790(longlong param_1,uint64_t *param_2,float *param_3,int32_t *pa
     fStack_144 = fStack_144 * fVar3;
     fStack_140 = fStack_140 * fVar3;
   }
-  pfVar2 = (float *)&DAT_180a07230;
+  pfVar2 = (float *)&system_data_7230;
   if (ABS(fStack_140) <= 0.99) {
-    pfVar2 = (float *)&DAT_180a001d0;
+    pfVar2 = (float *)&system_data_01d0;
   }
   fStack_138 = *pfVar2;
   fStack_134 = pfVar2[1];

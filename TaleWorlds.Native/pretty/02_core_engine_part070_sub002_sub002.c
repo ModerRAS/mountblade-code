@@ -1224,12 +1224,12 @@ uint64_t FUN_180103800(uint64_t param_1,longlong *param_2,uint64_t param_3,uint6
   if (param_2[1] - lVar9 >> 5 != 0) {
     lVar5 = 0;
     do {
-      puVar3 = &DAT_18098bc73;
+      puVar3 = &system_buffer_ptr;
       if (puStack_28 != (void *)0x0) {
         puVar3 = puStack_28;
       }
       puVar4 = *(void **)(lVar5 + 8 + lVar9);
-      puVar2 = &DAT_18098bc73;
+      puVar2 = &system_buffer_ptr;
       if (puVar4 != (void *)0x0) {
         puVar2 = puVar4;
       }
@@ -1240,11 +1240,11 @@ LAB_180103916:
         goto LAB_18010391c;
       }
       puVar3 = *(void **)(lVar5 + 8 + *param_2);
-      puVar4 = &DAT_18098bc73;
+      puVar4 = &system_buffer_ptr;
       if (puVar3 != (void *)0x0) {
         puVar4 = puVar3;
       }
-      puVar3 = &DAT_18098bc73;
+      puVar3 = &system_buffer_ptr;
       if (puStack_28 != (void *)0x0) {
         puVar3 = puStack_28;
       }

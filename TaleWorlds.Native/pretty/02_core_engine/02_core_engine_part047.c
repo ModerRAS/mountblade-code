@@ -95,11 +95,11 @@ void process_system_resources(uint64_t param_1, int8_t param_2)
       stack_data_3 = 0;
       buffer_size_5 = 0;
       resource_data_ptr = *(void **)(item_offset + 0x28 + total_items);
-      alternate_data_ptr = &DAT_18098bc73;
+      alternate_data_ptr = &system_buffer_ptr;
       if (resource_data_ptr != (void *)0x0) {
         alternate_data_ptr = resource_data_ptr;
       }
-      string_buffer_ptr = &DAT_18098bc73;
+      string_buffer_ptr = &system_buffer_ptr;
       if (string_data_ptr != (int8_t *)0x0) {
         string_buffer_ptr = string_data_ptr;
       }
@@ -168,11 +168,11 @@ void process_system_resources(uint64_t param_1, int8_t param_2)
       buffer_ptr_3 = (void *)0x0;
       buffer_size_3 = 0;
       resource_data_ptr = *(void **)(processed_count + 0x28 + resource_base);
-      alternate_data_ptr = &DAT_18098bc73;
+      alternate_data_ptr = &system_buffer_ptr;
       if (resource_data_ptr != (void *)0x0) {
         alternate_data_ptr = resource_data_ptr;
       }
-      string_buffer_ptr = &DAT_18098bc73;
+      string_buffer_ptr = &system_buffer_ptr;
       if (string_ptr != (int8_t *)0x0) {
         string_buffer_ptr = string_ptr;
       }
@@ -188,7 +188,7 @@ void process_system_resources(uint64_t param_1, int8_t param_2)
         stack_data_5 = 0;
         stack_data_6 = 0;
         buffer_size_6 = 3;
-        resource_data_ptr = &DAT_18098bc73;
+        resource_data_ptr = &system_buffer_ptr;
         if (buffer_ptr_3 != (void *)0x0) {
           resource_data_ptr = buffer_ptr_3;
         }

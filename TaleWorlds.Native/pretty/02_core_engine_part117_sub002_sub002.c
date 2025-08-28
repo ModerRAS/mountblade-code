@@ -1522,7 +1522,7 @@ LAB_18012b82d:
     }
     else {
       pfStack_258 = (float *)CONCAT44(pfStack_258._4_4_,0xbf800000);
-      pfVar16 = (float *)FUN_180127c60(&uStack_1d8,&DAT_1809fdf28,0,0);
+      pfVar16 = (float *)FUN_180127c60(&uStack_1d8,&system_data_df28,0,0);
       fVar33 = *pfVar16;
     }
     uVar13 = func_0x00018004ba20(&uStack_1d8);
@@ -1579,7 +1579,7 @@ LAB_18012b82d:
       pfStack_248 = &fStack_198;
       pfStack_258 = (float *)0x0;
       pfStack_250 = pfVar16;
-      FUN_180122890(uVar19,uVar13,&DAT_1809fdf28,0);
+      FUN_180122890(uVar19,uVar13,&system_data_df28,0);
     }
   }
   *(int16_t *)((longlong)plStack_238 + 0x26a) = 0;

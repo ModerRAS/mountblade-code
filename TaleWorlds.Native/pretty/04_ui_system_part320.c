@@ -48,10 +48,10 @@ int32_t FUN_180840790(int32_t param_1,longlong param_2,uint64_t *param_3)
   }
   else if (iVar3 != 0) goto LAB_1808408dd;
   puVar1 = (uint64_t *)(lStack_28 + 0xb0);
-  puVar5 = &DAT_18098bc73;
+  puVar5 = &system_buffer_ptr;
   for (puVar2 = (uint64_t *)*puVar1; puVar2 != puVar1; puVar2 = (uint64_t *)*puVar2) {
     if (*(int *)(puVar2 + 3) < 1) {
-      puVar4 = &DAT_18098bc73;
+      puVar4 = &system_buffer_ptr;
     }
     else {
       puVar4 = (void *)puVar2[2];
@@ -71,7 +71,7 @@ int32_t FUN_180840790(int32_t param_1,longlong param_2,uint64_t *param_3)
   puVar1 = (uint64_t *)(lStack_28 + 0xc0);
   for (puVar2 = (uint64_t *)*puVar1; puVar2 != puVar1; puVar2 = (uint64_t *)*puVar2) {
     if (*(int *)(puVar2 + 3) < 1) {
-      puVar4 = &DAT_18098bc73;
+      puVar4 = &system_buffer_ptr;
     }
     else {
       puVar4 = (void *)puVar2[2];
@@ -79,7 +79,7 @@ int32_t FUN_180840790(int32_t param_1,longlong param_2,uint64_t *param_3)
     iVar3 = func_0x00018076b420(puVar4,param_2);
     if (iVar3 == 0) {
       if (*(int *)(puVar2 + 3) < 1) {
-        puVar4 = &DAT_18098bc73;
+        puVar4 = &system_buffer_ptr;
       }
       else {
         puVar4 = (void *)puVar2[2];
@@ -129,10 +129,10 @@ void FUN_1808407ce(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   }
   else if (iVar3 != 0) goto LAB_1808408dd;
   puVar1 = (uint64_t *)(lStack0000000000000030 + 0xb0);
-  puVar5 = &DAT_18098bc73;
+  puVar5 = &system_buffer_ptr;
   for (puVar2 = (uint64_t *)*puVar1; puVar2 != puVar1; puVar2 = (uint64_t *)*puVar2) {
     if (*(int *)(puVar2 + 3) < 1) {
-      puVar4 = &DAT_18098bc73;
+      puVar4 = &system_buffer_ptr;
     }
     else {
       puVar4 = (void *)puVar2[2];
@@ -152,7 +152,7 @@ void FUN_1808407ce(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   puVar1 = (uint64_t *)(lStack0000000000000030 + 0xc0);
   for (puVar2 = (uint64_t *)*puVar1; puVar2 != puVar1; puVar2 = (uint64_t *)*puVar2) {
     if (*(int *)(puVar2 + 3) < 1) {
-      puVar4 = &DAT_18098bc73;
+      puVar4 = &system_buffer_ptr;
     }
     else {
       puVar4 = (void *)puVar2[2];
@@ -160,7 +160,7 @@ void FUN_1808407ce(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     iVar3 = func_0x00018076b420(puVar4);
     if (iVar3 == 0) {
       if (*(int *)(puVar2 + 3) < 1) {
-        puVar4 = &DAT_18098bc73;
+        puVar4 = &system_buffer_ptr;
       }
       else {
         puVar4 = (void *)puVar2[2];
@@ -270,7 +270,7 @@ LAB_180840a03:
           lVar1 = *(longlong *)(lVar9 + 0x10 + *(longlong *)(param_2 + 0x20));
           if (lVar1 == 0) break;
           if (*(int *)(lVar1 + 0x58) < 1) {
-            puVar6 = &DAT_18098bc73;
+            puVar6 = &system_buffer_ptr;
           }
           else {
             puVar6 = *(void **)(lVar1 + 0x50);
@@ -371,7 +371,7 @@ void FUN_180840af0(longlong param_1,longlong param_2,int *param_3)
         do {
           lVar3 = func_0x000180867680(param_1,iVar5);
           if (*(int *)(lVar3 + 0x58) < 1) {
-            puVar4 = &DAT_18098bc73;
+            puVar4 = &system_buffer_ptr;
           }
           else {
             puVar4 = *(void **)(lVar3 + 0x50);
@@ -462,7 +462,7 @@ int FUN_180840d60(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(int32_t *)(param_1 + 0x18);
   iVar2 = func_0x00018074b800(param_2,param_3,*(int32_t *)(param_1 + 0x10));
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b7d0(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;

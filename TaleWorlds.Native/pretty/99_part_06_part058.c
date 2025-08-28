@@ -286,7 +286,7 @@ LAB_1803e0d25:
     }
   }
   else {
-    puVar13 = &DAT_18098bc73;
+    puVar13 = &system_buffer_ptr;
     if (*(void **)(param_1 + 0x140) != (void *)0x0) {
       puVar13 = *(void **)(param_1 + 0x140);
     }

@@ -409,7 +409,7 @@ void process_window_messages(longlong window_context, uint64_t window_handle, ui
     iVar6 = GetRawInputData(param_5,0x10000003,0,auStack_8a8);
     if (iVar6 == 0) {
       uStack_8b8 = 0x18;
-      GetRawInputData(param_5,0x10000003,&DAT_180d49420,auStack_8a8);
+      GetRawInputData(param_5,0x10000003,&system_data_9420,auStack_8a8);
       if (*(char *)(param_1 + 0x3d) != '\0') {
         _DAT_180d4943c =
              _DAT_180d4943c >> 2 & 3 | (_DAT_180d4943c & 3) << 2 | _DAT_180d4943c & 0xfffffff0;
@@ -643,7 +643,7 @@ void process_raw_mouse_input(float window_context, uint64_t input_data)
     return;
   }
   uStackX_10 = param_2;
-  if ((DAT_180d49438 & 1) == 0) {
+  if ((system_data_9438 & 1) == 0) {
     fVar3 = (float)_DAT_180d49444;
     fVar4 = (float)_DAT_180d49448;
 LAB_180173542:

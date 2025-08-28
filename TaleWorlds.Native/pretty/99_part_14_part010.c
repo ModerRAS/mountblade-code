@@ -186,7 +186,7 @@ void FUN_1808efc90(void)
                     FUN_1808efc90);
     }
   }
-  if (DAT_180c69e20 != '\0') {
+  if (system_data_9e20 != '\0') {
                     // WARNING: Could not recover jumptable at 0x0001808f6cf0. Too many branches
                     // WARNING: Treating indirect jump as call
     LeaveCriticalSection(0x180c69e28);
@@ -215,7 +215,7 @@ void FUN_1808efd09(void)
   }
   FUN_1808f22b0(*(int32_t *)(unaff_RBX + 0x14),*(uint64_t *)(unaff_RBX + 0x23c8),uVar2,
                 FUN_1808efc90);
-  if (DAT_180c69e20 != '\0') {
+  if (system_data_9e20 != '\0') {
                     // WARNING: Could not recover jumptable at 0x0001808f6cf0. Too many branches
                     // WARNING: Treating indirect jump as call
     LeaveCriticalSection(0x180c69e28);
@@ -233,7 +233,7 @@ void FUN_1808efd09(void)
 void FUN_1808efd40(void)
 
 {
-  if (DAT_180c69e20 != '\0') {
+  if (system_data_9e20 != '\0') {
                     // WARNING: Could not recover jumptable at 0x0001808f6cf0. Too many branches
                     // WARNING: Treating indirect jump as call
     LeaveCriticalSection(0x180c69e28);
@@ -266,7 +266,7 @@ void FUN_1808efd80(int param_1)
     pcVar2 = pcVar2 + 0x2408;
     if (0x180c5883f < (longlong)pcVar2) {
 SUB_1808f6ce0:
-      if (DAT_180c69e20 == '\0') {
+      if (system_data_9e20 == '\0') {
         return;
       }
                     // WARNING: Could not recover jumptable at 0x0001808f6cf0. Too many branches
@@ -302,7 +302,7 @@ void FUN_1808efd9a(void)
     pcVar1 = pcVar1 + 0x2408;
     if (0x180c5883f < (longlong)pcVar1) {
 SUB_1808f6ce0:
-      if (DAT_180c69e20 == '\0') {
+      if (system_data_9e20 == '\0') {
         return;
       }
                     // WARNING: Could not recover jumptable at 0x0001808f6cf0. Too many branches
@@ -838,7 +838,7 @@ void FUN_1808f0550(int param_1)
     pcVar2 = pcVar2 + 0x2408;
     if (0x180c5883f < (longlong)pcVar2) {
 SUB_1808f6ce0:
-      if (DAT_180c69e20 == '\0') {
+      if (system_data_9e20 == '\0') {
         return;
       }
                     // WARNING: Could not recover jumptable at 0x0001808f6cf0. Too many branches
@@ -884,9 +884,9 @@ uint64_t FUN_1808f0650(int param_1,int *param_2)
       lVar4 = 0x180c4f820;
       do {
         if (*(int *)(lVar4 + 0x10) == 0) {
-          bVar1 = DAT_180c58840 + 1;
+          bVar1 = system_data_8840 + 1;
           if (bVar1 == 0) {
-            bVar1 = DAT_180c58840 + 2;
+            bVar1 = system_data_8840 + 2;
           }
           iVar3 = (uint)bVar1 * 0x100 + iVar5;
 

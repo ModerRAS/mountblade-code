@@ -162,7 +162,7 @@ void FUN_1804f17b0(longlong param_1,longlong param_2,int32_t *param_3)
     uStack_bc = *(int32_t *)(lVar3 + 0x248c);
     uStack_b8 = *(uint64_t *)(lVar3 + 0x2490);
     uVar15 = uVar15 & 0xffffffffffffff00;
-    FUN_18055dcf0(&DAT_180c925a0,*(int32_t *)(param_2 + 0x10),9,&uStack_f8,uVar15,0);
+    FUN_18055dcf0(&system_data_25a0,*(int32_t *)(param_2 + 0x10),9,&uStack_f8,uVar15,0);
     lVar3 = *(longlong *)(param_2 + 0x590);
     uStack_ac = 0xffffffffffffffff;
     uStack_80 = 0xffffffffffffffff;
@@ -186,7 +186,7 @@ void FUN_1804f17b0(longlong param_1,longlong param_2,int32_t *param_3)
     uStack_c0 = *(int32_t *)(lVar3 + 0x24d0);
     uStack_bc = *(int32_t *)(lVar3 + 0x24d4);
     uStack_b8 = *(uint64_t *)(lVar3 + 0x24d8);
-    FUN_18055dcf0(&DAT_180c925a0,*(int32_t *)(param_2 + 0x10),0,&uStack_f8,
+    FUN_18055dcf0(&system_data_25a0,*(int32_t *)(param_2 + 0x10),0,&uStack_f8,
                   uVar15 & 0xffffffffffffff00,0);
   }
   FUN_1802fa090(lVar11,*(uint64_t *)

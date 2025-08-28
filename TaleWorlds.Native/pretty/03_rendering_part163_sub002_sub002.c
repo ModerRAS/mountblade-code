@@ -249,7 +249,7 @@ void FUN_18036b380(longlong *******param_1)
     ppppppplVar15 = ppppppplVar31;
     ppppppplVar16 = ppppppplVar31;
     ppppppplVar18 = ppppppplVar31;
-    if (DAT_180c8aa6b != '\0') {
+    if (system_data_aa6b != '\0') {
       pppppplVar14 = (longlong ******)FUN_180275820(param_1[0x13]);
       ppppppplStack_498 = (longlong *******)pppppplVar14;
       if (pppppplVar14 != (longlong ******)0x0) {
@@ -308,7 +308,7 @@ void FUN_18036b380(longlong *******param_1)
     FUN_18014ccf0();
     if (0 < (int)uVar25) {
       do {
-        if (DAT_180c8aa6b != '\0') {
+        if (system_data_aa6b != '\0') {
           uStack_1d8 = 0;
           uStack_1d4 = 0;
           uStack_1d0 = 0;
@@ -809,7 +809,7 @@ LAB_18036c470:
       } while ((int)uStack_4b8 < (int)uStack_398);
     }
     FUN_18014c430(&puStack_428);
-    if (DAT_180c8aa6b != '\0') {
+    if (system_data_aa6b != '\0') {
       FUN_180075b70(ppppppplVar15);
       cVar12 = FUN_180084fa0(ppppppplVar15 + 0x24);
       func_0x0001800773c0(ppppppplVar15,cVar12 != '\0');
@@ -857,16 +857,16 @@ LAB_18036c470:
     }
     FUN_1801b9c70(ppppppplStack_368[0x17] + 8,&puStack_428);
     iVar32 = *(int *)(param_1 + 0x18);
-    if ((iVar32 == 10) && (iVar23 = strcmp(param_1[0x17],&DAT_180a20f30), iVar23 == 0)) {
+    if ((iVar32 == 10) && (iVar23 = strcmp(param_1[0x17],&system_data_0f30), iVar23 == 0)) {
       uStack_290 = 0x200;
     }
-    else if ((iVar32 == 0xb) && (iVar23 = strcmp(param_1[0x17],&DAT_180a20f20), iVar23 == 0)) {
+    else if ((iVar32 == 0xb) && (iVar23 = strcmp(param_1[0x17],&system_data_0f20), iVar23 == 0)) {
       uStack_290 = 0x200200;
     }
-    else if ((iVar32 == 0xe) && (iVar23 = strcmp(param_1[0x17],&DAT_180a20e58), iVar23 == 0)) {
+    else if ((iVar32 == 0xe) && (iVar23 = strcmp(param_1[0x17],&system_data_0e58), iVar23 == 0)) {
       uStack_290 = 0x200300;
     }
-    else if ((iVar32 == 0x16) && (iVar32 = strcmp(param_1[0x17],&DAT_180a20f08), iVar32 == 0)) {
+    else if ((iVar32 == 0x16) && (iVar32 = strcmp(param_1[0x17],&system_data_0f08), iVar32 == 0)) {
       uStack_290 = 0x400200;
     }
     FUN_1802eced0(param_1[0x1d],appppppplStack_2c8);

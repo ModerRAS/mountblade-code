@@ -829,7 +829,7 @@ void FUN_1805febd0(longlong param_1)
     uStack_68 = (int32_t)lVar1;
     strcpy_s(auStack_60,0x40,param_1);
   }
-  FUN_18053a5e0(&DAT_180c95f30,&puStack_78);
+  FUN_18053a5e0(&system_data_5f30,&puStack_78);
   puStack_78 = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_a8);
@@ -850,7 +850,7 @@ void FUN_1805fed10(int32_t param_1,int32_t param_2)
   int iVar1;
   
   UNRECOVERED_JUMPTABLE_00 = *(code **)(*_DAT_180c8f008 + 0x70);
-  iVar1 = FUN_18053a410(&DAT_180c95f30,param_1,param_2);
+  iVar1 = FUN_18053a410(&system_data_5f30,param_1,param_2);
   iVar1 = *(int *)(_DAT_180c95f68 + (longlong)iVar1 * 4);
   if (iVar1 != -1) {
                     // WARNING: Could not recover jumptable at 0x0001805fed66. Too many branches

@@ -1210,8 +1210,8 @@ uint8_t UNK_180a2f7a0;                    // 未知数据
 uint8_t UNK_180a2f7a8;                    // 未知数据
 uint8_t UNK_180a2f7d0;                    // 未知数据
 uint8_t UNK_180a2f948;                    // 未知数据
-uint8_t DAT_180a2f960;                    // 数据常量
-uint8_t DAT_180a2f970;                    // 数据常量
+uint8_t system_memory_f960;                    // 数据常量
+uint8_t system_memory_f970;                    // 数据常量
 uint8_t UNK_180a2f980;                    // 未知数据
 uint8_t UNK_180a2f990;                    // 未知数据
 uint8_t UNK_180a2f9b0;                    // 未知数据

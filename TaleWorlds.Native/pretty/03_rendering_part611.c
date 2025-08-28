@@ -127,7 +127,7 @@ FUN_180601520(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   longlong lStack_28;
   
   uVar2 = FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
-  uVar1 = FUN_18055b2f0(&DAT_180c96150,uVar2);
+  uVar1 = FUN_18055b2f0(&system_data_6150,uVar2);
   puStack_30 = &UNK_180a3c3e0;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
@@ -199,7 +199,7 @@ void FUN_1806016b0(longlong param_1)
     *(int32_t *)(*(longlong *)(param_1 + 0x738) + 0x1a0) = 2;
   }
   *(uint64_t *)(param_1 + 0x710) =
-       *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x718) * 8);
+       *(uint64_t *)(&system_error_code + (longlong)*(int *)(param_1 + 0x718) * 8);
   return;
 }
 
@@ -575,7 +575,7 @@ void FUN_180601e80(longlong param_1,int param_2,uint64_t param_3,uint64_t param_
     FUN_18064e990(puVar3);
   }
   if (0 < iStack_40) {
-    puVar4 = &DAT_18098bc73;
+    puVar4 = &system_buffer_ptr;
     if (puStack_48 != (void *)0x0) {
       puVar4 = puStack_48;
     }
@@ -1025,7 +1025,7 @@ ulonglong FUN_180602950(longlong param_1)
     uVar4 = *(ulonglong *)(param_1 + 0x590);
     if (((iVar2 != -1) &&
         (uVar4 = (longlong)iVar2, *(char *)((longlong)iVar2 * 0x68 + 0x60 + _DAT_180c96150) == '\0')
-        ) && (uVar4 = *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x120) * 8) -
+        ) && (uVar4 = *(longlong *)(&system_error_code + (longlong)*(int *)(param_1 + 0x120) * 8) -
                       *(longlong *)(param_1 + 0x118), (float)(longlong)uVar4 * 1e-05 < 0.1))
     goto LAB_180602a78;
   }
@@ -1035,7 +1035,7 @@ ulonglong FUN_180602950(longlong param_1)
     if (((iVar2 != -1) &&
         (((uVar4 = (longlong)iVar2 * 0x68, 0 < *(int *)(uVar4 + 0x58 + _DAT_180c96150) &&
           (uVar4 = (longlong)iVar2 * 0x68, *(int *)(uVar4 + 0x58 + _DAT_180c96150) < 0xf)) &&
-         (uVar4 = *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x110) * 8) -
+         (uVar4 = *(longlong *)(&system_error_code + (longlong)*(int *)(param_1 + 0x110) * 8) -
                   *(longlong *)(param_1 + 0x108), (float)(longlong)uVar4 * 1e-05 < 0.1)))) &&
        (uVar4 = (ulonglong)(uint)(int)*(float *)(_DAT_180c95fc8 + 8),
        (int)*(float *)(_DAT_180c95fc8 + 8) == 0)) {

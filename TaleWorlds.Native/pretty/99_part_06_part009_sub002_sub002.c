@@ -272,7 +272,7 @@ extern const void* _DAT_180bf91b8;  /** 系统配置表10 */
 /** 系统全局地址表 */
 extern const void* UNK_180a3c3e0;   /** 系统地址表1 */
 extern const void* UNK_18098bcb0;   /** 系统地址表2 */
-extern const void* DAT_18098bc73;   /** 系统地址表3 */
+extern const void* system_buffer_ptr;   /** 系统地址表3 */
 extern const void* UNK_1809fcc58;   /** 系统地址表4 */
 extern const void* UNK_180a037b0;   /** 系统地址表5 */
 extern const void* UNK_1809fcc28;   /** 系统地址表6 */
@@ -492,7 +492,7 @@ void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
     // 初始化系统配置
     FUN_1806277c0(&ppplStack_5b8, _DAT_180bf9220);
     if (0 < _DAT_180bf9220) {
-        puVar12 = &DAT_18098bc73;
+        puVar12 = &system_buffer_ptr;
         if (_DAT_180bf9218 != (void *)0x0) {
             puVar12 = _DAT_180bf9218;
         }
@@ -533,7 +533,7 @@ void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
     // 初始化系统配置
     FUN_1806277c0(&puStack_598, _DAT_180bf9460);
     if (0 < _DAT_180bf9460) {
-        puVar12 = &DAT_18098bc73;
+        puVar12 = &system_buffer_ptr;
         if (_DAT_180bf9458 != (void *)0x0) {
             puVar12 = _DAT_180bf9458;
         }

@@ -126,10 +126,10 @@ typedef struct {
 // ============================================================================
 
 // 系统全局变量
-extern uint8_t DAT_180be12f0;                // 系统全局数据1
+extern uint8_t system_data_buffer;                // 系统全局数据1
 extern uint8_t UNK_180984b50;                // 系统未知数据1
 extern uint8_t UNK_180958000;                // 系统未知数据2
-extern uint8_t DAT_180bf00a8;                // 系统全局数据2
+extern uint8_t system_stack_cookie;                // 系统全局数据2
 
 // ============================================================================
 // 函数声明
@@ -357,7 +357,7 @@ LAB_1808c3b65:
         *plVar10 = (longlong)plVar10;
         uStack_98 = plStack_68;
         // WARNING: 资源清理，不返回
-        FUN_180742250(*(uint64_t *)(DAT_180be12f0 + SYSTEM_CONST_0X1A0), plVar10, &UNK_180984b50, SYSTEM_CONST_0XE1);
+        FUN_180742250(*(uint64_t *)(system_data_buffer + SYSTEM_CONST_0X1A0), plVar10, &UNK_180984b50, SYSTEM_CONST_0XE1);
     }
     goto LAB_1808c3bc4;
     while ((plVar10 != plStack_68 && (plVar10 = (longlong *)*plVar10, plVar10 != plStack_68))) {
@@ -386,7 +386,7 @@ LAB_1808c3bc4:
             plVar10[1] = (longlong)plVar10;
             *plVar10 = (longlong)plVar10;
             // WARNING: 资源清理，不返回
-            FUN_180742250(*(uint64_t *)(DAT_180be12f0 + SYSTEM_CONST_0X1A0), plVar10, &UNK_180984b50, SYSTEM_CONST_0XE1);
+            FUN_180742250(*(uint64_t *)(system_data_buffer + SYSTEM_CONST_0X1A0), plVar10, &UNK_180984b50, SYSTEM_CONST_0XE1);
         }
     }
     else {
@@ -553,7 +553,7 @@ LAB_1808c3b65:
         plVar15[1] = (longlong)plVar15;
         *plVar15 = (longlong)plVar15;
         // WARNING: 资源清理，不返回
-        FUN_180742250(*(uint64_t *)(DAT_180be12f0 + SYSTEM_CONST_0X1A0), plVar15, &UNK_180984b50, SYSTEM_CONST_0XE1, 1);
+        FUN_180742250(*(uint64_t *)(system_data_buffer + SYSTEM_CONST_0X1A0), plVar15, &UNK_180984b50, SYSTEM_CONST_0XE1, 1);
     }
     goto LAB_1808c3bc4;
     while ((plVar15 != plVar14 && (plVar15 = (longlong *)*plVar15, plVar15 != plVar14))) {
@@ -582,7 +582,7 @@ LAB_1808c3bc4:
             plVar15[1] = (longlong)plVar15;
             *plVar15 = (longlong)plVar15;
             // WARNING: 资源清理，不返回
-            FUN_180742250(*(uint64_t *)(DAT_180be12f0 + SYSTEM_CONST_0X1A0), plVar15, &UNK_180984b50, SYSTEM_CONST_0XE1, 1);
+            FUN_180742250(*(uint64_t *)(system_data_buffer + SYSTEM_CONST_0X1A0), plVar15, &UNK_180984b50, SYSTEM_CONST_0XE1, 1);
         }
     }
     else {

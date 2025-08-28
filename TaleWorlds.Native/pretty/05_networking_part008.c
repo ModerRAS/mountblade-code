@@ -152,7 +152,7 @@ void FUN_1808498e7(void)
   // 格式化错误信息第一部分
   iVar1 = func_0x00018074bda0(&stack0x00000050,0x100);
   // 格式化错误信息第二部分
-  iVar2 = FUN_18074b880(&stack0x00000050 + iVar1,0x100 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(&stack0x00000050 + iVar1,0x100 - iVar1,&system_temp_buffer);
   // 格式化错误信息第三部分
   func_0x00018074b800(&stack0x00000050 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),unaff_R14D);
   // 调用错误处理函数
@@ -235,11 +235,11 @@ void FUN_180849990(uint64_t param_1,int32_t param_2,uint64_t *param_3,uint64_t *
     }
     // 格式化错误信息
     iVar5 = func_0x00018074b7d0(auStack_148,0x100,param_2);
-    iVar6 = FUN_18074b880(auStack_148 + iVar5,0x100 - iVar5,&DAT_180a06434);
+    iVar6 = FUN_18074b880(auStack_148 + iVar5,0x100 - iVar5,&system_temp_buffer);
     iVar5 = iVar5 + iVar6;
     iVar6 = func_0x00018074bda0(auStack_148 + iVar5,0x100 - iVar5,0);
     iVar5 = iVar5 + iVar6;
-    iVar6 = FUN_18074b880(auStack_148 + iVar5,0x100 - iVar5,&DAT_180a06434);
+    iVar6 = FUN_18074b880(auStack_148 + iVar5,0x100 - iVar5,&system_temp_buffer);
     FUN_18074bd40(auStack_148 + (iVar5 + iVar6),0x100 - (iVar5 + iVar6),param_4);
     puStack_178 = auStack_148;
     // 调用错误处理函数
@@ -392,7 +392,7 @@ void FUN_180849d40(ulonglong param_1,longlong param_2,int32_t param_3)
       FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_1a8);
     }
     iVar1 = FUN_18074b880(auStack_158,0x100,param_2);
-    iVar2 = FUN_18074b880(auStack_158 + iVar1,0x100 - iVar1,&DAT_180a06434);
+    iVar2 = FUN_18074b880(auStack_158 + iVar1,0x100 - iVar1,&system_temp_buffer);
     func_0x00018074b830(auStack_158 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_3);
     puStack_188 = auStack_158;
                     // WARNING: Subroutine does not return
@@ -450,7 +450,7 @@ void FUN_180849f40(ulonglong param_1,longlong param_2,int32_t param_3)
       FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_1a8);
     }
     iVar1 = FUN_18074b880(auStack_158,0x100,param_2);
-    iVar2 = FUN_18074b880(auStack_158 + iVar1,0x100 - iVar1,&DAT_180a06434);
+    iVar2 = FUN_18074b880(auStack_158 + iVar1,0x100 - iVar1,&system_temp_buffer);
     func_0x00018074b830(auStack_158 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_3);
     puStack_188 = auStack_158;
                     // WARNING: Subroutine does not return

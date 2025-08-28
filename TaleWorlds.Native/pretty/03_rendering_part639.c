@@ -161,7 +161,7 @@ void RenderingSystem_DebugStringFormatter1(uint64_t param_1, uint64_t param_2, u
     lVar1 = FUN_1806256c0(&puStack_b8, auStack_88, 3);
     
     /* 获取调试字符串指针 */
-    puVar2 = &DAT_18098bc73;
+    puVar2 = &system_buffer_ptr;
     if (*(void **)(lVar1 + 8) != (void *)0x0) {
         puVar2 = *(void **)(lVar1 + 8);
     }
@@ -245,7 +245,7 @@ void RenderingSystem_DebugStringFormatter2(uint64_t param_1, uint64_t param_2, u
     FUN_1806256c0(&puStack_d8, auStack_a8, 4);
     
     /* 获取调试字符串指针 */
-    puVar1 = &DAT_18098bc73;
+    puVar1 = &system_buffer_ptr;
     if (puStack_d0 != (void *)0x0) {
         puVar1 = puStack_d0;
     }
@@ -344,7 +344,7 @@ LAB_18062605e:
     *(int8_t *)((longlong)puVar2 + 7) = 0;
     
     /* 获取输出字符串指针 */
-    puVar3 = (int32_t *)&DAT_18098bc73;
+    puVar3 = (int32_t *)&system_buffer_ptr;
     if (puVar2 != (int32_t *)0x0) {
         puVar3 = puVar2;
     }
@@ -403,7 +403,7 @@ void RenderingSystem_DebugStringGenerator2(void)
     
     /* 初始化字符串缓冲区 */
     FUN_1806279c0(&puStack_30);
-    FUN_180627910(&puStack_50, &DAT_180a3c230);
+    FUN_180627910(&puStack_50, &system_memory_c230);
     
     /* 获取当前缓冲区长度 */
     uVar3 = uStack_40;
@@ -431,7 +431,7 @@ void RenderingSystem_DebugStringGenerator2(void)
     }
     
     /* 获取输出字符串指针 */
-    puVar1 = &DAT_18098bc73;
+    puVar1 = &system_buffer_ptr;
     if (puStack_48 != (void *)0x0) {
         puVar1 = puStack_48;
     }
@@ -537,7 +537,7 @@ LAB_18062636e:
     *(int8_t *)((longlong)puVar2 + 7) = 0;  /* 字符串结束符 */
     
     /* 获取输出字符串指针 */
-    puVar3 = (int32_t *)&DAT_18098bc73;
+    puVar3 = (int32_t *)&system_buffer_ptr;
     if (puVar2 != (int32_t *)0x0) {
         puVar3 = puVar2;
     }
@@ -599,9 +599,9 @@ void RenderingSystem_PathParameterProcessor1(uint64_t param_1, char param_2)
     int iStack_30;             /* 路径参数长度 */
     
     /* 根据参数类型选择处理函数 */
-    puVar5 = &DAT_180a089e8;
+    puVar5 = &system_memory_89e8;
     if (param_2 != '\0') {
-        puVar5 = &DAT_180a08120;
+        puVar5 = &system_memory_8120;
     }
     
     /* 初始化参数处理上下文 */
@@ -647,7 +647,7 @@ LAB_18062653a:
     
     /* 如果没有额外参数，直接输出 */
     if (iStack_30 < 1) {
-        puVar4 = (int32_t *)&DAT_18098bc73;
+        puVar4 = (int32_t *)&system_buffer_ptr;
         if (puVar3 != (int32_t *)0x0) {
             puVar4 = puVar3;
         }
@@ -738,9 +738,9 @@ void RenderingSystem_PathParameterProcessor2(uint64_t param_1, char param_2)
     int iStack_30;             /* 路径参数长度 */
     
     /* 根据参数类型选择处理函数 */
-    puVar5 = &DAT_180a089e8;
+    puVar5 = &system_memory_89e8;
     if (param_2 != '\0') {
-        puVar5 = &DAT_180a08120;
+        puVar5 = &system_memory_8120;
     }
     
     /* 初始化参数处理上下文 */
@@ -786,7 +786,7 @@ LAB_1806267aa:
     
     /* 如果没有额外参数，直接输出 */
     if (iStack_30 < 1) {
-        puVar4 = (int32_t *)&DAT_18098bc73;
+        puVar4 = (int32_t *)&system_buffer_ptr;
         if (puVar3 != (int32_t *)0x0) {
             puVar4 = puVar3;
         }
@@ -874,7 +874,7 @@ void RenderingSystem_DebugStringGenerator4(void)
     
     /* 初始化字符串缓冲区 */
     FUN_1806279c0(&puStack_30);
-    FUN_180627910(&puStack_50, &DAT_180a3c230);
+    FUN_180627910(&puStack_50, &system_memory_c230);
     
     /* 获取当前缓冲区长度 */
     uVar3 = uStack_40;
@@ -902,7 +902,7 @@ void RenderingSystem_DebugStringGenerator4(void)
     }
     
     /* 获取输出字符串指针 */
-    puVar1 = &DAT_18098bc73;
+    puVar1 = &system_buffer_ptr;
     if (puStack_48 != (void *)0x0) {
         puVar1 = puStack_48;
     }
@@ -1126,7 +1126,7 @@ void RenderingSystem_DebugStringGenerator5(void)
     /* 尝试打开文件 */
     uStack_100 = 0;
     lStack_f8 = 0;
-    puVar4 = &DAT_18098bc73;
+    puVar4 = &system_buffer_ptr;
     if (puStack_158 != (void *)0x0) {
         puVar4 = puStack_158;
     }
@@ -1185,7 +1185,7 @@ void RenderingSystem_DebugStringGenerator5(void)
             /* 尝试打开备用文件 */
             uStack_e8 = 0;
             lStack_e0 = 0;
-            puVar4 = &DAT_18098bc73;
+            puVar4 = &system_buffer_ptr;
             if (puStack_138 != (void *)0x0) {
                 puVar4 = puStack_138;
             }
@@ -1248,7 +1248,7 @@ void RenderingSystem_DebugStringGenerator5(void)
                 /* 尝试打开第三备用文件 */
                 uStack_d0 = 0;
                 lStack_c8 = 0;
-                puVar4 = &DAT_18098bc73;
+                puVar4 = &system_buffer_ptr;
                 if (puStack_118 != (void *)0x0) {
                     puVar4 = puStack_118;
                 }
@@ -1785,7 +1785,7 @@ uint64_t *RenderingSystem_PathExtractor1(uint64_t *param_1, longlong param_2, ui
     void *puVar2;              /* 路径字符串指针 */
     
     /* 获取路径字符串指针 */
-    puVar2 = &DAT_18098bc73;
+    puVar2 = &system_buffer_ptr;
     if (*(void **)(param_2 + 8) != (void *)0x0) {
         puVar2 = *(void **)(param_2 + 8);
     }
@@ -1805,7 +1805,7 @@ uint64_t *RenderingSystem_PathExtractor1(uint64_t *param_1, longlong param_2, ui
         param_1[1] = param_1 + 3;
         *(int8_t *)(param_1 + 3) = 0;
         *(int32_t *)(param_1 + 2) = 0;
-        strcpy_s(param_1[1], 0x10, &DAT_18098bc73);
+        strcpy_s(param_1[1], 0x10, &system_buffer_ptr);
     }
     else {
         /* 提取扩展名部分 */
@@ -1856,7 +1856,7 @@ uint64_t *RenderingSystem_PathExtractor2(uint64_t *param_1, longlong param_2, ui
     ulonglong uVar3;           /* 扩展名长度计数器 */
     
     /* 获取路径字符串指针 */
-    puVar2 = &DAT_18098bc73;
+    puVar2 = &system_buffer_ptr;
     if (*(void **)(param_2 + 8) != (void *)0x0) {
         puVar2 = *(void **)(param_2 + 8);
     }
@@ -1888,7 +1888,7 @@ uint64_t *RenderingSystem_PathExtractor2(uint64_t *param_1, longlong param_2, ui
     param_1[1] = param_1 + 3;
     *(int8_t *)(param_1 + 3) = 0;
     *(int32_t *)(param_1 + 2) = 0;
-    strcpy_s(param_1[1], 0x10, &DAT_18098bc73);
+    strcpy_s(param_1[1], 0x10, &system_buffer_ptr);
     
     return param_1;
 }
@@ -2009,7 +2009,7 @@ longlong *RenderingSystem_PathExtractor3(longlong *param_1, longlong param_2, ui
     void *puVar3;              /* 路径字符串指针 */
     
     /* 获取路径字符串指针 */
-    puVar3 = &DAT_18098bc73;
+    puVar3 = &system_buffer_ptr;
     if (*(void **)(param_2 + 8) != (void *)0x0) {
         puVar3 = *(void **)(param_2 + 8);
     }
@@ -2031,7 +2031,7 @@ longlong *RenderingSystem_PathExtractor3(longlong *param_1, longlong param_2, ui
     /* 如果没有找到斜杠，使用完整路径 */
     if (lVar2 == 0) {
         pcVar1 = *(code **)(*param_1 + 0x10);
-        puVar3 = &DAT_18098bc73;
+        puVar3 = &system_buffer_ptr;
         if (*(void **)(param_2 + 8) != (void *)0x0) {
             puVar3 = *(void **)(param_2 + 8);
         }

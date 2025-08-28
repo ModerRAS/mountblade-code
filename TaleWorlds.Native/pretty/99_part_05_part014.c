@@ -498,7 +498,7 @@ void FUN_1802ddd80(longlong param_1,longlong *param_2)
   ulonglong uStack_48;
   
   uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_108;
-  if (DAT_180c82846 == '\0') {
+  if (system_data_2846 == '\0') {
     lVar3 = FUN_1800bd5c0();
     uVar1 = *(uint64_t *)(_DAT_180c86938 + 0x1cd8);
     if ((longlong *)*param_2 == (longlong *)0x0) {

@@ -207,7 +207,7 @@ void SystemInitializationManager(void) {
     
     // 第三阶段：资源管理和配置
     // 获取系统默认数据指针
-    data_pointer = &DAT_18098bc73;
+    data_pointer = &system_buffer_ptr;
     
     // 检查是否有自定义数据配置
     if (*(SystemDataPointer*)(rdi_value + 0xb0) != (SystemDataPointer)0x0) {
@@ -220,7 +220,7 @@ void SystemInitializationManager(void) {
     
     // 第四阶段：二级资源管理
     // 获取二级系统数据指针
-    data_pointer = &DAT_18098bc73;
+    data_pointer = &system_buffer_ptr;
     
     // 检查是否有二级自定义数据配置
     if (*(SystemDataPointer*)(rdi_value + 0x90) != (SystemDataPointer)0x0) {
@@ -403,7 +403,7 @@ void SystemGraphicsRenderer(SystemInt64 param_1) {
         strcpy_s(stack_buffer2, 0x80, &UNK_180a146b0);
         
         // 获取渲染数据源
-        var9 = &DAT_18098bc73;
+        var9 = &system_buffer_ptr;
         if (*(SystemDataPointer*)(param_1 + 0x3528) != (SystemDataPointer)0x0) {
             var9 = *(SystemDataPointer*)(param_1 + 0x3528);
         }

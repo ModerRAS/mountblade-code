@@ -438,7 +438,7 @@ void FUN_180244e4d(void)
     *(code **)(unaff_RSI + MEMORY_POOL_SIZE) = FUN_1802436f0;
     
     /* 设置系统配置 */
-    puVar1 = &DAT_18098bc73;
+    puVar1 = &system_buffer_ptr;
     if (*(void **)(unaff_RDI + 0xb0) != (void *)0x0) {
         puVar1 = *(void **)(unaff_RDI + 0xb0);
     }
@@ -447,7 +447,7 @@ void FUN_180244e4d(void)
     (**(code **)(*(longlong *)(unaff_RSI + 0x95c8) + 0x10))((longlong *)(unaff_RSI + 0x95c8), puVar1);
     
     /* 设置系统参数 */
-    puVar1 = &DAT_18098bc73;
+    puVar1 = &system_buffer_ptr;
     if (*(void **)(unaff_RDI + 0x90) != (void *)0x0) {
         puVar1 = *(void **)(unaff_RDI + 0x90);
     }
@@ -605,7 +605,7 @@ void FUN_180244ff0(longlong param_1)
         strcpy_s(auStack_c0, RESOURCE_STRING_SIZE, &UNK_180a146b0);
         
         /* 获取系统名称 */
-        puVar9 = &DAT_18098bc73;
+        puVar9 = &system_buffer_ptr;
         if (*(void **)(param_1 + 0x3528) != (void *)0x0) {
             puVar9 = *(void **)(param_1 + 0x3528);
         }

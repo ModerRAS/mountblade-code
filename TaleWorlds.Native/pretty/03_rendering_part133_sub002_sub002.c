@@ -483,7 +483,7 @@ LAB_18034826e:
     uStack_2d8 = uStack_2d8 & 0xffffffff00000000;
     uVar33 = FUN_1806277c0(&puStack_2e8,*(int32_t *)(lVar23 + 0x20));
     if (0 < *(int *)(lVar23 + 0x20)) {
-      puVar22 = &DAT_18098bc73;
+      puVar22 = &system_buffer_ptr;
       if (*(void **)(lVar23 + 0x18) != (void *)0x0) {
         puVar22 = *(void **)(lVar23 + 0x18);
       }
@@ -495,7 +495,7 @@ LAB_18034826e:
       *puStack_2e0 = 0;
     }
     while ((0 < (int)(uint)uStack_2d8 &&
-           (lVar23 = strstr(puStack_2e0,&DAT_180a0ff10), uVar33 = extraout_XMM0_Da, lVar23 != 0))) {
+           (lVar23 = strstr(puStack_2e0,&system_data_ff10), uVar33 = extraout_XMM0_Da, lVar23 != 0))) {
       iVar28 = 6;
       iVar30 = (int)lVar23 - (int)puStack_2e0;
       if ((uint)uStack_2d8 < iVar30 + 6U) {
@@ -644,7 +644,7 @@ LAB_18034826e:
       uStack_310 = CONCAT44(uStack_310._4_4_,uVar26);
       fVar34 = extraout_XMM0_Da_00;
       if (0 < *(int *)(lVar23 + 0x20)) {
-        puVar22 = &DAT_18098bc73;
+        puVar22 = &system_buffer_ptr;
         if (*(void **)(lVar23 + 0x18) != (void *)0x0) {
           puVar22 = *(void **)(lVar23 + 0x18);
         }
@@ -657,7 +657,7 @@ LAB_18034826e:
       *puStack_320 = 0;
     }
     while ((0 < (int)(uint)uStack_318 &&
-           (lVar23 = strstr(puStack_320,&DAT_180a0ff10), fVar34 = extraout_XMM0_Da_01, lVar23 != 0))
+           (lVar23 = strstr(puStack_320,&system_data_ff10), fVar34 = extraout_XMM0_Da_01, lVar23 != 0))
           ) {
       iVar28 = 6;
       iVar30 = (int)lVar23 - (int)puStack_320;
@@ -763,14 +763,14 @@ LAB_18034826e:
     lVar21 = (longlong)appppplStackX_10[0][0x17][1] - (longlong)*appppplStackX_10[0][0x17];
     lVar23 = lVar21 >> 0x3f;
     if (lVar21 / 0x30 + lVar23 != lVar23) {
-      puVar22 = &DAT_18098bc73;
+      puVar22 = &system_buffer_ptr;
       if (*(void **)(param_2 + 0x290) != (void *)0x0) {
         puVar22 = *(void **)(param_2 + 0x290);
       }
       FUN_180627020(&UNK_180a1d060,puVar22);
     }
     if ((longlong)appppplStackX_10[0][0x17][5] - (longlong)appppplStackX_10[0][0x17][4] >> 5 != 0) {
-      puVar22 = &DAT_18098bc73;
+      puVar22 = &system_buffer_ptr;
       if (*(void **)(param_2 + 0x290) != (void *)0x0) {
         puVar22 = *(void **)(param_2 + 0x290);
       }

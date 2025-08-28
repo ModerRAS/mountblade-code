@@ -643,7 +643,7 @@ void FUN_1801b6020(longlong param_1)
                     // WARNING: Subroutine does not return
     memcpy(puVar8 + 6,acStack_40,(longlong)(iVar12 + 2));
   }
-  puVar9 = (int32_t *)&DAT_18098bc73;
+  puVar9 = (int32_t *)&system_buffer_ptr;
   if (puVar8 != (int32_t *)0x0) {
     puVar9 = puVar8;
   }

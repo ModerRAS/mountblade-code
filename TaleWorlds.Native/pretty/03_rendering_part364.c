@@ -132,7 +132,7 @@ LAB_1804668d7:
         (**(code **)(*(longlong *)(param_1 + 0x78) + 0x10))(param_1 + 0x78,lVar12);
         break;
       }
-      lVar12 = (longlong)&DAT_180a03a84 - (longlong)pcVar9;
+      lVar12 = (longlong)&system_data_3a84 - (longlong)pcVar9;
       while (*pcVar9 == pcVar9[lVar12]) {
         pcVar9 = pcVar9 + 1;
         if (pcVar10 <= pcVar9) goto LAB_1804668d7;
@@ -308,7 +308,7 @@ LAB_180466bf0:
           lVar12 = _DAT_180c8ed70;
           if (lVar6 == 0) {
             *(int32_t *)(param_1 + 0x1d0) = *(int32_t *)(_DAT_180c8ed70 + 0x10);
-            puVar14 = &DAT_18098bc73;
+            puVar14 = &system_buffer_ptr;
             if (*(void **)(lVar12 + 8) != (void *)0x0) {
               puVar14 = *(void **)(lVar12 + 8);
             }
@@ -316,7 +316,7 @@ LAB_180466bf0:
           else {
             lVar12 = FUN_1802267d0(lVar6 + 0x170);
             *(int32_t *)(param_1 + 0x1d0) = *(int32_t *)(lVar12 + 0x10);
-            puVar14 = &DAT_18098bc73;
+            puVar14 = &system_buffer_ptr;
             if (*(void **)(lVar12 + 8) != (void *)0x0) {
               puVar14 = *(void **)(lVar12 + 8);
             }
@@ -650,7 +650,7 @@ LAB_1804672b4:
                           pcVar7 = pcVar7 + (longlong)pcVar11;
                           pcVar16 = pcVar9;
                           if (pcVar7 <= pcVar11) break;
-                          lVar12 = (longlong)&DAT_18098be48 - (longlong)pcVar11;
+                          lVar12 = (longlong)&system_data_be48 - (longlong)pcVar11;
                           while (*pcVar11 == pcVar11[lVar12]) {
                             pcVar11 = pcVar11 + 1;
                             if (pcVar7 <= pcVar11) goto LAB_180467444;
@@ -661,7 +661,7 @@ LAB_180467444:
                     } while (pcVar16 != (char *)0x0);
                     goto LAB_18046745b;
                   }
-                  lVar12 = (longlong)&DAT_18098be48 - (longlong)pcVar10;
+                  lVar12 = (longlong)&system_data_be48 - (longlong)pcVar10;
                   while (*pcVar10 == pcVar10[lVar12]) {
                     pcVar10 = pcVar10 + 1;
                     if (pcVar11 <= pcVar10) goto LAB_180466d74;

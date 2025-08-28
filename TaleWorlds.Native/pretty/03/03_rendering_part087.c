@@ -498,7 +498,7 @@ void render_system_parameter_processor(uint64_t *render_context, longlong textur
     param_source = &UNK_1809fcc28;
     data_end = data_block;
     data_block[0] = 0;
-    param_source = &DAT_18098bc73;
+    param_source = &system_buffer_ptr;
     
     if (data_source != (void *)0x0) {
         param_source = data_source;

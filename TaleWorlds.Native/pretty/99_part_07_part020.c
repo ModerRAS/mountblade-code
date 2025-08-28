@@ -79,7 +79,7 @@ LAB_1804ae840:
         (**(code **)(*(longlong *)(param_1 + 0x28) + 0x10))(param_1 + 0x28,lVar7);
         break;
       }
-      lVar7 = (longlong)&DAT_180a03a84 - (longlong)pcVar14;
+      lVar7 = (longlong)&system_data_3a84 - (longlong)pcVar14;
       while (*pcVar14 == pcVar14[lVar7]) {
         pcVar14 = pcVar14 + 1;
         if (pcVar6 <= pcVar14) goto LAB_1804ae840;
@@ -169,7 +169,7 @@ LAB_1804ae9b4:
         FUN_18010cbc0(pcVar14,puVar8,&uStack_118);
 LAB_1804ae9f7:
         *(ulonglong *)(param_1 + 0x48) = *(ulonglong *)(param_1 + 0x48) | uStack_118;
-        (**(code **)(*(longlong *)(param_1 + 0x50) + 0x10))(param_1 + 0x50,&DAT_18098bc73);
+        (**(code **)(*(longlong *)(param_1 + 0x50) + 0x10))(param_1 + 0x50,&system_buffer_ptr);
         pcVar14 = "body_mesh_suffix";
         do {
           pcVar4 = pcVar14;
@@ -226,7 +226,7 @@ LAB_1804aeaf4:
               if (puVar13[1] != 0) {
                 lVar7 = puVar13[1];
               }
-              FUN_18010cbc0(lVar7,&DAT_180a06430,param_1);
+              FUN_18010cbc0(lVar7,&system_data_6430,param_1);
               break;
             }
             lVar7 = (longlong)&UNK_180a2e280 - (longlong)pcVar14;
@@ -287,7 +287,7 @@ LAB_1804aeba4:
         plVar16 = alStack_b0;
         plVar12 = (longlong *)(param_1 + 0x2a0);
         do {
-          puVar8 = &DAT_18098bc73;
+          puVar8 = &system_buffer_ptr;
           if ((void *)*plVar16 != (void *)0x0) {
             puVar8 = (void *)*plVar16;
           }
@@ -298,7 +298,7 @@ LAB_1804aeba4:
               lVar9 = *(longlong *)(lVar7 + 8);
             }
             (**(code **)(puStack_160 + 0x10))(&puStack_160,lVar9);
-            puVar8 = &DAT_18098bc73;
+            puVar8 = &system_buffer_ptr;
             if (puStack_158 != (void *)0x0) {
               puVar8 = puStack_158;
             }
@@ -519,7 +519,7 @@ LAB_1804af134:
         *(uint64_t *)(lVar7 + 0x370) = uVar5;
         FUN_180283e70(uVar5);
         if (*(int *)(*(longlong *)(lVar7 + 0x370) + 0x58) == 0) {
-          puVar8 = &DAT_18098bc73;
+          puVar8 = &system_buffer_ptr;
           if (puStack_158 != (void *)0x0) {
             puVar8 = puStack_158;
           }
@@ -600,7 +600,7 @@ LAB_1804af2a8:
         else if (iStack_128 == 7) {
           while (pcVar15 = pcVar14 + 1, pcVar14[lStack_130] == pcVar14[0x180a36798]) {
             pcVar14 = pcVar15;
-            if (pcVar15 == &DAT_00000008) {
+            if (pcVar15 == &system_data_0008) {
               iVar2 = 0;
               goto LAB_1804af38e;
             }

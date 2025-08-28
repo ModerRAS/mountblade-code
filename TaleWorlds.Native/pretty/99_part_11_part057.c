@@ -98,7 +98,7 @@ extern uint64_t UNK_18097c2a8;      // 未知数据引用2a8
 extern uint64_t UNK_18097c2b8;      // 未知数据引用2b8
 extern uint64_t UNK_18097c2c8;      // 未知数据引用2c8
 extern uint64_t UNK_18097c2d8;      // 未知数据引用2d8
-extern uint64_t DAT_180a064c8;      // 数据引用64c8
+extern uint64_t system_memory_64c8;      // 数据引用64c8
 
 // ============================================================================
 // 核心功能实现
@@ -315,7 +315,7 @@ void FUN_1807bb100(longlong *param_1, char param_2, int8_t param_3)
                                     case 1:
                                         // 浮点数处理
                                         iStack_144 = (int)*(float *)(*param_1 + 0x3bf4);
-                                        binary_data_processor(param_1, &DAT_180a064c8, uVar8);
+                                        binary_data_processor(param_1, &system_memory_64c8, uVar8);
                                         if (param_2 != '\0') {
                                             uStack_158 = 0;
                                             uStack_160 = 1;

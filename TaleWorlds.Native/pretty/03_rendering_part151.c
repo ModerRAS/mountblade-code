@@ -371,7 +371,7 @@ void RenderingSystem_AdvancedVertexProcessor(longlong renderContext, longlong re
   // 验证渲染数据句柄的有效性和兼容性
   // 检查参数类型标识符和数据结构标识符
   if ((*(int *)(renderData + 0x10) != 10) ||
-     (iVar4 = strcmp(*(uint64_t *)(renderData + 8),&DAT_180a1f740), iVar4 != 0)) {
+     (iVar4 = strcmp(*(uint64_t *)(renderData + 8),&system_memory_f740), iVar4 != 0)) {
     return;  // 参数验证失败，退出函数
   }
   
@@ -484,7 +484,7 @@ void RenderingSystem_AdvancedVertexProcessor(longlong renderContext, longlong re
     auStack_3d8 = (int8_t  [8])uStack_3e8;
     puStack_3d0 = uStack_3e0;
     (**(code **)(**(longlong **)(plStack_3b0[0x15] + 0x88) + 0x60))
-              (*(longlong **)(plStack_3b0[0x15] + 0x88),&DAT_180a01050,plStack_3b0[0x15] + 0xc,0);
+              (*(longlong **)(plStack_3b0[0x15] + 0x88),&system_memory_1050,plStack_3b0[0x15] + 0xc,0);
     if (pcStack_3c8 != (code *)0x0) {
       (*pcStack_3c8)(auStack_3d8,0,0);
     }
@@ -496,7 +496,7 @@ void RenderingSystem_AdvancedVertexProcessor(longlong renderContext, longlong re
     auStack_3d8 = (int8_t  [8])uStack_3e8;
     pfStack_438 = (float *)auStack_3d8;
     (**(code **)(**(longlong **)(plStack_3f8[0x15] + 0x88) + 0x60))
-              (*(longlong **)(plStack_3f8[0x15] + 0x88),&DAT_180a01050,plStack_3f8[0x15] + 0xc,0);
+              (*(longlong **)(plStack_3f8[0x15] + 0x88),&system_memory_1050,plStack_3f8[0x15] + 0xc,0);
     if (pcStack_3c8 != (code *)0x0) {
       (*pcStack_3c8)(auStack_3d8,0,0);
     }
@@ -872,7 +872,7 @@ LAB_18035f156:
       if ((int)(*(int *)(pplStack_388 + 0x11) + (*(int *)(pplStack_388 + 0x11) >> 0x1f & 3U)) >> 2 <
           0) {
         uStack_420 = *(int32_t *)(pplStack_388 + 0xc);
-        puStack_428 = &DAT_18098bc73;
+        puStack_428 = &system_buffer_ptr;
         if ((void *)plStack_390[3] != (void *)0x0) {
           puStack_428 = (void *)plStack_390[3];
         }

@@ -415,7 +415,7 @@ void FUN_180095da0(uint64_t param_1,longlong param_2,longlong param_3,char param
   if ((*(longlong *)(param_2 + 0x50) - *(longlong *)(param_2 + 0x48) & 0xfffffffffffffff8U) == 0) {
     uVar11 = 0x100;
   }
-  puVar10 = &DAT_18098bc73;
+  puVar10 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar10 = *(void **)(param_2 + 8);
   }
@@ -439,7 +439,7 @@ void FUN_180095da0(uint64_t param_1,longlong param_2,longlong param_3,char param
                     // WARNING: Subroutine does not return
     memcpy(puVar8 + 1,*(uint64_t *)(param_2 + 0x28),(longlong)(iVar5 + 1));
   }
-  puVar14 = (int16_t *)&DAT_18098bc73;
+  puVar14 = (int16_t *)&system_buffer_ptr;
   if (puVar8 != (int16_t *)0x0) {
     puVar14 = puVar8;
   }

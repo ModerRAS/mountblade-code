@@ -95,7 +95,7 @@ void FUN_180258bc0(longlong param_1,longlong param_2)
           FUN_180045f60(&puStack_468,puVar17,uVar2);
           *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + (ulonglong)uVar2;
         }
-        plVar20 = (longlong *)&DAT_18098d7d0;
+        plVar20 = (longlong *)&system_data_d7d0;
         uVar22 = uVar23;
         do {
           lVar11 = -1;

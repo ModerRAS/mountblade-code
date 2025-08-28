@@ -202,7 +202,7 @@ void FUN_18007f4c0(int8_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
     if ((bVar9) &&
        ((lVar7 = *(longlong *)(param_1 + 8), *(char *)(lVar7 + 0xfa) == '\0' ||
         (*(char *)(lVar7 + 0xfb) == '\0')))) {
-      puVar8 = &DAT_18098bc73;
+      puVar8 = &system_buffer_ptr;
       if (*(void **)(lVar7 + 0x18) != (void *)0x0) {
         puVar8 = *(void **)(lVar7 + 0x18);
       }

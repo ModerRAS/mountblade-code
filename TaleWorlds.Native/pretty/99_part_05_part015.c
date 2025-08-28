@@ -279,14 +279,14 @@ longlong FUN_1802de020(longlong param_1,longlong param_2)
     uVar11 = 0xffffffff;
   }
   puVar15 = *(void **)(*(longlong *)(param_1 + 0x280) + 0x18);
-  puVar12 = &DAT_18098bc73;
+  puVar12 = &system_buffer_ptr;
   if (puVar15 != (void *)0x0) {
     puVar12 = puVar15;
   }
   (**(code **)(*plVar1 + 0x10))
             (plVar1,puVar12,puVar15,*(code **)(*plVar1 + 0x10),1,0xfffffffffffffffe);
   puVar15 = *(void **)(*(longlong *)(*(longlong *)(param_1 + 0x280) + 0x1e0) + 0x18);
-  puVar12 = &DAT_18098bc73;
+  puVar12 = &system_buffer_ptr;
   if (puVar15 != (void *)0x0) {
     puVar12 = puVar15;
   }
@@ -332,7 +332,7 @@ longlong FUN_1802de020(longlong param_1,longlong param_2)
     lStack_60 = 0;
     uStack_50 = 0;
     puStack_68 = &UNK_18098bcb0;
-    puVar15 = &DAT_18098bc73;
+    puVar15 = &system_buffer_ptr;
     if (puStack_80 != (void *)0x0) {
       puVar15 = puStack_80;
     }

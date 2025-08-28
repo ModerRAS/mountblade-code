@@ -52,12 +52,12 @@ void FUN_180612270(void)
     alStack_248[1] = 0;
     alStack_248[2] = 0;
     uStack_230 = 3;
-    FUN_1805f83e0(0x180c92c58,alStack_248,&DAT_180c92cf8);
+    FUN_1805f83e0(0x180c92c58,alStack_248,&system_data_2cf8);
     if (alStack_248[0] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
-    FUN_180567bb0(_DAT_180c92580,&DAT_180c92cf8,0x180c92c58);
+    FUN_180567bb0(_DAT_180c92580,&system_data_2cf8,0x180c92c58);
                     // WARNING: Subroutine does not return
     FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_268);
   }
@@ -577,7 +577,7 @@ longlong * FUN_180612c60(int param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   int8_t auStack_40 [56];
   
   FUN_1801ec5c0(auStack_40,&UNK_180a3b188,param_3,param_4,0xfffffffffffffffe);
-  FUN_180535720(&DAT_180c96070,&plStackX_10);
+  FUN_180535720(&system_data_6070,&plStackX_10);
   if ((param_1 != 0) && (_DAT_180c8f008 != 0)) {
     (**(code **)(_DAT_180c8f008 + 0x30))(param_1);
   }

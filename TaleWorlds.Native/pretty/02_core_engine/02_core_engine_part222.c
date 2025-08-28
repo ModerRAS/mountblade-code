@@ -199,7 +199,7 @@ longlong * create_engine_event_handler(uint64_t engine_instance, longlong *event
     (**(code **)(*(longlong *)(*event_params + 0x1f0) + 0x10))
               ((longlong *)(*event_params + 0x1f0), &UNK_180a0b290);
     FUN_180276f30(*event_params, *event_params + 0x214, 1);
-    (**(code **)(*(longlong *)*event_params + 0x148))((longlong *)*event_params, &DAT_180a00300);
+    (**(code **)(*(longlong *)*event_params + 0x148))((longlong *)*event_params, &system_memory_0300);
   }
   
   if (stack_handler_ptr2 != (longlong *)0x0) {
@@ -262,7 +262,7 @@ void update_engine_state(longlong engine_instance, float float_param, char updat
   
   // 计算特殊浮点值
   if (*(char *)(engine_instance + 0x5ba0) == '\0') {
-    float_value = (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(engine_instance + 0x5b98) * 8) %
+    float_value = (float)(*(longlong *)(&system_error_code + (longlong)*(int *)(engine_instance + 0x5b98) * 8) %
                     1000000000) * 1e-05;
   }
   else {

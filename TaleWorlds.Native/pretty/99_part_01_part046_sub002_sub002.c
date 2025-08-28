@@ -734,7 +734,7 @@ void FUN_1800d0950(longlong param_1,int8_t *param_2,byte param_3,char param_4,lo
           }
           FUN_18029cdd0(*(uint64_t *)(_DAT_180c86938 + 0x1cd8),&uStack_5b8);
           FUN_18029d000(*(uint64_t *)(_DAT_180c86938 + 0x1cd8),2);
-          if (DAT_180c82846 == '\0') {
+          if (system_data_2846 == '\0') {
             plVar28 = *(longlong **)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x8400);
             (**(code **)(*plVar28 + 0x68))
                       (plVar28,*(int *)(*(longlong *)(lVar16 + *(longlong *)(puVar18 + 0x11be8)) +
@@ -1641,7 +1641,7 @@ LAB_1800d2eb0:
                 ppuStack_9a8 = &puStack_970;
                 FUN_1802db5b0(lVar16 + 0x1458,iVar20,iVar34,auStack_100[lVar22]);
                 iVar20 = iVar20 + uStack_960 * 10;
-                (**(code **)(puStack_970 + 0x10))(&puStack_970,&DAT_18098bc73);
+                (**(code **)(puStack_970 + 0x10))(&puStack_970,&system_buffer_ptr);
                 lVar22 = lVar22 + -1;
                 plVar28 = plStack_980;
                 puVar18 = puStack_968;
@@ -1663,7 +1663,7 @@ LAB_1800d31f2:
               ppuStack_9a8 = &puStack_970;
               FUN_1802db5b0(lVar16 + 0x1458,iVar20,iVar34,auStack_100[lVar22]);
               iVar20 = iVar20 + uStack_960 * 10;
-              (**(code **)(puStack_970 + 0x10))(&puStack_970,&DAT_18098bc73);
+              (**(code **)(puStack_970 + 0x10))(&puStack_970,&system_buffer_ptr);
               uVar33 = 0xffffffff;
               switch(uVar4) {
               case 0x62:
@@ -1730,7 +1730,7 @@ LAB_1800d31f2:
             if ((int)uVar10 < *(int *)((longlong)(plVar28 + 5) + (longlong)ppuVar35)) {
               iVar34 = iVar34 + 0x12;
               iVar20 = (int)plStack_950;
-              (**(code **)(puStack_970 + 0x10))(&puStack_970,&DAT_18098bc73);
+              (**(code **)(puStack_970 + 0x10))(&puStack_970,&system_buffer_ptr);
               uStack_994 = 0;
               uVar33 = uVar33 + 1;
               plStack_938 = (longlong *)CONCAT44(plStack_938._4_4_,uVar33);

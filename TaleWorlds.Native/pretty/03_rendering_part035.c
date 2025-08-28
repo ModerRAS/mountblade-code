@@ -410,7 +410,7 @@ FUN_180287fc0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   param_2[1] = param_2 + 3;
   *(int8_t *)(param_2 + 3) = 0;
   *(int32_t *)(param_2 + 2) = 0x16;
-  strcpy_s(param_2[1],0x80,&DAT_180a16c50,param_4,0,0xfffffffffffffffe);
+  strcpy_s(param_2[1],0x80,&system_data_6c50,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
 

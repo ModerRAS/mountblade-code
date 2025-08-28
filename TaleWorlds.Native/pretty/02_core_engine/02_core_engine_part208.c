@@ -26,7 +26,7 @@ void release_texture_resources(longlong texture_context)
   // 获取纹理管理器
   texture_manager = *(longlong *)(texture_context + 0xb0);
   texture_data = *(void **)(*(longlong *)(texture_manager + 0xa8) + 0x70);
-  default_texture = &DAT_18098bc73;
+  default_texture = &system_buffer_ptr;
   if (texture_data != (void *)0x0) {
     default_texture = texture_data;
   }
@@ -73,7 +73,7 @@ void release_texture_resources(longlong texture_context)
   
   // 执行资源清理
   (**(code **)(*resource_pool + 0x60))
-            (resource_pool,&DAT_1809fe0d0,*(longlong *)(texture_manager + 0xa8) + 0xc,0,&cleanup_context);
+            (resource_pool,&system_memory_e0d0,*(longlong *)(texture_manager + 0xa8) + 0xc,0,&cleanup_context);
   
   if (cleanup_callback != (code *)0x0) {
     (*cleanup_callback)(&cleanup_context,0,0);
@@ -116,7 +116,7 @@ void initialize_texture_object(longlong render_context)
   
   // 设置渲染上下文
   if (render_context != 0) {
-    texture_format = &DAT_18098bc73;
+    texture_format = &system_buffer_ptr;
     if (*(void **)(render_context + 0x70) != (void *)0x0) {
       texture_format = *(void **)(render_context + 0x70);
     }

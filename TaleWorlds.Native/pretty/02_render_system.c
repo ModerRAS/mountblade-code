@@ -93,7 +93,7 @@
 /**
  * 渲染设备状态
  */
-char DAT_180c82860;              /* 渲染系统状态标志 */
+char system_debug_flag;              /* 渲染系统状态标志 */
 void* RenderDevice;              /* 渲染设备指针 */
 void* RenderContext;             /* 渲染上下文指针 */
 void* SwapChain;                 /* 交换链指针 */
@@ -159,7 +159,7 @@ int RenderSystemInitialize(void* window_handle, uint32_t width, uint32_t height)
     SetDefaultRenderState();
     
     /* 标记渲染系统已初始化 */
-    DAT_180c82860 = RENDER_INITIALIZED;
+    system_debug_flag = RENDER_INITIALIZED;
     
     return SUCCESS;
 }
@@ -185,7 +185,7 @@ void RenderSystemShutdown(void)
     DestroyRenderDevice();
     
     /* 清理渲染状态 */
-    DAT_180c82860 = 0;
+    system_debug_flag = 0;
 }
 
 /*=============================================================================

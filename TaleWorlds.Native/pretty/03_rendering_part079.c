@@ -593,7 +593,7 @@ void FUN_18030f390(longlong param_1)
         lVar15 = _DAT_180c868d0;
         fVar27 = fVar28 * fVar28 + fVar27 * fVar27;
         if (fVar25 * fVar25 <= fVar27) {
-          fVar28 = (float)DAT_180a401f0;
+          fVar28 = (float)system_state_01f0;
           auVar23._8_8_ = 0;
           auVar23._0_8_ = CONCAT44(0,fVar27);
           auVar4._8_8_ = 0;

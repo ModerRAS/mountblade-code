@@ -235,7 +235,7 @@ char FUN_1805bf660(longlong *param_1,int param_2,longlong param_3)
     }
     lVar8 = FUN_1805a0610(lVar8 + 0x28,9);
     if ((lVar8 != 0) && (*(int *)(lVar8 + 0x1c) != -1)) {
-      iVar7 = FUN_18053a410(&DAT_180c95f30,*(int32_t *)(*(longlong *)(*param_1 + 0x590) + 0xac));
+      iVar7 = FUN_18053a410(&system_data_5f30,*(int32_t *)(*(longlong *)(*param_1 + 0x590) + 0xac));
       iVar7 = *(int *)(_DAT_180c95f68 + (longlong)iVar7 * 4);
       if (iVar7 != -1) {
         lVar10 = *(longlong *)(_DAT_180c95f88 + (longlong)iVar7 * 8);

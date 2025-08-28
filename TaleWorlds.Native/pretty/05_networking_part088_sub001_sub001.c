@@ -620,7 +620,7 @@ void FUN_1808916f0(longlong param_1,longlong param_2)
       }
       plVar3 = plVar1 + 2;
       if (plVar1 == (longlong *)0x0) {
-        plVar3 = (longlong *)&DAT_00000018;
+        plVar3 = (longlong *)&system_data_0018;
       }
       plVar1 = plVar4;
     } while ((*plVar3 == 0) || (iVar2 = FUN_18088aca0(param_2), iVar2 == 0));

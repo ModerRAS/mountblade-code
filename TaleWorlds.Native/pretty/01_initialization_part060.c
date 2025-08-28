@@ -471,7 +471,7 @@ code * FUN_18007eb80(longlong param_1,char param_2)
       pcStack_20 = (code *)&UNK_180083070;
       pcStack_18 = FUN_180082fd0;
       lStack_30 = param_1;
-      (**(code **)(*plVar4 + 0x60))(plVar4,&DAT_1809fc740,param_1 + 0xb8,0,&lStack_30);
+      (**(code **)(*plVar4 + 0x60))(plVar4,&system_data_c740,param_1 + 0xb8,0,&lStack_30);
       in_RAX = pcStack_20;
       if (pcStack_20 != (code *)0x0) {
         pcVar3 = (code *)(*pcStack_20)(&lStack_30,0,0);

@@ -159,7 +159,7 @@ void rendering_system_initialize_render_context(longlong render_context, longlon
             entry_point = FUN_1803089a0;
             exit_handler = &UNK_180308990;
             queue_capacity = render_context;
-            resource_table[0] = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x38, 8, DAT_180bf65bc);
+            resource_table[0] = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x38, 8, system_allocation_flags);
             *resource_table[0] = (longlong)render_target;
             resource_table[0][1] = (longlong)visibility_flag;
             resource_table[0][2] = (longlong)quality_parameter;
@@ -233,7 +233,7 @@ void rendering_system_process_render_batch(longlong *render_batch_data, int star
            (*(float *)render_batch_data[3] < *(float *)((longlong)render_object + 0x34))))))) {
         if (*(char *)(render_context + 0x7d) != '\0') {
           quality_factor = *(float *)(render_object + 0x52);
-          quality_threshold = *(float *)(&DAT_180bf3ff8 +
+          quality_threshold = *(float *)(&system_memory_3ff8 +
                             (longlong)*(int *)(*(longlong *)render_batch_data[4] + 0x5b98) * 4);
           (**(code **)(*render_object + 0x108))(render_object);
           if (RENDERING_SYSTEM_QUALITY_THRESHOLD <= quality_factor + quality_threshold * -0.1) goto LAB_1803066f9;
@@ -251,12 +251,12 @@ LAB_1803066f9:
         visibility_flag = '\0';
       }
       *(char *)(render_object + 9) = visibility_flag;
-      quality_threshold = *(float *)(&DAT_180bf3ff8 + (longlong)*(int *)(*(longlong *)render_batch_data[4] + 0x5b98) * 4);
+      quality_threshold = *(float *)(&system_memory_3ff8 + (longlong)*(int *)(*(longlong *)render_batch_data[4] + 0x5b98) * 4);
       quality_factor = *(float *)(render_object + 6);
       *(float *)(render_object + 6) = quality_threshold + quality_factor;
       if (visibility_flag == '\0') {
         *(float *)((longlong)render_object + 0x34) =
-             *(float *)(&DAT_180bf3ff8 + (longlong)*(int *)(*(longlong *)render_batch_data[4] + 0x5b98) * 4) +
+             *(float *)(&system_memory_3ff8 + (longlong)*(int *)(*(longlong *)render_batch_data[4] + 0x5b98) * 4) +
              *(float *)((longlong)render_object + 0x34);
       }
       else {
@@ -362,7 +362,7 @@ void rendering_system_execute_render_pipeline(longlong *render_pipeline_data, in
          (*(float *)render_pipeline_data[3] < *(float *)((longlong)render_object + 0x34))))))) {
       if (*(char *)(render_context + 0x7d) != '\0') {
         quality_factor = *(float *)(render_object + 0x52);
-        quality_threshold = *(float *)(&DAT_180bf3ff8 + (longlong)*(int *)(*(longlong *)render_pipeline_data[4] + 0x5b98) * 4
+        quality_threshold = *(float *)(&system_memory_3ff8 + (longlong)*(int *)(*(longlong *)render_pipeline_data[4] + 0x5b98) * 4
                           );
         (**(code **)(*render_object + 0x108))(render_object);
         if (RENDERING_SYSTEM_QUALITY_THRESHOLD <= quality_factor + quality_threshold * -0.1) goto LAB_1803066f9;
@@ -380,12 +380,12 @@ LAB_1803066f9:
       visibility_flag = '\0';
     }
     *(char *)(render_object + 9) = visibility_flag;
-    quality_threshold = *(float *)(&DAT_180bf3ff8 + (longlong)*(int *)(*(longlong *)render_pipeline_data[4] + 0x5b98) * 4);
+    quality_threshold = *(float *)(&system_memory_3ff8 + (longlong)*(int *)(*(longlong *)render_pipeline_data[4] + 0x5b98) * 4);
     quality_factor = *(float *)(render_object + 6);
     *(float *)(render_object + 6) = quality_threshold + quality_factor;
     if (visibility_flag == '\0') {
       *(float *)((longlong)render_object + 0x34) =
-           *(float *)(&DAT_180bf3ff8 + (longlong)*(int *)(*(longlong *)render_pipeline_data[4] + 0x5b98) * 4) +
+           *(float *)(&system_memory_3ff8 + (longlong)*(int *)(*(longlong *)render_pipeline_data[4] + 0x5b98) * 4) +
            *(float *)((longlong)render_object + 0x34);
     }
     else {

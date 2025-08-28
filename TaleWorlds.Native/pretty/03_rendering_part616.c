@@ -22,7 +22,7 @@ void FUN_1806077c0(longlong param_1,uint64_t param_2,int param_3,uint64_t param_
     if ((lVar4 != 0) &&
        ((*(longlong *)(lVar4 + 0x260) != 0 &&
         (lVar1 = *(longlong *)(*(longlong *)(lVar4 + 0x260) + 0x210), lVar1 != 0)))) {
-      FUN_180572610(lVar1,&DAT_18098bc73,param_3,param_4,uVar5);
+      FUN_180572610(lVar1,&system_buffer_ptr,param_3,param_4,uVar5);
       lVar4 = *(longlong *)(param_1 + 0x8a8);
     }
     if (((lVar4 != 0) && (*(longlong *)(lVar4 + 0x260) != 0)) &&
@@ -294,7 +294,7 @@ void FUN_180607d30(longlong param_1)
     strcpy_s(auStack_60,0x40,param_1);
   }
   if (0 < iStack_68) {
-    FUN_18053a2e0(&DAT_180c95f30,&puStack_78);
+    FUN_18053a2e0(&system_ptr_5f30,&puStack_78);
   }
   puStack_78 = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
@@ -312,7 +312,7 @@ uint64_t * FUN_180607e00(uint64_t *param_1)
   longlong lVar2;
   uint64_t uVar3;
   
-  iVar1 = FUN_18053a410(&DAT_180c95f30);
+  iVar1 = FUN_18053a410(&system_ptr_5f30);
   iVar1 = *(int *)(_DAT_180c95f68 + (longlong)iVar1 * 4);
   if (iVar1 == -1) {
     uVar3 = 0;
@@ -341,7 +341,7 @@ ulonglong FUN_180607e80(int32_t param_1,int32_t param_2)
   ulonglong uVar5;
   longlong lVar6;
   
-  iVar4 = FUN_18053a410(&DAT_180c95f30,param_1,param_2);
+  iVar4 = FUN_18053a410(&system_ptr_5f30,param_1,param_2);
   iVar4 = *(int *)(_DAT_180c95f68 + (longlong)iVar4 * 4);
   if (iVar4 == -1) {
     lVar6 = 0;
@@ -392,7 +392,7 @@ uint64_t FUN_180607ef0(int32_t param_1,int32_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18053a410(&DAT_180c95f30,param_1,param_2);
+  iVar1 = FUN_18053a410(&system_ptr_5f30,param_1,param_2);
   iVar1 = *(int *)(_DAT_180c95f68 + (longlong)iVar1 * 4);
   if (iVar1 != -1) {
     return *(uint64_t *)(*(longlong *)(_DAT_180c95f88 + (longlong)iVar1 * 8) + 0x1d0);
@@ -558,7 +558,7 @@ int32_t FUN_180608380(int32_t param_1,int32_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18053a410(&DAT_180c95f30,param_1,param_2);
+  iVar1 = FUN_18053a410(&system_ptr_5f30,param_1,param_2);
   iVar1 = *(int *)(_DAT_180c95f68 + (longlong)iVar1 * 4);
   if (iVar1 != -1) {
     return *(int32_t *)(*(longlong *)(_DAT_180c95f88 + (longlong)iVar1 * 8) + 0x188);
@@ -575,7 +575,7 @@ int32_t FUN_1806083d0(int32_t param_1,int32_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_18053a410(&DAT_180c95f30,param_1,param_2);
+  iVar1 = FUN_18053a410(&system_ptr_5f30,param_1,param_2);
   iVar1 = *(int *)(_DAT_180c95f68 + (longlong)iVar1 * 4);
   if (iVar1 != -1) {
     return *(int32_t *)(*(longlong *)(_DAT_180c95f88 + (longlong)iVar1 * 8) + 0x1f0);
@@ -627,7 +627,7 @@ void FUN_180608500(int32_t param_1,int32_t param_2)
   int iVar1;
   longlong lVar2;
   
-  iVar1 = FUN_18053a410(&DAT_180c95f30,param_1,param_2);
+  iVar1 = FUN_18053a410(&system_ptr_5f30,param_1,param_2);
   iVar1 = *(int *)(_DAT_180c95f68 + (longlong)iVar1 * 4);
   if (iVar1 == -1) {
     lVar2 = 0;
@@ -651,7 +651,7 @@ float FUN_180608550(int32_t param_1,int32_t param_2)
   int iVar1;
   longlong lVar2;
   
-  iVar1 = FUN_18053a410(&DAT_180c95f30,param_1,param_2);
+  iVar1 = FUN_18053a410(&system_ptr_5f30,param_1,param_2);
   iVar1 = *(int *)(_DAT_180c95f68 + (longlong)iVar1 * 4);
   if (iVar1 == -1) {
     lVar2 = 0;
@@ -673,7 +673,7 @@ FUN_1806085b0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   longlong lStack_28;
   
   FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
-  uVar1 = FUN_18055b2f0(&DAT_180c96150,&puStack_30);
+  uVar1 = FUN_18055b2f0(&system_ptr_6150,&puStack_30);
   puStack_30 = &UNK_180a3c3e0;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
@@ -698,10 +698,10 @@ void FUN_180608620(int param_1)
   if (param_1 == -1) {
     if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
                 0x48) < _DAT_180d49f70) {
-      FUN_1808fcb90(&DAT_180d49f70);
+      FUN_1808fcb90(&system_ptr_9f70);
       if (_DAT_180d49f70 == -1) {
         _DAT_180d49f80 = &UNK_1809fcc58;
-        _DAT_180d49f88 = &DAT_180d49f98;
+        _DAT_180d49f88 = &system_ptr_9f98;
 
 
 // 函数: void FUN_18060bbe0(void)

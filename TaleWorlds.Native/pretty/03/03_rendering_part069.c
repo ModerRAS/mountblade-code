@@ -198,7 +198,7 @@ void rendering_system_advanced_initialize(uint64_t *render_context, int init_par
   *(int32_t *)(render_context + 0x382) = local_stack_var_2;
   
   // 处理渲染字符串配置
-  local_ptr_1 = &DAT_18098bc73;
+  local_ptr_1 = &system_buffer_ptr;
   if (local_stack_ptr_4 != (void *)0x0) {
     local_ptr_1 = local_stack_ptr_4;
   }

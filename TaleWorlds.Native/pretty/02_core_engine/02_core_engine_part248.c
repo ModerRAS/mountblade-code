@@ -121,7 +121,7 @@ void process_resource_cleanup_and_management(uint64_t *context_ptr)
     if (stack_cookie != 0) {
       do {
         operation_result = process_task_data(*task_queue);
-        register_task_result(operation_result,&DAT_18098bc73);
+        register_task_result(operation_result,&system_buffer_ptr);
         loop_counter = loop_counter + 1;
         task_queue = task_queue + 1;
       } while ((ulonglong)(longlong)loop_counter < stack_cookie);
@@ -496,7 +496,7 @@ int32_t execute_optimization_task(longlong task_context)
   int32_t task_params[8];
   
   task_result = process_optimization_request(*(uint64_t *)(task_context + 0x370),task_params,0,0);
-  register_task_result(task_result,&DAT_18098bc73);
+  register_task_result(task_result,&system_buffer_ptr);
   return task_params[0];
 }
 
@@ -513,7 +513,7 @@ int32_t process_system_optimization(longlong system_context)
   int32_t optimization_params[8];
   
   optimization_result = execute_optimization_algorithm(*(uint64_t *)(system_context + 0x370),optimization_params,0);
-  register_task_result(optimization_result,&DAT_18098bc73);
+  register_task_result(optimization_result,&system_buffer_ptr);
   return optimization_params[0];
 }
 
@@ -628,7 +628,7 @@ APPEND_ERROR_CODE:
     }
 COPY_ERROR_MESSAGE:
                     // WARNING: Subroutine does not return
-    memcpy((int8_t *)((ulonglong)buffer_capacity + (longlong)report_buffer),&DAT_18098bc73,
+    memcpy((int8_t *)((ulonglong)buffer_capacity + (longlong)report_buffer),&system_buffer_ptr,
            (longlong)((int)system_data + 2));
   }
   required_size = buffer_size + 5;
@@ -702,7 +702,7 @@ COPY_ERROR_DETAILS:
   }
 FINALIZE_REPORT:
   *(int16_t *)((ulonglong)buffer_capacity + (longlong)report_buffer) = 10;
-  message_buffer = (uint64_t *)&DAT_18098bc73;
+  message_buffer = (uint64_t *)&system_buffer_ptr;
   if (report_buffer != (uint64_t *)0x0) {
     message_buffer = report_buffer;
   }

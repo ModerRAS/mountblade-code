@@ -1010,7 +1010,7 @@ StateUpdateComplete:
                             *(RenderFlagPtr)(handle2 + 0x1b6c) = 0;
                             *(byte*)(handle2 + 0x17a8) = 0;
                             *(RenderDataBlockPtr)(handle2 + 0x1798) =
-                                *(RenderDataBlockPtr)(&DAT_180c8ed30 + (longlong)*(int*)(handle2 + 0x17a0) * 8);
+                                *(RenderDataBlockPtr)(&system_error_code + (longlong)*(int*)(handle2 + 0x17a0) * 8);
                             *(RenderFlagPtr)(handle2 + 0x1c0c) = 0xffffffff;
                             *(RenderFlagPtr)(handle2 + 0x1c14) = 0xffffffff;
                             *(RenderFlagPtr)(handle2 + 0x1c1c) = 0xffffffff;
@@ -1019,7 +1019,7 @@ StateUpdateComplete:
                             *(RenderFlagPtr)(handle2 + 0x200c) = 0;
                             *(byte*)(handle2 + 0x1c48) = 0;
                             *(RenderDataBlockPtr)(handle2 + 0x1c38) =
-                                *(RenderDataBlockPtr)(&DAT_180c8ed30 + (longlong)*(int*)(handle2 + 0x1c40) * 8);
+                                *(RenderDataBlockPtr)(&system_error_code + (longlong)*(int*)(handle2 + 0x1c40) * 8);
                         }
                     }
                     handle4 += RENDER_MEMORY_BLOCK_SIZE;
@@ -1103,7 +1103,7 @@ void RenderProcessStateChange(void) {
                             *(RenderFlagPtr)(handle2 + 0x1b6c) = 0;
                             *(byte*)(handle2 + 0x17a8) = 0;
                             *(RenderDataBlockPtr)(handle2 + 0x1798) =
-                                *(RenderDataBlockPtr)(&DAT_180c8ed30 + (longlong)*(int*)(handle2 + 0x17a0) * 8);
+                                *(RenderDataBlockPtr)(&system_error_code + (longlong)*(int*)(handle2 + 0x17a0) * 8);
                             *(RenderFlagPtr)(handle2 + 0x1c0c) = 0xffffffff;
                             *(RenderFlagPtr)(handle2 + 0x1c14) = 0xffffffff;
                             *(RenderFlagPtr)(handle2 + 0x1c1c) = 0xffffffff;
@@ -1112,7 +1112,7 @@ void RenderProcessStateChange(void) {
                             *(RenderFlagPtr)(handle2 + 0x200c) = 0;
                             *(byte*)(handle2 + 0x1c48) = 0;
                             *(RenderDataBlockPtr)(handle2 + 0x1c38) =
-                                *(RenderDataBlockPtr)(&DAT_180c8ed30 + (longlong)*(int*)(handle2 + 0x1c40) * 8);
+                                *(RenderDataBlockPtr)(&system_error_code + (longlong)*(int*)(handle2 + 0x1c40) * 8);
                         }
                     }
                     handle3 += RENDER_MEMORY_BLOCK_SIZE;
@@ -1177,7 +1177,7 @@ void RenderProcessBatch(uint param1) {
                 *(RenderFlagPtr)(handle2 + 0x1b6c) = 0;
                 *(byte*)(handle2 + 0x17a8) = 0;
                 *(RenderDataBlockPtr)(handle2 + 0x1798) =
-                    *(RenderDataBlockPtr)(&DAT_180c8ed30 + (longlong)*(int*)(handle2 + 0x17a0) * 8);
+                    *(RenderDataBlockPtr)(&system_error_code + (longlong)*(int*)(handle2 + 0x17a0) * 8);
                 *(RenderFlagPtr)(handle2 + 0x1c0c) = 0xffffffff;
                 *(RenderFlagPtr)(handle2 + 0x1c14) = 0xffffffff;
                 *(RenderFlagPtr)(handle2 + 0x1c1c) = 0xffffffff;
@@ -1186,7 +1186,7 @@ void RenderProcessBatch(uint param1) {
                 *(RenderFlagPtr)(handle2 + 0x200c) = 0;
                 *(byte*)(handle2 + 0x1c48) = 0;
                 *(RenderDataBlockPtr)(handle2 + 0x1c38) =
-                    *(RenderDataBlockPtr)(&DAT_180c8ed30 + (longlong)*(int*)(handle2 + 0x1c40) * 8);
+                    *(RenderDataBlockPtr)(&system_error_code + (longlong)*(int*)(handle2 + 0x1c40) * 8);
             }
         }
         handle3 += RENDER_MEMORY_BLOCK_SIZE;

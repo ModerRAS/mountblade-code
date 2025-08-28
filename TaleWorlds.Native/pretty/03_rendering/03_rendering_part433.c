@@ -1092,7 +1092,7 @@ void RenderingSystemAdvancedFunctionCallProcessor(longlong *param_1, longlong *p
     
     // 执行条件分支处理
     if (4 < (ulonglong)(param_2[1] - *param_2 >> 5)) {
-        (**(code **)(*param_1 + 0x70))(param_1, &DAT_180a06434);
+        (**(code **)(*param_1 + 0x70))(param_1, &system_temp_buffer);
         functionPtr = *(code **)(*param_1 + 0x78);
         tempVar1 = FUN_180627ae0(&tempPtr2, *param_2 + 0x80);
         FUN_180628a40(&tempPtr2);
@@ -1111,7 +1111,7 @@ void RenderingSystemAdvancedFunctionCallProcessor(longlong *param_1, longlong *p
         
         // 执行最终的条件检查
         if (5 < (ulonglong)(param_2[1] - *param_2 >> 5)) {
-            (**(code **)(*param_1 + 0x70))(param_1, &DAT_180a06434);
+            (**(code **)(*param_1 + 0x70))(param_1, &system_temp_buffer);
         }
     }
     

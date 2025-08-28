@@ -48,7 +48,7 @@ void FUN_180047fc0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   
   lVar11 = _DAT_180c86870;
   uVar12 = 0;
-  if (DAT_180bf5240 == '\0') {
+  if (system_data_5240 == '\0') {
     return;
   }
   puStack_c8 = &UNK_180a3c3e0;
@@ -82,13 +82,13 @@ void FUN_180047fc0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   puVar8[4] = 0x747874;
   uStack_b8 = 0x18;
   puVar5 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,3);
-  puVar9 = &DAT_18098bc73;
+  puVar9 = &system_buffer_ptr;
   if (puStack_c0 != (void *)0x0) {
     puVar9 = puStack_c0;
   }
   *puVar5 = 0;
   *(int8_t *)(puVar5 + 2) = 0;
-  FUN_18062dee0(puVar5,puVar9,&DAT_1809fc7ec);
+  FUN_18062dee0(puVar5,puVar9,&system_data_c7ec);
   uVar16 = 0;
   uVar10 = uVar12;
   if (_DAT_180bf5250 - _DAT_180bf5248 >> 8 != 0) {
@@ -114,7 +114,7 @@ void FUN_180047fc0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
       }
       cVar2 = *pcStack_80;
       while (cVar2 != '\0') {
-        lVar6 = strchr(&DAT_1809fc8e4,(int)pcStack_80[lVar11]);
+        lVar6 = strchr(&system_data_c8e4,(int)pcStack_80[lVar11]);
         if (lVar6 != 0) {
           pcStack_80[lVar11] = '_';
         }
@@ -244,7 +244,7 @@ void FUN_180047fc0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
         }
         cVar2 = *pcStack_a0;
         while (cVar2 != '\0') {
-          lVar7 = strchr(&DAT_1809fc8e4,(int)pcStack_a0[lVar6]);
+          lVar7 = strchr(&system_data_c8e4,(int)pcStack_a0[lVar6]);
           if (lVar7 != 0) {
             pcStack_a0[lVar6] = '_';
           }
@@ -267,7 +267,7 @@ void FUN_180047fc0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
         lVar11 = func_0x00018066bd70(lVar11);
         uVar4 = uVar16;
       }
-      FUN_18062e0f0(puVar5,&DAT_1809fcc18);
+      FUN_18062e0f0(puVar5,&system_data_cc18);
       puStack_88 = &UNK_180a3c3e0;
       if (pcStack_80 != (char *)0x0) {
                     // WARNING: Subroutine does not return
@@ -291,7 +291,7 @@ void FUN_180047fc0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
       pcVar14 = *(char **)(_DAT_180bf5268 + 8 + lVar11);
       cVar2 = *pcVar14;
       while (cVar2 != '\0') {
-        lVar7 = strchr(&DAT_1809fc8e4,(int)pcVar14[lVar13]);
+        lVar7 = strchr(&system_data_c8e4,(int)pcVar14[lVar13]);
         if (lVar7 != 0) {
           *(int8_t *)(lVar13 + *(longlong *)(lVar6 + 8 + lVar11)) = 0x5f;
         }
@@ -300,7 +300,7 @@ void FUN_180047fc0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
         cVar2 = pcVar14[lVar13];
       }
       puVar9 = *(void **)(_DAT_180bf5268 + 8 + lVar11);
-      puVar15 = &DAT_18098bc73;
+      puVar15 = &system_buffer_ptr;
       if (puVar9 != (void *)0x0) {
         puVar15 = puVar9;
       }

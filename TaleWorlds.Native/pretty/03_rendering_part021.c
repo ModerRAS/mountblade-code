@@ -126,7 +126,7 @@ LAB_18027baf2:
   *(int8_t *)((longlong)(puStack_190 + uStack_188) + 4) = 0;
   uStack_188 = iVar20;
   puVar8 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,3);
-  puVar15 = &DAT_18098bc73;
+  puVar15 = &system_buffer_ptr;
   if (puStack_190 != (void *)0x0) {
     puVar15 = puStack_190;
   }
@@ -152,7 +152,7 @@ LAB_18027baf2:
         fread(plVar12,1,(longlong)aiStack_178[0],puVar8[1]);
         *(int8_t *)((longlong)aiStack_178[0] + (longlong)plVar12) = 0;
         FUN_180627910(&puStack_d8,plVar12);
-        while ((0 < (int)uStack_c8 && (lVar7 = strstr(puStack_d0,&DAT_180a0ff10), lVar7 != 0))) {
+        while ((0 < (int)uStack_c8 && (lVar7 = strstr(puStack_d0,&system_data_ff10), lVar7 != 0))) {
           iVar22 = 6;
           iVar20 = (int)lVar7 - (int)puStack_d0;
           if (uStack_c8 < iVar20 + 6U) {
@@ -182,7 +182,7 @@ LAB_18027baf2:
         uVar14 = uVar18;
         if (*(longlong *)(param_1 + 0x40) - lVar7 >> 4 == 0) {
 LAB_18027c5be:
-          puVar15 = &DAT_18098bc73;
+          puVar15 = &system_buffer_ptr;
           if (puStack_d0 != (void *)0x0) {
             puVar15 = puStack_d0;
           }
@@ -207,7 +207,7 @@ LAB_18027c5be:
               uVar6 = FUN_18064e990(pcStack_168);
               uStack_158 = CONCAT44(uStack_158._4_4_,uVar6);
               if (0 < *(int *)(lVar7 + 0x20)) {
-                puVar15 = &DAT_18098bc73;
+                puVar15 = &system_buffer_ptr;
                 if (*(void **)(lVar7 + 0x18) != (void *)0x0) {
                   puVar15 = *(void **)(lVar7 + 0x18);
                 }
@@ -219,7 +219,7 @@ LAB_18027c5be:
             {
               *pcStack_168 = '\0';
             }
-            while ((0 < (int)uStack_160 && (lVar7 = strstr(pcStack_168,&DAT_180a0ff10), lVar7 != 0))
+            while ((0 < (int)uStack_160 && (lVar7 = strstr(pcStack_168,&system_data_ff10), lVar7 != 0))
                   ) {
               iVar22 = 6;
               iVar20 = (int)lVar7 - (int)pcStack_168;

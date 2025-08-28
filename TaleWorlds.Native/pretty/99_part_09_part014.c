@@ -254,7 +254,7 @@ void FUN_1805c3590(longlong *param_1,longlong *param_2,int8_t *param_3,char para
         puVar10 = (int32_t *)FUN_1805b6980(param_1 + 1);
         cVar9 = FUN_1805b7e80(param_1,*puVar10);
         if ((cVar9 != '\0') && (fVar17 = (float)FUN_1805c9f10(param_1), 4.0 < fVar17)) {
-          param_1[0x273] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x274] * 8) + -100;
+          param_1[0x273] = *(longlong *)(&system_error_code + (longlong)(int)param_1[0x274] * 8) + -100;
         }
       }
     }
@@ -327,7 +327,7 @@ void FUN_1805c3590(longlong *param_1,longlong *param_2,int8_t *param_3,char para
           fVar19 = *(float *)((longlong)param_1 + 0x22c);
           if ((*(byte *)((longlong)param_1 + 0x1484) & 3) == 0) {
             lVar11 = *param_1;
-            fVar18 = (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar11 + 0x6c0) * 8)
+            fVar18 = (float)(*(longlong *)(&system_error_code + (longlong)*(int *)(lVar11 + 0x6c0) * 8)
                             - *(longlong *)(lVar11 + 0x6b8)) * 1e-05;
             if (*(float *)(param_1 + 0x290) <= fVar18 && fVar18 != *(float *)(param_1 + 0x290)) {
               lVar11 = FUN_18065cec0(*(longlong *)

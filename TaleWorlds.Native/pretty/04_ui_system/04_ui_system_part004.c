@@ -4,7 +4,7 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 全局常量和变量定义
-#define DEFAULT_UI_STRING_PTR (&DAT_18098bc73)    // 默认UI字符串指针
+#define DEFAULT_UI_STRING_PTR (&system_buffer_ptr)    // 默认UI字符串指针
 #define UI_CALLBACK_QUEUE_SIZE 0x168              // UI回调队列大小偏移
 #define UI_COMPONENT_FLAG 0x189                    // UI组件标志偏移
 #define UI_EVENT_TABLE_SIZE 0x78                  // UI事件表大小偏移
@@ -772,7 +772,7 @@ void ui_copy_string_safely(longlong param_1)
     uVar1 = 0x1fff;
   }
   // 警告：子函数不返回
-  memcpy(&DAT_180c8f020, param_1, (longlong)(int)uVar1);
+  memcpy(&system_memory_f020, param_1, (longlong)(int)uVar1);
 }
 
 
@@ -960,7 +960,7 @@ void ui_load_mono_assembly(void)
   puStack_b8 = &UNK_18098bcb0;
   *plVar1 = lVar4;
   if (lVar4 == 0) {
-    FUN_180626ee0(&UNK_180a3ddc0, &DAT_180a3dda8);
+    FUN_180626ee0(&UNK_180a3ddc0, &system_memory_dda8);
     lVar4 = *plVar1;
   }
   lVar4 = mono_assembly_get_image(lVar4);

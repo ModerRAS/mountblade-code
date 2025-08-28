@@ -860,7 +860,7 @@ longlong FUN_1803089a0(longlong *param_1, longlong *param_2, int param_3)
   else {
     if (param_3 == 1) {
       // 执行数据复制验证
-      puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x38, 8, DAT_180bf65bc, 0xfffffffffffffffe);
+      puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x38, 8, system_allocation_flags, 0xfffffffffffffffe);
       puVar1 = (uint64_t *)*param_2;
       uVar2 = puVar1[1];
       *puVar3 = *puVar1;

@@ -129,7 +129,7 @@ LAB_1802260bd:
       *(int8_t *)(puVar6 + -10) = 0;
       *(int32_t *)(puVar6 + -0xb) = *(int32_t *)((longlong)puVar6 + lVar5 + -0x58);
       puVar1 = *(void **)((longlong)puVar6 + lVar5 + -0x60);
-      puVar7 = &DAT_18098bc73;
+      puVar7 = &system_buffer_ptr;
       if (puVar1 != (void *)0x0) {
         puVar7 = puVar1;
       }
@@ -351,7 +351,7 @@ void FUN_1802265d0(uint64_t param_1,uint64_t *param_2)
   uStack_240 = 0;
   uStack_238 = 0;
   puStack_228 = param_2;
-  uVar1 = (*_DAT_180c96828)(1,&DAT_180c96810,&uStack_240);
+  uVar1 = (*_DAT_180c96828)(1,&system_data_6810,&uStack_240);
   if ((uVar1 & 0xfff00000) != 0xbad00000) {
                     // WARNING: Subroutine does not return
     memset(auStack_218,0,0x200);
@@ -434,7 +434,7 @@ void FUN_1802267d0(longlong *param_1)
     lVar2 = FUN_1806393b0(puStack_c0,apuStack_b8,param_1[1]);
     lVar1 = *param_1;
     *(int32_t *)(lVar1 + 0x10) = *(int32_t *)(lVar2 + 0x10);
-    puVar3 = &DAT_18098bc73;
+    puVar3 = &system_buffer_ptr;
     if (*(void **)(lVar2 + 8) != (void *)0x0) {
       puVar3 = *(void **)(lVar2 + 8);
     }
@@ -486,7 +486,7 @@ void FUN_1802268c0(longlong *param_1,longlong param_2)
     puVar8 = (uint64_t *)*param_1;
   }
   *(int32_t *)(puVar8 + 2) = *(int32_t *)(param_2 + 0x10);
-  puVar10 = &DAT_18098bc73;
+  puVar10 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar10 = *(void **)(param_2 + 8);
   }
@@ -525,7 +525,7 @@ void FUN_1802268c0(longlong *param_1,longlong param_2)
     puVar9 = (uint64_t *)FUN_180639930(puVar2,auStackX_18,puVar2,puVar9,&puStackX_8);
     puVar9 = (uint64_t *)*puVar9;
   }
-  puVar10 = &DAT_18098bc73;
+  puVar10 = &system_buffer_ptr;
   if (*(void **)(lVar3 + 8) != (void *)0x0) {
     puVar10 = *(void **)(lVar3 + 8);
   }

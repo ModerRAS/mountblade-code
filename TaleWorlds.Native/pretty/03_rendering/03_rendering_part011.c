@@ -300,7 +300,7 @@ LAB_180273eb0:
             *(int8_t *)(puVar17 + 3) = 0;
             *(int32_t *)(puVar17 + 2) = *(int32_t *)(lVar20 + 0x10 + (longlong)puVar17);
             puVar4 = *(void **)(lVar20 + 8 + (longlong)puVar17);
-            puVar23 = &DAT_18098bc73;
+            puVar23 = &system_buffer_ptr;
             if (puVar4 != (void *)0x0) {
               puVar23 = puVar4;
             }

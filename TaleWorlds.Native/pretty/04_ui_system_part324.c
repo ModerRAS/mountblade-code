@@ -130,11 +130,11 @@ void FUN_180846210(uint64_t param_1,longlong param_2,int32_t *param_3,int32_t *p
   if (param_2 == 0) {
     if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
       iVar1 = FUN_18074b880(auStack_148,0x100,0);
-      iVar2 = FUN_18074b880(auStack_148 + iVar1,0x100 - iVar1,&DAT_180a06434);
+      iVar2 = FUN_18074b880(auStack_148 + iVar1,0x100 - iVar1,&system_temp_buffer);
       iVar1 = iVar1 + iVar2;
       iVar2 = FUN_18074bac0(auStack_148 + iVar1,0x100 - iVar1,param_3);
       iVar1 = iVar1 + iVar2;
-      iVar2 = FUN_18074b880(auStack_148 + iVar1,0x100 - iVar1,&DAT_180a06434);
+      iVar2 = FUN_18074b880(auStack_148 + iVar1,0x100 - iVar1,&system_temp_buffer);
       FUN_18074bac0(auStack_148 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_4);
       puStack_178 = auStack_148;
                     // WARNING: Subroutine does not return
@@ -192,7 +192,7 @@ void FUN_180846410(uint64_t param_1,int32_t param_2,uint64_t param_3)
   iVar1 = FUN_180840600();
   if ((iVar1 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
     iVar2 = func_0x00018074b7d0(auStack_138,0x100,param_2);
-    iVar3 = FUN_18074b880(auStack_138 + iVar2,0x100 - iVar2,&DAT_180a06434);
+    iVar3 = FUN_18074b880(auStack_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
     func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     puStack_148 = auStack_138;
                     // WARNING: Subroutine does not return
@@ -216,7 +216,7 @@ void FUN_180846453(void)
   int32_t unaff_ESI;
   
   iVar1 = func_0x00018074b7d0(&stack0x00000030,0x100,unaff_EBX);
-  iVar2 = FUN_18074b880(&stack0x00000030 + iVar1,0x100 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(&stack0x00000030 + iVar1,0x100 - iVar1,&system_temp_buffer);
   func_0x00018074bda0(&stack0x00000030 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
                     // WARNING: Subroutine does not return
   FUN_180749ef0(unaff_ESI,0xc);
@@ -344,11 +344,11 @@ void FUN_180846610(ulonglong param_1,int8_t *param_2,int param_3,int32_t *param_
     FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_1a8);
   }
   iVar1 = FUN_18074b880(auStack_148,0x100,param_2);
-  iVar2 = FUN_18074b880(auStack_148 + iVar1,0x100 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(auStack_148 + iVar1,0x100 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = func_0x00018074b7d0(auStack_148 + iVar1,0x100 - iVar1,param_3);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(auStack_148 + iVar1,0x100 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(auStack_148 + iVar1,0x100 - iVar1,&system_temp_buffer);
   FUN_18074b930(auStack_148 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_4);
   puStack_188 = (int32_t *)auStack_148;
                     // WARNING: Subroutine does not return
@@ -369,11 +369,11 @@ void FUN_180846730(void)
   int32_t unaff_ESI;
   
   iVar1 = FUN_18074b880(&stack0x00000060,0x100);
-  iVar2 = FUN_18074b880(&stack0x00000060 + iVar1,0x100 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(&stack0x00000060 + iVar1,0x100 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = func_0x00018074b7d0(&stack0x00000060 + iVar1,0x100 - iVar1,unaff_EBP);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(&stack0x00000060 + iVar1,0x100 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(&stack0x00000060 + iVar1,0x100 - iVar1,&system_temp_buffer);
   FUN_18074b930(&stack0x00000060 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
                     // WARNING: Subroutine does not return
   FUN_180749ef0(unaff_ESI,0xc);
@@ -592,7 +592,7 @@ void FUN_180846bc0(ulonglong param_1,uint param_2,int32_t *param_3)
     FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_188);
   }
   iVar1 = func_0x00018074b7d0(auStack_138,0x100,param_2);
-  iVar2 = FUN_18074b880(auStack_138 + iVar1,0x100 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(auStack_138 + iVar1,0x100 - iVar1,&system_temp_buffer);
   FUN_18074bac0(auStack_138 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_3);
   puStack_168 = auStack_138;
                     // WARNING: Subroutine does not return
@@ -843,7 +843,7 @@ void FUN_180847230(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   iVar1 = FUN_180840790();
   if ((iVar1 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
     iVar2 = FUN_18074b880(auStack_138,0x100,param_2);
-    iVar3 = FUN_18074b880(auStack_138 + iVar2,0x100 - iVar2,&DAT_180a06434);
+    iVar3 = FUN_18074b880(auStack_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
     func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     puStack_148 = auStack_138;
                     // WARNING: Subroutine does not return
@@ -866,7 +866,7 @@ void FUN_180847274(void)
   int32_t unaff_ESI;
   
   iVar1 = FUN_18074b880(&stack0x00000030,0x100);
-  iVar2 = FUN_18074b880(&stack0x00000030 + iVar1,0x100 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(&stack0x00000030 + iVar1,0x100 - iVar1,&system_temp_buffer);
   func_0x00018074bda0(&stack0x00000030 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
                     // WARNING: Subroutine does not return
   FUN_180749ef0(unaff_ESI,0xc);
@@ -908,7 +908,7 @@ void FUN_180847310(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   iVar1 = FUN_18083ff70();
   if ((iVar1 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
     iVar2 = FUN_18074b880(auStack_138,0x100,param_2);
-    iVar3 = FUN_18074b880(auStack_138 + iVar2,0x100 - iVar2,&DAT_180a06434);
+    iVar3 = FUN_18074b880(auStack_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
     func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     puStack_148 = auStack_138;
                     // WARNING: Subroutine does not return
@@ -931,7 +931,7 @@ void FUN_180847354(void)
   int32_t unaff_ESI;
   
   iVar1 = FUN_18074b880(&stack0x00000030,0x100);
-  iVar2 = FUN_18074b880(&stack0x00000030 + iVar1,0x100 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(&stack0x00000030 + iVar1,0x100 - iVar1,&system_temp_buffer);
   func_0x00018074bda0(&stack0x00000030 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
                     // WARNING: Subroutine does not return
   FUN_180749ef0(unaff_ESI,0xb);

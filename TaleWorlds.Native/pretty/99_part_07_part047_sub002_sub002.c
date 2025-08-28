@@ -1003,7 +1003,7 @@ uint64_t * FUN_1804c9650(uint64_t *param_1,uint64_t *param_2)
   param_2[5] = 0;
   param_1[2] = FUN_1804c98d0;
   param_1[3] = FUN_1804c97c0;
-  puVar7 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x30,8,DAT_180bf65bc,0xfffffffffffffffe);
+  puVar7 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x30,8,system_allocation_flags,0xfffffffffffffffe);
   *puVar7 = uVar5;
   *(int32_t *)(puVar7 + 1) = uVar1;
   puVar7[2] = &UNK_18098bcb0;

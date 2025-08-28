@@ -69,7 +69,7 @@ code_r0x0001802c1464:
         (**(code **)(*(longlong *)(param_1 + 8) + 0x10))(param_1 + 8);
         break;
       }
-      lVar10 = (longlong)&DAT_180a03a84 - (longlong)pcVar7;
+      lVar10 = (longlong)&system_flag_3a84 - (longlong)pcVar7;
       while (*pcVar7 == pcVar7[lVar10]) {
         pcVar7 = pcVar7 + 1;
         if (pcVar8 <= pcVar7) goto code_r0x0001802c1464;
@@ -140,7 +140,7 @@ LAB_1802c15a5:
             (**(code **)(puStack_168 + 0x10))(&puStack_168,lVar10);
             break;
           }
-          lVar10 = (longlong)&DAT_180a03a84 - (longlong)pcVar7;
+          lVar10 = (longlong)&system_flag_3a84 - (longlong)pcVar7;
           while (*pcVar7 == pcVar7[lVar10]) {
             pcVar7 = pcVar7 + 1;
             if (pcVar9 <= pcVar7) goto LAB_1802c15a5;
@@ -324,7 +324,7 @@ LAB_1802c17a4:
           FUN_180627c50(&puStack_1a0,lVar10);
           break;
         }
-        lVar10 = (longlong)&DAT_180a06b58 - (longlong)pcVar7;
+        lVar10 = (longlong)&system_flag_6b58 - (longlong)pcVar7;
         while (*pcVar7 == pcVar7[lVar10]) {
           pcVar7 = pcVar7 + 1;
           if (pcVar9 <= pcVar7) goto LAB_1802c17a4;
@@ -342,7 +342,7 @@ LAB_1802c17a4:
     puStack_100 = auStack_f0;
     auStack_f0[0] = 0;
     uStack_f8 = uStack_190;
-    puVar11 = &DAT_18098bc73;
+    puVar11 = &system_buffer_ptr;
     if (puStack_198 != (void *)0x0) {
       puVar11 = puStack_198;
     }
@@ -355,7 +355,7 @@ LAB_1802c17a4:
     puStack_a0 = auStack_90;
     auStack_90[0] = 0;
     uStack_98 = uStack_190;
-    puVar11 = &DAT_18098bc73;
+    puVar11 = &system_buffer_ptr;
     if (puStack_198 != (void *)0x0) {
       puVar11 = puStack_198;
     }
@@ -502,7 +502,7 @@ LAB_1802c1ccf:
           else {
             puVar1 = *(void **)(param_2 + 8);
             if ((iVar3 != 0x18) || (iVar3 = strcmp(puVar1,&UNK_180a18998), iVar3 != 0)) {
-              puVar7 = &DAT_18098bc73;
+              puVar7 = &system_buffer_ptr;
               if (puVar1 != (void *)0x0) {
                 puVar7 = puVar1;
               }
@@ -858,7 +858,7 @@ void FUN_1802c22a0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   }
   mbstowcs(auStack_428,lVar3,0x200);
   (**(code **)(*_DAT_180c86968 + 0x18))(_DAT_180c86968,auStack_428);
-  if (DAT_180c8aa69 != '\0') {
+  if (system_flag_aa69 != '\0') {
     (*_DAT_180c96830)(_DAT_180c96810,auStack_428,0x400);
   }
                     // WARNING: Subroutine does not return

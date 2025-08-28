@@ -244,7 +244,7 @@ longlong * FUN_18033d790(longlong *param_1,longlong *param_2,longlong *param_3,i
       param_4[0x10] = 0;
       *(int8_t *)(param_4 + 0x12) = 0;
       param_4[0x10] = (int)plVar6[-10];
-      puVar8 = &DAT_18098bc73;
+      puVar8 = &system_buffer_ptr;
       if ((void *)plVar6[-0xb] != (void *)0x0) {
         puVar8 = (void *)plVar6[-0xb];
       }

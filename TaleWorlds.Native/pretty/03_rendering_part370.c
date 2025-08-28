@@ -857,7 +857,7 @@ void FUN_18046d1a0(longlong param_1)
   ppuStackX_18 = apuStack_50;
   pcStack_40 = FUN_1803805e0;
   pcStack_38 = FUN_180380510;
-  apuStack_50[0] = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,DAT_180bf65bc);
+  apuStack_50[0] = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,system_allocation_flags);
   uStack_70 = SUB84(plVar6,0);
   uStack_68 = (int32_t)lVar5;
   uStack_64 = (int32_t)((ulonglong)lVar5 >> 0x20);

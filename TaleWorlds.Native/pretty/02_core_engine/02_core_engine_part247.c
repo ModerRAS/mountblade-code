@@ -132,7 +132,7 @@ build_message:
   
   *(int16_t *)((longlong)message_buffer + 0xf) = 10; // 换行符
   
-  temp_buffer = (int32_t *)&DAT_18098bc73;
+  temp_buffer = (int32_t *)&system_buffer_ptr;
   if (message_buffer != (int32_t *)0x0) {
     temp_buffer = message_buffer;
   }
@@ -146,14 +146,14 @@ build_message:
 skip_debug_logging:
   compare_index = 0;
   result_code = 0;
-  string_ptr = &DAT_18098bc73;
+  string_ptr = &system_buffer_ptr;
   if (*(void **)(trigger_data + 8) != (void *)0x0) {
     string_ptr = *(void **)(trigger_data + 8);
   }
   
   // 处理事件触发器
   format_result = FUN_180845c40(*(uint64_t *)(context_backup + 0x368), string_ptr, &result_code);
-  string_ptr = &DAT_18098bc73;
+  string_ptr = &system_buffer_ptr;
   if (*(void **)(trigger_data + 8) != (void *)0x0) {
     string_ptr = *(void **)(trigger_data + 8);
   }
@@ -175,7 +175,7 @@ skip_debug_logging:
   }
   else {
     format_result = FUN_1808496c0(result_code, &UNK_180211ec0, 0xffffffff);
-    string_ptr = &DAT_18098bc73;
+    string_ptr = &system_buffer_ptr;
     if (*(void **)(trigger_data + 8) != (void *)0x0) {
       string_ptr = *(void **)(trigger_data + 8);
     }
@@ -245,7 +245,7 @@ longlong process_event_type(longlong event_context, int event_type, char is_enab
 buffer_ready:
   *(int16_t *)((ulonglong)temp_size + (longlong)temp_buffer) = 10; // 换行符
   
-  message_buffer = (int32_t *)&DAT_18098bc73;
+  message_buffer = (int32_t *)&system_buffer_ptr;
   if (temp_buffer != (int32_t *)0x0) {
     message_buffer = temp_buffer;
   }
@@ -265,11 +265,11 @@ skip_debug_logging:
   context_backup = 0;
   format_result = FUN_180845d20(*(uint64_t *)(event_context + 0x368),
                         (longlong)event_type * 0x10 + *(longlong *)(event_context + 0x3b8), &context_backup);
-  FUN_180211a30(format_result, &DAT_18098bc73);
+  FUN_180211a30(format_result, &system_buffer_ptr);
   
   if ((context_backup != 0) && (is_enabled != '\0')) {
     format_result = FUN_1808496c0(context_backup, &UNK_180211ec0, 0xffffffff);
-    FUN_180211a30(format_result, &DAT_18098bc73);
+    FUN_180211a30(format_result, &system_buffer_ptr);
   }
   return context_backup;
 }
@@ -338,7 +338,7 @@ build_message:
   
   *(int16_t *)((longlong)message_buffer + 0x15) = 10; // 换行符
   
-  temp_buffer = (int32_t *)&DAT_18098bc73;
+  temp_buffer = (int32_t *)&system_buffer_ptr;
   if (message_buffer != (int32_t *)0x0) {
     temp_buffer = message_buffer;
   }
@@ -353,7 +353,7 @@ skip_debug_logging:
   process_result = process_event_trigger(event_context, state_data, 0);
   string_length = FUN_180840490(process_result, &result_code);
   
-  string_ptr = &DAT_18098bc73;
+  string_ptr = &system_buffer_ptr;
   if (*(void **)(state_data + 8) != (void *)0x0) {
     string_ptr = *(void **)(state_data + 8);
   }
@@ -439,7 +439,7 @@ uint64_t process_thread_safe_event_operation(longlong event_context, int32_t ope
 buffer_ready:
   *(int16_t *)((ulonglong)temp_size + (longlong)temp_buffer) = 10; // 换行符
   
-  message_buffer = (int32_t *)&DAT_18098bc73;
+  message_buffer = (int32_t *)&system_buffer_ptr;
   if (temp_buffer != (int32_t *)0x0) {
     message_buffer = temp_buffer;
   }
@@ -458,7 +458,7 @@ buffer_ready:
 skip_debug_logging:
   process_result = process_event_type(event_context, operation_code, 0);
   lock_result = FUN_180840490(process_result, &result_code);
-  FUN_180211a30(lock_result, &DAT_18098bc73);
+  FUN_180211a30(lock_result, &system_buffer_ptr);
   process_result = result_code;
   
   if (lock_result != 0) {
@@ -513,21 +513,21 @@ void add_event_to_queue(longlong event_context, uint64_t event_data)
   security_buffer[0] = &UNK_18098bcb0;
   debug_handle = 0;
   
-  string_ptr = &DAT_18098bc73;
+  string_ptr = &system_buffer_ptr;
   if (temp_string != (void *)0x0) {
     string_ptr = temp_string;
   }
   
   // 检查事件是否已存在
   lock_result = FUN_180848090(*(uint64_t *)(event_context + 0x368), string_ptr, 0, &debug_handle);
-  string_ptr = &DAT_18098bc73;
+  string_ptr = &system_buffer_ptr;
   if (temp_string != (void *)0x0) {
     string_ptr = temp_string;
   }
   FUN_180211a30(lock_result, string_ptr);
   
   if (lock_result != 0) {
-    string_ptr = &DAT_18098bc73;
+    string_ptr = &system_buffer_ptr;
     if (temp_string != (void *)0x0) {
       string_ptr = temp_string;
     }
@@ -536,19 +536,19 @@ void add_event_to_queue(longlong event_context, uint64_t event_data)
   }
   
   // 检查是否为特殊事件类型
-  string_ptr = &DAT_18098bc73;
+  string_ptr = &system_buffer_ptr;
   if (temp_string != (void *)0x0) {
     string_ptr = temp_string;
   }
   search_result = strstr(string_ptr, &UNK_180a105d8);
   if (search_result == 0) {
-    string_ptr = &DAT_18098bc73;
+    string_ptr = &system_buffer_ptr;
     if (temp_string != (void *)0x0) {
       string_ptr = temp_string;
     }
-    search_result = strstr(string_ptr, &DAT_180a0e358);
+    search_result = strstr(string_ptr, &system_buffer_e358);
     if (search_result != 0) goto process_special_event;
-    string_ptr = &DAT_18098bc73;
+    string_ptr = &system_buffer_ptr;
     if (temp_string != (void *)0x0) {
       string_ptr = temp_string;
     }
@@ -558,13 +558,13 @@ void add_event_to_queue(longlong event_context, uint64_t event_data)
   else {
 process_special_event:
     format_result = FUN_1808482f0(debug_handle);
-    string_ptr = &DAT_18098bc73;
+    string_ptr = &system_buffer_ptr;
     if (temp_string != (void *)0x0) {
       string_ptr = temp_string;
     }
     FUN_180211a30(format_result, string_ptr);
     format_result = FUN_180840c00(*(uint64_t *)(event_context + 0x368));
-    FUN_180211a30(format_result, &DAT_18098bc73);
+    FUN_180211a30(format_result, &system_buffer_ptr);
   }
   
   // 将事件添加到队列

@@ -220,7 +220,7 @@ LAB_18037d26b:
         puStack_160 = &UNK_18037fff0;
         apuStack_178[0] = &uStack_158;
         (*(code *)(*pppppuVar3[0x11])[0xc])
-                  (pppppuVar3[0x11],&DAT_180a01028,(longlong)pppppuVar3 + 0xc,0,apuStack_178);
+                  (pppppuVar3[0x11],&system_data_1028,(longlong)pppppuVar3 + 0xc,0,apuStack_178);
         if (pcStack_168 != (code *)0x0) {
           (*pcStack_168)(apuStack_178,0,0);
         }
@@ -353,7 +353,7 @@ LAB_18037d51b:
   if (((longlong)puStack_1e0 - lStack_1e8) / 0x28 != 0) {
     do {
       puVar5 = *(void **)(lStack_1e8 + 8 + uVar18);
-      puVar21 = &DAT_18098bc73;
+      puVar21 = &system_buffer_ptr;
       if (puVar5 != (void *)0x0) {
         puVar21 = puVar5;
       }

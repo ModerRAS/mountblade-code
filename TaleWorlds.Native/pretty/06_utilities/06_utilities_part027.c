@@ -836,7 +836,7 @@ void utilities_global_pointer_setter_21(void)
  */
 void utilities_system_cleaner(void)
 {
-    if (DAT_180c91d50 != '\0') {
+    if (system_memory_1d50 != '\0') {
         FUN_18005a050();
         if ((1 < _DAT_180c91d30) && (_DAT_180c91d28 != 0)) {
             // 系统资源未正确释放，执行错误处理
@@ -1648,7 +1648,7 @@ void utilities_memory_cleaner_1(void)
     longlong memory_ptr1;
     longlong memory_ptr2;
     
-    FUN_180067070(&DAT_180bfc140);
+    FUN_180067070(&system_cache_config);
     if (0xf < uRam0000000180bfc138) {
         memory_ptr1 = CONCAT71(uRam0000000180bfc121, uRam0000000180bfc120);
         memory_ptr2 = memory_ptr1;
@@ -1679,7 +1679,7 @@ void utilities_memory_cleaner_2(void)
     longlong memory_ptr2;
     
     if (0xf < _DAT_180bfc118) {
-        memory_ptr1 = CONCAT71(uRam0000000180bfc101, DAT_180bfc100);
+        memory_ptr1 = CONCAT71(uRam0000000180bfc101, system_memory_c100);
         memory_ptr2 = memory_ptr1;
         if (0xfff < _DAT_180bfc118 + 1) {
             memory_ptr2 = *(longlong *)(memory_ptr1 + -8);

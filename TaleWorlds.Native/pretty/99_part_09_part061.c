@@ -119,7 +119,7 @@ void FUN_1805df120(longlong param_1)
     if (((*(int *)(lVar7 + 0x5f8) == 0) &&
         ((*(byte *)(*(longlong *)(lVar13 + 0x20) + 0x40) & 1) != 0)) &&
        (cVar4 = func_0x000180522f60(lVar13), cVar4 == '\0')) {
-      FUN_1805e6940(param_1,auStack_138,&DAT_1809ff0c8);
+      FUN_1805e6940(param_1,auStack_138,&system_data_f0c8);
       FUN_1805e5240(param_1,auStack_130);
       goto LAB_1805df643;
     }
@@ -377,7 +377,7 @@ void FUN_1805df13b(void)
     if (((*(int *)(lVar6 + 0x5f8) == 0) &&
         ((*(byte *)(*(longlong *)(lVar12 + 0x20) + 0x40) & 1) != 0)) &&
        (cVar4 = func_0x000180522f60(lVar12), fVar16 = extraout_XMM0_Da_00, cVar4 == '\0')) {
-      uVar17 = FUN_1805e6940(extraout_XMM0_Da_00,unaff_RBP + 10,&DAT_1809ff0c8);
+      uVar17 = FUN_1805e6940(extraout_XMM0_Da_00,unaff_RBP + 10,&system_data_f0c8);
       fVar16 = (float)FUN_1805e5240(uVar17,unaff_RBP + 0xb);
       goto LAB_1805df643;
     }

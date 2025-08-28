@@ -37,8 +37,8 @@ void FUN_18079e450(uint64_t param_1,longlong param_2,int param_3)
         do {
           lVar5 = lVar12 * 4;
           lVar12 = lVar12 + 1;
-          *(int *)(&DAT_180c1b958 + lVar5 + (longlong)iVar9 * 4) =
-               *(int *)(&DAT_180c1b958 + lVar5) + param_3;
+          *(int *)(&system_data_b958 + lVar5 + (longlong)iVar9 * 4) =
+               *(int *)(&system_data_b958 + lVar5) + param_3;
         } while (lVar12 < iVar9);
       }
       iVar16 = iVar9 * 2;
@@ -52,12 +52,12 @@ void FUN_18079e450(uint64_t param_1,longlong param_2,int param_3)
     uVar15 = 0;
     if (0 < iVar16) {
       iVar4 = 0;
-      piVar14 = (int *)&DAT_180c1b958;
+      piVar14 = (int *)&system_data_b958;
       do {
         if (0 < (int)uVar15) {
           uVar7 = (ulonglong)uVar15;
           iVar10 = 0;
-          piVar8 = (int *)&DAT_180c1b958;
+          piVar8 = (int *)&system_data_b958;
           do {
             iVar13 = *piVar8;
             piVar8 = piVar8 + 1;
@@ -137,7 +137,7 @@ void FUN_18079e450(uint64_t param_1,longlong param_2,int param_3)
         iVar4 = uVar15 * 4;
         do {
           iVar11 = *piVar14;
-          iVar13 = *(int *)(&DAT_180c1b958 + lVar12 * 4);
+          iVar13 = *(int *)(&system_data_b958 + lVar12 * 4);
           lVar6 = (longlong)(iVar11 + iVar10);
           lVar5 = (longlong)(iVar13 + iVar16);
           uVar1 = *(int32_t *)(param_2 + lVar6 * 4);
@@ -223,7 +223,7 @@ void FUN_18079e450(uint64_t param_1,longlong param_2,int param_3)
         } while (uVar7 != 0);
       }
       if (iVar4 < iStackX_18) {
-        piVar8 = (int *)(&DAT_180c1b958 + lVar12 * 4);
+        piVar8 = (int *)(&system_data_b958 + lVar12 * 4);
         iVar10 = iVar4 * 2;
         uVar7 = (ulonglong)(uint)(iStackX_18 - iVar4);
         do {
@@ -304,8 +304,8 @@ void FUN_18079ea10(uint64_t param_1,longlong param_2,int param_3)
         do {
           lVar6 = lVar13 * 4;
           lVar13 = lVar13 + 1;
-          *(int *)(&DAT_180c1b958 + lVar6 + (longlong)iVar10 * 4) =
-               *(int *)(&DAT_180c1b958 + lVar6) + param_3;
+          *(int *)(&system_data_b958 + lVar6 + (longlong)iVar10 * 4) =
+               *(int *)(&system_data_b958 + lVar6) + param_3;
         } while (lVar13 < iVar10);
       }
       iVar18 = iVar10 * 2;
@@ -318,13 +318,13 @@ void FUN_18079ea10(uint64_t param_1,longlong param_2,int param_3)
   if (iVar18 * 8 == param_3) {
     uVar17 = 0;
     if (0 < iVar18) {
-      piVar16 = (int *)&DAT_180c1b958;
+      piVar16 = (int *)&system_data_b958;
       iVar5 = 0;
       do {
         if (0 < (int)uVar17) {
           uVar8 = (ulonglong)uVar17;
           iVar11 = 0;
-          piVar9 = (int *)&DAT_180c1b958;
+          piVar9 = (int *)&system_data_b958;
           do {
             iVar14 = *piVar9;
             piVar9 = piVar9 + 1;
@@ -411,7 +411,7 @@ void FUN_18079ea10(uint64_t param_1,longlong param_2,int param_3)
           uVar8 = (ulonglong)uVar17;
           iVar5 = uVar17 * 4;
           do {
-            iVar12 = *(int *)(&DAT_180c1b958 + lVar13 * 4);
+            iVar12 = *(int *)(&system_data_b958 + lVar13 * 4);
             iVar15 = iVar11 + 6;
             iVar14 = *piVar16;
             lVar6 = (longlong)(iVar12 + iVar18);
@@ -499,7 +499,7 @@ void FUN_18079ea10(uint64_t param_1,longlong param_2,int param_3)
           } while (uVar8 != 0);
         }
         if (iVar5 < iStackX_18) {
-          piVar9 = (int *)(&DAT_180c1b958 + lVar13 * 4);
+          piVar9 = (int *)(&system_data_b958 + lVar13 * 4);
           iVar11 = iVar5 * 2;
           uVar8 = (ulonglong)(uint)(iStackX_18 - iVar5);
           do {
@@ -611,9 +611,9 @@ void FUN_18079f0b0(longlong param_1,float *param_2)
   param_2[0xf] = (fVar10 + fVar9) * fVar4;
   param_2[0xe] = (fVar10 - fVar9) * fVar4;
   if (0x10 < *(int *)(param_1 + 0x14030) * 2) {
-    pfVar2 = (float *)&DAT_180c19950;
+    pfVar2 = (float *)&system_data_9950;
     param_2 = param_2 + 0x14;
-    pfVar1 = (float *)&DAT_180c19958;
+    pfVar1 = (float *)&system_data_9958;
     do {
       fVar4 = pfVar1[3];
       fVar8 = pfVar2[3];

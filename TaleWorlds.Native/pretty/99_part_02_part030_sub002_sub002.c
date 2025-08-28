@@ -901,7 +901,7 @@ void FUN_1801a0860(uint64_t param_1,uint64_t *param_2,longlong *param_3)
       } while ((ulonglong)(longlong)(int)uStack_428 < (plStack_280[1] - lVar19 >> 3) - 1U);
     }
     FUN_180075b70(plVar10);
-    FUN_180075630(plVar10,&DAT_180a00300);
+    FUN_180075630(plVar10,&system_data_0300);
     *param_2 = plVar10;
   }
   plStack_3b0 = (longlong *)0x0;

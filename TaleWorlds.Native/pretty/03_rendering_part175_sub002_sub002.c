@@ -244,7 +244,7 @@ void FUN_180375760(longlong param_1,longlong param_2,longlong param_3,uint64_t p
                       if (*(float *)(lVar44 + 0x30) != 0.0) {
                         if (bVar16) {
                           iVar20 = FUN_1801b8ce0(*(longlong *)(param_1 + 0x2148) + 0x2998,
-                                                 puVar2 + 0xc,lVar33,lVar44,&DAT_180a00300,fVar55,1,
+                                                 puVar2 + 0xc,lVar33,lVar44,&system_data_0300,fVar55,1,
                                                  (byte)puVar2[0x6f6] >> 1 & 1);
                         }
                         else {
@@ -556,7 +556,7 @@ LAB_18037624d:
                                       (0 < *(int *)(_DAT_180c86920 + 0xe0))) || (fVar48 <= 120.0))
                                     && (iVar41 = FUN_1801b8ce0(*(longlong *)(param_1 + 0x2148) +
                                                                0x2998,puVar2 + 0xc,lVar33 + 0x4c,
-                                                               lVar32 + 0x18,&DAT_180a00300,
+                                                               lVar32 + 0x18,&system_data_0300,
                                                                fVar55 + fVar55,iVar20 == 2,
                                                                (byte)puVar2[0x6f6] >> 1 & 1),
                                        iVar41 != 0)))) {

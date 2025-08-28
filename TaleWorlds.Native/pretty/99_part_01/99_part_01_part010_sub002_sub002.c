@@ -328,7 +328,7 @@ LAB_1800a7660:
     puStack_630 = auStack_620;
     auStack_620[0] = 0;
     iStack_628 = iStack_740;
-    puVar15 = &DAT_18098bc73;
+    puVar15 = &system_buffer_ptr;
     if (puStack_748 != (void *)0x0) {
         puVar15 = puStack_748;
     }

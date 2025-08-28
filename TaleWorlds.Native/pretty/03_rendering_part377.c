@@ -134,7 +134,7 @@ void FUN_180472d60(uint64_t *param_1,int8_t *param_2,ulonglong *param_3,longlong
     param_3[3] = 0xf;
     *(int8_t *)param_3 = 0;
   }
-  lVar8 = strcspn(pbVar13,&DAT_1809fcc18);
+  lVar8 = strcspn(pbVar13,&system_data_cc18);
   uStack_a8 = 0;
   uStack_a0 = 0xf;
   uStack_b8 = uStack_b8 & 0xffffff00;

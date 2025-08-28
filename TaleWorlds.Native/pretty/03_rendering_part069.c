@@ -102,7 +102,7 @@ void FUN_180306d80(uint64_t *param_1,int param_2)
   uStack_90 = 0xc;
   strcpy_s(auStack_88,0x20,&UNK_180a1a248);
   *(int32_t *)(param_1 + 0x382) = uStack_90;
-  puVar6 = &DAT_18098bc73;
+  puVar6 = &system_buffer_ptr;
   if (puStack_98 != (void *)0x0) {
     puVar6 = puStack_98;
   }

@@ -266,7 +266,7 @@ void FUN_180366900(longlong param_1)
   uStack_d8 = 0;
   uStack_d0 = 3;
   if (*(longlong *)(param_1 + 0xd8) != 0) {
-    FUN_180057980(param_1 + 0xd0,&puStack_e8,&DAT_1809fc8e4);
+    FUN_180057980(param_1 + 0xd0,&puStack_e8,&system_data_c8e4);
   }
   puVar3 = puStack_e0;
   puVar2 = puStack_e8;
@@ -368,7 +368,7 @@ void FUN_180366b10(longlong param_1,longlong param_2)
       uStack_e8 = 0;
       uStack_e0 = 3;
       if (*(longlong *)(param_1 + 0xd8) != 0) {
-        FUN_180057980(param_1 + 0xd0,&puStack_f8,&DAT_1809fc8e4);
+        FUN_180057980(param_1 + 0xd0,&puStack_f8,&system_data_c8e4);
       }
       puVar4 = puStack_f0;
       puVar3 = puStack_f8;

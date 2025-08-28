@@ -595,7 +595,7 @@ void FUN_1802f7e30(longlong *param_1,longlong *param_2,uint64_t param_3,uint64_t
     if ((*(longlong *)(lVar14 + 0x18) != 0) && (uStack_70 = 0, puStack_78 != (int8_t *)0x0)) {
       *puStack_78 = 0;
     }
-    while ((0 < (int)uStack_70 && (lVar14 = strstr(puStack_78,&DAT_180a0ff10), lVar14 != 0))) {
+    while ((0 < (int)uStack_70 && (lVar14 = strstr(puStack_78,&system_data_ff10), lVar14 != 0))) {
       iVar13 = 6;
       iVar4 = (int)lVar14 - (int)puStack_78;
       if (uStack_70 < iVar4 + 6U) {
@@ -624,14 +624,14 @@ void FUN_1802f7e30(longlong *param_1,longlong *param_2,uint64_t param_3,uint64_t
     *puVar7 = uVar12;
     lVar14 = param_2[1];
     param_2[1] = lVar14 + 4;
-    puVar15 = &DAT_18098bc73;
+    puVar15 = &system_buffer_ptr;
     if (puStack_78 != (int8_t *)0x0) {
       puVar15 = puStack_78;
     }
                     // WARNING: Subroutine does not return
     memcpy(lVar14 + 4,puVar15,uVar10);
   }
-  puVar8 = &DAT_18098bc73;
+  puVar8 = &system_buffer_ptr;
   if (*(void **)(lVar14 + 0x18) != (void *)0x0) {
     puVar8 = *(void **)(lVar14 + 0x18);
   }

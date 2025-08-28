@@ -29,10 +29,10 @@ void FUN_180525fa0(longlong param_1)
     return;
   }
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-               0x48) < _DAT_180d49f00) && (FUN_1808fcb90(&DAT_180d49f00), _DAT_180d49f00 == -1)) {
+               0x48) < _DAT_180d49f00) && (FUN_1808fcb90(&system_ptr_9f00), _DAT_180d49f00 == -1)) {
     _Mtx_init_in_situ(0x180d49f10,0x102);
     FUN_1808fc820(FUN_180943040);
-    FUN_1808fcb30(&DAT_180d49f00);
+    FUN_1808fcb30(&system_ptr_9f00);
   }
   iVar2 = _Mtx_lock();
   if (iVar2 != 0) {

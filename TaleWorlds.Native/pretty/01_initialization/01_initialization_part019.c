@@ -141,7 +141,7 @@ void initialize_engine_core(void)
     
     performance_counter = _DAT_180c868d0;
     engine_context = _DAT_180c86870;
-    if (DAT_180c82860 != '\0') {
+    if (system_debug_flag != '\0') {
         FUN_180050b30();
         return;
     }

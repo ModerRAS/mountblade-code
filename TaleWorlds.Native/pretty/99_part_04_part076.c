@@ -142,7 +142,7 @@ void FUN_1802cdda0(void **param_1,longlong param_2)
     pcStack_2e8 = FUN_1802d9930;
     puStack_2e0 = &UNK_1802d9920;
     uStack_448 = param_1;
-    apuStack_2f8[0] = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,DAT_180bf65bc);
+    apuStack_2f8[0] = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,system_allocation_flags);
     *apuStack_2f8[0] = (int32_t)uStack_448;
     apuStack_2f8[0][1] = uStack_448._4_4_;
     apuStack_2f8[0][2] = (int32_t)uStack_440;
@@ -270,7 +270,7 @@ void FUN_1802cdda0(void **param_1,longlong param_2)
       puStack_2c0 = &UNK_1802d9830;
       uStack_448 = param_1;
       uStack_440 = uVar21;
-      apuStack_2d8[0] = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,DAT_180bf65bc);
+      apuStack_2d8[0] = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,system_allocation_flags);
       *apuStack_2d8[0] = (int32_t)uStack_448;
       apuStack_2d8[0][1] = uStack_448._4_4_;
       apuStack_2d8[0][2] = (int32_t)uStack_440;
@@ -422,7 +422,7 @@ void FUN_1802cdda0(void **param_1,longlong param_2)
                       puStack_488 = &uStack_368;
                       iStack_3b0 = iVar13;
                       FUN_180077750(*(uint64_t *)(uVar14 + *(longlong *)(lVar19 + 0x38)),
-                                    alStack_478[0],&DAT_180a00300,0);
+                                    alStack_478[0],&system_data_0300,0);
                       iStack_3ac = iStack_3ac + iVar13;
                       iStack_390 = iStack_390 + iVar13;
                       uVar21 = (ulonglong)(uint)((int)uVar21 + iVar13);

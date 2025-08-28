@@ -129,7 +129,7 @@ void FUN_1802e3970(longlong *param_1)
         _DAT_180be0000 = piVar15;
 LAB_1802e3c87:
         piStack_70 = piVar3;
-        puStack_68 = &DAT_180be0000;
+        puStack_68 = &system_data_0000;
         piStack_80 = piStack_70;
         uStack_78 = 0x80be0000;
         uStack_74 = 1;
@@ -147,7 +147,7 @@ LAB_1802e3c87:
       uVar8 = uVar8 + 0x10;
     } while ((int)uVar12 < (int)param_1[2]);
   }
-  ppiVar10 = (int **)&DAT_180be0000;
+  ppiVar10 = (int **)&system_data_0000;
   piVar15 = _DAT_180be0000;
   if (_DAT_180be0000 == (int *)0x0) {
     ppiVar10 = &piRam0000000180be0008;
@@ -273,7 +273,7 @@ void FUN_1802e3e70(longlong param_1,longlong param_2)
       auStack_58[0] = 0;
       uStack_60 = 0x13;
       strcpy_s(auStack_58,0x20,&UNK_180a193a8);
-      puVar13 = &DAT_18098bc73;
+      puVar13 = &system_buffer_ptr;
       if (puStack_68 != (void *)0x0) {
         puVar13 = puStack_68;
       }
@@ -935,7 +935,7 @@ void FUN_1802e4840(longlong param_1)
     puStack_170 = auStack_160;
     auStack_160[0] = 0;
     uStack_168 = 10;
-    puVar5 = (uint64_t *)&DAT_18098bc73;
+    puVar5 = (uint64_t *)&system_buffer_ptr;
     if (puVar4 != (uint64_t *)0x0) {
       puVar5 = puVar4;
     }
@@ -974,7 +974,7 @@ void FUN_1802e4840(longlong param_1)
         puStack_d0 = auStack_c0;
         auStack_c0[0] = 0;
         uStack_c8 = uStack_1c8;
-        puVar5 = (uint64_t *)&DAT_18098bc73;
+        puVar5 = (uint64_t *)&system_buffer_ptr;
         if (puVar4 != (uint64_t *)0x0) {
           puVar5 = puVar4;
         }

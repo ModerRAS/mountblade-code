@@ -282,7 +282,7 @@ LAB_1805fac53:
       uStack_78 = *(uint64_t *)(lVar3 + 0x6c);
       uStack_70 = *(uint64_t *)(lVar3 + 0x74);
       if ((param_2 == 1) && (1 < *(int *)(lVar7 + 0x10) - 4U)) {
-        iVar4 = func_0x0001805fd450(&DAT_180c95ef8,param_1,2);
+        iVar4 = func_0x0001805fd450(&system_data_5ef8,param_1,2);
       }
       fVar15 = *(float *)((longlong)puVar12 + 0x9c);
       if ((void *)*puVar12 == &UNK_180a36bf8) {
@@ -356,7 +356,7 @@ LAB_1805fae54:
         uStack_84 = 0x3f800000;
         iStack_b0 = iVar4;
         if (-1 < iVar4) {
-          FUN_180545140(&DAT_180c96110,&iStack_b0,0,0);
+          FUN_180545140(&system_data_6110,&iStack_b0,0,0);
         }
         break;
       }

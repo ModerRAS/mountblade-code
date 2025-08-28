@@ -144,8 +144,8 @@ void FUN_1802fddde(int32_t param_1)
   FUN_1802fd530(extraout_XMM0_Da,unaff_RBP + 0x44,unaff_RBP + 0x144);
   lVar34 = *(longlong *)(unaff_RDI + 0xd0);
   if (lVar34 == 0) {
-    pfVar50 = (float *)&DAT_180a002f0;
-    pfVar49 = (float *)&DAT_180a002f0;
+    pfVar50 = (float *)&system_data_02f0;
+    pfVar49 = (float *)&system_data_02f0;
   }
   else {
     pfVar50 = (float *)(lVar34 + 0x1018);
@@ -429,7 +429,7 @@ LAB_1802fe66e:
     puVar2 = *(uint64_t **)((longlong)cVar43 * 0x100 + 0xf0 + *(longlong *)(unaff_RDI + 0x18));
     (**(code **)(*(longlong *)*puVar2 + 0xe0))();
     plVar3 = (longlong *)*puVar2;
-    (**(code **)(*plVar3 + 0xf8))(plVar3,&DAT_180a002f0,pfVar49);
+    (**(code **)(*plVar3 + 0xf8))(plVar3,&system_data_02f0,pfVar49);
   }
   if (*(longlong *)(unaff_RDI + 0xd0) != 0) {
     uVar48 = *(ulonglong *)(*(longlong *)(unaff_RDI + 0xd0) + 0x1000);

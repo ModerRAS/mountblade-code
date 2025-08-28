@@ -682,7 +682,7 @@ uint64_t FUN_1808d5710(longlong *param_1)
       plVar4 = plVar5;
     }
     if (plVar4 == (longlong *)0x0) {
-      plVar4 = (longlong *)&DAT_00000018;
+      plVar4 = (longlong *)&system_data_0018;
       plVar2 = (longlong *)0x68;
     }
     else {

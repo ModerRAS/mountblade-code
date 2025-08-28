@@ -774,7 +774,7 @@ void FUN_18051c010(longlong param_1,longlong param_2)
          *(float *)(param_2 + 0xc0) + *(float *)(param_2 + 0xc0))) {
         if ((*(int *)(*(longlong *)
                        ((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48) <
-             _DAT_180d49ec8) && (FUN_1808fcb90(&DAT_180d49ec8), _DAT_180d49ec8 == -1)) {
+             _DAT_180d49ec8) && (FUN_1808fcb90(&system_memory_9ec8), _DAT_180d49ec8 == -1)) {
           uStack_178 = &UNK_180a3c3e0;
           fStack_160 = 0.0;
           fStack_15c = 0.0;
@@ -787,7 +787,7 @@ void FUN_18051c010(longlong param_1,longlong param_2)
           *puVar11 = 0x6e696150;
           *(int8_t *)(puVar11 + 1) = 0;
           fStack_168 = 5.60519e-45;
-          _DAT_180d49ecc = FUN_180571e20(&DAT_180c960c0,&uStack_178);
+          _DAT_180d49ecc = FUN_180571e20(&system_memory_60c0,&uStack_178);
           uStack_178 = &UNK_180a3c3e0;
                     // WARNING: Subroutine does not return
           FUN_18064e900(puVar11);
@@ -813,7 +813,7 @@ void FUN_18051c010(longlong param_1,longlong param_2)
       FUN_18052f6f0(param_1,param_2,aiStackX_20,aiStack_128,pcVar26,pcVar27,&uStack_178);
       uVar12 = (int32_t)((ulonglong)pcVar26 >> 0x20);
       if (acStackX_8[0] != '\0') {
-        iVar6 = FUN_18053a410(&DAT_180c95f30,*(int32_t *)(*(longlong *)(param_1 + 0x590) + 0xac),
+        iVar6 = FUN_18053a410(&system_memory_5f30,*(int32_t *)(*(longlong *)(param_1 + 0x590) + 0xac),
                               aiStackX_20[0]);
         iVar6 = *(int *)(_DAT_180c95f68 + (longlong)iVar6 * 4);
         if (iVar6 != -1) {
@@ -830,10 +830,10 @@ void FUN_18051c010(longlong param_1,longlong param_2)
           fVar21 = *(float *)(uVar8 + 0x188);
         }
         *(longlong *)(lVar15 + 0x6c8) =
-             *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar15 + 0x6d0) * 8) -
+             *(longlong *)(&system_error_code + (longlong)*(int *)(lVar15 + 0x6d0) * 8) -
              (longlong)(fVar21 * -100000.0);
         *(longlong *)(lVar15 + 0x6b8) =
-             *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar15 + 0x6c0) * 8) + 200000;
+             *(longlong *)(&system_error_code + (longlong)*(int *)(lVar15 + 0x6c0) * 8) + 200000;
         *(int32_t *)(param_1 + 0x670) = 0xffffffff;
         *(uint *)(param_1 + 0x584) = *(uint *)(uVar8 + 0x1d8) ^ 0x80000000;
         FUN_18052e130(lVar15,0xffffffff,0x180c8ed01);
@@ -856,7 +856,7 @@ void FUN_18051c010(longlong param_1,longlong param_2)
     iVar6 = aiStackX_20[0];
     cVar5 = acStackX_10[0];
     if ((((*(byte *)(param_1 + 0x56c) & 0x80) == 0) ||
-        ((float)(*(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x6c0) * 8) -
+        ((float)(*(longlong *)(&system_error_code + (longlong)*(int *)(param_1 + 0x6c0) * 8) -
                 *(longlong *)(param_1 + 0x6b8)) * 1e-05 <= 0.0)) ||
        ((*(int *)(param_1 + 0x564) != -1 || (cVar4 = func_0x000180522f60(param_1), cVar4 != '\0'))))
     {
@@ -956,7 +956,7 @@ void FUN_18051c010(longlong param_1,longlong param_2)
       if ((*(byte *)(param_2 + 0xac) & 0x40) == 0) {
         if ((*(int *)(*(longlong *)
                        ((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48) <
-             _DAT_180d49ed0) && (FUN_1808fcb90(&DAT_180d49ed0), _DAT_180d49ed0 == -1)) {
+             _DAT_180d49ed0) && (FUN_1808fcb90(&system_memory_9ed0), _DAT_180d49ed0 == -1)) {
           uStack_178 = &UNK_180a3c3e0;
           fStack_160 = 0.0;
           fStack_15c = 0.0;
@@ -969,7 +969,7 @@ void FUN_18051c010(longlong param_1,longlong param_2)
           *puVar11 = 0x6e696150;
           *(int8_t *)(puVar11 + 1) = 0;
           fStack_168 = 5.60519e-45;
-          _DAT_180d49ed4 = FUN_180571e20(&DAT_180c960c0,&uStack_178);
+          _DAT_180d49ed4 = FUN_180571e20(&system_memory_60c0,&uStack_178);
           uStack_178 = &UNK_180a3c3e0;
                     // WARNING: Subroutine does not return
           FUN_18064e900(puVar11);

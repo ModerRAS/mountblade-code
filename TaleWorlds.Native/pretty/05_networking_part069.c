@@ -184,9 +184,9 @@ LAB_1808788de:
           lVar3 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
           do {
             if ((*(int *)(lVar3 + 0x48) < _DAT_180c4ea98) &&
-               (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
+               (FUN_1808fcb90(&system_ptr_ea98), _DAT_180c4ea98 == -1)) {
               _DAT_180c4ea94 = 0;
-              FUN_1808fcb30(&DAT_180c4ea98);
+              FUN_1808fcb30(&system_ptr_ea98);
             }
             if ((int)plVar16[0x14] != _DAT_180c4ea94) {
               for (uVar10 = plVar16[0x10];
@@ -477,9 +477,9 @@ void FUN_1808789b7(float param_1)
           lVar3 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
           do {
             if ((*(int *)(lVar3 + 0x48) < _DAT_180c4ea98) &&
-               (param_1 = (float)FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
+               (param_1 = (float)FUN_1808fcb90(&system_ptr_ea98), _DAT_180c4ea98 == -1)) {
               _DAT_180c4ea94 = 0;
-              param_1 = (float)FUN_1808fcb30(&DAT_180c4ea98);
+              param_1 = (float)FUN_1808fcb30(&system_ptr_ea98);
             }
             if ((int)plVar17[0x14] != _DAT_180c4ea94) {
               for (uVar13 = plVar17[0x10];

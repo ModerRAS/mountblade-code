@@ -232,7 +232,7 @@ int32_t rendering_system_get_render_status(uint64_t render_object, longlong stat
     }
     
     // 处理错误信息
-    error_msg_ptr = &DAT_18098bc73;
+    error_msg_ptr = &system_buffer_ptr;
     if (*(void **)(state_context + 8) != (void *)0x0) {
       error_msg_ptr = *(void **)(state_context + 8);
     }
@@ -315,13 +315,13 @@ uint64_t rendering_system_get_global_render_data(void)
   // 检查线程本地存储中的数据是否需要初始化
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
               0x48) < _DAT_180d49128) {
-    FUN_1808fcb90(&DAT_180d49128);
+    FUN_1808fcb90(&system_state_9128);
     
     // 如果数据初始化失败，执行清理和重新初始化
     if (_DAT_180d49128 == -1) {
       FUN_18058f390(0x180d48f30);
       FUN_1808fc820(&UNK_180943060);
-      FUN_1808fcb30(&DAT_180d49128);
+      FUN_1808fcb30(&system_state_9128);
       return 0x180d48f30;
     }
   }

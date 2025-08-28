@@ -161,7 +161,7 @@ uint64_t FUN_180750820(longlong param_1,longlong param_2,int param_3)
   if (param_3 < 0x101) {
     iVar1 = param_3;
   }
-  puVar2 = &DAT_18098bc73;
+  puVar2 = &system_buffer_ptr;
   if (*(void **)(param_1 + 0x30) != (void *)0x0) {
     puVar2 = *(void **)(param_1 + 0x30);
   }
@@ -675,7 +675,7 @@ FUN_180750fa0(longlong param_1,longlong param_2,longlong param_3,int32_t param_4
     }
   }
   else {
-    puVar2 = &DAT_18098bc73;
+    puVar2 = &system_buffer_ptr;
     if (*(void **)(param_2 + 0x20) != (void *)0x0) {
       puVar2 = *(void **)(param_2 + 0x20);
     }

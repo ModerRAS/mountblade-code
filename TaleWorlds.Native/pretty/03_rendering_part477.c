@@ -93,10 +93,10 @@ LAB_180522e20:
   }
 LAB_180522ef8:
   if (((*(uint *)(lVar2 + 8) >> 0x15 & 1) != 0) &&
-     ((float)(*(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(unaff_RBX + 0x238) * 8) -
+     ((float)(*(longlong *)(&system_error_code + (longlong)*(int *)(unaff_RBX + 0x238) * 8) -
              *(longlong *)(unaff_RBX + 0x230)) * -1e-05 < 0.5)) {
     *(longlong *)(unaff_RBX + 0x230) =
-         *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(unaff_RBX + 0x238) * 8) + 50000;
+         *(longlong *)(&system_error_code + (longlong)*(int *)(unaff_RBX + 0x238) * 8) + 50000;
   }
   return;
 }
@@ -192,10 +192,10 @@ LAB_180522e20:
     FUN_18052c030(param_1,6);
   }
   if (((*(uint *)(unaff_RDI + 8) >> 0x15 & 1) != 0) &&
-     ((float)(*(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(unaff_RBX + 0x238) * 8) -
+     ((float)(*(longlong *)(&system_error_code + (longlong)*(int *)(unaff_RBX + 0x238) * 8) -
              *(longlong *)(unaff_RBX + 0x230)) * -1e-05 < 0.5)) {
     *(longlong *)(unaff_RBX + 0x230) =
-         *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(unaff_RBX + 0x238) * 8) + 50000;
+         *(longlong *)(&system_error_code + (longlong)*(int *)(unaff_RBX + 0x238) * 8) + 50000;
   }
   return;
 }
@@ -213,10 +213,10 @@ void FUN_180522eeb(int32_t param_1)
   
   FUN_18052c030(param_1,6);
   if (((*(uint *)(unaff_RDI + 8) >> 0x15 & 1) != 0) &&
-     ((float)(*(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(unaff_RBX + 0x238) * 8) -
+     ((float)(*(longlong *)(&system_error_code + (longlong)*(int *)(unaff_RBX + 0x238) * 8) -
              *(longlong *)(unaff_RBX + 0x230)) * -1e-05 < 0.5)) {
     *(longlong *)(unaff_RBX + 0x230) =
-         *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(unaff_RBX + 0x238) * 8) + 50000;
+         *(longlong *)(&system_error_code + (longlong)*(int *)(unaff_RBX + 0x238) * 8) + 50000;
   }
   return;
 }
@@ -231,10 +231,10 @@ void FUN_180522f0a(void)
 {
   longlong unaff_RBX;
   
-  if ((float)(*(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(unaff_RBX + 0x238) * 8) -
+  if ((float)(*(longlong *)(&system_error_code + (longlong)*(int *)(unaff_RBX + 0x238) * 8) -
              *(longlong *)(unaff_RBX + 0x230)) * -1e-05 < 0.5) {
     *(longlong *)(unaff_RBX + 0x230) =
-         *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(unaff_RBX + 0x238) * 8) + 50000;
+         *(longlong *)(&system_error_code + (longlong)*(int *)(unaff_RBX + 0x238) * 8) + 50000;
   }
   return;
 }

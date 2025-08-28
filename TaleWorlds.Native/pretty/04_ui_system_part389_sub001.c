@@ -43,10 +43,10 @@ void FUN_180879232(void)
   int in_stack_00000070;
   
   do {
-    uVar20 = FUN_1808fcb90(&DAT_180c4ea98);
+    uVar20 = FUN_1808fcb90(&system_ptr_ea98);
     if (_DAT_180c4ea98 == -1) {
       _DAT_180c4ea94 = unaff_R12D;
-      uVar20 = FUN_1808fcb30(&DAT_180c4ea98);
+      uVar20 = FUN_1808fcb30(&system_ptr_ea98);
     }
     do {
       if ((int)unaff_RDI[0x14] != _DAT_180c4ea94) {
@@ -755,11 +755,11 @@ int FUN_1808797a0(longlong param_1,longlong param_2,int param_3)
   uVar1 = *(int32_t *)(param_1 + 0x24);
   uVar2 = *(int32_t *)(param_1 + 0x20);
   iVar3 = FUN_18074b650(param_2,param_3,&uStack_18);
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b7d0(iVar3 + param_2,param_3 - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -786,15 +786,15 @@ int FUN_180879880(longlong param_1,longlong param_2,int param_3)
   uVar1 = *(int32_t *)(param_1 + 0x24);
   uVar2 = *(int32_t *)(param_1 + 0x20);
   iVar3 = FUN_18074b880(param_2,param_3,&UNK_180985ae8);
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18074b650(iVar3 + param_2,param_3 - iVar3,&uStack_18);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b7d0(iVar3 + param_2,param_3 - iVar3,uVar1);
   return iVar4 + iVar3;

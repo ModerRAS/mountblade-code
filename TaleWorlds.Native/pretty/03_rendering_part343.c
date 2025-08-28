@@ -252,11 +252,11 @@ FUN_18044f210(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
     lVar8 = lStack_28;
 LAB_18044f280:
     if (uVar7 != *(ulonglong *)(param_1 + 0x60838)) {
-      puVar6 = &DAT_18098bc73;
+      puVar6 = &system_buffer_ptr;
       if (puStack_58 != (void *)0x0) {
         puVar6 = puStack_58;
       }
-      puVar5 = &DAT_18098bc73;
+      puVar5 = &system_buffer_ptr;
       if (*(void **)(lVar8 + 0x290) != (void *)0x0) {
         puVar5 = *(void **)(lVar8 + 0x290);
       }

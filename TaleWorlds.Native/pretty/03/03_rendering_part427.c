@@ -318,7 +318,7 @@ void rendering_system_process_texture_data(uint64_t param1)
   texture_data_ptr = data_buffer;
   data_buffer[0] = 0;
   data_size = 0xd;
-  strcpy_s(data_buffer,0x80,&DAT_180a2ca38);
+  strcpy_s(data_buffer,0x80,&system_buffer_ca38);
   FUN_180049b30(data_array,&process_ptr);
   array_size = 4;
   process_param = 1;
@@ -563,7 +563,7 @@ void rendering_system_initialize_render_manager(uint64_t *param1)
   param1[0x83] = 0;
   *(int32_t *)(param1 + 0x82) = 0xffffffff;
   FUN_18049dc80();
-  (**(code **)(_DAT_180c924d0 + 0x10))(&DAT_180c924d0,&DAT_1809fd128);
+  (**(code **)(_DAT_180c924d0 + 0x10))(&system_buffer_24d0,&system_buffer_d128);
   *(int32_t *)(param1 + 1) = 0;
   alloc_ptr2 = &UNK_1809fdc18;
   alloc_ptr3 = string_buffer;
@@ -577,7 +577,7 @@ void rendering_system_initialize_render_manager(uint64_t *param1)
   data_size = 0;
   FUN_1806277c0(&stack_ptr,string_size);
   if (0 < string_size) {
-    init_ptr = &DAT_18098bc73;
+    init_ptr = &system_buffer_ptr;
     if (alloc_ptr3 != (void *)0x0) {
       init_ptr = alloc_ptr3;
     }
@@ -608,7 +608,7 @@ void rendering_system_initialize_render_manager(uint64_t *param1)
   *(int16_t *)(data_ptr + data_size) = 0x2f;
   data_size = process_flag;
   if (data_ptr != (int8_t *)0x0) {
-    FUN_1806277c0(&DAT_180c924f0,process_flag);
+    FUN_1806277c0(&system_buffer_24f0,process_flag);
   }
   if (process_flag != 0) {
                     // WARNING: Subroutine does not return
@@ -813,7 +813,7 @@ void rendering_system_update_texture_cache(void)
   longlong *cache_stack_ptr2;
   uint64_t cache_param;
   
-  if ((((DAT_180c96098 != '\0') && (_DAT_180c96070 != 0)) &&
+  if ((((system_buffer_6098 != '\0') && (_DAT_180c96070 != 0)) &&
       (*(int *)(_DAT_180c96070 + 0x87b7a8) == 2)) && (*(char *)(_DAT_180c96070 + 0x87b750) != '\0'))
   {
     cache_base = *(longlong *)(_DAT_180c86870 + 0x3d8);
@@ -1041,8 +1041,8 @@ void rendering_system_setup_render_pipeline(void)
   int32_t *config_ptr;
   uint64_t *resource_ptr;
   
-  FUN_1802567b0(_DAT_180c868a8[0x15],&DAT_180a2d688,&UNK_180a2ca80,rendering_system_create_shader_object,0xfffffffffffffffe);
-  config_ptr = (int32_t *)FUN_18008d660(_DAT_180c868a8 + 0x1c,&DAT_180a2d688);
+  FUN_1802567b0(_DAT_180c868a8[0x15],&system_buffer_d688,&UNK_180a2ca80,rendering_system_create_shader_object,0xfffffffffffffffe);
+  config_ptr = (int32_t *)FUN_18008d660(_DAT_180c868a8 + 0x1c,&system_buffer_d688);
   *config_ptr = 1;
   resource_ptr = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x38,8,3);
   resource_ptr[1] = 0;

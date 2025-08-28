@@ -1066,13 +1066,13 @@ void ui_load_library_with_resource_check(longlong library_info)
   operation_flag = 0xfffffffffffffffe;
   // 栈保护值初始化 - 使用随机种子与栈地址异或生成保护值
   stack_guard_value = _DAT_180bf00a8 ^ (ulonglong)stack_guard_buffer;  // _DAT_180bf00a8: 栈保护随机种子
-  library_path_ptr = &DAT_18098bc73;
+  library_path_ptr = &system_buffer_ptr;
   if (*(void **)(library_info + 8) != (void *)0x0) {
     library_path_ptr = *(void **)(library_info + 8);
   }
   library_handle = (short *)LoadLibraryA(library_path_ptr);
   if (library_handle != (short *)0x0) {
-    insert_position_ptr = (uint64_t *)&DAT_180c96790;
+    insert_position_ptr = (uint64_t *)&system_memory_6790;
     library_node_ptr = _DAT_180c967a0;
     loaded_library_handle = library_handle;
     if (_DAT_180c967a0 != (uint64_t *)0x0) {
@@ -1086,7 +1086,7 @@ void ui_load_library_with_resource_check(longlong library_info)
         }
         library_node_ptr = next_node_ptr;
       } while (next_node_ptr != (uint64_t *)0x0);
-      if ((insert_position_ptr != (uint64_t *)&DAT_180c96790) && ((short *)insert_position_ptr[4] <= library_handle))
+      if ((insert_position_ptr != (uint64_t *)&system_memory_6790) && ((short *)insert_position_ptr[4] <= library_handle))
       goto library_loaded;
     }
     ui_parse_pe_resource_section(library_info,resource_buffer);
@@ -1109,7 +1109,7 @@ void ui_load_library_with_resource_check(longlong library_info)
     if (*module_base_ptr == 0x5a4d) {
       ui_parse_pe_header(resource_data,module_base_ptr,module_base_ptr);
     }
-    insert_position_ptr = (uint64_t *)&DAT_180c96790;
+    insert_position_ptr = (uint64_t *)&system_memory_6790;
     library_node_ptr = _DAT_180c967a0;
     while (library_node_ptr != (uint64_t *)0x0) {
       if ((short *)library_node_ptr[4] < library_handle) {
@@ -1120,7 +1120,7 @@ void ui_load_library_with_resource_check(longlong library_info)
         library_node_ptr = (uint64_t *)library_node_ptr[1];
       }
     }
-    if ((insert_position_ptr == (uint64_t *)&DAT_180c96790) || (library_handle < (short *)insert_position_ptr[4])) {
+    if ((insert_position_ptr == (uint64_t *)&system_memory_6790) || (library_handle < (short *)insert_position_ptr[4])) {
       library_handle_ptr = &loaded_library_handle;
       insert_position_ptr = (uint64_t *)ui_insert_library_node(insert_position_ptr,temp_buffer_1e8);
       insert_position_ptr = (uint64_t *)*insert_position_ptr;
@@ -1228,7 +1228,7 @@ void ui_tree_cleanup_operation(uint64_t param_1, uint64_t *node_ptr,
 
 {
   if (param_2 != (uint64_t *)0x0) {
-    ui_perform_tree_node_operation(&DAT_180c96790,*node_ptr,param_3,param_4,0xfffffffffffffffe);
+    ui_perform_tree_node_operation(&system_memory_6790,*node_ptr,param_3,param_4,0xfffffffffffffffe);
     ui_cleanup_tree_node_resources(node_ptr + 5);
                     // WARNING: Subroutine does not return
     ui_free_tree_node_memory(node_ptr);
@@ -1261,7 +1261,7 @@ void ui_tree_cleanup_operation(uint64_t param_1, uint64_t *node_ptr,
   int32_t insertion_flag;
   bool should_insert_left;
   
-  if ((param_4 == _DAT_180c96790) || (param_4 == (longlong *)&DAT_180c96790)) {
+  if ((param_4 == _DAT_180c96790) || (param_4 == (longlong *)&system_memory_6790)) {
     // _DAT_180c96790: 库资源树头节点指针
     // _DAT_180c967b0: 库资源树节点计数器
     if ((_DAT_180c967b0 != 0) && (param_4 = _DAT_180c96790, (ulonglong)_DAT_180c96790[4] < *param_5)
@@ -1280,7 +1280,7 @@ node_found:
       }
     }
   }
-  insert_position_ptr = (uint64_t *)&DAT_180c96790;
+  insert_position_ptr = (uint64_t *)&system_memory_6790;
   should_insert_left = true;
   if (_DAT_180c967a0 != (uint64_t *)0x0) {
     current_node_ptr = _DAT_180c967a0;
@@ -1309,18 +1309,18 @@ node_found:
     return param_2;
   }
 create_new_node:
-  if ((insert_position_ptr == (uint64_t *)&DAT_180c96790) || (search_key < (ulonglong)insert_position_ptr[4])) {
+  if ((insert_position_ptr == (uint64_t *)&system_memory_6790) || (search_key < (ulonglong)insert_position_ptr[4])) {
     insertion_flag = 0;
   }
   else {
     insertion_flag = 1;
   }
   // 使用内存分配器和树节点类型信息分配新节点
-  new_node_ptr = ui_allocate_library_node(_DAT_180c8ed18, 0xd8, DAT_180c967b8);
+  new_node_ptr = ui_allocate_library_node(_DAT_180c8ed18, 0xd8, system_memory_67b8);
   *(ulonglong *)(new_node_ptr + 0x20) = *param_5;
   ui_initialize_node_data(new_node_ptr + 0x28);
   // 将新节点插入到树中
-  ui_insert_node_into_tree(new_node_ptr, insert_position_ptr, &DAT_180c96790, insertion_flag);
+  ui_insert_node_into_tree(new_node_ptr, insert_position_ptr, &system_memory_6790, insertion_flag);
 }
 
 
@@ -1345,7 +1345,7 @@ create_new_node:
   longlong lVar1;
   int32_t uVar2;
   
-  if ((((char)param_4 == '\0') && (param_3 != &DAT_180c96790)) &&
+  if ((((char)param_4 == '\0') && (param_3 != &system_memory_6790)) &&
      (*(ulonglong *)(param_3 + 0x20) <= *param_5)) {
     uVar2 = 1;
   }
@@ -1353,11 +1353,11 @@ create_new_node:
     uVar2 = 0;
   }
   // 使用内存分配器和树节点类型信息分配新节点
-  lVar1 = ui_allocate_library_node(_DAT_180c8ed18, 0xd8, DAT_180c967b8, param_4, 0xfffffffffffffffe);
+  lVar1 = ui_allocate_library_node(_DAT_180c8ed18, 0xd8, system_memory_67b8, param_4, 0xfffffffffffffffe);
   *(ulonglong *)(lVar1 + 0x20) = *param_5;
   ui_initialize_node_data(lVar1 + 0x28);
   // 将新节点插入到树中
-  ui_insert_node_into_tree(lVar1, param_3, &DAT_180c96790, uVar2);
+  ui_insert_node_into_tree(lVar1, param_3, &system_memory_6790, uVar2);
 }
 
 

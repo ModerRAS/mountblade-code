@@ -365,7 +365,7 @@ void FUN_18031a020(uint64_t *param_1,longlong param_2,int32_t param_3)
   puStack_e8 = &UNK_1809fcc28;
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
-  puVar7 = &DAT_18098bc73;
+  puVar7 = &system_buffer_ptr;
   if (puStack_150 != (void *)0x0) {
     puVar7 = puStack_150;
   }

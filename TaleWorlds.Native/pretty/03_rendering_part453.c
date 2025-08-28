@@ -563,7 +563,7 @@ void FUN_1805131d0(longlong param_1,float *param_2,float *param_3,char param_4,f
           fStack_364 = *(float *)(lVar12 + 0x70) * fVar22 * fVar24 * pfVar16[1] -
                        *(float *)(lVar12 + 0x74) * fVar22 * fVar24 * *pfVar16;
           *(longlong *)(lVar11 + 0x588) =
-               *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar11 + 0x590) * 8) -
+               *(longlong *)(&system_error_code + (longlong)*(int *)(lVar11 + 0x590) * 8) -
                (longlong)(param_5 * -100000.0);
           pfStack_428 = (float *)CONCAT44(pfStack_428._4_4_,0.9 / param_5);
           FUN_180575760(*(uint64_t *)(param_1 + 0x590),

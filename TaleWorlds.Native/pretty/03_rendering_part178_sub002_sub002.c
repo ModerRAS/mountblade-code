@@ -113,7 +113,7 @@ void FUN_1803759b8(uint64_t param_1,uint param_2)
                 }
                 else {
                   iVar6 = FUN_1801b8ce0(*(longlong *)(unaff_R15 + 0x2148) + 0x2998,puVar26 + 0xc,
-                                        lVar18,lVar27,&DAT_180a00300);
+                                        lVar18,lVar27,&system_data_0300);
                 }
                 if (iVar6 != 0) {
                   if (bVar21) {
@@ -448,7 +448,7 @@ LAB_18037624d:
                             (iVar24 = FUN_1801b8ce0(*(longlong *)
                                                      (*(longlong *)(unaff_RBP + 0x290) + 0x2148) +
                                                     0x2998,*(longlong *)(unaff_RBP + -0x78) + 0x30,
-                                                    lVar11 + 0x4c,lVar28 + 0x18,&DAT_180a00300),
+                                                    lVar11 + 0x4c,lVar28 + 0x18,&system_data_0300),
                             iVar24 != 0)))) {
                           lVar11 = FUN_180372570(unaff_R14,iVar6,iVar22);
                           uVar25 = *(uint *)(unaff_R14 + 0x118);

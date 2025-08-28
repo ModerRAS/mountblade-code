@@ -221,7 +221,7 @@ void FUN_1805ea790(longlong *param_1,longlong param_2,longlong param_3,longlong 
     }
     pfVar17 = (float *)(param_1 + 0x29);
     if (plVar25 == (longlong *)0x0) {
-      pfVar17 = (float *)&DAT_180a002f0;
+      pfVar17 = (float *)&system_data_02f0;
     }
     fStack_158 = *pfVar17;
     fStack_154 = pfVar17[1];

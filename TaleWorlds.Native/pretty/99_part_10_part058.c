@@ -71,7 +71,7 @@ FUN_1806d3e50(longlong *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
     param_2[2] = lVar2;
     return param_2;
   }
-  *param_2 = &DAT_18098bc73;
+  *param_2 = &system_buffer_ptr;
   param_2[1] = 0;
   param_2[2] = 0;
   return param_2;
@@ -96,7 +96,7 @@ FUN_1806d3f00(longlong *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
     param_2[2] = lVar2;
     return param_2;
   }
-  *param_2 = &DAT_18098bc73;
+  *param_2 = &system_buffer_ptr;
   param_2[1] = 0;
   param_2[2] = 0;
   return param_2;
@@ -121,7 +121,7 @@ FUN_1806d3fb0(longlong *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
     param_2[2] = lVar2;
     return param_2;
   }
-  *param_2 = &DAT_18098bc73;
+  *param_2 = &system_buffer_ptr;
   param_2[1] = 0;
   param_2[2] = 0;
   return param_2;
@@ -146,7 +146,7 @@ FUN_1806d4060(longlong *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
     param_2[2] = lVar2;
     return param_2;
   }
-  *param_2 = &DAT_18098bc73;
+  *param_2 = &system_buffer_ptr;
   param_2[1] = 0;
   param_2[2] = 0;
   return param_2;
@@ -171,7 +171,7 @@ FUN_1806d4110(longlong *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
     param_2[2] = lVar2;
     return param_2;
   }
-  *param_2 = &DAT_18098bc73;
+  *param_2 = &system_buffer_ptr;
   param_2[1] = 0;
   param_2[2] = 0;
   return param_2;

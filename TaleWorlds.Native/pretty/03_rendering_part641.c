@@ -251,18 +251,18 @@ void * FUN_180628ca0(void)
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
               0x48) < _DAT_180d4a060) {
-    FUN_1808fcb90(&DAT_180d4a060);
+    FUN_1808fcb90(&system_ptr_a060);
     if (_DAT_180d4a060 == -1) {
       _DAT_180d4a068 = &UNK_180a3c3e0;
       _DAT_180d4a080 = 0;
       _DAT_180d4a070 = 0;
       _DAT_180d4a078 = 0;
       FUN_1808fc820(FUN_1809430e0);
-      FUN_1808fcb30(&DAT_180d4a060);
-      return &DAT_180d4a068;
+      FUN_1808fcb30(&system_ptr_a060);
+      return &system_ptr_a068;
     }
   }
-  return &DAT_180d4a068;
+  return &system_ptr_a068;
 }
 
 

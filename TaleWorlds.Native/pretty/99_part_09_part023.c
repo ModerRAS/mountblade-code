@@ -88,7 +88,7 @@ void FUN_1805c8252(void)
     uVar4 = uVar4 << 5 ^ uVar4;
     *(uint *)(unaff_RBX + 0x272) = uVar4;
     unaff_RBX[0x273] =
-         *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x274] * 8) -
+         *(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x274] * 8) -
          (longlong)((float)(uVar4 - 1) * 0.00027939677 - 2e+06);
     goto LAB_1805c85d3;
   }
@@ -119,7 +119,7 @@ LAB_1805c855d:
     fVar9 = fVar9 * -100000.0 - (fVar9 * 0.5 - fVar9) * (float)(uVar4 - 1) * 2.3283064e-05;
   }
   unaff_RBX[0x273] =
-       *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x274] * 8) - (longlong)fVar9;
+       *(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x274] * 8) - (longlong)fVar9;
   uVar4 = *(uint *)(*(longlong *)(*unaff_RBX + 0x8f8) + 0x9e0);
   if (uVar4 != unaff_EDI) {
     unaff_EDI = *(uint *)(*(longlong *)(*(longlong *)(*unaff_RBX + 0x8f8) + 0x9e8) + 0xf0);
@@ -142,8 +142,8 @@ LAB_1805c855d:
 LAB_1805c85d3:
   *(int32_t *)(unaff_RBX + 0x2f1) = 0;
   unaff_RBX[0x2ed] =
-       *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2ee] * 8) + -0x8000000000000000;
-  unaff_RBX[0x2e0] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2e1] * 8) + 10000;
+       *(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x2ee] * 8) + -0x8000000000000000;
+  unaff_RBX[0x2e0] = *(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x2e1] * 8) + 10000;
   return;
 }
 
@@ -235,7 +235,7 @@ void FUN_1805c8278(void)
     uVar4 = uVar4 << 5 ^ uVar4;
     *(uint *)(unaff_RBX + 0x272) = uVar4;
     unaff_RBX[0x273] =
-         *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x274] * 8) -
+         *(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x274] * 8) -
          (longlong)((float)(uVar4 - 1) * 0.00027939677 - 2e+06);
     goto LAB_1805c85d3;
   }
@@ -266,7 +266,7 @@ LAB_1805c855d:
     fVar7 = fVar7 * -100000.0 - (fVar7 * 0.5 - fVar7) * (float)(uVar4 - 1) * 2.3283064e-05;
   }
   unaff_RBX[0x273] =
-       *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x274] * 8) - (longlong)fVar7;
+       *(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x274] * 8) - (longlong)fVar7;
   uVar4 = *(uint *)(*(longlong *)(*unaff_RBX + 0x8f8) + 0x9e0);
   if (uVar4 != unaff_EDI) {
     unaff_EDI = *(uint *)(*(longlong *)(*(longlong *)(*unaff_RBX + 0x8f8) + 0x9e8) + 0xf0);
@@ -289,8 +289,8 @@ LAB_1805c855d:
 LAB_1805c85d3:
   *(int32_t *)(unaff_RBX + 0x2f1) = 0;
   unaff_RBX[0x2ed] =
-       *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2ee] * 8) + -0x8000000000000000;
-  unaff_RBX[0x2e0] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2e1] * 8) + 10000;
+       *(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x2ee] * 8) + -0x8000000000000000;
+  unaff_RBX[0x2e0] = *(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x2e1] * 8) + 10000;
   return;
 }
 
@@ -346,7 +346,7 @@ void FUN_1805c8395(int32_t param_1)
     uVar2 = uVar2 << 5 ^ uVar2;
     *(uint *)(unaff_RBX + 0x272) = uVar2;
     unaff_RBX[0x273] =
-         *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x274] * 8) -
+         *(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x274] * 8) -
          (longlong)((float)(uVar2 - 1) * 0.00027939677 - 2e+06);
     goto LAB_1805c85d3;
   }
@@ -377,7 +377,7 @@ LAB_1805c855d:
     fVar7 = fVar7 * -100000.0 - (fVar7 * 0.5 - fVar7) * (float)(uVar2 - 1) * 2.3283064e-05;
   }
   unaff_RBX[0x273] =
-       *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x274] * 8) - (longlong)fVar7;
+       *(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x274] * 8) - (longlong)fVar7;
   iVar5 = *(int *)(*(longlong *)(*unaff_RBX + 0x8f8) + 0x9e0);
   iVar4 = unaff_EDI;
   if (iVar5 != unaff_EDI) {
@@ -401,8 +401,8 @@ LAB_1805c855d:
 LAB_1805c85d3:
   *(int32_t *)(unaff_RBX + 0x2f1) = 0;
   unaff_RBX[0x2ed] =
-       *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2ee] * 8) + -0x8000000000000000;
-  unaff_RBX[0x2e0] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2e1] * 8) + 10000;
+       *(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x2ee] * 8) + -0x8000000000000000;
+  unaff_RBX[0x2e0] = *(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x2e1] * 8) + 10000;
   return;
 }
 
@@ -423,14 +423,14 @@ void FUN_1805c8400(void)
   uVar1 = uVar1 << 5 ^ uVar1;
   *(uint *)(unaff_RBX + 0x1390) = uVar1;
   *(longlong *)(unaff_RBX + 0x1398) =
-       *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(unaff_RBX + 0x13a0) * 8) -
+       *(longlong *)(&system_error_code + (longlong)*(int *)(unaff_RBX + 0x13a0) * 8) -
        (longlong)((float)(uVar1 - 1) * 0.00027939677 - 2e+06);
   *(int32_t *)(unaff_RBX + 0x1788) = 0;
   *(longlong *)(unaff_RBX + 0x1768) =
-       *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(unaff_RBX + 6000) * 8) +
+       *(longlong *)(&system_error_code + (longlong)*(int *)(unaff_RBX + 6000) * 8) +
        -0x8000000000000000;
   *(longlong *)(unaff_RBX + 0x1700) =
-       *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(unaff_RBX + 0x1708) * 8) + 10000;
+       *(longlong *)(&system_error_code + (longlong)*(int *)(unaff_RBX + 0x1708) * 8) + 10000;
   return;
 }
 
@@ -475,7 +475,7 @@ void FUN_1805c8666(void)
   uVar1 = uVar1 << 5 ^ uVar1;
   *(uint *)(unaff_RBX + 0x1390) = uVar1;
   *(longlong *)(unaff_RBX + 0x1398) =
-       *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(unaff_RBX + 0x13a0) * 8) -
+       *(longlong *)(&system_error_code + (longlong)*(int *)(unaff_RBX + 0x13a0) * 8) -
        (longlong)((float)(uVar1 - 1) * 3.4924597e-05 - 200000.0);
   return;
 }

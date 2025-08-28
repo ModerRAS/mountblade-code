@@ -68,7 +68,7 @@ extern uint64_t _DAT_180c8ed18;
 extern uint64_t _DAT_180c82868;
 extern uint64_t _DAT_180c8f008;
 extern uint64_t _DAT_180bf00a8;
-extern int8_t DAT_180c82860;
+extern int8_t system_debug_flag;
 
 // ============================================================================
 // 外部函数声明
@@ -150,8 +150,8 @@ void rendering_system_parameter_handler1(void)
          status_check == '\0')) {
         
         // 处理标志位检查
-        if (DAT_180c82860 == '\0') {
-            data_pointer = &DAT_18098bc73;
+        if (system_debug_flag == '\0') {
+            data_pointer = &system_buffer_ptr;
             if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_470) != (void *)0x0) {
                 data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_470);
             }
@@ -210,8 +210,8 @@ void rendering_system_parameter_handler2(void)
          status_check == '\0')) {
         
         // 处理标志位检查
-        if (DAT_180c82860 == '\0') {
-            data_pointer = &DAT_18098bc73;
+        if (system_debug_flag == '\0') {
+            data_pointer = &system_buffer_ptr;
             if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_2150) != (void *)0x0) {
                 data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_2150);
             }
@@ -1501,7 +1501,7 @@ void rendering_system_string_processor(int param_1)
     work_buffer[0] = 0;
     buffer_size = *(uint *)(base_address + 0x10);
     data_pointer = *(void **)(base_address + 8);
-    temp_pointer = &DAT_18098bc73;
+    temp_pointer = &system_buffer_ptr;
     
     if (data_pointer != (void *)0x0) {
         temp_pointer = data_pointer;
@@ -1688,8 +1688,8 @@ void rendering_system_parameter_handler3(uint64_t param_1, int32_t param_2)
          status_check = (**(code **)(render_context + RENDERING_SYSTEM_OFFSET_1808))(temp_stack),
          param_2 = temp_stack[0], status_check == '\0')) {
         
-        if (DAT_180c82860 == '\0') {
-            data_pointer = &DAT_18098bc73;
+        if (system_debug_flag == '\0') {
+            data_pointer = &system_buffer_ptr;
             if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_17B0) != (void *)0x0) {
                 data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_17B0);
             }
@@ -1740,8 +1740,8 @@ void rendering_system_parameter_handler4(uint64_t param_1, int32_t param_2)
          status_check = (**(code **)(render_context + RENDERING_SYSTEM_OFFSET_1178))(temp_stack),
          param_2 = temp_stack[0], status_check == '\0')) {
         
-        if (DAT_180c82860 == '\0') {
-            data_pointer = &DAT_18098bc73;
+        if (system_debug_flag == '\0') {
+            data_pointer = &system_buffer_ptr;
             if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_1120) != (void *)0x0) {
                 data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_1120);
             }

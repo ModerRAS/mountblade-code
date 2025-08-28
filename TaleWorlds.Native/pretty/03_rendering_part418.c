@@ -265,7 +265,7 @@ void FUN_1804966c0(uint64_t param_1,byte *param_2,longlong param_3,int32_t param
   uStack_538 = &pbStack_5e8;
   uStack_5c8 = FUN_180499f50;
   uStack_5c0 = FUN_180499e70;
-  plStack_5d8 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x30,8,DAT_180bf65bc);
+  plStack_5d8 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x30,8,system_allocation_flags);
   *plStack_5d8 = (longlong)ppbStack_560;
   plStack_5d8[1] = (longlong)ppdStack_558;
   *(int32_t *)(plStack_5d8 + 2) = (int32_t)uStack_550;
@@ -284,14 +284,14 @@ void FUN_1804966c0(uint64_t param_1,byte *param_2,longlong param_3,int32_t param
   uStack_584 = 0x40000000;
   uStack_57c = 3;
   uStack_598 = 1;
-  puStack_5a0 = &DAT_180be0000;
+  puStack_5a0 = &system_ptr_0000;
   lStack_590 = 0;
   uStack_580 = 0;
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-               0x48) < _DAT_180d49da8) && (FUN_1808fcb90(&DAT_180d49da8), _DAT_180d49da8 == -1)) {
+               0x48) < _DAT_180d49da8) && (FUN_1808fcb90(&system_ptr_9da8), _DAT_180d49da8 == -1)) {
     _Mtx_init_in_situ(0x180d49db0,2);
     FUN_1808fc820(FUN_180942a40);
-    FUN_1808fcb30(&DAT_180d49da8);
+    FUN_1808fcb30(&system_ptr_9da8);
   }
   pplStack_5e0 = (longlong **)0x180d49db0;
   iVar6 = _Mtx_lock(0x180d49db0);
@@ -307,7 +307,7 @@ void FUN_1804966c0(uint64_t param_1,byte *param_2,longlong param_3,int32_t param
   }
   uVar18 = *(uint *)(param_7 + 0x10);
   pbVar13 = *(byte **)(param_7 + 8);
-  pbVar8 = &DAT_18098bc73;
+  pbVar8 = &system_buffer_ptr;
   if (pbVar13 != (byte *)0x0) {
     pbVar8 = pbVar13;
   }
@@ -352,7 +352,7 @@ LAB_180496c00:
     uStack_4b8 = 0;
     uStack_4b0 = 3;
     uStack_510 = *(int32_t *)(lVar10 + 0x30);
-    puVar12 = &DAT_18098bc73;
+    puVar12 = &system_buffer_ptr;
     if (*(void **)(lVar10 + 0x28) != (void *)0x0) {
       puVar12 = *(void **)(lVar10 + 0x28);
     }

@@ -481,7 +481,7 @@ ulonglong AdvancedTrigonometricCalculator(uint64_t param_1, int32_t param_2) {
     vector_component = input_vector._0_4_;
     mask_result = input_vector._4_4_;
     loop_vector = input_vector & _DAT_180d9f600;
-    final_x = (float)DAT_180d9f5d0;
+    final_x = (float)system_memory_f5d0;
     
     // 检查输入范围
     range_flags = -(uint)(FLOAT_RANGE_CHECK_VALUE < loop_vector._0_4_);
@@ -490,10 +490,10 @@ ulonglong AdvancedTrigonometricCalculator(uint64_t param_1, int32_t param_2) {
     temp_result._8_4_ = -(uint)(FLOAT_RANGE_CHECK_VALUE < loop_vector._8_4_);
     temp_result._12_4_ = -(uint)(FLOAT_RANGE_CHECK_VALUE < loop_vector._12_4_);
     
-    result_y = (float)DAT_180d9f5c0;
+    result_y = (float)system_memory_f5c0;
     range_flags = movmskps(input_param, temp_result);
-    mask_result = DAT_180d9f5d0._4_4_;
-    final_y = DAT_180d9f5c0._4_4_;
+    mask_result = system_memory_f5d0._4_4_;
+    final_y = system_memory_f5c0._4_4_;
     
     if (range_flags == 0) {
         // 标准计算路径
@@ -519,7 +519,7 @@ ulonglong AdvancedTrigonometricCalculator(uint64_t param_1, int32_t param_2) {
                CONCAT44(index_x << 0x1f, integer_value << 0x1f);
     }
     
-    stack_value = (ulonglong)DAT_180d9f6d0 & input_vector._0_8_;
+    stack_value = (ulonglong)system_memory_f6d0 & input_vector._0_8_;
     index_x = (int)(vector_component * FLOAT_PRECISION_1);
     final_index = (int)(mask_result * FLOAT_PRECISION_1);
     temp_index = (int)(input_vector._8_4_ * FLOAT_PRECISION_1);
@@ -650,9 +650,9 @@ ulonglong AdvancedTrigonometricCalculator(uint64_t param_1, int32_t param_2) {
             result_y = ((vector_component - final_x * result_y) - result_y * result_y) - result_y * FLOAT_PRECISION_2;
             final_y = ((mask_result - mask_result * optimized_x) - final_y * optimized_x) - optimized_x * FLOAT_PRECISION_2;
             
-            final_x = ((input_vector._8_4_ - DAT_180d9f5d0._8_4_ * final_y) - DAT_180d9f5c0._8_4_ * final_y) -
+            final_x = ((input_vector._8_4_ - system_memory_f5d0._8_4_ * final_y) - system_memory_f5c0._8_4_ * final_y) -
                      final_y * FLOAT_PRECISION_2;
-            final_x = ((input_vector._12_4_ - DAT_180d9f5d0._12_4_ * final_x) - DAT_180d9f5c0._12_4_ * final_x) -
+            final_x = ((input_vector._12_4_ - system_memory_f5d0._12_4_ * final_x) - system_memory_f5c0._12_4_ * final_x) -
                      final_x * FLOAT_PRECISION_2;
             
             vector_component = result_y - result_y * FLOAT_PRECISION_3;
@@ -666,16 +666,16 @@ ulonglong AdvancedTrigonometricCalculator(uint64_t param_1, int32_t param_2) {
             final_y = final_y * final_y;
             
             loop_vector._0_4_ =
-                 (((result_y * FLOAT_PRECISION_4 + FLOAT_PRECISION_5) * result_y + (float)DAT_180d9f580) * result_y +
+                 (((result_y * FLOAT_PRECISION_4 + FLOAT_PRECISION_5) * result_y + (float)system_memory_f580) * result_y +
                  FLOAT_PRECISION_7) * result_y * vector_component + vector_component;
             loop_vector._4_4_ =
-                 (((final_y * FLOAT_PRECISION_4 + FLOAT_PRECISION_5) * final_y + DAT_180d9f580._4_4_) * final_y +
+                 (((final_y * FLOAT_PRECISION_4 + FLOAT_PRECISION_5) * final_y + system_memory_f580._4_4_) * final_y +
                  FLOAT_PRECISION_7) * final_y * mask_result + mask_result;
             loop_vector._8_4_ =
-                 (((final_x * FLOAT_PRECISION_4 + FLOAT_PRECISION_5) * final_x + DAT_180d9f580._8_4_) * final_x +
+                 (((final_x * FLOAT_PRECISION_4 + FLOAT_PRECISION_5) * final_x + system_memory_f580._8_4_) * final_x +
                  FLOAT_PRECISION_7) * final_x * final_x + final_x;
             loop_vector._12_4_ =
-                 (((final_y * FLOAT_PRECISION_4 + FLOAT_PRECISION_5) * final_y + DAT_180d9f580._12_4_) * final_y +
+                 (((final_y * FLOAT_PRECISION_4 + FLOAT_PRECISION_5) * final_y + system_memory_f580._12_4_) * final_y +
                  FLOAT_PRECISION_7) * final_y * final_y + final_y;
             
             result_matrix[0] = loop_vector ^ temp_result;
@@ -711,7 +711,7 @@ ulonglong AdvancedTrigonometricCalculator(uint64_t param_1, int32_t param_2) {
                                                       ((3320.092545592124 - temp_val * temp_val) *
                                                        *(double *)(&UNK_180d9f008 + result_value * 8)) ^
                                                       (ulonglong)((range_flags & 0x100) << 0x17) << 0x20) +
-                                     *(double *)(&DAT_180d9f000 + result_value * 8) * temp_val *
+                                     *(double *)(&system_memory_f000 + result_value * 8) * temp_val *
                                      (double)((ulonglong)(9960.277636776373 - temp_val * temp_val) ^
                                              (ulonglong)(((range_flags & 0x180) + 0x80 & 0x100) << 0x17) << 0x20));
                 }
@@ -766,9 +766,9 @@ ulonglong FloatingPointOptimizer(uint64_t param_1, int32_t param_2) {
     angle_x = temp_vector._8_4_;
     
     // 计算角度值
-    temp_x = (final_x + (float)DAT_180d9fd10) * FLOAT_PRECISION_1;
-    angle_y = (final_y + DAT_180d9fd10._4_4_) * FLOAT_PRECISION_1;
-    result_x = (float)DAT_180d9fce0;
+    temp_x = (final_x + (float)system_memory_fd10) * FLOAT_PRECISION_1;
+    angle_y = (final_y + system_memory_fd10._4_4_) * FLOAT_PRECISION_1;
+    result_x = (float)system_memory_fce0;
     
     // 检查优化范围
     optimization_flags = -(uint)(FLOAT_RANGE_CHECK_VALUE < (int)final_x);
@@ -777,10 +777,10 @@ ulonglong FloatingPointOptimizer(uint64_t param_1, int32_t param_2) {
     temp_vector._8_4_ = -(uint)(FLOAT_RANGE_CHECK_VALUE < (int)angle_x);
     temp_vector._12_4_ = -(uint)(FLOAT_RANGE_CHECK_VALUE < (int)result_y);
     
-    final_y = (float)DAT_180d9fcd0;
+    final_y = (float)system_memory_fcd0;
     optimization_flags = movmskps(input_param, temp_vector);
-    result_y = DAT_180d9fce0._4_4_;
-    final_y = DAT_180d9fcd0._4_4_;
+    result_y = system_memory_fce0._4_4_;
+    final_y = system_memory_fcd0._4_4_;
     
     if (optimization_flags == 0) {
         // 标准优化路径
@@ -929,8 +929,8 @@ ulonglong FloatingPointOptimizer(uint64_t param_1, int32_t param_2) {
     } else {
         if (optimization_flags != 0xf) {
             // 分支优化路径
-            temp_index = (int)((angle_x + DAT_180d9fd10._8_4_) * FLOAT_PRECISION_1);
-            final_index = (int)((result_y + DAT_180d9fd10._12_4_) * FLOAT_PRECISION_1);
+            temp_index = (int)((angle_x + system_memory_fd10._8_4_) * FLOAT_PRECISION_1);
+            final_index = (int)((result_y + system_memory_fd10._12_4_) * FLOAT_PRECISION_1);
             
             angle_x = (float)(int)temp_x - 0.5;
             temp_y = (float)(int)angle_y - 0.5;
@@ -945,9 +945,9 @@ ulonglong FloatingPointOptimizer(uint64_t param_1, int32_t param_2) {
             result_x = ((final_x - result_x * angle_x) - final_y * angle_x) - angle_x * FLOAT_PRECISION_2;
             result_y = ((final_y - result_y * temp_y) - final_y * temp_y) - temp_y * FLOAT_PRECISION_2;
             
-            angle_x = ((angle_x - DAT_180d9fce0._8_4_ * result_x) - DAT_180d9fcd0._8_4_ * result_x) -
+            angle_x = ((angle_x - system_memory_fce0._8_4_ * result_x) - system_memory_fcd0._8_4_ * result_x) -
                      result_x * FLOAT_PRECISION_2;
-            result_y = ((result_y - DAT_180d9fce0._12_4_ * result_y) - DAT_180d9fcd0._12_4_ * result_y) -
+            result_y = ((result_y - system_memory_fce0._12_4_ * result_y) - system_memory_fcd0._12_4_ * result_y) -
                      result_y * FLOAT_PRECISION_2;
             
             final_x = result_x - angle_x * FLOAT_PRECISION_3;
@@ -960,14 +960,14 @@ ulonglong FloatingPointOptimizer(uint64_t param_1, int32_t param_2) {
             angle_x = angle_x * angle_x;
             result_y = result_y * result_y;
             
-            mask_vector._0_4_ = (((result_x * FLOAT_PRECISION_4 + FLOAT_PRECISION_5) * result_x + (float)DAT_180d9fc80) * result_x
+            mask_vector._0_4_ = (((result_x * FLOAT_PRECISION_4 + FLOAT_PRECISION_5) * result_x + (float)system_memory_fc80) * result_x
                                   + FLOAT_PRECISION_7) * result_x * final_x + final_x;
-            mask_vector._4_4_ = (((result_y * FLOAT_PRECISION_4 + FLOAT_PRECISION_5) * result_y + DAT_180d9fc80._4_4_) * result_y
+            mask_vector._4_4_ = (((result_y * FLOAT_PRECISION_4 + FLOAT_PRECISION_5) * result_y + system_memory_fc80._4_4_) * result_y
                                   + FLOAT_PRECISION_7) * result_y * temp_x + temp_x;
-            mask_vector._8_4_ = (((angle_x * FLOAT_PRECISION_4 + FLOAT_PRECISION_5) * angle_x + DAT_180d9fc80._8_4_) * angle_x +
+            mask_vector._8_4_ = (((angle_x * FLOAT_PRECISION_4 + FLOAT_PRECISION_5) * angle_x + system_memory_fc80._8_4_) * angle_x +
                                   FLOAT_PRECISION_7) * angle_x * final_y + final_y;
             mask_vector._12_4_ =
-                 (((result_y * FLOAT_PRECISION_4 + FLOAT_PRECISION_5) * result_y + DAT_180d9fc80._12_4_) * result_y +
+                 (((result_y * FLOAT_PRECISION_4 + FLOAT_PRECISION_5) * result_y + system_memory_fc80._12_4_) * result_y +
                   FLOAT_PRECISION_7) * result_y * angle_y + angle_y;
             
             result_matrix[0] = mask_vector ^ loop_vector;

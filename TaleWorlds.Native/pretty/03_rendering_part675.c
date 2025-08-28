@@ -57,7 +57,7 @@ FUN_180653220(longlong *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
   longlong lVar4;
   
   lVar6 = 0;
-  FUN_180627910(&puStack_38,&DAT_18098bc73,param_3,param_4,0,0xfffffffffffffffe);
+  FUN_180627910(&puStack_38,&system_buffer_ptr,param_3,param_4,0,0xfffffffffffffffe);
   lVar4 = -1;
   do {
     lVar3 = lVar4 + 1;
@@ -78,7 +78,7 @@ FUN_180653220(longlong *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
     uVar5 = uVar5 & 0xffffffff;
     do {
       puVar2 = *(void **)(lVar6 + 8 + *param_1);
-      puVar7 = &DAT_18098bc73;
+      puVar7 = &system_buffer_ptr;
       if (puVar2 != (void *)0x0) {
         puVar7 = puVar2;
       }
@@ -131,7 +131,7 @@ void FUN_1806533b4(longlong param_1)
     uVar1 = 0x1fff;
   }
                     // WARNING: Subroutine does not return
-  memcpy(&DAT_180c8f020,param_1,(longlong)(int)uVar1);
+  memcpy(&system_data_f020,param_1,(longlong)(int)uVar1);
 }
 
 
@@ -300,7 +300,7 @@ void FUN_180653940(void)
   *(int32_t *)((longlong)puStack_b0 + uVar7 + 0x10) = 0x6c642e74;
   *(int16_t *)((longlong)puStack_b0 + uVar7 + 0x14) = 0x6c;
   uStack_a8 = 0x15;
-  puVar6 = (int32_t *)&DAT_18098bc73;
+  puVar6 = (int32_t *)&system_buffer_ptr;
   if (puStack_b0 != (int32_t *)0x0) {
     puVar6 = puStack_b0;
   }
@@ -315,7 +315,7 @@ void FUN_180653940(void)
   puStack_b8 = &UNK_18098bcb0;
   *plVar1 = lVar4;
   if (lVar4 == 0) {
-    FUN_180626ee0(&UNK_180a3ddc0,&DAT_180a3dda8);
+    FUN_180626ee0(&UNK_180a3ddc0,&system_data_dda8);
     lVar4 = *plVar1;
   }
   lVar4 = mono_assembly_get_image(lVar4);

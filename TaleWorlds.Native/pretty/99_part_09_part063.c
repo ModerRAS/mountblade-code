@@ -80,7 +80,7 @@ void FUN_1805e0fd0(int *param_1,longlong param_2)
                        ((longlong)*(int *)(lVar8 + 0xf0) * 0xa0 + 0x50 + *(longlong *)(lVar8 + 0xd0)
                        ), (uVar3 >> 9 & 1) == 0 || (0 < *(short *)(lVar8 + 8))))) &&
            ((uVar3 >> 1 & 1) != 0)) {
-          plVar9[0x273] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)plVar9[0x274] * 8);
+          plVar9[0x273] = *(longlong *)(&system_error_code + (longlong)(int)plVar9[0x274] * 8);
           plVar9 = *(longlong **)(param_1 + 8);
         }
         *(char *)(param_1 + 4) = cVar5;
@@ -349,7 +349,7 @@ LAB_1805e1953:
                      ((longlong)*(int *)(lVar10 + 0xf0) * 0xa0 + 0x50 + *(longlong *)(lVar10 + 0xd0)
                      ), (uVar3 >> 9 & 1) == 0 || (0 < *(short *)(lVar10 + 8))))) &&
          ((uVar3 >> 1 & 1) != 0)) {
-        plVar8[0x273] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)plVar8[0x274] * 8);
+        plVar8[0x273] = *(longlong *)(&system_error_code + (longlong)(int)plVar8[0x274] * 8);
         plVar8 = *(longlong **)(unaff_RDI + 8);
       }
       *(char *)(unaff_RDI + 4) = unaff_R14B;

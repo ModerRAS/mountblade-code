@@ -298,7 +298,7 @@ LAB_1805b9a5e:
   if (param_2 == '\0') {
     in_stack_00000048 = (*(int *)(lVar37 + 0x98d9d4) + 1) * 5;
   }
-  lVar47 = *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar37 + 0x87b790) * 8);
+  lVar47 = *(longlong *)(&system_error_code + (longlong)*(int *)(lVar37 + 0x87b790) * 8);
   lVar6 = *(longlong *)(lVar37 + 0x87b788);
   iVar22 = (int)param_1[0x402];
   uVar33 = (ulonglong)iVar22;
@@ -587,7 +587,7 @@ LAB_1805ba3ca:
     *(uint *)(param_1 + 0x272) = uVar29;
     uVar33 = 0;
     param_1[0x387] =
-         *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x388] * 8) -
+         *(longlong *)(&system_error_code + (longlong)(int)param_1[0x388] * 8) -
          (longlong)(((float)(uVar29 - 1) * 2.3283064e-05 + fVar48) - 50000.0);
     uVar35 = uVar33;
     uVar39 = uVar33;

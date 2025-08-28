@@ -777,7 +777,7 @@ LAB_18064bfea:
     }
   }
   if (lVar9 != 0) {
-    if (((longlong *)0x180c8ed7f < plVar8) && (plVar8 < &DAT_180c8efc0)) {
+    if (((longlong *)0x180c8ed7f < plVar8) && (plVar8 < &system_data_efc0)) {
       LOCK();
       plVar1 = plVar8 + 3;
       lVar3 = *plVar1;

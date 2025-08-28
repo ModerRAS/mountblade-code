@@ -91,7 +91,7 @@ longlong * RenderingSystem_ResourceAllocator(longlong param_1)
     *(int32_t *)((longlong)plVar3 + 0x8c) = 4;
     return plVar3;
   case 6:
-    plVar3 = (longlong *)(*_DAT_180c918d8)(&DAT_180c918c0);
+    plVar3 = (longlong *)(*_DAT_180c918d8)(&system_buffer_18c0);
     (**(code **)(*plVar3 + 0x20))(plVar3,param_1,0);
     *(int32_t *)((longlong)plVar3 + 0x8c) = 6;
     return plVar3;

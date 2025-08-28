@@ -55,7 +55,7 @@ void FUN_180091430(void)
     auStack_b0[0] = 0;
     uStack_b8 = 0x1d;
     strcpy_s(auStack_b0,0x80,&UNK_180a01340);
-    puVar13 = &DAT_18098bc73;
+    puVar13 = &system_buffer_ptr;
     if (puStack_c0 != (void *)0x0) {
       puVar13 = puStack_c0;
     }
@@ -193,7 +193,7 @@ void FUN_180091430(void)
       puStack_118 = &UNK_18098bcb0;
     }
     lVar9 = _DAT_180c86870;
-    if (DAT_180c82853 != '\0') {
+    if (system_counter_2853 != '\0') {
       lVar14 = _DAT_180c8ed58;
       if (_DAT_180c8ed58 == 0) {
         QueryPerformanceCounter(alStack_d8);

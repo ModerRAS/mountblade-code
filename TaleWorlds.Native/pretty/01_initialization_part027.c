@@ -629,8 +629,8 @@ uint64_t FUN_18005c8a0(longlong param_1,uint64_t param_2)
   if (*(longlong *)(param_1 + 0xb0) != 0) {
     cVar1 = (**(code **)(param_1 + 0xb8))(param_2);
     if (cVar1 == '\0') {
-      if (DAT_180c82860 == '\0') {
-        puVar2 = &DAT_18098bc73;
+      if (system_debug_flag == '\0') {
+        puVar2 = &system_buffer_ptr;
         if (*(void **)(param_1 + 0x48) != (void *)0x0) {
           puVar2 = *(void **)(param_1 + 0x48);
         }
@@ -712,8 +712,8 @@ void FUN_18005ca20(longlong param_1,int32_t param_2)
   if ((*(longlong *)(param_1 + 0x1f00) != 0) &&
      (auStackX_10[0] = param_2, cVar1 = (**(code **)(param_1 + 0x1f08))(auStackX_10),
      param_2 = auStackX_10[0], cVar1 == '\0')) {
-    if (DAT_180c82860 == '\0') {
-      puVar2 = &DAT_18098bc73;
+    if (system_debug_flag == '\0') {
+      puVar2 = &system_buffer_ptr;
       if (*(void **)(param_1 + 0x1eb0) != (void *)0x0) {
         puVar2 = *(void **)(param_1 + 0x1eb0);
       }

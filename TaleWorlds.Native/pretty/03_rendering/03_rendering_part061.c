@@ -67,7 +67,7 @@
 extern ulonglong _DAT_180bf00a8;      // 渲染系统全局数据指针
 extern longlong _DAT_180c86938;      // 渲染系统核心数据指针
 extern longlong _DAT_180c86870;      // 渲染系统参数指针
-extern char DAT_180c82846;           // 渲染系统状态标志
+extern char system_buffer_2846;           // 渲染系统状态标志
 
 // 渲染系统状态更新函数
 // 根据标志位参数更新渲染系统的各种状态
@@ -470,7 +470,7 @@ void FUN_18029d280(longlong param_1,longlong param_2)
     if (*render_slots != 0) {
       // 获取渲染信息
       render_info = FUN_1802a05d0(*render_slots, info_array);
-      info_string = &DAT_18098bc73;
+      info_string = &system_buffer_ptr;
       if (*(void **)(render_info + 8) != (void *)0x0) {
         info_string = *(void **)(render_info + 8);
       }
@@ -603,9 +603,9 @@ void FUN_18029d500(longlong param_1,longlong param_2)
       target_data = target_buffer;
       target_buffer[0] = 0;
       target_id = 0;
-      strcpy_s(target_buffer, 0x80, &DAT_18098bc73);
+      strcpy_s(target_buffer, 0x80, &system_buffer_ptr);
       report_type = 1;
-      target_name = &DAT_18098bc73;
+      target_name = &system_buffer_ptr;
       if (target_data != (void *)0x0) {
         target_name = target_data;
       }
@@ -647,9 +647,9 @@ void FUN_18029d500(longlong param_1,longlong param_2)
     target_data = target_buffer;
     target_buffer[0] = 0;
     target_id = 0;
-    strcpy_s(target_buffer, 0x80, &DAT_18098bc73);
+    strcpy_s(target_buffer, 0x80, &system_buffer_ptr);
     report_type = 2;
-    target_name = &DAT_18098bc73;
+    target_name = &system_buffer_ptr;
     if (target_data != (void *)0x0) {
       target_name = target_data;
     }
@@ -1120,7 +1120,7 @@ void FUN_18029de40(longlong param_1,int32_t param_2)
 void FUN_18029e060(longlong param_1)
 {
   // 检查渲染系统是否就绪
-  if (DAT_180c82846 == '\0') {
+  if (system_buffer_2846 == '\0') {
     // 调用渲染核心状态检查函数
     (**(code **)(**(longlong **)(param_1 + 0x8400) + 0xa8))();
   }
@@ -1140,7 +1140,7 @@ void FUN_18029e060(longlong param_1)
 void FUN_18029e090(longlong param_1,int32_t param_2,int param_3,int32_t param_4)
 {
   // 检查渲染系统是否就绪
-  if (DAT_180c82846 == '\0') {
+  if (system_buffer_2846 == '\0') {
     // 调用渲染核心参数设置函数
     (**(code **)(**(longlong **)(param_1 + 0x8400) + 0xa0))
               (*(longlong **)(param_1 + 0x8400), 
@@ -1167,7 +1167,7 @@ void FUN_18029e110(longlong param_1)
   longlong context_data;
   
   // 检查渲染系统是否就绪
-  if (DAT_180c82846 == '\0') {
+  if (system_buffer_2846 == '\0') {
     // 获取当前上下文数据
     context_data = *(longlong *)(*(longlong *)(_DAT_180c86938 + 0x1d50) + 0x18);
     

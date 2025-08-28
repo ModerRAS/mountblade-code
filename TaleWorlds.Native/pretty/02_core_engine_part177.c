@@ -221,7 +221,7 @@ longlong FUN_1801607a0(longlong param_1,int32_t *param_2)
   *(uint64_t *)(param_1 + 0x24) = 0x40000000;
   *(int32_t *)(param_1 + 0x2c) = *param_2;
   *(uint64_t *)(param_1 + 0x10) = 1;
-  *(void **)(param_1 + 8) = &DAT_180be0000;
+  *(void **)(param_1 + 8) = &system_data_0000;
   *(uint64_t *)(param_1 + 0x18) = 0;
   *(int32_t *)(param_1 + 0x28) = 0;
   return param_1;
@@ -238,7 +238,7 @@ longlong FUN_180160800(longlong param_1,int32_t *param_2)
   *(uint64_t *)(param_1 + 0x24) = 0x40000000;
   *(int32_t *)(param_1 + 0x2c) = *param_2;
   *(uint64_t *)(param_1 + 0x10) = 1;
-  *(void **)(param_1 + 8) = &DAT_180be0000;
+  *(void **)(param_1 + 8) = &system_data_0000;
   *(uint64_t *)(param_1 + 0x18) = 0;
   *(int32_t *)(param_1 + 0x28) = 0;
   return param_1;

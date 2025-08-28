@@ -574,7 +574,7 @@ void process_engine_file_operations(uint64_t param_1, uint64_t param_2, longlong
       temp_var1 = FUN_180624440(pointer_array, &temp_ptr5);
       FUN_1806279c0(&temp_ptr3, temp_var1);
       pointer_array[0] = &UNK_18098bcb0;
-      temp_ptr2 = &DAT_18098bc73;
+      temp_ptr2 = &system_buffer_ptr;
       if (temp_ptr4 != (void *)0x0) {
         temp_ptr2 = temp_ptr4;
       }

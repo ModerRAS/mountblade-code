@@ -504,7 +504,7 @@ uint64_t * FUN_18014e700(uint64_t *param_1,longlong param_2)
   lVar1 = FUN_18014aa50(auStack_40);
   param_1[2] = FUN_18014f520;
   param_1[3] = &UNK_18014f510;
-  uVar2 = FUN_18062b1e0(_DAT_180c8ed18,0x28,8,DAT_180bf65bc,uVar2);
+  uVar2 = FUN_18062b1e0(_DAT_180c8ed18,0x28,8,system_allocation_flags,uVar2);
   FUN_18014aa50(uVar2,lVar1);
   *param_1 = uVar2;
   if (*(code **)(lVar1 + 0x18) != (code *)0x0) {

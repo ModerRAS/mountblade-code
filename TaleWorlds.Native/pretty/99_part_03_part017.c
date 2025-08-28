@@ -580,7 +580,7 @@ uint32_t AdvancedDataStructureProcessor(uint64_t process_context, uint64_t* data
                         
                         /* 处理字符串数据 */
                         if (0 < *(int32_t*)(structure_offset + 0x20)) {
-                            void_pointer = &DAT_18098bc73;
+                            void_pointer = &system_buffer_ptr;
                             if (*(void**)(structure_offset + 0x18) != (void*)0x0) {
                                 void_pointer = *(void**)(structure_offset + 0x18);
                             }

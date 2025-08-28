@@ -155,7 +155,7 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
             temp_counter = loop_counter;
             // 比较字符数据（简化实现）
             if (*(char*)(*(int64_t*)(state_data + 8) + temp_counter) != 
-                (&DAT_180a20e48)[temp_counter]) {
+                (&system_memory_0e48)[temp_counter]) {
                 return; // 字符串不匹配，直接返回
             }
             loop_counter = temp_counter + 1;
@@ -374,7 +374,7 @@ void rendering_system_advanced_object_manager(int64_t object_data)
     }
     
     // 初始化对象数据
-    FUN_1802ea790(long_ptr2, &DAT_180a00300);
+    FUN_1802ea790(long_ptr2, &system_memory_0300);
     stack_long_ptr_ptr2 = &stack_long_ptr;
     stack_long_ptr = long_ptr2;
     (**(code **)(*long_ptr2 + 0x28))(long_ptr2);
@@ -426,7 +426,7 @@ void rendering_system_advanced_object_manager(int64_t object_data)
         (RENDERING_SYSTEM_THRESHOLD_1_02 <= float_val)) {
         
         // 处理浮点数值超出范围的情况
-        void_ptr = &DAT_18098bc73;
+        void_ptr = &system_buffer_ptr;
         if (*(void**)(long_val + RENDERING_SYSTEM_OFFSET_0x290) != (void*)0x0) {
             void_ptr = *(void**)(long_val + RENDERING_SYSTEM_OFFSET_0x290);
         }

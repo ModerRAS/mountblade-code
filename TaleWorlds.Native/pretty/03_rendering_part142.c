@@ -154,7 +154,7 @@ void FUN_180352bf0(uint64_t *param_1)
     *(int8_t *)(puVar4 + 0xe) = 0;   // 标志位重置
     
     // 调用虚函数表的初始化方法
-    (**(code **)(*plVar1 + 0x10))(plVar1, &DAT_180a1e968);
+    (**(code **)(*plVar1 + 0x10))(plVar1, &system_memory_e968);
     
     // 准备栈参数用于配置消息
     puStack_80 = &UNK_180a3c3e0;  // 配置类型指针
@@ -263,7 +263,7 @@ void FUN_180352e50(uint64_t param_1, longlong param_2, uint64_t param_3, uint64_
     // 检查配置数据是否匹配特定条件
     // 条件：配置数据长度为0xf，且配置名称匹配特定字符串
     if ((*(int *)(param_2 + 0x10) == 0xf) &&
-        (iVar1 = strcmp(*(uint64_t *)(param_2 + 8), &DAT_180a1e938, (char)param_3, param_4,
+        (iVar1 = strcmp(*(uint64_t *)(param_2 + 8), &system_memory_e938, (char)param_3, param_4,
                         0xfffffffffffffffe), iVar1 == 0)) {
         
         // 第一阶段：处理 "Normal" 配置消息
@@ -529,13 +529,13 @@ void FUN_1803530c0(longlong *param_1, longlong param_2, uint64_t param_3)
         // 设置变量属性
         *puVar2 = &UNK_180a19500;        // 变量类型
         puVar2[2] = pcVar4 + -0x180a194ff;  // 变量名称偏移
-        puVar5 = &DAT_18098bc73;        // 默认值
+        puVar5 = &system_buffer_ptr;        // 默认值
         if (puStack_7b0 != (int8_t *)0x0) {
             puVar5 = puStack_7b0;       // 使用提供的值
         }
         
         // 调用变量设置函数
-        FUN_180630b20(param_2, puVar2, &DAT_180a03a84, puVar5);
+        FUN_180630b20(param_2, puVar2, &system_memory_3a84, puVar5);
         
         // 调用数据处理回调函数
         (**(code **)(*param_1 + 0x140))(param_1, &puStack_7b8);
@@ -829,7 +829,7 @@ void FUN_180354170(longlong *param_1)
     puStack_100 = auStack_f0;
     auStack_f0[0] = 0;
     uStack_f8 = (int32_t)plVar2[10];
-    puVar4 = &DAT_18098bc73;
+    puVar4 = &system_buffer_ptr;
     if ((void *)plVar2[9] != (void *)0x0) {
       puVar4 = (void *)plVar2[9];
     }
@@ -1169,7 +1169,7 @@ longlong * FUN_180355030(longlong param_1,longlong *param_2,longlong param_3)
   
   pbVar4 = *(byte **)(param_3 + 8);
   uVar3 = *(uint *)(param_3 + 0x10);
-  pbVar6 = &DAT_18098bc73;
+  pbVar6 = &system_buffer_ptr;
   if (pbVar4 != (byte *)0x0) {
     pbVar6 = pbVar4;
   }
@@ -1256,7 +1256,7 @@ longlong * FUN_180355140(longlong param_1,longlong *param_2,uint64_t param_3,lon
   puVar7[5] = 0;
   uVar3 = *(uint *)(puVar7 + 2);
   pbVar4 = (byte *)puVar7[1];
-  pbVar8 = &DAT_18098bc73;
+  pbVar8 = &system_buffer_ptr;
   if (pbVar4 != (byte *)0x0) {
     pbVar8 = pbVar4;
   }
@@ -1424,7 +1424,7 @@ void FUN_1803553e1(void)
     lVar2 = *(longlong *)(unaff_RDI + 8);
     lVar3 = *(longlong *)(lVar2 + in_R11 * 8);
     while (lVar3 != 0) {
-      pbVar5 = &DAT_18098bc73;
+      pbVar5 = &system_buffer_ptr;
       if (*(byte **)(lVar3 + 8) != (byte *)0x0) {
         pbVar5 = *(byte **)(lVar3 + 8);
       }

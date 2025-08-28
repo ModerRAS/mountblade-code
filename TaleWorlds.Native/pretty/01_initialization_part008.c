@@ -168,7 +168,7 @@ void FUN_1800392a0(void) {
     // 执行二叉树搜索算法
     while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
         // 执行键值比较操作
-        comparison_result = memcmp(search_context.found_node + 4, &DAT_180a00fd8, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        comparison_result = memcmp(search_context.found_node + 4, &system_memory_0fd8, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         
         // 根据比较结果确定搜索方向
         if (comparison_result < 0) {
@@ -195,7 +195,7 @@ void FUN_1800392a0(void) {
     
     // 执行节点插入操作（如果需要）
     if ((search_context.found_node == tree_manager.registry_root) || 
-        (comparison_result = memcmp(&DAT_180a00fd8, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_0fd8, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
         memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
@@ -249,7 +249,7 @@ void FUN_1800393a0(void) {
     // 执行二叉树搜索算法
     while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
         // 执行键值比较操作（使用不同的数据集）
-        comparison_result = memcmp(search_context.found_node + 4, &DAT_180a00fb0, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        comparison_result = memcmp(search_context.found_node + 4, &system_memory_0fb0, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         
         // 根据比较结果确定搜索方向
         if (comparison_result < 0) {
@@ -277,7 +277,7 @@ void FUN_1800393a0(void) {
     
     // 执行节点插入操作（如果需要）
     if ((search_context.found_node == tree_manager.registry_root) || 
-        (comparison_result = memcmp(&DAT_180a00fb0, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_0fb0, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
         memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
@@ -332,7 +332,7 @@ void FUN_1800394a0(void) {
     // 执行二叉树搜索算法
     while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
         // 执行键值比较操作（使用特定的数据集）
-        comparison_result = memcmp(search_context.found_node + 4, &DAT_180a010a0, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        comparison_result = memcmp(search_context.found_node + 4, &system_memory_10a0, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         
         // 根据比较结果确定搜索方向
         if (comparison_result < 0) {
@@ -360,7 +360,7 @@ void FUN_1800394a0(void) {
     
     // 执行节点插入操作（如果需要）
     if ((search_context.found_node == tree_manager.registry_root) || 
-        (comparison_result = memcmp(&DAT_180a010a0, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_10a0, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
         memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
@@ -415,7 +415,7 @@ void FUN_1800395a0(void) {
     // 执行二叉树搜索算法
     while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
         // 执行键值比较操作（使用不同的数据集）
-        comparison_result = memcmp(search_context.found_node + 4, &DAT_180a01078, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        comparison_result = memcmp(search_context.found_node + 4, &system_memory_1078, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         
         // 根据比较结果确定搜索方向
         if (comparison_result < 0) {
@@ -443,7 +443,7 @@ void FUN_1800395a0(void) {
     
     // 执行节点插入操作（如果需要）
     if ((search_context.found_node == tree_manager.registry_root) || 
-        (comparison_result = memcmp(&DAT_180a01078, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1078, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
         memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
@@ -494,7 +494,7 @@ void FUN_1800396a0(void) {
     // 执行二叉树搜索算法
     while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
         // 执行键值比较操作（使用特定的数据集）
-        comparison_result = memcmp(search_context.found_node + 4, &DAT_180a01050, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        comparison_result = memcmp(search_context.found_node + 4, &system_memory_1050, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         
         // 根据比较结果确定搜索方向
         if (comparison_result < 0) {
@@ -522,7 +522,7 @@ void FUN_1800396a0(void) {
     
     // 执行节点插入操作（如果需要）
     if ((search_context.found_node == tree_manager.registry_root) || 
-        (comparison_result = memcmp(&DAT_180a01050, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1050, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
         memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
@@ -577,7 +577,7 @@ void FUN_1800397a0(void) {
     // 执行二叉树搜索算法
     while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
         // 执行键值比较操作（使用特定的数据集）
-        comparison_result = memcmp(search_context.found_node + 4, &DAT_180a01028, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        comparison_result = memcmp(search_context.found_node + 4, &system_memory_1028, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         
         // 根据比较结果确定搜索方向
         if (comparison_result < 0) {
@@ -605,7 +605,7 @@ void FUN_1800397a0(void) {
     
     // 执行节点插入操作（如果需要）
     if ((search_context.found_node == tree_manager.registry_root) || 
-        (comparison_result = memcmp(&DAT_180a01028, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1028, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
         memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
@@ -656,7 +656,7 @@ void FUN_1800398a0(void) {
     // 执行二叉树搜索算法
     while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
         // 执行键值比较操作（使用特定的数据集）
-        comparison_result = memcmp(search_context.found_node + 4, &DAT_180a01000, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        comparison_result = memcmp(search_context.found_node + 4, &system_memory_1000, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         
         // 根据比较结果确定搜索方向
         if (comparison_result < 0) {
@@ -684,7 +684,7 @@ void FUN_1800398a0(void) {
     
     // 执行节点插入操作（如果需要）
     if ((search_context.found_node == tree_manager.registry_root) || 
-        (comparison_result = memcmp(&DAT_180a01000, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1000, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
         memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
@@ -739,7 +739,7 @@ void FUN_1800399a0(void) {
     // 执行二叉树搜索算法
     while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
         // 执行键值比较操作（使用全局数据集）
-        comparison_result = memcmp(search_context.found_node + 4, &DAT_180a00fd8, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        comparison_result = memcmp(search_context.found_node + 4, &system_memory_0fd8, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         
         // 根据比较结果确定搜索方向
         if (comparison_result < 0) {
@@ -767,7 +767,7 @@ void FUN_1800399a0(void) {
     
     // 执行节点插入操作（如果需要）
     if ((search_context.found_node == tree_manager.registry_root) || 
-        (comparison_result = memcmp(&DAT_180a00fd8, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_0fd8, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
         memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
@@ -818,7 +818,7 @@ void FUN_180039aa0(void) {
     // 执行二叉树搜索算法
     while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
         // 执行键值比较操作（使用特定的数据集）
-        comparison_result = memcmp(search_context.found_node + 4, &DAT_180a00fb0, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        comparison_result = memcmp(search_context.found_node + 4, &system_memory_0fb0, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         
         // 根据比较结果确定搜索方向
         if (comparison_result < 0) {
@@ -846,7 +846,7 @@ void FUN_180039aa0(void) {
     
     // 执行节点插入操作（如果需要）
     if ((search_context.found_node == tree_manager.registry_root) || 
-        (comparison_result = memcmp(&DAT_180a00fb0, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_0fb0, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
         memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
@@ -901,7 +901,7 @@ void FUN_180039bb0(void) {
     // 执行二叉树搜索算法
     while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
         // 执行键值比较操作（使用特定的数据集）
-        comparison_result = memcmp(search_context.found_node + 4, &DAT_180a010a0, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        comparison_result = memcmp(search_context.found_node + 4, &system_memory_10a0, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         
         // 根据比较结果确定搜索方向
         if (comparison_result < 0) {
@@ -929,7 +929,7 @@ void FUN_180039bb0(void) {
     
     // 执行节点插入操作（如果需要）
     if ((search_context.found_node == tree_manager.registry_root) || 
-        (comparison_result = memcmp(&DAT_180a010a0, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_10a0, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
         memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
@@ -984,7 +984,7 @@ void FUN_180039cb0(void) {
     // 执行二叉树搜索算法
     while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
         // 执行键值比较操作（使用特定的数据集）
-        comparison_result = memcmp(search_context.found_node + 4, &DAT_180a01078, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        comparison_result = memcmp(search_context.found_node + 4, &system_memory_1078, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         
         // 根据比较结果确定搜索方向
         if (comparison_result < 0) {
@@ -1012,7 +1012,7 @@ void FUN_180039cb0(void) {
     
     // 执行节点插入操作（如果需要）
     if ((search_context.found_node == tree_manager.registry_root) || 
-        (comparison_result = memcmp(&DAT_180a01078, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1078, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
         memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
@@ -1063,7 +1063,7 @@ void FUN_180039db0(void) {
     // 执行二叉树搜索算法
     while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
         // 执行键值比较操作（使用特定的数据集）
-        comparison_result = memcmp(search_context.found_node + 4, &DAT_180a01050, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        comparison_result = memcmp(search_context.found_node + 4, &system_memory_1050, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         
         // 根据比较结果确定搜索方向
         if (comparison_result < 0) {
@@ -1091,7 +1091,7 @@ void FUN_180039db0(void) {
     
     // 执行节点插入操作（如果需要）
     if ((search_context.found_node == tree_manager.registry_root) || 
-        (comparison_result = memcmp(&DAT_180a01050, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1050, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
         memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
@@ -1146,7 +1146,7 @@ void FUN_180039eb0(void) {
     // 执行二叉树搜索算法
     while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
         // 执行键值比较操作（使用特定的数据集）
-        comparison_result = memcmp(search_context.found_node + 4, &DAT_180a01028, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        comparison_result = memcmp(search_context.found_node + 4, &system_memory_1028, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         
         // 根据比较结果确定搜索方向
         if (comparison_result < 0) {
@@ -1174,7 +1174,7 @@ void FUN_180039eb0(void) {
     
     // 执行节点插入操作（如果需要）
     if ((search_context.found_node == tree_manager.registry_root) || 
-        (comparison_result = memcmp(&DAT_180a01028, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1028, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
         memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
@@ -1225,7 +1225,7 @@ void FUN_180039fb0(void) {
     // 执行二叉树搜索算法
     while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
         // 执行键值比较操作（使用特定的数据集）
-        comparison_result = memcmp(search_context.found_node + 4, &DAT_180a01000, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        comparison_result = memcmp(search_context.found_node + 4, &system_memory_1000, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         
         // 根据比较结果确定搜索方向
         if (comparison_result < 0) {
@@ -1253,7 +1253,7 @@ void FUN_180039fb0(void) {
     
     // 执行节点插入操作（如果需要）
     if ((search_context.found_node == tree_manager.registry_root) || 
-        (comparison_result = memcmp(&DAT_180a01000, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1000, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
         memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
@@ -1308,7 +1308,7 @@ void FUN_18003a0b0(void) {
     // 执行二叉树搜索算法
     while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
         // 执行键值比较操作（使用全局数据集）
-        comparison_result = memcmp(search_context.found_node + 4, &DAT_180a00fd8, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        comparison_result = memcmp(search_context.found_node + 4, &system_memory_0fd8, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         
         // 根据比较结果确定搜索方向
         if (comparison_result < 0) {
@@ -1336,7 +1336,7 @@ void FUN_18003a0b0(void) {
     
     // 执行节点插入操作（如果需要）
     if ((search_context.found_node == tree_manager.registry_root) || 
-        (comparison_result = memcmp(&DAT_180a00fd8, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_0fd8, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
         memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
@@ -1387,7 +1387,7 @@ void FUN_18003a1b0(void) {
     // 执行二叉树搜索算法
     while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
         // 执行键值比较操作（使用特定的数据集）
-        comparison_result = memcmp(search_context.found_node + 4, &DAT_180a00fb0, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        comparison_result = memcmp(search_context.found_node + 4, &system_memory_0fb0, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         
         // 根据比较结果确定搜索方向
         if (comparison_result < 0) {
@@ -1415,7 +1415,7 @@ void FUN_18003a1b0(void) {
     
     // 执行节点插入操作（如果需要）
     if ((search_context.found_node == tree_manager.registry_root) || 
-        (comparison_result = memcmp(&DAT_180a00fb0, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_0fb0, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
         memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
@@ -1470,7 +1470,7 @@ void FUN_18003a2b0(void) {
     // 执行二叉树搜索算法
     while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
         // 执行键值比较操作（使用特定的数据集）
-        comparison_result = memcmp(search_context.found_node + 4, &DAT_1809fc740, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        comparison_result = memcmp(search_context.found_node + 4, &system_memory_c740, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         
         // 根据比较结果确定搜索方向
         if (comparison_result < 0) {
@@ -1498,7 +1498,7 @@ void FUN_18003a2b0(void) {
     
     // 执行节点插入操作（如果需要）
     if ((search_context.found_node == tree_manager.registry_root) || 
-        (comparison_result = memcmp(&DAT_1809fc740, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_c740, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
         memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
@@ -1553,7 +1553,7 @@ void FUN_18003a3b0(void) {
     // 执行二叉树搜索算法
     while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
         // 执行键值比较操作（使用特定的数据集）
-        comparison_result = memcmp(search_context.found_node + 4, &DAT_1809fc768, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        comparison_result = memcmp(search_context.found_node + 4, &system_memory_c768, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         
         // 根据比较结果确定搜索方向
         if (comparison_result < 0) {
@@ -1581,7 +1581,7 @@ void FUN_18003a3b0(void) {
     
     // 执行节点插入操作（如果需要）
     if ((search_context.found_node == tree_manager.registry_root) || 
-        (comparison_result = memcmp(&DAT_1809fc768, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_c768, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
         memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
@@ -1636,7 +1636,7 @@ void FUN_18003a4b0(void) {
     // 执行二叉树搜索算法
     while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
         // 执行键值比较操作（使用特定的数据集）
-        comparison_result = memcmp(search_context.found_node + 4, &DAT_18098c9b8, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        comparison_result = memcmp(search_context.found_node + 4, &system_memory_c9b8, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         
         // 根据比较结果确定搜索方向
         if (comparison_result < 0) {
@@ -1664,7 +1664,7 @@ void FUN_18003a4b0(void) {
     
     // 执行节点插入操作（如果需要）
     if ((search_context.found_node == tree_manager.registry_root) || 
-        (comparison_result = memcmp(&DAT_18098c9b8, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_c9b8, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
         memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
@@ -1719,7 +1719,7 @@ void FUN_18003a5b0(void) {
     // 执行二叉树搜索算法
     while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
         // 执行键值比较操作（使用特定的数据集）
-        comparison_result = memcmp(search_context.found_node + 4, &DAT_18098c940, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        comparison_result = memcmp(search_context.found_node + 4, &system_memory_c940, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         
         // 根据比较结果确定搜索方向
         if (comparison_result < 0) {
@@ -1747,7 +1747,7 @@ void FUN_18003a5b0(void) {
     
     // 执行节点插入操作（如果需要）
     if ((search_context.found_node == tree_manager.registry_root) || 
-        (comparison_result = memcmp(&DAT_18098c940, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_c940, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
         memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
@@ -1802,7 +1802,7 @@ void FUN_18003a6b0(void) {
     // 执行二叉树搜索算法
     while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
         // 执行键值比较操作（使用特定的数据集）
-        comparison_result = memcmp(search_context.found_node + 4, &DAT_18098c918, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        comparison_result = memcmp(search_context.found_node + 4, &system_memory_c918, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         
         // 根据比较结果确定搜索方向
         if (comparison_result < 0) {
@@ -1830,7 +1830,7 @@ void FUN_18003a6b0(void) {
     
     // 执行节点插入操作（如果需要）
     if ((search_context.found_node == tree_manager.registry_root) || 
-        (comparison_result = memcmp(&DAT_18098c918, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_c918, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
         memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
@@ -1885,7 +1885,7 @@ void FUN_18003a7b0(void) {
     // 执行二叉树搜索算法
     while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
         // 执行键值比较操作（使用特定的数据集）
-        comparison_result = memcmp(search_context.found_node + 4, &DAT_18098c968, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        comparison_result = memcmp(search_context.found_node + 4, &system_memory_c968, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         
         // 根据比较结果确定搜索方向
         if (comparison_result < 0) {
@@ -1913,7 +1913,7 @@ void FUN_18003a7b0(void) {
     
     // 执行节点插入操作（如果需要）
     if ((search_context.found_node == tree_manager.registry_root) || 
-        (comparison_result = memcmp(&DAT_18098c968, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_c968, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
         memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
@@ -1968,7 +1968,7 @@ void FUN_18003a8b0(void) {
     // 执行二叉树搜索算法
     while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
         // 执行键值比较操作（使用特定的数据集）
-        comparison_result = memcmp(search_context.found_node + 4, &DAT_18098c990, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        comparison_result = memcmp(search_context.found_node + 4, &system_memory_c990, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         
         // 根据比较结果确定搜索方向
         if (comparison_result < 0) {
@@ -1996,7 +1996,7 @@ void FUN_18003a8b0(void) {
     
     // 执行节点插入操作（如果需要）
     if ((search_context.found_node == tree_manager.registry_root) || 
-        (comparison_result = memcmp(&DAT_18098c990, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_c990, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
         memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
@@ -2051,7 +2051,7 @@ void FUN_18003a9b0(void) {
     // 执行二叉树搜索算法
     while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
         // 执行键值比较操作（使用特定的数据集）
-        comparison_result = memcmp(search_context.found_node + 4, &DAT_18098c9e0, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        comparison_result = memcmp(search_context.found_node + 4, &system_memory_c9e0, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         
         // 根据比较结果确定搜索方向
         if (comparison_result < 0) {
@@ -2079,7 +2079,7 @@ void FUN_18003a9b0(void) {
     
     // 执行节点插入操作（如果需要）
     if ((search_context.found_node == tree_manager.registry_root) || 
-        (comparison_result = memcmp(&DAT_18098c9e0, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_c9e0, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
         memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
@@ -2134,7 +2134,7 @@ void FUN_18003aab0(void) {
     // 执行二叉树搜索算法
     while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
         // 执行键值比较操作（使用特定的数据集）
-        comparison_result = memcmp(search_context.found_node + 4, &DAT_18098c8f0, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        comparison_result = memcmp(search_context.found_node + 4, &system_memory_c8f0, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         
         // 根据比较结果确定搜索方向
         if (comparison_result < 0) {
@@ -2162,7 +2162,7 @@ void FUN_18003aab0(void) {
     
     // 执行节点插入操作（如果需要）
     if ((search_context.found_node == tree_manager.registry_root) || 
-        (comparison_result = memcmp(&DAT_18098c8f0, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_c8f0, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
         memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
@@ -2217,7 +2217,7 @@ void FUN_18003abb0(void) {
     // 执行二叉树搜索算法
     while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
         // 执行键值比较操作（使用特定的数据集）
-        comparison_result = memcmp(search_context.found_node + 4, &DAT_18098c8c8, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        comparison_result = memcmp(search_context.found_node + 4, &system_memory_c8c8, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         
         // 根据比较结果确定搜索方向
         if (comparison_result < 0) {
@@ -2245,7 +2245,7 @@ void FUN_18003abb0(void) {
     
     // 执行节点插入操作（如果需要）
     if ((search_context.found_node == tree_manager.registry_root) || 
-        (comparison_result = memcmp(&DAT_18098c8c8, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_c8c8, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
         memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);

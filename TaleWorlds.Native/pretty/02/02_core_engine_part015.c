@@ -653,7 +653,7 @@ void monitor_and_report_system_status(longlong param_1)
         lVar4 = alStack_70[0];
       }
       dVar2 = (double)(lVar4 - _DAT_180c8ed48) * _DAT_180c8ed50;
-    } while ((DAT_180c82853 == '\0') || (dVar2 - *(double *)(param_1 + 0xc0) <= 900.0));
+    } while ((system_memory_2853 == '\0') || (dVar2 - *(double *)(param_1 + 0xc0) <= 900.0));
     LOCK();
     *(int32_t *)(param_1 + 200) = 1;
     UNLOCK();
@@ -711,7 +711,7 @@ void monitor_and_report_system_status(longlong param_1)
     puVar5[6] = 0x65676775;
     puVar5[7] = 0x64657473;
     *(int16_t *)(puVar5 + 8) = 0x2e;
-    puVar9 = &DAT_18098bc73;
+    puVar9 = &system_buffer_ptr;
     if (puStack_90 != (void *)0x0) {
       puVar9 = puStack_90;
     }
@@ -1011,7 +1011,7 @@ void copy_string_to_object(longlong param_1,longlong param_2)
   longlong lVar1;
   void *puVar2;
   
-  puVar2 = &DAT_18098bc73;
+  puVar2 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar2 = *(void **)(param_2 + 8);
   }

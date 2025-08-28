@@ -206,7 +206,7 @@ void rendering_system_advanced_initializer(longlong param_1, longlong param_2, l
             cleanup_callback = FUN_1803089a0;
             global_data = &UNK_180308990;
             context_offset = param_1;
-            resource_array[0] = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x38, 8, DAT_180bf65bc);
+            resource_array[0] = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x38, 8, system_allocation_flags);
             
             // 设置资源参数
             *resource_array[0] = (longlong)batch_processor;
@@ -302,7 +302,7 @@ void rendering_system_resource_optimizer(uint64_t *param_1, int param_2, int par
         // 执行资源优化
         if (*(char *)(system_context + 0x7d) != '\0') {
           quality_factor2 = *(float *)(resource_data + 0x52);
-          quality_factor1 = *(float *)(&DAT_180bf3ff8 +
+          quality_factor1 = *(float *)(&system_memory_3ff8 +
                             (longlong)*(int *)(*(longlong *)param_1[4] + 0x5b98) * 4);
           (**(code **)(*resource_data + 0x108))(resource_data);
           if (RENDERING_QUALITY_THRESHOLD <= quality_factor2 + quality_factor1 * -0.1) goto LAB_1803066f9;
@@ -325,13 +325,13 @@ LAB_1803066f9:
       *(char *)(resource_data + 9) = status_flag;
       
       // 应用质量调整
-      quality_factor1 = *(float *)(&DAT_180bf3ff8 + (longlong)*(int *)(*(longlong *)param_1[4] + 0x5b98) * 4);
+      quality_factor1 = *(float *)(&system_memory_3ff8 + (longlong)*(int *)(*(longlong *)param_1[4] + 0x5b98) * 4);
       quality_factor2 = *(float *)(resource_data + 6);
       *(float *)(resource_data + 6) = quality_factor1 + quality_factor2;
       
       if (status_flag == '\0') {
         *(float *)((longlong)resource_data + 0x34) =
-             *(float *)(&DAT_180bf3ff8 + (longlong)*(int *)(*(longlong *)param_1[4] + 0x5b98) * 4) +
+             *(float *)(&system_memory_3ff8 + (longlong)*(int *)(*(longlong *)param_1[4] + 0x5b98) * 4) +
              *(float *)((longlong)resource_data + 0x34);
       }
       else {
@@ -463,7 +463,7 @@ void rendering_system_state_controller(uint64_t *param_1, int param_2, int param
       // 执行状态转换
       if (*(char *)(system_context + 0x7d) != '\0') {
         state_param2 = *(float *)(state_data + 0x52);
-        state_param1 = *(float *)(&DAT_180bf3ff8 + (longlong)*(int *)(*(longlong *)param_1[4] + 0x5b98) * 4);
+        state_param1 = *(float *)(&system_memory_3ff8 + (longlong)*(int *)(*(longlong *)param_1[4] + 0x5b98) * 4);
         (**(code **)(*state_data + 0x108))(state_data);
         if (RENDERING_QUALITY_THRESHOLD <= state_param2 + state_param1 * -0.1) goto LAB_1803066f9;
         system_context = *(longlong *)*param_1;
@@ -486,13 +486,13 @@ LAB_1803066f9:
     *(char *)(state_data + 9) = state_flag;
     
     // 应用状态参数调整
-    state_param1 = *(float *)(&DAT_180bf3ff8 + (longlong)*(int *)(*(longlong *)param_1[4] + 0x5b98) * 4);
+    state_param1 = *(float *)(&system_memory_3ff8 + (longlong)*(int *)(*(longlong *)param_1[4] + 0x5b98) * 4);
     state_param2 = *(float *)(state_data + 6);
     *(float *)(state_data + 6) = state_param1 + state_param2;
     
     if (state_flag == '\0') {
       *(float *)((longlong)state_data + 0x34) =
-           *(float *)(&DAT_180bf3ff8 + (longlong)*(int *)(*(longlong *)param_1[4] + 0x5b98) * 4) +
+           *(float *)(&system_memory_3ff8 + (longlong)*(int *)(*(longlong *)param_1[4] + 0x5b98) * 4) +
            *(float *)((longlong)state_data + 0x34);
     }
     else {

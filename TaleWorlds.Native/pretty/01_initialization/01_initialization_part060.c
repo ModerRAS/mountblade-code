@@ -509,7 +509,7 @@ code *get_or_create_context_handler(longlong context_ptr, char handler_type)
             temp_stack_20 = (code *)&UNK_180083070;
             temp_stack_18 = FUN_180082fd0;
             temp_stack_30 = context_ptr;
-            (**(code **)(*temp_ptr + 0x60))(temp_ptr, &DAT_1809fc740, context_ptr + 0xb8, 0, &temp_stack_30);
+            (**(code **)(*temp_ptr + 0x60))(temp_ptr, &system_memory_c740, context_ptr + 0xb8, 0, &temp_stack_30);
             return_value = temp_stack_20;
             
             if (temp_stack_20 != (code *)0x0) {

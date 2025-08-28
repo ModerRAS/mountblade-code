@@ -677,11 +677,11 @@ LAB_1802b515c:
   cVar3 = FUN_1802b61b0(*(uint64_t *)(param_1 + 0x68),param_2);
   if (cVar3 == '\0') {
     puVar10 = *(void **)(*(longlong *)(param_1 + 0x68) + 0x50);
-    puVar14 = &DAT_18098bc73;
+    puVar14 = &system_buffer_ptr;
     if (puVar10 != (void *)0x0) {
       puVar14 = puVar10;
     }
-    puVar10 = &DAT_18098bc73;
+    puVar10 = &system_buffer_ptr;
     if (*(void **)(param_1 + 0x50) != (void *)0x0) {
       puVar10 = *(void **)(param_1 + 0x50);
     }

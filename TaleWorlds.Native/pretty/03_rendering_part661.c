@@ -1137,7 +1137,7 @@ longlong FUN_180646f40(void)
   lVar1 = _DAT_180c8ed78;
   if (_DAT_180c8ed78 == 0) {
     if (_DAT_180bfbf1c == 0) {
-      FUN_180650490(&DAT_180bfbf18);
+      FUN_180650490(&system_data_bf18);
     }
     lVar1 = (longlong)_DAT_180bfbf18;
     if (_DAT_180bfbf18 < 1) {
@@ -1161,7 +1161,7 @@ longlong FUN_180646f50(void)
   lVar1 = _DAT_180c8ed78;
   if (_DAT_180c8ed78 == 0) {
     if (_DAT_180bfbf1c == 0) {
-      FUN_180650490(&DAT_180bfbf18);
+      FUN_180650490(&system_data_bf18);
     }
     lVar1 = (longlong)_DAT_180bfbf18;
     if (_DAT_180bfbf18 < 1) {
@@ -1192,7 +1192,7 @@ void FUN_180646fa6(void)
 void FUN_180646fb0(int8_t *param_1,int8_t *param_2,longlong param_3)
 
 {
-  if (DAT_180c8f000 == '\0') {
+  if (system_data_f000 == '\0') {
                     // WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
                     // WARNING: Subroutine does not return
                     // WARNING: Treating indirect jump as call

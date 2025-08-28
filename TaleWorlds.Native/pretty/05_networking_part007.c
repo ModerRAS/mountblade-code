@@ -1120,7 +1120,7 @@ void FUN_180849782(void)
   int32_t unaff_R14D;
   
   iVar1 = func_0x00018074bda0(&stack0x00000050,0x100);
-  iVar2 = FUN_18074b880(&stack0x00000050 + iVar1,0x100 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(&stack0x00000050 + iVar1,0x100 - iVar1,&system_temp_buffer);
   func_0x00018074b800(&stack0x00000050 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),unaff_R14D);
                     // WARNING: Subroutine does not return
   FUN_180749ef0(unaff_ESI,0xc);

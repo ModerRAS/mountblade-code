@@ -279,21 +279,21 @@ void FUN_1803056c0(longlong param_1,longlong param_2)
   if (*(char *)(*(longlong *)(param_1 + 0x18) + 0x2e5) != '\0') {
     iVar4 = *(int *)(param_2 + 0x10);
     if ((iVar4 != 0x18) && (iVar4 == 0x10)) {
-      iVar3 = strcmp(*(uint64_t *)(param_2 + 8),&DAT_180a098c8);
+      iVar3 = strcmp(*(uint64_t *)(param_2 + 8),&system_data_98c8);
       if (iVar3 == 0) {
         FUN_180305a80(param_1);
         iVar4 = *(int *)(param_2 + 0x10);
       }
     }
     if (iVar4 == 0xd) {
-      iVar3 = strcmp(*(uint64_t *)(param_2 + 8),&DAT_180a098b8);
+      iVar3 = strcmp(*(uint64_t *)(param_2 + 8),&system_data_98b8);
       if ((iVar3 == 0) && (*(longlong *)(param_1 + 0x1b0) != 0)) {
         *(int8_t *)(*(longlong *)(param_1 + 0x1b0) + 0x100) = *(int8_t *)(param_1 + 0x1f0);
         iVar4 = *(int *)(param_2 + 0x10);
       }
     }
     if ((iVar4 != 0xc) && (iVar4 == 10)) {
-      iVar4 = strcmp(*(uint64_t *)(param_2 + 8),&DAT_180a09928);
+      iVar4 = strcmp(*(uint64_t *)(param_2 + 8),&system_data_9928);
       if ((iVar4 == 0) && (*(longlong *)(param_1 + 0x1b0) != 0)) {
         FUN_1800ba9c0(&puStack_168);
         uVar8 = uStack_158 + 0xd;
@@ -794,7 +794,7 @@ void FUN_180305d40(longlong param_1)
     *(int16_t *)(puVar4 + 1) = 0x20;
     uStack_198 = 9;
     uStack_190._0_4_ = uVar9;
-    FUN_180626eb0(&uStack_78,0x20,&DAT_180a06430,(double)*(float *)(param_1 + 0xa0));
+    FUN_180626eb0(&uStack_78,0x20,&system_data_6430,(double)*(float *)(param_1 + 0xa0));
     lVar1 = -1;
     do {
       lVar7 = lVar1;

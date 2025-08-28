@@ -15,7 +15,7 @@ void FUN_1802bf590(longlong param_1,uint64_t param_2,uint64_t param_3,longlong p
   char *pcVar6;
   int *piVar7;
   
-  FUN_18062f990(param_4,param_5,&DAT_180a04ee4);
+  FUN_18062f990(param_4,param_5,&system_data_4ee4);
   FUN_18062f990(param_4,param_5,&UNK_180a16290);
   FUN_180416900(param_1 + 8,&UNK_180a15b70,param_4,param_5);
   if (*(longlong *)(param_1 + 0x40) != *(longlong *)(param_1 + 0x48)) {
@@ -33,9 +33,9 @@ void FUN_1802bf590(longlong param_1,uint64_t param_2,uint64_t param_3,longlong p
     } while (*pcVar4 != '\0');
     *puVar3 = &UNK_180a180f4;
     puVar3[2] = pcVar6 + -0x180a180f3;
-    FUN_180630b20(param_4,puVar3,&DAT_180a03a84,&UNK_180a15ff8);
+    FUN_180630b20(param_4,puVar3,&system_data_3a84,&UNK_180a15ff8);
     FUN_180630c80(param_4,puVar3,&UNK_180a015b0,1);
-    FUN_18062f990(param_4,puVar3,&DAT_180a0b1c0);
+    FUN_18062f990(param_4,puVar3,&system_data_b1c0);
     FUN_18062f990(param_4,puVar3,&UNK_180a180b0);
     if (*(longlong *)(param_5 + 0x30) == 0) {
       puVar3[10] = 0;
@@ -150,7 +150,7 @@ void FUN_1802bf590(longlong param_1,uint64_t param_2,uint64_t param_3,longlong p
 void FUN_1802bf620(int32_t *param_1,uint64_t param_2,uint64_t param_3)
 
 {
-  FUN_18062f990(param_2,param_3,&DAT_180a04ee4,param_1[1]);
+  FUN_18062f990(param_2,param_3,&system_data_4ee4,param_1[1]);
   FUN_18062f990(param_2,param_3,&UNK_180a16290,*param_1);
   return;
 }

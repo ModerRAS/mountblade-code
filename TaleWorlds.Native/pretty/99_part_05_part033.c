@@ -399,7 +399,7 @@ void FUN_1802ec6e0(longlong param_1,longlong param_2,char param_3,int8_t param_4
   uStack_60 = 0xfffffffffffffffe;
   uStack_90 = CONCAT31((uint3)(*(uint *)(param_1 + 0x2ac) >> 0x17),
                        ~(byte)(*(uint *)(param_1 + 0x2ac) >> 0xf)) & 0xffffff01;
-  puVar16 = &DAT_18098bc73;
+  puVar16 = &system_buffer_ptr;
   if (*(void **)(param_2 + 0x290) != (void *)0x0) {
     puVar16 = *(void **)(param_2 + 0x290);
   }
@@ -515,7 +515,7 @@ void FUN_1802ec6e0(longlong param_1,longlong param_2,char param_3,int8_t param_4
         if (plVar11 != (longlong *)0x0) {
           (**(code **)(*plVar11 + 0x28))(plVar11);
         }
-        puVar16 = &DAT_18098bc73;
+        puVar16 = &system_buffer_ptr;
         if (*(void **)(lVar10 + 0x290) != (void *)0x0) {
           puVar16 = *(void **)(lVar10 + 0x290);
         }
@@ -664,7 +664,7 @@ void FUN_1802ec6e0(longlong param_1,longlong param_2,char param_3,int8_t param_4
   *(int32_t *)(lVar9 + 0x30) = 0;
   *(int8_t *)(lVar9 + 0x38) = 0;
   *(int32_t *)(lVar9 + 0x30) = *(int32_t *)(lVar10 + 0x30);
-  puVar16 = &DAT_18098bc73;
+  puVar16 = &system_buffer_ptr;
   if (*(void **)(lVar10 + 0x28) != (void *)0x0) {
     puVar16 = *(void **)(lVar10 + 0x28);
   }

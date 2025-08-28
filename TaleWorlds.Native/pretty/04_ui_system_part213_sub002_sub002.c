@@ -1113,7 +1113,7 @@ LAB_18079011d:
                   }
                   unaff_RBP[-7] = (char *)((longlong)(int)uVar9 + unaff_RBP[-4]);
                   if (*(char *)((longlong)(int)uVar9 + unaff_RBP[-4]) == '\0') {
-                    plVar32[6] = (longlong)&DAT_18098bc73;
+                    plVar32[6] = (longlong)&system_buffer_ptr;
                   }
                   else {
                     in_stack_00000050 = (**(code **)(*plVar32 + 0x88))(plVar32);

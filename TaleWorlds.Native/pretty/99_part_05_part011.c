@@ -192,7 +192,7 @@ void FUN_1802db5b0(longlong param_1,int32_t param_2,int32_t param_3,int32_t para
   uStack_48 = 0;
   lStack_58 = 0;
   uStack_50 = 0;
-  puVar2 = &DAT_18098bc73;
+  puVar2 = &system_buffer_ptr;
   if (*(void **)(param_5 + 8) != (void *)0x0) {
     puVar2 = *(void **)(param_5 + 8);
   }

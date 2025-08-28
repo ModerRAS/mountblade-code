@@ -291,7 +291,7 @@ void FUN_180323b30(RenderContext* context, void** resource_array, uint64_t param
     
     // 获取上下文数据和资源指针
     context_data = *(void**)(*resource_array + 0x18);
-    resource_iter5 = &DAT_18098bc73;
+    resource_iter5 = &system_buffer_ptr;
     if (context_data != (void*)0x0) {
         resource_iter5 = context_data;
     }
@@ -568,7 +568,7 @@ uint64_t FUN_180323d00(RenderContext* context, uint32_t param2, uint32_t param3)
     stack_val100 = context;
     
     // 分配批处理缓冲区
-    stack_array_a8[0] = (uint32_t*)FUN_18062b1e0(_DAT_180c8ed18, RENDER_RESOURCE_POOL_SIZE, RENDER_MEMORY_ALIGNMENT, DAT_180bf65bc);
+    stack_array_a8[0] = (uint32_t*)FUN_18062b1e0(_DAT_180c8ed18, RENDER_RESOURCE_POOL_SIZE, RENDER_MEMORY_ALIGNMENT, system_allocation_flags);
     *stack_array_a8[0] = (uint32_t)stack_val108;
     stack_array_a8[0][1] = stack_val108._4_4_;
     stack_array_a8[0][2] = (uint32_t)stack_val100;
@@ -602,7 +602,7 @@ uint64_t FUN_180323d00(RenderContext* context, uint32_t param2, uint32_t param3)
     stack_val138 = context;
     
     // 分配第二轮批处理缓冲区
-    stack_array88[0] = (uint32_t*)FUN_18062b1e0(_DAT_180c8ed18, RENDER_RESOURCE_POOL_SIZE, RENDER_MEMORY_ALIGNMENT, DAT_180bf65bc);
+    stack_array88[0] = (uint32_t*)FUN_18062b1e0(_DAT_180c8ed18, RENDER_RESOURCE_POOL_SIZE, RENDER_MEMORY_ALIGNMENT, system_allocation_flags);
     *stack_array88[0] = (uint32_t)stack_val140;
     stack_array88[0][1] = stack_val140._4_4_;
     stack_array88[0][2] = (uint32_t)stack_val138;
@@ -714,7 +714,7 @@ uint64_t FUN_180323d00(RenderContext* context, uint32_t param2, uint32_t param3)
                     long_val4 = 0;
                     do {
                         FUN_1803a8870(*(void**)(context + RENDER_CONTEXT_OFFSET_528), *(uint32_t**)(long_val2 + long_val4) + 1,
-                                      &DAT_180a002f0, **(uint32_t**)(long_val2 + long_val4));
+                                      &system_memory_02f0, **(uint32_t**)(long_val2 + long_val4));
                         int_val = int_val + 1;
                         long_val4 = long_val4 + 8;
                         long_val2 = resource_ptr3[5];

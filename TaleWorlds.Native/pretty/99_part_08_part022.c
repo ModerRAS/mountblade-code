@@ -152,7 +152,7 @@ FUN_1804f5600(uint64_t param_1,uint64_t *param_2,uint64_t *param_3,float param_4
           fVar13 = *(float *)(param_5 + 0x18) - (float)uStack_160;
           fVar14 = *(float *)(param_5 + 0x1c) - uStack_160._4_4_;
           if (iStack_138 < 1) {
-            pfVar3 = (float *)&DAT_180a1ad20;
+            pfVar3 = (float *)&system_data_ad20;
           }
           fVar9 = fVar14 * fVar14 + fVar13 * fVar13;
           auVar12 = rsqrtss(ZEXT416((uint)fVar9),ZEXT416((uint)fVar9));
@@ -353,7 +353,7 @@ void FUN_1804f577b(float param_1,int param_2,float param_3)
           fVar7 = *(float *)(lVar1 + 0x18) - fStack0000000000000048;
           fVar10 = *(float *)(lVar1 + 0x1c) - fStack000000000000004c;
           if (iStack0000000000000070 < 1) {
-            pfVar4 = (float *)&DAT_180a1ad20;
+            pfVar4 = (float *)&system_data_ad20;
           }
           fVar8 = fVar10 * fVar10 + fVar7 * fVar7;
           auVar11 = rsqrtss(ZEXT416((uint)fVar8),ZEXT416((uint)fVar8));
@@ -794,7 +794,7 @@ void FUN_1804f6330(longlong param_1,uint64_t param_2,uint64_t param_3)
   *(int32_t *)(param_1 + 0x87b7a8) = 1;
   FUN_1804f3510(param_1);
   *(uint64_t *)(param_1 + 0x87b788) =
-       *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x87b790) * 8);
+       *(uint64_t *)(&system_error_code + (longlong)*(int *)(param_1 + 0x87b790) * 8);
   FUN_18062b1e0(_DAT_180c8ed18,0x620,8,3);
                     // WARNING: Subroutine does not return
   memcpy(auStack_578,param_3,0x554);

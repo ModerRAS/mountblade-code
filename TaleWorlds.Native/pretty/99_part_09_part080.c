@@ -376,8 +376,8 @@ void FUN_1805f256d(uint64_t param_1,code *param_2)
          (ABS(*(float *)(unaff_RSI + 0xa8)) < 0.001)) &&
         ((ABS(*(float *)(unaff_RSI + 0xc0)) < 0.001 && (ABS(*(float *)(unaff_RSI + 0xc4)) < 0.001)))
         ) && ((ABS(*(float *)(unaff_RSI + 200)) < 0.001 &&
-              ((cVar9 = FUN_1805f26d0(pfVar14,&DAT_180a13a10), cVar9 != '\0' &&
-               (cVar9 = FUN_1805f26d0(pfVar13,&DAT_180a13a10), cVar9 != '\0')))))) {
+              ((cVar9 = FUN_1805f26d0(pfVar14,&system_data_3a10), cVar9 != '\0' &&
+               (cVar9 = FUN_1805f26d0(pfVar13,&system_data_3a10), cVar9 != '\0')))))) {
       *(int8_t *)(unaff_RSI + 0xd1) = 0;
       pfVar14[0] = 1.0;
       pfVar14[1] = 0.0;

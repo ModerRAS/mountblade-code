@@ -223,7 +223,7 @@ FUN_1801566b0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   *(uint64_t *)((longlong)param_1 + 0x54) = 0x40000000;
   *(int32_t *)((longlong)param_1 + 0x5c) = 3;
   param_1[8] = 1;
-  param_1[7] = &DAT_180be0000;
+  param_1[7] = &system_data_0000;
   param_1[9] = 0;
   *(int32_t *)(param_1 + 0xb) = 0;
   puStackX_10 = param_1 + 0xc;
@@ -254,7 +254,7 @@ FUN_1801566b0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   *(uint64_t *)((longlong)param_1 + 0x244) = 0x40000000;
   *(int32_t *)((longlong)param_1 + 0x24c) = 3;
   param_1[0x46] = 1;
-  param_1[0x45] = &DAT_180be0000;
+  param_1[0x45] = &system_data_0000;
   param_1[0x47] = 0;
   *(int32_t *)(param_1 + 0x49) = 0;
   param_1[0x4a] = 0;

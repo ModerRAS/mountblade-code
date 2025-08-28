@@ -301,7 +301,7 @@ void rendering_system_module_loader(uint64_t param_1)
   puStack_150 = auStack_140;
   auStack_140[0] = 0;
   uStack_148 = 0xd;
-  strcpy_s(auStack_140, 0x80, &DAT_180a2ca38);
+  strcpy_s(auStack_140, 0x80, &system_memory_ca38);
   FUN_180049b30(apuStack_b8, &puStack_158);
   uStack_20 = 4;
   uStack_178 = 1;
@@ -533,7 +533,7 @@ void rendering_system_shader_manager(uint64_t *param_1)
   param_1[0x83] = 0;
   *(int32_t *)(param_1 + 0x82) = 0xffffffff;
   FUN_18049dc80();
-  (**(code **)(_DAT_180c924d0 + 0x10))(&DAT_180c924d0, &DAT_1809fd128);
+  (**(code **)(_DAT_180c924d0 + 0x10))(&system_memory_24d0, &system_memory_d128);
   *(int32_t *)(param_1 + 1) = 0;
   puStack_50 = &UNK_1809fdc18;
   puStack_48 = auStack_38;
@@ -547,7 +547,7 @@ void rendering_system_shader_manager(uint64_t *param_1)
   uStack_78 = 0;
   FUN_1806277c0(&puStack_88, iStack_40);
   if (0 < iStack_40) {
-    puVar1 = &DAT_18098bc73;
+    puVar1 = &system_buffer_ptr;
     if (puStack_48 != (void *)0x0) {
       puVar1 = puStack_48;
     }
@@ -578,7 +578,7 @@ void rendering_system_shader_manager(uint64_t *param_1)
   *(int16_t *)(puStack_80 + uStack_78) = 0x2f;
   uStack_78 = uVar3;
   if (puStack_80 != (int8_t *)0x0) {
-    FUN_1806277c0(&DAT_180c924f0, uVar3);
+    FUN_1806277c0(&system_memory_24f0, uVar3);
   }
   if (uVar3 != 0) {
                     // WARNING: Subroutine does not return
@@ -780,7 +780,7 @@ void rendering_system_queue_manager(void)
   longlong *plStackX_20;
   uint64_t uVar12;
   
-  if ((((DAT_180c96098 != '\0') && (_DAT_180c96070 != 0)) &&
+  if ((((system_memory_6098 != '\0') && (_DAT_180c96070 != 0)) &&
       (*(int *)(_DAT_180c96070 + 0x87b7a8) == 2)) && (*(char *)(_DAT_180c96070 + 0x87b750) != '\0'))
   {
     lVar5 = *(longlong *)(_DAT_180c86870 + 0x3d8);
@@ -1000,8 +1000,8 @@ void rendering_system_global_initializer(void)
   int32_t *puVar2;
   uint64_t *puVar3;
   
-  FUN_1802567b0(_DAT_180c868a8[0x15], &DAT_180a2d688, &UNK_180a2ca80, rendering_system_texture_allocator, 0xfffffffffffffffe);
-  puVar2 = (int32_t *)FUN_18008d660(_DAT_180c868a8 + 0x1c, &DAT_180a2d688);
+  FUN_1802567b0(_DAT_180c868a8[0x15], &system_memory_d688, &UNK_180a2ca80, rendering_system_texture_allocator, 0xfffffffffffffffe);
+  puVar2 = (int32_t *)FUN_18008d660(_DAT_180c868a8 + 0x1c, &system_memory_d688);
   *puVar2 = 1;
   puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x38, 8, 3);
   puVar3[1] = 0;

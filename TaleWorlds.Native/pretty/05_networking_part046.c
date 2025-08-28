@@ -691,7 +691,7 @@ uint64_t FUN_180865550(longlong param_1,char param_2)
               *(int32_t *)(lVar14 + -0x14) = uVar6;
               *(int32_t *)(lVar14 + -0x10) = uVar7;
               if (*(int *)(lVar10 + -4 + lVar14) < 1) {
-                puVar13 = &DAT_18098bc73;
+                puVar13 = &system_buffer_ptr;
               }
               else {
                 puVar13 = *(void **)(lVar10 + -0xc + lVar14);
@@ -793,7 +793,7 @@ uint64_t FUN_1808655bb(void)
           *(int32_t *)(lVar14 + -0x14) = uVar6;
           *(int32_t *)(lVar14 + -0x10) = uVar7;
           if (*(int *)(lVar10 + -4 + lVar14) < 1) {
-            puVar13 = &DAT_18098bc73;
+            puVar13 = &system_buffer_ptr;
           }
           else {
             puVar13 = *(void **)(lVar10 + -0xc + lVar14);
@@ -868,7 +868,7 @@ LAB_1808659de:
         do {
           plVar9 = plVar8 + 2;
           if (plVar8 == (longlong *)0x0) {
-            plVar9 = (longlong *)&DAT_00000018;
+            plVar9 = (longlong *)&system_data_0018;
           }
           if ((*(uint *)(*plVar9 + 0x34) >> 1 & 1) == 0) {
             plVar7 = plVar8 + -1;
@@ -981,7 +981,7 @@ LAB_1808659de:
       do {
         plVar9 = plVar8 + 2;
         if (plVar8 == (longlong *)0x0) {
-          plVar9 = (longlong *)&DAT_00000018;
+          plVar9 = (longlong *)&system_data_0018;
         }
         if ((*(uint *)(*plVar9 + 0x34) >> 1 & 1) == 0) {
           plVar7 = plVar8 + -1;

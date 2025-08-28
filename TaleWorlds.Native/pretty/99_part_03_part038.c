@@ -291,7 +291,7 @@ LAB_1801f16b2:
   puVar20[6] = puVar15[6];
   *(int16_t *)(puVar20 + 7) = *(int16_t *)(puVar15 + 7);
   uStack_2b0 = uVar1 + 0x26;
-  FUN_180627e10(&puStack_2c0,&puStack_200,&DAT_1809fd7c8);
+  FUN_180627e10(&puStack_2c0,&puStack_200,&system_data_d7c8);
   uStack_2c8 = 1;
   puStack_2c0 = &UNK_180a3c3e0;
   if (puVar17 != (int8_t *)0x0) {
@@ -577,7 +577,7 @@ void FUN_1801f0f90(uint64_t param_1,longlong param_2)
   uStack_50 = 0xfffffffffffffffe;
   uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
   uStack_78 = 0;
-  (**(code **)(*(longlong *)(param_2 + 0x80) + 0x10))((longlong *)(param_2 + 0x80),&DAT_1809fd128);
+  (**(code **)(*(longlong *)(param_2 + 0x80) + 0x10))((longlong *)(param_2 + 0x80),&system_data_d128);
   puStack_48 = &UNK_1809fdc18;
   puStack_40 = auStack_30;
   auStack_30[0] = 0;

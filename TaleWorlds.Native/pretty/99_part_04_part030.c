@@ -291,7 +291,7 @@ void FUN_1802a1dd0(longlong param_1,int32_t *param_2)
   if ((cVar1 != '\0') && (uVar3 = FUN_18062d9a0(param_1), 3 < uVar3)) {
     uStack_a8 = 0;
     lStack_a0 = 0;
-    puVar5 = &DAT_18098bc73;
+    puVar5 = &system_buffer_ptr;
     if (*(void **)(param_1 + 8) != (void *)0x0) {
       puVar5 = *(void **)(param_1 + 8);
     }

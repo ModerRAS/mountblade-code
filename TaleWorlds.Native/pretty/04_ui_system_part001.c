@@ -525,7 +525,7 @@ uint8_t FUN_180655e60;                           // UI系统数据序列化函�
 uint8_t UNK_180a16f70;                          // UI系统序列化缓存 - 缓存序列化数据
 uint8_t UNK_180a3dd38;                          // UI系统序列化配置 - 存储序列化配置
 uint64_t DAT;                       // UI系统序列化标志 - 标识序列化状态
-int8_t DAT_180c8f028;                      // UI系统序列化锁 - 控制序列化访问
+int8_t system_memory_f028;                      // UI系统序列化锁 - 控制序列化访问
 uint8_t UNK_180a3dd80;                          // UI系统序列化验证器 - 验证序列化数据
 uint64_t DAT;                       // UI系统序列化统计 - 统计序列化信息
 
@@ -582,7 +582,7 @@ uint8_t UNK_180a3e2e8;                          // UI系统缓存解密器 - 解
 uint8_t UNK_180a3e300;                          // UI系统缓存备份器 - 备份缓存数据
 uint8_t UNK_180a3e310;                          // UI系统缓存恢复器 - 恢复缓存数据
 uint8_t UNK_180a3e378;                          // UI系统缓存测试器 - 测试缓存功能
-int8_t DAT_180c96808;                      // UI系统缓存标志 - 标识缓存状态
+int8_t system_memory_6808;                      // UI系统缓存标志 - 标识缓存状态
 uint8_t UNK_180a3e470;                          // UI系统缓存调试器 - 调试缓存功能
 uint8_t UNK_180a3e408;                          // UI系统缓存分析器 - 分析缓存性能
 uint8_t UNK_180a3e418;                          // UI系统缓存优化器 - 优化缓存操作

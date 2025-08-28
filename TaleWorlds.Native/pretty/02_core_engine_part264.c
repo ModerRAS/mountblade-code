@@ -229,7 +229,7 @@ uint64_t * FUN_18022b590(uint64_t *param_1)
   do {
     *(int8_t *)puVar7 = 0;
     *puVar2 = 0xffffffffffffffff;
-    (**(code **)(*plVar6 + 0x10))(plVar1,&DAT_18098bc73);
+    (**(code **)(*plVar6 + 0x10))(plVar1,&system_buffer_ptr);
     plVar1 = plVar1 + 7;
     puVar7 = (uint64_t *)((longlong)puVar7 + 1);
     puVar2 = puVar2 + 1;
@@ -692,7 +692,7 @@ LAB_18022c3ff:
           *(int8_t *)(plVar11 + 3) = 0;
           *(int32_t *)(plVar11 + 2) = *(int32_t *)((longlong)plVar11 + lVar19 + 0x10);
           puVar22 = *(void **)((longlong)plVar11 + lVar19 + 8);
-          puVar16 = &DAT_18098bc73;
+          puVar16 = &system_buffer_ptr;
           if (puVar22 != (void *)0x0) {
             puVar16 = puVar22;
           }
@@ -826,11 +826,11 @@ LAB_18022c20f:
     }
     goto LAB_18022c3ff;
   }
-  puVar22 = &DAT_18098bc73;
+  puVar22 = &system_buffer_ptr;
   if (*(void **)(param_1 + 0x18) != (void *)0x0) {
     puVar22 = *(void **)(param_1 + 0x18);
   }
-  puVar16 = &DAT_18098bc73;
+  puVar16 = &system_buffer_ptr;
   if (*(void **)(param_1 + 0x2d8) != (void *)0x0) {
     puVar16 = *(void **)(param_1 + 0x2d8);
   }
@@ -856,7 +856,7 @@ LAB_18022c460:
   puStack_230 = auStack_220;
   auStack_220[0] = 0;
   uStack_228 = 0xf;
-  strcpy_s(auStack_220,0x40,&DAT_180a0ba58);
+  strcpy_s(auStack_220,0x40,&system_data_ba58);
   uVar14 = FUN_180240430(uVar14,&puStack_238,0);
   *(uint64_t *)(param_1 + 0x390) = uVar14;
   puStack_238 = &UNK_18098bcb0;
@@ -882,7 +882,7 @@ LAB_18022c460:
   puStack_170 = auStack_160;
   auStack_160[0] = 0;
   uStack_168 = 0x10;
-  strcpy_s(auStack_160,0x40,&DAT_180a0d580);
+  strcpy_s(auStack_160,0x40,&system_data_d580);
   uVar14 = FUN_180240430(uVar14,&puStack_178,0);
   *(uint64_t *)(param_1 + 0x3b0) = uVar14;
   puStack_178 = &UNK_18098bcb0;
@@ -891,7 +891,7 @@ LAB_18022c460:
   puStack_110 = auStack_100;
   auStack_100[0] = 0;
   uStack_108 = 0x14;
-  strcpy_s(auStack_100,0x40,&DAT_180a0d5b8);
+  strcpy_s(auStack_100,0x40,&system_data_d5b8);
   uVar14 = FUN_180240430(uVar14,&puStack_118,0);
   *(uint64_t *)(param_1 + 0x3b8) = uVar14;
   puStack_118 = &UNK_18098bcb0;

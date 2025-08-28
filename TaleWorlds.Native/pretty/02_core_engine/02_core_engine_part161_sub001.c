@@ -63,7 +63,7 @@ void resize_and_copy_array(longlong param_1, longlong *param_2, longlong param_3
     FUN_18014eff0(unaff_RDI + 8, *(longlong *)(unaff_RSI + 0x40), *(uint64_t *)(unaff_RSI + 0x48));
   }
   *(int32_t *)(unaff_RDI + 0xe) = *(int32_t *)(unaff_RSI + 0x70);
-  puVar6 = &DAT_18098bc73;
+  puVar6 = &system_buffer_ptr;
   if (*(void **)(unaff_RSI + 0x68) != (void *)0x0) {
     puVar6 = *(void **)(unaff_RSI + 0x68);
   }
@@ -115,7 +115,7 @@ void initialize_array_with_defaults(void)
     FUN_18014eff0(unaff_RDI + 8, *(longlong *)(unaff_RSI + 0x40), *(uint64_t *)(unaff_RSI + 0x48));
   }
   *(int32_t *)(unaff_RDI + 0xe) = *(int32_t *)(unaff_RSI + 0x70);
-  puVar2 = &DAT_18098bc73;
+  puVar2 = &system_buffer_ptr;
   if (*(void **)(unaff_RSI + 0x68) != (void *)0x0) {
     puVar2 = *(void **)(unaff_RSI + 0x68);
   }
@@ -159,7 +159,7 @@ void adjust_buffer_size(uint64_t param_1, uint64_t param_2, longlong param_3, lo
                   *(uint64_t *)(unaff_RSI + 0x48));
   }
   *(int32_t *)(unaff_RDI + 0x70) = *(int32_t *)(unaff_RSI + 0x70);
-  puVar4 = &DAT_18098bc73;
+  puVar4 = &system_buffer_ptr;
   if (*(void **)(unaff_RSI + 0x68) != (void *)0x0) {
     puVar4 = *(void **)(unaff_RSI + 0x68);
   }
@@ -188,7 +188,7 @@ void copy_structure_data(void)
                   *(uint64_t *)(unaff_RSI + 0x48));
   }
   *(int32_t *)(unaff_RDI + 0x70) = *(int32_t *)(unaff_RSI + 0x70);
-  puVar1 = &DAT_18098bc73;
+  puVar1 = &system_buffer_ptr;
   if (*(void **)(unaff_RSI + 0x68) != (void *)0x0) {
     puVar1 = *(void **)(unaff_RSI + 0x68);
   }

@@ -913,16 +913,16 @@ void * FUN_1803975b0(void)
   
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
               0x48) < _DAT_180d48ee8) {
-    FUN_1808fcb90(&DAT_180d48ee8);
+    FUN_1808fcb90(&system_ptr_8ee8);
     if (_DAT_180d48ee8 == -1) {
-      uVar1 = nanf(&DAT_180a089e8);
-      _DAT_180d48ee0 = nanf(&DAT_180a089e8);
+      uVar1 = nanf(&system_ptr_89e8);
+      _DAT_180d48ee0 = nanf(&system_ptr_89e8);
       _DAT_180d48ee4 = uVar1;
-      FUN_1808fcb30(&DAT_180d48ee8);
-      return &DAT_180d48ee0;
+      FUN_1808fcb30(&system_ptr_8ee8);
+      return &system_ptr_8ee0;
     }
   }
-  return &DAT_180d48ee0;
+  return &system_ptr_8ee0;
 }
 
 

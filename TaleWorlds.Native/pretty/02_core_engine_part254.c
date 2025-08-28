@@ -331,7 +331,7 @@ void FUN_18021e0a0(void)
             FUN_1806277c0(&puStack_2e8,*(int32_t *)(lVar14 + 0x10));
             pcVar10 = pcStack_2e0;
             if (0 < *(int *)(lVar14 + 0x10)) {
-              puVar19 = &DAT_18098bc73;
+              puVar19 = &system_buffer_ptr;
               if (*(void **)(lVar14 + 8) != (void *)0x0) {
                 puVar19 = *(void **)(lVar14 + 8);
               }
@@ -431,7 +431,7 @@ LAB_18021e424:
                 }
                 uStack_2f0 = uStack_2f0 & 0xffffffff;
               }
-              puVar20 = &DAT_18098bc73;
+              puVar20 = &system_buffer_ptr;
               if (puVar17 != (int8_t *)0x0) {
                 puVar20 = puVar17;
               }
@@ -514,7 +514,7 @@ LAB_18021e424:
   puStack_1e0 = auStack_168;
   pcStack_1c8 = FUN_18020dd10;
   pcStack_1c0 = FUN_18020dc20;
-  apuStack_1d8[0] = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,DAT_180bf65bc);
+  apuStack_1d8[0] = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,system_allocation_flags);
   *apuStack_1d8[0] = (int32_t)uStack_1f0;
   apuStack_1d8[0][1] = uStack_1f0._4_4_;
   apuStack_1d8[0][2] = (int32_t)uStack_1e8;

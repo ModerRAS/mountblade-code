@@ -23,7 +23,7 @@ void FUN_180597510(float param_1,uint64_t param_2,float param_3,longlong param_4
   if (((*(byte *)(in_RCX + 0x40) & 3) == 0) ||
      (*(float *)(in_RCX + 0x44) <= 0.0 && *(float *)(in_RCX + 0x44) != 0.0)) {
     *(int32_t *)(in_RCX + 0x138) = 0;
-    FUN_1805989b0(&DAT_1809ff0c8,param_3,0,in_RCX + 8);
+    FUN_1805989b0(&system_data_f0c8,param_3,0,in_RCX + 8);
     return;
   }
   if (((*(uint *)(param_4 + 0x68) | *(uint *)(param_4 + 0x60)) >> 0x18 & 1) != 0) {

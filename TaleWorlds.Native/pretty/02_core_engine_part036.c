@@ -59,7 +59,7 @@ void FUN_1800786e0(uint64_t *param_1,longlong param_2)
     }
     if ((((*(char *)(param_2 + 0x380) != '\0') && (*(char *)(param_2 + 0x381) == '\0')) &&
         (lVar1 = *plVar8, lVar1 != 0)) && ((*(uint *)(lVar1 + 0x328) & 0x200000) == 0)) {
-      puVar6 = &DAT_18098bc73;
+      puVar6 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x18) != (void *)0x0) {
         puVar6 = *(void **)(lVar1 + 0x18);
       }

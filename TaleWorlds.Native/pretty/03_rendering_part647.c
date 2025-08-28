@@ -83,7 +83,7 @@ longlong * FUN_180632160(longlong *param_1,int32_t param_2,uint64_t param_3,uint
     (**(code **)(*param_1 + 0x10))(param_1,&UNK_180a3cd08);
     return param_1;
   case 0x14:
-    (**(code **)(*param_1 + 0x10))(param_1,&DAT_180a0aea0);
+    (**(code **)(*param_1 + 0x10))(param_1,&system_data_aea0);
     return param_1;
   case 0x15:
     (**(code **)(*param_1 + 0x10))(param_1,&UNK_180a34ca0);
@@ -125,7 +125,7 @@ longlong * FUN_180632160(longlong *param_1,int32_t param_2,uint64_t param_3,uint
     (**(code **)(*param_1 + 0x10))(param_1,&UNK_180a3cd18);
     return param_1;
   case 0x22:
-    (**(code **)(*param_1 + 0x10))(param_1,&DAT_18098c5e8);
+    (**(code **)(*param_1 + 0x10))(param_1,&system_data_c5e8);
     return param_1;
   case 0x23:
     (**(code **)(*param_1 + 0x10))(param_1,&UNK_180a12c50);
@@ -134,7 +134,7 @@ longlong * FUN_180632160(longlong *param_1,int32_t param_2,uint64_t param_3,uint
     (**(code **)(*param_1 + 0x10))(param_1,&UNK_180a345b8);
     return param_1;
   case 0x25:
-    (**(code **)(*param_1 + 0x10))(param_1,&DAT_180a2fce0);
+    (**(code **)(*param_1 + 0x10))(param_1,&system_data_fce0);
     return param_1;
   case 0x26:
     (**(code **)(*param_1 + 0x10))(param_1,&UNK_180a34ed0,0x180000000,param_4,1,0xfffffffffffffffe);
@@ -229,7 +229,7 @@ LAB_1806327a3:
         FUN_180627c50(&puStack_40,lVar5,pcVar2,puVar9,uVar10);
         break;
       }
-      lVar5 = (longlong)&DAT_180a03a84 - (longlong)pcVar7;
+      lVar5 = (longlong)&system_data_3a84 - (longlong)pcVar7;
       while (*pcVar7 == pcVar7[lVar5]) {
         pcVar7 = pcVar7 + 1;
         if (pcVar2 <= pcVar7) goto LAB_1806327a3;
@@ -287,7 +287,7 @@ FUN_180632870(uint64_t param_1,longlong param_2,uint64_t param_3,uint64_t param_
   longlong lVar9;
   char *pcVar10;
   
-  puVar7 = &DAT_18098bc73;
+  puVar7 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar7 = *(void **)(param_2 + 8);
   }
@@ -497,7 +497,7 @@ void FUN_180632d00(longlong param_1,int32_t *param_2,longlong param_3,int32_t pa
     uStack_70 = param_2[1];
     uStack_6c = param_2[2];
     uStack_68 = param_2[3];
-    puVar4 = &DAT_18098bc73;
+    puVar4 = &system_buffer_ptr;
     if (*(void **)(param_3 + 8) != (void *)0x0) {
       puVar4 = *(void **)(param_3 + 8);
     }

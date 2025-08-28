@@ -43,7 +43,7 @@ extern longlong _DAT_180bf00a8;    // 栈保护数据
 extern char UNK_180a0b780[];       // 渲染字符串常量1
 extern char UNK_180a19e38[];       // 渲染字符串常量2
 extern char UNK_180a19e28[];       // 渲染字符串常量3
-extern char DAT_18098bc73[];       // 渲染字符串常量4
+extern char system_buffer_ptr[];       // 渲染字符串常量4
 extern char UNK_180a0c2b8[];       // 渲染字符串常量5
 
 // 函数指针常量
@@ -645,7 +645,7 @@ void RenderingSystem_ComplexResourceManagement(longlong *render_context, longlon
         if (buffer_pointer_6 != (longlong *)0x0) {
           (**(code **)(*buffer_pointer_6 + 0x38))();
         }
-        data_pointer_1 = &DAT_18098bc73;
+        data_pointer_1 = &system_buffer_ptr;
         buffer_param_2 = 1;
         buffer_param_3 = 0x1018a;
         stack_value_2 = 0x2f;
@@ -668,7 +668,7 @@ void RenderingSystem_ComplexResourceManagement(longlong *render_context, longlon
         if (buffer_pointer_8 != (longlong *)0x0) {
           (**(code **)(*buffer_pointer_8 + 0x38))();
         }
-        data_pointer_3 = &DAT_18098bc73;
+        data_pointer_3 = &system_buffer_ptr;
         width_param = (int)width_param / 2;
         height_param = (int)height_param / 2;
       } while ((render_context[0xca] == 0) || 

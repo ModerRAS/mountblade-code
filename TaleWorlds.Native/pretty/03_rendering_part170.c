@@ -151,7 +151,7 @@ LAB_180373799:
         puVar13 = (uint64_t *)FUN_18037f020(unaff_RBX + 0x108,unaff_RBP + -0x18,&stack0x00000040);
         piVar16 = (int *)*puVar13;
       }
-      uVar12 = FUN_18063ad30(unaff_RBP + 0x90,*(longlong *)(piVar16 + 2) + 0x18,&DAT_180a00300);
+      uVar12 = FUN_18063ad30(unaff_RBP + 0x90,*(longlong *)(piVar16 + 2) + 0x18,&system_data_0300);
       lVar14 = FUN_180372570(uVar12,uVar5 & 0xffffffff,uVar4 & 0xffffffff);
       uVar1 = *(uint *)(unaff_RBX + 0x118);
       lVar2 = *(longlong *)(unaff_RBX + 0x110);
@@ -587,7 +587,7 @@ LAB_180373799:
       puVar19 = (uint64_t *)FUN_18037f020(unaff_RBX + 0x108,unaff_RBP + -0x18,&param_8);
       piVar23 = (int *)*puVar19;
     }
-    uVar18 = FUN_18063ad30(unaff_RBP + 0x90,*(longlong *)(piVar23 + 2) + 0x18,&DAT_180a00300);
+    uVar18 = FUN_18063ad30(unaff_RBP + 0x90,*(longlong *)(piVar23 + 2) + 0x18,&system_data_0300);
     lVar20 = FUN_180372570(uVar18,uVar6 & 0xffffffff,uVar5 & 0xffffffff);
     uVar2 = *(uint *)(unaff_RBX + 0x118);
     lVar17 = *(longlong *)(unaff_RBX + 0x110);

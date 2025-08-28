@@ -83,7 +83,7 @@ void FUN_1801c2d00(uint64_t param_1,uint64_t param_2)
   cVar3 = FUN_180624af0(&puStack_108);
   cVar4 = FUN_180624af0(&puStack_e8);
   bVar1 = false;
-  if ((DAT_180c82860 != '\0') || (*(int *)(_DAT_180c86908 + 0x620) != 0)) {
+  if ((system_debug_flag != '\0') || (*(int *)(_DAT_180c86908 + 0x620) != 0)) {
     lVar8 = FUN_1801d7560();
     bVar1 = false;
     if (cVar3 != '\0') {

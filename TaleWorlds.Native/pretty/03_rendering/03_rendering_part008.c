@@ -1040,7 +1040,7 @@ void rendering_system_process_render_commands(longlong param1, longlong param2)
         *(longlong *)(param2 + 8) = *(longlong)(param2 + 8) + (ulonglong)uint_value;
       }
       if (int_value < RENDER_MATERIAL_NAME_MAX_SIZE) {
-        char_buffer = &DAT_18098bc73;
+        char_buffer = &system_buffer_ptr;
         if (stack_buffer_ptr2 != (void *)0x0) {
           char_buffer = stack_buffer_ptr2;
         }

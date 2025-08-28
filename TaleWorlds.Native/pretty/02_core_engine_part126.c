@@ -167,7 +167,7 @@ void FUN_18012c305(void)
     fVar19 = unaff_XMM13_Da;
     if ((unaff_R15D & 0x100000) != 0) {
       uVar9 = CONCAT44(uVar22,0xbf800000);
-      pfVar12 = (float *)FUN_180127c60(unaff_RBP + -0x18,&DAT_1809fdf28,0,0,uVar9);
+      pfVar12 = (float *)FUN_180127c60(unaff_RBP + -0x18,&system_data_df28,0,0,uVar9);
       uVar22 = (int32_t)((ulonglong)uVar9 >> 0x20);
       fVar19 = *pfVar12;
     }
@@ -233,7 +233,7 @@ void FUN_18012c305(void)
       uVar9 = func_0x00018011fbf0(unaff_RBP + 0x18,unaff_RBP + -0x1a,unaff_RBP + -0xe);
       uVar13 = func_0x00018011fbf0(unaff_RBP + 0x1c,unaff_RBP + -0x18,unaff_RBP + -0xe);
       unaff_RDI = 0;
-      FUN_180122890(uVar13,uVar9,&DAT_1809fdf28,0,0);
+      FUN_180122890(uVar13,uVar9,&system_data_df28,0,0);
     }
   }
   *(short *)(in_stack_00000040 + 0x26a) = (short)unaff_RDI;

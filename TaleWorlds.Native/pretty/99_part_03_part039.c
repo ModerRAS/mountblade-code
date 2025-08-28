@@ -257,7 +257,7 @@ LAB_1801f16b2:
   puVar18[6] = puVar13[6];
   *(int16_t *)(puVar18 + 7) = *(int16_t *)(puVar13 + 7);
   uStack_2b0 = uVar1 + 0x26;
-  FUN_180627e10(&puStack_2c0,&puStack_200,&DAT_1809fd7c8);
+  FUN_180627e10(&puStack_2c0,&puStack_200,&system_data_d7c8);
   uStack_2c8 = 1;
   puStack_2c0 = &UNK_180a3c3e0;
   if (puVar15 != (int8_t *)0x0) {

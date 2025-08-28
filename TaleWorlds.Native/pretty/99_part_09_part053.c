@@ -652,14 +652,14 @@ LAB_1805d6666:
       ((((uVar1 = *(ulonglong *)
                    ((longlong)*(int *)(lVar10 + 0xf0) * 0xa0 + 0x50 + *(longlong *)(lVar10 + 0xd0)),
          (uVar1 >> 9 & 1) == 0 || (0 < *(short *)(lVar10 + 8))) && ((uVar1 & 1) != 0)) &&
-       ((float)(*(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x274] * 8) - param_1[0x273])
+       ((float)(*(longlong *)(&system_error_code + (longlong)(int)param_1[0x274] * 8) - param_1[0x273])
         * 1e-05 < -1.5)))))) {
     uVar7 = *(uint *)(param_1 + 0x272) << 0xd ^ *(uint *)(param_1 + 0x272);
     uVar7 = uVar7 ^ uVar7 >> 0x11;
     uVar7 = uVar7 ^ uVar7 << 5;
     *(uint *)(param_1 + 0x272) = uVar7;
     param_1[0x273] =
-         *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x274] * 8) -
+         *(longlong *)(&system_error_code + (longlong)(int)param_1[0x274] * 8) -
          (longlong)((float)(uVar7 - 1) * -3.4924597e-05);
   }
 FUN_1805d6797:
@@ -774,14 +774,14 @@ LAB_1805d6666:
                      ((longlong)*(int *)(lVar9 + 0xf0) * 0xa0 + 0x50 + *(longlong *)(lVar9 + 0xd0)),
            (uVar1 >> 9 & 1) == 0 || ((short)unaff_R14D < *(short *)(lVar9 + 8))))) &&
          ((uVar1 & 1) != 0)))) &&
-       ((float)(*(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x274] * 8) -
+       ((float)(*(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x274] * 8) -
                unaff_RBX[0x273]) * 1e-05 < -1.5)) {
       uVar8 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272);
       uVar8 = uVar8 ^ uVar8 >> 0x11;
       uVar8 = uVar8 ^ uVar8 << 5;
       *(uint *)(unaff_RBX + 0x272) = uVar8;
       unaff_RBX[0x273] =
-           *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x274] * 8) -
+           *(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x274] * 8) -
            (longlong)((float)(uVar8 - 1) * -3.4924597e-05);
     }
   }

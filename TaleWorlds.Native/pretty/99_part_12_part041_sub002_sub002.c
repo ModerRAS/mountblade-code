@@ -815,14 +815,14 @@ uint64_t FUN_1807e6c70(longlong *param_1)
   if (_DAT_180c31140 == 0) {
     lVar2 = 0x20;
     do {
-      if (*(longlong *)(&DAT_180c30f40 + lVar1) != 0) {
+      if (*(longlong *)(&system_data_0f40 + lVar1) != 0) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(&DAT_180c30f40 + lVar1),
+        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(&system_data_0f40 + lVar1),
                       &UNK_18097d960,0xdd,1);
       }
-      if (*(longlong *)(&DAT_180c31040 + lVar1) != 0) {
+      if (*(longlong *)(&system_data_1040 + lVar1) != 0) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(&DAT_180c31040 + lVar1),
+        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(&system_data_1040 + lVar1),
                       &UNK_18097d960,0xe2,1);
       }
       lVar1 = lVar1 + 8;
@@ -846,12 +846,12 @@ uint64_t FUN_1807e6cad(void)
   uVar1 = (ulonglong)unaff_EBP;
   uVar2 = (ulonglong)(unaff_EBP + 0x20);
   while( true ) {
-    if (*(longlong *)(&DAT_180c30f40 + uVar1) != 0) {
+    if (*(longlong *)(&system_data_0f40 + uVar1) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(&DAT_180c30f40 + uVar1),
+      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(&system_data_0f40 + uVar1),
                     &UNK_18097d960,0xdd,1);
     }
-    if (*(longlong *)(&DAT_180c31040 + uVar1) != 0) break;
+    if (*(longlong *)(&system_data_1040 + uVar1) != 0) break;
     uVar1 = uVar1 + 8;
     uVar2 = uVar2 - 1;
     if (uVar2 == 0) {
@@ -859,7 +859,7 @@ uint64_t FUN_1807e6cad(void)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(&DAT_180c31040 + uVar1),
+  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(&system_data_1040 + uVar1),
                 &UNK_18097d960,0xe2,1);
 }
 
@@ -970,7 +970,7 @@ uint64_t FUN_1807e6ed0(longlong param_1)
   uVar7 = 0;
   (**(code **)(*(longlong *)(param_1 + 0x220) + 8))(*(longlong *)(param_1 + 0x220),0xc,0,1,0,0);
   if (_DAT_180c31140 == 0) {
-    plVar2 = (longlong *)&DAT_180c30f40;
+    plVar2 = (longlong *)&system_data_0f40;
     iVar5 = iVar6;
     do {
       uVar8 = uVar8 & 0xffffff00;
@@ -984,7 +984,7 @@ uint64_t FUN_1807e6ed0(longlong param_1)
       iVar5 = iVar5 + 1;
       plVar2 = plVar2 + 1;
     } while (iVar5 < 0x20);
-    plVar2 = (longlong *)&DAT_180c31040;
+    plVar2 = (longlong *)&system_data_1040;
     do {
       uVar8 = uVar8 & 0xffffff00;
       uVar7 = uVar7 & 0xffffffff00000000;
@@ -1024,7 +1024,7 @@ uint64_t FUN_1807e6f74(void)
             (*(longlong *)(unaff_RSI + 0x220),0xb,0,in_stack_00000060);
   (**(code **)(*(longlong *)(unaff_RSI + 0x220) + 8))(*(longlong *)(unaff_RSI + 0x220),0xc,0);
   if (_DAT_180c31140 == 0) {
-    plVar3 = (longlong *)&DAT_180c30f40;
+    plVar3 = (longlong *)&system_data_0f40;
     iVar2 = unaff_EBP;
     do {
       lVar1 = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x400,&UNK_18097d960,0xab,
@@ -1036,7 +1036,7 @@ uint64_t FUN_1807e6f74(void)
       iVar2 = iVar2 + 1;
       plVar3 = plVar3 + 1;
     } while (iVar2 < 0x20);
-    plVar3 = (longlong *)&DAT_180c31040;
+    plVar3 = (longlong *)&system_data_1040;
     iVar2 = unaff_EBP;
     do {
       lVar1 = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x400,&UNK_18097d960,0xb4,
@@ -1070,7 +1070,7 @@ uint64_t FUN_1807e7033(void)
   int8_t uStack0000000000000028;
   int8_t uStack0000000000000030;
   
-  plVar4 = (longlong *)&DAT_180c30f40;
+  plVar4 = (longlong *)&system_data_0f40;
   iVar2 = unaff_EBP;
   do {
     uStack0000000000000030 = 1;
@@ -1084,7 +1084,7 @@ uint64_t FUN_1807e7033(void)
     iVar2 = iVar2 + 1;
     plVar4 = plVar4 + 1;
   } while (iVar2 < 0x20);
-  plVar4 = (longlong *)&DAT_180c31040;
+  plVar4 = (longlong *)&system_data_1040;
   do {
     uStack0000000000000030 = 1;
     uStack0000000000000028 = uVar3;

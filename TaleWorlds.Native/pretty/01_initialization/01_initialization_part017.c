@@ -826,7 +826,7 @@ void Copy_String_To_Global_Buffer(longlong string_ptr)
     string_length = 0x1fff;
   }
                     // WARNING: Subroutine does not return
-  memcpy(&DAT_180c84870, string_ptr, (longlong)(int)string_length);
+  memcpy(&system_memory_4870, string_ptr, (longlong)(int)string_length);
 }
 
 
@@ -902,8 +902,8 @@ Initialize_Complex_Object(int8_t *object, uint64_t param_2, uint64_t param_3, ui
   *(int32_t *)(object + 0x30) = 0;
   object[0x7c] = 0;
   object[0xc9] = 1;
-  (**(code **)(*component_a + 0x10))(component_a, &DAT_1809fd128);
-  (**(code **)(*component_b + 0x10))(component_b, &DAT_18098bc73);
+  (**(code **)(*component_a + 0x10))(component_a, &system_memory_d128);
+  (**(code **)(*component_b + 0x10))(component_b, &system_buffer_ptr);
   *(int32_t *)(object + 0xc0) = 0x461c4000;
   *(int32_t *)(object + 0xc4) = 0x461c4000;
   object[200] = 0;
@@ -1057,7 +1057,7 @@ uint64_t * Initialize_Advanced_System_Object(uint64_t *system_object)
   *(int8_t *)(param_1 + 0x79) = 0;
   UNLOCK();
   (**(code **)(*plVar3 + 0x10))(plVar3,&UNK_1809fd140);
-  (**(code **)(*plVar2 + 0x10))(plVar2,&DAT_18098bc73);
+  (**(code **)(*plVar2 + 0x10))(plVar2,&system_buffer_ptr);
   *(int8_t *)(param_1 + 0x2d) = 0;
   param_1[0x13] = 0;
   *(int32_t *)(param_1 + 0x1f) = 0x1010101;

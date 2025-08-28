@@ -1000,7 +1000,7 @@ int ComponentManager2(longlong param_1,longlong *param_2,int param_3)
     cVar2 = (**(code **)(*(longlong *)param_2[5] + 0x10))((longlong *)param_2[5],puVar4,&pcStackX_8)
     ;
     if (((cVar2 != '\0') && (pcStackX_8 != (char *)0x0)) && (*pcStackX_8 != '\0')) {
-      uVar8 = DataFinder(pcStackX_8,&DAT_180be02c0);
+      uVar8 = DataFinder(pcStackX_8,&system_memory_02c0);
       (*(code *)CONCAT44(uStack_6c,uStack_70))(param_2[6],uVar8);
     }
   }
@@ -1429,7 +1429,7 @@ int SystemController2(longlong param_1,longlong *param_2)
                       ((longlong *)param_2[5],puVar8,unaff_RBP + 0x67);
     if (((cVar6 != '\0') && (pcVar4 = *(char **)(unaff_RBP + 0x67), pcVar4 != (char *)0x0)) &&
        (*pcVar4 != '\0')) {
-      uVar12 = DataFinder(pcVar4,&DAT_180be02c0);
+      uVar12 = DataFinder(pcVar4,&system_memory_02c0);
       (**(code **)(unaff_RBP + -0x11))(param_2[6],uVar12);
     }
   }
@@ -1908,7 +1908,7 @@ int SystemMonitor2(uint64_t param_1,uint64_t param_2)
                       ((longlong *)unaff_RBX[5],puVar8,unaff_RBP + 0x67);
     if (((cVar6 != '\0') && (pcVar3 = *(char **)(unaff_RBP + 0x67), pcVar3 != (char *)0x0)) &&
        (*pcVar3 != '\0')) {
-      uVar12 = DataFinder(pcVar3,&DAT_180be02c0);
+      uVar12 = DataFinder(pcVar3,&system_memory_02c0);
       (**(code **)(unaff_RBP + -0x11))(unaff_RBX[6],uVar12);
     }
   }
@@ -2368,7 +2368,7 @@ int SystemCleaner2(void)
                       ((longlong *)unaff_RBX[5],puVar9,unaff_RBP + 0x67);
     if (((cVar6 != '\0') && (pcVar2 = *(char **)(unaff_RBP + 0x67), pcVar2 != (char *)0x0)) &&
        (*pcVar2 != cVar7)) {
-      uVar12 = DataFinder(pcVar2,&DAT_180be02c0);
+      uVar12 = DataFinder(pcVar2,&system_memory_02c0);
       (**(code **)(unaff_RBP + -0x11))(unaff_RBX[6],uVar12);
     }
   }
@@ -2792,7 +2792,7 @@ int SystemChecker2(uint64_t param_1)
   if ((((char)unaff_RBX[9] != cVar7) &&
       (cVar6 = (**(code **)(*(longlong *)unaff_RBX[5] + 0x10))(), cVar6 != '\0')) &&
      ((pcVar5 = *(char **)(unaff_RBP + 0x67), pcVar5 != (char *)0x0 && (*pcVar5 != cVar7)))) {
-    uVar10 = DataFinder(pcVar5,&DAT_180be02c0);
+    uVar10 = DataFinder(pcVar5,&system_memory_02c0);
     (**(code **)(unaff_RBP + -0x11))(unaff_RBX[6],uVar10);
   }
   uVar13 = ResourceCleaner();
@@ -3134,7 +3134,7 @@ int SystemMonitor3(void)
   if ((((char)unaff_RBX[9] != cVar7) &&
       (cVar6 = (**(code **)(*(longlong *)unaff_RBX[5] + 0x10))(), cVar6 != '\0')) &&
      ((pcVar4 = *(char **)(unaff_RBP + 0x67), pcVar4 != (char *)0x0 && (*pcVar4 != cVar7)))) {
-    uVar11 = DataFinder(pcVar4,&DAT_180be02c0);
+    uVar11 = DataFinder(pcVar4,&system_memory_02c0);
     (**(code **)(unaff_RBP + -0x11))(unaff_RBX[6],uVar11);
   }
   uVar10 = ResourceCleaner();
@@ -3436,7 +3436,7 @@ int SystemConfigurator2(uint64_t param_1,int32_t param_2)
        (cVar7 = (**(code **)(*(longlong *)unaff_RBX[5] + 0x10))
                           ((longlong *)unaff_RBX[5],param_2,unaff_RBP + 0x67), cVar7 != '\0')) &&
       (pcVar2 = *(char **)(unaff_RBP + 0x67), pcVar2 != (char *)0x0)) && (*pcVar2 != cVar8)) {
-    uVar9 = DataFinder(pcVar2,&DAT_180be02c0);
+    uVar9 = DataFinder(pcVar2,&system_memory_02c0);
     (**(code **)(unaff_RBP + -0x11))(unaff_RBX[6],uVar9);
   }
   uVar12 = ResourceCleaner();
@@ -3974,12 +3974,12 @@ int SystemLogger2(longlong param_1,longlong *param_2,int param_3)
     cVar4 = (**(code **)(*(longlong *)param_2[5] + 0x10))((longlong *)param_2[5],puVar6,&pcStackX_8)
     ;
     if (((cVar4 != '\0') && (pcStackX_8 != (char *)0x0)) && (*pcStackX_8 != '\0')) {
-      uVar5 = DataFinder(pcStackX_8,&DAT_180be02f0);
+      uVar5 = DataFinder(pcStackX_8,&system_memory_02f0);
       (*pcVar3)(param_2[6],uVar5);
     }
   }
   ResourceCleaner(param_2);
-  DataProcessor2(param_2,param_3 + 1,param_1 + 0x60,&DAT_180be0350,auStackX_18);
+  DataProcessor2(param_2,param_3 + 1,param_1 + 0x60,&system_memory_0350,auStackX_18);
   pcVar3 = *(code **)(param_1 + 0x98);
   StateManager(param_2,*(uint64_t *)(param_1 + 0x80));
   piVar2 = (int *)param_2[0xb];

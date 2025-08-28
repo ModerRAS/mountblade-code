@@ -116,7 +116,7 @@ void RenderingSystemProcessFileData(longlong render_context, longlong file_conte
           FUN_1808fc838(data_stream, RENDERING_RESOURCE_BLOCK_SIZE, 4, FUN_1801c2890, FUN_18004a130);
           data_buffer[0x3e] = 0;
           *data_buffer = 0;
-          (**(code **)(*resource_ptr + 0x10))(resource_ptr, &DAT_18098bc73);
+          (**(code **)(*resource_ptr + 0x10))(resource_ptr, &system_buffer_ptr);
           *(uint64_t *)(data_buffer + 1) = 0;
           *(uint64_t *)(data_buffer + 3) = RENDERING_FLOAT_MAX;
           *data_buffer = *data_array;
@@ -495,7 +495,7 @@ LAB_18032d78f:
       FUN_1806277c0(&stack_ptr, *(int32_t *)(context_data + 0x10));
       
       if (0 < *(int *)(context_data + 0x10)) {
-        memory_ptr = &DAT_18098bc73;
+        memory_ptr = &system_buffer_ptr;
         
         if (*(void **)(context_data + 8) != (void *)0x0) {
           memory_ptr = *(void **)(context_data + 8);
@@ -533,7 +533,7 @@ LAB_18032d78f:
       FUN_1806277c0(&stack_ptr, data_count);
       *(int32_t *)(string_ptr + string_length) = 0x6664652e;
       *(int8_t *)((longlong)(string_ptr + string_length) + 4) = 0;
-      data_ptr = &DAT_18098bc73;
+      data_ptr = &system_buffer_ptr;
       
       if (string_ptr != (int8_t *)0x0) {
         data_ptr = string_ptr;

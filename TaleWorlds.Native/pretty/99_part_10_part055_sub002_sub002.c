@@ -26,7 +26,7 @@ void FUN_1806ce700(longlong param_1,longlong *param_2,int32_t param_3)
     piStackX_10 = (int *)param_2[5];
   }
   if (_DAT_180be0560 != 0) {
-    plVar7 = (longlong *)&DAT_180be0560;
+    plVar7 = (longlong *)&system_data_0560;
     lVar3 = _DAT_180be0560;
     do {
       FUN_1806d7170(param_2,lVar3);
@@ -39,7 +39,7 @@ void FUN_1806ce700(longlong param_1,longlong *param_2,int32_t param_3)
         puVar5 = *(void **)
                   (*(longlong *)(lVar3 + 8) + (ulonglong)(*(int *)(lVar3 + 0x10) - 1) * 0x10);
       }
-      plVar4 = (longlong *)&DAT_180be05d0;
+      plVar4 = (longlong *)&system_data_05d0;
       plVar6 = (longlong *)param_2[1];
       if (_DAT_180be05d0 != 0) {
         do {
@@ -1349,9 +1349,9 @@ int FUN_1806d08f0(longlong param_1,longlong *param_2,int param_3)
     puVar11 = *(void **)
                (*(longlong *)(lVar7 + 8) + (ulonglong)(*(int *)(lVar7 + 0x10) - 1) * 0x10);
   }
-  plVar8 = (longlong *)&DAT_180be0100;
+  plVar8 = (longlong *)&system_data_0100;
   plVar12 = (longlong *)param_2[1];
-  plVar9 = (longlong *)&DAT_180be0100;
+  plVar9 = (longlong *)&system_data_0100;
   uVar4 = auStackX_8[0];
   if (_DAT_180be0100 != 0) {
     do {

@@ -78,7 +78,7 @@
 /** 渲染系统全局数据引用 */
 extern uint64_t _DAT_180bf00a8;
 extern uint64_t _DAT_180c8ed18;
-extern uint64_t DAT_18098bc73;
+extern uint64_t system_buffer_ptr;
 extern uint64_t UNK_18098bcb0;
 extern uint64_t UNK_180a3c3e0;
 

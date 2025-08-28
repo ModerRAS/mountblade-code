@@ -435,7 +435,7 @@ void rendering_system_batch_process_and_apply(uint64_t *param_1, longlong param_
   shader_code = &UNK_1809fcc28;
   vertex_data = vertex_buffer;
   vertex_buffer[0] = 0;
-  render_target = &DAT_18098bc73;
+  render_target = &system_buffer_ptr;
   if (texture_buffer != (void *)0x0) {
     render_target = texture_buffer;
   }

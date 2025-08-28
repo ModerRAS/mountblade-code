@@ -50,7 +50,7 @@ void FUN_1805cb7f0(longlong *param_1)
                   *(float *)((longlong)param_1 + 0x1dc),
          fVar15 * fVar15 + fVar13 * fVar13 <
          *(float *)(param_1 + 0x41) * *(float *)(param_1 + 0x41) * 1.44)))))) {
-      param_1[0x2e9] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x2ea] * 8);
+      param_1[0x2e9] = *(longlong *)(&system_error_code + (longlong)(int)param_1[0x2ea] * 8);
       *(int32_t *)((longlong)param_1 + 0x178c) = 4;
     }
     goto LAB_1805cbf5f;
@@ -134,7 +134,7 @@ LAB_1805cb95a:
       *(int *)(param_1 + 0x2f2) = iVar5;
       if (fVar15 < *(float *)(*(longlong *)(*param_1 + 0x20) + 0x8c) * 4.0) {
         if (iVar5 == 3) {
-          if (0.0 < (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x2ea] * 8) -
+          if (0.0 < (float)(*(longlong *)(&system_error_code + (longlong)(int)param_1[0x2ea] * 8) -
                            param_1[0x2e9]) * 1e-05) {
             pcVar8 = (char *)FUN_1805b7420(param_1 + 1);
             if (*pcVar8 == '\0') {
@@ -144,13 +144,13 @@ LAB_1805cb95a:
                   (cVar4 = func_0x0001805b7cd0(param_1), cVar4 != '\0')))) {
                 *(int32_t *)(param_1 + 0x2f1) = 0;
                 param_1[0x2ed] =
-                     *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x2ee] * 8) +
+                     *(longlong *)(&system_error_code + (longlong)(int)param_1[0x2ee] * 8) +
                      -0x8000000000000000;
                 fVar13 = *(float *)((longlong)param_1 + 0x21a4);
                 fVar15 = *(float *)(*param_1 + 0x2d4);
                 *(float *)((longlong)param_1 + 0x21a4) = *(float *)(*param_1 + 0x324) * 0.1;
                 param_1[0x2e0] =
-                     *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x2e1] * 8) -
+                     *(longlong *)(&system_error_code + (longlong)(int)param_1[0x2e1] * 8) -
                      (longlong)(((-2.0 / fVar15) * *(float *)(param_1 + 0x28d) - fVar13) * 100000.0)
                 ;
               }
@@ -159,7 +159,7 @@ LAB_1805cb95a:
               *(int32_t *)((longlong)param_1 + 0x178c) = 2;
               lVar6 = FUN_1805a0610(*param_1 + 0x28,1);
               if (lVar6 != 0) {
-                lVar9 = FUN_18053a5a0(&DAT_180c95f30,
+                lVar9 = FUN_18053a5a0(&system_data_5f30,
                                       *(int32_t *)(*(longlong *)(*param_1 + 0x590) + 0xac),
                                       *(int32_t *)(lVar6 + 0x1c));
                 lVar6 = *param_1;
@@ -177,7 +177,7 @@ LAB_1805cb95a:
                 uVar12 = uVar12 << 5 ^ uVar12;
                 *(uint *)(param_1 + 0x272) = uVar12;
                 param_1[0x2e9] =
-                     *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x2ea] * 8) -
+                     *(longlong *)(&system_error_code + (longlong)(int)param_1[0x2ea] * 8) -
                      (longlong)
                      ((fVar13 / (fVar14 * fVar15) + fVar1 + 0.25 +
                       (float)(uVar12 - 1) * 5.820766e-11) * -100000.0);
@@ -186,7 +186,7 @@ LAB_1805cb95a:
           }
         }
         else if (((iVar5 - 1U & 0xfffffffc) == 0) && (iVar5 != 3)) {
-          if (((1.0 < (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x2ea] * 8) -
+          if (((1.0 < (float)(*(longlong *)(&system_error_code + (longlong)(int)param_1[0x2ea] * 8) -
                              param_1[0x2e9]) * 1e-05) &&
               (cVar4 = func_0x000180522f60(*param_1), cVar4 == '\0')) &&
              ((*(uint *)((longlong)param_1 + 0x209c) >> 0xb & 1) == 0)) {
@@ -302,7 +302,7 @@ void FUN_1805cb802(longlong param_1,uint64_t param_2,uint param_3)
                     *(float *)((longlong)unaff_RDI + 0x1dc),
          fVar15 * fVar15 + fVar13 * fVar13 <
          *(float *)(unaff_RDI + 0x41) * *(float *)(unaff_RDI + 0x41) * 1.44)))))) {
-      unaff_RDI[0x2e9] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RDI[0x2ea] * 8);
+      unaff_RDI[0x2e9] = *(longlong *)(&system_error_code + (longlong)(int)unaff_RDI[0x2ea] * 8);
       *(int32_t *)((longlong)unaff_RDI + 0x178c) = 4;
     }
     goto LAB_1805cbf5f;
@@ -392,7 +392,7 @@ LAB_1805cb95a:
       *(int *)(unaff_RDI + 0x2f2) = iVar4;
       if (fVar15 < *(float *)(*(longlong *)(*unaff_RDI + 0x20) + 0x8c) * 4.0) {
         if (iVar4 == 3) {
-          if (0.0 < (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RDI[0x2ea] * 8) -
+          if (0.0 < (float)(*(longlong *)(&system_error_code + (longlong)(int)unaff_RDI[0x2ea] * 8) -
                            unaff_RDI[0x2e9]) * 1e-05) {
             pcVar7 = (char *)FUN_1805b7420(unaff_RDI + 1);
             if (*pcVar7 == '\0') {
@@ -402,13 +402,13 @@ LAB_1805cb95a:
                   (cVar3 = func_0x0001805b7cd0(), cVar3 != '\0')))) {
                 *(int32_t *)(unaff_RDI + 0x2f1) = 0;
                 unaff_RDI[0x2ed] =
-                     *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RDI[0x2ee] * 8) +
+                     *(longlong *)(&system_error_code + (longlong)(int)unaff_RDI[0x2ee] * 8) +
                      -0x8000000000000000;
                 fVar13 = *(float *)((longlong)unaff_RDI + 0x21a4);
                 fVar15 = *(float *)(*unaff_RDI + 0x2d4);
                 *(float *)((longlong)unaff_RDI + 0x21a4) = *(float *)(*unaff_RDI + 0x324) * 0.1;
                 unaff_RDI[0x2e0] =
-                     *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RDI[0x2e1] * 8) -
+                     *(longlong *)(&system_error_code + (longlong)(int)unaff_RDI[0x2e1] * 8) -
                      (longlong)
                      (((-2.0 / fVar15) * *(float *)(unaff_RDI + 0x28d) - fVar13) * 100000.0);
               }
@@ -417,7 +417,7 @@ LAB_1805cb95a:
               *(int32_t *)((longlong)unaff_RDI + 0x178c) = 2;
               lVar5 = FUN_1805a0610(*unaff_RDI + 0x28,1);
               if (lVar5 != 0) {
-                lVar8 = FUN_18053a5a0(&DAT_180c95f30,
+                lVar8 = FUN_18053a5a0(&system_data_5f30,
                                       *(int32_t *)(*(longlong *)(*unaff_RDI + 0x590) + 0xac),
                                       *(int32_t *)(lVar5 + 0x1c));
                 lVar5 = *unaff_RDI;
@@ -435,7 +435,7 @@ LAB_1805cb95a:
                 uVar10 = uVar10 << 5 ^ uVar10;
                 *(uint *)(unaff_RDI + 0x272) = uVar10;
                 unaff_RDI[0x2e9] =
-                     *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RDI[0x2ea] * 8) -
+                     *(longlong *)(&system_error_code + (longlong)(int)unaff_RDI[0x2ea] * 8) -
                      (longlong)
                      ((fVar13 / (fVar14 * fVar15) + fVar1 + 0.25 +
                       (float)(uVar10 - 1) * 5.820766e-11) * -100000.0);
@@ -444,7 +444,7 @@ LAB_1805cb95a:
           }
         }
         else if (((iVar4 - 1U & 0xfffffffc) == 0) && (iVar4 != 3)) {
-          if (((1.0 < (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RDI[0x2ea] * 8) -
+          if (((1.0 < (float)(*(longlong *)(&system_error_code + (longlong)(int)unaff_RDI[0x2ea] * 8) -
                              unaff_RDI[0x2e9]) * 1e-05) &&
               (cVar3 = func_0x000180522f60(*unaff_RDI), cVar3 == '\0')) &&
              ((*(uint *)((longlong)unaff_RDI + 0x209c) >> 0xb & 1) == 0)) {
@@ -565,7 +565,7 @@ void FUN_1805cba86(void)
       *(int *)(unaff_RDI + 0x2f2) = iVar5;
       if (fVar14 < *(float *)(*(longlong *)(*unaff_RDI + 0x20) + 0x8c) * 4.0) {
         if (iVar5 == 3) {
-          if (0.0 < (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RDI[0x2ea] * 8) -
+          if (0.0 < (float)(*(longlong *)(&system_error_code + (longlong)(int)unaff_RDI[0x2ea] * 8) -
                            unaff_RDI[0x2e9]) * 1e-05) {
             pcVar7 = (char *)FUN_1805b7420(unaff_RDI + 1);
             if (*pcVar7 == '\0') {
@@ -578,13 +578,13 @@ void FUN_1805cba86(void)
                 }
                 *(int32_t *)(unaff_RDI + 0x2f1) = 0;
                 unaff_RDI[0x2ed] =
-                     *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RDI[0x2ee] * 8) +
+                     *(longlong *)(&system_error_code + (longlong)(int)unaff_RDI[0x2ee] * 8) +
                      -0x8000000000000000;
                 fVar1 = *(float *)((longlong)unaff_RDI + 0x21a4);
                 fVar14 = *(float *)(*unaff_RDI + 0x2d4);
                 *(float *)((longlong)unaff_RDI + 0x21a4) = *(float *)(*unaff_RDI + 0x324) * 0.1;
                 unaff_RDI[0x2e0] =
-                     *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RDI[0x2e1] * 8) -
+                     *(longlong *)(&system_error_code + (longlong)(int)unaff_RDI[0x2e1] * 8) -
                      (longlong)
                      (((-2.0 / fVar14) * *(float *)(unaff_RDI + 0x28d) - fVar1) * 100000.0);
               }
@@ -593,7 +593,7 @@ void FUN_1805cba86(void)
               *(int32_t *)((longlong)unaff_RDI + 0x178c) = 2;
               lVar8 = FUN_1805a0610(*unaff_RDI + 0x28,1);
               if (lVar8 != 0) {
-                lVar9 = FUN_18053a5a0(&DAT_180c95f30,
+                lVar9 = FUN_18053a5a0(&system_data_5f30,
                                       *(int32_t *)(*(longlong *)(*unaff_RDI + 0x590) + 0xac),
                                       *(int32_t *)(lVar8 + 0x1c));
                 lVar8 = *unaff_RDI;
@@ -611,7 +611,7 @@ void FUN_1805cba86(void)
                 uVar11 = uVar11 << 5 ^ uVar11;
                 *(uint *)(unaff_RDI + 0x272) = uVar11;
                 unaff_RDI[0x2e9] =
-                     *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RDI[0x2ea] * 8) -
+                     *(longlong *)(&system_error_code + (longlong)(int)unaff_RDI[0x2ea] * 8) -
                      (longlong)
                      ((fVar1 / (fVar13 * fVar14) + fVar2 + 0.25 + (float)(uVar11 - 1) * 5.820766e-11
                       ) * -100000.0);
@@ -620,7 +620,7 @@ void FUN_1805cba86(void)
           }
         }
         else if (((iVar5 - 1U & 0xfffffffc) == 0) && (iVar5 != 3)) {
-          if (1.0 < (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RDI[0x2ea] * 8) -
+          if (1.0 < (float)(*(longlong *)(&system_error_code + (longlong)(int)unaff_RDI[0x2ea] * 8) -
                            unaff_RDI[0x2e9]) * 1e-05) {
             cVar4 = func_0x000180522f60(*unaff_RDI);
             if ((cVar4 == '\0') && ((*(uint *)((longlong)unaff_RDI + 0x209c) >> 0xb & 1) == 0)) {

@@ -1085,7 +1085,7 @@ longlong FUN_1800ba230(longlong renderer_context)
     *(uint32_t*)(renderer_context + 0x24) = 0x40000000;
     *(uint32_t*)(renderer_context + 0x2c) = 3;
     *(uint64_t*)(renderer_context + 0x10) = 1;
-    *(uint64_t**)(renderer_context + 8) = &DAT_180be0000;
+    *(uint64_t**)(renderer_context + 8) = &system_memory_0000;
     *(uint64_t*)(renderer_context + 0x18) = 0;
     *(uint32_t*)(renderer_context + 0x28) = 0;
     FUN_1806279c0(renderer_context + 0x30);
@@ -1415,7 +1415,7 @@ void FUN_1800baa80(uint64_t* dir_param)
     *path_ptr = 0x737265646168532f;
     *(uint16_t*)(path_ptr + 1) = 0x2f;
     *(int*)(dir_param + 2) = string_length + 0x27;
-    if (DAT_180d48d40 == '\0') {
+    if (system_memory_8d40 == '\0') {
         // 处理特殊情况
     }
 }

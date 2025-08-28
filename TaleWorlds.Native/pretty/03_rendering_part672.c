@@ -98,7 +98,7 @@ FUN_18064ec60(uint64_t param_1,int8_t *param_2,ulonglong param_3,ulonglong param
           param_3 = uVar1;
         }
         puVar3 = param_2;
-        if (DAT_180c8f000 == '\0') {
+        if (system_counter_f000 == '\0') {
                     // WARNING: Subroutine does not return
           memcpy(puVar2,param_2,param_3);
         }
@@ -140,7 +140,7 @@ void FUN_18064ecae(void)
   if (uVar1 < unaff_RBX) {
     unaff_RBX = uVar1;
   }
-  if (DAT_180c8f000 == '\0') {
+  if (system_counter_f000 == '\0') {
                     // WARNING: Subroutine does not return
     memcpy(puVar2);
   }
@@ -613,7 +613,7 @@ ulonglong FUN_18064f640(void)
     }
   }
   plVar1 = plVar5 + 0x17e;
-  if (DAT_180c8f000 != '\0') {
+  if (system_counter_f000 != '\0') {
     puVar9 = &UNK_1809fbf40;
     plVar10 = plVar1;
     for (lVar8 = 0x618; lVar8 != 0; lVar8 = lVar8 + -1) {
@@ -740,7 +740,7 @@ ulonglong FUN_18064f683(void)
     }
   }
   plVar1 = plVar5 + 0x17e;
-  if (DAT_180c8f000 != '\0') {
+  if (system_counter_f000 != '\0') {
     puVar9 = &UNK_1809fbf40;
     plVar10 = plVar1;
     for (lVar8 = 0x618; lVar8 != 0; lVar8 = lVar8 + -1) {
@@ -850,7 +850,7 @@ ulonglong FUN_18064f6ed(void)
   int8_t *unaff_R15;
   
   plVar1 = unaff_RBX + 0x17e;
-  if (DAT_180c8f000 != '\0') {
+  if (system_counter_f000 != '\0') {
     puVar8 = &UNK_1809fbf40;
     plVar9 = plVar1;
     for (lVar7 = 0x618; lVar7 != 0; lVar7 = lVar7 + -1) {

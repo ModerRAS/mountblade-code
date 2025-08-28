@@ -286,7 +286,7 @@ LAB_18051edd6:
         *(int32_t *)(unaff_RBP + -1) = uVar4;
         *(int32_t *)((longlong)unaff_RBP + -4) = uVar12;
       }
-      FUN_18055dcf0(&DAT_180c925a0,*(int32_t *)(unaff_RBX + 0x10),uVar23,puVar25,
+      FUN_18055dcf0(&system_data_25a0,*(int32_t *)(unaff_RBX + 0x10),uVar23,puVar25,
                     (extraout_var | (byte)(uVar18 >> 0x10)) & 1);
     }
   }
@@ -566,7 +566,7 @@ LAB_18051f007:
         *(int32_t *)(unaff_RBP + -1) = uVar4;
         *(int32_t *)((longlong)unaff_RBP + -4) = uVar12;
       }
-      FUN_18055dcf0(&DAT_180c925a0,*(int32_t *)(unaff_RBX + 0x10),uVar22,puVar24,
+      FUN_18055dcf0(&system_data_25a0,*(int32_t *)(unaff_RBX + 0x10),uVar22,puVar24,
                     (extraout_var | (byte)(uVar16 >> 0x10)) & 1);
     }
   }

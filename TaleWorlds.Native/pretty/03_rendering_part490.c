@@ -509,7 +509,7 @@ LAB_18052c185:
     uStack_150 = 10;
     strcpy_s(auStack_148,0xc,&UNK_180a2fca0);
     lVar4 = (longlong)iStack_78;
-    puVar5 = &DAT_18098bc73;
+    puVar5 = &system_buffer_ptr;
     if (puStack_158 != (void *)0x0) {
       puVar5 = puStack_158;
     }
@@ -541,7 +541,7 @@ LAB_18052c185:
     uStack_150 = 4;
     strcpy_s(auStack_148,8,&UNK_180a2fcd8);
     lVar4 = (longlong)iStack_78;
-    puVar5 = &DAT_18098bc73;
+    puVar5 = &system_buffer_ptr;
     if (puStack_158 != (void *)0x0) {
       puVar5 = puStack_158;
     }

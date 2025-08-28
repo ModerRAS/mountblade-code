@@ -66,7 +66,7 @@ LAB_1808e4bda:
       do {
         plVar6 = plVar12 + 2;
         if (plVar12 == (longlong *)0x0) {
-          plVar6 = (longlong *)&DAT_00000018;
+          plVar6 = (longlong *)&system_data_0018;
         }
         iVar9 = *(int *)(param_1 + 0x40) + 1;
         uVar5 = *(uint64_t *)(*plVar6 + 0x10);
@@ -221,7 +221,7 @@ LAB_1808e4bda:
       do {
         plVar6 = plVar12 + 2;
         if (plVar12 == (longlong *)0x0) {
-          plVar6 = (longlong *)&DAT_00000018;
+          plVar6 = (longlong *)&system_data_0018;
         }
         iVar9 = *(int *)(unaff_RSI + 0x40) + 1;
         uVar5 = *(uint64_t *)(*plVar6 + 0x10);

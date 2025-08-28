@@ -263,7 +263,7 @@ FUN_1803a7870(uint64_t *param_1,uint64_t param_2,float param_3,float *param_4,fl
   *(uint64_t *)((longlong)param_1 + 0x4e4) = 0x40000000;
   *(int32_t *)((longlong)param_1 + 0x4ec) = 3;
   param_1[0x9a] = 1;
-  param_1[0x99] = &DAT_180be0000;
+  param_1[0x99] = &system_data_0000;
   param_1[0x9b] = 0;
   *(int32_t *)(param_1 + 0x9d) = 0;
   param_1[0x9e] = 0;

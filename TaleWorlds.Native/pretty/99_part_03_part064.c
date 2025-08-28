@@ -85,7 +85,7 @@ void FUN_18023690b(void)
       else {
         in_stack_00000068 = func_0x000180079240();
       }
-      puVar12 = &DAT_18098bc73;
+      puVar12 = &system_buffer_ptr;
       if (*(void **)(in_stack_00000068 + 8) != (void *)0x0) {
         puVar12 = *(void **)(in_stack_00000068 + 8);
       }

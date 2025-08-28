@@ -8,7 +8,7 @@ uint64_t _DAT_180c8aa00;  // 数据表指针
 uint64_t UNK_180a3c3e0;  // 默认对象模板
 uint64_t UNK_18098bcb0;  // 基础对象模板
 uint64_t UNK_1809ffae0;  // 字符串处理模板
-uint64_t DAT_18098bc73;  // 默认名称指针
+uint64_t system_buffer_ptr;  // 默认名称指针
 
 // 常量定义
 #define MATRIX_SIZE_4X4 16      // 4x4矩阵大小
@@ -64,7 +64,7 @@ void initialize_3d_object_transform(uint64_t *object_ptr, longlong config_ptr)
             (transform_data = *bone_ptr, transform_data != 0)) && 
             ((*(uint *)(transform_data + 0x328) & 0x200000) == 0)) {
             
-            void *name_ptr = &DAT_18098bc73;
+            void *name_ptr = &system_buffer_ptr;
             if (*(void **)(transform_data + 0x18) != (void *)0x0) {
                 name_ptr = *(void **)(transform_data + 0x18);
             }

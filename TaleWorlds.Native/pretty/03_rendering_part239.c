@@ -87,7 +87,7 @@ void FUN_1804013a0(longlong param_1,uint64_t param_2,longlong param_3,int32_t pa
   
   uStack_158 = 0xfffffffffffffffe;
   uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_278;
-  puVar16 = &DAT_18098bc73;
+  puVar16 = &system_buffer_ptr;
   if (*(void **)(param_1 + 0x18) != (void *)0x0) {
     puVar16 = *(void **)(param_1 + 0x18);
   }
@@ -128,7 +128,7 @@ void FUN_1804013a0(longlong param_1,uint64_t param_2,longlong param_3,int32_t pa
     memcpy((int8_t *)((longlong)puVar8 + 0xc),*(uint64_t *)(param_1 + 0x18),
            (longlong)(iVar14 + 1));
   }
-  puVar19 = (uint64_t *)&DAT_18098bc73;
+  puVar19 = (uint64_t *)&system_buffer_ptr;
   if (puVar8 != (uint64_t *)0x0) {
     puVar19 = puVar8;
   }
@@ -527,8 +527,8 @@ void FUN_1804013a0(longlong param_1,uint64_t param_2,longlong param_3,int32_t pa
         FUN_18029d000(*(uint64_t *)(_DAT_180c86938 + 0x1cd8),4);
         FUN_18029cdd0(*(uint64_t *)(_DAT_180c86938 + 0x1cd8),param_1 + 0xf8);
         lVar15 = _DAT_180c86938;
-        lVar9 = strnlen(&DAT_180a26f50,0x3f);
-        strncpy(lVar15 + 0x1ce0,&DAT_180a26f50,lVar9);
+        lVar9 = strnlen(&system_data_6f50,0x3f);
+        strncpy(lVar15 + 0x1ce0,&system_data_6f50,lVar9);
         *(int8_t *)(lVar15 + 0x1ce0 + lVar9) = 0;
         FUN_18029e110(*(uint64_t *)(_DAT_180c86938 + 0x1cd8));
         pplStack_240 = (longlong **)0x0;

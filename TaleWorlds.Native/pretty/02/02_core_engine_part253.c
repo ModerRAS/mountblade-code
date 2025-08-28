@@ -645,7 +645,7 @@ void process_configuration_file(longlong param_1)
   FUN_1801596c0();
   FUN_180624440(temp_buffer, stack_buffer2);
   FUN_1800c4720(stream_handle);
-  default_ptr = &DAT_18098bc73;
+  default_ptr = &system_buffer_ptr;
   if (file_ptr != (void *)0x0) {
     default_ptr = file_ptr;
   }
@@ -775,7 +775,7 @@ void process_resource_file(longlong param_1, uint64_t param_2, uint64_t param_3,
   FUN_1801597a0(param_1, &cleanup_ptr, param_3, param_4, 0);
   stack_cookie = 0;
   temp_long2 = 0;
-  default_ptr = &DAT_18098bc73;
+  default_ptr = &system_buffer_ptr;
   if (file_ptr != (void *)0x0) {
     default_ptr = file_ptr;
   }
@@ -791,7 +791,7 @@ void process_resource_file(longlong param_1, uint64_t param_2, uint64_t param_3,
     header_ptr[2] = 0x672e7361;
     header_ptr[3] = 0x732e6e65;
     header_ptr[4] = 0x666465;
-    default_ptr = &DAT_18098bc73;
+    default_ptr = &system_buffer_ptr;
     if (*(void **)(file_handle + 8) != (void *)0x0) {
       default_ptr = *(void **)(file_handle + 8);
     }
@@ -957,7 +957,7 @@ LAB_18021ae8e:
       table_entry = table_entry + 0x13;
     } while (cache_result < search_length);
   }
-  error_handler = &DAT_18098bc73;
+  error_handler = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     error_handler = *(void **)(param_2 + 8);
   }
@@ -1024,7 +1024,7 @@ LAB_18021ae8e:
       range_entry = range_entry + 0x13;
     } while (entry_count < range_length);
   }
-  error_handler = &DAT_18098bc73;
+  error_handler = &system_buffer_ptr;
   if (*(void **)(unaff_RSI + 8) != (void *)0x0) {
     error_handler = *(void **)(unaff_RSI + 8);
   }
@@ -1100,7 +1100,7 @@ LAB_18021af9e:
       list_entry = list_entry + 5;
     } while (entry_count < search_length);
   }
-  error_handler = &DAT_18098bc73;
+  error_handler = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     error_handler = *(void **)(param_2 + 8);
   }

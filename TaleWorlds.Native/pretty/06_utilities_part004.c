@@ -987,7 +987,7 @@ void UtilitiesSystem_DataHandler2(longlong param_1, longlong param_2)
             // 处理数据
             temp_pointer = next_pointer + 2;
             if (next_pointer == (longlong *)0x0) {
-                temp_pointer = (longlong *)&DAT_00000018;
+                temp_pointer = (longlong *)&system_memory_0018;
             }
             
             // 更新指针

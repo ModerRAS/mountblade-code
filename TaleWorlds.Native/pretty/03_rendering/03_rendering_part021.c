@@ -223,7 +223,7 @@ PATH_SEPARATOR_FOUND:
         path_length = param_offset;
         if (*(longlong *)(render_context + 0x40) - file_position >> 4 == 0) {
 LAB_18027c5be:
-          string_ptr = &DAT_18098bc73;
+          string_ptr = &system_buffer_ptr;
           if (ptr2 != (void *)0x0) {
             string_ptr = ptr2;
           }
@@ -248,7 +248,7 @@ LAB_18027c5be:
               param_value = FUN_18064e990(texture_path);
               texture_size = CONCAT44(texture_size._4_4_, param_value);
               if (0 < *(int *)(file_position + 0x20)) {
-                string_ptr = &DAT_18098bc73;
+                string_ptr = &system_buffer_ptr;
                 if (*(void **)(file_position + 0x18) != (void *)0x0) {
                   string_ptr = *(void **)(file_position + 0x18);
                 }
@@ -260,7 +260,7 @@ LAB_18027c5be:
             {
               *texture_path = '\0';
             }
-            while ((0 < (int)texture_path_len && (file_position = strstr(texture_path, &DAT_180a0ff10), file_position != 0))
+            while ((0 < (int)texture_path_len && (file_position = strstr(texture_path, &system_memory_ff10), file_position != 0))
                   ) {
               entry_count = 6;
               param_index = (int)file_position - (int)texture_path;

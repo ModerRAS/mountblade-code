@@ -361,28 +361,28 @@ extern uint64_t UNK_180bd8a18;
 extern uint64_t UNK_180bd88e8;
 
 /** 数学计算常量变量 */
-extern uint64_t DAT_180d9f5d0;
-extern uint64_t DAT_180d9f5c0;
-extern uint64_t DAT_180d9f580;
-extern uint64_t DAT_180d9f600;
-extern uint64_t DAT_180d9f6d0;
-extern uint64_t DAT_180d9f680;
-extern uint64_t DAT_180d9f670;
-extern uint64_t DAT_180d9f6b0;
-extern uint64_t DAT_180d9f610;
+extern uint64_t system_memory_f5d0;
+extern uint64_t system_memory_f5c0;
+extern uint64_t system_memory_f580;
+extern uint64_t system_memory_f600;
+extern uint64_t system_memory_f6d0;
+extern uint64_t system_memory_f680;
+extern uint64_t system_memory_f670;
+extern uint64_t system_memory_f6b0;
+extern uint64_t system_memory_f610;
 extern uint64_t UNK_180d9f410;
 extern uint64_t UNK_180d9f418;
-extern uint64_t DAT_180d9f008;
-extern uint64_t DAT_180d9f000;
-extern uint64_t DAT_180d9fd20;
-extern uint64_t DAT_180d9fd10;
-extern uint64_t DAT_180d9fce0;
-extern uint64_t DAT_180d9fcd0;
-extern uint64_t DAT_180d9fda0;
-extern uint64_t DAT_180d9fd90;
-extern uint64_t DAT_180d9fd30;
-extern uint64_t DAT_180d9fdc0;
-extern uint64_t DAT_180d9fc80;
+extern uint64_t system_memory_f008;
+extern uint64_t system_memory_f000;
+extern uint64_t system_memory_fd20;
+extern uint64_t system_memory_fd10;
+extern uint64_t system_memory_fce0;
+extern uint64_t system_memory_fcd0;
+extern uint64_t system_memory_fda0;
+extern uint64_t system_memory_fd90;
+extern uint64_t system_memory_fd30;
+extern uint64_t system_memory_fdc0;
+extern uint64_t system_memory_fc80;
 extern uint64_t UNK_180d9fb10;
 extern uint64_t UNK_180d9fb18;
 extern uint64_t UNK_180d9f708;
@@ -809,16 +809,16 @@ ulonglong VectorMathSinCalculator(uint64_t param_1, int32_t param_2)
     fVar13 = in_XMM0._0_4_;
     fVar14 = in_XMM0._4_4_;
     auVar37 = in_XMM0 & _DAT_180d9f600;
-    fVar20 = (float)DAT_180d9f5d0;
+    fVar20 = (float)system_memory_f5d0;
     uVar35 = -(uint)(0x461c4000 < auVar37._0_4_);
     uVar39 = -(uint)(0x461c4000 < auVar37._4_4_);
     auVar38._0_8_ = CONCAT44(uVar39, uVar35);
     auVar38._8_4_ = -(uint)(0x461c4000 < auVar37._8_4_);
     auVar38._12_4_ = -(uint)(0x461c4000 < auVar37._12_4_);
-    fVar29 = (float)DAT_180d9f5c0;
+    fVar29 = (float)system_memory_f5c0;
     uVar1 = movmskps(in_EAX, auVar38);
-    fVar15 = DAT_180d9f5d0._4_4_;
-    fVar16 = DAT_180d9f5c0._4_4_;
+    fVar15 = system_memory_f5d0._4_4_;
+    fVar16 = system_memory_f5c0._4_4_;
     
     /* 检查是否在正常范围内 */
     if (uVar1 == 0) {
@@ -841,7 +841,7 @@ ulonglong VectorMathSinCalculator(uint64_t param_1, int32_t param_2)
     }
     
     /* 处理超出正常范围的情况 */
-    uStack_d8 = (ulonglong)DAT_180d9f6d0 & in_XMM0._0_8_;
+    uStack_d8 = (ulonglong)system_memory_f6d0 & in_XMM0._0_8_;
     iVar7 = (int)(fVar13 * 0.31830987);
     iVar9 = (int)(fVar14 * 0.31830987);
     iVar11 = (int)(in_XMM0._8_4_ * 0.31830987);
@@ -962,9 +962,9 @@ ulonglong VectorMathSinCalculator(uint64_t param_1, int32_t param_2)
             auVar19._12_4_ = iVar12 << 0x1f;
             fVar29 = ((fVar13 - fVar20 * fVar5) - fVar29 * fVar5) - fVar5 * 1.5099067e-07;
             fVar16 = ((fVar14 - fVar15 * fVar8) - fVar16 * fVar8) - fVar8 * 1.5099067e-07;
-            fVar17 = ((in_XMM0._8_4_ - DAT_180d9f5d0._8_4_ * fVar6) - DAT_180d9f5c0._8_4_ * fVar6) -
+            fVar17 = ((in_XMM0._8_4_ - system_memory_f5d0._8_4_ * fVar6) - system_memory_f5c0._8_4_ * fVar6) -
                      fVar6 * 1.5099067e-07;
-            fVar18 = ((in_XMM0._12_4_ - DAT_180d9f5d0._12_4_ * fVar10) - DAT_180d9f5c0._12_4_ * fVar10) -
+            fVar18 = ((in_XMM0._12_4_ - system_memory_f5d0._12_4_ * fVar10) - system_memory_f5c0._12_4_ * fVar10) -
                      fVar10 * 1.5099067e-07;
             fVar13 = fVar29 - fVar5 * 5.126688e-12;
             fVar14 = fVar16 - fVar8 * 5.126688e-12;
@@ -975,16 +975,16 @@ ulonglong VectorMathSinCalculator(uint64_t param_1, int32_t param_2)
             fVar17 = fVar17 * fVar17;
             fVar18 = fVar18 * fVar18;
             auVar37._0_4_ =
-                 (((fVar29 * 2.608e-06 + -0.000198107) * fVar29 + (float)DAT_180d9f580) * fVar29 +
+                 (((fVar29 * 2.608e-06 + -0.000198107) * fVar29 + (float)system_memory_f580) * fVar29 +
                  -0.16666658) * fVar29 * fVar13 + fVar13;
             auVar37._4_4_ =
-                 (((fVar16 * 2.608e-06 + -0.000198107) * fVar16 + DAT_180d9f580._4_4_) * fVar16 +
+                 (((fVar16 * 2.608e-06 + -0.000198107) * fVar16 + system_memory_f580._4_4_) * fVar16 +
                  -0.16666658) * fVar16 * fVar14 + fVar14;
             auVar37._8_4_ =
-                 (((fVar17 * 2.608e-06 + -0.000198107) * fVar17 + DAT_180d9f580._8_4_) * fVar17 +
+                 (((fVar17 * 2.608e-06 + -0.000198107) * fVar17 + system_memory_f580._8_4_) * fVar17 +
                  -0.16666658) * fVar17 * fVar20 + fVar20;
             auVar37._12_4_ =
-                 (((fVar18 * 2.608e-06 + -0.000198107) * fVar18 + DAT_180d9f580._12_4_) * fVar18 +
+                 (((fVar18 * 2.608e-06 + -0.000198107) * fVar18 + system_memory_f580._12_4_) * fVar18 +
                  -0.16666658) * fVar18 * fVar15 + fVar15;
             aauStack_38[0] = auVar37 ^ auVar19;
         }
@@ -1014,7 +1014,7 @@ ulonglong VectorMathSinCalculator(uint64_t param_1, int32_t param_2)
                                               ((3320.092545592124 - dVar21 * dVar21) *
                                               *(double *)(&UNK_180d9f008 + uVar2 * 8)) ^
                                              (ulonglong)((uVar35 & 0x100) << 0x17) << 0x20) +
-                            *(double *)(&DAT_180d9f000 + uVar2 * 8) * dVar21 *
+                            *(double *)(&system_memory_f000 + uVar2 * 8) * dVar21 *
                             (double)((ulonglong)(9960.277636776373 - dVar21 * dVar21) ^
                                     (ulonglong)(((uVar35 & 0x180) + 0x80 & 0x100) << 0x17) << 0x20));
                 }
@@ -1094,18 +1094,18 @@ ulonglong VectorMathCosCalculator(uint64_t param_1, int32_t param_2)
     fVar20 = auVar8._4_4_;
     fVar11 = auVar8._12_4_;
     fVar6 = auVar8._8_4_;
-    fVar5 = (fVar16 + (float)DAT_180d9fd10) * 0.31830987;
-    fVar10 = (fVar20 + DAT_180d9fd10._4_4_) * 0.31830987;
-    fVar35 = (float)DAT_180d9fce0;
+    fVar5 = (fVar16 + (float)system_memory_fd10) * 0.31830987;
+    fVar10 = (fVar20 + system_memory_fd10._4_4_) * 0.31830987;
+    fVar35 = (float)system_memory_fce0;
     uVar38 = -(uint)(0x461c4000 < (int)fVar16);
     uVar39 = -(uint)(0x461c4000 < (int)fVar20);
     auVar8._0_8_ = CONCAT44(uVar39, uVar38);
     auVar8._8_4_ = -(uint)(0x461c4000 < (int)fVar6);
     auVar8._12_4_ = -(uint)(0x461c4000 < (int)fVar11);
-    fVar36 = (float)DAT_180d9fcd0;
+    fVar36 = (float)system_memory_fcd0;
     uVar1 = movmskps(in_EAX, auVar8);
-    fVar27 = DAT_180d9fce0._4_4_;
-    fVar28 = DAT_180d9fcd0._4_4_;
+    fVar27 = system_memory_fce0._4_4_;
+    fVar28 = system_memory_fcd0._4_4_;
     
     /* 检查是否在正常范围内 */
     if (uVar1 == 0) {
@@ -1232,8 +1232,8 @@ ulonglong VectorMathCosCalculator(uint64_t param_1, int32_t param_2)
     else {
         if (uVar1 != 0xf) {
             /* 处理特殊情况和无限大值 */
-            iVar3 = (int)((fVar6 + DAT_180d9fd10._8_4_) * 0.31830987);
-            iVar14 = (int)((fVar11 + DAT_180d9fd10._12_4_) * 0.31830987);
+            iVar3 = (int)((fVar6 + system_memory_fd10._8_4_) * 0.31830987);
+            iVar14 = (int)((fVar11 + system_memory_fd10._12_4_) * 0.31830987);
             fVar7 = (float)(int)fVar5 - 0.5;
             fVar12 = (float)(int)fVar10 - 0.5;
             fVar13 = (float)iVar3 - 0.5;
@@ -1244,9 +1244,9 @@ ulonglong VectorMathCosCalculator(uint64_t param_1, int32_t param_2)
             auVar34._12_4_ = iVar14 << 0x1f;
             fVar35 = ((fVar16 - fVar35 * fVar7) - fVar36 * fVar7) - fVar7 * 1.5099067e-07;
             fVar27 = ((fVar20 - fVar27 * fVar12) - fVar28 * fVar12) - fVar12 * 1.5099067e-07;
-            fVar6 = ((fVar6 - DAT_180d9fce0._8_4_ * fVar13) - DAT_180d9fcd0._8_4_ * fVar13) -
+            fVar6 = ((fVar6 - system_memory_fce0._8_4_ * fVar13) - system_memory_fcd0._8_4_ * fVar13) -
                     fVar13 * 1.5099067e-07;
-            fVar11 = ((fVar11 - DAT_180d9fce0._12_4_ * fVar15) - DAT_180d9fcd0._12_4_ * fVar15) -
+            fVar11 = ((fVar11 - system_memory_fce0._12_4_ * fVar15) - system_memory_fcd0._12_4_ * fVar15) -
                      fVar15 * 1.5099067e-07;
             fVar16 = fVar35 - fVar7 * 5.126688e-12;
             fVar5 = fVar27 - fVar12 * 5.126688e-12;
@@ -1256,14 +1256,14 @@ ulonglong VectorMathCosCalculator(uint64_t param_1, int32_t param_2)
             fVar27 = fVar27 * fVar27;
             fVar6 = fVar6 * fVar6;
             fVar11 = fVar11 * fVar11;
-            auVar9._0_4_ = (((fVar35 * 2.608e-06 + -0.000198107) * fVar35 + (float)DAT_180d9fc80) * fVar35
+            auVar9._0_4_ = (((fVar35 * 2.608e-06 + -0.000198107) * fVar35 + (float)system_memory_fc80) * fVar35
                            + -0.16666658) * fVar35 * fVar16 + fVar16;
-            auVar9._4_4_ = (((fVar27 * 2.608e-06 + -0.000198107) * fVar27 + DAT_180d9fc80._4_4_) * fVar27
+            auVar9._4_4_ = (((fVar27 * 2.608e-06 + -0.000198107) * fVar27 + system_memory_fc80._4_4_) * fVar27
                            + -0.16666658) * fVar27 * fVar5 + fVar5;
-            auVar9._8_4_ = (((fVar6 * 2.608e-06 + -0.000198107) * fVar6 + DAT_180d9fc80._8_4_) * fVar6 +
+            auVar9._8_4_ = (((fVar6 * 2.608e-06 + -0.000198107) * fVar6 + system_memory_fc80._8_4_) * fVar6 +
                            -0.16666658) * fVar6 * fVar20 + fVar20;
             auVar9._12_4_ =
-                 (((fVar11 * 2.608e-06 + -0.000198107) * fVar11 + DAT_180d9fc80._12_4_) * fVar11 +
+                 (((fVar11 * 2.608e-06 + -0.000198107) * fVar11 + system_memory_fc80._12_4_) * fVar11 +
                  -0.16666658) * fVar11 * fVar10 + fVar10;
             aauStack_38[0] = auVar9 ^ auVar34;
         }

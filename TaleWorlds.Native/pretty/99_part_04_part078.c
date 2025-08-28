@@ -151,12 +151,12 @@ void FUN_1802cf670(longlong param_1,longlong param_2)
         uStack_468 = 0;
         auStack_460[0] = 0;
         FUN_1802d3af0(&puStack_478,&UNK_180a190f0,uVar15);
-        puVar11 = &DAT_18098bc73;
+        puVar11 = &system_buffer_ptr;
         if (puStack_470 != (void *)0x0) {
           puVar11 = puStack_470;
         }
         FUN_1802c22a0(auStack_668,puVar11);
-        puVar11 = &DAT_18098bc73;
+        puVar11 = &system_buffer_ptr;
         if (puStack_470 != (void *)0x0) {
           puVar11 = puStack_470;
         }

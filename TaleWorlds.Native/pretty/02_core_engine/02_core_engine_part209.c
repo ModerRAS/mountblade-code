@@ -57,7 +57,7 @@ void process_face_animation_data(uint64_t animation_system, uint64_t param_2, ui
       current_name = current_name + (longlong)record_name;
       record_offset = search_name;
       if (current_name <= record_name) break;
-      name_offset = (longlong)&DAT_180a04ee4 - (longlong)record_name;
+      name_offset = (longlong)&system_buffer_4ee4 - (longlong)record_name;
       while (*record_name == record_name[name_offset]) {
         record_name = record_name + 1;
         if (current_name <= record_name) goto LAB_base_found;

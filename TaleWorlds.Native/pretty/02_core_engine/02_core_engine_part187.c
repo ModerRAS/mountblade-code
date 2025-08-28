@@ -31,7 +31,7 @@ void initialize_engine_core_module(uint64_t *module_config)
   name_buffer[0] = 0;
   buffer_size = 0;
   module_ptr = module_config;
-  strcpy_s(name_buffer,0x10,&DAT_18098bc73);
+  strcpy_s(name_buffer,0x10,&system_buffer_ptr);
   initialize_resource_buffer(temp_buffer_2,&resource_ptr);
   initialize_engine_system();
   resource_ptr = &UNK_18098bcb0;
@@ -156,7 +156,7 @@ initialize_engine_resource_manager(uint64_t *param_1,uint64_t param_2,uint64_t p
   uVar4 = 0;
   plVar2 = (longlong *)FUN_18064e2a0();
   puVar3 = (void *)(*plVar2 + 0x3d8);
-  if (puVar3 != &DAT_180c8ed80) {
+  if (puVar3 != &system_buffer_ed80) {
     FUN_1806470a0();
                     // WARNING: Subroutine does not return
     memset(puVar3,0,0x240,param_4,uVar4,uVar5);
@@ -739,7 +739,7 @@ uint64_t manage_engine_texture_resources(uint64_t param_1,uint64_t param_2,longl
     uStack_28 = 0;
     FUN_180628420(&puStack_38,*(int32_t *)(*(longlong *)(_DAT_180c86870 + 0x3d8) + 0x160),param_3
                   ,param_4,0,0xfffffffffffffffe);
-    puVar4 = &DAT_18098bc73;
+    puVar4 = &system_buffer_ptr;
     if (puStack_30 != (void *)0x0) {
       puVar4 = puStack_30;
     }
@@ -1132,9 +1132,9 @@ initialize_engine_stencil_buffer(uint64_t param_1,uint64_t param_2,uint64_t para
 {
   void *puVar1;
   
-  puVar1 = &DAT_180a089e8;
+  puVar1 = &system_buffer_89e8;
   if (*(int *)*param_4 != 0) {
-    puVar1 = &DAT_180a08120;
+    puVar1 = &system_buffer_8120;
   }
   FUN_180627910(param_1,puVar1,param_3,param_4,0,0xfffffffffffffffe);
   return param_1;
@@ -1248,7 +1248,7 @@ uint64_t configure_engine_scissor_region(uint64_t param_1,uint64_t param_2,longl
   if (plVar2 != (longlong *)0x0) {
     (**(code **)(*plVar2 + 0x38))(plVar2);
   }
-  FUN_180627910(param_1,&DAT_18098bc73);
+  FUN_180627910(param_1,&system_buffer_ptr);
   return param_1;
 }
 
@@ -1291,7 +1291,7 @@ initialize_engine_clear_operation(uint64_t param_1,uint64_t param_2,uint64_t par
   }
   else {
     FUN_180170ac0(0,&UNK_180a08100,param_3,param_4,0,0xfffffffffffffffe);
-    puVar1 = &DAT_180a080cc;
+    puVar1 = &system_buffer_80cc;
   }
   FUN_180627910(param_1,puVar1);
   return param_1;

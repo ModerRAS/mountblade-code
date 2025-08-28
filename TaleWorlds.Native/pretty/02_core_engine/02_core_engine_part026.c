@@ -527,7 +527,7 @@ LAB_FINAL_NEWLINE:
   string_index = _DAT_180c86950;
   
   // 处理调试信息
-  if ((DAT_180c82842 == '\0') && (is_main_thread)) {
+  if ((system_debug_flag2 == '\0') && (is_main_thread)) {
     if ((_DAT_180c86950 != 0) && (*(char *)(_DAT_180c86950 + 0x1609) != '\x01')) {
       process_debug_information(*(uint64_t *)(_DAT_180c86870 + 8), *(char *)(_DAT_180c868d0 + 0x2028) != '\0',
                                  *(int32_t *)(_DAT_180c86950 + 0x160c));
@@ -594,12 +594,12 @@ LAB_FINAL_NEWLINE:
   cleanup_temporary_variables(temp_index);
   
   // 处理错误显示逻辑
-  if (DAT_180c82860 != '\0') {
+  if (system_debug_flag != '\0') {
     if (allocation_flag != 0) {
       if (((dialog_flag == '\0') && (param_6 != '\0')) && (*(int *)(_DAT_180c86870 + 0x340) != 2)) {
         dialog_flag = 1;
       }
-      else if (DAT_180c82851 == '\0') {
+      else if (system_memory_2851 == '\0') {
         error_handler = (code *)swi(3);
         (*error_handler)();
         return;
@@ -611,7 +611,7 @@ LAB_FINAL_NEWLINE:
       finalize_error_logging();
       
       allocation_size = IsDebuggerPresent();
-      if ((allocation_size != 0) && (DAT_180c82851 == '\0')) {
+      if ((allocation_size != 0) && (system_memory_2851 == '\0')) {
         error_handler = (code *)swi(3);
         (*error_handler)();
         return;
@@ -620,7 +620,7 @@ LAB_FINAL_NEWLINE:
   }
   
   // 显示错误对话框
-  if (DAT_180c82842 == '\0') {
+  if (system_debug_flag2 == '\0') {
     context_pointer = &ErrorMessageTitle;
     if (error_type != '\0') {
       context_pointer = &AlternativeErrorMessageTitle;
@@ -633,8 +633,8 @@ LAB_FINAL_NEWLINE:
           error_message = buffer_ptr;
         }
         
-        if (((DAT_180c82860 == '\0') || (allocation_size = IsDebuggerPresent(), allocation_size != 0)) &&
-            (DAT_180c82842 == '\0')) break;
+        if (((system_debug_flag == '\0') || (allocation_size = IsDebuggerPresent(), allocation_size != 0)) &&
+            (system_debug_flag2 == '\0')) break;
         
         if (*(char *)(_DAT_180c86928 + 0x18) != '\0') {
           local_buffer = &ExtendedErrorInfo;
@@ -674,8 +674,8 @@ LAB_FINAL_NEWLINE:
           error_message = message_buffer;
         }
         
-        if (((DAT_180c82860 == '\0') || (allocation_size = IsDebuggerPresent(), allocation_size != 0)) &&
-            (DAT_180c82842 == '\0')) {
+        if (((system_debug_flag == '\0') || (allocation_size = IsDebuggerPresent(), allocation_size != 0)) &&
+            (system_debug_flag2 == '\0')) {
           MessageBoxA(0, error_message, &RetryErrorMessageTitle, 0x41010);
         }
         else if (*(char *)(_DAT_180c86928 + 0x18) != '\0') {
@@ -686,7 +686,7 @@ LAB_FINAL_NEWLINE:
         }
       }
       else if (((param_6 == '\0') || (*(int *)(_DAT_180c86870 + 0x340) == 2)) &&
-              (DAT_180c82851 == '\0')) {
+              (system_memory_2851 == '\0')) {
         error_handler = (code *)swi(3);
         (*error_handler)();
         return;
@@ -712,7 +712,7 @@ LAB_FINAL_NEWLINE:
       _DAT_180c82854 = 5;
     }
     
-    if ((DAT_180c82842 == '\0') && (thread_flag != '\0')) {
+    if ((system_debug_flag2 == '\0') && (thread_flag != '\0')) {
       if (*(longlong *)(_DAT_180c86870 + 8) != 0) {
         cleanup_engine_resources();
       }

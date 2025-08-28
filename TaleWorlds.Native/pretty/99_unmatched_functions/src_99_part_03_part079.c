@@ -265,7 +265,7 @@ uint8_t SystemInitialize(void)
     *(code **)(unaff_RSI + OFFSET_SYSTEM_STATE) = FUN_1802436f0;
     
     // 系统参数配置
-    puVar1 = &DAT_18098bc73;
+    puVar1 = &system_buffer_ptr;
     if (*(void **)(unaff_RDI + 0xb0) != (void *)0x0) {
         puVar1 = *(void **)(unaff_RDI + 0xb0);
     }
@@ -275,7 +275,7 @@ uint8_t SystemInitialize(void)
         (longlong *)(unaff_RSI + OFFSET_CONFIG_DATA), puVar1);
     
     // 系统状态同步
-    puVar1 = &DAT_18098bc73;
+    puVar1 = &system_buffer_ptr;
     if (*(void **)(unaff_RDI + 0x90) != (void *)0x0) {
         puVar1 = *(void **)(unaff_RDI + 0x90);
     }
@@ -442,7 +442,7 @@ uint8_t SystemStateProcessor(longlong param_1)
         strcpy_s(auStack_c0, 0x80, &UNK_180a146b0);
         
         // 系统参数配置
-        puVar9 = &DAT_18098bc73;
+        puVar9 = &system_buffer_ptr;
         if (*(void **)(param_1 + 0x3528) != (void *)0x0) {
             puVar9 = *(void **)(param_1 + 0x3528);
         }

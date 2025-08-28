@@ -249,7 +249,7 @@ void rendering_system_process_render_data(void)
   lVar14 = _DAT_180c868d0;
   fVar15 = fVar32 * fVar32 + fVar31 * fVar31;
   if (unaff_XMM14_Da * unaff_XMM14_Da <= fVar15) {
-    fVar31 = (float)DAT_180a401f0;
+    fVar31 = (float)system_buffer_01f0;
     auVar27._8_8_ = 0;
     auVar27._0_8_ = CONCAT44(0,fVar15);
     auVar23._8_8_ = 0;

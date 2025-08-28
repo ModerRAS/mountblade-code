@@ -76,7 +76,7 @@ void FUN_18007c490(longlong *param_1,byte param_2,longlong *param_3,longlong *pa
       (**(code **)(*plVar3 + 0x28))(plVar3);
     }
     FUN_180081120(auStack_60,&plStack_b0);
-    (*pcVar5)(plVar4,&DAT_1809fc768,param_1 + 0x17,0,auStack_60,&uStack_100);
+    (*pcVar5)(plVar4,&system_data_c768,param_1 + 0x17,0,auStack_60,&uStack_100);
     if (pcStack_50 != (code *)0x0) {
       (*pcStack_50)(auStack_60,0,0);
     }
@@ -99,12 +99,12 @@ void FUN_18007c490(longlong *param_1,byte param_2,longlong *param_3,longlong *pa
       (**(code **)(*plVar3 + 0x28))(plVar3);
     }
     FUN_180081120(auStack_80,&plStack_d0);
-    cVar6 = (*pcVar5)(plVar4,&DAT_1809fc768,param_1 + 0x17,0,auStack_80);
+    cVar6 = (*pcVar5)(plVar4,&system_data_c768,param_1 + 0x17,0,auStack_80);
     if (pcStack_70 != (code *)0x0) {
       (*pcStack_70)(auStack_80,0,0);
     }
     if (cVar6 == '\0') {
-      puVar7 = &DAT_18098bc73;
+      puVar7 = &system_buffer_ptr;
       if ((void *)param_1[3] != (void *)0x0) {
         puVar7 = (void *)param_1[3];
       }
@@ -144,7 +144,7 @@ void FUN_18007c790(longlong *param_1)
   char *pcVar1;
   void *puVar2;
   
-  puVar2 = &DAT_18098bc73;
+  puVar2 = &system_buffer_ptr;
   if (*(void **)(*param_1 + 0x18) != (void *)0x0) {
     puVar2 = *(void **)(*param_1 + 0x18);
   }
@@ -299,7 +299,7 @@ void FUN_18007c8e0(longlong param_1,byte param_2,longlong *param_3,longlong *par
     plStack_b8 = &lStack_78;
     pcStack_48 = FUN_180082e70;
     pcStack_40 = FUN_180082da0;
-    plStack_a8 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,DAT_180bf65bc);
+    plStack_a8 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,system_allocation_flags);
     *plStack_a8 = lStack_78;
     *(byte *)(plStack_a8 + 1) = bStack_70;
     plStack_a8[2] = (longlong)plStack_68;

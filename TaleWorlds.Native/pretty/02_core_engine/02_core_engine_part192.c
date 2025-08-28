@@ -4,7 +4,7 @@
 // 核心引擎模块第192部分 - 线程管理、文件操作、图形设备初始化相关功能
 
 // 全局变量声明
-static const char* EMPTY_STRING = "";  // 原始代码中的 DAT_18098bc73
+static const char* EMPTY_STRING = "";  // 原始代码中的 system_buffer_ptr
 static void* NULL_HANDLE = (void*)0x0;  // 空句柄
 static longlong GLOBAL_MUTEX_COUNTER = 0;  // 全局互斥锁计数器
 static void* GLOBAL_ENGINE_CONTEXT = NULL;  // 全局引擎上下文

@@ -22,12 +22,12 @@ bool FUN_180190530(uint64_t param_1,longlong param_2,longlong param_3)
   void *puVar5;
   int iVar6;
   
-  puVar5 = &DAT_18098bc73;
+  puVar5 = &system_buffer_ptr;
   if (*(void **)(param_2 + 0x10) != (void *)0x0) {
     puVar5 = *(void **)(param_2 + 0x10);
   }
   lVar2 = strstr(puVar5,&UNK_180a0af54);
-  puVar5 = &DAT_18098bc73;
+  puVar5 = &system_buffer_ptr;
   if (*(void **)(param_3 + 0x10) != (void *)0x0) {
     puVar5 = *(void **)(param_3 + 0x10);
   }
@@ -452,12 +452,12 @@ LAB_1801908b0:
         puVar9 = (uint64_t *)(param_1 + 0x10);
         lVar2 = lVar8;
         do {
-          puVar7 = &DAT_18098bc73;
+          puVar7 = &system_buffer_ptr;
           if (puStack_358 != (void *)0x0) {
             puVar7 = puStack_358;
           }
           lVar3 = strstr(puVar7,&UNK_180a0af54);
-          puVar7 = &DAT_18098bc73;
+          puVar7 = &system_buffer_ptr;
           if ((void *)*puVar9 != (void *)0x0) {
             puVar7 = (void *)*puVar9;
           }
@@ -694,12 +694,12 @@ void FUN_180190ae0(uint64_t *param_1,uint64_t *param_2)
         puVar11 = puVar9 + 2;
         do {
           puVar2 = puVar11 + -0x69;
-          puVar7 = &DAT_18098bc73;
+          puVar7 = &system_buffer_ptr;
           if (puStack_358 != (void *)0x0) {
             puVar7 = puStack_358;
           }
           lVar4 = strstr(puVar7,&UNK_180a0af54);
-          puVar7 = &DAT_18098bc73;
+          puVar7 = &system_buffer_ptr;
           if ((void *)*puVar2 != (void *)0x0) {
             puVar7 = (void *)*puVar2;
           }

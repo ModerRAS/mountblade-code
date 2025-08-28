@@ -751,7 +751,7 @@ void MatrixTransformer_Batched(uint64_t param_1, int32_t param_2)
                     (*(code **)(*next_pointer + 0x28))(next_pointer);
                 }
                 FUN_18022cb40(next_pointer, &stack_pointers[3]);
-                data_pointer = &DAT_18098bc73;
+                data_pointer = &system_buffer_ptr;
                 if ((void *)next_pointer[3] != (void *)0x0) {
                     data_pointer = (void *)next_pointer[3];
                 }

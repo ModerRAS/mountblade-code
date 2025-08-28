@@ -496,7 +496,7 @@ LAB_180613f01:
   else {
     if (param_6 == 0) {
       param_8 = param_2;
-      FUN_1804ff330(param_1 + 0x98d230,&param_8,in_R8,&DAT_180c96860);
+      FUN_1804ff330(param_1 + 0x98d230,&param_8,in_R8,&system_data_6860);
     }
     if (_DAT_180c96860 != (longlong *)0x0) {
       lVar15 = _DAT_180c8f008;

@@ -565,7 +565,7 @@ uint64_t FUN_1808673a0(longlong param_1)
     }
     if (999 < aiStackX_8[0] - *(int *)(param_1 + 0x78)) {
       if (*(int *)(param_1 + 0x90) < 1) {
-        puVar2 = &DAT_18098bc73;
+        puVar2 = &system_buffer_ptr;
       }
       else {
         puVar2 = *(void **)(param_1 + 0x88);

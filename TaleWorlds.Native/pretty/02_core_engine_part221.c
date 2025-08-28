@@ -1096,7 +1096,7 @@ ulonglong ObjectRegistrar(longlong param_1, longlong *param_2, int8_t param_3, i
             } while (plVar7 != plVar3);
             if (plVar7 != plVar3) {
                 if (param_7 != '\0') {
-                    puVar9 = &DAT_18098bc73;
+                    puVar9 = &system_buffer_ptr;
                     if (*(void **)(lVar6 + 0x290) != (void *)0x0) {
                         puVar9 = *(void **)(lVar6 + 0x290);
                     }

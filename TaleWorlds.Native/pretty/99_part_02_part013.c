@@ -466,7 +466,7 @@ void FUN_1800f1ff0(longlong param_1)
       puStack_140 = auStack_130;
       auStack_130[0] = 0;
       uStack_138 = 0x1c;
-      uVar34 = strcpy_s(auStack_130,0x40,&DAT_1809ffc60);
+      uVar34 = strcpy_s(auStack_130,0x40,&system_data_fc60);
       FUN_1802037e0(uVar34,iVar25,&puStack_148);
       puStack_148 = &UNK_18098bcb0;
       lVar21 = FUN_18062b1e0(_DAT_180c8ed18,iVar25,0x10,3);

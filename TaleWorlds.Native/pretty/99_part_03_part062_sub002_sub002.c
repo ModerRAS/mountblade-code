@@ -747,7 +747,7 @@ void FUN_180235d00(uint64_t param_1,double param_2,uint64_t param_3,byte param_4
         else {
           lVar37 = func_0x000180079240();
         }
-        puVar43 = &DAT_18098bc73;
+        puVar43 = &system_buffer_ptr;
         if (*(void **)(lVar37 + 8) != (void *)0x0) {
           puVar43 = *(void **)(lVar37 + 8);
         }

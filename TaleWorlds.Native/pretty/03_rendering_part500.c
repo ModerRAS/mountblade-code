@@ -164,7 +164,7 @@ int32_t FUN_1805344c0(uint64_t param_1,longlong param_2)
     if (*plVar1 != lVar3) {
       return *(int32_t *)(*plVar1 + 0x40);
     }
-    puVar2 = &DAT_18098bc73;
+    puVar2 = &system_buffer_ptr;
     if (*(void **)(param_2 + 8) != (void *)0x0) {
       puVar2 = *(void **)(param_2 + 8);
     }
@@ -220,11 +220,11 @@ uint64_t FUN_1805346e0(void)
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
               0x48) < _DAT_180d49128) {
-    FUN_1808fcb90(&DAT_180d49128);
+    FUN_1808fcb90(&system_ptr_9128);
     if (_DAT_180d49128 == -1) {
       FUN_18058f390(0x180d48f30);
       FUN_1808fc820(&UNK_180943060);
-      FUN_1808fcb30(&DAT_180d49128);
+      FUN_1808fcb30(&system_ptr_9128);
       return 0x180d48f30;
     }
   }

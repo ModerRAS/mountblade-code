@@ -305,7 +305,7 @@ void rendering_system_state_manager(uint64_t *render_context, longlong render_pa
       rendering_system_configure_render_context(&temp_ptr6, render_context + 0x22);
       temp_ptr6 = &UNK_18098bcb0;
       config_param = *(int32_t *)(render_params + 0x1bd4);
-      is_enabled = DAT_180c8aa6a == '\0';
+      is_enabled = system_buffer_aa6a == '\0';
       temp_ptr15 = &UNK_1809fcc58;
       temp_ptr16 = temp_buffer9;
       temp_buffer9[0] = 0;
@@ -550,7 +550,7 @@ void rendering_system_state_manager(uint64_t *render_context, longlong render_pa
             temp_var1 = rendering_system_get_render_context();
             *(uint *)(temp_var1 + 4) = *(uint *)(temp_var1 + 4) | 0x8000000;
             function_ptr = *(code **)(temp_var1 + 0x9620);
-            if (DAT_180c8aa6a == '\0') {
+            if (system_buffer_aa6a == '\0') {
               if (function_ptr != (code *)0x0) {
                 (*function_ptr)(temp_var1 + 0x9610, 0, 0);
               }
@@ -1006,7 +1006,7 @@ uint64_t * rendering_system_create_render_object(uint64_t *render_object, uint64
   
   // 配置渲染对象
   init_flag = 1;
-  rendering_system_configure_render_object(render_object, &DAT_180a00300, 1, param3, temp_var1);
+  rendering_system_configure_render_object(render_object, &system_buffer_0300, 1, param3, temp_var1);
   
   // 设置最终参数
   *(int32_t *)((longlong)render_object + 0x54) = 0;

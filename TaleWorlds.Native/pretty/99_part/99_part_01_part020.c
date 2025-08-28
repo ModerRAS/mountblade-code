@@ -1608,7 +1608,7 @@ SystemInt64* SystemErrorProcessor(SystemInt64 param_1, SystemInt64 *param_2, Sys
             FUN_180056f10(param_1 + 0xc58, system_handle);
         }
         
-        resource_data = &DAT_18098bc73;
+        resource_data = &system_buffer_ptr;
         if (*(SystemUInt8 **)(param_3 + 8) != (SystemUInt8 *)0x0) {
             resource_data = *(SystemUInt8 **)(param_3 + 8);
         }

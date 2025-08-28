@@ -155,7 +155,7 @@ LAB_1801f54c5:
                   lVar17 = 0;
                   do {
                     lVar10 = lVar17 + 1;
-                    if (*(char *)(*(longlong *)(lVar13 + 8) + lVar17) != (&DAT_180a0e8a0)[lVar17])
+                    if (*(char *)(*(longlong *)(lVar13 + 8) + lVar17) != (&system_data_e8a0)[lVar17])
                     goto LAB_1801f55e6;
                     lVar17 = lVar10;
                   } while (lVar10 != 8);
@@ -230,7 +230,7 @@ LAB_1801f51c0:
                   lVar18 = 0;
                   do {
                     lVar10 = lVar18 + 1;
-                    if (*(char *)(*(longlong *)(lVar13 + 8) + lVar18) != (&DAT_180a0e8a0)[lVar18])
+                    if (*(char *)(*(longlong *)(lVar13 + 8) + lVar18) != (&system_data_e8a0)[lVar18])
                     goto LAB_1801f52de;
                     lVar18 = lVar10;
                   } while (lVar10 != 8);
@@ -643,7 +643,7 @@ LAB_1801f5b10:
           }
           puVar8 = *(void **)(param_1 + 0x48);
           if ((iVar4 != 0xf) || (iVar4 = strcmp(puVar8,&UNK_180a0eb00), iVar4 != 0)) {
-            puVar11 = &DAT_18098bc73;
+            puVar11 = &system_buffer_ptr;
             if (puVar8 != (void *)0x0) {
               puVar11 = puVar8;
             }
@@ -679,7 +679,7 @@ LAB_1801f63db:
     if ((*(byte *)(plVar6[6] + 0x1588) & 0x40) != 0) goto LAB_1801f6471;
     puVar8 = &UNK_180a0eb78;
   }
-  puVar11 = &DAT_18098bc73;
+  puVar11 = &system_buffer_ptr;
   if (*(void **)(param_1 + 8) != (void *)0x0) {
     puVar11 = *(void **)(param_1 + 8);
   }
@@ -704,7 +704,7 @@ LAB_1801f6471:
   piVar12 = (int *)(param_1 + 0x298);
   plVar6 = plVar6 + 0x39;
   do {
-    puVar8 = &DAT_18098bc73;
+    puVar8 = &system_buffer_ptr;
     if (*(void **)(piVar12 + 0x56) != (void *)0x0) {
       puVar8 = *(void **)(piVar12 + 0x56);
     }

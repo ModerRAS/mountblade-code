@@ -68,7 +68,7 @@ void FUN_1800babf0(uint64_t param_1)
   puStack_60 = auStack_50;
   auStack_50[0] = 0;
   iStack_58 = 9;
-  strcpy_s(auStack_50,0x10,&DAT_180a02fe8);
+  strcpy_s(auStack_50,0x10,&system_data_2fe8);
   iVar1 = FUN_180628d60(&puStack_f0,&puStack_68);
   if (iVar1 < 0) {
     plVar8 = (longlong *)*_DAT_180c86870;
@@ -792,7 +792,7 @@ longlong FUN_1800bc180(longlong param_1)
   *(uint64_t *)(param_1 + 0x2c4) = 0x40000000;
   *(int32_t *)(param_1 + 0x2cc) = 3;
   *(uint64_t *)(param_1 + 0x2b0) = 1;
-  *(void **)(param_1 + 0x2a8) = &DAT_180be0000;
+  *(void **)(param_1 + 0x2a8) = &system_data_0000;
   *(uint64_t *)(param_1 + 0x2b8) = 0;
   *(int32_t *)(param_1 + 0x2c8) = 0;
   *(uint64_t *)(param_1 + 0x2d0) = 0;

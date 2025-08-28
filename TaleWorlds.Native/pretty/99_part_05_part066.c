@@ -446,7 +446,7 @@ void FUN_1803a3410(longlong param_1,longlong param_2,ulonglong *param_3)
       uStack_9a4 = 0x40000000;
       uStack_99c = 3;
       uStack_9b8 = 1;
-      plStack_9c0 = (longlong *)&DAT_180be0000;
+      plStack_9c0 = (longlong *)&system_data_0000;
       uStack_9b0 = 0;
       uStack_9a0 = 0;
       iVar16 = 0;

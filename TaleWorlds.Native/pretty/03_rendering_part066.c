@@ -752,7 +752,7 @@ void FUN_180304100(longlong *param_1,char param_2,uint64_t param_3,int8_t param_
     return;
   }
   puVar1 = *(void **)(param_1[0xda] + 0x4e0);
-  puVar4 = &DAT_18098bc73;
+  puVar4 = &system_buffer_ptr;
   if (puVar1 != (void *)0x0) {
     puVar4 = puVar1;
   }
@@ -796,7 +796,7 @@ void FUN_180304500(longlong param_1,longlong param_2)
     *(int8_t *)((longlong)puVar3 + 0x2a) = 0;
     *(int *)(param_2 + 0x10) = iVar5;
     puVar9 = *(void **)(*(longlong *)(param_1 + 0x6d0) + 0x4e0);
-    puVar8 = &DAT_18098bc73;
+    puVar8 = &system_buffer_ptr;
     if (puVar9 != (void *)0x0) {
       puVar8 = puVar9;
     }
@@ -814,7 +814,7 @@ void FUN_180304500(longlong param_1,longlong param_2)
         if ((lVar4 != 0) && (lVar10 = *(longlong *)(lVar4 + 0x428), lVar10 != 0)) {
           iVar2 = func_0x000180225d90(*(int32_t *)(lVar10 + 0x324));
           iVar5 = iVar5 + 1;
-          puVar9 = &DAT_18098bc73;
+          puVar9 = &system_buffer_ptr;
           if (*(void **)(lVar4 + 0x18) != (void *)0x0) {
             puVar9 = *(void **)(lVar4 + 0x18);
           }
@@ -871,7 +871,7 @@ void FUN_18030452d(uint64_t param_1,longlong param_2)
   *(int8_t *)((longlong)puVar3 + 0x2a) = 0;
   *(int *)(unaff_R14 + 0x10) = iVar6 + 0x2a;
   puVar9 = *(void **)(*(longlong *)(unaff_RSI + 0x6d0) + 0x4e0);
-  puVar8 = &DAT_18098bc73;
+  puVar8 = &system_buffer_ptr;
   if (puVar9 != (void *)0x0) {
     puVar8 = puVar9;
   }
@@ -889,7 +889,7 @@ void FUN_18030452d(uint64_t param_1,longlong param_2)
       if ((lVar4 != 0) && (lVar10 = *(longlong *)(lVar4 + 0x428), lVar10 != 0)) {
         iVar2 = func_0x000180225d90(*(int32_t *)(lVar10 + 0x324));
         iVar6 = iVar6 + 1;
-        puVar9 = &DAT_18098bc73;
+        puVar9 = &system_buffer_ptr;
         if (*(void **)(lVar4 + 0x18) != (void *)0x0) {
           puVar9 = *(void **)(lVar4 + 0x18);
         }
@@ -930,7 +930,7 @@ void FUN_1803045f4(uint64_t param_1,longlong param_2)
     lVar3 = *(longlong *)(uVar2 + param_2);
     if ((lVar3 != 0) && (lVar5 = *(longlong *)(lVar3 + 0x428), lVar5 != 0)) {
       iVar1 = func_0x000180225d90(*(int32_t *)(lVar5 + 0x324));
-      puVar4 = &DAT_18098bc73;
+      puVar4 = &system_buffer_ptr;
       if (*(void **)(lVar3 + 0x18) != (void *)0x0) {
         puVar4 = *(void **)(lVar3 + 0x18);
       }

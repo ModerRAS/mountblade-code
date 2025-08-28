@@ -24,7 +24,7 @@ void FUN_1804e6ae1(void)
     lVar2 = *(longlong *)(unaff_RDI + 8);
     lVar3 = *(longlong *)(lVar2 + in_R11 * 8);
     while (lVar3 != 0) {
-      pbVar5 = &DAT_18098bc73;
+      pbVar5 = &system_buffer_ptr;
       if (*(byte **)(lVar3 + 8) != (byte *)0x0) {
         pbVar5 = *(byte **)(lVar3 + 8);
       }
@@ -201,7 +201,7 @@ void FUN_1804e6c90(uint64_t *param_1,uint64_t *param_2)
   lVar2 = param_2[3];
   *(int32_t *)(lVar9 + 0x10) = *(int32_t *)(lVar2 + 0x10);
   puVar3 = *(void **)(lVar2 + 8);
-  puVar10 = &DAT_18098bc73;
+  puVar10 = &system_buffer_ptr;
   if (puVar3 != (void *)0x0) {
     puVar10 = puVar3;
   }

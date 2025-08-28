@@ -14,7 +14,7 @@ void FUN_1805b8050(longlong param_1,int *param_2)
   
   iVar1 = *param_2;
   fVar5 = (float)(*(longlong *)
-                   (&DAT_180c8ed30 +
+                   (&system_error_code +
                    (longlong)*(int *)(*(longlong *)(param_1 + 0x1488) + 0x87b790) * 8) -
                  *(longlong *)(*(longlong *)(param_1 + 0x1488) + 0x87b788)) * 1e-05;
   iVar2 = FUN_1805bf5a0(param_1,iVar1);
@@ -357,25 +357,25 @@ void FUN_1805b8920(longlong *param_1)
   *(int32_t *)((longlong)param_1 + 0x1454) = 0x3e4ccccd;
   *(int32_t *)((longlong)param_1 + 0x2154) = 0xffffffff;
   *(int32_t *)(param_1 + 0x42b) = 0x7149f2ca;
-  param_1[0x28e] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x28f] * 8);
-  param_1[0x273] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x274] * 8);
-  param_1[0x275] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x276] * 8);
-  param_1[0x288] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x289] * 8);
-  param_1[0x28b] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x28c] * 8);
-  param_1[0x286] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x287] * 8);
-  param_1[0x2e9] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x2ea] * 8);
-  param_1[0x2eb] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x2ec] * 8);
-  param_1[0x2dc] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x2dd] * 8);
-  param_1[0x2de] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x2df] * 8);
-  param_1[0x2e0] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x2e1] * 8);
-  param_1[0x2e2] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x2e3] * 8);
+  param_1[0x28e] = *(longlong *)(&system_error_code + (longlong)(int)param_1[0x28f] * 8);
+  param_1[0x273] = *(longlong *)(&system_error_code + (longlong)(int)param_1[0x274] * 8);
+  param_1[0x275] = *(longlong *)(&system_error_code + (longlong)(int)param_1[0x276] * 8);
+  param_1[0x288] = *(longlong *)(&system_error_code + (longlong)(int)param_1[0x289] * 8);
+  param_1[0x28b] = *(longlong *)(&system_error_code + (longlong)(int)param_1[0x28c] * 8);
+  param_1[0x286] = *(longlong *)(&system_error_code + (longlong)(int)param_1[0x287] * 8);
+  param_1[0x2e9] = *(longlong *)(&system_error_code + (longlong)(int)param_1[0x2ea] * 8);
+  param_1[0x2eb] = *(longlong *)(&system_error_code + (longlong)(int)param_1[0x2ec] * 8);
+  param_1[0x2dc] = *(longlong *)(&system_error_code + (longlong)(int)param_1[0x2dd] * 8);
+  param_1[0x2de] = *(longlong *)(&system_error_code + (longlong)(int)param_1[0x2df] * 8);
+  param_1[0x2e0] = *(longlong *)(&system_error_code + (longlong)(int)param_1[0x2e1] * 8);
+  param_1[0x2e2] = *(longlong *)(&system_error_code + (longlong)(int)param_1[0x2e3] * 8);
   *(uint64_t *)((longlong)param_1 + 0x16d4) = 0;
-  param_1[0x2ef] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x2f0] * 8) + -0x2540a5c00;
+  param_1[0x2ef] = *(longlong *)(&system_error_code + (longlong)(int)param_1[0x2f0] * 8) + -0x2540a5c00;
   *(int32_t *)(param_1 + 0x2f1) = 0;
-  lVar1 = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x2ee] * 8);
+  lVar1 = *(longlong *)(&system_error_code + (longlong)(int)param_1[0x2ee] * 8);
   param_1[0x2ed] = lVar1 + -0x8000000000000000;
-  param_1[0x292] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x293] * 8);
-  param_1[0x42d] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x42e] * 8);
+  param_1[0x292] = *(longlong *)(&system_error_code + (longlong)(int)param_1[0x293] * 8);
+  param_1[0x42d] = *(longlong *)(&system_error_code + (longlong)(int)param_1[0x42e] * 8);
   param_1[0x42f] = 0x7fc000007fc00000;
   param_1[0x430] = 0x7fc000007fc00000;
   *(int16_t *)(param_1 + 0x431) = 0;
@@ -389,7 +389,7 @@ void FUN_1805b8920(longlong *param_1)
   *(int32_t *)((longlong)param_1 + 0x1424) = 0xfffe7960;
   *(uint64_t *)((longlong)param_1 + 0x14b4) = 0xffffffffffffffff;
   *(int32_t *)(param_1 + 0x29a) = 0xffffffff;
-  param_1[0x298] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x299] * 8);
+  param_1[0x298] = *(longlong *)(&system_error_code + (longlong)(int)param_1[0x299] * 8);
   *(int32_t *)(param_1 + 0x2e6) = 0;
   *(int32_t *)((longlong)param_1 + 0x178c) = 0;
   uStackX_8._4_4_ = (float)((ulonglong)*(uint64_t *)(*param_1 + 0x49c) >> 0x20);
@@ -588,9 +588,9 @@ void FUN_1805b8920(longlong *param_1)
     *(int32_t *)((longlong)param_1 + 0x1c2c) = 0;
     *(int32_t *)((longlong)param_1 + 0x200c) = 0;
     *(int8_t *)(param_1 + 0x389) = 0;
-    param_1[0x387] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x388] * 8);
+    param_1[0x387] = *(longlong *)(&system_error_code + (longlong)(int)param_1[0x388] * 8);
   }
-  param_1[0x36f] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x370] * 8);
+  param_1[0x36f] = *(longlong *)(&system_error_code + (longlong)(int)param_1[0x370] * 8);
   *(int32_t *)(param_1 + 0x371) = 0xffffffff;
   *(int32_t *)(param_1 + 0x372) = 0xffffffff;
   *(int32_t *)(param_1 + 0x373) = 0xffffffff;

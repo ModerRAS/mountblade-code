@@ -201,7 +201,7 @@ LAB_1807c2b00:
     *(int32_t *)(unaff_RBX + 400) = uStack0000000000000038;
     *(uint *)(*(longlong *)(unaff_RBX + 8) + 0x14) = uStack0000000000000034;
     *(int32_t *)(*(longlong *)(unaff_RBX + 8) + 0xc) = uStack000000000000003c;
-    if (DAT_180c2e030 == (char)unaff_R15) {
+    if (system_data_e030 == (char)unaff_R15) {
       _DAT_180c2e978 = 0x180c2e040;
       iVar4 = FUN_1807c1ec0(1);
       if ((iVar4 == 0) && (iVar4 = FUN_18080e440(), iVar4 == 0)) {
@@ -711,9 +711,9 @@ LAB_1807c39d6:
 LAB_1807c3a4b:
   FUN_18076a440(*(uint64_t *)(unaff_RDI + 0x170),*(int32_t *)(unaff_RDI + 0x110),0);
   iVar4 = FUN_180769ed0(*(uint64_t *)(unaff_RDI + 0x170),&stack0x0000004c,1);
-  if ((iVar4 == 0) && (iVar4 = func_0x00018076b6b0(&stack0x0000004c,&DAT_18097c5d0,4), iVar4 == 0))
+  if ((iVar4 == 0) && (iVar4 = func_0x00018076b6b0(&stack0x0000004c,&system_data_c5d0,4), iVar4 == 0))
   {
-    if (DAT_180c30370 == (char)unaff_R15D) {
+    if (system_data_0370 == (char)unaff_R15D) {
       FUN_18081a760();
 
 

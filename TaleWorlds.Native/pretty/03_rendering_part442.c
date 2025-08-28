@@ -289,7 +289,7 @@ LAB_18050cd1a:
   lVar7 = *(longlong *)(param_1 + 0x6e0);
   if ((lVar7 != 0) && (*(int *)(param_1 + 0x570) == 1)) {
     *(uint64_t *)(lVar7 + 0x1398) =
-         *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar7 + 0x13a0) * 8);
+         *(uint64_t *)(&system_error_code + (longlong)*(int *)(lVar7 + 0x13a0) * 8);
   }
   return;
 }
@@ -503,7 +503,7 @@ LAB_18050cd1a:
   lVar7 = *(longlong *)(unaff_RDI + 0x6e0);
   if ((lVar7 != 0) && (*(int *)(unaff_RDI + 0x570) == 1)) {
     *(uint64_t *)(lVar7 + 0x1398) =
-         *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar7 + 0x13a0) * 8);
+         *(uint64_t *)(&system_error_code + (longlong)*(int *)(lVar7 + 0x13a0) * 8);
   }
   return;
 }

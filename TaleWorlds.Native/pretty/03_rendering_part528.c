@@ -652,7 +652,7 @@ LAB_180555f0e:
       puVar8 = puVar8 + 0x35;
     } while (iVar9 < (int)param_1[1]);
   }
-  puVar6 = &DAT_18098bc73;
+  puVar6 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar6 = *(void **)(param_2 + 8);
   }

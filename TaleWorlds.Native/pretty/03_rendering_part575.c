@@ -652,7 +652,7 @@ void FUN_180581b00(longlong param_1,longlong param_2,int8_t param_3,longlong par
                       0x78) + param_6;
   *(int *)(param_1 + 0x2a0) = param_15;
   *(uint64_t *)(param_1 + 0x290) =
-       *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x298) * 8);
+       *(uint64_t *)(&system_error_code + (longlong)*(int *)(param_1 + 0x298) * 8);
   *(int32_t *)(param_1 + 0xc4) = param_13;
   lVar15 = *plVar1;
   if (((*(ulonglong *)

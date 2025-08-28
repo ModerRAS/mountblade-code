@@ -992,7 +992,7 @@ void process_rendering_system(longlong render_manager,longlong data_buffer)
         *(longlong *)(data_buffer + 8) = *(longlong *)(data_buffer + 8) + (ulonglong)uint_value;
       }
       if (temp_int < 0x10) {
-        puVar8 = &DAT_18098bc73;
+        puVar8 = &system_buffer_ptr;
         if (puStack_e0 != (void *)0x0) {
           puVar8 = puStack_e0;
         }

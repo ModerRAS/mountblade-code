@@ -564,10 +564,10 @@ LAB_1807e613d:
       *(uint *)(param_1 + 0x288) = uVar8 * *(int *)(param_1 + 0x2ec) + 0x1f & 0xffffffe0;
       if (*(longlong *)(param_1 + 0x270) != 0) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(lVar7 + 0x30,*(longlong *)(param_1 + 0x270),&DAT_18098bc73,0,1);
+        FUN_180742250(lVar7 + 0x30,*(longlong *)(param_1 + 0x270),&system_buffer_ptr,0,1);
       }
       if (auStackX_8[0] != 0) {
-        lVar7 = FUN_180742050(lVar7 + 0x30,*(int *)(param_1 + 0x288) + 0x20,&DAT_18098bc73,0,
+        lVar7 = FUN_180742050(lVar7 + 0x30,*(int *)(param_1 + 0x288) + 0x20,&system_buffer_ptr,0,
                               uVar9 & 0xffffffff00000000);
         *(longlong *)(param_1 + 0x270) = lVar7;
         if (lVar7 == 0) goto LAB_1807e61c9;
@@ -604,11 +604,11 @@ LAB_1807e613d:
     *(int *)(param_1 + 0x328) = aiStackX_10[0];
     if (*(longlong *)(param_1 + 800) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(lVar7 + 0x30,*(longlong *)(param_1 + 800),&DAT_18098bc73,0,1);
+      FUN_180742250(lVar7 + 0x30,*(longlong *)(param_1 + 800),&system_buffer_ptr,0,1);
     }
     if (aiStackX_10[0] == 0) goto LAB_1807e60dd;
     uVar9 = uVar9 & 0xffffffff00000000;
-    lVar6 = FUN_180742050(lVar7 + 0x30,*(int32_t *)(param_1 + 0x328),&DAT_18098bc73,0,uVar9);
+    lVar6 = FUN_180742050(lVar7 + 0x30,*(int32_t *)(param_1 + 0x328),&system_buffer_ptr,0,uVar9);
     *(longlong *)(param_1 + 800) = lVar6;
     if (lVar6 != 0) goto LAB_1807e60dd;
 LAB_1807e61c9:
@@ -666,10 +666,10 @@ LAB_1807e613d:
       *(uint *)(unaff_RBX + 0x288) = uVar6 * *(int *)(unaff_RBX + 0x2ec) + 0x1f & 0xffffffe0;
       if (*(longlong *)(unaff_RBX + 0x270) != 0) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(unaff_R15 + 0x30,*(longlong *)(unaff_RBX + 0x270),&DAT_18098bc73,0,1);
+        FUN_180742250(unaff_R15 + 0x30,*(longlong *)(unaff_RBX + 0x270),&system_buffer_ptr,0,1);
       }
       if (param_2 != 0) {
-        lVar4 = FUN_180742050(unaff_R15 + 0x30,*(int *)(unaff_RBX + 0x288) + 0x20,&DAT_18098bc73,0,
+        lVar4 = FUN_180742050(unaff_R15 + 0x30,*(int *)(unaff_RBX + 0x288) + 0x20,&system_buffer_ptr,0,
                               unaff_R12 & 0xffffffff);
         *(longlong *)(unaff_RBX + 0x270) = lVar4;
         if (lVar4 == 0) goto LAB_1807e61c9;
@@ -705,10 +705,10 @@ LAB_1807e613d:
     *(int *)(unaff_RBX + 0x328) = in_EAX;
     if (*(longlong *)(unaff_RBX + 800) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(unaff_R15 + 0x30,*(longlong *)(unaff_RBX + 800),&DAT_18098bc73,0,1);
+      FUN_180742250(unaff_R15 + 0x30,*(longlong *)(unaff_RBX + 800),&system_buffer_ptr,0,1);
     }
     if (in_EAX == 0) goto LAB_1807e60dd;
-    lVar4 = FUN_180742050(unaff_R15 + 0x30,*(int32_t *)(unaff_RBX + 0x328),&DAT_18098bc73,0,
+    lVar4 = FUN_180742050(unaff_R15 + 0x30,*(int32_t *)(unaff_RBX + 0x328),&system_buffer_ptr,0,
                           unaff_R12 & 0xffffffff);
     *(longlong *)(unaff_RBX + 800) = lVar4;
     param_2 = in_stack_00000080;

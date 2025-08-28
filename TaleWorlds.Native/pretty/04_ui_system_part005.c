@@ -108,7 +108,7 @@ void FUN_180653ef0(void)
   uStack_260 = 0;
   FUN_1806277c0(&puStack_270,iStack_148);
   if (0 < iStack_148) {
-    puVar9 = &DAT_18098bc73;
+    puVar9 = &system_buffer_ptr;
     if (puStack_150 != (void *)0x0) {
       puVar9 = puStack_150;
     }

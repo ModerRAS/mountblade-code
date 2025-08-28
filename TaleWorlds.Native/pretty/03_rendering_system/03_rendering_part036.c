@@ -582,7 +582,7 @@ longlong RenderFrame(longlong renderContext, longlong frameData)
   FUN_1800b6620();
   
   frameTime = FUN_1800daa50();
-  FUN_180094b30(frameTime,&DAT_180a16c50);
+  FUN_180094b30(frameTime,&system_memory_6c50);
   
   // 管理渲染资源
   resourceManager = *(longlong **)(_DAT_180c86938 + 0x121e0);

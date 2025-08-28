@@ -722,7 +722,7 @@ void FUN_1800e44b0(uint64_t param_1,longlong *param_2,longlong *param_3,longlong
     puStack_e0 = auStack_d0;
     auStack_d0[0] = 0;
     uStack_d8 = 4;
-    puVar12 = (int32_t *)&DAT_18098bc73;
+    puVar12 = (int32_t *)&system_buffer_ptr;
     if (puVar8 != (int32_t *)0x0) {
       puVar12 = puVar8;
     }

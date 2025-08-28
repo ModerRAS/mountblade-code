@@ -470,7 +470,7 @@ LAB_180278b10:
               (**(code **)(puStack_188 + 0x10))(&puStack_188,lVar8);
               break;
             }
-            lVar8 = (longlong)&DAT_180a03a84 - (longlong)pcVar14;
+            lVar8 = (longlong)&system_data_3a84 - (longlong)pcVar14;
             while (*pcVar14 == pcVar14[lVar8]) {
               pcVar14 = pcVar14 + 1;
               if (pcVar1 <= pcVar14) goto LAB_180278b10;
@@ -633,7 +633,7 @@ LAB_180278e70:
           puVar4[0x43] = uStack_294;
           puVar4[0x44] = uStack_290;
           puVar4[0x45] = uStack_28c;
-          puVar10 = &DAT_18098bc73;
+          puVar10 = &system_buffer_ptr;
           if (puStack_180 != (void *)0x0) {
             puVar10 = puStack_180;
           }

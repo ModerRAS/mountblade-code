@@ -31,7 +31,7 @@ void FUN_18017dd60(uint64_t param_1,uint64_t param_2)
   puVar5[0x10] = 0;
   *(int32_t *)(puVar5 + 0x11) = 0;
   *(int8_t *)(puVar5 + 0xe) = 0;
-  (**(code **)(*plVar1 + 0x10))(plVar1,&DAT_180a1e968);
+  (**(code **)(*plVar1 + 0x10))(plVar1,&system_data_e968);
   puStack_80 = &UNK_180a3c3e0;
   uStack_68 = 0;
   puStack_78 = (int32_t *)0x0;

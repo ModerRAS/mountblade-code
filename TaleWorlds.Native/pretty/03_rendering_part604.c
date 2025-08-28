@@ -102,7 +102,7 @@ void FUN_18059a7f0(longlong param_1,longlong param_2,int16_t param_3,int16_t par
   *(int8_t *)((longlong)puStack_38 + 0x22) = 0;
   uStack_30 = 0x22;
   puVar3 = *(void **)(*(longlong *)(_DAT_180c96070 + 0x18) + 0x4e0);
-  puVar16 = &DAT_18098bc73;
+  puVar16 = &system_buffer_ptr;
   if (puVar3 != (void *)0x0) {
     puVar16 = puVar3;
   }
@@ -135,14 +135,14 @@ LAB_1805aa1de:
   puVar13[4] = 0x746e656761206e65;
   *(int16_t *)(puVar13 + 5) = 0x2e73;
   *(int8_t *)((longlong)puVar13 + 0x2a) = 0;
-  puVar14 = (int32_t *)&DAT_18098bc73;
+  puVar14 = (int32_t *)&system_buffer_ptr;
   if (puStack_38 != (int32_t *)0x0) {
     puVar14 = puStack_38;
   }
   uStack_30 = iVar15;
   FUN_180627340(&UNK_180a37328,puVar14,(double)*(float *)(param_2 + 0x1c),
                 (double)*(float *)(param_2 + 0x20),(double)*(float *)(param_2 + 0x24));
-  puVar14 = (int32_t *)&DAT_18098bc73;
+  puVar14 = (int32_t *)&system_buffer_ptr;
   if (puStack_38 != (int32_t *)0x0) {
     puVar14 = puStack_38;
   }
@@ -297,7 +297,7 @@ void FUN_18059a907(uint64_t param_1,longlong param_2)
   *(int8_t *)((longlong)puStack0000000000000060 + 0x22) = 0;
   uStack0000000000000068 = 0x22;
   puVar1 = *(void **)(*(longlong *)(_DAT_180c96070 + 0x18) + 0x4e0);
-  puVar7 = &DAT_18098bc73;
+  puVar7 = &system_buffer_ptr;
   if (puVar1 != (void *)0x0) {
     puVar7 = puVar1;
   }
@@ -332,14 +332,14 @@ LAB_1805aa1de:
   puVar4[4] = 0x746e656761206e65;
   *(int16_t *)(puVar4 + 5) = 0x2e73;
   *(int8_t *)((longlong)puVar4 + 0x2a) = 0;
-  puVar5 = (int32_t *)&DAT_18098bc73;
+  puVar5 = (int32_t *)&system_buffer_ptr;
   if (puStack0000000000000060 != (int32_t *)0x0) {
     puVar5 = puStack0000000000000060;
   }
   uStack0000000000000068 = iVar6;
   FUN_180627340(&UNK_180a37328,puVar5,(double)*(float *)(param_2 + 0x1c),
                 (double)*(float *)(param_2 + 0x20));
-  puVar5 = (int32_t *)&DAT_18098bc73;
+  puVar5 = (int32_t *)&system_buffer_ptr;
   if (puStack0000000000000060 != (int32_t *)0x0) {
     puVar5 = puStack0000000000000060;
   }
@@ -394,7 +394,7 @@ ulonglong FUN_18059a920(longlong param_1)
            (fVar7 = 0.0, 0.0 < *(float *)(lVar4 + 0x144))) {
           in_RAX = func_0x000180522f60(lVar5);
           if (((char)in_RAX == '\0') &&
-             (in_RAX = *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x200) * 8) -
+             (in_RAX = *(longlong *)(&system_error_code + (longlong)*(int *)(param_1 + 0x200) * 8) -
                        *(longlong *)(param_1 + 0x1f8), fVar7 <= (float)(longlong)in_RAX * 1e-05)) {
             if ((*(uint *)(lVar5 + 0x56c) & 0x800) == 0) {
               in_RAX = *(ulonglong *)(lVar6 + 0x2590);
@@ -473,7 +473,7 @@ void FUN_18059aad0(longlong param_1,char param_2)
         else {
           fVar8 = 0.3;
         }
-        if ((float)(*(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0xe8) * 8) -
+        if ((float)(*(longlong *)(&system_error_code + (longlong)*(int *)(param_1 + 0xe8) * 8) -
                    *(longlong *)(param_1 + 0xe0)) * 1e-05 < fVar8) goto LAB_18059abc3;
       }
     }
@@ -498,7 +498,7 @@ LAB_18059abc3:
       *(uint64_t *)(param_1 + 0x270) = uVar6;
       if (bVar3) {
         *(uint64_t *)(param_1 + 0xe0) =
-             *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0xe8) * 8);
+             *(uint64_t *)(&system_error_code + (longlong)*(int *)(param_1 + 0xe8) * 8);
       }
     }
   }
@@ -518,7 +518,7 @@ LAB_18059abc3:
       if ((_DAT_180c92514 == 1) || (*(int *)(lVar2 + 0x570) != 0)) {
         fVar9 = fVar10;
       }
-      if (fVar9 <= (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0xf8) * 8) -
+      if (fVar9 <= (float)(*(longlong *)(&system_error_code + (longlong)*(int *)(param_1 + 0xf8) * 8) -
                           *(longlong *)(param_1 + 0xf0)) * fVar11) goto LAB_18059ad45;
     }
   }
@@ -552,7 +552,7 @@ LAB_18059abc3:
     *(uint64_t *)(param_1 + 0x268) = uVar6;
     if (bVar4) {
       *(uint64_t *)(param_1 + 0xf0) =
-           *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0xf8) * 8);
+           *(uint64_t *)(&system_error_code + (longlong)*(int *)(param_1 + 0xf8) * 8);
     }
   }
 LAB_18059ad45:

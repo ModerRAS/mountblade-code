@@ -697,7 +697,7 @@ int8_t is_identity_matrix(float *matrix_data)
          ((ABS(matrix_data[4]) < 0.0001 && (ABS(matrix_data[5] - 1.0) < 0.0001)))) &&
         ((ABS(matrix_data[6]) < 0.0001 && ((ABS(matrix_data[8]) < 0.0001 && (ABS(matrix_data[9]) < 0.0001)))))) &&
        (ABS(matrix_data[10] - 1.0) < 0.0001)) {
-        is_identity = verify_matrix_components(matrix_data + 0xc, &DAT_180a00330);
+        is_identity = verify_matrix_components(matrix_data + 0xc, &system_memory_0330);
         if (is_identity != '\0') {
             return 1;
         }
@@ -1202,17 +1202,17 @@ void initialize_render_configuration(longlong config_ptr, uint64_t param2, longl
     }
     
     create_render_context(*_DAT_180c86870, &stack_param1, param2);
-    config_param1 = &DAT_18098bc73;
+    config_param1 = &system_buffer_ptr;
     if (_DAT_180bf6658 != (void *)0x0) {
         config_param1 = _DAT_180bf6658;
     }
     
-    config_param3 = &DAT_18098bc73;
+    config_param3 = &system_buffer_ptr;
     if (*(void **)(param3 + 8) != (void *)0x0) {
         config_param3 = *(void **)(param3 + 8);
     }
     
-    config_param2 = &DAT_18098bc73;
+    config_param2 = &system_buffer_ptr;
     if (stack_param2 != (void *)0x0) {
         config_param2 = stack_param2;
     }

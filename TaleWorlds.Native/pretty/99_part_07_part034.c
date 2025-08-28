@@ -108,7 +108,7 @@ LAB_1804b9820:
       if (0 < iVar9) {
         lVar8 = 0;
         do {
-          FUN_180631960(lVar5,&DAT_18098be48,*(longlong *)(unaff_R14 + 0x5c8) + lVar8);
+          FUN_180631960(lVar5,&system_data_be48,*(longlong *)(unaff_R14 + 0x5c8) + lVar8);
           lVar5 = *(longlong *)(lVar5 + 0x58);
           lVar8 = lVar8 + 0x10;
           uVar10 = uVar10 - 1;
@@ -216,7 +216,7 @@ LAB_1804b9a15:
       if (0 < (int)uVar10) {
         lVar8 = unaff_R14 + 0x5d4;
         do {
-          FUN_180631960(lVar5,&DAT_18098be48,lVar8);
+          FUN_180631960(lVar5,&system_data_be48,lVar8);
           lVar5 = *(longlong *)(lVar5 + 0x58);
           lVar8 = lVar8 + 0x10;
           uVar10 = uVar10 - 1;
@@ -304,7 +304,7 @@ LAB_1804b9bde:
             lVar8 = unaff_R14 + 0x7d8;
             uVar10 = (ulonglong)uVar12;
             do {
-              FUN_180631960(lVar5,&DAT_18098be48,lVar8);
+              FUN_180631960(lVar5,&system_data_be48,lVar8);
               lVar5 = *(longlong *)(lVar5 + 0x58);
               lVar8 = lVar8 + 0x10;
               uVar10 = uVar10 - 1;
@@ -400,7 +400,7 @@ LAB_1804b9bde:
               lVar6 = unaff_R14 + 0x7d8;
               uVar5 = (ulonglong)uVar8;
               do {
-                FUN_180631960(lVar3,&DAT_18098be48,lVar6);
+                FUN_180631960(lVar3,&system_data_be48,lVar6);
                 lVar3 = *(longlong *)(lVar3 + 0x58);
                 lVar6 = lVar6 + 0x10;
                 uVar5 = uVar5 - 1;
@@ -543,7 +543,7 @@ LAB_1804b9ac6:
     lVar5 = unaff_R14 + 0x5d4;
     uVar6 = (ulonglong)in_R11D;
     do {
-      FUN_180631960(lVar7,&DAT_18098be48,lVar5);
+      FUN_180631960(lVar7,&system_data_be48,lVar5);
       lVar7 = *(longlong *)(lVar7 + 0x58);
       lVar5 = lVar5 + 0x10;
       uVar6 = uVar6 - 1;
@@ -630,7 +630,7 @@ LAB_1804b9bde:
         lVar5 = unaff_R14 + 0x7d8;
         uVar6 = (ulonglong)uVar9;
         do {
-          FUN_180631960(lVar7,&DAT_18098be48,lVar5);
+          FUN_180631960(lVar7,&system_data_be48,lVar5);
           lVar7 = *(longlong *)(lVar7 + 0x58);
           lVar5 = lVar5 + 0x10;
           uVar6 = uVar6 - 1;
@@ -741,7 +741,7 @@ LAB_1804b9bde:
             lVar6 = unaff_R14 + 0x7d8;
             uVar5 = (ulonglong)uVar8;
             do {
-              FUN_180631960(lVar3,&DAT_18098be48,lVar6);
+              FUN_180631960(lVar3,&system_data_be48,lVar6);
               lVar3 = *(longlong *)(lVar3 + 0x58);
               lVar6 = lVar6 + 0x10;
               uVar5 = uVar5 - 1;
@@ -797,14 +797,14 @@ longlong FUN_1804b9ce0(longlong param_1)
   *(uint64_t *)(param_1 + 0x34) = 0x40000000;
   *(int32_t *)(param_1 + 0x3c) = 3;
   *(uint64_t *)(param_1 + 0x20) = 1;
-  *(void **)(param_1 + 0x18) = &DAT_180be0000;
+  *(void **)(param_1 + 0x18) = &system_data_0000;
   *(uint64_t *)(param_1 + 0x28) = 0;
   *(int32_t *)(param_1 + 0x38) = 0;
   *(int32_t *)(param_1 + 0x60) = 0x3f800000;
   *(uint64_t *)(param_1 + 100) = 0x40000000;
   *(int32_t *)(param_1 + 0x6c) = 3;
   *(uint64_t *)(param_1 + 0x50) = 1;
-  *(void **)(param_1 + 0x48) = &DAT_180be0000;
+  *(void **)(param_1 + 0x48) = &system_data_0000;
   *(uint64_t *)(param_1 + 0x58) = 0;
   *(int32_t *)(param_1 + 0x68) = 0;
   *(uint64_t *)(param_1 + 0x70) = 0x500000;

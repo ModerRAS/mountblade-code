@@ -75,7 +75,7 @@ void FUN_1801aa780(longlong param_1)
   puStack_d0 = auStack_c0;
   auStack_c0[0] = 0;
   iStack_c8 = *(int *)(param_1 + 0x4e8);
-  puVar12 = &DAT_18098bc73;
+  puVar12 = &system_buffer_ptr;
   if (*(void **)(param_1 + 0x4e0) != (void *)0x0) {
     puVar12 = *(void **)(param_1 + 0x4e0);
   }
@@ -142,7 +142,7 @@ LAB_1801aa9b9:
   puStack_d8 = &UNK_18098bcb0;
   uStack_198 = 0;
   lStack_190 = 0;
-  puVar12 = &DAT_18098bc73;
+  puVar12 = &system_buffer_ptr;
   if (puStack_138 != (void *)0x0) {
     puVar12 = puStack_138;
   }

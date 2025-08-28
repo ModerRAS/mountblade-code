@@ -249,7 +249,7 @@ typedef struct {
  * ============================================================================ */
 
 // 哈希表数据区域 - 主要哈希表状态信息
-extern uint8_t DAT_18098bc73;              // 哈希表数据区域
+extern uint8_t system_buffer_ptr;              // 哈希表数据区域
 extern uint64_t UNK_18094b480;              // 哈希表控制块
 extern uint64_t UNK_18094abe0;              // 哈希表状态标志
 extern uint64_t UNK_180d49830;              // 哈希表指针表
@@ -261,10 +261,10 @@ extern longlong UNK_180d49928;                // 哈希表性能计数器1
 extern longlong UNK_180d49930;                // 哈希表性能计数器2
 extern int32_t UNK_180d49948;              // 哈希表错误代码
 extern int32_t UNK_180d4994c;              // 哈希表警告代码
-extern uint8_t DAT_180d49950;               // 哈希表配置数据
-extern uint8_t DAT_180d49970;               // 哈希表资源数据
-extern uint8_t DAT_180bfc140;                // 哈希表缓存数据
-extern uint8_t DAT_1803f48b2;                // 哈希表临时数据
+extern uint8_t system_resource_config;               // 哈希表配置数据
+extern uint8_t system_module_config;               // 哈希表资源数据
+extern uint8_t system_cache_config;                // 哈希表缓存数据
+extern uint8_t system_temp_config;                // 哈希表临时数据
 
 /* ============================================================================
  * 函数声明

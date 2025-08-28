@@ -1178,7 +1178,7 @@ LAB_DEBUG_INITIALIZED:
 
 // 原始实现：
 // - 函数名：FUN_180043690 到 FUN_180045fa6
-// - 变量名：DAT_180c967d0、UNK_1809fcc28 等
+// - 变量名：system_memory_67d0、UNK_1809fcc28 等
 // - 常量名：UNK_180a3def0、UNK_180a3e3d8 等
 //
 // 简化实现：

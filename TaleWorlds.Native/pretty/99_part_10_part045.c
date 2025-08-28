@@ -73,7 +73,7 @@ void FUN_1806c2b8c(void)
   cVar9 = FUN_1806d56e0();
   if ((cVar9 == '\0') || (cVar9 = FUN_1806d5620(), cVar9 == '\0')) goto LAB_1806c326c;
   if ((char)unaff_RDI[9] == '\0') {
-    puVar11 = &DAT_18098bc73;
+    puVar11 = &system_buffer_ptr;
   }
   else {
     puVar11 = (void *)(**(code **)(*(longlong *)unaff_RDI[5] + 0x38))();

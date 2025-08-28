@@ -26,7 +26,7 @@ longlong FUN_18058b980(longlong param_1,int param_2)
   longlong lVar2;
   
   if (param_2 != -1) {
-    iVar1 = FUN_18053a410(&DAT_180c95f30,*(int32_t *)(param_1 + 0xac),param_2);
+    iVar1 = FUN_18053a410(&system_data_5f30,*(int32_t *)(param_1 + 0xac),param_2);
     iVar1 = *(int *)(_DAT_180c95f68 + (longlong)iVar1 * 4);
     if (iVar1 == -1) {
       lVar2 = 0;

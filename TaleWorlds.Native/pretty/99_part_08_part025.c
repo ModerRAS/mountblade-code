@@ -43,7 +43,7 @@ void FUN_1804f8630(uint64_t param_1,int32_t param_2,longlong param_3,int32_t par
       }
       _DAT_180d49e5c = *(int32_t *)(lVar4 + 100);
       puStack_70 = &UNK_18098bcb0;
-      FUN_1808fcb30(&DAT_180d49e58);
+      FUN_1808fcb30(&system_ptr_9e58);
     }
   }
   if (((param_3 == 0) || (*(int *)(param_3 + 0x30) < 1)) ||

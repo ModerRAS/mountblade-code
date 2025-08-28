@@ -412,7 +412,7 @@ ui_status_code_t ui_control_property_setter_batch(longlong control_handle, longl
                 
                 // 获取属性名称
                 if (*(int*)(property_data + 0x58) < 1) {
-                    property_name = &DAT_18098bc73;
+                    property_name = &system_buffer_ptr;
                 } else {
                     property_name = *(void**)(property_data + 0x50);
                 }
@@ -482,7 +482,7 @@ ui_status_code_t ui_system_batch_property_processor(void)
             
             // 获取属性名称
             if (*(int*)(property_item + 0x58) < 1) {
-                property_name = &DAT_18098bc73;
+                property_name = &system_buffer_ptr;
             } else {
                 property_name = *(void**)(property_item + 0x50);
             }

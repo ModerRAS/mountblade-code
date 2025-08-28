@@ -665,7 +665,7 @@ LAB_18008dde0:
       *(int32_t *)(lVar9 + 0x28 + (longlong)puVar4) = 0;
       *puVar3 = 0;
       *(int32_t *)(lVar9 + 0x28 + (longlong)puVar4) = *(int32_t *)(puVar4 + 5);
-      puVar7 = &DAT_18098bc73;
+      puVar7 = &system_buffer_ptr;
       if ((void *)puVar4[4] != (void *)0x0) {
         puVar7 = (void *)puVar4[4];
       }

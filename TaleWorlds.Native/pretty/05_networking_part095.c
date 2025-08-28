@@ -103,7 +103,7 @@ void FUN_1808975e0(longlong param_1,longlong param_2)
               uStack_e8 = *(uint64_t *)(*(longlong *)(lVar9 + 0x90) + lVar8 * 8);
               uStack_ec = 0;
               if (*(int *)(lVar3 + 0x58) < 1) {
-                puVar12 = &DAT_18098bc73;
+                puVar12 = &system_buffer_ptr;
               }
               else {
                 puVar12 = *(void **)(lVar3 + 0x50);
@@ -345,7 +345,7 @@ void FUN_180897644(void)
             *unaff_RBP = *(uint64_t *)(*(longlong *)(lVar15 + 0x90) + uVar23 * 8);
             *(int8_t *)((longlong)unaff_RBP + -4) = 0;
             if (*(int *)(lVar2 + 0x58) < 1) {
-              puVar18 = &DAT_18098bc73;
+              puVar18 = &system_buffer_ptr;
             }
             else {
               puVar18 = *(void **)(lVar2 + 0x50);
@@ -592,7 +592,7 @@ void FUN_1808976b0(void)
         *unaff_RBP = *(uint64_t *)(*(longlong *)(lVar15 + 0x90) + uVar22 * 8);
         *(int8_t *)((longlong)unaff_RBP + -4) = 0;
         if (*(int *)(lVar2 + 0x58) < 1) {
-          puVar18 = &DAT_18098bc73;
+          puVar18 = &system_buffer_ptr;
         }
         else {
           puVar18 = *(void **)(lVar2 + 0x50);

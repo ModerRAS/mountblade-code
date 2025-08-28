@@ -94,7 +94,7 @@ void FUN_18018e0f0(uint64_t param_1,longlong param_2,longlong param_3)
           puVar11 = (ulonglong *)((longlong)puVar11 + 1);
         } while (uVar16 < uStack_150);
       }
-      puVar9 = &DAT_18098bc73;
+      puVar9 = &system_buffer_ptr;
       if (puStack_158 != (int8_t *)0x0) {
         puVar9 = puStack_158;
       }

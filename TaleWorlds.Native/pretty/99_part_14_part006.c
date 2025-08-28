@@ -619,7 +619,7 @@ uint64_t FUN_1808ec2e0(longlong param_1,uint64_t param_2)
   puVar1 = *(uint64_t **)(param_1 + 0x40);
   if (puVar1 == (uint64_t *)0x0) {
     if (*(int *)(param_1 + 0x38) < 1) {
-      puVar3 = &DAT_18098bc73;
+      puVar3 = &system_buffer_ptr;
     }
     else {
       puVar3 = *(void **)(param_1 + 0x30);

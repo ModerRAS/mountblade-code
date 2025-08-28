@@ -84,7 +84,7 @@ void RenderingSystem_InitializeRenderState(uint64_t render_context)
     string_buffer = config_buffer;
     config_buffer[0] = 0;
     string_length = 5;
-    strcpy_s(config_buffer, RENDERING_SYSTEM_STRING_LENGTH_0x40, &DAT_180a1d570);
+    strcpy_s(config_buffer, RENDERING_SYSTEM_STRING_LENGTH_0x40, &system_memory_d570);
     FUN_1800b8300(resource_array, &cleanup_handler);
     operation_flag = 2;
     status_flag = 1;
@@ -223,7 +223,7 @@ void FUN_180369850(longlong param_1,longlong param_2)
   int iVar1;
   
   if (*(int *)(param_2 + 0x10) == 10) {
-    iVar1 = strcmp(*(uint64_t *)(param_2 + 8),&DAT_180a20c88);
+    iVar1 = strcmp(*(uint64_t *)(param_2 + 8),&system_memory_0c88);
     if ((iVar1 == 0) && (*(float *)(param_1 + 0x88) <= 0.0 && *(float *)(param_1 + 0x88) != 0.0)) {
       *(int32_t *)(param_1 + 0x88) = 0;
     }
@@ -284,7 +284,7 @@ void FUN_180369890(uint64_t param_1)
   puStack_2c0 = auStack_2b0;
   auStack_2b0[0] = 0;
   uStack_2b8 = 0xb;
-  strcpy_s(auStack_2b0,0x40,&DAT_180a20c78);
+  strcpy_s(auStack_2b0,0x40,&system_memory_0c78);
   FUN_1800b8300(apuStack_328,&puStack_2c8);
   uStack_2d0 = 2;
   uStack_348 = 1;
@@ -297,7 +297,7 @@ void FUN_180369890(uint64_t param_1)
   puStack_260 = auStack_250;
   auStack_250[0] = 0;
   uStack_258 = 0xb;
-  strcpy_s(auStack_250,0x40,&DAT_180a20c68);
+  strcpy_s(auStack_250,0x40,&system_memory_0c68);
   FUN_1800b8300(apuStack_328,&puStack_268);
   uStack_2d0 = 2;
   uStack_348 = 2;
@@ -310,7 +310,7 @@ void FUN_180369890(uint64_t param_1)
   puStack_200 = auStack_1f0;
   auStack_1f0[0] = 0;
   uStack_1f8 = 0xd;
-  strcpy_s(auStack_1f0,0x40,&DAT_180a20c58);
+  strcpy_s(auStack_1f0,0x40,&system_memory_0c58);
   FUN_1800b8300(apuStack_328,&puStack_208);
   uStack_2d0 = 2;
   uStack_348 = 4;
@@ -323,7 +323,7 @@ void FUN_180369890(uint64_t param_1)
   puStack_1a0 = auStack_190;
   auStack_190[0] = 0;
   uStack_198 = 0xd;
-  strcpy_s(auStack_190,0x40,&DAT_180a20c48);
+  strcpy_s(auStack_190,0x40,&system_memory_0c48);
   FUN_1800b8300(apuStack_328,&puStack_1a8);
   uStack_2d0 = 2;
   uStack_348 = 8;
@@ -336,7 +336,7 @@ void FUN_180369890(uint64_t param_1)
   puStack_140 = auStack_130;
   auStack_130[0] = 0;
   uStack_138 = 0xe;
-  strcpy_s(auStack_130,0x40,&DAT_180a20ca8);
+  strcpy_s(auStack_130,0x40,&system_memory_0ca8);
   FUN_1800b8300(apuStack_328,&puStack_148);
   uStack_2d0 = 2;
   uStack_348 = 0x10;
@@ -349,7 +349,7 @@ void FUN_180369890(uint64_t param_1)
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   uStack_d8 = 0xe;
-  strcpy_s(auStack_d0,0x40,&DAT_180a20c98);
+  strcpy_s(auStack_d0,0x40,&system_memory_0c98);
   FUN_1800b8300(apuStack_328,&puStack_e8);
   uStack_2d0 = 2;
   uStack_348 = 0x20;
@@ -362,7 +362,7 @@ void FUN_180369890(uint64_t param_1)
   puStack_80 = auStack_70;
   auStack_70[0] = 0;
   uStack_78 = 10;
-  strcpy_s(auStack_70,0x40,&DAT_180a20c88);
+  strcpy_s(auStack_70,0x40,&system_memory_0c88);
   FUN_1800b8300(apuStack_328,&puStack_88);
   uStack_2d0 = 2;
   uStack_348 = 0x40;
@@ -410,7 +410,7 @@ void RenderingSystem_ColorInterpolatorBase(longlong render_context) {
     
     // 计算时间相关的插值因子
     float interpolation_factor = (float)fmodf(
-        (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)_DAT_180c91f50 * 8) - _DAT_180c91f48) * 1e-05 + 
+        (float)(*(longlong *)(&system_error_code + (longlong)_DAT_180c91f50 * 8) - _DAT_180c91f48) * 1e-05 + 
         *(float *)(render_context + 0x88)
     );
     
@@ -709,7 +709,7 @@ void RenderingSystem_StringManagerInitializer(uint64_t *string_manager) {
     *(int8_t *)(string_manager + 0x15) = 0; // 清零状态标志
     
     // 初始化内存管理器回调
-    (**(code **)(*memory_manager + 0x10))(memory_manager, &DAT_18098bc73);
+    (**(code **)(*memory_manager + 0x10))(memory_manager, &system_buffer_ptr);
     
     // 设置字符串管理器参数
     *(int16_t *)(string_manager + 0x1a) = 0x100; // 设置缓冲区大小
@@ -933,7 +933,7 @@ void RenderingSystem_ProcessorInitializer_Standard(longlong render_context) {
     *(int8_t *)(render_context + 0xf0) = 0; // 标准模式
     
     // 处理字符串初始化（如果调试模式启用）
-    if (DAT_180c8aa6b != '\0') {
+    if (system_memory_aa6b != '\0') {
         void *string_ptr = &UNK_1809fdc18;
         int8_t *string_buffer = security_buffer; // 重用安全缓冲区
         security_buffer[0] = 0;
@@ -965,7 +965,7 @@ void RenderingSystem_ProcessorInitializer_Standard(longlong render_context) {
     // 处理回调函数
     if (*(int *)(render_context + 0xc0) == 0) {
         (**(code **)(*(longlong *)(render_context + 0xb0) + 0x10))
-            ((longlong *)(render_context + 0xb0), &DAT_180a20e58);
+            ((longlong *)(render_context + 0xb0), &system_memory_0e58);
     }
     
     // 安全退出
@@ -1005,7 +1005,7 @@ void RenderingSystem_ProcessorInitializer_Enhanced(longlong render_context) {
     *(int8_t *)(render_context + 0xf0) = 1; // 增强模式
     
     // 处理字符串初始化（如果调试模式启用）
-    if (DAT_180c8aa6b != '\0') {
+    if (system_memory_aa6b != '\0') {
         void *string_ptr = &UNK_1809fdc18;
         int8_t *string_buffer = security_buffer; // 重用安全缓冲区
         security_buffer[0] = 0;
@@ -1037,7 +1037,7 @@ void RenderingSystem_ProcessorInitializer_Enhanced(longlong render_context) {
     // 处理回调函数
     if (*(int *)(render_context + 0xc0) == 0) {
         (**(code **)(*(longlong *)(render_context + 0xb0) + 0x10))
-            ((longlong *)(render_context + 0xb0), &DAT_180a20e58);
+            ((longlong *)(render_context + 0xb0), &system_memory_0e58);
     }
     
     // 安全退出
@@ -1153,7 +1153,7 @@ void RenderingSystem_ManagerCreator(uint64_t param_1, uint64_t param_2) {
     *(int8_t *)(manager + 0x15) = 0; // 清零状态标志
     
     // 初始化内存管理器回调
-    (**(code **)(*memory_manager + 0x10))(memory_manager, &DAT_18098bc73);
+    (**(code **)(*memory_manager + 0x10))(memory_manager, &system_buffer_ptr);
     
     // 设置管理器参数
     *(int16_t *)(manager + 0x1a) = 0x100; // 设置缓冲区大小
@@ -1238,7 +1238,7 @@ void RenderingSystem_HandleUpdater(longlong render_context, uint64_t param_2,
         
         // 获取回调处理器
         longlong *callback_handler = (longlong *)(*(longlong *)(render_context + 0x18) + 0x288);
-        void *callback_param = &DAT_18098bc73;
+        void *callback_param = &system_buffer_ptr;
         
         // 检查是否有自定义回调参数
         if (*(void **)(handle_value + 0x80) != (void *)0x0) {
@@ -1331,7 +1331,7 @@ uint64_t RenderingSystem_StringValidator(uint64_t param_1, longlong string_info)
         char_index = 0;
         // 逐字符比较固定格式
         while (next_index = char_index + 1,
-               *(char *)(*(longlong *)(string_info + 8) + char_index) == (&DAT_180a20e40)[char_index]) {
+               *(char *)(*(longlong *)(string_info + 8) + char_index) == (&system_memory_0e40)[char_index]) {
             char_index = next_index;
             if (next_index == 8) {
                 return 0; // 验证成功
@@ -1341,10 +1341,10 @@ uint64_t RenderingSystem_StringValidator(uint64_t param_1, longlong string_info)
     
     // 检查长度为10的字符串模式
     if (((string_length != 10) ||
-         ((compare_result = strcmp(*(uint64_t *)(string_info + 8), &DAT_180a20e30), compare_result != 0 &&
-           (compare_result = strcmp(*(uint64_t *)(string_info + 8), &DAT_180a20e80), compare_result != 0)))) &&
+         ((compare_result = strcmp(*(uint64_t *)(string_info + 8), &system_memory_0e30), compare_result != 0 &&
+           (compare_result = strcmp(*(uint64_t *)(string_info + 8), &system_memory_0e80), compare_result != 0)))) &&
         // 检查长度为12的字符串模式
-        ((string_length != 0xc || (string_length = strcmp(*(uint64_t *)(string_info + 8), &DAT_180a20e70), string_length != 0))))
+        ((string_length != 0xc || (string_length = strcmp(*(uint64_t *)(string_info + 8), &system_memory_0e70), string_length != 0))))
     {
         return 1; // 验证失败
     }

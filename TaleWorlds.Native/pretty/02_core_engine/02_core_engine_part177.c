@@ -230,7 +230,7 @@ longlong initialize_data_structure_type_a(longlong struct_ptr, int32_t *param_2)
   *(uint64_t *)(param_1 + 0x24) = 0x40000000;
   *(int32_t *)(param_1 + 0x2c) = *param_2;
   *(uint64_t *)(param_1 + 0x10) = 1;
-  *(void **)(param_1 + 8) = &DAT_180be0000;
+  *(void **)(param_1 + 8) = &system_memory_0000;
   *(uint64_t *)(param_1 + 0x18) = 0;
   *(int32_t *)(param_1 + 0x28) = 0;
   return param_1;
@@ -251,7 +251,7 @@ longlong initialize_data_structure_type_b(longlong struct_ptr, int32_t *param_2)
   *(uint64_t *)(param_1 + 0x24) = 0x40000000;
   *(int32_t *)(param_1 + 0x2c) = *param_2;
   *(uint64_t *)(param_1 + 0x10) = 1;
-  *(void **)(param_1 + 8) = &DAT_180be0000;
+  *(void **)(param_1 + 8) = &system_memory_0000;
   *(uint64_t *)(param_1 + 0x18) = 0;
   *(int32_t *)(param_1 + 0x28) = 0;
   return param_1;

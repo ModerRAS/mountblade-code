@@ -81,7 +81,7 @@ FUN_18028a120(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   param_2[1] = param_2 + 3;
   *(int8_t *)(param_2 + 3) = 0;
   *(int32_t *)(param_2 + 2) = 0x16;
-  strcpy_s(param_2[1],0x80,&DAT_180a16c38,param_4,0,0xfffffffffffffffe);
+  strcpy_s(param_2[1],0x80,&system_data_6c38,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
 
@@ -202,7 +202,7 @@ longlong FUN_18028a2c0(longlong param_1,longlong param_2)
   
   uStack_d8 = 0xfffffffffffffffe;
   lVar11 = FUN_1800daa50();
-  FUN_180094b30(lVar11,&DAT_180a16c38);
+  FUN_180094b30(lVar11,&system_data_6c38);
   plVar3 = *(longlong **)(_DAT_180c86938 + 0x121e0);
   if (plVar3 != (longlong *)0x0) {
     (**(code **)(*plVar3 + 0x28))(plVar3);

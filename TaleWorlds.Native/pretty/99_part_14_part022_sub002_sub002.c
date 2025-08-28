@@ -138,16 +138,16 @@ ulonglong thunk_FUN_1808fd8e0(uint64_t param_1,int32_t param_2)
   fVar13 = in_XMM0._0_4_;
   fVar14 = in_XMM0._4_4_;
   auVar37 = in_XMM0 & _DAT_180d9f600;
-  fVar20 = (float)DAT_180d9f5d0;
+  fVar20 = (float)system_data_f5d0;
   uVar35 = -(uint)(0x461c4000 < auVar37._0_4_);
   uVar39 = -(uint)(0x461c4000 < auVar37._4_4_);
   auVar38._0_8_ = CONCAT44(uVar39,uVar35);
   auVar38._8_4_ = -(uint)(0x461c4000 < auVar37._8_4_);
   auVar38._12_4_ = -(uint)(0x461c4000 < auVar37._12_4_);
-  fVar29 = (float)DAT_180d9f5c0;
+  fVar29 = (float)system_data_f5c0;
   uVar1 = movmskps(in_EAX,auVar38);
-  fVar15 = DAT_180d9f5d0._4_4_;
-  fVar16 = DAT_180d9f5c0._4_4_;
+  fVar15 = system_data_f5d0._4_4_;
+  fVar16 = system_data_f5c0._4_4_;
   if (uVar1 == 0) {
     iVar4 = (int)(fVar13 * 0.31830987);
     iVar7 = (int)(fVar14 * 0.31830987);
@@ -165,7 +165,7 @@ ulonglong thunk_FUN_1808fd8e0(uint64_t param_1,int32_t param_2)
                     -0.16666658) * fVar20 * fVar13 + fVar13) ^ CONCAT44(iVar7 << 0x1f,iVar4 << 0x1f)
     ;
   }
-  uStack_d8 = (ulonglong)DAT_180d9f6d0 & in_XMM0._0_8_;
+  uStack_d8 = (ulonglong)system_data_f6d0 & in_XMM0._0_8_;
   iVar7 = (int)(fVar13 * 0.31830987);
   iVar9 = (int)(fVar14 * 0.31830987);
   iVar11 = (int)(in_XMM0._8_4_ * 0.31830987);
@@ -281,9 +281,9 @@ ulonglong thunk_FUN_1808fd8e0(uint64_t param_1,int32_t param_2)
       auVar19._12_4_ = iVar12 << 0x1f;
       fVar29 = ((fVar13 - fVar20 * fVar5) - fVar29 * fVar5) - fVar5 * 1.5099067e-07;
       fVar16 = ((fVar14 - fVar15 * fVar8) - fVar16 * fVar8) - fVar8 * 1.5099067e-07;
-      fVar17 = ((in_XMM0._8_4_ - DAT_180d9f5d0._8_4_ * fVar6) - DAT_180d9f5c0._8_4_ * fVar6) -
+      fVar17 = ((in_XMM0._8_4_ - system_data_f5d0._8_4_ * fVar6) - system_data_f5c0._8_4_ * fVar6) -
                fVar6 * 1.5099067e-07;
-      fVar18 = ((in_XMM0._12_4_ - DAT_180d9f5d0._12_4_ * fVar10) - DAT_180d9f5c0._12_4_ * fVar10) -
+      fVar18 = ((in_XMM0._12_4_ - system_data_f5d0._12_4_ * fVar10) - system_data_f5c0._12_4_ * fVar10) -
                fVar10 * 1.5099067e-07;
       fVar13 = fVar29 - fVar5 * 5.126688e-12;
       fVar14 = fVar16 - fVar8 * 5.126688e-12;
@@ -294,16 +294,16 @@ ulonglong thunk_FUN_1808fd8e0(uint64_t param_1,int32_t param_2)
       fVar17 = fVar17 * fVar17;
       fVar18 = fVar18 * fVar18;
       auVar37._0_4_ =
-           (((fVar29 * 2.608e-06 + -0.000198107) * fVar29 + (float)DAT_180d9f580) * fVar29 +
+           (((fVar29 * 2.608e-06 + -0.000198107) * fVar29 + (float)system_data_f580) * fVar29 +
            -0.16666658) * fVar29 * fVar13 + fVar13;
       auVar37._4_4_ =
-           (((fVar16 * 2.608e-06 + -0.000198107) * fVar16 + DAT_180d9f580._4_4_) * fVar16 +
+           (((fVar16 * 2.608e-06 + -0.000198107) * fVar16 + system_data_f580._4_4_) * fVar16 +
            -0.16666658) * fVar16 * fVar14 + fVar14;
       auVar37._8_4_ =
-           (((fVar17 * 2.608e-06 + -0.000198107) * fVar17 + DAT_180d9f580._8_4_) * fVar17 +
+           (((fVar17 * 2.608e-06 + -0.000198107) * fVar17 + system_data_f580._8_4_) * fVar17 +
            -0.16666658) * fVar17 * fVar20 + fVar20;
       auVar37._12_4_ =
-           (((fVar18 * 2.608e-06 + -0.000198107) * fVar18 + DAT_180d9f580._12_4_) * fVar18 +
+           (((fVar18 * 2.608e-06 + -0.000198107) * fVar18 + system_data_f580._12_4_) * fVar18 +
            -0.16666658) * fVar18 * fVar15 + fVar15;
       aauStack_38[0] = auVar37 ^ auVar19;
     }
@@ -331,7 +331,7 @@ ulonglong thunk_FUN_1808fd8e0(uint64_t param_1,int32_t param_2)
                                     ((3320.092545592124 - dVar21 * dVar21) *
                                     *(double *)(&UNK_180d9f008 + uVar2 * 8)) ^
                                    (ulonglong)((uVar35 & 0x100) << 0x17) << 0x20) +
-                          *(double *)(&DAT_180d9f000 + uVar2 * 8) * dVar21 *
+                          *(double *)(&system_data_f000 + uVar2 * 8) * dVar21 *
                           (double)((ulonglong)(9960.277636776373 - dVar21 * dVar21) ^
                                   (ulonglong)(((uVar35 & 0x180) + 0x80 & 0x100) << 0x17) << 0x20));
         }
@@ -396,7 +396,7 @@ ulonglong FUN_1808fd400(uint64_t param_1,int32_t param_2)
   
   fVar5 = (float)((ulonglong)param_1 >> 0x20);
   fVar12 = (float)param_1;
-  fVar13 = (float)((uint)fVar12 & (uint)DAT_18098b8c0);
+  fVar13 = (float)((uint)fVar12 & (uint)system_data_b8c0);
   if (fVar13 < 0.00012207031) {
     return CONCAT44(1.0 - fVar13 * fVar13 * 0.5,fVar12);
   }
@@ -404,16 +404,16 @@ ulonglong FUN_1808fd400(uint64_t param_1,int32_t param_2)
   aauStack_f8[0]._0_8_ = CONCAT44(fVar13,fVar12);
   aauStack_f8[0]._8_4_ = fVar5;
   aauStack_f8[0]._12_4_ = 0;
-  fVar17 = (float)DAT_180d9f5d0;
+  fVar17 = (float)system_data_f5d0;
   uVar32 = -(uint)(0x461c4000 < (uint)ABS(fVar12));
   uVar35 = -(uint)(0x461c4000 < (uint)ABS(fVar13));
   auVar34._0_8_ = CONCAT44(uVar35,uVar32);
   auVar34._8_4_ = -(uint)(0x461c4000 < (uint)ABS(fVar5));
   auVar34._12_4_ = 0;
-  fVar26 = (float)DAT_180d9f5c0;
+  fVar26 = (float)system_data_f5c0;
   uVar1 = movmskps(in_EAX,auVar34);
-  fVar14 = DAT_180d9f5d0._4_4_;
-  fVar15 = DAT_180d9f5c0._4_4_;
+  fVar14 = system_data_f5d0._4_4_;
+  fVar15 = system_data_f5c0._4_4_;
   if (uVar1 == 0) {
     iVar4 = (int)(fVar12 * 0.31830987);
     iVar7 = (int)(fVar13 * 0.31830987);
@@ -431,7 +431,7 @@ ulonglong FUN_1808fd400(uint64_t param_1,int32_t param_2)
                     -0.16666658) * fVar17 * fVar12 + fVar12) ^ CONCAT44(iVar7 << 0x1f,iVar4 << 0x1f)
     ;
   }
-  uStack_d8 = (ulonglong)DAT_180d9f6d0 & aauStack_f8[0]._0_8_;
+  uStack_d8 = (ulonglong)system_data_f6d0 & aauStack_f8[0]._0_8_;
   iVar7 = (int)(fVar12 * 0.31830987);
   iVar9 = (int)(fVar13 * 0.31830987);
   aauStack_f8[0] = aauStack_f8[0] & _DAT_180d9f600;
@@ -544,9 +544,9 @@ ulonglong FUN_1808fd400(uint64_t param_1,int32_t param_2)
       auVar16._12_4_ = 0;
       fVar17 = ((fVar12 - fVar17 * fVar8) - fVar26 * fVar8) - fVar8 * 1.5099067e-07;
       fVar14 = ((fVar13 - fVar14 * fVar11) - fVar15 * fVar11) - fVar11 * 1.5099067e-07;
-      fVar26 = ((fVar5 - DAT_180d9f5d0._8_4_ * fVar10) - DAT_180d9f5c0._8_4_ * fVar10) -
+      fVar26 = ((fVar5 - system_data_f5d0._8_4_ * fVar10) - system_data_f5c0._8_4_ * fVar10) -
                fVar10 * 1.5099067e-07;
-      fVar15 = ((0.0 - DAT_180d9f5d0._12_4_ * 0.0) - DAT_180d9f5c0._12_4_ * 0.0) - 0.0;
+      fVar15 = ((0.0 - system_data_f5d0._12_4_ * 0.0) - system_data_f5c0._12_4_ * 0.0) - 0.0;
       fVar12 = fVar17 - fVar8 * 5.126688e-12;
       fVar5 = fVar14 - fVar11 * 5.126688e-12;
       fVar13 = fVar26 - fVar10 * 5.126688e-12;
@@ -554,14 +554,14 @@ ulonglong FUN_1808fd400(uint64_t param_1,int32_t param_2)
       fVar14 = fVar14 * fVar14;
       fVar26 = fVar26 * fVar26;
       fVar8 = fVar15 * fVar15;
-      auVar6._0_4_ = (((fVar17 * 2.608e-06 + -0.000198107) * fVar17 + (float)DAT_180d9f580) * fVar17
+      auVar6._0_4_ = (((fVar17 * 2.608e-06 + -0.000198107) * fVar17 + (float)system_data_f580) * fVar17
                      + -0.16666658) * fVar17 * fVar12 + fVar12;
-      auVar6._4_4_ = (((fVar14 * 2.608e-06 + -0.000198107) * fVar14 + DAT_180d9f580._4_4_) * fVar14
+      auVar6._4_4_ = (((fVar14 * 2.608e-06 + -0.000198107) * fVar14 + system_data_f580._4_4_) * fVar14
                      + -0.16666658) * fVar14 * fVar5 + fVar5;
-      auVar6._8_4_ = (((fVar26 * 2.608e-06 + -0.000198107) * fVar26 + DAT_180d9f580._8_4_) * fVar26
+      auVar6._8_4_ = (((fVar26 * 2.608e-06 + -0.000198107) * fVar26 + system_data_f580._8_4_) * fVar26
                      + -0.16666658) * fVar26 * fVar13 + fVar13;
       auVar6._12_4_ =
-           (((fVar8 * 2.608e-06 + -0.000198107) * fVar8 + DAT_180d9f580._12_4_) * fVar8 +
+           (((fVar8 * 2.608e-06 + -0.000198107) * fVar8 + system_data_f580._12_4_) * fVar8 +
            -0.16666658) * fVar8 * (fVar15 - 0.0) + (fVar15 - 0.0);
       aauStack_38[0] = auVar6 ^ auVar16;
     }
@@ -589,7 +589,7 @@ ulonglong FUN_1808fd400(uint64_t param_1,int32_t param_2)
                                     ((3320.092545592124 - dVar18 * dVar18) *
                                     *(double *)(&UNK_180d9f008 + uVar2 * 8)) ^
                                    (ulonglong)((uVar32 & 0x100) << 0x17) << 0x20) +
-                          *(double *)(&DAT_180d9f000 + uVar2 * 8) * dVar18 *
+                          *(double *)(&system_data_f000 + uVar2 * 8) * dVar18 *
                           (double)((ulonglong)(9960.277636776373 - dVar18 * dVar18) ^
                                   (ulonglong)(((uVar32 & 0x180) + 0x80 & 0x100) << 0x17) << 0x20));
         }
@@ -660,18 +660,18 @@ ulonglong thunk_FUN_1808fe1a0(uint64_t param_1,int32_t param_2)
   fVar20 = auVar8._4_4_;
   fVar11 = auVar8._12_4_;
   fVar6 = auVar8._8_4_;
-  fVar5 = (fVar16 + (float)DAT_180d9fd10) * 0.31830987;
-  fVar10 = (fVar20 + DAT_180d9fd10._4_4_) * 0.31830987;
-  fVar35 = (float)DAT_180d9fce0;
+  fVar5 = (fVar16 + (float)system_data_fd10) * 0.31830987;
+  fVar10 = (fVar20 + system_data_fd10._4_4_) * 0.31830987;
+  fVar35 = (float)system_data_fce0;
   uVar38 = -(uint)(0x461c4000 < (int)fVar16);
   uVar39 = -(uint)(0x461c4000 < (int)fVar20);
   auVar8._0_8_ = CONCAT44(uVar39,uVar38);
   auVar8._8_4_ = -(uint)(0x461c4000 < (int)fVar6);
   auVar8._12_4_ = -(uint)(0x461c4000 < (int)fVar11);
-  fVar36 = (float)DAT_180d9fcd0;
+  fVar36 = (float)system_data_fcd0;
   uVar1 = movmskps(in_EAX,auVar8);
-  fVar27 = DAT_180d9fce0._4_4_;
-  fVar28 = DAT_180d9fcd0._4_4_;
+  fVar27 = system_data_fce0._4_4_;
+  fVar28 = system_data_fcd0._4_4_;
   if (uVar1 == 0) {
     fVar6 = (float)(int)fVar5 - 0.5;
     fVar11 = (float)(int)fVar10 - 0.5;
@@ -787,8 +787,8 @@ ulonglong thunk_FUN_1808fe1a0(uint64_t param_1,int32_t param_2)
   }
   else {
     if (uVar1 != 0xf) {
-      iVar3 = (int)((fVar6 + DAT_180d9fd10._8_4_) * 0.31830987);
-      iVar14 = (int)((fVar11 + DAT_180d9fd10._12_4_) * 0.31830987);
+      iVar3 = (int)((fVar6 + system_data_fd10._8_4_) * 0.31830987);
+      iVar14 = (int)((fVar11 + system_data_fd10._12_4_) * 0.31830987);
       fVar7 = (float)(int)fVar5 - 0.5;
       fVar12 = (float)(int)fVar10 - 0.5;
       fVar13 = (float)iVar3 - 0.5;
@@ -799,9 +799,9 @@ ulonglong thunk_FUN_1808fe1a0(uint64_t param_1,int32_t param_2)
       auVar34._12_4_ = iVar14 << 0x1f;
       fVar35 = ((fVar16 - fVar35 * fVar7) - fVar36 * fVar7) - fVar7 * 1.5099067e-07;
       fVar27 = ((fVar20 - fVar27 * fVar12) - fVar28 * fVar12) - fVar12 * 1.5099067e-07;
-      fVar6 = ((fVar6 - DAT_180d9fce0._8_4_ * fVar13) - DAT_180d9fcd0._8_4_ * fVar13) -
+      fVar6 = ((fVar6 - system_data_fce0._8_4_ * fVar13) - system_data_fcd0._8_4_ * fVar13) -
               fVar13 * 1.5099067e-07;
-      fVar11 = ((fVar11 - DAT_180d9fce0._12_4_ * fVar15) - DAT_180d9fcd0._12_4_ * fVar15) -
+      fVar11 = ((fVar11 - system_data_fce0._12_4_ * fVar15) - system_data_fcd0._12_4_ * fVar15) -
                fVar15 * 1.5099067e-07;
       fVar16 = fVar35 - fVar7 * 5.126688e-12;
       fVar5 = fVar27 - fVar12 * 5.126688e-12;
@@ -811,14 +811,14 @@ ulonglong thunk_FUN_1808fe1a0(uint64_t param_1,int32_t param_2)
       fVar27 = fVar27 * fVar27;
       fVar6 = fVar6 * fVar6;
       fVar11 = fVar11 * fVar11;
-      auVar9._0_4_ = (((fVar35 * 2.608e-06 + -0.000198107) * fVar35 + (float)DAT_180d9fc80) * fVar35
+      auVar9._0_4_ = (((fVar35 * 2.608e-06 + -0.000198107) * fVar35 + (float)system_data_fc80) * fVar35
                      + -0.16666658) * fVar35 * fVar16 + fVar16;
-      auVar9._4_4_ = (((fVar27 * 2.608e-06 + -0.000198107) * fVar27 + DAT_180d9fc80._4_4_) * fVar27
+      auVar9._4_4_ = (((fVar27 * 2.608e-06 + -0.000198107) * fVar27 + system_data_fc80._4_4_) * fVar27
                      + -0.16666658) * fVar27 * fVar5 + fVar5;
-      auVar9._8_4_ = (((fVar6 * 2.608e-06 + -0.000198107) * fVar6 + DAT_180d9fc80._8_4_) * fVar6 +
+      auVar9._8_4_ = (((fVar6 * 2.608e-06 + -0.000198107) * fVar6 + system_data_fc80._8_4_) * fVar6 +
                      -0.16666658) * fVar6 * fVar20 + fVar20;
       auVar9._12_4_ =
-           (((fVar11 * 2.608e-06 + -0.000198107) * fVar11 + DAT_180d9fc80._12_4_) * fVar11 +
+           (((fVar11 * 2.608e-06 + -0.000198107) * fVar11 + system_data_fc80._12_4_) * fVar11 +
            -0.16666658) * fVar11 * fVar10 + fVar10;
       aauStack_38[0] = auVar9 ^ auVar34;
     }

@@ -60,7 +60,7 @@ void process_atmosphere_parameters(longlong atmosphere_system, longlong param_2,
       char_ptr2 = char_ptr1 + (longlong)char_ptr2;
       char_ptr3 = char_ptr6;
       if (char_ptr2 <= char_ptr1) break;
-      long_var3 = (longlong)&DAT_180a0aea0 - (longlong)char_ptr1;
+      long_var3 = (longlong)&system_ptr_aea0 - (longlong)char_ptr1;
       while (*char_ptr1 == char_ptr1[long_var3]) {
         char_ptr1 = char_ptr1 + 1;
         if (char_ptr2 <= char_ptr1) goto LAB_18018cfa6;

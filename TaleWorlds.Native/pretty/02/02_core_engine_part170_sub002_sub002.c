@@ -70,8 +70,8 @@ void initialize_engine_configuration(longlong engine_context, uint64_t param2, u
     if ((*(longlong*)(engine_context + 0x140) != 0) &&
         (result_flag = (*(code**)(engine_context + 0x148))(&stack_data_8), 
          config_value = (int32_t)stack_data_8, result_flag == '\0')) {
-        if (DAT_180c82860 == '\0') {
-            data_ptr = &DAT_18098bc73;
+        if (system_debug_flag == '\0') {
+            data_ptr = &system_buffer_ptr;
             if (*(void**)(engine_context + 0xf0) != (void*)0x0) {
                 data_ptr = *(void**)(engine_context + 0xf0);
             }
@@ -87,8 +87,8 @@ void initialize_engine_configuration(longlong engine_context, uint64_t param2, u
     if (*(longlong*)(engine_context + 0x140) != 0) {
         result_flag = (*(code**)(engine_context + 0x148))(&stack_data_8, config_ptr);
         if (result_flag == '\0') {
-            if (DAT_180c82860 == '\0') {
-                data_ptr = &DAT_18098bc73;
+            if (system_debug_flag == '\0') {
+                data_ptr = &system_buffer_ptr;
                 if (*(void**)(engine_context + 0xf0) != (void*)0x0) {
                     data_ptr = *(void**)(engine_context + 0xf0);
                 }

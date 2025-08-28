@@ -163,7 +163,7 @@ extern pointer UNK_180a01c50;
 extern pointer UNK_180a01b40;
 extern pointer UNK_180a01c00;
 extern pointer UNK_180a01cb0;
-extern pointer DAT_18098bc73;
+extern pointer system_buffer_ptr;
 
 /* 内联函数声明 */
 static inline void LOCK(void);
@@ -306,7 +306,7 @@ void SystemDataStreamProcessor(int64_t param_1, int64_t *param_2, int32_t param_
     
     /* 检查数据流状态 */
     if (*(int32_t *)((int64_t)param_2 + 0x54) == 0) {
-        local_ptr1 = &DAT_18098bc73;
+        local_ptr1 = &system_buffer_ptr;
         if (*(pointer *)(param_5 + 0x18) != (pointer)0x0) {
             local_ptr1 = *(pointer *)(param_5 + 0x18);
         }
@@ -426,7 +426,7 @@ resource_cleanup_handler:
         
         /* 检查数据流有效性 */
         if ((*(int32_t *)((int64_t)param_2 + 0x54) - 0xeU < 5) && (((local_uint1 | local_uint3) & 3) != 0)) {
-            local_ptr1 = &DAT_18098bc73;
+            local_ptr1 = &system_buffer_ptr;
             if (*(pointer *)(param_5 + 0x18) != (pointer)0x0) {
                 local_ptr1 = *(pointer *)(param_5 + 0x18);
             }
@@ -504,7 +504,7 @@ resource_cleanup_handler:
                 /* 处理错误情况 */
                 FUN_180220810(local_result, &UNK_180a01aa8);
                 FUN_180220810(local_result, &UNK_180a01ba0);
-                local_ptr1 = &DAT_18098bc73;
+                local_ptr1 = &system_buffer_ptr;
                 if (*(pointer *)(param_5 + 0x18) != (pointer)0x0) {
                     local_ptr1 = *(pointer *)(param_5 + 0x18);
                 }

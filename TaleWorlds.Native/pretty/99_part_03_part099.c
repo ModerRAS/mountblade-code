@@ -93,7 +93,7 @@ FUN_180254e90(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   uVar1 = 0xfffffffffffffffe;
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
               0x48) < _DAT_180d48da4) {
-    FUN_1808fcb90(&DAT_180d48da4);
+    FUN_1808fcb90(&system_ptr_8da4);
     if (_DAT_180d48da4 == -1) {
       _DAT_180d48da0 = 0;
       _DAT_180d48d70 = 0;
@@ -102,11 +102,11 @@ FUN_180254e90(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
       uRam0000000180d48d88 = 0;
       _DAT_180d48d90 = 0;
       uRam0000000180d48d98 = 0;
-      FUN_1808fcb30(&DAT_180d48da4,0,param_3,param_4,uVar1);
-      return &DAT_180d48d70;
+      FUN_1808fcb30(&system_ptr_8da4,0,param_3,param_4,uVar1);
+      return &system_ptr_8d70;
     }
   }
-  return &DAT_180d48d70;
+  return &system_ptr_8d70;
 }
 
 

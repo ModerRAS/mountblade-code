@@ -1060,11 +1060,11 @@ void rendering_system_mutex_manager(longlong mutex_context_ptr, longlong target_
   
   // 初始化互斥量
   if ((*(int *)(tls_data_ptr + 0x48) < _DAT_180d49678) &&
-     (FUN_1808fcb90(&DAT_180d49678, target_mutex_ptr, (ulonglong)__tls_index, tls_data_ptr, 0xfffffffffffffffe),
+     (FUN_1808fcb90(&system_memory_9678, target_mutex_ptr, (ulonglong)__tls_index, tls_data_ptr, 0xfffffffffffffffe),
      _DAT_180d49678 == -1)) {
     _Mtx_init_in_situ(0x180d49680, 2);
     FUN_1808fc820(FUN_180941da0);
-    FUN_1808fcb30(&DAT_180d49678);
+    FUN_1808fcb30(&system_memory_9678);
   }
   
   // 处理互斥量添加

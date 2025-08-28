@@ -483,7 +483,7 @@ void FUN_1803d7c00(longlong param_1,longlong param_2,longlong param_3)
     ppuStack_58 = apuStack_78;
     pcStack_68 = FUN_1803d9750;
     puStack_60 = &UNK_1803d9740;
-    apuStack_78[0] = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,DAT_180bf65bc);
+    apuStack_78[0] = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,system_allocation_flags);
     uStack_b8 = (int32_t)param_1;
     uStack_b4 = (int32_t)((ulonglong)param_1 >> 0x20);
     *apuStack_78[0] = uStack_b8;

@@ -124,7 +124,7 @@ LAB_1800afade:
         }
 LAB_1800afc3f:
         if (iVar8 == 0) {
-          FUN_180626eb0(&uStack_60,0x20,&DAT_180a06430,
+          FUN_180626eb0(&uStack_60,0x20,&system_data_6430,
                         (double)**(float **)(*(longlong *)(param_1 + 0x28) + (longlong)iVar15 * 8));
           lVar13 = -1;
           do {

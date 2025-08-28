@@ -575,7 +575,7 @@ void FUN_1808da5c0(longlong param_1,uint64_t param_2)
   
   uStack_10 = _DAT_180bf00a8 ^ (ulonglong)&uStack_18;
   if (*(int *)(param_1 + 0x68) < 1) {
-    puVar2 = &DAT_18098bc73;
+    puVar2 = &system_buffer_ptr;
   }
   else {
     puVar2 = *(void **)(param_1 + 0x60);
@@ -768,13 +768,13 @@ void FUN_1808da910(uint64_t *param_1,longlong *param_2)
     func_0x00018076b450(&uStack_20,&UNK_180988af0,8);
     if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
                 0x48) < _DAT_180c4f508) {
-      FUN_1808fcb90(&DAT_180c4f508);
+      FUN_1808fcb90(&system_state_f508);
       if (_DAT_180c4f508 == -1) {
         uRam0000000180c4f4fc = CONCAT22(uStack_22,uStack_24);
         uRam0000000180c4f504 = CONCAT22(uStack_1a,uStack_1c);
         _DAT_180c4f4f8 = uStack_28;
         uRam0000000180c4f500 = uStack_20;
-        FUN_1808fcb30(&DAT_180c4f508);
+        FUN_1808fcb30(&system_state_f508);
       }
     }
     uVar4 = uRam0000000180c4f504;

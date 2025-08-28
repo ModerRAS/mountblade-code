@@ -72,7 +72,7 @@ void rendering_system_time_controller(float param_1)
     // 检查渲染状态标志并处理时间参数
     if (((*(uint *)(register_rbx + 0x56c) & RENDERING_STATE_MASK_800) != 0) &&
         (param_1 = (float)(*(longlong *)
-                            (&DAT_180c8ed30 +
+                            (&system_error_code +
                             (longlong)*(int *)(*(longlong *)(register_rbx + 0x728) + 0x590) * 8) -
                           *(longlong *)(*(longlong *)(register_rbx + 0x728) + 0x588)) * RENDERING_TIME_SCALE_FACTOR,
          register_xmm6 < param_1)) {
@@ -83,7 +83,7 @@ void rendering_system_time_controller(float param_1)
         *(unsigned int *)(long_variable_8 + 0xa418) = 0x40400000;
         *(longlong *)(*(longlong *)(register_rbx + 0x728) + 0x588) =
              *(longlong *)
-              (&DAT_180c8ed30 + (longlong)*(int *)(*(longlong *)(register_rbx + 0x728) + 0x590) * 8) +
+              (&system_error_code + (longlong)*(int *)(*(longlong *)(register_rbx + 0x728) + 0x590) * 8) +
              0x9184e700000;
              
         // 检查纹理标志并清理状态
@@ -269,10 +269,10 @@ label_final_state_update:
         (*(int *)((longlong)*(int *)(long_variable_8 + 0x2498) * 0x68 + 0x58 + _DAT_180c96150) != 0x20)) ||
        (register_r15b == '\0')) {
         long_variable_8 = RENDERING_LARGE_TIME_CONSTANT;
-        long_variable_7 = *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(register_rbx + 0x5d0) * 8);
+        long_variable_7 = *(longlong *)(&system_error_code + (longlong)*(int *)(register_rbx + 0x5d0) * 8);
     }
     else {
-        long_variable_7 = *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(register_rbx + 0x5d0) * 8);
+        long_variable_7 = *(longlong *)(&system_error_code + (longlong)*(int *)(register_rbx + 0x5d0) * 8);
         float_variable_11 = (float)(long_variable_7 - *(longlong *)(register_rbx + 0x5c8)) * RENDERING_TIME_SCALE_FACTOR;
         
         if (register_xmm6 < float_variable_11) {
@@ -447,7 +447,7 @@ label_animation_flow_control:
                 *(unsigned int *)(long_variable_7 + 0xa14) = *(unsigned int *)(long_variable_8 + 0xf0);
             }
 label_update_animation_state:
-            register_rsi = &DAT_180c8ed30;
+            register_rsi = &system_error_code;
             *(unsigned int *)(register_rbx + 0x2c0) = uint_variable_6;
         }
         else {
@@ -506,7 +506,7 @@ label_update_animation_state:
                 char_variable_3 = FUN_18051ec50(float_variable_11, register_rbp + -0x39);
                 
                 if (char_variable_3 != '\0') {
-                    register_rsi = &DAT_180c8ed30;
+                    register_rsi = &system_error_code;
                     if (int_variable_10 != 0x20) {
                         // 设置动画参数和状态
                         *(unsigned int *)(register_rbx + 0x7c) = 0xffff;

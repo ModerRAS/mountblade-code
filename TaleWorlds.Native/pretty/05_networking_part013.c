@@ -166,7 +166,7 @@ uint64_t FUN_18084de40(longlong param_1,longlong param_2,float *param_3)
     }
     if (param_2 != 0) {
       if (*(int *)(puVar3 + 1) < 1) {
-        puVar2 = &DAT_18098bc73;
+        puVar2 = &system_buffer_ptr;
       }
       else {
         puVar2 = (void *)*puVar3;

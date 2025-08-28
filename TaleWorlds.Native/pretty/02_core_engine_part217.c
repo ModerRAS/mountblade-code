@@ -157,7 +157,7 @@ LAB_180193772:
     }
   }
   if ((param_1 + 0x4c != 0) && (pcVar8 != (char *)0x0)) {
-    FUN_18010cbc0(pcVar8,&DAT_180a06430,param_1 + 0x4c);
+    FUN_18010cbc0(pcVar8,&system_data_6430,param_1 + 0x4c);
   }
   pcVar8 = "dynamic_friction";
   do {
@@ -192,7 +192,7 @@ LAB_180193810:
     }
   }
   if ((param_1 + 0x50 != 0) && (pcVar8 != (char *)0x0)) {
-    FUN_18010cbc0(pcVar8,&DAT_180a06430,param_1 + 0x50);
+    FUN_18010cbc0(pcVar8,&system_data_6430,param_1 + 0x50);
   }
   pcVar8 = "restitution";
   do {
@@ -227,7 +227,7 @@ LAB_1801938a0:
     }
   }
   if ((param_1 + 0x54 != 0) && (pcVar8 != (char *)0x0)) {
-    FUN_18010cbc0(pcVar8,&DAT_180a06430,param_1 + 0x54);
+    FUN_18010cbc0(pcVar8,&system_data_6430,param_1 + 0x54);
   }
   pcVar8 = "softness";
   do {
@@ -262,7 +262,7 @@ LAB_180193930:
     }
   }
   if ((param_1 + 0x58 != 0) && (pcVar8 != (char *)0x0)) {
-    FUN_18010cbc0(pcVar8,&DAT_180a06430,param_1 + 0x58);
+    FUN_18010cbc0(pcVar8,&system_data_6430,param_1 + 0x58);
   }
   pcVar8 = "linear_damping";
   do {
@@ -297,7 +297,7 @@ LAB_1801939c0:
     }
   }
   if ((param_1 + 0x5c != 0) && (pcVar8 != (char *)0x0)) {
-    FUN_18010cbc0(pcVar8,&DAT_180a06430,param_1 + 0x5c);
+    FUN_18010cbc0(pcVar8,&system_data_6430,param_1 + 0x5c);
   }
   pcVar8 = "angular_damping";
   do {
@@ -309,7 +309,7 @@ LAB_1801939c0:
     if (puVar6 == (uint64_t *)0x0) {
 LAB_180193a66:
       if ((param_1 + 0x60 != 0) && (pcVar7 != (char *)0x0)) {
-        FUN_18010cbc0(pcVar7,&DAT_180a06430,param_1 + 0x60);
+        FUN_18010cbc0(pcVar7,&system_data_6430,param_1 + 0x60);
       }
       puStack_50 = &UNK_180a3c3e0;
       if (lStack_48 == 0) {

@@ -1630,7 +1630,7 @@ float * RenderingSystem_GetPixelColor(float *param_1,longlong param_2,int param_
   uint *puVar2;
   
   if (*(int *)(*(longlong *)(param_2 + 0x18) + 0x60) < 1) {
-    puVar2 = (uint *)&DAT_180bf661c;
+    puVar2 = (uint *)&system_memory_661c;
   }
   else {
     puVar2 = (uint *)(*(longlong *)(*(longlong *)(param_2 + 0x18) + 0x68) + 0x54 +

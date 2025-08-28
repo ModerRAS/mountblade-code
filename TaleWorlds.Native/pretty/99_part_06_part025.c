@@ -116,7 +116,7 @@ LAB_1803bcf95:
                       FUN_180627c50(&puStack_50,lVar8,pcVar7,puVar10,uVar22);
                       break;
                     }
-                    lVar8 = (longlong)&DAT_180a03a84 - (longlong)pcVar17;
+                    lVar8 = (longlong)&system_flag_3a84 - (longlong)pcVar17;
                     while (*pcVar17 == pcVar17[lVar8]) {
                       pcVar17 = pcVar17 + 1;
                       if (pcVar7 <= pcVar17) goto LAB_1803bcf95;
@@ -280,11 +280,11 @@ LAB_1803bd26e:
                       else {
 LAB_1803bd340:
                         puVar9 = *(void **)(*(longlong *)(param_1 + 0x28) + 0x290);
-                        puVar15 = &DAT_18098bc73;
+                        puVar15 = &system_buffer_ptr;
                         if (puVar9 != (void *)0x0) {
                           puVar15 = puVar9;
                         }
-                        puVar9 = &DAT_18098bc73;
+                        puVar9 = &system_buffer_ptr;
                         if (puVar3 != (void *)0x0) {
                           puVar9 = puVar3;
                         }
@@ -481,7 +481,7 @@ LAB_1803bd5e3:
                             FUN_180627c50(&puStack_50,lVar8);
                             break;
                           }
-                          lVar8 = (longlong)&DAT_180a03a84 - (longlong)pcVar17;
+                          lVar8 = (longlong)&system_flag_3a84 - (longlong)pcVar17;
                           while (*pcVar17 == pcVar17[lVar8]) {
                             pcVar17 = pcVar17 + 1;
                             if (pcVar7 <= pcVar17) goto LAB_1803bd5e3;
@@ -553,11 +553,11 @@ LAB_1803bd718:
                           else {
 LAB_1803bd758:
                             puVar9 = *(void **)(*(longlong *)(param_1 + 0x28) + 0x290);
-                            puVar15 = &DAT_18098bc73;
+                            puVar15 = &system_buffer_ptr;
                             if (puVar9 != (void *)0x0) {
                               puVar15 = puVar9;
                             }
-                            puVar9 = &DAT_18098bc73;
+                            puVar9 = &system_buffer_ptr;
                             if (puVar3 != (void *)0x0) {
                               puVar9 = puVar3;
                             }

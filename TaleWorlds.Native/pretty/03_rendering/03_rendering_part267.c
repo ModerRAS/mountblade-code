@@ -465,9 +465,9 @@ void FUN_180416900(longlong param_1, uint64_t param_2, longlong param_3, longlon
         puVar7[2] = pcVar10 + -0x180a180f3;
         
         /* 配置曲线参数 */
-        FUN_180630b20(param_3, puVar7, &DAT_180a03a84, param_2);
+        FUN_180630b20(param_3, puVar7, &system_memory_3a84, param_2);
         FUN_180630c80(param_3, puVar7, &UNK_180a015b0, 1);
-        FUN_18062f990(param_3, puVar7, &DAT_180a0b1c0);
+        FUN_18062f990(param_3, puVar7, &system_memory_b1c0);
         FUN_18062f990(param_3, puVar7, &UNK_180a180b0);
         
         /* 链接到输出结构 */

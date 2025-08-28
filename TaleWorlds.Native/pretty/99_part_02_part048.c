@@ -1269,7 +1269,7 @@ longlong * hash_table_entry_finder(longlong param_1, longlong *param_2, longlong
     byte *pbVar5;
     uint uVar6;
     
-    pbVar5 = &DAT_18098bc73;
+    pbVar5 = &system_buffer_ptr;
     if (*(byte **)(param_3 + 8) != (byte *)0x0) {
         pbVar5 = *(byte **)(param_3 + 8);
     }

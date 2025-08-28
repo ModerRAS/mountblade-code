@@ -25,10 +25,10 @@ void FUN_18084d068(void)
   uint in_stack_00000050;
   
   do {
-    FUN_1808fcb90(&DAT_180c4ea98);
+    FUN_1808fcb90(&system_ptr_ea98);
     if (_DAT_180c4ea98 == -1) {
       _DAT_180c4ea94 = unaff_R12D;
-      FUN_1808fcb30(&DAT_180c4ea98);
+      FUN_1808fcb30(&system_ptr_ea98);
     }
     do {
       uVar3 = (uint)unaff_RBP;
@@ -1093,13 +1093,13 @@ void * FUN_18084da10(void)
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
               0x48) < _DAT_180c4ea98) {
-    FUN_1808fcb90(&DAT_180c4ea98);
+    FUN_1808fcb90(&system_ptr_ea98);
     if (_DAT_180c4ea98 == -1) {
       _DAT_180c4ea94 = 0;
-      FUN_1808fcb30(&DAT_180c4ea98);
+      FUN_1808fcb30(&system_ptr_ea98);
     }
   }
-  return &DAT_180c4ea94;
+  return &system_ptr_ea94;
 }
 
 

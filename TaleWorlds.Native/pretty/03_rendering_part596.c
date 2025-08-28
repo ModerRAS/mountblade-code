@@ -785,7 +785,7 @@ LAB_180597469:
   *(uint64_t *)(unaff_RBX + 0x16) = *puVar5;
   puVar6 = (void *)(unaff_RBP + 0x6f);
   if (unaff_R12B != '\0') {
-    puVar6 = &DAT_1809ff0c8;
+    puVar6 = &system_data_f0c8;
   }
   FUN_1805989b0(puVar6);
   return;

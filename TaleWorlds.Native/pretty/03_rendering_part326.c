@@ -50,8 +50,8 @@
 
 /* 渲染系统全局变量 */
 extern longlong _DAT_180c86920;      /* 渲染系统全局数据指针 */
-extern char DAT_180c82860;           /* 渲染系统标志位 */
-extern void *DAT_18098bc73;     /* 渲染系统默认数据指针 */
+extern char system_debug_flag;           /* 渲染系统标志位 */
+extern void *system_buffer_ptr;     /* 渲染系统默认数据指针 */
 extern uint64_t UNK_18098bc00;     /* 渲染系统未知数据 */
 extern uint8_t UNK_1809fcc28;      /* 渲染系统配置数据 */
 extern uint8_t UNK_1809fcc58;      /* 渲染系统扩展配置数据 */
@@ -83,8 +83,8 @@ void FUN_180439fb5(void)
       status_check == '\0')) {
     
     /* 处理标志位检查 */
-    if (DAT_180c82860 == '\0') {
-      data_pointer = &DAT_18098bc73;
+    if (system_debug_flag == '\0') {
+      data_pointer = &system_buffer_ptr;
       if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_470) != (void *)0x0) {
         data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_470);
       }
@@ -127,8 +127,8 @@ void FUN_180439fd4(void)
       status_check == '\0')) {
     
     /* 处理标志位检查 */
-    if (DAT_180c82860 == '\0') {
-      data_pointer = &DAT_18098bc73;
+    if (system_debug_flag == '\0') {
+      data_pointer = &system_buffer_ptr;
       if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_2150) != (void *)0x0) {
         data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_2150);
       }
@@ -1283,7 +1283,7 @@ void FUN_18043bbe0(int param_1)
   work_buffer[0] = 0;
   buffer_size = *(uint *)(base_address + 0x10);
   data_pointer = *(void **)(base_address + 8);
-  temp_pointer = &DAT_18098bc73;
+  temp_pointer = &system_buffer_ptr;
   
   if (data_pointer != (void *)0x0) {
     temp_pointer = data_pointer;
@@ -1413,8 +1413,8 @@ void FUN_18043be90(uint64_t param_1, int32_t param_2)
       status_check = (**(code **)(_DAT_180c86920 + RENDERING_SYSTEM_OFFSET_1808))(temp_stack),
       param_2 = temp_stack[0], status_check == '\0')) {
     
-    if (DAT_180c82860 == '\0') {
-      data_pointer = &DAT_18098bc73;
+    if (system_debug_flag == '\0') {
+      data_pointer = &system_buffer_ptr;
       if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_17B0) != (void *)0x0) {
         data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_17B0);
       }
@@ -1450,8 +1450,8 @@ void FUN_18043bf20(uint64_t param_1, int32_t param_2)
       status_check = (**(code **)(_DAT_180c86920 + RENDERING_SYSTEM_OFFSET_1178))(temp_stack),
       param_2 = temp_stack[0], status_check == '\0')) {
     
-    if (DAT_180c82860 == '\0') {
-      data_pointer = &DAT_18098bc73;
+    if (system_debug_flag == '\0') {
+      data_pointer = &system_buffer_ptr;
       if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_1120) != (void *)0x0) {
         data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_1120);
       }

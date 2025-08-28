@@ -631,8 +631,8 @@ uint64_t FUN_1800f93e0(uint64_t param_1, uint64_t param_2, uint64_t param_3, uin
     uint temp_style;
     
     /* 检查调试状态 */
-    if (((DAT_180c82860 == '\0') || (debugger_present = IsDebuggerPresent(), debugger_present != 0)) &&
-        (DAT_180c82842 == '\0')) {
+    if (((system_debug_flag == '\0') || (debugger_present = IsDebuggerPresent(), debugger_present != 0)) &&
+        (system_debug_flag2 == '\0')) {
         
         /* 计算消息框样式 */
         message_style = -(uint)((param_4 & 2) != 0) & 0x1030;

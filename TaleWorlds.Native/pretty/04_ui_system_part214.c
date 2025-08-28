@@ -684,7 +684,7 @@ LAB_18078fd4b:
       }
       unaff_RBP[-7] = (char *)((longlong)(int)uVar16 + unaff_RBP[-4]);
       if (*(char *)((longlong)(int)uVar16 + unaff_RBP[-4]) == cVar21) {
-        plVar10[6] = (longlong)&DAT_18098bc73;
+        plVar10[6] = (longlong)&system_buffer_ptr;
       }
       else {
         iVar4 = (**(code **)(*plVar10 + 0x88))(plVar10);

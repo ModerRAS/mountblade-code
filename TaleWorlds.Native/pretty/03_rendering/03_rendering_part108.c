@@ -549,7 +549,7 @@ void RenderingSystem_ProcessResourceData(longlong render_context, longlong outpu
             data_buffer_ptr = data_buffer_ptr + 1;
             
             // 字符串复制
-            string_data = &DAT_18098bc73;
+            string_data = &system_buffer_ptr;
             if (*(void **)(resource_array_ptr + 22) != (void *)0x0) {
                 string_data = *(void **)(resource_array_ptr + 22);
             }

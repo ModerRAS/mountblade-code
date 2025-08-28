@@ -19,7 +19,7 @@ void FUN_1803276a0(longlong param_1,longlong *param_2,longlong param_3)
   uStack_30 = 0xfffffffffffffffe;
   FUN_1800b30d0(_DAT_180c86930,&plStackX_20,param_3,0);
   if (plStackX_20 == (longlong *)0x0) {
-    puVar3 = &DAT_18098bc73;
+    puVar3 = &system_buffer_ptr;
     if (*(void **)(param_3 + 8) != (void *)0x0) {
       puVar3 = *(void **)(param_3 + 8);
     }
@@ -562,9 +562,9 @@ LAB_1803281b2:
     uVar12 = uVar8;
     do {
       if ((*(int *)(lVar10 + 0x48) < _DAT_180d48e24) &&
-         (FUN_1808fcb90(&DAT_180d48e24), _DAT_180d48e24 == -1)) {
+         (FUN_1808fcb90(&system_ptr_8e24), _DAT_180d48e24 == -1)) {
         _DAT_180d48e60 = &UNK_1809fcc58;
-        _DAT_180d48e68 = &DAT_180d48e78;
+        _DAT_180d48e68 = &system_ptr_8e78;
         _DAT_180d48e70 = 0;
 
 

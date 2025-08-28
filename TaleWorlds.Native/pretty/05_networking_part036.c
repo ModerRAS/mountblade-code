@@ -227,7 +227,7 @@ thunk_FUN_18085fbb0(longlong param_1,uint64_t *param_2,uint64_t *param_3,uint64_
       *(uint64_t *)(lVar3 + lVar11) = *param_2;
       ((uint64_t *)(lVar3 + lVar11))[1] = uVar6;
       if (*(int *)(param_3 + 1) < 1) {
-        puVar10 = &DAT_18098bc73;
+        puVar10 = &system_buffer_ptr;
       }
       else {
         puVar10 = (void *)*param_3;
@@ -320,7 +320,7 @@ FUN_18085fbb0(longlong param_1,uint64_t *param_2,uint64_t *param_3,uint64_t para
       *(uint64_t *)(lVar3 + lVar11) = *param_2;
       ((uint64_t *)(lVar3 + lVar11))[1] = uVar6;
       if (*(int *)(param_3 + 1) < 1) {
-        puVar10 = &DAT_18098bc73;
+        puVar10 = &system_buffer_ptr;
       }
       else {
         puVar10 = (void *)*param_3;
@@ -411,7 +411,7 @@ uint64_t FUN_18085fc0e(void)
     *(uint64_t *)(lVar4 + lVar12) = *unaff_R12;
     ((uint64_t *)(lVar4 + lVar12))[1] = uVar7;
     if (*(int *)(unaff_R15 + 1) < 1) {
-      puVar11 = &DAT_18098bc73;
+      puVar11 = &system_buffer_ptr;
     }
     else {
       puVar11 = (void *)*unaff_R15;
@@ -743,7 +743,7 @@ uint64_t thunk_FUN_180865550(longlong param_1)
             *(int32_t *)(lVar13 + -0x14) = uVar6;
             *(int32_t *)(lVar13 + -0x10) = uVar7;
             if (*(int *)(lVar9 + -4 + lVar13) < 1) {
-              puVar12 = &DAT_18098bc73;
+              puVar12 = &system_buffer_ptr;
             }
             else {
               puVar12 = *(void **)(lVar9 + -0xc + lVar13);

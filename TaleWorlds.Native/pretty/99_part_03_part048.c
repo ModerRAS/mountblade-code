@@ -440,7 +440,7 @@ LAB_1801fdfff:
           uVar4 = FUN_18064e990(pcVar6);
           uVar20 = CONCAT44(uVar21,uVar4);
           if (0 < *(int *)(lVar8 + 0x10)) {
-            puVar17 = &DAT_18098bc73;
+            puVar17 = &system_buffer_ptr;
             if (*(void **)(lVar8 + 8) != (void *)0x0) {
               puVar17 = *(void **)(lVar8 + 8);
             }
@@ -516,7 +516,7 @@ LAB_1801fdfe6:
                   (param_1 + 0x28,lVar8,pcVar18,puVar11,0xfffffffffffffffe);
         goto LAB_1801fdfff;
       }
-      lVar8 = (longlong)&DAT_180a03a84 - (longlong)pcVar6;
+      lVar8 = (longlong)&system_data_3a84 - (longlong)pcVar6;
       while (*pcVar6 == pcVar6[lVar8]) {
         pcVar6 = pcVar6 + 1;
         if (pcVar18 <= pcVar6) goto LAB_1801fdfe6;

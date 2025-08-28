@@ -423,7 +423,7 @@ void FUN_180099430(longlong param_1,longlong param_2)
                 (**(code **)(*plVar19 + 0x168))(plVar19,1,&uStack_250);
                 param_1 = lStack_298;
                 iVar25 = iStack_2c4;
-                if (DAT_180c82846 == '\0') {
+                if (system_ptr_2846 == '\0') {
                   plVar19 = *(longlong **)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x8400);
                   (**(code **)(*plVar19 + 0x60))(plVar19,(*puVar36 / 3) * 3,iStack_2c8,0);
                   param_1 = lStack_298;
@@ -484,18 +484,18 @@ FUN_180099f90(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   uVar2 = 0xfffffffffffffffe;
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
               0x48) < _DAT_180d49210) {
-    FUN_1808fcb90(&DAT_180d49210);
+    FUN_1808fcb90(&system_ptr_9210);
     if (_DAT_180d49210 == -1) {
       _DAT_180d49218 = &UNK_180a3c3e0;
       _DAT_180d49230 = 0;
       _DAT_180d49220 = (void *)0x0;
       _DAT_180d49228 = 0;
       FUN_1808fc820(FUN_1809419e0);
-      FUN_1808fcb30(&DAT_180d49210);
+      FUN_1808fcb30(&system_ptr_9210);
     }
   }
-  FUN_1801717e0(*(uint64_t *)(_DAT_180c86870 + 8),&DAT_180d49218,param_3,param_4,uVar2);
-  puVar1 = &DAT_18098bc73;
+  FUN_1801717e0(*(uint64_t *)(_DAT_180c86870 + 8),&system_ptr_9218,param_3,param_4,uVar2);
+  puVar1 = &system_buffer_ptr;
   if (_DAT_180d49220 != (void *)0x0) {
     puVar1 = _DAT_180d49220;
   }
@@ -526,7 +526,7 @@ int8_t FUN_18009a080(uint64_t param_1,longlong param_2,uint64_t param_3,uint64_t
   puStackX_20 = param_4;
   uVar2 = func_0x000180220c90(*(int32_t *)(param_2 + 0x324));
   FUN_18012e3b0();
-  puVar3 = &DAT_18098bc73;
+  puVar3 = &system_buffer_ptr;
   if ((void *)param_4[1] != (void *)0x0) {
     puVar3 = (void *)param_4[1];
   }
@@ -693,7 +693,7 @@ void FUN_18009a4b0(uint64_t param_1,uint64_t param_2,longlong param_3,longlong p
   } while (*pcVar9 != '\0');
   *puVar8 = &UNK_180a01604;
   puVar8[2] = pcVar10 + -0x180a01603;
-  puVar19 = &DAT_18098bc73;
+  puVar19 = &system_buffer_ptr;
   if (*(void **)(param_5 + 8) != (void *)0x0) {
     puVar19 = *(void **)(param_5 + 8);
   }

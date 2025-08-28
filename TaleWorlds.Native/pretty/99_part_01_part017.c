@@ -313,7 +313,7 @@ LAB_1800b0d28:
     *(int *)((longlong)plVar7 + 0x3c) = iVar17;
     *(int *)(plVar7 + 8) = iStack_278;
     *(int *)((longlong)plVar7 + 0x44) = param_7;
-    puVar13 = &DAT_18098bc73;
+    puVar13 = &system_buffer_ptr;
     if (*(void **)(lStack_250 + 8) != (void *)0x0) {
       puVar13 = *(void **)(lStack_250 + 8);
     }
@@ -528,7 +528,7 @@ LAB_1800b1065:
           plVar5 = plStack_270;
         }
         plStack_270 = plVar5;
-        puVar13 = &DAT_18098bc73;
+        puVar13 = &system_buffer_ptr;
         if (*(void **)(lStack_250 + 8) != (void *)0x0) {
           puVar13 = *(void **)(lStack_250 + 8);
         }
@@ -567,7 +567,7 @@ LAB_1800b1065:
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   uStack_d8 = *(int32_t *)(lStack_250 + 0x10);
-  puVar13 = &DAT_18098bc73;
+  puVar13 = &system_buffer_ptr;
   if (*(void **)(lStack_250 + 8) != (void *)0x0) {
     puVar13 = *(void **)(lStack_250 + 8);
   }

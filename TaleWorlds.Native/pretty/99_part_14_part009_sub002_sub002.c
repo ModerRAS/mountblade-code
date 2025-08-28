@@ -19,7 +19,7 @@ void FUN_1808eeb60(int32_t param_1,byte *param_2)
   uStack_28 = 0;
   uStack_20 = 0;
   uStack_18 = 0;
-  if ((((DAT_180c4f818 == '\0') || (param_2 == (byte *)0x0)) ||
+  if ((((system_data_f818 == '\0') || (param_2 == (byte *)0x0)) ||
       (bVar1 = *param_2, (bVar1 & 0xfc) != 0)) || (bVar1 == 0)) goto LAB_1808eebd1;
   if (((bVar1 & 1) != 0) && (iVar3 = *(int *)(param_2 + 8), iVar3 != 0)) {
     if (iVar3 == 1) {
@@ -79,7 +79,7 @@ int FUN_1808eecf0(int32_t param_1,int8_t *param_2)
 {
   int iVar1;
   
-  if (DAT_180c4f818 == '\0') {
+  if (system_data_f818 == '\0') {
     return -0x7f6dfffb;
   }
   if (param_2 == (int8_t *)0x0) {
@@ -108,7 +108,7 @@ uint64_t FUN_1808eed90(int32_t param_1,int param_2)
 {
   int iVar1;
   
-  if (DAT_180c4f818 == '\0') {
+  if (system_data_f818 == '\0') {
     return 0x80920005;
   }
   if (2 < param_2 - 1U) {

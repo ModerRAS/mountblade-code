@@ -242,7 +242,7 @@ uint8_t FUN_1805f7180;
 
 /* 数据处理器 - 负责数据的处理 */
 uint8_t FUN_1805f7330;
-uint8_t DAT_180c95bd0;      // 数据处理器主数据
+uint8_t system_memory_5bd0;      // 数据处理器主数据
 uint8_t UNK_180a3b7f0;      // 数据处理器主数据结构
 uint8_t UNK_180a3b9a8;      // 数据处理器配置数据结构
 uint8_t UNK_180a3b9c8;      // 数据处理器状态数据结构
@@ -272,12 +272,12 @@ uint8_t UNK_18094e450;      // 系统分析器缓存数据结构
 uint8_t UNK_18094e460;      // 系统分析器任务数据结构
 uint8_t UNK_18094e470;      // 系统分析器线程数据结构
 uint8_t UNK_18094bf80;      // 系统分析器同步数据结构
-uint8_t DAT_180c0c324;      // 系统分析器主数据
-uint8_t DAT_180c0c320;      // 系统分析器配置数据
-uint8_t DAT_180c0c330;      // 系统分析器状态数据
-uint8_t DAT_180c0c328;      // 系统分析器资源数据
-uint8_t DAT_180c0c32c;      // 系统分析器缓存数据
-uint8_t DAT_180be0f00;      // 系统分析器任务数据
+uint8_t system_memory_c324;      // 系统分析器主数据
+uint8_t system_memory_c320;      // 系统分析器配置数据
+uint8_t system_memory_c330;      // 系统分析器状态数据
+uint8_t system_memory_c328;      // 系统分析器资源数据
+uint8_t system_memory_c32c;      // 系统分析器缓存数据
+uint8_t system_memory_0f00;      // 系统分析器任务数据
 uint8_t UNK_18094e340;      // 系统分析器错误数据结构
 uint8_t UNK_18094e3a0;      // 系统分析器日志数据结构
 uint8_t UNK_18094bf98;      // 系统分析器报告数据结构
@@ -501,8 +501,8 @@ uint8_t UNK_18094f18c;      // 高级资源分配器算法数据结构
 uint8_t UNK_18094f190;      // 高级资源分配器缓存策略数据
 uint8_t UNK_18094f194;      // 高级资源分配器内存策略数据
 uint8_t UNK_18094f650;      // 高级资源分配器磁盘策略数据
-uint8_t DAT_180a401b0;      // 高级资源分配器网络策略数据
-uint8_t DAT_18094ed40;      // 高级资源分配器任务策略数据
+uint8_t system_memory_01b0;      // 高级资源分配器网络策略数据
+uint8_t system_memory_ed40;      // 高级资源分配器任务策略数据
 uint8_t UNK_180953620;      // 高级资源分配器线程策略数据
 uint8_t UNK_1809530e0;      // 高级资源分配器同步策略数据
 uint8_t UNK_180953130;      // 高级资源分配器错误策略数据
@@ -577,7 +577,7 @@ uint8_t UNK_180956f38;      // 高级资源分配器内存策略数据
 uint8_t UNK_180956f50;      // 高级资源分配器磁盘策略数据
 uint8_t UNK_180956e60;      // 高级资源分配器网络策略数据
 uint8_t UNK_180956f30;      // 高级资源分配器任务策略数据
-uint8_t DAT_180956f70;      // 高级资源分配器线程策略数据
+uint8_t system_memory_6f70;      // 高级资源分配器线程策略数据
 uint8_t UNK_180956f6e;      // 高级资源分配器同步策略数据
 uint8_t UNK_180956de8;      // 高级资源分配器错误策略数据
 uint8_t UNK_180956df8;      // 高级资源分配器调试策略数据
@@ -585,8 +585,8 @@ uint8_t UNK_180956f72;      // 高级资源分配器日志策略数据
 uint8_t UNK_180954860;      // 高级资源分配器报告策略数据
 uint8_t UNK_180954890;      // 高级资源分配器统计策略数据
 uint8_t UNK_1809536b8;      // 高级资源分配器性能策略数据
-uint8_t DAT_180be12e0;      // 高级资源分配器监控策略数据
-uint8_t DAT_180be12dc;      // 高级资源分配器分析策略数据
+uint8_t system_memory_12e0;      // 高级资源分配器监控策略数据
+uint8_t system_memory_12dc;      // 高级资源分配器分析策略数据
 uint8_t UNK_1809542b0;      // 高级资源分配器优化策略数据
 uint8_t UNK_180741ce0;      // 高级资源分配器热重载策略数据
 uint8_t UNK_180741cf0;      // 高级资源分配器预加载策略数据

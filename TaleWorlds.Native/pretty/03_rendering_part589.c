@@ -415,7 +415,7 @@ uint64_t FUN_18058fdf0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64
   if (param_1 != 0) {
     FUN_18014c9e0(param_1,param_1,param_3,param_4,0xfffffffffffffffe);
     if (*(longlong *)(param_1 + 0xb8) == 0) {
-      puVar6 = &DAT_18098bc73;
+      puVar6 = &system_buffer_ptr;
       if (*(void **)(param_1 + 0x18) != (void *)0x0) {
         puVar6 = *(void **)(param_1 + 0x18);
       }

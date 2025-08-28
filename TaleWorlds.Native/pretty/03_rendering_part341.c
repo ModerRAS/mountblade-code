@@ -546,7 +546,7 @@ ulonglong FUN_18044d4f0(longlong param_1,uint param_2)
   
   if (param_1 != 0) {
     uVar1 = FUN_18062b1e0(_DAT_180c8ed18,0xd8,8,3);
-    uStackX_8 = func_0x000180464d70(uVar1,&DAT_180a00300,0);
+    uStackX_8 = func_0x000180464d70(uVar1,&system_data_0300,0);
     FUN_180469480((longlong *)(param_1 + 0xd0),
                   *(longlong *)(param_1 + 0xd0) + (ulonglong)param_2 * 8,&uStackX_8);
     *(int *)(param_1 + 0x70) = *(int *)(param_1 + 0x70) + 1;
@@ -909,7 +909,7 @@ void FUN_18044dc10(longlong param_1,uint64_t param_2)
     uStack_28 = uStack_38;
     uStack_24 = uStack_34;
     (**(code **)(**(longlong **)(aplStackX_8[0][0x15] + 0x88) + 0x60))
-              (*(longlong **)(aplStackX_8[0][0x15] + 0x88),&DAT_180a01050,aplStackX_8[0][0x15] + 0xc
+              (*(longlong **)(aplStackX_8[0][0x15] + 0x88),&system_data_1050,aplStackX_8[0][0x15] + 0xc
                ,0,&uStack_30);
     if (pcStack_20 != (code *)0x0) {
       (*pcStack_20)(&uStack_30,0,0);

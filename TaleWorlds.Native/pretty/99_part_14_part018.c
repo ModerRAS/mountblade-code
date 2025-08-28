@@ -803,7 +803,7 @@ void FUN_1808fa4a0(uint64_t param_1,ulonglong param_2)
   int8_t auStack_148 [256];
   ulonglong uStack_48;
   
-  cVar1 = DAT_180c69ef8;
+  cVar1 = system_data_9ef8;
   uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_228;
   uStack_1b8 = 0x780030;
   uStack_1b4 = 0x300030;
@@ -860,7 +860,7 @@ void FUN_1808fa4a0(uint64_t param_1,ulonglong param_2)
   uStack_1a8._0_4_ = CONCAT22(sVar4 + uVar8,sVar3 + uVar10);
   OutputDebugStringW(&uStack_1b8);
   if (cVar1 == '\0') {
-    if (DAT_180bf0080 != '\0') {
+    if (system_data_0080 != '\0') {
       lVar7 = 0;
       auStack_1c0[0] = 0x100;
       auStack_1c0[1] = 0x200;

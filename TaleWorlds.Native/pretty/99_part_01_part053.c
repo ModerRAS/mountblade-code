@@ -694,7 +694,7 @@ void FUN_1800db220(longlong param_1,longlong *param_2,uint64_t param_3)
   puStack_c0 = auStack_b0;
   auStack_b0[0] = 0;
   uStack_b8 = *(int32_t *)(param_1 + 0x10);
-  puVar3 = &DAT_18098bc73;
+  puVar3 = &system_buffer_ptr;
   if (*(void **)(param_1 + 8) != (void *)0x0) {
     puVar3 = *(void **)(param_1 + 8);
   }
@@ -830,7 +830,7 @@ void FUN_1800db460(longlong param_1,longlong *param_2,uint64_t param_3,uint64_t 
     puStack_d0 = auStack_c0;
     auStack_c0[0] = 0;
     uStack_c8 = *(int32_t *)(param_1 + 0x10);
-    puVar3 = &DAT_18098bc73;
+    puVar3 = &system_buffer_ptr;
     if (*(void **)(param_1 + 8) != (void *)0x0) {
       puVar3 = *(void **)(param_1 + 8);
     }

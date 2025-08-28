@@ -292,7 +292,7 @@ uint8_t FUN_1805f7330;
  * @brief UI资源数据结构
  * @details UI资源管理器的相关数据结构
  */
-uint8_t DAT_180c95bd0;  // UI资源表
+uint8_t system_data_5bd0;  // UI资源表
 uint8_t UNK_180a3b7f0;  // UI纹理资源
 uint8_t UNK_180a3b9a8;  // UI字体资源
 uint8_t UNK_180a3b9c8;  // UI材质资源
@@ -338,12 +338,12 @@ uint8_t UNK_18094bf80;  // 系统缓存
  * @brief 系统常量定义
  * @details 系统管理器的常量数据
  */
-uint8_t DAT_180c0c324;  // 系统版本号
-uint8_t DAT_180c0c320;  // 系统构建号
-uint8_t DAT_180c0c330;  // 系统配置表
-uint8_t DAT_180c0c328;  // 系统参数表
-uint8_t DAT_180c0c32c;  // 系统限制表
-uint8_t DAT_180be0f00;  // 系统默认值
+uint8_t system_data_c324;  // 系统版本号
+uint8_t system_data_c320;  // 系统构建号
+uint8_t system_data_c330;  // 系统配置表
+uint8_t system_data_c328;  // 系统参数表
+uint8_t system_data_c32c;  // 系统限制表
+uint8_t system_data_0f00;  // 系统默认值
 
 /**
  * @brief 系统管理器成员变量
@@ -741,8 +741,8 @@ uint8_t UNK_18094f650;  // 引擎安全
  * @brief 引擎常量定义
  * @details 游戏引擎的常量数据
  */
-uint8_t DAT_180a401b0;  // 引擎版本表
-uint8_t DAT_18094ed40;  // 引擎配置表
+uint8_t system_data_01b0;  // 引擎版本表
+uint8_t system_data_ed40;  // 引擎配置表
 
 /**
  * @brief 引擎管理器成员变量
@@ -827,7 +827,7 @@ uint8_t UNK_180956f38;  // 引擎核心监控
 uint8_t UNK_180956f50;  // 引擎核心优化
 uint8_t UNK_180956e60;  // 引擎核心清理
 uint8_t UNK_180956f30;  // 引擎核心安全
-uint8_t DAT_180956f70;  // 引擎核心常量
+uint8_t system_data_6f70;  // 引擎核心常量
 uint8_t UNK_180956f6e;  // 引擎核心标志
 uint8_t UNK_180956de8;  // 引擎核心锁
 uint8_t UNK_180956df8;  // 引擎核心信号量
@@ -835,8 +835,8 @@ uint8_t UNK_180956f72;  // 引擎核心条件变量
 uint8_t UNK_180954860;  // 引擎核心屏障
 uint8_t UNK_180954890;  // 引擎核心线程
 uint8_t UNK_1809536b8;  // 引擎核心进程
-uint8_t DAT_180be12e0;  // 引擎核心同步
-uint8_t DAT_180be12dc;  // 引擎核心通信
+uint8_t system_data_12e0;  // 引擎核心同步
+uint8_t system_data_12dc;  // 引擎核心通信
 uint8_t UNK_1809542b0;  // 引擎核心网络
 uint8_t UNK_180741ce0;  // 引擎核心存储
 uint8_t UNK_180741cf0;  // 引擎核心设备

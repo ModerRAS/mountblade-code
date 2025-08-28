@@ -13,7 +13,7 @@ void FUN_180073730(uint64_t param_1,uint64_t param_2)
   longlong lStack_28;
   
   FUN_1800623b0(_DAT_180c86928,0,0x100000000,1,&UNK_1809ff938,param_2,0xfffffffffffffffe);
-  if (DAT_180c82860 == '\0') {
+  if (system_debug_flag == '\0') {
     auStackX_18[0] = 0xff00ff00;
     FUN_180627910(&puStack_30,param_2);
     puVar1 = *(void **)*_DAT_180c8ed08;
@@ -53,7 +53,7 @@ void FUN_180073830(uint64_t param_1,int32_t param_2,uint64_t param_3)
   longlong lStack_28;
   
   FUN_1800623b0(_DAT_180c86928,0,0x100000000,0xc,&UNK_1809ff958,param_3,0xfffffffffffffffe);
-  if (DAT_180c82860 == '\0') {
+  if (system_debug_flag == '\0') {
     auStackX_20[0] = param_2;
     FUN_180627910(&puStack_30,param_3);
     puVar1 = *(void **)*_DAT_180c8ed08;

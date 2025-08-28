@@ -469,7 +469,7 @@ void FUN_1803cfd10(longlong param_1,int32_t param_2,int32_t param_3,uint64_t par
   puStack_180 = auStack_170;
   auStack_170[0] = 0;
   uStack_178 = 0x12;
-  puVar7 = (int32_t *)&DAT_18098bc73;
+  puVar7 = (int32_t *)&system_buffer_ptr;
   if (puVar4 != (int32_t *)0x0) {
     puVar7 = puVar4;
   }
@@ -490,7 +490,7 @@ void FUN_1803cfd10(longlong param_1,int32_t param_2,int32_t param_3,uint64_t par
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   uStack_d8 = 0x11;
-  puVar7 = (int32_t *)&DAT_18098bc73;
+  puVar7 = (int32_t *)&system_buffer_ptr;
   if (puVar5 != (int32_t *)0x0) {
     puVar7 = puVar5;
   }
@@ -556,7 +556,7 @@ void FUN_1803cfd10(longlong param_1,int32_t param_2,int32_t param_3,uint64_t par
   puStack_180 = auStack_170;
   auStack_170[0] = 0;
   uStack_178 = 0x14;
-  puVar13 = (int32_t *)&DAT_18098bc73;
+  puVar13 = (int32_t *)&system_buffer_ptr;
   if (puVar7 != (int32_t *)0x0) {
     puVar13 = puVar7;
   }

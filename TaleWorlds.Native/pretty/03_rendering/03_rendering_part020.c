@@ -155,7 +155,7 @@ void process_rendering_materials(longlong *render_context, longlong *material_da
             }
             
             // 比较名称字符串
-            material_offset = (longlong)&DAT_180a03a84 - (longlong)current_name;
+            material_offset = (longlong)&system_buffer_3a84 - (longlong)current_name;
             while (*current_name == current_name[material_offset]) {
                 current_name++;
                 if (name_ptr2 <= current_name) {
@@ -313,7 +313,7 @@ void process_rendering_materials(longlong *render_context, longlong *material_da
                     }
                     
                     // 比较网格名称
-                    material_offset = (longlong)&DAT_180a03a84 - (longlong)current_name;
+                    material_offset = (longlong)&system_buffer_3a84 - (longlong)current_name;
                     while (*current_name == current_name[material_offset]) {
                         current_name++;
                         if (name_ptr2 <= current_name) {
@@ -350,7 +350,7 @@ void process_rendering_materials(longlong *render_context, longlong *material_da
                     search_name = material_name;
                     material_name[0] = '\0';
                     material_index_int = *(int *)(material_offset + 0x10);
-                    sub_material_entry = &DAT_18098bc73;
+                    sub_material_entry = &system_buffer_ptr;
                     
                     if (*(void **)(material_offset + MATERIAL_TEXTURE_OFFSET) != (void *)0x0) {
                         sub_material_entry = *(void **)(material_offset + MATERIAL_TEXTURE_OFFSET);
@@ -981,7 +981,7 @@ void load_mdm_model_data(longlong model_context, longlong file_data)
     
     // 打开文件句柄
     file_handle = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x18, 8, 3);
-    default_path = &DAT_18098bc73;
+    default_path = &system_buffer_ptr;
     
     // 获取文件路径
     if (*(void **)(file_data + 8) != (void *)0x0) {
@@ -1014,7 +1014,7 @@ void load_mdm_model_data(longlong model_context, longlong file_data)
                     
                     // 清理材质名称中的特殊字符
                     while ((0 < (int)string_size && 
-                           (mesh_buffer = strstr(string_buffer, &DAT_180a0ff10), mesh_buffer != 0))) {
+                           (mesh_buffer = strstr(string_buffer, &system_buffer_ff10), mesh_buffer != 0))) {
                         
                         material_index = 6;
                         string_length = (int)mesh_buffer - (int)string_buffer;
@@ -1086,7 +1086,7 @@ void load_mdm_model_data(longlong model_context, longlong file_data)
                 
                 // 清理网格名称中的特殊字符
                 while ((0 < (int)string_size && 
-                       (material_buffer = strstr(string_buffer, &DAT_180a0ff10), material_buffer != 0))) {
+                       (material_buffer = strstr(string_buffer, &system_buffer_ff10), material_buffer != 0))) {
                     
                     string_length = 6;
                     read_status = (int)material_buffer - (int)string_buffer;

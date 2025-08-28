@@ -115,11 +115,11 @@ void UI_Component_Process_Config(longlong ui_context, longlong *config_ptr, uint
   System_Call_Initialize(ui_context + 0x168, &config_stack, param_3, param_4, 0xfffffffffffffffe);
   (**(code **)(*config_ptr + 8))(config_ptr, &stack_ptr_30);
   (**(code **)(*config_ptr + 0x10))(config_ptr, &stack_ptr_50);
-  data_ptr2 = &DAT_18098bc73;
+  data_ptr2 = &system_buffer_ptr;
   if (stack_ptr_48 != (void *)0x0) {
     data_ptr2 = stack_ptr_48;
   }
-  data_ptr1 = &DAT_18098bc73;
+  data_ptr1 = &system_buffer_ptr;
   if (stack_ptr_28 != (void *)0x0) {
     data_ptr1 = stack_ptr_28;
   }
@@ -170,11 +170,11 @@ void UI_System_Handle_Event(longlong ui_context, longlong event_source, longlong
     System_Event_Default_Handler(&UNK_180a3dc30);
   }
   else {
-    event_data_ptr1 = &DAT_18098bc73;
+    event_data_ptr1 = &system_buffer_ptr;
     if (*(void **)(event_source + 8) != (void *)0x0) {
       event_data_ptr1 = *(void **)(event_source + 8);
     }
-    event_data_ptr2 = &DAT_18098bc73;
+    event_data_ptr2 = &system_buffer_ptr;
     if (*(void **)(event_data + 8) != (void *)0x0) {
       event_data_ptr2 = *(void **)(event_data + 8);
     }
@@ -330,7 +330,7 @@ uint64_t UI_Create_Resource(longlong ui_context, uint64_t resource_data, int32_t
   void *resource_name;
   
   resource_handle = (**(code **)(ui_context + 0x148))(resource_type);
-  resource_name = &DAT_18098bc73;
+  resource_name = &system_buffer_ptr;
   if (*(void **)(resource_handle + 8) != (void *)0x0) {
     resource_name = *(void **)(resource_handle + 8);
   }
@@ -369,12 +369,12 @@ ulonglong UI_Process_Data(longlong ui_context, longlong data_dest, longlong data
   if (*(int *)(data_source + 0x10) == 0) {
     return result_status & 0xffffffffffffff00;
   }
-  source_data = &DAT_18098bc73;
+  source_data = &system_buffer_ptr;
   if (*(void **)(data_source + 8) != (void *)0x0) {
     source_data = *(void **)(data_source + 8);
   }
   source_handle = (**(code **)(ui_context + 0xb0))(source_data);
-  source_data = &DAT_18098bc73;
+  source_data = &system_buffer_ptr;
   if (*(void **)(source_handle + 8) != (void *)0x0) {
     source_data = *(void **)(source_handle + 8);
   }
@@ -428,7 +428,7 @@ uint64_t UI_Activate_Resource(longlong ui_context, longlong resource_handle)
 {
   void *resource_data;
   
-  resource_data = &DAT_18098bc73;
+  resource_data = &system_buffer_ptr;
   if (*(void **)(resource_handle + 8) != (void *)0x0) {
     resource_data = *(void **)(resource_handle + 8);
   }
@@ -452,7 +452,7 @@ uint64_t UI_Deactivate_Resource(longlong ui_context, longlong resource_handle)
 {
   void *resource_data;
   
-  resource_data = &DAT_18098bc73;
+  resource_data = &system_buffer_ptr;
   if (*(void **)(resource_handle + 8) != (void *)0x0) {
     resource_data = *(void **)(resource_handle + 8);
   }
@@ -501,7 +501,7 @@ int * UI_Batch_Process(longlong ui_context, int *result_count, longlong *item_ar
   if (item_array[1] - array_start >> 5 != 0) {
     do {
       item_data = *(void **)(array_start + 8 + current_index);
-      item_name = &DAT_18098bc73;
+      item_name = &system_buffer_ptr;
       if (item_data != (void *)0x0) {
         item_name = item_data;
       }
@@ -821,7 +821,7 @@ uint64_t * UI_Process_String_Data(longlong *string_array, uint64_t *result_buffe
   longlong temp_var;
   
   current_pos = 0;
-  System_String_Initialize(&stack_buffer, &DAT_18098bc73, process_param, process_flags, 0, 0xfffffffffffffffe);
+  System_String_Initialize(&stack_buffer, &system_buffer_ptr, process_param, process_flags, 0, 0xfffffffffffffffe);
   temp_var = -1;
   do {
     string_length = temp_var + 1;
@@ -842,7 +842,7 @@ uint64_t * UI_Process_String_Data(longlong *string_array, uint64_t *result_buffe
     array_size = array_size & 0xffffffff;
     do {
       string_data = *(void **)(current_pos + 8 + *string_array);
-      char_data = &DAT_18098bc73;
+      char_data = &system_buffer_ptr;
       if (string_data != (void *)0x0) {
         char_data = string_data;
       }
@@ -912,7 +912,7 @@ void UI_String_Length_Process(longlong string_data)
     string_length = 0x1fff;
   }
                     // WARNING: Subroutine does not return
-  memcpy(&DAT_180c8f020, string_data, (longlong)(int)string_length);
+  memcpy(&system_memory_f020, string_data, (longlong)(int)string_length);
 }
 
 
@@ -1122,7 +1122,7 @@ void UI_Load_Assembly(void)
   *(int32_t *)((longlong)stack_ptr_b0 + string_length + 0x10) = 0x6c642e74;
   *(int16_t *)((longlong)stack_ptr_b0 + string_length + 0x14) = 0x6c;
   stack_size_a8 = 0x15;
-  namespace_ptr = (int32_t *)&DAT_18098bc73;
+  namespace_ptr = (int32_t *)&system_buffer_ptr;
   if (stack_ptr_b0 != (int32_t *)0x0) {
     namespace_ptr = stack_ptr_b0;
   }
@@ -1137,7 +1137,7 @@ void UI_Load_Assembly(void)
   stack_ptr_b8 = &UNK_18098bcb0;
   *domain_handle = assembly_handle;
   if (assembly_handle == 0) {
-    System_Error_Reporter(&UNK_180a3ddc0, &DAT_180a3dda8);
+    System_Error_Reporter(&UNK_180a3ddc0, &system_memory_dda8);
     assembly_handle = *domain_handle;
   }
   assembly_handle = mono_assembly_get_image(assembly_handle);

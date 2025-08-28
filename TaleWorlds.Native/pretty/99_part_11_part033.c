@@ -37,11 +37,11 @@ void FUN_1807a0430(longlong param_1,int param_2)
   _DAT_180c19950 = 0x3f800000;
   uVar3 = *(int32_t *)(*(longlong *)(param_1 + 0x14038) + 0x4000);
   _DAT_180c1b950 = iVar13;
-  *(int32_t *)(&DAT_180c19950 + lVar9 * 4) = uVar3;
-  *(int32_t *)(&DAT_180c19954 + lVar9 * 4) = uVar3;
+  *(int32_t *)(&system_data_9950 + lVar9 * 4) = uVar3;
+  *(int32_t *)(&system_data_9954 + lVar9 * 4) = uVar3;
   if (2 < lVar9) {
     lVar15 = 2;
-    puVar17 = (uint *)(&DAT_180c19950 + (((longlong)param_2 >> 1) + -2) * 4);
+    puVar17 = (uint *)(&system_data_9950 + (((longlong)param_2 >> 1) + -2) * 4);
     do {
       fVar20 = (float)iVar18 * (0.125 / (float)(param_2 >> 2));
       uVar6 = (uint)(fVar20 * 32768.0);
@@ -90,9 +90,9 @@ void FUN_1807a0430(longlong param_1,int param_2)
       else {
         uVar7 = 0;
       }
-      *(uint *)(&DAT_180c19950 + lVar15 * 4) = uVar6;
+      *(uint *)(&system_data_9950 + lVar15 * 4) = uVar6;
       iVar18 = iVar18 + 2;
-      *(uint *)(&DAT_180c19954 + lVar15 * 4) = uVar7;
+      *(uint *)(&system_data_9954 + lVar15 * 4) = uVar7;
       lVar15 = lVar15 + 2;
       *puVar17 = uVar7;
       puVar17[1] = uVar6;
@@ -111,8 +111,8 @@ void FUN_1807a0430(longlong param_1,int param_2)
         do {
           lVar15 = lVar9 * 4;
           lVar9 = lVar9 + 1;
-          *(int *)(&DAT_180c1b958 + lVar15 + (longlong)iVar12 * 4) =
-               *(int *)(&DAT_180c1b958 + lVar15) + iVar13;
+          *(int *)(&system_data_b958 + lVar15 + (longlong)iVar12 * 4) =
+               *(int *)(&system_data_b958 + lVar15) + iVar13;
         } while (lVar9 < iVar12);
       }
       iVar18 = iVar12 * 2;
@@ -126,12 +126,12 @@ void FUN_1807a0430(longlong param_1,int param_2)
     uVar6 = 0;
     if (0 < iVar18) {
       iVar13 = 0;
-      piVar19 = (int *)&DAT_180c1b958;
+      piVar19 = (int *)&system_data_b958;
       do {
         if (0 < (int)uVar6) {
           uVar10 = (ulonglong)uVar6;
           iVar5 = 0;
-          piVar11 = (int *)&DAT_180c1b958;
+          piVar11 = (int *)&system_data_b958;
           do {
             iVar16 = *piVar11;
             piVar11 = piVar11 + 1;
@@ -140,46 +140,46 @@ void FUN_1807a0430(longlong param_1,int param_2)
             lVar15 = (longlong)iVar14;
             iVar16 = iVar16 + iVar13 + iVar18 * 4;
             iVar5 = iVar5 + 2;
-            uVar3 = *(int32_t *)(&DAT_180c19954 + lVar9 * 4);
-            uVar1 = *(int32_t *)(&DAT_180c19950 + lVar15 * 4);
-            uVar2 = *(int32_t *)(&DAT_180c19954 + lVar15 * 4);
-            *(int32_t *)(&DAT_180c19950 + lVar15 * 4) =
-                 *(int32_t *)(&DAT_180c19950 + lVar9 * 4);
-            *(int32_t *)(&DAT_180c19954 + lVar15 * 4) = uVar3;
-            *(int32_t *)(&DAT_180c19950 + lVar9 * 4) = uVar1;
-            *(int32_t *)(&DAT_180c19954 + lVar9 * 4) = uVar2;
+            uVar3 = *(int32_t *)(&system_data_9954 + lVar9 * 4);
+            uVar1 = *(int32_t *)(&system_data_9950 + lVar15 * 4);
+            uVar2 = *(int32_t *)(&system_data_9954 + lVar15 * 4);
+            *(int32_t *)(&system_data_9950 + lVar15 * 4) =
+                 *(int32_t *)(&system_data_9950 + lVar9 * 4);
+            *(int32_t *)(&system_data_9954 + lVar15 * 4) = uVar3;
+            *(int32_t *)(&system_data_9950 + lVar9 * 4) = uVar1;
+            *(int32_t *)(&system_data_9954 + lVar9 * 4) = uVar2;
             lVar9 = (longlong)iVar16;
             iVar16 = iVar16 + iVar18 * -2;
             lVar15 = (longlong)(iVar14 + iVar12);
             iVar14 = iVar14 + iVar18 * 4;
-            uVar3 = *(int32_t *)(&DAT_180c19954 + lVar9 * 4);
-            uVar1 = *(int32_t *)(&DAT_180c19950 + lVar15 * 4);
-            uVar2 = *(int32_t *)(&DAT_180c19954 + lVar15 * 4);
-            *(int32_t *)(&DAT_180c19950 + lVar15 * 4) =
-                 *(int32_t *)(&DAT_180c19950 + lVar9 * 4);
-            *(int32_t *)(&DAT_180c19954 + lVar15 * 4) = uVar3;
-            *(int32_t *)(&DAT_180c19950 + lVar9 * 4) = uVar1;
-            *(int32_t *)(&DAT_180c19954 + lVar9 * 4) = uVar2;
+            uVar3 = *(int32_t *)(&system_data_9954 + lVar9 * 4);
+            uVar1 = *(int32_t *)(&system_data_9950 + lVar15 * 4);
+            uVar2 = *(int32_t *)(&system_data_9954 + lVar15 * 4);
+            *(int32_t *)(&system_data_9950 + lVar15 * 4) =
+                 *(int32_t *)(&system_data_9950 + lVar9 * 4);
+            *(int32_t *)(&system_data_9954 + lVar15 * 4) = uVar3;
+            *(int32_t *)(&system_data_9950 + lVar9 * 4) = uVar1;
+            *(int32_t *)(&system_data_9954 + lVar9 * 4) = uVar2;
             lVar9 = (longlong)iVar16;
             lVar15 = (longlong)iVar14;
-            uVar3 = *(int32_t *)(&DAT_180c19954 + lVar9 * 4);
-            uVar1 = *(int32_t *)(&DAT_180c19950 + lVar15 * 4);
-            uVar2 = *(int32_t *)(&DAT_180c19954 + lVar15 * 4);
-            *(int32_t *)(&DAT_180c19950 + lVar15 * 4) =
-                 *(int32_t *)(&DAT_180c19950 + lVar9 * 4);
-            *(int32_t *)(&DAT_180c19954 + lVar15 * 4) = uVar3;
-            *(int32_t *)(&DAT_180c19950 + lVar9 * 4) = uVar1;
-            *(int32_t *)(&DAT_180c19954 + lVar9 * 4) = uVar2;
+            uVar3 = *(int32_t *)(&system_data_9954 + lVar9 * 4);
+            uVar1 = *(int32_t *)(&system_data_9950 + lVar15 * 4);
+            uVar2 = *(int32_t *)(&system_data_9954 + lVar15 * 4);
+            *(int32_t *)(&system_data_9950 + lVar15 * 4) =
+                 *(int32_t *)(&system_data_9950 + lVar9 * 4);
+            *(int32_t *)(&system_data_9954 + lVar15 * 4) = uVar3;
+            *(int32_t *)(&system_data_9950 + lVar9 * 4) = uVar1;
+            *(int32_t *)(&system_data_9954 + lVar9 * 4) = uVar2;
             lVar15 = (longlong)(iVar14 + iVar12);
             lVar9 = (longlong)(iVar18 * 4 + iVar16);
-            uVar3 = *(int32_t *)(&DAT_180c19950 + lVar15 * 4);
-            uVar1 = *(int32_t *)(&DAT_180c19954 + lVar15 * 4);
-            uVar2 = *(int32_t *)(&DAT_180c19950 + lVar9 * 4);
-            *(int32_t *)(&DAT_180c19954 + lVar15 * 4) =
-                 *(int32_t *)(&DAT_180c19954 + lVar9 * 4);
-            *(int32_t *)(&DAT_180c19950 + lVar15 * 4) = uVar2;
-            *(int32_t *)(&DAT_180c19950 + lVar9 * 4) = uVar3;
-            *(int32_t *)(&DAT_180c19954 + lVar9 * 4) = uVar1;
+            uVar3 = *(int32_t *)(&system_data_9950 + lVar15 * 4);
+            uVar1 = *(int32_t *)(&system_data_9954 + lVar15 * 4);
+            uVar2 = *(int32_t *)(&system_data_9950 + lVar9 * 4);
+            *(int32_t *)(&system_data_9954 + lVar15 * 4) =
+                 *(int32_t *)(&system_data_9954 + lVar9 * 4);
+            *(int32_t *)(&system_data_9950 + lVar15 * 4) = uVar2;
+            *(int32_t *)(&system_data_9950 + lVar9 * 4) = uVar3;
+            *(int32_t *)(&system_data_9954 + lVar9 * 4) = uVar1;
             uVar10 = uVar10 - 1;
           } while (uVar10 != 0);
         }
@@ -191,13 +191,13 @@ void FUN_1807a0430(longlong param_1,int param_2)
         lVar15 = (longlong)iVar5;
         lStackX_20 = lStackX_20 + -1;
         lVar9 = (longlong)(iVar5 + iVar12);
-        uVar3 = *(int32_t *)(&DAT_180c19950 + lVar15 * 4);
-        uVar1 = *(int32_t *)(&DAT_180c19954 + lVar15 * 4);
-        uVar2 = *(int32_t *)(&DAT_180c19950 + lVar9 * 4);
-        *(int32_t *)(&DAT_180c19954 + lVar15 * 4) = *(int32_t *)(&DAT_180c19954 + lVar9 * 4);
-        *(int32_t *)(&DAT_180c19950 + lVar15 * 4) = uVar2;
-        *(int32_t *)(&DAT_180c19950 + lVar9 * 4) = uVar3;
-        *(int32_t *)(&DAT_180c19954 + lVar9 * 4) = uVar1;
+        uVar3 = *(int32_t *)(&system_data_9950 + lVar15 * 4);
+        uVar1 = *(int32_t *)(&system_data_9954 + lVar15 * 4);
+        uVar2 = *(int32_t *)(&system_data_9950 + lVar9 * 4);
+        *(int32_t *)(&system_data_9954 + lVar15 * 4) = *(int32_t *)(&system_data_9954 + lVar9 * 4);
+        *(int32_t *)(&system_data_9950 + lVar15 * 4) = uVar2;
+        *(int32_t *)(&system_data_9950 + lVar9 * 4) = uVar3;
+        *(int32_t *)(&system_data_9954 + lVar9 * 4) = uVar1;
       } while (lStackX_20 != 0);
     }
   }
@@ -215,69 +215,69 @@ void FUN_1807a0430(longlong param_1,int param_2)
         iVar18 = uVar6 * 4;
         do {
           iVar14 = *piVar19;
-          iVar16 = *(int *)(&DAT_180c1b958 + lVar9 * 4);
+          iVar16 = *(int *)(&system_data_b958 + lVar9 * 4);
           lVar8 = (longlong)(iVar14 + iVar5);
           lVar15 = (longlong)(iVar16 + iVar13);
-          uVar3 = *(int32_t *)(&DAT_180c19950 + lVar8 * 4);
-          uVar1 = *(int32_t *)(&DAT_180c19954 + lVar8 * 4);
-          uVar2 = *(int32_t *)(&DAT_180c19954 + lVar15 * 4);
-          *(int32_t *)(&DAT_180c19950 + lVar8 * 4) = *(int32_t *)(&DAT_180c19950 + lVar15 * 4)
+          uVar3 = *(int32_t *)(&system_data_9950 + lVar8 * 4);
+          uVar1 = *(int32_t *)(&system_data_9954 + lVar8 * 4);
+          uVar2 = *(int32_t *)(&system_data_9954 + lVar15 * 4);
+          *(int32_t *)(&system_data_9950 + lVar8 * 4) = *(int32_t *)(&system_data_9950 + lVar15 * 4)
           ;
-          *(int32_t *)(&DAT_180c19954 + lVar8 * 4) = uVar2;
-          *(int32_t *)(&DAT_180c19950 + lVar15 * 4) = uVar3;
-          *(int32_t *)(&DAT_180c19954 + lVar15 * 4) = uVar1;
+          *(int32_t *)(&system_data_9954 + lVar8 * 4) = uVar2;
+          *(int32_t *)(&system_data_9950 + lVar15 * 4) = uVar3;
+          *(int32_t *)(&system_data_9954 + lVar15 * 4) = uVar1;
           lVar8 = (longlong)(iVar14 + iVar5 + iVar12);
           lVar15 = (longlong)(iVar16 + iVar13 + iVar12);
-          uVar3 = *(int32_t *)(&DAT_180c19950 + lVar8 * 4);
-          uVar1 = *(int32_t *)(&DAT_180c19954 + lVar15 * 4);
-          uVar2 = *(int32_t *)(&DAT_180c19954 + lVar8 * 4);
-          *(int32_t *)(&DAT_180c19950 + lVar8 * 4) = *(int32_t *)(&DAT_180c19950 + lVar15 * 4)
+          uVar3 = *(int32_t *)(&system_data_9950 + lVar8 * 4);
+          uVar1 = *(int32_t *)(&system_data_9954 + lVar15 * 4);
+          uVar2 = *(int32_t *)(&system_data_9954 + lVar8 * 4);
+          *(int32_t *)(&system_data_9950 + lVar8 * 4) = *(int32_t *)(&system_data_9950 + lVar15 * 4)
           ;
-          *(int32_t *)(&DAT_180c19954 + lVar8 * 4) = uVar1;
-          *(int32_t *)(&DAT_180c19950 + lVar15 * 4) = uVar3;
-          *(int32_t *)(&DAT_180c19954 + lVar15 * 4) = uVar2;
+          *(int32_t *)(&system_data_9954 + lVar8 * 4) = uVar1;
+          *(int32_t *)(&system_data_9950 + lVar15 * 4) = uVar3;
+          *(int32_t *)(&system_data_9954 + lVar15 * 4) = uVar2;
           iVar14 = *piVar19;
           lVar8 = (longlong)(iVar14 + iVar5);
           iVar16 = *(int *)(lVar9 * 4 + 0x180c1b95c) + iVar13;
           lVar15 = (longlong)iVar16;
-          uVar3 = *(int32_t *)(&DAT_180c19958 + lVar8 * 4);
+          uVar3 = *(int32_t *)(&system_data_9958 + lVar8 * 4);
           uVar1 = *(int32_t *)(lVar8 * 4 + 0x180c1995c);
-          uVar2 = *(int32_t *)(&DAT_180c19954 + lVar15 * 4);
-          *(int32_t *)(&DAT_180c19958 + lVar8 * 4) = *(int32_t *)(&DAT_180c19950 + lVar15 * 4)
+          uVar2 = *(int32_t *)(&system_data_9954 + lVar15 * 4);
+          *(int32_t *)(&system_data_9958 + lVar8 * 4) = *(int32_t *)(&system_data_9950 + lVar15 * 4)
           ;
           *(int32_t *)(lVar8 * 4 + 0x180c1995c) = uVar2;
-          *(int32_t *)(&DAT_180c19950 + lVar15 * 4) = uVar3;
-          *(int32_t *)(&DAT_180c19954 + lVar15 * 4) = uVar1;
+          *(int32_t *)(&system_data_9950 + lVar15 * 4) = uVar3;
+          *(int32_t *)(&system_data_9954 + lVar15 * 4) = uVar1;
           lVar8 = (longlong)(iVar14 + iVar5 + iVar12);
           lVar15 = (longlong)(iVar16 + iVar12);
-          uVar3 = *(int32_t *)(&DAT_180c19958 + lVar8 * 4);
-          uVar1 = *(int32_t *)(&DAT_180c19954 + lVar15 * 4);
+          uVar3 = *(int32_t *)(&system_data_9958 + lVar8 * 4);
+          uVar1 = *(int32_t *)(&system_data_9954 + lVar15 * 4);
           uVar2 = *(int32_t *)(lVar8 * 4 + 0x180c1995c);
-          *(int32_t *)(&DAT_180c19958 + lVar8 * 4) = *(int32_t *)(&DAT_180c19950 + lVar15 * 4)
+          *(int32_t *)(&system_data_9958 + lVar8 * 4) = *(int32_t *)(&system_data_9950 + lVar15 * 4)
           ;
           *(int32_t *)(lVar8 * 4 + 0x180c1995c) = uVar1;
-          *(int32_t *)(&DAT_180c19950 + lVar15 * 4) = uVar3;
-          *(int32_t *)(&DAT_180c19954 + lVar15 * 4) = uVar2;
+          *(int32_t *)(&system_data_9950 + lVar15 * 4) = uVar3;
+          *(int32_t *)(&system_data_9954 + lVar15 * 4) = uVar2;
           iVar14 = *piVar19 + iVar5 + 6;
           lVar8 = (longlong)iVar14;
           iVar16 = *(int *)(lVar9 * 4 + 0x180c1b960) + iVar13;
           lVar15 = (longlong)iVar16;
           uVar3 = *(int32_t *)(lVar8 * 4 + 0x180c19948);
           uVar1 = *(int32_t *)(lVar8 * 4 + 0x180c1994c);
-          uVar2 = *(int32_t *)(&DAT_180c19954 + lVar15 * 4);
-          *(int32_t *)(lVar8 * 4 + 0x180c19948) = *(int32_t *)(&DAT_180c19950 + lVar15 * 4);
+          uVar2 = *(int32_t *)(&system_data_9954 + lVar15 * 4);
+          *(int32_t *)(lVar8 * 4 + 0x180c19948) = *(int32_t *)(&system_data_9950 + lVar15 * 4);
           *(int32_t *)(lVar8 * 4 + 0x180c1994c) = uVar2;
-          *(int32_t *)(&DAT_180c19950 + lVar15 * 4) = uVar3;
-          *(int32_t *)(&DAT_180c19954 + lVar15 * 4) = uVar1;
+          *(int32_t *)(&system_data_9950 + lVar15 * 4) = uVar3;
+          *(int32_t *)(&system_data_9954 + lVar15 * 4) = uVar1;
           lVar8 = (longlong)(iVar12 + iVar14);
           lVar15 = (longlong)(iVar16 + iVar12);
           uVar3 = *(int32_t *)(lVar8 * 4 + 0x180c19948);
-          uVar1 = *(int32_t *)(&DAT_180c19954 + lVar15 * 4);
+          uVar1 = *(int32_t *)(&system_data_9954 + lVar15 * 4);
           uVar2 = *(int32_t *)(lVar8 * 4 + 0x180c1994c);
-          *(int32_t *)(lVar8 * 4 + 0x180c19948) = *(int32_t *)(&DAT_180c19950 + lVar15 * 4);
+          *(int32_t *)(lVar8 * 4 + 0x180c19948) = *(int32_t *)(&system_data_9950 + lVar15 * 4);
           *(int32_t *)(lVar8 * 4 + 0x180c1994c) = uVar1;
-          *(int32_t *)(&DAT_180c19950 + lVar15 * 4) = uVar3;
-          *(int32_t *)(&DAT_180c19954 + lVar15 * 4) = uVar2;
+          *(int32_t *)(&system_data_9950 + lVar15 * 4) = uVar3;
+          *(int32_t *)(&system_data_9954 + lVar15 * 4) = uVar2;
           iVar14 = *piVar19 + iVar5 + 6;
           iVar5 = iVar5 + 8;
           lVar8 = (longlong)iVar14;
@@ -286,27 +286,27 @@ void FUN_1807a0430(longlong param_1,int param_2)
           iVar14 = iVar14 + iVar12;
           iVar16 = iVar16 + iVar12;
           lVar9 = lVar9 + 4;
-          uVar3 = *(int32_t *)(&DAT_180c19950 + lVar8 * 4);
-          uVar1 = *(int32_t *)(&DAT_180c19954 + lVar15 * 4);
-          uVar2 = *(int32_t *)(&DAT_180c19954 + lVar8 * 4);
-          *(int32_t *)(&DAT_180c19950 + lVar8 * 4) = *(int32_t *)(&DAT_180c19950 + lVar15 * 4)
+          uVar3 = *(int32_t *)(&system_data_9950 + lVar8 * 4);
+          uVar1 = *(int32_t *)(&system_data_9954 + lVar15 * 4);
+          uVar2 = *(int32_t *)(&system_data_9954 + lVar8 * 4);
+          *(int32_t *)(&system_data_9950 + lVar8 * 4) = *(int32_t *)(&system_data_9950 + lVar15 * 4)
           ;
-          *(int32_t *)(&DAT_180c19954 + lVar8 * 4) = uVar1;
-          *(int32_t *)(&DAT_180c19950 + lVar15 * 4) = uVar3;
-          *(int32_t *)(&DAT_180c19954 + lVar15 * 4) = uVar2;
-          uVar3 = *(int32_t *)(&DAT_180c19950 + (longlong)iVar14 * 4);
-          uVar1 = *(int32_t *)(&DAT_180c19954 + (longlong)iVar14 * 4);
-          uVar2 = *(int32_t *)(&DAT_180c19954 + (longlong)iVar16 * 4);
-          *(int32_t *)(&DAT_180c19950 + (longlong)iVar14 * 4) =
-               *(int32_t *)(&DAT_180c19950 + (longlong)iVar16 * 4);
-          *(int32_t *)(&DAT_180c19954 + (longlong)iVar14 * 4) = uVar2;
-          *(int32_t *)(&DAT_180c19950 + (longlong)iVar16 * 4) = uVar3;
-          *(int32_t *)(&DAT_180c19954 + (longlong)iVar16 * 4) = uVar1;
+          *(int32_t *)(&system_data_9954 + lVar8 * 4) = uVar1;
+          *(int32_t *)(&system_data_9950 + lVar15 * 4) = uVar3;
+          *(int32_t *)(&system_data_9954 + lVar15 * 4) = uVar2;
+          uVar3 = *(int32_t *)(&system_data_9950 + (longlong)iVar14 * 4);
+          uVar1 = *(int32_t *)(&system_data_9954 + (longlong)iVar14 * 4);
+          uVar2 = *(int32_t *)(&system_data_9954 + (longlong)iVar16 * 4);
+          *(int32_t *)(&system_data_9950 + (longlong)iVar14 * 4) =
+               *(int32_t *)(&system_data_9950 + (longlong)iVar16 * 4);
+          *(int32_t *)(&system_data_9954 + (longlong)iVar14 * 4) = uVar2;
+          *(int32_t *)(&system_data_9950 + (longlong)iVar16 * 4) = uVar3;
+          *(int32_t *)(&system_data_9954 + (longlong)iVar16 * 4) = uVar1;
           uVar10 = uVar10 - 1;
         } while (uVar10 != 0);
       }
       if (iVar18 < iStackX_18) {
-        piVar11 = (int *)(&DAT_180c1b958 + lVar9 * 4);
+        piVar11 = (int *)(&system_data_b958 + lVar9 * 4);
         iVar5 = iVar18 * 2;
         uVar10 = (ulonglong)(uint)(iStackX_18 - iVar18);
         do {
@@ -316,24 +316,24 @@ void FUN_1807a0430(longlong param_1,int param_2)
           iVar14 = *piVar19 + iVar5;
           lVar15 = (longlong)iVar14;
           iVar5 = iVar5 + 2;
-          uVar3 = *(int32_t *)(&DAT_180c19954 + lVar9 * 4);
-          uVar1 = *(int32_t *)(&DAT_180c19950 + lVar15 * 4);
-          uVar2 = *(int32_t *)(&DAT_180c19954 + lVar15 * 4);
-          *(int32_t *)(&DAT_180c19950 + lVar15 * 4) = *(int32_t *)(&DAT_180c19950 + lVar9 * 4)
+          uVar3 = *(int32_t *)(&system_data_9954 + lVar9 * 4);
+          uVar1 = *(int32_t *)(&system_data_9950 + lVar15 * 4);
+          uVar2 = *(int32_t *)(&system_data_9954 + lVar15 * 4);
+          *(int32_t *)(&system_data_9950 + lVar15 * 4) = *(int32_t *)(&system_data_9950 + lVar9 * 4)
           ;
-          *(int32_t *)(&DAT_180c19954 + lVar15 * 4) = uVar3;
-          *(int32_t *)(&DAT_180c19950 + lVar9 * 4) = uVar1;
-          *(int32_t *)(&DAT_180c19954 + lVar9 * 4) = uVar2;
+          *(int32_t *)(&system_data_9954 + lVar15 * 4) = uVar3;
+          *(int32_t *)(&system_data_9950 + lVar9 * 4) = uVar1;
+          *(int32_t *)(&system_data_9954 + lVar9 * 4) = uVar2;
           lVar15 = (longlong)(iVar14 + iVar12);
           lVar9 = (longlong)(iVar18 + iVar13 + iVar12);
-          uVar3 = *(int32_t *)(&DAT_180c19950 + lVar15 * 4);
-          uVar1 = *(int32_t *)(&DAT_180c19954 + lVar15 * 4);
-          uVar2 = *(int32_t *)(&DAT_180c19950 + lVar9 * 4);
-          *(int32_t *)(&DAT_180c19954 + lVar15 * 4) = *(int32_t *)(&DAT_180c19954 + lVar9 * 4)
+          uVar3 = *(int32_t *)(&system_data_9950 + lVar15 * 4);
+          uVar1 = *(int32_t *)(&system_data_9954 + lVar15 * 4);
+          uVar2 = *(int32_t *)(&system_data_9950 + lVar9 * 4);
+          *(int32_t *)(&system_data_9954 + lVar15 * 4) = *(int32_t *)(&system_data_9954 + lVar9 * 4)
           ;
-          *(int32_t *)(&DAT_180c19950 + lVar15 * 4) = uVar2;
-          *(int32_t *)(&DAT_180c19950 + lVar9 * 4) = uVar3;
-          *(int32_t *)(&DAT_180c19954 + lVar9 * 4) = uVar1;
+          *(int32_t *)(&system_data_9950 + lVar15 * 4) = uVar2;
+          *(int32_t *)(&system_data_9950 + lVar9 * 4) = uVar3;
+          *(int32_t *)(&system_data_9954 + lVar9 * 4) = uVar1;
           uVar10 = uVar10 - 1;
         } while (uVar10 != 0);
       }
@@ -453,8 +453,8 @@ void FUN_1807a04db(uint64_t param_1,uint64_t param_2,longlong param_3,uint param
         do {
           lVar8 = lVar15 * 4;
           lVar15 = lVar15 + 1;
-          *(int *)(&DAT_180c1b958 + lVar8 + (longlong)iVar12 * 4) =
-               *(int *)(&DAT_180c1b958 + lVar8) + unaff_EDI;
+          *(int *)(&system_data_b958 + lVar8 + (longlong)iVar12 * 4) =
+               *(int *)(&system_data_b958 + lVar8) + unaff_EDI;
         } while (lVar15 < iVar12);
       }
       iVar19 = iVar12 * 2;
@@ -468,12 +468,12 @@ void FUN_1807a04db(uint64_t param_1,uint64_t param_2,longlong param_3,uint param
     uVar6 = 0;
     if (0 < iVar19) {
       iVar5 = 0;
-      piVar18 = (int *)&DAT_180c1b958;
+      piVar18 = (int *)&system_data_b958;
       do {
         if (0 < (int)uVar6) {
           uVar10 = (ulonglong)uVar6;
           iVar13 = 0;
-          piVar11 = (int *)&DAT_180c1b958;
+          piVar11 = (int *)&system_data_b958;
           do {
             iVar16 = *piVar11;
             piVar11 = piVar11 + 1;
@@ -554,7 +554,7 @@ void FUN_1807a04db(uint64_t param_1,uint64_t param_2,longlong param_3,uint param
         iVar5 = uVar6 * 4;
         do {
           iVar14 = *piVar18;
-          iVar16 = *(int *)(&DAT_180c1b958 + lVar15 * 4);
+          iVar16 = *(int *)(&system_data_b958 + lVar15 * 4);
           lVar9 = (longlong)(iVar14 + iVar13);
           lVar8 = (longlong)(iVar16 + iVar19);
           uVar1 = *(int32_t *)(unaff_RSI + lVar9 * 4);
@@ -640,7 +640,7 @@ void FUN_1807a04db(uint64_t param_1,uint64_t param_2,longlong param_3,uint param
         } while (uVar10 != 0);
       }
       if (iVar5 < iStack0000000000000050) {
-        piVar11 = (int *)(&DAT_180c1b958 + lVar15 * 4);
+        piVar11 = (int *)(&system_data_b958 + lVar15 * 4);
         iVar13 = iVar5 * 2;
         uVar10 = (ulonglong)(uint)(iStack0000000000000050 - iVar5);
         do {

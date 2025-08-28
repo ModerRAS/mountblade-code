@@ -88,7 +88,7 @@ void RenderingSystemAdvancedResourceCleaner(void)
   uint uVar5;
   ulonglong uVar6;
   
-  FUN_1804e5f80(&DAT_180c95ed0);
+  FUN_1804e5f80(&system_memory_5ed0);
   uVar4 = 0;
   uVar6 = uVar4;
   if ((_DAT_180c95ed8 - _DAT_180c95ed0) / 0x68 != 0) {

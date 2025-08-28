@@ -1137,7 +1137,7 @@ void advanced_resource_processor(uint64_t param_1, longlong *param_2, int8_t par
     }
     
     // 获取默认数据指针
-    puVar4 = &DAT_18098bc73;
+    puVar4 = &system_buffer_ptr;
     if (*(void **)(*param_2 + 0x18) != (void *)0x0) {
         puVar4 = *(void **)(*param_2 + 0x18);
     }
@@ -1163,7 +1163,7 @@ void advanced_resource_processor(uint64_t param_1, longlong *param_2, int8_t par
     }
     
     // 处理资源数据
-    puVar4 = &DAT_18098bc73;
+    puVar4 = &system_buffer_ptr;
     if (*(void **)(lVar3 + 8) != (void *)0x0) {
         puVar4 = *(void **)(lVar3 + 8);
     }

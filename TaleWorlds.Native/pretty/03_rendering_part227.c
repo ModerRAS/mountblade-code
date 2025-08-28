@@ -315,7 +315,7 @@ ulonglong FUN_180396100(longlong param_1,float *param_2,uint64_t param_3,char pa
       *(int32_t *)(puVar6 + 0xf) = 0x6563656e;
       *(int32_t *)((longlong)puVar6 + 0x7c) = 0x72617373;
       *(int32_t *)(puVar6 + 0x10) = 0x203a79;
-      puVar7 = &DAT_18098bc73;
+      puVar7 = &system_buffer_ptr;
       if ((*(longlong *)(param_1 + 0x528) != 0) &&
          (puVar1 = *(void **)(*(longlong *)(param_1 + 0x528) + 0x4e0),
          puVar1 != (void *)0x0)) {
@@ -324,7 +324,7 @@ ulonglong FUN_180396100(longlong param_1,float *param_2,uint64_t param_3,char pa
       uStack_80 = 0x83;
       FUN_180628040(&puStack_90,&UNK_180a21e98,(double)*param_2,(double)param_2[1],
                     (double)param_2[2],puVar7,uVar15);
-      puVar7 = &DAT_18098bc73;
+      puVar7 = &system_buffer_ptr;
       if (puStack_88 != (void *)0x0) {
         puVar7 = puStack_88;
       }

@@ -230,7 +230,7 @@ LAB_180416dd0:
                 lVar5 = (longlong)&UNK_180a15ff8 - (longlong)pcVar8;
                 goto LAB_180416de4;
             }
-            lVar5 = (longlong)&DAT_180a03a84 - (longlong)pcVar8;
+            lVar5 = (longlong)&system_memory_3a84 - (longlong)pcVar8;
             while (*pcVar8 == pcVar8[lVar5]) {
                 pcVar8 = pcVar8 + 1;
                 if (pcVar3 <= pcVar8) goto LAB_180416dd0;
@@ -352,7 +352,7 @@ LAB_180416f88:
                             }
                             goto LAB_180416fa0;
                         }
-                        lVar5 = (longlong)&DAT_180a0b1c0 - (longlong)pcVar8;
+                        lVar5 = (longlong)&system_memory_b1c0 - (longlong)pcVar8;
                         while (*pcVar8 == pcVar8[lVar5]) {
                             pcVar8 = pcVar8 + 1;
                             if (pcVar3 <= pcVar8) goto LAB_180416f88;
@@ -363,7 +363,7 @@ LAB_180416f88:
 LAB_180416fa0:
                 // 设置默认值
                 if ((param_1 + 100 != 0) && (lVar5 != 0)) {
-                    FUN_18010cbc0(lVar5, &DAT_180a06430, param_1 + 100);
+                    FUN_18010cbc0(lVar5, &system_memory_6430, param_1 + 100);
                 }
                 
                 // 解析曲线乘数
@@ -406,7 +406,7 @@ LAB_180417020:
 LAB_180417038:
                 // 设置曲线乘数
                 if ((param_1 + 0x60 != 0) && (lVar5 != 0)) {
-                    FUN_18010cbc0(lVar5, &DAT_180a06430, param_1 + 0x60);
+                    FUN_18010cbc0(lVar5, &system_memory_6430, param_1 + 0x60);
                 }
                 
                 // 解析键值对数据
@@ -486,7 +486,7 @@ LAB_1804175d5:
                                                         if (puVar9[1] != 0) {
                                                             lVar5 = puVar9[1];
                                                         }
-                                                        FUN_18010cbc0(lVar5, &DAT_180a06430, afStack_80);
+                                                        FUN_18010cbc0(lVar5, &system_memory_6430, afStack_80);
                                                         break;
                                                     }
                                                     lVar5 = (longlong)&UNK_180a1810c - (longlong)pcVar8;
@@ -523,7 +523,7 @@ LAB_180417650:
                                                         if (puVar9[1] != 0) {
                                                             lVar5 = puVar9[1];
                                                         }
-                                                        FUN_18010cbc0(lVar5, &DAT_180a06430, afStack_88);
+                                                        FUN_18010cbc0(lVar5, &system_memory_6430, afStack_88);
                                                         break;
                                                     }
                                                     lVar5 = (longlong)&UNK_180a0696c - (longlong)pcVar8;
@@ -673,7 +673,7 @@ LAB_1804171a0:
                                             if (puVar9[1] != 0) {
                                                 lVar5 = puVar9[1];
                                             }
-                                            FUN_18010cbc0(lVar5, &DAT_180a06430, afStack_88);
+                                            FUN_18010cbc0(lVar5, &system_memory_6430, afStack_88);
                                             break;
                                         }
                                         lVar5 = (longlong)&UNK_180a1810c - (longlong)pcVar8;
@@ -710,7 +710,7 @@ LAB_180417224:
                                             if (puVar9[1] != 0) {
                                                 lVar5 = puVar9[1];
                                             }
-                                            FUN_18010cbc0(lVar5, &DAT_180a06430, afStack_80);
+                                            FUN_18010cbc0(lVar5, &system_memory_6430, afStack_80);
                                             break;
                                         }
                                         lVar5 = (longlong)&UNK_180a0696c - (longlong)pcVar8;
@@ -783,7 +783,7 @@ LAB_180417341:
                                             if (puVar9[1] != 0) {
                                                 lVar5 = puVar9[1];
                                             }
-                                            FUN_18010cbc0(lVar5, &DAT_180a06430, afStack_88);
+                                            FUN_18010cbc0(lVar5, &system_memory_6430, afStack_88);
                                             break;
                                         }
                                         lVar5 = (longlong)&UNK_180a1810c - (longlong)pcVar8;
@@ -820,7 +820,7 @@ LAB_1804173c4:
                                             if (puVar9[1] != 0) {
                                                 lVar5 = puVar9[1];
                                             }
-                                            FUN_18010cbc0(lVar5, &DAT_180a06430, afStack_80);
+                                            FUN_18010cbc0(lVar5, &system_memory_6430, afStack_80);
                                             break;
                                         }
                                         lVar5 = (longlong)&UNK_180a0696c - (longlong)pcVar8;
@@ -944,7 +944,7 @@ LAB_180270c78:
                 }
                 goto LAB_180270c93;
             }
-            lVar3 = (longlong)&DAT_180a04ee4 - (longlong)pcVar4;
+            lVar3 = (longlong)&system_memory_4ee4 - (longlong)pcVar4;
             while (*pcVar4 == pcVar4[lVar3]) {
                 pcVar4 = pcVar4 + 1;
                 if (pcVar2 <= pcVar4) goto LAB_180270c78;
@@ -955,7 +955,7 @@ LAB_180270c78:
 LAB_180270c93:
     // 设置基础参数
     if ((param_1 + 4 != 0) && (lVar3 != 0)) {
-        FUN_18010cbc0(lVar3, &DAT_180a06430, param_1 + 4);
+        FUN_18010cbc0(lVar3, &system_memory_6430, param_1 + 4);
     }
     
     // 解析偏差参数
@@ -972,7 +972,7 @@ LAB_180270c93:
 LAB_180270d29:
             // 应用偏差参数
             if ((param_1 != 0) && (lVar3 != 0)) {
-                FUN_18010cbc0(lVar3, &DAT_180a06430, param_1);
+                FUN_18010cbc0(lVar3, &system_memory_6430, param_1);
             }
             return;
         }

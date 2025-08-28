@@ -117,7 +117,7 @@ LAB_1803bb784:
                       FUN_180627c50(&puStack_128,lVar11);
                       break;
                     }
-                    lVar11 = (longlong)&DAT_180a03a84 - (longlong)pcVar14;
+                    lVar11 = (longlong)&system_flag_3a84 - (longlong)pcVar14;
                     while (*pcVar14 == pcVar14[lVar11]) {
                       pcVar14 = pcVar14 + 1;
                       if (pcVar10 <= pcVar14) goto LAB_1803bb784;
@@ -171,11 +171,11 @@ LAB_1803bb784:
                 uStack_f0 = uStack_f0 & 0xffffffff00000000;
                 if (*plVar6 == lVar11) {
                   puVar15 = *(void **)(*(longlong *)(param_1 + 0x28) + 0x290);
-                  puVar18 = &DAT_18098bc73;
+                  puVar18 = &system_buffer_ptr;
                   if (puVar15 != (void *)0x0) {
                     puVar18 = puVar15;
                   }
-                  puVar15 = &DAT_18098bc73;
+                  puVar15 = &system_buffer_ptr;
                   if (puStack_120 != (void *)0x0) {
                     puVar15 = puStack_120;
                   }
@@ -388,7 +388,7 @@ void FUN_1803bbc50(longlong param_1,longlong param_2)
   puStack_a0 = auStack_90;
   auStack_90[0] = 0;
   uStack_98 = 0;
-  strcpy_s(auStack_90,0x40,&DAT_18098bc73);
+  strcpy_s(auStack_90,0x40,&system_buffer_ptr);
   pcVar10 = "occlusion_body_name";
   do {
     pcVar11 = pcVar10;
@@ -525,7 +525,7 @@ LAB_1803bbef3:
                   iVar8 = iStack_d8;
                   break;
                 }
-                lVar7 = (longlong)&DAT_180a03a84 - (longlong)pcVar10;
+                lVar7 = (longlong)&system_flag_3a84 - (longlong)pcVar10;
                 while (*pcVar10 == pcVar10[lVar7]) {
                   pcVar10 = pcVar10 + 1;
                   if (pcVar5 <= pcVar10) goto LAB_1803bbef3;

@@ -882,7 +882,7 @@ int8_t Engine_ValidateMatrixIdentity_0861a0(float *matrix_ptr)
          ((ABS(matrix_ptr[4]) < IDENTITY_MATRIX_THRESHOLD && (ABS(matrix_ptr[5] - 1.0) < IDENTITY_MATRIX_THRESHOLD)))) &&
         ((ABS(matrix_ptr[6]) < IDENTITY_MATRIX_THRESHOLD && ((ABS(matrix_ptr[8]) < IDENTITY_MATRIX_THRESHOLD && (ABS(matrix_ptr[9]) < IDENTITY_MATRIX_THRESHOLD)))))) &&
        (ABS(matrix_ptr[10] - 1.0) < IDENTITY_MATRIX_THRESHOLD)) {
-        validation_result = func_0x000180086150(matrix_ptr + 0xc, &DAT_180a00330);
+        validation_result = func_0x000180086150(matrix_ptr + 0xc, &system_memory_0330);
         if (validation_result != '\0') {
             return 1;
         }
@@ -1467,17 +1467,17 @@ void Engine_InitializeRenderObject_086bd0(longlong obj_ptr, uint64_t param_2, lo
     }
     
     String_ParseArguments(*_DAT_180c86870, &stack_ptr1, param_2);
-    texture_ptr = &DAT_18098bc73;
+    texture_ptr = &system_buffer_ptr;
     if (_DAT_180bf6658 != (void *)0x0) {
         texture_ptr = _DAT_180bf6658;
     }
     
-    render_ptr = &DAT_18098bc73;
+    render_ptr = &system_buffer_ptr;
     if (*(void **)(param_3 + 8) != (void *)0x0) {
         render_ptr = *(void **)(param_3 + 8);
     }
     
-    shader_ptr = &DAT_18098bc73;
+    shader_ptr = &system_buffer_ptr;
     if (stack_ptr2 != (void *)0x0) {
         shader_ptr = stack_ptr2;
     }

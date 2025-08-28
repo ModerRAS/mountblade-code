@@ -94,7 +94,7 @@ extern uint64_t UNK_18097c2a8;                  ///< 事件处理数据
 extern uint64_t UNK_18097c2b8;                  ///< 资源管理数据
 extern uint64_t UNK_18097c2c8;                  ///< 数据验证数据
 extern uint64_t UNK_18097c2d8;                  ///< 自定义操作数据
-extern uint64_t DAT_180a064c8;                  ///< 系统配置表
+extern uint64_t system_memory_64c8;                  ///< 系统配置表
 extern uint64_t _DAT_180bf00a8;                 ///< 系统数据表
 
 // ============================================================================
@@ -307,7 +307,7 @@ LAB_1807bb271:
                                     case PROTOCOL_CMD_CONFIG_UPDATE:
                                         // 配置更新命令
                                         iStack_144 = (int)*(float *)(*param_1 + 0x3bf4);
-                                        InternalDataTransfer(param_1, &DAT_180a064c8, uVar8);
+                                        InternalDataTransfer(param_1, &system_memory_64c8, uVar8);
                                         if (param_2 != '\0') {
                                             uStack_158 = 0;
                                             uStack_160 = 1;

@@ -25,11 +25,11 @@ void FUN_1807b1620(int *param_1)
   uVar3 = *(uint64_t *)(_DAT_180be12f0 + 0x128);
   FUN_180768360(uVar3);
   puVar4 = _DAT_180be4cc8;
-  if (_DAT_180be4cc8 != (uint64_t *)&DAT_180be4cc8) {
+  if (_DAT_180be4cc8 != (uint64_t *)&system_data_4cc8) {
     do {
       if (*(int *)(puVar4 + 3) == iVar2) break;
       puVar4 = (uint64_t *)*puVar4;
-    } while (puVar4 != (uint64_t *)&DAT_180be4cc8);
+    } while (puVar4 != (uint64_t *)&system_data_4cc8);
   }
                     // WARNING: Subroutine does not return
   FUN_180768400(uVar3);
@@ -65,11 +65,11 @@ void FUN_1807b1625(int *param_1)
   uVar3 = *(uint64_t *)(_DAT_180be12f0 + 0x128);
   FUN_180768360(uVar3);
   puVar4 = _DAT_180be4cc8;
-  if (_DAT_180be4cc8 != (uint64_t *)&DAT_180be4cc8) {
+  if (_DAT_180be4cc8 != (uint64_t *)&system_data_4cc8) {
     do {
       if (*(int *)(puVar4 + 3) == iVar2) break;
       puVar4 = (uint64_t *)*puVar4;
-    } while (puVar4 != (uint64_t *)&DAT_180be4cc8);
+    } while (puVar4 != (uint64_t *)&system_data_4cc8);
   }
                     // WARNING: Subroutine does not return
   FUN_180768400(uVar3);

@@ -80,7 +80,7 @@ LAB_180537476:
   }
 LAB_1805375f9:
   lVar5 = *(longlong *)(lVar7 + 0x6d8);
-  if ((*(int *)(lVar7 + 0x570) == 2) && (DAT_180c8ec8a != '\0')) {
+  if ((*(int *)(lVar7 + 0x570) == 2) && (system_data_ec8a != '\0')) {
     uVar4 = 1;
   }
   else {

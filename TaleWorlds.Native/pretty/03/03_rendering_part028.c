@@ -816,7 +816,7 @@ material_processing_complete:
                 material_state = render_buffer;
                 render_buffer[0] = 0;
                 batch_size = 0x10;
-                strcpy_s(render_buffer, 0x40, &DAT_180a0d580);
+                strcpy_s(render_buffer, 0x40, &system_buffer_d580);
                 texture_hash = FUN_180240430(render_cache[0x3c], &render_state, 0);
                 render_cache[0x28] = render_cache[0x28] | texture_hash;
                 FUN_18022dd60(render_cache);
@@ -855,7 +855,7 @@ static uint64_t _DAT_180c868f0 = 0;        // 材质缓存系统指针
 static uint64_t _DAT_180c8ed18 = 0;        // 渲染队列系统指针
 
 // 渲染系统字符串常量
-static char DAT_180a0d580[64] = "RenderSystem_v1.0";  // 渲染系统版本字符串
+static char system_buffer_d580[64] = "RenderSystem_v1.0";  // 渲染系统版本字符串
 
 // 渲染系统函数指针
 static code UNK_18027d980 = {0};              // 默认渲染函数

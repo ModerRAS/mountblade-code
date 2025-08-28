@@ -15,8 +15,8 @@
 #define RENDER_DATA_PTR_2       UNK_180a3c3e0
 #define RENDER_DATA_PTR_3       UNK_18098bcb0
 #define RENDER_DATA_PTR_4       UNK_180a169b8
-#define RENDER_STRING_PTR       DAT_180a0ff10
-#define RENDER_EMPTY_STRING     DAT_18098bc73
+#define RENDER_STRING_PTR       system_memory_ff10
+#define RENDER_EMPTY_STRING     system_buffer_ptr
 #define RENDER_SECURITY_KEY      _DAT_180bf00a8
 #define RENDER_CONFIG_DATA       _DAT_180c8ed18
 #define RENDER_RESOURCE_DATA    _DAT_180c86930

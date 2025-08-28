@@ -148,7 +148,7 @@ void FUN_18020a890(uint64_t param_1,longlong param_2,longlong param_3,longlong *
     *(int8_t *)((longlong)puVar8 + 0x44) = 0;
     plStack_4b0 = (longlong *)CONCAT44(plStack_4b0._4_4_,0x44);
     FUN_180624440(&puStack_2f8,&pcStack_4c0);
-    puVar23 = &DAT_18098bc73;
+    puVar23 = &system_buffer_ptr;
     if (puStack_2f0 != (void *)0x0) {
       puVar23 = puStack_2f0;
     }
@@ -505,7 +505,7 @@ LAB_18020b304:
           FUN_180627c50(&puStack_4e0,lVar9);
           break;
         }
-        lVar9 = (longlong)&DAT_180a03a84 - (longlong)pcVar19;
+        lVar9 = (longlong)&system_state_3a84 - (longlong)pcVar19;
         while (*pcVar19 == pcVar19[lVar9]) {
           pcVar19 = pcVar19 + 1;
           if (pcVar17 <= pcVar19) goto LAB_18020b304;

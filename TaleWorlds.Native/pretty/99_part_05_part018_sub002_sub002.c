@@ -155,7 +155,7 @@ void FUN_1802e1bb0(int *param_1,longlong param_2,float param_3)
     func_0x000180094ae0(puVar9,&fStack_438);
     fVar20 = fStack_430 * fStack_430 + fStack_434 * fStack_434 + fStack_438 * fStack_438;
     auVar22 = rsqrtss(ZEXT416((uint)fVar20),ZEXT416((uint)fVar20));
-    fVar20 = auVar22._0_4_ * 0.5 * ((float)DAT_180a401f0 - fVar20 * auVar22._0_4_ * auVar22._0_4_);
+    fVar20 = auVar22._0_4_ * 0.5 * ((float)system_data_01f0 - fVar20 * auVar22._0_4_ * auVar22._0_4_);
     fStack_438 = fStack_438 * fVar20;
     fStack_434 = fStack_434 * fVar20;
     fStack_430 = fStack_430 * fVar20;

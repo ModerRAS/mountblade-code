@@ -889,10 +889,10 @@ void *get_render_context(longlong param_1, uint64_t param_2, uint64_t param_3, u
   
   // 检查线程本地存储中的渲染值
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48) < render_tls_value) {
-    FUN_1808fcb90(&DAT_180d49158);
+    FUN_1808fcb90(&system_buffer_9158);
     if (render_tls_value == -1) {
       _DAT_180d49160 = &default_render_context;
-      _DAT_180d49168 = &DAT_180d49178;
+      _DAT_180d49168 = &system_buffer_9178;
     }
   }
   

@@ -297,7 +297,7 @@ void FUN_18003e510(void)
     
     // 遍历注册表查找合适位置
     while (component_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a00fb0, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_0fb0, 0x10);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
@@ -312,7 +312,7 @@ void FUN_18003e510(void)
     
     // 检查是否需要创建新组件
     if ((previous_node == registry_root) || 
-        (comparison_result = memcmp(&DAT_180a00fb0, previous_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_0fb0, previous_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(system_context);
         FUN_18008f140(system_context, &new_component, previous_node, memory_size + 0x20, memory_size);
         previous_node = new_component;
@@ -368,7 +368,7 @@ void FUN_18003e610(void)
     
     // 遍历注册表查找合适位置
     while (component_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a010a0, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_10a0, 0x10);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
@@ -383,7 +383,7 @@ void FUN_18003e610(void)
     
     // 检查是否需要创建新组件
     if ((previous_node == registry_root) || 
-        (comparison_result = memcmp(&DAT_180a010a0, previous_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_10a0, previous_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(system_context);
         FUN_18008f140(system_context, &new_component, previous_node, memory_size + 0x20, memory_size);
         previous_node = new_component;
@@ -439,7 +439,7 @@ void FUN_18003e710(void)
     
     // 遍历注册表查找合适位置
     while (component_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a01078, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_1078, 0x10);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
@@ -454,7 +454,7 @@ void FUN_18003e710(void)
     
     // 检查是否需要创建新组件
     if ((previous_node == registry_root) || 
-        (comparison_result = memcmp(&DAT_180a01078, previous_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1078, previous_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(system_context);
         FUN_18008f140(system_context, &new_component, previous_node, memory_size + 0x20, memory_size);
         previous_node = new_component;
@@ -510,7 +510,7 @@ void FUN_18003e810(void)
     
     // 遍历注册表查找合适位置
     while (component_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a01050, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_1050, 0x10);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
@@ -525,7 +525,7 @@ void FUN_18003e810(void)
     
     // 检查是否需要创建新组件
     if ((previous_node == registry_root) || 
-        (comparison_result = memcmp(&DAT_180a01050, previous_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1050, previous_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(system_context);
         FUN_18008f140(system_context, &new_component, previous_node, memory_size + 0x20, memory_size);
         previous_node = new_component;
@@ -581,7 +581,7 @@ void FUN_18003e910(void)
     
     // 遍历注册表查找合适位置
     while (component_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a01028, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_1028, 0x10);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
@@ -596,7 +596,7 @@ void FUN_18003e910(void)
     
     // 检查是否需要创建新组件
     if ((previous_node == registry_root) || 
-        (comparison_result = memcmp(&DAT_180a01028, previous_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1028, previous_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(system_context);
         FUN_18008f140(system_context, &new_component, previous_node, memory_size + 0x20, memory_size);
         previous_node = new_component;
@@ -652,7 +652,7 @@ void FUN_18003ea10(void)
     
     // 遍历注册表查找合适位置
     while (component_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a01000, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_1000, 0x10);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
@@ -667,7 +667,7 @@ void FUN_18003ea10(void)
     
     // 检查是否需要创建新组件
     if ((previous_node == registry_root) || 
-        (comparison_result = memcmp(&DAT_180a01000, previous_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1000, previous_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(system_context);
         FUN_18008f140(system_context, &new_component, previous_node, memory_size + 0x20, memory_size);
         previous_node = new_component;
@@ -723,7 +723,7 @@ void FUN_18003eb10(void)
     
     // 遍历注册表查找合适位置
     while (component_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a00fd8, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_0fd8, 0x10);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
@@ -738,7 +738,7 @@ void FUN_18003eb10(void)
     
     // 检查是否需要创建新组件
     if ((previous_node == registry_root) || 
-        (comparison_result = memcmp(&DAT_180a00fd8, previous_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_0fd8, previous_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(system_context);
         FUN_18008f140(system_context, &new_component, previous_node, memory_size + 0x20, memory_size);
         previous_node = new_component;
@@ -794,7 +794,7 @@ void FUN_18003ec10(void)
     
     // 遍历注册表查找合适位置
     while (component_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a00fb0, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_0fb0, 0x10);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
@@ -809,7 +809,7 @@ void FUN_18003ec10(void)
     
     // 检查是否需要创建新组件
     if ((previous_node == registry_root) || 
-        (comparison_result = memcmp(&DAT_180a00fb0, previous_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_0fb0, previous_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(system_context);
         FUN_18008f140(system_context, &new_component, previous_node, memory_size + 0x20, memory_size);
         previous_node = new_component;
@@ -916,7 +916,7 @@ int FUN_18003edc0(void)
     config_data[0] = 1;
     
     // 验证配置数据
-    FUN_180477890(&DAT_180c92490, config_data);
+    FUN_180477890(&system_memory_2490, config_data);
     
     // 获取验证结果
     validation_result = FUN_1808fc7d0(FUN_1809428e0);
@@ -949,7 +949,7 @@ int FUN_18003edf0(void)
     load_data[0] = 0;
     
     // 执行组件加载
-    FUN_180477890(&DAT_180c92480, load_data);
+    FUN_180477890(&system_memory_2480, load_data);
     
     // 获取加载结果
     load_result = FUN_1808fc7d0(FUN_180942930);
@@ -1049,7 +1049,7 @@ void FUN_18003ee90(void)
     
     // 遍历资源树查找合适位置
     while (resource_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_1809fc740, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_c740, 0x10);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
@@ -1064,7 +1064,7 @@ void FUN_18003ee90(void)
     
     // 检查是否需要创建新资源
     if ((previous_node == resource_root) || 
-        (comparison_result = memcmp(&DAT_1809fc740, previous_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_c740, previous_node + 4, 0x10), comparison_result < 0)) {
         resource_size = FUN_18008f0d0(system_context);
         FUN_18008f140(system_context, &new_resource, previous_node, resource_size + 0x20, resource_size);
         previous_node = new_resource;

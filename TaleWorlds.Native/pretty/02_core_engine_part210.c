@@ -59,7 +59,7 @@ void FUN_18018cef0(longlong param_1,longlong param_2,longlong param_3,int param_
       pcVar14 = pcVar8 + (longlong)pcVar14;
       pcVar18 = pcVar23;
       if (pcVar14 <= pcVar8) break;
-      lVar17 = (longlong)&DAT_180a0aea0 - (longlong)pcVar8;
+      lVar17 = (longlong)&system_data_aea0 - (longlong)pcVar8;
       while (*pcVar8 == pcVar8[lVar17]) {
         pcVar8 = pcVar8 + 1;
         if (pcVar14 <= pcVar8) goto LAB_18018cfa6;

@@ -1080,10 +1080,10 @@ void RenderingSystem_SetParameter(int32_t param_1, int param_2, int8_t param_3)
     
     // 处理参数设置
     if (-1 < param_2) {
-        uVar3 = (**(code **)(_DAT_180c925a0 + 0x20))(&DAT_180c925a0, param_2);
+        uVar3 = (**(code **)(_DAT_180c925a0 + 0x20))(&system_memory_25a0, param_2);
     }
     
-    RenderingSystem_ProcessStringLength(&DAT_180c925a0, param_1, uVar3, param_3);
+    RenderingSystem_ProcessStringLength(&system_memory_25a0, param_1, uVar3, param_3);
     
 LAB_180615d04:
     // 释放线程锁
@@ -1105,7 +1105,7 @@ void RenderingSystem_ClearMemory(int32_t param_1)
     uint64_t uVar1;
     
     // 执行内存清理操作
-    (**(code **)(_DAT_180c925a0 + 0x20))(&DAT_180c925a0, param_1);
+    (**(code **)(_DAT_180c925a0 + 0x20))(&system_memory_25a0, param_1);
     uVar1 = RenderingSystem_InitializePort(_DAT_180c8ed18, 0x59e0, 8, 3);
     
     // 清理内存区域
@@ -1197,7 +1197,7 @@ ulonglong RenderingSystem_InitializePort(int16_t param_1)
     _DAT_180c92cc8 = 0x180c95be8;
     
     // 获取端口状态
-    uVar4 = (**(code **)(_DAT_180c925c8 + 0x30))(&DAT_180c925c8);
+    uVar4 = (**(code **)(_DAT_180c925c8 + 0x30))(&system_memory_25c8);
     if ((char)uVar4 != '\0') {
         return uVar4;
     }
@@ -1210,7 +1210,7 @@ ulonglong RenderingSystem_InitializePort(int16_t param_1)
         uRam0000000180c92d1a = htons(param_1);
         uRam0000000180c92d1c = 0;
     } else {
-        puVar5 = &DAT_18098bc73;
+        puVar5 = &system_buffer_ptr;
         if (_DAT_180bf5bc8 != (void *)0x0) {
             puVar5 = _DAT_180bf5bc8;
         }
@@ -1218,7 +1218,7 @@ ulonglong RenderingSystem_InitializePort(int16_t param_1)
     }
     
     // 处理端口初始化
-    bVar2 = RenderingSystem_ValidateIntegerIndex(&DAT_180c925a0, 0x180c92d18);
+    bVar2 = RenderingSystem_ValidateIntegerIndex(&system_memory_25a0, 0x180c92d18);
     if (bVar2 != 0) {
         iVar7 = 0x3fe;
         do {
@@ -1305,7 +1305,7 @@ void RenderingSystem_ManageConnection(uint64_t param_1, int16_t param_2, int32_t
     
     if (cVar3 != '\0') {
         // 执行连接初始化
-        func_0x0001805f6d90(&DAT_180c95bf0);
+        func_0x0001805f6d90(&system_memory_5bf0);
         lVar5 = _DAT_180c8ed58;
         if (_DAT_180c8ed58 == 0) {
             QueryPerformanceCounter(alStack_28);
@@ -1359,7 +1359,7 @@ void RenderingSystem_MonitorConnection(uint64_t param_1, int16_t param_2, int32_
     
     if (cVar3 != '\0') {
         // 执行连接监控
-        func_0x0001805f6d90(&DAT_180c95bf0);
+        func_0x0001805f6d90(&system_memory_5bf0);
         lVar5 = _DAT_180c8ed58;
         if (_DAT_180c8ed58 == 0) {
             QueryPerformanceCounter(&lStackX_20);

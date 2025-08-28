@@ -56,7 +56,7 @@
 // =============================================================================
 
 // 全局数据结构引用
-extern uint64_t DAT_18098bc73;     // 默认数据结构引用
+extern uint64_t system_buffer_ptr;     // 默认数据结构引用
 extern uint64_t UNK_180a3c3e0;     // 未知数据结构引用
 extern uint64_t UNK_18098bcb0;     // 系统数据结构引用
 
@@ -398,7 +398,7 @@ void process_complex_data_structure(uint64_t context_param, uint64_t *structure_
             
             // 字符串处理
             if (0 < *(int *)(structure_address + 0x20)) {
-              value_ptr = &DAT_18098bc73;
+              value_ptr = &system_buffer_ptr;
               if (*(void **)(structure_address + 0x18) != (void *)0x0) {
                 value_ptr = *(void **)(structure_address + 0x18);
               }

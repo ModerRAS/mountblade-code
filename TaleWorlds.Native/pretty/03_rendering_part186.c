@@ -91,7 +91,7 @@ LAB_1803782ba:
         *(uint *)(unaff_RBP + -0x24) = uVar14;
         if (*(int *)(unaff_RBP + 0x14) <= (int)uVar14) {
           puVar16 = *(void **)(lVar12 + 0x10);
-          puVar20 = &DAT_18098bc73;
+          puVar20 = &system_buffer_ptr;
           if ((*(uint *)(lVar12 + 0x60) & 0x400000) == 0) {
             if (puVar16 != (void *)0x0) {
               puVar20 = puVar16;

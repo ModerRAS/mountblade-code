@@ -61,7 +61,7 @@ ulonglong FUN_1808abb10(uint64_t *param_1,longlong param_2,int32_t param_3)
               puVar4[6] = &UNK_180986af0;
               puVar4[0x1b] = 0;
               puVar4[0x1c] = 0;
-              FUN_18084e110(puVar4 + 0x1b,&DAT_18098bc73);
+              FUN_18084e110(puVar4 + 0x1b,&system_buffer_ptr);
               puStack_90 = puVar4;
               iVar2 = FUN_1808ddc20(param_1,auStack_68,1,0x54495250);
               if (((iVar2 == 0) &&
@@ -139,7 +139,7 @@ ulonglong FUN_1808abb3f(void)
             puVar4[6] = &UNK_180986af0;
             puVar4[0x1b] = 0;
             puVar4[0x1c] = 0;
-            FUN_18084e110(puVar4 + 0x1b,&DAT_18098bc73);
+            FUN_18084e110(puVar4 + 0x1b,&system_buffer_ptr);
             iVar2 = FUN_1808ddc20();
             if (((iVar2 == 0) && (iVar2 = FUN_1808ddc20(), iVar2 == 0)) &&
                (iVar2 = FUN_180899360(), iVar2 == 0)) {
@@ -203,7 +203,7 @@ int FUN_1808abb9b(int param_1)
         puVar2[6] = &UNK_180986af0;
         puVar2[0x1b] = unaff_R12;
         puVar2[0x1c] = unaff_R12;
-        FUN_18084e110(puVar2 + 0x1b,&DAT_18098bc73);
+        FUN_18084e110(puVar2 + 0x1b,&system_buffer_ptr);
         iVar1 = FUN_1808ddc20();
         if (((iVar1 == 0) && (iVar1 = FUN_1808ddc20(), iVar1 == 0)) &&
            (iVar1 = FUN_180899360(), iVar1 == 0)) {

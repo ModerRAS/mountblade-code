@@ -104,7 +104,7 @@ void process_game_object_rendering(longlong game_context)
       stack_uint_2 = 0x40000000;  // 2.0f
       stack_ptr_2 = stack_array_1;
       stack_ulong_1 = 1;
-      stack_ptr_1 = &DAT_180be0000;
+      stack_ptr_1 = &system_memory_0000;
       stack_ulong_2 = 0;
       stack_uint_3 = 0;
       bitangent_data = render_queue;
@@ -418,7 +418,7 @@ light_texture_processed:
               }
               
               // 检查调试模式
-              if (DAT_180c82847 == '\0') {
+              if (system_memory_2847 == '\0') {
                 debug_object_info(shader_program);
               }
               return;

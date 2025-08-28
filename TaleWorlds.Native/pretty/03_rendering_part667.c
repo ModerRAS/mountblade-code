@@ -237,7 +237,7 @@ LAB_memory_cleanup:
   
   if (allocation_size != 0) {
     // 检查内存范围
-    if (((longlong *)0x180c8ed7f < memory_counter_ptr) && (memory_counter_ptr < &DAT_180c8efc0)) {
+    if (((longlong *)0x180c8ed7f < memory_counter_ptr) && (memory_counter_ptr < &system_memory_efc0)) {
       LOCK();
       memory_block_ptr = (longlong *)(block_count + 0xb8);
       current_bit = *memory_block_ptr;
@@ -312,7 +312,7 @@ void FUN_18064c570(ulonglong param_1, longlong param_2)
     if ((uint *)(param_1 + 0x80 + resource_count * 0x50) <= resource_pool_ptr) {
       // 执行最终清理
       if (_DAT_180bfbe8c == 0) {
-        FUN_180650490(&DAT_180bfbe88);
+        FUN_180650490(&system_memory_be88);
       }
       FUN_18064b460(param_1, _DAT_180bfbe88 != 0);
       func_0x000180646ff0(*(longlong *)(param_2 + 0x398) + 0xc0, 1);
@@ -488,7 +488,7 @@ LAB_resource_error:
       // 清理空资源
       if (resource_pool_ptr[6] == 0) {
         allocation_size = *(longlong *)(param_4 + 0x398);
-        if (((void *)(allocation_size + 0xe0) < &DAT_180c8ed80) ||
+        if (((void *)(allocation_size + 0xe0) < &system_memory_ed80) ||
            ((void *)0x180c8efbf < (void *)(allocation_size + 0xe0))) {
           *(longlong *)(allocation_size + 0xf8) = *(longlong *)(allocation_size + 0xf8) + -1;
           if (*(longlong *)(allocation_size + 0xf0) < *(longlong *)(allocation_size + 0xf8)) {
@@ -625,7 +625,7 @@ LAB_resource_error:
       // 清理空资源
       if (resource_pool_ptr[6] == 0) {
         allocation_size = *(longlong *)(resource_context + 0x398);
-        if (((void *)(allocation_size + 0xe0) < &DAT_180c8ed80) ||
+        if (((void *)(allocation_size + 0xe0) < &system_memory_ed80) ||
            ((void *)0x180c8efbf < (void *)(allocation_size + 0xe0))) {
           *(longlong *)(allocation_size + 0xf8) = *(longlong *)(allocation_size + 0xf8) + -1;
           if (*(longlong *)(allocation_size + 0xf0) < *(longlong *)(allocation_size + 0xf8)) {
@@ -756,7 +756,7 @@ longlong FUN_18064c940(longlong param_1, longlong param_2, ulonglong param_3, in
     else {
       // 处理资源计数
       allocation_size = *(longlong *)(param_5 + 0x398);
-      if (((void *)(allocation_size + 0xe0) < &DAT_180c8ed80) ||
+      if (((void *)(allocation_size + 0xe0) < &system_memory_ed80) ||
          ((void *)0x180c8efbf < (void *)(allocation_size + 0xe0))) {
         *(longlong *)(allocation_size + 0xf8) = *(longlong *)(allocation_size + 0xf8) + -1;
         if (*(longlong *)(allocation_size + 0xf0) < *(longlong *)(allocation_size + 0xf8)) {

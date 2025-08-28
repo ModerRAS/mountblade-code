@@ -36,10 +36,10 @@ extern uint64_t _DAT_180c8aa08;    // 全局数据表指针
 extern uint64_t _DAT_180c82868;    // 系统状态标志
 extern uint64_t _DAT_180c8ed18;    // 内存分配器句柄
 extern uint64_t _DAT_180c86870;    // 渲染系统状态
-extern uint64_t DAT_180bf00a8;     // 安全检查常量
+extern uint64_t system_stack_cookie;     // 安全检查常量
 extern uint64_t _DAT_180c86908;    // 系统配置状态
-extern char DAT_180c82860;            // 调试模式标志
-extern char DAT_180c82842;            // 错误处理标志
+extern char system_debug_flag;            // 调试模式标志
+extern char system_debug_flag2;            // 错误处理标志
 
 // ============================================================================
 // 字符串常量引用
@@ -172,7 +172,7 @@ final_mismatch:
     func_ptr2 = FUN_1801eb560;
     
     // 分配最终处理结构
-    result_ptr = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x30, 8, DAT_180bf00a8);
+    result_ptr = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x30, 8, system_stack_cookie);
     *result_ptr = stack_ptr1;
     *(int8_t *)(result_ptr + 1) = stack_flag1;
     temp_ptr5 = result_ptr;
@@ -344,7 +344,7 @@ void file_data_processor(uint64_t param_1, longlong param_2)
     // 初始化全局变量和栈变量
     temp_long2 = _DAT_180c8aa08;
     stack_var8 = 0xfffffffffffffffe;
-    stack_ulong3 = DAT_180bf00a8 ^ (ulonglong)temp_buffer1;
+    stack_ulong3 = system_stack_cookie ^ (ulonglong)temp_buffer1;
     stack_long3 = _DAT_180c8aa08;
     
     // 执行初始化操作
@@ -371,7 +371,7 @@ void file_data_processor(uint64_t param_1, longlong param_2)
     // 初始化文件操作
     stack_var7 = 0;
     stack_long5 = 0;
-    temp_ptr6 = &DAT_18098bc73;
+    temp_ptr6 = &system_buffer_ptr;
     if (stack_ptr2 != (void *)0x0) {
         temp_ptr6 = stack_ptr2;
     }
@@ -700,7 +700,7 @@ bool file_validator(longlong param_1)
     
     // 初始化文件句柄
     temp_long_array[0] = -1;
-    temp_ptr2 = &DAT_18098bc73;
+    temp_ptr2 = &system_buffer_ptr;
     if (stack_ptr2 != (void *)0x0) {
         temp_ptr2 = stack_ptr2;
     }
@@ -743,9 +743,9 @@ bool file_validator(longlong param_1)
     temp_long1 = temp_long_array[0];
     
     // 错误处理
-    if (((DAT_180c82860 == '\0') && (validation_result == false)) &&
+    if (((system_debug_flag == '\0') && (validation_result == false)) &&
        ((*(int *)(_DAT_180c86908 + 0x620) == 0 && (param_1 == 0)))) {
-        if (DAT_180c82842 == '\0') {
+        if (system_debug_flag2 == '\0') {
             MessageBoxA(0, &UNK_180a0cea0, &UNK_180a0cf60, 0x41040);
         }
         else if (*(char *)(_DAT_180c86928 + 0x18) != '\0') {
@@ -803,7 +803,7 @@ void shader_cache_processor(uint64_t param_1)
     
     // 初始化栈变量
     stack_var2 = 0xfffffffffffffffe;
-    stack_ulong2 = DAT_180bf00a8 ^ (ulonglong)temp_buffer1;
+    stack_ulong2 = system_stack_cookie ^ (ulonglong)temp_buffer1;
     temp_var1 = 0;
     temp_array1[1] = 0;
     stack_ptr1 = &UNK_180a3c3e0;
@@ -828,7 +828,7 @@ void shader_cache_processor(uint64_t param_1)
     // 初始化文件操作
     stack_var1 = 0;
     stack_long1 = 0;
-    temp_ptr2 = &DAT_18098bc73;
+    temp_ptr2 = &system_buffer_ptr;
     if (stack_ptr2 != (void *)0x0) {
         temp_ptr2 = stack_ptr2;
     }
@@ -921,7 +921,7 @@ void configuration_file_handler(void)
     
     // 初始化栈变量
     stack_var2 = 0xfffffffffffffffe;
-    stack_ulong3 = DAT_180bf00a8 ^ (ulonglong)temp_buffer1;
+    stack_ulong3 = system_stack_cookie ^ (ulonglong)temp_buffer1;
     temp_array1[1] = 0;
     
     if (*(char *)(_DAT_180c86870 + 0x168) == '\0') {
@@ -966,7 +966,7 @@ void configuration_file_handler(void)
             FUN_18062c1e0(&stack_ptr3, 1);
             stack_var1 = 0;
             stack_long2 = 0;
-            temp_ptr2 = &DAT_18098bc73;
+            temp_ptr2 = &system_buffer_ptr;
             if (stack_ptr2 != (int8_t *)0x0) {
                 temp_ptr2 = stack_ptr2;
             }
@@ -988,7 +988,7 @@ void configuration_file_handler(void)
             FUN_18004b860(&stack_ptr4, &UNK_1809fd0a0, 0x130a7);
             temp_array1[0] = stack_int2;
             fwrite(temp_array1, 4, 1, temp_long1);
-            temp_ptr3 = &DAT_18098bc73;
+            temp_ptr3 = &system_buffer_ptr;
             if (stack_ptr5 != (void *)0x0) {
                 temp_ptr3 = stack_ptr5;
             }
@@ -1048,7 +1048,7 @@ void path_builder(longlong *param_1, longlong param_2)
     
     // 初始化栈变量
     stack_var2 = 0xfffffffffffffffe;
-    stack_ulong1 = DAT_180bf00a8 ^ (ulonglong)temp_buffer1;
+    stack_ulong1 = system_stack_cookie ^ (ulonglong)temp_buffer1;
     stack_var1 = 0;
     *(int32_t *)(param_1 + 2) = 0;
     
@@ -1064,7 +1064,7 @@ void path_builder(longlong *param_1, longlong param_2)
         stack_var3 = 6;
         strcpy_s(temp_buffer2, 0x10, &UNK_180a3c07c);
         stack_var1 = 1;
-        temp_ptr2 = &DAT_18098bc73;
+        temp_ptr2 = &system_buffer_ptr;
         if (stack_ptr2 != (void *)0x0) {
             temp_ptr2 = stack_ptr2;
         }

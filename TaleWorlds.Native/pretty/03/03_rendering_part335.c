@@ -955,7 +955,7 @@ float *RenderingSystem_ColorArrayGetter(float *param_1, longlong param_2, int pa
   uint *puVar2;
   
   if (*(int *)(*(longlong *)(param_2 + 0x18) + 0x60) < 1) {
-    puVar2 = (uint *)&DAT_180bf661c;
+    puVar2 = (uint *)&system_memory_661c;
   }
   else {
     puVar2 = (uint *)(*(longlong *)(*(longlong *)(param_2 + 0x18) + 0x68) + 0x54 + (longlong)param_3 * 0x5c);

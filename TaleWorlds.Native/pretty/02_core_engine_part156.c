@@ -105,7 +105,7 @@ code_r0x00018013d378:
                     uVar12 = FUN_180122210(uVar12,&UNK_180a068b8);
                   }
                 }
-                FUN_180122210(uVar12,&DAT_1809fcc18);
+                FUN_180122210(uVar12,&system_ptr_cc18);
                 uVar11 = (int)unaff_RBP + 1;
                 unaff_RBP = (ulonglong)uVar11;
                 uVar7 = uVar7 + 0x38;
@@ -196,7 +196,7 @@ void FUN_18013d387(int32_t param_1)
           uVar8 = FUN_180122210(uVar8,&UNK_180a068b8);
         }
       }
-      FUN_180122210(uVar8,&DAT_1809fcc18);
+      FUN_180122210(uVar8,&system_ptr_cc18);
       uVar6 = (int)unaff_RBP + 1;
       unaff_RBP = (ulonglong)uVar6;
       uVar7 = uVar7 + 0x38;
@@ -266,7 +266,7 @@ void FUN_18013d3ad(void)
         uVar8 = FUN_180122210(uVar8,&UNK_180a068b8);
       }
     }
-    FUN_180122210(uVar8,&DAT_1809fcc18);
+    FUN_180122210(uVar8,&system_ptr_cc18);
     uVar6 = (int)unaff_RBP + 1;
     unaff_RBP = (ulonglong)uVar6;
     uVar7 = uVar7 + 0x38;
@@ -304,11 +304,11 @@ longlong FUN_18013d540(void)
   uint uVar10;
   
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-               0x48) < _DAT_180d49270) && (FUN_1808fcb90(&DAT_180d49270), _DAT_180d49270 == -1)) {
+               0x48) < _DAT_180d49270) && (FUN_1808fcb90(&system_ptr_9270), _DAT_180d49270 == -1)) {
     _DAT_180d49278 = 0;
     _DAT_180d49280 = 0;
     FUN_1808fc820(&UNK_180941a80);
-    FUN_1808fcb30(&DAT_180d49270);
+    FUN_1808fcb30(&system_ptr_9270);
   }
   lVar6 = _DAT_180d49280;
   if (_DAT_180d49280 == 0) {

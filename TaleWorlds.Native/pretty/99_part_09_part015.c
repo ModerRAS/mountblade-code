@@ -276,7 +276,7 @@ void FUN_1805c3ee0(longlong *param_1,longlong *param_2,uint64_t param_3)
   else {
     if (((*(longlong *)(lVar10 + 0x928) == 0) ||
         (cVar5 = FUN_180488880(lVar10 + 0x940), cVar5 == '\0')) ||
-       (120.0 <= (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(*param_1 + 0x978) * 8) -
+       (120.0 <= (float)(*(longlong *)(&system_error_code + (longlong)*(int *)(*param_1 + 0x978) * 8) -
                         *(longlong *)(*param_1 + 0x970)) * 1e-05)) {
       *(int8_t *)((longlong)param_1 + 0x21fe) = 1;
     }
@@ -715,7 +715,7 @@ void FUN_1805c4650(longlong *param_1,uint64_t *param_2,int8_t *param_3,char para
       if ((int)param_1[0x2f1] == 0) {
         *(int32_t *)(param_1 + 0x2f1) = 0;
         param_1[0x2ed] =
-             *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x2ee] * 8) + -0x8000000000000000
+             *(longlong *)(&system_error_code + (longlong)(int)param_1[0x2ee] * 8) + -0x8000000000000000
         ;
       }
       else {

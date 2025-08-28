@@ -422,7 +422,7 @@ LAB_1800f631b:
       unaff_RDI = (char *)0x0;
 LAB_1800f63b8:
       if ((unaff_RSI + 0x48 != 0) && (unaff_RDI != (char *)0x0)) {
-        FUN_18010cbc0(unaff_RDI,&DAT_180a06430,unaff_RSI + 0x48);
+        FUN_18010cbc0(unaff_RDI,&system_data_6430,unaff_RSI + 0x48);
       }
       return;
     }
@@ -851,7 +851,7 @@ LAB_1800f63ad:
       }
 LAB_1800f63b8:
       if ((unaff_RSI + 0x48 != 0) && (unaff_RDI != (char *)0x0)) {
-        FUN_18010cbc0(unaff_RDI,&DAT_180a06430,unaff_RSI + 0x48);
+        FUN_18010cbc0(unaff_RDI,&system_data_6430,unaff_RSI + 0x48);
       }
       return;
     }
@@ -902,7 +902,7 @@ void FUN_1800f6325(longlong param_1)
   char *pcVar5;
   
   if (param_1 != 0) {
-    FUN_18010cbc0(param_1,&DAT_180a06430);
+    FUN_18010cbc0(param_1,&system_data_6430);
   }
   pcVar4 = "air_drag_multiplier";
   do {
@@ -915,7 +915,7 @@ void FUN_1800f6325(longlong param_1)
       unaff_RDI = (char *)0x0;
 LAB_1800f63b8:
       if ((unaff_RSI + 0x48 != 0) && (unaff_RDI != (char *)0x0)) {
-        FUN_18010cbc0(unaff_RDI,&DAT_180a06430,unaff_RSI + 0x48);
+        FUN_18010cbc0(unaff_RDI,&system_data_6430,unaff_RSI + 0x48);
       }
       return;
     }
@@ -1038,7 +1038,7 @@ void FUN_1800f64f0(longlong param_1)
         alStack_70[0] = lVar2;
         alStack_50[0] = lVar2;
         (**(code **)(*plVar1 + 0x70))
-                  (plVar1,&DAT_18098c9b8,lVar2 + 0xb8,0,alStack_70,alStack_50,uVar7);
+                  (plVar1,&system_data_c9b8,lVar2 + 0xb8,0,alStack_70,alStack_50,uVar7);
         if (pcStack_60 != (code *)0x0) {
           (*pcStack_60)(alStack_70,0,0);
         }
@@ -1118,7 +1118,7 @@ void FUN_1800f6710(longlong param_1)
         alStack_70[0] = lVar2;
         alStack_50[0] = lVar2;
         (**(code **)(*plVar1 + 0x70))
-                  (plVar1,&DAT_18098c940,lVar2 + 0xb8,0,alStack_70,alStack_50,uVar7);
+                  (plVar1,&system_data_c940,lVar2 + 0xb8,0,alStack_70,alStack_50,uVar7);
         if (pcStack_60 != (code *)0x0) {
           (*pcStack_60)(alStack_70,0,0);
         }

@@ -145,7 +145,7 @@ void FUN_18006c070(longlong param_1)
     }
     else {
       iStack_1e8 = *(int *)(lVar13 + 0x10);
-      puVar24 = &DAT_18098bc73;
+      puVar24 = &system_buffer_ptr;
       if (*(void **)(lVar13 + 8) != (void *)0x0) {
         puVar24 = *(void **)(lVar13 + 8);
       }
@@ -303,7 +303,7 @@ LAB_18006c852:
         puVar20 = *(uint64_t **)(param_1 + 0xc0);
         uStack_258 = puVar20[0x6c];
         if (uStack_258 < uVar19) {
-          pbVar12 = &DAT_18098bc73;
+          pbVar12 = &system_buffer_ptr;
           if (pbStack_1f0 != (byte *)0x0) {
             pbVar12 = pbStack_1f0;
           }

@@ -30,7 +30,7 @@ void FUN_1807cf540(void)
 
 {
                     // WARNING: Subroutine does not return
-  memset(&DAT_180c309a0,0,0xf0);
+  memset(&system_data_09a0,0,0xf0);
 }
 
 
@@ -200,7 +200,7 @@ void FUN_1807cf8d0(void)
 
 {
                     // WARNING: Subroutine does not return
-  memset(&DAT_180c30a90,0,0xf0);
+  memset(&system_data_0a90,0,0xf0);
 }
 
 
@@ -318,7 +318,7 @@ void FUN_1807cfb70(void)
 
 {
                     // WARNING: Subroutine does not return
-  memset(&DAT_180c30b80,0,0x98);
+  memset(&system_data_0b80,0,0x98);
 }
 
 
@@ -615,7 +615,7 @@ void FUN_1807d0140(void)
 
 {
                     // WARNING: Subroutine does not return
-  memset(&DAT_180c30c70,0,0x98);
+  memset(&system_data_0c70,0,0x98);
 }
 
 

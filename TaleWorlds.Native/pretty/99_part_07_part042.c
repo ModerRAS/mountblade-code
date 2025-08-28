@@ -486,7 +486,7 @@ LAB_1804c2774:
         *(int8_t *)(uVar10 + *(longlong *)(param_1 + 0x70)) = 0;
       }
       *(int32_t *)(param_1 + 0x84) = uStack_110._4_4_;
-      iVar5 = FUN_1804c3680(&DAT_180c961b0,&puStack_128);
+      iVar5 = FUN_1804c3680(&system_data_61b0,&puStack_128);
       if (-1 < iVar5) {
         lVar9 = (longlong)iVar5 * 200 + _DAT_180c961b0;
         *(int8_t *)(param_1 + 0x30) = *(int8_t *)(lVar9 + 0x30);
@@ -769,7 +769,7 @@ LAB_1804c2e95:
       }
     }
     if (0 < iStack_158) {
-      uVar6 = FUN_18055b2f0(&DAT_180c96150,&puStack_168);
+      uVar6 = FUN_18055b2f0(&system_data_6150,&puStack_168);
       *(int32_t *)(param_1 + 0x34) = uVar6;
     }
     pcVar11 = "equip_action_left_stance";
@@ -806,7 +806,7 @@ LAB_1804c2f30:
       }
     }
     if (0 < iStack_158) {
-      uVar6 = FUN_18055b2f0(&DAT_180c96150,&puStack_168);
+      uVar6 = FUN_18055b2f0(&system_data_6150,&puStack_168);
       *(int32_t *)(param_1 + 0x38) = uVar6;
     }
     pcVar11 = "unequip_action";
@@ -843,7 +843,7 @@ LAB_1804c2fd0:
       }
     }
     if (0 < iStack_158) {
-      uVar6 = FUN_18055b2f0(&DAT_180c96150,&puStack_168);
+      uVar6 = FUN_18055b2f0(&system_data_6150,&puStack_168);
       *(int32_t *)(param_1 + 0x3c) = uVar6;
     }
     pcVar11 = "unequip_action_left_stance";
@@ -880,7 +880,7 @@ LAB_1804c3074:
       }
     }
     if (0 < iStack_158) {
-      uVar6 = FUN_18055b2f0(&DAT_180c96150,&puStack_168);
+      uVar6 = FUN_18055b2f0(&system_data_6150,&puStack_168);
       *(int32_t *)(param_1 + 0x40) = uVar6;
     }
     puStack_168 = &UNK_180a3c3e0;
@@ -935,7 +935,7 @@ int8_t FUN_1804c3180(longlong param_1)
   longlong lVar2;
   
   if (*(char *)(param_1 + 0x33) != '\0') {
-    iVar1 = FUN_1804c3680(&DAT_180c961b0,param_1 + 0x68);
+    iVar1 = FUN_1804c3680(&system_data_61b0,param_1 + 0x68);
     lVar2 = (longlong)iVar1 * 200 + _DAT_180c961b0;
     if (lVar2 != 0) {
       return *(int8_t *)(lVar2 + 8);
@@ -973,7 +973,7 @@ LAB_1804c3216:
     fVar7 = *(float *)(param_1 + 0x24);
   }
   else {
-    iVar1 = FUN_1804c3680(&DAT_180c961b0,param_1 + 0x68);
+    iVar1 = FUN_1804c3680(&system_data_61b0,param_1 + 0x68);
     lVar2 = (longlong)iVar1 * 200 + _DAT_180c961b0;
     if (lVar2 == 0) goto LAB_1804c3216;
     fVar3 = *(float *)(lVar2 + 0x1c);
@@ -988,7 +988,7 @@ LAB_1804c3216:
   FUN_18040f590(param_2,fVar3 * 0.017453292);
   FUN_18040f4d0(param_2,fVar5 * 0.017453292);
   if (*(char *)(param_1 + 0x32) != '\0') {
-    iVar1 = FUN_1804c3680(&DAT_180c961b0,param_1 + 0x68);
+    iVar1 = FUN_1804c3680(&system_data_61b0,param_1 + 0x68);
     lVar2 = (longlong)iVar1 * 200 + _DAT_180c961b0;
     if (lVar2 != 0) {
       uVar4 = *(int32_t *)(lVar2 + 0xc);

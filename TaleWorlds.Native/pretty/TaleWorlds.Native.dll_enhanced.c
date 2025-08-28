@@ -83,16 +83,16 @@ typedef uint64_t (*uint64_func_t)();        /** 64位返回函数指针 */
  * 全局数据变量组 (DAT_ 前缀)
  * 这些变量存储系统的全局状态和配置信息
  */
-extern uint8_t DAT_1809fc740;    /** 系统主配置数据 */
-extern uint8_t DAT_1809fc768;    /** 系统状态数据 */
-extern uint8_t DAT_18098c9b8;    /** 核心数据缓存 */
-extern uint8_t DAT_18098c940;    /** 系统资源数据 */
-extern uint8_t DAT_18098c918;    /** 处理队列数据 */
-extern uint8_t DAT_18098c968;    /** 管理信息数据 */
-extern uint8_t DAT_18098c990;    /** 控制参数数据 */
-extern uint8_t DAT_18098c9e0;    /** 通信接口数据 */
-extern uint8_t DAT_18098c8f0;    /** 处理器数据 */
-extern uint8_t DAT_18098c8c8;    /** 系统通信数据 */
+extern uint8_t system_memory_c740;    /** 系统主配置数据 */
+extern uint8_t system_memory_c768;    /** 系统状态数据 */
+extern uint8_t system_memory_c9b8;    /** 核心数据缓存 */
+extern uint8_t system_memory_c940;    /** 系统资源数据 */
+extern uint8_t system_memory_c918;    /** 处理队列数据 */
+extern uint8_t system_memory_c968;    /** 管理信息数据 */
+extern uint8_t system_memory_c990;    /** 控制参数数据 */
+extern uint8_t system_memory_c9e0;    /** 通信接口数据 */
+extern uint8_t system_memory_c8f0;    /** 处理器数据 */
+extern uint8_t system_memory_c8c8;    /** 系统通信数据 */
 
 /** 
  * 未知类型变量组 (UNK_ 前缀)
@@ -111,8 +111,8 @@ extern uint8_t UNK_18098c898;    /** 未知类型变量 - 可能是引擎对象 
 extern uint8_t UNK_18098bc80;    /** 未知类型变量 - 可能是渲染对象 */
 
 /** 特殊类型变量 */
-extern int8_t DAT_180bf5240;   /** 1字节状态标志变量 */
-extern int8_t DAT_180bf52e0;   /** 1字节控制标志变量 */
+extern int8_t system_memory_5240;   /** 1字节状态标志变量 */
+extern int8_t system_memory_52e0;   /** 1字节控制标志变量 */
 extern uint64_t UNK_180bf5278;   /** 8字节时间戳变量 */
 extern uint64_t UNK_180bf5298;   /** 8字节计数器变量 */
 
@@ -121,62 +121,62 @@ extern uint64_t UNK_180bf5298;   /** 8字节计数器变量 */
  * ============================================================================ */
 
 /** 渲染核心变量 */
-extern uint8_t DAT_180bf5268;    /** 渲染配置主数据 */
-extern uint8_t DAT_180bf5270;    /** 渲染状态主数据 */
-extern uint8_t DAT_180bf5280;    /** 渲染缓冲主数据 */
-extern uint8_t DAT_180bf5288;    /** 渲染纹理主数据 */
+extern uint8_t system_memory_5268;    /** 渲染配置主数据 */
+extern uint8_t system_memory_5270;    /** 渲染状态主数据 */
+extern uint8_t system_memory_5280;    /** 渲染缓冲主数据 */
+extern uint8_t system_memory_5288;    /** 渲染纹理主数据 */
 
 /** 渲染资源变量 */
-extern uint8_t DAT_180bf5290;    /** 渲染着色器数据 */
-extern uint8_t DAT_180bf52a0;    /** 渲染模型数据 */
-extern uint8_t DAT_180bf52c0;    /** 渲染灯光数据 */
-extern uint8_t DAT_180bf52c8;    /** 渲染相机数据 */
-extern uint8_t DAT_180bf52d0;    /** 渲染材质数据 */
-extern uint8_t DAT_180bf52d8;    /** 渲染效果数据 */
-extern uint8_t DAT_180bf52a8;    /** 渲染资源管理数据 */
-extern uint8_t DAT_180bf52b0;    /** 渲染队列管理数据 */
+extern uint8_t system_memory_5290;    /** 渲染着色器数据 */
+extern uint8_t system_memory_52a0;    /** 渲染模型数据 */
+extern uint8_t system_memory_52c0;    /** 渲染灯光数据 */
+extern uint8_t system_memory_52c8;    /** 渲染相机数据 */
+extern uint8_t system_memory_52d0;    /** 渲染材质数据 */
+extern uint8_t system_memory_52d8;    /** 渲染效果数据 */
+extern uint8_t system_memory_52a8;    /** 渲染资源管理数据 */
+extern uint8_t system_memory_52b0;    /** 渲染队列管理数据 */
 
 /* ============================================================================
  * UI系统变量组
  * ============================================================================ */
 
 /** UI核心变量 */
-extern uint8_t DAT_180bf5770;    /** UI配置主数据 */
-extern uint8_t DAT_180bf5778;    /** UI状态主数据 */
-extern uint8_t DAT_180bf5780;    /** UI布局主数据 */
-extern uint8_t DAT_180bf5788;    /** UI控件主数据 */
+extern uint8_t system_memory_5770;    /** UI配置主数据 */
+extern uint8_t system_memory_5778;    /** UI状态主数据 */
+extern uint8_t system_memory_5780;    /** UI布局主数据 */
+extern uint8_t system_memory_5788;    /** UI控件主数据 */
 
 /** UI样式变量 */
-extern uint8_t DAT_180bf5208;    /** UI主题数据 */
-extern uint8_t DAT_180bf5210;    /** UI字体数据 */
-extern uint8_t DAT_180bf5218;    /** UI颜色数据 */
-extern uint8_t DAT_180bf5220;    /** UI样式数据 */
+extern uint8_t system_memory_5208;    /** UI主题数据 */
+extern uint8_t system_memory_5210;    /** UI字体数据 */
+extern uint8_t system_memory_5218;    /** UI颜色数据 */
+extern uint8_t system_memory_5220;    /** UI样式数据 */
 
 /* ============================================================================
  * 音频系统变量组
  * ============================================================================ */
 
 /** 音频核心变量 */
-extern uint8_t DAT_180bf5bc0;    /** 音频配置主数据 */
-extern uint8_t DAT_180bf5bc8;    /** 音频状态主数据 */
-extern uint8_t DAT_180bf5bd0;    /** 音频缓冲主数据 */
-extern uint8_t DAT_180bf5bd8;    /** 音频效果主数据 */
+extern uint8_t system_memory_5bc0;    /** 音频配置主数据 */
+extern uint8_t system_memory_5bc8;    /** 音频状态主数据 */
+extern uint8_t system_memory_5bd0;    /** 音频缓冲主数据 */
+extern uint8_t system_memory_5bd8;    /** 音频效果主数据 */
 
 /** 音频控制变量 */
-extern uint8_t DAT_180bf5c30;    /** 音频音量数据 */
-extern uint8_t DAT_180bf5c38;    /** 音频音调数据 */
-extern uint8_t DAT_180bf5c40;    /** 音频声道数据 */
-extern uint8_t DAT_180bf5c48;    /** 音频采样数据 */
+extern uint8_t system_memory_5c30;    /** 音频音量数据 */
+extern uint8_t system_memory_5c38;    /** 音频音调数据 */
+extern uint8_t system_memory_5c40;    /** 音频声道数据 */
+extern uint8_t system_memory_5c48;    /** 音频采样数据 */
 
 /* ============================================================================
  * 网络系统变量组
  * ============================================================================ */
 
 /** 网络核心变量 */
-extern uint8_t DAT_180bf6080;    /** 网络配置主数据 */
-extern uint8_t DAT_180bf6088;    /** 网络状态主数据 */
-extern uint8_t DAT_180bf6090;    /** 网络连接主数据 */
-extern uint8_t DAT_180bf6098;    /** 网络协议主数据 */
+extern uint8_t system_memory_6080;    /** 网络配置主数据 */
+extern uint8_t system_memory_6088;    /** 网络状态主数据 */
+extern uint8_t system_memory_6090;    /** 网络连接主数据 */
+extern uint8_t system_memory_6098;    /** 网络协议主数据 */
 
 /* ============================================================================
  * 系统函数指针声明
@@ -225,17 +225,17 @@ extern uint8_t FUN_1809419a0;    /** 子系统终止函数 */
  * ============================================================================ */
 
 /** 系统状态变量 */
-extern int8_t DAT_180c910f8;   /** 系统状态标志1 */
-extern int8_t DAT_180c91198;   /** 系统状态标志2 */
-extern int8_t DAT_180c91238;   /** 系统状态标志3 */
-extern int8_t DAT_180c912d8;   /** 系统状态标志4 */
+extern int8_t system_memory_10f8;   /** 系统状态标志1 */
+extern int8_t system_memory_1198;   /** 系统状态标志2 */
+extern int8_t system_memory_1238;   /** 系统状态标志3 */
+extern int8_t system_memory_12d8;   /** 系统状态标志4 */
 
 /** 系统管理变量 */
-extern uint8_t DAT_1809fe0d0;    /** 系统管理主数据 */
+extern uint8_t system_memory_e0d0;    /** 系统管理主数据 */
 extern uint8_t UNK_1809fd0d8;    /** 系统管理指针 */
-extern uint8_t DAT_1809ff9e8;    /** 系统配置主数据 */
+extern uint8_t system_memory_f9e8;    /** 系统配置主数据 */
 extern uint8_t UNK_1809ff978;    /** 系统配置指针 */
-extern uint8_t DAT_1809ff9c0;    /** 系统缓存主数据 */
+extern uint8_t system_memory_f9c0;    /** 系统缓存主数据 */
 extern uint8_t UNK_1809ff990;    /** 系统缓存指针 */
 
 /* ============================================================================
@@ -251,7 +251,7 @@ extern uint8_t FUN_18008f140;    /** 内存操作函数 */
 extern uint8_t FUN_1809fcc58;    /** 系统工具函数1 */
 extern uint8_t UNK_180941760;    /** 系统工具函数2 */
 extern uint8_t UNK_180941780;    /** 系统工具函数3 */
-extern uint8_t DAT_180c91900;    /** 系统工具数据 */
+extern uint8_t system_memory_1900;    /** 系统工具数据 */
 
 /* ============================================================================
  * 数据结构定义

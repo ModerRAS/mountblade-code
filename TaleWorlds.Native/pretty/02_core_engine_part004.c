@@ -146,7 +146,7 @@ void SystemRegistryNodeCreator(void) {
     
     // 遍历注册表查找合适位置
     while (node_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_1809ff9c0, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_f9c0, 0x10);
         if (comparison_result < 0) {
             child_node = (SystemRegistryNode*)current_node[2];
             current_node = parent_node;
@@ -160,7 +160,7 @@ void SystemRegistryNodeCreator(void) {
     
     // 检查是否需要创建新节点
     if ((parent_node == root_node) || 
-        (comparison_result = memcmp(&DAT_1809ff9c0, parent_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_f9c0, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -204,7 +204,7 @@ void SystemRegistryNodeCreatorType2(void) {
     
     // 遍历注册表查找合适位置
     while (node_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a010a0, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_10a0, 0x10);
         if (comparison_result < 0) {
             child_node = (SystemRegistryNode*)current_node[2];
             current_node = parent_node;
@@ -218,7 +218,7 @@ void SystemRegistryNodeCreatorType2(void) {
     
     // 检查是否需要创建新节点
     if ((parent_node == root_node) || 
-        (comparison_result = memcmp(&DAT_180a010a0, parent_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_10a0, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -262,7 +262,7 @@ void SystemRegistryNodeCreatorType3(void) {
     
     // 遍历注册表查找合适位置
     while (node_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a01078, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_1078, 0x10);
         if (comparison_result < 0) {
             child_node = (SystemRegistryNode*)current_node[2];
             current_node = parent_node;
@@ -276,7 +276,7 @@ void SystemRegistryNodeCreatorType3(void) {
     
     // 检查是否需要创建新节点
     if ((parent_node == root_node) || 
-        (comparison_result = memcmp(&DAT_180a01078, parent_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1078, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -320,7 +320,7 @@ void SystemRegistryNodeCreatorType4(void) {
     
     // 遍历注册表查找合适位置
     while (node_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a01050, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_1050, 0x10);
         if (comparison_result < 0) {
             child_node = (SystemRegistryNode*)current_node[2];
             current_node = parent_node;
@@ -334,7 +334,7 @@ void SystemRegistryNodeCreatorType4(void) {
     
     // 检查是否需要创建新节点
     if ((parent_node == root_node) || 
-        (comparison_result = memcmp(&DAT_180a01050, parent_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1050, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -378,7 +378,7 @@ void SystemRegistryNodeCreatorType5(void) {
     
     // 遍历注册表查找合适位置
     while (node_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a01028, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_1028, 0x10);
         if (comparison_result < 0) {
             child_node = (SystemRegistryNode*)current_node[2];
             current_node = parent_node;
@@ -392,7 +392,7 @@ void SystemRegistryNodeCreatorType5(void) {
     
     // 检查是否需要创建新节点
     if ((parent_node == root_node) || 
-        (comparison_result = memcmp(&DAT_180a01028, parent_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1028, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -436,7 +436,7 @@ void SystemRegistryNodeCreatorType6(void) {
     
     // 遍历注册表查找合适位置
     while (node_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a01000, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_1000, 0x10);
         if (comparison_result < 0) {
             child_node = (SystemRegistryNode*)current_node[2];
             current_node = parent_node;
@@ -450,7 +450,7 @@ void SystemRegistryNodeCreatorType6(void) {
     
     // 检查是否需要创建新节点
     if ((parent_node == root_node) || 
-        (comparison_result = memcmp(&DAT_180a01000, parent_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1000, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -494,7 +494,7 @@ void SystemRegistryNodeCreatorType7(void) {
     
     // 遍历注册表查找合适位置
     while (node_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a00fd8, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_0fd8, 0x10);
         if (comparison_result < 0) {
             child_node = (SystemRegistryNode*)current_node[2];
             current_node = parent_node;
@@ -508,7 +508,7 @@ void SystemRegistryNodeCreatorType7(void) {
     
     // 检查是否需要创建新节点
     if ((parent_node == root_node) || 
-        (comparison_result = memcmp(&DAT_180a00fd8, parent_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_0fd8, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -552,7 +552,7 @@ void SystemRegistryNodeCreatorType8(void) {
     
     // 遍历注册表查找合适位置
     while (node_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a00fb0, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_0fb0, 0x10);
         if (comparison_result < 0) {
             child_node = (SystemRegistryNode*)current_node[2];
             current_node = parent_node;
@@ -566,7 +566,7 @@ void SystemRegistryNodeCreatorType8(void) {
     
     // 检查是否需要创建新节点
     if ((parent_node == root_node) || 
-        (comparison_result = memcmp(&DAT_180a00fb0, parent_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_0fb0, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -610,7 +610,7 @@ void SystemRegistryNodeCreatorType9(void) {
     
     // 遍历注册表查找合适位置
     while (node_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a00bb0, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_0bb0, 0x10);
         if (comparison_result < 0) {
             child_node = (SystemRegistryNode*)current_node[2];
             current_node = parent_node;
@@ -624,7 +624,7 @@ void SystemRegistryNodeCreatorType9(void) {
     
     // 检查是否需要创建新节点
     if ((parent_node == root_node) || 
-        (comparison_result = memcmp(&DAT_180a00bb0, parent_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_0bb0, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -668,7 +668,7 @@ void SystemRegistryNodeCreatorType10(void) {
     
     // 遍历注册表查找合适位置
     while (node_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a00b88, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_0b88, 0x10);
         if (comparison_result < 0) {
             child_node = (SystemRegistryNode*)current_node[2];
             current_node = parent_node;
@@ -682,7 +682,7 @@ void SystemRegistryNodeCreatorType10(void) {
     
     // 检查是否需要创建新节点
     if ((parent_node == root_node) || 
-        (comparison_result = memcmp(&DAT_180a00b88, parent_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_0b88, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -726,7 +726,7 @@ void SystemRegistryNodeCreatorType11(void) {
     
     // 遍历注册表查找合适位置
     while (node_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a010a0, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_10a0, 0x10);
         if (comparison_result < 0) {
             child_node = (SystemRegistryNode*)current_node[2];
             current_node = parent_node;
@@ -740,7 +740,7 @@ void SystemRegistryNodeCreatorType11(void) {
     
     // 检查是否需要创建新节点
     if ((parent_node == root_node) || 
-        (comparison_result = memcmp(&DAT_180a010a0, parent_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_10a0, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -784,7 +784,7 @@ void SystemRegistryNodeCreatorType12(void) {
     
     // 遍历注册表查找合适位置
     while (node_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a01078, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_1078, 0x10);
         if (comparison_result < 0) {
             child_node = (SystemRegistryNode*)current_node[2];
             current_node = parent_node;
@@ -798,7 +798,7 @@ void SystemRegistryNodeCreatorType12(void) {
     
     // 检查是否需要创建新节点
     if ((parent_node == root_node) || 
-        (comparison_result = memcmp(&DAT_180a01078, parent_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1078, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -842,7 +842,7 @@ void SystemRegistryNodeCreatorType13(void) {
     
     // 遍历注册表查找合适位置
     while (node_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a01050, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_1050, 0x10);
         if (comparison_result < 0) {
             child_node = (SystemRegistryNode*)current_node[2];
             current_node = parent_node;
@@ -856,7 +856,7 @@ void SystemRegistryNodeCreatorType13(void) {
     
     // 检查是否需要创建新节点
     if ((parent_node == root_node) || 
-        (comparison_result = memcmp(&DAT_180a01050, parent_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1050, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -900,7 +900,7 @@ void SystemRegistryNodeCreatorType14(void) {
     
     // 遍历注册表查找合适位置
     while (node_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a01028, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_1028, 0x10);
         if (comparison_result < 0) {
             child_node = (SystemRegistryNode*)current_node[2];
             current_node = parent_node;
@@ -914,7 +914,7 @@ void SystemRegistryNodeCreatorType14(void) {
     
     // 检查是否需要创建新节点
     if ((parent_node == root_node) || 
-        (comparison_result = memcmp(&DAT_180a01028, parent_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1028, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -958,7 +958,7 @@ void SystemRegistryNodeCreatorType15(void) {
     
     // 遍历注册表查找合适位置
     while (node_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a01000, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_1000, 0x10);
         if (comparison_result < 0) {
             child_node = (SystemRegistryNode*)current_node[2];
             current_node = parent_node;
@@ -972,7 +972,7 @@ void SystemRegistryNodeCreatorType15(void) {
     
     // 检查是否需要创建新节点
     if ((parent_node == root_node) || 
-        (comparison_result = memcmp(&DAT_180a01000, parent_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1000, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -1016,7 +1016,7 @@ void SystemRegistryNodeCreatorType16(void) {
     
     // 遍历注册表查找合适位置
     while (node_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a00fd8, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_0fd8, 0x10);
         if (comparison_result < 0) {
             child_node = (SystemRegistryNode*)current_node[2];
             current_node = parent_node;
@@ -1030,7 +1030,7 @@ void SystemRegistryNodeCreatorType16(void) {
     
     // 检查是否需要创建新节点
     if ((parent_node == root_node) || 
-        (comparison_result = memcmp(&DAT_180a00fd8, parent_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_0fd8, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -1074,7 +1074,7 @@ void SystemRegistryNodeCreatorType17(void) {
     
     // 遍历注册表查找合适位置
     while (node_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a00fb0, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_0fb0, 0x10);
         if (comparison_result < 0) {
             child_node = (SystemRegistryNode*)current_node[2];
             current_node = parent_node;
@@ -1088,7 +1088,7 @@ void SystemRegistryNodeCreatorType17(void) {
     
     // 检查是否需要创建新节点
     if ((parent_node == root_node) || 
-        (comparison_result = memcmp(&DAT_180a00fb0, parent_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_0fb0, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -1132,7 +1132,7 @@ void SystemRegistryNodeCreatorType18(void) {
     
     // 遍历注册表查找合适位置
     while (node_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a00e28, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_0e28, 0x10);
         if (comparison_result < 0) {
             child_node = (SystemRegistryNode*)current_node[2];
             current_node = parent_node;
@@ -1146,7 +1146,7 @@ void SystemRegistryNodeCreatorType18(void) {
     
     // 检查是否需要创建新节点
     if ((parent_node == root_node) || 
-        (comparison_result = memcmp(&DAT_180a00e28, parent_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_0e28, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -1190,7 +1190,7 @@ void SystemRegistryNodeCreatorType19(void) {
     
     // 遍历注册表查找合适位置
     while (node_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a00d48, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_0d48, 0x10);
         if (comparison_result < 0) {
             child_node = (SystemRegistryNode*)current_node[2];
             current_node = parent_node;
@@ -1204,7 +1204,7 @@ void SystemRegistryNodeCreatorType19(void) {
     
     // 检查是否需要创建新节点
     if ((parent_node == root_node) || 
-        (comparison_result = memcmp(&DAT_180a00d48, parent_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_0d48, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -1248,7 +1248,7 @@ void SystemRegistryNodeCreatorType20(void) {
     
     // 遍历注册表查找合适位置
     while (node_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a00bb0, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_0bb0, 0x10);
         if (comparison_result < 0) {
             child_node = (SystemRegistryNode*)current_node[2];
             current_node = parent_node;
@@ -1262,7 +1262,7 @@ void SystemRegistryNodeCreatorType20(void) {
     
     // 检查是否需要创建新节点
     if ((parent_node == root_node) || 
-        (comparison_result = memcmp(&DAT_180a00bb0, parent_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_0bb0, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -1306,7 +1306,7 @@ void SystemRegistryNodeCreatorType21(void) {
     
     // 遍历注册表查找合适位置
     while (node_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a00b88, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_0b88, 0x10);
         if (comparison_result < 0) {
             child_node = (SystemRegistryNode*)current_node[2];
             current_node = parent_node;
@@ -1320,7 +1320,7 @@ void SystemRegistryNodeCreatorType21(void) {
     
     // 检查是否需要创建新节点
     if ((parent_node == root_node) || 
-        (comparison_result = memcmp(&DAT_180a00b88, parent_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_0b88, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -1364,7 +1364,7 @@ void SystemRegistryNodeCreatorType22(void) {
     
     // 遍历注册表查找合适位置
     while (node_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_1809fe0d0, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_e0d0, 0x10);
         if (comparison_result < 0) {
             child_node = (SystemRegistryNode*)current_node[2];
             current_node = parent_node;
@@ -1378,7 +1378,7 @@ void SystemRegistryNodeCreatorType22(void) {
     
     // 检查是否需要创建新节点
     if ((parent_node == root_node) || 
-        (comparison_result = memcmp(&DAT_1809fe0d0, parent_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_e0d0, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -1422,7 +1422,7 @@ void SystemRegistryNodeCreatorType23(void) {
     
     // 遍历注册表查找合适位置
     while (node_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a010a0, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_10a0, 0x10);
         if (comparison_result < 0) {
             child_node = (SystemRegistryNode*)current_node[2];
             current_node = parent_node;
@@ -1436,7 +1436,7 @@ void SystemRegistryNodeCreatorType23(void) {
     
     // 检查是否需要创建新节点
     if ((parent_node == root_node) || 
-        (comparison_result = memcmp(&DAT_180a010a0, parent_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_10a0, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -1480,7 +1480,7 @@ void SystemRegistryNodeCreatorType24(void) {
     
     // 遍历注册表查找合适位置
     while (node_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a01078, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_1078, 0x10);
         if (comparison_result < 0) {
             child_node = (SystemRegistryNode*)current_node[2];
             current_node = parent_node;
@@ -1494,7 +1494,7 @@ void SystemRegistryNodeCreatorType24(void) {
     
     // 检查是否需要创建新节点
     if ((parent_node == root_node) || 
-        (comparison_result = memcmp(&DAT_180a01078, parent_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1078, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -1538,7 +1538,7 @@ void SystemRegistryNodeCreatorType25(void) {
     
     // 遍历注册表查找合适位置
     while (node_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a01050, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_1050, 0x10);
         if (comparison_result < 0) {
             child_node = (SystemRegistryNode*)current_node[2];
             current_node = parent_node;
@@ -1552,7 +1552,7 @@ void SystemRegistryNodeCreatorType25(void) {
     
     // 检查是否需要创建新节点
     if ((parent_node == root_node) || 
-        (comparison_result = memcmp(&DAT_180a01050, parent_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1050, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -1596,7 +1596,7 @@ void SystemRegistryNodeCreatorType26(void) {
     
     // 遍历注册表查找合适位置
     while (node_status == '\0') {
-        comparison_result = memcmp(current_node + 4, &DAT_180a01028, 0x10);
+        comparison_result = memcmp(current_node + 4, &system_memory_1028, 0x10);
         if (comparison_result < 0) {
             child_node = (SystemRegistryNode*)current_node[2];
             current_node = parent_node;
@@ -1610,7 +1610,7 @@ void SystemRegistryNodeCreatorType26(void) {
     
     // 检查是否需要创建新节点
     if ((parent_node == root_node) || 
-        (comparison_result = memcmp(&DAT_180a01028, parent_node + 4, 0x10), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1028, parent_node + 4, 0x10), comparison_result < 0)) {
         memory_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;

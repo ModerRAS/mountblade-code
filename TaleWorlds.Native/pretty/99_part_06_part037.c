@@ -393,7 +393,7 @@ FUN_1803c9d00(longlong param_1,longlong *param_2,longlong *param_3,longlong para
   }
   fVar12 = *(float *)((longlong)param_3 + 0x3c);
   if (fVar12 < 0.01) {
-    puVar9 = &DAT_18098bc73;
+    puVar9 = &system_buffer_ptr;
     if (*(void **)(*param_3 + 0x18) != (void *)0x0) {
       puVar9 = *(void **)(*param_3 + 0x18);
     }

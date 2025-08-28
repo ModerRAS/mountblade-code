@@ -619,7 +619,7 @@ FUN_1806e71c0(int16_t *param_1,uint param_2,uint *param_3,uint param_4,uint *par
     else {
       cVar1 = '\x01';
     }
-    if (cVar1 == DAT_180c0c30c) {
+    if (cVar1 == system_data_c30c) {
       *param_1 = 0;
       *param_6 = 0x401;
       return param_1;
@@ -672,7 +672,7 @@ void FUN_1806e71ec(uint *param_1,longlong param_2,longlong param_3)
     else {
       cVar2 = '\x01';
     }
-    if (cVar2 == DAT_180c0c30c) {
+    if (cVar2 == system_data_c30c) {
       puVar1 = *(int16_t **)(unaff_RBP + 0x38);
       *unaff_RBX = 0;
       *puVar1 = 0x401;

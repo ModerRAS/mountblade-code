@@ -816,7 +816,7 @@ void FUN_1803b27a0(longlong param_1)
     uStack_b0 = 0;
     uStack_a8 = 0;
     uStack_98 = 0;
-    puVar6 = &DAT_18098bc73;
+    puVar6 = &system_buffer_ptr;
     if (puStack_230 != (int8_t *)0x0) {
       puVar6 = puStack_230;
     }

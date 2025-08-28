@@ -26,9 +26,9 @@ void FUN_18079f269(uint64_t param_1,longlong param_2,uint64_t param_3,longlong p
   float fVar17;
   float fVar18;
   
-  pfVar7 = (float *)&DAT_180c19950;
+  pfVar7 = (float *)&system_data_9950;
   pfVar6 = (float *)(param_2 + 0x50);
-  pfVar5 = (float *)&DAT_180c19958;
+  pfVar5 = (float *)&system_data_9958;
   do {
     fVar1 = pfVar5[3];
     fVar2 = pfVar7[3];

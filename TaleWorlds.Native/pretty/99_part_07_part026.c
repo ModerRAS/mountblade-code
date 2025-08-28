@@ -279,7 +279,7 @@ LAB_1804b5300:
               (**(code **)(puStack_90 + 0x10))(&puStack_90,lVar12);
               break;
             }
-            lVar12 = (longlong)&DAT_180a03a84 - (longlong)pcVar16;
+            lVar12 = (longlong)&system_data_3a84 - (longlong)pcVar16;
             while (*pcVar16 == pcVar16[lVar12]) {
               pcVar16 = pcVar16 + 1;
               if (pcVar7 <= pcVar16) goto LAB_1804b5300;
@@ -483,7 +483,7 @@ LAB_1804b5656:
                   FUN_180627c50(&puStack_b8,lVar13);
                   break;
                 }
-                lVar13 = (longlong)&DAT_180a03a84 - (longlong)pcVar16;
+                lVar13 = (longlong)&system_data_3a84 - (longlong)pcVar16;
                 while (*pcVar16 == pcVar16[lVar13]) {
                   pcVar16 = pcVar16 + 1;
                   if (pcVar7 <= pcVar16) goto LAB_1804b5656;

@@ -429,7 +429,7 @@ float * FUN_18040b910(longlong param_1,float *param_2,char param_3,int param_4,f
     }
     auVar12 = rsqrtss(ZEXT416((uint)fVar19),ZEXT416((uint)fVar19));
     fVar11 = auVar12._0_4_;
-    fVar19 = fVar11 * 0.5 * ((float)DAT_180a401f0 - fVar19 * fVar11 * fVar11);
+    fVar19 = fVar11 * 0.5 * ((float)system_data_01f0 - fVar19 * fVar11 * fVar11);
     fVar20 = fVar19 * fVar20;
     fVar16 = fVar19 * fVar16;
     fVar15 = fVar19 * fVar15;

@@ -645,7 +645,7 @@ void FUN_18035bbd0(longlong *param_1)
     iVar31 = FUN_1802349a0(plStack_2c0);
     if ((10 < iVar31) ||
        ((int)((int)plStack_2c0[0x11] + ((int)plStack_2c0[0x11] >> 0x1f & 3U)) >> 2 < iVar31)) {
-      puVar22 = &DAT_18098bc73;
+      puVar22 = &system_buffer_ptr;
       if ((void *)plStack_2c8[3] != (void *)0x0) {
         puVar22 = (void *)plStack_2c8[3];
       }

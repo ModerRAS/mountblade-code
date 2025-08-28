@@ -512,7 +512,7 @@ extern void *UNK_18098b928;         // 异常基地址
 extern void *UNK_18098b940;         // 异常虚表地址
 extern void *UNK_180a16bd0;         // 错误消息
 extern void *UNK_180a16c18;         // 异常消息地址
-extern void *DAT_180a16c50;         // 默认错误消息数据
+extern void *system_memory_6c50;         // 默认错误消息数据
 extern uint64_t _DAT_180c86928;     // 错误上下文
 extern uint64_t _DAT_180d48d28;     // 全局内存状态
 extern void *UNK_18098bcb0;         // 错误处理器基地址

@@ -46,7 +46,7 @@ void rendering_system_resource_processor(longlong render_context, longlong *reso
   
   if (stack_resource_ptr == (longlong *)0x0) {
     // 资源管理器为空时的错误处理
-    error_handler = &DAT_18098bc73;
+    error_handler = &system_buffer_ptr;
     if (*(void **)(process_param + 8) != (void *)0x0) {
       error_handler = *(void **)(process_param + 8);
     }
@@ -715,9 +715,9 @@ LAB_1803281b2:
     do {
       // 检查线程局部存储状态
       if ((*(int *)(offset_diff + 0x48) < _DAT_180d48e24) &&
-         (FUN_1808fcb90(&DAT_180d48e24), _DAT_180d48e24 == -1)) {
+         (FUN_1808fcb90(&system_flag_8e24), _DAT_180d48e24 == -1)) {
         _DAT_180d48e60 = &UNK_1809fcc58;
-        _DAT_180d48e68 = &DAT_180d48e78;
+        _DAT_180d48e68 = &system_flag_8e78;
         _DAT_180d48e70 = 0;
         
         // 继续处理剩余的数据块

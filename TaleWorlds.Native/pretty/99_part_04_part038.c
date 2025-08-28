@@ -139,8 +139,8 @@ FUN_1802aa800(longlong param_1,uint64_t *param_2,uint64_t *param_3,int32_t param
     uVar4 = 0xbad0000c;
   }
   else {
-    NVSDK_NGX_Parameter_SetUI(uVar3,&DAT_180a09e30,uVar1);
-    NVSDK_NGX_Parameter_SetUI(uVar3,&DAT_180a09e38,uVar2);
+    NVSDK_NGX_Parameter_SetUI(uVar3,&system_ptr_9e30,uVar1);
+    NVSDK_NGX_Parameter_SetUI(uVar3,&system_ptr_9e38,uVar2);
     NVSDK_NGX_Parameter_SetI(uVar3,&UNK_180a17c48,param_4);
     NVSDK_NGX_Parameter_SetI(uVar3,&UNK_180a17cb8,0);
     uVar4 = (*apcStack_38[0])(uVar3);
@@ -200,8 +200,8 @@ void FUN_1802aa84c(longlong param_1,uint64_t param_2,int32_t *param_3,uint64_t p
     uVar4 = 0xbad0000c;
   }
   else {
-    NVSDK_NGX_Parameter_SetUI(uVar3,&DAT_180a09e30,uVar1);
-    NVSDK_NGX_Parameter_SetUI(uVar3,&DAT_180a09e38,uVar2);
+    NVSDK_NGX_Parameter_SetUI(uVar3,&system_ptr_9e30,uVar1);
+    NVSDK_NGX_Parameter_SetUI(uVar3,&system_ptr_9e38,uVar2);
     NVSDK_NGX_Parameter_SetI(uVar3,&UNK_180a17c48,unaff_R14D);
     NVSDK_NGX_Parameter_SetI(uVar3,&UNK_180a17cb8,0);
     uVar4 = (*pcStack0000000000000030)(uVar3);
@@ -289,7 +289,7 @@ void FUN_1802aaa10(longlong *param_1,int param_2,int param_3)
     uVar10 = uVar16 & 0xffffffff;
     puVar2 = *(void **)
               (*(longlong *)(*param_1 + (longlong)((int)(uVar5 + param_3) >> 1) * 8) + 0x38);
-    puVar8 = &DAT_18098bc73;
+    puVar8 = &system_buffer_ptr;
     if (puVar2 != (void *)0x0) {
       puVar8 = puVar2;
     }
@@ -311,7 +311,7 @@ LAB_1802aaa80:
   plVar12 = (longlong *)(lVar3 + uVar15 * 8);
   do {
     uVar9 = (uint)uVar10;
-    pbVar6 = &DAT_18098bc73;
+    pbVar6 = &system_buffer_ptr;
     if (*(byte **)(*plVar12 + 0x38) != (byte *)0x0) {
       pbVar6 = *(byte **)(*plVar12 + 0x38);
     }
@@ -329,7 +329,7 @@ LAB_1802aaa80:
   } while( true );
   plVar12 = (longlong *)(lVar3 + lVar13 * 8);
   do {
-    pbVar6 = &DAT_18098bc73;
+    pbVar6 = &system_buffer_ptr;
     if (*(byte **)(*plVar12 + 0x38) != (byte *)0x0) {
       pbVar6 = *(byte **)(*plVar12 + 0x38);
     }
@@ -555,7 +555,7 @@ LAB_1802aaf46:
       lVar14 = *param_1;
       if (lVar17 == param_1[1] - lVar14 >> 3) {
         puVar9 = *(void **)(*(longlong *)(lVar14 + lVar17 * 8) + 0x38);
-        puVar11 = &DAT_18098bc73;
+        puVar11 = &system_buffer_ptr;
         if (puVar9 != (void *)0x0) {
           puVar11 = puVar9;
         }
@@ -590,7 +590,7 @@ LAB_1802aaf46:
     lVar12 = 0;
     if ((int)uVar6 <= (int)uVar15) {
       lVar10 = *param_1;
-      puVar9 = &DAT_18098bc73;
+      puVar9 = &system_buffer_ptr;
       do {
         iVar5 = (int)uVar16 + (int)uVar18 >> 1;
         lVar12 = *(longlong *)(lVar10 + (longlong)iVar5 * 8);
@@ -877,7 +877,7 @@ void FUN_1802ab3f0(longlong *param_1)
       *(uint64_t *)(lVar3 + 0x20) = 0x400000003f800000;
       *(int32_t *)(lVar3 + 0x28) = 0;
       lVar5 = *(longlong *)(lVar3 + 8);
-      *(void **)(lVar3 + 8) = &DAT_180be0000;
+      *(void **)(lVar3 + 8) = &system_ptr_0000;
       uVar2 = *(ulonglong *)(lVar3 + 0x10);
       *(uint64_t *)(lVar3 + 0x10) = 1;
       *(uint64_t *)(lVar3 + 0x18) = 0;

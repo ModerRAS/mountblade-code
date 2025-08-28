@@ -34,7 +34,7 @@
 #define UNK_180983320          SECURE_PACKET_HANDLER
 #define UNK_1809833a0          PRIORITY_PACKET_HANDLER
 #define UNK_180983420          HIGH_PRIORITY_PACKET_HANDLER
-#define DATA_BUFFER_PTR        DAT_180a06434
+#define DATA_BUFFER_PTR        system_temp_buffer
 
 // 函数别名定义
 #define get_connection_info      func_0x00018088c590
@@ -225,7 +225,7 @@ int compress_network_data(longlong compression_info, longlong data_ptr, int data
   
   // 初始化压缩
   compressed_size = func_0x00018074b800(data_ptr, data_size, *(int32_t *)(compression_info + 0x10));
-  processed_bytes = process_compression(data_ptr + compressed_size, data_size - compressed_size, &DAT_180a06434);
+  processed_bytes = process_compression(data_ptr + compressed_size, data_size - compressed_size, &system_temp_buffer);
   compressed_size = compressed_size + processed_bytes;
   
   // 执行压缩
@@ -246,7 +246,7 @@ int validate_packet_signature(longlong signature_info, longlong data_ptr, int da
   
   // 读取签名数据
   signature_size = func_0x00018074b800(data_ptr, data_size, *(int32_t *)(signature_info + 0x10));
-  validated_bytes = process_compression(data_ptr + signature_size, data_size - signature_size, &DAT_180a06434);
+  validated_bytes = process_compression(data_ptr + signature_size, data_size - signature_size, &system_temp_buffer);
   signature_size = signature_size + validated_bytes;
   
   // 验证签名
@@ -267,7 +267,7 @@ int encode_network_data(longlong encoding_info, longlong data_ptr, int data_size
   
   // 初始化编码
   encoded_size = func_0x00018074b800(data_ptr, data_size, *(int32_t *)(encoding_info + 0x10));
-  processed_bytes = process_compression(data_ptr + encoded_size, data_size - encoded_size, &DAT_180a06434);
+  processed_bytes = process_compression(data_ptr + encoded_size, data_size - encoded_size, &system_temp_buffer);
   encoded_size = encoded_size + processed_bytes;
   
   // 执行编码
@@ -288,7 +288,7 @@ int verify_data_integrity(longlong integrity_info, longlong data_ptr, int data_s
   
   // 初始化验证
   verified_size = func_0x00018074b800(data_ptr, data_size, *(int32_t *)(integrity_info + 0x10));
-  processed_bytes = process_compression(data_ptr + verified_size, data_size - verified_size, &DAT_180a06434);
+  processed_bytes = process_compression(data_ptr + verified_size, data_size - verified_size, &system_temp_buffer);
   verified_size = verified_size + processed_bytes;
   
   // 执行完整性验证
@@ -311,7 +311,7 @@ int process_secure_connection(longlong security_info, longlong data_ptr, int dat
   
   // 初始化安全处理
   secure_size = func_0x00018074b800(data_ptr, data_size, *(int32_t *)(security_info + 0x10));
-  processed_bytes = process_compression(secure_size + data_ptr, data_size - secure_size, &DAT_180a06434);
+  processed_bytes = process_compression(secure_size + data_ptr, data_size - secure_size, &system_temp_buffer);
   secure_size = secure_size + processed_bytes;
   
   // 应用主要安全层
@@ -319,7 +319,7 @@ int process_secure_connection(longlong security_info, longlong data_ptr, int dat
   secure_size = secure_size + processed_bytes;
   
   // 处理中间数据
-  processed_bytes = process_compression(secure_size + data_ptr, data_size - secure_size, &DAT_180a06434);
+  processed_bytes = process_compression(secure_size + data_ptr, data_size - secure_size, &system_temp_buffer);
   secure_size = secure_size + processed_bytes;
   
   // 应用次要安全层
@@ -342,7 +342,7 @@ int handle_network_handshake(longlong handshake_info, longlong data_ptr, int dat
   
   // 初始化握手过程
   handshake_size = func_0x00018074b800(data_ptr, data_size, *(int32_t *)(handshake_info + 0x10));
-  processed_bytes = process_compression(handshake_size + data_ptr, data_size - handshake_size, &DAT_180a06434);
+  processed_bytes = process_compression(handshake_size + data_ptr, data_size - handshake_size, &system_temp_buffer);
   handshake_size = handshake_size + processed_bytes;
   
   // 服务器验证
@@ -350,7 +350,7 @@ int handle_network_handshake(longlong handshake_info, longlong data_ptr, int dat
   handshake_size = handshake_size + processed_bytes;
   
   // 处理中间数据
-  processed_bytes = process_compression(handshake_size + data_ptr, data_size - handshake_size, &DAT_180a06434);
+  processed_bytes = process_compression(handshake_size + data_ptr, data_size - handshake_size, &system_temp_buffer);
   handshake_size = handshake_size + processed_bytes;
   
   // 客户端验证
@@ -389,7 +389,7 @@ int initialize_network_protocol(longlong protocol_info, longlong data_ptr, int d
   
   // 初始化协议头
   protocol_size = func_0x00018074b800(data_ptr, data_size, *(int32_t *)(protocol_info + 0x10));
-  processed_bytes = process_compression(data_ptr + protocol_size, data_size - protocol_size, &DAT_180a06434);
+  processed_bytes = process_compression(data_ptr + protocol_size, data_size - protocol_size, &system_temp_buffer);
   protocol_size = protocol_size + processed_bytes;
   
   // 设置协议参数

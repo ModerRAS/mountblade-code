@@ -374,11 +374,11 @@ void FUN_1807837e9(void)
 void * FUN_180783810(void)
 
 {
-  if (DAT_180c10880 == '\0') {
+  if (system_data_0880 == '\0') {
                     // WARNING: Subroutine does not return
     memset(0x180c0ff84,0,0x5c);
   }
-  return &DAT_180c10890;
+  return &system_data_0890;
 }
 
 
@@ -398,7 +398,7 @@ void FUN_180783823(uint64_t param_1,uint64_t param_2)
 void * FUN_1807842e5(void)
 
 {
-  return &DAT_180c10890;
+  return &system_data_0890;
 }
 
 

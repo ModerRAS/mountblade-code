@@ -163,7 +163,7 @@ void FUN_1801acb30(longlong param_1,longlong *param_2,uint64_t param_3,char para
     puStack_e0 = auStack_d0;
     auStack_d0[0] = 0;
     uStack_d8 = 0xe;
-    puVar15 = (uint64_t *)&DAT_18098bc73;
+    puVar15 = (uint64_t *)&system_buffer_ptr;
     if (puVar9 != (uint64_t *)0x0) {
       puVar15 = puVar9;
     }

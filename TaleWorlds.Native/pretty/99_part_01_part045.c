@@ -165,7 +165,7 @@ void FUN_1800cfee0(longlong param_1,longlong param_2)
   FUN_1800baa00(auStack_180);
   while( true ) {
     if (((int)uStack_170 < 1) ||
-       (lVar2 = strstr(CONCAT44(uStack_174,iStack_178),&DAT_1809fcfb8), lVar2 == 0)) {
+       (lVar2 = strstr(CONCAT44(uStack_174,iStack_178),&system_data_cfb8), lVar2 == 0)) {
       cVar1 = FUN_180624a00(auStack_180);
       if (cVar1 == '\0') {
         FUN_180624910(auStack_180);
@@ -190,7 +190,7 @@ void FUN_1800cfee0(longlong param_1,longlong param_2)
     }
     uStack_170 = uStack_170 - iVar7;
     *(int8_t *)((ulonglong)uStack_170 + CONCAT44(uStack_174,iStack_178)) = 0;
-    uVar3 = FUN_180627910(&puStack_1a0,&DAT_1809fe2c8);
+    uVar3 = FUN_180627910(&puStack_1a0,&system_data_e2c8);
     FUN_1806288c0(auStack_180,(int)lVar2 - iStack_178,uVar3);
     puStack_1a0 = &UNK_180a3c3e0;
     if (lStack_198 != 0) break;

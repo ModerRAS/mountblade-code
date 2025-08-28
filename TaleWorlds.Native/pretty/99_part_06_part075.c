@@ -578,7 +578,7 @@ DataErrorCode DataStructureProcessor(void* param_1, void* param_2, void** param_
                      ((void**)param_1)[7])(param_1, structure_offset + 0x48, structure_iterator);
     
     // 设置复杂数据结构默认值
-    structure_metadata = &DAT_18098bc73;
+    structure_metadata = &system_buffer_ptr;
     if ((void*)param_1[0x41] != (void*)0x0) {
         structure_metadata = (void*)param_1[0x41];
     }
@@ -591,16 +591,16 @@ DataErrorCode DataStructureProcessor(void* param_1, void* param_2, void** param_
     structure_handle = ComplexDataValidator(param_1, *(uint32_t*)(param_2 + 0xa4));
     ComplexMetadataHandler(param_5, structure_handle);
     ComplexMetadataHandler(param_5, &UNK_180a25ec4);
-    ComplexMetadataHandler(param_5, &DAT_180a02030);
+    ComplexMetadataHandler(param_5, &system_memory_2030);
     ComplexDataProcessor(param_5, param_2 + 0x80);
     ComplexMetadataHandler(param_5, &UNK_180a25ed0);
     ComplexMetadataHandler(param_5, &UNK_180a25e58);
     ComplexMetadataHandler(param_5, &UNK_180a25e70);
-    ComplexMetadataHandler(param_5, &DAT_180a0206c);
+    ComplexMetadataHandler(param_5, &system_memory_206c);
     
     // 处理复杂数据结构条件分支
     if ((structure_flag != '\0') && (structure_index != 0)) {
-        structure_metadata = &DAT_18098bc73;
+        structure_metadata = &system_buffer_ptr;
         if (structure_data != (void*)0x0) {
             structure_metadata = structure_data;
         }
@@ -617,12 +617,12 @@ DataErrorCode DataStructureProcessor(void* param_1, void* param_2, void** param_
         structure_offset = 0;
         do {
             structure_data = *(void**)(structure_offset + 0x60 + structure_size);
-            structure_context = &DAT_18098bc73;
+            structure_context = &system_buffer_ptr;
             if (structure_data != (void*)0x0) {
                 structure_context = structure_data;
             }
             structure_data = *(void**)(structure_offset + 8 + structure_size);
-            structure_metadata = &DAT_18098bc73;
+            structure_metadata = &system_buffer_ptr;
             if (structure_data != (void*)0x0) {
                 structure_metadata = structure_data;
             }
@@ -637,7 +637,7 @@ DataErrorCode DataStructureProcessor(void* param_1, void* param_2, void** param_
     }
     
     // 处理复杂数据结构元数据
-    structure_metadata = &DAT_18098bc73;
+    structure_metadata = &system_buffer_ptr;
     if (*(void**)(param_4 + 8) != (void*)0x0) {
         structure_metadata = *(void**)(param_4 + 8);
     }
@@ -654,7 +654,7 @@ DataErrorCode DataStructureProcessor(void* param_1, void* param_2, void** param_
         structure_array = (int64_t*)*structure_array;
     }
     ComplexStructureHandler(&structure_context, structure_array, param_1[0x8a]);
-    ComplexStructureHandler(&structure_context, &DAT_1809fcfb8, 1);
+    ComplexStructureHandler(&structure_context, &system_memory_cfb8, 1);
     
     // 复杂数据结构字符串处理
     structure_size = -1;
@@ -673,7 +673,7 @@ DataErrorCode DataStructureProcessor(void* param_1, void* param_2, void** param_
     
     // 复杂数据结构最终处理
     structure_buffer = 3;
-    ComplexDataValidator(&structure_guard[0], &structure_data, &DAT_180a0209c);
+    ComplexDataValidator(&structure_guard[0], &structure_data, &system_memory_209c);
     structure_buffer = 1;
     
     if (0xf < structure_guard[1]) {
@@ -711,7 +711,7 @@ DataErrorCode DataStructureProcessor(void* param_1, void* param_2, void** param_
     structure_flags = 0;
     structure_buffer = 0xf;
     structure_context = (void*)((uint64_t)structure_context & 0xffffffffffffff00);
-    ComplexMetadataHandler(param_5, &DAT_180a02080);
+    ComplexMetadataHandler(param_5, &system_memory_2080);
     
     structure_metadata = &structure_guard[0];
     if (0xf < structure_flags) {
@@ -719,7 +719,7 @@ DataErrorCode DataStructureProcessor(void* param_1, void* param_2, void** param_
     }
     
     ComplexMetadataHandler(param_5, structure_metadata);
-    ComplexMetadataHandler(param_5, &DAT_1809fc8e4);
+    ComplexMetadataHandler(param_5, &system_memory_c8e4);
     
     structure_size = ComplexDataProcessor(structure_stack, structure_offset + 0x60);
     structure_context = &UNK_180a3c3e0;
@@ -729,7 +729,7 @@ DataErrorCode DataStructureProcessor(void* param_1, void* param_2, void** param_
     
     ComplexDataProcessor(&structure_context, *(uint32_t*)(structure_size + 0x10));
     if (0 < *(int*)(structure_size + 0x10)) {
-        structure_metadata = &DAT_18098bc73;
+        structure_metadata = &system_buffer_ptr;
         if (*(void**)(structure_size + 8) != (void*)0x0) {
             structure_metadata = *(void**)(structure_size + 8);
         }
@@ -807,7 +807,7 @@ DataErrorCode DataResourceCleaner(void* param_1)
     cleanup_offset = ResourceCleanupInitialize(&cleanup_handle);
     
     // 处理资源清理元数据
-    cleanup_data = &DAT_18098bc73;
+    cleanup_data = &system_buffer_ptr;
     if (*(void**)(cleanup_offset + 8) != (void*)0x0) {
         cleanup_data = *(void**)(cleanup_offset + 8);
     }
@@ -832,7 +832,7 @@ DataErrorCode DataResourceCleaner(void* param_1)
     cleanup_iterator = &UNK_1809fe6d8;
     
     // 处理资源清理数据
-    cleanup_data = &DAT_18098bc73;
+    cleanup_data = &system_buffer_ptr;
     if (cleanup_iterator != (void*)0x0) {
         cleanup_data = cleanup_iterator;
     }
@@ -846,7 +846,7 @@ DataErrorCode DataResourceCleaner(void* param_1)
     *(uint8_t*)(cleanup_pointer + 2) = 0;
     
     // 初始化资源清理内存
-    MemoryPoolInitialize(cleanup_pointer, cleanup_data, &DAT_1809fc7ec);
+    MemoryPoolInitialize(cleanup_pointer, cleanup_data, &system_memory_c7ec);
     cleanup_guard_ptr = cleanup_pointer;
     
     if (cleanup_pointer[1] == 0) {

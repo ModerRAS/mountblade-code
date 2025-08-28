@@ -986,7 +986,7 @@ FUN_18075e660(longlong param_1,longlong param_2,uint *param_3,uint *param_4,int3
     puVar4 = *(void **)(param_1 + 0xf0);
     if (puVar4 == (void *)0x0) {
       if (*(longlong *)(param_1 + 0xe8) == 0) {
-        puVar4 = &DAT_18098bc73;
+        puVar4 = &system_buffer_ptr;
       }
       else {
         puVar4 = (void *)(*(longlong *)(param_1 + 0xe8) + 4);

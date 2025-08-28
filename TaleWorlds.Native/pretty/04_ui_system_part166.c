@@ -660,7 +660,7 @@ code_r0x000180768040:
                       return;
                     }
                     cVar12 = (char)((ulonglong)in_RAX >> 8);
-                    bVar27 = SCARRY1(DAT_1ac76f654,cVar12);
+                    bVar27 = SCARRY1(system_state_f654,cVar12);
 
 
 // 函数: void FUN_180768000(uint64_t param_1)

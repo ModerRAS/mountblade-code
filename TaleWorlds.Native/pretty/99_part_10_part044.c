@@ -124,7 +124,7 @@ void FUN_1806c2a6d(void)
   cVar9 = FUN_1806d56e0();
   if ((cVar9 == '\0') || (cVar9 = FUN_1806d5620(), cVar9 == '\0')) goto LAB_1806c326c;
   if ((char)unaff_RDI[9] == '\0') {
-    puVar15 = &DAT_18098bc73;
+    puVar15 = &system_buffer_ptr;
   }
   else {
     puVar15 = (void *)(**(code **)(*(longlong *)unaff_RDI[5] + 0x38))();
@@ -499,7 +499,7 @@ void FUN_1806c2a92(void)
   cVar10 = FUN_1806d56e0();
   if ((cVar10 == '\0') || (cVar10 = FUN_1806d5620(), cVar10 == '\0')) goto LAB_1806c326c;
   if ((char)unaff_RDI[9] == '\0') {
-    puVar16 = &DAT_18098bc73;
+    puVar16 = &system_buffer_ptr;
   }
   else {
     puVar16 = (void *)(**(code **)(*(longlong *)unaff_RDI[5] + 0x38))();

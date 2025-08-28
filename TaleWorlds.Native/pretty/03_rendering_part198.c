@@ -264,7 +264,7 @@ FUN_180382fd0(longlong *param_1,uint64_t *param_2,longlong *param_3,uint64_t par
     }
     else {
       if (*(float *)((longlong)param_3 + 0x3c) < 0.01) {
-        puVar4 = &DAT_18098bc73;
+        puVar4 = &system_buffer_ptr;
         if (*(void **)(*param_3 + 0x18) != (void *)0x0) {
           puVar4 = *(void **)(*param_3 + 0x18);
         }

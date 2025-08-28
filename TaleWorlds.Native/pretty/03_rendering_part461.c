@@ -280,7 +280,7 @@ void FUN_180515349(void)
   *(float *)(*(longlong *)(unaff_RBX + 0x728) + 0x598) = unaff_XMM11_Da;
   *(longlong *)(*(longlong *)(unaff_RBX + 0x728) + 0x578) =
        *(longlong *)
-        (&DAT_180c8ed30 + (longlong)*(int *)(*(longlong *)(unaff_RBX + 0x728) + 0x580) * 8) -
+        (&system_error_code + (longlong)*(int *)(*(longlong *)(unaff_RBX + 0x728) + 0x580) * 8) -
        (longlong)(unaff_XMM11_Da * -100000.0);
   lVar16 = *(longlong *)(unaff_RBX + 0x728);
   *(float *)(lVar16 + 0x10) = fVar20;
@@ -448,7 +448,7 @@ void FUN_180515480(uint64_t param_1,uint *param_2)
   *(float *)(*(longlong *)(unaff_RBX + 0x728) + 0x598) = unaff_XMM11_Da;
   *(longlong *)(*(longlong *)(unaff_RBX + 0x728) + 0x578) =
        *(longlong *)
-        (&DAT_180c8ed30 + (longlong)*(int *)(*(longlong *)(unaff_RBX + 0x728) + 0x580) * 8) -
+        (&system_error_code + (longlong)*(int *)(*(longlong *)(unaff_RBX + 0x728) + 0x580) * 8) -
        (longlong)(unaff_XMM11_Da * -100000.0);
   lVar10 = *(longlong *)(unaff_RBX + 0x728);
   *(float *)(lVar10 + 0x10) = fStack0000000000000040;
@@ -525,7 +525,7 @@ void FUN_1805156f4(float param_1,float param_2)
   *(float *)(*(longlong *)(unaff_RBX + 0x728) + 0x598) = unaff_XMM11_Da;
   *(longlong *)(*(longlong *)(unaff_RBX + 0x728) + 0x578) =
        *(longlong *)
-        (&DAT_180c8ed30 + (longlong)*(int *)(*(longlong *)(unaff_RBX + 0x728) + 0x580) * 8) -
+        (&system_error_code + (longlong)*(int *)(*(longlong *)(unaff_RBX + 0x728) + 0x580) * 8) -
        (longlong)(unaff_XMM11_Da * -100000.0);
   lVar1 = *(longlong *)(unaff_RBX + 0x728);
   *(int32_t *)(lVar1 + 0x10) = uStack0000000000000040;

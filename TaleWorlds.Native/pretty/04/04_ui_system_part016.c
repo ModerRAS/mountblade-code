@@ -78,7 +78,7 @@
 // ====================== 全局变量引用 ======================
 extern const void* _DAT_180c8ed00;     // UI系统配置数据
 extern const void* _DAT_180bf00a8;     // UI系统安全数据
-extern const void* DAT_180a0fd38;       // UI系统引用数据
+extern const void* system_memory_fd38;       // UI系统引用数据
 extern const void* UNK_180a3e4a0;       // UI系统资源数据1
 extern const void* UNK_180a3e4b8;       // UI系统资源数据2
 extern const void* UNK_180a3e500;       // UI系统资源数据3
@@ -673,19 +673,19 @@ void ui_system_resource_manager(longlong param_1)
     // 资源分配
     resource_ptr = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00, &UNK_180a3e4a0);
     resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x28))(resource_ptr, *(int32_t *)(param_1 + 0x38));
-    (**(code **)(*resource_ptr + 0x70))(resource_ptr, &DAT_180a0fd38);
+    (**(code **)(*resource_ptr + 0x70))(resource_ptr, &system_memory_fd38);
     
     resource_ptr = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00, &UNK_180a3e4b8);
     resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x28))(resource_ptr, *(int32_t *)(param_1 + 0x3c));
-    (**(code **)(*resource_ptr + 0x70))(resource_ptr, &DAT_180a0fd38);
+    (**(code **)(*resource_ptr + 0x70))(resource_ptr, &system_memory_fd38);
     
     resource_ptr = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00, &UNK_180a3e500);
     resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x28))(resource_ptr, *(int32_t *)(param_1 + 0x40));
-    (**(code **)(*resource_ptr + 0x70))(resource_ptr, &DAT_180a0fd38);
+    (**(code **)(*resource_ptr + 0x70))(resource_ptr, &system_memory_fd38);
     
     resource_ptr = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00, &UNK_180a3e510);
     resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x28))(resource_ptr, *(int32_t *)(param_1 + 0x44));
-    (**(code **)(*resource_ptr + 0x70))(resource_ptr, &DAT_180a0fd38);
+    (**(code **)(*resource_ptr + 0x70))(resource_ptr, &system_memory_fd38);
     
     // 批量资源处理
     resource_index = 0;
@@ -694,7 +694,7 @@ void ui_system_resource_manager(longlong param_1)
         do {
             resource_ptr = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00, &UNK_180a3e4d8);
             resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x28))(resource_ptr, *(int32_t *)(param_1 + 4));
-            (**(code **)(*resource_ptr + 0x70))(resource_ptr, &DAT_180a0fd38);
+            (**(code **)(*resource_ptr + 0x70))(resource_ptr, &system_memory_fd38);
             resource_id = (int)temp_var + 1;
             temp_var = (ulonglong)resource_id;
         } while ((int)resource_id < *(int *)(param_1 + 0x60));
@@ -723,7 +723,7 @@ void ui_system_resource_manager(longlong param_1)
             }
             
             resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x28))(resource_ptr, resource_value);
-            resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x70))(resource_ptr, &DAT_180a3c248);
+            resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x70))(resource_ptr, &system_memory_c248);
             (**(code **)(*resource_ptr + 0x28))(resource_ptr, *(int32_t *)(param_1 + 0x6150 + resource_index * 4));
         }
         resource_index = resource_index + 1;

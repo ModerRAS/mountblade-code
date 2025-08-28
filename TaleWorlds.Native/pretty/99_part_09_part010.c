@@ -158,7 +158,7 @@ void FUN_1805c16d2(int32_t param_1,uint64_t param_2,uint *param_3,uint *param_4)
   *(uint64_t *)(unaff_RBP + 0xf8) = 0xffffffffffffffff;
   *(uint64_t *)param_3 = *(uint64_t *)(unaff_RBP + 0xf8);
   if (((*(uint *)((longlong)unaff_RBX + 0x209c) >> 0xb & 1) == 0) &&
-     (fVar22 = (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2f4] * 8) -
+     (fVar22 = (float)(*(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x2f4] * 8) -
                       unaff_RBX[0x2f3]) * 1e-05, 0.0 <= fVar22)) {
     *(int32_t *)((longlong)unaff_RBX + 0x1b6c) = 0;
     *(int8_t *)(unaff_RBX + 0x2f5) = 1;
@@ -180,7 +180,7 @@ void FUN_1805c16d2(int32_t param_1,uint64_t param_2,uint *param_3,uint *param_4)
     *(int *)(unaff_RBX + 0x36e) = iVar13;
     uVar8 = *param_3;
     unaff_RBX[0x2f3] =
-         *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2f4] * 8) + 100000000;
+         *(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x2f4] * 8) + 100000000;
     fVar22 = (float)FUN_1805b94b0(fVar22,uVar8 >> 0x1f,(longlong)iVar7);
   }
   *(int8_t *)(unaff_RBP + 0xf8) = 0;
@@ -286,7 +286,7 @@ LAB_1805c1afc:
   param_4[1] = 0xffffffff;
   if ((char)unaff_RBX[0x386] != '\0') {
     if ((*(uint *)((longlong)unaff_RBX + 0x209c) >> 0xb & 1) == 0) {
-      fVar22 = (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x388] * 8) -
+      fVar22 = (float)(*(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x388] * 8) -
                       unaff_RBX[0x387]) * 1e-05;
       if (0.0 <= fVar22) {
         *(int32_t *)((longlong)unaff_RBX + 0x1c0c) = 0xffffffff;
@@ -314,7 +314,7 @@ LAB_1805c1afc:
         *(int *)(unaff_RBX + 0x402) = iVar13;
         uVar8 = *param_4;
         unaff_RBX[0x387] =
-             *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x388] * 8) + 100000000;
+             *(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x388] * 8) + 100000000;
         fVar22 = (float)FUN_1805b9990(fVar22,uVar8 >> 0x1f);
       }
       if ((char)unaff_RBX[0x389] == '\0') {

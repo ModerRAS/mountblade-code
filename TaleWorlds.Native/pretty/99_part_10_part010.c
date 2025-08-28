@@ -123,7 +123,7 @@ LAB_1806a8897:
      (lVar18 = uVar15 * 0x10 + *(longlong *)(param_1 + 0x10), lVar18 == 0)) {
 LAB_1806a8868:
     uVar15 = 0xffffffffffffffff;
-    pbVar14 = &DAT_18098bc73;
+    pbVar14 = &system_buffer_ptr;
     if (pbVar19 != (byte *)0x0) {
       pbVar14 = pbVar19;
     }
@@ -255,7 +255,7 @@ LAB_1806a8897:
      (lVar15 = uVar12 * 0x10 + *(longlong *)(unaff_R14 + 0x10), lVar15 == 0)) {
 LAB_1806a8868:
     uVar12 = 0xffffffffffffffff;
-    pbVar14 = &DAT_18098bc73;
+    pbVar14 = &system_buffer_ptr;
     if (unaff_R15 != (byte *)0x0) {
       pbVar14 = unaff_R15;
     }
@@ -535,7 +535,7 @@ void FUN_1806a8c20(longlong param_1,longlong *param_2)
   auStackX_8[0] = 4;
   (**(code **)(*(longlong *)param_2[1] + 8))((longlong *)param_2[1],auStackX_10,auStackX_8);
   uVar2 = 0;
-  puStack_38 = &DAT_18098bc73;
+  puStack_38 = &system_buffer_ptr;
   uStack_30 = 0;
   FUN_1806b1070(param_1 + 0x58,auStackX_10[0],&puStack_38);
   if (*(int *)(param_1 + 0x60) != 0) {

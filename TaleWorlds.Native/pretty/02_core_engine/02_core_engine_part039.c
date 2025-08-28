@@ -102,7 +102,7 @@ float * calculate_bounding_box(float *object_ptr)
     if ((10 < (int)time_value) ||
        ((int)(*(int *)(*(longlong *)(object_ptr + 0x84) + 0x88) +
              (*(int *)(*(longlong *)(object_ptr + 0x84) + 0x88) >> 0x1f & 3U)) >> 2 < (int)time_value)) {
-      stack_temp_48 = &DAT_18098bc73;  // 设置数据指针
+      stack_temp_48 = &system_buffer_ptr;  // 设置数据指针
       if (*(void **)(object_ptr + 6) != (void *)0x0) {
         stack_temp_48 = *(void **)(object_ptr + 6);  // 更新数据指针
       }

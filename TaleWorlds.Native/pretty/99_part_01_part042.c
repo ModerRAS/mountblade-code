@@ -231,12 +231,12 @@ void FUN_1800cbf90(longlong param_1,longlong param_2)
   ulonglong uStack_58;
   
   lVar11 = _DAT_180c86938;
-  cVar8 = DAT_180c82860;
+  cVar8 = system_debug_flag;
   uStack_c8 = 0xfffffffffffffffe;
   uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_218;
   lVar16 = 0;
   uStack_1e8 = 0;
-  *(float *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x17ac) = (float)(DAT_180c82860 == '\0');
+  *(float *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x17ac) = (float)(system_debug_flag == '\0');
   uVar21 = 0x3f800000;
   *(float *)(*(longlong *)(lVar11 + 0x1cd8) + 0x14e0) = 1.0 / *(float *)(param_2 + 0x124c8);
   *(float *)(*(longlong *)(lVar11 + 0x1cd8) + 0x14e4) = 1.0 / *(float *)(param_2 + 0x124cc);

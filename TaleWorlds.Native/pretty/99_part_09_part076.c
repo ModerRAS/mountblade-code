@@ -171,11 +171,11 @@ FUN_1805ef6e0(uint64_t *param_1,longlong param_2,longlong param_3,longlong *para
       lVar28 = (longlong)cVar19 * 0x1b0;
       if ('\x01' < *(char *)(lVar28 + 0xf1 + lVar22)) {
         puVar24 = *(void **)(*(longlong *)((longlong)cVar19 * 0x1b0 + 0x180 + lVar22) + 8);
-        puVar29 = &DAT_18098bc73;
+        puVar29 = &system_buffer_ptr;
         if (puVar24 != (void *)0x0) {
           puVar29 = puVar24;
         }
-        puVar24 = &DAT_18098bc73;
+        puVar24 = &system_buffer_ptr;
         if (*(void **)(param_3 + 0x18) != (void *)0x0) {
           puVar24 = *(void **)(param_3 + 0x18);
         }
@@ -195,7 +195,7 @@ FUN_1805ef6e0(uint64_t *param_1,longlong param_2,longlong param_3,longlong *para
       goto LAB_1805ef98b;
     }
   }
-  puVar24 = &DAT_18098bc73;
+  puVar24 = &system_buffer_ptr;
   if (*(void **)(param_3 + 0x18) != (void *)0x0) {
     puVar24 = *(void **)(param_3 + 0x18);
   }

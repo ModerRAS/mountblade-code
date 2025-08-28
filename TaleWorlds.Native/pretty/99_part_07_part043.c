@@ -278,7 +278,7 @@ LAB_1804c36de:
       puVar8 = puVar8 + 0x19;
     } while (iVar9 < (int)param_1[4]);
   }
-  puVar6 = &DAT_18098bc73;
+  puVar6 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar6 = *(void **)(param_2 + 8);
   }

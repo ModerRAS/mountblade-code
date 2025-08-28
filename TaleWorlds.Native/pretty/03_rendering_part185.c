@@ -477,7 +477,7 @@ LAB_1803777ad:
     *(uint *)(unaff_RBP + -0x24) = uVar24;
     if (param_3 <= (int)uVar24) {
       puVar17 = *(void **)(unaff_R13 + 0x10);
-      puVar20 = &DAT_18098bc73;
+      puVar20 = &system_buffer_ptr;
       if ((*(uint *)(unaff_R13 + 0x60) & 0x400000) == 0) {
         if (puVar17 != (void *)0x0) {
           puVar20 = puVar17;
@@ -515,7 +515,7 @@ void FUN_18037832a(void)
   longlong unaff_R13;
   
   puVar2 = *(void **)(unaff_R13 + 0x10);
-  puVar3 = &DAT_18098bc73;
+  puVar3 = &system_buffer_ptr;
   if ((*(uint *)(unaff_R13 + 0x60) & 0x400000) == 0) {
     if (puVar2 != (void *)0x0) {
       puVar3 = puVar2;

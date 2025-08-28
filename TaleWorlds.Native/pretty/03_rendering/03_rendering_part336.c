@@ -988,7 +988,7 @@ void RenderingSystem_ObjectInitializer(longlong param_1, uint64_t param_2, uint6
     uVar3 = 0xfffffffffffffffe;
     FUN_180627910(&puStack_30);
     pcVar1 = *(code **)(*(longlong *)(param_1 + 0x10) + 0x10);
-    puVar2 = &DAT_18098bc73;
+    puVar2 = &system_buffer_ptr;
     
     if (puStack_28 != (void *)0x0) {
         puVar2 = puStack_28;
@@ -1185,7 +1185,7 @@ void RenderingSystem_ObjectProcessor(longlong *param_1)
     
     if ((10 < iVar2) ||
         ((int)((int)plStack_38[0x11] + ((int)plStack_38[0x11] >> 0x1f & 3U)) >> 2 < iVar2)) {
-        puVar3 = &DAT_18098bc73;
+        puVar3 = &system_buffer_ptr;
         if ((void *)plStack_40[3] != (void *)0x0) {
             puVar3 = (void *)plStack_40[3];
         }

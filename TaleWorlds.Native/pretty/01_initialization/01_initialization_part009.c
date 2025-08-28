@@ -55,7 +55,7 @@ int initialize_module_registry(void)
     
     // 初始化注册表指针
     module_registry_entry = (void *)&UNK_1809fcc58;
-    module_registry_entry[1] = (void *)&DAT_180bf91c8;
+    module_registry_entry[1] = (void *)&system_buffer_91c8;
     
     return result;
 }
@@ -87,7 +87,7 @@ void register_rendering_module(void)
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
-        compare_result = memcmp(current_node + 4, &DAT_1809fc740, 0x10);
+        compare_result = memcmp(current_node + 4, &system_buffer_c740, 0x10);
         if (compare_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -102,7 +102,7 @@ void register_rendering_module(void)
     
     // 如果需要，创建新节点
     if ((parent_node == root_node) || 
-        (compare_result = memcmp(&DAT_1809fc740, parent_node + 4, 0x10), compare_result < 0)) {
+        (compare_result = memcmp(&system_buffer_c740, parent_node + 4, 0x10), compare_result < 0)) {
         allocation_size = allocate_registry_node(registry);
         insert_registry_node(registry, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
@@ -144,7 +144,7 @@ void register_physics_module(void)
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
-        compare_result = memcmp(current_node + 4, &DAT_1809fc768, 0x10);
+        compare_result = memcmp(current_node + 4, &system_buffer_c768, 0x10);
         if (compare_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -159,7 +159,7 @@ void register_physics_module(void)
     
     // 如果需要，创建新节点
     if ((parent_node == root_node) || 
-        (compare_result = memcmp(&DAT_1809fc768, parent_node + 4, 0x10), compare_result < 0)) {
+        (compare_result = memcmp(&system_buffer_c768, parent_node + 4, 0x10), compare_result < 0)) {
         allocation_size = allocate_registry_node(registry);
         insert_registry_node(registry, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
@@ -201,7 +201,7 @@ void register_input_module(void)
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
-        compare_result = memcmp(current_node + 4, &DAT_18098c9b8, 0x10);
+        compare_result = memcmp(current_node + 4, &system_buffer_c9b8, 0x10);
         if (compare_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -216,7 +216,7 @@ void register_input_module(void)
     
     // 如果需要，创建新节点
     if ((parent_node == root_node) || 
-        (compare_result = memcmp(&DAT_18098c9b8, parent_node + 4, 0x10), compare_result < 0)) {
+        (compare_result = memcmp(&system_buffer_c9b8, parent_node + 4, 0x10), compare_result < 0)) {
         allocation_size = allocate_registry_node(registry);
         insert_registry_node(registry, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
@@ -258,7 +258,7 @@ void register_network_module(void)
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
-        compare_result = memcmp(current_node + 4, &DAT_18098c940, 0x10);
+        compare_result = memcmp(current_node + 4, &system_buffer_c940, 0x10);
         if (compare_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -273,7 +273,7 @@ void register_network_module(void)
     
     // 如果需要，创建新节点
     if ((parent_node == root_node) || 
-        (compare_result = memcmp(&DAT_18098c940, parent_node + 4, 0x10), compare_result < 0)) {
+        (compare_result = memcmp(&system_buffer_c940, parent_node + 4, 0x10), compare_result < 0)) {
         allocation_size = allocate_registry_node(registry);
         insert_registry_node(registry, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
@@ -315,7 +315,7 @@ void register_ui_module(void)
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
-        compare_result = memcmp(current_node + 4, &DAT_18098c918, 0x10);
+        compare_result = memcmp(current_node + 4, &system_buffer_c918, 0x10);
         if (compare_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -330,7 +330,7 @@ void register_ui_module(void)
     
     // 如果需要，创建新节点
     if ((parent_node == root_node) || 
-        (compare_result = memcmp(&DAT_18098c918, parent_node + 4, 0x10), compare_result < 0)) {
+        (compare_result = memcmp(&system_buffer_c918, parent_node + 4, 0x10), compare_result < 0)) {
         allocation_size = allocate_registry_node(registry);
         insert_registry_node(registry, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
@@ -372,7 +372,7 @@ void register_resource_module(void)
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
-        compare_result = memcmp(current_node + 4, &DAT_18098c968, 0x10);
+        compare_result = memcmp(current_node + 4, &system_buffer_c968, 0x10);
         if (compare_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -387,7 +387,7 @@ void register_resource_module(void)
     
     // 如果需要，创建新节点
     if ((parent_node == root_node) || 
-        (compare_result = memcmp(&DAT_18098c968, parent_node + 4, 0x10), compare_result < 0)) {
+        (compare_result = memcmp(&system_buffer_c968, parent_node + 4, 0x10), compare_result < 0)) {
         allocation_size = allocate_registry_node(registry);
         insert_registry_node(registry, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
@@ -429,7 +429,7 @@ void register_scripting_module(void)
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
-        compare_result = memcmp(current_node + 4, &DAT_18098c990, 0x10);
+        compare_result = memcmp(current_node + 4, &system_buffer_c990, 0x10);
         if (compare_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -444,7 +444,7 @@ void register_scripting_module(void)
     
     // 如果需要，创建新节点
     if ((parent_node == root_node) || 
-        (compare_result = memcmp(&DAT_18098c990, parent_node + 4, 0x10), compare_result < 0)) {
+        (compare_result = memcmp(&system_buffer_c990, parent_node + 4, 0x10), compare_result < 0)) {
         allocation_size = allocate_registry_node(registry);
         insert_registry_node(registry, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
@@ -486,7 +486,7 @@ void register_scene_module(void)
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
-        compare_result = memcmp(current_node + 4, &DAT_18098c8f0, 0x10);
+        compare_result = memcmp(current_node + 4, &system_buffer_c8f0, 0x10);
         if (compare_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -501,7 +501,7 @@ void register_scene_module(void)
     
     // 如果需要，创建新节点
     if ((parent_node == root_node) || 
-        (compare_result = memcmp(&DAT_18098c8f0, parent_node + 4, 0x10), compare_result < 0)) {
+        (compare_result = memcmp(&system_buffer_c8f0, parent_node + 4, 0x10), compare_result < 0)) {
         allocation_size = allocate_registry_node(registry);
         insert_registry_node(registry, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
@@ -543,7 +543,7 @@ void register_entity_module(void)
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
-        compare_result = memcmp(current_node + 4, &DAT_18098c8c8, 0x10);
+        compare_result = memcmp(current_node + 4, &system_buffer_c8c8, 0x10);
         if (compare_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -558,7 +558,7 @@ void register_entity_module(void)
     
     // 如果需要，创建新节点
     if ((parent_node == root_node) || 
-        (compare_result = memcmp(&DAT_18098c8c8, parent_node + 4, 0x10), compare_result < 0)) {
+        (compare_result = memcmp(&system_buffer_c8c8, parent_node + 4, 0x10), compare_result < 0)) {
         allocation_size = allocate_registry_node(registry);
         insert_registry_node(registry, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
@@ -648,7 +648,7 @@ void register_game_logic_module(void)
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
-        compare_result = memcmp(current_node + 4, &DAT_180a010a0, 0x10);
+        compare_result = memcmp(current_node + 4, &system_buffer_10a0, 0x10);
         if (compare_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -663,7 +663,7 @@ void register_game_logic_module(void)
     
     // 如果需要，创建新节点
     if ((parent_node == root_node) || 
-        (compare_result = memcmp(&DAT_180a010a0, parent_node + 4, 0x10), compare_result < 0)) {
+        (compare_result = memcmp(&system_buffer_10a0, parent_node + 4, 0x10), compare_result < 0)) {
         allocation_size = allocate_registry_node(registry);
         insert_registry_node(registry, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
@@ -705,7 +705,7 @@ void register_sound_effects_module(void)
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
-        compare_result = memcmp(current_node + 4, &DAT_180a01078, 0x10);
+        compare_result = memcmp(current_node + 4, &system_buffer_1078, 0x10);
         if (compare_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -720,7 +720,7 @@ void register_sound_effects_module(void)
     
     // 如果需要，创建新节点
     if ((parent_node == root_node) || 
-        (compare_result = memcmp(&DAT_180a01078, parent_node + 4, 0x10), compare_result < 0)) {
+        (compare_result = memcmp(&system_buffer_1078, parent_node + 4, 0x10), compare_result < 0)) {
         allocation_size = allocate_registry_node(registry);
         insert_registry_node(registry, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
@@ -762,7 +762,7 @@ void register_music_module(void)
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
-        compare_result = memcmp(current_node + 4, &DAT_180a01050, 0x10);
+        compare_result = memcmp(current_node + 4, &system_buffer_1050, 0x10);
         if (compare_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -777,7 +777,7 @@ void register_music_module(void)
     
     // 如果需要，创建新节点
     if ((parent_node == root_node) || 
-        (compare_result = memcmp(&DAT_180a01050, parent_node + 4, 0x10), compare_result < 0)) {
+        (compare_result = memcmp(&system_buffer_1050, parent_node + 4, 0x10), compare_result < 0)) {
         allocation_size = allocate_registry_node(registry);
         insert_registry_node(registry, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
@@ -819,7 +819,7 @@ void register_voice_module(void)
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
-        compare_result = memcmp(current_node + 4, &DAT_180a01028, 0x10);
+        compare_result = memcmp(current_node + 4, &system_buffer_1028, 0x10);
         if (compare_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -834,7 +834,7 @@ void register_voice_module(void)
     
     // 如果需要，创建新节点
     if ((parent_node == root_node) || 
-        (compare_result = memcmp(&DAT_180a01028, parent_node + 4, 0x10), compare_result < 0)) {
+        (compare_result = memcmp(&system_buffer_1028, parent_node + 4, 0x10), compare_result < 0)) {
         allocation_size = allocate_registry_node(registry);
         insert_registry_node(registry, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
@@ -876,7 +876,7 @@ void register_environment_audio_module(void)
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
-        compare_result = memcmp(current_node + 4, &DAT_180a00fd8, 0x10);
+        compare_result = memcmp(current_node + 4, &system_buffer_0fd8, 0x10);
         if (compare_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -891,7 +891,7 @@ void register_environment_audio_module(void)
     
     // 如果需要，创建新节点
     if ((parent_node == root_node) || 
-        (compare_result = memcmp(&DAT_180a00fd8, parent_node + 4, 0x10), compare_result < 0)) {
+        (compare_result = memcmp(&system_buffer_0fd8, parent_node + 4, 0x10), compare_result < 0)) {
         allocation_size = allocate_registry_node(registry);
         insert_registry_node(registry, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
@@ -933,7 +933,7 @@ void register_audio_mixer_module(void)
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
-        compare_result = memcmp(current_node + 4, &DAT_180a00fb0, 0x10);
+        compare_result = memcmp(current_node + 4, &system_buffer_0fb0, 0x10);
         if (compare_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -948,7 +948,7 @@ void register_audio_mixer_module(void)
     
     // 如果需要，创建新节点
     if ((parent_node == root_node) || 
-        (compare_result = memcmp(&DAT_180a00fb0, parent_node + 4, 0x10), compare_result < 0)) {
+        (compare_result = memcmp(&system_buffer_0fb0, parent_node + 4, 0x10), compare_result < 0)) {
         allocation_size = allocate_registry_node(registry);
         insert_registry_node(registry, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
@@ -974,7 +974,7 @@ int initialize_debug_module(void)
     
     // 初始化调试模块指针
     module_registry_base = (void *)&UNK_1809fcc28;
-    module_registry_base[1] = (void *)&DAT_180bfa368;
+    module_registry_base[1] = (void *)&system_buffer_a368;
     
     return result;
 }
@@ -1006,7 +1006,7 @@ void register_performance_monitor_module(void)
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
-        compare_result = memcmp(current_node + 4, &DAT_180a00d48, 0x10);
+        compare_result = memcmp(current_node + 4, &system_buffer_0d48, 0x10);
         if (compare_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -1021,7 +1021,7 @@ void register_performance_monitor_module(void)
     
     // 如果需要，创建新节点
     if ((parent_node == root_node) || 
-        (compare_result = memcmp(&DAT_180a00d48, parent_node + 4, 0x10), compare_result < 0)) {
+        (compare_result = memcmp(&system_buffer_0d48, parent_node + 4, 0x10), compare_result < 0)) {
         allocation_size = allocate_registry_node(registry);
         insert_registry_node(registry, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
@@ -1065,7 +1065,7 @@ void register_game_logic_module_alt(void)
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
-        compare_result = memcmp(current_node + 4, &DAT_180a010a0, 0x10);
+        compare_result = memcmp(current_node + 4, &system_buffer_10a0, 0x10);
         if (compare_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -1080,7 +1080,7 @@ void register_game_logic_module_alt(void)
     
     // 如果需要，创建新节点
     if ((parent_node == root_node) || 
-        (compare_result = memcmp(&DAT_180a010a0, parent_node + 4, 0x10), compare_result < 0)) {
+        (compare_result = memcmp(&system_buffer_10a0, parent_node + 4, 0x10), compare_result < 0)) {
         allocation_size = allocate_registry_node(registry);
         insert_registry_node(registry, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
@@ -1122,7 +1122,7 @@ void register_sound_effects_module_alt(void)
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
-        compare_result = memcmp(current_node + 4, &DAT_180a01078, 0x10);
+        compare_result = memcmp(current_node + 4, &system_buffer_1078, 0x10);
         if (compare_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -1137,7 +1137,7 @@ void register_sound_effects_module_alt(void)
     
     // 如果需要，创建新节点
     if ((parent_node == root_node) || 
-        (compare_result = memcmp(&DAT_180a01078, parent_node + 4, 0x10), compare_result < 0)) {
+        (compare_result = memcmp(&system_buffer_1078, parent_node + 4, 0x10), compare_result < 0)) {
         allocation_size = allocate_registry_node(registry);
         insert_registry_node(registry, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
@@ -1179,7 +1179,7 @@ void register_music_module_alt(void)
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
-        compare_result = memcmp(current_node + 4, &DAT_180a01050, 0x10);
+        compare_result = memcmp(current_node + 4, &system_buffer_1050, 0x10);
         if (compare_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -1194,7 +1194,7 @@ void register_music_module_alt(void)
     
     // 如果需要，创建新节点
     if ((parent_node == root_node) || 
-        (compare_result = memcmp(&DAT_180a01050, parent_node + 4, 0x10), compare_result < 0)) {
+        (compare_result = memcmp(&system_buffer_1050, parent_node + 4, 0x10), compare_result < 0)) {
         allocation_size = allocate_registry_node(registry);
         insert_registry_node(registry, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
@@ -1236,7 +1236,7 @@ void register_voice_module_alt(void)
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
-        compare_result = memcmp(current_node + 4, &DAT_180a01028, 0x10);
+        compare_result = memcmp(current_node + 4, &system_buffer_1028, 0x10);
         if (compare_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -1251,7 +1251,7 @@ void register_voice_module_alt(void)
     
     // 如果需要，创建新节点
     if ((parent_node == root_node) || 
-        (compare_result = memcmp(&DAT_180a01028, parent_node + 4, 0x10), compare_result < 0)) {
+        (compare_result = memcmp(&system_buffer_1028, parent_node + 4, 0x10), compare_result < 0)) {
         allocation_size = allocate_registry_node(registry);
         insert_registry_node(registry, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
@@ -1293,7 +1293,7 @@ void register_environment_audio_module_alt(void)
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
-        compare_result = memcmp(current_node + 4, &DAT_180a00fd8, 0x10);
+        compare_result = memcmp(current_node + 4, &system_buffer_0fd8, 0x10);
         if (compare_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -1308,7 +1308,7 @@ void register_environment_audio_module_alt(void)
     
     // 如果需要，创建新节点
     if ((parent_node == root_node) || 
-        (compare_result = memcmp(&DAT_180a00fd8, parent_node + 4, 0x10), compare_result < 0)) {
+        (compare_result = memcmp(&system_buffer_0fd8, parent_node + 4, 0x10), compare_result < 0)) {
         allocation_size = allocate_registry_node(registry);
         insert_registry_node(registry, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;

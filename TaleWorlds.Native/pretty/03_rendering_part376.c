@@ -391,9 +391,9 @@ uint64_t * FUN_1804721d0(uint64_t *param_1,char param_2)
   longlong lVar1;
   uint64_t *puVar2;
   
-  puVar2 = (uint64_t *)&DAT_180c92480;
+  puVar2 = (uint64_t *)&system_data_2480;
   if (param_2 != '\0') {
-    puVar2 = (uint64_t *)&DAT_180c92490;
+    puVar2 = (uint64_t *)&system_data_2490;
   }
   *param_1 = 0;
   param_1[1] = 0;

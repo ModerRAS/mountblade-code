@@ -853,7 +853,7 @@ FUN_1806057e0(int32_t *param_1,longlong param_2,uint64_t param_3,int32_t *param_
     (**(code **)(*plVar7 + 0x28))(plVar7);
   }
   auStackX_8[0] = 4;
-  FUN_1801af320(param_2,aplStackX_10,auStackX_8,0,&DAT_180a00300,1);
+  FUN_1801af320(param_2,aplStackX_10,auStackX_8,0,&system_data_0300,1);
   plVar4 = aplStackX_10[0];
   *(byte *)((longlong)aplStackX_10[0] + 0x2e9) = *(byte *)((longlong)aplStackX_10[0] + 0x2e9) | 1;
   uVar1 = *(uint *)((longlong)aplStackX_10[0] + 0x2ac);

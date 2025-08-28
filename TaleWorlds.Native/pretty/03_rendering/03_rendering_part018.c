@@ -565,7 +565,7 @@ void parse_material_data(longlong render_context, longlong material_manager, lon
                     }
                     
                     // 比较属性名称
-                    result2 = (longlong)&DAT_180a03a84 - (longlong)string_ptr;
+                    result2 = (longlong)&system_buffer_3a84 - (longlong)string_ptr;
                     while (*string_ptr == string_ptr[result2]) {
                         string_ptr = string_ptr + 1;
                         if (temp_char <= string_ptr) goto process_name_value;
@@ -726,7 +726,7 @@ void parse_material_data(longlong render_context, longlong material_manager, lon
                 material_data[0x45] = color_values_rgba[3];
                 
                 // 设置纹理路径
-                default_value = &DAT_18098bc73;
+                default_value = &system_buffer_ptr;
                 if (texture_handler != (void *)0x0) {
                     default_value = texture_handler;
                 }

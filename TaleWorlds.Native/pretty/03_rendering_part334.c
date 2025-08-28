@@ -404,7 +404,7 @@ void FUN_180443b00(void)
     stack_array_b0[0] = 0;
     stack_data_b8 = *(int32_t *)(system_data + 0x20);
     texture_ptr = *(void **)(system_data + 0x18);
-    texture_data = &DAT_18098bc73;
+    texture_data = &system_buffer_ptr;
     
     if (texture_ptr != (void *)0x0) {
         texture_data = texture_ptr;
@@ -412,7 +412,7 @@ void FUN_180443b00(void)
     
     // 复制纹理数据
     strcpy_s(stack_array_b0, 0x80, texture_data);
-    texture_ptr = &DAT_18098bc73;
+    texture_ptr = &system_buffer_ptr;
     
     if (stack_ptr_c0 != (void *)0x0) {
         texture_ptr = stack_ptr_c0;
@@ -444,7 +444,7 @@ void FUN_180443b00(void)
             system_data = system_data + 1;
         } while (*string_ptr != '\0');
         
-        FUN_1800671b0(stack_array_178, &DAT_1809fd0f8);
+        FUN_1800671b0(stack_array_178, &system_buffer_d0f8);
         stack_data_140 = 1;
         stack_ptr_198 = (uint64_t *)0x100000000;
         stack_data_190 = 2;
@@ -544,7 +544,7 @@ void FUN_180443b80(uint64_t param_1, int8_t param_2)
         parameter_data_30 = 0;
         parameter_data_28 = 0xf;
         parameter_buffer_40[0] = 0;
-        parameter_data = &DAT_18098bc73;
+        parameter_data = &system_buffer_ptr;
         
         if ((void *)parameter_ptr[1] != (void *)0x0) {
             parameter_data = (void *)parameter_ptr[1];

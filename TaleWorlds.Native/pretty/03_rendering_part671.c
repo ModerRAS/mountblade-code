@@ -174,7 +174,7 @@ LAB_18064bfea:
       lVar9 = lVar13 * -0x10000;
       plVar8 = (longlong *)(lVar5 + 0xa0);
       if (lVar9 != 0) {
-        if (((longlong *)0x180c8ed7f < plVar8) && (plVar8 < &DAT_180c8efc0)) {
+        if (((longlong *)0x180c8ed7f < plVar8) && (plVar8 < &system_ptr_efc0)) {
           LOCK();
           plVar1 = (longlong *)(lVar5 + 0xb8);
           lVar4 = *plVar1;
@@ -583,7 +583,7 @@ LAB_18064bfea:
   plVar8 = (longlong *)(*(longlong *)(lVar15 + 0x3b8) + 0xa0);
 SUB_180646ff0:
   if (lVar10 != 0) {
-    if (((longlong *)0x180c8ed7f < plVar8) && (plVar8 < &DAT_180c8efc0)) {
+    if (((longlong *)0x180c8ed7f < plVar8) && (plVar8 < &system_ptr_efc0)) {
       LOCK();
       plVar3 = plVar8 + 3;
       lVar15 = *plVar3;
@@ -741,7 +741,7 @@ LAB_18064eaba:
     param_3 = uVar3;
   }
   puVar4 = param_2;
-  if (DAT_180c8f000 == '\0') {
+  if (system_ptr_f000 == '\0') {
                     // WARNING: Subroutine does not return
     memcpy(puVar2,param_2,param_3);
   }
@@ -783,7 +783,7 @@ LAB_18064eaba:
   if (unaff_RDI < unaff_RBX) {
     unaff_RBX = unaff_RDI;
   }
-  if (DAT_180c8f000 == '\0') {
+  if (system_ptr_f000 == '\0') {
                     // WARNING: Subroutine does not return
     memcpy(puVar2);
   }

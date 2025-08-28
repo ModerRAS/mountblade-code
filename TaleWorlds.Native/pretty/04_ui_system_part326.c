@@ -929,7 +929,7 @@ void FUN_180849782(void)
     int32_t unaff_R14D;
     
     iVar1 = func_0x00018074bda0(&stack0x00000050, UI_SYSTEM_MEMORY_SIZE_256);
-    iVar2 = FUN_18074b880(&stack0x00000050 + iVar1, UI_SYSTEM_MEMORY_SIZE_256 - iVar1, &DAT_180a06434);
+    iVar2 = FUN_18074b880(&stack0x00000050 + iVar1, UI_SYSTEM_MEMORY_SIZE_256 - iVar1, &system_temp_buffer);
     func_0x00018074b800(&stack0x00000050 + (iVar1 + iVar2), UI_SYSTEM_MEMORY_SIZE_256 - (iVar1 + iVar2), unaff_R14D);
     // WARNING: Subroutine does not return
     FUN_180749ef0(unaff_ESI, 0xc);
@@ -1011,7 +1011,7 @@ void FUN_1808498e7(void)
     int32_t unaff_R14D;
     
     iVar1 = func_0x00018074bda0(&stack0x00000050, UI_SYSTEM_MEMORY_SIZE_256);
-    iVar2 = FUN_18074b880(&stack0x00000050 + iVar1, UI_SYSTEM_MEMORY_SIZE_256 - iVar1, &DAT_180a06434);
+    iVar2 = FUN_18074b880(&stack0x00000050 + iVar1, UI_SYSTEM_MEMORY_SIZE_256 - iVar1, &system_temp_buffer);
     func_0x00018074b800(&stack0x00000050 + (iVar1 + iVar2), UI_SYSTEM_MEMORY_SIZE_256 - (iVar1 + iVar2), unaff_R14D);
     // WARNING: Subroutine does not return
     FUN_180749ef0(unaff_ESI, 0xd);
@@ -1063,11 +1063,11 @@ void FUN_180849990(uint64_t param_1, int32_t param_2, uint64_t *param_3, uint64_
             FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_198);
         }
         iVar5 = func_0x00018074b7d0(auStack_148, UI_SYSTEM_MEMORY_SIZE_256, param_2);
-        iVar6 = FUN_18074b880(auStack_148 + iVar5, UI_SYSTEM_MEMORY_SIZE_256 - iVar5, &DAT_180a06434);
+        iVar6 = FUN_18074b880(auStack_148 + iVar5, UI_SYSTEM_MEMORY_SIZE_256 - iVar5, &system_temp_buffer);
         iVar5 = iVar5 + iVar6;
         iVar6 = func_0x00018074bda0(auStack_148 + iVar5, UI_SYSTEM_MEMORY_SIZE_256 - iVar5, 0);
         iVar5 = iVar5 + iVar6;
-        iVar6 = FUN_18074b880(auStack_148 + iVar5, UI_SYSTEM_MEMORY_SIZE_256 - iVar5, &DAT_180a06434);
+        iVar6 = FUN_18074b880(auStack_148 + iVar5, UI_SYSTEM_MEMORY_SIZE_256 - iVar5, &system_temp_buffer);
         FUN_18074bd40(auStack_148 + (iVar5 + iVar6), UI_SYSTEM_MEMORY_SIZE_256 - (iVar5 + iVar6), param_4);
         puStack_178 = auStack_148;
         // WARNING: Subroutine does not return

@@ -32,7 +32,7 @@ void create_file_handle_with_completion_port(longlong engine_context, longlong f
   initialize_string_helper(&temp_ptr1);
   
   // 获取文件路径
-  file_path = &DAT_18098bc73;  // 默认路径
+  file_path = &system_buffer_ptr;  // 默认路径
   if (temp_ptr2 != (void *)0x0) {
     file_path = temp_ptr2;  // 使用自定义路径
   }
@@ -47,7 +47,7 @@ void create_file_handle_with_completion_port(longlong engine_context, longlong f
   file_handle = CreateFileA(file_path, 0x80000000, 1, 0);  // GENERIC_READ, FILE_SHARE_READ
   if (file_handle == -1) {
     // 文件创建失败，抛出错误
-    file_path = &DAT_18098bc73;
+    file_path = &system_buffer_ptr;
     if (*(void **)(file_params + 8) != (void *)0x0) {
       file_path = *(void **)(file_params + 8);
     }
@@ -59,7 +59,7 @@ void create_file_handle_with_completion_port(longlong engine_context, longlong f
   completion_port = CreateIoCompletionPort(file_handle, *(uint64_t *)(engine_context + 0x213430), 0, 0);
   if (completion_port != *(longlong *)(engine_context + 0x213430)) {
     // I/O完成端口创建失败
-    file_path = &DAT_18098bc73;
+    file_path = &system_buffer_ptr;
     if (*(void **)(file_params + 8) != (void *)0x0) {
       file_path = *(void **)(file_params + 8);
     }
@@ -87,7 +87,7 @@ void create_file_handle_with_completion_port(longlong engine_context, longlong f
       
       // 准备错误信息
       _DAT_00000018 = *(int32_t *)(file_params + 0x10);
-      file_path = &DAT_18098bc73;
+      file_path = &system_buffer_ptr;
       if (*(void **)(file_params + 8) != (void *)0x0) {
         file_path = *(void **)(file_params + 8);
       }
@@ -244,7 +244,7 @@ longlong copy_file_info_structure(longlong dest_info, longlong src_info)
   
   // 复制基本信息
   *(int32_t *)(dest_info + 0x10) = *(int32_t *)(src_info + 0x10);  // 文件大小
-  file_path = &DAT_18098bc73;  // 默认路径
+  file_path = &system_buffer_ptr;  // 默认路径
   if (*(void **)(src_info + 8) != (void *)0x0) {
     file_path = *(void **)(src_info + 8);  // 使用源路径
   }
@@ -862,7 +862,7 @@ longlong memory_management_operation(longlong *target_block, longlong *source_bl
     else {
       if (operation_type == 1) {
         // 复制构造内存块
-        result = allocate_memory_block(_DAT_180c8ed18, 0x20, 8, DAT_180bf65bc);
+        result = allocate_memory_block(_DAT_180c8ed18, 0x20, 8, system_allocation_flags);
         source_value = *source_block;
         *(uint64_t *)(result + 0x10) = 0;
         *(code **)(result + 0x18) = _guard_check_icall;
@@ -920,7 +920,7 @@ initialize_file_read_context(uint64_t *file_context, longlong file_info, uint64_
   *(int32_t *)(file_context + 2) = *(int32_t *)(file_info + 0x10);
   
   // 复制文件路径
-  file_path = &DAT_18098bc73;  // 默认路径
+  file_path = &system_buffer_ptr;  // 默认路径
   if (*(void **)(file_info + 8) != (void *)0x0) {
     file_path = *(void **)(file_info + 8);  // 使用指定路径
   }

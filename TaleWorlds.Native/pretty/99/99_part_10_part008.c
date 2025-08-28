@@ -171,7 +171,7 @@ extern void* UNK_18094b020;               /**< 未知数据引用 */
 extern void* UNK_18094aee8;               /**< 未知数据引用 */
 extern void* UNK_18094aef0;               /**< 未知数据引用 */
 extern void* UNK_18094af30;               /**< 未知数据引用 */
-extern void* DAT_18098bc73;               /**< 数据引用 */
+extern void* system_buffer_ptr;               /**< 数据引用 */
 extern void* UNK_18094a9a8;               /**< 未知数据引用 */
 
 /* ==============================================

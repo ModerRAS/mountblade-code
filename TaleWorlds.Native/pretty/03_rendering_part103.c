@@ -672,10 +672,10 @@ longlong FUN_18032b880(longlong param_1,uint param_2,uint param_3)
   
   // 检查渲染系统状态
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-               0x48) < _DAT_180d496d0) && (FUN_1808fcb90(&DAT_180d496d0), _DAT_180d496d0 == -1)) {
+               0x48) < _DAT_180d496d0) && (FUN_1808fcb90(&system_buffer_96d0), _DAT_180d496d0 == -1)) {
     // 初始化全局变量
     _DAT_180d49730 = &UNK_1809fcc58;
-    _DAT_180d49738 = &DAT_180d49748;
+    _DAT_180d49738 = &system_buffer_9748;
     _DAT_180d49740 = 0;
   }
   
@@ -717,7 +717,7 @@ void FUN_18032c0b0(longlong param_1,uint64_t param_2)
   lVar2 = FUN_180334500(param_1,&puStack_68);
   
   // 获取文件路径
-  puVar4 = &DAT_18098bc73;
+  puVar4 = &system_buffer_ptr;
   if (*(void **)(lVar2 + 8) != (void *)0x0) {
     puVar4 = *(void **)(lVar2 + 8);
   }
@@ -872,7 +872,7 @@ void FUN_18032c450(longlong param_1,longlong param_2)
   *(ulonglong *)(param_1 + 0x268) = *puVar1;
   
   // 获取文件路径
-  puVar8 = &DAT_18098bc73;
+  puVar8 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar8 = *(void **)(param_2 + 8);
   }
@@ -883,7 +883,7 @@ void FUN_18032c450(longlong param_1,longlong param_2)
   // 获取文件操作参数
   FUN_180334500(param_1,auStack_80);
   puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,3);
-  puVar8 = &DAT_18098bc73;
+  puVar8 = &system_buffer_ptr;
   if (puStack_78 != (void *)0x0) {
     puVar8 = puStack_78;
   }
@@ -1188,7 +1188,7 @@ void FUN_18032c9f0(longlong param_1,longlong param_2,longlong param_3,int32_t pa
     puStack_a8 = puStack_a8 + 1;
     
     // 获取资源名称
-    puVar8 = &DAT_18098bc73;
+    puVar8 = &system_buffer_ptr;
     if (*(void **)(puVar3 + 8) != (void *)0x0) {
       puVar8 = *(void **)(puVar3 + 8);
     }

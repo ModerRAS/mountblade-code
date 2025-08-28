@@ -674,7 +674,7 @@ void FUN_180565d50(longlong param_1,longlong *param_2,longlong param_3)
   plStack_108 = plStack_120;
   pplStack_100 = pplStack_118;
   cVar1 = (**(code **)(**(longlong **)(plStack_128[0x15] + 0x88) + 0x60))
-                    (*(longlong **)(plStack_128[0x15] + 0x88),&DAT_180a01050,plStack_128[0x15] + 0xc
+                    (*(longlong **)(plStack_128[0x15] + 0x88),&system_data_1050,plStack_128[0x15] + 0xc
                      ,0);
   if (pcStack_f8 != (code *)0x0) {
     (*pcStack_f8)(&plStack_108,0,0);

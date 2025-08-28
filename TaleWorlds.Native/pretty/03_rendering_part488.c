@@ -148,7 +148,7 @@ void FUN_18052a270(longlong *param_1,longlong param_2)
   
   uStack_138 = 0xfffffffffffffffe;
   if ((int)param_1[0xad] - 3U < 2) {
-    fVar19 = (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x140] * 8) -
+    fVar19 = (float)(*(longlong *)(&system_error_code + (longlong)(int)param_1[0x140] * 8) -
                     param_1[0x13f]);
     fVar18 = fVar19 * 1e-05;
     cVar6 = *(float *)(param_1 + 0x141) + 0.11 < fVar18;
@@ -184,7 +184,7 @@ void FUN_18052a270(longlong *param_1,longlong param_2)
       if (bVar4) {
         FUN_18052a030(param_1,param_2);
       }
-      fVar17 = (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x140] * 8) -
+      fVar17 = (float)(*(longlong *)(&system_error_code + (longlong)(int)param_1[0x140] * 8) -
                       param_1[0x13f]) * 1e-05;
       *(float *)(param_1 + 0x141) = fVar17;
       *(float *)((longlong)param_1 + 0xa0c) = fVar17;
@@ -241,7 +241,7 @@ LAB_18052a570:
           if (cVar6 != '\0') goto code_r0x00018052a5a2;
           ReleaseSRWLockShared(param_2);
 LAB_18052a61a:
-          param_1[0x142] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x143] * 8) + 40000
+          param_1[0x142] = *(longlong *)(&system_error_code + (longlong)(int)param_1[0x143] * 8) + 40000
           ;
           goto LAB_18052a5b9;
         }
@@ -257,7 +257,7 @@ LAB_18052a5b9:
       }
       if ((fVar19 < fVar18) ||
          ((1.0 < fVar18 &&
-          (0.0 < (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x143] * 8) -
+          (0.0 < (float)(*(longlong *)(&system_error_code + (longlong)(int)param_1[0x143] * 8) -
                         param_1[0x142]) * 1e-05)))) {
         FUN_18051aff0(param_1,0,param_2);
       }

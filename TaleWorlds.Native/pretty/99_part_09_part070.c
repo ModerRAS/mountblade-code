@@ -96,7 +96,7 @@ void FUN_1805ea4b0(longlong param_1,longlong param_2,longlong param_3,char *para
       else {
         iVar3 = *(int *)((longlong)(int)plVar1[0x493] * 0x68 + 0x58 + _DAT_180c96150);
         if (iVar3 == 0x12) {
-          lVar2 = FUN_18053a5a0(&DAT_180c95f30,*(int32_t *)((longlong)plVar1 + 0xac));
+          lVar2 = FUN_18053a5a0(&system_data_5f30,*(int32_t *)((longlong)plVar1 + 0xac));
           if ((int)plVar1[0x493] == -1) {
             return;
           }
@@ -151,7 +151,7 @@ LAB_1805ea5e4:
     }
     else {
       if (*(int *)((longlong)iVar3 * 0x68 + 0x58 + _DAT_180c96150) != 0x12) goto LAB_1805ea5e4;
-      lVar2 = FUN_18053a5a0(&DAT_180c95f30,*(int32_t *)((longlong)plVar1 + 0xac));
+      lVar2 = FUN_18053a5a0(&system_data_5f30,*(int32_t *)((longlong)plVar1 + 0xac));
       if (((int)plVar1[0x493] != -1) &&
          (*(char *)((longlong)(int)plVar1[0x493] * 0x68 + 0x60 + _DAT_180c96150) == '\x04')) {
         fVar5 = (float)(**(code **)(*plVar1 + 0x90))(plVar1,1);
@@ -237,7 +237,7 @@ void FUN_1805ea582(longlong param_1,longlong param_2,uint64_t param_3,uint64_t p
   float fVar2;
   
   if (*(int *)(param_2 * 0x68 + 0x58 + param_1) == 0x12) {
-    lVar1 = FUN_18053a5a0(&DAT_180c95f30,*(int32_t *)((longlong)unaff_RDI + 0xac));
+    lVar1 = FUN_18053a5a0(&system_data_5f30,*(int32_t *)((longlong)unaff_RDI + 0xac));
     if (((int)unaff_RDI[0x493] != -1) &&
        (*(char *)((longlong)(int)unaff_RDI[0x493] * 0x68 + 0x60 + _DAT_180c96150) == '\x04')) {
       fVar2 = (float)(**(code **)(*unaff_RDI + 0x90))(extraout_XMM0_Da,1);

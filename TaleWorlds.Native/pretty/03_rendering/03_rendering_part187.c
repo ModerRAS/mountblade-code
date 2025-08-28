@@ -505,7 +505,7 @@ void RenderingSystem_AdvancedParticleProcessor(void)
                 
                 if (*(int *)(register_rbp + 0x14) <= (int)random_val2) {
                     undef_ptr = *(void **)(temp_long + 0x10);
-                    undef_ptr2 = &DAT_18098bc73;
+                    undef_ptr2 = &system_buffer_ptr;
                     
                     if ((*(uint *)(temp_long + 0x60) & FLAG_0x400000) == 0) {
                         if (undef_ptr != (void *)0x0) {

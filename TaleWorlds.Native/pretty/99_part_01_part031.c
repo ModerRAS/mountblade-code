@@ -449,7 +449,7 @@ LAB_1800bebdc:
     }
     if ((bVar3 != param_3) && (1 < (byte)(param_3 - 10))) {
       puVar2 = *(void **)(*(longlong *)(param_1 + 0xf0 + uVar8 * 8) + 0x18);
-      puVar7 = &DAT_18098bc73;
+      puVar7 = &system_buffer_ptr;
       if (puVar2 != (void *)0x0) {
         puVar7 = puVar2;
       }
@@ -889,7 +889,7 @@ longlong * FUN_1800bf6c0(uint64_t param_1,longlong *param_2,uint64_t param_3,uin
   lVar3 = _DAT_180c86898;
   if (*(longlong *)(_DAT_180c86898 + 0x350) == 0) {
     puVar4 = (uint64_t *)
-             FUN_180094e80(param_1,&plStackX_18,&DAT_180a035c0,param_4,0,0xfffffffffffffffe);
+             FUN_180094e80(param_1,&plStackX_18,&system_data_35c0,param_4,0,0xfffffffffffffffe);
     uVar1 = *puVar4;
     *puVar4 = 0;
     plVar2 = *(longlong **)(lVar3 + 0x350);

@@ -346,7 +346,7 @@ LAB_180373799:
           puVar18 = (uint64_t *)FUN_18037f020(unaff_RBX + 0x108,unaff_RBP + -0x18,&param_8);
           piVar20 = (int *)*puVar18;
         }
-        uVar17 = FUN_18063ad30(unaff_RBP + 0x90,*(longlong *)(piVar20 + 2) + 0x18,&DAT_180a00300);
+        uVar17 = FUN_18063ad30(unaff_RBP + 0x90,*(longlong *)(piVar20 + 2) + 0x18,&system_data_0300);
         lVar19 = FUN_180372570(uVar17,uVar6 & 0xffffffff,uVar5 & 0xffffffff);
         uVar2 = *(uint *)(unaff_RBX + 0x118);
         lVar29 = *(longlong *)(unaff_RBX + 0x110);

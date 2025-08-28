@@ -538,7 +538,7 @@ longlong * FUN_180301040(longlong *param_1)
   if (plVar4 != (longlong *)0x0) {
     (**(code **)(*plVar4 + 0x38))();
   }
-  (**(code **)(*plVar2 + 0x10))(plVar2,&DAT_180a0b1c0);
+  (**(code **)(*plVar2 + 0x10))(plVar2,&system_data_b1c0);
   *(int8_t *)(param_1 + 0x10f) = 0;
   param_1[0xa3] = 0;
   *(int32_t *)((longlong)param_1 + 0xf4) = 0x3f800000;

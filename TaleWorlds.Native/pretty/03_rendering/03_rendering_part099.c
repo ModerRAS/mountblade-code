@@ -314,7 +314,7 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
             FUN_1806279c0(&puStack_108,param_3 + 0x10);
             
             // 字符串处理和搜索逻辑
-            while ((0 < (int)(uint)uStack_f8 && (lVar15 = strstr(lStack_100,&DAT_180a0ff10), lVar15 != 0))) {
+            while ((0 < (int)(uint)uStack_f8 && (lVar15 = strstr(lStack_100,&system_memory_ff10), lVar15 != 0))) {
                 iVar25 = 6;
                 iVar13 = (int)lVar15 - (int)lStack_100;
                 if ((uint)uStack_f8 < iVar13 + 6U) {
@@ -476,7 +476,7 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
                 puStack_a0 = auStack_90;
                 auStack_90[0] = 0;
                 uStack_98 = 0x14;
-                strcpy_s(auStack_90,0x40,&DAT_180a0d5b8);
+                strcpy_s(auStack_90,0x40,&system_memory_d5b8);
                 uVar18 = FUN_180240430(plVar16[0x3c],&puStack_a8,1);
                 plVar16[0x28] = plVar16[0x28] | uVar18;
                 FUN_18022dd60(plVar16);

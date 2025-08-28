@@ -129,7 +129,7 @@ void FUN_180288f30(longlong param_1,uint64_t param_2)
       acStack_d0[0] = '\0';
       uStack_d8 = *(uint *)(lVar12 + 0x20);
       puVar3 = *(void **)(lVar12 + 0x18);
-      puVar23 = &DAT_18098bc73;
+      puVar23 = &system_buffer_ptr;
       if (puVar3 != (void *)0x0) {
         puVar23 = puVar3;
       }
@@ -381,7 +381,7 @@ LAB_1802899a4:
   else {
     bVar4 = false;
   }
-  if ((bVar4) && (DAT_180c82860 == '\0')) {
+  if ((bVar4) && (system_debug_flag == '\0')) {
     uVar6 = 1;
   }
   else {

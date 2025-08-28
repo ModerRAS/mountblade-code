@@ -31,7 +31,7 @@ extern longlong _DAT_180c8ed18;
 extern longlong _DAT_180c86878;
 extern longlong _DAT_180c86928;
 extern longlong _DAT_180bf00a8;
-extern uint8_t DAT_18098bc73;
+extern uint8_t system_buffer_ptr;
 extern uint8_t UNK_180a3c3e0;
 extern uint8_t UNK_18098bc01;
 extern uint8_t UNK_18033d410;
@@ -42,7 +42,7 @@ extern uint8_t UNK_180a09a40;
 extern uint8_t UNK_18098bcb0;
 extern uint8_t UNK_18098bc80;
 extern uint8_t UNK_180a1b070;
-extern uint8_t DAT_180c8ed30;
+extern uint8_t system_error_code;
 
 // 函数声明
 void rendering_system_queue_manager(longlong *param_1, uint64_t *param_2);
@@ -742,7 +742,7 @@ void rendering_system_pipeline_initializer(longlong param_1)
     // 处理渲染管线时间戳
     uVar9 = *(uint *)(param_1 + 0x150);
     fStackX_1c = (float)(*(longlong *)
-                          (&DAT_180c8ed30 +
+                          (&system_error_code +
                           (longlong)*(int *)(*(longlong *)(param_1 + 0x2d8) + 0x5b98) * 8) %
                         1000000000) * 1e-05;
     uVar10 = (ulonglong)(uVar9 % *(uint *)(param_1 + 0x998));
@@ -906,7 +906,7 @@ void rendering_system_advanced_processor(longlong param_1, longlong param_2, int
     *(bool *)(puVar7 + 0x2c) = (*(byte *)(param_2 + 0x2e8) & 0xb) == 0xb;
     puVar7[0x11] = uVar4;
     puVar7[0x12] = param_3;
-    puVar13 = &DAT_18098bc73;
+    puVar13 = &system_buffer_ptr;
     if (*(void **)(param_2 + 0x290) != (void *)0x0) {
       puVar13 = *(void **)(param_2 + 0x290);
     }

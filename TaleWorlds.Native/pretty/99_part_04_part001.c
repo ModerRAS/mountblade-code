@@ -196,7 +196,7 @@ longlong FUN_180257970(longlong *param_1,longlong *param_2,int param_3,uint64_t 
     }
     else {
       if (param_3 == 1) {
-        lVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x20,8,DAT_180bf65bc);
+        lVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x20,8,system_allocation_flags);
         lVar2 = *param_2;
         *(uint64_t *)(lVar1 + 0x10) = 0;
         *(code **)(lVar1 + 0x18) = _guard_check_icall;
@@ -265,7 +265,7 @@ longlong FUN_180257b80(longlong param_1)
   *(uint64_t *)(param_1 + 0x24) = 0x40000000;
   *(int32_t *)(param_1 + 0x2c) = 0x1a;
   *(uint64_t *)(param_1 + 0x10) = 1;
-  *(void **)(param_1 + 8) = &DAT_180be0000;
+  *(void **)(param_1 + 8) = &system_data_0000;
   *(uint64_t *)(param_1 + 0x18) = 0;
   *(int32_t *)(param_1 + 0x28) = 0;
   *(uint64_t *)(param_1 + 0x30) = 0;
@@ -819,7 +819,7 @@ void FUN_180258670(longlong param_1,longlong *param_2)
   
   if ((((*(longlong *)(*(longlong *)(param_1 + 0x20) + 0x74) != 0) ||
        (*(longlong *)(*(longlong *)(param_1 + 0x20) + 0x7c) != 0)) &&
-      (lVar3 = FUN_180087070(_DAT_180c868a8,&DAT_180a012f0), lVar3 != 0)) &&
+      (lVar3 = FUN_180087070(_DAT_180c868a8,&system_data_12f0), lVar3 != 0)) &&
      (param_2 != (longlong *)(lVar3 + 0x90))) {
     lVar1 = *(longlong *)(lVar3 + 0x90);
     lVar3 = *(longlong *)(lVar3 + 0x98);

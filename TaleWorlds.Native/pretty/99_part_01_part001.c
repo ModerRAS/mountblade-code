@@ -162,29 +162,29 @@ typedef struct {
 // ============================================================================
 
 // 系统数据变量
-extern uint8_t DAT_180a01078;          // 系统数据寄存器1
+extern uint8_t system_memory_1078;          // 系统数据寄存器1
 extern uint8_t UNK_180a00388;           // 未知系统数据1
-extern uint8_t DAT_180a01050;           // 系统数据寄存器2
+extern uint8_t system_memory_1050;           // 系统数据寄存器2
 extern uint8_t UNK_180a003a0;          // 未知系统数据2
-extern uint8_t DAT_180a01028;           // 系统数据寄存器3
+extern uint8_t system_memory_1028;           // 系统数据寄存器3
 extern uint8_t UNK_180a003b8;           // 未知系统数据3
-extern uint8_t DAT_180a01000;           // 系统数据寄存器4
+extern uint8_t system_memory_1000;           // 系统数据寄存器4
 extern uint8_t UNK_180a003d0;           // 未知系统数据4
-extern uint8_t DAT_180a00fd8;           // 系统数据寄存器5
+extern uint8_t system_memory_0fd8;           // 系统数据寄存器5
 extern uint8_t UNK_1800868c0;           // 未知系统数据5
 extern uint8_t UNK_180a003e8;           // 未知系统数据6
-extern uint8_t DAT_180a00fb0;           // 系统数据寄存器6
+extern uint8_t system_memory_0fb0;           // 系统数据寄存器6
 extern uint8_t UNK_180a00400;           // 未知系统数据7
-extern uint8_t DAT_180a00e28;           // 系统数据寄存器7
+extern uint8_t system_memory_0e28;           // 系统数据寄存器7
 extern uint8_t UNK_180a00430;           // 未知系统数据8
-extern uint8_t DAT_180a00d48;           // 系统数据寄存器8
+extern uint8_t system_memory_0d48;           // 系统数据寄存器8
 extern uint8_t UNK_180a00460;           // 未知系统数据9
-extern uint8_t DAT_180a00bb0;           // 系统数据寄存器9
+extern uint8_t system_memory_0bb0;           // 系统数据寄存器9
 extern uint8_t UNK_180a004a8;           // 未知系统数据10
-extern uint8_t DAT_180a00b88;           // 系统数据寄存器10
+extern uint8_t system_memory_0b88;           // 系统数据寄存器10
 extern uint8_t UNK_180a004c0;           // 未知系统数据11
-extern uint8_t DAT_180bf64d0;           // 系统数据寄存器11
-extern uint8_t DAT_180bf64d8;           // 系统数据寄存器12
+extern uint8_t system_memory_64d0;           // 系统数据寄存器11
+extern uint8_t system_memory_64d8;           // 系统数据寄存器12
 
 // ============================================================================
 // 函数声明

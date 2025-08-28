@@ -257,7 +257,7 @@ void FUN_1806c4a10(longlong *param_1,longlong *param_2)
     uVar7 = uStackX_8;
     while (cVar4 != '\0') {
       if ((char)param_1[9] == '\0') {
-        puVar6 = &DAT_18098bc73;
+        puVar6 = &system_buffer_ptr;
       }
       else {
         puVar6 = (void *)(**(code **)(*(longlong *)param_1[5] + 0x38))();
@@ -410,7 +410,7 @@ void FUN_1806c4a99(void)
   lVar7 = *(longlong *)(unaff_RBP + 0x1d0);
   do {
     if ((char)unaff_RBX[9] == '\0') {
-      puVar6 = &DAT_18098bc73;
+      puVar6 = &system_buffer_ptr;
     }
     else {
       puVar6 = (void *)(**(code **)(*(longlong *)unaff_RBX[5] + 0x38))();

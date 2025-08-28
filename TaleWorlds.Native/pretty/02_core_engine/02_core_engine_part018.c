@@ -149,7 +149,7 @@ void initialize_memory_pool(longlong *param_1)
             lVar12 = lStack_368;
             iVar8 = iStack_370;
             puVar17 = *(void **)(lStack_368 * 0x20 + 8 + lVar10);
-            puVar13 = &DAT_18098bc73;
+            puVar13 = &system_buffer_ptr;
             if (puVar17 != (void *)0x0) {
                 puVar13 = puVar17;
             }
@@ -205,13 +205,13 @@ void initialize_memory_pool(longlong *param_1)
                     lVar10 = lStack_2c8;
                     puVar2 = puStack_308;
                     iVar8 = iStack_374;
-                    puVar17 = &DAT_18098bc73;
+                    puVar17 = &system_buffer_ptr;
                     if ((void *)puStack_308[lStack_2c8 * 4 + 1] != (void *)0x0) {
                         puVar17 = (void *)puStack_308[lStack_2c8 * 4 + 1];
                     }
                     lVar12 = strrchr(puVar17, 0x2f);
                     if (lVar12 == 0) {
-                        puVar17 = &DAT_18098bc73;
+                        puVar17 = &system_buffer_ptr;
                         if ((void *)puVar2[lVar10 * 4 + 1] != (void *)0x0) {
                             puVar17 = (void *)puVar2[lVar10 * 4 + 1];
                         }
@@ -221,7 +221,7 @@ void initialize_memory_pool(longlong *param_1)
                     }
                     puVar13 = (void *)strchr(puVar17, 0x2e);
                     if (puVar13 == (void *)0x0) {
-                        puVar13 = &DAT_18098bc73;
+                        puVar13 = &system_buffer_ptr;
                         if ((void *)puVar2[lVar10 * 4 + 1] != (void *)0x0) {
                             puVar13 = (void *)puVar2[lVar10 * 4 + 1];
                         }
@@ -500,12 +500,12 @@ void initialize_memory_pool(longlong *param_1)
                     uVar9 = process_data_comparison(&uStack_268, ppppppuVar14 + 8);
                     update_data_structure(&puStack_330, uVar9);
                     uStack_268 = &UNK_18098bcb0;
-                    ppppppuVar19 = (uint64_t ******)&DAT_18098bc73;
+                    ppppppuVar19 = (uint64_t ******)&system_buffer_ptr;
                     if (pppppppuVar14[5] != (uint64_t ******)0x0) {
                         ppppppuVar19 = ppppppuVar14[5];
                     }
                     update_data_structure_pointer(&puStack_308, ppppppuVar19);
-                    puVar17 = &DAT_18098bc73;
+                    puVar17 = &system_buffer_ptr;
                     if (puStack_328 != (void *)0x0) {
                         puVar17 = puStack_328;
                     }

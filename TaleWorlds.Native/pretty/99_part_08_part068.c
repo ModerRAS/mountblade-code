@@ -626,10 +626,10 @@ void FUN_1805b77f0(longlong param_1,char param_2)
       *(int32_t *)(param_1 + 0x200c) = 0;
       *(int8_t *)(param_1 + 0x1c48) = 0;
       *(uint64_t *)(param_1 + 0x1c38) =
-           *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x1c40) * 8);
+           *(uint64_t *)(&system_error_code + (longlong)*(int *)(param_1 + 0x1c40) * 8);
     }
     else if ((*(char *)(param_1 + 0x1c48) == '\0') &&
-            (0.0 < (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x1c40) * 8)
+            (0.0 < (float)(*(longlong *)(&system_error_code + (longlong)*(int *)(param_1 + 0x1c40) * 8)
                           - *(longlong *)(param_1 + 0x1c38)) * 1e-05)) {
       if ((*(uint *)(param_1 + 0x209c) >> 0xb & 1) == 0) {
         FUN_180508220();
@@ -642,8 +642,8 @@ void FUN_1805b77f0(longlong param_1,char param_2)
       *(int32_t *)(param_1 + 0x200c) = 0;
       *(int8_t *)(param_1 + 0x1c48) = 0;
       *(uint64_t *)(param_1 + 0x1c38) =
-           *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x1c40) * 8);
-      puVar3 = &DAT_180c8ed30;
+           *(uint64_t *)(&system_error_code + (longlong)*(int *)(param_1 + 0x1c40) * 8);
+      puVar3 = &system_error_code;
       puVar1 = &UNK_180a30c20;
       if (*(char *)(param_1 + 0x13bc) != '\0') {
         puVar1 = &UNK_180a30bd8;
@@ -652,7 +652,7 @@ void FUN_1805b77f0(longlong param_1,char param_2)
       func_0x000180508000(param_1,&UNK_180a30c70,&UNK_180a30be0,puVar1,
                           (double)*(float *)(param_1 + 0x13b8),
                           (double)((float)(*(longlong *)
-                                            (&DAT_180c8ed30 +
+                                            (&system_error_code +
                                             (longlong)*(int *)(param_1 + 0x13b0) * 8) -
                                           *(longlong *)(param_1 + 0x13a8)) * 1e-05));
       if (*(char *)(param_1 + 0x13bc) == '\0') {
@@ -707,10 +707,10 @@ void FUN_1805b7813(int32_t param_1,void *param_2)
     *(int32_t *)(unaff_RBX + 0x200c) = 0;
     *(int8_t *)(unaff_RBX + 0x1c48) = 0;
     *(uint64_t *)(unaff_RBX + 0x1c38) =
-         *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(unaff_RBX + 0x1c40) * 8);
+         *(uint64_t *)(&system_error_code + (longlong)*(int *)(unaff_RBX + 0x1c40) * 8);
   }
   else if ((*(char *)(unaff_RBX + 0x1c48) == '\0') &&
-          (0.0 < (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(unaff_RBX + 0x1c40) * 8)
+          (0.0 < (float)(*(longlong *)(&system_error_code + (longlong)*(int *)(unaff_RBX + 0x1c40) * 8)
                         - *(longlong *)(unaff_RBX + 0x1c38)) * 1e-05)) {
     if ((*(uint *)(unaff_RBX + 0x209c) >> 0xb & 1) == 0) {
       FUN_180508220();
@@ -723,15 +723,15 @@ void FUN_1805b7813(int32_t param_1,void *param_2)
     *(int32_t *)(unaff_RBX + 0x200c) = 0;
     *(int8_t *)(unaff_RBX + 0x1c48) = 0;
     *(uint64_t *)(unaff_RBX + 0x1c38) =
-         *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(unaff_RBX + 0x1c40) * 8);
-    puVar4 = &DAT_180c8ed30;
+         *(uint64_t *)(&system_error_code + (longlong)*(int *)(unaff_RBX + 0x1c40) * 8);
+    puVar4 = &system_error_code;
     puVar2 = &UNK_180a30c20;
     if (*(char *)(unaff_RBX + 0x13bc) != '\0') {
       puVar2 = &UNK_180a30bd8;
     }
     lVar3 = unaff_RBX;
     func_0x000180508000((float)(*(longlong *)
-                                 (&DAT_180c8ed30 + (longlong)*(int *)(unaff_RBX + 0x13b0) * 8) -
+                                 (&system_error_code + (longlong)*(int *)(unaff_RBX + 0x13b0) * 8) -
                                *(longlong *)(unaff_RBX + 0x13a8)) * 1e-05,&UNK_180a30c70,
                         &UNK_180a30be0,puVar2,(double)*(float *)(unaff_RBX + 0x13b8));
     if (*(char *)(unaff_RBX + 0x13bc) == '\0') {
@@ -768,7 +768,7 @@ void FUN_1805b7910(void)
   *(int32_t *)(unaff_RBX + 0x200c) = 0;
   *(int8_t *)(unaff_RBX + 0x1c48) = 0;
   *(uint64_t *)(unaff_RBX + 0x1c38) =
-       *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(unaff_RBX + 0x1c40) * 8);
+       *(uint64_t *)(&system_error_code + (longlong)*(int *)(unaff_RBX + 0x1c40) * 8);
   return;
 }
 
@@ -989,7 +989,7 @@ uint64_t FUN_1805b7e80(longlong *param_1,float param_2)
   if (!bVar2) {
     return 1;
   }
-  if ((float)(*(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x2f0] * 8) - param_1[0x2ef]) *
+  if ((float)(*(longlong *)(&system_error_code + (longlong)(int)param_1[0x2f0] * 8) - param_1[0x2ef]) *
       1e-05 < 5.0) {
     if ((*(byte *)(param_1 + 2) & 0x10) == 0) {
       FUN_1805d3770(param_1 + 1);

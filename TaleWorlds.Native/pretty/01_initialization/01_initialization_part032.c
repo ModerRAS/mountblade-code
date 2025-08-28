@@ -206,7 +206,7 @@ ulonglong 管理链表节点移动(longlong *node_list,uint *state_ptr)
     if (remaining_nodes != 0) {
       do {
         if (current_node == (ulonglong *)0x0) {
-          current_node = (ulonglong *)&DAT_00000008;
+          current_node = (ulonglong *)&system_buffer_0008;
         }
         temp_node = (ulonglong *)(*current_node - 8);
         if (*current_node == 0) {
@@ -234,7 +234,7 @@ ulonglong 管理链表节点移动(longlong *node_list,uint *state_ptr)
   if ((int)move_count != 0) {
     do {
       if (current_node == (ulonglong *)0x0) {
-        current_node = (ulonglong *)&DAT_00000008;
+        current_node = (ulonglong *)&system_buffer_0008;
       }
       move_count = *current_node;
       next_node = (ulonglong *)(move_count - 8);
@@ -504,7 +504,7 @@ uint64_t 尝试插入缓冲区(uint64_t *buffer_info,longlong queue_info,uint64_
     start_node = (longlong *)*buffer_info;
     current_node = *(longlong **)(queue_info + 0x10);
     if (current_node == (longlong *)0x0) {
-      current_node = (longlong *)&DAT_00000008;
+      current_node = (longlong *)&system_buffer_0008;
     }
     node_value = *current_node;
     while( true ) {
@@ -846,7 +846,7 @@ void 初始化线程池资源(uint64_t param1,longlong config_ptr)
   FUN_18005ea90(lVar1 + 0x48,&puStack_238);
   *(uint64_t **)(lVar2 + 400) = puVar3;
   puStack_1a8 = &UNK_18098bcb0;
-  FUN_180627e10(_DAT_180c86870 + 0x170,auStack_230,&DAT_1809fc8c8);
+  FUN_180627e10(_DAT_180c86870 + 0x170,auStack_230,&system_buffer_c8c8);
   if (0 < *(int *)(param_2 + 0x10)) {
     FUN_1806277c0(auStack_230,uStack_220 + *(int *)(param_2 + 0x10));
                     // WARNING: Subroutine does not return

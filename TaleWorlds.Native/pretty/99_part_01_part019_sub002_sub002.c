@@ -68,7 +68,7 @@ LAB_1800b26ac:
         (**(code **)(*plStack_260 + 0x38))();
       }
       FUN_1800a5750(*param_2 + 0xd0,param_4);
-      puVar9 = &DAT_18098bc73;
+      puVar9 = &system_buffer_ptr;
       if (*(void **)(param_3 + 8) != (void *)0x0) {
         puVar9 = *(void **)(param_3 + 8);
       }
@@ -140,7 +140,7 @@ LAB_1800b26ac:
                       ((*(char *)(lVar10 + 0x104) == (char)param_4[0xd] &&
                        (param_4[0xc] == *(int *)(lVar10 + 0x1e8))))))))) {
           FUN_180056f10(param_2);
-          puVar9 = &DAT_18098bc73;
+          puVar9 = &system_buffer_ptr;
           if (*(void **)(param_3 + 8) != (void *)0x0) {
             puVar9 = *(void **)(param_3 + 8);
           }
@@ -537,20 +537,20 @@ LAB_1800b2e93:
       __Throw_C_error_std__YAXH_Z(iVar8);
     }
     plVar2 = plStackX_8;
-    puVar12 = &DAT_18098bc73;
+    puVar12 = &system_buffer_ptr;
     if (*(void **)(param_3 + 8) != (void *)0x0) {
       puVar12 = *(void **)(param_3 + 8);
     }
     (**(code **)(plStackX_8[2] + 0x10))(plStackX_8 + 2,puVar12);
     *(int32_t *)(plVar2 + 0x65) = 0x83;
-    pbVar9 = &DAT_18098bc73;
+    pbVar9 = &system_buffer_ptr;
     if (pbStack_58 != (byte *)0x0) {
       pbVar9 = pbStack_58;
     }
     (**(code **)(plVar2[0x71] + 0x10))(plVar2 + 0x71,pbVar9);
     FUN_1802a83f0(plVar2 + 0x71,(longlong)plVar2 + 0x2e4);
     if (*(int *)((longlong)plVar2 + 0x324) == 0) {
-      puVar12 = &DAT_18098bc73;
+      puVar12 = &system_buffer_ptr;
       if ((void *)plVar2[3] != (void *)0x0) {
         puVar12 = (void *)plVar2[3];
       }
@@ -580,7 +580,7 @@ FUN_1800b3060(uint64_t param_1,uint64_t *param_2,longlong param_3,uint64_t param
   longlong *plVar1;
   void *puVar2;
   
-  puVar2 = &DAT_18098bc73;
+  puVar2 = &system_buffer_ptr;
   if (*(void **)(param_3 + 8) != (void *)0x0) {
     puVar2 = *(void **)(param_3 + 8);
   }
@@ -609,7 +609,7 @@ longlong * FUN_1800b30d0(longlong param_1,longlong *param_2,longlong param_3,cha
     *param_2 = 0;
   }
   else {
-    puVar2 = &DAT_18098bc73;
+    puVar2 = &system_buffer_ptr;
     if (*(void **)(param_3 + 8) != (void *)0x0) {
       puVar2 = *(void **)(param_3 + 8);
     }
@@ -621,7 +621,7 @@ longlong * FUN_1800b30d0(longlong param_1,longlong *param_2,longlong param_3,cha
         *param_2 = 0;
       }
       else {
-        puVar2 = &DAT_18098bc73;
+        puVar2 = &system_buffer_ptr;
         if (*(void **)(param_3 + 8) != (void *)0x0) {
           puVar2 = *(void **)(param_3 + 8);
         }
@@ -660,7 +660,7 @@ longlong * FUN_1800b31f0(longlong param_1,longlong *param_2,longlong param_3,cha
   longlong *plVar1;
   void *puVar2;
   
-  puVar2 = &DAT_18098bc73;
+  puVar2 = &system_buffer_ptr;
   if (*(void **)(param_3 + 8) != (void *)0x0) {
     puVar2 = *(void **)(param_3 + 8);
   }
@@ -672,7 +672,7 @@ longlong * FUN_1800b31f0(longlong param_1,longlong *param_2,longlong param_3,cha
       *param_2 = 0;
     }
     else {
-      puVar2 = &DAT_18098bc73;
+      puVar2 = &system_buffer_ptr;
       if (*(void **)(param_3 + 8) != (void *)0x0) {
         puVar2 = *(void **)(param_3 + 8);
       }
@@ -717,7 +717,7 @@ FUN_1800b32c0(uint64_t param_1,longlong *param_2,longlong param_3,char param_4,u
       }
     }
     if (param_4 != '\0') {
-      puVar4 = &DAT_18098bc73;
+      puVar4 = &system_buffer_ptr;
       if (*(void **)(param_3 + 8) != (void *)0x0) {
         puVar4 = *(void **)(param_3 + 8);
       }
@@ -746,7 +746,7 @@ uint64_t * FUN_1800b33d0(longlong param_1,uint64_t *param_2,longlong param_3,uin
   longlong *plVar1;
   void *puVar2;
   
-  puVar2 = &DAT_18098bc73;
+  puVar2 = &system_buffer_ptr;
   if (*(void **)(param_3 + 8) != (void *)0x0) {
     puVar2 = *(void **)(param_3 + 8);
   }
@@ -774,7 +774,7 @@ longlong * FUN_1800b3430(uint64_t param_1,longlong *param_2,longlong param_3,cha
     *param_2 = 0;
   }
   else {
-    puVar3 = &DAT_18098bc73;
+    puVar3 = &system_buffer_ptr;
     if (*(void **)(param_3 + 8) != (void *)0x0) {
       puVar3 = *(void **)(param_3 + 8);
     }
@@ -785,7 +785,7 @@ longlong * FUN_1800b3430(uint64_t param_1,longlong *param_2,longlong param_3,cha
         *param_2 = 0;
       }
       else {
-        puVar3 = &DAT_18098bc73;
+        puVar3 = &system_buffer_ptr;
         if (*(void **)(param_3 + 8) != (void *)0x0) {
           puVar3 = *(void **)(param_3 + 8);
         }
@@ -820,7 +820,7 @@ FUN_1800b3510(uint64_t param_1,uint64_t *param_2,longlong param_3,uint64_t param
     *param_2 = 0;
   }
   else {
-    puVar2 = &DAT_18098bc73;
+    puVar2 = &system_buffer_ptr;
     if (*(void **)(param_3 + 8) != (void *)0x0) {
       puVar2 = *(void **)(param_3 + 8);
     }
@@ -853,7 +853,7 @@ longlong * FUN_1800b3590(uint64_t param_1,longlong *param_2,longlong param_3,cha
     *param_2 = 0;
   }
   else {
-    puVar3 = &DAT_18098bc73;
+    puVar3 = &system_buffer_ptr;
     if (*(void **)(param_3 + 8) != (void *)0x0) {
       puVar3 = *(void **)(param_3 + 8);
     }
@@ -861,7 +861,7 @@ longlong * FUN_1800b3590(uint64_t param_1,longlong *param_2,longlong param_3,cha
              FUN_1802abc50(_DAT_180c86930 + 0x430,puVar3,param_3,param_4,0,0xfffffffffffffffe);
     if (plVar2 == (longlong *)0x0) {
       if (param_4 == '\0') {
-        puVar3 = &DAT_18098bc73;
+        puVar3 = &system_buffer_ptr;
         if (*(void **)(param_3 + 8) != (void *)0x0) {
           puVar3 = *(void **)(param_3 + 8);
         }
@@ -1020,7 +1020,7 @@ longlong * FUN_1800b3970(uint64_t param_1,longlong *param_2,longlong param_3,cha
   void *puVar3;
   
   lVar1 = _DAT_180c86930;
-  puVar3 = &DAT_18098bc73;
+  puVar3 = &system_buffer_ptr;
   if (*(void **)(param_3 + 8) != (void *)0x0) {
     puVar3 = *(void **)(param_3 + 8);
   }
@@ -1028,7 +1028,7 @@ longlong * FUN_1800b3970(uint64_t param_1,longlong *param_2,longlong param_3,cha
            FUN_1802abc50(_DAT_180c86930 + 0x300,puVar3,param_3,param_4,0,0xfffffffffffffffe);
   if (plVar2 == (longlong *)0x0) {
     if (param_4 == '\0') {
-      puVar3 = &DAT_18098bc73;
+      puVar3 = &system_buffer_ptr;
       if (*(void **)(param_3 + 8) != (void *)0x0) {
         puVar3 = *(void **)(param_3 + 8);
       }

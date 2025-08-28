@@ -319,7 +319,7 @@ void FUN_180279640(longlong *param_1,longlong *param_2,char param_3)
                             pbStack_3b0 = abStack_3a0;
                             abStack_3a0[0] = 0;
                             iStack_3a8 = *(int *)(lVar7 + 0x10);
-                            puVar15 = &DAT_18098bc73;
+                            puVar15 = &system_buffer_ptr;
                             if (*(void **)(lVar7 + 8) != (void *)0x0) {
                                 puVar15 = *(void **)(lVar7 + 8);
                             }
@@ -386,7 +386,7 @@ void FUN_180279640(longlong *param_1,longlong *param_2,char param_3)
                             pbStack_410 = abStack_400;
                             abStack_400[0] = 0;
                             iStack_408 = *(int *)(lVar7 + 0x10);
-                            puVar15 = &DAT_18098bc73;
+                            puVar15 = &system_buffer_ptr;
                             if (*(void **)(lVar7 + 8) != (void *)0x0) {
                                 puVar15 = *(void **)(lVar7 + 8);
                             }

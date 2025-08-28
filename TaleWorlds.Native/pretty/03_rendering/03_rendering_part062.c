@@ -348,7 +348,7 @@ void rendering_resource_allocator(uint64_t render_context, longlong resource_dat
     stack_ptr8 = stack_buffer3;
     stack_buffer3[0] = 0;
     stack_param18 = stack_param17;
-    data_ptr = &DAT_18098bc73;
+    data_ptr = &system_buffer_ptr;
     if (stack_ptr6 != (void *)0x0) {
         data_ptr = stack_ptr6;
     }
@@ -624,7 +624,7 @@ void rendering_resource_manager(longlong render_context, longlong resource_data,
     stack_ptr7 = stack_buffer3;
     stack_buffer3[0] = 0;
     stack_param21 = stack_param20;
-    data_ptr = &DAT_18098bc73;
+    data_ptr = &system_buffer_ptr;
     if (stack_ptr4 != (void *)0x0) {
         data_ptr = stack_ptr4;
     }
@@ -860,7 +860,7 @@ void rendering_performance_optimizer(longlong render_context, longlong resource_
         stack_buffer4[0] = 0;
         stack_param13 = *(int32_t *)(*(longlong *)(resource_data + 0x58) + 0x30);
         data_ptr2 = *(void **)(*(longlong *)(resource_data + 0x58) + 0x28);
-        data_ptr1 = &DAT_18098bc73;
+        data_ptr1 = &system_buffer_ptr;
         if (data_ptr2 != (void *)0x0) {
             data_ptr1 = data_ptr2;
         }
@@ -873,7 +873,7 @@ void rendering_performance_optimizer(longlong render_context, longlong resource_
         stack_buffer5[0] = 0;
         stack_param14 = *(int32_t *)(*(longlong *)(resource_data + 0x58) + 0x30);
         data_ptr2 = *(void **)(*(longlong *)(resource_data + 0x58) + 0x28);
-        data_ptr1 = &DAT_18098bc73;
+        data_ptr1 = &system_buffer_ptr;
         if (data_ptr2 != (void *)0x0) {
             data_ptr1 = data_ptr2;
         }
@@ -886,7 +886,7 @@ void rendering_performance_optimizer(longlong render_context, longlong resource_
         stack_buffer2[0] = 0;
         stack_param9 = *(int32_t *)(*(longlong *)(resource_data + 0x58) + 0x30);
         data_ptr2 = *(void **)(*(longlong *)(resource_data + 0x58) + 0x28);
-        data_ptr1 = &DAT_18098bc73;
+        data_ptr1 = &system_buffer_ptr;
         if (data_ptr2 != (void *)0x0) {
             data_ptr1 = data_ptr2;
         }
@@ -913,7 +913,7 @@ void rendering_performance_optimizer(longlong render_context, longlong resource_
         stack_ptr2 = stack_buffer2;
         stack_buffer2[0] = 0;
         stack_param9 = *(int32_t *)(resource_data + 0x10);
-        data_ptr1 = &DAT_18098bc73;
+        data_ptr1 = &system_buffer_ptr;
         if (*(void **)(resource_data + 8) != (void *)0x0) {
             data_ptr1 = *(void **)(resource_data + 8);
         }

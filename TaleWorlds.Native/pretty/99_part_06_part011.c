@@ -26,7 +26,7 @@ void FUN_1803af3d0(uint64_t *param_1)
   *(uint64_t *)((longlong)param_1 + 0x5c) = 0x40000000;
   *(int32_t *)((longlong)param_1 + 100) = 3;
   param_1[9] = 1;
-  param_1[8] = &DAT_180be0000;
+  param_1[8] = &system_data_0000;
   param_1[10] = 0;
   *(int32_t *)(param_1 + 0xc) = 0;
   param_1[0xe] = 0;
@@ -101,7 +101,7 @@ LAB_1803af5ea:
   iStack_38 = 0;
   FUN_1806277c0(&puStack_48,_DAT_180bf5218);
   if (0 < _DAT_180bf5218) {
-    puVar7 = &DAT_18098bc73;
+    puVar7 = &system_buffer_ptr;
     if (_DAT_180bf5210 != (void *)0x0) {
       puVar7 = _DAT_180bf5210;
     }

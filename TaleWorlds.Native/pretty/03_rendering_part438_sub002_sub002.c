@@ -385,7 +385,7 @@ FUN_180509710(longlong param_1,longlong param_2,float *param_3,float *param_4,fl
   *param_9 = -1.0;
   param_5 = param_3[8] + param_5;
   fStack_b8 = fVar7 * *param_6 + *param_3;
-  fVar1 = *(float *)(&DAT_180c964f0 + (ulonglong)param_8 * 4);
+  fVar1 = *(float *)(&system_data_64f0 + (ulonglong)param_8 * 4);
   fStack_b4 = fVar7 * param_6[1] + param_3[1];
   fStack_b0 = fVar7 * param_6[2] + param_3[2];
   fVar8 = param_3[8] * _DAT_180c964f8;

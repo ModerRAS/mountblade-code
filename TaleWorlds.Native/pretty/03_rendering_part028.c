@@ -14,12 +14,12 @@
 // 全局常量定义
 // 渲染系统数据区域
 #define RENDER_HASH_TABLE_BASE   UNK_180a3e3d8
-#define RENDER_MATRIX_BUFFER     DAT_180c967d8
+#define RENDER_MATRIX_BUFFER     system_buffer_67d8
 #define RENDER_RESOURCE_POOL    UNK_180a3e3f0
-#define RENDER_SYSTEM_CONFIG    DAT_180c967e0
-#define RENDER_PARAM_DATA       DAT_180c967e8
-#define RENDER_BUFFER_SIZE      DAT_180c967f0
-#define RENDER_CONTROL_DATA     DAT_180c967f8
+#define RENDER_SYSTEM_CONFIG    system_buffer_67e0
+#define RENDER_PARAM_DATA       system_buffer_67e8
+#define RENDER_BUFFER_SIZE      system_buffer_67f0
+#define RENDER_CONTROL_DATA     system_buffer_67f8
 #define RENDER_SYSTEM_DATA      _DAT_180c8ed18
 
 // 函数别名定义
@@ -286,12 +286,12 @@ LAB_180280958:
 // 全局变量和数据定义
 uint8_t RENDER_CONTROL_DATA;
 uint8_t UNK_180a3e3d8;
-uint8_t DAT_180c967d8;
+uint8_t system_buffer_67d8;
 uint8_t UNK_180a3e3f0;
 uint8_t RENDER_SYSTEM_CONFIG;
-uint8_t DAT_180c967e8;
-uint8_t DAT_180c967f0;
-uint8_t DAT_180c967f8;
+uint8_t system_buffer_67e8;
+uint8_t system_buffer_67f0;
+uint8_t system_buffer_67f8;
 uint8_t RENDER_PARAM_DATA;
 uint8_t RENDER_BUFFER_SIZE;
 
@@ -778,7 +778,7 @@ LAB_18028135c:
         puStack_a0 = auStack_90;
         auStack_90[0] = 0;
         uStack_98 = 0x10;
-        strcpy_s(auStack_90,0x40,&DAT_180a0d580);
+        strcpy_s(auStack_90,0x40,&system_buffer_d580);
         uVar6 = FUN_180240430(plVar8[0x3c],&puStack_a8,0);
         plVar8[0x28] = plVar8[0x28] | uVar6;
         FUN_18022dd60(plVar8);

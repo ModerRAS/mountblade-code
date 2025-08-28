@@ -11,7 +11,7 @@ void FUN_1806d2e60(longlong *param_1,uint64_t param_2,uint64_t *param_3,uint64_t
   
   lVar1 = param_5;
   FUN_1806d3200(param_3,param_5);
-  (**(code **)*param_3)(param_3,&DAT_1809fc8e4,1);
+  (**(code **)*param_3)(param_3,&system_data_c8e4,1);
   FUN_1806d3290(param_3,lVar1 + 0x10);
   param_5._0_1_ = 0;
   (**(code **)*param_3)(param_3,&param_5,1);
@@ -353,11 +353,11 @@ uint64_t * FUN_1806d3200(uint64_t *param_1,int32_t *param_2)
 
 {
   FUN_1806d3300(param_1,*param_2);
-  (**(code **)*param_1)(param_1,&DAT_1809fc8e4,1);
+  (**(code **)*param_1)(param_1,&system_data_c8e4,1);
   FUN_1806d3300(param_1,param_2[1]);
-  (**(code **)*param_1)(param_1,&DAT_1809fc8e4,1);
+  (**(code **)*param_1)(param_1,&system_data_c8e4,1);
   FUN_1806d3300(param_1,param_2[2]);
-  (**(code **)*param_1)(param_1,&DAT_1809fc8e4,1);
+  (**(code **)*param_1)(param_1,&system_data_c8e4,1);
   FUN_1806d3300(param_1,param_2[3]);
   return param_1;
 }
@@ -368,9 +368,9 @@ uint64_t * FUN_1806d3290(uint64_t *param_1,int32_t *param_2)
 
 {
   FUN_1806d3300(param_1,*param_2);
-  (**(code **)*param_1)(param_1,&DAT_1809fc8e4,1);
+  (**(code **)*param_1)(param_1,&system_data_c8e4,1);
   FUN_1806d3300(param_1,param_2[1]);
-  (**(code **)*param_1)(param_1,&DAT_1809fc8e4,1);
+  (**(code **)*param_1)(param_1,&system_data_c8e4,1);
   FUN_1806d3300(param_1,param_2[2]);
   return param_1;
 }

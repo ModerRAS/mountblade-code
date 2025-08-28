@@ -705,11 +705,11 @@ void FUN_1805c2bf0(longlong *param_1)
     if ((*(uint *)(param_1 + 0x413) & 1) == 0) {
       lVar4 = *param_1;
       if ((((*(int *)(lVar4 + 0x920) == 1) && ((*(byte *)(lVar4 + 0x56c) & 1) != 0)) &&
-          (fVar9 < (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar4 + 0x6c0) * 8) -
+          (fVar9 < (float)(*(longlong *)(&system_error_code + (longlong)*(int *)(lVar4 + 0x6c0) * 8) -
                           *(longlong *)(lVar4 + 0x6b8)) * 1e-05)) ||
          ((((*(byte *)((longlong)param_1 + 0x1484) & 2) != 0 &&
            ((*(byte *)(lVar4 + 0x56c) & 1) != 0)) &&
-          (fVar9 < (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar4 + 0x6c0) * 8) -
+          (fVar9 < (float)(*(longlong *)(&system_error_code + (longlong)*(int *)(lVar4 + 0x6c0) * 8) -
                           *(longlong *)(lVar4 + 0x6b8)) * 1e-05)))) {
         afStack_80[8] = 100000.0;
         fVar9 = 100000.0;

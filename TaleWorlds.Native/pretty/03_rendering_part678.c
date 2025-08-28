@@ -13,7 +13,7 @@ void FUN_180657970(uint64_t param_1,uint64_t param_2,void *param_3,uint64_t para
   int32_t uVar4;
   longlong lVar5;
   
-  if (((char)param_4 == '\0') && (param_3 != &DAT_180c967e0)) {
+  if (((char)param_4 == '\0') && (param_3 != &system_data_67e0)) {
     if (*(int *)(param_3 + 0x30) == 0) {
 LAB_1806579e7:
       uVar4 = 1;
@@ -33,11 +33,11 @@ LAB_1806579e7:
   }
   uVar4 = 0;
 LAB_1806579f0:
-  lVar5 = FUN_18062b420(_DAT_180c8ed18,0x48,DAT_180c96808,param_4,0xfffffffffffffffe);
+  lVar5 = FUN_18062b420(_DAT_180c8ed18,0x48,system_data_6808,param_4,0xfffffffffffffffe);
   FUN_180627ae0(lVar5 + 0x20,param_5);
   *(uint64_t *)(lVar5 + 0x40) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar5,param_3,&DAT_180c967e0,uVar4);
+  FUN_18066bdc0(lVar5,param_3,&system_data_67e0,uVar4);
 }
 
 

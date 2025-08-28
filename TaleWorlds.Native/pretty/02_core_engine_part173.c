@@ -191,7 +191,7 @@ LAB_180158aea:
     }
 LAB_180158c0c:
     *(int16_t *)((ulonglong)uStack_50 + (longlong)puStack_58) = 10;
-    puVar6 = (int32_t *)&DAT_18098bc73;
+    puVar6 = (int32_t *)&system_buffer_ptr;
     if (puStack_58 != (int32_t *)0x0) {
       puVar6 = puStack_58;
     }
@@ -547,7 +547,7 @@ void FUN_1801592f0(uint64_t param_1,longlong *param_2,uint64_t param_3,uint64_t 
   }
   param_2[7] = 0;
   param_2[8] = 0;
-  (**(code **)(param_2[3] + 0x10))(param_2 + 3,&DAT_18098bc73);
+  (**(code **)(param_2[3] + 0x10))(param_2 + 3,&system_buffer_ptr);
   *(int16_t *)(param_2 + 9) = 0;
   if (param_2 != (longlong *)0x0) {
     (**(code **)(*param_2 + 0x28))(param_2);
@@ -840,7 +840,7 @@ void FUN_18015a900(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   if (iVar3 < 1) {
     pcStack_50 = FUN_18015c0a0;
     puStack_48 = &UNK_18015c090;
-    apuStack_60[0] = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,DAT_180bf65bc);
+    apuStack_60[0] = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,system_allocation_flags);
     uStack_98 = (int32_t)uVar1;
     uStack_94 = (int32_t)((ulonglong)uVar1 >> 0x20);
     *apuStack_60[0] = uStack_98;
@@ -906,7 +906,7 @@ void FUN_18015aa70(longlong *param_1,int param_2,int param_3)
       aiStackX_10[0] = 0;
       iVar2 = *(int *)param_1[1];
       FUN_1801595d0(0,&puStack_a0);
-      lVar3 = *(longlong *)(&DAT_18098d698 + (longlong)iVar2 * 8);
+      lVar3 = *(longlong *)(&system_data_d698 + (longlong)iVar2 * 8);
       if (lVar3 != 0) {
         lVar5 = -1;
         do {
@@ -938,7 +938,7 @@ void FUN_18015aa70(longlong *param_1,int param_2,int param_3)
       pcStack_58 = FUN_18015c190;
       puStack_50 = &UNK_18015c180;
       uStack_78 = plVar7;
-      apuStack_68[0] = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,DAT_180bf65bc);
+      apuStack_68[0] = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,system_allocation_flags);
       *apuStack_68[0] = (int32_t)uStack_80;
       apuStack_68[0][1] = uStack_80._4_4_;
       apuStack_68[0][2] = (int32_t)uStack_78;
@@ -1025,7 +1025,7 @@ ulonglong FUN_18015acc0(longlong *param_1,int param_2,int param_3)
       }
       uStack_80 = 0;
       lStack_78 = 0;
-      puVar8 = &DAT_18098bc73;
+      puVar8 = &system_buffer_ptr;
       if (puStack_60 != (int8_t *)0x0) {
         puVar8 = puStack_60;
       }

@@ -283,7 +283,7 @@ LAB_180299abc:
     in_stack_00000040 = 0;
   }
   FUN_180122320(CONCAT44(*(int32_t *)(unaff_RBP + 0x90),
-                         unaff_XMM13_Da + *(float *)(in_stack_00000068 + 0x1674)),&DAT_18098bc73,0,1
+                         unaff_XMM13_Da + *(float *)(in_stack_00000068 + 0x1674)),&system_buffer_ptr,0,1
                );
   return;
 }
@@ -459,8 +459,8 @@ LAB_180299f92:
         bVar4 = true;
       }
       cVar5 = FUN_1801d8920(uVar15,auStack_108);
-      if ((cVar5 == '\0') && (DAT_180c82846 == '\0')) {
-        puVar12 = &DAT_18098bc73;
+      if ((cVar5 == '\0') && (system_memory_2846 == '\0')) {
+        puVar12 = &system_buffer_ptr;
         if (*(void **)(*param_3 + 0x18) != (void *)0x0) {
           puVar12 = *(void **)(*param_3 + 0x18);
         }
@@ -766,7 +766,7 @@ uint64_t render_cache_clear(longlong cache_manager)
   *(uint64_t *)(param_1 + 0x20) = 0x400000003f800000; // 重置缓存统计
   *(int32_t *)(param_1 + 0x28) = 0; // 清空计数器
   lVar5 = *(longlong *)(param_1 + 8);
-  *(void **)(param_1 + 8) = &DAT_180be0000; // 重置缓存指针
+  *(void **)(param_1 + 8) = &system_memory_0000; // 重置缓存指针
   uVar2 = *(ulonglong *)(param_1 + 0x10);
   *(uint64_t *)(param_1 + 0x10) = 1; // 重置缓存大小
   *(uint64_t *)(param_1 + 0x18) = 0; // 清空条目计数

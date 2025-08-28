@@ -79,7 +79,7 @@ char FUN_1805ae280(uint64_t param_1,uint64_t param_2,uint64_t *param_3)
   
   cVar2 = FUN_18055f260(param_1,param_2,&UNK_1809fa510);
   if (cVar2 != '\0') {
-    cVar2 = FUN_18055f260(param_1,param_3 + 4,&DAT_180bfbc90);
+    cVar2 = FUN_18055f260(param_1,param_3 + 4,&system_data_bc90);
     if (cVar2 != '\0') {
       cVar2 = FUN_18055f260(param_1,(longlong)param_3 + 0x24,&UNK_1809fa500);
       if (cVar2 != '\0') {
@@ -413,7 +413,7 @@ char FUN_1805ae650(uint64_t param_1,int32_t param_2,int32_t *param_3)
   cVar1 = FUN_180645c10(param_1,0,&UNK_1809fa560);
   if (((((cVar1 != '\0') && (cVar1 = FUN_180645c10(param_1,0xb,&UNK_1809fa540), cVar1 != '\0')) &&
        (cVar1 = FUN_180645c10(param_1,param_2,&UNK_1809fa510), cVar1 != '\0')) &&
-      (((cVar1 = FUN_180645c10(param_1,param_3[8],&DAT_180bfbc90), cVar1 != '\0' &&
+      (((cVar1 = FUN_180645c10(param_1,param_3[8],&system_data_bc90), cVar1 != '\0' &&
         (cVar1 = FUN_180645c10(param_1,param_3[9],&UNK_1809fa500), cVar1 != '\0')) &&
        ((cVar1 = FUN_180645c10(param_1,param_3[10],&UNK_1809fa530), cVar1 != '\0' &&
         ((cVar1 = FUN_180645c10(param_1,param_3[0xb],&UNK_1809fa510), cVar1 != '\0' &&
@@ -537,7 +537,7 @@ FUN_1805ae910(uint64_t param_1,int32_t param_2,int32_t *param_3,int8_t param_4,
   
   cVar1 = FUN_180645c10(param_1,0,&UNK_1809fa560);
   if (((((cVar1 != '\0') && (cVar1 = FUN_180645c10(param_1,0x14,&UNK_1809fa540), cVar1 != '\0')) &&
-       (cVar1 = FUN_180645c10(param_1,param_2,&DAT_180bfbcc0), cVar1 != '\0')) &&
+       (cVar1 = FUN_180645c10(param_1,param_2,&system_data_bcc0), cVar1 != '\0')) &&
       ((cVar1 = FUN_180645fa0(param_1,*param_3,&UNK_1809fa470), cVar1 != '\0' &&
        (cVar1 = FUN_180645fa0(param_1,param_3[1],&UNK_1809fa470), cVar1 != '\0')))) &&
      ((cVar1 = FUN_180645fa0(param_1,param_3[2],&UNK_1809fa480), cVar1 != '\0' &&

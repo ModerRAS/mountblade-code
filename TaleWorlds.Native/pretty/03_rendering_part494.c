@@ -88,7 +88,7 @@ void FUN_1805308fe(float *param_1,float param_2,uint64_t param_3,float param_4)
                (fVar15 - fVar1) * (fVar15 - fVar1);
       auVar10 = rsqrtss(ZEXT416((uint)fVar13),ZEXT416((uint)fVar13));
       fVar9 = auVar10._0_4_;
-      fVar13 = fVar9 * 0.5 * ((float)DAT_180a401f0 - fVar13 * fVar9 * fVar9) * fVar13;
+      fVar13 = fVar9 * 0.5 * ((float)system_data_01f0 - fVar13 * fVar9 * fVar9) * fVar13;
       fStack0000000000000030 = param_4;
       fStack0000000000000034 = in_XMM0_Da;
       fStack0000000000000038 = param_2;
@@ -185,7 +185,7 @@ void FUN_180530a25(float *param_1,uint64_t param_2,uint64_t param_3,int param_4)
              (fVar1 - fVar2) * (fVar1 - fVar2);
     auVar11 = rsqrtss(ZEXT416((uint)fVar13),ZEXT416((uint)fVar13));
     fVar10 = auVar11._0_4_;
-    fVar13 = fVar10 * 0.5 * ((float)DAT_180a401f0 - fVar13 * fVar10 * fVar10) * fVar13;
+    fVar13 = fVar10 * 0.5 * ((float)system_data_01f0 - fVar13 * fVar10 * fVar10) * fVar13;
     in_EAX = acosf();
     if (fVar13 <= *(float *)(unaff_RBP + 0x5f)) {
       fVar13 = *(float *)(unaff_RBP + 0x5f);
@@ -274,7 +274,7 @@ void FUN_180530a8d(longlong param_1)
   fVar10 = fVar11 * fVar11 + unaff_XMM8_Da * unaff_XMM8_Da + unaff_XMM9_Da * unaff_XMM9_Da;
   auVar7 = rsqrtss(ZEXT416((uint)fVar10),ZEXT416((uint)fVar10));
   fVar9 = auVar7._0_4_;
-  fVar10 = fVar9 * 0.5 * ((float)DAT_180a401f0 - fVar10 * fVar9 * fVar9) * fVar10;
+  fVar10 = fVar9 * 0.5 * ((float)system_data_01f0 - fVar10 * fVar9 * fVar9) * fVar10;
   uVar1 = acosf();
   if (fVar10 <= *(float *)(unaff_RBP + 0x5f)) {
     fVar10 = *(float *)(unaff_RBP + 0x5f);

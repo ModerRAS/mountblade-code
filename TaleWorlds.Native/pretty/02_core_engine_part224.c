@@ -86,13 +86,13 @@ void FUN_18019aac0(longlong *param_1,longlong param_2,uint64_t param_3,uint64_t 
   FUN_1801bb3a0(*(uint64_t *)param_1[1],((uint64_t *)param_1[1])[1],0);
   lVar3 = ((longlong *)param_1[1])[1];
   for (lVar5 = *(longlong *)param_1[1]; lVar5 != lVar3; lVar5 = lVar5 + 0x28) {
-    puVar6 = &DAT_18098bc73;
+    puVar6 = &system_buffer_ptr;
     if (*(void **)(lVar5 + 8) != (void *)0x0) {
       puVar6 = *(void **)(lVar5 + 8);
     }
     FUN_180628040(*param_1 + 0x60780,&UNK_180a0b2a8,puVar6,*(int32_t *)(lVar5 + 0x20));
   }
-  FUN_180628040(*param_1 + 0x60780,&DAT_1809fcc18);
+  FUN_180628040(*param_1 + 0x60780,&system_data_cc18);
   puStack_88 = &UNK_180a3c3e0;
   if (lStack_80 == 0) {
     return;

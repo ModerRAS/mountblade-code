@@ -590,7 +590,7 @@ int FUN_1806b4950(longlong *param_1,byte *param_2)
   int32_t uStackX_10;
   byte *pbStackX_18;
   
-  pbVar10 = &DAT_18098bc73;
+  pbVar10 = &system_buffer_ptr;
   if (param_2 != (byte *)0x0) {
     pbVar10 = param_2;
   }

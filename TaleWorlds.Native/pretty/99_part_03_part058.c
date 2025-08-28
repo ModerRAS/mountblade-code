@@ -145,7 +145,7 @@ int FUN_1802346f0(longlong *param_1)
   if ((10 < iVar1) ||
      ((int)(*(int *)(param_1[1] + 0x88) + (*(int *)(param_1[1] + 0x88) >> 0x1f & 3U)) >> 2 < iVar1))
   {
-    puVar2 = &DAT_18098bc73;
+    puVar2 = &system_buffer_ptr;
     if (*(void **)(*param_1 + 0x18) != (void *)0x0) {
       puVar2 = *(void **)(*param_1 + 0x18);
     }

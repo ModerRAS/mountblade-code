@@ -183,7 +183,7 @@ void FUN_180566900(uint64_t param_1)
   uStack_f8 = 0;
   uStack_f0 = 3;
   if (lStack_e0 != 0) {
-    FUN_180057980(&puStack_e8,&puStack_108,&DAT_180a063b4);
+    FUN_180057980(&puStack_e8,&puStack_108,&system_data_63b4);
   }
   puVar18 = puStack_108;
   puVar5 = puStack_120;
@@ -258,7 +258,7 @@ void FUN_180566900(uint64_t param_1)
     while( true ) {
       if (cVar1 == '\0') break;
       puVar10 = (uint64_t *)0x0;
-      lVar9 = strchr(&DAT_1809fd518,(int)*pcVar8);
+      lVar9 = strchr(&system_data_d518,(int)*pcVar8);
       if ((lVar9 != 0) && (pcVar19 != pcVar8)) {
         puStack_180 = &UNK_180a3c3e0;
         uStack_168 = 0;
@@ -377,7 +377,7 @@ LAB_180566d7c:
   puVar12 = (int32_t *)0x0;
   dVar2 = (double)atof(puVar20[1]);
   dVar3 = (double)atof(puVar20[5]);
-  puVar14 = &DAT_18098bc73;
+  puVar14 = &system_buffer_ptr;
   if ((void *)puVar20[9] != (void *)0x0) {
     puVar14 = (void *)puVar20[9];
   }
@@ -696,7 +696,7 @@ longlong FUN_180567870(longlong *param_1,longlong *param_2,uint64_t param_3)
   }
   else {
     if (iVar4 == 1) {
-      puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x28,8,DAT_180bf65bc);
+      puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x28,8,system_allocation_flags);
       puVar1 = (uint64_t *)*param_2;
       uVar2 = puVar1[1];
       *puVar3 = *puVar1;
@@ -742,7 +742,7 @@ longlong FUN_180567960(longlong *param_1,longlong *param_2,int param_3)
   }
   else {
     if (param_3 == 1) {
-      puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x28,8,DAT_180bf65bc,0xfffffffffffffffe);
+      puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x28,8,system_allocation_flags,0xfffffffffffffffe);
       puVar1 = (uint64_t *)*param_2;
       uVar2 = puVar1[1];
       *puVar3 = *puVar1;
@@ -817,7 +817,7 @@ void FUN_180567bb0(longlong param_1)
   *(ulonglong *)(lVar1 + 0x5a0) = (ulonglong)_DAT_180c95d68;
   *(double *)(lVar1 + 0x5a8) =
        (double)((float)(*(longlong *)
-                         (&DAT_180c8ed30 + (longlong)*(int *)(_DAT_180c96070 + 0x87b790) * 8) -
+                         (&system_error_code + (longlong)*(int *)(_DAT_180c96070 + 0x87b790) * 8) -
                        *(longlong *)(_DAT_180c96070 + 0x87b788)) * 1e-05);
   FUN_180645c10(lVar1,*(int32_t *)(param_1 + 0x5f0),&UNK_1809f90a0);
   FUN_180569670(lVar1);

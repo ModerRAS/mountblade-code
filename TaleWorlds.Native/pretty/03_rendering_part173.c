@@ -334,7 +334,7 @@ LAB_180374a51:
         param_10._4_4_ = fVar27;
         param_11._0_4_ = fVar26;
         param_11._4_4_ = fVar29;
-        FUN_18063ad30(unaff_RBP + -6,&param_6,&DAT_180a00300);
+        FUN_18063ad30(unaff_RBP + -6,&param_6,&system_counter_0300);
         lVar24 = (longlong)(*(int *)(unaff_RDI + 0x60) * iStackX_24 + iVar25) * 0x130 +
                  *(longlong *)(unaff_RDI + 0x138);
         uVar16 = unaff_RBP[-5];
@@ -573,7 +573,7 @@ void FUN_180374f40(longlong param_1,longlong param_2)
         pcStack_50 = FUN_1803805e0;
         pcStack_48 = FUN_180380510;
         uStack_80 = plVar9;
-        apuStack_60[0] = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,DAT_180bf65bc);
+        apuStack_60[0] = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,system_allocation_flags);
         *apuStack_60[0] = (int32_t)uStack_80;
         apuStack_60[0][1] = uStack_80._4_4_;
         apuStack_60[0][2] = (int32_t)uStack_78;
@@ -770,7 +770,7 @@ void FUN_180375260(longlong param_1,longlong param_2,longlong param_3)
                       piStack_e0 = aiStack_70;
                       fStack_58 = (float)iVar7;
                       aiStack_70[0] = iVar12;
-                      FUN_180077750(lVar8,uVar1,&DAT_180a00300,0,&uStack_118);
+                      FUN_180077750(lVar8,uVar1,&system_counter_0300,0,&uStack_118);
                       uVar10 = iVar9 - iVar12;
                       uVar11 = (ulonglong)uVar10;
                       iVar14 = iVar14 + 1;
@@ -820,7 +820,7 @@ void FUN_180375260(longlong param_1,longlong param_2,longlong param_3)
           uStack_f0 = 0xffffffff;
           uStack_e4 = 0x400;
           (**(code **)(*plVar13 + 0x1c8))
-                    (plVar13,uVar1,*(uint64_t *)(param_1 + 0x2148),&DAT_180a00300,&uStack_118);
+                    (plVar13,uVar1,*(uint64_t *)(param_1 + 0x2148),&system_counter_0300,&uStack_118);
           lVar5 = lVar5 + 0x10;
           iVar14 = iVar14 + 1;
         } while ((ulonglong)(longlong)iVar14 <

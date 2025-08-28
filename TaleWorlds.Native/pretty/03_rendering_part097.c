@@ -179,17 +179,17 @@ typedef struct {
  * ============================================================================ */
 
 // 渲染系统数据区域
-extern int32_t DAT_180bf00a8;               // 渲染系统状态标志
-extern int32_t DAT_180c8ed18;               // 渲染系统配置数据
-extern int32_t DAT_180c86930;               // 渲染系统资源数据
-extern int32_t DAT_18098bc73;               // 渲染系统默认数据
-extern int32_t DAT_1809fcc28;               // 渲染系统字符串数据
-extern int32_t DAT_180a09a40;               // 渲染系统路径数据
-extern int32_t DAT_18098bcb0;               // 渲染系统回调数据
-extern int32_t DAT_180a1d0b0;               // 渲染系统接口数据
-extern int32_t DAT_180a19ac8;               // 渲染系统函数指针表
-extern int32_t DAT_180a199c8;               // 渲染系统方法表
-extern int32_t DAT_180a19af8;               // 渲染系统属性表
+extern int32_t system_stack_cookie;               // 渲染系统状态标志
+extern int32_t system_heap_ptr;               // 渲染系统配置数据
+extern int32_t system_resource_state;               // 渲染系统资源数据
+extern int32_t system_buffer_ptr;               // 渲染系统默认数据
+extern int32_t system_memory_cc28;               // 渲染系统字符串数据
+extern int32_t system_memory_9a40;               // 渲染系统路径数据
+extern int32_t system_memory_bcb0;               // 渲染系统回调数据
+extern int32_t system_memory_d0b0;               // 渲染系统接口数据
+extern int32_t system_memory_9ac8;               // 渲染系统函数指针表
+extern int32_t system_memory_99c8;               // 渲染系统方法表
+extern int32_t system_memory_9af8;               // 渲染系统属性表
 
 /* ============================================================================
  * 函数声明

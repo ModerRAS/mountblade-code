@@ -640,7 +640,7 @@ void FUN_180447ca0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   uVar3 = 0xfffffffffffffffe;
   FUN_180627910(&puStack_30);
   pcVar1 = *(code **)(*(longlong *)(param_1 + 0x10) + 0x10);
-  puVar2 = &DAT_18098bc73;
+  puVar2 = &system_buffer_ptr;
   if (puStack_28 != (void *)0x0) {
     puVar2 = puStack_28;
   }
@@ -798,7 +798,7 @@ void FUN_180447f70(longlong *param_1)
   iVar2 = FUN_1802349a0(plStack_38);
   if ((10 < iVar2) ||
      ((int)((int)plStack_38[0x11] + ((int)plStack_38[0x11] >> 0x1f & 3U)) >> 2 < iVar2)) {
-    puVar3 = &DAT_18098bc73;
+    puVar3 = &system_buffer_ptr;
     if ((void *)plStack_40[3] != (void *)0x0) {
       puVar3 = (void *)plStack_40[3];
     }

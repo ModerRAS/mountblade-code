@@ -69,7 +69,7 @@ void FUN_1802c6190(uint64_t *param_1)
     puStack_90 = auStack_80;
     auStack_80[0] = 0;
     uStack_88 = 0x1c;
-    uVar15 = strcpy_s(auStack_80,0x40,&DAT_1809ffc60);
+    uVar15 = strcpy_s(auStack_80,0x40,&system_data_fc60);
     FUN_1802037e0(uVar15,iVar14,&puStack_98);
     puStack_98 = &UNK_18098bcb0;
     lVar8 = FUN_18062b1e0(_DAT_180c8ed18,iVar14,0x10,3);

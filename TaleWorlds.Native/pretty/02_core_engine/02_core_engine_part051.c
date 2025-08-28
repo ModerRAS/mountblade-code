@@ -660,7 +660,7 @@ ALLOCATION_COMPLETE:
       *(int32_t *)(element_count + 0x28 + (longlong)current_element) = 0;
       *string_ptr = 0;
       *(int32_t *)(element_count + 0x28 + (longlong)current_element) = *(int32_t *)(current_element + 5);
-      temp_ptr = &DAT_18098bc73;
+      temp_ptr = &system_buffer_ptr;
       if ((void *)current_element[4] != (void *)0x0) {
         temp_ptr = (void *)current_element[4];
       }

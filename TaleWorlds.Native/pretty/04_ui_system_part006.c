@@ -856,7 +856,7 @@ LAB_180656abd:
   if (processed_count != 0) {
     do {
       current_offset = 0;
-      string_ptr1 = &DAT_180c967e0;
+      string_ptr1 = &system_memory_67e0;
       string_length = *data_array_ptr;
       stack_buffer = &UNK_180a3c3e0;
       buffer_size = 0;
@@ -887,7 +887,7 @@ LAB_180656abd:
       comparison_string1 = _DAT_180c967f0;
       if (_DAT_180c967f0 == (byte *)0x0) {
 LAB_180656d5b:
-        comparison_string2 = &DAT_180c967e0;
+        comparison_string2 = &system_memory_67e0;
         string_ptr1 = _DAT_180c967f0;
         while (string_ptr2 = comparison_string2, string_ptr1 != (byte *)0x0) {
           if (buffer_length == 0) {
@@ -922,7 +922,7 @@ LAB_180656dbb:
             comparison_string2 = string_ptr2;
           }
         }
-        if (string_ptr2 == &DAT_180c967e0) {
+        if (string_ptr2 == &system_memory_67e0) {
 LAB_180656df9:
           structure_array_ptr = (uint64_t *)FUN_1806576d0(&stack_buffer,&stack_data_ptr,comparison_string1,string_ptr2,&stack_buffer);
           string_ptr2 = (byte *)*structure_array_ptr;
@@ -979,7 +979,7 @@ LAB_180656d07:
           comparison_string1 = comparison_string2;
         } while (comparison_string2 != (byte *)0x0);
         comparison_string1 = (byte *)0x0;
-        if (string_ptr1 == &DAT_180c967e0) goto LAB_180656d5b;
+        if (string_ptr1 == &system_memory_67e0) goto LAB_180656d5b;
         if (*(int *)(string_ptr1 + 0x30) != 0) {
           if (buffer_length != 0) {
             string_ptr1 = *(byte **)(string_ptr1 + 0x28);
@@ -1254,7 +1254,7 @@ UISystem_DataValidator(uint64_t validation_context, uint64_t data_source, uint64
     } while (char_count < string_length_count);
   }
   FUN_180657530(char_count,data_array,&stack_buffer);
-  if (data_array[0] == &DAT_180c967e0) {
+  if (data_array[0] == &system_memory_67e0) {
     memory_management_flag = 0;
   }
   else {
@@ -1318,7 +1318,7 @@ uint64_t * UISystem_StringFinder(uint64_t search_context, longlong *target_strin
   
   if (_DAT_180c967f0 != (uint64_t *)0x0) {
     found_string_ptr = _DAT_180c967f0;
-    result_string_ptr = (uint64_t *)&DAT_180c967e0;
+    result_string_ptr = (uint64_t *)&system_memory_67e0;
     do {
       if (*(int *)(target_string + 0x10) == 0) {
         next_string_ptr = (uint64_t *)found_string_ptr[1];
@@ -1353,7 +1353,7 @@ LAB_1806575b7:
       found_string_ptr = next_string_ptr;
       result_string_ptr = current_string_ptr;
     } while (next_string_ptr != (uint64_t *)0x0);
-    if (current_string_ptr != (uint64_t *)&DAT_180c967e0) {
+    if (current_string_ptr != (uint64_t *)&system_memory_67e0) {
       if (*(int *)(current_string_ptr + 6) == 0) {
 LAB_1806575f7:
         *target_string = current_string_ptr;
@@ -1372,7 +1372,7 @@ LAB_1806575f7:
       }
     }
   }
-  *target_string = &DAT_180c967e0;
+  *target_string = &system_memory_67e0;
   return target_string;
 }
 
@@ -1397,7 +1397,7 @@ void UISystem_DataStructureManager(uint64_t management_context, uint64_t *resour
   if (resource_type == (uint64_t *)0x0) {
     return;
   }
-  FUN_180657620(&DAT_180c967e0,*resource_type,operation_flag,validation_flag,0xfffffffffffffffe);
+  FUN_180657620(&system_memory_67e0,*resource_type,operation_flag,validation_flag,0xfffffffffffffffe);
   resource_type[4] = &UNK_180a3c3e0;
   if (resource_type[5] != 0) {
     FUN_18064e900();
@@ -1439,7 +1439,7 @@ UISystem_StringConverter(ulonglong conversion_context, uint64_t *target_data, ui
   ulonglong data_index;
   uint64_t conversion_flag;
   
-  if ((param_4 == _DAT_180c967e0) || (param_4 == (longlong *)&DAT_180c967e0)) {
+  if ((param_4 == _DAT_180c967e0) || (param_4 == (longlong *)&system_memory_67e0)) {
     if ((_DAT_180c96800 != 0) && (*(int *)(param_5 + 0x10) != 0)) {
       data_ptr2 = _DAT_180c967e0;
       data_ptr3 = param_4;
@@ -1500,7 +1500,7 @@ LAB_1806577da:
   }
 LAB_1806577f1:
   comparison_result = true;
-  conversion_result = (uint64_t *)&DAT_180c967e0;
+  conversion_result = (uint64_t *)&system_memory_67e0;
   string_ptr2 = _DAT_180c967f0;
   while (string_ptr2 != (uint64_t *)0x0) {
     conversion_result = string_ptr2;
@@ -1554,7 +1554,7 @@ LAB_180657941:
       if ((int)(char_comparison_result - char_count) < 1) goto LAB_180657941;
     }
   }
-  if (conversion_result != (uint64_t *)&DAT_180c967e0) {
+  if (conversion_result != (uint64_t *)&system_memory_67e0) {
     if (*(int *)(conversion_result + 6) == 0) {
 LAB_1806578a7:
       conversion_flag = 1;
@@ -1574,10 +1574,10 @@ LAB_1806578a7:
   }
   conversion_flag = 0;
 LAB_1806578f0:
-  string_length = FUN_18062b420(_DAT_180c8ed18,0x48,DAT_180c96808);
+  string_length = FUN_18062b420(_DAT_180c8ed18,0x48,system_memory_6808);
   FUN_180627ae0(string_length + 0x20,param_5);
   *(uint64_t *)(string_length + 0x40) = 0;
-  FUN_18066bdc0(string_length,conversion_result,&DAT_180c967e0,conversion_flag);
+  FUN_18066bdc0(string_length,conversion_result,&system_memory_67e0,conversion_flag);
 }
 
 /* ========================================

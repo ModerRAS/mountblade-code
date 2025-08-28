@@ -898,7 +898,7 @@ void FUN_18043ef90(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   uVar3 = 0xfffffffffffffffe;
   FUN_180627910(&puStack_30);
   pcVar1 = *(code **)(*(longlong *)(param_1 + 0x288) + 0x10);
-  puVar2 = &DAT_18098bc73;
+  puVar2 = &system_buffer_ptr;
   if (puStack_28 != (void *)0x0) {
     puVar2 = puStack_28;
   }

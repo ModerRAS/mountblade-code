@@ -252,7 +252,7 @@ void FUN_180535c60(longlong *param_1,uint64_t param_2,uint64_t param_3)
     if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
       resource_pool_size = 0;
       do {
-        FUN_1805b32b0(&DAT_180c925a0, resource_pool_size + resource_id * 0x10);
+        FUN_1805b32b0(&system_memory_25a0, resource_pool_size + resource_id * 0x10);
         resource_pool_size = resource_pool_size + 1;
       } while (resource_pool_size < 0x10);
       if (_DAT_180c92ce0 - _DAT_180c92cd8 >> 3 != 0) {
@@ -602,7 +602,7 @@ void FUN_180535c78(int32_t param_1)
     if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
       resource_pool_capacity = 0;
       do {
-        FUN_1805b32b0(&DAT_180c925a0, resource_pool_capacity + resource_id * 0x10);
+        FUN_1805b32b0(&system_memory_25a0, resource_pool_capacity + resource_id * 0x10);
         resource_pool_capacity = resource_pool_capacity + 1;
       } while (resource_pool_capacity < 0x10);
       if (_DAT_180c92ce0 - _DAT_180c92cd8 >> 3 != 0) {

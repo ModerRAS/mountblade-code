@@ -104,7 +104,7 @@ void FUN_1801b6b70(longlong *param_1,longlong param_2)
   fStack_100 = *(float *)(lVar2 + 0x20) * 0.5;
   fStack_104 = -fStack_100;
   fStack_f8 = -fStack_fc;
-  uStack_2f0 = DAT_180a00330._8_8_;
+  uStack_2f0 = system_data_0330._8_8_;
   fStack_2f4 = fStack_fc;
   fStack_2f8 = fStack_100;
   fVar21 = -1e+30;
@@ -255,7 +255,7 @@ LAB_1801b6d83:
   puStack_2a0 = auStack_290;
   auStack_290[0] = 0;
   uStack_298 = 0x11;
-  puVar17 = (uint64_t *)&DAT_18098bc73;
+  puVar17 = (uint64_t *)&system_buffer_ptr;
   if (puVar13 != (uint64_t *)0x0) {
     puVar17 = puVar13;
   }

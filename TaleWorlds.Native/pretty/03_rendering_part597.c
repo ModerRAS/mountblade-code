@@ -245,7 +245,7 @@ LAB_180597055:
     *(uint64_t *)(unaff_RBX + 0x16) = *puVar6;
     puVar8 = (void *)(unaff_RBP + 0x6f);
     if (unaff_R12B != '\0') {
-      puVar8 = &DAT_1809ff0c8;
+      puVar8 = &system_data_f0c8;
     }
     FUN_1805989b0(puVar8);
     return;
@@ -510,7 +510,7 @@ LAB_180597055:
     *(uint64_t *)(unaff_RBX + 0x16) = *puVar6;
     puVar8 = (void *)(unaff_RBP + 0x6f);
     if (unaff_R12B != '\0') {
-      puVar8 = &DAT_1809ff0c8;
+      puVar8 = &system_data_f0c8;
     }
     FUN_1805989b0(puVar8);
     return;
@@ -627,7 +627,7 @@ LAB_180597055:
     *(uint64_t *)(unaff_RBX + 0x16) = *puVar4;
     puVar5 = (void *)(unaff_RBP + 0x6f);
     if (unaff_R12B != '\0') {
-      puVar5 = &DAT_1809ff0c8;
+      puVar5 = &system_data_f0c8;
     }
     FUN_1805989b0(puVar5);
     return;
@@ -686,7 +686,7 @@ void FUN_18059705d(uint64_t param_1,uint64_t param_2,int8_t param_3,uint64_t par
   *(uint64_t *)(unaff_RBX + 0x58) = *puVar3;
   puVar4 = (void *)(unaff_RBP + 0x6f);
   if (unaff_R12B != '\0') {
-    puVar4 = &DAT_1809ff0c8;
+    puVar4 = &system_data_f0c8;
   }
   FUN_1805989b0(puVar4);
   return;

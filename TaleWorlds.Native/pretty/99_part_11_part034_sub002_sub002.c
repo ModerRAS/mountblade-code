@@ -39,8 +39,8 @@ void FUN_1807a063f(void)
         do {
           lVar5 = lVar12 * 4;
           lVar12 = lVar12 + 1;
-          *(int *)(&DAT_180c1b958 + lVar5 + (longlong)iVar9 * 4) =
-               *(int *)(&DAT_180c1b958 + lVar5) + unaff_EDI;
+          *(int *)(&system_data_b958 + lVar5 + (longlong)iVar9 * 4) =
+               *(int *)(&system_data_b958 + lVar5) + unaff_EDI;
         } while (lVar12 < iVar9);
       }
       iVar16 = iVar9 * 2;
@@ -54,12 +54,12 @@ void FUN_1807a063f(void)
     uVar15 = 0;
     if (0 < iVar16) {
       iVar4 = 0;
-      piVar14 = (int *)&DAT_180c1b958;
+      piVar14 = (int *)&system_data_b958;
       do {
         if (0 < (int)uVar15) {
           uVar7 = (ulonglong)uVar15;
           iVar10 = 0;
-          piVar8 = (int *)&DAT_180c1b958;
+          piVar8 = (int *)&system_data_b958;
           do {
             iVar13 = *piVar8;
             piVar8 = piVar8 + 1;
@@ -140,7 +140,7 @@ void FUN_1807a063f(void)
         iVar4 = uVar15 * 4;
         do {
           iVar11 = *piVar14;
-          iVar13 = *(int *)(&DAT_180c1b958 + lVar12 * 4);
+          iVar13 = *(int *)(&system_data_b958 + lVar12 * 4);
           lVar6 = (longlong)(iVar11 + iVar10);
           lVar5 = (longlong)(iVar13 + iVar16);
           uVar1 = *(int32_t *)(unaff_RSI + lVar6 * 4);
@@ -226,7 +226,7 @@ void FUN_1807a063f(void)
         } while (uVar7 != 0);
       }
       if (iVar4 < iStack0000000000000050) {
-        piVar8 = (int *)(&DAT_180c1b958 + lVar12 * 4);
+        piVar8 = (int *)(&system_data_b958 + lVar12 * 4);
         iVar10 = iVar4 * 2;
         uVar7 = (ulonglong)(uint)(iStack0000000000000050 - iVar4);
         do {

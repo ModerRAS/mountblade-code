@@ -97,7 +97,7 @@ float * FUN_1800795b0(float *param_1)
     if ((10 < (int)fVar6) ||
        ((int)(*(int *)(*(longlong *)(param_1 + 0x84) + 0x88) +
              (*(int *)(*(longlong *)(param_1 + 0x84) + 0x88) >> 0x1f & 3U)) >> 2 < (int)fVar6)) {
-      puStack_48 = &DAT_18098bc73;
+      puStack_48 = &system_buffer_ptr;
       if (*(void **)(param_1 + 6) != (void *)0x0) {
         puStack_48 = *(void **)(param_1 + 6);
       }

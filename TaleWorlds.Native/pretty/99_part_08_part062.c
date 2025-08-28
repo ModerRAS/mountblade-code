@@ -128,9 +128,9 @@ LAB_1805b441a:
         bVar13 = cVar7 != '\0';
         if (3 < (ushort)auStack_108[0]) goto LAB_1805b4442;
         lVar8 = (ulonglong)(auStack_108[0] & 0xffff) * 0x10;
-        if ((*(longlong *)(&DAT_180c92c98 + lVar8) == 0) &&
-           (*(longlong *)(&DAT_180c92ca0 + lVar8) == 0)) goto LAB_1805b441a;
-        if ((bVar13) && (cVar7 = (**(code **)(&DAT_180c92ca0 + lVar8))(), cVar7 != '\0')) {
+        if ((*(longlong *)(&system_data_2c98 + lVar8) == 0) &&
+           (*(longlong *)(&system_data_2ca0 + lVar8) == 0)) goto LAB_1805b441a;
+        if ((bVar13) && (cVar7 = (**(code **)(&system_data_2ca0 + lVar8))(), cVar7 != '\0')) {
           bVar13 = true;
           goto LAB_1805b4350;
         }

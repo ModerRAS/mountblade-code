@@ -112,7 +112,7 @@ void FUN_18045db70(uint64_t param_1)
         lVar15 = lStack_368;
         iVar9 = iStack_370;
         puVar17 = *(void **)(lStack_368 * 0x20 + 8 + lVar14);
-        puVar11 = &DAT_18098bc73;
+        puVar11 = &system_buffer_ptr;
         if (puVar17 != (void *)0x0) {
           puVar11 = puVar17;
         }
@@ -168,13 +168,13 @@ void FUN_18045db70(uint64_t param_1)
             lVar14 = lStack_2c8;
             puVar3 = puStack_308;
             iVar9 = iStack_374;
-            puVar17 = &DAT_18098bc73;
+            puVar17 = &system_buffer_ptr;
             if ((void *)puStack_308[lStack_2c8 * 4 + 1] != (void *)0x0) {
               puVar17 = (void *)puStack_308[lStack_2c8 * 4 + 1];
             }
             lVar15 = strrchr(puVar17,0x2f);
             if (lVar15 == 0) {
-              puVar17 = &DAT_18098bc73;
+              puVar17 = &system_buffer_ptr;
               if ((void *)puVar3[lVar14 * 4 + 1] != (void *)0x0) {
                 puVar17 = (void *)puVar3[lVar14 * 4 + 1];
               }
@@ -184,7 +184,7 @@ void FUN_18045db70(uint64_t param_1)
             }
             puVar11 = (void *)strchr(puVar17,0x2e);
             if (puVar11 == (void *)0x0) {
-              puVar11 = &DAT_18098bc73;
+              puVar11 = &system_buffer_ptr;
               if ((void *)puVar3[lVar14 * 4 + 1] != (void *)0x0) {
                 puVar11 = (void *)puVar3[lVar14 * 4 + 1];
               }
@@ -463,12 +463,12 @@ void FUN_18045db70(uint64_t param_1)
             uVar28 = FUN_180624440(&uStack_268,pppppppuVar12 + 8);
             FUN_1806279c0(&puStack_330,uVar28);
             uStack_268 = &UNK_18098bcb0;
-            ppppppuVar19 = (uint64_t ******)&DAT_18098bc73;
+            ppppppuVar19 = (uint64_t ******)&system_buffer_ptr;
             if (pppppppuVar12[5] != (uint64_t ******)0x0) {
               ppppppuVar19 = pppppppuVar12[5];
             }
             FUN_180627910(&puStack_308,ppppppuVar19);
-            puVar17 = &DAT_18098bc73;
+            puVar17 = &system_buffer_ptr;
             if (puStack_328 != (void *)0x0) {
               puVar17 = puStack_328;
             }
@@ -790,7 +790,7 @@ void FUN_18045e350(longlong param_1)
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
                0x48) < _DAT_180d49d08) && (FUN_1808fcb90(), _DAT_180d49d08 == -1)) {
     _DAT_180d49bf0 = &UNK_1809feda8;
-    _DAT_180d49bf8 = &DAT_180d49c08;
+    _DAT_180d49bf8 = &system_ptr_9c08;
     _DAT_180d49c00 = 0;
 
 

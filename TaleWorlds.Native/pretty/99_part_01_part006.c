@@ -792,7 +792,7 @@ void ComplexAlgorithmHandler(longlong param_1, uint param_2, int param_3, int pa
         stackPtr6 = stackBuffer2;
         stackBuffer2[0] = 0;
         stackUint10 = *(int32_t *)(param_8 + 0x60);
-        tempPtr1 = &DAT_18098bc73;
+        tempPtr1 = &system_buffer_ptr;
         
         if (*(void **)(param_8 + 0x58) != (void *)0x0) {
             tempPtr1 = *(void **)(param_8 + 0x58);
@@ -1121,7 +1121,7 @@ LAB_1800a46f5:
                     stackPtr2 = stackBuffer2;
                     stackBuffer2[0] = 0;
                     stackUint11 = *(int32_t *)(param_3 + 0x20);
-                    tempPtr1 = &DAT_18098bc73;
+                    tempPtr1 = &system_buffer_ptr;
                     
                     if (*(void **)(param_3 + 0x18) != (void *)0x0) {
                         tempPtr1 = *(void **)(param_3 + 0x18);
@@ -1361,7 +1361,7 @@ LAB_1800a46f5:
     stackPtr4 = stackBuffer3;
     stackBuffer3[0] = 0;
     stackUint12 = *(int32_t *)(param_3 + 0x20);
-    tempPtr1 = &DAT_18098bc73;
+    tempPtr1 = &system_buffer_ptr;
     
     if (*(void **)(param_3 + 0x18) != (void *)0x0) {
         tempPtr1 = *(void **)(param_3 + 0x18);

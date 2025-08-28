@@ -121,7 +121,7 @@ FUN_1806279c0(uint64_t *param_1,longlong param_2,uint64_t param_3,uint64_t param
   *(int32_t *)(param_1 + 2) = 0;
   FUN_1806277c0(param_1,*(int32_t *)(param_2 + 0x10),param_3,param_4,0xfffffffffffffffe);
   if (0 < *(int *)(param_2 + 0x10)) {
-    puVar1 = &DAT_18098bc73;
+    puVar1 = &system_buffer_ptr;
     if (*(void **)(param_2 + 8) != (void *)0x0) {
       puVar1 = *(void **)(param_2 + 8);
     }
@@ -805,7 +805,7 @@ void FUN_1806284c0(longlong param_1,float param_2)
   ulonglong uStack_18;
   
   uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
-  FUN_180626eb0(acStack_38,0x20,&DAT_180a06430,(double)param_2);
+  FUN_180626eb0(acStack_38,0x20,&system_data_6430,(double)param_2);
   lVar1 = -1;
   do {
     lVar3 = lVar1;

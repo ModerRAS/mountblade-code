@@ -392,7 +392,7 @@ RenderingSystemParameterPtr RenderingSystemAdvancedPipelineManager(
                 (**(RenderingSystemCallback)(*pipeline_ptr + 0x28))(pipeline_ptr);
             }
             stack_ptr_1 = (RenderingSystemHandlePtr)0x0;
-            data_ptr = &DAT_18098bc73;
+            data_ptr = &system_buffer_ptr;
             if (*(RenderingSystemDataPtr)(pipeline_handle + 0x290) != (RenderingSystemDataPtr)0x0) {
                 data_ptr = *(RenderingSystemDataPtr)(pipeline_handle + 0x290);
             }
@@ -589,7 +589,7 @@ RenderingSystemState RenderingSystemStateUpdater(
     
     if (param_1 == 0) {
         // 执行默认状态更新
-        FUN_180627c50(&data_ptr, &DAT_18098bc73, param_3, param_4, 
+        FUN_180627c50(&data_ptr, &system_buffer_ptr, param_3, param_4, 
             RENDERING_SYSTEM_HANDLE_INVALID);
     } else {
         state_count = *(RenderingSystemCount *)(param_1 + RENDERING_OFFSET_DATA_2);

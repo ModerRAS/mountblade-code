@@ -397,8 +397,8 @@ void FUN_1805f0b13(void)
          (ABS(*(float *)(unaff_RSI + 0xa8)) < 0.001)) &&
         ((ABS(*(float *)(unaff_RSI + 0xc0)) < 0.001 && (ABS(*(float *)(unaff_RSI + 0xc4)) < 0.001)))
         ) && ((ABS(*(float *)(unaff_RSI + 200)) < 0.001 &&
-              ((cVar11 = FUN_1805f26d0(pfVar17,&DAT_180a13a10), cVar11 != '\0' &&
-               (cVar11 = FUN_1805f26d0(pfVar16,&DAT_180a13a10), cVar11 != '\0')))))) {
+              ((cVar11 = FUN_1805f26d0(pfVar17,&system_data_3a10), cVar11 != '\0' &&
+               (cVar11 = FUN_1805f26d0(pfVar16,&system_data_3a10), cVar11 != '\0')))))) {
       *(int8_t *)(unaff_RSI + 0xd1) = 0;
       pfVar17[0] = 1.0;
       pfVar17[1] = 0.0;

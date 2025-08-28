@@ -52,7 +52,7 @@ void FUN_18064a7f0(ulonglong *param_1,longlong param_2)
         }
         lVar2 = uVar6 - uVar5;
         if (0 < lVar2) {
-          func_0x000180646ff0(&DAT_180c8ede0,lVar7 * -0x10000);
+          func_0x000180646ff0(&system_counter_ede0,lVar7 * -0x10000);
           iVar1 = VirtualFree(uVar5,lVar2,0x4000);
           uVar8 = _DAT_180bf66a8;
           if ((iVar1 == 0) && (iVar1 = GetLastError(), uVar8 = _DAT_180bf66a8, iVar1 != 0)) {
@@ -117,7 +117,7 @@ void FUN_18064a83d(void)
         }
         lVar3 = uVar6 - uVar5;
         if (0 < lVar3) {
-          func_0x000180646ff0(&DAT_180c8ede0,lVar7 * -0x10000);
+          func_0x000180646ff0(&system_counter_ede0,lVar7 * -0x10000);
           iVar2 = VirtualFree(uVar5,lVar3,0x4000);
           in_R9 = _DAT_180bf66a8;
           if ((iVar2 == 0) && (iVar2 = GetLastError(), in_R9 = _DAT_180bf66a8, iVar2 != 0)) {
@@ -307,7 +307,7 @@ ulonglong FUN_18064ab80(ulonglong param_1,longlong param_2,uint64_t param_3,long
               *(longlong *)(lVar7 + 0x180c9eb98) = param_4;
               if (((param_4 != 0) && (param_5 == '\0')) && (param_6 == '\0')) {
                 if (_DAT_180bfbed4 == 0) {
-                  FUN_180650490(&DAT_180bfbed0);
+                  FUN_180650490(&system_counter_bed0);
                 }
                 if (_DAT_180bfbed0 != 0) {
                   iVar4 = FUN_18064ff90(0x10);
@@ -385,7 +385,7 @@ uint64_t FUN_18064ac5c(void)
   *(longlong *)(lVar4 + 0x18) = unaff_RSI;
   if (((unaff_RSI != 0) && (in_stack_00000070 == '\0')) && (in_stack_00000078 == '\0')) {
     if (_DAT_180bfbed4 == 0) {
-      FUN_180650490(&DAT_180bfbed0);
+      FUN_180650490(&system_counter_bed0);
     }
     if (_DAT_180bfbed0 != 0) {
       iVar3 = FUN_18064ff90(0x10);
@@ -490,7 +490,7 @@ ulonglong FUN_18064acf4(uint64_t param_1,ulonglong param_2,ulonglong param_3,ulo
         *(longlong *)(lVar5 + 0x18) = unaff_RSI;
         if (((unaff_RSI != 0) && (in_stack_00000070 == '\0')) && (in_stack_00000078 == '\0')) {
           if (_DAT_180bfbed4 == 0) {
-            FUN_180650490(&DAT_180bfbed0);
+            FUN_180650490(&system_counter_bed0);
           }
           if (_DAT_180bfbed0 != 0) {
             iVar3 = FUN_18064ff90(0x10);

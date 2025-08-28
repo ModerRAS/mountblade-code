@@ -301,8 +301,8 @@ void InputSystem_SetDeadZone(float dead_zone);
 #define InputSystemDeadZoneSetter UNK_180a02f70
 
 // 全局变量别名
-#define InputSystemGlobalState DAT_180d48d40
-#define InputSystemGlobalConfig DAT_180a02fe8
+#define InputSystemGlobalState system_memory_8d40
+#define InputSystemGlobalConfig system_memory_2fe8
 #define InputDeviceRegistry UNK_180a03004
 #define InputEventQueue UNK_180a03028
 #define InputSystemStatus UNK_180a03018

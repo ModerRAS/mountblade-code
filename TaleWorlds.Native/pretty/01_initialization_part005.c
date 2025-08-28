@@ -21,19 +21,19 @@
 
 // 系统初始化相关变量
 uint8_t FUN_18008d070;                           // 系统初始化核心函数指针
-uint8_t DAT_180a00fb0;                           // 系统配置数据块1
-uint8_t DAT_180a010a0;                           // 系统配置数据块2
-uint8_t DAT_180a01078;                           // 系统配置数据块3
-uint8_t DAT_180a01050;                           // 系统配置数据块4
-uint8_t DAT_180a01028;                           // 系统配置数据块5
-uint8_t DAT_180a01000;                           // 系统配置数据块6
-uint8_t DAT_180a00fd8;                           // 系统配置数据块7
-uint8_t DAT_180a00d48;                           // 系统配置数据块8
-uint8_t DAT_180a00e28;                           // 系统配置数据块9
-uint8_t DAT_1809ff9e8;                           // 系统配置数据块10
-uint8_t DAT_1809ff9c0;                           // 系统配置数据块11
-uint8_t DAT_180a00bb0;                           // 系统配置数据块12
-uint8_t DAT_180a00b88;                           // 系统配置数据块13
+uint8_t system_memory_0fb0;                           // 系统配置数据块1
+uint8_t system_memory_10a0;                           // 系统配置数据块2
+uint8_t system_memory_1078;                           // 系统配置数据块3
+uint8_t system_memory_1050;                           // 系统配置数据块4
+uint8_t system_memory_1028;                           // 系统配置数据块5
+uint8_t system_memory_1000;                           // 系统配置数据块6
+uint8_t system_memory_0fd8;                           // 系统配置数据块7
+uint8_t system_memory_0d48;                           // 系统配置数据块8
+uint8_t system_memory_0e28;                           // 系统配置数据块9
+uint8_t system_memory_f9e8;                           // 系统配置数据块10
+uint8_t system_memory_f9c0;                           // 系统配置数据块11
+uint8_t system_memory_0bb0;                           // 系统配置数据块12
+uint8_t system_memory_0b88;                           // 系统配置数据块13
 
 // 系统引用变量
 uint8_t UNK_180a00400;                           // 系统引用指针1
@@ -67,8 +67,8 @@ uint8_t FUN_18008f140;                           // 系统工具函数2
 uint8_t UNK_1800868c0;                           // 系统工具变量
 
 // 系统数据缓冲区
-uint8_t DAT_180c8aa70;                           // 系统数据缓冲区1
-uint8_t DAT_180c8eb70;                           // 系统数据缓冲区2
+uint8_t system_memory_aa70;                           // 系统数据缓冲区1
+uint8_t system_memory_eb70;                           // 系统数据缓冲区2
 
 //------------------------------------------------------------------------------
 // 常量定义
@@ -207,7 +207,7 @@ void SystemInitialization_RegisterComponent1(void)
   
   // 遍历组件树查找目标组件
   while (component_status == '\0') {
-    compare_result = memcmp(next_component_ptr + 4, &DAT_180a00fb0, MEMORY_COMPARE_SIZE);
+    compare_result = memcmp(next_component_ptr + 4, &system_memory_0fb0, MEMORY_COMPARE_SIZE);
     if (compare_result < 0) {
       // 向左子树遍历
       next_component_ptr = (SystemContextHandle*)next_component_ptr[2];
@@ -224,7 +224,7 @@ void SystemInitialization_RegisterComponent1(void)
   
   // 检查是否需要分配新组件
   if ((parent_component_ptr == root_component_ptr) || 
-      (compare_result = memcmp(&DAT_180a00fb0, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
+      (compare_result = memcmp(&system_memory_0fb0, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = SystemRegistryManager(root_component_ptr);
     SystemMemoryAllocator(root_component_ptr, &allocated_component_ptr, parent_component_ptr, 
                         allocation_size + MEMORY_BLOCK_SIZE, allocation_size);
@@ -297,7 +297,7 @@ void SystemInitialization_RegisterComponent2(void)
   
   // 遍历组件树查找目标组件
   while (component_status == '\0') {
-    compare_result = memcmp(next_component_ptr + 4, &DAT_180a010a0, MEMORY_COMPARE_SIZE);
+    compare_result = memcmp(next_component_ptr + 4, &system_memory_10a0, MEMORY_COMPARE_SIZE);
     if (compare_result < 0) {
       // 向左子树遍历
       next_component_ptr = (SystemContextHandle*)next_component_ptr[2];
@@ -314,7 +314,7 @@ void SystemInitialization_RegisterComponent2(void)
   
   // 检查是否需要分配新组件
   if ((parent_component_ptr == root_component_ptr) || 
-      (compare_result = memcmp(&DAT_180a010a0, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
+      (compare_result = memcmp(&system_memory_10a0, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = SystemRegistryManager(root_component_ptr);
     SystemMemoryAllocator(root_component_ptr, &allocated_component_ptr, parent_component_ptr, 
                         allocation_size + MEMORY_BLOCK_SIZE, allocation_size);
@@ -387,7 +387,7 @@ void SystemInitialization_RegisterComponent3(void)
   
   // 遍历组件树查找目标组件
   while (component_status == '\0') {
-    compare_result = memcmp(next_component_ptr + 4, &DAT_180a01078, MEMORY_COMPARE_SIZE);
+    compare_result = memcmp(next_component_ptr + 4, &system_memory_1078, MEMORY_COMPARE_SIZE);
     if (compare_result < 0) {
       // 向左子树遍历
       next_component_ptr = (SystemContextHandle*)next_component_ptr[2];
@@ -404,7 +404,7 @@ void SystemInitialization_RegisterComponent3(void)
   
   // 检查是否需要分配新组件
   if ((parent_component_ptr == root_component_ptr) || 
-      (compare_result = memcmp(&DAT_180a01078, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
+      (compare_result = memcmp(&system_memory_1078, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = SystemRegistryManager(root_component_ptr);
     SystemMemoryAllocator(root_component_ptr, &allocated_component_ptr, parent_component_ptr, 
                         allocation_size + MEMORY_BLOCK_SIZE, allocation_size);
@@ -477,7 +477,7 @@ void SystemInitialization_RegisterComponent4(void)
   
   // 遍历组件树查找目标组件
   while (component_status == '\0') {
-    compare_result = memcmp(next_component_ptr + 4, &DAT_180a01050, MEMORY_COMPARE_SIZE);
+    compare_result = memcmp(next_component_ptr + 4, &system_memory_1050, MEMORY_COMPARE_SIZE);
     if (compare_result < 0) {
       // 向左子树遍历
       next_component_ptr = (SystemContextHandle*)next_component_ptr[2];
@@ -494,7 +494,7 @@ void SystemInitialization_RegisterComponent4(void)
   
   // 检查是否需要分配新组件
   if ((parent_component_ptr == root_component_ptr) || 
-      (compare_result = memcmp(&DAT_180a01050, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
+      (compare_result = memcmp(&system_memory_1050, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = SystemRegistryManager(root_component_ptr);
     SystemMemoryAllocator(root_component_ptr, &allocated_component_ptr, parent_component_ptr, 
                         allocation_size + MEMORY_BLOCK_SIZE, allocation_size);
@@ -567,7 +567,7 @@ void SystemInitialization_RegisterComponent5(void)
   
   // 遍历组件树查找目标组件
   while (component_status == '\0') {
-    compare_result = memcmp(next_component_ptr + 4, &DAT_180a01028, MEMORY_COMPARE_SIZE);
+    compare_result = memcmp(next_component_ptr + 4, &system_memory_1028, MEMORY_COMPARE_SIZE);
     if (compare_result < 0) {
       // 向左子树遍历
       next_component_ptr = (SystemContextHandle*)next_component_ptr[2];
@@ -584,7 +584,7 @@ void SystemInitialization_RegisterComponent5(void)
   
   // 检查是否需要分配新组件
   if ((parent_component_ptr == root_component_ptr) || 
-      (compare_result = memcmp(&DAT_180a01028, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
+      (compare_result = memcmp(&system_memory_1028, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = SystemRegistryManager(root_component_ptr);
     SystemMemoryAllocator(root_component_ptr, &allocated_component_ptr, parent_component_ptr, 
                         allocation_size + MEMORY_BLOCK_SIZE, allocation_size);
@@ -657,7 +657,7 @@ void SystemInitialization_RegisterComponent6(void)
   
   // 遍历组件树查找目标组件
   while (component_status == '\0') {
-    compare_result = memcmp(next_component_ptr + 4, &DAT_180a01000, MEMORY_COMPARE_SIZE);
+    compare_result = memcmp(next_component_ptr + 4, &system_memory_1000, MEMORY_COMPARE_SIZE);
     if (compare_result < 0) {
       // 向左子树遍历
       next_component_ptr = (SystemContextHandle*)next_component_ptr[2];
@@ -674,7 +674,7 @@ void SystemInitialization_RegisterComponent6(void)
   
   // 检查是否需要分配新组件
   if ((parent_component_ptr == root_component_ptr) || 
-      (compare_result = memcmp(&DAT_180a01000, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
+      (compare_result = memcmp(&system_memory_1000, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = SystemRegistryManager(root_component_ptr);
     SystemMemoryAllocator(root_component_ptr, &allocated_component_ptr, parent_component_ptr, 
                         allocation_size + MEMORY_BLOCK_SIZE, allocation_size);
@@ -747,7 +747,7 @@ void SystemInitialization_RegisterComponent7(void)
   
   // 遍历组件树查找目标组件
   while (component_status == '\0') {
-    compare_result = memcmp(next_component_ptr + 4, &DAT_180a00fd8, MEMORY_COMPARE_SIZE);
+    compare_result = memcmp(next_component_ptr + 4, &system_memory_0fd8, MEMORY_COMPARE_SIZE);
     if (compare_result < 0) {
       // 向左子树遍历
       next_component_ptr = (SystemContextHandle*)next_component_ptr[2];
@@ -764,7 +764,7 @@ void SystemInitialization_RegisterComponent7(void)
   
   // 检查是否需要分配新组件
   if ((parent_component_ptr == root_component_ptr) || 
-      (compare_result = memcmp(&DAT_180a00fd8, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
+      (compare_result = memcmp(&system_memory_0fd8, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = SystemRegistryManager(root_component_ptr);
     SystemMemoryAllocator(root_component_ptr, &allocated_component_ptr, parent_component_ptr, 
                         allocation_size + MEMORY_BLOCK_SIZE, allocation_size);
@@ -837,7 +837,7 @@ void SystemInitialization_RegisterComponent8(void)
   
   // 遍历组件树查找目标组件
   while (component_status == '\0') {
-    compare_result = memcmp(next_component_ptr + 4, &DAT_180a00fb0, MEMORY_COMPARE_SIZE);
+    compare_result = memcmp(next_component_ptr + 4, &system_memory_0fb0, MEMORY_COMPARE_SIZE);
     if (compare_result < 0) {
       // 向左子树遍历
       next_component_ptr = (SystemContextHandle*)next_component_ptr[2];
@@ -854,7 +854,7 @@ void SystemInitialization_RegisterComponent8(void)
   
   // 检查是否需要分配新组件
   if ((parent_component_ptr == root_component_ptr) || 
-      (compare_result = memcmp(&DAT_180a00fb0, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
+      (compare_result = memcmp(&system_memory_0fb0, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = SystemRegistryManager(root_component_ptr);
     SystemMemoryAllocator(root_component_ptr, &allocated_component_ptr, parent_component_ptr, 
                         allocation_size + MEMORY_BLOCK_SIZE, allocation_size);
@@ -1017,7 +1017,7 @@ void SystemInitialization_RegisterComponent9(void)
   
   // 遍历组件树查找目标组件
   while (component_status == '\0') {
-    compare_result = memcmp(next_component_ptr + 4, &DAT_180a00d48, MEMORY_COMPARE_SIZE);
+    compare_result = memcmp(next_component_ptr + 4, &system_memory_0d48, MEMORY_COMPARE_SIZE);
     if (compare_result < 0) {
       // 向左子树遍历
       next_component_ptr = (SystemContextHandle*)next_component_ptr[2];
@@ -1034,7 +1034,7 @@ void SystemInitialization_RegisterComponent9(void)
   
   // 检查是否需要分配新组件
   if ((parent_component_ptr == root_component_ptr) || 
-      (compare_result = memcmp(&DAT_180a00d48, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
+      (compare_result = memcmp(&system_memory_0d48, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = SystemRegistryManager(root_component_ptr);
     SystemMemoryAllocator(root_component_ptr, &allocated_component_ptr, parent_component_ptr, 
                         allocation_size + MEMORY_BLOCK_SIZE, allocation_size);
@@ -1107,7 +1107,7 @@ void SystemInitialization_RegisterComponent10(void)
   
   // 遍历组件树查找目标组件
   while (component_status == '\0') {
-    compare_result = memcmp(next_component_ptr + 4, &DAT_180a00e28, MEMORY_COMPARE_SIZE);
+    compare_result = memcmp(next_component_ptr + 4, &system_memory_0e28, MEMORY_COMPARE_SIZE);
     if (compare_result < 0) {
       // 向左子树遍历
       next_component_ptr = (SystemContextHandle*)next_component_ptr[2];
@@ -1124,7 +1124,7 @@ void SystemInitialization_RegisterComponent10(void)
   
   // 检查是否需要分配新组件
   if ((parent_component_ptr == root_component_ptr) || 
-      (compare_result = memcmp(&DAT_180a00e28, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
+      (compare_result = memcmp(&system_memory_0e28, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = SystemRegistryManager(root_component_ptr);
     SystemMemoryAllocator(root_component_ptr, &allocated_component_ptr, parent_component_ptr, 
                         allocation_size + MEMORY_BLOCK_SIZE, allocation_size);
@@ -1197,7 +1197,7 @@ void SystemInitialization_RegisterComponent11(void)
   
   // 遍历组件树查找目标组件
   while (component_status == '\0') {
-    compare_result = memcmp(next_component_ptr + 4, &DAT_1809ff9e8, MEMORY_COMPARE_SIZE);
+    compare_result = memcmp(next_component_ptr + 4, &system_memory_f9e8, MEMORY_COMPARE_SIZE);
     if (compare_result < 0) {
       // 向左子树遍历
       next_component_ptr = (SystemContextHandle*)next_component_ptr[2];
@@ -1214,7 +1214,7 @@ void SystemInitialization_RegisterComponent11(void)
   
   // 检查是否需要分配新组件
   if ((parent_component_ptr == root_component_ptr) || 
-      (compare_result = memcmp(&DAT_1809ff9e8, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
+      (compare_result = memcmp(&system_memory_f9e8, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = SystemRegistryManager(root_component_ptr);
     SystemMemoryAllocator(root_component_ptr, &allocated_component_ptr, parent_component_ptr, 
                         allocation_size + MEMORY_BLOCK_SIZE, allocation_size);
@@ -1287,7 +1287,7 @@ void SystemInitialization_RegisterComponent12(void)
   
   // 遍历组件树查找目标组件
   while (component_status == '\0') {
-    compare_result = memcmp(next_component_ptr + 4, &DAT_1809ff9c0, MEMORY_COMPARE_SIZE);
+    compare_result = memcmp(next_component_ptr + 4, &system_memory_f9c0, MEMORY_COMPARE_SIZE);
     if (compare_result < 0) {
       // 向左子树遍历
       next_component_ptr = (SystemContextHandle*)next_component_ptr[2];
@@ -1304,7 +1304,7 @@ void SystemInitialization_RegisterComponent12(void)
   
   // 检查是否需要分配新组件
   if ((parent_component_ptr == root_component_ptr) || 
-      (compare_result = memcmp(&DAT_1809ff9c0, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
+      (compare_result = memcmp(&system_memory_f9c0, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = SystemRegistryManager(root_component_ptr);
     SystemMemoryAllocator(root_component_ptr, &allocated_component_ptr, parent_component_ptr, 
                         allocation_size + MEMORY_BLOCK_SIZE, allocation_size);
@@ -1377,7 +1377,7 @@ void SystemInitialization_RegisterComponent13(void)
   
   // 遍历组件树查找目标组件
   while (component_status == '\0') {
-    compare_result = memcmp(next_component_ptr + 4, &DAT_180a010a0, MEMORY_COMPARE_SIZE);
+    compare_result = memcmp(next_component_ptr + 4, &system_memory_10a0, MEMORY_COMPARE_SIZE);
     if (compare_result < 0) {
       // 向左子树遍历
       next_component_ptr = (SystemContextHandle*)next_component_ptr[2];
@@ -1394,7 +1394,7 @@ void SystemInitialization_RegisterComponent13(void)
   
   // 检查是否需要分配新组件
   if ((parent_component_ptr == root_component_ptr) || 
-      (compare_result = memcmp(&DAT_180a010a0, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
+      (compare_result = memcmp(&system_memory_10a0, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = SystemRegistryManager(root_component_ptr);
     SystemMemoryAllocator(root_component_ptr, &allocated_component_ptr, parent_component_ptr, 
                         allocation_size + MEMORY_BLOCK_SIZE, allocation_size);
@@ -1467,7 +1467,7 @@ void SystemInitialization_RegisterComponent14(void)
   
   // 遍历组件树查找目标组件
   while (component_status == '\0') {
-    compare_result = memcmp(next_component_ptr + 4, &DAT_180a01078, MEMORY_COMPARE_SIZE);
+    compare_result = memcmp(next_component_ptr + 4, &system_memory_1078, MEMORY_COMPARE_SIZE);
     if (compare_result < 0) {
       // 向左子树遍历
       next_component_ptr = (SystemContextHandle*)next_component_ptr[2];
@@ -1484,7 +1484,7 @@ void SystemInitialization_RegisterComponent14(void)
   
   // 检查是否需要分配新组件
   if ((parent_component_ptr == root_component_ptr) || 
-      (compare_result = memcmp(&DAT_180a01078, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
+      (compare_result = memcmp(&system_memory_1078, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = SystemRegistryManager(root_component_ptr);
     SystemMemoryAllocator(root_component_ptr, &allocated_component_ptr, parent_component_ptr, 
                         allocation_size + MEMORY_BLOCK_SIZE, allocation_size);
@@ -1557,7 +1557,7 @@ void SystemInitialization_RegisterComponent15(void)
   
   // 遍历组件树查找目标组件
   while (component_status == '\0') {
-    compare_result = memcmp(next_component_ptr + 4, &DAT_180a01050, MEMORY_COMPARE_SIZE);
+    compare_result = memcmp(next_component_ptr + 4, &system_memory_1050, MEMORY_COMPARE_SIZE);
     if (compare_result < 0) {
       // 向左子树遍历
       next_component_ptr = (SystemContextHandle*)next_component_ptr[2];
@@ -1574,7 +1574,7 @@ void SystemInitialization_RegisterComponent15(void)
   
   // 检查是否需要分配新组件
   if ((parent_component_ptr == root_component_ptr) || 
-      (compare_result = memcmp(&DAT_180a01050, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
+      (compare_result = memcmp(&system_memory_1050, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = SystemRegistryManager(root_component_ptr);
     SystemMemoryAllocator(root_component_ptr, &allocated_component_ptr, parent_component_ptr, 
                         allocation_size + MEMORY_BLOCK_SIZE, allocation_size);
@@ -1647,7 +1647,7 @@ void SystemInitialization_RegisterComponent16(void)
   
   // 遍历组件树查找目标组件
   while (component_status == '\0') {
-    compare_result = memcmp(next_component_ptr + 4, &DAT_180a01028, MEMORY_COMPARE_SIZE);
+    compare_result = memcmp(next_component_ptr + 4, &system_memory_1028, MEMORY_COMPARE_SIZE);
     if (compare_result < 0) {
       // 向左子树遍历
       next_component_ptr = (SystemContextHandle*)next_component_ptr[2];
@@ -1664,7 +1664,7 @@ void SystemInitialization_RegisterComponent16(void)
   
   // 检查是否需要分配新组件
   if ((parent_component_ptr == root_component_ptr) || 
-      (compare_result = memcmp(&DAT_180a01028, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
+      (compare_result = memcmp(&system_memory_1028, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = SystemRegistryManager(root_component_ptr);
     SystemMemoryAllocator(root_component_ptr, &allocated_component_ptr, parent_component_ptr, 
                         allocation_size + MEMORY_BLOCK_SIZE, allocation_size);
@@ -1737,7 +1737,7 @@ void SystemInitialization_RegisterComponent17(void)
   
   // 遍历组件树查找目标组件
   while (component_status == '\0') {
-    compare_result = memcmp(next_component_ptr + 4, &DAT_180a01000, MEMORY_COMPARE_SIZE);
+    compare_result = memcmp(next_component_ptr + 4, &system_memory_1000, MEMORY_COMPARE_SIZE);
     if (compare_result < 0) {
       // 向左子树遍历
       next_component_ptr = (SystemContextHandle*)next_component_ptr[2];
@@ -1754,7 +1754,7 @@ void SystemInitialization_RegisterComponent17(void)
   
   // 检查是否需要分配新组件
   if ((parent_component_ptr == root_component_ptr) || 
-      (compare_result = memcmp(&DAT_180a01000, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
+      (compare_result = memcmp(&system_memory_1000, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = SystemRegistryManager(root_component_ptr);
     SystemMemoryAllocator(root_component_ptr, &allocated_component_ptr, parent_component_ptr, 
                         allocation_size + MEMORY_BLOCK_SIZE, allocation_size);
@@ -1827,7 +1827,7 @@ void SystemInitialization_RegisterComponent18(void)
   
   // 遍历组件树查找目标组件
   while (component_status == '\0') {
-    compare_result = memcmp(next_component_ptr + 4, &DAT_180a00fd8, MEMORY_COMPARE_SIZE);
+    compare_result = memcmp(next_component_ptr + 4, &system_memory_0fd8, MEMORY_COMPARE_SIZE);
     if (compare_result < 0) {
       // 向左子树遍历
       next_component_ptr = (SystemContextHandle*)next_component_ptr[2];
@@ -1844,7 +1844,7 @@ void SystemInitialization_RegisterComponent18(void)
   
   // 检查是否需要分配新组件
   if ((parent_component_ptr == root_component_ptr) || 
-      (compare_result = memcmp(&DAT_180a00fd8, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
+      (compare_result = memcmp(&system_memory_0fd8, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = SystemRegistryManager(root_component_ptr);
     SystemMemoryAllocator(root_component_ptr, &allocated_component_ptr, parent_component_ptr, 
                         allocation_size + MEMORY_BLOCK_SIZE, allocation_size);
@@ -1917,7 +1917,7 @@ void SystemInitialization_RegisterComponent19(void)
   
   // 遍历组件树查找目标组件
   while (component_status == '\0') {
-    compare_result = memcmp(next_component_ptr + 4, &DAT_180a00fb0, MEMORY_COMPARE_SIZE);
+    compare_result = memcmp(next_component_ptr + 4, &system_memory_0fb0, MEMORY_COMPARE_SIZE);
     if (compare_result < 0) {
       // 向左子树遍历
       next_component_ptr = (SystemContextHandle*)next_component_ptr[2];
@@ -1934,7 +1934,7 @@ void SystemInitialization_RegisterComponent19(void)
   
   // 检查是否需要分配新组件
   if ((parent_component_ptr == root_component_ptr) || 
-      (compare_result = memcmp(&DAT_180a00fb0, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
+      (compare_result = memcmp(&system_memory_0fb0, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = SystemRegistryManager(root_component_ptr);
     SystemMemoryAllocator(root_component_ptr, &allocated_component_ptr, parent_component_ptr, 
                         allocation_size + MEMORY_BLOCK_SIZE, allocation_size);
@@ -2007,7 +2007,7 @@ void SystemInitialization_RegisterComponent20(void)
   
   // 遍历组件树查找目标组件
   while (component_status == '\0') {
-    compare_result = memcmp(next_component_ptr + 4, &DAT_180a00bb0, MEMORY_COMPARE_SIZE);
+    compare_result = memcmp(next_component_ptr + 4, &system_memory_0bb0, MEMORY_COMPARE_SIZE);
     if (compare_result < 0) {
       // 向左子树遍历
       next_component_ptr = (SystemContextHandle*)next_component_ptr[2];
@@ -2024,7 +2024,7 @@ void SystemInitialization_RegisterComponent20(void)
   
   // 检查是否需要分配新组件
   if ((parent_component_ptr == root_component_ptr) || 
-      (compare_result = memcmp(&DAT_180a00bb0, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
+      (compare_result = memcmp(&system_memory_0bb0, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = SystemRegistryManager(root_component_ptr);
     SystemMemoryAllocator(root_component_ptr, &allocated_component_ptr, parent_component_ptr, 
                         allocation_size + MEMORY_BLOCK_SIZE, allocation_size);
@@ -2097,7 +2097,7 @@ void SystemInitialization_RegisterComponent21(void)
   
   // 遍历组件树查找目标组件
   while (component_status == '\0') {
-    compare_result = memcmp(next_component_ptr + 4, &DAT_180a00b88, MEMORY_COMPARE_SIZE);
+    compare_result = memcmp(next_component_ptr + 4, &system_memory_0b88, MEMORY_COMPARE_SIZE);
     if (compare_result < 0) {
       // 向左子树遍历
       next_component_ptr = (SystemContextHandle*)next_component_ptr[2];
@@ -2114,7 +2114,7 @@ void SystemInitialization_RegisterComponent21(void)
   
   // 检查是否需要分配新组件
   if ((parent_component_ptr == root_component_ptr) || 
-      (compare_result = memcmp(&DAT_180a00b88, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
+      (compare_result = memcmp(&system_memory_0b88, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = SystemRegistryManager(root_component_ptr);
     SystemMemoryAllocator(root_component_ptr, &allocated_component_ptr, parent_component_ptr, 
                         allocation_size + MEMORY_BLOCK_SIZE, allocation_size);
@@ -2187,7 +2187,7 @@ void SystemInitialization_RegisterComponent22(void)
   
   // 遍历组件树查找目标组件
   while (component_status == '\0') {
-    compare_result = memcmp(next_component_ptr + 4, &DAT_180a010a0, MEMORY_COMPARE_SIZE);
+    compare_result = memcmp(next_component_ptr + 4, &system_memory_10a0, MEMORY_COMPARE_SIZE);
     if (compare_result < 0) {
       // 向左子树遍历
       next_component_ptr = (SystemContextHandle*)next_component_ptr[2];
@@ -2204,7 +2204,7 @@ void SystemInitialization_RegisterComponent22(void)
   
   // 检查是否需要分配新组件
   if ((parent_component_ptr == root_component_ptr) || 
-      (compare_result = memcmp(&DAT_180a010a0, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
+      (compare_result = memcmp(&system_memory_10a0, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = SystemRegistryManager(root_component_ptr);
     SystemMemoryAllocator(root_component_ptr, &allocated_component_ptr, parent_component_ptr, 
                         allocation_size + MEMORY_BLOCK_SIZE, allocation_size);
@@ -2277,7 +2277,7 @@ void SystemInitialization_RegisterComponent23(void)
   
   // 遍历组件树查找目标组件
   while (component_status == '\0') {
-    compare_result = memcmp(next_component_ptr + 4, &DAT_180a01078, MEMORY_COMPARE_SIZE);
+    compare_result = memcmp(next_component_ptr + 4, &system_memory_1078, MEMORY_COMPARE_SIZE);
     if (compare_result < 0) {
       // 向左子树遍历
       next_component_ptr = (SystemContextHandle*)next_component_ptr[2];
@@ -2294,7 +2294,7 @@ void SystemInitialization_RegisterComponent23(void)
   
   // 检查是否需要分配新组件
   if ((parent_component_ptr == root_component_ptr) || 
-      (compare_result = memcmp(&DAT_180a01078, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
+      (compare_result = memcmp(&system_memory_1078, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = SystemRegistryManager(root_component_ptr);
     SystemMemoryAllocator(root_component_ptr, &allocated_component_ptr, parent_component_ptr, 
                         allocation_size + MEMORY_BLOCK_SIZE, allocation_size);
@@ -2367,7 +2367,7 @@ void SystemInitialization_RegisterComponent24(void)
   
   // 遍历组件树查找目标组件
   while (component_status == '\0') {
-    compare_result = memcmp(next_component_ptr + 4, &DAT_180a01050, MEMORY_COMPARE_SIZE);
+    compare_result = memcmp(next_component_ptr + 4, &system_memory_1050, MEMORY_COMPARE_SIZE);
     if (compare_result < 0) {
       // 向左子树遍历
       next_component_ptr = (SystemContextHandle*)next_component_ptr[2];
@@ -2384,7 +2384,7 @@ void SystemInitialization_RegisterComponent24(void)
   
   // 检查是否需要分配新组件
   if ((parent_component_ptr == root_component_ptr) || 
-      (compare_result = memcmp(&DAT_180a01050, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
+      (compare_result = memcmp(&system_memory_1050, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = SystemRegistryManager(root_component_ptr);
     SystemMemoryAllocator(root_component_ptr, &allocated_component_ptr, parent_component_ptr, 
                         allocation_size + MEMORY_BLOCK_SIZE, allocation_size);
@@ -2457,7 +2457,7 @@ void SystemInitialization_RegisterComponent25(void)
   
   // 遍历组件树查找目标组件
   while (component_status == '\0') {
-    compare_result = memcmp(next_component_ptr + 4, &DAT_180a01028, MEMORY_COMPARE_SIZE);
+    compare_result = memcmp(next_component_ptr + 4, &system_memory_1028, MEMORY_COMPARE_SIZE);
     if (compare_result < 0) {
       // 向左子树遍历
       next_component_ptr = (SystemContextHandle*)next_component_ptr[2];
@@ -2474,7 +2474,7 @@ void SystemInitialization_RegisterComponent25(void)
   
   // 检查是否需要分配新组件
   if ((parent_component_ptr == root_component_ptr) || 
-      (compare_result = memcmp(&DAT_180a01028, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
+      (compare_result = memcmp(&system_memory_1028, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = SystemRegistryManager(root_component_ptr);
     SystemMemoryAllocator(root_component_ptr, &allocated_component_ptr, parent_component_ptr, 
                         allocation_size + MEMORY_BLOCK_SIZE, allocation_size);
@@ -2547,7 +2547,7 @@ void SystemInitialization_RegisterComponent26(void)
   
   // 遍历组件树查找目标组件
   while (component_status == '\0') {
-    compare_result = memcmp(next_component_ptr + 4, &DAT_180a01000, MEMORY_COMPARE_SIZE);
+    compare_result = memcmp(next_component_ptr + 4, &system_memory_1000, MEMORY_COMPARE_SIZE);
     if (compare_result < 0) {
       // 向左子树遍历
       next_component_ptr = (SystemContextHandle*)next_component_ptr[2];
@@ -2564,7 +2564,7 @@ void SystemInitialization_RegisterComponent26(void)
   
   // 检查是否需要分配新组件
   if ((parent_component_ptr == root_component_ptr) || 
-      (compare_result = memcmp(&DAT_180a01000, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
+      (compare_result = memcmp(&system_memory_1000, parent_component_ptr + 4, MEMORY_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = SystemRegistryManager(root_component_ptr);
     SystemMemoryAllocator(root_component_ptr, &allocated_component_ptr, parent_component_ptr, 
                         allocation_size + MEMORY_BLOCK_SIZE, allocation_size);

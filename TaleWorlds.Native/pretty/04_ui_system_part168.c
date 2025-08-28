@@ -379,7 +379,7 @@ uint64_t FUN_180769860(longlong param_1)
   
   uVar6 = 4;
   cVar8 = '\0';
-  iVar4 = FUN_18076b6f0(&DAT_180958c80,param_1 + 0x44,7);
+  iVar4 = FUN_18076b6f0(&system_data_8c80,param_1 + 0x44,7);
   if (iVar4 == 0) {
     uVar6 = 3;
     cVar8 = '\x01';

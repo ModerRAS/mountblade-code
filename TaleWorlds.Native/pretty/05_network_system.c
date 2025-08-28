@@ -174,7 +174,7 @@ int NetworkSystemInitialize(void)
     NetworkTimeout = 30000;
     
     /* 标记网络系统已初始化 */
-    DAT_180bf0102 |= NETWORK_INITIALIZED;
+    system_buffer_0102 |= NETWORK_INITIALIZED;
     
     return SUCCESS;
 }
@@ -207,7 +207,7 @@ void NetworkSystemShutdown(void)
     DestroyNetworkManager();
     
     /* 清除网络系统标志 */
-    DAT_180bf0102 &= ~NETWORK_INITIALIZED;
+    system_buffer_0102 &= ~NETWORK_INITIALIZED;
 }
 
 /*=============================================================================

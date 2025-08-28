@@ -110,7 +110,7 @@ uint8_t UNK_180a01310;                           // 渲染系统主控制变量
 uint8_t UNK_180a01378;                           // 渲染状态管理变量
 uint8_t UNK_180a01360;                           // 渲染配置变量
 uint8_t UNK_180a16bd0;                           // 渲染设备句柄
-uint8_t DAT_180c8aa08;                          // 渲染系统数据表
+uint8_t system_main_data_ptr;                          // 渲染系统数据表
 uint8_t UNK_180a01340;                           // 渲染内存管理器
 uint8_t UNK_180a013a8;                           // 渲染纹理管理器
 uint8_t UNK_180a013b8;                           // 渲染着色器管理器
@@ -122,11 +122,11 @@ uint8_t UNK_180a013b0;                           // 渲染命令队列
 uint8_t UNK_180a013e0;                           // 渲染同步对象
 
 // 纹理系统变量
-uint8_t DAT_180c8a988;                          // 纹理缓存表
+uint8_t system_memory_a988;                          // 纹理缓存表
 uint8_t UNK_180a04f28;                           // 纹理加载器
 uint8_t UNK_180a04f58;                           // 纹理压缩器
-uint8_t DAT_180a02bf0;                          // 纹理格式代码分析器
-uint8_t DAT_180a03fc0;                          // 纹理过滤器
+uint8_t system_memory_2bf0;                          // 纹理格式代码分析器
+uint8_t system_memory_3fc0;                          // 纹理过滤器
 uint8_t UNK_180a04f68;                           // 纹理MIP映射生成器
 uint8_t UNK_180a04f70;                           // 纹理绑定管理器
 uint8_t UNK_180a04f78;                           // 纹理采样器状态
@@ -178,7 +178,7 @@ uint8_t UNK_180a0b378;                           // 结构化缓冲区管理器
 uint8_t UNK_180a0b388;                           // 原始缓冲区管理器
 uint8_t UNK_180a0b390;                           // 缓冲区分配器
 uint8_t UNK_180a0b3a8;                           // 缓冲区映射器
-uint8_t DAT_180a0b3b8;                          // 缓冲区描述符表
+uint8_t system_memory_b3b8;                          // 缓冲区描述符表
 uint8_t UNK_180a0b3c0;                           // 缓冲区绑定器
 uint8_t UNK_180a0b3d4;                           // 缓冲区同步器
 uint8_t UNK_180a0b3e0;                           // 缓冲区验证器
@@ -196,21 +196,21 @@ uint8_t UNK_180a0b518;                           // 缓冲区调试器
 uint8_t UNK_180a0b530;                           // 缓冲区监控器
 uint8_t UNK_180a0b550;                           // 缓冲区统计器
 uint8_t UNK_180a0b568;                           // 缓冲区报告器
-uint8_t DAT_180a0b57c;                          // 缓冲区元数据
+uint8_t system_memory_b57c;                          // 缓冲区元数据
 uint8_t UNK_180a0b590;                           // 缓冲区生命周期管理器
 uint8_t UNK_180a0b5a0;                           // 缓冲区垃圾回收器
 uint8_t UNK_180a0b5b8;                           // 缓冲区压缩检测器
 uint8_t UNK_180a0b5d8;                           // 缓冲区性能优化器
 uint8_t UNK_180a0c288;                           // 缓冲区内存池
-char DAT_180d48d64;                                // 缓冲区状态标志
+char system_memory_8d64;                                // 缓冲区状态标志
 uint8_t UNK_1801bc820;                           // 缓冲区配置管理器
 uint8_t UNK_1801bc840;                           // 缓冲区设备管理器
-char DAT_180c82847;                                // 缓冲区系统标志
-uint8_t DAT_180a3fc80;                          // 缓冲区资源表
+char system_memory_2847;                                // 缓冲区系统标志
+uint8_t system_memory_fc80;                          // 缓冲区资源表
 uint8_t UNK_18027d980;                           // 缓冲区线程管理器
 uint8_t UNK_180a03038;                           // 缓冲区锁管理器
-uint8_t DAT_180a40490;                          // 缓冲区访问控制表
-uint8_t DAT_180d49630;                          // 缓冲区安全策略
+uint8_t system_memory_0490;                          // 缓冲区访问控制表
+uint8_t system_memory_9630;                          // 缓冲区安全策略
 
 // 渲染状态变量
 uint8_t UNK_180a0cfd4;                           // 渲染状态机
@@ -235,7 +235,7 @@ uint8_t UNK_180a0d148;                           // 渲染状态内存管理器
 uint8_t UNK_180a0d150;                           // 渲染状态线程管理器
 uint8_t UNK_180a0d160;                           // 渲染状态同步管理器
 uint8_t UNK_180a0d190;                           // 渲染状态安全检查器
-uint8_t DAT_1809fccb0;                          // 渲染状态数据表
+uint8_t system_memory_ccb0;                          // 渲染状态数据表
 uint8_t UNK_180a0d298;                           // 渲染状态事件处理器
 uint8_t UNK_180a0d2a0;                           // 渲染状态回调管理器
 uint8_t UNK_180a0d2a8;                           // 渲染状态通知系统
@@ -254,14 +254,14 @@ uint8_t UNK_180a18dd0;                           // 设备适配器管理器
 uint8_t UNK_180a19e48;                           // 设备资源管理器
 uint8_t UNK_180a09858;                           // 设备内存管理器
 uint8_t UNK_180a1a070;                           // 设备状态管理器
-uint8_t DAT_180bf6648;                          // 设备配置表
+uint8_t system_memory_6648;                          // 设备配置表
 uint8_t UNK_180308990;                           // 设备初始化器
 uint8_t UNK_180a1a248;                           // 设备验证器
 uint8_t UNK_180a1a258;                           // 设备测试器
 uint8_t UNK_180a1a278;                           // 设备诊断器
-uint8_t DAT_180bfaea8;                          // 设备性能数据
-uint8_t DAT_180bfaea0;                          // 设备规格数据
-uint8_t DAT_180bfaeb8;                          // 设备限制数据
+uint8_t system_memory_aea8;                          // 设备性能数据
+uint8_t system_memory_aea0;                          // 设备规格数据
+uint8_t system_memory_aeb8;                          // 设备限制数据
 uint8_t UNK_180a1a200;                           // 设备驱动管理器
 uint8_t UNK_180a1a228;                           // 设备固件管理器
 

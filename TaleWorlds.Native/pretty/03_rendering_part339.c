@@ -1118,7 +1118,7 @@ int32_t FUN_18044b7a0(longlong *param_1)
     uStack_7c = 0x40000000;
     plStack_70 = alStack_b8;
     uStack_90 = 1;
-    puStack_98 = &DAT_180be0000;
+    puStack_98 = &system_data_0000;
     uStack_88 = 0;
     uStack_78 = 0;
     puStack_20 = auStack_a0;

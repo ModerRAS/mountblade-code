@@ -75,10 +75,10 @@ void FUN_1800d36c0(uint64_t param_1,uint64_t param_2)
       __Throw_C_error_std__YAXH_Z(iVar13);
     }
     cStack_208 = '\x01';
-    if (DAT_180c91198 == '\x01') break;
+    if (system_data_1198 == '\x01') break;
     uStack_1d8 = 1;
     FUN_1800495d0(0x180c91100,&uStack_210,&uStack_1d8);
-    cVar23 = DAT_180c91198;
+    cVar23 = system_data_1198;
 
 
 

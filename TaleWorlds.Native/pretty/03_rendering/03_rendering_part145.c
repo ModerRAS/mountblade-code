@@ -279,7 +279,7 @@ void rendering_system_string_comparator_and_config_processor(
     pointer_34 = config_buffer_19;
     config_buffer_19[0] = 0;
     buffer_size = STRING_LENGTH_8;
-    strcpy_s(config_buffer_19, STRING_BUFFER_SIZE_SMALL, &DAT_180a1eb78);
+    strcpy_s(config_buffer_19, STRING_BUFFER_SIZE_SMALL, &system_memory_eb78);
     
     // 获取字符串长度参数
     string_length = *(int *)(string_params + 0x10);
@@ -358,7 +358,7 @@ STRING_COMPARE_FAILED:
             pointer_40 = config_buffer_8;
             config_buffer_8[0] = 0;
             config_value_8 = STRING_LENGTH_26;
-            strcpy_s(config_buffer_8, STRING_BUFFER_SIZE_MEDIUM, &DAT_180a1ecf8);
+            strcpy_s(config_buffer_8, STRING_BUFFER_SIZE_MEDIUM, &system_memory_ecf8);
             pointer_39 = &UNK_18098bcb0;
             
             goto FINALIZE_RENDER_PROCESS;
@@ -386,7 +386,7 @@ STRING_COMPARE_FAILED:
         pointer_34 = config_buffer_19;
         config_buffer_19[0] = 0;
         buffer_size = STRING_LENGTH_9;
-        strcpy_s(config_buffer_19, STRING_BUFFER_SIZE_SMALL, &DAT_180a1eb88);
+        strcpy_s(config_buffer_19, STRING_BUFFER_SIZE_SMALL, &system_memory_eb88);
         
         string_length = *(int *)(string_params + 0x10);
         if (string_length == buffer_size) {
@@ -447,7 +447,7 @@ SECONDARY_COMPARE_FAILED:
         pointer_2 = config_buffer_1;
         config_buffer_1[0] = 0;
         config_value_1 = STRING_LENGTH_33;
-        strcpy_s(config_buffer_1, STRING_BUFFER_SIZE_MEDIUM, &DAT_180a1ecd0);
+        strcpy_s(config_buffer_1, STRING_BUFFER_SIZE_MEDIUM, &system_memory_ecd0);
     }
     
     pointer_1 = &UNK_18098bcb0;
@@ -522,7 +522,7 @@ void rendering_system_advanced_initializer_and_state_manager(
     }
     
     // 应用默认配置
-    FUN_1802ea790(memory_pointer, &DAT_180a00300);
+    FUN_1802ea790(memory_pointer, &system_memory_0300);
     
     // 设置栈指针
     stack_pointer_4 = &stack_pointer_1;
@@ -628,14 +628,14 @@ static inline void set_render_configuration_group_1(
     *p6 = b3;
     b3[0] = 0;
     v3 = STRING_LENGTH_35;
-    strcpy_s(b3, STRING_BUFFER_SIZE_MEDIUM, &DAT_180a1eba8);
+    strcpy_s(b3, STRING_BUFFER_SIZE_MEDIUM, &system_memory_eba8);
     *p5 = &UNK_18098bcb0;
     
     *p7 = &UNK_1809fcc58;
     *p8 = b4;
     b4[0] = 0;
     v4 = STRING_LENGTH_19;
-    strcpy_s(b4, STRING_BUFFER_SIZE_MEDIUM, &DAT_180a1eb48);
+    strcpy_s(b4, STRING_BUFFER_SIZE_MEDIUM, &system_memory_eb48);
     *p7 = &UNK_18098bcb0;
     
     *p9 = &UNK_1809fcc58;
@@ -649,14 +649,14 @@ static inline void set_render_configuration_group_1(
     *p12 = b6;
     b6[0] = 0;
     v6 = STRING_LENGTH_34;
-    strcpy_s(b6, STRING_BUFFER_SIZE_MEDIUM, &DAT_180a1ec30);
+    strcpy_s(b6, STRING_BUFFER_SIZE_MEDIUM, &system_memory_ec30);
     *p11 = &UNK_18098bcb0;
     
     *p13 = &UNK_1809fcc58;
     *p14 = b7;
     b7[0] = 0;
     v7 = STRING_LENGTH_21;
-    strcpy_s(b7, STRING_BUFFER_SIZE_MEDIUM, &DAT_180a1ec18);
+    strcpy_s(b7, STRING_BUFFER_SIZE_MEDIUM, &system_memory_ec18);
     *p13 = &UNK_18098bcb0;
 }
 

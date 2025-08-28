@@ -121,7 +121,7 @@ typedef enum {
 uint64_t* _DAT_180c868f8 = NULL;  // 核心引擎全局数据指针
 uint64_t* _DAT_180c8ed18 = NULL;  // 内存分配器数据指针
 void* UNK_180a3c3e0 = NULL;    // 未知数据结构指针
-void* DAT_18098bc73 = NULL;    // 字符串处理数据指针
+void* system_buffer_ptr = NULL;    // 字符串处理数据指针
 void* UNK_18098bcb0 = NULL;    // 配置数据指针
 
 //============================================================================
@@ -281,12 +281,12 @@ CoreEngineDataPointer CoreEngineResourceAllocator(longlong param_1, CoreEngineDa
             }
             
             // 设置搜索模式
-            default_pattern = &DAT_18098bc73;
+            default_pattern = &system_buffer_ptr;
             if (*(void**)(param_3 + 8) != (void*)0x0) {
                 default_pattern = *(void**)(param_3 + 8);
             }
             
-            search_pattern = &DAT_18098bc73;
+            search_pattern = &system_buffer_ptr;
             if (string_buffer != (int8_t*)0x0) {
                 search_pattern = string_buffer;
             }

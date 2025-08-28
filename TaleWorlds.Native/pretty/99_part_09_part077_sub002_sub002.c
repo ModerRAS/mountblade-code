@@ -969,8 +969,8 @@ void FUN_1805f0650(longlong param_1,longlong param_2)
            && (ABS(*(float *)(param_1 + 0xa8)) < 0.001)) &&
           ((ABS(*(float *)(param_1 + 0xc0)) < 0.001 && (ABS(*(float *)(param_1 + 0xc4)) < 0.001))))
          && ((ABS(*(float *)(param_1 + 200)) < 0.001 &&
-             ((cVar10 = FUN_1805f26d0(pfVar17,&DAT_180a13a10), cVar10 != '\0' &&
-              (cVar10 = FUN_1805f26d0(pfVar16,&DAT_180a13a10), cVar10 != '\0')))))) {
+             ((cVar10 = FUN_1805f26d0(pfVar17,&system_data_3a10), cVar10 != '\0' &&
+              (cVar10 = FUN_1805f26d0(pfVar16,&system_data_3a10), cVar10 != '\0')))))) {
         *(int8_t *)(param_1 + 0xd1) = 0;
         pfVar17[0] = 1.0;
         pfVar17[1] = 0.0;

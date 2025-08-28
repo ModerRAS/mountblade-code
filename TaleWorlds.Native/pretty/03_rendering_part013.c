@@ -63,13 +63,13 @@ void FUN_180275a60(longlong param_1,longlong *param_2,uint64_t param_3,uint64_t 
   *(int32_t *)(param_2 + 0xf) = uVar7;
   *(int32_t *)((longlong)param_2 + 0x7c) = *(int32_t *)(param_1 + 0x7c);
   *(int32_t *)(param_2 + 0x12) = *(int32_t *)(param_1 + 0x90);
-  puVar10 = &DAT_18098bc73;
+  puVar10 = &system_buffer_ptr;
   if (*(void **)(param_1 + 0x88) != (void *)0x0) {
     puVar10 = *(void **)(param_1 + 0x88);
   }
   strcpy_s(param_2[0x11],0x80,puVar10);
   *(int32_t *)(param_2 + 0x25) = *(int32_t *)(param_1 + 0x128);
-  puVar10 = &DAT_18098bc73;
+  puVar10 = &system_buffer_ptr;
   if (*(void **)(param_1 + 0x120) != (void *)0x0) {
     puVar10 = *(void **)(param_1 + 0x120);
   }

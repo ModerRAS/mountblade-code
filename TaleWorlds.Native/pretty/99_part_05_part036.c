@@ -765,12 +765,12 @@ LAB_1802eefe9:
       return (void *)((ulonglong)puVar7 & 0xffffffffffffff00);
     }
     FUN_180629a40(param_1 + 0xd0,&puStack_70,uVar10,uVar11);
-    puVar7 = &DAT_18098bc73;
+    puVar7 = &system_buffer_ptr;
     if (*(void **)(param_2 + 8) != (void *)0x0) {
       puVar7 = *(void **)(param_2 + 8);
     }
     FUN_18047a1e0(apuStack_50,puVar7);
-    puVar7 = &DAT_18098bc73;
+    puVar7 = &system_buffer_ptr;
     if (puStack_68 != (void *)0x0) {
       puVar7 = puStack_68;
     }

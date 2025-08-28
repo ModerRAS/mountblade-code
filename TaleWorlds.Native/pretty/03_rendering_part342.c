@@ -201,7 +201,7 @@ void FUN_18044e3b0(longlong param_1,int param_2)
     lVar5 = (longlong)*(int *)(param_1 + 0x34) * 0x58;
     puVar2 = *(void **)
               (lVar5 + 8 + *(longlong *)(*(longlong *)(_DAT_180c86870 + 0x3e0) + 0x20));
-    puVar4 = &DAT_18098bc73;
+    puVar4 = &system_buffer_ptr;
     if (puVar2 != (void *)0x0) {
       puVar4 = puVar2;
     }
@@ -213,7 +213,7 @@ void FUN_18044e3b0(longlong param_1,int param_2)
   }
   UNRECOVERED_JUMPTABLE_00 = *(code **)(*(longlong *)(param_1 + 0x488) + 0x10);
   puVar2 = *(void **)(*(longlong *)(_DAT_180c86870 + 0x3e0) + 8);
-  puVar4 = &DAT_18098bc73;
+  puVar4 = &system_buffer_ptr;
   if (puVar2 != (void *)0x0) {
     puVar4 = puVar2;
   }
@@ -273,7 +273,7 @@ void FUN_18044e590(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   uVar3 = 0xfffffffffffffffe;
   FUN_180627910(&puStack_30);
   pcVar1 = *(code **)(*(longlong *)(param_1 + 0x488) + 0x10);
-  puVar2 = &DAT_18098bc73;
+  puVar2 = &system_buffer_ptr;
   if (puStack_28 != (void *)0x0) {
     puVar2 = puStack_28;
   }

@@ -71,7 +71,7 @@ LAB_1801a5d96:
         lVar3 = 0;
 LAB_1801a5db1:
         if ((param_1 + 0x607d4 != 0) && (lVar3 != 0)) {
-          FUN_18010cbc0(lVar3,&DAT_180a06430,param_1 + 0x607d4);
+          FUN_18010cbc0(lVar3,&system_data_6430,param_1 + 0x607d4);
         }
         pfVar5 = (float *)(param_1 + 0x607d8);
         pcVar6 = "far_plane";
@@ -85,7 +85,7 @@ LAB_1801a5db1:
             lVar3 = 0;
 LAB_1801a5e49:
             if ((pfVar5 != (float *)0x0) && (lVar3 != 0)) {
-              FUN_18010cbc0(lVar3,&DAT_180a06430,pfVar5);
+              FUN_18010cbc0(lVar3,&system_data_6430,pfVar5);
             }
             if (5000.0 < *pfVar5 || *pfVar5 == 5000.0) {
               return;

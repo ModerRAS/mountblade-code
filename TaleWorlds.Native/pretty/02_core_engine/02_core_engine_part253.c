@@ -1143,7 +1143,7 @@ longlong SEXT816(longlong param);
 // 全局常量
 void *default_empty_string = &UNK_180a3c3e0;
 void *default_null_terminator = &UNK_18098bcb0;
-void *default_null_char = &DAT_18098bc73;
+void *default_null_char = &system_buffer_ptr;
 void *config_key_prefix = &UNK_180a10500;
 void *config_version_string = &UNK_180a104d0;
 void *system_config_prefix = &UNK_1809fcc28;

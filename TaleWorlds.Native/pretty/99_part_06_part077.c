@@ -327,7 +327,7 @@ uint64_t * FUN_1803f4210(uint64_t *param_1,uint64_t *param_2)
   uStack_30 = *(int32_t *)(param_2 + 5);
   param_1[2] = FUN_1803f4dc0;
   param_1[3] = FUN_1803f4d50;
-  puVar5 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x30,8,DAT_180bf65bc,0xfffffffffffffffe);
+  puVar5 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x30,8,system_allocation_flags,0xfffffffffffffffe);
   *puVar5 = 0;
   puVar5[1] = 0;
   puVar5[2] = 0;

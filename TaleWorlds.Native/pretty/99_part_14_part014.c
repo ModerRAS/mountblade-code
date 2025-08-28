@@ -749,7 +749,7 @@ uint64_t FUN_1808f6b10(longlong param_1)
           if (lVar4 == 0) {
             return 0;
           }
-          if (DAT_180c58853 != '\0') {
+          if (system_data_8853 != '\0') {
             lVar5 = _beginthread(FUN_1808f3c80,0,lVar4);
             *(longlong *)(lVar4 + 0x18) = lVar5;
             if (lVar5 != -1) {
@@ -792,7 +792,7 @@ uint64_t FUN_1808f6b10(longlong param_1)
 uint64_t FUN_1808f6c60(void)
 
 {
-  if (DAT_180c69e20 != '\0') {
+  if (system_data_9e20 != '\0') {
     EnterCriticalSection(0x180c69e50);
     return 0;
   }
@@ -804,7 +804,7 @@ uint64_t FUN_1808f6c60(void)
 uint64_t FUN_1808f6cb0(void)
 
 {
-  if (DAT_180c69e20 != '\0') {
+  if (system_data_9e20 != '\0') {
     EnterCriticalSection(0x180c69e28);
     return 0;
   }
@@ -820,7 +820,7 @@ uint64_t FUN_1808f6cb0(void)
 void FUN_1808f6d00(void)
 
 {
-  if (DAT_180c69e20 == '\0') {
+  if (system_data_9e20 == '\0') {
     InitializeCriticalSection(0x180c69e28);
     InitializeCriticalSection(0x180c69e50);
   }

@@ -807,10 +807,10 @@ void * FUN_180079430(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t
   }
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
               0x48) < _DAT_180d49158) {
-    FUN_1808fcb90(&DAT_180d49158);
+    FUN_1808fcb90(&system_ptr_9158);
     if (_DAT_180d49158 == -1) {
       _DAT_180d49160 = &UNK_1809fcc28;
-      _DAT_180d49168 = &DAT_180d49178;
+      _DAT_180d49168 = &system_ptr_9178;
 
 
 // 函数: void FUN_180079520(longlong param_1)

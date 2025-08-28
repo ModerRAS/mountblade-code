@@ -874,7 +874,7 @@ void FUN_1803b2230(longlong param_1)
   uint64_t *puStack_38;
   
   uVar5 = FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3);
-  lVar6 = FUN_1803a5e10(uVar5,&DAT_180a002f0,*(int32_t *)(param_1 + 0x28));
+  lVar6 = FUN_1803a5e10(uVar5,&system_data_02f0,*(int32_t *)(param_1 + 0x28));
   lVar11 = *(longlong *)(param_1 + 0x68);
   if ((*(char *)(lVar11 + 0x2910) == '\0') && (iVar12 = 0, 0 < *(int *)(param_1 + 0x14))) {
     lVar11 = 0;

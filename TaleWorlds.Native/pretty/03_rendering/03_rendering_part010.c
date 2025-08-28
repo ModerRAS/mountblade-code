@@ -66,7 +66,7 @@ void extend_render_data_structure_capacity(longlong *render_context, ulonglong r
         *(int8_t *)(dest_ptr + 3) = 0;
         *(int32_t *)(dest_ptr + 2) = *(int32_t *)((longlong)dest_ptr + offset + 0x10);
         name_source = *(void **)((longlong)dest_ptr + offset + 8);
-        name_source = &DAT_18098bc73;
+        name_source = &system_buffer_ptr;
         if (name_source != (void *)0x0) {
           name_source = name_source;
         }
@@ -193,7 +193,7 @@ longlong * create_rendering_context(longlong context_params,longlong *context_ha
     (**(code **)(*context_ptr + 0x28))(context_ptr);
   }
   *(longlong *)(*context_handle + 0xa8) = context_params;
-  name_ptr = &DAT_18098bc73;
+  name_ptr = &system_buffer_ptr;
   if (*(void **)(context_params + 0x70) != (void *)0x0) {
     name_ptr = *(void **)(context_params + 0x70);
   }
@@ -365,7 +365,7 @@ void process_rendering_buffer(longlong buffer_manager,uint64_t param_2,uint64_t 
   buffer_lock = &current_buffer;
   (**(code **)(*current_buffer + 0x28))();
   cleanup_rendering_system();
-  buffer_name = &DAT_18098bc73;
+  buffer_name = &system_buffer_ptr;
   if (*(void **)(buffer_manager + 0x70) != (void *)0x0) {
     buffer_name = *(void **)(buffer_manager + 0x70);
   }

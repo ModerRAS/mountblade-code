@@ -64,18 +64,18 @@
 // =============================================================================
 
 /** 系统数据比较目标地址 */
-extern uint64_t DAT_180a01000;
-extern uint64_t DAT_180a00fd8;
-extern uint64_t DAT_180a00fb0;
-extern uint64_t DAT_180a00bb0;
-extern uint64_t DAT_180a00b88;
-extern uint64_t DAT_180a010a0;
-extern uint64_t DAT_180a01078;
-extern uint64_t DAT_180a01050;
-extern uint64_t DAT_180a01028;
-extern uint64_t DAT_180a00d48;
-extern uint64_t DAT_180a00e28;
-extern uint64_t DAT_1809ff9e8;
+extern uint64_t system_memory_1000;
+extern uint64_t system_memory_0fd8;
+extern uint64_t system_memory_0fb0;
+extern uint64_t system_memory_0bb0;
+extern uint64_t system_memory_0b88;
+extern uint64_t system_memory_10a0;
+extern uint64_t system_memory_1078;
+extern uint64_t system_memory_1050;
+extern uint64_t system_memory_1028;
+extern uint64_t system_memory_0d48;
+extern uint64_t system_memory_0e28;
+extern uint64_t system_memory_f9e8;
 
 /** 系统函数指针地址 */
 extern uint64_t UNK_180a003d0;
@@ -111,7 +111,7 @@ extern uint64_t _DAT_180c91d70;
 
 extern uint64_t UNK_1809fcc28;
 extern uint64_t UNK_1809fcc58;
-extern uint64_t DAT_180bf7ea8;
+extern uint64_t system_memory_7ea8;
 extern uint64_t UNK_1800868c0;
 
 // =============================================================================
@@ -193,7 +193,7 @@ void core_engine_system_initializer_type1(void)
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
-        comparison_result = memcmp(current_node + 4, &DAT_180a01000, MEMORY_BLOCK_SIZE);
+        comparison_result = memcmp(current_node + 4, &system_memory_1000, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -207,7 +207,7 @@ void core_engine_system_initializer_type1(void)
 
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
-        (comparison_result = memcmp(&DAT_180a01000, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1000, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
         allocation_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
@@ -259,7 +259,7 @@ void core_engine_system_initializer_type2(void)
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
-        comparison_result = memcmp(current_node + 4, &DAT_180a00fd8, MEMORY_BLOCK_SIZE);
+        comparison_result = memcmp(current_node + 4, &system_memory_0fd8, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -273,7 +273,7 @@ void core_engine_system_initializer_type2(void)
 
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
-        (comparison_result = memcmp(&DAT_180a00fd8, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_0fd8, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
         allocation_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
@@ -325,7 +325,7 @@ void core_engine_system_initializer_type3(void)
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
-        comparison_result = memcmp(current_node + 4, &DAT_180a00fb0, MEMORY_BLOCK_SIZE);
+        comparison_result = memcmp(current_node + 4, &system_memory_0fb0, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -339,7 +339,7 @@ void core_engine_system_initializer_type3(void)
 
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
-        (comparison_result = memcmp(&DAT_180a00fb0, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_0fb0, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
         allocation_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
@@ -405,7 +405,7 @@ int core_engine_system_initializer_type5(void)
 
     // 设置系统状态指针
     _DAT_180bf7e90 = &UNK_1809fcc58;
-    _DAT_180bf7e98 = &DAT_180bf7ea8;
+    _DAT_180bf7e98 = &system_memory_7ea8;
 
     return 0;
 }
@@ -534,7 +534,7 @@ void core_engine_system_initializer_type9(void)
     buffer_size = 7;
 
     // 复制字符串数据到缓冲区
-    strcpy_s(buffer_data, BUFFER_SIZE, &DAT_180a14640, parameter_register, 0xfffffffffffffffe);
+    strcpy_s(buffer_data, BUFFER_SIZE, &system_memory_4640, parameter_register, 0xfffffffffffffffe);
     
     // 注册字符串处理器
     _DAT_180c91d6c = FUN_180623800(&string_processor);
@@ -611,7 +611,7 @@ void core_engine_system_initializer_type11(void)
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
-        comparison_result = memcmp(current_node + 4, &DAT_180a00bb0, MEMORY_BLOCK_SIZE);
+        comparison_result = memcmp(current_node + 4, &system_memory_0bb0, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -625,7 +625,7 @@ void core_engine_system_initializer_type11(void)
 
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
-        (comparison_result = memcmp(&DAT_180a00bb0, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_0bb0, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
         allocation_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
@@ -677,7 +677,7 @@ void core_engine_system_initializer_type12(void)
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
-        comparison_result = memcmp(current_node + 4, &DAT_180a00b88, MEMORY_BLOCK_SIZE);
+        comparison_result = memcmp(current_node + 4, &system_memory_0b88, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -691,7 +691,7 @@ void core_engine_system_initializer_type12(void)
 
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
-        (comparison_result = memcmp(&DAT_180a00b88, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_0b88, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
         allocation_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
@@ -743,7 +743,7 @@ void core_engine_system_initializer_type13(void)
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
-        comparison_result = memcmp(current_node + 4, &DAT_180a010a0, MEMORY_BLOCK_SIZE);
+        comparison_result = memcmp(current_node + 4, &system_memory_10a0, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -757,7 +757,7 @@ void core_engine_system_initializer_type13(void)
 
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
-        (comparison_result = memcmp(&DAT_180a010a0, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_10a0, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
         allocation_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
@@ -809,7 +809,7 @@ void core_engine_system_initializer_type14(void)
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
-        comparison_result = memcmp(current_node + 4, &DAT_180a01078, MEMORY_BLOCK_SIZE);
+        comparison_result = memcmp(current_node + 4, &system_memory_1078, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -823,7 +823,7 @@ void core_engine_system_initializer_type14(void)
 
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
-        (comparison_result = memcmp(&DAT_180a01078, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1078, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
         allocation_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
@@ -875,7 +875,7 @@ void core_engine_system_initializer_type15(void)
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
-        comparison_result = memcmp(current_node + 4, &DAT_180a01050, MEMORY_BLOCK_SIZE);
+        comparison_result = memcmp(current_node + 4, &system_memory_1050, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -889,7 +889,7 @@ void core_engine_system_initializer_type15(void)
 
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
-        (comparison_result = memcmp(&DAT_180a01050, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1050, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
         allocation_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
@@ -941,7 +941,7 @@ void core_engine_system_initializer_type16(void)
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
-        comparison_result = memcmp(current_node + 4, &DAT_180a01028, MEMORY_BLOCK_SIZE);
+        comparison_result = memcmp(current_node + 4, &system_memory_1028, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -955,7 +955,7 @@ void core_engine_system_initializer_type16(void)
 
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
-        (comparison_result = memcmp(&DAT_180a01028, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1028, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
         allocation_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
@@ -1007,7 +1007,7 @@ void core_engine_system_initializer_type17(void)
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
-        comparison_result = memcmp(current_node + 4, &DAT_180a01000, MEMORY_BLOCK_SIZE);
+        comparison_result = memcmp(current_node + 4, &system_memory_1000, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -1021,7 +1021,7 @@ void core_engine_system_initializer_type17(void)
 
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
-        (comparison_result = memcmp(&DAT_180a01000, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1000, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
         allocation_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
@@ -1073,7 +1073,7 @@ void core_engine_system_initializer_type18(void)
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
-        comparison_result = memcmp(current_node + 4, &DAT_180a00fd8, MEMORY_BLOCK_SIZE);
+        comparison_result = memcmp(current_node + 4, &system_memory_0fd8, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -1087,7 +1087,7 @@ void core_engine_system_initializer_type18(void)
 
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
-        (comparison_result = memcmp(&DAT_180a00fd8, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_0fd8, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
         allocation_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
@@ -1139,7 +1139,7 @@ void core_engine_system_initializer_type19(void)
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
-        comparison_result = memcmp(current_node + 4, &DAT_180a00fb0, MEMORY_BLOCK_SIZE);
+        comparison_result = memcmp(current_node + 4, &system_memory_0fb0, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -1153,7 +1153,7 @@ void core_engine_system_initializer_type19(void)
 
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
-        (comparison_result = memcmp(&DAT_180a00fb0, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_0fb0, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
         allocation_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
@@ -1205,7 +1205,7 @@ void core_engine_system_initializer_type20(void)
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
-        comparison_result = memcmp(current_node + 4, &DAT_180a010a0, MEMORY_BLOCK_SIZE);
+        comparison_result = memcmp(current_node + 4, &system_memory_10a0, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -1219,7 +1219,7 @@ void core_engine_system_initializer_type20(void)
 
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
-        (comparison_result = memcmp(&DAT_180a010a0, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_10a0, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
         allocation_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
@@ -1271,7 +1271,7 @@ void core_engine_system_initializer_type21(void)
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
-        comparison_result = memcmp(current_node + 4, &DAT_180a01078, MEMORY_BLOCK_SIZE);
+        comparison_result = memcmp(current_node + 4, &system_memory_1078, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -1285,7 +1285,7 @@ void core_engine_system_initializer_type21(void)
 
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
-        (comparison_result = memcmp(&DAT_180a01078, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1078, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
         allocation_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
@@ -1337,7 +1337,7 @@ void core_engine_system_initializer_type22(void)
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
-        comparison_result = memcmp(current_node + 4, &DAT_180a01050, MEMORY_BLOCK_SIZE);
+        comparison_result = memcmp(current_node + 4, &system_memory_1050, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -1351,7 +1351,7 @@ void core_engine_system_initializer_type22(void)
 
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
-        (comparison_result = memcmp(&DAT_180a01050, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1050, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
         allocation_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
@@ -1403,7 +1403,7 @@ void core_engine_system_initializer_type23(void)
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
-        comparison_result = memcmp(current_node + 4, &DAT_180a01028, MEMORY_BLOCK_SIZE);
+        comparison_result = memcmp(current_node + 4, &system_memory_1028, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -1417,7 +1417,7 @@ void core_engine_system_initializer_type23(void)
 
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
-        (comparison_result = memcmp(&DAT_180a01028, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1028, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
         allocation_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
@@ -1469,7 +1469,7 @@ void core_engine_system_initializer_type24(void)
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
-        comparison_result = memcmp(current_node + 4, &DAT_180a01000, MEMORY_BLOCK_SIZE);
+        comparison_result = memcmp(current_node + 4, &system_memory_1000, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -1483,7 +1483,7 @@ void core_engine_system_initializer_type24(void)
 
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
-        (comparison_result = memcmp(&DAT_180a01000, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_1000, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
         allocation_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
@@ -1606,7 +1606,7 @@ void core_engine_data_processor_type1(void)
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
-        comparison_result = memcmp(current_node + 4, &DAT_180a00d48, MEMORY_BLOCK_SIZE);
+        comparison_result = memcmp(current_node + 4, &system_memory_0d48, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -1620,7 +1620,7 @@ void core_engine_data_processor_type1(void)
 
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
-        (comparison_result = memcmp(&DAT_180a00d48, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_0d48, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
         allocation_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
@@ -1672,7 +1672,7 @@ void core_engine_data_processor_type2(void)
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
-        comparison_result = memcmp(current_node + 4, &DAT_180a00e28, MEMORY_BLOCK_SIZE);
+        comparison_result = memcmp(current_node + 4, &system_memory_0e28, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -1686,7 +1686,7 @@ void core_engine_data_processor_type2(void)
 
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
-        (comparison_result = memcmp(&DAT_180a00e28, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_0e28, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
         allocation_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
@@ -1738,7 +1738,7 @@ void core_engine_data_processor_type3(void)
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
-        comparison_result = memcmp(current_node + 4, &DAT_1809ff9e8, MEMORY_BLOCK_SIZE);
+        comparison_result = memcmp(current_node + 4, &system_memory_f9e8, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
             next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
@@ -1752,7 +1752,7 @@ void core_engine_data_processor_type3(void)
 
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
-        (comparison_result = memcmp(&DAT_1809ff9e8, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
+        (comparison_result = memcmp(&system_memory_f9e8, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
         allocation_size = FUN_18008f0d0(registry_manager);
         FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;

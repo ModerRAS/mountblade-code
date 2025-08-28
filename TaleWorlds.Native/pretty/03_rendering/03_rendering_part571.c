@@ -203,7 +203,7 @@ void rendering_system_resource_initializer(
             );
             
             param_count = FUN_18053a410(
-                &DAT_180c95f30, *(uint32_t*)((uint8_t*)context + 0xac), allocation_result
+                &system_memory_5f30, *(uint32_t*)((uint8_t*)context + 0xac), allocation_result
             );
             param_count = *(int*)(_DAT_180c95f68 + (longlong)param_count * 4);
             temp_resource = (void*)resource_data;
@@ -217,7 +217,7 @@ void rendering_system_resource_initializer(
             ((void**)params)[-2] = temp_resource;
             
             allocation_result = FUN_180557990(hash_table_ptr, 1, param_index, 0xffffffff, allocation_success);
-            param_count = FUN_18053a410(&DAT_180c95f30, *(uint32_t*)((uint8_t*)context + 0xac), allocation_result);
+            param_count = FUN_18053a410(&system_memory_5f30, *(uint32_t*)((uint8_t*)context + 0xac), allocation_result);
             param_count = *(int*)(_DAT_180c95f68 + (longlong)param_count * 4);
             temp_resource = (void*)resource_data;
             
@@ -229,7 +229,7 @@ void rendering_system_resource_initializer(
             *(void**)params = temp_resource;
             
             allocation_result = FUN_180557990(hash_table_ptr, 0, param_index, 0xffffffff, allocation_success);
-            param_count = FUN_18053a410(&DAT_180c95f30, *(uint32_t*)((uint8_t*)context + 0xac), allocation_result);
+            param_count = FUN_18053a410(&system_memory_5f30, *(uint32_t*)((uint8_t*)context + 0xac), allocation_result);
             param_count = *(int*)(_DAT_180c95f68 + (longlong)param_count * 4);
             temp_resource = (void*)resource_data;
             
@@ -241,7 +241,7 @@ void rendering_system_resource_initializer(
             ((void**)params)[1] = temp_resource;
             
             allocation_result = FUN_180557990(hash_table_ptr, 5, param_index, 0xffffffff, allocation_success);
-            param_index = FUN_18053a410(&DAT_180c95f30, *(uint32_t*)((uint8_t*)context + 0xac), allocation_result);
+            param_index = FUN_18053a410(&system_memory_5f30, *(uint32_t*)((uint8_t*)context + 0xac), allocation_result);
             param_index = *(int*)(_DAT_180c95f68 + (longlong)param_index * 4);
             temp_resource = (void*)resource_data;
             
@@ -271,7 +271,7 @@ void rendering_system_resource_initializer(
             }
             
             param_index = FUN_18053a410(
-                &DAT_180c95f30, *(uint32_t*)((uint8_t*)context + 0xac), *(uint32_t*)(*hash_table_ptr + 4)
+                &system_memory_5f30, *(uint32_t*)((uint8_t*)context + 0xac), *(uint32_t*)(*hash_table_ptr + 4)
             );
             param_index = *(int*)(_DAT_180c95f68 + (longlong)param_index * 4);
             temp_resource = (void*)resource_data;
@@ -305,7 +305,7 @@ void rendering_system_resource_initializer(
             }
             
             param_index = FUN_18053a410(
-                &DAT_180c95f30, *(uint32_t*)((uint8_t*)context + 0xac), *(uint32_t*)(*hash_table_ptr + 4)
+                &system_memory_5f30, *(uint32_t*)((uint8_t*)context + 0xac), *(uint32_t*)(*hash_table_ptr + 4)
             );
             param_index = *(int*)(_DAT_180c95f68 + (longlong)param_index * 4);
             
@@ -327,7 +327,7 @@ void rendering_system_resource_initializer(
     } while ((int)(param_count + 1U) < 7);
     
     // 清理和初始化操作
-    FUN_18053a960(&DAT_180c95f30, *(uint32_t*)((uint8_t*)context + 0xac), 
+    FUN_18053a960(&system_memory_5f30, *(uint32_t*)((uint8_t*)context + 0xac), 
                   (void*)((uint8_t*)params + 0x70), *(uint32_t*)((uint8_t*)max_params + 8));
     
     max_params = *(uint64_t*)((uint8_t*)context + 0x2590);

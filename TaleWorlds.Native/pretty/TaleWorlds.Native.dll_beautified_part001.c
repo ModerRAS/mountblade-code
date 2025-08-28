@@ -16,61 +16,61 @@
  * ============================================================================ */
 
 /* 游戏核心数据结构 */
-uint8_t DAT_1809fc740;           // 核心游戏数据存储
+uint8_t system_state_c740;           // 核心游戏数据存储
 uint8_t UNK_18098c790;           // 未知数据结构 - 待分析
 uint8_t FUN_18007fcd0;           // 核心游戏函数指针
-uint8_t DAT_1809fc768;           // 游戏状态数据
+uint8_t system_state_c768;           // 游戏状态数据
 uint8_t UNK_18098c7a0;           // 未知数据结构 - 待分析
-uint8_t DAT_18098c9b8;           // 游戏配置数据
+uint8_t system_state_c9b8;           // 游戏配置数据
 uint8_t UNK_18098c7b8;           // 未知数据结构 - 待分析
-uint8_t DAT_18098c940;           // 渲染系统数据
+uint8_t system_state_c940;           // 渲染系统数据
 uint8_t UNK_18098c7c8;           // 未知数据结构 - 待分析
-uint8_t DAT_18098c918;           // 物理系统数据
+uint8_t system_state_c918;           // 物理系统数据
 uint8_t UNK_18098c7d8;           // 未知数据结构 - 待分析
-uint8_t DAT_18098c968;           // 音频系统数据
+uint8_t system_state_c968;           // 音频系统数据
 uint8_t UNK_18098c7f0;           // 未知数据结构 - 待分析
-uint8_t DAT_18098c990;           // 输入系统数据
+uint8_t system_state_c990;           // 输入系统数据
 uint8_t UNK_18098c810;           // 未知数据结构 - 待分析
-uint8_t DAT_18098c9e0;           // UI系统数据
+uint8_t system_state_c9e0;           // UI系统数据
 uint8_t UNK_18098c870;           // 未知数据结构 - 待分析
-uint8_t DAT_18098c8f0;           // 网络系统数据
+uint8_t system_state_c8f0;           // 网络系统数据
 
 /* 主要功能函数 */
 uint8_t FUN_180073930;           // 游戏初始化函数
 uint8_t UNK_18098c880;           // 未知功能 - 待分析
-uint8_t DAT_18098c8c8;           // 系统配置数据
+uint8_t system_state_c8c8;           // 系统配置数据
 uint8_t UNK_18098c898;           // 未知数据结构 - 待分析
 
 /* 引擎核心数据 */
-uint8_t DAT_180bf5268;           // 引擎核心数据1
-uint8_t DAT_180bf5270;           // 引擎核心数据2
-uint8_t DAT_180bf5280;           // 引擎核心数据3
-uint8_t DAT_180bf5288;           // 引擎核心数据4
+uint8_t system_state_5268;           // 引擎核心数据1
+uint8_t system_state_5270;           // 引擎核心数据2
+uint8_t system_state_5280;           // 引擎核心数据3
+uint8_t system_state_5288;           // 引擎核心数据4
 uint8_t FUN_1809414f0;           // 引擎核心功能函数
-uint8_t DAT_180bf5290;           // 引擎状态数据
-uint8_t DAT_180bf52a0;           // 引擎配置数据
-uint8_t DAT_180bf52c0;           // 引擎渲染数据
-uint8_t DAT_180bf52c8;           // 引擎物理数据
-uint8_t DAT_180bf52d0;           // 引擎音频数据
-uint8_t DAT_180bf52d8;           // 引擎输入数据
+uint8_t system_state_5290;           // 引擎状态数据
+uint8_t system_state_52a0;           // 引擎配置数据
+uint8_t system_state_52c0;           // 引擎渲染数据
+uint8_t system_state_52c8;           // 引擎物理数据
+uint8_t system_state_52d0;           // 引擎音频数据
+uint8_t system_state_52d8;           // 引擎输入数据
 
 /* 特殊数据类型 */
-int8_t DAT_180bf5240;          // 布尔类型数据
-uint8_t DAT_180bf52a8;           // 引擎扩展数据1
-uint8_t DAT_180bf52b0;           // 引擎扩展数据2
-int8_t DAT_180bf52e0;          // 布尔类型数据2
+int8_t system_state_5240;          // 布尔类型数据
+uint8_t system_state_52a8;           // 引擎扩展数据1
+uint8_t system_state_52b0;           // 引擎扩展数据2
+int8_t system_state_52e0;          // 布尔类型数据2
 uint8_t UNK_180a3c3e0;           // 未知数据结构 - 待分析
 uint64_t UNK_180bf5278;          // 64位数据结构
 uint64_t UNK_180bf5298;          // 64位数据结构2
 
 /* 游戏世界数据 */
-uint8_t DAT_180bf5320;           // 游戏世界数据1
-uint8_t DAT_180bf5328;           // 游戏世界数据2
-uint8_t DAT_180bf5330;           // 游戏世界数据3
-uint8_t DAT_180bf5338;           // 游戏世界数据4
+uint8_t system_state_5320;           // 游戏世界数据1
+uint8_t system_state_5328;           // 游戏世界数据2
+uint8_t system_state_5330;           // 游戏世界数据3
+uint8_t system_state_5338;           // 游戏世界数据4
 uint8_t UNK_18098bb30;           // 未知游戏数据 - 待分析
 uint8_t FUN_180941590;           // 游戏世界功能函数
-uint8_t DAT_180bf5770;           // 游戏世界状态数据
+uint8_t system_state_5770;           // 游戏世界状态数据
 
 /* ============================================================================
  * 函数别名定义 - 提高代码可读性
@@ -93,30 +93,30 @@ uint8_t DAT_180bf5770;           // 游戏世界状态数据
  * @{
  */
 
-#define GameCore_Data              DAT_1809fc740    // 游戏核心数据指针
-#define GameState_Data             DAT_1809fc768    // 游戏状态数据指针
-#define GameConfig_Data            DAT_18098c9b8    // 游戏配置数据指针
-#define RenderSystem_Data          DAT_18098c940    // 渲染系统数据指针
-#define PhysicsSystem_Data         DAT_18098c918    // 物理系统数据指针
-#define AudioSystem_Data           DAT_18098c968    // 音频系统数据指针
-#define InputSystem_Data           DAT_18098c990    // 输入系统数据指针
-#define UISystem_Data              DAT_18098c9e0    // UI系统数据指针
-#define NetworkSystem_Data         DAT_18098c8f0    // 网络系统数据指针
-#define EngineCore_Data1           DAT_180bf5268    // 引擎核心数据1
-#define EngineCore_Data2           DAT_180bf5270    // 引擎核心数据2
-#define EngineCore_Data3           DAT_180bf5280    // 引擎核心数据3
-#define EngineCore_Data4           DAT_180bf5288    // 引擎核心数据4
-#define EngineState_Data           DAT_180bf5290    // 引擎状态数据指针
-#define EngineConfig_Data          DAT_180bf52a0    // 引擎配置数据指针
-#define EngineRender_Data          DAT_180bf52c0    // 引擎渲染数据指针
-#define EnginePhysics_Data         DAT_180bf52c8    // 引擎物理数据指针
-#define EngineAudio_Data           DAT_180bf52d0    // 引擎音频数据指针
-#define EngineInput_Data           DAT_180bf52d8    // 引擎输入数据指针
-#define GameWorld_Data1            DAT_180bf5320    // 游戏世界数据1
-#define GameWorld_Data2            DAT_180bf5328    // 游戏世界数据2
-#define GameWorld_Data3            DAT_180bf5330    // 游戏世界数据3
-#define GameWorld_Data4            DAT_180bf5338    // 游戏世界数据4
-#define GameWorld_StateData        DAT_180bf5770    // 游戏世界状态数据指针
+#define GameCore_Data              system_state_c740    // 游戏核心数据指针
+#define GameState_Data             system_state_c768    // 游戏状态数据指针
+#define GameConfig_Data            system_state_c9b8    // 游戏配置数据指针
+#define RenderSystem_Data          system_state_c940    // 渲染系统数据指针
+#define PhysicsSystem_Data         system_state_c918    // 物理系统数据指针
+#define AudioSystem_Data           system_state_c968    // 音频系统数据指针
+#define InputSystem_Data           system_state_c990    // 输入系统数据指针
+#define UISystem_Data              system_state_c9e0    // UI系统数据指针
+#define NetworkSystem_Data         system_state_c8f0    // 网络系统数据指针
+#define EngineCore_Data1           system_state_5268    // 引擎核心数据1
+#define EngineCore_Data2           system_state_5270    // 引擎核心数据2
+#define EngineCore_Data3           system_state_5280    // 引擎核心数据3
+#define EngineCore_Data4           system_state_5288    // 引擎核心数据4
+#define EngineState_Data           system_state_5290    // 引擎状态数据指针
+#define EngineConfig_Data          system_state_52a0    // 引擎配置数据指针
+#define EngineRender_Data          system_state_52c0    // 引擎渲染数据指针
+#define EnginePhysics_Data         system_state_52c8    // 引擎物理数据指针
+#define EngineAudio_Data           system_state_52d0    // 引擎音频数据指针
+#define EngineInput_Data           system_state_52d8    // 引擎输入数据指针
+#define GameWorld_Data1            system_state_5320    // 游戏世界数据1
+#define GameWorld_Data2            system_state_5328    // 游戏世界数据2
+#define GameWorld_Data3            system_state_5330    // 游戏世界数据3
+#define GameWorld_Data4            system_state_5338    // 游戏世界数据4
+#define GameWorld_StateData        system_state_5770    // 游戏世界状态数据指针
 
 /** @} */
 

@@ -231,7 +231,7 @@ uint64_t FUN_18034e960(longlong param_1,uint64_t param_2,uint64_t param_3,uint64
       uStack_70 = 0;
       FUN_1806277c0(&puStack_80,*(int32_t *)(lVar12 + 0x10));
       if (0 < *(int *)(lVar12 + 0x10)) {
-        puVar10 = &DAT_18098bc73;
+        puVar10 = &system_buffer_ptr;
         if (*(void **)(lVar12 + 8) != (void *)0x0) {
           puVar10 = *(void **)(lVar12 + 8);
         }

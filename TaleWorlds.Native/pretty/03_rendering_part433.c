@@ -751,7 +751,7 @@ void FUN_180504f30(longlong *param_1,longlong *param_2,uint64_t param_3,int32_t 
   uStack_30 = 0;
   puStack_48 = &UNK_18098bcb0;
   if (4 < (ulonglong)(param_2[1] - *param_2 >> 5)) {
-    (**(code **)(*param_1 + 0x70))(param_1,&DAT_180a06434);
+    (**(code **)(*param_1 + 0x70))(param_1,&system_temp_buffer);
     pcVar1 = *(code **)(*param_1 + 0x78);
     uVar2 = FUN_180627ae0(&puStack_48,*param_2 + 0x80);
     FUN_180628a40(&puStack_48);
@@ -767,7 +767,7 @@ void FUN_180504f30(longlong *param_1,longlong *param_2,uint64_t param_3,int32_t 
     uStack_30 = 0;
     puStack_48 = &UNK_18098bcb0;
     if (5 < (ulonglong)(param_2[1] - *param_2 >> 5)) {
-      (**(code **)(*param_1 + 0x70))(param_1,&DAT_180a06434);
+      (**(code **)(*param_1 + 0x70))(param_1,&system_temp_buffer);
     }
   }
   return;

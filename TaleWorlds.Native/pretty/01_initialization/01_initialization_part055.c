@@ -103,7 +103,7 @@ float * calculate_bounding_box(float *object_ptr)
     if ((10 < (int)time_value) ||
        ((int)(*(int *)(*(longlong *)(object_ptr + 0x84) + 0x88) +
              (*(int *)(*(longlong *)(object_ptr + 0x84) + 0x88) >> 0x1f & 3U)) >> 2 < (int)time_value)) {
-      stack_temp_48 = &DAT_18098bc73;
+      stack_temp_48 = &system_buffer_ptr;
       if (*(void **)(object_ptr + 6) != (void *)0x0) {
         stack_temp_48 = *(void **)(object_ptr + 6);
       }
@@ -111,7 +111,7 @@ float * calculate_bounding_box(float *object_ptr)
       stack_temp_58 = &UNK_1809ffb30;
       stack_temp_80 = 0x18007967a;
       stack_temp_50 = time_value;
-      FUN_1800623b0(DAT_180c86928,0,0x80000000000,3);
+      FUN_1800623b0(system_message_context,0,0x80000000000,3);
     }
     object_ptr[0x40] = (float)((uint)object_ptr[0x40] | 0x10000);
     stack_temp_80 = 0x18007968e;

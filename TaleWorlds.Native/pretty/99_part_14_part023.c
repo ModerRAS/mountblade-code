@@ -361,28 +361,28 @@ extern uint64_t UNK_180bd8a18;
 extern uint64_t UNK_180bd88e8;
 
 /** 数学计算常量变量 */
-extern uint64_t DAT_180d9f5d0;
-extern uint64_t DAT_180d9f5c0;
-extern uint64_t DAT_180d9f580;
-extern uint64_t DAT_180d9f600;
-extern uint64_t DAT_180d9f6d0;
-extern uint64_t DAT_180d9f680;
-extern uint64_t DAT_180d9f670;
-extern uint64_t DAT_180d9f6b0;
-extern uint64_t DAT_180d9f610;
+extern uint64_t system_memory_f5d0;
+extern uint64_t system_memory_f5c0;
+extern uint64_t system_memory_f580;
+extern uint64_t system_memory_f600;
+extern uint64_t system_memory_f6d0;
+extern uint64_t system_memory_f680;
+extern uint64_t system_memory_f670;
+extern uint64_t system_memory_f6b0;
+extern uint64_t system_memory_f610;
 extern uint64_t UNK_180d9f410;
 extern uint64_t UNK_180d9f418;
-extern uint64_t DAT_180d9f008;
-extern uint64_t DAT_180d9f000;
-extern uint64_t DAT_180d9fd20;
-extern uint64_t DAT_180d9fd10;
-extern uint64_t DAT_180d9fce0;
-extern uint64_t DAT_180d9fcd0;
-extern uint64_t DAT_180d9fda0;
-extern uint64_t DAT_180d9fd90;
-extern uint64_t DAT_180d9fd30;
-extern uint64_t DAT_180d9fdc0;
-extern uint64_t DAT_180d9fc80;
+extern uint64_t system_memory_f008;
+extern uint64_t system_memory_f000;
+extern uint64_t system_memory_fd20;
+extern uint64_t system_memory_fd10;
+extern uint64_t system_memory_fce0;
+extern uint64_t system_memory_fcd0;
+extern uint64_t system_memory_fda0;
+extern uint64_t system_memory_fd90;
+extern uint64_t system_memory_fd30;
+extern uint64_t system_memory_fdc0;
+extern uint64_t system_memory_fc80;
 extern uint64_t UNK_180d9fb10;
 extern uint64_t UNK_180d9fb18;
 extern uint64_t UNK_180d9f708;
@@ -873,7 +873,7 @@ ulonglong VectorMathSinCalculator(uint64_t param_1, int32_t param_2)
     
     /* 执行范围检查和掩码操作 */
     temp_vector7 = input_vector & _DAT_180d9f600;
-    pi_inverse = (float)DAT_180d9f5d0;
+    pi_inverse = (float)system_memory_f5d0;
     range_check_x = -(uint)(FLOAT_MAX_NORMAL < temp_vector7._0_4_);
     range_check_y = -(uint)(FLOAT_MAX_NORMAL < temp_vector7._4_4_);
     
@@ -883,7 +883,7 @@ ulonglong VectorMathSinCalculator(uint64_t param_1, int32_t param_2)
     temp_vector8._12_4_ = -(uint)(FLOAT_MAX_NORMAL < temp_vector7._12_4_);
     
     /* 获取π的倒数 */
-    pi_2_inverse = (float)DAT_180d9f5c0;
+    pi_2_inverse = (float)system_memory_f5c0;
     
     /* 生成计算标志掩码 */
     calculation_flags = movmskps(register_eax, temp_vector8);
@@ -906,7 +906,7 @@ ulonglong VectorMathSinCalculator(uint64_t param_1, int32_t param_2)
         return CONCAT44(0, 0); /* 简化实现 */
     }
     /* 处理复杂范围的参数 */
-    mask_temp = (ulonglong)DAT_180d9f6d0 & input_vector._0_8_;
+    mask_temp = (ulonglong)system_memory_f6d0 & input_vector._0_8_;
     
     /* 角度归一化计算 */
     int_x = (int)(angle_x * MATH_PI_INVERSE);
@@ -1005,11 +1005,11 @@ ulonglong FUN_1808fe1a0(uint64_t param_1,int32_t param_2)
     input_z = temp_vector1._8_4_;
     
     /* 角度归一化计算 */
-    offset_x = (input_x + (float)DAT_180d9fd10) * MATH_PI_INVERSE;
-    offset_y = (input_y + DAT_180d9fd10._4_4_) * MATH_PI_INVERSE;
+    offset_x = (input_x + (float)system_memory_fd10) * MATH_PI_INVERSE;
+    offset_y = (input_y + system_memory_fd10._4_4_) * MATH_PI_INVERSE;
     
     /* 执行范围检查 */
-    pi_inverse = (float)DAT_180d9fce0;
+    pi_inverse = (float)system_memory_fce0;
     range_check_x = -(uint)(FLOAT_MAX_NORMAL < (int)input_x);
     range_check_y = -(uint)(FLOAT_MAX_NORMAL < (int)input_y);
     
@@ -1019,7 +1019,7 @@ ulonglong FUN_1808fe1a0(uint64_t param_1,int32_t param_2)
     temp_vector1._12_4_ = -(uint)(FLOAT_MAX_NORMAL < (int)input_w);
     
     /* 获取π的倒数 */
-    pi_2_inverse = (float)DAT_180d9fcd0;
+    pi_2_inverse = (float)system_memory_fcd0;
     
     /* 生成计算标志掩码 */
     calculation_flags = movmskps(register_eax, temp_vector1);
@@ -1137,8 +1137,8 @@ ulonglong FUN_1808fe1a0(uint64_t param_1,int32_t param_2)
   }
   else {
     if (uVar1 != 0xf) {
-      iVar3 = (int)((fVar6 + DAT_180d9fd10._8_4_) * 0.31830987);
-      iVar14 = (int)((fVar11 + DAT_180d9fd10._12_4_) * 0.31830987);
+      iVar3 = (int)((fVar6 + system_memory_fd10._8_4_) * 0.31830987);
+      iVar14 = (int)((fVar11 + system_memory_fd10._12_4_) * 0.31830987);
       fVar7 = (float)(int)fVar5 - 0.5;
       fVar12 = (float)(int)fVar10 - 0.5;
       fVar13 = (float)iVar3 - 0.5;
@@ -1149,9 +1149,9 @@ ulonglong FUN_1808fe1a0(uint64_t param_1,int32_t param_2)
       auVar34._12_4_ = iVar14 << 0x1f;
       fVar35 = ((fVar16 - fVar35 * fVar7) - fVar36 * fVar7) - fVar7 * 1.5099067e-07;
       fVar27 = ((fVar20 - fVar27 * fVar12) - fVar28 * fVar12) - fVar12 * 1.5099067e-07;
-      fVar6 = ((fVar6 - DAT_180d9fce0._8_4_ * fVar13) - DAT_180d9fcd0._8_4_ * fVar13) -
+      fVar6 = ((fVar6 - system_memory_fce0._8_4_ * fVar13) - system_memory_fcd0._8_4_ * fVar13) -
               fVar13 * 1.5099067e-07;
-      fVar11 = ((fVar11 - DAT_180d9fce0._12_4_ * fVar15) - DAT_180d9fcd0._12_4_ * fVar15) -
+      fVar11 = ((fVar11 - system_memory_fce0._12_4_ * fVar15) - system_memory_fcd0._12_4_ * fVar15) -
                fVar15 * 1.5099067e-07;
       fVar16 = fVar35 - fVar7 * 5.126688e-12;
       fVar5 = fVar27 - fVar12 * 5.126688e-12;
@@ -1161,14 +1161,14 @@ ulonglong FUN_1808fe1a0(uint64_t param_1,int32_t param_2)
       fVar27 = fVar27 * fVar27;
       fVar6 = fVar6 * fVar6;
       fVar11 = fVar11 * fVar11;
-      auVar9._0_4_ = (((fVar35 * 2.608e-06 + -0.000198107) * fVar35 + (float)DAT_180d9fc80) * fVar35
+      auVar9._0_4_ = (((fVar35 * 2.608e-06 + -0.000198107) * fVar35 + (float)system_memory_fc80) * fVar35
                      + -0.16666658) * fVar35 * fVar16 + fVar16;
-      auVar9._4_4_ = (((fVar27 * 2.608e-06 + -0.000198107) * fVar27 + DAT_180d9fc80._4_4_) * fVar27
+      auVar9._4_4_ = (((fVar27 * 2.608e-06 + -0.000198107) * fVar27 + system_memory_fc80._4_4_) * fVar27
                      + -0.16666658) * fVar27 * fVar5 + fVar5;
-      auVar9._8_4_ = (((fVar6 * 2.608e-06 + -0.000198107) * fVar6 + DAT_180d9fc80._8_4_) * fVar6 +
+      auVar9._8_4_ = (((fVar6 * 2.608e-06 + -0.000198107) * fVar6 + system_memory_fc80._8_4_) * fVar6 +
                      -0.16666658) * fVar6 * fVar20 + fVar20;
       auVar9._12_4_ =
-           (((fVar11 * 2.608e-06 + -0.000198107) * fVar11 + DAT_180d9fc80._12_4_) * fVar11 +
+           (((fVar11 * 2.608e-06 + -0.000198107) * fVar11 + system_memory_fc80._12_4_) * fVar11 +
            -0.16666658) * fVar11 * fVar10 + fVar10;
       aauStack_38[0] = auVar9 ^ auVar34;
     }

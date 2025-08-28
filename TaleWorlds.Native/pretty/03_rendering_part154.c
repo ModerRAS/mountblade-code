@@ -986,7 +986,7 @@ void RenderingSystem_AdvancedResourceManager(uint64_t param_1) {
     string_buffer = string_data;
     string_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
     string_length = 0x16;
-    strcpy_s(string_data, RENDERING_SYSTEM_MAX_STRING_LENGTH, &DAT_180a1fdd8);
+    strcpy_s(string_data, RENDERING_SYSTEM_MAX_STRING_LENGTH, &system_memory_fdd8);
     FUN_1800b8300(resource_array, &string_pointer);
     resource_priority = 0x0B;
     operation_counter = 1;
@@ -999,7 +999,7 @@ void RenderingSystem_AdvancedResourceManager(uint64_t param_1) {
     texture_buffer = texture_data;
     texture_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
     texture_length = 4;
-    strcpy_s(texture_data, RENDERING_SYSTEM_MAX_STRING_LENGTH, &DAT_180a1fdf8);
+    strcpy_s(texture_data, RENDERING_SYSTEM_MAX_STRING_LENGTH, &system_memory_fdf8);
     FUN_1800b8300(resource_array, &texture_pointer);
     resource_priority = 3;
     operation_counter = 2;
@@ -1012,7 +1012,7 @@ void RenderingSystem_AdvancedResourceManager(uint64_t param_1) {
     shader_buffer = shader_data;
     shader_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
     shader_length = 0x16;
-    strcpy_s(shader_data, RENDERING_SYSTEM_MAX_STRING_LENGTH, &DAT_180a1ffa0);
+    strcpy_s(shader_data, RENDERING_SYSTEM_MAX_STRING_LENGTH, &system_memory_ffa0);
     FUN_1800b8300(resource_array, &shader_pointer);
     resource_priority = 1;
     operation_counter = 4;
@@ -1025,7 +1025,7 @@ void RenderingSystem_AdvancedResourceManager(uint64_t param_1) {
     pipeline_buffer = pipeline_data;
     pipeline_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
     pipeline_length = 0x16;
-    strcpy_s(pipeline_data, RENDERING_SYSTEM_MAX_STRING_LENGTH, &DAT_180a1fff8);
+    strcpy_s(pipeline_data, RENDERING_SYSTEM_MAX_STRING_LENGTH, &system_memory_fff8);
     FUN_1800b8300(resource_array, &pipeline_pointer);
     resource_priority = 1;
     operation_counter = 8;
@@ -1113,7 +1113,7 @@ void RenderingSystem_ConfigurationManager(uint64_t *param_1) {
     param_1[0x27] = 0;
     param_1[0x28] = 0;
     *(int8_t *)((longlong)param_1 + 0x8a) = 1;
-    (**(code **)(*object_pointer + 0x10))(object_pointer, &DAT_18098bc73);
+    (**(code **)(*object_pointer + 0x10))(object_pointer, &system_buffer_ptr);
     (**(code **)(*object_pointer + 0x10))(object_pointer, &UNK_180a1ff90);
     object_pointer = param_1 + 0x20;
     *object_pointer = (longlong)&UNK_180a1ff90;
@@ -1448,7 +1448,7 @@ void RenderingSystem_ParameterProcessor(uint64_t param_1) {
     string_buffer = string_data;
     string_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
     string_length = 10;
-    strcpy_s(string_data, RENDERING_SYSTEM_MAX_STRING_LENGTH, &DAT_180a1ff70);
+    strcpy_s(string_data, RENDERING_SYSTEM_MAX_STRING_LENGTH, &system_memory_ff70);
     FUN_1800b8300(resource_array, &string_pointer);
     resource_priority = 9;
     operation_counter = 1;
@@ -1461,7 +1461,7 @@ void RenderingSystem_ParameterProcessor(uint64_t param_1) {
     texture_buffer = texture_data;
     texture_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
     texture_length = 0x0f;
-    strcpy_s(texture_data, RENDERING_SYSTEM_MAX_STRING_LENGTH, &DAT_180a1ffd8);
+    strcpy_s(texture_data, RENDERING_SYSTEM_MAX_STRING_LENGTH, &system_memory_ffd8);
     FUN_1800b8300(resource_array, &texture_pointer);
     resource_priority = 3;
     operation_counter = 2;
@@ -1474,7 +1474,7 @@ void RenderingSystem_ParameterProcessor(uint64_t param_1) {
     shader_buffer = shader_data;
     shader_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
     shader_length = 0x16;
-    strcpy_s(shader_data, RENDERING_SYSTEM_MAX_STRING_LENGTH, &DAT_180a1ffa0);
+    strcpy_s(shader_data, RENDERING_SYSTEM_MAX_STRING_LENGTH, &system_memory_ffa0);
     FUN_1800b8300(resource_array, &shader_pointer);
     resource_priority = 1;
     operation_counter = 4;
@@ -1487,7 +1487,7 @@ void RenderingSystem_ParameterProcessor(uint64_t param_1) {
     pipeline_buffer = pipeline_data;
     pipeline_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
     pipeline_length = 0x16;
-    strcpy_s(pipeline_data, RENDERING_SYSTEM_MAX_STRING_LENGTH, &DAT_180a1fff8);
+    strcpy_s(pipeline_data, RENDERING_SYSTEM_MAX_STRING_LENGTH, &system_memory_fff8);
     FUN_1800b8300(resource_array, &pipeline_pointer);
     resource_priority = 1;
     operation_counter = 8;
@@ -1500,7 +1500,7 @@ void RenderingSystem_ParameterProcessor(uint64_t param_1) {
     config_buffer = config_data;
     config_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
     config_length = 0x0c;
-    strcpy_s(config_data, RENDERING_SYSTEM_MAX_STRING_LENGTH, &DAT_180a1ffe8);
+    strcpy_s(config_data, RENDERING_SYSTEM_MAX_STRING_LENGTH, &system_memory_ffe8);
     FUN_1800b8300(resource_array, &config_pointer);
     resource_priority = 9;
     operation_counter = 0x10;
@@ -1597,7 +1597,7 @@ void RenderingSystem_AdvancedParameterManager(longlong param_1, longlong param_2
     buffer_size = *(int *)(param_2 + 0x10);
     
     // 处理不同类型的参数
-    if ((buffer_size == 10) && (buffer_size = strcmp(*(uint64_t *)(param_2 + 8), &DAT_180a1ff70), buffer_size == 0)) {
+    if ((buffer_size == 10) && (buffer_size = strcmp(*(uint64_t *)(param_2 + 8), &system_memory_ff70), buffer_size == 0)) {
         (**(code **)(*_DAT_180c86878 + 0x1e8))(_DAT_180c86878, &object_array[0]);
         config_pointer = object_array[2];
         data_pointer = object_array[0];
@@ -1608,7 +1608,7 @@ void RenderingSystem_AdvancedParameterManager(longlong param_1, longlong param_2
                 string_buffer = stack_data;
                 stack_data[0] = 0;
                 operation_flag = (int)texture_pointer[1];
-                resource_data = &DAT_18098bc73;
+                resource_data = &system_buffer_ptr;
                 if ((void *)*texture_pointer != (void *)0x0) {
                     resource_data = (void *)*texture_pointer;
                 }
@@ -1621,7 +1621,7 @@ void RenderingSystem_AdvancedParameterManager(longlong param_1, longlong param_2
                 FUN_1806277c0(&config_pointer, operation_flag);
                 string_pointer = string_buffer;
                 if (0 < operation_flag) {
-                    resource_data = &DAT_18098bc73;
+                    resource_data = &system_buffer_ptr;
                     if (string_buffer != (void *)0x0) {
                         resource_data = string_buffer;
                     }
@@ -1708,7 +1708,7 @@ ADVANCED_PARAM_PROCESSOR:
         }
     }
     else if ((buffer_size == 0x0c) &&
-             (buffer_size = strcmp(*(uint64_t *)(param_2 + 8), &DAT_180a1ffe8), buffer_size == 0)) {
+             (buffer_size = strcmp(*(uint64_t *)(param_2 + 8), &system_memory_ffe8), buffer_size == 0)) {
         shader_pointer = (uint64_t *)(param_1 + 0x100);
         resource_size = 4;
         do {
@@ -1940,7 +1940,7 @@ void RenderingSystem_Initializer(uint64_t *param_1) {
     param_1[0x33] = 0;
     param_1[0x31] = 0;
     *(int32_t *)(param_1 + 0x32) = 0;
-    (**(code **)(*component_pointer + 0x10))(component_pointer, &DAT_180a1f0e4);
+    (**(code **)(*component_pointer + 0x10))(component_pointer, &system_memory_f0e4);
     *(int32_t *)(param_1 + 0x34) = 0;
     *(int8_t *)(param_1 + 0x2f) = 0;
     *(int16_t *)(param_1 + 0x2a) = 0;
@@ -2045,7 +2045,7 @@ void RenderingSystem_Creator(uint64_t param_1, uint64_t param_2, uint64_t param_
     resource_pointer[0x33] = 0;
     resource_pointer[0x31] = 0;
     *(int32_t *)(resource_pointer + 0x32) = 0;
-    (**(code **)(*system_pointer + 0x10))(system_pointer, &DAT_180a1f0e4);
+    (**(code **)(*system_pointer + 0x10))(system_pointer, &system_memory_f0e4);
     *(int32_t *)(resource_pointer + 0x34) = 0;
     *(int8_t *)(resource_pointer + 0x2f) = 0;
     *(int16_t *)(resource_pointer + 0x2a) = 0;

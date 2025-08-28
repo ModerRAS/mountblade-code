@@ -185,13 +185,13 @@ LAB_18020cd75:
         string_length = 0;
         do {
             iteration_count = stack_var_90;
-            pattern_ptr = &DAT_18098bc73;
+            pattern_ptr = &system_buffer_ptr;
             if (*(void **)(search_pattern + 8) != (void *)0x0) {
                 pattern_ptr = *(void **)(search_pattern + 8);
             }
             
             temp_ptr = *(void **)(*(longlong *)(best_match[5] + string_length * 8) + 8);
-            resource_name = &DAT_18098bc73;
+            resource_name = &system_buffer_ptr;
             if (temp_ptr != (void *)0x0) {
                 resource_name = temp_ptr;
             }
@@ -288,7 +288,7 @@ LAB_18020ceb6:
                 *(int32_t *)(compare_length + 0x30) = 0;
                 *(int8_t *)(compare_length + 0x38) = 0;
                 *(int32_t *)(compare_length + 0x30) = *(int32_t *)(string_length + 0x10);
-                pattern_ptr = &DAT_18098bc73;
+                pattern_ptr = &system_buffer_ptr;
                 
                 if (*(void **)(string_length + 8) != (void *)0x0) {
                     pattern_ptr = *(void **)(string_length + 8);
@@ -1028,7 +1028,7 @@ longlong process_manager_operation(longlong *manager_ptr, longlong *data_ptr, in
     }
     else {
         if (operation_type == 1) {
-            new_resource = (uint64_t *)allocate_resource_structure(_DAT_180c8ed18, 0x18, 8, DAT_180bf65bc, 0xfffffffffffffffe);
+            new_resource = (uint64_t *)allocate_resource_structure(_DAT_180c8ed18, 0x18, 8, system_allocation_flags, 0xfffffffffffffffe);
             resource_data = (uint64_t *)*data_ptr;
             temp_value = resource_data[1];
             *new_resource = *resource_data;
@@ -1102,7 +1102,7 @@ void format_resource_info_output(uint64_t output_handle, longlong resource_info)
     output_ptr_590 = output_buffer_580;
     output_buffer_580[0] = 0;
     output_length_588 = *(int32_t *)(string_length + 0x10);
-    format_ptr = &DAT_18098bc73;
+    format_ptr = &system_buffer_ptr;
     
     if (*(void **)(string_length + 8) != (void *)0x0) {
         format_ptr = *(void **)(string_length + 8);
@@ -1162,14 +1162,14 @@ void format_resource_info_output(uint64_t output_handle, longlong resource_info)
  * - UNK_180a3c3e0 -> EMPTY_RESOURCE_POOL (空资源池)
  * - UNK_18098bcb0 -> RESOURCE_CLEANUP_POOL (资源清理池)
  * - UNK_1809fcc58 -> RESOURCE_HANDLER_TABLE (资源处理表)
- * - DAT_18098bc73 -> EMPTY_STRING_BUFFER (空字符串缓冲区)
+ * - system_buffer_ptr -> EMPTY_STRING_BUFFER (空字符串缓冲区)
  * - _DAT_180c868e8 -> GLOBAL_RESOURCE_TABLE (全局资源表)
  * - _DAT_180c86870 -> GLOBAL_RESOURCE_FLAG (全局资源标志)
  * - _DAT_180c8f008 -> RESOURCE_MANAGER_PTR (资源管理器指针)
  * - _DAT_180c8a9c0 -> RESOURCE_CLEANUP_HANDLER (资源清理处理器)
  * - _DAT_180c8ed18 -> MEMORY_ALLOCATOR (内存分配器)
  * - _DAT_180bf00a8 -> SECURITY_COOKIE (安全cookie)
- * - DAT_180bf65bc -> DEFAULT_RESOURCE_DATA (默认资源数据)
+ * - system_allocation_flags -> DEFAULT_RESOURCE_DATA (默认资源数据)
  * 
  * 函数名称映射：
  * - FUN_18020d310 -> cleanup_resource_item (清理资源项)

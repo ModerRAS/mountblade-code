@@ -289,7 +289,7 @@ typedef struct {
  * ============================================================================ */
 
 // 渲染数据区域
-extern uint8_t DAT_180d49830;
+extern uint8_t system_config_data;
 extern uint64_t UNK_180d498a0;
 extern int32_t UNK_180d498a8;
 extern void *UNK_180d498b0;
@@ -301,10 +301,10 @@ extern longlong UNK_180d49928;
 extern longlong UNK_180d49930;
 extern int32_t UNK_180d49948;
 extern int32_t UNK_180d4994c;
-extern uint8_t DAT_180d49950;
-extern uint8_t DAT_180d49970;
-extern uint8_t DAT_180bfc140;
-extern uint8_t DAT_1803f48b2;
+extern uint8_t system_resource_config;
+extern uint8_t system_module_config;
+extern uint8_t system_cache_config;
+extern uint8_t system_temp_config;
 extern uint8_t UNK_180d49d58;
 extern longlong UNK_180d49d68;
 extern uint64_t UNK_180d49d70;

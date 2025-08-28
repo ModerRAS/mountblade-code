@@ -162,7 +162,7 @@ extern uint64_t _DAT_180c86928;
 extern uint64_t _DAT_180bf00a8;
 
 /** 渲染系统数据地址 */
-extern int32_t DAT_1809fcc18;
+extern int32_t system_memory_cc18;
 
 /** 渲染系统空对象指针 */
 extern uint8_t UNK_180a3c3e0;
@@ -212,7 +212,7 @@ void FUN_18043bff0(uint64_t param_1)
     longlong *plVar1;
     
     // 获取系统句柄
-    plVar1 = (longlong *)(**(code **)(*_DAT_180c8ed00 + RENDERING_SYSTEM_OFFSET_0X70))(_DAT_180c8ed00, &DAT_1809fcc18);
+    plVar1 = (longlong *)(**(code **)(*_DAT_180c8ed00 + RENDERING_SYSTEM_OFFSET_0X70))(_DAT_180c8ed00, &system_memory_cc18);
     
     // WARNING: 无法恢复0x00018043c01b处的跳转表，分支过多
     // WARNING: 将间接跳转作为调用处理

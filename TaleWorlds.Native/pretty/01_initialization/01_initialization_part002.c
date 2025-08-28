@@ -921,7 +921,7 @@ int system_initialization_main(void)
 {
     /* 初始化系统全局状态 */
     _DAT_180bf64d0 = &UNK_1809fdc18;
-    _DAT_180bf64d8 = &DAT_180bf64e8;
+    _DAT_180bf64d8 = &system_buffer_64e8;
     
     /* 注册所有系统组件 */
     register_system_core_components();

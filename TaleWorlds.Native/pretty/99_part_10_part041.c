@@ -885,7 +885,7 @@ void FUN_1806c21d0(longlong *param_1,uint64_t param_2,uint64_t *param_3,longlong
       cVar2 = (**(code **)(*(longlong *)param_1[5] + 0x10))
                         ((longlong *)param_1[5],puVar6,&pcStackX_20);
       if (((cVar2 != '\0') && (pcStackX_20 != (char *)0x0)) && (*pcStackX_20 != '\0')) {
-        uVar3 = FUN_1806d5410(pcStackX_20,&DAT_180be05d0);
+        uVar3 = FUN_1806d5410(pcStackX_20,&system_data_05d0);
         (*(code *)param_3[2])(param_1[6],(int)lVar8,uVar3);
       }
     }

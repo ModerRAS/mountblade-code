@@ -17,7 +17,7 @@ extern int8_t UNK_180a0ac88;      // 节点类型标记
 extern int8_t UNK_180a0acd8;      // 链表类型标记
 extern int8_t UNK_180a0ad28;      // 特殊处理标记
 extern uint64_t _DAT_180c8ed18;    // 内存池标识
-extern int8_t DAT_18098bc73;      // 默认字符串数据
+extern int8_t system_buffer_ptr;      // 默认字符串数据
 
 /**
  * 清理链表结构的内存
@@ -166,7 +166,7 @@ void format_and_process_string_data(uint64_t context, uint64_t *data_ptr)
     format_data = (longlong *)0x0;
     format_flag = 0;
     format_data = (longlong *)FUN_180188490();
-    string_data = &DAT_18098bc73;
+    string_data = &system_buffer_ptr;
     if ((void *)data_ptr[1] != (void *)0x0) {
       string_data = (void *)data_ptr[1];
     }
@@ -176,7 +176,7 @@ void format_and_process_string_data(uint64_t context, uint64_t *data_ptr)
       data_length = data_length + 1;
     } while (string_data[data_length] != '\0');
     FUN_1800671b0(temp_buffer);
-    string_data = &DAT_18098bc73;
+    string_data = &system_buffer_ptr;
     if ((void *)data_ptr[1] != (void *)0x0) {
       string_data = (void *)data_ptr[1];
     }
@@ -330,7 +330,7 @@ void process_dual_parameter_formatting(uint64_t context, uint64_t *first_data, u
     second_capacity = 0;
     second_size = 0xf;
     second_buffer[0] = 0;
-    string_data = &DAT_18098bc73;
+    string_data = &system_buffer_ptr;
     if ((void *)second_data[1] != (void *)0x0) {
       string_data = (void *)second_data[1];
     }
@@ -340,7 +340,7 @@ void process_dual_parameter_formatting(uint64_t context, uint64_t *first_data, u
       second_length = second_length + 1;
     } while (string_data[second_length] != '\0');
     FUN_1800671b0(first_buffer);
-    string_data = &DAT_18098bc73;
+    string_data = &system_buffer_ptr;
     if ((void *)first_data[1] != (void *)0x0) {
       string_data = (void *)first_data[1];
     }
@@ -468,7 +468,7 @@ void process_quad_parameter_formatting(uint64_t context, uint64_t *first_data, u
     second_size = 0xf;
     second_buffer[0] = 0;
     param2_value = second_param;
-    string_data = &DAT_18098bc73;
+    string_data = &system_buffer_ptr;
     if ((void *)second_data[1] != (void *)0x0) {
       string_data = (void *)second_data[1];
     }
@@ -479,7 +479,7 @@ void process_quad_parameter_formatting(uint64_t context, uint64_t *first_data, u
     } while (string_data[second_length] != '\0');
     param1_value = first_param;
     FUN_1800671b0(first_buffer);
-    string_data = &DAT_18098bc73;
+    string_data = &system_buffer_ptr;
     if ((void *)first_data[1] != (void *)0x0) {
       string_data = (void *)first_data[1];
     }

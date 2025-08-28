@@ -88,7 +88,7 @@ LAB_1804179c4:
     if (param_2 < *(float *)(plVar5 + 4) || param_2 == *(float *)(plVar5 + 4)) {
 LAB_180417a52:
       UNRECOVERED_JUMPTABLE = *(code **)(plVar5[5] + 0x10);
-      puVar6 = &DAT_18098bc73;
+      puVar6 = &system_buffer_ptr;
       if (*(void **)(param_3 + 8) != (void *)0x0) {
         puVar6 = *(void **)(param_3 + 8);
       }
@@ -153,7 +153,7 @@ uint64_t * FUN_180417a90(uint64_t *param_1,uint64_t *param_2,float param_3)
   param_2[1] = param_2 + 3;
   *(int8_t *)(param_2 + 3) = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  strcpy_s(param_2[1],0x40,&DAT_18098bc73,0,0,0xfffffffffffffffe);
+  strcpy_s(param_2[1],0x40,&system_buffer_ptr,0,0,0xfffffffffffffffe);
   return param_2;
 }
 
@@ -174,7 +174,7 @@ uint64_t * FUN_180417b70(uint64_t *param_1,uint64_t *param_2,float param_3,uint6
     param_2[1] = param_2 + 3;
     *(int8_t *)(param_2 + 3) = 0;
     *(int32_t *)(param_2 + 2) = 0;
-    strcpy_s(param_2[1],0x40,&DAT_18098bc73,param_4,0,0xfffffffffffffffe);
+    strcpy_s(param_2[1],0x40,&system_buffer_ptr,param_4,0,0xfffffffffffffffe);
   }
   else {
     lVar3 = func_0x00018066b9a0(param_1);

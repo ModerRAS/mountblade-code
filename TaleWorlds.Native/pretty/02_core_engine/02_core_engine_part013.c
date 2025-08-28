@@ -209,9 +209,9 @@ void calculate_render_parameters(longlong param_1, float param_2, uint64_t param
         if (*(char *)(param_1 + 0x22d) == '\0') {
             lVar8 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
             if ((*(int *)(lVar8 + 0x48) < _DAT_180d49140) &&
-               (FUN_1808fcb90(&DAT_180d49140), _DAT_180d49140 == -1)) {
+               (FUN_1808fcb90(&system_config_9140), _DAT_180d49140 == -1)) {
                 _DAT_180d49144 = param_2;
-                FUN_1808fcb30(&DAT_180d49140);
+                FUN_1808fcb30(&system_config_9140);
             }
             fVar16 = (float)exp2f();
             fVar17 = (float)exp2f();
@@ -232,9 +232,9 @@ void calculate_render_parameters(longlong param_1, float param_2, uint64_t param
                 fVar3 = fVar2;
             }
             if ((*(int *)(lVar8 + 0x48) < _DAT_180d49148) &&
-               (FUN_1808fcb90(&DAT_180d49148), _DAT_180d49148 == -1)) {
+               (FUN_1808fcb90(&system_config_9148), _DAT_180d49148 == -1)) {
                 _DAT_180d4914c = fVar3;
-                FUN_1808fcb30(&DAT_180d49148);
+                FUN_1808fcb30(&system_config_9148);
             }
             _DAT_180d4914c = (1.0 - fVar16) * _DAT_180d4914c + fVar3 * fVar16;
             fVar18 = ((float)(int)((_DAT_180d49144 / _DAT_180d4914c) / fVar17) * fVar17 - 1.0) * fVar18 *

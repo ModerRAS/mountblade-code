@@ -243,7 +243,7 @@ LAB_180157585:
     }
     *(int16_t *)((longlong)puVar7 + 0xd) = 10;
     uStack_b8 = 0xe;
-    puVar8 = (uint64_t *)&DAT_18098bc73;
+    puVar8 = (uint64_t *)&system_buffer_ptr;
     if (puVar7 != (uint64_t *)0x0) {
       puVar8 = puVar7;
     }
@@ -572,7 +572,7 @@ LAB_180157e02:
     puVar7[3] = 0x67206562;
     *(uint64_t *)(puVar7 + 4) = 0x6465746172656e65;
     *(int16_t *)(puVar7 + 6) = 0x21;
-    puVar7 = (int32_t *)&DAT_18098bc73;
+    puVar7 = (int32_t *)&system_buffer_ptr;
     if (puStack_a8 != (int32_t *)0x0) {
       puVar7 = puStack_a8;
     }
@@ -752,7 +752,7 @@ EngineResourceEvent_Create(longlong *param_1,longlong *param_2,uint64_t param_3,
     *(int *)(param_1 + 5) = (int)lVar2 + 1;
     EngineContext_CreateResourceEvent(param_1,&plStackX_8,auStack_b0,(int)lVar2,param_5);  // 创建资源事件
     *(int32_t *)(plStackX_8 + 2) = 1;
-    puVar4 = &DAT_18098bc73;
+    puVar4 = &system_buffer_ptr;
     if (*(void **)(param_4 + 8) != (void *)0x0) {
       puVar4 = *(void **)(param_4 + 8);
     }

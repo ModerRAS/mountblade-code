@@ -1712,7 +1712,7 @@ uint64_t UI_CreateSpecializedComponent(longlong context, uint64_t type, longlong
         
         // 处理自定义组件
         if ((*(char *)(context + 0x11758) == '\0') || ((parent != 0 && (*(int *)(parent + 200) != 0)))) {
-            result = UI_ValidateCustomComponent(&DAT_180958c80, type, 7);
+            result = UI_ValidateCustomComponent(&system_memory_8c80, type, 7);
             if ((result == 0) ||
                 ((((result = UI_ValidateCustomComponent(UI_CUSTOM_COMPONENT_VALIDATOR1, type, 7), result == 0 ||
                    (result = UI_ValidateCustomComponent(UI_CUSTOM_COMPONENT_VALIDATOR2, type, 8), result == 0)) ||

@@ -759,63 +759,63 @@ void core_engine_module_cleanup(void)
 
 // 全局变量别名
 #define system_status_flags UNK_18098c880
-#define system_error_codes DAT_18098c8c8
+#define system_error_codes system_memory_c8c8
 #define system_configuration_data UNK_18098c898
-#define system_performance_counters DAT_180bf5268
-#define system_memory_statistics DAT_180bf5270
+#define system_performance_counters system_memory_5268
+#define system_memory_statistics system_memory_5270
 
 // 内存管理变量别名
-#define memory_pool_pointers DAT_180bf5280
-#define memory_allocation_tables DAT_180bf5288
+#define memory_pool_pointers system_memory_5280
+#define memory_allocation_tables system_memory_5288
 #define memory_usage_statistics UNK_180941780
-#define memory_debug_information DAT_180c91900
+#define memory_debug_information system_memory_1900
 #define memory_heap_managers UNK_1809ff978
 
 // 渲染系统变量别名
-#define render_context_data DAT_1809ff9e8
+#define render_context_data system_memory_f9e8
 #define render_device_pointers UNK_1809ff990
-#define render_shader_cache DAT_1809ff9c0
+#define render_shader_cache system_memory_f9c0
 #define render_texture_buffers UNK_1809ff978
 #define render_vertex_buffers UNK_1809ff990
 
 // 输入系统变量别名
-#define input_device_states DAT_180c96330
-#define input_mapping_tables DAT_180c96340
-#define input_event_queues DAT_180c96348
-#define input_configuration_data DAT_180c96350
-#define input_deadzone_settings DAT_180c96360
+#define input_device_states system_memory_6330
+#define input_mapping_tables system_memory_6340
+#define input_event_queues system_memory_6348
+#define input_configuration_data system_memory_6350
+#define input_deadzone_settings system_memory_6360
 
 // 音频系统变量别名
-#define audio_context_data DAT_180c96368
-#define audio_buffer_pool DAT_180c96318
-#define audio_channel_mixer DAT_180c96338
+#define audio_context_data system_memory_6368
+#define audio_buffer_pool system_memory_6318
+#define audio_channel_mixer system_memory_6338
 #define audio_stream_data SUB_18005d5f0
 #define audio_effect_chain UNK_180942f90
 
 // 网络系统变量别名
-#define network_connection_pool DAT_180c96220
+#define network_connection_pool system_memory_6220
 #define network_packet_buffers UNK_180c96358
-#define network_protocol_state DAT_180bf64f8
-#define network_bandwidth_statistics DAT_180bf6500
-#define network_error_handlers DAT_180bf6508
+#define network_protocol_state system_memory_64f8
+#define network_bandwidth_statistics system_memory_6500
+#define network_error_handlers system_memory_6508
 
 // 文件系统变量别名
-#define file_handle_table DAT_180bf6510
-#define file_cache_data DAT_180c8a9e0
-#define file_path_cache DAT_180c868f8
+#define file_handle_table system_memory_6510
+#define file_cache_data system_memory_a9e0
+#define file_path_cache system_memory_68f8
 #define file_io_buffers UNK_1809fd534
 #define file_monitor_handles UNK_1809fd550
 
 // 脚本系统变量别名
-#define script_virtual_machine DAT_180c868d0
-#define script_execution_context DAT_180c8ed28
-#define script_function_table DAT_180c8ed38
-#define script_global_variables DAT_180bf3ffc
-#define script_debug_symbols DAT_180c82851
+#define script_virtual_machine system_memory_68d0
+#define script_execution_context system_memory_ed28
+#define script_function_table system_memory_ed38
+#define script_global_variables system_memory_3ffc
+#define script_debug_symbols system_memory_2851
 
 // 调试系统变量别名
-#define debug_log_buffer DAT_180c8a9d8
-#define debug_breakpoint_table DAT_180c82863
-#define debug_profiler_data DAT_180c86910
-#define debug_memory_dump DAT_180c8a9c0
-#define debug_stack_trace DAT_180d48d20
+#define debug_log_buffer system_memory_a9d8
+#define debug_breakpoint_table system_memory_2863
+#define debug_profiler_data system_memory_6910
+#define debug_memory_dump system_memory_a9c0
+#define debug_stack_trace system_memory_8d20

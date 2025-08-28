@@ -351,7 +351,7 @@ LAB_18050e0d9:
   }
   puVar4 = *(void **)
             ((longlong)*(int *)(lVar5 + 0x34) * 0x68 + *(longlong *)(_DAT_180c8aa00 + 0x38) + 0x10);
-  puVar6 = &DAT_18098bc73;
+  puVar6 = &system_buffer_ptr;
   if (puVar4 != (void *)0x0) {
     puVar6 = puVar4;
   }

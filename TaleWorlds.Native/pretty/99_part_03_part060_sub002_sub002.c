@@ -779,7 +779,7 @@ void FUN_180235cc4(longlong *param_1,double param_2,int8_t (*param_3) [16],byte 
         else {
           lVar45 = func_0x000180079240();
         }
-        puVar43 = &DAT_18098bc73;
+        puVar43 = &system_buffer_ptr;
         if (*(void **)(lVar45 + 8) != (void *)0x0) {
           puVar43 = *(void **)(lVar45 + 8);
         }

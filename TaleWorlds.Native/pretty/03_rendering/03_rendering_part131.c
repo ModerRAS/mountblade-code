@@ -680,7 +680,7 @@ void rendering_system_process_render_parameter_queue(uint64_t render_param, long
       string_length = 0;
       temp_value = FUN_1806277c0(&error_handler_ptr, *(int32_t *)(item_data + 0x20));
       if (0 < *(int *)(item_data + 0x20)) {
-        string_data_ptr = &DAT_18098bc73;
+        string_data_ptr = &system_buffer_ptr;
         if (*(void **)(item_data + 0x18) != (void *)0x0) {
           string_data_ptr = *(void **)(item_data + 0x18);
         }
@@ -691,7 +691,7 @@ void rendering_system_process_render_parameter_queue(uint64_t render_param, long
         *string_buffer_ptr = 0;
       }
       while ((0 < (int)string_length &&
-             (item_data = strstr(string_buffer_ptr, &DAT_180a0ff10), temp_value = temp_value_2, item_data != 0))) {
+             (item_data = strstr(string_buffer_ptr, &system_memory_ff10), temp_value = temp_value_2, item_data != 0))) {
         item_offset = 6;
         item_index = (int)item_data - (int)string_buffer_ptr;
         if (string_length < item_index + 6U) {
@@ -737,7 +737,7 @@ void rendering_system_process_render_parameter_queue(uint64_t render_param, long
       string_size = 0;
       temp_value = FUN_1806277c0(&temp_ptr, *(int32_t *)(item_data + 0x20));
       if (0 < *(int *)(item_data + 0x20)) {
-        string_data_ptr = &DAT_18098bc73;
+        string_data_ptr = &system_buffer_ptr;
         if (*(void **)(item_data + 0x18) != (void *)0x0) {
           string_data_ptr = *(void **)(item_data + 0x18);
         }
@@ -748,7 +748,7 @@ void rendering_system_process_render_parameter_queue(uint64_t render_param, long
         *string_ptr = 0;
       }
       while ((0 < (int)string_size &&
-             (item_data = strstr(string_ptr, &DAT_180a0ff10), temp_value = temp_value_2, item_data != 0)))
+             (item_data = strstr(string_ptr, &system_memory_ff10), temp_value = temp_value_2, item_data != 0)))
       {
         item_offset = 6;
         item_index = (int)item_data - (int)string_ptr;
@@ -847,7 +847,7 @@ void rendering_system_update_render_parameter_state(longlong state_ptr)
     FUN_180347ca0(state_ptr, render_context_ptr, &state_param_9, &state_param_5, &state_param_1);
     return;
   }
-  temp_ptr = &DAT_18098bc73;
+  temp_ptr = &system_buffer_ptr;
   if (*(void **)(render_context_ptr + 0x290) != (void *)0x0) {
     temp_ptr = *(void **)(render_context_ptr + 0x290);
   }
@@ -886,7 +886,7 @@ void rendering_system_execute_render_parameter_callback(uint64_t callback_param)
   callback_string_ptr = callback_buffer;
   callback_buffer[0] = 0;
   callback_length = 0xb;
-  strcpy_s(callback_buffer, 0x40, &DAT_180a1cf50);
+  strcpy_s(callback_buffer, 0x40, &system_memory_cf50);
   FUN_1800b8300(callback_params, &callback_ptr);
   callback_param = 1;
   callback_flag = 1;
@@ -899,7 +899,7 @@ void rendering_system_execute_render_parameter_callback(uint64_t callback_param)
   callback_handler_buffer[0] = 0;
   callback_handler_length = 0x11;
   callback_array[0] = callback_params;
-  strcpy_s(callback_handler_buffer, 0x40, &DAT_180a1cf38);
+  strcpy_s(callback_handler_buffer, 0x40, &system_memory_cf38);
   FUN_1800b8300(callback_params, &callback_handler_ptr);
   callback_param = 1;
   callback_flag = 2;

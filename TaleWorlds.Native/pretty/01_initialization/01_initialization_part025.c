@@ -107,7 +107,7 @@ void initialize_resource_manager(longlong *context_ptr)
       lVar12 = lStack_368;
       iVar8 = iStack_370;
       puVar17 = *(void **)(lStack_368 * 0x20 + 8 + lVar10);
-      puVar13 = &DAT_18098bc73;
+      puVar13 = &system_buffer_ptr;
       if (puVar17 != (void *)0x0) {
         puVar13 = puVar17;
       }
@@ -163,13 +163,13 @@ void initialize_resource_manager(longlong *context_ptr)
           lVar10 = lStack_2c8;
           puVar2 = puStack_308;
           iVar8 = iStack_374;
-          puVar17 = &DAT_18098bc73;
+          puVar17 = &system_buffer_ptr;
           if ((void *)puStack_308[lStack_2c8 * 4 + 1] != (void *)0x0) {
             puVar17 = (void *)puStack_308[lStack_2c8 * 4 + 1];
           }
           lVar12 = strrchr(puVar17,0x2f);
           if (lVar12 == 0) {
-            puVar17 = &DAT_18098bc73;
+            puVar17 = &system_buffer_ptr;
             if ((void *)puVar2[lVar10 * 4 + 1] != (void *)0x0) {
               puVar17 = (void *)puVar2[lVar10 * 4 + 1];
             }
@@ -179,7 +179,7 @@ void initialize_resource_manager(longlong *context_ptr)
           }
           puVar13 = (void *)strchr(puVar17,0x2e);
           if (puVar13 == (void *)0x0) {
-            puVar13 = &DAT_18098bc73;
+            puVar13 = &system_buffer_ptr;
             if ((void *)puVar2[lVar10 * 4 + 1] != (void *)0x0) {
               puVar13 = (void *)puVar2[lVar10 * 4 + 1];
             }
@@ -458,12 +458,12 @@ void initialize_resource_manager(longlong *context_ptr)
           uVar9 = FUN_180624440(&uStack_268,pppppppuVar14 + 8);
           FUN_1806279c0(&puStack_330,uVar9);
           uStack_268 = &UNK_18098bcb0;
-          ppppppuVar19 = (uint64_t ******)&DAT_18098bc73;
+          ppppppuVar19 = (uint64_t ******)&system_buffer_ptr;
           if (pppppppuVar14[5] != (uint64_t ******)0x0) {
             ppppppuVar19 = pppppppuVar14[5];
           }
           FUN_180627910(&puStack_308,ppppppuVar19);
-          puVar17 = &DAT_18098bc73;
+          puVar17 = &system_buffer_ptr;
           if (puStack_328 != (void *)0x0) {
             puVar17 = puStack_328;
           }

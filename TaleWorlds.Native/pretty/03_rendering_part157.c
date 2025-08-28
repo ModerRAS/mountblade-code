@@ -426,7 +426,7 @@ void FUN_180365820(uint64_t param_1)
   puStack_2a0 = auStack_290;
   auStack_290[0] = 0;
   uStack_298 = 0xf;
-  strcpy_s(auStack_290,0x80,&DAT_180a201c0);
+  strcpy_s(auStack_290,0x80,&system_data_01c0);
   FUN_180049b30(apuStack_348,&puStack_2a8);
   uStack_2b0 = 3;
   uStack_368 = 1;
@@ -439,7 +439,7 @@ void FUN_180365820(uint64_t param_1)
   puStack_200 = auStack_1f0;
   auStack_1f0[0] = 0;
   uStack_1f8 = 0x13;
-  strcpy_s(auStack_1f0,0x80,&DAT_180a201a8);
+  strcpy_s(auStack_1f0,0x80,&system_data_01a8);
   FUN_180049b30(apuStack_348,&puStack_208);
   uStack_2b0 = 3;
   uStack_368 = 2;
@@ -452,7 +452,7 @@ void FUN_180365820(uint64_t param_1)
   puStack_160 = auStack_150;
   auStack_150[0] = 0;
   uStack_158 = 0xc;
-  strcpy_s(auStack_150,0x80,&DAT_180a20198);
+  strcpy_s(auStack_150,0x80,&system_data_0198);
   FUN_180049b30(apuStack_348,&puStack_168);
   uStack_2b0 = 3;
   uStack_368 = 4;
@@ -465,7 +465,7 @@ void FUN_180365820(uint64_t param_1)
   puStack_c0 = auStack_b0;
   auStack_b0[0] = 0;
   uStack_b8 = 0xd;
-  strcpy_s(auStack_b0,0x80,&DAT_180a20238);
+  strcpy_s(auStack_b0,0x80,&system_data_0238);
   FUN_180049b30(apuStack_348,&puStack_c8);
   uStack_2b0 = 9;
   uStack_368 = 8;
@@ -533,7 +533,7 @@ bool FUN_180365b50(longlong param_1,uint64_t param_2,int8_t param_3,uint64_t par
   uStack_48 = 0;
   uStack_40 = 3;
   FUN_180627ae0(&puStack_c0,param_1 + 0x90,param_3,param_4,0);
-  puStack_a0 = &DAT_180a1ff70;
+  puStack_a0 = &system_data_ff70;
   puStack_98 = &UNK_180a3c3e0;
   uStack_88 = uStack_b0;
   lStack_90 = lStack_b8;
@@ -542,7 +542,7 @@ bool FUN_180365b50(longlong param_1,uint64_t param_2,int8_t param_3,uint64_t par
   uStack_b0 = 0;
   lStack_b8 = 0;
   uStack_a8 = 0;
-  FUN_180627910(&puStack_78,&DAT_180a1ff70);
+  FUN_180627910(&puStack_78,&system_data_ff70);
   FUN_180365de0(&lStack_58,&puStack_98);
   lVar4 = lStack_58;
   puStack_78 = &UNK_180a3c3e0;

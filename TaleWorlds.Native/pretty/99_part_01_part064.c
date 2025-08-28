@@ -349,7 +349,7 @@ void FUN_1800e31a0(uint64_t param_1,longlong *param_2,longlong **param_3)
   puStack_238 = auStack_228;
   auStack_228[0] = 0;
   uStack_230 = 0;
-  strcpy_s(auStack_228,0x10,&DAT_18098bc73);
+  strcpy_s(auStack_228,0x10,&system_buffer_ptr);
   pplStack_280 = &plStack_288;
   plStack_288 = (longlong *)*param_2;
   if (plStack_288 != (longlong *)0x0) {

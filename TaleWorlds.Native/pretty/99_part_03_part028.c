@@ -211,7 +211,7 @@ LAB_1801e7356:
     }
     if (*(char *)(_DAT_180c86870 + 0x60) == '\0') {
       lStack_180 = *param_2;
-      puVar23 = &DAT_18098bc73;
+      puVar23 = &system_buffer_ptr;
       if ((void *)param_2[0x11] != (void *)0x0) {
         puVar23 = (void *)param_2[0x11];
       }
@@ -665,7 +665,7 @@ uint64_t * FUN_1801e77d0(uint64_t *param_1,uint64_t *param_2)
   param_2[4] = 0;
   param_1[2] = FUN_1801eb3d0;
   param_1[3] = FUN_1801eb320;
-  puVar6 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x28,8,DAT_180bf65bc,0xfffffffffffffffe);
+  puVar6 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x28,8,system_allocation_flags,0xfffffffffffffffe);
   *puVar6 = uVar4;
   puVar6[1] = &UNK_18098bcb0;
   puVar6[2] = 0;

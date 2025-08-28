@@ -235,7 +235,7 @@ void FUN_180639ec0(longlong *param_1,longlong param_2)
   *puVar4 = uVar2;
   lVar3 = param_1[1];
   param_1[1] = lVar3 + 4;
-  puVar5 = &DAT_18098bc73;
+  puVar5 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar5 = *(void **)(param_2 + 8);
   }

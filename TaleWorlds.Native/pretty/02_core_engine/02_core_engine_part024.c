@@ -29,7 +29,7 @@ void create_file_with_completion_port(longlong engine_context, longlong file_par
   uStack_2a0 = 0xfffffffffffffffe;
   uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_2e8;
   FUN_180624440(&puStack_268);
-  puVar4 = &DAT_18098bc73;
+  puVar4 = &system_buffer_ptr;
   if (puStack_260 != (void *)0x0) {
     puVar4 = puStack_260;
   }
@@ -39,7 +39,7 @@ void create_file_with_completion_port(longlong engine_context, longlong file_par
   uStack_2c8 = CONCAT44(uStack_2c8._4_4_,3);
   lVar2 = CreateFileA(puVar4,0x80000000,1,0);
   if (lVar2 == -1) {
-    puVar4 = &DAT_18098bc73;
+    puVar4 = &system_buffer_ptr;
     if (*(void **)(param_2 + 8) != (void *)0x0) {
       puVar4 = *(void **)(param_2 + 8);
     }
@@ -48,7 +48,7 @@ void create_file_with_completion_port(longlong engine_context, longlong file_par
   }
   lVar3 = CreateIoCompletionPort(lVar2,*(uint64_t *)(param_1 + 0x213430),0,0);
   if (lVar3 != *(longlong *)(param_1 + 0x213430)) {
-    puVar4 = &DAT_18098bc73;
+    puVar4 = &system_buffer_ptr;
     if (*(void **)(param_2 + 8) != (void *)0x0) {
       puVar4 = *(void **)(param_2 + 8);
     }
@@ -70,7 +70,7 @@ void create_file_with_completion_port(longlong engine_context, longlong file_par
         __Throw_C_error_std__YAXH_Z(iVar1);
       }
       _DAT_00000018 = *(int32_t *)(param_2 + 0x10);
-      puVar4 = &DAT_18098bc73;
+      puVar4 = &system_buffer_ptr;
       if (*(void **)(param_2 + 8) != (void *)0x0) {
         puVar4 = *(void **)(param_2 + 8);
       }
@@ -200,7 +200,7 @@ longlong copy_memory_block_config(longlong dest_block, longlong src_block)
   void *string_ptr;
   
   *(int32_t *)(dest_block + 0x10) = *(int32_t *)(src_block + 0x10);
-  string_ptr = &DAT_18098bc73;
+  string_ptr = &system_buffer_ptr;
   if (*(void **)(src_block + 8) != (void *)0x0) {
     string_ptr = *(void **)(src_block + 8);
   }
@@ -692,7 +692,7 @@ longlong handle_resource_lifecycle(longlong *resource_ptr, longlong *event_data,
     }
     else {
       if (param_3 == 1) {
-        lVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x20,8,DAT_180bf65bc);
+        lVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x20,8,system_allocation_flags);
         lVar2 = *param_2;
         *(uint64_t *)(lVar1 + 0x10) = 0;
         *(code **)(lVar1 + 0x18) = _guard_check_icall;
@@ -740,7 +740,7 @@ uint64_t *initialize_resource_entry(uint64_t *resource_entry, longlong config_pa
   *(int32_t *)(param_1 + 2) = 0;
   *(int8_t *)(param_1 + 3) = 0;
   *(int32_t *)(param_1 + 2) = *(int32_t *)(param_2 + 0x10);
-  puVar1 = &DAT_18098bc73;
+  puVar1 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar1 = *(void **)(param_2 + 8);
   }

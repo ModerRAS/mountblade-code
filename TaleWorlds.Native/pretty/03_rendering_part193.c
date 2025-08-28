@@ -287,7 +287,7 @@ LAB_18037dd34:
         if ((iVar1 < 0) ||
            ((int)(*(longlong *)(_DAT_180c86978 + 0xd0) - *(longlong *)(_DAT_180c86978 + 200) >> 3)
             <= iVar1)) {
-          puVar6 = &DAT_18098bc73;
+          puVar6 = &system_buffer_ptr;
           if (puStack_a8 != (void *)0x0) {
             puVar6 = puStack_a8;
           }
@@ -297,7 +297,7 @@ LAB_18037dd34:
         *param_1 = iVar1;
         break;
       }
-      lVar5 = (longlong)&DAT_180a03a84 - (longlong)pcVar9;
+      lVar5 = (longlong)&system_data_3a84 - (longlong)pcVar9;
       while (*pcVar9 == pcVar9[lVar5]) {
         pcVar9 = pcVar9 + 1;
         if (pcVar4 <= pcVar9) goto LAB_18037dd34;
@@ -362,7 +362,7 @@ LAB_18037dee0:
               if (puVar8[1] != 0) {
                 lVar5 = puVar8[1];
               }
-              FUN_18010cbc0(lVar5,&DAT_180a06430,afStackX_18);
+              FUN_18010cbc0(lVar5,&system_data_6430,afStackX_18);
               if (0.0 <= afStackX_18[0]) {
                 if (2000.0 <= afStackX_18[0]) {
                   afStackX_18[0] = 2000.0;
@@ -445,7 +445,7 @@ LAB_18037e056:
               if (puVar8[1] != 0) {
                 lVar5 = puVar8[1];
               }
-              FUN_18010cbc0(lVar5,&DAT_180a06430,&iStack_90);
+              FUN_18010cbc0(lVar5,&system_data_6430,&iStack_90);
               param_1[3] = iStack_90;
               break;
             }
@@ -479,7 +479,7 @@ LAB_18037e0f4:
               if (puVar8[1] != 0) {
                 lVar5 = puVar8[1];
               }
-              FUN_18010cbc0(lVar5,&DAT_180a06430,&iStack_8c);
+              FUN_18010cbc0(lVar5,&system_data_6430,&iStack_8c);
               param_1[4] = iStack_8c;
               break;
             }
@@ -543,7 +543,7 @@ LAB_18037e1f0:
               if (puVar8[1] != 0) {
                 lVar5 = puVar8[1];
               }
-              FUN_18010cbc0(lVar5,&DAT_180a06430,aiStack_88);
+              FUN_18010cbc0(lVar5,&system_data_6430,aiStack_88);
               param_1[5] = aiStack_88[0];
               goto LAB_18037e219;
             }

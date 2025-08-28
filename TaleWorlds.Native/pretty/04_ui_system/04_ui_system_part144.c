@@ -345,7 +345,7 @@ uint64_t ui_system_string_processor(longlong param_1, longlong param_2, int para
         max_length = param_3;
     }
     
-    char_ptr = &DAT_18098bc73;
+    char_ptr = &system_buffer_ptr;
     if (*(void **)(param_1 + 0x30) != (void *)0x0) {
         char_ptr = *(void **)(param_1 + 0x30);
     }
@@ -999,7 +999,7 @@ ui_system_data_converter(longlong param_1, longlong param_2, longlong param_3, i
         }
     }
     else {
-        char_ptr = &DAT_18098bc73;
+        char_ptr = &system_buffer_ptr;
         if (*(void **)(param_2 + 0x20) != (void *)0x0) {
             char_ptr = *(void **)(param_2 + 0x20);
         }

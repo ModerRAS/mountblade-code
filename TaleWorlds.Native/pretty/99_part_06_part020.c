@@ -53,7 +53,7 @@ void FUN_1803b8390(longlong param_1)
   if (*(char *)(*(longlong *)(param_1 + 0x68) + 0x2964) != '\0') {
     uVar6 = 0x1000;
   }
-  if (DAT_180c8ec7a != '\0') {
+  if (system_data_ec7a != '\0') {
     uVar6 = 0x2000;
   }
   cVar3 = func_0x0001803b6e60(param_1);
@@ -105,7 +105,7 @@ void FUN_1803b8390(longlong param_1)
       puStack_170 = auStack_160;
       auStack_160[0] = 0;
       uStack_168 = 10;
-      puVar8 = (uint64_t *)&DAT_18098bc73;
+      puVar8 = (uint64_t *)&system_buffer_ptr;
       if (puVar7 != (uint64_t *)0x0) {
         puVar8 = puVar7;
       }
@@ -178,7 +178,7 @@ void FUN_1803b8390(longlong param_1)
       puStack_d0 = auStack_c0;
       auStack_c0[0] = 0;
       uStack_c8 = 10;
-      puVar8 = (uint64_t *)&DAT_18098bc73;
+      puVar8 = (uint64_t *)&system_buffer_ptr;
       if (puVar7 != (uint64_t *)0x0) {
         puVar8 = puVar7;
       }

@@ -8,7 +8,7 @@ void FUN_18043bff0(uint64_t param_1)
 {
   longlong *plVar1;
   
-  plVar1 = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00,&DAT_1809fcc18);
+  plVar1 = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00,&system_data_cc18);
                     // WARNING: Could not recover jumptable at 0x00018043c01b. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*plVar1 + 0x70))(plVar1,param_1);

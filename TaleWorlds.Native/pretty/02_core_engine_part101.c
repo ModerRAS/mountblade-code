@@ -267,7 +267,7 @@ ulonglong FUN_18011d200(longlong param_1,float *param_2,uint param_3,char *param
     if ((uStackX_18 & 1) != 0) {
       pfVar13 = *(float **)(lVar3 + 0x19f0);
       fVar18 = *(float *)(lVar3 + 0x19f8);
-      FUN_180297340(pfVar13,&uStackX_10,fVar18,0x7f7fffff,0xbf800000,&DAT_1809fdf28,0,0);
+      FUN_180297340(pfVar13,&uStackX_10,fVar18,0x7f7fffff,0xbf800000,&system_data_df28,0,0);
       if (0.0 < (float)uStackX_10) {
         uStackX_10._0_4_ = (float)uStackX_10 - fVar18 / *pfVar13;
       }
@@ -284,7 +284,7 @@ ulonglong FUN_18011d200(longlong param_1,float *param_2,uint param_3,char *param
                                    (float)(int)(*(float *)(lVar3 + 0x19f8) * 0.25),fVar18);
       fStackX_24 = param_2[3] - *(float *)(lVar3 + 0x1660);
       fStack_d0 = fVar20;
-      FUN_1801224c0(param_1,&uStack_f8,&fStackX_20,&DAT_1809fdf28,0,0,&uStackX_10,0);
+      FUN_1801224c0(param_1,&uStack_f8,&fStackX_20,&system_data_df28,0,0,&uStackX_10,0);
       lVar16 = _DAT_180c8a9b0;
     }
     uVar12 = uStackX_10;
@@ -490,7 +490,7 @@ int8_t FUN_18011d36f(float param_1,float param_2,ulonglong param_3,uint64_t para
     *(float *)(unaff_RBP + 0x73) = fVar21 - fVar1;
     pcVar19 = unaff_RSI;
     fStack0000000000000068 = fVar24;
-    FUN_1801224c0(fVar22,&stack0x00000040,unaff_RBP + 0x6f,&DAT_1809fdf28);
+    FUN_1801224c0(fVar22,&stack0x00000040,unaff_RBP + 0x6f,&system_data_df28);
     uVar14 = (int32_t)((ulonglong)pcVar19 >> 0x20);
     unaff_RDI = _DAT_180c8a9b0;
   }

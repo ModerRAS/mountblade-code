@@ -436,11 +436,11 @@ LAB_1804d4bf3:
   }
   else {
     puVar7 = *(void **)(*(longlong *)(*plVar48 + 0x208) + 0x18);
-    puVar41 = &DAT_18098bc73;
+    puVar41 = &system_buffer_ptr;
     if (puVar7 != (void *)0x0) {
       puVar41 = puVar7;
     }
-    lVar47 = strstr(puVar41,&DAT_180a1388c);
+    lVar47 = strstr(puVar41,&system_data_388c);
     if (lVar47 != 0) {
       puStack_1e8 = &UNK_1809fcc28;
       puStack_1e0 = auStack_1d0;
@@ -461,7 +461,7 @@ LAB_1804d4bf3:
       goto LAB_1804d5429;
     }
     puVar7 = *(void **)(*(longlong *)(*plVar48 + 0x208) + 0x18);
-    puVar41 = &DAT_18098bc73;
+    puVar41 = &system_buffer_ptr;
     if (puVar7 != (void *)0x0) {
       puVar41 = puVar7;
     }

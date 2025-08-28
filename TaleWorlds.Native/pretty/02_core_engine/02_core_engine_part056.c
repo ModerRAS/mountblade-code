@@ -490,7 +490,7 @@ void cleanup_engine_shutdown(ulonglong param_1)
       puStack_d0 = auStack_c0;
       auStack_c0[0] = 0;
       uStack_c8 = uStack_128;
-      puVar21 = &DAT_18098bc73;
+      puVar21 = &system_buffer_ptr;
       if (puStack_130 != (void *)0x0) {
         puVar21 = puStack_130;
       }

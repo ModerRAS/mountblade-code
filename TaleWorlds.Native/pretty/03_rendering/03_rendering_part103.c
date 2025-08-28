@@ -682,10 +682,10 @@ longlong RenderingSystemResourceSetter(longlong resource_manager, uint resource_
     
     // 检查线程局部存储
     if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-                 0x48) < _DAT_180d496d0) && (FUN_1808fcb90(&DAT_180d496d0), _DAT_180d496d0 == -1)) {
+                 0x48) < _DAT_180d496d0) && (FUN_1808fcb90(&system_memory_96d0), _DAT_180d496d0 == -1)) {
         // 初始化线程局部数据
         _DAT_180d49730 = &UNK_1809fcc58;
-        _DAT_180d49738 = &DAT_180d49748;
+        _DAT_180d49738 = &system_memory_9748;
         _DAT_180d49740 = 0;
     }
     
@@ -723,7 +723,7 @@ void RenderingSystemFileWriter(longlong render_context, uint64_t file_handle)
     file_info = FUN_180334500(render_context, &file_stack);
     
     // 确定文件格式
-    file_format = &DAT_18098bc73;
+    file_format = &system_buffer_ptr;
     if (*(void **)(file_info + 8) != (void *)0x0) {
         file_format = *(void **)(file_info + 8);
     }
@@ -871,7 +871,7 @@ void RenderingSystemResourceLoader(longlong render_context, longlong file_handle
     *(ulonglong *)(render_context + 0x268) = *resource_pointer;
     
     // 确定资源格式
-    resource_format = &DAT_18098bc73;
+    resource_format = &system_buffer_ptr;
     if (*(void **)(file_handle + 8) != (void *)0x0) {
         resource_format = *(void **)(file_handle + 8);
     }
@@ -882,7 +882,7 @@ void RenderingSystemResourceLoader(longlong render_context, longlong file_handle
     // 获取文件信息
     FUN_180334500(render_context, resource_info);
     resource_buffer = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x18, 8, 3);
-    resource_format = &DAT_18098bc73;
+    resource_format = &system_buffer_ptr;
     if (resource_stack != (void *)0x0) {
         resource_format = resource_stack;
     }
@@ -1178,7 +1178,7 @@ void RenderingSystemDataSerializer(longlong render_context, longlong file_handle
         *buffer_pointer = data_size;
         buffer_pointer = buffer_pointer + 1;
         
-        data_format = &DAT_18098bc73;
+        data_format = &system_buffer_ptr;
         if (*(void **)(data_pointer + 8) != (void *)0x0) {
             data_format = *(void **)(data_pointer + 8);
         }

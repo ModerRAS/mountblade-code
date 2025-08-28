@@ -490,11 +490,11 @@ void FUN_1805ab940(longlong param_1,int8_t *param_2,longlong param_3,char param_
               if (cVar7 != '\0') {
                 cVar7 = FUN_18056eb00(0x180c95578,uStack_130,&UNK_1809fa4d0);
                 if (cVar7 != '\0') {
-                  cVar7 = FUN_180645c10(0x180c95578,iVar2,&DAT_180bfbca0);
+                  cVar7 = FUN_180645c10(0x180c95578,iVar2,&system_data_bca0);
                   if (cVar7 != '\0') {
-                    cVar7 = FUN_180645c10(0x180c95578,iVar1,&DAT_180bfbca0);
+                    cVar7 = FUN_180645c10(0x180c95578,iVar1,&system_data_bca0);
                     if (cVar7 != '\0') {
-                      cVar7 = FUN_180645c10(0x180c95578,iVar8,&DAT_180bfbca0);
+                      cVar7 = FUN_180645c10(0x180c95578,iVar8,&system_data_bca0);
                       if (cVar7 != '\0') {
                         cVar7 = FUN_180645c10(0x180c95578,uStack_137,&UNK_1809fa560);
                         if (cVar7 != '\0') {

@@ -203,7 +203,7 @@
 /**
  * 系统核心数据区域
  */
-extern uint8_t DAT_180c8aa28;                       // 系统数据区域1
+extern uint8_t system_memory_aa28;                       // 系统数据区域1
 extern uint8_t UNK_180a0e4b0;                       // 系统未知数据1
 extern uint8_t UNK_180a0e4c0;                       // 系统未知数据2
 extern uint8_t UNK_18098c074;                       // 系统核心数据1
@@ -257,9 +257,9 @@ extern uint8_t UNK_180a0e7b8;                       // 系统未知数据45
 extern uint8_t UNK_180a0efb8;                       // 处理器数据1
 extern uint8_t UNK_180a0f010;                       // 处理器数据2
 extern uint8_t UNK_180a0ef00;                       // 处理器数据3
-extern uint8_t DAT_1809fd518;                       // 处理器数据4
-extern uint8_t DAT_180a083b4;                       // 处理器数据5
-extern uint8_t DAT_180a089c4;                       // 处理器数据6
+extern uint8_t system_memory_d518;                       // 处理器数据4
+extern uint8_t system_memory_83b4;                       // 处理器数据5
+extern uint8_t system_memory_89c4;                       // 处理器数据6
 extern uint8_t UNK_180a0a20c;                       // 处理器数据7
 extern uint8_t UNK_180a0a23c;                       // 处理器数据8
 extern uint8_t UNK_180a0e7c8;                       // 处理器数据9
@@ -287,7 +287,7 @@ extern uint8_t UNK_180a3cb84;                       // 处理器数据28
  * 系统控制器数据区域
  */
 extern uint8_t UNK_180a0e890;                       // 控制器数据1
-extern uint8_t DAT_180a0e8a0;                       // 控制器数据2
+extern uint8_t system_memory_e8a0;                       // 控制器数据2
 extern uint8_t UNK_180a0e8b8;                       // 控制器数据3
 extern uint8_t UNK_180a0e8c0;                       // 控制器数据4
 extern uint8_t UNK_180a0e8d8;                       // 控制器数据5
@@ -335,7 +335,7 @@ extern uint8_t UNK_180a26e88;                       // 控制器数据46
 extern uint8_t UNK_180a26ee8;                       // 控制器数据47
 extern uint8_t UNK_180a26f90;                       // 控制器数据48
 extern uint8_t UNK_180a27040;                       // 控制器数据49
-extern uint8_t DAT_180a0eb68;                       // 控制器数据50
+extern uint8_t system_memory_eb68;                       // 控制器数据50
 extern uint8_t UNK_180a0ec10;                       // 控制器数据51
 extern uint8_t UNK_180a0d6c8;                       // 控制器数据52
 extern uint8_t UNK_180a0d6d8;                       // 控制器数据53
@@ -359,7 +359,7 @@ extern uint8_t UNK_180a0ec00;                       // 控制器数据70
 extern uint8_t UNK_180a0ec30;                       // 控制器数据71
 extern uint8_t UNK_180a0ec50;                       // 控制器数据72
 extern uint8_t UNK_180a0f068;                       // 控制器数据73
-extern uint8_t DAT_180c8aa30;                       // 控制器数据74
+extern uint8_t system_memory_aa30;                       // 控制器数据74
 
 /**
  * 系统数据管理器数据区域
@@ -403,7 +403,7 @@ extern uint8_t UNK_180a0f450;                       // 数据管理器数据36
 extern uint8_t UNK_180a0f630;                       // 数据管理器数据37
 extern uint8_t UNK_180a0f6b0;                       // 数据管理器数据38
 extern uint8_t UNK_180a0f690;                       // 数据管理器数据39
-extern uint8_t DAT_180c8aa38;                       // 数据管理器数据40
+extern uint8_t system_memory_aa38;                       // 数据管理器数据40
 extern uint8_t UNK_180a0f6a0;                       // 数据管理器数据41
 extern uint8_t UNK_180a0f6c0;                       // 数据管理器数据42
 extern uint8_t UNK_1801fffc0;                       // 数据管理器数据43
@@ -424,7 +424,7 @@ extern uint8_t UNK_180a0f7b0;                       // 数据管理器数据57
 extern uint8_t UNK_180a0f7b8;                       // 数据管理器数据58
 extern uint8_t UNK_180a0f7e8;                       // 数据管理器数据59
 extern uint8_t UNK_180a0f7fc;                       // 数据管理器数据60
-extern uint8_t DAT_180a0f804;                       // 数据管理器数据61
+extern uint8_t system_memory_f804;                       // 数据管理器数据61
 extern uint8_t UNK_180a0f810;                       // 数据管理器数据62
 extern uint8_t UNK_180a0f81c;                       // 数据管理器数据63
 extern uint8_t UNK_180a0f820;                       // 数据管理器数据64
@@ -466,17 +466,17 @@ extern uint8_t UNK_180a0fb80;                       // 数据管理器数据99
 extern uint8_t UNK_180a0fb98;                       // 数据管理器数据100
 extern uint8_t UNK_180a0fbf8;                       // 数据管理器数据101
 extern uint8_t UNK_180a0fc28;                       // 数据管理器数据102
-extern uint8_t DAT_180c8aa48;                       // 数据管理器数据103
-extern uint8_t DAT_180c91cf8;                       // 数据管理器数据104
-extern uint8_t DAT_180c91d00;                       // 数据管理器数据105
-extern uint8_t DAT_180c91cf0;                       // 数据管理器数据106
-extern int8_t DAT_180c91d14;                       // 数据管理器数据107
-extern int8_t DAT_180c91d08;                       // 数据管理器数据108
+extern uint8_t system_memory_aa48;                       // 数据管理器数据103
+extern uint8_t system_memory_1cf8;                       // 数据管理器数据104
+extern uint8_t system_memory_1d00;                       // 数据管理器数据105
+extern uint8_t system_memory_1cf0;                       // 数据管理器数据106
+extern int8_t system_memory_1d14;                       // 数据管理器数据107
+extern int8_t system_memory_1d08;                       // 数据管理器数据108
 
 /**
  * 数据验证器数据区域
  */
-extern uint8_t DAT_180a401f0;                       // 验证器数据1
+extern uint8_t system_memory_01f0;                       // 验证器数据1
 extern uint8_t UNK_18022bf60;                       // 验证器数据2
 extern uint8_t UNK_180234790;                       // 验证器数据3
 extern uint8_t UNK_1802347a0;                       // 验证器数据4
@@ -569,11 +569,11 @@ extern uint8_t UNK_180253f90;                       // 系统控制器7数据1
 extern uint8_t UNK_180a14808;                       // 系统控制器7数据2
 extern uint8_t UNK_180a14860;                       // 系统控制器7数据3
 extern uint8_t UNK_180a22558;                       // 系统控制器7数据4
-extern uint8_t DAT_180d48da4;                       // 系统控制器7数据5
-extern uint8_t DAT_180d48da0;                       // 系统控制器7数据6
-extern uint8_t DAT_180d48d70;                       // 系统控制器7数据7
-extern uint8_t DAT_180d48d80;                       // 系统控制器7数据8
-extern uint8_t DAT_180d48d90;                       // 系统控制器7数据9
+extern uint8_t system_memory_8da4;                       // 系统控制器7数据5
+extern uint8_t system_memory_8da0;                       // 系统控制器7数据6
+extern uint8_t system_memory_8d70;                       // 系统控制器7数据7
+extern uint8_t system_memory_8d80;                       // 系统控制器7数据8
+extern uint8_t system_memory_8d90;                       // 系统控制器7数据9
 extern uint64_t UNK_180d48d78;                      // 系统控制器7数据10
 extern uint64_t UNK_180d48d88;                      // 系统控制器7数据11
 extern uint64_t UNK_180d48d98;                      // 系统控制器7数据12
@@ -599,7 +599,7 @@ extern uint8_t UNK_180a14b08;                       // 系统状态管理器2数
 extern uint8_t UNK_180a14b80;                       // 系统状态管理器2数据2
 extern uint8_t UNK_180a150c0;                       // 系统状态管理器2数据3
 extern uint8_t UNK_180a150a0;                       // 系统状态管理器2数据4
-extern uint8_t DAT_18098d7d0;                       // 系统状态管理器2数据5
+extern uint8_t system_memory_d7d0;                       // 系统状态管理器2数据5
 extern uint8_t UNK_18098d7d8;                       // 系统状态管理器2数据6
 extern uint8_t UNK_180a14da8;                       // 系统状态管理器2数据7
 extern uint8_t UNK_18098d7e0;                       // 系统状态管理器2数据8
@@ -721,7 +721,7 @@ extern uint8_t UNK_180a16160;                       // 系统状态管理器3数
 extern uint8_t UNK_180a161c0;                       // 系统状态管理器3数据104
 extern int32_t UNK_00000004;                       // 系统状态管理器3数据105
 extern float UNK_fffffffffffffffc;                    // 系统状态管理器3数据106
-extern uint8_t DAT_180a0b1c0;                       // 系统状态管理器3数据107
+extern uint8_t system_memory_b1c0;                       // 系统状态管理器3数据107
 extern uint8_t UNK_180a180b0;                       // 系统状态管理器3数据108
 extern uint8_t UNK_180a180c4;                       // 系统状态管理器3数据109
 extern uint8_t UNK_180a180f4;                       // 系统状态管理器3数据110
@@ -749,7 +749,7 @@ extern uint8_t UNK_180a16828;                       // 系统状态管理器3数
 extern uint8_t UNK_180a16840;                       // 系统状态管理器3数据132
 extern uint8_t UNK_180a16850;                       // 系统状态管理器3数据133
 extern uint8_t UNK_180a168b0;                       // 系统状态管理器3数据134
-extern uint8_t DAT_180a09d80;                       // 系统状态管理器3数据135
+extern uint8_t system_memory_9d80;                       // 系统状态管理器3数据135
 extern uint8_t UNK_180a16930;                       // 系统状态管理器3数据136
 extern uint8_t UNK_180a168fc;                       // 系统状态管理器3数据137
 extern uint8_t UNK_180a16900;                       // 系统状态管理器3数据138
@@ -759,8 +759,8 @@ extern uint8_t UNK_180a16c18;                       // 系统状态管理器3数
 extern uint8_t UNK_180a16c28;                       // 系统状态管理器3数据142
 extern uint8_t UNK_180a16c68;                       // 系统状态管理器3数据143
 extern uint8_t UNK_180a16dc0;                       // 系统状态管理器3数据144
-extern uint8_t DAT_180bf00b0;                       // 系统状态管理器3数据145
-extern uint8_t DAT_180a3f750;                       // 系统状态管理器3数据146
+extern uint8_t system_memory_00b0;                       // 系统状态管理器3数据145
+extern uint8_t system_memory_f750;                       // 系统状态管理器3数据146
 extern uint8_t UNK_18028ad30;                       // 系统状态管理器3数据147
 extern uint8_t UNK_18028ad70;                       // 系统状态管理器3数据148
 extern uint8_t UNK_180a13928;                       // 系统状态管理器3数据149
@@ -787,10 +787,10 @@ extern uint8_t UNK_180991288;                       // 系统状态管理器3数
 extern uint8_t UNK_180991289;                       // 系统状态管理器3数据170
 extern uint8_t UNK_18099128a;                       // 系统状态管理器3数据171
 extern uint8_t UNK_18099128b;                       // 系统状态管理器3数据172
-extern uint8_t DAT_180c96850;                       // 系统状态管理器3数据173
-extern uint8_t DAT_180c96838;                       // 系统状态管理器3数据174
-extern uint8_t DAT_180c96848;                       // 系统状态管理器3数据175
-extern uint8_t DAT_180c96840;                       // 系统状态管理器3数据176
+extern uint8_t system_memory_6850;                       // 系统状态管理器3数据173
+extern uint8_t system_memory_6838;                       // 系统状态管理器3数据174
+extern uint8_t system_memory_6848;                       // 系统状态管理器3数据175
+extern uint8_t system_memory_6840;                       // 系统状态管理器3数据176
 extern uint8_t UNK_180a16f48;                       // 系统状态管理器3数据177
 extern uint8_t UNK_180a16f58;                       // 系统状态管理器3数据178
 extern uint8_t UNK_180a16f78;                       // 系统状态管理器3数据179
@@ -807,7 +807,7 @@ extern uint8_t UNK_180a16ff8;                       // 系统状态管理器3数
 extern uint8_t UNK_180a18fd0;                       // 系统状态管理器4数据1
 extern uint8_t UNK_1802cdd50;                       // 系统状态管理器4数据2
 extern uint8_t UNK_1802cdd60;                       // 系统状态管理器4数据3
-extern uint8_t DAT_180a0d498;                       // 系统状态管理器4数据4
+extern uint8_t system_memory_d498;                       // 系统状态管理器4数据4
 extern uint8_t UNK_180a18e98;                       // 系统状态管理器4数据5
 extern uint8_t UNK_180a18eb0;                       // 系统状态管理器4数据6
 extern uint8_t UNK_180a18ec8;                       // 系统状态管理器4数据7
@@ -935,7 +935,7 @@ extern uint8_t UNK_180a19ca8;                       // 系统初始化器2数据
 extern uint8_t UNK_180a19cb8;                       // 系统初始化器2数据47
 extern uint8_t UNK_180a19d30;                       // 系统初始化器2数据48
 extern uint8_t UNK_180a19cd0;                       // 系统初始化器2数据49
-extern uint8_t DAT_180d49678;                       // 系统初始化器2数据50
+extern uint8_t system_memory_9678;                       // 系统初始化器2数据50
 
 /**
  * 系统初始化器5数据区域
@@ -956,8 +956,8 @@ extern uint8_t UNK_1803ba240;                       // 系统初始化器6数据
 /**
  * 系统初始化器8数据区域
  */
-extern uint8_t DAT_1809fd8ac;                       // 系统初始化器8数据1
-extern uint8_t DAT_180a0be28;                       // 系统初始化器8数据2
+extern uint8_t system_memory_d8ac;                       // 系统初始化器8数据1
+extern uint8_t system_memory_be28;                       // 系统初始化器8数据2
 extern uint8_t UNK_180a23328;                       // 系统初始化器8数据3
 extern uint8_t UNK_180a23140;                       // 系统初始化器8数据4
 extern uint8_t UNK_180a23178;                       // 系统初始化器8数据5
@@ -978,7 +978,7 @@ extern uint8_t UNK_1803b9630;                       // 系统初始化器9数据
 /**
  * 系统初始化器10数据区域
  */
-extern char DAT_180c8ec7a;                            // 系统初始化器10数据1
+extern char system_memory_ec7a;                            // 系统初始化器10数据1
 extern uint8_t UNK_180a234a0;                       // 系统初始化器10数据2
 extern uint8_t UNK_180a23500;                       // 系统初始化器10数据3
 extern uint8_t UNK_180a23410;                       // 系统初始化器10数据4
@@ -1031,7 +1031,7 @@ extern uint8_t UNK_180a238e0;                       // 系统初始化器10数�
 extern uint8_t UNK_180a23948;                       // 系统初始化器10数据51
 extern uint8_t UNK_180a23980;                       // 系统初始化器10数据52
 extern uint8_t UNK_180a23a18;                       // 系统初始化器10数据53
-extern uint8_t DAT_180a01400;                       // 系统初始化器10数据54
+extern uint8_t system_memory_1400;                       // 系统初始化器10数据54
 extern uint8_t UNK_1803c5670;                       // 系统初始化器10数据55
 extern uint8_t UNK_1803c5690;                       // 系统初始化器10数据56
 
@@ -1091,18 +1091,18 @@ extern uint8_t UNK_180a24940;                       // 系统处理器6数据19
 extern uint8_t UNK_180a24960;                       // 系统处理器6数据20
 extern uint8_t UNK_180a24980;                       // 系统处理器6数据21
 extern uint8_t UNK_180a249a0;                       // 系统处理器6数据22
-extern uint8_t DAT_180a09db0;                       // 系统处理器6数据23
+extern uint8_t system_memory_9db0;                       // 系统处理器6数据23
 extern uint8_t UNK_180994920;                       // 系统处理器6数据24
 extern uint8_t UNK_180a24c80;                       // 系统处理器6数据25
 extern uint8_t UNK_180a24ee8;                       // 系统处理器6数据26
 extern uint8_t UNK_180a24f00;                       // 系统处理器6数据27
-extern uint8_t DAT_180a13168;                       // 系统处理器6数据28
+extern uint8_t system_memory_3168;                       // 系统处理器6数据28
 extern IMAGE_DOS_HEADER IMAGE_DOS_HEADER_180000000;    // 系统处理器6数据29
-extern uint8_t DAT_180a24f58;                       // 系统处理器6数据30
+extern uint8_t system_memory_4f58;                       // 系统处理器6数据30
 extern uint8_t UNK_180a2500c;                       // 系统处理器6数据31
 extern uint8_t UNK_180a25014;                       // 系统处理器6数据32
 extern uint8_t UNK_180a25018;                       // 系统处理器6数据33
-extern uint8_t DAT_180a25028;                       // 系统处理器6数据34
+extern uint8_t system_memory_5028;                       // 系统处理器6数据34
 extern uint8_t UNK_180a25058;                       // 系统处理器6数据35
 extern uint8_t UNK_180a25148;                       // 系统处理器6数据36
 extern uint8_t UNK_180a25150;                       // 系统处理器6数据37
@@ -1195,7 +1195,7 @@ extern uint8_t UNK_180a26e60;                       // 系统处理器7数据34
 extern uint8_t UNK_180a0d788;                       // 系统处理器7数据35
 extern uint8_t UNK_180a26f38;                       // 系统处理器7数据36
 extern uint8_t UNK_180a26f70;                       // 系统处理器7数据37
-extern uint8_t DAT_180a26f50;                       // 系统处理器7数据38
+extern uint8_t system_memory_6f50;                       // 系统处理器7数据38
 extern uint8_t UNK_180a26fe0;                       // 系统处理器7数据39
 extern uint8_t UNK_180a26ff0;                       // 系统处理器7数据40
 extern uint8_t UNK_180a27000;                       // 系统处理器7数据41

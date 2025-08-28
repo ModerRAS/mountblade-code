@@ -51,91 +51,91 @@
 
 // 内存管理核心函数
 void* FUN_1809414f0;  // 主内存分配器
-void* DAT_180bf5290;  // 内存池头部指针
-void* DAT_180bf52a0;  // 内存池尾部指针
-void* DAT_180bf52c0;  // 当前分配位置
-void* DAT_180bf52c8;  // 内存块大小表
-void* DAT_180bf52d0;  // 内存对齐表
-void* DAT_180bf52d8;  // 内存统计信息
-int8_t DAT_180bf5240;  // 内存管理器状态
-void* DAT_180bf52a8;  // 大块内存分配器
-void* DAT_180bf52b0;  // 小块内存分配器
-int8_t DAT_180bf52e0;  // 内存碎片整理状态
+void* system_ptr_5290;  // 内存池头部指针
+void* system_ptr_52a0;  // 内存池尾部指针
+void* system_ptr_52c0;  // 当前分配位置
+void* system_ptr_52c8;  // 内存块大小表
+void* system_ptr_52d0;  // 内存对齐表
+void* system_ptr_52d8;  // 内存统计信息
+int8_t system_ptr_5240;  // 内存管理器状态
+void* system_ptr_52a8;  // 大块内存分配器
+void* system_ptr_52b0;  // 小块内存分配器
+int8_t system_ptr_52e0;  // 内存碎片整理状态
 void* UNK_180a3c3e0;  // 虚拟内存管理器
 uint64_t UNK_180bf5278;  // 已分配内存总数
 uint64_t UNK_180bf5298;  // 可用内存总数
-void* DAT_180bf5320;  // 内存分配回调表
-void* DAT_180bf5328;  // 内存释放回调表
-void* DAT_180bf5330;  // 内存重分配回调表
-void* DAT_180bf5338;  // 内存验证回调表
+void* system_ptr_5320;  // 内存分配回调表
+void* system_ptr_5328;  // 内存释放回调表
+void* system_ptr_5330;  // 内存重分配回调表
+void* system_ptr_5338;  // 内存验证回调表
 void* UNK_18098bb30;  // 内存调试信息
 
 
 // 数据结构管理器
 void* FUN_180941590;  // 数据结构管理器主函数
-uint8_t DAT_180bf5770;  // 链表管理器状态
-uint8_t DAT_180bf5778;  // 哈希表管理器状态
-uint8_t DAT_180bf5780;  // 树结构管理器状态
-uint8_t DAT_180bf5788;  // 队列管理器状态
+uint8_t system_ptr_5770;  // 链表管理器状态
+uint8_t system_ptr_5778;  // 哈希表管理器状态
+uint8_t system_ptr_5780;  // 树结构管理器状态
+uint8_t system_ptr_5788;  // 队列管理器状态
 
 
 // 字符串处理系统
 uint8_t FUN_1809415b0;  // 字符串处理主函数
-uint8_t DAT_180bf5208;  // 字符串编码器状态
-uint8_t DAT_180bf5210;  // 字符串解码器状态
-uint8_t DAT_180bf5218;  // 字符串缓冲区状态
-uint8_t DAT_180bf5220;  // 字符串格式化器状态
+uint8_t system_ptr_5208;  // 字符串编码器状态
+uint8_t system_ptr_5210;  // 字符串解码器状态
+uint8_t system_ptr_5218;  // 字符串缓冲区状态
+uint8_t system_ptr_5220;  // 字符串格式化器状态
 uint8_t UNK_18098bc80;  // 字符串池管理器
 
 
 // 系统状态管理器
 uint8_t FUN_1809415d0;  // 系统状态管理主函数
-uint8_t DAT_180bf5bc0;  // 系统核心状态
-uint8_t DAT_180bf5bc8;  // 子系统状态表
-uint8_t DAT_180bf5bd0;  // 状态变化历史
-uint8_t DAT_180bf5bd8;  // 状态同步标志
+uint8_t system_ptr_5bc0;  // 系统核心状态
+uint8_t system_ptr_5bc8;  // 子系统状态表
+uint8_t system_ptr_5bd0;  // 状态变化历史
+uint8_t system_ptr_5bd8;  // 状态同步标志
 uint8_t UNK_1809fcc58;  // 状态事件管理器
 
 
 // 线程本地存储(TLS)管理器
 uint8_t FUN_1809415f0;  // TLS管理主函数
-uint8_t DAT_180bf5c30;  // TLS分配器状态
-uint8_t DAT_180bf5c38;  // TLS索引表
-uint8_t DAT_180bf5c40;  // TLS数据块
-uint8_t DAT_180bf5c48;  // TLS清理器
+uint8_t system_ptr_5c30;  // TLS分配器状态
+uint8_t system_ptr_5c38;  // TLS索引表
+uint8_t system_ptr_5c40;  // TLS数据块
+uint8_t system_ptr_5c48;  // TLS清理器
 
 
 // 错误处理系统
 uint8_t FUN_180941610;  // 错误处理主函数
-uint8_t DAT_180bf6080;  // 错误代码表
-uint8_t DAT_180bf6088;  // 错误消息表
-uint8_t DAT_180bf6090;  // 错误堆栈
-uint8_t DAT_180bf6098;  // 错误恢复处理器
+uint8_t system_ptr_6080;  // 错误代码表
+uint8_t system_ptr_6088;  // 错误消息表
+uint8_t system_ptr_6090;  // 错误堆栈
+uint8_t system_ptr_6098;  // 错误恢复处理器
 
 
 // 性能监控器
 uint8_t FUN_180941630;  // 性能监控主函数
-int8_t DAT_180c910f8;  // 监控器状态
+int8_t system_ptr_10f8;  // 监控器状态
 
 
 // 日志系统
 uint8_t FUN_180941650;  // 日志系统主函数
-int8_t DAT_180c91198;  // 日志管理器状态
+int8_t system_ptr_1198;  // 日志管理器状态
 
 
 // 配置管理器
 uint8_t FUN_180941690;  // 配置管理主函数
-int8_t DAT_180c91238;  // 配置加载器状态
+int8_t system_ptr_1238;  // 配置加载器状态
 
 
 // 资源管理器
 uint8_t FUN_1809416d0;  // 资源管理主函数
-int8_t DAT_180c912d8;  // 资源加载器状态
+int8_t system_ptr_12d8;  // 资源加载器状态
 
 
 // 文件系统管理器
 uint8_t FUN_180941710;  // 文件系统主函数
-uint8_t DAT_1809fe0d0;  // 文件句柄表
+uint8_t system_ptr_e0d0;  // 文件句柄表
 uint8_t UNK_1809fd0d8;  // 文件缓存管理器
 
 
@@ -145,104 +145,104 @@ uint8_t FUN_1809417a0;  // 网络通信主函数
 
 // 安全管理器
 uint8_t FUN_1809417c0;  // 安全管理主函数
-uint8_t DAT_180c9190c;  // 权限检查器状态
+uint8_t system_ptr_190c;  // 权限检查器状态
 uint8_t UNK_1809fcc28;  // 加密模块
 uint8_t UNK_1809ffa30;  // 解密模块
-uint8_t DAT_180a010a0;  // 认证管理器
+uint8_t system_ptr_10a0;  // 认证管理器
 uint8_t UNK_180a00370;  // 安全日志记录器
 
 
 // 时间管理器
 uint8_t FUN_180941800;  // 时间管理主函数
-uint8_t DAT_180bf64e0;  // 系统时钟状态
-uint8_t DAT_180bf64e8;  // 定时器管理器
+uint8_t system_ptr_64e0;  // 系统时钟状态
+uint8_t system_ptr_64e8;  // 定时器管理器
 uint8_t UNK_1809fdc18;  // 时间戳生成器
 uint8_t UNK_180a004dc;  // 时间格式化器
-uint8_t DAT_180bf6530;  // 事件调度器
-uint8_t DAT_180bf6538;  // 延迟执行队列
-uint8_t DAT_180bf6540;  // 时间同步器
+uint8_t system_ptr_6530;  // 事件调度器
+uint8_t system_ptr_6538;  // 延迟执行队列
+uint8_t system_ptr_6540;  // 时间同步器
 
 
 // 数学运算库
 uint8_t FUN_180941820;  // 数学运算主函数
-uint8_t DAT_180bf6548;  // 基础运算器状态
+uint8_t system_ptr_6548;  // 基础运算器状态
 uint8_t UNK_180a004e8;  // 向量计算器
-uint8_t DAT_180bf6590;  // 矩阵运算器
-uint8_t DAT_180bf6598;  // 三角函数表
-uint8_t DAT_180bf65a0;  // 随机数生成器
-uint8_t DAT_180bf65a8;  // 统计计算器
+uint8_t system_ptr_6590;  // 矩阵运算器
+uint8_t system_ptr_6598;  // 三角函数表
+uint8_t system_ptr_65a0;  // 随机数生成器
+uint8_t system_ptr_65a8;  // 统计计算器
 
 
 // 图形渲染管理器
 uint8_t FUN_180941840;  // 渲染管理主函数
 uint8_t UNK_180a004f8;  // 渲染管线
-uint8_t DAT_180bf65c0;  // 着色器管理器
-uint8_t DAT_180bf65c8;  // 纹理管理器
-uint8_t DAT_180bf65d0;  // 缓冲区管理器
-uint8_t DAT_180bf65d8;  // 渲染状态管理器
+uint8_t system_ptr_65c0;  // 着色器管理器
+uint8_t system_ptr_65c8;  // 纹理管理器
+uint8_t system_ptr_65d0;  // 缓冲区管理器
+uint8_t system_ptr_65d8;  // 渲染状态管理器
 
 
 // 音频管理器
 uint8_t FUN_180941860;  // 音频管理主函数
 uint8_t UNK_180a00508;  // 音频引擎
-uint8_t DAT_180bf65f0;  // 音效管理器
-uint8_t DAT_180bf65f8;  // 音乐播放器
-uint8_t DAT_180bf6600;  // 音频缓冲区
-uint8_t DAT_180bf6608;  // 音频流管理器
+uint8_t system_ptr_65f0;  // 音效管理器
+uint8_t system_ptr_65f8;  // 音乐播放器
+uint8_t system_ptr_6600;  // 音频缓冲区
+uint8_t system_ptr_6608;  // 音频流管理器
 
 
 // 输入管理器
 uint8_t FUN_180941880;  // 输入管理主函数
 uint8_t UNK_180a00518;  // 输入设备驱动
-uint8_t DAT_180bf6620;  // 键盘管理器
-uint8_t DAT_180bf6628;  // 鼠标管理器
-uint8_t DAT_180bf6630;  // 手柄管理器
-uint8_t DAT_180bf6638;  // 触摸屏管理器
+uint8_t system_ptr_6620;  // 键盘管理器
+uint8_t system_ptr_6628;  // 鼠标管理器
+uint8_t system_ptr_6630;  // 手柄管理器
+uint8_t system_ptr_6638;  // 触摸屏管理器
 uint8_t UNK_180a00528;  // 输入事件队列
 
 
 // 窗口管理器
 uint8_t FUN_1809418a0;  // 窗口管理主函数
-uint8_t DAT_180bf6650;  // 窗口创建器
-uint8_t DAT_180bf6658;  // 窗口销毁器
-uint8_t DAT_180bf6660;  // 窗口状态管理器
-uint8_t DAT_180bf6668;  // 窗口事件处理器
+uint8_t system_ptr_6650;  // 窗口创建器
+uint8_t system_ptr_6658;  // 窗口销毁器
+uint8_t system_ptr_6660;  // 窗口状态管理器
+uint8_t system_ptr_6668;  // 窗口事件处理器
 uint8_t UNK_180a00538;  // 窗口样式管理器
 
 
 // 事件系统
 uint8_t FUN_1809418c0;  // 事件系统主函数
-uint8_t DAT_180bf6680;  // 事件分发器
-uint8_t DAT_180bf6688;  // 事件监听器
-uint8_t DAT_180bf6690;  // 事件队列
-uint8_t DAT_180bf6698;  // 事件过滤器
+uint8_t system_ptr_6680;  // 事件分发器
+uint8_t system_ptr_6688;  // 事件监听器
+uint8_t system_ptr_6690;  // 事件队列
+uint8_t system_ptr_6698;  // 事件过滤器
 uint8_t UNK_180a00540;  // 事件优先级管理器
 
 
 // 任务调度器
 uint8_t FUN_1809418e0;  // 任务调度主函数
-uint8_t DAT_180bf66b0;  // 任务创建器
-uint8_t DAT_180bf66b8;  // 任务执行器
-uint8_t DAT_180bf66c0;  // 任务队列管理器
-uint8_t DAT_180bf66c8;  // 任务优先级调度器
+uint8_t system_ptr_66b0;  // 任务创建器
+uint8_t system_ptr_66b8;  // 任务执行器
+uint8_t system_ptr_66c0;  // 任务队列管理器
+uint8_t system_ptr_66c8;  // 任务优先级调度器
 uint8_t UNK_180a00548;  // 任务监控器
 
 
 // 内存池管理器
 uint8_t FUN_180941900;  // 内存池管理主函数
-uint8_t DAT_180bf52e8;  // 小对象池状态
-uint8_t DAT_180bf52f0;  // 中对象池状态
-uint8_t DAT_180bf52f8;  // 大对象池状态
-uint8_t DAT_180bf5300;  // 池分配策略
+uint8_t system_ptr_52e8;  // 小对象池状态
+uint8_t system_ptr_52f0;  // 中对象池状态
+uint8_t system_ptr_52f8;  // 大对象池状态
+uint8_t system_ptr_5300;  // 池分配策略
 uint8_t UNK_180a01300;  // 池回收器
 
 
 // 垃圾回收器
 uint8_t FUN_180941980;  // 垃圾回收主函数
-uint8_t DAT_180bf5738;  // GC标记器
-uint8_t DAT_180bf5740;  // GC清扫器
-uint8_t DAT_180bf5748;  // GC压缩器
-uint8_t DAT_180bf5750;  // GC统计器
+uint8_t system_ptr_5738;  // GC标记器
+uint8_t system_ptr_5740;  // GC清扫器
+uint8_t system_ptr_5748;  // GC压缩器
+uint8_t system_ptr_5750;  // GC统计器
 uint8_t UNK_180a01330;  // GC调度器
 
 
@@ -252,140 +252,140 @@ uint8_t FUN_1809419a0;  // 线程管理主函数
 
 // 函数: uint8_t FUN_1809419c0;
 uint8_t FUN_1809419c0;
-uint8_t DAT_180c9196c;
+uint8_t system_ptr_196c;
 uint8_t UNK_180a02998;
-uint8_t DAT_180c919e0;
+uint8_t system_ptr_19e0;
 uint8_t UNK_180a0b1c8;
-uint8_t DAT_180bf6750;
-uint8_t DAT_180bf6758;
-uint8_t DAT_180bf6760;
-uint8_t DAT_180bf6768;
-uint8_t DAT_180bf67a8;
-uint8_t DAT_180bf67b0;
-uint8_t DAT_180bf67b8;
-uint8_t DAT_180bf67c0;
-uint8_t DAT_180bf6800;
-uint8_t DAT_180bf6808;
-uint8_t DAT_180bf6810;
-uint8_t DAT_180bf6818;
-uint8_t DAT_180bf6858;
-uint8_t DAT_180bf6860;
-uint8_t DAT_180bf6868;
-uint8_t DAT_180bf6870;
-uint8_t DAT_180bf68b0;
-uint8_t DAT_180bf68b8;
-uint8_t DAT_180bf68c0;
-uint8_t DAT_180bf68c8;
-uint8_t DAT_180bf6908;
-uint8_t DAT_180bf6910;
-uint8_t DAT_180bf6918;
-uint8_t DAT_180bf6920;
-uint8_t DAT_180bf6960;
-uint8_t DAT_180bf6968;
-uint8_t DAT_180bf6970;
-uint8_t DAT_180bf6978;
-uint8_t DAT_180bf69b8;
-uint8_t DAT_180bf69c0;
-uint8_t DAT_180bf69c8;
-uint8_t DAT_180bf69d0;
-uint8_t DAT_180bf6a10;
-uint8_t DAT_180bf6a18;
-uint8_t DAT_180bf6a20;
-uint8_t DAT_180bf6a28;
-uint8_t DAT_180bf6a68;
-uint8_t DAT_180bf6a70;
-uint8_t DAT_180bf6a78;
-uint8_t DAT_180bf6a80;
-uint8_t DAT_180bf6ac0;
-uint8_t DAT_180bf6ac8;
-uint8_t DAT_180bf6ad0;
-uint8_t DAT_180bf6ad8;
-uint8_t DAT_180bf6b18;
-uint8_t DAT_180bf6b20;
-uint8_t DAT_180bf6b28;
-uint8_t DAT_180bf6b30;
-uint8_t DAT_180bf6b70;
-uint8_t DAT_180bf6b78;
-uint8_t DAT_180bf6b80;
-uint8_t DAT_180bf6b88;
-uint8_t DAT_180bf6bc8;
-uint8_t DAT_180bf6bd0;
-uint8_t DAT_180bf6bd8;
-uint8_t DAT_180bf6be0;
-uint8_t DAT_180bf6c20;
-uint8_t DAT_180bf6c28;
-uint8_t DAT_180bf6c30;
-uint8_t DAT_180bf6c38;
-uint8_t DAT_180bf6c78;
-uint8_t DAT_180bf6c80;
-uint8_t DAT_180bf6c88;
-uint8_t DAT_180bf6c90;
-uint8_t DAT_180bf6cd0;
-uint8_t DAT_180bf6cd8;
-uint8_t DAT_180bf6ce0;
-uint8_t DAT_180bf6ce8;
-uint8_t DAT_180bf6d28;
-uint8_t DAT_180bf6d30;
-uint8_t DAT_180bf6d38;
-uint8_t DAT_180bf6d40;
-uint8_t DAT_180bf6d80;
-uint8_t DAT_180bf6d88;
-uint8_t DAT_180bf6d90;
-uint8_t DAT_180bf6d98;
-uint8_t DAT_180bf6dd8;
-uint8_t DAT_180bf6de0;
-uint8_t DAT_180bf6de8;
-uint8_t DAT_180bf6df0;
-uint8_t DAT_180bf6e30;
-uint8_t DAT_180bf6e38;
-uint8_t DAT_180bf6e40;
-uint8_t DAT_180bf6e48;
-uint8_t DAT_180bf6e88;
-uint8_t DAT_180bf6e90;
-uint8_t DAT_180bf6e98;
-uint8_t DAT_180bf6ea0;
-uint8_t DAT_180bf6ee0;
-uint8_t DAT_180bf6ee8;
-uint8_t DAT_180bf6ef0;
-uint8_t DAT_180bf6ef8;
-uint8_t DAT_180bf6f38;
-uint8_t DAT_180bf6f40;
-uint8_t DAT_180bf6f48;
-uint8_t DAT_180bf6f50;
-uint8_t DAT_180bf6f90;
-uint8_t DAT_180bf6f98;
-uint8_t DAT_180bf6fa0;
-uint8_t DAT_180bf6fa8;
-uint8_t DAT_180bf6fe8;
-uint8_t DAT_180bf6ff0;
-uint8_t DAT_180bf6ff8;
-uint8_t DAT_180bf7000;
-uint8_t DAT_180bf7040;
-uint8_t DAT_180bf7048;
-uint8_t DAT_180bf7050;
-uint8_t DAT_180bf7058;
-uint8_t DAT_180bf7098;
-uint8_t DAT_180bf70a0;
-uint8_t DAT_180bf70a8;
-uint8_t DAT_180bf70b0;
-uint8_t DAT_180bf70f0;
-uint8_t DAT_180bf70f8;
-uint8_t DAT_180bf7100;
-uint8_t DAT_180bf7108;
-uint8_t DAT_180bf7148;
-uint8_t DAT_180bf7150;
-uint8_t DAT_180bf7158;
-uint8_t DAT_180bf7160;
-uint8_t DAT_180bf71a0;
-uint8_t DAT_180bf71a8;
-uint8_t DAT_180bf71b0;
-uint8_t DAT_180bf71b8;
-uint8_t DAT_180bf71f8;
-uint8_t DAT_180bf7200;
-uint8_t DAT_180bf7208;
-uint8_t DAT_180bf7210;
+uint8_t system_ptr_6750;
+uint8_t system_ptr_6758;
+uint8_t system_ptr_6760;
+uint8_t system_ptr_6768;
+uint8_t system_ptr_67a8;
+uint8_t system_ptr_67b0;
+uint8_t system_ptr_67b8;
+uint8_t system_ptr_67c0;
+uint8_t system_ptr_6800;
+uint8_t system_ptr_6808;
+uint8_t system_ptr_6810;
+uint8_t system_ptr_6818;
+uint8_t system_ptr_6858;
+uint8_t system_ptr_6860;
+uint8_t system_ptr_6868;
+uint8_t system_ptr_6870;
+uint8_t system_ptr_68b0;
+uint8_t system_ptr_68b8;
+uint8_t system_ptr_68c0;
+uint8_t system_ptr_68c8;
+uint8_t system_ptr_6908;
+uint8_t system_ptr_6910;
+uint8_t system_ptr_6918;
+uint8_t system_ptr_6920;
+uint8_t system_ptr_6960;
+uint8_t system_ptr_6968;
+uint8_t system_ptr_6970;
+uint8_t system_ptr_6978;
+uint8_t system_ptr_69b8;
+uint8_t system_ptr_69c0;
+uint8_t system_ptr_69c8;
+uint8_t system_ptr_69d0;
+uint8_t system_ptr_6a10;
+uint8_t system_ptr_6a18;
+uint8_t system_ptr_6a20;
+uint8_t system_ptr_6a28;
+uint8_t system_ptr_6a68;
+uint8_t system_ptr_6a70;
+uint8_t system_ptr_6a78;
+uint8_t system_ptr_6a80;
+uint8_t system_ptr_6ac0;
+uint8_t system_ptr_6ac8;
+uint8_t system_ptr_6ad0;
+uint8_t system_ptr_6ad8;
+uint8_t system_ptr_6b18;
+uint8_t system_ptr_6b20;
+uint8_t system_ptr_6b28;
+uint8_t system_ptr_6b30;
+uint8_t system_ptr_6b70;
+uint8_t system_ptr_6b78;
+uint8_t system_ptr_6b80;
+uint8_t system_ptr_6b88;
+uint8_t system_ptr_6bc8;
+uint8_t system_ptr_6bd0;
+uint8_t system_ptr_6bd8;
+uint8_t system_ptr_6be0;
+uint8_t system_ptr_6c20;
+uint8_t system_ptr_6c28;
+uint8_t system_ptr_6c30;
+uint8_t system_ptr_6c38;
+uint8_t system_ptr_6c78;
+uint8_t system_ptr_6c80;
+uint8_t system_ptr_6c88;
+uint8_t system_ptr_6c90;
+uint8_t system_ptr_6cd0;
+uint8_t system_ptr_6cd8;
+uint8_t system_ptr_6ce0;
+uint8_t system_ptr_6ce8;
+uint8_t system_ptr_6d28;
+uint8_t system_ptr_6d30;
+uint8_t system_ptr_6d38;
+uint8_t system_ptr_6d40;
+uint8_t system_ptr_6d80;
+uint8_t system_ptr_6d88;
+uint8_t system_ptr_6d90;
+uint8_t system_ptr_6d98;
+uint8_t system_ptr_6dd8;
+uint8_t system_ptr_6de0;
+uint8_t system_ptr_6de8;
+uint8_t system_ptr_6df0;
+uint8_t system_ptr_6e30;
+uint8_t system_ptr_6e38;
+uint8_t system_ptr_6e40;
+uint8_t system_ptr_6e48;
+uint8_t system_ptr_6e88;
+uint8_t system_ptr_6e90;
+uint8_t system_ptr_6e98;
+uint8_t system_ptr_6ea0;
+uint8_t system_ptr_6ee0;
+uint8_t system_ptr_6ee8;
+uint8_t system_ptr_6ef0;
+uint8_t system_ptr_6ef8;
+uint8_t system_ptr_6f38;
+uint8_t system_ptr_6f40;
+uint8_t system_ptr_6f48;
+uint8_t system_ptr_6f50;
+uint8_t system_ptr_6f90;
+uint8_t system_ptr_6f98;
+uint8_t system_ptr_6fa0;
+uint8_t system_ptr_6fa8;
+uint8_t system_ptr_6fe8;
+uint8_t system_ptr_6ff0;
+uint8_t system_ptr_6ff8;
+uint8_t system_ptr_7000;
+uint8_t system_ptr_7040;
+uint8_t system_ptr_7048;
+uint8_t system_ptr_7050;
+uint8_t system_ptr_7058;
+uint8_t system_ptr_7098;
+uint8_t system_ptr_70a0;
+uint8_t system_ptr_70a8;
+uint8_t system_ptr_70b0;
+uint8_t system_ptr_70f0;
+uint8_t system_ptr_70f8;
+uint8_t system_ptr_7100;
+uint8_t system_ptr_7108;
+uint8_t system_ptr_7148;
+uint8_t system_ptr_7150;
+uint8_t system_ptr_7158;
+uint8_t system_ptr_7160;
+uint8_t system_ptr_71a0;
+uint8_t system_ptr_71a8;
+uint8_t system_ptr_71b0;
+uint8_t system_ptr_71b8;
+uint8_t system_ptr_71f8;
+uint8_t system_ptr_7200;
+uint8_t system_ptr_7208;
+uint8_t system_ptr_7210;
 uint8_t UNK_180941b70;
-uint8_t DAT_18098bc73;
+uint8_t system_buffer_ptr;
 uint8_t UNK_180a05740;
 uint8_t UNK_180a0cb48;
 uint8_t UNK_180a0cb60;
@@ -417,97 +417,97 @@ uint8_t UNK_180a0cdb0;
 uint8_t UNK_180a0cdc8;
 uint8_t UNK_180a0cde0;
 uint8_t UNK_180a0ce40;
-uint8_t DAT_180bf7250;
-uint8_t DAT_180bf7258;
-uint8_t DAT_180bf7260;
+uint8_t system_ptr_7250;
+uint8_t system_ptr_7258;
+uint8_t system_ptr_7260;
 
 
 // 函数: uint8_t FUN_180941b90;
 uint8_t FUN_180941b90;
-uint8_t DAT_180bf7268;
+uint8_t system_ptr_7268;
 uint8_t UNK_180a03098;
-uint8_t DAT_180bf72b0;
-uint8_t DAT_180bf72b8;
-uint8_t DAT_180bf72c0;
-uint8_t DAT_180bf72c8;
+uint8_t system_ptr_72b0;
+uint8_t system_ptr_72b8;
+uint8_t system_ptr_72c0;
+uint8_t system_ptr_72c8;
 
 
 // 函数: uint8_t FUN_180941bb0;
 uint8_t FUN_180941bb0;
 uint8_t UNK_180a03060;
-uint8_t DAT_180bf7310;
-uint8_t DAT_180bf7318;
-uint8_t DAT_180bf7320;
-uint8_t DAT_180bf7328;
+uint8_t system_ptr_7310;
+uint8_t system_ptr_7318;
+uint8_t system_ptr_7320;
+uint8_t system_ptr_7328;
 
 
 // 函数: uint8_t FUN_180941bd0;
 uint8_t FUN_180941bd0;
 uint8_t UNK_180a030a8;
-uint8_t DAT_180bf7370;
-uint8_t DAT_180bf7378;
-uint8_t DAT_180bf7380;
-uint8_t DAT_180bf7388;
-uint8_t DAT_180bf7408;
-uint8_t DAT_180bf7410;
-uint8_t DAT_180bf7418;
-uint8_t DAT_180bf7420;
-uint8_t DAT_180bf74a0;
-uint8_t DAT_180bf74a8;
-uint8_t DAT_180bf74b0;
-uint8_t DAT_180bf74b8;
-uint8_t DAT_180bf7538;
-uint8_t DAT_180bf7540;
-uint8_t DAT_180bf7548;
-uint8_t DAT_180bf7550;
-uint8_t DAT_180bf75d0;
-uint8_t DAT_180bf75d8;
-uint8_t DAT_180bf75e0;
-uint8_t DAT_180bf75e8;
-uint8_t DAT_180bf7668;
-uint8_t DAT_180bf7670;
-uint8_t DAT_180bf7678;
-uint8_t DAT_180bf7680;
-uint8_t DAT_180bf7700;
-uint8_t DAT_180bf7708;
-uint8_t DAT_180bf7710;
-uint8_t DAT_180bf7718;
-uint8_t DAT_180bf7798;
-uint8_t DAT_180bf77a0;
-uint8_t DAT_180bf77a8;
-uint8_t DAT_180bf77b0;
-uint8_t DAT_180bf7830;
-uint8_t DAT_180bf7838;
-uint8_t DAT_180bf7840;
-uint8_t DAT_180bf7848;
-uint8_t DAT_180bf78c8;
-uint8_t DAT_180bf78d0;
-uint8_t DAT_180bf78d8;
-uint8_t DAT_180bf78e0;
-uint8_t DAT_180bf7960;
-uint8_t DAT_180bf7968;
-uint8_t DAT_180bf7970;
-uint8_t DAT_180bf7978;
-uint8_t DAT_180bf79f8;
-uint8_t DAT_180bf7a00;
-uint8_t DAT_180bf7a08;
-uint8_t DAT_180bf7a10;
-uint8_t DAT_180bf7a90;
-uint8_t DAT_180bf7a98;
-uint8_t DAT_180bf7aa0;
-uint8_t DAT_180bf7aa8;
-uint8_t DAT_180bf7b28;
-uint8_t DAT_180bf7b30;
-uint8_t DAT_180bf7b38;
-uint8_t DAT_180bf7b40;
-uint8_t DAT_180bf7bc0;
-uint8_t DAT_180bf7bc8;
-uint8_t DAT_180bf7bd0;
-uint8_t DAT_180bf7bd8;
-uint8_t DAT_180bf7c58;
-uint8_t DAT_180bf7c60;
-uint8_t DAT_180bf7c68;
-uint8_t DAT_180bf7c70;
+uint8_t system_ptr_7370;
+uint8_t system_ptr_7378;
+uint8_t system_ptr_7380;
+uint8_t system_ptr_7388;
+uint8_t system_ptr_7408;
+uint8_t system_ptr_7410;
+uint8_t system_ptr_7418;
+uint8_t system_ptr_7420;
+uint8_t system_ptr_74a0;
+uint8_t system_ptr_74a8;
+uint8_t system_ptr_74b0;
+uint8_t system_ptr_74b8;
+uint8_t system_ptr_7538;
+uint8_t system_ptr_7540;
+uint8_t system_ptr_7548;
+uint8_t system_ptr_7550;
+uint8_t system_ptr_75d0;
+uint8_t system_ptr_75d8;
+uint8_t system_ptr_75e0;
+uint8_t system_ptr_75e8;
+uint8_t system_ptr_7668;
+uint8_t system_ptr_7670;
+uint8_t system_ptr_7678;
+uint8_t system_ptr_7680;
+uint8_t system_ptr_7700;
+uint8_t system_ptr_7708;
+uint8_t system_ptr_7710;
+uint8_t system_ptr_7718;
+uint8_t system_ptr_7798;
+uint8_t system_ptr_77a0;
+uint8_t system_ptr_77a8;
+uint8_t system_ptr_77b0;
+uint8_t system_ptr_7830;
+uint8_t system_ptr_7838;
+uint8_t system_ptr_7840;
+uint8_t system_ptr_7848;
+uint8_t system_ptr_78c8;
+uint8_t system_ptr_78d0;
+uint8_t system_ptr_78d8;
+uint8_t system_ptr_78e0;
+uint8_t system_ptr_7960;
+uint8_t system_ptr_7968;
+uint8_t system_ptr_7970;
+uint8_t system_ptr_7978;
+uint8_t system_ptr_79f8;
+uint8_t system_ptr_7a00;
+uint8_t system_ptr_7a08;
+uint8_t system_ptr_7a10;
+uint8_t system_ptr_7a90;
+uint8_t system_ptr_7a98;
+uint8_t system_ptr_7aa0;
+uint8_t system_ptr_7aa8;
+uint8_t system_ptr_7b28;
+uint8_t system_ptr_7b30;
+uint8_t system_ptr_7b38;
+uint8_t system_ptr_7b40;
+uint8_t system_ptr_7bc0;
+uint8_t system_ptr_7bc8;
+uint8_t system_ptr_7bd0;
+uint8_t system_ptr_7bd8;
+uint8_t system_ptr_7c58;
+uint8_t system_ptr_7c60;
+uint8_t system_ptr_7c68;
+uint8_t system_ptr_7c70;
 uint8_t UNK_180941cc0;
 uint8_t UNK_180a0fd40;
 uint8_t UNK_180a0fd50;
@@ -525,206 +525,206 @@ uint8_t UNK_180a0fe40;
 uint8_t UNK_180a0fe58;
 uint8_t UNK_180a0fe70;
 uint8_t UNK_180a0fe90;
-uint8_t DAT_180c91d54;
+uint8_t system_ptr_1d54;
 uint8_t UNK_180a13a98;
-uint8_t DAT_180c91d5c;
+uint8_t system_ptr_1d5c;
 uint8_t UNK_180a13e48;
-uint8_t DAT_180bf7e90;
-uint8_t DAT_180bf7e98;
-uint8_t DAT_180bf7ea0;
-uint8_t DAT_180bf7ea8;
-uint8_t DAT_180bf7ee8;
-uint8_t DAT_180bf7ef0;
-uint8_t DAT_180bf7ef8;
-uint8_t DAT_180bf7f00;
-uint8_t DAT_180bf7f40;
-uint8_t DAT_180bf7f48;
-uint8_t DAT_180bf7f50;
-uint8_t DAT_180bf7f58;
-uint8_t DAT_180bf7f98;
-uint8_t DAT_180bf7fa0;
-uint8_t DAT_180bf7fa8;
-uint8_t DAT_180bf7fb0;
-uint8_t DAT_180bf7ff0;
-uint8_t DAT_180bf7ff8;
-uint8_t DAT_180bf8000;
-uint8_t DAT_180bf8008;
-uint8_t DAT_180bf8048;
-uint8_t DAT_180bf8050;
-uint8_t DAT_180bf8058;
-uint8_t DAT_180bf8060;
-uint8_t DAT_180bf80a0;
-uint8_t DAT_180bf80a8;
-uint8_t DAT_180bf80b0;
-uint8_t DAT_180bf80b8;
-uint8_t DAT_180bf80f8;
-uint8_t DAT_180bf8100;
-uint8_t DAT_180bf8108;
-uint8_t DAT_180bf8110;
-uint8_t DAT_180bf8150;
-uint8_t DAT_180bf8158;
-uint8_t DAT_180bf8160;
-uint8_t DAT_180bf8168;
-uint8_t DAT_180bf81a8;
-uint8_t DAT_180bf81b0;
-uint8_t DAT_180bf81b8;
-uint8_t DAT_180bf81c0;
-uint8_t DAT_180bf8200;
-uint8_t DAT_180bf8208;
-uint8_t DAT_180bf8210;
-uint8_t DAT_180bf8218;
-uint8_t DAT_180bf8258;
-uint8_t DAT_180bf8260;
-uint8_t DAT_180bf8268;
-uint8_t DAT_180bf8270;
-uint8_t DAT_180bf82b0;
-uint8_t DAT_180bf82b8;
-uint8_t DAT_180bf82c0;
-uint8_t DAT_180bf82c8;
-uint8_t DAT_180bf8308;
-uint8_t DAT_180bf8310;
-uint8_t DAT_180bf8318;
-uint8_t DAT_180bf8320;
-uint8_t DAT_180bf8360;
-uint8_t DAT_180bf8368;
-uint8_t DAT_180bf8370;
-uint8_t DAT_180bf8378;
-uint8_t DAT_180bf83b8;
-uint8_t DAT_180bf83c0;
-uint8_t DAT_180bf83c8;
-uint8_t DAT_180bf83d0;
-uint8_t DAT_180bf8410;
-uint8_t DAT_180bf8418;
-uint8_t DAT_180bf8420;
-uint8_t DAT_180bf8428;
-uint8_t DAT_180bf8468;
-uint8_t DAT_180bf8470;
-uint8_t DAT_180bf8478;
-uint8_t DAT_180bf8480;
-uint8_t DAT_180bf84c0;
-uint8_t DAT_180bf84c8;
-uint8_t DAT_180bf84d0;
-uint8_t DAT_180bf84d8;
-uint8_t DAT_180bf8518;
-uint8_t DAT_180bf8520;
-uint8_t DAT_180bf8528;
-uint8_t DAT_180bf8530;
-uint8_t DAT_180bf8570;
-uint8_t DAT_180bf8578;
-uint8_t DAT_180bf8580;
-uint8_t DAT_180bf8588;
-uint8_t DAT_180bf85c8;
-uint8_t DAT_180bf85d0;
-uint8_t DAT_180bf85d8;
-uint8_t DAT_180bf85e0;
-uint8_t DAT_180bf8620;
-uint8_t DAT_180bf8628;
-uint8_t DAT_180bf8630;
-uint8_t DAT_180bf8638;
-uint8_t DAT_180bf8678;
-uint8_t DAT_180bf8680;
-uint8_t DAT_180bf8688;
-uint8_t DAT_180bf8690;
-uint8_t DAT_180bf86d0;
-uint8_t DAT_180bf86d8;
-uint8_t DAT_180bf86e0;
-uint8_t DAT_180bf86e8;
-uint8_t DAT_180bf8728;
-uint8_t DAT_180bf8730;
-uint8_t DAT_180bf8738;
-uint8_t DAT_180bf8740;
-uint8_t DAT_180bf8780;
-uint8_t DAT_180bf8788;
-uint8_t DAT_180bf8790;
-uint8_t DAT_180bf8798;
-uint8_t DAT_180bf87d8;
-uint8_t DAT_180bf87e0;
-uint8_t DAT_180bf87e8;
-uint8_t DAT_180bf87f0;
-uint8_t DAT_180bf8830;
-uint8_t DAT_180bf8838;
-uint8_t DAT_180bf8840;
-uint8_t DAT_180bf8848;
-uint8_t DAT_180bf8888;
-uint8_t DAT_180bf8890;
-uint8_t DAT_180bf8898;
-uint8_t DAT_180bf88a0;
-uint8_t DAT_180bf88e0;
-uint8_t DAT_180bf88e8;
-uint8_t DAT_180bf88f0;
-uint8_t DAT_180bf88f8;
-uint8_t DAT_180bf8938;
-uint8_t DAT_180bf8940;
-uint8_t DAT_180bf8948;
-uint8_t DAT_180bf8950;
+uint8_t system_ptr_7e90;
+uint8_t system_ptr_7e98;
+uint8_t system_ptr_7ea0;
+uint8_t system_ptr_7ea8;
+uint8_t system_ptr_7ee8;
+uint8_t system_ptr_7ef0;
+uint8_t system_ptr_7ef8;
+uint8_t system_ptr_7f00;
+uint8_t system_ptr_7f40;
+uint8_t system_ptr_7f48;
+uint8_t system_ptr_7f50;
+uint8_t system_ptr_7f58;
+uint8_t system_ptr_7f98;
+uint8_t system_ptr_7fa0;
+uint8_t system_ptr_7fa8;
+uint8_t system_ptr_7fb0;
+uint8_t system_ptr_7ff0;
+uint8_t system_ptr_7ff8;
+uint8_t system_ptr_8000;
+uint8_t system_ptr_8008;
+uint8_t system_ptr_8048;
+uint8_t system_ptr_8050;
+uint8_t system_ptr_8058;
+uint8_t system_ptr_8060;
+uint8_t system_ptr_80a0;
+uint8_t system_ptr_80a8;
+uint8_t system_ptr_80b0;
+uint8_t system_ptr_80b8;
+uint8_t system_ptr_80f8;
+uint8_t system_ptr_8100;
+uint8_t system_ptr_8108;
+uint8_t system_ptr_8110;
+uint8_t system_ptr_8150;
+uint8_t system_ptr_8158;
+uint8_t system_ptr_8160;
+uint8_t system_ptr_8168;
+uint8_t system_ptr_81a8;
+uint8_t system_ptr_81b0;
+uint8_t system_ptr_81b8;
+uint8_t system_ptr_81c0;
+uint8_t system_ptr_8200;
+uint8_t system_ptr_8208;
+uint8_t system_ptr_8210;
+uint8_t system_ptr_8218;
+uint8_t system_ptr_8258;
+uint8_t system_ptr_8260;
+uint8_t system_ptr_8268;
+uint8_t system_ptr_8270;
+uint8_t system_ptr_82b0;
+uint8_t system_ptr_82b8;
+uint8_t system_ptr_82c0;
+uint8_t system_ptr_82c8;
+uint8_t system_ptr_8308;
+uint8_t system_ptr_8310;
+uint8_t system_ptr_8318;
+uint8_t system_ptr_8320;
+uint8_t system_ptr_8360;
+uint8_t system_ptr_8368;
+uint8_t system_ptr_8370;
+uint8_t system_ptr_8378;
+uint8_t system_ptr_83b8;
+uint8_t system_ptr_83c0;
+uint8_t system_ptr_83c8;
+uint8_t system_ptr_83d0;
+uint8_t system_ptr_8410;
+uint8_t system_ptr_8418;
+uint8_t system_ptr_8420;
+uint8_t system_ptr_8428;
+uint8_t system_ptr_8468;
+uint8_t system_ptr_8470;
+uint8_t system_ptr_8478;
+uint8_t system_ptr_8480;
+uint8_t system_ptr_84c0;
+uint8_t system_ptr_84c8;
+uint8_t system_ptr_84d0;
+uint8_t system_ptr_84d8;
+uint8_t system_ptr_8518;
+uint8_t system_ptr_8520;
+uint8_t system_ptr_8528;
+uint8_t system_ptr_8530;
+uint8_t system_ptr_8570;
+uint8_t system_ptr_8578;
+uint8_t system_ptr_8580;
+uint8_t system_ptr_8588;
+uint8_t system_ptr_85c8;
+uint8_t system_ptr_85d0;
+uint8_t system_ptr_85d8;
+uint8_t system_ptr_85e0;
+uint8_t system_ptr_8620;
+uint8_t system_ptr_8628;
+uint8_t system_ptr_8630;
+uint8_t system_ptr_8638;
+uint8_t system_ptr_8678;
+uint8_t system_ptr_8680;
+uint8_t system_ptr_8688;
+uint8_t system_ptr_8690;
+uint8_t system_ptr_86d0;
+uint8_t system_ptr_86d8;
+uint8_t system_ptr_86e0;
+uint8_t system_ptr_86e8;
+uint8_t system_ptr_8728;
+uint8_t system_ptr_8730;
+uint8_t system_ptr_8738;
+uint8_t system_ptr_8740;
+uint8_t system_ptr_8780;
+uint8_t system_ptr_8788;
+uint8_t system_ptr_8790;
+uint8_t system_ptr_8798;
+uint8_t system_ptr_87d8;
+uint8_t system_ptr_87e0;
+uint8_t system_ptr_87e8;
+uint8_t system_ptr_87f0;
+uint8_t system_ptr_8830;
+uint8_t system_ptr_8838;
+uint8_t system_ptr_8840;
+uint8_t system_ptr_8848;
+uint8_t system_ptr_8888;
+uint8_t system_ptr_8890;
+uint8_t system_ptr_8898;
+uint8_t system_ptr_88a0;
+uint8_t system_ptr_88e0;
+uint8_t system_ptr_88e8;
+uint8_t system_ptr_88f0;
+uint8_t system_ptr_88f8;
+uint8_t system_ptr_8938;
+uint8_t system_ptr_8940;
+uint8_t system_ptr_8948;
+uint8_t system_ptr_8950;
 uint8_t UNK_180941ce0;
-uint8_t DAT_180c91d60;
+uint8_t system_ptr_1d60;
 uint8_t UNK_180a140f8;
-uint8_t DAT_180c91d64;
+uint8_t system_ptr_1d64;
 uint8_t UNK_180a14290;
-uint8_t DAT_180c91d68;
+uint8_t system_ptr_1d68;
 uint8_t UNK_180a14668;
-uint8_t DAT_180c91d6c;
-uint8_t DAT_180a14640;
-uint8_t DAT_180c91d70;
+uint8_t system_ptr_1d6c;
+uint8_t system_ptr_4640;
+uint8_t system_ptr_1d70;
 uint8_t UNK_180a14840;
-uint8_t DAT_180c91da4;
+uint8_t system_ptr_1da4;
 uint8_t UNK_180a167d0;
-uint8_t DAT_180bf90b0;
-uint8_t DAT_180bf90b8;
-uint8_t DAT_180bf90c0;
-uint8_t DAT_180bf90c8;
+uint8_t system_ptr_90b0;
+uint8_t system_ptr_90b8;
+uint8_t system_ptr_90c0;
+uint8_t system_ptr_90c8;
 
 
 // 函数: uint8_t FUN_180941d00;
 uint8_t FUN_180941d00;
-uint8_t DAT_180bf5b88;
-uint8_t DAT_180bf5b90;
-uint8_t DAT_180bf5b98;
-uint8_t DAT_180bf5ba0;
+uint8_t system_ptr_5b88;
+uint8_t system_ptr_5b90;
+uint8_t system_ptr_5b98;
+uint8_t system_ptr_5ba0;
 
 
 // 函数: uint8_t FUN_180941d20;
 uint8_t FUN_180941d20;
-uint8_t DAT_180c91da8;
-uint8_t DAT_180a16c50;
-uint8_t DAT_180c91dac;
-uint8_t DAT_180a16c38;
-uint8_t DAT_180c91ee8;
+uint8_t system_ptr_1da8;
+uint8_t system_ptr_6c50;
+uint8_t system_ptr_1dac;
+uint8_t system_ptr_6c38;
+uint8_t system_ptr_1ee8;
 uint8_t UNK_180a17e48;
-uint8_t DAT_180c91ef8;
+uint8_t system_ptr_1ef8;
 uint8_t UNK_180a194f0;
-uint8_t DAT_180c91efc;
+uint8_t system_ptr_1efc;
 uint8_t UNK_180a19588;
-uint8_t DAT_180c91f00;
+uint8_t system_ptr_1f00;
 uint8_t UNK_180a19bf0;
-uint8_t DAT_180c91f04;
+uint8_t system_ptr_1f04;
 uint8_t UNK_180a19df0;
-uint8_t DAT_180c91f08;
+uint8_t system_ptr_1f08;
 uint8_t UNK_180a1a450;
-uint8_t DAT_180c91f0c;
+uint8_t system_ptr_1f0c;
 uint8_t UNK_180a1a6c8;
-uint8_t DAT_180c91f10;
+uint8_t system_ptr_1f10;
 uint8_t UNK_180a1afd8;
-uint8_t DAT_180c91f14;
+uint8_t system_ptr_1f14;
 uint8_t UNK_180a1cc28;
-uint8_t DAT_180c91f30;
+uint8_t system_ptr_1f30;
 uint8_t UNK_180a1eb30;
-uint8_t DAT_180c91f68;
+uint8_t system_ptr_1f68;
 uint8_t UNK_180a22538;
-uint8_t DAT_180bf91b0;
-uint8_t DAT_180bf91b8;
-uint8_t DAT_180bf91c0;
-uint8_t DAT_180bf91c8;
+uint8_t system_ptr_91b0;
+uint8_t system_ptr_91b8;
+uint8_t system_ptr_91c0;
+uint8_t system_ptr_91c8;
 uint8_t UNK_180a22b38;
 
 
 // 函数: uint8_t FUN_180941f00;
 uint8_t FUN_180941f00;
-uint8_t DAT_180bf9210;
-uint8_t DAT_180bf9218;
-uint8_t DAT_180bf9220;
-uint8_t DAT_180bf9228;
+uint8_t system_ptr_9210;
+uint8_t system_ptr_9218;
+uint8_t system_ptr_9220;
+uint8_t system_ptr_9228;
 uint8_t UNK_180a22b90;
 
 
@@ -734,141 +734,141 @@ uint8_t FUN_180941f20;
 
 // 函数: uint8_t FUN_180941f40;
 uint8_t FUN_180941f40;
-uint8_t DAT_180bf9270;
-uint8_t DAT_180bf9278;
-uint8_t DAT_180bf9280;
-uint8_t DAT_180bf9288;
+uint8_t system_ptr_9270;
+uint8_t system_ptr_9278;
+uint8_t system_ptr_9280;
+uint8_t system_ptr_9288;
 uint8_t UNK_180a22b78;
-uint8_t DAT_180bf92d0;
+uint8_t system_ptr_92d0;
 
 
 // 函数: uint8_t FUN_180941f60;
 uint8_t FUN_180941f60;
-uint8_t DAT_180bf92d8;
-uint8_t DAT_180bf92e0;
-uint8_t DAT_180bf92e8;
+uint8_t system_ptr_92d8;
+uint8_t system_ptr_92e0;
+uint8_t system_ptr_92e8;
 uint8_t UNK_180a22b60;
-uint8_t DAT_180bf9330;
-uint8_t DAT_180bf9338;
+uint8_t system_ptr_9330;
+uint8_t system_ptr_9338;
 
 
 // 函数: uint8_t FUN_180941f80;
 uint8_t FUN_180941f80;
-uint8_t DAT_180bf9340;
-uint8_t DAT_180bf9348;
+uint8_t system_ptr_9340;
+uint8_t system_ptr_9348;
 uint8_t UNK_180a22b50;
-uint8_t DAT_180bf9390;
-uint8_t DAT_180bf9398;
-uint8_t DAT_180bf93a0;
+uint8_t system_ptr_9390;
+uint8_t system_ptr_9398;
+uint8_t system_ptr_93a0;
 
 
 // 函数: uint8_t FUN_180941fa0;
 uint8_t FUN_180941fa0;
-uint8_t DAT_180bf93a8;
+uint8_t system_ptr_93a8;
 uint8_t UNK_180a22be8;
-uint8_t DAT_180bf93f0;
-uint8_t DAT_180bf93f8;
-uint8_t DAT_180bf9400;
-uint8_t DAT_180bf9408;
+uint8_t system_ptr_93f0;
+uint8_t system_ptr_93f8;
+uint8_t system_ptr_9400;
+uint8_t system_ptr_9408;
 
 
 // 函数: uint8_t FUN_180941fc0;
 uint8_t FUN_180941fc0;
 uint8_t UNK_180a22bd0;
-uint8_t DAT_180bf9450;
-uint8_t DAT_180bf9458;
-uint8_t DAT_180bf9460;
-uint8_t DAT_180bf9468;
+uint8_t system_ptr_9450;
+uint8_t system_ptr_9458;
+uint8_t system_ptr_9460;
+uint8_t system_ptr_9468;
 
 
 // 函数: uint8_t FUN_180941fe0;
 uint8_t FUN_180941fe0;
 uint8_t UNK_180a22bb8;
-uint8_t DAT_180bf94b0;
-uint8_t DAT_180bf94b8;
-uint8_t DAT_180bf94c0;
-uint8_t DAT_180bf94c8;
+uint8_t system_ptr_94b0;
+uint8_t system_ptr_94b8;
+uint8_t system_ptr_94c0;
+uint8_t system_ptr_94c8;
 
 
 // 函数: uint8_t FUN_180942000;
 uint8_t FUN_180942000;
 uint8_t UNK_180a22ba8;
-uint8_t DAT_180bf9510;
-uint8_t DAT_180bf9518;
-uint8_t DAT_180bf9520;
-uint8_t DAT_180bf9528;
+uint8_t system_ptr_9510;
+uint8_t system_ptr_9518;
+uint8_t system_ptr_9520;
+uint8_t system_ptr_9528;
 uint8_t UNK_180a22c48;
 
 
 // 函数: uint8_t FUN_180942020;
 uint8_t FUN_180942020;
-uint8_t DAT_180bf9570;
-uint8_t DAT_180bf9578;
-uint8_t DAT_180bf9580;
-uint8_t DAT_180bf9588;
+uint8_t system_ptr_9570;
+uint8_t system_ptr_9578;
+uint8_t system_ptr_9580;
+uint8_t system_ptr_9588;
 uint8_t UNK_180a22c30;
 
 
 // 函数: uint8_t FUN_180942040;
 uint8_t FUN_180942040;
-uint8_t DAT_180bf95d0;
-uint8_t DAT_180bf95d8;
-uint8_t DAT_180bf95e0;
-uint8_t DAT_180bf95e8;
+uint8_t system_ptr_95d0;
+uint8_t system_ptr_95d8;
+uint8_t system_ptr_95e0;
+uint8_t system_ptr_95e8;
 uint8_t UNK_180a22c18;
 
 
 // 函数: uint8_t FUN_180942060;
 uint8_t FUN_180942060;
-uint8_t DAT_180bf9630;
-uint8_t DAT_180bf9638;
-uint8_t DAT_180bf9640;
-uint8_t DAT_180bf9648;
+uint8_t system_ptr_9630;
+uint8_t system_ptr_9638;
+uint8_t system_ptr_9640;
+uint8_t system_ptr_9648;
 uint8_t UNK_180a22c00;
 
 
 // 函数: uint8_t FUN_180942080;
 uint8_t FUN_180942080;
-uint8_t DAT_180bf9690;
-uint8_t DAT_180bf9698;
-uint8_t DAT_180bf96a0;
-uint8_t DAT_180bf96a8;
-uint8_t DAT_180a22cb0;
+uint8_t system_ptr_9690;
+uint8_t system_ptr_9698;
+uint8_t system_ptr_96a0;
+uint8_t system_ptr_96a8;
+uint8_t system_ptr_2cb0;
 
 
 // 函数: uint8_t FUN_1809420a0;
 uint8_t FUN_1809420a0;
-uint8_t DAT_180bf96f0;
-uint8_t DAT_180bf96f8;
-uint8_t DAT_180bf9700;
-uint8_t DAT_180bf9708;
+uint8_t system_ptr_96f0;
+uint8_t system_ptr_96f8;
+uint8_t system_ptr_9700;
+uint8_t system_ptr_9708;
 uint8_t UNK_180a22c98;
 
 
 // 函数: uint8_t FUN_1809420c0;
 uint8_t FUN_1809420c0;
-uint8_t DAT_180bf9750;
-uint8_t DAT_180bf9758;
-uint8_t DAT_180bf9760;
-uint8_t DAT_180bf9768;
+uint8_t system_ptr_9750;
+uint8_t system_ptr_9758;
+uint8_t system_ptr_9760;
+uint8_t system_ptr_9768;
 uint8_t UNK_180a22c70;
 
 
 // 函数: uint8_t FUN_1809420e0;
 uint8_t FUN_1809420e0;
-uint8_t DAT_180bf97b0;
-uint8_t DAT_180bf97b8;
-uint8_t DAT_180bf97c0;
-uint8_t DAT_180bf97c8;
+uint8_t system_ptr_97b0;
+uint8_t system_ptr_97b8;
+uint8_t system_ptr_97c0;
+uint8_t system_ptr_97c8;
 uint8_t UNK_180a22c58;
 
 
 // 函数: uint8_t FUN_180942100;
 uint8_t FUN_180942100;
-uint8_t DAT_180bf9810;
-uint8_t DAT_180bf9818;
-uint8_t DAT_180bf9820;
-uint8_t DAT_180bf9828;
+uint8_t system_ptr_9810;
+uint8_t system_ptr_9818;
+uint8_t system_ptr_9820;
+uint8_t system_ptr_9828;
 uint8_t UNK_180a22d28;
 
 
@@ -878,141 +878,141 @@ uint8_t FUN_180942120;
 
 // 函数: uint8_t FUN_180942140;
 uint8_t FUN_180942140;
-uint8_t DAT_180bf9870;
-uint8_t DAT_180bf9878;
-uint8_t DAT_180bf9880;
-uint8_t DAT_180bf9888;
+uint8_t system_ptr_9870;
+uint8_t system_ptr_9878;
+uint8_t system_ptr_9880;
+uint8_t system_ptr_9888;
 uint8_t UNK_180a22d08;
-uint8_t DAT_180bf98d0;
+uint8_t system_ptr_98d0;
 
 
 // 函数: uint8_t FUN_180942160;
 uint8_t FUN_180942160;
-uint8_t DAT_180bf98d8;
-uint8_t DAT_180bf98e0;
-uint8_t DAT_180bf98e8;
+uint8_t system_ptr_98d8;
+uint8_t system_ptr_98e0;
+uint8_t system_ptr_98e8;
 uint8_t UNK_180a22ce8;
-uint8_t DAT_180bf9930;
-uint8_t DAT_180bf9938;
+uint8_t system_ptr_9930;
+uint8_t system_ptr_9938;
 
 
 // 函数: uint8_t FUN_180942180;
 uint8_t FUN_180942180;
-uint8_t DAT_180bf9940;
-uint8_t DAT_180bf9948;
+uint8_t system_ptr_9940;
+uint8_t system_ptr_9948;
 uint8_t UNK_180a22cc8;
-uint8_t DAT_180bf9990;
-uint8_t DAT_180bf9998;
-uint8_t DAT_180bf99a0;
+uint8_t system_ptr_9990;
+uint8_t system_ptr_9998;
+uint8_t system_ptr_99a0;
 
 
 // 函数: uint8_t FUN_1809421a0;
 uint8_t FUN_1809421a0;
-uint8_t DAT_180bf99a8;
+uint8_t system_ptr_99a8;
 uint8_t UNK_180a22db0;
-uint8_t DAT_180bf99f0;
-uint8_t DAT_180bf99f8;
-uint8_t DAT_180bf9a00;
-uint8_t DAT_180bf9a08;
+uint8_t system_ptr_99f0;
+uint8_t system_ptr_99f8;
+uint8_t system_ptr_9a00;
+uint8_t system_ptr_9a08;
 
 
 // 函数: uint8_t FUN_1809421c0;
 uint8_t FUN_1809421c0;
 uint8_t UNK_180a22d88;
-uint8_t DAT_180bf9a50;
-uint8_t DAT_180bf9a58;
-uint8_t DAT_180bf9a60;
-uint8_t DAT_180bf9a68;
+uint8_t system_ptr_9a50;
+uint8_t system_ptr_9a58;
+uint8_t system_ptr_9a60;
+uint8_t system_ptr_9a68;
 
 
 // 函数: uint8_t FUN_1809421e0;
 uint8_t FUN_1809421e0;
 uint8_t UNK_180a22d68;
-uint8_t DAT_180bf9ab0;
-uint8_t DAT_180bf9ab8;
-uint8_t DAT_180bf9ac0;
-uint8_t DAT_180bf9ac8;
+uint8_t system_ptr_9ab0;
+uint8_t system_ptr_9ab8;
+uint8_t system_ptr_9ac0;
+uint8_t system_ptr_9ac8;
 
 
 // 函数: uint8_t FUN_180942200;
 uint8_t FUN_180942200;
-uint8_t DAT_180a22d48;
-uint8_t DAT_180bf9b10;
-uint8_t DAT_180bf9b18;
-uint8_t DAT_180bf9b20;
-uint8_t DAT_180bf9b28;
+uint8_t system_ptr_2d48;
+uint8_t system_ptr_9b10;
+uint8_t system_ptr_9b18;
+uint8_t system_ptr_9b20;
+uint8_t system_ptr_9b28;
 uint8_t UNK_180a22e40;
 
 
 // 函数: uint8_t FUN_180942220;
 uint8_t FUN_180942220;
-uint8_t DAT_180bf9b70;
-uint8_t DAT_180bf9b78;
-uint8_t DAT_180bf9b80;
-uint8_t DAT_180bf9b88;
+uint8_t system_ptr_9b70;
+uint8_t system_ptr_9b78;
+uint8_t system_ptr_9b80;
+uint8_t system_ptr_9b88;
 uint8_t UNK_180a22e20;
 
 
 // 函数: uint8_t FUN_180942240;
 uint8_t FUN_180942240;
-uint8_t DAT_180bf9bd0;
-uint8_t DAT_180bf9bd8;
-uint8_t DAT_180bf9be0;
-uint8_t DAT_180bf9be8;
+uint8_t system_ptr_9bd0;
+uint8_t system_ptr_9bd8;
+uint8_t system_ptr_9be0;
+uint8_t system_ptr_9be8;
 uint8_t UNK_180a22df8;
 
 
 // 函数: uint8_t FUN_180942260;
 uint8_t FUN_180942260;
-uint8_t DAT_180bf9c30;
-uint8_t DAT_180bf9c38;
-uint8_t DAT_180bf9c40;
-uint8_t DAT_180bf9c48;
+uint8_t system_ptr_9c30;
+uint8_t system_ptr_9c38;
+uint8_t system_ptr_9c40;
+uint8_t system_ptr_9c48;
 uint8_t UNK_180a22dd0;
 
 
 // 函数: uint8_t FUN_180942280;
 uint8_t FUN_180942280;
-uint8_t DAT_180bf9c90;
-uint8_t DAT_180bf9c98;
-uint8_t DAT_180bf9ca0;
-uint8_t DAT_180bf9ca8;
+uint8_t system_ptr_9c90;
+uint8_t system_ptr_9c98;
+uint8_t system_ptr_9ca0;
+uint8_t system_ptr_9ca8;
 uint8_t UNK_180a22eb0;
 
 
 // 函数: uint8_t FUN_1809422a0;
 uint8_t FUN_1809422a0;
-uint8_t DAT_180bf9cf0;
-uint8_t DAT_180bf9cf8;
-uint8_t DAT_180bf9d00;
-uint8_t DAT_180bf9d08;
+uint8_t system_ptr_9cf0;
+uint8_t system_ptr_9cf8;
+uint8_t system_ptr_9d00;
+uint8_t system_ptr_9d08;
 uint8_t UNK_180a22e90;
 
 
 // 函数: uint8_t FUN_1809422c0;
 uint8_t FUN_1809422c0;
-uint8_t DAT_180bf9d50;
-uint8_t DAT_180bf9d58;
-uint8_t DAT_180bf9d60;
-uint8_t DAT_180bf9d68;
+uint8_t system_ptr_9d50;
+uint8_t system_ptr_9d58;
+uint8_t system_ptr_9d60;
+uint8_t system_ptr_9d68;
 uint8_t UNK_180a22e70;
 
 
 // 函数: uint8_t FUN_1809422e0;
 uint8_t FUN_1809422e0;
-uint8_t DAT_180bf9db0;
-uint8_t DAT_180bf9db8;
-uint8_t DAT_180bf9dc0;
-uint8_t DAT_180bf9dc8;
+uint8_t system_ptr_9db0;
+uint8_t system_ptr_9db8;
+uint8_t system_ptr_9dc0;
+uint8_t system_ptr_9dc8;
 uint8_t UNK_180a22e58;
 
 
 // 函数: uint8_t FUN_180942300;
 uint8_t FUN_180942300;
-uint8_t DAT_180bf9e10;
-uint8_t DAT_180bf9e18;
-uint8_t DAT_180bf9e20;
-uint8_t DAT_180bf9e28;
+uint8_t system_ptr_9e10;
+uint8_t system_ptr_9e18;
+uint8_t system_ptr_9e20;
+uint8_t system_ptr_9e28;
 uint8_t UNK_180a22f28;
 
 
@@ -1022,105 +1022,105 @@ uint8_t FUN_180942320;
 
 // 函数: uint8_t FUN_180942340;
 uint8_t FUN_180942340;
-uint8_t DAT_180bf9e70;
-uint8_t DAT_180bf9e78;
-uint8_t DAT_180bf9e80;
-uint8_t DAT_180bf9e88;
+uint8_t system_ptr_9e70;
+uint8_t system_ptr_9e78;
+uint8_t system_ptr_9e80;
+uint8_t system_ptr_9e88;
 uint8_t UNK_180a22f10;
-uint8_t DAT_180bf9ed0;
+uint8_t system_ptr_9ed0;
 
 
 // 函数: uint8_t FUN_180942360;
 uint8_t FUN_180942360;
-uint8_t DAT_180bf9ed8;
-uint8_t DAT_180bf9ee0;
-uint8_t DAT_180bf9ee8;
+uint8_t system_ptr_9ed8;
+uint8_t system_ptr_9ee0;
+uint8_t system_ptr_9ee8;
 uint8_t UNK_180a22ef8;
-uint8_t DAT_180bf9f30;
-uint8_t DAT_180bf9f38;
+uint8_t system_ptr_9f30;
+uint8_t system_ptr_9f38;
 
 
 // 函数: uint8_t FUN_180942380;
 uint8_t FUN_180942380;
-uint8_t DAT_180bf9f40;
-uint8_t DAT_180bf9f48;
+uint8_t system_ptr_9f40;
+uint8_t system_ptr_9f48;
 uint8_t UNK_180a22ed8;
-uint8_t DAT_180bf9f90;
-uint8_t DAT_180bf9f98;
-uint8_t DAT_180bf9fa0;
+uint8_t system_ptr_9f90;
+uint8_t system_ptr_9f98;
+uint8_t system_ptr_9fa0;
 
 
 // 函数: uint8_t FUN_1809423a0;
 uint8_t FUN_1809423a0;
-uint8_t DAT_180bf9fa8;
+uint8_t system_ptr_9fa8;
 uint8_t UNK_180a22f90;
-uint8_t DAT_180bf9ff0;
-uint8_t DAT_180bf9ff8;
-uint8_t DAT_180bfa000;
-uint8_t DAT_180bfa008;
+uint8_t system_ptr_9ff0;
+uint8_t system_ptr_9ff8;
+uint8_t system_ptr_a000;
+uint8_t system_ptr_a008;
 
 
 // 函数: uint8_t FUN_1809423c0;
 uint8_t FUN_1809423c0;
 uint8_t UNK_180a22f78;
-uint8_t DAT_180bfa050;
-uint8_t DAT_180bfa058;
-uint8_t DAT_180bfa060;
-uint8_t DAT_180bfa068;
+uint8_t system_ptr_a050;
+uint8_t system_ptr_a058;
+uint8_t system_ptr_a060;
+uint8_t system_ptr_a068;
 
 
 // 函数: uint8_t FUN_1809423e0;
 uint8_t FUN_1809423e0;
 uint8_t UNK_180a22f60;
-uint8_t DAT_180bfa0b0;
-uint8_t DAT_180bfa0b8;
-uint8_t DAT_180bfa0c0;
-uint8_t DAT_180bfa0c8;
+uint8_t system_ptr_a0b0;
+uint8_t system_ptr_a0b8;
+uint8_t system_ptr_a0c0;
+uint8_t system_ptr_a0c8;
 
 
 // 函数: uint8_t FUN_180942400;
 uint8_t FUN_180942400;
 uint8_t UNK_180a22f40;
-uint8_t DAT_180bfa110;
-uint8_t DAT_180bfa118;
-uint8_t DAT_180bfa120;
-uint8_t DAT_180bfa128;
+uint8_t system_ptr_a110;
+uint8_t system_ptr_a118;
+uint8_t system_ptr_a120;
+uint8_t system_ptr_a128;
 uint8_t UNK_180a23018;
 
 
 // 函数: uint8_t FUN_180942420;
 uint8_t FUN_180942420;
-uint8_t DAT_180bfa170;
-uint8_t DAT_180bfa178;
-uint8_t DAT_180bfa180;
-uint8_t DAT_180bfa188;
+uint8_t system_ptr_a170;
+uint8_t system_ptr_a178;
+uint8_t system_ptr_a180;
+uint8_t system_ptr_a188;
 uint8_t UNK_180a23000;
 
 
 // 函数: uint8_t FUN_180942440;
 uint8_t FUN_180942440;
-uint8_t DAT_180bfa1d0;
-uint8_t DAT_180bfa1d8;
-uint8_t DAT_180bfa1e0;
-uint8_t DAT_180bfa1e8;
-uint8_t DAT_180a22fd0;
+uint8_t system_ptr_a1d0;
+uint8_t system_ptr_a1d8;
+uint8_t system_ptr_a1e0;
+uint8_t system_ptr_a1e8;
+uint8_t system_ptr_2fd0;
 
 
 // 函数: uint8_t FUN_180942460;
 uint8_t FUN_180942460;
-uint8_t DAT_180bfa230;
-uint8_t DAT_180bfa238;
-uint8_t DAT_180bfa240;
-uint8_t DAT_180bfa248;
-uint8_t DAT_180a22fa8;
+uint8_t system_ptr_a230;
+uint8_t system_ptr_a238;
+uint8_t system_ptr_a240;
+uint8_t system_ptr_a248;
+uint8_t system_ptr_2fa8;
 
 
 // 函数: uint8_t FUN_180942480;
 uint8_t FUN_180942480;
-uint8_t DAT_180bfa290;
-uint8_t DAT_180bfa298;
-uint8_t DAT_180bfa2a0;
-uint8_t DAT_180bfa2a8;
+uint8_t system_ptr_a290;
+uint8_t system_ptr_a298;
+uint8_t system_ptr_a2a0;
+uint8_t system_ptr_a2a8;
 uint8_t UNK_180a23068;
 
 
@@ -1142,38 +1142,38 @@ uint8_t FUN_180942580;
 
 // 函数: uint8_t FUN_1809425e0;
 uint8_t FUN_1809425e0;
-uint8_t DAT_180c91f6c;
+uint8_t system_ptr_1f6c;
 uint8_t UNK_180a24340;
-uint8_t DAT_180c91fcc;
+uint8_t system_ptr_1fcc;
 uint8_t UNK_180a24828;
-uint8_t DAT_180bfa350;
-uint8_t DAT_180bfa358;
-uint8_t DAT_180bfa360;
-uint8_t DAT_180bfa368;
-uint8_t DAT_180bfa3e8;
-uint8_t DAT_180bfa3f0;
-uint8_t DAT_180bfa3f8;
-uint8_t DAT_180bfa400;
-uint8_t DAT_180bfa480;
-uint8_t DAT_180bfa488;
-uint8_t DAT_180bfa490;
-uint8_t DAT_180bfa498;
-uint8_t DAT_180bfa518;
-uint8_t DAT_180bfa520;
-uint8_t DAT_180bfa528;
-uint8_t DAT_180bfa530;
-uint8_t DAT_180bfa5b0;
-uint8_t DAT_180bfa5b8;
-uint8_t DAT_180bfa5c0;
-uint8_t DAT_180bfa5c8;
-uint8_t DAT_180bfa648;
-uint8_t DAT_180bfa650;
-uint8_t DAT_180bfa658;
-uint8_t DAT_180bfa660;
-uint8_t DAT_180bfa6e0;
-uint8_t DAT_180bfa6e8;
-uint8_t DAT_180bfa6f0;
-uint8_t DAT_180bfa6f8;
+uint8_t system_ptr_a350;
+uint8_t system_ptr_a358;
+uint8_t system_ptr_a360;
+uint8_t system_ptr_a368;
+uint8_t system_ptr_a3e8;
+uint8_t system_ptr_a3f0;
+uint8_t system_ptr_a3f8;
+uint8_t system_ptr_a400;
+uint8_t system_ptr_a480;
+uint8_t system_ptr_a488;
+uint8_t system_ptr_a490;
+uint8_t system_ptr_a498;
+uint8_t system_ptr_a518;
+uint8_t system_ptr_a520;
+uint8_t system_ptr_a528;
+uint8_t system_ptr_a530;
+uint8_t system_ptr_a5b0;
+uint8_t system_ptr_a5b8;
+uint8_t system_ptr_a5c0;
+uint8_t system_ptr_a5c8;
+uint8_t system_ptr_a648;
+uint8_t system_ptr_a650;
+uint8_t system_ptr_a658;
+uint8_t system_ptr_a660;
+uint8_t system_ptr_a6e0;
+uint8_t system_ptr_a6e8;
+uint8_t system_ptr_a6f0;
+uint8_t system_ptr_a6f8;
 uint8_t UNK_180942600;
 uint8_t UNK_180a0f168;
 uint8_t UNK_180a0f178;
@@ -1182,30 +1182,30 @@ uint8_t UNK_180a0f190;
 uint8_t UNK_180a0f5b8;
 uint8_t UNK_180a24c50;
 uint8_t UNK_180a24c60;
-uint8_t DAT_180bfa780;
-uint8_t DAT_180bfa788;
-uint8_t DAT_180bfa790;
-uint8_t DAT_180bfa798;
-uint8_t DAT_180bfa818;
-uint8_t DAT_180bfa820;
-uint8_t DAT_180bfa828;
-uint8_t DAT_180bfa830;
-uint8_t DAT_180bfa8b0;
-uint8_t DAT_180bfa8b8;
-uint8_t DAT_180bfa8c0;
-uint8_t DAT_180bfa8c8;
-uint8_t DAT_180bfa948;
-uint8_t DAT_180bfa950;
-uint8_t DAT_180bfa958;
-uint8_t DAT_180bfa960;
-uint8_t DAT_180bfa9e0;
-uint8_t DAT_180bfa9e8;
-uint8_t DAT_180bfa9f0;
-uint8_t DAT_180bfa9f8;
-uint8_t DAT_180bfaa78;
-uint8_t DAT_180bfaa80;
-uint8_t DAT_180bfaa88;
-uint8_t DAT_180bfaa90;
+uint8_t system_ptr_a780;
+uint8_t system_ptr_a788;
+uint8_t system_ptr_a790;
+uint8_t system_ptr_a798;
+uint8_t system_ptr_a818;
+uint8_t system_ptr_a820;
+uint8_t system_ptr_a828;
+uint8_t system_ptr_a830;
+uint8_t system_ptr_a8b0;
+uint8_t system_ptr_a8b8;
+uint8_t system_ptr_a8c0;
+uint8_t system_ptr_a8c8;
+uint8_t system_ptr_a948;
+uint8_t system_ptr_a950;
+uint8_t system_ptr_a958;
+uint8_t system_ptr_a960;
+uint8_t system_ptr_a9e0;
+uint8_t system_ptr_a9e8;
+uint8_t system_ptr_a9f0;
+uint8_t system_ptr_a9f8;
+uint8_t system_ptr_aa78;
+uint8_t system_ptr_aa80;
+uint8_t system_ptr_aa88;
+uint8_t system_ptr_aa90;
 uint8_t UNK_180942620;
 uint8_t UNK_180a24bd0;
 uint8_t UNK_180a24bf0;
@@ -1213,30 +1213,30 @@ uint8_t UNK_180a24c10;
 uint8_t UNK_180a24c30;
 uint8_t UNK_180a24d58;
 uint8_t UNK_180a24d80;
-uint8_t DAT_180bfab10;
-uint8_t DAT_180bfab18;
-uint8_t DAT_180bfab20;
-uint8_t DAT_180bfab28;
-uint8_t DAT_180bfaba8;
-uint8_t DAT_180bfabb0;
-uint8_t DAT_180bfabb8;
-uint8_t DAT_180bfabc0;
-uint8_t DAT_180bfac40;
-uint8_t DAT_180bfac48;
-uint8_t DAT_180bfac50;
-uint8_t DAT_180bfac58;
-uint8_t DAT_180bfacd8;
-uint8_t DAT_180bface0;
-uint8_t DAT_180bface8;
-uint8_t DAT_180bfacf0;
-uint8_t DAT_180bfad70;
-uint8_t DAT_180bfad78;
-uint8_t DAT_180bfad80;
-uint8_t DAT_180bfad88;
-uint8_t DAT_180bfae08;
-uint8_t DAT_180bfae10;
-uint8_t DAT_180bfae18;
-uint8_t DAT_180bfae20;
+uint8_t system_ptr_ab10;
+uint8_t system_ptr_ab18;
+uint8_t system_ptr_ab20;
+uint8_t system_ptr_ab28;
+uint8_t system_ptr_aba8;
+uint8_t system_ptr_abb0;
+uint8_t system_ptr_abb8;
+uint8_t system_ptr_abc0;
+uint8_t system_ptr_ac40;
+uint8_t system_ptr_ac48;
+uint8_t system_ptr_ac50;
+uint8_t system_ptr_ac58;
+uint8_t system_ptr_acd8;
+uint8_t system_ptr_ace0;
+uint8_t system_ptr_ace8;
+uint8_t system_ptr_acf0;
+uint8_t system_ptr_ad70;
+uint8_t system_ptr_ad78;
+uint8_t system_ptr_ad80;
+uint8_t system_ptr_ad88;
+uint8_t system_ptr_ae08;
+uint8_t system_ptr_ae10;
+uint8_t system_ptr_ae18;
+uint8_t system_ptr_ae20;
 uint8_t UNK_180942640;
 uint8_t UNK_180a24da8;
 uint8_t UNK_180a24dc0;
@@ -1244,68 +1244,68 @@ uint8_t UNK_180a24dc0;
 
 // 函数: uint8_t FUN_180942660;
 uint8_t FUN_180942660;
-uint8_t DAT_180bfc150;
-int8_t DAT_180bfc140;
-uint8_t DAT_180bfc160;
-uint8_t DAT_180bfc168;
+uint8_t system_ptr_c150;
+int8_t system_cache_config;
+uint8_t system_ptr_c160;
+uint8_t system_ptr_c168;
 uint64_t UNK_180bfc158;
-uint8_t DAT_180bfaec0;
-uint8_t DAT_180bfaec8;
-uint8_t DAT_180bfaed0;
-uint8_t DAT_180bfaed8;
+uint8_t system_ptr_aec0;
+uint8_t system_ptr_aec8;
+uint8_t system_ptr_aed0;
+uint8_t system_ptr_aed8;
 
 
 // 函数: uint8_t FUN_180942750;
 uint8_t FUN_180942750;
-uint8_t DAT_180bfaee0;
-uint8_t DAT_180bfaee8;
-uint8_t DAT_180c92050;
-uint8_t DAT_180c92058;
-uint8_t DAT_180c92060;
-uint8_t DAT_180c92068;
+uint8_t system_ptr_aee0;
+uint8_t system_ptr_aee8;
+uint8_t system_ptr_2050;
+uint8_t system_ptr_2058;
+uint8_t system_ptr_2060;
+uint8_t system_ptr_2068;
 
 
 // 函数: uint8_t FUN_180942790;
 uint8_t FUN_180942790;
-uint8_t DAT_180bfaef0;
-uint8_t DAT_180bfaef8;
-uint8_t DAT_180bfaf00;
-uint8_t DAT_180bfaf08;
+uint8_t system_ptr_aef0;
+uint8_t system_ptr_aef8;
+uint8_t system_ptr_af00;
+uint8_t system_ptr_af08;
 
 
 // 函数: uint8_t FUN_1809427d0;
 uint8_t FUN_1809427d0;
 uint8_t UNK_180a27a58;
-uint8_t DAT_180bfb310;
-uint8_t DAT_180bfb318;
-uint8_t DAT_180bfb320;
-uint8_t DAT_180bfb328;
+uint8_t system_ptr_b310;
+uint8_t system_ptr_b318;
+uint8_t system_ptr_b320;
+uint8_t system_ptr_b328;
 uint8_t UNK_180a27a6c;
 
 
 // 函数: uint8_t FUN_1809427f0;
 uint8_t FUN_1809427f0;
-uint8_t DAT_180bfb730;
-uint8_t DAT_180bfb738;
-uint8_t DAT_180bfb740;
-uint8_t DAT_180bfb748;
+uint8_t system_ptr_b730;
+uint8_t system_ptr_b738;
+uint8_t system_ptr_b740;
+uint8_t system_ptr_b748;
 uint8_t UNK_180a27a70;
 
 
 // 函数: uint8_t FUN_180942810;
 uint8_t FUN_180942810;
-uint8_t DAT_180c9246c;
+uint8_t system_ptr_246c;
 uint8_t UNK_180a2ac10;
 
 
 // 函数: uint8_t FUN_180942890;
 uint8_t FUN_180942890;
-uint8_t DAT_180c92490;
+uint8_t system_ptr_2490;
 
 
 // 函数: uint8_t FUN_1809428e0;
 uint8_t FUN_1809428e0;
-uint8_t DAT_180c92480;
+uint8_t system_ptr_2480;
 
 
 // 函数: uint8_t FUN_180942930;
@@ -1318,58 +1318,58 @@ uint8_t FUN_180942a20;
 
 // 函数: uint8_t FUN_1809429f0;
 uint8_t FUN_1809429f0;
-uint8_t DAT_180c924ac;
+uint8_t system_ptr_24ac;
 uint8_t UNK_180a2bf10;
-uint8_t DAT_180c924b0;
-uint8_t DAT_180a2c1d0;
-uint8_t DAT_180c924b4;
-uint8_t DAT_180a2c338;
-uint8_t DAT_180c924b8;
-uint8_t DAT_180a2c510;
-uint8_t DAT_180bf6048;
-uint8_t DAT_180bf6050;
-uint8_t DAT_180bf6058;
-uint8_t DAT_180bf6060;
+uint8_t system_ptr_24b0;
+uint8_t system_ptr_c1d0;
+uint8_t system_ptr_24b4;
+uint8_t system_ptr_c338;
+uint8_t system_ptr_24b8;
+uint8_t system_ptr_c510;
+uint8_t system_ptr_6048;
+uint8_t system_ptr_6050;
+uint8_t system_ptr_6058;
+uint8_t system_ptr_6060;
 
 
 // 函数: uint8_t FUN_180942a60;
 uint8_t FUN_180942a60;
-uint8_t DAT_180bf6498;
-uint8_t DAT_180bf64a0;
-uint8_t DAT_180bf64a8;
-uint8_t DAT_180bf64b0;
+uint8_t system_ptr_6498;
+uint8_t system_ptr_64a0;
+uint8_t system_ptr_64a8;
+uint8_t system_ptr_64b0;
 
 
 // 函数: uint8_t FUN_180942a80;
 uint8_t FUN_180942a80;
-uint8_t DAT_180a2d660;
+uint8_t system_ptr_d660;
 uint8_t UNK_180a2ca90;
-uint8_t DAT_180a2d590;
+uint8_t system_ptr_d590;
 uint8_t UNK_180a2cab0;
-uint8_t DAT_180c96310;
-uint8_t DAT_180c96320;
-uint8_t DAT_180c96328;
+uint8_t system_ptr_6310;
+uint8_t system_ptr_6320;
+uint8_t system_ptr_6328;
 
 
 // 函数: uint8_t FUN_180942fa0;
 uint8_t FUN_180942fa0;
-uint8_t DAT_180bf6558;
-uint8_t DAT_180bf6560;
-uint8_t DAT_180bf6568;
-uint8_t DAT_180bf6570;
+uint8_t system_ptr_6558;
+uint8_t system_ptr_6560;
+uint8_t system_ptr_6568;
+uint8_t system_ptr_6570;
 
 
 // 函数: uint8_t FUN_180942fc0;
 uint8_t FUN_180942fc0;
-uint8_t DAT_180c95ecc;
+uint8_t system_ptr_5ecc;
 uint8_t UNK_180a33fb0;
 
 
 // 函数: uint8_t FUN_180943070;
 uint8_t FUN_180943070;
-uint8_t DAT_180c9606c;
+uint8_t system_ptr_606c;
 uint8_t UNK_180a3c028;
-uint8_t DAT_180c96218;
+uint8_t system_ptr_6218;
 uint8_t UNK_180943130;
 
 
@@ -1379,17 +1379,17 @@ uint8_t FUN_180943140;
 
 // 函数: uint8_t FUN_180943160;
 uint8_t FUN_180943160;
-uint8_t DAT_180c96790;
-uint8_t DAT_180c96798;
+uint8_t system_ptr_6790;
+uint8_t system_ptr_6798;
 
 
 // 函数: uint8_t FUN_180943180;
 uint8_t FUN_180943180;
-uint8_t DAT_180c967a0;
-uint8_t DAT_180c967a8;
-uint8_t DAT_180c967b0;
-uint8_t DAT_180c967b8;
-uint8_t DAT_180c967d0;
+uint8_t system_ptr_67a0;
+uint8_t system_ptr_67a8;
+uint8_t system_ptr_67b0;
+uint8_t system_ptr_67b8;
+uint8_t system_ptr_67d0;
 uint8_t UNK_180a3def0;
 uint8_t UNK_18098bcb0;
 
@@ -1398,13 +1398,13 @@ uint8_t UNK_18098bcb0;
 uint8_t FUN_1809431a0;
 uint8_t _tls_index;
 void *ThreadLocalStoragePointer;
-uint8_t DAT_180c967d4;
+uint8_t system_ptr_67d4;
 uint8_t UNK_180a3e3d8;
-uint8_t DAT_180c967d8;
+uint8_t system_ptr_67d8;
 uint8_t UNK_180a3e3f0;
-uint8_t DAT_180c967e0;
-uint8_t DAT_180c967e8;
-uint8_t DAT_180c967f0;
-uint8_t DAT_180c967f8;
+uint8_t system_ptr_67e0;
+uint8_t system_ptr_67e8;
+uint8_t system_ptr_67f0;
+uint8_t system_ptr_67f8;
 
 

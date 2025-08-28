@@ -429,7 +429,7 @@ longlong * ProcessMemoryBlockDataConversion(longlong *result_ptr, uint64_t *src_
       
       // 复制属性数据
       *(int32_t *)(dest_start + 2) = *(int32_t *)(puVar3 + -0x29);
-      puVar4 = &DAT_18098bc73;
+      puVar4 = &system_buffer_ptr;
       if ((void *)puVar3[-0x2a] != (void *)0x0) {
         puVar4 = (void *)puVar3[-0x2a];
       }

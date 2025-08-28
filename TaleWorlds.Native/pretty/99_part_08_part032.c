@@ -873,10 +873,10 @@ void FUN_1805a0af0(longlong param_1,float param_2,char param_3)
   uint uVar7;
   
   if (0.0 < param_2) {
-    if ((float)(*(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x200) * 8) -
+    if ((float)(*(longlong *)(&system_error_code + (longlong)*(int *)(param_1 + 0x200) * 8) -
                *(longlong *)(param_1 + 0x1f8)) * -1e-05 < param_2) {
       *(longlong *)(param_1 + 0x1f8) =
-           *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x200) * 8) -
+           *(longlong *)(&system_error_code + (longlong)*(int *)(param_1 + 0x200) * 8) -
            (longlong)(param_2 * -100000.0);
     }
     if ((((param_3 != '\0') && (_DAT_180c92514 - 2U < 2)) &&

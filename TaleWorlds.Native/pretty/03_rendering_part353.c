@@ -775,7 +775,7 @@ void FUN_18045c1d0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   longlong lStack_28;
   
   lVar1 = FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
-  puVar2 = &DAT_18098bc73;
+  puVar2 = &system_buffer_ptr;
   if (*(void **)(lVar1 + 8) != (void *)0x0) {
     puVar2 = *(void **)(lVar1 + 8);
   }

@@ -1441,7 +1441,7 @@ void network_logger(void)
     
     // 格式化日志消息
     result = func_0x00018074bda0(&stack0x00000050, 0x100);
-    length = FUN_18074b880(&stack0x00000050 + result, 0x100 - result, &DAT_180a06434);
+    length = FUN_18074b880(&stack0x00000050 + result, 0x100 - result, &system_temp_buffer);
     func_0x00018074b800(&stack0x00000050 + (result + length), 0x100 - (result + length), param2);
     // 记录日志
     FUN_180749ef0(param1, 0xc);

@@ -510,7 +510,7 @@ int8_t FUN_18047bcd0(uint64_t *param_1,uint64_t *param_2)
   ulonglong uVar7;
   
   if (param_2 == (uint64_t *)0x0) {
-    plVar5 = (longlong *)&DAT_00000010;
+    plVar5 = (longlong *)&system_data_0010;
   }
   else {
     plVar5 = param_2 + 2;

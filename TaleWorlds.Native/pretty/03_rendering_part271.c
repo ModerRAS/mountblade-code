@@ -148,7 +148,7 @@ LAB_180419067:
                             FUN_180627c50(&puStack_510,lVar14);
                             break;
                           }
-                          lVar14 = (longlong)&DAT_180a03a84 - (longlong)pcVar19;
+                          lVar14 = (longlong)&system_data_3a84 - (longlong)pcVar19;
                           while (*pcVar19 == pcVar19[lVar14]) {
                             pcVar19 = pcVar19 + 1;
                             if (pcVar10 <= pcVar19) goto LAB_180419067;
@@ -242,7 +242,7 @@ LAB_180419244:
                                     if (puVar21[1] != 0) {
                                       lVar14 = puVar21[1];
                                     }
-                                    FUN_18010cbc0(lVar14,&DAT_180a06430,&pcStack_4f0);
+                                    FUN_18010cbc0(lVar14,&system_data_6430,&pcStack_4f0);
                                     break;
                                   }
                                   lVar14 = (longlong)&UNK_180a0696c - (longlong)pcVar19;
@@ -430,7 +430,7 @@ LAB_180418a30:
                         FUN_180627c50(&puStack_510,lVar14);
                         break;
                       }
-                      lVar14 = (longlong)&DAT_180a03a84 - (longlong)pcVar19;
+                      lVar14 = (longlong)&system_data_3a84 - (longlong)pcVar19;
                       while (*pcVar19 == pcVar19[lVar14]) {
                         pcVar19 = pcVar19 + 1;
                         if (pcVar10 <= pcVar19) goto LAB_180418a30;
@@ -532,7 +532,7 @@ LAB_180418c14:
                             if (puVar20[1] != 0) {
                               lVar14 = puVar20[1];
                             }
-                            FUN_18010cbc0(lVar14,&DAT_180a06430,&pplStack_4e8);
+                            FUN_18010cbc0(lVar14,&system_data_6430,&pplStack_4e8);
                             break;
                           }
                           lVar14 = (longlong)&UNK_180a0696c - (longlong)pcVar19;
@@ -594,7 +594,7 @@ LAB_180418cd5:
                         if (*(longlong *)(lVar16 + 8) != 0) {
                           lVar13 = *(longlong *)(lVar16 + 8);
                         }
-                        FUN_18010cbc0(lVar13,&DAT_180a06430,&pplStack_4e8);
+                        FUN_18010cbc0(lVar13,&system_data_6430,&pplStack_4e8);
                       }
                       FUN_180631850(lVar14,&UNK_180a18100,&pcStack_4f0);
                       puStack_4b0 = (void *)CONCAT44(puStack_4b0._4_4_,auStack_518[0]);

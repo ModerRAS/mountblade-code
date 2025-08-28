@@ -7,9 +7,9 @@
 extern longlong _DAT_180c8a9b0;      // 引擎全局上下文
 extern ulonglong _DAT_180bf00a8;     // 安全检查相关
 extern char UNK_18098d0f8[];          // 数据类型映射表
-extern char DAT_18098bc73;            // 默认格式字符串
+extern char system_buffer_ptr;            // 默认格式字符串
 extern char UNK_180a063b0;            // 操作符标识
-extern char DAT_180a063b4;            // 减法操作符
+extern char system_buffer_63b4;            // 减法操作符
 extern char UNK_180a063c0;            // 加法操作符
 extern uint UNK_180114854[];          // 函数跳转表1
 extern uint UNK_18011486c[];          // 函数跳转表2
@@ -242,7 +242,7 @@ skip_format_conversion:
     render_param3 = 0;
     render_param2 = 0;
     render_param1 = CONCAT44(render_param1._4_4_, operation_flags) | 0x10;
-    operation_result = FUN_1801166f0(&DAT_18098bc73, temp_buffer, 0x40, &render_param4);
+    operation_result = FUN_1801166f0(&system_buffer_ptr, temp_buffer, 0x40, &render_param4);
     if (operation_result != '\0') {
       render_param1 = param_6;
       FUN_1801134b0(temp_buffer, *(uint64_t *)(engine_context + 0x1ec8), param_2, param_3);
@@ -252,7 +252,7 @@ skip_format_conversion:
     operation_flags = (operation_flags & 0x4000 | 0x2040) >> 6;
     func_0x00018012e760(0, *(int32_t *)(engine_context + 0x1674));
     render_param4 = CONCAT44(timing_factor3, timing_factor3);
-    operation_result = FUN_18010f6f0(&DAT_180a063b4, &render_param4, operation_flags);
+    operation_result = FUN_18010f6f0(&system_buffer_63b4, &render_param4, operation_flags);
     
     if (operation_result != '\0') {
       if ((*(char *)(engine_context + 0x134) == '\0') || (value_ptr = param_5, param_5 == (double *)0x0)) {
@@ -408,7 +408,7 @@ skip_format:
     func_0x00018012d470(timing_factor1);
     
     stack_param2 = 0;
-    operation_result = FUN_1801166f0(&DAT_18098bc73, &stack0x00000050, 0x40, &stack_param2,
+    operation_result = FUN_1801166f0(&system_buffer_ptr, &stack0x00000050, 0x40, &stack_param2,
                           CONCAT44(format_param, operation_flags) | 0x10);
     if (operation_result != '\0') {
       FUN_1801134b0(&stack0x00000050, *(uint64_t *)(context_ptr + 0x1ec8), data_type);
@@ -418,7 +418,7 @@ skip_format:
     operation_flags = (operation_flags & 0x4000 | 0x2040) >> 6;
     func_0x00018012e760(0, *(int32_t *)(context_ptr + 0x1674));
     stack_param2 = CONCAT44(result_float, result_float);
-    operation_result = FUN_18010f6f0(&DAT_180a063b4, &stack_param2, operation_flags);
+    operation_result = FUN_18010f6f0(&system_buffer_63b4, &stack_param2, operation_flags);
     
     if ((operation_result != '\0') && (data_type < 6)) {
       // 执行减法操作（通过跳转表）
@@ -495,7 +495,7 @@ void execute_core_engine_operation(void)
   func_0x00018012d470(timing_factor1);
   
   stack_param2 = 0;
-  operation_result = FUN_1801166f0(&DAT_18098bc73, &stack0x00000050, 0x40, &stack_param2,
+  operation_result = FUN_1801166f0(&system_buffer_ptr, &stack0x00000050, 0x40, &stack_param2,
                         CONCAT44(format_value, operation_flags));
   if (operation_result != '\0') {
     FUN_1801134b0(&stack0x00000050, *(uint64_t *)(context_ptr + 0x1ec8), data_type);
@@ -505,7 +505,7 @@ void execute_core_engine_operation(void)
   operation_flags = (operation_flags & 0x4000 | 0x2040) >> 6;
   func_0x00018012e760(0, *(int32_t *)(context_ptr + 0x1674));
   stack_param2 = CONCAT44(timing_factor3, timing_factor3);
-  operation_result = FUN_18010f6f0(&DAT_180a063b4, &stack_param2, operation_flags);
+  operation_result = FUN_18010f6f0(&system_buffer_63b4, &stack_param2, operation_flags);
   
   if ((operation_result != '\0') && (data_type < 6)) {
     // 执行减法操作（通过跳转表）

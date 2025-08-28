@@ -309,14 +309,14 @@ void initialize_render_pipeline(void)
 // 全局变量定义
 longlong *global_render_context = _DAT_180c86950;
 ulonglong performance_counter_value = _DAT_180bf00a8;
-char performance_timer_enabled = DAT_180c82853;
+char performance_timer_enabled = system_buffer_2853;
 longlong performance_timer_address = _DAT_180c86870;
 longlong performance_counter_base = _DAT_180c8ed48;
 double performance_frequency = _DAT_180c8ed50;
 longlong performance_counter_value = _DAT_180c8ed58;
 void *debug_device_name = UNK_1809fcc28;
 void *device_init_string = UNK_180a01340;
-void *device_config_path = DAT_18098bc73;
+void *device_config_path = system_buffer_ptr;
 void *render_target_name = UNK_18098bcb0;
 void *target_config_string = UNK_180a013a8;
 void *debug_output_prefix = UNK_180a3c3e0;

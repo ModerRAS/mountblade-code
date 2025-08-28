@@ -832,7 +832,7 @@ LAB_18038706d:
   lVar12 = *(longlong *)(param_1 + 0x68);
   lVar11 = lVar12 - lVar14 >> 4;
   if (1 < lVar11) {
-    puVar7 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,lVar11 * 0x10,DAT_180bf65bc);
+    puVar7 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,lVar11 * 0x10,system_allocation_flags);
     uStack_1d0 = 0;
     uStack_1c8 = 0;
     for (puVar8 = puVar7; puVar8 != puVar7 + lVar11 * 4; puVar8 = puVar8 + 4) {

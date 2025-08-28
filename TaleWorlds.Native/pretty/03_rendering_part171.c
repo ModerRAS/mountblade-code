@@ -140,7 +140,7 @@ LAB_180373799:
         puVar10 = (uint64_t *)FUN_18037f020(unaff_RBX + 0x108,unaff_RBP + -0x18,&stack0x00000040);
         piVar13 = (int *)*puVar10;
       }
-      uVar9 = FUN_18063ad30(unaff_RBP + 0x90,*(longlong *)(piVar13 + 2) + 0x18,&DAT_180a00300);
+      uVar9 = FUN_18063ad30(unaff_RBP + 0x90,*(longlong *)(piVar13 + 2) + 0x18,&system_data_0300);
       lVar11 = FUN_180372570(uVar9,unaff_RSI & 0xffffffff,unaff_R14 & 0xffffffff);
       uVar1 = *(uint *)(unaff_RBX + 0x118);
       lVar19 = *(longlong *)(unaff_RBX + 0x110);
@@ -597,7 +597,7 @@ LAB_180373799:
       puVar14 = (uint64_t *)FUN_18037f020(unaff_RBX + 0x108,unaff_RBP + -0x18,&stack0x00000040);
       piVar16 = (int *)*puVar14;
     }
-    uVar13 = FUN_18063ad30(unaff_RBP + 0x90,*(longlong *)(piVar16 + 2) + 0x18,&DAT_180a00300);
+    uVar13 = FUN_18063ad30(unaff_RBP + 0x90,*(longlong *)(piVar16 + 2) + 0x18,&system_data_0300);
     lVar17 = FUN_180372570(uVar13,uVar4 & 0xffffffff,uVar3 & 0xffffffff);
     uVar1 = *(uint *)(unaff_RBX + 0x118);
     lVar15 = *(longlong *)(unaff_RBX + 0x110);
@@ -692,7 +692,7 @@ uint64_t * FUN_1803739d0(uint64_t *param_1,int32_t param_2,longlong param_3)
   param_1[5] = 0;
   param_1[3] = 0;
   *(int32_t *)(param_1 + 4) = 0;
-  puVar2 = &DAT_18098bc73;
+  puVar2 = &system_buffer_ptr;
   if (*(void **)(param_3 + 8) != (void *)0x0) {
     puVar2 = *(void **)(param_3 + 8);
   }

@@ -264,7 +264,7 @@ code_r0x0001800630e9:
     case 4:
       auStackX_18[0] = 0;
       puVar9 = *(void **)(*(longlong *)(param_1 + 0x20) + 0xe8);
-      puVar10 = &DAT_18098bc73;
+      puVar10 = &system_buffer_ptr;
       if (puVar9 != (void *)0x0) {
         puVar10 = puVar9;
       }
@@ -280,12 +280,12 @@ code_r0x0001800630e9:
          (puVar5 = *(uint64_t **)(param_1 + 0x20),
          (*(ulonglong *)(param_1 + 0x60) & puVar5[2]) != 0)) {
         uVar2 = *(uint *)(param_1 + 0x40);
-        puVar9 = &DAT_18098bc73;
+        puVar9 = &system_buffer_ptr;
         if (*(void **)(param_1 + 0x38) != (void *)0x0) {
           puVar9 = *(void **)(param_1 + 0x38);
         }
         if ((*(byte *)(puVar5 + 1) & 2) != 0) {
-          FUN_180062ee0((ulonglong)*(uint *)(&DAT_180063480 + (longlong)(int)uVar1 * 4) +
+          FUN_180062ee0((ulonglong)*(uint *)(&system_buffer_3480 + (longlong)(int)uVar1 * 4) +
                         0x180000000,*(int32_t *)(param_1 + 0x50));
           iVar4 = WriteConsoleA(_DAT_180c912f0,puVar9,uVar2,auStackX_20,0);
           if ((iVar4 == 0) || (auStackX_20[0] < uVar2)) {
@@ -486,7 +486,7 @@ uint64_t *initialize_string_buffer_with_config(uint64_t *buffer_ptr, int32_t con
   *(int32_t *)(buffer_ptr + 8) = 0;
   *(int32_t *)(buffer_ptr + 5) = config;
   buffer_ptr[4] = param3;
-  (**(code **)(*buffer_manager + 0x10))(buffer_manager,&DAT_18098bc73,param3,param4,0xfffffffffffffffe);
+  (**(code **)(*buffer_manager + 0x10))(buffer_manager,&system_buffer_ptr,param3,param4,0xfffffffffffffffe);
   *(int32_t *)(buffer_ptr + 10) = 0xd;
   *(uint64_t *)((longlong)buffer_ptr + 0x54) = 0xe;
   buffer_ptr[0xc] = 0xffffffff00000000;
@@ -570,7 +570,7 @@ void write_log_to_file(uint64_t file_handle, longlong message_data)
   log_buffer = 0;
   file_stream = 0;
   initialize_file_stream(file_handle,&message_ptr2,&UNK_1809fe800);
-  default_message = &DAT_18098bc73;
+  default_message = &system_buffer_ptr;
   if (message_ptr3 != (void *)0x0) {
     default_message = message_ptr3;
   }
@@ -593,8 +593,8 @@ void write_log_to_file(uint64_t file_handle, longlong message_data)
     system_prefix_length = message_length;
   } while (*message_ptr != '\0');
   if (message_length != 0) {
-    fwrite(&DAT_1809fe810,0x30,1,file_stream2);
-    fwrite(&DAT_180c84870,message_length,1,file_stream2);
+    fwrite(&system_buffer_e810,0x30,1,file_stream2);
+    fwrite(&system_buffer_4870,message_length,1,file_stream2);
   }
   fclose(file_stream);
   return;
@@ -679,7 +679,7 @@ not_found:
       }
       if (is_match) {
         file_path = *(void **)((longlong)file_array1 + scan_index + 8);
-        file_name = &DAT_18098bc73;
+        file_name = &system_buffer_ptr;
         if (file_path != (void *)0x0) {
           file_name = file_path;
         }
@@ -821,7 +821,7 @@ void FUN_180064010(uint64_t param_1)
   uStack_2f8 = 0;
   lStack_2f0 = 0;
   FUN_180627e10(param_1,&puStack_280,&UNK_1809fe868);
-  puVar3 = &DAT_18098bc73;
+  puVar3 = &system_buffer_ptr;
   if (puStack_278 != (void *)0x0) {
     puVar3 = puStack_278;
   }
@@ -852,7 +852,7 @@ void FUN_180064010(uint64_t param_1)
   uStack_2e0 = 0;
   lStack_2d8 = 0;
   FUN_180627e10(param_1,&puStack_260,&UNK_1809fe880);
-  puVar3 = &DAT_18098bc73;
+  puVar3 = &system_buffer_ptr;
   if (puStack_258 != (void *)0x0) {
     puVar3 = puStack_258;
   }
@@ -945,7 +945,7 @@ ulonglong process_file_operations(uint64_t file_handle)
     log_buffer = 0;
     log_handle = 0;
     initialize_file_stream(file_handle,&message_ptr,&UNK_1809fe898);
-    default_path = &DAT_18098bc73;
+    default_path = &system_buffer_ptr;
     if (custom_message != (void *)0x0) {
       default_path = custom_message;
     }
@@ -959,7 +959,7 @@ ulonglong process_file_operations(uint64_t file_handle)
       file_list1 = file_list2 + 1;
       operation_result = operation_result & 0xffffffff;
       do {
-        default_path = &DAT_18098bc73;
+        default_path = &system_buffer_ptr;
         if ((void *)*file_list1 != (void *)0x0) {
           default_path = (void *)*file_list1;
         }

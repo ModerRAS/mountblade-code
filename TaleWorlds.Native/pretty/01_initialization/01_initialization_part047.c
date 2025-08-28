@@ -746,7 +746,7 @@ longlong * clone_object(longlong *source_object, longlong *target_object)
   }
   
   // 复制资源引用
-  resource_ptr = &DAT_18098bc73;
+  resource_ptr = &system_buffer_ptr;
   if ((void *)source_object[3] != (void *)0x0) {
     resource_ptr = (void *)source_object[3];
   }

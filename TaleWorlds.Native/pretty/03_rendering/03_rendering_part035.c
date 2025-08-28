@@ -488,6 +488,6 @@ uint64_t * create_string_exception(uint64_t param1, uint64_t *exception_data,
     exception_data[1] = exception_data + 3;
     *(int8_t *)(exception_data + 3) = 0;
     *(int32_t *)(exception_data + 2) = 0x16;
-    strcpy_s(exception_data[1], 0x80, &DAT_180a16c50, param3, 0, 0xfffffffffffffffe);
+    strcpy_s(exception_data[1], 0x80, &system_memory_6c50, param3, 0, 0xfffffffffffffffe);
     return exception_data;
 }

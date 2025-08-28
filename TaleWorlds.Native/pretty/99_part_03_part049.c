@@ -259,7 +259,7 @@ LAB_1801fe740:
           FUN_180627c50(&ppppuStack_70,lVar17);
           break;
         }
-        lVar17 = (longlong)&DAT_180a03a84 - (longlong)pcVar22;
+        lVar17 = (longlong)&system_data_3a84 - (longlong)pcVar22;
         while (*pcVar22 == pcVar22[lVar17]) {
           pcVar22 = pcVar22 + 1;
           if (pcVar7 <= pcVar22) goto LAB_1801fe740;

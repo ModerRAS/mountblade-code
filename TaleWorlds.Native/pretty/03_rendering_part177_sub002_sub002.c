@@ -204,7 +204,7 @@ void FUN_18037585f(void)
                   }
                   else {
                     iVar14 = FUN_1801b8ce0(*(longlong *)(unaff_R15 + 0x2148) + 0x2998,puVar37 + 0xc,
-                                           lVar28,lVar38,&DAT_180a00300);
+                                           lVar28,lVar38,&system_data_0300);
                   }
                   if (iVar14 != 0) {
                     if (bVar31) {
@@ -552,7 +552,7 @@ LAB_18037624d:
                               (iVar36 = FUN_1801b8ce0(*(longlong *)
                                                        (*(longlong *)(unaff_RBP + 0x290) + 0x2148) +
                                                       0x2998,*(longlong *)(unaff_RBP + -0x78) + 0x30
-                                                      ,lVar28 + 0x4c,lVar27 + 0x18,&DAT_180a00300),
+                                                      ,lVar28 + 0x4c,lVar27 + 0x18,&system_data_0300),
                               iVar36 != 0)))) {
                             lVar28 = FUN_180372570(unaff_R14,iVar14,iVar32);
                             uVar26 = *(uint *)(unaff_R14 + 0x118);

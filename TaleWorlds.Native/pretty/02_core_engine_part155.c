@@ -735,7 +735,7 @@ void FUN_18013d200(longlong param_1,uint64_t *param_2,int *param_3)
           FUN_180122210(param_3,&UNK_180a068b8);
         }
       }
-      FUN_180122210(param_3,&DAT_1809fcc18);
+      FUN_180122210(param_3,&system_data_cc18);
       uVar15 = (int)uVar13 + 1;
       uVar13 = (ulonglong)uVar15;
       uVar14 = uVar14 + 0x38;
@@ -867,7 +867,7 @@ void FUN_18013d22f(uint64_t param_1)
               uVar15 = FUN_180122210(uVar15,&UNK_180a068b8);
             }
           }
-          FUN_180122210(uVar15,&DAT_1809fcc18);
+          FUN_180122210(uVar15,&system_data_cc18);
           uVar13 = (int)unaff_RBP + 1;
           unaff_RBP = (ulonglong)uVar13;
           uVar14 = uVar14 + 0x38;
@@ -946,7 +946,7 @@ void FUN_18013d36b(int32_t param_1)
           uVar8 = FUN_180122210(uVar8,&UNK_180a068b8);
         }
       }
-      FUN_180122210(uVar8,&DAT_1809fcc18);
+      FUN_180122210(uVar8,&system_data_cc18);
       uVar6 = (int)unaff_RBP + 1;
       unaff_RBP = (ulonglong)uVar6;
       uVar7 = uVar7 + 0x38;

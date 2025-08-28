@@ -86,7 +86,7 @@ longlong FUN_18023e620(longlong *param_1,longlong *param_2,int param_3,uint64_t 
   }
   else {
     if (param_3 == 1) {
-      lVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x30,8,DAT_180bf65bc);
+      lVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x30,8,system_allocation_flags);
       FUN_18023c3b0(lVar1,*param_2);
       *param_1 = lVar1;
       return 0;
@@ -127,7 +127,7 @@ longlong FUN_18023e750(longlong *param_1,longlong *param_2,int param_3,uint64_t 
   }
   else {
     if (param_3 == 1) {
-      lVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x30,8,DAT_180bf65bc);
+      lVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x30,8,system_allocation_flags);
       FUN_18023c3b0(lVar1,*param_2);
       *param_1 = lVar1;
       return 0;
@@ -168,7 +168,7 @@ longlong FUN_18023e880(longlong *param_1,longlong *param_2,int param_3,uint64_t 
   }
   else {
     if (param_3 == 1) {
-      lVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x60,8,DAT_180bf65bc);
+      lVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x60,8,system_allocation_flags);
       FUN_18023c2e0(lVar1,*param_2);
       *param_1 = lVar1;
       return 0;

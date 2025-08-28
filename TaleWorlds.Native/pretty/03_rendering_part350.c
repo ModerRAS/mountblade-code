@@ -744,7 +744,7 @@ int32_t FUN_1804581a0(longlong param_1)
   if ((param_1 != 0) && (*(longlong **)(param_1 + 0x210) != (longlong *)0x0)) {
     lVar2 = (**(code **)(**(longlong **)(param_1 + 0x210) + 0xb0))();
     if (lVar2 != 0) {
-      puVar3 = &DAT_18098bc73;
+      puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar2 + 0x18) != (void *)0x0) {
         puVar3 = *(void **)(lVar2 + 0x18);
       }

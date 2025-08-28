@@ -4,7 +4,7 @@
 // 该模块包含4个核心函数，主要处理渲染对象的创建、管理、材质应用和资源清理
 
 /* 常量定义 */
-#define DEFAULT_MATERIAL_HANDLE &DAT_18098bc73
+#define DEFAULT_MATERIAL_HANDLE &system_buffer_ptr
 #define DEFAULT_TEXTURE_NAME &UNK_1809fcc28
 #define EMPTY_STRING_PTR &UNK_18098bcb0
 #define COMPONENT_SYSTEM_NAME &UNK_180a3c3e0
@@ -111,7 +111,7 @@ void process_render_objects_batch(longlong****** render_context, longlong*******
     // 初始化栈变量
     stack_60 = 0xfffffffffffffffe;
     material_cache = (longlong*******)render_context[6][4];
-    default_material = (longlong******)&DAT_18098bc73;
+    default_material = (longlong******)&system_buffer_ptr;
     
     // 获取活动材质
     if (material_cache[3] != (longlong******)0x0) {
@@ -250,7 +250,7 @@ void process_render_objects_batch(longlong****** render_context, longlong*******
                     }
                     
                     stack_material_a8 = (longlong*******)0x0;
-                    texture_source = &DAT_18098bc73;
+                    texture_source = &system_buffer_ptr;
                     
                     if ((void*)object_slot[3] != (void*)0x0) {
                         texture_source = (void*)object_slot[3];
@@ -564,7 +564,7 @@ void update_material_system_status(longlong material_system, longlong* texture_d
         material_name = stack_data;
         stack_data[0] = 0;
         stack_flags = 0;
-        strcpy_s(stack_data, STRING_BUFFER_SIZE, &DAT_18098bc73);
+        strcpy_s(stack_data, STRING_BUFFER_SIZE, &system_buffer_ptr);
         material_state = 2;
         name_length = 2;
         texture_source = material_name;
@@ -575,7 +575,7 @@ void update_material_system_status(longlong material_system, longlong* texture_d
         material_name = stack_cache;
         stack_cache[0] = 0;
         stack_format = *(int32_t*)(system_handle + 0x48);
-        texture_source = &DAT_18098bc73;
+        texture_source = &system_buffer_ptr;
         
         if (*(void**)(system_handle + 0x40) != (void*)0x0) {
             texture_source = *(void**)(system_handle + 0x40);
@@ -590,7 +590,7 @@ void update_material_system_status(longlong material_system, longlong* texture_d
     
     // 更新材质系统状态
     *(int32_t*)(material_system + 0x90) = texture_flags;
-    material_name = &DAT_18098bc73;
+    material_name = &system_buffer_ptr;
     
     if (texture_source != (void*)0x0) {
         material_name = texture_source;
@@ -708,7 +708,7 @@ void process_material_batch_update(longlong material_system, longlong* texture_d
     // 调用材质更新回调
     system_handle = stack_offset;
     update_callback = *(code**)(*(longlong*)(material_system + 0x118) + 0x10);
-    texture_source = &DAT_18098bc73;
+    texture_source = &system_buffer_ptr;
     
     if (texture_source_ptr[1] != (void*)0x0) {
         texture_source = texture_source_ptr[1];

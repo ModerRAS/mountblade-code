@@ -527,7 +527,7 @@ void RenderingSystem_InitializeResourceHandler(longlong resource_manager, char i
     puVar4 = &UNK_180a01ff0;
   }
   lVar2 = FUN_180334430(param_1,&puStack_40);
-  puVar3 = &DAT_18098bc73;
+  puVar3 = &system_buffer_ptr;
   if (*(void **)(lVar2 + 8) != (void *)0x0) {
     puVar3 = *(void **)(lVar2 + 8);
   }

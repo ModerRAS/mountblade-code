@@ -76,7 +76,7 @@ void FUN_180348d90(longlong param_1)
   }
   
   // 获取默认材质数据
-  puVar2 = &DAT_18098bc73;
+  puVar2 = &system_buffer_ptr;
   if (*(void **)(lVar1 + 0x290) != (void *)0x0) {
     puVar2 = *(void **)(lVar1 + 0x290);
   }
@@ -339,7 +339,7 @@ void FUN_1803490e0(longlong param_1,longlong param_2,uint64_t param_3,uint64_t p
       uVar6 = FUN_180240430(plVar2[0x3c],&puStack_80,1);
       if (uVar6 == 0) {
         // 记录释放事件
-        puVar10 = &DAT_18098bc73;
+        puVar10 = &system_buffer_ptr;
         if ((void *)plVar2[3] != (void *)0x0) {
           puVar10 = (void *)plVar2[3];
         }
@@ -469,7 +469,7 @@ void FUN_180349330(longlong param_1)
         puStack_f0 = auStack_e0;
         auStack_e0[0] = 0;
         uStack_e8 = 0x10;
-        strcpy_s(auStack_e0,0x40,&DAT_180a0d580);
+        strcpy_s(auStack_e0,0x40,&system_memory_d580);
         lVar3 = FUN_180240430(lVar3,&puStack_f8,0);
         puStack_f8 = &UNK_18098bcb0;
         plVar8 = plVar6;
@@ -492,7 +492,7 @@ void FUN_180349330(longlong param_1)
           puStack_90 = auStack_80;
           auStack_80[0] = 0;
           uStack_88 = 0x10;
-          strcpy_s(auStack_80,0x40,&DAT_180a0d580);
+          strcpy_s(auStack_80,0x40,&system_memory_d580);
           uVar5 = FUN_180240430(plVar8[0x3c],&puStack_98,1);
           plVar8[0x28] = plVar8[0x28] & ~uVar5;
           FUN_18022dd60(plVar8);
@@ -812,7 +812,7 @@ void FUN_180349a50(uint64_t param_1)
   puStack_140 = auStack_130;
   auStack_130[0] = 0;
   uStack_138 = 8;
-  strcpy_s(auStack_130,0x40,&DAT_180a00410);
+  strcpy_s(auStack_130,0x40,&system_memory_0410);
   FUN_1800b8300(apuStack_1a8,&puStack_148);
   uStack_150 = 10;
   uStack_1c8 = 1;
@@ -825,7 +825,7 @@ void FUN_180349a50(uint64_t param_1)
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   uStack_d8 = 6;
-  strcpy_s(auStack_d0,0x40,&DAT_180a1d218);
+  strcpy_s(auStack_d0,0x40,&system_memory_d218);
   FUN_1800b8300(apuStack_1a8,&puStack_e8);
   uStack_150 = 2;
   uStack_1c8 = 2;
@@ -838,7 +838,7 @@ void FUN_180349a50(uint64_t param_1)
   puStack_80 = auStack_70;
   auStack_70[0] = 0;
   uStack_78 = 7;
-  strcpy_s(auStack_70,0x40,&DAT_180a1d220);
+  strcpy_s(auStack_70,0x40,&system_memory_d220);
   FUN_1800b8300(apuStack_1a8,&puStack_88);
   uStack_150 = 2;
   uStack_1c8 = 4;
@@ -862,18 +862,18 @@ void FUN_180349c70(uint64_t param_1,longlong param_2)
   int iVar1;
   
   if (*(int *)(param_2 + 0x10) == 8) {
-    iVar1 = _stricmp(*(uint64_t *)(param_2 + 8),&DAT_180a00410);
+    iVar1 = _stricmp(*(uint64_t *)(param_2 + 8),&system_memory_0410);
     if (iVar1 == 0) {
       FUN_1803499b0(param_1);
     }
   }
   iVar1 = *(int *)(param_2 + 0x10);
   if (iVar1 == 6) {
-    _stricmp(*(uint64_t *)(param_2 + 8),&DAT_180a1d218);
+    _stricmp(*(uint64_t *)(param_2 + 8),&system_memory_d218);
     iVar1 = *(int *)(param_2 + 0x10);
   }
   if (iVar1 == 7) {
-    _stricmp(*(uint64_t *)(param_2 + 8),&DAT_180a1d220);
+    _stricmp(*(uint64_t *)(param_2 + 8),&system_memory_d220);
   }
   return;
 }

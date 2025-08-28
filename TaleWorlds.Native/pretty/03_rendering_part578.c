@@ -515,7 +515,7 @@ void FUN_180585590(longlong param_1)
   fStack_164 = *(float *)(param_1 + 0x5c) + *(float *)(param_1 + 0x7c);
   fVar11 = *(float *)(param_1 + 0x58) + *(float *)(param_1 + 0x78);
   uStack_15c = 0x7f7fffff;
-  fVar17 = (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x298) * 8) -
+  fVar17 = (float)(*(longlong *)(&system_error_code + (longlong)*(int *)(param_1 + 0x298) * 8) -
                   *(longlong *)(param_1 + 0x290)) * 1e-05;
   lVar2 = *(longlong *)(param_1 + 0xf0);
   lVar9 = (longlong)*(int *)(lVar2 + 0xf0) * 0xa0 + *(longlong *)(lVar2 + 0xd0);

@@ -834,7 +834,7 @@ longlong process_engine_object_operation(longlong *object_ptr, longlong *param2,
   else {
     if (operation == 1) {
       // 复制对象
-      new_object = (uint64_t *)allocate_memory_block(_DAT_180c8ed18, 0x18, 8, DAT_180bf65bc, 0xfffffffffffffffe);
+      new_object = (uint64_t *)allocate_memory_block(_DAT_180c8ed18, 0x18, 8, system_allocation_flags, 0xfffffffffffffffe);
       temp_ptr = (uint64_t *)*param2;
       temp_data = temp_ptr[1];
       *new_object = *temp_ptr;
@@ -882,7 +882,7 @@ longlong process_engine_object_reference(longlong *object_ptr, longlong *param2,
   else {
     if (operation == 1) {
       // 创建引用
-      new_object = (uint64_t *)allocate_memory_block(_DAT_180c8ed18, 0x18, 8, DAT_180bf65bc, 0xfffffffffffffffe);
+      new_object = (uint64_t *)allocate_memory_block(_DAT_180c8ed18, 0x18, 8, system_allocation_flags, 0xfffffffffffffffe);
       temp_ptr = (uint64_t *)*param2;
       temp_data = temp_ptr[1];
       *new_object = *temp_ptr;
@@ -944,7 +944,7 @@ int32_t *initialize_engine_object_structure(int32_t *object_ptr, uint64_t param2
   *(uint64_t *)(object_ptr + 10) = 0;
   *(uint64_t *)(object_ptr + 0xc) = 0;
   
-  (**(code **)(*internal_ptr + 0x10))(internal_ptr, &DAT_18098bc73, param3, param4, 0xfffffffffffffffe);
+  (**(code **)(*internal_ptr + 0x10))(internal_ptr, &system_buffer_ptr, param3, param4, 0xfffffffffffffffe);
   *(int16_t *)(object_ptr + 0xe) = 0;
   return object_ptr;
 }

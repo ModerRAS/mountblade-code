@@ -371,7 +371,7 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
         puStack_e0 = auStack_d0;
         auStack_d0[0] = 0;
         uStack_d8 = uStack_3a8;
-        puVar19 = &DAT_18098bc73;
+        puVar19 = &system_buffer_ptr;
         if (puStack_3b0 != (void *)0x0) {
             puVar19 = puStack_3b0;
         }
@@ -669,7 +669,7 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
             
             // 设置渲染标志
             *(uint *)(lVar18 + 4) = *(uint *)(lVar18 + 4) | 0x80;
-            puVar19 = &DAT_18098bc73;
+            puVar19 = &system_buffer_ptr;
             if ((void *)plVar20[0x52] != (void *)0x0) {
                 puVar19 = (void *)plVar20[0x52];
             }

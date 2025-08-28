@@ -119,7 +119,7 @@ void FUN_1801c93c0(void)
   uStack_318 = 0;
   FUN_1806277c0(&puStack_328,iStack_2e8);
   if (0 < iStack_2e8) {
-    puVar6 = &DAT_18098bc73;
+    puVar6 = &system_buffer_ptr;
     if (puStack_2f0 != (void *)0x0) {
       puVar6 = puStack_2f0;
     }
@@ -145,7 +145,7 @@ void FUN_1801c93c0(void)
   puVar5[6] = 0x73722e;
   uStack_318 = iVar7;
   lVar3 = FUN_180624440(apuStack_258,&puStack_328);
-  puVar6 = &DAT_18098bc73;
+  puVar6 = &system_buffer_ptr;
   if (*(void **)(lVar3 + 8) != (void *)0x0) {
     puVar6 = *(void **)(lVar3 + 8);
   }
@@ -156,7 +156,7 @@ void FUN_1801c93c0(void)
     puStack_2c8 = auStack_2b8;
     auStack_2b8[0] = 0;
     uStack_2c0 = 0;
-    strcpy_s(auStack_2b8,0x20,&DAT_18098bc73);
+    strcpy_s(auStack_2b8,0x20,&system_buffer_ptr);
     lStack_358 = lVar1 + 0x90;
     ppuStack_338 = &puStack_2d0;
     uStack_340 = 0;
@@ -643,7 +643,7 @@ LAB_1801c9fa3:
       }
       else {
         plStack_1b0 = (longlong *)FUN_180240a60();
-        puVar22 = &DAT_18098bc73;
+        puVar22 = &system_buffer_ptr;
         if (puVar18 != (int8_t *)0x0) {
           puVar22 = puVar18;
         }
@@ -659,11 +659,11 @@ LAB_1801c9fa3:
             FUN_180628040(&puStack_218,&UNK_180a0d318,*(int16_t *)(ppppplVar9 + 4));
             FUN_180628040(&puStack_218,&UNK_180a0d330,uVar12);
             uVar16 = 1;
-            puVar27 = (uint64_t *)&DAT_180bf6758;
+            puVar27 = (uint64_t *)&system_state_6758;
             lVar20 = 0x20;
             do {
               if ((uVar12 & uVar16) != 0) {
-                puVar15 = &DAT_18098bc73;
+                puVar15 = &system_buffer_ptr;
                 if ((void *)*puVar27 != (void *)0x0) {
                   puVar15 = (void *)*puVar27;
                 }
@@ -684,7 +684,7 @@ LAB_1801c9fa3:
               do {
                 if (((ulonglong)ppplVar5 & uVar7) != 0) {
                   puVar15 = *(void **)(lVar28 + 8 + lVar20);
-                  puVar23 = &DAT_18098bc73;
+                  puVar23 = &system_buffer_ptr;
                   if (puVar15 != (void *)0x0) {
                     puVar23 = puVar15;
                   }
@@ -737,7 +737,7 @@ LAB_1801c9fa3:
     _clear___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
               (auStack_160 + (longlong)*(int *)(puStack_168 + 4) + -8,0);
   }
-  puVar15 = &DAT_18098bc73;
+  puVar15 = &system_buffer_ptr;
   if (puStack_210 != (void *)0x0) {
     puVar15 = puStack_210;
   }

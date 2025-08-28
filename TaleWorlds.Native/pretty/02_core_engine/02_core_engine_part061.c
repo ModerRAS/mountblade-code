@@ -435,7 +435,7 @@ void process_render_state(longlong render_context, longlong scene_data)
                 (**(code **)(*plVar19 + 0x168))(plVar19,1,&uStack_250);
                 param_1 = lStack_298;
                 iVar25 = iStack_2c4;
-                if (DAT_180c82846 == '\0') {
+                if (system_memory_2846 == '\0') {
                   plVar19 = *(longlong **)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x8400);
                   (**(code **)(*plVar19 + 0x60))(plVar19,(*puVar36 / 3) * 3,iStack_2c8,0);
                   param_1 = lStack_298;
@@ -499,18 +499,18 @@ allocate_render_resources(uint64_t param_1, uint64_t param_2, uint64_t param_3, 
   cleanup_flag = 0xfffffffffffffffe;
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
               0x48) < _DAT_180d49210) {
-    FUN_1808fcb90(&DAT_180d49210);
+    FUN_1808fcb90(&system_memory_9210);
     if (_DAT_180d49210 == -1) {
       _DAT_180d49218 = &UNK_180a3c3e0;
       _DAT_180d49230 = 0;
       _DAT_180d49220 = (void *)0x0;
       _DAT_180d49228 = 0;
       FUN_1808fc820(FUN_1809419e0);
-      FUN_1808fcb30(&DAT_180d49210);
+      FUN_1808fcb30(&system_memory_9210);
     }
   }
-  FUN_1801717e0(*(uint64_t *)(_DAT_180c86870 + 8),&DAT_180d49218,param_3,param_4,cleanup_flag);
-  resource_ptr = &DAT_18098bc73;
+  FUN_1801717e0(*(uint64_t *)(_DAT_180c86870 + 8),&system_memory_9218,param_3,param_4,cleanup_flag);
+  resource_ptr = &system_buffer_ptr;
   if (_DAT_180d49220 != (void *)0x0) {
     resource_ptr = _DAT_180d49220;
   }
@@ -543,7 +543,7 @@ int8_t render_scene_objects(uint64_t param_1, longlong render_context, uint64_t 
   puStackX_20 = param_4;
   uVar2 = func_0x000180220c90(*(int32_t *)(param_2 + 0x324));
   FUN_18012e3b0();
-  puVar3 = &DAT_18098bc73;
+  puVar3 = &system_buffer_ptr;
   if ((void *)param_4[1] != (void *)0x0) {
     puVar3 = (void *)param_4[1];
   }
@@ -711,7 +711,7 @@ void process_scene_rendering(uint64_t render_target, uint64_t camera_data, longl
   } while (*pcVar9 != '\0');
   *puVar8 = &UNK_180a01604;
   puVar8[2] = pcVar10 + -0x180a01603;
-  puVar19 = &DAT_18098bc73;
+  puVar19 = &system_buffer_ptr;
   if (*(void **)(param_5 + 8) != (void *)0x0) {
     puVar19 = *(void **)(param_5 + 8);
   }

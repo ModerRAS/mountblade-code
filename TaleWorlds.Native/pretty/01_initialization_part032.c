@@ -183,7 +183,7 @@ ulonglong FUN_180060a50(longlong *param_1,uint *param_2)
     if (uVar9 != 0) {
       do {
         if (puVar4 == (ulonglong *)0x0) {
-          puVar4 = (ulonglong *)&DAT_00000008;
+          puVar4 = (ulonglong *)&system_ptr_0008;
         }
         puVar6 = (ulonglong *)(*puVar4 - 8);
         if (*puVar4 == 0) {
@@ -211,7 +211,7 @@ ulonglong FUN_180060a50(longlong *param_1,uint *param_2)
   if ((int)uVar10 != 0) {
     do {
       if (puVar4 == (ulonglong *)0x0) {
-        puVar4 = (ulonglong *)&DAT_00000008;
+        puVar4 = (ulonglong *)&system_ptr_0008;
       }
       uVar10 = *puVar4;
       puVar5 = (ulonglong *)(uVar10 - 8);
@@ -445,7 +445,7 @@ uint64_t FUN_180060e40(uint64_t *param_1,longlong param_2,uint64_t param_3)
     plVar4 = (longlong *)*param_1;
     plVar2 = *(longlong **)(param_2 + 0x10);
     if (plVar2 == (longlong *)0x0) {
-      plVar2 = (longlong *)&DAT_00000008;
+      plVar2 = (longlong *)&system_ptr_0008;
     }
     lVar3 = *plVar2;
     while( true ) {
@@ -757,7 +757,7 @@ void FUN_180061380(uint64_t param_1,longlong param_2)
   FUN_18005ea90(lVar1 + 0x48,&puStack_238);
   *(uint64_t **)(lVar2 + 400) = puVar3;
   puStack_1a8 = &UNK_18098bcb0;
-  FUN_180627e10(_DAT_180c86870 + 0x170,auStack_230,&DAT_1809fc8c8);
+  FUN_180627e10(_DAT_180c86870 + 0x170,auStack_230,&system_ptr_c8c8);
   if (0 < *(int *)(param_2 + 0x10)) {
     FUN_1806277c0(auStack_230,uStack_220 + *(int *)(param_2 + 0x10));
                     // WARNING: Subroutine does not return

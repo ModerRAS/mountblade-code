@@ -746,7 +746,7 @@ LAB_18037777e:
         } while ((int)uStack_30c < iVar24);
       }
       puVar21 = *(void **)(lVar16 + 0x10);
-      puVar29 = &DAT_18098bc73;
+      puVar29 = &system_buffer_ptr;
       if ((*(uint *)(lVar16 + 0x60) & 0x400000) == 0) {
         if (puVar21 != (void *)0x0) {
           puVar29 = puVar21;

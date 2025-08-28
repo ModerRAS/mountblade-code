@@ -334,7 +334,7 @@ longlong * FUN_1801993a0(uint64_t param_1,longlong *param_2,uint64_t param_3,cha
     (**(code **)(*(longlong *)(*param_2 + 0x1f0) + 0x10))
               ((longlong *)(*param_2 + 0x1f0),&UNK_180a0b290);
     FUN_180276f30(*param_2,*param_2 + 0x214,1);
-    (**(code **)(*(longlong *)*param_2 + 0x148))((longlong *)*param_2,&DAT_180a00300);
+    (**(code **)(*(longlong *)*param_2 + 0x148))((longlong *)*param_2,&system_data_0300);
   }
   if (plStack_28 != (longlong *)0x0) {
     (**(code **)(*plStack_28 + 0x38))();
@@ -393,7 +393,7 @@ void FUN_180199500(longlong param_1,float param_2,char param_3)
   }
   *(float *)(param_1 + 0x60) = fVar12 / (float)(int)uVar9;
   if (*(char *)(param_1 + 0x5ba0) == '\0') {
-    fVar12 = (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x5b98) * 8) %
+    fVar12 = (float)(*(longlong *)(&system_error_code + (longlong)*(int *)(param_1 + 0x5b98) * 8) %
                     1000000000) * 1e-05;
   }
   else {

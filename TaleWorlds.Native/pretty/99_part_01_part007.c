@@ -483,7 +483,7 @@ CONFIG_COMPLETE:
     stack_ptr2 = buffer1;
     buffer1[0] = 0;
     temp_storage4 = *(int32_t *)(output_buffer + 0x20);
-    data_pointer = &DAT_18098bc73;
+    data_pointer = &system_buffer_ptr;
     
     if (*(void **)(output_buffer + 0x18) != (void *)0x0) {
         data_pointer = *(void **)(output_buffer + 0x18);
@@ -846,7 +846,7 @@ uint64_t ResourceInitializer(longlong system_context, int* init_params, longlong
     stack_ptr2 = buffer1;
     buffer1[0] = 0;
     temp_storage24 = *(int32_t *)(resource_handle + 0x20);
-    data_pointer = &DAT_18098bc73;
+    data_pointer = &system_buffer_ptr;
     
     if (*(void **)(resource_handle + 0x18) != (void *)0x0) {
         data_pointer = *(void **)(resource_handle + 0x18);

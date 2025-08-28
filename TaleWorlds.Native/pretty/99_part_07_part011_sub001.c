@@ -61,7 +61,7 @@ void FUN_1804a45f0(uint64_t param_1,longlong *param_2)
   
   uStack_40 = 0xfffffffffffffffe;
   lVar6 = (**(code **)(_DAT_180c8ece0 + 0x2d8))(*(int32_t *)(_DAT_180c8ece0 + 0x10));
-  puVar13 = &DAT_18098bc73;
+  puVar13 = &system_buffer_ptr;
   if (*(void **)(lVar6 + 8) != (void *)0x0) {
     puVar13 = *(void **)(lVar6 + 8);
   }

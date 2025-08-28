@@ -432,14 +432,14 @@ longlong * FUN_18063ccc0(longlong *param_1,uint64_t param_2,uint64_t param_3,uin
   param_1[0x12] = 0;
   param_1[0x10] = 0;
   *(int32_t *)(param_1 + 0x11) = 0;
-  (**(code **)(*param_1 + 0x10))(param_1,&DAT_18098bc73,param_3,param_4,0xfffffffffffffffe);
-  (**(code **)(*plVar1 + 0x10))(plVar1,&DAT_18098bc73);
+  (**(code **)(*param_1 + 0x10))(param_1,&system_buffer_ptr,param_3,param_4,0xfffffffffffffffe);
+  (**(code **)(*plVar1 + 0x10))(plVar1,&system_buffer_ptr);
   *(int8_t *)(param_1 + 8) = 0;
   *(int32_t *)((longlong)param_1 + 0x44) = 0;
   *(int32_t *)(param_1 + 10) = 0;
   param_1[9] = 0;
-  (**(code **)(*plVar2 + 0x10))(plVar2,&DAT_18098bc73);
-  (**(code **)(*plVar3 + 0x10))(plVar3,&DAT_18098bc73);
+  (**(code **)(*plVar2 + 0x10))(plVar2,&system_buffer_ptr);
+  (**(code **)(*plVar3 + 0x10))(plVar3,&system_buffer_ptr);
   param_1[0x15] = 0;
   return param_1;
 }
@@ -770,7 +770,7 @@ FUN_18063dda0(longlong *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
       uVar3 = uVar3 & 0xffffffff;
       do {
         puVar1 = *(void **)(lVar4 + 8 + *param_1);
-        puVar5 = &DAT_18098bc73;
+        puVar5 = &system_buffer_ptr;
         if (puVar1 != (void *)0x0) {
           puVar5 = puVar1;
         }

@@ -124,7 +124,7 @@ LAB_18027a8f4:
         FUN_180627c50(&puStack_2a0,lVar9);
         break;
       }
-      lVar9 = (longlong)&DAT_180a03a84 - (longlong)pcVar15;
+      lVar9 = (longlong)&system_data_3a84 - (longlong)pcVar15;
       while (*pcVar15 == pcVar15[lVar9]) {
         pcVar15 = pcVar15 + 1;
         if (pcVar6 <= pcVar15) goto LAB_18027a8f4;
@@ -240,7 +240,7 @@ LAB_18027ab65:
             FUN_180627c50(&uStack_280,lVar9);
             break;
           }
-          lVar9 = (longlong)&DAT_180a03a84 - (longlong)pcVar15;
+          lVar9 = (longlong)&system_data_3a84 - (longlong)pcVar15;
           while (*pcVar15 == pcVar15[lVar9]) {
             pcVar15 = pcVar15 + 1;
             if (pcVar6 <= pcVar15) goto LAB_18027ab65;
@@ -263,7 +263,7 @@ LAB_18027ab65:
           pcStack_150 = acStack_140;
           acStack_140[0] = '\0';
           iStack_148 = *(int *)(lVar5 + 0x10);
-          puVar12 = &DAT_18098bc73;
+          puVar12 = &system_buffer_ptr;
           if (*(void **)(lVar5 + 8) != (void *)0x0) {
             puVar12 = *(void **)(lVar5 + 8);
           }
@@ -684,7 +684,7 @@ void FUN_18027b5d0(longlong param_1,longlong param_2)
   
   uStack_40 = 0xfffffffffffffffe;
   puVar2 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,3);
-  puVar5 = &DAT_18098bc73;
+  puVar5 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar5 = *(void **)(param_2 + 8);
   }
@@ -703,7 +703,7 @@ void FUN_18027b5d0(longlong param_1,longlong param_2)
           fread(lVar3,1,(longlong)aiStackX_18[0],puVar2[1]);
           *(int8_t *)(aiStackX_18[0] + lVar3) = 0;
           FUN_180627910(&puStack_68,lVar3);
-          while ((0 < (int)uStack_58 && (lVar4 = strstr(lStack_60,&DAT_180a0ff10), lVar4 != 0))) {
+          while ((0 < (int)uStack_58 && (lVar4 = strstr(lStack_60,&system_data_ff10), lVar4 != 0))) {
             iVar9 = 6;
             iVar8 = (int)lVar4 - (int)lStack_60;
             if (uStack_58 < iVar8 + 6U) {
@@ -761,7 +761,7 @@ void FUN_18027b5d0(longlong param_1,longlong param_2)
         *(int8_t *)(aiStackX_10[0] + lVar3) = 0;
         fread(auStack_48,4,1,puVar2[1]);
         FUN_180627910(&puStack_88,lVar3);
-        while ((0 < (int)uStack_78 && (lVar4 = strstr(lStack_80,&DAT_180a0ff10), lVar4 != 0))) {
+        while ((0 < (int)uStack_78 && (lVar4 = strstr(lStack_80,&system_data_ff10), lVar4 != 0))) {
           iVar8 = 6;
           iVar1 = (int)lVar4 - (int)lStack_80;
           if (uStack_78 < iVar1 + 6U) {

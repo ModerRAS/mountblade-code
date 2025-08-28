@@ -586,7 +586,7 @@ longlong * clone_entity(longlong *source_entity, longlong *target_entity)
   if ((longlong *)(*target_entity + 0x218) != source_entity + 0x43) {
     copy_entity_data((longlong *)(*target_entity + 0x218), source_entity[0x43], source_entity[0x44]);
   }
-  temp_ptr = &DAT_18098bc73;
+  temp_ptr = &system_buffer_ptr;
   if ((void *)source_entity[3] != (void *)0x0) {
     temp_ptr = (void *)source_entity[3];
   }

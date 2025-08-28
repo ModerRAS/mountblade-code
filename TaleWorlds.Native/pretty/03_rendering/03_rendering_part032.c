@@ -102,7 +102,7 @@ extern uint64_t UNK_18098bcb0;
 extern uint64_t UNK_1809fcc58;
 extern uint64_t UNK_180a21720;
 extern uint64_t UNK_180a21690;
-extern uint64_t DAT_18098bc73;
+extern uint64_t system_buffer_ptr;
 
 /* ============================================================================
  * 函数声明

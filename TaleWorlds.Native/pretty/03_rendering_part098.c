@@ -611,7 +611,7 @@ uint FUN_1803263e0(longlong *param_1,longlong param_2,longlong param_3)
   else {
     lVar11 = func_0x000180079240();
   }
-  puVar15 = &DAT_18098bc73;
+  puVar15 = &system_buffer_ptr;
   if (*(void **)(lVar11 + 8) != (void *)0x0) {
     puVar15 = *(void **)(lVar11 + 8);
   }
@@ -635,7 +635,7 @@ uint FUN_1803263e0(longlong *param_1,longlong param_2,longlong param_3)
   lVar11 = FUN_180079430(param_3);
   pcVar2 = *(code **)(param_1[0x22] + 0x10);
   puVar15 = *(void **)(lVar11 + 8);
-  puVar16 = &DAT_18098bc73;
+  puVar16 = &system_buffer_ptr;
   if (puVar15 != (void *)0x0) {
     puVar16 = puVar15;
   }
@@ -646,7 +646,7 @@ uint FUN_1803263e0(longlong *param_1,longlong param_2,longlong param_3)
   }
   puVar20 = *(uint64_t **)(*(longlong *)(param_3 + 0x1b8) + 0xc0);
   if (puVar20 != (uint64_t *)0x0) {
-    puVar15 = &DAT_18098bc73;
+    puVar15 = &system_buffer_ptr;
     if ((void *)puVar20[3] != (void *)0x0) {
       puVar15 = (void *)puVar20[3];
     }

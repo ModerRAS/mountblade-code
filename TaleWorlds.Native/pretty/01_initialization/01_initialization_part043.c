@@ -494,25 +494,25 @@ LAB_1800729bd:
       *(int32_t *)(puVar13 + 0xb) = 0x3e232323;
       *(int16_t *)((longlong)puVar13 + 0x5c) = 0xa0a;
       *(int8_t *)((longlong)puVar13 + 0x5e) = 0;
-      puStack_148 = &DAT_18098bc73;
+      puStack_148 = &system_buffer_ptr;
       if (puStack_130 != (int8_t *)0x0) {
         puStack_148 = puStack_130;
       }
       uStack_128 = uVar6 + 0x6d;
       FUN_180062380(_DAT_180c86928,4,0xffffffff00000000,&UNK_1809ff5b0);
-      puStack_148 = &DAT_18098bc73;
+      puStack_148 = &system_buffer_ptr;
       if (puVar10 != (void *)0x0) {
         puStack_148 = puVar10;
       }
       FUN_1800623b0(_DAT_180c86928,4,0xffffffff00000000,3);
       FUN_1800623e0();
-      puVar14 = &DAT_18098bc73;
+      puVar14 = &system_buffer_ptr;
       if (puStack_130 != (int8_t *)0x0) {
         puVar14 = puStack_130;
       }
       OutputDebugStringA(puVar14);
       FUN_18004c2b0(param_4);
-      puVar15 = &DAT_18098bc73;
+      puVar15 = &system_buffer_ptr;
       if (puStack_a0 != (void *)0x0) {
         puVar15 = puStack_a0;
       }
@@ -578,7 +578,7 @@ LAB_1800729bd:
           uStack_68 = 0;
           puStack_80 = &UNK_18098bcb0;
         }
-        puStack_148 = &DAT_18098bc73;
+        puStack_148 = &system_buffer_ptr;
         if (puVar10 != (void *)0x0) {
           puStack_148 = puVar10;
         }
@@ -592,7 +592,7 @@ LAB_1800729bd:
         uStack_d8 = 0;
         puStack_f0 = &UNK_18098bcb0;
       }
-      puVar15 = &DAT_18098bc73;
+      puVar15 = &system_buffer_ptr;
       if (puStack_a0 != (void *)0x0) {
         puVar15 = puStack_a0;
       }
@@ -719,7 +719,7 @@ bool check_system_status(uint64_t param_1, uint64_t *param_2)
     puVar12 = puVar5;
     if ((longlong)puStack_60 - (longlong)puStack_68 >> 5 != 0) {
       do {
-        puVar13 = &DAT_18098bc73;
+        puVar13 = &system_buffer_ptr;
         if (*(void **)((longlong)(puVar6 + 1) + (longlong)puStack_68) != (void *)0x0) {
           puVar13 = *(void **)((longlong)(puVar6 + 1) + (longlong)puStack_68);
         }
@@ -734,7 +734,7 @@ bool check_system_status(uint64_t param_1, uint64_t *param_2)
     FUN_18006f590(&puStack_110);
     if (iStack_100 != 0) {
       FUN_180628040(&puStack_f0,&UNK_1809fe62c,&UNK_1809ff848);
-      puVar6 = (uint64_t *)&DAT_18098bc73;
+      puVar6 = (uint64_t *)&system_buffer_ptr;
       if (puStack_108 != (uint64_t *)0x0) {
         puVar6 = puStack_108;
       }
@@ -770,12 +770,12 @@ bool check_system_status(uint64_t param_1, uint64_t *param_2)
   FUN_180628040(&puStack_f0,&UNK_1809ff8a8,*(int32_t *)*param_2,
                 *(uint64_t *)((int32_t *)*param_2 + 4));
   FUN_180628040(&puStack_f0,&UNK_1809fe62c,&UNK_1809ff8d8);
-  puVar14 = &DAT_18098bc73;
+  puVar14 = &system_buffer_ptr;
   if (puVar13 != (void *)0x0) {
     puVar14 = puVar13;
   }
   FUN_180628040(&puStack_f0,&UNK_1809fe62c,puVar14);
-  puVar10 = (int16_t *)&DAT_18098bc73;
+  puVar10 = (int16_t *)&system_buffer_ptr;
   if (puStack_e8 != (int16_t *)0x0) {
     puVar10 = puStack_e8;
   }
@@ -885,7 +885,7 @@ bool check_system_status(uint64_t param_1, uint64_t *param_2)
     uStack_98 = uStack_98 & 0xffffffff00000000;
     puStack_b0 = &UNK_18098bcb0;
   }
-  puVar14 = &DAT_18098bc73;
+  puVar14 = &system_buffer_ptr;
   if (puVar13 != (void *)0x0) {
     puVar14 = puVar13;
   }
@@ -954,10 +954,10 @@ bool check_system_status(uint64_t param_1, uint64_t *param_2)
 // UNK_1809fd0a0 - 全局字符串数据
 // UNK_180a3c3e0 - 字符串结束标记
 // UNK_18098bcb0 - 字符串处理器
-// DAT_18098bc73 - 空字符串常量
+// system_buffer_ptr - 空字符串常量
 
 // 错误处理相关全局变量：
-// DAT_180c82860 - 错误状态标志
+// system_debug_flag - 错误状态标志
 // UNK_18098bb88 - 默认错误处理器
 // UNK_1809ff918 - 错误日志格式
 
@@ -1016,7 +1016,7 @@ void log_system_error(uint64_t param_1, uint64_t param_2)
   // 记录错误信息
   log_error_message(_DAT_180c86928, 0, 0x100000000, 0, &ERROR_LOG_FORMAT, param_2, 0xfffffffffffffffe);
   
-  if (DAT_180c82860 == '\0') {
+  if (system_debug_flag == '\0') {
     auStackX_18[0] = 0xffff0000;
     create_string_handler(&puStack_30, param_2);
     puVar1 = *(void **)*_DAT_180c8ed08;
@@ -1065,10 +1065,10 @@ void log_system_error(uint64_t param_1, uint64_t param_2)
 // UNK_1809fd0a0 - 全局字符串数据
 // UNK_180a3c3e0 - 字符串结束标记
 // UNK_18098bcb0 - 字符串处理器
-// DAT_18098bc73 - 空字符串常量
+// system_buffer_ptr - 空字符串常量
 
 // 错误处理相关全局变量：
-// DAT_180c82860 - 错误状态标志
+// system_debug_flag - 错误状态标志
 // UNK_18098bb88 - 默认错误处理器
 // UNK_1809ff918 - 错误日志格式
 

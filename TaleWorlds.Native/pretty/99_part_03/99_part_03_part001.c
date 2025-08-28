@@ -117,7 +117,7 @@ final_validation:
     function_ptr2 = FUN_1801eb560;
     
     // 创建处理结构
-    temp_ptr4 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, SMALL_BUFFER_SIZE, 8, DAT_180bf65bc);
+    temp_ptr4 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, SMALL_BUFFER_SIZE, 8, system_allocation_flags);
     *temp_ptr4 = stack_data1;
     *(int8_t *)(temp_ptr4 + 1) = stack_data2;
     stack_data1 = temp_ptr4;
@@ -290,7 +290,7 @@ void load_game_data(uint64_t param1, longlong context_ptr)
     *(int8_t *)((longlong)temp_ptr4 + 0x12) = 0;
     stack_data16 = 0;
     stack_data26 = 0;
-    temp_ptr6 = &DAT_18098bc73;
+    temp_ptr6 = &system_buffer_ptr;
     if (stack_data9 != (void *)0x0) {
         temp_ptr6 = stack_data9;
     }
@@ -577,7 +577,7 @@ bool validate_save_file(longlong file_handle)
     temp_ptr1[6] = 0x6b636173;  // "sack"
     *(int8_t *)(temp_ptr1 + 7) = 0;
     stack_array4[0] = -1;
-    temp_ptr2 = &DAT_18098bc73;
+    temp_ptr2 = &system_buffer_ptr;
     if (stack_data2 != (void *)0x0) {
         temp_ptr2 = stack_data2;
     }
@@ -613,9 +613,9 @@ bool validate_save_file(longlong file_handle)
         validation_result = stack_array1[0] == FILE_SIGNATURE_1;
     }
     temp_long1 = stack_array4[0];
-    if (((DAT_180c82860 == '\0') && (validation_result == false)) &&
+    if (((system_debug_flag == '\0') && (validation_result == false)) &&
        ((*(int *)(_DAT_180c86908 + 0x620) == 0 && (file_handle == 0)))) {
-        if (DAT_180c82842 == '\0') {
+        if (system_debug_flag2 == '\0') {
             MessageBoxA(0, &UNK_180a0cea0, &UNK_180a0cf60, 0x41040);
         }
         else if (*(char *)(_DAT_180c86928 + 0x18) != '\0') {
@@ -684,7 +684,7 @@ void process_save_chunk(uint64_t param1)
     *(int8_t *)((longlong)temp_ptr1 + 0x12) = 0;
     stack_data7 = 0;
     stack_data8 = 0;
-    temp_ptr2 = &DAT_18098bc73;
+    temp_ptr2 = &system_buffer_ptr;
     if (stack_data4 != (void *)0x0) {
         temp_ptr2 = stack_data4;
     }
@@ -805,7 +805,7 @@ void create_save_file(void)
             FUN_18062c1e0(&stack_data6, 1);
             stack_data10 = 0;
             stack_data11 = 0;
-            temp_ptr2 = &DAT_18098bc73;
+            temp_ptr2 = &system_buffer_ptr;
             if (stack_data3 != (int8_t *)0x0) {
                 temp_ptr2 = stack_data3;
             }
@@ -824,7 +824,7 @@ void create_save_file(void)
             FUN_18004b860(&stack_data13, &UNK_1809fd0a0, 0x130a7);
             stack_array1[0] = stack_data15;
             fwrite(stack_array1, 4, 1, temp_long1);
-            temp_ptr3 = &DAT_18098bc73;
+            temp_ptr3 = &system_buffer_ptr;
             if (stack_data14 != (void *)0x0) {
                 temp_ptr3 = stack_data14;
             }
@@ -891,7 +891,7 @@ void build_save_path(longlong *path_ptr, longlong context_ptr)
         stack_data6 = 6;
         strcpy_s(stack_data7, 0x10, &UNK_180a3c07c);
         stack_data2 = 1;
-        temp_ptr2 = &DAT_18098bc73;
+        temp_ptr2 = &system_buffer_ptr;
         if (stack_data5 != (void *)0x0) {
             temp_ptr2 = stack_data5;
         }

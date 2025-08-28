@@ -129,7 +129,7 @@ void FUN_1801ca670(longlong *param_1,uint64_t param_2)
       FUN_1800b31f0(_DAT_180c86930,&plStackX_18,ppppplVar13 + 4,0);
       if (plStackX_18 != (longlong *)0x0) {
         plVar11 = (longlong *)FUN_180240a60();
-        pppplVar7 = (longlong ****)&DAT_18098bc73;
+        pppplVar7 = (longlong ****)&system_buffer_ptr;
         if (ppppplVar13[5] != (longlong ****)0x0) {
           pppplVar7 = ppppplVar13[5];
         }
@@ -251,7 +251,7 @@ LAB_1801cad0b:
               do {
                 if (((ulonglong)pppplVar7 & uVar6) != 0) {
                   puVar25 = *(void **)(lVar22 + lVar20 + 8);
-                  puVar23 = &DAT_18098bc73;
+                  puVar23 = &system_buffer_ptr;
                   if (puVar25 != (void *)0x0) {
                     puVar23 = puVar25;
                   }
@@ -352,11 +352,11 @@ LAB_1801cad0b:
                 FUN_180628040(&puStack_200,&UNK_180a0d388,uVar14);
                 FUN_180628040(&puStack_200,&UNK_180a0d3a0);
                 uVar18 = 1;
-                puVar10 = (uint64_t *)&DAT_180bf6758;
+                puVar10 = (uint64_t *)&system_state_6758;
                 lVar22 = 0x20;
                 do {
                   if ((uVar14 & uVar18) != 0) {
-                    puVar25 = &DAT_18098bc73;
+                    puVar25 = &system_buffer_ptr;
                     if ((void *)*puVar10 != (void *)0x0) {
                       puVar25 = (void *)*puVar10;
                     }
@@ -388,7 +388,7 @@ LAB_1801cad0b:
           ppppplVar13 = (longlong *****)pppplStackX_20;
         }
         FUN_180628040(&puStack_200,&UNK_180a0d3c4);
-        FUN_180628040(&puStack_200,&DAT_1809fcc18);
+        FUN_180628040(&puStack_200,&system_state_cc18);
         if (auVar17 != (int8_t  [8])0x0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900(auVar17);
@@ -411,7 +411,7 @@ LAB_1801cad0b:
     _clear___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
               ((longlong)*(int *)(lStack_158 + 4) + (longlong)&lStack_158,0);
   }
-  puVar25 = &DAT_18098bc73;
+  puVar25 = &system_buffer_ptr;
   if (puStack_1f8 != (void *)0x0) {
     puVar25 = puStack_1f8;
   }

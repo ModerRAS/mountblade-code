@@ -589,8 +589,8 @@ void FUN_180518970(longlong param_1,longlong param_2)
   if (((*(byte *)(lVar10 + 0x5ac) | bVar11) & 1) != 0) {
     lVar5 = *(longlong *)(param_1 + 0x590);
     FUN_180575540(lVar5,1,*(int8_t *)(lVar5 + 0x25f9),*(int8_t *)(lVar5 + 0x2600),
-                  lVar10 + 0x504,&DAT_180a13a10,0x40400000,
-                  (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar10 + 0x570) * 8) -
+                  lVar10 + 0x504,&system_data_3a10,0x40400000,
+                  (float)(*(longlong *)(&system_error_code + (longlong)*(int *)(lVar10 + 0x570) * 8) -
                          *(longlong *)(lVar10 + 0x568)) * 1e-05 < 0.0,~bVar11 & 1,0,0,
                   *(uint64_t *)(param_1 + 0x658));
     lVar10 = *(longlong *)(param_1 + 0x728);
@@ -604,8 +604,8 @@ void FUN_180518970(longlong param_1,longlong param_2)
          (lVar9 = *(longlong *)(param_1 + 0x590),
          *(char *)(*(longlong *)(lVar5 + 0xf8) + 0x88) == *(char *)(lVar9 + 0x25fc))) {
         FUN_180575540(lVar9,2,*(int8_t *)(lVar9 + 0x25fa),*(int8_t *)(lVar9 + 0x2600),
-                      lVar10 + 0x514,&DAT_180a13a10,0x40400000,
-                      (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar10 + 0x570) * 8)
+                      lVar10 + 0x514,&system_data_3a10,0x40400000,
+                      (float)(*(longlong *)(&system_error_code + (longlong)*(int *)(lVar10 + 0x570) * 8)
                              - *(longlong *)(lVar10 + 0x568)) * 1e-05 < 0.0,~(bVar11 >> 1) & 1,0,0,
                       *(uint64_t *)(param_1 + 0x658));
       }

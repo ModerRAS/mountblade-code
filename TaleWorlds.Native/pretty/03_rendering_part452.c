@@ -251,7 +251,7 @@ LAB_180512e2b:
   *(float *)(lVar9 + 0x53c) = fVar19 + *(float *)(lVar9 + 0x53c);
   *(longlong *)(*(longlong *)(unaff_RSI + 0x728) + 0x568) =
        *(longlong *)
-        (&DAT_180c8ed30 + (longlong)*(int *)(*(longlong *)(unaff_RSI + 0x728) + 0x570) * 8) + 40000;
+        (&system_error_code + (longlong)*(int *)(*(longlong *)(unaff_RSI + 0x728) + 0x570) * 8) + 40000;
   return;
 }
 
@@ -392,7 +392,7 @@ void FUN_180512eba(void)
   *(float *)(lVar3 + 0x53c) = fVar15 + *(float *)(lVar3 + 0x53c);
   *(longlong *)(*(longlong *)(unaff_RSI + 0x728) + 0x568) =
        *(longlong *)
-        (&DAT_180c8ed30 + (longlong)*(int *)(*(longlong *)(unaff_RSI + 0x728) + 0x570) * 8) + 40000;
+        (&system_error_code + (longlong)*(int *)(*(longlong *)(unaff_RSI + 0x728) + 0x570) * 8) + 40000;
   return;
 }
 
@@ -541,7 +541,7 @@ void FUN_180512f48(uint64_t param_1,uint64_t param_2)
   *(float *)(lVar3 + 0x53c) = fVar13 + *(float *)(lVar3 + 0x53c);
   *(longlong *)(*(longlong *)(unaff_RSI + 0x728) + 0x568) =
        *(longlong *)
-        (&DAT_180c8ed30 + (longlong)*(int *)(*(longlong *)(unaff_RSI + 0x728) + 0x570) * 8) + 40000;
+        (&system_error_code + (longlong)*(int *)(*(longlong *)(unaff_RSI + 0x728) + 0x570) * 8) + 40000;
   return;
 }
 
@@ -654,7 +654,7 @@ void FUN_180512f80(void)
   *(float *)(lVar3 + 0x53c) = fVar12 + *(float *)(lVar3 + 0x53c);
   *(longlong *)(*(longlong *)(unaff_RSI + 0x728) + 0x568) =
        *(longlong *)
-        (&DAT_180c8ed30 + (longlong)*(int *)(*(longlong *)(unaff_RSI + 0x728) + 0x570) * 8) + 40000;
+        (&system_error_code + (longlong)*(int *)(*(longlong *)(unaff_RSI + 0x728) + 0x570) * 8) + 40000;
   return;
 }
 
@@ -708,7 +708,7 @@ void FUN_1805130b0(longlong param_1,longlong param_2,longlong param_3,longlong p
   *(float *)(lVar2 + 0x53c) = fVar5 + *(float *)(lVar2 + 0x53c);
   *(longlong *)(*(longlong *)(unaff_RSI + 0x728) + 0x568) =
        *(longlong *)
-        (&DAT_180c8ed30 + (longlong)*(int *)(*(longlong *)(unaff_RSI + 0x728) + 0x570) * 8) + 40000;
+        (&system_error_code + (longlong)*(int *)(*(longlong *)(unaff_RSI + 0x728) + 0x570) * 8) + 40000;
   return;
 }
 

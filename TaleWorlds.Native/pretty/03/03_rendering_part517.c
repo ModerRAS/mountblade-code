@@ -84,7 +84,7 @@ extern void* UNK_180a21720;                          // 未知数据块3
 extern void* UNK_180a14860;                          // 未知数据块4
 extern void* UNK_180a34228;                          // 未知数据块5
 extern void* UNK_180a169b8;                          // 未知数据块6
-extern void* DAT_180bf65bc;                          // 数据区引用
+extern void* system_allocation_flags;                          // 数据区引用
 extern void* _DAT_180c86870;                         // 全局系统数据
 
 // 外部函数声明
@@ -890,7 +890,7 @@ int32_t RenderSystem_ExecuteCommand(longlong param_1, int32_t param_2, longlong 
     auStackX_10[0] = param_2;
     
     // 分配命令参数结构体内存（0x18字节，8字节对齐）
-    aplStack_28[0] = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, RENDER_OBJECT_SIZE_18, MEMORY_ALIGN_8, DAT_180bf65bc, 0xfffffffffffffffe);
+    aplStack_28[0] = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, RENDER_OBJECT_SIZE_18, MEMORY_ALIGN_8, system_allocation_flags, 0xfffffffffffffffe);
     
     // 打包命令参数到结构体
     *aplStack_28[0] = (longlong)auStackX_8;    // 返回值指针
@@ -1710,7 +1710,7 @@ void RenderSystem_SetShader(longlong param_1, uint64_t param_2, uint64_t param_3
     pcStack_10 = FUN_18054a960;
     
     // 分配着色器参数结构体内存（0x18字节，8字节对齐）
-    apuStack_28[0] = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18, RENDER_OBJECT_SIZE_18, MEMORY_ALIGN_8, DAT_180bf65bc, 0xfffffffffffffffe);
+    apuStack_28[0] = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18, RENDER_OBJECT_SIZE_18, MEMORY_ALIGN_8, system_allocation_flags, 0xfffffffffffffffe);
     
     // 打包着色器参数
     uStack_40 = (int32_t)param_2;                    // 着色器参数低32位

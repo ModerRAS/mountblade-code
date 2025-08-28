@@ -651,7 +651,7 @@ longlong engine_object_manager(longlong *object_ptr,longlong *param2,int operati
   }
   else {
     if (operation_code == 1) {
-      object_handle = allocate_object(_DAT_180c8ed18,0x38,8,DAT_180bf65bc);
+      object_handle = allocate_object(_DAT_180c8ed18,0x38,8,system_allocation_flags);
       initialize_object(object_handle,*param2);
       *object_ptr = object_handle;
       return 0;

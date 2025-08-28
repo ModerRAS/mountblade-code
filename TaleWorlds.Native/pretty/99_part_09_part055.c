@@ -378,7 +378,7 @@ float * FUN_1805d8cb0(longlong param_1,float *param_2,longlong param_3)
   longlong lVar7;
   float fVar8;
   
-  iVar3 = FUN_18053a410(&DAT_180c95f30,
+  iVar3 = FUN_18053a410(&system_data_5f30,
                         *(int32_t *)
                          (*(longlong *)(*(longlong *)(param_1 + 0x1c8) + 0x590) + 0xac));
   iVar3 = *(int *)(_DAT_180c95f68 + (longlong)iVar3 * 4);

@@ -71,7 +71,7 @@ void FUN_1805238b0(longlong param_1,longlong param_2,uint64_t param_3,uint64_t p
   *(int32_t *)(param_1 + 0x2c0) = 0xffffffff;
   *(int32_t *)(param_1 + 0x2a0) = 0;
   *(uint64_t *)(param_1 + 0x260) =
-       *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x268) * 8);
+       *(uint64_t *)(&system_error_code + (longlong)*(int *)(param_1 + 0x268) * 8);
   func_0x000180590d40(*(uint64_t *)(param_1 + 0x20));
   plVar1 = *(longlong **)(param_1 + 0x5f0);
   *(uint64_t *)(param_1 + 0x5f0) = 0;
@@ -241,7 +241,7 @@ void FUN_1805238b0(longlong param_1,longlong param_2,uint64_t param_3,uint64_t p
   *(uint64_t *)(param_1 + 0x960) = uVar2;
   *(int32_t *)(param_1 + 0x968) = 0;
   *(uint64_t *)(param_1 + 0x970) =
-       *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x978) * 8);
+       *(uint64_t *)(&system_error_code + (longlong)*(int *)(param_1 + 0x978) * 8);
   uVar17 = 0;
   uVar2 = 0;
   uVar14 = 0x7fc000007fc00000;
@@ -253,9 +253,9 @@ void FUN_1805238b0(longlong param_1,longlong param_2,uint64_t param_3,uint64_t p
   FUN_1803975b0();
   *(int32_t *)(param_1 + 0x920) = 0;
   *(uint64_t *)(param_1 + 0x6b8) =
-       *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x6c0) * 8);
+       *(uint64_t *)(&system_error_code + (longlong)*(int *)(param_1 + 0x6c0) * 8);
   *(longlong *)(param_1 + 0x6c8) =
-       *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x6d0) * 8) + 0x5af310800000;
+       *(longlong *)(&system_error_code + (longlong)*(int *)(param_1 + 0x6d0) * 8) + 0x5af310800000;
   _DAT_180bf65b8 = _DAT_180bf65b8 << 0xd ^ _DAT_180bf65b8;
   _DAT_180bf65b8 = _DAT_180bf65b8 >> 0x11 ^ _DAT_180bf65b8;
   _DAT_180bf65b8 = _DAT_180bf65b8 << 5 ^ _DAT_180bf65b8;
@@ -264,10 +264,10 @@ void FUN_1805238b0(longlong param_1,longlong param_2,uint64_t param_3,uint64_t p
     fVar9 = 0.0;
   }
   *(longlong *)(param_1 + 0x5d8) =
-       *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x5e0) * 8) -
+       *(longlong *)(&system_error_code + (longlong)*(int *)(param_1 + 0x5e0) * 8) -
        (longlong)(fVar9 * 100000.0);
   *(uint64_t *)(param_1 + 0x710) =
-       *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x718) * 8);
+       *(uint64_t *)(&system_error_code + (longlong)*(int *)(param_1 + 0x718) * 8);
   *(uint64_t *)(param_1 + 0x678) = 0;
   *(int8_t *)(param_1 + 0xa50) = 0;
   *(int32_t *)(param_1 + 0x670) = 0xffffffff;

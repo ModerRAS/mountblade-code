@@ -765,7 +765,7 @@ longlong *render_system_initialize_render_object(longlong *render_obj)
     }
     
     // 调用初始化完成函数
-    (**(code **)(*resource_ptr + 0x10))(resource_ptr, &DAT_180a0b1c0);
+    (**(code **)(*resource_ptr + 0x10))(resource_ptr, &system_memory_b1c0);
     
     // 最终设置
     *(int8_t *)(render_obj + 0x10f) = 0;                   // 完成标志

@@ -353,7 +353,7 @@ FUN_1801e8210(uint64_t *param_1,longlong param_2,uint64_t param_3,uint64_t param
   *(int32_t *)(param_1 + 2) = 0;
   *(int8_t *)(param_1 + 3) = 0;
   *(int32_t *)(param_1 + 2) = *(int32_t *)(param_2 + 0x10);
-  puVar1 = &DAT_18098bc73;
+  puVar1 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar1 = *(void **)(param_2 + 8);
   }
@@ -946,7 +946,7 @@ LAB_1801e8bf0:
       *(int8_t *)(puVar4 + 3) = 0;
       *(int32_t *)(puVar4 + 2) = *(int32_t *)(lVar7 + 0x10 + (longlong)puVar4);
       puVar1 = *(void **)(lVar7 + 8 + (longlong)puVar4);
-      puVar8 = &DAT_18098bc73;
+      puVar8 = &system_buffer_ptr;
       if (puVar1 != (void *)0x0) {
         puVar8 = puVar1;
       }

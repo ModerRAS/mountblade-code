@@ -216,7 +216,7 @@ void DataProcessor_ProcessConfigData(void)
             handle_near_plane:
                 // 应用近平面配置
                 if ((context_ptr + 0x607d4 != 0) && (length != 0)) {
-                    FUN_18010cbc0(length, &DAT_180a06430, context_ptr + 0x607d4);
+                    FUN_18010cbc0(length, &system_memory_6430, context_ptr + 0x607d4);
                 }
                 
                 // 处理远平面配置
@@ -332,7 +332,7 @@ void DataProcessor_ProcessConfigData(void)
 handle_far_plane:
     // 应用远平面配置并验证数值
     if ((float_ptr != (float*)0x0) && (length != 0)) {
-        FUN_18010cbc0(length, &DAT_180a06430, float_ptr);
+        FUN_18010cbc0(length, &system_memory_6430, float_ptr);
     }
     
     // 确保远平面距离不超过最大值
@@ -412,7 +412,7 @@ void StringProcessor_HandleStrings(int32_t param_1)
 apply_near_plane:
     // 应用近平面配置
     if ((context_ptr + 0x607d4 != 0) && (name_ptr != (char*)0x0)) {
-        FUN_18010cbc0(param_1, &DAT_180a06430, context_ptr + 0x607d4);
+        FUN_18010cbc0(param_1, &system_memory_6430, context_ptr + 0x607d4);
     }
     
     // 处理远平面字符串
@@ -465,7 +465,7 @@ apply_near_plane:
 apply_far_plane:
     // 应用远平面配置并验证数值
     if ((float_ptr != (float*)0x0) && (string_ptr != (char*)0x0)) {
-        FUN_18010cbc0(string_ptr, &DAT_180a06430, float_ptr);
+        FUN_18010cbc0(string_ptr, &system_memory_6430, float_ptr);
     }
     
     // 确保远平面距离不超过最大值
@@ -580,7 +580,7 @@ process_string_config:
 apply_near_plane_config:
     // 应用近平面配置
     if ((context_ptr + 0x607d4 != 0) && (name_ptr != (char*)0x0)) {
-        FUN_18010cbc0(param_1, &DAT_180a06430, context_ptr + 0x607d4);
+        FUN_18010cbc0(param_1, &system_memory_6430, context_ptr + 0x607d4);
     }
     
     // 处理远平面配置
@@ -633,7 +633,7 @@ apply_near_plane_config:
 apply_far_plane_config:
     // 应用远平面配置并验证数值
     if ((float_ptr != (float*)0x0) && (string_ptr != (char*)0x0)) {
-        FUN_18010cbc0(string_ptr, &DAT_180a06430, float_ptr);
+        FUN_18010cbc0(string_ptr, &system_memory_6430, float_ptr);
     }
     
     // 确保远平面距离不超过最大值
@@ -694,7 +694,7 @@ void ConfigProcessor_HandleConfig(int32_t param_1, uint64_t* param_2)
             
             // 应用配置
             if ((param_r11 != 0) && (name_ptr != (char*)0x0)) {
-                FUN_18010cbc0(param_1, &DAT_180a06430);
+                FUN_18010cbc0(param_1, &system_memory_6430);
             }
             
             // 处理远平面配置
@@ -761,7 +761,7 @@ restart_config_processing:
 apply_far_plane:
     // 应用远平面配置并验证数值
     if ((float_ptr != (float*)0x0) && (string_ptr != (char*)0x0)) {
-        FUN_18010cbc0(string_ptr, &DAT_180a06430, float_ptr);
+        FUN_18010cbc0(string_ptr, &system_memory_6430, float_ptr);
     }
     
     // 确保远平面距离不超过最大值
@@ -813,7 +813,7 @@ void DataValidator_ValidateData(longlong param_1)
     
     // 验证参数有效性
     if (param_1 != 0) {
-        FUN_18010cbc0(param_1, &DAT_180a06430);
+        FUN_18010cbc0(param_1, &system_memory_6430);
     }
     
     // 处理远平面配置验证
@@ -866,7 +866,7 @@ void DataValidator_ValidateData(longlong param_1)
 apply_validation:
     // 应用验证结果并确保数值有效性
     if ((float_ptr != (float*)0x0) && (string_ptr != (char*)0x0)) {
-        FUN_18010cbc0(string_ptr, &DAT_180a06430, float_ptr);
+        FUN_18010cbc0(string_ptr, &system_memory_6430, float_ptr);
     }
     
     // 确保远平面距离不超过最大值
@@ -978,7 +978,7 @@ void EntityManager_ProcessEntities(longlong param_1, longlong* param_2)
                             stack_uint64_2 = stack_params;
                             int_ptr = array_params;
                             
-                            stack_string = (char*)FUN_18062b1e0(_DAT_180c8ed18, 0x28, 8, DAT_180bf65bc);
+                            stack_string = (char*)FUN_18062b1e0(_DAT_180c8ed18, 0x28, 8, system_allocation_flags);
                             *(longlong**)stack_string = stack_ptr;
                             *(longlong*)(stack_string + 8) = stack_long;
                             *(int32_t*)(stack_string + 0x10) = (int32_t)stack_uint64_1;
@@ -1169,7 +1169,7 @@ void EntityManager_ProcessEntities(longlong param_1, longlong* param_2)
                                 stack_uint64_2 = stack_params;
                                 int_ptr = array_params;
                                 
-                                stack_string = (char*)FUN_18062b1e0(_DAT_180c8ed18, 0x28, 8, DAT_180bf65bc);
+                                stack_string = (char*)FUN_18062b1e0(_DAT_180c8ed18, 0x28, 8, system_allocation_flags);
                                 *(longlong**)stack_string = stack_ptr;
                                 *(longlong*)(stack_string + 8) = stack_long;
                                 *(int32_t*)(stack_string + 0x10) = (int32_t)stack_uint64_1;
@@ -1357,7 +1357,7 @@ process_entity_init:
     stack_uint64_2 = stack_params;
     int_ptr = array_params;
     
-    stack_string = (char*)FUN_18062b1e0(_DAT_180c8ed18, 0x28, 8, DAT_180bf65bc);
+    stack_string = (char*)FUN_18062b1e0(_DAT_180c8ed18, 0x28, 8, system_allocation_flags);
     *(longlong**)stack_string = stack_ptr;
     *(longlong*)(stack_string + 8) = stack_long;
     *(int32_t*)(stack_string + 0x10) = (int32_t)stack_uint64_1;
@@ -1402,7 +1402,7 @@ process_game_entity:
             stack_uint64_2 = stack_params;
             int_ptr = array_params;
             
-            stack_string = (char*)FUN_18062b1e0(_DAT_180c8ed18, 0x28, 8, DAT_180bf65bc);
+            stack_string = (char*)FUN_18062b1e0(_DAT_180c8ed18, 0x28, 8, system_allocation_flags);
             *(longlong**)stack_string = stack_ptr;
             *(longlong*)(stack_string + 8) = stack_long;
             *(int32_t*)(stack_string + 0x10) = (int32_t)stack_uint64_1;

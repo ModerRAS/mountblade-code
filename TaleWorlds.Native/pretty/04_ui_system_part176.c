@@ -8,7 +8,7 @@ void FUN_18076deb0(int32_t *param_1,longlong param_2)
 {
   if (*(longlong *)(param_1 + 2) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(param_2 + 0x10bd0,*(longlong *)(param_1 + 2),&DAT_18098bc73,0,1);
+    FUN_180742250(param_2 + 0x10bd0,*(longlong *)(param_1 + 2),&system_buffer_ptr,0,1);
   }
   *param_1 = 0;
   *(uint64_t *)(param_1 + 2) = 0;

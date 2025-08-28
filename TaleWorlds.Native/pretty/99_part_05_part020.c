@@ -43,7 +43,7 @@ void FUN_1802e4d10(longlong param_1,longlong param_2)
   }
   lVar6 = FUN_1802e5300(param_1,param_2);
   if (lVar6 != 0) goto LAB_1802e500d;
-  puVar11 = &DAT_18098bc73;
+  puVar11 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar11 = *(void **)(param_2 + 8);
   }

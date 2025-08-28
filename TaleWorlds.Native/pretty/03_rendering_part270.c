@@ -113,7 +113,7 @@ LAB_180417e76:
                               if (puVar6[1] != 0) {
                                 lVar5 = puVar6[1];
                               }
-                              FUN_18010cbc0(lVar5,&DAT_180a06430,auStack_b8);
+                              FUN_18010cbc0(lVar5,&system_data_6430,auStack_b8);
                               break;
                             }
                             lVar5 = (longlong)&UNK_180a1810c - (longlong)pcVar2;

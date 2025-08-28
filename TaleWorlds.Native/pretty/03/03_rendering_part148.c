@@ -189,7 +189,7 @@ void FUN_18035cdb0(longlong *param_1, longlong param_2, uint64_t param_3, uint64
   // 检查参数类型是否为字符串处理
   if (*(int *)(param_2 + 0x10) == 0xe) {
     // 执行字符串比较
-    iVar2 = _stricmp(*(uint64_t *)(param_2 + 8), &DAT_180a1ef48, param_3, param_4, 0xfffffffffffffffe);
+    iVar2 = _stricmp(*(uint64_t *)(param_2 + 8), &system_memory_ef48, param_3, param_4, 0xfffffffffffffffe);
     
     // 如果字符串匹配，执行相应处理
     if (iVar2 == 0) {
@@ -504,7 +504,7 @@ void FUN_18035d260(uint64_t param_1)
   uStack_c8 = 0xe;
   
   // 复制字符串数据
-  strcpy_s(auStack_c0, 0x40, &DAT_180a1ef48);
+  strcpy_s(auStack_c0, 0x40, &system_memory_ef48);
   
   // 初始化字符串处理
   FUN_1800b8300(apuStack_78, &puStack_d8);
@@ -980,7 +980,7 @@ void FUN_18035d760(uint64_t param_1)
   uStack_138 = 0xd;
   
   // 复制配置字符串
-  strcpy_s(auStack_130, 0x40, &DAT_180a1f0d0);
+  strcpy_s(auStack_130, 0x40, &system_memory_f0d0);
   
   // 初始化配置处理
   FUN_1800b8300(apuStack_88, &puStack_148);
@@ -1001,7 +1001,7 @@ void FUN_18035d760(uint64_t param_1)
   appuStack_160[0] = apuStack_88;
   
   // 复制第二组配置字符串
-  strcpy_s(auStack_d0, 0x40, &DAT_180a1f0c8);
+  strcpy_s(auStack_d0, 0x40, &system_memory_f0c8);
   
   // 初始化第二组配置处理
   FUN_1800b8300(apuStack_88, &puStack_e8);
@@ -1041,7 +1041,7 @@ void FUN_18035d8f0(longlong param_1, longlong param_2)
   iVar1 = *(int *)(param_2 + 0x10);
   
   // 检查字符串类型
-  if ((iVar1 != 0xd) || (iVar3 = strcmp(*(uint64_t *)(param_2 + 8), &DAT_180a1f0d0), iVar3 != 0)) {
+  if ((iVar1 != 0xd) || (iVar3 = strcmp(*(uint64_t *)(param_2 + 8), &system_memory_f0d0), iVar3 != 0)) {
     if (iVar1 == 5) {
       lVar7 = 0;
       lVar8 = lVar7;
@@ -1049,7 +1049,7 @@ void FUN_18035d8f0(longlong param_1, longlong param_2)
       // 验证字符串内容
       do {
         lVar6 = lVar8 + 1;
-        if (*(char *)(*(longlong *)(param_2 + 8) + lVar8) != (&DAT_180a1f0c8)[lVar8]) {
+        if (*(char *)(*(longlong *)(param_2 + 8) + lVar8) != (&system_memory_f0c8)[lVar8]) {
           return;
         }
         lVar8 = lVar6;
@@ -1061,7 +1061,7 @@ void FUN_18035d8f0(longlong param_1, longlong param_2)
         if (iVar1 == 6) {
           lVar8 = lVar7;
           while (lVar6 = lVar8 + 1,
-                *(char *)(*(longlong *)(param_1 + 0xa0) + lVar8) == (&DAT_180a1f0e4)[lVar8]) {
+                *(char *)(*(longlong *)(param_1 + 0xa0) + lVar8) == (&system_memory_f0e4)[lVar8]) {
             lVar8 = lVar6;
             if (lVar6 == 7) {
               *(int32_t *)(param_1 + 0xc0) = 0;
@@ -1072,7 +1072,7 @@ void FUN_18035d8f0(longlong param_1, longlong param_2)
         if (iVar1 == 3) {
           do {
             lVar8 = lVar7 + 1;
-            if (*(char *)(*(longlong *)(param_1 + 0xa0) + lVar7) != (&DAT_180a1f0e0)[lVar7]) {
+            if (*(char *)(*(longlong *)(param_1 + 0xa0) + lVar7) != (&system_memory_f0e0)[lVar7]) {
               return;
             }
             lVar7 = lVar8;
@@ -1154,7 +1154,7 @@ void FUN_18035dac0(uint64_t param_1, longlong param_2, uint64_t param_3, uint64_
     // 验证参数内容
     do {
       lVar3 = lVar1;
-      if (*(char *)(*(longlong *)(param_2 + 8) + lVar3) != (&DAT_180a1f0c8)[lVar3]) {
+      if (*(char *)(*(longlong *)(param_2 + 8) + lVar3) != (&system_memory_f0c8)[lVar3]) {
         return;
       }
       lVar1 = lVar3 + 1;
@@ -1258,7 +1258,7 @@ void FUN_18035dc50(longlong param_1)
     if (iVar1 == 6) {
       lVar5 = 0;
       while (lVar6 = lVar5 + 1,
-            *(char *)(*(longlong *)(param_1 + 0xa0) + lVar5) == (&DAT_180a1f0e4)[lVar5]) {
+            *(char *)(*(longlong *)(param_1 + 0xa0) + lVar5) == (&system_memory_f0e4)[lVar5]) {
         lVar5 = lVar6;
         if (lVar6 == 7) {
           *(int32_t *)(param_1 + 0xc0) = 0;
@@ -1270,7 +1270,7 @@ void FUN_18035dc50(longlong param_1)
       lVar5 = 0;
       do {
         lVar6 = lVar5 + 1;
-        if (*(char *)(*(longlong *)(param_1 + 0xa0) + lVar5) != (&DAT_180a1f0e0)[lVar5]) {
+        if (*(char *)(*(longlong *)(param_1 + 0xa0) + lVar5) != (&system_memory_f0e0)[lVar5]) {
           return;
         }
         lVar5 = lVar6;

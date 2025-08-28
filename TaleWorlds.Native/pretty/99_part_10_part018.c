@@ -709,7 +709,7 @@ longlong FUN_1806ae19f(void)
   
   uVar8 = (ulonglong)*(uint *)(unaff_RBX + 1);
   if ((int32_t *)(uVar8 * 0x78) != (int32_t *)0x0) {
-    puVar9 = (int32_t *)&DAT_00000018;
+    puVar9 = (int32_t *)&system_data_0018;
     puVar12 = (int32_t *)(*unaff_RBX + 0x18);
     do {
       *(void **)(puVar9 + -6) = &UNK_18094a9a8;

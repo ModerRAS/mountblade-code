@@ -74,7 +74,7 @@ void FUN_180229a10(longlong *param_1,ulonglong param_2)
         *(int8_t *)(puVar16 + 2) = 0;
         *puVar16 = *(int32_t *)(lVar17 + (longlong)puVar16);
         puVar1 = *(void **)(lVar17 + -8 + (longlong)puVar16);
-        puVar14 = &DAT_18098bc73;
+        puVar14 = &system_buffer_ptr;
         if (puVar1 != (void *)0x0) {
           puVar14 = puVar1;
         }
@@ -309,7 +309,7 @@ void FUN_180229b30(longlong *param_1,ulonglong param_2)
         *(int8_t *)(puVar17 + 2) = 0;
         *puVar17 = *(int32_t *)(lVar11 + (longlong)puVar17);
         puVar3 = *(void **)(lVar11 + -8 + (longlong)puVar17);
-        puVar15 = &DAT_18098bc73;
+        puVar15 = &system_buffer_ptr;
         if (puVar3 != (void *)0x0) {
           puVar15 = puVar3;
         }
@@ -323,7 +323,7 @@ void FUN_180229b30(longlong *param_1,ulonglong param_2)
         *(int8_t *)(puVar17 + 0x28) = 0;
         puVar17[0x26] = *(int32_t *)(lVar11 + 0x98 + (longlong)puVar17);
         puVar3 = *(void **)(lVar11 + 0x90 + (longlong)puVar17);
-        puVar15 = &DAT_18098bc73;
+        puVar15 = &system_buffer_ptr;
         if (puVar3 != (void *)0x0) {
           puVar15 = puVar3;
         }
@@ -457,7 +457,7 @@ void FUN_180229be0(longlong *param_1,ulonglong param_2)
         *(int8_t *)(puVar15 + 2) = 0;
         *puVar15 = *(int32_t *)(lVar16 + (longlong)puVar15);
         puVar1 = *(void **)(lVar16 + -8 + (longlong)puVar15);
-        puVar13 = &DAT_18098bc73;
+        puVar13 = &system_buffer_ptr;
         if (puVar1 != (void *)0x0) {
           puVar13 = puVar1;
         }
@@ -627,7 +627,7 @@ void FUN_180229f80(longlong *param_1,ulonglong param_2)
         *(int8_t *)(puVar17 + 2) = 0;
         *puVar17 = *(int32_t *)(lVar9 + (longlong)puVar17);
         puVar3 = *(void **)(lVar9 + -8 + (longlong)puVar17);
-        puVar14 = &DAT_18098bc73;
+        puVar14 = &system_buffer_ptr;
         if (puVar3 != (void *)0x0) {
           puVar14 = puVar3;
         }
@@ -641,7 +641,7 @@ void FUN_180229f80(longlong *param_1,ulonglong param_2)
         *(int8_t *)(puVar17 + 0x28) = 0;
         puVar17[0x26] = *(int32_t *)(lVar9 + 0x98 + (longlong)puVar17);
         puVar3 = *(void **)(lVar9 + 0x90 + (longlong)puVar17);
-        puVar14 = &DAT_18098bc73;
+        puVar14 = &system_buffer_ptr;
         if (puVar3 != (void *)0x0) {
           puVar14 = puVar3;
         }

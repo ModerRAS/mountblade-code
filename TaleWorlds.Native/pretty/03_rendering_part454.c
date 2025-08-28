@@ -469,7 +469,7 @@ void FUN_180513264(uint64_t param_1,longlong param_2)
         fVar24 = *(float *)(lVar13 + 0x98);
         fVar27 = *(float *)(lVar13 + 0x74);
         fVar26 = *(float *)(lVar13 + 0x70);
-        lVar15 = *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar12 + 0x590) * 8);
+        lVar15 = *(longlong *)(&system_error_code + (longlong)*(int *)(lVar12 + 0x590) * 8);
         fVar21 = fVar26 * *(float *)(lVar13 + 0x84) - fVar27 * *(float *)(lVar13 + 0x80);
         fVar28 = 1.0 / (fVar21 * fVar24);
         unaff_RBP[-8] =

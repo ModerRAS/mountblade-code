@@ -197,7 +197,7 @@ longlong find_in_hash_table(longlong hash_table, longlong key_data)
   longlong result;
   
   // 获取键数据指针和长度
-  key_ptr = &DAT_18098bc73;  // 默认空字符串
+  key_ptr = &system_buffer_ptr;  // 默认空字符串
   if (*(byte **)(key_data + 8) != (byte *)0x0) {
     key_ptr = *(byte **)(key_data + 8);
   }
@@ -420,7 +420,7 @@ longlong *create_data_buffer(longlong context, longlong *buffer_ptr, uint64_t pa
       *(int8_t *)(buffer_data + 3) = 0;
       *(int32_t *)(buffer_data + 2) = *(int32_t *)(current_pos + 0x10 + (longlong)buffer_data);
       data_ptr = *(void **)(current_pos + 8 + (longlong)buffer_data);
-      temp_ptr = &DAT_18098bc73;
+      temp_ptr = &system_buffer_ptr;
       if (data_ptr != (void *)0x0) {
         temp_ptr = data_ptr;
       }
@@ -692,7 +692,7 @@ LAB_180211da7:
   
 LAB_180211e24:
   *(int16_t *)((ulonglong)buffer_capacity + (longlong)buffer_data) = 10;
-  buffer_ptr = (uint64_t *)&DAT_18098bc73;
+  buffer_ptr = (uint64_t *)&system_buffer_ptr;
   if (buffer_data != (uint64_t *)0x0) {
     buffer_ptr = buffer_data;
   }

@@ -133,7 +133,7 @@ void ProcessResourcePoolCleanup(longlong *param_1)
       
       // 复制资源名称数据
       if (0 < *(int *)(lVar5 + 0x10)) {
-        puVar3 = &DAT_18098bc73;
+        puVar3 = &system_buffer_ptr;
         if (*(void **)(lVar5 + 8) != (void *)0x0) {
           puVar3 = *(void **)(lVar5 + 8);
         }
@@ -201,7 +201,7 @@ longlong * FindResourceInHashTable(longlong param_1, longlong *param_2, uint64_t
   // 获取资源名称长度和指针
   uVar3 = *(uint *)(param_4 + 0x10);
   pbVar4 = *(byte **)(param_4 + 8);
-  pbVar6 = &DAT_18098bc73;
+  pbVar6 = &system_buffer_ptr;
   if (pbVar4 != (byte *)0x0) {
     pbVar6 = pbVar4;
   }
@@ -351,7 +351,7 @@ void CopyResourcePoolData(longlong *param_1, uint64_t param_2, uint64_t param_3,
       
       // 复制资源属性
       *puVar8 = *(int32_t *)(lVar7 + 0x10);
-      puVar9 = &DAT_18098bc73;
+      puVar9 = &system_buffer_ptr;
       if (*(void **)(lVar7 + 8) != (void *)0x0) {
         puVar9 = *(void **)(lVar7 + 8);
       }
@@ -464,7 +464,7 @@ void RehashResourceTable(void)
     if (lVar5 != 0) {
       do {
         // 获取资源名称
-        pbVar3 = &DAT_18098bc73;
+        pbVar3 = &system_buffer_ptr;
         if (*(byte **)(lVar5 + 8) != (byte *)0x0) {
           pbVar3 = *(byte **)(lVar5 + 8);
         }
@@ -637,7 +637,7 @@ LAB_18055bcdc:
       *(int32_t *)(lVar8 + 8 + (longlong)puVar4) = *(int32_t *)(puVar4 + 1);
       
       // 复制资源名称
-      puVar6 = &DAT_18098bc73;
+      puVar6 = &system_buffer_ptr;
       if ((void *)*puVar4 != (void *)0x0) {
         puVar6 = (void *)*puVar4;
       }

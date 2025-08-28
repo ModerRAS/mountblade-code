@@ -104,9 +104,9 @@ LAB_1805b441a:
       bVar10 = cVar4 != '\0';
       if (3 < (ushort)auStackX_20[0]) goto LAB_1805b4442;
       lVar5 = (ulonglong)(auStackX_20[0] & 0xffff) * 0x10;
-      if ((*(longlong *)(&DAT_180c92c98 + lVar5) == 0) &&
-         (*(longlong *)(&DAT_180c92ca0 + lVar5) == 0)) goto LAB_1805b441a;
-      if ((bVar10) && (cVar4 = (**(code **)(&DAT_180c92ca0 + lVar5))(), cVar4 != '\0')) {
+      if ((*(longlong *)(&system_data_2c98 + lVar5) == 0) &&
+         (*(longlong *)(&system_data_2ca0 + lVar5) == 0)) goto LAB_1805b441a;
+      if ((bVar10) && (cVar4 = (**(code **)(&system_data_2ca0 + lVar5))(), cVar4 != '\0')) {
         bVar10 = true;
         goto LAB_1805b4350;
       }

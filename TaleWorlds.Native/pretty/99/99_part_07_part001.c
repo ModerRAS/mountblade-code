@@ -270,7 +270,7 @@ void FUN_1803fa980(longlong *param_1, longlong param_2);
 /**
  * @brief 系统数据处理相关变量
  */
-extern uint8_t DAT_180bf00a8;           /* 系统数据控制器 */
+extern uint8_t system_stack_cookie;           /* 系统数据控制器 */
 extern uint8_t UNK_1801f9270;           /* 系统初始化器 */
 extern uint8_t UNK_18062b420;           /* 系统内存分配器 */
 extern uint8_t UNK_18064e990;           /* 系统数据验证器 */
@@ -409,7 +409,7 @@ void FUN_1803f94b0(longlong param_1, longlong param_2) {
         uStack_1d8 = 0xe;
         
         // 字符串管理和数据处理
-        puVar5 = &DAT_18098bc73;
+        puVar5 = &system_buffer_ptr;
         if (*(void **)(param_2 + 0x3528) != (void *)0x0) {
             puVar5 = *(void **)(param_2 + 0x3528);
         }
@@ -420,7 +420,7 @@ void FUN_1803f94b0(longlong param_1, longlong param_2) {
         puStack_180 = auStack_170;
         auStack_170[0] = 0;
         uStack_178 = uStack_1d8;
-        puVar3 = (uint64_t *)&DAT_18098bc73;
+        puVar3 = (uint64_t *)&system_buffer_ptr;
         if (puStack_1e0 != (uint64_t *)0x0) {
             puVar3 = puStack_1e0;
         }
@@ -458,7 +458,7 @@ void FUN_1803f94b0(longlong param_1, longlong param_2) {
         uStack_1f8 = 0x11;
         
         // 渲染数据处理
-        puVar5 = &DAT_18098bc73;
+        puVar5 = &system_buffer_ptr;
         if (*(void **)(param_2 + 0x3528) != (void *)0x0) {
             puVar5 = *(void **)(param_2 + 0x3528);
         }
@@ -469,7 +469,7 @@ void FUN_1803f94b0(longlong param_1, longlong param_2) {
         puStack_e0 = auStack_d0;
         auStack_d0[0] = 0;
         uStack_d8 = uStack_1f8;
-        puVar3 = (uint64_t *)&DAT_18098bc73;
+        puVar3 = (uint64_t *)&system_buffer_ptr;
         if (puStack_200 != (uint64_t *)0x0) {
             puVar3 = puStack_200;
         }
@@ -510,7 +510,7 @@ void FUN_1803f94b0(longlong param_1, longlong param_2) {
         uStack_218 = 0x1e;
         
         // 高级渲染处理
-        puVar5 = &DAT_18098bc73;
+        puVar5 = &system_buffer_ptr;
         if (*(void **)(param_2 + 0x3528) != (void *)0x0) {
             puVar5 = *(void **)(param_2 + 0x3528);
         }
@@ -521,7 +521,7 @@ void FUN_1803f94b0(longlong param_1, longlong param_2) {
         puStack_180 = auStack_170;
         auStack_170[0] = 0;
         uStack_178 = uStack_218;
-        puVar3 = (uint64_t *)&DAT_18098bc73;
+        puVar3 = (uint64_t *)&system_buffer_ptr;
         if (puStack_220 != (uint64_t *)0x0) {
             puVar3 = puStack_220;
         }
@@ -661,10 +661,10 @@ void FUN_1803f9a40(uint64_t *param_1, uint64_t param_2, longlong param_3, int32_
     auStack_100[0] = 0;
     uStack_108 = 0xc;
     auStack_270[0] = param_4;
-    strcpy_s(auStack_100,0x80,&DAT_180a0eb68);
+    strcpy_s(auStack_100,0x80,&system_buffer_eb68);
     
     // 字符串处理和数据初始化
-    puVar6 = &DAT_18098bc73;
+    puVar6 = &system_buffer_ptr;
     if ((void *)param_1[3] != (void *)0x0) {
         puVar6 = (void *)param_1[3];
     }
@@ -679,14 +679,14 @@ void FUN_1803f9a40(uint64_t *param_1, uint64_t param_2, longlong param_3, int32_
     
     // 系统数据处理和配置
     plVar8 = (longlong *)0x0;
-    puVar6 = &DAT_18098bc73;
+    puVar6 = &system_buffer_ptr;
     if (puStack_110 != (void *)0x0) {
         puVar6 = puStack_110;
     }
     FUN_1802c22a0(acStack_278,puVar6);
     
     // 数据验证和处理
-    puVar6 = &DAT_18098bc73;
+    puVar6 = &system_buffer_ptr;
     if ((void *)param_1[3] != (void *)0x0) {
         puVar6 = (void *)param_1[3];
     }
@@ -857,7 +857,7 @@ void FUN_1803f9a40(uint64_t *param_1, uint64_t param_2, longlong param_3, int32_
             FUN_18029d000(*(uint64_t *)(_DAT_180c86938 + 0x1cd8),4);
             FUN_18029cdd0(*(uint64_t *)(_DAT_180c86938 + 0x1cd8),param_1 + 0x1f);
             lVar3 = _DAT_180c86938;
-            puVar6 = &DAT_18098bc73;
+            puVar6 = &system_buffer_ptr;
             if (puStack_110 != (void *)0x0) {
                 puVar6 = puStack_110;
             }

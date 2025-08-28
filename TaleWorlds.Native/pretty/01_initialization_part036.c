@@ -28,7 +28,7 @@ void FUN_180067f60(longlong param_1,longlong param_2)
   uStack_2a0 = 0xfffffffffffffffe;
   uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_2e8;
   FUN_180624440(&puStack_268);
-  puVar4 = &DAT_18098bc73;
+  puVar4 = &system_buffer_ptr;
   if (puStack_260 != (void *)0x0) {
     puVar4 = puStack_260;
   }
@@ -38,7 +38,7 @@ void FUN_180067f60(longlong param_1,longlong param_2)
   uStack_2c8 = CONCAT44(uStack_2c8._4_4_,3);
   lVar2 = CreateFileA(puVar4,0x80000000,1,0);
   if (lVar2 == -1) {
-    puVar4 = &DAT_18098bc73;
+    puVar4 = &system_buffer_ptr;
     if (*(void **)(param_2 + 8) != (void *)0x0) {
       puVar4 = *(void **)(param_2 + 8);
     }
@@ -47,7 +47,7 @@ void FUN_180067f60(longlong param_1,longlong param_2)
   }
   lVar3 = CreateIoCompletionPort(lVar2,*(uint64_t *)(param_1 + 0x213430),0,0);
   if (lVar3 != *(longlong *)(param_1 + 0x213430)) {
-    puVar4 = &DAT_18098bc73;
+    puVar4 = &system_buffer_ptr;
     if (*(void **)(param_2 + 8) != (void *)0x0) {
       puVar4 = *(void **)(param_2 + 8);
     }
@@ -69,7 +69,7 @@ void FUN_180067f60(longlong param_1,longlong param_2)
         __Throw_C_error_std__YAXH_Z(iVar1);
       }
       _DAT_00000018 = *(int32_t *)(param_2 + 0x10);
-      puVar4 = &DAT_18098bc73;
+      puVar4 = &system_buffer_ptr;
       if (*(void **)(param_2 + 8) != (void *)0x0) {
         puVar4 = *(void **)(param_2 + 8);
       }
@@ -188,7 +188,7 @@ longlong FUN_180068490(longlong param_1,longlong param_2)
   void *puVar3;
   
   *(int32_t *)(param_1 + 0x10) = *(int32_t *)(param_2 + 0x10);
-  puVar3 = &DAT_18098bc73;
+  puVar3 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar3 = *(void **)(param_2 + 8);
   }
@@ -645,7 +645,7 @@ longlong FUN_180068ec0(longlong *param_1,longlong *param_2,int param_3,uint64_t 
     }
     else {
       if (param_3 == 1) {
-        lVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x20,8,DAT_180bf65bc);
+        lVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x20,8,system_allocation_flags);
         lVar2 = *param_2;
         *(uint64_t *)(lVar1 + 0x10) = 0;
         *(code **)(lVar1 + 0x18) = _guard_check_icall;
@@ -688,7 +688,7 @@ FUN_180068ff0(uint64_t *param_1,longlong param_2,uint64_t param_3,uint64_t param
   *(int32_t *)(param_1 + 2) = 0;
   *(int8_t *)(param_1 + 3) = 0;
   *(int32_t *)(param_1 + 2) = *(int32_t *)(param_2 + 0x10);
-  puVar1 = &DAT_18098bc73;
+  puVar1 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar1 = *(void **)(param_2 + 8);
   }

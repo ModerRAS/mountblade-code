@@ -153,7 +153,7 @@ void FUN_1800ea780(longlong *param_1)
   }
   *(int32_t *)(*param_1 + 8) = 1;
   plVar4 = *(longlong **)(_DAT_180c86950 + 0x1860);
-  if (DAT_180bfc049 == '\0') {
+  if (system_data_c049 == '\0') {
     _DAT_00000018 = *(int *)(_DAT_180c86890 + 0x12d0) + 1;
   }
   else {

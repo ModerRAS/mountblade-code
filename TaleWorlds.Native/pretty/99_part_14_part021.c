@@ -571,7 +571,7 @@ void FUN_1808fc57c(void)
   if (iVar1 != 0) {
                     // WARNING: Could not recover jumptable at 0x0001808ffd3d. Too many branches
                     // WARNING: Treating indirect jump as call
-    _execute_onexit_table(&DAT_180c821e0);
+    _execute_onexit_table(&system_config_21e0);
     return;
   }
   iVar1 = func_0x000180069ee0();
@@ -623,7 +623,7 @@ void FUN_1808fc780(char param_1)
 int8_t FUN_1808fc7a4(int8_t param_1,char param_2)
 
 {
-  if ((DAT_180c821d8 == '\0') || (param_2 == '\0')) {
+  if ((system_config_21d8 == '\0') || (param_2 == '\0')) {
     func_0x0001800467e0(param_1);
     func_0x0001800467e0(param_1);
   }
@@ -647,7 +647,7 @@ uint64_t FUN_1808fc7d0(uint64_t param_1)
     iVar1 = _crt_atexit(param_1);
   }
   else {
-    iVar1 = _register_onexit_function(&DAT_180c821e0,param_1);
+    iVar1 = _register_onexit_function(&system_config_21e0,param_1);
   }
   uVar3 = 0;
   if (iVar1 == 0) {

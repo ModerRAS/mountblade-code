@@ -127,7 +127,7 @@ void RenderingSystem_SaveResourceData(longlong resource_context, longlong file_c
         *puStack_68 = uVar9;
         puStack_68 = puStack_68 + 1;
         puVar5 = *(void **)(lVar6 + 0x90);
-        puVar7 = &DAT_18098bc73;
+        puVar7 = &system_buffer_ptr;
         if (puVar5 != (void *)0x0) {
           puVar7 = puVar5;
         }
@@ -240,7 +240,7 @@ void RenderingSystem_LoadResourceData(longlong resource_context, longlong file_c
         *(uint64_t *)(puVar5 + 0x24) = 0;
         puVar5[0x26] = 0;
         *puVar5 = 0xffffffff;
-        (**(code **)(*plVar2 + 0x10))(plVar2,&DAT_18098bc73);
+        (**(code **)(*plVar2 + 0x10))(plVar2,&system_buffer_ptr);
         *(uint64_t *)(puVar5 + 1) = 0x3f800000;
         *(uint64_t *)(puVar5 + 3) = 0;
         *(uint64_t *)(puVar5 + 5) = 0x3f80000000000000;
@@ -406,7 +406,7 @@ void RenderingSystem_SaveResourceDataEx(longlong resource_context, longlong file
         *puStack_68 = uVar10;
         puStack_68 = puStack_68 + 1;
         puVar5 = *(void **)(lVar6 + 0x30);
-        puVar7 = &DAT_18098bc73;
+        puVar7 = &system_buffer_ptr;
         if (puVar5 != (void *)0x0) {
           puVar7 = puVar5;
         }
@@ -524,7 +524,7 @@ void RenderingSystem_LoadResourceDataEx(longlong resource_context, longlong file
         *(uint64_t *)(puVar6 + 0xc) = 0;
         puVar6[0xe] = 0;
         *puVar6 = 0xffffffff;
-        (**(code **)(*plVar1 + 0x10))(plVar1,&DAT_18098bc73);
+        (**(code **)(*plVar1 + 0x10))(plVar1,&system_buffer_ptr);
         *(uint64_t *)(puVar6 + 1) = 0;
         *(uint64_t *)(puVar6 + 3) = 0;
         uVar16 = 0;

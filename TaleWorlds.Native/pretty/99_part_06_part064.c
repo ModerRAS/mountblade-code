@@ -398,7 +398,7 @@ LAB_1803e4fb4:
                     // WARNING: Subroutine does not return
     memcpy((int8_t *)((longlong)puVar12 + 0x14),ppppplVar13[0x9c],(longlong)(iVar17 + 1));
   }
-  puVar18 = (uint64_t *)&DAT_18098bc73;
+  puVar18 = (uint64_t *)&system_buffer_ptr;
   if (puVar12 != (uint64_t *)0x0) {
     puVar18 = puVar12;
   }

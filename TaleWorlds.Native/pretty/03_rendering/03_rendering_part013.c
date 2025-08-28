@@ -87,7 +87,7 @@ void Material_Serialize(longlong *source_material, longlong *target_material, ui
   *(int32_t *)(target_material + 0x12) = *(int32_t *)(source_material + 0x90);
   
   // 复制材质名称
-  material_name = &DAT_18098bc73;
+  material_name = &system_buffer_ptr;
   if (*(void **)(source_material + 0x88) != (void *)0x0) {
     material_name = *(void **)(source_material + 0x88);
   }
@@ -95,7 +95,7 @@ void Material_Serialize(longlong *source_material, longlong *target_material, ui
   
   // 复制着色器参数
   *(int32_t *)(target_material + 0x25) = *(int32_t *)(source_material + 0x128);
-  material_name = &DAT_18098bc73;
+  material_name = &system_buffer_ptr;
   if (*(void **)(source_material + 0x120) != (void *)0x0) {
     material_name = *(void **)(source_material + 0x120);
   }

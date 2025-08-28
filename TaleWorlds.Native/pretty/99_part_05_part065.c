@@ -40,7 +40,7 @@ void FUN_1803a1590(longlong param_1,uint64_t param_2,uint64_t param_3,longlong *
     memcpy((int8_t *)((longlong)puVar6 + 0x17),*(uint64_t *)(lVar7 + 0x4e0),
            (longlong)(iVar9 + 1));
   }
-  puVar8 = (int32_t *)&DAT_18098bc73;
+  puVar8 = (int32_t *)&system_buffer_ptr;
   if (puVar6 != (int32_t *)0x0) {
     puVar8 = puVar6;
   }
@@ -103,7 +103,7 @@ void FUN_1803a1590(longlong param_1,uint64_t param_2,uint64_t param_3,longlong *
     memcpy((int8_t *)((longlong)puVar6 + 0x17),*(uint64_t *)(lVar7 + 0x4e0),
            (longlong)(iVar3 + 1));
   }
-  puVar8 = (int32_t *)&DAT_18098bc73;
+  puVar8 = (int32_t *)&system_buffer_ptr;
   if (puVar6 != (int32_t *)0x0) {
     puVar8 = puVar6;
   }
@@ -353,7 +353,7 @@ void FUN_1803a1df0(longlong param_1,uint64_t param_2,uint64_t param_3,longlong *
     memcpy((int8_t *)((longlong)puVar18 + 0x17),*(uint64_t *)(lVar19 + 0x4e0),
            (longlong)(iVar15 + 1));
   }
-  puVar22 = (int32_t *)&DAT_18098bc73;
+  puVar22 = (int32_t *)&system_buffer_ptr;
   if (puVar18 != (int32_t *)0x0) {
     puVar22 = puVar18;
   }
@@ -361,7 +361,7 @@ void FUN_1803a1df0(longlong param_1,uint64_t param_2,uint64_t param_3,longlong *
   lVar19 = FUN_1803a24a0(&plStackX_20,0xc);
   *(int8_t *)(lVar19 + 0x11) = 1;
   *(longlong *)(param_1 + 0x818) = lVar19;
-  if (DAT_180c82847 == '\0') {
+  if (system_data_2847 == '\0') {
     FUN_1800a5810(_DAT_180c86938,lVar19,0,0,plVar17,
                   *(int32_t *)(*(longlong *)(*(longlong *)(param_1 + 0x10) + 0x68) + 0xa4));
     FUN_18023ce10(plVar17);
@@ -467,7 +467,7 @@ void FUN_1803a1df0(longlong param_1,uint64_t param_2,uint64_t param_3,longlong *
         memcpy((int8_t *)((longlong)puVar18 + 0x17),*(uint64_t *)(lVar19 + 0x4e0),
                (longlong)(iVar15 + 1));
       }
-      puVar22 = (int32_t *)&DAT_18098bc73;
+      puVar22 = (int32_t *)&system_buffer_ptr;
       if (puVar18 != (int32_t *)0x0) {
         puVar22 = puVar18;
       }
@@ -475,7 +475,7 @@ void FUN_1803a1df0(longlong param_1,uint64_t param_2,uint64_t param_3,longlong *
       lVar19 = FUN_1803a24a0(&plStackX_20,0,0);
       *(int8_t *)(lVar19 + 0x11) = 1;
       *(longlong *)(param_1 + 0x810) = lVar19;
-      if (DAT_180c82847 == '\0') {
+      if (system_data_2847 == '\0') {
         FUN_1800a5810(_DAT_180c86938,lVar19,0,0,plVar17,
                       *(int32_t *)(*(longlong *)(*(longlong *)(param_1 + 0x10) + 0x68) + 0xa4));
         FUN_18023ce10(plVar17);

@@ -398,7 +398,7 @@ longlong* rendering_system_array_data_copy(longlong** dest_ptr, longlong* src_st
             dest_data[0x10] = (int)current_src[-10];
             
             // 处理字符串数据
-            string_ptr = &DAT_18098bc73;
+            string_ptr = &system_buffer_ptr;
             if ((void *)current_src[-0xb] != (void *)0x0) {
                 string_ptr = (void *)current_src[-0xb];
             }

@@ -779,7 +779,7 @@ bool resource_creator_and_validator(longlong system_handle, uint64_t *resource_p
     local_var3 = 2;
     
     // DirectX版本兼容性检查
-    if ((DAT_180c82860 == '\0') && (*(int *)(system_handle + 0x121bc) == 4)) {
+    if ((system_debug_flag == '\0') && (*(int *)(system_handle + 0x121bc) == 4)) {
         local_stack_array[0] = 0;
         local_var2 = (**(code **)(**(longlong **)(system_handle + 0x1d68) + 0xe0))
                           (*(longlong **)(system_handle + 0x1d68), 0, local_stack_array, 4);
@@ -858,7 +858,7 @@ void resource_configurator_and_state_manager(longlong system_handle, int32_t par
     local_stack_value5 = param3;
     
     // DirectX配置检查
-    if (DAT_180c82860 == '\0') {
+    if (system_debug_flag == '\0') {
         if (*(int *)(system_handle + 0x121bc) == 4) {
             local_stack_array[0] = 0;
             local_var3 = (**(code **)(**(longlong **)(system_handle + 0x1d68) + 0xe0))
@@ -872,7 +872,7 @@ void resource_configurator_and_state_manager(longlong system_handle, int32_t par
             *(byte *)(system_handle + 0x121b8) = local_var2;
             local_stack_value13 = (uint)local_var2 * 0x800;
             local_stack_value11 = (uint)local_var2 << 2;
-            if (DAT_180c82860 != '\0') goto LAB_1800a31d1;
+            if (system_debug_flag != '\0') goto LAB_1800a31d1;
         }
         local_stack_value13 = local_stack_value13 + 2;
         if (*(int *)(system_handle + 0x121bc) != 0) {

@@ -52,7 +52,7 @@ void FUN_1804f4a40(longlong param_1,uint64_t param_2,uint64_t param_3)
       cVar2 = FUN_18055f260(param_3,aiStackX_20,&UNK_1809fa510);
       uVar5 = extraout_XMM0_Da_01;
       if (cVar2 != '\0') {
-        cVar2 = FUN_18055f260(param_3,&uStack_64,&DAT_180bfbc90);
+        cVar2 = FUN_18055f260(param_3,&uStack_64,&system_data_bc90);
         uVar5 = extraout_XMM0_Da_02;
         if (cVar2 != '\0') {
           cVar2 = FUN_180646700(param_3,afStack_60,&UNK_1809fa450);
@@ -246,9 +246,9 @@ void FUN_1804f4ce0(longlong param_1,uint64_t param_2,uint64_t param_3)
         (((cVar1 = FUN_180646700(param_3,auStack_30,&UNK_1809fa4d0), cVar1 != '\0' &&
           (cVar1 = FUN_180646700(param_3,auStack_2c,&UNK_1809fa4d0), cVar1 != '\0')) &&
          (cVar1 = FUN_180646700(param_3,auStack_28,&UNK_1809fa4e0), cVar1 != '\0')))) &&
-       (((cVar1 = FUN_18055f260(param_3,&uStack_40,&DAT_180bfbca0), cVar1 != '\0' &&
-         (cVar1 = FUN_18055f260(param_3,(longlong)&uStack_40 + 4,&DAT_180bfbca0), cVar1 != '\0')) &&
-        (cVar1 = FUN_18055f260(param_3,auStack_38,&DAT_180bfbca0), cVar1 != '\0')))) {
+       (((cVar1 = FUN_18055f260(param_3,&uStack_40,&system_data_bca0), cVar1 != '\0' &&
+         (cVar1 = FUN_18055f260(param_3,(longlong)&uStack_40 + 4,&system_data_bca0), cVar1 != '\0')) &&
+        (cVar1 = FUN_18055f260(param_3,auStack_38,&system_data_bca0), cVar1 != '\0')))) {
       uStackX_10 = CONCAT44(uStackX_10._4_4_,(uint)((char)uStackX_10 != '\0'));
       cVar1 = FUN_18055f260(param_3,&uStackX_10,&UNK_1809fa560);
       bVar2 = (int)uStackX_10 != 0;
@@ -477,12 +477,12 @@ FUN_1804f4f20(uint64_t param_1,uint64_t *param_2,uint64_t *param_3,longlong para
               fVar19 = *(float *)((longlong)param_3 + 0x1c) - uStack_1d0._4_4_;
               fVar18 = -param_8;
               if (iStack_1a8 < 3) {
-                pfVar5 = (float *)&DAT_180a1ad20;
+                pfVar5 = (float *)&system_data_ad20;
               }
               fVar14 = fVar19 * fVar19 + fVar17 * fVar17;
               auVar15 = rsqrtss(ZEXT416((uint)fVar14),ZEXT416((uint)fVar14));
               fVar12 = auVar15._0_4_;
-              fVar14 = fVar12 * 0.5 * ((float)DAT_180a401f0 - fVar14 * fVar12 * fVar12);
+              fVar14 = fVar12 * 0.5 * ((float)system_data_01f0 - fVar14 * fVar12 * fVar12);
               fVar17 = fVar19 * fVar14 * pfVar5[1] + fVar17 * fVar14 * *pfVar5;
               if (fVar18 <= fVar17) {
                 if (param_8 <= fVar17) {
@@ -668,12 +668,12 @@ void FUN_1804f511b(uint param_1,int param_2,int param_3,float param_4,float para
             fVar17 = *(float *)(unaff_R15 + 0x1c) - fStack000000000000005c;
             fVar10 = -fVar1;
             if (*(int *)(unaff_RBP + -0x10) < 3) {
-              pfVar7 = (float *)&DAT_180a1ad20;
+              pfVar7 = (float *)&system_data_ad20;
             }
             fVar15 = fVar17 * fVar17 + fVar14 * fVar14;
             auVar16 = rsqrtss(ZEXT416((uint)fVar15),ZEXT416((uint)fVar15));
             fVar12 = auVar16._0_4_;
-            fVar15 = fVar12 * 0.5 * ((float)DAT_180a401f0 - fVar15 * fVar12 * fVar12);
+            fVar15 = fVar12 * 0.5 * ((float)system_data_01f0 - fVar15 * fVar12 * fVar12);
             fVar14 = fVar17 * fVar15 * pfVar7[1] + fVar14 * fVar15 * *pfVar7;
             if (fVar14 < fVar10) {
 LAB_1804f5535:

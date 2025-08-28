@@ -297,7 +297,7 @@ LAB_1805b9a5e:
   if (param_2 == '\0') {
     in_stack_00000048 = (*(int *)(lVar36 + 0x98d9d4) + 1) * 5;
   }
-  lVar46 = *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar36 + 0x87b790) * 8);
+  lVar46 = *(longlong *)(&system_error_code + (longlong)*(int *)(lVar36 + 0x87b790) * 8);
   lVar5 = *(longlong *)(lVar36 + 0x87b788);
   iVar21 = (int)unaff_RBX[0x402];
   uVar32 = (ulonglong)iVar21;
@@ -586,7 +586,7 @@ LAB_1805ba3ca:
     *(uint *)(unaff_RBX + 0x272) = uVar28;
     uVar32 = 0;
     unaff_RBX[0x387] =
-         *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x388] * 8) -
+         *(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x388] * 8) -
          (longlong)(((float)(uVar28 - 1) * 2.3283064e-05 + fVar48) - 50000.0);
     uVar34 = uVar32;
     uVar38 = uVar32;
@@ -1126,7 +1126,7 @@ LAB_1805ba3ca:
     iVar23 = 0;
     uVar24 = 0;
     unaff_RBX[0x387] =
-         *(longlong *)(&DAT_180c8ed30 + (longlong)pfVar15 * 8) -
+         *(longlong *)(&system_error_code + (longlong)pfVar15 * 8) -
          (longlong)(((float)(uVar25 - 1) * 2.3283064e-05 + fVar37) - 50000.0);
     pfVar21 = (float *)0x0;
     uVar18 = uVar24;

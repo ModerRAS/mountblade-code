@@ -655,7 +655,7 @@ void FUN_1802c5bc0(longlong *param_1)
   puStack_130 = auStack_120;
   auStack_120[0] = 0;
   uStack_128 = uStack_88;
-  puVar3 = &DAT_18098bc73;
+  puVar3 = &system_buffer_ptr;
   if (puStack_90 != (void *)0x0) {
     puVar3 = puStack_90;
   }
@@ -682,7 +682,7 @@ void FUN_1802c5bc0(longlong *param_1)
   puStack_1d0 = auStack_1c0;
   auStack_1c0[0] = 0;
   uStack_1c8 = uStack_228;
-  puVar3 = &DAT_18098bc73;
+  puVar3 = &system_buffer_ptr;
   if (puStack_230 != (void *)0x0) {
     puVar3 = puStack_230;
   }

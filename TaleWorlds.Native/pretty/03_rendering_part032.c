@@ -58,7 +58,32 @@ typedef enum {
 } RenderingTransformType;
 
 // ============================================================================
-// 函数声明和别名定义
+// 函数别名定义
+// ============================================================================
+
+// 高级内存分配器 - 用于渲染系统内存分配
+#define AdvancedMemoryAllocator FUN_18062b420
+
+// 资源释放器 - 用于释放渲染系统资源
+#define ResourceReleaser FUN_18064e900
+
+// 状态查询处理器 - 用于查询渲染系统状态
+#define StateQueryProcessor FUN_18007b240
+
+// 数学计算器 - 用于渲染系统数学计算
+#define MathCalculator FUN_180285b40
+
+// 全局数据引用
+#define RenderingSystemGlobalData _DAT_180c8ed18
+#define RenderingSystemDefaultData &DAT_18098bc73
+#define RenderingSystemVTableData1 &UNK_18098bcb0
+#define RenderingSystemVTableData2 &UNK_1809fcc58
+#define RenderingSystemVTableData3 &UNK_180a3c3e0
+#define RenderingSystemVTableData4 &UNK_180a21720
+#define RenderingSystemVTableData5 &UNK_180a21690
+
+// ============================================================================
+// 函数声明
 // ============================================================================
 
 /**
@@ -764,7 +789,7 @@ longlong *RenderingSystemCreateRenderQueue(longlong *param_1, int32_t *param_2, 
             *(int32_t *)(param_4 + 2) = 0;
             *(int8_t *)(param_4 + 3) = 0;
             *(int32_t *)(param_4 + 2) = puVar7[-0x56];
-            puVar8 = &DAT_18098bc73;
+            puVar8 = &system_buffer_ptr;
             if (*(void **)(puVar7 + -0x58) != (void *)0x0) {
                 puVar8 = *(void **)(puVar7 + -0x58);
             }

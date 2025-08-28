@@ -1416,7 +1416,7 @@ int UtilitiesSystem_DataSearcherType1(int64_t param_1, int64_t param_2, int para
     search_result = func_0x00018074b7d0(param_2, param_3, *(uint32_t*)(param_1 + 0x10));
     
     // 执行模式匹配
-    pattern_result = FUN_18074b880(param_2 + search_result, param_3 - search_result, &DAT_180a06434);
+    pattern_result = FUN_18074b880(param_2 + search_result, param_3 - search_result, &system_temp_buffer);
     search_result = search_result + pattern_result;
     
     // 执行最终搜索
@@ -1460,7 +1460,7 @@ int UtilitiesSystem_DataSearcherType2(int64_t param_1, int64_t param_2, int para
     search_result = FUN_18074b880(param_2, param_3, &UNK_1809863f8);
     
     // 执行模式匹配
-    pattern_result = FUN_18074b880(param_2 + search_result, param_3 - search_result, &DAT_180a06434);
+    pattern_result = FUN_18074b880(param_2 + search_result, param_3 - search_result, &system_temp_buffer);
     search_result = search_result + pattern_result;
     
     // 执行最终搜索
@@ -1506,7 +1506,7 @@ int UtilitiesSystem_DataSearcherType3(int64_t param_1, int64_t param_2, int para
     search_result = FUN_18074b880(param_2, param_3, &UNK_180986470);
     
     // 执行第一阶段模式匹配
-    pattern_result = FUN_18074b880(search_result + param_2, param_3 - search_result, &DAT_180a06434);
+    pattern_result = FUN_18074b880(search_result + param_2, param_3 - search_result, &system_temp_buffer);
     search_result = search_result + pattern_result;
     
     // 执行第二阶段搜索
@@ -1514,7 +1514,7 @@ int UtilitiesSystem_DataSearcherType3(int64_t param_1, int64_t param_2, int para
     search_result = search_result + pattern_result;
     
     // 执行第二阶段模式匹配
-    pattern_result = FUN_18074b880(search_result + param_2, param_3 - search_result, &DAT_180a06434);
+    pattern_result = FUN_18074b880(search_result + param_2, param_3 - search_result, &system_temp_buffer);
     search_result = search_result + pattern_result;
     
     // 执行最终搜索

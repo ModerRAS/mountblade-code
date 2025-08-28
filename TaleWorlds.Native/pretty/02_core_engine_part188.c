@@ -521,7 +521,7 @@ void FUN_180170ac0(longlong param_1,longlong param_2)
     uStack_68 = (int32_t)lVar1;
     strcpy_s(auStack_60,0x40,param_2);
   }
-  puVar2 = &DAT_18098bc73;
+  puVar2 = &system_buffer_ptr;
   if (puStack_70 != (void *)0x0) {
     puVar2 = puStack_70;
   }
@@ -637,7 +637,7 @@ void FUN_180170da0(uint64_t param_1,int32_t param_2,uint64_t param_3,uint64_t pa
   longlong lVar1;
   
   lVar1 = GetWindowLongPtrA(param_1,0xffffffeb);
-  if ((lVar1 == 0) || (DAT_180c8ecee != '\0')) {
+  if ((lVar1 == 0) || (system_ptr_ecee != '\0')) {
     DefWindowProcW(param_1,param_2,param_3,param_4);
   }
   else {
@@ -945,7 +945,7 @@ void FUN_180170e80(longlong param_1)
     FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_68);
   case 0xd:
     puVar1 = *(void **)(*(longlong *)(param_1 + 0x20) + 0x150);
-    puVar6 = &DAT_18098bc73;
+    puVar6 = &system_buffer_ptr;
     if (puVar1 != (void *)0x0) {
       puVar6 = puVar1;
     }

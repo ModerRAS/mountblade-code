@@ -235,7 +235,7 @@ void FUN_180538a20(uint64_t param_1,longlong param_2,int32_t param_3)
       }
 LAB_1805394ce:
       if (iVar5 == 0) {
-        *(int32_t *)(&DAT_180c96380 + (longlong)(int)uVar8 * 4) = param_3;
+        *(int32_t *)(&system_data_6380 + (longlong)(int)uVar8 * 4) = param_3;
         goto LAB_1805394fd;
       }
     }
@@ -243,7 +243,7 @@ LAB_1805394ce:
     uVar8 = (ulonglong)((int)uVar8 + 1);
     uVar7 = uVar7 + 1;
     if (0xc1 < (longlong)uVar7) {
-      puVar6 = &DAT_18098bc73;
+      puVar6 = &system_buffer_ptr;
       if (*(void **)(param_2 + 8) != (void *)0x0) {
         puVar6 = *(void **)(param_2 + 8);
       }
@@ -288,7 +288,7 @@ uint64_t FUN_18053a0b0(longlong param_1,longlong param_2)
       *(longlong *)(*(longlong *)(param_1 + 0x10) + *(longlong *)(param_1 + 0x18) * 8)) {
     uVar3 = 0xcbf29ce484222325;
     uVar2 = *(int32_t *)(param_1 + 0x78);
-    pbVar4 = &DAT_18098bc73;
+    pbVar4 = &system_buffer_ptr;
     if (*(byte **)(param_2 + 0x18) != (byte *)0x0) {
       pbVar4 = *(byte **)(param_2 + 0x18);
     }
@@ -313,7 +313,7 @@ uint64_t FUN_18053a0b0(longlong param_1,longlong param_2)
   else {
     if (*(int *)(*(longlong *)(param_1 + 0x38) + (longlong)*(int *)(alStack_38[0] + 0x58) * 4) != -1
        ) {
-      puVar5 = &DAT_18098bc73;
+      puVar5 = &system_buffer_ptr;
       if (*(void **)(param_2 + 0x18) != (void *)0x0) {
         puVar5 = *(void **)(param_2 + 0x18);
       }
@@ -379,7 +379,7 @@ uint64_t FUN_18053a1a8(longlong param_1)
   longlong unaff_RDI;
   
   if (*(int *)(*(longlong *)(unaff_RDI + 0x38) + (longlong)*(int *)(param_1 + 0x58) * 4) != -1) {
-    puVar1 = &DAT_18098bc73;
+    puVar1 = &system_buffer_ptr;
     if (*(void **)(unaff_RSI + 0x18) != (void *)0x0) {
       puVar1 = *(void **)(unaff_RSI + 0x18);
     }
@@ -435,7 +435,7 @@ int32_t FUN_18053a2e0(longlong param_1,longlong param_2)
   pbVar4 = *(byte **)(param_2 + 8);
   uVar3 = *(uint *)(param_2 + 0x10);
   uVar7 = 0xcbf29ce484222325;
-  pbVar6 = &DAT_18098bc73;
+  pbVar6 = &system_buffer_ptr;
   if (pbVar4 != (byte *)0x0) {
     pbVar6 = pbVar4;
   }
@@ -517,7 +517,7 @@ int32_t FUN_18053a410(longlong param_1,int param_2,int param_3,uint64_t param_4)
         memcpy(puStack_28 + uStack_20,*(uint64_t *)(lVar5 + 8),
                (longlong)(*(int *)(lVar5 + 0x10) + 1));
       }
-      puVar2 = &DAT_18098bc73;
+      puVar2 = &system_buffer_ptr;
       if (puStack_28 != (void *)0x0) {
         puVar2 = puStack_28;
       }
@@ -588,7 +588,7 @@ LAB_18053a64e:
       } while (iVar9 < *(int *)(param_1 + 0x88));
     }
   }
-  puVar6 = &DAT_18098bc73;
+  puVar6 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar6 = *(void **)(param_2 + 8);
   }

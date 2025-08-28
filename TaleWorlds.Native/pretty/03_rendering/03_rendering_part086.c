@@ -28,7 +28,7 @@ extern const void* _DAT_180a1ab80;     // 渲染模式5数据 (原 UNK_180a1ab80
 extern const void* _DAT_180a1ab48;     // 错误处理数据 (原 UNK_180a1ab48)
 extern const void* _DAT_180a1ab38;     // 材质控制数据 (原 UNK_180a1ab38)
 extern const void* _DAT_180a1ab18;     // 特效控制数据 (原 UNK_180a1ab18)
-extern const void* _DAT_180a0d598;     // 字符串数据 (原 DAT_180a0d598)
+extern const void* _DAT_180a0d598;     // 字符串数据 (原 system_flag_d598)
 
 /**
  * 渲染系统高级渲染控制函数

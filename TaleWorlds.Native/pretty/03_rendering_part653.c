@@ -664,7 +664,7 @@ void FUN_18063ba00(longlong *param_1,longlong param_2,uint param_3,uint param_4)
   puStack_5b0 = auStack_5a0;
   auStack_5a0[0] = 0;
   uStack_5a8 = *(int32_t *)(lVar4 + 0x10);
-  puVar7 = &DAT_18098bc73;
+  puVar7 = &system_buffer_ptr;
   if (*(void **)(lVar4 + 8) != (void *)0x0) {
     puVar7 = *(void **)(lVar4 + 8);
   }

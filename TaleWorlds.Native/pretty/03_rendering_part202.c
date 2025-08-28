@@ -377,7 +377,7 @@ LAB_180385551:
       puStack_b0 = auStack_a0;
       auStack_a0[0] = 0;
       uStack_a8 = 0x1c;
-      uVar24 = strcpy_s(auStack_a0,0x40,&DAT_1809ffc60);
+      uVar24 = strcpy_s(auStack_a0,0x40,&system_data_fc60);
       FUN_1802037e0(uVar24,iVar9,&puStack_b8);
       puStack_b8 = &UNK_18098bcb0;
       lVar7 = FUN_18062b1e0(_DAT_180c8ed18,iVar9,0x10,3);

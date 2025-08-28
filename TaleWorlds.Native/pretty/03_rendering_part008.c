@@ -842,7 +842,7 @@ void FUN_180271cf0(longlong param_1,longlong param_2)
         *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + (ulonglong)uVar11;
       }
       if (iVar1 < 0x10) {
-        puVar8 = &DAT_18098bc73;
+        puVar8 = &system_buffer_ptr;
         if (puStack_e0 != (void *)0x0) {
           puVar8 = puStack_e0;
         }

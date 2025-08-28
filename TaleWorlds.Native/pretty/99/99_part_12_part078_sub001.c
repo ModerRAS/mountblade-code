@@ -120,7 +120,7 @@
 // 全局变量引用
 extern uint64_t _DAT_180c8ed18;
 extern uint8_t UNK_180a0ba98;
-extern char DAT_180a00300;
+extern char system_memory_0300;
 extern uint8_t UNK_180a1ed48;
 
 /**

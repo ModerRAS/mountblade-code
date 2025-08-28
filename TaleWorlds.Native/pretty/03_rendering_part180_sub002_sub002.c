@@ -128,7 +128,7 @@ LAB_1803768c5:
     }
     else {
       iVar6 = FUN_1801b8ce0(*(longlong *)(lVar28 + 0x2148) + 0x2998,puVar25 + 0xc,lVar17,lVar26,
-                            &DAT_180a00300);
+                            &system_data_0300);
     }
     in_R11D = in_stack_00000048;
   } while (iVar6 == 0);
@@ -438,7 +438,7 @@ LAB_18037624d:
              (fVar30 <= 120.0)) &&
             (iVar24 = FUN_1801b8ce0(*(longlong *)(*(longlong *)(unaff_RBP + 0x290) + 0x2148) +
                                     0x2998,*(longlong *)(unaff_RBP + -0x78) + 0x30,lVar27 + 0x4c,
-                                    lVar28 + 0x18,&DAT_180a00300), iVar24 != 0)))) {
+                                    lVar28 + 0x18,&system_data_0300), iVar24 != 0)))) {
           lVar27 = FUN_180372570(lVar8,iVar6,iVar21);
           uVar16 = *(uint *)(lVar8 + 0x118);
           iVar24 = *(int *)(lVar8 + 0x58);

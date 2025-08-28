@@ -435,7 +435,7 @@ LAB_1800a7660:
   iStack_628 = iStack_740;                         // 设置字符串长度1
   
   // 获取文件名来源
-  puVar15 = &DAT_18098bc73;                        // 默认文件名
+  puVar15 = &system_buffer_ptr;                        // 默认文件名
   if (puStack_748 != (void *)0x0) {
     puVar15 = puStack_748;                          // 使用自定义文件名
   }
@@ -821,30 +821,30 @@ LAB_1800a814a:
   uStack_8a8 = 0;
   uStack_928 = uVar18;
   if (0 < *(int *)(param_11 + 0x10)) {
-    puVar12 = &DAT_18098bc73;
+    puVar12 = &system_buffer_ptr;
     if (puStack_930 != (int8_t *)0x0) {
       puVar12 = puStack_930;
     }
     uStack_768 = 0;
     uStack_758 = 0;
-    FUN_18062dee0(&uStack_768,puVar12,&DAT_1809fc7ec);
+    FUN_18062dee0(&uStack_768,puVar12,&system_memory_c7ec);
     if (cStack_968 == '\0') {
       puStack_7d0 = &UNK_180a3c3e0;
       uStack_7b8 = 0;
       puStack_7c8 = (void *)0x0;
       iStack_7c0 = 0;
-      puVar15 = &DAT_18098bc73;
+      puVar15 = &system_buffer_ptr;
       if (*(void **)(param_11 + 8) != (void *)0x0) {
         puVar15 = *(void **)(param_11 + 8);
       }
       FUN_180628040(&puStack_7d0,&UNK_180a01ff8,puVar15);
       lVar8 = lStack_760;
-      puVar15 = &DAT_18098bc73;
+      puVar15 = &system_buffer_ptr;
       if (puStack_7c8 != (void *)0x0) {
         puVar15 = puStack_7c8;
       }
       fwrite(puVar15,(longlong)iStack_7c0,1,lStack_760);
-      puVar15 = &DAT_18098bc73;
+      puVar15 = &system_buffer_ptr;
       if (puStack_7a8 != (void *)0x0) {
         puVar15 = puStack_7a8;
       }
@@ -887,7 +887,7 @@ LAB_1800a814a:
       lVar7 = 0;
       lVar6 = 0;
       alStack_7e0[0] = -1;
-      puVar15 = &DAT_18098bc73;
+      puVar15 = &system_buffer_ptr;
       if (puStack_7a8 != (void *)0x0) {
         puVar15 = puStack_7a8;
       }
@@ -957,7 +957,7 @@ LAB_1800a837b:
           memcpy(puStack_890 + uStack_888,lVar7,(longlong)((int)lVar8 + 2));
         }
       }
-      puVar15 = &DAT_18098bc73;
+      puVar15 = &system_buffer_ptr;
       if (*(void **)(param_11 + 8) != (void *)0x0) {
         puVar15 = *(void **)(param_11 + 8);
       }
@@ -1000,7 +1000,7 @@ LAB_1800a837b:
                     // WARNING: Subroutine does not return
         FUN_18064e900(lVar7);
       }
-      puVar12 = &DAT_18098bc73;
+      puVar12 = &system_buffer_ptr;
       if (puStack_890 != (int8_t *)0x0) {
         puVar12 = puStack_890;
       }

@@ -874,7 +874,7 @@ uint32_t InitializeResourceContext(void* resource_context, void* device_context,
         resource_offset = func_0x000180079240();
     }
     
-    texture_name = &DAT_18098bc73;
+    texture_name = &system_buffer_ptr;
     if (*(void**)(resource_offset + 8) != NULL) {
         texture_name = *(void**)(resource_offset + 8);
     }
@@ -908,7 +908,7 @@ uint32_t InitializeResourceContext(void* resource_context, void* device_context,
     resource_offset = FUN_180079430(resource_data);
     resource_interface = *(void**)(resource_context[34] + 0x10);
     shader_name = *(void**)(resource_offset + 8);
-    buffer_name = &DAT_18098bc73;
+    buffer_name = &system_buffer_ptr;
     
     if (shader_name != NULL) {
         buffer_name = shader_name;
@@ -927,7 +927,7 @@ uint32_t InitializeResourceContext(void* resource_context, void* device_context,
     /* 处理纹理资源 */
     texture_resource = *(uint64_t**)(*(uint64_t*)(resource_data + 0x1b8) + 0xc0);
     if (texture_resource != NULL) {
-        shader_name = &DAT_18098bc73;
+        shader_name = &system_buffer_ptr;
         if ((void*)texture_resource[3] != NULL) {
             shader_name = (void*)texture_resource[3];
         }

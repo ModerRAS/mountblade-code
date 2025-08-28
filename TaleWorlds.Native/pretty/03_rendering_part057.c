@@ -87,7 +87,7 @@ void FUN_180299420(uint64_t param_1,uint64_t param_2,uint param_3,longlong param
   else {
     in_stack_fffffffffffffe98 =
          CONCAT44((int)((ulonglong)in_stack_fffffffffffffe98 >> 0x20),0xbf800000);
-    FUN_180297340(pfVar1,&uStackX_10,fVar22,0x7f7fffff,in_stack_fffffffffffffe98,&DAT_18098bc73,
+    FUN_180297340(pfVar1,&uStackX_10,fVar22,0x7f7fffff,in_stack_fffffffffffffe98,&system_buffer_ptr,
                   pcVar7,0);
     fVar20 = (float)uStackX_10;
     if (0.0 < (float)uStackX_10) {
@@ -374,7 +374,7 @@ LAB_180299abc:
     uStack_148 = 0;
     fVar26 = fStack_fc;
   }
-  FUN_180122320(CONCAT44(fVar19,fVar26 + *(float *)(lStack_120 + 0x1674)),&DAT_18098bc73,0,1);
+  FUN_180122320(CONCAT44(fVar19,fVar26 + *(float *)(lStack_120 + 0x1674)),&system_buffer_ptr,0,1);
   return;
 }
 
@@ -756,7 +756,7 @@ LAB_180299abc:
     in_stack_00000040 = 0;
   }
   FUN_180122320(CONCAT44(*(int32_t *)(unaff_RBP + 0x90),
-                         fVar26 + *(float *)(in_stack_00000068 + 0x1674)),&DAT_18098bc73,0,1);
+                         fVar26 + *(float *)(in_stack_00000068 + 0x1674)),&system_buffer_ptr,0,1);
   return;
 }
 

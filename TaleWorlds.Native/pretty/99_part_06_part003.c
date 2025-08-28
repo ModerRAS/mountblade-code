@@ -778,7 +778,7 @@ void SystemConfigurationProcessor(longlong *param_1)
     plStack_68 = param_1;
     plStack_58 = param_1;
     strcpy_s(auStack_38, 0x20, &UNK_180a22ab0);
-    puVar1 = &DAT_18098bc73;
+    puVar1 = &system_buffer_ptr;
     if (puStack_48 != (void *)0x0) {
         puVar1 = puStack_48;
     }
@@ -855,7 +855,7 @@ LAB_1803a69e7:
                 (**(code **)(*param_1 + 0x10))(param_1, lVar6);
                 break;
             }
-            lVar6 = (longlong)&DAT_180a03a84 - (longlong)pcVar10;
+            lVar6 = (longlong)&system_memory_3a84 - (longlong)pcVar10;
             while (*pcVar10 == pcVar10[lVar6]) {
                 pcVar10 = pcVar10 + 1;
                 if (pcVar4 <= pcVar10) goto LAB_1803a69e7;
@@ -898,7 +898,7 @@ LAB_1803a6a70:
 LAB_1803a6a8b:
     if ((param_1 + 4 != (longlong *)0x0) && (lVar6 != 0)) {
         puStack_30 = (void *)0x1803a6aa4;
-        FUN_18010cbc0(lVar6, &DAT_180a06430, param_1 + 4);
+        FUN_18010cbc0(lVar6, &system_memory_6430, param_1 + 4);
     }
     pcVar10 = "visible_decal_life_base";
     do {
@@ -936,7 +936,7 @@ LAB_1803a6b10:
 LAB_1803a6b28:
     if (((longlong)param_1 + 0x24 != 0) && (lVar6 != 0)) {
         puStack_30 = (void *)0x1803a6b44;
-        FUN_18010cbc0(lVar6, &DAT_180a06430, (longlong)param_1 + 0x24);
+        FUN_18010cbc0(lVar6, &system_memory_6430, (longlong)param_1 + 0x24);
     }
     puStack_30 = (void *)0x1803a6b63;
     FUN_180631330(param_2, &UNK_180a22af0, param_1 + 5);

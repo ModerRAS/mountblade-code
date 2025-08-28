@@ -877,7 +877,7 @@ LAB_1805d4589:
   }
   else {
     lVar8 = *(longlong *)(lVar8 + 0x590);
-    iVar4 = FUN_18053a410(&DAT_180c95f30,*(int32_t *)(lVar8 + 0xac),*(int32_t *)(lVar5 + 0x1c)
+    iVar4 = FUN_18053a410(&system_data_5f30,*(int32_t *)(lVar8 + 0xac),*(int32_t *)(lVar5 + 0x1c)
                          );
     uVar9 = 0;
     uVar11 = 0;

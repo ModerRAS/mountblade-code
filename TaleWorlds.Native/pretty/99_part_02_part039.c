@@ -36,7 +36,7 @@ void FUN_1801ae1a0(longlong *param_1)
   iVar2 = FUN_1802349a0(plStack_38);
   if ((10 < iVar2) ||
      ((int)((int)plStack_38[0x11] + ((int)plStack_38[0x11] >> 0x1f & 3U)) >> 2 < iVar2)) {
-    puVar3 = &DAT_18098bc73;
+    puVar3 = &system_buffer_ptr;
     if ((void *)plStack_40[3] != (void *)0x0) {
       puVar3 = (void *)plStack_40[3];
     }
@@ -551,7 +551,7 @@ LAB_1801aeebc:
       puStack_68 = &UNK_18098bcb0;
     }
     else {
-      puVar7 = &DAT_18098bc73;
+      puVar7 = &system_buffer_ptr;
       if (*(void **)(param_1 + 0x3ed8) != (void *)0x0) {
         puVar7 = *(void **)(param_1 + 0x3ed8);
       }
@@ -770,7 +770,7 @@ FUN_1801af320(uint64_t param_1,longlong *param_2,int8_t *param_3,longlong param_
     }
   }
   else {
-    puVar7 = &DAT_18098bc73;
+    puVar7 = &system_buffer_ptr;
     if (*(void **)(param_4 + 0x290) != (void *)0x0) {
       puVar7 = *(void **)(param_4 + 0x290);
     }

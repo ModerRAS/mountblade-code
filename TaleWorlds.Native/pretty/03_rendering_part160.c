@@ -202,7 +202,7 @@ void FUN_180368620(longlong param_1)
     do {
       uVar8 = (uint)plVar12;
       plVar12 = (longlong *)*plVar4;
-      puVar5 = &DAT_18098bc73;
+      puVar5 = &system_buffer_ptr;
       if ((void *)plVar12[0x52] != (void *)0x0) {
         puVar5 = (void *)plVar12[0x52];
       }

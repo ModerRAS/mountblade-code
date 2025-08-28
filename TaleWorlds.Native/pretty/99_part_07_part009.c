@@ -72,17 +72,17 @@ void FUN_1804a2fc0(void)
   
   lVar6 = _DAT_180c8a9d0 + 0x150;
   lVar3 = FUN_18062b420(_DAT_180c8ed18,0x40,*(int8_t *)(_DAT_180c8a9d0 + 0x178));
-  FUN_180627910(lVar3 + 0x20,&DAT_180a092b8);
+  FUN_180627910(lVar3 + 0x20,&system_data_92b8);
   lVar4 = FUN_1800590b0(lVar6,acStackX_10,lVar3 + 0x20);
   uVar7 = 1;
   if (acStackX_10[0] == '\0') {
     FUN_18005d1f0();
-    if (DAT_180c82847 == '\0') {
+    if (system_data_2847 == '\0') {
       return;
     }
     lVar6 = _DAT_180c8a9d0 + 0x150;
     lVar3 = FUN_18062b420(_DAT_180c8ed18,0x40,*(int8_t *)(_DAT_180c8a9d0 + 0x178));
-    FUN_180627910(lVar3 + 0x20,&DAT_180a190b0);
+    FUN_180627910(lVar3 + 0x20,&system_data_90b0);
     lVar4 = FUN_1800590b0(lVar6,acStackX_10,lVar3 + 0x20);
     if (acStackX_10[0] == '\0') {
       FUN_18005d1f0();
@@ -592,12 +592,12 @@ void FUN_1804a3270(void)
   _DAT_180c8a9b0 = *puVar1;
   cVar3 = FUN_1801299b0(&UNK_180a2d280,0,0,in_R9,uVar5);
   if (cVar3 != '\0') {
-    FUN_180111070(&UNK_180a2d298,&DAT_180d48f1a);
+    FUN_180111070(&UNK_180a2d298,&system_data_8f1a);
     FUN_180111070(&UNK_180a2d330,0x180d48f19);
     FUN_180111070(&UNK_180a2d348,0x180d48f18);
     FUN_18012cfe0();
   }
-  if (DAT_180d48f1a != '\0') {
+  if (system_data_8f1a != '\0') {
     (**(code **)(_DAT_180c8ece0 + 0x318))(*(int32_t *)(_DAT_180c8ece0 + 0x10));
   }
   _DAT_180c8a9b0 = uVar2;
@@ -624,7 +624,7 @@ FUN_1804a3360(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   uVar4 = 0xfffffffffffffffe;
   uVar3 = 0;
   lVar1 = (**(code **)(_DAT_180c8ece0 + 0x2b8))();
-  puVar2 = &DAT_18098bc73;
+  puVar2 = &system_buffer_ptr;
   if (*(void **)(lVar1 + 8) != (void *)0x0) {
     puVar2 = *(void **)(lVar1 + 8);
   }
@@ -644,13 +644,13 @@ void FUN_1804a33c0(void)
 
 {
   if (_DAT_180c917d0 != (code *)0x0) {
-    (*_DAT_180c917d0)(&DAT_180c917c0,0,0);
+    (*_DAT_180c917d0)(&system_data_17c0,0,0);
   }
   _DAT_180c917d0 = (code *)&UNK_1804a5f30;
   _DAT_180c917d8 = FUN_1804a5e90;
   _DAT_180c917c0 = FUN_180546d20;
   if (_DAT_180c918d0 != (code *)0x0) {
-    (*_DAT_180c918d0)(&DAT_180c918c0,0,0);
+    (*_DAT_180c918d0)(&system_data_18c0,0,0);
   }
   _DAT_180c918d0 = (code *)&UNK_1804a5e50;
   _DAT_180c918d8 = &UNK_1801808a0;

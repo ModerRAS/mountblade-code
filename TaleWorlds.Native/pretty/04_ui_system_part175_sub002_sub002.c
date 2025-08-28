@@ -2195,13 +2195,13 @@ int32_t FUN_18076dc00(short *param_1,longlong param_2,short *param_3)
   lVar3 = *(longlong *)(param_1 + 4);
   if ((lVar3 != 0) && ((int)*param_1 * (int)param_1[1] != (int)param_3[1] * (int)*param_3)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(param_2 + 0x10bd0,lVar3,&DAT_18098bc73,0,1);
+    FUN_180742250(param_2 + 0x10bd0,lVar3,&system_buffer_ptr,0,1);
   }
   if (lVar3 == 0) {
     if (*(longlong *)(param_3 + 4) == 0) {
       return 0;
     }
-    lVar3 = FUN_180741e10(param_2 + 0x10bd0,(int)*param_3 * (int)param_3[1] * 4,&DAT_18098bc73,0,0,0
+    lVar3 = FUN_180741e10(param_2 + 0x10bd0,(int)*param_3 * (int)param_3[1] * 4,&system_buffer_ptr,0,0,0
                           ,1);
     if (lVar3 == 0) {
       return 0x26;

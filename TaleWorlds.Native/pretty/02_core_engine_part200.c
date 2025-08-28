@@ -66,10 +66,10 @@ void FUN_18017ef40(void)
   uVar15 = 0;
   uStack_128 = 0;
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-               0x48) < _DAT_180d49620) && (FUN_1808fcb90(&DAT_180d49620), _DAT_180d49620 == -1)) {
+               0x48) < _DAT_180d49620) && (FUN_1808fcb90(&system_ptr_9620), _DAT_180d49620 == -1)) {
     _DAT_180d49628 = 0;
     FUN_1808fc820(&UNK_180941b00);
-    FUN_1808fcb30(&DAT_180d49620);
+    FUN_1808fcb30(&system_ptr_9620);
   }
   uStack_150 = 0;
   iVar7 = *(int *)(lVar13 + 0x318);
@@ -467,13 +467,13 @@ LAB_180180381:
         }
         plVar18 = *(longlong **)(_DAT_180c8ed08 + 0x18);
         lVar13 = (**(code **)(_DAT_180c8a9c0 + 0x30))();
-        puVar17 = &DAT_18098bc73;
+        puVar17 = &system_buffer_ptr;
         if (*(void **)(lVar13 + 8) != (void *)0x0) {
           puVar17 = *(void **)(lVar13 + 8);
         }
         FUN_180627910(&puStack_148,puVar17);
         lVar13 = (**(code **)(_DAT_180c8a9c0 + 0x20))();
-        puVar17 = &DAT_18098bc73;
+        puVar17 = &system_buffer_ptr;
         if (*(void **)(lVar13 + 8) != (void *)0x0) {
           puVar17 = *(void **)(lVar13 + 8);
         }

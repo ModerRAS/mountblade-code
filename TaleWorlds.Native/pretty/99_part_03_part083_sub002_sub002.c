@@ -167,7 +167,7 @@ void FUN_180248910(longlong param_1)
   uStack_1b0 = 0;
   uStack_1a8 = 0;
   uStack_1a0 = 3;
-  puVar8 = &DAT_18098bc73;
+  puVar8 = &system_buffer_ptr;
   if (*(void **)(param_1 + 0x3528) != (void *)0x0) {
     puVar8 = *(void **)(param_1 + 0x3528);
   }

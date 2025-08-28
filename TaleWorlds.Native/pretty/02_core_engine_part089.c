@@ -190,7 +190,7 @@ LAB_180114554:
     uStack_b8 = 0;
     uStack_c0 = 0;
     uStack_c8 = CONCAT44(uStack_c8._4_4_,uVar7) | 0x10;
-    cVar4 = FUN_1801166f0(&DAT_18098bc73,auStack_98,0x40,&uStack_a8);
+    cVar4 = FUN_1801166f0(&system_buffer_ptr,auStack_98,0x40,&uStack_a8);
     if (cVar4 != '\0') {
       uStack_c8 = param_6;
       FUN_1801134b0(auStack_98,*(uint64_t *)(lVar3 + 0x1ec8),param_2,param_3);
@@ -199,7 +199,7 @@ LAB_180114554:
     uVar7 = (uVar7 & 0x4000 | 0x2040) >> 6;
     func_0x00018012e760(0,*(int32_t *)(lVar3 + 0x1674));
     uStack_a8 = CONCAT44(fVar10,fVar10);
-    cVar4 = FUN_18010f6f0(&DAT_180a063b4,&uStack_a8,uVar7);
+    cVar4 = FUN_18010f6f0(&system_data_63b4,&uStack_a8,uVar7);
     if (cVar4 != '\0') {
       if ((*(char *)(lVar3 + 0x134) == '\0') || (pdVar5 = param_5, param_5 == (double *)0x0)) {
         pdVar5 = param_4;
@@ -345,7 +345,7 @@ LAB_180114554:
     }
     func_0x00018012d470(fVar5);
     in_stack_00000040 = 0;
-    cVar3 = FUN_1801166f0(&DAT_18098bc73,&stack0x00000050,0x40,&stack0x00000040,
+    cVar3 = FUN_1801166f0(&system_buffer_ptr,&stack0x00000050,0x40,&stack0x00000040,
                           CONCAT44(uVar8,uVar4) | 0x10);
     if (cVar3 != '\0') {
       FUN_1801134b0(&stack0x00000050,*(uint64_t *)(unaff_R14 + 0x1ec8),unaff_EBP);
@@ -354,7 +354,7 @@ LAB_180114554:
     uVar4 = (uVar4 & 0x4000 | 0x2040) >> 6;
     func_0x00018012e760(0,*(int32_t *)(unaff_R14 + 0x1674));
     in_stack_00000040 = CONCAT44(fVar7,fVar7);
-    cVar3 = FUN_18010f6f0(&DAT_180a063b4,&stack0x00000040,uVar4);
+    cVar3 = FUN_18010f6f0(&system_data_63b4,&stack0x00000040,uVar4);
     if ((cVar3 != '\0') && (unaff_EBP < 6)) {
                     // WARNING: Could not recover jumptable at 0x0001801146ab. Too many branches
                     // WARNING: Treating indirect jump as call
@@ -434,7 +434,7 @@ void FUN_180114580(void)
   }
   func_0x00018012d470(fVar4);
   in_stack_00000040 = 0;
-  cVar2 = FUN_1801166f0(&DAT_18098bc73,&stack0x00000050,0x40,&stack0x00000040,
+  cVar2 = FUN_1801166f0(&system_buffer_ptr,&stack0x00000050,0x40,&stack0x00000040,
                         CONCAT44(uVar7,unaff_ESI));
   if (cVar2 != '\0') {
     FUN_1801134b0(&stack0x00000050,*(uint64_t *)(unaff_R14 + 0x1ec8),unaff_EBP);
@@ -443,7 +443,7 @@ void FUN_180114580(void)
   uVar3 = (unaff_ESI & 0x4000 | 0x2040) >> 6;
   func_0x00018012e760(0,*(int32_t *)(unaff_R14 + 0x1674));
   in_stack_00000040 = CONCAT44(fVar6,fVar6);
-  cVar2 = FUN_18010f6f0(&DAT_180a063b4,&stack0x00000040,uVar3);
+  cVar2 = FUN_18010f6f0(&system_data_63b4,&stack0x00000040,uVar3);
   if ((cVar2 != '\0') && (unaff_EBP < 6)) {
                     // WARNING: Could not recover jumptable at 0x0001801146ab. Too many branches
                     // WARNING: Treating indirect jump as call

@@ -307,8 +307,8 @@ uint64_t *ShaderPipelineGenerator(uint64_t param_1, uint64_t *param_2, uint64_t 
 #define g_ShaderTemplatePath       UNK_180a3c07c    // 着色器模板路径
 #define g_BufferAllocator          UNK_18098bcb0    // 缓冲区分配器
 #define g_MemoryManager            UNK_180a3c3e0    // 内存管理器
-#define g_DefaultDataBuffer        DAT_18098bc73    // 默认数据缓冲区
-#define g_FileStreamConfig         DAT_1809fc7ec    // 文件流配置
+#define g_DefaultDataBuffer        system_buffer_ptr    // 默认数据缓冲区
+#define g_FileStreamConfig         system_memory_c7ec    // 文件流配置
 #define g_ShaderTextureData        UNK_180a1bd10    // 着色器纹理数据
 #define g_GlobalMemoryPool         _DAT_180c8ed18   // 全局内存池
 #define g_SecurityChecksum        _DAT_180bf00a8   // 安全校验和
@@ -825,8 +825,8 @@ void ShaderSourceCompiler(uint64_t param_1, longlong param_2, longlong param_3, 
 #define g_ShaderTemplatePath       UNK_180a3c07c    // 着色器模板路径
 #define g_BufferAllocator          UNK_18098bcb0    // 缓冲区分配器
 #define g_MemoryManager            UNK_180a3c3e0    // 内存管理器
-#define g_DefaultDataBuffer        DAT_18098bc73    // 默认数据缓冲区
-#define g_FileStreamConfig         DAT_1809fc7ec    // 文件流配置
+#define g_DefaultDataBuffer        system_buffer_ptr    // 默认数据缓冲区
+#define g_FileStreamConfig         system_memory_c7ec    // 文件流配置
 #define g_ShaderTextureData        UNK_180a1bd10    // 着色器纹理数据
 #define g_GlobalMemoryPool         _DAT_180c8ed18   // 全局内存池
 #define g_SecurityChecksum        _DAT_180bf00a8   // 安全校验和

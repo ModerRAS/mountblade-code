@@ -695,7 +695,7 @@ uint64_t BatchProcessor(void)
  =============================================================================*/
 
 // 系统数据区域
-extern int32_t DAT_180be12f0;
+extern int32_t system_data_buffer;
 extern uint64_t UNK_180986ef0;
 extern uint64_t UNK_18095b500;
 extern uint64_t UNK_180983828;
@@ -707,7 +707,7 @@ extern uint64_t UNK_180983bd0;
 extern uint64_t UNK_1809820b0;
 extern uint64_t UNK_180981ec0;
 extern uint64_t UNK_180982878;
-extern int32_t DAT_180a06434;
+extern int32_t system_temp_buffer;
 
 /*==============================================================================
  * 技术说明

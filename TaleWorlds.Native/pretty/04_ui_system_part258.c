@@ -142,15 +142,15 @@ uint64_t FUN_180813210(int param_1)
     fVar48 = (fVar48 + fVar48) - fVar48 * fVar48 * auVar45._4_4_;
     fVar49 = (fVar49 + fVar49) - fVar49 * fVar49 * auVar45._8_4_;
     fVar50 = (fVar50 + fVar50) - fVar50 * fVar50 * auVar45._12_4_;
-    *(float *)(&DAT_180c41900 + uVar6) = fVar46;
-    *(float *)(&DAT_180c41904 + uVar6) = fVar48;
-    *(float *)(&DAT_180c41908 + uVar6) = fVar49;
-    *(float *)(&DAT_180c4190c + uVar6) = fVar50;
+    *(float *)(&system_data_1900 + uVar6) = fVar46;
+    *(float *)(&system_data_1904 + uVar6) = fVar48;
+    *(float *)(&system_data_1908 + uVar6) = fVar49;
+    *(float *)(&system_data_190c + uVar6) = fVar50;
     in_XMM2._0_4_ = fVar46 * fVar33;
     in_XMM2._4_4_ = fVar48 * fVar34;
     in_XMM2._8_4_ = fVar49 * fVar2;
     in_XMM2._12_4_ = fVar50 * fVar3;
-    *(int8_t (*) [16])(&DAT_180c418e0 + uVar6) = in_XMM2;
+    *(int8_t (*) [16])(&system_data_18e0 + uVar6) = in_XMM2;
     uVar6 = uVar6 + 0x10;
     lVar9 = lVar9 + -1;
   } while (lVar9 != 0);
@@ -189,7 +189,7 @@ uint64_t FUN_180813210(int param_1)
     pfVar19 = pfVar19 + 1;
   } while (iVar14 < 0x37);
   iVar14 = 1;
-  pfVar19 = (float *)&DAT_180c42390;
+  pfVar19 = (float *)&system_data_2390;
   do {
     fVar33 = (float)cosf((float)iVar14 * 0.08726647);
     iVar14 = iVar14 + 2;
@@ -197,7 +197,7 @@ uint64_t FUN_180813210(int param_1)
     pfVar19 = pfVar19 + 1;
   } while (iVar14 < 0x13);
   iVar14 = 1;
-  pfVar19 = (float *)&DAT_180c423b8;
+  pfVar19 = (float *)&system_data_23b8;
   do {
     fVar33 = (float)cosf((float)iVar14 * 0.2617994);
     iVar14 = iVar14 + 2;

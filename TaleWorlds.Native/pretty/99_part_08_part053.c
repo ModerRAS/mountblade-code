@@ -707,7 +707,7 @@ void FUN_1805ae000(longlong param_1,uint64_t param_2,longlong *param_3,int32_t p
   *(int32_t *)(param_1 + 0x38) = param_4;
   *(int8_t *)(param_1 + 0x20) = param_5;
   *(uint64_t *)(param_1 + 0x28) =
-       *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x30) * 8);
+       *(uint64_t *)(&system_error_code + (longlong)*(int *)(param_1 + 0x30) * 8);
   if ((longlong *)*param_3 != (longlong *)0x0) {
     (**(code **)(*(longlong *)*param_3 + 0x38))();
   }

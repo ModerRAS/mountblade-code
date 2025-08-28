@@ -1504,7 +1504,7 @@ LAB_18012b465:
     fVar27 = unaff_XMM13_Da;
     if (((uint)unaff_R15D & 0x100000) != 0) {
       uVar14 = CONCAT44(uVar9,0xbf800000);
-      pfVar16 = (float *)FUN_180127c60(unaff_RBP + -0x18,&DAT_1809fdf28,0,0,uVar14);
+      pfVar16 = (float *)FUN_180127c60(unaff_RBP + -0x18,&system_data_df28,0,0,uVar14);
       uVar9 = (int32_t)((ulonglong)uVar14 >> 0x20);
       fVar27 = *pfVar16;
     }
@@ -1566,7 +1566,7 @@ LAB_18012b465:
       func_0x00018004ba20(unaff_RBP + -0x14);
       uVar14 = func_0x00018011fbf0(unaff_RBP + 0x18,unaff_RBP + -0x1a,unaff_RBP + -0xe);
       uVar19 = func_0x00018011fbf0(unaff_RBP + 0x1c,unaff_RBP + -0x18,unaff_RBP + -0xe);
-      FUN_180122890(uVar19,uVar14,&DAT_1809fdf28,0,0);
+      FUN_180122890(uVar19,uVar14,&system_data_df28,0,0);
     }
   }
   *(int16_t *)((longlong)in_stack_00000040 + 0x26a) = 0;

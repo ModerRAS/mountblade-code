@@ -264,7 +264,7 @@ SystemInt32 SystemResourceManager_Initialize(SystemHandle context)
     *system_table_ptr = FUN_1802436f0;
     
     // 配置主资源处理器
-    default_resource_ptr = &DAT_18098bc73;
+    default_resource_ptr = &system_buffer_ptr;
     alternate_resource_ptr = *(SystemHandle**)(*(SystemUInt64*)context + 0xb0);
     if (alternate_resource_ptr != (SystemHandle*)0x0) {
         default_resource_ptr = alternate_resource_ptr;
@@ -277,7 +277,7 @@ SystemInt32 SystemResourceManager_Initialize(SystemHandle context)
     );
     
     // 配置辅助资源处理器
-    default_resource_ptr = &DAT_18098bc73;
+    default_resource_ptr = &system_buffer_ptr;
     alternate_resource_ptr = *(SystemHandle**)(*(SystemUInt64*)context + 0x90);
     if (alternate_resource_ptr != (SystemHandle*)0x0) {
         default_resource_ptr = alternate_resource_ptr;
@@ -513,7 +513,7 @@ SystemInt32 SystemResourceMonitor_Monitor(SystemHandle context)
         strcpy_s(string_buffer, 0x80, &UNK_180a146b0);
         
         // 获取资源名称
-        resource_pointer = &DAT_18098bc73;
+        resource_pointer = &system_buffer_ptr;
         if (*(SystemHandle**)(context + 0x3528) != (SystemHandle*)0x0) {
             resource_pointer = *(SystemHandle**)(context + 0x3528);
         }

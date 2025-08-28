@@ -513,7 +513,7 @@ LAB_1805f44db:
               }
               iVar34 = *piVar18;
               if (-1 < (int)uStack_138) {
-                FUN_180545140(&DAT_180c96110,&uStack_138,0,param_1 + (longlong)iVar34 + 1,plVar28);
+                FUN_180545140(&system_data_6110,&uStack_138,0,param_1 + (longlong)iVar34 + 1,plVar28);
                 iVar34 = *piVar18;
               }
               if (((longlong *)param_1[(longlong)iVar34 + 1] != (longlong *)0x0) &&

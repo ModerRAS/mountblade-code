@@ -461,7 +461,7 @@ void FUN_180513335(float param_1)
   fVar26 = *(float *)(lVar13 + 0x98);
   fVar24 = *(float *)(lVar13 + 0x74);
   fVar27 = *(float *)(lVar13 + 0x70);
-  lVar14 = *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar11 + 0x590) * 8);
+  lVar14 = *(longlong *)(&system_error_code + (longlong)*(int *)(lVar11 + 0x590) * 8);
   fVar19 = fVar27 * *(float *)(lVar13 + 0x84) - fVar24 * *(float *)(lVar13 + 0x80);
   fVar28 = 1.0 / (fVar19 * fVar26);
   unaff_RBP[-8] =
@@ -598,7 +598,7 @@ void FUN_180513dfc(void)
   fVar4 = *(float *)(lVar9 + 0x98);
   fVar5 = *(float *)(lVar9 + 0x74);
   fVar6 = *(float *)(lVar9 + 0x70);
-  lVar10 = *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar8 + 0x590) * 8);
+  lVar10 = *(longlong *)(&system_error_code + (longlong)*(int *)(lVar8 + 0x590) * 8);
   fVar21 = fVar6 * *(float *)(lVar9 + 0x84) - fVar5 * *(float *)(lVar9 + 0x80);
   fVar22 = unaff_XMM14_Da / (fVar21 * fVar4);
   *(float *)(unaff_RBP + -0x20) =

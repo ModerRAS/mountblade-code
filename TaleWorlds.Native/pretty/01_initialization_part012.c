@@ -83,40 +83,40 @@ extern uint64_t UNK_180943180;            /* 系统全局指针18 */
  * 系统互斥锁和同步变量
  * 用于线程同步和资源访问控制
  */
-extern uint64_t DAT_180c95ecc;            /* 系统互斥锁1 */
-extern uint64_t DAT_180c9606c;            /* 系统互斥锁2 */
-extern uint64_t DAT_180c96218;            /* 进程句柄存储 */
-extern uint64_t DAT_180c96690;            /* 互斥锁区域1 */
-extern uint64_t DAT_180c966f0;            /* 互斥锁区域2 */
-extern uint64_t DAT_180c96740;            /* 互斥锁区域3 */
-extern uint64_t DAT_180c96790;            /* 互斥锁数据区域 */
-extern uint64_t DAT_180c967b8;            /* 互斥锁状态标志 */
+extern uint64_t system_memory_5ecc;            /* 系统互斥锁1 */
+extern uint64_t system_memory_606c;            /* 系统互斥锁2 */
+extern uint64_t system_memory_6218;            /* 进程句柄存储 */
+extern uint64_t system_memory_6690;            /* 互斥锁区域1 */
+extern uint64_t system_memory_66f0;            /* 互斥锁区域2 */
+extern uint64_t system_memory_6740;            /* 互斥锁区域3 */
+extern uint64_t system_memory_6790;            /* 互斥锁数据区域 */
+extern uint64_t system_memory_67b8;            /* 互斥锁状态标志 */
 
 /**
  * 系统常量和标识符
  * 用于系统标识和配置
  */
-extern uint64_t DAT_180a2d660;            /* 系统标识符1 */
-extern uint64_t DAT_180a2d590;            /* 系统标识符2 */
-extern uint64_t DAT_1809ff9e8;            /* 系统标识符3 */
-extern uint64_t DAT_1809ff9c0;            /* 系统标识符4 */
-extern uint64_t DAT_180a010a0;            /* 系统标识符5 */
-extern uint64_t DAT_180a01078;            /* 系统标识符6 */
-extern uint64_t DAT_180a01050;            /* 系统标识符7 */
-extern uint64_t DAT_180a01028;            /* 系统标识符8 */
-extern uint64_t DAT_180a01000;            /* 系统标识符9 */
-extern uint64_t DAT_180a00fd8;            /* 系统标识符10 */
-extern uint64_t DAT_180a00fb0;            /* 系统标识符11 */
-extern uint64_t DAT_1809fc740;            /* 系统标识符12 */
-extern uint64_t DAT_1809fc768;            /* 系统标识符13 */
-extern uint64_t DAT_18098c9b8;            /* 系统标识符14 */
-extern uint64_t DAT_18098c940;            /* 系统标识符15 */
-extern uint64_t DAT_18098c918;            /* 系统标识符16 */
-extern uint64_t DAT_18098c968;            /* 系统标识符17 */
-extern uint64_t DAT_18098c990;            /* 系统标识符18 */
-extern uint64_t DAT_18098c9e0;            /* 系统标识符19 */
-extern uint64_t DAT_18098c8f0;            /* 系统标识符20 */
-extern uint64_t DAT_18098c8c8;            /* 系统标识符21 */
+extern uint64_t system_memory_d660;            /* 系统标识符1 */
+extern uint64_t system_memory_d590;            /* 系统标识符2 */
+extern uint64_t system_memory_f9e8;            /* 系统标识符3 */
+extern uint64_t system_memory_f9c0;            /* 系统标识符4 */
+extern uint64_t system_memory_10a0;            /* 系统标识符5 */
+extern uint64_t system_memory_1078;            /* 系统标识符6 */
+extern uint64_t system_memory_1050;            /* 系统标识符7 */
+extern uint64_t system_memory_1028;            /* 系统标识符8 */
+extern uint64_t system_memory_1000;            /* 系统标识符9 */
+extern uint64_t system_memory_0fd8;            /* 系统标识符10 */
+extern uint64_t system_memory_0fb0;            /* 系统标识符11 */
+extern uint64_t system_memory_c740;            /* 系统标识符12 */
+extern uint64_t system_memory_c768;            /* 系统标识符13 */
+extern uint64_t system_memory_c9b8;            /* 系统标识符14 */
+extern uint64_t system_memory_c940;            /* 系统标识符15 */
+extern uint64_t system_memory_c918;            /* 系统标识符16 */
+extern uint64_t system_memory_c968;            /* 系统标识符17 */
+extern uint64_t system_memory_c990;            /* 系统标识符18 */
+extern uint64_t system_memory_c9e0;            /* 系统标识符19 */
+extern uint64_t system_memory_c8f0;            /* 系统标识符20 */
+extern uint64_t system_memory_c8c8;            /* 系统标识符21 */
 
 /**
  * 系统回调函数指针
@@ -317,7 +317,7 @@ uint8_t SystemCallbackRegister_1(void)
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
-        iVar3 = memcmp(puVar6 + 4, &DAT_180a2d660, 0x10);
+        iVar3 = memcmp(puVar6 + 4, &system_memory_d660, 0x10);
         if (iVar3 < 0) {
             puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
@@ -330,7 +330,7 @@ uint8_t SystemCallbackRegister_1(void)
     }
     
     // 如果需要创建新的回调节点
-    if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d660, puVar7 + 4, 0x10), iVar3 < 0)) {
+    if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_d660, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
         SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
         puVar7 = puStackX_10;
@@ -382,7 +382,7 @@ uint8_t SystemCallbackRegister_2(void)
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
-        iVar3 = memcmp(puVar6 + 4, &DAT_180a2d590, 0x10);
+        iVar3 = memcmp(puVar6 + 4, &system_memory_d590, 0x10);
         if (iVar3 < 0) {
             puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
@@ -395,7 +395,7 @@ uint8_t SystemCallbackRegister_2(void)
     }
     
     // 如果需要创建新的回调节点
-    if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d590, puVar7 + 4, 0x10), iVar3 < 0)) {
+    if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_d590, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
         SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
         puVar7 = puStackX_10;
@@ -447,7 +447,7 @@ uint8_t SystemCallbackRegister_3(void)
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
-        iVar3 = memcmp(puVar6 + 4, &DAT_180a2d660, 0x10);
+        iVar3 = memcmp(puVar6 + 4, &system_memory_d660, 0x10);
         if (iVar3 < 0) {
             puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
@@ -460,7 +460,7 @@ uint8_t SystemCallbackRegister_3(void)
     }
     
     // 如果需要创建新的回调节点
-    if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d660, puVar7 + 4, 0x10), iVar3 < 0)) {
+    if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_d660, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
         SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
         puVar7 = puStackX_10;
@@ -512,7 +512,7 @@ uint8_t SystemCallbackRegister_4(void)
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
-        iVar3 = memcmp(puVar6 + 4, &DAT_180a2d590, 0x10);
+        iVar3 = memcmp(puVar6 + 4, &system_memory_d590, 0x10);
         if (iVar3 < 0) {
             puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
@@ -525,7 +525,7 @@ uint8_t SystemCallbackRegister_4(void)
     }
     
     // 如果需要创建新的回调节点
-    if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d590, puVar7 + 4, 0x10), iVar3 < 0)) {
+    if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_d590, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
         SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
         puVar7 = puStackX_10;
@@ -577,7 +577,7 @@ uint8_t SystemCallbackRegister_5(void)
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
-        iVar3 = memcmp(puVar6 + 4, &DAT_1809ff9e8, 0x10);
+        iVar3 = memcmp(puVar6 + 4, &system_memory_f9e8, 0x10);
         if (iVar3 < 0) {
             puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
@@ -590,7 +590,7 @@ uint8_t SystemCallbackRegister_5(void)
     }
     
     // 如果需要创建新的回调节点
-    if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9e8, puVar7 + 4, 0x10), iVar3 < 0)) {
+    if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_f9e8, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
         SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
         puVar7 = puStackX_10;
@@ -642,7 +642,7 @@ uint8_t SystemCallbackRegister_6(void)
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
-        iVar3 = memcmp(puVar6 + 4, &DAT_1809ff9c0, 0x10);
+        iVar3 = memcmp(puVar6 + 4, &system_memory_f9c0, 0x10);
         if (iVar3 < 0) {
             puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
@@ -655,7 +655,7 @@ uint8_t SystemCallbackRegister_6(void)
     }
     
     // 如果需要创建新的回调节点
-    if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9c0, puVar7 + 4, 0x10), iVar3 < 0)) {
+    if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_f9c0, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
         SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
         puVar7 = puStackX_10;
@@ -707,7 +707,7 @@ uint8_t SystemCallbackRegister_7(void)
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
-        iVar3 = memcmp(puVar6 + 4, &DAT_180a010a0, 0x10);
+        iVar3 = memcmp(puVar6 + 4, &system_memory_10a0, 0x10);
         if (iVar3 < 0) {
             puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
@@ -720,7 +720,7 @@ uint8_t SystemCallbackRegister_7(void)
     }
     
     // 如果需要创建新的回调节点
-    if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0, puVar7 + 4, 0x10), iVar3 < 0)) {
+    if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_10a0, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
         SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
         puVar7 = puStackX_10;
@@ -772,7 +772,7 @@ uint8_t SystemCallbackRegister_8(void)
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
-        iVar3 = memcmp(puVar6 + 4, &DAT_180a01078, 0x10);
+        iVar3 = memcmp(puVar6 + 4, &system_memory_1078, 0x10);
         if (iVar3 < 0) {
             puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
@@ -785,7 +785,7 @@ uint8_t SystemCallbackRegister_8(void)
     }
     
     // 如果需要创建新的回调节点
-    if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078, puVar7 + 4, 0x10), iVar3 < 0)) {
+    if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1078, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
         SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
         puVar7 = puStackX_10;
@@ -837,7 +837,7 @@ uint8_t SystemCallbackRegister_9(void)
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
-        iVar3 = memcmp(puVar6 + 4, &DAT_180a01050, 0x10);
+        iVar3 = memcmp(puVar6 + 4, &system_memory_1050, 0x10);
         if (iVar3 < 0) {
             puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
@@ -850,7 +850,7 @@ uint8_t SystemCallbackRegister_9(void)
     }
     
     // 如果需要创建新的回调节点
-    if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050, puVar7 + 4, 0x10), iVar3 < 0)) {
+    if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1050, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
         SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
         puVar7 = puStackX_10;
@@ -902,7 +902,7 @@ uint8_t SystemCallbackRegister_10(void)
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
-        iVar3 = memcmp(puVar6 + 4, &DAT_180a01028, 0x10);
+        iVar3 = memcmp(puVar6 + 4, &system_memory_1028, 0x10);
         if (iVar3 < 0) {
             puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
@@ -915,7 +915,7 @@ uint8_t SystemCallbackRegister_10(void)
     }
     
     // 如果需要创建新的回调节点
-    if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028, puVar7 + 4, 0x10), iVar3 < 0)) {
+    if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1028, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
         SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
         puVar7 = puStackX_10;
@@ -967,7 +967,7 @@ uint8_t SystemCallbackRegister_11(void)
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
-        iVar3 = memcmp(puVar6 + 4, &DAT_180a01000, 0x10);
+        iVar3 = memcmp(puVar6 + 4, &system_memory_1000, 0x10);
         if (iVar3 < 0) {
             puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
@@ -980,7 +980,7 @@ uint8_t SystemCallbackRegister_11(void)
     }
     
     // 如果需要创建新的回调节点
-    if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000, puVar7 + 4, 0x10), iVar3 < 0)) {
+    if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1000, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
         SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
         puVar7 = puStackX_10;
@@ -1032,7 +1032,7 @@ uint8_t SystemCallbackRegister_12(void)
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
-        iVar3 = memcmp(puVar6 + 4, &DAT_180a00fd8, 0x10);
+        iVar3 = memcmp(puVar6 + 4, &system_memory_0fd8, 0x10);
         if (iVar3 < 0) {
             puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
@@ -1045,7 +1045,7 @@ uint8_t SystemCallbackRegister_12(void)
     }
     
     // 如果需要创建新的回调节点
-    if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8, puVar7 + 4, 0x10), iVar3 < 0)) {
+    if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_0fd8, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
         SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
         puVar7 = puStackX_10;
@@ -1097,7 +1097,7 @@ uint8_t SystemCallbackRegister_13(void)
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
-        iVar3 = memcmp(puVar6 + 4, &DAT_180a00fb0, 0x10);
+        iVar3 = memcmp(puVar6 + 4, &system_memory_0fb0, 0x10);
         if (iVar3 < 0) {
             puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
@@ -1110,7 +1110,7 @@ uint8_t SystemCallbackRegister_13(void)
     }
     
     // 如果需要创建新的回调节点
-    if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0, puVar7 + 4, 0x10), iVar3 < 0)) {
+    if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_0fb0, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
         SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
         puVar7 = puStackX_10;
@@ -1162,7 +1162,7 @@ uint8_t SystemCallbackRegister_14(void)
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
-        iVar3 = memcmp(puVar6 + 4, &DAT_1809fc740, 0x10);
+        iVar3 = memcmp(puVar6 + 4, &system_memory_c740, 0x10);
         if (iVar3 < 0) {
             puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
@@ -1175,7 +1175,7 @@ uint8_t SystemCallbackRegister_14(void)
     }
     
     // 如果需要创建新的回调节点
-    if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc740, puVar7 + 4, 0x10), iVar3 < 0)) {
+    if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c740, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
         SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
         puVar7 = puStackX_10;
@@ -1227,7 +1227,7 @@ uint8_t SystemCallbackRegister_15(void)
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
-        iVar3 = memcmp(puVar6 + 4, &DAT_1809fc768, 0x10);
+        iVar3 = memcmp(puVar6 + 4, &system_memory_c768, 0x10);
         if (iVar3 < 0) {
             puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
@@ -1240,7 +1240,7 @@ uint8_t SystemCallbackRegister_15(void)
     }
     
     // 如果需要创建新的回调节点
-    if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc768, puVar7 + 4, 0x10), iVar3 < 0)) {
+    if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c768, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
         SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
         puVar7 = puStackX_10;
@@ -1292,7 +1292,7 @@ uint8_t SystemCallbackRegister_16(void)
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
-        iVar3 = memcmp(puVar6 + 4, &DAT_18098c9b8, 0x10);
+        iVar3 = memcmp(puVar6 + 4, &system_memory_c9b8, 0x10);
         if (iVar3 < 0) {
             puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
@@ -1305,7 +1305,7 @@ uint8_t SystemCallbackRegister_16(void)
     }
     
     // 如果需要创建新的回调节点
-    if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9b8, puVar7 + 4, 0x10), iVar3 < 0)) {
+    if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c9b8, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
         SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
         puVar7 = puStackX_10;
@@ -1357,7 +1357,7 @@ uint8_t SystemCallbackRegister_17(void)
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
-        iVar3 = memcmp(puVar6 + 4, &DAT_18098c940, 0x10);
+        iVar3 = memcmp(puVar6 + 4, &system_memory_c940, 0x10);
         if (iVar3 < 0) {
             puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
@@ -1370,7 +1370,7 @@ uint8_t SystemCallbackRegister_17(void)
     }
     
     // 如果需要创建新的回调节点
-    if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c940, puVar7 + 4, 0x10), iVar3 < 0)) {
+    if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c940, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
         SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
         puVar7 = puStackX_10;
@@ -1422,7 +1422,7 @@ uint8_t SystemCallbackRegister_18(void)
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
-        iVar3 = memcmp(puVar6 + 4, &DAT_18098c918, 0x10);
+        iVar3 = memcmp(puVar6 + 4, &system_memory_c918, 0x10);
         if (iVar3 < 0) {
             puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
@@ -1435,7 +1435,7 @@ uint8_t SystemCallbackRegister_18(void)
     }
     
     // 如果需要创建新的回调节点
-    if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c918, puVar7 + 4, 0x10), iVar3 < 0)) {
+    if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c918, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
         SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
         puVar7 = puStackX_10;
@@ -1487,7 +1487,7 @@ uint8_t SystemCallbackRegister_19(void)
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
-        iVar3 = memcmp(puVar6 + 4, &DAT_18098c968, 0x10);
+        iVar3 = memcmp(puVar6 + 4, &system_memory_c968, 0x10);
         if (iVar3 < 0) {
             puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
@@ -1500,7 +1500,7 @@ uint8_t SystemCallbackRegister_19(void)
     }
     
     // 如果需要创建新的回调节点
-    if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c968, puVar7 + 4, 0x10), iVar3 < 0)) {
+    if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c968, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
         SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
         puVar7 = puStackX_10;
@@ -1552,7 +1552,7 @@ uint8_t SystemCallbackRegister_20(void)
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
-        iVar3 = memcmp(puVar6 + 4, &DAT_18098c990, 0x10);
+        iVar3 = memcmp(puVar6 + 4, &system_memory_c990, 0x10);
         if (iVar3 < 0) {
             puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
@@ -1565,7 +1565,7 @@ uint8_t SystemCallbackRegister_20(void)
     }
     
     // 如果需要创建新的回调节点
-    if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c990, puVar7 + 4, 0x10), iVar3 < 0)) {
+    if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c990, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
         SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
         puVar7 = puStackX_10;
@@ -1617,7 +1617,7 @@ uint8_t SystemCallbackRegister_21(void)
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
-        iVar3 = memcmp(puVar6 + 4, &DAT_18098c9e0, 0x10);
+        iVar3 = memcmp(puVar6 + 4, &system_memory_c9e0, 0x10);
         if (iVar3 < 0) {
             puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
@@ -1630,7 +1630,7 @@ uint8_t SystemCallbackRegister_21(void)
     }
     
     // 如果需要创建新的回调节点
-    if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9e0, puVar7 + 4, 0x10), iVar3 < 0)) {
+    if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c9e0, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
         SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
         puVar7 = puStackX_10;
@@ -1682,7 +1682,7 @@ uint8_t SystemCallbackRegister_22(void)
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
-        iVar3 = memcmp(puVar6 + 4, &DAT_18098c8f0, 0x10);
+        iVar3 = memcmp(puVar6 + 4, &system_memory_c8f0, 0x10);
         if (iVar3 < 0) {
             puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
@@ -1695,7 +1695,7 @@ uint8_t SystemCallbackRegister_22(void)
     }
     
     // 如果需要创建新的回调节点
-    if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8f0, puVar7 + 4, 0x10), iVar3 < 0)) {
+    if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c8f0, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
         SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
         puVar7 = puStackX_10;
@@ -1747,7 +1747,7 @@ uint8_t SystemCallbackRegister_23(void)
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
-        iVar3 = memcmp(puVar6 + 4, &DAT_18098c8c8, 0x10);
+        iVar3 = memcmp(puVar6 + 4, &system_memory_c8c8, 0x10);
         if (iVar3 < 0) {
             puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
@@ -1760,7 +1760,7 @@ uint8_t SystemCallbackRegister_23(void)
     }
     
     // 如果需要创建新的回调节点
-    if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8c8, puVar7 + 4, 0x10), iVar3 < 0)) {
+    if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c8c8, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
         SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
         puVar7 = puStackX_10;
@@ -1807,7 +1807,7 @@ uint8_t SystemEventProcessor_1(void)
     
     // 调用系统核心处理函数
     strcpy_s(auStack_88, 0x80, &UNK_180a33fb0, in_R9, 0xfffffffffffffffe);
-    DAT_180c95ecc = SystemCoreFunction_4(&puStack_a0);
+    system_memory_5ecc = SystemCoreFunction_4(&puStack_a0);
     return 0;
 }
 
@@ -1839,7 +1839,7 @@ uint8_t SystemEventProcessor_2(void)
     
     // 调用系统核心处理函数
     strcpy_s(auStack_88, 0x80, &UNK_180a3c028, in_R9, 0xfffffffffffffffe);
-    DAT_180c9606c = SystemCoreFunction_4(&puStack_a0);
+    system_memory_606c = SystemCoreFunction_4(&puStack_a0);
     return 0;
 }
 
@@ -1862,7 +1862,7 @@ uint8_t SystemEventProcessor_2(void)
 uint8_t SystemInitializer_1(void)
 {
     // 获取当前进程句柄并存储
-    DAT_180c96218 = GetCurrentProcess();
+    system_memory_6218 = GetCurrentProcess();
     return 0;
 }
 
@@ -2042,12 +2042,12 @@ int SystemAdvancedInitializer(void)
     longlong lVar1;
     
     // 设置系统状态标志
-    DAT_180c967b8 = 3;
-    DAT_180c96790 = &DAT_180c96790;
-    DAT_180c96798 = &DAT_180c96790;
-    DAT_180c967a0 = 0;
-    DAT_180c967a8 = 0;
-    DAT_180c967b0 = 0;
+    system_memory_67b8 = 3;
+    system_memory_6790 = &system_memory_6790;
+    system_memory_6798 = &system_memory_6790;
+    system_memory_67a0 = 0;
+    system_memory_67a8 = 0;
+    system_memory_67b0 = 0;
     
     // 注册系统功能
     lVar1 = SystemCoreFunction_6(FUN_180943180);

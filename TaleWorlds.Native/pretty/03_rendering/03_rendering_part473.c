@@ -147,7 +147,7 @@ extern void func_0x0001805da580(void);
             全局变量声明
 =============================================*/
 extern uint64_t UNK_1809f89f0;
-extern uint64_t DAT_180c8ed30;
+extern uint64_t system_error_code;
 
 /**
  * @brief 渲染参数处理器 - 主要参数处理函数
@@ -939,7 +939,7 @@ LAB_18051f7bf:
                             *(int32_t *)(lVar5 + 0x1b6c) = 0;
                             *(int8_t *)(lVar5 + 0x17a8) = 0;
                             *(uint64_t *)(lVar5 + 0x1798) =
-                                *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar5 + 0x17a0) * 8);
+                                *(uint64_t *)(&system_error_code + (longlong)*(int *)(lVar5 + 0x17a0) * 8);
                             
                             /* 设置渲染对象属性 */
                             *(int32_t *)(lVar5 + 0x1c0c) = 0xffffffff;
@@ -950,7 +950,7 @@ LAB_18051f7bf:
                             *(int32_t *)(lVar5 + 0x200c) = 0;
                             *(int8_t *)(lVar5 + 0x1c48) = 0;
                             *(uint64_t *)(lVar5 + 0x1c38) =
-                                *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar5 + 0x1c40) * 8);
+                                *(uint64_t *)(&system_error_code + (longlong)*(int *)(lVar5 + 0x1c40) * 8);
                         }
                     }
                     
@@ -1020,7 +1020,7 @@ void FUN_18051f7cd(void)
               *(int32_t *)(lVar4 + 0x1b6c) = 0;
               *(int8_t *)(lVar4 + 0x17a8) = 0;
               *(uint64_t *)(lVar4 + 0x1798) =
-                   *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar4 + 0x17a0) * 8);
+                   *(uint64_t *)(&system_error_code + (longlong)*(int *)(lVar4 + 0x17a0) * 8);
               *(int32_t *)(lVar4 + 0x1c0c) = 0xffffffff;
               *(int32_t *)(lVar4 + 0x1c14) = 0xffffffff;
               *(int32_t *)(lVar4 + 0x1c1c) = 0xffffffff;
@@ -1029,7 +1029,7 @@ void FUN_18051f7cd(void)
               *(int32_t *)(lVar4 + 0x200c) = 0;
               *(int8_t *)(lVar4 + 0x1c48) = 0;
               *(uint64_t *)(lVar4 + 0x1c38) =
-                   *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar4 + 0x1c40) * 8);
+                   *(uint64_t *)(&system_error_code + (longlong)*(int *)(lVar4 + 0x1c40) * 8);
             }
           }
           lVar9 = lVar9 + 8;
@@ -1081,7 +1081,7 @@ void FUN_18051f839(void)
         *(int32_t *)(lVar3 + 0x1b6c) = 0;
         *(int8_t *)(lVar3 + 0x17a8) = 0;
         *(uint64_t *)(lVar3 + 0x1798) =
-             *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar3 + 0x17a0) * 8);
+             *(uint64_t *)(&system_error_code + (longlong)*(int *)(lVar3 + 0x17a0) * 8);
         *(int32_t *)(lVar3 + 0x1c0c) = 0xffffffff;
         *(int32_t *)(lVar3 + 0x1c14) = 0xffffffff;
         *(int32_t *)(lVar3 + 0x1c1c) = 0xffffffff;
@@ -1090,7 +1090,7 @@ void FUN_18051f839(void)
         *(int32_t *)(lVar3 + 0x200c) = 0;
         *(int8_t *)(lVar3 + 0x1c48) = 0;
         *(uint64_t *)(lVar3 + 0x1c38) =
-             *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar3 + 0x1c40) * 8);
+             *(uint64_t *)(&system_error_code + (longlong)*(int *)(lVar3 + 0x1c40) * 8);
       }
     }
     lVar7 = lVar7 + 8;

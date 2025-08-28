@@ -103,7 +103,7 @@ void FUN_18023c450(longlong *param_1,char param_2,int32_t param_3,int8_t *param_
           lVar4 = FUN_18023cb40(auStack_68,lVar3);
           pcStack_158 = FUN_18023e120;
           puStack_150 = &UNK_18023e110;
-          uVar5 = FUN_18062b1e0(_DAT_180c8ed18,0x38,8,DAT_180bf65bc);
+          uVar5 = FUN_18062b1e0(_DAT_180c8ed18,0x38,8,system_allocation_flags);
           FUN_18023cb40(uVar5,lVar4);
           lVar6 = lVar4 + 0x10;
           auStack_168[0] = uVar5;
@@ -115,7 +115,7 @@ void FUN_18023c450(longlong *param_1,char param_2,int32_t param_3,int8_t *param_
           }
           uVar5 = FUN_18023c3b0(auStack_100,&plStack_1d0);
           FUN_18023dc00(auStack_140,uVar5);
-          (*pcVar8)(plVar7,&DAT_180a01050,param_1[0x15] + 0xc,0,auStack_140,auStack_168,lVar6);
+          (*pcVar8)(plVar7,&system_data_1050,param_1[0x15] + 0xc,0,auStack_140,auStack_168,lVar6);
           if (pcStack_130 != (code *)0x0) {
             (*pcStack_130)(auStack_140,0,0);
           }
@@ -128,7 +128,7 @@ void FUN_18023c450(longlong *param_1,char param_2,int32_t param_3,int8_t *param_
           pcVar8 = *(code **)(*plVar7 + 0x60);
           uVar5 = FUN_18023c3b0(auStack_d0,&plStack_1d0);
           FUN_18023dc00(auStack_120,uVar5);
-          cVar1 = (*pcVar8)(plVar7,&DAT_180a01050,param_1[0x15] + 0xc,0,auStack_120);
+          cVar1 = (*pcVar8)(plVar7,&system_data_1050,param_1[0x15] + 0xc,0,auStack_120);
           if (pcStack_110 != (code *)0x0) {
             (*pcStack_110)(auStack_120,0,0);
           }
@@ -353,7 +353,7 @@ int8_t FUN_18023cbe0(longlong param_1,longlong param_2)
   aplStack_30[0] = alStackX_10;
   alStackX_10[0] = param_2;
   uVar6 = (**(code **)(*plVar1 + 0x60))
-                    (plVar1,&DAT_180a01050,*(longlong *)(param_1 + 0xa8) + 0xc,0,aplStack_30);
+                    (plVar1,&system_data_1050,*(longlong *)(param_1 + 0xa8) + 0xc,0,aplStack_30);
   if (pcStack_20 != (code *)0x0) {
     (*pcStack_20)(aplStack_30,0,0);
   }
@@ -521,7 +521,7 @@ void FUN_18023ccc0(longlong *param_1)
                     puVar13 = (uint64_t *)
                               ((longlong)(int)((uint)bVar5 * iVar6 + iVar7) * 0x10 + lVar3);
                   }
-                  if (DAT_180c8ecee == '\0') {
+                  if (system_data_ecee == '\0') {
                     if (puVar13[1] != 0) {
                       iVar2 = *(int *)(*(longlong *)(*(longlong *)(_DAT_180c82868 + 8) + 8) + 0x48);
                       iVar8 = _Thrd_id();
@@ -591,7 +591,7 @@ void FUN_18023ccc0(longlong *param_1)
                   if (lVar12 != 0) {
                     param_1[0x68] = (longlong)*(int *)(lVar12 + 0x224);
                   }
-                  if (DAT_180c8ecee == '\0') {
+                  if (system_data_ecee == '\0') {
                     iVar6 = *(int *)(*(longlong *)(*(longlong *)(_DAT_180c82868 + 8) + 8) + 0x48);
                     iVar7 = _Thrd_id();
                     if (iVar7 == iVar6) {

@@ -428,7 +428,7 @@ LAB_18055285e:
       puVar8 = puVar8 + 0x2e;
     } while (iVar9 < (int)param_1[1]);
   }
-  puVar6 = &DAT_18098bc73;
+  puVar6 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar6 = *(void **)(param_2 + 8);
   }
@@ -496,7 +496,7 @@ LAB_180552978:
     }
   }
   if (0 < iStack_30) {
-    uVar1 = FUN_18055b2f0(&DAT_180c96150,&puStack_40);
+    uVar1 = FUN_18055b2f0(&system_data_6150,&puStack_40);
     *param_1 = uVar1;
   }
   param_1[1] = 0xffffffff;
@@ -534,7 +534,7 @@ LAB_180552a20:
     }
   }
   if (0 < iStack_30) {
-    uVar1 = FUN_18055b2f0(&DAT_180c96150,&puStack_40);
+    uVar1 = FUN_18055b2f0(&system_data_6150,&puStack_40);
     param_1[1] = uVar1;
   }
   param_1[2] = 0xffffffff;
@@ -572,7 +572,7 @@ LAB_180552ac0:
     }
   }
   if (0 < iStack_30) {
-    uVar1 = FUN_18055b2f0(&DAT_180c96150,&puStack_40);
+    uVar1 = FUN_18055b2f0(&system_data_6150,&puStack_40);
     param_1[2] = uVar1;
   }
   param_1[3] = 0xffffffff;
@@ -586,7 +586,7 @@ LAB_180552ac0:
     if (puVar4 == (uint64_t *)0x0) {
 LAB_180552b7d:
       if (0 < iStack_30) {
-        uVar1 = FUN_18055b2f0(&DAT_180c96150,&puStack_40);
+        uVar1 = FUN_18055b2f0(&system_data_6150,&puStack_40);
         param_1[3] = uVar1;
       }
       *(int8_t *)(param_1 + 4) = 0;
@@ -898,25 +898,25 @@ FUN_180552ee0(ulonglong param_1,uint64_t param_2,uint64_t param_3,uint64_t param
     *(uint64_t *)((longlong)puVar2 + -4) = 0x40000000;
     *(int32_t *)((longlong)puVar2 + 4) = 3;
     puVar2[-3] = 1;
-    puVar2[-4] = (ulonglong)&DAT_180be0000;
+    puVar2[-4] = (ulonglong)&system_data_0000;
     puVar2[-2] = 0;
     *(int32_t *)(puVar2 + 9) = 0x3f800000;
     *(uint64_t *)((longlong)puVar2 + 0x4c) = 0x40000000;
     *(int32_t *)((longlong)puVar2 + 0x54) = 3;
     puVar2[7] = 1;
-    puVar2[6] = (ulonglong)&DAT_180be0000;
+    puVar2[6] = (ulonglong)&system_data_0000;
     puVar2[8] = 0;
     *(int32_t *)(puVar2 + 0x11) = 0x3f800000;
     *(uint64_t *)((longlong)puVar2 + 0x8c) = 0x40000000;
     *(int32_t *)((longlong)puVar2 + 0x94) = 3;
     puVar2[0xf] = 1;
-    puVar2[0xe] = (ulonglong)&DAT_180be0000;
+    puVar2[0xe] = (ulonglong)&system_data_0000;
     puVar2[0x10] = 0;
     *(int32_t *)(puVar2 + 0x19) = 0x3f800000;
     *(uint64_t *)((longlong)puVar2 + 0xcc) = 0x40000000;
     *(int32_t *)((longlong)puVar2 + 0xd4) = 3;
     puVar2[0x17] = 1;
-    puVar2[0x16] = (ulonglong)&DAT_180be0000;
+    puVar2[0x16] = (ulonglong)&system_data_0000;
     puVar2[0x18] = 0;
     *(int32_t *)(puVar2 + -7) = 0xffffffff;
     puVar2[-6] = 0;

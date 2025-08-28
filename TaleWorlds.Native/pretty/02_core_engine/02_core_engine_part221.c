@@ -1021,7 +1021,7 @@ ulonglong update_entity_status(longlong world_context, longlong *entity_ptr, int
             
             if (property_list != entity_list) {
                 if (force_update != '\0') {
-                    property_vtable = &DAT_18098bc73;
+                    property_vtable = &system_buffer_ptr;
                     if (*(void **)(world_entity + 0x290) != (void *)0x0) {
                         property_vtable = *(void **)(world_entity + 0x290);
                     }

@@ -466,7 +466,7 @@ void FUN_1800f3260(longlong param_1,longlong param_2)
     (**(code **)(*plVar11 + 0x28))(plVar11);
     (**(code **)(*plVar11 + 0x38))(plVar11);
     if (plVar11[8] - plVar11[7] >> 4 != 1) {
-      puVar15 = &DAT_18098bc73;
+      puVar15 = &system_buffer_ptr;
       if ((void *)plVar11[0x3f] != (void *)0x0) {
         puVar15 = (void *)plVar11[0x3f];
       }

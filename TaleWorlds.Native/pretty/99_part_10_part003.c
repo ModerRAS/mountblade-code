@@ -71,11 +71,11 @@ longlong * FUN_1806a4370(longlong param_1,longlong *param_2,uint *param_3,longlo
             if ((int)uVar11 != 1) {
               lVar9 = -1;
               puVar5 = *(void **)((uVar11 >> 0x20) + lVar12);
-              puVar10 = &DAT_18098bc73;
+              puVar10 = &system_buffer_ptr;
               if (puVar5 != (void *)0x0) {
                 puVar10 = puVar5;
               }
-              puVar5 = &DAT_18098bc73;
+              puVar5 = &system_buffer_ptr;
               if (puVar10 != (void *)0x0) {
                 puVar5 = puVar10;
               }
@@ -184,11 +184,11 @@ longlong * FUN_1806a43bd(uint64_t param_1,int param_2,longlong *param_3,longlong
           if ((int)uVar9 != 1) {
             lVar7 = -1;
             puVar3 = *(void **)((uVar9 >> 0x20) + lVar11);
-            puVar8 = &DAT_18098bc73;
+            puVar8 = &system_buffer_ptr;
             if (puVar3 != (void *)0x0) {
               puVar8 = puVar3;
             }
-            puVar3 = &DAT_18098bc73;
+            puVar3 = &system_buffer_ptr;
             if (puVar8 != (void *)0x0) {
               puVar3 = puVar8;
             }
@@ -295,11 +295,11 @@ longlong * FUN_1806a43de(void *param_1)
         if ((int)uVar8 != 1) {
           lVar6 = -1;
           param_1 = *(void **)((uVar8 >> 0x20) + lVar10);
-          puVar7 = &DAT_18098bc73;
+          puVar7 = &system_buffer_ptr;
           if (param_1 != (void *)0x0) {
             puVar7 = param_1;
           }
-          puVar2 = &DAT_18098bc73;
+          puVar2 = &system_buffer_ptr;
           if (puVar7 != (void *)0x0) {
             puVar2 = puVar7;
           }

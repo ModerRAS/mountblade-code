@@ -420,7 +420,7 @@ LAB_18039ab10:
   lVar11 = 0;
 LAB_18039ab2f:
   if ((lVar9 + 0x5c != 0) && (lVar11 != 0)) {
-    FUN_18010cbc0(lVar11,&DAT_180a06430,lVar9 + 0x5c);
+    FUN_18010cbc0(lVar11,&system_data_6430,lVar9 + 0x5c);
   }
   pcVar16 = "min_height";
   do {
@@ -457,7 +457,7 @@ LAB_18039abb0:
   lVar11 = 0;
 LAB_18039abcf:
   if ((lVar9 + 0x60 != 0) && (lVar11 != 0)) {
-    FUN_18010cbc0(lVar11,&DAT_180a06430,lVar9 + 0x60);
+    FUN_18010cbc0(lVar11,&system_data_6430,lVar9 + 0x60);
   }
   pcVar16 = "max_height";
   do {
@@ -494,7 +494,7 @@ LAB_18039ac50:
   lVar11 = 0;
 LAB_18039ac68:
   if ((lVar9 + 100 != 0) && (lVar11 != 0)) {
-    FUN_18010cbc0(lVar11,&DAT_180a06430,lVar9 + 100);
+    FUN_18010cbc0(lVar11,&system_data_6430,lVar9 + 100);
   }
   pcVar16 = "texture_levels";
   do {
@@ -562,7 +562,7 @@ LAB_18039ada6:
                     (**(code **)(puStack_58 + 0x10))(&puStack_58,lVar11);
                     break;
                   }
-                  lVar11 = (longlong)&DAT_180a03a84 - (longlong)pcVar16;
+                  lVar11 = (longlong)&system_data_3a84 - (longlong)pcVar16;
                   while (*pcVar16 == pcVar16[lVar11]) {
                     pcVar16 = pcVar16 + 1;
                     if (pcVar5 <= pcVar16) goto LAB_18039ada6;

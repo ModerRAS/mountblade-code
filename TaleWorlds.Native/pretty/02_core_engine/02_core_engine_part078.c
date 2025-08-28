@@ -127,7 +127,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
           (compare_result = strcmp(*(uint64_t *)(config_ptr + 8),&UNK_180a06248), compare_result == 0)) {
     puStack_170 = context_ptr + 0x270;
     FUN_180057110(puStack_170);
-    config_data = &DAT_18098bc73;
+    config_data = &system_buffer_ptr;
     if (*(void **)(config_ptr + 8) != (void *)0x0) {
       config_data = *(void **)(config_ptr + 8);
     }
@@ -206,7 +206,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
           (request_type = strcmp(*(uint64_t *)(config_ptr + 8),&UNK_180a062b0), request_type == 0)) {
     array_ptr = context_ptr + 0x274;
     FUN_180057110(array_ptr);
-    config_data = (uint64_t *)&DAT_18098bc73;
+    config_data = (uint64_t *)&system_buffer_ptr;
     if (*(uint64_t **)(config_ptr + 8) != (uint64_t *)0x0) {
       config_data = *(uint64_t **)(config_ptr + 8);
     }
@@ -401,7 +401,7 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
         do {
           extract_string_data(&puStack_b8,start_pos + current_offset * 0x20);
           // 查找并清理特定标记
-          while ((0 < (int)uStack_a8 && (end_pos = strstr(puStack_b0,&DAT_1809fc8e4), end_pos != 0))) {
+          while ((0 < (int)uStack_a8 && (end_pos = strstr(puStack_b0,&system_memory_c8e4), end_pos != 0))) {
             int remove_count = 1;
             int position = (int)end_pos - (int)puStack_b0;
             if (uStack_a8 < position + 1U) {
@@ -431,7 +431,7 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
             puStack_78 = &UNK_18098bcb0;
           }
           // 记录处理结果
-          void *record_ptr = &DAT_18098bc73;
+          void *record_ptr = &system_buffer_ptr;
           if (puStack_b0 != (void *)0x0) {
             record_ptr = puStack_b0;
           }
@@ -453,7 +453,7 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
       }
       // 处理最后一个字符串项
       extract_string_data(&puStack_98,start_pos + ((end_pos - start_pos & 0xffffffffffffffe0U) - 0x20));
-      while ((0 < (int)uStack_88 && (end_pos = strstr(puStack_90,&DAT_1809fc8e4), end_pos != 0))) {
+      while ((0 < (int)uStack_88 && (end_pos = strstr(puStack_90,&system_memory_c8e4), end_pos != 0))) {
         int remove_count = 1;
         int position = (int)end_pos - (int)puStack_90;
         if (uStack_88 < position + 1U) {
@@ -482,7 +482,7 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
         puStack_58 = &UNK_18098bcb0;
       }
       // 记录最终结果
-      void *final_record = &DAT_18098bc73;
+      void *final_record = &system_buffer_ptr;
       if (puStack_90 != (void *)0x0) {
         final_record = puStack_90;
       }
@@ -508,7 +508,7 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
       if (end_pos - start_pos >> 5 != 1) {
         do {
           void *item_data = *(void **)(string_length + 8 + start_pos);
-          void *default_data = &DAT_18098bc73;
+          void *default_data = &system_buffer_ptr;
           if (item_data != (void *)0x0) {
             default_data = item_data;
           }
@@ -522,7 +522,7 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
       }
       // 处理最后一个附加数据项
       void *last_item = *(void **)(((end_pos - start_pos & 0xffffffffffffffe0U) - 0x18) + start_pos);
-      void *default_last = &DAT_18098bc73;
+      void *default_last = &system_buffer_ptr;
       if (last_item != (void *)0x0) {
         default_last = last_item;
       }
@@ -917,8 +917,8 @@ void set_config_value_type1(longlong config_context, int32_t value)
      (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x1bf8))(temp_params),
      value = temp_params[0], validation_result == '\0')) {
     // 如果验证通过且调试模式未启用，则使用默认值
-    if (DAT_180c82860 == '\0') {
-      default_string = &DAT_18098bc73;
+    if (system_debug_flag == '\0') {
+      default_string = &system_buffer_ptr;
       if (*(void **)(config_context + 0x1ba0) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x1ba0);
       }
@@ -954,8 +954,8 @@ void set_config_value_type2(longlong config_context, int32_t value)
      (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x1fe8))(temp_params),
      value = temp_params[0], validation_result == '\0')) {
     // 如果验证通过且调试模式未启用，则使用默认值
-    if (DAT_180c82860 == '\0') {
-      default_string = &DAT_18098bc73;
+    if (system_debug_flag == '\0') {
+      default_string = &system_buffer_ptr;
       if (*(void **)(config_context + 0x1f90) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x1f90);
       }
@@ -991,8 +991,8 @@ void set_config_value_type3(longlong config_context, int32_t value)
      (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x20c8))(temp_params),
      value = temp_params[0], validation_result == '\0')) {
     // 如果验证通过且调试模式未启用，则使用默认值
-    if (DAT_180c82860 == '\0') {
-      default_string = &DAT_18098bc73;
+    if (system_debug_flag == '\0') {
+      default_string = &system_buffer_ptr;
       if (*(void **)(config_context + 0x2070) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x2070);
       }
@@ -1028,8 +1028,8 @@ void set_config_value_type4(longlong config_context, int32_t value)
      (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x2218))(temp_params),
      value = temp_params[0], validation_result == '\0')) {
     // 如果验证通过且调试模式未启用，则使用默认值
-    if (DAT_180c82860 == '\0') {
-      default_string = &DAT_18098bc73;
+    if (system_debug_flag == '\0') {
+      default_string = &system_buffer_ptr;
       if (*(void **)(config_context + 0x21c0) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x21c0);
       }
@@ -1065,8 +1065,8 @@ void set_config_value_type5(longlong config_context, int32_t value)
      (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x2288))(temp_params),
      value = temp_params[0], validation_result == '\0')) {
     // 如果验证通过且调试模式未启用，则使用默认值
-    if (DAT_180c82860 == '\0') {
-      default_string = &DAT_18098bc73;
+    if (system_debug_flag == '\0') {
+      default_string = &system_buffer_ptr;
       if (*(void **)(config_context + 0x2230) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x2230);
       }
@@ -1102,8 +1102,8 @@ void set_config_value_type6(longlong config_context, int32_t value)
      (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x21a8))(temp_params),
      value = temp_params[0], validation_result == '\0')) {
     // 如果验证通过且调试模式未启用，则使用默认值
-    if (DAT_180c82860 == '\0') {
-      default_string = &DAT_18098bc73;
+    if (system_debug_flag == '\0') {
+      default_string = &system_buffer_ptr;
       if (*(void **)(config_context + 0x2150) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x2150);
       }
@@ -1139,8 +1139,8 @@ void set_config_value_type7(longlong config_context, int32_t value)
      (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x2138))(temp_params),
      value = temp_params[0], validation_result == '\0')) {
     // 如果验证通过且调试模式未启用，则使用默认值
-    if (DAT_180c82860 == '\0') {
-      default_string = &DAT_18098bc73;
+    if (system_debug_flag == '\0') {
+      default_string = &system_buffer_ptr;
       if (*(void **)(config_context + 0x20e0) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x20e0);
       }
@@ -1176,8 +1176,8 @@ void set_config_value_type8(longlong config_context, int32_t value)
      (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x1338))(temp_params),
      value = temp_params[0], validation_result == '\0')) {
     // 如果验证通过且调试模式未启用，则使用默认值
-    if (DAT_180c82860 == '\0') {
-      default_string = &DAT_18098bc73;
+    if (system_debug_flag == '\0') {
+      default_string = &system_buffer_ptr;
       if (*(void **)(config_context + 0x12e0) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x12e0);
       }
@@ -1213,8 +1213,8 @@ void set_config_value_type9(longlong config_context, int32_t value)
      (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x1108))(temp_params),
      value = temp_params[0], validation_result == '\0')) {
     // 如果验证通过且调试模式未启用，则使用默认值
-    if (DAT_180c82860 == '\0') {
-      default_string = &DAT_18098bc73;
+    if (system_debug_flag == '\0') {
+      default_string = &system_buffer_ptr;
       if (*(void **)(config_context + 0x10b0) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x10b0);
       }
@@ -1250,8 +1250,8 @@ void set_config_value_type10(longlong config_context, int32_t value)
      (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x1098))(temp_params),
      value = temp_params[0], validation_result == '\0')) {
     // 如果验证通过且调试模式未启用，则使用默认值
-    if (DAT_180c82860 == '\0') {
-      default_string = &DAT_18098bc73;
+    if (system_debug_flag == '\0') {
+      default_string = &system_buffer_ptr;
       if (*(void **)(config_context + 0x1040) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x1040);
       }
@@ -1287,8 +1287,8 @@ void set_config_value_type11(longlong config_context, int32_t value)
      (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x1028))(temp_params),
      value = temp_params[0], validation_result == '\0')) {
     // 如果验证通过且调试模式未启用，则使用默认值
-    if (DAT_180c82860 == '\0') {
-      default_string = &DAT_18098bc73;
+    if (system_debug_flag == '\0') {
+      default_string = &system_buffer_ptr;
       if (*(void **)(config_context + 0xfd0) != (void *)0x0) {
         default_string = *(void **)(config_context + 0xfd0);
       }
@@ -1324,8 +1324,8 @@ void set_config_value_type12(longlong config_context, int32_t value)
      (temp_params[0] = value, validation_result = (**(code **)(config_context + 0xfb8))(temp_params),
      value = temp_params[0], validation_result == '\0')) {
     // 如果验证通过且调试模式未启用，则使用默认值
-    if (DAT_180c82860 == '\0') {
-      default_string = &DAT_18098bc73;
+    if (system_debug_flag == '\0') {
+      default_string = &system_buffer_ptr;
       if (*(void **)(config_context + 0xf60) != (void *)0x0) {
         default_string = *(void **)(config_context + 0xf60);
       }

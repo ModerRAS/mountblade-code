@@ -188,7 +188,7 @@ void FUN_180264330(longlong param_1, ulonglong param_2)
     longlong loop_counter = 0;
     
     // 主配置处理逻辑
-    config_node_ptr = FUN_1800a02a0(param_2, &DAT_180a03a84, 0, 1);
+    config_node_ptr = FUN_1800a02a0(param_2, &system_memory_3a84, 0, 1);
     if (config_node_ptr != 0) {
         // 获取配置节点名称
         char* config_name = 0x180d48d24;
@@ -278,7 +278,7 @@ static void ProcessPropertyType1(longlong node_ptr, void* buffer)
 {
     longlong attribute_ptr = FUN_18005d4b0(node_ptr, &UNK_180a15b08, 0, 1);
     while (attribute_ptr != 0) {
-        longlong data_ptr = FUN_1800a02a0(attribute_ptr, &DAT_180a03a84, 0, 1);
+        longlong data_ptr = FUN_1800a02a0(attribute_ptr, &system_memory_3a84, 0, 1);
         if (data_ptr != 0) {
             char* attr_name = GetAttributeName(data_ptr);
             if (strcmp(attr_name, &UNK_180a15b18) == 0) {
@@ -300,7 +300,7 @@ static void ProcessPropertyType2(longlong node_ptr, void* buffer)
 {
     longlong attribute_ptr = FUN_18005d4b0(node_ptr, &UNK_180a15b08, 0, 1);
     while (attribute_ptr != 0) {
-        longlong data_ptr = FUN_1800a02a0(attribute_ptr, &DAT_180a03a84, 0, 1);
+        longlong data_ptr = FUN_1800a02a0(attribute_ptr, &system_memory_3a84, 0, 1);
         if (data_ptr != 0) {
             char* attr_name = GetAttributeName(data_ptr);
             if (strcmp(attr_name, &UNK_180a15b80) == 0) {
@@ -322,7 +322,7 @@ static void ProcessPropertyType3(longlong node_ptr, void* buffer)
 {
     longlong attribute_ptr = FUN_18005d4b0(node_ptr, &UNK_180a15b08, 0, 1);
     while (attribute_ptr != 0) {
-        longlong data_ptr = FUN_1800a02a0(attribute_ptr, &DAT_180a03a84, 0, 1);
+        longlong data_ptr = FUN_1800a02a0(attribute_ptr, &system_memory_3a84, 0, 1);
         if (data_ptr != 0) {
             char* attr_name = GetAttributeName(data_ptr);
             if (strcmp(attr_name, &UNK_180a15b98) == 0) {
@@ -344,7 +344,7 @@ static void ProcessPropertyType4(longlong node_ptr, void* buffer)
 {
     longlong attribute_ptr = FUN_18005d4b0(node_ptr, &UNK_180a15b08, 0, 1);
     while (attribute_ptr != 0) {
-        longlong data_ptr = FUN_1800a02a0(attribute_ptr, &DAT_180a03a84, 0, 1);
+        longlong data_ptr = FUN_1800a02a0(attribute_ptr, &system_memory_3a84, 0, 1);
         if (data_ptr != 0) {
             char* attr_name = GetAttributeName(data_ptr);
             if (strcmp(attr_name, &UNK_180a15b58) == 0) {
@@ -367,7 +367,7 @@ static void ProcessPropertyType5(longlong node_ptr, void* buffer)
 {
     longlong attribute_ptr = FUN_18005d4b0(node_ptr, &UNK_180a15b08, 0, 1);
     while (attribute_ptr != 0) {
-        longlong data_ptr = FUN_1800a02a0(attribute_ptr, &DAT_180a03a84, 0, 1);
+        longlong data_ptr = FUN_1800a02a0(attribute_ptr, &system_memory_3a84, 0, 1);
         if (data_ptr != 0) {
             char* attr_name = GetAttributeName(data_ptr);
             if (strcmp(attr_name, &UNK_180a15b70) == 0) {
@@ -456,7 +456,7 @@ static void ProcessSingleStatusFlag(longlong node_ptr, longlong context, const c
 {
     longlong attribute_ptr = FUN_18005d4b0(node_ptr, &UNK_180a06ba4, 0, 1);
     while (attribute_ptr != 0) {
-        longlong data_ptr = FUN_1800a02a0(attribute_ptr, &DAT_180a03a84, 0, 1);
+        longlong data_ptr = FUN_1800a02a0(attribute_ptr, &system_memory_3a84, 0, 1);
         longlong value_ptr = FUN_1800a02a0(attribute_ptr, &UNK_180a0696c, 0, 1);
         
         if (data_ptr != 0) {

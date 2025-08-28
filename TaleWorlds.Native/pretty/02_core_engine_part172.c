@@ -226,7 +226,7 @@ LAB_180157585:
     }
     *(int16_t *)((longlong)puVar7 + 0xd) = 10;
     uStack_b8 = 0xe;
-    puVar8 = (uint64_t *)&DAT_18098bc73;
+    puVar8 = (uint64_t *)&system_buffer_ptr;
     if (puVar7 != (uint64_t *)0x0) {
       puVar8 = puVar7;
     }
@@ -257,7 +257,7 @@ LAB_180157585:
   uStack_88 = 0;
   uStack_78 = 0;
   auStack_a0[0] = 0;
-  puVar11 = &DAT_18098bc73;
+  puVar11 = &system_buffer_ptr;
   if (*(void **)(param_3 + 8) != (void *)0x0) {
     puVar11 = *(void **)(param_3 + 8);
   }
@@ -324,7 +324,7 @@ LAB_1801577b2:
     }
 LAB_180157862:
     *(int16_t *)((ulonglong)uStack_b8 + (longlong)puStack_c0) = 10;
-    puVar7 = (uint64_t *)&DAT_18098bc73;
+    puVar7 = (uint64_t *)&system_buffer_ptr;
     if (puStack_c0 != (uint64_t *)0x0) {
       puVar7 = puStack_c0;
     }
@@ -394,7 +394,7 @@ LAB_180157a6e:
     *(uint64_t *)((longlong)puVar9 + 0x27) = 0x6465746172656e65;
     *(int16_t *)((longlong)puVar9 + 0x2f) = 0x21;
     uStack_b8 = 0x30;
-    puVar10 = (int32_t *)&DAT_18098bc73;
+    puVar10 = (int32_t *)&system_buffer_ptr;
     if (puVar9 != (int32_t *)0x0) {
       puVar10 = puVar9;
     }
@@ -551,7 +551,7 @@ LAB_180157e02:
     puVar7[3] = 0x67206562;
     *(uint64_t *)(puVar7 + 4) = 0x6465746172656e65;
     *(int16_t *)(puVar7 + 6) = 0x21;
-    puVar7 = (int32_t *)&DAT_18098bc73;
+    puVar7 = (int32_t *)&system_buffer_ptr;
     if (puStack_a8 != (int32_t *)0x0) {
       puVar7 = puStack_a8;
     }
@@ -723,7 +723,7 @@ FUN_1801580f0(longlong *param_1,longlong *param_2,uint64_t param_3,longlong para
     *(int *)(param_1 + 5) = (int)lVar2 + 1;
     (**(code **)(*param_1 + 0x208))(param_1,&plStackX_8,auStack_b0,(int)lVar2,param_5);
     *(int32_t *)(plStackX_8 + 2) = 1;
-    puVar4 = &DAT_18098bc73;
+    puVar4 = &system_buffer_ptr;
     if (*(void **)(param_4 + 8) != (void *)0x0) {
       puVar4 = *(void **)(param_4 + 8);
     }
@@ -888,7 +888,7 @@ void FUN_1801584c0(uint64_t param_1,int param_2)
   }
 LAB_18015860c:
   *(int16_t *)((ulonglong)uStack_50 + (longlong)puStack_58) = 10;
-  puVar6 = (uint64_t *)&DAT_18098bc73;
+  puVar6 = (uint64_t *)&system_buffer_ptr;
   if (puStack_58 != (uint64_t *)0x0) {
     puVar6 = puStack_58;
   }

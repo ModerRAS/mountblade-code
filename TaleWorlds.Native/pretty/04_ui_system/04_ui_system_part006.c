@@ -395,7 +395,7 @@ LAB_180656abd:
   if (buffer_size != 0) {
     do {
       index = 0;
-      char_buffer = &DAT_180c967e0;
+      char_buffer = &system_memory_67e0;
       resource_id = *resource_array;
       string_handler = &UNK_180a3c3e0;
       data_size = 0;
@@ -427,7 +427,7 @@ LAB_180656abd:
       temp_buffer = _DAT_180c967f0;
       if (_DAT_180c967f0 == (byte *)0x0) {
 LAB_180656d5b:
-        buffer_ptr = &DAT_180c967e0;
+        buffer_ptr = &system_memory_67e0;
         char_buffer = _DAT_180c967f0;
         while (temp_string = buffer_ptr, char_buffer != (byte *)0x0) {
           if (string_length == 0) {
@@ -462,7 +462,7 @@ LAB_180656dbb:
             buffer_ptr = temp_string;
           }
         }
-        if (temp_string == &DAT_180c967e0) {
+        if (temp_string == &system_memory_67e0) {
 LAB_180656df9:
           temp_ptr = (uint64_t *)FUN_1806576d0(&string_handler, &plStackX_8, temp_buffer, temp_string, &string_handler);
           temp_string = (byte *)*temp_ptr;
@@ -519,7 +519,7 @@ LAB_180656d07:
           temp_buffer = buffer_ptr;
         } while (buffer_ptr != (byte *)0x0);
         temp_buffer = (byte *)0x0;
-        if (char_buffer == &DAT_180c967e0) goto LAB_180656d5b;
+        if (char_buffer == &system_memory_67e0) goto LAB_180656d5b;
         if (*(int *)(char_buffer + 0x30) != 0) {
           if (string_length != 0) {
             char_buffer = *(byte **)(char_buffer + 0x28);
@@ -791,7 +791,7 @@ ui_process_path_string(uint64_t param_1, uint64_t param_2, uint64_t param_3, uin
     } while (char_count < buffer_size);
   }
   FUN_180657530(char_count, temp_array, &string_handler);
-  if (temp_array[0] == &DAT_180c967e0) {
+  if (temp_array[0] == &system_memory_67e0) {
     result = 0;
   }
   else {
@@ -844,7 +844,7 @@ uint64_t * ui_find_resource_by_name(uint64_t param_1, uint64_t *param_2, longlon
   
   if (_DAT_180c967f0 != (uint64_t *)0x0) {
     resource_ptr = _DAT_180c967f0;
-    found_resource = (uint64_t *)&DAT_180c967e0;
+    found_resource = (uint64_t *)&system_memory_67e0;
     do {
       if (*(int *)(param_3 + 0x10) == 0) {
         next_resource = (uint64_t *)resource_ptr[1];
@@ -879,7 +879,7 @@ LAB_1806575b7:
       resource_ptr = next_resource;
       found_resource = current_resource;
     } while (next_resource != (uint64_t *)0x0);
-    if (current_resource != (uint64_t *)&DAT_180c967e0) {
+    if (current_resource != (uint64_t *)&system_memory_67e0) {
       if (*(int *)(current_resource + 6) == 0) {
 LAB_1806575f7:
         *param_2 = current_resource;
@@ -898,7 +898,7 @@ LAB_1806575f7:
       }
     }
   }
-  *param_2 = &DAT_180c967e0;
+  *param_2 = &system_memory_67e0;
   return param_2;
 }
 
@@ -915,7 +915,7 @@ void ui_free_resource_memory(uint64_t param_1, uint64_t *param_2, uint64_t param
   if (param_2 == (uint64_t *)0x0) {
     return;
   }
-  FUN_180657620(&DAT_180c967e0, *param_2, param_3, param_4, 0xfffffffffffffffe);
+  FUN_180657620(&system_memory_67e0, *param_2, param_3, param_4, 0xfffffffffffffffe);
   param_2[4] = &UNK_180a3c3e0;
   if (param_2[5] != 0) {
     // 警告：子函数不返回
@@ -949,7 +949,7 @@ ui_insert_resource_node(ulonglong param_1, uint64_t *param_2, uint64_t param_3, 
   ulonglong node_flags;
   uint64_t insert_flag;
   
-  if ((param_4 == _DAT_180c967e0) || (param_4 == (longlong *)&DAT_180c967e0)) {
+  if ((param_4 == _DAT_180c967e0) || (param_4 == (longlong *)&system_memory_67e0)) {
     if ((_DAT_180c96800 != 0) && (*(int *)(param_5 + 0x10) != 0)) {
       next_node = _DAT_180c967e0;
       node_ptr = param_4;
@@ -1010,7 +1010,7 @@ LAB_1806577da:
   }
 LAB_1806577f1:
   comparison_result = true;
-  new_node = (uint64_t *)&DAT_180c967e0;
+  new_node = (uint64_t *)&system_memory_67e0;
   current_node = _DAT_180c967f0;
   while (current_node != (uint64_t *)0x0) {
     new_node = current_node;
@@ -1064,7 +1064,7 @@ LAB_180657941:
       if ((int)(char_val - name_length) < 1) goto LAB_180657941;
     }
   }
-  if (new_node != (uint64_t *)&DAT_180c967e0) {
+  if (new_node != (uint64_t *)&system_memory_67e0) {
     if (*(int *)(new_node + 6) == 0) {
 LAB_1806578a7:
       insert_flag = 1;
@@ -1084,11 +1084,11 @@ LAB_1806578a7:
   }
   insert_flag = 0;
 LAB_1806578f0:
-  name_offset = FUN_18062b420(_DAT_180c8ed18, 0x48, DAT_180c96808);
+  name_offset = FUN_18062b420(_DAT_180c8ed18, 0x48, system_memory_6808);
   FUN_180627ae0(name_offset + 0x20, param_5);
   *(uint64_t *)(name_offset + 0x40) = 0;
   // 警告：子函数不返回
-  FUN_18066bdc0(name_offset, new_node, &DAT_180c967e0, insert_flag);
+  FUN_18066bdc0(name_offset, new_node, &system_memory_67e0, insert_flag);
 }
 
 

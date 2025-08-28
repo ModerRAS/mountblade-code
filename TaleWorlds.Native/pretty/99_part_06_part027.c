@@ -354,7 +354,7 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                                             }
                                             
                                             // 字符串比较
-                                            temp_handle = (SystemHandle)&DAT_180a03a84 - (SystemHandle)temp_ptr1;
+                                            temp_handle = (SystemHandle)&system_memory_3a84 - (SystemHandle)temp_ptr1;
                                             while (*temp_ptr1 == temp_ptr1[temp_handle]) {
                                                 temp_ptr1 = temp_ptr1 + 1;
                                                 if (temp_ptr4 <= temp_ptr1) {
@@ -526,7 +526,7 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                                                 }
                                                 
                                                 // 字符串比较
-                                                temp_handle = (SystemHandle)&DAT_180a03a84 - (SystemHandle)temp_ptr1;
+                                                temp_handle = (SystemHandle)&system_memory_3a84 - (SystemHandle)temp_ptr1;
                                                 while (*temp_ptr1 == temp_ptr1[temp_handle]) {
                                                     temp_ptr1 = temp_ptr1 + 1;
                                                     if (temp_ptr4 <= temp_ptr1) {
@@ -621,7 +621,7 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                                                     }
                                                     
                                                     // 字符串比较
-                                                    temp_handle = (SystemHandle)&DAT_180a03a84 - (SystemHandle)temp_ptr1;
+                                                    temp_handle = (SystemHandle)&system_memory_3a84 - (SystemHandle)temp_ptr1;
                                                     while (*temp_ptr1 == temp_ptr1[temp_handle]) {
                                                         temp_ptr1 = temp_ptr1 + 1;
                                                         if (temp_ptr4 <= temp_ptr1) {
@@ -824,7 +824,7 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                                                         }
                                                         
                                                         // 字符串比较
-                                                        temp_handle = (SystemHandle)&DAT_180a03a84 - (SystemHandle)temp_ptr1;
+                                                        temp_handle = (SystemHandle)&system_memory_3a84 - (SystemHandle)temp_ptr1;
                                                         while (*temp_ptr1 == temp_ptr1[temp_handle]) {
                                                             temp_ptr1 = temp_ptr1 + 1;
                                                             if (temp_ptr4 <= temp_ptr1) {
@@ -1125,7 +1125,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                             }
                             
                             // 字符串比较
-                            temp_handle3 = (SystemHandle)&DAT_180a03a84 - (SystemHandle)string_ptr5;
+                            temp_handle3 = (SystemHandle)&system_memory_3a84 - (SystemHandle)string_ptr5;
                             while (*string_ptr5 == string_ptr5[temp_handle3]) {
                                 string_ptr5 = string_ptr5 + 1;
                                 if (string_ptr2 <= string_ptr5) {
@@ -1171,7 +1171,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                             SystemResourceCleaner(data_block_ptr1);
                         }
                         
-                        resource_ptr1 = &DAT_18098bc73;
+                        resource_ptr1 = &system_buffer_ptr;
                         if (stack_resource_ptr2 != (SystemResourcePtr)SYSTEM_NULL_POINTER) {
                             resource_ptr1 = stack_resource_ptr2;
                         }
@@ -1367,7 +1367,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                                 temp_handle1 = SYSTEM_NULL_POINTER;
                                 do {
                                     temp_handle2 = temp_handle1 + 1;
-                                    if (*(SystemFlag*)(temp_handle4 + temp_handle1) != (&DAT_180a03a84)[temp_handle1]) {
+                                    if (*(SystemFlag*)(temp_handle4 + temp_handle1) != (&system_memory_3a84)[temp_handle1]) {
                                         goto config_processing;
                                     }
                                     temp_handle1 = temp_handle2;

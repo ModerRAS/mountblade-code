@@ -216,8 +216,8 @@ void FUN_18040b995(longlong param_1,longlong param_2,char param_3,int param_4,ui
   auVar9 = rsqrtss(ZEXT416((uint)auVar10._0_4_),ZEXT416((uint)auVar10._0_4_));
   fVar22 = auVar9._0_4_;
   auVar10._0_4_ = auVar10._0_4_ * fVar22 * fVar22;
-  auVar14._4_12_ = DAT_180a401f0._4_12_;
-  auVar14._0_4_ = (float)DAT_180a401f0 - auVar10._0_4_;
+  auVar14._4_12_ = system_data_01f0._4_12_;
+  auVar14._0_4_ = (float)system_data_01f0 - auVar10._0_4_;
   fVar22 = fVar22 * 0.5 * auVar14._0_4_;
   fVar25 = fVar22 * fVar25;
   fVar15 = fVar22 * fVar15;

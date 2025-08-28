@@ -316,7 +316,7 @@ void FUN_1802b8cb0(longlong *param_1,float param_2)
       fVar28 = fStack_1f0 * fStack_1f0 + fStack_1f4 * fStack_1f4 + fStack_1f8 * fStack_1f8;
       auVar27 = rsqrtss(ZEXT416((uint)fVar28),ZEXT416((uint)fVar28));
       fVar34 = auVar27._0_4_;
-      fVar28 = (float)DAT_180a3fc80 * fVar34 * ((float)DAT_180a401f0 - fVar28 * fVar34 * fVar34);
+      fVar28 = (float)system_data_fc80 * fVar34 * ((float)system_data_01f0 - fVar28 * fVar34 * fVar34);
       fStack_1f8 = fStack_1f8 * fVar28;
       fStack_1f4 = fStack_1f4 * fVar28;
       fStack_1f0 = fStack_1f0 * fVar28;

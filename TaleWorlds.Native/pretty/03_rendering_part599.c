@@ -771,7 +771,7 @@ void FUN_180597e78(longlong param_1)
 
 {
   *(int32_t *)(param_1 + 0x138) = 0;
-  FUN_1805989b0(&DAT_1809ff0c8);
+  FUN_1805989b0(&system_data_f0c8);
   return;
 }
 

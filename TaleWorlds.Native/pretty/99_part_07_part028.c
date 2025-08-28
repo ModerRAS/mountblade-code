@@ -428,7 +428,7 @@ LAB_1804b6fde:
           uStack_b8 = 0;
           FUN_1806277c0(&puStack_c8,iStack_68);
           if (0 < iStack_68) {
-            puVar15 = &DAT_18098bc73;
+            puVar15 = &system_buffer_ptr;
             if (puStack_70 != (void *)0x0) {
               puVar15 = puStack_70;
             }

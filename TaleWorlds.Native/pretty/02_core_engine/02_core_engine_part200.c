@@ -121,10 +121,10 @@ void CoreEngineSystemStateManager(void)
   
   // 线程本地存储验证和初始化
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-               THREAD_LOCAL_STORAGE_SIZE) < _DAT_180d49620) && (FUN_1808fcb90(&DAT_180d49620), _DAT_180d49620 == -1)) {
+               THREAD_LOCAL_STORAGE_SIZE) < _DAT_180d49620) && (FUN_1808fcb90(&system_memory_9620), _DAT_180d49620 == -1)) {
     _DAT_180d49628 = 0;
     FUN_1808fc820(&UNK_180941b00);
-    FUN_1808fcb30(&DAT_180d49620);
+    FUN_1808fcb30(&system_memory_9620);
   }
   
   state_flag = 0;

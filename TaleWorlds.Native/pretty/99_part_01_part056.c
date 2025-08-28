@@ -372,7 +372,7 @@ void FUN_1800dd8a0(uint64_t param_1,longlong param_2)
   FUN_180049bf0(&puStack_118,&UNK_180a04360);
   FUN_1802c2560(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x7f20,&puStack_118);
   if ((*(byte *)(param_2 + 0x35c0) & 1) != 0) {
-    FUN_1802c22a0(&uStack_342,&DAT_180a04340);
+    FUN_1802c22a0(&uStack_342,&system_data_4340);
     iVar7 = *(int *)(param_2 + 0x2358);
     plVar9 = plVar10;
     if (0 < iVar7) {

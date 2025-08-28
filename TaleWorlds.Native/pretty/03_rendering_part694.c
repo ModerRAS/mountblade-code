@@ -408,7 +408,7 @@ void FUN_180669a20(longlong param_1,longlong param_2,longlong param_3,uint64_t p
         fVar14 = fVar23 * fVar23 + fVar17 * fVar17 + fVar21 * fVar21;
         auVar15 = rsqrtss(ZEXT416((uint)fVar14),ZEXT416((uint)fVar14));
         fVar13 = auVar15._0_4_;
-        fVar13 = fVar13 * 0.5 * ((float)DAT_180a401f0 - fVar14 * fVar13 * fVar13);
+        fVar13 = fVar13 * 0.5 * ((float)system_data_01f0 - fVar14 * fVar13 * fVar13);
         fStack_208 = fVar16;
         fStack_204 = fVar20;
         fVar14 = (float)asinf();
@@ -688,7 +688,7 @@ void FUN_18066b100(ulonglong param_1,longlong param_2,float *param_3,uint64_t pa
     __Throw_C_error_std__YAXH_Z(iVar2);
   }
   if (*(char *)(param_1 + 0x50) != '\0') {
-    if (DAT_180d4913c == '\0') {
+    if (system_data_913c == '\0') {
       iVar2 = 0;
       uStack_368 = 0;
       uStack_360 = 0;

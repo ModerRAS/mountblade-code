@@ -157,8 +157,8 @@ void FUN_1808f34b0(void)
     LeaveCriticalSection(0x180c698d8);
     puVar7 = puVar7 + 0x14;
   } while ((longlong)puVar7 < 0x180c69e10);
-  while ((DAT_180c58855 != '\0' &&
-         (WaitForSingleObject(_DAT_180c698d0,0xffffffff), DAT_180c58855 != '\0'))) {
+  while ((system_data_8855 != '\0' &&
+         (WaitForSingleObject(_DAT_180c698d0,0xffffffff), system_data_8855 != '\0'))) {
     EnterCriticalSection(0x180c698d8);
     puVar3 = _DAT_180c69e00;
     puVar8 = (int32_t *)0x0;
@@ -318,7 +318,7 @@ void FUN_1808f3af0(void)
   int16_t *puVar5;
   char *pcVar6;
   
-  pcVar6 = &DAT_180c69860;
+  pcVar6 = &system_data_9860;
   do {
     if ((*(longlong *)(pcVar6 + 8) != 0) && (*pcVar6 == '\0')) {
       uVar4 = 0;
@@ -402,7 +402,7 @@ void FUN_1808f3c10(longlong param_1)
   if (param_1 != 0) {
     FUN_1808f1d10(param_1);
   }
-  if (DAT_180c69e20 != '\0') {
+  if (system_data_9e20 != '\0') {
                     // WARNING: Could not recover jumptable at 0x0001808f6ca0. Too many branches
                     // WARNING: Treating indirect jump as call
     LeaveCriticalSection(0x180c69e50);
@@ -468,7 +468,7 @@ void FUN_1808f3c80(longlong param_1)
       FUN_1808f1d10(param_1);
       func_0x0001808f6c90();
     }
-    if (DAT_180c58853 != '\0') {
+    if (system_data_8853 != '\0') {
       plVar9 = (longlong *)0x180c69820;
       do {
         if (*plVar9 == lVar7) goto LAB_1808f3dbc;
@@ -494,7 +494,7 @@ void FUN_1808f3c80(longlong param_1)
       FUN_1808f1d10(param_1);
       func_0x0001808f6c90();
     }
-    if (DAT_180c58853 != '\0') {
+    if (system_data_8853 != '\0') {
       plVar9 = (longlong *)0x180c69820;
       do {
         if (*plVar9 == lVar7) goto LAB_1808f3dbc;
@@ -521,7 +521,7 @@ LAB_1808f44aa:
       FUN_1808f1d10(param_1);
       func_0x0001808f6c90();
     }
-    bVar12 = DAT_180c58853 == '\0';
+    bVar12 = system_data_8853 == '\0';
   }
   else {
     iVar8 = HidP_GetValueCaps(2,lVar6,auStack_138,uStack_120);
@@ -610,11 +610,11 @@ LAB_1808f3fb9:
     FUN_1808f3c10(param_1);
     if (_DAT_180c69e10 == (code *)0x0) {
       free(lVar6);
-      bVar12 = DAT_180c58853 == '\0';
+      bVar12 = system_data_8853 == '\0';
     }
     else {
       (*_DAT_180c69e10)();
-      bVar12 = DAT_180c58853 == '\0';
+      bVar12 = system_data_8853 == '\0';
     }
   }
   if (!bVar12) {
@@ -731,7 +731,7 @@ FUN_1808f4485:
     FUN_1808f1d10();
     func_0x0001808f6c90();
   }
-  if (DAT_180c58853 != '\0') {
+  if (system_data_8853 != '\0') {
     func_0x0001808f3c40(uVar5);
   }
   _endthread();
@@ -782,7 +782,7 @@ LAB_1808f447d:
       FUN_1808f1d10();
       func_0x0001808f6c90();
     }
-    if (DAT_180c58853 != '\0') {
+    if (system_data_8853 != '\0') {
       func_0x0001808f3c40(uVar3);
     }
     _endthread();
@@ -871,7 +871,7 @@ void FUN_1808f3f05(void)
         FUN_1808f1d10();
         func_0x0001808f6c90();
       }
-      if (DAT_180c58853 != '\0') {
+      if (system_data_8853 != '\0') {
         func_0x0001808f3c40(uVar2);
       }
       _endthread();
@@ -940,7 +940,7 @@ void FUN_1808f4473(void)
     FUN_1808f1d10();
     func_0x0001808f6c90();
   }
-  if (DAT_180c58853 != '\0') {
+  if (system_data_8853 != '\0') {
     func_0x0001808f3c40(uVar1);
   }
   _endthread();
@@ -979,7 +979,7 @@ void FUN_1808f4485(void)
     FUN_1808f1d10();
     func_0x0001808f6c90();
   }
-  if (DAT_180c58853 != '\0') {
+  if (system_data_8853 != '\0') {
     func_0x0001808f3c40(uVar1);
   }
   _endthread();
@@ -1013,7 +1013,7 @@ void FUN_1808f449c(void)
     FUN_1808f1d10();
     func_0x0001808f6c90();
   }
-  if (DAT_180c58853 != '\0') {
+  if (system_data_8853 != '\0') {
     func_0x0001808f3c40(uVar1);
   }
   _endthread();

@@ -390,7 +390,7 @@ int32_t FUN_180742e60(longlong param_1)
   
   iVar3 = (*(int *)(param_1 + 0x107b0) * *(int *)(param_1 + 0x6d8) + 8) *
           *(int *)(param_1 + 0x11658);
-  lVar1 = FUN_180741e10(param_1 + 0x10bd0,iVar3 * 4 + 0x200,&DAT_18098bc73,0,0,0,1);
+  lVar1 = FUN_180741e10(param_1 + 0x10bd0,iVar3 * 4 + 0x200,&system_buffer_ptr,0,0,0,1);
   if (lVar1 == 0) {
     return 0x26;
   }
@@ -409,7 +409,7 @@ int32_t FUN_180742e60(longlong param_1)
     memset(lVar1,0,(longlong)iVar3 * 4 + 0x200);
   }
                     // WARNING: Subroutine does not return
-  FUN_180742250(param_1 + 0x10bd0,lVar1,&DAT_18098bc73,0,1);
+  FUN_180742250(param_1 + 0x10bd0,lVar1,&system_buffer_ptr,0,1);
 }
 
 

@@ -12,7 +12,7 @@ void FUN_18064c2bf(longlong param_1)
   
   uVar1 = *unaff_RBX;
   if (_DAT_180bfbdfc == 0) {
-    FUN_180650490(&DAT_180bfbdf8);
+    FUN_180650490(&system_data_bdf8);
   }
   if (_DAT_180bfbdf8 == 0) {
     FUN_1806492c0((((param_1 - unaff_RDI) + -0x80) / 0x50) * 0x10000 + unaff_RDI,

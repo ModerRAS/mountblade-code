@@ -607,7 +607,7 @@ uint64_t FUN_1808ee3e0(int32_t param_1,float *param_2)
   int iVar2;
   char *apcStackX_18 [2];
   
-  if (DAT_180c4f818 == '\0') {
+  if (system_data_f818 == '\0') {
     return 0x80920005;
   }
   if (param_2 == (float *)0x0) {
@@ -660,7 +660,7 @@ uint64_t FUN_1808ee530(int32_t param_1,int *param_2)
   int iVar2;
   char *apcStackX_18 [2];
   
-  if (DAT_180c4f818 == '\0') {
+  if (system_data_f818 == '\0') {
     return 0x80920005;
   }
   if (param_2 == (int *)0x0) {
@@ -700,7 +700,7 @@ int FUN_1808ee620(int param_1,int param_2,int param_3)
   int iVar1;
   longlong lVar2;
   
-  if (DAT_180c4f818 == '\0') {
+  if (system_data_f818 == '\0') {
     return -0x7f6dfffb;
   }
   if (((param_1 - 1U < 4) && (param_2 == 0)) && (param_3 == 0)) {
@@ -732,7 +732,7 @@ uint64_t FUN_1808ee6a0(void)
   uint uVar3;
   uint auStackX_8 [8];
   
-  if (DAT_180c4f818 == '\0') {
+  if (system_data_f818 == '\0') {
     if ((free_exref == (code *)0x0) || (malloc_exref == (code *)0x0)) {
       return 0x80920001;
     }

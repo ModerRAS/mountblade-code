@@ -47,8 +47,8 @@ uint64_t * FUN_1806ac430(uint64_t param_1,uint64_t *param_2,uint64_t param_3)
     *(int8_t *)(param_2 + 0xe) = 1;
     return param_2;
   }
-  param_2[1] = &DAT_18098bc73;
-  param_2[2] = &DAT_18098bc73;
+  param_2[1] = &system_buffer_ptr;
+  param_2[2] = &system_buffer_ptr;
   param_2[3] = 0xffffffffffffffff;
   param_2[4] = 0xffffffffffffffff;
   param_2[5] = 0;
@@ -84,7 +84,7 @@ uint64_t FUN_1806ac530(longlong param_1,uint64_t *param_2)
     uVar4 = FUN_1806ae680(param_1 + 8);
     uVar4 = *(uint *)(*(longlong *)(param_1 + 0x20) + (ulonglong)uVar4 * 4);
     if (uVar4 != 0xffffffff) {
-      puVar7 = &DAT_18098bc73;
+      puVar7 = &system_buffer_ptr;
       if ((void *)*param_2 != (void *)0x0) {
         puVar7 = (void *)*param_2;
       }
@@ -104,7 +104,7 @@ uint64_t FUN_1806ac530(longlong param_1,uint64_t *param_2)
           pcVar6 = pcVar6 + 1;
         } while (cVar3 != '\0');
         if (cVar2 == cVar3) {
-          puVar9 = &DAT_18098bc73;
+          puVar9 = &system_buffer_ptr;
           if ((void *)param_2[1] != (void *)0x0) {
             puVar9 = (void *)param_2[1];
           }
@@ -269,14 +269,14 @@ FUN_1806ac810(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
     *(int8_t *)(param_2 + 0xb) = 1;
     return param_2;
   }
-  param_2[1] = &DAT_18098bc73;
-  param_2[2] = &DAT_18098bc73;
-  param_2[4] = &DAT_18098bc73;
-  param_2[5] = &DAT_18098bc73;
+  param_2[1] = &system_buffer_ptr;
+  param_2[2] = &system_buffer_ptr;
+  param_2[4] = &system_buffer_ptr;
+  param_2[5] = &system_buffer_ptr;
   *(int32_t *)(param_2 + 3) = 0xffffffff;
   *(int32_t *)(param_2 + 6) = 0xffffffff;
-  param_2[7] = &DAT_18098bc73;
-  param_2[8] = &DAT_18098bc73;
+  param_2[7] = &system_buffer_ptr;
+  param_2[8] = &system_buffer_ptr;
   *(int32_t *)(param_2 + 9) = 0;
   param_2[10] = 0;
   *(int32_t *)((longlong)param_2 + 0x4c) = 0xffffffff;
@@ -318,14 +318,14 @@ uint64_t * FUN_1806ac8e0(longlong param_1,uint64_t *param_2,uint param_3,uint64_
       return param_2;
     }
   }
-  param_2[1] = &DAT_18098bc73;
-  param_2[2] = &DAT_18098bc73;
+  param_2[1] = &system_buffer_ptr;
+  param_2[2] = &system_buffer_ptr;
   *(int32_t *)(param_2 + 3) = 0xffffffff;
-  param_2[4] = &DAT_18098bc73;
-  param_2[5] = &DAT_18098bc73;
+  param_2[4] = &system_buffer_ptr;
+  param_2[5] = &system_buffer_ptr;
   *(int32_t *)(param_2 + 6) = 0xffffffff;
-  param_2[7] = &DAT_18098bc73;
-  param_2[8] = &DAT_18098bc73;
+  param_2[7] = &system_buffer_ptr;
+  param_2[8] = &system_buffer_ptr;
   *(int32_t *)(param_2 + 9) = 0;
   *(int32_t *)((longlong)param_2 + 0x4c) = 0xffffffff;
   param_2[10] = 0;
@@ -360,11 +360,11 @@ uint64_t * FUN_1806ac9d0(uint64_t param_1,uint64_t *param_2,uint64_t param_3)
     *(int8_t *)(param_2 + 0xc) = 1;
     return param_2;
   }
-  param_2[1] = &DAT_18098bc73;
-  param_2[2] = &DAT_18098bc73;
+  param_2[1] = &system_buffer_ptr;
+  param_2[2] = &system_buffer_ptr;
   *(int32_t *)(param_2 + 3) = 0xffffffff;
-  param_2[4] = &DAT_18098bc73;
-  param_2[5] = &DAT_18098bc73;
+  param_2[4] = &system_buffer_ptr;
+  param_2[5] = &system_buffer_ptr;
   *(int32_t *)(param_2 + 6) = 0xffffffff;
   param_2[7] = 0;
   param_2[8] = 0;
@@ -395,7 +395,7 @@ uint64_t FUN_1806aca90(longlong param_1,uint64_t *param_2)
     uVar4 = FUN_1806ae680(param_1 + 0xa0);
     uVar4 = *(uint *)(*(longlong *)(param_1 + 0xb8) + (ulonglong)uVar4 * 4);
     if (uVar4 != 0xffffffff) {
-      puVar7 = &DAT_18098bc73;
+      puVar7 = &system_buffer_ptr;
       if ((void *)*param_2 != (void *)0x0) {
         puVar7 = (void *)*param_2;
       }
@@ -415,7 +415,7 @@ uint64_t FUN_1806aca90(longlong param_1,uint64_t *param_2)
           pcVar6 = pcVar6 + 1;
         } while (cVar3 != '\0');
         if (cVar2 == cVar3) {
-          puVar9 = &DAT_18098bc73;
+          puVar9 = &system_buffer_ptr;
           if ((void *)param_2[1] != (void *)0x0) {
             puVar9 = (void *)param_2[1];
           }
@@ -758,8 +758,8 @@ uint64_t * FUN_1806ad8e0(longlong *param_1,uint64_t *param_2,uint param_3)
     return param_2;
   }
   *param_2 = &UNK_18094a3e8;
-  param_2[1] = &DAT_18098bc73;
-  param_2[2] = &DAT_18098bc73;
+  param_2[1] = &system_buffer_ptr;
+  param_2[2] = &system_buffer_ptr;
   param_2[3] = 0xffffffffffffffff;
   param_2[4] = 0xffffffffffffffff;
   param_2[5] = 0;

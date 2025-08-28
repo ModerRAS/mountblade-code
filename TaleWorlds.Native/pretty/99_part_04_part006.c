@@ -654,7 +654,7 @@ void FUN_18025bd30(longlong param_1)
       (**(code **)(*plVar5 + 0x28))(plVar5);
     }
     plVar5[0x15] = param_1;
-    puVar6 = &DAT_18098bc73;
+    puVar6 = &system_buffer_ptr;
     if (*(void **)(param_1 + 0x70) != (void *)0x0) {
       puVar6 = *(void **)(param_1 + 0x70);
     }
@@ -746,7 +746,7 @@ void FUN_18025bfa0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   if (cVar2 != '\0') {
     cVar2 = FUN_18062da70(lVar1 + 0x40);
     if (cVar2 == '\0') {
-      puStackX_18 = &DAT_18098bc73;
+      puStackX_18 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x48) != (void *)0x0) {
         puStackX_18 = *(void **)(lVar1 + 0x48);
       }

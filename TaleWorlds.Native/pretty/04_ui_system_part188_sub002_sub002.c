@@ -1063,8 +1063,8 @@ uint64_t FUN_1807793f0(void)
 
 
 uint8_t UNK_180959e90;
-uint8_t DAT_180be2198;
-uint8_t DAT_180be2288;
+uint8_t system_data_2198;
+uint8_t system_data_2288;
 uint8_t UNK_18095a310;
 uint8_t UNK_18095a384;
 uint8_t UNK_18095a598;

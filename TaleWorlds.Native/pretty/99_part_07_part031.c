@@ -237,7 +237,7 @@ LAB_1804b8fe0:
                         ((longlong *)(*plVar1 + lVar15),lVar16);
               break;
             }
-            lVar16 = (longlong)&DAT_180a03a84 - (longlong)pcVar20;
+            lVar16 = (longlong)&system_data_3a84 - (longlong)pcVar20;
             while (*pcVar20 == pcVar20[lVar16]) {
               pcVar20 = pcVar20 + 1;
               if (pcVar11 <= pcVar20) goto LAB_1804b8fe0;

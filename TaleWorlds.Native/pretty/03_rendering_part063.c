@@ -941,11 +941,11 @@ void FUN_180300650(longlong param_1,longlong param_2)
   }
   lVar1 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
   if ((*(int *)(lVar1 + 0x48) < _DAT_180d49678) &&
-     (FUN_1808fcb90(&DAT_180d49678,param_2,(ulonglong)__tls_index,lVar1,0xfffffffffffffffe),
+     (FUN_1808fcb90(&system_ptr_9678,param_2,(ulonglong)__tls_index,lVar1,0xfffffffffffffffe),
      _DAT_180d49678 == -1)) {
     _Mtx_init_in_situ(0x180d49680,2);
     FUN_1808fc820(FUN_180941da0);
-    FUN_1808fcb30(&DAT_180d49678);
+    FUN_1808fcb30(&system_ptr_9678);
   }
   if (*(longlong *)(param_1 + 0x28) == 0) {
     if (param_2 == 0) goto LAB_18030083c;

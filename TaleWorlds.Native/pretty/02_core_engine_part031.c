@@ -578,7 +578,7 @@ longlong * FUN_1800763c0(longlong *param_1,longlong *param_2)
   if ((longlong *)(*param_2 + 0x218) != param_1 + 0x43) {
     FUN_1800588c0((longlong *)(*param_2 + 0x218),param_1[0x43],param_1[0x44]);
   }
-  puVar20 = &DAT_18098bc73;
+  puVar20 = &system_buffer_ptr;
   if ((void *)param_1[3] != (void *)0x0) {
     puVar20 = (void *)param_1[3];
   }

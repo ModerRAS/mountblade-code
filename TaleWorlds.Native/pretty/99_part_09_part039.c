@@ -106,7 +106,7 @@ LAB_1805cf433:
     if (((char)unaff_RBX[0x2e4] != '\0') &&
        (piVar7 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar7 == 1)) {
 LAB_1805cf44a:
-      unaff_RBX[0x2e2] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2e3] * 8);
+      unaff_RBX[0x2e2] = *(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x2e3] * 8);
     }
     if ((*(uint *)(unaff_RBX + 2) & 0x200) == 0) {
       func_0x0001805d4cd0(unaff_RBX + 1);
@@ -311,7 +311,7 @@ LAB_1805cf1e8:
     uVar12 = uVar12 << 5 ^ uVar12;
     *(uint *)(unaff_RBX + 0x272) = uVar12;
     unaff_RBX[0x2eb] =
-         *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2ec] * 8) -
+         *(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x2ec] * 8) -
          (longlong)(-60000.004 - (float)(uVar12 - 1) * 1.1641532e-05);
   }
 FUN_1805cf6c9:
@@ -330,7 +330,7 @@ FUN_1805cf6c9:
             *(float *)(lVar9 + 0x2590) * *(float *)(lVar9 + 0x25a0) <= 0.95;
     bVar4 = (byte)((uint)*(int *)(lVar10 + 0x564) >> 0x1f) ^ 1;
     if (*(int *)(lVar10 + 0x564) < 0) {
-      if ((float)(*(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2dd] * 8) -
+      if ((float)(*(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x2dd] * 8) -
                  unaff_RBX[0x2dc]) * 1e-05 <= 0.0) goto FUN_1805cfbdd;
       if (bVar3) {
         pcVar8 = (char *)func_0x000180507f80(unaff_RBX + 1);
@@ -370,7 +370,7 @@ LAB_1805cf801:
         fVar15 = 0.0;
       }
       unaff_RBX[0x2e9] =
-           *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2ea] * 8) -
+           *(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x2ea] * 8) -
            (longlong)(fVar15 * fVar17);
     }
     else {
@@ -391,19 +391,19 @@ LAB_1805cf801:
                  *(float *)(*unaff_RBX + 0x37c);
         if (*(float *)(unaff_RBX + 0x28d) <= fVar16) {
           unaff_RBX[0x2e2] =
-               *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2e3] * 8) -
+               *(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x2e3] * 8) -
                (longlong)(fVar16 * fVar17);
           *(int8_t *)(unaff_RBX + 0x2e4) = 1;
           goto FUN_1805cfbdd;
         }
       }
-      else if ((float)(*(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2e3] * 8) -
+      else if ((float)(*(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x2e3] * 8) -
                       unaff_RBX[0x2e2]) * 1e-05 < 0.0) goto FUN_1805cfbdd;
     }
     *(int32_t *)((longlong)unaff_RBX + 0x178c) = 8;
     goto FUN_1805cfbdd;
   }
-  if (0.5 < (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2ea] * 8) -
+  if (0.5 < (float)(*(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x2ea] * 8) -
                    unaff_RBX[0x2e9]) * 1e-05) {
     pfVar11 = (float *)FUN_1805b7450();
     if ((*pfVar11 != 0.0) &&
@@ -415,7 +415,7 @@ LAB_1805cf801:
       uVar13 = uVar13 << 5 ^ uVar13;
       *(uint *)(unaff_RBX + 0x272) = uVar13;
       unaff_RBX[0x2eb] =
-           *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2ec] * 8) -
+           *(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x2ec] * 8) -
            (longlong)(-60000.004 - (float)(uVar13 - 1) * 1.1641532e-05);
     }
     func_0x0001805cef70();
@@ -424,13 +424,13 @@ LAB_1805cf801:
   pfVar11 = (float *)FUN_1805b7480(unaff_RBX + 1);
   fVar16 = *pfVar11;
   if (fVar16 * -2.25 <=
-      (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2ea] * 8) - unaff_RBX[0x2e9]
+      (float)(*(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x2ea] * 8) - unaff_RBX[0x2e9]
              ) * 1e-05) {
 LAB_1805cfb42:
     if ((*(int *)(*unaff_RBX + 0x564) < 0) ||
        ((lVar10 = *(longlong *)(*unaff_RBX + 0x20),
         *(float *)(lVar10 + 0x234) <= *(float *)(lVar10 + 0x84) * 0.3 ||
-        (lVar10 = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2ea] * 8),
+        (lVar10 = *(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x2ea] * 8),
         lVar9 = unaff_RBX[0x2e9], pfVar11 = (float *)FUN_1805b6e50(unaff_RBX + 1),
         fVar17 = (0.5 - (float)(lVar10 - lVar9) * 1e-05) + fVar16,
         fVar17 < *pfVar11 || fVar17 == *pfVar11)))) goto FUN_1805cfbdd;
@@ -450,11 +450,11 @@ LAB_1805cfb42:
        fVar17 < *pfVar11 || fVar17 == *pfVar11)) goto LAB_1805cfb42;
   }
   unaff_RBX[0x2e9] =
-       *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2ea] * 8) -
+       *(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x2ea] * 8) -
        (longlong)(50000.0 - fVar16 * 100000.0);
 FUN_1805cfbdd:
   if (*(int *)((longlong)unaff_RBX + 0x178c) == 7) {
-    if (0.0 < (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2dd] * 8) -
+    if (0.0 < (float)(*(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x2dd] * 8) -
                      unaff_RBX[0x2dc]) * 1e-05) {
       if (*(int *)(*unaff_RBX + 0x1fc) == 1) {
         uVar13 = *(uint *)(unaff_RBX + 2);
@@ -466,7 +466,7 @@ FUN_1805cfbdd:
           FUN_1805d4b40(unaff_RBX + 1);
         }
         if ((*(float *)(unaff_RBX + 0x1c) * 1.5 < *(float *)((longlong)unaff_RBX + 0xa4)) &&
-           (lVar10 = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2ea] * 8),
+           (lVar10 = *(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x2ea] * 8),
            lVar9 = unaff_RBX[0x2e9], pfVar11 = (float *)FUN_1805b7480(unaff_RBX + 1),
            *pfVar11 * 3.0 < (float)(lVar10 - lVar9) * 1e-05)) {
           func_0x0001805cef70();
@@ -475,7 +475,7 @@ FUN_1805cfbdd:
     }
     else {
       unaff_RBX[0x2e9] =
-           *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2ea] * 8) -
+           *(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x2ea] * 8) -
            (longlong)(*(float *)(*unaff_RBX + 0x300) * 100000.0);
       *(int32_t *)((longlong)unaff_RBX + 0x178c) = 0;
       if (*(int *)(*unaff_RBX + 0x1fc) - 1U < 2) {
@@ -485,7 +485,7 @@ FUN_1805cfbdd:
     }
   }
   if (((((int)unaff_RBX[0x2f1] == 0) ||
-       ((float)(*(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2ee] * 8) -
+       ((float)(*(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x2ee] * 8) -
                unaff_RBX[0x2ed]) * 1e-05 < -100.0)) || (9 < *(uint *)((longlong)unaff_RBX + 0x178c))
       ) || ((0x241U >> (*(uint *)((longlong)unaff_RBX + 0x178c) & 0x1f) & 1) == 0)) {
     FUN_1805caef0();

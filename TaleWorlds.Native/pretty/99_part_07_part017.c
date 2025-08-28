@@ -202,7 +202,7 @@ void FUN_1804ab140(void)
   uStack_80 = 0;
   uStack_90 = 0;
   uStack_88 = 0;
-  plVar11 = (longlong *)&DAT_180c96220;
+  plVar11 = (longlong *)&system_data_6220;
   uVar15 = uVar13;
   do {
     puStack_258 = &UNK_1809fcc28;
@@ -210,7 +210,7 @@ void FUN_1804ab140(void)
     auStack_240[0] = 0;
     puVar1 = *(void **)((longlong)auStack_1a8 + (uVar13 - 8));
     uStack_248 = *(int32_t *)((longlong)auStack_1a8 + uVar13);
-    puVar14 = &DAT_18098bc73;
+    puVar14 = &system_buffer_ptr;
     if (puVar1 != (void *)0x0) {
       puVar14 = puVar1;
     }
@@ -395,7 +395,7 @@ LAB_1804aba26:
     *(int32_t *)(*plVar11 + 200) = 3;
     *(int8_t *)(*plVar11 + 0xe9) = 1;
     *(int8_t *)(*plVar11 + 0xea) = 1;
-    puVar10 = &DAT_18098bc73;
+    puVar10 = &system_buffer_ptr;
     if (puStack_380 != (int8_t *)0x0) {
       puVar10 = puStack_380;
     }
@@ -668,7 +668,7 @@ void FUN_1804abca0(longlong **param_1)
       if ((iVar5 == 0) && (iVar5 = FUN_1802e7bc0(pplVar2,&uStack_108), iVar5 == 0)) {
         lVar7 = 2;
         plVar12 = plStack_140 + 2;
-        plVar10 = (longlong *)(*(longlong *)(&DAT_180c96220 + lVar9 * 8) + 0x6e0);
+        plVar10 = (longlong *)(*(longlong *)(&system_data_6220 + lVar9 * 8) + 0x6e0);
         do {
           plVar6 = plVar10;
           plVar15 = plVar12;
@@ -720,14 +720,14 @@ void FUN_1804abca0(longlong **param_1)
         *(int32_t *)((longlong)plVar6 + 0xb4) = uVar1;
         *(int *)(plVar6 + 0x17) = (int)lVar7;
         *(int32_t *)((longlong)plVar6 + 0xbc) = uVar16;
-        *(int8_t *)(*(longlong *)(&DAT_180c96220 + lVar9 * 8) + 0xdd) = 1;
+        *(int8_t *)(*(longlong *)(&system_data_6220 + lVar9 * 8) + 0xdd) = 1;
         FUN_1802ee720(pplVar2,1);
-        puVar8 = &DAT_18098bc73;
+        puVar8 = &system_buffer_ptr;
         if (puStack_130 != (void *)0x0) {
           puVar8 = puStack_130;
         }
-        (**(code **)(*(longlong *)(*(longlong *)(&DAT_180c96220 + lVar9 * 8) + 0x88) + 0x10))
-                  ((longlong *)(*(longlong *)(&DAT_180c96220 + lVar9 * 8) + 0x88),puVar8);
+        (**(code **)(*(longlong *)(*(longlong *)(&system_data_6220 + lVar9 * 8) + 0x88) + 0x10))
+                  ((longlong *)(*(longlong *)(&system_data_6220 + lVar9 * 8) + 0x88),puVar8);
         if (pplVar2 != (longlong **)0x0) {
           pplStackX_8 = pplVar2;
           (*(code *)(*pplVar2)[5])(pplVar2);

@@ -584,13 +584,13 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
     *(int32_t *)(_DAT_180c8a9b0 + 0x1c04) = 0x44200000;
     *(int32_t *)(temp_offset + 0x1c08) = 0x43f00000;
     *(int32_t *)(temp_offset + 0x1bd4) = 4;
-    temp_ptr1 = &DAT_18098bc73;
+    temp_ptr1 = &system_buffer_ptr;
     if (*(void **)(config_data + 8) != (void *)0x0) {
         temp_ptr1 = *(void **)(config_data + 8);
     }
     
     // 执行字符串比较和状态检查
-    status_flag = StringComparator(temp_ptr1, &DAT_180c82862, -(uint)(status_flag != '\0') & 0x2020);
+    status_flag = StringComparator(temp_ptr1, &system_memory_2862, -(uint)(status_flag != '\0') & 0x2020);
     temp_offset = _DAT_180c8a9b0;
     resource_id = 0;
     if (status_flag == '\0') {
@@ -692,7 +692,7 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
                 }
                 else {
                     temp_ptr1 = *(void **)(temp_offset + 0x10 + (longlong)data_array);
-                    temp_ptr2 = &DAT_18098bc73;
+                    temp_ptr2 = &system_buffer_ptr;
                     if (temp_ptr1 != (void *)0x0) {
                         temp_ptr2 = temp_ptr1;
                     }
@@ -744,7 +744,7 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
                 *(ulonglong *)(config_offset + 0x16c8) = CONCAT44(stack_d8._4_4_, (int32_t)stack_d8);
                 *(ulonglong *)(config_offset + 0x16d0) = CONCAT44(stack_cc, stack_d0);
                 temp_ptr1 = *(void **)(temp_offset + 0x10 + (longlong)data_array);
-                temp_ptr2 = &DAT_18098bc73;
+                temp_ptr2 = &system_buffer_ptr;
                 if (temp_ptr1 != (void *)0x0) {
                     temp_ptr2 = temp_ptr1;
                 }
@@ -801,7 +801,7 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
             *(int32_t *)(temp_offset + 0x404) = 0x7fffffff;
             *(int8_t *)((longlong)data_ptr + 0x71) = 1;
             if ((*(char *)(data_ptr + 0xc) != '\0') && (*(int *)((longlong)data_ptr + 100) != -1)) {
-                temp_data_ptr = (TriplePointer *)&DAT_18098bc73;
+                temp_data_ptr = (TriplePointer *)&system_buffer_ptr;
                 if (data_ptr[4][(longlong)*(int *)((longlong)data_ptr + 100) * 4 + 1] != (TriplePointer)0x0) {
                     temp_data_ptr = data_ptr[4][(longlong)*(int *)((longlong)data_ptr + 100) * 4 + 1];
                 }
@@ -1194,7 +1194,7 @@ void core_engine_data_synchronizer(longlong sync_handle, uint64_t *config_ptr, u
             }
             DataSynchronizer(temp_size);
             resource_ptr = *(void **)(*(longlong *)(sync_handle + 0x20) + 8 + stream_index);
-            temp_resource = &DAT_18098bc73;
+            temp_resource = &system_buffer_ptr;
             if (resource_ptr != (void *)0x0) {
                 temp_resource = resource_ptr;
             }

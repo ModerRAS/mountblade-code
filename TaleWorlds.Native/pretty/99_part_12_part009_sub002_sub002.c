@@ -765,18 +765,18 @@ uint64_t SystemResourceManager(longlong system_context)
         bVar7 = *(byte *)((ulonglong)*(byte *)(lVar5 + 0xd1) + 0x3a0 + lVar20);
         if (bVar7 < 0x10) {
           puVar10 = (void *)((ulonglong)bVar7 * 0x38 + 0x20 + lVar20);
-          puStack_68 = &DAT_180be7a80;
+          puStack_68 = &system_memory_7a80;
           if (puVar10 != (void *)0x0) {
             puStack_68 = puVar10;
           }
         }
         else {
-          puStack_68 = &DAT_180be7a80;
+          puStack_68 = &system_memory_7a80;
         }
       }
       else {
         lVar20 = 0x180be7b90;
-        puStack_68 = &DAT_180be7a80;
+        puStack_68 = &system_memory_7a80;
         _DAT_180be7a80 = 0;
       }
       uVar3 = *(int8_t *)(lVar16 + 3);
@@ -1282,19 +1282,19 @@ uint64_t AdvancedDataProcessingCoordinator(uint64_t system_context, uint64_t dat
       /* 根据控制字节选择配置数据 */
       if (control_byte < 0x10) {
         configuration_data = (void *)((ulonglong)control_byte * 0x38 + 0x20 + calculation_result);
-        resource_handle = &DAT_180be7a80;
+        resource_handle = &system_memory_7a80;
         if (configuration_data != (void *)0x0) {
           resource_handle = configuration_data;
         }
         *(void **)(unaff_RBP + -9) = resource_handle;
       }
       else {
-        *(void **)(unaff_RBP + -9) = &DAT_180be7a80; /* 默认配置 */
+        *(void **)(unaff_RBP + -9) = &system_memory_7a80; /* 默认配置 */
       }
     }
     else {
       calculation_result = 0x180be7b90; /* 默认资源地址 */
-      *(void **)(unaff_RBP + -9) = &DAT_180be7a80;
+      *(void **)(unaff_RBP + -9) = &system_memory_7a80;
       _DAT_180be7a80 = processing_params;
     }
     /* 状态标志处理和初始化 */
@@ -2086,7 +2086,7 @@ uint64_t SystemErrorHandler(longlong system_context, char error_flag)
         
         /* 检查是否需要特殊处理 */
         if (((longlong *)context_data == error_processor) && (*(longlong **)(error_context + 0x10) == error_processor)) {
-          _DAT_180be7ae8 = &DAT_180be7a80;
+          _DAT_180be7ae8 = &system_memory_7a80;
           context_data = 0x180be7ac0; /* 默认错误处理器 */
         }
         
@@ -2116,7 +2116,7 @@ uint64_t SystemErrorHandler(longlong system_context, char error_flag)
             resource_handle = (void *)(resource_addr + 0x20 + (ulonglong)error_code * 0x38);
           }
           else {
-            resource_handle = &DAT_180be7a80; /* 默认资源 */
+            resource_handle = &system_memory_7a80; /* 默认资源 */
           }
           if (!error_detected) {
             *(void **)(context_data + 0x28) = resource_handle;
@@ -2124,7 +2124,7 @@ uint64_t SystemErrorHandler(longlong system_context, char error_flag)
         }
         else {
           resource_addr = 0x180be7b90; /* 默认资源地址 */
-          resource_handle = &DAT_180be7a80;
+          resource_handle = &system_memory_7a80;
           _DAT_180be7a80 = 0; /* 重置错误数据 */
         }
         uVar2 = *(int32_t *)(lStack_68 + 0x40);
@@ -2142,7 +2142,7 @@ uint64_t SystemErrorHandler(longlong system_context, char error_flag)
           }
           if (lStack_68 == 0) {
             lStack_68 = 0x180be7ac0;
-            _DAT_180be7ae8 = &DAT_180be7a80;
+            _DAT_180be7ae8 = &system_memory_7a80;
           }
           bVar9 = puStack_60[0x18] + -1 + *pcVar22;
           *(byte *)(lVar4 + 0xd3) = bVar9;
@@ -2589,7 +2589,7 @@ uint64_t SystemCleaner(void)
     bVar18 = bVar9 & 0xf;
     bVar22 = bVar9 >> 4;
     if ((plVar16 == plVar1) && (*(longlong **)(lVar6 + 0x10) == plVar1)) {
-      _DAT_180be7ae8 = &DAT_180be7a80;
+      _DAT_180be7ae8 = &system_memory_7a80;
       plVar16 = (longlong *)0x180be7ac0;
     }
     cVar23 = unaff_R14[3];
@@ -2620,7 +2620,7 @@ uint64_t SystemCleaner(void)
         puVar20 = (void *)(lVar19 + 0x20 + (ulonglong)bVar8 * 0x38);
       }
       else {
-        puVar20 = &DAT_180be7a80;
+        puVar20 = &system_memory_7a80;
       }
       *(void **)(unaff_RBP + -1) = puVar20;
       if (cVar23 == '\0') {
@@ -2630,7 +2630,7 @@ uint64_t SystemCleaner(void)
     }
     else {
       *(uint64_t *)(unaff_RBP + -0x11) = 0x180be7b90;
-      *(void **)(unaff_RBP + -1) = &DAT_180be7a80;
+      *(void **)(unaff_RBP + -1) = &system_memory_7a80;
       _DAT_180be7a80 = in_R11;
     }
     cVar4 = *(char *)(lVar6 + 0xd8);
@@ -2652,7 +2652,7 @@ uint64_t SystemCleaner(void)
       }
       if (lVar19 == 0) {
         *(uint64_t *)(unaff_RBP + -9) = 0x180be7ac0;
-        _DAT_180be7ae8 = &DAT_180be7a80;
+        _DAT_180be7ae8 = &system_memory_7a80;
       }
       lVar19 = *(longlong *)(unaff_RBP + -1);
       bVar8 = *(char *)(lVar19 + 0x18) + -1 + *unaff_R14;

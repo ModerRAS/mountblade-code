@@ -71,8 +71,8 @@ LAB_18072eeb7:
   do {
     lVar7 = 1;
     while( true ) {
-      iVar16 = (int)*(short *)(&DAT_180956f70 + lStack_f0 * 2);
-      puStack_d8 = &DAT_180956f70 + lStack_f0 * 2;
+      iVar16 = (int)*(short *)(&system_data_6f70 + lStack_f0 * 2);
+      puStack_d8 = &system_data_6f70 + lStack_f0 * 2;
       uVar12 = (ulonglong)*(int *)(lStack_e8 + (longlong)piVar9);
       if (iVar17 == 8) {
         lVar6 = (longlong)(iVar16 << 4);
@@ -385,8 +385,8 @@ void FUN_18072f4d0(int8_t *param_1,longlong param_2,uint param_3)
       *(int *)(auStack_104 + (ulonglong)*pbVar1 * 4 + -4) =
            ((iVar7 + iVar2 * -0x100) *
             ((int)*(short *)(&UNK_180956f72 + (longlong)iVar2 * 2) -
-            (int)*(short *)(&DAT_180956f70 + (longlong)iVar2 * 2)) +
-            *(short *)(&DAT_180956f70 + (longlong)iVar2 * 2) * 0x100 >> 3) + 1 >> 1;
+            (int)*(short *)(&system_data_6f70 + (longlong)iVar2 * 2)) +
+            *(short *)(&system_data_6f70 + (longlong)iVar2 * 2) * 0x100 >> 3) + 1 >> 1;
     } while (lVar9 < lVar6);
   }
   iVar2 = (int)param_3 >> 1;

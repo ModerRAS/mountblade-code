@@ -553,7 +553,7 @@ longlong create_rendering_scene(longlong scene_param, longlong renderer_ptr)
     FUN_1800b6620();
     
     scene_id = FUN_1800daa50();
-    FUN_180094b30(scene_id, &DAT_180a16c50);
+    FUN_180094b30(scene_id, &system_buffer_6c50);
     
     // 获取渲染资源
     resource_list1 = *(longlong **)(_DAT_180c86938 + 0x121e0);

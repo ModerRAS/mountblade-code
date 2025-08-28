@@ -305,7 +305,7 @@ void process_engine_components(longlong component_context)
       // 检查组件类型
       if ((void *)*component_list == &UNK_180a128b0) {
         temp_int = FUN_180846a90(component_list[0x10],&temp_int_1);
-        FUN_180211a30(temp_int,&DAT_18098bc73);
+        FUN_180211a30(temp_int,&system_buffer_ptr);
         if ((temp_int == 0) && ((temp_int_1 == 0 || (temp_int_1 == 3)))) {
           should_process = '\x01';
         }
@@ -356,7 +356,7 @@ void process_engine_components(longlong component_context)
         
         FUN_180628040(&temp_ptr_1,&UNK_1809fe7f8,temp_array_4);
         temp_8_1 = 0;
-        temp_ptr = (int32_t *)&DAT_18098bc73;
+        temp_ptr = (int32_t *)&system_buffer_ptr;
         
         if (temp_ptr_2 != (int32_t *)0x0) {
           temp_ptr = temp_ptr_2;
@@ -528,7 +528,7 @@ void resize_object_array(longlong *object_array_ptr,uint64_t param_2,uint64_t pa
         *(int8_t *)(temp_ptr + 3) = 0;
         *(int32_t *)(temp_ptr + 2) = *(int32_t *)(offset + 0x10 + (longlong)temp_ptr);
         object_ptr = *(void **)(offset + 8 + (longlong)temp_ptr);
-        temp_object_ptr = &DAT_18098bc73;
+        temp_object_ptr = &system_buffer_ptr;
         if (object_ptr != (void *)0x0) {
           temp_object_ptr = object_ptr;
         }
@@ -622,7 +622,7 @@ void expand_object_array(longlong *object_array_ptr,uint64_t param_2,uint64_t pa
       *element_ptr = 0;
       *(int8_t *)(element_ptr + 2) = 0;
       *element_ptr = *(int32_t *)(old_start + 0x10);
-      object_data = &DAT_18098bc73;
+      object_data = &system_buffer_ptr;
       if (*(void **)(old_start + 8) != (void *)0x0) {
         object_data = *(void **)(old_start + 8);
       }
@@ -717,7 +717,7 @@ EXPANSION_DONE:
       *(int8_t *)(insert_ptr + 3) = 0;
       *(int32_t *)(insert_ptr + 2) = *(int32_t *)(element_count + 0x10 + (longlong)insert_ptr);
       object_data = *(void **)(element_count + 8 + (longlong)insert_ptr);
-      temp_object_data = &DAT_18098bc73;
+      temp_object_data = &system_buffer_ptr;
       if (object_data != (void *)0x0) {
         temp_object_data = object_data;
       }

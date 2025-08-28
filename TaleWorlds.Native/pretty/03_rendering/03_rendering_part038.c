@@ -121,7 +121,7 @@ process_render_string(uint64_t param_1, uint64_t *string_buffer, uint64_t param_
   string_buffer[1] = string_buffer + 3;
   *(int8_t *)(string_buffer + 3) = 0;
   *(int32_t *)(string_buffer + 2) = 0x16;
-  strcpy_s(string_buffer[1], 0x80, &DAT_180a16c38, param_4, 0, MAX_RENDER_QUEUE_SIZE);
+  strcpy_s(string_buffer[1], 0x80, &system_buffer_6c38, param_4, 0, MAX_RENDER_QUEUE_SIZE);
   return string_buffer;
 }
 
@@ -219,7 +219,7 @@ longlong create_render_object(longlong object_params, longlong render_manager)
   
   texture_data[1] = MAX_RENDER_QUEUE_SIZE;
   render_context = FUN_1800daa50();
-  FUN_180094b30(render_context, &DAT_180a16c38);
+  FUN_180094b30(render_context, &system_buffer_6c38);
   resource_ptr1 = *(longlong **)(_DAT_180c86938 + 0x121e0);
   if (resource_ptr1 != (longlong *)0x0) {
     (**(code **)(*resource_ptr1 + 0x28))(resource_ptr1);

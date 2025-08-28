@@ -307,7 +307,7 @@ void FUN_18029d280(longlong param_1,longlong param_2)
   do {
     if (*plVar9 != 0) {
       lVar2 = FUN_1802a05d0(*plVar9,apuStack_d8);
-      puVar8 = &DAT_18098bc73;
+      puVar8 = &system_buffer_ptr;
       if (*(void **)(lVar2 + 8) != (void *)0x0) {
         puVar8 = *(void **)(lVar2 + 8);
       }
@@ -424,9 +424,9 @@ void FUN_18029d500(longlong param_1,longlong param_2)
       puStack_d0 = auStack_c0;
       auStack_c0[0] = 0;
       uStack_c8 = 0;
-      strcpy_s(auStack_c0,0x80,&DAT_18098bc73);
+      strcpy_s(auStack_c0,0x80,&system_buffer_ptr);
       uStack_f8 = 1;
-      puVar5 = &DAT_18098bc73;
+      puVar5 = &system_buffer_ptr;
       if (puStack_d0 != (void *)0x0) {
         puVar5 = puStack_d0;
       }
@@ -461,9 +461,9 @@ void FUN_18029d500(longlong param_1,longlong param_2)
     puStack_d0 = auStack_c0;
     auStack_c0[0] = 0;
     uStack_c8 = 0;
-    strcpy_s(auStack_c0,0x80,&DAT_18098bc73);
+    strcpy_s(auStack_c0,0x80,&system_buffer_ptr);
     uStack_f8 = 2;
-    puVar5 = &DAT_18098bc73;
+    puVar5 = &system_buffer_ptr;
     if (puStack_d0 != (void *)0x0) {
       puVar5 = puStack_d0;
     }
@@ -865,7 +865,7 @@ void FUN_18029de40(longlong param_1,int32_t param_2)
 void FUN_18029e060(longlong param_1)
 
 {
-  if (DAT_180c82846 == '\0') {
+  if (system_data_2846 == '\0') {
     (**(code **)(**(longlong **)(param_1 + 0x8400) + 0xa8))();
   }
   return;
@@ -879,7 +879,7 @@ void FUN_18029e060(longlong param_1)
 void FUN_18029e090(longlong param_1,int32_t param_2,int param_3,int32_t param_4)
 
 {
-  if (DAT_180c82846 == '\0') {
+  if (system_data_2846 == '\0') {
     (**(code **)(**(longlong **)(param_1 + 0x8400) + 0xa0))
               (*(longlong **)(param_1 + 0x8400),param_3 * 3,param_4,param_2,0,0);
   }
@@ -898,7 +898,7 @@ void FUN_18029e110(longlong param_1)
 {
   longlong lVar1;
   
-  if (DAT_180c82846 == '\0') {
+  if (system_data_2846 == '\0') {
     lVar1 = *(longlong *)(*(longlong *)(_DAT_180c86938 + 0x1d50) + 0x18);
     if (*(longlong *)(param_1 + 0x8240) != lVar1) {
       *(longlong *)(param_1 + 0x8240) = lVar1;

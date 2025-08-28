@@ -40,7 +40,7 @@ void initialize_with_default_params(uint64_t system_handle, uint64_t config_para
   FUN_1800623b0(_DAT_180c86928, 0, 0x100000000, 1, &UNK_1809ff938, config_param, 0xfffffffffffffffe);
   
   // 检查系统状态
-  if (DAT_180c82860 == '\0') {
+  if (system_debug_flag == '\0') {
     // 设置默认参数
     default_params[0] = 0xff00ff00;
     
@@ -107,7 +107,7 @@ void initialize_with_custom_params(uint64_t system_handle, int32_t custom_param,
   FUN_1800623b0(_DAT_180c86928, 0, 0x100000000, 0xc, &UNK_1809ff958, additional_config, 0xfffffffffffffffe);
   
   // 检查系统状态
-  if (DAT_180c82860 == '\0') {
+  if (system_debug_flag == '\0') {
     // 设置自定义参数
     custom_params[0] = custom_param;
     

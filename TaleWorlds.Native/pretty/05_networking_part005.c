@@ -220,7 +220,7 @@ void NetworkClient_SendMessage(uint64_t client_id, uint64_t message_data, uint64
         
         // 添加分隔符
         header_length = FUN_18074b880(temp_buffer + data_length, 0x100 - data_length, 
-                                     &DAT_180a06434);
+                                     &system_temp_buffer);
         
         // 添加消息体
         func_0x00018074bda0(temp_buffer + (data_length + header_length), 
@@ -261,7 +261,7 @@ void NetworkClient_BroadcastMessage(void)
     
     // 添加消息分隔符
     separator_size = FUN_18074b880(&stack0x00000030 + header_size, 
-                                   0x100 - header_size, &DAT_180a06434);
+                                   0x100 - header_size, &system_temp_buffer);
     
     // 添加消息体
     func_0x00018074bda0(&stack0x00000030 + (header_size + separator_size), 
@@ -343,7 +343,7 @@ void NetworkClient_GetPropertyList(uint64_t client_id, int32_t *property_array, 
         // 准备错误消息
         query_result = FUN_18074bc50(temp_buffer, 0x100, property_array);
         status = FUN_18074b880(temp_buffer + query_result, 0x100 - query_result, 
-                              &DAT_180a06434);
+                              &system_temp_buffer);
         func_0x00018074bda0(temp_buffer + (query_result + status), 
                            0x100 - (query_result + status), property_count);
         data_buffer = temp_buffer;
@@ -618,11 +618,11 @@ void NetworkClient_SetClientProperty(uint64_t client_id, longlong property_id, i
   if (param_2 == 0) {
     if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
       iVar1 = FUN_18074b880(auStack_148,0x100,0);
-      iVar2 = FUN_18074b880(auStack_148 + iVar1,0x100 - iVar1,&DAT_180a06434);
+      iVar2 = FUN_18074b880(auStack_148 + iVar1,0x100 - iVar1,&system_temp_buffer);
       iVar1 = iVar1 + iVar2;
       iVar2 = FUN_18074bac0(auStack_148 + iVar1,0x100 - iVar1,param_3);
       iVar1 = iVar1 + iVar2;
-      iVar2 = FUN_18074b880(auStack_148 + iVar1,0x100 - iVar1,&DAT_180a06434);
+      iVar2 = FUN_18074b880(auStack_148 + iVar1,0x100 - iVar1,&system_temp_buffer);
       FUN_18074bac0(auStack_148 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_4);
       puStack_178 = auStack_148;
                     // WARNING: Subroutine does not return
@@ -693,7 +693,7 @@ void NetworkClient_QueryClientStatus(uint64_t client_id, int32_t status_code, ui
   iVar1 = FUN_180840600();
   if ((iVar1 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
     iVar2 = func_0x00018074b7d0(auStack_138,0x100,param_2);
-    iVar3 = FUN_18074b880(auStack_138 + iVar2,0x100 - iVar2,&DAT_180a06434);
+    iVar3 = FUN_18074b880(auStack_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
     func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     puStack_148 = auStack_138;
                     // WARNING: Subroutine does not return
@@ -725,7 +725,7 @@ void NetworkClient_PingClient(void)
   int32_t unaff_ESI;
   
   iVar1 = func_0x00018074b7d0(&stack0x00000030,0x100,unaff_EBX);
-  iVar2 = FUN_18074b880(&stack0x00000030 + iVar1,0x100 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(&stack0x00000030 + iVar1,0x100 - iVar1,&system_temp_buffer);
   func_0x00018074bda0(&stack0x00000030 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
                     // WARNING: Subroutine does not return
   FUN_180749ef0(unaff_ESI,0xc);
@@ -885,11 +885,11 @@ void NetworkClient_GetClientData(ulonglong client_id, int8_t *data_buffer, int d
     FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_1a8);
   }
   iVar1 = FUN_18074b880(auStack_148,0x100,param_2);
-  iVar2 = FUN_18074b880(auStack_148 + iVar1,0x100 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(auStack_148 + iVar1,0x100 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = func_0x00018074b7d0(auStack_148 + iVar1,0x100 - iVar1,param_3);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(auStack_148 + iVar1,0x100 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(auStack_148 + iVar1,0x100 - iVar1,&system_temp_buffer);
   FUN_18074b930(auStack_148 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_4);
   puStack_188 = (int32_t *)auStack_148;
                     // WARNING: Subroutine does not return
@@ -919,11 +919,11 @@ void NetworkClient_InitializeClientData(void)
   int32_t unaff_ESI;
   
   iVar1 = FUN_18074b880(&stack0x00000060,0x100);
-  iVar2 = FUN_18074b880(&stack0x00000060 + iVar1,0x100 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(&stack0x00000060 + iVar1,0x100 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = func_0x00018074b7d0(&stack0x00000060 + iVar1,0x100 - iVar1,unaff_EBP);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(&stack0x00000060 + iVar1,0x100 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(&stack0x00000060 + iVar1,0x100 - iVar1,&system_temp_buffer);
   FUN_18074b930(&stack0x00000060 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
                     // WARNING: Subroutine does not return
   FUN_180749ef0(unaff_ESI,0xc);
@@ -1197,7 +1197,7 @@ void NetworkClient_GetClientProperty(ulonglong client_id, uint property_index, i
     FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_188);
   }
   iVar1 = func_0x00018074b7d0(auStack_138,0x100,param_2);
-  iVar2 = FUN_18074b880(auStack_138 + iVar1,0x100 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(auStack_138 + iVar1,0x100 - iVar1,&system_temp_buffer);
   FUN_18074bac0(auStack_138 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_3);
   puStack_168 = auStack_138;
                     // WARNING: Subroutine does not return

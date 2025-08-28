@@ -674,7 +674,7 @@ void expand_dynamic_array_4byte_typeA(longlong source_array, longlong *target_pt
     stack_ptr2 = stack_data;
     stack_data[0] = 0;
     stack_size = 0x1c;
-    strcpy_s(stack_data, 0x40, &DAT_1809ffc60);
+    strcpy_s(stack_data, 0x40, &system_memory_fc60);
     FUN_1802037e0();
     stack_ptr1 = &UNK_18098bcb0;
     
@@ -752,7 +752,7 @@ void expand_dynamic_array_4byte_typeB(longlong source_array, longlong *target_pt
     stack_ptr2 = stack_data;
     stack_data[0] = 0;
     stack_size = 0x1c;
-    strcpy_s(stack_data, 0x40, &DAT_1809ffc60);
+    strcpy_s(stack_data, 0x40, &system_memory_fc60);
     FUN_1802037e0();
     stack_ptr1 = &UNK_18098bcb0;
     
@@ -831,7 +831,7 @@ void expand_dynamic_array_2byte(longlong source_array, longlong *target_ptr)
     stack_ptr2 = stack_data;
     stack_data[0] = 0;
     stack_size = 0x1c;
-    strcpy_s(stack_data, 0x40, &DAT_1809ffc60);
+    strcpy_s(stack_data, 0x40, &system_memory_fc60);
     FUN_1802037e0();
     stack_ptr1 = &UNK_18098bcb0;
     

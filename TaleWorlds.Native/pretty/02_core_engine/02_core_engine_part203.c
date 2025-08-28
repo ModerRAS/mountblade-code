@@ -909,12 +909,12 @@ void FUN_180185cf0(uint64_t param_1,longlong param_2)
   auStack_b0[0] = 0;
   uStack_b8 = *(int32_t *)(lVar2 + 0x20);
   puVar3 = *(void **)(lVar2 + 0x18);
-  puVar4 = &DAT_18098bc73;
+  puVar4 = &system_buffer_ptr;
   if (puVar3 != (void *)0x0) {
     puVar4 = puVar3;
   }
   strcpy_s(auStack_b0,0x80,puVar4);
-  puVar3 = &DAT_18098bc73;
+  puVar3 = &system_buffer_ptr;
   if (puStack_c0 != (void *)0x0) {
     puVar3 = puStack_c0;
   }

@@ -64,11 +64,11 @@ void FUN_1805beae0(longlong param_1)
           *(int32_t *)(param_1 + 0x200c) = 0;
           *(int8_t *)(param_1 + 0x1c48) = 0;
           *(uint64_t *)(param_1 + 0x1c38) =
-               *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x1c40) * 8);
+               *(uint64_t *)(&system_error_code + (longlong)*(int *)(param_1 + 0x1c40) * 8);
         }
         else if ((*(char *)(param_1 + 0x1c48) == '\0') &&
                 (0.0 < (float)(*(longlong *)
-                                (&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x1c40) * 8) -
+                                (&system_error_code + (longlong)*(int *)(param_1 + 0x1c40) * 8) -
                               *(longlong *)(param_1 + 0x1c38)) * 1e-05)) {
           if ((*(uint *)(param_1 + 0x209c) >> 0xb & 1) == 0) {
             uStack_40 = 0x1805b78ae;
@@ -82,15 +82,15 @@ void FUN_1805beae0(longlong param_1)
           *(int32_t *)(param_1 + 0x200c) = 0;
           *(int8_t *)(param_1 + 0x1c48) = 0;
           *(uint64_t *)(param_1 + 0x1c38) =
-               *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x1c40) * 8);
-          puVar10 = &DAT_180c8ed30;
+               *(uint64_t *)(&system_error_code + (longlong)*(int *)(param_1 + 0x1c40) * 8);
+          puVar10 = &system_error_code;
           puVar8 = &UNK_180a30c20;
           puStack_18 = (void *)(double)*(float *)(param_1 + 0x13b8);
           if (*(char *)(param_1 + 0x13bc) != '\0') {
             puVar8 = &UNK_180a30bd8;
           }
           dStack_10 = (double)((float)(*(longlong *)
-                                        (&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x13b0) * 8)
+                                        (&system_error_code + (longlong)*(int *)(param_1 + 0x13b0) * 8)
                                       - *(longlong *)(param_1 + 0x13a8)) * 1e-05);
           uStack_40 = 0x180508086;
           lVar9 = param_1;
@@ -115,7 +115,7 @@ void FUN_1805beae0(longlong param_1)
   iVar5 = 0;
   iVar6 = 0;
   fVar1 = *(float *)(lVar9 + 0x98d9d8);
-  lVar2 = *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar9 + 0x87b790) * 8);
+  lVar2 = *(longlong *)(&system_error_code + (longlong)*(int *)(lVar9 + 0x87b790) * 8);
   lVar9 = *(longlong *)(lVar9 + 0x87b788);
   if (0 < *(int *)(param_1 + 0x200c)) {
     pfVar7 = (float *)(param_1 + 0x1c58);

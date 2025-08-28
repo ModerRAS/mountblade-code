@@ -139,7 +139,7 @@ longlong CoreEngineDataCopier(longlong dest_ptr, longlong src_ptr) {
             // 复制字符串数据
             *(int32_t *)(puVar6 + 2) = *(int32_t *)(lVar5 + 0x10 + (longlong)puVar6);
             puVar2 = *(void **)(lVar5 + 8 + (longlong)puVar6);
-            puVar7 = &DAT_18098bc73;
+            puVar7 = &system_buffer_ptr;
             if (puVar2 != (void *)0x0) {
                 puVar7 = puVar2;
             }
@@ -190,7 +190,7 @@ longlong CoreEngineDataCopier(longlong dest_ptr, longlong src_ptr) {
             *(int8_t *)(puVar6 + 3) = 0;
             *(int32_t *)(puVar6 + 2) = *(int32_t *)(lVar5 + 0x10 + (longlong)puVar6);
             puVar2 = *(void **)(lVar5 + 8 + (longlong)puVar6);
-            puVar7 = &DAT_18098bc73;
+            puVar7 = &system_buffer_ptr;
             if (puVar2 != (void *)0x0) {
                 puVar7 = puVar2;
             }
@@ -237,7 +237,7 @@ longlong CoreEngineDataCopier(longlong dest_ptr, longlong src_ptr) {
             *(int8_t *)(puVar6 + 3) = 0;
             *(int32_t *)(puVar6 + 2) = *(int32_t *)(lVar5 + 0x10 + (longlong)puVar6);
             puVar2 = *(void **)(lVar5 + 8 + (longlong)puVar6);
-            puVar7 = &DAT_18098bc73;
+            puVar7 = &system_buffer_ptr;
             if (puVar2 != (void *)0x0) {
                 puVar7 = puVar2;
             }
@@ -288,7 +288,7 @@ longlong CoreEngineDataCopier(longlong dest_ptr, longlong src_ptr) {
             *(int8_t *)(puVar6 + 3) = 0;
             *(int32_t *)(puVar6 + 2) = *(int32_t *)(lVar3 + 0x10 + (longlong)puVar6);
             puVar2 = *(void **)(lVar3 + 8 + (longlong)puVar6);
-            puVar7 = &DAT_18098bc73;
+            puVar7 = &system_buffer_ptr;
             if (puVar2 != (void *)0x0) {
                 puVar7 = puVar2;
             }
@@ -374,7 +374,7 @@ longlong *CoreEngineDataManager(uint64_t resource_type, longlong *resource_ptr, 
     // 处理数据初始化
     if (lVar4 == 0) {
         // 处理空数据情况
-        puVar6 = &DAT_18098bc73;
+        puVar6 = &system_buffer_ptr;
         if (*(void **)(param_3 + 8) != (void *)0x0) {
             puVar6 = *(void **)(param_3 + 8);
         }
@@ -403,7 +403,7 @@ longlong *CoreEngineDataManager(uint64_t resource_type, longlong *resource_ptr, 
     
     // 处理字符串数据
     if (0 < *(int *)(param_3 + 0x10)) {
-        puVar6 = &DAT_18098bc73;
+        puVar6 = &system_buffer_ptr;
         if (*(void **)(param_3 + 8) != (void *)0x0) {
             puVar6 = *(void **)(param_3 + 8);
         }
@@ -546,7 +546,7 @@ longlong CoreEngineDataValidator(longlong *context_ptr, longlong string_data) {
         uStack_68 = CONCAT44(uStack_68._4_4_, uVar1);
         *puVar4 = 0x2e;
         uStack_70 = 1;
-        puVar5 = &DAT_18098bc73;
+        puVar5 = &system_buffer_ptr;
         if (puStack_f8 != (void *)0x0) {
             puVar5 = puStack_f8;
         }
@@ -893,7 +893,7 @@ longlong *CoreEnginePathParser(uint64_t manager_type, longlong *data_ptr, uint64
     }
     
     // 处理路径解析
-    (**(code **)(puStack_d0 + 0x10))(&puStack_d0, &DAT_18098bc73);
+    (**(code **)(puStack_d0 + 0x10))(&puStack_d0, &system_buffer_ptr);
 LAB_18016a086:
     *param_2 = 0;
     param_2[1] = 0;

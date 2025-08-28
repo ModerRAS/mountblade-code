@@ -813,7 +813,7 @@ void FUN_1800746c0(longlong param_1)
     }
     *(longlong *)(*(longlong *)(param_1 + 0xb0) + 0xa8) = param_1;
     plVar4 = (longlong *)(*(longlong *)(param_1 + 0xb0) + 0x10);
-    puVar5 = &DAT_18098bc73;
+    puVar5 = &system_buffer_ptr;
     if (*(void **)(param_1 + 0x70) != (void *)0x0) {
       puVar5 = *(void **)(param_1 + 0x70);
     }

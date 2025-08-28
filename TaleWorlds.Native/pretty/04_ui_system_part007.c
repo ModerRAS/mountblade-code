@@ -405,7 +405,7 @@ void UISystem_CoreDataProcessor(uint64_t system_context, uint64_t operation_flag
   longlong memory_allocation_result;
   
   // 检查验证标志和数据缓冲区有效性
-  if (((char)validation_flag == '\0') && (data_buffer != &DAT_180c967e0)) {
+  if (((char)validation_flag == '\0') && (data_buffer != &system_memory_67e0)) {
     // 检查数据缓冲区状态
     if (*(int *)(data_buffer + 0x30) == 0) {
 LAB_1806579e7:
@@ -428,11 +428,11 @@ LAB_1806579e7:
   validation_result = 0;
 LAB_1806579f0:
   // 分配内存并处理数据
-  memory_allocation_result = FUN_18062b420(_DAT_180c8ed18,MAX_DATA_BLOCK_SIZE,DAT_180c96808,validation_flag,0xfffffffffffffffe);
+  memory_allocation_result = FUN_18062b420(_DAT_180c8ed18,MAX_DATA_BLOCK_SIZE,system_memory_6808,validation_flag,0xfffffffffffffffe);
   FUN_180627ae0(memory_allocation_result + 0x20,processing_context);
   *(uint64_t *)(memory_allocation_result + 0x40) = 0;
   // 调用系统处理函数
-  FUN_18066bdc0(memory_allocation_result,data_buffer,&DAT_180c967e0,validation_result);
+  FUN_18066bdc0(memory_allocation_result,data_buffer,&system_memory_67e0,validation_result);
 }
 
 /**

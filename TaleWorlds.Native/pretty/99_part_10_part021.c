@@ -401,7 +401,7 @@ int FUN_1806b25c0(longlong param_1,longlong *param_2,longlong param_3)
   int iVar3;
   int iVar4;
   
-  iVar3 = FUN_1806b6980(param_2,&DAT_1809fd7b0,param_1,*(byte *)(param_3 + 1) & 3);
+  iVar3 = FUN_1806b6980(param_2,&system_data_d7b0,param_1,*(byte *)(param_3 + 1) & 3);
   iVar4 = FUN_1806b6980(param_2,&UNK_18094b518,param_1 + 8,*(byte *)(param_3 + 1) >> 2 & 3);
   lVar1 = *param_2;
   FUN_1806b5600(lVar1,(*(int *)(lVar1 + 0x18) - *(int *)(lVar1 + 0x10)) + 4);

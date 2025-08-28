@@ -57,7 +57,7 @@ void RenderingResourceCleanup(void)
   uint uVar5;
   ulonglong uVar6;
   
-  FUN_1804e5f80(&DAT_180c95ed0);
+  FUN_1804e5f80(&system_memory_5ed0);
   uVar4 = 0;
   uVar6 = uVar4;
   if ((_DAT_180c95ed8 - _DAT_180c95ed0) / 0x68 != 0) {
@@ -338,7 +338,7 @@ RenderingParameterValidator(uint64_t param_1, uint64_t *param_2, int32_t param_3
     *(int16_t *)((longlong)puVar1 + 0x1c) = 0x2e;
     *(int32_t *)(param_2 + 2) = 0x1d;
   }
-  else if ((DAT_180c96098 == '\0') || (_DAT_180c96070 == 0)) {
+  else if ((system_memory_6098 == '\0') || (_DAT_180c96070 == 0)) {
     *param_2 = &UNK_18098bcb0;
     param_2[1] = 0;
     *(int32_t *)(param_2 + 2) = 0;
@@ -449,7 +449,7 @@ RenderingDataProcessor(uint64_t param_1, uint64_t *param_2, uint64_t param_3, lo
     *(int16_t *)((longlong)puVar1 + 0x1c) = 0x2e;
     *(int32_t *)(param_2 + 2) = 0x1d;
   }
-  else if ((DAT_180c96098 == '\0') || (_DAT_180c96070 == 0)) {
+  else if ((system_memory_6098 == '\0') || (_DAT_180c96070 == 0)) {
     *param_2 = &UNK_18098bcb0;
     param_2[1] = 0;
     *(int32_t *)(param_2 + 2) = 0;
@@ -582,7 +582,7 @@ RenderingSystemMonitor(uint64_t param_1, uint64_t *param_2, uint64_t param_3, lo
     *(int16_t *)((longlong)puVar1 + 0x1c) = 0x2e;
     *(int32_t *)(param_2 + 2) = 0x1d;
   }
-  else if ((DAT_180c96098 == '\0') || (_DAT_180c96070 == 0)) {
+  else if ((system_memory_6098 == '\0') || (_DAT_180c96070 == 0)) {
     *param_2 = &UNK_18098bcb0;
     param_2[1] = 0;
     *(int32_t *)(param_2 + 2) = 0;
@@ -665,7 +665,7 @@ FUN_1804a16f0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   
   uVar3 = 0xfffffffffffffffe;
   uVar2 = 0;
-  if ((DAT_180c96098 == '\0') || (_DAT_180c96070 == 0)) {
+  if ((system_memory_6098 == '\0') || (_DAT_180c96070 == 0)) {
     *param_2 = &UNK_18098bcb0;
     param_2[1] = 0;
     *(int32_t *)(param_2 + 2) = 0;

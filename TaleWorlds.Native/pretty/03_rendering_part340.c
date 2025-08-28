@@ -19,11 +19,11 @@ void FUN_18044baf0(longlong param_1,longlong param_2,uint64_t param_3,uint64_t p
       plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x3c8) + 0x18);
       plStackX_8 = plVar1;
       if (plVar1 == (longlong *)0x0) {
-        puVar4 = &DAT_18098bc73;
+        puVar4 = &system_buffer_ptr;
         if (*(void **)(param_2 + 0x1f8) != (void *)0x0) {
           puVar4 = *(void **)(param_2 + 0x1f8);
         }
-        puVar3 = &DAT_18098bc73;
+        puVar3 = &system_buffer_ptr;
         if (*(void **)(param_1 + 0x1f8) != (void *)0x0) {
           puVar3 = *(void **)(param_1 + 0x1f8);
         }

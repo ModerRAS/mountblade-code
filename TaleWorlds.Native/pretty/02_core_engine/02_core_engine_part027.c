@@ -4,9 +4,9 @@
 // 本文件包含错误报告、调试信息输出和异常处理相关功能
 
 // 全局变量声明
-extern char DAT_180c82860;       // 调试模式标志
-extern char DAT_180c82850;       // 日志系统标志
-extern char DAT_180c82868;       // 线程安全标志
+extern char system_debug_flag;       // 调试模式标志
+extern char system_event_handler;       // 日志系统标志
+extern char system_context_ptr;       // 线程安全标志
 extern void* _DAT_180c86950;     // 引擎实例指针
 extern void* _DAT_180c86870;     // 系统配置指针
 extern void* _DAT_180c868d0;     // 路径配置指针
@@ -55,7 +55,7 @@ void report_runtime_error(void* engine_context, const char* error_message, int e
   uint buffer_capacity = 0;
   
   // 检查是否处于调试模式
-  if ((DAT_180c82860 != '\0') || (DAT_180c82850 != '\0')) {
+  if ((system_debug_flag != '\0') || (system_event_handler != '\0')) {
     goto direct_error_handling;
   }
   
@@ -327,7 +327,7 @@ void handle_system_exception(void* exception_context, void* exception_data)
   log_exception_info(exception_data);
   
   // 检查是否处于调试模式
-  if (DAT_180c82860 == '\0') {
+  if (system_debug_flag == '\0') {
     // 创建调试信息结构
     int debug_info[4] = {0xffff0000, 0, 0, 0};
     

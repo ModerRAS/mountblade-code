@@ -1049,7 +1049,7 @@ void FUN_18045ac90(longlong *param_1,longlong param_2)
   uStack_190 = 0x2d;
   uStack_178 = 3;
   uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0x20,8,3);
-  puVar5 = &DAT_18098bc73;
+  puVar5 = &system_buffer_ptr;
   if (puStack_140 != (void *)0x0) {
     puVar5 = puStack_140;
   }

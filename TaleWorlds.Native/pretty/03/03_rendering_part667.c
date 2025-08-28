@@ -226,7 +226,7 @@ LAB_18064bfea:
     
     if (lVar10 != 0) {
         // 检查是否在安全内存区域内
-        if (((longlong *)0x180c8ed7f < plVar9) && (plVar9 < &DAT_180c8efc0)) {
+        if (((longlong *)0x180c8ed7f < plVar9) && (plVar9 < &system_memory_efc0)) {
             // 线程安全的内存统计更新
             LOCK();
             plVar1 = (longlong *)(lVar5 + 0xb8);
@@ -322,7 +322,7 @@ void rendering_system_resource_cleaner(ulonglong param_1, longlong param_2)
         if ((uint *)(param_1 + 0x80 + lVar2 * RENDERING_MEMORY_BLOCK_SIZE) <= puVar4) {
             // 检查是否需要初始化清理器
             if (_DAT_180bfbe8c == 0) {
-                FUN_180650490(&DAT_180bfbe88);
+                FUN_180650490(&system_memory_be88);
             }
             
             // 调用内存清理函数
@@ -544,7 +544,7 @@ LAB_18064c807:
                 lVar4 = *(longlong *)(param_4 + 0x398);
                 
                 // 更新内存统计
-                if (((void *)(lVar4 + 0xe0) < &DAT_180c8ed80) ||
+                if (((void *)(lVar4 + 0xe0) < &system_memory_ed80) ||
                    ((void *)0x180c8efbf < (void *)(lVar4 + 0xe0))) {
                     // 非安全区域的统计更新
                     *(longlong *)(lVar4 + 0xf8) = *(longlong *)(lVar4 + 0xf8) + -1;
@@ -720,7 +720,7 @@ LAB_18064c807:
                 lVar3 = *(longlong *)(unaff_RBP + 0x398);
                 
                 // 更新内存统计
-                if (((void *)(lVar3 + 0xe0) < &DAT_180c8ed80) ||
+                if (((void *)(lVar3 + 0xe0) < &system_memory_ed80) ||
                    ((void *)0x180c8efbf < (void *)(lVar3 + 0xe0))) {
                     // 非安全区域的统计更新
                     *(longlong *)(lVar3 + 0xf8) = *(longlong *)(lVar3 + 0xf8) + -1;
@@ -890,7 +890,7 @@ longlong rendering_system_resource_allocator(longlong param_1, longlong param_2,
             // 更新资源统计
             lVar4 = *(longlong *)(param_5 + 0x398);
             
-            if (((void *)(lVar4 + 0xe0) < &DAT_180c8ed80) ||
+            if (((void *)(lVar4 + 0xe0) < &system_memory_ed80) ||
                ((void *)0x180c8efbf < (void *)(lVar4 + 0xe0))) {
                 // 非安全区域的统计更新
                 *(longlong *)(lVar4 + 0xf8) = *(longlong *)(lVar4 + 0xf8) + -1;

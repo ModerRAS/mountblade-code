@@ -508,7 +508,7 @@ EFFECT_PROCESSOR_LABEL4:
   *(int32_t *)((longlong)pointer_value2 + 0x24) = 0x5f746e65;  // "_tne"
   *(int32_t *)(pointer_value2 + 5) = 0x6e696f70;  // "niop"
   *(int32_t *)((longlong)pointer_value2 + 0x2c) = 0x217374;  // "!st"
-  pointer_value3 = (int32_t *)&DAT_18098bc73;
+  pointer_value3 = (int32_t *)&system_buffer_ptr;
   
   if (stack_pointer2 != (int32_t *)0x0) {
     pointer_value3 = stack_pointer2;
@@ -542,7 +542,7 @@ int rendering_system_data_comparator(uint64_t data_item1, uint64_t data_item2, u
   longlong stack_long_value;
   
   FUN_180627910(&stack_pointer, data_item1, data_item3, data_item4, 0xfffffffffffffffe);
-  comparison_result = FUN_180571e20(&DAT_180c960c0, &stack_pointer);
+  comparison_result = FUN_180571e20(&system_buffer_60c0, &stack_pointer);
   stack_pointer = &UNK_180a3c3e0;
   
   if (stack_long_value != 0) {
@@ -779,7 +779,7 @@ void rendering_system_state_switcher(char state_flag)
 {
   bool is_initialized;
   
-  is_initialized = DAT_180c8aa68 == '\0';
+  is_initialized = system_buffer_aa68 == '\0';
   FUN_18021f200();
   
   if ((is_initialized) || (state_flag != '\0')) {

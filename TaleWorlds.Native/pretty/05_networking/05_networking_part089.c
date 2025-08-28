@@ -404,7 +404,7 @@ uint64_t network_data_synchronizer(void);
 
 /** 网络配置数据 */
 extern uint64_t _DAT_180bf00a8;        /**< 网络配置基地址 */
-extern int32_t DAT_18098bc73;          /**< 网络状态数据 */
+extern int32_t system_buffer_ptr;          /**< 网络状态数据 */
 
 /** 网络连接数据 */
 extern int network_connection_count;      /**< 网络连接计数 */

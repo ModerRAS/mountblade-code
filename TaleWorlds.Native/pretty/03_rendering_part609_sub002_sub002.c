@@ -350,11 +350,11 @@ LAB_18059ebf6:
             }
             iVar7 = iStack_4a4;
             if (*(int *)(*(longlong *)(lVar9 + 0x590) + 0x2498) == iVar13) {
-              lVar9 = FUN_18053a5a0(&DAT_180c95f30,
+              lVar9 = FUN_18053a5a0(&system_data_5f30,
                                     *(int32_t *)(*(longlong *)(lVar9 + 0x590) + 0xac),iVar2);
               lVar22 = *(longlong *)(param_1 + 0x108);
               fVar25 = ((float)(*(longlong *)
-                                 (&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x240) * 8) -
+                                 (&system_error_code + (longlong)*(int *)(param_1 + 0x240) * 8) -
                                *(longlong *)(param_1 + 0x238)) * 1e-05 -
                        (*(float *)(lVar22 + 0x3cc) + *(float *)(lVar9 + 0x188))) /
                        (*(float *)(lVar22 + 0x3d0) - *(float *)(lVar22 + 0x3cc));
@@ -488,14 +488,14 @@ LAB_18059f107:
     }
   }
 LAB_18059f15f:
-  if (((float)(*(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x200) * 8) -
+  if (((float)(*(longlong *)(&system_error_code + (longlong)*(int *)(param_1 + 0x200) * 8) -
               *(longlong *)(param_1 + 0x1f8)) * 1e-05 < 0.0) && (_DAT_180c92514 == 1)) {
     puVar15 = (uint *)(*(longlong *)(param_1 + 0x108) + 0x4c8);
     *puVar15 = *puVar15 & 0xfffffc3f;
   }
   iVar7 = *(int *)(param_1 + 0x1d4);
   if ((iVar7 == 0) || (iVar7 == 7)) {
-    if ((((float)(*(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x200) * 8) -
+    if ((((float)(*(longlong *)(&system_error_code + (longlong)*(int *)(param_1 + 0x200) * 8) -
                  *(longlong *)(param_1 + 0x1f8)) * 1e-05 < 0.0) ||
         (uVar16 = *(uint *)(*(longlong *)(param_1 + 0x108) + 0x4c8), (uVar16 & 0x3c0) == 0)) ||
        ((uVar16 & 0x7c00) != 0)) {
@@ -548,7 +548,7 @@ LAB_18059f15f:
       lVar22 = *(longlong *)(param_1 + 0x108);
       if ((((*(int *)(lVar22 + 0x570) != 2) ||
            (0.0 <= (float)(*(longlong *)
-                            (&DAT_180c8ed30 +
+                            (&system_error_code +
                             (longlong)*(int *)(*(longlong *)(param_1 + 0x100) + 0x87b708) * 8) -
                           *(longlong *)(*(longlong *)(param_1 + 0x100) + 0x87b700)) * 1e-05)) &&
           ((iVar14 == -1 || (*(int *)(*(longlong *)(lVar22 + 0x590) + 0x2498) != iVar14)))) &&
@@ -590,12 +590,12 @@ LAB_18059f15f:
             if (*(longlong *)(param_1 + 600) != 0) {
               uVar8 = *(int32_t *)(*(longlong *)(param_1 + 600) + 0x1c);
             }
-            lVar22 = FUN_18053a5a0(&DAT_180c95f30,
+            lVar22 = FUN_18053a5a0(&system_data_5f30,
                                    *(int32_t *)
                                     (*(longlong *)(*(longlong *)(param_1 + 0x108) + 0x590) + 0xac),
                                    uVar8);
             *(longlong *)(param_1 + 0x238) =
-                 *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x240) * 8) -
+                 *(longlong *)(&system_error_code + (longlong)*(int *)(param_1 + 0x240) * 8) -
                  (longlong)(fVar28 * 0.4 * *(float *)(lVar22 + 0x188) * 100000.0);
             goto LAB_1805a05b9;
           }
@@ -616,11 +616,11 @@ LAB_1805a01a8:
         if ((iVar7 < 0) ||
            (uVar20 = func_0x000180534e20(*(uint64_t *)(lVar17 + 0x590),0),
            (uVar20 & 0x2000000000) == 0)) {
-          lVar22 = FUN_18053a5a0(&DAT_180c95f30,
+          lVar22 = FUN_18053a5a0(&system_data_5f30,
                                  *(int32_t *)(*(longlong *)(lVar17 + 0x590) + 0xac),iVar14);
           if (0 < *(short *)((longlong)plVar19 + 10)) {
             do {
-              lVar22 = FUN_18053a5a0(&DAT_180c95f30,
+              lVar22 = FUN_18053a5a0(&system_data_5f30,
                                      *(int32_t *)
                                       (*(longlong *)(*(longlong *)(param_1 + 0x108) + 0x590) + 0xac)
                                      ,*(int32_t *)(lVar22 + 0x1f0));
@@ -721,7 +721,7 @@ LAB_18059f8a5:
         }
         if (((iVar7 == iVar14) ||
             (fVar26 = (float)(**(code **)(*plVar3 + 0x90))(plVar3,1), uVar11 = 0, 0.7 < fVar26)) &&
-           (uVar11 = FUN_18053a5a0(&DAT_180c95f30,
+           (uVar11 = FUN_18053a5a0(&system_data_5f30,
                                    *(int32_t *)
                                     (*(longlong *)(*(longlong *)(param_1 + 0x108) + 0x590) + 0xac),
                                    *(int32_t *)(*(longlong *)(param_1 + 600) + 0x34)),
@@ -757,7 +757,7 @@ LAB_18059f47b:
         if ((*(int *)(*(longlong *)(param_1 + 0x108) + 0x570) == 2) ||
            ((_DAT_180c92514 != 1 && (_DAT_180c92514 != 4)))) {
           if (uVar11 == 0) {
-            uVar11 = FUN_18053a5a0(&DAT_180c95f30,
+            uVar11 = FUN_18053a5a0(&system_data_5f30,
                                    *(int32_t *)
                                     (*(longlong *)(*(longlong *)(param_1 + 0x108) + 0x590) + 0xac),
                                    *(int32_t *)(*(longlong *)(param_1 + 600) + 0x34));

@@ -42,7 +42,7 @@ void FUN_1800fdee0(longlong param_1)
       }
       _clear___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
                 (param_1 + 0x128 + (longlong)*(int *)(*plVar1 + 4),0,0);
-      puVar10 = &DAT_18098bc73;
+      puVar10 = &system_buffer_ptr;
       if (*(void **)(param_1 + 0x10) != (void *)0x0) {
         puVar10 = *(void **)(param_1 + 0x10);
       }
@@ -192,7 +192,7 @@ void FUN_1800fdeea(longlong param_1)
       }
       _clear___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
                 (param_1 + 0x128 + (longlong)*(int *)(*plVar1 + 4),0,0);
-      puVar10 = &DAT_18098bc73;
+      puVar10 = &system_buffer_ptr;
       if (*(void **)(param_1 + 0x10) != (void *)0x0) {
         puVar10 = *(void **)(param_1 + 0x10);
       }
@@ -410,7 +410,7 @@ LAB_1800fe0d6:
   }
   _clear___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
             (unaff_RBX + 0x128 + (longlong)*(int *)(*unaff_R14 + 4),0,0);
-  puVar6 = &DAT_18098bc73;
+  puVar6 = &system_buffer_ptr;
   if (*(void **)(unaff_RBX + 0x10) != (void *)0x0) {
     puVar6 = *(void **)(unaff_RBX + 0x10);
   }
@@ -462,7 +462,7 @@ void FUN_1800fe19a(void)
   }
   _clear___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
             (unaff_RBX + 0x128 + (longlong)*(int *)(*unaff_R14 + 4),0,0);
-  puVar3 = &DAT_18098bc73;
+  puVar3 = &system_buffer_ptr;
   if (*(void **)(unaff_RBX + 0x10) != (void *)0x0) {
     puVar3 = *(void **)(unaff_RBX + 0x10);
   }

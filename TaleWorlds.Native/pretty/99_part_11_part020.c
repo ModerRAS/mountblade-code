@@ -75,7 +75,7 @@ void FUN_1806efb7c(longlong *param_1)
 LAB_1806efc28:
     *unaff_R13 = uVar10;
     *(uint *)CONCAT71(uStack0000000000000081,uStack0000000000000080) = uVar7;
-    (**(code **)(*plStack0000000000000060 + 0x10))(plStack0000000000000060,&DAT_18098bc73);
+    (**(code **)(*plStack0000000000000060 + 0x10))(plStack0000000000000060,&system_buffer_ptr);
   }
   (**(code **)(*plStack0000000000000060 + 0x10))(plStack0000000000000060,0);
   return;
@@ -151,7 +151,7 @@ void FUN_1806efba9(longlong *param_1)
 LAB_1806efc28:
   *unaff_R13 = unaff_R14;
   *(uint *)CONCAT71(uStack0000000000000081,uStack0000000000000080) = unaff_EBP;
-  (**(code **)(*in_stack_00000060 + 0x10))(in_stack_00000060,&DAT_18098bc73);
+  (**(code **)(*in_stack_00000060 + 0x10))(in_stack_00000060,&system_buffer_ptr);
   (**(code **)(*in_stack_00000060 + 0x10))(in_stack_00000060,0);
   return;
 }
@@ -304,7 +304,7 @@ void FUN_1806efd00(longlong *param_1,uint64_t param_2,ulonglong *param_3,int32_t
           if (cVar2 == '\0') {
             *param_3 = uVar11;
             *param_5 = (int)(uVar9 >> 1);
-            (**(code **)(*param_6 + 0x10))(param_6,&DAT_18098bc73);
+            (**(code **)(*param_6 + 0x10))(param_6,&system_buffer_ptr);
             goto FUN_1806efe15;
           }
           iVar4 = isspace((int)cVar2);
@@ -423,7 +423,7 @@ void FUN_1806efd3c(longlong *param_1)
 LAB_1806efde8:
     *unaff_R13 = uVar10;
     *(uint *)CONCAT62(uStack0000000000000082,uStack0000000000000080) = uVar7 >> 1;
-    (**(code **)(*plStack0000000000000060 + 0x10))(plStack0000000000000060,&DAT_18098bc73);
+    (**(code **)(*plStack0000000000000060 + 0x10))(plStack0000000000000060,&system_buffer_ptr);
   }
   (**(code **)(*plStack0000000000000060 + 0x10))(plStack0000000000000060,0);
   return;
@@ -501,7 +501,7 @@ void FUN_1806efd69(longlong *param_1)
 LAB_1806efde8:
   *unaff_R13 = unaff_R14;
   *(uint *)CONCAT62(uStack0000000000000082,uStack0000000000000080) = unaff_ESI >> 1;
-  (**(code **)(*in_stack_00000060 + 0x10))(in_stack_00000060,&DAT_18098bc73);
+  (**(code **)(*in_stack_00000060 + 0x10))(in_stack_00000060,&system_buffer_ptr);
   (**(code **)(*in_stack_00000060 + 0x10))(in_stack_00000060,0);
   return;
 }
@@ -656,7 +656,7 @@ void FUN_1806efec0(longlong *param_1,uint64_t param_2,longlong *param_3,int32_t 
           if (cVar1 == '\0') {
             *param_3 = lVar12;
             *param_5 = (int)(uVar11 / 0xc);
-            (**(code **)(*param_6 + 0x10))(param_6,&DAT_18098bc73);
+            (**(code **)(*param_6 + 0x10))(param_6,&system_buffer_ptr);
             goto FUN_1806effec;
           }
           iVar7 = isspace((int)cVar1);
@@ -766,7 +766,7 @@ FUN_1806effec:
       if (cVar1 == '\0') {
         *unaff_R13 = uVar10;
         *in_stack_00000090 = (int)(uVar9 / 0xc);
-        (**(code **)(*plStack0000000000000080 + 0x10))(plStack0000000000000080,&DAT_18098bc73);
+        (**(code **)(*plStack0000000000000080 + 0x10))(plStack0000000000000080,&system_buffer_ptr);
         goto FUN_1806effec;
       }
       iVar2 = isspace((int)cVar1);
@@ -859,7 +859,7 @@ void FUN_1806eff3d(longlong *param_1)
       if (cVar1 == '\0') {
         *unaff_R13 = unaff_R15;
         *in_stack_00000090 = unaff_R14D / 0xc;
-        (**(code **)(*in_stack_00000080 + 0x10))(in_stack_00000080,&DAT_18098bc73);
+        (**(code **)(*in_stack_00000080 + 0x10))(in_stack_00000080,&system_buffer_ptr);
         (**(code **)(*in_stack_00000080 + 0x10))(in_stack_00000080,0);
         return;
       }
@@ -1073,7 +1073,7 @@ void FUN_1806f0110(longlong *param_1,uint64_t param_2,ulonglong *param_3,int32_t
           if (cVar2 == '\0') {
             *param_3 = uVar11;
             *param_5 = (int)(uVar10 >> 2);
-            (**(code **)(*param_6 + 0x10))(param_6,&DAT_18098bc73);
+            (**(code **)(*param_6 + 0x10))(param_6,&system_buffer_ptr);
             goto FUN_1806f0223;
           }
           iVar3 = isspace((int)cVar2);

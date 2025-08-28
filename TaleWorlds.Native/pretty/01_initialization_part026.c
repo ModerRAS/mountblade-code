@@ -861,7 +861,7 @@ void FUN_18005a200(uint64_t *param_1)
   *(uint64_t *)((longlong)param_1 + 0x354) = 0x40000000;
   *(int32_t *)((longlong)param_1 + 0x35c) = 3;
   param_1[0x68] = 1;
-  param_1[0x67] = &DAT_180be0000;
+  param_1[0x67] = &system_data_0000;
   param_1[0x69] = 0;
   *(int32_t *)(param_1 + 0x6b) = 0;
   uVar2 = FUN_18062b1e0(_DAT_180c8ed18,0xc0,8,4);

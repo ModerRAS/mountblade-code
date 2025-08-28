@@ -143,7 +143,7 @@ uint64_t FUN_180441c50(longlong param_1,uint64_t param_2)
       FUN_1802edcd0(param_1,param_2,1);
       return 1;
     }
-    puVar2 = &DAT_18098bc73;
+    puVar2 = &system_buffer_ptr;
     if (*(void **)(param_1 + 0x290) != (void *)0x0) {
       puVar2 = *(void **)(param_1 + 0x290);
     }

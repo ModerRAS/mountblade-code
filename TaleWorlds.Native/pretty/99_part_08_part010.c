@@ -181,7 +181,7 @@ LAB_1804e8dc6:
       plVar16 = plVar17;
       if ((param_6 == *(float *)(param_1 + 0x98d930)) && (_DAT_180c92514 == 1)) {
         *(uint64_t *)(param_1 + 0x87b700) =
-             *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x87b708) * 8);
+             *(uint64_t *)(&system_error_code + (longlong)*(int *)(param_1 + 0x87b708) * 8);
       }
     }
     uVar19 = (ulonglong)param_15;

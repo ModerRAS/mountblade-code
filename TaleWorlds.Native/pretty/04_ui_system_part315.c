@@ -382,9 +382,9 @@ LAB_18083bb2d:
         iVar4 = 0;
         do {
           iVar1 = iVar10 + -2;
-          iVar19 = (int)DAT_180a3f750;
+          iVar19 = (int)system_data_f750;
           auVar24._0_4_ = iVar4 + iVar19;
-          iVar20 = DAT_180a3f750._4_4_;
+          iVar20 = system_data_f750._4_4_;
           auVar24._4_4_ = iVar4 + iVar20;
           auVar24._8_4_ = iVar4;
           auVar24._12_4_ = iVar4;
@@ -528,9 +528,9 @@ void FUN_18083bb80(uint64_t param_1,uint64_t param_2,int *param_3)
       iVar13 = 4;
       do {
         iVar2 = iVar13 + -2;
-        iVar4 = (int)DAT_180a3f750;
+        iVar4 = (int)system_data_f750;
         auVar22._0_4_ = iVar16 + iVar4;
-        iVar18 = DAT_180a3f750._4_4_;
+        iVar18 = system_data_f750._4_4_;
         auVar22._4_4_ = iVar16 + iVar18;
         auVar22._8_4_ = iVar16;
         auVar22._12_4_ = iVar16;

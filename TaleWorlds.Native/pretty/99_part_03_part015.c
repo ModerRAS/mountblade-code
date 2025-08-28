@@ -374,7 +374,7 @@ LAB_1801d907b:
     
     /* 执行文件安全检查 */
     alStack_1f8[0] = -1;
-    puVar17 = &DAT_18098bc73;
+    puVar17 = &system_buffer_ptr;
     if (puStack_2b8 != (int8_t *)0x0) {
         puVar17 = puStack_2b8;
     }
@@ -778,7 +778,7 @@ LAB_1801d94be:
                 *(int8_t *)(puVar15 + 7) = 0;
                 
                 alStack_210[0] = -1;
-                puVar17 = &DAT_18098bc73;
+                puVar17 = &system_buffer_ptr;
                 if (puStack_290 != (int8_t *)0x0) {
                     puVar17 = puStack_290;
                 }
@@ -929,7 +929,7 @@ void DataFlowValidator(uint64_t param_1, uint64_t param_2, uint64_t param_3)
     puStack_60 = auStack_50;
     auStack_50[0] = 0;
     uStack_58 = 2;
-    strcpy_s(auStack_50, 0x10, &DAT_180a02638);
+    strcpy_s(auStack_50, 0x10, &system_memory_2638);
     
     /* 处理事件队列 */
     EventHandler(&puStack_b8, &puStack_68);
@@ -938,7 +938,7 @@ void DataFlowValidator(uint64_t param_1, uint64_t param_2, uint64_t param_3)
     puStack_88 = auStack_78;
     auStack_78[0] = auStack_78[0] & 0xffffff00;
     uStack_80 = 2;
-    strcpy_s(auStack_78, 0x10, &DAT_180a02640);
+    strcpy_s(auStack_78, 0x10, &system_memory_2640);
     
     puVar5 = puStack_a8;
     if (puStack_b0 < puStack_a8) {
@@ -957,7 +957,7 @@ void DataFlowValidator(uint64_t param_1, uint64_t param_2, uint64_t param_3)
     puStack_60 = auStack_50;
     auStack_50[0] = 0;
     uStack_58 = 2;
-    strcpy_s(auStack_50, 0x10, &DAT_180a02648);
+    strcpy_s(auStack_50, 0x10, &system_memory_2648);
     
     if (puVar8 < puVar5) {
         puStack_b0 = puVar8 + 5;
@@ -975,7 +975,7 @@ void DataFlowValidator(uint64_t param_1, uint64_t param_2, uint64_t param_3)
     puStack_88 = auStack_78;
     auStack_78[0] = auStack_78[0] & 0xffffff00;
     uStack_80 = 2;
-    strcpy_s(auStack_78, 0x10, &DAT_180a02644);
+    strcpy_s(auStack_78, 0x10, &system_memory_2644);
     
     if (puVar8 < puVar5) {
         puStack_b0 = puVar8 + 5;
@@ -993,7 +993,7 @@ void DataFlowValidator(uint64_t param_1, uint64_t param_2, uint64_t param_3)
     puStack_60 = auStack_50;
     auStack_50[0] = 0;
     uStack_58 = 2;
-    strcpy_s(auStack_50, 0x10, &DAT_180a0263c);
+    strcpy_s(auStack_50, 0x10, &system_memory_263c);
     
     if (puVar8 < puVar5) {
         puStack_b0 = puVar8 + 5;
@@ -1011,7 +1011,7 @@ void DataFlowValidator(uint64_t param_1, uint64_t param_2, uint64_t param_3)
     puStack_88 = auStack_78;
     auStack_78[0] = auStack_78[0] & 0xffffff00;
     uStack_80 = 2;
-    strcpy_s(auStack_78, 0x10, &DAT_180a0264c);
+    strcpy_s(auStack_78, 0x10, &system_memory_264c);
     
     if (puVar8 < puVar5) {
         puStack_b0 = puVar8 + 5;
@@ -1191,7 +1191,7 @@ void DataFlowSynchronizer(uint64_t param_1, longlong param_2, uint64_t param_3, 
     uStack_e8 = param_4;
     uStack_e0 = param_3;
     lStack_d0 = param_2;
-    strcpy_s(auStack_90, 0x40, &DAT_180a04a78);
+    strcpy_s(auStack_90, 0x40, &system_memory_4a78);
     
     /* 处理通知消息 */
     uVar6 = NotificationHandler(uVar3, &puStack_a8, 0);

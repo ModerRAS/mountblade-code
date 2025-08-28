@@ -19,10 +19,10 @@
 #define UI_HANDLER_PTR         UNK_18098bcb0
 
 // 系统数据区域
-#define SYSTEM_CONFIG_AREA      DAT_180c967e0
-#define SYSTEM_PARAM_DATA      DAT_180c8ed18
-#define SYSTEM_BUFFER_SIZE      DAT_180c96808
-#define SYSTEM_CONTROL_DATA     DAT_180c967d0
+#define SYSTEM_CONFIG_AREA      system_buffer_67e0
+#define SYSTEM_PARAM_DATA      system_heap_ptr
+#define SYSTEM_BUFFER_SIZE      system_buffer_6808
+#define SYSTEM_CONTROL_DATA     system_buffer_67d0
 
 // 函数别名定义
 // Steam API集成函数
@@ -281,12 +281,12 @@ void handle_ui_system_shutdown(void)
 // 全局变量和数据定义
 uint8_t SYSTEM_CONTROL_DATA;
 uint8_t UNK_180a3e3d8;
-uint8_t DAT_180c967d8;
+uint8_t system_buffer_67d8;
 uint8_t UNK_180a3e3f0;
 uint8_t SYSTEM_CONFIG_AREA;
-uint8_t DAT_180c967e8;
-uint8_t DAT_180c967f0;
-uint8_t DAT_180c967f8;
+uint8_t system_buffer_67e8;
+uint8_t system_buffer_67f0;
+uint8_t system_buffer_67f8;
 uint8_t SYSTEM_PARAM_DATA;
 uint8_t SYSTEM_BUFFER_SIZE;
 uint8_t STEAM_INTERFACE_PTR_1;

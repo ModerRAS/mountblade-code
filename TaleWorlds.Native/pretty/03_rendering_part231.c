@@ -92,7 +92,7 @@ LAB_180399c97:
                       (**(code **)(puStack_60 + 0x10))(&puStack_60,lVar3,pcVar2,puVar5,uVar9);
                       break;
                     }
-                    lVar3 = (longlong)&DAT_180a03a84 - (longlong)pcVar7;
+                    lVar3 = (longlong)&system_data_3a84 - (longlong)pcVar7;
                     while (*pcVar7 == pcVar7[lVar3]) {
                       pcVar7 = pcVar7 + 1;
                       if (pcVar2 <= pcVar7) goto LAB_180399c97;

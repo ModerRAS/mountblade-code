@@ -25,7 +25,7 @@ extern char UNK_180a06870[];         // 格式化字符串 "%d"
 extern char UNK_180a068a8[];         // 格式化字符串 "%s"
 extern char UNK_180a06890[];         // 格式化字符串 "%d %d"
 extern char UNK_180a068b8[];         // 格式化字符串 "%s"
-extern uint64_t DAT_1809fcc18;     // 换行符常量
+extern uint64_t system_buffer_cc18;     // 换行符常量
 
 // 外部函数声明
 extern void FUN_18011da00(void *buffer, longlong size);
@@ -826,7 +826,7 @@ void process_engine_resources_and_format_output(longlong engine_context, uint64_
                     FUN_180122210(output_buffer, &UNK_180a068b8);
                 }
             }
-            FUN_180122210(output_buffer, &DAT_1809fcc18);
+            FUN_180122210(output_buffer, &system_buffer_cc18);
             current_uint = (int)search_index + 1;
             search_index = (ulonglong)current_uint;
             max_search = max_search + 0x38;
@@ -955,7 +955,7 @@ void process_engine_resources_optimized(uint64_t param_1)
                             temp_result = FUN_180122210(temp_result, &UNK_180a068b8);
                         }
                     }
-                    FUN_180122210(temp_result, &DAT_1809fcc18);
+                    FUN_180122210(temp_result, &system_buffer_cc18);
                     current_uint = (int)loop_counter + 1;
                     loop_counter = (ulonglong)current_uint;
                     current_offset = current_offset + 0x38;
@@ -1030,7 +1030,7 @@ void format_resource_data_output(int32_t output_buffer)
                     temp_result = FUN_180122210(temp_result, &UNK_180a068b8);
                 }
             }
-            FUN_180122210(temp_result, &DAT_1809fcc18);
+            FUN_180122210(temp_result, &system_buffer_cc18);
             current_uint = (int)current_offset + 1;
             current_offset = (ulonglong)current_uint;
             current_offset = current_offset + 0x38;

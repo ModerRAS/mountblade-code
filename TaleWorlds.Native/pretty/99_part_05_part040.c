@@ -288,7 +288,7 @@ LAB_1802f137b:
               *(int32_t *)(plVar14 + 2) = 0;
               *(int8_t *)(plVar14 + 3) = 0;
               *(int *)(plVar14 + 2) = (int)plVar9[1];
-              puVar16 = &DAT_18098bc73;
+              puVar16 = &system_buffer_ptr;
               if ((void *)*plVar9 != (void *)0x0) {
                 puVar16 = (void *)*plVar9;
               }

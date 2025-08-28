@@ -307,7 +307,7 @@ UI_System_Result UI_System_ProcessControlState3(UI_System_ControlHandle param_1,
                 
                 // 获取控件指针
                 if (*(UI_System_IntValue *)(control_data + 0x58) < 1) {
-                    control_ptr = &DAT_18098bc73;
+                    control_ptr = &system_buffer_ptr;
                 } else {
                     control_ptr = *(UI_System_Byte **)(control_data + 0x50);
                 }
@@ -371,7 +371,7 @@ UI_System_Result UI_System_ProcessControlState4(void)
             
             // 获取控件指针
             if (*(UI_System_IntValue *)(control_data + 0x58) < 1) {
-                control_ptr = &DAT_18098bc73;
+                control_ptr = &system_buffer_ptr;
             } else {
                 control_ptr = *(UI_System_Byte **)(control_data + 0x50);
             }

@@ -9,14 +9,14 @@ void FUN_1806ab905(void)
   uint64_t *unaff_RBX;
   
   *unaff_RBX = &UNK_18094a9a8;
-  unaff_RBX[1] = &DAT_18098bc73;
-  unaff_RBX[2] = &DAT_18098bc73;
+  unaff_RBX[1] = &system_buffer_ptr;
+  unaff_RBX[2] = &system_buffer_ptr;
   *(int32_t *)(unaff_RBX + 3) = 0xffffffff;
-  unaff_RBX[4] = &DAT_18098bc73;
-  unaff_RBX[5] = &DAT_18098bc73;
+  unaff_RBX[4] = &system_buffer_ptr;
+  unaff_RBX[5] = &system_buffer_ptr;
   *(int32_t *)(unaff_RBX + 6) = 0xffffffff;
-  unaff_RBX[8] = &DAT_18098bc73;
-  unaff_RBX[7] = &DAT_18098bc73;
+  unaff_RBX[8] = &system_buffer_ptr;
+  unaff_RBX[7] = &system_buffer_ptr;
   *(int32_t *)(unaff_RBX + 9) = 0;
   *(int32_t *)((longlong)unaff_RBX + 0x4c) = 0xffffffff;
   unaff_RBX[10] = 0;
@@ -243,11 +243,11 @@ LAB_1806abf5a:
     if (puVar11 == (uint64_t *)0x0) {
 LAB_1806abfce:
       *param_2 = &UNK_18094a9b0;
-      param_2[1] = &DAT_18098bc73;
-      param_2[2] = &DAT_18098bc73;
+      param_2[1] = &system_buffer_ptr;
+      param_2[2] = &system_buffer_ptr;
       *(int32_t *)(param_2 + 3) = 0xffffffff;
-      param_2[4] = &DAT_18098bc73;
-      param_2[5] = &DAT_18098bc73;
+      param_2[4] = &system_buffer_ptr;
+      param_2[5] = &system_buffer_ptr;
       *(int32_t *)(param_2 + 6) = 0xffffffff;
       param_2[7] = 0;
       param_2[8] = 0;
@@ -293,11 +293,11 @@ LAB_1806abfce:
   }
   else {
     *param_2 = &UNK_18094a9b0;
-    param_2[1] = &DAT_18098bc73;
-    param_2[2] = &DAT_18098bc73;
+    param_2[1] = &system_buffer_ptr;
+    param_2[2] = &system_buffer_ptr;
     *(int32_t *)(param_2 + 3) = 0xffffffff;
-    param_2[4] = &DAT_18098bc73;
-    param_2[5] = &DAT_18098bc73;
+    param_2[4] = &system_buffer_ptr;
+    param_2[5] = &system_buffer_ptr;
     *(int32_t *)(param_2 + 6) = 0xffffffff;
     param_2[7] = 0;
     param_2[8] = 0;

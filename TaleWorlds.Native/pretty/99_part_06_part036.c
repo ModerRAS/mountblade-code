@@ -83,7 +83,7 @@ uint64_t * FUN_1803c8700(uint64_t *param_1)
   *(uint64_t *)((longlong)param_1 + 0x174) = 0x40000000;
   *(int32_t *)((longlong)param_1 + 0x17c) = 3;
   param_1[0x2c] = 1;
-  param_1[0x2b] = &DAT_180be0000;
+  param_1[0x2b] = &system_data_0000;
   param_1[0x2d] = 0;
   *(int32_t *)(param_1 + 0x2f) = 0;
   puVar1 = param_1 + 0x30;

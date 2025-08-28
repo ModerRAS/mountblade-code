@@ -89,7 +89,7 @@ void FUN_1804f20b0(longlong param_1,int32_t param_2)
       FUN_180583b80(uVar12 * 0xbe0 + lVar6,auStackX_10[0]);
       lVar6 = *(longlong *)(param_1 + 0x87b2f8);
       uVar12 = uVar10;
-      if ((float)(*(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(uVar9 + 0x298 + lVar6) * 8) -
+      if ((float)(*(longlong *)(&system_error_code + (longlong)*(int *)(uVar9 + 0x298 + lVar6) * 8) -
                  *(longlong *)(uVar9 + 0x290 + lVar6)) * 1e-05 <= 1.0) {
         uVar12 = uVar8 & 0xffffffff;
       }
@@ -387,7 +387,7 @@ uint64_t * FUN_1804f2420(uint64_t *param_1)
   *(uint64_t *)((longlong)param_1 + 0x98d2c4) = 0x40000000;
   *(int32_t *)((longlong)param_1 + 0x98d2cc) = 3;
   param_1[0x131a56] = 1;
-  param_1[0x131a55] = &DAT_180be0000;
+  param_1[0x131a55] = &system_data_0000;
   param_1[0x131a57] = 0;
   *(int32_t *)(param_1 + 0x131a59) = 0;
   FUN_1804f2db0(param_1 + 0x131a5b);

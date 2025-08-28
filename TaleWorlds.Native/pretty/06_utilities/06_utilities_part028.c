@@ -149,7 +149,7 @@ void utilities_initialize_global_variables(uint64_t param_1, uint64_t param_2, u
     uint64_t* data_ptr2;
     
     // 调用系统初始化函数处理数据
-    FUN_18005d260(&DAT_180bfaec0, _DAT_180bfaed0, param_3, param_4, 0xfffffffffffffffe);
+    FUN_18005d260(&system_memory_aec0, _DAT_180bfaed0, param_3, param_4, 0xfffffffffffffffe);
     
     data_ptr1 = _DAT_180bfaea8;
     data_ptr2 = _DAT_180bfaea0;
@@ -581,7 +581,7 @@ void utilities_memory_cleanup_1(void)
     
     // 检查内存块大小
     if (0xf < _DAT_180bfc188) {
-        mem_ptr1 = CONCAT71(uRam0000000180bfc171, DAT_180bfc170);
+        mem_ptr1 = CONCAT71(uRam0000000180bfc171, system_memory_c170);
         mem_ptr2 = mem_ptr1;
         
         // 检查内存块大小是否超过安全边界
@@ -762,7 +762,7 @@ void utilities_process_parameters_1(uint64_t param_1, uint64_t param_2, uint64_t
 void utilities_check_system_state_1(void)
 {
     // 检查系统状态标志
-    if (DAT_180c95ef0 != '\0') {
+    if (system_memory_5ef0 != '\0') {
         FUN_1804a6ec0();
     }
 }
@@ -777,7 +777,7 @@ void utilities_check_system_state_1(void)
 void utilities_check_system_state_2(void)
 {
     // 检查系统状态标志
-    if (DAT_180c96008 != '\0') {
+    if (system_memory_6008 != '\0') {
         FUN_180552e70(_DAT_180c95ff0);
         _DAT_180c95ff0 = 0;
     }
@@ -793,7 +793,7 @@ void utilities_check_system_state_2(void)
 void utilities_check_system_state_3(void)
 {
     // 检查系统状态标志
-    if (DAT_180c96028 != '\0') {
+    if (system_memory_6028 != '\0') {
         if (_DAT_180c96010 != 0) {
             // 系统错误处理函数调用
             FUN_18064e900();
@@ -812,7 +812,7 @@ void utilities_check_system_state_3(void)
 void utilities_check_system_state_4(void)
 {
     // 检查系统状态标志
-    if (DAT_180c96048 != '\0') {
+    if (system_memory_6048 != '\0') {
         FUN_180555430(_DAT_180c96030);
         _DAT_180c96030 = 0;
     }
@@ -828,7 +828,7 @@ void utilities_check_system_state_4(void)
 void utilities_check_system_state_5(void)
 {
     // 检查系统状态标志
-    if (DAT_180c96068 != '\0') {
+    if (system_memory_6068 != '\0') {
         FUN_180555430(_DAT_180c96050);
         _DAT_180c96050 = 0;
     }
@@ -844,7 +844,7 @@ void utilities_check_system_state_5(void)
 void utilities_check_system_state_6(void)
 {
     // 检查系统状态标志
-    if (DAT_180c96098 != '\0') {
+    if (system_memory_6098 != '\0') {
         FUN_180057830();
         
         if (_DAT_180c96070 != (int64_t*)0x0) {
@@ -864,7 +864,7 @@ void utilities_check_system_state_6(void)
 void utilities_check_system_state_7(void)
 {
     // 检查系统状态标志
-    if (DAT_180c960b8 != '\0') {
+    if (system_memory_60b8 != '\0') {
         FUN_18055a350(_DAT_180c960a0);
         _DAT_180c960a0 = 0;
     }
@@ -880,9 +880,9 @@ void utilities_check_system_state_7(void)
 void utilities_check_system_state_8(void)
 {
     // 检查系统状态标志
-    if (DAT_180c96100 != '\0') {
+    if (system_memory_6100 != '\0') {
         FUN_1804a5b60();
-        FUN_1804a5b00(&DAT_180c960c0);
+        FUN_1804a5b00(&system_memory_60c0);
     }
 }
 
@@ -900,7 +900,7 @@ void utilities_check_system_state_9(void)
     state_ptr = _DAT_180c96138;
     
     // 检查系统状态标志
-    if (DAT_180c96140 != '\0') {
+    if (system_memory_6140 != '\0') {
         if (_DAT_180c96120 != 0) {
             // 系统错误处理函数调用
             FUN_18064e900();
@@ -934,9 +934,9 @@ void utilities_check_system_state_9(void)
 void utilities_check_system_state_10(void)
 {
     // 检查系统状态标志
-    if (DAT_180c961d8 != '\0') {
-        FUN_1804c3730(&DAT_180c961b0);
-        FUN_1804c42a0(&DAT_180c961b0);
+    if (system_memory_61d8 != '\0') {
+        FUN_1804c3730(&system_memory_61b0);
+        FUN_1804c42a0(&system_memory_61b0);
     }
 }
 
@@ -954,7 +954,7 @@ void utilities_check_system_state_11(void)
     resource_ptr = _DAT_180c95f18;
     
     // 检查系统状态标志
-    if (DAT_180c95f28 != '\0') {
+    if (system_memory_5f28 != '\0') {
         _DAT_180c95f20 = 0xffffffff;
         _DAT_180c95f18 = (int64_t*)0x0;
         
@@ -985,7 +985,7 @@ void utilities_check_system_state_11(void)
 void utilities_check_system_state_12(void)
 {
     // 检查系统状态标志
-    if (DAT_180c95fe8 != '\0') {
+    if (system_memory_5fe8 != '\0') {
         if (_DAT_180c95fc8 != 0) {
             // 系统错误处理函数调用
             FUN_18064e900();
@@ -1003,7 +1003,7 @@ void utilities_check_system_state_12(void)
 void utilities_check_system_state_13(void)
 {
     // 检查系统状态标志
-    if (DAT_180c96210 != '\0') {
+    if (system_memory_6210 != '\0') {
         FUN_1804a5bc0();
     }
 }
@@ -1169,7 +1169,7 @@ void utilities_process_parameters_2(uint64_t param_1, uint64_t param_2, uint64_t
     // 检查数据指针有效性
     if (data_ptr != (uint64_t*)0x0) {
         // 调用参数处理函数
-        FUN_180651560(&DAT_180c96790, *_DAT_180c967a0, param_3, param_4, 0xfffffffffffffffe);
+        FUN_180651560(&system_memory_6790, *_DAT_180c967a0, param_3, param_4, 0xfffffffffffffffe);
         FUN_18063cfe0(data_ptr + 5);
         
         // 系统错误处理函数调用
@@ -1229,7 +1229,7 @@ void utilities_process_parameters_3(uint64_t param_1, uint64_t param_2, uint64_t
     }
     
     // 调用参数处理函数
-    FUN_180657620(&DAT_180c967e0, *_DAT_180c967f0, param_3, param_4, 0xfffffffffffffffe);
+    FUN_180657620(&system_memory_67e0, *_DAT_180c967f0, param_3, param_4, 0xfffffffffffffffe);
     
     // 设置数据状态
     data_ptr[4] = &UNK_180a3c3e0;

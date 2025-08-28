@@ -159,7 +159,7 @@ LAB_1805e5620:
         fVar26 = fVar26 + (float)(fVar26 <= fVar29) * fVar29;
         auVar24 = rsqrtss(ZEXT416((uint)fVar26),ZEXT416((uint)fVar26));
         fVar29 = auVar24._0_4_;
-        fVar29 = fVar29 * 0.5 * ((float)DAT_180a401f0 - fVar26 * fVar29 * fVar29);
+        fVar29 = fVar29 * 0.5 * ((float)system_data_01f0 - fVar26 * fVar29 * fVar29);
         fVar28 = fVar28 * fVar29;
         fVar27 = fVar29 * fVar27;
         fVar29 = fVar29 * fVar26;

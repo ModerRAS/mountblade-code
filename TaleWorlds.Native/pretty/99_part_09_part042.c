@@ -499,7 +499,7 @@ void FUN_1805d09b0(longlong *param_1)
   if ((uVar1 & 0x10) != 0) {
     *(int32_t *)((longlong)param_1 + 0x1b6c) = 0;
     *(int8_t *)(param_1 + 0x2f5) = 0;
-    param_1[0x2f3] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x2f4] * 8);
+    param_1[0x2f3] = *(longlong *)(&system_error_code + (longlong)(int)param_1[0x2f4] * 8);
     *(int32_t *)((longlong)param_1 + 0x1c0c) = 0xffffffff;
     *(int32_t *)((longlong)param_1 + 0x1c14) = 0xffffffff;
     *(int32_t *)((longlong)param_1 + 0x1c1c) = 0xffffffff;
@@ -507,7 +507,7 @@ void FUN_1805d09b0(longlong *param_1)
     *(int32_t *)((longlong)param_1 + 0x1c2c) = 0;
     *(int32_t *)((longlong)param_1 + 0x200c) = 0;
     *(int8_t *)(param_1 + 0x389) = 0;
-    param_1[0x387] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x388] * 8);
+    param_1[0x387] = *(longlong *)(&system_error_code + (longlong)(int)param_1[0x388] * 8);
     if ((*(uint *)((longlong)param_1 + 0x209c) >> 0xb & 1) == 0) {
       FUN_180508220(param_1);
     }
@@ -625,7 +625,7 @@ void FUN_1805d09c9(longlong param_1)
   if ((in_AX & 0x10) != 0) {
     *(int32_t *)(param_1 + 0x1b6c) = 0;
     *(int8_t *)(param_1 + 0x17a8) = 0;
-    unaff_RBX[0x2f3] = *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x17a0) * 8);
+    unaff_RBX[0x2f3] = *(longlong *)(&system_error_code + (longlong)*(int *)(param_1 + 0x17a0) * 8);
     *(int32_t *)((longlong)unaff_RBX + 0x1c0c) = 0xffffffff;
     *(int32_t *)((longlong)unaff_RBX + 0x1c14) = 0xffffffff;
     *(int32_t *)((longlong)unaff_RBX + 0x1c1c) = 0xffffffff;
@@ -633,7 +633,7 @@ void FUN_1805d09c9(longlong param_1)
     *(int32_t *)((longlong)unaff_RBX + 0x1c2c) = 0;
     *(int32_t *)((longlong)unaff_RBX + 0x200c) = 0;
     *(int8_t *)(unaff_RBX + 0x389) = 0;
-    unaff_RBX[0x387] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x388] * 8);
+    unaff_RBX[0x387] = *(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x388] * 8);
     if ((*(uint *)((longlong)unaff_RBX + 0x209c) >> 0xb & 1) == 0) {
       FUN_180508220();
     }
@@ -755,7 +755,7 @@ void FUN_1805d09d3(float param_1)
   if ((in_AX & 0x10) != 0) {
     *(int32_t *)(in_RCX + 0x1b6c) = 0;
     *(int8_t *)(in_RCX + 0x17a8) = 0;
-    unaff_RBX[0x2f3] = *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(in_RCX + 0x17a0) * 8);
+    unaff_RBX[0x2f3] = *(longlong *)(&system_error_code + (longlong)*(int *)(in_RCX + 0x17a0) * 8);
     *(int32_t *)((longlong)unaff_RBX + 0x1c0c) = 0xffffffff;
     *(int32_t *)((longlong)unaff_RBX + 0x1c14) = 0xffffffff;
     *(int32_t *)((longlong)unaff_RBX + 0x1c1c) = 0xffffffff;
@@ -763,7 +763,7 @@ void FUN_1805d09d3(float param_1)
     *(int32_t *)((longlong)unaff_RBX + 0x1c2c) = 0;
     *(int32_t *)((longlong)unaff_RBX + 0x200c) = 0;
     *(int8_t *)(unaff_RBX + 0x389) = 0;
-    unaff_RBX[0x387] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x388] * 8);
+    unaff_RBX[0x387] = *(longlong *)(&system_error_code + (longlong)(int)unaff_RBX[0x388] * 8);
     if ((*(uint *)((longlong)unaff_RBX + 0x209c) >> 0xb & 1) == 0) {
       FUN_180508220();
     }

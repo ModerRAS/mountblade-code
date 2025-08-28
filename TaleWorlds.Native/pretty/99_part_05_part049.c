@@ -779,11 +779,11 @@ LAB_1802f9cc0:
                 FUN_1803bf690((longlong *)(param_1 + 0xb0),plVar9,puVar12,param_4,0,0);
                 return;
               }
-              puVar8 = &DAT_18098bc73;
+              puVar8 = &system_buffer_ptr;
               if (*(void **)(lVar1 + 0x290) != (void *)0x0) {
                 puVar8 = *(void **)(lVar1 + 0x290);
               }
-              puVar10 = &DAT_18098bc73;
+              puVar10 = &system_buffer_ptr;
               if (*(void **)(param_3 + 0x290) != (void *)0x0) {
                 puVar10 = *(void **)(param_3 + 0x290);
               }

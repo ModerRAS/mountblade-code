@@ -631,9 +631,9 @@ LAB_18027c306:
 // WARNING: 全局变量以'_'开头的可能与较小符号在相同地址重叠
 
 // 全局常量定义
-#define DEFAULT_MATERIAL_PATH (&DAT_18098bc73)    // 默认材质路径
+#define DEFAULT_MATERIAL_PATH (&system_buffer_ptr)    // 默认材质路径
 #define DEFAULT_TEXTURE_PATH (&UNK_18098bcb0)      // 默认纹理路径
-#define INVALID_CHARS (&DAT_180a0ff10)             // 无效字符序列
+#define INVALID_CHARS (&system_memory_ff10)             // 无效字符序列
 #define FILE_OPERATION_TABLE (&UNK_180a01ff0)      // 文件操作表
 #define MODEL_LOADING_LOGGER (&UNK_180a168b0)      // 模型加载日志器
 #define MATERIAL_LOGGER (&UNK_180a16850)           // 材质日志器

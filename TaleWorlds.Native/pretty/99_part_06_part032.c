@@ -599,7 +599,7 @@ LAB_1803c4a70:
   pfStack_1a8 = &fStack_1e4;
   pcStack_190 = FUN_1803c5480;
   puStack_188 = &UNK_1803c5470;
-  aplStack_1a0[0] = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x38,8,DAT_180bf65bc);
+  aplStack_1a0[0] = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x38,8,system_allocation_flags);
   *aplStack_1a0[0] = lStack_1d8;
   aplStack_1a0[0][1] = (longlong)pplStack_1d0;
   aplStack_1a0[0][2] = (longlong)puStack_1c8;

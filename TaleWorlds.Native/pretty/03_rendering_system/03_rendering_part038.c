@@ -162,7 +162,7 @@ extern uint64_t UNK_1809fcc28;       // 未知数据结构引用
 extern uint64_t UNK_180a16c38;       // 字符串常量引用
 extern uint64_t UNK_180a16c98;       // 对象虚函数表引用
 extern uint64_t UNK_180a3c3e0;       // 字符串常量引用
-extern uint64_t DAT_180a3f750;       // SIMD数据常量
+extern uint64_t system_memory_f750;       // SIMD数据常量
 
 /**
  * @brief 更新渲染时间戳并触发渲染队列
@@ -282,7 +282,7 @@ uint64_t * InitializeRenderStringBuffer(uint64_t stringType, uint64_t *stringBuf
   *(int32_t *)(stringBuffer + 2) = 0x16; // 缓冲区大小
   
   // 复制字符串数据
-  strcpy_s(stringBuffer[1], 0x80, &DAT_180a16c38, securityContext, 0, 0xfffffffffffffffe);
+  strcpy_s(stringBuffer[1], 0x80, &system_memory_6c38, securityContext, 0, 0xfffffffffffffffe);
   
   return stringBuffer;
 }
@@ -428,7 +428,7 @@ longlong CreateAdvancedRenderDevice(longlong deviceConfig, longlong deviceManage
   // 初始化设备创建参数
   queueConfig[0] = 0xfffffffffffffffe;
   deviceHandle = RenderSystem_GetDeviceHandle();  // 获取设备句柄
-  RenderSystem_RegisterDevice(deviceHandle, &DAT_180a16c38);  // 注册设备
+  RenderSystem_RegisterDevice(deviceHandle, &system_memory_6c38);  // 注册设备
   
   // 切换设备上下文
   oldDevice = *(longlong **)(_DAT_180c86938 + 0x121e0);
@@ -1016,7 +1016,7 @@ void SetupRenderBufferLayout(int *bufferLayout, int startOffset, int endOffset, 
   int8_t simdTemp [16];
   
   // 初始化对齐数据
-  alignmentData = DAT_180a3f750;
+  alignmentData = system_memory_f750;
   alignmentMask = bufferSize - 1;
   currentIndex = 0;
   

@@ -510,7 +510,7 @@ void FUN_1803224b0(longlong param_1)
     }
     uVar9 = *(uint *)(param_1 + 0x150);
     fStackX_1c = (float)(*(longlong *)
-                          (&DAT_180c8ed30 +
+                          (&system_error_code +
                           (longlong)*(int *)(*(longlong *)(param_1 + 0x2d8) + 0x5b98) * 8) %
                         1000000000) * 1e-05;
     uVar10 = (ulonglong)(uVar9 % *(uint *)(param_1 + 0x998));
@@ -651,7 +651,7 @@ void FUN_180322890(longlong param_1,longlong param_2,int param_3)
     *(bool *)(puVar7 + 0x2c) = (*(byte *)(param_2 + 0x2e8) & 0xb) == 0xb;
     puVar7[0x11] = uVar4;
     puVar7[0x12] = param_3;
-    puVar13 = &DAT_18098bc73;
+    puVar13 = &system_buffer_ptr;
     if (*(void **)(param_2 + 0x290) != (void *)0x0) {
       puVar13 = *(void **)(param_2 + 0x290);
     }

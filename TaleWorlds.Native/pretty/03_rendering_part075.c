@@ -227,7 +227,7 @@ void FUN_18030b680(longlong param_1,longlong param_2,longlong param_3,longlong p
     pcVar3 = pcVar2;
     pcVar2 = pcVar3 + 1;
   } while (*pcVar2 != '\0');
-  *puVar1 = &DAT_180a09de8;
+  *puVar1 = &system_data_9de8;
   puVar1[2] = pcVar3 + -0x180a09de7;
   if (param_4 != 0) {
     uVar4 = *(uint64_t *)(param_4 + 0x48);
@@ -271,7 +271,7 @@ void FUN_18030b780(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   uint64_t uStack_28;
   char *pcVar8;
   
-  lVar1 = FUN_18005d4b0(param_2,&DAT_180a09d80,0,param_4,0xfffffffffffffffe);
+  lVar1 = FUN_18005d4b0(param_2,&system_data_9d80,0,param_4,0xfffffffffffffffe);
   if (lVar1 != 0) {
     puStack_40 = &UNK_180a3c3e0;
     uStack_28 = 0;
@@ -304,7 +304,7 @@ LAB_18030b860:
             FUN_180627c50(&puStack_40,lVar5);
             break;
           }
-          lVar5 = (longlong)&DAT_180a03a84 - (longlong)pcVar7;
+          lVar5 = (longlong)&system_data_3a84 - (longlong)pcVar7;
           while (*pcVar7 == pcVar7[lVar5]) {
             pcVar7 = pcVar7 + 1;
             if (pcVar4 <= pcVar7) goto LAB_18030b860;

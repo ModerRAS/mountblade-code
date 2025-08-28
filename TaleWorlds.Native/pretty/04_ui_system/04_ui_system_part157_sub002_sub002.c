@@ -300,7 +300,7 @@ LAB_18075f8b4:
     if (*(int *)(lVar1 + 0x107b0) < param_4) {
       // 分配新的状态存储空间
       lVar5 = FUN_180741e10(lVar1 + 0x10bd0, *(int *)(lVar1 + 0x6d8) * param_4 * 4 + 0x40,
-                            &DAT_18098bc73, 0, 0, in_stack_fffffffffffffef0 & 0xffffff00, 1);
+                            &system_buffer_ptr, 0, 0, in_stack_fffffffffffffef0 & 0xffffff00, 1);
       if (lVar5 == 0) {
         uVar11 = 0x26;
       } else {
@@ -349,7 +349,7 @@ LAB_18075f771:
             // 清理未使用的状态
             if (iVar3 == 0) {
               if (puVar6[3] != 0) {
-                FUN_180742250(lVar1 + 0x10bd0, puVar6[3], &DAT_18098bc73, 0, 1);
+                FUN_180742250(lVar1 + 0x10bd0, puVar6[3], &system_buffer_ptr, 0, 1);
               }
               *puVar6 = *(uint64_t *)(lVar1 + 0x107a8);
               *(uint64_t **)(lVar1 + 0x107a8) = puVar6;
@@ -373,7 +373,7 @@ LAB_18075f771:
       }
       if (iVar3 == 0) {
         if (puVar6[3] != 0) {
-          FUN_180742250(lVar1 + 0x10bd0, puVar6[3], &DAT_18098bc73, 0, 1);
+          FUN_180742250(lVar1 + 0x10bd0, puVar6[3], &system_buffer_ptr, 0, 1);
         }
         *puVar6 = *(uint64_t *)(lVar1 + 0x107a8);
         *(uint64_t **)(lVar1 + 0x107a8) = puVar6;
@@ -412,7 +412,7 @@ uint64_t UI_SystemResourceCleaner(longlong *param_1)
   // 当引用计数为0时，释放资源
   if (*(int *)(puVar1 + 1) == 0) {
     if (puVar1[3] != 0) {
-      FUN_180742250(param_1[1] + 0x10bd0, puVar1[3], &DAT_18098bc73, 0, 1);
+      FUN_180742250(param_1[1] + 0x10bd0, puVar1[3], &system_buffer_ptr, 0, 1);
     }
     *puVar1 = *(uint64_t *)(param_1[1] + 0x107a8);
     *(longlong *)(param_1[1] + 0x107a8) = *param_1;

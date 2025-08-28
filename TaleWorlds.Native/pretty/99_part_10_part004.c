@@ -84,7 +84,7 @@ bool FUN_1806a4930(longlong param_1,uint64_t *param_2,uint64_t param_3,uint64_t 
   
   puStack_188 = (void *)*param_5;
   puVar20 = (void *)param_5[1];
-  puVar23 = &DAT_18098bc73;
+  puVar23 = &system_buffer_ptr;
   if (puVar20 != (void *)0x0) {
     puVar23 = puVar20;
   }
@@ -124,7 +124,7 @@ LAB_1806a49b8:
   apuStack_128[0] = &UNK_18094a9a8;
   (**(code **)(*plVar22 + 0x20))(plVar22);
   if (iVar6 == 2) {
-    puVar20 = &DAT_18098bc73;
+    puVar20 = &system_buffer_ptr;
     if (puStack_1b0 != (void *)0x0) {
       puVar20 = puStack_1b0;
     }

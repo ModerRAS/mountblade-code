@@ -372,7 +372,7 @@ void reset_render_state(uint64_t *param_1)
 
 {
   *param_1 = &UNK_180a071f8;
-  if (DAT_180c8ecee == '\0') {
+  if (system_memory_ecee == '\0') {
     initialize_render_system();
   }
   param_1[100] = &UNK_180a3c3e0;
@@ -803,7 +803,7 @@ LAB_180146224:
                     // WARNING: Subroutine does not return
           FUN_18064e900(puVar2);
         }
-        lVar4 = (longlong)&DAT_18098c090 - (longlong)pcVar5;
+        lVar4 = (longlong)&system_memory_c090 - (longlong)pcVar5;
         while (*pcVar5 == pcVar5[lVar4]) {
           pcVar5 = pcVar5 + 1;
           if (pcVar3 <= pcVar5) goto LAB_180146224;
@@ -1101,9 +1101,9 @@ void * initialize_thread_local_storage(int param_1,uint64_t param_2,uint64_t par
   uVar1 = 0xfffffffffffffffe;
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
               0x48) < _DAT_180d49288) {
-    FUN_1808fcb90(&DAT_180d49288);
+    FUN_1808fcb90(&system_memory_9288);
     if (_DAT_180d49288 == -1) {
       _DAT_180d49290 = &UNK_1809fcc58;
-      _DAT_180d49298 = &DAT_180d492a8;
+      _DAT_180d49298 = &system_memory_92a8;
 
 

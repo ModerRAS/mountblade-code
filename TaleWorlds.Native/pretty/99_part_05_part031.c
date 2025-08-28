@@ -92,7 +92,7 @@ void FUN_1802eaec0(longlong param_1,longlong param_2,char param_3,char param_4,l
                  (ulonglong)(*(longlong *)(param_1 + 0x208) - *plVar1 >> 3));
         lVar18 = *(longlong *)(param_1 + 0x20);
       }
-      if ((*(char *)(lVar18 + 0x607d0) == '\0') && (DAT_180c8ecee == '\0')) {
+      if ((*(char *)(lVar18 + 0x607d0) == '\0') && (system_data_ecee == '\0')) {
         puVar21 = (uint *)((longlong)*(int *)(lVar18 + 0x80c0) * 0x2408 + lVar18 + 0x5cb8);
         for (uVar17 = 0; (ulonglong)(longlong)(int)uVar17 < (ulonglong)*puVar21; uVar17 = uVar17 + 1
             ) {

@@ -167,7 +167,7 @@ int NetworkProtocol_SerializeDualField(void* context, uint8_t* output_buffer, in
     total_size += header_size;
     
     // 序列化分隔符
-    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -177,7 +177,7 @@ int NetworkProtocol_SerializeDualField(void* context, uint8_t* output_buffer, in
     total_size += field_size;
     
     // 序列化分隔符
-    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -235,7 +235,7 @@ int NetworkProtocol_SerializeQuadField(void* context, uint8_t* output_buffer, in
     total_size += header_size;
     
     // 序列化分隔符
-    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -245,7 +245,7 @@ int NetworkProtocol_SerializeQuadField(void* context, uint8_t* output_buffer, in
     total_size += field_size;
     
     // 序列化分隔符
-    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -299,7 +299,7 @@ int NetworkProtocol_SerializeVariableField(void* context, uint8_t* output_buffer
     total_size += header_size;
     
     // 序列化分隔符
-    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -309,7 +309,7 @@ int NetworkProtocol_SerializeVariableField(void* context, uint8_t* output_buffer
     total_size += field_size;
     
     // 序列化分隔符
-    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -319,7 +319,7 @@ int NetworkProtocol_SerializeVariableField(void* context, uint8_t* output_buffer
     total_size += field_size;
     
     // 序列化分隔符
-    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -381,7 +381,7 @@ int NetworkProtocol_SerializeTimestamp(void* context, uint8_t* output_buffer, in
     total_size += header_size;
     
     // 序列化分隔符
-    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -391,7 +391,7 @@ int NetworkProtocol_SerializeTimestamp(void* context, uint8_t* output_buffer, in
     total_size += field_size;
     
     // 序列化分隔符
-    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -401,7 +401,7 @@ int NetworkProtocol_SerializeTimestamp(void* context, uint8_t* output_buffer, in
     total_size += field_size;
     
     // 序列化分隔符
-    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -411,7 +411,7 @@ int NetworkProtocol_SerializeTimestamp(void* context, uint8_t* output_buffer, in
     total_size += field_size;
     
     // 序列化分隔符
-    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -421,7 +421,7 @@ int NetworkProtocol_SerializeTimestamp(void* context, uint8_t* output_buffer, in
     total_size += field_size;
     
     // 序列化分隔符
-    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -479,7 +479,7 @@ int NetworkProtocol_SerializeComplexStructure(void* context, uint8_t* output_buf
     total_size += header_size;
     
     // 序列化分隔符
-    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -489,7 +489,7 @@ int NetworkProtocol_SerializeComplexStructure(void* context, uint8_t* output_buf
     total_size += field_size;
     
     // 序列化分隔符
-    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -499,7 +499,7 @@ int NetworkProtocol_SerializeComplexStructure(void* context, uint8_t* output_buf
     total_size += field_size;
     
     // 序列化分隔符
-    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -509,7 +509,7 @@ int NetworkProtocol_SerializeComplexStructure(void* context, uint8_t* output_buf
     total_size += field_size;
     
     // 序列化分隔符
-    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -571,7 +571,7 @@ int NetworkProtocol_SerializeSecurity(void* context, uint8_t* output_buffer, int
     total_size += header_size;
     
     // 序列化分隔符
-    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -581,7 +581,7 @@ int NetworkProtocol_SerializeSecurity(void* context, uint8_t* output_buffer, int
     total_size += field_size;
     
     // 序列化分隔符
-    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -591,7 +591,7 @@ int NetworkProtocol_SerializeSecurity(void* context, uint8_t* output_buffer, int
     total_size += field_size;
     
     // 序列化分隔符
-    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -644,7 +644,7 @@ int NetworkProtocol_SerializeError(void* context, uint8_t* output_buffer, int bu
     total_size += header_size;
     
     // 序列化分隔符
-    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -654,7 +654,7 @@ int NetworkProtocol_SerializeError(void* context, uint8_t* output_buffer, int bu
     total_size += field_size;
     
     // 序列化分隔符
-    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -664,7 +664,7 @@ int NetworkProtocol_SerializeError(void* context, uint8_t* output_buffer, int bu
     total_size += field_size;
     
     // 序列化分隔符
-    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -716,7 +716,7 @@ int NetworkProtocol_QueryResource(void* context, uint8_t* output_buffer, int buf
     total_size += header_size;
     
     // 序列化分隔符
-    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -830,7 +830,7 @@ int FUN_180844910(longlong param_1, longlong param_2, int param_3)
     if (header_size < 0) return header_size;
     total_size += header_size;
     
-    separator_size = FUN_18074b880((uint8_t*)param_2 + total_size, param_3 - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880((uint8_t*)param_2 + total_size, param_3 - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -838,7 +838,7 @@ int FUN_180844910(longlong param_1, longlong param_2, int param_3)
     if (field_size < 0) return field_size;
     total_size += field_size;
     
-    separator_size = FUN_18074b880((uint8_t*)param_2 + total_size, param_3 - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880((uint8_t*)param_2 + total_size, param_3 - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -865,7 +865,7 @@ int FUN_1808449c0(longlong param_1, longlong param_2, int param_3)
     if (header_size < 0) return header_size;
     total_size += header_size;
     
-    separator_size = FUN_18074b880((uint8_t*)param_2 + total_size, param_3 - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880((uint8_t*)param_2 + total_size, param_3 - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -921,7 +921,7 @@ int FUN_180844e90(longlong param_1, longlong param_2, int param_3)
     if (header_size < 0) return header_size;
     total_size += header_size;
     
-    separator_size = FUN_18074b880((uint8_t*)param_2 + total_size, param_3 - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880((uint8_t*)param_2 + total_size, param_3 - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -929,7 +929,7 @@ int FUN_180844e90(longlong param_1, longlong param_2, int param_3)
     if (field_size < 0) return field_size;
     total_size += field_size;
     
-    separator_size = FUN_18074b880((uint8_t*)param_2 + total_size, param_3 - total_size, &DAT_180a06434);
+    separator_size = FUN_18074b880((uint8_t*)param_2 + total_size, param_3 - total_size, &system_temp_buffer);
     if (separator_size < 0) return separator_size;
     total_size += separator_size;
     
@@ -1054,7 +1054,7 @@ void FUN_1808451c0(uint64_t param_1, uint64_t param_2, uint64_t param_3)
     iVar1 = FUN_18083fc50();
     if ((iVar1 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
         iVar2 = FUN_18074b880(auStack_138,0x100,param_2);
-        iVar3 = FUN_18074b880(auStack_138 + iVar2,0x100 - iVar2,&DAT_180a06434);
+        iVar3 = FUN_18074b880(auStack_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
         func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
         puStack_148 = auStack_138;
         FUN_180749ef0(iVar1,0xb,param_1,&UNK_180981fc0);
@@ -1069,7 +1069,7 @@ void FUN_180845204(void)
     int32_t unaff_ESI;
     
     iVar1 = FUN_18074b880(&stack0x00000030,0x100);
-    iVar2 = FUN_18074b880(&stack0x00000030 + iVar1,0x100 - iVar1,&DAT_180a06434);
+    iVar2 = FUN_18074b880(&stack0x00000030 + iVar1,0x100 - iVar1,&system_temp_buffer);
     func_0x00018074bda0(&stack0x00000030 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
     FUN_180749ef0(unaff_ESI,0xb);
 }
@@ -1104,7 +1104,7 @@ void FUN_1808452a0(uint64_t param_1, int32_t *param_2, uint64_t param_3)
     }
     if ((iVar1 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
         iVar2 = func_0x00018074bda0(auStack_138,0x100,param_2);
-        iVar3 = FUN_18074b880(auStack_138 + iVar2,0x100 - iVar2,&DAT_180a06434);
+        iVar3 = FUN_18074b880(auStack_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
         func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
         puStack_158 = auStack_138;
         FUN_180749ef0(iVar1,0xb,param_1,&UNK_180957410);
@@ -1120,7 +1120,7 @@ void FUN_180845324(void)
     int32_t unaff_ESI;
     
     iVar1 = func_0x00018074bda0(&stack0x00000040,0x100);
-    iVar2 = FUN_18074b880(&stack0x00000040 + iVar1,0x100 - iVar1,&DAT_180a06434);
+    iVar2 = FUN_18074b880(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
     func_0x00018074bda0(&stack0x00000040 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
     FUN_180749ef0(unaff_ESI,0xb);
 }

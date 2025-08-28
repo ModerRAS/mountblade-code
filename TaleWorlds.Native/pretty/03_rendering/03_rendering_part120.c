@@ -76,7 +76,7 @@
 extern uint64_t _DAT_180bf00a8;
 extern uint64_t _DAT_180c86938;
 extern uint64_t _DAT_180c8ed18;
-extern uint64_t DAT_180bf65bc;
+extern uint64_t system_allocation_flags;
 extern uint64_t UNK_180a3c3e0;
 extern uint64_t UNK_18098bcb0;
 

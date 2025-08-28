@@ -24,7 +24,7 @@ void FUN_180849d40(ulonglong param_1,longlong param_2,int32_t param_3)
       FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_1a8);
     }
     iVar1 = FUN_18074b880(auStack_158,0x100,param_2);
-    iVar2 = FUN_18074b880(auStack_158 + iVar1,0x100 - iVar1,&DAT_180a06434);
+    iVar2 = FUN_18074b880(auStack_158 + iVar1,0x100 - iVar1,&system_temp_buffer);
     func_0x00018074b830(auStack_158 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_3);
     puStack_188 = auStack_158;
                     // WARNING: Subroutine does not return
@@ -82,7 +82,7 @@ void FUN_180849f40(ulonglong param_1,longlong param_2,int32_t param_3)
       FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_1a8);
     }
     iVar1 = FUN_18074b880(auStack_158,0x100,param_2);
-    iVar2 = FUN_18074b880(auStack_158 + iVar1,0x100 - iVar1,&DAT_180a06434);
+    iVar2 = FUN_18074b880(auStack_158 + iVar1,0x100 - iVar1,&system_temp_buffer);
     func_0x00018074b830(auStack_158 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_3);
     puStack_188 = auStack_158;
                     // WARNING: Subroutine does not return

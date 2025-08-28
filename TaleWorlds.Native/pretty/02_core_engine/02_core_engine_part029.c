@@ -15,7 +15,7 @@ uint64_t UNK_180a02e68;  // 上下文模板
 uint64_t UNK_180a13a28;  // 上下文模板
 uint64_t UNK_1809fcc28;  // 未知数据结构
 uint64_t UNK_18098bcb0;  // 未知数据结构
-uint64_t DAT_18098bc73;  // 默认名称指针
+uint64_t system_buffer_ptr;  // 默认名称指针
 
 /**
  * 处理数据流中的序列化数据

@@ -316,7 +316,7 @@ void FUN_18041d4f0(longlong param_1,uint64_t *param_2)
   if (cVar2 != '\0') {
     uStack_d8 = 0;
     lStack_d0 = 0;
-    puVar6 = &DAT_18098bc73;
+    puVar6 = &system_buffer_ptr;
     if (*(void **)(param_1 + 8) != (void *)0x0) {
       puVar6 = *(void **)(param_1 + 8);
     }
@@ -341,7 +341,7 @@ void FUN_18041d4f0(longlong param_1,uint64_t *param_2)
           fread(*param_2,(ulonglong)uVar7,1,lVar1);
         }
         else {
-          puVar6 = &DAT_18098bc73;
+          puVar6 = &system_buffer_ptr;
           if (*(void **)(param_1 + 8) != (void *)0x0) {
             puVar6 = *(void **)(param_1 + 8);
           }
@@ -762,7 +762,7 @@ void FUN_18041dfa0(longlong param_1,longlong param_2)
   puVar8 = (uint64_t *)0x0;
   *puVar3 = 0;
   puVar3[1] = 0;
-  puVar6 = &DAT_18098bc73;
+  puVar6 = &system_buffer_ptr;
   if (*(void **)(param_1 + 8) != (void *)0x0) {
     puVar6 = *(void **)(param_1 + 8);
   }

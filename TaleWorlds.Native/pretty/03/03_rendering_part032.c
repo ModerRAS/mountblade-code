@@ -12,7 +12,7 @@ uint64_t UNK_18098bcb0;   // 纹理管理器
 uint64_t UNK_1809fcc58;   // 缓冲区管理器
 uint64_t UNK_180a21720;   // 渲染状态管理器
 uint64_t UNK_180a21690;   // 渲染队列管理器
-uint64_t DAT_18098bc73;   // 默认渲染数据
+uint64_t system_buffer_ptr;   // 默认渲染数据
 
 /**
  * 渲染数据插入函数
@@ -571,7 +571,7 @@ longlong * create_rendering_data(longlong *data_ptr, int32_t *src_data_ptr, int3
       
       // 复制数据字段
       *(int32_t *)(dest_data_ptr + 2) = src_field_ptr[-0x56];
-      name_ptr = &DAT_18098bc73;
+      name_ptr = &system_buffer_ptr;
       if (*(void **)(src_field_ptr + -0x58) != (void *)0x0) {
         name_ptr = *(void **)(src_field_ptr + -0x58);
       }

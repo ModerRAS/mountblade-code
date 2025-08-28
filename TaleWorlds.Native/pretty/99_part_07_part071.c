@@ -284,7 +284,7 @@ void FUN_1804db240(longlong param_1,longlong param_2)
       if (lStack_58 - lStack_60 >> 3 != 0) {
         do {
           puVar2 = *(void **)(*(longlong *)(uVar15 + lStack_60) + 0x18);
-          puVar9 = &DAT_18098bc73;
+          puVar9 = &system_buffer_ptr;
           if (puVar2 != (void *)0x0) {
             puVar9 = puVar2;
           }
@@ -341,7 +341,7 @@ void FUN_1804db240(longlong param_1,longlong param_2)
             }
             uStack_70 = 0;
           }
-          while ((0 < (int)uStack_70 && (lVar7 = strstr(puStack_78,&DAT_180a0ff10), lVar7 != 0))) {
+          while ((0 < (int)uStack_70 && (lVar7 = strstr(puStack_78,&system_data_ff10), lVar7 != 0))) {
             iVar8 = 6;
             iVar3 = (int)lVar7 - (int)puStack_78;
             if (uStack_70 < iVar3 + 6U) {

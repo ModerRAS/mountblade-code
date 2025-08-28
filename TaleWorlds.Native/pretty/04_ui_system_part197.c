@@ -26,7 +26,7 @@ uint64_t FUN_180782360(longlong param_1,int32_t param_2,int32_t *param_3,longlon
       fVar1 = *(float *)(param_1 + 0x7e8);
 code_r0x00018078257c:
                     // WARNING: Subroutine does not return
-      FUN_18076b390(param_4,0x20,&DAT_180a06430,(double)fVar1);
+      FUN_18076b390(param_4,0x20,&system_data_6430,(double)fVar1);
     }
     break;
   case 1:

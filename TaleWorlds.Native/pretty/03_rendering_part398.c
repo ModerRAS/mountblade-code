@@ -472,12 +472,12 @@ void FUN_18048c490(longlong param_1,longlong *param_2,longlong *param_3,longlong
   if (plVar3 != (longlong *)0x0) {
     (**(code **)(*plVar3 + 0x38))();
   }
-  puVar4 = &DAT_18098bc73;
+  puVar4 = &system_buffer_ptr;
   if (*(void **)(param_6 + 8) != (void *)0x0) {
     puVar4 = *(void **)(param_6 + 8);
   }
   (**(code **)(puStack_b8 + 0x10))(&puStack_b8,puVar4);
-  puVar4 = &DAT_18098bc73;
+  puVar4 = &system_buffer_ptr;
   if (*(void **)(param_7 + 8) != (void *)0x0) {
     puVar4 = *(void **)(param_7 + 8);
   }

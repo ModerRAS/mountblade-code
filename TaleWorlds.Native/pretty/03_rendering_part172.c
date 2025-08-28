@@ -748,7 +748,7 @@ LAB_180374a51:
           fStack_214 = fVar18;
           fStack_210 = fVar17;
           fStack_20c = fVar20;
-          FUN_18063ad30(&uStack_198,&uStack_238,&DAT_180a00300);
+          FUN_18063ad30(&uStack_198,&uStack_238,&system_data_0300);
           lVar15 = (longlong)(*(int *)(param_2 + 0x60) * iStack_244 + iVar16) * 0x130 +
                    *(longlong *)(param_2 + 0x138);
           *(uint64_t *)(lVar15 + 8) = uStack_198;

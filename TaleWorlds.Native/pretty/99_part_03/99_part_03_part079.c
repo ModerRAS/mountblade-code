@@ -230,7 +230,7 @@ static void unmatched_advanced_resource_processor(longlong param_1)
         strcpy_s(local_buffer, 0x80, &UNK_180a146b0);
         
         // 处理字符串资源
-        string_resource = &DAT_18098bc73;
+        string_resource = &system_buffer_ptr;
         if (*(void **)(param_1 + 0x3528) != (void *)0x0) {
             string_resource = *(void **)(param_1 + 0x3528);
         }

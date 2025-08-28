@@ -57,7 +57,7 @@ LAB_18074a9ef:
           param_3 = (uint64_t *)0x6;
           break;
         case 7:
-          param_3 = (uint64_t *)&DAT_00000008;
+          param_3 = (uint64_t *)&system_data_0008;
           break;
         case 8:
           param_3 = (uint64_t *)0xc;

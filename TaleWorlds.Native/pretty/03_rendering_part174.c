@@ -165,7 +165,7 @@ void FUN_1803752a0(uint param_1)
                       }
                       *(int32_t **)(unaff_RBP + -0x1a) = unaff_RBP + 2;
                       unaff_RBP[8] = (float)iVar12;
-                      FUN_180077750(lVar17,uVar19,&DAT_180a00300,0,&stack0x00000060);
+                      FUN_180077750(lVar17,uVar19,&system_data_0300,0,&stack0x00000060);
                       plVar18 = *(longlong **)(unaff_RBP + -0xc);
                       uVar15 = (ulonglong)(uint)(iVar14 - iVar16);
                       iVar22 = iVar22 + 0x200;
@@ -230,7 +230,7 @@ void FUN_1803752a0(uint param_1)
         *(int8_t *)(unaff_RBP + -0x1f) = 0xff;
         unaff_RBP[-0x1e] = 0xffffffff;
         *(int16_t *)(unaff_RBP + -0x1b) = 0x400;
-        (**(code **)(*plVar18 + 0x1c8))(plVar18,uVar19,uVar7,&DAT_180a00300,&stack0x00000060);
+        (**(code **)(*plVar18 + 0x1c8))(plVar18,uVar19,uVar7,&system_data_0300,&stack0x00000060);
         lVar21 = lVar21 + 0x10;
         iVar22 = iVar22 + 1;
       } while ((ulonglong)(longlong)iVar22 <

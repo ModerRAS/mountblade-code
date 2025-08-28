@@ -583,8 +583,8 @@ void FUN_180438680(int32_t param_1,int32_t param_2,uint64_t param_3,uint64_t par
   if ((*(longlong *)(_DAT_180c86920 + 0x1e20) != 0) &&
      (auStackX_10[0] = param_2, cVar2 = (**(code **)(_DAT_180c86920 + 0x1e28))(auStackX_10),
      param_2 = auStackX_10[0], cVar2 == '\0')) {
-    if (DAT_180c82860 == '\0') {
-      puVar3 = &DAT_18098bc73;
+    if (system_debug_flag == '\0') {
+      puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x1dd0) != (void *)0x0) {
         puVar3 = *(void **)(lVar1 + 0x1dd0);
       }

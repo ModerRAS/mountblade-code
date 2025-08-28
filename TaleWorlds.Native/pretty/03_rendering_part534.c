@@ -765,7 +765,7 @@ void FUN_18055c930(longlong param_1,int param_2,int8_t param_3)
   *(int32_t *)(puVar4 + 4) = 0;
   *(int16_t *)((longlong)puVar4 + 0x25) = 0x101;
   *(int8_t *)((longlong)puVar4 + 0x27) = 1;
-  puVar4[5] = *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(puVar4 + 6) * 8) + 18000000;
+  puVar4[5] = *(longlong *)(&system_error_code + (longlong)*(int *)(puVar4 + 6) * 8) + 18000000;
   lVar2 = *(longlong *)(param_1 + 0x738) + (longlong)param_2 * 8;
   uVar1 = lVar2 + 8;
   uVar5 = *(ulonglong *)(param_1 + 0x740);

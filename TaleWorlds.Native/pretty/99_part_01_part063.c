@@ -698,7 +698,7 @@ void FUN_1800e2310(longlong param_1,uint64_t param_2,longlong param_3,uint64_t p
   uStack_258 = 0xfffffffffffffffe;
   uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_2b8;
   if (*(char *)(param_1 + 900) != '\0') {
-    puVar7 = &DAT_18098bc73;
+    puVar7 = &system_buffer_ptr;
     if (*(void **)(param_3 + 8) != (void *)0x0) {
       puVar7 = *(void **)(param_3 + 8);
     }

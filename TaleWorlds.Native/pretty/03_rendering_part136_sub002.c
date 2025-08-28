@@ -36,14 +36,14 @@ void FUN_18034d990(longlong param_1)
       iVar2 = (**(code **)(**(longlong **)(uVar7 + lVar3) + 0x98))();
       if (iVar2 == 0) {
         uVar8 = *(ulonglong *)(uVar7 + *plVar4);
-        puVar5 = &DAT_18098bc73;
+        puVar5 = &system_buffer_ptr;
         if (*(void **)(uVar8 + 0x1f8) != (void *)0x0) {
           puVar5 = *(void **)(uVar8 + 0x1f8);
         }
         lVar3 = strstr(puVar5,&UNK_180a1db58);
         uVar11 = extraout_XMM0_Qa;
         if (lVar3 == 0) {
-          puVar5 = &DAT_18098bc73;
+          puVar5 = &system_buffer_ptr;
           if (*(void **)(uVar8 + 0x1f8) != (void *)0x0) {
             puVar5 = *(void **)(uVar8 + 0x1f8);
           }

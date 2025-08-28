@@ -83,7 +83,7 @@ void FUN_180364880(longlong param_1)
       }
       uVar6 = uVar12;
       if ((uint)uStack_a8 == 5) {
-        while (uVar7 = uVar6 + 1, puStack_b0[uVar6] == (&DAT_180a0e358)[uVar6]) {
+        while (uVar7 = uVar6 + 1, puStack_b0[uVar6] == (&system_data_e358)[uVar6]) {
           uVar6 = uVar7;
           if (uVar7 == 6) {
             uStack_b8 = (longlong *)&UNK_180a3c3e0;

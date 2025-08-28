@@ -196,7 +196,7 @@ int SerializeInt32Data(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化分隔符数据
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化尾部数据
@@ -264,7 +264,7 @@ int SerializeInt64Data(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化次要数据
@@ -274,7 +274,7 @@ int SerializeInt64Data(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化配置数据
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化扩展数据
@@ -284,7 +284,7 @@ int SerializeInt64Data(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化尾部数据
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化结束标记
@@ -322,7 +322,7 @@ int SerializeStringData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化字符串编码信息
@@ -360,7 +360,7 @@ int SerializeFloatData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化浮点数精度信息
@@ -398,7 +398,7 @@ int SerializeBooleanData(longlong data_ptr, longlong buffer_ptr, int buffer_size
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化布尔值状态信息
@@ -436,7 +436,7 @@ int SerializeArrayData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化数组长度信息
@@ -475,7 +475,7 @@ int SerializeStructData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化结构体成员
@@ -485,7 +485,7 @@ int SerializeStructData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化结构体结束标记
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化结构体校验信息
@@ -524,7 +524,7 @@ int SerializeVector2Data(longlong data_ptr, longlong buffer_ptr, int buffer_size
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化X分量
@@ -534,7 +534,7 @@ int SerializeVector2Data(longlong data_ptr, longlong buffer_ptr, int buffer_size
     
     // 序列化Y分量
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化向量校验信息
@@ -581,7 +581,7 @@ int SerializeComplexData(longlong data_ptr, longlong buffer_ptr, int buffer_size
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化复杂数据结构
@@ -619,7 +619,7 @@ int SerializeMatrixData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化矩阵数据
@@ -661,7 +661,7 @@ int SerializeTransformData(longlong data_ptr, longlong buffer_ptr, int buffer_si
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化变换参数
@@ -671,7 +671,7 @@ int SerializeTransformData(longlong data_ptr, longlong buffer_ptr, int buffer_si
     
     // 序列化变换配置
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化变换类型
@@ -681,7 +681,7 @@ int SerializeTransformData(longlong data_ptr, longlong buffer_ptr, int buffer_si
     
     // 序列化变换状态
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化变换结束标记
@@ -721,7 +721,7 @@ int SerializeAnimationData(longlong data_ptr, longlong buffer_ptr, int buffer_si
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化动画参数
@@ -731,7 +731,7 @@ int SerializeAnimationData(longlong data_ptr, longlong buffer_ptr, int buffer_si
     
     // 序列化动画配置
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化动画数据
@@ -741,7 +741,7 @@ int SerializeAnimationData(longlong data_ptr, longlong buffer_ptr, int buffer_si
     
     // 序列化动画状态
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化动画结束标记
@@ -781,7 +781,7 @@ int SerializeAudioData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化音频格式
@@ -791,7 +791,7 @@ int SerializeAudioData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化音频配置
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化音频参数
@@ -801,7 +801,7 @@ int SerializeAudioData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化音频状态
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化音频结束标记
@@ -839,7 +839,7 @@ int SerializeVideoData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化视频格式
@@ -849,7 +849,7 @@ int SerializeVideoData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化视频配置
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化视频参数
@@ -859,7 +859,7 @@ int SerializeVideoData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化视频状态
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化视频结束标记
@@ -898,7 +898,7 @@ int SerializeImageData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化图像参数
@@ -908,7 +908,7 @@ int SerializeImageData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化图像状态
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化图像格式
@@ -950,7 +950,7 @@ int SerializeNetworkConfig(longlong data_ptr, longlong buffer_ptr, int buffer_si
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化主配置
@@ -988,7 +988,7 @@ int SerializeConnectionInfo(longlong data_ptr, longlong buffer_ptr, int buffer_s
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化连接参数
@@ -1026,7 +1026,7 @@ int SerializePlayerState(longlong data_ptr, longlong buffer_ptr, int buffer_size
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化玩家参数
@@ -1074,7 +1074,7 @@ int SerializeGameState(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化游戏参数
@@ -1084,7 +1084,7 @@ int SerializeGameState(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化游戏状态
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化游戏配置
@@ -1122,7 +1122,7 @@ int SerializeEntityData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化实体参数
@@ -1132,7 +1132,7 @@ int SerializeEntityData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化实体状态
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化实体配置
@@ -1173,7 +1173,7 @@ int SerializeWorldState(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化世界参数
@@ -1183,7 +1183,7 @@ int SerializeWorldState(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化世界状态
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化世界配置
@@ -1193,7 +1193,7 @@ int SerializeWorldState(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化世界环境
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化世界格式
@@ -1203,7 +1203,7 @@ int SerializeWorldState(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化世界结束标记
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化世界校验
@@ -1254,7 +1254,7 @@ int SerializePhysicsData(longlong data_ptr, longlong buffer_ptr, int buffer_size
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化物理参数
@@ -1264,7 +1264,7 @@ int SerializePhysicsData(longlong data_ptr, longlong buffer_ptr, int buffer_size
     
     // 序列化物理状态
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化物理属性
@@ -1274,7 +1274,7 @@ int SerializePhysicsData(longlong data_ptr, longlong buffer_ptr, int buffer_size
     
     // 序列化物理配置
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化物理结束标记
@@ -1312,7 +1312,7 @@ int SerializeInputData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化输入参数
@@ -1353,7 +1353,7 @@ int SerializeRenderData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化渲染参数
@@ -1363,7 +1363,7 @@ int SerializeRenderData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化渲染状态
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化渲染结束标记
@@ -1402,7 +1402,7 @@ int SerializeShaderData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化着色器变量
@@ -1412,7 +1412,7 @@ int SerializeShaderData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
     
     // 序列化着色器状态
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化着色器结束标记
@@ -1451,7 +1451,7 @@ int SerializeTextureData(longlong data_ptr, longlong buffer_ptr, int buffer_size
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化纹理参数
@@ -1461,7 +1461,7 @@ int SerializeTextureData(longlong data_ptr, longlong buffer_ptr, int buffer_size
     
     // 序列化纹理状态
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化纹理结束标记
@@ -1498,7 +1498,7 @@ int SerializeMaterialData(longlong data_ptr, longlong buffer_ptr, int buffer_siz
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化材质参数
@@ -1508,7 +1508,7 @@ int SerializeMaterialData(longlong data_ptr, longlong buffer_ptr, int buffer_siz
     
     // 序列化材质状态
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
-                                   buffer_size - serialized_bytes, &DAT_180a06434);
+                                   buffer_size - serialized_bytes, &system_temp_buffer);
     serialized_bytes = serialized_bytes + processed_bytes;
     
     // 序列化材质结束标记
@@ -1599,7 +1599,7 @@ int SendDataPacket(longlong packet_ptr, longlong target_ptr, int packet_size)
     
     // 发送分隔符
     processed_bytes = FUN_18074b880(target_ptr + sent_bytes, 
-                                   packet_size - sent_bytes, &DAT_180a06434);
+                                   packet_size - sent_bytes, &system_temp_buffer);
     sent_bytes = sent_bytes + processed_bytes;
     
     // 发送主要数据
@@ -1609,7 +1609,7 @@ int SendDataPacket(longlong packet_ptr, longlong target_ptr, int packet_size)
     
     // 发送状态信息
     processed_bytes = FUN_18074b880(target_ptr + sent_bytes, 
-                                   packet_size - sent_bytes, &DAT_180a06434);
+                                   packet_size - sent_bytes, &system_temp_buffer);
     sent_bytes = sent_bytes + processed_bytes;
     
     // 发送次要数据
@@ -1619,7 +1619,7 @@ int SendDataPacket(longlong packet_ptr, longlong target_ptr, int packet_size)
     
     // 发送配置信息
     processed_bytes = FUN_18074b880(target_ptr + sent_bytes, 
-                                   packet_size - sent_bytes, &DAT_180a06434);
+                                   packet_size - sent_bytes, &system_temp_buffer);
     sent_bytes = sent_bytes + processed_bytes;
     
     // 发送扩展数据
@@ -1629,7 +1629,7 @@ int SendDataPacket(longlong packet_ptr, longlong target_ptr, int packet_size)
     
     // 发送尾部信息
     processed_bytes = FUN_18074b880(target_ptr + sent_bytes, 
-                                   packet_size - sent_bytes, &DAT_180a06434);
+                                   packet_size - sent_bytes, &system_temp_buffer);
     sent_bytes = sent_bytes + processed_bytes;
     
     // 发送结束标记
@@ -1718,7 +1718,7 @@ int SendHeartbeatPacket(longlong heartbeat_ptr, longlong target_ptr, int heartbe
     
     // 发送分隔符
     processed_bytes = FUN_18074b880(target_ptr + sent_bytes, 
-                                   heartbeat_size - sent_bytes, &DAT_180a06434);
+                                   heartbeat_size - sent_bytes, &system_temp_buffer);
     sent_bytes = sent_bytes + processed_bytes;
     
     // 发送主要数据
@@ -1728,7 +1728,7 @@ int SendHeartbeatPacket(longlong heartbeat_ptr, longlong target_ptr, int heartbe
     
     // 发送状态信息
     processed_bytes = FUN_18074b880(target_ptr + sent_bytes, 
-                                   heartbeat_size - sent_bytes, &DAT_180a06434);
+                                   heartbeat_size - sent_bytes, &system_temp_buffer);
     sent_bytes = sent_bytes + processed_bytes;
     
     // 发送次要数据
@@ -1738,7 +1738,7 @@ int SendHeartbeatPacket(longlong heartbeat_ptr, longlong target_ptr, int heartbe
     
     // 发送配置信息
     processed_bytes = FUN_18074b880(target_ptr + sent_bytes, 
-                                   heartbeat_size - sent_bytes, &DAT_180a06434);
+                                   heartbeat_size - sent_bytes, &system_temp_buffer);
     sent_bytes = sent_bytes + processed_bytes;
     
     // 发送扩展数据
@@ -1748,7 +1748,7 @@ int SendHeartbeatPacket(longlong heartbeat_ptr, longlong target_ptr, int heartbe
     
     // 发送尾部信息
     processed_bytes = FUN_18074b880(target_ptr + sent_bytes, 
-                                   heartbeat_size - sent_bytes, &DAT_180a06434);
+                                   heartbeat_size - sent_bytes, &system_temp_buffer);
     sent_bytes = sent_bytes + processed_bytes;
     
     // 发送结束标记

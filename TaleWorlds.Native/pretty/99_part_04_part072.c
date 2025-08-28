@@ -348,7 +348,7 @@ uint64_t * FUN_1802c9580(longlong param_1,uint param_2)
   puVar7[0x10] = 0;
   *(int32_t *)(puVar7 + 0x11) = 3;
   *(int32_t *)(puVar7 + 2) = 0xffffffff;
-  (**(code **)(*plVar1 + 0x10))(plVar1,&DAT_18098bc73);
+  (**(code **)(*plVar1 + 0x10))(plVar1,&system_buffer_ptr);
   puVar7[7] = 0xffffffffffffffff;
   *(int32_t *)(puVar7 + 8) = 0x41200000;
   *(int32_t *)(puVar7 + 0x12) = 0x3c888889;

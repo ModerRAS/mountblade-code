@@ -85,14 +85,14 @@ void FUN_18062dee0(longlong param_1,longlong param_2,uint64_t param_3)
   puStack_5e0 = auStack_5d0;
   auStack_5d0[0] = 0;
   uStack_5d8 = *(int32_t *)(lVar1 + 0x10);
-  puVar3 = &DAT_18098bc73;
+  puVar3 = &system_buffer_ptr;
   if (*(void **)(lVar1 + 8) != (void *)0x0) {
     puVar3 = *(void **)(lVar1 + 8);
   }
   strcpy_s(auStack_5d0,0x100,puVar3);
   apuStack_4c8[0] = &UNK_18098bcb0;
   puStack_708 = &UNK_18098bcb0;
-  puVar3 = &DAT_18098bc73;
+  puVar3 = &system_buffer_ptr;
   if (puStack_5e0 != (void *)0x0) {
     puVar3 = puStack_5e0;
   }

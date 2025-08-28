@@ -551,7 +551,7 @@ longlong FUN_1806f4110(longlong param_1)
 {
   func_0x0001806f4000();
   *(int32_t *)(param_1 + 0xa8) = 0x1b8;
-  *(void **)(param_1 + 0xa0) = &DAT_1809fd7b0;
+  *(void **)(param_1 + 0xa0) = &system_data_d7b0;
   *(void **)(param_1 + 0xb0) = &UNK_1806f5120;
   *(void **)(param_1 + 0xb8) = &UNK_1806f51c0;
   return param_1;
@@ -567,7 +567,7 @@ longlong FUN_1806f41b0(longlong param_1)
   *(void **)(param_1 + 0xa0) = &UNK_18094e840;
   *(void **)(param_1 + 0xb0) = &UNK_1806f5120;
   *(void **)(param_1 + 0xb8) = &UNK_1806f51c0;
-  *(void **)(param_1 + 0xc0) = &DAT_180a1fdf0;
+  *(void **)(param_1 + 0xc0) = &system_data_fdf0;
   *(void **)(param_1 + 0xd0) = &UNK_1806f5110;
   *(void **)(param_1 + 0xd8) = &UNK_1806f51b0;
   *(int32_t *)(param_1 + 200) = 0x1bc;
@@ -584,7 +584,7 @@ longlong FUN_1806f4280(longlong param_1)
   *(void **)(param_1 + 0xa0) = &UNK_18094e840;
   *(void **)(param_1 + 0xb0) = &UNK_1806f5120;
   *(void **)(param_1 + 0xb8) = &UNK_1806f51c0;
-  *(void **)(param_1 + 0xc0) = &DAT_180a1fdf0;
+  *(void **)(param_1 + 0xc0) = &system_data_fdf0;
   *(void **)(param_1 + 0xd0) = &UNK_1806f5110;
   *(void **)(param_1 + 0xd8) = &UNK_1806f51b0;
   *(int32_t *)(param_1 + 200) = 0x1c0;

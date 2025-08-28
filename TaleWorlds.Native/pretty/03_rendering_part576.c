@@ -142,9 +142,9 @@ void FUN_180582ab0(longlong param_1,float param_2)
     *(uint64_t *)(param_1 + 0x70) = *(uint64_t *)(param_1 + 0x60);
   }
   if (*(char *)(param_1 + 0x3d2) == '\0') {
-    fVar20 = (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x298) * 8) -
+    fVar20 = (float)(*(longlong *)(&system_error_code + (longlong)*(int *)(param_1 + 0x298) * 8) -
                     *(longlong *)(param_1 + 0x290)) * 1e-05;
-    fVar18 = (float)fmodf(&DAT_180c8ed30,0x3ca3d70a);
+    fVar18 = (float)fmodf(&system_error_code,0x3ca3d70a);
     fVar16 = ((fVar20 - param_2) + 0.02) - fVar18;
     fVar18 = fVar20 - param_2;
     while (fVar15 = fVar16, fVar18 < fVar20) {

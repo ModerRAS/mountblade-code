@@ -28,7 +28,7 @@ extern uint64_t _DAT_180c8a9a8;     // 内存分配器相关
 extern uint UNK_18098d290[256];       // 哈希计算查找表
 extern uint64_t UNK_180a06770;      // 字符串处理相关
 extern uint64_t UNK_180a06768;      // 字符串处理相关
-extern char DAT_18098bc73;            // 字符常量
+extern char system_buffer_ptr;            // 字符常量
 extern char UNK_180a06474;            // 默认字符串常量
 
 // 函数声明
@@ -115,7 +115,7 @@ void process_string_and_write_buffer(longlong context, char *input_start, char *
       // 根据格式选择写入方式
       if ((should_use_alternative_format) || (current_pos != input_start)) {
         // 使用替代格式写入
-        StringProcessor_FormatAndWrite(&UNK_180a06770, (write_index - current_count) * 4, &DAT_18098bc73, line_length, current_pos);
+        StringProcessor_FormatAndWrite(&UNK_180a06770, (write_index - current_count) * 4, &system_buffer_ptr, line_length, current_pos);
       }
       else {
         // 使用标准格式写入

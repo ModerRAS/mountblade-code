@@ -46,7 +46,7 @@ LAB_1808bd6e0:
       if (plVar14 == (longlong *)(param_1 + 8)) goto LAB_1808bd87b;
       plVar10 = plVar14 + -0xb;
       if (plVar14 == (longlong *)0x0) {
-        plVar10 = (longlong *)&DAT_00000008;
+        plVar10 = (longlong *)&system_data_0008;
       }
       lVar7 = (**(code **)*plVar10)();
       uVar2 = *(uint *)(lVar7 + 0x10);

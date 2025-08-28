@@ -138,7 +138,7 @@ LAB_1804162d5:
                         if (puVar19[1] != 0) {
                           lVar16 = puVar19[1];
                         }
-                        FUN_18010cbc0(lVar16,&DAT_180a06430,&uStack_48);
+                        FUN_18010cbc0(lVar16,&system_data_6430,&uStack_48);
                         break;
                       }
                       lVar16 = (longlong)&UNK_180a1810c - (longlong)pcVar24;
@@ -719,9 +719,9 @@ void FUN_180416900(longlong param_1,uint64_t param_2,longlong param_3,longlong p
     } while (*pcVar8 != '\0');
     *puVar7 = &UNK_180a180f4;
     puVar7[2] = pcVar10 + -0x180a180f3;
-    FUN_180630b20(param_3,puVar7,&DAT_180a03a84,param_2);
+    FUN_180630b20(param_3,puVar7,&system_data_3a84,param_2);
     FUN_180630c80(param_3,puVar7,&UNK_180a015b0,1);
-    FUN_18062f990(param_3,puVar7,&DAT_180a0b1c0);
+    FUN_18062f990(param_3,puVar7,&system_data_b1c0);
     FUN_18062f990(param_3,puVar7,&UNK_180a180b0);
     if (*(longlong *)(param_4 + 0x30) == 0) {
       puVar7[10] = 0;

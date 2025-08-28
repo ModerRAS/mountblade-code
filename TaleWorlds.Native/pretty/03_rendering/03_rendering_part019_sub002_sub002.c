@@ -432,7 +432,7 @@ void rendering_system_parameter_processor(
                                 stack_string_3b0 = stack_buffer_3a0;
                                 stack_buffer_3a0[0] = 0;
                                 stack_length_3a8 = *(int *)(temp_value2 + 0x10);
-                                resource_data = &DAT_18098bc73;
+                                resource_data = &system_buffer_ptr;
                                 if (*(void **)(temp_value2 + 8) != (void *)0x0) {
                                     resource_data = *(void **)(temp_value2 + 8);
                                 }
@@ -516,7 +516,7 @@ void rendering_system_parameter_processor(
                                 stack_string_410 = stack_buffer_400;
                                 stack_buffer_400[0] = 0;
                                 stack_length_408 = *(int *)(temp_value2 + 0x10);
-                                resource_data = &DAT_18098bc73;
+                                resource_data = &system_buffer_ptr;
                                 if (*(void **)(temp_value2 + 8) != (void *)0x0) {
                                     resource_data = *(void **)(temp_value2 + 8);
                                 }
@@ -593,7 +593,7 @@ void rendering_system_parameter_processor(
                                 stack_string_2f0 = stack_buffer_2e0;
                                 stack_buffer_2e0[0] = 0;
                                 stack_length_2e8 = *(int *)(temp_value2 + 0x10);
-                                resource_data = &DAT_18098bc73;
+                                resource_data = &system_buffer_ptr;
                                 if (*(void **)(temp_value2 + 8) != (void *)0x0) {
                                     resource_data = *(void **)(temp_value2 + 8);
                                 }
@@ -666,7 +666,7 @@ void rendering_system_parameter_processor(
                                 stack_string_350 = stack_buffer_340;
                                 stack_buffer_340[0] = 0;
                                 stack_length_348 = *(int *)(temp_value2 + 0x10);
-                                resource_data = &DAT_18098bc73;
+                                resource_data = &system_buffer_ptr;
                                 if (*(void **)(temp_value2 + 8) != (void *)0x0) {
                                     resource_data = *(void **)(temp_value2 + 8);
                                 }
@@ -749,7 +749,7 @@ void rendering_system_parameter_processor(
                                 stack_string_230 = stack_buffer_220;
                                 stack_buffer_220[0] = 0;
                                 stack_length_228 = *(int *)(temp_value2 + 0x10);
-                                resource_data = &DAT_18098bc73;
+                                resource_data = &system_buffer_ptr;
                                 if (*(void **)(temp_value2 + 8) != (void *)0x0) {
                                     resource_data = *(void **)(temp_value2 + 8);
                                 }
@@ -822,7 +822,7 @@ void rendering_system_parameter_processor(
                                 stack_string_290 = stack_buffer_280;
                                 stack_buffer_280[0] = 0;
                                 stack_length_288 = *(int *)(temp_value2 + 0x10);
-                                resource_data = &DAT_18098bc73;
+                                resource_data = &system_buffer_ptr;
                                 if (*(void **)(temp_value2 + 8) != (void *)0x0) {
                                     resource_data = *(void **)(temp_value2 + 8);
                                 }
@@ -905,7 +905,7 @@ void rendering_system_parameter_processor(
                                 stack_string_170 = stack_buffer_160;
                                 stack_buffer_160[0] = 0;
                                 stack_length_168 = *(int *)(temp_value2 + 0x10);
-                                resource_data = &DAT_18098bc73;
+                                resource_data = &system_buffer_ptr;
                                 if (*(void **)(temp_value2 + 8) != (void *)0x0) {
                                     resource_data = *(void **)(temp_value2 + 8);
                                 }
@@ -981,7 +981,7 @@ void rendering_system_parameter_processor(
                                 stack_string_1d0 = stack_buffer_1c0;
                                 stack_buffer_1c0[0] = 0;
                                 stack_length_1c8 = *(int *)(temp_value2 + 0x10);
-                                resource_data = &DAT_18098bc73;
+                                resource_data = &system_buffer_ptr;
                                 if (*(void **)(temp_value2 + 8) != (void *)0x0) {
                                     resource_data = *(void **)(temp_value2 + 8);
                                 }
@@ -1064,7 +1064,7 @@ void rendering_system_parameter_processor(
                                 stack_string_b0 = stack_buffer_a0;
                                 stack_buffer_a0[0] = 0;
                                 stack_length_a8 = *(int *)(temp_value2 + 0x10);
-                                resource_data = &DAT_18098bc73;
+                                resource_data = &system_buffer_ptr;
                                 if (*(void **)(temp_value2 + 8) != (void *)0x0) {
                                     resource_data = *(void **)(temp_value2 + 8);
                                 }
@@ -1140,7 +1140,7 @@ void rendering_system_parameter_processor(
                                 stack_string_110 = stack_buffer_100;
                                 stack_buffer_100[0] = 0;
                                 stack_length_108 = *(int *)(temp_value2 + 0x10);
-                                resource_data = &DAT_18098bc73;
+                                resource_data = &system_buffer_ptr;
                                 if (*(void **)(temp_value2 + 8) != (void *)0x0) {
                                     resource_data = *(void **)(temp_value2 + 8);
                                 }

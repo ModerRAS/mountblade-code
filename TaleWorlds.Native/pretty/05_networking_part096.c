@@ -598,7 +598,7 @@ void FUN_180898040(longlong *param_1)
             puStack_2d8 = &UNK_180982260;
             uStack_2c4 = uStack_2c4 & 0xffffff00;
             if (*(int *)(lVar11 + 0x58) < 1) {
-              puVar12 = &DAT_18098bc73;
+              puVar12 = &system_buffer_ptr;
             }
             else {
               puVar12 = *(void **)(lVar11 + 0x50);

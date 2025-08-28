@@ -90,7 +90,7 @@ void FUN_180568ac0(uint64_t *param_1,void **param_2)
     memcpy(puStack_b08 + uStack_b00,param_2[1],(longlong)(*(int *)(param_2 + 2) + 1));
   }
   alStack_b30[0] = -1;
-  puVar7 = &DAT_18098bc73;
+  puVar7 = &system_buffer_ptr;
   if (puStack_b08 != (void *)0x0) {
     puVar7 = puStack_b08;
   }
@@ -98,13 +98,13 @@ void FUN_180568ac0(uint64_t *param_1,void **param_2)
   lVar12 = alStack_b30[0];
   uVar8 = uVar9;
   if (alStack_b30[0] == -1) {
-    puStack_bd0 = &DAT_18098bc73;
+    puStack_bd0 = &system_buffer_ptr;
     if (param_2[1] != (void *)0x0) {
       puStack_bd0 = param_2[1];
     }
     piStack_bd8 = (int *)&UNK_180a36350;
     FUN_1800623b0(_DAT_180c86928,0,0x10000000000,8);
-    puVar7 = &DAT_18098bc73;
+    puVar7 = &system_buffer_ptr;
     if (param_2[1] != (void *)0x0) {
       puVar7 = param_2[1];
     }
@@ -387,7 +387,7 @@ LAB_180569148:
                             uVar6 = GetLastError();
                             FUN_180626f80(&UNK_180a3c3a8,uVar6);
                           }
-                          puStack_bd0 = &DAT_18098bc73;
+                          puStack_bd0 = &system_buffer_ptr;
                           if (param_2[1] != (void *)0x0) {
                             puStack_bd0 = param_2[1];
                           }
@@ -425,7 +425,7 @@ LAB_18056945f:
     uVar6 = GetLastError();
     FUN_180626f80(&UNK_180a3c3a8,uVar6);
   }
-  puStack_bd0 = &DAT_18098bc73;
+  puStack_bd0 = &system_buffer_ptr;
   if (param_2[1] != (void *)0x0) {
     puStack_bd0 = param_2[1];
   }

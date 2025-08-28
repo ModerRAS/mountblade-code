@@ -95,11 +95,11 @@ void FUN_180088160(uint64_t param_1,int8_t param_2)
       lStack_248 = 0;
       uStack_240 = 0;
       puVar12 = *(void **)(lVar6 + 0x28 + lVar10);
-      puVar13 = &DAT_18098bc73;
+      puVar13 = &system_buffer_ptr;
       if (puVar12 != (void *)0x0) {
         puVar13 = puVar12;
       }
-      puVar11 = &DAT_18098bc73;
+      puVar11 = &system_buffer_ptr;
       if (puStack_2a8 != (int8_t *)0x0) {
         puVar11 = puStack_2a8;
       }
@@ -168,11 +168,11 @@ void FUN_180088160(uint64_t param_1,int8_t param_2)
       puStack_288 = (void *)0x0;
       uStack_280 = 0;
       puVar12 = *(void **)(lVar14 + 0x28 + lVar8);
-      puVar13 = &DAT_18098bc73;
+      puVar13 = &system_buffer_ptr;
       if (puVar12 != (void *)0x0) {
         puVar13 = puVar12;
       }
-      puVar11 = &DAT_18098bc73;
+      puVar11 = &system_buffer_ptr;
       if (puStack_2c8 != (int8_t *)0x0) {
         puVar11 = puStack_2c8;
       }
@@ -188,7 +188,7 @@ void FUN_180088160(uint64_t param_1,int8_t param_2)
         uStack_1e0 = 0;
         uStack_1d8 = 0;
         uStack_1d0 = 3;
-        puVar12 = &DAT_18098bc73;
+        puVar12 = &system_buffer_ptr;
         if (puStack_288 != (void *)0x0) {
           puVar12 = puStack_288;
         }

@@ -790,7 +790,7 @@ uint64_t core_engine_resource_manager(longlong resource_data, int *config_array)
             
             // 获取资源名称
             resource_end = -1;
-            resource_name_ptr = &DAT_18098bc73;
+            resource_name_ptr = &system_buffer_ptr;
             if (*(int *)(resource_data + 100) == -1) {
                 if (*(void **)(resource_offset + 8) != (void *)0x0) {
                     resource_name_ptr = *(void **)(resource_offset + 8);
@@ -874,7 +874,7 @@ uint64_t core_engine_resource_manager(longlong resource_data, int *config_array)
                 resource_name_ptr = *(void **)
                           ((longlong)*(int *)(resource_data + 0x68) * 0x20 + 8 + *(longlong *)(resource_data + 0x20));
                 resource_end = -1;
-                temp_ptr = &DAT_18098bc73;
+                temp_ptr = &system_buffer_ptr;
                 if (resource_name_ptr != (void *)0x0) {
                     temp_ptr = resource_name_ptr;
                 }
@@ -1388,7 +1388,7 @@ CONTINUE_PROCESSING:
             
             do {
                 stack_ptr_12 = stack_ptr_13;
-                stack_ptr_15 = &DAT_18098bc73;
+                stack_ptr_15 = &system_buffer_ptr;
                 
                 if ((void *)*stack_ptr_4 != (void *)0x0) {
                     stack_ptr_15 = (void *)*stack_ptr_4;

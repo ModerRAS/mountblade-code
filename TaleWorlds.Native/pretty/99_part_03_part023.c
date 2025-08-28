@@ -211,7 +211,7 @@ LAB_1801e3286:
     }
     if (*(char *)(_DAT_180c86870 + 0x60) == '\0') {
       lStack_180 = *param_2;
-      puVar23 = &DAT_18098bc73;
+      puVar23 = &system_buffer_ptr;
       if ((void *)param_2[0x11] != (void *)0x0) {
         puVar23 = (void *)param_2[0x11];
       }

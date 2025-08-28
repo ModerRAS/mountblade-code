@@ -501,7 +501,7 @@ void * FUN_1804777d0(void)
   _DAT_180c92470 = _DAT_180c92478 + 2;
   *_DAT_180c92470 = &UNK_180a2b5d0;
   *_DAT_180c92470 = &UNK_180a2b698;
-  return &DAT_180c92470;
+  return &system_data_2470;
 }
 
 

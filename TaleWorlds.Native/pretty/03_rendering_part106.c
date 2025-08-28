@@ -113,7 +113,7 @@ void RenderingSystem_ProcessResourceFile(longlong render_context, longlong outpu
         uStack_f0 = 0;
         FUN_1806277c0(&puStack_100,*(int32_t *)(param_3 + 0x10));
         if (0 < *(int *)(param_3 + 0x10)) {
-          puVar5 = &DAT_18098bc73;
+          puVar5 = &system_buffer_ptr;
           if (*(void **)(param_3 + 8) != (void *)0x0) {
             puVar5 = *(void **)(param_3 + 8);
           }
@@ -143,7 +143,7 @@ void RenderingSystem_ProcessResourceFile(longlong render_context, longlong outpu
         FUN_1806277c0(&puStack_100,iVar8);
         *(int32_t *)(puStack_f8 + uStack_f0) = 0x6664652e;
         *(int8_t *)((longlong)(puStack_f8 + uStack_f0) + 4) = 0;
-        puVar6 = &DAT_18098bc73;
+        puVar6 = &system_buffer_ptr;
         if (puStack_f8 != (int8_t *)0x0) {
           puVar6 = puStack_f8;
         }
@@ -298,7 +298,7 @@ void RenderingSystem_ExportResourceData(uint64_t render_context, longlong output
       puStack_a8 = puVar1;
       FUN_1806277c0(&puStack_e0,*(int32_t *)(param_3 + 0x10));
       if (0 < *(int *)(param_3 + 0x10)) {
-        puVar5 = &DAT_18098bc73;
+        puVar5 = &system_buffer_ptr;
         if (*(void **)(param_3 + 8) != (void *)0x0) {
           puVar5 = *(void **)(param_3 + 8);
         }
@@ -331,7 +331,7 @@ void RenderingSystem_ExportResourceData(uint64_t render_context, longlong output
       FUN_1806277c0(&puStack_e0,iVar8);
       *(int32_t *)(puStack_d8 + uStack_d0) = 0x6662672e;
       *(int8_t *)((longlong)(puStack_d8 + uStack_d0) + 4) = 0;
-      puVar6 = &DAT_18098bc73;
+      puVar6 = &system_buffer_ptr;
       if (puStack_d8 != (int8_t *)0x0) {
         puVar6 = puStack_d8;
       }
@@ -505,7 +505,7 @@ void RenderingSystem_OptimizeResourceData(longlong render_context, longlong outp
     FUN_1806277c0(&puStack_e8,iVar10);
     *(int32_t *)(puStack_e0 + uStack_d8) = 0x6264732e;
     *(int8_t *)((longlong)(puStack_e0 + uStack_d8) + 4) = 0;
-    puVar7 = &DAT_18098bc73;
+    puVar7 = &system_buffer_ptr;
     if (puStack_e0 != (void *)0x0) {
       puVar7 = puStack_e0;
     }
@@ -765,7 +765,7 @@ void RenderingSystem_CompressRenderData(longlong render_context, longlong output
     FUN_1806277c0(&puStack_148,uVar11);
     *(int32_t *)(puStack_140 + uStack_138) = 0x6470612e;
     *(int8_t *)((longlong)(puStack_140 + uStack_138) + 4) = 0;
-    puVar6 = &DAT_18098bc73;
+    puVar6 = &system_buffer_ptr;
     if (puStack_140 != (void *)0x0) {
       puVar6 = puStack_140;
     }

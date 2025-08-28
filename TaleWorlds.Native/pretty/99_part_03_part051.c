@@ -102,7 +102,7 @@ ulonglong FUN_1802302d0(longlong *param_1)
     } while ((int)uVar17 < *(int *)(lVar15 + 0x60));
   }
   if (0 < *(int *)(lVar15 + 0x60)) {
-    fVar23 = (float)DAT_180a401f0;
+    fVar23 = (float)system_data_01f0;
     uVar16 = uVar14;
     do {
       lVar15 = *(longlong *)(param_1[1] + 0x68);

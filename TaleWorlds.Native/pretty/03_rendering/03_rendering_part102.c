@@ -255,7 +255,7 @@ uint64_t RenderingSystemProcessResourceRequest(longlong render_context, longlong
             stack_array2[2] = 0;
             stack_value3 = RENDERING_SYSTEM_DEFAULT_BUFFER_SIZE;
             stack_value1 = RENDERING_SYSTEM_DEFAULT_BUFFER_SIZE;
-            temp_ptr3 = (longlong *)(*_DAT_180c917d8)(stack_array4, &DAT_180c917c0);
+            temp_ptr3 = (longlong *)(*_DAT_180c917d8)(stack_array4, &system_buffer_17c0);
             if (stack_array2[0] != 0) {
                 // 错误处理
                 FUN_18064e900();
@@ -344,7 +344,7 @@ void RenderingSystemCleanupResources(longlong render_context)
     *(uint64_t *)(render_context + 0x160) = 0;
     
     // 执行渲染回调
-    (**(code **)(*(longlong *)(render_context + 0x208) + 0x10))((longlong *)(render_context + 0x208), &DAT_18098bc73);
+    (**(code **)(*(longlong *)(render_context + 0x208) + 0x10))((longlong *)(render_context + 0x208), &system_buffer_ptr);
     
     *(int8_t *)(render_context + 0x114) = 0;
     *(int32_t *)(render_context + 0x140) = 0x3e4ccccd;
@@ -385,7 +385,7 @@ void RenderingSystemCleanupResources(longlong render_context)
     }
     
     *(int32_t *)(render_context + 0x228) = 0xffffffff;
-    (**(code **)(*(longlong *)(render_context + 0x118) + 0x10))((longlong *)(render_context + 0x118), &DAT_18098bc73);
+    (**(code **)(*(longlong *)(render_context + 0x118) + 0x10))((longlong *)(render_context + 0x118), &system_buffer_ptr);
     
     // 清理渲染对象链表
     temp_ptr1 = *(longlong **)(render_context + 0x9f8);
@@ -656,7 +656,7 @@ void RenderingSystemCleanupResources(longlong render_context)
         *(int32_t *)(temp_ptr1 + 8) = 0;
         *(int32_t *)((longlong)temp_ptr1 + 0x44) = 0;
         *(int32_t *)(temp_ptr1 + 9) = RENDERING_SYSTEM_MAX_PRIORITY;
-        (**(code **)(temp_ptr1[10] + 0x10))(temp_ptr1 + 10, &DAT_18098bc73);
+        (**(code **)(temp_ptr1[10] + 0x10))(temp_ptr1 + 10, &system_buffer_ptr);
         *(int32_t *)(temp_ptr1 + 0xe) = 0xffffffff;
         temp_long2 = *(longlong *)(temp_long2 + 0x10);
         while (temp_long2 == 0) {

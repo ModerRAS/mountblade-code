@@ -152,7 +152,7 @@ void FUN_18025e930(int32_t *param_1,uint64_t param_2,longlong *param_3,uint64_t 
   *puVar6 = uVar3;
   lVar4 = param_3[1];
   param_3[1] = lVar4 + 4;
-  puVar7 = &DAT_18098bc73;
+  puVar7 = &system_buffer_ptr;
   if (*(void **)(param_1 + 0xc) != (void *)0x0) {
     puVar7 = *(void **)(param_1 + 0xc);
   }
@@ -241,7 +241,7 @@ void FUN_18025ea90(int32_t *param_1,uint64_t param_2,longlong *param_3,uint64_t 
   *puVar6 = uVar3;
   lVar4 = param_3[1];
   param_3[1] = lVar4 + 4;
-  puVar7 = &DAT_18098bc73;
+  puVar7 = &system_buffer_ptr;
   if (*(void **)(param_1 + 8) != (void *)0x0) {
     puVar7 = *(void **)(param_1 + 8);
   }

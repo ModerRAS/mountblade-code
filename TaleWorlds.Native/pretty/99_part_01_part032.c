@@ -218,7 +218,7 @@ FUN_1800bff50(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   lVar3 = _DAT_180c86898;
   if (*(longlong *)(_DAT_180c86898 + 0x3b8) == 0) {
     puVar4 = (uint64_t *)
-             FUN_18009e9e0(param_1,aplStackX_10,&DAT_180a036e0,param_4,0xfffffffffffffffe);
+             FUN_18009e9e0(param_1,aplStackX_10,&system_data_36e0,param_4,0xfffffffffffffffe);
     uVar1 = *puVar4;
     *puVar4 = 0;
     plVar2 = *(longlong **)(lVar3 + 0x3b8);
@@ -348,7 +348,7 @@ longlong FUN_1800c0100(longlong param_1)
     uStack_30 = uStack_40;
     uStack_2c = uStack_3c;
     (**(code **)(*plVar1 + 0x60))
-              (plVar1,&DAT_180a01050,*(longlong *)(alStackX_8[0] + 0xa8) + 0xc,0,&uStack_30);
+              (plVar1,&system_data_1050,*(longlong *)(alStackX_8[0] + 0xa8) + 0xc,0,&uStack_30);
     if (pcStack_20 != (code *)0x0) {
       (*pcStack_20)(&uStack_30,0,0);
     }

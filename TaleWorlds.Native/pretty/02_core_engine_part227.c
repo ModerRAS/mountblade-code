@@ -91,7 +91,7 @@ void FUN_18019e260(longlong param_1)
       uStack_15c = 0x40000000;
       plStack_150 = alStack_148;
       uStack_170 = 1;
-      puStack_178 = &DAT_180be0000;
+      puStack_178 = &system_data_0000;
       uStack_168 = 0;
       uStack_158 = 0;
       puVar24 = puVar20;
@@ -384,7 +384,7 @@ LAB_18019e833:
                 FUN_1800b8500(*(longlong *)(lVar2 + 0x448) + 0x21e0);
                 FUN_1800b8500(lVar2 + 0x81b0);
               }
-              if (DAT_180c82847 == '\0') {
+              if (system_data_2847 == '\0') {
                 FUN_1801aedf0(lVar2);
               }
               return;

@@ -42,7 +42,7 @@ char FUN_18055cc30(longlong param_1,int16_t param_2)
     *(int32_t *)(param_1 + 0x77c) = 0;
   }
   else {
-    puVar5 = &DAT_18098bc73;
+    puVar5 = &system_buffer_ptr;
     if (_DAT_180bf5bc8 != (void *)0x0) {
       puVar5 = _DAT_180bf5bc8;
     }

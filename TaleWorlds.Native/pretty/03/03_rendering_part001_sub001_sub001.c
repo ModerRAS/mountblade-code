@@ -33,7 +33,7 @@ uint8_t UNK_180277e10;  // 上下文配置结构
 uint8_t UNK_180a01378;  // 渲染格式设置
 uint8_t UNK_180a01360;  // 上下文属性
 uint8_t UNK_180a16bd0;  // 渲染状态标志
-uint8_t DAT_180c8aa08;  // 全局渲染状态
+uint8_t system_main_data_ptr;  // 全局渲染状态
 uint8_t UNK_180a01340;  // 上下文初始化参数
 uint8_t UNK_180a013a8;  // 渲染设备引用
 uint8_t UNK_180a013b8;  // 上下文句柄
@@ -50,11 +50,11 @@ uint8_t UNK_180a013e0;  // 上下文扩展参数
 // 函数: 设置渲染管线
 // 负责配置渲染管线状态，包括着色器、混合模式、光栅化等设置
 uint8_t setup_render_pipeline;
-uint8_t DAT_180c8a988;  // 管线配置结构
+uint8_t system_memory_a988;  // 管线配置结构
 uint8_t UNK_180a04f28;  // 顶点着色器设置
 uint8_t UNK_180a04f58;  // 片段着色器设置
-uint8_t DAT_180a02bf0;  // 着色器程序
-uint8_t DAT_180a03fc0;  // 着色器参数
+uint8_t system_memory_2bf0;  // 着色器程序
+uint8_t system_memory_3fc0;  // 着色器参数
 uint8_t UNK_180a04f68;  // 混合模式设置
 uint8_t UNK_180a04f70;  // 深度测试设置
 uint8_t UNK_180a04f78;  // 模板测试设置

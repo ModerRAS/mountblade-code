@@ -208,7 +208,7 @@ void FUN_1806b12d0(longlong param_1,longlong *param_2,uint param_3)
      (lVar6 = *(longlong *)(*(longlong *)(param_1 + 0x88) + (ulonglong)param_3 * 8), lVar6 != 0)) {
     uVar7 = 0;
     plVar1 = (longlong *)(lVar6 + 0x58);
-    puStack_18 = &DAT_18098bc73;
+    puStack_18 = &system_buffer_ptr;
     uStack_10 = 0;
     FUN_1806b1070(plVar1,param_2[1] - *param_2 >> 4,&puStack_18);
     lVar6 = *param_2;
@@ -293,7 +293,7 @@ int * FUN_1806b1390(longlong param_1,int *param_2,byte *param_3)
   longlong lVar9;
   int8_t auStackX_18 [16];
   
-  pbVar5 = &DAT_18098bc73;
+  pbVar5 = &system_buffer_ptr;
   if (param_3 != (byte *)0x0) {
     pbVar5 = param_3;
   }

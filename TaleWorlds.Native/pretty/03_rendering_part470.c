@@ -397,7 +397,7 @@ SHADOW_PROCESSING_BRANCH:
     
     // 计算渲染质量参数
     uint_value2 = *(uint *)(*(longlong *)(context + 0x590) + 0xac);
-    index_var1 = FUN_18053a410(&DAT_180c95f30, uint_value2, stack_uint1);
+    index_var1 = FUN_18053a410(&system_memory_5f30, uint_value2, stack_uint1);
     index_var1 = *(int *)(_DAT_180c95f68 + (longlong)index_var1 * 4);
     
     if (index_var1 == -1) {
@@ -416,7 +416,7 @@ SHADOW_PROCESSING_BRANCH:
     
     while ((float_var1 == 0.0f && (index_var1 != -1))) {
         float_var3 = float_var3 + float_var2;
-        index_var1 = FUN_18053a410(&DAT_180c95f30, uint_value2, *(uint *)(long_var2 + 0x1f0));
+        index_var1 = FUN_18053a410(&system_memory_5f30, uint_value2, *(uint *)(long_var2 + 0x1f0));
         index_var1 = *(int *)(_DAT_180c95f68 + (longlong)index_var1 * 4);
         
         if (index_var1 == -1) {
@@ -441,7 +441,7 @@ SHADOW_PROCESSING_BRANCH:
         
         while ((float_var1 == 0.0f && (index_var1 != -1))) {
             float_var4 = float_var4 + float_var2;
-            index_var1 = FUN_18053a410(&DAT_180c95f30, uint_value2, *(uint *)(long_var2 + 0x1f0));
+            index_var1 = FUN_18053a410(&system_memory_5f30, uint_value2, *(uint *)(long_var2 + 0x1f0));
             index_var1 = *(int *)(_DAT_180c95f68 + (longlong)index_var1 * 4);
             
             if (index_var1 == -1) {
@@ -479,7 +479,7 @@ SHADOW_PROCESSING_BRANCH:
     
     // 处理渲染系统错误和状态检查
     if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-                 0x48) < _DAT_180d49ed8) && (FUN_1808fcb90(&DAT_180d49ed8), _DAT_180d49ed8 == -1)) {
+                 0x48) < _DAT_180d49ed8) && (FUN_1808fcb90(&system_memory_9ed8), _DAT_180d49ed8 == -1)) {
       // 错误处理：创建和初始化错误信息结构
       char* error_msg_ptr = &UNK_180a3c3e0;
       uint error_code = 0;
@@ -493,7 +493,7 @@ SHADOW_PROCESSING_BRANCH:
       *error_buffer = 'D'; *(error_buffer+1) = 'a'; *(error_buffer+2) = 't'; *(error_buffer+3) = 'a'; *(error_buffer+4) = 'h';
       *(ushort*)(error_buffer + 1) = 'h';
       error_flags = 5;
-      _DAT_180d49edc = FUN_180571e20(&DAT_180c960c0, &error_msg_ptr);
+      _DAT_180d49edc = FUN_180571e20(&system_memory_60c0, &error_msg_ptr);
       error_msg_ptr = &UNK_180a3c3e0;
       // 错误处理完成，程序终止
       FUN_18064e900(error_buffer);
@@ -519,7 +519,7 @@ SHADOW_PROCESSING_BRANCH:
     stack_uint1 = texture_id;
     
     // 查找纹理质量数据
-    int quality_index = FUN_18053a410(&DAT_180c95f30, *(uint*)(*(longlong*)(context + 0x590) + 0xac), texture_id);
+    int quality_index = FUN_18053a410(&system_memory_5f30, *(uint*)(*(longlong*)(context + 0x590) + 0xac), texture_id);
     quality_index = *(int*)(_DAT_180c95f68 + (longlong)quality_index * 4);
     if (quality_index != -1) {
       quality_data_ptr = *(longlong*)(_DAT_180c95f88 + (longlong)quality_index * 8);
@@ -553,7 +553,7 @@ SHADOW_PROCESSING_BRANCH:
       FUN_18051ec50(pipeline_ptr, &render_params);
       
       // 获取管线质量数据
-      quality_index = FUN_18053a410(&DAT_180c95f30, *(uint*)(*(longlong*)(pipeline_ptr + 0x590) + 0xac), texture_id);
+      quality_index = FUN_18053a410(&system_memory_5f30, *(uint*)(*(longlong*)(pipeline_ptr + 0x590) + 0xac), texture_id);
       quality_index = *(int*)(_DAT_180c95f68 + (longlong)quality_index * 4);
       longlong pipeline_quality_data = 0;
       if (quality_index == -1) {
@@ -574,7 +574,7 @@ SHADOW_PROCESSING_BRANCH:
       }
       
       // 设置管线时间戳和参数
-      *(longlong*)(pipeline_ptr + 0x6b8) = *(longlong*)(&DAT_180c8ed30 + (longlong)*(int*)(pipeline_ptr + 0x6c0) * 8) + RENDERING_TIME_OFFSET;
+      *(longlong*)(pipeline_ptr + 0x6b8) = *(longlong*)(&system_error_code + (longlong)*(int*)(pipeline_ptr + 0x6c0) * 8) + RENDERING_TIME_OFFSET;
       longlong scale_factor_ptr = FUN_180532320(pipeline_quality_data);
       FUN_18052e450(pipeline_ptr, 0xffffffff, 1, *(float*)(pipeline_quality_data + 0x188) * *(float*)(scale_factor_ptr + 8));
       FUN_18052e130(context, 0xffffffff, 1);
@@ -588,8 +588,8 @@ SHADOW_PROCESSING_BRANCH:
     }
     
     // 设置渲染坐标和时间参数
-    *(longlong*)(context + 0xa10) = *(longlong*)(&DAT_180c8ed30 + (longlong)*(int*)(context + 0xa18) * 8) + RENDERING_COORDINATE_SCALE;
-    *(longlong*)(context + 0x9f8) = *(longlong*)(&DAT_180c8ed30 + (longlong)*(int*)(context + 0xa00) * 8);
+    *(longlong*)(context + 0xa10) = *(longlong*)(&system_error_code + (longlong)*(int*)(context + 0xa18) * 8) + RENDERING_COORDINATE_SCALE;
+    *(longlong*)(context + 0x9f8) = *(longlong*)(&system_error_code + (longlong)*(int*)(context + 0xa00) * 8);
   }
   else {
     lVar15 = *(longlong *)(param_1 + 0x590);
@@ -658,7 +658,7 @@ SHADOW_PROCESSING_BRANCH:
     if (iVar8 == 4) {
       uVar12 = _DAT_180d49ee4;
       if ((iVar7 < _DAT_180d49ee0) &&
-         (FUN_1808fcb90(&DAT_180d49ee0), uVar12 = _DAT_180d49ee4, _DAT_180d49ee0 == -1)) {
+         (FUN_1808fcb90(&system_memory_9ee0), uVar12 = _DAT_180d49ee4, _DAT_180d49ee0 == -1)) {
         puStack_258 = &UNK_180a3c3e0;
         uStack_240 = 0;
         uStack_23c = 0;
@@ -671,7 +671,7 @@ SHADOW_PROCESSING_BRANCH:
         *puVar11 = 0x74616544;
         *(int16_t *)(puVar11 + 1) = 0x68;
         uStack_248 = 5;
-        _DAT_180d49ee4 = FUN_180571e20(&DAT_180c960c0,&puStack_258);
+        _DAT_180d49ee4 = FUN_180571e20(&system_memory_60c0,&puStack_258);
         puStack_258 = &UNK_180a3c3e0;
                     // WARNING: Subroutine does not return
         FUN_18064e900(puVar11);
@@ -680,7 +680,7 @@ SHADOW_PROCESSING_BRANCH:
     else {
       uVar12 = _DAT_180d49eec;
       if ((iVar7 < _DAT_180d49ee8) &&
-         (FUN_1808fcb90(&DAT_180d49ee8), uVar12 = _DAT_180d49eec, _DAT_180d49ee8 == -1)) {
+         (FUN_1808fcb90(&system_memory_9ee8), uVar12 = _DAT_180d49eec, _DAT_180d49ee8 == -1)) {
         puStack_258 = &UNK_180a3c3e0;
         uStack_240 = 0;
         uStack_23c = 0;
@@ -693,18 +693,18 @@ SHADOW_PROCESSING_BRANCH:
         *puVar11 = 0x6e757453;
         *(int8_t *)(puVar11 + 1) = 0;
         uStack_248 = 4;
-        _DAT_180d49eec = FUN_180571e20(&DAT_180c960c0,&puStack_258);
+        _DAT_180d49eec = FUN_180571e20(&system_memory_60c0,&puStack_258);
         puStack_258 = &UNK_180a3c3e0;
                     // WARNING: Subroutine does not return
         FUN_18064e900(puVar11);
       }
     }
     FUN_180508510(param_1,uVar12,0,0);
-    if ((DAT_180c8ec8a != '\0') && (*(int *)(param_1 + 0x570) == 2)) {
+    if ((system_memory_ec8a != '\0') && (*(int *)(param_1 + 0x570) == 2)) {
       FUN_180541010(*(uint64_t *)(param_1 + 0x6d8),0x21);
     }
     uVar21 = uStack_264;
-    iVar7 = FUN_18053a410(&DAT_180c95f30,*(int32_t *)(*(longlong *)(param_1 + 0x590) + 0xac),
+    iVar7 = FUN_18053a410(&system_memory_5f30,*(int32_t *)(*(longlong *)(param_1 + 0x590) + 0xac),
                           uStack_264);
     iVar7 = *(int *)(_DAT_180c95f68 + (longlong)iVar7 * 4);
     lVar15 = 0;
@@ -800,9 +800,9 @@ SHADOW_PROCESSING_BRANCH:
       *(uint64_t *)(param_1 + 0xa38) = uVar22;
     }
     *(longlong *)(param_1 + 0xa10) =
-         *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0xa18) * 8) + 10000;
+         *(longlong *)(&system_error_code + (longlong)*(int *)(param_1 + 0xa18) * 8) + 10000;
     *(uint64_t *)(param_1 + 0x9f8) =
-         *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0xa00) * 8);
+         *(uint64_t *)(&system_error_code + (longlong)*(int *)(param_1 + 0xa00) * 8);
     if (-1 < *(int *)(param_1 + 0x564)) {
       lVar16 = *(longlong *)(param_1 + 0x8d8) + 0x30a0 + (longlong)*(int *)(param_1 + 0x564) * 0xa60
       ;
@@ -815,7 +815,7 @@ SHADOW_PROCESSING_BRANCH:
         fVar25 = *(float *)(lVar15 + 0x188);
       }
       *(longlong *)(lVar16 + 0x6c8) =
-           *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar16 + 0x6d0) * 8) -
+           *(longlong *)(&system_error_code + (longlong)*(int *)(lVar16 + 0x6d0) * 8) -
            (longlong)(fVar25 * -100000.0);
       if (*(int *)(lVar16 + 0x560) == *(int *)(param_1 + 0x10)) {
         FUN_18052e130(lVar16,0xffffffff,1);

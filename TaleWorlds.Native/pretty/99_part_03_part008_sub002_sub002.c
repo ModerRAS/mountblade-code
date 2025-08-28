@@ -187,7 +187,7 @@ void FUN_1801cdb50(uint64_t *******param_1,longlong param_2,longlong *param_3,ul
     }
   }
   puVar27 = *(void **)(*(longlong *)(param_2 + 0x1e0) + 0x18);
-  puVar16 = &DAT_18098bc73;
+  puVar16 = &system_buffer_ptr;
   if (puVar27 != (void *)0x0) {
     puVar16 = puVar27;
   }
@@ -317,7 +317,7 @@ LAB_1801ce0ec:
     }
   }
   else {
-    puVar27 = &DAT_18098bc73;
+    puVar27 = &system_buffer_ptr;
     if (*(void **)(param_2 + 0x2d8) != (void *)0x0) {
       puVar27 = *(void **)(param_2 + 0x2d8);
     }

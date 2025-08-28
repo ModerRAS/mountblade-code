@@ -469,7 +469,7 @@ void FUN_1803a42d0(longlong param_1,longlong param_2,int32_t *param_3,int32_t pa
   *puVar6 = 0;
   puVar6[1] = 0;
   iVar3 = *(int *)(param_1 + 0x70) * *(int *)(param_1 + 0x70);
-  puVar10 = &DAT_18098bc73;
+  puVar10 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar10 = *(void **)(param_2 + 8);
   }

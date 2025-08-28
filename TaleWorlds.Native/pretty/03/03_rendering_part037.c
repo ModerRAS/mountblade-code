@@ -297,10 +297,10 @@ extern uint64_t _DAT_180c8a9c8;     // 配置数据
 extern uint64_t _DAT_180c8ed18;     // 内存池基地址
 extern uint64_t _DAT_180bf90c0;     // 最大名称长度
 extern void *UNK_1809fcc28;         // 字符串虚表
-extern void *DAT_18098bc73;         // 默认字符串数据
+extern void *system_buffer_ptr;         // 默认字符串数据
 extern uint64_t _DAT_180bf90b8;     // 名称缓冲区指针
 extern uint64_t _DAT_180bf5b98;     // 扩展数据长度
 extern uint64_t _DAT_180bf5b90;     // 扩展数据指针
 extern uint64_t _DAT_180c86930;     // 回调地址
 extern uint64_t _DAT_180c8ed30;     // 全局配置值
-extern uint8_t DAT_180c82860;       // 调试标志
+extern uint8_t system_debug_flag;       // 调试标志

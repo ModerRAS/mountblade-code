@@ -97,7 +97,7 @@ FUN_180167f80(uint64_t param_1,uint64_t *param_2,uint64_t param_3,longlong *para
     puStack_48 = &UNK_18098bcb0;
     ppuVar4 = (void **)0x0;
   }
-  puVar6 = &DAT_18098bc73;
+  puVar6 = &system_buffer_ptr;
   if (puVar2 != (void *)0x0) {
     puVar6 = puVar2;
   }
@@ -220,7 +220,7 @@ FUN_1801681e0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,longlong *para
     puStack_48 = &UNK_18098bcb0;
     ppuVar4 = (void **)0x0;
   }
-  puVar6 = &DAT_18098bc73;
+  puVar6 = &system_buffer_ptr;
   if (puVar2 != (void *)0x0) {
     puVar6 = puVar2;
   }

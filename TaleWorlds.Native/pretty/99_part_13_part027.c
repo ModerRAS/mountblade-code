@@ -275,7 +275,7 @@ void FUN_1808b6fd0(uint64_t *param_1,longlong param_2,int32_t param_3,uint64_t p
       lVar4 = FUN_18085d860(lVar4,param_2,lVar3,*param_1);
       if (lVar4 == 0) {
         plVar7 = (longlong *)0x0;
-        plVar8 = (longlong *)&DAT_00000008;
+        plVar8 = (longlong *)&system_data_0008;
       }
       else {
         plVar7 = (longlong *)(lVar4 + 8);
@@ -458,7 +458,7 @@ void FUN_1808b6ff5(uint64_t *param_1,longlong param_2)
       lVar4 = FUN_18085d860(lVar4,param_2,lVar3,*param_1,param_1[2]);
       if (lVar4 == 0) {
         plVar7 = (longlong *)0x0;
-        plVar8 = (longlong *)&DAT_00000008;
+        plVar8 = (longlong *)&system_data_0008;
       }
       else {
         plVar7 = (longlong *)(lVar4 + 8);

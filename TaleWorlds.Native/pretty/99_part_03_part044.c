@@ -606,7 +606,7 @@ longlong FUN_1801f8ea0(longlong param_1,longlong param_2,uint64_t param_3,uint64
   do {
     *puVar8 = *(int32_t *)((longlong)puVar8 + lVar11);
     puVar3 = *(void **)(lVar11 + -8 + (longlong)puVar8);
-    puVar10 = &DAT_18098bc73;
+    puVar10 = &system_buffer_ptr;
     if (puVar3 != (void *)0x0) {
       puVar10 = puVar3;
     }

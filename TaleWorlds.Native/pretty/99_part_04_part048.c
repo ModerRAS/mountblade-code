@@ -169,11 +169,11 @@ LAB_1802b515c:
   cVar5 = FUN_1802b61b0(*(uint64_t *)(unaff_RSI + 0x68));
   if (cVar5 == '\0') {
     puVar13 = *(void **)(*(longlong *)(unaff_RSI + 0x68) + 0x50);
-    puVar17 = &DAT_18098bc73;
+    puVar17 = &system_buffer_ptr;
     if (puVar13 != (void *)0x0) {
       puVar17 = puVar13;
     }
-    puVar13 = &DAT_18098bc73;
+    puVar13 = &system_buffer_ptr;
     if (*(void **)(unaff_RSI + 0x50) != (void *)0x0) {
       puVar13 = *(void **)(unaff_RSI + 0x50);
     }
@@ -541,11 +541,11 @@ LAB_1802b515c:
   cVar5 = FUN_1802b61b0(*(uint64_t *)(unaff_RSI + 0x68));
   if (cVar5 == '\0') {
     puVar12 = *(void **)(*(longlong *)(unaff_RSI + 0x68) + 0x50);
-    puVar17 = &DAT_18098bc73;
+    puVar17 = &system_buffer_ptr;
     if (puVar12 != (void *)0x0) {
       puVar17 = puVar12;
     }
-    puVar12 = &DAT_18098bc73;
+    puVar12 = &system_buffer_ptr;
     if (*(void **)(unaff_RSI + 0x50) != (void *)0x0) {
       puVar12 = *(void **)(unaff_RSI + 0x50);
     }

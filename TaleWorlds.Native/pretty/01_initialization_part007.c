@@ -179,7 +179,7 @@ void FUN_180037780(void) {
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
             (module_id_t*)(current_node + 1), 
-            (module_id_t*)&DAT_1809fc768
+            (module_id_t*)&system_memory_c768
         );
         
         if (comparison_result < 0) {
@@ -197,7 +197,7 @@ void FUN_180037780(void) {
     // 如果需要，创建新模块节点
     if ((root_node == current_node) || 
         (comparison_result = compare_module_ids(
-            (module_id_t*)&DAT_1809fc768, 
+            (module_id_t*)&system_memory_c768, 
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
@@ -246,7 +246,7 @@ void FUN_180037880(void) {
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
             (module_id_t*)(current_node + 1), 
-            (module_id_t*)&DAT_18098c9b8
+            (module_id_t*)&system_memory_c9b8
         );
         
         if (comparison_result < 0) {
@@ -263,7 +263,7 @@ void FUN_180037880(void) {
     
     if ((root_node == current_node) || 
         (comparison_result = compare_module_ids(
-            (module_id_t*)&DAT_18098c9b8, 
+            (module_id_t*)&system_memory_c9b8, 
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
@@ -313,7 +313,7 @@ void FUN_180037980(void) {
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
             (module_id_t*)(current_node + 1), 
-            (module_id_t*)&DAT_18098c940
+            (module_id_t*)&system_memory_c940
         );
         
         if (comparison_result < 0) {
@@ -330,7 +330,7 @@ void FUN_180037980(void) {
     
     if ((root_node == current_node) || 
         (comparison_result = compare_module_ids(
-            (module_id_t*)&DAT_18098c940, 
+            (module_id_t*)&system_memory_c940, 
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
@@ -380,7 +380,7 @@ void FUN_180037a80(void) {
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
             (module_id_t*)(current_node + 1), 
-            (module_id_t*)&DAT_18098c918
+            (module_id_t*)&system_memory_c918
         );
         
         if (comparison_result < 0) {
@@ -397,7 +397,7 @@ void FUN_180037a80(void) {
     
     if ((root_node == current_node) || 
         (comparison_result = compare_module_ids(
-            (module_id_t*)&DAT_18098c918, 
+            (module_id_t*)&system_memory_c918, 
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
@@ -447,7 +447,7 @@ void FUN_180037b80(void) {
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
             (module_id_t*)(current_node + 1), 
-            (module_id_t*)&DAT_18098c968
+            (module_id_t*)&system_memory_c968
         );
         
         if (comparison_result < 0) {
@@ -464,7 +464,7 @@ void FUN_180037b80(void) {
     
     if ((root_node == current_node) || 
         (comparison_result = compare_module_ids(
-            (module_id_t*)&DAT_18098c968, 
+            (module_id_t*)&system_memory_c968, 
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
@@ -514,7 +514,7 @@ void FUN_180037c80(void) {
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
             (module_id_t*)(current_node + 1), 
-            (module_id_t*)&DAT_18098c990
+            (module_id_t*)&system_memory_c990
         );
         
         if (comparison_result < 0) {
@@ -531,7 +531,7 @@ void FUN_180037c80(void) {
     
     if ((root_node == current_node) || 
         (comparison_result = compare_module_ids(
-            (module_id_t*)&DAT_18098c990, 
+            (module_id_t*)&system_memory_c990, 
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
@@ -581,7 +581,7 @@ void FUN_180037d80(void) {
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
             (module_id_t*)(current_node + 1), 
-            (module_id_t*)&DAT_18098c9e0
+            (module_id_t*)&system_memory_c9e0
         );
         
         if (comparison_result < 0) {
@@ -598,7 +598,7 @@ void FUN_180037d80(void) {
     
     if ((root_node == current_node) || 
         (comparison_result = compare_module_ids(
-            (module_id_t*)&DAT_18098c9e0, 
+            (module_id_t*)&system_memory_c9e0, 
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
@@ -647,7 +647,7 @@ void FUN_180037e80(void) {
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
             (module_id_t*)(current_node + 1), 
-            (module_id_t*)&DAT_18098c8f0
+            (module_id_t*)&system_memory_c8f0
         );
         
         if (comparison_result < 0) {
@@ -664,7 +664,7 @@ void FUN_180037e80(void) {
     
     if ((root_node == current_node) || 
         (comparison_result = compare_module_ids(
-            (module_id_t*)&DAT_18098c8f0, 
+            (module_id_t*)&system_memory_c8f0, 
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
@@ -713,7 +713,7 @@ void FUN_180037f80(void) {
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
             (module_id_t*)(current_node + 1), 
-            (module_id_t*)&DAT_18098c8c8
+            (module_id_t*)&system_memory_c8c8
         );
         
         if (comparison_result < 0) {
@@ -730,7 +730,7 @@ void FUN_180037f80(void) {
     
     if ((root_node == current_node) || 
         (comparison_result = compare_module_ids(
-            (module_id_t*)&DAT_18098c8c8, 
+            (module_id_t*)&system_memory_c8c8, 
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
@@ -780,7 +780,7 @@ void FUN_180038080(void) {
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
             (module_id_t*)(current_node + 1), 
-            (module_id_t*)&DAT_180a00d48
+            (module_id_t*)&system_memory_0d48
         );
         
         if (comparison_result < 0) {
@@ -797,7 +797,7 @@ void FUN_180038080(void) {
     
     if ((root_node == current_node) || 
         (comparison_result = compare_module_ids(
-            (module_id_t*)&DAT_180a00d48, 
+            (module_id_t*)&system_memory_0d48, 
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
@@ -1079,7 +1079,7 @@ void FUN_1800386a0(void) {
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
             (module_id_t*)(current_node + 1), 
-            (module_id_t*)&DAT_180a010a0
+            (module_id_t*)&system_memory_10a0
         );
         
         if (comparison_result < 0) {
@@ -1096,7 +1096,7 @@ void FUN_1800386a0(void) {
     
     if ((root_node == current_node) || 
         (comparison_result = compare_module_ids(
-            (module_id_t*)&DAT_180a010a0, 
+            (module_id_t*)&system_memory_10a0, 
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
@@ -1146,7 +1146,7 @@ void FUN_1800387a0(void) {
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
             (module_id_t*)(current_node + 1), 
-            (module_id_t*)&DAT_180a01078
+            (module_id_t*)&system_memory_1078
         );
         
         if (comparison_result < 0) {
@@ -1163,7 +1163,7 @@ void FUN_1800387a0(void) {
     
     if ((root_node == current_node) || 
         (comparison_result = compare_module_ids(
-            (module_id_t*)&DAT_180a01078, 
+            (module_id_t*)&system_memory_1078, 
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
@@ -1213,7 +1213,7 @@ void FUN_1800388a0(void) {
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
             (module_id_t*)(current_node + 1), 
-            (module_id_t*)&DAT_180a01050
+            (module_id_t*)&system_memory_1050
         );
         
         if (comparison_result < 0) {
@@ -1230,7 +1230,7 @@ void FUN_1800388a0(void) {
     
     if ((root_node == current_node) || 
         (comparison_result = compare_module_ids(
-            (module_id_t*)&DAT_180a01050, 
+            (module_id_t*)&system_memory_1050, 
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
@@ -1279,7 +1279,7 @@ void FUN_1800389a0(void) {
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
             (module_id_t*)(current_node + 1), 
-            (module_id_t*)&DAT_180a01028
+            (module_id_t*)&system_memory_1028
         );
         
         if (comparison_result < 0) {
@@ -1296,7 +1296,7 @@ void FUN_1800389a0(void) {
     
     if ((root_node == current_node) || 
         (comparison_result = compare_module_ids(
-            (module_id_t*)&DAT_180a01028, 
+            (module_id_t*)&system_memory_1028, 
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
@@ -1345,7 +1345,7 @@ void FUN_180038aa0(void) {
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
             (module_id_t*)(current_node + 1), 
-            (module_id_t*)&DAT_180a01000
+            (module_id_t*)&system_memory_1000
         );
         
         if (comparison_result < 0) {
@@ -1362,7 +1362,7 @@ void FUN_180038aa0(void) {
     
     if ((root_node == current_node) || 
         (comparison_result = compare_module_ids(
-            (module_id_t*)&DAT_180a01000, 
+            (module_id_t*)&system_memory_1000, 
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
@@ -1411,7 +1411,7 @@ void FUN_180038ba0(void) {
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
             (module_id_t*)(current_node + 1), 
-            (module_id_t*)&DAT_180a00fd8
+            (module_id_t*)&system_memory_0fd8
         );
         
         if (comparison_result < 0) {
@@ -1428,7 +1428,7 @@ void FUN_180038ba0(void) {
     
     if ((root_node == current_node) || 
         (comparison_result = compare_module_ids(
-            (module_id_t*)&DAT_180a00fd8, 
+            (module_id_t*)&system_memory_0fd8, 
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
@@ -1477,7 +1477,7 @@ void FUN_180038ca0(void) {
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
             (module_id_t*)(current_node + 1), 
-            (module_id_t*)&DAT_180a00fb0
+            (module_id_t*)&system_memory_0fb0
         );
         
         if (comparison_result < 0) {
@@ -1494,7 +1494,7 @@ void FUN_180038ca0(void) {
     
     if ((root_node == current_node) || 
         (comparison_result = compare_module_ids(
-            (module_id_t*)&DAT_180a00fb0, 
+            (module_id_t*)&system_memory_0fb0, 
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
@@ -1542,7 +1542,7 @@ void FUN_180038da0(void) {
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
             (module_id_t*)(current_node + 1), 
-            (module_id_t*)&DAT_180a010a0
+            (module_id_t*)&system_memory_10a0
         );
         
         if (comparison_result < 0) {
@@ -1559,7 +1559,7 @@ void FUN_180038da0(void) {
     
     if ((root_node == current_node) || 
         (comparison_result = compare_module_ids(
-            (module_id_t*)&DAT_180a010a0, 
+            (module_id_t*)&system_memory_10a0, 
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
@@ -1603,7 +1603,7 @@ void FUN_180038ea0(void) {
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
             (module_id_t*)(current_node + 1), 
-            (module_id_t*)&DAT_180a01078
+            (module_id_t*)&system_memory_1078
         );
         
         if (comparison_result < 0) {
@@ -1620,7 +1620,7 @@ void FUN_180038ea0(void) {
     
     if ((root_node == current_node) || 
         (comparison_result = compare_module_ids(
-            (module_id_t*)&DAT_180a01078, 
+            (module_id_t*)&system_memory_1078, 
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
@@ -1664,7 +1664,7 @@ void FUN_180038fa0(void) {
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
             (module_id_t*)(current_node + 1), 
-            (module_id_t*)&DAT_180a01050
+            (module_id_t*)&system_memory_1050
         );
         
         if (comparison_result < 0) {
@@ -1681,7 +1681,7 @@ void FUN_180038fa0(void) {
     
     if ((root_node == current_node) || 
         (comparison_result = compare_module_ids(
-            (module_id_t*)&DAT_180a01050, 
+            (module_id_t*)&system_memory_1050, 
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
@@ -1724,7 +1724,7 @@ void FUN_1800390a0(void) {
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
             (module_id_t*)(current_node + 1), 
-            (module_id_t*)&DAT_180a01028
+            (module_id_t*)&system_memory_1028
         );
         
         if (comparison_result < 0) {
@@ -1741,7 +1741,7 @@ void FUN_1800390a0(void) {
     
     if ((root_node == current_node) || 
         (comparison_result = compare_module_ids(
-            (module_id_t*)&DAT_180a01028, 
+            (module_id_t*)&system_memory_1028, 
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
@@ -1784,7 +1784,7 @@ void FUN_1800391a0(void) {
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
             (module_id_t*)(current_node + 1), 
-            (module_id_t*)&DAT_180a01000
+            (module_id_t*)&system_memory_1000
         );
         
         if (comparison_result < 0) {
@@ -1801,7 +1801,7 @@ void FUN_1800391a0(void) {
     
     if ((root_node == current_node) || 
         (comparison_result = compare_module_ids(
-            (module_id_t*)&DAT_180a01000, 
+            (module_id_t*)&system_memory_1000, 
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         

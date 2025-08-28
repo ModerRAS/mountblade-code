@@ -63,9 +63,9 @@ void FUN_1807c9b50(longlong param_1,int param_2,int param_3,int param_4,int para
     uStack_64 = (int16_t)((int)(param_3 * uVar3 + ((int)(param_3 * uVar3) >> 0x1f & 7U)) >> 3);
     if (bVar1) {
       uStack_60 = CONCAT62((uint6)uStack_62,0x16);
-      puVar2 = (uint64_t *)&DAT_18097c8e8;
+      puVar2 = (uint64_t *)&system_data_c8e8;
       if (param_2 == 5) {
-        puVar2 = (uint64_t *)&DAT_18097c8f8;
+        puVar2 = (uint64_t *)&system_data_c8f8;
       }
       uStack_58 = *puVar2;
       uStack_50 = puVar2[1];
@@ -148,9 +148,9 @@ void FUN_1807c9b88(int32_t param_1)
   if (bVar4) {
     *(short *)(unaff_RBP + -0x36) = (short)uVar7;
     *(int16_t *)(unaff_RBP + -0x38) = 0x16;
-    puVar6 = (int32_t *)&DAT_18097c8e8;
+    puVar6 = (int32_t *)&system_data_c8e8;
     if (unaff_EDI == 5) {
-      puVar6 = (int32_t *)&DAT_18097c8f8;
+      puVar6 = (int32_t *)&system_data_c8f8;
     }
     uVar9 = *puVar6;
     uVar1 = puVar6[1];

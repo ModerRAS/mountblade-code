@@ -12,7 +12,7 @@ void FUN_1806c7280(longlong param_1,longlong param_2,int32_t param_3)
   int8_t auStack_260 [568];
   
   uStackX_18 = param_3;
-  FUN_1806c21d0(param_2,param_3,param_1 + 0x1d8,&DAT_180be0560,auStackX_8);
+  FUN_1806c21d0(param_2,param_3,param_1 + 0x1d8,&system_data_0560,auStackX_8);
   FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 600));
   piVar1 = *(int **)(param_2 + 0x58);
   if (piVar1 != (int *)0x0) {
@@ -45,7 +45,7 @@ void FUN_1806c7299(longlong param_1,longlong param_2,int32_t param_3)
   *(uint64_t *)(in_RAX + 0x20) = unaff_RBX;
   *(uint64_t *)(in_RAX + -0x20) = unaff_RSI;
   *(uint64_t *)(in_RAX + -0x28) = unaff_R13;
-  FUN_1806c21d0(param_2,param_3,param_1 + 0x1d8,&DAT_180be0560,unaff_RBP + 0x230);
+  FUN_1806c21d0(param_2,param_3,param_1 + 0x1d8,&system_data_0560,unaff_RBP + 0x230);
   uVar3 = *(int32_t *)(param_1 + 0x26c);
   uVar4 = *(int32_t *)(param_1 + 0x270);
   uVar5 = *(int32_t *)(param_1 + 0x274);

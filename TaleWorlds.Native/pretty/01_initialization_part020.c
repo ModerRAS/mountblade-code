@@ -152,9 +152,9 @@ void InitializationSystem_AdvancedMathCalculator(SystemHandle system_context, Ma
     if (*(char *)(system_context + 0x22d) == '\0') {
       temp_pointer = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
       if ((*(int *)(temp_pointer + 0x48) < _DAT_180d49140) &&
-         (FUN_1808fcb90(&DAT_180d49140), _DAT_180d49140 == -1)) {
+         (FUN_1808fcb90(&system_memory_9140), _DAT_180d49140 == -1)) {
         _DAT_180d49144 = float_param;
-        FUN_1808fcb30(&DAT_180d49140);
+        FUN_1808fcb30(&system_memory_9140);
       }
       
       // 执行一系列exp2f计算
@@ -186,9 +186,9 @@ void InitializationSystem_AdvancedMathCalculator(SystemHandle system_context, Ma
       
       // 更新配置参数
       if ((*(int *)(temp_pointer + 0x48) < _DAT_180d49148) &&
-         (FUN_1808fcb90(&DAT_180d49148), _DAT_180d49148 == -1)) {
+         (FUN_1808fcb90(&system_memory_9148), _DAT_180d49148 == -1)) {
         _DAT_180d4914c = calculated_value2;
-        FUN_1808fcb30(&DAT_180d49148);
+        FUN_1808fcb30(&system_memory_9148);
       }
       
       _DAT_180d4914c = (MATH_NORMALIZATION_FACTOR - calculated_value1) * _DAT_180d4914c + calculated_value2 * calculated_value1;
@@ -697,8 +697,8 @@ void InitializationSystem_ResourceManager(ResourceHandle resource_handle, Config
   }
   
   // 处理系统路径信息
-  temp_pointer = &DAT_1809fd128;
-  if (DAT_180c82841 != '\0') {
+  temp_pointer = &system_memory_d128;
+  if (system_memory_2841 != '\0') {
     temp_pointer = &UNK_1809fd730;
   }
   

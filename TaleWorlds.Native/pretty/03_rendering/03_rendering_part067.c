@@ -560,7 +560,7 @@ void rendering_system_process_render_parameters(longlong render_context, longlon
         
         // 处理不同类型的参数
         if ((parameter_length != 0x18) && (parameter_length == 0x10)) {
-            string_compare_result = strcmp(*(uint64_t *)(parameter_data + 8), &DAT_180a098c8);
+            string_compare_result = strcmp(*(uint64_t *)(parameter_data + 8), &system_memory_98c8);
             if (string_compare_result == 0) {
                 FUN_180305a80(render_context);
                 parameter_length = *(int *)(parameter_data + 0x10);
@@ -568,7 +568,7 @@ void rendering_system_process_render_parameters(longlong render_context, longlon
         }
         
         if (parameter_length == 0xd) {
-            string_compare_result = strcmp(*(uint64_t *)(parameter_data + 8), &DAT_180a098b8);
+            string_compare_result = strcmp(*(uint64_t *)(parameter_data + 8), &system_memory_98b8);
             if ((string_compare_result == 0) && (*(longlong *)(render_context + 0x1b0) != 0)) {
                 *(int8_t *)(*(longlong *)(render_context + 0x1b0) + 0x100) = *(int8_t *)(render_context + 0x1f0);
                 parameter_length = *(int *)(parameter_data + 0x10);
@@ -576,7 +576,7 @@ void rendering_system_process_render_parameters(longlong render_context, longlon
         }
         
         if ((parameter_length != 0xc) && (parameter_length == 10)) {
-            parameter_length = strcmp(*(uint64_t *)(parameter_data + 8), &DAT_180a09928);
+            parameter_length = strcmp(*(uint64_t *)(parameter_data + 8), &system_memory_9928);
             if ((parameter_length == 0) && (*(longlong *)(render_context + 0x1b0) != 0)) {
                 // 处理路径参数
                 FUN_1800ba9c0(&buffer_pointer);
@@ -1166,7 +1166,7 @@ void rendering_system_manage_render_resources(longlong render_context)
         stack_value_190._0_4_ = resource_id;
         
         // 处理渲染数据
-        FUN_180626eb0(&stack_value_78, 0x20, &DAT_180a06430, (double)*(float *)(render_context + 0xa0));
+        FUN_180626eb0(&stack_value_78, 0x20, &system_memory_6430, (double)*(float *)(render_context + 0xa0));
         data_pointer = -1;
         do {
             resource_offset = data_pointer;

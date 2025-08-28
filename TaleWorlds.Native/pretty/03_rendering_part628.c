@@ -164,9 +164,9 @@ void FUN_18061ca90(uint param_1)
     else if (((iVar2 - 2U & 0xfffffffc) == 0) && (iVar2 != 4)) {
 LAB_18061cadc:
       if (param_1 < 0x3ff) {
-        lVar1 = (**(code **)(_DAT_180c925a0 + 0x20))(&DAT_180c925a0,param_1);
+        lVar1 = (**(code **)(_DAT_180c925a0 + 0x20))(&system_data_25a0,param_1);
         if ((lVar1 != 0) &&
-           (lVar1 = (**(code **)(_DAT_180c925a0 + 0x20))(&DAT_180c925a0,param_1),
+           (lVar1 = (**(code **)(_DAT_180c925a0 + 0x20))(&system_data_25a0,param_1),
            *(int *)(lVar1 + 0x10) == 1)) goto LAB_18061cb49;
         iVar2 = (int)_DAT_180c92514;
       }

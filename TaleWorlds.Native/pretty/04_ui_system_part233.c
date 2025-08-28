@@ -92,9 +92,9 @@ void FUN_18079fa70(longlong param_1,longlong param_2,int param_3)
   iVar2 = param_3 * 8;
   if (iVar2 < *(int *)(param_1 + 0x14030) * 2) {
     iVar4 = param_3 * 9;
-    pfVar8 = (float *)&DAT_180c19950;
+    pfVar8 = (float *)&system_data_9950;
     lVar6 = (longlong)iVar2;
-    pfVar5 = (float *)&DAT_180c19958;
+    pfVar5 = (float *)&system_data_9958;
     do {
       fVar11 = pfVar8[3];
       iVar10 = -param_3 + iVar4;
@@ -218,9 +218,9 @@ void FUN_18079fd23(int param_1)
   longlong in_stack_000000f8;
   
   iVar7 = param_1 + in_R11D;
-  pfVar10 = (float *)&DAT_180c19950;
+  pfVar10 = (float *)&system_data_9950;
   lVar8 = (longlong)param_1;
-  pfVar9 = (float *)&DAT_180c19958;
+  pfVar9 = (float *)&system_data_9958;
   do {
     fVar1 = pfVar10[3];
     iVar11 = -in_R11D + iVar7;

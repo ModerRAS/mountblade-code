@@ -40,28 +40,28 @@
 // 全局变量引用
 extern uint64_t _DAT_180bf00a8;
 extern uint8_t UNK_18098bc80;
-extern char DAT_180a1eb78;
+extern char system_memory_eb78;
 extern uint8_t UNK_18098bcb0;
 extern uint8_t UNK_1809fcc58;
 extern uint8_t UNK_180a1ed70;
 extern uint8_t UNK_180a1ed58;
-extern char DAT_180a1eba8;
-extern char DAT_180a1eb48;
+extern char system_memory_eba8;
+extern char system_memory_eb48;
 extern uint8_t UNK_180a1ed88;
-extern char DAT_180a1ec30;
-extern char DAT_180a1ec18;
-extern char DAT_180a1ec58;
-extern char DAT_180a1eb60;
-extern char DAT_180a1ecb8;
-extern char DAT_180a1eca0;
-extern char DAT_180a1ec88;
-extern char DAT_180a1ec70;
-extern char DAT_180a1ed30;
-extern char DAT_180a1ed18;
-extern char DAT_180a1ecf8;
-extern char DAT_180a1ecd0;
+extern char system_memory_ec30;
+extern char system_memory_ec18;
+extern char system_memory_ec58;
+extern char system_memory_eb60;
+extern char system_memory_ecb8;
+extern char system_memory_eca0;
+extern char system_memory_ec88;
+extern char system_memory_ec70;
+extern char system_memory_ed30;
+extern char system_memory_ed18;
+extern char system_memory_ecf8;
+extern char system_memory_ecd0;
 extern uint8_t UNK_180a0ba98;
-extern char DAT_180a00300;
+extern char system_memory_0300;
 extern uint8_t UNK_180a1ed48;
 extern uint64_t _DAT_180c8ed18;
 
@@ -181,7 +181,7 @@ void RenderingSystem_ParameterProcessor(longlong render_context, longlong parame
     buffer_ptr_31 = string_buffer_17;
     string_buffer_17[0] = 0;
     int_val = 8;
-    strcpy_s(string_buffer_17, 0x20, &DAT_180a1eb78);
+    strcpy_s(string_buffer_17, 0x20, &system_memory_eb78);
     
     // 获取参数长度并验证
     int_val = *(int *)(parameter_config + PARAMETER_OFFSET_1);
@@ -237,14 +237,14 @@ void RenderingSystem_ParameterProcessor(longlong render_context, longlong parame
                 buffer_ptr_16 = string_buffer_9;
                 string_buffer_9[0] = 0;
                 buffer_size_8 = 0x23;
-                strcpy_s(string_buffer_9, 0x40, &DAT_180a1eba8);
+                strcpy_s(string_buffer_9, 0x40, &system_memory_eba8);
                 buffer_ptr_17 = &UNK_18098bcb0;
                 
                 buffer_ptr_19 = &UNK_1809fcc58;
                 buffer_ptr_18 = string_buffer_10;
                 string_buffer_10[0] = 0;
                 buffer_size_9 = 0x13;
-                strcpy_s(string_buffer_10, 0x40, &DAT_180a1eb48);
+                strcpy_s(string_buffer_10, 0x40, &system_memory_eb48);
                 buffer_ptr_19 = &UNK_18098bcb0;
                 
                 buffer_ptr_21 = &UNK_1809fcc58;
@@ -258,21 +258,21 @@ void RenderingSystem_ParameterProcessor(longlong render_context, longlong parame
                 buffer_ptr_24 = string_buffer_12;
                 string_buffer_12[0] = 0;
                 buffer_size_11 = 0x22;
-                strcpy_s(string_buffer_12, 0x40, &DAT_180a1ec30);
+                strcpy_s(string_buffer_12, 0x40, &system_memory_ec30);
                 buffer_ptr_25 = &UNK_18098bcb0;
                 
                 buffer_ptr_29 = &UNK_1809fcc58;
                 buffer_ptr_28 = string_buffer_14;
                 string_buffer_14[0] = 0;
                 buffer_size_13 = 0x15;
-                strcpy_s(string_buffer_14, 0x40, &DAT_180a1ec18);
+                strcpy_s(string_buffer_14, 0x40, &system_memory_ec18);
                 buffer_ptr_29 = &UNK_18098bcb0;
                 
                 buffer_ptr_33 = &UNK_1809fcc58;
                 buffer_ptr_30 = string_buffer_15;
                 string_buffer_15[0] = 0;
                 buffer_size_14 = 0x15;
-                strcpy_s(string_buffer_15, 0x40, &DAT_180a1ec58);
+                strcpy_s(string_buffer_15, 0x40, &system_memory_ec58);
             } else {
                 // 替代渲染缓冲区初始化
                 buffer_ptr_23 = &UNK_1809fcc58;
@@ -293,14 +293,14 @@ void RenderingSystem_ParameterProcessor(longlong render_context, longlong parame
                 buffer_ptr_16 = string_buffer_9;
                 string_buffer_9[0] = 0;
                 buffer_size_8 = 0x23;
-                strcpy_s(string_buffer_9, 0x40, &DAT_180a1eba8);
+                strcpy_s(string_buffer_9, 0x40, &system_memory_eba8);
                 buffer_ptr_17 = &UNK_18098bcb0;
                 
                 buffer_ptr_19 = &UNK_1809fcc58;
                 buffer_ptr_18 = string_buffer_10;
                 string_buffer_10[0] = 0;
                 buffer_size_9 = 0x13;
-                strcpy_s(string_buffer_10, 0x40, &DAT_180a1eb48);
+                strcpy_s(string_buffer_10, 0x40, &system_memory_eb48);
                 buffer_ptr_19 = &UNK_18098bcb0;
                 
                 buffer_ptr_21 = &UNK_1809fcc58;
@@ -314,21 +314,21 @@ void RenderingSystem_ParameterProcessor(longlong render_context, longlong parame
                 buffer_ptr_24 = string_buffer_12;
                 string_buffer_12[0] = 0;
                 buffer_size_11 = 0x22;
-                strcpy_s(string_buffer_12, 0x40, &DAT_180a1ec30);
+                strcpy_s(string_buffer_12, 0x40, &system_memory_ec30);
                 buffer_ptr_25 = &UNK_18098bcb0;
                 
                 buffer_ptr_29 = &UNK_1809fcc58;
                 buffer_ptr_28 = string_buffer_14;
                 string_buffer_14[0] = 0;
                 buffer_size_13 = 0x15;
-                strcpy_s(string_buffer_14, 0x40, &DAT_180a1ec18);
+                strcpy_s(string_buffer_14, 0x40, &system_memory_ec18);
                 buffer_ptr_29 = &UNK_18098bcb0;
                 
                 buffer_ptr_33 = &UNK_1809fcc58;
                 buffer_ptr_30 = string_buffer_15;
                 string_buffer_15[0] = 0;
                 buffer_size_14 = 0x15;
-                strcpy_s(string_buffer_15, 0x40, &DAT_180a1ec58);
+                strcpy_s(string_buffer_15, 0x40, &system_memory_ec58);
             }
             
             // 初始化额外渲染缓冲区
@@ -337,63 +337,63 @@ void RenderingSystem_ParameterProcessor(longlong render_context, longlong parame
             buffer_ptr_22 = string_buffer_13;
             string_buffer_13[0] = 0;
             buffer_size_12 = 9;
-            strcpy_s(string_buffer_13, 0x40, &DAT_180a1eb88);
+            strcpy_s(string_buffer_13, 0x40, &system_memory_eb88);
             buffer_ptr_23 = &UNK_18098bcb0;
             
             buffer_ptr_15 = &UNK_1809fcc58;
             buffer_ptr_14 = string_buffer_8;
             string_buffer_8[0] = 0;
             buffer_size_7 = 0x12;
-            strcpy_s(string_buffer_8, 0x40, &DAT_180a1eb60);
+            strcpy_s(string_buffer_8, 0x40, &system_memory_eb60);
             buffer_ptr_15 = &UNK_18098bcb0;
             
             buffer_ptr_17 = &UNK_1809fcc58;
             buffer_ptr_16 = string_buffer_9;
             string_buffer_9[0] = 0;
             buffer_size_8 = 0x15;
-            strcpy_s(string_buffer_9, 0x40, &DAT_180a1ecb8);
+            strcpy_s(string_buffer_9, 0x40, &system_memory_ecb8);
             buffer_ptr_17 = &UNK_18098bcb0;
             
             buffer_ptr_19 = &UNK_1809fcc58;
             buffer_ptr_18 = string_buffer_10;
             string_buffer_10[0] = 0;
             buffer_size_9 = 0x15;
-            strcpy_s(string_buffer_10, 0x40, &DAT_180a1eca0);
+            strcpy_s(string_buffer_10, 0x40, &system_memory_eca0);
             buffer_ptr_19 = &UNK_18098bcb0;
             
             buffer_ptr_21 = &UNK_1809fcc58;
             buffer_ptr_20 = string_buffer_11;
             string_buffer_11[0] = 0;
             buffer_size_10 = 0x15;
-            strcpy_s(string_buffer_11, 0x40, &DAT_180a1ec88);
+            strcpy_s(string_buffer_11, 0x40, &system_memory_ec88);
             buffer_ptr_21 = &UNK_18098bcb0;
             
             buffer_ptr_25 = &UNK_1809fcc58;
             buffer_ptr_24 = string_buffer_12;
             string_buffer_12[0] = 0;
             buffer_size_11 = 0x15;
-            strcpy_s(string_buffer_12, 0x40, &DAT_180a1ec70);
+            strcpy_s(string_buffer_12, 0x40, &system_memory_ec70);
             buffer_ptr_25 = &UNK_18098bcb0;
             
             buffer_ptr_29 = &UNK_1809fcc58;
             buffer_ptr_28 = string_buffer_14;
             string_buffer_14[0] = 0;
             buffer_size_13 = 0x15;
-            strcpy_s(string_buffer_14, 0x40, &DAT_180a1ed30);
+            strcpy_s(string_buffer_14, 0x40, &system_memory_ed30);
             buffer_ptr_29 = &UNK_18098bcb0;
             
             buffer_ptr_33 = &UNK_1809fcc58;
             buffer_ptr_30 = string_buffer_15;
             string_buffer_15[0] = 0;
             buffer_size_14 = 0x15;
-            strcpy_s(string_buffer_15, 0x40, &DAT_180a1ed18);
+            strcpy_s(string_buffer_15, 0x40, &system_memory_ed18);
             buffer_ptr_33 = &UNK_18098bcb0;
             
             buffer_ptr_13 = &UNK_1809fcc58;
             buffer_ptr_12 = string_buffer_7;
             string_buffer_7[0] = 0;
             buffer_size_6 = 0x1a;
-            strcpy_s(string_buffer_7, 0x40, &DAT_180a1ecf8);
+            strcpy_s(string_buffer_7, 0x40, &system_memory_ecf8);
             buffer_ptr_13 = &UNK_18098bcb0;
         } else {
             // 替代参数处理路径
@@ -401,14 +401,14 @@ void RenderingSystem_ParameterProcessor(longlong render_context, longlong parame
             buffer_ptr_31 = string_buffer_17;
             string_buffer_17[0] = 0;
             int_val = 0x12;
-            strcpy_s(string_buffer_17, 0x40, &DAT_180a1eb60);
+            strcpy_s(string_buffer_17, 0x40, &system_memory_eb60);
             buffer_ptr_32 = &UNK_18098bcb0;
             
             buffer_ptr_27 = &UNK_1809fcc58;
             buffer_ptr_26 = string_buffer_16;
             string_buffer_16[0] = 0;
             buffer_size_15 = 0x13;
-            strcpy_s(string_buffer_16, 0x40, &DAT_180a1eb48);
+            strcpy_s(string_buffer_16, 0x40, &system_memory_eb48);
             buffer_ptr_27 = &UNK_18098bcb0;
             
             buffer_ptr_25 = &UNK_1809fcc58;
@@ -422,7 +422,7 @@ void RenderingSystem_ParameterProcessor(longlong render_context, longlong parame
             buffer_ptr_20 = string_buffer_11;
             string_buffer_11[0] = 0;
             buffer_size_10 = 9;
-            strcpy_s(string_buffer_11, 0x40, &DAT_180a1eb88);
+            strcpy_s(string_buffer_11, 0x40, &system_memory_eb88);
             buffer_ptr_21 = &UNK_18098bcb0;
             
             buffer_ptr_19 = &UNK_1809fcc58;
@@ -443,77 +443,77 @@ void RenderingSystem_ParameterProcessor(longlong render_context, longlong parame
             buffer_ptr_8 = string_buffer_5;
             string_buffer_5[0] = 0;
             buffer_size_4 = 0x23;
-            strcpy_s(string_buffer_5, 0x40, &DAT_180a1eba8);
+            strcpy_s(string_buffer_5, 0x40, &system_memory_eba8);
             buffer_ptr_9 = &UNK_18098bcb0;
             
             buffer_ptr_7 = &UNK_1809fcc58;
             buffer_ptr_6 = string_buffer_4;
             string_buffer_4[0] = 0;
             buffer_size_3 = 0x22;
-            strcpy_s(string_buffer_4, 0x40, &DAT_180a1ec30);
+            strcpy_s(string_buffer_4, 0x40, &system_memory_ec30);
             buffer_ptr_7 = &UNK_18098bcb0;
             
             buffer_ptr_13 = &UNK_1809fcc58;
             buffer_ptr_12 = string_buffer_7;
             string_buffer_7[0] = 0;
             buffer_size_6 = 0x15;
-            strcpy_s(string_buffer_7, 0x40, &DAT_180a1ec18);
+            strcpy_s(string_buffer_7, 0x40, &system_memory_ec18);
             buffer_ptr_13 = &UNK_18098bcb0;
             
             buffer_ptr_33 = &UNK_1809fcc58;
             buffer_ptr_30 = string_buffer_15;
             string_buffer_15[0] = 0;
             buffer_size_14 = 0x15;
-            strcpy_s(string_buffer_15, 0x40, &DAT_180a1ec58);
+            strcpy_s(string_buffer_15, 0x40, &system_memory_ec58);
             buffer_ptr_33 = &UNK_18098bcb0;
             
             buffer_ptr_29 = &UNK_1809fcc58;
             buffer_ptr_28 = string_buffer_14;
             string_buffer_14[0] = 0;
             buffer_size_13 = 0x15;
-            strcpy_s(string_buffer_14, 0x40, &DAT_180a1ecb8);
+            strcpy_s(string_buffer_14, 0x40, &system_memory_ecb8);
             buffer_ptr_29 = &UNK_18098bcb0;
             
             buffer_ptr_25 = &UNK_1809fcc58;
             buffer_ptr_24 = string_buffer_12;
             string_buffer_12[0] = 0;
             buffer_size_11 = 0x15;
-            strcpy_s(string_buffer_12, 0x40, &DAT_180a1eca0);
+            strcpy_s(string_buffer_12, 0x40, &system_memory_eca0);
             buffer_ptr_25 = &UNK_18098bcb0;
             
             buffer_ptr_21 = &UNK_1809fcc58;
             buffer_ptr_20 = string_buffer_11;
             string_buffer_11[0] = 0;
             buffer_size_10 = 0x15;
-            strcpy_s(string_buffer_11, 0x40, &DAT_180a1ec88);
+            strcpy_s(string_buffer_11, 0x40, &system_memory_ec88);
             buffer_ptr_21 = &UNK_18098bcb0;
             
             buffer_ptr_19 = &UNK_1809fcc58;
             buffer_ptr_18 = string_buffer_10;
             string_buffer_10[0] = 0;
             buffer_size_9 = 0x15;
-            strcpy_s(string_buffer_10, 0x40, &DAT_180a1ec70);
+            strcpy_s(string_buffer_10, 0x40, &system_memory_ec70);
             buffer_ptr_19 = &UNK_18098bcb0;
             
             buffer_ptr_17 = &UNK_1809fcc58;
             buffer_ptr_16 = string_buffer_9;
             string_buffer_9[0] = 0;
             buffer_size_8 = 0x15;
-            strcpy_s(string_buffer_9, 0x40, &DAT_180a1ed30);
+            strcpy_s(string_buffer_9, 0x40, &system_memory_ed30);
             buffer_ptr_17 = &UNK_18098bcb0;
             
             buffer_ptr_15 = &UNK_1809fcc58;
             buffer_ptr_14 = string_buffer_8;
             string_buffer_8[0] = 0;
             buffer_size_7 = 0x15;
-            strcpy_s(string_buffer_8, 0x40, &DAT_180a1ed18);
+            strcpy_s(string_buffer_8, 0x40, &system_memory_ed18);
             buffer_ptr_15 = &UNK_18098bcb0;
             
             buffer_ptr_23 = &UNK_1809fcc58;
             buffer_ptr_22 = string_buffer_13;
             string_buffer_13[0] = 0;
             buffer_size_12 = 0x1a;
-            strcpy_s(string_buffer_13, 0x40, &DAT_180a1ecf8);
+            strcpy_s(string_buffer_13, 0x40, &system_memory_ecf8);
             buffer_ptr_23 = &UNK_18098bcb0;
         }
     } else {
@@ -522,7 +522,7 @@ void RenderingSystem_ParameterProcessor(longlong render_context, longlong parame
         buffer_ptr_31 = string_buffer_17;
         string_buffer_17[0] = 0;
         int_val = 9;
-        strcpy_s(string_buffer_17, 0x20, &DAT_180a1eb88);
+        strcpy_s(string_buffer_17, 0x20, &system_memory_eb88);
         
         // 重新验证参数
         int_val = *(int *)(parameter_config + PARAMETER_OFFSET_1);
@@ -566,21 +566,21 @@ void RenderingSystem_ParameterProcessor(longlong render_context, longlong parame
                 buffer_ptr_16 = string_buffer_9;
                 string_buffer_9[0] = 0;
                 buffer_size_8 = 0x23;
-                strcpy_s(string_buffer_9, 0x40, &DAT_180a1eba8);
+                strcpy_s(string_buffer_9, 0x40, &system_memory_eba8);
                 buffer_ptr_17 = &UNK_18098bcb0;
                 
                 buffer_ptr_19 = &UNK_1809fcc58;
                 buffer_ptr_18 = string_buffer_10;
                 string_buffer_10[0] = 0;
                 buffer_size_9 = 0x12;
-                strcpy_s(string_buffer_10, 0x40, &DAT_180a1eb60);
+                strcpy_s(string_buffer_10, 0x40, &system_memory_eb60);
                 buffer_ptr_19 = &UNK_18098bcb0;
                 
                 buffer_ptr_21 = &UNK_1809fcc58;
                 buffer_ptr_20 = string_buffer_11;
                 string_buffer_11[0] = 0;
                 buffer_size_10 = 0x13;
-                strcpy_s(string_buffer_11, 0x40, &DAT_180a1eb48);
+                strcpy_s(string_buffer_11, 0x40, &system_memory_eb48);
                 buffer_ptr_21 = &UNK_18098bcb0;
                 
                 buffer_ptr_25 = &UNK_1809fcc58;
@@ -594,70 +594,70 @@ void RenderingSystem_ParameterProcessor(longlong render_context, longlong parame
                 buffer_ptr_28 = string_buffer_14;
                 string_buffer_14[0] = 0;
                 buffer_size_13 = 0x22;
-                strcpy_s(string_buffer_14, 0x40, &DAT_180a1ec30);
+                strcpy_s(string_buffer_14, 0x40, &system_memory_ec30);
                 buffer_ptr_29 = &UNK_18098bcb0;
                 
                 buffer_ptr_33 = &UNK_1809fcc58;
                 buffer_ptr_30 = string_buffer_15;
                 string_buffer_15[0] = 0;
                 buffer_size_14 = 0x15;
-                strcpy_s(string_buffer_15, 0x40, &DAT_180a1ec18);
+                strcpy_s(string_buffer_15, 0x40, &system_memory_ec18);
                 buffer_ptr_33 = &UNK_18098bcb0;
                 
                 buffer_ptr_13 = &UNK_1809fcc58;
                 buffer_ptr_12 = string_buffer_7;
                 string_buffer_7[0] = 0;
                 buffer_size_6 = 0x15;
-                strcpy_s(string_buffer_7, 0x40, &DAT_180a1ec58);
+                strcpy_s(string_buffer_7, 0x40, &system_memory_ec58);
                 buffer_ptr_13 = &UNK_18098bcb0;
                 
                 buffer_ptr_7 = &UNK_1809fcc58;
                 buffer_ptr_6 = string_buffer_4;
                 string_buffer_4[0] = 0;
                 buffer_size_3 = 0x15;
-                strcpy_s(string_buffer_4, 0x40, &DAT_180a1ecb8);
+                strcpy_s(string_buffer_4, 0x40, &system_memory_ecb8);
                 buffer_ptr_7 = &UNK_18098bcb0;
                 
                 buffer_ptr_9 = &UNK_1809fcc58;
                 buffer_ptr_8 = string_buffer_5;
                 string_buffer_5[0] = 0;
                 buffer_size_4 = 0x15;
-                strcpy_s(string_buffer_5, 0x40, &DAT_180a1eca0);
+                strcpy_s(string_buffer_5, 0x40, &system_memory_eca0);
                 buffer_ptr_9 = &UNK_18098bcb0;
                 
                 buffer_ptr_17 = &UNK_1809fcc58;
                 buffer_ptr_16 = string_buffer_9;
                 string_buffer_9[0] = 0;
                 buffer_size_8 = 0x15;
-                strcpy_s(string_buffer_9, 0x40, &DAT_180a1ec88);
+                strcpy_s(string_buffer_9, 0x40, &system_memory_ec88);
                 buffer_ptr_17 = &UNK_18098bcb0;
                 
                 buffer_ptr_19 = &UNK_1809fcc58;
                 buffer_ptr_18 = string_buffer_10;
                 string_buffer_10[0] = 0;
                 buffer_size_9 = 0x15;
-                strcpy_s(string_buffer_10, 0x40, &DAT_180a1ec70);
+                strcpy_s(string_buffer_10, 0x40, &system_memory_ec70);
                 buffer_ptr_19 = &UNK_18098bcb0;
                 
                 buffer_ptr_21 = &UNK_1809fcc58;
                 buffer_ptr_20 = string_buffer_11;
                 string_buffer_11[0] = 0;
                 buffer_size_10 = 0x15;
-                strcpy_s(string_buffer_11, 0x40, &DAT_180a1ed30);
+                strcpy_s(string_buffer_11, 0x40, &system_memory_ed30);
                 buffer_ptr_21 = &UNK_18098bcb0;
                 
                 buffer_ptr_25 = &UNK_1809fcc58;
                 buffer_ptr_24 = string_buffer_12;
                 string_buffer_12[0] = 0;
                 buffer_size_11 = 0x15;
-                strcpy_s(string_buffer_12, 0x40, &DAT_180a1ed18);
+                strcpy_s(string_buffer_12, 0x40, &system_memory_ed18);
                 buffer_ptr_25 = &UNK_18098bcb0;
                 
                 buffer_ptr_27 = &UNK_1809fcc58;
                 buffer_ptr_26 = string_buffer_16;
                 string_buffer_16[0] = 0;
                 buffer_size_15 = 0x1a;
-                strcpy_s(string_buffer_16, 0x40, &DAT_180a1ecf8);
+                strcpy_s(string_buffer_16, 0x40, &system_memory_ecf8);
                 buffer_ptr_27 = &UNK_18098bcb0;
             } else {
                 // 替代渲染参数初始化
@@ -679,21 +679,21 @@ void RenderingSystem_ParameterProcessor(longlong render_context, longlong parame
                 buffer_ptr_16 = string_buffer_9;
                 string_buffer_9[0] = 0;
                 buffer_size_8 = 0x23;
-                strcpy_s(string_buffer_9, 0x40, &DAT_180a1eba8);
+                strcpy_s(string_buffer_9, 0x40, &system_memory_eba8);
                 buffer_ptr_17 = &UNK_18098bcb0;
                 
                 buffer_ptr_19 = &UNK_1809fcc58;
                 buffer_ptr_18 = string_buffer_10;
                 string_buffer_10[0] = 0;
                 buffer_size_9 = 0x12;
-                strcpy_s(string_buffer_10, 0x40, &DAT_180a1eb60);
+                strcpy_s(string_buffer_10, 0x40, &system_memory_eb60);
                 buffer_ptr_19 = &UNK_18098bcb0;
                 
                 buffer_ptr_21 = &UNK_1809fcc58;
                 buffer_ptr_20 = string_buffer_11;
                 string_buffer_11[0] = 0;
                 buffer_size_10 = 0x13;
-                strcpy_s(string_buffer_11, 0x40, &DAT_180a1eb48);
+                strcpy_s(string_buffer_11, 0x40, &system_memory_eb48);
                 buffer_ptr_21 = &UNK_18098bcb0;
                 
                 buffer_ptr_25 = &UNK_1809fcc58;
@@ -707,70 +707,70 @@ void RenderingSystem_ParameterProcessor(longlong render_context, longlong parame
                 buffer_ptr_28 = string_buffer_14;
                 string_buffer_14[0] = 0;
                 buffer_size_13 = 0x22;
-                strcpy_s(string_buffer_14, 0x40, &DAT_180a1ec30);
+                strcpy_s(string_buffer_14, 0x40, &system_memory_ec30);
                 buffer_ptr_29 = &UNK_18098bcb0;
                 
                 buffer_ptr_33 = &UNK_1809fcc58;
                 buffer_ptr_30 = string_buffer_15;
                 string_buffer_15[0] = 0;
                 buffer_size_14 = 0x15;
-                strcpy_s(string_buffer_15, 0x40, &DAT_180a1ec18);
+                strcpy_s(string_buffer_15, 0x40, &system_memory_ec18);
                 buffer_ptr_33 = &UNK_18098bcb0;
                 
                 buffer_ptr_13 = &UNK_1809fcc58;
                 buffer_ptr_12 = string_buffer_7;
                 string_buffer_7[0] = 0;
                 buffer_size_6 = 0x15;
-                strcpy_s(string_buffer_7, 0x40, &DAT_180a1ec58);
+                strcpy_s(string_buffer_7, 0x40, &system_memory_ec58);
                 buffer_ptr_13 = &UNK_18098bcb0;
                 
                 buffer_ptr_7 = &UNK_1809fcc58;
                 buffer_ptr_6 = string_buffer_4;
                 string_buffer_4[0] = 0;
                 buffer_size_3 = 0x15;
-                strcpy_s(string_buffer_4, 0x40, &DAT_180a1ecb8);
+                strcpy_s(string_buffer_4, 0x40, &system_memory_ecb8);
                 buffer_ptr_7 = &UNK_18098bcb0;
                 
                 buffer_ptr_9 = &UNK_1809fcc58;
                 buffer_ptr_8 = string_buffer_5;
                 string_buffer_5[0] = 0;
                 buffer_size_4 = 0x15;
-                strcpy_s(string_buffer_5, 0x40, &DAT_180a1eca0);
+                strcpy_s(string_buffer_5, 0x40, &system_memory_eca0);
                 buffer_ptr_9 = &UNK_18098bcb0;
                 
                 buffer_ptr_17 = &UNK_1809fcc58;
                 buffer_ptr_16 = string_buffer_9;
                 string_buffer_9[0] = 0;
                 buffer_size_8 = 0x15;
-                strcpy_s(string_buffer_9, 0x40, &DAT_180a1ec88);
+                strcpy_s(string_buffer_9, 0x40, &system_memory_ec88);
                 buffer_ptr_17 = &UNK_18098bcb0;
                 
                 buffer_ptr_19 = &UNK_1809fcc58;
                 buffer_ptr_18 = string_buffer_10;
                 string_buffer_10[0] = 0;
                 buffer_size_9 = 0x15;
-                strcpy_s(string_buffer_10, 0x40, &DAT_180a1ec70);
+                strcpy_s(string_buffer_10, 0x40, &system_memory_ec70);
                 buffer_ptr_19 = &UNK_18098bcb0;
                 
                 buffer_ptr_21 = &UNK_1809fcc58;
                 buffer_ptr_20 = string_buffer_11;
                 string_buffer_11[0] = 0;
                 buffer_size_10 = 0x15;
-                strcpy_s(string_buffer_11, 0x40, &DAT_180a1ed30);
+                strcpy_s(string_buffer_11, 0x40, &system_memory_ed30);
                 buffer_ptr_21 = &UNK_18098bcb0;
                 
                 buffer_ptr_25 = &UNK_1809fcc58;
                 buffer_ptr_24 = string_buffer_12;
                 string_buffer_12[0] = 0;
                 buffer_size_11 = 0x15;
-                strcpy_s(string_buffer_12, 0x40, &DAT_180a1ed18);
+                strcpy_s(string_buffer_12, 0x40, &system_memory_ed18);
                 buffer_ptr_25 = &UNK_18098bcb0;
                 
                 buffer_ptr_27 = &UNK_1809fcc58;
                 buffer_ptr_26 = string_buffer_16;
                 string_buffer_16[0] = 0;
                 buffer_size_15 = 0x1a;
-                strcpy_s(string_buffer_16, 0x40, &DAT_180a1ecf8);
+                strcpy_s(string_buffer_16, 0x40, &system_memory_ecf8);
                 buffer_ptr_27 = &UNK_18098bcb0;
             }
         } else {
@@ -779,7 +779,7 @@ void RenderingSystem_ParameterProcessor(longlong render_context, longlong parame
             buffer_ptr_22 = string_buffer_13;
             string_buffer_13[0] = 0;
             buffer_size_12 = 0x21;
-            strcpy_s(string_buffer_13, 0x40, &DAT_180a1ecd0);
+            strcpy_s(string_buffer_13, 0x40, &system_memory_ecd0);
         }
         buffer_ptr_23 = &UNK_18098bcb0;
     }
@@ -846,7 +846,7 @@ void RenderingSystem_StateManager(longlong render_context)
     }
     
     // 加载渲染配置
-    RenderingSystem_ConfigLoader(object_instance, &DAT_180a00300);
+    RenderingSystem_ConfigLoader(object_instance, &system_memory_0300);
     component_ptr = &context_ptr;
     context_ptr = object_instance;
     (**(code **)(*object_instance + 0x28))(object_instance);

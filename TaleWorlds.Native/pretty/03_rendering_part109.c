@@ -107,7 +107,7 @@ void RenderingSystem_ProcessResourceBatch(longlong render_context, longlong outp
     pcStack_f8 = FUN_18033cc90;
     puStack_f0 = &UNK_18033cc80;
     uStack_c8 = (void *)param_1;
-    puStack_108 = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,DAT_180bf65bc);
+    puStack_108 = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,system_allocation_flags);
     *puStack_108 = (int32_t)uStack_c8;
     puStack_108[1] = uStack_c8._4_4_;
     puStack_108[2] = (int32_t)uStack_c0;
@@ -477,7 +477,7 @@ LAB_180332f24:
           *(int32_t *)((longlong)ppuVar6 + 0x24) = 0x40000000;
           *(int32_t *)((longlong)ppuVar6 + 0x2c) = 3;
           ppuVar6[2] = (void *)0x1;
-          ppuVar6[1] = &DAT_180be0000;
+          ppuVar6[1] = &system_buffer_0000;
           ppuVar6[3] = (void *)0x0;
           *(int32_t *)(ppuVar6 + 5) = 0;
           ppuStack_140 = ppuVar6 + 6;

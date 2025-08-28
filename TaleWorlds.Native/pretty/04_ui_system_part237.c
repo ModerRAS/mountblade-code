@@ -654,7 +654,7 @@ void FUN_180803a90(void)
 
 {
                     // WARNING: Subroutine does not return
-  memset(&DAT_180c36dd0,0,0xf0);
+  memset(&system_data_6dd0,0,0xf0);
 }
 
 

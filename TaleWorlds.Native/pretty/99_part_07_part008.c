@@ -35,11 +35,11 @@ void FUN_1804a1800(uint64_t param_1,uint64_t *param_2)
   puStack_448 = param_2;
   uVar2 = FUN_180623ce0();
   FUN_18005d0e0(uVar2,&puStack_470);
-  puVar5 = &DAT_18098bc73;
+  puVar5 = &system_buffer_ptr;
   if (puStack_468 != (void *)0x0) {
     puVar5 = puStack_468;
   }
-  FUN_180060680(acStack_438,&UNK_180a2cc80,&DAT_1809fd0f8,puVar5);
+  FUN_180060680(acStack_438,&UNK_180a2cc80,&system_data_d0f8,puVar5);
   *param_2 = &UNK_18098bcb0;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
@@ -403,7 +403,7 @@ FUN_1804a2030(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
         }
         uVar15 = uVar15 & 0xffffffff;
       }
-      puVar6 = &DAT_18098bc73;
+      puVar6 = &system_buffer_ptr;
       if (puVar4 != (int8_t *)0x0) {
         puVar6 = puVar4;
       }
@@ -517,7 +517,7 @@ FUN_1804a2230(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
       uVar8 = (ulonglong)uVar1;
     }
 LAB_1804a2455:
-    puVar7 = &DAT_18098bc73;
+    puVar7 = &system_buffer_ptr;
     if (puStack_50 != (void *)0x0) {
       puVar7 = puStack_50;
     }
@@ -665,8 +665,8 @@ FUN_1804a2770(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
     *(int32_t *)(param_2 + 2) = 0x1d;
   }
   else {
-    if (((DAT_180c82860 == '\0') || (iVar3 = IsDebuggerPresent(), iVar3 != 0)) &&
-       (DAT_180c82842 == '\0')) {
+    if (((system_debug_flag == '\0') || (iVar3 = IsDebuggerPresent(), iVar3 != 0)) &&
+       (system_debug_flag2 == '\0')) {
       uVar4 = MessageBoxA(0,&UNK_180a2cec0,&UNK_180a2cea0,0x40004);
       switch(uVar4) {
       case 1:
@@ -687,9 +687,9 @@ FUN_1804a2770(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
         iVar5 = 5;
       }
       if (iVar5 == 4) {
-        FUN_18055a540(&DAT_180c96150);
-        FUN_18055b600(&DAT_180c96150);
-        FUN_1804e4a10(&DAT_180c95ed0);
+        FUN_18055a540(&system_data_6150);
+        FUN_18055b600(&system_data_6150);
+        FUN_1804e4a10(&system_data_5ed0);
         FUN_1805397f0();
         FUN_1804e11e0();
         uStackX_20 = CONCAT44(uStackX_20._4_4_,0xffffffff);
@@ -814,8 +814,8 @@ FUN_1804a2b20(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
     *(int32_t *)(param_2 + 2) = 0x1d;
   }
   else {
-    if (((DAT_180c82860 == '\0') || (iVar3 = IsDebuggerPresent(), iVar3 != 0)) &&
-       (DAT_180c82842 == '\0')) {
+    if (((system_debug_flag == '\0') || (iVar3 = IsDebuggerPresent(), iVar3 != 0)) &&
+       (system_debug_flag2 == '\0')) {
       uVar4 = MessageBoxA(0,&UNK_180a2d0a0,&UNK_180a2d080,0x40004);
       switch(uVar4) {
       case 1:
@@ -951,7 +951,7 @@ void FUN_1804a2f30(uint64_t param_1,longlong param_2)
   uint *puVar2;
   longlong lVar3;
   
-  if ((((DAT_180c96098 != '\0') && (*(int *)(param_2 + 0x10) == 0x11)) &&
+  if ((((system_data_6098 != '\0') && (*(int *)(param_2 + 0x10) == 0x11)) &&
       (iVar1 = strcmp(*(uint64_t *)(param_2 + 8),&UNK_180a2d268), iVar1 == 0)) &&
      ((_DAT_180c96070 != 0 && (lVar3 = (longlong)*(int *)(_DAT_180c96070 + 0x52ed94), 0 < lVar3))))
   {

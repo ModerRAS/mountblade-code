@@ -108,7 +108,7 @@ void FUN_180514820(float param_1,longlong param_2)
   *(float *)(*(longlong *)(unaff_RBX + 0x728) + 0x598) = fVar4;
   *(longlong *)(*(longlong *)(unaff_RBX + 0x728) + 0x578) =
        *(longlong *)
-        (&DAT_180c8ed30 + (longlong)*(int *)(*(longlong *)(unaff_RBX + 0x728) + 0x580) * 8) -
+        (&system_error_code + (longlong)*(int *)(*(longlong *)(unaff_RBX + 0x728) + 0x580) * 8) -
        (longlong)(fVar4 * -100000.0);
   lVar5 = *(longlong *)(unaff_RBX + 0x728);
   *(int32_t *)(lVar5 + 0x10) = uStack0000000000000078;
@@ -149,7 +149,7 @@ void FUN_180514987(uint64_t param_1,longlong param_2,uint64_t param_3,uint64_t p
   *(float *)(*(longlong *)(unaff_RBX + 0x728) + 0x598) = fVar1;
   *(longlong *)(*(longlong *)(unaff_RBX + 0x728) + 0x578) =
        *(longlong *)
-        (&DAT_180c8ed30 + (longlong)*(int *)(*(longlong *)(unaff_RBX + 0x728) + 0x580) * 8) -
+        (&system_error_code + (longlong)*(int *)(*(longlong *)(unaff_RBX + 0x728) + 0x580) * 8) -
        (longlong)(fVar1 * -100000.0);
   lVar2 = *(longlong *)(unaff_RBX + 0x728);
   *(int32_t *)(lVar2 + 0x10) = uStack0000000000000078;

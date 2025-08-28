@@ -905,7 +905,7 @@ void rendering_system_remove_render_object(longlong *render_object, char removal
     }
     
     resource_pointer = *(void **)(render_object[0xda] + 0x4e0);
-    alternate_pointer = &DAT_18098bc73;
+    alternate_pointer = &system_buffer_ptr;
     
     if (resource_pointer != (void *)0x0) {
         alternate_pointer = resource_pointer;
@@ -955,7 +955,7 @@ void rendering_system_generate_render_report(longlong render_context, longlong r
         *(int *)(report_buffer + 0x10) = report_size;
         
         object_name = *(void **)(*(longlong *)(render_context + 0x6d0) + 0x4e0);
-        texture_name = &DAT_18098bc73;
+        texture_name = &system_buffer_ptr;
         if (object_name != (void *)0x0) {
             texture_name = object_name;
         }
@@ -976,7 +976,7 @@ void rendering_system_generate_render_report(longlong render_context, longlong r
                 if ((texture_manager != 0) && (render_object = *(longlong *)(texture_manager + 0x428), render_object != 0)) {
                     object_index = func_0x000180225d90(*(int32_t *)(render_object + 0x324));
                     texture_count = texture_count + 1;
-                    object_name = &DAT_18098bc73;
+                    object_name = &system_buffer_ptr;
                     
                     if (*(void **)(texture_manager + 0x18) != (void *)0x0) {
                         object_name = *(void **)(texture_manager + 0x18);
@@ -1040,7 +1040,7 @@ void rendering_system_process_render_data(uint64_t data_handle, longlong process
     *(int *)(render_context + 0x10) = texture_count + 0x2a;
     
     object_name = *(void **)(*(longlong *)(render_manager + 0x6d0) + 0x4e0);
-    texture_name = &DAT_18098bc73;
+    texture_name = &system_buffer_ptr;
     if (object_name != (void *)0x0) {
         texture_name = object_name;
     }
@@ -1061,7 +1061,7 @@ void rendering_system_process_render_data(uint64_t data_handle, longlong process
             if ((texture_manager != 0) && (render_object = *(longlong *)(texture_manager + 0x428), render_object != 0)) {
                 object_index = func_0x000180225d90(*(int32_t *)(render_object + 0x324));
                 texture_count = texture_count + 1;
-                object_name = &DAT_18098bc73;
+                object_name = &system_buffer_ptr;
                 
                 if (*(void **)(texture_manager + 0x18) != (void *)0x0) {
                     object_name = *(void **)(texture_manager + 0x18);
@@ -1107,7 +1107,7 @@ void rendering_system_update_render_statistics(uint64_t statistic_handle, longlo
         object_data = *(longlong *)(process_index + data_buffer);
         if ((object_data != 0) && (render_object = *(longlong *)(object_data + 0x428), render_object != 0)) {
             object_index = func_0x000180225d90(*(int32_t *)(render_object + 0x324));
-            object_name = &DAT_18098bc73;
+            object_name = &system_buffer_ptr;
             
             if (*(void **)(object_data + 0x18) != (void *)0x0) {
                 object_name = *(void **)(object_data + 0x18);

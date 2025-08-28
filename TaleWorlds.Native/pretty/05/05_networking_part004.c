@@ -5,7 +5,7 @@
 
 // ==================== 常量定义 ====================
 // 网络协议相关常量
-#define NETWORK_PROTOCOL_SEPARATOR &DAT_180a06434  // 网络协议分隔符
+#define NETWORK_PROTOCOL_SEPARATOR &system_temp_buffer  // 网络协议分隔符
 #define NETWORK_PACKET_HEADER_SIZE 0x10            // 网络数据包头大小
 #define NETWORK_BUFFER_SIZE 0x100                  // 网络缓冲区大小
 

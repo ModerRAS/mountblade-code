@@ -824,7 +824,7 @@ void SystemDataInitializer(SystemHandle handle, uint flags, int param1, int para
         stack_byte_ptr1 = stack_buffer2;
         stack_buffer2[0] = 0;
         stack_val3 = *(int32_t *)(data2 + 0x60);
-        temp_ptr1 = &DAT_18098bc73;
+        temp_ptr1 = &system_buffer_ptr;
         if (*(void **)(data2 + 0x58) != (void *)0x0) {
             temp_ptr1 = *(void **)(data2 + 0x58);
         }
@@ -1115,7 +1115,7 @@ LAB_1800a46f5:
                     stack_byte_ptr1 = stack_buffer2;
                     stack_buffer2[0] = 0;
                     stack_val11 = *(int32_t *)(sync_handle + 0x20);
-                    temp_ptr1 = &DAT_18098bc73;
+                    temp_ptr1 = &system_buffer_ptr;
                     if (*(void **)(sync_handle + 0x18) != (void *)0x0) {
                         temp_ptr1 = *(void **)(sync_handle + 0x18);
                     }
@@ -1305,7 +1305,7 @@ LAB_1800a46f5:
     stack_byte_ptr2 = stack_buffer3;
     stack_buffer3[0] = 0;
     stack_val12 = *(int32_t *)(sync_handle + 0x20);
-    temp_ptr1 = &DAT_18098bc73;
+    temp_ptr1 = &system_buffer_ptr;
     if (*(void **)(sync_handle + 0x18) != (void *)0x0) {
         temp_ptr1 = *(void **)(sync_handle + 0x18);
     }

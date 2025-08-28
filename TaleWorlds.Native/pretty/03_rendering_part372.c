@@ -437,13 +437,13 @@ void FUN_18046e780(longlong param_1,uint param_2,uint param_3)
           do {
             iVar8 = uVar13 - 4;
             iVar16 = (int)uVar17;
-            iVar7 = (int)DAT_180a3f750;
+            iVar7 = (int)system_data_f750;
             auVar19._0_4_ = iVar16 + iVar7;
-            iVar48 = DAT_180a3f750._4_4_;
+            iVar48 = system_data_f750._4_4_;
             auVar19._4_4_ = iVar16 + iVar48;
-            iVar49 = DAT_180a3f750._8_4_;
+            iVar49 = system_data_f750._8_4_;
             auVar19._8_4_ = iVar16 + iVar49;
-            iVar50 = DAT_180a3f750._12_4_;
+            iVar50 = system_data_f750._12_4_;
             auVar19._12_4_ = iVar16 + iVar50;
             auVar19 = pmulld(auVar19,_DAT_180a3f790);
             *(int8_t (*) [16])(auStack_4c0 + uVar17 * 4) = auVar19;

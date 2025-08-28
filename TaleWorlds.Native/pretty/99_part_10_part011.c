@@ -402,7 +402,7 @@ StructureInitializerFunc StructureInitializerAndConfigurator_impl = StructureIni
  * - UNK_18094af38：结构体模板
  * - UNK_18094b068：内存管理器配置
  * - UNK_18094b020：默认配置数据
- * - DAT_18098bc73：默认数据值
+ * - system_buffer_ptr：默认数据值
  * - _DAT_180be0050：全局管理器
  * 
  * 调用关系：
@@ -744,14 +744,14 @@ void FUN_1806a96a0(uint64_t *param_1,longlong *param_2)
   uVar7 = 0;
   puStack_a8 = &UNK_18094a9a8;
   uStack_90 = 0xffffffff;
-  puStack_a0 = &DAT_18098bc73;
-  puStack_98 = &DAT_18098bc73;
-  puStack_88 = &DAT_18098bc73;
-  puStack_80 = &DAT_18098bc73;
-  puStack_70 = &DAT_18098bc73;
-  puStack_68 = &DAT_18098bc73;
-  puStack_50 = &DAT_18098bc73;
-  puStack_48 = &DAT_18098bc73;
+  puStack_a0 = &system_buffer_ptr;
+  puStack_98 = &system_buffer_ptr;
+  puStack_88 = &system_buffer_ptr;
+  puStack_80 = &system_buffer_ptr;
+  puStack_70 = &system_buffer_ptr;
+  puStack_68 = &system_buffer_ptr;
+  puStack_50 = &system_buffer_ptr;
+  puStack_48 = &system_buffer_ptr;
   uStack_78 = 0xffffffff;
   uStack_60 = 0;
   uStack_5c = 0xffffffff;

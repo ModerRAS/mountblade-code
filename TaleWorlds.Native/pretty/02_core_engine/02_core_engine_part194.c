@@ -659,7 +659,7 @@ void process_resource_registration(void* param1, longlong param2)
                 
                 if ((temp_long2 == 0) && 
                    (temp_long2 = (**(code**)(**(longlong**)(temp_long3 + 0x148) + 0x10))
-                                   (*(longlong**)(temp_long3 + 0x148), &DAT_180a193d8), temp_long2 == 0)) {
+                                   (*(longlong**)(temp_long3 + 0x148), &system_memory_93d8), temp_long2 == 0)) {
                     temp_long2 = (**(code**)(**(longlong**)(temp_long3 + 0x148) + 8))
                                   (*(longlong**)(temp_long3 + 0x148), 0);
                 }

@@ -82,7 +82,7 @@ void FUN_18007c490(longlong *param_1, byte param_2, longlong *param_3, longlong 
       (**(code **)(*resource_2 + 0x28))(resource_2);
     }
     FUN_180081120(stack_buffer_2, &stack_resource_4);
-    (*callback_func)(resource_3, &DAT_1809fc768, param_1 + 0x17, 0, stack_buffer_2, &stack_param_1);
+    (*callback_func)(resource_3, &system_buffer_c768, param_1 + 0x17, 0, stack_buffer_2, &stack_param_1);
     if (cleanup_callback_3 != (code *)0x0) {
       (*cleanup_callback_3)(stack_buffer_2, 0, 0);
     }
@@ -105,14 +105,14 @@ void FUN_18007c490(longlong *param_1, byte param_2, longlong *param_3, longlong 
       (**(code **)(*resource_2 + 0x28))(resource_2);
     }
     FUN_180081120(stack_buffer_1, &stack_resource_1);
-    operation_result = (*callback_func)(resource_3, &DAT_1809fc768, param_1 + 0x17, 0, stack_buffer_1);
+    operation_result = (*callback_func)(resource_3, &system_buffer_c768, param_1 + 0x17, 0, stack_buffer_1);
     if (cleanup_callback_2 != (code *)0x0) {
       (*cleanup_callback_2)(stack_buffer_1, 0, 0);
     }
     
     // 处理操作结果
     if (operation_result == '\0') {
-      error_handler = &DAT_18098bc73;
+      error_handler = &system_buffer_ptr;
       if ((void *)param_1[3] != (void *)0x0) {
         error_handler = (void *)param_1[3];
       }
@@ -153,7 +153,7 @@ void FUN_18007c790(longlong *param_1)
   char *status_flag;
   void *error_handler;
   
-  error_handler = &DAT_18098bc73;
+  error_handler = &system_buffer_ptr;
   if (*(void **)(*param_1 + 0x18) != (void *)0x0) {
     error_handler = *(void **)(*param_1 + 0x18);
   }
@@ -322,7 +322,7 @@ void FUN_18007c8e0(longlong param_1, byte param_2, longlong *param_3, longlong *
     stack_resource_1 = &stack_data_1;
     callback_func_1 = FUN_180082e70;
     callback_func_2 = FUN_180082da0;
-    stack_resource_3 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x20, 8, DAT_180bf65bc);
+    stack_resource_3 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x20, 8, system_allocation_flags);
     *stack_resource_3 = stack_data_1;
     *(byte *)(stack_resource_3 + 1) = stack_byte_2;
     stack_resource_3[2] = (longlong)stack_resource_6;

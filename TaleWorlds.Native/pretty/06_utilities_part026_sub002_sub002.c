@@ -3303,7 +3303,7 @@ void Unwind_180902d50(uint64_t param_1,longlong param_2)
   lVar2 = *(longlong *)(param_2 + 0x40);
   uVar3 = 0xfffffffffffffffe;
   *(longlong *)(lVar2 + 0x15d8) =
-       *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar2 + 0x15e0) * 8) + -100000;
+       *(longlong *)(&system_error_code + (longlong)*(int *)(lVar2 + 0x15e0) * 8) + -100000;
   FUN_180090b80((longlong *)(lVar2 + 0x8b0));
   *(int32_t *)(lVar2 + 0x15e8) = 0;
   plVar1 = *(longlong **)(lVar2 + 0x15d0);
@@ -23224,7 +23224,7 @@ void Unwind_180908050(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_
   longlong *plVar1;
   
   plVar1 = _DAT_180d49200;
-  FUN_18008d1f0(&DAT_180d49200,_DAT_180d49200[1],param_3,param_4,0xfffffffffffffffe);
+  FUN_18008d1f0(&system_state_9200,_DAT_180d49200[1],param_3,param_4,0xfffffffffffffffe);
   _DAT_180d49200[1] = (longlong)plVar1;
   *_DAT_180d49200 = (longlong)plVar1;
   _DAT_180d49200[2] = (longlong)plVar1;
@@ -23990,7 +23990,7 @@ void Unwind_180908670(uint64_t param_1,longlong param_2)
   lVar2 = *(longlong *)(param_2 + 0x50);
   uVar3 = 0xfffffffffffffffe;
   *(longlong *)(lVar2 + 0x15d8) =
-       *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar2 + 0x15e0) * 8) + -100000;
+       *(longlong *)(&system_error_code + (longlong)*(int *)(lVar2 + 0x15e0) * 8) + -100000;
   FUN_180090b80((longlong *)(lVar2 + 0x8b0));
   *(int32_t *)(lVar2 + 0x15e8) = 0;
   plVar1 = *(longlong **)(lVar2 + 0x15d0);

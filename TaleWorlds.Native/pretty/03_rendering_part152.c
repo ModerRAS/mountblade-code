@@ -494,7 +494,7 @@ void FUN_18035ec60(longlong param_1)
     auStack_3d8 = (int8_t  [8])uStack_3e8;
     puStack_3d0 = uStack_3e0;
     (**(code **)(**(longlong **)(plStack_3b0[0x15] + 0x88) + 0x60))
-              (*(longlong **)(plStack_3b0[0x15] + 0x88),&DAT_180a01050,plStack_3b0[0x15] + 0xc,0);
+              (*(longlong **)(plStack_3b0[0x15] + 0x88),&system_memory_1050,plStack_3b0[0x15] + 0xc,0);
     if (pcStack_3c8 != (code *)0x0) {
       (*pcStack_3c8)(auStack_3d8,0,0);
     }
@@ -506,7 +506,7 @@ void FUN_18035ec60(longlong param_1)
     auStack_3d8 = (int8_t  [8])uStack_3e8;
     pfStack_438 = (float *)auStack_3d8;
     (**(code **)(**(longlong **)(plStack_3f8[0x15] + 0x88) + 0x60))
-              (*(longlong **)(plStack_3f8[0x15] + 0x88),&DAT_180a01050,plStack_3f8[0x15] + 0xc,0);
+              (*(longlong **)(plStack_3f8[0x15] + 0x88),&system_memory_1050,plStack_3f8[0x15] + 0xc,0);
     if (pcStack_3c8 != (code *)0x0) {
       (*pcStack_3c8)(auStack_3d8,0,0);
     }
@@ -839,7 +839,7 @@ LAB_18035f156:
       if ((int)(*(int *)(pplStack_388 + 0x11) + (*(int *)(pplStack_388 + 0x11) >> 0x1f & 3U)) >> 2 <
           0) {
         uStack_420 = *(int32_t *)(pplStack_388 + 0xc);
-        puStack_428 = &DAT_18098bc73;
+        puStack_428 = &system_buffer_ptr;
         if ((void *)plStack_390[3] != (void *)0x0) {
           puStack_428 = (void *)plStack_390[3];
         }
@@ -1006,7 +1006,7 @@ void FUN_18035fff0(uint64_t param_1)
   puStack_140 = auStack_130;
   auStack_130[0] = 0;
   uStack_138 = 7;
-  strcpy_s(auStack_130,0x40,&DAT_180a1f750);
+  strcpy_s(auStack_130,0x40,&system_memory_f750);
   FUN_1800b8300(apuStack_1a8,&puStack_148);
   uStack_150 = 0xb;
   uStack_1c8 = 1;
@@ -1019,7 +1019,7 @@ void FUN_18035fff0(uint64_t param_1)
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   uStack_d8 = 9;
-  strcpy_s(auStack_d0,0x40,&DAT_180a0ff18);
+  strcpy_s(auStack_d0,0x40,&system_memory_ff18);
   FUN_1800b8300(apuStack_1a8,&puStack_e8);
   uStack_150 = 7;
   uStack_1c8 = 2;
@@ -1032,7 +1032,7 @@ void FUN_18035fff0(uint64_t param_1)
   puStack_80 = auStack_70;
   auStack_70[0] = 0;
   uStack_78 = 10;
-  strcpy_s(auStack_70,0x40,&DAT_180a1f740);
+  strcpy_s(auStack_70,0x40,&system_memory_f740);
   FUN_1800b8300(apuStack_1a8,&puStack_88);
   uStack_150 = 7;
   uStack_1c8 = 4;

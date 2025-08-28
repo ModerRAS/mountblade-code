@@ -257,7 +257,7 @@ void FUN_1800c33e0(longlong param_1)
   apuStack_138[0] = puVar2;
   strcpy_s(auStack_e0,0x40,&UNK_180a03a48);
   *(int32_t *)(puVar2 + 3) = uStack_e8;
-  puVar6 = &DAT_18098bc73;
+  puVar6 = &system_buffer_ptr;
   if (puStack_f0 != (void *)0x0) {
     puVar6 = puStack_f0;
   }
@@ -280,7 +280,7 @@ void FUN_1800c33e0(longlong param_1)
     puStack_90 = auStack_80;
     auStack_80[0] = 0;
     uStack_88 = 0xc;
-    strcpy_s(auStack_80,0x40,&DAT_180a035d0);
+    strcpy_s(auStack_80,0x40,&system_state_35d0);
     FUN_1800c48e0();
     pplStack_108 = &plStack_158;
     plStack_158 = plStack_148;
@@ -482,7 +482,7 @@ void FUN_1800c37f0(longlong param_1)
   *(int32_t *)(puVar2 + 8) = 0x747874;
   uStack_420 = 0x43;
   FUN_180624440(auStack_2d8,&puStack_430);
-  puVar4 = &DAT_18098bc73;
+  puVar4 = &system_buffer_ptr;
   if (puStack_2d0 != (void *)0x0) {
     puVar4 = puStack_2d0;
   }

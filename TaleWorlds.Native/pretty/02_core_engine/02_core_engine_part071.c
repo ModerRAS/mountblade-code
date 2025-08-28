@@ -237,12 +237,12 @@ apply_texture_settings:
         *(int16_t *)(texture_data + 2) = 0x74;  // "t"
         file_handle = 0;
         file_size = 0;
-        file_path = &DAT_18098bc73;
+        file_path = &system_buffer_ptr;
         if (buffer_ptr != (void *)0x0) {
             file_path = buffer_ptr;
         }
         buffer_size = buffer_size;
-        write_debug_file(&file_handle, file_path, &DAT_1809fc7ec);
+        write_debug_file(&file_handle, file_path, &system_memory_c7ec);
         context_ptr = _DAT_180c86920;
         if (file_size == 0) {
             render_mode = 3;
@@ -431,11 +431,11 @@ apply_settings:
         *(int16_t *)(texture_data + 2) = 0x74;  // "t"
         file_handle = 0;
         file_size = 0;
-        file_path = &DAT_18098bc73;
+        file_path = &system_buffer_ptr;
         if (return_address != (void *)0x0) {
             file_path = return_address;
         }
-        write_debug_file(&file_handle, file_path, &DAT_1809fc7ec);
+        write_debug_file(&file_handle, file_path, &system_memory_c7ec);
         context_ptr = _DAT_180c86920;
         if (file_size == 0) {
             render_mode = 3;
@@ -606,8 +606,8 @@ apply_mode_settings:
     // 检查配置文件
     if ((*(longlong *)(renderer_data + 0x1b80) != 0) &&
         (config_status = (**(code **)(renderer_data + 0x1b88))(render_params), render_params[1] = render_params[0], config_status == '\0')) {
-        if (DAT_180c82860 == '\0') {
-            config_path = &DAT_18098bc73;
+        if (system_debug_flag == '\0') {
+            config_path = &system_buffer_ptr;
             if (*(void **)(renderer_data + 0x1b30) != (void *)0x0) {
                 config_path = *(void **)(renderer_data + 0x1b30);
             }
@@ -637,7 +637,7 @@ uint64_t process_renderer_command(uint64_t renderer_instance, longlong command_p
                (result = strcmp(*(uint64_t *)(command_param + 8), &UNK_180a052b8), result == 0)) {
                 value = 1;
                 if (*(int *)(value_param + 0x10) != 0) {
-                    value_string = &DAT_18098bc73;
+                    value_string = &system_buffer_ptr;
                     if (*(void **)(value_param + 8) != (void *)0x0) {
                         value_string = *(void **)(value_param + 8);
                     }
@@ -650,7 +650,7 @@ uint64_t process_renderer_command(uint64_t renderer_instance, longlong command_p
                (command_id = strcmp(*(uint64_t *)(command_param + 8), &UNK_180a052a0), command_id == 0)) {
                 value = 1;
                 if (*(int *)(value_param + 0x10) != 0) {
-                    value_string = &DAT_18098bc73;
+                    value_string = &system_buffer_ptr;
                     if (*(void **)(value_param + 8) != (void *)0x0) {
                         value_string = *(void **)(value_param + 8);
                     }
@@ -663,7 +663,7 @@ uint64_t process_renderer_command(uint64_t renderer_instance, longlong command_p
         }
         value = 1;
         if (*(int *)(value_param + 0x10) != 0) {
-            value_string = &DAT_18098bc73;
+            value_string = &system_buffer_ptr;
             if (*(void **)(value_param + 8) != (void *)0x0) {
                 value_string = *(void **)(value_param + 8);
             }
@@ -739,8 +739,8 @@ void initialize_render_pipeline(longlong renderer_instance)
         config_value = 0;
         if ((*(longlong *)(renderer_instance + 0x1f00) != 0) &&
            (config_found = (**(code **)(renderer_instance + 0x1f08))(stack_config), config_value = stack_config[0], config_found == '\0')) {
-            if (DAT_180c82860 == '\0') {
-                config_path = &DAT_18098bc73;
+            if (system_debug_flag == '\0') {
+                config_path = &system_buffer_ptr;
                 if (*(void **)(renderer_instance + 0x1eb0) != (void *)0x0) {
                     config_path = *(void **)(renderer_instance + 0x1eb0);
                 }
@@ -753,8 +753,8 @@ void initialize_render_pipeline(longlong renderer_instance)
         config_value = 0x200;
         if ((*(longlong *)(renderer_instance + 0x1db0) != 0) &&
            (config_found = (**(code **)(renderer_instance + 0x1db8))(&stack_config[0]), config_value = stack_config[0], config_found == '\0')) {
-            if (DAT_180c82860 == '\0') {
-                config_path = &DAT_18098bc73;
+            if (system_debug_flag == '\0') {
+                config_path = &system_buffer_ptr;
                 if (*(void **)(renderer_instance + 0x1d60) != (void *)0x0) {
                     config_path = *(void **)(renderer_instance + 0x1d60);
                 }
@@ -768,8 +768,8 @@ void initialize_render_pipeline(longlong renderer_instance)
            (config_found = (**(code **)(renderer_instance + 0x1e28))(&stack_config[0]), config_found != '\0')) {
             *(int32_t *)(renderer_instance + 0x1dc0) = stack_config[0];
         } else {
-            if (DAT_180c82860 == '\0') {
-                config_path = &DAT_18098bc73;
+            if (system_debug_flag == '\0') {
+                config_path = &system_buffer_ptr;
                 if (*(void **)(renderer_instance + 0x1dd0) != (void *)0x0) {
                     config_path = *(void **)(renderer_instance + 0x1dd0);
                 }
@@ -781,8 +781,8 @@ void initialize_render_pipeline(longlong renderer_instance)
         config_value = 100;
         if ((*(longlong *)(renderer_instance + 0x1b10) != 0) &&
            (config_found = (**(code **)(renderer_instance + 0x1b18))(&stack_config[0]), config_value = stack_config[0], config_found == '\0')) {
-            if (DAT_180c82860 == '\0') {
-                config_path = &DAT_18098bc73;
+            if (system_debug_flag == '\0') {
+                config_path = &system_buffer_ptr;
                 if (*(void **)(renderer_instance + 0x1ac0) != (void *)0x0) {
                     config_path = *(void **)(renderer_instance + 0x1ac0);
                 }
@@ -815,8 +815,8 @@ void initialize_render_pipeline(longlong renderer_instance)
             stack_config[0] = 100;
             if ((*(longlong *)(renderer_instance + 0x1b10) != 0) &&
                (config_found = (**(code **)(renderer_instance + 0x1b18))(&stack_config[0]), config_value = stack_config[0], config_found == '\0')) {
-                if (DAT_180c82860 == '\0') {
-                    config_path = &DAT_18098bc73;
+                if (system_debug_flag == '\0') {
+                    config_path = &system_buffer_ptr;
                     if (*(void **)(renderer_instance + 0x1ac0) != (void *)0x0) {
                         config_path = *(void **)(renderer_instance + 0x1ac0);
                     }
@@ -831,8 +831,8 @@ void initialize_render_pipeline(longlong renderer_instance)
         default_value = 1;
         if ((*(longlong *)(renderer_instance + 0x1f00) != 0) &&
            (config_found = (**(code **)(renderer_instance + 0x1f08))(&stack_config[0]), default_value = stack_config[0], config_found == '\0')) {
-            if (DAT_180c82860 == '\0') {
-                config_path = &DAT_18098bc73;
+            if (system_debug_flag == '\0') {
+                config_path = &system_buffer_ptr;
                 if (*(void **)(renderer_instance + 0x1eb0) != (void *)0x0) {
                     config_path = *(void **)(renderer_instance + 0x1eb0);
                 }
@@ -846,8 +846,8 @@ void initialize_render_pipeline(longlong renderer_instance)
            (config_found = (**(code **)(renderer_instance + 0x1b18))(&stack_config[0]), config_value = stack_config[0], config_found != '\0')) {
 apply_config_value:
             *(int32_t *)(renderer_instance + 0x1ab0) = config_value;
-        } else if (DAT_180c82860 == '\0') {
-            config_path = &DAT_18098bc73;
+        } else if (system_debug_flag == '\0') {
+            config_path = &system_buffer_ptr;
             if (*(void **)(renderer_instance + 0x1ac0) != (void *)0x0) {
                 config_path = *(void **)(renderer_instance + 0x1ac0);
             }
@@ -930,8 +930,8 @@ finalize_pipeline:
         config_value = 1;
         if ((*(longlong *)(renderer_instance + 0x1f00) != 0) &&
            (config_found = (**(code **)(renderer_instance + 0x1f08))(&stack_config[0]), config_value = stack_config[0], config_found == '\0')) {
-            if (DAT_180c82860 == '\0') {
-                config_path = &DAT_18098bc73;
+            if (system_debug_flag == '\0') {
+                config_path = &system_buffer_ptr;
                 if (*(void **)(renderer_instance + 0x1eb0) != (void *)0x0) {
                     config_path = *(void **)(renderer_instance + 0x1eb0);
                 }
@@ -944,8 +944,8 @@ finalize_pipeline:
         config_value = 0x780;
         if ((*(longlong *)(renderer_instance + 0x1db0) != 0) &&
            (config_found = (**(code **)(renderer_instance + 0x1db8))(&stack_config[0]), config_value = stack_config[0], config_found == '\0')) {
-            if (DAT_180c82860 == '\0') {
-                config_path = &DAT_18098bc73;
+            if (system_debug_flag == '\0') {
+                config_path = &system_buffer_ptr;
                 if (*(void **)(renderer_instance + 0x1d60) != (void *)0x0) {
                     config_path = *(void **)(renderer_instance + 0x1d60);
                 }
@@ -958,8 +958,8 @@ finalize_pipeline:
         config_value = 0x438;
         if ((*(longlong *)(renderer_instance + 0x1e20) != 0) &&
            (config_found = (**(code **)(renderer_instance + 0x1e28))(&stack_config[0]), config_value = stack_config[0], config_found == '\0')) {
-            if (DAT_180c82860 == '\0') {
-                config_path = &DAT_18098bc73;
+            if (system_debug_flag == '\0') {
+                config_path = &system_buffer_ptr;
                 if (*(void **)(renderer_instance + 0x1dd0) != (void *)0x0) {
                     config_path = *(void **)(renderer_instance + 0x1dd0);
                 }
@@ -985,8 +985,8 @@ finalize_pipeline:
            (config_found = (**(code **)(renderer_instance + 0x1c68))(&stack_config[0]), config_found != '\0')) {
             *(int32_t *)(renderer_instance + 0x1c00) = stack_config[0];
         } else {
-            if (DAT_180c82860 == '\0') {
-                config_path = &DAT_18098bc73;
+            if (system_debug_flag == '\0') {
+                config_path = &system_buffer_ptr;
                 if (*(void **)(renderer_instance + 0x1c10) != (void *)0x0) {
                     config_path = *(void **)(renderer_instance + 0x1c10);
                 }
@@ -998,8 +998,8 @@ finalize_pipeline:
         config_value = 0;
         if ((*(longlong *)(renderer_instance + 0x1330) != 0) &&
            (config_found = (**(code **)(renderer_instance + 0x1338))(&stack_config[0]), config_value = stack_config[0], config_found == '\0')) {
-            if (DAT_180c82860 == '\0') {
-                config_path = &DAT_18098bc73;
+            if (system_debug_flag == '\0') {
+                config_path = &system_buffer_ptr;
                 if (*(void **)(renderer_instance + 0x12e0) != (void *)0x0) {
                     config_path = *(void **)(renderer_instance + 0x12e0);
                 }
@@ -1013,8 +1013,8 @@ finalize_pipeline:
            (config_found = (**(code **)(renderer_instance + 0xc38))(&stack_config[0]), config_found != '\0')) {
             *(int32_t *)(renderer_instance + 0xbd0) = stack_config[0];
         } else {
-            if (DAT_180c82860 == '\0') {
-                config_path = &DAT_18098bc73;
+            if (system_debug_flag == '\0') {
+                config_path = &system_buffer_ptr;
                 if (*(void **)(renderer_instance + 0xbe0) != (void *)0x0) {
                     config_path = *(void **)(renderer_instance + 0xbe0);
                 }

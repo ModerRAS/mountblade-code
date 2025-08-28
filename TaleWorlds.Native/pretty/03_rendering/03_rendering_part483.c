@@ -89,7 +89,7 @@ void RenderingSystem_ParameterProcessor(float param_1)
   // 检查渲染系统状态标志并处理时间参数
   if (((*(uint *)(unaff_RBX + 0x56c) & RENDERING_STATUS_MASK_800) != 0) &&
      (param_1 = (float)(*(longlong *)
-                         (&DAT_180c8ed30 +
+                         (&system_error_code +
                          (longlong)*(int *)(*(longlong *)(unaff_RBX + 0x728) + 0x590) * 8) -
                        *(longlong *)(*(longlong *)(unaff_RBX + 0x728) + 0x588)) * RENDERING_PARAMETER_SCALE_FACTOR,
      unaff_XMM6_Da < param_1)) {
@@ -99,7 +99,7 @@ void RenderingSystem_ParameterProcessor(float param_1)
     *(int32_t *)(lVar8 + 0xa418) = 0x40400000;
     *(longlong *)(*(longlong *)(unaff_RBX + 0x728) + 0x588) =
          *(longlong *)
-          (&DAT_180c8ed30 + (longlong)*(int *)(*(longlong *)(unaff_RBX + 0x728) + 0x590) * 8) +
+          (&system_error_code + (longlong)*(int *)(*(longlong *)(unaff_RBX + 0x728) + 0x590) * 8) +
          RENDERING_TIME_OFFSET;
     // 清理渲染系统资源状态
     if (((*(ushort *)(*(longlong *)(unaff_RBX + 0x728) + 0x5ac) |
@@ -264,10 +264,10 @@ LAB_180526fb7:
       (*(int *)((longlong)*(int *)(lVar8 + 0x2498) * 0x68 + 0x58 + _DAT_180c96150) != RENDERING_RESOURCE_FLAG_20)) ||
      (unaff_R15B == '\0')) {
     lVar8 = RENDERING_SYSTEM_ZERO_TIME;
-    lVar7 = *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(unaff_RBX + 0x5d0) * 8);
+    lVar7 = *(longlong *)(&system_error_code + (longlong)*(int *)(unaff_RBX + 0x5d0) * 8);
   }
   else {
-    lVar7 = *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(unaff_RBX + 0x5d0) * 8);
+    lVar7 = *(longlong *)(&system_error_code + (longlong)*(int *)(unaff_RBX + 0x5d0) * 8);
     fVar11 = (float)(lVar7 - *(longlong *)(unaff_RBX + 0x5c8)) * RENDERING_PARAMETER_SCALE_FACTOR;
     if (unaff_XMM6_Da < fVar11) {
       fVar12 = *(float *)(unaff_RBX + 0x3cc);
@@ -428,7 +428,7 @@ LAB_180526f68:
         *(int32_t *)(lVar7 + 0xa14) = *(int32_t *)(lVar8 + 0xf0);
       }
 LAB_180526faa:
-      unaff_RSI = &DAT_180c8ed30;
+      unaff_RSI = &system_error_code;
       *(int32_t *)(unaff_RBX + 0x2c0) = uVar6;
     }
     else {
@@ -480,7 +480,7 @@ LAB_180526faa:
         *(float *)(unaff_RBP + -0x25) = fVar11;
         cVar3 = FUN_18051ec50(fVar11,unaff_RBP + -0x39);
         if (cVar3 != '\0') {
-          unaff_RSI = &DAT_180c8ed30;
+          unaff_RSI = &system_error_code;
           // 配置渲染系统状态
           if (iVar10 != RENDERING_RESOURCE_FLAG_20) {
             *(int32_t *)(unaff_RBX + 0x7c) = RENDERING_DEFAULT_DEPTH_FACTOR;
@@ -692,10 +692,10 @@ void RenderingSystem_EmptyOperationProcessor2(void)
 // - 可在后续版本中根据具体需求进行功能扩展和优化
 // 
 // 全局变量引用：
-// - DAT_180c8ed30: 渲染系统数据表基地址
-// - DAT_180c92514: 渲染系统状态标志
-// - DAT_180c95ff0: 渲染系统资源表基地址
-// - DAT_180c96150: 渲染系统参数表基地址
+// - system_error_code: 渲染系统数据表基地址
+// - system_status_flag: 渲染系统状态标志
+// - system_state_5ff0: 渲染系统资源表基地址
+// - system_state_6150: 渲染系统参数表基地址
 // 
 // 外部函数调用：
 // - FUN_18050d480: 参数处理函数

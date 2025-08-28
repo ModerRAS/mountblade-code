@@ -323,7 +323,7 @@ int FUN_180894380(longlong param_1,longlong param_2,int param_3)
   iVar1 = func_0x00018074b800(param_2,param_3,*(int32_t *)(param_1 + UTILITIES_OFFSET_SIZE));
   
   // 第二阶段：基础处理
-  iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;                           // 累加处理进度
   
   // 第三阶段：主处理
@@ -331,7 +331,7 @@ int FUN_180894380(longlong param_1,longlong param_2,int param_3)
   iVar1 = iVar1 + iVar2;                           // 累加处理进度
   
   // 第四阶段：同步处理
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;                           // 累加处理进度
   
   // 第五阶段：核心处理
@@ -340,7 +340,7 @@ int FUN_180894380(longlong param_1,longlong param_2,int param_3)
   iVar1 = iVar1 + iVar2;                           // 累加处理进度
   
   // 第六阶段：验证处理
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;                           // 累加处理进度
   
   // 第七阶段：完成处理
@@ -379,7 +379,7 @@ int FUN_180894460(longlong param_1,longlong param_2,int param_3)
   iVar1 = func_0x00018074b800(param_2,param_3,*(int32_t *)(param_1 + UTILITIES_OFFSET_SIZE));
   
   // 第二阶段：基础处理
-  iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;                           // 累加处理进度
   
   // 第三阶段：主处理
@@ -387,7 +387,7 @@ int FUN_180894460(longlong param_1,longlong param_2,int param_3)
   iVar1 = iVar1 + iVar2;                           // 累加处理进度
   
   // 第四阶段：同步处理
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;                           // 累加处理进度
   
   // 第五阶段：核心处理
@@ -396,7 +396,7 @@ int FUN_180894460(longlong param_1,longlong param_2,int param_3)
   iVar1 = iVar1 + iVar2;                           // 累加处理进度
   
   // 第六阶段：验证处理
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;                           // 累加处理进度
   
   // 第七阶段：扩展处理
@@ -406,7 +406,7 @@ int FUN_180894460(longlong param_1,longlong param_2,int param_3)
   iVar1 = iVar1 + iVar2;                           // 累加处理进度
   
   // 第八阶段：同步验证
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;                           // 累加处理进度
   
   // 第九阶段：完成处理
@@ -443,7 +443,7 @@ int FUN_180894570(longlong param_1,longlong param_2,int param_3)
   iVar1 = func_0x00018074b7d0(param_2,param_3,*(int32_t *)(param_1 + UTILITIES_OFFSET_SIZE));
   
   // 第二阶段：同步处理
-  iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;                           // 累加处理进度
   
   // 第三阶段：核心处理
@@ -452,7 +452,7 @@ int FUN_180894570(longlong param_1,longlong param_2,int param_3)
   iVar1 = iVar1 + iVar2;                           // 累加处理进度
   
   // 第四阶段：验证处理
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;                           // 累加处理进度
   
   // 第五阶段：扩展处理
@@ -462,7 +462,7 @@ int FUN_180894570(longlong param_1,longlong param_2,int param_3)
   iVar1 = iVar1 + iVar2;                           // 累加处理进度
   
   // 第六阶段：最终验证
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;                           // 累加处理进度
   
   // 第七阶段：完成处理
@@ -499,7 +499,7 @@ int FUN_180894650(longlong *param_1,longlong param_2,int param_3)
   iVar1 = FUN_18074b880(param_2,param_3,&UNK_180986298);
   
   // 第二阶段：基础内存处理
-  iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;                           // 累加处理进度
   
   // 第三阶段：内存分配处理
@@ -507,7 +507,7 @@ int FUN_180894650(longlong *param_1,longlong param_2,int param_3)
   iVar1 = iVar1 + iVar2;                           // 累加处理进度
   
   // 第四阶段：内存验证处理
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;                           // 累加处理进度
   
   // 第五阶段：动态处理（通过函数指针调用）
@@ -525,11 +525,11 @@ int FUN_180894700(longlong *param_1,longlong param_2,int param_3)
   int iVar2;
   
   iVar1 = FUN_18074b880(param_2,param_3,&UNK_180984010);
-  iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = func_0x00018074b7d0(iVar1 + param_2,param_3 - iVar1,(int)param_1[3] * 0xc + 0x20);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = (**(code **)(*param_1 + 8))(param_1,iVar1 + param_2,param_3 - iVar1);
   return iVar2 + iVar1;
@@ -544,11 +544,11 @@ int FUN_1808947b0(longlong *param_1,longlong param_2,int param_3)
   int iVar2;
   
   iVar1 = FUN_18074b880(param_2,param_3,&UNK_180982240);
-  iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = func_0x00018074b7d0(iVar1 + param_2,param_3 - iVar1,((int)param_1[2] + 2) * 0xc);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = (**(code **)(*param_1 + 8))(param_1,iVar1 + param_2,param_3 - iVar1);
   return iVar2 + iVar1;

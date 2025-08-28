@@ -72,7 +72,7 @@ void FUN_1801c6120(void)
           uStack_a8 = 0;
           lStack_a0 = 0;
           puVar11 = *(void **)(lVar6 + 8 + uVar9);
-          puVar10 = &DAT_18098bc73;
+          puVar10 = &system_buffer_ptr;
           if (puVar11 != (void *)0x0) {
             puVar10 = puVar11;
           }
@@ -101,7 +101,7 @@ void FUN_1801c6120(void)
             memcpy(puStack_f0 + uStack_e8,*(uint64_t *)(lVar6 + 8 + uVar9),
                    (longlong)(*(int *)(lVar6 + 0x10 + uVar9) + 1));
           }
-          puVar11 = &DAT_18098bc73;
+          puVar11 = &system_buffer_ptr;
           if (puStack_f0 != (void *)0x0) {
             puVar11 = puStack_f0;
           }
@@ -185,7 +185,7 @@ void FUN_1801c6120(void)
       *(int8_t *)((longlong)puVar8 + 0x12) = 0;
       uStack_c0 = 0;
       lStack_b8 = 0;
-      puVar11 = &DAT_18098bc73;
+      puVar11 = &system_buffer_ptr;
       if (puStack_150 != (void *)0x0) {
         puVar11 = puStack_150;
       }
@@ -263,7 +263,7 @@ void FUN_1801c6120(void)
       *(int8_t *)((longlong)puVar8 + 0x12) = 0;
       uStack_90 = 0;
       lStack_88 = 0;
-      puVar12 = &DAT_18098bc73;
+      puVar12 = &system_buffer_ptr;
       if (puStack_130 != (int8_t *)0x0) {
         puVar12 = puStack_130;
       }
@@ -336,7 +336,7 @@ void FUN_1801c6120(void)
       *(int8_t *)((longlong)puVar8 + 0x12) = 0;
       uStack_78 = 0;
       lStack_70 = 0;
-      puVar12 = &DAT_18098bc73;
+      puVar12 = &system_buffer_ptr;
       if (puStack_110 != (int8_t *)0x0) {
         puVar12 = puStack_110;
       }
@@ -502,7 +502,7 @@ uint64_t FUN_1801c6d60(uint64_t param_1,longlong param_2,int *param_3)
   uVar8 = 0;
   uStack_50 = 0;
   lStack_48 = 0;
-  puVar11 = &DAT_18098bc73;
+  puVar11 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar11 = *(void **)(param_2 + 8);
   }
@@ -686,7 +686,7 @@ LAB_1801c720f:
   puVar6[6] = 0x6b636173;
   *(int8_t *)(puVar6 + 7) = 0;
   alStack_70[0] = -1;
-  puVar8 = &DAT_18098bc73;
+  puVar8 = &system_buffer_ptr;
   if (puStack_58 != (int8_t *)0x0) {
     puVar8 = puStack_58;
   }

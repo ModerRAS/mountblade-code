@@ -64,7 +64,7 @@ void FUN_1805ba49e(void)
     *(uint *)(unaff_RBX + 0x1390) = uVar15;
     uVar21 = 0;
     *(longlong *)(unaff_RBX + 0x1c38) =
-         *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(unaff_RBX + 0x1c40) * 8) -
+         *(longlong *)(&system_error_code + (longlong)*(int *)(unaff_RBX + 0x1c40) * 8) -
          (longlong)(((float)(uVar15 - 1) * 2.3283064e-05 + fVar30) - 50000.0);
     uVar16 = uVar21;
     uVar18 = uVar21;
@@ -361,7 +361,7 @@ void FUN_1805ba4c4(void)
   *(uint *)(unaff_RBX + 0x1390) = uVar15;
   uVar21 = 0;
   *(longlong *)(unaff_RBX + 0x1c38) =
-       *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(unaff_RBX + 0x1c40) * 8) -
+       *(longlong *)(&system_error_code + (longlong)*(int *)(unaff_RBX + 0x1c40) * 8) -
        (longlong)(((float)(uVar15 - 1) * 2.3283064e-05 + fVar30) - 50000.0);
   uVar16 = uVar21;
   uVar18 = uVar21;

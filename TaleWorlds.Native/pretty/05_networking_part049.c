@@ -98,7 +98,7 @@ FUN_180867b40(longlong param_1,longlong param_2,uint64_t param_3,uint64_t *param
     uStack_20 = 0;
     uStack_14 = 0;
     if (*(int *)(param_4 + 1) < 1) {
-      puStack_28 = &DAT_18098bc73;
+      puStack_28 = &system_buffer_ptr;
     }
     else {
       puStack_28 = (void *)*param_4;
@@ -181,7 +181,7 @@ FUN_180867cf0(longlong param_1,longlong param_2,uint64_t param_3,uint64_t *param
   if ((*(uint *)(param_1 + 0x74) & 0x100) != 0) {
     uStack_14 = 0;
     if (*(int *)(param_4 + 1) < 1) {
-      puStack_28 = &DAT_18098bc73;
+      puStack_28 = &system_buffer_ptr;
     }
     else {
       puStack_28 = (void *)*param_4;
@@ -771,7 +771,7 @@ uint64_t FUN_180868640(longlong param_1,longlong param_2,uint64_t *param_3,uint6
   }
   if ((*(uint *)(param_1 + 0x74) & 0x200) != 0) {
     if (*(int *)(param_3 + 1) < 1) {
-      puStack_18 = &DAT_18098bc73;
+      puStack_18 = &system_buffer_ptr;
     }
     else {
       puStack_18 = (void *)*param_3;
@@ -799,7 +799,7 @@ uint64_t FUN_1808686a0(longlong param_1,longlong param_2,uint64_t *param_3,uint6
   }
   if ((*(uint *)(param_1 + 0x74) & 0x400) != 0) {
     if (*(int *)(param_3 + 1) < 1) {
-      puStack_18 = &DAT_18098bc73;
+      puStack_18 = &system_buffer_ptr;
     }
     else {
       puStack_18 = (void *)*param_3;

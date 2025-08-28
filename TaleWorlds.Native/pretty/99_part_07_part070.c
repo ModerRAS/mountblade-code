@@ -378,7 +378,7 @@ void FUN_1804d9b70(uint64_t *param_1)
   *(uint64_t *)((longlong)param_1 + 0x2b44) = 0x40000000;
   *(int32_t *)((longlong)param_1 + 0x2b4c) = 3;
   param_1[0x566] = 1;
-  param_1[0x565] = &DAT_180be0000;
+  param_1[0x565] = &system_data_0000;
   param_1[0x567] = 0;
   *(int32_t *)(param_1 + 0x569) = 0;
   puVar3 = param_1 + 0x56b;
@@ -423,7 +423,7 @@ void FUN_1804d9b70(uint64_t *param_1)
   *(uint64_t *)((longlong)param_1 + 0x2cb4) = 0x40000000;
   *(int32_t *)((longlong)param_1 + 0x2cbc) = 3;
   param_1[0x594] = 1;
-  param_1[0x593] = &DAT_180be0000;
+  param_1[0x593] = &system_data_0000;
   param_1[0x595] = 0;
   *(int32_t *)(param_1 + 0x597) = 0;
   puStack_f8 = param_1 + 0x598;
@@ -468,7 +468,7 @@ void FUN_1804d9b70(uint64_t *param_1)
   puStack_c0 = auStack_b0;
   auStack_b0[0] = 0;
   uStack_b8 = 0x25;
-  strcpy_s(auStack_b0,0x80,&DAT_180a0d5d0);
+  strcpy_s(auStack_b0,0x80,&system_data_d5d0);
   uVar4 = FUN_180240430(*(uint64_t *)(lVar2 + 0x1e0),&puStack_c8,1);
   *(ulonglong *)(lVar2 + 0x140) = *(ulonglong *)(lVar2 + 0x140) | uVar4;
   FUN_18022dd60(lVar2);
@@ -756,7 +756,7 @@ void FUN_1804da7e0(int32_t *param_1,uint64_t param_2,longlong param_3)
     puStack_18 = &UNK_1804df380;
     alStack_68[0] = param_3;
     uStack_50 = param_1;
-    apuStack_30[0] = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,DAT_180bf65bc);
+    apuStack_30[0] = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,system_allocation_flags);
     *apuStack_30[0] = (int32_t)uStack_50;
     apuStack_30[0][1] = uStack_50._4_4_;
     apuStack_30[0][2] = (int32_t)uStack_48;

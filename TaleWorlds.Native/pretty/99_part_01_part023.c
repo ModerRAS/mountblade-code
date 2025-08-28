@@ -110,7 +110,7 @@ LAB_1800b6eea:
     puStack_40 = &UNK_18098bcb0;
     if (puVar9 == puVar1) {
       if ((param_3 != '\0') && (*(int *)(param_2 + 0x10) != 0)) {
-        puVar7 = &DAT_18098bc73;
+        puVar7 = &system_buffer_ptr;
         if (*(void **)(param_2 + 8) != (void *)0x0) {
           puVar7 = *(void **)(param_2 + 8);
         }
@@ -249,7 +249,7 @@ code * FUN_1800b6f90(uint64_t param_1,ulonglong *param_2,int8_t *param_3)
               lVar8 = FUN_18023cb40(auStack_68,lVar7);
               pcStack_158 = FUN_18023e120;
               puStack_150 = &UNK_18023e110;
-              uVar9 = FUN_18062b1e0(_DAT_180c8ed18,0x38,8,DAT_180bf65bc);
+              uVar9 = FUN_18062b1e0(_DAT_180c8ed18,0x38,8,system_allocation_flags);
               FUN_18023cb40(uVar9,lVar8);
               lVar10 = lVar8 + 0x10;
               auStack_168[0] = uVar9;
@@ -261,7 +261,7 @@ code * FUN_1800b6f90(uint64_t param_1,ulonglong *param_2,int8_t *param_3)
               }
               uVar9 = FUN_18023c3b0(auStack_100,&puStack_1d0);
               FUN_18023dc00(auStack_140,uVar9);
-              (*pcVar6)(plVar2,&DAT_180a01050,param_2[0x15] + 0xc,0,auStack_140,auStack_168,lVar10);
+              (*pcVar6)(plVar2,&system_data_1050,param_2[0x15] + 0xc,0,auStack_140,auStack_168,lVar10);
               if (pcStack_130 != (code *)0x0) {
                 (*pcStack_130)(auStack_140,0,0);
               }
@@ -274,7 +274,7 @@ code * FUN_1800b6f90(uint64_t param_1,ulonglong *param_2,int8_t *param_3)
               pcVar6 = *(code **)(*plVar2 + 0x60);
               uVar9 = FUN_18023c3b0(auStack_d0,&puStack_1d0);
               FUN_18023dc00(auStack_120,uVar9);
-              cVar4 = (*pcVar6)(plVar2,&DAT_180a01050,param_2[0x15] + 0xc,0,auStack_120);
+              cVar4 = (*pcVar6)(plVar2,&system_data_1050,param_2[0x15] + 0xc,0,auStack_120);
               if (pcStack_110 != (code *)0x0) {
                 (*pcStack_110)(auStack_120,0,0);
               }
@@ -502,7 +502,7 @@ LAB_1800b7264:
       uStackX_8 = CONCAT44(uStackX_8._4_4_,(int)uStackX_8 + 1);
       uVar11 = *(int32_t *)(lVar3 + 8);
       uVar4 = func_0x000180220c90(*(int32_t *)(lVar3 + 0x324));
-      puVar10 = &DAT_18098bc73;
+      puVar10 = &system_buffer_ptr;
       if (*(void **)(lVar3 + 0x18) != (void *)0x0) {
         puVar10 = *(void **)(lVar3 + 0x18);
       }
@@ -617,7 +617,7 @@ void FUN_1800b76b0(uint64_t *param_1,longlong *param_2)
         uVar9 = (uint)*(ushort *)(lVar6 + 0x32e);
         uVar1 = *(int16_t *)(lVar6 + 0x32c);
         uVar4 = func_0x000180220c90(*(int32_t *)(lVar6 + 0x324));
-        puVar7 = &DAT_18098bc73;
+        puVar7 = &system_buffer_ptr;
         if (*(void **)(lVar6 + 0x18) != (void *)0x0) {
           puVar7 = *(void **)(lVar6 + 0x18);
         }
@@ -626,7 +626,7 @@ void FUN_1800b76b0(uint64_t *param_1,longlong *param_2)
       }
       else {
         *(int *)*param_1 = *(int *)*param_1 + 1;
-        puVar7 = &DAT_18098bc73;
+        puVar7 = &system_buffer_ptr;
         if (*(void **)(lVar6 + 0x18) != (void *)0x0) {
           puVar7 = *(void **)(lVar6 + 0x18);
         }
@@ -692,7 +692,7 @@ void FUN_1800b76d4(void)
       uVar1 = unaff_R14[2];
       *(float *)unaff_R14[1] = fVar6 + *(float *)unaff_R14[1];
       uVar3 = func_0x000180220c90(*(int32_t *)(lVar4 + 0x324));
-      puVar5 = &DAT_18098bc73;
+      puVar5 = &system_buffer_ptr;
       if (*(void **)(lVar4 + 0x18) != (void *)0x0) {
         puVar5 = *(void **)(lVar4 + 0x18);
       }
@@ -700,7 +700,7 @@ void FUN_1800b76d4(void)
     }
     else {
       *(int *)*unaff_R14 = *(int *)*unaff_R14 + 1;
-      puVar5 = &DAT_18098bc73;
+      puVar5 = &system_buffer_ptr;
       if (*(void **)(lVar4 + 0x18) != (void *)0x0) {
         puVar5 = *(void **)(lVar4 + 0x18);
       }
@@ -768,7 +768,7 @@ void FUN_1800b7840(uint64_t *param_1,longlong *param_2)
   lVar10 = *param_2;
   plVar4 = (longlong *)FUN_180058080(lVar9,&puStackX_8,lVar10 + 0x1f0);
   if (*plVar4 != lVar9) {
-    puVar8 = &DAT_18098bc73;
+    puVar8 = &system_buffer_ptr;
     if (*(void **)(lVar10 + 0x1f8) != (void *)0x0) {
       puVar8 = *(void **)(lVar10 + 0x1f8);
     }

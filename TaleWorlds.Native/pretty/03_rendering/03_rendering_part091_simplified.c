@@ -262,7 +262,7 @@ void rendering_system_memory_manager(uint64_t **render_context, longlong *memory
     // 简化的资源分配
     if (render_context != (uint64_t **)0x0) {
         // 基本的内存分配操作
-        (**(code **)(*memory_pool + 0x10))(memory_pool, &DAT_18098bc73);
+        (**(code **)(*memory_pool + 0x10))(memory_pool, &system_buffer_ptr);
     }
     
     // 简化的内存优化

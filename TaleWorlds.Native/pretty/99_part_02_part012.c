@@ -647,7 +647,7 @@ void FUN_1800f08a0(void)
   puStack_120 = auStack_110;
   auStack_110[0] = 0;
   uStack_118 = 0x1b;
-  strcpy_s(auStack_110,0x40,&DAT_180a04a78);
+  strcpy_s(auStack_110,0x40,&system_data_4a78);
   uVar3 = FUN_180240430(uVar3,&puStack_128,1);
   *(uint64_t *)(lVar1 + 0x300) = uVar3;
   puStack_128 = &UNK_18098bcb0;

@@ -57,7 +57,7 @@ longlong FUN_1803f4dc0(longlong *param_1,longlong *param_2,int param_3)
     }
     else {
       if (param_3 == 1) {
-        plVar2 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x30,8,DAT_180bf65bc,0xfffffffffffffffe);
+        plVar2 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x30,8,system_allocation_flags,0xfffffffffffffffe);
         param_2 = (longlong *)*param_2;
         lVar4 = param_2[1] - *param_2 >> 5;
         uVar1 = *(uint *)(param_2 + 3);
@@ -898,8 +898,8 @@ void FUN_1803f5c20(longlong param_1,longlong param_2)
           uStack_198 = uVar8;
           uVar6 = *(uint64_t *)(lVar5 + 0xd0);
           uVar7 = *(uint64_t *)(lVar5 + 0xe0);
-          NVSDK_NGX_Parameter_SetUI(uVar7,&DAT_180a09e30,uStack_198 & 0xffffffff);
-          NVSDK_NGX_Parameter_SetUI(uVar7,&DAT_180a09e38,uStack_198._4_4_);
+          NVSDK_NGX_Parameter_SetUI(uVar7,&system_data_9e30,uStack_198 & 0xffffffff);
+          NVSDK_NGX_Parameter_SetUI(uVar7,&system_data_9e38,uStack_198._4_4_);
           NVSDK_NGX_Parameter_SetUI(uVar7,&UNK_180a17cc8,iStack_1a0);
           NVSDK_NGX_Parameter_SetUI(uVar7,&UNK_180a17c80,iStack_19c);
           NVSDK_NGX_Parameter_SetF(uVar7,&UNK_180a17c30,1.0 / (fVar2 - fVar3));
@@ -969,8 +969,8 @@ void FUN_1803f60b0(longlong *param_1,uint64_t param_2,longlong param_3)
     puStack_e0 = auStack_d0;
     auStack_d0[0] = 0;
     uStack_d8 = 0xc;
-    strcpy_s(auStack_d0,0x80,&DAT_180a0eb68);
-    puVar7 = &DAT_18098bc73;
+    strcpy_s(auStack_d0,0x80,&system_data_eb68);
+    puVar7 = &system_buffer_ptr;
     if ((void *)param_1[3] != (void *)0x0) {
       puVar7 = (void *)param_1[3];
     }
@@ -983,12 +983,12 @@ void FUN_1803f60b0(longlong *param_1,uint64_t param_2,longlong param_3)
                     // WARNING: Subroutine does not return
       memcpy(puStack_e0 + uStack_d8,puVar7,(longlong)(iVar3 + 1));
     }
-    puVar7 = &DAT_18098bc73;
+    puVar7 = &system_buffer_ptr;
     if (puStack_e0 != (void *)0x0) {
       puVar7 = puStack_e0;
     }
     FUN_1802c22a0(auStack_178,puVar7);
-    puVar7 = &DAT_18098bc73;
+    puVar7 = &system_buffer_ptr;
     if ((void *)param_1[3] != (void *)0x0) {
       puVar7 = (void *)param_1[3];
     }

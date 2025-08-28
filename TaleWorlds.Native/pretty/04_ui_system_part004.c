@@ -36,11 +36,11 @@ void FUN_180651990(longlong param_1,longlong *param_2,uint64_t param_3,uint64_t 
   FUN_18005ea90(param_1 + 0x168,&plStackX_10,param_3,param_4,0xfffffffffffffffe);
   (**(code **)(*param_2 + 8))(param_2,&puStack_30);
   (**(code **)(*param_2 + 0x10))(param_2,&puStack_50);
-  puVar2 = &DAT_18098bc73;
+  puVar2 = &system_buffer_ptr;
   if (puStack_48 != (void *)0x0) {
     puVar2 = puStack_48;
   }
-  puVar1 = &DAT_18098bc73;
+  puVar1 = &system_buffer_ptr;
   if (puStack_28 != (void *)0x0) {
     puVar1 = puStack_28;
   }
@@ -82,11 +82,11 @@ void FUN_180651a80(longlong param_1,longlong param_2,longlong param_3)
     FUN_180626ee0(&UNK_180a3dc30);
   }
   else {
-    puVar2 = &DAT_18098bc73;
+    puVar2 = &system_buffer_ptr;
     if (*(void **)(param_2 + 8) != (void *)0x0) {
       puVar2 = *(void **)(param_2 + 8);
     }
-    puVar3 = &DAT_18098bc73;
+    puVar3 = &system_buffer_ptr;
     if (*(void **)(param_3 + 8) != (void *)0x0) {
       puVar3 = *(void **)(param_3 + 8);
     }
@@ -215,7 +215,7 @@ uint64_t FUN_180652100(longlong param_1,uint64_t param_2,int32_t param_3)
   void *puVar2;
   
   lVar1 = (**(code **)(param_1 + 0x148))(param_3);
-  puVar2 = &DAT_18098bc73;
+  puVar2 = &system_buffer_ptr;
   if (*(void **)(lVar1 + 8) != (void *)0x0) {
     puVar2 = *(void **)(lVar1 + 8);
   }
@@ -243,12 +243,12 @@ ulonglong FUN_180652190(longlong param_1,longlong param_2,longlong param_3,uint6
   if (*(int *)(param_3 + 0x10) == 0) {
     return in_RAX & 0xffffffffffffff00;
   }
-  puVar3 = &DAT_18098bc73;
+  puVar3 = &system_buffer_ptr;
   if (*(void **)(param_3 + 8) != (void *)0x0) {
     puVar3 = *(void **)(param_3 + 8);
   }
   lVar1 = (**(code **)(param_1 + 0xb0))(puVar3);
-  puVar3 = &DAT_18098bc73;
+  puVar3 = &system_buffer_ptr;
   if (*(void **)(lVar1 + 8) != (void *)0x0) {
     puVar3 = *(void **)(lVar1 + 8);
   }
@@ -293,7 +293,7 @@ uint64_t FUN_1806522b0(longlong param_1,longlong param_2)
 {
   void *puVar1;
   
-  puVar1 = &DAT_18098bc73;
+  puVar1 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar1 = *(void **)(param_2 + 8);
   }
@@ -308,7 +308,7 @@ uint64_t FUN_1806522e0(longlong param_1,longlong param_2)
 {
   void *puVar1;
   
-  puVar1 = &DAT_18098bc73;
+  puVar1 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar1 = *(void **)(param_2 + 8);
   }
@@ -346,7 +346,7 @@ int * FUN_180652310(longlong param_1,int *param_2,longlong *param_3,uint64_t par
   if (param_3[1] - lVar3 >> 5 != 0) {
     do {
       puVar1 = *(void **)(lVar3 + 8 + uVar6);
-      puVar7 = &DAT_18098bc73;
+      puVar7 = &system_buffer_ptr;
       if (puVar1 != (void *)0x0) {
         puVar7 = puVar1;
       }
@@ -627,7 +627,7 @@ FUN_180653220(longlong *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
   longlong lVar4;
   
   lVar6 = 0;
-  FUN_180627910(&puStack_38,&DAT_18098bc73,param_3,param_4,0,0xfffffffffffffffe);
+  FUN_180627910(&puStack_38,&system_buffer_ptr,param_3,param_4,0,0xfffffffffffffffe);
   lVar4 = -1;
   do {
     lVar3 = lVar4 + 1;
@@ -648,7 +648,7 @@ FUN_180653220(longlong *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
     uVar5 = uVar5 & 0xffffffff;
     do {
       puVar2 = *(void **)(lVar6 + 8 + *param_1);
-      puVar7 = &DAT_18098bc73;
+      puVar7 = &system_buffer_ptr;
       if (puVar2 != (void *)0x0) {
         puVar7 = puVar2;
       }
@@ -701,7 +701,7 @@ void FUN_1806533b4(longlong param_1)
     uVar1 = 0x1fff;
   }
                     // WARNING: Subroutine does not return
-  memcpy(&DAT_180c8f020,param_1,(longlong)(int)uVar1);
+  memcpy(&system_data_f020,param_1,(longlong)(int)uVar1);
 }
 
 
@@ -870,7 +870,7 @@ void FUN_180653940(void)
   *(int32_t *)((longlong)puStack_b0 + uVar7 + 0x10) = 0x6c642e74;
   *(int16_t *)((longlong)puStack_b0 + uVar7 + 0x14) = 0x6c;
   uStack_a8 = 0x15;
-  puVar6 = (int32_t *)&DAT_18098bc73;
+  puVar6 = (int32_t *)&system_buffer_ptr;
   if (puStack_b0 != (int32_t *)0x0) {
     puVar6 = puStack_b0;
   }
@@ -885,7 +885,7 @@ void FUN_180653940(void)
   puStack_b8 = &UNK_18098bcb0;
   *plVar1 = lVar4;
   if (lVar4 == 0) {
-    FUN_180626ee0(&UNK_180a3ddc0,&DAT_180a3dda8);
+    FUN_180626ee0(&UNK_180a3ddc0,&system_data_dda8);
     lVar4 = *plVar1;
   }
   lVar4 = mono_assembly_get_image(lVar4);

@@ -70,7 +70,7 @@ void initialize_resource_processing(uint64_t system_handle, longlong resource_da
   uStack_788 = 0xfffffffffffffffe;
   uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_958;
   lStack_800 = param_3;
-  (**(code **)(*(longlong *)(param_3 + 0x20) + 0x10))((longlong *)(param_3 + 0x20),&DAT_180a0143c);
+  (**(code **)(*(longlong *)(param_3 + 0x20) + 0x10))((longlong *)(param_3 + 0x20),&system_flag_143c);
   FUN_1806279c0(&puStack_7d8,param_2);
   lVar9 = FUN_18009ba60(puVar4 + 8,&puStack_7d8);
   puStack_7d8 = &UNK_180a3c3e0;
@@ -108,7 +108,7 @@ void initialize_resource_processing(uint64_t system_handle, longlong resource_da
     FUN_180096240(puVar4,param_3,lVar9);
   }
   if (*(char *)((longlong)puVar4 + 0x39) == '\0') goto LAB_180097ca1;
-  puVar12 = &DAT_18098bc73;
+  puVar12 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar12 = *(void **)(param_2 + 8);
   }
@@ -161,7 +161,7 @@ LAB_180096e94:
     *puVar11 = 0x61724720;
     *(int16_t *)(puVar11 + 1) = 0x6870;
     *(int8_t *)((longlong)puVar11 + 6) = 0;
-    puVar12 = &DAT_18098bc73;
+    puVar12 = &system_buffer_ptr;
     if (puStack_850 != (void *)0x0) {
       puVar12 = puStack_850;
     }

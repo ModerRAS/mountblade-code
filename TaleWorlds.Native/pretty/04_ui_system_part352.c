@@ -198,7 +198,7 @@ void FUN_18085ca30(longlong param_1,ulonglong param_2)
         uVar16 = *(uint *)(lVar17 + 0x20 + lVar14 * 0x28);
         if (uVar16 == *(uint *)(plVar15 + 3)) {
           if (*(int *)(lVar17 + 0x18 + lVar14 * 0x28) < 1) {
-            pppuStack_88 = (uint64_t ***)&DAT_18098bc73;
+            pppuStack_88 = (uint64_t ***)&system_buffer_ptr;
           }
           else {
             pppuStack_88 = *(uint64_t ****)(lVar17 + 0x10 + lVar14 * 0x28);

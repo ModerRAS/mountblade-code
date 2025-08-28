@@ -81,11 +81,11 @@ void FUN_18050af60(longlong param_1,int param_2)
     }
     if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
                 0x48) < _DAT_180d49e60) {
-      FUN_1808fcb90(&DAT_180d49e60);
+      FUN_1808fcb90(&system_ptr_9e60);
       if (_DAT_180d49e60 == -1) {
         _Mtx_init_in_situ(0x180d49e70,2);
         FUN_1808fc820(FUN_180943020);
-        FUN_1808fcb30(&DAT_180d49e60);
+        FUN_1808fcb30(&system_ptr_9e60);
       }
     }
     uStackX_20 = 0x180d49e70;
@@ -99,7 +99,7 @@ void FUN_18050af60(longlong param_1,int param_2)
         if (*(int *)(param_1 + 0x570) == 2) {
           *(longlong *)(*(longlong *)(param_1 + 0x8d8) + 0x87b700) =
                *(longlong *)
-                (&DAT_180c8ed30 + (longlong)*(int *)(*(longlong *)(param_1 + 0x8d8) + 0x87b708) * 8)
+                (&system_error_code + (longlong)*(int *)(*(longlong *)(param_1 + 0x8d8) + 0x87b708) * 8)
                + 50000;
         }
       }

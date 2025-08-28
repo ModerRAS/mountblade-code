@@ -814,7 +814,7 @@ void FUN_18004c2c4(longlong param_1)
     uVar1 = 0x1fff;
   }
                     // WARNING: Subroutine does not return
-  memcpy(&DAT_180c84870,param_1,(longlong)(int)uVar1);
+  memcpy(&system_counter_4870,param_1,(longlong)(int)uVar1);
 }
 
 
@@ -887,8 +887,8 @@ FUN_18004c330(int8_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4
   *(int32_t *)(param_1 + 0x30) = 0;
   param_1[0x7c] = 0;
   param_1[0xc9] = 1;
-  (**(code **)(*plVar1 + 0x10))(plVar1,&DAT_1809fd128);
-  (**(code **)(*plVar2 + 0x10))(plVar2,&DAT_18098bc73);
+  (**(code **)(*plVar1 + 0x10))(plVar1,&system_counter_d128);
+  (**(code **)(*plVar2 + 0x10))(plVar2,&system_buffer_ptr);
   *(int32_t *)(param_1 + 0xc0) = 0x461c4000;
   *(int32_t *)(param_1 + 0xc4) = 0x461c4000;
   param_1[200] = 0;
@@ -1039,7 +1039,7 @@ uint64_t * FUN_18004c480(uint64_t *param_1)
   *(int8_t *)(param_1 + 0x79) = 0;
   UNLOCK();
   (**(code **)(*plVar3 + 0x10))(plVar3,&UNK_1809fd140);
-  (**(code **)(*plVar2 + 0x10))(plVar2,&DAT_18098bc73);
+  (**(code **)(*plVar2 + 0x10))(plVar2,&system_buffer_ptr);
   *(int8_t *)(param_1 + 0x2d) = 0;
   param_1[0x13] = 0;
   *(int32_t *)(param_1 + 0x1f) = 0x1010101;

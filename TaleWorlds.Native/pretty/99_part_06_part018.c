@@ -218,7 +218,7 @@ LAB_1803b6243:
     pcStack_868 = FUN_1803b9640;
     puStack_860 = &UNK_1803b9630;
     plStack_998 = param_1;
-    apuStack_878[0] = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x28,8,DAT_180bf65bc);
+    apuStack_878[0] = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x28,8,system_allocation_flags);
     *apuStack_878[0] = plStack_998;
     apuStack_878[0][1] = plStack_990;
     *(int32_t *)(apuStack_878[0] + 2) = (int32_t)uStack_988;
@@ -275,7 +275,7 @@ LAB_1803b6243:
               memcpy((int8_t *)((longlong)puVar13 + 0x17),*(uint64_t *)(lVar7 + 0x4e0),
                      (longlong)(iVar22 + 1));
             }
-            puVar15 = (int32_t *)&DAT_18098bc73;
+            puVar15 = (int32_t *)&system_buffer_ptr;
             if (puVar13 != (int32_t *)0x0) {
               puVar15 = puVar13;
             }

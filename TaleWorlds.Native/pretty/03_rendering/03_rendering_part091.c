@@ -781,7 +781,7 @@ void rendering_system_data_transformer(longlong source_context, longlong target_
     resource_name = transform_info;
     transform_info[0] = 0;
     name_length = 0x1b;
-    array_pointer = (uint64_t *)&DAT_18098bc73;
+    array_pointer = (uint64_t *)&system_buffer_ptr;
     if (data_pointer != (uint64_t *)0x0) {
         array_pointer = data_pointer;
     }
@@ -904,7 +904,7 @@ void rendering_system_memory_optimizer(uint64_t **render_context, longlong *memo
     rendering_system_memory_optimizer(temp_resource, backup_resource);
     
     // 处理内存池数据
-    (**(code **)(*memory_pool + 0x10))(memory_pool, &DAT_18098bc73);
+    (**(code **)(*memory_pool + 0x10))(memory_pool, &system_buffer_ptr);
     total_blocks = (longlong)resource_backup - (longlong)resource_cache >> 5;
     cache_size = 0;
     resource_block = resource_cache;
@@ -918,7 +918,7 @@ void rendering_system_memory_optimizer(uint64_t **render_context, longlong *memo
                 block_offset = 0;
                 do {
                     cache_offset = block_offset + 1;
-                    if (*(char *)(*(longlong *)(size_pointer + -2) + block_offset) != (&DAT_180a04ee4)[block_offset])
+                    if (*(char *)(*(longlong *)(size_pointer + -2) + block_offset) != (&system_memory_4ee4)[block_offset])
                     goto invalid_block_detected;
                     block_offset = cache_offset;
                 } while (cache_offset != 5);

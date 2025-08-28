@@ -91,7 +91,7 @@ void initialize_rendering_data(longlong src_data_ptr, longlong *dest_data_ptr, u
   *(int32_t *)(dest_data_ptr + 0x12) = *(int32_t *)(src_data_ptr + 0x90);
   
   // 复制着色器名称
-  vertex_data = &DAT_18098bc73;
+  vertex_data = &system_buffer_ptr;
   if (*(void **)(src_data_ptr + 0x88) != (void *)0x0) {
     vertex_data = *(void **)(src_data_ptr + 0x88);
   }
@@ -99,7 +99,7 @@ void initialize_rendering_data(longlong src_data_ptr, longlong *dest_data_ptr, u
   
   // 复制纹理名称
   *(int32_t *)(dest_data_ptr + 0x25) = *(int32_t *)(src_data_ptr + 0x128);
-  vertex_data = &DAT_18098bc73;
+  vertex_data = &system_buffer_ptr;
   if (*(void **)(src_data_ptr + 0x120) != (void *)0x0) {
     vertex_data = *(void **)(src_data_ptr + 0x120);
   }

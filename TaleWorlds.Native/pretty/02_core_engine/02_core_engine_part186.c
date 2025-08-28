@@ -125,7 +125,7 @@ void process_engine_memory_allocation(longlong param_1, uint64_t *param_2, uint6
       // 处理数据项
       process_data_item(counter_val);
       temp_ptr1 = *(void **)(*(longlong *)(param_1 + 0x20) + 8 + temp_ulong1);
-      temp_ptr2 = &DAT_18098bc73;
+      temp_ptr2 = &system_buffer_ptr;
       if (temp_ptr1 != (void *)0x0) {
         temp_ptr2 = temp_ptr1;
       }
@@ -262,7 +262,7 @@ void optimized_memory_allocation_handler(void)
     // 处理数据项
     process_data_item(register_edi);
     temp_ptr1 = *(void **)(*(longlong *)(register_rsi + 0x20) + 8 + temp_ulong1);
-    temp_ptr2 = &DAT_18098bc73;
+    temp_ptr2 = &system_buffer_ptr;
     if (temp_ptr1 != (void *)0x0) {
       temp_ptr2 = temp_ptr1;
     }

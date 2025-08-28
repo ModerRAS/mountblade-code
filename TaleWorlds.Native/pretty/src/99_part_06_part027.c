@@ -424,7 +424,7 @@ LAB_1803be7b2:
                     goto LAB_1803be834;
                 }
                 
-                lVar7 = (longlong)&DAT_180a03a84 - (longlong)pcVar3;
+                lVar7 = (longlong)&system_memory_3a84 - (longlong)pcVar3;
                 while (*pcVar3 == pcVar3[lVar7]) {
                     pcVar3 = pcVar3 + 1;
                     if (pcVar6 <= pcVar3) {
@@ -640,7 +640,7 @@ joined_r0x0001803beb6b:
                                 goto LAB_1803bee65;
                             }
                             
-                            lVar15 = (longlong)&DAT_180a03a84 - (longlong)pcVar21;
+                            lVar15 = (longlong)&system_memory_3a84 - (longlong)pcVar21;
                             while (*pcVar21 == pcVar21[lVar15]) {
                                 pcVar21 = pcVar21 + 1;
                                 if (pcVar9 <= pcVar21) {
@@ -675,7 +675,7 @@ joined_r0x0001803beb6b:
                             SystemMemoryDeallocate(puVar4);
                         }
                         
-                        puVar16 = &DAT_18098bc73;
+                        puVar16 = &system_buffer_ptr;
                         if (puStack_118 != (void *)SYSTEM_NULL_POINTER) {
                             puVar16 = puStack_118;
                         }
@@ -837,7 +837,7 @@ LAB_1803bf01b:
                                 lVar10 = 0;
                                 do {
                                     lVar11 = lVar10 + 1;
-                                    if (*(char *)(lVar18 + lVar10) != (&DAT_180a03a84)[lVar10]) {
+                                    if (*(char *)(lVar18 + lVar10) != (&system_memory_3a84)[lVar10]) {
                                         goto LAB_1803bf07e;
                                     }
                                     lVar10 = lVar11;

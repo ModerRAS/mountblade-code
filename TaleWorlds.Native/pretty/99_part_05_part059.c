@@ -169,8 +169,8 @@ void FUN_1802fddb0(longlong param_1)
   FUN_1802fd530(param_1,auStack_8c8,auStack_4c8);
   lVar19 = *(longlong *)(param_1 + 0xd0);
   if (lVar19 == 0) {
-    pfVar34 = (float *)&DAT_180a002f0;
-    pfVar33 = (float *)&DAT_180a002f0;
+    pfVar34 = (float *)&system_data_02f0;
+    pfVar33 = (float *)&system_data_02f0;
   }
   else {
     pfVar34 = (float *)(lVar19 + 0x1018);
@@ -414,7 +414,7 @@ LAB_1802fe66e:
     puVar30 = *(uint64_t **)((longlong)cVar27 * 0x100 + 0xf0 + *(longlong *)(param_1 + 0x18));
     (**(code **)(*(longlong *)*puVar30 + 0xe0))();
     plVar3 = (longlong *)*puVar30;
-    (**(code **)(*plVar3 + 0xf8))(plVar3,&DAT_180a002f0,pfVar33);
+    (**(code **)(*plVar3 + 0xf8))(plVar3,&system_data_02f0,pfVar33);
   }
   if (*(longlong *)(param_1 + 0xd0) != 0) {
     uVar32 = *(ulonglong *)(*(longlong *)(param_1 + 0xd0) + 0x1000);

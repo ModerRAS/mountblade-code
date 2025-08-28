@@ -216,7 +216,7 @@ void process_ui_message_event(longlong ui_context)
     switch(message_type) {
     case 1:
       auStackX_8[0] = auStackX_8[0] & 0xffffff00;
-      puVar9 = &DAT_18098bc73;
+      puVar9 = &system_buffer_ptr;
       if (*(void **)(ui_context + 0x38) != (void *)0x0) {
         puVar9 = *(void **)(ui_context + 0x38);
       }
@@ -281,7 +281,7 @@ code_r0x0001800630e9:
     case 4:
       auStackX_18[0] = 0;
       puVar9 = *(void **)(*(longlong *)(ui_context + 0x20) + 0xe8);
-      puVar10 = &DAT_18098bc73;
+      puVar10 = &system_buffer_ptr;
       if (puVar9 != (void *)0x0) {
         puVar10 = puVar9;
       }
@@ -297,12 +297,12 @@ code_r0x0001800630e9:
          (puVar5 = *(uint64_t **)(ui_context + 0x20),
          (*(ulonglong *)(ui_context + 0x60) & puVar5[2]) != 0)) {
         uVar2 = *(uint *)(ui_context + 0x40);
-        puVar9 = &DAT_18098bc73;
+        puVar9 = &system_buffer_ptr;
         if (*(void **)(ui_context + 0x38) != (void *)0x0) {
           puVar9 = *(void **)(ui_context + 0x38);
         }
         if ((*(byte *)(puVar5 + 1) & 2) != 0) {
-          set_console_text_color((ulonglong)*(uint *)(&DAT_180063480 + (longlong)(int)message_type * 4) +
+          set_console_text_color((ulonglong)*(uint *)(&system_memory_3480 + (longlong)(int)message_type * 4) +
                         0x180000000, *(int32_t *)(ui_context + 0x50));
           iVar4 = WriteConsoleA(_DAT_180c912f0, puVar9, uVar2, auStackX_20, 0);
           if ((iVar4 == 0) || (auStackX_20[0] < uVar2)) {
@@ -548,7 +548,7 @@ initialize_string_buffer(uint64_t *buffer_ptr, int32_t flags, uint64_t param3, u
   *(int32_t *)(buffer_ptr + 8) = 0;
   *(int32_t *)(buffer_ptr + 5) = flags;
   buffer_ptr[4] = param3;
-  (**(code **)(*plVar1 + 0x10))(plVar1, &DAT_18098bc73, param3, param4, 0xfffffffffffffffe);
+  (**(code **)(*plVar1 + 0x10))(plVar1, &system_buffer_ptr, param3, param4, 0xfffffffffffffffe);
   *(int32_t *)(buffer_ptr + 10) = 0xd;
   *(uint64_t *)((longlong)buffer_ptr + 0x54) = 0xe;
   buffer_ptr[0xc] = 0xffffffff00000000;
@@ -651,7 +651,7 @@ void write_debug_info_to_file(uint64_t param1, longlong param2)
   uStack_48 = 0;
   lStack_40 = 0;
   FUN_180627e10(param1, &puStack_30, &UNK_1809fe800);
-  puVar2 = &DAT_18098bc73;
+  puVar2 = &system_buffer_ptr;
   if (puStack_28 != (void *)0x0) {
     puVar2 = puStack_28;
   }
@@ -674,8 +674,8 @@ void write_debug_info_to_file(uint64_t param1, longlong param2)
     lVar4 = lVar3;
   } while (*pcVar1 != '\0');
   if (lVar3 != 0) {
-    fwrite(&DAT_1809fe810, 0x30, 1, lVar6);
-    fwrite(&DAT_180c84870, lVar3, 1, lVar6);
+    fwrite(&system_memory_e810, 0x30, 1, lVar6);
+    fwrite(&system_memory_4870, lVar3, 1, lVar6);
 
 
 /**
@@ -759,7 +759,7 @@ LAB_180063de9:
       }
       if (bVar2) {
         puVar1 = *(void **)((longlong)puStack_2d8 + uVar13 + 8);
-        puVar9 = &DAT_18098bc73;
+        puVar9 = &system_buffer_ptr;
         if (puVar1 != (void *)0x0) {
           puVar9 = puVar1;
         }
@@ -907,7 +907,7 @@ void execute_system_shutdown(uint64_t param1)
   uStack_2f8 = 0;
   lStack_2f0 = 0;
   FUN_180627e10(param1, &puStack_280, &UNK_1809fe868);
-  puVar3 = &DAT_18098bc73;
+  puVar3 = &system_buffer_ptr;
   if (puStack_278 != (void *)0x0) {
     puVar3 = puStack_278;
   }
@@ -938,7 +938,7 @@ void execute_system_shutdown(uint64_t param1)
   uStack_2e0 = 0;
   lStack_2d8 = 0;
   FUN_180627e10(param1, &puStack_260, &UNK_1809fe880);
-  puVar3 = &DAT_18098bc73;
+  puVar3 = &system_buffer_ptr;
   if (puStack_258 != (void *)0x0) {
     puVar3 = puStack_258;
   }
@@ -1039,7 +1039,7 @@ ulonglong process_system_errors_and_logs(uint64_t param1)
     uStack_78 = 0;
     lStack_70 = 0;
     FUN_180627e10(param1, &puStack_58, &UNK_1809fe898);
-    puVar3 = &DAT_18098bc73;
+    puVar3 = &system_buffer_ptr;
     if (puStack_50 != (void *)0x0) {
       puVar3 = puStack_50;
     }
@@ -1053,7 +1053,7 @@ ulonglong process_system_errors_and_logs(uint64_t param1)
       puVar4 = puVar6 + 1;
       uVar2 = uVar2 & 0xffffffff;
       do {
-        puVar3 = &DAT_18098bc73;
+        puVar3 = &system_buffer_ptr;
         if ((void *)*puVar4 != (void *)0x0) {
           puVar3 = (void *)*puVar4;
         }

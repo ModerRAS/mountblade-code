@@ -977,11 +977,11 @@ void FUN_1806d2d50(longlong *param_1,uint64_t param_2,uint64_t *param_3,uint64_t
   
   puVar1 = param_5;
   puVar2 = (uint64_t *)FUN_1806c4e00(param_3,&UNK_180a063a0,*param_5);
-  (**(code **)*puVar2)(puVar2,&DAT_1809fc8e4,1);
+  (**(code **)*puVar2)(puVar2,&system_data_c8e4,1);
   puVar2 = (uint64_t *)FUN_1806c4e00(puVar2,&UNK_180a063a0,puVar1[1]);
-  (**(code **)*puVar2)(puVar2,&DAT_1809fc8e4,1);
+  (**(code **)*puVar2)(puVar2,&system_data_c8e4,1);
   puVar2 = (uint64_t *)FUN_1806c4e00(puVar2,&UNK_180a063a0,puVar1[2]);
-  (**(code **)*puVar2)(puVar2,&DAT_1809fc8e4,1);
+  (**(code **)*puVar2)(puVar2,&system_data_c8e4,1);
   FUN_1806c4e00(puVar2,&UNK_180a063a0,puVar1[3]);
   param_5._0_1_ = 0;
   (**(code **)*param_3)(param_3,&param_5,1);

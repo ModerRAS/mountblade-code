@@ -16,7 +16,7 @@ void FUN_1804a52b0(longlong param_1,int32_t param_2)
   void *puStack_28;
   
   uVar5 = 0xfffffffffffffffe;
-  if ((DAT_180c82860 != '\0') && (_DAT_180c8f008 != (longlong *)0x0)) {
+  if ((system_debug_flag != '\0') && (_DAT_180c8f008 != (longlong *)0x0)) {
     cVar3 = (**(code **)(*_DAT_180c8f008 + 0x28))();
     if (cVar3 != '\0') {
       (**(code **)(_DAT_180c8ece0 + 0x358))(*(int32_t *)(_DAT_180c8ece0 + 0x10),param_2);
@@ -32,7 +32,7 @@ void FUN_1804a52b0(longlong param_1,int32_t param_2)
         *(int32_t *)(lVar1 + 0x30) = 1;
       }
       else {
-        (**(code **)(*(longlong *)(lVar1 + 0x10) + 0x10))((longlong *)(lVar1 + 0x10),&DAT_18098bc73)
+        (**(code **)(*(longlong *)(lVar1 + 0x10) + 0x10))((longlong *)(lVar1 + 0x10),&system_buffer_ptr)
         ;
         lVar4 = _DAT_180c86870;
       }
@@ -100,17 +100,17 @@ void FUN_1804a54e0(uint64_t param_1,uint64_t param_2)
   if (_DAT_180c92590 != 0) {
     FUN_18056df90();
   }
-  cVar1 = (**(code **)(_DAT_180c925c8 + 0x30))(&DAT_180c925c8);
+  cVar1 = (**(code **)(_DAT_180c925c8 + 0x30))(&system_data_25c8);
   if (cVar1 != '\0') {
     auStackX_18[0] = (int)param_2;
-    _DAT_180c95be0 = FUN_18055c500(&DAT_180c925a0,param_2);
-    FUN_1805f7e10(0x180c92c58,&DAT_180c92cd8,&DAT_180c92cf8);
+    _DAT_180c95be0 = FUN_18055c500(&system_data_25a0,param_2);
+    FUN_1805f7e10(0x180c92c58,&system_data_2cd8,&system_data_2cf8);
     uStackX_20 = _DAT_180c96070;
     lVar2 = _DAT_180c92ce0 - _DAT_180c92cd8;
     ppuVar4 = apuStack_40;
     pcStack_30 = FUN_18055ec90;
     pcStack_28 = FUN_18055ec20;
-    apuStack_40[0] = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,DAT_180bf65bc);
+    apuStack_40[0] = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,system_allocation_flags);
     *apuStack_40[0] = 0x80c925a0;
     apuStack_40[0][1] = 1;
     *(int32_t **)(apuStack_40[0] + 2) = auStackX_18;
@@ -163,7 +163,7 @@ void create_game_application(void)
   puVar1[0x83] = 0;
   *(int32_t *)(puVar1 + 0x82) = 0xffffffff;
   FUN_18049dc80();
-  (**(code **)(_DAT_180c924d0 + 0x10))(&DAT_180c924d0,&DAT_1809fd128);
+  (**(code **)(_DAT_180c924d0 + 0x10))(&system_data_24d0,&system_data_d128);
   *(int32_t *)(puVar1 + 1) = 0;
   puStack_50 = &UNK_1809fdc18;
   puStack_48 = auStack_38;
@@ -177,7 +177,7 @@ void create_game_application(void)
   uStack_78 = 0;
   FUN_1806277c0(&puStack_88,iStack_40);
   if (0 < iStack_40) {
-    puVar2 = &DAT_18098bc73;
+    puVar2 = &system_buffer_ptr;
     if (puStack_48 != (void *)0x0) {
       puVar2 = puStack_48;
     }
@@ -208,7 +208,7 @@ void create_game_application(void)
   *(int16_t *)(puStack_80 + uStack_78) = 0x2f;
   uStack_78 = uVar4;
   if (puStack_80 != (int8_t *)0x0) {
-    FUN_1806277c0(&DAT_180c924f0,uVar4);
+    FUN_1806277c0(&system_data_24f0,uVar4);
   }
   if (uVar4 != 0) {
                     // WARNING: Subroutine does not return

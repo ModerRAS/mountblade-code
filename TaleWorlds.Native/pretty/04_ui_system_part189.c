@@ -772,30 +772,30 @@ uint64_t FUN_180779df5(int32_t transform_params, ulonglong matrix_size);
  * ============================================================================ */
 
 // 全局数据定义
-uint8_t DAT_180c0fa90;      // UI系统全局状态数据
-uint8_t DAT_180c0fa94;      // UI系统配置数据
-uint8_t DAT_180c0fcd0;      // UI系统渲染状态数据
-uint8_t DAT_180c0fcd4;      // UI系统资源管理数据
-uint8_t DAT_180c0fc70;      // UI系统事件队列数据
-uint8_t DAT_180c0fc74;      // UI系统输入状态数据
-uint8_t DAT_180c0faf0;      // UI系统动画状态数据
-uint8_t DAT_180c0faf4;      // UI系统布局缓存数据
-uint8_t DAT_180c0fe50;      // UI系统性能监控数据
-uint8_t DAT_180c0fe54;      // UI系统调试信息数据
-uint8_t DAT_180c0fdf0;      // UI系统主题数据
-uint8_t DAT_180c0fdf4;      // UI系统本地化数据
-uint8_t DAT_180c0fb50;      // UI系统字体缓存数据
-uint8_t DAT_180c0fb54;      // UI系统纹理缓存数据
-uint8_t DAT_180c0fd90;      // UI系统着色器缓存数据
-uint8_t DAT_180c0fd94;      // UI系统缓冲区管理数据
-uint8_t DAT_180c0fbb0;      // UI系统内存池数据
-uint8_t DAT_180c0fbb4;      // UI系统对象池数据
-uint8_t DAT_180c0fc10;      // UI系统时间管理数据
-uint8_t DAT_180c0fc14;      // UI系统帧率控制数据
-uint8_t DAT_180c0fd30;      // UI系统输入映射数据
-uint8_t DAT_180c0fd34;      // UI系统焦点管理数据
-uint8_t DAT_180c0feb0;      // UI系统声音管理数据
-uint8_t DAT_180c0feb4;      // UI系统振动管理数据
+uint8_t system_memory_fa90;      // UI系统全局状态数据
+uint8_t system_memory_fa94;      // UI系统配置数据
+uint8_t system_memory_fcd0;      // UI系统渲染状态数据
+uint8_t system_memory_fcd4;      // UI系统资源管理数据
+uint8_t system_memory_fc70;      // UI系统事件队列数据
+uint8_t system_memory_fc74;      // UI系统输入状态数据
+uint8_t system_memory_faf0;      // UI系统动画状态数据
+uint8_t system_memory_faf4;      // UI系统布局缓存数据
+uint8_t system_memory_fe50;      // UI系统性能监控数据
+uint8_t system_memory_fe54;      // UI系统调试信息数据
+uint8_t system_memory_fdf0;      // UI系统主题数据
+uint8_t system_memory_fdf4;      // UI系统本地化数据
+uint8_t system_memory_fb50;      // UI系统字体缓存数据
+uint8_t system_memory_fb54;      // UI系统纹理缓存数据
+uint8_t system_memory_fd90;      // UI系统着色器缓存数据
+uint8_t system_memory_fd94;      // UI系统缓冲区管理数据
+uint8_t system_memory_fbb0;      // UI系统内存池数据
+uint8_t system_memory_fbb4;      // UI系统对象池数据
+uint8_t system_memory_fc10;      // UI系统时间管理数据
+uint8_t system_memory_fc14;      // UI系统帧率控制数据
+uint8_t system_memory_fd30;      // UI系统输入映射数据
+uint8_t system_memory_fd34;      // UI系统焦点管理数据
+uint8_t system_memory_feb0;      // UI系统声音管理数据
+uint8_t system_memory_feb4;      // UI系统振动管理数据
 
 /* ============================================================================
  * 技术说明

@@ -351,7 +351,7 @@ LAB_1801da300:
           plStack_2d0 = (longlong *)plVar22[0x3c];
           bVar5 = false;
           if ((plStack_2d0 != (longlong *)0x0) && ((int)plStack_2d0[4] == 0x10)) {
-            iVar26 = strcmp(plStack_2d0[3],&DAT_180a03870);
+            iVar26 = strcmp(plStack_2d0[3],&system_data_3870);
             bVar5 = false;
             if (iVar26 == 0) {
               bVar5 = true;
@@ -437,7 +437,7 @@ LAB_1801da300:
             puStack_90 = auStack_80;
             auStack_80[0] = 0;
             uStack_88 = 0x15;
-            strcpy_s(auStack_80,0x40,&DAT_180a0e020);
+            strcpy_s(auStack_80,0x40,&system_data_e020);
             FUN_180240430(plStack_2d0,&puStack_98,0);
             puStack_98 = &UNK_18098bcb0;
             puStack_360 = (int32_t *)0x0;
@@ -781,7 +781,7 @@ LAB_1801dae19:
             uStack_150 = &plStack_2d0;
             uStack_1d8 = FUN_1801eb0f0;
             puStack_1d0 = &UNK_1801eb0e0;
-            plStack_1e8 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x30,8,DAT_180bf65bc);
+            plStack_1e8 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x30,8,system_allocation_flags);
             *plStack_1e8 = (longlong)plStack_178;
             plStack_1e8[1] = (longlong)plStack_170;
             *(int32_t *)(plStack_1e8 + 2) = (int32_t)uStack_168;

@@ -57,7 +57,7 @@ void initialize_resource_manager(longlong *engine_context,longlong resource_para
   stack_capacity = 0x100;
   stack_resource_bool = 0;
   stack_resource_format[0] = 0;
-  resource_data = &DAT_18098bc73;
+  resource_data = &system_buffer_ptr;
   if (*(void **)(resource_params + 8) != (void *)0x0) {
     resource_data = *(void **)(resource_params + 8);
   }
@@ -86,7 +86,7 @@ void initialize_resource_manager(longlong *engine_context,longlong resource_para
   stack_resource_data_ptr = resource_name_buffer;
   resource_name_buffer[0] = 0;
   stack_resource_config = *(int32_t *)(resource_params + 0x10);
-  resource_data = &DAT_18098bc73;
+  resource_data = &system_buffer_ptr;
   if (*(void **)(resource_params + 8) != (void *)0x0) {
     resource_data = *(void **)(resource_params + 8);
   }
@@ -337,7 +337,7 @@ LAB_path_processing_error:
         shader_data = shader_array[0];
         file_offset = (longlong)shader_array[1] - (longlong)shader_array[0];
         FUN_18004b100(&file_buffer);
-        file_path = &DAT_18098bc73;
+        file_path = &system_buffer_ptr;
         if (file_handle != (int8_t *)0x0) {
           file_path = file_handle;
         }
@@ -377,32 +377,32 @@ LAB_path_processing_error:
             *shader_ptr = 0x782e656e6563732f;
             *(int32_t *)(shader_ptr + 1) = 0x6e656373;
             *(int16_t *)((longlong)shader_ptr + 0xc) = 0x65;
-            file_path = &DAT_18098bc73;
+            file_path = &system_buffer_ptr;
             if (shader_input != (int8_t *)0x0) {
               file_path = shader_input;
             }
             shader_length = shader_index;
             total_files = strstr(file_path,&UNK_1809fd7d8);
             if (total_files == 0) {
-              file_path = &DAT_18098bc73;
+              file_path = &system_buffer_ptr;
               if (shader_input != (int8_t *)0x0) {
                 file_path = shader_input;
               }
               total_files = strstr(file_path,&UNK_1809fd7f8);
               if (total_files != 0) goto LAB_shader_found;
-              file_path = &DAT_18098bc73;
+              file_path = &system_buffer_ptr;
               if (shader_input != (int8_t *)0x0) {
                 file_path = shader_input;
               }
               total_files = strstr(file_path,&UNK_1809fd810);
               if (total_files != 0) goto LAB_shader_found;
-              file_path = &DAT_18098bc73;
+              file_path = &system_buffer_ptr;
               if (shader_input != (int8_t *)0x0) {
                 file_path = shader_input;
               }
               total_files = strstr(file_path,&UNK_1809fd828);
               if (total_files != 0) goto LAB_shader_found;
-              file_path = &DAT_18098bc73;
+              file_path = &system_buffer_ptr;
               if (shader_input != (int8_t *)0x0) {
                 file_path = shader_input;
               }
@@ -479,7 +479,7 @@ LAB_shader_path_found:
                     }
                     file_data = file_data & 0xffffffff;
                   }
-                  file_handle = &DAT_18098bc73;
+                  file_handle = &system_buffer_ptr;
                   if (file_buffer != (void *)0x0) {
                     file_handle = file_buffer;
                   }

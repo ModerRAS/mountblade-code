@@ -749,9 +749,9 @@ LAB_1805e4ba2:
   *(uint64_t *)(param_1 + 0x45a) = *puVar10;
   *(int8_t *)(param_1 + 0x45f) = 0;
   *(uint64_t *)(param_1 + 0x3e) =
-       *(uint64_t *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x40] * 8);
+       *(uint64_t *)(&system_error_code + (longlong)(int)param_1[0x40] * 8);
   *(uint64_t *)(param_1 + 0x42) =
-       *(uint64_t *)(&DAT_180c8ed30 + (longlong)(int)param_1[0x44] * 8);
+       *(uint64_t *)(&system_error_code + (longlong)(int)param_1[0x44] * 8);
   *(uint64_t *)(param_1 + 2) = 0;
   *(int8_t *)(param_1 + 4) = 0;
   *(int16_t *)((longlong)param_1 + 0x1145) = 0;

@@ -110,7 +110,7 @@ void resize_render_object_array(render_context_t *render_context, size_t new_siz
         // 复制对象的属性数据
         temp_ptr->flags = *(uint32_t *)((longlong)temp_ptr + size_diff + 0x10);
         object_ptr = *(render_object_t **)((longlong)temp_ptr + size_diff + 8);
-        string_data = &DAT_18098bc73;  // 默认名称字符串
+        string_data = &system_buffer_ptr;  // 默认名称字符串
         if (object_ptr != NULL) {
           string_data = (char *)object_ptr;
         }
@@ -292,7 +292,7 @@ render_object_t **create_render_object_instance(render_context_t *render_context
   *(longlong *)((uint8_t *)*instance_ptr + 0xa8) = (longlong)render_context;
   
   // 设置对象名称
-  name_string = &DAT_18098bc73;  // 默认名称
+  name_string = &system_buffer_ptr;  // 默认名称
   if (*(void **)((uint8_t *)render_context + 0x70) != NULL) {
     name_string = *(char **)((uint8_t *)render_context + 0x70);
   }
@@ -459,7 +459,7 @@ void process_render_object_creation(longlong render_context, uint64_t param2, ui
   queue_lock = &object_instance;
   (**(code **)(*object_instance + 0x28))();
   cleanup_render_resources();
-  object_name = &DAT_18098bc73;
+  object_name = &system_buffer_ptr;
   if (*(void **)(render_context + 0x70) != (void *)0x0) {
     object_name = *(void **)(render_context + 0x70);
   }

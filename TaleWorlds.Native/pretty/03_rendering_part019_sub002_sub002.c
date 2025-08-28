@@ -211,7 +211,7 @@ void FUN_180279640(longlong *param_1,longlong *param_2,char param_3)
               pbStack_3b0 = abStack_3a0;
               abStack_3a0[0] = 0;
               iStack_3a8 = *(int *)(lVar7 + 0x10);
-              puVar15 = &DAT_18098bc73;
+              puVar15 = &system_buffer_ptr;
               if (*(void **)(lVar7 + 8) != (void *)0x0) {
                 puVar15 = *(void **)(lVar7 + 8);
               }
@@ -279,7 +279,7 @@ code_r0x000180279aee:
               pbStack_410 = abStack_400;
               abStack_400[0] = 0;
               iStack_408 = *(int *)(lVar7 + 0x10);
-              puVar15 = &DAT_18098bc73;
+              puVar15 = &system_buffer_ptr;
               if (*(void **)(lVar7 + 8) != (void *)0x0) {
                 puVar15 = *(void **)(lVar7 + 8);
               }
@@ -345,7 +345,7 @@ code_r0x0001802799ad:
               pbStack_2f0 = abStack_2e0;
               abStack_2e0[0] = 0;
               iStack_2e8 = *(int *)(lVar7 + 0x10);
-              puVar15 = &DAT_18098bc73;
+              puVar15 = &system_buffer_ptr;
               if (*(void **)(lVar7 + 8) != (void *)0x0) {
                 puVar15 = *(void **)(lVar7 + 8);
               }
@@ -407,7 +407,7 @@ code_r0x000180279dbd:
               pbStack_350 = abStack_340;
               abStack_340[0] = 0;
               iStack_348 = *(int *)(lVar7 + 0x10);
-              puVar15 = &DAT_18098bc73;
+              puVar15 = &system_buffer_ptr;
               if (*(void **)(lVar7 + 8) != (void *)0x0) {
                 puVar15 = *(void **)(lVar7 + 8);
               }
@@ -476,7 +476,7 @@ code_r0x000180279c5d:
               pbStack_230 = abStack_220;
               abStack_220[0] = 0;
               iStack_228 = *(int *)(lVar7 + 0x10);
-              puVar15 = &DAT_18098bc73;
+              puVar15 = &system_buffer_ptr;
               if (*(void **)(lVar7 + 8) != (void *)0x0) {
                 puVar15 = *(void **)(lVar7 + 8);
               }
@@ -538,7 +538,7 @@ code_r0x00018027a0fd:
               pbStack_290 = abStack_280;
               abStack_280[0] = 0;
               iStack_288 = *(int *)(lVar7 + 0x10);
-              puVar15 = &DAT_18098bc73;
+              puVar15 = &system_buffer_ptr;
               if (*(void **)(lVar7 + 8) != (void *)0x0) {
                 puVar15 = *(void **)(lVar7 + 8);
               }
@@ -607,7 +607,7 @@ code_r0x000180279f91:
               pbStack_170 = abStack_160;
               abStack_160[0] = 0;
               iStack_168 = *(int *)(lVar7 + 0x10);
-              puVar15 = &DAT_18098bc73;
+              puVar15 = &system_buffer_ptr;
               if (*(void **)(lVar7 + 8) != (void *)0x0) {
                 puVar15 = *(void **)(lVar7 + 8);
               }
@@ -671,7 +671,7 @@ code_r0x00018027a43d:
               pbStack_1d0 = abStack_1c0;
               abStack_1c0[0] = 0;
               iStack_1c8 = *(int *)(lVar7 + 0x10);
-              puVar15 = &DAT_18098bc73;
+              puVar15 = &system_buffer_ptr;
               if (*(void **)(lVar7 + 8) != (void *)0x0) {
                 puVar15 = *(void **)(lVar7 + 8);
               }
@@ -740,7 +740,7 @@ code_r0x00018027a2d1:
               pbStack_b0 = abStack_a0;
               abStack_a0[0] = 0;
               iStack_a8 = *(int *)(lVar7 + 0x10);
-              puVar15 = &DAT_18098bc73;
+              puVar15 = &system_buffer_ptr;
               if (*(void **)(lVar7 + 8) != (void *)0x0) {
                 puVar15 = *(void **)(lVar7 + 8);
               }
@@ -804,7 +804,7 @@ code_r0x00018027a71d:
               pbStack_110 = abStack_100;
               abStack_100[0] = 0;
               iStack_108 = *(int *)(lVar7 + 0x10);
-              puVar15 = &DAT_18098bc73;
+              puVar15 = &system_buffer_ptr;
               if (*(void **)(lVar7 + 8) != (void *)0x0) {
                 puVar15 = *(void **)(lVar7 + 8);
               }

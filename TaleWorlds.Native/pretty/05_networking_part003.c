@@ -234,7 +234,7 @@ int NetworkProtocol_SerializeExtended(void* context, uint8_t* output_buffer, int
     total_size += current_size;
     
     // 序列化分隔符
-    current_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    current_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (current_size < 0) return current_size;
     total_size += current_size;
     
@@ -244,7 +244,7 @@ int NetworkProtocol_SerializeExtended(void* context, uint8_t* output_buffer, int
     total_size += current_size;
     
     // 序列化分隔符
-    current_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    current_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (current_size < 0) return current_size;
     total_size += current_size;
     
@@ -254,7 +254,7 @@ int NetworkProtocol_SerializeExtended(void* context, uint8_t* output_buffer, int
     total_size += current_size;
     
     // 序列化分隔符
-    current_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    current_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (current_size < 0) return current_size;
     total_size += current_size;
     
@@ -264,7 +264,7 @@ int NetworkProtocol_SerializeExtended(void* context, uint8_t* output_buffer, int
     total_size += current_size;
     
     // 序列化分隔符
-    current_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    current_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (current_size < 0) return current_size;
     total_size += current_size;
     
@@ -311,7 +311,7 @@ int NetworkProtocol_SerializeConnectionRequest(void* context, uint8_t* output_bu
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     
     // 序列化连接标识符
@@ -358,7 +358,7 @@ int NetworkProtocol_SerializeConnectionResponse(void* context, uint8_t* output_b
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     
     // 序列化响应码
@@ -405,7 +405,7 @@ int NetworkProtocol_SerializeDisconnect(void* context, uint8_t* output_buffer, i
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     
     // 序列化断开原因
@@ -459,7 +459,7 @@ int NetworkProtocol_SerializeHeartbeat(void* context, uint8_t* output_buffer, in
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     
     // 序列化会话ID
@@ -469,7 +469,7 @@ int NetworkProtocol_SerializeHeartbeat(void* context, uint8_t* output_buffer, in
     
     // 序列化分隔符
     total_size = FUN_18074b880(output_buffer + header_size + total_size, 
-                               buffer_size - header_size - total_size, &DAT_180a06434);
+                               buffer_size - header_size - total_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     
     // 序列化时间戳
@@ -516,7 +516,7 @@ int NetworkProtocol_SerializeHeartbeatResponse(void* context, uint8_t* output_bu
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     
     // 序列化响应码
@@ -641,7 +641,7 @@ int NetworkProtocol_SerializeCompressed(void* context, uint8_t* output_buffer, i
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     
     // 序列化算法标识
@@ -651,7 +651,7 @@ int NetworkProtocol_SerializeCompressed(void* context, uint8_t* output_buffer, i
     
     // 序列化分隔符
     total_size = FUN_18074b880(output_buffer + header_size + total_size, 
-                               buffer_size - header_size - total_size, &DAT_180a06434);
+                               buffer_size - header_size - total_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     
     // 序列化压缩级别
@@ -706,7 +706,7 @@ int NetworkProtocol_SerializeEncrypted(void* context, uint8_t* output_buffer, in
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     
@@ -716,7 +716,7 @@ int NetworkProtocol_SerializeEncrypted(void* context, uint8_t* output_buffer, in
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -766,7 +766,7 @@ int NetworkProtocol_SerializeConnectionAck(void* context, uint8_t* output_buffer
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     
     // 序列化确认码
@@ -819,7 +819,7 @@ int NetworkProtocol_SerializeDataTransfer(void* context, uint8_t* output_buffer,
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     
@@ -829,7 +829,7 @@ int NetworkProtocol_SerializeDataTransfer(void* context, uint8_t* output_buffer,
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -880,7 +880,7 @@ int NetworkProtocol_SerializeStatusQuery(void* context, uint8_t* output_buffer, 
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     
@@ -890,7 +890,7 @@ int NetworkProtocol_SerializeStatusQuery(void* context, uint8_t* output_buffer, 
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -942,7 +942,7 @@ int NetworkProtocol_SerializeThreeField(void* context, uint8_t* output_buffer, i
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     
@@ -952,7 +952,7 @@ int NetworkProtocol_SerializeThreeField(void* context, uint8_t* output_buffer, i
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -962,7 +962,7 @@ int NetworkProtocol_SerializeThreeField(void* context, uint8_t* output_buffer, i
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1014,7 +1014,7 @@ int NetworkProtocol_SerializeVariantThreeField(void* context, uint8_t* output_bu
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     
@@ -1024,7 +1024,7 @@ int NetworkProtocol_SerializeVariantThreeField(void* context, uint8_t* output_bu
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1034,7 +1034,7 @@ int NetworkProtocol_SerializeVariantThreeField(void* context, uint8_t* output_bu
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1085,7 +1085,7 @@ int NetworkProtocol_SerializeTwoField(void* context, uint8_t* output_buffer, int
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     
@@ -1095,7 +1095,7 @@ int NetworkProtocol_SerializeTwoField(void* context, uint8_t* output_buffer, int
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1145,7 +1145,7 @@ int NetworkProtocol_SerializeSingleFieldA(void* context, uint8_t* output_buffer,
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     
@@ -1195,7 +1195,7 @@ int NetworkProtocol_SerializeSingleFieldB(void* context, uint8_t* output_buffer,
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     
@@ -1245,7 +1245,7 @@ int NetworkProtocol_SerializeSingleFieldC(void* context, uint8_t* output_buffer,
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     
@@ -1297,7 +1297,7 @@ int NetworkProtocol_SerializeTimestamp(void* context, uint8_t* output_buffer, in
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     
@@ -1307,7 +1307,7 @@ int NetworkProtocol_SerializeTimestamp(void* context, uint8_t* output_buffer, in
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1358,7 +1358,7 @@ int NetworkProtocol_SerializeTwoFieldB(void* context, uint8_t* output_buffer, in
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     
@@ -1368,7 +1368,7 @@ int NetworkProtocol_SerializeTwoFieldB(void* context, uint8_t* output_buffer, in
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1423,7 +1423,7 @@ int NetworkProtocol_SerializeSingleFieldD(void* context, uint8_t* output_buffer,
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     
@@ -1478,7 +1478,7 @@ int NetworkProtocol_SerializeSingleFieldE(void* context, uint8_t* output_buffer,
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     
@@ -1545,7 +1545,7 @@ int NetworkProtocol_SerializeComplexStructureA(void* context, uint8_t* output_bu
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     
@@ -1555,7 +1555,7 @@ int NetworkProtocol_SerializeComplexStructureA(void* context, uint8_t* output_bu
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1612,7 +1612,7 @@ int NetworkProtocol_SerializeTwoFieldC(void* context, uint8_t* output_buffer, in
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     
@@ -1622,7 +1622,7 @@ int NetworkProtocol_SerializeTwoFieldC(void* context, uint8_t* output_buffer, in
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1684,7 +1684,7 @@ int NetworkProtocol_SerializeComplexStructureB(void* context, uint8_t* output_bu
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     
@@ -1694,7 +1694,7 @@ int NetworkProtocol_SerializeComplexStructureB(void* context, uint8_t* output_bu
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1704,7 +1704,7 @@ int NetworkProtocol_SerializeComplexStructureB(void* context, uint8_t* output_bu
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1714,7 +1714,7 @@ int NetworkProtocol_SerializeComplexStructureB(void* context, uint8_t* output_bu
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1777,7 +1777,7 @@ int NetworkProtocol_SerializeComplexStructureC(void* context, uint8_t* output_bu
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     
@@ -1787,7 +1787,7 @@ int NetworkProtocol_SerializeComplexStructureC(void* context, uint8_t* output_bu
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1797,7 +1797,7 @@ int NetworkProtocol_SerializeComplexStructureC(void* context, uint8_t* output_bu
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1807,7 +1807,7 @@ int NetworkProtocol_SerializeComplexStructureC(void* context, uint8_t* output_bu
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1869,7 +1869,7 @@ int NetworkProtocol_SerializeThreeFieldA(void* context, uint8_t* output_buffer, 
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     
@@ -1879,7 +1879,7 @@ int NetworkProtocol_SerializeThreeFieldA(void* context, uint8_t* output_buffer, 
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1889,7 +1889,7 @@ int NetworkProtocol_SerializeThreeFieldA(void* context, uint8_t* output_buffer, 
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1899,7 +1899,7 @@ int NetworkProtocol_SerializeThreeFieldA(void* context, uint8_t* output_buffer, 
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1961,7 +1961,7 @@ int NetworkProtocol_SerializeFourFieldA(void* context, uint8_t* output_buffer, i
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     
@@ -1971,7 +1971,7 @@ int NetworkProtocol_SerializeFourFieldA(void* context, uint8_t* output_buffer, i
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1981,7 +1981,7 @@ int NetworkProtocol_SerializeFourFieldA(void* context, uint8_t* output_buffer, i
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -1991,7 +1991,7 @@ int NetworkProtocol_SerializeFourFieldA(void* context, uint8_t* output_buffer, i
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -2049,7 +2049,7 @@ int NetworkProtocol_SerializeTwoFieldD(void* context, uint8_t* output_buffer, in
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     
@@ -2059,7 +2059,7 @@ int NetworkProtocol_SerializeTwoFieldD(void* context, uint8_t* output_buffer, in
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -2154,7 +2154,7 @@ int NetworkProtocol_SerializeThreeFieldB(void* context, uint8_t* output_buffer, 
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     
@@ -2164,7 +2164,7 @@ int NetworkProtocol_SerializeThreeFieldB(void* context, uint8_t* output_buffer, 
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -2174,7 +2174,7 @@ int NetworkProtocol_SerializeThreeFieldB(void* context, uint8_t* output_buffer, 
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -2232,7 +2232,7 @@ int NetworkProtocol_SerializeThreeFieldC(void* context, uint8_t* output_buffer, 
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     
@@ -2242,7 +2242,7 @@ int NetworkProtocol_SerializeThreeFieldC(void* context, uint8_t* output_buffer, 
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -2252,7 +2252,7 @@ int NetworkProtocol_SerializeThreeFieldC(void* context, uint8_t* output_buffer, 
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -2309,7 +2309,7 @@ int NetworkProtocol_SerializeTwoFieldE(void* context, uint8_t* output_buffer, in
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     
@@ -2319,7 +2319,7 @@ int NetworkProtocol_SerializeTwoFieldE(void* context, uint8_t* output_buffer, in
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -2411,7 +2411,7 @@ int NetworkProtocol_SerializeSingleFieldF(void* context, uint8_t* output_buffer,
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     
@@ -2468,7 +2468,7 @@ int NetworkProtocol_SerializeTwoFieldF(void* context, uint8_t* output_buffer, in
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     
@@ -2478,7 +2478,7 @@ int NetworkProtocol_SerializeTwoFieldF(void* context, uint8_t* output_buffer, in
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -2538,7 +2538,7 @@ int NetworkProtocol_SerializeArrayA(void* context, uint8_t* output_buffer, int b
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     
@@ -2548,7 +2548,7 @@ int NetworkProtocol_SerializeArrayA(void* context, uint8_t* output_buffer, int b
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -2608,7 +2608,7 @@ int NetworkProtocol_SerializeArrayB(void* context, uint8_t* output_buffer, int b
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     
@@ -2618,7 +2618,7 @@ int NetworkProtocol_SerializeArrayB(void* context, uint8_t* output_buffer, int b
     total_size += header_size;
     
     // 序列化分隔符
-    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &system_temp_buffer);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -2674,7 +2674,7 @@ int NetworkProtocol_SerializeSingleFieldG(void* context, uint8_t* output_buffer,
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
-    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &system_temp_buffer);
     if (total_size < 0) return total_size;
     total_size += header_size;
     

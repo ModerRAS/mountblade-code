@@ -100,7 +100,7 @@ void FUN_18016c97a(longlong param_1,uint64_t *param_2,uint64_t *param_3,uint64_t
       }
       FUN_18012e2d0(uVar18);
       puVar9 = *(void **)(*(longlong *)(param_1 + 0x20) + 8 + uVar20);
-      puVar16 = &DAT_18098bc73;
+      puVar16 = &system_buffer_ptr;
       if (puVar9 != (void *)0x0) {
         puVar16 = puVar9;
       }
@@ -222,7 +222,7 @@ void FUN_18016cacd(void)
     }
     FUN_18012e2d0(unaff_EDI);
     puVar8 = *(void **)(*(longlong *)(unaff_RSI + 0x20) + 8 + uVar17);
-    puVar16 = &DAT_18098bc73;
+    puVar16 = &system_buffer_ptr;
     if (puVar8 != (void *)0x0) {
       puVar16 = puVar8;
     }

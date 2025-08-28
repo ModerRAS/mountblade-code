@@ -49,9 +49,9 @@ void FUN_180416926(uint64_t param_1,uint64_t param_2,longlong param_3)
   } while (*pcVar6 != '\0');
   *puVar5 = &UNK_180a180f4;
   puVar5[2] = pcVar8 + -0x180a180f3;
-  uVar10 = FUN_180630b20(extraout_XMM0_Da,puVar5,&DAT_180a03a84);
+  uVar10 = FUN_180630b20(extraout_XMM0_Da,puVar5,&system_data_3a84);
   uVar10 = FUN_180630c80(uVar10,puVar5,&UNK_180a015b0,1);
-  uVar10 = FUN_18062f990(uVar10,puVar5,&DAT_180a0b1c0);
+  uVar10 = FUN_18062f990(uVar10,puVar5,&system_data_b1c0);
   FUN_18062f990(uVar10,puVar5,&UNK_180a180b0);
   if (*(longlong *)(unaff_RDI + 0x30) == 0) {
     puVar5[10] = 0;

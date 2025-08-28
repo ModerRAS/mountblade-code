@@ -19,7 +19,7 @@ uint64_t FUN_1807437c0(longlong param_1)
   plVar1 = *(longlong **)(param_1 + 0x10788);
   if (plVar1 != (longlong *)(param_1 + 0x10788)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(param_1 + 0x10bd0,plVar1[3],&DAT_18098bc73,0,1);
+    FUN_180742250(param_1 + 0x10bd0,plVar1[3],&system_buffer_ptr,0,1);
   }
   return 0;
 }
@@ -35,7 +35,7 @@ void FUN_1807437dd(longlong param_1)
   longlong unaff_RBX;
   
                     // WARNING: Subroutine does not return
-  FUN_180742250(param_1 + 0x10bd0,*(uint64_t *)(unaff_RBX + 0x18),&DAT_18098bc73,0,1);
+  FUN_180742250(param_1 + 0x10bd0,*(uint64_t *)(unaff_RBX + 0x18),&system_buffer_ptr,0,1);
 }
 
 

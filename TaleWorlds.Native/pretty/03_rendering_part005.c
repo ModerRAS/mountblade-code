@@ -246,7 +246,7 @@ LAB_180416d70:
                 lVar5 = param_2 - (longlong)pcVar8;
                 goto LAB_180416de4;
             }
-            lVar5 = (longlong)&DAT_180a03a84 - (longlong)pcVar8;
+            lVar5 = (longlong)&system_memory_3a84 - (longlong)pcVar8;
             while (*pcVar8 == pcVar8[lVar5]) {
                 pcVar8 = pcVar8 + 1;
                 if (pcVar3 <= pcVar8) goto LAB_180416dd0;
@@ -375,7 +375,7 @@ LAB_180416d70:
                             }
                             goto LAB_180416fa0;
                         }
-                        lVar5 = (longlong)&DAT_180a0b1c0 - (longlong)pcVar8;
+                        lVar5 = (longlong)&system_memory_b1c0 - (longlong)pcVar8;
                         while (*pcVar8 == pcVar8[lVar5]) {
                             pcVar8 = pcVar8 + 1;
                             if (pcVar3 <= pcVar8) goto LAB_180416f88;
@@ -387,7 +387,7 @@ LAB_180416d70:
             LAB_180416fa0:
                 // 设置默认值
                 if ((param_1 + 0x34 != 0) && (lVar5 != 0)) {
-                    string_converter(lVar5, &DAT_180a06430, param_1 + 0x34);
+                    string_converter(lVar5, &system_memory_6430, param_1 + 0x34);
                 }
                 
                 // 解析曲线乘数
@@ -432,7 +432,7 @@ LAB_180416d70:
             LAB_180417038:
                 // 设置乘数值
                 if ((param_1 + 0x30 != 0) && (lVar5 != 0)) {
-                    string_converter(lVar5, &DAT_180a06430, param_1 + 0x30);
+                    string_converter(lVar5, &system_memory_6430, param_1 + 0x30);
                 }
                 
                 // 解析关键帧数据
@@ -514,7 +514,7 @@ LAB_180416d70:
                                                         if (puVar9[1] != 0) {
                                                             lVar5 = puVar9[1];
                                                         }
-                                                        string_converter(lVar5, &DAT_180a06430, afStack_80);
+                                                        string_converter(lVar5, &system_memory_6430, afStack_80);
                                                         break;
                                                     }
                                                     lVar5 = (longlong)&UNK_180a1810c - (longlong)pcVar8;
@@ -553,7 +553,7 @@ LAB_180416d70:
                                                         if (puVar9[1] != 0) {
                                                             lVar5 = puVar9[1];
                                                         }
-                                                        string_converter(lVar5, &DAT_180a06430, afStack_88);
+                                                        string_converter(lVar5, &system_memory_6430, afStack_88);
                                                         break;
                                                     }
                                                     lVar5 = (longlong)&UNK_180a0696c - (longlong)pcVar8;
@@ -708,7 +708,7 @@ LAB_180416d70:
                                             if (puVar9[1] != 0) {
                                                 lVar5 = puVar9[1];
                                             }
-                                            string_converter(lVar5, &DAT_180a06430, afStack_88);
+                                            string_converter(lVar5, &system_memory_6430, afStack_88);
                                             break;
                                         }
                                         lVar5 = (longlong)&UNK_180a1810c - (longlong)pcVar8;
@@ -747,7 +747,7 @@ LAB_180416d70:
                                             if (puVar9[1] != 0) {
                                                 lVar5 = puVar9[1];
                                             }
-                                            string_converter(lVar5, &DAT_180a06430, afStack_80);
+                                            string_converter(lVar5, &system_memory_6430, afStack_80);
                                             break;
                                         }
                                         lVar5 = (longlong)&UNK_180a0696c - (longlong)pcVar8;
@@ -825,7 +825,7 @@ LAB_180416d70:
                                             if (puVar9[1] != 0) {
                                                 lVar5 = puVar9[1];
                                             }
-                                            string_converter(lVar5, &DAT_180a06430, afStack_88);
+                                            string_converter(lVar5, &system_memory_6430, afStack_88);
                                             break;
                                         }
                                         lVar5 = (longlong)&UNK_180a1810c - (longlong)pcVar8;
@@ -864,7 +864,7 @@ LAB_180416d70:
                                             if (puVar9[1] != 0) {
                                                 lVar5 = puVar9[1];
                                             }
-                                            string_converter(lVar5, &DAT_180a06430, afStack_80);
+                                            string_converter(lVar5, &system_memory_6430, afStack_80);
                                             break;
                                         }
                                         lVar5 = (longlong)&UNK_180a0696c - (longlong)pcVar8;

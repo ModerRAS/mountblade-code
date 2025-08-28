@@ -51,7 +51,7 @@ void FUN_18013c800(longlong param_1,char *param_2,char *param_3)
     if ((pcVar7 != param_3) || (pcVar8 != pcVar7)) {
       iVar9 = (int)pcVar7 - (int)pcVar8;
       if ((bVar2) || (pcVar8 != param_2)) {
-        FUN_18013c760(&UNK_180a06770,(iVar6 - iVar4) * 4,&DAT_18098bc73,iVar9,pcVar8);
+        FUN_18013c760(&UNK_180a06770,(iVar6 - iVar4) * 4,&system_buffer_ptr,iVar9,pcVar8);
       }
       else {
         FUN_18013c760(&UNK_180a06768,iVar9,pcVar8);

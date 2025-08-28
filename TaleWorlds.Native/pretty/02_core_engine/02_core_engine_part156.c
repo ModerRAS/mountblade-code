@@ -304,11 +304,11 @@ longlong read_clipboard_unicode_text(void)
   
   // 检查是否需要初始化剪贴板功能
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-               0x48) < _DAT_180d49270) && (FUN_1808fcb90(&DAT_180d49270), _DAT_180d49270 == -1)) {
+               0x48) < _DAT_180d49270) && (FUN_1808fcb90(&system_memory_9270), _DAT_180d49270 == -1)) {
     _DAT_180d49278 = 0;
     _DAT_180d49280 = 0;
     FUN_1808fc820(&UNK_180941a80);
-    FUN_1808fcb30(&DAT_180d49270);
+    FUN_1808fcb30(&system_memory_9270);
   }
   clipboard_data = _DAT_180d49280;
   if (_DAT_180d49280 == 0) {

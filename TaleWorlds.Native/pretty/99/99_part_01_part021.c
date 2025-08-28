@@ -545,7 +545,7 @@ char SystemEventHandler(uint64_t param_1, longlong *param_2) {
         if (uVar10 < (ulonglong)((longlong)(puVar8[1] - uVar12) >> 3)) {
             plVar11 = (longlong *)(uVar12 + uVar10 * 8);
             do {
-                puVar7 = &DAT_18098bc73;
+                puVar7 = &system_buffer_ptr;
                 if (*(void **)(*plVar11 + 0x18) != (void *)0x0) {
                     puVar7 = *(void **)(*plVar11 + 0x18);
                 }
@@ -583,7 +583,7 @@ LAB_1800b56df:
         plVar11 = (longlong *)*puVar8;
         if (plVar11 < (longlong *)puVar8[1]) {
             do {
-                puVar7 = &DAT_18098bc73;
+                puVar7 = &system_buffer_ptr;
                 if (*(void **)(*plVar11 + 0x18) != (void *)0x0) {
                     puVar7 = *(void **)(*plVar11 + 0x18);
                 }
@@ -616,7 +616,7 @@ LAB_1800b56df:
     
     // 如果没有找到匹配的事件处理器，记录错误
     if (cVar6 == '\0') {
-        puVar7 = &DAT_18098bc73;
+        puVar7 = &system_buffer_ptr;
         if (*(void **)(*param_2 + 0x18) != (void *)0x0) {
             puVar7 = *(void **)(*param_2 + 0x18);
         }
@@ -690,7 +690,7 @@ void SystemMemoryManager(uint64_t param_1, longlong *param_2) {
             auStack_80[0] = 0;
             uStack_88 = *(int32_t *)(*plVar7 + 0x20);
             puVar6 = *(void **)(*plVar7 + 0x18);
-            puVar5 = &DAT_18098bc73;
+            puVar5 = &system_buffer_ptr;
             if (puVar6 != (void *)0x0) {
                 puVar5 = puVar6;
             }
@@ -709,7 +709,7 @@ void SystemMemoryManager(uint64_t param_1, longlong *param_2) {
                 *(int32_t *)(puVar4 + 2) = 0;
                 *(int8_t *)(puVar4 + 3) = 0;
                 *(int32_t *)(puVar4 + 2) = uStack_88;
-                puVar6 = &DAT_18098bc73;
+                puVar6 = &system_buffer_ptr;
                 if (puStack_90 != (void *)0x0) {
                     puVar6 = puStack_90;
                 }
@@ -748,7 +748,7 @@ LAB_1800b5909:
                         *(int8_t *)(puVar2 + 3) = 0;
                         *(int32_t *)(puVar2 + 2) = *(int32_t *)(lVar9 + 0x10 + (longlong)puVar2);
                         puVar6 = *(void **)(lVar9 + 8 + (longlong)puVar2);
-                        puVar5 = &DAT_18098bc73;
+                        puVar5 = &system_buffer_ptr;
                         if (puVar6 != (void *)0x0) {
                             puVar5 = puVar6;
                         }
@@ -769,7 +769,7 @@ LAB_1800b5909:
                 *(int32_t *)(puVar2 + 2) = 0;
                 *(int8_t *)(puVar2 + 3) = 0;
                 *(int32_t *)(puVar2 + 2) = uStack_88;
-                puVar6 = &DAT_18098bc73;
+                puVar6 = &system_buffer_ptr;
                 if (puStack_90 != (void *)0x0) {
                     puVar6 = puStack_90;
                 }

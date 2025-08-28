@@ -903,7 +903,7 @@ float * FUN_1805302f0(float *param_1,longlong param_2,float param_3,int param_4,
                  (param_1[0x12] - param_10[2]) * (param_1[0x12] - param_10[2]);
         auVar7 = rsqrtss(ZEXT416((uint)fVar13),ZEXT416((uint)fVar13));
         fVar9 = auVar7._0_4_;
-        fVar13 = fVar9 * 0.5 * ((float)DAT_180a401f0 - fVar13 * fVar9 * fVar9) * fVar13;
+        fVar13 = fVar9 * 0.5 * ((float)system_data_01f0 - fVar13 * fVar9 * fVar9) * fVar13;
         uVar1 = acosf();
         if (fVar13 <= fVar12) {
           fVar13 = fVar12;

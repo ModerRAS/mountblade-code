@@ -1018,7 +1018,7 @@ void utilities_system_control_mode_resetter(void)
 // 参数：param_1 - 内存参数1，param_2 - 内存参数2，param_3 - 内存参数3，param_4 - 内存参数4
 // 返回值：无
 // =============================================================================
-void FUN_180941920(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void utilities_system_memory_manager(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   longlong *plVar1;
@@ -1191,7 +1191,7 @@ void utilities_system_data_state_manager(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_180941ad0(void)
+void utilities_system_exception_handler(void)
 
 {
   int *piVar1;
@@ -1257,7 +1257,7 @@ void FUN_180941ad0(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_180941b20(void)
+void utilities_system_resource_state_manager(void)
 
 {
   // 初始化系统资源状态
@@ -1289,7 +1289,7 @@ void FUN_180941b20(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_180941b90(void)
+void utilities_system_config_mode_resetter(void)
 
 {
   // 重置系统配置模式并设置为默认值
@@ -1353,7 +1353,7 @@ void utilities_system_additional_resetter_2(void)
 void utilities_system_state_cleaner_and_terminator(void)
 
 {
-  if (DAT_180c91d50 != '\0') {
+  if (system_memory_1d50 != '\0') {
     utilities_system_cleanup_handler();
     if ((1 < *system_sync_count_ptr) && (*system_sync_data_ptr != 0)) {
                     // WARNING: Subroutine does not return
@@ -1371,8 +1371,7 @@ void utilities_system_state_cleaner_and_terminator(void)
     utilities_system_finalizer(0x180c919f0);
 
 
-// 函数: void FUN_180941d00(void)
-void FUN_180941d00(void)
+void utilities_system_additional_resetter_3(void)
 
 {
   *utilities_system_additional_ptr_3 = SYSTEM_DEFAULT_VALUE;
@@ -1385,8 +1384,7 @@ void FUN_180941d00(void)
 
 
 
-// 函数: void FUN_180941d20(void)
-void FUN_180941d20(void)
+void utilities_system_additional_resetter_4(void)
 
 {
   *utilities_system_additional_ptr_4 = SYSTEM_DEFAULT_VALUE;
@@ -1399,8 +1397,7 @@ void FUN_180941d20(void)
 
 
 
-// 函数: void FUN_180941d50(void)
-void FUN_180941d50(void)
+void utilities_system_additional_resetter_5(void)
 
 {
   *utilities_system_additional_ptr_5 = SYSTEM_INIT_VALUE;
@@ -1418,8 +1415,7 @@ void FUN_180941d50(void)
 
 
 
-// 函数: void FUN_180941da0(void)
-void FUN_180941da0(void)
+void utilities_system_sync_destroyer(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x000180941db8. Too many branches
@@ -1434,8 +1430,7 @@ void FUN_180941da0(void)
 
 
 
-// 函数: void FUN_180941dd0(void)
-void FUN_180941dd0(void)
+void utilities_system_memory_initializer_2(void)
 
 {
   *system_memory_manager_ptr = SYSTEM_DEFAULT_VALUE;
@@ -1448,8 +1443,7 @@ void FUN_180941dd0(void)
 
 
 
-// 函数: void FUN_180941e00(void)
-void FUN_180941e00(void)
+void utilities_system_memory_validator(void)
 
 {
   utilities_system_memory_initializer(0x180d497e0);
@@ -2257,7 +2251,7 @@ void FUN_180942660(void)
   longlong lVar1;
   longlong lVar2;
   
-  utilities_system_buffer_handler(&DAT_180bfc140);
+  utilities_system_buffer_handler(&system_cache_config);
   if (0xf < uRam0000000180bfc138) {
     lVar1 = CONCAT71(uRam0000000180bfc121,uRam0000000180bfc120);
     lVar2 = lVar1;
@@ -2290,7 +2284,7 @@ void FUN_180942690(void)
   longlong lVar2;
   
   if (0xf < *system_buffer_size_ptr) {
-    lVar1 = CONCAT71(uRam0000000180bfc101,DAT_180bfc100);
+    lVar1 = CONCAT71(uRam0000000180bfc101,system_memory_c100);
     lVar2 = lVar1;
     if (0xfff < *system_buffer_size_ptr + 1) {
       lVar2 = *(longlong *)(lVar1 + -8);

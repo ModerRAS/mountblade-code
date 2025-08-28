@@ -134,14 +134,14 @@ int32_t FUN_1807686d0(void)
   uVar4 = (uint)((ulonglong)in_stack_ffffffffffffffd8 >> 0x20);
   if (_DAT_180c0c6e8 == (longlong *)0x0) {
     uVar4 = 1;
-    iVar1 = CoCreateInstance(&UNK_180958b00,0,0x17,&UNK_180958b10,&DAT_180c0c6e8);
+    iVar1 = CoCreateInstance(&UNK_180958b00,0,0x17,&UNK_180958b10,&system_buffer_c6e8);
     if (iVar1 == -0x7ffbfe10) {
       iVar1 = CoInitializeEx(0,2);
       if (iVar1 < 0) {
         return 0x33;
       }
       uVar4 = 1;
-      iVar1 = CoCreateInstance(&UNK_180958b00,0,0x17,&UNK_180958b10,&DAT_180c0c6e8);
+      iVar1 = CoCreateInstance(&UNK_180958b00,0,0x17,&UNK_180958b10,&system_buffer_c6e8);
     }
     if (iVar1 < 0) {
       return 0x33;

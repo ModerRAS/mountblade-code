@@ -80,7 +80,7 @@ void FUN_180541920(longlong param_1,longlong param_2)
   
   uStack_f8 = 0xfffffffffffffffe;
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-               0x48) < _DAT_180d49f68) && (FUN_1808fcb90(&DAT_180d49f68), _DAT_180d49f68 == -1)) {
+               0x48) < _DAT_180d49f68) && (FUN_1808fcb90(&system_ptr_9f68), _DAT_180d49f68 == -1)) {
 
 
 

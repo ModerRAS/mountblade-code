@@ -112,7 +112,7 @@ void FUN_18033eb00(uint64_t param_1,longlong param_2,longlong param_3)
         memcpy(puStack_80 + uStack_78,acStack_50,(longlong)((int)lVar7 + 2));
       }
       lVar11 = lVar14;
-      puVar12 = &DAT_18098bc73;
+      puVar12 = &system_buffer_ptr;
       if (puStack_80 != (void *)0x0) {
         puVar12 = puStack_80;
       }
@@ -719,14 +719,14 @@ void FUN_18033fa60(uint64_t param_1,longlong param_2,uint64_t param_3)
   *(int32_t *)(puStack_b8 + uStack_b0) = 0x73722e;
   uStack_a0 = 0;
   lStack_98 = 0;
-  puVar2 = &DAT_18098bc73;
+  puVar2 = &system_buffer_ptr;
   if (puStack_b8 != (void *)0x0) {
     puVar2 = puStack_b8;
   }
   uStack_b0 = iVar4;
-  FUN_18062dee0(&uStack_a0,puVar2,&DAT_1809fc7ec);
+  FUN_18062dee0(&uStack_a0,puVar2,&system_data_c7ec);
   lVar5 = lStack_98;
-  puVar2 = &DAT_18098bc73;
+  puVar2 = &system_buffer_ptr;
   if (puStack_80 != (void *)0x0) {
     puVar2 = puStack_80;
   }

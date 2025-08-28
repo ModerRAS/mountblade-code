@@ -50,7 +50,7 @@ LAB_180610b0b:
   *(int32_t *)(param_1 + 0x98d930) = 0xffffffff;
   if ((_DAT_180c92514 != 0) && (_DAT_180c92514 != 5)) {
     *(longlong *)(param_1 + 0x87b798) =
-         *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0x87b7a0) * 8) + 300000;
+         *(longlong *)(&system_error_code + (longlong)*(int *)(param_1 + 0x87b7a0) * 8) + 300000;
   }
   if ((*(longlong *)(param_1 + 0x18) != 0) &&
      (*(longlong *)(*(longlong *)(param_1 + 0x18) + 0x260) != 0)) {
@@ -152,7 +152,7 @@ void FUN_180610bd0(longlong param_1,uint64_t *param_2,uint64_t param_3,uint64_t 
     }
     pcStack_78 = FUN_180502740;
     pcStack_70 = FUN_180502660;
-    apuStack_88[0] = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,DAT_180bf65bc);
+    apuStack_88[0] = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,system_allocation_flags);
     uStack_a8 = (int32_t)param_1;
     uStack_a4 = (int32_t)((ulonglong)param_1 >> 0x20);
     *apuStack_88[0] = uStack_a8;
@@ -839,7 +839,7 @@ void FUN_180611ce0(longlong param_1,int param_2,int32_t *param_3,int param_4)
       lStack_10 = (ulonglong)uStack_54 << 0x20;
       if (-1 < param_2) {
         uStack_30 = uStack_44;
-        FUN_180545140(&DAT_180c96110,&uStack_40,0,0);
+        FUN_180545140(&system_data_6110,&uStack_40,0,0);
       }
     }
     else {

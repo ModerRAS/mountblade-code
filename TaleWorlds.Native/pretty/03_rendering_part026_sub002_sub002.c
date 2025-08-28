@@ -164,7 +164,7 @@ void FUN_18027f510(longlong param_1,longlong *param_2)
     uStack_c4 = 0x40000000;
     plStack_b8 = &lStack_150;
     uStack_d8 = 1;
-    plStack_e0 = (longlong *)&DAT_180be0000;
+    plStack_e0 = (longlong *)&system_data_0000;
     uStack_d0 = 0;
     uStack_c0 = 0;
     puStack_80 = auStackX_18;
@@ -285,7 +285,7 @@ void FUN_18027f510(longlong param_1,longlong *param_2)
               puStack_190[3] = 0x5f7365;
               uStack_188 = 0xf;
               FUN_180628040(&puStack_198,&UNK_1809fd0a0,iVar15);
-              puVar16 = (int32_t *)&DAT_18098bc73;
+              puVar16 = (int32_t *)&system_buffer_ptr;
               if (puStack_190 != (int32_t *)0x0) {
                 puVar16 = puStack_190;
               }

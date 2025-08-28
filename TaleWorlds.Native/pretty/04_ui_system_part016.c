@@ -539,23 +539,23 @@ void FUN_18065cc10(longlong param_1)
   apuStack_78[9] = &UNK_180a34d18;
   plVar1 = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00,&UNK_180a3e4a0);
   plVar1 = (longlong *)(**(code **)(*plVar1 + 0x28))(plVar1,*(int32_t *)(param_1 + 0x38));
-  (**(code **)(*plVar1 + 0x70))(plVar1,&DAT_180a0fd38);
+  (**(code **)(*plVar1 + 0x70))(plVar1,&system_data_fd38);
   plVar1 = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00,&UNK_180a3e4b8);
   plVar1 = (longlong *)(**(code **)(*plVar1 + 0x28))(plVar1,*(int32_t *)(param_1 + 0x3c));
-  (**(code **)(*plVar1 + 0x70))(plVar1,&DAT_180a0fd38);
+  (**(code **)(*plVar1 + 0x70))(plVar1,&system_data_fd38);
   plVar1 = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00,&UNK_180a3e500);
   plVar1 = (longlong *)(**(code **)(*plVar1 + 0x28))(plVar1,*(int32_t *)(param_1 + 0x40));
-  (**(code **)(*plVar1 + 0x70))(plVar1,&DAT_180a0fd38);
+  (**(code **)(*plVar1 + 0x70))(plVar1,&system_data_fd38);
   plVar1 = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00,&UNK_180a3e510);
   plVar1 = (longlong *)(**(code **)(*plVar1 + 0x28))(plVar1,*(int32_t *)(param_1 + 0x44));
-  (**(code **)(*plVar1 + 0x70))(plVar1,&DAT_180a0fd38);
+  (**(code **)(*plVar1 + 0x70))(plVar1,&system_data_fd38);
   uVar2 = 0;
   uVar4 = uVar2;
   if (0 < *(int *)(param_1 + 0x60)) {
     do {
       plVar1 = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00,&UNK_180a3e4d8);
       plVar1 = (longlong *)(**(code **)(*plVar1 + 0x28))(plVar1,*(int32_t *)(param_1 + 4));
-      (**(code **)(*plVar1 + 0x70))(plVar1,&DAT_180a0fd38);
+      (**(code **)(*plVar1 + 0x70))(plVar1,&system_data_fd38);
       uVar3 = (int)uVar4 + 1;
       uVar4 = (ulonglong)uVar3;
     } while ((int)uVar3 < *(int *)(param_1 + 0x60));
@@ -580,7 +580,7 @@ void FUN_18065cc10(longlong param_1)
         uVar5 = *(int32_t *)(param_1 + 0x40);
       }
       plVar1 = (longlong *)(**(code **)(*plVar1 + 0x28))(plVar1,uVar5);
-      plVar1 = (longlong *)(**(code **)(*plVar1 + 0x70))(plVar1,&DAT_180a3c248);
+      plVar1 = (longlong *)(**(code **)(*plVar1 + 0x70))(plVar1,&system_data_c248);
       (**(code **)(*plVar1 + 0x28))(plVar1,*(int32_t *)(param_1 + 0x6150 + uVar2 * 4));
     }
     uVar2 = uVar2 + 1;

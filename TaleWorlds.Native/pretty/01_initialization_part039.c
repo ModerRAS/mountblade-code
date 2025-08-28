@@ -812,7 +812,7 @@ longlong FUN_18006dcb0(longlong param_1,longlong param_2)
   void *puVar2;
   
   *(int32_t *)(param_1 + 0x10) = *(int32_t *)(param_2 + 0x10);
-  puVar2 = &DAT_18098bc73;
+  puVar2 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar2 = *(void **)(param_2 + 8);
   }
@@ -867,7 +867,7 @@ FUN_18006de00(longlong *param_1,uint64_t *param_2,uint64_t *param_3,uint64_t *pa
       *(int32_t *)(param_4 + 2) = 0;
       *(int8_t *)(param_4 + 3) = 0;
       *(int32_t *)(param_4 + 2) = *(int32_t *)(puVar3 + -0x29);
-      puVar4 = &DAT_18098bc73;
+      puVar4 = &system_buffer_ptr;
       if ((void *)puVar3[-0x2a] != (void *)0x0) {
         puVar4 = (void *)puVar3[-0x2a];
       }

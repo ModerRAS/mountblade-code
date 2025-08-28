@@ -85,7 +85,7 @@ LAB_1803dc7c4:
         FUN_180627c50(&puStack_e0,lVar6);
         break;
       }
-      lVar6 = (longlong)&DAT_180a03a84 - (longlong)pcVar12;
+      lVar6 = (longlong)&system_data_3a84 - (longlong)pcVar12;
       while (*pcVar12 == pcVar12[lVar6]) {
         pcVar12 = pcVar12 + 1;
         if (pcVar5 <= pcVar12) goto LAB_1803dc7c4;
@@ -674,7 +674,7 @@ longlong FUN_1803dcdd0(longlong param_1,longlong param_2,longlong *param_3,int p
   if ((uVar6 == 0xffffffff) ||
      (lVar13 = *(longlong *)(_DAT_180c86978 + 200),
      (uint)(*(longlong *)(_DAT_180c86978 + 0xd0) - lVar13 >> 3) <= uVar6)) {
-    puVar12 = &DAT_18098bc73;
+    puVar12 = &system_buffer_ptr;
     if ((void *)param_3[1] != (void *)0x0) {
       puVar12 = (void *)param_3[1];
     }

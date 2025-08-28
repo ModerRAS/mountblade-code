@@ -1034,15 +1034,15 @@ void perform_emergency_exit(uint64_t param1, uint64_t error_message)
 #define global_module_state _DAT_180c86908
 #define global_exit_code _DAT_180c82854
 
-#define debug_mode_enabled DAT_180c8aa69
-#define error_dialog_suppressed DAT_180c82842
-#define error_silent_mode DAT_180c82860
-#define detailed_logging_enabled DAT_180bf0100
-#define report_generation_enabled DAT_180c82851
+#define debug_mode_enabled system_memory_aa69
+#define error_dialog_suppressed system_debug_flag2
+#define error_silent_mode system_debug_flag
+#define detailed_logging_enabled system_memory_0100
+#define report_generation_enabled system_memory_2851
 
 #define debug_output_channel_1 UNK_18098bcb0
 #define debug_output_channel_2 UNK_180a3c3e0
-#define default_error_buffer DAT_18098bc73
+#define default_error_buffer system_buffer_ptr
 
 #define error_format_string UNK_1809ff538
 #define error_header_string UNK_1809ff550

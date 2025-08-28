@@ -108,7 +108,7 @@ void system_state_processor(uint64_t param_1, int8_t param_2, int32_t param_3, i
         (system_status_flag = FUN_180645c10(0x180c95578, param_2, &UNK_1809fa560), system_status_flag != '\0')) &&
        ((system_status_flag = FUN_180645c10(0x180c95578, param_3, &UNK_1809fa510), system_status_flag != '\0' &&
         (system_status_flag = FUN_180645c10(0x180c95578, param_4, &UNK_1809fa510), system_status_flag != '\0')))) &&
-      (system_status_flag = FUN_180645c10(0x180c95578, param_5, &DAT_180bfbc90), system_status_flag != '\0')) {
+      (system_status_flag = FUN_180645c10(0x180c95578, param_5, &system_memory_bc90), system_status_flag != '\0')) {
     
     /* 系统哈希值计算 */
     system_hash_value = FUN_18055f6f0(&UNK_1809fa450, param_6);

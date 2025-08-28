@@ -527,7 +527,7 @@ void AdvancedDataProcessor(longlong param_1, uint64_t param_2, longlong param_3,
         goto cleanup_section;
     }
     
-    data_size = SystemDataProcessor(param_2, SYSTEM_FLAG_PROCESS, &DAT_180a09dc0);
+    data_size = SystemDataProcessor(param_2, SYSTEM_FLAG_PROCESS, &system_memory_9dc0);
     
     // 验证数据缓冲区
     if (data_buffer == (longlong *)SYSTEM_NULL_PTR) {

@@ -65,7 +65,7 @@ void FUN_1803ba550(longlong param_1,uint64_t param_2,uint64_t param_3,longlong p
       lStack_b0 = 0;
       uStack_a8 = 0;
       uVar1 = *(uint64_t *)(param_1 + 0x28);
-      puVar8 = &DAT_18098bc73;
+      puVar8 = &system_buffer_ptr;
       if (*(void **)(param_4 + 8) != (void *)0x0) {
         puVar8 = *(void **)(param_4 + 8);
       }
@@ -161,11 +161,11 @@ void FUN_1803ba550(longlong param_1,uint64_t param_2,uint64_t param_3,longlong p
     *(byte *)(lVar6 + 0x2e8) = *(byte *)(lVar6 + 0x2e8) & 0xef;
     lVar6 = *(longlong *)(param_1 + 0x28);
     if ((lStack_98 != *(longlong *)(lVar6 + 0x268)) && (*(longlong *)(lVar6 + 0x168) == 0)) {
-      puVar8 = &DAT_18098bc73;
+      puVar8 = &system_buffer_ptr;
       if (*(void **)(lStack_98 + 0x290) != (void *)0x0) {
         puVar8 = *(void **)(lStack_98 + 0x290);
       }
-      puVar9 = &DAT_18098bc73;
+      puVar9 = &system_buffer_ptr;
       if (*(void **)(lVar6 + 0x290) != (void *)0x0) {
         puVar9 = *(void **)(lVar6 + 0x290);
       }
@@ -645,7 +645,7 @@ LAB_1803bb347:
                         FUN_180627c50(&puStack_50,lVar9);
                         break;
                       }
-                      lVar9 = (longlong)&DAT_180a03a84 - (longlong)pcVar6;
+                      lVar9 = (longlong)&system_data_3a84 - (longlong)pcVar6;
                       while (*pcVar6 == pcVar6[lVar9]) {
                         pcVar6 = pcVar6 + 1;
                         if (pcVar5 <= pcVar6) goto LAB_1803bb347;

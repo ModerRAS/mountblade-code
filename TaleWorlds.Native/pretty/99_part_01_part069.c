@@ -323,18 +323,18 @@ void FUN_1800e8640(longlong param_1,longlong param_2)
     func_0x00018029dab0(lVar2,*(uint64_t *)(*(longlong *)(param_2 + 0x2b0) + 0x18));
   }
   if ((char)uVar1 < '\0') {
-    if (DAT_180c82846 != '\0') goto LAB_1800e8942;
+    if (system_data_2846 != '\0') goto LAB_1800e8942;
     iVar11 = *(int *)(param_2 + 0x2d0);
   }
   else {
     if (((uVar1 & 0x40) == 0) && ((*(uint *)(param_2 + 0x2e0) & 0x20400) == 0)) {
       if ((uVar1 & 0x2000) == 0) {
-        if (DAT_180c82846 == '\0') {
+        if (system_data_2846 == '\0') {
           (**(code **)(**(longlong **)(lVar2 + 0x8400) + 0x60))
                     (*(longlong **)(lVar2 + 0x8400),*(int *)(param_2 + 0x2e4) * 3,0,0);
         }
       }
-      else if (DAT_180c82846 == '\0') {
+      else if (system_data_2846 == '\0') {
         (**(code **)(**(longlong **)(lVar2 + 0x8400) + 0x68))
                   (*(longlong **)(lVar2 + 0x8400),*(int32_t *)(param_2 + 0x318),
                    *(int32_t *)(param_2 + 0x31c));
@@ -360,7 +360,7 @@ void FUN_1800e8640(longlong param_1,longlong param_2)
     else {
       iVar11 = *(int *)(param_2 + 0x2d0);
     }
-    if (DAT_180c82846 != '\0') goto LAB_1800e8942;
+    if (system_data_2846 != '\0') goto LAB_1800e8942;
     iVar11 = iVar11 * iVar7 * iVar9;
   }
   (**(code **)(**(longlong **)(lVar2 + 0x8400) + 0xa0))

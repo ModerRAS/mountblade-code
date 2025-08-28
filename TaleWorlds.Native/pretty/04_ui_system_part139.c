@@ -624,7 +624,7 @@ ulonglong FUN_18074bf10(longlong *param_1,int param_2,ulonglong param_3)
       return uVar9;
     }
   }
-  lVar10 = FUN_180741e10(param_1[1] + 0x10848,(int)param_1[3] * 8 + 8,&DAT_18098bc73,0,0,0,1);
+  lVar10 = FUN_180741e10(param_1[1] + 0x10848,(int)param_1[3] * 8 + 8,&system_buffer_ptr,0,0,0,1);
   if (lVar10 == 0) {
     uVar6 = 0x26;
   }
@@ -651,7 +651,7 @@ ulonglong FUN_18074bf10(longlong *param_1,int param_2,ulonglong param_3)
     }
     if (param_1[2] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(param_1[1] + 0x10848,param_1[2],&DAT_18098bc73,0,1);
+      FUN_180742250(param_1[1] + 0x10848,param_1[2],&system_buffer_ptr,0,1);
     }
     param_1[2] = lVar10;
     if ((aiStackX_10[0] == 0) || (aiStackX_10[0] == (int)param_1[3] + -1)) {
@@ -774,7 +774,7 @@ ulonglong FUN_18074c014(void)
       return uVar6;
     }
   }
-  lVar8 = FUN_180741e10(unaff_RBX[1] + 0x10848,(int)unaff_RBX[3] * 8 + 8,&DAT_18098bc73,0);
+  lVar8 = FUN_180741e10(unaff_RBX[1] + 0x10848,(int)unaff_RBX[3] * 8 + 8,&system_buffer_ptr,0);
   if (lVar8 == 0) {
     uVar6 = 0x26;
   }
@@ -800,7 +800,7 @@ ulonglong FUN_18074c014(void)
     }
     if (unaff_RBX[2] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(unaff_RBX[1] + 0x10848,unaff_RBX[2],&DAT_18098bc73,0,1);
+      FUN_180742250(unaff_RBX[1] + 0x10848,unaff_RBX[2],&system_buffer_ptr,0,1);
     }
     unaff_RBX[2] = lVar8;
     if (((in_stack_00000098 != 0) && (in_stack_00000098 != (int)unaff_RBX[3] + -1)) ||
@@ -906,7 +906,7 @@ ulonglong FUN_18074c039(void)
       return uVar7;
     }
   }
-  lVar8 = FUN_180741e10(unaff_RBX[1] + 0x10848,(int)unaff_RBX[3] * 8 + 8,&DAT_18098bc73,0);
+  lVar8 = FUN_180741e10(unaff_RBX[1] + 0x10848,(int)unaff_RBX[3] * 8 + 8,&system_buffer_ptr,0);
   if (lVar8 == 0) {
     uVar7 = 0x26;
   }
@@ -932,7 +932,7 @@ ulonglong FUN_18074c039(void)
     }
     if (unaff_RBX[2] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(unaff_RBX[1] + 0x10848,unaff_RBX[2],&DAT_18098bc73,0,1);
+      FUN_180742250(unaff_RBX[1] + 0x10848,unaff_RBX[2],&system_buffer_ptr,0,1);
     }
     unaff_RBX[2] = lVar8;
     if (((in_stack_00000098 != 0) && (in_stack_00000098 != (int)unaff_RBX[3] + -1)) ||

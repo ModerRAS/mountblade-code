@@ -253,7 +253,7 @@ void FUN_180378b60(longlong param_1,longlong param_2,int32_t param_3,int8_t para
       pcStack_58 = FUN_180380200;
       pcStack_50 = FUN_1803800d0;
       lStack_88 = param_1;
-      plStack_68 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,DAT_180bf65bc);
+      plStack_68 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,system_allocation_flags);
       *plStack_68 = lStack_88;
       plStack_68[1] = (longlong)plStack_80;
       *(int32_t *)(plStack_68 + 2) = (int32_t)uStack_78;

@@ -504,7 +504,7 @@ longlong FUN_180288880(longlong param_1,longlong param_2)
   FUN_180076c50(*(uint64_t *)(param_1 + 0x128),&uStack_218);
   FUN_1800b6620();
   lVar15 = FUN_1800daa50();
-  FUN_180094b30(lVar15,&DAT_180a16c50);
+  FUN_180094b30(lVar15,&system_data_6c50);
   plVar4 = *(longlong **)(_DAT_180c86938 + 0x121e0);
   if (plVar4 != (longlong *)0x0) {
     (**(code **)(*plVar4 + 0x28))(plVar4);

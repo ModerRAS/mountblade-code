@@ -103,7 +103,7 @@ void ui_system_resource_manager(void)
   temp_string_length = 0;
   extend_string_buffer(&temp_buffer_ptr, temp_index);
   if (0 < temp_index) {
-    heap_allocation = &DAT_18098bc73;
+    heap_allocation = &system_buffer_ptr;
     if (temp_ptr1 != (void *)0x0) {
       heap_allocation = temp_ptr1;
     }

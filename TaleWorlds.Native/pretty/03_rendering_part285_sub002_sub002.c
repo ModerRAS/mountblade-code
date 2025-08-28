@@ -1121,13 +1121,13 @@ uint64_t FUN_180423425(void)
 }
 
 
-uint8_t DAT_180a3f760;
-uint8_t DAT_180a3f910;
-uint8_t DAT_180a40580;
-uint8_t DAT_180a3f980;
-uint8_t DAT_180a406f0;
-uint8_t DAT_180a40710;
-uint8_t DAT_180a3f990;
+uint8_t system_data_f760;
+uint8_t system_data_f910;
+uint8_t system_data_0580;
+uint8_t system_data_f980;
+uint8_t system_data_06f0;
+uint8_t system_data_0710;
+uint8_t system_data_f990;
 
 
 

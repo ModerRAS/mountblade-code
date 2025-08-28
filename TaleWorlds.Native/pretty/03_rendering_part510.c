@@ -151,7 +151,7 @@ longlong FUN_18053dc90(longlong param_1,longlong param_2)
   
   uVar2 = *(uint *)(param_2 + 0x10);
   pbVar4 = *(byte **)(param_2 + 8);
-  pbVar6 = &DAT_18098bc73;
+  pbVar6 = &system_buffer_ptr;
   if (pbVar4 != (byte *)0x0) {
     pbVar6 = pbVar4;
   }
@@ -241,7 +241,7 @@ longlong * FUN_18053de40(longlong param_1,longlong *param_2,longlong param_3)
   
   pbVar4 = *(byte **)(param_3 + 8);
   uVar3 = *(uint *)(param_3 + 0x10);
-  pbVar6 = &DAT_18098bc73;
+  pbVar6 = &system_buffer_ptr;
   if (pbVar4 != (byte *)0x0) {
     pbVar6 = pbVar4;
   }

@@ -822,7 +822,7 @@ void initialize_thread_manager(uint64_t *thread_manager_ptr)
   *(uint64_t *)((longlong)thread_manager_ptr + 0x354) = 0x40000000;  // 设置双精度参数 (2.0)
   *(int32_t *)((longlong)thread_manager_ptr + 0x35c) = 3;  // 设置精度参数
   thread_manager_ptr[0x68] = 1;  // 设置启用标志
-  thread_manager_ptr[0x67] = &DAT_180be0000;  // 设置数据表指针
+  thread_manager_ptr[0x67] = &system_memory_0000;  // 设置数据表指针
   thread_manager_ptr[0x69] = 0;  // 清空扩展标志
   *(int32_t *)(thread_manager_ptr + 0x6b) = 0;  // 清空保留字段
   

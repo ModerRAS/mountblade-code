@@ -264,7 +264,7 @@ LAB_18007b454:
       (**(code **)(*plVar11 + 0x28))(plVar11);
       pcStack_68 = FUN_180083390;
       puStack_60 = &UNK_180083380;
-      plStack_b8 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,DAT_180bf65bc);
+      plStack_b8 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,system_allocation_flags);
       *plStack_b8 = param_1;
       *(byte *)(plStack_b8 + 1) = param_3;
       plStack_b8[2] = (longlong)plVar10;
@@ -762,12 +762,12 @@ void FUN_18007bbb0(longlong param_1,longlong param_2,longlong param_3)
   if ((*plVar8 == 0) && (*(longlong *)(param_3 + 0x160) == 0)) {
     plVar8 = (longlong *)(param_3 + 0x34);
   }
-  lVar7 = FUN_180255f80(*(uint64_t *)(param_1 + 0xa8),&DAT_180a002e0,plVar8);
+  lVar7 = FUN_180255f80(*(uint64_t *)(param_1 + 0xa8),&system_data_02e0,plVar8);
   if (lVar7 != 0) {
     FUN_180080810(plVar6,lVar7 + 0xb0);
   }
   if (*plVar6 == 0) {
-    puVar12 = &DAT_18098bc73;
+    puVar12 = &system_buffer_ptr;
     if (*(void **)(param_1 + 0x18) != (void *)0x0) {
       puVar12 = *(void **)(param_1 + 0x18);
     }

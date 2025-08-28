@@ -274,7 +274,7 @@ int FUN_180484640(int32_t *param_1,longlong param_2,int param_3,int param_4,uint
   longlong lStack_48;
   longlong *plStack_40;
   
-  puVar8 = &DAT_18098bc73;
+  puVar8 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar8 = *(void **)(param_2 + 8);
   }
@@ -720,7 +720,7 @@ bool FUN_180484e60(uint64_t param_1,longlong param_2,uint64_t param_3,int32_t pa
     bVar13 = 0 < iVar9;
   }
   else {
-    puVar17 = &DAT_18098bc73;
+    puVar17 = &system_buffer_ptr;
     if (*(void **)(param_2 + 8) != (void *)0x0) {
       puVar17 = *(void **)(param_2 + 8);
     }

@@ -418,7 +418,7 @@ void FUN_18025fe70(longlong *param_1,longlong param_2,ulonglong param_3)
   ulonglong uVar27;
   longlong lStackX_8;
   
-  puVar14 = &DAT_18098bc73;
+  puVar14 = &system_buffer_ptr;
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar14 = *(void **)(param_2 + 8);
   }

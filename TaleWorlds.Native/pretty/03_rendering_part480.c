@@ -701,7 +701,7 @@ LAB_1805256ec:
       FUN_1804f5d10(*(uint64_t *)(param_1 + 0x8d8),iStack_1bc,param_2 + 0x6c,0x41200000);
     }
     if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-                 0x48) < _DAT_180d49ef8) && (FUN_1808fcb90(&DAT_180d49ef8), _DAT_180d49ef8 == -1)) {
+                 0x48) < _DAT_180d49ef8) && (FUN_1808fcb90(&system_ptr_9ef8), _DAT_180d49ef8 == -1)) {
       puStack_170 = &UNK_18098bc80;
       puStack_168 = auStack_158;
       auStack_158[0] = 0;
@@ -709,7 +709,7 @@ LAB_1805256ec:
       strcpy_s(auStack_158,0x20,&UNK_180a306f0);
       _DAT_180d49efc = FUN_180191c00(_DAT_180c8aa00,&puStack_170);
       puStack_170 = &UNK_18098bcb0;
-      FUN_1808fcb30(&DAT_180d49ef8);
+      FUN_1808fcb30(&system_ptr_9ef8);
     }
     if (iVar11 == -1) {
       iVar11 = _DAT_180d49efc;
@@ -732,7 +732,7 @@ LAB_1805257df:
       uStack_160 = 0xe;
       strcpy_s(auStack_158,0x10,&UNK_180a30e00);
       lVar8 = (longlong)iStack_78;
-      puVar10 = &DAT_18098bc73;
+      puVar10 = &system_buffer_ptr;
       if (puStack_168 != (void *)0x0) {
         puVar10 = puStack_168;
       }

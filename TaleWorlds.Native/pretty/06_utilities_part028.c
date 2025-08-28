@@ -205,7 +205,7 @@ void FUN_180942750(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
     uint64_t *puVar2;
     
     // 调用系统初始化函数
-    FUN_18005d260(&DAT_180bfaec0, _DAT_180bfaed0, param_3, param_4, 0xfffffffffffffffe);
+    FUN_18005d260(&system_memory_aec0, _DAT_180bfaed0, param_3, param_4, 0xfffffffffffffffe);
     
     // 初始化全局指针数组
     puVar1 = _DAT_180bfaea8;
@@ -622,7 +622,7 @@ void FUN_180942980(void)
     
     // 检查内存池大小
     if (0xf < _DAT_180bfc188) {
-        lVar1 = CONCAT71(uRam0000000180bfc171, DAT_180bfc170);
+        lVar1 = CONCAT71(uRam0000000180bfc171, system_memory_c170);
         lVar2 = lVar1;
         
         // 验证内存块大小
@@ -802,7 +802,7 @@ void FUN_180942aa0(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
 void FUN_180942b30(void)
 {
     // 检查系统状态
-    if (DAT_180c95ef0 != '\0') {
+    if (system_memory_5ef0 != '\0') {
         FUN_1804a6ec0();
     }
 }
@@ -817,7 +817,7 @@ void FUN_180942b30(void)
 void FUN_180942b80(void)
 {
     // 检查同步状态
-    if (DAT_180c96008 != '\0') {
+    if (system_memory_6008 != '\0') {
         FUN_180552e70(_DAT_180c95ff0);
         _DAT_180c95ff0 = 0;
     }
@@ -833,7 +833,7 @@ void FUN_180942b80(void)
 void FUN_180942bb0(void)
 {
     // 检查同步状态
-    if (DAT_180c96028 != '\0') {
+    if (system_memory_6028 != '\0') {
         if (_DAT_180c96010 != 0) {
             // 同步验证失败
             FUN_18064e900();
@@ -852,7 +852,7 @@ void FUN_180942bb0(void)
 void FUN_180942bf0(void)
 {
     // 检查同步状态
-    if (DAT_180c96048 != '\0') {
+    if (system_memory_6048 != '\0') {
         FUN_180555430(_DAT_180c96030);
         _DAT_180c96030 = 0;
     }
@@ -868,7 +868,7 @@ void FUN_180942bf0(void)
 void FUN_180942c20(void)
 {
     // 检查资源状态
-    if (DAT_180c96068 != '\0') {
+    if (system_memory_6068 != '\0') {
         FUN_180555430(_DAT_180c96050);
         _DAT_180c96050 = 0;
     }
@@ -884,7 +884,7 @@ void FUN_180942c20(void)
 void FUN_180942c50(void)
 {
     // 检查内存状态
-    if (DAT_180c96098 != '\0') {
+    if (system_memory_6098 != '\0') {
         FUN_180057830();
         if (_DAT_180c96070 != (longlong *)0x0) {
             (**(code **)(*_DAT_180c96070 + 0x38))();
@@ -902,7 +902,7 @@ void FUN_180942c50(void)
 void FUN_180942cb0(void)
 {
     // 检查对象状态
-    if (DAT_180c960b8 != '\0') {
+    if (system_memory_60b8 != '\0') {
         FUN_18055a350(_DAT_180c960a0);
         _DAT_180c960a0 = 0;
     }
@@ -918,9 +918,9 @@ void FUN_180942cb0(void)
 void FUN_180942ce0(void)
 {
     // 检查清理状态
-    if (DAT_180c96100 != '\0') {
+    if (system_memory_6100 != '\0') {
         FUN_1804a5b60();
-        FUN_1804a5b00(&DAT_180c960c0);
+        FUN_1804a5b00(&system_memory_60c0);
     }
 }
 
@@ -937,7 +937,7 @@ void FUN_180942d30(void)
     
     // 获取清理上下文
     lVar1 = _DAT_180c96138;
-    if (DAT_180c96140 != '\0') {
+    if (system_memory_6140 != '\0') {
         if (_DAT_180c96120 != 0) {
             // 清理验证失败
             FUN_18064e900();
@@ -968,9 +968,9 @@ void FUN_180942d30(void)
 void FUN_180942e20(void)
 {
     // 检查资源状态
-    if (DAT_180c961d8 != '\0') {
-        FUN_1804c3730(&DAT_180c961b0);
-        FUN_1804c42a0(&DAT_180c961b0);
+    if (system_memory_61d8 != '\0') {
+        FUN_1804c3730(&system_memory_61b0);
+        FUN_1804c42a0(&system_memory_61b0);
     }
 }
 
@@ -987,7 +987,7 @@ void FUN_180942e70(void)
     
     // 获取线程上下文
     plVar1 = _DAT_180c95f18;
-    if (DAT_180c95f28 != '\0') {
+    if (system_memory_5f28 != '\0') {
         _DAT_180c95f20 = 0xffffffff;
         _DAT_180c95f18 = (longlong *)0x0;
         
@@ -1015,7 +1015,7 @@ void FUN_180942e70(void)
 void FUN_180942f00(void)
 {
     // 检查资源状态
-    if (DAT_180c95fe8 != '\0') {
+    if (system_memory_5fe8 != '\0') {
         if (_DAT_180c95fc8 != 0) {
             // 资源释放失败
             FUN_18064e900();
@@ -1033,7 +1033,7 @@ void FUN_180942f00(void)
 void FUN_180942f50(void)
 {
     // 检查系统状态
-    if (DAT_180c96210 != '\0') {
+    if (system_memory_6210 != '\0') {
         FUN_1804a5bc0();
     }
 }
@@ -1205,7 +1205,7 @@ void FUN_180943180(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
     puVar1 = _DAT_180c967a0;
     if (_DAT_180c967a0 != (uint64_t *)0x0) {
         // 处理系统数据
-        FUN_180651560(&DAT_180c96790, *_DAT_180c967a0, param_3, param_4, 0xfffffffffffffffe);
+        FUN_180651560(&system_memory_6790, *_DAT_180c967a0, param_3, param_4, 0xfffffffffffffffe);
         FUN_18063cfe0(puVar1 + 5);
         // 数据处理完成
         FUN_18064e900(puVar1);
@@ -1262,7 +1262,7 @@ void FUN_180943200(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
     }
     
     // 清理线程本地存储
-    FUN_180657620(&DAT_180c967e0, *_DAT_180c967f0, param_3, param_4, 0xfffffffffffffffe);
+    FUN_180657620(&system_memory_67e0, *_DAT_180c967f0, param_3, param_4, 0xfffffffffffffffe);
     puVar1[4] = &UNK_180a3c3e0;
     if (puVar1[5] != 0) {
         // 线程本地存储清理失败

@@ -160,7 +160,7 @@ void Initialization_MainLoop(longlong context)
     else {
       // 处理队列中的资源
       name_length = *(int *)(offset + 0x10);
-      temp_ptr = &DAT_18098bc73;
+      temp_ptr = &system_buffer_ptr;
       if (*(void **)(offset + 8) != (void *)0x0) {
         temp_ptr = *(void **)(offset + 8);
       }
@@ -327,7 +327,7 @@ LAB_18006c852:
         manager_ptr = *(uint64_t **)(context + 0xc0);
         security_cookie = manager_ptr[0x6c];
         if (security_cookie < total_processed) {
-          string_buffer = &DAT_18098bc73;
+          string_buffer = &system_buffer_ptr;
           if (name_buffer != (byte *)0x0) {
             string_buffer = name_buffer;
           }

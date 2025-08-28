@@ -656,7 +656,7 @@ void RenderingSystemAdvancedStateProcessor(rendering_int param_1, rendering_int*
             }
             
             // 调用上下文管理器
-            RenderingSystemContextManager(&DAT_180c925a0, *(rendering_int*)(temp_long1 + 16), temp_param1, temp_ptr_ptr);
+            RenderingSystemContextManager(&system_memory_25a0, *(rendering_int*)(temp_long1 + 16), temp_param1, temp_ptr_ptr);
         }
     }
     
@@ -1010,7 +1010,7 @@ void RenderingSystemAdvancedDataManager(rendering_long* param_1)
             }
             
             // 调用上下文管理器
-            RenderingSystemContextManager(&DAT_180c925a0, *(rendering_int*)(temp_long2 + 16), temp_param1, temp_ptr_ptr,
+            RenderingSystemContextManager(&system_memory_25a0, *(rendering_int*)(temp_long2 + 16), temp_param1, temp_ptr_ptr,
                           (temp_byte | (rendering_byte)(temp_ulong1 >> 16)) & 1);
         }
     }

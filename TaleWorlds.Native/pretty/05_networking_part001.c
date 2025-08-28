@@ -287,10 +287,10 @@ void* UNK_180863400;
 void* UNK_180984d50;
 
 /** 网络系统状态标志 */
-uint8_t DAT_180c4eaac;
+uint8_t system_memory_eaac;
 
 /** 网络系统初始化标志 */
-uint8_t DAT_180c4eaa8;
+uint8_t system_memory_eaa8;
 
 /** 网络系统事件队列指针 */
 void* UNK_180984dd0;
@@ -308,7 +308,7 @@ void* UNK_180984ef0;
 void* UNK_1809874b0;
 
 /** 网络系统错误处理指针 */
-uint8_t DAT_180bef7b8;
+uint8_t system_memory_f7b8;
 
 /** 网络系统连接池指针 */
 void* UNK_180985010;
@@ -350,7 +350,7 @@ void* UNK_180985708;
 void* UNK_1809851e8;
 
 /** 网络系统QoS管理指针 */
-uint8_t DAT_180c4eaf0;
+uint8_t system_memory_eaf0;
 
 /** 网络系统连接缓存指针 */
 void* UNK_180985738;
@@ -1254,13 +1254,13 @@ uint8_t FUN_1808632b0;
 uint8_t UNK_1808633a0;
 uint8_t UNK_180863400;
 uint8_t UNK_180984d50;
-uint8_t DAT_180c4eaac;
-uint8_t DAT_180c4eaa8;
+uint8_t system_memory_eaac;
+uint8_t system_memory_eaa8;
 uint8_t UNK_180984dd0;
 uint8_t UNK_180984e88;
 uint8_t UNK_180984eb0;
 uint8_t UNK_1809874b0;
-uint8_t DAT_180bef7b8;
+uint8_t system_memory_f7b8;
 uint8_t UNK_180985010;
 uint8_t UNK_180985080;
 uint8_t UNK_180984ff8;
@@ -1274,7 +1274,7 @@ uint8_t UNK_180985678;
 uint8_t UNK_1809856a0;
 uint8_t UNK_180985708;
 uint8_t UNK_1809851e8;
-uint8_t DAT_180c4eaf0;
+uint8_t system_memory_eaf0;
 uint8_t UNK_180985738;
 uint8_t UNK_180985c10;
 uint8_t FUN_180873f80;
@@ -1314,7 +1314,7 @@ uint8_t UNK_180985648;
 uint8_t UNK_1809856c8;
 uint8_t UNK_1809856f0;
 uint8_t UNK_180985f78;
-uint8_t DAT_180c4eaf8;
+uint8_t system_memory_eaf8;
 uint8_t UNK_180985a80;
 int32_t UNK_180c4eafc;
 int32_t UNK_180c4eb00;
@@ -1335,8 +1335,8 @@ uint8_t UNK_180986248;
 uint8_t UNK_18098624c;
 uint8_t UNK_180986250;
 uint8_t UNK_180986268;
-uint8_t DAT_180c4eaa0;
-uint8_t DAT_180c4eaa4;
+uint8_t system_memory_eaa0;
+uint8_t system_memory_eaa4;
 uint8_t UNK_1809862d0;
 uint8_t UNK_180986298;
 uint8_t UNK_180984010;
