@@ -529,7 +529,7 @@ void cleanup_render_hash_table(render_hash_table_t* hash_table) {
                         uint64_t bucket_index = bucket_diff - 1;
                         
                         if (bucket_diff < bucket_index) {
-                            void (*resize_func)(void*, uint64_t) = callback;
+                            void (*resize_func)(void*, uint64_t) = *(void (**)(void*, uint64_t))callback;
                             resize_func(hash_table, 0xffffffffffffffff);
                         } else {
                             uint64_t new_size = bucket_index * 0x20;
