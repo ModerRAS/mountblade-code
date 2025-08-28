@@ -1,9 +1,12 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization_part031.c - 4 个函数
+// 01_initialization_part031.c - 10 个函数
 
-// 函数: void FUN_18005f54c(void)
-void FUN_18005f54c(void)
+/**
+ * 初始化空函数 - 占位符函数，无实际功能
+ * 原函数名: FUN_18005f54c
+ */
+void InitializeEmptyFunction(void)
 
 {
   return;
