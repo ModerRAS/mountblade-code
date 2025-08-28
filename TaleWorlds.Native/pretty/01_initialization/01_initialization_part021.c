@@ -1,90 +1,87 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization_part021.c - 11 个函数
+// 01_initialization_part021.c - 初始化模块第21部分
+// 包含11个函数，主要处理资源加载、场景管理和系统初始化
 
-// 函数: void FUN_180054360(longlong *param_1,longlong param_2)
-void FUN_180054360(longlong *param_1,longlong param_2)
+// 函数：处理资源加载和初始化
+// 原函数名：FUN_180054360
+void process_resource_initialization(longlong *engine_context, longlong resource_params)
 
 {
-  uint uVar1;
-  int iVar2;
-  undefined8 uVar3;
-  longlong *plVar4;
-  undefined *puVar5;
-  longlong lVar6;
-  ulonglong uVar7;
-  undefined1 auStack_238 [32];
-  undefined4 uStack_218;
-  undefined *puStack_208;
-  longlong lStack_200;
-  uint uStack_1f8;
-  undefined8 uStack_1f0;
-  undefined4 uStack_1e8;
-  undefined *puStack_1e0;
-  longlong lStack_1d8;
-  uint uStack_1d0;
-  undefined8 uStack_1c8;
-  undefined *puStack_1c0;
-  longlong lStack_1b8;
-  undefined4 uStack_1b0;
-  ulonglong uStack_1a8;
-  undefined4 uStack_1a0;
-  uint uStack_19c;
-  undefined1 uStack_198;
-  undefined4 uStack_194;
-  undefined *puStack_190;
-  longlong lStack_188;
-  int iStack_180;
-  undefined4 uStack_178;
-  undefined **ppuStack_170;
-  undefined *puStack_168;
-  longlong lStack_160;
-  undefined4 uStack_150;
-  undefined4 uStack_148;
-  undefined4 uStack_144;
-  undefined4 uStack_140;
-  undefined4 uStack_13c;
-  undefined4 uStack_138;
-  undefined4 uStack_134;
-  undefined4 uStack_130;
-  undefined4 uStack_12c;
-  undefined4 uStack_128;
-  undefined4 uStack_124;
-  undefined4 uStack_120;
-  undefined4 uStack_11c;
-  undefined4 uStack_118;
-  undefined4 uStack_114;
-  undefined4 uStack_110;
-  undefined4 uStack_10c;
-  undefined1 uStack_108;
-  undefined4 uStack_107;
-  undefined4 uStack_103;
-  undefined8 uStack_f8;
-  undefined **ppuStack_f0;
-  undefined *puStack_e8;
-  undefined1 *puStack_e0;
-  undefined4 uStack_d8;
-  undefined1 auStack_d0 [136];
-  ulonglong uStack_48;
+  // 局部变量声明
+  uint resource_id;         // 资源ID
+  int init_result;          // 初始化结果
+  undefined8 resource_handle; // 资源句柄
+  longlong *resource_data;  // 资源数据指针
+  undefined *resource_name;  // 资源名称
+  longlong data_offset;     // 数据偏移量
+  ulonglong data_size;      // 数据大小
   
-  uStack_f8 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_238;
-  uStack_1e8 = 0;
-  ppuStack_f0 = &puStack_1c0;
-  puStack_1c0 = &UNK_180a3c3e0;
-  uStack_1a8 = 0;
-  lStack_1b8 = 0;
-  uStack_1b0 = 0;
-  uStack_19c = 0x100;
-  uStack_198 = 0;
-  uStack_194 = 0;
-  puVar5 = &DAT_18098bc73;
-  if (*(undefined **)(param_2 + 8) != (undefined *)0x0) {
-    puVar5 = *(undefined **)(param_2 + 8);
+  // 栈变量
+  undefined1 stack_buffer[32];      // 栈缓冲区
+  undefined4 stack_guard;          // 栈保护
+  undefined *resource_path;         // 资源路径
+  longlong path_length;            // 路径长度
+  uint path_capacity;              // 路径容量
+  undefined8 path_handle;          // 路径句柄
+  undefined4 path_flags;           // 路径标志
+  undefined *path_data;            // 路径数据
+  longlong path_offset;            // 路径偏移量
+  uint path_size;                  // 路径大小
+  undefined8 path_cookie;          // 路径cookie
+  undefined *module_name;           // 模块名称
+  longlong name_offset;            // 名称偏移量
+  undefined4 module_flags;         // 模块标志
+  ulonglong module_cookie;         // 模块cookie
+  undefined4 buffer_size;         // 缓冲区大小
+  uint buffer_capacity;            // 缓冲区容量
+  undefined1 buffer_flag;          // 缓冲区标志
+  undefined4 alignment_flag;       // 对齐标志
+  undefined *string_buffer;        // 字符串缓冲区
+  longlong string_offset;          // 字符串偏移量
+  int string_length;               // 字符串长度
+  undefined4 string_flags;         // 字符串标志
+  undefined **resource_ptr;        // 资源指针
+  undefined *temp_buffer;          // 临时缓冲区
+  longlong temp_offset;            // 临时偏移量
+  undefined4 temp_flags;           // 临时标志
+  undefined4 float_values[12];     // 浮点数值数组
+  undefined1 byte_flag;            // 字节标志
+  undefined4 alignment_value;      // 对齐值
+  undefined4 reserved_value;       // 保留值
+  undefined8 handle_guard;         // 句柄保护
+  undefined **handle_ptr;           // 句柄指针
+  undefined *data_buffer;          // 数据缓冲区
+  undefined1 *char_buffer;         // 字符缓冲区
+  undefined4 data_flags;           // 数据标志
+  undefined1 large_buffer[136];    // 大缓冲区
+  ulonglong security_cookie;       // 安全cookie
+  
+  // 初始化安全保护机制
+  handle_guard = 0xfffffffffffffffe;
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  
+  // 初始化资源数据结构
+  path_flags = 0;
+  handle_ptr = &module_name;
+  module_name = &UNK_180a3c3e0;  // 设置默认空名称
+  module_cookie = 0;
+  name_offset = 0;
+  module_flags = 0;
+  buffer_capacity = 0x100;  // 设置256字节缓冲区
+  buffer_flag = 0;
+  alignment_flag = 0;
+  
+  // 获取资源名称
+  resource_name = &DAT_18098bc73;  // 默认资源名称
+  if (*(undefined **)(resource_params + 8) != (undefined *)0x0) {
+    resource_name = *(undefined **)(resource_params + 8);  // 使用自定义名称
   }
-  FUN_180627c50(&puStack_1c0,puVar5);
-  uStack_1a0 = 0;
-  uStack_19c = uStack_19c & 0xffffff00;
+  
+  // 设置资源名称
+  FUN_180627c50(&module_name, resource_name);
+  buffer_size = 0;
+  buffer_capacity = buffer_capacity & 0xffffff00;  // 对齐到256字节边界
   uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0x60d30,0x10,0x1f);
   plVar4 = (longlong *)FUN_1801954d0(uVar3,&puStack_1c0);
   ppuStack_170 = (undefined **)plVar4;
@@ -223,59 +220,67 @@ void FUN_180054360(longlong *param_1,longlong param_2)
 
 
 
-// 函数: void FUN_1800547b0(void)
-void FUN_1800547b0(void)
+/**
+ * 批量处理游戏模块初始化
+ * 遍历所有模块并逐个初始化，处理模块间的依赖关系
+ * 原函数名：FUN_1800547b0
+ */
+void batch_initialize_game_modules(void)
 
 {
-  uint uVar1;
-  longlong *plVar2;
-  undefined8 *puVar3;
-  char cVar4;
-  undefined8 *puVar5;
-  undefined1 *puVar6;
-  undefined4 *puVar7;
-  int iVar8;
-  int iVar9;
-  longlong lVar10;
-  ulonglong uVar11;
-  undefined8 *puVar12;
-  int iVar13;
-  longlong lVar14;
-  uint *puVar15;
-  undefined *puVar16;
-  undefined4 uVar17;
-  undefined1 auStack_178 [32];
-  undefined *puStack_158;
-  undefined1 *puStack_150;
-  uint uStack_148;
-  undefined8 uStack_140;
-  undefined *puStack_138;
-  undefined1 *puStack_130;
-  uint uStack_128;
-  ulonglong uStack_120;
-  undefined *puStack_118;
-  undefined1 *puStack_110;
-  undefined4 uStack_108;
-  ulonglong uStack_100;
-  int iStack_f8;
-  undefined *puStack_f0;
-  undefined1 *puStack_e8;
-  undefined4 uStack_e0;
-  ulonglong uStack_d8;
-  undefined *puStack_d0;
-  longlong lStack_c8;
-  int iStack_c0;
-  undefined4 uStack_b8;
-  longlong *plStack_a8;
-  longlong lStack_a0;
-  undefined *puStack_98;
-  undefined *puStack_90;
-  undefined4 uStack_80;
-  undefined *puStack_78;
-  longlong lStack_70;
-  undefined4 uStack_60;
-  undefined8 *puStack_58;
-  undefined8 *puStack_50;
+  // 模块遍历和初始化变量
+  uint module_index;                    // 模块索引
+  longlong *module_registry;            // 模块注册表
+  undefined8 *module_array;             // 模块数组
+  char path_separator;                  // 路径分隔符
+  undefined8 *module_start;             // 模块起始地址
+  undefined1 *module_name_buffer;       // 模块名称缓冲区
+  undefined4 *module_flags;             // 模块标志
+  int dependency_index;                 // 依赖索引
+  int current_index;                    // 当前索引
+  longlong module_address;              // 模块地址
+  ulonglong module_size;                // 模块大小
+  undefined8 *module_end;               // 模块结束地址
+  int dependency_count;                 // 依赖计数
+  longlong total_modules;                // 总模块数
+  uint *module_entry;                   // 模块入口点
+  undefined *module_data;               // 模块数据
+  undefined4 module_status;             // 模块状态
+  
+  // 栈变量
+  undefined1 stack_guard[32];           // 栈保护
+  undefined *path_buffer;               // 路径缓冲区
+  undefined1 *module_path;              // 模块路径
+  uint path_length;                     // 路径长度
+  undefined8 path_handle;               // 路径句柄
+  undefined *path_data;                 // 路径数据
+  undefined1 *name_buffer;              // 名称缓冲区
+  uint name_length;                     // 名称长度
+  ulonglong name_cookie;                // 名称cookie
+  undefined *name_handle;               // 名称句柄
+  undefined1 *file_path;                // 文件路径
+  undefined4 file_size;                 // 文件大小
+  ulonglong file_cookie;                // 文件cookie
+  int loop_counter;                     // 循环计数器
+  undefined *temp_handle;                // 临时句柄
+  undefined1 *temp_buffer;              // 临时缓冲区
+  undefined4 temp_flags;                // 临时标志
+  ulonglong temp_cookie;                // 临时cookie
+  undefined *data_handle;               // 数据句柄
+  longlong data_offset;                 // 数据偏移量
+  int data_size;                        // 数据大小
+  undefined4 data_flags;                // 数据标志
+  longlong *global_registry;            // 全局注册表
+  longlong module_count;                // 模块计数
+  undefined *module_info;               // 模块信息
+  undefined *module_config;             // 模块配置
+  undefined4 config_flags;              // 配置标志
+  undefined *init_data;                 // 初始化数据
+  undefined *dependency_data;           // 依赖数据
+  longlong dependency_offset;           // 依赖偏移量
+  undefined4 dependency_flags;          // 依赖标志
+  undefined8 *module_start_ptr;         // 模块起始指针
+  undefined8 *module_end_ptr;           // 模块结束指针
   undefined8 uStack_48;
   undefined4 uStack_40;
   undefined8 uStack_38;
