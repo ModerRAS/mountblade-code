@@ -1,26 +1,30 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part235.c - 12 个函数
+// 02_core_engine_part235.c - 核心引擎排序和数据处理模块
+// 本文件包含12个函数，主要用于数据排序、内存管理和资源处理
 
-// 函数: void FUN_1802044e0(undefined8 param_1,undefined8 param_2,undefined8 *param_3)
-void FUN_1802044e0(undefined8 param_1,undefined8 param_2,undefined8 *param_3)
+/**
+ * 合并排序函数 - 对两个已排序的区间进行合并操作
+ * @param param_1 上下文参数
+ * @param param_2 输入参数
+ * @param param_3 输出参数指针
+ */
+void merge_sorted_intervals(undefined8 param_1, undefined8 param_2, undefined8 *param_3)
 
 {
-  int iVar1;
-  int iVar2;
-  bool bVar3;
-  undefined8 uVar4;
-  undefined8 uVar5;
-  undefined8 uVar6;
-  undefined8 *puVar7;
-  undefined8 *unaff_RBP;
-  undefined8 *unaff_RSI;
-  undefined8 *puVar8;
-  undefined8 *in_R10;
-  undefined8 *puVar9;
-  undefined8 *puVar10;
-  undefined8 *puVar11;
-  undefined8 *unaff_R15;
+  int compare_value1;
+  int compare_value2;
+  bool should_break;
+  undefined8 temp_value1;
+  undefined8 temp_value2;
+  undefined8 temp_value3;
+  undefined8 *ptr_current;
+  undefined8 *ptr_end;
+  undefined8 *ptr_start;
+  undefined8 *ptr_output;
+  undefined8 *ptr_left;
+  undefined8 *ptr_right;
+  undefined8 *ptr_temp;
   
   while( true ) {
     iVar1 = *(int *)(in_R10 + -1);
@@ -202,8 +206,12 @@ joined_r0x0001802045de:
 
 
 
-// 函数: void FUN_180204700(longlong param_1,longlong param_2)
-void FUN_180204700(longlong param_1,longlong param_2)
+/**
+ * 堆排序函数 - 对指定区间进行堆排序操作
+ * @param param_1 数据起始地址
+ * @param param_2 数据结束地址
+ */
+void heap_sort_range(longlong param_1, longlong param_2)
 
 {
   undefined8 *puVar1;
@@ -294,7 +302,14 @@ void FUN_180204700(longlong param_1,longlong param_2)
 
 
 // 函数: void FUN_180204722(longlong param_1,undefined8 param_2,undefined8 param_3,longlong param_4)
-void FUN_180204722(longlong param_1,undefined8 param_2,undefined8 param_3,longlong param_4)
+/**
+ * 优化的堆排序函数 - 带有额外参数的堆排序实现
+ * @param param_1 数据起始地址
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 数据结束地址
+ */
+void optimized_heap_sort(longlong param_1, undefined8 param_2, undefined8 param_3, longlong param_4)
 
 {
   undefined8 *puVar1;
@@ -381,7 +396,10 @@ void FUN_180204722(longlong param_1,undefined8 param_2,undefined8 param_3,longlo
 
 
 // 函数: void FUN_180204861(void)
-void FUN_180204861(void)
+/**
+ * 空函数 - 可能用于调试或占位
+ */
+void empty_function(void)
 
 {
   return;
@@ -392,7 +410,14 @@ void FUN_180204861(void)
 
 
 // 函数: void FUN_180204870(longlong param_1,longlong param_2,ulonglong param_3,undefined8 *param_4)
-void FUN_180204870(longlong param_1,longlong param_2,ulonglong param_3,undefined8 *param_4)
+/**
+ * 插入排序函数 - 对指定区间进行插入排序
+ * @param param_1 数据起始地址
+ * @param param_2 排序起始位置
+ * @param param_3 数据大小
+ * @param param_4 插入元素指针
+ */
+void insertion_sort_range(longlong param_1, longlong param_2, ulonglong param_3, undefined8 *param_4)
 
 {
   undefined8 *puVar1;
@@ -459,7 +484,13 @@ void FUN_180204870(longlong param_1,longlong param_2,ulonglong param_3,undefined
 
 
 
-undefined8 * FUN_180204a00(undefined8 *param_1,undefined8 *param_2)
+/**
+ * 资源转移函数 - 将资源从一个结构体转移到另一个结构体
+ * @param param_1 目标结构体指针
+ * @param param_2 源结构体指针
+ * @return 返回目标结构体指针
+ */
+undefined8 * transfer_resources(undefined8 *param_1, undefined8 *param_2)
 
 {
   longlong *plVar1;
@@ -502,9 +533,17 @@ undefined8 * FUN_180204a00(undefined8 *param_1,undefined8 *param_2)
 
 
 
-undefined8 *
-FUN_180204b50(longlong param_1,undefined8 *param_2,int param_3,char param_4,undefined4 param_5,
-             char param_6)
+/**
+ * 复杂资源处理函数 - 处理带有多个参数的资源操作
+ * @param param_1 基础地址
+ * @param param_2 输出参数
+ * @param param_3 大小参数
+ * @param param_4 标志参数
+ * @param param_5 附加参数
+ * @param param_6 模式参数
+ * @return 返回输出参数指针
+ */
+undefined8 * complex_resource_handler(longlong param_1, undefined8 *param_2, int param_3, char param_4, undefined4 param_5, char param_6)
 
 {
   undefined8 uVar1;
@@ -607,7 +646,12 @@ LAB_180204df9:
 
 
 // 函数: void FUN_180204e40(longlong param_1,int *param_2)
-void FUN_180204e40(longlong param_1,int *param_2)
+/**
+ * 数据插入函数 - 将数据插入到指定位置
+ * @param param_1 上下文参数
+ * @param param_2 数据指针
+ */
+void insert_data(longlong param_1, int *param_2)
 
 {
   int iVar1;
@@ -685,7 +729,12 @@ FUN_180204f57:
 
 
 // 函数: void FUN_180204e64(longlong param_1,undefined4 param_2)
-void FUN_180204e64(longlong param_1,undefined4 param_2)
+/**
+ * 数据插入函数变体1 - 处理不同类型的数据插入
+ * @param param_1 上下文参数
+ * @param param_2 数据值
+ */
+void insert_data_variant1(longlong param_1, undefined4 param_2)
 
 {
   undefined4 uVar1;
@@ -758,7 +807,12 @@ FUN_180204f4d:
 
 
 // 函数: void FUN_180204ea2(undefined8 param_1,longlong param_2)
-void FUN_180204ea2(undefined8 param_1,longlong param_2)
+/**
+ * 数据插入函数变体2 - 处理带有偏移量的数据插入
+ * @param param_1 上下文参数
+ * @param param_2 偏移量参数
+ */
+void insert_data_variant2(undefined8 param_1, longlong param_2)
 
 {
   undefined4 uVar1;
@@ -817,7 +871,10 @@ LAB_180204eec:
 
 
 // 函数: void FUN_180204f4d(void)
-void FUN_180204f4d(void)
+/**
+ * 资源清理函数1 - 清理指定资源
+ */
+void cleanup_resource1(void)
 
 {
   undefined8 *unaff_RSI;
