@@ -592,13 +592,27 @@ EVENT_HANDLER_EXIT:
 
 
 
-// 函数: void FUN_1803f8770(uint64_t param_1,longlong param_2,uint64_t param_3)
-void FUN_1803f8770(uint64_t param_1,longlong param_2,uint64_t param_3)
-
+/**
+ * @brief 系统初始化状态设置器
+ * 
+ * 负责设置系统的初始化状态和标志位
+ * 确保系统在启动时处于正确的初始化状态
+ * 
+ * @param systemId 系统标识符
+ * @param systemState 系统状态指针
+ * @param initFlags 初始化标志位
+ * 
+ * @return void
+ */
+void SystemInitializer_SetInitializationState(uint64_t systemId, longlong systemState, uint64_t initFlags)
 {
-  FUN_1801f9270(param_1,param_3);
-  *(int8_t *)(param_2 + 0x24) = 1;
-  *(int8_t *)(param_2 + 0x2a) = 0;
+  /* 执行系统初始化 */
+  SystemInitializer_PerformInitialization(systemId, initFlags);
+  
+  /* 设置系统状态标志 */
+  *(int8_t *)(systemState + 0x24) = 1;  /* 初始化完成标志 */
+  *(int8_t *)(systemState + 0x2a) = 0;  /* 错误状态标志 */
+  
   return;
 }
 
