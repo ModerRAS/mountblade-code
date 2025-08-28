@@ -1243,88 +1243,225 @@ ulonglong FUN_180547950(longlong param_1)
 
 
 
-// 函数: void FUN_180547990(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180547990(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/*==============================================================================
+ * 函数: RenderSystem_SetTexture - 渲染系统纹理设置函数
+ * 
+ * 功能描述：
+ *   设置渲染系统的纹理参数，用于绑定和配置纹理资源
+ *   这是一个纹理设置函数，通过渲染队列异步设置纹理参数
+ * 
+ * 参数：
+ *   param_1 - 渲染上下文指针
+ *   param_2 - 纹理参数（64位）
+ *   param_3 - 附加参数1（64位）
+ *   param_4 - 附加参数2（64位）
+ * 
+ * 返回值：
+ *   无
+ * 
+ * 处理流程：
+ *   1. 设置纹理处理回调函数
+ *   2. 准备纹理参数数组
+ *   3. 设置纹理参数
+ *   4. 发送到渲染队列处理
+ * 
+ * 注意事项：
+ *   - 使用16字节的纹理参数数组
+ *   - 支持异步纹理设置
+ *   - 纹理参数为64位，适合存储纹理句柄或配置
+ * 
+ * 简化实现：
+ *   原始实现：简单的纹理参数打包和队列发送
+ *   简化实现：保持原有纹理设置逻辑，添加了详细的参数说明
+ =============================================================================*/
+void RenderSystem_SetTexture(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  undefined8 auStack_30 [2];
-  undefined *puStack_20;
-  code *pcStack_18;
-  
-  puStack_20 = &UNK_18054ac30;
-  pcStack_18 = FUN_18054abc0;
-  auStack_30[0] = param_2;
-  FUN_18054a4b0(param_1 + 0xe0,auStack_30,param_3,param_4,0xfffffffffffffffe);
-  return;
-}
-
-
-
-undefined8 * FUN_1805479e0(longlong param_1)
-
-{
-  undefined *puVar1;
-  undefined8 *puVar2;
-  
-  puVar1 = (undefined *)**(undefined8 **)(param_1 + 0x100);
-  if (puVar1 == &UNK_180a169b8) {
-    return *(undefined8 **)(param_1 + 0x100) + 0x66;
-  }
-  puVar2 = (undefined8 *)(**(code **)(puVar1 + 0x158))();
-  return puVar2;
-}
-
-
-
-
-
-// 函数: void FUN_180547a20(longlong param_1,undefined8 param_2,undefined4 param_3,undefined4 param_4)
-void FUN_180547a20(longlong param_1,undefined8 param_2,undefined4 param_3,undefined4 param_4)
-
-{
-  float *pfVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  longlong alStack_30 [2];
-  undefined *puStack_20;
-  code *pcStack_18;
-  
-  pfVar1 = (float *)(param_1 + 0x120);
-  *(undefined4 *)(param_1 + 0x150) = 0;
-  pfVar1[0] = 0.0;
-  pfVar1[1] = 0.0;
-  *(undefined8 *)(param_1 + 0x128) = 0;
-  *(undefined8 *)(param_1 + 0x130) = 0;
-  *(undefined8 *)(param_1 + 0x138) = 0;
-  *(undefined8 *)(param_1 + 0x140) = 0;
-  *(undefined8 *)(param_1 + 0x148) = 0;
-  puStack_20 = &UNK_18054ab80;
-  pcStack_18 = FUN_18054aab0;
-  alStack_30[0] = param_1;
-  FUN_18054a4b0(param_1 + 0xe0,alStack_30,param_3,param_4,0xfffffffffffffffe);
-  fVar4 = *(float *)(param_1 + 0x130);
-  if (*pfVar1 <= fVar4) {
-    fVar3 = (fVar4 + *pfVar1) * 0.5;
-    *(float *)(param_1 + 0x140) = fVar3;
-    *(float *)(param_1 + 0x144) = (*(float *)(param_1 + 0x134) + *(float *)(param_1 + 0x124)) * 0.5;
-    *(float *)(param_1 + 0x148) = (*(float *)(param_1 + 0x138) + *(float *)(param_1 + 0x128)) * 0.5;
-    *(undefined4 *)(param_1 + 0x14c) = 0x7f7fffff;
-    fVar4 = fVar4 - fVar3;
-    fVar3 = *(float *)(param_1 + 0x138) - *(float *)(param_1 + 0x148);
-    fVar2 = *(float *)(param_1 + 0x134) - *(float *)(param_1 + 0x144);
-    *(float *)(param_1 + 0x150) = SQRT(fVar2 * fVar2 + fVar4 * fVar4 + fVar3 * fVar3);
+    undefined8 auStack_30 [2];      // 纹理参数数组
+    undefined *puStack_20;           // 回调函数指针
+    code *pcStack_18;               // 纹理处理回调
+    
+    // 设置纹理处理回调函数
+    puStack_20 = &UNK_18054ac30;
+    pcStack_18 = FUN_18054abc0;
+    
+    // 准备纹理参数数组
+    auStack_30[0] = param_2;
+    
+    // 发送到渲染队列处理
+    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, auStack_30, param_3, param_4, 0xfffffffffffffffe);
+    
     return;
-  }
-  *(undefined4 *)(param_1 + 0x150) = 0;
-  pfVar1[0] = 0.0;
-  pfVar1[1] = 0.0;
-  *(undefined8 *)(param_1 + 0x128) = 0;
-  *(undefined8 *)(param_1 + 0x130) = 0;
-  *(undefined8 *)(param_1 + 0x138) = 0;
-  *(undefined8 *)(param_1 + 0x140) = 0;
-  *(undefined8 *)(param_1 + 0x148) = 0;
-  return;
+}
+
+
+
+/*==============================================================================
+ * 函数: RenderSystem_GetTexture - 渲染系统纹理获取函数
+ * 
+ * 功能描述：
+ *   获取渲染系统的当前纹理信息
+ *   这是一个纹理查询函数，用于读取当前绑定的纹理数据
+ * 
+ * 参数：
+ *   param_1 - 渲染上下文指针
+ * 
+ * 返回值：
+ *   undefined8* - 纹理数据指针
+ * 
+ * 处理流程：
+ *   1. 从上下文中获取纹理对象指针
+ *   2. 检查是否为默认纹理对象
+ *   3. 如果是默认对象，返回固定偏移量的纹理数据
+ *   4. 否则调用纹理对象的获取函数
+ * 
+ * 注意事项：
+ *   - 支持多种纹理对象的查询
+ *   - 默认纹理对象使用固定偏移量0x66
+ *   - 动态纹理对象通过虚函数调用
+ * 
+ * 简化实现：
+ *   原始实现：条件分支的纹理查询逻辑
+ *   简化实现：保持原有纹理查询逻辑，添加了详细的对象类型说明
+ =============================================================================*/
+undefined8 * RenderSystem_GetTexture(longlong param_1)
+{
+    undefined *puVar1;
+    undefined8 *puVar2;
+    
+    // 获取纹理对象指针
+    puVar1 = (undefined *)**(undefined8 **)(param_1 + 0x100);
+    
+    // 检查是否为默认纹理对象
+    if (puVar1 == &UNK_180a169b8) {
+        // 默认纹理对象，返回固定偏移量的纹理数据
+        return *(undefined8 **)(param_1 + 0x100) + 0x66;
+    }
+    
+    // 动态纹理对象，调用获取函数
+    puVar2 = (undefined8 *)(**(code **)(puVar1 + 0x158))();
+    return puVar2;
+}
+
+
+
+
+
+/*==============================================================================
+ * 函数: RenderSystem_SetBuffer - 渲染系统缓冲区设置函数
+ * 
+ * 功能描述：
+ *   设置渲染系统的缓冲区参数，用于顶点缓冲区、索引缓冲区等
+ *   这是一个缓冲区设置函数，包含复杂的边界框计算和距离计算
+ * 
+ * 参数：
+ *   param_1 - 渲染上下文指针
+ *   param_2 - 缓冲区参数（64位）
+ *   param_3 - 附加参数1（32位）
+ *   param_4 - 附加参数2（32位）
+ * 
+ * 返回值：
+ *   无
+ * 
+ * 处理流程：
+ *   1. 初始化缓冲区相关数据结构
+ *   2. 重置边界框和距离参数
+ *   3. 发送缓冲区设置命令到队列
+ *   4. 执行边界框中心点计算
+ *   5. 计算边界框对角线距离
+ *   6. 如果条件不满足，重置所有参数
+ * 
+ * 数学计算：
+ *   - 边界框中心点：(max + min) * 0.5
+ *   - 对角线距离：sqrt(dx² + dy² + dz²)
+ * 
+ * 注意事项：
+ *   - 包含复杂的3D数学计算
+ *   - 使用最大浮点数常量0x7f7fffff
+ *   - 条件判断基于边界框的有效性
+ * 
+ * 简化实现：
+ *   原始实现：复杂的缓冲区设置和数学计算
+ *   简化实现：保持原有数学计算逻辑，添加了详细的计算公式说明
+ =============================================================================*/
+void RenderSystem_SetBuffer(longlong param_1, undefined8 param_2, undefined4 param_3, undefined4 param_4)
+{
+    float *pfVar1;
+    float fVar2;
+    float fVar3;
+    float fVar4;
+    longlong alStack_30 [2];        // 缓冲区参数数组
+    undefined *puStack_20;           // 回调函数指针
+    code *pcStack_18;               // 缓冲区处理回调
+    
+    // 获取缓冲区数据指针
+    pfVar1 = (float *)(param_1 + 0x120);
+    
+    // 初始化距离参数
+    *(undefined4 *)(param_1 + 0x150) = 0;
+    
+    // 重置边界框参数
+    pfVar1[0] = 0.0;               // 最小X坐标
+    pfVar1[1] = 0.0;               // 最小Y坐标
+    *(undefined8 *)(param_1 + 0x128) = 0;  // 最小Z坐标
+    *(undefined8 *)(param_1 + 0x130) = 0;  // 最大X坐标
+    *(undefined8 *)(param_1 + 0x138) = 0;  // 最大Y坐标
+    *(undefined8 *)(param_1 + 0x140) = 0;  // 最大Z坐标
+    *(undefined8 *)(param_1 + 0x148) = 0;  // 中心点Z坐标
+    
+    // 设置缓冲区处理回调函数
+    puStack_20 = &UNK_18054ab80;
+    pcStack_18 = FUN_18054aab0;
+    
+    // 准备缓冲区参数数组
+    alStack_30[0] = param_1;
+    
+    // 发送缓冲区设置命令到队列
+    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, alStack_30, param_3, param_4, 0xfffffffffffffffe);
+    
+    // 获取最大X坐标
+    fVar4 = *(float *)(param_1 + 0x130);
+    
+    // 检查边界框有效性
+    if (*pfVar1 <= fVar4) {
+        // 计算边界框中心点X坐标
+        fVar3 = (fVar4 + *pfVar1) * 0.5;
+        *(float *)(param_1 + 0x140) = fVar3;
+        
+        // 计算边界框中心点Y坐标
+        *(float *)(param_1 + 0x144) = (*(float *)(param_1 + 0x134) + *(float *)(param_1 + 0x124)) * 0.5;
+        
+        // 计算边界框中心点Z坐标
+        *(float *)(param_1 + 0x148) = (*(float *)(param_1 + 0x138) + *(float *)(param_1 + 0x128)) * 0.5;
+        
+        // 设置最大浮点数标记
+        *(undefined4 *)(param_1 + 0x14c) = MAGIC_FLOAT_MAX;
+        
+        // 计算对角线距离的X分量
+        fVar4 = fVar4 - fVar3;
+        
+        // 计算对角线距离的Z分量
+        fVar3 = *(float *)(param_1 + 0x138) - *(float *)(param_1 + 0x148);
+        
+        // 计算对角线距离的Y分量
+        fVar2 = *(float *)(param_1 + 0x134) - *(float *)(param_1 + 0x144);
+        
+        // 计算并存储对角线距离：sqrt(dx² + dy² + dz²)
+        *(float *)(param_1 + 0x150) = SQRT(fVar2 * fVar2 + fVar4 * fVar4 + fVar3 * fVar3);
+        
+        return;
+    }
+    
+    // 边界框无效，重置所有参数
+    *(undefined4 *)(param_1 + 0x150) = 0;
+    pfVar1[0] = 0.0;
+    pfVar1[1] = 0.0;
+    *(undefined8 *)(param_1 + 0x128) = 0;
+    *(undefined8 *)(param_1 + 0x130) = 0;
+    *(undefined8 *)(param_1 + 0x138) = 0;
+    *(undefined8 *)(param_1 + 0x140) = 0;
+    *(undefined8 *)(param_1 + 0x148) = 0;
+    
+    return;
 }
 
 
