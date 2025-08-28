@@ -1,10 +1,20 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part020.c - 2 个函数
+// 03_rendering_part020.c - 渲染系统材质处理模块
+// 包含材质处理和模型加载相关的函数
 
-// 函数: void FUN_18027a810(longlong *param_1,longlong *param_2)
-void FUN_18027a810(longlong *param_1,longlong *param_2)
-
+/**
+ * 处理渲染材质参数和属性
+ * 
+ * 该函数负责解析和处理渲染材质的各种参数，包括：
+ * - 材质名称和属性
+ * - 颜色因子和纹理坐标
+ * - 网格数据和多材质支持
+ * 
+ * @param render_context 渲染上下文指针
+ * @param material_params 材质参数结构体指针
+ */
+void process_rendering_materials(longlong *render_context, longlong *material_params)
 {
   char cVar1;
   char cVar2;
@@ -24,6 +34,8 @@ void FUN_18027a810(longlong *param_1,longlong *param_2)
   ulonglong uVar16;
   uint uVar17;
   bool bVar18;
+  
+  // 栈变量声明
   undefined1 auStack_2d8 [32];
   uint auStack_2b8 [4];
   longlong *plStack_2a8;
@@ -91,6 +103,7 @@ void FUN_18027a810(longlong *param_1,longlong *param_2)
   undefined1 auStack_e0 [136];
   ulonglong uStack_58;
   
+  // 初始化栈变量
   uStack_170 = 0xfffffffffffffffe;
   uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_2d8;
   auStack_2b8[1] = 0;
@@ -98,12 +111,16 @@ void FUN_18027a810(longlong *param_1,longlong *param_2)
   uStack_288 = 0;
   lStack_298 = 0;
   uStack_290 = 0;
+  
+  // 处理材质名称
   pcVar15 = "name";
   do {
     pcVar14 = pcVar15;
     pcVar15 = pcVar14 + 1;
   } while (*pcVar15 != '\0');
-  for (puVar11 = (undefined8 *)param_2[8]; plStack_2a8 = param_2, puVar11 != (undefined8 *)0x0;
+  
+  // 遍历材质参数链表
+  for (puVar11 = (undefined8 *)material_params[8]; plStack_2a8 = material_params, puVar11 != (undefined8 *)0x0;
       puVar11 = (undefined8 *)puVar11[6]) {
     pcVar15 = (char *)*puVar11;
     if (pcVar15 == (char *)0x0) {
@@ -131,28 +148,32 @@ LAB_18027a8f4:
       }
     }
   }
+  
+  // 处理材质数据
   if (0 < (int)uStack_290) {
     lVar9 = FUN_1800b6de0(_DAT_180c86930,&puStack_2a0,1);
     uVar17 = uStack_290;
     if (lVar9 == 0) {
       uVar7 = (ulonglong)uStack_290;
       if (lStack_298 != 0) {
-        FUN_1806277c0(param_1 + 0x3e,uVar7);
+        FUN_1806277c0(render_context + 0x3e,uVar7);
       }
       if (uVar17 != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(param_1[0x3f],lStack_298,uVar7);
+        // 复制材质数据到渲染上下文
+        memcpy(render_context[0x3f],lStack_298,uVar17);
       }
-      *(undefined4 *)(param_1 + 0x40) = 0;
-      if (param_1[0x3f] != 0) {
-        *(undefined1 *)(uVar7 + param_1[0x3f]) = 0;
+      *(undefined4 *)(render_context + 0x40) = 0;
+      if (render_context[0x3f] != 0) {
+        *(undefined1 *)(uVar7 + render_context[0x3f]) = 0;
       }
-      *(undefined4 *)((longlong)param_1 + 0x20c) = uStack_288._4_4_;
+      *(undefined4 *)((longlong)render_context + 0x20c) = uStack_288._4_4_;
     }
     else {
-      FUN_180275a60(lVar9,param_1,1);
+      FUN_180275a60(lVar9,render_context,1);
     }
   }
+  
+  // 处理材质类型
   puStack_250 = &UNK_180a3c3e0;
   uStack_238 = 0;
   lStack_248 = 0;
@@ -162,7 +183,9 @@ LAB_18027a8f4:
     pcVar14 = pcVar15;
     pcVar15 = pcVar14 + 1;
   } while (*pcVar15 != '\0');
-  for (puVar11 = (undefined8 *)param_2[8]; puVar11 != (undefined8 *)0x0;
+  
+  // 查找材质类型参数
+  for (puVar11 = (undefined8 *)material_params[8]; puVar11 != (undefined8 *)0x0;
       puVar11 = (undefined8 *)puVar11[6]) {
     pcVar15 = (char *)*puVar11;
     if (pcVar15 == (char *)0x0) {
@@ -190,26 +213,31 @@ LAB_18027aa35:
       }
     }
   }
+  
+  // 应用材质到渲染上下文
   if (0 < iStack_240) {
-    pcVar3 = *(code **)(*param_1 + 0x118);
+    pcVar3 = *(code **)(*render_context + 0x118);
     uVar4 = FUN_1800b30d0(_DAT_180c86930,&plStack_198,&puStack_250,1);
-    (*pcVar3)(param_1,uVar4);
+    (*pcVar3)(render_context,uVar4);
     if (plStack_198 != (longlong *)0x0) {
       (**(code **)(*plStack_198 + 0x38))();
     }
   }
+  
+  // 处理材质因子和颜色
   puStack_250 = &UNK_180a3c3e0;
   if (lStack_248 != 0) {
-                    // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_248 = 0;
   uStack_238 = uStack_238 & 0xffffffff00000000;
   puStack_250 = &UNK_18098bcb0;
-  puVar11 = (undefined8 *)param_2[6];
+  puVar11 = (undefined8 *)material_params[6];
+  
   if (puVar11 != (undefined8 *)0x0) {
 LAB_18027aad4:
     do {
+      // 初始化材质属性
       uStack_280 = &UNK_180a3c3e0;
       uStack_268 = 0;
       uStack_278 = 0;
@@ -219,6 +247,8 @@ LAB_18027aad4:
         pcVar14 = pcVar15;
         pcVar15 = pcVar14 + 1;
       } while (*pcVar15 != '\0');
+      
+      // 查找材质名称
       for (puVar13 = (undefined8 *)puVar11[8]; puVar13 != (undefined8 *)0x0;
           puVar13 = (undefined8 *)puVar13[6]) {
         pcVar15 = (char *)*puVar13;
@@ -247,10 +277,12 @@ LAB_18027ab65:
           }
         }
       }
+      
+      // 处理材质实例
       uVar16 = 0;
-      lVar9 = param_1[7];
+      lVar9 = render_context[7];
       uVar7 = uVar16;
-      if (param_1[8] - lVar9 >> 4 != 0) {
+      if (render_context[8] - lVar9 >> 4 != 0) {
         do {
           puVar10 = &UNK_1809fcc58;
           lVar9 = *(longlong *)(lVar9 + uVar16 * 0x10);
@@ -269,6 +301,8 @@ LAB_18027ab65:
           }
           puStack_158 = puVar10;
           strcpy_s(acStack_140,0x40,puVar12);
+          
+          // 比较材质名称
           if ((float)iStack_148 == fStack_270) {
             if (iStack_148 == 0) {
 LAB_18027ac8e:
@@ -291,6 +325,8 @@ LAB_18027ac8e:
 LAB_18027ac96:
             bVar18 = false;
           }
+          
+          // 应用材质属性
           if (bVar18) {
             auStack_2b8[0] = 0;
             puStack_f8 = &UNK_1809fcc28;
@@ -302,6 +338,8 @@ LAB_18027ac96:
               pcVar14 = pcVar15;
               pcVar15 = pcVar14 + 1;
             } while (*pcVar15 != '\0');
+            
+            // 查找材质参数
             for (puVar13 = (undefined8 *)puVar11[8]; puVar13 != (undefined8 *)0x0;
                 puVar13 = (undefined8 *)puVar13[6]) {
               pcVar15 = (char *)*puVar13;
@@ -335,11 +373,15 @@ LAB_18027ad47:
                 }
               }
             }
+            
+            // 处理颜色因子
             pcVar15 = "factor";
             do {
               pcVar14 = pcVar15;
               pcVar15 = pcVar14 + 1;
             } while (*pcVar15 != '\0');
+            
+            // 查找颜色因子参数
             for (puVar13 = (undefined8 *)puVar11[8]; puVar13 != (undefined8 *)0x0;
                 puVar13 = (undefined8 *)puVar13[6]) {
               pcVar15 = (char *)*puVar13;
@@ -359,6 +401,7 @@ LAB_18027ae16:
                     lVar5 = puVar13[1];
                   }
                   FUN_18010cbc0(lVar5,&UNK_180a063a0,auStack_2b8);
+                  // 转换颜色值到0-1范围
                   *(float *)(lVar9 + 0x238) = (float)(auStack_2b8[0] >> 0x10 & 0xff) * 0.003921569;
                   *(float *)(lVar9 + 0x23c) = (float)(auStack_2b8[0] >> 8 & 0xff) * 0.003921569;
                   *(float *)(lVar9 + 0x240) = (float)(auStack_2b8[0] & 0xff) * 0.003921569;
@@ -372,11 +415,15 @@ LAB_18027ae16:
                 }
               }
             }
+            
+            // 处理第二颜色因子
             pcVar15 = "factor2";
             do {
               pcVar14 = pcVar15;
               pcVar15 = pcVar14 + 1;
             } while (*pcVar15 != '\0');
+            
+            // 查找第二颜色因子参数
             for (puVar13 = (undefined8 *)puVar11[8]; puVar13 != (undefined8 *)0x0;
                 puVar13 = (undefined8 *)puVar13[6]) {
               pcVar15 = (char *)*puVar13;
@@ -396,6 +443,7 @@ LAB_18027af15:
                     lVar5 = puVar13[1];
                   }
                   FUN_18010cbc0(lVar5,&UNK_180a063a0,auStack_2b8);
+                  // 转换第二颜色值到0-1范围
                   *(float *)(lVar9 + 0x248) = (float)(auStack_2b8[0] >> 0x10 & 0xff) * 0.003921569;
                   *(float *)(lVar9 + 0x24c) = (float)(auStack_2b8[0] >> 8 & 0xff) * 0.003921569;
                   *(float *)(lVar9 + 0x250) = (float)(auStack_2b8[0] & 0xff) * 0.003921569;
@@ -409,6 +457,8 @@ LAB_18027af15:
                 }
               }
             }
+            
+            // 处理纹理坐标
             lVar5 = FUN_180631b90(puVar11,&UNK_180a167e0,&uStack_190);
             if (lVar5 != 0) {
               *(undefined4 *)(lVar9 + 0x2a8) = uStack_190;
@@ -428,13 +478,14 @@ LAB_18027af15:
           puStack_158 = &UNK_18098bcb0;
           uVar17 = (int)uVar7 + 1;
           uVar16 = uVar16 + 1;
-          lVar9 = param_1[7];
+          lVar9 = render_context[7];
           uVar7 = (ulonglong)uVar17;
-        } while ((ulonglong)(longlong)(int)uVar17 < (ulonglong)(param_1[8] - lVar9 >> 4));
+        } while ((ulonglong)(longlong)(int)uVar17 < (ulonglong)(render_context[8] - lVar9 >> 4));
       }
+      
+      // 清理临时变量
       uStack_280 = &UNK_180a3c3e0;
       if (uStack_278 != 0) {
-                    // WARNING: Subroutine does not return
         FUN_18064e900();
       }
       uStack_278 = 0;
@@ -445,10 +496,12 @@ LAB_18027af15:
         pcVar14 = pcVar15;
         pcVar15 = pcVar14 + 1;
       } while (*pcVar15 != '\0');
+      
+      // 处理网格数据
       while( true ) {
         do {
           puVar11 = (undefined8 *)puVar11[0xb];
-          param_2 = plStack_2a8;
+          material_params = plStack_2a8;
           if (puVar11 == (undefined8 *)0x0) goto LAB_18027b0de;
           pcVar15 = (char *)*puVar11;
           if (pcVar15 == (char *)0x0) {
@@ -469,14 +522,16 @@ LAB_18027af15:
       }
     } while( true );
   }
+  
 LAB_18027b0de:
+  // 处理修改后的材质ID
   auStack_2b8[2] = 0;
   pcVar15 = "modified_id";
   do {
     pcVar14 = pcVar15;
     pcVar15 = pcVar14 + 1;
   } while (*pcVar15 != '\0');
-  puVar11 = (undefined8 *)param_2[8];
+  puVar11 = (undefined8 *)material_params[8];
   do {
     if (puVar11 == (undefined8 *)0x0) goto LAB_18027b1b5;
     pcVar15 = (char *)*puVar11;
@@ -504,9 +559,9 @@ LAB_18027b154:
           puVar10 = &UNK_180a063a0;
         }
         FUN_18010cbc0(pcVar15,puVar10,auStack_2b8 + 2);
-        *(uint *)((longlong)param_1 + 0x324) = auStack_2b8[2];
+        *(uint *)((longlong)render_context + 0x324) = auStack_2b8[2];
 LAB_18027b1b5:
-        *(undefined1 *)((longlong)param_1 + 0x32c) = 0;
+        *(undefined1 *)((longlong)render_context + 0x32c) = 0;
         puStack_230 = &UNK_180a3c3e0;
         uStack_218 = 0;
         lStack_228 = 0;
@@ -516,19 +571,20 @@ LAB_18027b1b5:
           pcVar14 = pcVar15;
           pcVar15 = pcVar14 + 1;
         } while (*pcVar15 != '\0');
-        puVar11 = (undefined8 *)param_2[8];
+        puVar11 = (undefined8 *)material_params[8];
         do {
           if (puVar11 == (undefined8 *)0x0) {
 LAB_18027b312:
-            uStack_180 = (undefined4)param_1[0x6c];
-            uStack_17c = *(undefined4 *)((longlong)param_1 + 0x364);
-            uStack_178 = (undefined4)param_1[0x6d];
-            uStack_174 = *(undefined4 *)((longlong)param_1 + 0x36c);
-            FUN_1801c1720(param_1 + 0x66,&uStack_1f8);
-            FUN_180085020(param_1 + 0x66,&fStack_1e8);
-            FUN_180631960(param_2,&UNK_180a16808,&uStack_180);
-            FUN_180631960(param_2,&UNK_180a16818,&uStack_1f8);
-            FUN_180631960(param_2,&UNK_180a0f108,&fStack_1e8);
+            // 设置渲染参数
+            uStack_180 = (undefined4)render_context[0x6c];
+            uStack_17c = *(undefined4 *)((longlong)render_context + 0x364);
+            uStack_178 = (undefined4)render_context[0x6d];
+            uStack_174 = *(undefined4 *)((longlong)render_context + 0x36c);
+            FUN_1801c1720(render_context + 0x66,&uStack_1f8);
+            FUN_180085020(render_context + 0x66,&fStack_1e8);
+            FUN_180631960(material_params,&UNK_180a16808,&uStack_180);
+            FUN_180631960(material_params,&UNK_180a16818,&uStack_1f8);
+            FUN_180631960(material_params,&UNK_180a0f108,&fStack_1e8);
             uStack_1a8 = CONCAT44(uStack_17c,uStack_180);
             uStack_1a0 = CONCAT44(uStack_174,uStack_178);
             uStack_280 = (undefined *)0x3f800000;
@@ -553,10 +609,10 @@ LAB_18027b312:
             fStack_1b8 = (float)uStack_260 * fStack_1e0;
             fStack_1b4 = uStack_260._4_4_ * fStack_1e0;
             fStack_1b0 = (float)uStack_258 * fStack_1e0;
-            (**(code **)(*param_1 + 0x148))(param_1,&fStack_1d8);
-            FUN_180276f30(param_1,(longlong)param_1 + 0x214,1);
-            lVar9 = FUN_180631b90(param_2,&UNK_180a167f0,&uStack_168);
-            if ((lVar9 != 0) && (plVar8 = (longlong *)param_1[7], plVar8 < (longlong *)param_1[8]))
+            (**(code **)(*render_context + 0x148))(render_context,&fStack_1d8);
+            FUN_180276f30(render_context,(longlong)render_context + 0x214,1);
+            lVar9 = FUN_180631b90(material_params,&UNK_180a167f0,&uStack_168);
+            if ((lVar9 != 0) && (plVar8 = (longlong *)render_context[7], plVar8 < (longlong *)render_context[8]))
             {
               do {
                 lVar9 = *plVar8;
@@ -565,11 +621,10 @@ LAB_18027b312:
                 *(undefined4 *)(lVar9 + 0x2c0) = uStack_160;
                 *(undefined4 *)(lVar9 + 0x2c4) = uStack_15c;
                 plVar8 = plVar8 + 2;
-              } while (plVar8 < (longlong *)param_1[8]);
+              } while (plVar8 < (longlong *)render_context[8]);
             }
             puStack_230 = &UNK_180a3c3e0;
             if (lStack_228 != 0) {
-                    // WARNING: Subroutine does not return
               FUN_18064e900();
             }
             lStack_228 = 0;
@@ -577,13 +632,12 @@ LAB_18027b312:
             puStack_230 = &UNK_18098bcb0;
             puStack_2a0 = &UNK_180a3c3e0;
             if (lStack_298 != 0) {
-                    // WARNING: Subroutine does not return
               FUN_18064e900();
             }
             lStack_298 = 0;
             uStack_288 = uStack_288 & 0xffffffff00000000;
             puStack_2a0 = &UNK_18098bcb0;
-                    // WARNING: Subroutine does not return
+            // 结束材质处理
             FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_2d8);
           }
           pcVar15 = (char *)*puVar11;
@@ -610,8 +664,8 @@ LAB_18027b254:
                 plStack_2a8 = plVar8;
                 (**(code **)(*plVar8 + 0x28))(plVar8);
               }
-              plStack_2a8 = (longlong *)param_1[0x77];
-              param_1[0x77] = (longlong)plVar8;
+              plStack_2a8 = (longlong *)render_context[0x77];
+              render_context[0x77] = (longlong)plVar8;
               if (plStack_2a8 != (longlong *)0x0) {
                 (**(code **)(*plStack_2a8 + 0x38))();
               }
@@ -645,15 +699,20 @@ LAB_18027b254:
   } while( true );
 }
 
+// 注意：全局变量起始符号'_'与同一地址的较小符号重叠
 
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18027b5d0(longlong param_1,longlong param_2)
-void FUN_18027b5d0(longlong param_1,longlong param_2)
-
+/**
+ * 加载和处理MDM格式的3D模型文件
+ * 
+ * 该函数负责加载MDM格式的3D模型文件，包括：
+ * - 解析MDM文件头和材质数据
+ * - 处理纹理和网格信息
+ * - 过滤和处理模型数据
+ * 
+ * @param model_data 模型数据结构体指针
+ * @param file_path 文件路径参数
+ */
+void load_mdm_model_data(longlong model_data, longlong file_path)
 {
   int iVar1;
   undefined8 *puVar2;
@@ -664,6 +723,8 @@ void FUN_18027b5d0(longlong param_1,longlong param_2)
   uint uVar7;
   int iVar8;
   int iVar9;
+  
+  // 栈变量声明
   int aiStackX_10 [2];
   int aiStackX_18 [2];
   int aiStackX_20 [2];
@@ -682,27 +743,34 @@ void FUN_18027b5d0(longlong param_1,longlong param_2)
   undefined1 auStack_44 [4];
   undefined8 uStack_40;
   
+  // 初始化栈变量
   uStack_40 = 0xfffffffffffffffe;
   puVar2 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,3);
   puVar5 = &DAT_18098bc73;
-  if (*(undefined **)(param_2 + 8) != (undefined *)0x0) {
-    puVar5 = *(undefined **)(param_2 + 8);
+  if (*(undefined **)(file_path + 8) != (undefined *)0x0) {
+    puVar5 = *(undefined **)(file_path + 8);
   }
+  
+  // 初始化文件处理
   iVar1 = 0;
   *puVar2 = 0;
   *(undefined1 *)(puVar2 + 2) = 0;
   FUN_18062dee0(puVar2,puVar5,&UNK_180a01ff0);
+  
   if (puVar2[1] != 0) {
     fread(auStack_90,4,1);
-    if (auStack_90[0] == 0x31444d4d) {
+    if (auStack_90[0] == 0x31444d4d) {  // 检查MDM文件标识 "MMD1"
       fread(&iStack_94,4,1,puVar2[1]);
       if (0 < iStack_94) {
         do {
+          // 读取材质数据块
           fread(aiStackX_18,4,1,puVar2[1]);
           lVar3 = FUN_18062b1e0(_DAT_180c8ed18,(longlong)(aiStackX_18[0] + 1),0x10,3);
           fread(lVar3,1,(longlong)aiStackX_18[0],puVar2[1]);
           *(undefined1 *)(aiStackX_18[0] + lVar3) = 0;
           FUN_180627910(&puStack_68,lVar3);
+          
+          // 过滤材质名称中的无效字符
           while ((0 < (int)uStack_58 && (lVar4 = strstr(lStack_60,&DAT_180a0ff10), lVar4 != 0))) {
             iVar9 = 6;
             iVar8 = (int)lVar4 - (int)lStack_60;
@@ -721,28 +789,29 @@ void FUN_18027b5d0(longlong param_1,longlong param_2)
             uStack_58 = uStack_58 - iVar9;
             *(undefined1 *)((ulonglong)uStack_58 + lStack_60) = 0;
           }
-          if (*(ulonglong *)(param_1 + 8) < *(ulonglong *)(param_1 + 0x10)) {
-            *(ulonglong *)(param_1 + 8) = *(ulonglong *)(param_1 + 8) + 0x20;
+          
+          // 添加材质到模型数据
+          if (*(ulonglong *)(model_data + 8) < *(ulonglong *)(model_data + 0x10)) {
+            *(ulonglong *)(model_data + 8) = *(ulonglong *)(model_data + 8) + 0x20;
             FUN_180627ae0();
           }
           else {
-            FUN_180059820(param_1,&puStack_68);
+            FUN_180059820(model_data,&puStack_68);
           }
+          
+          // 读取材质的其他数据
           fread(auStack_44,4,1,puVar2[1]);
           fread(&iStack_98,4,1,puVar2[1]);
           lVar4 = FUN_18062b1e0(_DAT_180c8ed18,(longlong)iStack_98 << 2,0x10,3);
           fread(lVar4,4,(longlong)iStack_98,puVar2[1]);
           if (lVar4 != 0) {
-                    // WARNING: Subroutine does not return
             FUN_18064e900(lVar4);
           }
           if (lVar3 != 0) {
-                    // WARNING: Subroutine does not return
             FUN_18064e900(lVar3);
           }
           puStack_68 = &UNK_180a3c3e0;
           if (lStack_60 != 0) {
-                    // WARNING: Subroutine does not return
             FUN_18064e900();
           }
           lStack_60 = 0;
@@ -753,6 +822,7 @@ void FUN_18027b5d0(longlong param_1,longlong param_2)
       }
     }
     else if (0 < (int)auStack_90[0]) {
+      // 处理其他格式的模型数据
       uVar6 = (ulonglong)auStack_90[0];
       do {
         fread(aiStackX_10,4,1,puVar2[1]);
@@ -761,6 +831,8 @@ void FUN_18027b5d0(longlong param_1,longlong param_2)
         *(undefined1 *)(aiStackX_10[0] + lVar3) = 0;
         fread(auStack_48,4,1,puVar2[1]);
         FUN_180627910(&puStack_88,lVar3);
+        
+        // 过滤处理
         while ((0 < (int)uStack_78 && (lVar4 = strstr(lStack_80,&DAT_180a0ff10), lVar4 != 0))) {
           iVar8 = 6;
           iVar1 = (int)lVar4 - (int)lStack_80;
@@ -779,27 +851,28 @@ void FUN_18027b5d0(longlong param_1,longlong param_2)
           uStack_78 = uStack_78 - iVar8;
           *(undefined1 *)((ulonglong)uStack_78 + lStack_80) = 0;
         }
-        if (*(ulonglong *)(param_1 + 8) < *(ulonglong *)(param_1 + 0x10)) {
-          *(ulonglong *)(param_1 + 8) = *(ulonglong *)(param_1 + 8) + 0x20;
+        
+        // 添加到模型数据
+        if (*(ulonglong *)(model_data + 8) < *(ulonglong *)(model_data + 0x10)) {
+          *(ulonglong *)(model_data + 8) = *(ulonglong *)(model_data + 8) + 0x20;
           FUN_180627ae0();
         }
         else {
-          FUN_180059820(param_1,&puStack_88);
+          FUN_180059820(model_data,&puStack_88);
         }
+        
+        // 读取额外数据
         fread(aiStackX_20,4,1,puVar2[1]);
         lVar4 = FUN_18062b1e0(_DAT_180c8ed18,(longlong)aiStackX_20[0] << 2,0x10,3);
         fread(lVar4,4,(longlong)aiStackX_20[0],puVar2[1]);
         if (lVar4 != 0) {
-                    // WARNING: Subroutine does not return
           FUN_18064e900(lVar4);
         }
         if (lVar3 != 0) {
-                    // WARNING: Subroutine does not return
           FUN_18064e900(lVar3);
         }
         puStack_88 = &UNK_180a3c3e0;
         if (lStack_80 != 0) {
-                    // WARNING: Subroutine does not return
           FUN_18064e900();
         }
         lStack_80 = 0;
@@ -808,6 +881,8 @@ void FUN_18027b5d0(longlong param_1,longlong param_2)
         uVar6 = uVar6 - 1;
       } while (uVar6 != 0);
     }
+    
+    // 清理文件句柄
     if (puVar2[1] != 0) {
       fclose();
       puVar2[1] = 0;
@@ -816,13 +891,8 @@ void FUN_18027b5d0(longlong param_1,longlong param_2)
       UNLOCK();
     }
   }
-                    // WARNING: Subroutine does not return
+  // 清理内存
   FUN_18064e900(puVar2);
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
+// 注意：全局变量起始符号'_'与同一地址的较小符号重叠

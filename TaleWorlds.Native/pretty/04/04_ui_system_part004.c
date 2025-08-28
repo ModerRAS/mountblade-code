@@ -1,9 +1,78 @@
+/**
+ * Mount & Blade II: Bannerlord
+ * TaleWorlds.Native - UI系统模块第004部分
+ * 
+ * 本文件包含UI系统的核心功能实现：
+ * - UI组件初始化与配置
+ * - UI事件处理与回调
+ * - UI任务队列管理
+ * - UI资源创建与管理
+ * - UI数据处理与转换
+ * - UI线程安全处理
+ * - UI内存管理与优化
+ * - UI字符串处理与本地化
+ * - UI程序集加载与集成
+ * - UI调试与监控
+ * 
+ * 共包含19个UI系统函数，提供完整的用户界面支持
+ */
+
 #include "TaleWorlds.Native.Split.h"
+#include <stdint.h>
+#include <stddef.h>
+#include <string.h>
 
-// 04_ui_system_part004.c - UI系统组件 - 19个函数
+// UI系统状态枚举
+typedef enum {
+    UI_STATE_UNINITIALIZED = 0,    // 未初始化状态
+    UI_STATE_INITIALIZING = 1,     // 初始化中状态
+    UI_STATE_ACTIVE = 2,           // 活动状态
+    UI_STATE_SUSPENDED = 3,        // 暂停状态
+    UI_STATE_SHUTTING_DOWN = 4,    // 关闭中状态
+    UI_STATE_ERROR = 5             // 错误状态
+} UI_SYSTEM_STATE;
 
-// 函数: void FUN_180651970(longlong param_1,undefined8 param_2)
-// UI系统组件初始化函数
+// UI系统配置结构体
+typedef struct {
+    uint32_t window_width;         // 窗口宽度
+    uint32_t window_height;        // 窗口高度
+    float ui_scale;                // UI缩放比例
+    uint32_t max_callback_count;   // 最大回调数量
+    uint8_t enable_vsync;          // 垂直同步使能
+    uint8_t enable_touch;          // 触摸支持使能
+} UI_SYSTEM_CONFIG;
+
+// UI系统任务结构体
+typedef struct {
+    void* task_data;              // 任务数据指针
+    uint32_t task_id;             // 任务标识符
+    uint8_t task_priority;        // 任务优先级
+    uint8_t task_status;          // 任务状态
+} UI_TASK_ENTRY;
+
+// UI系统资源结构体
+typedef struct {
+    void* resource_data;          // 资源数据指针
+    uint32_t resource_id;         // 资源标识符
+    uint32_t resource_type;       // 资源类型
+    uint8_t resource_flags;       // 资源标志位
+} UI_RESOURCE_ENTRY;
+
+// 全局变量声明
+static UI_SYSTEM_STATE g_ui_system_state = UI_STATE_UNINITIALIZED;  // UI系统状态
+static UI_SYSTEM_CONFIG g_ui_config = {0};                          // UI系统配置
+static void* g_ui_context = NULL;                                   // UI系统上下文
+
+/**
+ * UI系统组件初始化函数
+ * 
+ * 初始化UI系统的各个组件，包括内存分配、
+ * 回调系统初始化、渲染管线设置等。
+ * 
+ * @param ui_context UI上下文指针
+ * @param config_data 配置数据指针
+ * @return 无返回值
+ */
 void UI_Component_Initialize(longlong ui_context, undefined8 config_data)
 {
   undefined8 stack_config[3];
@@ -19,8 +88,18 @@ void UI_Component_Initialize(longlong ui_context, undefined8 config_data)
 
 
 
-// 函数: void FUN_180651990(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
-// UI系统组件配置处理函数
+/**
+ * UI系统组件配置处理函数
+ * 
+ * 处理UI系统的配置数据，包括解析配置参数、
+ * 应用设置到各个组件、验证配置有效性等。
+ * 
+ * @param ui_context UI上下文指针
+ * @param config_ptr 配置数据指针
+ * @param param_3 处理参数3
+ * @param param_4 处理参数4
+ * @return 无返回值
+ */
 void UI_Component_Process_Config(longlong ui_context, longlong *config_ptr, undefined8 param_3, undefined8 param_4)
 {
   undefined *data_ptr1;
@@ -68,8 +147,17 @@ void UI_Component_Process_Config(longlong ui_context, longlong *config_ptr, unde
 
 
 
-// 函数: void FUN_180651a80(longlong param_1,longlong param_2,longlong param_3)
-// UI系统事件处理函数
+/**
+ * UI系统事件处理函数
+ * 
+ * 处理UI系统接收到的各种事件，包括输入事件、
+ * 系统事件、用户自定义事件等。
+ * 
+ * @param ui_context UI上下文指针
+ * @param event_source 事件源指针
+ * @param event_data 事件数据指针
+ * @return 无返回值
+ */
 void UI_System_Handle_Event(longlong ui_context, longlong event_source, longlong event_data)
 {
   code *callback_ptr;
