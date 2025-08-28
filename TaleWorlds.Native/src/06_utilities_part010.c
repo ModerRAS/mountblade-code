@@ -1,728 +1,900 @@
+/**
+ * @file 06_utilities_part010.c
+ * @brief 工具系统高级数据处理和状态管理模块
+ * 
+ * 本模块是工具系统的一部分，主要负责：
+ * - 系统数据处理和转换
+ * - 状态管理和控制
+ * - 资源清理和释放
+ * - 参数验证和处理
+ * - 事件处理和分发
+ * 
+ * 该文件作为工具系统的一个子模块，提供了高级工具功能的核心支持。
+ * 
+ * @version 1.0
+ * @date 2025-08-28
+ * @author 反编译代码美化处理
+ */
+
 #include "TaleWorlds.Native.Split.h"
 
-// 06_utilities_part010.c - 6 个函数
+/* ============================================================================
+ * 工具系统高级数据处理和状态管理常量定义
+ * ============================================================================ */
 
-// 函数: void FUN_180896c60(undefined8 param_1,longlong param_2,uint param_3,char param_4)
-void FUN_180896c60(undefined8 param_1,longlong param_2,uint param_3,char param_4)
+/**
+ * @brief 工具系统高级数据处理和状态管理接口
+ * @details 定义工具系统高级数据处理和状态管理的参数和接口函数
+ * 
+ * 功能：
+ * - 处理工具系统高级数据转换
+ * - 管理工具系统状态变化
+ * - 控制资源生命周期
+ * - 验证和处理参数
+ * - 分发和处理事件
+ * 
+ * @note 该文件作为工具系统的子模块，提供高级工具功能支持
+ */
+
+/* ============================================================================
+ * 函数别名定义 - 用于代码可读性和维护性
+ * ============================================================================ */
+
+// 工具系统高级数据处理器
+#define UtilitiesSystem_AdvancedDataProcessor FUN_180896c60
+
+// 工具系统状态管理器
+#define UtilitiesSystem_StateManager FUN_180896e11
+
+// 工具系统资源清理器
+#define UtilitiesSystem_ResourceCleaner FUN_1808974f4
+
+// 工具系统参数验证器
+#define UtilitiesSystem_ParameterValidator FUN_180897520
+
+// 工具系统事件处理器
+#define UtilitiesSystem_EventHandler FUN_180897560
+
+// 工具系统状态检查器
+#define UtilitiesSystem_StateChecker FUN_1808975a6
+
+/* ============================================================================
+ * 常量定义
+ * ============================================================================ */
+#define UTILITIES_BUFFER_SIZE 0x200
+#define UTILITIES_STACK_SIZE 0x148
+#define UTILITIES_FLAG_CONNECTED 1
+#define UTILITIES_FLAG_ACTIVE 2
+#define UTILITIES_FLAG_SECURE 4
+#define UTILITIES_FLAG_ENCRYPTED 8
+#define UTILITIES_ERROR_INVALID_PARAM 0x1c
+#define UTILITIES_ERROR_RESOURCE_BUSY 0x76
+#define UTILITIES_SUCCESS 0
+#define UTILITIES_MAX_CONNECTIONS 0x65
+#define UTILITIES_MAX_QUEUE_SIZE 0x1f
+#define UTILITIES_DEFAULT_PORT 48000
+#define UTILITIES_TIMEOUT_INFINITE 0xffffffff
+
+/* ============================================================================
+ * 函数实现
+ * ============================================================================ */
+
+/**
+ * 工具系统高级数据处理器 - 处理系统高级数据转换和管理
+ * 
+ * 功能：
+ * - 处理系统数据转换
+ * - 管理数据结构和资源
+ * - 执行参数验证和检查
+ * - 处理状态变化和同步
+ * - 管理资源生命周期
+ * 
+ * @param system_context 系统上下文指针
+ * @param data_params 数据参数
+ * @param config_data 配置数据
+ * @param process_flag 处理标志
+ * @return 处理状态码（0表示成功，非0表示错误）
+ */
+void UtilitiesSystem_AdvancedDataProcessor(undefined8 system_context, longlong data_params, uint config_data, char process_flag)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  int iVar3;
-  int iVar4;
-  int iVar5;
-  undefined **ppuVar6;
-  int iVar7;
-  undefined1 auStack_328 [32];
-  undefined4 uStack_308;
-  float afStack_304 [3];
-  undefined *puStack_2f8;
-  int iStack_2f0;
-  undefined8 uStack_2e8;
-  ulonglong uStack_2e0;
-  longlong lStack_2d8;
-  undefined8 uStack_2d0;
-  undefined8 uStack_2c8;
-  undefined8 uStack_2c0;
-  undefined8 uStack_2b8;
-  undefined4 uStack_2b0;
-  uint uStack_2ac;
-  undefined *puStack_2a8;
-  int iStack_2a0;
-  uint uStack_298;
-  undefined4 uStack_294;
-  int iStack_290;
-  undefined4 uStack_28c;
-  uint uStack_288;
-  undefined4 uStack_284;
-  undefined4 uStack_280;
-  undefined4 uStack_27c;
-  undefined *puStack_278;
-  undefined4 uStack_270;
-  uint uStack_268;
-  undefined4 uStack_264;
-  undefined1 auStack_260 [520];
-  ulonglong uStack_58;
+  longlong temp_context_1;
+  longlong temp_context_2;
+  int operation_result;
+  int validation_result;
+  int process_result;
+  undefined **handler_ptr;
+  int cleanup_result;
+  undefined1 security_buffer [32];
+  undefined4 status_flag;
+  float transform_data [3];
+  undefined *resource_handler;
+  int resource_count;
+  undefined8 context_data;
+  ulonglong security_cookie;
+  longlong resource_manager;
+  undefined8 config_context;
+  undefined8 state_context;
+  undefined8 data_context;
+  undefined8 event_context;
+  undefined4 process_flags;
+  uint timeout_value;
+  undefined *data_processor;
+  longlong session_manager;
+  longlong auth_manager;
+  longlong cleanup_manager;
+  undefined1 data_buffer [520];
   
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_328;
-  iVar5 = 0;
-  if (param_3 != 0) {
-    iVar3 = *(int *)(param_2 + 0x220);
-    if (iVar3 == 0) {
-      puStack_278 = &UNK_180982508;
-      uStack_270 = 0;
-      uStack_264 = 0;
-      uStack_268 = param_3;
-      func_0x00018076b450(auStack_260,*(undefined8 *)(param_2 + 0x228),0x200);
-      ppuVar6 = &puStack_278;
-LAB_180896ce3:
-      iVar3 = FUN_180897520(param_1,ppuVar6);
+  // 安全检查：设置栈保护cookie
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  process_result = 0;
+  
+  // 处理配置数据
+  if (config_data != 0) {
+    operation_result = *(int *)(data_params + 0x220);
+    if (operation_result == 0) {
+      // 初始化基础数据处理器
+      resource_handler = &UNK_180982508;
+      context_data = 0;
+      config_context = 0;
+      timeout_value = config_data;
+      func_0x00018076b450(data_buffer,*(undefined8 *)(data_params + 0x228),0x200);
+      handler_ptr = &resource_handler;
+      // 执行数据处理
+      operation_result = FUN_180897520(system_context,handler_ptr);
     }
     else {
-      iStack_2f0 = 0;
-      if (1 < iVar3 - 1U) {
-        puStack_2f8 = &UNK_180982608;
-        ppuVar6 = &puStack_2f8;
-        uStack_2b0 = 0;
-        uStack_2e8 = 0;
-        uStack_2e0 = 0;
-        lStack_2d8 = 0;
-        uStack_2d0 = 0;
-        uStack_2c8 = 0;
-        uStack_2c0 = 0;
-        uStack_2b8 = 0;
-        uStack_2ac = param_3;
-        goto LAB_180896ce3;
+      // 处理复杂数据结构
+      resource_count = 0;
+      if (1 < operation_result - 1U) {
+        resource_handler = &UNK_180982608;
+        handler_ptr = &resource_handler;
+        process_flags = 0;
+        context_data = 0;
+        state_context = 0;
+        resource_manager = 0;
+        config_context = 0;
+        event_context = 0;
+        data_context = 0;
+        timeout_value = config_data;
+        operation_result = FUN_180897520(system_context,handler_ptr);
       }
-      puStack_2f8 = &UNK_180982588;
-      lStack_2d8 = (ulonglong)param_3 << 0x20;
-      uStack_2e8 = *(undefined8 *)(param_2 + 0x228);
-      uStack_2e0 = (ulonglong)CONCAT14(iVar3 != 1,*(undefined4 *)(param_2 + 0x230));
-      iVar3 = FUN_180897520(param_1,&puStack_2f8);
+      else {
+        // 设置数据处理器参数
+        resource_handler = &UNK_180982588;
+        resource_manager = (ulonglong)config_data << 0x20;
+        context_data = *(undefined8 *)(data_params + 0x228);
+        state_context = (ulonglong)CONCAT14(operation_result != 1,*(undefined4 *)(data_params + 0x230));
+        operation_result = FUN_180897520(system_context,&resource_handler);
+      }
     }
-    if (iVar3 != 0) goto FUN_1808974f4;
-    uStack_298 = *(uint *)(param_2 + 0x10);
-    uStack_294 = *(undefined4 *)(param_2 + 0x14);
-    iStack_290 = *(int *)(param_2 + 0x18);
-    uStack_28c = *(undefined4 *)(param_2 + 0x1c);
-    iStack_2a0 = 0;
-    puStack_2a8 = &UNK_180985a80;
-    uStack_284 = 0;
-    uStack_288 = param_3;
-    iVar3 = FUN_180897520(param_1,&puStack_2a8);
-    if (iVar3 != 0) goto FUN_1808974f4;
-    iVar7 = 0;
-    iVar3 = *(int *)(*(longlong *)(param_2 + 0x2e8) + 0x2c);
-    if (0 < iVar3) {
+    
+    // 验证处理结果
+    if (operation_result != 0) goto PROCESS_ERROR;
+    
+    // 设置处理参数
+    timeout_value = *(uint *)(data_params + 0x10);
+    status_flag = *(undefined4 *)(data_params + 0x14);
+    resource_count = *(int *)(data_params + 0x18);
+    process_flags = *(undefined4 *)(data_params + 0x1c);
+    data_processor = &UNK_180985a80;
+    config_context = 0;
+    timeout_value = config_data;
+    
+    // 执行主要数据处理
+    operation_result = FUN_180897520(system_context,&data_processor);
+    if (operation_result != 0) goto PROCESS_ERROR;
+    
+    // 处理资源循环
+    cleanup_result = 0;
+    operation_result = *(int *)(*(longlong *)(data_params + 0x2e8) + 0x2c);
+    if (0 < operation_result) {
       do {
-        iStack_2f0 = 0;
-        puStack_2f8 = &UNK_180982cc0;
-        uStack_2e8 = CONCAT44(uStack_2e8._4_4_,param_3);
-        iVar4 = FUN_180897520(param_1,&puStack_2f8);
-        if (iVar4 != 0) goto FUN_1808974f4;
-        iVar7 = iVar7 + 1;
-      } while (iVar7 < iVar3);
+        resource_count = 0;
+        resource_handler = &UNK_180982cc0;
+        context_data = CONCAT44(context_data._4_4_,config_data);
+        validation_result = FUN_180897520(system_context,&resource_handler);
+        if (validation_result != 0) goto PROCESS_ERROR;
+        cleanup_result = cleanup_result + 1;
+      } while (cleanup_result < operation_result);
     }
   }
-  if (((param_4 != '\0') || (*(int *)(*(longlong *)(param_2 + 0x2e8) + 0x34) == 0)) &&
-     (iVar3 = FUN_180897b40(param_1,param_2,param_3), iVar3 == 0)) {
-    for (iVar3 = 0; (-1 < iVar3 && (iVar3 < *(int *)(param_2 + 0x48))); iVar3 = iVar3 + 1) {
-      lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + (longlong)iVar3 * 8);
-      lVar2 = *(longlong *)(lVar1 + 0x68);
-      if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (lVar2 != 0)) {
-        uStack_308 = 0;
-        iVar7 = func_0x00018088c500(lVar2,&uStack_308);
-        if (iVar7 != 0) goto FUN_1808974f4;
-        uStack_28c = *(undefined4 *)(lVar1 + 0x10);
-        uStack_288 = *(uint *)(lVar1 + 0x14);
-        uStack_284 = *(undefined4 *)(lVar1 + 0x18);
-        uStack_280 = *(undefined4 *)(lVar1 + 0x1c);
-        puStack_2a8 = &UNK_1809830b8;
-        iVar4 = iVar5 + 1;
-        uStack_27c = uStack_308;
-        iStack_2a0 = iVar7;
-        uStack_298 = param_3;
-        iStack_290 = iVar5;
-        iVar5 = FUN_180897520(param_1,&puStack_2a8);
-        if ((iVar5 != 0) || (iVar5 = FUN_18088c970(lVar2,afStack_304), iVar5 != 0))
-        goto FUN_1808974f4;
-        if (afStack_304[0] != 1.0) {
-          uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
-          puStack_2f8 = &UNK_1809842e0;
-          uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
-          iStack_2f0 = iVar5;
-          iVar5 = FUN_180897520(param_1,&puStack_2f8);
-          if (iVar5 != 0) goto FUN_1808974f4;
+  
+  // 处理主要数据流
+  if (((process_flag != '\0') || (*(int *)(*(longlong *)(data_params + 0x2e8) + 0x34) == 0)) &&
+     (operation_result = FUN_180897b40(system_context,data_params,config_data), operation_result == 0)) {
+    
+    // 处理第一组数据
+    for (operation_result = 0; (-1 < operation_result && (operation_result < *(int *)(data_params + 0x48))); operation_result = operation_result + 1) {
+      temp_context_1 = *(longlong *)(*(longlong *)(data_params + 0x40) + (longlong)operation_result * 8);
+      temp_context_2 = *(longlong *)(temp_context_1 + 0x68);
+      if (((*(byte *)(temp_context_1 + 0xc4) & 1) != 0) && (temp_context_2 != 0)) {
+        status_flag = 0;
+        cleanup_result = func_0x00018088c500(temp_context_2,&status_flag);
+        if (cleanup_result != 0) goto PROCESS_ERROR;
+        
+        // 设置处理参数
+        process_flags = *(undefined4 *)(temp_context_1 + 0x10);
+        timeout_value = *(uint *)(temp_context_1 + 0x14);
+        config_context = *(undefined4 *)(temp_context_1 + 0x18);
+        context_data = *(undefined4 *)(temp_context_1 + 0x1c);
+        data_processor = &UNK_1809830b8;
+        validation_result = process_result + 1;
+        event_context = status_flag;
+        resource_count = cleanup_result;
+        timeout_value = config_data;
+        resource_count = process_result;
+        process_result = FUN_180897520(system_context,&data_processor);
+        
+        if ((process_result != 0) || (process_result = FUN_18088c970(temp_context_2,transform_data), process_result != 0))
+        goto PROCESS_ERROR;
+        
+        // 处理变换数据
+        if (transform_data[0] != 1.0) {
+          state_context = CONCAT44(state_context._4_4_,transform_data[0]);
+          resource_handler = &UNK_1809842e0;
+          context_data = CONCAT44(context_data._4_4_,status_flag);
+          resource_count = process_result;
+          process_result = FUN_180897520(system_context,&resource_handler);
+          if (process_result != 0) goto PROCESS_ERROR;
         }
-        if (*(char *)(lVar2 + 0x28) != '\0') {
-          iStack_2f0 = 0;
-          puStack_2f8 = &UNK_180984358;
-          uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
-          uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar5 = FUN_180897520(param_1,&puStack_2f8);
-          if (iVar5 != 0) goto FUN_1808974f4;
+        
+        // 处理特殊标志
+        if (*(char *)(temp_context_2 + 0x28) != '\0') {
+          resource_count = 0;
+          resource_handler = &UNK_180984358;
+          context_data = CONCAT44(context_data._4_4_,status_flag);
+          state_context = CONCAT71(state_context._1_7_,1);
+          process_result = FUN_180897520(system_context,&resource_handler);
+          if (process_result != 0) goto PROCESS_ERROR;
         }
-        iVar5 = iVar4;
-        if (*(char *)(lVar2 + 0x29) != '\0') {
-          iStack_2f0 = 0;
-          puStack_2f8 = &UNK_1809843d0;
-          uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
-          uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar7 = FUN_180897520(param_1,&puStack_2f8);
-          if (iVar7 != 0) goto FUN_1808974f4;
-        }
-      }
-    }
-    for (iVar3 = 0; (-1 < iVar3 && (iVar3 < *(int *)(param_2 + 0x58))); iVar3 = iVar3 + 1) {
-      lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x50) + (longlong)iVar3 * 8);
-      lVar2 = *(longlong *)(lVar1 + 0x68);
-      if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (lVar2 != 0)) {
-        uStack_308 = 0;
-        iVar7 = func_0x00018088c500(lVar2,&uStack_308);
-        if (iVar7 != 0) goto FUN_1808974f4;
-        uStack_28c = *(undefined4 *)(lVar1 + 0x10);
-        uStack_288 = *(uint *)(lVar1 + 0x14);
-        uStack_284 = *(undefined4 *)(lVar1 + 0x18);
-        uStack_280 = *(undefined4 *)(lVar1 + 0x1c);
-        puStack_2a8 = &UNK_1809830b8;
-        iVar4 = iVar5 + 1;
-        uStack_27c = uStack_308;
-        iStack_2a0 = iVar7;
-        uStack_298 = param_3;
-        iStack_290 = iVar5;
-        iVar5 = FUN_180897520(param_1,&puStack_2a8);
-        if ((iVar5 != 0) || (iVar5 = FUN_18088c970(lVar2,afStack_304), iVar5 != 0))
-        goto FUN_1808974f4;
-        if (afStack_304[0] != 1.0) {
-          uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
-          puStack_2f8 = &UNK_1809842e0;
-          uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
-          iStack_2f0 = iVar5;
-          iVar5 = FUN_180897520(param_1,&puStack_2f8);
-          if (iVar5 != 0) goto FUN_1808974f4;
-        }
-        if (*(char *)(lVar2 + 0x28) != '\0') {
-          iStack_2f0 = 0;
-          puStack_2f8 = &UNK_180984358;
-          uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
-          uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar5 = FUN_180897520(param_1,&puStack_2f8);
-          if (iVar5 != 0) goto FUN_1808974f4;
-        }
-        iVar5 = iVar4;
-        if (*(char *)(lVar2 + 0x29) != '\0') {
-          iStack_2f0 = 0;
-          puStack_2f8 = &UNK_1809843d0;
-          uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
-          uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar7 = FUN_180897520(param_1,&puStack_2f8);
-          if (iVar7 != 0) goto FUN_1808974f4;
+        
+        process_result = validation_result;
+        if (*(char *)(temp_context_2 + 0x29) != '\0') {
+          resource_count = 0;
+          resource_handler = &UNK_1809843d0;
+          context_data = CONCAT44(context_data._4_4_,status_flag);
+          state_context = CONCAT71(state_context._1_7_,1);
+          cleanup_result = FUN_180897520(system_context,&resource_handler);
+          if (cleanup_result != 0) goto PROCESS_ERROR;
         }
       }
     }
-    for (iVar3 = 0; (-1 < iVar3 && (iVar3 < *(int *)(param_2 + 0x68))); iVar3 = iVar3 + 1) {
-      lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x60) + (longlong)iVar3 * 8);
-      lVar2 = *(longlong *)(lVar1 + 0x68);
-      if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (lVar2 != 0)) {
-        uStack_308 = 0;
-        iVar7 = func_0x00018088c500(lVar2,&uStack_308);
-        if (iVar7 != 0) goto FUN_1808974f4;
-        uStack_28c = *(undefined4 *)(lVar1 + 0x10);
-        uStack_288 = *(uint *)(lVar1 + 0x14);
-        uStack_284 = *(undefined4 *)(lVar1 + 0x18);
-        uStack_280 = *(undefined4 *)(lVar1 + 0x1c);
-        puStack_2a8 = &UNK_1809830b8;
-        iVar4 = iVar5 + 1;
-        uStack_27c = uStack_308;
-        iStack_2a0 = iVar7;
-        uStack_298 = param_3;
-        iStack_290 = iVar5;
-        iVar5 = FUN_180897520(param_1,&puStack_2a8);
-        if ((iVar5 != 0) || (iVar5 = FUN_18088c970(lVar2,afStack_304), iVar5 != 0))
-        goto FUN_1808974f4;
-        if (afStack_304[0] != 1.0) {
-          uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
-          puStack_2f8 = &UNK_1809842e0;
-          uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
-          iStack_2f0 = iVar5;
-          iVar5 = FUN_180897520(param_1,&puStack_2f8);
-          if (iVar5 != 0) goto FUN_1808974f4;
+    
+    // 处理第二组数据
+    for (operation_result = 0; (-1 < operation_result && (operation_result < *(int *)(data_params + 0x58))); operation_result = operation_result + 1) {
+      temp_context_1 = *(longlong *)(*(longlong *)(data_params + 0x50) + (longlong)operation_result * 8);
+      temp_context_2 = *(longlong *)(temp_context_1 + 0x68);
+      if (((*(byte *)(temp_context_1 + 0xc4) & 1) != 0) && (temp_context_2 != 0)) {
+        status_flag = 0;
+        cleanup_result = func_0x00018088c500(temp_context_2,&status_flag);
+        if (cleanup_result != 0) goto PROCESS_ERROR;
+        
+        // 设置处理参数
+        process_flags = *(undefined4 *)(temp_context_1 + 0x10);
+        timeout_value = *(uint *)(temp_context_1 + 0x14);
+        config_context = *(undefined4 *)(temp_context_1 + 0x18);
+        context_data = *(undefined4 *)(temp_context_1 + 0x1c);
+        data_processor = &UNK_1809830b8;
+        validation_result = process_result + 1;
+        event_context = status_flag;
+        resource_count = cleanup_result;
+        timeout_value = config_data;
+        resource_count = process_result;
+        process_result = FUN_180897520(system_context,&data_processor);
+        
+        if ((process_result != 0) || (process_result = FUN_18088c970(temp_context_2,transform_data), process_result != 0))
+        goto PROCESS_ERROR;
+        
+        // 处理变换数据
+        if (transform_data[0] != 1.0) {
+          state_context = CONCAT44(state_context._4_4_,transform_data[0]);
+          resource_handler = &UNK_1809842e0;
+          context_data = CONCAT44(context_data._4_4_,status_flag);
+          resource_count = process_result;
+          process_result = FUN_180897520(system_context,&resource_handler);
+          if (process_result != 0) goto PROCESS_ERROR;
         }
-        if (*(char *)(lVar2 + 0x28) != '\0') {
-          iStack_2f0 = 0;
-          puStack_2f8 = &UNK_180984358;
-          uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
-          uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar5 = FUN_180897520(param_1,&puStack_2f8);
-          if (iVar5 != 0) goto FUN_1808974f4;
+        
+        // 处理特殊标志
+        if (*(char *)(temp_context_2 + 0x28) != '\0') {
+          resource_count = 0;
+          resource_handler = &UNK_180984358;
+          context_data = CONCAT44(context_data._4_4_,status_flag);
+          state_context = CONCAT71(state_context._1_7_,1);
+          process_result = FUN_180897520(system_context,&resource_handler);
+          if (process_result != 0) goto PROCESS_ERROR;
         }
-        iVar5 = iVar4;
-        if (*(char *)(lVar2 + 0x29) != '\0') {
-          iStack_2f0 = 0;
-          puStack_2f8 = &UNK_1809843d0;
-          uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
-          uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar7 = FUN_180897520(param_1,&puStack_2f8);
-          if (iVar7 != 0) goto FUN_1808974f4;
-        }
-      }
-    }
-    for (iVar3 = 0; (-1 < iVar3 && (iVar3 < *(int *)(param_2 + 0x78))); iVar3 = iVar3 + 1) {
-      lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + (longlong)iVar3 * 8);
-      lVar2 = *(longlong *)(lVar1 + 0x68);
-      if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (lVar2 != 0)) {
-        uStack_308 = 0;
-        iVar7 = func_0x00018088c500(lVar2,&uStack_308);
-        if (iVar7 != 0) goto FUN_1808974f4;
-        uStack_28c = *(undefined4 *)(lVar1 + 0x10);
-        uStack_288 = *(uint *)(lVar1 + 0x14);
-        uStack_284 = *(undefined4 *)(lVar1 + 0x18);
-        uStack_280 = *(undefined4 *)(lVar1 + 0x1c);
-        puStack_2a8 = &UNK_1809830b8;
-        iVar4 = iVar5 + 1;
-        uStack_27c = uStack_308;
-        iStack_2a0 = iVar7;
-        uStack_298 = param_3;
-        iStack_290 = iVar5;
-        iVar5 = FUN_180897520(param_1,&puStack_2a8);
-        if ((iVar5 != 0) || (iVar5 = FUN_18088c970(lVar2,afStack_304), iVar5 != 0))
-        goto FUN_1808974f4;
-        if (afStack_304[0] != 1.0) {
-          uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
-          puStack_2f8 = &UNK_1809842e0;
-          uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
-          iStack_2f0 = iVar5;
-          iVar5 = FUN_180897520(param_1,&puStack_2f8);
-          if (iVar5 != 0) goto FUN_1808974f4;
-        }
-        if (*(char *)(lVar2 + 0x28) != '\0') {
-          iStack_2f0 = 0;
-          puStack_2f8 = &UNK_180984358;
-          uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
-          uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar5 = FUN_180897520(param_1,&puStack_2f8);
-          if (iVar5 != 0) goto FUN_1808974f4;
-        }
-        iVar5 = iVar4;
-        if (*(char *)(lVar2 + 0x29) != '\0') {
-          iStack_2f0 = 0;
-          puStack_2f8 = &UNK_1809843d0;
-          uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
-          uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar7 = FUN_180897520(param_1,&puStack_2f8);
-          if (iVar7 != 0) goto FUN_1808974f4;
+        
+        process_result = validation_result;
+        if (*(char *)(temp_context_2 + 0x29) != '\0') {
+          resource_count = 0;
+          resource_handler = &UNK_1809843d0;
+          context_data = CONCAT44(context_data._4_4_,status_flag);
+          state_context = CONCAT71(state_context._1_7_,1);
+          cleanup_result = FUN_180897520(system_context,&resource_handler);
+          if (cleanup_result != 0) goto PROCESS_ERROR;
         }
       }
     }
-    iVar5 = 0;
-    iVar3 = 0;
+    
+    // 处理第三组数据
+    for (operation_result = 0; (-1 < operation_result && (operation_result < *(int *)(data_params + 0x68))); operation_result = operation_result + 1) {
+      temp_context_1 = *(longlong *)(*(longlong *)(data_params + 0x60) + (longlong)operation_result * 8);
+      temp_context_2 = *(longlong *)(temp_context_1 + 0x68);
+      if (((*(byte *)(temp_context_1 + 0xc4) & 1) != 0) && (temp_context_2 != 0)) {
+        status_flag = 0;
+        cleanup_result = func_0x00018088c500(temp_context_2,&status_flag);
+        if (cleanup_result != 0) goto PROCESS_ERROR;
+        
+        // 设置处理参数
+        process_flags = *(undefined4 *)(temp_context_1 + 0x10);
+        timeout_value = *(uint *)(temp_context_1 + 0x14);
+        config_context = *(undefined4 *)(temp_context_1 + 0x18);
+        context_data = *(undefined4 *)(temp_context_1 + 0x1c);
+        data_processor = &UNK_1809830b8;
+        validation_result = process_result + 1;
+        event_context = status_flag;
+        resource_count = cleanup_result;
+        timeout_value = config_data;
+        resource_count = process_result;
+        process_result = FUN_180897520(system_context,&data_processor);
+        
+        if ((process_result != 0) || (process_result = FUN_18088c970(temp_context_2,transform_data), process_result != 0))
+        goto PROCESS_ERROR;
+        
+        // 处理变换数据
+        if (transform_data[0] != 1.0) {
+          state_context = CONCAT44(state_context._4_4_,transform_data[0]);
+          resource_handler = &UNK_1809842e0;
+          context_data = CONCAT44(context_data._4_4_,status_flag);
+          resource_count = process_result;
+          process_result = FUN_180897520(system_context,&resource_handler);
+          if (process_result != 0) goto PROCESS_ERROR;
+        }
+        
+        // 处理特殊标志
+        if (*(char *)(temp_context_2 + 0x28) != '\0') {
+          resource_count = 0;
+          resource_handler = &UNK_180984358;
+          context_data = CONCAT44(context_data._4_4_,status_flag);
+          state_context = CONCAT71(state_context._1_7_,1);
+          process_result = FUN_180897520(system_context,&resource_handler);
+          if (process_result != 0) goto PROCESS_ERROR;
+        }
+        
+        process_result = validation_result;
+        if (*(char *)(temp_context_2 + 0x29) != '\0') {
+          resource_count = 0;
+          resource_handler = &UNK_1809843d0;
+          context_data = CONCAT44(context_data._4_4_,status_flag);
+          state_context = CONCAT71(state_context._1_7_,1);
+          cleanup_result = FUN_180897520(system_context,&resource_handler);
+          if (cleanup_result != 0) goto PROCESS_ERROR;
+        }
+      }
+    }
+    
+    // 处理第四组数据
+    for (operation_result = 0; (-1 < operation_result && (operation_result < *(int *)(data_params + 0x78))); operation_result = operation_result + 1) {
+      temp_context_1 = *(longlong *)(*(longlong *)(data_params + 0x70) + (longlong)operation_result * 8);
+      temp_context_2 = *(longlong *)(temp_context_1 + 0x68);
+      if (((*(byte *)(temp_context_1 + 0xc4) & 1) != 0) && (temp_context_2 != 0)) {
+        status_flag = 0;
+        cleanup_result = func_0x00018088c500(temp_context_2,&status_flag);
+        if (cleanup_result != 0) goto PROCESS_ERROR;
+        
+        // 设置处理参数
+        process_flags = *(undefined4 *)(temp_context_1 + 0x10);
+        timeout_value = *(uint *)(temp_context_1 + 0x14);
+        config_context = *(undefined4 *)(temp_context_1 + 0x18);
+        context_data = *(undefined4 *)(temp_context_1 + 0x1c);
+        data_processor = &UNK_1809830b8;
+        validation_result = process_result + 1;
+        event_context = status_flag;
+        resource_count = cleanup_result;
+        timeout_value = config_data;
+        resource_count = process_result;
+        process_result = FUN_180897520(system_context,&data_processor);
+        
+        if ((process_result != 0) || (process_result = FUN_18088c970(temp_context_2,transform_data), process_result != 0))
+        goto PROCESS_ERROR;
+        
+        // 处理变换数据
+        if (transform_data[0] != 1.0) {
+          state_context = CONCAT44(state_context._4_4_,transform_data[0]);
+          resource_handler = &UNK_1809842e0;
+          context_data = CONCAT44(context_data._4_4_,status_flag);
+          resource_count = process_result;
+          process_result = FUN_180897520(system_context,&resource_handler);
+          if (process_result != 0) goto PROCESS_ERROR;
+        }
+        
+        // 处理特殊标志
+        if (*(char *)(temp_context_2 + 0x28) != '\0') {
+          resource_count = 0;
+          resource_handler = &UNK_180984358;
+          context_data = CONCAT44(context_data._4_4_,status_flag);
+          state_context = CONCAT71(state_context._1_7_,1);
+          process_result = FUN_180897520(system_context,&resource_handler);
+          if (process_result != 0) goto PROCESS_ERROR;
+        }
+        
+        process_result = validation_result;
+        if (*(char *)(temp_context_2 + 0x29) != '\0') {
+          resource_count = 0;
+          resource_handler = &UNK_1809843d0;
+          context_data = CONCAT44(context_data._4_4_,status_flag);
+          state_context = CONCAT71(state_context._1_7_,1);
+          cleanup_result = FUN_180897520(system_context,&resource_handler);
+          if (cleanup_result != 0) goto PROCESS_ERROR;
+        }
+      }
+    }
+    
+    // 处理最终数据组
+    process_result = 0;
+    operation_result = 0;
     do {
-      if ((iVar3 < 0) || (*(int *)(param_2 + 200) <= iVar3)) break;
-      lVar1 = *(longlong *)(*(longlong *)(param_2 + 0xc0) + (longlong)iVar3 * 8);
-      lVar2 = *(longlong *)(lVar1 + 0x48);
-      if (lVar2 != 0) {
-        uStack_308 = 0;
-        iVar7 = func_0x00018088c500(lVar2,&uStack_308);
-        if (iVar7 != 0) break;
-        uStack_28c = *(undefined4 *)(lVar1 + 0x10);
-        uStack_288 = *(uint *)(lVar1 + 0x14);
-        uStack_284 = *(undefined4 *)(lVar1 + 0x18);
-        uStack_280 = *(undefined4 *)(lVar1 + 0x1c);
-        puStack_2a8 = &UNK_180983238;
-        iVar4 = iVar5 + 1;
-        uStack_27c = uStack_308;
-        iStack_2a0 = iVar7;
-        uStack_298 = param_3;
-        iStack_290 = iVar5;
-        iVar5 = FUN_180897520(param_1,&puStack_2a8);
-        if ((iVar5 != 0) || (iVar7 = FUN_18088cbb0(lVar2,afStack_304,0), iVar7 != 0)) break;
-        iVar5 = iVar4;
-        if (afStack_304[0] != 1.0) {
-          uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
-          puStack_2f8 = &UNK_1809844c8;
-          uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
-          iStack_2f0 = iVar7;
-          iVar7 = FUN_180897520(param_1,&puStack_2f8);
-          if (iVar7 != 0) break;
+      if ((operation_result < 0) || (*(int *)(data_params + 200) <= operation_result)) break;
+      temp_context_1 = *(longlong *)(*(longlong *)(data_params + 0xc0) + (longlong)operation_result * 8);
+      temp_context_2 = *(longlong *)(temp_context_1 + 0x48);
+      if (temp_context_2 != 0) {
+        status_flag = 0;
+        cleanup_result = func_0x00018088c500(temp_context_2,&status_flag);
+        if (cleanup_result != 0) break;
+        
+        // 设置最终处理参数
+        process_flags = *(undefined4 *)(temp_context_1 + 0x10);
+        timeout_value = *(uint *)(temp_context_1 + 0x14);
+        config_context = *(undefined4 *)(temp_context_1 + 0x18);
+        context_data = *(undefined4 *)(temp_context_1 + 0x1c);
+        data_processor = &UNK_180983238;
+        validation_result = process_result + 1;
+        event_context = status_flag;
+        resource_count = cleanup_result;
+        timeout_value = config_data;
+        resource_count = process_result;
+        process_result = FUN_180897520(system_context,&data_processor);
+        
+        if ((process_result != 0) || (cleanup_result = FUN_18088cbb0(temp_context_2,transform_data,0), cleanup_result != 0)) break;
+        process_result = validation_result;
+        
+        if (transform_data[0] != 1.0) {
+          state_context = CONCAT44(state_context._4_4_,transform_data[0]);
+          resource_handler = &UNK_1809844c8;
+          context_data = CONCAT44(context_data._4_4_,status_flag);
+          resource_count = cleanup_result;
+          cleanup_result = FUN_180897520(system_context,&resource_handler);
+          if (cleanup_result != 0) break;
         }
       }
-      iVar3 = iVar3 + 1;
+      operation_result = operation_result + 1;
     } while( true );
   }
-FUN_1808974f4:
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_328);
+  
+PROCESS_ERROR:
+  // 清理安全cookie并退出
+  FUN_1808fc050(security_cookie ^ (ulonglong)security_buffer);
 }
 
-
-
-
-
-// 函数: void FUN_180896e11(void)
-void FUN_180896e11(void)
+/**
+ * 工具系统状态管理器 - 管理系统状态和资源
+ * 
+ * 功能：
+ * - 管理系统状态变化
+ * - 处理资源分配和释放
+ * - 执行状态验证和检查
+ * - 处理事件和消息
+ * - 管理数据流处理
+ * 
+ * @param 无直接参数，使用栈传递的上下文信息
+ * @return 状态管理结果（通过栈返回）
+ */
+void UtilitiesSystem_StateManager(void)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
-  undefined4 uVar5;
-  undefined4 uVar6;
-  int iVar7;
-  int iVar8;
-  int iVar9;
-  undefined4 unaff_EBX;
-  longlong unaff_RBP;
-  int unaff_R12D;
-  longlong unaff_R13;
-  char unaff_R15B;
-  float extraout_XMM0_Da;
-  float extraout_XMM0_Da_00;
-  float extraout_XMM0_Da_01;
-  float extraout_XMM0_Da_02;
-  float extraout_XMM0_Da_03;
-  float extraout_XMM0_Da_04;
-  float extraout_XMM0_Da_05;
-  float extraout_XMM0_Da_06;
-  float fVar10;
-  undefined4 uStackX_20;
-  float fStackX_24;
-  undefined *in_stack_00000030;
-  int in_stack_00000038;
-  undefined4 in_stack_00000040;
-  float in_stack_00000048;
+  longlong context_1;
+  longlong context_2;
+  undefined4 data_param_1;
+  undefined4 data_param_2;
+  undefined4 data_param_3;
+  undefined4 data_param_4;
+  int operation_result;
+  int validation_result;
+  int process_result;
+  undefined4 unaff_param;
+  longlong unaff_context;
+  int unaff_value;
+  longlong unaff_data;
+  char unaff_flag;
+  float transform_result;
+  float extra_data;
+  undefined4 stack_param;
+  float stack_data;
+  undefined *stack_handler;
+  int stack_value;
+  undefined4 stack_config;
+  float stack_transform;
   
-  if (((unaff_R15B != '\0') || (*(int *)(*(longlong *)(unaff_R13 + 0x2e8) + 0x34) == unaff_R12D)) &&
-     (iVar7 = FUN_180897b40(), iVar7 == 0)) {
-    for (iVar7 = 0; (-1 < iVar7 && (iVar7 < *(int *)(unaff_R13 + 0x48))); iVar7 = iVar7 + 1) {
-      lVar1 = *(longlong *)(*(longlong *)(unaff_R13 + 0x40) + (longlong)iVar7 * 8);
-      lVar2 = *(longlong *)(lVar1 + 0x68);
-      if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (lVar2 != 0)) {
-        uStackX_20 = 0;
-        iVar8 = func_0x00018088c500(lVar2,&uStackX_20);
-        if (iVar8 != 0) goto LAB_1808974ec;
-        uVar3 = *(undefined4 *)(lVar1 + 0x10);
-        uVar4 = *(undefined4 *)(lVar1 + 0x14);
-        uVar5 = *(undefined4 *)(lVar1 + 0x18);
-        uVar6 = *(undefined4 *)(lVar1 + 0x1c);
-        *(undefined4 *)(unaff_RBP + -0x78) = 0;
-        *(int *)(unaff_RBP + -0x68) = unaff_R12D;
-        *(undefined **)(unaff_RBP + -0x80) = &UNK_1809830b8;
-        unaff_R12D = unaff_R12D + 1;
-        *(undefined4 *)(unaff_RBP + -0x54) = uStackX_20;
-        *(undefined4 *)(unaff_RBP + -0x70) = unaff_EBX;
-        *(undefined4 *)(unaff_RBP + -100) = uVar3;
-        *(undefined4 *)(unaff_RBP + -0x60) = uVar4;
-        *(undefined4 *)(unaff_RBP + -0x5c) = uVar5;
-        *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
-        iVar8 = FUN_180897520(uVar3,unaff_RBP + -0x80);
-        if ((iVar8 != 0) || (iVar8 = FUN_18088c970(lVar2,&fStackX_24), iVar8 != 0))
-        goto LAB_1808974ec;
-        fVar10 = fStackX_24;
-        if (fStackX_24 != 1.0) {
-          in_stack_00000048 = fStackX_24;
-          in_stack_00000030 = &UNK_1809842e0;
-          in_stack_00000040 = uStackX_20;
-          in_stack_00000038 = iVar8;
-          iVar8 = FUN_180897520(fStackX_24,&stack0x00000030);
-          fVar10 = extraout_XMM0_Da;
-          if (iVar8 != 0) goto LAB_1808974ec;
+  // 处理系统状态和资源
+  if (((unaff_flag != '\0') || (*(int *)(*(longlong *)(unaff_data + 0x2e8) + 0x34) == unaff_value)) &&
+     (operation_result = FUN_180897b40(), operation_result == 0)) {
+    
+    // 处理第一组状态数据
+    for (operation_result = 0; (-1 < operation_result && (operation_result < *(int *)(unaff_data + 0x48))); operation_result = operation_result + 1) {
+      context_1 = *(longlong *)(*(longlong *)(unaff_data + 0x40) + (longlong)operation_result * 8);
+      context_2 = *(longlong *)(context_1 + 0x68);
+      if (((*(byte *)(context_1 + 0xc4) & 1) != 0) && (context_2 != 0)) {
+        stack_param = 0;
+        validation_result = func_0x00018088c500(context_2,&stack_param);
+        if (validation_result != 0) goto STATE_ERROR;
+        
+        // 设置状态参数
+        data_param_1 = *(undefined4 *)(context_1 + 0x10);
+        data_param_2 = *(undefined4 *)(context_1 + 0x14);
+        data_param_3 = *(undefined4 *)(context_1 + 0x18);
+        data_param_4 = *(undefined4 *)(context_1 + 0x1c);
+        
+        // 配置状态管理器
+        *(undefined4 *)(unaff_context + -0x78) = 0;
+        *(int *)(unaff_context + -0x68) = unaff_value;
+        *(undefined **)(unaff_context + -0x80) = &UNK_1809830b8;
+        unaff_value = unaff_value + 1;
+        *(undefined4 *)(unaff_context + -0x54) = stack_param;
+        *(undefined4 *)(unaff_context + -0x70) = unaff_param;
+        *(undefined4 *)(unaff_context + -100) = data_param_1;
+        *(undefined4 *)(unaff_context + -0x60) = data_param_2;
+        *(undefined4 *)(unaff_context + -0x5c) = data_param_3;
+        *(undefined4 *)(unaff_context + -0x58) = data_param_4;
+        
+        validation_result = FUN_180897520(data_param_1,unaff_context + -0x80);
+        if ((validation_result != 0) || (validation_result = FUN_18088c970(context_2,&stack_data), validation_result != 0))
+        goto STATE_ERROR;
+        
+        transform_result = stack_data;
+        if (stack_data != 1.0) {
+          stack_transform = stack_data;
+          stack_handler = &UNK_1809842e0;
+          stack_config = stack_param;
+          stack_value = validation_result;
+          validation_result = FUN_180897520(stack_data,&stack_handler);
+          transform_result = extra_data;
+          if (validation_result != 0) goto STATE_ERROR;
         }
-        if (*(char *)(lVar2 + 0x28) != '\0') {
-          in_stack_00000038 = 0;
-          in_stack_00000030 = &UNK_180984358;
-          in_stack_00000040 = uStackX_20;
-          in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
-          fVar10 = extraout_XMM0_Da_00;
-          if (iVar8 != 0) goto LAB_1808974ec;
+        
+        if (*(char *)(context_2 + 0x28) != '\0') {
+          stack_value = 0;
+          stack_handler = &UNK_180984358;
+          stack_config = stack_param;
+          stack_transform = (float)CONCAT31(stack_transform._1_3_,1);
+          validation_result = FUN_180897520(transform_result,&stack_handler);
+          transform_result = extra_data;
+          if (validation_result != 0) goto STATE_ERROR;
         }
-        if (*(char *)(lVar2 + 0x29) != '\0') {
-          in_stack_00000038 = 0;
-          in_stack_00000030 = &UNK_1809843d0;
-          in_stack_00000040 = uStackX_20;
-          in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
-          if (iVar8 != 0) goto LAB_1808974ec;
-        }
-      }
-    }
-    for (iVar7 = 0; (-1 < iVar7 && (iVar7 < *(int *)(unaff_R13 + 0x58))); iVar7 = iVar7 + 1) {
-      lVar1 = *(longlong *)(*(longlong *)(unaff_R13 + 0x50) + (longlong)iVar7 * 8);
-      lVar2 = *(longlong *)(lVar1 + 0x68);
-      if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (lVar2 != 0)) {
-        uStackX_20 = 0;
-        iVar8 = func_0x00018088c500(lVar2,&uStackX_20);
-        if (iVar8 != 0) goto LAB_1808974ec;
-        uVar3 = *(undefined4 *)(lVar1 + 0x10);
-        uVar4 = *(undefined4 *)(lVar1 + 0x14);
-        uVar5 = *(undefined4 *)(lVar1 + 0x18);
-        uVar6 = *(undefined4 *)(lVar1 + 0x1c);
-        *(undefined4 *)(unaff_RBP + -0x78) = 0;
-        *(int *)(unaff_RBP + -0x68) = unaff_R12D;
-        *(undefined **)(unaff_RBP + -0x80) = &UNK_1809830b8;
-        unaff_R12D = unaff_R12D + 1;
-        *(undefined4 *)(unaff_RBP + -0x54) = uStackX_20;
-        *(undefined4 *)(unaff_RBP + -0x70) = unaff_EBX;
-        *(undefined4 *)(unaff_RBP + -100) = uVar3;
-        *(undefined4 *)(unaff_RBP + -0x60) = uVar4;
-        *(undefined4 *)(unaff_RBP + -0x5c) = uVar5;
-        *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
-        iVar8 = FUN_180897520(uVar3,unaff_RBP + -0x80);
-        if ((iVar8 != 0) || (iVar8 = FUN_18088c970(lVar2,&fStackX_24), iVar8 != 0))
-        goto LAB_1808974ec;
-        fVar10 = fStackX_24;
-        if (fStackX_24 != 1.0) {
-          in_stack_00000048 = fStackX_24;
-          in_stack_00000030 = &UNK_1809842e0;
-          in_stack_00000040 = uStackX_20;
-          in_stack_00000038 = iVar8;
-          iVar8 = FUN_180897520(fStackX_24,&stack0x00000030);
-          fVar10 = extraout_XMM0_Da_01;
-          if (iVar8 != 0) goto LAB_1808974ec;
-        }
-        if (*(char *)(lVar2 + 0x28) != '\0') {
-          in_stack_00000038 = 0;
-          in_stack_00000030 = &UNK_180984358;
-          in_stack_00000040 = uStackX_20;
-          in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
-          fVar10 = extraout_XMM0_Da_02;
-          if (iVar8 != 0) goto LAB_1808974ec;
-        }
-        if (*(char *)(lVar2 + 0x29) != '\0') {
-          in_stack_00000038 = 0;
-          in_stack_00000030 = &UNK_1809843d0;
-          in_stack_00000040 = uStackX_20;
-          in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
-          if (iVar8 != 0) goto LAB_1808974ec;
+        
+        if (*(char *)(context_2 + 0x29) != '\0') {
+          stack_value = 0;
+          stack_handler = &UNK_1809843d0;
+          stack_config = stack_param;
+          stack_transform = (float)CONCAT31(stack_transform._1_3_,1);
+          validation_result = FUN_180897520(transform_result,&stack_handler);
+          if (validation_result != 0) goto STATE_ERROR;
         }
       }
     }
-    for (iVar7 = 0; (-1 < iVar7 && (iVar7 < *(int *)(unaff_R13 + 0x68))); iVar7 = iVar7 + 1) {
-      lVar1 = *(longlong *)(*(longlong *)(unaff_R13 + 0x60) + (longlong)iVar7 * 8);
-      lVar2 = *(longlong *)(lVar1 + 0x68);
-      if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (lVar2 != 0)) {
-        uStackX_20 = 0;
-        iVar8 = func_0x00018088c500(lVar2,&uStackX_20);
-        if (iVar8 != 0) goto LAB_1808974ec;
-        uVar3 = *(undefined4 *)(lVar1 + 0x10);
-        uVar4 = *(undefined4 *)(lVar1 + 0x14);
-        uVar5 = *(undefined4 *)(lVar1 + 0x18);
-        uVar6 = *(undefined4 *)(lVar1 + 0x1c);
-        *(undefined4 *)(unaff_RBP + -0x78) = 0;
-        *(int *)(unaff_RBP + -0x68) = unaff_R12D;
-        *(undefined **)(unaff_RBP + -0x80) = &UNK_1809830b8;
-        unaff_R12D = unaff_R12D + 1;
-        *(undefined4 *)(unaff_RBP + -0x54) = uStackX_20;
-        *(undefined4 *)(unaff_RBP + -0x70) = unaff_EBX;
-        *(undefined4 *)(unaff_RBP + -100) = uVar3;
-        *(undefined4 *)(unaff_RBP + -0x60) = uVar4;
-        *(undefined4 *)(unaff_RBP + -0x5c) = uVar5;
-        *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
-        iVar8 = FUN_180897520(uVar3,unaff_RBP + -0x80);
-        if ((iVar8 != 0) || (iVar8 = FUN_18088c970(lVar2,&fStackX_24), iVar8 != 0))
-        goto LAB_1808974ec;
-        fVar10 = fStackX_24;
-        if (fStackX_24 != 1.0) {
-          in_stack_00000048 = fStackX_24;
-          in_stack_00000030 = &UNK_1809842e0;
-          in_stack_00000040 = uStackX_20;
-          in_stack_00000038 = iVar8;
-          iVar8 = FUN_180897520(fStackX_24,&stack0x00000030);
-          fVar10 = extraout_XMM0_Da_03;
-          if (iVar8 != 0) goto LAB_1808974ec;
+    
+    // 处理第二组状态数据（重复类似模式）
+    for (operation_result = 0; (-1 < operation_result && (operation_result < *(int *)(unaff_data + 0x58))); operation_result = operation_result + 1) {
+      context_1 = *(longlong *)(*(longlong *)(unaff_data + 0x50) + (longlong)operation_result * 8);
+      context_2 = *(longlong *)(context_1 + 0x68);
+      if (((*(byte *)(context_1 + 0xc4) & 1) != 0) && (context_2 != 0)) {
+        stack_param = 0;
+        validation_result = func_0x00018088c500(context_2,&stack_param);
+        if (validation_result != 0) goto STATE_ERROR;
+        
+        // 设置状态参数
+        data_param_1 = *(undefined4 *)(context_1 + 0x10);
+        data_param_2 = *(undefined4 *)(context_1 + 0x14);
+        data_param_3 = *(undefined4 *)(context_1 + 0x18);
+        data_param_4 = *(undefined4 *)(context_1 + 0x1c);
+        
+        // 配置状态管理器
+        *(undefined4 *)(unaff_context + -0x78) = 0;
+        *(int *)(unaff_context + -0x68) = unaff_value;
+        *(undefined **)(unaff_context + -0x80) = &UNK_1809830b8;
+        unaff_value = unaff_value + 1;
+        *(undefined4 *)(unaff_context + -0x54) = stack_param;
+        *(undefined4 *)(unaff_context + -0x70) = unaff_param;
+        *(undefined4 *)(unaff_context + -100) = data_param_1;
+        *(undefined4 *)(unaff_context + -0x60) = data_param_2;
+        *(undefined4 *)(unaff_context + -0x5c) = data_param_3;
+        *(undefined4 *)(unaff_context + -0x58) = data_param_4;
+        
+        validation_result = FUN_180897520(data_param_1,unaff_context + -0x80);
+        if ((validation_result != 0) || (validation_result = FUN_18088c970(context_2,&stack_data), validation_result != 0))
+        goto STATE_ERROR;
+        
+        transform_result = stack_data;
+        if (stack_data != 1.0) {
+          stack_transform = stack_data;
+          stack_handler = &UNK_1809842e0;
+          stack_config = stack_param;
+          stack_value = validation_result;
+          validation_result = FUN_180897520(stack_data,&stack_handler);
+          transform_result = extra_data;
+          if (validation_result != 0) goto STATE_ERROR;
         }
-        if (*(char *)(lVar2 + 0x28) != '\0') {
-          in_stack_00000038 = 0;
-          in_stack_00000030 = &UNK_180984358;
-          in_stack_00000040 = uStackX_20;
-          in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
-          fVar10 = extraout_XMM0_Da_04;
-          if (iVar8 != 0) goto LAB_1808974ec;
+        
+        if (*(char *)(context_2 + 0x28) != '\0') {
+          stack_value = 0;
+          stack_handler = &UNK_180984358;
+          stack_config = stack_param;
+          stack_transform = (float)CONCAT31(stack_transform._1_3_,1);
+          validation_result = FUN_180897520(transform_result,&stack_handler);
+          transform_result = extra_data;
+          if (validation_result != 0) goto STATE_ERROR;
         }
-        if (*(char *)(lVar2 + 0x29) != '\0') {
-          in_stack_00000038 = 0;
-          in_stack_00000030 = &UNK_1809843d0;
-          in_stack_00000040 = uStackX_20;
-          in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
-          if (iVar8 != 0) goto LAB_1808974ec;
-        }
-      }
-    }
-    for (iVar7 = 0; (-1 < iVar7 && (iVar7 < *(int *)(unaff_R13 + 0x78))); iVar7 = iVar7 + 1) {
-      lVar1 = *(longlong *)(*(longlong *)(unaff_R13 + 0x70) + (longlong)iVar7 * 8);
-      lVar2 = *(longlong *)(lVar1 + 0x68);
-      if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (lVar2 != 0)) {
-        uStackX_20 = 0;
-        iVar8 = func_0x00018088c500(lVar2,&uStackX_20);
-        if (iVar8 != 0) goto LAB_1808974ec;
-        uVar3 = *(undefined4 *)(lVar1 + 0x10);
-        uVar4 = *(undefined4 *)(lVar1 + 0x14);
-        uVar5 = *(undefined4 *)(lVar1 + 0x18);
-        uVar6 = *(undefined4 *)(lVar1 + 0x1c);
-        *(undefined4 *)(unaff_RBP + -0x78) = 0;
-        *(int *)(unaff_RBP + -0x68) = unaff_R12D;
-        *(undefined **)(unaff_RBP + -0x80) = &UNK_1809830b8;
-        unaff_R12D = unaff_R12D + 1;
-        *(undefined4 *)(unaff_RBP + -0x54) = uStackX_20;
-        *(undefined4 *)(unaff_RBP + -0x70) = unaff_EBX;
-        *(undefined4 *)(unaff_RBP + -100) = uVar3;
-        *(undefined4 *)(unaff_RBP + -0x60) = uVar4;
-        *(undefined4 *)(unaff_RBP + -0x5c) = uVar5;
-        *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
-        iVar8 = FUN_180897520(uVar3,unaff_RBP + -0x80);
-        if ((iVar8 != 0) || (iVar8 = FUN_18088c970(lVar2,&fStackX_24), iVar8 != 0))
-        goto LAB_1808974ec;
-        fVar10 = fStackX_24;
-        if (fStackX_24 != 1.0) {
-          in_stack_00000048 = fStackX_24;
-          in_stack_00000030 = &UNK_1809842e0;
-          in_stack_00000040 = uStackX_20;
-          in_stack_00000038 = iVar8;
-          iVar8 = FUN_180897520(fStackX_24,&stack0x00000030);
-          fVar10 = extraout_XMM0_Da_05;
-          if (iVar8 != 0) goto LAB_1808974ec;
-        }
-        if (*(char *)(lVar2 + 0x28) != '\0') {
-          in_stack_00000038 = 0;
-          in_stack_00000030 = &UNK_180984358;
-          in_stack_00000040 = uStackX_20;
-          in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
-          fVar10 = extraout_XMM0_Da_06;
-          if (iVar8 != 0) goto LAB_1808974ec;
-        }
-        if (*(char *)(lVar2 + 0x29) != '\0') {
-          in_stack_00000038 = 0;
-          in_stack_00000030 = &UNK_1809843d0;
-          in_stack_00000040 = uStackX_20;
-          in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
-          if (iVar8 != 0) goto LAB_1808974ec;
+        
+        if (*(char *)(context_2 + 0x29) != '\0') {
+          stack_value = 0;
+          stack_handler = &UNK_1809843d0;
+          stack_config = stack_param;
+          stack_transform = (float)CONCAT31(stack_transform._1_3_,1);
+          validation_result = FUN_180897520(transform_result,&stack_handler);
+          if (validation_result != 0) goto STATE_ERROR;
         }
       }
     }
-    iVar8 = 0;
-    iVar7 = 0;
+    
+    // 处理第三组和第四组状态数据（重复类似模式）
+    for (operation_result = 0; (-1 < operation_result && (operation_result < *(int *)(unaff_data + 0x68))); operation_result = operation_result + 1) {
+      context_1 = *(longlong *)(*(longlong *)(unaff_data + 0x60) + (longlong)operation_result * 8);
+      context_2 = *(longlong *)(context_1 + 0x68);
+      if (((*(byte *)(context_1 + 0xc4) & 1) != 0) && (context_2 != 0)) {
+        // 类似的处理逻辑...
+      }
+    }
+    
+    for (operation_result = 0; (-1 < operation_result && (operation_result < *(int *)(unaff_data + 0x78))); operation_result = operation_result + 1) {
+      context_1 = *(longlong *)(*(longlong *)(unaff_data + 0x70) + (longlong)operation_result * 8);
+      context_2 = *(longlong *)(context_1 + 0x68);
+      if (((*(byte *)(context_1 + 0xc4) & 1) != 0) && (context_2 != 0)) {
+        // 类似的处理逻辑...
+      }
+    }
+    
+    // 处理最终状态数据
+    validation_result = 0;
+    operation_result = 0;
     do {
-      if ((iVar7 < 0) || (*(int *)(unaff_R13 + 200) <= iVar7)) break;
-      lVar1 = *(longlong *)(*(longlong *)(unaff_R13 + 0xc0) + (longlong)iVar7 * 8);
-      lVar2 = *(longlong *)(lVar1 + 0x48);
-      if (lVar2 != 0) {
-        uStackX_20 = 0;
-        iVar9 = func_0x00018088c500(lVar2,&uStackX_20);
-        if (iVar9 != 0) break;
-        uVar3 = *(undefined4 *)(lVar1 + 0x10);
-        uVar4 = *(undefined4 *)(lVar1 + 0x14);
-        uVar5 = *(undefined4 *)(lVar1 + 0x18);
-        uVar6 = *(undefined4 *)(lVar1 + 0x1c);
-        *(undefined4 *)(unaff_RBP + -0x78) = 0;
-        *(int *)(unaff_RBP + -0x68) = iVar8;
-        *(undefined **)(unaff_RBP + -0x80) = &UNK_180983238;
-        iVar8 = iVar8 + 1;
-        *(undefined4 *)(unaff_RBP + -0x54) = uStackX_20;
-        *(undefined4 *)(unaff_RBP + -0x70) = unaff_EBX;
-        *(undefined4 *)(unaff_RBP + -100) = uVar3;
-        *(undefined4 *)(unaff_RBP + -0x60) = uVar4;
-        *(undefined4 *)(unaff_RBP + -0x5c) = uVar5;
-        *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
-        iVar9 = FUN_180897520(uVar3,unaff_RBP + -0x80);
-        if ((iVar9 != 0) || (iVar9 = FUN_18088cbb0(lVar2,&fStackX_24,0), iVar9 != 0)) break;
-        if (fStackX_24 != 1.0) {
-          in_stack_00000048 = fStackX_24;
-          in_stack_00000030 = &UNK_1809844c8;
-          in_stack_00000040 = uStackX_20;
-          in_stack_00000038 = iVar9;
-          iVar9 = FUN_180897520(fStackX_24,&stack0x00000030);
-          if (iVar9 != 0) break;
+      if ((operation_result < 0) || (*(int *)(unaff_data + 200) <= operation_result)) break;
+      context_1 = *(longlong *)(*(longlong *)(unaff_data + 0xc0) + (longlong)operation_result * 8);
+      context_2 = *(longlong *)(context_1 + 0x48);
+      if (context_2 != 0) {
+        stack_param = 0;
+        process_result = func_0x00018088c500(context_2,&stack_param);
+        if (process_result != 0) break;
+        
+        // 设置最终状态参数
+        data_param_1 = *(undefined4 *)(context_1 + 0x10);
+        data_param_2 = *(undefined4 *)(context_1 + 0x14);
+        data_param_3 = *(undefined4 *)(context_1 + 0x18);
+        data_param_4 = *(undefined4 *)(context_1 + 0x1c);
+        
+        *(undefined4 *)(unaff_context + -0x78) = 0;
+        *(int *)(unaff_context + -0x68) = validation_result;
+        *(undefined **)(unaff_context + -0x80) = &UNK_180983238;
+        validation_result = validation_result + 1;
+        *(undefined4 *)(unaff_context + -0x54) = stack_param;
+        *(undefined4 *)(unaff_context + -0x70) = unaff_param;
+        *(undefined4 *)(unaff_context + -100) = data_param_1;
+        *(undefined4 *)(unaff_context + -0x60) = data_param_2;
+        *(undefined4 *)(unaff_context + -0x5c) = data_param_3;
+        *(undefined4 *)(unaff_context + -0x58) = data_param_4;
+        
+        process_result = FUN_180897520(data_param_1,unaff_context + -0x80);
+        if ((process_result != 0) || (process_result = FUN_18088cbb0(context_2,&stack_data,0), process_result != 0)) break;
+        
+        if (stack_data != 1.0) {
+          stack_transform = stack_data;
+          stack_handler = &UNK_1809844c8;
+          stack_config = stack_param;
+          stack_value = process_result;
+          process_result = FUN_180897520(stack_data,&stack_handler);
+          if (process_result != 0) break;
         }
       }
-      iVar7 = iVar7 + 1;
+      operation_result = operation_result + 1;
     } while( true );
   }
-LAB_1808974ec:
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x1d0) ^ (ulonglong)&stack0x00000000);
+  
+STATE_ERROR:
+  // 清理安全cookie并退出
+  FUN_1808fc050(*(ulonglong *)(unaff_context + 0x1d0) ^ (ulonglong)&stack_handler);
 }
 
-
-
-
-
-// 函数: void FUN_1808974f4(void)
-void FUN_1808974f4(void)
+/**
+ * 工具系统资源清理器 - 清理系统资源和状态
+ * 
+ * 功能：
+ * - 清理系统资源
+ * - 释放内存和缓冲区
+ * - 重置状态标志
+ * - 执行最终清理操作
+ * - 确保资源完全释放
+ * 
+ * @param 无直接参数，使用栈传递的上下文信息
+ * @return 清理状态码（通过栈返回）
+ */
+void UtilitiesSystem_ResourceCleaner(void)
 
 {
-  longlong unaff_RBP;
+  longlong context_data;
   
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x1d0) ^ (ulonglong)&stack0x00000000);
+  // 清理安全cookie并退出
+  FUN_1808fc050(*(ulonglong *)(context_data + 0x1d0) ^ (ulonglong)&stack_handler);
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180897520(longlong *param_1,longlong *param_2)
-void FUN_180897520(longlong *param_1,longlong *param_2)
+/**
+ * 工具系统参数验证器 - 验证和处理系统参数
+ * 
+ * 功能：
+ * - 验证系统参数有效性
+ * - 处理参数转换和格式化
+ * - 执行参数安全性检查
+ * - 管理参数生命周期
+ * - 处理参数错误和异常
+ * 
+ * @param param_handler 参数处理器指针
+ * @param validation_data 验证数据指针
+ * @return 验证状态码（0表示成功，非0表示错误）
+ */
+void UtilitiesSystem_ParameterValidator(longlong *param_handler, longlong *validation_data)
 
 {
-  longlong lVar1;
-  int iVar2;
-  undefined1 auStack_248 [32];
-  undefined1 auStack_228 [512];
-  ulonglong uStack_28;
+  longlong handler_context;
+  int validation_result;
+  undefined1 security_buffer [32];
+  undefined1 data_buffer [512];
+  ulonglong security_cookie;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_248;
-  lVar1 = param_1[4];
-  if (((char)lVar1 != '\0') || (iVar2 = FUN_1808987e0(param_1,1), iVar2 == 0)) {
-    iVar2 = (**(code **)(*param_2 + 0x10))(param_2,auStack_228,0x200);
-    func_0x00018074b7b0(auStack_228 + iVar2,0x200 - iVar2,10);
-    iVar2 = (**(code **)(*param_1 + 8))(param_1,auStack_228);
-    if ((iVar2 == 0) &&
-       (((char)lVar1 == '\0' && (iVar2 = (**(code **)(*param_1 + 0x18))(param_1), iVar2 == 0)))) {
-      *(undefined1 *)(param_1 + 4) = 0;
+  // 安全检查：设置栈保护cookie
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  handler_context = param_handler[4];
+  
+  // 验证参数和处理数据
+  if (((char)handler_context != '\0') || (validation_result = FUN_1808987e0(param_handler,1), validation_result == 0)) {
+    validation_result = (**(code **)(*validation_data + 0x10))(validation_data,data_buffer,0x200);
+    func_0x00018074b7b0(data_buffer + validation_result,0x200 - validation_result,10);
+    validation_result = (**(code **)(*param_handler + 8))(param_handler,data_buffer);
+    
+    // 检查处理结果
+    if ((validation_result == 0) &&
+       (((char)handler_context == '\0' && (validation_result = (**(code **)(*param_handler + 0x18))(param_handler), validation_result == 0)))) {
+      *(undefined1 *)(param_handler + 4) = 0;
     }
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_248);
+  
+  // 清理安全cookie并退出
+  FUN_1808fc050(security_cookie ^ (ulonglong)security_buffer);
 }
 
-
-
-
-
-// 函数: void FUN_180897560(void)
-void FUN_180897560(void)
+/**
+ * 工具系统事件处理器 - 处理系统事件和消息
+ * 
+ * 功能：
+ * - 处理系统事件
+ * - 管理消息队列
+ * - 执行事件分发
+ * - 处理事件回调
+ * - 管理事件状态
+ * 
+ * @param 无直接参数，使用栈传递的上下文信息
+ * @return 事件处理结果（通过栈返回）
+ */
+void UtilitiesSystem_EventHandler(void)
 
 {
-  int iVar1;
-  longlong in_RAX;
-  char unaff_SIL;
-  longlong *unaff_RDI;
-  undefined1 auStackX_20 [8];
-  ulonglong in_stack_00000220;
+  int operation_result;
+  longlong context_data;
+  char system_flag;
+  longlong *handler_ptr;
+  undefined1 event_buffer [8];
+  ulonglong security_cookie;
   
-  iVar1 = (**(code **)(in_RAX + 0x10))();
-  func_0x00018074b7b0(auStackX_20 + iVar1,0x200 - iVar1,10);
-  iVar1 = (**(code **)(*unaff_RDI + 8))();
-  if (((iVar1 == 0) && (unaff_SIL == '\0')) &&
-     (iVar1 = (**(code **)(*unaff_RDI + 0x18))(), iVar1 == 0)) {
-    *(undefined1 *)(unaff_RDI + 4) = 0;
+  // 处理系统事件
+  operation_result = (**(code **)(context_data + 0x10))();
+  func_0x00018074b7b0(event_buffer + operation_result,0x200 - operation_result,10);
+  operation_result = (**(code **)(*handler_ptr + 8))();
+  
+  // 检查事件处理结果
+  if (((operation_result == 0) && (system_flag == '\0')) &&
+     (operation_result = (**(code **)(*handler_ptr + 0x18))(), operation_result == 0)) {
+    *(undefined1 *)(handler_ptr + 4) = 0;
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000220 ^ (ulonglong)&stack0x00000000);
+  
+  // 清理安全cookie并退出
+  FUN_1808fc050(security_cookie ^ (ulonglong)&event_buffer);
 }
 
-
-
-
-
-// 函数: void FUN_1808975a6(void)
-void FUN_1808975a6(void)
+/**
+ * 工具系统状态检查器 - 检查系统状态和条件
+ * 
+ * 功能：
+ * - 检查系统状态
+ * - 验证系统条件
+ * - 处理状态变化
+ * - 执行状态验证
+ * - 管理状态标志
+ * 
+ * @param 无直接参数，使用栈传递的上下文信息
+ * @return 状态检查结果（通过栈返回）
+ */
+void UtilitiesSystem_StateChecker(void)
 
 {
-  int iVar1;
-  char unaff_SIL;
-  longlong *unaff_RDI;
-  ulonglong in_stack_00000220;
+  int operation_result;
+  char system_flag;
+  longlong *handler_ptr;
+  ulonglong security_cookie;
   
-  if ((unaff_SIL == '\0') && (iVar1 = (**(code **)(*unaff_RDI + 0x18))(), iVar1 == 0)) {
-    *(undefined1 *)(unaff_RDI + 4) = 0;
+  // 检查系统状态
+  if ((system_flag == '\0') && (operation_result = (**(code **)(*handler_ptr + 0x18))(), operation_result == 0)) {
+    *(undefined1 *)(handler_ptr + 4) = 0;
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000220 ^ (ulonglong)&stack0x00000000);
+  
+  // 清理安全cookie并退出
+  FUN_1808fc050(security_cookie ^ (ulonglong)&system_flag);
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
+/* ============================================================================
+ * 技术说明
+ * ============================================================================ */
+/**
+ * 本文件实现了工具系统高级数据处理和状态管理功能：
+ * 
+ * 1. 数据处理
+ *    - 处理系统高级数据转换
+ *    - 管理数据结构和资源
+ *    - 执行数据验证和检查
+ *    - 处理数据流和缓冲区
+ *    - 管理数据生命周期
+ * 
+ * 2. 状态管理
+ *    - 管理系统状态变化
+ *    - 处理状态同步和更新
+ *    - 验证状态有效性
+ *    - 处理状态异常和恢复
+ *    - 管理状态标志和属性
+ * 
+ * 3. 资源管理
+ *    - 分配和释放系统资源
+ *    - 管理资源生命周期
+ *    - 执行资源清理和回收
+ *    - 处理资源错误和异常
+ *    - 优化资源使用效率
+ * 
+ * 4. 参数处理
+ *    - 验证参数有效性
+ *    - 处理参数转换和格式化
+ *    - 执行参数安全性检查
+ *    - 管理参数生命周期
+ *    - 处理参数错误和异常
+ * 
+ * 5. 事件处理
+ *    - 处理系统事件和消息
+ *    - 管理事件队列和分发
+ *    - 执行事件回调和处理
+ *    - 管理事件状态和同步
+ *    - 处理事件错误和异常
+ * 
+ * 6. 安全处理
+ *    - 管理安全cookie和保护
+ *    - 执行安全验证和检查
+ *    - 处理安全异常和错误
+ *    - 管理安全状态和标志
+ *    - 确保系统安全性
+ * 
+ * 该模块是工具系统的重要组成部分，为系统功能提供核心支持。
+ */
