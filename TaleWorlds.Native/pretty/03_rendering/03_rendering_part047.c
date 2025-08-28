@@ -1045,3 +1045,15 @@ void optimize_render_data_buffer(int *render_buffer)
     
     return;
 }
+
+// 函数别名 - 保持与原始函数名的兼容性
+void FUN_180290fd0(longlong param_1) __attribute__((alias("initialize_rendering_parameters")));
+void FUN_180291500(uint32_t *param_1) __attribute__((alias("reset_render_object_state")));
+void FUN_180291610(uint64_t *param_1) __attribute__((alias("release_render_resource_array")));
+void FUN_18029161b(longlong param_1) __attribute__((alias("release_render_resource_array_simplified")));
+void FUN_180291772(void) __attribute__((alias("batch_cleanup_render_resources")));
+void FUN_180291839(void) __attribute__((alias("cleanup_render_resource_array")));
+void FUN_18029184a(uint64_t param_1) __attribute__((alias("release_render_resource_handle")));
+void FUN_180291880(int *param_1) __attribute__((alias("add_render_data_to_buffer")));
+void FUN_180291950(int *param_1) __attribute__((alias("update_render_data_buffer")));
+void FUN_180291a50(int *param_1) __attribute__((alias("optimize_render_data_buffer")));
