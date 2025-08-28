@@ -154,8 +154,128 @@
 // UI系统配置管理器
 #define UISystem_ConfigManager FUN_18085acd0
 
+// UI系统时间同步器 - 处理时间同步和频率控制
+#define UISystem_TimeSynchronizer FUN_18085e8d0
+
+// UI系统状态更新器 - 更新UI系统状态
+#define UISystem_StateUpdater FUN_18085f790
+
+// UI系统资源分配器 - 分配UI系统资源
+#define UISystem_ResourceAllocator FUN_18084cde0
+
+// UI系统时间获取器 - 获取系统时间
+#define UISystem_TimeGetter FUN_18084da10
+
+// UI系统数据处理器 - 处理数据操作
+#define UISystem_DataProcessor FUN_180856d20
+
+// UI系统事件检查器 - 检查事件状态
+#define UISystem_EventChecker FUN_1808617d0
+
+// UI系统内存分配器 - 分配内存资源
+#define UISystem_MemoryAllocator FUN_1808fd200
+
+// UI系统安全检查器 - 执行安全检查
+#define UISystem_SecurityChecker FUN_1808fc050
+
+// UI系统错误处理器 - 处理错误情况
+#define UISystem_ErrorHandler FUN_18084b240
+
+// UI系统数据验证器 - 验证数据有效性
+#define UISystem_DataVerifier FUN_1808629a0
+
+// UI系统资源创建器 - 创建系统资源
+#define UISystem_ResourceCreator FUN_1808caec0
+
+// UI系统资源释放器 - 释放系统资源
+#define UISystem_ResourceReleaser FUN_1808cab70
+
+// UI系统组件初始化器 - 初始化系统组件
+#define UISystem_ComponentInitializer FUN_1808556a0
+
+// UI系统配置加载器 - 加载系统配置
+#define UISystem_ConfigLoader FUN_180855780
+
+// UI系统验证器 - 验证系统状态
+#define UISystem_Verifier FUN_180744cc0
+
+// UI系统数据管理器 - 管理数据操作
+#define UISystem_DataManager FUN_1808554a0
+
+// UI系统控制器 - 控制系统操作
+#define UISystem_Controller FUN_1808555a0
+
+// UI系统处理器 - 处理系统任务
+#define UISystem_Processor FUN_1808553b0
+
+// UI系统缓冲区初始化器 - 初始化缓冲区
+#define UISystem_BufferInitializer FUN_1808c6d60
+
+// UI系统事件处理器 - 处理系统事件
+#define UISystem_EventProcessor FUN_18085c620
+
+// UI系统状态同步器 - 同步系统状态
+#define UISystem_StateSynchronizer FUN_1808639c0
+
+// UI系统队列管理器 - 管理队列操作
+#define UISystem_QueueManager FUN_180855fc0
+
+// UI系统数据发送器 - 发送数据
+#define UISystem_DataSender FUN_1808577c0
+
+// UI系统参数管理器 - 管理参数操作
+#define UISystem_ParameterManager FUN_180856830
+
+// UI系统事件管理器 - 管理事件操作
+#define UISystem_EventManager FUN_180856570
+
+// UI系统缓冲区检查器 - 检查缓冲区状态
+#define UISystem_BufferChecker FUN_1808fcb90
+
+// UI系统缓冲区清理器 - 清理缓冲区
+#define UISystem_BufferCleaner FUN_1808fcb30
+
+// UI系统数据格式器 - 格式化数据
+#define UISystem_DataFormatter FUN_180854810
+
+// UI系统数据同步器 - 同步数据
+#define UISystem_DataSynchronizer FUN_180855810
+
+// UI系统资源管理器 - 管理资源操作
+#define UISystem_ResourceManager FUN_18085c4b0
+
+// UI系统数据插入器 - 插入数据
+#define UISystem_DataInserter FUN_180859210
+
+// UI系统状态加载器 - 加载状态
+#define UISystem_StateLoader FUN_18085f8d0
+
+// UI系统状态设置器 - 设置状态
+#define UISystem_StateSetter FUN_18085c6f0
+
+// UI系统状态获取器 - 获取状态
+#define UISystem_StateGetter FUN_18085f960
+
+// UI系统数据计算器 - 计算数据
+#define UISystem_DataCalculator FUN_180854610
+
+// UI系统数据流管理器 - 管理数据流
+#define UISystem_DataStreamManager FUN_180854ce0
+
+// UI系统内存清理器 - 清理内存
+#define UISystem_MemoryCleaner FUN_180742250
+
+// UI系统组件验证器 - 验证组件
+#define UISystem_ComponentVerifier FUN_1808b0820
+
+// UI系统数据大小管理器 - 管理数据大小
+#define UISystem_DataSizeManager FUN_18085c5b0
+
 // UI系统缓冲区管理器
 #define UISystem_BufferManager FUN_18085b050
+
+// UI系统配置管理器
+#define UISystem_ConfigManager FUN_18085acd0
 
 // UI系统状态检查器
 #define UISystem_StateChecker FUN_18085b200
@@ -165,6 +285,33 @@
 
 // UI系统线程管理器
 #define UISystem_ThreadManager FUN_18085b595
+
+// UI系统内存管理器 - 管理内存操作
+#define UISystem_MemoryManager FUN_18073ca90
+
+// UI系统数据获取器 - 获取数据
+#define UISystem_DataGetter FUN_180739a50
+
+// UI系统时间计算器 - 计算时间参数
+#define UISystem_TimeCalculator FUN_1808b8910
+
+// UI系统状态检查器 - 检查系统状态
+#define UISystem_StatusChecker FUN_1808c7d90
+
+// UI系统组件处理器 - 处理组件操作
+#define UISystem_ComponentProcessor FUN_1808c6bf0
+
+// UI系统数据验证器 - 验证数据
+#define UISystem_DataValidator FUN_18084d0b0
+
+// UI系统配置验证器 - 验证配置
+#define UISystem_ConfigValidator FUN_18085c9a0
+
+// UI系统系统处理器 - 处理系统操作
+#define UISystem_SystemProcessor FUN_180859f80
+
+// UI系统数据处理器 - 处理数据
+#define UISystem_DataProcessor FUN_1808601d0
 
 /* ============================================================================
  * 性能优化策略
@@ -369,7 +516,7 @@ void UISystem_AdvancedDataProcessor(longlong system_context, longlong *data_buff
       if (operation_result == 0) {
         // 处理失败，调用错误处理函数进行错误恢复和清理
         // 此函数不返回，会继续执行后续的错误处理流程
-        FUN_18084b240(state_flag_ptr,temp_buffer,0);
+        UISystem_ErrorHandler(state_flag_ptr,temp_buffer,0);
       }
     }
     
@@ -390,12 +537,12 @@ void UISystem_AdvancedDataProcessor(longlong system_context, longlong *data_buff
     
     // 调用内存分配函数：分配对齐的内存空间用于数据处理
     // 使用位掩码确保内存对齐，提高访问效率
-    FUN_1808fd200(buffer_size & UI_ALIGN_MASK,data_list_ptr,operation_result);
+    UISystem_MemoryAllocator(buffer_size & UI_ALIGN_MASK,data_list_ptr,operation_result);
   }
   
   // 调用清理函数：执行资源清理和安全检查
   // 传入安全cookie进行验证，确保函数调用安全
-  FUN_1808fc050(GET_SECURITY_COOKIE());
+  UISystem_SecurityChecker(GET_SECURITY_COOKIE());
 }
 
 
@@ -446,9 +593,9 @@ uint64_t UISystem_DataValidator(longlong system_context, longlong *source_data, 
          && (*(int *)((longlong)data_item + 0xc) == 0)) {
         return UI_ERROR_INVALID_PARAM;
       }
-      temp_ptr = (int32_t *)FUN_18084cde0(*(uint64_t *)(system_context + 0x110),temp_buffer);
+      temp_ptr = (int32_t *)UISystem_ResourceAllocator(*(uint64_t *)(system_context + 0x110),temp_buffer);
       *(int32_t *)(system_context + 0x10c) = *temp_ptr;
-      operation_result = FUN_1808629a0(*(uint64_t *)(system_context + 0x160),data_item,operation_flag);
+      operation_result = UISystem_DataVerifier(*(uint64_t *)(system_context + 0x160),data_item,operation_flag);
       if ((int)operation_result != 0) {
         return operation_result;
       }
@@ -529,7 +676,7 @@ int UISystem_ParameterProcessor(longlong system_context, int *param_array, uint 
   
   uVar18 = (ulonglong)param_6;
   uVar16 = (ulonglong)param_5;
-  puVar7 = (int32_t *)FUN_18084cde0(*(uint64_t *)(param_1 + 0x110),auStack_d8);
+  puVar7 = (int32_t *)UISystem_ResourceAllocator(*(uint64_t *)(param_1 + 0x110),auStack_d8);
   *(int32_t *)(param_1 + 0x10c) = *puVar7;
   if (*(int *)(*(longlong *)(param_1 + 0x160) + 0x2e4) < 3) {
     return 0;

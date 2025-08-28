@@ -495,8 +495,8 @@ void UISystem_SetComponentActivation(int32_t param_1,uint param_2,uint64_t param
 
 
 
-// 函数: void FUN_180747970(uint64_t param_1,uint64_t param_2,uint64_t param_3)
-void FUN_180747970(uint64_t param_1,uint64_t param_2,uint64_t param_3)
+// 函数: void UISystem_ProcessComponentEvent_EventHandler(uint64_t param_1,uint64_t param_2,uint64_t param_3)
+void UISystem_ProcessComponentEvent_EventHandler(uint64_t param_1,uint64_t param_2,uint64_t param_3)
 
 {
                     // WARNING: Subroutine does not return
@@ -509,8 +509,8 @@ void FUN_180747970(uint64_t param_1,uint64_t param_2,uint64_t param_3)
 
 
 
-// 函数: void FUN_1807479a0(uint64_t param_1,int32_t param_2,uint param_3,uint64_t param_4)
-void FUN_1807479a0(uint64_t param_1,int32_t param_2,uint param_3,uint64_t param_4)
+// 函数: void UISystem_UpdateComponentParameter_ParameterUpdater(uint64_t param_1,int32_t param_2,uint param_3,uint64_t param_4)
+void UISystem_UpdateComponentParameter_ParameterUpdater(uint64_t param_1,int32_t param_2,uint param_3,uint64_t param_4)
 
 {
   FUN_180742650(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,param_2,param_4,0,param_3 | 0x10);
@@ -519,7 +519,9 @@ void FUN_1807479a0(uint64_t param_1,int32_t param_2,uint param_3,uint64_t param_
 
 
 
-ulonglong FUN_1807479e0(uint64_t param_1,longlong param_2,uint64_t param_3,int8_t param_4,
+// 函数: ulonglong FUN_1807479e0(uint64_t param_1,longlong param_2,uint64_t param_3,int8_t param_4,
+//                      uint64_t *param_5) - UI组件搜索算法函数
+ulonglong UISystem_FindComponent_SearchAlgorithm(uint64_t param_1,longlong param_2,uint64_t param_3,int8_t param_4,
                        uint64_t *param_5)
 
 {
