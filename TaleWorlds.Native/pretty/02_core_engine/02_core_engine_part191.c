@@ -352,14 +352,16 @@ void FUN_180173b8f(void)
 
 
 
-// 函数: void FUN_180173bc0(void)
-void FUN_180173bc0(void)
+// 函数: void trigger_security_check_failure(void)
+// 功能: 触发安全检查失败处理，调用安全检查函数（不返回）
+void trigger_security_check_failure(void)
 
 {
-  ulonglong in_stack_00008040;
+  ulonglong stack_cookie;
   
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00008040 ^ (ulonglong)&stack0x00000000);
+  // 调用安全检查失败处理函数（该函数不会返回）
+  // 通过异或操作验证栈cookie的有效性
+  security_check_failure_handler(stack_cookie ^ (ulonglong)&local_stack_buffer);
 }
 
 
@@ -368,25 +370,30 @@ void FUN_180173bc0(void)
 
 
 
-// 函数: void FUN_180173be0(undefined8 param_1,char param_2,undefined4 param_3)
-void FUN_180173be0(undefined8 param_1,char param_2,undefined4 param_3)
+// 函数: void manage_cursor_visibility(undefined8 window_context, char show_cursor, undefined4 param_3)
+// 功能: 管理光标可见性，根据参数显示或隐藏光标
+void manage_cursor_visibility(undefined8 window_context, char show_cursor, undefined4 param_3)
 
 {
-  int iVar1;
+  int cursor_count;
   
-  if (param_2 != '\0') {
-    if (**(char **)(_DAT_180c868d0 + 0x2010) != '\0') {
-      **(char **)(_DAT_180c868d0 + 0x2010) = '\0';
+  if (show_cursor != '\0') {
+    // 如果需要显示光标，先检查全局光标状态
+    if (**(char **)(global_cursor_state_ptr + 0x2010) != '\0') {
+      **(char **)(global_cursor_state_ptr + 0x2010) = '\0';
     }
-    FUN_1801720a0(param_1,param_3);
+    // 调用窗口更新函数
+    update_window_context(window_context, param_3);
+    // 循环显示光标直到计数器 >= 0
     do {
-      iVar1 = ShowCursor(1);
-    } while (iVar1 < 0);
+      cursor_count = ShowCursor(1);
+    } while (cursor_count < 0);
     return;
   }
+  // 循环隐藏光标直到计数器 < 0
   do {
-    iVar1 = ShowCursor(0);
-  } while (-1 < iVar1);
+    cursor_count = ShowCursor(0);
+  } while (-1 < cursor_count);
   return;
 }
 
@@ -396,106 +403,118 @@ void FUN_180173be0(undefined8 param_1,char param_2,undefined4 param_3)
 
 
 
-// 函数: void FUN_180173c40(longlong param_1)
-void FUN_180173c40(longlong param_1)
+// 函数: void register_window_class(longlong window_context)
+// 功能: 注册窗口类，设置窗口样式、图标、画刷等属性
+void register_window_class(longlong window_context)
 
 {
-  longlong lVar1;
-  int iVar2;
-  int iVar3;
-  uint uVar4;
-  uint uVar5;
-  undefined8 uVar6;
-  longlong lVar7;
-  longlong lVar8;
-  uint uVar9;
-  ulonglong uVar10;
-  int iVar11;
-  undefined8 uVar12;
-  int iVar13;
-  undefined1 auStack_508 [32];
-  int iStack_4e8;
-  undefined4 uStack_4e0;
-  undefined4 uStack_498;
-  undefined4 uStack_494;
-  code *pcStack_490;
-  undefined8 uStack_488;
-  undefined8 uStack_480;
-  undefined8 uStack_478;
-  undefined8 uStack_470;
-  undefined8 uStack_468;
-  undefined8 uStack_460;
-  undefined *puStack_458;
-  undefined8 uStack_450;
-  undefined8 uStack_448;
-  int iStack_440;
-  int iStack_43c;
-  undefined1 auStack_438 [1024];
-  ulonglong uStack_38;
+  longlong display_config_base;
+  int screen_width;
+  int screen_height;
+  uint width_diff;
+  uint height_diff;
+  undefined8 icon_handle;
+  longlong config_size;
+  longlong config_count;
+  uint display_index;
+  ulonglong current_index;
+  int window_height;
+  undefined8 window_style;
+  int window_width;
+  undefined1 stack_buffer [32];
+  int class_height;
+  undefined4 class_style;
+  undefined4 class_extra;
+  undefined4 class_instance;
+  code *window_proc;
+  undefined8 class_icon;
+  undefined8 class_cursor;
+  undefined8 class_background;
+  undefined8 class_menu_name;
+  undefined8 class_lpszClassName;
+  undefined *icon_sm;
+  undefined8 icon_sm_handle;
+  undefined8 window_rect_left;
+  int adjusted_width;
+  int adjusted_height;
+  undefined1 window_name_buffer [1024];
+  ulonglong stack_cookie;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_508;
-  FUN_180171610();
-  iVar13 = *(int *)(_DAT_180c86920 + 0x1d50);
-  iVar11 = *(int *)(_DAT_180c86920 + 0x1dc0);
-  *(undefined4 *)(param_1 + 0x38) = *(undefined4 *)(_DAT_180c86920 + 0x1ea0);
-  iVar2 = GetSystemMetrics(0);
-  iVar3 = GetSystemMetrics(1);
-  lVar1 = *(longlong *)(param_1 + 0x18);
-  uVar10 = 0;
-  lVar7 = *(longlong *)(param_1 + 0x20) - lVar1;
-  lVar8 = lVar7 >> 0x3f;
-  lVar7 = lVar7 / 0x70 + lVar8;
-  if (lVar7 != lVar8) {
+  // 栈缓冲区安全检查
+  stack_cookie = security_cookie ^ (ulonglong)stack_buffer;
+  initialize_window_system();
+  window_width = *(int *)(global_display_config + 0x1d50);
+  window_height = *(int *)(global_display_config + 0x1dc0);
+  *(undefined4 *)(window_context + 0x38) = *(undefined4 *)(global_display_config + 0x1ea0);
+  screen_width = GetSystemMetrics(SM_CXSCREEN);
+  screen_height = GetSystemMetrics(SM_CYSCREEN);
+  display_config_base = *(longlong *)(window_context + 0x18);
+  current_index = 0;
+  config_size = *(longlong *)(window_context + 0x20) - display_config_base;
+  config_count = config_size >> 0x3f;
+  config_size = config_size / 0x70 + config_count;
+  
+  // 查找匹配的显示配置
+  if (config_size != config_count) {
     do {
-      if ((int)uVar10 == *(int *)(_DAT_180c86920 + 0x1f10)) {
-        lVar8 = uVar10 * 0x70;
-        uVar4 = *(int *)(lVar8 + 0x60 + lVar1) - *(int *)(lVar8 + 0x58 + lVar1);
-        uVar9 = (int)uVar4 >> 0x1f;
-        uVar5 = *(int *)(lVar8 + 100 + lVar1) - *(int *)(lVar8 + 0x5c + lVar1);
-        iVar2 = (uVar4 ^ uVar9) - uVar9;
-        uVar4 = (int)uVar5 >> 0x1f;
-        iVar3 = (uVar5 ^ uVar4) - uVar4;
+      if ((int)current_index == *(int *)(global_display_config + 0x1f10)) {
+        config_count = current_index * 0x70;
+        width_diff = *(int *)(config_count + 0x60 + display_config_base) - *(int *)(config_count + 0x58 + display_config_base);
+        display_index = (int)width_diff >> 0x1f;
+        height_diff = *(int *)(config_count + 100 + display_config_base) - *(int *)(config_count + 0x5c + display_config_base);
+        screen_width = (width_diff ^ display_index) - display_index;
+        width_diff = (int)height_diff >> 0x1f;
+        screen_height = (height_diff ^ width_diff) - width_diff;
         break;
       }
-      uVar10 = (ulonglong)((int)uVar10 + 1);
-    } while (uVar10 < (ulonglong)(lVar7 - lVar8));
+      current_index = (ulonglong)((int)current_index + 1);
+    } while (current_index < (ulonglong)(config_size - config_count));
   }
-  if (*(int *)(param_1 + 0x38) == 0) {
-    uVar12 = 0xca0000;
+  
+  // 根据窗口模式设置窗口样式
+  if (*(int *)(window_context + 0x38) == 0) {
+    window_style = WS_OVERLAPPEDWINDOW;
   }
   else {
-    uVar12 = 0x90000000;
-    iVar13 = iVar2;
-    iVar11 = iVar3;
+    window_style = WS_POPUP;
+    window_width = screen_width;
+    window_height = screen_height;
   }
-  uStack_4e0 = 0x2010;
-  pcStack_490 = FUN_180170da0;
-  uStack_480 = *(undefined8 *)(param_1 + 0x10);
-  uStack_488 = 0;
-  uStack_478 = 0;
-  uStack_470 = 0;
-  uStack_460 = 0;
-  uStack_450 = 0;
-  uStack_498 = 0x50;
-  uStack_494 = 3;
-  uStack_468 = 0;
-  puStack_458 = &UNK_180a08a28;
-  iStack_4e8 = iVar11;
-  uVar6 = LoadImageA(0,&UNK_180a08a08,0,iVar13);
-  uStack_468 = CreatePatternBrush(uVar6);
-  uStack_4e0 = 0x8070;
-  iStack_4e8 = 0;
-  uStack_478 = LoadImageA(0,&UNK_180a08a68,1);
-  uStack_4e0 = 0x8030;
-  iStack_4e8 = 0x10;
-  uStack_450 = LoadImageA(0,&UNK_180a08a68,1);
-  RegisterClassExW(&uStack_498);
-  uStack_448 = 0;
-  iStack_440 = iVar13;
-  iStack_43c = iVar11;
-  AdjustWindowRect(&uStack_448,uVar12,0);
-                    // WARNING: Subroutine does not return
-  memset(auStack_438,0,0x400);
+  
+  // 设置窗口类结构体
+  class_style = CS_HREDRAW | CS_VREDRAW;
+  window_proc = default_window_procedure;
+  class_icon = *(undefined8 *)(window_context + 0x10);
+  class_cursor = 0;
+  class_background = 0;
+  class_menu_name = 0;
+  class_lpszClassName = 0;
+  class_extra = sizeof(WNDCLASSEX);
+  class_instance = 3;
+  class_height = window_height;
+  icon_sm = &window_icon_small;
+  
+  // 加载窗口图标和画刷
+  icon_handle = LoadImageA(0, &window_icon_large, IMAGE_BITMAP, window_width);
+  class_background = CreatePatternBrush(icon_handle);
+  class_style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
+  class_height = 0;
+  class_cursor = LoadImageA(0, &window_cursor, IMAGE_CURSOR);
+  class_style = CS_HREDRAW | CS_VREDRAW;
+  class_height = 16;
+  icon_sm_handle = LoadImageA(0, &window_cursor, IMAGE_CURSOR);
+  
+  // 注册窗口类
+  RegisterClassExW(&class_style);
+  
+  // 调整窗口矩形
+  window_rect_left = 0;
+  adjusted_width = window_width;
+  adjusted_height = window_height;
+  AdjustWindowRect(&window_rect_left, window_style, 0);
+  
+  // 初始化窗口名称缓冲区（此函数不会返回）
+  memset(window_name_buffer, 0, 0x400);
 }
 
 
@@ -504,42 +523,61 @@ void FUN_180173c40(longlong param_1)
 
 
 
-// 函数: void FUN_180174080(longlong param_1,longlong param_2)
-void FUN_180174080(longlong param_1,longlong param_2)
+// 函数: void execute_window_callback(longlong window_context, longlong callback_param)
+// 功能: 执行窗口回调函数，处理窗口消息和事件
+void execute_window_callback(longlong window_context, longlong callback_param)
 
 {
-  undefined8 *puVar1;
-  code *pcVar2;
-  longlong *plVar3;
-  longlong *plStackX_8;
-  longlong **pplStackX_10;
-  longlong *plStackX_18;
+  undefined8 *window_vtable;
+  code *message_handler;
+  longlong *callback_data;
+  longlong *stack_param;
+  longlong **callback_ptr;
+  longlong *callback_base;
   
-  plVar3 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x48,8,3,0xfffffffffffffffe);
-  *plVar3 = (longlong)&UNK_180a21690;
-  *plVar3 = (longlong)&UNK_180a21720;
-  *(undefined4 *)(plVar3 + 1) = 0;
-  *plVar3 = (longlong)&UNK_18098bdc8;
+  // 分配回调数据结构
+  callback_data = (longlong *)allocate_callback_structure(memory_allocator, 0x48, 8, 3, ALLOCATOR_FLAGS);
+  
+  // 初始化虚函数表
+  *callback_data = (longlong)&window_vtable_entry1;
+  *callback_data = (longlong)&window_vtable_entry2;
+  *(undefined4 *)(callback_data + 1) = 0;
+  *callback_data = (longlong)&window_vtable_entry3;
+  
+  // 线程安全初始化
   LOCK();
-  *(undefined1 *)(plVar3 + 2) = 0;
+  *(undefined1 *)(callback_data + 2) = 0;
   UNLOCK();
-  plVar3[3] = -1;
-  *plVar3 = (longlong)&UNK_180a08c60;
-  *(undefined4 *)(plVar3 + 5) = 6;
-  plVar3[4] = param_1;
-  pplStackX_10 = (longlong **)plVar3;
-  plStackX_18 = plVar3;
-  (**(code **)(*plVar3 + 0x28))(plVar3);
-  plVar3[6] = param_2;
-  puVar1 = *(undefined8 **)(param_1 + 0x140);
-  pcVar2 = *(code **)*puVar1;
-  pplStackX_10 = &plStackX_8;
-  plStackX_8 = plVar3;
-  (**(code **)(*plVar3 + 0x28))(plVar3);
-  (*pcVar2)(puVar1,&plStackX_8);
-                    // WARNING: Could not recover jumptable at 0x00018017414b. Too many branches
-                    // WARNING: Treating indirect jump as call
-  (**(code **)(*plVar3 + 0x38))(plVar3);
+  
+  // 设置回调参数
+  callback_data[3] = -1;
+  *callback_data = (longlong)&window_vtable_entry4;
+  *(undefined4 *)(callback_data + 5) = 6;
+  callback_data[4] = window_context;
+  callback_ptr = (longlong **)callback_data;
+  callback_base = callback_data;
+  
+  // 调用回调初始化函数
+  (**(code **)(*callback_data + 0x28))(callback_data);
+  
+  // 设置第二个参数
+  callback_data[6] = callback_param;
+  
+  // 获取窗口消息处理器
+  window_vtable = *(undefined8 **)(window_context + 0x140);
+  message_handler = *(code **)*window_vtable;
+  callback_ptr = &stack_param;
+  stack_param = callback_data;
+  
+  // 再次调用回调初始化
+  (**(code **)(*callback_data + 0x28))(callback_data);
+  
+  // 执行消息处理
+  (*message_handler)(window_vtable, &stack_param);
+  
+  // WARNING: 无法恢复跳转表，太多分支
+  // WARNING: 将间接跳转作为调用处理
+  (**(code **)(*callback_data + 0x38))(callback_data);
   return;
 }
 
@@ -549,100 +587,120 @@ void FUN_180174080(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180174150(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180174150(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void resize_display_config_array(undefined8 *config_array, longlong new_config, undefined8 param_3, undefined8 param_4)
+// 功能: 调整显示配置数组大小，添加新的显示配置项
+void resize_display_config_array(undefined8 *config_array, longlong new_config, undefined8 param_3, undefined8 param_4)
 
 {
-  undefined8 *puVar1;
-  undefined4 *puVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
-  undefined4 uVar5;
-  undefined8 *puVar6;
-  undefined1 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puVar9;
-  undefined *puVar10;
-  undefined8 *puVar11;
-  longlong lVar12;
-  longlong lVar13;
+  undefined8 *array_end;
+  undefined4 *config_data;
+  undefined4 width;
+  undefined4 height;
+  undefined4 refresh_rate;
+  undefined8 *new_buffer;
+  undefined1 *device_name;
+  undefined8 *array_start;
+  undefined8 *current_pos;
+  undefined *default_name;
+  undefined8 *new_array_start;
+  longlong offset;
+  longlong array_size;
   
-  puVar11 = (undefined8 *)param_1[1];
-  puVar8 = (undefined8 *)*param_1;
-  lVar13 = ((longlong)puVar11 - (longlong)puVar8) / 0x70;
-  puVar6 = (undefined8 *)0x0;
-  if (lVar13 == 0) {
-    lVar13 = 1;
+  array_end = (undefined8 *)config_array[1];
+  array_start = (undefined8 *)*config_array;
+  array_size = ((longlong)array_end - (longlong)array_start) / 0x70;
+  new_buffer = (undefined8 *)0x0;
+  
+  // 计算新的数组大小
+  if (array_size == 0) {
+    array_size = 1;
   }
   else {
-    lVar13 = lVar13 * 2;
-    if (lVar13 == 0) goto LAB_1801741dc;
+    array_size = array_size * 2;
+    if (array_size == 0) goto LAB_skip_allocation;
   }
-  puVar6 = (undefined8 *)
-           FUN_18062b420(_DAT_180c8ed18,lVar13 * 0x70,*(undefined1 *)(param_1 + 3),param_4,
-                         0xfffffffffffffffe);
-  puVar11 = (undefined8 *)param_1[1];
-  puVar8 = (undefined8 *)*param_1;
-LAB_1801741dc:
-  puVar9 = puVar6;
-  if (puVar8 != puVar11) {
-    lVar12 = (longlong)puVar6 - (longlong)puVar8;
-    puVar8 = puVar8 + 1;
+  
+  // 分配新的缓冲区
+  new_buffer = (undefined8 *)
+           allocate_memory(memory_allocator, array_size * 0x70, *(undefined1 *)(config_array + 3), param_4,
+                         ALLOCATOR_FLAGS);
+  array_end = (undefined8 *)config_array[1];
+  array_start = (undefined8 *)*config_array;
+  
+LAB_skip_allocation:
+  current_pos = new_buffer;
+  
+  // 复制现有配置项到新缓冲区
+  if (array_start != array_end) {
+    offset = (longlong)new_buffer - (longlong)array_start;
+    array_start = array_start + 1;
     do {
-      *puVar9 = &UNK_18098bcb0;
-      *(undefined8 *)(lVar12 + (longlong)puVar8) = 0;
-      *(undefined4 *)(lVar12 + 8 + (longlong)puVar8) = 0;
-      *puVar9 = &UNK_1809fcc58;
-      puVar7 = (undefined1 *)((longlong)puVar8 + lVar12 + 0x10);
-      *(undefined1 **)(lVar12 + (longlong)puVar8) = puVar7;
-      *(undefined4 *)(lVar12 + 8 + (longlong)puVar8) = 0;
-      *puVar7 = 0;
-      *(undefined4 *)(lVar12 + 8 + (longlong)puVar8) = *(undefined4 *)(puVar8 + 1);
-      puVar10 = &DAT_18098bc73;
-      if ((undefined *)*puVar8 != (undefined *)0x0) {
-        puVar10 = (undefined *)*puVar8;
+      // 初始化新配置项的虚函数表
+      *current_pos = &display_config_vtable1;
+      *(undefined8 *)(offset + (longlong)array_start) = 0;
+      *(undefined4 *)(offset + 8 + (longlong)array_start) = 0;
+      *current_pos = &display_config_vtable2;
+      device_name = (undefined1 *)((longlong)array_start + offset + 0x10);
+      *(undefined1 **)(offset + (longlong)array_start) = device_name;
+      *(undefined4 *)(offset + 8 + (longlong)array_start) = 0;
+      *device_name = 0;
+      *(undefined4 *)(offset + 8 + (longlong)array_start) = *(undefined4 *)(array_start + 1);
+      
+      // 复制设备名称
+      default_name = &default_device_name;
+      if ((undefined *)*array_start != (undefined *)0x0) {
+        default_name = (undefined *)*array_start;
       }
-      strcpy_s(*(undefined8 *)(lVar12 + (longlong)puVar8),0x40,puVar10);
-      uVar3 = *(undefined4 *)((longlong)puVar8 + 0x54);
-      uVar4 = *(undefined4 *)(puVar8 + 0xb);
-      uVar5 = *(undefined4 *)((longlong)puVar8 + 0x5c);
-      puVar2 = (undefined4 *)(lVar12 + 0x50 + (longlong)puVar8);
-      *puVar2 = *(undefined4 *)(puVar8 + 10);
-      puVar2[1] = uVar3;
-      puVar2[2] = uVar4;
-      puVar2[3] = uVar5;
-      *(undefined8 *)(lVar12 + 0x60 + (longlong)puVar8) = puVar8[0xc];
-      puVar9 = puVar9 + 0xe;
-      puVar1 = puVar8 + 0xd;
-      puVar8 = puVar8 + 0xe;
-    } while (puVar1 != puVar11);
+      strcpy_s(*(undefined8 *)(offset + (longlong)array_start), 0x40, default_name);
+      
+      // 复制配置数据
+      width = *(undefined4 *)((longlong)array_start + 0x54);
+      height = *(undefined4 *)(array_start + 0xb);
+      refresh_rate = *(undefined4 *)((longlong)array_start + 0x5c);
+      config_data = (undefined4 *)(offset + 0x50 + (longlong)array_start);
+      *config_data = *(undefined4 *)(array_start + 10);
+      config_data[1] = width;
+      config_data[2] = height;
+      config_data[3] = refresh_rate;
+      *(undefined8 *)(offset + 0x60 + (longlong)array_start) = array_start[0xc];
+      current_pos = current_pos + 0xe;
+      array_end = array_start + 0xd;
+      array_start = array_start + 0xe;
+    } while (array_end != array_end);
   }
-  FUN_1800b8300(puVar9,param_2);
-  uVar3 = *(undefined4 *)(param_2 + 0x5c);
-  uVar4 = *(undefined4 *)(param_2 + 0x60);
-  uVar5 = *(undefined4 *)(param_2 + 100);
-  *(undefined4 *)(puVar9 + 0xb) = *(undefined4 *)(param_2 + 0x58);
-  *(undefined4 *)((longlong)puVar9 + 0x5c) = uVar3;
-  *(undefined4 *)(puVar9 + 0xc) = uVar4;
-  *(undefined4 *)((longlong)puVar9 + 100) = uVar5;
-  puVar9[0xd] = *(undefined8 *)(param_2 + 0x68);
-  puVar11 = (undefined8 *)param_1[1];
-  puVar8 = (undefined8 *)*param_1;
-  if (puVar8 != puVar11) {
+  
+  // 添加新的配置项
+  initialize_display_config(current_pos, new_config);
+  width = *(undefined4 *)(new_config + 0x5c);
+  height = *(undefined4 *)(new_config + 0x60);
+  refresh_rate = *(undefined4 *)(new_config + 100);
+  *(undefined4 *)(current_pos + 0xb) = *(undefined4 *)(new_config + 0x58);
+  *(undefined4 *)((longlong)current_pos + 0x5c) = width;
+  *(undefined4 *)(current_pos + 0xc) = height;
+  *(undefined4 *)((longlong)current_pos + 100) = refresh_rate;
+  current_pos[0xd] = *(undefined8 *)(new_config + 0x68);
+  
+  // 清理旧的配置数组
+  array_end = (undefined8 *)config_array[1];
+  array_start = (undefined8 *)*config_array;
+  if (array_start != array_end) {
     do {
-      *puVar8 = &UNK_18098bcb0;
-      puVar8 = puVar8 + 0xe;
-    } while (puVar8 != puVar11);
-    puVar8 = (undefined8 *)*param_1;
+      *array_start = &display_config_vtable1;
+      array_start = array_start + 0xe;
+    } while (array_start != array_end);
+    array_start = (undefined8 *)*config_array;
   }
-  if (puVar8 == (undefined8 *)0x0) {
-    *param_1 = puVar6;
-    param_1[1] = puVar9 + 0xe;
-    param_1[2] = puVar6 + lVar13 * 0xe;
+  
+  // 更新数组指针
+  if (array_start == (undefined8 *)0x0) {
+    *config_array = new_buffer;
+    config_array[1] = current_pos + 0xe;
+    config_array[2] = new_buffer + array_size * 0xe;
     return;
   }
-                    // WARNING: Subroutine does not return
-  FUN_18064e900();
+  
+  // 错误处理（此函数不会返回）
+  handle_memory_error();
 }
 
 
