@@ -1,12 +1,123 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 99_part_01_part004.c - 14 个函数
+/**
+ * @file 99_part_01_part004.c
+ * @brief 数据处理和流操作模块
+ * 
+ * 本模块包含22个核心函数，主要功能包括：
+ * - 数据流处理和输出操作
+ * - 内存管理和资源清理
+ * - 文件操作和异常处理
+ * - 字符串处理和格式化
+ * - 系统调用和同步处理
+ * 
+ * @author 系统自动生成
+ * @version 1.0
+ * @date 2024
+ */
 
-// 函数: void FUN_1800a0c50(longlong *param_1,longlong *param_2,undefined8 *param_3,byte param_4,uint param_5
-void FUN_1800a0c50(longlong *param_1,longlong *param_2,undefined8 *param_3,byte param_4,uint param_5
-                  )
+// ===========================================
+// 常量定义
+// ===========================================
 
-{
+/** 流操作状态常量 */
+#define STREAM_STATE_SUCCESS          0x00
+#define STREAM_STATE_FAILURE          0x04
+#define STREAM_STATE_ERROR           0x08
+
+/** 流操作控制字符 */
+#define STREAM_CHAR_TAB              0x09
+#define STREAM_CHAR_SPACE            0x20
+#define STREAM_CHAR_LESS_THAN        0x3c
+#define STREAM_CHAR_GREATER_THAN     0x3e
+#define STREAM_CHAR_QUESTION         0x3f
+#define STREAM_CHAR_X                0x78
+#define STREAM_CHAR_M                0x6d
+#define STREAM_CHAR_L                0x6c
+#define STREAM_CHAR_LINE_FEED        0x0a
+
+/** 内存管理常量 */
+#define MEMORY_ALIGNMENT_SIZE        0x18
+#define MEMORY_FREE_FLAG            0x01
+#define MEMORY_ALLOC_SUCCESS        0x00
+#define MEMORY_ALLOC_FAILURE        0xfffffffffffffffe
+
+/** 文件操作常量 */
+#define FILE_HANDLE_INVALID         0x00
+#define FILE_OPERATION_SUCCESS      0x00
+#define FILE_OPERATION_FAILURE      -1
+
+/** 系统调用常量 */
+#define SYSTEM_CALL_SUCCESS         0x00
+#define SYSTEM_CALL_FAILURE         -1
+#define SYSTEM_BUFFER_SIZE          32
+
+/** 异常处理常量 */
+#define EXCEPTION_TYPE_INVALID      0x00
+#define EXCEPTION_TYPE_MEMORY       0x01
+#define EXCEPTION_TYPE_FILE         0x02
+#define EXCEPTION_TYPE_STREAM       0x03
+
+/** 全局数据地址 */
+#define GLOBAL_DATA_ADDRESS_1       0x180d48d24
+#define GLOBAL_DATA_ADDRESS_2       0x180d48d38
+#define GLOBAL_EXCEPTION_VTABLE     0x18098b928
+
+// ===========================================
+// 函数别名宏定义
+// ===========================================
+
+/** 数据处理函数别名 */
+#define DataStreamProcessor           FUN_1800a0c50
+#define StreamOutputOperator          FUN_1800a0e50
+#define StreamInitializer           FUN_1800a1010
+#define StreamUnlocker              FUN_1800a10c0
+#define StreamCleaner               FUN_1800a1120
+#define StringStreamOutputter        FUN_1800a1160
+#define DataDistributionProcessor    FUN_1800a1310
+#define DataFormattingProcessor     FUN_1800a1326
+#define SystemCallProcessor         FUN_1800a1340
+
+/** 高级数据处理函数别名 */
+#define AdvancedDataProcessor       FUN_1800a146a
+#define DataConversionProcessor     FUN_1800a15ad
+#define DataTransferProcessor       FUN_1800a1618
+#define DataSyncProcessor           FUN_1800a162b
+
+/** 编码处理函数别名 */
+#define CharacterEncodingProcessor   FUN_1800a16b0
+#define CharacterOutputProcessor    FUN_1800a1710
+
+/** 系统清理函数别名 */
+#define SystemCleaner               FUN_1800a1832
+#define BufferCleaner               FUN_1800a1850
+#define StreamInitializerConfig     FUN_1800a1920
+#define FileCloseProcessor          FUN_1800a19c0
+
+/** 异常处理函数别名 */
+#define ExceptionObjectDestroyer     FUN_1800a1a40
+#define ExceptionMemoryDeallocator  FUN_1800a1a70
+#define ExceptionObjectCopier       FUN_1800a1ae0
+
+// ===========================================
+// 数据流处理函数
+// ===========================================
+
+/**
+ * @brief 数据流处理器
+ * 
+ * 处理数据流的核心函数，负责数据的读取、处理和输出。
+ * 支持多种数据格式和流操作模式。
+ * 
+ * @param param_1 流对象指针
+ * @param param_2 数据缓冲区指针
+ * @param param_3 输出目标指针
+ * @param param_4 控制标志字节
+ * @param param_5 数据长度
+ * @return void 无返回值
+ */
+void DataStreamProcessor(longlong *param_1,longlong *param_2,undefined8 *param_3,byte param_4,uint param_5)
+
   undefined1 uVar1;
   longlong lVar2;
   undefined1 *puVar3;
@@ -17,15 +128,17 @@ void FUN_1800a0c50(longlong *param_1,longlong *param_2,undefined8 *param_3,byte 
   undefined1 *puVar8;
   longlong lVar9;
   
+  // 检查控制标志，决定是否进行数据预处理
   if ((param_4 & 1) == 0) {
     lVar9 = *param_2;
     lVar2 = param_2[1];
     if (0 < (int)param_5) {
       uVar7 = (ulonglong)param_5;
       do {
-        FUN_1800a0e50(lVar2,9);
+        // 输出制表符
+        StreamOutputOperator(lVar2,STREAM_CHAR_TAB);
         if (lVar9 != 0) {
-          FUN_1800a1160(lVar2,lVar9);
+          StringStreamOutputter(lVar2,lVar9);
         }
         uVar7 = uVar7 - 1;
       } while (uVar7 != 0);
@@ -33,89 +146,115 @@ void FUN_1800a0c50(longlong *param_1,longlong *param_2,undefined8 *param_3,byte 
     *param_2 = lVar9;
     param_2[1] = lVar2;
   }
+  
+  // 输出开始标记
   lVar9 = param_2[1];
-  FUN_1800a0e50(lVar9,0x3c);
+  StreamOutputOperator(lVar9,STREAM_CHAR_LESS_THAN);
   lVar2 = *param_2;
   if (lVar2 != 0) {
-    FUN_1800a1160(lVar9,lVar2);
+    StringStreamOutputter(lVar9,lVar2);
   }
-  FUN_1800a0e50(lVar9,0x3f);
+  
+  // 输出结束标记
+  StreamOutputOperator(lVar9,STREAM_CHAR_QUESTION);
   if (lVar2 != 0) {
-    FUN_1800a1160(lVar9,lVar2);
+    StringStreamOutputter(lVar9,lVar2);
   }
+  
+  // 处理主数据块
   puVar3 = (undefined1 *)*param_3;
   lVar2 = *param_2;
   lVar4 = param_2[1];
   lVar9 = 0;
   if (puVar3 == (undefined1 *)0x0) {
-    puVar5 = (undefined1 *)0x180d48d24;
+    puVar5 = (undefined1 *)GLOBAL_DATA_ADDRESS_1;
     lVar6 = lVar9;
   }
   else {
     puVar5 = puVar3;
     lVar6 = param_3[2];
   }
-  puVar8 = (undefined1 *)0x180d48d24;
+  puVar8 = (undefined1 *)GLOBAL_DATA_ADDRESS_1;
   if (puVar3 != (undefined1 *)0x0) {
     puVar8 = puVar3;
   }
   while (puVar8 != puVar5 + lVar6) {
     uVar1 = *puVar8;
     puVar8 = puVar8 + 1;
-    FUN_1800a0e50(lVar4,uVar1);
+    StreamOutputOperator(lVar4,uVar1);
     if (lVar2 != 0) {
-      FUN_1800a1160(lVar4,lVar2);
+      StringStreamOutputter(lVar4,lVar2);
     }
   }
   *param_2 = lVar2;
   param_2[1] = lVar4;
+  
+  // 输出空格分隔符
   lVar6 = param_2[1];
-  FUN_1800a0e50(lVar6,0x20);
+  StreamOutputOperator(lVar6,STREAM_CHAR_SPACE);
   if (*param_2 != 0) {
-    FUN_1800a1160(lVar6);
+    StringStreamOutputter(lVar6);
   }
+  
+  // 处理属性数据
   puVar3 = (undefined1 *)param_3[1];
   if (puVar3 == (undefined1 *)0x0) {
-    puVar5 = (undefined1 *)0x180d48d24;
+    puVar5 = (undefined1 *)GLOBAL_DATA_ADDRESS_1;
   }
   else {
     lVar9 = param_3[3];
     puVar5 = puVar3;
   }
-  puVar8 = (undefined1 *)0x180d48d24;
+  puVar8 = (undefined1 *)GLOBAL_DATA_ADDRESS_1;
   if (puVar3 != (undefined1 *)0x0) {
     puVar8 = puVar3;
   }
   while (puVar8 != puVar5 + lVar9) {
     uVar1 = *puVar8;
     puVar8 = puVar8 + 1;
-    FUN_1800a0e50(lVar4,uVar1);
+    StreamOutputOperator(lVar4,uVar1);
     if (lVar2 != 0) {
-      FUN_1800a1160(lVar4,lVar2);
+      StringStreamOutputter(lVar4,lVar2);
     }
   }
   *param_2 = lVar2;
   param_2[1] = lVar4;
+  
+  // 输出结束标记
   lVar9 = param_2[1];
-  FUN_1800a0e50(lVar9,0x3f);
+  StreamOutputOperator(lVar9,STREAM_CHAR_QUESTION);
   lVar6 = *param_2;
   if (lVar6 != 0) {
-    FUN_1800a1160(lVar9,lVar6);
+    StringStreamOutputter(lVar9,lVar6);
   }
-  FUN_1800a0e50(lVar9,0x3e);
+  
+  // 输出结束符号
+  StreamOutputOperator(lVar9,STREAM_CHAR_GREATER_THAN);
   if (lVar6 != 0) {
-    FUN_1800a1160(lVar9,lVar6);
+    StringStreamOutputter(lVar9,lVar6);
   }
+  
+  // 更新流对象状态
   *param_1 = lVar2;
   param_1[1] = lVar4;
   return;
-}
 
 
 
-longlong * FUN_1800a0e50(longlong *param_1,undefined1 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 流输出操作器
+ * 
+ * 处理流输出的核心函数，支持多种输出模式和字符编码。
+ * 实现缓冲区管理和错误处理机制。
+ * 
+ * @param param_1 流对象指针
+ * @param param_2 输出字符
+ * @param param_3 附加参数
+ * @param param_4 附加参数
+ * @return longlong* 流对象指针
+ */
+longlong * StreamOutputOperator(longlong *param_1,undefined1 param_2,undefined8 param_3,undefined8 param_4)
 
-{
   longlong *plVar1;
   char cVar2;
   longlong lVar3;
@@ -128,7 +267,7 @@ longlong * FUN_1800a0e50(longlong *param_1,undefined1 param_2,undefined8 param_3
   
   iVar5 = 0;
   iVar7 = 0;
-  FUN_1800a1010(&plStack_30,param_1,param_3,param_4,0);
+  StreamInitializer(&plStack_30,param_1,param_3,param_4,0);
   if (cStack_28 != '\0') {
     lVar4 = *(longlong *)((longlong)*(int *)(*param_1 + 4) + 0x28 + (longlong)param_1);
     if (lVar4 < 2) {
@@ -138,13 +277,13 @@ longlong * FUN_1800a0e50(longlong *param_1,undefined1 param_2,undefined8 param_3
       lVar4 = lVar4 + -1;
     }
     lVar3 = *param_1;
-    iVar6 = 4;
+    iVar6 = STREAM_STATE_FAILURE;
     if ((*(uint *)((longlong)*(int *)(lVar3 + 4) + 0x18 + (longlong)param_1) & 0x1c0) == 0x40) {
 LAB_1800a0f0c:
       iVar7 = _sputc___basic_streambuf_DU__char_traits_D_std___std__QEAAHD_Z
                         (*(undefined8 *)((longlong)*(int *)(lVar3 + 4) + 0x48 + (longlong)param_1),
                          param_2);
-      if (iVar7 == -1) {
+      if (iVar7 == FILE_OPERATION_FAILURE) {
         iVar5 = iVar6;
       }
       for (; (iVar7 = iVar5, iVar5 == 0 && (0 < lVar4)); lVar4 = lVar4 + -1) {
@@ -153,7 +292,7 @@ LAB_1800a0f0c:
                             ((longlong)*(int *)(*param_1 + 4) + 0x48 + (longlong)param_1),
                            *(undefined1 *)
                             ((longlong)*(int *)(*param_1 + 4) + 0x58 + (longlong)param_1));
-        if (iVar7 == -1) {
+        if (iVar7 == FILE_OPERATION_FAILURE) {
           iVar5 = iVar6;
         }
       }
@@ -169,7 +308,7 @@ LAB_1800a0f0c:
                             ((longlong)*(int *)(*param_1 + 4) + 0x48 + (longlong)param_1),
                            *(undefined1 *)
                             ((longlong)*(int *)(*param_1 + 4) + 0x58 + (longlong)param_1));
-        if (iVar7 == -1) {
+        if (iVar7 == FILE_OPERATION_FAILURE) {
           iVar5 = iVar6;
         }
         lVar4 = lVar4 + -1;
@@ -200,9 +339,18 @@ LAB_1800a0f0c:
 
 
 
-undefined8 * FUN_1800a1010(undefined8 *param_1,longlong *param_2)
+/**
+ * @brief 流初始化器
+ * 
+ * 初始化流对象，设置流的状态和缓冲区。
+ * 处理文件锁定和缓冲区刷新操作。
+ * 
+ * @param param_1 初始化目标指针
+ * @param param_2 流对象指针
+ * @return undefined8* 初始化完成的对象指针
+ */
+undefined8 * StreamInitializer(undefined8 *param_1,longlong *param_2)
 
-{
   longlong *plVar1;
   longlong lVar2;
   
@@ -234,8 +382,16 @@ undefined8 * FUN_1800a1010(undefined8 *param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_1800a10c0(longlong *param_1)
-void FUN_1800a10c0(longlong *param_1)
+/**
+ * @brief 流解锁器
+ * 
+ * 解锁流对象，释放文件锁定资源。
+ * 确保流对象可以安全地被其他线程访问。
+ * 
+ * @param param_1 流对象指针
+ * @return void 无返回值
+ */
+void StreamUnlocker(longlong *param_1)
 
 {
   longlong *plVar1;
@@ -259,8 +415,16 @@ void FUN_1800a10c0(longlong *param_1)
 
 
 
-// 函数: void FUN_1800a1120(longlong *param_1)
-void FUN_1800a1120(longlong *param_1)
+/**
+ * @brief 流清理器
+ * 
+ * 清理流对象，释放资源并处理异常情况。
+ * 确保流对象被正确关闭和清理。
+ * 
+ * @param param_1 流对象指针
+ * @return void 无返回值
+ */
+void StreamCleaner(longlong *param_1)
 
 {
   longlong *plVar1;
@@ -286,7 +450,19 @@ void FUN_1800a1120(longlong *param_1)
 
 
 
-longlong * FUN_1800a1160(longlong *param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 字符串流输出器
+ * 
+ * 将字符串输出到流中，支持缓冲区管理和错误处理。
+ * 处理字符串长度计算和缓冲区溢出检查。
+ * 
+ * @param param_1 流对象指针
+ * @param param_2 字符串指针
+ * @param param_3 附加参数
+ * @param param_4 附加参数
+ * @return longlong* 流对象指针
+ */
+longlong * StringStreamOutputter(longlong *param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   longlong *plVar1;
@@ -300,8 +476,8 @@ longlong * FUN_1800a1160(longlong *param_1,longlong param_2,undefined8 param_3,u
   longlong *plStack_30;
   char cStack_28;
   
-  uVar5 = 0;
-  uVar8 = 0;
+  uVar5 = STREAM_STATE_SUCCESS;
+  uVar8 = STREAM_STATE_SUCCESS;
   lVar7 = -1;
   do {
     lVar7 = lVar7 + 1;
@@ -313,9 +489,9 @@ longlong * FUN_1800a1160(longlong *param_1,longlong param_2,undefined8 param_3,u
   else {
     lVar6 = lVar6 - lVar7;
   }
-  FUN_1800a1010(&plStack_30,param_1,param_3,param_4,0);
+  StreamInitializer(&plStack_30,param_1,param_3,param_4,0);
   if (cStack_28 == '\0') {
-    uVar5 = 4;
+    uVar5 = STREAM_STATE_FAILURE;
   }
   else {
     lVar4 = *param_1;
@@ -326,7 +502,7 @@ longlong * FUN_1800a1160(longlong *param_1,longlong param_2,undefined8 param_3,u
                             ((longlong)*(int *)(*param_1 + 4) + 0x48 + (longlong)param_1),
                            *(undefined1 *)
                             ((longlong)*(int *)(*param_1 + 4) + 0x58 + (longlong)param_1));
-        if (iVar3 == -1) goto LAB_1800a1263;
+        if (iVar3 == FILE_OPERATION_FAILURE) goto LAB_1800a1263;
       }
       lVar4 = *param_1;
     }
@@ -340,13 +516,13 @@ longlong * FUN_1800a1160(longlong *param_1,longlong param_2,undefined8 param_3,u
                             ((longlong)*(int *)(*param_1 + 4) + 0x48 + (longlong)param_1),
                            *(undefined1 *)
                             ((longlong)*(int *)(*param_1 + 4) + 0x58 + (longlong)param_1));
-        if (iVar3 == -1) goto LAB_1800a1263;
+        if (iVar3 == FILE_OPERATION_FAILURE) goto LAB_1800a1263;
       }
     }
     else {
 LAB_1800a1263:
-      uVar5 = 4;
-      uVar8 = 4;
+      uVar5 = STREAM_STATE_FAILURE;
+      uVar8 = STREAM_STATE_FAILURE;
     }
     *(undefined8 *)((longlong)*(int *)(*param_1 + 4) + 0x28 + (longlong)param_1) = 0;
   }
@@ -372,8 +548,21 @@ LAB_1800a1263:
 
 
 
+/**
+ * @brief 数据分发处理器
+ * 
+ * 根据数据类型分发到不同的处理函数。
+ * 支持多种数据格式和处理模式。
+ * 
+ * @param param_1 输出缓冲区指针
+ * @param param_2 输入数据指针
+ * @param param_3 数据类型标识
+ * @param param_4 控制标志
+ * @param param_5 数据长度
+ * @return longlong* 处理结果指针
+ */
 longlong *
-FUN_1800a1310(longlong *param_1,longlong *param_2,longlong param_3,ulonglong param_4,uint param_5)
+DataDistributionProcessor(longlong *param_1,longlong *param_2,longlong param_3,ulonglong param_4,uint param_5)
 
 {
   longlong *plVar1;
