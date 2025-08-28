@@ -147,24 +147,28 @@ undefined UNK_180a3cc90;                           // UI系统条件变量 - 管
 undefined UNK_180a3ccdc;                           // UI系统原子操作器 - 执行原子操作
 undefined UNK_180a3ccf8;                           // UI系统屏障 - 管理系统屏障
 undefined UNK_180a3cd08;                           // UI系统内存屏障 - 管理内存屏障
-undefined UNK_180a3cd18;
-undefined UNK_180a3cd30;
-undefined UNK_180a3cd40;
-undefined UNK_180a3cd50;
-undefined UNK_180a3cd5c;
-undefined UNK_180a3cd68;
-undefined UNK_180a3cd80;
-undefined UNK_180a3cd98;
-undefined DAT_180a07230;
-undefined UNK_180a3ce28;
-undefined UNK_180a3cdf8;
-undefined UNK_180a3ce00;
-undefined UNK_180a3ce10;
-undefined UNK_1809fe5e8;
-undefined UNK_180a3d120;
-undefined UNK_180a3d168;
-undefined UNK_180a3d1a8;
-undefined UNK_180a3d220;
+undefined UNK_180a3cd18;                           // UI系统缓存管理器 - 管理系统缓存
+undefined UNK_180a3cd30;                           // UI系统缓存行 - 管理缓存行
+undefined UNK_180a3cd40;                           // UI系统缓存集 - 管理缓存集
+undefined UNK_180a3cd50;                           // UI系统缓存大小 - 存储缓存大小信息
+undefined UNK_180a3cd5c;                           // UI系统缓存对齐 - 管理缓存对齐
+undefined UNK_180a3cd68;                           // UI系统缓存策略 - 管理缓存策略
+undefined UNK_180a3cd80;                           // UI系统缓存控制器 - 控制缓存操作
+undefined UNK_180a3cd98;                           // UI系统缓存统计器 - 统计缓存使用情况
+
+// UI系统配置数据
+undefined DAT_180a07230;                          // UI系统配置数据块 - 存储配置数据
+undefined UNK_180a3ce28;                           // UI系统配置版本管理器 - 管理配置版本
+undefined UNK_180a3cdf8;                           // UI系统配置备份器 - 备份配置数据
+undefined UNK_180a3ce00;                           // UI系统配置恢复器 - 恢复配置数据
+undefined UNK_180a3ce10;                           // UI系统配置验证器 - 验证配置数据
+
+// UI系统定时器变量
+undefined UNK_1809fe5e8;                           // UI系统定时器管理器 - 管理系统定时器
+undefined UNK_180a3d120;                           // UI系统定时器队列 - 管理定时器队列
+undefined UNK_180a3d168;                           // UI系统定时器回调 - 管理定时器回调
+undefined UNK_180a3d1a8;                           // UI系统定时器精度 - 控制定时器精度
+undefined UNK_180a3d220;                           // UI系统定时器同步 - 管理定时器同步
 undefined SUB_18063e940;
 uint UNK_00004000;
 undefined2 UNK_00004006;
