@@ -244,135 +244,197 @@ void system_data_validator(longlong *param_1)
 
 
 
-// 函数: void FUN_1805ed8d7(longlong *param_1,undefined8 param_2,longlong param_3)
-void FUN_1805ed8d7(longlong *param_1,undefined8 param_2,longlong param_3)
-
+/**
+ * 系统资源管理器 - 管理系统资源和数据
+ * 
+ * 功能：
+ * - 管理系统资源分配和释放
+ * - 处理资源状态变化
+ * - 执行资源同步操作
+ * - 验证资源完整性
+ * 
+ * @param param_1 系统资源指针
+ * @param param_2 资源参数
+ * @param param_3 目标资源
+ */
+void system_resource_manager(longlong *param_1, undefined8 param_2, longlong param_3)
 {
-  undefined4 uVar1;
-  longlong lVar2;
-  char cVar3;
-  int iVar4;
-  longlong lVar5;
-  longlong lVar6;
-  longlong lVar7;
+  undefined4 system_parameter;
+  longlong system_data_handle;
+  char system_validation_flag;
+  int system_result_code;
+  longlong system_iterator;
+  longlong system_base_address;
+  longlong system_target_address;
   
+  /* 目标资源地址解析 */
   if (*(int *)(param_3 + 0x560) < 0) {
-    lVar7 = *(longlong *)(param_3 + 0x8e8);
+    system_target_address = *(longlong *)(param_3 + 0x8e8);
   }
   else {
-    lVar7 = *(longlong *)
-             ((longlong)*(int *)(param_3 + 0x560) * 0xa60 + 0x3988 + *(longlong *)(param_3 + 0x8d8))
-    ;
+    system_target_address = *(longlong *)
+             ((longlong)*(int *)(param_3 + 0x560) * SYSTEM_DATA_BUFFER_SIZE + 0x3988 + 
+              *(longlong *)(param_3 + 0x8d8));
   }
-  iVar4 = _Mtx_lock(0x180c95528);
-  if (iVar4 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar4);
+  
+  /* 系统互斥锁操作 */
+  system_result_code = _Mtx_lock(SYSTEM_MUTEX_ADDRESS);
+  if (system_result_code != 0) {
+    __Throw_C_error_std__YAXH_Z(system_result_code);
   }
-  uVar1 = *(undefined4 *)(*param_1 + 0x10);
-  cVar3 = FUN_180645c10(0x180c95578,0,&UNK_1809fa560);
-  if (cVar3 != '\0') {
-    cVar3 = FUN_180645c10(0x180c95578,3,&UNK_1809fa540);
-    if (cVar3 != '\0') {
-      FUN_180645c10(0x180c95578,uVar1,&UNK_1809fa510);
+  
+  /* 系统参数获取 */
+  system_parameter = *(undefined4 *)(*param_1 + 0x10);
+  system_validation_flag = FUN_180645c10(0x180c95578, 0, &UNK_1809fa560);
+  
+  /* 系统资源验证流程 */
+  if (system_validation_flag != '\0') {
+    system_validation_flag = FUN_180645c10(0x180c95578, 3, &UNK_1809fa540);
+    if (system_validation_flag != '\0') {
+      FUN_180645c10(0x180c95578, system_parameter, &UNK_1809fa510);
     }
   }
-  _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
-  iVar4 = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
-  if (0 < iVar4) {
-    lVar6 = 0;
-    lVar5 = _DAT_180c92cd8;
-    do {
-      lVar2 = *(longlong *)(lVar5 + lVar6 * 8);
-      if (((lVar2 != 0) && (*(char *)(*(longlong *)(lVar2 + 0x58f8) + 0x1c) != '\0')) &&
-         (*(longlong *)(lVar2 + 0x58f8) != lVar7)) {
-        FUN_1805b59d0(lVar2,0x180c95578);
-        lVar5 = _DAT_180c92cd8;
-      }
-      lVar6 = lVar6 + 1;
-    } while (lVar6 < iVar4);
-  }
-  if (_DAT_180c96070 != 0) {
-    FUN_180567f30(_DAT_180c92580,0x180c95578);
-  }
-  _DAT_180c95b3c = 0;
-                    // WARNING: Subroutine does not return
-  memset(_DAT_180c95b10,0,(longlong)(_DAT_180c95b08 >> 3));
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1805ed9f3(void)
-void FUN_1805ed9f3(void)
-
-{
-  FUN_180567f30(_DAT_180c92580,0x180c95578);
-  _DAT_180c95b3c = 0;
-                    // WARNING: Subroutine does not return
-  memset(_DAT_180c95b10,0,(longlong)(_DAT_180c95b08 >> 3));
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1805eda50(longlong *param_1,longlong param_2,undefined4 param_3)
-void FUN_1805eda50(longlong *param_1,longlong param_2,undefined4 param_3)
-
-{
-  char cVar1;
-  int iVar2;
-  undefined8 uVar3;
-  longlong lVar4;
-  uint uVar5;
   
-  lVar4 = param_1[3];
-  *(undefined4 *)(param_1 + 3) = param_3;
-  if (((_DAT_180c96070 != 0) && (-1 < (int)lVar4)) &&
-     (lVar4 = (longlong)(int)lVar4 * 0xa60,
-     *(longlong **)(lVar4 + 0x3988 + _DAT_180c96070) == param_1)) {
-    FUN_180520b40(_DAT_180c96070 + 0x30a0 + lVar4,0);
-  }
-  if (((param_2 != 0) && (-1 < (int)param_1[3])) &&
-     (lVar4 = (longlong)(int)param_1[3] * 0xa60, *(longlong **)(lVar4 + 0x3988 + param_2) != param_1
-     )) {
-    FUN_180520b40(lVar4 + 0x30a0 + param_2,param_1);
-  }
-  lVar4 = *param_1;
-  _DAT_180bf65b8 = _DAT_180bf65b8 << 0xd ^ _DAT_180bf65b8;
-  _DAT_180bf65b8 = _DAT_180bf65b8 >> 0x11 ^ _DAT_180bf65b8;
-  _DAT_180bf65b8 = _DAT_180bf65b8 << 5 ^ _DAT_180bf65b8;
-  uVar5 = _DAT_180bf65b8 - 1 & 0x3ff;
-  *(uint *)((longlong)param_1 + 0xc) = uVar5;
-  *(uint *)(param_1 + 1) = uVar5;
-  if (lVar4 != 0) {
-    if (*(char *)(lVar4 + 0x31) == '\0') {
-      iVar2 = _Mtx_lock(lVar4 + 0x5990);
-      if (iVar2 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar2);
+  /* 系统资源数据处理 */
+  _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
+  system_result_code = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
+  
+  /* 系统资源处理循环 */
+  if (0 < system_result_code) {
+    system_iterator = 0;
+    system_base_address = _DAT_180c92cd8;
+    do {
+      system_data_handle = *(longlong *)(system_base_address + system_iterator * 8);
+      if (((system_data_handle != 0) && 
+           (*(char *)(*(longlong *)(system_data_handle + 0x58f8) + 0x1c) != '\0')) &&
+          (*(longlong *)(system_data_handle + 0x58f8) != system_target_address)) {
+        FUN_1805b59d0(system_data_handle, 0x180c95578);
+        system_base_address = _DAT_180c92cd8;
       }
-      uVar3 = FUN_1805fa9a0(lVar4 + 0x50,0x28);
-      uVar5 = *(uint *)(param_1 + 1);
+      system_iterator = system_iterator + 1;
+    } while (system_iterator < system_result_code);
+  }
+  
+  /* 系统最终清理 */
+  if (_DAT_180c96070 != 0) {
+    FUN_180567f30(_DAT_180c92580, 0x180c95578);
+  }
+  
+  _DAT_180c95b3c = 0;
+  /* 系统内存清理 */
+  memset(_DAT_180c95b10, 0, (longlong)(_DAT_180c95b08 >> 3));
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+
+/**
+ * 系统清理管理器 - 清理系统资源和数据
+ * 
+ * 功能：
+ * - 清理系统资源和数据
+ * - 重置系统状态
+ * - 释放内存
+ * 
+ */
+void system_cleanup_manager(void)
+{
+  /* 系统资源清理 */
+  FUN_180567f30(_DAT_180c92580, 0x180c95578);
+  
+  /* 系统状态重置 */
+  _DAT_180c95b3c = 0;
+  
+  /* 系统内存清理 */
+  memset(_DAT_180c95b10, 0, (longlong)(_DAT_180c95b08 >> 3));
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+
+/**
+ * 系统参数处理器 - 处理系统参数和状态
+ * 
+ * 功能：
+ * - 处理系统参数设置和更新
+ * - 管理参数状态变化
+ * - 执行参数验证
+ * - 处理参数同步
+ * 
+ * @param param_1 系统参数指针
+ * @param param_2 参数上下文
+ * @param param_3 参数值
+ */
+void system_parameter_handler(longlong *param_1, longlong param_2, undefined4 param_3)
+{
+  char system_validation_flag;
+  int system_result_code;
+  undefined8 system_context;
+  longlong system_base_address;
+  uint system_hash_value;
+  
+  /* 系统参数更新 */
+  system_base_address = param_1[3];
+  *(undefined4 *)(param_1 + 3) = param_3;
+  
+  /* 系统资源管理 */
+  if (((_DAT_180c96070 != 0) && (-1 < (int)system_base_address)) &&
+     (system_base_address = (longlong)(int)system_base_address * SYSTEM_DATA_BUFFER_SIZE,
+      *(longlong **)(system_base_address + 0x3988 + _DAT_180c96070) == param_1)) {
+    FUN_180520b40(_DAT_180c96070 + 0x30a0 + system_base_address, 0);
+  }
+  
+  if (((param_2 != 0) && (-1 < (int)param_1[3])) &&
+     (system_base_address = (longlong)(int)param_1[3] * SYSTEM_DATA_BUFFER_SIZE, 
+      *(longlong **)(system_base_address + 0x3988 + param_2) != param_1)) {
+    FUN_180520b40(system_base_address + 0x30a0 + param_2, param_1);
+  }
+  
+  /* 系统哈希值计算 */
+  system_base_address = *param_1;
+  _DAT_180bf65b8 = _DAT_180bf65b8 << SYSTEM_BIT_SHIFT_13 ^ _DAT_180bf65b8;
+  _DAT_180bf65b8 = _DAT_180bf65b8 >> SYSTEM_BIT_SHIFT_17 ^ _DAT_180bf65b8;
+  _DAT_180bf65b8 = _DAT_180bf65b8 << SYSTEM_BIT_SHIFT_5 ^ _DAT_180bf65b8;
+  system_hash_value = _DAT_180bf65b8 - 1 & SYSTEM_FLAG_MASK_0x3ff;
+  *(uint *)((longlong)param_1 + 0xc) = system_hash_value;
+  *(uint *)(param_1 + 1) = system_hash_value;
+  
+  /* 系统上下文处理 */
+  if (system_base_address != 0) {
+    if (*(char *)(system_base_address + 0x31) == '\0') {
+      system_result_code = _Mtx_lock(system_base_address + 0x5990);
+      if (system_result_code != 0) {
+        __Throw_C_error_std__YAXH_Z(system_result_code);
+      }
+      system_context = FUN_1805fa9a0(system_base_address + 0x50, 0x28);
+      system_hash_value = *(uint *)(param_1 + 1);
     }
     else {
-      uVar3 = 0;
+      system_context = 0;
     }
-    cVar1 = FUN_180645c10(uVar3,0,&UNK_1809fa560);
-    if ((cVar1 != '\0') && (cVar1 = FUN_180645c10(uVar3,0x16,&UNK_1809fa540), cVar1 != '\0')) {
-      FUN_180645c10(uVar3,uVar5,&UNK_1809fa550);
+    
+    /* 系统参数验证 */
+    system_validation_flag = FUN_180645c10(system_context, 0, &UNK_1809fa560);
+    if ((system_validation_flag != '\0') && 
+        (system_validation_flag = FUN_180645c10(system_context, 0x16, &UNK_1809fa540), 
+         system_validation_flag != '\0')) {
+      FUN_180645c10(system_context, system_hash_value, &UNK_1809fa550);
     }
-    if (*(char *)(lVar4 + 0x31) == '\0') {
-      FUN_1805faa20(lVar4 + 0x50);
-      iVar2 = _Mtx_unlock(lVar4 + 0x5990);
-      if (iVar2 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar2);
+    
+    /* 系统互斥锁释放 */
+    if (*(char *)(system_base_address + 0x31) == '\0') {
+      FUN_1805faa20(system_base_address + 0x50);
+      system_result_code = _Mtx_unlock(system_base_address + 0x5990);
+      if (system_result_code != 0) {
+        __Throw_C_error_std__YAXH_Z(system_result_code);
       }
     }
   }
