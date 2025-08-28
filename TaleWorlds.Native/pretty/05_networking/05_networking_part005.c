@@ -379,30 +379,38 @@ void get_network_session_statistics(ulonglong session_handle, uint *stats_buffer
 void get_network_connection_attributes(undefined4 connection_id, undefined4 *flag1, undefined4 *flag2)
 
 {
-  int connection_result;
-  undefined1 security_buffer[48];
-  undefined8 session_handle;
-  undefined8 connection_info;
-  longlong connection_data;
-  longlong session_info[33];
-  ulonglong security_key;
+  int connection_result;       // 连接结果
+  undefined1 security_buffer[48]; // 安全缓冲区
+  undefined8 session_handle;    // 会话句柄
+  undefined8 connection_info;    // 连接信息
+  longlong connection_data;     // 连接数据
+  longlong session_info[33];    // 会话信息
+  ulonglong security_key;       // 安全密钥
   
+  // 生成安全密钥
   security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
+  // 初始化输出标志
   if (flag1 != (undefined4 *)0x0) {
     *flag1 = 0;
   }
   if (flag2 != (undefined4 *)0x0) {
     *flag2 = 0;
   }
+  
+  // 初始化连接数据
   connection_data = 0;
   session_handle = 0;
   connection_info = 0;
+  // 获取连接信息
   connection_result = func_0x00018088c590(0, &connection_info);
   if (((connection_result == 0) && (connection_result = FUN_18088c740(&session_handle, connection_info), connection_result == 0)) &&
      (connection_result = func_0x00018088c530(connection_id, session_info), connection_result == 0)) {
+    // 提取连接数据
     connection_data = *(longlong *)(session_info[0] + 8);
   }
   else if (connection_result != 0) goto GET_FLAGS_FAILED;
+  
+  // 提取连接属性标志
   if (connection_data != 0) {
     if (flag1 != (undefined4 *)0x0) {
       *flag1 = *(undefined4 *)(connection_data + 0xf0);
@@ -412,7 +420,7 @@ void get_network_connection_attributes(undefined4 connection_id, undefined4 *fla
     }
   }
 GET_FLAGS_FAILED:
-                    // WARNING: Subroutine does not return
+  // 清理会话句柄（函数不返回）
   FUN_18088c790(&session_handle);
 }
 
@@ -421,67 +429,89 @@ GET_FLAGS_FAILED:
 
 
 
-// 函数: 设置网络连接参数
-void set_network_connection_params(undefined8 connection_handle, longlong param_data, undefined4 *param1, undefined4 *param2)
+// 函数: 配置网络连接参数
+// 功能：配置网络连接的参数，包括连接属性和配置选项
+// 参数：connection_handle - 连接句柄，param_data - 参数数据，param1 - 参数1输出，param2 - 参数2输出
+// 返回：无返回值，结果通过param1和param2返回
+// 注意：函数包含参数验证、配置设置和错误处理机制
+void configure_network_connection_params(undefined8 connection_handle, longlong param_data, undefined4 *param1, undefined4 *param2)
 
 {
-  int connection_result;
-  int encode_result;
-  undefined1 security_buffer[32];
-  undefined1 *message_buffer;
-  undefined4 temp_params[2];
-  undefined8 session_handle;
-  longlong connection_data[2];
-  undefined1 packet_buffer[NETWORK_BUFFER_SIZE];
-  ulonglong security_key;
+  int connection_result;       // 连接结果
+  int encode_result;          // 编码结果
+  undefined1 security_buffer[32]; // 安全缓冲区
+  undefined1 *message_buffer;   // 消息缓冲区
+  undefined4 temp_params[2];   // 临时参数
+  undefined8 session_handle;    // 会话句柄
+  longlong connection_data[2];  // 连接数据
+  undefined1 packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
+  ulonglong security_key;      // 安全密钥
   
+  // 生成安全密钥
   security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
+  // 初始化输出参数
   if (param1 != (undefined4 *)0x0) {
     *param1 = 0;
   }
   if (param2 != (undefined4 *)0x0) {
     *param2 = 0;
   }
+  
+  // 检查参数数据
   if (param_data == 0) {
+    // 检查网络状态标志
     if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) != 0) {
+      // 编码配置参数
       connection_result = FUN_18074b880(packet_buffer, NETWORK_BUFFER_SIZE, 0);
+      // 编码数据分隔符
       encode_result = FUN_18074b880(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
       connection_result = connection_result + encode_result;
+      // 编码参数1
       encode_result = FUN_18074bac0(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, param1);
       connection_result = connection_result + encode_result;
+      // 编码数据分隔符
       encode_result = FUN_18074b880(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
+      // 编码参数2
       FUN_18074bac0(packet_buffer + (connection_result + encode_result), NETWORK_BUFFER_SIZE - (connection_result + encode_result), param2);
       message_buffer = packet_buffer;
-                    // WARNING: Subroutine does not return
+      // 发送参数配置消息（函数不返回）
       FUN_180749ef0(0x1f, 0xb, connection_handle, NETWORK_PARAM_MESSAGE);
     }
-                    // WARNING: Subroutine does not return
+    // 安全验证失败，执行异常处理（函数不返回）
     FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
   }
+  
+  // 初始化会话句柄
   session_handle = 0;
+  // 获取连接数据
   connection_result = func_0x00018088c590(connection_handle, connection_data);
   if (connection_result == 0) {
+    // 检查连接状态标志位
     if ((*(uint *)(connection_data[0] + 0x24) >> 1 & 1) == 0) {
-                    // WARNING: Subroutine does not return
+      // 清理会话句柄（函数不返回）
       FUN_18088c790(&session_handle);
     }
+    // 验证连接数据
     encode_result = FUN_18088c740(&session_handle);
     if (encode_result != 0) goto SET_PARAMS_FAILED;
   }
   encode_result = connection_result;
 SET_PARAMS_FAILED:
   if (encode_result != 0) {
-                    // WARNING: Subroutine does not return
+    // 清理会话句柄（函数不返回）
     FUN_18088c790(&session_handle);
   }
+  
+  // 配置连接参数
   temp_params[0] = 0;
   connection_result = FUN_180840af0(connection_data[0], param_data, temp_params);
   if (connection_result != 0) {
-                    // WARNING: Subroutine does not return
+    // 清理会话句柄（函数不返回）
     FUN_18088c790(&session_handle);
   }
+  // 应用配置参数
   func_0x0001808676a0(connection_data[0] + 0x60, temp_params[0], param1, param2);
-                    // WARNING: Subroutine does not return
+  // 清理会话句柄（函数不返回）
   FUN_18088c790(&session_handle);
 }
 
@@ -490,8 +520,12 @@ SET_PARAMS_FAILED:
 
 
 
-// 函数: 发送扩展网络包
-void send_network_packet_extended(undefined8 connection_handle, undefined4 packet_data, undefined8 extended_params)
+// 函数: 发送扩展网络数据包
+// 功能：向指定连接发送扩展网络数据包，包含额外的参数和配置信息
+// 参数：connection_handle - 连接句柄，packet_data - 数据包数据，extended_params - 扩展参数
+// 返回：无返回值
+// 注意：函数包含网络状态检查、数据编码和消息发送机制
+void send_extended_network_packet(undefined8 connection_handle, undefined4 packet_data, undefined8 extended_params)
 
 {
   int connection_result;
