@@ -583,7 +583,7 @@ void utilities_system_flag_resetter(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_180941630(void)
+void utilities_system_parameter_resetter(void)
 
 {
   // 重置系统参数并设置为默认值
@@ -602,7 +602,7 @@ void FUN_180941630(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_180941650(void)
+void utilities_thread_synchronization_cleaner(void)
 
 {
   // 销毁互斥锁
