@@ -261,37 +261,43 @@ static uint8_t utilities_advanced_data_processor_type4(void)
 static uint8_t utilities_advanced_data_processor_type5(void)
 {
     // 实现异常处理和错误管理操作
-    return FUN_180941ad0;
+    // 原始实现：FUN_180941ad0
+    return SystemDataProcessorType5();
 }
 
 static uint8_t utilities_advanced_data_processor_type6(void)
 {
     // 实现系统配置和参数管理操作
-    return FUN_180941b20;
+    // 原始实现：FUN_180941b20
+    return SystemDataProcessorType6();
 }
 
 static uint8_t utilities_advanced_data_processor_type7(void)
 {
     // 实现高级算法和数学计算操作
-    return FUN_180941d50;
+    // 原始实现：FUN_180941d50
+    return SystemDataProcessorType7();
 }
 
 static uint8_t utilities_advanced_data_processor_type8(void)
 {
     // 实现网络通信和数据传输操作
-    return FUN_180941da0;
+    // 原始实现：FUN_180941da0
+    return SystemDataProcessorType8();
 }
 
 static uint8_t utilities_advanced_data_processor_type9(void)
 {
     // 实现文件操作和IO管理操作
-    return FUN_180941dd0;
+    // 原始实现：FUN_180941dd0
+    return SystemDataProcessorType9();
 }
 
 static uint8_t utilities_advanced_data_processor_type10(void)
 {
     // 实现加密解密和安全验证操作
-    return FUN_180941e00;
+    // 原始实现：FUN_180941e00
+    return SystemDataProcessorType10();
 }
 
 static uint8_t utilities_advanced_data_processor_type11(void)

@@ -601,6 +601,40 @@ int32_t InitializationSystem_ComponentInitializer(void)
 }
 
 /**
+ * @brief 系统组件初始化器 - 原始实现
+ * 
+ * 基于反编译代码的实际实现，负责系统组件的初始化工作。
+ * 
+ * @param param_1 组件参数指针
+ * @return void 无返回值
+ */
+void FUN_180058c20(longlong param_1)
+{
+    // 调用初始化准备函数
+    FUN_1800591c0();
+    
+    // 设置组件虚函数表指针
+    *(uint64_t *)(param_1 + 8) = &UNK_180a3c3e0;
+    
+    // 检查组件是否已经初始化
+    if (*(longlong *)(param_1 + 0x10) != 0) {
+        // 如果已经初始化，执行错误处理
+        FUN_18064e900();
+    }
+    
+    // 清空组件状态指针
+    *(uint64_t *)(param_1 + 0x10) = 0;
+    
+    // 初始化组件状态标志
+    *(int32_t *)(param_1 + 0x20) = 0;
+    
+    // 设置组件默认状态
+    *(uint64_t *)(param_1 + 8) = &UNK_18098bcb0;
+    
+    return;
+}
+
+/**
  * @brief 系统配置处理器实现
  * 
  * 该函数负责系统配置的完整处理流程，实现以下核心功能：
