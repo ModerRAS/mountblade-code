@@ -183,7 +183,7 @@ void FUN_180863c8b(uint64_t param_1,int param_2,uint64_t param_3,int64_t param_4
   }
 LAB_180864019:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x1b0) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x1b0) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -329,7 +329,7 @@ void FUN_180863d75(int32_t param_1,int param_2,uint64_t param_3)
   }
 LAB_180864019:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x1b0) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x1b0) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -388,7 +388,7 @@ void FUN_180863d92(void)
   }
 LAB_180864019:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x1b0) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x1b0) ^ (uint64_t)&stack0x00000000);
 }
 
 

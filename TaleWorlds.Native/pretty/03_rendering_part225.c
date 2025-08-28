@@ -392,7 +392,7 @@ LAB_1803951d6:
               }
 LAB_1803951e8:
                     // WARNING: Subroutine does not return
-              FUN_1808fc050(unaff_RBP[0x14] ^ (uint64_t)&stack0x00000000);
+              SystemSecurityChecker(unaff_RBP[0x14] ^ (uint64_t)&stack0x00000000);
             }
             cVar21 = FUN_180394850(unaff_RBP[3],lVar24,lVar27,unaff_RBP[-5],pfVar6);
             if (cVar21 != '\0') goto LAB_1803951e8;
@@ -449,7 +449,7 @@ void FUN_180395270(int64_t param_1,int param_2,byte param_3)
   int32_t uStack_48;
   
   if (param_2 == 0) {
-    FUN_180626f80(&unknown_var_5784_ptr);
+    SystemDataInitializer(&unknown_var_5784_ptr);
   }
   else {
     plStack_60 = (int64_t *)0x0;
@@ -464,7 +464,7 @@ void FUN_180395270(int64_t param_1,int param_2,byte param_3)
       do {
         lVar10 = *(int64_t *)((int64_t)plVar2 + lVar10);
         if ((*(int *)(lVar10 + 0x130) == param_2) && ((*(byte *)(lVar10 + 0x139) & 1) != param_3)) {
-          FUN_18005ea90(&plStack_60);
+          SystemInitializer(&plStack_60);
           *(byte *)(lVar10 + 0x139) = *(byte *)(lVar10 + 0x139) & 0xfe | param_3;
           *(int32_t *)(lVar10 + 0x128) = 0xffffffff;
           if (*(char *)(lVar10 + 0xa8) != '\0') {
@@ -515,7 +515,7 @@ void FUN_180395270(int64_t param_1,int param_2,byte param_3)
               if (lVar11 == 0) {
                 lVar11 = 1;
 LAB_180395496:
-                plVar2 = (int64_t *)FUN_18062b420(system_memory_pool_ptr,lVar11 * 8,3);
+                plVar2 = (int64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,lVar11 * 8,3);
                 uVar14 = extraout_XMM0_Da;
               }
               else {
@@ -530,7 +530,7 @@ LAB_180395496:
               *plVar2 = *plVar12;
               if (plVar6 != (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
-                FUN_18064e900(plVar6);
+                CoreEngineMemoryPoolCleaner(plVar6);
               }
               plVar7 = plVar2 + lVar11;
               plVar4 = plVar2;
@@ -584,11 +584,11 @@ LAB_180395496:
     }
     if (plVar2 != (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900(plVar2);
+      CoreEngineMemoryPoolCleaner(plVar2);
     }
     if (plVar7 != (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900(plVar7);
+      CoreEngineMemoryPoolCleaner(plVar7);
     }
   }
   return;

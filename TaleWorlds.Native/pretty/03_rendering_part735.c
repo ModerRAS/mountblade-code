@@ -61,7 +61,7 @@ extern void func_0x00018002acc0(unsigned long long param1, unsigned int param2, 
 extern void func_0x00018001a840(int64_t param1, int param2, unsigned long long param3, unsigned long long param4, unsigned long long param5, int64_t param6);
 extern void func_0x00018002b38a(unsigned long long param1, unsigned int param2, unsigned long long param3, unsigned long long param4, unsigned long long param5, int param6);
 extern void func_0x00018001b1ed(int64_t param1, unsigned int param2, unsigned long long param3, unsigned long long param4, unsigned long long param5, int64_t param6);
-extern void FUN_1808fc050(unsigned long long param);
+extern void SystemSecurityChecker(unsigned long long param);
 
 // 全局变量声明
 extern unsigned char global_var_8608_ptr[];
@@ -716,7 +716,7 @@ void RenderingSystem_ImageTransformer(int64_t param_1, unsigned long long param_
   (*pcVar3)(param_7,(int64_t)param_9,param_2,&uStack_48);
   (*pcVar3)(param_8,(int64_t)param_9,param_3,&uStack_40);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_68);
+  SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_68);
 }
 
 
@@ -766,7 +766,7 @@ void RenderingSystem_PixelProcessor(int64_t param_1, unsigned long long param_2,
   }
   (*pcVar4)(param_5,(int64_t)param_6,param_2,auStack_28);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_48);
+  SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_48);
 }
 
 

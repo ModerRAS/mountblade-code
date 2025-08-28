@@ -1122,7 +1122,7 @@ LAB_1805570ae:
                             return;
                           }
                     // WARNING: Subroutine does not return
-                          FUN_18064e900();
+                          CoreEngineMemoryPoolCleaner();
                         }
                         lVar12 = (int64_t)&unknown_var_3912_ptr - (int64_t)pcVar16;
                         while (*pcVar16 == pcVar16[lVar12]) {

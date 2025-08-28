@@ -420,7 +420,7 @@ void FUN_1802e92b0(uint64_t param_1,int64_t *param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngineMemoryPoolCleaner();
 }
 
 

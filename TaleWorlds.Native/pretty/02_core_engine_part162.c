@@ -375,7 +375,7 @@ void FUN_18014b470(int64_t *param_1,uint64_t *param_2)
       }
       if ((uint64_t)puVar4[4] < uVar2) {
 LAB_18014b52a:
-        lVar5 = FUN_18062b420(system_memory_pool_ptr,0x28,*(int8_t *)(param_2 + 5));
+        lVar5 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x28,*(int8_t *)(param_2 + 5));
         *(uint64_t *)(lVar5 + 0x20) = uVar2;
         if ((puVar3 == param_2) || (uVar2 < (uint64_t)puVar3[4])) {
           uVar9 = 0;
@@ -417,7 +417,7 @@ LAB_18014b52a:
       }
       if ((uint64_t)puVar4[4] < uVar2) {
 LAB_18014b61a:
-        lVar5 = FUN_18062b420(system_memory_pool_ptr,0x28,*(int8_t *)(param_2 + 5));
+        lVar5 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x28,*(int8_t *)(param_2 + 5));
         *(uint64_t *)(lVar5 + 0x20) = uVar2;
         if ((puVar3 == param_2) || (uVar2 < (uint64_t)puVar3[4])) {
           uVar9 = 0;
@@ -466,7 +466,7 @@ LAB_18014b61a:
           }
           if ((uint64_t)puVar4[4] < uVar2) {
 LAB_18014b72a:
-            lVar5 = FUN_18062b420(system_memory_pool_ptr,0x28,*(int8_t *)(param_2 + 5));
+            lVar5 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x28,*(int8_t *)(param_2 + 5));
             *(uint64_t *)(lVar5 + 0x20) = uVar2;
             if ((puVar3 == param_2) || (uVar2 < (uint64_t)puVar3[4])) {
               uVar9 = 0;

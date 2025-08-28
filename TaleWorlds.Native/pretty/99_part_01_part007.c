@@ -281,7 +281,7 @@ uint64_t AdvancedDataProcessor(SystemContext system_context, DataProcessParams* 
         memory_block = (uint64_t *)0x0;
     }
     else {
-        memory_block = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,(uint64_t)temp_value << 4,3);
+        memory_block = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,(uint64_t)temp_value << 4,3);
         status_code = 0;
         temp_pointer = memory_block;
         
@@ -493,7 +493,7 @@ CONFIG_COMPLETE:
     context_ptr1 = &stack_ptr1;
     
     /* 安全返回，防止栈溢出 */
-    FUN_1808fc050(temp_storage14 ^ (uint64_t)stack_guard);
+    SystemSecurityChecker(temp_storage14 ^ (uint64_t)stack_guard);
 }
 
 /**
@@ -676,7 +676,7 @@ uint64_t ResourceInitializer(int64_t system_context, int* init_params, int64_t r
         }
         temp_value = resource_flags;
         if (resource_type * resource_id != 0) {
-            temp_value = FUN_18062b420(system_memory_pool_ptr,(uint64_t)(resource_type * resource_id) * 8,
+            temp_value = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,(uint64_t)(resource_type * resource_id) * 8,
                                       CONCAT71((uint7)(byte)(resource_id >> 8),3));
             resource_size = *(byte *)(resource_handle + 0x335);
             resource_count = *(uint *)(resource_handle + 0x35c);
@@ -765,7 +765,7 @@ uint64_t ResourceInitializer(int64_t system_context, int* init_params, int64_t r
         }
         access_mode = temp_value;
         if (resource_type * resource_id != 0) {
-            access_mode = FUN_18062b420(system_memory_pool_ptr,(uint64_t)(resource_type * resource_id) * 8,
+            access_mode = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,(uint64_t)(resource_type * resource_id) * 8,
                                       CONCAT71((uint7)(byte)(resource_id >> 8),3));
             resource_size = *(byte *)(resource_handle + 0x335);
             resource_count = *(uint *)(resource_handle + 0x35c);
@@ -877,7 +877,7 @@ uint64_t ResourceInitializer(int64_t system_context, int* init_params, int64_t r
     }
     
     /* 安全返回，防止栈溢出 */
-    FUN_1808fc050(temp_storage35 ^ (uint64_t)stack_guard);
+    SystemSecurityChecker(temp_storage35 ^ (uint64_t)stack_guard);
 }
 
 /**

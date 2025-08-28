@@ -287,8 +287,8 @@ extern const void* global_state_2432;   /** 系统地址表7 */
 void FUN_1803aad40(int64_t param_1, int64_t param_2, char param_3);
 
 /** 系统子功能函数声明 */
-void FUN_1806277c0(void* param_1, size_t param_2);
-void FUN_18064e900(void* param_1, void* param_2);
+void CoreEngineDataBufferProcessor(void* param_1, size_t param_2);
+void CoreEngineMemoryPoolCleaner(void* param_1, void* param_2);
 uint32_t FUN_180418550(uint64_t param_1, void* param_2, uint32_t param_3);
 void* FUN_1802bfbb0(void* param_1, void* param_2, float param_3);
 void FUN_180417a90(void* param_1, void* param_2, uint32_t param_3);
@@ -301,10 +301,10 @@ void* FUN_180049b30(void* param_1, int64_t param_2);
 void FUN_1800b8300(void* param_1, void* param_2);
 void FUN_180060b80(void* param_1, void* param_2);
 void FUN_18023c450(void* param_1, int param_2, int param_3, void* param_4);
-void* FUN_18062b1e0(void* param_1, int param_2, int param_3, int param_4);
+void* CoreEngineMemoryPoolReallocator(void* param_1, int param_2, int param_3, int param_4);
 void* FUN_18006b640(void* param_1, void* param_2);
 void FUN_18005e300(void* param_1, void* param_2);
-void FUN_1808fc050(uint64_t param_1);
+void SystemSecurityChecker(uint64_t param_1);
 
 // =============================================================================
 // 函数别名定义
@@ -314,10 +314,10 @@ void FUN_1808fc050(uint64_t param_1);
 #define SystemParameterProcessor FUN_1803aad40
 
 /** 系统初始化函数别名 */
-#define SystemInitialize FUN_1806277c0
+#define SystemInitialize CoreEngineDataBufferProcessor
 
 /** 系统清理函数别名 */
-#define SystemCleanup FUN_18064e900
+#define SystemCleanup CoreEngineMemoryPoolCleaner
 
 /** 系统参数查询函数别名 */
 #define SystemParameterQuery FUN_180418550
@@ -356,7 +356,7 @@ void FUN_1808fc050(uint64_t param_1);
 #define SystemCall FUN_18023c450
 
 /** 系统资源创建函数别名 */
-#define SystemResourceCreate FUN_18062b1e0
+#define SystemResourceCreate CoreEngineMemoryPoolReallocator
 
 /** 系统资源初始化函数别名 */
 #define SystemResourceInitialize FUN_18006b640
@@ -365,7 +365,7 @@ void FUN_1808fc050(uint64_t param_1);
 #define SystemResourceProcess FUN_18005e300
 
 /** 系统终结函数别名 */
-#define SystemTerminate FUN_1808fc050
+#define SystemTerminate SystemSecurityChecker
 
 // =============================================================================
 // 核心函数实现
@@ -491,7 +491,7 @@ void FUN_1803aad40(int64_t param_1, int64_t param_2, char param_3)
     cStack_560 = param_3;
     
     // 初始化系统配置
-    FUN_1806277c0(&ppplStack_5b8, system_system_control_memory);
+    CoreEngineDataBufferProcessor(&ppplStack_5b8, system_system_control_memory);
     if (0 < system_system_control_memory) {
         puVar12 = &system_buffer_ptr;
         if (system_system_control_memory != (void *)0x0) {
@@ -515,7 +515,7 @@ void FUN_1803aad40(int64_t param_1, int64_t param_2, char param_3)
     // 清理系统资源
     ppplStack_5b8 = (int64_t ***)&global_state_3456_ptr;
     if (puStack_5b0 != (int8_t *)0x0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     
     // 重置系统状态
@@ -532,7 +532,7 @@ void FUN_1803aad40(int64_t param_1, int64_t param_2, char param_3)
     uStack_588 = (code *)((uint64_t)uStack_588._4_4_ << 0x20);
     
     // 初始化系统配置
-    FUN_1806277c0(&puStack_598, system_system_control_memory);
+    CoreEngineDataBufferProcessor(&puStack_598, system_system_control_memory);
     if (0 < system_system_control_memory) {
         puVar12 = &system_buffer_ptr;
         if (system_system_control_memory != (void *)0x0) {
@@ -558,7 +558,7 @@ void FUN_1803aad40(int64_t param_1, int64_t param_2, char param_3)
     // 清理系统资源
     puStack_598 = &global_state_3456_ptr;
     if (puStack_590 != (int8_t *)0x0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     
     // 重置系统状态
@@ -608,7 +608,7 @@ void FUN_1803aad40(int64_t param_1, int64_t param_2, char param_3)
     puStack_398 = &global_state_720_ptr;
     
     // 系统终结处理
-    FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_5d8);
+    SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_5d8);
 }
 
 // =============================================================================

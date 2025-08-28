@@ -182,7 +182,7 @@ void System_StackProtectionHandler(void)
   
   // 验证堆栈完整性并执行保护操作
   // 如果检测到堆栈异常，系统将终止执行以防止进一步损坏
-  FUN_1808fc050(*(uint64_t*)((char*)stack_info.security_cookie) ^ (uint64_t)&stack_info);
+  SystemSecurityChecker(*(uint64_t*)((char*)stack_info.security_cookie) ^ (uint64_t)&stack_info);
 }
 
 /**
@@ -258,7 +258,7 @@ void System_ComponentStateController(void* context, void* component)
   }
   
   // 执行堆栈保护检查
-  FUN_1808fc050(stack_protection ^ (uint64_t)local_data);
+  SystemSecurityChecker(stack_protection ^ (uint64_t)local_data);
 }
 
 /**
@@ -359,7 +359,7 @@ void System_ResourceCleanupHandler(void* resource_array)
   }
   
   // 执行最终的资源清理操作
-  FUN_18064e900();
+  CoreEngineMemoryPoolCleaner();
 }
 
 // ==================== 系统架构文档 ====================

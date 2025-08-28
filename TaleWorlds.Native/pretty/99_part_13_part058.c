@@ -16,7 +16,7 @@ void FUN_1808ce7e6(void)
   uStack0000000000000028 = in_stack_00000110;
   FUN_1808ce5b0();
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000b0 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_000000b0 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -1018,7 +1018,7 @@ void FUN_1808cf440(int64_t *param_1)
   }
 ConditionChecker:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_e8);
+  SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_e8);
 }
 
 

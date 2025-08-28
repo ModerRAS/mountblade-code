@@ -284,7 +284,7 @@ void FUN_1801f6650(int64_t *param_1,uint64_t param_2,int64_t param_3,int32_t par
     puStack_208 = puStack_278;
     uStack_1f8 = uStack_268;
     ppuStack_1a8 = &puStack_208;
-    FUN_180627ae0(auStack_1e0,&puStack_250);
+    CoreEngineDataTransformer(auStack_1e0,&puStack_250);
     uStack_1c0 = CONCAT44(uStack_22c,uStack_230);
     uStack_1b8 = CONCAT44(uStack_224,uStack_228);
     plStack_1b0 = plStack_220;
@@ -390,7 +390,7 @@ void FUN_1801f6650(int64_t *param_1,uint64_t param_2,int64_t param_3,int32_t par
     puStack_250 = &system_data_buffer_ptr;
     if (lStack_248 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     lStack_248 = 0;
     uStack_238 = uStack_238 & 0xffffffff00000000;
@@ -407,7 +407,7 @@ void FUN_1801f6650(int64_t *param_1,uint64_t param_2,int64_t param_3,int32_t par
   (**(code **)(*system_system_data_memory + 0x20))();
   puStack_118 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_78 ^ (uint64_t)auStack_2b8);
+  SystemSecurityChecker(uStack_78 ^ (uint64_t)auStack_2b8);
 }
 
 
@@ -689,7 +689,7 @@ void FUN_1801f7200(int64_t *param_1,int64_t param_2,int32_t param_3,int param_4,
   uStack_1b0 = 0;
   puStack_1d0 = (void *)lStack_248;
   uStack_1c0 = uStack_238;
-  FUN_180627ae0(auStack_1a8,&puStack_220);
+  CoreEngineDataTransformer(auStack_1a8,&puStack_220);
   uStack_188 = CONCAT44(uStack_1fc,uStack_200);
   uStack_180 = CONCAT44(uStack_1f4,uStack_1f8);
   plStack_178 = plStack_1f0;
@@ -780,10 +780,10 @@ void FUN_1801f7200(int64_t *param_1,int64_t param_2,int32_t param_3,int param_4,
     (**(code **)(*system_system_data_memory + 0x20))();
     puStack_108 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_68 ^ (uint64_t)auStack_298);
+    SystemSecurityChecker(uStack_68 ^ (uint64_t)auStack_298);
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngineMemoryPoolCleaner();
 }
 
 
