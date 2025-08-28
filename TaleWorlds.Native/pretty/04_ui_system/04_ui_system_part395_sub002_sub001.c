@@ -267,7 +267,7 @@ int UISystemAdvancedSubmoduleInitializer(void* system_context, void* config_para
     }
     
     // 分配UI管理器内存
-    manager = (UIManager*)FUN_18062b1e0(system_memory_pool_ptr, sizeof(UIManager), 0x10, 0xd);
+    manager = (UIManager*)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, sizeof(UIManager), 0x10, 0xd);
     if (manager == NULL) {
         return 0x1c; // 错误码：内存分配失败
     }
@@ -282,10 +282,10 @@ int UISystemAdvancedSubmoduleInitializer(void* system_context, void* config_para
     manager->system_context = system_context;
     
     // 分配组件数组内存
-    memory_pool = FUN_18062b1e0(system_memory_pool_ptr, 
+    memory_pool = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 
         sizeof(UIComponent) * manager->max_components, 0x10, 0xd);
     if (memory_pool == NULL) {
-        FUN_1808fc050(manager); // 释放管理器内存
+        SystemSecurityChecker(manager); // 释放管理器内存
         return 0x1c; // 错误码：内存分配失败
     }
     
@@ -531,10 +531,10 @@ int UISystemResourceCleaner(UIManager* manager)
             if (component->component_id != 0) {
                 // 清理组件资源
                 if (component->render_data != NULL) {
-                    FUN_1808fc050(component->render_data);
+                    SystemSecurityChecker(component->render_data);
                 }
                 if (component->event_handler != NULL) {
-                    FUN_1808fc050(component->event_handler);
+                    SystemSecurityChecker(component->event_handler);
                 }
                 
                 // 重置组件状态
@@ -546,7 +546,7 @@ int UISystemResourceCleaner(UIManager* manager)
         }
         
         // 释放组件数组内存
-        FUN_1808fc050(manager->components);
+        SystemSecurityChecker(manager->components);
         manager->components = NULL;
     }
     

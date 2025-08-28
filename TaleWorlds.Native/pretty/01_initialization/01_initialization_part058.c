@@ -117,7 +117,7 @@ void FUN_18007c490(int64_t *param_1, byte param_2, int64_t *param_3, int64_t *pa
       if ((void *)param_1[3] != (void *)0x0) {
         error_handler = (void *)param_1[3];
       }
-      FUN_180626f80(&unknown_var_5600_ptr, error_handler);
+      SystemDataInitializer(&unknown_var_5600_ptr, error_handler);
       status_flag = (char *)(param_1[0x3c] + 0x15 + (uint64_t)param_2 * 0x18);
       LOCK();
       if (*status_flag == '\x01') {
@@ -158,7 +158,7 @@ void FUN_18007c790(int64_t *param_1)
   if (*(void **)(*param_1 + 0x18) != (void *)0x0) {
     error_handler = *(void **)(*param_1 + 0x18);
   }
-  FUN_180626f80(&unknown_var_5600_ptr, error_handler);
+  SystemDataInitializer(&unknown_var_5600_ptr, error_handler);
   status_flag = (char *)(*(int64_t *)(*param_1 + 0x1e0) + 0x15 +
                    (uint64_t)*(byte *)(param_1 + 1) * 0x18);
   LOCK();
@@ -300,7 +300,7 @@ void FUN_18007c8e0(int64_t param_1, byte param_2, int64_t *param_3, int64_t *par
   }
   else {
     // 非主线程处理路径
-    resource_data = FUN_18062b1e0(system_memory_pool_ptr, 0x40, 8, 0x20);
+    resource_data = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x40, 8, 0x20);
     resource_pointer = resource_array;
     stack_resource_2 = &stack_context;
     stack_resource_4 = (int64_t *)*param_3;
@@ -323,7 +323,7 @@ void FUN_18007c8e0(int64_t param_1, byte param_2, int64_t *param_3, int64_t *par
     stack_resource_1 = &stack_data_1;
     callback_func_1 = FUN_180082e70;
     callback_func_2 = FUN_180082da0;
-    stack_resource_3 = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x20, 8, system_allocation_flags);
+    stack_resource_3 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x20, 8, system_allocation_flags);
     *stack_resource_3 = stack_data_1;
     *(byte *)(stack_resource_3 + 1) = stack_byte_2;
     stack_resource_3[2] = (int64_t)stack_resource_6;

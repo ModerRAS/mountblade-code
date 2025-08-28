@@ -60,7 +60,7 @@ void FUN_180273980(int64_t param_1,int64_t param_2)
   uStack_918 = uVar19;
   lStack_900 = param_2;
   lStack_8f8 = param_1;
-  FUN_180272bd0(&unknown_var_304_ptr,param_2,param_1);
+  FUN_180272bd0(&rendering_sharpen_ptr,param_2,param_1);
   *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + 4;
   uVar16 = 0;
   *(int32_t *)(param_1 + 4) = 0;
@@ -69,7 +69,7 @@ void FUN_180273980(int64_t param_1,int64_t param_2)
   if (uVar2 != 0) {
     uVar21 = (uint64_t)uVar2;
     do {
-      puStack_468 = &unknown_var_336_ptr;
+      puStack_468 = &rendering_ripple_ptr;
       pbStack_460 = abStack_450;
       iStack_458 = 0;
       abStack_450[0] = 0;
@@ -80,7 +80,7 @@ void FUN_180273980(int64_t param_1,int64_t param_2)
         FUN_180045f60(&puStack_468,puVar12,uVar19);
         *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + (uint64_t)uVar19;
       }
-      plVar24 = (int64_t *)&unknown_var_208_ptr;
+      plVar24 = (int64_t *)&rendering_line_ptr;
       uVar25 = uVar16;
       do {
         lVar10 = -1;
@@ -101,7 +101,7 @@ void FUN_180273980(int64_t param_1,int64_t param_2)
 LAB_180273afe:
           if (iVar15 == 0) {
             *(uint *)(param_1 + 4) =
-                 *(uint *)(param_1 + 4) | *(uint *)(&unknown_var_216_ptr + uVar25 * 0x10);
+                 *(uint *)(param_1 + 4) | *(uint *)(&rendering_tessellation_ptr + uVar25 * 0x10);
             break;
           }
         }
@@ -114,7 +114,7 @@ LAB_180273afe:
       uVar19 = uStack_918;
     } while (uVar21 != 0);
   }
-  puStack_888 = &unknown_var_336_ptr;
+  puStack_888 = &rendering_ripple_ptr;
   pbStack_880 = abStack_870;
   iStack_878 = 0;
   abStack_870[0] = 0;
@@ -416,7 +416,7 @@ void FUN_180274220(int32_t *param_1,int64_t *param_2)
   }
   *puVar15 = 2;
   param_2[1] = param_2[1] + 4;
-  System_DataSerializer(&unknown_var_304_ptr,*param_1,param_2);
+  System_DataSerializer(&rendering_sharpen_ptr,*param_1,param_2);
   puVar15 = (int32_t *)param_2[1];
   uVar11 = param_1[1];
   if ((uint64_t)((*param_2 - (int64_t)puVar15) + param_2[2]) < 5) {
@@ -437,7 +437,7 @@ void FUN_180274220(int32_t *param_1,int64_t *param_2)
     lVar7 = param_2[1];
   }
   param_2[1] = lVar7 + 4;
-  puVar13 = (uint64_t *)&unknown_var_208_ptr;
+  puVar13 = (uint64_t *)&rendering_line_ptr;
   uVar12 = uVar16;
   do {
     if ((*(uint *)(puVar13 + 1) & uVar11) != 0) {

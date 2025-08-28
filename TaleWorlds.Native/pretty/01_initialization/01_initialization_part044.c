@@ -73,7 +73,7 @@ void initialize_with_default_params(uint64_t system_handle, uint64_t config_para
     // 检查栈状态
     if (stack_check != 0) {
       // 栈错误处理
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
   }
   return;
@@ -140,7 +140,7 @@ void initialize_with_custom_params(uint64_t system_handle, int32_t custom_param,
     // 检查栈状态
     if (stack_check != 0) {
       // 栈错误处理
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
   }
   return;
@@ -230,28 +230,28 @@ void reset_structure_pointers(uint64_t *structure_ptr)
   // 检查并重置偏移0x52处的指针
   if (*(int64_t *)((int64_t)structure_ptr + 0x52) != 0) {
     // 错误：指针不为空，可能存在内存泄漏
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   *(uint64_t *)((int64_t)structure_ptr + 0x52) = 0;
   
   // 检查并重置偏移0x5a处的指针
   if (*(int64_t *)((int64_t)structure_ptr + 0x5a) != 0) {
     // 错误：指针不为空，可能存在内存泄漏
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   *(uint64_t *)((int64_t)structure_ptr + 0x5a) = 0;
   
   // 检查并重置索引8处的指针
   if (structure_ptr[8] != 0) {
     // 错误：指针不为空，可能存在内存泄漏
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   structure_ptr[8] = 0;
   
   // 检查并重置索引9处的指针
   if (structure_ptr[9] != 0) {
     // 错误：指针不为空，可能存在内存泄漏
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   structure_ptr[9] = 0;
   
@@ -264,7 +264,7 @@ void reset_structure_pointers(uint64_t *structure_ptr)
   // 检查并重置索引1处的指针
   if (structure_ptr[1] != 0) {
     // 错误：指针不为空，可能存在内存泄漏
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   structure_ptr[1] = 0;
   
@@ -308,7 +308,7 @@ void cleanup_linked_structure(int64_t *list_head)
       // 验证链表头部是否已清理
       if (*list_head != 0) {
         // 错误：链表头部未正确清理
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       return;
     }
@@ -316,7 +316,7 @@ void cleanup_linked_structure(int64_t *list_head)
     // 检查并清理偏移0x12处的指针
     if (*(int64_t *)((int64_t)current_node + 0x12) != 0) {
       // 错误：指针未清理
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     *(uint64_t *)((int64_t)current_node + 0x12) = 0;
     
@@ -330,14 +330,14 @@ void cleanup_linked_structure(int64_t *list_head)
     // 检查并清理主指针
     if (*current_node != 0) {
       // 错误：主指针未清理
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     *current_node = 0;
     
     // 检查并清理索引1处的指针
     if (current_node[1] != 0) {
       // 错误：指针未清理
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     current_node[1] = 0;
     
@@ -346,7 +346,7 @@ void cleanup_linked_structure(int64_t *list_head)
   }
   
   // 错误处理
-  FUN_18064e900();
+  CoreEngineMemoryPoolCleaner();
 }
 
 

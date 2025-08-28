@@ -60,7 +60,7 @@ int ui_process_control_initialization(int64_t control_context)
   int32_t parameter_value;
   
   // 获取系统资源句柄
-  resource_handle = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x4d0, &unknown_var_8576_ptr, 0x146,
+  resource_handle = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x4d0, &unknown_var_8576_ptr, 0x146,
                         stack_parameter & 0xffffffff00000000, 0, 1);
   resource_pointer = (int64_t *)0x0;
   if (resource_handle != 0) {
@@ -579,7 +579,7 @@ event_processing_complete:
     }
   }
 event_handler_exit:
-  FUN_1808fc050(workspace_size ^ (uint64_t)stack_data);
+  SystemSecurityChecker(workspace_size ^ (uint64_t)stack_data);
 }
 
 /**
@@ -740,5 +740,5 @@ reset_validation:
   }
   *(byte *)(control_context + 0x6a8) = 1;
 reset_complete:
-  FUN_1808fc050(system_size ^ (uint64_t)reset_buffer);
+  SystemSecurityChecker(system_size ^ (uint64_t)reset_buffer);
 }

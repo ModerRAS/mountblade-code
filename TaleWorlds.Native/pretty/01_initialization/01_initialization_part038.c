@@ -83,7 +83,7 @@ void Initialization_MainLoop(int64_t context)
     // 检查初始化状态
     if ((status_flag == '\0') || (total_processed = 0, *(char *)(context + 0x400) != '\0')) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer);
+      SystemSecurityChecker(security_cookie ^ (uint64_t)stack_buffer);
     }
     
     // 初始化任务管理器指针
@@ -405,7 +405,7 @@ LAB_18006ca44:
               *manager_ptr = &system_state_ptr;
               callback_ptr = (void **)manager_ptr;
                     // WARNING: Subroutine does not return
-              FUN_18064e900(manager_ptr);
+              CoreEngineMemoryPoolCleaner(manager_ptr);
             }
             manager_ptr = (uint64_t *)manager_ptr[0x24];
             while (manager_ptr == (uint64_t *)0x0) {
@@ -432,7 +432,7 @@ LAB_18006ca44:
         if (capacity == 0) {
           capacity = 1;
 LAB_18006c9ac:
-          offset = FUN_18062b420(system_memory_pool_ptr,capacity * 0x1a8,*(int8_t *)(context + 0x3e0));
+          offset = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,capacity * 0x1a8,*(int8_t *)(context + 0x3e0));
           total_processed = *(uint64_t *)(context + 0x3d0);
           time_value = *resource_ptr;
         }
@@ -454,7 +454,7 @@ LAB_18006c9ac:
         }
         if (alloc_size != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900(alloc_size);
+          CoreEngineMemoryPoolCleaner(alloc_size);
         }
         *resource_ptr = offset;
         *(int64_t *)(context + 0x3d0) = temp_long + 0x1a8;
@@ -527,7 +527,7 @@ void ResourcePool_Cleanup(int64_t pool_handle)
       if (resource_ptr != (uint64_t *)0x0) {
         *resource_ptr = &system_state_ptr;
                     // WARNING: Subroutine does not return
-        FUN_18064e900(resource_ptr);
+        CoreEngineMemoryPoolCleaner(resource_ptr);
       }
       *(uint64_t *)(pool_base + index * 8) = 0;
       index = index + 1;
@@ -537,7 +537,7 @@ void ResourcePool_Cleanup(int64_t pool_handle)
   *(uint64_t *)(pool_handle + 0x18) = 0;
   if ((1 < resource_count) && (*(int64_t *)(pool_handle + 8) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pool_base);
+    CoreEngineMemoryPoolCleaner(pool_base);
   }
   return;
 }
@@ -615,7 +615,7 @@ uint64_t ResourceQueue_Allocate(int64_t *queue_ptr,int64_t resource_data)
       goto expand_queue;
     }
   }
-  old_buffer = FUN_18062b420(system_memory_pool_ptr,queue_start * 0x1a8,(char)queue_ptr[3]);
+  old_buffer = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,queue_start * 0x1a8,(char)queue_ptr[3]);
   current_pos = queue_ptr[1];
   new_buffer = *queue_ptr;
 expand_queue:
@@ -632,7 +632,7 @@ expand_queue:
   }
   if (queue_end != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(queue_end);
+    CoreEngineMemoryPoolCleaner(queue_end);
   }
   current_pos = queue_start * 0x1a8 + old_buffer;
   *queue_ptr = old_buffer;
@@ -678,7 +678,7 @@ void ResourceQueue_Expand(uint64_t param1,uint64_t param2,int64_t *queue_ptr)
   }
   
   // 分配新的缓冲区
-  new_buffer = FUN_18062b420(system_memory_pool_ptr,capacity * 0x1a8,(char)queue_ptr[3]);
+  new_buffer = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,capacity * 0x1a8,(char)queue_ptr[3]);
   range_end = queue_ptr[1];
   range_start = *queue_ptr;
 expand_complete:
@@ -696,7 +696,7 @@ expand_complete:
   }
   if (new_buffer != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(new_buffer);
+    CoreEngineMemoryPoolCleaner(new_buffer);
   }
   *queue_ptr = new_buffer;
   queue_ptr[1] = queue_end + 0x1a8;
@@ -716,7 +716,7 @@ void Resource_Release(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngineMemoryPoolCleaner();
 }
 
 

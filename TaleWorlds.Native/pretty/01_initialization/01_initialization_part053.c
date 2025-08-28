@@ -184,7 +184,7 @@ void FUN_180079270(int64_t param_1,int64_t param_2)
                     *(int *)(temp_long + 0x40) = item_count;
                     if (*game_object_ptr != 0) {
                         // 释放旧内存
-                        FUN_18064e900();
+                        CoreEngineMemoryPoolCleaner();
                     }
                     *game_object_ptr = 0;
                     
@@ -194,7 +194,7 @@ void FUN_180079270(int64_t param_1,int64_t param_2)
                     }
                     else {
                         // 分配新内存
-                        array_ptr = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, (int64_t)index_char * 4);
+                        array_ptr = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, (int64_t)index_char * 4);
                         *game_object_ptr = (int64_t)array_ptr;
                     }
                 }
@@ -291,7 +291,7 @@ void FUN_180079270(int64_t param_1,int64_t param_2)
                         do {
                             loop_index = (int)chunk_start;
                             if (*(int64_t *)chunk_ptr == 0) {
-                                loop_counter = FUN_18062b420(system_memory_pool_ptr, 0x2000, 0x25);
+                                loop_counter = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x2000, 0x25);
                                 LOCK();
                                 is_allocated = *(int64_t *)(uint_ptr + (int64_t)loop_index * 2 + 2) == 0;
                                 if (is_allocated) {
@@ -306,7 +306,7 @@ void FUN_180079270(int64_t param_1,int64_t param_2)
                                 }
                                 else {
                                     if (loop_counter != 0) {
-                                        FUN_18064e900();
+                                        CoreEngineMemoryPoolCleaner();
                                     }
                                     do {
                                     } while (*char_ptr != '\0');
@@ -541,7 +541,7 @@ void FUN_180079284(int64_t param_1)
                     *(int *)(temp_long + 0x40) = item_count;
                     if (*game_object_ptr != 0) {
                         // 释放旧内存
-                        FUN_18064e900();
+                        CoreEngineMemoryPoolCleaner();
                     }
                     *game_object_ptr = 0;
                     
@@ -551,7 +551,7 @@ void FUN_180079284(int64_t param_1)
                     }
                     else {
                         // 分配新内存
-                        array_ptr = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, (int64_t)index_char * 4);
+                        array_ptr = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, (int64_t)index_char * 4);
                         *game_object_ptr = (int64_t)array_ptr;
                     }
                 }
@@ -648,7 +648,7 @@ void FUN_180079284(int64_t param_1)
                         do {
                             loop_index = (int)chunk_start;
                             if (*(int64_t *)chunk_ptr == 0) {
-                                loop_counter = FUN_18062b420(system_memory_pool_ptr, 0x2000, 0x25);
+                                loop_counter = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x2000, 0x25);
                                 LOCK();
                                 is_allocated = *(int64_t *)(uint_ptr + (int64_t)loop_index * 2 + 2) == 0;
                                 if (is_allocated) {
@@ -663,7 +663,7 @@ void FUN_180079284(int64_t param_1)
                                 }
                                 else {
                                     if (loop_counter != 0) {
-                                        FUN_18064e900();
+                                        CoreEngineMemoryPoolCleaner();
                                     }
                                     do {
                                     } while (*char_ptr != '\0');

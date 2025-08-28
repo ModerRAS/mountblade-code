@@ -273,7 +273,7 @@ void FUN_1804b2750(int64_t param_1,int64_t *param_2,uint64_t param_3,float *para
   }
   plVar8 = (int64_t *)FUN_1801efdb0(uVar23,param_2);
   if (plVar8 == (int64_t *)0x0) {
-    FUN_180626f80(&unknown_var_6240_ptr);
+    SystemDataInitializer(&unknown_var_6240_ptr);
   }
   else {
     uVar3 = *(uint *)(plStack_c0 + 2);

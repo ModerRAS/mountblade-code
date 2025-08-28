@@ -289,7 +289,7 @@ void set_initialization_parameter(int64_t context_ptr, char parameter_type, uint
     parameter_table_ptr = *(int64_t *)(context_ptr + 600);
     
     if (*(int64_t *)(parameter_table_ptr + 0x10) != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     
     temp_var = 0;
@@ -297,7 +297,7 @@ void set_initialization_parameter(int64_t context_ptr, char parameter_type, uint
     *(uint64_t *)(parameter_table_ptr + 0x10) = 0;
     
     if (parameter_size != 0) {
-        temp_var = FUN_18062b1e0(system_memory_pool_ptr, parameter_size, 0x10, CONCAT71((int7)((uint64_t)parameter_table_ptr >> 8), 3));
+        temp_var = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, parameter_size, 0x10, CONCAT71((int7)((uint64_t)parameter_table_ptr >> 8), 3));
     }
     
     *(uint64_t *)(*(int64_t *)(context_ptr + 600) + 0x10) = temp_var;
@@ -314,7 +314,7 @@ void initialize_memory_block(int64_t context_ptr)
     
     if (*(int64_t *)(context_ptr + 0x2c8) == 0) {
         *(uint *)(context_ptr + 0x100) = *(uint *)(context_ptr + 0x100) | 8;
-        memory_ptr = FUN_18062b1e0(system_memory_pool_ptr, 0xd0, 4, 9);
+        memory_ptr = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0xd0, 4, 9);
         memset(memory_ptr, 0, 0xd0);
     }
     
@@ -327,7 +327,7 @@ void create_and_clear_memory_block(void)
 {
     uint64_t memory_ptr;
     
-    memory_ptr = FUN_18062b1e0();
+    memory_ptr = CoreEngineMemoryPoolReallocator();
     memset(memory_ptr, 0, 0xd0);
 }
 
@@ -349,14 +349,14 @@ void resize_parameter_table(int64_t context_ptr, int new_size)
     
     if ((int)table_ptr[1] != new_size) {
         if (*table_ptr != 0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         
         new_memory_ptr = 0;
         *table_ptr = 0;
         
         if (new_size != 0) {
-            new_memory_ptr = FUN_18062b1e0(system_memory_pool_ptr, (int64_t)new_size << 6, 0x10, 4);
+            new_memory_ptr = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, (int64_t)new_size << 6, 0x10, 4);
         }
         
         **(uint64_t **)(context_ptr + 600) = new_memory_ptr;
@@ -463,7 +463,7 @@ code *get_or_create_context_handler(int64_t context_ptr, char handler_type)
             if (temp_stack_30 != context_ptr) {
                 temp_stack_28 = 0;
                 FUN_18007f770(&temp_stack_30);
-                temp_var = FUN_18062b1e0(system_memory_pool_ptr, 0xf0, 8, 3);
+                temp_var = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0xf0, 8, 3);
                 temp_var = FUN_18007f2f0(temp_var);
                 FUN_180056f10(return_value, temp_var);
                 FUN_1800860f0(*(int64_t *)return_value + 0x10, (int64_t)temp_stack_20 + 0x10);
@@ -484,7 +484,7 @@ code *get_or_create_context_handler(int64_t context_ptr, char handler_type)
         
         if (*(int64_t *)(context_ptr + 0xa8) == 0) {
             if ((*(byte *)(context_ptr + 0xfd) & 4) != 0) {
-                temp_var = FUN_18062b1e0(system_memory_pool_ptr, 0xf0, 8, 3);
+                temp_var = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0xf0, 8, 3);
                 temp_ptr = (int64_t *)FUN_18007f2f0(temp_var);
                 temp_stack_18 = (code *)0xfffffffffffffffe;
                 
@@ -503,7 +503,7 @@ code *get_or_create_context_handler(int64_t context_ptr, char handler_type)
             }
             
             FUN_1806272a0(&unknown_var_5648_ptr);
-            return_value = (code *)FUN_180626f80(&unknown_var_5344_ptr);
+            return_value = (code *)SystemDataInitializer(&unknown_var_5344_ptr);
         }
         else {
             temp_ptr = *(int64_t **)(*(int64_t *)(context_ptr + 0xa8) + 0x88);
@@ -888,7 +888,7 @@ void initialize_data_array(int64_t context_ptr, int64_t data_ptr, int array_size
     total_items = (uint64_t)array_size;
     
     if (**(int64_t **)(context_ptr + 0x2d0) != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     
     alloc_ptr = (uint64_t *)0x0;
@@ -898,7 +898,7 @@ void initialize_data_array(int64_t context_ptr, int64_t data_ptr, int array_size
         dest_ptr = alloc_ptr;
         
         if (array_size != 0) {
-            dest_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, total_items * 8, 3);
+            dest_ptr = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, total_items * 8, 3);
             temp_ptr = dest_ptr;
             current_ptr = alloc_ptr;
             
@@ -969,7 +969,7 @@ void optimized_initialize_data_array(void)
         dest_ptr = (uint64_t *)(context_offset & 0xffffffff);
     }
     else {
-        dest_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, total_items * 8, 3);
+        dest_ptr = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, total_items * 8, 3);
         source_value = context_offset & 0xffffffff;
         temp_ptr = dest_ptr;
         

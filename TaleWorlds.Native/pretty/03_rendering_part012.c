@@ -51,7 +51,7 @@ void FUN_180274c70(int64_t param_1,int64_t *param_2)
   }
   *puVar11 = 2;
   param_2[1] = param_2[1] + 4;
-  System_DataSerializer(&unknown_var_304_ptr,*(int32_t *)(param_1 + 0x18),param_2);
+  System_DataSerializer(&rendering_sharpen_ptr,*(int32_t *)(param_1 + 0x18),param_2);
   puVar11 = (int32_t *)param_2[1];
   uVar12 = *(uint *)(param_1 + 0x1c);
   if ((uint64_t)((*param_2 - (int64_t)puVar11) + param_2[2]) < 5) {
@@ -72,7 +72,7 @@ void FUN_180274c70(int64_t param_1,int64_t *param_2)
     lVar7 = param_2[1];
   }
   param_2[1] = lVar7 + 4;
-  puVar14 = (uint64_t *)&unknown_var_208_ptr;
+  puVar14 = (uint64_t *)&rendering_line_ptr;
   uVar13 = uVar16;
   do {
     if ((*(uint *)(puVar14 + 1) & uVar12) != 0) {

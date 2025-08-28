@@ -375,7 +375,7 @@ int64_t initialize_memory_pool(int64_t pool)
  */
 uint64_t process_engine_command(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-  FUN_180627ae0(param_2, system_message_context + 0xe0, param_3, param_4, 0, 0xfffffffffffffffe);
+  CoreEngineDataTransformer(param_2, system_message_context + 0xe0, param_3, param_4, 0, 0xfffffffffffffffe);
   return param_2;
 }
 
@@ -751,7 +751,7 @@ bool validate_and_process_condition(int64_t context, uint64_t param_2)
         if (*(void **)(param_1 + 0x48) != (void *)0x0) {
           puVar2 = *(void **)(param_1 + 0x48);
         }
-        FUN_180626f80(&unknown_var_544_ptr,puVar2);
+        SystemDataInitializer(&unknown_var_544_ptr,puVar2);
       }
       FUN_180627be0(param_1,param_1 + 0x80);
       return false;
@@ -780,7 +780,7 @@ void insert_node_into_structure(uint64_t *root_node, uint64_t param_2, int *valu
   uint64_t *puVar5;
   uint64_t uVar6;
   
-  lVar4 = FUN_18062b420(system_memory_pool_ptr,0x28,*(int8_t *)(param_1 + 5));
+  lVar4 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x28,*(int8_t *)(param_1 + 5));
   iVar1 = *value;
   bVar2 = true;
   *(int *)(lVar4 + 0x20) = iVar1; // 存储要插入的值
@@ -803,7 +803,7 @@ void insert_node_into_structure(uint64_t *root_node, uint64_t param_2, int *valu
   }
   if (*(int *)(lVar4 + 0x20) <= *(int *)(puVar5 + 4)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(lVar4);
+    CoreEngineMemoryPoolCleaner(lVar4);
   }
 LAB_18005c9be:
   if ((puVar3 == param_1) || (*(int *)(lVar4 + 0x20) < *(int *)(puVar3 + 4))) {
@@ -838,7 +838,7 @@ void set_status_flag(int64_t context, int32_t flag)
       if (*(void **)(param_1 + 0x1eb0) != (void *)0x0) {
         puVar2 = *(void **)(param_1 + 0x1eb0);
       }
-      FUN_180626f80(&unknown_var_544_ptr,puVar2);
+      SystemDataInitializer(&unknown_var_544_ptr,puVar2);
     }
     *(int32_t *)(context + 0x1ea0) = *(int32_t *)(context + 0x1ee8); // 设置状态标志
     return;
@@ -899,7 +899,7 @@ int64_t cleanup_and_reset_structure(int64_t structure)
   *(uint64_t *)(structure + 0x40) = &system_data_buffer_ptr; // 设置安全标记
   if (*(int64_t *)(param_1 + 0x48) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   *(uint64_t *)(param_1 + 0x48) = 0;
   *(int32_t *)(param_1 + 0x58) = 0;
@@ -907,7 +907,7 @@ int64_t cleanup_and_reset_structure(int64_t structure)
   *(uint64_t *)(param_1 + 0x20) = &system_data_buffer_ptr;
   if (*(int64_t *)(param_1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   *(uint64_t *)(param_1 + 0x28) = 0;
   *(int32_t *)(param_1 + 0x38) = 0;
@@ -954,17 +954,17 @@ void register_or_add_component(void **registry, uint64_t param_2, uint64_t param
     FUN_180627be0(ppuStackX_8 + 8,param_3);
     return;
   }
-  FUN_180627ae0(&puStack_68,param_2);
-  FUN_180627ae0(&puStack_48,param_3);
+  CoreEngineDataTransformer(&puStack_68,param_2);
+  CoreEngineDataTransformer(&puStack_48,param_3);
   uVar9 = 1;
-  lVar3 = FUN_18062b420(system_memory_pool_ptr,0x60,*(int8_t *)(lVar3 + 0x98));
+  lVar3 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x60,*(int8_t *)(lVar3 + 0x98));
   FUN_18005caa0(lVar3 + 0x20,&puStack_68);
   ppuVar4 = (void **)FUN_1800590b0(ppuVar6,acStackX_20,lVar3 + 0x20);
   if (acStackX_20[0] == '\0') {
     FUN_18005cb60(lVar3);
     if (lVar3 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900(lVar3);
+      CoreEngineMemoryPoolCleaner(lVar3);
     }
     ppuStackX_8 = &puStack_48;
     puStack_48 = &system_data_buffer_ptr;
@@ -978,10 +978,10 @@ void register_or_add_component(void **registry, uint64_t param_2, uint64_t param
         return;
       }
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   if (ppuVar4 == ppuVar6) goto LAB_18005ccff;
   if (*(int *)(ppuVar4 + 6) != 0) {
@@ -1242,7 +1242,7 @@ void format_value_to_buffer(uint64_t value, int64_t buffer)
     } while (acStack_438[lVar6 + 1] != '\0');
     iVar8 = (int)(lVar6 + 1);
     if (0 < iVar8) {
-      FUN_1806277c0(param_2,*(int *)(param_2 + 0x10) + iVar8);
+      CoreEngineDataBufferProcessor(param_2,*(int *)(param_2 + 0x10) + iVar8);
                     // WARNING: Subroutine does not return
       memcpy((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8),acStack_438,
              (int64_t)((int)lVar6 + 2));
@@ -1251,17 +1251,17 @@ void format_value_to_buffer(uint64_t value, int64_t buffer)
   else {
     iVar8 = iVar8 + 1;
     if (iVar8 != 0) {
-      lVar5 = FUN_18062b420(system_memory_pool_ptr,(int64_t)iVar8,3);
+      lVar5 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,(int64_t)iVar8,3);
     }
     FUN_18004b9b0(lVar5,(int64_t)iVar8,&unknown_var_8600_ptr,&dStackX_18);
     FUN_1806281a0(param_2,lVar5);
     if (lVar5 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900(lVar5);
+      CoreEngineMemoryPoolCleaner(lVar5);
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_478);
+  SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_478);
 }
 
 
@@ -1275,7 +1275,7 @@ int64_t copy_and_initialize_simple_structure(int64_t dest, int64_t src)
 {
   if (*(int64_t *)(param_1 + 8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   *(uint64_t *)(param_1 + 0x18) = 0;
   *(uint64_t *)(param_1 + 8) = 0;
@@ -1303,14 +1303,14 @@ void cleanup_structure_safety(uint64_t param_1, int64_t structure)
   *(uint64_t *)(structure + 0x20) = &system_data_buffer_ptr; // 设置安全标记
   if (*(int64_t *)(param_2 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   *(uint64_t *)(structure + 0x28) = 0; // 清理指针
   *(int32_t *)(param_2 + 0x38) = 0;
   *(uint64_t *)(param_2 + 0x20) = &system_state_ptr;
   if (param_2 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(param_2);
+    CoreEngineMemoryPoolCleaner(param_2);
   }
   return;
 }

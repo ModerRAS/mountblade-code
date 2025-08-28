@@ -597,7 +597,7 @@ void ui_system_process_audio_signals(void *ui_context, void *audio_data, int sig
     *(int *)((char *)unaff_RSI + 0x88) =
          (int)*(short *)(&unknown_var_9600_ptr + (int64_t)*(char *)((char *)unaff_RBX + 0xae9) * 2);
     
-    FUN_1808fc050(stack_param ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(stack_param ^ (uint64_t)&stack0x00000000);
 }
 
 /**

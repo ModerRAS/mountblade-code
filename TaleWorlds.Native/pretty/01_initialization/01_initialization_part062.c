@@ -63,7 +63,7 @@ void process_buffer_with_offset(void* context, int64_t buffer_base)
       *(int *)(context_ptr + 0x40) = capacity;
       if (*buffer_ptr != 0) {
         // 释放现有内存
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       *buffer_ptr = 0;
       
@@ -73,7 +73,7 @@ void process_buffer_with_offset(void* context, int64_t buffer_base)
         *buffer_ptr = 0;
       }
       else {
-        alloc_ptr = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, (int64_t)char_val * 4);
+        alloc_ptr = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, (int64_t)char_val * 4);
         *buffer_ptr = (int64_t)alloc_ptr;
       }
     }
@@ -172,7 +172,7 @@ void process_buffer_with_offset(void* context, int64_t buffer_base)
           temp_counter = (int)block_start;
           if (*(int64_t *)temp_uint_ptr == 0) {
             // 分配新的内存块
-            mem_ptr = FUN_18062b420(system_memory_pool_ptr, 0x2000, 0x25);
+            mem_ptr = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x2000, 0x25);
             LOCK();
             is_allocated = *(int64_t *)(uint_ptr + (int64_t)temp_counter * 2 + 2) == 0;
             if (is_allocated) {
@@ -187,7 +187,7 @@ void process_buffer_with_offset(void* context, int64_t buffer_base)
             }
             else {
               if (mem_ptr != 0) {
-                FUN_18064e900();
+                CoreEngineMemoryPoolCleaner();
               }
               do {
               } while (*char_array_ptr != '\0');
@@ -276,7 +276,7 @@ void initialize_buffer_data(void* context, uint64_t size)
     *(uint *)(context_ptr + 0x40) = array_size;
     if (*buffer_ptr != 0) {
       // 释放现有内存
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     *buffer_ptr = 0;
     
@@ -286,7 +286,7 @@ void initialize_buffer_data(void* context, uint64_t size)
       *buffer_ptr = 0;
     }
     else {
-      alloc_ptr = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, (int64_t)(char)buffer_count * 4);
+      alloc_ptr = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, (int64_t)(char)buffer_count * 4);
       *buffer_ptr = (int64_t)alloc_ptr;
     }
   }
@@ -384,7 +384,7 @@ void initialize_buffer_data(void* context, uint64_t size)
         temp_counter = (int)block_start;
         if (*(int64_t *)block_ptr == 0) {
           // 分配新的内存块
-          mem_ptr = FUN_18062b420(system_memory_pool_ptr, 0x2000, 0x25);
+          mem_ptr = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x2000, 0x25);
           LOCK();
           is_allocated = *(int64_t *)(global_ptr + (int64_t)temp_counter * 2 + 2) == 0;
           if (is_allocated) {
@@ -399,7 +399,7 @@ void initialize_buffer_data(void* context, uint64_t size)
           }
           else {
             if (mem_ptr != 0) {
-              FUN_18064e900();
+              CoreEngineMemoryPoolCleaner();
             }
             do {
             } while (*char_ptr != '\0');
@@ -488,7 +488,7 @@ void process_buffer_with_size(void* context, int size_param, uint64_t data_size)
     *(uint *)(context_ptr + 0x40) = array_size;
     if (*buffer_ptr != 0) {
       // 释放现有内存
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     *buffer_ptr = 0;
     
@@ -498,7 +498,7 @@ void process_buffer_with_size(void* context, int size_param, uint64_t data_size)
       *buffer_ptr = 0;
     }
     else {
-      alloc_ptr = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, (int64_t)(char)ebx_val * 4);
+      alloc_ptr = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, (int64_t)(char)ebx_val * 4);
       *buffer_ptr = (int64_t)alloc_ptr;
     }
   }
@@ -596,7 +596,7 @@ void process_buffer_with_size(void* context, int size_param, uint64_t data_size)
         temp_counter = (int)block_start;
         if (*(int64_t *)block_ptr == 0) {
           // 分配新的内存块
-          mem_ptr = FUN_18062b420(system_memory_pool_ptr, 0x2000, 0x25);
+          mem_ptr = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x2000, 0x25);
           LOCK();
           is_allocated = *(int64_t *)(global_ptr + (int64_t)temp_counter * 2 + 2) == 0;
           if (is_allocated) {
@@ -611,7 +611,7 @@ void process_buffer_with_size(void* context, int size_param, uint64_t data_size)
           }
           else {
             if (mem_ptr != 0) {
-              FUN_18064e900();
+              CoreEngineMemoryPoolCleaner();
             }
             do {
             } while (*char_ptr != '\0');
@@ -700,7 +700,7 @@ void allocate_and_copy_buffer(void* context, uint *global_buffer, uint data_size
       block_index = (int)block_start;
       if (*(int64_t *)block_ptr == 0) {
         // 分配新的内存块
-        mem_ptr = FUN_18062b420(system_memory_pool_ptr, 0x2000, 0x25);
+        mem_ptr = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x2000, 0x25);
         LOCK();
         is_allocated = *(int64_t *)(global_buffer + (int64_t)block_index * 2 + 2) == 0;
         if (is_allocated) {
@@ -715,7 +715,7 @@ void allocate_and_copy_buffer(void* context, uint *global_buffer, uint data_size
         }
         else {
           if (mem_ptr != 0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
           }
           do {
           } while (*char_ptr != '\0');
@@ -905,7 +905,7 @@ void create_and_initialize_object(uint64_t param_1, uint64_t param_2, uint64_t p
   int64_t *instance_ptr;
   
   // 创建对象
-  object_ptr = FUN_18062b1e0(system_memory_pool_ptr, 0xf0, 8, 3, 0xfffffffffffffffe);
+  object_ptr = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0xf0, 8, 3, 0xfffffffffffffffe);
   instance_ptr = (int64_t *)FUN_18007f2f0(object_ptr);
   
   if (instance_ptr != (int64_t *)0x0) {

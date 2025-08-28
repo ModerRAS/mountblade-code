@@ -73,7 +73,7 @@
 #define ui_system_control_initializer FUN_18076b390
 
 /** UI系统资源清理器 */
-#define ui_system_resource_cleaner FUN_1808fc050
+#define ui_system_resource_cleaner SystemSecurityChecker
 
 /** UI系统状态查询器 */
 #define ui_system_state_query FUN_1808c6120

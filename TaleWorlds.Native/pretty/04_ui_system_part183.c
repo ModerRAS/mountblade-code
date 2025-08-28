@@ -495,7 +495,7 @@ uint64_t FUN_180774390(int64_t *param_1)
 {
   if (*(int64_t *)(*param_1 + 0x240) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(*param_1 + 0x240),
+    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(*param_1 + 0x240),
                   &unknown_var_3712_ptr,0x9a,1);
   }
   return 0;

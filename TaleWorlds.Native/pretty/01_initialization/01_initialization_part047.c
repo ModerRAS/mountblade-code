@@ -647,7 +647,7 @@ int64_t * clone_object(int64_t *source_object, int64_t *target_object)
   temp_ptr_2 = target_object;
   
   // 分配内存用于克隆对象
-  memory_block = FUN_18062b1e0(system_memory_pool_ptr, 0x300, 0x10, 9, 0, 0xfffffffffffffffe);
+  memory_block = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x300, 0x10, 9, 0, 0xfffffffffffffffe);
   cloned_object = (int64_t *)FUN_180075030(memory_block, 0, 0);
   *target_object = (int64_t)cloned_object;
   
@@ -914,7 +914,7 @@ void cleanup_object_resources(int64_t *object_ptr, uint64_t param_2, uint64_t pa
     
     if (temp_ptr_2[0x17] != 0) {
       // 错误：资源管理器状态异常
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     
     temp_ptr_2[0x17] = 0;

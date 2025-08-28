@@ -13,7 +13,7 @@ void Cleanup_Resource_Chain(int64_t context, uint64_t param_2, uint64_t param_3,
   if (resource_ptr != (uint64_t *)0x0) {
     FUN_18004b790(context, *resource_ptr, param_3, param_4, 0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(resource_ptr);
+    CoreEngineMemoryPoolCleaner(resource_ptr);
   }
   return;
 }
@@ -29,7 +29,7 @@ void Recursive_Resource_Cleanup(uint64_t context, uint64_t *resource_ptr)
   if (resource_ptr != (uint64_t *)0x0) {
     FUN_18004b790(context, *resource_ptr);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(resource_ptr);
+    CoreEngineMemoryPoolCleaner(resource_ptr);
   }
   return;
 }
@@ -46,7 +46,7 @@ void Cleanup_Resource_List(uint64_t context)
   
   FUN_18004b790(context, *unaff_RBX);
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngineMemoryPoolCleaner();
 }
 
 
@@ -127,7 +127,7 @@ void Format_String_To_Buffer(int64_t buffer_context, uint64_t format_str, uint64
            (int64_t)((int)char_index + 2));
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stack_cookie ^ (uint64_t)auStack_78);
+  SystemSecurityChecker(stack_cookie ^ (uint64_t)auStack_78);
 }
 
 
@@ -290,7 +290,7 @@ void Cleanup_Resource_Array(uint64_t context, uint64_t param_2, uint64_t param_3
         resource_item[4] = &system_data_buffer_ptr;
         if (resource_item[5] != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
         resource_item[5] = 0;
         *(int32_t *)(resource_item + 7) = 0;
@@ -301,10 +301,10 @@ void Cleanup_Resource_Array(uint64_t context, uint64_t param_2, uint64_t param_3
           *(int32_t *)(resource_item + 3) = 0;
           *resource_item = &system_state_ptr;
                     // WARNING: Subroutine does not return
-          FUN_18064e900(resource_item);
+          CoreEngineMemoryPoolCleaner(resource_item);
         }
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       *(uint64_t *)(*(int64_t *)(array_context + 0x30) + item_index * 8) = 0;
       item_index = item_index + 1;
@@ -411,7 +411,7 @@ void Iterate_Resource_Container_A(int64_t *container, uint64_t param_2, uint64_t
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngineMemoryPoolCleaner();
 }
 
 
@@ -435,7 +435,7 @@ void Iterate_Resource_Container_B(int64_t *container, uint64_t param_2, uint64_t
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngineMemoryPoolCleaner();
 }
 
 
@@ -463,7 +463,7 @@ void Cleanup_Thread_Local_Storage(int64_t tls_context)
     do {
       if (*(int64_t *)(current_offset + data_start) != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       *(uint64_t *)(current_offset + *(int64_t *)(tls_context + 8)) = 0;
       item_index = (int)max_offset + 1;
@@ -504,11 +504,11 @@ void Cleanup_Object_Manager(int64_t *object_manager)
   }
   if (*(int64_t *)(manager_data + 8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   _Mtx_destroy_in_situ();
                     // WARNING: Subroutine does not return
-  FUN_18064e900(manager_data);
+  CoreEngineMemoryPoolCleaner(manager_data);
 }
 
 
@@ -534,7 +534,7 @@ void Cleanup_Memory_Pool(int64_t memory_pool)
       pool_item = *(int64_t *)(heap_base + item_index * 8);
       if (pool_item != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900(pool_item);
+        CoreEngineMemoryPoolCleaner(pool_item);
       }
       *(uint64_t *)(heap_base + item_index * 8) = 0;
       item_index = item_index + 1;
@@ -553,7 +553,7 @@ void Cleanup_Memory_Pool(int64_t memory_pool)
         ref_count = (int *)(heap_base + 0x18);
         *ref_count = *ref_count + -1;
         if (*ref_count == 0) {
-          FUN_18064d630();
+          SystemDataCleaner();
           return;
         }
       }
@@ -586,7 +586,7 @@ void Cleanup_Object_Manager_List(int64_t *manager_list)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngineMemoryPoolCleaner();
 }
 
 
@@ -610,7 +610,7 @@ void Cleanup_Callback_List(int64_t *callback_list)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngineMemoryPoolCleaner();
 }
 
 
@@ -645,7 +645,7 @@ void Cleanup_Manager_Container(int64_t *manager_container)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngineMemoryPoolCleaner();
 }
 
 
@@ -671,7 +671,7 @@ void Cleanup_Allocator_Pool(int64_t allocator_pool)
       pool_item = *(int64_t *)(heap_base + item_index * 8);
       if (pool_item != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900(pool_item);
+        CoreEngineMemoryPoolCleaner(pool_item);
       }
       *(uint64_t *)(heap_base + item_index * 8) = 0;
       item_index = item_index + 1;
@@ -690,7 +690,7 @@ void Cleanup_Allocator_Pool(int64_t allocator_pool)
         ref_count = (int *)(heap_base + 0x18);
         *ref_count = *ref_count + -1;
         if (*ref_count == 0) {
-          FUN_18064d630();
+          SystemDataCleaner();
           return;
         }
       }
@@ -758,7 +758,7 @@ void Release_Memory_Block(uint64_t *memory_block)
       ref_count = (int *)(heap_info + 0x18);
       *ref_count = *ref_count + -1;
       if (*ref_count == 0) {
-        FUN_18064d630();
+        SystemDataCleaner();
         return;
       }
     }
@@ -792,7 +792,7 @@ void Iterate_Callback_Container(int64_t *callback_container, uint64_t param_2, u
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngineMemoryPoolCleaner();
 }
 
 
@@ -1078,7 +1078,7 @@ uint64_t * Initialize_Advanced_System_Object(uint64_t *system_object)
         lVar4 = 1;
 LAB_18004c7ef:
         puVar5 = (int32_t *)
-                 FUN_18062b420(system_memory_pool_ptr,lVar4 * 4,*(int8_t *)(param_1 + 0x24));
+                 CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,lVar4 * 4,*(int8_t *)(param_1 + 0x24));
         puVar9 = (int32_t *)param_1[0x22];
         puVar8 = (int32_t *)*plVar1;
       }
@@ -1094,7 +1094,7 @@ LAB_18004c7ef:
       *puVar5 = 0;
       if (*plVar1 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       *plVar1 = (int64_t)puVar5;
       param_1[0x22] = puVar5 + 1;
@@ -1127,7 +1127,7 @@ LAB_18004c7ef:
       *(int8_t *)((int64_t)param_1 + 0x1fc) = 0;
       param_1[0x7b] = 0;
       param_1[0x57] = 0;
-      lVar10 = FUN_18062b1e0(system_memory_pool_ptr,0xc,4,3);
+      lVar10 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xc,4,3);
       *(int8_t *)(lVar10 + 8) = 0;
       param_1[6] = lVar10;
       param_1[0x27] = 0;
@@ -1135,7 +1135,7 @@ LAB_18004c7ef:
       *(int32_t *)((int64_t)param_1 + 0x3c) = 0xffffffff;
       param_1[0x43] = 0;
       *(int32_t *)(param_1 + 0x26) = 0xffffffff;
-      puVar6 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x30,8,3);
+      puVar6 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x30,8,3);
       puVar6[1] = 0;
       puVar6[2] = 0;
       puVar6[3] = 0;
@@ -1180,7 +1180,7 @@ Initialize_Special_Object(uint64_t *object, uint64_t flags, uint64_t param_3, ui
 {
   if (object[2] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   *object = &system_handler2_ptr;
   *object = &system_handler1_ptr;
@@ -1201,7 +1201,7 @@ void Reset_Special_Object(uint64_t *object)
 {
   if (object[2] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   *object = &system_handler2_ptr;
   *object = &system_handler1_ptr;

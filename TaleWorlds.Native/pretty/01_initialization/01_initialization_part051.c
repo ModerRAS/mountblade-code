@@ -240,7 +240,7 @@ LAB_1800782e0:
   // 创建对象数据结构
   if ((*(int64_t *)(param_1 + 600) == 0) &&
      ((*(uint *)(*(int64_t *)(param_1 + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
-    data_pointer = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x58, 8, 9);
+    data_pointer = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x58, 8, 9);
     *(uint64_t *)((int64_t)data_pointer + 0x2c) = 0xffffffffffffffff;
     *(int32_t *)(data_pointer + 9) = 0xffffffff;
     *data_pointer = 0;
@@ -355,7 +355,7 @@ LAB_1800782e0:
   // 创建数据结构
   if ((*(int64_t *)(object_base + 600) == 0) &&
      ((*(uint *)(*(int64_t *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
-    data_pointer = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x58, 8, 9);
+    data_pointer = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x58, 8, 9);
     *(uint64_t *)((int64_t)data_pointer + 0x2c) = 0xffffffffffffffff;
     *(int32_t *)(data_pointer + 9) = 0xffffffff;
     *data_pointer = 0;
@@ -469,7 +469,7 @@ LAB_1800782e0:
   // 创建数据结构
   if ((*(int64_t *)(object_base + 600) == 0) &&
      ((*(uint *)(*(int64_t *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
-    data_pointer = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x58, 8, 9);
+    data_pointer = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x58, 8, 9);
     *(uint64_t *)((int64_t)data_pointer + 0x2c) = 0xffffffffffffffff;
     *(int32_t *)(data_pointer + 9) = 0xffffffff;
     *data_pointer = 0;
@@ -571,7 +571,7 @@ LAB_1800782e0:
   // 创建数据结构
   if ((*(int64_t *)(object_base + 600) == 0) &&
      ((*(uint *)(*(int64_t *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
-    data_pointer = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x58, 8, 9);
+    data_pointer = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x58, 8, 9);
     *(uint64_t *)((int64_t)data_pointer + 0x2c) = 0xffffffffffffffff;
     *(int32_t *)(data_pointer + 9) = 0xffffffff;
     *data_pointer = 0;
@@ -604,7 +604,7 @@ void FUN_1800783b0(void)
   
   // 检查是否需要创建数据结构
   if ((*(uint *)(*(int64_t *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0) {
-    data_pointer = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x58, 8, 9);
+    data_pointer = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x58, 8, 9);
     *(uint64_t *)((int64_t)data_pointer + 0x2c) = 0xffffffffffffffff;
     *(int32_t *)(data_pointer + 9) = 0xffffffff;
     *data_pointer = context_data;

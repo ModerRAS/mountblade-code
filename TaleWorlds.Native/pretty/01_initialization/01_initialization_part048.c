@@ -200,7 +200,7 @@ int ProcessObjectOperations(int64_t object_ptr, int64_t *operation_params)
         result_code = result_code + 1;
         if (*operation_params != 0) {
           stack_var1 = object_ptr;
-          FUN_18005ea90(*operation_params, &stack_var1);
+          SystemInitializer(*operation_params, &stack_var1);
         }
       }
     }
@@ -259,7 +259,7 @@ int ProcessObjectOperations(int64_t object_ptr, int64_t *operation_params)
   hash_entry_ptr1 = operation_params + 5;
   list_ptr = operation_params[7] - *hash_entry_ptr1;
   if ((uint64_t)(list_ptr / 0x18) < 0x100) {
-    temp_ptr = FUN_18062b420(system_memory_pool_ptr, 0x1800, (char)operation_params[8]);
+    temp_ptr = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x1800, (char)operation_params[8]);
     list_ptr = *hash_entry_ptr1;
     if (list_ptr != operation_params[6]) {
                     // WARNING: Subroutine does not return
@@ -267,7 +267,7 @@ int ProcessObjectOperations(int64_t object_ptr, int64_t *operation_params)
     }
     if (list_ptr != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     *hash_entry_ptr1 = temp_ptr;
     operation_params[6] = temp_ptr;
@@ -336,7 +336,7 @@ void CleanupObjectList(int64_t *object_list)
     *list_item = &system_data_buffer_ptr;  // 设置默认值
     if (list_item[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();  // 释放内存
+      CoreEngineMemoryPoolCleaner();  // 释放内存
     }
     list_item[1] = 0;
     *(int32_t *)(list_item + 3) = 0;
@@ -344,7 +344,7 @@ void CleanupObjectList(int64_t *object_list)
   }
   if (*object_list != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();  // 释放列表内存
+    CoreEngineMemoryPoolCleaner();  // 释放列表内存
   }
   return;
 }
@@ -398,7 +398,7 @@ uint64_t CleanupObjectState(int64_t object_ptr)
   if (cleanup_flag != 0) {
     if (*(int64_t *)(object_ptr + 0x1d8) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();  // 释放资源
+      CoreEngineMemoryPoolCleaner();  // 释放资源
     }
     *(uint64_t *)(object_ptr + 0x1d8) = 0;
     LOCK();
@@ -527,7 +527,7 @@ void ProcessDeviceOperations(int64_t *device_params)
   
 OPERATION_COMPLETE:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer);
+  SystemSecurityChecker(security_cookie ^ (uint64_t)stack_buffer);
 }
 
 
@@ -614,7 +614,7 @@ uint64_t ProcessDeviceStatusUpdate(int64_t device_ptr, int64_t context_ptr)
     if (operation_result < 1) {
       if (stack_param9 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       processing_complete = false;
       
@@ -645,7 +645,7 @@ uint64_t ProcessDeviceStatusUpdate(int64_t device_ptr, int64_t context_ptr)
             
             // 检查是否需要分配新的哈希表项
             if (*(int64_t *)(component_ptr + 0x3f70 + (uint64_t)hash_index * 8) == 0) {
-              component_ptr = FUN_18062b420(system_memory_pool_ptr, 0x2000, 0x25);
+              component_ptr = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x2000, 0x25);
               data_ptr = (int64_t *)(component_ptr + 0x3f70 + hash_value * 8);
               LOCK();
               entry_found = *data_ptr == 0;
@@ -661,7 +661,7 @@ uint64_t ProcessDeviceStatusUpdate(int64_t device_ptr, int64_t context_ptr)
               else {
                 if (component_ptr != 0) {
                     // WARNING: Subroutine does not return
-                  FUN_18064e900();
+                  CoreEngineMemoryPoolCleaner();
                 }
                 do {
                 } while (*(char *)(hash_value + 0x48 + (int64_t)counter_ptr) != '\0');
@@ -692,7 +692,7 @@ uint64_t ProcessDeviceStatusUpdate(int64_t device_ptr, int64_t context_ptr)
     
     if (stack_param9 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
   }
   return 0;

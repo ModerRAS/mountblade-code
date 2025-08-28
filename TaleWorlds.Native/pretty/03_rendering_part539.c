@@ -240,11 +240,11 @@ typedef struct {
 #define RenderingSystem_AdvancedDataFlowProcessor FUN_1805610e0
 #define RenderingSystem_DataStreamHandler FUN_180045f60
 #define RenderingSystem_StringComparator strcmp
-#define RenderingSystem_MemoryAllocator FUN_18062b1e0
-#define RenderingSystem_MemoryReallocator FUN_18062b420
-#define RenderingSystem_MemoryDeallocator FUN_18064e900
-#define RenderingSystem_DataValidator FUN_18005ea90
-#define RenderingSystem_StateFinalizer FUN_1808fc050
+#define RenderingSystem_MemoryAllocator CoreEngineMemoryPoolReallocator
+#define RenderingSystem_MemoryReallocator CoreEngineMemoryPoolAllocator
+#define RenderingSystem_MemoryDeallocator CoreEngineMemoryPoolCleaner
+#define RenderingSystem_DataValidator SystemInitializer
+#define RenderingSystem_StateFinalizer SystemSecurityChecker
 
 // 数据处理函数别名
 #define RenderingSystem_DataProcessor FUN_180046400

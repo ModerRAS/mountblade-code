@@ -44,7 +44,7 @@ void remove_and_release_object_reference(int64_t container_ptr, int64_t *object_
     (**(code **)(*object_ptr + 0x28))(object_ptr, 0);
     if (target_address != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900(target_address);
+      CoreEngineMemoryPoolCleaner(target_address);
     }
   }
   return;
@@ -66,7 +66,7 @@ void cleanup_global_object_references(void)
   (**(code **)(*global_object_ptr + 0x28))();
   if (object_handle != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(object_handle);
+    CoreEngineMemoryPoolCleaner(object_handle);
   }
   return;
 }

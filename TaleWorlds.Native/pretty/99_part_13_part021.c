@@ -219,7 +219,7 @@ LAB_1808b2880:
   param_1[6] = (int64_t)plVar8;
 LAB_1808b25af:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_50 ^ (uint64_t)auStack_c8);
+  SystemSecurityChecker(uStack_50 ^ (uint64_t)auStack_c8);
 }
 
 
@@ -951,7 +951,7 @@ LAB_1808b32c9:
   }
 LAB_1808b342e:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_c8 ^ (uint64_t)auStack_138);
+  SystemSecurityChecker(uStack_c8 ^ (uint64_t)auStack_138);
 }
 
 

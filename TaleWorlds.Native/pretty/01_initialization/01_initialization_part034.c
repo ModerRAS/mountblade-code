@@ -248,7 +248,7 @@ void ProcessStringAndMemoryManagement(int64_t *param_1, int64_t param_2, int64_t
     puStack_b8 = (uint64_t *)0x0;
     uStack_b0 = 0xf;
     uStack_c8 = 0;
-    FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_138);
+    SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_138);
   }
   
   // 处理字符串拼接
@@ -291,7 +291,7 @@ void ProcessStringAndMemoryManagement(int64_t *param_1, int64_t param_2, int64_t
   uStack_98._0_4_ = (int)uVar9;
   iVar2 = (int)uStack_98;
   uStack_98 = uVar9;
-  FUN_1806277c0(&puStack_108, uVar9 & 0xffffffff);
+  CoreEngineDataBufferProcessor(&puStack_108, uVar9 & 0xffffffff);
   
   // 复制字符串数据
   if (iVar2 != 0) {
@@ -337,7 +337,7 @@ void ProcessStringAndMemoryManagement(int64_t *param_1, int64_t param_2, int64_t
       lVar11 = 1;
 LAB_180064eed:
       // 扩展容器
-      lVar10 = FUN_18062b420(system_memory_pool_ptr, lVar11 << 5, (char)param_1[3]);
+      lVar10 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, lVar11 << 5, (char)param_1[3]);
       puVar4 = (uint64_t *)param_1[1];
       lVar12 = *param_1;
     }
@@ -375,7 +375,7 @@ LAB_180064eed:
       puVar4 = (uint64_t *)*param_1;
     }
     if (puVar4 != (uint64_t *)0x0) {
-      FUN_18064e900(puVar4);
+      CoreEngineMemoryPoolCleaner(puVar4);
     }
     
     // 更新容器指针
@@ -389,7 +389,7 @@ LAB_180064eed:
   // 清理临时资源
   puStack_108 = &global_var_3456_ptr;
   if (puStack_100 != (int8_t *)0x0) {
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   puStack_100 = (int8_t *)0x0;
   uStack_f0 = uStack_f0 & 0xffffffff00000000;
@@ -615,14 +615,14 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   // 清理临时字符串
   puStack_1e0 = &global_var_3456_ptr;
   if (puStack_1d8 != (void *)0x0) {
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   puStack_1d8 = (void *)0x0;
   uStack_1c8 = 0;
   puStack_1e0 = &global_var_720_ptr;
   puStack_1c0 = &global_var_3456_ptr;
   if (puStack_1b8 != (void *)0x0) {
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   puStack_1b8 = (void *)0x0;
   uStack_1a8 = 0;
@@ -672,14 +672,14 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   lVar9 = system_main_module_state;
   puStack_308 = &global_var_3456_ptr;
   if (puStack_300 != (void *)0x0) {
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   puStack_300 = (void *)0x0;
   uStack_2f0 = uStack_2f0 & 0xffffffff00000000;
   puStack_308 = &global_var_720_ptr;
   puStack_2e8 = &global_var_3456_ptr;
   if (puStack_2e0 != (void *)0x0) {
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   puStack_2e0 = (void *)0x0;
   uStack_2d0 = uStack_2d0 & 0xffffffff00000000;
@@ -744,7 +744,7 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
     puVar4 = puStack_220;
   }
   if (puVar19 != (uint64_t *)0x0) {
-    FUN_18064e900(puVar19);
+    CoreEngineMemoryPoolCleaner(puVar19);
   }
   
   // 处理剩余的日志条目
@@ -797,7 +797,7 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
         puVar17 = puStack_140;
         puVar18 = puStack_140;
         if (((int64_t)puStack_138 - (int64_t)puStack_140 & 0xffffffffffffffe0U) == 0x40) {
-          FUN_180627ae0(&puStack_2a0, puStack_140);
+          CoreEngineDataTransformer(&puStack_2a0, puStack_140);
           if (pcStack_298 != (char *)0x0) {
             // 清理字符串中的空白字符
             iStack_290 = 0;
@@ -860,7 +860,7 @@ LAB_180065a3e:
           // 清理临时字符串
           puStack_2a0 = &global_var_3456_ptr;
           if (pcStack_298 != (char *)0x0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
           }
           pcStack_298 = (char *)0x0;
           uStack_288 = 0;
@@ -875,7 +875,7 @@ LAB_180065a3e:
           }
         }
         if (puVar17 != (uint64_t *)0x0) {
-          FUN_18064e900(puVar17);
+          CoreEngineMemoryPoolCleaner(puVar17);
         }
         puVar19 = puVar19 + 4;
         uStack_2c8 = uStack_2c8 - 1;
@@ -899,13 +899,13 @@ LAB_180065a3e:
     if (puStack_260 != (uint64_t *)0x0) {
       puStack_260 = puVar18;
       puStack_258 = puVar17;
-      FUN_18064e900(puVar5);
+      CoreEngineMemoryPoolCleaner(puVar5);
     }
     puStack_240 = &global_var_3456_ptr;
     if (lStack_238 != 0) {
       puStack_260 = puVar18;
       puStack_258 = puVar17;
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     lStack_238 = 0;
     uStack_228 = 0;
@@ -937,7 +937,7 @@ LAB_180065a3e:
     System_DataHandler(&puStack_330, &global_var_552_ptr, puVar16);
     puStack_1a0 = &global_var_3456_ptr;
     if (puStack_198 != (void *)0x0) {
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     puStack_198 = (void *)0x0;
     uStack_188 = 0;
@@ -970,14 +970,14 @@ LAB_180065a3e:
   }
   if (puVar18 != (uint64_t *)0x0) {
     puStack_218 = puVar19;
-    FUN_18064e900(puVar18);
+    CoreEngineMemoryPoolCleaner(puVar18);
   }
   
   // 清理日志条目容器
   puStack_200 = &global_var_3456_ptr;
   if (puStack_1f8 != (void *)0x0) {
     puStack_218 = puVar19;
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   puStack_1f8 = (void *)0x0;
   uStack_1e8 = 0;
@@ -1000,12 +1000,12 @@ LAB_180065a3e:
       puStack_178 = (void *)0x0;
       uStack_168 = 0;
       puStack_180 = &global_var_720_ptr;
-      FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_368);
+      SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_368);
     }
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   puStack_218 = puVar19;
-  FUN_18064e900();
+  CoreEngineMemoryPoolCleaner();
 }
 
 /**
@@ -1099,9 +1099,9 @@ void ProcessStartupParametersAndInitialize(uint64_t param_1, int64_t param_2, ui
   plStack_b0 = *(int64_t **)(init_system_data_memory + 0x18);
   
   // 初始化参数缓冲区
-  FUN_180627ae0(&puStack_a8, system_main_module_state + 0x170, param_3, param_4, 0);
+  CoreEngineDataTransformer(&puStack_a8, system_main_module_state + 0x170, param_3, param_4, 0);
   iVar5 = uStack_98 + 3;
-  FUN_1806277c0(&puStack_a8, iVar5);
+  CoreEngineDataBufferProcessor(&puStack_a8, iVar5);
   
   // 设置参数类型标识
   *(int32_t *)((uint64_t)uStack_98 + lStack_a0) = 0x706d74;  // "tmp"
@@ -1123,13 +1123,13 @@ void ProcessStartupParametersAndInitialize(uint64_t param_1, int64_t param_2, ui
   
   // 执行引擎初始化
   pcVar1 = *(code **)(*plStack_b0 + 0x40);
-  uVar3 = FUN_180627ae0(&ppuStack_68, system_message_context + 0x28);
+  uVar3 = CoreEngineDataTransformer(&ppuStack_68, system_message_context + 0x28);
   (*pcVar1)(plStack_b0, uVar3);
   
   // 清理临时参数
   ppuStack_68 = (void **)&global_var_3456_ptr;
   if (pplStack_60 != (int64_t **)0x0) {
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   pplStack_60 = (int64_t **)0x0;
   uStack_50 = 0;
@@ -1137,11 +1137,11 @@ void ProcessStartupParametersAndInitialize(uint64_t param_1, int64_t param_2, ui
   
   // 执行引擎核心初始化
   pcVar1 = *(code **)(*plStack_b0 + 0x40);
-  uVar3 = FUN_180627ae0(&puStack_88, system_message_context + 0xe0);
+  uVar3 = CoreEngineDataTransformer(&puStack_88, system_message_context + 0xe0);
   (*pcVar1)(plStack_b0, uVar3);
   puStack_88 = &global_var_3456_ptr;
   if (lStack_80 != 0) {
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   lStack_80 = 0;
   uStack_70 = 0;
@@ -1160,7 +1160,7 @@ void ProcessStartupParametersAndInitialize(uint64_t param_1, int64_t param_2, ui
     (*pcVar1)(plStack_b0, param_1, uVar3);
     puStack_88 = &global_var_3456_ptr;
     if (lStack_80 != 0) {
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     lStack_80 = 0;
     uStack_70 = 0;
@@ -1171,7 +1171,7 @@ void ProcessStartupParametersAndInitialize(uint64_t param_1, int64_t param_2, ui
   FUN_18062c470(&puStack_a8);
   puStack_a8 = &global_var_3456_ptr;
   if (lStack_a0 != 0) {
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   return;
 }

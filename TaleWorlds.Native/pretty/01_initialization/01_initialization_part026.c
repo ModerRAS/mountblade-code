@@ -200,7 +200,7 @@ void initialize_system_structures(void)
   int64_t structure_ptr;
   
   // 分配系统结构体内存（1ae8字节）
-  structure_ptr = FUN_18062b420(system_memory_pool_ptr, 0x1ae8, 10);
+  structure_ptr = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x1ae8, 10);
   if (structure_ptr == 0) {
     return;
   }
@@ -268,12 +268,12 @@ void cleanup_resource_manager(int64_t *resource_ptr)
     // 调用对象的析构函数
     (**(code **)*resource_obj)(resource_obj, 0);
     // 释放资源对象内存
-    FUN_18064e900(resource_obj);
+    CoreEngineMemoryPoolCleaner(resource_obj);
   }
   
   // 清理相关联的资源
   if ((resource_ptr[6] != 0) && (*(int64_t *)(resource_ptr[6] + 0x10) != 0)) {
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   
   // 遍历并清理所有子块
@@ -282,7 +282,7 @@ void cleanup_resource_manager(int64_t *resource_ptr)
     status_flag = (char *)(next_block + 0x141);
     next_block = *(int64_t *)(next_block + 0x138);
     if (*status_flag != '\0') {
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
   }
   
@@ -308,7 +308,7 @@ void cleanup_resource_manager(int64_t *resource_ptr)
       ref_count = (int *)(block_info + 0x18);
       *ref_count = *ref_count - 1;
       if (*ref_count == 0) {
-        FUN_18064d630();  // 清理内存管理器
+        SystemDataCleaner();  // 清理内存管理器
         return;
       }
     }
@@ -355,7 +355,7 @@ void cleanup_object_instance(void)
   // 调用对象的析构函数
   (**(code **)*object_ptr)();
   // 释放对象内存
-  FUN_18064e900();
+  CoreEngineMemoryPoolCleaner();
 }
 
 
@@ -381,7 +381,7 @@ void cleanup_context_objects(void)
   // 检查上下文中的相关对象
   if ((*(int64_t *)(context_ptr + 0x30) != 0) &&
      (*(int64_t *)(*(int64_t *)(context_ptr + 0x30) + 0x10) != 0)) {
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   
   // 遍历并清理子块
@@ -390,7 +390,7 @@ void cleanup_context_objects(void)
     status_flag = (char *)(next_block + 0x141);
     next_block = *(int64_t *)(next_block + 0x138);
     if (*status_flag != '\0') {
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
   }
   
@@ -412,7 +412,7 @@ void cleanup_context_objects(void)
         ref_count = (int *)(block_info + 0x18);
         *ref_count = *ref_count - 1;
         if (*ref_count == 0) {
-          FUN_18064d630();  // 清理内存管理器
+          SystemDataCleaner();  // 清理内存管理器
           return;
         }
       }
@@ -456,7 +456,7 @@ void release_single_object(uint64_t *object_ptr)
       ref_count = (int *)(block_info + 0x18);
       *ref_count = *ref_count - 1;
       if (*ref_count == 0) {
-        FUN_18064d630();  // 引用计数为0，清理内存管理器
+        SystemDataCleaner();  // 引用计数为0，清理内存管理器
         return;
       }
     }
@@ -497,12 +497,12 @@ void cleanup_thread_resources(int64_t *thread_ptr)
     // 调用对象的析构函数
     (**(code **)*resource_obj)(resource_obj, 0);
     // 释放资源对象内存
-    FUN_18064e900(resource_obj);
+    CoreEngineMemoryPoolCleaner(resource_obj);
   }
   
   // 清理相关联的资源
   if ((thread_ptr[6] != 0) && (*(int64_t *)(thread_ptr[6] + 0x10) != 0)) {
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   
   // 遍历并清理所有子块
@@ -511,7 +511,7 @@ void cleanup_thread_resources(int64_t *thread_ptr)
     status_flag = (char *)(next_block + 0x141);
     next_block = *(int64_t *)(next_block + 0x138);
     if (*status_flag != '\0') {
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
   }
   
@@ -537,7 +537,7 @@ void cleanup_thread_resources(int64_t *thread_ptr)
       ref_count = (int *)(block_info + 0x18);
       *ref_count = *ref_count - 1;
       if (*ref_count == 0) {
-        FUN_18064d630();  // 清理内存管理器
+        SystemDataCleaner();  // 清理内存管理器
         return;
       }
     }
@@ -586,7 +586,7 @@ void release_context_object(int64_t context_ptr)
       ref_count = (int *)(block_info + 0x18);
       *ref_count = *ref_count - 1;
       if (*ref_count == 0) {
-        FUN_18064d630();  // 引用计数为0，清理内存管理器
+        SystemDataCleaner();  // 引用计数为0，清理内存管理器
         return;
       }
     }
@@ -627,10 +627,10 @@ void cleanup_object_array(int64_t array_ptr)
       if (current_obj != 0) {
         // 检查对象是否有关联的资源
         if (*(int64_t *)(current_obj + 0x18) != 0) {
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
         // 释放对象
-        FUN_18064e900(current_obj);
+        CoreEngineMemoryPoolCleaner(current_obj);
       }
       // 清空数组元素
       *(uint64_t *)(array_base + index * 8) = 0;
@@ -678,7 +678,7 @@ void cleanup_extended_array(int64_t array_ptr)
         ref_count = (int *)(block_info + 0x18);
         *ref_count = *ref_count - 1;
         if (*ref_count == 0) {
-          FUN_18064d630();  // 引用计数为0，清理内存管理器
+          SystemDataCleaner();  // 引用计数为0，清理内存管理器
           return;
         }
       }
@@ -828,7 +828,7 @@ void initialize_thread_manager(uint64_t *thread_manager_ptr)
   *(int32_t *)(thread_manager_ptr + 0x6b) = 0;  // 清空保留字段
   
   // 分配并初始化同步对象内存
-  sync_obj = FUN_18062b1e0(system_memory_pool_ptr, 0xc0, 8, 4);  // 分配192字节
+  sync_obj = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0xc0, 8, 4);  // 分配192字节
   memset(sync_obj, 0, 0xc0);  // 清空内存
 }
 
@@ -888,12 +888,12 @@ void process_engine_definition(uint64_t param_1, uint64_t param_2, uint64_t para
   stack_length = 0;
   
   // 分配引擎字符串内存
-  engine_string = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13, param_4, 0xfffffffffffffffe);
+  engine_string = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x10, 0x13, param_4, 0xfffffffffffffffe);
   *(int8_t *)engine_string = 0;  // 初始化字符串
   stack_ptr2 = engine_string;
   
   // 获取字符串长度
-  string_length = FUN_18064e990(engine_string);
+  string_length = CoreEngineSystemCleanup(engine_string);
   stack_param = CONCAT44(stack_param._4_4_, string_length);
   
   // 设置引擎定义字符串 "Engine definition"
@@ -909,7 +909,7 @@ void process_engine_definition(uint64_t param_1, uint64_t param_2, uint64_t para
   stack_ptr1 = &system_data_buffer_ptr;
   
   // 临时字符串内存（不返回）
-  FUN_18064e900(engine_string);
+  CoreEngineMemoryPoolCleaner(engine_string);
 }
 
 
@@ -966,7 +966,7 @@ void initialize_render_pipeline(uint64_t *render_pipeline_ptr, uint64_t param_2,
   
   // 检查并清理阶段19
   if (render_pipeline_ptr[0x19] != 0) {
-    FUN_18064e900();  // 清理阶段19
+    CoreEngineMemoryPoolCleaner();  // 清理阶段19
   }
   render_pipeline_ptr[0x19] = 0;
   *(int32_t *)(render_pipeline_ptr + 0x1b) = 0;  // 清空阶段19标志
@@ -977,16 +977,16 @@ void initialize_render_pipeline(uint64_t *render_pipeline_ptr, uint64_t param_2,
   
   // 检查并清理各个阶段
   if (render_pipeline_ptr[0xd] != 0) {  // 检查阶段13
-    FUN_18064e900();  // 清理阶段13
+    CoreEngineMemoryPoolCleaner();  // 清理阶段13
   }
   if (render_pipeline_ptr[9] != 0) {     // 检查阶段9
-    FUN_18064e900();  // 清理阶段9
+    CoreEngineMemoryPoolCleaner();  // 清理阶段9
   }
   if (render_pipeline_ptr[5] != 0) {     // 检查阶段5
-    FUN_18064e900();  // 清理阶段5
+    CoreEngineMemoryPoolCleaner();  // 清理阶段5
   }
   if (render_pipeline_ptr[1] != 0) {     // 检查阶段1
-    FUN_18064e900();  // 清理阶段1
+    CoreEngineMemoryPoolCleaner();  // 清理阶段1
   }
   
   return;
@@ -1040,7 +1040,7 @@ void cleanup_render_stage(int64_t stage_ptr, uint64_t param_2, uint64_t param_3,
   // 清理第一个缓冲区
   *(uint64_t *)(stage_ptr + 0x30) = &system_data_buffer_ptr;  // 设置默认缓冲区
   if (*(int64_t *)(stage_ptr + 0x38) != 0) {
-    FUN_18064e900();  // 释放缓冲区内存
+    CoreEngineMemoryPoolCleaner();  // 释放缓冲区内存
   }
   *(uint64_t *)(stage_ptr + 0x38) = 0;  // 清空缓冲区指针
   *(int32_t *)(stage_ptr + 0x48) = 0;  // 清空缓冲区标志
@@ -1049,7 +1049,7 @@ void cleanup_render_stage(int64_t stage_ptr, uint64_t param_2, uint64_t param_3,
   // 清理第二个缓冲区
   *(uint64_t *)(stage_ptr + 0x10) = &system_data_buffer_ptr;  // 设置默认缓冲区
   if (*(int64_t *)(stage_ptr + 0x18) != 0) {
-    FUN_18064e900();  // 释放缓冲区内存
+    CoreEngineMemoryPoolCleaner();  // 释放缓冲区内存
   }
   *(uint64_t *)(stage_ptr + 0x18) = 0;  // 清空缓冲区指针
   *(int32_t *)(stage_ptr + 0x28) = 0;  // 清空缓冲区标志
@@ -1082,12 +1082,12 @@ void process_device_definition(uint64_t param_1, uint64_t param_2, uint64_t para
   stack_length = 0;
   
   // 分配设备字符串内存
-  device_string = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x13, 0x13, param_4, 0xfffffffffffffffe);
+  device_string = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x13, 0x13, param_4, 0xfffffffffffffffe);
   *(int8_t *)device_string = 0;  // 初始化字符串
   stack_ptr2 = device_string;
   
   // 获取字符串长度
-  string_length = FUN_18064e990(device_string);
+  string_length = CoreEngineSystemCleanup(device_string);
   stack_param = CONCAT44(stack_param._4_4_, string_length);
   
   // 设置设备定义字符串 "Device development config"
@@ -1106,7 +1106,7 @@ void process_device_definition(uint64_t param_1, uint64_t param_2, uint64_t para
   stack_ptr1 = &system_data_buffer_ptr;
   
   // 临时字符串内存（不返回）
-  FUN_18064e900(device_string);
+  CoreEngineMemoryPoolCleaner(device_string);
 }
 
 

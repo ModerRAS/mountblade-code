@@ -655,7 +655,7 @@ void increment_counter_and_cleanup_resource(int64_t *manager_ptr, uint64_t clean
     *(int64_t *)(*resource_ptr + 8) = resource_ptr[1];
     *(int64_t *)resource_ptr[1] = *resource_ptr;
     // 释放资源内存
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   
   // 解锁资源管理器
@@ -677,7 +677,7 @@ void validate_resource_manager_integrity(int64_t *manager_ptr)
   // 检查资源管理器是否自引用（完整性检查）
   if ((int64_t *)*manager_ptr != manager_ptr) {
     // 如果不是自引用，说明资源管理器已损坏
-    FUN_18064e900((int64_t *)*manager_ptr);  // 终止程序
+    CoreEngineMemoryPoolCleaner((int64_t *)*manager_ptr);  // 终止程序
   }
   return;
 }
@@ -727,7 +727,7 @@ void process_resource_queue(int64_t *manager_ptr)
         *(int64_t *)(*queue_ptr + 8) = queue_ptr[1];
         *(int64_t *)queue_ptr[1] = *queue_ptr;
         // 释放资源内存
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       goto queue_processing_complete;
     }
@@ -761,7 +761,7 @@ void safe_call_resource_destructor(uint64_t *resource_ptr)
     (**(code **)*resource_ptr)(resource_ptr, 0);
     if (exception_handler != 0) {
       // 处理异常
-      FUN_18064e900(exception_handler);
+      CoreEngineMemoryPoolCleaner(exception_handler);
     }
   }
   return;
@@ -783,7 +783,7 @@ void execute_global_callback(void)
   (**(code **)*callback_ptr)();
   if (exception_handler != 0) {
     // 处理异常
-    FUN_18064e900(exception_handler);
+    CoreEngineMemoryPoolCleaner(exception_handler);
   }
   return;
 }
@@ -839,7 +839,7 @@ void cleanup_resource_node_extended(int64_t *manager_ptr)
     // 调用资源清理函数
     (**(code **)*resource_ptr)(resource_ptr, 0);
     // 清理操作不会返回，会跳转到错误处理
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
 }
 

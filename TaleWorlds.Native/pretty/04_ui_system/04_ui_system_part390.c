@@ -1394,7 +1394,7 @@ void ui_system_resource_manager_type1(int64_t ui_manager, uint64_t resource_data
     }
     
     // 警告：子函数不返回
-    FUN_1808fc050(stack_guard ^ (uint64_t)stack_protector_1);
+    SystemSecurityChecker(stack_guard ^ (uint64_t)stack_protector_1);
 }
 
 // ============================================================================
@@ -1434,7 +1434,7 @@ int64_t ui_system_hash_finder_type2(int64_t ui_manager, uint *search_key, char l
     }
     else {
         need_unlock = true;
-        FUN_180768360(hash_table);
+        SystemMemoryAllocator(hash_table);
     }
     
     // 哈希查找
@@ -1459,7 +1459,7 @@ int64_t ui_system_hash_finder_type2(int64_t ui_manager, uint *search_key, char l
 cleanup_and_return:
     if (need_unlock) {
         // 警告：子函数不返回
-        FUN_180768400(hash_table);
+        SystemMemoryManager(hash_table);
     }
     return result;
 }
@@ -1491,7 +1491,7 @@ int64_t ui_system_hash_finder_type3(uint64_t param_1, uint64_t param_2, char par
     }
     else {
         need_unlock = true;
-        FUN_180768360(hash_table);
+        SystemMemoryAllocator(hash_table);
     }
     
     // 哈希查找
@@ -1516,7 +1516,7 @@ int64_t ui_system_hash_finder_type3(uint64_t param_1, uint64_t param_2, char par
 cleanup_and_return:
     if (need_unlock) {
         // 警告：子函数不返回
-        FUN_180768400(hash_table);
+        SystemMemoryManager(hash_table);
     }
     return result;
 }
@@ -1565,7 +1565,7 @@ int64_t ui_system_hash_finder_type4(int64_t ui_manager, uint *search_key, char l
     }
     else {
         need_unlock = true;
-        FUN_180768360(hash_table);
+        SystemMemoryAllocator(hash_table);
     }
     
     // 哈希查找
@@ -1590,7 +1590,7 @@ int64_t ui_system_hash_finder_type4(int64_t ui_manager, uint *search_key, char l
 cleanup_and_return:
     if (need_unlock) {
         // 警告：子函数不返回
-        FUN_180768400(hash_table);
+        SystemMemoryManager(hash_table);
     }
     return result;
 }
@@ -1626,7 +1626,7 @@ int64_t ui_system_hash_finder_type5(int64_t param_1, uint64_t param_2, char para
     }
     else {
         need_unlock = true;
-        FUN_180768360(hash_table);
+        SystemMemoryAllocator(hash_table);
     }
     
     // 哈希查找
@@ -1652,7 +1652,7 @@ int64_t ui_system_hash_finder_type5(int64_t param_1, uint64_t param_2, char para
 cleanup_and_return:
     if (need_unlock) {
         // 警告：子函数不返回
-        FUN_180768400(hash_table);
+        SystemMemoryManager(hash_table);
     }
     return result;
 }
@@ -1689,7 +1689,7 @@ int64_t ui_system_hash_finder_type6(int64_t ui_manager, uint *search_key, char l
     }
     else {
         need_unlock = true;
-        FUN_180768360(hash_table);
+        SystemMemoryAllocator(hash_table);
     }
     
     // 哈希查找
@@ -1714,7 +1714,7 @@ int64_t ui_system_hash_finder_type6(int64_t ui_manager, uint *search_key, char l
 cleanup_and_return:
     if (need_unlock) {
         // 警告：子函数不返回
-        FUN_180768400(hash_table);
+        SystemMemoryManager(hash_table);
     }
     return result;
 }
@@ -1732,7 +1732,7 @@ cleanup_and_return:
 void ui_system_resource_manager_type2(void)
 {
     // 警告：子函数不返回
-    FUN_180768400();
+    SystemMemoryManager();
 }
 
 /**
@@ -1749,7 +1749,7 @@ uint64_t ui_system_status_query_type1(void)
     
     if (status_flag != '\0') {
         // 警告：子函数不返回
-        FUN_180768400();
+        SystemMemoryManager();
     }
     return *(uint64_t *)(context_ptr + 0x18);
 }
@@ -1781,7 +1781,7 @@ int64_t ui_system_hash_finder_type7(uint64_t param_1, uint64_t param_2, char par
     }
     else {
         need_unlock = true;
-        FUN_180768360(hash_table);
+        SystemMemoryAllocator(hash_table);
     }
     
     // 哈希查找
@@ -1806,7 +1806,7 @@ int64_t ui_system_hash_finder_type7(uint64_t param_1, uint64_t param_2, char par
 cleanup_and_return:
     if (need_unlock) {
         // 警告：子函数不返回
-        FUN_180768400(hash_table);
+        SystemMemoryManager(hash_table);
     }
     return result;
 }
@@ -1820,7 +1820,7 @@ cleanup_and_return:
 void ui_system_resource_manager_type3(void)
 {
     // 警告：子函数不返回
-    FUN_180768400();
+    SystemMemoryManager();
 }
 
 /**
@@ -1837,7 +1837,7 @@ uint64_t ui_system_status_query_type2(void)
     
     if (status_flag != '\0') {
         // 警告：子函数不返回
-        FUN_180768400();
+        SystemMemoryManager();
     }
     return *(uint64_t *)(context_ptr + 0x18);
 }

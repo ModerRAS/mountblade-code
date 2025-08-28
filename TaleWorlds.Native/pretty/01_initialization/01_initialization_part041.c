@@ -1057,12 +1057,12 @@ void perform_emergency_exit(uint64_t param1, uint64_t error_message)
 #define error_dialog_format unknown_var_6936
 
 // 重命名的函数调用
-#define trigger_critical_error FUN_18064e900
-#define trigger_memory_error FUN_18064e900
+#define trigger_critical_error CoreEngineMemoryPoolCleaner
+#define trigger_memory_error CoreEngineMemoryPoolCleaner
 #define check_process_state FUN_1800f9600
 #define cleanup_thread_context FUN_18005dab0
 #define initialize_error_buffer FUN_1800f9ce0
-#define initialize_output_channels FUN_1806277c0
+#define initialize_output_channels CoreEngineDataBufferProcessor
 #define configure_existing_output FUN_1802265d0
 #define format_error_message System_DataHandler
 #define log_error_message FUN_180062380
@@ -1079,10 +1079,10 @@ void perform_emergency_exit(uint64_t param1, uint64_t error_message)
 #define trigger_debug_break FUN_180066320
 #define cleanup_process_state FUN_1800f96b0
 #define perform_final_cleanup FUN_180055f70
-#define allocate_error_report_buffer FUN_18062b420
-#define format_error_title FUN_18064e990
-#define free_error_report_buffer FUN_18064e900
-#define build_error_description FUN_180627ae0
+#define allocate_error_report_buffer CoreEngineMemoryPoolAllocator
+#define format_error_title CoreEngineSystemCleanup
+#define free_error_report_buffer CoreEngineMemoryPoolCleaner
+#define build_error_description CoreEngineDataTransformer
 #define generate_error_report FUN_180066320
 #define perform_emergency_exit FUN_180055f70
 #define perform_system_error_check FUN_1800f93e0

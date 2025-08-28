@@ -262,7 +262,7 @@ void ui_system_state_controller(int64_t param_1)
     
 cleanup_complete:
     // 完成清理操作
-    FUN_1808fc050(*(ui_system_uint64*)(system_context + 0x70) ^ (ui_system_uint64)&stack_var1);
+    SystemSecurityChecker(*(ui_system_uint64*)(system_context + 0x70) ^ (ui_system_uint64)&stack_var1);
 }
 
 /**
@@ -280,7 +280,7 @@ void ui_system_empty_function_1(void)
     int64_t system_context;
     
     // 系统清理操作
-    FUN_1808fc050(*(ui_system_uint64*)(system_context + 0x70) ^ (ui_system_uint64)&system_context);
+    SystemSecurityChecker(*(ui_system_uint64*)(system_context + 0x70) ^ (ui_system_uint64)&system_context);
 }
 
 /**
@@ -298,7 +298,7 @@ void ui_system_empty_function_2(void)
     int64_t system_context;
     
     // 系统清理操作
-    FUN_1808fc050(*(ui_system_uint64*)(system_context + 0x70) ^ (ui_system_uint64)&system_context);
+    SystemSecurityChecker(*(ui_system_uint64*)(system_context + 0x70) ^ (ui_system_uint64)&system_context);
 }
 
 /**
