@@ -79,6 +79,7 @@
 // 辅助函数别名
 #define DataStructureComparator func_0x0001800da750
 #define MemoryAllocator FUN_18062b420
+#define DataStructureValidator func_0x0001800ba3b0
 #define SystemInitializer FUN_1800e9790
 #define MemoryManager FUN_1800e9540
 #define MemoryPoolInitializer FUN_1800e9360
@@ -924,7 +925,7 @@ void ResourceManager_Handler(longlong param_1, longlong *param_2, uint64_t param
   strcpy_s(auStack_b0,0x80,puVar3);
   lVar4 = *param_2;
   if (lVar4 != 0) {
-    cVar1 = func_0x0001800ba3b0(lVar4 + 0x108,param_3);
+    cVar1 = DataStructureValidator(lVar4 + 0x108, param_3);
     if ((cVar1 != '\0') && (*(int *)(lVar4 + 0x380) != 0)) goto LAB_1800db339;
   }
   plVar2 = (longlong *)ResourceAllocator(system_resource_state, &plStack_d8, &puStack_c8, param_3);
