@@ -552,8 +552,10 @@ undefined8 FUN_18021a590(undefined8 param_1,ulonglong param_2,undefined8 param_3
 
 
 
-// 函数: void FUN_18021a600(longlong param_1)
-void FUN_18021a600(longlong param_1)
+// 函数: void process_string_config_file(longlong config_ptr)
+// 功能: 处理字符串配置文件，读取和解析配置内容
+// 参数: config_ptr - 配置指针
+void process_string_config_file(longlong config_ptr)
 
 {
   byte bVar1;
@@ -676,8 +678,10 @@ LAB_18021a863:
 
 
 
-// 函数: void FUN_18021aa60(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18021aa60(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void load_string_data_from_file(longlong data_ptr,undefined8 unused1,undefined8 unused2,undefined8 unused3)
+// 功能: 从文件加载字符串数据，处理二进制数据格式
+// 参数: data_ptr - 数据指针, unused1 - 未使用参数1, unused2 - 未使用参数2, unused3 - 未使用参数3
+void load_string_data_from_file(longlong data_ptr,undefined8 unused1,undefined8 unused2,undefined8 unused3)
 
 {
   ulonglong uVar1;
@@ -819,76 +823,82 @@ void FUN_18021aa60(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-longlong * FUN_18021ad90(longlong param_1,longlong *param_2)
+// 函数: longlong * get_string_container_pointer(longlong container_ptr,longlong *result_ptr)
+// 功能: 获取字符串容器指针，并调用相关函数
+// 参数: container_ptr - 容器指针, result_ptr - 结果指针
+longlong * get_string_container_pointer(longlong container_ptr,longlong *result_ptr)
 
 {
   longlong *plVar1;
   
-  plVar1 = *(longlong **)(param_1 + 0x1e8);
-  *param_2 = (longlong)plVar1;
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x28))();
+  container_data = *(longlong **)(container_ptr + 0x1e8);
+  *result_ptr = (longlong)container_data;
+  if (container_data != (longlong *)0x0) {
+    (**(code **)(*container_data + 0x28))();
   }
-  return param_2;
+  return result_ptr;
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18021ade0(longlong param_1,longlong param_2)
+// 函数: int find_string_in_container(longlong container_ptr,longlong string_ptr)
+// 功能: 在字符串容器中查找指定字符串，返回索引
+// 参数: container_ptr - 容器指针, string_ptr - 字符串指针
+int find_string_in_container(longlong container_ptr,longlong string_ptr)
 
 {
-  byte *pbVar1;
-  int iVar2;
-  longlong lVar3;
-  byte *pbVar4;
-  undefined *puVar5;
-  int iVar6;
-  int iVar7;
-  int iVar8;
-  longlong lVar9;
-  longlong *plVar10;
+  byte *search_char;
+  int search_length;
+  longlong cached_result;
+  byte *container_string;
+  undefined *error_handler;
+  int container_length;
+  int cmp_result;
+  int current_index;
+  longlong string_offset;
+  longlong *entry_ptr;
   
-  lVar3 = FUN_18020fa10(*(undefined8 *)(param_1 + 0x1f8));
-  if (lVar3 != 0) {
-    return *(int *)(lVar3 + 0x54);
+  cached_result = FUN_18020fa10(*(undefined8 *)(container_ptr + 0x1f8));
+  if (cached_result != 0) {
+    return *(int *)(cached_result + 0x54);
   }
-  iVar8 = 0;
-  iVar6 = (int)((*(longlong *)(param_1 + 0x268) - *(longlong *)(param_1 + 0x260)) / 0x98);
-  if (0 < iVar6) {
-    iVar2 = *(int *)(param_2 + 0x10);
-    lVar3 = 0;
-    plVar10 = (longlong *)(*(longlong *)(param_1 + 0x260) + 8);
+  current_index = 0;
+  search_length = (int)((*(longlong *)(container_ptr + 0x268) - *(longlong *)(container_ptr + 0x260)) / 0x98);
+  if (0 < search_length) {
+    search_length = *(int *)(string_ptr + 0x10);
+    cached_result = 0;
+    entry_ptr = (longlong *)(*(longlong *)(container_ptr + 0x260) + 8);
     do {
-      iVar7 = (int)plVar10[1];
-      if (iVar2 == iVar7) {
-        if (iVar2 != 0) {
-          pbVar4 = *(byte **)(param_2 + 8);
-          lVar9 = *plVar10 - (longlong)pbVar4;
+      container_length = (int)entry_ptr[1];
+      if (search_length == container_length) {
+        if (search_length != 0) {
+          container_string = *(byte **)(string_ptr + 8);
+          string_offset = *entry_ptr - (longlong)container_string;
           do {
-            pbVar1 = pbVar4 + lVar9;
-            iVar7 = (uint)*pbVar4 - (uint)*pbVar1;
-            if (iVar7 != 0) break;
-            pbVar4 = pbVar4 + 1;
-          } while (*pbVar1 != 0);
+            search_char = container_string + string_offset;
+            container_length = (uint)*container_string - (uint)*search_char;
+            if (container_length != 0) break;
+            container_string = container_string + 1;
+          } while (*search_char != 0);
         }
 LAB_18021ae8e:
-        if (iVar7 == 0) {
-          return iVar8;
+        if (container_length == 0) {
+          return current_index;
         }
       }
-      else if (iVar2 == 0) goto LAB_18021ae8e;
-      iVar8 = iVar8 + 1;
-      lVar3 = lVar3 + 1;
-      plVar10 = plVar10 + 0x13;
-    } while (lVar3 < iVar6);
+      else if (search_length == 0) goto LAB_18021ae8e;
+      current_index = current_index + 1;
+      cached_result = cached_result + 1;
+      entry_ptr = entry_ptr + 0x13;
+    } while (cached_result < search_length);
   }
-  puVar5 = &DAT_18098bc73;
-  if (*(undefined **)(param_2 + 8) != (undefined *)0x0) {
-    puVar5 = *(undefined **)(param_2 + 8);
+  error_handler = &DAT_18098bc73;
+  if (*(undefined **)(string_ptr + 8) != (undefined *)0x0) {
+    error_handler = *(undefined **)(string_ptr + 8);
   }
-  FUN_1800623b0(_DAT_180c86928,0,0x1000000000000,3,&UNK_180a108d0,puVar5);
+  FUN_1800623b0(_DAT_180c86928,0,0x1000000000000,3,&UNK_180a108d0,error_handler);
   return -1;
 }
 
@@ -896,7 +906,10 @@ LAB_18021ae8e:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18021ae2a(longlong param_1,undefined8 param_2,undefined8 param_3,longlong param_4)
+// 函数: int find_string_in_container_ex(longlong size_param,undefined8 unused1,undefined8 unused2,longlong container_base)
+// 功能: 扩展版本的字符串查找函数，处理不同大小的容器
+// 参数: size_param - 大小参数, unused1 - 未使用参数1, unused2 - 未使用参数2, container_base - 容器基地址
+int find_string_in_container_ex(longlong size_param,undefined8 unused1,undefined8 unused2,longlong container_base)
 
 {
   byte *pbVar1;
@@ -953,67 +966,72 @@ LAB_18021ae8e:
 
 
 
-undefined4 FUN_18021aef5(void)
+// 函数: undefined4 get_string_container_state(void)
+// 功能: 获取字符串容器状态（返回寄存器值）
+undefined4 get_string_container_state(void)
 
 {
-  undefined4 unaff_EBX;
+  undefined4 container_state;
   
-  return unaff_EBX;
+  return container_state;
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18021af10(longlong param_1,longlong param_2)
+// 函数: int find_string_in_alternative_container(longlong container_ptr,longlong string_ptr)
+// 功能: 在替代容器中查找字符串，使用不同的容器结构
+// 参数: container_ptr - 容器指针, string_ptr - 字符串指针
+int find_string_in_alternative_container(longlong container_ptr,longlong string_ptr)
 
 {
-  byte *pbVar1;
-  int iVar2;
-  byte *pbVar3;
-  undefined *puVar4;
-  int iVar5;
-  int iVar6;
-  int iVar7;
-  longlong lVar8;
-  longlong *plVar9;
-  longlong lVar10;
+  byte *search_char;
+  int search_length;
+  byte *container_string;
+  undefined *error_handler;
+  int container_length;
+  int cmp_result;
+  int current_index;
+  longlong string_offset;
+  longlong *entry_ptr;
+  longlong entry_count;
   
-  iVar7 = 0;
-  iVar5 = (int)((*(longlong *)(param_1 + 0x288) - *(longlong *)(param_1 + 0x280)) / 0x28);
-  if (0 < iVar5) {
-    iVar2 = *(int *)(param_2 + 0x10);
-    lVar10 = 0;
-    plVar9 = (longlong *)(*(longlong *)(param_1 + 0x280) + 8);
+  current_index = 0;
+  entry_count = (int)((*(longlong *)(container_ptr + 0x288) - *(longlong *)(container_ptr + 0x280)) / 0x28);
+  if (0 < entry_count) {
+    search_length = *(int *)(string_ptr + 0x10);
+    string_offset = 0;
+    entry_ptr = (longlong *)(*(longlong *)(container_ptr + 0x280) + 8);
     do {
-      iVar6 = (int)plVar9[1];
-      if (iVar2 == iVar6) {
-        if (iVar2 != 0) {
-          pbVar3 = *(byte **)(param_2 + 8);
-          lVar8 = *plVar9 - (longlong)pbVar3;
+      container_length = (int)entry_ptr[1];
+      if (search_length == container_length) {
+        if (search_length != 0) {
+          container_string = *(byte **)(string_ptr + 8);
+          string_offset = *entry_ptr - (longlong)container_string;
           do {
-            pbVar1 = pbVar3 + lVar8;
-            iVar6 = (uint)*pbVar3 - (uint)*pbVar1;
-            if (iVar6 != 0) break;
-            pbVar3 = pbVar3 + 1;
-          } while (*pbVar1 != 0);
+            search_char = container_string + string_offset;
+            container_length = (uint)*container_string - (uint)*search_char;
+            if (container_length != 0) break;
+            container_string = container_string + 1;
+          } while (*search_char != 0);
         }
 LAB_18021af9e:
-        if (iVar6 == 0) {
-          return iVar7;
+        if (container_length == 0) {
+          return current_index;
         }
       }
-      else if (iVar2 == 0) goto LAB_18021af9e;
-      iVar7 = iVar7 + 1;
-      lVar10 = lVar10 + 1;
-      plVar9 = plVar9 + 5;
-    } while (lVar10 < iVar5);
+      else if (search_length == 0) goto LAB_18021af9e;
+      current_index = current_index + 1;
+      string_offset = string_offset + 1;
+      entry_ptr = entry_ptr + 5;
+    } while (string_offset < entry_count);
   }
-  puVar4 = &DAT_18098bc73;
-  if (*(undefined **)(param_2 + 8) != (undefined *)0x0) {
-    puVar4 = *(undefined **)(param_2 + 8);
+  error_handler = &DAT_18098bc73;
+  if (*(undefined **)(string_ptr + 8) != (undefined *)0x0) {
+    error_handler = *(undefined **)(string_ptr + 8);
   }
-  FUN_1800623b0(_DAT_180c86928,0,0x1000000000000,3,&UNK_180a10988,puVar4);
+  FUN_1800623b0(_DAT_180c86928,0,0x1000000000000,3,&UNK_180a10988,error_handler);
   return -1;
 }
 
@@ -1021,8 +1039,9 @@ LAB_18021af9e:
 
 
 
-// 函数: void FUN_18021b070(void)
-void FUN_18021b070(void)
+// 函数: void initialize_string_system_module(void)
+// 功能: 初始化字符串系统模块
+void initialize_string_system_module(void)
 
 {
   FUN_1800f0e70();
@@ -1034,8 +1053,9 @@ void FUN_18021b070(void)
 
 
 
-// 函数: void FUN_18021b090(void)
-void FUN_18021b090(void)
+// 函数: void cleanup_string_system_module(void)
+// 功能: 清理字符串系统模块
+void cleanup_string_system_module(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -1046,8 +1066,9 @@ void FUN_18021b090(void)
 
 
 
-// 函数: void FUN_18021b4f0(void)
-void FUN_18021b4f0(void)
+// 函数: void shutdown_string_system(void)
+// 功能: 关闭字符串系统
+void shutdown_string_system(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -1058,8 +1079,9 @@ void FUN_18021b4f0(void)
 
 
 
-// 函数: void FUN_18021b9c0(void)
-void FUN_18021b9c0(void)
+// 函数: void terminate_string_services(void)
+// 功能: 终止字符串服务
+void terminate_string_services(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -1070,8 +1092,9 @@ void FUN_18021b9c0(void)
 
 
 
-// 函数: void FUN_18021bc50(void)
-void FUN_18021bc50(void)
+// 函数: void finalize_string_operations(void)
+// 功能: 完成字符串操作
+void finalize_string_operations(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -1084,8 +1107,9 @@ void FUN_18021bc50(void)
 
 
 
-// 函数: void FUN_18021bff0(void)
-void FUN_18021bff0(void)
+// 函数: void initialize_string_manager(void)
+// 功能: 初始化字符串管理器
+void initialize_string_manager(void)
 
 {
   undefined4 uVar1;
@@ -1150,8 +1174,9 @@ void FUN_18021bff0(void)
 
 
 
-// 函数: void FUN_18021cb50(void)
-void FUN_18021cb50(void)
+// 函数: void deactivate_string_system(void)
+// 功能: 停用字符串系统
+void deactivate_string_system(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -1162,8 +1187,9 @@ void FUN_18021cb50(void)
 
 
 
-// 函数: void FUN_18021cf80(void)
-void FUN_18021cf80(void)
+// 函数: void destroy_string_system(void)
+// 功能: 销毁字符串系统
+void destroy_string_system(void)
 
 {
                     // WARNING: Subroutine does not return
