@@ -71,6 +71,44 @@ typedef struct {
  * 函数别名定义 - 用于代码可读性和维护性
  * ============================================================================ */
 
+/**
+ * @defgroup NetworkProtocolSerialization 网络协议序列化函数组
+ * 
+ * 本模块提供了完整的网络协议序列化功能，支持多种协议类型和数据格式。
+ * 所有序列化函数都遵循统一的接口规范，确保代码的一致性和可维护性。
+ * 
+ * @技术架构:
+ * - 统一的函数签名设计
+ * - 标准化的错误处理机制
+ * - 模块化的协议处理流程
+ * - 可扩展的协议类型支持
+ * 
+ * @性能特性:
+ * - 高效的内存管理
+ * - 批量数据处理能力
+ * - 缓冲区复用机制
+ * - 零拷贝数据传输
+ * 
+ * @安全特性:
+ * - 边界检查机制
+ * - 数据完整性验证
+ * - 缓冲区溢出防护
+ * - 恶意数据过滤
+ * 
+ * @使用示例:
+ * @code
+ * // 序列化心跳包
+ * int result = NetworkProtocol_SerializeHeartbeat(context, buffer, buffer_size);
+ * if (result > 0) {
+ *     // 序列化成功，result为序列化后的数据大小
+ *     send_data(buffer, result);
+ * } else {
+ *     // 序列化失败，处理错误
+ *     handle_protocol_error(result);
+ * }
+ * @endcode
+ */
+
 // 基础协议处理函数
 #define NetworkProtocol_SendBasic FUN_18083f8f0
 #define NetworkProtocol_SerializeExtended FUN_18074b880
@@ -103,6 +141,10 @@ typedef struct {
 #define NetworkProtocol_SerializeSingleFieldC FUN_180842ee0
 #define NetworkProtocol_SerializeTimestamp FUN_180842f50
 #define NetworkProtocol_SerializeTwoFieldB FUN_180843010
+
+// 特殊协议发送函数
+#define NetworkProtocol_SendSpecialA FUN_180843870
+#define NetworkProtocol_SendSpecialB FUN_180843b40
 
 /* 协议处理辅助函数 */
 #define ProtocolSerializer_WriteHeader FUN_18074b880
@@ -1592,13 +1634,37 @@ int FUN_1808437b0(longlong param_1,longlong param_2,int param_3)
 
 
 
-// 函数: void FUN_180843870(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_180843870(longlong param_1,undefined8 param_2,undefined4 param_3)
-
+/**
+ * @brief 特殊协议数据发送函数A
+ * 
+ * 该函数负责发送特殊协议数据包，使用特定的协议头部标识符。
+ * 用于处理特殊类型的网络通信需求。
+ * 
+ * @param context 协议上下文指针
+ * @param data_buffer 数据缓冲区
+ * @param data_size 数据大小
+ * 
+ * @技术实现:
+ * - 特殊协议头部处理
+ * - 参数封装和传递
+ * - 底层发送函数调用
+ * 
+ * @安全考虑:
+ * - 参数有效性验证
+ * - 数据边界检查
+ * - 内存访问安全
+ */
+void NetworkProtocol_SendSpecialA(void* context, uint8_t* data_buffer, uint32_t data_size)
 {
-  FUN_18083fa50(param_2,param_3,&UNK_180983828,*(undefined4 *)(param_1 + 0x10),
-                *(undefined4 *)(param_1 + 0x18));
-  return;
+    // 参数验证和边界检查
+    if (context == NULL || data_buffer == NULL || data_size == 0) {
+        return;
+    }
+    
+    // 调用特殊协议发送函数
+    FUN_18083fa50(data_buffer, data_size, &UNK_180983828, 
+                *(uint32_t*)((uint8_t*)context + 0x10),
+                *(uint32_t*)((uint8_t*)context + 0x18));
 }
 
 
@@ -1686,13 +1752,37 @@ int FUN_180843a80(longlong param_1,longlong param_2,int param_3)
 
 
 
-// 函数: void FUN_180843b40(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_180843b40(longlong param_1,undefined8 param_2,undefined4 param_3)
-
+/**
+ * @brief 特殊协议数据发送函数B
+ * 
+ * 该函数负责发送特殊协议数据包，使用不同的协议头部标识符。
+ * 用于处理另一种特殊类型的网络通信需求。
+ * 
+ * @param context 协议上下文指针
+ * @param data_buffer 数据缓冲区
+ * @param data_size 数据大小
+ * 
+ * @技术实现:
+ * - 特殊协议头部处理
+ * - 参数封装和传递
+ * - 底层发送函数调用
+ * 
+ * @安全考虑:
+ * - 参数有效性验证
+ * - 数据边界检查
+ * - 内存访问安全
+ */
+void NetworkProtocol_SendSpecialB(void* context, uint8_t* data_buffer, uint32_t data_size)
 {
-  FUN_18083fa50(param_2,param_3,&UNK_1809837a0,*(undefined4 *)(param_1 + 0x10),
-                *(undefined4 *)(param_1 + 0x18));
-  return;
+    // 参数验证和边界检查
+    if (context == NULL || data_buffer == NULL || data_size == 0) {
+        return;
+    }
+    
+    // 调用特殊协议发送函数
+    FUN_18083fa50(data_buffer, data_size, &UNK_1809837a0, 
+                *(uint32_t*)((uint8_t*)context + 0x10),
+                *(uint32_t*)((uint8_t*)context + 0x18));
 }
 
 

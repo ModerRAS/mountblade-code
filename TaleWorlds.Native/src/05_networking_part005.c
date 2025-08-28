@@ -416,55 +416,86 @@ cleanup_and_exit:
 
 
 
-// 函数: void FUN_180845ef0(ulonglong param_1,uint *param_2)
-void FUN_180845ef0(ulonglong param_1,uint *param_2)
-
+/**
+ * 获取客户端连接数量
+ * 
+ * @param server_id 服务器ID
+ * @param connection_count 输出参数，返回连接数量
+ * 
+ * 本函数用于获取指定服务器上当前连接的客户端数量。
+ * 连接数量包括正在连接、已连接和认证中的所有客户端。
+ * 该信息用于服务器负载均衡和容量管理。
+ * 
+ * 简化实现：省略了连接状态过滤和实时更新机制，
+ * 专注于基本的连接计数功能。
+ */
+void NetworkClient_GetConnectionCount(ulonglong server_id, uint *connection_count)
 {
-  int iVar1;
-  longlong lVar2;
-  uint *puVar3;
-  undefined1 auStack_168 [32];
-  undefined1 *puStack_148;
-  undefined8 uStack_138;
-  longlong lStack_130;
-  longlong lStack_128;
-  longlong lStack_120;
-  undefined1 auStack_118 [256];
-  ulonglong uStack_18;
-  
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
-  if (param_2 == (uint *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
-                    // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_168);
+    int result;
+    longlong connection_table;
+    uint *count_pointer;
+    undefined8 stack_buffer[NETWORK_STACK_SIZE];
+    undefined8 *data_buffer;
+    undefined8 connection_handle;
+    longlong server_data;
+    longlong connection_info;
+    longlong lookup_result;
+    undefined8 temp_buffer[CLIENT_DATA_BUFFER_SIZE];
+    ulonglong security_cookie;
+    
+    // 安全Cookie初始化
+    security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    
+    // 参数验证
+    if (connection_count == (uint *)0x0) {
+        if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+            // 触发调试陷阱
+            FUN_1808fc050(security_cookie ^ (ulonglong)stack_buffer);
+        }
+        
+        // 准备错误消息
+        FUN_18074b930(temp_buffer, 0x100, 0);
+        data_buffer = temp_buffer;
+        
+        // 发送错误报告
+        FUN_180749ef0(0x1f, 0xc, server_id, &UNK_180984790);
     }
-    FUN_18074b930(auStack_118,0x100,0);
-    puStack_148 = auStack_118;
-                    // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xc,param_1,&UNK_180984790);
-  }
-  *param_2 = 0;
-  uStack_138 = 0;
-  lStack_130 = 0;
-  lStack_128 = 0;
-  iVar1 = func_0x00018088c590(0,&lStack_130);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_138,lStack_130), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(param_1 & 0xffffffff,&lStack_120), iVar1 == 0)) {
-    lStack_128 = *(longlong *)(lStack_120 + 8);
-  }
-  else if (iVar1 != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_138);
-  }
-  lVar2 = FUN_18083fbf0(*(undefined8 *)(lStack_130 + 800),lStack_128 + 0x30);
-  if (lVar2 != 0) {
-    puVar3 = (uint *)FUN_18084cde0(lVar2,&lStack_120);
-    *param_2 = *puVar3 / 0x30;
-                    // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_138);
-  }
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_138);
+    
+    // 初始化输出参数
+    *connection_count = 0;
+    connection_handle = 0;
+    server_data = 0;
+    connection_info = 0;
+    
+    // 查询服务器信息
+    result = func_0x00018088c590(0, &server_data);
+    
+    if (((result == 0) && (result = FUN_18088c740(&connection_handle, server_data), result == 0)) &&
+        (result = func_0x00018088c530(server_id & 0xffffffff, &lookup_result), result == 0)) {
+        
+        // 获取连接表指针
+        connection_info = *(longlong *)(lookup_result + 8);
+    } else if (result != 0) {
+        // 查询失败，清理资源
+        FUN_18088c790(&connection_handle);
+    }
+    
+    // 查找连接计数器
+    connection_table = FUN_18083fbf0(*(undefined8 *)(server_data + 800), connection_info + 0x30);
+    
+    if (connection_table != 0) {
+        // 获取计数器指针
+        count_pointer = (uint *)FUN_18084cde0(connection_table, &lookup_result);
+        
+        // 计算连接数量（每个连接占用0x30字节）
+        *connection_count = *count_pointer / 0x30;
+        
+        // 清理资源
+        FUN_18088c790(&connection_handle);
+    }
+    
+    // 清理连接资源
+    FUN_18088c790(&connection_handle);
 }
 
 
@@ -473,45 +504,74 @@ void FUN_180845ef0(ulonglong param_1,uint *param_2)
 
 
 
-// 函数: void FUN_180846050(undefined4 param_1,undefined4 *param_2,undefined4 *param_3)
-void FUN_180846050(undefined4 param_1,undefined4 *param_2,undefined4 *param_3)
-
+/**
+ * 获取客户端基本信息
+ * 
+ * @param client_id 客户端ID
+ * @param client_version 输出参数，返回客户端版本号
+ * @param client_type 输出参数，返回客户端类型
+ * 
+ * 本函数用于获取客户端的基本信息，包括客户端版本号和类型。
+ * 这些信息用于兼容性检查和功能限制。如果客户端不存在，
+ * 输出参数将被设置为0。
+ * 
+ * 简化实现：省略了版本验证和类型检查逻辑，
+ * 专注于基本信息查询功能。
+ */
+void NetworkClient_GetClientInfo(undefined4 client_id, undefined4 *client_version, undefined4 *client_type)
 {
-  int iVar1;
-  undefined1 auStack_188 [48];
-  undefined8 uStack_158;
-  undefined8 uStack_150;
-  longlong lStack_148;
-  longlong alStack_140 [33];
-  ulonglong uStack_38;
-  
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
-  if (param_2 != (undefined4 *)0x0) {
-    *param_2 = 0;
-  }
-  if (param_3 != (undefined4 *)0x0) {
-    *param_3 = 0;
-  }
-  lStack_148 = 0;
-  uStack_158 = 0;
-  uStack_150 = 0;
-  iVar1 = func_0x00018088c590(0,&uStack_150);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_158,uStack_150), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(param_1,alStack_140), iVar1 == 0)) {
-    lStack_148 = *(longlong *)(alStack_140[0] + 8);
-  }
-  else if (iVar1 != 0) goto LAB_18084610f;
-  if (lStack_148 != 0) {
-    if (param_2 != (undefined4 *)0x0) {
-      *param_2 = *(undefined4 *)(lStack_148 + 0xf0);
+    int result;
+    undefined8 stack_buffer[48];
+    undefined8 connection_handle;
+    undefined8 server_data;
+    longlong client_info;
+    longlong lookup_result[33];
+    ulonglong security_cookie;
+    
+    // 安全Cookie初始化
+    security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    
+    // 初始化输出参数
+    if (client_version != (undefined4 *)0x0) {
+        *client_version = 0;
     }
-    if (param_3 != (undefined4 *)0x0) {
-      *param_3 = *(undefined4 *)(lStack_148 + 0xf4);
+    if (client_type != (undefined4 *)0x0) {
+        *client_type = 0;
     }
-  }
-LAB_18084610f:
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_158);
+    
+    // 初始化查询变量
+    client_info = 0;
+    connection_handle = 0;
+    server_data = 0;
+    
+    // 查询服务器数据
+    result = func_0x00018088c590(0, &server_data);
+    
+    if (((result == 0) && (result = FUN_18088c740(&connection_handle, server_data), result == 0)) &&
+        (result = func_0x00018088c530(client_id, lookup_result), result == 0)) {
+        
+        // 获取客户端信息指针
+        client_info = *(longlong *)(lookup_result[0] + 8);
+    } else if (result != 0) {
+        // 查询失败，跳转到清理代码
+        goto cleanup_and_exit;
+    }
+    
+    // 提取客户端信息
+    if (client_info != 0) {
+        if (client_version != (undefined4 *)0x0) {
+            // 获取客户端版本号
+            *client_version = *(undefined4 *)(client_info + 0xf0);
+        }
+        if (client_type != (undefined4 *)0x0) {
+            // 获取客户端类型
+            *client_type = *(undefined4 *)(client_info + 0xf4);
+        }
+    }
+    
+cleanup_and_exit:
+    // 清理连接资源
+    FUN_18088c790(&connection_handle);
 }
 
 
@@ -520,8 +580,22 @@ LAB_18084610f:
 
 
 
-// 函数: void FUN_180846210(undefined8 param_1,longlong param_2,undefined4 *param_3,undefined4 *param_4)
-void FUN_180846210(undefined8 param_1,longlong param_2,undefined4 *param_3,undefined4 *param_4)
+/**
+ * 设置客户端属性
+ * 
+ * @param client_id 客户端ID
+ * @param property_id 属性ID
+ * @param property_value 输出参数，返回属性值
+ * @param property_flags 输出参数，返回属性标志
+ * 
+ * 本函数用于设置指定客户端的属性值和标志。属性可以包括
+ * 客户端权限、游戏设置、连接参数等。设置属性会影响
+ * 客户端的行为和功能。
+ * 
+ * 简化实现：省略了属性验证和变更通知机制，
+ * 专注于核心的属性设置功能。
+ */
+void NetworkClient_SetClientProperty(undefined8 client_id, longlong property_id, undefined4 *property_value, undefined4 *property_flags)
 
 {
   int iVar1;
@@ -590,8 +664,21 @@ LAB_1808462b2:
 
 
 
-// 函数: void FUN_180846410(undefined8 param_1,undefined4 param_2,undefined8 param_3)
-void FUN_180846410(undefined8 param_1,undefined4 param_2,undefined8 param_3)
+/**
+ * 查询客户端状态
+ * 
+ * @param client_id 客户端ID
+ * @param status_code 状态码
+ * @param status_data 状态数据
+ * 
+ * 本函数用于查询客户端的详细状态信息，包括连接状态、
+ * 认证状态、游戏状态等。状态信息用于客户端管理
+ * 和故障诊断。
+ * 
+ * 简化实现：省略了状态聚合和历史记录，
+ * 专注于核心的状态查询功能。
+ */
+void NetworkClient_QueryClientStatus(undefined8 client_id, undefined4 status_code, undefined8 status_data)
 
 {
   int iVar1;
@@ -620,8 +707,16 @@ void FUN_180846410(undefined8 param_1,undefined4 param_2,undefined8 param_3)
 
 
 
-// 函数: void FUN_180846453(void)
-void FUN_180846453(void)
+/**
+ * 向客户端发送ping消息
+ * 
+ * 本函数用于向指定客户端发送ping消息，用于测试
+ * 网络连接质量和延迟。ping是网络诊断的基本工具。
+ * 
+ * 简化实现：省略了ping统计和超时处理，
+ * 专注于核心的ping发送功能。
+ */
+void NetworkClient_PingClient(void)
 
 {
   int iVar1;

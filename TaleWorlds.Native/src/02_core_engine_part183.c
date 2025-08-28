@@ -582,12 +582,12 @@ longlong *core_engine_resource_manager(undefined8 resource_type, longlong *resou
         if (*(undefined **)(config_data + 8) != (undefined *)0x0) {
             resource_data = *(undefined **)(config_data + 8);
         }
-        FUN_1806272a0(&UNK_180a08868, resource_data);
+        ResourceRegistrar(&UNK_180a08868, resource_data);
         (**(code **)(*resource_ptr + CORE_OFFSET_0x10))(resource_ptr, &UNK_180a08850);
     }
     else {
-        resource_id = FUN_1801616b0(resource_count, &stack_data_5, config_data, resource_flags, 1);
-        FUN_18005d190(resource_ptr, resource_id);
+        resource_id = ResourceIdGenerator(resource_count, &stack_data_5, config_data, resource_flags, 1);
+        ResourceBinder(resource_ptr, resource_id);
         stack_data_5 = &UNK_180a3c3e0;
         if (stack_data_6 != 0) {
             ErrorHandler();
@@ -623,7 +623,7 @@ longlong *core_engine_resource_manager(undefined8 resource_type, longlong *resou
     resource_block_1 = *(undefined8 **)(resource_handle + 8);
     resource_block_2 = *(undefined8 **)(resource_handle + CORE_OFFSET_0x10);
     if ((resource_block_2 == *(undefined8 **)(resource_handle + 0x18)) || (resource_block_1 != resource_block_2)) {
-        FUN_18016d400((undefined8 *)(resource_handle + 8), resource_block_1, &stack_data_1);
+        ResourceBlockProcessor((undefined8 *)(resource_handle + 8), resource_block_1, &stack_data_1);
     }
     else {
         *resource_block_2 = &UNK_18098bcb0;
@@ -695,7 +695,7 @@ longlong core_engine_string_processor(longlong *context_ptr, longlong string_dat
         do {
             if (*char_ptr == ' ') {
                 if (char_count != 0xffffffff) {
-                    string_length = FUN_180629a40(string_data, &stack_ptr_4, 0);
+                    string_length = StringParser(string_data, &stack_ptr_4, 0);
                     if (stack_ptr_2 != (undefined *)0x0) {
                         ErrorHandler();
                     }
@@ -735,7 +735,7 @@ longlong core_engine_string_processor(longlong *context_ptr, longlong string_dat
         string_buffer = (undefined2 *)MemoryAllocator(_DAT_180c8ed18, CORE_ENGINE_BLOCK_SIZE_0x10, CORE_ENGINE_ALLOC_SIZE_0x13);
         *(undefined1 *)string_buffer = 0;
         stack_ptr_5 = string_buffer;
-        format_flag = FUN_18064e990(string_buffer);
+        format_flag = FormatProcessor(string_buffer);
         stack_data_6 = CONCAT44(stack_data_6._4_4_, format_flag);
         *string_buffer = 0x2e;
         stack_data_5 = 1;
@@ -839,7 +839,7 @@ longlong *core_engine_config_parser(longlong *config_ptr, longlong input_data)
                             }
                             else {
                                 if (char_count <= (uint)temp_ptr_2) goto SKIP_REALLOCATION;
-                                temp_ptr_1 = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18, temp_ptr_1, char_count, CORE_ENGINE_BLOCK_SIZE_0x10, CORE_ENGINE_ALLOC_SIZE_0x13);
+                                temp_ptr_1 = (undefined1 *)MemoryReallocator(_DAT_180c8ed18, temp_ptr_1, char_count, CORE_ENGINE_BLOCK_SIZE_0x10, CORE_ENGINE_ALLOC_SIZE_0x13);
                             }
                             buffer_size = (ulonglong)temp_ptr_1 & 0xffffffffffc00000;
                             if (buffer_size == 0) {
@@ -910,7 +910,7 @@ SKIP_REALLOCATION:
                 }
             }
             else {
-                FUN_180059820(config_ptr, &stack_ptr_1);
+                ConfigProcessor(config_ptr, &stack_ptr_1);
                 temp_ptr_1 = stack_ptr_2;
             }
             
@@ -925,7 +925,7 @@ SKIP_REALLOCATION:
         
         // 检查引号匹配
         if (quote_flag) {
-            FUN_180626f80(&UNK_180a08898);
+            SystemCleaner(&UNK_180a08898);
             FUN_180057110(config_ptr);
         }
     }
@@ -1037,7 +1037,7 @@ longlong *core_engine_data_manager(undefined8 manager_type, longlong *data_ptr, 
         do {
             if (*(char *)(stack_data_9 + data_handle) == '.') {
                 if (temp_int != -1) {
-                    data_handle = FUN_180629a40(&stack_ptr_6, &stack_ptr_7, 0, temp_int);
+                    data_handle = StringParser(&stack_ptr_6, &stack_ptr_7, 0, temp_int);
                     if (stack_data_9 != 0) {
                         ErrorHandler();
                     }
@@ -1054,7 +1054,7 @@ longlong *core_engine_data_manager(undefined8 manager_type, longlong *data_ptr, 
                     stack_ptr_8 = (longlong *)0x0;
                     stack_data_12 = 0;
                     stack_ptr_7 = (longlong *)&UNK_18098bcb0;
-                    data_handle = FUN_180629a40(&stack_ptr_10, &stack_ptr_7, temp_int + 1, stack_data_13);
+                    data_handle = StringParser(&stack_ptr_10, &stack_ptr_7, temp_int + 1, stack_data_13);
                     if (stack_data_11 != 0) {
                         ErrorHandler();
                     }
