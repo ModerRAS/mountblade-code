@@ -202,24 +202,34 @@ void render_scene_params(undefined4 param_1,undefined8 param_2,float param_3,und
   float in_XMM5_Da;
   float unaff_XMM6_Da;
   
+  // 获取渲染状态标志
   bVar1 = *(byte *)(unaff_RBX + 0x30);
+  // 计算渲染位置偏移
   *(float *)(unaff_RBP + 0x6f) = unaff_XMM6_Da + in_XMM4_Da;
   *(float *)(unaff_RBP + 0x73) = in_XMM5_Da + in_XMM4_Da;
+  // 根据渲染状态调整偏移量
   if ((bVar1 & 1) == 0) {
+    // 状态0：使用固定偏移量
     in_XMM3_Da = in_XMM3_Da - 0.49;
     param_3 = param_3 - 0.49;
   }
   else {
+    // 状态1：使用动态偏移量
     in_XMM3_Da = in_XMM3_Da - in_XMM4_Da;
     param_3 = param_3 - in_XMM4_Da;
   }
   *(float *)(unaff_RBP + 0x67) = in_XMM3_Da;
   *(float *)(unaff_RBP + 0x6b) = param_3;
+  // 调用渲染函数
   FUN_1802939e0(param_1,unaff_RBP + 0x6f,unaff_RBP + 0x67,param_4,0xffffffff);
+  // 调用后处理渲染函数
   FUN_1802923e0(0x40400000,*(undefined8 *)(unaff_RBX + 0x88),*(undefined4 *)(unaff_RBX + 0x80),
                 unaff_EDI,1);
+  // 清理渲染状态
   *(undefined4 *)(unaff_RBX + 0x80) = 0;
+  // 减少引用计数
   *(int *)(unaff_RBX + 0x60) = *(int *)(unaff_RBX + 0x60) + -1;
+  // 调用清理函数
   FUN_180291950();
   return;
 }
@@ -280,9 +290,11 @@ void update_game_state(void)
   float fVar19;
   float fVar20;
   
+  // 获取全局数据指针
   lVar10 = _DAT_180c8a9b0;
+  // 检查是否需要更新状态
   if (*(int *)(_DAT_180c8a9b0 + 0x1a94) == *(int *)(_DAT_180c8a9b0 + 0x1a90)) {
-    return;
+    return;  // 状态已同步，无需更新
   }
   uVar16 = 0;
   if ((*(code **)(_DAT_180c8a9b0 + 0x15c8) != (code *)0x0) &&
