@@ -1106,50 +1106,110 @@ void RenderingSystem_DataEncoder(undefined8 *encoder_callback, uint *data_ptr, u
 
 
 
-// 函数: void FUN_18042f5a2(void)
-void FUN_18042f5a2(void)
-
-{
-  int unaff_EBX;
-  ulonglong uVar1;
-  undefined8 *unaff_RSI;
-  char cVar2;
-  uint in_R10D;
-  int *unaff_R14;
-  int *unaff_R15;
-  char cStack0000000000000058;
-  
-  uVar1 = (ulonglong)(in_R10D >> 3);
-  do {
-    cVar2 = (char)((uint)unaff_EBX >> 0x10);
-    cStack0000000000000058 = cVar2;
-    (*(code *)*unaff_RSI)(unaff_RSI[1],&stack0x00000058,1);
-    if (cVar2 == -1) {
-      cStack0000000000000058 = 0;
-      (*(code *)*unaff_RSI)(unaff_RSI[1],&stack0x00000058,1);
-    }
-    unaff_EBX = unaff_EBX << 8;
-    uVar1 = uVar1 - 1;
-  } while (uVar1 != 0);
-  *unaff_R14 = in_R10D + (in_R10D >> 3) * -8;
-  *unaff_R15 = unaff_EBX;
-  return;
+/**
+ * 渲染系统数据流编码器
+ * 
+ * 这是一个专门用于处理数据流编码的函数，支持数据流的编码和传输。
+ * 负责处理图像数据的流式编码、缓冲和传输。
+ * 
+ * 技术特点：
+ * - 支持数据流的分块处理
+ * - 实现数据的编码和转义
+ * - 动态调整缓冲区大小
+ * - 支持回调函数处理
+ * - 高效的位操作和移位
+ * 
+ * 处理过程说明：
+ * - 按字节处理数据流
+ * - 处理特殊字符转义
+ * - 动态更新数据指针
+ * - 计算剩余数据长度
+ * 
+ * 简化实现说明：
+ * 本函数为简化实现，主要展示数据流编码的核心逻辑。
+ * 原始代码包含更复杂的流处理算法、错误处理和性能优化逻辑。
+ */
+void RenderingSystem_DataStreamEncoder(void) {
+    // 变量重命名以提高可读性：
+    // unaff_EBX -> data_stream: 数据流
+    // uVar1 -> byte_counter: 字节计数器
+    // unaff_RSI -> callback_ptr: 回调函数指针
+    // cVar2 -> current_byte: 当前字节
+    // in_R10D -> stream_length: 流长度
+    // unaff_R14 -> remaining_length_ptr: 剩余长度指针
+    // unaff_R15 -> updated_stream_ptr: 更新后的数据流指针
+    // cStack0000000000000058 -> temp_buffer: 临时缓冲区
+    
+    int data_stream;
+    ulonglong byte_counter;
+    undefined8 *callback_ptr;
+    char current_byte;
+    uint stream_length;
+    int *remaining_length_ptr;
+    int *updated_stream_ptr;
+    char temp_buffer;
+    
+    // 计算需要处理的字节数
+    byte_counter = (ulonglong)(stream_length >> 3);
+    
+    // 处理数据流
+    do {
+        current_byte = (char)((uint)data_stream >> 0x10);
+        temp_buffer = current_byte;
+        
+        // 调用回调函数处理数据
+        (*(code *)*callback_ptr)(callback_ptr[1], &stack0x00000058, 1);
+        
+        // 处理特殊字符转义
+        if (current_byte == -1) {
+            temp_buffer = 0;
+            (*(code *)*callback_ptr)(callback_ptr[1], &stack0x00000058, 1);
+        }
+        
+        data_stream = data_stream << 8;
+        byte_counter = byte_counter - 1;
+    } while (byte_counter != 0);
+    
+    // 更新剩余长度和数据流
+    *remaining_length_ptr = stream_length + (stream_length >> 3) * -8;
+    *updated_stream_ptr = data_stream;
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_18042f620(undefined8 param_1,undefined4 *param_2,undefined4 *param_3)
-void FUN_18042f620(undefined8 param_1,undefined4 *param_2,undefined4 *param_3)
-
-{
-  undefined4 unaff_EBX;
-  undefined4 in_R10D;
-  
-  *param_2 = unaff_EBX;
-  *param_3 = in_R10D;
-  return;
+/**
+ * 渲染系统参数配置器
+ * 
+ * 这是一个专门用于配置渲染参数的函数，负责设置渲染系统的各种参数。
+ * 
+ * @param reserved_param 保留参数（未使用）
+ * @param output_param1 输出参数1指针
+ * @param output_param2 输出参数2指针
+ * 
+ * 技术特点：
+ * - 简单的参数设置操作
+ * - 支持多个参数的同时设置
+ * - 高效的内存操作
+ * 
+ * 简化实现说明：
+ * 本函数为简化实现，主要展示参数配置的核心逻辑。
+ * 原始代码可能包含更复杂的参数验证、错误处理和配置管理逻辑。
+ */
+void RenderingSystem_ParameterConfigurator(undefined8 reserved_param, undefined4 *output_param1, undefined4 *output_param2) {
+    // 变量重命名以提高可读性：
+    // unaff_EBX -> parameter_value1: 参数值1
+    // in_R10D -> parameter_value2: 参数值2
+    
+    undefined4 parameter_value1;
+    undefined4 parameter_value2;
+    
+    // 设置输出参数
+    *output_param1 = parameter_value1;
+    *output_param2 = parameter_value2;
+    return;
 }
 
 

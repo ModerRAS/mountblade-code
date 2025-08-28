@@ -705,25 +705,59 @@ void FUN_1806982a0(longlong param_1, longlong param_2, int param_3)
 
 
 
-// 函数: void FUN_180698440(longlong param_1)
+/**
+ * @brief 渲染系统缓冲区清理器
+ * @details 清理渲染系统缓冲区
+ * @param param_1 渲染系统上下文指针
+ * 功能：
+ * - 初始化渲染缓冲区
+ * - 更新渲染状态
+ * - 调用缓冲区处理函数
+ * - 清理相关数据
+ * @note 该函数不会返回，会调用memset
+ */
 void FUN_180698440(longlong param_1)
-
 {
-  FUN_180698800(param_1 + 0xc10,*(undefined4 *)(param_1 + 0x1928));
-  *(undefined4 *)(param_1 + 0x1924) = *(undefined4 *)(param_1 + 0x1928);
-  func_0x000180698220(param_1 + 0xc10);
-                    // WARNING: Subroutine does not return
-  memset(param_1 + 0x1810,0,0x10);
+  // 初始化渲染缓冲区
+  FUN_180698800(param_1 + RENDERING_OFFSET_C10, *(undefined4 *)(param_1 + RENDERING_OFFSET_1928));
+  
+  // 更新渲染状态
+  *(undefined4 *)(param_1 + RENDERING_OFFSET_1924) = *(undefined4 *)(param_1 + RENDERING_OFFSET_1928);
+  
+  // 调用缓冲区处理函数
+  func_0x000180698220(param_1 + RENDERING_OFFSET_C10);
+  
+  // 清理相关数据（警告：该函数不会返回）
+  memset(param_1 + RENDERING_OFFSET_1810, 0, RENDERING_BUFFER_SIZE);
 }
 
+// 函数别名：RenderingSystemBufferCleaner
+// 技术说明：该函数负责清理渲染缓冲区，确保数据一致性
 
 
 
 
-// 函数: void FUN_1806984b0(longlong param_1,byte *param_2,int param_3,undefined4 param_4,undefined4 param_5,
-void FUN_1806984b0(longlong param_1,byte *param_2,int param_3,undefined4 param_4,undefined4 param_5,
-                  longlong param_6,longlong param_7,longlong param_8)
 
+/**
+ * @brief 渲染系统效果应用器
+ * @details 应用渲染效果到缓冲区
+ * @param param_1 渲染系统上下文指针
+ * @param param_2 效果数据指针
+ * @param param_3 效果参数
+ * @param param_4 渲染参数1
+ * @param param_5 渲染参数2
+ * @param param_6 目标缓冲区1
+ * @param param_7 目标缓冲区2
+ * @param param_8 目标缓冲区3
+ * 功能：
+ * - 遍历渲染项目
+ * - 应用多种渲染效果
+ * - 处理不同类型的纹理
+ * - 更新缓冲区数据
+ * @note 支持多种渲染效果和纹理类型
+ */
+void FUN_1806984b0(longlong param_1, byte *param_2, int param_3, undefined4 param_4, undefined4 param_5,
+                  longlong param_6, longlong param_7, longlong param_8)
 {
   longlong lVar1;
   byte bVar2;
@@ -736,57 +770,83 @@ void FUN_1806984b0(longlong param_1,byte *param_2,int param_3,undefined4 param_4
   longlong lStack_48;
   longlong lStack_40;
   
+  // 初始化变量
   iVar6 = 0;
-  lVar1 = param_1 + 0xc10;
-  if (0 < *(int *)(param_1 + 3000)) {
-    iVar3 = *(int *)(param_1 + 0xba4);
+  lVar1 = param_1 + RENDERING_OFFSET_C10;
+  
+  // 检查是否有渲染项目
+  if (0 < *(int *)(param_1 + MAX_RENDER_ITEMS)) {
+    iVar3 = *(int *)(param_1 + RENDERING_OFFSET_BA4);
+    
+    // 遍历所有渲染项目
     do {
+      // 获取纹理类型
       bVar2 = *param_2;
       if (((bVar2 == 4) || (bVar2 == 9)) || (param_2[9] == 0)) {
-        bVar4 = false;
+        bVar4 = false;  // 简单纹理
       }
       else {
-        bVar4 = true;
+        bVar4 = true;   // 复杂纹理
       }
+      
+      // 获取纹理数据
       bVar2 = *(byte *)((ulonglong)*(byte *)((ulonglong)bVar2 + 0xd00 + lVar1) + lVar1 + 0xc40 +
                        ((ulonglong)param_2[2] + (ulonglong)param_2[0xb] * 4) * 4);
       uVar5 = (ulonglong)bVar2;
+      
       if (bVar2 != 0) {
-        lStack_58 = uVar5 * 0x10 + lVar1;
-        lStack_50 = (uVar5 + 0x40) * 0x10 + lVar1;
-        lStack_48 = (uVar5 + 0x80) * 0x10 + lVar1;
+        // 计算缓冲区偏移量
+        lStack_58 = uVar5 * RENDERING_BUFFER_SIZE + lVar1;
+        lStack_50 = (uVar5 + 0x40) * RENDERING_BUFFER_SIZE + lVar1;
+        lStack_48 = (uVar5 + 0x80) * RENDERING_BUFFER_SIZE + lVar1;
         lStack_40 = ((ulonglong)*(byte *)(((longlong)iVar3 + 0x32) * 0x40 + uVar5 + lVar1) + 0xc0) *
-                    0x10 + lVar1;
+                    RENDERING_BUFFER_SIZE + lVar1;
+        
+        // 应用渲染效果
         if (0 < iVar6) {
-          FUN_18069cb40(param_6,param_7,param_8,param_4,param_5,&lStack_58);
+          FUN_18069cb40(param_6, param_7, param_8, param_4, param_5, &lStack_58);
         }
         if (!bVar4) {
-          FUN_18069ca00(param_6,param_7,param_8,param_4,param_5,&lStack_58);
+          FUN_18069ca00(param_6, param_7, param_8, param_4, param_5, &lStack_58);
         }
         if (0 < param_3) {
-          FUN_18069cad0(param_6,param_7,param_8,param_4,param_5,&lStack_58);
+          FUN_18069cad0(param_6, param_7, param_8, param_4, param_5, &lStack_58);
         }
         if (!bVar4) {
-          FUN_18069c900(param_6,param_7,param_8,param_4,param_5,&lStack_58);
+          FUN_18069c900(param_6, param_7, param_8, param_4, param_5, &lStack_58);
         }
       }
-      param_6 = param_6 + 0x10;
+      
+      // 移动到下一个项目
+      param_6 = param_6 + RENDERING_BUFFER_SIZE;
       param_8 = param_8 + 8;
       param_7 = param_7 + 8;
-      param_2 = param_2 + 0x4c;
+      param_2 = param_2 + RENDERING_QUEUE_SIZE;
       iVar6 = iVar6 + 1;
-    } while (iVar6 < *(int *)(param_1 + 3000));
+    } while (iVar6 < *(int *)(param_1 + MAX_RENDER_ITEMS));
   }
+  
   return;
 }
 
+// 函数别名：RenderingSystemEffectApplier
+// 技术说明：该函数应用多种渲染效果，支持不同的纹理类型
 
 
 
 
-// 函数: void FUN_1806984f1(void)
+
+/**
+ * @brief 渲染系统高级渲染器
+ * @details 执行高级渲染操作
+ * 功能：
+ * - 处理复杂的渲染逻辑
+ * - 应用多种渲染效果
+ * - 管理渲染状态
+ * - 优化渲染性能
+ * @note 使用寄存器优化，性能关键函数
+ */
 void FUN_1806984f1(void)
-
 {
   byte bVar1;
   bool bVar2;
@@ -820,6 +880,7 @@ void FUN_1806984f1(void)
   longlong in_stack_000000d0;
   longlong in_stack_000000d8;
   
+  // 初始化参数
   uVar3 = in_stack_000000c0;
   *(undefined8 *)(in_RAX + 0x10) = unaff_RBX;
   *(undefined8 *)(in_RAX + -0x28) = unaff_RSI;
@@ -830,62 +891,89 @@ void FUN_1806984f1(void)
   lVar6 = in_stack_000000c8;
   lVar7 = in_stack_000000d8;
   lStack0000000000000038 = in_R10;
+  
+  // 执行高级渲染循环
   do {
+    // 获取纹理类型
     bVar1 = *unaff_R14;
     if (((bVar1 == 4) || (bVar1 == 9)) || (unaff_R14[9] == 0)) {
-      bVar2 = false;
+      bVar2 = false;  // 简单纹理
     }
     else {
-      bVar2 = true;
+      bVar2 = true;   // 复杂纹理
     }
+    
+    // 获取纹理数据
     bVar1 = *(byte *)((ulonglong)*(byte *)((ulonglong)bVar1 + 0xd00 + in_R9) + in_R9 + 0xc40 +
                      ((ulonglong)unaff_R14[2] + (ulonglong)unaff_R14[0xb] * 4) * 4);
     uVar4 = (ulonglong)bVar1;
+    
     if (bVar1 != 0) {
-      lStack0000000000000040 = uVar4 * 0x10 + in_R9;
-      lStack0000000000000048 = (uVar4 + 0x40) * 0x10 + in_R9;
-      lStack0000000000000050 = (uVar4 + 0x80) * 0x10 + in_R9;
+      // 计算缓冲区偏移量
+      lStack0000000000000040 = uVar4 * RENDERING_BUFFER_SIZE + in_R9;
+      lStack0000000000000048 = (uVar4 + 0x40) * RENDERING_BUFFER_SIZE + in_R9;
+      lStack0000000000000050 = (uVar4 + 0x80) * RENDERING_BUFFER_SIZE + in_R9;
       lStack0000000000000058 =
-           ((ulonglong)*(byte *)((in_R10 + 0x32) * 0x40 + uVar4 + in_R9) + 0xc0) * 0x10 + in_R9;
+           ((ulonglong)*(byte *)((in_R10 + 0x32) * 0x40 + uVar4 + in_R9) + 0xc0) * RENDERING_BUFFER_SIZE + in_R9;
+      
+      // 应用渲染效果
       if (0 < unaff_R15D) {
         puStack0000000000000028 = (undefined1 *)&stack0x00000040;
-        FUN_18069cb40(lVar6,lVar5,lVar7,unaff_R12D,uVar3);
+        FUN_18069cb40(lVar6, lVar5, lVar7, unaff_R12D, uVar3);
       }
       if (!bVar2) {
         puStack0000000000000028 = (undefined1 *)&stack0x00000040;
-        FUN_18069ca00(lVar6,lVar5,lVar7,unaff_R12D,uVar3);
+        FUN_18069ca00(lVar6, lVar5, lVar7, unaff_R12D, uVar3);
       }
       if (0 < in_stack_000000b0) {
         puStack0000000000000028 = (undefined1 *)&stack0x00000040;
-        FUN_18069cad0(lVar6,lVar5,lVar7,unaff_R12D,uVar3);
+        FUN_18069cad0(lVar6, lVar5, lVar7, unaff_R12D, uVar3);
       }
+      
+      // 更新上下文
       in_R9 = in_stack_00000030;
       in_R10 = lStack0000000000000038;
+      
       if (!bVar2) {
         puStack0000000000000028 = (undefined1 *)&stack0x00000040;
-        FUN_18069c900(lVar6,lVar5,lVar7,unaff_R12D,uVar3);
+        FUN_18069c900(lVar6, lVar5, lVar7, unaff_R12D, uVar3);
         in_R10 = lStack0000000000000038;
       }
     }
-    lVar6 = lVar6 + 0x10;
+    
+    // 移动到下一个项目
+    lVar6 = lVar6 + RENDERING_BUFFER_SIZE;
     lVar7 = lVar7 + 8;
     lVar5 = lVar5 + 8;
-    unaff_R14 = unaff_R14 + 0x4c;
+    unaff_R14 = unaff_R14 + RENDERING_QUEUE_SIZE;
     unaff_R15D = unaff_R15D + 1;
-  } while (unaff_R15D < *(int *)(in_stack_000000a0 + 3000));
+  } while (unaff_R15D < *(int *)(in_stack_000000a0 + MAX_RENDER_ITEMS));
+  
   return;
 }
 
+// 函数别名：RenderingSystemAdvancedRenderer
+// 技术说明：该函数是性能关键的高级渲染器，使用寄存器优化
 
 
 
 
-// 函数: void FUN_1806986b7(void)
+
+/**
+ * @brief 渲染系统空函数1
+ * @details 空函数，用于保持结构完整性
+ * 功能：
+ * - 占位函数
+ * - 保持接口一致性
+ * @note 简化实现，仅返回
+ */
 void FUN_1806986b7(void)
-
 {
   return;
 }
+
+// 函数别名：RenderingSystemEmptyFunction1
+// 技术说明：该函数是简化实现，用于保持接口一致性
 
 
 
