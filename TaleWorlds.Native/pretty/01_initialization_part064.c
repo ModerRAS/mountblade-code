@@ -1213,7 +1213,7 @@ int32_t InitializationSystem_ValidateState(void)
  * 
  * 该函数负责处理系统错误。
  * 
- * @return undefined 处理结果状态
+ * @return int32_t 处理结果状态 (0=成功, 非0=错误代码)
  */
 int32_t InitializationSystem_HandleError(void)
 {

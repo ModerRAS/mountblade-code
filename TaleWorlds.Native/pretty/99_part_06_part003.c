@@ -758,7 +758,7 @@ void SystemConfigurationProcessor(longlong *param_1)
     void *puStack_50;
     void *puStack_48;
     int32_t uStack_40;
-    undefined auStack_38 [32];
+    uint8_t auStack_38 [32];
     ulonglong uStack_18;
     
     uStack_60 = 0xfffffffffffffffe;
