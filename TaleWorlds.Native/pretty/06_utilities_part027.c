@@ -164,7 +164,7 @@ void utilities_system_state_resetter(uint64_t param_1, longlong param_2)
   int system_check_result;
   
   // 执行系统初始化
-  FUN_1808fc5ac();
+  utilities_system_initializer();
   
   // 获取重置标志
   reset_flag = *(char *)(param_2 + 0x38);
@@ -2389,9 +2389,9 @@ void FUN_180942720(void)
   }
   
   // 重置数据内存状态
-  uRam0000000180d499b8 = 0;
-  uRam0000000180d499c0 = 0xf;
-  uRam0000000180d499a8 = 0;
+  *system_data_memory_status_ptr = 0;
+  *system_data_memory_size_ptr = 0xf;
+  *system_data_memory_ptr = 0;
   return;
 }
 
@@ -2477,6 +2477,91 @@ void FUN_180942720(void)
 
 // 系统异常处理相关函数别名
 #define utilities_system_exception_handler FUN_180941ad0
+
+// 系统初始化相关函数别名
+#define utilities_system_initializer FUN_1808fc5ac
+#define utilities_system_error_handler FUN_18064e900
+#define utilities_system_module_processor FUN_180048980
+#define utilities_system_submodule_handler FUN_180046b10
+#define utilities_system_resource_processor FUN_1808fc914
+#define utilities_system_callback_handler FUN_1808fc074
+#define utilities_system_memory_handler FUN_18008d1f0
+#define utilities_system_exception_recovery FUN_18064d630
+#define utilities_system_cleanup_handler FUN_18005a050
+#define utilities_system_finalizer FUN_180059ee0
+#define utilities_system_memory_initializer FUN_180320e20
+#define utilities_system_memory_finalizer FUN_180320b20
+#define utilities_system_buffer_handler FUN_180067070
+#define utilities_system_parameter_validator FUN_1808fd8d4
+
+// 系统数组指针重置函数别名
+#define utilities_system_ptr_array_resetter_0 FUN_180941f00
+#define utilities_system_ptr_array_resetter_1 FUN_180941f20
+#define utilities_system_ptr_array_resetter_2 FUN_180941f40
+#define utilities_system_ptr_array_resetter_3 FUN_180941f60
+#define utilities_system_ptr_array_resetter_4 FUN_180941f80
+#define utilities_system_ptr_array_resetter_5 FUN_180941fa0
+#define utilities_system_ptr_array_resetter_6 FUN_180941fc0
+#define utilities_system_ptr_array_resetter_7 FUN_180941fe0
+#define utilities_system_ptr_array_resetter_8 FUN_180942000
+#define utilities_system_ptr_array_resetter_9 FUN_180942020
+#define utilities_system_ptr_array_resetter_10 FUN_180942040
+#define utilities_system_ptr_array_resetter_11 FUN_180942060
+#define utilities_system_ptr_array_resetter_12 FUN_180942080
+#define utilities_system_ptr_array_resetter_13 FUN_1809420a0
+#define utilities_system_ptr_array_resetter_14 FUN_1809420c0
+#define utilities_system_ptr_array_resetter_15 FUN_1809420e0
+#define utilities_system_ptr_array_resetter_16 FUN_180942100
+#define utilities_system_ptr_array_resetter_17 FUN_180942120
+#define utilities_system_ptr_array_resetter_18 FUN_180942140
+#define utilities_system_ptr_array_resetter_19 FUN_180942160
+#define utilities_system_ptr_array_resetter_20 FUN_180942180
+#define utilities_system_ptr_array_resetter_21 FUN_1809421a0
+#define utilities_system_ptr_array_resetter_22 FUN_1809421c0
+#define utilities_system_ptr_array_resetter_23 FUN_1809421e0
+#define utilities_system_ptr_array_resetter_24 FUN_180942200
+#define utilities_system_ptr_array_resetter_25 FUN_180942220
+#define utilities_system_ptr_array_resetter_26 FUN_180942240
+#define utilities_system_ptr_array_resetter_27 FUN_180942260
+#define utilities_system_ptr_array_resetter_28 FUN_180942280
+#define utilities_system_ptr_array_resetter_29 FUN_1809422a0
+#define utilities_system_ptr_array_resetter_30 FUN_1809422c0
+#define utilities_system_ptr_array_resetter_31 FUN_1809422e0
+#define utilities_system_ptr_array_resetter_32 FUN_180942300
+#define utilities_system_ptr_array_resetter_33 FUN_180942320
+#define utilities_system_ptr_array_resetter_34 FUN_180942340
+#define utilities_system_ptr_array_resetter_35 FUN_180942360
+#define utilities_system_ptr_array_resetter_36 FUN_180942380
+#define utilities_system_ptr_array_resetter_37 FUN_1809423a0
+#define utilities_system_ptr_array_resetter_38 FUN_1809423c0
+#define utilities_system_ptr_array_resetter_39 FUN_1809423e0
+
+// 系统附加指针重置函数别名
+#define utilities_system_additional_resetter_6 FUN_180942400
+#define utilities_system_additional_resetter_7 FUN_180942420
+#define utilities_system_additional_resetter_8 FUN_180942440
+#define utilities_system_additional_resetter_9 FUN_180942460
+#define utilities_system_additional_resetter_10 FUN_180942480
+#define utilities_system_additional_resetter_11 FUN_1809424a0
+
+// 系统回调处理函数别名
+#define utilities_system_callback_handler_1 FUN_1809424c0
+#define utilities_system_callback_handler_2 FUN_180942520
+#define utilities_system_callback_handler_3 FUN_180942580
+
+// 系统同步和清理函数别名
+#define utilities_system_sync_cleaner FUN_1809425e0
+#define utilities_system_buffer_cleaner_1 FUN_180942660
+#define utilities_system_buffer_cleaner_2 FUN_180942690
+
+// 系统附加重置函数别名
+#define utilities_system_additional_resetter_3 FUN_180941d00
+#define utilities_system_additional_resetter_4 FUN_180941d20
+#define utilities_system_additional_resetter_5 FUN_180941d50
+#define utilities_system_sync_destroyer FUN_180941da0
+#define utilities_system_memory_initializer_2 FUN_180941dd0
+#define utilities_system_memory_validator FUN_180941e00
+#define utilities_system_temp_cleaner FUN_180941e90
 
 // =============================================================================
 // 技术文档说明 (Technical Documentation)

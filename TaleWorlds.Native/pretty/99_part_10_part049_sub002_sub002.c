@@ -190,6 +190,12 @@ typedef ulonglong ResourceCleanupFlags;          // 资源清理标志
 #define ResourceValidator ResourceValidator2
 
 /**
+ * @brief 数据格式化器
+ * 格式化数据和字符串输出
+ */
+#define DataFormatter DataFormatter
+
+/**
  * @brief 系统处理器
  * 处理系统操作和任务
  */
@@ -4033,7 +4039,7 @@ int DataValidator(longlong param_1,longlong *param_2,int param_3)
     ;
     if (((cVar4 != '\0') && (pcStackX_8 != (char *)0x0)) && (*pcStackX_8 != '\0')) {
       auStackX_18[0] = 0;
-      FUN_1806d81c0(pcStackX_8,param_2[7],auStackX_18,0x180be0170);
+      DataFormatter(pcStackX_8,param_2[7],auStackX_18,0x180be0170);
       (*pcVar3)(param_2[6],auStackX_18);
     }
   }
@@ -4393,7 +4399,7 @@ int SystemHelper3(longlong param_1,longlong *param_2,int param_3)
     ;
     if (((cVar3 != '\0') && (pcStackX_8 != (char *)0x0)) && (*pcStackX_8 != '\0')) {
       auStackX_18[0] = 0;
-      FUN_1806d81c0(pcStackX_8,param_2[7],auStackX_18,0x180be01c0);
+      DataFormatter(pcStackX_8,param_2[7],auStackX_18,0x180be01c0);
       (*(code *)CONCAT44(uStack_54,uStack_58))(param_2[6],auStackX_18);
     }
   }
@@ -4800,7 +4806,7 @@ int SystemHelper4(longlong param_1,uint64_t param_2,int param_3)
        (*pcVar4 != '\0')) {
       lVar5 = in_RDX[7];
       *(int32_t *)(unaff_RBP + 0x77) = 0;
-      FUN_1806d81c0(pcVar4,lVar5,unaff_RBP + 0x77,0x180be01c0);
+      DataFormatter(pcVar4,lVar5,unaff_RBP + 0x77,0x180be01c0);
       lVar5 = in_RDX[6];
       *(int8_t *)(unaff_RBP + 0x77) = *(int8_t *)(unaff_RBP + 0x77);
       (**(code **)(unaff_RBP + 7))(lVar5,unaff_RBP + 0x77);
@@ -5069,7 +5075,7 @@ int SystemHelper5(uint64_t param_1,int32_t param_2)
        (*pcVar2 != cVar7)) {
       lVar3 = unaff_RBX[7];
       *(int *)(unaff_RBP + 0x77) = (int)unaff_R15;
-      FUN_1806d81c0(pcVar2,lVar3,unaff_RBP + 0x77,0x180be01c0);
+      DataFormatter(pcVar2,lVar3,unaff_RBP + 0x77,0x180be01c0);
       lVar3 = unaff_RBX[6];
       *(int8_t *)(unaff_RBP + 0x77) = *(int8_t *)(unaff_RBP + 0x77);
       (**(code **)(unaff_RBP + 7))(lVar3,unaff_RBP + 0x77);
@@ -5214,7 +5220,7 @@ int FUN_1806c6c7b(uint64_t param_1,int32_t param_2)
        (*pcVar2 != cVar9)) {
       lVar5 = unaff_RBX[7];
       *(int *)(unaff_RBP + 0x77) = (int)unaff_R15;
-      FUN_1806d81c0(pcVar2,lVar5,unaff_RBP + 0x77,0x180be01c0);
+      DataFormatter(pcVar2,lVar5,unaff_RBP + 0x77,0x180be01c0);
       lVar5 = unaff_RBX[6];
       *(int8_t *)(unaff_RBP + 0x77) = *(int8_t *)(unaff_RBP + 0x77);
       (**(code **)(unaff_RBP + 7))(lVar5,unaff_RBP + 0x77);
@@ -5522,7 +5528,7 @@ int FUN_1806c6f10(uint64_t *param_1,longlong *param_2,int param_3)
                       ((longlong *)param_2[5],puVar10,&pcStackX_8);
     if (((cVar4 != '\0') && (pcStackX_8 != (char *)0x0)) && (*pcStackX_8 != '\0')) {
       auStackX_18[0] = 0;
-      FUN_1806d81c0(pcStackX_8,param_2[7],auStackX_18,0x180be04f0);
+      DataFormatter(pcStackX_8,param_2[7],auStackX_18,0x180be04f0);
       (*(code *)CONCAT44(uStack_e4,uStack_e8))(param_2[6],auStackX_18);
     }
   }
@@ -5696,7 +5702,7 @@ LAB_1806c7195:
        (*pcVar7 != '\0')) {
       lVar16 = unaff_RBX[7];
       *(int32_t *)(unaff_RBP + 0x12) = 0;
-      FUN_1806d81c0(pcVar7,lVar16,unaff_RBP + 0x12,0x180be04f0);
+      DataFormatter(pcVar7,lVar16,unaff_RBP + 0x12,0x180be04f0);
       lVar16 = unaff_RBX[6];
       *(char *)(unaff_RBP + 0x12) = (char)unaff_RBP[0x12];
       (*(code *)unaff_RBP[-0xe])(lVar16,unaff_RBP + 0x12);
@@ -5768,7 +5774,7 @@ LAB_1806c7195:
        (*pcVar2 != '\0')) {
       lVar8 = unaff_RBX[7];
       *(int32_t *)(unaff_RBP + 0x90) = 0;
-      FUN_1806d81c0(pcVar2,lVar8,unaff_RBP + 0x90,0x180be04f0);
+      DataFormatter(pcVar2,lVar8,unaff_RBP + 0x90,0x180be04f0);
       lVar8 = unaff_RBX[6];
       *(int8_t *)(unaff_RBP + 0x90) = *(int8_t *)(unaff_RBP + 0x90);
       (**(code **)(unaff_RBP + -0x70))(lVar8,unaff_RBP + 0x90);
@@ -5806,7 +5812,7 @@ int FUN_1806c71d2(void)
        (*pcVar2 != '\0')) {
       lVar3 = unaff_RBX[7];
       *(int32_t *)(unaff_RBP + 0x90) = 0;
-      FUN_1806d81c0(pcVar2,lVar3,unaff_RBP + 0x90,0x180be04f0);
+      DataFormatter(pcVar2,lVar3,unaff_RBP + 0x90,0x180be04f0);
       lVar3 = unaff_RBX[6];
       *(int8_t *)(unaff_RBP + 0x90) = *(int8_t *)(unaff_RBP + 0x90);
       (**(code **)(unaff_RBP + -0x70))(lVar3,unaff_RBP + 0x90);
