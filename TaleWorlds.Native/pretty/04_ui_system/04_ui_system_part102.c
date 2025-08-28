@@ -702,193 +702,225 @@ double UIVectorSquareSumCalculator(longlong param_1, int param_2)
 
 
 
-// 函数: void FUN_18072b540(double *param_1,longlong param_2,float param_3,int param_4,int param_5)
-void FUN_18072b540(double *param_1,longlong param_2,float param_3,int param_4,int param_5)
-
+// 函数: UI系统双精度数组处理器
+// 原始函数名: FUN_18072b540
+// 功能: 执行UI系统中的双精度数组处理，包括滤波和变换操作
+// 参数:
+//   param_1 - 输出双精度数组指针
+//   param_2 - 输入数据指针
+//   param_3 - 滤波系数
+//   param_4 - 输入数据数量
+//   param_5 - 滤波器阶数
+void UIDoubleArrayProcessor(double *param_1, longlong param_2, float param_3, int param_4, int param_5)
 {
-  double dVar1;
-  double dVar2;
-  ulonglong uVar3;
-  double *pdVar4;
-  float *pfVar5;
-  uint uVar6;
-  ulonglong uVar7;
-  longlong lVar8;
-  longlong lVar9;
-  ulonglong uVar10;
-  uint uVar11;
-  double dVar12;
-  double dVar13;
-  double adStack_1b8 [26];
-  double adStack_e8 [26];
-  ulonglong uStack_18;
+  double filter_val1;
+  double filter_val2;
+  ulonglong filter_index;
+  double *output_ptr;
+  float *input_ptr;
+  uint alignment_mask;
+  ulonglong base_index;
+  longlong remaining_elements;
+  longlong filter_order;
+  ulonglong element_count;
+  uint output_size;
+  double input_value;
+  double processed_value;
+  double filter_buffer1 [26];
+  double filter_buffer2 [26];
+  ulonglong security_cookie;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)adStack_1b8;
-  lVar9 = (longlong)param_5;
-  adStack_e8[0x11] = 0.0;
-  adStack_e8[0] = 0.0;
-  adStack_e8[1] = 0.0;
-  adStack_e8[2] = 0.0;
-  adStack_e8[3] = 0.0;
-  uVar7 = 0;
-  adStack_e8[4] = 0.0;
-  adStack_e8[5] = 0.0;
-  adStack_e8[6] = 0.0;
-  adStack_e8[7] = 0.0;
-  adStack_e8[8] = 0.0;
-  adStack_e8[9] = 0.0;
-  adStack_e8[0x10] = 0.0;
-  adStack_1b8[0x10] = 0.0;
-  adStack_e8[10] = 0.0;
-  adStack_e8[0xb] = 0.0;
-  adStack_e8[0xc] = 0.0;
-  adStack_e8[0xd] = 0.0;
-  adStack_e8[0xe] = 0.0;
-  adStack_e8[0xf] = 0.0;
-  adStack_e8[0x12] = 0.0;
-  adStack_e8[0x13] = 0.0;
-  adStack_e8[0x14] = 0.0;
-  adStack_e8[0x15] = 0.0;
-  adStack_e8[0x16] = 0.0;
-  adStack_e8[0x17] = 0.0;
-  adStack_e8[0x18] = 0.0;
-  adStack_1b8[0] = 0.0;
-  adStack_1b8[1] = 0.0;
-  adStack_1b8[2] = 0.0;
-  adStack_1b8[3] = 0.0;
-  adStack_1b8[4] = 0.0;
-  adStack_1b8[5] = 0.0;
-  adStack_1b8[6] = 0.0;
-  adStack_1b8[7] = 0.0;
-  adStack_1b8[8] = 0.0;
-  adStack_1b8[9] = 0.0;
-  adStack_1b8[10] = 0.0;
-  adStack_1b8[0xb] = 0.0;
-  adStack_1b8[0xc] = 0.0;
-  adStack_1b8[0xd] = 0.0;
-  adStack_1b8[0xe] = 0.0;
-  adStack_1b8[0xf] = 0.0;
-  adStack_1b8[0x11] = 0.0;
-  adStack_1b8[0x12] = 0.0;
-  adStack_1b8[0x13] = 0.0;
-  adStack_1b8[0x14] = 0.0;
-  adStack_1b8[0x15] = 0.0;
-  adStack_1b8[0x16] = 0.0;
-  adStack_1b8[0x17] = 0.0;
-  adStack_1b8[0x18] = 0.0;
-  uVar10 = uVar7;
+  // 安全检查：栈保护cookie
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)filter_buffer1;
+  filter_order = (longlong)param_5;
+  
+  // 初始化滤波器缓冲区
+  filter_buffer2[0x11] = 0.0;
+  filter_buffer2[0] = 0.0;
+  filter_buffer2[1] = 0.0;
+  filter_buffer2[2] = 0.0;
+  filter_buffer2[3] = 0.0;
+  base_index = 0;
+  filter_buffer2[4] = 0.0;
+  filter_buffer2[5] = 0.0;
+  filter_buffer2[6] = 0.0;
+  filter_buffer2[7] = 0.0;
+  filter_buffer2[8] = 0.0;
+  filter_buffer2[9] = 0.0;
+  filter_buffer2[0x10] = 0.0;
+  filter_buffer1[0x10] = 0.0;
+  filter_buffer2[10] = 0.0;
+  filter_buffer2[0xb] = 0.0;
+  filter_buffer2[0xc] = 0.0;
+  filter_buffer2[0xd] = 0.0;
+  filter_buffer2[0xe] = 0.0;
+  filter_buffer2[0xf] = 0.0;
+  filter_buffer2[0x12] = 0.0;
+  filter_buffer2[0x13] = 0.0;
+  filter_buffer2[0x14] = 0.0;
+  filter_buffer2[0x15] = 0.0;
+  filter_buffer2[0x16] = 0.0;
+  filter_buffer2[0x17] = 0.0;
+  filter_buffer2[0x18] = 0.0;
+  filter_buffer1[0] = 0.0;
+  filter_buffer1[1] = 0.0;
+  filter_buffer1[2] = 0.0;
+  filter_buffer1[3] = 0.0;
+  filter_buffer1[4] = 0.0;
+  filter_buffer1[5] = 0.0;
+  filter_buffer1[6] = 0.0;
+  filter_buffer1[7] = 0.0;
+  filter_buffer1[8] = 0.0;
+  filter_buffer1[9] = 0.0;
+  filter_buffer1[10] = 0.0;
+  filter_buffer1[0xb] = 0.0;
+  filter_buffer1[0xc] = 0.0;
+  filter_buffer1[0xd] = 0.0;
+  filter_buffer1[0xe] = 0.0;
+  filter_buffer1[0xf] = 0.0;
+  filter_buffer1[0x11] = 0.0;
+  filter_buffer1[0x12] = 0.0;
+  filter_buffer1[0x13] = 0.0;
+  filter_buffer1[0x14] = 0.0;
+  filter_buffer1[0x15] = 0.0;
+  filter_buffer1[0x16] = 0.0;
+  filter_buffer1[0x17] = 0.0;
+  filter_buffer1[0x18] = 0.0;
+  element_count = base_index;
+  
+  // 处理输入数据
   if (0 < param_4) {
     do {
-      dVar13 = (double)*(float *)(param_2 + uVar10 * 4);
-      uVar3 = uVar7;
+      processed_value = (double)*(float *)(param_2 + element_count * 4);
+      filter_index = base_index;
       if (0 < param_5) {
         do {
-          dVar1 = adStack_e8[uVar3 + 1];
-          dVar12 = (dVar1 - dVar13) * (double)param_3 + adStack_e8[uVar3];
-          adStack_e8[uVar3] = dVar13;
-          adStack_e8[uVar3 + 1] = dVar12;
-          adStack_1b8[uVar3] = dVar13 * adStack_e8[0] + adStack_1b8[uVar3];
-          dVar13 = adStack_e8[uVar3 + 2];
-          adStack_1b8[uVar3 + 1] = dVar12 * adStack_e8[0] + adStack_1b8[uVar3 + 1];
-          uVar3 = uVar3 + 2;
-          dVar13 = (dVar13 - dVar12) * (double)param_3 + dVar1;
-        } while ((longlong)uVar3 < lVar9);
+          // 执行滤波器计算
+          filter_val1 = filter_buffer2[filter_index + 1];
+          input_value = (filter_val1 - processed_value) * (double)param_3 + filter_buffer2[filter_index];
+          filter_buffer2[filter_index] = processed_value;
+          filter_buffer2[filter_index + 1] = input_value;
+          filter_buffer1[filter_index] = processed_value * filter_buffer2[0] + filter_buffer1[filter_index];
+          processed_value = filter_buffer2[filter_index + 2];
+          filter_buffer1[filter_index + 1] = input_value * filter_buffer2[0] + filter_buffer1[filter_index + 1];
+          filter_index = filter_index + 2;
+          processed_value = (processed_value - input_value) * (double)param_3 + filter_val1;
+        } while ((longlong)filter_index < filter_order);
       }
-      adStack_e8[lVar9] = dVar13;
-      uVar10 = uVar10 + 1;
-      adStack_1b8[lVar9] = dVar13 * adStack_e8[0] + adStack_1b8[lVar9];
-    } while ((longlong)uVar10 < (longlong)param_4);
+      filter_buffer2[filter_order] = processed_value;
+      element_count = element_count + 1;
+      filter_buffer1[filter_order] = processed_value * filter_buffer2[0] + filter_buffer1[filter_order];
+    } while ((longlong)element_count < (longlong)param_4);
   }
-  uVar11 = param_5 + 1;
-  uVar10 = uVar7;
-  if (((0 < (int)uVar11) && (uVar10 = 0, 7 < uVar11)) &&
-     ((adStack_1b8 + lVar9 < param_1 ||
-      ((undefined1 *)((longlong)param_1 + lVar9 * 4) < adStack_1b8)))) {
-    uVar6 = uVar11 & 0x80000007;
-    if ((int)uVar6 < 0) {
-      uVar6 = (uVar6 - 1 | 0xfffffff8) + 1;
+  
+  output_size = param_5 + 1;
+  element_count = base_index;
+  
+  // 批量输出处理（8字节对齐优化）
+  if (((0 < (int)output_size) && (element_count = 0, 7 < output_size)) &&
+     ((filter_buffer1 + filter_order < param_1 ||
+      ((undefined1 *)((longlong)param_1 + filter_order * 4) < filter_buffer1)))) {
+    alignment_mask = output_size & 0x80000007;
+    if ((int)alignment_mask < 0) {
+      alignment_mask = (alignment_mask - 1 | 0xfffffff8) + 1;
     }
-    pdVar4 = param_1 + 2;
-    uVar10 = uVar7;
+    output_ptr = param_1 + 2;
+    element_count = base_index;
     do {
-      uVar10 = (ulonglong)((int)uVar10 + 8);
-      dVar13 = adStack_1b8[uVar7 + 2];
-      dVar1 = adStack_1b8[uVar7 + 3];
-      pdVar4[-2] = (double)CONCAT44((float)adStack_1b8[uVar7 + 1],(float)adStack_1b8[uVar7]);
-      dVar12 = adStack_1b8[uVar7 + 4];
-      dVar2 = adStack_1b8[uVar7 + 5];
-      pdVar4[-1] = (double)CONCAT44((float)dVar1,(float)dVar13);
-      dVar13 = adStack_1b8[uVar7 + 6];
-      dVar1 = adStack_1b8[uVar7 + 7];
-      uVar7 = uVar7 + 8;
-      *pdVar4 = (double)CONCAT44((float)dVar2,(float)dVar12);
-      pdVar4[1] = (double)CONCAT44((float)dVar1,(float)dVar13);
-      pdVar4 = pdVar4 + 4;
-    } while ((longlong)uVar7 < (longlong)(int)(uVar11 - uVar6));
+      element_count = (ulonglong)((int)element_count + 8);
+      processed_value = filter_buffer1[base_index + 2];
+      filter_val1 = filter_buffer1[base_index + 3];
+      output_ptr[-2] = (double)CONCAT44((float)filter_buffer1[base_index + 1], (float)filter_buffer1[base_index]);
+      input_value = filter_buffer1[base_index + 4];
+      filter_val2 = filter_buffer1[base_index + 5];
+      output_ptr[-1] = (double)CONCAT44((float)filter_val1, (float)processed_value);
+      processed_value = filter_buffer1[base_index + 6];
+      filter_val1 = filter_buffer1[base_index + 7];
+      base_index = base_index + 8;
+      *output_ptr = (double)CONCAT44((float)filter_val2, (float)input_value);
+      output_ptr[1] = (double)CONCAT44((float)filter_val1, (float)processed_value);
+      output_ptr = output_ptr + 4;
+    } while ((longlong)base_index < (longlong)(int)(output_size - alignment_mask));
   }
-  lVar9 = (longlong)(int)uVar10;
-  lVar8 = (longlong)(int)uVar11;
-  if (lVar9 < lVar8) {
-    if (3 < lVar8 - lVar9) {
-      pfVar5 = (float *)((longlong)param_1 + lVar9 * 4 + 8);
+  
+  // 处理剩余元素
+  filter_order = (longlong)(int)element_count;
+  remaining_elements = (longlong)(int)output_size;
+  if (filter_order < remaining_elements) {
+    if (3 < remaining_elements - filter_order) {
+      input_ptr = (float *)((longlong)param_1 + filter_order * 4 + 8);
       do {
-        dVar13 = adStack_1b8[lVar9 + 1];
-        pfVar5[-2] = (float)adStack_1b8[lVar9];
-        dVar1 = adStack_1b8[lVar9 + 2];
-        pfVar5[-1] = (float)dVar13;
-        dVar13 = adStack_1b8[lVar9 + 3];
-        lVar9 = lVar9 + 4;
-        *pfVar5 = (float)dVar1;
-        pfVar5[1] = (float)dVar13;
-        pfVar5 = pfVar5 + 4;
-      } while (lVar9 < lVar8 + -3);
+        processed_value = filter_buffer1[filter_order + 1];
+        input_ptr[-2] = (float)filter_buffer1[filter_order];
+        filter_val1 = filter_buffer1[filter_order + 2];
+        input_ptr[-1] = (float)processed_value;
+        processed_value = filter_buffer1[filter_order + 3];
+        filter_order = filter_order + 4;
+        *input_ptr = (float)filter_val1;
+        input_ptr[1] = (float)processed_value;
+        input_ptr = input_ptr + 4;
+      } while (filter_order < remaining_elements + -3);
     }
-    for (; lVar9 < lVar8; lVar9 = lVar9 + 1) {
-      *(float *)((longlong)param_1 + lVar9 * 4) = (float)adStack_1b8[lVar9];
+    
+    // 处理最后剩余的元素
+    for (; filter_order < remaining_elements; filter_order = filter_order + 1) {
+      *(float *)((longlong)param_1 + filter_order * 4) = (float)filter_buffer1[filter_order];
     }
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)adStack_1b8);
+  
+  // 安全检查：函数不会返回
+  FUN_1808fc050(security_cookie ^ (ulonglong)filter_buffer1);
 }
 
 
 
 
 
-// 函数: void FUN_18072b830(longlong param_1,longlong param_2,int param_3,int param_4)
-void FUN_18072b830(longlong param_1,longlong param_2,int param_3,int param_4)
-
+// 函数: UI系统三角函数生成器
+// 原始函数名: FUN_18072b830
+// 功能: 生成UI系统中使用的三角函数序列，用于动画和变换效果
+// 参数:
+//   param_1 - 输出缓冲区指针
+//   param_2 - 输入数据指针
+//   param_3 - 生成模式
+//   param_4 - 生成元素数量
+void UITrigonometricGenerator(longlong param_1, longlong param_2, int param_3, int param_4)
 {
-  float *pfVar1;
-  longlong lVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
+  float *output_ptr;
+  longlong batch_counter;
+  float angle_step;
+  float cos_value;
+  float sin_value;
+  float recurrence_factor;
   
-  fVar4 = 1.0;
-  fVar3 = 1.0 / (float)(param_4 + 1);
-  fVar5 = 2.0 - fVar3 * fVar3 * 9.869605;
+  // 初始化三角函数参数
+  cos_value = 1.0;
+  angle_step = 1.0 / (float)(param_4 + 1);
+  recurrence_factor = 2.0 - angle_step * angle_step * 9.869605;  // 9.869605 ≈ π²
+  
   if (param_3 < 2) {
-    fVar3 = fVar3 * 3.1415927;
-    fVar4 = 0.0;
+    angle_step = angle_step * 3.1415927;  // 转换为弧度
+    cos_value = 0.0;
   }
   else {
-    fVar3 = fVar5 * 0.5;
+    angle_step = recurrence_factor * 0.5;
   }
+  
   if (0 < param_4) {
     param_2 = param_2 - param_1;
-    pfVar1 = (float *)(param_1 + 4);
-    lVar2 = ((longlong)param_4 - 1U >> 2) + 1;
+    output_ptr = (float *)(param_1 + 4);
+    batch_counter = ((longlong)param_4 - 1U >> 2) + 1;
     do {
-      pfVar1[-1] = *(float *)(param_2 + -4 + (longlong)pfVar1) * 0.5 * (fVar3 + fVar4);
-      *pfVar1 = fVar3 * *(float *)(param_2 + (longlong)pfVar1);
-      fVar4 = fVar3 * fVar5 - fVar4;
-      pfVar1[1] = *(float *)(param_2 + 4 + (longlong)pfVar1) * 0.5 * (fVar3 + fVar4);
-      fVar3 = fVar4 * fVar5 - fVar3;
-      pfVar1[2] = fVar4 * *(float *)(param_2 + 8 + (longlong)pfVar1);
-      pfVar1 = pfVar1 + 4;
-      lVar2 = lVar2 + -1;
-    } while (lVar2 != 0);
+      // 使用递推公式生成三角函数序列
+      output_ptr[-1] = *(float *)(param_2 + -4 + (longlong)output_ptr) * 0.5 * (angle_step + cos_value);
+      *output_ptr = angle_step * *(float *)(param_2 + (longlong)output_ptr);
+      cos_value = angle_step * recurrence_factor - cos_value;
+      output_ptr[1] = *(float *)(param_2 + 4 + (longlong)output_ptr) * 0.5 * (angle_step + cos_value);
+      angle_step = cos_value * recurrence_factor - angle_step;
+      output_ptr[2] = cos_value * *(float *)(param_2 + 8 + (longlong)output_ptr);
+      output_ptr = output_ptr + 4;
+      batch_counter = batch_counter + -1;
+    } while (batch_counter != 0);
   }
   return;
 }

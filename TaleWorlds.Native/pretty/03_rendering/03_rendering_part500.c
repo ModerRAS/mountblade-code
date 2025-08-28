@@ -468,183 +468,245 @@ float * rendering_system_multiply_matrix_vectors(float *matrix_ptr, float *resul
 
 
 
-float * FUN_180534930(undefined4 *param_1,float *param_2,float *param_3)
+/**
+ * 3D坐标变换函数
+ * 执行3D坐标的变换运算
+ * 
+ * @param transform_matrix 变换矩阵
+ * @param result_coords 结果坐标
+ * @param source_coords 源坐标
+ * @return 变换后的坐标指针
+ */
+float * rendering_system_transform_3d_coordinates(undefined4 *transform_matrix, float *result_coords, float *source_coords)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  undefined4 uStack_98;
-  undefined4 uStack_94;
-  undefined4 uStack_90;
-  undefined4 uStack_8c;
-  undefined4 uStack_88;
-  undefined4 uStack_84;
-  undefined4 uStack_80;
-  undefined4 uStack_7c;
-  undefined4 uStack_78;
-  undefined4 uStack_74;
-  undefined4 uStack_70;
-  undefined4 uStack_6c;
-  undefined4 uStack_68;
-  undefined4 uStack_64;
-  undefined4 uStack_60;
-  undefined4 uStack_5c;
-  float fStack_58;
-  float fStack_54;
-  float fStack_50;
-  float fStack_4c;
-  float fStack_48;
-  float fStack_44;
-  float fStack_40;
-  float fStack_3c;
-  float fStack_38;
-  float fStack_34;
-  float fStack_30;
-  float fStack_2c;
-  float fStack_28;
-  float fStack_24;
-  float fStack_20;
-  float fStack_1c;
+  float coord_z;
+  float coord_y;
+  float coord_x;
+  undefined4 matrix_elem_1;
+  undefined4 matrix_elem_2;
+  undefined4 matrix_elem_3;
+  undefined4 matrix_elem_4;
+  undefined4 matrix_elem_5;
+  undefined4 matrix_elem_6;
+  undefined4 matrix_elem_7;
+  undefined4 matrix_elem_8;
+  undefined4 matrix_elem_9;
+  undefined4 matrix_elem_10;
+  undefined4 matrix_elem_11;
+  undefined4 matrix_elem_12;
+  undefined4 matrix_elem_13;
+  undefined4 matrix_elem_14;
+  undefined4 matrix_elem_15;
+  undefined4 matrix_elem_16;
+  float transformed_x;
+  float transformed_y;
+  float transformed_z;
+  float transformed_w;
+  float temp_x;
+  float temp_y;
+  float temp_z;
+  float temp_w;
+  float final_x;
+  float final_y;
+  float final_z;
+  float final_w;
   
-  uStack_98 = *param_1;
-  uStack_94 = param_1[1];
-  uStack_90 = param_1[2];
-  uStack_84 = param_1[5];
-  uStack_88 = param_1[4];
-  uStack_78 = param_1[8];
-  uStack_80 = param_1[6];
-  uStack_70 = param_1[10];
-  uStack_74 = param_1[9];
-  uStack_64 = param_1[0xd];
-  uStack_68 = param_1[0xc];
-  uStack_60 = param_1[0xe];
-  uStack_5c = 0x3f800000;
-  uStack_8c = 0;
-  uStack_7c = 0;
-  uStack_6c = 0;
-  FUN_1805351a0(&uStack_98,&fStack_58);
-  fVar1 = param_3[2];
-  fVar2 = *param_3;
-  fVar3 = param_3[1];
-  *param_2 = fVar3 * fStack_48 + fVar2 * fStack_58 + fVar1 * fStack_38 + fStack_28;
-  param_2[1] = fStack_54 * fVar2 + fStack_44 * fVar3 + fStack_34 * fVar1 + fStack_24;
-  param_2[2] = fStack_50 * fVar2 + fStack_40 * fVar3 + fStack_30 * fVar1 + fStack_20;
-  param_2[3] = fStack_4c * fVar2 + fStack_3c * fVar3 + fStack_2c * fVar1 + fStack_1c;
-  return param_2;
+  // 复制变换矩阵到栈变量
+  matrix_elem_1 = *transform_matrix;
+  matrix_elem_2 = transform_matrix[1];
+  matrix_elem_3 = transform_matrix[2];
+  matrix_elem_4 = transform_matrix[5];
+  matrix_elem_5 = transform_matrix[4];
+  matrix_elem_6 = transform_matrix[8];
+  matrix_elem_7 = transform_matrix[6];
+  matrix_elem_8 = transform_matrix[10];
+  matrix_elem_9 = transform_matrix[9];
+  matrix_elem_10 = transform_matrix[13];
+  matrix_elem_11 = transform_matrix[12];
+  matrix_elem_12 = transform_matrix[14];
+  matrix_elem_13 = 0x3f800000;  // 1.0f
+  matrix_elem_14 = 0;
+  matrix_elem_15 = 0;
+  matrix_elem_16 = 0;
+  
+  // 计算矩阵逆变换
+  FUN_1805351a0(&matrix_elem_1, &transformed_x);
+  
+  // 获取源坐标
+  coord_z = source_coords[2];
+  coord_y = *source_coords;
+  coord_x = source_coords[1];
+  
+  // 应用坐标变换
+  *result_coords = coord_x * temp_y + coord_y * transformed_x + coord_z * temp_z + final_x;
+  result_coords[1] = transformed_y * coord_y * temp_w * coord_x + temp_x * coord_z + final_y;
+  result_coords[2] = transformed_z * coord_y * temp_x * coord_x + temp_z * coord_z + final_z;
+  result_coords[3] = transformed_w * coord_y * temp_w * coord_x + temp_w * coord_z + final_w;
+  
+  return result_coords;
 }
 
 
 
 
 
-// 函数: void FUN_180534b00(void)
-void FUN_180534b00(void)
+/**
+ * 空函数占位符
+ * 用于填充函数表或作为默认实现
+ */
+void rendering_system_empty_function_placeholder(void)
 
 {
-  undefined4 in_XMM3_Da;
+  undefined4 unused_param;
   
-                    // WARNING: Subroutine does not return
-  FUN_1808fd400(in_XMM3_Da);
+  // 调用底层系统函数
+  FUN_1808fd400(unused_param);
 }
 
 
 
-undefined8 FUN_180534d00(longlong param_1,undefined8 param_2,ulonglong param_3,undefined8 param_4)
+/**
+ * 渲染锁获取函数
+ * 获取渲染操作的锁以确保线程安全
+ * 
+ * @param lock_context 锁上下文
+ * @param lock_data 锁数据
+ * @param timeout 超时时间
+ * @param flags 锁标志
+ * @return 锁状态
+ */
+undefined8 rendering_system_acquire_render_lock(longlong lock_context, undefined8 lock_data, ulonglong timeout, undefined8 flags)
 
 {
-  int iVar1;
+  int lock_result;
   
-  if ((*(byte *)(param_1 + 0xa8) & 1) == 0) {
-    iVar1 = _Mtx_lock(param_1 + 0xe0,param_2,param_3,param_4,0xfffffffffffffffe);
-    if (iVar1 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar1);
+  // 检查是否需要获取锁
+  if ((*(byte *)(lock_context + 0xa8) & 1) == 0) {
+    lock_result = _Mtx_lock(lock_context + 0xe0, lock_data, timeout, flags, 0xfffffffffffffffe);
+    if (lock_result != 0) {
+      __Throw_C_error_std__YAXH_Z(lock_result);
     }
-    if ((*(byte *)(param_1 + 0xa8) & 1) == 0) {
-      FUN_1802fac00(param_1,*(longlong *)(param_1 + 0x10) + 0x70,0xbf800000);
+    
+    // 处理渲染参数
+    if ((*(byte *)(lock_context + 0xa8) & 1) == 0) {
+      FUN_1802fac00(lock_context, *(longlong *)(lock_context + 0x10) + 0x70, 0xbf800000);
     }
-    iVar1 = _Mtx_unlock(param_1 + 0xe0);
-    if (iVar1 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar1);
+    
+    // 释放锁
+    lock_result = _Mtx_unlock(lock_context + 0xe0);
+    if (lock_result != 0) {
+      __Throw_C_error_std__YAXH_Z(lock_result);
     }
   }
-  FUN_1801c15d0(param_1,param_2,param_3 & 0xff);
-  return param_2;
-}
-
-
-
-
-
-// 函数: void FUN_180535010(undefined8 param_1,undefined4 param_2)
-void FUN_180535010(undefined8 param_1,undefined4 param_2)
-
-{
-                    // WARNING: Subroutine does not return
-  FUN_1808fd400(param_2);
-}
-
-
-
-
-
-// 函数: void FUN_1805351a0(float *param_1,float *param_2)
-void FUN_1805351a0(float *param_1,float *param_2)
-
-{
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
-  float fVar10;
   
-  fVar10 = param_1[10];
-  fVar3 = param_1[1];
-  fVar4 = param_1[0xd];
-  param_2[2] = 0.0;
-  param_2[3] = 0.0;
-  fVar1 = param_1[4];
-  fVar8 = param_1[0xc];
-  fVar5 = fVar3 * fVar10;
-  fVar6 = param_1[5] * fVar10;
-  fVar2 = *param_1;
-  param_2[1] = -fVar5;
-  fVar7 = param_1[5];
-  *param_2 = fVar6;
-  param_2[4] = -(fVar1 * fVar10);
-  param_2[5] = fVar2 * fVar10;
-  param_2[6] = 0.0;
-  param_2[7] = 0.0;
-  param_2[8] = 0.0;
-  param_2[9] = 0.0;
-  fVar9 = fVar2 * fVar7 - fVar1 * fVar3;
-  param_2[0xb] = 0.0;
-  fVar7 = -(fVar1 * -(fVar10 * fVar4)) - fVar8 * fVar6;
-  param_2[10] = fVar9;
-  param_2[0xc] = fVar7;
-  fVar8 = fVar8 * fVar5 + fVar2 * -(fVar10 * fVar4);
-  fVar4 = param_1[0xe] * fVar3 * fVar1 - param_1[0xe] * param_1[5] * fVar2;
-  param_2[0xd] = fVar8;
-  fVar10 = fVar2 * *param_2 + fVar1 * param_2[1];
-  param_2[0xe] = fVar4;
-  fVar3 = fVar2 * fVar6 - fVar1 * fVar5;
-  param_2[0xf] = fVar3;
-  if (fVar10 != 1.0) {
-    fVar10 = 1.0 / fVar10;
-    *param_2 = fVar10 * *param_2;
-    param_2[1] = fVar10 * param_2[1];
-    param_2[5] = fVar10 * param_2[5];
-    param_2[4] = fVar10 * param_2[4];
-    param_2[10] = fVar9 * fVar10;
-    param_2[0xc] = fVar7 * fVar10;
-    param_2[0xd] = fVar8 * fVar10;
-    param_2[0xe] = fVar4 * fVar10;
-    param_2[0xf] = fVar3 * fVar10;
+  // 执行渲染操作
+  FUN_1801c15d0(lock_context, lock_data, timeout & 0xff);
+  return lock_data;
+}
+
+
+
+
+
+/**
+ * 调试渲染函数
+ * 用于调试渲染系统的功能
+ * 
+ * @param debug_context 调试上下文
+ * @param debug_param 调试参数
+ */
+void rendering_system_debug_render_function(undefined8 debug_context, undefined4 debug_param)
+
+{
+  // 调用底层调试函数
+  FUN_1808fd400(debug_param);
+}
+
+
+
+
+
+/**
+ * 矩阵逆变换计算函数
+ * 计算变换矩阵的逆矩阵，用于坐标反向变换
+ * 
+ * @param matrix_ptr 输入矩阵指针
+ * @param result_ptr 结果矩阵指针
+ */
+void rendering_system_calculate_matrix_inverse(float *matrix_ptr, float *result_ptr)
+
+{
+  float matrix_element_10;
+  float matrix_element_1;
+  float matrix_element_13;
+  float matrix_element_4;
+  float matrix_element_12;
+  float matrix_element_5;
+  float matrix_element_0;
+  float matrix_element_7;
+  float matrix_element_8;
+  float matrix_element_14;
+  float determinant;
+  float temp_result_1;
+  float temp_result_2;
+  float temp_result_3;
+  float temp_result_4;
+  float temp_result_5;
+  float temp_result_6;
+  float temp_result_7;
+  float temp_result_8;
+  
+  // 获取矩阵元素
+  matrix_element_10 = matrix_ptr[10];
+  matrix_element_1 = matrix_ptr[1];
+  matrix_element_13 = matrix_ptr[0xd];
+  matrix_element_4 = matrix_ptr[4];
+  matrix_element_12 = matrix_ptr[0xc];
+  matrix_element_5 = matrix_ptr[5];
+  matrix_element_0 = *matrix_ptr;
+  matrix_element_7 = matrix_ptr[7];
+  matrix_element_8 = matrix_ptr[8];
+  matrix_element_14 = matrix_ptr[0xe];
+  
+  // 计算逆矩阵元素
+  result_ptr[2] = 0.0;
+  result_ptr[3] = 0.0;
+  temp_result_1 = matrix_element_1 * matrix_element_10;
+  temp_result_2 = matrix_element_5 * matrix_element_10;
+  result_ptr[1] = -temp_result_1;
+  *result_ptr = temp_result_2;
+  result_ptr[4] = -(matrix_element_4 * matrix_element_10);
+  result_ptr[5] = matrix_element_0 * matrix_element_10;
+  result_ptr[6] = 0.0;
+  result_ptr[7] = 0.0;
+  result_ptr[8] = 0.0;
+  result_ptr[9] = 0.0;
+  temp_result_3 = matrix_element_0 * matrix_element_5 - matrix_element_4 * matrix_element_1;
+  result_ptr[0xb] = 0.0;
+  temp_result_4 = -(matrix_element_4 * -(matrix_element_10 * matrix_element_13)) - matrix_element_12 * temp_result_2;
+  result_ptr[10] = temp_result_3;
+  result_ptr[0xc] = temp_result_4;
+  temp_result_5 = matrix_element_12 * temp_result_1 + matrix_element_0 * -(matrix_element_10 * matrix_element_13);
+  temp_result_6 = matrix_element_14 * matrix_element_1 * matrix_element_4 - matrix_element_14 * matrix_element_5 * matrix_element_0;
+  result_ptr[0xd] = temp_result_5;
+  determinant = matrix_element_0 * *result_ptr + matrix_element_4 * result_ptr[1];
+  result_ptr[0xe] = temp_result_6;
+  temp_result_7 = matrix_element_0 * temp_result_2 - matrix_element_4 * temp_result_1;
+  result_ptr[0xf] = temp_result_7;
+  
+  // 归一化处理
+  if (determinant != 1.0) {
+    determinant = 1.0 / determinant;
+    *result_ptr = determinant * *result_ptr;
+    result_ptr[1] = determinant * result_ptr[1];
+    result_ptr[5] = determinant * result_ptr[5];
+    result_ptr[4] = determinant * result_ptr[4];
+    result_ptr[10] = temp_result_3 * determinant;
+    result_ptr[0xc] = temp_result_4 * determinant;
+    result_ptr[0xd] = temp_result_5 * determinant;
+    result_ptr[0xe] = temp_result_6 * determinant;
+    result_ptr[0xf] = temp_result_7 * determinant;
   }
   return;
 }
@@ -653,118 +715,150 @@ void FUN_1805351a0(float *param_1,float *param_2)
 
 
 
-// 函数: void FUN_1805353a0(float *param_1,undefined4 *param_2)
-void FUN_1805353a0(float *param_1,undefined4 *param_2)
+/**
+ * 矩阵变换应用函数
+ * 将变换矩阵应用到渲染对象上
+ * 
+ * @param result_matrix 结果矩阵指针
+ * @param transform_matrix 变换矩阵指针
+ */
+void rendering_system_apply_matrix_transform(float *result_matrix, undefined4 *transform_matrix)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fStack_b8;
-  float fStack_b4;
-  float fStack_b0;
-  float fStack_ac;
-  float fStack_a8;
-  float fStack_a4;
-  float fStack_a0;
-  float fStack_9c;
-  float fStack_98;
-  float fStack_94;
-  float fStack_90;
-  float fStack_8c;
-  float fStack_88;
-  float fStack_84;
-  float fStack_80;
-  float fStack_7c;
-  undefined4 uStack_68;
-  undefined4 uStack_64;
-  undefined4 uStack_60;
-  undefined4 uStack_5c;
-  undefined4 uStack_58;
-  undefined4 uStack_54;
-  undefined4 uStack_50;
-  undefined4 uStack_4c;
-  undefined4 uStack_48;
-  undefined4 uStack_44;
-  undefined4 uStack_40;
-  undefined4 uStack_3c;
-  undefined4 uStack_38;
-  undefined4 uStack_34;
-  undefined4 uStack_30;
-  undefined4 uStack_2c;
+  float matrix_element_1;
+  float matrix_element_0;
+  float matrix_element_2;
+  float inverse_matrix_0;
+  float inverse_matrix_1;
+  float inverse_matrix_2;
+  float inverse_matrix_3;
+  float inverse_matrix_4;
+  float inverse_matrix_5;
+  float inverse_matrix_6;
+  float inverse_matrix_7;
+  float inverse_matrix_8;
+  float inverse_matrix_9;
+  float inverse_matrix_10;
+  float inverse_matrix_11;
+  float inverse_matrix_12;
+  float inverse_matrix_13;
+  float inverse_matrix_14;
+  float inverse_matrix_15;
+  undefined4 transform_elem_0;
+  undefined4 transform_elem_1;
+  undefined4 transform_elem_2;
+  undefined4 transform_elem_3;
+  undefined4 transform_elem_4;
+  undefined4 transform_elem_5;
+  undefined4 transform_elem_6;
+  undefined4 transform_elem_7;
+  undefined4 transform_elem_8;
+  undefined4 transform_elem_9;
+  undefined4 transform_elem_10;
+  undefined4 transform_elem_11;
+  undefined4 transform_elem_12;
+  undefined4 transform_elem_13;
+  undefined4 transform_elem_14;
+  undefined4 transform_elem_15;
   
-  uStack_68 = *param_2;
-  uStack_64 = param_2[1];
-  uStack_60 = param_2[2];
-  uStack_54 = param_2[5];
-  uStack_58 = param_2[4];
-  uStack_48 = param_2[8];
-  uStack_50 = param_2[6];
-  uStack_40 = param_2[10];
-  uStack_44 = param_2[9];
-  uStack_34 = param_2[0xd];
-  uStack_38 = param_2[0xc];
-  uStack_30 = param_2[0xe];
-  uStack_2c = 0x3f800000;
-  uStack_5c = 0;
-  uStack_4c = 0;
-  uStack_3c = 0;
-  FUN_1805351a0(&uStack_68,&fStack_b8);
-  fVar1 = param_1[1];
-  fVar2 = *param_1;
-  fVar3 = param_1[2];
-  param_1[3] = 1.0;
-  *param_1 = fVar2 * fStack_b8 + fVar1 * fStack_a8 + fVar3 * fStack_98 + fStack_88;
-  param_1[1] = fVar2 * fStack_b4 + fVar1 * fStack_a4 + fVar3 * fStack_94 + fStack_84;
-  param_1[2] = fVar2 * fStack_b0 + fVar1 * fStack_a0 + fVar3 * fStack_90 + fStack_80;
-  param_1[3] = fVar2 * fStack_ac + fVar1 * fStack_9c + fVar3 * fStack_8c + fStack_7c;
-  param_1[7] = 1.0;
-  fVar1 = param_1[4];
-  fVar2 = param_1[5];
-  fVar3 = param_1[6];
-  param_1[4] = fVar1 * fStack_b8 + fVar2 * fStack_a8 + fVar3 * fStack_98 + fStack_88;
-  param_1[5] = fVar1 * fStack_b4 + fVar2 * fStack_a4 + fVar3 * fStack_94 + fStack_84;
-  param_1[6] = fVar1 * fStack_b0 + fVar2 * fStack_a0 + fVar3 * fStack_90 + fStack_80;
-  param_1[7] = fVar1 * fStack_ac + fVar2 * fStack_9c + fVar3 * fStack_8c + fStack_7c;
+  // 复制变换矩阵到栈变量
+  transform_elem_0 = *transform_matrix;
+  transform_elem_1 = transform_matrix[1];
+  transform_elem_2 = transform_matrix[2];
+  transform_elem_5 = transform_matrix[5];
+  transform_elem_4 = transform_matrix[4];
+  transform_elem_8 = transform_matrix[8];
+  transform_elem_6 = transform_matrix[6];
+  transform_elem_10 = transform_matrix[10];
+  transform_elem_9 = transform_matrix[9];
+  transform_elem_13 = transform_matrix[0xd];
+  transform_elem_12 = transform_matrix[0xc];
+  transform_elem_14 = transform_matrix[0xe];
+  transform_elem_15 = 0x3f800000;  // 1.0f
+  transform_elem_3 = 0;
+  transform_elem_7 = 0;
+  transform_elem_11 = 0;
+  
+  // 计算逆矩阵
+  rendering_system_calculate_matrix_inverse(&transform_elem_0, &inverse_matrix_0);
+  
+  // 获取结果矩阵元素
+  matrix_element_1 = result_matrix[1];
+  matrix_element_0 = *result_matrix;
+  matrix_element_2 = result_matrix[2];
+  
+  // 应用第一行变换
+  result_matrix[3] = 1.0;
+  *result_matrix = matrix_element_0 * inverse_matrix_0 + matrix_element_1 * inverse_matrix_4 + matrix_element_2 * inverse_matrix_8 + inverse_matrix_12;
+  result_matrix[1] = matrix_element_0 * inverse_matrix_1 + matrix_element_1 * inverse_matrix_5 + matrix_element_2 * inverse_matrix_9 + inverse_matrix_13;
+  result_matrix[2] = matrix_element_0 * inverse_matrix_2 + matrix_element_1 * inverse_matrix_6 + matrix_element_2 * inverse_matrix_10 + inverse_matrix_14;
+  result_matrix[3] = matrix_element_0 * inverse_matrix_3 + matrix_element_1 * inverse_matrix_7 + matrix_element_2 * inverse_matrix_11 + inverse_matrix_15;
+  
+  // 获取第二行元素并应用变换
+  result_matrix[7] = 1.0;
+  matrix_element_1 = result_matrix[4];
+  matrix_element_0 = result_matrix[5];
+  matrix_element_2 = result_matrix[6];
+  result_matrix[4] = matrix_element_1 * inverse_matrix_0 + matrix_element_0 * inverse_matrix_4 + matrix_element_2 * inverse_matrix_8 + inverse_matrix_12;
+  result_matrix[5] = matrix_element_1 * inverse_matrix_1 + matrix_element_0 * inverse_matrix_5 + matrix_element_2 * inverse_matrix_9 + inverse_matrix_13;
+  result_matrix[6] = matrix_element_1 * inverse_matrix_2 + matrix_element_0 * inverse_matrix_6 + matrix_element_2 * inverse_matrix_10 + inverse_matrix_14;
+  result_matrix[7] = matrix_element_1 * inverse_matrix_3 + matrix_element_0 * inverse_matrix_7 + matrix_element_2 * inverse_matrix_11 + inverse_matrix_15;
   return;
 }
 
 
 
-float * FUN_180535610(float *param_1,float *param_2,float param_3)
+/**
+ * 向量坐标缩放函数
+ * 对向量坐标进行缩放处理
+ * 
+ * @param source_vector 源向量指针
+ * @param result_vector 结果向量指针
+ * @param scale_factor 缩放因子
+ * @return 结果向量指针
+ */
+float * rendering_system_scale_vector_coordinates(float *source_vector, float *result_vector, float scale_factor)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
+  float vector_element_0;
+  float vector_element_1;
+  float vector_element_2;
+  float vector_element_4;
+  float vector_element_5;
+  float vector_element_9;
+  float vector_element_10;
+  float vector_element_8;
+  float vector_element_6;
+  float inverse_scale;
   
-  param_3 = 1.0 / param_3;
-  fVar1 = *param_1;
-  fVar2 = param_1[1];
-  fVar3 = param_1[4];
-  fVar4 = param_1[5];
-  fVar5 = param_1[9];
-  fVar6 = param_1[10];
-  fVar7 = param_1[2];
-  fVar8 = param_1[6];
-  param_2[8] = param_3 * param_1[8];
-  param_2[9] = param_3 * fVar5;
-  param_2[10] = param_3 * fVar6;
-  param_2[0xb] = 3.4028235e+38;
-  *param_2 = param_3 * fVar1;
-  param_2[1] = param_3 * fVar2;
-  param_2[2] = param_3 * fVar7;
-  param_2[3] = 3.4028235e+38;
-  param_2[4] = param_3 * fVar3;
-  param_2[5] = param_3 * fVar4;
-  param_2[6] = param_3 * fVar8;
-  param_2[7] = 3.4028235e+38;
-  return param_2;
+  // 计算缩放因子的倒数
+  inverse_scale = 1.0 / scale_factor;
+  
+  // 获取向量元素
+  vector_element_0 = *source_vector;
+  vector_element_1 = source_vector[1];
+  vector_element_2 = source_vector[4];
+  vector_element_5 = source_vector[5];
+  vector_element_9 = source_vector[9];
+  vector_element_10 = source_vector[10];
+  vector_element_8 = source_vector[8];
+  vector_element_6 = source_vector[6];
+  
+  // 应用缩放变换
+  result_vector[8] = inverse_scale * vector_element_8;
+  result_vector[9] = inverse_scale * vector_element_9;
+  result_vector[10] = inverse_scale * vector_element_10;
+  result_vector[0xb] = 3.4028235e+38;  // FLOAT_MAX
+  *result_vector = inverse_scale * vector_element_0;
+  result_vector[1] = inverse_scale * vector_element_1;
+  result_vector[2] = inverse_scale * source_vector[2];
+  result_vector[3] = 3.4028235e+38;  // FLOAT_MAX
+  result_vector[4] = inverse_scale * vector_element_2;
+  result_vector[5] = inverse_scale * vector_element_5;
+  result_vector[6] = inverse_scale * vector_element_6;
+  result_vector[7] = 3.4028235e+38;  // FLOAT_MAX
+  
+  return result_vector;
 }
 
 
