@@ -12,7 +12,7 @@ void process_animation_curve_data(longlong animation_context, longlong name_offs
   char *string_ptr1;
   ulonglong ulong_counter;
   longlong long_offset;
-  void *undefined_ptr1;
+  void *version_format_ptr;
   uint64_t *node_ptr1;
   char *string_ptr2;
   uint64_t *node_ptr2;
@@ -188,8 +188,8 @@ FOUND_CURVE_SECTION:
         
         // 验证版本格式
         if (((ulong_counter < 3) || (*string_ptr2 != '0')) ||
-           (undefined_ptr1 = &VERSION_FORMAT_180a3cb84, (string_ptr2[1] + 0xa8U & 0xdf) != 0)) {
-          undefined_ptr1 = &VERSION_FORMAT_180a063a0;
+           (version_format_ptr = &VERSION_FORMAT_180a3cb84, (string_ptr2[1] + 0xa8U & 0xdf) != 0)) {
+          version_format_ptr = &VERSION_FORMAT_180a063a0;
         }
         parse_version_string(string_ptr2, undefined_ptr1, version_array);
         break;
