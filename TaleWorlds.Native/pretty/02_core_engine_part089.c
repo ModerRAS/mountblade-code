@@ -104,7 +104,7 @@ void FUN_1801141d0(float *param_1,int param_2,uint64_t param_3,uint64_t param_4,
     FUN_1801134b0(acStack_70,*(uint64_t *)(lVar1 + 0x1ec8),4,param_5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (uint64_t)auStack_b8);
+  SystemSecurityChecker(uStack_30 ^ (uint64_t)auStack_b8);
 }
 
 
@@ -259,7 +259,7 @@ LAB_180114554:
   }
 FUN_180114832:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_e8);
+  SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_e8);
 }
 
 
@@ -392,7 +392,7 @@ LAB_180114554:
     FUN_18012e4e0();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000090 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000090 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -480,7 +480,7 @@ void FUN_180114580(void)
   *piVar1 = *piVar1 + -1;
   FUN_18012e4e0();
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000090 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000090 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -522,7 +522,7 @@ void FUN_180114715(void)
   *piVar1 = *piVar1 + -1;
   FUN_18012e4e0();
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000090 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000090 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -536,7 +536,7 @@ void FUN_180114832(void)
   uint64_t in_stack_00000090;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000090 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000090 ^ (uint64_t)&stack0x00000000);
 }
 
 

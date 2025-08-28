@@ -803,7 +803,7 @@ void FUN_1802f8640(int64_t param_1,int64_t param_2)
   (**(code **)(*(int64_t *)(param_1 + 0x138) + 0x10))((int64_t *)(param_1 + 0x138),puVar2);
   puStack_78 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_a8);
+  SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_a8);
 }
 
 

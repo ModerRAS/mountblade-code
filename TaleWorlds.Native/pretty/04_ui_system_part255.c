@@ -10,7 +10,7 @@ void FUN_1808108af(void)
   
   func_0x000180815aa0();
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000a0 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_000000a0 ^ (uint64_t)&stack0x00000000);
 }
 
 

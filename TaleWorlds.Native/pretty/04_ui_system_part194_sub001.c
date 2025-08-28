@@ -64,7 +64,7 @@ uint64_t FUN_18077e000(int64_t *param_1)
   do {
     if (*plVar1 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*plVar1,&unknown_var_7552_ptr,0x8d,1);
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*plVar1,&unknown_var_7552_ptr,0x8d,1);
     }
     plVar1 = plVar1 + 1;
     lVar2 = lVar2 + -1;
@@ -223,7 +223,7 @@ uint64_t FUN_18077e250(int64_t param_1,int param_2)
         *piVar10 = (int)((float)iVar1 * (float)piVar10[-0x10]) / 1000;
         if (puVar11[2] != 0) {
                     // WARNING: Subroutine does not return
-          FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar11[2],&unknown_var_7552_ptr,0x1eb,1);
+          SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar11[2],&unknown_var_7552_ptr,0x1eb,1);
         }
         piVar10[-4] = *piVar10 * 4;
         uVar8 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*piVar10 * 4 + 0x80,

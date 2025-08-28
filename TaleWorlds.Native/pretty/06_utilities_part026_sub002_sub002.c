@@ -1,6 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 #include "function_aliases.h"
+#include "function_aliases.h"
 
 // 06_utilities_part026_sub002_sub002.c - 1 个函数
 

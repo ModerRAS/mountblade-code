@@ -141,7 +141,7 @@ LAB_1804b7d50:
                 return;
               }
                     // WARNING: Subroutine does not return
-              FUN_18064e900();
+              CoreEngineMemoryPoolCleaner();
             }
             pcVar16 = (char *)*puStackX_20;
             if (pcVar16 == (char *)0x0) {
@@ -178,7 +178,7 @@ LAB_1804b7656:
                     puVar8 = puVar12;
 LAB_1804b76f9:
                     if (puVar8 == (uint64_t *)0x0) {
-                      FUN_180626f80(&unknown_var_7016_ptr);
+                      SystemDataInitializer(&unknown_var_7016_ptr);
                     }
                     else {
                       pcVar16 = (char *)*puVar8;

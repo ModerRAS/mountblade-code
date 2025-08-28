@@ -302,7 +302,7 @@ FUN_18083ccd0(uint64_t param_1,int64_t param_2,uint64_t *param_3,uint64_t *param
       puStack_38 = param_4;
       if (iVar1 - *piStack_40 < 1) {
                     // WARNING: Subroutine does not return
-        FUN_1808fc050(GET_SECURITY_COOKIE());
+        SystemSecurityChecker(GET_SECURITY_COOKIE());
       }
       aiStack_78[0] = (iVar1 - *piStack_40) / iStack_6c;
                     // WARNING: Subroutine does not return
@@ -357,7 +357,7 @@ FUN_18083ccea(uint64_t param_1,int64_t param_2,uint64_t *param_3,uint64_t *param
                     (int64_t)*(int *)param_3[3] & 0xffffffff);
     }
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(GET_SECURITY_COOKIE());
+    SystemSecurityChecker(GET_SECURITY_COOKIE());
   }
   return 0;
 }
@@ -395,7 +395,7 @@ void FUN_18083cd26(uint64_t param_1,int64_t param_2,uint64_t *param_3)
                   (int64_t)*(int *)param_3[3] & 0xffffffff);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(GET_SECURITY_COOKIE());
+  SystemSecurityChecker(GET_SECURITY_COOKIE());
 }
 
 
@@ -446,7 +446,7 @@ FUN_18083cd60(uint64_t param_1,int64_t param_2,uint64_t *param_3,uint64_t *param
       puStack_38 = param_4;
       if (iVar1 - *piStack_40 < 1) {
                     // WARNING: Subroutine does not return
-        FUN_1808fc050(GET_SECURITY_COOKIE());
+        SystemSecurityChecker(GET_SECURITY_COOKIE());
       }
       aiStack_78[0] = (iVar1 - *piStack_40) / iStack_6c;
                     // WARNING: Subroutine does not return
@@ -501,7 +501,7 @@ FUN_18083cd7a(uint64_t param_1,int64_t param_2,uint64_t *param_3,uint64_t *param
                     (int64_t)*(int *)param_3[3] & 0xffffffff);
     }
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(GET_SECURITY_COOKIE());
+    SystemSecurityChecker(GET_SECURITY_COOKIE());
   }
   return 0;
 }
@@ -539,7 +539,7 @@ void FUN_18083cdb6(uint64_t param_1,int64_t param_2,uint64_t *param_3)
                   (int64_t)*(int *)param_3[3] & 0xffffffff);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(GET_SECURITY_COOKIE());
+  SystemSecurityChecker(GET_SECURITY_COOKIE());
 }
 
 
@@ -678,7 +678,7 @@ void FUN_18083d030(uint64_t param_1,int64_t param_2,uint64_t *param_3,uint64_t p
                   & 0xffffffff);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(GET_SECURITY_COOKIE());
+  SystemSecurityChecker(GET_SECURITY_COOKIE());
 }
 
 

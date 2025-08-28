@@ -974,7 +974,7 @@ LAB_18018873e:
     ppuStack_60 = (void **)0x0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_c8);
+  SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_c8);
 }
 
 

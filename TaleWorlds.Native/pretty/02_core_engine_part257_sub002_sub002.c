@@ -57,7 +57,7 @@
 #define CoreEngine_DataInitializer FUN_1800b8300
 
 // 配置处理器
-#define CoreEngine_ConfigProcessor FUN_180627ae0
+#define CoreEngine_ConfigProcessor CoreEngineDataTransformer
 
 // 资源管理器
 #define CoreEngine_ResourceManager FUN_180226020
@@ -69,7 +69,7 @@
 #define CoreEngine_MessageProcessor FUN_1800b8300
 
 // 安全验证器
-#define CoreEngine_SecurityValidator FUN_180627ae0
+#define CoreEngine_SecurityValidator CoreEngineDataTransformer
 
 // 缓冲区管理器
 #define CoreEngine_BufferManager FUN_180226020

@@ -293,7 +293,7 @@ void FUN_180232d10(int64_t param_1,float *param_2,float *param_3,float *param_4,
     *(int16_t *)(lVar1 + 0xc0) = 0;
     if (*(int64_t *)(lVar1 + 0xb8) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     *(uint64_t *)(lVar1 + 0xb8) = 0;
     FUN_180085530(*(uint64_t *)(lVar1 + 0xb0));
@@ -566,7 +566,7 @@ void FUN_180232ed2(int64_t param_1)
                   &stack0x00000058);
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngineMemoryPoolCleaner();
 }
 
 

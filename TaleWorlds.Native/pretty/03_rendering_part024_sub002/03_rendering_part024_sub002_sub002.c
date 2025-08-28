@@ -109,11 +109,11 @@ typedef struct {
 #define RenderingSystem_MemoryAllocator             FUN_180278270
 #define RenderingSystem_MemoryOptimizer             FUN_180284830
 #define RenderingSystem_MemoryValidator             FUN_180079430
-#define RenderingSystem_MemorySynchronizer          FUN_1806277c0
+#define RenderingSystem_MemorySynchronizer          CoreEngineDataBufferProcessor
 
 // 数据处理函数别名
 #define RenderingSystem_DataHashCalculator         FUN_180284a50
-#define RenderingSystem_DataFlowController         FUN_180626f80
+#define RenderingSystem_DataFlowController         SystemDataInitializer
 
 // ============================================================================
 // 核心函数实现
@@ -283,7 +283,7 @@ void FUN_18027dd70(uint64_t *******param_1,uint64_t *******param_2)
         if (param_2[0x3f] != (uint64_t ******)0x0) {
             ppppppuVar12 = param_2[0x3f];
         }
-        FUN_180626f80(&unknown_var_9120_ptr,ppppppuVar12);
+        SystemDataInitializer(&unknown_var_9120_ptr,ppppppuVar12);
     }
     
 LAB_18027de2e:
@@ -326,7 +326,7 @@ LAB_18027de2e:
                     uStack_220 = 0;
                     pbStack_230 = (byte *)0x0;
                     uStack_228 = 0;
-                    FUN_1806277c0(&puStack_238,*(int32_t *)(lVar10 + 0x10));
+                    CoreEngineDataBufferProcessor(&puStack_238,*(int32_t *)(lVar10 + 0x10));
                     if (0 < *(int *)(lVar10 + 0x10)) {
                         puVar23 = &system_buffer_ptr;
                         if (*(void **)(lVar10 + 8) != (void *)0x0) {

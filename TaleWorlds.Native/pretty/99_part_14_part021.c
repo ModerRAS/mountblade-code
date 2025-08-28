@@ -98,7 +98,7 @@ void FUN_1808fbff4(void)
   uint64_t in_stack_00000230;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000230 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000230 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -108,8 +108,8 @@ void FUN_1808fbff4(void)
 
 
 
-// 函数: void FUN_1808fc050(int64_t param_1)
-void FUN_1808fc050(int64_t param_1)
+// 函数: void SystemSecurityChecker(int64_t param_1)
+void SystemSecurityChecker(int64_t param_1)
 
 {
   code *pcVar1;
