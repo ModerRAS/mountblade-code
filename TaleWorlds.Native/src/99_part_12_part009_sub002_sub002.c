@@ -1297,17 +1297,20 @@ undefined8 AdvancedDataProcessingCoordinator(undefined8 system_context, undefine
       *(undefined **)(unaff_RBP + -9) = &DAT_180be7a80;
       _DAT_180be7a80 = processing_params;
     }
-    uVar4 = *(undefined1 *)(unaff_RDI + 3);
-    bVar18 = *(byte *)(unaff_RDI + 4);
-    *(int *)((longlong)plVar17 + 0x4c) = (int)param_3;
-    *(undefined1 *)(unaff_RBP + 0x6f) = uVar4;
-    bVar22 = bVar18 & 0xf;
-    bVar18 = bVar18 >> 4;
-    uVar12 = (uint)bVar18;
-    *(byte *)(unaff_RBP + 0x67) = bVar18;
-    *(int *)(*(longlong *)(unaff_RBP + 0x7f) + 0x50) = (int)param_3;
-    *(undefined1 *)(*(longlong *)(unaff_RBP + 0x7f) + 0x3c) = 0;
-    lVar11 = *(longlong *)(unaff_RBP + 0x7f);
+    /* 状态标志处理和初始化 */
+    operation_type = *(undefined1 *)(unaff_RDI + 3);
+    control_byte = *(byte *)(unaff_RDI + 4);
+    *(int *)((longlong)context_ptr + 0x4c) = (int)processing_params;
+    *(undefined1 *)(unaff_RBP + 0x6f) = operation_type;
+    status_mask = control_byte & 0xf; /* 低4位状态掩码 */
+    control_byte = control_byte >> 4; /* 高4位控制标志 */
+    iteration_count = (uint)control_byte;
+    *(byte *)(unaff_RBP + 0x67) = control_byte;
+    
+    /* 设置处理参数和状态 */
+    *(int *)(*(longlong *)(unaff_RBP + 0x7f) + 0x50) = (int)processing_params;
+    *(undefined1 *)(*(longlong *)(unaff_RBP + 0x7f) + 0x3c) = 0; /* 清除状态标志 */
+    timing_info = *(longlong *)(unaff_RBP + 0x7f);
     if (((*(byte *)(lVar23 + 0x400) & 1) != 0) && (*(char *)(lVar11 + 0x78) == '\0')) {
       FUN_1807ccbe0();
       lVar11 = *(longlong *)(unaff_RBP + 0x7f);
