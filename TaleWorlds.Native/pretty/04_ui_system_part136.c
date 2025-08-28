@@ -1139,6 +1139,18 @@ LAB_180749ae6:
     *(int8_t *)(context + 0x6a8) = 1;
 FUN_180749e0b:
     FUN_1808fc050(stackVar ^ (ulonglong)stackBuffer);
+#define UISystem_StackProcessor FUN_18078c950
+#define UISystem_BufferProcessor FUN_18078c760
+#define UISystem_ContextProcessor FUN_18078c746
+#define UISystem_DataConverter FUN_180785c10
+#define UISystem_StatusChecker FUN_180789300
+#define UISystem_StateChecker FUN_180788e60
+#define UISystem_ConfigValidator FUN_1807aafb0
+#define UISystem_ManagerCreator FUN_1807cf8d0
+#define UISystem_HandlerCreator FUN_1807cf540
+#define UISystem_EventCreator FUN_1807d0140
+#define UISystem_ResourceCreator FUN_1807cfb70
+n// 缺失的UI系统函数别名定义（补充）
 }
 
 // ============================================================================

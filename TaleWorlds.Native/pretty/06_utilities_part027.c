@@ -384,8 +384,11 @@ void FUN_1809414f0(void)
 void FUN_180941590(void)
 
 {
+  // 系统状态管理变量定义
+  static uint64_t* utilities_system_state_ptr = (uint64_t*)0x180bf5320;   // 系统状态指针
+  
   // 清理系统状态并设置为默认值
-  _DAT_180bf5320 = &UNK_18098bcb0;  // 设置默认状态指针
+  *utilities_system_state_ptr = SYSTEM_DEFAULT_VALUE;  // 设置默认状态指针
   return;
 }
 
@@ -405,8 +408,11 @@ void FUN_180941590(void)
 void FUN_1809415b0(void)
 
 {
+  // 系统资源管理变量定义
+  static uint64_t* utilities_resource_ptr = (uint64_t*)0x180bf5770;       // 资源指针
+  
   // 重置系统资源并设置为默认值
-  _DAT_180bf5770 = &UNK_18098bcb0;  // 设置默认资源指针
+  *utilities_resource_ptr = SYSTEM_DEFAULT_VALUE;  // 设置默认资源指针
   return;
 }
 

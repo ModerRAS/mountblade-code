@@ -667,9 +667,9 @@ typedef struct {
 void core_engine_data_initializer(uint64_t *data_ptr)
 {
     // 初始化数据结构指针
-    data_ptr[CORE_OFFSET_0x16] = &UNK_18098bcb0;
-    data_ptr[CORE_OFFSET_0x0b] = &UNK_18098bcb0;
-    *data_ptr = &UNK_18098bcb0;
+    data_ptr[CORE_OFFSET_0x16] = &core_engine_vtable_active;
+    data_ptr[CORE_OFFSET_0x0b] = &core_engine_vtable_active;
+    *data_ptr = &core_engine_vtable_active;
     return;
 }
 
@@ -709,7 +709,7 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     // 分配第一块数据内存
     allocated_memory = 0;
     if (block_count != 0) {
-        allocated_memory = MemoryAllocator(_DAT_180c8ed18, block_count * CORE_ENGINE_BLOCK_SIZE_0x98, data_flag & 0xff);
+        allocated_memory = MemoryAllocator(core_engine_memory_pool, block_count * CORE_ENGINE_BLOCK_SIZE_0x98, data_flag & 0xff);
     }
     
     // 设置第一块数据的指针和大小
@@ -724,10 +724,10 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
         block_count = *(longlong *)(src_ptr + CORE_OFFSET_0x20) - (longlong)data_block;
         do {
             // 初始化数据块头部
-            *data_block = &UNK_18098bcb0;
+            *data_block = &core_engine_vtable_active;
             data_block[1] = 0;
             *(int32_t *)(data_block + 2) = 0;
-            *data_block = &UNK_1809fcc28;
+            *data_block = &core_engine_vtable_idle;
             data_block[1] = data_block + 3;
             *(int32_t *)(data_block + 2) = 0;
             *(int8_t *)(data_block + 3) = 0;
@@ -735,7 +735,7 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
             // 复制数据字段
             *(int32_t *)(data_block + 2) = *(int32_t *)(block_count + CORE_OFFSET_0x10 + (longlong)data_block);
             string_ptr = *(void **)(block_count + 8 + (longlong)data_block);
-            char_ptr = &DAT_18098bc73;
+            char_ptr = &core_engine_string_data;
             if (string_ptr != (void *)0x0) {
                 char_ptr = string_ptr;
             }
@@ -763,7 +763,7 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     // 分配第二块数据内存
     allocated_memory = 0;
     if (block_count != 0) {
-        allocated_memory = MemoryAllocator(_DAT_180c8ed18, block_count * CORE_ENGINE_BLOCK_SIZE_0x98, data_flag & 0xff);
+        allocated_memory = MemoryAllocator(core_engine_memory_pool, block_count * CORE_ENGINE_BLOCK_SIZE_0x98, data_flag & 0xff);
     }
     
     // 设置第二块数据的指针和大小
@@ -778,10 +778,10 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
         block_count = *(longlong *)(src_ptr + CORE_OFFSET_0x178) - (longlong)data_block;
         do {
             // 初始化数据块头部
-            *data_block = &UNK_18098bcb0;
+            *data_block = &core_engine_vtable_active;
             data_block[1] = 0;
             *(int32_t *)(data_block + 2) = 0;
-            *data_block = &UNK_1809fcc28;
+            *data_block = &core_engine_vtable_idle;
             data_block[1] = data_block + 3;
             *(int32_t *)(data_block + 2) = 0;
             *(int8_t *)(data_block + 3) = 0;
@@ -789,7 +789,7 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
             // 复制数据字段
             *(int32_t *)(data_block + 2) = *(int32_t *)(block_count + CORE_OFFSET_0x10 + (longlong)data_block);
             string_ptr = *(void **)(block_count + 8 + (longlong)data_block);
-            char_ptr = &DAT_18098bc73;
+            char_ptr = &core_engine_string_data;
             if (string_ptr != (void *)0x0) {
                 char_ptr = string_ptr;
             }
@@ -814,7 +814,7 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     // 分配第三块数据内存
     allocated_memory = 0;
     if (block_count != 0) {
-        allocated_memory = MemoryAllocator(_DAT_180c8ed18, block_count * CORE_ENGINE_BLOCK_SIZE_0x98, data_flag & 0xff);
+        allocated_memory = MemoryAllocator(core_engine_memory_pool, block_count * CORE_ENGINE_BLOCK_SIZE_0x98, data_flag & 0xff);
     }
     
     // 设置第三块数据的指针和大小
@@ -829,10 +829,10 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
         block_count = *(longlong *)(src_ptr + CORE_OFFSET_0x490) - (longlong)data_block;
         do {
             // 初始化数据块头部
-            *data_block = &UNK_18098bcb0;
+            *data_block = &core_engine_vtable_active;
             data_block[1] = 0;
             *(int32_t *)(data_block + 2) = 0;
-            *data_block = &UNK_1809fcc28;
+            *data_block = &core_engine_vtable_idle;
             data_block[1] = data_block + 3;
             *(int32_t *)(data_block + 2) = 0;
             *(int8_t *)(data_block + 3) = 0;
@@ -840,7 +840,7 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
             // 复制数据字段
             *(int32_t *)(data_block + 2) = *(int32_t *)(block_count + CORE_OFFSET_0x10 + (longlong)data_block);
             string_ptr = *(void **)(block_count + 8 + (longlong)data_block);
-            char_ptr = &DAT_18098bc73;
+            char_ptr = &core_engine_string_data;
             if (string_ptr != (void *)0x0) {
                 char_ptr = string_ptr;
             }
@@ -867,7 +867,7 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     
     // 分配第四块数据内存
     if (buffer_size != 0) {
-        allocated_memory = MemoryAllocator(_DAT_180c8ed18, buffer_size * CORE_ENGINE_BLOCK_SIZE_0x98, data_flag & 0xff);
+        allocated_memory = MemoryAllocator(core_engine_memory_pool, buffer_size * CORE_ENGINE_BLOCK_SIZE_0x98, data_flag & 0xff);
     }
     
     // 设置第四块数据的指针和大小
@@ -882,10 +882,10 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
         allocated_memory = *(longlong *)(src_ptr + CORE_OFFSET_0x10b8) - (longlong)data_block;
         do {
             // 初始化数据块头部
-            *data_block = &UNK_18098bcb0;
+            *data_block = &core_engine_vtable_active;
             data_block[1] = 0;
             *(int32_t *)(data_block + 2) = 0;
-            *data_block = &UNK_1809fcc28;
+            *data_block = &core_engine_vtable_idle;
             data_block[1] = data_block + 3;
             *(int32_t *)(data_block + 2) = 0;
             *(int8_t *)(data_block + 3) = 0;
@@ -893,7 +893,7 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
             // 复制数据字段
             *(int32_t *)(data_block + 2) = *(int32_t *)(allocated_memory + CORE_OFFSET_0x10 + (longlong)data_block);
             string_ptr = *(void **)(allocated_memory + 8 + (longlong)data_block);
-            char_ptr = &DAT_18098bc73;
+            char_ptr = &core_engine_string_data;
             if (string_ptr != (void *)0x0) {
                 char_ptr = string_ptr;
             }
@@ -962,8 +962,8 @@ longlong *core_engine_resource_manager(uint64_t resource_type, longlong *resourc
     
     stack_data_2 = (int8_t *)0x0;
     stack_data_4 = (ulonglong)stack_data_4._4_4_ << 0x20;
-    stack_data_1 = &UNK_18098bcb0;
-    *resource_ptr = (longlong)&UNK_18098bcb0;
+    stack_data_1 = &core_engine_vtable_active;
+    *resource_ptr = (longlong)&core_engine_vtable_active;
     resource_ptr[1] = 0;
     *(int32_t *)(resource_ptr + 2) = 0;
     *resource_ptr = (longlong)&UNK_180a3c3e0;
@@ -973,7 +973,7 @@ longlong *core_engine_resource_manager(uint64_t resource_type, longlong *resourc
     
     // 根据资源计数处理资源
     if (resource_count == 0) {
-        resource_data = &DAT_18098bc73;
+        resource_data = &core_engine_string_data;
         if (*(void **)(config_data + 8) != (void *)0x0) {
             resource_data = *(void **)(config_data + 8);
         }
@@ -989,7 +989,7 @@ longlong *core_engine_resource_manager(uint64_t resource_type, longlong *resourc
         }
         stack_data_6 = 0;
         stack_data_7 = 0;
-        stack_data_5 = &UNK_18098bcb0;
+        stack_data_5 = &core_engine_vtable_active;
     }
     
     stack_data_1 = &UNK_180a3c3e0;
@@ -1000,7 +1000,7 @@ longlong *core_engine_resource_manager(uint64_t resource_type, longlong *resourc
     
     // 处理资源数据
     if (0 < *(int *)(config_data + CORE_OFFSET_0x10)) {
-        resource_data = &DAT_18098bc73;
+        resource_data = &core_engine_string_data;
         if (*(void **)(config_data + 8) != (void *)0x0) {
             resource_data = *(void **)(config_data + 8);
         }
@@ -1021,7 +1021,7 @@ longlong *core_engine_resource_manager(uint64_t resource_type, longlong *resourc
         ResourceBlockProcessor((uint64_t *)(resource_handle + 8), resource_block_1, &stack_data_1);
     }
     else {
-        *resource_block_2 = &UNK_18098bcb0;
+        *resource_block_2 = &core_engine_vtable_active;
         resource_block_2[1] = 0;
         *(int32_t *)(resource_block_2 + 2) = 0;
         *resource_block_2 = &UNK_180a3c3e0;
@@ -1106,7 +1106,7 @@ longlong core_engine_string_processor(longlong *context_ptr, longlong string_dat
                     }
                     stack_ptr_5 = (int16_t *)0x0;
                     stack_data_6 = stack_data_6 & 0xffffffff00000000;
-                    stack_ptr_4 = &UNK_18098bcb0;
+                    stack_ptr_4 = &core_engine_vtable_active;
                 }
                 break;
             }
@@ -1127,14 +1127,14 @@ longlong core_engine_string_processor(longlong *context_ptr, longlong string_dat
         stack_data_6 = 0;
         stack_ptr_5 = (int16_t *)0x0;
         stack_data_5 = 0;
-        string_buffer = (int16_t *)MemoryAllocator(_DAT_180c8ed18, CORE_ENGINE_BLOCK_SIZE_0x10, CORE_ENGINE_ALLOC_SIZE_0x13);
+        string_buffer = (int16_t *)MemoryAllocator(core_engine_memory_pool, CORE_ENGINE_BLOCK_SIZE_0x10, CORE_ENGINE_ALLOC_SIZE_0x13);
         *(int8_t *)string_buffer = 0;
         stack_ptr_5 = string_buffer;
         format_flag = FormatProcessor(string_buffer);
         stack_data_6 = CONCAT44(stack_data_6._4_4_, format_flag);
         *string_buffer = 0x2e;
         stack_data_5 = 1;
-        temp_ptr = &DAT_18098bc73;
+        temp_ptr = &core_engine_string_data;
         if (stack_ptr_2 != (void *)0x0) {
             temp_ptr = stack_ptr_2;
         }
@@ -1145,7 +1145,7 @@ longlong core_engine_string_processor(longlong *context_ptr, longlong string_dat
     
     stack_data_2 = 0;
     stack_data_4 = 0;
-    stack_ptr_3 = &UNK_18098bcb0;
+    stack_ptr_3 = &core_engine_vtable_active;
     stack_ptr_1 = &UNK_180a3c3e0;
     if (stack_ptr_2 != (void *)0x0) {
         ErrorHandler();
@@ -1229,12 +1229,12 @@ longlong *core_engine_config_parser(longlong *config_ptr, longlong input_data)
                                 if ((int)char_count < CORE_ENGINE_BLOCK_SIZE_0x10) {
                                     char_count = CORE_ENGINE_BLOCK_SIZE_0x10;
                                 }
-                                temp_ptr_1 = (int8_t *)MemoryAllocator(_DAT_180c8ed18, (longlong)(int)char_count, CORE_ENGINE_ALLOC_SIZE_0x13);
+                                temp_ptr_1 = (int8_t *)MemoryAllocator(core_engine_memory_pool, (longlong)(int)char_count, CORE_ENGINE_ALLOC_SIZE_0x13);
                                 *temp_ptr_1 = 0;
                             }
                             else {
                                 if (char_count <= (uint)temp_ptr_2) goto SKIP_REALLOCATION;
-                                temp_ptr_1 = (int8_t *)MemoryReallocator(_DAT_180c8ed18, temp_ptr_1, char_count, CORE_ENGINE_BLOCK_SIZE_0x10, CORE_ENGINE_ALLOC_SIZE_0x13);
+                                temp_ptr_1 = (int8_t *)MemoryReallocator(core_engine_memory_pool, temp_ptr_1, char_count, CORE_ENGINE_BLOCK_SIZE_0x10, CORE_ENGINE_ALLOC_SIZE_0x13);
                             }
                             buffer_size = (ulonglong)temp_ptr_1 & 0xffffffffffc00000;
                             if (buffer_size == 0) {
@@ -1285,7 +1285,7 @@ SKIP_REALLOCATION:
             config_block = (uint64_t *)config_ptr[1];
             if (config_block < (uint64_t *)config_ptr[2]) {
                 config_ptr[1] = (longlong)(config_block + 4);
-                *config_block = &UNK_18098bcb0;
+                *config_block = &core_engine_vtable_active;
                 config_block[1] = 0;
                 *(int32_t *)(config_block + 2) = 0;
                 *config_block = &UNK_180a3c3e0;
@@ -1315,7 +1315,7 @@ SKIP_REALLOCATION:
             }
             stack_ptr_2 = (int8_t *)0x0;
             stack_data_2 = 0;
-            stack_ptr_1 = &UNK_18098bcb0;
+            stack_ptr_1 = &core_engine_vtable_active;
         } while (*dest_ptr != '\0');
         
         // 检查引号匹配
@@ -1448,7 +1448,7 @@ longlong *core_engine_data_manager(uint64_t manager_type, longlong *data_ptr, ui
                     }
                     stack_ptr_8 = (longlong *)0x0;
                     stack_data_12 = 0;
-                    stack_ptr_7 = (longlong *)&UNK_18098bcb0;
+                    stack_ptr_7 = (longlong *)&core_engine_vtable_active;
                     data_handle = StringParser(&stack_ptr_10, &stack_ptr_7, temp_int + 1, stack_data_13);
                     if (stack_data_11 != 0) {
                         ErrorHandler();
@@ -1465,7 +1465,7 @@ longlong *core_engine_data_manager(uint64_t manager_type, longlong *data_ptr, ui
                     }
                     stack_ptr_8 = (longlong *)0x0;
                     stack_data_12 = 0;
-                    stack_ptr_7 = (longlong *)&UNK_18098bcb0;
+                    stack_ptr_7 = (longlong *)&core_engine_vtable_active;
                     goto PROCESS_DATA;
                 }
                 break;
@@ -1476,7 +1476,7 @@ longlong *core_engine_data_manager(uint64_t manager_type, longlong *data_ptr, ui
     }
     
     // 处理默认数据
-    (**(code **)(stack_ptr_6 + CORE_OFFSET_0x10))(&stack_ptr_6, &DAT_18098bc73);
+    (**(code **)(stack_ptr_6 + CORE_OFFSET_0x10))(&stack_ptr_6, &core_engine_string_data);
     
 PROCESS_DATA:
     // 初始化数据结构
@@ -1584,7 +1584,7 @@ PROCESS_DATA:
                     }
                     stack_data_15 = 0;
                     stack_data_16 = 0;
-                    stack_ptr_11 = &UNK_18098bcb0;
+                    stack_ptr_11 = &core_engine_vtable_active;
                     stack_ptr_4 = &UNK_180a3c3e0;
                     stack_data_8 = 1;
                     if (stack_data_5 != 0) {
@@ -1592,7 +1592,7 @@ PROCESS_DATA:
                     }
                     stack_data_5 = 0;
                     stack_data_7 = (ulonglong)stack_data_7._4_4_ << 0x20;
-                    stack_ptr_4 = &UNK_18098bcb0;
+                    stack_ptr_4 = &core_engine_vtable_active;
                 }
                 
                 // 处理数据元素
@@ -1614,7 +1614,7 @@ PROCESS_DATA:
                     if (data_handle == 0) {
                         data_handle = 1;
 ALLOCATE_MEMORY:
-                        data_offset = MemoryAllocator(_DAT_180c8ed18, data_handle << 5, (char)data_ptr[3]);
+                        data_offset = MemoryAllocator(core_engine_memory_pool, data_handle << 5, (char)data_ptr[3]);
                         temp_size = data_ptr[1];
                     }
                     else {
@@ -1644,7 +1644,7 @@ ALLOCATE_MEMORY:
                 }
                 stack_ptr_3 = (int8_t *)0x0;
                 stack_data_3 = stack_data_3 & 0xffffffff00000000;
-                stack_ptr_2 = &UNK_18098bcb0;
+                stack_ptr_2 = &core_engine_vtable_active;
                 stack_data_1 = stack_data_1 + 1;
                 temp_ptr_2 = (longlong *)(ulonglong)stack_data_1;
                 stack_ptr_1 = stack_ptr_1 + 1;
@@ -1664,7 +1664,7 @@ ALLOCATE_MEMORY:
     }
     stack_data_11 = 0;
     stack_data_6 = stack_data_6 & 0xffffffff00000000;
-    stack_ptr_10 = &UNK_18098bcb0;
+    stack_ptr_10 = &core_engine_vtable_active;
     stack_ptr_6 = &UNK_180a3c3e0;
     if (stack_data_9 != 0) {
         ErrorHandler();
@@ -1748,7 +1748,7 @@ core_engine_parameter_handler(longlong *param_array, uint64_t *config_ptr, uint6
             stack_data_1 = 0;
             stack_data_2 = 0;
             FloatDataProcessor(&stack_ptr_1, &UNK_180a0888c, (double)*(float *)param_array[1], process_flags, 0, 0xfffffffffffffffe);
-            *config_ptr = &UNK_18098bcb0;
+            *config_ptr = &core_engine_vtable_active;
             config_ptr[1] = 0;
             *(int32_t *)(config_ptr + 2) = 0;
             *config_ptr = &UNK_180a3c3e0;
