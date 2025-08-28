@@ -248,25 +248,32 @@ undefined4 process_rendering_partitions(longlong space_data, longlong render_inf
       space_offset = space_offset + -1;
     } while (space_offset != 0);
   }
-  qsort(param_2,lVar18,0x10,&UNK_18028ad70);
-  if (0 < lVar18) {
-    psVar12 = (short *)(param_2 + 10);
-    uVar17 = uVar10;
+  // 最终分区排序和状态标记
+  qsort(render_info, partition_size, 0x10, &partition_validator);
+  
+  if (0 < partition_size) {
+    partition_manager = (short *)(render_info + 10);
+    success_flag = process_status;
+    
     do {
-      if ((psVar12[-1] != -1) || (iVar7 = 0, *psVar12 != -1)) {
-        iVar7 = 1;
+      if ((partition_manager[-1] != -1) || (partition_index = 0, *partition_manager != -1)) {
+        partition_index = 1;
       }
-      *(int *)(psVar12 + 1) = iVar7;
-      uVar10 = 0;
-      if (iVar7 != 0) {
-        uVar10 = uVar17;
+      
+      *(int *)(partition_manager + 1) = partition_index;
+      process_status = 0;
+      
+      if (partition_index != 0) {
+        process_status = success_flag;
       }
-      psVar12 = psVar12 + 8;
-      lVar18 = lVar18 + -1;
-      uVar17 = uVar10;
-    } while (lVar18 != 0);
+      
+      partition_manager = partition_manager + 8;
+      partition_size = partition_size + -1;
+      success_flag = process_status;
+    } while (partition_size != 0);
   }
-  return uVar10;
+  
+  return process_status;
 }
 
 
@@ -701,6 +708,12 @@ void FUN_18028b091(undefined8 param_1,int param_2,uint param_3,longlong *param_4
   *(int *)((longlong)unaff_RDI + 0xc) = iStackX_c;
   return;
 }
+
+// 函数别名定义 - 保持兼容性
+#define evaluate_texture_position FUN_18028aa10
+#define partition_comparator UNK_18028ad30
+#define partition_validator UNK_18028ad70
+#define stack_buffer stack0x00000030
 
 
 
