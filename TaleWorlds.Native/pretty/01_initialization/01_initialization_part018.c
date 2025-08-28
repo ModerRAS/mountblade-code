@@ -499,177 +499,217 @@ void FUN_18004d020(undefined8 param_1,longlong param_2)
         if (bVar31) {
 
 
-// 函数: void FUN_18004e5f0(longlong param_1)
-void FUN_18004e5f0(longlong param_1)
-
+/**
+ * 更新渲染配置参数
+ * 主要功能：根据系统配置更新渲染相关的参数设置
+ * 
+ * 原始实现：FUN_18004e5f0
+ * 简化实现：渲染配置更新函数
+ */
+void update_render_config(longlong config_ptr)
 {
-  int *piVar1;
-  undefined4 uVar2;
-  int iVar3;
-  bool bVar4;
-  undefined8 uVar5;
-  bool bVar6;
+  int *dimension_ptr;        // 尺寸指针
+  undefined4 temp_config;   // 临时配置
+  int render_mode;           // 渲染模式
+  bool needs_update;         // 需要更新标志
+  undefined8 update_flag;    // 更新标志
+  bool use_secondary;        // 使用次要标志
   
-  piVar1 = (int *)(param_1 + 0x3d0);
-  if (((int)*(float *)(_DAT_180c86950 + 0x17ec) == *(int *)(param_1 + 0x3cc)) &&
-     ((int)*(float *)(_DAT_180c86950 + 0x17f0) == *piVar1)) {
-    bVar4 = false;
+  dimension_ptr = (int *)(config_ptr + 0x3d0);
+  
+  // 检查配置是否已更改
+  if (((int)*(float *)(_DAT_180c86950 + 0x17ec) == *(int *)(config_ptr + 0x3cc)) &&
+     ((int)*(float *)(_DAT_180c86950 + 0x17f0) == *dimension_ptr)) {
+    needs_update = false;
   }
   else {
-    bVar4 = true;
-    FUN_180092820(_DAT_180c86950,*(int *)(param_1 + 0x3cc),*piVar1);
+    needs_update = true;
+    FUN_180092820(_DAT_180c86950, *(int *)(config_ptr + 0x3cc), *dimension_ptr);
   }
-  if (*(int *)(*(longlong *)(param_1 + 8) + 0x38) == 2) {
-    if ((*(char *)(param_1 + 0x3d4) != '\0') || (*(char *)(param_1 + 0x3d5) != '\0')) {
-      uVar2 = *(undefined4 *)(_DAT_180c86920 + 0x1ea0);
-      FUN_18005ca20(_DAT_180c86920,0);
-      FUN_1801725e0(*(undefined8 *)(param_1 + 8),*(undefined4 *)(param_1 + 0x3cc),*piVar1,
-                    *(undefined1 *)(param_1 + 0x3d5));
-      FUN_1800a3880(_DAT_180c86938,*(undefined4 *)(param_1 + 0x3cc),*piVar1,1);
-      FUN_18005ca20(_DAT_180c86920,uVar2);
-      FUN_1801725e0(*(undefined8 *)(param_1 + 8),*(undefined4 *)(param_1 + 0x3cc),*piVar1,
-                    *(undefined1 *)(param_1 + 0x3d5));
-      bVar6 = true;
-      goto LAB_18004e721;
+  
+  // 处理渲染模式2
+  if (*(int *)(*(longlong *)(config_ptr + 8) + 0x38) == 2) {
+    if ((*(char *)(config_ptr + 0x3d4) != '\0') || (*(char *)(config_ptr + 0x3d5) != '\0')) {
+      temp_config = *(undefined4 *)(_DAT_180c86920 + 0x1ea0);
+      FUN_18005ca20(_DAT_180c86920, 0);
+      FUN_1801725e0(*(undefined8 *)(config_ptr + 8), *(undefined4 *)(config_ptr + 0x3cc), *dimension_ptr,
+                    *(undefined1 *)(config_ptr + 0x3d5));
+      FUN_1800a3880(_DAT_180c86938, *(undefined4 *)(config_ptr + 0x3cc), *dimension_ptr, 1);
+      FUN_18005ca20(_DAT_180c86920, temp_config);
+      FUN_1801725e0(*(undefined8 *)(config_ptr + 8), *(undefined4 *)(config_ptr + 0x3cc), *dimension_ptr,
+                    *(undefined1 *)(config_ptr + 0x3d5));
+      use_secondary = true;
+      goto APPLY_CHANGES;
     }
   }
   else {
-    if (*(char *)(param_1 + 0x3d4) != '\0') {
-      iVar3 = *(int *)(_DAT_180c86920 + 0x1ea0);
-      if ((*(char *)(param_1 + 0x3d5) != '\0') || (bVar4)) {
-        uVar5 = 1;
+    // 处理其他渲染模式
+    if (*(char *)(config_ptr + 0x3d4) != '\0') {
+      render_mode = *(int *)(_DAT_180c86920 + 0x1ea0);
+      if ((*(char *)(config_ptr + 0x3d5) != '\0') || (needs_update)) {
+        update_flag = 1;
       }
       else {
-        uVar5 = 0;
+        update_flag = 0;
       }
-      FUN_1801725e0(*(longlong *)(param_1 + 8),*(undefined4 *)(param_1 + 0x3cc),*piVar1,uVar5);
-      bVar6 = iVar3 == 2;
-      goto LAB_18004e721;
+      FUN_1801725e0(*(longlong *)(config_ptr + 8), *(undefined4 *)(config_ptr + 0x3cc), *dimension_ptr, update_flag);
+      use_secondary = render_mode == 2;
+      goto APPLY_CHANGES;
     }
-    if (!bVar4) {
+    if (!needs_update) {
       return;
     }
   }
-  bVar6 = false;
-LAB_18004e721:
-  FUN_1800a3880(_DAT_180c86938,*(undefined4 *)(param_1 + 0x3cc),*piVar1,bVar6);
-  if (!bVar4) {
+  use_secondary = false;
+  
+APPLY_CHANGES:
+  // 应用配置更改
+  FUN_1800a3880(_DAT_180c86938, *(undefined4 *)(config_ptr + 0x3cc), *dimension_ptr, use_secondary);
+  if (!needs_update) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  FUN_180062300(_DAT_180c86928,&UNK_1809fd4d8,*(undefined4 *)(param_1 + 0x3cc),*piVar1);
+  // 警告：子程序不返回
+  FUN_180062300(_DAT_180c86928, &UNK_1809fd4d8, *(undefined4 *)(config_ptr + 0x3cc), *dimension_ptr);
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined4 FUN_18004e7a0(void)
-
+/**
+ * 初始化图形驱动配置
+ * 主要功能：设置和初始化图形驱动相关的配置参数
+ * 
+ * 原始实现：FUN_18004e7a0
+ * 简化实现：图形驱动配置初始化函数
+ */
+uint initialize_graphics_driver_config(void)
 {
-  undefined1 auVar1 [16];
-  longlong lVar2;
-  longlong lVar3;
-  undefined8 *puVar4;
-  uint uVar5;
-  int iVar6;
-  undefined *puStack_c8;
-  longlong lStack_c0;
-  uint uStack_b8;
-  ulonglong uStack_b0;
-  undefined *puStack_a8;
-  longlong lStack_a0;
-  uint uStack_98;
-  undefined8 uStack_90;
-  undefined8 uStack_88;
-  undefined1 auStack_80 [32];
-  undefined1 auStack_60 [40];
+  undefined1 config_data [16];   // 配置数据
+  longlong engine_ptr;         // 引擎指针
+  longlong main_engine;        // 主引擎指针
+  undefined8 *resource_ptr;    // 资源指针
+  uint config_value;           // 配置值
+  int temp_int;                // 临时整型
+  undefined *cleanup_ptr;      // 清理指针
+  longlong buffer_ptr;         // 缓冲区指针
+  uint buffer_size;            // 缓冲区大小
+  ulonglong buffer_flags;      // 缓冲区标志
+  undefined *string_ptr;       // 字符串指针
+  longlong string_buffer;      // 字符串缓冲区
+  uint string_length;          // 字符串长度
+  undefined8 stack_guard1;     // 栈保护1
+  undefined8 stack_guard2;     // 栈保护2
+  undefined1 temp_buffer1 [32]; // 临时缓冲区1
+  undefined1 temp_buffer2 [40]; // 临时缓冲区2
   
-  lVar3 = _DAT_180c86870;
-  uStack_88 = 0xfffffffffffffffe;
-  auVar1 = *(undefined1 (*) [16])
+  main_engine = _DAT_180c86870;
+  stack_guard2 = 0xfffffffffffffffe;
+  
+  // 读取第一个配置数据块
+  config_data = *(undefined1 (*) [16])
             (*(longlong *)(_DAT_180c86870 + 8) + 0xcc +
             (ulonglong)(*(uint *)(*(longlong *)(_DAT_180c86870 + 8) + 0x13c) & 1) * 0x48);
-  if ((auVar1._12_4_ != 0) && (auVar1._8_4_ != 0)) {
-    puStack_c8 = &UNK_180a3c3e0;
-    uStack_b0 = 0;
-    lStack_c0 = 0;
-    uStack_b8 = 0;
-    FUN_180628380(&puStack_c8,auVar1._0_4_);
-    uVar5 = uStack_b8 + 1;
-    FUN_1806277c0(&puStack_c8,uVar5);
-    *(undefined2 *)((ulonglong)uStack_b8 + lStack_c0) = 0x2c;
-    uStack_b8 = uVar5;
-    FUN_180628380(&puStack_c8,auVar1._0_8_ >> 0x20);
-    uVar5 = uStack_b8 + 1;
-    FUN_1806277c0(&puStack_c8,uVar5);
-    *(undefined2 *)((ulonglong)uStack_b8 + lStack_c0) = 0x2c;
-    uStack_b8 = uVar5;
-    FUN_180628380(&puStack_c8,auVar1._8_8_ & 0xffffffff);
-    iVar6 = uStack_b8 + 1;
-    FUN_1806277c0(&puStack_c8,iVar6);
-    *(undefined2 *)((ulonglong)uStack_b8 + lStack_c0) = 0x2c;
-    uStack_b8 = iVar6;
-    FUN_180628380(&puStack_c8,auVar1._8_8_ >> 0x20);
-    puVar4 = (undefined8 *)FUN_180627ae0(auStack_80,&puStack_c8);
-    FUN_18005c8a0(_DAT_180c868b0 + 0xe30,puVar4);
-    *puVar4 = &UNK_180a3c3e0;
-    if (puVar4[1] != 0) {
-                    // WARNING: Subroutine does not return
+  
+  // 处理第一个配置块
+  if ((config_data._12_4_ != 0) && (config_data._8_4_ != 0)) {
+    cleanup_ptr = &UNK_180a3c3e0;
+    buffer_flags = 0;
+    buffer_ptr = 0;
+    buffer_size = 0;
+    
+    // 写入配置数据
+    FUN_180628380(&cleanup_ptr, config_data._0_4_);
+    config_value = buffer_size + 1;
+    FUN_1806277c0(&cleanup_ptr, config_value);
+    *(undefined2 *)((ulonglong)buffer_size + buffer_ptr) = 0x2c;
+    buffer_size = config_value;
+    
+    FUN_180628380(&cleanup_ptr, config_data._0_8_ >> 0x20);
+    config_value = buffer_size + 1;
+    FUN_1806277c0(&cleanup_ptr, config_value);
+    *(undefined2 *)((ulonglong)buffer_size + buffer_ptr) = 0x2c;
+    buffer_size = config_value;
+    
+    FUN_180628380(&cleanup_ptr, config_data._8_8_ & 0xffffffff);
+    temp_int = buffer_size + 1;
+    FUN_1806277c0(&cleanup_ptr, temp_int);
+    *(undefined2 *)((ulonglong)buffer_size + buffer_ptr) = 0x2c;
+    buffer_size = temp_int;
+    
+    FUN_180628380(&cleanup_ptr, config_data._8_8_ >> 0x20);
+    resource_ptr = (undefined8 *)FUN_180627ae0(temp_buffer1, &cleanup_ptr);
+    FUN_18005c8a0(_DAT_180c868b0 + 0xe30, resource_ptr);
+    
+    // 清理资源
+    *resource_ptr = &UNK_180a3c3e0;
+    if (resource_ptr[1] != 0) {
+      // 警告：子程序不返回
       FUN_18064e900();
     }
-    puVar4[1] = 0;
-    *(undefined4 *)(puVar4 + 3) = 0;
-    *puVar4 = &UNK_18098bcb0;
-    puStack_c8 = &UNK_180a3c3e0;
-    if (lStack_c0 != 0) {
-                    // WARNING: Subroutine does not return
+    resource_ptr[1] = 0;
+    *(undefined4 *)(resource_ptr + 3) = 0;
+    *resource_ptr = &UNK_18098bcb0;
+    cleanup_ptr = &UNK_180a3c3e0;
+    if (buffer_ptr != 0) {
+      // 警告：子程序不返回
       FUN_18064e900();
     }
-    lStack_c0 = 0;
-    uStack_b0 = uStack_b0 & 0xffffffff00000000;
-    puStack_c8 = &UNK_18098bcb0;
+    buffer_ptr = 0;
+    buffer_flags = buffer_flags & 0xffffffff00000000;
+    cleanup_ptr = &UNK_18098bcb0;
   }
-  lVar2 = *(longlong *)(lVar3 + 8);
-  auVar1 = *(undefined1 (*) [16])(lVar2 + 0xdc + (ulonglong)(*(uint *)(lVar2 + 0x13c) & 1) * 0x48);
-  if ((auVar1._12_4_ != 0) && (auVar1._8_4_ != 0)) {
-    puStack_a8 = &UNK_180a3c3e0;
-    uStack_90 = 0;
-    lStack_a0 = 0;
-    uStack_98 = 0;
-    FUN_180628380(&puStack_a8,auVar1._0_4_);
-    uVar5 = uStack_98 + 1;
-    FUN_1806277c0(&puStack_a8,uVar5);
-    *(undefined2 *)((ulonglong)uStack_98 + lStack_a0) = 0x2c;
-    uStack_98 = uVar5;
-    FUN_180628380(&puStack_a8,auVar1._0_8_ >> 0x20);
-    uVar5 = uStack_98 + 1;
-    FUN_1806277c0(&puStack_a8,uVar5);
-    *(undefined2 *)((ulonglong)uStack_98 + lStack_a0) = 0x2c;
-    uStack_98 = uVar5;
-    FUN_180628380(&puStack_a8,auVar1._8_8_ & 0xffffffff);
-    iVar6 = uStack_98 + 1;
-    FUN_1806277c0(&puStack_a8,iVar6);
-    *(undefined2 *)((ulonglong)uStack_98 + lStack_a0) = 0x2c;
-    uStack_98 = iVar6;
-    FUN_180628380(&puStack_a8,auVar1._8_8_ >> 0x20);
-    puVar4 = (undefined8 *)FUN_180627ae0(auStack_60,&puStack_a8);
-    FUN_18005c8a0(_DAT_180c868b0 + 0xef0,puVar4);
-    *puVar4 = &UNK_180a3c3e0;
-    if (puVar4[1] != 0) {
-                    // WARNING: Subroutine does not return
+  
+  // 处理第二个配置块
+  engine_ptr = *(longlong *)(main_engine + 8);
+  config_data = *(undefined1 (*) [16])(engine_ptr + 0xdc + (ulonglong)(*(uint *)(engine_ptr + 0x13c) & 1) * 0x48);
+  if ((config_data._12_4_ != 0) && (config_data._8_4_ != 0)) {
+    string_ptr = &UNK_180a3c3e0;
+    stack_guard1 = 0;
+    string_buffer = 0;
+    string_length = 0;
+    
+    // 写入字符串配置
+    FUN_180628380(&string_ptr, config_data._0_4_);
+    config_value = string_length + 1;
+    FUN_1806277c0(&string_ptr, config_value);
+    *(undefined2 *)((ulonglong)string_length + string_buffer) = 0x2c;
+    string_length = config_value;
+    
+    FUN_180628380(&string_ptr, config_data._0_8_ >> 0x20);
+    config_value = string_length + 1;
+    FUN_1806277c0(&string_ptr, config_value);
+    *(undefined2 *)((ulonglong)string_length + string_buffer) = 0x2c;
+    string_length = config_value;
+    
+    FUN_180628380(&string_ptr, config_data._8_8_ & 0xffffffff);
+    temp_int = string_length + 1;
+    FUN_1806277c0(&string_ptr, temp_int);
+    *(undefined2 *)((ulonglong)string_length + string_buffer) = 0x2c;
+    string_length = temp_int;
+    
+    FUN_180628380(&string_ptr, config_data._8_8_ >> 0x20);
+    resource_ptr = (undefined8 *)FUN_180627ae0(temp_buffer2, &string_ptr);
+    FUN_18005c8a0(_DAT_180c868b0 + 0xef0, resource_ptr);
+    
+    // 清理资源
+    *resource_ptr = &UNK_180a3c3e0;
+    if (resource_ptr[1] != 0) {
+      // 警告：子程序不返回
       FUN_18064e900();
     }
-    puVar4[1] = 0;
-    *(undefined4 *)(puVar4 + 3) = 0;
-    *puVar4 = &UNK_18098bcb0;
-    puStack_a8 = &UNK_180a3c3e0;
-    if (lStack_a0 != 0) {
-                    // WARNING: Subroutine does not return
+    resource_ptr[1] = 0;
+    *(undefined4 *)(resource_ptr + 3) = 0;
+    *resource_ptr = &UNK_18098bcb0;
+    string_ptr = &UNK_180a3c3e0;
+    if (string_buffer != 0) {
+      // 警告：子程序不返回
       FUN_18064e900();
     }
   }
-  return *(undefined4 *)(*(longlong *)(lVar3 + 8) + 0x13c);
+  
+  // 返回配置结果
+  return *(undefined4 *)(*(longlong *)(main_engine + 8) + 0x13c);
 }
 
 

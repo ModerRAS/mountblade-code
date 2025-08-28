@@ -261,43 +261,58 @@ void create_standard_buffer(undefined8 param1, longlong *buffer_ptr, undefined4 
 
 
 
-// 函数: void FUN_180081590(undefined8 param_1,longlong *param_2,undefined4 param_3)
-void FUN_180081590(undefined8 param_1,longlong *param_2,undefined4 param_3)
-
+/**
+ * 创建扩展数据缓冲区
+ * 为指定大小的数据分配扩展内存空间的缓冲区（使用不同的分配类型）
+ * 
+ * @param param1 系统参数
+ * @param buffer_ptr 指向缓冲区指针的指针
+ * @param size 数据大小
+ */
+void create_extended_buffer(undefined8 param1, longlong *buffer_ptr, undefined4 size)
 {
-  undefined8 uVar1;
-  undefined8 uVar2;
-  undefined1 auStack_c8 [32];
-  undefined4 uStack_a8;
-  undefined8 uStack_a0;
-  longlong *plStack_98;
-  undefined *puStack_88;
-  undefined1 *puStack_80;
-  undefined4 uStack_78;
-  undefined1 auStack_70 [72];
-  ulonglong uStack_28;
+  undefined8 system_data;
+  undefined8 allocated_memory;
+  undefined1 stack_buffer[32];
+  undefined4 stack_flag;
+  undefined8 stack_param;
+  longlong *buffer_info;
+  undefined *stack_ptr1;
+  undefined1 *stack_ptr2;
+  undefined4 stack_size;
+  undefined1 stack_data[72];
+  ulonglong stack_guard;
   
-  uVar1 = _DAT_180c8a998;
-  uStack_a0 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
-  uStack_a8 = 0;
-  puStack_88 = &UNK_1809fcc58;
-  puStack_80 = auStack_70;
-  auStack_70[0] = 0;
-  uStack_78 = 0x1c;
-  plStack_98 = param_2;
-  strcpy_s(auStack_70,0x40,&DAT_1809ffc60);
-  FUN_1802037e0();
-  puStack_88 = &UNK_18098bcb0;
-  uVar2 = FUN_18062b1e0(_DAT_180c8ed18,param_3,0x10,0x20);
-  FUN_1800828d0(uVar1,param_2);
-  *(undefined8 *)(*param_2 + 0x10) = uVar2;
-  *(undefined4 *)(*param_2 + 0x18) = param_3;
-  *(undefined4 *)(*param_2 + 0x1c) = param_3;
-  *(undefined1 *)(*param_2 + 0x20) = 0;
-  uStack_a8 = 1;
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_c8);
+  system_data = system_config_data;
+  stack_param = 0xfffffffffffffffe;
+  stack_guard = STACK_GUARD_VALUE ^ (ulonglong)stack_buffer;
+  stack_flag = 0;
+  
+  // 设置栈参数
+  stack_ptr1 = &debug_info_ptr;
+  stack_ptr2 = stack_data;
+  stack_data[0] = 0;
+  stack_size = 0x1c;
+  buffer_info = buffer_ptr;
+  
+  // 复制调试信息
+  strcpy_s(stack_data, 0x40, &debug_string_data);
+  initialize_debug_system();
+  stack_ptr1 = &system_debug_ptr;
+  
+  // 分配内存（使用扩展分配类型）
+  allocated_memory = allocate_buffer_memory(memory_allocator_ptr, size, 0x10, 0x20);
+  
+  // 初始化标准缓冲区
+  initialize_standard_buffer(system_data, buffer_ptr);
+  *(undefined8 *)(*buffer_ptr + 0x10) = allocated_memory;
+  *(undefined4 *)(*buffer_ptr + 0x18) = size;
+  *(undefined4 *)(*buffer_ptr + 0x1c) = size;
+  *(undefined1 *)(*buffer_ptr + 0x20) = 0;
+  stack_flag = 1;
+  
+  // 执行缓冲区操作（该函数不会返回）
+  execute_buffer_operation(stack_guard ^ (ulonglong)stack_buffer);
 }
 
 
