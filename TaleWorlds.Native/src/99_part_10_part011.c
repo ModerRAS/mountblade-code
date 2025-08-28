@@ -133,50 +133,93 @@ void ArrayPointerInitializerAndDataManager(void) {
 
 
 
-// 函数: void FUN_1806a9050(longlong param_1,longlong param_2)
-void FUN_1806a9050(longlong param_1,longlong param_2)
+/**
+ * 结构体数据处理器和数组处理器
+ * 
+ * 功能：
+ * - 处理结构体数据的序列化和反序列化
+ * - 管理复杂数据结构的读写操作
+ * - 批量处理数组元素和子结构
+ * - 动态处理可变长度的数据集合
+ * 
+ * 参数：
+ * - param_1：结构体数据源指针
+ * - param_2：数据处理器和回调接口
+ * 
+ * 返回值：
+ * - void：无返回值，通过回调函数处理数据
+ * 
+ * 技术实现：
+ * - 使用函数指针数组进行数据处理
+ * - 支持嵌套数据结构的递归处理
+ * - 实现动态数组的高效遍历
+ * - 处理不同数据类型的统一接口
+ */
+void StructureDataProcessorAndArrayHandler(longlong data_source, longlong processor_interface) {
+    ArrayIndex element_index;
+    MemorySize iteration_counter;
+    undefined4 temp_buffer[2];
+    
+    // 初始化数据处理接口
+    FUN_1806b1560(processor_interface, data_source + 8);
+    
+    // 处理基础数据字段（4个整数）
+    ProcessDataField(processor_interface, data_source + 0x18, 4);
+    ProcessDataField(processor_interface, data_source + 0x1c, 4);
+    ProcessDataField(processor_interface, data_source + 0x20, 4);
+    ProcessDataField(processor_interface, data_source + 0x24, 4);
+    
+    // 处理字节类型数据（2个字节）
+    temp_buffer[0]._0_1_ = *(undefined1 *)(data_source + 0x68);
+    ProcessDataField(processor_interface, temp_buffer, 1);
+    
+    temp_buffer[0] = CONCAT31(temp_buffer[0]._1_3_, *(undefined1 *)(data_source + 0x69));
+    ProcessDataField(processor_interface, temp_buffer, 1);
+    
+    // 处理更多整数字段
+    ProcessDataField(processor_interface, data_source + 0x28, 4);
+    ProcessDataField(processor_interface, data_source + 0x2c, 4);
+    ProcessDataField(processor_interface, data_source + 0x30, 4);
+    ProcessDataField(processor_interface, data_source + 0x48, 4);
+    ProcessDataField(processor_interface, data_source + 0x4c, 4);
+    ProcessDataField(processor_interface, data_source + 0x50, 4);
+    
+    // 获取数组元素数量
+    temp_buffer[0] = *(undefined4 *)(data_source + 0x78);
+    ProcessDataField(processor_interface, temp_buffer, 4);
+    
+    // 处理指针数组元素
+    iteration_counter = 0;
+    if (*(int *)(data_source + 0x78) != 0) {
+        do {
+            // 处理每个指针元素的偏移字段
+            ProcessDataField(processor_interface,
+                           *(longlong *)(*(longlong *)(data_source + 0x70) + iteration_counter * POINTER_SIZE_8) + 0x4c,
+                           4);
+            element_index = (int)iteration_counter + 1;
+            iteration_counter = (ulonglong)element_index;
+        } while (element_index < *(uint *)(data_source + 0x78));
+    }
+    
+    // 处理两个子数组
+    FUN_1806a9930(processor_interface, data_source + 0x80);
+    FUN_1806a9930(processor_interface, data_source + 0x90);
+    
+    // 重新计算数组指针和容量
+    *(longlong *)(data_source + 0x38) = *(longlong *)(data_source + 0x80);
+    *(ulonglong *)(data_source + 0x40) = 
+        *(longlong *)(data_source + 0x80) + (ulonglong)*(uint *)(data_source + 0x88) * ARRAY_ELEMENT_SIZE_8;
+    
+    *(longlong *)(data_source + 0x58) = *(longlong *)(data_source + 0x90);
+    *(ulonglong *)(data_source + 0x60) = 
+        *(longlong *)(data_source + 0x90) + (ulonglong)*(uint *)(data_source + 0x98) * ARRAY_ELEMENT_SIZE_8;
+    
+    return;
+}
 
-{
-  uint uVar1;
-  ulonglong uVar2;
-  undefined4 auStackX_8 [2];
-  
-  FUN_1806b1560(param_2,param_1 + 8);
-  (**(code **)(**(longlong **)(param_2 + 8) + 8))(*(longlong **)(param_2 + 8),param_1 + 0x18,4);
-  (**(code **)(**(longlong **)(param_2 + 8) + 8))(*(longlong **)(param_2 + 8),param_1 + 0x1c,4);
-  (**(code **)(**(longlong **)(param_2 + 8) + 8))(*(longlong **)(param_2 + 8),param_1 + 0x20,4);
-  (**(code **)(**(longlong **)(param_2 + 8) + 8))(*(longlong **)(param_2 + 8),param_1 + 0x24,4);
-  auStackX_8[0]._0_1_ = *(undefined1 *)(param_1 + 0x68);
-  (**(code **)(**(longlong **)(param_2 + 8) + 8))(*(longlong **)(param_2 + 8),auStackX_8,1);
-  auStackX_8[0] = CONCAT31(auStackX_8[0]._1_3_,*(undefined1 *)(param_1 + 0x69));
-  (**(code **)(**(longlong **)(param_2 + 8) + 8))(*(longlong **)(param_2 + 8),auStackX_8,1);
-  (**(code **)(**(longlong **)(param_2 + 8) + 8))(*(longlong **)(param_2 + 8),param_1 + 0x28,4);
-  (**(code **)(**(longlong **)(param_2 + 8) + 8))(*(longlong **)(param_2 + 8),param_1 + 0x2c,4);
-  (**(code **)(**(longlong **)(param_2 + 8) + 8))(*(longlong **)(param_2 + 8),param_1 + 0x30,4);
-  (**(code **)(**(longlong **)(param_2 + 8) + 8))(*(longlong **)(param_2 + 8),param_1 + 0x48,4);
-  (**(code **)(**(longlong **)(param_2 + 8) + 8))(*(longlong **)(param_2 + 8),param_1 + 0x4c,4);
-  (**(code **)(**(longlong **)(param_2 + 8) + 8))(*(longlong **)(param_2 + 8),param_1 + 0x50,4);
-  auStackX_8[0] = *(undefined4 *)(param_1 + 0x78);
-  (**(code **)(**(longlong **)(param_2 + 8) + 8))(*(longlong **)(param_2 + 8),auStackX_8,4);
-  uVar2 = 0;
-  if (*(int *)(param_1 + 0x78) != 0) {
-    do {
-      (**(code **)(**(longlong **)(param_2 + 8) + 8))
-                (*(longlong **)(param_2 + 8),
-                 *(longlong *)(*(longlong *)(param_1 + 0x70) + uVar2 * 8) + 0x4c,4);
-      uVar1 = (int)uVar2 + 1;
-      uVar2 = (ulonglong)uVar1;
-    } while (uVar1 < *(uint *)(param_1 + 0x78));
-  }
-  FUN_1806a9930(param_2,param_1 + 0x80);
-  FUN_1806a9930(param_2,param_1 + 0x90);
-  *(longlong *)(param_1 + 0x38) = *(longlong *)(param_1 + 0x80);
-  *(ulonglong *)(param_1 + 0x40) =
-       *(longlong *)(param_1 + 0x80) + (ulonglong)*(uint *)(param_1 + 0x88) * 8;
-  *(longlong *)(param_1 + 0x58) = *(longlong *)(param_1 + 0x90);
-  *(ulonglong *)(param_1 + 0x60) =
-       *(longlong *)(param_1 + 0x90) + (ulonglong)*(uint *)(param_1 + 0x98) * 8;
-  return;
+// 辅助函数：处理数据字段
+void ProcessDataField(longlong processor_interface, longlong data_field, int field_size) {
+    (**(code **)(**(longlong **)(processor_interface + 8) + 8))(*(longlong **)(processor_interface + 8), data_field, field_size);
 }
 
 
