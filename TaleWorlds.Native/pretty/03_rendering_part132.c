@@ -442,7 +442,7 @@ void FUN_180347ab0(int64_t param_1,int64_t *param_2)
           if (lVar3 == 0) {
             lVar3 = 1;
 LAB_180347b86:
-            plVar2 = (int64_t *)FUN_18062b420(system_memory_pool_ptr,lVar3 * 8);
+            plVar2 = (int64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,lVar3 * 8);
             plVar4 = (int64_t *)param_2[1];
             plVar5 = (int64_t *)*param_2;
             plVar7 = plVar2;
@@ -472,7 +472,7 @@ LAB_180347b86:
           }
           if (plVar5 != (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900(plVar5);
+            CoreEngineMemoryPoolCleaner(plVar5);
           }
           *param_2 = (int64_t)plVar7;
           param_2[1] = (int64_t)(plVar2 + 1);

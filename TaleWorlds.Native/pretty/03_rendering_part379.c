@@ -621,7 +621,7 @@ void FUN_180474d30(int8_t *param_1,int64_t param_2,uint64_t param_3,int param_4)
   }
 LAB_180475c55:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_488);
+  SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_488);
 }
 
 
@@ -822,7 +822,7 @@ LAB_180475d76:
     uStack_e8 = uVar13 & 0xffffffe7 | 1;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_40 ^ (uint64_t)auStack_108);
+  SystemSecurityChecker(uStack_40 ^ (uint64_t)auStack_108);
 }
 
 

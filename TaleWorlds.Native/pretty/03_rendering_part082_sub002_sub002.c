@@ -337,7 +337,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x94,RenderingSystemMemoryArchiver);
   (**(code **)(param_1 + 0x60))(0x95,RenderingSystemMemoryRestorer);
   (**(code **)(param_1 + 0x60))(0x96,RenderingSystemMemoryBackup);
-  (**(code **)(param_1 + 0x60))(0x97,&unknown_var_16_ptr);
+  (**(code **)(param_1 + 0x60))(0x97,&rendering_callback151_ptr);
   (**(code **)(param_1 + 0x60))(0x98,RenderingSystemSystemInitializer);
   (**(code **)(param_1 + 0x60))(0x99,RenderingSystemSystemFinalizer);
   (**(code **)(param_1 + 0x60))(0x9a,&rendering_state_2384_ptr);
@@ -382,7 +382,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0xc1,&rendering_state_6480_ptr);
   (**(code **)(param_1 + 0x60))(0xc2,&rendering_state_8288_ptr);
   (**(code **)(param_1 + 0x60))(0xc3,RenderingSystemDocumentManager);
-  (**(code **)(param_1 + 0x60))(0xc4,&unknown_var_48_ptr);
+  (**(code **)(param_1 + 0x60))(0xc4,&rendering_state196_ptr);
   (**(code **)(param_1 + 0x60))(0xc5,&rendering_state_6272_ptr);
   (**(code **)(param_1 + 0x60))(0xc6,RenderingSystemProjectManager);
   (**(code **)(param_1 + 0x60))(199,&rendering_param_112_ptr);
@@ -452,7 +452,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x107,RenderingSystemTransformInitializer);
   (**(code **)(param_1 + 0x60))(0x108,FUN_18043fef0);
   (**(code **)(param_1 + 0x60))(0x109,&rendering_state_8224_ptr);
-  (**(code **)(param_1 + 0x60))(0x10a,&unknown_var_80_ptr);
+  (**(code **)(param_1 + 0x60))(0x10a,&rendering_param266_ptr);
   (**(code **)(param_1 + 0x60))(0x10b,&rendering_state_1440_ptr);
   (**(code **)(param_1 + 0x60))(0x10c,&rendering_state_3856_ptr);
   (**(code **)(param_1 + 0x60))(0x10d,&rendering_state_4928_ptr);
@@ -1008,7 +1008,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x333,&system_param1_ptr);
   (**(code **)(param_1 + 0x60))(0x334,&rendering_state_6288_ptr);
   (**(code **)(param_1 + 0x60))(0x335,FUN_18044e620);
-  (**(code **)(param_1 + 0x60))(0x336,&unknown_var_32_ptr);
+  (**(code **)(param_1 + 0x60))(0x336,&rendering_buffer822_ptr);
   (**(code **)(param_1 + 0x60))(0x337,&rendering_state_9296_ptr);
   (**(code **)(param_1 + 0x60))(0x338,&rendering_state_7760_ptr);
   (**(code **)(param_1 + 0x60))(0x339,&rendering_state_2624_ptr);
@@ -1052,7 +1052,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x35f,_guard_check_icall);
   (**(code **)(param_1 + 0x60))(0x360,&rendering_state_9328_ptr);
   (**(code **)(param_1 + 0x60))(0x361,&rendering_state_4576_ptr);
-  (**(code **)(param_1 + 0x60))(0x362,&unknown_var_96_ptr);
+  (**(code **)(param_1 + 0x60))(0x362,&rendering_data866_ptr);
   (**(code **)(param_1 + 0x60))(0x363,&rendering_param_416_ptr);
   (**(code **)(param_1 + 0x60))(0x364,&rendering_param_432_ptr);
   (**(code **)(param_1 + 0x60))(0x365,FUN_180453750);

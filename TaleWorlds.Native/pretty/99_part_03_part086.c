@@ -400,7 +400,7 @@ LAB_18024bde4:
   *(int32_t *)(param_1 + 0x12bf8) = uVar18;
   *(int32_t *)(param_1 + 0x12bfc) = uVar19;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_358);
+  SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_358);
 }
 
 

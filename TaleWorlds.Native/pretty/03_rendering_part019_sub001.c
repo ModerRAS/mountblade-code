@@ -438,7 +438,7 @@ void FUN_180279640(int64_t *param_1,int64_t *param_2,char param_3)
     
     // 栈校验和清理 - 确保栈完整性并执行清理操作
     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_488);
+    SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_488);
 }
 
 

@@ -100,7 +100,7 @@ void FUN_1805bf290(int64_t *param_1,int32_t *param_2,float param_3)
   }
 LAB_1805bf521:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_108);
+  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_108);
 }
 
 

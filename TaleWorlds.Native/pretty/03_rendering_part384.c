@@ -763,7 +763,7 @@ void FUN_18047c260(uint64_t *param_1,int8_t param_2)
   uStack_18 = 0xf;
   uStack_30 = 0;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (uint64_t)auStack_68);
+  SystemSecurityChecker(uStack_10 ^ (uint64_t)auStack_68);
 }
 
 

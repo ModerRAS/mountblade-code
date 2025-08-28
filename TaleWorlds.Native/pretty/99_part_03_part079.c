@@ -296,7 +296,7 @@ SystemUInt64* SystemMemoryAllocator(SystemUInt64* param_1, SystemUInt64 param_2)
         // 检查内存状态标志
         if (param_1[0x19] != 0) {
             // 内存状态错误 - 触发系统错误处理
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         
         // 重置内存状态标志
@@ -323,7 +323,7 @@ SystemUInt64* SystemMemoryAllocator(SystemUInt64* param_1, SystemUInt64 param_2)
         // 验证指针管理器的数据完整性
         if (((SystemByte)pointer_manager[2] == '\0') && (*pointer_manager != 0)) {
             // 数据完整性错误 - 触发系统错误处理
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         
         // 重置指针管理器数据
@@ -334,7 +334,7 @@ SystemUInt64* SystemMemoryAllocator(SystemUInt64* param_1, SystemUInt64 param_2)
     
     // 第四阶段：内存管理完成
     // 调用内存管理完成函数
-    FUN_18064e900(pointer_manager);
+    CoreEngineMemoryPoolCleaner(pointer_manager);
 }
 
 /**
@@ -486,7 +486,7 @@ void SystemGraphicsRenderer(SystemInt64 param_1) {
     
     // 第六阶段：函数完成处理
     // 调用系统完成处理函数
-    FUN_1808fc050(stack_checksum ^ (SystemUInt64)stack_buffer);
+    SystemSecurityChecker(stack_checksum ^ (SystemUInt64)stack_buffer);
 }
 
 /**
@@ -593,7 +593,7 @@ void SystemResourceCleanup(SystemInt64 param_1) {
     
     // 第五阶段：函数完成处理
     // 调用系统完成处理函数
-    FUN_1808fc050(stack_checksum ^ (SystemUInt64)stack_buffer);
+    SystemSecurityChecker(stack_checksum ^ (SystemUInt64)stack_buffer);
 }
 
 /**

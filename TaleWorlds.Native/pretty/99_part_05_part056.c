@@ -612,7 +612,7 @@ void FUN_1802fcbe0(int64_t param_1,float *param_2)
   }
   (**(code **)(**(int64_t **)(param_1 + 0x210) + 0xd8))(*(int64_t **)(param_1 + 0x210),param_1);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_d8 ^ (uint64_t)auStack_3a8);
+  SystemSecurityChecker(uStack_d8 ^ (uint64_t)auStack_3a8);
 }
 
 

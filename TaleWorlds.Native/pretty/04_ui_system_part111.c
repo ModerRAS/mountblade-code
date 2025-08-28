@@ -77,7 +77,7 @@ void FUN_1807343b8(uint64_t param_1,uint64_t param_2,int64_t param_3)
   }
   FUN_1807376c0();
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000070 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000070 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -119,7 +119,7 @@ void FUN_180734467(uint64_t param_1,uint64_t param_2,short *param_3,int param_4)
   } while (param_4 < *(short *)(unaff_RSI + 2));
   FUN_1807376c0();
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000070 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000070 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -431,7 +431,7 @@ void FUN_180734830(int *param_1,int16_t *param_2,int64_t param_3,int param_4)
   piStack_38[2] = iVar8;
   piStack_38[3] = iVar9;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (uint64_t)&piStack_38);
+  SystemSecurityChecker(uStack_30 ^ (uint64_t)&piStack_38);
 }
 
 

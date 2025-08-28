@@ -99,7 +99,7 @@ void FUN_18064e400(int64_t *param_1)
             piVar1 = (int *)(lVar8 + 0x18);
             *piVar1 = *piVar1 + -1;
             if (*piVar1 == 0) {
-              FUN_18064d630();
+              SystemDataCleaner();
               return;
             }
           }
@@ -114,7 +114,7 @@ void FUN_18064e400(int64_t *param_1)
       *(int64_t *)(lVar8 + 0x18) = param_1[0x17c];
 LAB_18064e3ed:
                     // WARNING: Subroutine does not return
-      FUN_18064e900(param_1);
+      CoreEngineMemoryPoolCleaner(param_1);
     }
     FUN_18064e350(param_1);
   }
@@ -240,7 +240,7 @@ void FUN_18064e428(int64_t param_1)
           piVar1 = (int *)(lVar5 + 0x18);
           *piVar1 = *piVar1 + -1;
           if (*piVar1 == 0) {
-            FUN_18064d630();
+            SystemDataCleaner();
             return;
           }
         }
@@ -254,7 +254,7 @@ void FUN_18064e428(int64_t param_1)
     *(int64_t *)(lVar5 + 0x18) = unaff_R15[0x17c];
 LAB_18064e3ed:
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   FUN_18064e350();
   return;
@@ -313,7 +313,7 @@ LAB_18064e5e0:
     *puVar1 = 0;
     return puVar1;
   }
-  uVar2 = FUN_18064e990(puVar1);
+  uVar2 = CoreEngineSystemCleanup(puVar1);
                     // WARNING: Subroutine does not return
   memset(puVar1,0,uVar2);
 }
@@ -347,7 +347,7 @@ LAB_18064e5e0:
     *puVar1 = 0;
     return puVar1;
   }
-  uVar2 = FUN_18064e990(puVar1);
+  uVar2 = CoreEngineSystemCleanup(puVar1);
                     // WARNING: Subroutine does not return
   memset(puVar1,0,uVar2);
 }
@@ -373,7 +373,7 @@ void FUN_18064e5ea(void)
     *unaff_RBX = 0;
     return;
   }
-  FUN_18064e990();
+  CoreEngineSystemCleanup();
                     // WARNING: Subroutine does not return
   memset();
 }
@@ -402,7 +402,7 @@ void FUN_18064e639(uint64_t param_1,int64_t param_2)
     *unaff_RBX = 0;
     return;
   }
-  FUN_18064e990();
+  CoreEngineSystemCleanup();
                     // WARNING: Subroutine does not return
   memset();
 }

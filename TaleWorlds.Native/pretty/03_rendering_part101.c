@@ -371,7 +371,7 @@ void RenderingSystem_ParameterComparator(uint64_t render_context, int64_t *param
     }
     
     // 同步处理
-    FUN_1808fc050(SYSTEM_SYNC_ADDRESS);
+    SystemSecurityChecker(SYSTEM_SYNC_ADDRESS);
 }
 
 /* ============================================================================

@@ -107,7 +107,7 @@ uint64_t FUN_180862e00(int64_t param_1,byte param_2)
               FUN_1808559c0(param_1 + 200);
               (**(code **)(*(int64_t *)(param_1 + 8) + 0x28))(param_1 + 8,0);
                     // WARNING: Subroutine does not return
-              FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,&unknown_var_2288_ptr,0x4c4,1);
+              SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,&unknown_var_2288_ptr,0x4c4,1);
             }
           }
         }

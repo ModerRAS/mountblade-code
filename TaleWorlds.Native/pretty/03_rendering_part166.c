@@ -144,7 +144,7 @@ void FUN_180372ae0(int64_t param_1,int64_t param_2,int64_t param_3)
       piVar12 = *(int **)(lVar13 + lVar11 * 8);
 LAB_180372c0c:
       if (piVar12 == *(int **)(lVar13 + lVar11 * 8)) {
-        uVar8 = FUN_18062b1e0(system_memory_pool_ptr,0x178,8,3);
+        uVar8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
         uStack_2d8 = (int *)CONCAT44(uStack_2d8._4_4_,iVar6);
         uStack_2d0 = FUN_180372430(uVar8,*(uint64_t *)(param_1 + 0x68));
         FUN_18037f020(param_1 + 0x108,auStack_1f0,&uStack_2d8);
@@ -189,7 +189,7 @@ LAB_180372cf0:
             piVar12 = *(int **)(piVar12 + 4)) {
         }
         if (piVar18 == piVar1) {
-          uVar8 = FUN_18062b1e0(system_memory_pool_ptr,0x178,8,CONCAT71((int7)((uint64_t)lVar19 >> 8),3));
+          uVar8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,CONCAT71((int7)((uint64_t)lVar19 >> 8),3));
           aiStack_2b8[0] = iVar21;
           uStack_2b0 = FUN_180372430(uVar8,*(uint64_t *)(param_1 + 0x68));
           pauVar10 = (int8_t (*) [16])FUN_18037f020(param_1 + 0x108,auStack_1d8,aiStack_2b8);
@@ -215,7 +215,7 @@ LAB_180372cf0:
         piVar12 = *(int **)(lVar19 + *(int64_t *)(param_1 + 0x118) * 8);
 LAB_180372de8:
         if (piVar12 == *(int **)(lVar19 + *(int64_t *)(param_1 + 0x118) * 8)) {
-          uVar8 = FUN_18062b1e0(system_memory_pool_ptr,0x178,8,3);
+          uVar8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
           piStack_2a8 = (int *)CONCAT44(piStack_2a8._4_4_,iVar21);
           lStack_2a0 = FUN_180372430(uVar8,*(uint64_t *)(param_1 + 0x68));
           pauVar10 = (int8_t (*) [16])FUN_18037f020(param_1 + 0x108,auStack_1c0,&piStack_2a8);
@@ -233,7 +233,7 @@ LAB_180372de8:
         piVar12 = *(int **)(lVar19 + *(int64_t *)(param_1 + 0x118) * 8);
 LAB_180372e98:
         if (piVar12 == *(int **)(lVar19 + *(int64_t *)(param_1 + 0x118) * 8)) {
-          uVar8 = FUN_18062b1e0(system_memory_pool_ptr,0x178,8,3);
+          uVar8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
           piStack_298 = (int *)CONCAT44(piStack_298._4_4_,iVar7);
           lStack_290 = FUN_180372430(uVar8,*(uint64_t *)(param_1 + 0x68));
           pauVar10 = (int8_t (*) [16])FUN_18037f020(param_1 + 0x108,auStack_1a8,&piStack_298);
@@ -293,7 +293,7 @@ LAB_180372e98:
       piVar12 = *(int **)(lVar13 + lVar11 * 8);
 LAB_18037309e:
       if (piVar12 == *(int **)(lVar13 + lVar11 * 8)) {
-        uVar8 = FUN_18062b1e0(system_memory_pool_ptr,0x178,8,3);
+        uVar8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
         piStack_298 = (int *)CONCAT44(piStack_298._4_4_,iVar5);
         lStack_290 = FUN_180372430(uVar8,*(uint64_t *)(param_1 + 0x68));
         pauVar10 = (int8_t (*) [16])FUN_18037f020(param_1 + 0x108,auStack_238,&piStack_298);
@@ -346,7 +346,7 @@ LAB_18037309e:
         piVar12 = *(int **)(lVar23 + lVar13 * 8);
 LAB_18037321d:
         if (piVar12 == *(int **)(lVar23 + lVar13 * 8)) {
-          uVar8 = FUN_18062b1e0(system_memory_pool_ptr,0x178,8,3);
+          uVar8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
           piStack_2a8 = (int *)CONCAT44(piStack_2a8._4_4_,iVar5);
           lStack_2a0 = FUN_180372430(uVar8,*(uint64_t *)(param_1 + 0x68));
           pauVar10 = (int8_t (*) [16])FUN_18037f020(param_1 + 0x108,auStack_220,&piStack_2a8);
@@ -398,7 +398,7 @@ LAB_18037321d:
           piVar12 = *(int **)(lVar23 + lVar13 * 8);
 LAB_18037336c:
           if (piVar12 == *(int **)(lVar23 + lVar13 * 8)) {
-            uVar8 = FUN_18062b1e0(system_memory_pool_ptr,0x178,8,3);
+            uVar8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
             aiStack_2b8[0] = iVar5;
             uStack_2b0 = FUN_180372430(uVar8,*(uint64_t *)(param_1 + 0x68));
             pauVar10 = (int8_t (*) [16])FUN_18037f020(param_1 + 0x108,auStack_208,aiStack_2b8);
@@ -419,7 +419,7 @@ LAB_18037336c:
         piVar12 = *(int **)(lVar23 + *(int64_t *)(param_1 + 0x118) * 8);
 LAB_180373428:
         if (piVar12 == *(int **)(lVar23 + *(int64_t *)(param_1 + 0x118) * 8)) {
-          uVar8 = FUN_18062b1e0(system_memory_pool_ptr,0x178,8,3);
+          uVar8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
           uStack_2c8 = CONCAT44(uStack_2c8._4_4_,iVar6);
           lStack_2c0 = FUN_180372430(uVar8,*(uint64_t *)(param_1 + 0x68));
           pauVar10 = (int8_t (*) [16])FUN_18037f020(param_1 + 0x108,auStack_190,&uStack_2c8);
@@ -470,7 +470,7 @@ LAB_180373580:
             piVar12 = *(int **)(piVar12 + 4)) {
         }
         if (piVar18 == piVar1) {
-          uVar8 = FUN_18062b1e0(system_memory_pool_ptr,0x178,8,CONCAT71((int7)((uint64_t)lVar23 >> 8),3));
+          uVar8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,CONCAT71((int7)((uint64_t)lVar23 >> 8),3));
           aiStack_2b8[0] = iVar21;
           uStack_2b0 = FUN_180372430(uVar8,*(uint64_t *)(param_1 + 0x68));
           pauVar10 = (int8_t (*) [16])FUN_18037f020(param_1 + 0x108,auStack_208,aiStack_2b8);
@@ -542,7 +542,7 @@ LAB_180373580:
         piVar12 = *(int **)(lVar23 + *(int64_t *)(param_1 + 0x118) * 8);
 LAB_180373799:
         if (piVar12 == *(int **)(lVar23 + *(int64_t *)(param_1 + 0x118) * 8)) {
-          uVar8 = FUN_18062b1e0(system_memory_pool_ptr,0,8,3);
+          uVar8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0,8,3);
           uStack_2c8 = CONCAT44(uStack_2c8._4_4_,iVar21);
           lStack_2c0 = FUN_180372430(uVar8,*(uint64_t *)(param_1 + 0x68));
           pauVar10 = (int8_t (*) [16])FUN_18037f020(param_1 + 0x108,auStack_220,&uStack_2c8);
@@ -562,7 +562,7 @@ LAB_180373799:
         piVar12 = *(int **)(lVar23 + *(int64_t *)(param_1 + 0x118) * 8);
 LAB_180373878:
         if (piVar12 == *(int **)(lVar23 + *(int64_t *)(param_1 + 0x118) * 8)) {
-          uVar8 = FUN_18062b1e0(system_memory_pool_ptr,0x178,8,3);
+          uVar8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
           lStack_280 = CONCAT44(lStack_280._4_4_,iVar5);
           uStack_278 = FUN_180372430(uVar8,*(uint64_t *)(param_1 + 0x68));
           pauVar10 = (int8_t (*) [16])FUN_18037f020(param_1 + 0x108,auStack_238,&lStack_280);
@@ -601,7 +601,7 @@ LAB_180373878:
     } while (iVar6 < iVar5 * iVar21);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_b8 ^ (uint64_t)auStack_308);
+  SystemSecurityChecker(uStack_b8 ^ (uint64_t)auStack_308);
 }
 
 

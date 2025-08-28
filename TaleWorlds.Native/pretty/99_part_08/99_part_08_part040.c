@@ -34,7 +34,7 @@
 
 // 系统内部调用函数别名
 #define SystemInternalCleanupFunction        FUN_1805a0af0  // 系统内部清理函数
-#define SystemMemoryProtectionFunction      FUN_1808fc050  // 系统内存保护函数
+#define SystemMemoryProtectionFunction      SystemSecurityChecker  // 系统内存保护函数
 
 // ============================================================================
 // 函数实现

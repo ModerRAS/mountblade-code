@@ -96,7 +96,7 @@ void DataStruct_ClearAndReset(int64_t *param_1)
     // 检查元素是否正在使用中
     if (current_ptr[1] != 0) {
       // 如果元素正在使用，触发错误处理
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     
     // 重置元素的状态和数据
@@ -110,7 +110,7 @@ void DataStruct_ClearAndReset(int64_t *param_1)
   // 检查数据结构的基本状态
   if (*param_1 != 0) {
     // 如果数据结构状态异常，触发错误处理
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   
   return;
@@ -180,7 +180,7 @@ void DataStruct_ResizeLarge(int64_t *param_1,uint64_t param_2,uint64_t param_3,u
         // 检查数据块是否正在使用
         if (target_ptr[1] != 0) {
           // 如果数据块正在使用，触发错误处理
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
         
         // 重置数据块状态
@@ -268,7 +268,7 @@ void DataStruct_ResizeSmall(int64_t *param_1,uint64_t param_2)
         // 检查数据块是否正在使用
         if (*(int64_t *)(target_ptr + 0x10) != 0) {
           // 如果数据块正在使用，触发错误处理
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
         
         // 重置数据块状态
@@ -369,7 +369,7 @@ void MemoryManager_ReallocateLarge(uint64_t *param_1,uint64_t param_2,uint64_t p
     new_buffer = (uint64_t *)0x0;
     if (required_capacity != 0) {
       new_buffer = (uint64_t *)
-               FUN_18062b420(system_memory_pool_ptr,required_capacity << 6,*(int8_t *)(param_1 + 3),param_4,
+               CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,required_capacity << 6,*(int8_t *)(param_1 + 3),param_4,
                              0xfffffffffffffffe);
       current_end = (uint64_t *)param_1[1];
       data_start = (uint64_t *)*param_1;
@@ -460,7 +460,7 @@ void MemoryManager_ReallocateLarge(uint64_t *param_1,uint64_t param_2,uint64_t p
       do {
         *data_start = &system_data_buffer_ptr;
         if (data_start[1] != 0) {
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
         data_start[1] = 0;
         *(int32_t *)(data_start + 3) = 0;
@@ -473,7 +473,7 @@ void MemoryManager_ReallocateLarge(uint64_t *param_1,uint64_t param_2,uint64_t p
     
     // 释放原始内存块
     if (data_start != (uint64_t *)0x0) {
-      FUN_18064e900(data_start);
+      CoreEngineMemoryPoolCleaner(data_start);
     }
     
     // 更新内存管理器的指针
@@ -589,7 +589,7 @@ void MemoryManager_ReallocateSmall(int64_t *param_1,uint64_t param_2)
     copy_dst = (int8_t *)0x0;
     if (new_capacity != 0) {
       copy_dst = (int8_t *)
-               FUN_18062b420(system_memory_pool_ptr,new_capacity * 0x28,(char)param_1[3],current_end,0xfffffffffffffffe);
+               CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,new_capacity * 0x28,(char)param_1[3],current_end,0xfffffffffffffffe);
       current_end = (int8_t *)param_1[1];
       new_buffer_start = (int8_t *)*param_1;
     }
@@ -655,7 +655,7 @@ void MemoryManager_ReallocateSmall(int64_t *param_1,uint64_t param_2)
       do {
         *(uint64_t *)(base_ptr + 8) = &system_data_buffer_ptr;
         if (*(int64_t *)(base_ptr + 0x10) != 0) {
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
         *(uint64_t *)(base_ptr + 0x10) = 0;
         *(int32_t *)(base_ptr + 0x20) = 0;
@@ -668,7 +668,7 @@ void MemoryManager_ReallocateSmall(int64_t *param_1,uint64_t param_2)
     
     // 释放原始内存块
     if (base_ptr != 0) {
-      FUN_18064e900(base_ptr);
+      CoreEngineMemoryPoolCleaner(base_ptr);
     }
     
     // 更新内存管理器的指针

@@ -126,7 +126,7 @@ void FUN_1808e5800(int64_t *param_1,int64_t param_2,int param_3,int32_t param_4)
   }
 FUN_1808e5a7a:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_60 ^ (uint64_t)auStack_a8);
+  SystemSecurityChecker(uStack_60 ^ (uint64_t)auStack_a8);
 }
 
 
@@ -224,7 +224,7 @@ void FUN_1808e591e(uint param_1)
   }
 LAB_1808e5a75:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -239,7 +239,7 @@ void FUN_1808e5a7a(void)
   uint64_t in_stack_00000048;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -298,7 +298,7 @@ LAB_1808e5c82:
       lVar4 = *(int64_t *)(*(int64_t *)(param_1 + 0x28) + 0x90);
       lVar1 = *(int64_t *)(lVar4 + 0x130);
       if (lVar1 != 0) {
-        FUN_180768360(lVar1);
+        SystemMemoryAllocator(lVar1);
       }
       if (((*(int *)(lVar4 + 0x15c) != 0) && (*(int *)(lVar4 + 0x140) != 0)) &&
          (iVar3 = *(int *)(*(int64_t *)(lVar4 + 0x138) +
@@ -335,7 +335,7 @@ LAB_1808e5c82:
       if (plVar5 == (int64_t *)0x0) {
         if (lVar1 != 0) {
                     // WARNING: Subroutine does not return
-          FUN_180768400(lVar1);
+          SystemMemoryManager(lVar1);
         }
       }
       else {
@@ -354,7 +354,7 @@ LAB_1808e5caf:
         }
         if (lVar1 != 0) {
                     // WARNING: Subroutine does not return
-          FUN_180768400(lVar1);
+          SystemMemoryManager(lVar1);
         }
         if (plVar8 != (int64_t *)0x0) {
           uStack_78 = *(uint *)(param_2 + 0x10);
@@ -372,7 +372,7 @@ LAB_1808e5caf:
   *param_3 = uVar2;
 LAB_1808e5c89:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_40 ^ (uint64_t)auStack_98);
+  SystemSecurityChecker(uStack_40 ^ (uint64_t)auStack_98);
 }
 
 

@@ -147,7 +147,7 @@ LAB_1802e15fc:
     FUN_1803b25a0(*(int64_t *)(lVar3 + 0x60b80),param_1,lVar3);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_c8);
+  SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_c8);
 }
 
 

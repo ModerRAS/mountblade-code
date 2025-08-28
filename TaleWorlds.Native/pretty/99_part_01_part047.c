@@ -106,7 +106,7 @@ void FUN_1800d40d0(int *param_1,uint64_t *param_2)
       uVar3 = 0;
     }
     else {
-      uVar3 = FUN_18062b420(system_memory_pool_ptr,uVar9 * 8,(char)param_2[3]);
+      uVar3 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,uVar9 * 8,(char)param_2[3]);
       uVar6 = *param_2;
     }
     if (uVar6 != param_2[1]) {
@@ -115,7 +115,7 @@ void FUN_1800d40d0(int *param_1,uint64_t *param_2)
     }
     if (uVar6 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     *param_2 = uVar3;
     param_2[2] = uVar3 + uVar9 * 8;
@@ -138,7 +138,7 @@ void FUN_1800d40d0(int *param_1,uint64_t *param_2)
         if (lVar4 == 0) {
           lVar4 = 1;
 LAB_1800d41dc:
-          puVar5 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,lVar4 * 8,(char)param_2[3]);
+          puVar5 = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,lVar4 * 8,(char)param_2[3]);
           puVar7 = (uint64_t *)*param_2;
           puVar8 = (uint64_t *)param_2[1];
         }
@@ -154,7 +154,7 @@ LAB_1800d41dc:
         *puVar5 = uVar2;
         if (*param_2 != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
         *param_2 = (uint64_t)puVar5;
         param_2[2] = (uint64_t)(puVar5 + lVar4);
@@ -202,7 +202,7 @@ void FUN_1800d4179(void)
       if (lVar2 == 0) {
         lVar2 = 1;
 LAB_1800d41dc:
-        puVar3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,lVar2 * 8,(char)unaff_RBX[3]);
+        puVar3 = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,lVar2 * 8,(char)unaff_RBX[3]);
         puVar4 = (uint64_t *)*unaff_RBX;
         puVar5 = (uint64_t *)unaff_RBX[1];
       }
@@ -218,7 +218,7 @@ LAB_1800d41dc:
       *puVar3 = uVar1;
       if (*unaff_RBX != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       *unaff_RBX = (uint64_t)puVar3;
       unaff_RBX[2] = (uint64_t)(puVar3 + lVar2);

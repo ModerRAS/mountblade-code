@@ -427,7 +427,7 @@ int InitializationSystem_ParameterProcessor(int64_t param_1, int64_t *param_2)
                 process_result = process_result + 1;
                 if (*param_2 != 0) {
                     temp_stack[0] = param_1;
-                    FUN_18005ea90(*param_2, &temp_stack);
+                    SystemInitializer(*param_2, &temp_stack);
                 }
             }
         }
@@ -486,14 +486,14 @@ int InitializationSystem_ParameterProcessor(int64_t param_1, int64_t *param_2)
     resource_table = param_2 + 5;
     config_data = param_2[7] - *resource_table;
     if ((uint64_t)(config_data / 0x18) < 0x100) {
-        resource_handle = FUN_18062b420(system_memory_pool_ptr, 0x1800, (char)param_2[8]);
+        resource_handle = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x1800, (char)param_2[8]);
         config_data = *resource_table;
         if (config_data != param_2[6]) {
             // 移动现有配置数据
             memmove(resource_handle, config_data, param_2[6] - config_data);
         }
         if (config_data != 0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         *resource_table = resource_handle;
         param_2[6] = resource_handle;
@@ -581,7 +581,7 @@ void InitializationSystem_ResourceCleaner(int64_t *param_1)
         // 重置资源句柄
         *current_resource = &system_data_buffer_ptr;
         if (current_resource[1] != 0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         current_resource[1] = 0;
         *(int32_t*)(current_resource + 3) = 0;
@@ -590,7 +590,7 @@ void InitializationSystem_ResourceCleaner(int64_t *param_1)
     
     // 验证资源清理完成
     if (*param_1 != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
 }
 
@@ -651,7 +651,7 @@ uint64_t InitializationSystem_StateSynchronizer(int64_t param_1)
     system_flags = *(SystemByte*)(param_1 + 0xf9);
     if (system_flags != 0) {
         if (*(int64_t*)(param_1 + 0x1d8) != 0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         *(uint64_t*)(param_1 + 0x1d8) = 0;
         LOCK();
@@ -796,7 +796,7 @@ void InitializationSystem_ConfigManager(int64_t *param_1)
     
 CONFIG_UPDATE_COMPLETE:
     // 清理安全cookie并退出
-    FUN_1808fc050(security_cookie ^ (uint64_t)security_buffer);
+    SystemSecurityChecker(security_cookie ^ (uint64_t)security_buffer);
 }
 
 /**
@@ -893,7 +893,7 @@ uint64_t InitializationSystem_PermissionValidator(int64_t param_1, int64_t param
         validation_result = FUN_18022d470(*(uint64_t*)(param_1 + 0x1b8), &permission_info);
         if (validation_result < 1) {
             if (stack_data != 0) {
-                FUN_18064e900();
+                CoreEngineMemoryPoolCleaner();
             }
             permission_granted = false;
             
@@ -926,7 +926,7 @@ uint64_t InitializationSystem_PermissionValidator(int64_t param_1, int64_t param
                         
                         // 分配权限资源
                         if (*(int64_t*)(config_context + 0x3f70 + (uint64_t)permission_hash * 8) == 0) {
-                            resource_data = FUN_18062b420(system_memory_pool_ptr, 0x2000, 0x25);
+                            resource_data = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x2000, 0x25);
                             resource_table = (int64_t*)(config_context + 0x3f70 + permission_key * 8);
                             LOCK();
                             access_allowed = *resource_table == 0;
@@ -941,7 +941,7 @@ uint64_t InitializationSystem_PermissionValidator(int64_t param_1, int64_t param
                             }
                             else {
                                 if (resource_data != 0) {
-                                    FUN_18064e900();
+                                    CoreEngineMemoryPoolCleaner();
                                 }
                                 do {
                                 } while (*(char*)(permission_key + 0x48 + (int64_t)status_counter) != 0);
@@ -971,7 +971,7 @@ uint64_t InitializationSystem_PermissionValidator(int64_t param_1, int64_t param
         }
         
         if (stack_data != 0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
     }
     return 0;

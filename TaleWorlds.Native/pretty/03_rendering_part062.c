@@ -116,7 +116,7 @@ void FUN_18029e570(int64_t param_1,int64_t param_2,int64_t param_3,int param_4,i
   aiStack_28[0] = param_4;
   (*pcVar2)(plVar1,*(uint64_t *)(param_2 + 0x10),0,param_5);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (uint64_t)auStack_78);
+  SystemSecurityChecker(uStack_10 ^ (uint64_t)auStack_78);
 }
 
 
@@ -255,7 +255,7 @@ void FUN_18029e6e0(uint64_t param_1,int64_t param_2,int32_t param_3,int32_t para
     (**(code **)(*plStack_140 + 0x38))();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_1b8);
+  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_1b8);
 }
 
 
@@ -340,7 +340,7 @@ void FUN_18029ea30(int64_t param_1,int64_t param_2,int param_3,uint64_t param_4,
   aiStack_28[0] = param_3;
   (*pcVar2)(plVar1,*(uint64_t *)(param_2 + 0x10),0,aiStack_28);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (uint64_t)auStack_68);
+  SystemSecurityChecker(uStack_10 ^ (uint64_t)auStack_68);
 }
 
 
@@ -489,7 +489,7 @@ void FUN_18029eb90(int64_t param_1,int64_t param_2,int param_3,int param_4,uint6
   else {
     iVar5 = func_0x000180225d90(*(int32_t *)(param_2 + 0x324));
     iVar5 = iVar5 * uVar3 * uVar9;
-    uVar7 = FUN_18062b1e0(system_memory_pool_ptr,iVar5,0x10,3);
+    uVar7 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,iVar5,0x10,3);
     if (param_6 != (int *)0x0) {
       *param_6 = iVar5;
     }
@@ -509,7 +509,7 @@ void FUN_18029eb90(int64_t param_1,int64_t param_2,int param_3,int param_4,uint6
     (**(code **)(*plStack_170 + 0x38))();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_1f8);
+  SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_1f8);
 }
 
 
@@ -541,7 +541,7 @@ void FUN_18029ef00(int64_t param_1,int64_t param_2)
   (**(code **)(*plVar2 + 0x50))(plVar2,auStack_58);
   *(int32_t *)(param_2 + 0x35c) = uStack_50;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_78);
+  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_78);
 }
 
 
@@ -748,7 +748,7 @@ void FUN_18029f070(int64_t param_1,int64_t param_2)
   *(uint64_t *)(lVar3 + 0x40) = 0;
 LAB_18029f52c:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_478);
+  SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_478);
 }
 
 

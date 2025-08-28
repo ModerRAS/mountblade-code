@@ -320,7 +320,7 @@ void RenderingSystemAdvancedDataProcessor(void* param_1, uint32_t* param_2, uint
     
     // 最终处理（简化实现）
     // 调用清理函数
-    // FUN_1808fc050(stack_ulonglong_58);
+    // SystemSecurityChecker(stack_ulonglong_58);
 }
 
 /**
@@ -705,7 +705,7 @@ void RenderingSystemColorSpaceTransformer(void* param_1, int32_t param_2, int32_
     }
     
     // 调用清理函数（简化实现）
-    // FUN_1808fc050(stack_ulonglong_d8);
+    // SystemSecurityChecker(stack_ulonglong_d8);
 }
 
 /**

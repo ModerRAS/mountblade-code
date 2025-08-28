@@ -173,7 +173,7 @@ void DynamicArrayProcessor_104ByteElements(ArrayControlBlock* array_control, uin
     }
     
     // 分配新的缓冲区
-    new_buffer = (DataBuffer)FUN_18062b420(system_memory_pool_ptr, 
+    new_buffer = (DataBuffer)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 
                                          new_capacity * ARRAY_ELEMENT_SIZE_104, 
                                          array_control->memory_flags, 
                                          old_buffer, 
@@ -260,7 +260,7 @@ capacity_calculation_complete:
     }
     
     // 错误处理 - 内存清理失败
-    FUN_18064e900(current_position);
+    CoreEngineMemoryPoolCleaner(current_position);
 }
 
 /**
@@ -304,7 +304,7 @@ void DynamicArrayProcessor_26ByteElements(ArrayControlBlock* array_control, uint
     }
     
     // 分配新的缓冲区
-    new_buffer = (DataBuffer)FUN_18062b420(system_memory_pool_ptr, 
+    new_buffer = (DataBuffer)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 
                                          new_capacity * ARRAY_ELEMENT_SIZE_26, 
                                          array_control->memory_flags, 
                                          old_buffer, 
@@ -395,7 +395,7 @@ capacity_calculation_complete:
     }
     
     // 错误处理 - 内存清理失败
-    FUN_18064e900(current_position);
+    CoreEngineMemoryPoolCleaner(current_position);
 }
 
 /**
@@ -439,7 +439,7 @@ void DynamicArrayProcessor_48ByteElements(ArrayControlBlock* array_control, uint
     }
     
     // 分配新的缓冲区
-    new_buffer = (DataBuffer)FUN_18062b420(system_memory_pool_ptr, 
+    new_buffer = (DataBuffer)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 
                                          new_capacity * ARRAY_ELEMENT_SIZE_48, 
                                          array_control->memory_flags, 
                                          old_buffer, 
@@ -507,7 +507,7 @@ capacity_calculation_complete:
     }
     
     // 错误处理 - 内存清理失败
-    FUN_18064e900(current_position);
+    CoreEngineMemoryPoolCleaner(current_position);
 }
 
 /**
