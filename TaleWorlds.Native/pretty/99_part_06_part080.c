@@ -910,48 +910,76 @@ uint64_t * ResourceManager_Destructor(uint64_t *resourceManager, ulonglong destr
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_1803f8c10(longlong param_1)
-
+/**
+ * @brief 资源管理器克隆器
+ * 
+ * 负责创建现有资源管理器的副本
+ * 确保新创建的资源管理器具有与原始管理器相同的配置和状态
+ * 
+ * @param sourceManager 源资源管理器指针
+ * 
+ * @return 新创建的资源管理器指针
+ */
+longlong ResourceManager_Clone(longlong sourceManager)
 {
-  longlong *plVar1;
-  longlong *plVar2;
-  uint64_t uVar3;
-  longlong lVar4;
-  longlong lVar5;
-  longlong *plVar6;
+  longlong *sourceResource;
+  longlong *targetResource;
+  uint64_t newManager;
+  longlong newResourceManager;
+  longlong resourceCount;
+  longlong *resourcePointer;
   
-  uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0x478,8,3,0xfffffffffffffffe);
-  lVar4 = FUN_1803f8a80(uVar3,*(int32_t *)(param_1 + 0x450),*(int32_t *)(param_1 + 0x454));
-  FUN_1801f8ea0(lVar4,param_1);
-  *(int32_t *)(lVar4 + 0x450) = *(int32_t *)(param_1 + 0x450);
-  *(int32_t *)(lVar4 + 0x454) = *(int32_t *)(param_1 + 0x454);
-  plVar6 = (longlong *)(lVar4 + 0x458);
-  lVar5 = 2;
+  /* 分配新的资源管理器内存 */
+  newManager = MemoryManager_AllocateResourceMemory(_DAT_180c8ed18, 0x478, 8, 3, 0xfffffffffffffffe);
+  
+  /* 初始化新的资源管理器 */
+  newResourceManager = ResourceManager_Constructor(newManager, *(int32_t *)(sourceManager + 0x450), *(int32_t *)(sourceManager + 0x454));
+  
+  /* 设置资源管理器关联 */
+  SystemResourceManager_SetAssociation(newResourceManager, sourceManager);
+  
+  /* 复制容量参数 */
+  *(int32_t *)(newResourceManager + 0x450) = *(int32_t *)(sourceManager + 0x450);
+  *(int32_t *)(newResourceManager + 0x454) = *(int32_t *)(sourceManager + 0x454);
+  
+  /* 复制资源列表 */
+  resourcePointer = (longlong *)(newResourceManager + 0x458);
+  resourceCount = 2;
+  
+  /* 遍历并复制资源 */
   do {
-    plVar1 = *(longlong **)((param_1 - lVar4) + (longlong)plVar6);
-    if (plVar1 != (longlong *)0x0) {
-      (**(code **)(*plVar1 + 0x28))(plVar1);
+    sourceResource = *(longlong **)((sourceManager - newResourceManager) + (longlong)resourcePointer);
+    if (sourceResource != (longlong *)0x0) {
+      (**(code **)(*sourceResource + 0x28))(sourceResource);
     }
-    plVar2 = (longlong *)*plVar6;
-    *plVar6 = (longlong)plVar1;
-    if (plVar2 != (longlong *)0x0) {
-      (**(code **)(*plVar2 + 0x38))();
+    
+    targetResource = (longlong *)*resourcePointer;
+    *resourcePointer = (longlong)sourceResource;
+    if (targetResource != (longlong *)0x0) {
+      (**(code **)(*targetResource + 0x38))();
     }
-    plVar6 = plVar6 + 1;
-    lVar5 = lVar5 + -1;
-  } while (lVar5 != 0);
-  plVar6 = *(longlong **)(param_1 + 0x468);
-  if (plVar6 != (longlong *)0x0) {
-    (**(code **)(*plVar6 + 0x28))(plVar6);
+    
+    resourcePointer = resourcePointer + 1;
+    resourceCount = resourceCount + -1;
+  } while (resourceCount != 0);
+  
+  /* 复制资源管理器引用 */
+  resourcePointer = *(longlong **)(sourceManager + 0x468);
+  if (resourcePointer != (longlong *)0x0) {
+    (**(code **)(*resourcePointer + 0x28))(resourcePointer);
   }
-  plVar1 = *(longlong **)(lVar4 + 0x468);
-  *(longlong **)(lVar4 + 0x468) = plVar6;
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x38))();
+  
+  sourceResource = *(longlong **)(newResourceManager + 0x468);
+  *(longlong **)(newResourceManager + 0x468) = resourcePointer;
+  if (sourceResource != (longlong *)0x0) {
+    (**(code **)(*sourceResource + 0x38))();
   }
-  *(int32_t *)(lVar4 + 0x470) = *(int32_t *)(param_1 + 0x470);
-  *(int32_t *)(lVar4 + 0x474) = *(int32_t *)(param_1 + 0x474);
-  return lVar4;
+  
+  /* 复制状态参数 */
+  *(int32_t *)(newResourceManager + 0x470) = *(int32_t *)(sourceManager + 0x470);
+  *(int32_t *)(newResourceManager + 0x474) = *(int32_t *)(sourceManager + 0x474);
+  
+  return newResourceManager;
 }
 
 

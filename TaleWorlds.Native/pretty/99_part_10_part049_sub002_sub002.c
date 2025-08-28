@@ -127,13 +127,13 @@ typedef ulonglong ResourceCleanupFlags;          // 资源清理标志
  * @brief 数据加载器
  * 加载数据和资源文件
  */
-#define DataLoader FUN_1806cd580
+#define DataLoader DataLoader
 
 /**
  * @brief 资源管理器
  * 管理资源的分配和释放
  */
-#define ResourceManager FUN_1806d7170
+#define ResourceManager ResourceManager
 
 /**
  * @brief 数据转换器
@@ -409,7 +409,7 @@ int FUN_1806c50f0(longlong param_1,longlong *param_2)
   lStack_88 = param_2[4];
   lStack_80 = param_2[5];
   lStack_78 = param_2[6];
-  iVar6 = FUN_1806cd580(param_1,&lStack_a8);
+  iVar6 = DataLoader(param_1,&lStack_a8);
   lVar1 = *param_2;
   plVar2 = (longlong *)param_2[1];
   lVar3 = param_2[4];
@@ -422,7 +422,7 @@ int FUN_1806c50f0(longlong param_1,longlong *param_2)
   lStack_98 = lVar4;
   lStack_90 = lVar5;
   lStack_88 = lVar3;
-  FUN_1806d7170(&lStack_a8,*(uint64_t *)(param_1 + 0xd0));
+  ResourceManager(&lStack_a8,*(uint64_t *)(param_1 + 0xd0));
   uStack_48 = *(int32_t *)(param_1 + 0xd0);
   uStack_44 = *(int32_t *)(param_1 + 0xd4);
   uStack_40 = *(int32_t *)(param_1 + 0xd8);
@@ -449,7 +449,7 @@ int FUN_1806c50f0(longlong param_1,longlong *param_2)
     }
     *(int *)(lVar1 + 0x10) = iVar8 + -1;
   }
-  FUN_1806d7170(&lStack_a8,&UNK_18094c9b0);
+  ResourceManager(&lStack_a8,&UNK_18094c9b0);
   FUN_1806c19d0(&lStack_a8,param_1 + 0xf0);
   iVar8 = *(int *)(lVar1 + 0x10);
   if (iVar8 != 0) {
