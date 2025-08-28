@@ -1212,8 +1212,17 @@ undefined8 * UI_String_Copy(undefined8 source_string, undefined8 *dest_buffer, u
 
 
 
-// 函数: void FUN_180653d60(longlong param_1,undefined8 param_2,int param_3)
-// UI系统缓冲区管理函数
+/**
+ * UI系统缓冲区管理函数
+ * 
+ * 管理UI系统的缓冲区，包括缓冲区分配、
+ * 缓冲区扩展、缓冲区压缩、缓冲区清理等。
+ * 
+ * @param buffer_context 缓冲区上下文指针
+ * @param data_source 数据源指针
+ * @param data_size 数据大小
+ * @return 无返回值
+ */
 void UI_Manage_Buffer(longlong buffer_context, undefined8 data_source, int data_size)
 {
   longlong buffer_start;
