@@ -109,9 +109,9 @@ typedef void* UIContext;                     // UI上下文
 
 // 外部系统函数别名
 uint64_t UISystem_GetSystemStatus(void);
-void UISystem_ExecuteSystemOperation(longlong param_1, int32_t param_2, int param_3, int param_4, longlong param_5, int param_6, int param_7, int param_8);
-void UISystem_ExecuteSystemCleanup(longlong param_1, int param_2);
-void UISystem_ContextManager(longlong param_1, int param_2);
+void UISystem_ExecuteSystemOperation(int64_t param_1, int32_t param_2, int param_3, int param_4, int64_t param_5, int param_6, int param_7, int param_8);
+void UISystem_ExecuteSystemCleanup(int64_t param_1, int param_2);
+void UISystem_ContextManager(int64_t param_1, int param_2);
 
 // ============================================================================
 // 函数别名定义
@@ -133,7 +133,7 @@ void UISystem_ContextManager(longlong param_1, int param_2);
  * - 简化版本保留了核心功能框架
  * - 实际的向量计算逻辑被简化为基本验证
  */
-uint UISystem_VectorCalculator_Simplified(uint64_t param_1, uint64_t param_2, longlong param_3)
+uint UISystem_VectorCalculator_Simplified(uint64_t param_1, uint64_t param_2, int64_t param_3)
 {
     // 简化实现：基本的参数验证
     if (param_1 == 0 || param_2 == 0) {
@@ -179,7 +179,7 @@ uint UISystem_VectorCalculator_Simplified(uint64_t param_1, uint64_t param_2, lo
  * - 简化版本保留了核心功能框架
  * - 实际的向量计算逻辑被简化为基本验证
  */
-uint UISystem_AdvancedVectorCalculator_Simplified(uint64_t param_1, uint64_t param_2, longlong param_3, float param_4)
+uint UISystem_AdvancedVectorCalculator_Simplified(uint64_t param_1, uint64_t param_2, int64_t param_3, float param_4)
 {
     // 简化实现：基本的参数验证
     if (param_1 == 0 || param_2 == 0) {
@@ -241,7 +241,7 @@ uint64_t UISystem_ErrorCodeGenerator(void)
  * - 音频参数特殊验证
  * - 参数自动修正和默认值设置
  */
-uint64_t UISystem_ParameterValidator(longlong param_1, int *param_2)
+uint64_t UISystem_ParameterValidator(int64_t param_1, int *param_2)
 {
     // 简化实现：基本的参数验证
     if (param_1 == 0 || param_2 == (int *)0x0) {
@@ -265,7 +265,7 @@ uint64_t UISystem_ParameterValidator(longlong param_1, int *param_2)
  * - 调用相关的系统函数
  * - 确保数据一致性
  */
-void UISystem_StateSynchronizer(longlong param_1)
+void UISystem_StateSynchronizer(int64_t param_1)
 {
     // 简化实现：基本的状态同步
     if (param_1 == 0) {
@@ -293,7 +293,7 @@ void UISystem_StateSynchronizer(longlong param_1)
  * - 执行系统调用
  * - 确保数据一致性
  */
-uint64_t UISystem_DataUpdater(longlong param_1, int param_2, uint64_t param_3, uint64_t param_4)
+uint64_t UISystem_DataUpdater(int64_t param_1, int param_2, uint64_t param_3, uint64_t param_4)
 {
     // 简化实现：基本的数据更新
     if (param_1 == 0) {
@@ -327,7 +327,7 @@ uint64_t UISystem_DataUpdater(longlong param_1, int param_2, uint64_t param_3, u
  * - 资源释放失败时提供错误反馈
  * - 确保系统状态一致性
  */
-void UISystem_ComponentManager(longlong context)
+void UISystem_ComponentManager(int64_t context)
 {
     int status;
     
@@ -343,8 +343,8 @@ void UISystem_ComponentManager(longlong context)
     }
     
     // 清理资源句柄
-    if (*(longlong *)(context + UI_OFFSET_11418) != 0) {
-        status = UISystem_ReleaseResource(*(longlong *)(context + UI_OFFSET_11418), 1);
+    if (*(int64_t *)(context + UI_OFFSET_11418) != 0) {
+        status = UISystem_ReleaseResource(*(int64_t *)(context + UI_OFFSET_11418), 1);
         if (status != 0) {
             return;
         }
@@ -359,7 +359,7 @@ void UISystem_ComponentManager(longlong context)
     }
     
     // 更新系统控制块
-    *(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + UI_CONST_0X160 + (ulonglong)*(uint *)(context + UI_OFFSET_116b8) * 8) = 0;
+    *(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + UI_CONST_0X160 + (uint64_t)*(uint *)(context + UI_OFFSET_116b8) * 8) = 0;
     
     // 执行最终清理操作
     UISystem_ExecuteCleanup(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + UI_CONST_0X1A0), context, &unknown_var_8576_ptr, UI_CONST_0X53A, 1);
@@ -398,11 +398,11 @@ void UISystem_ComponentManager(longlong context)
  * - 无效向量长度返回错误码0x24
  * - 无效组件索引返回错误码0x1f
  */
-uint UISystem_ParameterProcessor(longlong context, uint componentIndex, UIFloatVector vector1, UIFloatVector vector2, UIFloatVector vector3, UIFloatVector vector4)
+uint UISystem_ParameterProcessor(int64_t context, uint componentIndex, UIFloatVector vector1, UIFloatVector vector2, UIFloatVector vector3, UIFloatVector vector4)
 {
     uint64_t vectorData1, vectorData2;
     uint errorCode;
-    longlong componentOffset;
+    int64_t componentOffset;
     uint floatError1, floatError2, floatError3;
     float x1, y1, z1;
     float x2, y2, z2;
@@ -413,7 +413,7 @@ uint UISystem_ParameterProcessor(longlong context, uint componentIndex, UIFloatV
     float dotProduct;
     float tempFloat1, tempFloat2, tempFloat3, tempFloat4;
     
-    componentOffset = (longlong)(int)componentIndex;
+    componentOffset = (int64_t)(int)componentIndex;
     
     // 验证组件索引有效性
     if (7 < componentIndex) {
@@ -608,9 +608,9 @@ uint UISystem_ParameterProcessor(longlong context, uint componentIndex, UIFloatV
     }
     
     // 计算叉积和点积
-    tempFloat4 = (float)((ulonglong)vectorData2 >> 0x20);
+    tempFloat4 = (float)((uint64_t)vectorData2 >> 0x20);
     tempFloat3 = (float)vectorData2;
-    tempFloat2 = (float)((ulonglong)vectorData1 >> 0x20);
+    tempFloat2 = (float)((uint64_t)vectorData1 >> 0x20);
     tempFloat1 = (float)vectorData1;
     dotProduct = tempFloat4 * tempFloat2 + tempFloat3 * tempFloat1 + y1 * z2;
     
@@ -627,18 +627,18 @@ uint UISystem_ParameterProcessor(longlong context, uint componentIndex, UIFloatV
 
 
 
-uint UISystem_VectorCalculator(uint64_t param_1,uint64_t param_2,longlong param_3)
+uint UISystem_VectorCalculator(uint64_t param_1,uint64_t param_2,int64_t param_3)
 
 {
   uint64_t uVar1;
   uint64_t uVar2;
   uint uVar3;
-  longlong lVar4;
+  int64_t lVar4;
   uint uVar5;
   float *unaff_RSI;
   uint uVar6;
   uint uVar7;
-  longlong in_R10;
+  int64_t in_R10;
   float *in_R11;
   float fVar8;
   float fVar9;
@@ -793,9 +793,9 @@ uint UISystem_VectorCalculator(uint64_t param_1,uint64_t param_2,longlong param_
     fVar10 = -fVar10;
     fVar11 = -fVar11;
   }
-  fStackX_1c = (float)((ulonglong)uVar2 >> 0x20);
+  fStackX_1c = (float)((uint64_t)uVar2 >> 0x20);
   fStackX_18 = (float)uVar2;
-  fStackX_c = (float)((ulonglong)uVar1 >> 0x20);
+  fStackX_c = (float)((uint64_t)uVar1 >> 0x20);
   fStackX_8 = (float)uVar1;
   fVar8 = fStackX_1c * fStackX_c + fStackX_18 * fStackX_8 + fVar11 * fVar10;
   if ((-0.01 <= fVar8) && (fVar8 <= 0.01)) {
@@ -809,20 +809,20 @@ uint UISystem_VectorCalculator(uint64_t param_1,uint64_t param_2,longlong param_
 
 
 
-uint UISystem_AdvancedVectorCalculator(uint64_t param_1,uint64_t param_2,longlong param_3,float param_4)
+uint UISystem_AdvancedVectorCalculator(uint64_t param_1,uint64_t param_2,int64_t param_3,float param_4)
 
 {
   uint64_t uVar1;
   uint64_t uVar2;
   uint uVar3;
-  longlong lVar4;
+  int64_t lVar4;
   uint uVar5;
   uint unaff_EBX;
   uint unaff_EBP;
   float *unaff_RSI;
   uint uVar6;
   uint64_t *in_R9;
-  longlong in_R10;
+  int64_t in_R10;
   float *in_R11;
   float fVar7;
   float fVar8;
@@ -912,9 +912,9 @@ uint UISystem_AdvancedVectorCalculator(uint64_t param_1,uint64_t param_2,longlon
       fVar8 = -fVar8;
       fVar9 = -fVar9;
     }
-    fStackX_1c = (float)((ulonglong)uVar2 >> 0x20);
+    fStackX_1c = (float)((uint64_t)uVar2 >> 0x20);
     fStackX_18 = (float)uVar2;
-    fStackX_c = (float)((ulonglong)uVar1 >> 0x20);
+    fStackX_c = (float)((uint64_t)uVar1 >> 0x20);
     fStackX_8 = (float)uVar1;
     fVar7 = fStackX_1c * fStackX_c + fStackX_18 * fStackX_8 + fVar9 * fVar8;
     if ((-0.01 <= fVar7) && (fVar7 <= 0.01)) {
@@ -937,7 +937,7 @@ uint64_t UISystem_ErrorCodeGenerator(void)
 
 
 
-uint64_t UISystem_ParameterValidator(longlong param_1,int *param_2)
+uint64_t UISystem_ParameterValidator(int64_t param_1,int *param_2)
 
 {
   float fVar1;
@@ -946,7 +946,7 @@ uint64_t UISystem_ParameterValidator(longlong param_1,int *param_2)
   
   if (param_2 != (int *)0x0) {
     iVar3 = *param_2;
-    if (((((iVar3 - 0x55U < 0x14) && (((longlong)iVar3 & 3U) == 0)) && ((uint)param_2[2] < 0x10000))
+    if (((((iVar3 - 0x55U < 0x14) && (((int64_t)iVar3 & 3U) == 0)) && ((uint)param_2[2] < 0x10000))
         && ((((uint)param_2[1] < 0x10000 && ((uint)param_2[3] < 0x10000)) &&
             (((uint)param_2[4] < 0x10000 &&
              (((uint)param_2[5] < 0x10000 && ((uint)param_2[6] < 0x10000)))))))) &&
@@ -983,7 +983,7 @@ uint64_t UISystem_ParameterValidator(longlong param_1,int *param_2)
           param_2[0x17] = *(int *)(param_1 + 0x11664);
         }
                     // WARNING: Subroutine does not return
-        memcpy(param_1 + 0x11608,param_2,(longlong)iVar3);
+        memcpy(param_1 + 0x11608,param_2,(int64_t)iVar3);
       }
     }
   }
@@ -994,8 +994,8 @@ uint64_t UISystem_ParameterValidator(longlong param_1,int *param_2)
 
 
 
-// 函数: void UISystem_StateSynchronizer(longlong param_1)
-void UISystem_StateSynchronizer(longlong param_1)
+// 函数: void UISystem_StateSynchronizer(int64_t param_1)
+void UISystem_StateSynchronizer(int64_t param_1)
 
 {
   int iVar1;
@@ -1009,14 +1009,14 @@ void UISystem_StateSynchronizer(longlong param_1)
 
 
 
-uint64_t UISystem_DataUpdater(longlong param_1,int param_2,uint64_t param_3,uint64_t param_4)
+uint64_t UISystem_DataUpdater(int64_t param_1,int param_2,uint64_t param_3,uint64_t param_4)
 
 {
   if (param_1 != 0) {
     UISystem_ContextManager(param_1,0x15);
   }
-  *(uint64_t *)(param_1 + 0x115e0 + (longlong)param_2 * 8) = param_3;
-  *(uint64_t *)(param_1 + 0x115e8 + (longlong)param_2 * 8) = param_4;
+  *(uint64_t *)(param_1 + 0x115e0 + (int64_t)param_2 * 8) = param_3;
+  *(uint64_t *)(param_1 + 0x115e8 + (int64_t)param_2 * 8) = param_4;
   if ((param_1 != 0) && (param_1 != 0)) {
                     // WARNING: Subroutine does not return
     UISystem_ExecuteSystemCleanup(param_1,0x15);

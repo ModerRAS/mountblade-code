@@ -51,8 +51,8 @@ uint8_t add_render_queue_entry(int *render_data, void **position_data, uint flag
   float temp_x, temp_y, temp_z, temp_w;
   float stack_vars[6];
   
-  engine_context = DAT_ENGINE_CONTEXT;
-  render_manager = *(longlong *)(DAT_ENGINE_CONTEXT + ENGINE_RENDER_MANAGER_OFFSET);
+  engine_context = ENGINE_CONTEXT_BASE;
+  render_manager = *(longlong *)(ENGINE_CONTEXT_BASE + ENGINE_RENDER_MANAGER_OFFSET);
   
   // 检查渲染管理器是否初始化
   if (*(char *)(render_manager + RENDER_MANAGER_STATUS_OFFSET) == '\0') {
@@ -80,12 +80,12 @@ uint8_t add_render_queue_entry(int *render_data, void **position_data, uint flag
       
       // 扩展队列容量
       if (current_capacity < target_capacity) {
-        if (DAT_ENGINE_CONTEXT != 0) {
-          *(int *)(DAT_ENGINE_CONTEXT + MEMORY_ALLOC_COUNTER) = 
-            *(int *)(DAT_ENGINE_CONTEXT + MEMORY_ALLOC_COUNTER) + 1;
+        if (ENGINE_CONTEXT_BASE != 0) {
+          *(int *)(ENGINE_CONTEXT_BASE + MEMORY_ALLOC_COUNTER) = 
+            *(int *)(ENGINE_CONTEXT_BASE + MEMORY_ALLOC_COUNTER) + 1;
         }
         
-        new_queue = allocate_memory((longlong)target_capacity * 8, DAT_MEMORY_POOL);
+        new_queue = allocate_memory((longlong)target_capacity * 8, MEMORY_POOL_BASE);
         
         // 复制现有数据到新队列
         if (*(longlong *)(engine_context + QUEUE_DATA_OFFSET) != 0) {
@@ -132,7 +132,7 @@ uint8_t add_render_queue_entry(int *render_data, void **position_data, uint flag
       stack_vars[1] = (float)render_data[0xd] - (float)render_data[0xb];
       
       process_transform_matrix(&stack_vars[0]);
-      engine_context = DAT_ENGINE_CONTEXT;
+      engine_context = ENGINE_CONTEXT_BASE;
       *(int *)(render_manager + RENDER_SLOT_OFFSET) = render_data[10];
       
       position_ptr = (float *)(engine_context + TRANSFORM_MATRIX_OFFSET +
@@ -222,12 +222,12 @@ uint8_t add_render_queue_entry_registers(longlong context)
     }
     
     if (queue_capacity < target_capacity) {
-      if (DAT_ENGINE_CONTEXT != 0) {
-        *(int *)(DAT_ENGINE_CONTEXT + MEMORY_ALLOC_COUNTER) = 
-          *(int *)(DAT_ENGINE_CONTEXT + MEMORY_ALLOC_COUNTER) + 1;
+      if (ENGINE_CONTEXT_BASE != 0) {
+        *(int *)(ENGINE_CONTEXT_BASE + MEMORY_ALLOC_COUNTER) = 
+          *(int *)(ENGINE_CONTEXT_BASE + MEMORY_ALLOC_COUNTER) + 1;
       }
       
-      new_queue = allocate_memory((longlong)target_capacity * 8, DAT_MEMORY_POOL);
+      new_queue = allocate_memory((longlong)target_capacity * 8, MEMORY_POOL_BASE);
       if (*(longlong *)(*(longlong *)(context + ENGINE_CONTEXT_OFFSET) + QUEUE_DATA_OFFSET) != 0) {
         memcpy(new_queue, *(longlong *)(*(longlong *)(context + ENGINE_CONTEXT_OFFSET) + QUEUE_DATA_OFFSET),
                (longlong)*(int *)(*(longlong *)(context + ENGINE_CONTEXT_OFFSET) + QUEUE_COUNT_OFFSET) * 8);
@@ -281,7 +281,7 @@ uint8_t add_render_queue_entry_registers(longlong context)
                      (float)(*(int **)(context + RENDER_DATA_OFFSET))[0xb];
     
     process_transform_matrix(&stack_vars[0]);
-    longlong temp_context = DAT_ENGINE_CONTEXT;
+    longlong temp_context = ENGINE_CONTEXT_BASE;
     *(int *)(*(longlong *)(context + RENDER_MANAGER_OFFSET) + RENDER_SLOT_OFFSET) = 
       (*(int **)(context + RENDER_DATA_OFFSET))[10];
     
@@ -344,70 +344,70 @@ uint8_t reallocate_render_queue(int new_capacity)
   float stack_vars[6];
   
   // 更新内存分配计数器
-  if (*(longlong *)(DAT_ENGINE_CONTEXT + MEMORY_CONTEXT_OFFSET) != 0) {
-    *(int *)(*(longlong *)(DAT_ENGINE_CONTEXT + MEMORY_CONTEXT_OFFSET) + MEMORY_ALLOC_COUNTER) = 
-      *(int *)(*(longlong *)(DAT_ENGINE_CONTEXT + MEMORY_CONTEXT_OFFSET) + MEMORY_ALLOC_COUNTER) + 1;
+  if (*(longlong *)(ENGINE_CONTEXT_BASE + MEMORY_CONTEXT_OFFSET) != 0) {
+    *(int *)(*(longlong *)(ENGINE_CONTEXT_BASE + MEMORY_CONTEXT_OFFSET) + MEMORY_ALLOC_COUNTER) = 
+      *(int *)(*(longlong *)(ENGINE_CONTEXT_BASE + MEMORY_CONTEXT_OFFSET) + MEMORY_ALLOC_COUNTER) + 1;
   }
   
   // 分配新的队列空间
-  new_queue = allocate_memory((longlong)new_capacity * 8, DAT_MEMORY_POOL);
+  new_queue = allocate_memory((longlong)new_capacity * 8, MEMORY_POOL_BASE);
   
   // 复制现有数据
-  if (*(longlong *)(*(longlong *)(DAT_ENGINE_CONTEXT + ENGINE_CONTEXT_OFFSET) + QUEUE_DATA_OFFSET) != 0) {
+  if (*(longlong *)(*(longlong *)(ENGINE_CONTEXT_BASE + ENGINE_CONTEXT_OFFSET) + QUEUE_DATA_OFFSET) != 0) {
     memcpy(new_queue, 
-           *(longlong *)(*(longlong *)(DAT_ENGINE_CONTEXT + ENGINE_CONTEXT_OFFSET) + QUEUE_DATA_OFFSET),
-           (longlong)*(int *)(*(longlong *)(DAT_ENGINE_CONTEXT + ENGINE_CONTEXT_OFFSET) + QUEUE_COUNT_OFFSET) * 8);
+           *(longlong *)(*(longlong *)(ENGINE_CONTEXT_BASE + ENGINE_CONTEXT_OFFSET) + QUEUE_DATA_OFFSET),
+           (longlong)*(int *)(*(longlong *)(ENGINE_CONTEXT_BASE + ENGINE_CONTEXT_OFFSET) + QUEUE_COUNT_OFFSET) * 8);
   }
   
-  *(void **)(*(longlong *)(DAT_ENGINE_CONTEXT + ENGINE_CONTEXT_OFFSET) + QUEUE_DATA_OFFSET) = new_queue;
-  *(int *)(*(longlong *)(DAT_ENGINE_CONTEXT + ENGINE_CONTEXT_OFFSET) + QUEUE_CAPACITY_OFFSET) = new_capacity;
+  *(void **)(*(longlong *)(ENGINE_CONTEXT_BASE + ENGINE_CONTEXT_OFFSET) + QUEUE_DATA_OFFSET) = new_queue;
+  *(int *)(*(longlong *)(ENGINE_CONTEXT_BASE + ENGINE_CONTEXT_OFFSET) + QUEUE_CAPACITY_OFFSET) = new_capacity;
   
   // 添加到队列
-  *(int **)(*(longlong *)(*(longlong *)(DAT_ENGINE_CONTEXT + ENGINE_CONTEXT_OFFSET) + QUEUE_DATA_OFFSET) + 
-           (longlong)*(int *)(*(longlong *)(DAT_ENGINE_CONTEXT + ENGINE_CONTEXT_OFFSET) + QUEUE_COUNT_OFFSET) * 8) =
-           *(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET);
+  *(int **)(*(longlong *)(*(longlong *)(ENGINE_CONTEXT_BASE + ENGINE_CONTEXT_OFFSET) + QUEUE_DATA_OFFSET) + 
+           (longlong)*(int *)(*(longlong *)(ENGINE_CONTEXT_BASE + ENGINE_CONTEXT_OFFSET) + QUEUE_COUNT_OFFSET) * 8) =
+           *(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET);
   
-  *(int *)(*(longlong *)(DAT_ENGINE_CONTEXT + ENGINE_CONTEXT_OFFSET) + QUEUE_COUNT_OFFSET) = 
-    *(int *)(*(longlong *)(DAT_ENGINE_CONTEXT + ENGINE_CONTEXT_OFFSET) + QUEUE_COUNT_OFFSET) + 1;
+  *(int *)(*(longlong *)(ENGINE_CONTEXT_BASE + ENGINE_CONTEXT_OFFSET) + QUEUE_COUNT_OFFSET) = 
+    *(int *)(*(longlong *)(ENGINE_CONTEXT_BASE + ENGINE_CONTEXT_OFFSET) + QUEUE_COUNT_OFFSET) + 1;
   
-  render_type = (*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET))[8];
-  if (render_type != *(int *)(*(longlong *)(DAT_ENGINE_CONTEXT + ENGINE_CONTEXT_OFFSET) + CURRENT_RENDER_TYPE)) {
+  render_type = (*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET))[8];
+  if (render_type != *(int *)(*(longlong *)(ENGINE_CONTEXT_BASE + ENGINE_CONTEXT_OFFSET) + CURRENT_RENDER_TYPE)) {
     // 排序处理
-    if (((((*(uint *)(DAT_ENGINE_CONTEXT + RENDER_FLAGS_OFFSET) & 1) != 0) && 
-          ((*(byte *)(*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET) + 0x13) & 1) == 0)) && 
-         (1 < **(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET))) &&
-        ((*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET))[9] != -1)) {
-      qsort(*(void **)(*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET) + 2), 
-            (longlong)**(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET), 0x28, 
+    if (((((*(uint *)(ENGINE_CONTEXT_BASE + RENDER_FLAGS_OFFSET) & 1) != 0) && 
+          ((*(byte *)(*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET) + 0x13) & 1) == 0)) && 
+         (1 < **(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET))) &&
+        ((*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET))[9] != -1)) {
+      qsort(*(void **)(*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET) + 2), 
+            (longlong)**(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET), 0x28, 
             compare_render_queue_entries);
-      render_type = (*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET))[8];
+      render_type = (*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET))[8];
     }
     
     // 变换处理
     temp_value = 0.0;
-    updated_flags = *(uint *)(DAT_ENGINE_CONTEXT + RENDER_FLAGS_OFFSET) | 0x40;
-    if ((*(uint *)(DAT_ENGINE_CONTEXT + RENDER_FLAGS_OFFSET) & 0xc0) != 0) {
-      updated_flags = *(uint *)(DAT_ENGINE_CONTEXT + RENDER_FLAGS_OFFSET);
+    updated_flags = *(uint *)(ENGINE_CONTEXT_BASE + RENDER_FLAGS_OFFSET) | 0x40;
+    if ((*(uint *)(ENGINE_CONTEXT_BASE + RENDER_FLAGS_OFFSET) & 0xc0) != 0) {
+      updated_flags = *(uint *)(ENGINE_CONTEXT_BASE + RENDER_FLAGS_OFFSET);
     }
     
-    (*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET))[0x13] = updated_flags;
-    void *pos_x = *(void **)(DAT_ENGINE_CONTEXT + POSITION_DATA_OFFSET);
-    void *pos_y = (*(void **)(DAT_ENGINE_CONTEXT + POSITION_DATA_OFFSET))[1];
-    *(byte *)(*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET) + 0x16) = 1;
-    (*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET))[9] = render_type;
-    *(void **)((*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET)) + 10) = pos_x;
-    *(void **)((*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET)) + 0xc) = pos_y;
+    (*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET))[0x13] = updated_flags;
+    void *pos_x = *(void **)(ENGINE_CONTEXT_BASE + POSITION_DATA_OFFSET);
+    void *pos_y = (*(void **)(ENGINE_CONTEXT_BASE + POSITION_DATA_OFFSET))[1];
+    *(byte *)(*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET) + 0x16) = 1;
+    (*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET))[9] = render_type;
+    *(void **)((*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET)) + 10) = pos_x;
+    *(void **)((*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET)) + 0xc) = pos_y;
     
-    stack_vars[0] = (float)(*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET))[0xf];
-    (*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET))[8] = 
-      *(int *)(*(longlong *)(DAT_ENGINE_CONTEXT + ENGINE_CONTEXT_OFFSET) + CURRENT_RENDER_TYPE);
-    stack_vars[1] = (float)(*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET))[0xd] - 
-                     (float)(*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET))[0xb];
+    stack_vars[0] = (float)(*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET))[0xf];
+    (*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET))[8] = 
+      *(int *)(*(longlong *)(ENGINE_CONTEXT_BASE + ENGINE_CONTEXT_OFFSET) + CURRENT_RENDER_TYPE);
+    stack_vars[1] = (float)(*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET))[0xd] - 
+                     (float)(*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET))[0xb];
     
     process_transform_matrix(&stack_vars[0]);
-    longlong temp_context = DAT_ENGINE_CONTEXT;
-    *(int *)(*(longlong *)(DAT_ENGINE_CONTEXT + RENDER_MANAGER_OFFSET) + RENDER_SLOT_OFFSET) = 
-      (*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET))[10];
+    longlong temp_context = ENGINE_CONTEXT_BASE;
+    *(int *)(*(longlong *)(ENGINE_CONTEXT_BASE + RENDER_MANAGER_OFFSET) + RENDER_SLOT_OFFSET) = 
+      (*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET))[10];
     
     float *position_ptr = (float *)
             (temp_context + TRANSFORM_MATRIX_OFFSET + 
@@ -419,33 +419,33 @@ uint8_t reallocate_render_queue(int new_capacity)
     stack_vars[5] = (float)position_ptr[3] * *(float *)(temp_context + TRANSFORM_MATRIX_OFFSET);
     
     uint matrix_result = calculate_transform_matrix(&stack_vars[2]);
-    stack_vars[1] = (float)(*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET))[0xd] - 1.0;
+    stack_vars[1] = (float)(*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET))[0xd] - 1.0;
     
     // 位置变换处理
-    if (*(longlong *)(DAT_ENGINE_CONTEXT + TRANSFORM_DATA_OFFSET) == 0) {
+    if (*(longlong *)(ENGINE_CONTEXT_BASE + TRANSFORM_DATA_OFFSET) == 0) {
       if ((updated_flags & 0x200000) == 0) {
-        stack_vars[0] = *(float *)(*(longlong *)(DAT_ENGINE_CONTEXT + RENDER_MANAGER_OFFSET) + RENDER_POSITION_X_OFFSET);
+        stack_vars[0] = *(float *)(*(longlong *)(ENGINE_CONTEXT_BASE + RENDER_MANAGER_OFFSET) + RENDER_POSITION_X_OFFSET);
       }
       else {
         stack_vars[0] = 0.0;
       }
-      stack_vars[0] = (float)(*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET))[10] - stack_vars[0];
+      stack_vars[0] = (float)(*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET))[10] - stack_vars[0];
       if ((updated_flags & 0x200000) == 0) {
-        temp_value = *(float *)(*(longlong *)(DAT_ENGINE_CONTEXT + RENDER_MANAGER_OFFSET) + RENDER_POSITION_X_OFFSET);
+        temp_value = *(float *)(*(longlong *)(ENGINE_CONTEXT_BASE + RENDER_MANAGER_OFFSET) + RENDER_POSITION_X_OFFSET);
       }
-      stack_vars[2] = temp_value + (float)(*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET))[0xc];
+      stack_vars[2] = temp_value + (float)(*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET))[0xc];
       position_ptr = &stack_vars[2];
       float *temp_ptr = &stack_vars[0];
     }
     else {
-      stack_vars[2] = *(float *)(*(longlong *)(DAT_ENGINE_CONTEXT + TRANSFORM_DATA_OFFSET) + 0x38);
+      stack_vars[2] = *(float *)(*(longlong *)(ENGINE_CONTEXT_BASE + TRANSFORM_DATA_OFFSET) + 0x38);
       position_ptr = &stack_vars[0];
-      stack_vars[0] = stack_vars[2] + *(float *)(*(longlong *)(DAT_ENGINE_CONTEXT + TRANSFORM_DATA_OFFSET) + 0x40);
+      stack_vars[0] = stack_vars[2] + *(float *)(*(longlong *)(ENGINE_CONTEXT_BASE + TRANSFORM_DATA_OFFSET) + 0x40);
       float *temp_ptr = &stack_vars[2];
     }
     
     stack_vars[3] = stack_vars[1];
-    submit_render_command(*(void **)(*(longlong *)(DAT_ENGINE_CONTEXT + RENDER_MANAGER_OFFSET) + RENDER_COMMAND_OFFSET), 
+    submit_render_command(*(void **)(*(longlong *)(ENGINE_CONTEXT_BASE + RENDER_MANAGER_OFFSET) + RENDER_COMMAND_OFFSET), 
                         &stack_vars[0], position_ptr, matrix_result, 0x3f800000);
   }
   
@@ -468,41 +468,41 @@ uint8_t process_render_entry(void)
   float stack_vars[6];
   
   // 排序处理
-  if (((((*(uint *)(DAT_ENGINE_CONTEXT + RENDER_FLAGS_OFFSET) & 1) != 0) && 
-        ((*(byte *)(*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET) + 0x13) & 1) == 0)) && 
-       (1 < **(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET))) &&
-      ((*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET))[9] != -1)) {
-    qsort(*(void **)(*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET) + 2), 
-          (longlong)**(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET), 0x28, 
+  if (((((*(uint *)(ENGINE_CONTEXT_BASE + RENDER_FLAGS_OFFSET) & 1) != 0) && 
+        ((*(byte *)(*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET) + 0x13) & 1) == 0)) && 
+       (1 < **(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET))) &&
+      ((*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET))[9] != -1)) {
+    qsort(*(void **)(*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET) + 2), 
+          (longlong)**(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET), 0x28, 
           compare_render_queue_entries);
-    render_type = (*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET))[8];
+    render_type = (*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET))[8];
   }
   
   // 变换处理
   temp_value = 0.0;
-  updated_flags = *(uint *)(DAT_ENGINE_CONTEXT + RENDER_FLAGS_OFFSET) | 0x40;
-  if ((*(uint *)(DAT_ENGINE_CONTEXT + RENDER_FLAGS_OFFSET) & 0xc0) != 0) {
-    updated_flags = *(uint *)(DAT_ENGINE_CONTEXT + RENDER_FLAGS_OFFSET);
+  updated_flags = *(uint *)(ENGINE_CONTEXT_BASE + RENDER_FLAGS_OFFSET) | 0x40;
+  if ((*(uint *)(ENGINE_CONTEXT_BASE + RENDER_FLAGS_OFFSET) & 0xc0) != 0) {
+    updated_flags = *(uint *)(ENGINE_CONTEXT_BASE + RENDER_FLAGS_OFFSET);
   }
   
-  (*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET))[0x13] = updated_flags;
-  pos_x = *(void **)(DAT_ENGINE_CONTEXT + POSITION_DATA_OFFSET);
-  pos_y = (*(void **)(DAT_ENGINE_CONTEXT + POSITION_DATA_OFFSET))[1];
-  *(byte *)(*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET) + 0x16) = 1;
-  (*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET))[9] = render_type;
-  *(void **)((*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET)) + 10) = pos_x;
-  *(void **)((*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET)) + 0xc) = pos_y;
+  (*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET))[0x13] = updated_flags;
+  pos_x = *(void **)(ENGINE_CONTEXT_BASE + POSITION_DATA_OFFSET);
+  pos_y = (*(void **)(ENGINE_CONTEXT_BASE + POSITION_DATA_OFFSET))[1];
+  *(byte *)(*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET) + 0x16) = 1;
+  (*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET))[9] = render_type;
+  *(void **)((*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET)) + 10) = pos_x;
+  *(void **)((*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET)) + 0xc) = pos_y;
   
-  stack_vars[0] = (float)(*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET))[0xf];
-  (*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET))[8] = 
-    *(int *)(*(longlong *)(DAT_ENGINE_CONTEXT + ENGINE_CONTEXT_OFFSET) + CURRENT_RENDER_TYPE);
-  stack_vars[1] = (float)(*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET))[0xd] - 
-                   (float)(*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET))[0xb];
+  stack_vars[0] = (float)(*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET))[0xf];
+  (*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET))[8] = 
+    *(int *)(*(longlong *)(ENGINE_CONTEXT_BASE + ENGINE_CONTEXT_OFFSET) + CURRENT_RENDER_TYPE);
+  stack_vars[1] = (float)(*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET))[0xd] - 
+                   (float)(*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET))[0xb];
   
   process_transform_matrix(&stack_vars[0]);
-  engine_context = DAT_ENGINE_CONTEXT;
-  *(int *)(*(longlong *)(DAT_ENGINE_CONTEXT + RENDER_MANAGER_OFFSET) + RENDER_SLOT_OFFSET) = 
-    (*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET))[10];
+  engine_context = ENGINE_CONTEXT_BASE;
+  *(int *)(*(longlong *)(ENGINE_CONTEXT_BASE + RENDER_MANAGER_OFFSET) + RENDER_SLOT_OFFSET) = 
+    (*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET))[10];
   
   float *position_ptr = (float *)
           (engine_context + TRANSFORM_MATRIX_OFFSET + 
@@ -514,33 +514,33 @@ uint8_t process_render_entry(void)
   stack_vars[5] = (float)position_ptr[3] * *(float *)(engine_context + TRANSFORM_MATRIX_OFFSET);
   
   uint matrix_result = calculate_transform_matrix(&stack_vars[2]);
-  stack_vars[1] = (float)(*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET))[0xd] - 1.0;
+  stack_vars[1] = (float)(*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET))[0xd] - 1.0;
   
   // 位置变换处理
-  if (*(longlong *)(DAT_ENGINE_CONTEXT + TRANSFORM_DATA_OFFSET) == 0) {
+  if (*(longlong *)(ENGINE_CONTEXT_BASE + TRANSFORM_DATA_OFFSET) == 0) {
     if ((updated_flags & 0x200000) == 0) {
-      stack_vars[0] = *(float *)(*(longlong *)(DAT_ENGINE_CONTEXT + RENDER_MANAGER_OFFSET) + RENDER_POSITION_X_OFFSET);
+      stack_vars[0] = *(float *)(*(longlong *)(ENGINE_CONTEXT_BASE + RENDER_MANAGER_OFFSET) + RENDER_POSITION_X_OFFSET);
     }
     else {
       stack_vars[0] = 0.0;
     }
-    stack_vars[0] = (float)(*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET))[10] - stack_vars[0];
+    stack_vars[0] = (float)(*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET))[10] - stack_vars[0];
     if ((updated_flags & 0x200000) == 0) {
-      temp_value = *(float *)(*(longlong *)(DAT_ENGINE_CONTEXT + RENDER_MANAGER_OFFSET) + RENDER_POSITION_X_OFFSET);
+      temp_value = *(float *)(*(longlong *)(ENGINE_CONTEXT_BASE + RENDER_MANAGER_OFFSET) + RENDER_POSITION_X_OFFSET);
     }
-    stack_vars[2] = temp_value + (float)(*(int **)(DAT_ENGINE_CONTEXT + RENDER_DATA_OFFSET))[0xc];
+    stack_vars[2] = temp_value + (float)(*(int **)(ENGINE_CONTEXT_BASE + RENDER_DATA_OFFSET))[0xc];
     position_ptr = &stack_vars[2];
     float *temp_ptr = &stack_vars[0];
   }
   else {
-    stack_vars[2] = *(float *)(*(longlong *)(DAT_ENGINE_CONTEXT + TRANSFORM_DATA_OFFSET) + 0x38);
+    stack_vars[2] = *(float *)(*(longlong *)(ENGINE_CONTEXT_BASE + TRANSFORM_DATA_OFFSET) + 0x38);
     position_ptr = &stack_vars[0];
-    stack_vars[0] = stack_vars[2] + *(float *)(*(longlong *)(DAT_ENGINE_CONTEXT + TRANSFORM_DATA_OFFSET) + 0x40);
+    stack_vars[0] = stack_vars[2] + *(float *)(*(longlong *)(ENGINE_CONTEXT_BASE + TRANSFORM_DATA_OFFSET) + 0x40);
     float *temp_ptr = &stack_vars[2];
   }
   
   stack_vars[3] = stack_vars[1];
-  submit_render_command(*(void **)(*(longlong *)(DAT_ENGINE_CONTEXT + RENDER_MANAGER_OFFSET) + RENDER_COMMAND_OFFSET), 
+  submit_render_command(*(void **)(*(longlong *)(ENGINE_CONTEXT_BASE + RENDER_MANAGER_OFFSET) + RENDER_COMMAND_OFFSET), 
                       &stack_vars[0], position_ptr, matrix_result, 0x3f800000);
   
   return 1;
@@ -570,22 +570,22 @@ void remove_render_queue_entry(void)
   longlong context_ptr;
   float accumulated_time;
   
-  engine_context = DAT_ENGINE_CONTEXT;
-  render_manager = *(longlong *)(DAT_ENGINE_CONTEXT + ENGINE_RENDER_MANAGER_OFFSET);
+  engine_context = ENGINE_CONTEXT_BASE;
+  render_manager = *(longlong *)(ENGINE_CONTEXT_BASE + ENGINE_RENDER_MANAGER_OFFSET);
   
   // 检查渲染管理器状态
   if (*(char *)(render_manager + RENDER_MANAGER_STATUS_OFFSET) == '\0') {
     // 获取队列中的最后一个条目
     last_entry = *(longlong *)
-                 (*(longlong *)(DAT_ENGINE_CONTEXT + QUEUE_DATA_OFFSET) + -8 +
-                  (longlong)*(int *)(DAT_ENGINE_CONTEXT + QUEUE_COUNT_OFFSET) * 8);
+                 (*(longlong *)(ENGINE_CONTEXT_BASE + QUEUE_DATA_OFFSET) + -8 +
+                  (longlong)*(int *)(ENGINE_CONTEXT_BASE + QUEUE_COUNT_OFFSET) * 8);
     
     // 如果条目需要清理，执行清理操作
     if (*(char *)(last_entry + RENDER_ENTRY_CLEANUP_FLAG_OFFSET) != '\0') {
       cleanup_render_entry(last_entry);
     }
     
-    context_ptr = DAT_ENGINE_CONTEXT;
+    context_ptr = ENGINE_CONTEXT_BASE;
     
     // 更新时间累计
     if (((*(char *)(last_entry + RENDER_ENTRY_PAUSE_FLAG_OFFSET) == '\0') && 
@@ -636,7 +636,7 @@ void remove_render_queue_entries_batch(longlong count, longlong context)
   // 清理条目
   if (*(char *)(entry_data + RENDER_ENTRY_CLEANUP_FLAG_OFFSET) != '\0') {
     cleanup_render_entry(entry_data);
-    context = DAT_ENGINE_CONTEXT;
+    context = ENGINE_CONTEXT_BASE;
   }
   
   // 更新时间累计
@@ -687,33 +687,33 @@ void remove_render_queue_entry_fast(void *entry_data, longlong context)
   return;
 }
 
-// 常量定义
-#define DAT_ENGINE_CONTEXT              0x180c8a9b0
-#define DAT_MEMORY_POOL                 0x180c8a9a8
-#define ENGINE_RENDER_MANAGER_OFFSET     0x1af8
-#define RENDER_MANAGER_STATUS_OFFSET    0xb4
-#define RENDER_DEPTH_BUFFER_OFFSET      0x218
-#define QUEUE_CAPACITY_OFFSET           0x1e8c
-#define QUEUE_COUNT_OFFSET              0x1e88
-#define QUEUE_DATA_OFFSET               0x1e90
-#define MEMORY_ALLOC_COUNTER            0x3a8
-#define CURRENT_RENDER_TYPE             0x1a90
-#define RENDER_SLOT_OFFSET              0x100
-#define TRANSFORM_MATRIX_OFFSET         0x1628
-#define RENDER_POSITION_X_OFFSET        0x70
-#define RENDER_COMMAND_OFFSET           0x2e8
-#define MEMORY_CONTEXT_OFFSET           0x1af8
-#define RENDER_FLAGS_OFFSET             0x13
-#define POSITION_DATA_OFFSET            0x14
-#define TRANSFORM_DATA_OFFSET           0x18
-#define RENDER_ENTRY_CLEANUP_FLAG_OFFSET 0x58
-#define RENDER_ENTRY_PAUSE_FLAG_OFFSET  0x59
-#define RENDER_ENTRY_DURATION_OFFSET    0x1c
-#define RENDER_ENTRY_FRAME_OFFSET       0x24
-#define RENDER_ENTRY_TIME_OFFSET        0x38
-#define RENDER_ENTRY_BASE_TIME_OFFSET   0x34
-#define RENDER_ENTRY_FLAGS_OFFSET       0x4c
-#define ACCUMULATED_TIME_OFFSET         0x104
+// 核心引擎系统常量定义
+#define ENGINE_CONTEXT_BASE            0x180c8a9b0  /**< 引擎上下文基址 */
+#define MEMORY_POOL_BASE               0x180c8a9a8  /**< 内存池基址 */
+#define ENGINE_RENDER_MANAGER_OFFSET     0x1af8       /**< 渲染管理器偏移 */
+#define RENDER_MANAGER_STATUS_OFFSET    0xb4         /**< 渲染管理器状态偏移 */
+#define RENDER_DEPTH_BUFFER_OFFSET      0x218        /**< 深度缓冲区偏移 */
+#define QUEUE_CAPACITY_OFFSET           0x1e8c       /**< 队列容量偏移 */
+#define QUEUE_COUNT_OFFSET              0x1e88       /**< 队列计数偏移 */
+#define QUEUE_DATA_OFFSET               0x1e90       /**< 队列数据偏移 */
+#define MEMORY_ALLOC_COUNTER            0x3a8        /**< 内存分配计数器偏移 */
+#define CURRENT_RENDER_TYPE             0x1a90       /**< 当前渲染类型偏移 */
+#define RENDER_SLOT_OFFSET              0x100        /**< 渲染槽位偏移 */
+#define TRANSFORM_MATRIX_OFFSET         0x1628       /**< 变换矩阵偏移 */
+#define RENDER_POSITION_X_OFFSET        0x70         /**< 渲染位置X偏移 */
+#define RENDER_COMMAND_OFFSET           0x2e8        /**< 渲染命令偏移 */
+#define MEMORY_CONTEXT_OFFSET           0x1af8       /**< 内存上下文偏移 */
+#define RENDER_FLAGS_OFFSET             0x13         /**< 渲染标志偏移 */
+#define POSITION_DATA_OFFSET            0x14         /**< 位置数据偏移 */
+#define TRANSFORM_DATA_OFFSET           0x18         /**< 变换数据偏移 */
+#define RENDER_ENTRY_CLEANUP_FLAG_OFFSET 0x58        /**< 渲染条目清理标志偏移 */
+#define RENDER_ENTRY_PAUSE_FLAG_OFFSET  0x59         /**< 渲染条目暂停标志偏移 */
+#define RENDER_ENTRY_DURATION_OFFSET    0x1c         /**< 渲染条目持续时间偏移 */
+#define RENDER_ENTRY_FRAME_OFFSET       0x24         /**< 渲染条目帧偏移 */
+#define RENDER_ENTRY_TIME_OFFSET        0x38         /**< 渲染条目时间偏移 */
+#define RENDER_ENTRY_BASE_TIME_OFFSET   0x34         /**< 渲染条目基准时间偏移 */
+#define RENDER_ENTRY_FLAGS_OFFSET       0x4c         /**< 渲染条目标志偏移 */
+#define ACCUMULATED_TIME_OFFSET         0x104        /**< 累计时间偏移 */
 
 // 外部函数声明
 extern void preprocess_depth_buffer(longlong buffer, int *data);
