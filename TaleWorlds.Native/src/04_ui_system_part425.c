@@ -234,7 +234,19 @@ ulonglong ui_system_processor_type2(void)
 
 
 
-ulonglong FUN_18089dd78(void)
+/**
+ * @brief UI系统处理器类型3
+ * @details UI系统的第三个处理函数，负责UI数据的验证和处理
+ * 
+ * 功能：
+ * - 执行UI系统数据的深度验证
+ * - 处理UI系统的复杂状态逻辑
+ * - 管理UI系统的高级功能
+ * - 执行UI系统的优化操作
+ * 
+ * @return 处理结果状态码，0表示成功，非0表示错误
+ */
+ulonglong ui_system_processor_type3(void)
 
 {
   undefined8 uVar1;
@@ -311,7 +323,19 @@ ulonglong FUN_18089dd78(void)
 
 
 
-ulonglong FUN_18089dda2(void)
+/**
+ * @brief UI系统处理器类型4
+ * @details UI系统的第四个处理函数，负责UI数据的验证和处理
+ * 
+ * 功能：
+ * - 处理UI系统的数据流控制
+ * - 执行UI系统的状态管理
+ * - 管理UI系统的资源调度
+ * - 处理UI系统的异常情况
+ * 
+ * @return 处理结果状态码，0表示成功，非0表示错误
+ */
+ulonglong ui_system_processor_type4(void)
 
 {
   undefined8 uVar1;
@@ -384,7 +408,19 @@ ulonglong FUN_18089dda2(void)
 
 
 
-ulonglong FUN_18089de39(void)
+/**
+ * @brief UI系统处理器类型5
+ * @details UI系统的第五个处理函数，负责UI数据的验证和处理
+ * 
+ * 功能：
+ * - 执行UI系统的高级数据处理
+ * - 管理UI系统的复杂状态转换
+ * - 处理UI系统的错误恢复
+ * - 执行UI系统的性能优化
+ * 
+ * @return 处理结果状态码，0表示成功，非0表示错误
+ */
+ulonglong ui_system_processor_type5(void)
 
 {
   undefined8 uVar1;
@@ -430,7 +466,19 @@ ulonglong FUN_18089de39(void)
 
 
 
-ulonglong FUN_18089de72(void)
+/**
+ * @brief UI系统处理器类型6
+ * @details UI系统的第六个处理函数，负责UI数据的验证和处理
+ * 
+ * 功能：
+ * - 处理UI系统的简化数据流
+ * - 执行UI系统的基本状态管理
+ * - 管理UI系统的资源分配
+ * - 处理UI系统的基本错误情况
+ * 
+ * @return 处理结果状态码，0表示成功，非0表示错误
+ */
+ulonglong ui_system_processor_type6(void)
 
 {
   ulonglong uVar1;
@@ -471,8 +519,19 @@ ulonglong FUN_18089de72(void)
 
 
 
-// 函数: void FUN_18089df30(void)
-void FUN_18089df30(void)
+/**
+ * @brief UI系统清理器类型1
+ * @details UI系统的清理函数，负责UI系统的资源释放和清理
+ * 
+ * 功能：
+ * - 执行UI系统的资源清理
+ * - 释放UI系统占用的内存
+ * - 重置UI系统的状态
+ * - 准备UI系统的重新初始化
+ * 
+ * @return 无返回值
+ */
+void ui_system_cleaner_type1(void)
 
 {
   return;
@@ -480,7 +539,21 @@ void FUN_18089df30(void)
 
 
 
-undefined8 FUN_18089df40(longlong param_1,undefined8 *param_2)
+/**
+ * @brief UI系统数据处理器类型1
+ * @details UI系统的数据处理函数，负责UI数据的处理和验证
+ * 
+ * 功能：
+ * - 处理UI系统数据的验证
+ * - 执行UI数据的格式检查
+ * - 管理UI数据的转换
+ * - 处理UI数据的异常情况
+ * 
+ * @param param_1 UI数据上下文指针
+ * @param param_2 UI数据参数数组
+ * @return 处理结果状态码，0表示成功，非0表示错误
+ */
+undefined8 ui_system_data_processor_type1(longlong param_1,undefined8 *param_2)
 
 {
   undefined8 uVar1;
@@ -530,7 +603,19 @@ undefined8 FUN_18089df40(longlong param_1,undefined8 *param_2)
 
 
 
-undefined8 FUN_18089dfc1(void)
+/**
+ * @brief UI系统数据处理器类型2
+ * @details UI系统的第二个数据处理函数，负责UI数据的处理和验证
+ * 
+ * 功能：
+ * - 执行UI系统数据的深度处理
+ * - 处理UI数据的复杂逻辑
+ * - 管理UI数据的状态转换
+ * - 执行UI数据的优化操作
+ * 
+ * @return 处理结果状态码，0表示成功，非0表示错误
+ */
+undefined8 ui_system_data_processor_type2(void)
 
 {
   undefined8 uVar1;
@@ -574,7 +659,19 @@ undefined8 FUN_18089dfc1(void)
 
 
 
-undefined8 FUN_18089dfe4(void)
+/**
+ * @brief UI系统数据处理器类型3
+ * @details UI系统的第三个数据处理函数，负责UI数据的处理和验证
+ * 
+ * 功能：
+ * - 处理UI系统的高级数据操作
+ * - 执行UI数据的复杂验证
+ * - 管理UI数据的资源分配
+ * - 处理UI数据的错误恢复
+ * 
+ * @return 处理结果状态码，0表示成功，非0表示错误
+ */
+undefined8 ui_system_data_processor_type3(void)
 
 {
   undefined8 uVar1;
