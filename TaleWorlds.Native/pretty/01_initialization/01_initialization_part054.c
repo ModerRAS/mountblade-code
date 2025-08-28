@@ -411,58 +411,71 @@ void update_render_matrix(longlong param_1, uint param_2, undefined8 param_3, fl
   undefined8 uStack0000000000000050;
   undefined8 in_stack_00000058;
   
-  param_1 = (longlong)*(int *)(param_1 + 0x250) * 0x128 + param_1;
-  lVar15 = *(longlong *)(param_1 + 8 + (ulonglong)(param_2 >> 0xd) * 8);
-  lVar31 = (ulonglong)(param_2 + (param_2 >> 0xd) * -0x2000) * 0x40;
-  uVar28 = ((undefined8 *)(lVar15 + lVar31))[1];
-  *(undefined8 *)param_4 = *(undefined8 *)(lVar15 + lVar31);
-  *(undefined8 *)(param_4 + 2) = uVar28;
-  puVar4 = (undefined8 *)(lVar15 + 0x10 + lVar31);
-  uVar28 = puVar4[1];
-  *(undefined8 *)(param_4 + 4) = *puVar4;
-  *(undefined8 *)(param_4 + 6) = uVar28;
-  puVar4 = (undefined8 *)(lVar15 + 0x20 + lVar31);
-  uVar28 = puVar4[1];
-  *(undefined8 *)(param_4 + 8) = *puVar4;
-  *(undefined8 *)(param_4 + 10) = uVar28;
-  puVar4 = (undefined8 *)(lVar15 + 0x30 + lVar31);
-  uVar28 = puVar4[1];
-  *(undefined8 *)(param_4 + 0xc) = *puVar4;
-  *(undefined8 *)(param_4 + 0xe) = uVar28;
-  lVar15 = *(longlong *)(unaff_RDI + 0x10);
-  fVar16 = param_4[8];
-  fVar17 = param_4[9];
-  fVar18 = param_4[10];
-  fVar19 = param_4[0xb];
-  fVar20 = *param_4;
-  fVar21 = param_4[1];
-  fVar22 = param_4[2];
-  fVar23 = param_4[3];
-  fVar24 = param_4[4];
-  fVar25 = param_4[5];
-  fVar26 = param_4[6];
-  fVar27 = param_4[7];
-  fVar5 = *(float *)(lVar15 + 0x374);
-  fVar6 = *(float *)(lVar15 + 0x370);
-  fVar7 = *(float *)(lVar15 + 0x378);
-  fVar8 = *(float *)(lVar15 + 900);
-  fVar9 = *(float *)(lVar15 + 0x394);
-  fVar10 = *(float *)(lVar15 + 0x380);
-  fVar11 = *(float *)(lVar15 + 0x388);
-  fVar12 = *(float *)(lVar15 + 0x390);
-  fVar13 = *(float *)(lVar15 + 0x398);
-  *param_4 = fVar5 * fVar24 + fVar6 * fVar20 + fVar7 * fVar16;
-  param_4[1] = fVar5 * fVar25 + fVar6 * fVar21 + fVar7 * fVar17;
-  param_4[2] = fVar5 * fVar26 + fVar6 * fVar22 + fVar7 * fVar18;
-  param_4[3] = fVar5 * fVar27 + fVar6 * fVar23 + fVar7 * fVar19;
-  param_4[4] = fVar8 * fVar24 + fVar10 * fVar20 + fVar11 * fVar16;
-  param_4[5] = fVar8 * fVar25 + fVar10 * fVar21 + fVar11 * fVar17;
-  param_4[6] = fVar8 * fVar26 + fVar10 * fVar22 + fVar11 * fVar18;
-  param_4[7] = fVar8 * fVar27 + fVar10 * fVar23 + fVar11 * fVar19;
-  param_4[8] = fVar9 * fVar24 + fVar12 * fVar20 + fVar13 * fVar16;
-  param_4[9] = fVar9 * fVar25 + fVar12 * fVar21 + fVar13 * fVar17;
-  param_4[10] = fVar9 * fVar26 + fVar12 * fVar22 + fVar13 * fVar18;
-  param_4[0xb] = fVar9 * fVar27 + fVar12 * fVar23 + fVar13 * fVar19;
+  // 计算渲染数据基础地址
+  longlong render_base = (longlong)*(int *)(param_1 + 0x250) * 0x128 + param_1;
+  
+  // 获取渲染数据块指针
+  longlong render_chunk = *(longlong *)(render_base + 8 + (ulonglong)(param_2 >> 0xd) * 8);
+  longlong matrix_offset = (ulonglong)(param_2 + (param_2 >> 0xd) * -0x2000) * 0x40;
+  
+  // 提取4x4矩阵数据到输出缓冲区
+  undefined8 matrix_row1 = ((undefined8 *)(render_chunk + matrix_offset))[1];
+  *(undefined8 *)param_4 = *(undefined8 *)(render_chunk + matrix_offset);
+  *(undefined8 *)(param_4 + 2) = matrix_row1;
+  
+  undefined8 *matrix_data = (undefined8 *)(render_chunk + 0x10 + matrix_offset);
+  matrix_row1 = matrix_data[1];
+  *(undefined8 *)(param_4 + 4) = *matrix_data;
+  *(undefined8 *)(param_4 + 6) = matrix_row1;
+  
+  matrix_data = (undefined8 *)(render_chunk + 0x20 + matrix_offset);
+  matrix_row1 = matrix_data[1];
+  *(undefined8 *)(param_4 + 8) = *matrix_data;
+  *(undefined8 *)(param_4 + 10) = matrix_row1;
+  
+  matrix_data = (undefined8 *)(render_chunk + 0x30 + matrix_offset);
+  matrix_row1 = matrix_data[1];
+  *(undefined8 *)(param_4 + 0xc) = *matrix_data;
+  *(undefined8 *)(param_4 + 0xe) = matrix_row1;
+  // 获取变换矩阵的各个元素
+  longlong transform_ptr = *(longlong *)(unaff_RDI + 0x10);
+  float m31 = param_4[8];
+  float m32 = param_4[9];
+  float m33 = param_4[10];
+  float m34 = param_4[0xb];
+  float m11 = *param_4;
+  float m12 = param_4[1];
+  float m13 = param_4[2];
+  float m14 = param_4[3];
+  float m21 = param_4[4];
+  float m22 = param_4[5];
+  float m23 = param_4[6];
+  float m24 = param_4[7];
+  
+  // 获取变换参数
+  float t11 = *(float *)(transform_ptr + 0x374);
+  float t12 = *(float *)(transform_ptr + 0x370);
+  float t13 = *(float *)(transform_ptr + 0x378);
+  float t21 = *(float *)(transform_ptr + 900);
+  float t31 = *(float *)(transform_ptr + 0x394);
+  float t22 = *(float *)(transform_ptr + 0x380);
+  float t23 = *(float *)(transform_ptr + 0x388);
+  float t32 = *(float *)(transform_ptr + 0x390);
+  float t33 = *(float *)(transform_ptr + 0x398);
+  
+  // 计算变换后的矩阵
+  *param_4 = t11 * m21 + t12 * m11 + t13 * m31;
+  param_4[1] = t11 * m22 + t12 * m12 + t13 * m32;
+  param_4[2] = t11 * m23 + t12 * m13 + t13 * m33;
+  param_4[3] = t11 * m24 + t12 * m14 + t13 * m34;
+  param_4[4] = t21 * m21 + t22 * m11 + t23 * m31;
+  param_4[5] = t21 * m22 + t22 * m12 + t23 * m32;
+  param_4[6] = t21 * m23 + t22 * m13 + t23 * m33;
+  param_4[7] = t21 * m24 + t22 * m14 + t23 * m34;
+  param_4[8] = t31 * m21 + t32 * m11 + t33 * m31;
+  param_4[9] = t31 * m22 + t32 * m12 + t33 * m32;
+  param_4[10] = t31 * m23 + t32 * m13 + t33 * m33;
+  param_4[0xb] = t31 * m24 + t32 * m14 + t33 * m34;
   lVar15 = *(longlong *)(unaff_RBX + 600);
   if (*(int *)(lVar15 + 0x28) != *(int *)(_DAT_180c86870 + 0x224)) {
     iVar39 = *(int *)(lVar15 + 0x1c) + *(int *)(lVar15 + 0x18);
@@ -882,6 +895,9 @@ undefined *get_render_context(longlong param_1, undefined8 param_2, undefined8 p
       _DAT_180d49168 = &DAT_180d49178;
     }
   }
+  
+  // 返回默认的上下文结果
+  return (undefined *)context_result;
 
 
 /**
@@ -935,7 +951,7 @@ undefined1 reset_thread_flags(void)
   undefined1 *thread_flag_ptr;
   undefined1 original_flag;
   longlong thread_index;
-  longlong render_context;
+  longlong unaff_RBX;
   int loop_counter;
   longlong thread_offset;
   
@@ -945,8 +961,8 @@ undefined1 reset_thread_flags(void)
   // 遍历所有线程进行重置
   do {
     // 等待线程就绪
-    while ((*(char *)(*(longlong *)(render_context + 0x1e0) + 0x15 + thread_offset) == '\x02' ||
-           (*(char *)(*(longlong *)(render_context + 0x1e0) + 0x15 + thread_offset) == '\x01'))) {
+    while ((*(char *)(*(longlong *)(unaff_RBX + 0x1e0) + 0x15 + thread_offset) == '\x02' ||
+           (*(char *)(*(longlong *)(unaff_RBX + 0x1e0) + 0x15 + thread_offset) == '\x01'))) {
       Sleep(0);
     }
     
@@ -956,7 +972,7 @@ undefined1 reset_thread_flags(void)
     loop_counter = loop_counter + 1;
     
     LOCK();
-    thread_flag_ptr = (undefined1 *)(*(longlong *)(render_context + 0x1e0) + thread_index * 0x18 + 0x15);
+    thread_flag_ptr = (undefined1 *)(*(longlong *)(unaff_RBX + 0x1e0) + thread_index * 0x18 + 0x15);
     original_flag = *thread_flag_ptr;
     *thread_flag_ptr = 0;
     UNLOCK();
