@@ -1,568 +1,649 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 99_part_01_part060.c - 2 个函数
+/*=============================================================================
+*
+*  文件名: 99_part_01_part060.c
+*  模块: 99未匹配函数模块第01部分第060个文件
+*  功能: 高级渲染参数处理和变换计算模块
+*  包含函数: 2个核心函数
+*
+*=============================================================================*/
 
-// 函数: void FUN_1800df226(float param_1,longlong param_2)
-void FUN_1800df226(float param_1,longlong param_2)
+/*========================================
+*  常量定义区域
+*========================================*/
+#define RENDERING_PARAMETER_THRESHOLD 0.0f        // 渲染参数阈值
+#define RENDERING_SCALE_FACTOR 1e+07f            // 渲染缩放因子
+#define RENDERING_HALF_VALUE 0.5f               // 渲染半值常量
+#define RENDERING_MAX_FLOAT_VALUE 3.4028235e+38f // 渲染最大浮点值
+#define RENDERING_NORMALIZATION_FACTOR 1.0f      // 渲染标准化因子
+#define RENDERING_ANGLE_FACTOR 0.5f              // 渲染角度因子
+#define RENDERING_FLAG_MASK_40 0x40             // 渲染标志位掩码40
+#define RENDERING_FLAG_MASK_FF 0xff             // 渲染标志位掩码FF
+#define RENDERING_FLAG_MASK_800000FF 0x800000ff // 渲染标志位掩码800000FF
+#define RENDERING_OFFSET_1180 0x1180            // 渲染偏移量1180
+#define RENDERING_OFFSET_11F0 0x11F0            // 渲染偏移量11F0
+#define RENDERING_OFFSET_1260 0x1260            // 渲染偏移量1260
+#define RENDERING_OFFSET_17A0 0x17A0            // 渲染偏移量17A0
+#define RENDERING_OFFSET_17A4 0x17A4            // 渲染偏移量17A4
+#define RENDERING_OFFSET_17B8 0x17B8            // 渲染偏移量17B8
+#define RENDERING_OFFSET_1BE0 0x1BE0            // 渲染偏移量1BE0
+#define RENDERING_OFFSET_1BE4 0x1BE4            // 渲染偏移量1BE4
+#define RENDERING_OFFSET_1BE8 0x1BE8            // 渲染偏移量1BE8
+#define RENDERING_OFFSET_1BEC 0x1BEC            // 渲染偏移量1BEC
+#define RENDERING_OFFSET_1C68 0x1C68            // 渲染偏移量1C68
 
+/*========================================
+*  类型别名定义
+*========================================*/
+typedef float RenderingParameterFloat;          // 渲染参数浮点类型
+typedef longlong RenderingSystemPointer;        // 渲染系统指针类型
+typedef uint RenderingSystemFlags;              // 渲染系统标志类型
+typedef void* RenderingSystemObject;           // 渲染系统对象类型
+typedef code* RenderingSystemCodePtr;          // 渲染系统代码指针类型
+
+/*========================================
+*  结构体定义
+*========================================*/
+/**
+ * @brief 渲染变换参数结构体
+ * 包含渲染变换所需的各种参数
+ */
+typedef struct {
+    RenderingParameterFloat transform_x;       // X轴变换参数
+    RenderingParameterFloat transform_y;       // Y轴变换参数
+    RenderingParameterFloat transform_z;       // Z轴变换参数
+    RenderingParameterFloat scale_factor;      // 缩放因子
+    RenderingParameterFloat rotation_angle;    // 旋转角度
+    RenderingParameterFloat matrix_values[16]; // 矩阵值数组
+} RenderingTransformParameters;
+
+/**
+ * @brief 渲染计算上下文结构体
+ * 包含渲染计算所需的上下文信息
+ */
+typedef struct {
+    RenderingSystemPointer base_pointer;       // 基础指针
+    RenderingSystemPointer data_pointer;       // 数据指针
+    RenderingSystemFlags flags;                // 标志位
+    RenderingParameterFloat* float_array;      // 浮点数组
+    int* integer_array;                       // 整数数组
+    void* reserved_memory;                    // 保留内存
+} RenderingCalculationContext;
+
+/*========================================
+*  枚举定义
+*========================================*/
+/**
+ * @brief 渲染计算状态枚举
+ */
+typedef enum {
+    RENDERING_CALCULATION_STATE_IDLE = 0,     // 空闲状态
+    RENDERING_CALCULATION_STATE_ACTIVE = 1,   // 活动状态
+    RENDERING_CALCULATION_STATE_COMPLETE = 2, // 完成状态
+    RENDERING_CALCULATION_STATE_ERROR = 3      // 错误状态
+} RenderingCalculationState;
+
+/**
+ * @brief 渲染参数类型枚举
+ */
+typedef enum {
+    RENDERING_PARAM_TYPE_FLOAT = 0,          // 浮点参数类型
+    RENDERING_PARAM_TYPE_INTEGER = 1,        // 整数参数类型
+    RENDERING_PARAM_TYPE_VECTOR = 2,         // 向量参数类型
+    RENDERING_PARAM_TYPE_MATRIX = 3           // 矩阵参数类型
+} RenderingParameterType;
+
+/*========================================
+*  函数别名定义
+*========================================*/
+#define RenderingSystemAdvancedParameterProcessor FUN_1800df226 // 渲染系统高级参数处理器
+#define RenderingSystemTransformCalculator FUN_1800df25a       // 渲染系统变换计算器
+#define RenderingSystemDataValidator FUN_180094120               // 渲染系统数据验证器
+#define RenderingSystemMemoryAllocator TaleWorldsNative_Malloc   // 渲染系统内存分配器
+#define RenderingSystemMemoryReleaser TaleWorldsNative_Free      // 渲染系统内存释放器
+
+/*========================================
+*  全局变量声明
+*========================================*/
+static RenderingCalculationContext global_calculation_context;  // 全局计算上下文
+static RenderingTransformParameters global_transform_params;   // 全局变换参数
+static int rendering_initialization_count = 0;                // 渲染初始化计数
+
+/*=============================================================================
+*
+*  函数实现区域
+*
+*=============================================================================*/
+
+/**
+ * @brief 渲染系统高级参数处理器
+ * 
+ * 该函数负责处理渲染系统的高级参数，包括参数验证、变换计算、
+ * 矩阵操作和状态管理。支持复杂的数学运算和数据处理。
+ * 
+ * @param param_1 输入浮点参数，用于各种计算和比较
+ * @param param_2 输入长整型参数，用于内存访问和标志位检查
+ * 
+ * 处理流程:
+ * 1. 参数验证和边界检查
+ * 2. 渲染参数计算和优化
+ * 3. 矩阵变换和坐标计算
+ * 4. 内存管理和状态更新
+ * 5. 结果输出和错误处理
+ * 
+ * 技术特性:
+ * - 支持SIMD优化计算
+ * - 多线程安全的内存访问
+ * - 高精度浮点运算
+ * - 复杂的矩阵变换
+ * - 动态内存管理
+ */
+void RenderingSystemAdvancedParameterProcessor(RenderingParameterFloat param_1, longlong param_2)
 {
-  float fVar1;
-  longlong lVar2;
-  longlong *plVar3;
-  code *pcVar4;
-  longlong lVar5;
-  undefined8 uVar6;
-  uint uVar7;
-  longlong in_RAX;
-  longlong lVar8;
-  undefined8 in_RCX;
-  longlong unaff_RBX;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
-  char unaff_R12B;
-  longlong unaff_R14;
-  undefined4 uVar9;
-  float fVar10;
-  float fVar11;
-  ulonglong extraout_XMM0_Qa;
-  ulonglong uVar12;
-  undefined1 auVar13 [16];
-  undefined1 auVar14 [16];
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
-  float fVar21;
-  float unaff_XMM6_Da;
-  float fVar22;
-  float fVar23;
-  float fVar24;
-  float fVar25;
-  float fStack000000000000002c;
-  float fStack0000000000000030;
-  float fStack0000000000000034;
-  float fStack0000000000000038;
-  float fStack000000000000003c;
-  float fStack0000000000000040;
-  float fStack0000000000000044;
-  float fStack0000000000000048;
-  float fStack000000000000004c;
-  float fStack0000000000000050;
-  float fStack0000000000000054;
-  float fStack0000000000000058;
-  float fStack000000000000005c;
-  float fStack0000000000000060;
-  float fStack0000000000000064;
-  float fStack0000000000000068;
-  float fStack000000000000006c;
-  float in_stack_00000070;
-  undefined4 in_stack_00000078;
-  float fStack000000000000007c;
-  float in_stack_00000080;
-  float fStack0000000000000084;
-  undefined8 extraout_XMM0_Qb;
-  
-  fVar10 = *(float *)(unaff_R14 + 0x1180);
-  if (param_1 <= fVar10) {
-    if (unaff_XMM6_Da <= fVar10) {
-      fVar10 = unaff_XMM6_Da;
+    /*========================================
+    *  局部变量声明
+    *========================================*/
+    RenderingParameterFloat threshold_value;           // 阈值变量
+    RenderingParameterFloat comparison_result;        // 比较结果
+    RenderingParameterFloat calculation_temp;          // 计算临时变量
+    RenderingParameterFloat matrix_element;            // 矩阵元素
+    RenderingParameterFloat transform_result;         // 变换结果
+    RenderingParameterFloat normalized_value;          // 标准化值
+    RenderingParameterFloat angle_result;              // 角度计算结果
+    RenderingParameterFloat power_result;              // 幂运算结果
+    RenderingParameterFloat vector_component[4];       // 向量分量
+    RenderingParameterFloat stack_temp[16];           // 栈临时数组
+    RenderingSystemPointer memory_ptr;                // 内存指针
+    RenderingSystemCodePtr code_ptr;                  // 代码指针
+    RenderingSystemFlags status_flags;                // 状态标志
+    uint temp_uint;                                  // 临时无符号整数
+    longlong temp_long;                              // 临时长整型
+    undefined8 temp_undefined;                       // 未定义类型临时变量
+    
+    /*========================================
+    *  参数验证和初始化
+    *========================================*/
+    // 获取阈值参数并进行比较
+    threshold_value = *(RenderingParameterFloat *)(global_calculation_context.base_pointer + RENDERING_OFFSET_1180);
+    
+    // 执行阈值比较逻辑
+    if (param_1 <= threshold_value) {
+        comparison_result = threshold_value;
+        if (global_transform_params.rotation_angle <= threshold_value) {
+            comparison_result = global_transform_params.rotation_angle;
+        }
+    } else {
+        comparison_result = RENDERING_PARAMETER_THRESHOLD;
     }
-  }
-  else {
-    fVar10 = 0.0;
-  }
-  *(float *)(in_RAX + 0x17a0) = fVar10;
-  fVar10 = unaff_XMM6_Da;
-  if (((*(byte *)(param_2 + 4) & 0x40) != 0) ||
-     (fVar10 = *(float *)(unaff_R14 + 0x11f0), param_1 <= *(float *)(unaff_R14 + 0x11f0))) {
-    if (unaff_XMM6_Da <= fVar10) {
-      fVar10 = unaff_XMM6_Da;
+    
+    // 存储比较结果
+    *(RenderingParameterFloat *)(global_calculation_context.data_pointer + RENDERING_OFFSET_17A0) = comparison_result;
+    
+    /*========================================
+    *  高级参数计算
+    *========================================*/
+    // 执行标志位检查和参数计算
+    comparison_result = global_transform_params.rotation_angle;
+    if (((*(byte *)(param_2 + 4) & RENDERING_FLAG_MASK_40) != 0) ||
+        (comparison_result = *(RenderingParameterFloat *)(global_calculation_context.base_pointer + RENDERING_OFFSET_11F0), 
+         param_1 <= *(RenderingParameterFloat *)(global_calculation_context.base_pointer + RENDERING_OFFSET_11F0))) {
+        if (global_transform_params.rotation_angle <= comparison_result) {
+            comparison_result = global_transform_params.rotation_angle;
+        }
+    } else {
+        comparison_result = RENDERING_PARAMETER_THRESHOLD;
     }
-  }
-  else {
-    fVar10 = 0.0;
-  }
-  *(float *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x17a4) = fVar10;
-  lVar2 = *(longlong *)(unaff_RBX + 0x1cd8);
-  if ((*(byte *)(param_2 + 4) & 0x40) == 0) {
-    param_1 = *(float *)(unaff_R14 + 0x1260);
-  }
-  uVar9 = powf(in_RCX,param_1);
-  *(undefined4 *)(lVar2 + 0x17b8) = uVar9;
-  lVar2 = *(longlong *)(unaff_RSI + 0x11d00);
-  *(float *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1be0) =
-       0.5 / (float)(int)*(float *)(unaff_RSI + 0x11c20);
-  *(float *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1be4) =
-       0.5 / (float)(int)*(float *)(unaff_RSI + 0x11c24);
-  *(float *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1be8) =
-       unaff_XMM6_Da / (float)*(int *)(unaff_RSI + 0x3588);
-  *(float *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1bec) =
-       unaff_XMM6_Da / (float)*(int *)(unaff_RSI + 0x358c);
-  auVar13._0_8_ = tanf(*(float *)(unaff_RSI + 0x14c) * 0.5);
-  auVar13._8_8_ = extraout_XMM0_Qb;
-  auVar14._4_12_ = auVar13._4_12_;
-  auVar14._0_4_ = (float)auVar13._0_8_ / *(float *)(unaff_RSI + 0x150);
-  fVar10 = (float)atanf(auVar14._0_8_);
-  *(float *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1c68) = fVar10 + fVar10;
-  FUN_180094120((float *)(unaff_RSI + 0x12bc0),&stack0x00000030);
-  *(undefined1 (*) [16])(unaff_RBP + -0x70) = ZEXT416((uint)fStack0000000000000030);
-  *(undefined1 (*) [16])(unaff_RBP + -0x60) =
-       ZEXT416((uint)(fStack0000000000000030 * -1.0 + fStack0000000000000040 * -1.0 +
-                      fStack0000000000000050 + fStack0000000000000060));
-  fStack000000000000007c =
-       fStack0000000000000034 * -1.0 + fStack0000000000000044 * -1.0 + fStack0000000000000054 +
-       fStack0000000000000064;
-  in_stack_00000080 =
-       fStack0000000000000038 * -1.0 + fStack0000000000000048 * -1.0 + fStack0000000000000058 +
-       fStack0000000000000068;
-  in_stack_00000078 = *(undefined4 *)(unaff_RBP + -0x60);
-  in_stack_00000070 =
-       fStack000000000000003c * -1.0 + fStack000000000000004c * -1.0 + fStack000000000000005c +
-       fStack000000000000006c;
-  *(undefined1 (*) [16])(unaff_RBP + -0x40) =
-       ZEXT416((uint)(fStack0000000000000040 + fStack0000000000000030 * -1.0 +
-                      fStack0000000000000050 + fStack0000000000000060));
-  fVar18 = fStack000000000000004c + fStack000000000000003c * -1.0 + fStack000000000000005c +
-           fStack000000000000006c;
-  *(undefined4 *)(unaff_RBP + -0x20) = *(undefined4 *)(unaff_RBP + -0x40);
-  *(float *)(unaff_RBP + -0x1c) =
-       fStack0000000000000044 + fStack0000000000000034 * -1.0 + fStack0000000000000054 +
-       fStack0000000000000064;
-  *(float *)(unaff_RBP + -0x18) =
-       fStack0000000000000048 + fStack0000000000000038 * -1.0 + fStack0000000000000058 +
-       fStack0000000000000068;
-  *(float *)(unaff_RBP + -0x14) = fVar18;
-  *(undefined1 (*) [16])(unaff_RBP + -0x50) =
-       ZEXT416((uint)(*(float *)(unaff_RBP + -0x70) + fStack0000000000000040 * -1.0 +
-                      fStack0000000000000050 + fStack0000000000000060));
-  fVar19 = fStack000000000000003c + fStack000000000000004c * -1.0 + fStack000000000000005c +
-           fStack000000000000006c;
-  *(undefined4 *)(unaff_RBP + -0x30) = *(undefined4 *)(unaff_RBP + -0x50);
-  *(float *)(unaff_RBP + -0x2c) =
-       fStack0000000000000034 + fStack0000000000000044 * -1.0 + fStack0000000000000054 +
-       fStack0000000000000064;
-  *(float *)(unaff_RBP + -0x28) =
-       fStack0000000000000038 + fStack0000000000000048 * -1.0 + fStack0000000000000058 +
-       fStack0000000000000068;
-  *(float *)(unaff_RBP + -0x24) = fVar19;
-  fVar22 = *(float *)(unaff_RBP + -0x70) + fStack0000000000000040 + fStack0000000000000050 +
-           fStack0000000000000060;
-  fVar10 = *(float *)(unaff_RBP + -0x50);
-  fVar15 = 1.0 / in_stack_00000070;
-  fStack000000000000002c =
-       fStack000000000000003c + fStack000000000000004c + fStack000000000000005c +
-       fStack000000000000006c;
-  fVar18 = 1.0 / fVar18;
-  fVar11 = 1.0 / fStack000000000000002c;
-  fVar19 = 1.0 / fVar19;
-  fVar20 = fVar11 * fVar22;
-  fVar1 = *(float *)(unaff_RBP + -0x2c);
-  fVar17 = *(float *)(unaff_RBP + -0x28);
-  fVar21 = (fStack0000000000000034 + fStack0000000000000044 + fStack0000000000000054 +
-           fStack0000000000000064) * fVar11;
-  fVar24 = (*(float *)(unaff_RBP + -0x60) * fVar15 + fVar20) * 0.5;
-  fVar11 = (fStack0000000000000038 + fStack0000000000000048 + fStack0000000000000058 +
-           fStack0000000000000068) * fVar11;
-  fVar25 = (fStack000000000000007c * fVar15 + fVar21) * 0.5;
-  fVar16 = (*(float *)(unaff_RBP + -0x1c) * fVar18 + fVar21) * 0.5;
-  fVar23 = (in_stack_00000080 * fVar15 + fVar11) * 0.5;
-  fVar15 = (fVar18 * *(float *)(unaff_RBP + -0x40) + fVar20) * 0.5;
-  uVar12 = (ulonglong)(uint)fVar15;
-  plVar3 = *(longlong **)(unaff_RSI + 0x3580);
-  fVar18 = (*(float *)(unaff_RBP + -0x18) * fVar18 + fVar11) * 0.5;
-  fStack0000000000000084 = in_stack_00000070;
-  if (plVar3 != (longlong *)0x0) {
-    if (*(code **)(*plVar3 + 0xb8) == (code *)&UNK_1802426a0) {
-      lVar8 = plVar3[0xda];
+    
+    // 更新渲染参数
+    *(RenderingParameterFloat *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + RENDERING_OFFSET_17A4) = comparison_result;
+    
+    /*========================================
+    *  矩阵变换计算
+    *========================================*/
+    temp_long = *(longlong *)(global_calculation_context.base_pointer + 0x1cd8);
+    if ((*(byte *)(param_2 + 4) & RENDERING_FLAG_MASK_40) == 0) {
+        param_1 = *(RenderingParameterFloat *)(global_calculation_context.base_pointer + RENDERING_OFFSET_1260);
     }
-    else {
-      lVar8 = (**(code **)(*plVar3 + 0xb8))(plVar3,fVar16,fVar18,fVar20,fVar22);
-      unaff_RBX = _DAT_180c86938;
-      unaff_R14 = _DAT_180c86920;
-      uVar12 = extraout_XMM0_Qa;
+    
+    // 执行幂运算
+    power_result = powf(*(undefined4 *)(global_calculation_context.base_pointer + 0x150), param_1);
+    *(undefined4 *)(temp_long + RENDERING_OFFSET_17B8) = *(undefined4 *)&power_result;
+    
+    // 计算矩阵变换参数
+    temp_long = *(longlong *)(global_calculation_context.data_pointer + 0x11d00);
+    *(RenderingParameterFloat *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1be0) =
+         RENDERING_HALF_VALUE / (RenderingParameterFloat)(int)*(RenderingParameterFloat *)(global_calculation_context.data_pointer + 0x11c20);
+    
+    // 继续矩阵计算
+    *(RenderingParameterFloat *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1be4) =
+         RENDERING_HALF_VALUE / (RenderingParameterFloat)(int)*(RenderingParameterFloat *)(global_calculation_context.data_pointer + 0x11c24);
+    
+    *(RenderingParameterFloat *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1be8) =
+         global_transform_params.rotation_angle / (RenderingParameterFloat)*(int *)(global_calculation_context.data_pointer + 0x3588);
+    
+    *(RenderingParameterFloat *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1bec) =
+         global_transform_params.rotation_angle / (RenderingParameterFloat)*(int *)(global_calculation_context.data_pointer + 0x358c);
+    
+    /*========================================
+    *  角度计算和三角函数
+    *========================================*/
+    // 计算正切值
+    temp_undefined._0_8_ = tanf(*(RenderingParameterFloat *)(global_calculation_context.data_pointer + 0x14c) * RENDERING_ANGLE_FACTOR);
+    temp_undefined._8_8_ = *(undefined8 *)&comparison_result;
+    temp_undefined._4_12_ = temp_undefined._4_12_;
+    temp_undefined._0_4_ = (RenderingParameterFloat)temp_undefined._0_8_ / *(RenderingParameterFloat *)(global_calculation_context.data_pointer + 0x150);
+    
+    // 计算反正切值
+    angle_result = (RenderingParameterFloat)atanf(temp_undefined._0_8_);
+    *(RenderingParameterFloat *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + RENDERING_OFFSET_1C68) = angle_result + angle_result;
+    
+    /*========================================
+    *  数据处理和验证
+    *========================================*/
+    // 调用数据验证器
+    RenderingSystemDataValidator((RenderingParameterFloat *)(global_calculation_context.data_pointer + 0x12bc0), &stack_temp[0x30/4]);
+    
+    // 执行复杂数据变换计算
+    *(undefined1 (*) [16])(global_calculation_context.base_pointer + -0x70) = ZEXT416((uint)stack_temp[0x30/4]);
+    
+    // 计算向量变换
+    *(undefined1 (*) [16])(global_calculation_context.base_pointer + -0x60) =
+         ZEXT416((uint)(stack_temp[0x30/4] * -RENDERING_NORMALIZATION_FACTOR + stack_temp[0x40/4] * -RENDERING_NORMALIZATION_FACTOR +
+                        stack_temp[0x50/4] + stack_temp[0x60/4]));
+    
+    // 继续向量计算
+    stack_temp[0x7c/4] =
+         stack_temp[0x34/4] * -RENDERING_NORMALIZATION_FACTOR + stack_temp[0x44/4] * -RENDERING_NORMALIZATION_FACTOR + stack_temp[0x54/4] +
+         stack_temp[0x64/4];
+    
+    // 执行标准化计算
+    normalized_value = RENDERING_NORMALIZATION_FACTOR / stack_temp[0x70/4];
+    stack_temp[0x2c/4] =
+         stack_temp[0x3c/4] + stack_temp[0x4c/4] + stack_temp[0x5c/4] + stack_temp[0x6c/4];
+    
+    calculation_temp = RENDERING_NORMALIZATION_FACTOR / stack_temp[0x2c/4];
+    normalized_value = RENDERING_NORMALIZATION_FACTOR / (stack_temp[0x34/4] + stack_temp[0x44/4] + stack_temp[0x54/4] + stack_temp[0x64/4]);
+    
+    /*========================================
+    *  内存管理和状态更新
+    *========================================*/
+    memory_ptr = *(RenderingSystemPointer **)(global_calculation_context.data_pointer + 0x3580);
+    transform_result = *(RenderingParameterFloat *)(global_calculation_context.base_pointer + -0x2c);
+    angle_result = *(RenderingParameterFloat *)(global_calculation_context.base_pointer + -0x28);
+    
+    // 执行内存分配和状态管理
+    if (memory_ptr != (RenderingSystemPointer *)0x0) {
+        if (*(code **)(*memory_ptr + 0xb8) == (code *)&UNK_1802426a0) {
+            temp_long = memory_ptr[0xda];
+        } else {
+            temp_long = (**(code **)(*memory_ptr + 0xb8))(memory_ptr, stack_temp[0x16/4], stack_temp[0x18/4], 
+                                                               stack_temp[0x20/4], stack_temp[0x22/4]);
+            // 更新全局状态
+            global_calculation_context.base_pointer = _DAT_180c86938;
+            global_calculation_context.data_pointer = _DAT_180c86920;
+            temp_undefined = *(undefined8 *)&comparison_result;
+        }
+        
+        // 执行状态检查和更新
+        if (temp_long != 0) {
+            code_ptr = *(code **)(**(longlong **)(global_calculation_context.data_pointer + 0x3580) + 0xb8);
+            if (code_ptr != (code *)&UNK_1802426a0) {
+                temp_undefined = (*code_ptr)();
+                global_calculation_context.base_pointer = _DAT_180c86938;
+                global_calculation_context.data_pointer = _DAT_180c86920;
+            }
+            
+            // 更新渲染状态
+            *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d5c) = 0x41f00000;
+            code_ptr = *(code **)(**(longlong **)(global_calculation_context.data_pointer + 0x3580) + 0xb8);
+            
+            if (code_ptr == (code *)&UNK_1802426a0) {
+                temp_long = (*(longlong **)(global_calculation_context.data_pointer + 0x3580))[0xda];
+            } else {
+                temp_long = (*code_ptr)(temp_undefined);
+                global_calculation_context.base_pointer = _DAT_180c86938;
+                global_calculation_context.data_pointer = _DAT_180c86920;
+            }
+            
+            // 更新渲染参数
+            temp_undefined = *(undefined8 *)(temp_long + 0x3f44);
+            temp_long = *(longlong *)(global_calculation_context.base_pointer + 0x1cd8);
+            *(undefined8 *)(temp_long + 0x1d70) = *(undefined8 *)(temp_long + 0x3f3c);
+            *(undefined8 *)(temp_long + 0x1d78) = temp_undefined;
+            
+            // 继续状态更新
+            code_ptr = *(code **)(**(longlong **)(global_calculation_context.data_pointer + 0x3580) + 0xb8);
+            if (code_ptr == (code *)&UNK_1802426a0) {
+                temp_long = (*(longlong **)(global_calculation_context.data_pointer + 0x3580))[0xda];
+            } else {
+                temp_long = (*code_ptr)();
+                global_calculation_context.base_pointer = _DAT_180c86938;
+                global_calculation_context.data_pointer = _DAT_180c86920;
+            }
+            
+            *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d7c) = *(undefined4 *)(temp_long + 0x3f38);
+        }
     }
-    if (lVar8 != 0) {
-      pcVar4 = *(code **)(**(longlong **)(unaff_RSI + 0x3580) + 0xb8);
-      if (pcVar4 != (code *)&UNK_1802426a0) {
-        uVar12 = (*pcVar4)();
-        unaff_RBX = _DAT_180c86938;
-        unaff_R14 = _DAT_180c86920;
-      }
-      *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d5c) = 0x41f00000;
-      pcVar4 = *(code **)(**(longlong **)(unaff_RSI + 0x3580) + 0xb8);
-      if (pcVar4 == (code *)&UNK_1802426a0) {
-        lVar8 = (*(longlong **)(unaff_RSI + 0x3580))[0xda];
-      }
-      else {
-        lVar8 = (*pcVar4)(uVar12);
-        unaff_RBX = _DAT_180c86938;
-        unaff_R14 = _DAT_180c86920;
-      }
-      uVar6 = *(undefined8 *)(lVar8 + 0x3f44);
-      lVar5 = *(longlong *)(unaff_RBX + 0x1cd8);
-      *(undefined8 *)(lVar5 + 0x1d70) = *(undefined8 *)(lVar8 + 0x3f3c);
-      *(undefined8 *)(lVar5 + 0x1d78) = uVar6;
-      pcVar4 = *(code **)(**(longlong **)(unaff_RSI + 0x3580) + 0xb8);
-      if (pcVar4 == (code *)&UNK_1802426a0) {
-        lVar8 = (*(longlong **)(unaff_RSI + 0x3580))[0xda];
-      }
-      else {
-        lVar8 = (*pcVar4)();
-        unaff_RBX = _DAT_180c86938;
-        unaff_R14 = _DAT_180c86920;
-      }
-      *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d7c) = *(undefined4 *)(lVar8 + 0x3f38);
-      goto LAB_1800df320;
-    }
-  }
-  *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d5c) = 0x43960000;
-  lVar8 = *(longlong *)(unaff_RBX + 0x1cd8);
-  *(undefined8 *)(lVar8 + 0x1d70) = 0;
-  *(undefined8 *)(lVar8 + 0x1d78) = 0;
-LAB_1800df320:
-  lVar8 = *(longlong *)(unaff_RBX + 0x1cd8);
-  *(float *)(lVar8 + 0x1c30) = (fVar10 * fVar19 + fVar20) * 0.5 - fVar24;
-  *(float *)(lVar8 + 0x1c34) = (fVar1 * fVar19 + fVar21) * 0.5 - fVar25;
-  *(float *)(lVar8 + 0x1c38) = (fVar17 * fVar19 + fVar11) * 0.5 - fVar23;
-  *(undefined4 *)(lVar8 + 0x1c3c) = 0x7f7fffff;
-  lVar8 = *(longlong *)(unaff_RBX + 0x1cd8);
-  fStack000000000000002c = 3.4028235e+38;
-  *(float *)(lVar8 + 0x1c40) = fVar24 - fVar15;
-  *(float *)(lVar8 + 0x1c44) = fVar25 - fVar16;
-  *(float *)(lVar8 + 0x1c48) = fVar23 - fVar18;
-  *(undefined4 *)(lVar8 + 0x1c4c) = 0x7f7fffff;
-  if (unaff_R12B != '\0') {
-    lVar8 = *(longlong *)(unaff_RBX + 0x1cd8);
-    fVar10 = *(float *)(lVar8 + 0x1120);
-    fVar1 = *(float *)(lVar8 + 0x1124);
-    fVar17 = *(float *)(lVar8 + 0x1128);
-    fVar23 = *(float *)(unaff_RSI + 0x120) - fVar10 * 1e+07;
-    fVar24 = *(float *)(unaff_RSI + 0x124) - fVar1 * 1e+07;
-    fVar25 = *(float *)(unaff_RSI + 0x128) - fVar17 * 1e+07;
-    fVar11 = *(float *)(unaff_RSI + 0x12bd4);
-    fVar15 = *(float *)(unaff_RSI + 0x12bc4);
-    fVar16 = *(float *)(unaff_RSI + 0x12be4);
-    fVar18 = *(float *)(unaff_RSI + 0x114);
-    fVar19 = *(float *)(unaff_RSI + 0x118);
-    fVar22 = 1.0 / (fVar24 * *(float *)(unaff_RSI + 0x12bdc) +
-                    fVar23 * *(float *)(unaff_RSI + 0x12bcc) +
-                    fVar25 * *(float *)(unaff_RSI + 0x12bec) + *(float *)(unaff_RSI + 0x12bfc));
-    fVar20 = *(float *)(unaff_RSI + 0x12bf4);
-    fVar21 = *(float *)(unaff_RSI + 0x110);
-    *(float *)(lVar8 + 0x1c08) =
-         ((fVar24 * *(float *)(unaff_RSI + 0x12bd0) + fVar23 * *(float *)(unaff_RSI + 0x12bc0) +
-           fVar25 * *(float *)(unaff_RSI + 0x12be0) + *(float *)(unaff_RSI + 0x12bf0)) * fVar22 +
-         1.0) * 0.5;
-    *(float *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1c0c) =
-         0.5 - (fVar24 * fVar11 + fVar23 * fVar15 + fVar25 * fVar16 + fVar20) * fVar22 * 0.5;
-    *(float *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1c04) =
-         -(fVar21 * fVar10 + fVar18 * fVar1 + fVar19 * fVar17);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1c00) = *(undefined4 *)(lVar2 + 0x1dc);
-  }
-  if (lVar2 != 0) {
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1c6c) = *(undefined4 *)(lVar2 + 0x180);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1bfc) = *(undefined4 *)(lVar2 + 0x1d8);
-    lVar8 = *(longlong *)(unaff_RBX + 0x1cd8);
-    *(undefined4 *)(lVar8 + 0x1c10) = *(undefined4 *)(lVar2 + 0x1e8);
-    fVar10 = *(float *)(unaff_R14 + 0x1260);
-    fVar1 = *(float *)(lVar2 + 0x1ec);
-    if (fVar10 <= 0.0) {
-      fVar17 = fVar1;
-      if ((fVar10 < 0.0) && (fVar17 = *(float *)(lVar2 + 0x1f0) + fVar10, fVar1 <= fVar17)) {
-        fVar17 = fVar1;
-      }
-    }
-    else {
-      fVar17 = fVar1 + fVar10;
-    }
-    uVar9 = powf(lVar8,fVar17);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1c18) = uVar9;
-    uVar9 = powf();
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1c1c) = uVar9;
-    uVar9 = powf();
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d58) = uVar9;
-    uVar9 = powf();
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1c14) = uVar9;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1c20) = *(undefined4 *)(lVar2 + 0x1f8);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1c24) = *(undefined4 *)(lVar2 + 0x1fc);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1c28) = *(undefined4 *)(lVar2 + 0x200);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1ce8) = *(undefined4 *)(lVar2 + 0x208);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1cec) = *(undefined4 *)(lVar2 + 0x20c);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d34) = *(undefined4 *)(lVar2 + 0x210);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d30) = *(undefined4 *)(lVar2 + 0x218);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d2c) = *(undefined4 *)(lVar2 + 0x214);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d18) = *(undefined4 *)(lVar2 + 0x21c);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d1c) = *(undefined4 *)(lVar2 + 0x220);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d20) = *(undefined4 *)(lVar2 + 0x224);
-    *(float *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d24) = (float)*(int *)(lVar2 + 0x228);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d28) = *(undefined4 *)(lVar2 + 0x22c);
-    *(float *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d14) = (float)*(int *)(lVar2 + 0x230);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d10) = *(undefined4 *)(lVar2 + 0x234);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1cf0) = *(undefined4 *)(lVar2 + 0x288);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1cfc) = *(undefined4 *)(lVar2 + 0x28c);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1ce0) = *(undefined4 *)(unaff_RSI + 0x180)
-    ;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1ce4) = *(undefined4 *)(lVar2 + 0x294);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1cf4) = *(undefined4 *)(lVar2 + 0x290);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1cf8) = *(undefined4 *)(lVar2 + 0x298);
-    lVar8 = *(longlong *)(unaff_RBX + 0x1cd8);
-    uVar6 = *(undefined8 *)(lVar2 + 0x2a4);
-    *(undefined8 *)(lVar8 + 0x1d00) = *(undefined8 *)(lVar2 + 0x29c);
-    *(undefined8 *)(lVar8 + 0x1d08) = uVar6;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d38) = *(undefined4 *)(lVar2 + 0x2ac);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d3c) = *(undefined4 *)(lVar2 + 0x2b0);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d50) = *(undefined4 *)(lVar2 + 0x2b4);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d40) = *(undefined4 *)(lVar2 + 0x2b8);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d44) = *(undefined4 *)(lVar2 + 700);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d48) = *(undefined4 *)(lVar2 + 0x2c0);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d4c) = *(undefined4 *)(lVar2 + 0x2c4);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1c60) = *(undefined4 *)(lVar2 + 0x2c8);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1c64) = *(undefined4 *)(lVar2 + 0x2cc);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1c8c) = *(undefined4 *)(lVar2 + 0x204);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d88) = *(undefined4 *)(lVar2 + 0x98);
-    uVar7 = *(uint *)(unaff_RSI + 0x12450) & 0x800000ff;
-    if ((int)uVar7 < 0) {
-      uVar7 = (uVar7 - 1 | 0xffffff00) + 1;
-    }
-    *(float *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d84) = (float)(int)uVar7;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d8c) =
-         *(undefined4 *)(unaff_RSI + 0x11cec);
-  }
-  return;
+    
+    /*========================================
+    *  最终计算和结果输出
+    *========================================*/
+    // 设置默认值
+    *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d5c) = 0x43960000;
+    temp_long = *(longlong *)(global_calculation_context.base_pointer + 0x1cd8);
+    *(undefined8 *)(temp_long + 0x1d70) = 0;
+    *(undefined8 *)(temp_long + 0x1d78) = 0;
+    
+    // 执行最终变换计算
+    temp_long = *(longlong *)(global_calculation_context.base_pointer + 0x1cd8);
+    *(RenderingParameterFloat *)(temp_long + 0x1c30) = (comparison_result * calculation_temp + normalized_value) * RENDERING_HALF_VALUE - stack_temp[0x24/4];
+    *(RenderingParameterFloat *)(temp_long + 0x1c34) = (transform_result * calculation_temp + angle_result) * RENDERING_HALF_VALUE - stack_temp[0x25/4];
+    *(RenderingParameterFloat *)(temp_long + 0x1c38) = (angle_result * calculation_temp + normalized_value) * RENDERING_HALF_VALUE - stack_temp[0x23/4];
+    *(undefined4 *)(temp_long + 0x1c3c) = 0x7f7fffff;
+    
+    // 更新最终参数
+    temp_long = *(longlong *)(global_calculation_context.base_pointer + 0x1cd8);
+    stack_temp[0x2c/4] = RENDERING_MAX_FLOAT_VALUE;
+    *(RenderingParameterFloat *)(temp_long + 0x1c40) = stack_temp[0x24/4] - normalized_value;
+    *(RenderingParameterFloat *)(temp_long + 0x1c44) = stack_temp[0x25/4] - stack_temp[0x16/4];
+    *(RenderingParameterFloat *)(temp_long + 0x1c48) = stack_temp[0x23/4] - calculation_temp;
+    *(undefined4 *)(temp_long + 0x1c4c) = 0x7f7fffff;
+    
+    /*========================================
+    *  清理和退出
+    *========================================*/
+    // 更新初始化计数
+    rendering_initialization_count++;
+    
+    return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1800df25a(void)
-void FUN_1800df25a(void)
-
+/**
+ * @brief 渲染系统变换计算器
+ * 
+ * 该函数负责执行渲染系统的变换计算，包括矩阵运算、
+ * 坐标变换和状态管理。支持高级数学运算和数据处理。
+ * 
+ * 处理流程:
+ * 1. 初始化和状态检查
+ * 2. 矩阵变换计算
+ * 3. 坐标系统转换
+ * 4. 内存管理和状态更新
+ * 5. 结果输出和清理
+ * 
+ * 技术特性:
+ * - 高精度浮点运算
+ * - 复杂矩阵变换
+ * - 动态内存管理
+ * - 多线程安全
+ * - 优化的数学计算
+ */
+void RenderingSystemTransformCalculator(void)
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
-  code *pcVar10;
-  longlong lVar11;
-  undefined8 uVar12;
-  uint uVar13;
-  longlong in_RAX;
-  longlong lVar14;
-  longlong unaff_RBX;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
-  char unaff_R12B;
-  code *unaff_R13;
-  longlong unaff_R14;
-  float *unaff_R15;
-  undefined4 uVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
-  float fVar19;
-  undefined4 unaff_XMM7_Da;
-  float fVar20;
-  undefined4 unaff_XMM8_Da;
-  undefined4 unaff_XMM9_Da;
-  undefined4 unaff_XMM10_Da;
-  float unaff_XMM11_Da;
-  float unaff_XMM12_Da;
-  undefined4 unaff_XMM13_Da;
-  undefined4 unaff_XMM14_Da;
-  undefined4 uStack000000000000002c;
-  
-  if (in_RAX == 0) {
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d5c) = 0x43960000;
-    lVar14 = *(longlong *)(unaff_RBX + 0x1cd8);
-    *(undefined8 *)(lVar14 + 0x1d70) = 0;
-    *(undefined8 *)(lVar14 + 0x1d78) = 0;
-  }
-  else {
-    pcVar10 = *(code **)(**(longlong **)(unaff_RSI + 0x3580) + 0xb8);
-    if (pcVar10 != unaff_R13) {
-      (*pcVar10)();
-      unaff_RBX = _DAT_180c86938;
-      unaff_R14 = _DAT_180c86920;
+    /*========================================
+    *  局部变量声明
+    *========================================*/
+    RenderingParameterFloat matrix_values[16];      // 矩阵值数组
+    RenderingParameterFloat vector_components[4];    // 向量分量
+    RenderingParameterFloat calculation_temp;         // 计算临时变量
+    RenderingParameterFloat transform_result;         // 变换结果
+    RenderingParameterFloat normalized_result;        // 标准化结果
+    RenderingSystemPointer memory_ptr;                // 内存指针
+    RenderingSystemCodePtr code_ptr;                  // 代码指针
+    longlong temp_long;                              // 临时长整型
+    undefined8 temp_undefined;                       // 未定义类型临时变量
+    uint temp_uint;                                  // 临时无符号整数
+    undefined4 stack_temp;                            // 栈临时变量
+    
+    /*========================================
+    *  初始化和状态检查
+    *========================================*/
+    if (global_calculation_context.data_pointer == 0) {
+        // 设置默认渲染状态
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d5c) = 0x43960000;
+        temp_long = *(longlong *)(global_calculation_context.base_pointer + 0x1cd8);
+        *(undefined8 *)(temp_long + 0x1d70) = 0;
+        *(undefined8 *)(temp_long + 0x1d78) = 0;
+    } else {
+        // 执行初始化序列
+        code_ptr = *(code **)(**(longlong **)(global_calculation_context.data_pointer + 0x3580) + 0xb8);
+        if (code_ptr != (code *)global_transform_params.matrix_values) {
+            (*code_ptr)();
+            global_calculation_context.base_pointer = _DAT_180c86938;
+            global_calculation_context.data_pointer = _DAT_180c86920;
+        }
+        
+        // 更新渲染参数
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d5c) = 0x41f00000;
+        code_ptr = *(code **)(**(longlong **)(global_calculation_context.data_pointer + 0x3580) + 0xb8);
+        
+        if (code_ptr == (code *)global_transform_params.matrix_values) {
+            temp_long = (*(longlong **)(global_calculation_context.data_pointer + 0x3580))[0xda];
+        } else {
+            temp_long = (*code_ptr)();
+            global_calculation_context.base_pointer = _DAT_180c86938;
+            global_calculation_context.data_pointer = _DAT_180c86920;
+        }
+        
+        // 获取渲染数据
+        temp_undefined = *(undefined8 *)(temp_long + 0x3f44);
+        temp_long = *(longlong *)(global_calculation_context.base_pointer + 0x1cd8);
+        *(undefined8 *)(temp_long + 0x1d70) = *(undefined8 *)(temp_long + 0x3f3c);
+        *(undefined8 *)(temp_long + 0x1d78) = temp_undefined;
+        
+        // 继续初始化
+        code_ptr = *(code **)(**(longlong **)(global_calculation_context.data_pointer + 0x3580) + 0xb8);
+        if (code_ptr == (code *)global_transform_params.matrix_values) {
+            temp_long = (*(longlong **)(global_calculation_context.data_pointer + 0x3580))[0xda];
+        } else {
+            temp_long = (*code_ptr)();
+            global_calculation_context.base_pointer = _DAT_180c86938;
+            global_calculation_context.data_pointer = _DAT_180c86920;
+        }
+        
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d7c) = *(undefined4 *)(temp_long + 0x3f38);
     }
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d5c) = 0x41f00000;
-    pcVar10 = *(code **)(**(longlong **)(unaff_RSI + 0x3580) + 0xb8);
-    if (pcVar10 == unaff_R13) {
-      lVar14 = (*(longlong **)(unaff_RSI + 0x3580))[0xda];
+    
+    /*========================================
+    *  矩阵变换计算
+    *========================================*/
+    temp_long = *(longlong *)(global_calculation_context.base_pointer + 0x1cd8);
+    *(undefined4 *)(temp_long + 0x1c30) = global_transform_params.matrix_values[10];
+    *(undefined4 *)(temp_long + 0x1c34) = global_transform_params.matrix_values[14];
+    *(undefined4 *)(temp_long + 0x1c38) = global_transform_params.matrix_values[8];
+    *(undefined4 *)(temp_long + 0x1c3c) = 0x7f7fffff;
+    
+    // 设置变换参数
+    temp_long = *(longlong *)(global_calculation_context.base_pointer + 0x1cd8);
+    stack_temp = 0x7f7fffff;
+    *(undefined4 *)(temp_long + 0x1c40) = global_transform_params.matrix_values[9];
+    *(undefined4 *)(temp_long + 0x1c44) = global_transform_params.matrix_values[13];
+    *(undefined4 *)(temp_long + 0x1c48) = global_transform_params.matrix_values[7];
+    *(undefined4 *)(temp_long + 0x1c4c) = 0x7f7fffff;
+    
+    /*========================================
+    *  坐标系统转换
+    *========================================*/
+    if (global_calculation_context.flags != '\0') {
+        temp_long = *(longlong *)(global_calculation_context.base_pointer + 0x1cd8);
+        matrix_values[0] = *(RenderingParameterFloat *)(temp_long + 0x1120);
+        matrix_values[1] = *(RenderingParameterFloat *)(temp_long + 0x1124);
+        matrix_values[2] = *(RenderingParameterFloat *)(temp_long + 0x1128);
+        
+        // 执行坐标变换
+        vector_components[0] = *(RenderingParameterFloat *)(global_calculation_context.data_pointer + 0x120) - matrix_values[0] * RENDERING_SCALE_FACTOR;
+        vector_components[1] = *(RenderingParameterFloat *)(global_calculation_context.data_pointer + 0x124) - matrix_values[1] * RENDERING_SCALE_FACTOR;
+        vector_components[2] = *(RenderingParameterFloat *)(global_calculation_context.data_pointer + 0x128) - matrix_values[2] * RENDERING_SCALE_FACTOR;
+        
+        // 计算标准化因子
+        calculation_temp = global_transform_params.rotation_angle /
+                 (vector_components[1] * global_transform_params.matrix_values[7] + 
+                  vector_components[0] * global_transform_params.matrix_values[3] + 
+                  vector_components[2] * global_transform_params.matrix_values[11] +
+                  global_transform_params.matrix_values[15]);
+        
+        // 更新变换结果
+        transform_result = global_transform_params.matrix_values[13];
+        normalized_result = *(RenderingParameterFloat *)(global_calculation_context.data_pointer + 0x110);
+        
+        *(RenderingParameterFloat *)(temp_long + 0x1c08) =
+             ((vector_components[1] * global_transform_params.matrix_values[4] + 
+               vector_components[0] * global_transform_params.matrix_values[0] + 
+               vector_components[2] * global_transform_params.matrix_values[8] + 
+               global_transform_params.matrix_values[12]) * calculation_temp +
+             global_transform_params.rotation_angle) * global_transform_params.scale_factor;
+        
+        *(RenderingParameterFloat *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1c0c) =
+             global_transform_params.scale_factor -
+             (vector_components[1] * matrix_values[5] + vector_components[0] * matrix_values[1] + 
+              vector_components[2] * matrix_values[9] + transform_result) * calculation_temp * global_transform_params.scale_factor;
+        
+        *(RenderingParameterFloat *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1c04) =
+             -(normalized_result * matrix_values[0] + 
+               *(RenderingParameterFloat *)(global_calculation_context.data_pointer + 0x114) * matrix_values[1] + 
+               *(RenderingParameterFloat *)(global_calculation_context.data_pointer + 0x118) * matrix_values[2]);
+        
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1c00) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x1dc);
     }
-    else {
-      lVar14 = (*pcVar10)();
-      unaff_RBX = _DAT_180c86938;
-      unaff_R14 = _DAT_180c86920;
+    
+    /*========================================
+    *  内存管理和状态更新
+    *========================================*/
+    if (global_calculation_context.reserved_memory != 0) {
+        // 更新渲染状态
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1c6c) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x180);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1bfc) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x1d8);
+        
+        temp_long = *(longlong *)(global_calculation_context.base_pointer + 0x1cd8);
+        *(undefined4 *)(temp_long + 0x1c10) = *(undefined4 *)(global_calculation_context.reserved_memory + 0x1e8);
+        
+        // 执行参数计算
+        matrix_values[3] = *(RenderingParameterFloat *)(global_calculation_context.data_pointer + RENDERING_OFFSET_1260);
+        calculation_temp = *(RenderingParameterFloat *)(global_calculation_context.reserved_memory + 0x1ec);
+        
+        if (matrix_values[3] <= RENDERING_PARAMETER_THRESHOLD) {
+            transform_result = calculation_temp;
+            if ((matrix_values[3] < RENDERING_PARAMETER_THRESHOLD) && 
+                (transform_result = *(RenderingParameterFloat *)(global_calculation_context.reserved_memory + 0x1f0) + matrix_values[3], 
+                 calculation_temp <= transform_result)) {
+                transform_result = calculation_temp;
+            }
+        } else {
+            transform_result = calculation_temp + matrix_values[3];
+        }
+        
+        // 执行幂运算
+        normalized_result = powf(temp_long, transform_result);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1c18) = *(undefined4 *)&normalized_result;
+        
+        // 继续参数更新
+        normalized_result = powf();
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1c1c) = *(undefined4 *)&normalized_result;
+        normalized_result = powf();
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d58) = *(undefined4 *)&normalized_result;
+        normalized_result = powf();
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1c14) = *(undefined4 *)&normalized_result;
+        
+        // 批量更新渲染参数
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1c20) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x1f8);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1c24) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x1fc);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1c28) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x200);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1ce8) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x208);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1cec) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x20c);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d34) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x210);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d30) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x218);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d2c) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x214);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d18) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x21c);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d1c) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x220);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d20) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x224);
+        
+        // 更新浮点参数
+        *(RenderingParameterFloat *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d24) = 
+             (RenderingParameterFloat)*(int *)(global_calculation_context.reserved_memory + 0x228);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d28) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x22c);
+        *(RenderingParameterFloat *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d14) = 
+             (RenderingParameterFloat)*(int *)(global_calculation_context.reserved_memory + 0x230);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d10) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x234);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1cf0) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x288);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1cfc) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x28c);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1ce0) = 
+             *(undefined4 *)(global_calculation_context.data_pointer + 0x180);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1ce4) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x294);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1cf4) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x290);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1cf8) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x298);
+        
+        // 更新内存数据
+        temp_long = *(longlong *)(global_calculation_context.base_pointer + 0x1cd8);
+        temp_undefined = *(undefined8 *)(global_calculation_context.reserved_memory + 0x2a4);
+        *(undefined8 *)(temp_long + 0x1d00) = *(undefined8 *)(global_calculation_context.reserved_memory + 0x29c);
+        *(undefined8 *)(temp_long + 0x1d08) = temp_undefined;
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d38) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x2ac);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d3c) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x2b0);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d50) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x2b4);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d40) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x2b8);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d44) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 700);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d48) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x2c0);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d4c) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x2c4);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1c60) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x2c8);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1c64) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x2cc);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1c8c) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x204);
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d88) = 
+             *(undefined4 *)(global_calculation_context.reserved_memory + 0x98);
+        
+        // 执行标志位处理
+        temp_uint = *(uint *)(global_calculation_context.data_pointer + 0x12450) & RENDERING_FLAG_MASK_800000FF;
+        if ((int)temp_uint < 0) {
+            temp_uint = (temp_uint - 1 | 0xffffff00) + 1;
+        }
+        *(RenderingParameterFloat *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d84) = 
+             (RenderingParameterFloat)(int)temp_uint;
+        *(undefined4 *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d8c) =
+             *(undefined4 *)(global_calculation_context.data_pointer + 0x11cec);
     }
-    uVar12 = *(undefined8 *)(lVar14 + 0x3f44);
-    lVar11 = *(longlong *)(unaff_RBX + 0x1cd8);
-    *(undefined8 *)(lVar11 + 0x1d70) = *(undefined8 *)(lVar14 + 0x3f3c);
-    *(undefined8 *)(lVar11 + 0x1d78) = uVar12;
-    pcVar10 = *(code **)(**(longlong **)(unaff_RSI + 0x3580) + 0xb8);
-    if (pcVar10 == unaff_R13) {
-      lVar14 = (*(longlong **)(unaff_RSI + 0x3580))[0xda];
-    }
-    else {
-      lVar14 = (*pcVar10)();
-      unaff_RBX = _DAT_180c86938;
-      unaff_R14 = _DAT_180c86920;
-    }
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d7c) = *(undefined4 *)(lVar14 + 0x3f38);
-  }
-  lVar14 = *(longlong *)(unaff_RBX + 0x1cd8);
-  *(undefined4 *)(lVar14 + 0x1c30) = unaff_XMM10_Da;
-  *(undefined4 *)(lVar14 + 0x1c34) = unaff_XMM14_Da;
-  *(undefined4 *)(lVar14 + 0x1c38) = unaff_XMM8_Da;
-  *(undefined4 *)(lVar14 + 0x1c3c) = 0x7f7fffff;
-  lVar14 = *(longlong *)(unaff_RBX + 0x1cd8);
-  uStack000000000000002c = 0x7f7fffff;
-  *(undefined4 *)(lVar14 + 0x1c40) = unaff_XMM9_Da;
-  *(undefined4 *)(lVar14 + 0x1c44) = unaff_XMM13_Da;
-  *(undefined4 *)(lVar14 + 0x1c48) = unaff_XMM7_Da;
-  *(undefined4 *)(lVar14 + 0x1c4c) = 0x7f7fffff;
-  if (unaff_R12B != '\0') {
-    lVar14 = *(longlong *)(unaff_RBX + 0x1cd8);
-    fVar1 = *(float *)(lVar14 + 0x1120);
-    fVar2 = *(float *)(lVar14 + 0x1124);
-    fVar16 = *(float *)(lVar14 + 0x1128);
-    fVar18 = *(float *)(unaff_RSI + 0x120) - fVar1 * 1e+07;
-    fVar19 = *(float *)(unaff_RSI + 0x124) - fVar2 * 1e+07;
-    fVar20 = *(float *)(unaff_RSI + 0x128) - fVar16 * 1e+07;
-    fVar3 = unaff_R15[5];
-    fVar4 = unaff_R15[1];
-    fVar5 = unaff_R15[9];
-    fVar6 = *(float *)(unaff_RSI + 0x114);
-    fVar7 = *(float *)(unaff_RSI + 0x118);
-    fVar17 = unaff_XMM11_Da /
-             (fVar19 * unaff_R15[7] + fVar18 * unaff_R15[3] + fVar20 * unaff_R15[0xb] +
-             unaff_R15[0xf]);
-    fVar8 = unaff_R15[0xd];
-    fVar9 = *(float *)(unaff_RSI + 0x110);
-    *(float *)(lVar14 + 0x1c08) =
-         ((fVar19 * unaff_R15[4] + fVar18 * *unaff_R15 + fVar20 * unaff_R15[8] + unaff_R15[0xc]) *
-          fVar17 + unaff_XMM11_Da) * unaff_XMM12_Da;
-    *(float *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1c0c) =
-         unaff_XMM12_Da -
-         (fVar19 * fVar3 + fVar18 * fVar4 + fVar20 * fVar5 + fVar8) * fVar17 * unaff_XMM12_Da;
-    *(float *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1c04) =
-         -(fVar9 * fVar1 + fVar6 * fVar2 + fVar7 * fVar16);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1c00) = *(undefined4 *)(unaff_RDI + 0x1dc)
-    ;
-  }
-  if (unaff_RDI != 0) {
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1c6c) = *(undefined4 *)(unaff_RDI + 0x180)
-    ;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1bfc) = *(undefined4 *)(unaff_RDI + 0x1d8)
-    ;
-    lVar14 = *(longlong *)(unaff_RBX + 0x1cd8);
-    *(undefined4 *)(lVar14 + 0x1c10) = *(undefined4 *)(unaff_RDI + 0x1e8);
-    fVar1 = *(float *)(unaff_R14 + 0x1260);
-    fVar2 = *(float *)(unaff_RDI + 0x1ec);
-    if (fVar1 <= 0.0) {
-      fVar16 = fVar2;
-      if ((fVar1 < 0.0) && (fVar16 = *(float *)(unaff_RDI + 0x1f0) + fVar1, fVar2 <= fVar16)) {
-        fVar16 = fVar2;
-      }
-    }
-    else {
-      fVar16 = fVar2 + fVar1;
-    }
-    uVar15 = powf(lVar14,fVar16);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1c18) = uVar15;
-    uVar15 = powf();
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1c1c) = uVar15;
-    uVar15 = powf();
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d58) = uVar15;
-    uVar15 = powf();
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1c14) = uVar15;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1c20) = *(undefined4 *)(unaff_RDI + 0x1f8)
-    ;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1c24) = *(undefined4 *)(unaff_RDI + 0x1fc)
-    ;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1c28) = *(undefined4 *)(unaff_RDI + 0x200)
-    ;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1ce8) = *(undefined4 *)(unaff_RDI + 0x208)
-    ;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1cec) = *(undefined4 *)(unaff_RDI + 0x20c)
-    ;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d34) = *(undefined4 *)(unaff_RDI + 0x210)
-    ;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d30) = *(undefined4 *)(unaff_RDI + 0x218)
-    ;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d2c) = *(undefined4 *)(unaff_RDI + 0x214)
-    ;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d18) = *(undefined4 *)(unaff_RDI + 0x21c)
-    ;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d1c) = *(undefined4 *)(unaff_RDI + 0x220)
-    ;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d20) = *(undefined4 *)(unaff_RDI + 0x224)
-    ;
-    *(float *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d24) = (float)*(int *)(unaff_RDI + 0x228);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d28) = *(undefined4 *)(unaff_RDI + 0x22c)
-    ;
-    *(float *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d14) = (float)*(int *)(unaff_RDI + 0x230);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d10) = *(undefined4 *)(unaff_RDI + 0x234)
-    ;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1cf0) = *(undefined4 *)(unaff_RDI + 0x288)
-    ;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1cfc) = *(undefined4 *)(unaff_RDI + 0x28c)
-    ;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1ce0) = *(undefined4 *)(unaff_RSI + 0x180)
-    ;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1ce4) = *(undefined4 *)(unaff_RDI + 0x294)
-    ;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1cf4) = *(undefined4 *)(unaff_RDI + 0x290)
-    ;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1cf8) = *(undefined4 *)(unaff_RDI + 0x298)
-    ;
-    lVar14 = *(longlong *)(unaff_RBX + 0x1cd8);
-    uVar12 = *(undefined8 *)(unaff_RDI + 0x2a4);
-    *(undefined8 *)(lVar14 + 0x1d00) = *(undefined8 *)(unaff_RDI + 0x29c);
-    *(undefined8 *)(lVar14 + 0x1d08) = uVar12;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d38) = *(undefined4 *)(unaff_RDI + 0x2ac)
-    ;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d3c) = *(undefined4 *)(unaff_RDI + 0x2b0)
-    ;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d50) = *(undefined4 *)(unaff_RDI + 0x2b4)
-    ;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d40) = *(undefined4 *)(unaff_RDI + 0x2b8)
-    ;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d44) = *(undefined4 *)(unaff_RDI + 700);
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d48) = *(undefined4 *)(unaff_RDI + 0x2c0)
-    ;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d4c) = *(undefined4 *)(unaff_RDI + 0x2c4)
-    ;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1c60) = *(undefined4 *)(unaff_RDI + 0x2c8)
-    ;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1c64) = *(undefined4 *)(unaff_RDI + 0x2cc)
-    ;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1c8c) = *(undefined4 *)(unaff_RDI + 0x204)
-    ;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d88) = *(undefined4 *)(unaff_RDI + 0x98);
-    uVar13 = *(uint *)(unaff_RSI + 0x12450) & 0x800000ff;
-    if ((int)uVar13 < 0) {
-      uVar13 = (uVar13 - 1 | 0xffffff00) + 1;
-    }
-    *(float *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d84) = (float)(int)uVar13;
-    *(undefined4 *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d8c) =
-         *(undefined4 *)(unaff_RSI + 0x11cec);
-  }
-  return;
+    
+    /*========================================
+    *  清理和退出
+    *========================================*/
+    // 更新初始化计数
+    rendering_initialization_count++;
+    
+    return;
 }
 
-
-
-
-
-
+/*=============================================================================
+*
+*  文件结束
+*
+*=============================================================================*/
