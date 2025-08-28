@@ -442,21 +442,21 @@ longlong * swap_resource_pointers(longlong *dest_ptr, longlong *src_ptr)
 
 
 
-// 函数: void FUN_18019d190(undefined8 *param_1,ulonglong param_2)
-void FUN_18019d190(undefined8 *param_1,ulonglong param_2)
+// 函数: void configure_engine_render_settings(undefined8 *engine_config, ulonglong settings_flags)
+void configure_engine_render_settings(undefined8 *engine_config, ulonglong settings_flags)
 
 {
-  longlong *plVar1;
-  undefined8 *puVar2;
-  undefined8 *puVar3;
-  char cVar4;
-  int iVar5;
-  undefined4 uVar6;
-  uint uVar7;
-  longlong lVar8;
-  undefined *puVar9;
-  ulonglong uVar10;
-  undefined1 *puVar11;
+  longlong *render_context;
+  undefined8 *texture_ptr;
+  undefined8 *shader_ptr;
+  char init_status;
+  int lock_result;
+  undefined4 render_mode;
+  uint texture_size;
+  longlong buffer_size;
+  undefined *memory_ptr;
+  ulonglong data_length;
+  undefined1 *string_ptr;
   undefined *puVar12;
   undefined8 uVar13;
   ulonglong uVar14;
