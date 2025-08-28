@@ -629,14 +629,14 @@ void FileOperationProcessor(uint64_t param_1, longlong param_2)
         puStack_1a0 = &UNK_180a3c3e0;
         if (lStack_198 != 0) {
             // WARNING: Subroutine does not return
-            FUN_18064e900();
+            SystemErrorHandler();
         }
         lStack_198 = 0;
         uStack_188 = uStack_188 & 0xffffffff00000000;
         puStack_1a0 = &UNK_18098bcb0;
         if (((char)uStack_1e8 == '\0') && (lStack_200 != 0)) {
             // WARNING: Subroutine does not return
-            FUN_18064e900();
+            SystemErrorHandler();
         }
     }
     if (lVar17 != 0) {
