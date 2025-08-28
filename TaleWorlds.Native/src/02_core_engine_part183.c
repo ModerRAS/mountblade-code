@@ -555,7 +555,7 @@ longlong *core_engine_resource_manager(undefined8 resource_type, longlong *resou
     undefined4 stack_data_7;
     
     resource_handle = _DAT_180c868f8;
-    FUN_1806279c0(&stack_data_1, config_data, config_data, resource_flags, 0, 0xfffffffffffffffe);
+    ContextInitializer(&stack_data_1, config_data, config_data, resource_flags, 0, 0xfffffffffffffffe);
     resource_count = FUN_180169350(resource_handle, &stack_data_1);
     stack_data_1 = &UNK_180a3c3e0;
     
@@ -999,7 +999,7 @@ longlong *core_engine_data_manager(undefined8 manager_type, longlong *data_ptr, 
     stack_data_17 = 0xfffffffffffffffe;
     temp_ptr_2 = (longlong *)0x0;
     stack_data_8 = 0;
-    FUN_1806279c0(&stack_ptr_6, config_data);
+    ContextInitializer(&stack_ptr_6, config_data);
     temp_ptr_3 = temp_ptr_2;
     stack_ptr_9 = temp_ptr_2;
     
@@ -1015,7 +1015,7 @@ longlong *core_engine_data_manager(undefined8 manager_type, longlong *data_ptr, 
         } while (element_index < stack_data_10);
     }
     
-    FUN_1806279c0(&stack_ptr_10, config_data);
+    ContextInitializer(&stack_ptr_10, config_data);
     temp_ptr_3 = temp_ptr_2;
     stack_ptr_9 = temp_ptr_2;
     

@@ -639,19 +639,54 @@ int NetworkProtocol_SerializeEncrypted(void* context, uint8_t* output_buffer, in
 
 
 
-int FUN_180842990(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * @brief 连接确认协议处理函数
+ * 
+ * 该函数负责处理连接确认协议的序列化工作。
+ * 包含确认码和连接状态的封装，用于确认连接建立成功。
+ * 
+ * @param context 协议上下文指针
+ * @param output_buffer 输出缓冲区
+ * @param buffer_size 缓冲区大小
+ * @return int 序列化后的数据大小
+ * 
+ * @技术实现:
+ * - 确认码封装
+ * - 连接状态确认
+ * - 简化的数据结构
+ * 
+ * @性能优化:
+ * - 快速序列化
+ * - 最小化数据包大小
+ * - 减少网络延迟
+ */
+int NetworkProtocol_SerializeConnectionAck(void* context, uint8_t* output_buffer, int buffer_size)
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
-  
-  uVar1 = *(undefined4 *)(param_1 + 0x10);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180984248);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+    uint32_t ack_code;
+    int header_size, total_size;
+    
+    // 参数验证
+    if (context == NULL || output_buffer == NULL || buffer_size <= 0) {
+        return PROTO_STATUS_INVALID_HEADER;
+    }
+    
+    // 获取确认码
+    ack_code = *(uint32_t*)((uint8_t*)context + 0x10);
+    
+    // 序列化连接确认头部
+    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180984248);
+    if (header_size < 0) return header_size;
+    
+    // 序列化分隔符
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    if (total_size < 0) return total_size;
+    
+    // 序列化确认码
+    total_size = func_0x00018074b800(output_buffer + header_size + total_size, 
+                                     buffer_size - header_size - total_size, ack_code);
+    if (total_size < 0) return total_size;
+    
+    return header_size + total_size;
 }
 
 
