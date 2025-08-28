@@ -856,7 +856,7 @@ void UISystemStateUpdater(void)
     ulonglong in_stack_00000070;                // 栈参数
     
     // 执行状态更新操作
-    FUN_1807342b0(*(int16_t *)(unaff_RBX + 0xae2), *(int8_t *)(unaff_RBX + 0xae4));
+    UISystemEventHandler(*(int16_t *)(unaff_RBX + 0xae2), *(int8_t *)(unaff_RBX + 0xae4));
     lVar2 = *(longlong *)(&unknown_var_4360_ptr + (longlong)*(char *)(unaff_RBX + 0xae8) * 8);
     
     // 检查并更新状态
