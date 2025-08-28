@@ -1013,7 +1013,7 @@ int32_t InitializationSystem_LogEvent(void)
  * 
  * @return undefined 状态监控结果状态
  */
-undefined InitializationSystem_StateMonitor(void)
+int32_t InitializationSystem_StateMonitor(void)
 {
     // 系统状态监控逻辑实现
     
@@ -1061,7 +1061,7 @@ undefined InitializationSystem_StateMonitor(void)
  * 
  * @return undefined 错误处理结果状态
  */
-undefined InitializationSystem_ErrorHandler(void)
+int32_t InitializationSystem_ErrorHandler(void)
 {
     // 系统错误处理逻辑实现
     
@@ -1107,7 +1107,7 @@ undefined InitializationSystem_ErrorHandler(void)
  * 
  * @return undefined 初始化结果状态
  */
-undefined InitializationSystem_InternalInit(void)
+int32_t InitializationSystem_InternalInit(void)
 {
     // 内部初始化逻辑实现
     
@@ -1143,7 +1143,7 @@ undefined InitializationSystem_InternalInit(void)
  * 
  * @return undefined 清理结果状态
  */
-undefined InitializationSystem_Cleanup(void)
+int32_t InitializationSystem_Cleanup(void)
 {
     // 系统清理逻辑实现
     
