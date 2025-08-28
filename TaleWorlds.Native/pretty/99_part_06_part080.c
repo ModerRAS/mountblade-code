@@ -868,22 +868,42 @@ uint64_t * ResourceManager_Constructor(uint64_t *resourceManager, int32_t initia
 
 
 
-uint64_t * FUN_1803f8b80(uint64_t *param_1,ulonglong param_2)
-
+/**
+ * @brief 资源管理器析构函数
+ * 
+ * 负责销毁资源管理器实例并释放所有相关资源
+ * 确保在销毁过程中正确清理所有资源引用
+ * 
+ * @param resourceManager 资源管理器指针
+ * @param destroyFlags 销毁标志位
+ * 
+ * @return 资源管理器指针
+ */
+uint64_t * ResourceManager_Destructor(uint64_t *resourceManager, ulonglong destroyFlags)
 {
-  uint64_t uVar1;
+  uint64_t memoryFlags;
   
-  uVar1 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a263c0;
-  if ((longlong *)param_1[0x8d] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)param_1[0x8d] + 0x38))();
+  /* 设置内存管理标志 */
+  memoryFlags = 0xfffffffffffffffe;
+  *resourceManager = &ResourceManager_VTable_Main;
+  
+  /* 销毁资源管理器实例 */
+  if ((longlong *)resourceManager[0x8d] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)resourceManager[0x8d] + 0x38))();
   }
-  FUN_1808fc8a8(param_1 + 0x8b,8,2,FUN_180045af0,uVar1);
-  FUN_1801f9920(param_1);
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x478);
+  
+  /* 清理资源缓存系统 */
+  ResourceCache_Destroy(resourceManager + 0x8b, 8, 2, ResourceCache_Callback, memoryFlags);
+  
+  /* 执行系统清理 */
+  SystemResourceManager_PerformCleanup(resourceManager);
+  
+  /* 根据标志位决定是否释放内存 */
+  if ((destroyFlags & 1) != 0) {
+    MemoryManager_FreeResourceMemory(resourceManager, 0x478);
   }
-  return param_1;
+  
+  return resourceManager;
 }
 
 

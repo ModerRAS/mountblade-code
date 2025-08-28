@@ -114,7 +114,7 @@
 
 // 系统消息常量
 #define system_message_title system_error_title_string         // 系统消息标题
-#define system_message_text UNK_180a0cea0           // 系统消息文本
+#define system_message_text system_error_message_string           // 系统消息文本
 #define system_message_format UNK_180a04f08        // 系统消息格式
 #define system_init_params UNK_180a0cfa0          // 系统初始化参数
 #define system_file_params UNK_180a0cf4c           // 系统文件参数

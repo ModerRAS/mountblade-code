@@ -91,7 +91,7 @@ typedef ulonglong ResourceCleanupFlags;          // 资源清理标志
  * @brief 资源分配器
  * 分配系统资源和管理资源句柄
  */
-#define ResourceAllocator FUN_1806d7000
+#define ResourceAllocator ResourceAllocator
 
 /**
  * @brief 组件初始化器
@@ -312,7 +312,7 @@ int ComponentConfigManager(longlong system_handle, longlong *config_params)
   lStack_60 = param_2[0xb];
   lStack_80 = param_2[7];
   lStack_58 = param_2[0xc];
-  FUN_1806d7000(&lStack_b8,*(uint64_t *)(param_1 + 0xd0));
+  ResourceAllocator(&lStack_b8,*(uint64_t *)(param_1 + 0xd0));
   plVar3 = plStack_88;
   plVar7 = (longlong *)0x0;
   if ((short)plStack_88[1] == 0xd) {
@@ -499,7 +499,7 @@ int FUN_1806c52c0(longlong param_1,longlong *param_2,int param_3)
   uStack_3c = *(int32_t *)(param_1 + 0x74);
   uStack_38 = *(int32_t *)(param_1 + 0x78);
   uStack_34 = *(int32_t *)(param_1 + 0x7c);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x60));
+  ResourceAllocator(param_2,*(uint64_t *)(param_1 + 0x60));
   piVar4 = (int *)param_2[0xb];
   if (piVar4 != (int *)0x0) {
     *piVar4 = *piVar4 + 1;
@@ -530,7 +530,7 @@ int FUN_1806c52c0(longlong param_1,longlong *param_2,int param_3)
   uStack_3c = *(int32_t *)(param_1 + 0x94);
   uStack_38 = *(int32_t *)(param_1 + 0x98);
   uStack_34 = *(int32_t *)(param_1 + 0x9c);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x80));
+  ResourceAllocator(param_2,*(uint64_t *)(param_1 + 0x80));
   piVar4 = (int *)param_2[0xb];
   if (piVar4 != (int *)0x0) {
     *piVar4 = *piVar4 + 1;
@@ -560,7 +560,7 @@ int FUN_1806c52c0(longlong param_1,longlong *param_2,int param_3)
   uStack_3c = *(int32_t *)(param_1 + 0xb4);
   uStack_38 = *(int32_t *)(param_1 + 0xb8);
   uStack_34 = *(int32_t *)(param_1 + 0xbc);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0xa0));
+  ResourceAllocator(param_2,*(uint64_t *)(param_1 + 0xa0));
   piVar4 = (int *)param_2[0xb];
   if (piVar4 != (int *)0x0) {
     *piVar4 = *piVar4 + 1;
@@ -607,7 +607,7 @@ int FUN_1806c52c0(longlong param_1,longlong *param_2,int param_3)
   uStack_3c = *(int32_t *)(param_1 + 0xf4);
   uStack_38 = *(int32_t *)(param_1 + 0xf8);
   uStack_34 = *(int32_t *)(param_1 + 0xfc);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0xe0));
+  ResourceAllocator(param_2,*(uint64_t *)(param_1 + 0xe0));
   piVar4 = (int *)param_2[0xb];
   if (piVar4 != (int *)0x0) {
     *piVar4 = *piVar4 + 1;
@@ -646,7 +646,7 @@ int FUN_1806c55d0(longlong param_1,longlong *param_2,int param_3)
   char *pcStackX_10;
   
   pcVar3 = *(code **)(param_1 + 0x150);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x138));
+  ResourceAllocator(param_2,*(uint64_t *)(param_1 + 0x138));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -671,7 +671,7 @@ int FUN_1806c55d0(longlong param_1,longlong *param_2,int param_3)
   }
   FUN_1806d6f60(param_2);
   pcVar3 = *(code **)(param_1 + 0x170);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x158));
+  ResourceAllocator(param_2,*(uint64_t *)(param_1 + 0x158));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -694,7 +694,7 @@ int FUN_1806c55d0(longlong param_1,longlong *param_2,int param_3)
   }
   FUN_1806d6f60(param_2);
   pcVar3 = *(code **)(param_1 + 400);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x178));
+  ResourceAllocator(param_2,*(uint64_t *)(param_1 + 0x178));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -718,7 +718,7 @@ int FUN_1806c55d0(longlong param_1,longlong *param_2,int param_3)
   }
   FUN_1806d6f60(param_2);
   pcVar3 = *(code **)(param_1 + 0x1b0);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x198));
+  ResourceAllocator(param_2,*(uint64_t *)(param_1 + 0x198));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -3990,7 +3990,7 @@ int DataValidator(longlong param_1,longlong *param_2,int param_3)
   int32_t auStackX_18 [2];
   
   pcVar3 = *(code **)(param_1 + 0x30);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x18));
+  ResourceAllocator(param_2,*(uint64_t *)(param_1 + 0x18));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -4015,7 +4015,7 @@ int DataValidator(longlong param_1,longlong *param_2,int param_3)
   }
   FUN_1806d6f60(param_2);
   pcVar3 = *(code **)(param_1 + 0x50);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x38));
+  ResourceAllocator(param_2,*(uint64_t *)(param_1 + 0x38));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -4039,7 +4039,7 @@ int DataValidator(longlong param_1,longlong *param_2,int param_3)
   }
   FUN_1806d6f60(param_2);
   pcVar3 = *(code **)(param_1 + 0x70);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x58));
+  ResourceAllocator(param_2,*(uint64_t *)(param_1 + 0x58));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -4063,7 +4063,7 @@ int DataValidator(longlong param_1,longlong *param_2,int param_3)
   }
   FUN_1806d6f60(param_2);
   pcVar3 = *(code **)(param_1 + 0x90);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x78));
+  ResourceAllocator(param_2,*(uint64_t *)(param_1 + 0x78));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -4123,7 +4123,7 @@ int FUN_1806c6780(longlong param_1,longlong *param_2,int param_3)
   uStack_5c = *(int32_t *)(param_1 + 0x144);
   uStack_58 = *(int32_t *)(param_1 + 0x148);
   uStack_54 = *(int32_t *)(param_1 + 0x14c);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x130));
+  ResourceAllocator(param_2,*(uint64_t *)(param_1 + 0x130));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -4155,7 +4155,7 @@ int FUN_1806c6780(longlong param_1,longlong *param_2,int param_3)
   uStack_5c = *(int32_t *)(param_1 + 0x164);
   uStack_58 = *(int32_t *)(param_1 + 0x168);
   uStack_54 = *(int32_t *)(param_1 + 0x16c);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x150));
+  ResourceAllocator(param_2,*(uint64_t *)(param_1 + 0x150));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -4181,7 +4181,7 @@ int FUN_1806c6780(longlong param_1,longlong *param_2,int param_3)
   uStack_5c = *(int32_t *)(param_1 + 0x19c);
   uStack_58 = *(int32_t *)(param_1 + 0x1a0);
   uStack_54 = *(int32_t *)(param_1 + 0x1a4);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x188));
+  ResourceAllocator(param_2,*(uint64_t *)(param_1 + 0x188));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -4212,7 +4212,7 @@ int FUN_1806c6780(longlong param_1,longlong *param_2,int param_3)
   uStack_5c = *(int32_t *)(param_1 + 0x1d4);
   uStack_58 = *(int32_t *)(param_1 + 0x1d8);
   uStack_54 = *(int32_t *)(param_1 + 0x1dc);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x1c0));
+  ResourceAllocator(param_2,*(uint64_t *)(param_1 + 0x1c0));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -4238,7 +4238,7 @@ int FUN_1806c6780(longlong param_1,longlong *param_2,int param_3)
   uStack_5c = *(int32_t *)(param_1 + 500);
   uStack_58 = *(int32_t *)(param_1 + 0x1f8);
   uStack_54 = *(int32_t *)(param_1 + 0x1fc);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x1e0));
+  ResourceAllocator(param_2,*(uint64_t *)(param_1 + 0x1e0));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -4264,7 +4264,7 @@ int FUN_1806c6780(longlong param_1,longlong *param_2,int param_3)
   uStack_5c = *(int32_t *)(param_1 + 0x214);
   uStack_58 = *(int32_t *)(param_1 + 0x218);
   uStack_54 = *(int32_t *)(param_1 + 0x21c);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x200));
+  ResourceAllocator(param_2,*(uint64_t *)(param_1 + 0x200));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -4295,7 +4295,7 @@ int FUN_1806c6780(longlong param_1,longlong *param_2,int param_3)
   uStack_5c = *(int32_t *)(param_1 + 0x234);
   uStack_58 = *(int32_t *)(param_1 + 0x238);
   uStack_54 = *(int32_t *)(param_1 + 0x23c);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x220));
+  ResourceAllocator(param_2,*(uint64_t *)(param_1 + 0x220));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -4326,7 +4326,7 @@ int FUN_1806c6780(longlong param_1,longlong *param_2,int param_3)
   uStack_5c = *(int32_t *)(param_1 + 0x254);
   uStack_58 = *(int32_t *)(param_1 + 600);
   uStack_54 = *(int32_t *)(param_1 + 0x25c);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x240));
+  ResourceAllocator(param_2,*(uint64_t *)(param_1 + 0x240));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -4352,7 +4352,7 @@ int FUN_1806c6780(longlong param_1,longlong *param_2,int param_3)
   uStack_5c = *(int32_t *)(param_1 + 0x274);
   uStack_58 = *(int32_t *)(param_1 + 0x278);
   uStack_54 = *(int32_t *)(param_1 + 0x27c);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x260));
+  ResourceAllocator(param_2,*(uint64_t *)(param_1 + 0x260));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -4378,7 +4378,7 @@ int FUN_1806c6780(longlong param_1,longlong *param_2,int param_3)
   uStack_5c = *(int32_t *)(param_1 + 0x294);
   uStack_58 = *(int32_t *)(param_1 + 0x298);
   uStack_54 = *(int32_t *)(param_1 + 0x29c);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x280));
+  ResourceAllocator(param_2,*(uint64_t *)(param_1 + 0x280));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -4402,7 +4402,7 @@ int FUN_1806c6780(longlong param_1,longlong *param_2,int param_3)
   uStack_5c = *(int32_t *)(param_1 + 0x2b4);
   uStack_58 = *(int32_t *)(param_1 + 0x2b8);
   uStack_54 = *(int32_t *)(param_1 + 700);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x2a0));
+  ResourceAllocator(param_2,*(uint64_t *)(param_1 + 0x2a0));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -4416,7 +4416,7 @@ int FUN_1806c6780(longlong param_1,longlong *param_2,int param_3)
   uStack_5c = *(int32_t *)(param_1 + 0x2d4);
   uStack_58 = *(int32_t *)(param_1 + 0x2d8);
   uStack_54 = *(int32_t *)(param_1 + 0x2dc);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x2c0));
+  ResourceAllocator(param_2,*(uint64_t *)(param_1 + 0x2c0));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -4430,7 +4430,7 @@ int FUN_1806c6780(longlong param_1,longlong *param_2,int param_3)
   uStack_5c = *(int32_t *)(param_1 + 0x2f4);
   uStack_58 = *(int32_t *)(param_1 + 0x2f8);
   uStack_54 = *(int32_t *)(param_1 + 0x2fc);
-  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x2e0));
+  ResourceAllocator(param_2,*(uint64_t *)(param_1 + 0x2e0));
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -4476,7 +4476,7 @@ int FUN_1806c6799(longlong param_1,uint64_t param_2,int param_3)
   *(int *)(unaff_RBP + 3) = (int)((ulonglong)param_2 >> 0x20);
   *(int32_t *)(unaff_RBP + 7) = in_XMM1_Dc;
   *(int32_t *)(unaff_RBP + 0xb) = in_XMM1_Dd;
-  FUN_1806d7000(in_RDX,uVar2);
+  ResourceAllocator(in_RDX,uVar2);
   piVar3 = (int *)in_RDX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -4514,7 +4514,7 @@ int FUN_1806c6799(longlong param_1,uint64_t param_2,int param_3)
   *(int32_t *)(unaff_RBP + 3) = uVar9;
   *(int32_t *)(unaff_RBP + 7) = uVar10;
   *(int32_t *)(unaff_RBP + 0xb) = uVar11;
-  FUN_1806d7000(in_RDX,uVar2);
+  ResourceAllocator(in_RDX,uVar2);
   piVar3 = (int *)in_RDX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -4545,7 +4545,7 @@ int FUN_1806c6799(longlong param_1,uint64_t param_2,int param_3)
   *(int32_t *)(unaff_RBP + 3) = uVar9;
   *(int32_t *)(unaff_RBP + 7) = uVar10;
   *(int32_t *)(unaff_RBP + 0xb) = uVar11;
-  FUN_1806d7000(in_RDX,uVar2);
+  ResourceAllocator(in_RDX,uVar2);
   piVar3 = (int *)in_RDX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -4583,7 +4583,7 @@ int FUN_1806c6799(longlong param_1,uint64_t param_2,int param_3)
   *(int32_t *)(unaff_RBP + 3) = uVar9;
   *(int32_t *)(unaff_RBP + 7) = uVar10;
   *(int32_t *)(unaff_RBP + 0xb) = uVar11;
-  FUN_1806d7000(in_RDX,uVar2);
+  ResourceAllocator(in_RDX,uVar2);
   piVar3 = (int *)in_RDX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -4614,7 +4614,7 @@ int FUN_1806c6799(longlong param_1,uint64_t param_2,int param_3)
   *(int32_t *)(unaff_RBP + 3) = uVar9;
   *(int32_t *)(unaff_RBP + 7) = uVar10;
   *(int32_t *)(unaff_RBP + 0xb) = uVar11;
-  FUN_1806d7000(in_RDX,uVar2);
+  ResourceAllocator(in_RDX,uVar2);
   piVar3 = (int *)in_RDX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -4645,7 +4645,7 @@ int FUN_1806c6799(longlong param_1,uint64_t param_2,int param_3)
   *(int32_t *)(unaff_RBP + 3) = uVar9;
   *(int32_t *)(unaff_RBP + 7) = uVar10;
   *(int32_t *)(unaff_RBP + 0xb) = uVar11;
-  FUN_1806d7000(in_RDX,uVar2);
+  ResourceAllocator(in_RDX,uVar2);
   piVar3 = (int *)in_RDX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -4683,7 +4683,7 @@ int FUN_1806c6799(longlong param_1,uint64_t param_2,int param_3)
   *(int32_t *)(unaff_RBP + 3) = uVar9;
   *(int32_t *)(unaff_RBP + 7) = uVar10;
   *(int32_t *)(unaff_RBP + 0xb) = uVar11;
-  FUN_1806d7000(in_RDX,uVar2);
+  ResourceAllocator(in_RDX,uVar2);
   piVar3 = (int *)in_RDX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -4721,7 +4721,7 @@ int FUN_1806c6799(longlong param_1,uint64_t param_2,int param_3)
   *(int32_t *)(unaff_RBP + 3) = uVar9;
   *(int32_t *)(unaff_RBP + 7) = uVar10;
   *(int32_t *)(unaff_RBP + 0xb) = uVar11;
-  FUN_1806d7000(in_RDX,uVar2);
+  ResourceAllocator(in_RDX,uVar2);
   piVar3 = (int *)in_RDX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -4752,7 +4752,7 @@ int FUN_1806c6799(longlong param_1,uint64_t param_2,int param_3)
   *(int32_t *)(unaff_RBP + 3) = uVar9;
   *(int32_t *)(unaff_RBP + 7) = uVar10;
   *(int32_t *)(unaff_RBP + 0xb) = uVar11;
-  FUN_1806d7000(in_RDX,uVar2);
+  ResourceAllocator(in_RDX,uVar2);
   piVar3 = (int *)in_RDX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -4783,7 +4783,7 @@ int FUN_1806c6799(longlong param_1,uint64_t param_2,int param_3)
   *(int32_t *)(unaff_RBP + 3) = uVar9;
   *(int32_t *)(unaff_RBP + 7) = uVar10;
   *(int32_t *)(unaff_RBP + 0xb) = uVar11;
-  FUN_1806d7000(in_RDX,uVar2);
+  ResourceAllocator(in_RDX,uVar2);
   piVar3 = (int *)in_RDX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -4815,7 +4815,7 @@ int FUN_1806c6799(longlong param_1,uint64_t param_2,int param_3)
   *(int32_t *)(unaff_RBP + 3) = uVar9;
   *(int32_t *)(unaff_RBP + 7) = uVar10;
   *(int32_t *)(unaff_RBP + 0xb) = uVar11;
-  FUN_1806d7000(in_RDX,uVar2);
+  ResourceAllocator(in_RDX,uVar2);
   piVar3 = (int *)in_RDX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -4833,7 +4833,7 @@ int FUN_1806c6799(longlong param_1,uint64_t param_2,int param_3)
   *(int32_t *)(unaff_RBP + 3) = uVar9;
   *(int32_t *)(unaff_RBP + 7) = uVar10;
   *(int32_t *)(unaff_RBP + 0xb) = uVar11;
-  FUN_1806d7000(in_RDX,uVar2);
+  ResourceAllocator(in_RDX,uVar2);
   piVar3 = (int *)in_RDX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -4851,7 +4851,7 @@ int FUN_1806c6799(longlong param_1,uint64_t param_2,int param_3)
   *(int32_t *)(unaff_RBP + 3) = uVar9;
   *(int32_t *)(unaff_RBP + 7) = uVar10;
   *(int32_t *)(unaff_RBP + 0xb) = uVar11;
-  FUN_1806d7000(in_RDX,uVar2);
+  ResourceAllocator(in_RDX,uVar2);
   piVar3 = (int *)in_RDX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
@@ -4912,7 +4912,7 @@ int FUN_1806c690d(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + 3) = uVar8;
   *(int32_t *)(unaff_RBP + 7) = uVar9;
   *(int32_t *)(unaff_RBP + 0xb) = uVar10;
-  FUN_1806d7000(uVar11,uVar4);
+  ResourceAllocator(uVar11,uVar4);
   piVar5 = (int *)unaff_RBX[0xb];
   if (piVar5 != (int *)0x0) {
     *piVar5 = *piVar5 + 1;
@@ -4933,7 +4933,7 @@ int FUN_1806c690d(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + 3) = uVar8;
   *(int32_t *)(unaff_RBP + 7) = uVar9;
   *(int32_t *)(unaff_RBP + 0xb) = uVar10;
-  FUN_1806d7000(uVar11,uVar4);
+  ResourceAllocator(uVar11,uVar4);
   piVar5 = (int *)unaff_RBX[0xb];
   if (piVar5 != (int *)0x0) {
     *piVar5 = *piVar5 + 1;
@@ -4954,7 +4954,7 @@ int FUN_1806c690d(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + 3) = uVar8;
   *(int32_t *)(unaff_RBP + 7) = uVar9;
   *(int32_t *)(unaff_RBP + 0xb) = uVar10;
-  FUN_1806d7000(uVar11,uVar4);
+  ResourceAllocator(uVar11,uVar4);
   piVar5 = (int *)unaff_RBX[0xb];
   if (piVar5 != (int *)0x0) {
     *piVar5 = *piVar5 + 1;
@@ -4982,7 +4982,7 @@ int FUN_1806c690d(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + 3) = uVar8;
   *(int32_t *)(unaff_RBP + 7) = uVar9;
   *(int32_t *)(unaff_RBP + 0xb) = uVar10;
-  FUN_1806d7000(uVar11,uVar4);
+  ResourceAllocator(uVar11,uVar4);
   piVar5 = (int *)unaff_RBX[0xb];
   if (piVar5 != (int *)0x0) {
     *piVar5 = *piVar5 + 1;
@@ -5010,7 +5010,7 @@ int FUN_1806c690d(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + 3) = uVar8;
   *(int32_t *)(unaff_RBP + 7) = uVar9;
   *(int32_t *)(unaff_RBP + 0xb) = uVar10;
-  FUN_1806d7000(uVar11,uVar4);
+  ResourceAllocator(uVar11,uVar4);
   piVar5 = (int *)unaff_RBX[0xb];
   if (piVar5 != (int *)0x0) {
     *piVar5 = *piVar5 + 1;
@@ -5031,7 +5031,7 @@ int FUN_1806c690d(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + 3) = uVar8;
   *(int32_t *)(unaff_RBP + 7) = uVar9;
   *(int32_t *)(unaff_RBP + 0xb) = uVar10;
-  FUN_1806d7000(uVar11,uVar4);
+  ResourceAllocator(uVar11,uVar4);
   piVar5 = (int *)unaff_RBX[0xb];
   if (piVar5 != (int *)0x0) {
     *piVar5 = *piVar5 + 1;
@@ -5052,7 +5052,7 @@ int FUN_1806c690d(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + 3) = uVar8;
   *(int32_t *)(unaff_RBP + 7) = uVar9;
   *(int32_t *)(unaff_RBP + 0xb) = uVar10;
-  FUN_1806d7000(uVar11,uVar4);
+  ResourceAllocator(uVar11,uVar4);
   piVar5 = (int *)unaff_RBX[0xb];
   if (piVar5 != (int *)0x0) {
     *piVar5 = *piVar5 + 1;
@@ -5084,7 +5084,7 @@ int FUN_1806c690d(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + 3) = uVar8;
   *(int32_t *)(unaff_RBP + 7) = uVar9;
   *(int32_t *)(unaff_RBP + 0xb) = uVar10;
-  uVar8 = FUN_1806d7000(uVar11,uVar4);
+  uVar8 = ResourceAllocator(uVar11,uVar4);
   piVar5 = (int *)unaff_RBX[0xb];
   if (piVar5 != (int *)0x0) {
     *piVar5 = *piVar5 + 1;
@@ -5102,7 +5102,7 @@ int FUN_1806c690d(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + 3) = uVar8;
   *(int32_t *)(unaff_RBP + 7) = uVar9;
   *(int32_t *)(unaff_RBP + 0xb) = uVar10;
-  uVar8 = FUN_1806d7000(uVar11,uVar4);
+  uVar8 = ResourceAllocator(uVar11,uVar4);
   piVar5 = (int *)unaff_RBX[0xb];
   if (piVar5 != (int *)0x0) {
     *piVar5 = *piVar5 + 1;
@@ -5120,7 +5120,7 @@ int FUN_1806c690d(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + 3) = uVar8;
   *(int32_t *)(unaff_RBP + 7) = uVar9;
   *(int32_t *)(unaff_RBP + 0xb) = uVar10;
-  uVar8 = FUN_1806d7000(uVar11,uVar4);
+  uVar8 = ResourceAllocator(uVar11,uVar4);
   piVar5 = (int *)unaff_RBX[0xb];
   if (piVar5 != (int *)0x0) {
     *piVar5 = *piVar5 + 1;
@@ -5176,7 +5176,7 @@ int FUN_1806c6c7b(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + 3) = uVar10;
   *(int32_t *)(unaff_RBP + 7) = uVar6;
   *(int32_t *)(unaff_RBP + 0xb) = uVar7;
-  FUN_1806d7000(uVar11,uVar3);
+  ResourceAllocator(uVar11,uVar3);
   piVar4 = (int *)unaff_RBX[0xb];
   if (piVar4 != (int *)0x0) {
     *piVar4 = *piVar4 + 1;
@@ -5197,7 +5197,7 @@ int FUN_1806c6c7b(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + 3) = uVar10;
   *(int32_t *)(unaff_RBP + 7) = uVar6;
   *(int32_t *)(unaff_RBP + 0xb) = uVar7;
-  FUN_1806d7000(uVar11,uVar3);
+  ResourceAllocator(uVar11,uVar3);
   piVar4 = (int *)unaff_RBX[0xb];
   if (piVar4 != (int *)0x0) {
     *piVar4 = *piVar4 + 1;
@@ -5229,7 +5229,7 @@ int FUN_1806c6c7b(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + 3) = uVar10;
   *(int32_t *)(unaff_RBP + 7) = uVar6;
   *(int32_t *)(unaff_RBP + 0xb) = uVar7;
-  uVar10 = FUN_1806d7000(uVar11,uVar3);
+  uVar10 = ResourceAllocator(uVar11,uVar3);
   piVar4 = (int *)unaff_RBX[0xb];
   if (piVar4 != (int *)0x0) {
     *piVar4 = *piVar4 + 1;
@@ -5247,7 +5247,7 @@ int FUN_1806c6c7b(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + 3) = uVar10;
   *(int32_t *)(unaff_RBP + 7) = uVar6;
   *(int32_t *)(unaff_RBP + 0xb) = uVar7;
-  uVar10 = FUN_1806d7000(uVar11,uVar3);
+  uVar10 = ResourceAllocator(uVar11,uVar3);
   piVar4 = (int *)unaff_RBX[0xb];
   if (piVar4 != (int *)0x0) {
     *piVar4 = *piVar4 + 1;
@@ -5265,7 +5265,7 @@ int FUN_1806c6c7b(uint64_t param_1,int32_t param_2)
   *(int32_t *)(unaff_RBP + 3) = uVar10;
   *(int32_t *)(unaff_RBP + 7) = uVar6;
   *(int32_t *)(unaff_RBP + 0xb) = uVar7;
-  uVar10 = FUN_1806d7000(uVar11,uVar3);
+  uVar10 = ResourceAllocator(uVar11,uVar3);
   piVar4 = (int *)unaff_RBX[0xb];
   if (piVar4 != (int *)0x0) {
     *piVar4 = *piVar4 + 1;
@@ -5308,7 +5308,7 @@ int FUN_1806c6e38(void)
   *(int32_t *)(unaff_RBP + 3) = uVar2;
   *(int32_t *)(unaff_RBP + 7) = uVar3;
   *(int32_t *)(unaff_RBP + 0xb) = uVar4;
-  FUN_1806d7000();
+  ResourceAllocator();
   piVar1 = *(int **)(unaff_RBX + 0x58);
   if (piVar1 != (int *)0x0) {
     *piVar1 = *piVar1 + 1;
@@ -5326,7 +5326,7 @@ int FUN_1806c6e38(void)
   *(int32_t *)(unaff_RBP + 3) = uVar2;
   *(int32_t *)(unaff_RBP + 7) = uVar3;
   *(int32_t *)(unaff_RBP + 0xb) = uVar4;
-  FUN_1806d7000();
+  ResourceAllocator();
   piVar1 = *(int **)(unaff_RBX + 0x58);
   if (piVar1 != (int *)0x0) {
     *piVar1 = *piVar1 + 1;
@@ -5421,7 +5421,7 @@ int FUN_1806c6f10(uint64_t *param_1,longlong *param_2,int param_3)
   uStack_ec = *(int32_t *)((longlong)param_1 + 0x14);
   uStack_e8 = *(int32_t *)(param_1 + 3);
   uStack_e4 = *(int32_t *)((longlong)param_1 + 0x1c);
-  FUN_1806d7000(param_2,*param_1);
+  ResourceAllocator(param_2,*param_1);
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -5475,7 +5475,7 @@ int FUN_1806c6f10(uint64_t *param_1,longlong *param_2,int param_3)
   uStack_ec = *(int32_t *)((longlong)param_1 + 0x34);
   uStack_e8 = *(int32_t *)(param_1 + 7);
   uStack_e4 = *(int32_t *)((longlong)param_1 + 0x3c);
-  FUN_1806d7000(param_2,param_1[4]);
+  ResourceAllocator(param_2,param_1[4]);
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -5507,7 +5507,7 @@ int FUN_1806c6f10(uint64_t *param_1,longlong *param_2,int param_3)
   uStack_ec = *(int32_t *)((longlong)param_1 + 0x54);
   uStack_e8 = *(int32_t *)(param_1 + 0xb);
   uStack_e4 = *(int32_t *)((longlong)param_1 + 0x5c);
-  FUN_1806d7000(param_2,param_1[8]);
+  ResourceAllocator(param_2,param_1[8]);
   piVar2 = (int *)param_2[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -5574,7 +5574,7 @@ int FUN_1806c6f2c(int32_t param_1,uint64_t param_2,int param_3,uint64_t param_4,
   *(int *)((longlong)unaff_RBP + -0x74) = (int)((ulonglong)param_2 >> 0x20);
   *(int32_t *)(unaff_RBP + -0xe) = in_XMM1_Dc;
   *(int32_t *)((longlong)unaff_RBP + -0x6c) = in_XMM1_Dd;
-  FUN_1806d7000(param_1,uVar17);
+  ResourceAllocator(param_1,uVar17);
   piVar2 = (int *)unaff_RBX[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -5639,7 +5639,7 @@ int FUN_1806c6f2c(int32_t param_1,uint64_t param_2,int param_3,uint64_t param_4,
   *(int32_t *)((longlong)unaff_RBP + -0x74) = uVar8;
   *(int32_t *)(unaff_RBP + -0xe) = uVar9;
   *(int32_t *)((longlong)unaff_RBP + -0x6c) = uVar10;
-  FUN_1806d7000(uVar20,uVar17);
+  ResourceAllocator(uVar20,uVar17);
   piVar2 = (int *)unaff_RBX[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -5679,7 +5679,7 @@ LAB_1806c7195:
   *(int32_t *)((longlong)unaff_RBP + -0x74) = uVar8;
   *(int32_t *)(unaff_RBP + -0xe) = uVar9;
   *(int32_t *)((longlong)unaff_RBP + -0x6c) = uVar10;
-  FUN_1806d7000(uVar20,uVar17);
+  ResourceAllocator(uVar20,uVar17);
   piVar2 = (int *)unaff_RBX[0xb];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -5751,7 +5751,7 @@ LAB_1806c7195:
   *(int32_t *)(unaff_RBP + -0x74) = uVar4;
   *(int32_t *)(unaff_RBP + -0x70) = uVar5;
   *(int32_t *)(unaff_RBP + -0x6c) = uVar6;
-  FUN_1806d7000();
+  ResourceAllocator();
   piVar3 = (int *)unaff_RBX[0xb];
   if (piVar3 != (int *)0x0) {
     *piVar3 = *piVar3 + 1;
