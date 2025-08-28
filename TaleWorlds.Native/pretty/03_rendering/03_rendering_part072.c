@@ -278,280 +278,320 @@ void rendering_system_process_transform_data(
     *(uint64_t *)(render_context + 0x58) = transform_data[6];
     *(uint64_t *)(render_context + 0x60) = temp_data;
 }
-
-
-
-
-
-// 函数: void FUN_180309dae(longlong param_1,longlong param_2,undefined8 *param_3,char param_4)
-void FUN_180309dae(longlong param_1,longlong param_2,undefined8 *param_3,char param_4)
-
-{
-  undefined8 uVar1;
-  int iVar2;
-  float *pfVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float in_XMM3_Da;
-  int in_XMM4_Da;
-  float in_XMM5_Da;
-  float fVar8;
-  float fVar9;
-  float fVar10;
-  float fStack0000000000000028;
-  undefined4 uStack000000000000002c;
-  
-  fVar8 = in_XMM5_Da + *(float *)(param_1 + 0x114);
-  *(float *)(param_1 + 0x114) = fVar8;
-  fVar10 = in_XMM3_Da / (float)in_XMM4_Da;
-  if (param_4 == '\0') {
-    if (fVar8 <= fVar10) {
-      *(undefined4 *)(param_1 + 0x118) = 0;
+/**
+ * 渲染系统高级变换处理器
+ * 
+ * 处理复杂的渲染变换操作，包括双上下文处理和高级插值计算。
+ * 
+ * @param primary_context 主要渲染上下文
+ * @param secondary_context 次要渲染上下文
+ * @param transform_data 变换数据数组
+ * @param process_flag 处理标志
+ */
+void rendering_system_advanced_transform_processor(
+    longlong primary_context, 
+    longlong secondary_context, 
+    uint64_t *transform_data, 
+    char process_flag
+) {
+    uint64_t temp_data;
+    int intensity_value;
+    float *position_ptr;
+    float distance_x, distance_y, distance_z;
+    float accumulated_distance;
+    float interpolated_value;
+    float blend_factor;
+    float scale_value;
+    float intensity_factor;
+    float target_distance;
+    float stack_distance;
+    uint32_t stack_flag;
+    
+    accumulated_distance = intensity_factor + *(float *)(primary_context + 0x114);
+    *(float *)(primary_context + 0x114) = accumulated_distance;
+    scale_value = intensity_factor / (float)intensity_value;
+    
+    if (process_flag == '\0') {
+        if (accumulated_distance <= scale_value) {
+            *(uint32_t *)(primary_context + 0x118) = 0;
+        }
+        else {
+            distance_x = *(float *)(primary_context + 0x60) - *(float *)(transform_data + 7);
+            distance_y = *(float *)(primary_context + 0x5c) - *(float *)((longlong)transform_data + 0x34);
+            distance_z = *(float *)(primary_context + 0x58) - *(float *)(transform_data + 6);
+            
+            if (RENDERING_DISTANCE_THRESHOLD < 
+                SQRT(distance_y * distance_y + distance_z * distance_z + distance_x * distance_x) * 
+                (intensity_factor / accumulated_distance)) {
+                
+                temp_data = transform_data[1];
+                *(uint64_t *)(primary_context + 0xd0) = *transform_data;
+                *(uint64_t *)(primary_context + 0xd8) = temp_data;
+                temp_data = transform_data[3];
+                *(uint64_t *)(primary_context + 0xe0) = transform_data[2];
+                *(uint64_t *)(primary_context + 0xe8) = temp_data;
+                temp_data = transform_data[5];
+                *(uint64_t *)(primary_context + 0xf0) = transform_data[4];
+                *(uint64_t *)(primary_context + 0xf8) = temp_data;
+                temp_data = transform_data[7];
+                *(uint64_t *)(primary_context + 0x100) = transform_data[6];
+                *(uint64_t *)(primary_context + 0x108) = temp_data;
+                
+                temp_data = transform_data[1];
+                *(uint64_t *)(primary_context + 0x90) = *transform_data;
+                *(uint64_t *)(primary_context + 0x98) = temp_data;
+                temp_data = transform_data[3];
+                *(uint64_t *)(primary_context + 0xa0) = transform_data[2];
+                *(uint64_t *)(primary_context + 0xa8) = temp_data;
+                temp_data = transform_data[5];
+                *(uint64_t *)(primary_context + 0xb0) = transform_data[4];
+                *(uint64_t *)(primary_context + 0xb8) = temp_data;
+                temp_data = transform_data[7];
+                *(uint64_t *)(primary_context + 0xc0) = transform_data[6];
+                *(uint64_t *)(primary_context + 200) = temp_data;
+            }
+            
+            intensity_value = (int)(accumulated_distance * (float)intensity_value);
+            *(int *)(primary_context + 0x118) = intensity_value;
+            interpolated_value = (float)intensity_value * scale_value;
+            blend_factor = interpolated_value / accumulated_distance;
+            *(float *)(primary_context + 0x114) = accumulated_distance - interpolated_value;
+            
+            temp_data = transform_data[1];
+            *(uint64_t *)(primary_context + 0xd0) = *transform_data;
+            *(uint64_t *)(primary_context + 0xd8) = temp_data;
+            temp_data = transform_data[3];
+            *(uint64_t *)(primary_context + 0xe0) = transform_data[2];
+            *(uint64_t *)(primary_context + 0xe8) = temp_data;
+            temp_data = transform_data[5];
+            *(uint64_t *)(primary_context + 0xf0) = transform_data[4];
+            *(uint64_t *)(primary_context + 0xf8) = temp_data;
+            
+            accumulated_distance = *(float *)(primary_context + 0xc4);
+            distance_x = *(float *)(transform_data + 7);
+            distance_y = *(float *)((longlong)transform_data + 0x34);
+            distance_z = *(float *)(transform_data + 6);
+            
+            *(float *)(primary_context + 0x124) = scale_value;
+            *(float *)(primary_context + 0x128) = scale_value;
+            
+            position_ptr = (float *)(primary_context + 0x78);
+            stack_distance = 
+                (distance_x - *(float *)(primary_context + 200)) * blend_factor + *(float *)(primary_context + 200);
+            distance_z = (distance_z - *(float *)(primary_context + 0xc0)) * blend_factor + *(float *)(primary_context + 0xc0);
+            
+            temp_data = *(uint64_t *)(primary_context + 0x80);
+            interpolated_value = *(float *)(secondary_context + 0x8c) / interpolated_value;
+            
+            *(uint64_t *)(secondary_context + 0x68) = *(uint64_t *)position_ptr;
+            *(uint64_t *)(secondary_context + 0x70) = temp_data;
+            *(float *)(secondary_context + 0x100) = distance_z;
+            *(float *)(secondary_context + 0x104) = (distance_y - accumulated_distance) * blend_factor + accumulated_distance;
+            *(float *)(secondary_context + 0x108) = stack_distance;
+            *(uint32_t *)(secondary_context + 0x10c) = RENDERING_MAX_FLOAT_VALUE;
+            
+            stack_flag = RENDERING_MAX_FLOAT_VALUE;
+            scale_value = (*(float *)(secondary_context + 0x104) - *(float *)(secondary_context + 0xc4)) * interpolated_value;
+            distance_x = (*(float *)(secondary_context + 0x108) - *(float *)(secondary_context + 200)) * interpolated_value;
+            accumulated_distance = *(float *)(secondary_context + 0x88);
+            
+            *position_ptr = (distance_z - *(float *)(secondary_context + 0xc0)) * interpolated_value;
+            *(float *)(primary_context + 0x7c) = scale_value;
+            *(float *)(primary_context + 0x80) = distance_x;
+            *(uint32_t *)(primary_context + 0x84) = RENDERING_MAX_FLOAT_VALUE;
+            
+            if (0.0f < accumulated_distance) {
+                func_0x00018030a230(position_ptr, accumulated_distance, scale_value, distance_x, distance_z);
+            }
+            
+            *(uint64_t *)(secondary_context + 0x90) = *(uint64_t *)(secondary_context + 0xd0);
+            *(uint64_t *)(secondary_context + 0x98) = *(uint64_t *)(secondary_context + 0xd8);
+            *(uint64_t *)(secondary_context + 0xa0) = *(uint64_t *)(secondary_context + 0xe0);
+            *(uint64_t *)(secondary_context + 0xa8) = *(uint64_t *)(secondary_context + 0xe8);
+            *(uint64_t *)(secondary_context + 0xb0) = *(uint64_t *)(secondary_context + 0xf0);
+            *(uint64_t *)(secondary_context + 0xb8) = *(uint64_t *)(secondary_context + 0xf8);
+            *(uint64_t *)(secondary_context + 0xc0) = *(uint64_t *)(secondary_context + 0x100);
+            *(uint64_t *)(secondary_context + 200) = *(uint64_t *)(secondary_context + 0x108);
+        }
     }
     else {
-      fVar4 = *(float *)(param_1 + 0x60) - *(float *)(param_3 + 7);
-      fVar6 = *(float *)(param_1 + 0x5c) - *(float *)((longlong)param_3 + 0x34);
-      fVar5 = *(float *)(param_1 + 0x58) - *(float *)(param_3 + 6);
-      if (50.0 < SQRT(fVar6 * fVar6 + fVar5 * fVar5 + fVar4 * fVar4) * (in_XMM3_Da / fVar8)) {
-        uVar1 = param_3[1];
-        *(undefined8 *)(param_1 + 0xd0) = *param_3;
-        *(undefined8 *)(param_1 + 0xd8) = uVar1;
-        uVar1 = param_3[3];
-        *(undefined8 *)(param_1 + 0xe0) = param_3[2];
-        *(undefined8 *)(param_1 + 0xe8) = uVar1;
-        uVar1 = param_3[5];
-        *(undefined8 *)(param_1 + 0xf0) = param_3[4];
-        *(undefined8 *)(param_1 + 0xf8) = uVar1;
-        uVar1 = param_3[7];
-        *(undefined8 *)(param_1 + 0x100) = param_3[6];
-        *(undefined8 *)(param_1 + 0x108) = uVar1;
-        uVar1 = param_3[1];
-        *(undefined8 *)(param_1 + 0x90) = *param_3;
-        *(undefined8 *)(param_1 + 0x98) = uVar1;
-        uVar1 = param_3[3];
-        *(undefined8 *)(param_1 + 0xa0) = param_3[2];
-        *(undefined8 *)(param_1 + 0xa8) = uVar1;
-        uVar1 = param_3[5];
-        *(undefined8 *)(param_1 + 0xb0) = param_3[4];
-        *(undefined8 *)(param_1 + 0xb8) = uVar1;
-        uVar1 = param_3[7];
-        *(undefined8 *)(param_1 + 0xc0) = param_3[6];
-        *(undefined8 *)(param_1 + 200) = uVar1;
-      }
-      iVar2 = (int)(fVar8 * (float)in_XMM4_Da);
-      *(int *)(param_1 + 0x118) = iVar2;
-      fVar9 = (float)iVar2 * fVar10;
-      fVar7 = fVar9 / fVar8;
-      *(float *)(param_1 + 0x114) = fVar8 - fVar9;
-      uVar1 = param_3[1];
-      *(undefined8 *)(param_1 + 0xd0) = *param_3;
-      *(undefined8 *)(param_1 + 0xd8) = uVar1;
-      uVar1 = param_3[3];
-      *(undefined8 *)(param_1 + 0xe0) = param_3[2];
-      *(undefined8 *)(param_1 + 0xe8) = uVar1;
-      uVar1 = param_3[5];
-      *(undefined8 *)(param_1 + 0xf0) = param_3[4];
-      *(undefined8 *)(param_1 + 0xf8) = uVar1;
-      fVar8 = *(float *)(param_1 + 0xc4);
-      fVar4 = *(float *)(param_3 + 7);
-      fVar5 = *(float *)((longlong)param_3 + 0x34);
-      fVar6 = *(float *)(param_3 + 6);
-      *(float *)(param_1 + 0x124) = fVar10;
-      *(float *)(param_1 + 0x128) = fVar10;
-      pfVar3 = (float *)(param_1 + 0x78);
-      fStack0000000000000028 =
-           (fVar4 - *(float *)(param_1 + 200)) * fVar7 + *(float *)(param_1 + 200);
-      fVar6 = (fVar6 - *(float *)(param_1 + 0xc0)) * fVar7 + *(float *)(param_1 + 0xc0);
-      uVar1 = *(undefined8 *)(param_1 + 0x80);
-      fVar9 = *(float *)(param_2 + 0x8c) / fVar9;
-      *(undefined8 *)(param_2 + 0x68) = *(undefined8 *)pfVar3;
-      *(undefined8 *)(param_2 + 0x70) = uVar1;
-      *(float *)(param_2 + 0x100) = fVar6;
-      *(float *)(param_2 + 0x104) = (fVar5 - fVar8) * fVar7 + fVar8;
-      *(float *)(param_2 + 0x108) = fStack0000000000000028;
-      *(undefined4 *)(param_2 + 0x10c) = 0x7f7fffff;
-      uStack000000000000002c = 0x7f7fffff;
-      fVar10 = (*(float *)(param_2 + 0x104) - *(float *)(param_2 + 0xc4)) * fVar9;
-      fVar4 = (*(float *)(param_2 + 0x108) - *(float *)(param_2 + 200)) * fVar9;
-      fVar8 = *(float *)(param_2 + 0x88);
-      *pfVar3 = (fVar6 - *(float *)(param_2 + 0xc0)) * fVar9;
-      *(float *)(param_1 + 0x7c) = fVar10;
-      *(float *)(param_1 + 0x80) = fVar4;
-      *(undefined4 *)(param_1 + 0x84) = 0x7f7fffff;
-      if (0.0 < fVar8) {
-        func_0x00018030a230(pfVar3,fVar8,fVar10,fVar4,fVar6);
-      }
-      *(undefined8 *)(param_2 + 0x90) = *(undefined8 *)(param_2 + 0xd0);
-      *(undefined8 *)(param_2 + 0x98) = *(undefined8 *)(param_2 + 0xd8);
-      *(undefined8 *)(param_2 + 0xa0) = *(undefined8 *)(param_2 + 0xe0);
-      *(undefined8 *)(param_2 + 0xa8) = *(undefined8 *)(param_2 + 0xe8);
-      *(undefined8 *)(param_2 + 0xb0) = *(undefined8 *)(param_2 + 0xf0);
-      *(undefined8 *)(param_2 + 0xb8) = *(undefined8 *)(param_2 + 0xf8);
-      *(undefined8 *)(param_2 + 0xc0) = *(undefined8 *)(param_2 + 0x100);
-      *(undefined8 *)(param_2 + 200) = *(undefined8 *)(param_2 + 0x108);
+        temp_data = transform_data[1];
+        *(uint64_t *)(primary_context + 0x90) = *transform_data;
+        *(uint64_t *)(primary_context + 0x98) = temp_data;
+        temp_data = transform_data[3];
+        *(uint64_t *)(primary_context + 0xa0) = transform_data[2];
+        *(uint64_t *)(primary_context + 0xa8) = temp_data;
+        temp_data = transform_data[5];
+        *(uint64_t *)(primary_context + 0xb0) = transform_data[4];
+        *(uint64_t *)(primary_context + 0xb8) = temp_data;
+        temp_data = transform_data[7];
+        *(uint64_t *)(primary_context + 0xc0) = transform_data[6];
+        *(uint64_t *)(primary_context + 200) = temp_data;
+        
+        temp_data = transform_data[1];
+        *(uint64_t *)(primary_context + 0xd0) = *transform_data;
+        *(uint64_t *)(primary_context + 0xd8) = temp_data;
+        temp_data = transform_data[3];
+        *(uint64_t *)(primary_context + 0xe0) = transform_data[2];
+        *(uint64_t *)(primary_context + 0xe8) = temp_data;
+        temp_data = transform_data[5];
+        *(uint64_t *)(primary_context + 0xf0) = transform_data[4];
+        *(uint64_t *)(primary_context + 0xf8) = temp_data;
+        temp_data = transform_data[7];
+        *(uint64_t *)(primary_context + 0x100) = transform_data[6];
+        *(uint64_t *)(primary_context + 0x108) = temp_data;
+        
+        *(uint32_t *)(primary_context + 0x114) = 0;
+        *(float *)(primary_context + 0x124) = scale_value;
+        *(float *)(primary_context + 0x128) = scale_value;
+        *(uint32_t *)(primary_context + 0x118) = 1;
     }
-  }
-  else {
-    uVar1 = param_3[1];
-    *(undefined8 *)(param_1 + 0x90) = *param_3;
-    *(undefined8 *)(param_1 + 0x98) = uVar1;
-    uVar1 = param_3[3];
-    *(undefined8 *)(param_1 + 0xa0) = param_3[2];
-    *(undefined8 *)(param_1 + 0xa8) = uVar1;
-    uVar1 = param_3[5];
-    *(undefined8 *)(param_1 + 0xb0) = param_3[4];
-    *(undefined8 *)(param_1 + 0xb8) = uVar1;
-    uVar1 = param_3[7];
-    *(undefined8 *)(param_1 + 0xc0) = param_3[6];
-    *(undefined8 *)(param_1 + 200) = uVar1;
-    uVar1 = param_3[1];
-    *(undefined8 *)(param_1 + 0xd0) = *param_3;
-    *(undefined8 *)(param_1 + 0xd8) = uVar1;
-    uVar1 = param_3[3];
-    *(undefined8 *)(param_1 + 0xe0) = param_3[2];
-    *(undefined8 *)(param_1 + 0xe8) = uVar1;
-    uVar1 = param_3[5];
-    *(undefined8 *)(param_1 + 0xf0) = param_3[4];
-    *(undefined8 *)(param_1 + 0xf8) = uVar1;
-    uVar1 = param_3[7];
-    *(undefined8 *)(param_1 + 0x100) = param_3[6];
-    *(undefined8 *)(param_1 + 0x108) = uVar1;
-    *(undefined4 *)(param_1 + 0x114) = 0;
-    *(float *)(param_1 + 0x124) = fVar10;
-    *(float *)(param_1 + 0x128) = fVar10;
-    *(undefined4 *)(param_1 + 0x118) = 1;
-  }
-  uVar1 = param_3[1];
-  *(undefined8 *)(param_2 + 0x28) = *param_3;
-  *(undefined8 *)(param_2 + 0x30) = uVar1;
-  uVar1 = param_3[3];
-  *(undefined8 *)(param_2 + 0x38) = param_3[2];
-  *(undefined8 *)(param_2 + 0x40) = uVar1;
-  uVar1 = param_3[5];
-  *(undefined8 *)(param_2 + 0x48) = param_3[4];
-  *(undefined8 *)(param_2 + 0x50) = uVar1;
-  uVar1 = param_3[7];
-  *(undefined8 *)(param_2 + 0x58) = param_3[6];
-  *(undefined8 *)(param_2 + 0x60) = uVar1;
-  return;
+    
+    temp_data = transform_data[1];
+    *(uint64_t *)(secondary_context + 0x28) = *transform_data;
+    *(uint64_t *)(secondary_context + 0x30) = temp_data;
+    temp_data = transform_data[3];
+    *(uint64_t *)(secondary_context + 0x38) = transform_data[2];
+    *(uint64_t *)(secondary_context + 0x40) = temp_data;
+    temp_data = transform_data[5];
+    *(uint64_t *)(secondary_context + 0x48) = transform_data[4];
+    *(uint64_t *)(secondary_context + 0x50) = temp_data;
+    temp_data = transform_data[7];
+    *(uint64_t *)(secondary_context + 0x58) = transform_data[6];
+    *(uint64_t *)(secondary_context + 0x60) = temp_data;
 }
-
-
-
-
-
-// 函数: void FUN_180309e9d(longlong param_1,float param_2,undefined8 *param_3,float param_4)
-void FUN_180309e9d(longlong param_1,float param_2,undefined8 *param_3,float param_4)
-
-{
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  undefined8 uVar5;
-  longlong in_RDX;
-  float in_XMM0_Da;
-  float in_XMM2_Da;
-  float fVar6;
-  float in_XMM4_Da;
-  float in_XMM5_Da;
-  float fVar7;
-  float fVar8;
-  float unaff_XMM8_Da;
-  float fStack0000000000000028;
-  undefined4 uStack000000000000002c;
-  
-  if (50.0 < SQRT(in_XMM2_Da + param_2 + in_XMM0_Da) * param_4) {
-    uVar5 = param_3[1];
-    *(undefined8 *)(param_1 + 0xd0) = *param_3;
-    *(undefined8 *)(param_1 + 0xd8) = uVar5;
-    uVar5 = param_3[3];
-    *(undefined8 *)(param_1 + 0xe0) = param_3[2];
-    *(undefined8 *)(param_1 + 0xe8) = uVar5;
-    uVar5 = param_3[5];
-    *(undefined8 *)(param_1 + 0xf0) = param_3[4];
-    *(undefined8 *)(param_1 + 0xf8) = uVar5;
-    uVar5 = param_3[7];
-    *(undefined8 *)(param_1 + 0x100) = param_3[6];
-    *(undefined8 *)(param_1 + 0x108) = uVar5;
-    uVar5 = param_3[1];
-    *(undefined8 *)(param_1 + 0x90) = *param_3;
-    *(undefined8 *)(param_1 + 0x98) = uVar5;
-    uVar5 = param_3[3];
-    *(undefined8 *)(param_1 + 0xa0) = param_3[2];
-    *(undefined8 *)(param_1 + 0xa8) = uVar5;
-    uVar5 = param_3[5];
-    *(undefined8 *)(param_1 + 0xb0) = param_3[4];
-    *(undefined8 *)(param_1 + 0xb8) = uVar5;
-    uVar5 = param_3[7];
-    *(undefined8 *)(param_1 + 0xc0) = param_3[6];
-    *(undefined8 *)(param_1 + 200) = uVar5;
-  }
-  *(int *)(param_1 + 0x118) = (int)(in_XMM5_Da * in_XMM4_Da);
-  fVar8 = (float)(int)(in_XMM5_Da * in_XMM4_Da) * unaff_XMM8_Da;
-  fVar6 = fVar8 / in_XMM5_Da;
-  *(float *)(param_1 + 0x114) = in_XMM5_Da - fVar8;
-  uVar5 = param_3[1];
-  *(undefined8 *)(param_1 + 0xd0) = *param_3;
-  *(undefined8 *)(param_1 + 0xd8) = uVar5;
-  uVar5 = param_3[3];
-  *(undefined8 *)(param_1 + 0xe0) = param_3[2];
-  *(undefined8 *)(param_1 + 0xe8) = uVar5;
-  uVar5 = param_3[5];
-  *(undefined8 *)(param_1 + 0xf0) = param_3[4];
-  *(undefined8 *)(param_1 + 0xf8) = uVar5;
-  fVar1 = *(float *)(param_1 + 0xc4);
-  fVar2 = *(float *)(param_3 + 7);
-  fVar3 = *(float *)((longlong)param_3 + 0x34);
-  fVar4 = *(float *)(param_3 + 6);
-  *(float *)(param_1 + 0x124) = unaff_XMM8_Da;
-  *(float *)(param_1 + 0x128) = unaff_XMM8_Da;
-  fStack0000000000000028 = (fVar2 - *(float *)(param_1 + 200)) * fVar6 + *(float *)(param_1 + 200);
-  fVar7 = (fVar4 - *(float *)(param_1 + 0xc0)) * fVar6 + *(float *)(param_1 + 0xc0);
-  uVar5 = *(undefined8 *)(param_1 + 0x80);
-  fVar8 = *(float *)(in_RDX + 0x8c) / fVar8;
-  *(undefined8 *)(in_RDX + 0x68) = *(undefined8 *)(param_1 + 0x78);
-  *(undefined8 *)(in_RDX + 0x70) = uVar5;
-  *(float *)(in_RDX + 0x100) = fVar7;
-  *(float *)(in_RDX + 0x104) = (fVar3 - fVar1) * fVar6 + fVar1;
-  *(float *)(in_RDX + 0x108) = fStack0000000000000028;
-  *(undefined4 *)(in_RDX + 0x10c) = 0x7f7fffff;
-  fVar1 = *(float *)(in_RDX + 0x104);
-  fVar2 = *(float *)(in_RDX + 0xc4);
-  fVar3 = *(float *)(in_RDX + 0x108);
-  fVar4 = *(float *)(in_RDX + 200);
-  uStack000000000000002c = 0x7f7fffff;
-  fVar6 = *(float *)(in_RDX + 0x88);
-  *(float *)(param_1 + 0x78) = (fVar7 - *(float *)(in_RDX + 0xc0)) * fVar8;
-  *(float *)(param_1 + 0x7c) = (fVar1 - fVar2) * fVar8;
-  *(float *)(param_1 + 0x80) = (fVar3 - fVar4) * fVar8;
-  *(undefined4 *)(param_1 + 0x84) = 0x7f7fffff;
-  if (0.0 < fVar6) {
-    func_0x00018030a230();
-  }
-  *(undefined8 *)(in_RDX + 0x90) = *(undefined8 *)(in_RDX + 0xd0);
-  *(undefined8 *)(in_RDX + 0x98) = *(undefined8 *)(in_RDX + 0xd8);
-  *(undefined8 *)(in_RDX + 0xa0) = *(undefined8 *)(in_RDX + 0xe0);
-  *(undefined8 *)(in_RDX + 0xa8) = *(undefined8 *)(in_RDX + 0xe8);
-  *(undefined8 *)(in_RDX + 0xb0) = *(undefined8 *)(in_RDX + 0xf0);
-  *(undefined8 *)(in_RDX + 0xb8) = *(undefined8 *)(in_RDX + 0xf8);
-  *(undefined8 *)(in_RDX + 0xc0) = *(undefined8 *)(in_RDX + 0x100);
-  *(undefined8 *)(in_RDX + 200) = *(undefined8 *)(in_RDX + 0x108);
-  uVar5 = param_3[1];
-  *(undefined8 *)(in_RDX + 0x28) = *param_3;
-  *(undefined8 *)(in_RDX + 0x30) = uVar5;
-  uVar5 = param_3[3];
-  *(undefined8 *)(in_RDX + 0x38) = param_3[2];
-  *(undefined8 *)(in_RDX + 0x40) = uVar5;
-  uVar5 = param_3[5];
-  *(undefined8 *)(in_RDX + 0x48) = param_3[4];
-  *(undefined8 *)(in_RDX + 0x50) = uVar5;
-  uVar5 = param_3[7];
-  *(undefined8 *)(in_RDX + 0x58) = param_3[6];
-  *(undefined8 *)(in_RDX + 0x60) = uVar5;
-  return;
+/**
+ * 渲染系统插值处理器
+ * 
+ * 执行高级插值计算，处理渲染对象的平滑过渡和动画效果。
+ * 
+ * @param render_context 渲染上下文指针
+ * @param interpolation_factor 插值因子
+ * @param transform_data 变换数据数组
+ * @param distance_scale 距离缩放因子
+ */
+void rendering_system_interpolation_handler(
+    longlong render_context, 
+    float interpolation_factor, 
+    uint64_t *transform_data, 
+    float distance_scale
+) {
+    float current_x, current_y, current_z;
+    float target_x, target_y, target_z;
+    float distance_sum;
+    float interpolated_value;
+    float blend_factor;
+    float scale_factor;
+    float intensity_value;
+    float distance_factor;
+    float stack_distance;
+    uint32_t stack_flag;
+    longlong secondary_context;
+    
+    if (RENDERING_DISTANCE_THRESHOLD < 
+        SQRT(distance_factor + interpolation_factor + intensity_value) * distance_scale) {
+        
+        uint64_t temp_data = transform_data[1];
+        *(uint64_t *)(render_context + 0xd0) = *transform_data;
+        *(uint64_t *)(render_context + 0xd8) = temp_data;
+        temp_data = transform_data[3];
+        *(uint64_t *)(render_context + 0xe0) = transform_data[2];
+        *(uint64_t *)(render_context + 0xe8) = temp_data;
+        temp_data = transform_data[5];
+        *(uint64_t *)(render_context + 0xf0) = transform_data[4];
+        *(uint64_t *)(render_context + 0xf8) = temp_data;
+        temp_data = transform_data[7];
+        *(uint64_t *)(render_context + 0x100) = transform_data[6];
+        *(uint64_t *)(render_context + 0x108) = temp_data;
+        
+        temp_data = transform_data[1];
+        *(uint64_t *)(render_context + 0x90) = *transform_data;
+        *(uint64_t *)(render_context + 0x98) = temp_data;
+        temp_data = transform_data[3];
+        *(uint64_t *)(render_context + 0xa0) = transform_data[2];
+        *(uint64_t *)(render_context + 0xa8) = temp_data;
+        temp_data = transform_data[5];
+        *(uint64_t *)(render_context + 0xb0) = transform_data[4];
+        *(uint64_t *)(render_context + 0xb8) = temp_data;
+        temp_data = transform_data[7];
+        *(uint64_t *)(render_context + 0xc0) = transform_data[6];
+        *(uint64_t *)(render_context + 200) = temp_data;
+    }
+    
+    *(int *)(render_context + 0x118) = (int)(intensity_value * distance_factor);
+    interpolated_value = (float)(int)(intensity_value * distance_factor) * scale_factor;
+    blend_factor = interpolated_value / intensity_value;
+    *(float *)(render_context + 0x114) = intensity_value - interpolated_value;
+    
+    uint64_t temp_data = transform_data[1];
+    *(uint64_t *)(render_context + 0xd0) = *transform_data;
+    *(uint64_t *)(render_context + 0xd8) = temp_data;
+    temp_data = transform_data[3];
+    *(uint64_t *)(render_context + 0xe0) = transform_data[2];
+    *(uint64_t *)(render_context + 0xe8) = temp_data;
+    temp_data = transform_data[5];
+    *(uint64_t *)(render_context + 0xf0) = transform_data[4];
+    *(uint64_t *)(render_context + 0xf8) = temp_data;
+    
+    current_x = *(float *)(render_context + 0xc4);
+    current_y = *(float *)(transform_data + 7);
+    current_z = *(float *)((longlong)transform_data + 0x34);
+    target_x = *(float *)(transform_data + 6);
+    
+    *(float *)(render_context + 0x124) = scale_factor;
+    *(float *)(render_context + 0x128) = scale_factor;
+    
+    stack_distance = (current_y - *(float *)(render_context + 200)) * blend_factor + *(float *)(render_context + 200);
+    target_y = (target_x - *(float *)(render_context + 0xc0)) * blend_factor + *(float *)(render_context + 0xc0);
+    
+    temp_data = *(uint64_t *)(render_context + 0x80);
+    interpolated_value = *(float *)(secondary_context + 0x8c) / interpolated_value;
+    
+    *(uint64_t *)(secondary_context + 0x68) = *(uint64_t *)(render_context + 0x78);
+    *(uint64_t *)(secondary_context + 0x70) = temp_data;
+    *(float *)(secondary_context + 0x100) = target_y;
+    *(float *)(secondary_context + 0x104) = (current_z - current_x) * blend_factor + current_x;
+    *(float *)(secondary_context + 0x108) = stack_distance;
+    *(uint32_t *)(secondary_context + 0x10c) = RENDERING_MAX_FLOAT_VALUE;
+    
+    current_x = *(float *)(secondary_context + 0x104);
+    current_y = *(float *)(secondary_context + 0xc4);
+    current_z = *(float *)(secondary_context + 0x108);
+    target_x = *(float *)(secondary_context + 200);
+    
+    stack_flag = RENDERING_MAX_FLOAT_VALUE;
+    blend_factor = *(float *)(secondary_context + 0x88);
+    
+    *(float *)(render_context + 0x78) = (target_y - *(float *)(secondary_context + 0xc0)) * interpolated_value;
+    *(float *)(render_context + 0x7c) = (current_x - current_y) * interpolated_value;
+    *(float *)(render_context + 0x80) = (current_z - target_x) * interpolated_value;
+    *(uint32_t *)(render_context + 0x84) = RENDERING_MAX_FLOAT_VALUE;
+    
+    if (0.0f < blend_factor) {
+        func_0x00018030a230();
+    }
+    
+    *(uint64_t *)(secondary_context + 0x90) = *(uint64_t *)(secondary_context + 0xd0);
+    *(uint64_t *)(secondary_context + 0x98) = *(uint64_t *)(secondary_context + 0xd8);
+    *(uint64_t *)(secondary_context + 0xa0) = *(uint64_t *)(secondary_context + 0xe0);
+    *(uint64_t *)(secondary_context + 0xa8) = *(uint64_t *)(secondary_context + 0xe8);
+    *(uint64_t *)(secondary_context + 0xb0) = *(uint64_t *)(secondary_context + 0xf0);
+    *(uint64_t *)(secondary_context + 0xb8) = *(uint64_t *)(secondary_context + 0xf8);
+    *(uint64_t *)(secondary_context + 0xc0) = *(uint64_t *)(secondary_context + 0x100);
+    *(uint64_t *)(secondary_context + 200) = *(uint64_t *)(secondary_context + 0x108);
+    
+    temp_data = transform_data[1];
+    *(uint64_t *)(secondary_context + 0x28) = *transform_data;
+    *(uint64_t *)(secondary_context + 0x30) = temp_data;
+    temp_data = transform_data[3];
+    *(uint64_t *)(secondary_context + 0x38) = transform_data[2];
+    *(uint64_t *)(secondary_context + 0x40) = temp_data;
+    temp_data = transform_data[5];
+    *(uint64_t *)(secondary_context + 0x48) = transform_data[4];
+    *(uint64_t *)(secondary_context + 0x50) = temp_data;
+    temp_data = transform_data[7];
+    *(uint64_t *)(secondary_context + 0x58) = transform_data[6];
+    *(uint64_t *)(secondary_context + 0x60) = temp_data;
 }
 
 
