@@ -731,7 +731,7 @@ void UIMemoryInitializer(UI_SYSTEM_CONTEXT* context, uint32_t memory_size, int i
     }
     
     // 调用系统初始化函数
-    FUN_1808fc050(security_key ^ (ulonglong)stack_buffer);
+    SystemSecurityChecker(security_key ^ (ulonglong)stack_buffer);
 }
 
 /**
@@ -771,7 +771,7 @@ void UIResourceReleaser(void)
     ulonglong resource_handle;
     
     // 释放系统资源
-    FUN_1808fc050(resource_handle ^ (ulonglong)&stack0x00000000);
+    SystemSecurityChecker(resource_handle ^ (ulonglong)&stack0x00000000);
 }
 
 /**
@@ -788,7 +788,7 @@ void UIResourceReleaser(void)
 void UIErrorHandler(void)
 {
     // 调用系统错误处理函数
-    FUN_1807c41d0();
+    SystemCleanupFunction();
 }
 
 /**
@@ -809,7 +809,7 @@ uint32_t UIControlValueGetter(longlong control_handle)
     
     // 验证控件句柄
     if (0 < *(int *)(control_handle + 8)) {
-        index = FUN_18082f650();
+        index = SystemIndexFinder();
         if (-1 < index) {
             return *(uint32_t *)(*(longlong *)(control_handle + 0x28) + (longlong)index * 4);
         }
@@ -865,7 +865,7 @@ uint32_t UIAdvancedDataTransformer(int* control_indices, longlong output_buffer,
                 do {
                     temp_counter = (int)temp_iterator2;
                     height = control_indices[0x11];
-                    temp_index = FUN_18082d710(transform_handle, control_indices[0x10]);
+                    temp_index = SystemDataTransformer(transform_handle, control_indices[0x10]);
                     inner_counter = 0;
                     if (temp_index < 0) {
                         temp_index = control_indices[2];
@@ -873,7 +873,7 @@ uint32_t UIAdvancedDataTransformer(int* control_indices, longlong output_buffer,
                         
                         // 数据搜索和处理循环
                         do {
-                            width = FUN_18082d710(transform_handle, height);
+                            width = SystemDataTransformer(transform_handle, height);
                             while ((int)width < 0) {
                                 if (height < 2) {
                                     if ((int)width < 0) {
@@ -882,7 +882,7 @@ uint32_t UIAdvancedDataTransformer(int* control_indices, longlong output_buffer,
                                     break;
                                 }
                                 height = height + -1;
-                                width = FUN_18082d710(transform_handle, height);
+                                width = SystemDataTransformer(transform_handle, height);
                             }
                             
                             // 数据变换处理
@@ -914,7 +914,7 @@ uint32_t UIAdvancedDataTransformer(int* control_indices, longlong output_buffer,
                             temp_index = (int)*(char *)(*(longlong *)(control_indices + 0xc) + (longlong)(int)width);
                             if (height < temp_index) {
                                 // 错误处理
-                                func_0x00018082d690(transform_handle, height);
+                                SystemErrorHandler(transform_handle, height);
                                 return 0xffffffff;
                             }
                             width_iterator = (ulonglong)batch_size;
@@ -931,7 +931,7 @@ uint32_t UIAdvancedDataTransformer(int* control_indices, longlong output_buffer,
                         }
                         
                         // 数据变换处理
-                        func_0x00018082d690(transform_handle, temp_index);
+                        SystemErrorHandler(transform_handle, temp_index);
                         if (width == 0xffffffff) {
                             return 0xffffffff;
                         }
@@ -1006,14 +1006,14 @@ uint32_t UIAdvancedDataTransformer(int* control_indices, longlong output_buffer,
             temp_iterator2 = 0;
             do {
                 height = control_indices[0x11];
-                temp_index = FUN_18082d710(transform_handle, control_indices[0x10]);
+                temp_index = SystemDataTransformer(transform_handle, control_indices[0x10]);
                 if (temp_index < 0) {
                     temp_index = control_indices[2];
                     width = 0;
                     
                     // 数据搜索和处理
                     do {
-                        width = FUN_18082d710(transform_handle, height);
+                        width = SystemDataTransformer(transform_handle, height);
                         while ((int)width < 0) {
                             if (height < 2) {
                                 if ((int)width < 0) {
@@ -1022,7 +1022,7 @@ uint32_t UIAdvancedDataTransformer(int* control_indices, longlong output_buffer,
                                 break;
                             }
                             height = height + -1;
-                            width = FUN_18082d710(transform_handle, height);
+                            width = SystemDataTransformer(transform_handle, height);
                         }
                         
                         // 数据变换
@@ -1054,7 +1054,7 @@ uint32_t UIAdvancedDataTransformer(int* control_indices, longlong output_buffer,
                         temp_index = (int)*(char *)(*(longlong *)(control_indices + 0xc) + (longlong)(int)width);
                         if (height < temp_index) {
                             // 错误处理
-                            func_0x00018082d690(transform_handle, height);
+                            SystemErrorHandler(transform_handle, height);
                             return 0xffffffff;
                         }
                     } while (false);
@@ -1070,7 +1070,7 @@ uint32_t UIAdvancedDataTransformer(int* control_indices, longlong output_buffer,
                     }
                     
                     // 数据变换处理
-                    func_0x00018082d690(transform_handle, temp_index);
+                    SystemErrorHandler(transform_handle, temp_index);
                     if (width == 0xffffffff) {
                         return 0xffffffff;
                     }
@@ -1117,7 +1117,7 @@ static UI_SYSTEM_RESULT UI_InitializeSystem(UI_SYSTEM_CONTEXT* context)
     context->mode = DATA_MODE_NORMAL;
     
     // 分配内存池
-    context->memory_pool = FUN_1807c4200(NULL, MEMORY_POOL_BLOCK_SIZE);
+    context->memory_pool = SystemMemoryAllocator(NULL, MEMORY_POOL_BLOCK_SIZE);
     if (context->memory_pool == NULL) {
         return UI_SYSTEM_ERROR_MEMORY;
     }
@@ -1140,19 +1140,19 @@ static UI_SYSTEM_RESULT UI_CleanupSystem(UI_SYSTEM_CONTEXT* context)
     // 清理控件数据
     if (context->controls != NULL) {
         // 释放控件内存
-        FUN_1807c41d0(context->controls);
+        SystemCleanupFunction(context->controls);
     }
     
     // 清理数据缓冲区
     if (context->buffer != NULL) {
         // 释放缓冲区内存
-        FUN_1807c41d0(context->buffer);
+        SystemCleanupFunction(context->buffer);
     }
     
     // 清理内存池
     if (context->memory_pool != NULL) {
         // 释放内存池
-        FUN_1807c41d0(context->memory_pool);
+        SystemCleanupFunction(context->memory_pool);
     }
     
     return UI_SYSTEM_SUCCESS;

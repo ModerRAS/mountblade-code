@@ -720,7 +720,7 @@ void insert_into_object_array(ulonglong *object_array_ptr,uint64_t param_2,uint6
   // 检查是否需要扩展数组
   if (current_pos < object_array_ptr[2]) {
     object_array_ptr[1] = current_pos + 0x98;
-    FUN_180049b30(current_pos);
+    ObjectArray_InitializeObject(current_pos);
     return;
   }
   
@@ -769,7 +769,7 @@ EXPANSION_DONE:
   }
   
   // 插入新对象
-  FUN_180049b30(insert_ptr,param_2);
+  ObjectArray_InitializeObject(insert_ptr,param_2);
   
   // 清理旧数组
   old_ptr = (uint64_t *)object_array_ptr[1];
@@ -840,7 +840,7 @@ void cleanup_engine_resource_manager(longlong resource_manager)
     do {
       resource_ptr = *(uint64_t **)(table_ptr + index * 8);
       if (resource_ptr != (uint64_t *)0x0) {
-        FUN_180211720(resource_ptr + 4);
+        ResourceTable_ReleaseResource(resource_ptr + 4);
         *resource_ptr = &unknown_var_3456_ptr;
         if (resource_ptr[1] == 0) {
           resource_ptr[1] = 0;
@@ -858,7 +858,7 @@ void cleanup_engine_resource_manager(longlong resource_manager)
   
   *(uint64_t *)(resource_manager + 0x18) = 0;
   if ((1 < resource_count) && (*(longlong *)(resource_manager + 8) != 0)) {
-    FUN_18064e900();
+    MemoryPool_ReleaseMemory();
   }
   return;
 }
@@ -885,9 +885,9 @@ longlong *find_or_create_hash_entry(longlong hash_table_ptr,longlong *result_ptr
   
   if (entry_ptr == 0) {
     // 创建新条目
-    FUN_18066c220(hash_table_ptr + 0x20,&key,*(int32_t *)(hash_table_ptr + 0x10),*(int32_t *)(hash_table_ptr + 0x18),1);
+    HashTable_InsertEntry(hash_table_ptr + 0x20,&key,*(int32_t *)(hash_table_ptr + 0x10),*(int32_t *)(hash_table_ptr + 0x18),1);
     entry_ptr = MemoryPool_AllocateHashEntry(system_memory_pool_ptr,0x88,*(int8_t *)(hash_table_ptr + 0x2c));
-    FUN_180627ae0(entry_ptr,param_4);
+    HashTable_InitializeEntry(entry_ptr,param_4);
     memset(entry_ptr + 0x20,0,0x60);
   }
   
@@ -911,14 +911,14 @@ void cleanup_engine_object_pool(longlong *object_pool_ptr)
   
   end_ptr = object_pool_ptr[1];
   for (current_ptr = *object_pool_ptr; current_ptr != end_ptr; current_ptr = current_ptr + 0x60) {
-    FUN_180211720(current_ptr);
+    ObjectPool_ReleaseObject(current_ptr);
   }
   
   if (*object_pool_ptr == 0) {
     return;
   }
   
-  FUN_18064e900();
+  MemoryPool_ReleaseMemory();
 }
 
 /**
@@ -943,7 +943,7 @@ void cleanup_engine_manager_pool(longlong *manager_pool_ptr)
     return;
   }
   
-  FUN_18064e900();
+  MemoryPool_ReleaseMemory();
 }
 
 /**
@@ -1060,7 +1060,7 @@ INSERT_NODE:
   tree_data = MemoryPool_AllocateTreeNode(system_memory_pool_ptr,0x30,(char)tree_ptr[5]);
   *(ulonglong *)(tree_data + 0x20) = *key_ptr;
   *(int32_t *)(tree_data + 0x28) = 0;
-  FUN_18066bdc0(tree_data,current_node,tree_ptr,temp_uint);
+  TreeManager_InsertNode(tree_data,current_node,tree_ptr,temp_uint);
 }
 
 // 简化实现：以下函数由于包含大量复杂的指针操作和跳转逻辑，
