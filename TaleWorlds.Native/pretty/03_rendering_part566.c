@@ -791,7 +791,7 @@ LAB_18057b795:
   fStack_1f8 = fVar31;
   FUN_18063b470(&fStack_218,&fStack_148);
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(fVar31 * *(float *)(param_1 + 0x58) * 0.5);
+  AdvancedSystemController(fVar31 * *(float *)(param_1 + 0x58) * 0.5);
 }
 
 

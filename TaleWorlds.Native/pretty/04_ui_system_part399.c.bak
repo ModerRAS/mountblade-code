@@ -922,10 +922,10 @@ uint64_t FUN_18088ad30(int64_t param_1,int64_t param_2)
     *(int32_t *)(lVar1 + 0x34) = 0x2e;
     func_0x0001808ded80(lVar1,0);
                     // WARNING: Subroutine does not return
-    AdvancedSystemProcessor(&uStackX_10);
+    FUN_18088c790(&uStackX_10);
   }
                     // WARNING: Subroutine does not return
-  AdvancedSystemProcessor(&uStackX_10);
+  FUN_18088c790(&uStackX_10);
 }
 
 
