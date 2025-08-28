@@ -360,7 +360,7 @@ void RenderingSystem_ProcessRenderConfiguration(uint64_t param_1)
   auStack_1f0[0] = 0;
   uStack_1f8 = 0xd;
   strcpy_s(auStack_1f0,0x40,&system_memory_0c58);
-  FUN_1800b8300(apuStack_328,&puStack_208);
+  SystemResourceInitializer(apuStack_328,&puStack_208);
   uStack_2d0 = 2;
   uStack_348 = 4;
   SystemContextProcessor(param_1,appuStack_340,apuStack_328);
@@ -373,7 +373,7 @@ void RenderingSystem_ProcessRenderConfiguration(uint64_t param_1)
   auStack_190[0] = 0;
   uStack_198 = 0xd;
   strcpy_s(auStack_190,0x40,&system_memory_0c48);
-  FUN_1800b8300(apuStack_328,&puStack_1a8);
+  SystemResourceInitializer(apuStack_328,&puStack_1a8);
   uStack_2d0 = 2;
   uStack_348 = 8;
   SystemContextProcessor(param_1,appuStack_340,apuStack_328);
@@ -386,7 +386,7 @@ void RenderingSystem_ProcessRenderConfiguration(uint64_t param_1)
   auStack_130[0] = 0;
   uStack_138 = 0xe;
   strcpy_s(auStack_130,0x40,&system_memory_0ca8);
-  FUN_1800b8300(apuStack_328,&puStack_148);
+  SystemResourceInitializer(apuStack_328,&puStack_148);
   uStack_2d0 = 2;
   uStack_348 = 0x10;
   SystemContextProcessor(param_1,appuStack_340,apuStack_328);
@@ -399,7 +399,7 @@ void RenderingSystem_ProcessRenderConfiguration(uint64_t param_1)
   auStack_d0[0] = 0;
   uStack_d8 = 0xe;
   strcpy_s(auStack_d0,0x40,&system_memory_0c98);
-  FUN_1800b8300(apuStack_328,&puStack_e8);
+  SystemResourceInitializer(apuStack_328,&puStack_e8);
   uStack_2d0 = 2;
   uStack_348 = 0x20;
   SystemContextProcessor(param_1,appuStack_340,apuStack_328);
@@ -412,7 +412,7 @@ void RenderingSystem_ProcessRenderConfiguration(uint64_t param_1)
   auStack_70[0] = 0;
   uStack_78 = 10;
   strcpy_s(auStack_70,0x40,&system_memory_0c88);
-  FUN_1800b8300(apuStack_328,&puStack_88);
+  SystemResourceInitializer(apuStack_328,&puStack_88);
   uStack_2d0 = 2;
   uStack_348 = 0x40;
   SystemContextProcessor(param_1,appuStack_340,apuStack_328);
@@ -421,7 +421,7 @@ void RenderingSystem_ProcessRenderConfiguration(uint64_t param_1)
   apuStack_328[0] = &unknown_var_720_ptr;
   puStack_88 = &unknown_var_720_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_368);
+  SystemSecurityChecker(uStack_28 ^ (ulonglong)auStack_368);
 }
 
 
@@ -679,7 +679,7 @@ void RenderingSystem_FastColorInterpolator(int interpolation_mode, int32_t defau
  */
 void RenderingSystem_StringManagerInitializer(uint64_t *string_manager) {
     // 调用基础初始化函数
-    FUN_1803456e0();
+    SystemBaseInitializer();
     
     // 设置字符串管理器的基本结构
     uint64_t *manager_ptr = string_manager;
@@ -721,11 +721,11 @@ void RenderingSystem_StringManagerInitializer(uint64_t *string_manager) {
     uint64_t *buffer_target = processor_ptr;
     
     // 分配字符串缓冲区内存
-    int32_t *string_data = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+    int32_t *string_data = (int32_t *)SystemMemoryAllocator(_DAT_180c8ed18, 0x10, 0x13);
     *(int8_t *)string_data = 0; // 清零字符串数据
     buffer_ptr = (uint64_t *)string_data;
     
-    int32_t string_hash = FUN_18064e990(string_data);
+    int32_t string_hash = SystemStringHashCalculator(string_data);
     *string_data = 0x74736554; // 设置字符串标识 "Test"
     *(int8_t *)(string_data + 1) = 0; // 字符串结束符
     buffer_length = 4; // 字符串长度
@@ -771,11 +771,11 @@ void RenderingSystem_StringManagerInitializer(uint64_t *string_manager) {
     buffer_ptr = (uint64_t *)0x0;
     buffer_length = 0;
     
-    uint64_t *main_buffer = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+    uint64_t *main_buffer = (uint64_t *)SystemMemoryAllocator(_DAT_180c8ed18, 0x10, 0x13);
     *(int8_t *)main_buffer = 0; // 清零主缓冲区
     buffer_ptr = main_buffer;
     
-    int32_t main_hash = FUN_18064e990(main_buffer);
+    int32_t main_hash = SystemStringHashCalculator(main_buffer);
     buffer_size = CONCAT44(buffer_size._4_4_, main_hash);
     *main_buffer = 0x6d614e2068746150; // 设置主字符串 "Path Name"
     *(int16_t *)(main_buffer + 1) = 0x65; // 继续字符串
@@ -903,11 +903,11 @@ void RenderingSystem_ParameterInitializer(longlong render_context, uint64_t para
     int32_t string_length = 0;
     
     // 分配字符串内存
-    int32_t *string_data = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13, param_4, 0xfffffffffffffffe);
+    int32_t *string_data = (int32_t *)SystemMemoryAllocator(_DAT_180c8ed18, 0x10, 0x13, param_4, 0xfffffffffffffffe);
     *(int8_t *)string_data = 0; // 清零字符串数据
     string_ptr = string_data;
     
-    int32_t hash_value = FUN_18064e990(string_data);
+    int32_t hash_value = SystemStringHashCalculator(string_data);
     *string_data = 0x74736554; // 设置字符串 "Test"
     *(int8_t *)(string_data + 1) = 0; // 字符串结束符
     string_length = 4; // 字符串长度
@@ -1018,7 +1018,7 @@ void RenderingSystem_ProcessorInitializer_Standard(longlong render_context) {
     }
     
     // 安全退出
-    FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
+    SystemSecurityChecker(security_key ^ (ulonglong)security_buffer);
 }
 
 
@@ -1090,7 +1090,7 @@ void RenderingSystem_ProcessorInitializer_Enhanced(longlong render_context) {
     }
     
     // 安全退出
-    FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
+    SystemSecurityChecker(security_key ^ (ulonglong)security_buffer);
 }
 
 
@@ -1124,7 +1124,7 @@ void RenderingSystem_ManagerCreator(uint64_t param_1, uint64_t param_2) {
     uint64_t *manager_ptr = manager;
     
     // 调用基础初始化函数
-    FUN_1803456e0(manager, param_2, param_1);
+    SystemBaseInitializer(manager, param_2, param_1);
     
     // 设置管理器基本结构
     *manager_ptr = &unknown_var_1720_ptr; // 设置基础表
@@ -1165,11 +1165,11 @@ void RenderingSystem_ManagerCreator(uint64_t param_1, uint64_t param_2) {
     uint64_t *buffer_target = processor_ptr;
     
     // 分配字符串缓冲区内存
-    int32_t *string_data = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+    int32_t *string_data = (int32_t *)SystemMemoryAllocator(_DAT_180c8ed18, 0x10, 0x13);
     *(int8_t *)string_data = 0; // 清零字符串数据
     buffer_ptr = (uint64_t *)string_data;
     
-    int32_t string_hash = FUN_18064e990(string_data);
+    int32_t string_hash = SystemStringHashCalculator(string_data);
     *string_data = 0x74736554; // 设置字符串标识 "Test"
     *(int8_t *)(string_data + 1) = 0; // 字符串结束符
     buffer_length = 4; // 字符串长度
@@ -1215,11 +1215,11 @@ void RenderingSystem_ManagerCreator(uint64_t param_1, uint64_t param_2) {
     buffer_ptr = (uint64_t *)0x0;
     buffer_length = 0;
     
-    uint64_t *main_buffer = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+    uint64_t *main_buffer = (uint64_t *)SystemMemoryAllocator(_DAT_180c8ed18, 0x10, 0x13);
     *(int8_t *)main_buffer = 0; // 清零主缓冲区
     buffer_ptr = main_buffer;
     
-    int32_t main_hash = FUN_18064e990(main_buffer);
+    int32_t main_hash = SystemStringHashCalculator(main_buffer);
     buffer_size = CONCAT44(buffer_size._4_4_, main_hash);
     *main_buffer = 0x6d614e2068746150; // 设置主字符串 "Path Name"
     *(int16_t *)(main_buffer + 1) = 0x65; // 继续字符串

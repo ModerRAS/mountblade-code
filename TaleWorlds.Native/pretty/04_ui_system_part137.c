@@ -127,6 +127,11 @@ typedef struct {
 #define UISystem_PhysicsProcessor          FUN_18074a6ac    // UI系统物理处理器
 #define UISystem_StateSynchronizer         FUN_18074a885    // UI系统状态同步器
 #define UISystem_DataValidator             FUN_18074a895    // UI系统数据验证器
+#define UISystem_AngleProcessor            FUN_180768b70    // UI系统角度处理器
+#define UISystem_SystemCallHandler         FUN_1808fc050    // UI系统调用处理器
+#define UISystem_InternalFunction1         FUN_180743c40    // UI系统内部函数1
+#define UISystem_InternalFunction2         FUN_1807d4800    // UI系统内部函数2
+#define UISystem_InternalFunction3         FUN_1807d4ac0    // UI系统内部函数3
 
 // ================================
 // 全局变量声明
@@ -173,7 +178,8 @@ LAB_180749ae6:
   }
   else {
     in_stack_00000040 = 0;
-    FUN_180768b70(&stack0x00000040);
+    // 调用UI系统角度处理器，处理角度转换和计算
+  UISystem_AngleProcessor(&stack0x00000040);
     iStack000000000000004c = *piVar1;
     if ((*(int *)(unaff_RBX + 0x6ac) == 0) ||
        (999 < (uint)(in_stack_00000040 - *(int *)(unaff_RBX + 0x6ac)))) {

@@ -27,8 +27,8 @@
 #include <stdlib.h>
 
 // 类型定义
-typedef long long longlong;
-typedef unsigned long long ulonglong;
+typedef long long long long;
+typedef unsigned long long ulong long;
 
 // 工具函数模块常量定义
 #define UTILITIES_FLAG_NEGATIVE_0x3FFFFFFB -0x3ffffffb  // 负数标志位
@@ -196,7 +196,7 @@ void utilities_system_state_resetter(uint64_t param_1, long long param_2)
 // 参数：param_1 - 函数参数数组指针，param_2 - 系统状态参数
 // 返回值：无
 // =============================================================================
-void utilities_system_function_invoker(uint64_t *param_1, longlong param_2)
+void utilities_system_function_invoker(uint64_t *param_1, long long param_2)
 
 {
   // 调用系统函数并传递相关参数
@@ -236,7 +236,7 @@ bool utilities_system_state_validator(uint64_t *param_1)
 // 参数：param_1 - 系统上下文，param_2 - 资源参数
 // 返回值：无
 // =============================================================================
-void utilities_system_resource_handler(uint64_t param_1, longlong param_2)
+void utilities_system_resource_handler(uint64_t param_1, long long param_2)
 
 {
   // 检查资源状态是否为空闲
@@ -261,7 +261,7 @@ void utilities_system_resource_handler(uint64_t param_1, longlong param_2)
 // 参数：param_1 - 系统上下文，param_2 - 数据参数
 // 返回值：无
 // =============================================================================
-void utilities_system_data_processor(uint64_t param_1, longlong param_2)
+void utilities_system_data_processor(uint64_t param_1, long long param_2)
 
 {
   // 检查数据状态是否为空闲
@@ -314,7 +314,7 @@ int32_t utilities_system_state_initializer(uint64_t param_1, long long param_2)
 // 参数：param_1 - 系统上下文，param_2 - 配置参数
 // 返回值：无
 // =============================================================================
-void utilities_system_configuration_handler(uint64_t param_1, longlong param_2)
+void utilities_system_configuration_handler(uint64_t param_1, long long param_2)
 
 {
   // 检查配置状态是否为空闲
@@ -500,8 +500,8 @@ static uint64_t* utilities_system_ptr_array[40] = {
 void utilities_system_module_initializer(void)
 
 {
-  longlong module_end;
-  longlong module_ptr;
+  long long module_end;
+  long long module_ptr;
   
   // 初始化系统模块
   module_state_ptr = (uint64_t*)SYSTEM_INIT_VALUE;
@@ -1045,7 +1045,7 @@ void utilities_system_control_mode_resetter(void)
 void utilities_system_memory_manager(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  longlong *plVar1;
+  long long *plVar1;
   
   // 变量重命名以提高可读性：
   // plVar1 -> memory_ptr: 内存指针
@@ -1061,9 +1061,9 @@ void utilities_system_memory_manager(uint64_t param_1,uint64_t param_2,uint64_t 
                 0xfffffffffffffffe);  // 内存标志
   
   // 更新内存指针状态
-  memory_pool_ptr[1] = (longlong)memory_ptr;
-  *memory_pool_ptr = (longlong)memory_ptr;
-  memory_pool_ptr[2] = (longlong)memory_ptr;
+  memory_pool_ptr[1] = (long long)memory_ptr;
+  *memory_pool_ptr = (long long)memory_ptr;
+  memory_pool_ptr[2] = (long long)memory_ptr;
   *memory_pool_status_ptr = 0;
   
   // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
@@ -1220,8 +1220,8 @@ void utilities_system_exception_handler(void)
 {
   int *piVar1;
   uint64_t *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
+  long long lVar3;
+  ulong long uVar4;
   
   // 变量重命名以提高可读性：
   // piVar1 -> exception_count: 异常计数器
@@ -1236,11 +1236,11 @@ void utilities_system_exception_handler(void)
   }
   
   // 计算异常掩码
-  exception_mask = (ulonglong)*exception_handler_ptr & 0xffffffffffc00000;
+  exception_mask = (ulong long)*exception_handler_ptr & 0xffffffffffc00000;
   if (exception_mask != 0) {
     // 计算异常偏移量
-    exception_offset = exception_mask + 0x80 + ((longlong)*exception_handler_ptr - exception_mask >> 0x10) * 0x50;
-    exception_offset = exception_offset - (ulonglong)*(uint *)(exception_offset + 4);
+    exception_offset = exception_mask + 0x80 + ((long long)*exception_handler_ptr - exception_mask >> 0x10) * 0x50;
+    exception_offset = exception_offset - (ulong long)*(uint *)(exception_offset + 4);
     
     // 检查异常列表状态
     if ((*(void ***)(exception_mask + 0x70) == &ExceptionList) && (*(char *)(exception_offset + 0xe) == '\0')) {
@@ -1383,7 +1383,7 @@ void utilities_system_state_cleaner_and_terminator(void)
                     // WARNING: Subroutine does not return
       utilities_system_error_handler();
     }
-    if (*system_sync_handler_ptr != (longlong *)0x0) {
+    if (*system_sync_handler_ptr != (long long *)0x0) {
       (**(code **)(**system_sync_handler_ptr + 0x38))();
     }
     if (*system_sync_flag_ptr != 0) {
@@ -1393,8 +1393,18 @@ void utilities_system_state_cleaner_and_terminator(void)
     _Mtx_destroy_in_situ();
     _Cnd_destroy_in_situ();
     utilities_system_finalizer(0x180c919f0);
+  }
+  return;
+}
 
 
+// =============================================================================
+// 系统附加重置器3 (SystemAdditionalResetter3)
+// =============================================================================
+// 功能：重置系统附加状态3并设置默认值
+// 参数：无
+// 返回值：无
+// =============================================================================
 void utilities_system_additional_resetter_3(void)
 
 {
@@ -1493,14 +1503,14 @@ void utilities_system_memory_validator(void)
 void utilities_system_temp_cleaner(void)
 
 {
-  longlong lVar1;
-  ulonglong uVar2;
+  long long lVar1;
+  ulong long uVar2;
   
   if (*system_temp_ptr_1 != 0) {
     uVar2 = *system_temp_ptr_2 - *system_temp_ptr_1 & 0xfffffffffffffff8;
     lVar1 = *system_temp_ptr_1;
     if (0xfff < uVar2) {
-      lVar1 = *(longlong *)(*system_temp_ptr_1 + -8);
+      lVar1 = *(long long *)(*system_temp_ptr_1 + -8);
       uVar2 = uVar2 + 0x27;
       if (0x1f < (*system_temp_ptr_1 - lVar1) - 8U) {
                     // WARNING: Subroutine does not return
@@ -2220,15 +2230,15 @@ void utilities_system_sync_cleaner(void)
 void utilities_system_buffer_cleaner_1(void)
 
 {
-  longlong lVar1;
-  longlong lVar2;
+  long long lVar1;
+  long long lVar2;
   
   utilities_system_buffer_handler(&system_cache_config);
   if (0xf < *system_buffer_usage_count) {
     lVar1 = CONCAT71(*system_buffer_ptr_5,*system_buffer_ptr_1);
     lVar2 = lVar1;
     if (0xfff < *system_buffer_usage_count + 1) {
-      lVar2 = *(longlong *)(lVar1 + -8);
+      lVar2 = *(long long *)(lVar1 + -8);
       if (0x1f < (lVar1 - lVar2) - 8U) {
                     // WARNING: Subroutine does not return
         _invalid_parameter_noinfo_noreturn(lVar1 - lVar2,*system_buffer_usage_count + 0x28);
@@ -2251,14 +2261,14 @@ void utilities_system_buffer_cleaner_1(void)
 void utilities_system_buffer_cleaner_2(void)
 
 {
-  longlong lVar1;
-  longlong lVar2;
+  long long lVar1;
+  long long lVar2;
   
   if (0xf < *system_buffer_size_ptr) {
     lVar1 = CONCAT71(*system_buffer_ptr_4,*system_memory_c100);
     lVar2 = lVar1;
     if (0xfff < *system_buffer_size_ptr + 1) {
-      lVar2 = *(longlong *)(lVar1 + -8);
+      lVar2 = *(long long *)(lVar1 + -8);
       if (0x1f < (lVar1 - lVar2) - 8U) {
                     // WARNING: Subroutine does not return
         _invalid_parameter_noinfo_noreturn(lVar1 - lVar2,*system_buffer_size_ptr + 0x28);
@@ -2282,8 +2292,8 @@ void utilities_system_buffer_cleaner_2(void)
 void utilities_system_memory_cleaner(void)
 
 {
-  longlong lVar1;
-  longlong lVar2;
+  long long lVar1;
+  long long lVar2;
   
   // 变量重命名以提高可读性：
   // lVar1 -> memory_ptr: 内存指针
@@ -2296,7 +2306,7 @@ void utilities_system_memory_cleaner(void)
     
     // 检查内存块大小
     if (0xfff < *system_memory_usage_count + 1) {
-      memory_base = *(longlong *)(memory_ptr + -8);
+      memory_base = *(long long *)(memory_ptr + -8);
       if (0x1f < (memory_ptr - memory_base) - 8U) {
         // 内存块大小无效，终止程序
         _invalid_parameter_noinfo_noreturn(memory_ptr - memory_base,*system_memory_usage_count + 0x28);
@@ -2328,8 +2338,8 @@ void utilities_system_memory_cleaner(void)
 void utilities_system_data_memory_cleaner(void)
 
 {
-  longlong lVar1;
-  longlong lVar2;
+  long long lVar1;
+  long long lVar2;
   
   // 变量重命名以提高可读性：
   // lVar1 -> data_memory_ptr: 数据内存指针
@@ -2342,7 +2352,7 @@ void utilities_system_data_memory_cleaner(void)
     
     // 检查数据内存块大小
     if (0xfff < *system_data_memory_usage_count + 1) {
-      data_memory_base = *(longlong *)(data_memory_ptr + -8);
+      data_memory_base = *(long long *)(data_memory_ptr + -8);
       if (0x1f < (data_memory_ptr - data_memory_base) - 8U) {
         // 数据内存块大小无效，终止程序
         _invalid_parameter_noinfo_noreturn(data_memory_ptr - data_memory_base,*system_data_memory_usage_count + 0x28);
