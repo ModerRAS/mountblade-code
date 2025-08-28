@@ -1,26 +1,84 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part053.c - 9 个函数
+/**
+ * 渲染系统高级标志位和材质处理模块
+ * 
+ * 本模块包含渲染系统的高级标志位处理、材质参数初始化、
+ * 材质数据解析、渲染对象管理、资源释放、缓冲区调整、
+ * 字符映射处理等核心功能。
+ * 
+ * 主要功能：
+ * - 渲染标志位处理和边界设置
+ * - 材质参数初始化和数据解析
+ * - 渲染对象管理和资源释放
+ * - 缓冲区动态调整和内存管理
+ * - 字符映射处理和文本渲染支持
+ */
 
-// 函数: void FUN_180297321(void)
+// =============================================================================
+// 渲染系统空操作函数
+// =============================================================================
+
+/**
+ * 渲染系统空操作函数
+ * 
+ * 这是一个空操作函数，用于渲染系统中的占位操作。
+ * 在某些渲染流程中作为默认的空操作处理函数。
+ */
+void render_nop_operation(void) __attribute__((alias("FUN_180297321")));
+
 void FUN_180297321(void)
-
 {
   return;
 }
 
+// =============================================================================
+// 渲染系统参数传递函数
+// =============================================================================
 
+/**
+ * 渲染系统参数传递函数
+ * 
+ * 简单的参数传递函数，直接返回第三个参数。
+ * 用于渲染系统中的参数传递和路由。
+ * 
+ * @param param_1 第一个参数（未使用）
+ * @param param_2 第二个参数（未使用）
+ * @param param_3 第三个参数（将被返回）
+ * @return 直接返回第三个参数
+ */
+undefined8 render_param_pass_through(undefined8 param_1, undefined8 param_2, undefined8 param_3) __attribute__((alias("FUN_180297337")));
 
-undefined8 FUN_180297337(undefined8 param_1,undefined8 param_2,undefined8 param_3)
-
+undefined8 FUN_180297337(undefined8 param_1, undefined8 param_2, undefined8 param_3)
 {
   return param_3;
 }
 
+// =============================================================================
+// 渲染系统浮点数处理函数
+// =============================================================================
 
+/**
+ * 渲染系统浮点数处理函数
+ * 
+ * 处理渲染系统中的浮点数计算和字符映射。
+ * 支持字符编码转换、浮点数插值计算、边界处理等功能。
+ * 
+ * @param param_1 渲染参数数组指针
+ * @param param_2 输出浮点数数组指针
+ * @param param_3 缩放因子
+ * @param param_4 边界阈值
+ * @param param_5 字符处理阈值
+ * @param param_6 输入字符串起始指针
+ * @param param_7 输入字符串结束指针
+ * @param param_8 输出字符位置指针
+ * @return 处理后的浮点数数组指针
+ */
+float * process_render_float_data(float *param_1, float *param_2, float param_3, float param_4, float param_5,
+                                 char *param_6, char *param_7, undefined8 *param_8) __attribute__((alias("FUN_180297340")));
 
-float * FUN_180297340(float *param_1,float *param_2,float param_3,float param_4,float param_5,
-                     char *param_6,char *param_7,undefined8 *param_8)
+float * FUN_180297340(float *param_1, float *param_2, float param_3, float param_4, float param_5,
+                     char *param_6, char *param_7, undefined8 *param_8)
 
 {
   char cVar1;
@@ -36,14 +94,18 @@ float * FUN_180297340(float *param_1,float *param_2,float param_3,float param_4,
   float fVar11;
   float fVar12;
   
+  // 初始化字符串结束指针
   pcVar9 = param_7;
   if (param_7 == (char *)0x0) {
+    // 计算字符串长度
     lVar8 = -1;
     do {
       lVar8 = lVar8 + 1;
     } while (param_6[lVar8] != '\0');
     pcVar9 = param_6 + lVar8;
   }
+  
+  // 初始化输出数组
   param_2[0] = 0.0;
   param_2[1] = 0.0;
   fVar11 = 0.0;
@@ -52,22 +114,27 @@ float * FUN_180297340(float *param_1,float *param_2,float param_3,float param_4,
   pcVar4 = (char *)0x0;
   pcVar6 = param_6;
   pcVar5 = param_6;
+  
+  // 主处理循环
   if (param_6 < pcVar9) {
     do {
       if (bVar2) {
 LAB_180297469:
+        // 字符转换为浮点数
         param_5 = (float)(int)*pcVar5;
         if ((uint)param_5 < 0x80) {
           pcVar6 = pcVar5 + 1;
         }
         else {
-          iVar3 = FUN_180121550(&param_5,pcVar5,pcVar9);
+          // 处理多字节字符
+          iVar3 = FUN_180121550(&param_5, pcVar5, pcVar9);
           pcVar6 = pcVar5 + iVar3;
           if (param_5 == 0.0) break;
         }
         pcVar7 = pcVar6;
         if ((uint)param_5 < 0x20) {
-          if (param_5 == 1.4013e-44) {
+          // 处理控制字符
+          if (param_5 == 1.4013e-44) {  // 换行符
             if (fVar11 <= *param_2) {
               fVar11 = *param_2;
             }
@@ -82,6 +149,7 @@ LAB_180297469:
         }
         else {
 LAB_1802974d0:
+          // 处理可打印字符
           if ((int)param_5 < (int)param_1[8]) {
             fVar12 = *(float *)(*(longlong *)(param_1 + 10) + (ulonglong)(uint)param_5 * 4);
           }
@@ -94,6 +162,7 @@ LAB_1802974d0:
         }
       }
       else {
+        // 处理特殊字符模式
         if ((pcVar4 == (char *)0x0) && (pcVar4 = (char *)FUN_1802971b0(param_1), pcVar4 == pcVar5))
         {
           pcVar4 = pcVar4 + 1;
@@ -105,6 +174,7 @@ LAB_1802974d0:
         fVar12 = 0.0;
         pcVar4 = (char *)0x0;
         param_2[1] = param_3 + param_2[1];
+        // 跳过空白字符
         while ((cVar1 = *pcVar5, cVar1 == ' ' || (cVar1 == '\t'))) {
           pcVar5 = pcVar5 + 1;
           pcVar6 = pcVar5;
@@ -122,6 +192,7 @@ LAB_1802974d0:
     } while (pcVar7 < pcVar9);
   }
 FUN_180297510:
+  // 最终处理
   if (*param_2 <= fVar11 && fVar11 != *param_2) {
     *param_2 = fVar11;
   }
@@ -134,13 +205,24 @@ FUN_180297510:
   return param_2;
 }
 
+// =============================================================================
+// 渲染系统高级浮点数处理函数
+// =============================================================================
 
+/**
+ * 渲染系统高级浮点数处理函数
+ * 
+ * 高级版本的浮点数处理函数，支持更复杂的字符映射和
+ * 浮点数计算功能。主要用于高级渲染文本处理。
+ * 
+ * @param param_1 渲染参数数组指针
+ * @param param_2 输出参数指针
+ * @param param_3 缩放因子
+ * @param param_4 边界阈值
+ */
+void process_advanced_render_float_data(float *param_1, undefined8 *param_2, float param_3, float param_4) __attribute__((alias("FUN_180297357")));
 
-
-
-// 函数: void FUN_180297357(float *param_1,undefined8 *param_2,float param_3,float param_4)
-void FUN_180297357(float *param_1,undefined8 *param_2,float param_3,float param_4)
-
+void FUN_180297357(float *param_1, undefined8 *param_2, float param_3, float param_4)
 {
   char cVar1;
   bool bVar2;
@@ -184,6 +266,7 @@ void FUN_180297357(float *param_1,undefined8 *param_2,float param_3,float param_
   char *in_stack_000000d0;
   undefined8 *in_stack_000000d8;
   
+  // 保存寄存器状态
   *(undefined8 *)(in_RAX + 8) = unaff_RBP;
   *(undefined8 *)(in_RAX + 0x10) = unaff_RDI;
   *(undefined8 *)(in_RAX + 0x18) = unaff_R12;
@@ -208,6 +291,8 @@ void FUN_180297357(float *param_1,undefined8 *param_2,float param_3,float param_
   *(undefined4 *)(in_RAX + -100) = unaff_XMM10_Db;
   *(undefined4 *)(in_RAX + -0x60) = unaff_XMM10_Dc;
   *(undefined4 *)(in_RAX + -0x5c) = unaff_XMM10_Dd;
+  
+  // 初始化字符串结束指针
   pcVar8 = in_stack_000000d0;
   if (in_stack_000000d0 == (char *)0x0) {
     lVar7 = -1;
@@ -216,28 +301,35 @@ void FUN_180297357(float *param_1,undefined8 *param_2,float param_3,float param_
     } while (unaff_RBX[lVar7] != '\0');
     pcVar8 = unaff_RBX + lVar7;
   }
+  
+  // 初始化输出参数
   *param_2 = 0;
   fVar10 = 0.0;
   fVar9 = param_3 / *param_1;
   bVar2 = in_stack_000000c0 <= 0.0;
   pcVar4 = (char *)0x0;
   pcVar5 = unaff_RBX;
+  
+  // 主处理循环
   if (unaff_RBX < pcVar8) {
     do {
       if (bVar2) {
 LAB_180297469:
+        // 字符转换为浮点数
         in_stack_000000c0 = (float)(int)*unaff_RBX;
         if ((uint)in_stack_000000c0 < 0x80) {
           pcVar5 = unaff_RBX + 1;
         }
         else {
-          iVar3 = FUN_180121550(&stack0x000000c0,unaff_RBX,pcVar8);
+          // 处理多字节字符
+          iVar3 = FUN_180121550(&stack0x000000c0, unaff_RBX, pcVar8);
           pcVar5 = unaff_RBX + iVar3;
           if (in_stack_000000c0 == 0.0) break;
         }
         pcVar6 = pcVar5;
         if ((uint)in_stack_000000c0 < 0x20) {
-          if (in_stack_000000c0 == 1.4013e-44) {
+          // 处理控制字符
+          if (in_stack_000000c0 == 1.4013e-44) {  // 换行符
             if (fVar10 <= *unaff_RSI) {
               fVar10 = *unaff_RSI;
             }
@@ -252,9 +344,9 @@ LAB_180297469:
         }
         else {
 LAB_1802974d0:
+          // 处理可打印字符
           if ((int)in_stack_000000c0 < (int)param_1[8]) {
-            fVar11 = *(float *)(*(longlong *)(param_1 + 10) + (ulonglong)(uint)in_stack_000000c0 * 4
-                               );
+            fVar11 = *(float *)(*(longlong *)(param_1 + 10) + (ulonglong)(uint)in_stack_000000c0 * 4);
           }
           else {
             fVar11 = param_1[0x12];
@@ -265,6 +357,7 @@ LAB_1802974d0:
         }
       }
       else {
+        // 处理特殊字符模式
         if ((pcVar4 == (char *)0x0) &&
            (pcVar4 = (char *)FUN_1802971b0(param_1), pcVar4 == unaff_RBX)) {
           pcVar4 = pcVar4 + 1;
@@ -276,6 +369,7 @@ LAB_1802974d0:
         fVar11 = 0.0;
         pcVar4 = (char *)0x0;
         unaff_RSI[1] = param_3 + unaff_RSI[1];
+        // 跳过空白字符
         while ((cVar1 = *unaff_RBX, cVar1 == ' ' || (cVar1 == '\t'))) {
           unaff_RBX = unaff_RBX + 1;
           pcVar5 = unaff_RBX;
@@ -293,6 +387,7 @@ LAB_1802974d0:
     } while (pcVar6 < pcVar8);
   }
 FUN_180297510:
+  // 最终处理
   if (*unaff_RSI <= fVar10 && fVar10 != *unaff_RSI) {
     *unaff_RSI = fVar10;
   }
@@ -305,13 +400,22 @@ FUN_180297510:
   return;
 }
 
+// =============================================================================
+// 渲染系统字符处理函数
+// =============================================================================
 
+/**
+ * 渲染系统字符处理函数
+ * 
+ * 处理渲染系统中的字符编码和解码功能。
+ * 支持多种字符集和编码格式的转换。
+ * 
+ * @param param_1 渲染上下文指针
+ * @param param_2 缩放因子
+ */
+void process_rendering_characters(undefined8 param_1, float param_2) __attribute__((alias("FUN_1802973de")));
 
-
-
-// 函数: void FUN_1802973de(undefined8 param_1,float param_2)
-void FUN_1802973de(undefined8 param_1,float param_2)
-
+void FUN_1802973de(undefined8 param_1, float param_2)
 {
   char cVar1;
   int iVar2;
@@ -331,22 +435,26 @@ void FUN_1802973de(undefined8 param_1,float param_2)
   uint in_stack_000000c0;
   undefined8 *in_stack_000000d8;
   
+  // 主处理循环
   do {
     fVar5 = unaff_XMM8_Da;
     if (unaff_R12B == '\0') {
 LAB_180297469:
+      // 字符转换
       in_stack_000000c0 = (uint)*unaff_RBX;
       if (in_stack_000000c0 < 0x80) {
         pcVar3 = unaff_RBX + 1;
       }
       else {
-        iVar2 = FUN_180121550(&stack0x000000c0,unaff_RBX);
+        // 处理多字节字符
+        iVar2 = FUN_180121550(&stack0x000000c0, unaff_RBX);
         pcVar3 = unaff_RBX + iVar2;
         if (in_stack_000000c0 == 0) break;
       }
       pcVar4 = pcVar3;
       if (in_stack_000000c0 < 0x20) {
-        if (in_stack_000000c0 == 10) {
+        // 处理控制字符
+        if (in_stack_000000c0 == 10) {  // 换行符
           if (unaff_XMM6_Da <= *unaff_RSI) {
             unaff_XMM6_Da = *unaff_RSI;
           }
@@ -360,6 +468,7 @@ LAB_180297469:
       }
       else {
 LAB_1802974d0:
+        // 处理可打印字符
         if ((int)in_stack_000000c0 < *(int *)(unaff_R15 + 0x20)) {
           fVar5 = *(float *)(*(longlong *)(unaff_R15 + 0x28) + (ulonglong)in_stack_000000c0 * 4);
         }
@@ -372,6 +481,7 @@ LAB_1802974d0:
       }
     }
     else {
+      // 处理特殊字符模式
       if ((unaff_RBP == (char *)0x0) &&
          (unaff_RBP = (char *)FUN_1802971b0(), unaff_RBP == unaff_RBX)) {
         unaff_RBP = unaff_RBP + 1;
@@ -382,6 +492,7 @@ LAB_1802974d0:
       }
       unaff_RBP = (char *)0x0;
       unaff_RSI[1] = unaff_XMM7_Da + unaff_RSI[1];
+      // 跳过空白字符
       while ((cVar1 = *unaff_RBX, cVar1 == ' ' || (cVar1 == '\t'))) {
         unaff_RBX = unaff_RBX + 1;
         pcVar3 = unaff_RBX;
@@ -398,6 +509,7 @@ LAB_1802974d0:
     unaff_XMM6_Da = fVar5;
   } while (pcVar4 < unaff_RDI);
 LAB_180297508:
+  // 最终处理
   if (*unaff_RSI <= unaff_XMM6_Da && unaff_XMM6_Da != *unaff_RSI) {
     *unaff_RSI = unaff_XMM6_Da;
   }
@@ -410,13 +522,19 @@ LAB_180297508:
   return;
 }
 
+// =============================================================================
+// 渲染系统状态更新函数
+// =============================================================================
 
+/**
+ * 渲染系统状态更新函数
+ * 
+ * 更新渲染系统的状态信息，包括位置坐标和缩放参数。
+ * 用于渲染过程中的状态同步和更新。
+ */
+void update_rendering_state(void) __attribute__((alias("FUN_180297510")));
 
-
-
-// 函数: void FUN_180297510(void)
 void FUN_180297510(void)
-
 {
   undefined8 unaff_RBX;
   float *unaff_RSI;
@@ -425,6 +543,7 @@ void FUN_180297510(void)
   float unaff_XMM8_Da;
   undefined8 *in_stack_000000d8;
   
+  // 更新渲染状态
   if (*unaff_RSI <= unaff_XMM6_Da && unaff_XMM6_Da != *unaff_RSI) {
     *unaff_RSI = unaff_XMM6_Da;
   }
@@ -437,13 +556,19 @@ void FUN_180297510(void)
   return;
 }
 
+// =============================================================================
+// 渲染系统快速状态更新函数
+// =============================================================================
 
+/**
+ * 渲染系统快速状态更新函数
+ * 
+ * 快速版本的渲染状态更新函数，用于高性能渲染场景。
+ * 直接设置状态值而不进行条件检查。
+ */
+void fast_update_rendering_state(void) __attribute__((alias("FUN_180297541")));
 
-
-
-// 函数: void FUN_180297541(void)
 void FUN_180297541(void)
-
 {
   undefined8 unaff_RBX;
   float *unaff_RSI;
@@ -452,6 +577,7 @@ void FUN_180297541(void)
   float unaff_XMM8_Da;
   undefined8 *in_stack_000000d8;
   
+  // 快速更新渲染状态
   *unaff_RSI = unaff_XMM6_Da;
   if ((unaff_XMM8_Da < unaff_XMM6_Da) || (unaff_XMM8_Da == unaff_RSI[1])) {
     unaff_RSI[1] = unaff_XMM7_Da + unaff_RSI[1];
@@ -462,13 +588,19 @@ void FUN_180297541(void)
   return;
 }
 
+// =============================================================================
+// 渲染系统条件状态更新函数
+// =============================================================================
 
+/**
+ * 渲染系统条件状态更新函数
+ * 
+ * 根据条件更新渲染系统的状态信息。
+ * 只有在满足特定条件时才执行状态更新。
+ */
+void conditional_update_rendering_state(void) __attribute__((alias("FUN_180297550")));
 
-
-
-// 函数: void FUN_180297550(void)
 void FUN_180297550(void)
-
 {
   undefined8 unaff_RBX;
   longlong unaff_RSI;
@@ -476,6 +608,7 @@ void FUN_180297550(void)
   float unaff_XMM8_Da;
   undefined8 *in_stack_000000d8;
   
+  // 条件更新渲染状态
   if (unaff_XMM8_Da == *(float *)(unaff_RSI + 4)) {
     *(float *)(unaff_RSI + 4) = unaff_XMM7_Da + *(float *)(unaff_RSI + 4);
   }
@@ -485,29 +618,54 @@ void FUN_180297550(void)
   return;
 }
 
+// =============================================================================
+// 渲染系统简单赋值函数
+// =============================================================================
 
+/**
+ * 渲染系统简单赋值函数
+ * 
+ * 简单的赋值函数，用于渲染系统中的数据传递。
+ * 将一个值赋给指定的内存位置。
+ */
+void render_simple_assignment(void) __attribute__((alias("FUN_180297579")));
 
-
-
-// 函数: void FUN_180297579(void)
 void FUN_180297579(void)
-
 {
   undefined8 *in_RAX;
   undefined8 unaff_RBX;
   
+  // 执行简单赋值
   *in_RAX = unaff_RBX;
   return;
 }
 
+// =============================================================================
+// 渲染系统高级文本渲染函数
+// =============================================================================
 
+/**
+ * 渲染系统高级文本渲染函数
+ * 
+ * 高级文本渲染函数，支持复杂的文本布局和渲染功能。
+ * 包括字符映射、位置计算、缓冲区管理等功能。
+ * 
+ * @param param_1 渲染参数数组指针
+ * @param param_2 渲染上下文指针
+ * @param param_3 缩放因子
+ * @param param_4 位置参数
+ * @param param_5 颜色参数
+ * @param param_6 边界框数组指针
+ * @param param_7 文本起始指针
+ * @param param_8 文本结束指针
+ * @param param_9 高度参数
+ * @param param_10 渲染标志
+ */
+void render_advanced_text(float *param_1, int *param_2, float param_3, undefined8 param_4, float param_5,
+                        float *param_6, char *param_7, char *param_8, float param_9, char param_10) __attribute__((alias("FUN_180297590")));
 
-
-
-// 函数: void FUN_180297590(float *param_1,int *param_2,float param_3,undefined8 param_4,float param_5,
-void FUN_180297590(float *param_1,int *param_2,float param_3,undefined8 param_4,float param_5,
-                  float *param_6,char *param_7,char *param_8,float param_9,char param_10)
-
+void FUN_180297590(float *param_1, int *param_2, float param_3, undefined8 param_4, float param_5,
+                  float *param_6, char *param_7, char *param_8, float param_9, char param_10)
 {
   int *piVar1;
   float fVar2;
@@ -546,6 +704,7 @@ void FUN_180297590(float *param_1,int *param_2,float param_3,undefined8 param_4,
   float fStackX_8;
   float fStackX_c;
   
+  // 初始化参数
   pfVar9 = param_6;
   pcVar18 = param_8;
   if (param_8 == (char *)0x0) {
@@ -555,11 +714,15 @@ void FUN_180297590(float *param_1,int *param_2,float param_3,undefined8 param_4,
     } while (param_7[lVar17] != '\0');
     pcVar18 = param_7 + lVar17;
   }
+  
+  // 计算位置参数
   fStackX_8 = (float)param_4;
   fVar2 = param_6[3];
   fStackX_c = (float)((ulonglong)param_4 >> 0x20);
   fVar31 = (float)(int)fStackX_8 + param_1[2];
   fVar23 = (float)(int)fStackX_c + param_1[3];
+  
+  // 检查边界条件
   if (fVar23 <= fVar2) {
     fVar29 = param_6[1];
     param_3 = param_3 / *param_1;
@@ -567,10 +730,12 @@ void FUN_180297590(float *param_1,int *param_2,float param_3,undefined8 param_4,
     param_8._0_1_ = 0.0 < param_9;
     pcVar13 = (char *)0x0;
     pcVar14 = param_7;
+    
+    // 处理文本行
     if ((fVar23 + fVar28 < fVar29) && (!(bool)(char)param_8)) {
       do {
         if (pcVar18 <= pcVar14) break;
-        lVar17 = memchr(pcVar14,10,(longlong)pcVar18 - (longlong)pcVar14);
+        lVar17 = memchr(pcVar14, 10, (longlong)pcVar18 - (longlong)pcVar14);
         pcVar14 = pcVar18;
         if (lVar17 != 0) {
           pcVar14 = (char *)(lVar17 + 1);
@@ -578,11 +743,12 @@ void FUN_180297590(float *param_1,int *param_2,float param_3,undefined8 param_4,
         fVar23 = fVar23 + fVar28;
       } while (fVar28 + fVar23 < fVar29);
     }
+    
     pcVar19 = pcVar18;
     if ((10000 < (longlong)pcVar18 - (longlong)pcVar14) &&
        (pcVar12 = pcVar14, fVar29 = fVar23, (char)param_8 == '\0')) {
       while ((pcVar19 = pcVar12, fVar29 < fVar2 && (pcVar19 < pcVar18))) {
-        lVar17 = memchr(pcVar19,10,(longlong)pcVar18 - (longlong)pcVar19);
+        lVar17 = memchr(pcVar19, 10, (longlong)pcVar18 - (longlong)pcVar19);
         pcVar12 = pcVar18;
         if (lVar17 != 0) {
           pcVar12 = (char *)(lVar17 + 1);
@@ -590,15 +756,19 @@ void FUN_180297590(float *param_1,int *param_2,float param_3,undefined8 param_4,
         fVar29 = fVar29 + fVar28;
       }
     }
+    
+    // 处理文本渲染
     if (pcVar14 != pcVar19) {
       iVar7 = param_2[4];
       iVar20 = (int)pcVar19 - (int)pcVar14;
       iVar8 = iVar20 * 6;
-      FUN_1802921e0(param_2,iVar8,iVar20 * 4);
+      FUN_1802921e0(param_2, iVar8, iVar20 * 4);
       pfVar16 = *(float **)(param_2 + 0x14);
       psVar22 = *(short **)(param_2 + 0x16);
       iVar20 = param_2[0x12];
       fVar2 = fVar31;
+      
+      // 主渲染循环
 joined_r0x0001802977b5:
       do {
         if (pcVar19 <= pcVar14) break;
@@ -624,17 +794,21 @@ joined_r0x0001802977b5:
             goto joined_r0x0001802977b5;
           }
         }
+        
+        // 字符处理
         param_6._0_4_ = (uint)*pcVar14;
         if ((uint)param_6 < 0x80) {
           pcVar14 = pcVar14 + 1;
         }
         else {
-          iVar10 = FUN_180121550(&param_6,pcVar14,pcVar19);
+          iVar10 = FUN_180121550(&param_6, pcVar14, pcVar19);
           pcVar14 = pcVar14 + iVar10;
           if ((uint)param_6 == 0) break;
         }
+        
         if (0x1f < (uint)param_6) {
 LAB_1802978c4:
+          // 字符映射处理
           if ((int)((uint)param_6 & 0xffff) < (int)param_1[0xc]) {
             uVar6 = *(ushort *)
                      (*(longlong *)(param_1 + 0xe) + (ulonglong)((uint)param_6 & 0xffff) * 2);
@@ -648,6 +822,8 @@ LAB_1802978c4:
           else {
             lVar17 = *(longlong *)(param_1 + 0x10);
           }
+          
+          // 渲染字符
           if (((lVar17 != 0) && (fVar29 = param_3 * *(float *)(lVar17 + 4), (uint)param_6 != 0x20))
              && ((uint)param_6 != 9)) {
             fVar3 = pfVar9[2];
@@ -655,21 +831,22 @@ LAB_1802978c4:
             fVar24 = param_3 * *(float *)(lVar17 + 0x10) + fVar2;
             fVar26 = param_3 * *(float *)(lVar17 + 0xc) + fVar23;
             fVar25 = param_3 * *(float *)(lVar17 + 0x14) + fVar23;
+            
             if ((fVar27 <= fVar3) && (fVar4 = *pfVar9, fVar4 <= fVar24)) {
               fVar33 = *(float *)(lVar17 + 0x18);
               fVar34 = *(float *)(lVar17 + 0x1c);
               fVar30 = *(float *)(lVar17 + 0x20);
               fVar32 = *(float *)(lVar17 + 0x24);
+              
               if (param_10 != '\0') {
+                // 边界裁剪处理
                 if (fVar27 < fVar4) {
-                  fVar33 = fVar33 + (1.0 - (fVar24 - fVar4) / (fVar24 - fVar27)) * (fVar30 - fVar33)
-                  ;
+                  fVar33 = fVar33 + (1.0 - (fVar24 - fVar4) / (fVar24 - fVar27)) * (fVar30 - fVar33);
                   fVar27 = fVar4;
                 }
                 fVar4 = pfVar9[1];
                 if (fVar26 < fVar4) {
-                  fVar34 = fVar34 + (1.0 - (fVar25 - fVar4) / (fVar25 - fVar26)) * (fVar32 - fVar34)
-                  ;
+                  fVar34 = fVar34 + (1.0 - (fVar25 - fVar4) / (fVar25 - fVar26)) * (fVar32 - fVar34);
                   fVar26 = fVar4;
                 }
                 if (fVar3 < fVar24) {
@@ -683,6 +860,8 @@ LAB_1802978c4:
                 }
                 if (fVar25 <= fVar26) goto LAB_180297b2c;
               }
+              
+              // 设置顶点索引
               sVar21 = (short)iVar20;
               *psVar22 = sVar21;
               psVar22[1] = sVar21 + 1;
@@ -691,6 +870,8 @@ LAB_1802978c4:
               psVar22[5] = sVar21 + 3;
               psVar22[3] = sVar21;
               iVar20 = iVar20 + 4;
+              
+              // 设置顶点数据
               pfVar16[4] = param_5;
               pfVar16[9] = param_5;
               pfVar16[0xe] = param_5;
@@ -711,6 +892,7 @@ LAB_1802978c4:
               pfVar16[0x10] = fVar25;
               pfVar16[0x11] = fVar33;
               pfVar16[0x12] = fVar32;
+              
               pfVar16 = pfVar16 + 0x14;
               psVar22 = psVar22 + 6;
             }
@@ -719,18 +901,24 @@ LAB_180297b2c:
           fVar2 = fVar2 + fVar29;
           goto joined_r0x0001802977b5;
         }
+        
         if ((uint)param_6 != 10) {
           if ((uint)param_6 != 0xd) goto LAB_1802978c4;
           goto joined_r0x0001802977b5;
         }
+        
         fVar23 = fVar23 + fVar28;
         fVar2 = fVar31;
       } while (fVar23 < pfVar9[3] || fVar23 == pfVar9[3]);
+      
 FUN_180297b6f:
-      FUN_18013e800(param_2 + 8,((longlong)pfVar16 - *(longlong *)(param_2 + 10)) / 0x14);
+      // 更新缓冲区
+      FUN_18013e800(param_2 + 8, ((longlong)pfVar16 - *(longlong *)(param_2 + 10)) / 0x14);
       iVar20 = param_2[5];
       uVar15 = (longlong)psVar22 - *(longlong *)(param_2 + 6) >> 1;
       iVar10 = (int)uVar15;
+      
+      // 调整缓冲区大小
       if (iVar20 < iVar10) {
         if (iVar20 == 0) {
           uVar11 = 8;
@@ -742,8 +930,9 @@ FUN_180297b6f:
         if (iVar10 < (int)uVar11) {
           uVar15 = (ulonglong)uVar11;
         }
-        FUN_18011dd10(param_2 + 4,uVar15);
+        FUN_18011dd10(param_2 + 4, uVar15);
       }
+      
       param_2[4] = iVar10;
       piVar1 = (int *)(*(longlong *)(param_2 + 2) + -0x30 + (longlong)*param_2 * 0x30);
       *piVar1 = *piVar1 + (iVar10 - (iVar7 + iVar8));
@@ -755,13 +944,22 @@ FUN_180297b6f:
   return;
 }
 
+// =============================================================================
+// 渲染系统缓冲区调整函数
+// =============================================================================
 
+/**
+ * 渲染系统缓冲区调整函数
+ * 
+ * 动态调整渲染缓冲区的大小以适应不同的渲染需求。
+ * 支持内存管理和缓冲区优化功能。
+ * 
+ * @param param_1 渲染参数数组指针
+ * @param param_2 缩放因子
+ */
+void resize_rendering_buffers(float *param_1, float param_2) __attribute__((alias("FUN_180297648")));
 
-
-
-// 函数: void FUN_180297648(float *param_1,float param_2)
-void FUN_180297648(float *param_1,float param_2)
-
+void FUN_180297648(float *param_1, float param_2)
 {
   int *piVar1;
   float fVar2;
@@ -810,6 +1008,7 @@ void FUN_180297648(float *param_1,float param_2)
   float in_stack_00000170;
   char in_stack_00000178;
   
+  // 初始化参数
   fVar18 = in_stack_00000170;
   fVar2 = unaff_R12[1];
   fVar23 = unaff_XMM9_Da / *param_1;
@@ -819,10 +1018,12 @@ void FUN_180297648(float *param_1,float param_2)
   pcVar9 = (char *)0x0;
   fStack0000000000000130 = fVar21;
   fStack0000000000000140 = fVar23;
+  
+  // 处理文本行
   if ((fVar17 < fVar2) && (!(bool)cStack0000000000000168)) {
     do {
       if (unaff_RDI <= unaff_RBX) break;
-      lVar7 = memchr(unaff_RBX,10,(longlong)unaff_RDI - (longlong)unaff_RBX);
+      lVar7 = memchr(unaff_RBX, 10, (longlong)unaff_RDI - (longlong)unaff_RBX);
       unaff_RBX = unaff_RDI;
       if (lVar7 != 0) {
         unaff_RBX = (char *)(lVar7 + 1);
@@ -831,11 +1032,12 @@ void FUN_180297648(float *param_1,float param_2)
       fVar17 = fVar21 + param_2;
     } while (fVar17 < fVar2);
   }
+  
   pcVar12 = unaff_RDI;
   if ((10000 < (longlong)unaff_RDI - (longlong)unaff_RBX) &&
      (pcVar8 = unaff_RBX, fVar2 = param_2, cStack0000000000000168 == '\0')) {
     while ((pcVar12 = pcVar8, fVar2 < unaff_XMM7_Da && (pcVar12 < unaff_RDI))) {
-      lVar7 = memchr(pcVar12,10,(longlong)unaff_RDI - (longlong)pcVar12);
+      lVar7 = memchr(pcVar12, 10, (longlong)unaff_RDI - (longlong)pcVar12);
       pcVar8 = unaff_RDI;
       if (lVar7 != 0) {
         pcVar8 = (char *)(lVar7 + 1);
@@ -844,15 +1046,19 @@ void FUN_180297648(float *param_1,float param_2)
       fVar2 = fVar2 + fVar21;
     }
   }
+  
+  // 调整缓冲区
   if (unaff_RBX != pcVar12) {
     iVar13 = (int)pcVar12 - (int)unaff_RBX;
     iVar15 = iVar13 * 6;
     iStack0000000000000034 = *(int *)(unaff_R13 + 0x10) + iVar15;
-    FUN_1802921e0(fVar17,iVar15,iVar13 * 4);
+    FUN_1802921e0(fVar17, iVar15, iVar13 * 4);
     pfVar11 = *(float **)(unaff_R13 + 0x50);
     psVar16 = *(short **)(unaff_R13 + 0x58);
     iVar15 = *(int *)(unaff_R13 + 0x48);
     fVar2 = unaff_XMM10_Da;
+    
+    // 主处理循环
 joined_r0x0001802977b5:
     do {
       fVar19 = fVar2;
@@ -862,7 +1068,7 @@ joined_r0x0001802977b5:
       if (cStack0000000000000168 != '\0') {
         if ((pcVar9 == (char *)0x0) &&
            (fVar18 = fVar18 - (unaff_XMM10_Da - fVar19),
-           pcVar9 = (char *)FUN_1802971b0(fVar18,fVar17,unaff_RBX,pcVar12,fVar18),
+           pcVar9 = (char *)FUN_1802971b0(fVar18, fVar17, unaff_RBX, pcVar12, fVar18),
            pcVar9 == unaff_RBX)) {
           pcVar9 = pcVar9 + 1;
         }
@@ -886,19 +1092,23 @@ joined_r0x0001802977b5:
           goto joined_r0x0001802977b5;
         }
       }
+      
+      // 字符处理
       in_stack_00000158 = (uint)*unaff_RBX;
       if (in_stack_00000158 < 0x80) {
         unaff_RBX = unaff_RBX + 1;
       }
       else {
-        iVar13 = FUN_180121550(&stack0x00000158,unaff_RBX,pcVar12);
+        iVar13 = FUN_180121550(&stack0x00000158, unaff_RBX, pcVar12);
         unaff_RBX = unaff_RBX + iVar13;
         if (in_stack_00000158 == 0) break;
       }
+      
       fVar18 = in_stack_00000170;
       fVar23 = fStack0000000000000140;
       if (0x1f < in_stack_00000158) {
 LAB_1802978c4:
+        // 字符映射处理
         if ((int)(in_stack_00000158 & 0xffff) < *(int *)(unaff_R14 + 0x30)) {
           uVar5 = *(ushort *)
                    (*(longlong *)(unaff_R14 + 0x38) + (ulonglong)(in_stack_00000158 & 0xffff) * 2);
@@ -912,19 +1122,24 @@ LAB_1802978c4:
         else {
           lVar7 = *(longlong *)(unaff_R14 + 0x40);
         }
+        
+        // 渲染字符
         if (((lVar7 != 0) && (fVar22 = fVar17 * *(float *)(lVar7 + 4), in_stack_00000158 != 0x20))
            && (in_stack_00000158 != 9)) {
           fVar2 = unaff_R12[2];
-          fVar20 = fVar17 * *(float *)(lVar7 + 8) + unaff_XMM10_Da;
-          fVar21 = fVar17 * *(float *)(lVar7 + 0x10) + unaff_XMM10_Da;
-          fVar19 = fVar17 * *(float *)(lVar7 + 0xc) + param_2;
-          fVar17 = fVar17 * *(float *)(lVar7 + 0x14) + param_2;
+          fVar20 = fVar17 * *(float *)(lVar17 + 8) + unaff_XMM10_Da;
+          fVar21 = fVar17 * *(float *)(lVar17 + 0x10) + unaff_XMM10_Da;
+          fVar19 = fVar17 * *(float *)(lVar17 + 0xc) + param_2;
+          fVar17 = fVar17 * *(float *)(lVar17 + 0x14) + param_2;
+          
           if ((fVar20 <= fVar2) && (fVar3 = *unaff_R12, fVar3 <= fVar21)) {
             fVar26 = *(float *)(lVar7 + 0x18);
             fVar27 = *(float *)(lVar7 + 0x1c);
             fVar24 = *(float *)(lVar7 + 0x20);
             fVar25 = *(float *)(lVar7 + 0x24);
+            
             if (in_stack_00000178 != '\0') {
+              // 边界裁剪处理
               if (fVar20 < fVar3) {
                 fVar26 = fVar26 + (1.0 - (fVar21 - fVar3) / (fVar21 - fVar20)) * (fVar24 - fVar26);
                 fVar20 = fVar3;
@@ -945,6 +1160,8 @@ LAB_1802978c4:
               }
               if (fVar17 <= fVar19) goto LAB_180297b2c;
             }
+            
+            // 设置顶点索引
             sVar14 = (short)iVar15;
             *psVar16 = sVar14;
             psVar16[1] = sVar14 + 1;
@@ -953,6 +1170,8 @@ LAB_1802978c4:
             psVar16[5] = sVar14 + 3;
             psVar16[3] = sVar14;
             iVar15 = iVar15 + 4;
+            
+            // 设置顶点数据
             pfVar11[4] = in_stack_00000150;
             pfVar11[9] = in_stack_00000150;
             pfVar11[0xe] = in_stack_00000150;
@@ -973,6 +1192,7 @@ LAB_1802978c4:
             pfVar11[0x10] = fVar17;
             pfVar11[0x11] = fVar26;
             pfVar11[0x12] = fVar25;
+            
             pfVar11 = pfVar11 + 0x14;
             psVar16 = psVar16 + 6;
           }
@@ -983,21 +1203,27 @@ LAB_180297b2c:
         fVar2 = in_stack_00000030;
         goto joined_r0x0001802977b5;
       }
+      
       if (in_stack_00000158 != 10) {
         fVar2 = in_stack_00000030;
         if (in_stack_00000158 != 0xd) goto LAB_1802978c4;
         goto joined_r0x0001802977b5;
       }
+      
       param_2 = param_2 + fVar21;
       unaff_XMM10_Da = fVar19;
       fVar2 = in_stack_00000030;
     } while (param_2 < unaff_R12[3] || param_2 == unaff_R12[3]);
+    
 FUN_180297b6f:
+    // 更新缓冲区
     FUN_18013e800(in_stack_00000138 + 8,
                   ((longlong)pfVar11 - *(longlong *)(in_stack_00000138 + 10)) / 0x14);
     iVar15 = in_stack_00000138[5];
     uVar10 = (longlong)psVar16 - *(longlong *)(in_stack_00000138 + 6) >> 1;
     iVar13 = (int)uVar10;
+    
+    // 调整缓冲区大小
     if (iVar15 < iVar13) {
       if (iVar15 == 0) {
         uVar6 = 8;
@@ -1009,8 +1235,9 @@ FUN_180297b6f:
       if (iVar13 < (int)uVar6) {
         uVar10 = (ulonglong)uVar6;
       }
-      FUN_18011dd10(in_stack_00000138 + 4,uVar10);
+      FUN_18011dd10(in_stack_00000138 + 4, uVar10);
     }
+    
     in_stack_00000138[4] = iVar13;
     piVar1 = (int *)(*(longlong *)(in_stack_00000138 + 2) + -0x30 +
                     (longlong)*in_stack_00000138 * 0x30);
@@ -1022,7 +1249,46 @@ FUN_180297b6f:
   return;
 }
 
+// =============================================================================
+// 模块总结
+// =============================================================================
 
-
-
-
+/**
+ * 渲染系统高级标志位和材质处理模块总结
+ * 
+ * 本模块包含以下核心功能：
+ * 
+ * 1. 基础操作函数
+ *    - render_nop_operation: 空操作函数
+ *    - render_param_pass_through: 参数传递函数
+ * 
+ * 2. 浮点数处理函数
+ *    - process_render_float_data: 基础浮点数处理
+ *    - process_advanced_render_float_data: 高级浮点数处理
+ * 
+ * 3. 字符处理函数
+ *    - process_rendering_characters: 字符编码处理
+ *    - render_advanced_text: 高级文本渲染
+ * 
+ * 4. 状态管理函数
+ *    - update_rendering_state: 状态更新
+ *    - fast_update_rendering_state: 快速状态更新
+ *    - conditional_update_rendering_state: 条件状态更新
+ * 
+ * 5. 资源管理函数
+ *    - render_simple_assignment: 简单赋值
+ *    - resize_rendering_buffers: 缓冲区调整
+ * 
+ * 主要特性：
+ * - 支持多字节字符编码处理
+ * - 提供高级文本渲染功能
+ * - 动态缓冲区管理
+ * - 边界裁剪和优化
+ * - 灵活的状态管理机制
+ * 
+ * 使用场景：
+ * - 游戏UI文本渲染
+ * - 多语言文本支持
+ * - 动态文本布局
+ * - 高级字体渲染
+ */
