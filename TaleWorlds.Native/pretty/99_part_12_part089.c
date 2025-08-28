@@ -1,3 +1,4 @@
+#include "FUN_1808995c0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -409,11 +410,11 @@ uint64_t FUN_1808a54c0(uint64_t *param_1,int64_t *param_2)
             if ((int)uVar4 != 0) {
               return uVar4;
             }
-            uVar4 = FUN_1808995c0(uVar3,lVar1 + 0x10);
+            uVar4 = SystemDataManager(uVar3,lVar1 + 0x10);
             if ((int)uVar4 != 0) {
               return uVar4;
             }
-            uVar3 = FUN_1808995c0(uVar3,lVar1 + 0x14);
+            uVar3 = SystemDataManager(uVar3,lVar1 + 0x14);
           }
           else {
             uVar3 = 0x1c;
@@ -475,11 +476,11 @@ uint64_t FUN_1808a54eb(void)
           if ((int)uVar3 != 0) {
             return uVar3;
           }
-          uVar3 = FUN_1808995c0(uVar2,lVar1 + 0x10);
+          uVar3 = SystemDataManager(uVar2,lVar1 + 0x10);
           if ((int)uVar3 != 0) {
             return uVar3;
           }
-          uVar2 = FUN_1808995c0(uVar2,lVar1 + 0x14);
+          uVar2 = SystemDataManager(uVar2,lVar1 + 0x14);
         }
         else {
           uVar2 = 0x1c;
@@ -540,11 +541,11 @@ uint64_t FUN_1808a5515(void)
         if ((int)uVar3 != 0) {
           return uVar3;
         }
-        uVar3 = FUN_1808995c0(uVar2,lVar1 + 0x10);
+        uVar3 = SystemDataManager(uVar2,lVar1 + 0x10);
         if ((int)uVar3 != 0) {
           return uVar3;
         }
-        uVar2 = FUN_1808995c0(uVar2,lVar1 + 0x14);
+        uVar2 = SystemDataManager(uVar2,lVar1 + 0x14);
       }
       else {
         uVar2 = 0x1c;
@@ -843,11 +844,11 @@ uint64_t FUN_1808a5780(uint64_t *param_1,int64_t *param_2)
             if ((int)uVar3 != 0) {
               return uVar3;
             }
-            uVar3 = FUN_1808995c0(uVar2,lVar4 + 0x10);
+            uVar3 = SystemDataManager(uVar2,lVar4 + 0x10);
             if ((int)uVar3 != 0) {
               return uVar3;
             }
-            uVar3 = FUN_1808995c0(uVar2,lVar4 + 0x14);
+            uVar3 = SystemDataManager(uVar2,lVar4 + 0x14);
             if ((int)uVar3 != 0) {
               return uVar3;
             }
@@ -913,11 +914,11 @@ uint64_t FUN_1808a57ab(void)
           if ((int)uVar2 != 0) {
             return uVar2;
           }
-          uVar2 = FUN_1808995c0(uVar1,lVar3 + 0x10);
+          uVar2 = SystemDataManager(uVar1,lVar3 + 0x10);
           if ((int)uVar2 != 0) {
             return uVar2;
           }
-          uVar2 = FUN_1808995c0(uVar1,lVar3 + 0x14);
+          uVar2 = SystemDataManager(uVar1,lVar3 + 0x14);
           if ((int)uVar2 != 0) {
             return uVar2;
           }
@@ -982,11 +983,11 @@ uint64_t FUN_1808a57d5(void)
         if ((int)uVar2 != 0) {
           return uVar2;
         }
-        uVar2 = FUN_1808995c0(uVar1,lVar3 + 0x10);
+        uVar2 = SystemDataManager(uVar1,lVar3 + 0x10);
         if ((int)uVar2 != 0) {
           return uVar2;
         }
-        uVar2 = FUN_1808995c0(uVar1,lVar3 + 0x14);
+        uVar2 = SystemDataManager(uVar1,lVar3 + 0x14);
         if ((int)uVar2 != 0) {
           return uVar2;
         }

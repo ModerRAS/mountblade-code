@@ -1,3 +1,4 @@
+#include "FUN_1808995c0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 04_ui_system_part427.c - 5 个函数
@@ -90,7 +91,7 @@ uint64_t FUN_18089e820(int64_t param_1,int64_t *param_2)
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808995c0(*param_2,param_1 + 0x58);
+  uVar3 = SystemDataManager(*param_2,param_1 + 0x58);
   if (uVar3 != 0) {
     return (uint64_t)uVar3;
   }
@@ -385,7 +386,7 @@ uint64_t FUN_18089e87d(void)
   if (*(int *)(unaff_RDI[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808995c0(*unaff_RDI,unaff_R15 + 0x58);
+  uVar3 = SystemDataManager(*unaff_RDI,unaff_R15 + 0x58);
   if (uVar3 != 0) {
     return (uint64_t)uVar3;
   }

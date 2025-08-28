@@ -1,3 +1,4 @@
+#include "FUN_1808995c0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 /**
@@ -90,9 +91,9 @@ uint64_t ui_system_processor_type1(int64_t param_1,uint64_t *param_2)
             uVar3 = uVar4;
             if (*(int *)(param_2[1] + 0x18) == 0) {
               uVar1 = *param_2;
-              uVar3 = FUN_1808995c0(uVar1,auStackX_18);
+              uVar3 = SystemDataManager(uVar1,auStackX_18);
               if ((int)uVar3 == 0) {
-                uVar3 = FUN_1808995c0(uVar1,auStackX_1c);
+                uVar3 = SystemDataManager(uVar1,auStackX_1c);
               }
             }
           }
@@ -116,7 +117,7 @@ uint64_t ui_system_processor_type1(int64_t param_1,uint64_t *param_2)
               else {
                 uVar3 = uVar4;
                 if (*(int *)(param_2[1] + 0x18) == 0) {
-                  uVar2 = FUN_1808995c0(*param_2,param_1 + 0xfc);
+                  uVar2 = SystemDataManager(*param_2,param_1 + 0xfc);
                   uVar3 = (uint64_t)uVar2;
                 }
               }
@@ -183,9 +184,9 @@ uint64_t ui_system_processor_type2(void)
             uVar3 = uVar4;
             if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
               uVar1 = *unaff_RBX;
-              uVar3 = FUN_1808995c0(uVar1,&stack0x00000090);
+              uVar3 = SystemDataManager(uVar1,&stack0x00000090);
               if ((int)uVar3 == 0) {
-                uVar3 = FUN_1808995c0(uVar1,&stack0x00000094);
+                uVar3 = SystemDataManager(uVar1,&stack0x00000094);
               }
             }
           }
@@ -209,7 +210,7 @@ uint64_t ui_system_processor_type2(void)
               else {
                 uVar3 = uVar4;
                 if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-                  uVar2 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0xfc);
+                  uVar2 = SystemDataManager(*unaff_RBX,unaff_RSI + 0xfc);
                   uVar3 = (uint64_t)uVar2;
                 }
               }
@@ -275,9 +276,9 @@ uint64_t ui_system_processor_type3(void)
           uVar3 = uVar4;
           if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
             uVar1 = *unaff_RBX;
-            uVar3 = FUN_1808995c0(uVar1,&stack0x00000090);
+            uVar3 = SystemDataManager(uVar1,&stack0x00000090);
             if ((int)uVar3 == 0) {
-              uVar3 = FUN_1808995c0(uVar1,&stack0x00000094);
+              uVar3 = SystemDataManager(uVar1,&stack0x00000094);
             }
           }
         }
@@ -301,7 +302,7 @@ uint64_t ui_system_processor_type3(void)
             else {
               uVar3 = uVar4;
               if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-                uVar2 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0xfc);
+                uVar2 = SystemDataManager(*unaff_RBX,unaff_RSI + 0xfc);
                 uVar3 = (uint64_t)uVar2;
               }
             }
@@ -360,9 +361,9 @@ uint64_t ui_system_processor_type4(void)
           uVar3 = uVar4;
           if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
             uVar1 = *unaff_RBX;
-            uVar3 = FUN_1808995c0(uVar1,&stack0x00000090);
+            uVar3 = SystemDataManager(uVar1,&stack0x00000090);
             if ((int)uVar3 == 0) {
-              uVar3 = FUN_1808995c0(uVar1,&stack0x00000094);
+              uVar3 = SystemDataManager(uVar1,&stack0x00000094);
             }
           }
         }
@@ -386,7 +387,7 @@ uint64_t ui_system_processor_type4(void)
             else {
               uVar3 = uVar4;
               if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-                uVar2 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0xfc);
+                uVar2 = SystemDataManager(*unaff_RBX,unaff_RSI + 0xfc);
                 uVar3 = (uint64_t)uVar2;
               }
             }
@@ -430,9 +431,9 @@ uint64_t ui_system_processor_type5(void)
   uint unaff_EDI;
   
   uVar1 = *unaff_RBX;
-  uVar2 = FUN_1808995c0(uVar1,&stack0x00000090);
+  uVar2 = SystemDataManager(uVar1,&stack0x00000090);
   if ((int)uVar2 == 0) {
-    uVar2 = FUN_1808995c0(uVar1,&stack0x00000094);
+    uVar2 = SystemDataManager(uVar1,&stack0x00000094);
   }
   if ((int)uVar2 == 0) {
     if (*(uint *)(unaff_RBX + 8) < 0x39) {
@@ -449,7 +450,7 @@ uint64_t ui_system_processor_type5(void)
         unaff_EDI = 0;
       }
       else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-        unaff_EDI = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0xfc);
+        unaff_EDI = SystemDataManager(*unaff_RBX,unaff_RSI + 0xfc);
       }
       if (unaff_EDI == 0) {
         if ((0x84 < *(uint *)(unaff_RBX + 8)) && (uVar2 = FUN_180899220(), (int)uVar2 != 0)) {
@@ -500,7 +501,7 @@ uint64_t ui_system_processor_type6(void)
       unaff_EDI = 0;
     }
     else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      unaff_EDI = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0xfc);
+      unaff_EDI = SystemDataManager(*unaff_RBX,unaff_RSI + 0xfc);
     }
     if (unaff_EDI == 0) {
       if ((*(uint *)(unaff_RBX + 8) < 0x85) || (uVar1 = FUN_180899220(), (int)uVar1 == 0)) {
@@ -580,7 +581,7 @@ uint64_t ui_system_data_processor_type1(int64_t param_1,uint64_t *param_2)
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
-      uVar2 = FUN_1808995c0(*param_2,param_1 + 0x48);
+      uVar2 = SystemDataManager(*param_2,param_1 + 0x48);
       if ((int)uVar2 == 0) {
         if (*(uint *)(param_2 + 8) < 0x3d) {
           uVar2 = 0;
@@ -637,7 +638,7 @@ uint64_t ui_system_data_processor_type2(void)
     if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar2 = FUN_1808995c0(*unaff_RBX,unaff_RDI + 0x48);
+    uVar2 = SystemDataManager(*unaff_RBX,unaff_RDI + 0x48);
     if ((int)uVar2 == 0) {
       if (*(uint *)(unaff_RBX + 8) < 0x3d) {
         uVar2 = 0;
@@ -694,7 +695,7 @@ uint64_t ui_system_data_processor_type3(void)
     if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar2 = FUN_1808995c0(*unaff_RBX,unaff_RDI + 0x48);
+    uVar2 = SystemDataManager(*unaff_RBX,unaff_RDI + 0x48);
     if ((int)uVar2 == 0) {
       if (*(uint *)(unaff_RBX + 8) < 0x3d) {
         uVar2 = 0;
@@ -738,7 +739,7 @@ uint64_t ui_system_data_processor_type4(void)
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar1 = FUN_1808995c0(*unaff_RBX,unaff_RDI + 0x48);
+  uVar1 = SystemDataManager(*unaff_RBX,unaff_RDI + 0x48);
   if ((int)uVar1 == 0) {
     if (*(uint *)(unaff_RBX + 8) < 0x3d) {
       uVar1 = 0;
@@ -825,7 +826,7 @@ uint64_t ui_system_advanced_data_processor(int64_t param_1,uint64_t *param_2)
         uVar1 = 0;
       }
       else if (*(int *)(param_2[1] + 0x18) == 0) {
-        uVar1 = FUN_1808995c0(*param_2,param_1 + 0x68);
+        uVar1 = SystemDataManager(*param_2,param_1 + 0x68);
       }
       else {
         uVar1 = 0x1c;
@@ -958,7 +959,7 @@ LAB_18089e447:
     if ((int)uVar2 == 0) {
       uVar2 = uVar7;
       if ((0x32 < *(uint *)(param_2 + 8)) && (uVar2 = 0x1c, *(int *)(param_2[1] + 0x18) == 0)) {
-        uVar3 = FUN_1808995c0(*param_2,param_1 + 0x40);
+        uVar3 = SystemDataManager(*param_2,param_1 + 0x40);
         uVar2 = (uint64_t)uVar3;
       }
       if ((int)uVar2 == 0) {
@@ -1074,7 +1075,7 @@ LAB_18089e447:
     if ((int)uVar2 == 0) {
       uVar2 = uVar7;
       if ((0x32 < *(uint *)(unaff_RBX + 8)) && (uVar2 = 0x1c, *(int *)(unaff_RBX[1] + 0x18) == 0)) {
-        uVar4 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0x40);
+        uVar4 = SystemDataManager(*unaff_RBX,unaff_RSI + 0x40);
         uVar2 = (uint64_t)uVar4;
       }
       if ((int)uVar2 == 0) {
@@ -1186,7 +1187,7 @@ LAB_18089e447:
     if ((int)uVar2 == 0) {
       uVar2 = uVar7;
       if ((0x32 < *(uint *)(unaff_RBX + 8)) && (uVar2 = 0x1c, *(int *)(unaff_RBX[1] + 0x18) == 0)) {
-        uVar4 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0x40);
+        uVar4 = SystemDataManager(*unaff_RBX,unaff_RSI + 0x40);
         uVar2 = (uint64_t)uVar4;
       }
       if ((int)uVar2 == 0) {
@@ -1294,7 +1295,7 @@ LAB_18089e447:
     if ((int)uVar2 == 0) {
       uVar2 = uVar7;
       if ((0x32 < *(uint *)(unaff_RBX + 8)) && (uVar2 = 0x1c, *(int *)(unaff_RBX[1] + 0x18) == 0)) {
-        uVar4 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0x40);
+        uVar4 = SystemDataManager(*unaff_RBX,unaff_RSI + 0x40);
         uVar2 = (uint64_t)uVar4;
       }
       if ((int)uVar2 == 0) {

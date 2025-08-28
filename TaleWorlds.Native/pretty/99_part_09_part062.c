@@ -188,7 +188,7 @@ void AudioSystem_ExecuteSystemProcess(float param_1);
 int AudioSystem_CheckAudioStatus(int64_t context, int flag);
 int AudioSystem_ReleaseAudioResource(int64_t resource, int mode);
 int AudioSystem_CheckSystemStatus(int64_t status);
-void AudioSystem_ExecuteAudioCleanup(int64_t handle, int64_t context, void* unknown_var, int param, int flag);
+void AudioSystem_ExecuteAudioCleanup(int64_t handle, int64_t context, void* audio_data_ptr, int param, int flag);
 
 // ============================================================================
 // 函数别名定义

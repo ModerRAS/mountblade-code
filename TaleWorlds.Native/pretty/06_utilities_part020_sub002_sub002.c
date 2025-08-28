@@ -1,3 +1,4 @@
+#include "FUN_1808995c0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 06_utilities_part020_sub002_sub002.c - 1 个函数
@@ -176,35 +177,35 @@ LAB_18089c878:
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808995c0(*param_2,param_1 + 0x38);
+  uVar3 = SystemDataManager(*param_2,param_1 + 0x38);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808995c0(*param_2,param_1 + 0x3c);
+  uVar3 = SystemDataManager(*param_2,param_1 + 0x3c);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808995c0(*param_2,param_1 + 0x4c);
+  uVar3 = SystemDataManager(*param_2,param_1 + 0x4c);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808995c0(*param_2,param_1 + 0x40);
+  uVar3 = SystemDataManager(*param_2,param_1 + 0x40);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808995c0(*param_2,param_1 + 0x44);
+  uVar3 = SystemDataManager(*param_2,param_1 + 0x44);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
@@ -258,7 +259,7 @@ LAB_18089c9ee:
   uVar3 = uVar6;
   if (0x51 < *(uint *)(param_2 + 8)) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
-      uVar3 = FUN_1808995c0(*param_2,param_1 + 0x48);
+      uVar3 = SystemDataManager(*param_2,param_1 + 0x48);
     }
     else {
       uVar3 = 0x1c;
@@ -528,35 +529,35 @@ LAB_18089c878:
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x38);
+  uVar4 = SystemDataManager(*unaff_RBX,unaff_R13 + 0x38);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x3c);
+  uVar4 = SystemDataManager(*unaff_RBX,unaff_R13 + 0x3c);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x4c);
+  uVar4 = SystemDataManager(*unaff_RBX,unaff_R13 + 0x4c);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x40);
+  uVar4 = SystemDataManager(*unaff_RBX,unaff_R13 + 0x40);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x44);
+  uVar4 = SystemDataManager(*unaff_RBX,unaff_R13 + 0x44);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -613,7 +614,7 @@ LAB_18089c9a8:
   uVar4 = uVar7;
   if (0x51 < *(uint *)(unaff_RBX + 8)) {
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      uVar4 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x48);
+      uVar4 = SystemDataManager(*unaff_RBX,unaff_R13 + 0x48);
       fVar9 = extraout_XMM0_Da_03;
     }
     else {
@@ -773,35 +774,35 @@ uint64_t FUN_18089c86d(void)
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar5 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x38);
+  uVar5 = SystemDataManager(*unaff_RBX,unaff_R13 + 0x38);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar5 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x3c);
+  uVar5 = SystemDataManager(*unaff_RBX,unaff_R13 + 0x3c);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar5 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x4c);
+  uVar5 = SystemDataManager(*unaff_RBX,unaff_R13 + 0x4c);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar5 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x40);
+  uVar5 = SystemDataManager(*unaff_RBX,unaff_R13 + 0x40);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar5 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x44);
+  uVar5 = SystemDataManager(*unaff_RBX,unaff_R13 + 0x44);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
@@ -862,7 +863,7 @@ LAB_18089c9a8:
     uVar5 = unaff_RDI & 0xffffffff;
   }
   else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-    uVar5 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x48);
+    uVar5 = SystemDataManager(*unaff_RBX,unaff_R13 + 0x48);
     fVar12 = extraout_XMM0_Da_03;
   }
   else {
@@ -1023,35 +1024,35 @@ uint64_t FUN_18089c872(void)
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar5 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x38);
+  uVar5 = SystemDataManager(*unaff_RBX,unaff_R13 + 0x38);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar5 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x3c);
+  uVar5 = SystemDataManager(*unaff_RBX,unaff_R13 + 0x3c);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar5 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x4c);
+  uVar5 = SystemDataManager(*unaff_RBX,unaff_R13 + 0x4c);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar5 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x40);
+  uVar5 = SystemDataManager(*unaff_RBX,unaff_R13 + 0x40);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar5 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x44);
+  uVar5 = SystemDataManager(*unaff_RBX,unaff_R13 + 0x44);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
@@ -1112,7 +1113,7 @@ LAB_18089c9a8:
     uVar5 = unaff_RDI & 0xffffffff;
   }
   else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-    uVar5 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x48);
+    uVar5 = SystemDataManager(*unaff_RBX,unaff_R13 + 0x48);
     fVar12 = extraout_XMM0_Da_03;
   }
   else {
@@ -1315,7 +1316,7 @@ LAB_18089c9a8:
     uVar6 = unaff_RDI & 0xffffffff;
   }
   else if (*(int *)(unaff_RBX[1] + 0x18) == iVar9) {
-    uVar6 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x48);
+    uVar6 = SystemDataManager(*unaff_RBX,unaff_R13 + 0x48);
     param_1 = extraout_XMM0_Da_02;
   }
   else {
