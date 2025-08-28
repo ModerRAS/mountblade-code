@@ -1,48 +1,49 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part094_sub002_sub002.c - 1 个函数
+// 02_core_engine_part094_sub002_sub002.c - 5个函数
 
-// 函数: void FUN_1801196d0(undefined4 param_1)
-void FUN_1801196d0(undefined4 param_1)
+// 函数: void add_render_parameter(uint32_t param_1)
+// 向渲染系统添加参数
+void add_render_parameter(uint32_t param_1)
 
 {
-  int *piVar1;
-  longlong lVar2;
-  longlong lVar3;
-  longlong lVar4;
-  int iVar5;
-  int iVar6;
-  int iVar7;
-  float fVar8;
+  int *parameter_count_ptr;
+  longlong render_context;
+  longlong render_data;
+  longlong global_context;
+  int current_count;
+  int max_count;
+  int new_count;
+  float offset_value;
   
-  lVar4 = _DAT_180c8a9b0;
+  global_context = _DAT_180c8a9b0;
   *(undefined1 *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
-  lVar2 = *(longlong *)(lVar4 + 0x1af8);
-  *(undefined1 *)(lVar2 + 0xb1) = 1;
-  piVar1 = (int *)(lVar2 + 0x218);
-  lVar3 = *(longlong *)(lVar4 + 0x1af8);
-  fVar8 = *(float *)(lVar4 + 0x1684) + *(float *)(lVar3 + 0x204);
-  *(float *)(lVar3 + 0x204) = fVar8;
-  *(float *)(lVar3 + 0x100) = fVar8 + *(float *)(lVar3 + 0x40) + *(float *)(lVar3 + 0x20c);
-  *(int *)(lVar2 + 0x13c) = *(int *)(lVar2 + 0x13c) + 1;
-  iVar6 = *piVar1;
-  iVar5 = *(int *)(lVar2 + 0x21c);
-  if (iVar6 == iVar5) {
-    if (iVar5 == 0) {
-      iVar5 = 8;
+  render_data = *(longlong *)(global_context + 0x1af8);
+  *(undefined1 *)(render_data + 0xb1) = 1;
+  parameter_count_ptr = (int *)(render_data + 0x218);
+  render_context = *(longlong *)(global_context + 0x1af8);
+  offset_value = *(float *)(global_context + 0x1684) + *(float *)(render_context + 0x204);
+  *(float *)(render_context + 0x204) = offset_value;
+  *(float *)(render_context + 0x100) = offset_value + *(float *)(render_context + 0x40) + *(float *)(render_context + 0x20c);
+  *(int *)(render_data + 0x13c) = *(int *)(render_data + 0x13c) + 1;
+  current_count = *parameter_count_ptr;
+  max_count = *(int *)(render_data + 0x21c);
+  if (current_count == max_count) {
+    if (max_count == 0) {
+      max_count = 8;
     }
     else {
-      iVar5 = iVar5 / 2 + iVar5;
+      max_count = max_count / 2 + max_count;
     }
-    iVar7 = iVar6 + 1;
-    if (iVar6 + 1 < iVar5) {
-      iVar7 = iVar5;
+    new_count = current_count + 1;
+    if (current_count + 1 < max_count) {
+      new_count = max_count;
     }
-    FUN_18011dbd0(piVar1,iVar7);
-    iVar6 = *piVar1;
+    resize_parameter_array(parameter_count_ptr, new_count);
+    current_count = *parameter_count_ptr;
   }
-  *(undefined4 *)(*(longlong *)(lVar2 + 0x220) + (longlong)iVar6 * 4) = param_1;
-  *piVar1 = *piVar1 + 1;
+  *(undefined4 *)(*(longlong *)(render_data + 0x220) + (longlong)current_count * 4) = param_1;
+  *parameter_count_ptr = *parameter_count_ptr + 1;
   return;
 }
 
@@ -69,7 +70,9 @@ void FUN_1801196d0(undefined4 param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 // WARNING: Restarted to delay deadcode elimination for space: stack
 
-ulonglong FUN_1801198c0(char *param_1)
+// 函数: uint64_t process_text_rendering(char *text, ...)
+// 处理文本渲染相关操作
+uint64_t process_text_rendering(char *text, ...)
 
 {
   float fVar1;

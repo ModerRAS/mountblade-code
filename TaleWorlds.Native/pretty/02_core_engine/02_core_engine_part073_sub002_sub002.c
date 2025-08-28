@@ -410,96 +410,150 @@ void initialize_engine_parameters(longlong engine_context)
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
   FUN_18005ea90(engine_context + 8, &uStackX_8);
-  func_0x00018010c0c0(auStack_148,0);
-  *(undefined4 *)(param_1 + 0x1fc8) = 0;
-  FUN_18010bd10(param_1 + 0x1fd0,auStack_148);
+  // 初始化反射系统参数
+  func_0x00018010c0c0(auStack_148, 0);
+  
+  // 设置反射系统参数 (值为0)
+  *(undefined4 *)(engine_context + 0x1fc8) = 0;
+  FUN_18010bd10(engine_context + 0x1fd0, auStack_148);
+  
+  // 执行回调函数（如果存在）
   if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(auStack_148,0,0);
+    (*pcStack_138)(auStack_148, 0, 0);
   }
-  uVar1 = param_1 + 0x1f80;
-  (**(code **)(*(longlong *)(param_1 + 0x1f88) + 0x10))
-            ((longlong *)(param_1 + 0x1f88),&UNK_180a05700);
+  
+  // 获取反射组件指针并初始化反射参数
+  component_ptr = engine_context + 0x1f80;
+  (**(code **)(*(longlong *)(engine_context + 0x1f88) + 0x10))
+            ((longlong *)(engine_context + 0x1f88), &UNK_180a05700);
+  
+  // 设置反射系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  FUN_180046240(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
-  func_0x00018010c0e0(auStack_148,0);
-  *(undefined4 *)(param_1 + 0x668) = 0;
-  FUN_18010bd10(param_1 + 0x670,auStack_148);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  // 初始化碰撞系统参数
+  func_0x00018010c0e0(auStack_148, 0);
+  
+  // 设置碰撞系统参数 (值为0)
+  *(undefined4 *)(engine_context + 0x668) = 0;
+  FUN_18010bd10(engine_context + 0x670, auStack_148);
+  
+  // 执行回调函数（如果存在）
   if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(auStack_148,0,0);
+    (*pcStack_138)(auStack_148, 0, 0);
   }
-  uVar1 = param_1 + 0x620;
-  (**(code **)(*(longlong *)(param_1 + 0x628) + 0x10))((longlong *)(param_1 + 0x628),&UNK_180a05740)
-  ;
+  
+  // 获取碰撞组件指针并初始化碰撞参数
+  component_ptr = engine_context + 0x620;
+  (**(code **)(*(longlong *)(engine_context + 0x628) + 0x10))
+            ((longlong *)(engine_context + 0x628), &UNK_180a05740);
+  
+  // 设置碰撞系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  FUN_180046240(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
-  func_0x00018010c100(auStack_148,0);
-  *(undefined4 *)(param_1 + 0x6d8) = 0;
-  FUN_18010bd10(param_1 + 0x6e0,auStack_148);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  // 初始化传感器系统参数
+  func_0x00018010c100(auStack_148, 0);
+  
+  // 设置传感器系统参数 (值为0)
+  *(undefined4 *)(engine_context + 0x6d8) = 0;
+  FUN_18010bd10(engine_context + 0x6e0, auStack_148);
+  
+  // 执行回调函数（如果存在）
   if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(auStack_148,0,0);
+    (*pcStack_138)(auStack_148, 0, 0);
   }
-  uVar1 = param_1 + 0x690;
-  (**(code **)(*(longlong *)(param_1 + 0x698) + 0x10))((longlong *)(param_1 + 0x698),&UNK_180a05728)
-  ;
+  
+  // 获取传感器组件指针并初始化传感器参数
+  component_ptr = engine_context + 0x690;
+  (**(code **)(*(longlong *)(engine_context + 0x698) + 0x10))
+            ((longlong *)(engine_context + 0x698), &UNK_180a05728);
+  
+  // 设置传感器系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  FUN_180046240(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
-  func_0x00018010c120(auStack_148,0);
-  *(undefined4 *)(param_1 + 0x748) = 0;
-  FUN_18010bd10(param_1 + 0x750,auStack_148);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  // 初始化触发器系统参数
+  func_0x00018010c120(auStack_148, 0);
+  
+  // 设置触发器系统参数 (值为0)
+  *(undefined4 *)(engine_context + 0x748) = 0;
+  FUN_18010bd10(engine_context + 0x750, auStack_148);
+  
+  // 执行回调函数（如果存在）
   if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(auStack_148,0,0);
+    (*pcStack_138)(auStack_148, 0, 0);
   }
-  uVar1 = param_1 + 0x700;
-  (**(code **)(*(longlong *)(param_1 + 0x708) + 0x10))((longlong *)(param_1 + 0x708),&UNK_180a05768)
-  ;
+  
+  // 获取触发器组件指针并初始化触发器参数
+  component_ptr = engine_context + 0x700;
+  (**(code **)(*(longlong *)(engine_context + 0x708) + 0x10))
+            ((longlong *)(engine_context + 0x708), &UNK_180a05768);
+  
+  // 设置触发器系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  FUN_180046240(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
-  func_0x00018010c140(auStack_148,0);
-  *(undefined4 *)(param_1 + 0x898) = 0;
-  FUN_18010bd10(param_1 + 0x8a0,auStack_148);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  // 初始化关节系统参数
+  func_0x00018010c140(auStack_148, 0);
+  
+  // 设置关节系统参数 (值为0)
+  *(undefined4 *)(engine_context + 0x898) = 0;
+  FUN_18010bd10(engine_context + 0x8a0, auStack_148);
+  
+  // 执行回调函数（如果存在）
   if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(auStack_148,0,0);
+    (*pcStack_138)(auStack_148, 0, 0);
   }
-  uVar1 = param_1 + 0x850;
-  (**(code **)(*(longlong *)(param_1 + 0x858) + 0x10))((longlong *)(param_1 + 0x858),&UNK_180a05758)
-  ;
+  
+  // 获取关节组件指针并初始化关节参数
+  component_ptr = engine_context + 0x850;
+  (**(code **)(*(longlong *)(engine_context + 0x858) + 0x10))
+            ((longlong *)(engine_context + 0x858), &UNK_180a05758);
+  
+  // 设置关节系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  FUN_180046240(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
-  func_0x00018010c160(auStack_148,0);
-  *(undefined4 *)(param_1 + 0x7b8) = 0;
-  FUN_18010bd10(param_1 + 0x7c0,auStack_148);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  // 初始化约束系统参数
+  func_0x00018010c160(auStack_148, 0);
+  
+  // 设置约束系统参数 (值为0)
+  *(undefined4 *)(engine_context + 0x7b8) = 0;
+  FUN_18010bd10(engine_context + 0x7c0, auStack_148);
+  
+  // 执行回调函数（如果存在）
   if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(auStack_148,0,0);
+    (*pcStack_138)(auStack_148, 0, 0);
   }
-  uVar1 = param_1 + 0x770;
-  (**(code **)(*(longlong *)(param_1 + 0x778) + 0x10))((longlong *)(param_1 + 0x778),&UNK_180a05788)
-  ;
+  
+  // 获取约束组件指针并初始化约束参数
+  component_ptr = engine_context + 0x770;
+  (**(code **)(*(longlong *)(engine_context + 0x778) + 0x10))
+            ((longlong *)(engine_context + 0x778), &UNK_180a05788);
+  
+  // 设置约束系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  FUN_180046240(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
   func_0x00018010c180(auStack_148,0);
   *(undefined4 *)(param_1 + 0x828) = 0;
   FUN_18010bd10(param_1 + 0x830,auStack_148);

@@ -42,6 +42,28 @@ void update_render_state(float *render_context, undefined8 param_2, float *rende
   float stencil_value;
   undefined4 blend_mode;
   ulonglong checksum;
+  undefined1 local_stack_buffer [32];
+  float *stack_param_1;
+  float *stack_param_2;
+  float *stack_param_3;
+  undefined8 stack_param_4;
+  undefined4 stack_param_5;
+  float *stack_param_6;
+  undefined4 stack_param_7;
+  char stack_status;
+  float stack_float_100;
+  float stack_float_fc;
+  float stack_float_f8;
+  float stack_float_f4;
+  float stack_float_f0;
+  float stack_float_ec;
+  float stack_float_e8;
+  float stack_float_e4;
+  float stack_float_e0;
+  float stack_float_dc;
+  float stack_float_d8;
+  float stack_float_d4;
+  undefined4 stack_c8;
   
   context_data = g_engine_context;
   checksum = g_render_checksum ^ (ulonglong)local_stack_buffer;
