@@ -1026,8 +1026,14 @@ void UI_Memory_Allocate(longlong element_size, longlong element_count)
 
 
 
-// 函数: void FUN_1806536d0(void)
-// UI系统Mono分配器初始化函数
+/**
+ * UI系统Mono分配器初始化函数
+ * 
+ * 初始化UI系统的Mono内存分配器，设置分配器表、
+ * 环境变量、内存管理函数等。
+ * 
+ * @return 无返回值
+ */
 void UI_Mono_Allocator_Initialize(void)
 {
   undefined8 *allocator_table;
@@ -1067,8 +1073,14 @@ void UI_Mono_Allocator_Initialize(void)
 
 
 
-// 函数: void FUN_180653940(void)
-// UI系统程序集加载函数
+/**
+ * UI系统程序集加载函数
+ * 
+ * 加载UI系统的程序集，包括DLL文件加载、
+ * 类加载、方法解析、依赖关系处理等。
+ * 
+ * @return 无返回值
+ */
 void UI_Load_Assembly(void)
 {
   longlong *domain_handle;
@@ -1169,8 +1181,18 @@ void UI_Load_Assembly(void)
 
 
 
-// 函数: undefined8 * FUN_180653ce0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
-// UI系统字符串复制函数
+/**
+ * UI系统字符串复制函数
+ * 
+ * 复制UI系统中的字符串，包括字符串拷贝、
+ * 字符串格式化、字符串验证等。
+ * 
+ * @param source_string 源字符串指针
+ * @param dest_buffer 目标缓冲区指针
+ * @param copy_param 复制参数
+ * @param copy_flags 复制标志位
+ * @return 复制结果指针
+ */
 undefined8 * UI_String_Copy(undefined8 source_string, undefined8 *dest_buffer, undefined8 copy_param, undefined8 copy_flags)
 {
   *dest_buffer = &UNK_18098bcb0;

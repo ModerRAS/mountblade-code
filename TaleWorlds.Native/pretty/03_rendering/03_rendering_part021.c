@@ -90,85 +90,114 @@ void mmd_material_loader_process(longlong render_context, char *material_path, u
   uint64_t stack_parameter3;
   longlong *stack_ptr1;
   
-  texture_indices[0] = CONCAT31(texture_indices[0]._1_3_, load_flag);
-  stack_param3 = 0xfffffffffffffffe;
+  // 初始化材质加载参数和标志位
+  texture_processing_indices[0] = ((texture_processing_indices[0] & 0xFFFFFF00) | (load_flag & 0xFF));
+  stack_parameter3 = 0xFFFFFFFFFFFFFFFEULL;
+  
+  // 检查渲染上下文是否有效
   if (*(int *)(render_context + 0x324) < 1) {
     return;
   }
-  FUN_1806279c0(path_segment);
-  param_index = buffer_length + -1;
-  file_position = (longlong)param_index;
-  if (-1 < param_index) {
+  
+  // 初始化材质路径处理缓冲区
+  string_buffer_initialize(material_path_segment);
+  loop_index = material_string_length + -1;
+  current_file_position = (longlong)loop_index;
+  
+  // 查找路径中的最后一个'/'字符
+  if (-1 < loop_index) {
     do {
-      if (*(char *)(file_position + (longlong)string_buffer) == '/') goto LAB_18027baf2;
-      param_index = param_index + -1;
-      file_position = file_position + -1;
-    } while (-1 < file_position);
+      if (*(char *)(current_file_position + (longlong)material_string_buffer) == '/') goto PATH_SEPARATOR_FOUND;
+      loop_index = loop_index + -1;
+      current_file_position = current_file_position + -1;
+    } while (-1 < current_file_position);
   }
-  param_index = -1;
-LAB_18027baf2:
-  file_position = FUN_180629a40(path_segment, &temp_ptr9, 0, param_index);
-  if (string_buffer != (undefined *)0x0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  loop_index = -1;
+PATH_SEPARATOR_FOUND:
+  
+  // 处理材质路径并获取文件信息
+  current_file_position = string_buffer_process_path(material_path_segment, &temporary_ptr9, 0, loop_index);
+  if (material_string_buffer != (char *)0x0) {
+    memory_manager_release_buffer();
   }
-  buffer_length = *(uint *)(file_position + 0x10);
-  string_buffer = *(undefined **)(file_position + 8);
-  path_hash = *(undefined8 *)(file_position + 0x18);
-  *(undefined4 *)(file_position + 0x10) = 0;
-  *(undefined8 *)(file_position + 8) = 0;
-  *(undefined8 *)(file_position + 0x18) = 0;
-  temp_ptr9 = &UNK_180a3c3e0;
-  if (stack_offset != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  
+  // 提取路径信息
+  material_string_length = *(uint *)(current_file_position + 0x10);
+  material_string_buffer = *(char **)(current_file_position + 8);
+  material_path_hash = *(uint64_t *)(current_file_position + 0x18);
+  
+  // 清理临时缓冲区
+  *(uint32_t *)(current_file_position + 0x10) = 0;
+  *(uint64_t *)(current_file_position + 8) = 0;
+  *(uint64_t *)(current_file_position + 0x18) = 0;
+  temporary_ptr9 = &g_material_buffer_empty;
+  
+  if (stack_memory_offset != 0) {
+    memory_manager_release_buffer();
   }
-  stack_offset = 0;
-  stack_param2 = 0;
-  temp_ptr9 = &UNK_18098bcb0;
-  material_count = buffer_length + 4;
-  FUN_1806277c0(path_segment, material_count);
-  *(undefined4 *)(string_buffer + buffer_length) = 0x646d6d2f;
-  *(undefined1 *)((longlong)(string_buffer + buffer_length) + 4) = 0;
-  buffer_length = material_count;
-  FUN_180628380(path_segment, *(undefined4 *)(render_context + 0x324));
-  param_index = buffer_length + 4;
-  FUN_1806277c0(path_segment, param_index);
-  *(undefined4 *)(string_buffer + buffer_length) = 0x646d6d2e;
-  *(undefined1 *)((longlong)(string_buffer + buffer_length) + 4) = 0;
-  buffer_length = param_index;
-  file_handle = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 0x18, 8, 3);
-  string_ptr = &DAT_18098bc73;
-  if (string_buffer != (undefined *)0x0) {
-    string_ptr = string_buffer;
+  
+  // 重置栈内存和参数
+  stack_memory_offset = 0;
+  stack_parameter2 = 0;
+  temporary_ptr9 = &g_material_buffer_ready;
+  
+  // 构建材质文件路径（添加"/mmd"后缀）
+  material_entry_count = material_string_length + 4;
+  string_buffer_append(material_path_segment, material_entry_count);
+  *(uint32_t *)(material_string_buffer + material_string_length) = 0x646d6d2f; // "/mmd"
+  *(uint8_t *)((longlong)(material_string_buffer + material_string_length) + 4) = 0;
+  material_string_length = material_entry_count;
+  
+  // 添加渲染上下文ID到路径
+  string_buffer_append_context_id(material_path_segment, *(uint32_t *)(render_context + 0x324));
+  loop_index = material_string_length + 4;
+  string_buffer_append(material_path_segment, loop_index);
+  *(uint32_t *)(material_string_buffer + material_string_length) = 0x646d6d2e; // ".mmd"
+  *(uint8_t *)((longlong)(material_string_buffer + material_string_length) + 4) = 0;
+  material_string_length = loop_index;
+  // 分配文件句柄并打开材质文件
+  material_file_handle = (FILE *)memory_manager_allocate(g_material_memory_pool, 0x18, 8, 3);
+  material_name_string = &g_default_material_path;
+  if (material_string_buffer != (char *)0x0) {
+    material_name_string = material_string_buffer;
   }
-  file_position = 0;
-  *file_handle = 0;
-  *(undefined1 *)(file_handle + 2) = 0;
-  temp_handle = file_handle;
-  FUN_18062dee0(file_handle, string_ptr, &UNK_180a01ff0);
-  if (file_handle[1] == 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900(file_handle);
+  
+  current_file_position = 0;
+  *material_file_handle = 0;
+  *(uint8_t *)(material_file_handle + 2) = 0;
+  temporary_file_handle = material_file_handle;
+  
+  // 打开材质文件
+  file_system_open_file(material_file_handle, material_name_string, &g_material_file_open_flags);
+  if (material_file_handle[1] == 0) {
+    file_handle_cleanup(material_file_handle);
   }
-  fread(temp_indices, 4, 1);
-  texture_offset = (longlong)temp_indices[0];
-  if (temp_indices[0] == 0x31444d4d) {
-    fread(entry_data, 4, 1, file_handle[1]);
-    texture_indices[0] = 0;
-    if (0 < entry_data[0]) {
+  
+  // 读取文件头标识
+  fread(temp_processing_indices, 4, 1);
+  texture_data_offset = (longlong)temp_processing_indices[0];
+  
+  // 检查是否为MMD1格式文件
+  if (temp_processing_indices[0] == 0x31444d4d) {
+    fread(file_entry_data, 4, 1, material_file_handle[1]);
+    texture_processing_indices[0] = 0;
+    
+    // 处理MMD1格式的材质数据
+    if (0 < file_entry_data[0]) {
       do {
-        fread(path_indices, 4, 1, file_handle[1]);
-        material_entry = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, (longlong)(path_indices[0] + 1), 0x10, 3);
-        temp_ptr2 = material_entry;
-        fread(material_entry, 1, (longlong)path_indices[0], file_handle[1]);
-        *(undefined1 *)((longlong)path_indices[0] + (longlong)material_entry) = 0;
-        FUN_180627910(&ptr1, material_entry);
-        while ((0 < (int)param_count && (file_position = strstr(ptr2, &DAT_180a0ff10), file_position != 0))) {
-          entry_count = 6;
-          param_index = (int)file_position - (int)ptr2;
-          if (param_count < param_index + 6U) {
-            entry_count = param_count - param_index;
+        fread(path_hash_indices, 4, 1, material_file_handle[1]);
+        material_cache_entry = (longlong *)memory_manager_allocate(g_material_memory_pool, (longlong)(path_hash_indices[0] + 1), 0x10, 3);
+        temporary_ptr2 = material_cache_entry;
+        fread(material_cache_entry, 1, (longlong)path_hash_indices[0], material_file_handle[1]);
+        *(uint8_t *)((longlong)path_hash_indices[0] + (longlong)material_cache_entry) = 0;
+        
+        // 处理材质名称字符串
+        string_processor_analyze(&heap_ptr1, material_cache_entry);
+        while ((0 < (int)parameter_count && (current_file_position = strstr(heap_ptr2, &g_invalid_char_sequence), current_file_position != 0))) {
+          material_entry_count = 6;
+          loop_index = (int)current_file_position - (int)heap_ptr2;
+          if (parameter_count < loop_index + 6U) {
+            material_entry_count = parameter_count - loop_index;
           }
           material_count = param_index + entry_count;
           if (material_count < param_count) {
