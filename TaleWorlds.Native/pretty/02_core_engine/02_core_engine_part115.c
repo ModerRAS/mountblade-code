@@ -605,9 +605,10 @@ undefined1 return_empty_status_check(void)
 
 
 
-// 函数: void FUN_1801283f0(longlong param_1,int param_2,float *param_3,undefined8 param_4,uint param_5)
+// 函数: void initialize_game_entity(longlong entity_id,int entity_type,float *size_data,undefined8 context_ptr,uint entity_flags)
 // 功能: 初始化游戏对象并设置其属性
-void FUN_1801283f0(longlong param_1,int param_2,float *param_3,undefined8 param_4,uint param_5)
+// 原始实现: FUN_1801283f0 - 简化实现: 为函数和参数提供语义化名称
+void initialize_game_entity(longlong entity_id,int entity_type,float *size_data,undefined8 context_ptr,uint entity_flags)
 
 {
   undefined4 uVar1;
@@ -683,9 +684,10 @@ void FUN_1801283f0(longlong param_1,int param_2,float *param_3,undefined8 param_
 
 
 
-// 函数: void FUN_1801285e0(void)
+// 函数: void process_entity_boundary_box(void)
 // 功能: 处理游戏对象的边界框和碰撞检测
-void FUN_1801285e0(void)
+// 原始实现: FUN_1801285e0 - 简化实现: 为函数提供语义化名称
+void process_entity_boundary_box(void)
 
 {
   char *pcVar1;
@@ -869,9 +871,10 @@ void FUN_1801285e0(void)
 
 
 
-// 函数: void FUN_18012862b(undefined8 param_1)
+// 函数: void update_entity_position_bounds(undefined8 position_data)
 // 功能: 更新游戏对象的位置和边界信息
-void FUN_18012862b(undefined8 param_1)
+// 原始实现: FUN_18012862b - 简化实现: 为函数和参数提供语义化名称
+void update_entity_position_bounds(undefined8 position_data)
 
 {
   float fVar1;

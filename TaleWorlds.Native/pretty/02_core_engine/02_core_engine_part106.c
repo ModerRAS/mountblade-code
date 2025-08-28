@@ -41,12 +41,6 @@ extern undefined8 global_render_manager;
 
 /**
  * 处理渲染边界框的调整和优化
- * @param param_1 渲染上下文
- * @param param_2 边界框坐标指针
- * @param param_3 边界框数据
- */
-/**
- * 处理渲染边界框的调整和优化
  * @param render_context 渲染上下文
  * @param bounds_ptr 边界框坐标指针
  * @param entity_data 实体数据
@@ -74,36 +68,36 @@ void process_render_bounding_box(undefined8 render_context, float *bounds_ptr, l
     float min_y_value = *bounds_ptr;
     uint render_flags = func_0x000180121e20();
     if ((render_flags & 0xff000000) != 0) {
-        if (entity_instance == 0) {
+        if (render_context == 0) {
             longlong string_length = -1;
             do {
                 string_length = string_length + 1;
-            } while (*(char *)(bounds_data + string_length) != '\0');
-            entity_instance = string_length + bounds_data;
+            } while (*(char *)(bounds_ptr + string_length) != '\0');
+            render_context = string_length + bounds_ptr;
         }
-        if (bounds_data != entity_instance) {
-            longlong entity_ptr = *(longlong *)(entity_instance + 0x38);
-            float *current_bounds = (float *)(*(longlong *)(entity_instance + 0x68) + -0x10 +
-                                        (longlong)*(int *)(entity_instance + 0x60) * 0x10);
+        if (bounds_ptr != render_context) {
+            longlong entity_ptr = *(longlong *)(render_context + 0x38);
+            float *current_bounds = (float *)(*(longlong *)(render_context + 0x68) + -0x10 +
+                                        (longlong)*(int *)(render_context + 0x60) * 0x10);
             float max_z = *current_bounds;
             float max_w = current_bounds[1];
             float adjusted_min_y = current_bounds[2];
             float adjusted_max_z = current_bounds[3];
-            *(float *)(render_state + -0x59) = max_z;
-            *(float *)(render_state + -0x55) = max_w;
-            *(float *)(render_state + -0x51) = adjusted_min_y;
-            *(float *)(render_state + -0x4d) = adjusted_max_z;
+            *(float *)(entity_data + -0x59) = max_z;
+            *(float *)(entity_data + -0x55) = max_w;
+            *(float *)(entity_data + -0x51) = adjusted_min_y;
+            *(float *)(entity_data + -0x4d) = adjusted_max_z;
             if (max_z < min_y_value) {
-                *(float *)(render_state + -0x59) = min_y_value;
+                *(float *)(entity_data + -0x59) = min_y_value;
             }
-            if (*(float *)(render_state + -0x55) < camera_min_y) {
-                *(float *)(render_state + -0x55) = camera_min_y;
+            if (*(float *)(entity_data + -0x55) < *(float *)(entity_data + 0x18)) {
+                *(float *)(entity_data + -0x55) = *(float *)(entity_data + 0x18);
             }
-            if (camera_max_z <= *(float *)(render_state + -0x51)) {
-                *(float *)(render_state + -0x51) = camera_max_z;
+            if (*(float *)(entity_data + 0x1c) <= *(float *)(entity_data + -0x51)) {
+                *(float *)(entity_data + -0x51) = *(float *)(entity_data + 0x1c);
             }
-            if (max_y <= *(float *)(render_state + -0x4d)) {
-                *(float *)(render_state + -0x4d) = max_y;
+            if (max_y <= *(float *)(entity_data + -0x4d)) {
+                *(float *)(entity_data + -0x4d) = max_y;
             }
             FUN_180297590(*(undefined8 *)(entity_ptr + 8));
         }
@@ -112,6 +106,7 @@ void process_render_bounding_box(undefined8 render_context, float *bounds_ptr, l
 }
 
 /**
+ * 初始化渲染状态
  * 空函数 - 可能是预留的接口
  */
 void initialize_render_state(void)
