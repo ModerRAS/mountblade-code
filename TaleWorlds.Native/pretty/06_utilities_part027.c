@@ -68,15 +68,11 @@ typedef struct {
 // 参数：param_1 - 系统上下文，param_2 - 状态参数
 // 返回值：无
 // =============================================================================
-void FUN_18094136c(uint64_t param_1,longlong param_2)
+void utilities_system_state_checker(uint64_t param_1, longlong param_2)
 
 {
-  char cVar1;
-  int iVar2;
-  
-  // 变量重命名以提高可读性：
-  // cVar1 -> status_flag: 状态标志
-  // iVar2 -> system_check_result: 系统检查结果
+  char status_flag;
+  int system_check_result;
   
   // 获取状态标志
   status_flag = *(char *)(param_2 + 0x40);
