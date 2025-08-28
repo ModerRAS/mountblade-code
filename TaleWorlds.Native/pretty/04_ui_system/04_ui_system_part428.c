@@ -190,23 +190,37 @@ undefined8 ui_system_data_validator_1(longlong param_1, longlong *param_2)
 
 
 
-undefined8 FUN_18089f0b0(longlong param_1,longlong *param_2)
-
+/**
+ * UI系统数据验证器2
+ * 
+ * 执行UI系统数据的高级验证，支持SIL和BFEB数据类型的验证。
+ * 该函数通过数据类型识别和多层次验证确保UI系统数据的完整性。
+ * 
+ * @param param_1 数据对象指针
+ * @param param_2 验证上下文指针
+ * @return 验证结果：0表示成功，0x1c表示失败
+ */
+undefined8 ui_system_data_validator_2(longlong param_1, longlong *param_2)
 {
-  undefined8 uVar1;
-  undefined4 auStackX_18 [2];
-  undefined1 auStack_68 [64];
-  undefined1 auStack_28 [32];
-  
-  uVar1 = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x46464542);
-  if (((int)uVar1 == 0) &&
-     (uVar1 = FUN_1808ddd30(param_2,auStack_68,0,0x42464542,0), (int)uVar1 == 0)) {
-    if (*(int *)(param_2[1] + 0x18) == 0) {
-      uVar1 = FUN_180899ef0(*param_2,param_1 + 0x10);
-      if (((int)uVar1 == 0) &&
-         ((0x5a < *(uint *)(param_2 + 8) ||
-          (uVar1 = FUN_1808afd90(param_2,param_1 + 0x44), (int)uVar1 == 0)))) {
-        if (*(int *)(param_2[1] + 0x18) == 0) {
+    undefined8 validation_result;
+    undefined4 type_switch_stack[2];
+    undefined1 validation_buffer_64[64];
+    undefined1 validation_buffer_32[32];
+    
+    // 验证SIL数据类型
+    validation_result = FUN_1808ddd30(param_2, validation_buffer_32, 1, UI_DATA_TYPE_SIL, 0x46464542);
+    if (((int)validation_result == 0) &&
+       (validation_result = FUN_1808ddd30(param_2, validation_buffer_64, 0, UI_DATA_TYPE_BFEB2, 0), (int)validation_result == 0)) {
+        
+        // 检查验证状态
+        if (*(int *)(param_2[1] + UI_OFFSET_0x18) == 0) {
+            validation_result = FUN_180899ef0(*param_2, param_1 + UI_OFFSET_0x10);
+            if (((int)validation_result == 0) &&
+               ((UI_MAX_DATA_SIZE < *(uint *)(param_2 + 8) ||
+                (validation_result = FUN_1808afd90(param_2, param_1 + UI_OFFSET_0x44), (int)validation_result == 0)))) {
+                
+                // 执行类型切换验证
+                if (*(int *)(param_2[1] + UI_OFFSET_0x18) == 0) {
           switch(*(undefined4 *)(param_1 + 0x60)) {
           default:
             auStackX_18[0] = 0;
