@@ -169,7 +169,7 @@ void SystemResourceManager(int32_t param_1, uint64_t param_2, longlong param_3);
 // 函数: void SystemErrorHandler(void)
 // 功能：系统错误处理器，处理致命错误和异常情况
 // 注意：此函数不返回，会调用系统错误处理终止程序
-void FUN_1808c3807(void)
+void SystemErrorHandler(void)
 {
     // WARNING: 此函数不返回，会调用系统错误处理终止程序
     FUN_180768400();
@@ -179,7 +179,7 @@ void FUN_1808c3807(void)
 // 功能：系统数据结构处理器，处理复杂的数据结构操作
 // 参数：param_1 - 数据结构指针数组, param_2 - 资源句柄指针
 // 返回值：无
-void FUN_1808c3980(longlong *param_1, uint64_t *param_2)
+void SystemDataStructureProcessor(longlong *param_1, uint64_t *param_2)
 {
     uint64_t *puVar1;
     int iVar2;
@@ -404,7 +404,7 @@ FUN_1808c3dad:
 // 功能：系统资源管理器，管理资源的分配和生命周期
 // 参数：param_1 - 资源标志, param_2 - 资源数据, param_3 - 资源上下文
 // 返回值：无
-void FUN_1808c39f5(int32_t param_1, uint64_t param_2, longlong param_3)
+void SystemResourceManager(int32_t param_1, uint64_t param_2, longlong param_3)
 {
     uint64_t *puVar1;
     uint64_t *puVar2;

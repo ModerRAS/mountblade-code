@@ -487,6 +487,9 @@ extern longlong g_ui_system_block;                     // UI系统控制块
 extern longlong g_ui_event_queue;                      // UI事件队列
 extern longlong g_ui_callback_registry;                // UI回调注册表
 extern longlong g_ui_state_manager;                    // UI状态管理器
+extern longlong g_ui_data_count;                       // UI数据计数器
+extern longlong g_ui_target_buffer;                    // UI目标缓冲区
+extern longlong g_ui_source_buffer;                    // UI源缓冲区
 
 //==============================================================================
 // 函数别名定义
@@ -511,6 +514,12 @@ extern longlong g_ui_state_manager;                    // UI状态管理器
 #define FUN_180753170(param)              UI_State_Validate_Handle(param)
 #define func_0x00018076a7d0(param)        UI_Callback_Execute_Resource(param)
 #define memcpy(dest,src,size)             UI_Memory_Copy(dest,src,size)
+
+// 寄存器变量别名（用于反编译代码的可读性）
+#define unaff_RSI                         g_ui_context_handle
+#define unaff_RBP                         g_ui_data_count
+#define unaff_RDI                         g_ui_target_buffer
+#define unaff_R14                         g_ui_source_buffer
 
 //==============================================================================
 
