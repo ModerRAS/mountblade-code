@@ -84,7 +84,17 @@ void utility_memory_buffer_expander(longlong buffer_ptr, undefined8 data_size)
 
 
 
-undefined8 FUN_180898790(longlong *param_1,int param_2)
+/**
+ * 内存分配器 - 扩展缓冲区容量（类型2）
+ * 
+ * 该函数负责管理动态缓冲区的容量扩展，支持根据需求调整缓冲区大小。
+ * 当缓冲区空间不足时，会尝试扩展到合适的容量。
+ * 
+ * @param buffer_ptr 缓冲区指针的指针
+ * @param size 需要的缓冲区大小
+ * @return 成功返回UTILITY_SUCCESS，失败返回错误代码
+ */
+undefined8 utility_buffer_expander_type2(longlong *buffer_ptr, int size)
 
 {
   int iVar1;
@@ -107,7 +117,17 @@ undefined8 FUN_180898790(longlong *param_1,int param_2)
 
 
 
-undefined8 FUN_1808987e0(longlong *param_1,char param_2)
+/**
+ * 数据处理器 - 音频时间同步处理
+ * 
+ * 该函数负责处理音频数据的时间同步，计算音频样本的时间偏移。
+ * 支持音频流的精确时间定位和同步控制。
+ * 
+ * @param audio_data 音频数据结构指针
+ * @param sync_flag 同步标志，0表示强制同步
+ * @return 成功返回UTILITY_SUCCESS，失败返回错误代码
+ */
+undefined8 utility_audio_time_synchronizer(longlong *audio_data, char sync_flag)
 
 {
   longlong lVar1;
@@ -147,7 +167,18 @@ undefined8 FUN_1808987e0(longlong *param_1,char param_2)
 
 
 
-undefined8 FUN_1808988b0(longlong *param_1,char *param_2,undefined8 *param_3)
+/**
+ * 字符串查找器 - 哈希表字符串搜索
+ * 
+ * 该函数在哈希表结构中查找指定的字符串，支持快速的字符串匹配。
+ * 使用哈希算法提高查找效率，返回匹配的结果数据。
+ * 
+ * @param hash_table 哈希表结构指针
+ * @param search_str 要搜索的字符串
+ * @param result_data 查找结果数据输出指针
+ * @return 成功返回UTILITY_SUCCESS，失败返回错误代码
+ */
+undefined8 utility_hash_table_string_finder(longlong *hash_table, char *search_str, undefined8 *result_data)
 
 {
   char *pcVar1;
@@ -230,9 +261,20 @@ LAB_1808989f7:
 
 
 
-undefined8
-FUN_180898a50(longlong param_1,uint *param_2,undefined8 param_3,undefined4 param_4,
-             undefined8 param_5)
+/**
+ * 数据查找器 - 二分搜索算法
+ * 
+ * 该函数使用二分搜索算法在排序数组中查找指定的数据项。
+ * 支持复杂的数据比较和精确匹配。
+ * 
+ * @param data_array 数据数组结构
+ * @param search_key 搜索键值
+ * @param param3 查找参数3
+ * @param param4 查找参数4
+ * @param param5 查找参数5
+ * @return 成功返回UTILITY_SUCCESS，失败返回错误代码
+ */
+undefined8 utility_binary_search_data_finder(longlong data_array, uint *search_key, undefined8 param3, undefined4 param4, undefined8 param5)
 
 {
   uint uVar1;
@@ -289,9 +331,21 @@ FUN_180898a50(longlong param_1,uint *param_2,undefined8 param_3,undefined4 param
 
 
 
-undefined4
-FUN_180898b40(longlong *param_1,int param_2,undefined4 *param_3,undefined1 *param_4,int param_5,
-             int *param_6)
+/**
+ * 数据提取器 - 索引数据提取
+ * 
+ * 该函数从索引结构中提取指定的数据项，支持数据的复制和转换。
+ * 处理复杂的数据结构和内存管理。
+ * 
+ * @param data_structure 数据结构指针
+ * @param index 索引位置
+ * @param output_data 输出数据缓冲区
+ * @param output_buffer 输出缓冲区
+ * @param buffer_size 缓冲区大小
+ * @param data_size 数据大小输出指针
+ * @return 成功返回UTILITY_SUCCESS，失败返回错误代码
+ */
+undefined4 utility_indexed_data_extractor(longlong *data_structure, int index, undefined4 *output_data, undefined1 *output_buffer, int buffer_size, int *data_size)
 
 {
   undefined4 *puVar1;
@@ -412,7 +466,18 @@ FUN_180898b40(longlong *param_1,int param_2,undefined4 *param_3,undefined1 *para
 
 
 
-undefined4 FUN_180898b65(undefined8 param_1,int param_2,undefined4 *param_3)
+/**
+ * 数据处理器 - 优化数据提取
+ * 
+ * 该函数是数据提取器的优化版本，提供更高效的数据处理能力。
+ * 支持寄存器优化和快速数据处理。
+ * 
+ * @param param1 处理参数1
+ * @param param2 处理参数2
+ * @param output_data 输出数据缓冲区
+ * @return 成功返回UTILITY_SUCCESS，失败返回错误代码
+ */
+undefined4 utility_optimized_data_extractor(undefined8 param1, int param2, undefined4 *output_data)
 
 {
   undefined4 *puVar1;
@@ -536,7 +601,17 @@ undefined4 FUN_180898b65(undefined8 param_1,int param_2,undefined4 *param_3)
 
 
 
-undefined4 FUN_180898bc0(undefined8 param_1,ulonglong param_2)
+/**
+ * 数据处理器 - 链表数据处理
+ * 
+ * 该函数处理链表结构中的数据，支持数据的遍历和处理。
+ * 使用链表索引进行高效的数据访问。
+ * 
+ * @param list_data 链表数据结构
+ * @param list_index 链表索引
+ * @return 处理结果状态码
+ */
+undefined4 utility_linked_list_data_processor(undefined8 list_data, ulonglong list_index)
 
 {
   undefined1 uVar1;
@@ -641,7 +716,15 @@ undefined4 FUN_180898bc0(undefined8 param_1,ulonglong param_2)
 
 
 
-undefined4 FUN_180898c86(void)
+/**
+ * 缓冲区处理器 - 内存缓冲区处理
+ * 
+ * 该函数处理内存缓冲区中的数据，支持数据的复制和整理。
+ * 优化内存访问模式，提高处理效率。
+ * 
+ * @return 处理结果状态码
+ */
+undefined4 utility_memory_buffer_processor(void)
 
 {
   undefined1 uVar1;
@@ -707,7 +790,17 @@ undefined4 FUN_180898c86(void)
 
 
 
-undefined4 FUN_180898d31(undefined8 param_1,int *param_2)
+/**
+ * 数据计数器 - 数据长度统计
+ * 
+ * 该函数统计数据的长度和计数信息，支持数据的度量。
+ * 提供精确的数据长度计算功能。
+ * 
+ * @param data_ptr 数据指针
+ * @param length_ptr 数据长度输出指针
+ * @return 统计结果状态码
+ */
+undefined4 utility_data_length_counter(undefined8 data_ptr, int *length_ptr)
 
 {
   undefined4 unaff_R13D;
@@ -719,7 +812,15 @@ undefined4 FUN_180898d31(undefined8 param_1,int *param_2)
 
 
 
-undefined8 FUN_180898d4d(void)
+/**
+ * 状态检查器 - 默认状态返回
+ * 
+ * 该函数返回默认的状态码，用于状态检查和错误处理。
+ * 提供统一的状态返回接口。
+ * 
+ * @return 默认状态码
+ */
+undefined8 utility_default_status_checker(void)
 
 {
   return 0x1f;
@@ -729,7 +830,17 @@ undefined8 FUN_180898d4d(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180898d60(longlong *param_1,int param_2)
+/**
+ * 内存管理器 - 动态数组扩展
+ * 
+ * 该函数管理动态数组的扩展和内存分配，支持数组容量的动态调整。
+ * 处理内存分配失败的情况，确保数据安全。
+ * 
+ * @param array_ptr 数组指针的指针
+ * @param new_size 新的数组大小
+ * @return 成功返回UTILITY_SUCCESS，失败返回错误代码
+ */
+undefined8 utility_dynamic_array_expander(longlong *array_ptr, int new_size)
 
 {
   int iVar1;
@@ -779,7 +890,17 @@ LAB_180898e0b:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180898d84(undefined8 param_1,int param_2)
+/**
+ * 内存管理器 - 优化数组扩展
+ * 
+ * 该函数是数组扩展器的优化版本，提供更高效的内存管理能力。
+ * 支持寄存器优化和快速数组操作。
+ * 
+ * @param param1 处理参数1
+ * @param param2 处理参数2
+ * @return 成功返回UTILITY_SUCCESS，失败返回错误代码
+ */
+undefined8 utility_optimized_array_expander(undefined8 param1, int param2)
 
 {
   int iVar1;
@@ -826,7 +947,15 @@ LAB_180898e0b:
 
 
 
-undefined8 FUN_180898e56(void)
+/**
+ * 错误处理器 - 内存分配失败
+ * 
+ * 该函数处理内存分配失败的情况，返回相应的错误代码。
+ * 提供统一的错误处理接口。
+ * 
+ * @return 内存分配失败错误代码
+ */
+undefined8 utility_memory_allocation_error_handler(void)
 
 {
   return 0x26;
@@ -834,7 +963,17 @@ undefined8 FUN_180898e56(void)
 
 
 
-undefined8 FUN_180898e70(longlong *param_1,undefined4 *param_2)
+/**
+ * 数据写入器 - 单数据写入
+ * 
+ * 该函数向数据结构中写入单个数据项，支持数据的验证和写入。
+ * 处理写入失败的情况，确保数据完整性。
+ * 
+ * @param data_structure 数据结构指针
+ * @param data_item 要写入的数据项
+ * @return 成功返回UTILITY_SUCCESS，失败返回错误代码
+ */
+undefined8 utility_single_data_writer(longlong *data_structure, undefined4 *data_item)
 
 {
   undefined8 uVar1;
@@ -850,7 +989,17 @@ undefined8 FUN_180898e70(longlong *param_1,undefined4 *param_2)
 
 
 
-undefined8 FUN_180898eb0(longlong *param_1,undefined4 *param_2)
+/**
+ * 数据写入器 - 优化单数据写入
+ * 
+ * 该函数是单数据写入器的优化版本，提供更高效的数据写入能力。
+ * 支持快速的数据写入操作。
+ * 
+ * @param data_structure 数据结构指针
+ * @param data_item 要写入的数据项
+ * @return 成功返回UTILITY_SUCCESS，失败返回错误代码
+ */
+undefined8 utility_optimized_single_data_writer(longlong *data_structure, undefined4 *data_item)
 
 {
   undefined8 uVar1;
@@ -866,7 +1015,17 @@ undefined8 FUN_180898eb0(longlong *param_1,undefined4 *param_2)
 
 
 
-undefined8 FUN_180898ef0(undefined8 *param_1,longlong param_2)
+/**
+ * 数据读取器 - 双数据读取
+ * 
+ * 该函数从数据结构中读取两个数据项，支持连续数据的读取。
+ * 处理读取失败的情况，提供错误处理。
+ * 
+ * @param data_structure 数据结构指针
+ * @param offset 数据偏移量
+ * @return 成功返回UTILITY_SUCCESS，失败返回错误代码
+ */
+undefined8 utility_dual_data_reader(undefined8 *data_structure, longlong offset)
 
 {
   undefined8 uVar1;
@@ -885,7 +1044,17 @@ undefined8 FUN_180898ef0(undefined8 *param_1,longlong param_2)
 
 
 
-undefined8 FUN_180898f40(longlong *param_1,undefined4 *param_2)
+/**
+ * 数据处理器 - 复杂数据处理
+ * 
+ * 该函数处理复杂的数据结构，支持多步骤的数据处理流程。
+ * 提供完整的数据验证和处理功能。
+ * 
+ * @param data_structure 数据结构指针
+ * @param data_item 要处理的数据项
+ * @return 成功返回UTILITY_SUCCESS，失败返回错误代码
+ */
+undefined8 utility_complex_data_processor(longlong *data_structure, undefined4 *data_item)
 
 {
   longlong lVar1;
@@ -913,8 +1082,17 @@ undefined8 FUN_180898f40(longlong *param_1,undefined4 *param_2)
 
 
 
-// 函数: void FUN_180898fc0(undefined8 param_1,longlong param_2)
-void FUN_180898fc0(undefined8 param_1,longlong param_2)
+/**
+ * 初始化器 - 多步骤初始化
+ * 
+ * 该函数执行多步骤的初始化过程，支持复杂的初始化逻辑。
+ * 按照特定顺序执行初始化步骤。
+ * 
+ * @param init_param1 初始化参数1
+ * @param init_param2 初始化参数2
+ * @return 无返回值
+ */
+void utility_multi_step_initializer(undefined8 init_param1, longlong init_param2)
 
 {
   int iVar1;
@@ -939,8 +1117,17 @@ void FUN_180898fc0(undefined8 param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180899040(undefined8 param_1,longlong param_2)
-void FUN_180899040(undefined8 param_1,longlong param_2)
+/**
+ * 初始化器 - 优化多步骤初始化
+ * 
+ * 该函数是优化版本的多步骤初始化器，提供更高效的初始化能力。
+ * 支持简化的初始化流程和快速初始化。
+ * 
+ * @param init_param1 初始化参数1
+ * @param init_param2 初始化参数2
+ * @return 无返回值
+ */
+void utility_optimized_multi_step_initializer(undefined8 init_param1, longlong init_param2)
 
 {
   int iVar1;
