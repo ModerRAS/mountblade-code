@@ -213,7 +213,7 @@ uint64_t UI_System_Get_Error_Code(void)
 // UI系统事件分发函数
 void UI_System_Event_Dispatch(longlong param_1,uint64_t param_2,int32_t param_3,uint64_t param_4)
 {
-  FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),param_2,1,param_3,param_4);
+  UI_Event_Queue_Add(*(uint64_t *)(param_1 + 0x170),param_2,1,param_3,param_4);
   return;
 }
 
