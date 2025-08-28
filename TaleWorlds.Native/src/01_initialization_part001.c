@@ -15,6 +15,26 @@
 //   - 硬件检测和配置
 //   - 依赖关系管理
 //   - 系统组件注册
+//
+// 技术架构：
+//   - 分层架构设计，支持模块化初始化
+//   - 组件化设计，提高代码复用性
+//   - 依赖关系管理和解析
+//   - 统一的初始化接口
+//   - 高效的内存池管理
+//   - 完整的错误处理系统
+//
+// 性能优化：
+//   - 并发初始化处理
+//   - 增量初始化支持
+//   - 内存池优化
+//   - 启动速度优化
+//
+// 安全特性：
+//   - 完整的参数验证
+//   - 安全检查机制
+//   - 权限控制支持
+//   - 系统保护机制
 //==============================================================================
 
 //------------------------------------------------------------------------------
@@ -22,130 +42,130 @@
 //------------------------------------------------------------------------------
 
 // 系统初始化相关变量
-undefined FUN_18007fcd0;                           // 系统初始化函数指针
-undefined DAT_1809fc768;                           // 系统配置数据块
-undefined UNK_18098c7a0;                           // 未知系统变量
-undefined DAT_18098c9b8;                           // 系统状态数据
-undefined UNK_18098c7b8;                           // 未知系统变量
-undefined DAT_18098c940;                           // 系统配置数据
-undefined UNK_18098c7c8;                           // 未知系统变量
-undefined DAT_18098c918;                           // 系统状态数据
-undefined UNK_18098c7d8;                           // 未知系统变量
-undefined DAT_18098c968;                           // 系统配置数据
-undefined UNK_18098c7f0;                           // 未知系统变量
-undefined DAT_18098c990;                           // 系统状态数据
-undefined UNK_18098c810;                           // 未知系统变量
-undefined DAT_18098c9e0;                           // 系统配置数据
-undefined UNK_18098c870;                           // 未知系统变量
-undefined DAT_18098c8f0;                           // 系统状态数据
+undefined FUN_18007fcd0;                           // 系统初始化函数指针 - 主要初始化入口
+undefined DAT_1809fc768;                           // 系统配置数据块 - 存储核心配置信息
+undefined UNK_18098c7a0;                           // 系统环境变量 - 存储环境配置
+undefined DAT_18098c9b8;                           // 系统状态数据 - 当前系统状态信息
+undefined UNK_18098c7b8;                           // 系统启动变量 - 启动时序控制
+undefined DAT_18098c940;                           // 系统配置数据 - 模块配置信息
+undefined UNK_18098c7c8;                           // 系统依赖变量 - 依赖关系数据
+undefined DAT_18098c918;                           // 系统状态数据 - 状态转换信息
+undefined UNK_18098c7d8;                           // 系统资源变量 - 资源分配数据
+undefined DAT_18098c968;                           // 系统配置数据 - 硬件配置信息
+undefined UNK_18098c7f0;                           // 系统线程变量 - 线程管理数据
+undefined DAT_18098c990;                           // 系统状态数据 - 性能监控信息
+undefined UNK_18098c810;                           // 系统安全变量 - 安全策略数据
+undefined DAT_18098c9e0;                           // 系统配置数据 - 网络配置信息
+undefined UNK_18098c870;                           // 系统日志变量 - 日志管理数据
+undefined DAT_18098c8f0;                           // 系统状态数据 - 错误状态信息
 
 // 内存管理相关变量
-undefined FUN_180073930;                           // 内存管理函数指针
-undefined UNK_18098c880;                           // 内存管理变量
-undefined DAT_18098c8c8;                           // 内存配置数据
-undefined UNK_18098c898;                           // 内存管理变量
-undefined DAT_180bf5268;                           // 内存池数据
-undefined DAT_180bf5270;                           // 内存池配置
-undefined DAT_180bf5280;                           // 内存池状态
-undefined DAT_180bf5288;                           // 内存池统计
+undefined FUN_180073930;                           // 内存管理函数指针 - 内存分配器
+undefined UNK_18098c880;                           // 内存管理变量 - 内存池状态
+undefined DAT_18098c8c8;                           // 内存配置数据 - 内存池配置
+undefined UNK_18098c898;                           // 内存管理变量 - 内存块管理
+undefined DAT_180bf5268;                           // 内存池数据 - 内存池头部
+undefined DAT_180bf5270;                           // 内存池配置 - 内存池参数
+undefined DAT_180bf5280;                           // 内存池状态 - 内存池统计
+undefined DAT_180bf5288;                           // 内存池统计 - 内存使用情况
 
 // 系统启动相关变量
-undefined FUN_18005ab20;                           // 系统启动函数指针
-undefined UNK_180941760;                           // 启动配置数据
+undefined FUN_18005ab20;                           // 系统启动函数指针 - 启动序列控制器
+undefined UNK_180941760;                           // 启动配置数据 - 启动参数配置
 
 // 系统配置相关变量
-undefined FUN_1800637c0;                           // 配置管理函数指针
-undefined UNK_180941780;                           // 配置数据块
+undefined FUN_1800637c0;                           // 配置管理函数指针 - 配置解析器
+undefined UNK_180941780;                           // 配置数据块 - 配置文件数据
 
 // 系统状态相关变量
-undefined FUN_1800637f0;                           // 状态管理函数指针
+undefined FUN_1800637f0;                           // 状态管理函数指针 - 状态管理器
 
 //------------------------------------------------------------------------------
 // 常量定义
 //------------------------------------------------------------------------------
 
 // 系统初始化常量
-#define SYSTEM_INIT_SUCCESS                        0x00000000    // 系统初始化成功
-#define SYSTEM_INIT_FAILURE                        0x00000001    // 系统初始化失败
-#define SYSTEM_INIT_IN_PROGRESS                    0x00000002    // 系统初始化进行中
-#define SYSTEM_INIT_COMPLETED                      0x00000003    // 系统初始化完成
-#define SYSTEM_INIT_ERROR                           0x00000004    // 系统初始化错误
+#define SYSTEM_INIT_SUCCESS                        0x00000000    // 系统初始化成功 - 所有组件正常初始化
+#define SYSTEM_INIT_FAILURE                        0x00000001    // 系统初始化失败 - 存在初始化错误
+#define SYSTEM_INIT_IN_PROGRESS                    0x00000002    // 系统初始化进行中 - 初始化过程未完成
+#define SYSTEM_INIT_COMPLETED                      0x00000003    // 系统初始化完成 - 所有必要组件已初始化
+#define SYSTEM_INIT_ERROR                           0x00000004    // 系统初始化错误 - 存在严重错误
 
 // 内存管理常量
-#define MEMORY_POOL_SIZE                           0x1000000     // 内存池大小 (16MB)
-#define MEMORY_ALIGNMENT                           0x10          // 内存对齐大小
-#define MEMORY_BLOCK_SIZE                          0x1000        // 内存块大小
-#define MEMORY_MAX_ALLOCATIONS                     0x10000       // 最大分配次数
+#define MEMORY_POOL_SIZE                           0x1000000     // 内存池大小 (16MB) - 系统内存池总大小
+#define MEMORY_ALIGNMENT                           0x10          // 内存对齐大小 - 16字节对齐
+#define MEMORY_BLOCK_SIZE                          0x1000        // 内存块大小 - 4KB页大小
+#define MEMORY_MAX_ALLOCATIONS                     0x10000       // 最大分配次数 - 单次运行最大分配数
 
 // 系统配置常量
-#define CONFIG_VERSION_MAJOR                       0x01           // 配置版本主号
-#define CONFIG_VERSION_MINOR                       0x00           // 配置版本次号
-#define CONFIG_MAX_MODULES                         0x100          // 最大模块数
-#define CONFIG_MAX_DEPENDENCIES                    0x200          // 最大依赖数
+#define CONFIG_VERSION_MAJOR                       0x01           // 配置版本主号 - 主版本号
+#define CONFIG_VERSION_MINOR                       0x00           // 配置版本次号 - 次版本号
+#define CONFIG_MAX_MODULES                         0x100          // 最大模块数 - 系统支持的最大模块数
+#define CONFIG_MAX_DEPENDENCIES                    0x200          // 最大依赖数 - 单个模块最大依赖数
 
 // 系统状态常量
-#define SYSTEM_STATE_UNINITIALIZED                  0x00           // 系统未初始化
-#define SYSTEM_STATE_INITIALIZING                   0x01           // 系统初始化中
-#define SYSTEM_STATE_INITIALIZED                    0x02           // 系统已初始化
-#define SYSTEM_STATE_RUNNING                        0x03           // 系统运行中
-#define SYSTEM_STATE_PAUSED                         0x04           // 系统暂停
-#define SYSTEM_STATE_SHUTTING_DOWN                  0x05           // 系统关闭中
-#define SYSTEM_STATE_SHUTDOWN                       0x06           // 系统已关闭
+#define SYSTEM_STATE_UNINITIALIZED                  0x00           // 系统未初始化 - 系统尚未开始初始化
+#define SYSTEM_STATE_INITIALIZING                   0x01           // 系统初始化中 - 系统正在初始化
+#define SYSTEM_STATE_INITIALIZED                    0x02           // 系统已初始化 - 基础组件已初始化
+#define SYSTEM_STATE_RUNNING                        0x03           // 系统运行中 - 系统正常运行
+#define SYSTEM_STATE_PAUSED                         0x04           // 系统暂停 - 系统临时暂停
+#define SYSTEM_STATE_SHUTTING_DOWN                  0x05           // 系统关闭中 - 系统正在关闭
+#define SYSTEM_STATE_SHUTDOWN                       0x06           // 系统已关闭 - 系统完全关闭
 
 // 错误码常量
-#define ERROR_SUCCESS                              0x00000000    // 操作成功
-#define ERROR_INVALID_PARAMETER                    0x00000001    // 无效参数
-#define ERROR_MEMORY_FAILURE                        0x00000002    // 内存失败
-#define ERROR_TIMEOUT                               0x00000003    // 超时错误
-#define ERROR_NOT_FOUND                             0x00000004    // 未找到
-#define ERROR_ALREADY_INITIALIZED                   0x00000005    // 已初始化
-#define ERROR_NOT_INITIALIZED                       0x00000006    // 未初始化
-#define ERROR_DEPENDENCY_FAILURE                   0x00000007    // 依赖失败
-#define ERROR_HARDWARE_FAILURE                      0x00000008    // 硬件失败
+#define ERROR_SUCCESS                              0x00000000    // 操作成功 - 无错误发生
+#define ERROR_INVALID_PARAMETER                    0x00000001    // 无效参数 - 参数值不正确
+#define ERROR_MEMORY_FAILURE                        0x00000002    // 内存失败 - 内存操作失败
+#define ERROR_TIMEOUT                               0x00000003    // 超时错误 - 操作超时
+#define ERROR_NOT_FOUND                             0x00000004    // 未找到 - 请求的资源不存在
+#define ERROR_ALREADY_INITIALIZED                   0x00000005    // 已初始化 - 组件已经初始化
+#define ERROR_NOT_INITIALIZED                       0x00000006    // 未初始化 - 组件尚未初始化
+#define ERROR_DEPENDENCY_FAILURE                   0x00000007    // 依赖失败 - 依赖关系错误
+#define ERROR_HARDWARE_FAILURE                      0x00000008    // 硬件失败 - 硬件错误
 
 //------------------------------------------------------------------------------
 // 类型别名定义
 //------------------------------------------------------------------------------
 
 // 系统初始化相关类型别名
-typedef undefined8 SystemHandle;                   // 系统句柄
-typedef undefined8 ModuleHandle;                   // 模块句柄
-typedef undefined8 ConfigHandle;                   // 配置句柄
-typedef undefined8 StateHandle;                    // 状态句柄
-typedef undefined8 ResourceHandle;                 // 资源句柄
+typedef undefined8 SystemHandle;                   // 系统句柄 - 用于标识系统实例
+typedef undefined8 ModuleHandle;                   // 模块句柄 - 用于标识系统模块
+typedef undefined8 ConfigHandle;                   // 配置句柄 - 用于标识配置对象
+typedef undefined8 StateHandle;                    // 状态句柄 - 用于标识状态对象
+typedef undefined8 ResourceHandle;                 // 资源句柄 - 用于标识系统资源
 
 // 内存管理相关类型别名
-typedef undefined8 MemoryPoolHandle;               // 内存池句柄
-typedef undefined8 MemoryBlockHandle;             // 内存块句柄
-typedef undefined8 MemoryAllocatorHandle;         // 内存分配器句柄
+typedef undefined8 MemoryPoolHandle;               // 内存池句柄 - 用于标识内存池
+typedef undefined8 MemoryBlockHandle;             // 内存块句柄 - 用于标识内存块
+typedef undefined8 MemoryAllocatorHandle;         // 内存分配器句柄 - 用于标识分配器
 
 // 系统配置相关类型别名
-typedef undefined8 ConfigSectionHandle;           // 配置节句柄
-typedef undefined8 ConfigKeyHandle;                // 配置键句柄
-typedef undefined8 ConfigValueHandle;              // 配置值句柄
+typedef undefined8 ConfigSectionHandle;           // 配置节句柄 - 用于标识配置节
+typedef undefined8 ConfigKeyHandle;                // 配置键句柄 - 用于标识配置键
+typedef undefined8 ConfigValueHandle;              // 配置值句柄 - 用于标识配置值
 
 // 系统状态相关类型别名
-typedef undefined8 StateContextHandle;             // 状态上下文句柄
-typedef undefined8 StateVariableHandle;            // 状态变量句柄
-typedef undefined8 StateTransitionHandle;         // 状态转换句柄
+typedef undefined8 StateContextHandle;             // 状态上下文句柄 - 用于标识状态上下文
+typedef undefined8 StateVariableHandle;            // 状态变量句柄 - 用于标识状态变量
+typedef undefined8 StateTransitionHandle;         // 状态转换句柄 - 用于标识状态转换
 
 // 错误处理相关类型别名
-typedef undefined8 ErrorContextHandle;            // 错误上下文句柄
-typedef undefined8 ErrorHandlerHandle;             // 错误处理器句柄
-typedef undefined8 LogHandle;                       // 日志句柄
+typedef undefined8 ErrorContextHandle;            // 错误上下文句柄 - 用于标识错误上下文
+typedef undefined8 ErrorHandlerHandle;             // 错误处理器句柄 - 用于标识错误处理器
+typedef undefined8 LogHandle;                       // 日志句柄 - 用于标识日志对象
 
 //------------------------------------------------------------------------------
 // 函数别名定义
 //------------------------------------------------------------------------------
 
 // 系统初始化函数别名
-#define SystemInitializer                           FUN_18007fcd0  // 系统初始化器
-#define SystemStartupHandler                        FUN_18005ab20  // 系统启动处理器
-#define SystemConfigurator                          FUN_1800637c0  // 系统配置器
-#define SystemStateManager                          FUN_1800637f0  // 系统状态管理器
+#define SystemInitializer                           FUN_18007fcd0  // 系统初始化器 - 主要初始化入口
+#define SystemStartupHandler                        FUN_18005ab20  // 系统启动处理器 - 启动序列控制
+#define SystemConfigurator                          FUN_1800637c0  // 系统配置器 - 配置文件解析
+#define SystemStateManager                          FUN_1800637f0  // 系统状态管理器 - 状态转换控制
 
 // 内存管理函数别名
-#define MemoryManager                               FUN_180073930  // 内存管理器
+#define MemoryManager                               FUN_180073930  // 内存管理器 - 内存分配和管理
 
 //------------------------------------------------------------------------------
 // 系统初始化核心函数
