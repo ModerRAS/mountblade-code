@@ -481,9 +481,9 @@ void FUN_180850c67(longlong param_1)
   char cStack000000000000004c;
   char cStack0000000000000050;
   char cStack0000000000000054;
-  undefined3 uStack0000000000000055;
+  uint32_t uStack0000000000000055;
   char cStack0000000000000058;
-  undefined3 uStack0000000000000059;
+  uint32_t uStack0000000000000059;
   longlong in_stack_00000060;
   longlong in_stack_00000068;
   longlong lStack0000000000000070;
