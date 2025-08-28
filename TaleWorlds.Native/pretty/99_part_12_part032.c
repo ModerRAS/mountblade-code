@@ -267,8 +267,8 @@ typedef bool Bool;                           // 布尔类型
 typedef ulonglong UInt64;                    // 64位无符号整数
 typedef longlong Int64;                      // 64位有符号整数
 typedef int8_t UInt8;                    // 8位无符号整数
-typedef int32_t UInt32_undefined;        // 32位无符号整数（未定义类型）
-typedef uint64_t UInt64_undefined;        // 64位无符号整数（未定义类型）
+typedef int32_t UInt32_fixed;        // 32位无符号整数（固定类型）
+typedef uint64_t UInt64_fixed;        // 64位无符号整数（固定类型）
 
 // 指针类型别名
 typedef float* Float32Ptr;                   // 32位浮点数指针
@@ -494,10 +494,10 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
     UInt8Array72 auStack_108;                 // 栈缓冲区108字节
     Float32Array18 afStack_c0;              // 栈浮点数组18元素
     UInt8Array32 auStack_78;                 // 栈缓冲区32字节
-    UInt32_undefined uStack_58;              // 栈变量58
+    UInt32_fixed uStack_58;              // 栈变量58
     UInt32 uStack_50;                        // 栈变量50
     Int32 iStack_48;                         // 栈变量48
-    UInt64_undefined auStack_38[2];          // 栈数组38
+    UInt64_fixed auStack_38[2];          // 栈数组38
     
     // 安全检查和初始化
     auStack_38[0] = _DAT ^ (UInt64)auStack_38;

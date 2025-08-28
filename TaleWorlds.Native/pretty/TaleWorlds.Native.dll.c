@@ -1107,7 +1107,7 @@ const char* Module_GetInfo(void) {
  * 简化实现说明：
  * 
  * 原始实现：
- * - TaleWorlds.Native.dll.c 原始文件是一个232万行的反编译文件
+ * - TaleWorlds.Native.dll.c 原始文件是一个232万行的系统实现文件
  * - 包含大量未定义的变量和函数（uint8_t DAT_xxxxx, FUN_xxxxx）
  * - 缺乏文档注释和结构化组织
  * - 代码可读性和维护性较差
