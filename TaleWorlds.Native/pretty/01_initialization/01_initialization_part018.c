@@ -71,177 +71,230 @@ void calculate_render_quality_parameters(longlong config_ptr)
 
 
 
-// 函数: void FUN_18004cc20(longlong *param_1)
-void FUN_18004cc20(longlong *param_1)
-
+/**
+ * 清理和释放资源管理器
+ * 主要功能：释放和清理系统资源管理器的相关内存和对象
+ * 
+ * 原始实现：FUN_18004cc20
+ * 简化实现：资源管理器清理函数
+ */
+void cleanup_resource_manager(longlong *config_ptr)
 {
-  undefined8 *puVar1;
-  longlong lVar2;
+  undefined8 *resource_ptr;     // 资源指针
+  longlong temp_var;            // 临时变量
   
-  puVar1 = (undefined8 *)param_1[0x7c];
-  if (puVar1 != (undefined8 *)0x0) {
-    puVar1[0x14] = &UNK_180a3c3e0;
-    if (puVar1[0x15] != 0) {
-                    // WARNING: Subroutine does not return
+  resource_ptr = (undefined8 *)config_ptr[0x7c];
+  if (resource_ptr != (undefined8 *)0x0) {
+    // 清理第一个资源块
+    resource_ptr[0x14] = &UNK_180a3c3e0;
+    if (resource_ptr[0x15] != 0) {
+      // 警告：子程序不返回
       FUN_18064e900();
     }
-    puVar1[0x15] = 0;
-    *(undefined4 *)(puVar1 + 0x17) = 0;
-    puVar1[0x14] = &UNK_18098bcb0;
-    puVar1[0x10] = &UNK_180a3c3e0;
-    if (puVar1[0x11] != 0) {
-                    // WARNING: Subroutine does not return
+    resource_ptr[0x15] = 0;
+    *(undefined4 *)(resource_ptr + 0x17) = 0;
+    resource_ptr[0x14] = &UNK_18098bcb0;
+    
+    // 清理第二个资源块
+    resource_ptr[0x10] = &UNK_180a3c3e0;
+    if (resource_ptr[0x11] != 0) {
+      // 警告：子程序不返回
       FUN_18064e900();
     }
-    puVar1[0x11] = 0;
-    *(undefined4 *)(puVar1 + 0x13) = 0;
-    puVar1[0x10] = &UNK_18098bcb0;
-    if (puVar1[0xc] != 0) {
-                    // WARNING: Subroutine does not return
+    resource_ptr[0x11] = 0;
+    *(undefined4 *)(resource_ptr + 0x13) = 0;
+    resource_ptr[0x10] = &UNK_18098bcb0;
+    
+    // 清理第三个资源块
+    if (resource_ptr[0xc] != 0) {
+      // 警告：子程序不返回
       FUN_18064e900();
     }
     FUN_180057170();
     FUN_180057170();
-    *puVar1 = &UNK_180a3c3e0;
-    if (puVar1[1] != 0) {
-                    // WARNING: Subroutine does not return
+    
+    // 清理主资源块
+    *resource_ptr = &UNK_180a3c3e0;
+    if (resource_ptr[1] != 0) {
+      // 警告：子程序不返回
       FUN_18064e900();
     }
-    puVar1[1] = 0;
-    *(undefined4 *)(puVar1 + 3) = 0;
-    *puVar1 = &UNK_18098bcb0;
-                    // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    resource_ptr[1] = 0;
+    *(undefined4 *)(resource_ptr + 3) = 0;
+    *resource_ptr = &UNK_18098bcb0;
+    // 警告：子程序不返回
+    FUN_18064e900(resource_ptr);
   }
-  param_1[0x7c] = 0;
-  puVar1 = (undefined8 *)param_1[1];
-  if (puVar1 != (undefined8 *)0x0) {
-    lVar2 = __RTCastToVoid(puVar1);
-    *puVar1 = &UNK_180a08db0;
-    FUN_18005e570(_DAT_180c82868,puVar1[0x28]);
-    puVar1[0x28] = 0;
-    puVar1[0x29] = &UNK_180a3c3e0;
-    if (puVar1[0x2a] != 0) {
-                    // WARNING: Subroutine does not return
+  
+  // 清理配置指针
+  config_ptr[0x7c] = 0;
+  resource_ptr = (undefined8 *)config_ptr[1];
+  if (resource_ptr != (undefined8 *)0x0) {
+    temp_var = __RTCastToVoid(resource_ptr);
+    *resource_ptr = &UNK_180a08db0;
+    FUN_18005e570(_DAT_180c82868, resource_ptr[0x28]);
+    resource_ptr[0x28] = 0;
+    
+    // 清理附加资源
+    resource_ptr[0x29] = &UNK_180a3c3e0;
+    if (resource_ptr[0x2a] != 0) {
+      // 警告：子程序不返回
       FUN_18064e900();
     }
-    puVar1[0x2a] = 0;
-    *(undefined4 *)(puVar1 + 0x2c) = 0;
-    puVar1[0x29] = &UNK_18098bcb0;
+    resource_ptr[0x2a] = 0;
+    *(undefined4 *)(resource_ptr + 0x2c) = 0;
+    resource_ptr[0x29] = &UNK_18098bcb0;
+    
     FUN_180174950();
-    if (lVar2 != 0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900(lVar2);
+    if (temp_var != 0) {
+      // 警告：子程序不返回
+      FUN_18064e900(temp_var);
     }
   }
-  param_1[1] = 0;
-  lVar2 = *param_1;
-  if (lVar2 != 0) {
-    FUN_180057d70(lVar2);
-                    // WARNING: Subroutine does not return
-    FUN_18064e900(lVar2);
+  
+  // 继续清理其他配置
+  config_ptr[1] = 0;
+  temp_var = *config_ptr;
+  if (temp_var != 0) {
+    FUN_180057d70(temp_var);
+    // 警告：子程序不返回
+    FUN_18064e900(temp_var);
   }
-  *param_1 = 0;
-  lVar2 = _DAT_180c86918;
+  *config_ptr = 0;
+  
+  // 清理全局状态
+  temp_var = _DAT_180c86918;
   if (_DAT_180c86918 != 0) {
     FUN_180057550();
-                    // WARNING: Subroutine does not return
-    FUN_18064e900(lVar2);
+    // 警告：子程序不返回
+    FUN_18064e900(temp_var);
   }
   _DAT_180c86918 = 0;
+  
+  // 清理配置参数
   FUN_1800578a0();
   _DAT_180c86950 = 0;
-  if (param_1[6] != 0) {
-                    // WARNING: Subroutine does not return
+  
+  // 清理系统配置
+  if (config_ptr[6] != 0) {
+    // 警告：子程序不返回
     FUN_18064e900();
   }
-  param_1[6] = 0;
-  param_1[0x6d] = (longlong)&UNK_180a3c3e0;
-  if (param_1[0x6e] != 0) {
-                    // WARNING: Subroutine does not return
+  config_ptr[6] = 0;
+  
+  // 清理配置块1
+  config_ptr[0x6d] = (longlong)&UNK_180a3c3e0;
+  if (config_ptr[0x6e] != 0) {
+    // 警告：子程序不返回
     FUN_18064e900();
   }
-  param_1[0x6e] = 0;
-  *(undefined4 *)(param_1 + 0x70) = 0;
-  param_1[0x6d] = (longlong)&UNK_18098bcb0;
-  param_1[0x69] = (longlong)&UNK_180a3c3e0;
-  if (param_1[0x6a] != 0) {
-                    // WARNING: Subroutine does not return
+  config_ptr[0x6e] = 0;
+  *(undefined4 *)(config_ptr + 0x70) = 0;
+  config_ptr[0x6d] = (longlong)&UNK_18098bcb0;
+  
+  // 清理配置块2
+  config_ptr[0x69] = (longlong)&UNK_180a3c3e0;
+  if (config_ptr[0x6a] != 0) {
+    // 警告：子程序不返回
     FUN_18064e900();
   }
-  param_1[0x6a] = 0;
-  *(undefined4 *)(param_1 + 0x6c) = 0;
-  param_1[0x69] = (longlong)&UNK_18098bcb0;
+  config_ptr[0x6a] = 0;
+  *(undefined4 *)(config_ptr + 0x6c) = 0;
+  config_ptr[0x69] = (longlong)&UNK_18098bcb0;
+  
+  // 执行清理操作
   FUN_180057830();
-  FUN_18005d260(param_1 + 0x5c,param_1[0x5e]);
-  param_1[0x58] = (longlong)&UNK_180a3c3e0;
-  if (param_1[0x59] != 0) {
-                    // WARNING: Subroutine does not return
+  FUN_18005d260(config_ptr + 0x5c, config_ptr[0x5e]);
+  
+  // 清理配置块3
+  config_ptr[0x58] = (longlong)&UNK_180a3c3e0;
+  if (config_ptr[0x59] != 0) {
+    // 警告：子程序不返回
     FUN_18064e900();
   }
-  param_1[0x59] = 0;
-  *(undefined4 *)(param_1 + 0x5b) = 0;
-  param_1[0x58] = (longlong)&UNK_18098bcb0;
-  param_1[0x52] = (longlong)&UNK_180a3c3e0;
-  if (param_1[0x53] != 0) {
-                    // WARNING: Subroutine does not return
+  config_ptr[0x59] = 0;
+  *(undefined4 *)(config_ptr + 0x5b) = 0;
+  config_ptr[0x58] = (longlong)&UNK_18098bcb0;
+  
+  // 清理配置块4
+  config_ptr[0x52] = (longlong)&UNK_180a3c3e0;
+  if (config_ptr[0x53] != 0) {
+    // 警告：子程序不返回
     FUN_18064e900();
   }
-  param_1[0x53] = 0;
-  *(undefined4 *)(param_1 + 0x55) = 0;
-  param_1[0x52] = (longlong)&UNK_18098bcb0;
-  param_1[0x4e] = (longlong)&UNK_180a3c3e0;
-  if (param_1[0x4f] != 0) {
-                    // WARNING: Subroutine does not return
+  config_ptr[0x53] = 0;
+  *(undefined4 *)(config_ptr + 0x55) = 0;
+  config_ptr[0x52] = (longlong)&UNK_18098bcb0;
+  
+  // 清理配置块5
+  config_ptr[0x4e] = (longlong)&UNK_180a3c3e0;
+  if (config_ptr[0x4f] != 0) {
+    // 警告：子程序不返回
     FUN_18064e900();
   }
-  param_1[0x4f] = 0;
-  *(undefined4 *)(param_1 + 0x51) = 0;
-  param_1[0x4e] = (longlong)&UNK_18098bcb0;
-  param_1[0x39] = (longlong)&UNK_180a3c3e0;
-  if (param_1[0x3a] != 0) {
-                    // WARNING: Subroutine does not return
+  config_ptr[0x4f] = 0;
+  *(undefined4 *)(config_ptr + 0x51) = 0;
+  config_ptr[0x4e] = (longlong)&UNK_18098bcb0;
+  
+  // 清理配置块6
+  config_ptr[0x39] = (longlong)&UNK_180a3c3e0;
+  if (config_ptr[0x3a] != 0) {
+    // 警告：子程序不返回
     FUN_18064e900();
   }
-  param_1[0x3a] = 0;
-  *(undefined4 *)(param_1 + 0x3c) = 0;
-  param_1[0x39] = (longlong)&UNK_18098bcb0;
-  param_1[0x32] = (longlong)&UNK_18098bcb0;
-  param_1[0x2e] = (longlong)&UNK_180a3c3e0;
-  if (param_1[0x2f] != 0) {
-                    // WARNING: Subroutine does not return
+  config_ptr[0x3a] = 0;
+  *(undefined4 *)(config_ptr + 0x3c) = 0;
+  config_ptr[0x39] = (longlong)&UNK_18098bcb0;
+  
+  // 清理配置块7
+  config_ptr[0x32] = (longlong)&UNK_18098bcb0;
+  config_ptr[0x2e] = (longlong)&UNK_180a3c3e0;
+  if (config_ptr[0x2f] != 0) {
+    // 警告：子程序不返回
     FUN_18064e900();
   }
-  param_1[0x2f] = 0;
-  *(undefined4 *)(param_1 + 0x31) = 0;
-  param_1[0x2e] = (longlong)&UNK_18098bcb0;
-  param_1[0x29] = (longlong)&UNK_180a3c3e0;
-  if (param_1[0x2a] != 0) {
-                    // WARNING: Subroutine does not return
+  config_ptr[0x2f] = 0;
+  *(undefined4 *)(config_ptr + 0x31) = 0;
+  config_ptr[0x2e] = (longlong)&UNK_18098bcb0;
+  
+  // 清理配置块8
+  config_ptr[0x29] = (longlong)&UNK_180a3c3e0;
+  if (config_ptr[0x2a] != 0) {
+    // 警告：子程序不返回
     FUN_18064e900();
   }
-  param_1[0x2a] = 0;
-  *(undefined4 *)(param_1 + 0x2c) = 0;
-  param_1[0x29] = (longlong)&UNK_18098bcb0;
-  if (param_1[0x21] != 0) {
-                    // WARNING: Subroutine does not return
+  config_ptr[0x2a] = 0;
+  *(undefined4 *)(config_ptr + 0x2c) = 0;
+  config_ptr[0x29] = (longlong)&UNK_18098bcb0;
+  
+  // 清理配置块9
+  if (config_ptr[0x21] != 0) {
+    // 警告：子程序不返回
     FUN_18064e900();
   }
+  
+  // 执行最终清理
   FUN_18005d580();
-  param_1[0x17] = (longlong)&UNK_180a3c3e0;
-  if (param_1[0x18] != 0) {
-                    // WARNING: Subroutine does not return
+  
+  // 清理配置块10
+  config_ptr[0x17] = (longlong)&UNK_180a3c3e0;
+  if (config_ptr[0x18] != 0) {
+    // 警告：子程序不返回
     FUN_18064e900();
   }
-  param_1[0x18] = 0;
-  *(undefined4 *)(param_1 + 0x1a) = 0;
-  param_1[0x17] = (longlong)&UNK_18098bcb0;
-  if (param_1[0xf] != 0) {
-                    // WARNING: Subroutine does not return
+  config_ptr[0x18] = 0;
+  *(undefined4 *)(config_ptr + 0x1a) = 0;
+  config_ptr[0x17] = (longlong)&UNK_18098bcb0;
+  
+  // 清理配置块11
+  if (config_ptr[0xf] != 0) {
+    // 警告：子程序不返回
     FUN_18064e900();
   }
-  if ((longlong *)param_1[9] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)param_1[9] + 0x38))();
+  
+  // 调用回调函数
+  if ((longlong *)config_ptr[9] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)config_ptr[9] + 0x38))();
   }
   return;
 }
