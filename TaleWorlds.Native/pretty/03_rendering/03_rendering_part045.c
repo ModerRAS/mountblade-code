@@ -282,11 +282,13 @@ longlong process_rendering_data_internal(void)
 
 
 
-// 函数: void FUN_18028fffa(void)
-void FUN_18028fffa(void)
-
+/**
+ * 清理渲染数据解析器
+ * 这是一个空函数，作为系统清理的占位符
+ */
+void cleanup_rendering_data_parser(void)
 {
-  return;
+    return;
 }
 
 
