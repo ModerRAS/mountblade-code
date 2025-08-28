@@ -189,6 +189,10 @@ void calculate_rendering_bounding_box(longlong render_context, float *matrix_dat
     
     /* 完成渲染更新 */
     complete_rendering_update();
+    
+    /* 栈安全检查 */
+    ulonglong stack_cookie = get_stack_cookie();
+    safe_stack_exit(stack_cookie);
 }
 
 /*
@@ -475,3 +479,48 @@ uint64_t * setup_rendering_error_handler(uint64_t error_param1, uint64_t *error_
     
     return error_handler;
 }
+
+/* 辅助函数声明 */
+void update_rendering_matrix(longlong render_context);
+void complete_rendering_update(void);
+ulonglong get_stack_cookie(void);
+void safe_stack_exit(ulonglong cookie);
+uint64_t * allocate_small_memory_block(void);
+void create_memory_exception(void);
+void throw_memory_exception(void);
+uint64_t get_memory_pool_base(void);
+longlong allocate_memory_block(uint64_t base, longlong size, int flags);
+void acquire_memory_lock(void);
+void set_global_memory_state(uint64_t state);
+void release_memory_lock(void);
+void throw_parameter_conflict_exception(longlong context, char *message, 
+                                       int old_param1, uint32_t old_param2, 
+                                       int new_param1, int new_param2);
+longlong get_error_context(void);
+void copy_std_exception_data(longlong context);
+void copy_error_message(uint64_t dest, uint64_t size, char *src, 
+                       uint64_t param4, uint64_t param5, uint64_t param6);
+
+/* 全局变量声明 */
+extern uint64_t _DAT_180bf00a8;    // 栈保护cookie
+extern uint64_t _DAT_180c8ed08;    // 全局数据指针
+extern void *UNK_18098bb88;         // 虚表地址
+extern uint64_t _DAT_180c8a9c8;     // 配置数据
+extern uint64_t _DAT_180c8ed18;     // 内存池基地址
+extern void *UNK_180bd8a18;         // 异常处理虚表
+extern void *UNK_18098b928;         // 异常基地址
+extern void *UNK_18098b940;         // 异常虚表地址
+extern void *UNK_180a16bd0;         // 错误消息
+extern void *UNK_180a16c18;         // 异常消息地址
+extern void *DAT_180a16c50;         // 默认错误消息数据
+extern uint64_t _DAT_180c86928;     // 错误上下文
+extern uint64_t _DAT_180d48d28;     // 全局内存状态
+extern void *UNK_18098bcb0;         // 错误处理器基地址
+extern void *UNK_1809fcc28;         // 错误处理器虚表
+extern char *error_message;          // 错误消息
+extern char *error_message_data;     // 错误消息数据
+extern void *exception_base_address; // 异常基地址
+extern void *exception_vtable_address; // 异常虚表地址
+extern void *exception_message_address; // 异常消息地址
+extern void *error_handler_base;    // 错误处理器基地址
+extern void *error_vtable_address;  // 错误处理器虚表地址
