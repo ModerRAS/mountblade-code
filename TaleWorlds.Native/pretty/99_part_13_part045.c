@@ -543,15 +543,15 @@ void SystemResourceManager(int32_t param_1, uint64_t param_2, int64_t param_3)
                         ((int)((uint64_t)lVar12 >> 0x20) != 0)))) {
                         uVar3 = *(uint64_t *)(unaff_RSI + SYSTEM_OFFSET_0X20);
                         *(uint64_t *)(unaff_RBP + -0x29) = 0;
-                        iVar7 = FUN_1808bc240(uVar3, unaff_RBP + -0x39, 0xffffffff, unaff_RBP + -0x29);
+                        iVar7 = SystemDataChecker(uVar3, unaff_RBP + -0x39, 0xffffffff, unaff_RBP + -0x29);
                         if (iVar7 != 0) break;
                         lVar8 = *(int64_t *)(unaff_RBP + -0x29);
                         if (lVar8 != 0) {
                             *(int64_t *)(unaff_RBP + -9) = unaff_RSI;
                             if (unaff_RSI == 0) break;
                             *(int64_t *)(unaff_RBP + -0x19) = lVar8;
-                            iVar7 = FUN_1808c4160(unaff_RSI + SYSTEM_OFFSET_0X48, unaff_RBP + -0x19);
-                            if (((iVar7 != 0) || (iVar7 = FUN_1808c4570(), iVar7 != 0)) ||
+                            iVar7 = SystemDataValidator2(unaff_RSI + SYSTEM_OFFSET_0X48, unaff_RBP + -0x19);
+                            if (((iVar7 != 0) || (iVar7 = SystemDataProcessor2(), iVar7 != 0)) ||
                                 (iVar7 = FUN_1808c4160(lVar8 + SYSTEM_OFFSET_0X38, unaff_RBP + -9), iVar7 != 0)) break;
                         }
                     }
