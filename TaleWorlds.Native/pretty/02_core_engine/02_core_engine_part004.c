@@ -134,1297 +134,1537 @@ void 注册渲染组件(void)
 }
 
 /**
- * 注册音频系统处理器
- * 在全局注册表中注册音频系统处理接口
+ * 注册物理组件
+ * 在全局组件注册表中注册物理组件，负责物理模拟相关功能
+ * 
+ * 组件属性：
+ * - 组件类型ID: 0x431d7c8d7c475be2
+ * - 组件版本ID: 0xb97f048d2153e1b0
+ * - 组件名称: UNK_180a00388
+ * - 优先级: 4
+ * - 处理函数: FUN_18025c000
  */
-void register_audio_system_handler(void)
-
+void 注册物理组件(void)
 {
-  char is_active;
-  void **registry_root;
-  int compare_result;
-  longlong *pool_manager;
-  longlong allocation_size;
-  void **current_node;
-  void **previous_node;
-  void **next_node;
-  void *new_entry;
-  void *handler_function;
-  
-  pool_manager = (longlong *)FUN_18008d070();
-  registry_root = (void **)*pool_manager;
-  is_active = *(char *)((longlong)registry_root[1] + 0x19);
-  handler_function = FUN_18025c000;
-  previous_node = registry_root;
-  current_node = (void **)registry_root[1];
-  
-  while (is_active == '\0') {
-    compare_result = memcmp(current_node + 4, &DAT_180a01078, 0x10);
-    if (compare_result < 0) {
-      next_node = (void **)current_node[2];
-      current_node = previous_node;
+    char node_is_valid;
+    uint64_t *component_manager;
+    uint64_t *root_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    void (*component_handler)(void);
+    
+    component_manager = (uint64_t *)FUN_18008d070();
+    root_node = (uint64_t *)*component_manager;
+    node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
+    component_handler = FUN_18025c000;
+    parent_node = root_node;
+    current_node = (uint64_t *)root_node[1];
+    
+    while (node_is_valid == '\0') {
+        int compare_result = memcmp(current_node + 4, &COMPONENT_SIGNATURE_PHYSICS, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = parent_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        parent_node = current_node;
+        current_node = next_node;
+        node_is_valid = *(char *)((uint64_t)next_node + 0x19);
     }
-    else {
-      next_node = (void **)*current_node;
+    
+    if ((parent_node == root_node) || 
+        (int compare_result = memcmp(&COMPONENT_SIGNATURE_PHYSICS, parent_node + 4, 0x10), compare_result < 0)) {
+        uint64_t allocation_size = FUN_18008f0d0(component_manager);
+        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        parent_node = new_node;
     }
-    previous_node = current_node;
-    current_node = next_node;
-    is_active = *(char *)((longlong)next_node + 0x19);
-  }
-  
-  if ((previous_node == registry_root) || 
-      (compare_result = memcmp(&DAT_180a01078, previous_node + 4, 0x10), compare_result < 0)) {
-    allocation_size = FUN_18008f0d0(pool_manager);
-    FUN_18008f140(pool_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
-    previous_node = new_entry;
-  }
-  
-  previous_node[6] = 0x431d7c8d7c475be2;  // 音频系统类型标识符
-  previous_node[7] = 0xb97f048d2153e1b0;  // 版本信息
-  previous_node[8] = &UNK_180a00388;      // 音频格式描述符
-  previous_node[9] = 4;                   // 优先级
-  previous_node[10] = handler_function;    // 处理函数指针
-  return;
+    
+    parent_node[6] = COMPONENT_TYPE_PHYSICS;      // 物理组件类型ID
+    parent_node[7] = COMPONENT_VERSION_PHYSICS;   // 物理组件版本ID
+    parent_node[8] = &COMPONENT_NAME_PHYSICS;      // 物理组件名称
+    parent_node[9] = COMPONENT_PRIORITY_PHYSICS;  // 物理组件优先级
+    parent_node[10] = (uint64_t)component_handler; // 物理组件处理函数
+    
+    return;
 }
 
 /**
- * 注册渲染管线处理器
- * 在全局注册表中注册渲染管线处理接口
+ * 注册音频组件
+ * 在全局组件注册表中注册音频组件，负责音频处理相关功能
+ * 
+ * 组件属性：
+ * - 组件类型ID: 0x4b2d79e470ee4e2c
+ * - 组件版本ID: 0x9c552acd3ed5548d
+ * - 组件名称: UNK_180a003a0
+ * - 优先级: 0
+ * - 处理函数: NULL
  */
-void register_render_pipeline_handler(void)
-
+void 注册音频组件(void)
 {
-  char is_active;
-  void **registry_root;
-  int compare_result;
-  longlong *pool_manager;
-  longlong allocation_size;
-  void **current_node;
-  void **previous_node;
-  void **next_node;
-  void *new_entry;
-  void *handler_function;
-  
-  pool_manager = (longlong *)FUN_18008d070();
-  registry_root = (void **)*pool_manager;
-  is_active = *(char *)((longlong)registry_root[1] + 0x19);
-  handler_function = 0;  // 无特定处理函数
-  previous_node = registry_root;
-  current_node = (void **)registry_root[1];
-  
-  while (is_active == '\0') {
-    compare_result = memcmp(current_node + 4, &DAT_180a01050, 0x10);
-    if (compare_result < 0) {
-      next_node = (void **)current_node[2];
-      current_node = previous_node;
+    char node_is_valid;
+    uint64_t *component_manager;
+    uint64_t *root_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t component_handler;
+    
+    component_manager = (uint64_t *)FUN_18008d070();
+    root_node = (uint64_t *)*component_manager;
+    node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
+    component_handler = 0; // 音频组件没有处理函数
+    parent_node = root_node;
+    current_node = (uint64_t *)root_node[1];
+    
+    while (node_is_valid == '\0') {
+        int compare_result = memcmp(current_node + 4, &COMPONENT_SIGNATURE_AUDIO, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = parent_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        parent_node = current_node;
+        current_node = next_node;
+        node_is_valid = *(char *)((uint64_t)next_node + 0x19);
     }
-    else {
-      next_node = (void **)*current_node;
+    
+    if ((parent_node == root_node) || 
+        (int compare_result = memcmp(&COMPONENT_SIGNATURE_AUDIO, parent_node + 4, 0x10), compare_result < 0)) {
+        uint64_t allocation_size = FUN_18008f0d0(component_manager);
+        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        parent_node = new_node;
     }
-    previous_node = current_node;
-    current_node = next_node;
-    is_active = *(char *)((longlong)next_node + 0x19);
-  }
-  
-  if ((previous_node == registry_root) || 
-      (compare_result = memcmp(&DAT_180a01050, previous_node + 4, 0x10), compare_result < 0)) {
-    allocation_size = FUN_18008f0d0(pool_manager);
-    FUN_18008f140(pool_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
-    previous_node = new_entry;
-  }
-  
-  previous_node[6] = 0x4b2d79e470ee4e2c;  // 渲染管线类型标识符
-  previous_node[7] = 0x9c552acd3ed5548d;  // 版本信息
-  previous_node[8] = &UNK_180a003a0;      // 渲染格式描述符
-  previous_node[9] = 0;                   // 优先级
-  previous_node[10] = handler_function;    // 处理函数指针
-  return;
+    
+    parent_node[6] = COMPONENT_TYPE_AUDIO;       // 音频组件类型ID
+    parent_node[7] = COMPONENT_VERSION_AUDIO;     // 音频组件版本ID
+    parent_node[8] = &COMPONENT_NAME_AUDIO;       // 音频组件名称
+    parent_node[9] = COMPONENT_PRIORITY_AUDIO;    // 音频组件优先级
+    parent_node[10] = component_handler;          // 音频组件处理函数
+    
+    return;
 }
 
 /**
- * 注册物理系统处理器
- * 在全局注册表中注册物理系统处理接口
+ * 注册输入组件
+ * 在全局组件注册表中注册输入组件，负责输入处理相关功能
+ * 
+ * 组件属性：
+ * - 组件类型ID: 0x49086ba08ab981a7
+ * - 组件版本ID: 0xa9191d34ad910696
+ * - 组件名称: UNK_180a003b8
+ * - 优先级: 0
+ * - 处理函数: FUN_18025d270
  */
-void register_physics_system_handler(void)
-
+void 注册输入组件(void)
 {
-  char is_active;
-  void **registry_root;
-  int compare_result;
-  longlong *pool_manager;
-  longlong allocation_size;
-  void **current_node;
-  void **previous_node;
-  void **next_node;
-  void *new_entry;
-  void *handler_function;
-  
-  pool_manager = (longlong *)FUN_18008d070();
-  registry_root = (void **)*pool_manager;
-  is_active = *(char *)((longlong)registry_root[1] + 0x19);
-  handler_function = FUN_18025d270;
-  previous_node = registry_root;
-  current_node = (void **)registry_root[1];
-  
-  while (is_active == '\0') {
-    compare_result = memcmp(current_node + 4, &DAT_180a01028, 0x10);
-    if (compare_result < 0) {
-      next_node = (void **)current_node[2];
-      current_node = previous_node;
+    char node_is_valid;
+    uint64_t *component_manager;
+    uint64_t *root_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    void (*component_handler)(void);
+    
+    component_manager = (uint64_t *)FUN_18008d070();
+    root_node = (uint64_t *)*component_manager;
+    node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
+    component_handler = FUN_18025d270;
+    parent_node = root_node;
+    current_node = (uint64_t *)root_node[1];
+    
+    while (node_is_valid == '\0') {
+        int compare_result = memcmp(current_node + 4, &COMPONENT_SIGNATURE_INPUT, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = parent_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        parent_node = current_node;
+        current_node = next_node;
+        node_is_valid = *(char *)((uint64_t)next_node + 0x19);
     }
-    else {
-      next_node = (void **)*current_node;
+    
+    if ((parent_node == root_node) || 
+        (int compare_result = memcmp(&COMPONENT_SIGNATURE_INPUT, parent_node + 4, 0x10), compare_result < 0)) {
+        uint64_t allocation_size = FUN_18008f0d0(component_manager);
+        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        parent_node = new_node;
     }
-    previous_node = current_node;
-    current_node = next_node;
-    is_active = *(char *)((longlong)next_node + 0x19);
-  }
-  
-  if ((previous_node == registry_root) || 
-      (compare_result = memcmp(&DAT_180a01028, previous_node + 4, 0x10), compare_result < 0)) {
-    allocation_size = FUN_18008f0d0(pool_manager);
-    FUN_18008f140(pool_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
-    previous_node = new_entry;
-  }
-  
-  previous_node[6] = 0x49086ba08ab981a7;  // 物理系统类型标识符
-  previous_node[7] = 0xa9191d34ad910696;  // 版本信息
-  previous_node[8] = &UNK_180a003b8;      // 物理引擎描述符
-  previous_node[9] = 0;                   // 优先级
-  previous_node[10] = handler_function;    // 处理函数指针
-  return;
+    
+    parent_node[6] = COMPONENT_TYPE_INPUT;       // 输入组件类型ID
+    parent_node[7] = COMPONENT_VERSION_INPUT;     // 输入组件版本ID
+    parent_node[8] = &COMPONENT_NAME_INPUT;       // 输入组件名称
+    parent_node[9] = COMPONENT_PRIORITY_INPUT;    // 输入组件优先级
+    parent_node[10] = (uint64_t)component_handler; // 输入组件处理函数
+    
+    return;
 }
 
 /**
- * 注册动画系统处理器
- * 在全局注册表中注册动画系统处理接口
+ * 注册网络组件
+ * 在全局组件注册表中注册网络组件，负责网络通信相关功能
+ * 
+ * 组件属性：
+ * - 组件类型ID: 0x402feffe4481676e
+ * - 组件版本ID: 0xd4c2151109de93a0
+ * - 组件名称: UNK_180a003d0
+ * - 优先级: 0
+ * - 处理函数: NULL
  */
-void register_animation_system_handler(void)
-
+void 注册网络组件(void)
 {
-  char is_active;
-  void **registry_root;
-  int compare_result;
-  longlong *pool_manager;
-  longlong allocation_size;
-  void **current_node;
-  void **previous_node;
-  void **next_node;
-  void *new_entry;
-  void *handler_function;
-  
-  pool_manager = (longlong *)FUN_18008d070();
-  registry_root = (void **)*pool_manager;
-  is_active = *(char *)((longlong)registry_root[1] + 0x19);
-  handler_function = 0;  // 无特定处理函数
-  previous_node = registry_root;
-  current_node = (void **)registry_root[1];
-  
-  while (is_active == '\0') {
-    compare_result = memcmp(current_node + 4, &DAT_180a01000, 0x10);
-    if (compare_result < 0) {
-      next_node = (void **)current_node[2];
-      current_node = previous_node;
+    char node_is_valid;
+    uint64_t *component_manager;
+    uint64_t *root_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t component_handler;
+    
+    component_manager = (uint64_t *)FUN_18008d070();
+    root_node = (uint64_t *)*component_manager;
+    node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
+    component_handler = 0; // 网络组件没有处理函数
+    parent_node = root_node;
+    current_node = (uint64_t *)root_node[1];
+    
+    while (node_is_valid == '\0') {
+        int compare_result = memcmp(current_node + 4, &COMPONENT_SIGNATURE_NETWORK, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = parent_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        parent_node = current_node;
+        current_node = next_node;
+        node_is_valid = *(char *)((uint64_t)next_node + 0x19);
     }
-    else {
-      next_node = (void **)*current_node;
+    
+    if ((parent_node == root_node) || 
+        (int compare_result = memcmp(&COMPONENT_SIGNATURE_NETWORK, parent_node + 4, 0x10), compare_result < 0)) {
+        uint64_t allocation_size = FUN_18008f0d0(component_manager);
+        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        parent_node = new_node;
     }
-    previous_node = current_node;
-    current_node = next_node;
-    is_active = *(char *)((longlong)next_node + 0x19);
-  }
-  
-  if ((previous_node == registry_root) || 
-      (compare_result = memcmp(&DAT_180a01000, previous_node + 4, 0x10), compare_result < 0)) {
-    allocation_size = FUN_18008f0d0(pool_manager);
-    FUN_18008f140(pool_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
-    previous_node = new_entry;
-  }
-  
-  previous_node[6] = 0x402feffe4481676e;  // 动画系统类型标识符
-  previous_node[7] = 0xd4c2151109de93a0;  // 版本信息
-  previous_node[8] = &UNK_180a003d0;      // 动画格式描述符
-  previous_node[9] = 0;                   // 优先级
-  previous_node[10] = handler_function;    // 处理函数指针
-  return;
+    
+    parent_node[6] = COMPONENT_TYPE_NETWORK;      // 网络组件类型ID
+    parent_node[7] = COMPONENT_VERSION_NETWORK;    // 网络组件版本ID
+    parent_node[8] = &COMPONENT_NAME_NETWORK;      // 网络组件名称
+    parent_node[9] = COMPONENT_PRIORITY_NETWORK;   // 网络组件优先级
+    parent_node[10] = component_handler;          // 网络组件处理函数
+    
+    return;
 }
 
 /**
- * 注册用户界面处理器
- * 在全局注册表中注册用户界面处理接口
+ * 注册脚本组件
+ * 在全局组件注册表中注册脚本组件，负责脚本执行相关功能
+ * 
+ * 组件属性：
+ * - 组件类型ID: 0x4384dcc4b6d3f417
+ * - 组件版本ID: 0x92a15d52fe2679bd
+ * - 组件名称: UNK_180a003e8
+ * - 优先级: 0
+ * - 处理函数: UNK_1800868c0
  */
-void register_user_interface_handler(void)
-
+void 注册脚本组件(void)
 {
-  char is_active;
-  void **registry_root;
-  int compare_result;
-  longlong *pool_manager;
-  longlong allocation_size;
-  void **current_node;
-  void **previous_node;
-  void **next_node;
-  void *new_entry;
-  void *ui_module;
-  
-  pool_manager = (longlong *)FUN_18008d070();
-  registry_root = (void **)*pool_manager;
-  is_active = *(char *)((longlong)registry_root[1] + 0x19);
-  ui_module = &UNK_1800868c0;
-  previous_node = registry_root;
-  current_node = (void **)registry_root[1];
-  
-  while (is_active == '\0') {
-    compare_result = memcmp(current_node + 4, &DAT_180a00fd8, 0x10);
-    if (compare_result < 0) {
-      next_node = (void **)current_node[2];
-      current_node = previous_node;
+    char node_is_valid;
+    uint64_t *component_manager;
+    uint64_t *root_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    void *component_handler;
+    
+    component_manager = (uint64_t *)FUN_18008d070();
+    root_node = (uint64_t *)*component_manager;
+    node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
+    component_handler = &SCRIPT_ENGINE_HANDLER;
+    parent_node = root_node;
+    current_node = (uint64_t *)root_node[1];
+    
+    while (node_is_valid == '\0') {
+        int compare_result = memcmp(current_node + 4, &COMPONENT_SIGNATURE_SCRIPT, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = parent_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        parent_node = current_node;
+        current_node = next_node;
+        node_is_valid = *(char *)((uint64_t)next_node + 0x19);
     }
-    else {
-      next_node = (void **)*current_node;
+    
+    if ((parent_node == root_node) || 
+        (int compare_result = memcmp(&COMPONENT_SIGNATURE_SCRIPT, parent_node + 4, 0x10), compare_result < 0)) {
+        uint64_t allocation_size = FUN_18008f0d0(component_manager);
+        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        parent_node = new_node;
     }
-    previous_node = current_node;
-    current_node = next_node;
-    is_active = *(char *)((longlong)next_node + 0x19);
-  }
-  
-  if ((previous_node == registry_root) || 
-      (compare_result = memcmp(&DAT_180a00fd8, previous_node + 4, 0x10), compare_result < 0)) {
-    allocation_size = FUN_18008f0d0(pool_manager);
-    FUN_18008f140(pool_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
-    previous_node = new_entry;
-  }
-  
-  previous_node[6] = 0x4384dcc4b6d3f417;  // 用户界面类型标识符
-  previous_node[7] = 0x92a15d52fe2679bd;  // 版本信息
-  previous_node[8] = &UNK_180a003e8;      // 界面描述符
-  previous_node[9] = 0;                   // 优先级
-  previous_node[10] = ui_module;           // UI模块指针
-  return;
+    
+    parent_node[6] = COMPONENT_TYPE_SCRIPT;      // 脚本组件类型ID
+    parent_node[7] = COMPONENT_VERSION_SCRIPT;    // 脚本组件版本ID
+    parent_node[8] = &COMPONENT_NAME_SCRIPT;      // 脚本组件名称
+    parent_node[9] = COMPONENT_PRIORITY_SCRIPT;   // 脚本组件优先级
+    parent_node[10] = (uint64_t)component_handler; // 脚本组件处理函数
+    
+    return;
 }
 
 /**
- * 注册资源管理器
- * 在全局注册表中注册资源管理接口
+ * 注册资源管理组件
+ * 在全局组件注册表中注册资源管理组件，负责资源加载和管理
+ * 
+ * 组件属性：
+ * - 组件类型ID: 0x4140994454d56503
+ * - 组件版本ID: 0x399eced9bb5517ad
+ * - 组件名称: UNK_180a00400
+ * - 优先级: 0
+ * - 处理函数: NULL
  */
-void register_resource_manager(void)
-
+void 注册资源管理组件(void)
 {
-  char is_active;
-  void **registry_root;
-  int compare_result;
-  longlong *pool_manager;
-  longlong allocation_size;
-  void **current_node;
-  void **previous_node;
-  void **next_node;
-  void *new_entry;
-  void *handler_function;
-  
-  pool_manager = (longlong *)FUN_18008d070();
-  registry_root = (void **)*pool_manager;
-  is_active = *(char *)((longlong)registry_root[1] + 0x19);
-  handler_function = 0;  // 无特定处理函数
-  previous_node = registry_root;
-  current_node = (void **)registry_root[1];
-  
-  while (is_active == '\0') {
-    compare_result = memcmp(current_node + 4, &DAT_180a00fb0, 0x10);
-    if (compare_result < 0) {
-      next_node = (void **)current_node[2];
-      current_node = previous_node;
+    char node_is_valid;
+    uint64_t *component_manager;
+    uint64_t *root_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t component_handler;
+    
+    component_manager = (uint64_t *)FUN_18008d070();
+    root_node = (uint64_t *)*component_manager;
+    node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
+    component_handler = 0; // 资源管理组件没有处理函数
+    parent_node = root_node;
+    current_node = (uint64_t *)root_node[1];
+    
+    while (node_is_valid == '\0') {
+        int compare_result = memcmp(current_node + 4, &COMPONENT_SIGNATURE_RESOURCE, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = parent_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        parent_node = current_node;
+        current_node = next_node;
+        node_is_valid = *(char *)((uint64_t)next_node + 0x19);
     }
-    else {
-      next_node = (void **)*current_node;
+    
+    if ((parent_node == root_node) || 
+        (int compare_result = memcmp(&COMPONENT_SIGNATURE_RESOURCE, parent_node + 4, 0x10), compare_result < 0)) {
+        uint64_t allocation_size = FUN_18008f0d0(component_manager);
+        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        parent_node = new_node;
     }
-    previous_node = current_node;
-    current_node = next_node;
-    is_active = *(char *)((longlong)next_node + 0x19);
-  }
-  
-  if ((previous_node == registry_root) || 
-      (compare_result = memcmp(&DAT_180a00fb0, previous_node + 4, 0x10), compare_result < 0)) {
-    allocation_size = FUN_18008f0d0(pool_manager);
-    FUN_18008f140(pool_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
-    previous_node = new_entry;
-  }
-  
-  previous_node[6] = 0x4140994454d56503;  // 资源管理类型标识符
-  previous_node[7] = 0x399eced9bb5517ad;  // 版本信息
-  previous_node[8] = &UNK_180a00400;      // 资源描述符
-  previous_node[9] = 0;                   // 优先级
-  previous_node[10] = handler_function;    // 处理函数指针
-  return;
+    
+    parent_node[6] = COMPONENT_TYPE_RESOURCE;      // 资源管理组件类型ID
+    parent_node[7] = COMPONENT_VERSION_RESOURCE;   // 资源管理组件版本ID
+    parent_node[8] = &COMPONENT_NAME_RESOURCE;     // 资源管理组件名称
+    parent_node[9] = COMPONENT_PRIORITY_RESOURCE;  // 资源管理组件优先级
+    parent_node[10] = component_handler;          // 资源管理组件处理函数
+    
+    return;
 }
 
 /**
- * 注册场景管理器
- * 在全局注册表中注册场景管理接口
+ * 注册AI组件
+ * 在全局组件注册表中注册AI组件，负责人工智能相关功能
+ * 
+ * 组件属性：
+ * - 组件类型ID: 0x40db4257e97d3df8
+ * - 组件版本ID: 0x81d539e33614429f
+ * - 组件名称: UNK_180a004a8
+ * - 优先级: 4
+ * - 处理函数: FUN_1802633c0
  */
-void register_scene_manager(void)
-
+void 注册AI组件(void)
 {
-  char is_active;
-  void **registry_root;
-  int compare_result;
-  longlong *pool_manager;
-  longlong allocation_size;
-  void **current_node;
-  void **previous_node;
-  void **next_node;
-  void *new_entry;
-  void *handler_function;
-  
-  pool_manager = (longlong *)FUN_18008d070();
-  registry_root = (void **)*pool_manager;
-  is_active = *(char *)((longlong)registry_root[1] + 0x19);
-  handler_function = FUN_1802633c0;
-  previous_node = registry_root;
-  current_node = (void **)registry_root[1];
-  
-  while (is_active == '\0') {
-    compare_result = memcmp(current_node + 4, &DAT_180a00bb0, 0x10);
-    if (compare_result < 0) {
-      next_node = (void **)current_node[2];
-      current_node = previous_node;
+    char node_is_valid;
+    uint64_t *component_manager;
+    uint64_t *root_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    void (*component_handler)(void);
+    
+    component_manager = (uint64_t *)FUN_18008d070();
+    root_node = (uint64_t *)*component_manager;
+    node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
+    component_handler = FUN_1802633c0;
+    parent_node = root_node;
+    current_node = (uint64_t *)root_node[1];
+    
+    while (node_is_valid == '\0') {
+        int compare_result = memcmp(current_node + 4, &COMPONENT_SIGNATURE_AI, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = parent_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        parent_node = current_node;
+        current_node = next_node;
+        node_is_valid = *(char *)((uint64_t)next_node + 0x19);
     }
-    else {
-      next_node = (void **)*current_node;
+    
+    if ((parent_node == root_node) || 
+        (int compare_result = memcmp(&COMPONENT_SIGNATURE_AI, parent_node + 4, 0x10), compare_result < 0)) {
+        uint64_t allocation_size = FUN_18008f0d0(component_manager);
+        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        parent_node = new_node;
     }
-    previous_node = current_node;
-    current_node = next_node;
-    is_active = *(char *)((longlong)next_node + 0x19);
-  }
-  
-  if ((previous_node == registry_root) || 
-      (compare_result = memcmp(&DAT_180a00bb0, previous_node + 4, 0x10), compare_result < 0)) {
-    allocation_size = FUN_18008f0d0(pool_manager);
-    FUN_18008f140(pool_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
-    previous_node = new_entry;
-  }
-  
-  previous_node[6] = 0x40db4257e97d3df8;  // 场景管理类型标识符
-  previous_node[7] = 0x81d539e33614429f;  // 版本信息
-  previous_node[8] = &UNK_180a004a8;      // 场景描述符
-  previous_node[9] = 4;                   // 优先级
-  previous_node[10] = handler_function;    // 处理函数指针
-  return;
+    
+    parent_node[6] = COMPONENT_TYPE_AI;           // AI组件类型ID
+    parent_node[7] = COMPONENT_VERSION_AI;        // AI组件版本ID
+    parent_node[8] = &COMPONENT_NAME_AI;          // AI组件名称
+    parent_node[9] = COMPONENT_PRIORITY_AI;        // AI组件优先级
+    parent_node[10] = (uint64_t)component_handler; // AI组件处理函数
+    
+    return;
 }
 
 /**
- * 注册脚本引擎处理器
- * 在全局注册表中注册脚本引擎处理接口
+ * 注册动画组件
+ * 在全局组件注册表中注册动画组件，负责动画系统相关功能
+ * 
+ * 组件属性：
+ * - 组件类型ID: 0x4e33c4803e67a08f
+ * - 组件版本ID: 0x703a29a844ce399
+ * - 组件名称: UNK_180a004c0
+ * - 优先级: 3
+ * - 处理函数: FUN_180262b00
  */
-void register_script_engine_handler(void)
-
+void 注册动画组件(void)
 {
-  char is_active;
-  void **registry_root;
-  int compare_result;
-  longlong *pool_manager;
-  longlong allocation_size;
-  void **current_node;
-  void **previous_node;
-  void **next_node;
-  void *new_entry;
-  void *handler_function;
-  
-  pool_manager = (longlong *)FUN_18008d070();
-  registry_root = (void **)*pool_manager;
-  is_active = *(char *)((longlong)registry_root[1] + 0x19);
-  handler_function = FUN_180262b00;
-  previous_node = registry_root;
-  current_node = (void **)registry_root[1];
-  
-  while (is_active == '\0') {
-    compare_result = memcmp(current_node + 4, &DAT_180a00b88, 0x10);
-    if (compare_result < 0) {
-      next_node = (void **)current_node[2];
-      current_node = previous_node;
+    char node_is_valid;
+    uint64_t *component_manager;
+    uint64_t *root_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    void (*component_handler)(void);
+    
+    component_manager = (uint64_t *)FUN_18008d070();
+    root_node = (uint64_t *)*component_manager;
+    node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
+    component_handler = FUN_180262b00;
+    parent_node = root_node;
+    current_node = (uint64_t *)root_node[1];
+    
+    while (node_is_valid == '\0') {
+        int compare_result = memcmp(current_node + 4, &COMPONENT_SIGNATURE_ANIMATION, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = parent_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        parent_node = current_node;
+        current_node = next_node;
+        node_is_valid = *(char *)((uint64_t)next_node + 0x19);
     }
-    else {
-      next_node = (void **)*current_node;
+    
+    if ((parent_node == root_node) || 
+        (int compare_result = memcmp(&COMPONENT_SIGNATURE_ANIMATION, parent_node + 4, 0x10), compare_result < 0)) {
+        uint64_t allocation_size = FUN_18008f0d0(component_manager);
+        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        parent_node = new_node;
     }
-    previous_node = current_node;
-    current_node = next_node;
-    is_active = *(char *)((longlong)next_node + 0x19);
-  }
-  
-  if ((previous_node == registry_root) || 
-      (compare_result = memcmp(&DAT_180a00b88, previous_node + 4, 0x10), compare_result < 0)) {
-    allocation_size = FUN_18008f0d0(pool_manager);
-    FUN_18008f140(pool_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
-    previous_node = new_entry;
-  }
-  
-  previous_node[6] = 0x4e33c4803e67a08f;  // 脚本引擎类型标识符
-  previous_node[7] = 0x703a29a844ce399;  // 版本信息
-  previous_node[8] = &UNK_180a004c0;      // 脚本描述符
-  previous_node[9] = 3;                   // 优先级
-  previous_node[10] = handler_function;    // 处理函数指针
-  return;
+    
+    parent_node[6] = COMPONENT_TYPE_ANIMATION;      // 动画组件类型ID
+    parent_node[7] = COMPONENT_VERSION_ANIMATION;   // 动画组件版本ID
+    parent_node[8] = &COMPONENT_NAME_ANIMATION;     // 动画组件名称
+    parent_node[9] = COMPONENT_PRIORITY_ANIMATION;   // 动画组件优先级
+    parent_node[10] = (uint64_t)component_handler;   // 动画组件处理函数
+    
+    return;
 }
 
 /**
- * 注册网络同步处理器
- * 在全局注册表中注册网络同步处理接口
+ * 注册UI组件
+ * 在全局组件注册表中注册UI组件，负责用户界面相关功能
+ * 
+ * 组件属性：
+ * - 组件类型ID: 0x43330a43fcdb3653
+ * - 组件版本ID: 0xdcfdc333a769ec93
+ * - 组件名称: UNK_180a00370
+ * - 优先级: 1
+ * - 处理函数: FUN_18025cc00
  */
-void register_network_sync_handler(void)
-
+void 注册UI组件(void)
 {
-  char is_active;
-  void **registry_root;
-  int compare_result;
-  longlong *pool_manager;
-  longlong allocation_size;
-  void **current_node;
-  void **previous_node;
-  void **next_node;
-  void *new_entry;
-  void *handler_function;
-  
-  pool_manager = (longlong *)FUN_18008d070();
-  registry_root = (void **)*pool_manager;
-  is_active = *(char *)((longlong)registry_root[1] + 0x19);
-  handler_function = FUN_18025cc00;
-  previous_node = registry_root;
-  current_node = (void **)registry_root[1];
-  
-  while (is_active == '\0') {
-    compare_result = memcmp(current_node + 4, &DAT_180a010a0, 0x10);
-    if (compare_result < 0) {
-      next_node = (void **)current_node[2];
-      current_node = previous_node;
+    char node_is_valid;
+    uint64_t *component_manager;
+    uint64_t *root_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    void (*component_handler)(void);
+    
+    component_manager = (uint64_t *)FUN_18008d070();
+    root_node = (uint64_t *)*component_manager;
+    node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
+    component_handler = FUN_18025cc00;
+    parent_node = root_node;
+    current_node = (uint64_t *)root_node[1];
+    
+    while (node_is_valid == '\0') {
+        int compare_result = memcmp(current_node + 4, &COMPONENT_SIGNATURE_UI, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = parent_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        parent_node = current_node;
+        current_node = next_node;
+        node_is_valid = *(char *)((uint64_t)next_node + 0x19);
     }
-    else {
-      next_node = (void **)*current_node;
+    
+    if ((parent_node == root_node) || 
+        (int compare_result = memcmp(&COMPONENT_SIGNATURE_UI, parent_node + 4, 0x10), compare_result < 0)) {
+        uint64_t allocation_size = FUN_18008f0d0(component_manager);
+        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        parent_node = new_node;
     }
-    previous_node = current_node;
-    current_node = next_node;
-    is_active = *(char *)((longlong)next_node + 0x19);
-  }
-  
-  if ((previous_node == registry_root) || 
-      (compare_result = memcmp(&DAT_180a010a0, previous_node + 4, 0x10), compare_result < 0)) {
-    allocation_size = FUN_18008f0d0(pool_manager);
-    FUN_18008f140(pool_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
-    previous_node = new_entry;
-  }
-  
-  previous_node[6] = 0x43330a43fcdb3653;  // 网络同步类型标识符
-  previous_node[7] = 0xdcfdc333a769ec93;  // 版本信息
-  previous_node[8] = &UNK_180a00370;      // 同步描述符
-  previous_node[9] = 1;                   // 优先级
-  previous_node[10] = handler_function;    // 处理函数指针
-  return;
+    
+    parent_node[6] = COMPONENT_TYPE_UI;           // UI组件类型ID
+    parent_node[7] = COMPONENT_VERSION_UI;        // UI组件版本ID
+    parent_node[8] = &COMPONENT_NAME_UI;           // UI组件名称
+    parent_node[9] = COMPONENT_PRIORITY_UI;        // UI组件优先级
+    parent_node[10] = (uint64_t)component_handler; // UI组件处理函数
+    
+    return;
 }
 
 /**
- * 注册粒子系统处理器
- * 在全局注册表中注册粒子系统处理接口
+ * 注册粒子系统组件
+ * 在全局组件注册表中注册粒子系统组件，负责粒子效果相关功能
+ * 
+ * 组件属性：
+ * - 组件类型ID: 0x431d7c8d7c475be2
+ * - 组件版本ID: 0xb97f048d2153e1b0
+ * - 组件名称: UNK_180a00388
+ * - 优先级: 4
+ * - 处理函数: FUN_18025c000
  */
-void register_particle_system_handler(void)
-
+void 注册粒子系统组件(void)
 {
-  char is_active;
-  void **registry_root;
-  int compare_result;
-  longlong *pool_manager;
-  longlong allocation_size;
-  void **current_node;
-  void **previous_node;
-  void **next_node;
-  void *new_entry;
-  void *handler_function;
-  
-  pool_manager = (longlong *)FUN_18008d070();
-  registry_root = (void **)*pool_manager;
-  is_active = *(char *)((longlong)registry_root[1] + 0x19);
-  handler_function = FUN_18025c000;
-  previous_node = registry_root;
-  current_node = (void **)registry_root[1];
-  
-  while (is_active == '\0') {
-    compare_result = memcmp(current_node + 4, &DAT_180a01078, 0x10);
-    if (compare_result < 0) {
-      next_node = (void **)current_node[2];
-      current_node = previous_node;
+    char node_is_valid;
+    uint64_t *component_manager;
+    uint64_t *root_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    void (*component_handler)(void);
+    
+    component_manager = (uint64_t *)FUN_18008d070();
+    root_node = (uint64_t *)*component_manager;
+    node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
+    component_handler = FUN_18025c000;
+    parent_node = root_node;
+    current_node = (uint64_t *)root_node[1];
+    
+    while (node_is_valid == '\0') {
+        int compare_result = memcmp(current_node + 4, &COMPONENT_SIGNATURE_PARTICLE, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = parent_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        parent_node = current_node;
+        current_node = next_node;
+        node_is_valid = *(char *)((uint64_t)next_node + 0x19);
     }
-    else {
-      next_node = (void **)*current_node;
+    
+    if ((parent_node == root_node) || 
+        (int compare_result = memcmp(&COMPONENT_SIGNATURE_PARTICLE, parent_node + 4, 0x10), compare_result < 0)) {
+        uint64_t allocation_size = FUN_18008f0d0(component_manager);
+        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        parent_node = new_node;
     }
-    previous_node = current_node;
-    current_node = next_node;
-    is_active = *(char *)((longlong)next_node + 0x19);
-  }
-  
-  if ((previous_node == registry_root) || 
-      (compare_result = memcmp(&DAT_180a01078, previous_node + 4, 0x10), compare_result < 0)) {
-    allocation_size = FUN_18008f0d0(pool_manager);
-    FUN_18008f140(pool_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
-    previous_node = new_entry;
-  }
-  
-  previous_node[6] = 0x431d7c8d7c475be2;  // 粒子系统类型标识符
-  previous_node[7] = 0xb97f048d2153e1b0;  // 版本信息
-  previous_node[8] = &UNK_180a00388;      // 粒子描述符
-  previous_node[9] = 4;                   // 优先级
-  previous_node[10] = handler_function;    // 处理函数指针
-  return;
+    
+    parent_node[6] = COMPONENT_TYPE_PARTICLE;      // 粒子系统组件类型ID
+    parent_node[7] = COMPONENT_VERSION_PARTICLE;   // 粒子系统组件版本ID
+    parent_node[8] = &COMPONENT_NAME_PARTICLE;      // 粒子系统组件名称
+    parent_node[9] = COMPONENT_PRIORITY_PARTICLE;   // 粒子系统组件优先级
+    parent_node[10] = (uint64_t)component_handler; // 粒子系统组件处理函数
+    
+    return;
 }
 
 /**
- * 注册光照系统处理器
- * 在全局注册表中注册光照系统处理接口
+ * 注册地形组件
+ * 在全局组件注册表中注册地形组件，负责地形系统相关功能
+ * 
+ * 组件属性：
+ * - 组件类型ID: 0x4b2d79e470ee4e2c
+ * - 组件版本ID: 0x9c552acd3ed5548d
+ * - 组件名称: UNK_180a003a0
+ * - 优先级: 0
+ * - 处理函数: NULL
  */
-void register_lighting_system_handler(void)
-
+void 注册地形组件(void)
 {
-  char is_active;
-  void **registry_root;
-  int compare_result;
-  longlong *pool_manager;
-  longlong allocation_size;
-  void **current_node;
-  void **previous_node;
-  void **next_node;
-  void *new_entry;
-  void *handler_function;
-  
-  pool_manager = (longlong *)FUN_18008d070();
-  registry_root = (void **)*pool_manager;
-  is_active = *(char *)((longlong)registry_root[1] + 0x19);
-  handler_function = 0;  // 无特定处理函数
-  previous_node = registry_root;
-  current_node = (void **)registry_root[1];
-  
-  while (is_active == '\0') {
-    compare_result = memcmp(current_node + 4, &DAT_180a01050, 0x10);
-    if (compare_result < 0) {
-      next_node = (void **)current_node[2];
-      current_node = previous_node;
+    char node_is_valid;
+    uint64_t *component_manager;
+    uint64_t *root_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t component_handler;
+    
+    component_manager = (uint64_t *)FUN_18008d070();
+    root_node = (uint64_t *)*component_manager;
+    node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
+    component_handler = 0; // 地形组件没有处理函数
+    parent_node = root_node;
+    current_node = (uint64_t *)root_node[1];
+    
+    while (node_is_valid == '\0') {
+        int compare_result = memcmp(current_node + 4, &COMPONENT_SIGNATURE_TERRAIN, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = parent_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        parent_node = current_node;
+        current_node = next_node;
+        node_is_valid = *(char *)((uint64_t)next_node + 0x19);
     }
-    else {
-      next_node = (void **)*current_node;
+    
+    if ((parent_node == root_node) || 
+        (int compare_result = memcmp(&COMPONENT_SIGNATURE_TERRAIN, parent_node + 4, 0x10), compare_result < 0)) {
+        uint64_t allocation_size = FUN_18008f0d0(component_manager);
+        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        parent_node = new_node;
     }
-    previous_node = current_node;
-    current_node = next_node;
-    is_active = *(char *)((longlong)next_node + 0x19);
-  }
-  
-  if ((previous_node == registry_root) || 
-      (compare_result = memcmp(&DAT_180a01050, previous_node + 4, 0x10), compare_result < 0)) {
-    allocation_size = FUN_18008f0d0(pool_manager);
-    FUN_18008f140(pool_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
-    previous_node = new_entry;
-  }
-  
-  previous_node[6] = 0x4b2d79e470ee4e2c;  // 光照系统类型标识符
-  previous_node[7] = 0x9c552acd3ed5548d;  // 版本信息
-  previous_node[8] = &UNK_180a003a0;      // 光照描述符
-  previous_node[9] = 0;                   // 优先级
-  previous_node[10] = handler_function;    // 处理函数指针
-  return;
+    
+    parent_node[6] = COMPONENT_TYPE_TERRAIN;      // 地形组件类型ID
+    parent_node[7] = COMPONENT_VERSION_TERRAIN;   // 地形组件版本ID
+    parent_node[8] = &COMPONENT_NAME_TERRAIN;     // 地形组件名称
+    parent_node[9] = COMPONENT_PRIORITY_TERRAIN;  // 地形组件优先级
+    parent_node[10] = component_handler;          // 地形组件处理函数
+    
+    return;
 }
 
 /**
- * 注册材质系统处理器
- * 在全局注册表中注册材质系统处理接口
+ * 注册光照组件
+ * 在全局组件注册表中注册光照组件，负责光照系统相关功能
+ * 
+ * 组件属性：
+ * - 组件类型ID: 0x49086ba08ab981a7
+ * - 组件版本ID: 0xa9191d34ad910696
+ * - 组件名称: UNK_180a003b8
+ * - 优先级: 0
+ * - 处理函数: FUN_18025d270
  */
-void register_material_system_handler(void)
-
+void 注册光照组件(void)
 {
-  char is_active;
-  void **registry_root;
-  int compare_result;
-  longlong *pool_manager;
-  longlong allocation_size;
-  void **current_node;
-  void **previous_node;
-  void **next_node;
-  void *new_entry;
-  void *handler_function;
-  
-  pool_manager = (longlong *)FUN_18008d070();
-  registry_root = (void **)*pool_manager;
-  is_active = *(char *)((longlong)registry_root[1] + 0x19);
-  handler_function = FUN_18025d270;
-  previous_node = registry_root;
-  current_node = (void **)registry_root[1];
-  
-  while (is_active == '\0') {
-    compare_result = memcmp(current_node + 4, &DAT_180a01028, 0x10);
-    if (compare_result < 0) {
-      next_node = (void **)current_node[2];
-      current_node = previous_node;
+    char node_is_valid;
+    uint64_t *component_manager;
+    uint64_t *root_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    void (*component_handler)(void);
+    
+    component_manager = (uint64_t *)FUN_18008d070();
+    root_node = (uint64_t *)*component_manager;
+    node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
+    component_handler = FUN_18025d270;
+    parent_node = root_node;
+    current_node = (uint64_t *)root_node[1];
+    
+    while (node_is_valid == '\0') {
+        int compare_result = memcmp(current_node + 4, &COMPONENT_SIGNATURE_LIGHTING, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = parent_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        parent_node = current_node;
+        current_node = next_node;
+        node_is_valid = *(char *)((uint64_t)next_node + 0x19);
     }
-    else {
-      next_node = (void **)*current_node;
+    
+    if ((parent_node == root_node) || 
+        (int compare_result = memcmp(&COMPONENT_SIGNATURE_LIGHTING, parent_node + 4, 0x10), compare_result < 0)) {
+        uint64_t allocation_size = FUN_18008f0d0(component_manager);
+        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        parent_node = new_node;
     }
-    previous_node = current_node;
-    current_node = next_node;
-    is_active = *(char *)((longlong)next_node + 0x19);
-  }
-  
-  if ((previous_node == registry_root) || 
-      (compare_result = memcmp(&DAT_180a01028, previous_node + 4, 0x10), compare_result < 0)) {
-    allocation_size = FUN_18008f0d0(pool_manager);
-    FUN_18008f140(pool_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
-    previous_node = new_entry;
-  }
-  
-  previous_node[6] = 0x49086ba08ab981a7;  // 材质系统类型标识符
-  previous_node[7] = 0xa9191d34ad910696;  // 版本信息
-  previous_node[8] = &UNK_180a003b8;      // 材质描述符
-  previous_node[9] = 0;                   // 优先级
-  previous_node[10] = handler_function;    // 处理函数指针
-  return;
+    
+    parent_node[6] = COMPONENT_TYPE_LIGHTING;      // 光照组件类型ID
+    parent_node[7] = COMPONENT_VERSION_LIGHTING;   // 光照组件版本ID
+    parent_node[8] = &COMPONENT_NAME_LIGHTING;      // 光照组件名称
+    parent_node[9] = COMPONENT_PRIORITY_LIGHTING;  // 光照组件优先级
+    parent_node[10] = (uint64_t)component_handler; // 光照组件处理函数
+    
+    return;
 }
 
 /**
- * 注册阴影系统处理器
- * 在全局注册表中注册阴影系统处理接口
+ * 注册材质组件
+ * 在全局组件注册表中注册材质组件，负责材质系统相关功能
+ * 
+ * 组件属性：
+ * - 组件类型ID: 0x402feffe4481676e
+ * - 组件版本ID: 0xd4c2151109de93a0
+ * - 组件名称: UNK_180a003d0
+ * - 优先级: 0
+ * - 处理函数: NULL
  */
-void register_shadow_system_handler(void)
-
+void 注册材质组件(void)
 {
-  char is_active;
-  void **registry_root;
-  int compare_result;
-  longlong *pool_manager;
-  longlong allocation_size;
-  void **current_node;
-  void **previous_node;
-  void **next_node;
-  void *new_entry;
-  void *handler_function;
-  
-  pool_manager = (longlong *)FUN_18008d070();
-  registry_root = (void **)*pool_manager;
-  is_active = *(char *)((longlong)registry_root[1] + 0x19);
-  handler_function = 0;  // 无特定处理函数
-  previous_node = registry_root;
-  current_node = (void **)registry_root[1];
-  
-  while (is_active == '\0') {
-    compare_result = memcmp(current_node + 4, &DAT_180a01000, 0x10);
-    if (compare_result < 0) {
-      next_node = (void **)current_node[2];
-      current_node = previous_node;
+    char node_is_valid;
+    uint64_t *component_manager;
+    uint64_t *root_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t component_handler;
+    
+    component_manager = (uint64_t *)FUN_18008d070();
+    root_node = (uint64_t *)*component_manager;
+    node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
+    component_handler = 0; // 材质组件没有处理函数
+    parent_node = root_node;
+    current_node = (uint64_t *)root_node[1];
+    
+    while (node_is_valid == '\0') {
+        int compare_result = memcmp(current_node + 4, &COMPONENT_SIGNATURE_MATERIAL, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = parent_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        parent_node = current_node;
+        current_node = next_node;
+        node_is_valid = *(char *)((uint64_t)next_node + 0x19);
     }
-    else {
-      next_node = (void **)*current_node;
+    
+    if ((parent_node == root_node) || 
+        (int compare_result = memcmp(&COMPONENT_SIGNATURE_MATERIAL, parent_node + 4, 0x10), compare_result < 0)) {
+        uint64_t allocation_size = FUN_18008f0d0(component_manager);
+        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        parent_node = new_node;
     }
-    previous_node = current_node;
-    current_node = next_node;
-    is_active = *(char *)((longlong)next_node + 0x19);
-  }
-  
-  if ((previous_node == registry_root) || 
-      (compare_result = memcmp(&DAT_180a01000, previous_node + 4, 0x10), compare_result < 0)) {
-    allocation_size = FUN_18008f0d0(pool_manager);
-    FUN_18008f140(pool_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
-    previous_node = new_entry;
-  }
-  
-  previous_node[6] = 0x402feffe4481676e;  // 阴影系统类型标识符
-  previous_node[7] = 0xd4c2151109de93a0;  // 版本信息
-  previous_node[8] = &UNK_180a003d0;      // 阴影描述符
-  previous_node[9] = 0;                   // 优先级
-  previous_node[10] = handler_function;    // 处理函数指针
-  return;
+    
+    parent_node[6] = COMPONENT_TYPE_MATERIAL;      // 材质组件类型ID
+    parent_node[7] = COMPONENT_VERSION_MATERIAL;   // 材质组件版本ID
+    parent_node[8] = &COMPONENT_NAME_MATERIAL;     // 材质组件名称
+    parent_node[9] = COMPONENT_PRIORITY_MATERIAL;  // 材质组件优先级
+    parent_node[10] = component_handler;          // 材质组件处理函数
+    
+    return;
 }
 
 /**
- * 注册后处理效果处理器
- * 在全局注册表中注册后处理效果处理接口
+ * 注册着色器组件
+ * 在全局组件注册表中注册着色器组件，负责着色器系统相关功能
+ * 
+ * 组件属性：
+ * - 组件类型ID: 0x4384dcc4b6d3f417
+ * - 组件版本ID: 0x92a15d52fe2679bd
+ * - 组件名称: UNK_180a003e8
+ * - 优先级: 0
+ * - 处理函数: UNK_1800868c0
  */
-void register_postprocess_handler(void)
-
+void 注册着色器组件(void)
 {
-  char is_active;
-  void **registry_root;
-  int compare_result;
-  longlong *pool_manager;
-  longlong allocation_size;
-  void **current_node;
-  void **previous_node;
-  void **next_node;
-  void *new_entry;
-  void *postprocess_module;
-  
-  pool_manager = (longlong *)FUN_18008d070();
-  registry_root = (void **)*pool_manager;
-  is_active = *(char *)((longlong)registry_root[1] + 0x19);
-  postprocess_module = &UNK_1800868c0;
-  previous_node = registry_root;
-  current_node = (void **)registry_root[1];
-  
-  while (is_active == '\0') {
-    compare_result = memcmp(current_node + 4, &DAT_180a00fd8, 0x10);
-    if (compare_result < 0) {
-      next_node = (void **)current_node[2];
-      current_node = previous_node;
+    char node_is_valid;
+    uint64_t *component_manager;
+    uint64_t *root_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    void *component_handler;
+    
+    component_manager = (uint64_t *)FUN_18008d070();
+    root_node = (uint64_t *)*component_manager;
+    node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
+    component_handler = &SHADER_ENGINE_HANDLER;
+    parent_node = root_node;
+    current_node = (uint64_t *)root_node[1];
+    
+    while (node_is_valid == '\0') {
+        int compare_result = memcmp(current_node + 4, &COMPONENT_SIGNATURE_SHADER, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = parent_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        parent_node = current_node;
+        current_node = next_node;
+        node_is_valid = *(char *)((uint64_t)next_node + 0x19);
     }
-    else {
-      next_node = (void **)*current_node;
+    
+    if ((parent_node == root_node) || 
+        (int compare_result = memcmp(&COMPONENT_SIGNATURE_SHADER, parent_node + 4, 0x10), compare_result < 0)) {
+        uint64_t allocation_size = FUN_18008f0d0(component_manager);
+        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        parent_node = new_node;
     }
-    previous_node = current_node;
-    current_node = next_node;
-    is_active = *(char *)((longlong)next_node + 0x19);
-  }
-  
-  if ((previous_node == registry_root) || 
-      (compare_result = memcmp(&DAT_180a00fd8, previous_node + 4, 0x10), compare_result < 0)) {
-    allocation_size = FUN_18008f0d0(pool_manager);
-    FUN_18008f140(pool_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
-    previous_node = new_entry;
-  }
-  
-  previous_node[6] = 0x4384dcc4b6d3f417;  // 后处理效果类型标识符
-  previous_node[7] = 0x92a15d52fe2679bd;  // 版本信息
-  previous_node[8] = &UNK_180a003e8;      // 后处理描述符
-  previous_node[9] = 0;                   // 优先级
-  previous_node[10] = postprocess_module;  // 后处理模块指针
-  return;
+    
+    parent_node[6] = COMPONENT_TYPE_SHADER;       // 着色器组件类型ID
+    parent_node[7] = COMPONENT_VERSION_SHADER;     // 着色器组件版本ID
+    parent_node[8] = &COMPONENT_NAME_SHADER;       // 着色器组件名称
+    parent_node[9] = COMPONENT_PRIORITY_SHADER;     // 着色器组件优先级
+    parent_node[10] = (uint64_t)component_handler; // 着色器组件处理函数
+    
+    return;
 }
 
 /**
- * 注册AI系统处理器
- * 在全局注册表中注册AI系统处理接口
+ * 注册纹理组件
+ * 在全局组件注册表中注册纹理组件，负责纹理系统相关功能
+ * 
+ * 组件属性：
+ * - 组件类型ID: 0x4140994454d56503
+ * - 组件版本ID: 0x399eced9bb5517ad
+ * - 组件名称: UNK_180a00400
+ * - 优先级: 0
+ * - 处理函数: NULL
  */
-void register_ai_system_handler(void)
-
+void 注册纹理组件(void)
 {
-  char is_active;
-  void **registry_root;
-  int compare_result;
-  longlong *pool_manager;
-  longlong allocation_size;
-  void **current_node;
-  void **previous_node;
-  void **next_node;
-  void *new_entry;
-  void *handler_function;
-  
-  pool_manager = (longlong *)FUN_18008d070();
-  registry_root = (void **)*pool_manager;
-  is_active = *(char *)((longlong)registry_root[1] + 0x19);
-  handler_function = 0;  // 无特定处理函数
-  previous_node = registry_root;
-  current_node = (void **)registry_root[1];
-  
-  while (is_active == '\0') {
-    compare_result = memcmp(current_node + 4, &DAT_180a00fb0, 0x10);
-    if (compare_result < 0) {
-      next_node = (void **)current_node[2];
-      current_node = previous_node;
+    char node_is_valid;
+    uint64_t *component_manager;
+    uint64_t *root_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t component_handler;
+    
+    component_manager = (uint64_t *)FUN_18008d070();
+    root_node = (uint64_t *)*component_manager;
+    node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
+    component_handler = 0; // 纹理组件没有处理函数
+    parent_node = root_node;
+    current_node = (uint64_t *)root_node[1];
+    
+    while (node_is_valid == '\0') {
+        int compare_result = memcmp(current_node + 4, &COMPONENT_SIGNATURE_TEXTURE, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = parent_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        parent_node = current_node;
+        current_node = next_node;
+        node_is_valid = *(char *)((uint64_t)next_node + 0x19);
     }
-    else {
-      next_node = (void **)*current_node;
+    
+    if ((parent_node == root_node) || 
+        (int compare_result = memcmp(&COMPONENT_SIGNATURE_TEXTURE, parent_node + 4, 0x10), compare_result < 0)) {
+        uint64_t allocation_size = FUN_18008f0d0(component_manager);
+        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        parent_node = new_node;
     }
-    previous_node = current_node;
-    current_node = next_node;
-    is_active = *(char *)((longlong)next_node + 0x19);
-  }
-  
-  if ((previous_node == registry_root) || 
-      (compare_result = memcmp(&DAT_180a00fb0, previous_node + 4, 0x10), compare_result < 0)) {
-    allocation_size = FUN_18008f0d0(pool_manager);
-    FUN_18008f140(pool_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
-    previous_node = new_entry;
-  }
-  
-  previous_node[6] = 0x4140994454d56503;  // AI系统类型标识符
-  previous_node[7] = 0x399eced9bb5517ad;  // 版本信息
-  previous_node[8] = &UNK_180a00400;      // AI描述符
-  previous_node[9] = 0;                   // 优先级
-  previous_node[10] = handler_function;    // 处理函数指针
-  return;
+    
+    parent_node[6] = COMPONENT_TYPE_TEXTURE;      // 纹理组件类型ID
+    parent_node[7] = COMPONENT_VERSION_TEXTURE;   // 纹理组件版本ID
+    parent_node[8] = &COMPONENT_NAME_TEXTURE;      // 纹理组件名称
+    parent_node[9] = COMPONENT_PRIORITY_TEXTURE;   // 纹理组件优先级
+    parent_node[10] = component_handler;          // 纹理组件处理函数
+    
+    return;
 }
 
 /**
- * 注册导航系统处理器
- * 在全局注册表中注册导航系统处理接口
+ * 注册游戏逻辑组件
+ * 在全局组件注册表中注册游戏逻辑组件，负责游戏逻辑处理
+ * 
+ * 组件属性：
+ * - 组件类型ID: 0x449bafe9b77ddd3c
+ * - 组件版本ID: 0xc160408bde99e59f
+ * - 组件名称: UNK_180a00430
+ * - 优先级: 0
+ * - 处理函数: FUN_18025d510
  */
-void register_navigation_system_handler(void)
-
+void 注册游戏逻辑组件(void)
 {
-  char is_active;
-  void **registry_root;
-  int compare_result;
-  longlong *pool_manager;
-  longlong allocation_size;
-  void **current_node;
-  void **previous_node;
-  void **next_node;
-  void *new_entry;
-  void *handler_function;
-  
-  pool_manager = (longlong *)FUN_18008d070();
-  registry_root = (void **)*pool_manager;
-  is_active = *(char *)((longlong)registry_root[1] + 0x19);
-  handler_function = FUN_18025d510;
-  previous_node = registry_root;
-  current_node = (void **)registry_root[1];
-  
-  while (is_active == '\0') {
-    compare_result = memcmp(current_node + 4, &DAT_180a00e28, 0x10);
-    if (compare_result < 0) {
-      next_node = (void **)current_node[2];
-      current_node = previous_node;
+    char node_is_valid;
+    uint64_t *component_manager;
+    uint64_t *root_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    void (*component_handler)(void);
+    
+    component_manager = (uint64_t *)FUN_18008d070();
+    root_node = (uint64_t *)*component_manager;
+    node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
+    component_handler = FUN_18025d510;
+    parent_node = root_node;
+    current_node = (uint64_t *)root_node[1];
+    
+    while (node_is_valid == '\0') {
+        int compare_result = memcmp(current_node + 4, &COMPONENT_SIGNATURE_GAME_LOGIC, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = parent_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        parent_node = current_node;
+        current_node = next_node;
+        node_is_valid = *(char *)((uint64_t)next_node + 0x19);
     }
-    else {
-      next_node = (void **)*current_node;
+    
+    if ((parent_node == root_node) || 
+        (int compare_result = memcmp(&COMPONENT_SIGNATURE_GAME_LOGIC, parent_node + 4, 0x10), compare_result < 0)) {
+        uint64_t allocation_size = FUN_18008f0d0(component_manager);
+        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        parent_node = new_node;
     }
-    previous_node = current_node;
-    current_node = next_node;
-    is_active = *(char *)((longlong)next_node + 0x19);
-  }
-  
-  if ((previous_node == registry_root) || 
-      (compare_result = memcmp(&DAT_180a00e28, previous_node + 4, 0x10), compare_result < 0)) {
-    allocation_size = FUN_18008f0d0(pool_manager);
-    FUN_18008f140(pool_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
-    previous_node = new_entry;
-  }
-  
-  previous_node[6] = 0x449bafe9b77ddd3c;  // 导航系统类型标识符
-  previous_node[7] = 0xc160408bde99e59f;  // 版本信息
-  previous_node[8] = &UNK_180a00430;      // 导航描述符
-  previous_node[9] = 0;                   // 优先级
-  previous_node[10] = handler_function;    // 处理函数指针
-  return;
+    
+    parent_node[6] = COMPONENT_TYPE_GAME_LOGIC;    // 游戏逻辑组件类型ID
+    parent_node[7] = COMPONENT_VERSION_GAME_LOGIC; // 游戏逻辑组件版本ID
+    parent_node[8] = &COMPONENT_NAME_GAME_LOGIC;   // 游戏逻辑组件名称
+    parent_node[9] = COMPONENT_PRIORITY_GAME_LOGIC; // 游戏逻辑组件优先级
+    parent_node[10] = (uint64_t)component_handler; // 游戏逻辑组件处理函数
+    
+    return;
 }
 
 /**
- * 注册碰撞检测处理器
- * 在全局注册表中注册碰撞检测处理接口
+ * 注册场景管理组件
+ * 在全局组件注册表中注册场景管理组件，负责场景管理功能
+ * 
+ * 组件属性：
+ * - 组件类型ID: 0x45425dc186a5d575
+ * - 组件版本ID: 0xfab48faa65382fa5
+ * - 组件名称: UNK_180a00460
+ * - 优先级: 0
+ * - 处理函数: FUN_18025e330
  */
-void register_collision_detection_handler(void)
-
+void 注册场景管理组件(void)
 {
-  char is_active;
-  void **registry_root;
-  int compare_result;
-  longlong *pool_manager;
-  longlong allocation_size;
-  void **current_node;
-  void **previous_node;
-  void **next_node;
-  void *new_entry;
-  void *handler_function;
-  
-  pool_manager = (longlong *)FUN_18008d070();
-  registry_root = (void **)*pool_manager;
-  is_active = *(char *)((longlong)registry_root[1] + 0x19);
-  handler_function = FUN_18025e330;
-  previous_node = registry_root;
-  current_node = (void **)registry_root[1];
-  
-  while (is_active == '\0') {
-    compare_result = memcmp(current_node + 4, &DAT_180a00d48, 0x10);
-    if (compare_result < 0) {
-      next_node = (void **)current_node[2];
-      current_node = previous_node;
+    char node_is_valid;
+    uint64_t *component_manager;
+    uint64_t *root_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    void (*component_handler)(void);
+    
+    component_manager = (uint64_t *)FUN_18008d070();
+    root_node = (uint64_t *)*component_manager;
+    node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
+    component_handler = FUN_18025e330;
+    parent_node = root_node;
+    current_node = (uint64_t *)root_node[1];
+    
+    while (node_is_valid == '\0') {
+        int compare_result = memcmp(current_node + 4, &COMPONENT_SIGNATURE_SCENE_MANAGER, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = parent_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        parent_node = current_node;
+        current_node = next_node;
+        node_is_valid = *(char *)((uint64_t)next_node + 0x19);
     }
-    else {
-      next_node = (void **)*current_node;
+    
+    if ((parent_node == root_node) || 
+        (int compare_result = memcmp(&COMPONENT_SIGNATURE_SCENE_MANAGER, parent_node + 4, 0x10), compare_result < 0)) {
+        uint64_t allocation_size = FUN_18008f0d0(component_manager);
+        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        parent_node = new_node;
     }
-    previous_node = current_node;
-    current_node = next_node;
-    is_active = *(char *)((longlong)next_node + 0x19);
-  }
-  
-  if ((previous_node == registry_root) || 
-      (compare_result = memcmp(&DAT_180a00d48, previous_node + 4, 0x10), compare_result < 0)) {
-    allocation_size = FUN_18008f0d0(pool_manager);
-    FUN_18008f140(pool_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
-    previous_node = new_entry;
-  }
-  
-  previous_node[6] = 0x45425dc186a5d575;  // 碰撞检测类型标识符
-  previous_node[7] = 0xfab48faa65382fa5;  // 版本信息
-  previous_node[8] = &UNK_180a00460;      // 碰撞描述符
-  previous_node[9] = 0;                   // 优先级
-  previous_node[10] = handler_function;    // 处理函数指针
-  return;
+    
+    parent_node[6] = COMPONENT_TYPE_SCENE_MANAGER; // 场景管理组件类型ID
+    parent_node[7] = COMPONENT_VERSION_SCENE_MANAGER; // 场景管理组件版本ID
+    parent_node[8] = &COMPONENT_NAME_SCENE_MANAGER; // 场景管理组件名称
+    parent_node[9] = COMPONENT_PRIORITY_SCENE_MANAGER; // 场景管理组件优先级
+    parent_node[10] = (uint64_t)component_handler; // 场景管理组件处理函数
+    
+    return;
 }
 
 /**
- * 注册游戏逻辑处理器
- * 在全局注册表中注册游戏逻辑处理接口
+ * 注册行为树组件
+ * 在全局组件注册表中注册行为树组件，负责AI行为树系统
+ * 
+ * 组件属性：
+ * - 组件类型ID: 0x40db4257e97d3df8
+ * - 组件版本ID: 0x81d539e33614429f
+ * - 组件名称: UNK_180a004a8
+ * - 优先级: 4
+ * - 处理函数: FUN_1802633c0
  */
-void register_game_logic_handler(void)
-
+void 注册行为树组件(void)
 {
-  char is_active;
-  void **registry_root;
-  int compare_result;
-  longlong *pool_manager;
-  longlong allocation_size;
-  void **current_node;
-  void **previous_node;
-  void **next_node;
-  void *new_entry;
-  void *handler_function;
-  
-  pool_manager = (longlong *)FUN_18008d070();
-  registry_root = (void **)*pool_manager;
-  is_active = *(char *)((longlong)registry_root[1] + 0x19);
-  handler_function = FUN_1802633c0;
-  previous_node = registry_root;
-  current_node = (void **)registry_root[1];
-  
-  while (is_active == '\0') {
-    compare_result = memcmp(current_node + 4, &DAT_180a00bb0, 0x10);
-    if (compare_result < 0) {
-      next_node = (void **)current_node[2];
-      current_node = previous_node;
+    char node_is_valid;
+    uint64_t *component_manager;
+    uint64_t *root_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    void (*component_handler)(void);
+    
+    component_manager = (uint64_t *)FUN_18008d070();
+    root_node = (uint64_t *)*component_manager;
+    node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
+    component_handler = FUN_1802633c0;
+    parent_node = root_node;
+    current_node = (uint64_t *)root_node[1];
+    
+    while (node_is_valid == '\0') {
+        int compare_result = memcmp(current_node + 4, &COMPONENT_SIGNATURE_BEHAVIOR_TREE, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = parent_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        parent_node = current_node;
+        current_node = next_node;
+        node_is_valid = *(char *)((uint64_t)next_node + 0x19);
     }
-    else {
-      next_node = (void **)*current_node;
+    
+    if ((parent_node == root_node) || 
+        (int compare_result = memcmp(&COMPONENT_SIGNATURE_BEHAVIOR_TREE, parent_node + 4, 0x10), compare_result < 0)) {
+        uint64_t allocation_size = FUN_18008f0d0(component_manager);
+        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        parent_node = new_node;
     }
-    previous_node = current_node;
-    current_node = next_node;
-    is_active = *(char *)((longlong)next_node + 0x19);
-  }
-  
-  if ((previous_node == registry_root) || 
-      (compare_result = memcmp(&DAT_180a00bb0, previous_node + 4, 0x10), compare_result < 0)) {
-    allocation_size = FUN_18008f0d0(pool_manager);
-    FUN_18008f140(pool_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
-    previous_node = new_entry;
-  }
-  
-  previous_node[6] = 0x40db4257e97d3df8;  // 游戏逻辑类型标识符
-  previous_node[7] = 0x81d539e33614429f;  // 版本信息
-  previous_node[8] = &UNK_180a004a8;      // 游戏逻辑描述符
-  previous_node[9] = 4;                   // 优先级
-  previous_node[10] = handler_function;    // 处理函数指针
-  return;
+    
+    parent_node[6] = COMPONENT_TYPE_BEHAVIOR_TREE; // 行为树组件类型ID
+    parent_node[7] = COMPONENT_VERSION_BEHAVIOR_TREE; // 行为树组件版本ID
+    parent_node[8] = &COMPONENT_NAME_BEHAVIOR_TREE; // 行为树组件名称
+    parent_node[9] = COMPONENT_PRIORITY_BEHAVIOR_TREE; // 行为树组件优先级
+    parent_node[10] = (uint64_t)component_handler; // 行为树组件处理函数
+    
+    return;
 }
 
 /**
- * 注册存档系统处理器
- * 在全局注册表中注册存档系统处理接口
+ * 注册骨骼动画组件
+ * 在全局组件注册表中注册骨骼动画组件，负责骨骼动画系统
+ * 
+ * 组件属性：
+ * - 组件类型ID: 0x4e33c4803e67a08f
+ * - 组件版本ID: 0x703a29a844ce399
+ * - 组件名称: UNK_180a004c0
+ * - 优先级: 3
+ * - 处理函数: FUN_180262b00
  */
-void register_save_system_handler(void)
-
+void 注册骨骼动画组件(void)
 {
-  char is_active;
-  void **registry_root;
-  int compare_result;
-  longlong *pool_manager;
-  longlong allocation_size;
-  void **current_node;
-  void **previous_node;
-  void **next_node;
-  void *new_entry;
-  void *handler_function;
-  
-  pool_manager = (longlong *)FUN_18008d070();
-  registry_root = (void **)*pool_manager;
-  is_active = *(char *)((longlong)registry_root[1] + 0x19);
-  handler_function = FUN_180262b00;
-  previous_node = registry_root;
-  current_node = (void **)registry_root[1];
-  
-  while (is_active == '\0') {
-    compare_result = memcmp(current_node + 4, &DAT_180a00b88, 0x10);
-    if (compare_result < 0) {
-      next_node = (void **)current_node[2];
-      current_node = previous_node;
+    char node_is_valid;
+    uint64_t *component_manager;
+    uint64_t *root_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    void (*component_handler)(void);
+    
+    component_manager = (uint64_t *)FUN_18008d070();
+    root_node = (uint64_t *)*component_manager;
+    node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
+    component_handler = FUN_180262b00;
+    parent_node = root_node;
+    current_node = (uint64_t *)root_node[1];
+    
+    while (node_is_valid == '\0') {
+        int compare_result = memcmp(current_node + 4, &COMPONENT_SIGNATURE_SKELETAL_ANIMATION, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = parent_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        parent_node = current_node;
+        current_node = next_node;
+        node_is_valid = *(char *)((uint64_t)next_node + 0x19);
     }
-    else {
-      next_node = (void **)*current_node;
+    
+    if ((parent_node == root_node) || 
+        (int compare_result = memcmp(&COMPONENT_SIGNATURE_SKELETAL_ANIMATION, parent_node + 4, 0x10), compare_result < 0)) {
+        uint64_t allocation_size = FUN_18008f0d0(component_manager);
+        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        parent_node = new_node;
     }
-    previous_node = current_node;
-    current_node = next_node;
-    is_active = *(char *)((longlong)next_node + 0x19);
-  }
-  
-  if ((previous_node == registry_root) || 
-      (compare_result = memcmp(&DAT_180a00b88, previous_node + 4, 0x10), compare_result < 0)) {
-    allocation_size = FUN_18008f0d0(pool_manager);
-    FUN_18008f140(pool_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
-    previous_node = new_entry;
-  }
-  
-  previous_node[6] = 0x4e33c4803e67a08f;  // 存档系统类型标识符
-  previous_node[7] = 0x703a29a844ce399;  // 版本信息
-  previous_node[8] = &UNK_180a004c0;      // 存档描述符
-  previous_node[9] = 3;                   // 优先级
-  previous_node[10] = handler_function;    // 处理函数指针
-  return;
+    
+    parent_node[6] = COMPONENT_TYPE_SKELETAL_ANIMATION; // 骨骼动画组件类型ID
+    parent_node[7] = COMPONENT_VERSION_SKELETAL_ANIMATION; // 骨骼动画组件版本ID
+    parent_node[8] = &COMPONENT_NAME_SKELETAL_ANIMATION; // 骨骼动画组件名称
+    parent_node[9] = COMPONENT_PRIORITY_SKELETAL_ANIMATION; // 骨骼动画组件优先级
+    parent_node[10] = (uint64_t)component_handler; // 骨骼动画组件处理函数
+    
+    return;
 }
 
 /**
- * 注册调试系统处理器
- * 在全局注册表中注册调试系统处理接口
+ * 注册摄像机组件
+ * 在全局组件注册表中注册摄像机组件，负责摄像机系统
+ * 
+ * 组件属性：
+ * - 组件类型ID: 0x42bea5b911d9c4bf
+ * - 组件版本ID: 0x1aa83fc0020dc1b6
+ * - 组件名称: UNK_1809fd0d8
+ * - 优先级: 0
+ * - 处理函数: NULL
  */
-void register_debug_system_handler(void)
-
+void 注册摄像机组件(void)
 {
-  char is_active;
-  void **registry_root;
-  int compare_result;
-  longlong *pool_manager;
-  longlong allocation_size;
-  void **current_node;
-  void **previous_node;
-  void **next_node;
-  void *new_entry;
-  void *handler_function;
-  
-  pool_manager = (longlong *)FUN_18008d070();
-  registry_root = (void **)*pool_manager;
-  is_active = *(char *)((longlong)registry_root[1] + 0x19);
-  handler_function = 0;  // 无特定处理函数
-  previous_node = registry_root;
-  current_node = (void **)registry_root[1];
-  
-  while (is_active == '\0') {
-    compare_result = memcmp(current_node + 4, &DAT_1809fe0d0, 0x10);
-    if (compare_result < 0) {
-      next_node = (void **)current_node[2];
-      current_node = previous_node;
+    char node_is_valid;
+    uint64_t *component_manager;
+    uint64_t *root_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t component_handler;
+    
+    component_manager = (uint64_t *)FUN_18008d070();
+    root_node = (uint64_t *)*component_manager;
+    node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
+    component_handler = 0; // 摄像机组件没有处理函数
+    parent_node = root_node;
+    current_node = (uint64_t *)root_node[1];
+    
+    while (node_is_valid == '\0') {
+        int compare_result = memcmp(current_node + 4, &COMPONENT_SIGNATURE_CAMERA, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = parent_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        parent_node = current_node;
+        current_node = next_node;
+        node_is_valid = *(char *)((uint64_t)next_node + 0x19);
     }
-    else {
-      next_node = (void **)*current_node;
+    
+    if ((parent_node == root_node) || 
+        (int compare_result = memcmp(&COMPONENT_SIGNATURE_CAMERA, parent_node + 4, 0x10), compare_result < 0)) {
+        uint64_t allocation_size = FUN_18008f0d0(component_manager);
+        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        parent_node = new_node;
     }
-    previous_node = current_node;
-    current_node = next_node;
-    is_active = *(char *)((longlong)next_node + 0x19);
-  }
-  
-  if ((previous_node == registry_root) || 
-      (compare_result = memcmp(&DAT_1809fe0d0, previous_node + 4, 0x10), compare_result < 0)) {
-    allocation_size = FUN_18008f0d0(pool_manager);
-    FUN_18008f140(pool_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
-    previous_node = new_entry;
-  }
-  
-  previous_node[6] = 0x42bea5b911d9c4bf;  // 调试系统类型标识符
-  previous_node[7] = 0x1aa83fc0020dc1b6;  // 版本信息
-  previous_node[8] = &UNK_1809fd0d8;      // 调试描述符
-  previous_node[9] = 0;                   // 优先级
-  previous_node[10] = handler_function;    // 处理函数指针
-  return;
+    
+    parent_node[6] = COMPONENT_TYPE_CAMERA;       // 摄像机组件类型ID
+    parent_node[7] = COMPONENT_VERSION_CAMERA;    // 摄像机组件版本ID
+    parent_node[8] = &COMPONENT_NAME_CAMERA;       // 摄像机组件名称
+    parent_node[9] = COMPONENT_PRIORITY_CAMERA;    // 摄像机组件优先级
+    parent_node[10] = component_handler;          // 摄像机组件处理函数
+    
+    return;
 }
 
 /**
- * 注册性能监控处理器
- * 在全局注册表中注册性能监控处理接口
+ * 注册后处理组件
+ * 在全局组件注册表中注册后处理组件，负责后处理效果
+ * 
+ * 组件属性：
+ * - 组件类型ID: 0x43330a43fcdb3653
+ * - 组件版本ID: 0xdcfdc333a769ec93
+ * - 组件名称: UNK_180a00370
+ * - 优先级: 1
+ * - 处理函数: FUN_18025cc00
  */
-void register_performance_monitor_handler(void)
-
+void 注册后处理组件(void)
 {
-  char is_active;
-  void **registry_root;
-  int compare_result;
-  longlong *pool_manager;
-  longlong allocation_size;
-  void **current_node;
-  void **previous_node;
-  void **next_node;
-  void *new_entry;
-  void *handler_function;
-  
-  pool_manager = (longlong *)FUN_18008d070();
-  registry_root = (void **)*pool_manager;
-  is_active = *(char *)((longlong)registry_root[1] + 0x19);
-  handler_function = FUN_18025cc00;
-  previous_node = registry_root;
-  current_node = (void **)registry_root[1];
-  
-  while (is_active == '\0') {
-    compare_result = memcmp(current_node + 4, &DAT_180a010a0, 0x10);
-    if (compare_result < 0) {
-      next_node = (void **)current_node[2];
-      current_node = previous_node;
+    char node_is_valid;
+    uint64_t *component_manager;
+    uint64_t *root_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    void (*component_handler)(void);
+    
+    component_manager = (uint64_t *)FUN_18008d070();
+    root_node = (uint64_t *)*component_manager;
+    node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
+    component_handler = FUN_18025cc00;
+    parent_node = root_node;
+    current_node = (uint64_t *)root_node[1];
+    
+    while (node_is_valid == '\0') {
+        int compare_result = memcmp(current_node + 4, &COMPONENT_SIGNATURE_POST_PROCESS, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = parent_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        parent_node = current_node;
+        current_node = next_node;
+        node_is_valid = *(char *)((uint64_t)next_node + 0x19);
     }
-    else {
-      next_node = (void **)*current_node;
+    
+    if ((parent_node == root_node) || 
+        (int compare_result = memcmp(&COMPONENT_SIGNATURE_POST_PROCESS, parent_node + 4, 0x10), compare_result < 0)) {
+        uint64_t allocation_size = FUN_18008f0d0(component_manager);
+        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        parent_node = new_node;
     }
-    previous_node = current_node;
-    current_node = next_node;
-    is_active = *(char *)((longlong)next_node + 0x19);
-  }
-  
-  if ((previous_node == registry_root) || 
-      (compare_result = memcmp(&DAT_180a010a0, previous_node + 4, 0x10), compare_result < 0)) {
-    allocation_size = FUN_18008f0d0(pool_manager);
-    FUN_18008f140(pool_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
-    previous_node = new_entry;
-  }
-  
-  previous_node[6] = 0x43330a43fcdb3653;  // 性能监控类型标识符
-  previous_node[7] = 0xdcfdc333a769ec93;  // 版本信息
-  previous_node[8] = &UNK_180a00370;      // 性能描述符
-  previous_node[9] = 1;                   // 优先级
-  previous_node[10] = handler_function;    // 处理函数指针
-  return;
+    
+    parent_node[6] = COMPONENT_TYPE_POST_PROCESS; // 后处理组件类型ID
+    parent_node[7] = COMPONENT_VERSION_POST_PROCESS; // 后处理组件版本ID
+    parent_node[8] = &COMPONENT_NAME_POST_PROCESS; // 后处理组件名称
+    parent_node[9] = COMPONENT_PRIORITY_POST_PROCESS; // 后处理组件优先级
+    parent_node[10] = (uint64_t)component_handler; // 后处理组件处理函数
+    
+    return;
 }
 
 /**
- * 注册内存管理器
- * 在全局注册表中注册内存管理接口
+ * 注册水面组件
+ * 在全局组件注册表中注册水面组件，负责水面渲染效果
+ * 
+ * 组件属性：
+ * - 组件类型ID: 0x431d7c8d7c475be2
+ * - 组件版本ID: 0xb97f048d2153e1b0
+ * - 组件名称: UNK_180a00388
+ * - 优先级: 4
+ * - 处理函数: FUN_18025c000
  */
-void register_memory_manager(void)
-
+void 注册水面组件(void)
 {
-  char is_active;
-  void **registry_root;
-  int compare_result;
-  longlong *pool_manager;
-  longlong allocation_size;
-  void **current_node;
-  void **previous_node;
-  void **next_node;
-  void *new_entry;
-  void *handler_function;
-  
-  pool_manager = (longlong *)FUN_18008d070();
-  registry_root = (void **)*pool_manager;
-  is_active = *(char *)((longlong)registry_root[1] + 0x19);
-  handler_function = FUN_18025c000;
-  previous_node = registry_root;
-  current_node = (void **)registry_root[1];
-  
-  while (is_active == '\0') {
-    compare_result = memcmp(current_node + 4, &DAT_180a01078, 0x10);
-    if (compare_result < 0) {
-      next_node = (void **)current_node[2];
-      current_node = previous_node;
+    char node_is_valid;
+    uint64_t *component_manager;
+    uint64_t *root_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    void (*component_handler)(void);
+    
+    component_manager = (uint64_t *)FUN_18008d070();
+    root_node = (uint64_t *)*component_manager;
+    node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
+    component_handler = FUN_18025c000;
+    parent_node = root_node;
+    current_node = (uint64_t *)root_node[1];
+    
+    while (node_is_valid == '\0') {
+        int compare_result = memcmp(current_node + 4, &COMPONENT_SIGNATURE_WATER, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = parent_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        parent_node = current_node;
+        current_node = next_node;
+        node_is_valid = *(char *)((uint64_t)next_node + 0x19);
     }
-    else {
-      next_node = (void **)*current_node;
+    
+    if ((parent_node == root_node) || 
+        (int compare_result = memcmp(&COMPONENT_SIGNATURE_WATER, parent_node + 4, 0x10), compare_result < 0)) {
+        uint64_t allocation_size = FUN_18008f0d0(component_manager);
+        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        parent_node = new_node;
     }
-    previous_node = current_node;
-    current_node = next_node;
-    is_active = *(char *)((longlong)next_node + 0x19);
-  }
-  
-  if ((previous_node == registry_root) || 
-      (compare_result = memcmp(&DAT_180a01078, previous_node + 4, 0x10), compare_result < 0)) {
-    allocation_size = FUN_18008f0d0(pool_manager);
-    FUN_18008f140(pool_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
-    previous_node = new_entry;
-  }
-  
-  previous_node[6] = 0x431d7c8d7c475be2;  // 内存管理类型标识符
-  previous_node[7] = 0xb97f048d2153e1b0;  // 版本信息
-  previous_node[8] = &UNK_180a00388;      // 内存描述符
-  previous_node[9] = 4;                   // 优先级
-  previous_node[10] = handler_function;    // 处理函数指针
-  return;
+    
+    parent_node[6] = COMPONENT_TYPE_WATER;        // 水面组件类型ID
+    parent_node[7] = COMPONENT_VERSION_WATER;     // 水面组件版本ID
+    parent_node[8] = &COMPONENT_NAME_WATER;        // 水面组件名称
+    parent_node[9] = COMPONENT_PRIORITY_WATER;    // 水面组件优先级
+    parent_node[10] = (uint64_t)component_handler; // 水面组件处理函数
+    
+    return;
 }
 
 /**
- * 注册时间系统处理器
- * 在全局注册表中注册时间系统处理接口
+ * 注册天空组件
+ * 在全局组件注册表中注册天空组件，负责天空渲染效果
+ * 
+ * 组件属性：
+ * - 组件类型ID: 0x4b2d79e470ee4e2c
+ * - 组件版本ID: 0x9c552acd3ed5548d
+ * - 组件名称: UNK_180a003a0
+ * - 优先级: 0
+ * - 处理函数: NULL
  */
-void register_time_system_handler(void)
-
+void 注册天空组件(void)
 {
-  char is_active;
-  void **registry_root;
-  int compare_result;
-  longlong *pool_manager;
-  longlong allocation_size;
-  void **current_node;
-  void **previous_node;
-  void **next_node;
-  void *new_entry;
-  void *handler_function;
-  
-  pool_manager = (longlong *)FUN_18008d070();
-  registry_root = (void **)*pool_manager;
-  is_active = *(char *)((longlong)registry_root[1] + 0x19);
-  handler_function = 0;  // 无特定处理函数
-  previous_node = registry_root;
-  current_node = (void **)registry_root[1];
-  
-  while (is_active == '\0') {
-    compare_result = memcmp(current_node + 4, &DAT_180a01050, 0x10);
-    if (compare_result < 0) {
-      next_node = (void **)current_node[2];
-      current_node = previous_node;
+    char node_is_valid;
+    uint64_t *component_manager;
+    uint64_t *root_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t component_handler;
+    
+    component_manager = (uint64_t *)FUN_18008d070();
+    root_node = (uint64_t *)*component_manager;
+    node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
+    component_handler = 0; // 天空组件没有处理函数
+    parent_node = root_node;
+    current_node = (uint64_t *)root_node[1];
+    
+    while (node_is_valid == '\0') {
+        int compare_result = memcmp(current_node + 4, &COMPONENT_SIGNATURE_SKY, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = parent_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        parent_node = current_node;
+        current_node = next_node;
+        node_is_valid = *(char *)((uint64_t)next_node + 0x19);
     }
-    else {
-      next_node = (void **)*current_node;
+    
+    if ((parent_node == root_node) || 
+        (int compare_result = memcmp(&COMPONENT_SIGNATURE_SKY, parent_node + 4, 0x10), compare_result < 0)) {
+        uint64_t allocation_size = FUN_18008f0d0(component_manager);
+        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        parent_node = new_node;
     }
-    previous_node = current_node;
-    current_node = next_node;
-    is_active = *(char *)((longlong)next_node + 0x19);
-  }
-  
-  if ((previous_node == registry_root) || 
-      (compare_result = memcmp(&DAT_180a01050, previous_node + 4, 0x10), compare_result < 0)) {
-    allocation_size = FUN_18008f0d0(pool_manager);
-    FUN_18008f140(pool_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
-    previous_node = new_entry;
-  }
-  
-  previous_node[6] = 0x4b2d79e470ee4e2c;  // 时间系统类型标识符
-  previous_node[7] = 0x9c552acd3ed5548d;  // 版本信息
-  previous_node[8] = &UNK_180a003a0;      // 时间描述符
-  previous_node[9] = 0;                   // 优先级
-  previous_node[10] = handler_function;    // 处理函数指针
-  return;
+    
+    parent_node[6] = COMPONENT_TYPE_SKY;          // 天空组件类型ID
+    parent_node[7] = COMPONENT_VERSION_SKY;        // 天空组件版本ID
+    parent_node[8] = &COMPONENT_NAME_SKY;          // 天空组件名称
+    parent_node[9] = COMPONENT_PRIORITY_SKY;        // 天空组件优先级
+    parent_node[10] = component_handler;          // 天空组件处理函数
+    
+    return;
 }
 
 /**
- * 注册事件系统处理器
- * 在全局注册表中注册事件系统处理接口
+ * 注册天气组件
+ * 在全局组件注册表中注册天气组件，负责天气系统
+ * 
+ * 组件属性：
+ * - 组件类型ID: 0x49086ba08ab981a7
+ * - 组件版本ID: 0xa9191d34ad910696
+ * - 组件名称: UNK_180a003b8
+ * - 优先级: 0
+ * - 处理函数: FUN_18025d270
  */
-void register_event_system_handler(void)
-
+void 注册天气组件(void)
 {
-  char is_active;
-  void **registry_root;
-  int compare_result;
-  longlong *pool_manager;
-  longlong allocation_size;
-  void **current_node;
-  void **previous_node;
-  void **next_node;
-  void *new_entry;
-  void *handler_function;
-  
-  pool_manager = (longlong *)FUN_18008d070();
-  registry_root = (void **)*pool_manager;
-  is_active = *(char *)((longlong)registry_root[1] + 0x19);
-  handler_function = FUN_18025d270;
-  previous_node = registry_root;
-  current_node = (void **)registry_root[1];
-  
-  while (is_active == '\0') {
-    compare_result = memcmp(current_node + 4, &DAT_180a01028, 0x10);
-    if (compare_result < 0) {
-      next_node = (void **)current_node[2];
-      current_node = previous_node;
+    char node_is_valid;
+    uint64_t *component_manager;
+    uint64_t *root_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    void (*component_handler)(void);
+    
+    component_manager = (uint64_t *)FUN_18008d070();
+    root_node = (uint64_t *)*component_manager;
+    node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
+    component_handler = FUN_18025d270;
+    parent_node = root_node;
+    current_node = (uint64_t *)root_node[1];
+    
+    while (node_is_valid == '\0') {
+        int compare_result = memcmp(current_node + 4, &COMPONENT_SIGNATURE_WEATHER, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = parent_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        parent_node = current_node;
+        current_node = next_node;
+        node_is_valid = *(char *)((uint64_t)next_node + 0x19);
     }
-    else {
-      next_node = (void **)*current_node;
+    
+    if ((parent_node == root_node) || 
+        (int compare_result = memcmp(&COMPONENT_SIGNATURE_WEATHER, parent_node + 4, 0x10), compare_result < 0)) {
+        uint64_t allocation_size = FUN_18008f0d0(component_manager);
+        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        parent_node = new_node;
     }
-    previous_node = current_node;
-    current_node = next_node;
-    is_active = *(char *)((longlong)next_node + 0x19);
-  }
-  
-  if ((previous_node == registry_root) || 
-      (compare_result = memcmp(&DAT_180a01028, previous_node + 4, 0x10), compare_result < 0)) {
-    allocation_size = FUN_18008f0d0(pool_manager);
-    FUN_18008f140(pool_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
-    previous_node = new_entry;
-  }
-  
-  previous_node[6] = 0x49086ba08ab981a7;  // 事件系统类型标识符
-  previous_node[7] = 0xa9191d34ad910696;  // 版本信息
-  previous_node[8] = &UNK_180a003b8;      // 事件描述符
-  previous_node[9] = 0;                   // 优先级
-  previous_node[10] = handler_function;    // 处理函数指针
-  return;
+    
+    parent_node[6] = COMPONENT_TYPE_WEATHER;       // 天气组件类型ID
+    parent_node[7] = COMPONENT_VERSION_WEATHER;     // 天气组件版本ID
+    parent_node[8] = &COMPONENT_NAME_WEATHER;       // 天气组件名称
+    parent_node[9] = COMPONENT_PRIORITY_WEATHER;    // 天气组件优先级
+    parent_node[10] = (uint64_t)component_handler; // 天气组件处理函数
+    
+    return;
 }
+
+// 组件签名常量定义
+#define COMPONENT_SIGNATURE_BASE_SCENE        DAT_1809ff9c0
+#define COMPONENT_SIGNATURE_RENDER           DAT_180a010a0
+#define COMPONENT_SIGNATURE_PHYSICS          DAT_180a01078
+#define COMPONENT_SIGNATURE_AUDIO            DAT_180a01050
+#define COMPONENT_SIGNATURE_INPUT            DAT_180a01028
+#define COMPONENT_SIGNATURE_NETWORK          DAT_180a01000
+#define COMPONENT_SIGNATURE_SCRIPT           DAT_180a00fd8
+#define COMPONENT_SIGNATURE_RESOURCE         DAT_180a00fb0
+#define COMPONENT_SIGNATURE_AI               DAT_180a00bb0
+#define COMPONENT_SIGNATURE_ANIMATION        DAT_180a00b88
+#define COMPONENT_SIGNATURE_UI               DAT_180a010a0
+#define COMPONENT_SIGNATURE_PARTICLE         DAT_180a01078
+#define COMPONENT_SIGNATURE_TERRAIN          DAT_180a01050
+#define COMPONENT_SIGNATURE_LIGHTING         DAT_180a01028
+#define COMPONENT_SIGNATURE_MATERIAL         DAT_180a01000
+#define COMPONENT_SIGNATURE_SHADER           DAT_180a00fd8
+#define COMPONENT_SIGNATURE_TEXTURE          DAT_180a00fb0
+#define COMPONENT_SIGNATURE_GAME_LOGIC       DAT_180a00e28
+#define COMPONENT_SIGNATURE_SCENE_MANAGER    DAT_180a00d48
+#define COMPONENT_SIGNATURE_BEHAVIOR_TREE    DAT_180a00bb0
+#define COMPONENT_SIGNATURE_SKELETAL_ANIMATION DAT_180a00b88
+#define COMPONENT_SIGNATURE_CAMERA           DAT_1809fe0d0
+#define COMPONENT_SIGNATURE_POST_PROCESS     DAT_180a010a0
+#define COMPONENT_SIGNATURE_WATER            DAT_180a01078
+#define COMPONENT_SIGNATURE_SKY              DAT_180a01050
+#define COMPONENT_SIGNATURE_WEATHER          DAT_180a01028
+
+// 组件类型ID常量定义
+#define COMPONENT_TYPE_BASE_SCENE       0x40afa5469b6ac06d
+#define COMPONENT_TYPE_RENDER          0x43330a43fcdb3653
+#define COMPONENT_TYPE_PHYSICS         0x431d7c8d7c475be2
+#define COMPONENT_TYPE_AUDIO           0x4b2d79e470ee4e2c
+#define COMPONENT_TYPE_INPUT           0x49086ba08ab981a7
+#define COMPONENT_TYPE_NETWORK         0x402feffe4481676e
+#define COMPONENT_TYPE_SCRIPT          0x4384dcc4b6d3f417
+#define COMPONENT_TYPE_RESOURCE         0x4140994454d56503
+#define COMPONENT_TYPE_AI              0x40db4257e97d3df8
+#define COMPONENT_TYPE_ANIMATION       0x4e33c4803e67a08f
+#define COMPONENT_TYPE_UI              0x43330a43fcdb3653
+#define COMPONENT_TYPE_PARTICLE        0x431d7c8d7c475be2
+#define COMPONENT_TYPE_TERRAIN         0x4b2d79e470ee4e2c
+#define COMPONENT_TYPE_LIGHTING        0x49086ba08ab981a7
+#define COMPONENT_TYPE_MATERIAL        0x402feffe4481676e
+#define COMPONENT_TYPE_SHADER          0x4384dcc4b6d3f417
+#define COMPONENT_TYPE_TEXTURE         0x4140994454d56503
+#define COMPONENT_TYPE_GAME_LOGIC      0x449bafe9b77ddd3c
+#define COMPONENT_TYPE_SCENE_MANAGER   0x45425dc186a5d575
+#define COMPONENT_TYPE_BEHAVIOR_TREE   0x40db4257e97d3df8
+#define COMPONENT_TYPE_SKELETAL_ANIMATION 0x4e33c4803e67a08f
+#define COMPONENT_TYPE_CAMERA          0x42bea5b911d9c4bf
+#define COMPONENT_TYPE_POST_PROCESS    0x43330a43fcdb3653
+#define COMPONENT_TYPE_WATER           0x431d7c8d7c475be2
+#define COMPONENT_TYPE_SKY             0x4b2d79e470ee4e2c
+#define COMPONENT_TYPE_WEATHER         0x49086ba08ab981a7
+
+// 组件版本ID常量定义
+#define COMPONENT_VERSION_BASE_SCENE   0x2f4bab01d34055a5
+#define COMPONENT_VERSION_RENDER       0xdcfdc333a769ec93
+#define COMPONENT_VERSION_PHYSICS      0xb97f048d2153e1b0
+#define COMPONENT_VERSION_AUDIO        0x9c552acd3ed5548d
+#define COMPONENT_VERSION_INPUT        0xa9191d34ad910696
+#define COMPONENT_VERSION_NETWORK      0xd4c2151109de93a0
+#define COMPONENT_VERSION_SCRIPT       0x92a15d52fe2679bd
+#define COMPONENT_VERSION_RESOURCE      0x399eced9bb5517ad
+#define COMPONENT_VERSION_AI            0x81d539e33614429f
+#define COMPONENT_VERSION_ANIMATION     0x703a29a844ce399
+#define COMPONENT_VERSION_UI            0xdcfdc333a769ec93
+#define COMPONENT_VERSION_PARTICLE      0xb97f048d2153e1b0
+#define COMPONENT_VERSION_TERRAIN       0x9c552acd3ed5548d
+#define COMPONENT_VERSION_LIGHTING      0xa9191d34ad910696
+#define COMPONENT_VERSION_MATERIAL      0xd4c2151109de93a0
+#define COMPONENT_VERSION_SHADER        0x92a15d52fe2679bd
+#define COMPONENT_VERSION_TEXTURE       0x399eced9bb5517ad
+#define COMPONENT_VERSION_GAME_LOGIC    0xc160408bde99e59f
+#define COMPONENT_VERSION_SCENE_MANAGER 0xfab48faa65382fa5
+#define COMPONENT_VERSION_BEHAVIOR_TREE 0x81d539e33614429f
+#define COMPONENT_VERSION_SKELETAL_ANIMATION 0x703a29a844ce399
+#define COMPONENT_VERSION_CAMERA        0x1aa83fc0020dc1b6
+#define COMPONENT_VERSION_POST_PROCESS  0xdcfdc333a769ec93
+#define COMPONENT_VERSION_WATER         0xb97f048d2153e1b0
+#define COMPONENT_VERSION_SKY           0x9c552acd3ed5548d
+#define COMPONENT_VERSION_WEATHER       0xa9191d34ad910696
+
+// 组件名称常量定义
+#define COMPONENT_NAME_BASE_SCENE       UNK_1809ff990
+#define COMPONENT_NAME_RENDER          UNK_180a00370
+#define COMPONENT_NAME_PHYSICS         UNK_180a00388
+#define COMPONENT_NAME_AUDIO           UNK_180a003a0
+#define COMPONENT_NAME_INPUT           UNK_180a003b8
+#define COMPONENT_NAME_NETWORK         UNK_180a003d0
+#define COMPONENT_NAME_SCRIPT          UNK_180a003e8
+#define COMPONENT_NAME_RESOURCE         UNK_180a00400
+#define COMPONENT_NAME_AI              UNK_180a004a8
+#define COMPONENT_NAME_ANIMATION       UNK_180a004c0
+#define COMPONENT_NAME_UI              UNK_180a00370
+#define COMPONENT_NAME_PARTICLE        UNK_180a00388
+#define COMPONENT_NAME_TERRAIN         UNK_180a003a0
+#define COMPONENT_NAME_LIGHTING        UNK_180a003b8
+#define COMPONENT_NAME_MATERIAL        UNK_180a003d0
+#define COMPONENT_NAME_SHADER          UNK_180a003e8
+#define COMPONENT_NAME_TEXTURE         UNK_180a00400
+#define COMPONENT_NAME_GAME_LOGIC      UNK_180a00430
+#define COMPONENT_NAME_SCENE_MANAGER   UNK_180a00460
+#define COMPONENT_NAME_BEHAVIOR_TREE   UNK_180a004a8
+#define COMPONENT_NAME_SKELETAL_ANIMATION UNK_180a004c0
+#define COMPONENT_NAME_CAMERA          UNK_1809fd0d8
+#define COMPONENT_NAME_POST_PROCESS    UNK_180a00370
+#define COMPONENT_NAME_WATER           UNK_180a00388
+#define COMPONENT_NAME_SKY             UNK_180a003a0
+#define COMPONENT_NAME_WEATHER         UNK_180a003b8
+
+// 组件优先级常量定义
+#define COMPONENT_PRIORITY_BASE_SCENE   3
+#define COMPONENT_PRIORITY_RENDER       1
+#define COMPONENT_PRIORITY_PHYSICS      4
+#define COMPONENT_PRIORITY_AUDIO        0
+#define COMPONENT_PRIORITY_INPUT        0
+#define COMPONENT_PRIORITY_NETWORK      0
+#define COMPONENT_PRIORITY_SCRIPT       0
+#define COMPONENT_PRIORITY_RESOURCE      0
+#define COMPONENT_PRIORITY_AI           4
+#define COMPONENT_PRIORITY_ANIMATION     3
+#define COMPONENT_PRIORITY_UI           1
+#define COMPONENT_PRIORITY_PARTICLE      4
+#define COMPONENT_PRIORITY_TERRAIN       0
+#define COMPONENT_PRIORITY_LIGHTING      0
+#define COMPONENT_PRIORITY_MATERIAL      0
+#define COMPONENT_PRIORITY_SHADER        0
+#define COMPONENT_PRIORITY_TEXTURE       0
+#define COMPONENT_PRIORITY_GAME_LOGIC    0
+#define COMPONENT_PRIORITY_SCENE_MANAGER 0
+#define COMPONENT_PRIORITY_BEHAVIOR_TREE 4
+#define COMPONENT_PRIORITY_SKELETAL_ANIMATION 3
+#define COMPONENT_PRIORITY_CAMERA        0
+#define COMPONENT_PRIORITY_POST_PROCESS  1
+#define COMPONENT_PRIORITY_WATER         4
+#define COMPONENT_PRIORITY_SKY           0
+#define COMPONENT_PRIORITY_WEATHER       0
+
+// 组件处理函数常量定义
+#define SCRIPT_ENGINE_HANDLER           UNK_1800868c0
+#define SHADER_ENGINE_HANDLER           UNK_1800868c0

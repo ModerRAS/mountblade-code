@@ -1,45 +1,67 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization_part018.c - 7 个函数
+// 01_initialization_part018.c - 初始化模块第18部分 (7个函数)
+// 本文件包含系统初始化、资源管理、配置计算等功能
 
-// 函数: void FUN_18004caf0(longlong param_1)
-void FUN_18004caf0(longlong param_1)
+// 全局变量声明
+undefined8 _DAT_180c86920;  // 引擎配置数据
+undefined8 _DAT_180c86918;  // 全局状态指针
+undefined8 _DAT_180c86950;  // 配置参数指针
+undefined8 _DAT_180c86870;  // 主引擎指针
+undefined8 _DAT_180c868b0;  // 子系统配置指针
+undefined8 _DAT_180c86890;  // 扩展配置指针
+undefined8 _DAT_180c82868;  // 基础配置指针
+undefined8 _DAT_180c86930;  // 高级配置指针
+undefined8 _DAT_180c868a8;  // 替代配置指针
+undefined8 _DAT_180c8ed08;  // 外部接口指针
+undefined8 _DAT_180c8ed18;  // 内存管理器
+undefined8 _DAT_180bf00a8;  // 安全验证数据
+undefined8 _DAT_180bf65b8;  // 时间戳数据
 
+/**
+ * 计算并设置渲染质量参数
+ * 主要功能：根据系统配置计算渲染相关的质量参数
+ * 
+ * 原始实现：FUN_18004caf0
+ * 简化实现：渲染质量参数计算
+ */
+void calculate_render_quality_parameters(longlong config_ptr)
 {
-  longlong lVar1;
-  int iVar2;
-  int iVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
+  longlong engine_config;      // 引擎配置指针
+  int quality_level;           // 质量等级
+  int adjusted_level;          // 调整后的等级
+  float level_float;           // 等级浮点值
+  float param1;                // 计算参数1
+  float param2;                // 计算参数2
+  float param3;                // 计算参数3
+  float sum1;                  // 和值1
+  float sum2;                  // 和值2
   
-  lVar1 = _DAT_180c86920;
-  iVar2 = *(int *)(_DAT_180c86920 + 0xd90) + -1;
-  iVar3 = 0;
-  if ((-1 < iVar2) && (iVar3 = iVar2, 3 < iVar2)) {
-    iVar3 = 3;
+  engine_config = _DAT_180c86920;
+  quality_level = *(int *)(_DAT_180c86920 + 0xd90) + -1;
+  adjusted_level = 0;
+  if ((-1 < quality_level) && (adjusted_level = quality_level, 3 < quality_level)) {
+    adjusted_level = 3;
   }
-  fVar8 = (float)iVar3;
-  fVar7 = fVar8 * 1.6750001 + 2.4750001;
-  fVar5 = fVar8 * 4.4666667 + 6.6000004;
-  fVar6 = fVar8 * 3.3500001 + 4.9500003;
-  fVar4 = fVar7 + fVar6;
-  *(float *)(param_1 + 0x38c) = fVar6 * fVar6;
-  fVar7 = fVar7 + fVar4;
-  *(float *)(param_1 + 0x390) = fVar4 * fVar4;
-  fVar4 = fVar5 + fVar7;
-  *(float *)(param_1 + 0x394) = fVar7 * fVar7;
-  fVar5 = fVar5 + fVar4;
-  *(float *)(param_1 + 0x398) = fVar4 * fVar4;
-  fVar4 = fVar8 * 13.400001 + 19.800001 + fVar5;
-  *(float *)(param_1 + 0x39c) = fVar5 * fVar5;
-  fVar5 = fVar8 * 17.866667 + 26.400002 + fVar4;
-  *(float *)(param_1 + 0x3a0) = fVar4 * fVar4;
-  *(float *)(param_1 + 0x3a4) = fVar5 * fVar5;
-  *(undefined4 *)(param_1 + 0x3a8) = 0x7f7fffff;
-  *(uint *)(param_1 + 0x3ac) = (uint)(*(int *)(lVar1 + 0xd90) == 0);
+  level_float = (float)adjusted_level;
+  param1 = level_float * 1.6750001 + 2.4750001;
+  param2 = level_float * 4.4666667 + 6.6000004;
+  param3 = level_float * 3.3500001 + 4.9500003;
+  sum1 = param1 + param3;
+  *(float *)(config_ptr + 0x38c) = param3 * param3;
+  param1 = param1 + sum1;
+  *(float *)(config_ptr + 0x390) = sum1 * sum1;
+  sum1 = param2 + param1;
+  *(float *)(config_ptr + 0x394) = param1 * param1;
+  param2 = param2 + sum1;
+  *(float *)(config_ptr + 0x398) = sum1 * sum1;
+  sum1 = level_float * 13.400001 + 19.800001 + param2;
+  *(float *)(config_ptr + 0x39c) = param2 * param2;
+  param2 = level_float * 17.866667 + 26.400002 + sum1;
+  *(float *)(config_ptr + 0x3a0) = sum1 * sum1;
+  *(float *)(config_ptr + 0x3a4) = param2 * param2;
+  *(undefined4 *)(config_ptr + 0x3a8) = 0x7f7fffff;
+  *(uint *)(config_ptr + 0x3ac) = (uint)(*(int *)(engine_config + 0xd90) == 0);
   return;
 }
 
