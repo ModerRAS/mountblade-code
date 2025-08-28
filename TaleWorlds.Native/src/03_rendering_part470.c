@@ -471,56 +471,69 @@ SHADOW_PROCESSING_BRANCH:
     stack_pipeline1 = (ulonglong)mode_flag << 0x1f;
     *(float *)(context + 0xa08) = float_var3;
     *(float *)(context + 0xa0c) = float_var4;
-  if ((*(uint *)(param_1 + 0x56c) & 0x800) == 0) {
-    FUN_18051fa40(param_1,4);
+    
+    // 处理非阴影渲染模式
+    if ((*(uint *)(context + 0x56c) & RENDERING_SYSTEM_FLAG_SHADOW) == 0) {
+    // 执行渲染系统激活操作
+    FUN_18051fa40(context, 4);
+    
+    // 处理渲染系统错误和状态检查
     if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
                  0x48) < _DAT_180d49ed8) && (FUN_1808fcb90(&DAT_180d49ed8), _DAT_180d49ed8 == -1)) {
-      puStack_258 = &UNK_180a3c3e0;
-      uStack_240 = 0;
-      uStack_23c = 0;
-      puStack_250 = (undefined4 *)0x0;
-      uStack_248 = 0;
-      puVar11 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
-      *(undefined1 *)puVar11 = 0;
-      puStack_250 = puVar11;
-      uStack_240 = FUN_18064e990(puVar11);
-      *puVar11 = 0x74616544;
-      *(undefined2 *)(puVar11 + 1) = 0x68;
-      uStack_248 = 5;
-      _DAT_180d49edc = FUN_180571e20(&DAT_180c960c0,&puStack_258);
-      puStack_258 = &UNK_180a3c3e0;
-                    // WARNING: Subroutine does not return
-      FUN_18064e900(puVar11);
+      // 错误处理：创建和初始化错误信息结构
+      char* error_msg_ptr = &UNK_180a3c3e0;
+      uint error_code = 0;
+      uint error_subtype = 0;
+      char* error_data_ptr = (char*)0x0;
+      uint error_flags = 0;
+      char* error_buffer = (char*)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+      *(char*)error_buffer = 0;
+      error_data_ptr = error_buffer;
+      error_code = FUN_18064e990(error_buffer);
+      *error_buffer = 'D'; *(error_buffer+1) = 'a'; *(error_buffer+2) = 't'; *(error_buffer+3) = 'a'; *(error_buffer+4) = 'h';
+      *(ushort*)(error_buffer + 1) = 'h';
+      error_flags = 5;
+      _DAT_180d49edc = FUN_180571e20(&DAT_180c960c0, &error_msg_ptr);
+      error_msg_ptr = &UNK_180a3c3e0;
+      // 错误处理完成，程序终止
+      FUN_18064e900(error_buffer);
     }
-    lVar15 = 0;
-    FUN_180508510(param_1,_DAT_180d49edc,0,0);
-    uStack_248 = 0;
-    uStack_230 = 0x1000000;
-    uStack_244 = 0;
-    uStack_240 = 0x3f800000;
-    uStack_23c = 0xbe4ccccd;
-    uStack_238 = 0xbe4ccccd;
-    uStack_234 = 0x3ecccccd;
-    uStack_22c = 0;
-    puStack_258 = (undefined *)((ulonglong)uStack_264 << 0x20);
-    puStack_250 = (undefined4 *)uStack_228;
-    FUN_18051ec50(param_1,&puStack_258);
-    uVar21 = *(uint *)(*(longlong *)(param_1 + 0x590) + 0x2450);
-    uStack_264 = uVar21;
-    iVar7 = FUN_18053a410(&DAT_180c95f30,*(undefined4 *)(*(longlong *)(param_1 + 0x590) + 0xac),
-                          uVar21);
-    iVar7 = *(int *)(_DAT_180c95f68 + (longlong)iVar7 * 4);
-    if (iVar7 != -1) {
-      lVar15 = *(longlong *)(_DAT_180c95f88 + (longlong)iVar7 * 8);
+    
+    longlong quality_data_ptr = 0;
+    FUN_180508510(context, _DAT_180d49edc, 0, 0);
+    
+    // 设置渲染参数结构
+    uint render_flags = 0;
+    uint render_mode = 0x1000000;
+    uint render_quality = 0;
+    float render_intensity = 1.0f;
+    float render_threshold = -0.3f;
+    float render_scale = -0.3f;
+    float render_offset = 0.4f;
+    uint render_reserved = 0;
+    char* render_params = (char*)((ulonglong)stack_uint1 << 0x20);
+    char* render_data = (char*)stack_uint2;
+    FUN_18051ec50(context, &render_params);
+    
+    uint texture_id = *(uint*)(*(longlong*)(context + 0x590) + 0x2450);
+    stack_uint1 = texture_id;
+    
+    // 查找纹理质量数据
+    int quality_index = FUN_18053a410(&DAT_180c95f30, *(uint*)(*(longlong*)(context + 0x590) + 0xac), texture_id);
+    quality_index = *(int*)(_DAT_180c95f68 + (longlong)quality_index * 4);
+    if (quality_index != -1) {
+      quality_data_ptr = *(longlong*)(_DAT_180c95f88 + (longlong)quality_index * 8);
     }
-    if (iStackX_8 == 1) {
-      if (*(float *)(lVar15 + 0x1dc) <= 0.0) {
-        fVar25 = *(float *)(lVar15 + 0x1e8) - *(float *)(lVar15 + 0x188);
+    
+    // 处理高质量渲染模式
+    if (pipeline_mode == 1) {
+      if (*(float*)(quality_data_ptr + 0x1dc) <= 0.0) {
+        float_var1 = *(float*)(quality_data_ptr + 0x1e8) - *(float*)(quality_data_ptr + 0x188);
       }
       else {
-        fVar25 = -*(float *)(lVar15 + 0x1dc);
+        float_var1 = -*(float*)(quality_data_ptr + 0x1dc);
       }
-      *(float *)(param_1 + 0x584) = fVar25;
+      *(float*)(context + 0x584) = float_var1;
     }
     if (-1 < *(int *)(param_1 + 0x560)) {
       uStack_248 = 0;
