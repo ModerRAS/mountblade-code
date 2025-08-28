@@ -648,45 +648,45 @@ longlong copy_resource_data(resource_data_t *src_start, resource_data_t *src_end
 
 
 
-longlong FUN_18005926c(longlong param_1,undefined8 param_2,longlong param_3)
+// 函数: 移动资源数据
+longlong move_resource_data(resource_data_t *src_start, undefined8 param_2, resource_data_t *dst)
 
 {
-  uint uVar1;
-  longlong *plVar2;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
-  ulonglong uVar3;
+  uint data_size;
+  resource_data_t *src_entry;
+  longlong entry_count;
+  ulonglong size_ulong;
   
-  plVar2 = (longlong *)(param_1 + 8);
-  param_3 = param_3 - param_1;
+  src_entry = (resource_data_t *)(src_start + 8);
+  dst = dst - src_start;
   do {
-    uVar1 = *(uint *)(plVar2 + 1);
-    uVar3 = (ulonglong)uVar1;
-    if (*plVar2 != 0) {
-      FUN_1806277c0(unaff_RSI,uVar3);
+    data_size = *(uint *)(src_entry + 1);
+    size_ulong = (ulonglong)data_size;
+    if (*src_entry != 0) {
+      allocate_resource_memory(dst,size_ulong);
     }
-    if (uVar1 != 0) {
+    if (data_size != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(*(undefined8 *)(param_3 + (longlong)plVar2),*plVar2,uVar3);
+      memcpy(*(undefined8 *)(dst + (longlong)src_entry),*src_entry,size_ulong);
     }
-    *(undefined4 *)(param_3 + 8 + (longlong)plVar2) = 0;
-    if (*(longlong *)(param_3 + (longlong)plVar2) != 0) {
-      *(undefined1 *)(uVar3 + *(longlong *)(param_3 + (longlong)plVar2)) = 0;
+    *(undefined4 *)(dst + 8 + (longlong)src_entry) = 0;
+    if (*(longlong *)(dst + (longlong)src_entry) != 0) {
+      *(undefined1 *)(size_ulong + *(longlong *)(dst + (longlong)src_entry)) = 0;
     }
-    unaff_RBP = unaff_RBP + -1;
-    *(undefined4 *)(param_3 + 0x14 + (longlong)plVar2) = *(undefined4 *)((longlong)plVar2 + 0x14);
-    unaff_RSI = unaff_RSI + 0x20;
-    plVar2 = plVar2 + 4;
-  } while (0 < unaff_RBP);
-  return unaff_RSI;
+    entry_count = entry_count + -1;
+    *(undefined4 *)(dst + 0x14 + (longlong)src_entry) = *(undefined4 *)((longlong)src_entry + 0x14);
+    dst = dst + 0x20;
+    src_entry = src_entry + 4;
+  } while (0 < entry_count);
+  return dst;
 }
 
 
 
 
 
-// 函数: void FUN_1800592e4(void)
-void FUN_1800592e4(void)
+// 函数: 空操作函数
+void noop_function(void)
 
 {
   return;
@@ -694,30 +694,31 @@ void FUN_1800592e4(void)
 
 
 
-longlong FUN_180059300(longlong param_1,longlong param_2,longlong param_3)
+// 函数: 复制资源块
+longlong copy_resource_blocks(resource_data_t *src_start, resource_data_t *src_end, resource_data_t *dst)
 
 {
-  if (param_1 != param_2) {
+  if (src_start != src_end) {
     do {
-      FUN_180627ae0(param_3,param_1);
-      param_1 = param_1 + 0x20;
-      param_3 = param_3 + 0x20;
-    } while (param_1 != param_2);
+      initialize_resource_block(dst,src_start);
+      src_start = src_start + 0x20;
+      dst = dst + 0x20;
+    } while (src_start != src_end);
   }
-  return param_3;
+  return dst;
 }
 
 
 
 
 
-// 函数: void FUN_180059350(longlong param_1,longlong param_2,undefined8 param_3)
-void FUN_180059350(longlong param_1,longlong param_2,undefined8 param_3)
+// 函数: 移动资源块
+void move_resource_blocks(resource_data_t *src_start, resource_data_t *src_end, undefined8 dst)
 
 {
-  if (param_1 != param_2) {
+  if (src_start != src_end) {
                     // WARNING: Subroutine does not return
-    memmove(param_3,param_1,param_2 - param_1);
+    memmove(dst,src_start,src_end - src_start);
   }
   return;
 }
