@@ -273,20 +273,20 @@ static uint64_t render_target = 0;                            // 渲染状态4 -
 static uint32_t render_viewport = 0;                          // 渲染状态5 - 渲染视口
 
 /* 纹理缓存数据 - 纹理缓存系统的内部数据 */
-uint8_t UNK_180946c30;               // 纹理缓存指针1 - 主纹理缓存
-uint8_t UNK_180946c60;               // 纹理缓存指针2 - 纹理缓存队列
-uint8_t UNK_180946c88;               // 纹理缓存指针3 - 纹理缓存索引
-uint8_t UNK_180946cb8;               // 纹理缓存指针4 - 纹理缓存大小
-uint8_t UNK_180946ce0;               // 纹理缓存指针5 - 纹理缓存计数
-uint8_t UNK_180946d10;               // 纹理缓存指针6 - 纹理缓存策略
-uint8_t UNK_180946d38;               // 纹理缓存指针7 - 纹理缓存统计
-uint8_t UNK_180946d68;               // 纹理缓存指针8 - 纹理缓存配置
-uint8_t UNK_180946d90;               // 纹理缓存指针9 - 纹理缓存限制
-uint8_t UNK_180946db8;               // 纹理缓存指针10 - 纹理缓存优先级
-uint8_t UNK_180946de0;               // 纹理缓存指针11 - 纹理缓存访问模式
-uint8_t UNK_180946e08;               // 纹理缓存指针12 - 纹理缓存压缩
-uint8_t UNK_180946e30;               // 纹理缓存指针13 - 纹理缓存过滤
-uint8_t UNK_180d9e670;               // 纹理缓存指针14 - 纹理缓存内存
+static void *texture_cache_main = NULL;                    // 纹理缓存指针1 - 主纹理缓存
+static void *texture_cache_queue = NULL;                   // 纹理缓存指针2 - 纹理缓存队列
+static void *texture_cache_index = NULL;                   // 纹理缓存指针3 - 纹理缓存索引
+static uint64_t texture_cache_size = 0;                    // 纹理缓存指针4 - 纹理缓存大小
+static uint32_t texture_cache_count = 0;                   // 纹理缓存指针5 - 纹理缓存计数
+static uint8_t texture_cache_strategy = 0;                 // 纹理缓存指针6 - 纹理缓存策略
+static void *texture_cache_stats = NULL;                   // 纹理缓存指针7 - 纹理缓存统计
+static void *texture_cache_config = NULL;                  // 纹理缓存指针8 - 纹理缓存配置
+static uint64_t texture_cache_limit = 0;                   // 纹理缓存指针9 - 纹理缓存限制
+static uint8_t texture_cache_priority = 0;                 // 纹理缓存指针10 - 纹理缓存优先级
+static uint8_t texture_cache_access_mode = 0;               // 纹理缓存指针11 - 纹理缓存访问模式
+static uint8_t texture_cache_compression = 0;               // 纹理缓存指针12 - 纹理缓存压缩
+static uint8_t texture_cache_filtering = 0;                 // 纹理缓存指针13 - 纹理缓存过滤
+static void *texture_cache_memory = NULL;                   // 纹理缓存指针14 - 纹理缓存内存
 
 /* 渲染系统功能指针 - 第67个函数 */
 uint8_t FUN_180670800;               // 渲染系统主功能入口点
