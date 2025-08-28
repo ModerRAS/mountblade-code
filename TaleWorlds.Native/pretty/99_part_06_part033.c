@@ -288,6 +288,12 @@ static void* system_data_fc60 = NULL;
 /** 系统数据构造器 - 构造系统数据 */
 #define SystemDataConstructor FUN_1803c6190
 
+/** 系统安全检查器 - 执行系统安全检查 */
+#define SystemSecurityChecker FUN_1808fc050
+
+/** 系统清理函数 - 清理系统资源 */
+#define SystemCleanupFunction FUN_18064e900
+
 /* ==============================================
  * 核心函数实现
  * ============================================== */
@@ -316,7 +322,7 @@ void SystemDataProcessor(uint64_t param_1, uint64_t param_2, uint64_t param_3, u
     uint cleanup_size;
     
     /* 调用底层系统函数进行初始化 */
-    FUN_18066c220(param_1, &stack0x00000080, param_3, param_4, 1);
+    SystemDataProcessor(param_1, &stack0x00000080, param_3, param_4, 1);
     
     /* 获取内存池指针并计算分配大小 */
     memory_pool_ptr = *(longlong **)(context_ptr + SYSTEM_MEMORY_POOL_OFFSET);
@@ -454,8 +460,8 @@ void SystemConfigInitializer(uint64_t param_1, longlong *param_2, int param_3)
     resource_ptr = &system_state_ptr;
     
     /* 分配内存资源 */
-    security_cookie = FUN_18062b1e0(system_memory_pool_ptr, param_3, 0x10, SYSTEM_ALLOC_FLAG_DEFAULT);
-    FUN_1803c52f0(config_data, param_2);
+    security_cookie = SystemMemoryAllocator(system_memory_pool_ptr, param_3, 0x10, SYSTEM_ALLOC_FLAG_DEFAULT);
+    SystemResourceAllocator(config_data, param_2);
     
     /* 设置配置参数 */
     *(uint64_t *)(*param_2 + SYSTEM_MEMORY_SIZE_OFFSET) = security_cookie;
@@ -465,7 +471,7 @@ void SystemConfigInitializer(uint64_t param_1, longlong *param_2, int param_3)
     is_initialized = 1;
     
     /* 执行安全检查 */
-    FUN_1808fc050(security_value ^ (ulonglong)config_buffer);
+    SystemSecurityChecker(security_value ^ (ulonglong)config_buffer);
 }
 
 /**
@@ -499,7 +505,7 @@ uint64_t *SystemResourceAllocator(longlong param_1, uint64_t *param_2)
     resource_list = *(longlong *)(param_1 + 200);
     if (*(longlong *)(param_1 + 0xc0) == resource_list) {
         /* 分配新资源 */
-        resource_ptr = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, 0x28, 8, SYSTEM_ALLOC_FLAG_LARGE, allocation_flags, resource_data);
+        resource_ptr = (longlong *)SystemMemoryAllocator(system_memory_pool_ptr, 0x28, 8, SYSTEM_ALLOC_FLAG_LARGE, allocation_flags, resource_data);
         *resource_ptr = (longlong)&system_handler1_ptr;
         *resource_ptr = (longlong)&system_handler2_ptr;
         *(int32_t *)(resource_ptr + 1) = 0;
@@ -564,12 +570,12 @@ longlong SystemDataOperator(longlong *param_1, longlong *param_2, int param_3)
     }
     if (param_3 == 0) {
         if (*param_1 != 0) {
-            FUN_18064e900();
+            SystemCleanupFunction();
         }
     } else {
         if (param_3 == 1) {
             /* 分配内存并复制数据 */
-            target_ptr = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x38, 8, system_allocation_flags, 0xfffffffffffffffe);
+            target_ptr = (uint64_t *)SystemMemoryAllocator(system_memory_pool_ptr, 0x38, 8, system_allocation_flags, 0xfffffffffffffffe);
             source_ptr = (uint64_t *)*param_2;
             source_data = source_ptr[1];
             *target_ptr = *source_ptr;
@@ -618,12 +624,12 @@ longlong SystemDataTransformer(longlong *param_1, longlong *param_2, int param_3
     }
     if (param_3 == 0) {
         if (*param_1 != 0) {
-            FUN_18064e900();
+            SystemCleanupFunction();
         }
     } else {
         if (param_3 == 1) {
             /* 分配内存并转换数据 */
-            target_ptr = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x38, 8, system_allocation_flags, 0xfffffffffffffffe);
+            target_ptr = (uint64_t *)SystemMemoryAllocator(system_memory_pool_ptr, 0x38, 8, system_allocation_flags, 0xfffffffffffffffe);
             source_ptr = (uint64_t *)*param_2;
             source_data = source_ptr[1];
             *target_ptr = *source_ptr;
@@ -703,12 +709,12 @@ longlong SystemDataProcessorAdvanced(longlong *param_1, longlong *param_2, int p
     }
     if (param_3 == 0) {
         if (*param_1 != 0) {
-            FUN_18064e900();
+            SystemCleanupFunction();
         }
     } else {
         if (param_3 == 1) {
             /* 分配内存并处理数据 */
-            target_ptr = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x20, 8, system_allocation_flags, 0xfffffffffffffffe);
+            target_ptr = (uint64_t *)SystemMemoryAllocator(system_memory_pool_ptr, 0x20, 8, system_allocation_flags, 0xfffffffffffffffe);
             source_ptr = (uint64_t *)*param_2;
             source_data = source_ptr[1];
             *target_ptr = *source_ptr;
@@ -774,7 +780,7 @@ uint64_t *SystemResourceManager(uint64_t *param_1, uint64_t *param_2, longlong *
     
     /* 检查资源类型并分配相应资源 */
     if (resource_data - 2U < 2) {
-        resource_ptr = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, 0x10, 8, 3);
+        resource_ptr = (longlong *)SystemMemoryAllocator(system_memory_pool_ptr, 0x10, 8, 3);
         *resource_ptr = (longlong)&unknown_var_3856_ptr;
         *(bool *)(resource_ptr + 1) = resource_data == 3;
     }
@@ -823,7 +829,7 @@ uint64_t *SystemResourceManager(uint64_t *param_1, uint64_t *param_2, longlong *
     
     /* 清理资源 */
     if (stack_param3 != 0) {
-        FUN_18064e900();
+        SystemCleanupFunction();
     }
     stack_param3 = 0;
     stack_status = 0;
@@ -1218,7 +1224,7 @@ uint64_t *SystemDestructor(uint64_t *param_1, uint param_2, uint64_t param_3, ui
     }
     
     /* 如果还有资源，报错 */
-    FUN_18064e900();
+    SystemCleanupFunction();
 }
 
 /**
@@ -1446,7 +1452,7 @@ uint64_t *SystemTerminator(uint64_t *param_1, ulonglong param_2, uint64_t param_
     
     /* 检查系统状态 */
     if (param_1[0x36] != 0) {
-        FUN_18064e900();
+        SystemCleanupFunction();
     }
     
     /* 执行清理操作 */
@@ -1653,7 +1659,7 @@ uint64_t *SystemDataConstructor(uint64_t *param_1, uint64_t param_2)
     UNLOCK();
     
     /* 分配数据内存 */
-    data_ptr = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x10, 8, 6, 0xfffffffffffffffe);
+    data_ptr = (int32_t *)SystemMemoryAllocator(system_memory_pool_ptr, 0x10, 8, 6, 0xfffffffffffffffe);
     *data_ptr = 0xebcdebcd;
     data_ptr[1] = 0;
     *(uint64_t **)(data_ptr + 2) = param_1;

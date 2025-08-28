@@ -287,7 +287,10 @@
 #define UISystem_ComponentProcessor func_0x0001808c6bf0
 
 // UI系统时间参数计算器 - 计算时间参数
-#define UISystem_TimeParameterCalculator UISystem_TimeParameterCalculator
+#define UISystem_TimeParameterCalculator func_0x0001808b8910
+
+// UI系统时间状态验证器 - 验证时间状态
+#define UISystem_TimeStateVerifier UISystem_TimeStateVerifier
 
 // UI系统配置管理器
 #define UISystem_ConfigManager FUN_18085acd0
@@ -1510,7 +1513,7 @@ ulonglong UISystem_TimeCalculator(longlong system_context)
   uVar6 = (ulonglong)*(uint *)(lVar5 + 0x1f8);
   if (*(uint *)(lVar5 + 0x1f8) == 0xffffffff) {
     uVar4 = (*(code *)**(uint64_t **)(*(longlong *)(lVar5 + 0x228) + 8))();
-    iVar3 = func_0x0001808c7d90(uVar4);
+    iVar3 = UISystem_TimeStateVerifier(uVar4);
     if (iVar3 != 0) {
       if (iVar3 == 1) {
 LAB_18085abe3:
