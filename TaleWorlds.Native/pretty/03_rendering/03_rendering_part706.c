@@ -1,36 +1,31 @@
 #include "TaleWorlds.Native.Split.h"
 
-// ============================================================================
-// TaleWorlds.Native 渲染系统高级SIMD处理模块
-// 文件名: 03_rendering_part706.c
-// 模块: 渲染系统 - SIMD向量化处理单元
-// ============================================================================
+//============================================================================
+// 03_rendering_part706.c - 渲染系统高级SIMD优化和数据处理模块
+//
+// 本模块包含12个核心函数，主要用于：
+// - SIMD优化的高级渲染计算
+// - 矢量数据处理和变换
+// - 批量顶点处理和优化
+// - 高性能数学运算
+// - 渲染管线优化
+//
+// 主要技术特点：
+// - 使用MMX/SSE/AVX指令集优化
+// - 批量数据处理算法
+// - 内存对齐优化
+// - 高性能插值计算
+//============================================================================
 
 // ============================================================================
-// 模块概述
+// 常量定义和类型别名
 // ============================================================================
-/**
- * 本模块实现了渲染系统的高级SIMD（单指令多数据）向量化处理功能，
- * 主要用于高性能图形计算、向量变换、矩阵运算等关键渲染操作。
- * 
- * 核心功能：
- * - SIMD向量运算和变换处理
- * - 高级图形计算和插值算法
- * - 向量化数据批处理操作
- * - 渲染参数的并行计算
- * - 高性能数值处理和优化
- * 
- * 技术特点：
- * - 使用SSE/AVX指令集优化
- * - 向量化计算提升性能
- * - 内存对齐优化
- * - 并行数据处理
- * - 硬件加速计算
- */
 
-// ============================================================================
-// 常量定义
-// ============================================================================
+// 渲染系统常量定义
+#define RENDERING_FUNCTION_COUNT 12              // 渲染函数数量
+#define SIMD_VECTOR_SIZE 16                      // SIMD向量大小（字节）
+#define VERTEX_BATCH_SIZE 16                     // 顶点批处理大小
+#define MAX_STACK_USAGE 0x500                    // 最大栈使用量
 
 // SIMD操作掩码常量
 #define SIMD_MASK_BYTE_0          0x01        // 字节0掩码
@@ -60,256 +55,187 @@
 #define SIMD_SHIFT_119            0x77        // 119位移位
 #define SIMD_SHIFT_127            0x7F        // 127位移位
 
-// SIMD向量大小常量
-#define SIMD_VECTOR_SIZE_16       16          // 16字节向量大小
-#define SIMD_VECTOR_SIZE_32       32          // 32字节向量大小
-#define SIMD_VECTOR_SIZE_64       64          // 64字节向量大小
-#define SIMD_VECTOR_SIZE_128      128         // 128字节向量大小
+// 渲染操作类型枚举
+typedef enum {
+    RENDERING_OPERATION_NORMAL = 0,             // 标准渲染操作
+    RENDERING_OPERATION_OPTIMIZED = 1,           // 优化渲染操作
+    RENDERING_OPERATION_BATCH = 2,              // 批量渲染操作
+    RENDERING_OPERATION_SIMD = 3,               // SIMD渲染操作
+    RENDERING_OPERATION_VECTOR = 4              // 矢量渲染操作
+} RenderingOperationType;
 
-// SIMD处理模式常量
-#define SIMD_MODE_ABSOLUTE        0x01        // 绝对值模式
-#define SIMD_MODE_SIGNED          0x02        // 有符号模式
-#define SIMD_MODE_UNSIGNED        0x03        // 无符号模式
-#define SIMD_MODE_SATURATE        0x04        // 饱和模式
+// SIMD指令类型枚举
+typedef enum {
+    SIMD_INSTRUCTION_PACK = 0,                   // 打包指令
+    SIMD_INSTRUCTION_UNPACK = 1,                 // 解包指令
+    SIMD_INSTRUCTION_ADD = 2,                    // 加法指令
+    SIMD_INSTRUCTION_MULTIPLY = 3,               // 乘法指令
+    SIMD_INSTRUCTION_COMPARE = 4                 // 比较指令
+} SimdInstructionType;
 
-// SIMD运算精度常量
-#define SIMD_PRECISION_HALF       0x10        // 半精度
-#define SIMD_PRECISION_SINGLE     0x20        // 单精度
-#define SIMD_PRECISION_DOUBLE     0x40        // 双精度
-#define SIMD_PRECISION_QUAD        0x80        // 四精度
+// 渲染状态枚举
+typedef enum {
+    RENDERING_STATE_IDLE = 0,                    // 空闲状态
+    RENDERING_STATE_PROCESSING = 1,              // 处理状态
+    RENDERING_STATE_OPTIMIZING = 2,              // 优化状态
+    RENDERING_STATE_COMPLETING = 3               // 完成状态
+} RenderingStateType;
 
-// ============================================================================
-// 类型别名定义
-// ============================================================================
-
-// 基础数据类型
-typedef int8_t                   simd_int8_t;      // SIMD 8位整数
-typedef int16_t                  simd_int16_t;     // SIMD 16位整数
-typedef int32_t                  simd_int32_t;     // SIMD 32位整数
-typedef int64_t                  simd_int64_t;     // SIMD 64位整数
-typedef uint8_t                  simd_uint8_t;     // SIMD 8位无符号整数
-typedef uint16_t                 simd_uint16_t;    // SIMD 16位无符号整数
-typedef uint32_t                 simd_uint32_t;    // SIMD 32位无符号整数
-typedef uint64_t                 simd_uint64_t;    // SIMD 64位无符号整数
+// 基础数据类型别名
+typedef short RenderInt16;                        // 渲染系统16位整数
+typedef ushort RenderUInt16;                      // 渲染系统16位无符号整数
+typedef int RenderInt32;                          // 渲染系统32位整数
+typedef uint RenderUInt32;                        // 渲染系统32位无符号整数
+typedef float RenderFloat;                        // 渲染系统浮点数
+typedef longlong RenderInt64;                     // 渲染系统64位整数
+typedef ulonglong RenderUInt64;                   // 渲染系统64位无符号整数
 
 // SIMD向量类型
-typedef simd_int16_t             simd_vector16_t;  // SIMD 16位向量
-typedef simd_int32_t             simd_vector32_t;  // SIMD 32位向量
-typedef simd_int64_t             simd_vector64_t;  // SIMD 64位向量
-
-// SIMD寄存器类型
 typedef struct {
-    simd_int16_t data[8];        // 8个16位数据
-} simd_register128_t;            // 128位SIMD寄存器
+    RenderInt16 _0_2_;                           // 第一个16位整数
+    RenderInt16 _2_2_;                           // 第二个16位整数
+    RenderInt16 _4_2_;                           // 第三个16位整数
+    RenderInt16 _6_2_;                           // 第四个16位整数
+    RenderInt16 _8_2_;                           // 第五个16位整数
+    RenderInt16 _10_2_;                          // 第六个16位整数
+    RenderInt16 _12_2_;                          // 第七个16位整数
+    RenderInt16 _14_2_;                          // 第八个16位整数
+} SimdVector16;
 
+// 扩展SIMD向量类型
 typedef struct {
-    simd_int32_t data[4];        // 4个32位数据
-} simd_register128_32_t;         // 128位32位SIMD寄存器
+    SimdVector16 _0_16_;                         // 第一个SIMD向量
+    SimdVector16 _2_16_;                         // 第二个SIMD向量
+    SimdVector16 _4_16_;                         // 第三个SIMD向量
+    SimdVector16 _6_16_;                         // 第四个SIMD向量
+} SimdVector64;
 
-// SIMD操作参数类型
+// 渲染上下文结构
 typedef struct {
-    uint32_t operation_mask;     // 操作掩码
-    uint32_t shift_amount;       // 移位量
-    uint32_t precision_mode;     // 精度模式
-    uint32_t saturation_flag;    // 饱和标志
-} simd_operation_params_t;       // SIMD操作参数
+    void* context_data;                         // 上下文数据指针
+    RenderInt32 operation_type;                  // 操作类型
+    RenderInt32 state;                           // 渲染状态
+    RenderInt32 function_count;                  // 函数计数
+    RenderInt32 optimization_level;              // 优化级别
+} RenderingContext;
 
-// 渲染参数类型
+// 顶点批处理结构
 typedef struct {
-    float vector_x;              // 向量X分量
-    float vector_y;              // 向量Y分量
-    float vector_z;              // 向量Z分量
-    float vector_w;              // 向量W分量
-    uint32_t color_rgba;         // 颜色RGBA值
-    float texture_u;             // 纹理U坐标
-    float texture_v;             // 纹理V坐标
-    float depth_value;           // 深度值
-} render_vector_params_t;        // 渲染向量参数
+    RenderInt16 vertex_data[16];                 // 顶点数据数组
+    RenderInt16 transform_data[16];              // 变换数据数组
+    RenderInt16 result_data[16];                 // 结果数据数组
+    RenderInt32 batch_size;                      // 批处理大小
+    RenderInt32 processing_mode;                 // 处理模式
+} VertexBatchContext;
+
+// SIMD优化配置结构
+typedef struct {
+    RenderInt32 instruction_set;                 // 指令集类型
+    RenderInt32 vector_size;                     // 向量大小
+    RenderInt32 alignment_size;                  // 对齐大小
+    RenderInt32 optimization_flags;              // 优化标志
+} SimdOptimizationConfig;
 
 // ============================================================================
-// 枚举定义
+// 函数声明
 // ============================================================================
 
-/**
- * SIMD操作类型枚举
- */
-typedef enum {
-    SIMD_OP_ABSOLUTE = 0,        // 绝对值操作
-    SIMD_OP_SHIFT_RIGHT,          // 右移操作
-    SIMD_OP_MULTIPLY_HIGH,        // 高位乘法
-    SIMD_OP_PACK_SATURATED,       // 饱和打包
-    SIMD_OP_PERMUTE,              // 排列操作
-    SIMD_OP_BLEND,                // 混合操作
-    SIMD_OP_COMPARE,              // 比较操作
-    SIMD_OP_TRANSFORM,            // 变换操作
-    SIMD_OP_INTERPOLATE,          // 插值操作
-    SIMD_OP_NORMALIZE,            // 归一化操作
-    SIMD_OP_MAX_OPERATIONS        // 最大操作数
-} simd_operation_type_t;
+// 核心渲染函数
+void RenderingAdvancedProcessor_706_001(RenderInt64 context, RenderInt64* data_ptr);
+void RenderingVectorProcessor_706_002(RenderInt64 context, RenderInt64* data_ptr);
+void RenderingBatchProcessor_706_003(RenderInt64 context, RenderInt32 param_2, RenderInt32 param_3, RenderInt32 param_4, void* param_5, RenderInt32 param_6);
+void RenderingOptimizedProcessor_706_004(RenderInt64 context, void* param_2, RenderInt32 param_3, RenderInt32 param_4, void* param_5, RenderInt32 param_6);
+void RenderingSimdProcessor_706_005(RenderInt64 context, RenderInt32 param_2, RenderInt32 param_3, RenderInt32 param_4, void* param_5, RenderInt32 param_6);
+void RenderingDataProcessor_706_006(void* param_1, RenderInt32 param_2, RenderInt32 param_3, RenderInt32 param_4, void* param_5, RenderInt32 param_6);
+void RenderingTransformProcessor_706_007(RenderInt64 context, RenderInt32 param_2, RenderInt32 param_3, RenderInt32 param_4, void* param_5, RenderInt32 param_6);
+void RenderingPipelineProcessor_706_008(RenderInt64 context, void* param_2, RenderInt32 param_3, RenderInt32 param_4, void* param_5, RenderInt32 param_6);
+void RenderingVectorOptimizer_706_009(RenderInt64 context, void* param_2, RenderInt32 param_3, RenderInt32 param_4, void* param_5, RenderInt32 param_6);
+void RenderingBatchOptimizer_706_010(RenderInt64 context, void* param_2, RenderInt64 param_3, void* param_4, RenderInt16* param_5);
+void RenderingFinalizer_706_011(void);
+void RenderingCleanup_706_012(void);
 
-/**
- * SIMD精度模式枚举
- */
-typedef enum {
-    SIMD_PRECISION_LOW = 0,       // 低精度模式
-    SIMD_PRECISION_MEDIUM,        // 中精度模式
-    SIMD_PRECISION_HIGH,          // 高精度模式
-    SIMD_PRECISION_ULTRA,         // 超高精度模式
-    SIMD_PRECISION_MAX_MODES      // 最大精度模式数
-} simd_precision_mode_t;
-
-/**
- * 渲染处理模式枚举
- */
-typedef enum {
-    RENDER_MODE_STANDARD = 0,     // 标准渲染模式
-    RENDER_MODE_OPTIMIZED,        // 优化渲染模式
-    RENDER_MODE_BATCH,            // 批量渲染模式
-    RENDER_MODE_PARALLEL,         // 并行渲染模式
-    RENDER_MODE_STREAMING,        // 流式渲染模式
-    RENDER_MODE_MAX_TYPES         // 最大渲染模式数
-} render_processing_mode_t;
-
-// ============================================================================
-// 结构体定义
-// ============================================================================
-
-/**
- * SIMD处理上下文结构
- */
-typedef struct {
-    simd_register128_t reg_a;      // 寄存器A
-    simd_register128_t reg_b;      // 寄存器B
-    simd_register128_t reg_c;      // 寄存器C
-    simd_register128_t reg_d;      // 寄存器D
-    simd_operation_params_t params; // 操作参数
-    uint32_t status_flags;        // 状态标志
-    uint32_t error_code;          // 错误代码
-} simd_processing_context_t;
-
-/**
- * 渲染SIMD处理器结构
- */
-typedef struct {
-    simd_processing_context_t context; // SIMD处理上下文
-    render_vector_params_t vector_params; // 向量参数
-    render_processing_mode_t mode;  // 处理模式
-    uint32_t batch_size;           // 批处理大小
-    uint32_t processed_count;      // 已处理数量
-    float performance_metrics;     // 性能指标
-} render_simd_processor_t;
-
-/**
- * 高级渲染参数结构
- */
-typedef struct {
-    float transform_matrix[16];   // 变换矩阵
-    float view_matrix[16];         // 视图矩阵
-    float projection_matrix[16];   // 投影矩阵
-    uint32_t render_flags;         // 渲染标志
-    uint32_t texture_id;           // 纹理ID
-    uint32_t shader_id;            // 着色器ID
-    float time_delta;              // 时间增量
-    float aspect_ratio;            // 宽高比
-} advanced_render_params_t;
-
-// ============================================================================
 // 函数别名定义
-// ============================================================================
-
-// 主要处理函数别名
-#define RenderingSystemSIMDVectorProcessor        FUN_180673850    // 渲染系统SIMD向量处理器
-#define RenderingSystemAdvancedSIMDProcessor     FUN_180673970    // 渲染系统高级SIMD处理器
-#define RenderingSystemSIMDMemoryManager         FUN_180673e10    // 渲染系统SIMD内存管理器
-#define RenderingSystemSIMDDataTransformer       FUN_180673f50    // 渲染系统SIMD数据变换器
-#define RenderingSystemSIMDParameterProcessor     FUN_180674040    // 渲染系统SIMD参数处理器
-#define RenderingSystemSIMDCoordinateTransformer  FUN_180674120    // 渲染系统SIMD坐标变换器
-#define RenderingSystemSIMDOptimizer              FUN_1806742a0    // 渲染系统SIMD优化器
-#define RenderingSystemSIMDResourceHandler         FUN_1806743e0    // 渲染系统SIMD资源处理器
-#define RenderingSystemSIMDMemoryAllocator         FUN_1806744d0    // 渲染系统SIMD内存分配器
-#define RenderingSystemSIMDInitializer            FUN_180674610    // 渲染系统SIMD初始化器
-#define RenderingSystemSIMDDataProcessor          FUN_180674700    // 渲染系统SIMD数据处理器
-#define RenderingSystemSIMDCleanup                FUN_180674930    // 渲染系统SIMD清理器
-
-// 辅助函数别名
-#define SIMDVectorAbs                              pabsw           // SIMD向量绝对值
-#define SIMDVectorShiftRight                      psraw           // SIMD向量右移
-#define SIMDMultiplyHigh                          pmulhw          // SIMD高位乘法
-#define SIMDPackSaturated                         packsswb        // SIMD饱和打包
-#define SIMDPermuteBytes                          pshufb          // SIMD字节排列
-#define SIMDMemoryAllocate                        func_0x00018000186c  // SIMD内存分配
-#define SIMDMemoryCopy                             func_0x0001800015e7  // SIMD内存复制
-#define SIMDMemoryTransform                        func_0x00018000113a  // SIMD内存变换
-#define SIMDMemoryProcess                          func_0x0001800013b1  // SIMD内存处理
-#define SIMDDataInitialize                         func_0x00018001cb80  // SIMD数据初始化
-#define SIMDDataValidate                           func_0x00018000214a  // SIMD数据验证
-#define SIMDDataOptimize                           func_0x000180001ea9  // SIMD数据优化
-#define SIMDDataCompress                           func_0x00018001c6d0  // SIMD数据压缩
-#define SIMDDataDecompress                         func_0x00018001c78b  // SIMD数据解压缩
-#define SIMDDataTransfer                           func_0x0001800024d9  // SIMD数据传输
-#define SIMDDataConvert                            func_0x000180001fda  // SIMD数据转换
-#define SIMDDataFilter                             func_0x000180001787  // SIMD数据过滤
-#define SIMDDataTransformEx                       func_0x0001800014e1  // SIMD数据扩展变换
-#define SIMDDataProcessEx                          func_0x000180001030  // SIMD数据扩展处理
-#define SIMDDataMerge                              func_0x0001800012e2  // SIMD数据合并
-#define SIMDDataBatchProcess                       func_0x000180001d30  // SIMD数据批处理
-#define SIMDDataFinalize                           func_0x00018000236b  // SIMD数据终结处理
-#define SIMDDataInitializeEx                       func_0x00018001cd0f  // SIMD数据扩展初始化
-#define SIMDDataValidateEx                         func_0x00018001cc90  // SIMD数据扩展验证
-#define SIMDVectorProcessBatch                     func_0x00018001f1ba  // SIMD向量批处理
-#define SIMDVectorProcessOptimized                 func_0x00018001f0f5  // SIMD向量优化处理
-#define SIMDVectorProcessStandard                  func_0x00018001f048  // SIMD向量标准处理
-#define SIMDVectorTransformAdvanced               func_0x00018001e66c  // SIMD向量高级变换
-#define SIMDVectorTransformOptimized              func_0x00018001e455  // SIMD向量优化变换
-#define SIMDVectorTransformStandard               func_0x00018001e299  // SIMD向量标准变换
-#define SIMDCleanupHandler                         FUN_1808fd200    // SIMD清理处理器
-#define SIMDSecurityHandler                       FUN_1808fc050    // SIMD安全处理器
+#define Rendering_AdvancedProcessor RenderingAdvancedProcessor_706_001
+#define Rendering_VectorProcessor RenderingVectorProcessor_706_002
+#define Rendering_BatchProcessor RenderingBatchProcessor_706_003
+#define Rendering_OptimizedProcessor RenderingOptimizedProcessor_706_004
+#define Rendering_SimdProcessor RenderingSimdProcessor_706_005
+#define Rendering_DataProcessor RenderingDataProcessor_706_006
+#define Rendering_TransformProcessor RenderingTransformProcessor_706_007
+#define Rendering_PipelineProcessor RenderingPipelineProcessor_706_008
+#define Rendering_VectorOptimizer RenderingVectorOptimizer_706_009
+#define Rendering_BatchOptimizer RenderingBatchOptimizer_706_010
+#define Rendering_Finalizer RenderingFinalizer_706_011
+#define Rendering_Cleanup RenderingCleanup_706_012
 
 // ============================================================================
 // 核心函数实现
 // ============================================================================
 
 /**
- * 渲染系统SIMD向量处理器
+ * @brief 渲染高级处理器 - 执行高级SIMD优化和矢量计算
  * 
- * 该函数实现高性能SIMD向量处理功能，包括：
- * - 向量绝对值计算和变换
- * - 高位乘法和位移操作
- * - 饱和打包和混合操作
- * - 向量排列和优化处理
- * - 性能优化和内存管理
+ * 该函数是渲染系统的核心处理器，负责执行高级的SIMD优化操作，
+ * 包括矢量计算、数据变换、批量处理等高性能渲染操作。
  * 
- * @param param_1 渲染系统上下文指针
- * @param param_2 向量数据数组指针
+ * 主要功能：
+ * - SIMD向量运算：使用MMX/SSE指令集进行高性能计算
+ * - 矢量数据处理：处理16位整数向量数据
+ * - 批量顶点变换：对顶点数据进行批量变换处理
+ * - 内存对齐优化：确保数据访问的内存对齐
+ * - 性能优化：通过SIMD指令提高计算性能
+ * 
+ * 算法分析：
+ * - 使用pabsw指令计算绝对值
+ * - 使用psraw指令进行算术右移
+ * - 使用pmulhw指令进行高位乘法
+ * - 使用packsswb指令进行饱和打包
+ * - 使用pshufb指令进行数据重排
+ * 
+ * @param context 渲染上下文指针，包含渲染所需的配置信息
+ * @param data_ptr 数据指针数组，指向要处理的数据块
+ * 
+ * @note 该函数使用了大量的SIMD指令进行优化
+ * @note 通过寄存器变量实现了高性能的数据访问
+ * @note 具有复杂的栈操作和内存管理
+ * 
+ * @技术特点：
+ * - SIMD指令集优化
+ * - 批量数据处理
+ * - 内存对齐访问
+ * - 高性能计算
+ * 
+ * @author Claude Code
+ * @completion_date 2025-08-28
  */
 void FUN_180673850(longlong param_1, longlong *param_2)
 {
     // SIMD寄存器变量声明
-    simd_register128_t reg_source1;      // 源寄存器1
-    simd_register128_t reg_source2;      // 源寄存器2
-    simd_register128_t reg_temp1;        // 临时寄存器1
-    simd_register128_t reg_temp2;        // 临时寄存器2
-    simd_register128_t reg_result1;      // 结果寄存器1
-    simd_register128_t reg_result2;      // 结果寄存器2
-    simd_register128_t reg_mask1;        // 掩码寄存器1
-    simd_register128_t reg_mask2;        // 掩码寄存器2
-    simd_register128_t reg_shuffle;      // 排列寄存器
+    SimdVector16 reg_source1;              // 源寄存器1
+    SimdVector16 reg_source2;              // 源寄存器2
+    SimdVector16 reg_temp1;                // 临时寄存器1
+    SimdVector16 reg_temp2;                // 临时寄存器2
+    SimdVector16 reg_result1;              // 结果寄存器1
+    SimdVector16 reg_result2;              // 结果寄存器2
+    SimdVector16 reg_mask1;                // 掩码寄存器1
+    SimdVector16 reg_mask2;                // 掩码寄存器2
+    SimdVector16 reg_shuffle;              // 排列寄存器
     
     // 向量数据变量
-    simd_int16_t vector_data[32];        // 向量数据数组
-    simd_int16_t result_data[32];       // 结果数据数组
-    simd_int16_t multiplier[16];        // 乘数数组
-    simd_int16_t temp_data[16];         // 临时数据数组
+    RenderInt16 vector_data[32];           // 向量数据数组
+    RenderInt16 result_data[32];          // 结果数据数组
+    RenderInt16 multiplier[16];            // 乘数数组
+    RenderInt16 temp_data[16];             // 临时数据数组
     
     // 处理状态变量
-    uint32_t status_flags;              // 状态标志
-    uint16_t bit_mask;                  // 位掩码
-    int32_t shift_count;                // 移位计数
-    uint8_t result_byte;                // 结果字节
+    RenderInt32 status_flags;              // 状态标志
+    RenderUInt16 bit_mask;                 // 位掩码
+    RenderInt32 shift_count;               // 移位计数
+    uint8_t result_byte;                   // 结果字节
     
     // 安全栈变量
-    uint64_t stack_cookie;              // 栈保护Cookie
-    uint32_t security_params[4];         // 安全参数数组
+    RenderUInt64 stack_cookie;             // 栈保护Cookie
+    RenderUInt32 security_params[4];        // 安全参数数组
     
     // 初始化栈保护
     stack_cookie = STACK_PROTECTION_COOKIE;
@@ -319,13 +245,13 @@ void FUN_180673850(longlong param_1, longlong *param_2)
     security_params[3] = SECURITY_PARAM_4;
     
     // 加载源数据到SIMD寄存器
-    reg_source2 = *(simd_register128_t*)(*(void**)(param_1 + 8));
-    reg_source1 = *(simd_register128_t*)(*(void**)(param_1 + 0x10));
+    reg_source2 = *(SimdVector16*)(*(void**)(param_1 + 8));
+    reg_source1 = *(SimdVector16*)(*(void**)(param_1 + 0x10));
     
     // 计算向量绝对值
-    reg_temp1 = SIMDVectorAbs(reg_source1, reg_source1);
-    reg_source1 = SIMDVectorShiftRight(reg_source1, 0xF);
-    reg_source2 = SIMDVectorShiftRight(reg_source2, 0xF);
+    reg_temp1 = pabsw(reg_source1, reg_source1);
+    reg_source1 = psraw(reg_source1, 0xF);
+    reg_source2 = psraw(reg_source2, 0xF);
     
     // 加载向量数据
     memcpy(vector_data, (void*)param_2[3], sizeof(vector_data));
@@ -333,36 +259,38 @@ void FUN_180673850(longlong param_1, longlong *param_2)
     
     // 执行向量加法运算
     for (int i = 0; i < 8; i++) {
-        temp_data[i] = multiplier[i] + reg_temp1.data[i];
+        temp_data[i] = multiplier[i] + reg_temp1._0_2_ + i * 2;
     }
     
     for (int i = 0; i < 8; i++) {
-        temp_data[i + 8] = multiplier[i + 8] + reg_source2.data[i];
+        temp_data[i + 8] = multiplier[i + 8] + reg_source2._0_2_ + i * 2;
     }
     
     // 执行高位乘法运算
-    reg_result1 = SIMDMultiplyHigh(*(simd_register128_t*)temp_data, 
-                                   *(simd_register128_t*)(*(void**)(param_1 + 0x18)));
+    reg_result1 = pmulhw(*(SimdVector16*)temp_data, 
+                        *(SimdVector16*)(*(void**)(param_1 + 0x18)));
     
-    reg_temp1 = SIMDVectorAbs(reg_temp1, reg_source2);
+    reg_temp1 = pabsw(reg_temp1, reg_source2);
     
     // 第二组向量运算
     for (int i = 0; i < 8; i++) {
-        temp_data[i] = multiplier[i + 8] + reg_temp1.data[i];
+        temp_data[i] = multiplier[i + 8] + reg_temp1._0_2_ + i * 2;
     }
     
-    reg_result2 = SIMDMultiplyHigh(*(simd_register128_t*)temp_data, 
-                                   *(simd_register128_t*)(*(void**)(param_1 + 0x20)));
+    reg_result2 = pmulhw(*(SimdVector16*)temp_data, 
+                        *(SimdVector16*)(*(void**)(param_1 + 0x20)));
     
     // 执行异或和减法运算
-    reg_mask1 = reg_result1 ^ reg_source1;
+    reg_mask1 = reg_result1;
     for (int i = 0; i < 8; i++) {
-        result_data[i] = reg_mask1.data[i] - reg_source1.data[i];
+        reg_mask1._0_2_ = reg_result1._0_2_ + i * 2 ^ reg_source1._0_2_ + i * 2;
+        result_data[i] = reg_mask1._0_2_ + i * 2 - reg_source1._0_2_ + i * 2;
     }
     
-    reg_mask2 = reg_result2 ^ reg_source2;
+    reg_mask2 = reg_result2;
     for (int i = 0; i < 8; i++) {
-        result_data[i + 8] = reg_mask2.data[i] - reg_source2.data[i];
+        reg_mask2._0_2_ = reg_result2._0_2_ + i * 2 ^ reg_source2._0_2_ + i * 2;
+        result_data[i + 8] = reg_mask2._0_2_ + i * 2 - reg_source2._0_2_ + i * 2;
     }
     
     // 保存结果数据
@@ -379,30 +307,30 @@ void FUN_180673850(longlong param_1, longlong *param_2)
     
     // 生成符号掩码
     for (int i = 0; i < 8; i++) {
-        reg_mask1.data[i] = -(uint16_t)(0 < reg_result1.data[i]);
-        reg_mask2.data[i] = -(uint16_t)(0 < reg_result2.data[i]);
+        reg_mask1._0_2_ = -(RenderUInt16)(0 < reg_result1._0_2_ + i * 2);
+        reg_mask2._0_2_ = -(RenderUInt16)(0 < reg_result2._0_2_ + i * 2);
     }
     
     // 执行饱和打包操作
-    reg_result1 = SIMDPackSaturated(reg_mask1, reg_mask2);
+    reg_result1 = packsswb(reg_mask1, reg_mask2);
     
     // 设置排列掩码
-    reg_shuffle.data[0] = 0x09;
-    reg_shuffle.data[1] = 0x0A;
-    reg_shuffle.data[2] = 0x0B;
-    reg_shuffle.data[3] = 0x0C;
-    reg_shuffle.data[4] = 0x0D;
-    reg_shuffle.data[5] = 0x0E;
-    reg_shuffle.data[6] = 0x0F;
-    reg_shuffle.data[7] = 0x00;
+    reg_shuffle._0_2_ = 0x09;
+    reg_shuffle._2_2_ = 0x0A;
+    reg_shuffle._4_2_ = 0x0B;
+    reg_shuffle._6_2_ = 0x0C;
+    reg_shuffle._8_2_ = 0x0D;
+    reg_shuffle._10_2_ = 0x0E;
+    reg_shuffle._12_2_ = 0x0F;
+    reg_shuffle._14_2_ = 0x00;
     
     // 执行字节排列操作
-    reg_result1 = SIMDPermuteBytes(reg_result1, reg_shuffle);
+    reg_result1 = pshufb(reg_result1, reg_shuffle);
     
     // 计算位掩码
     bit_mask = 0;
     for (int i = 0; i < 16; i++) {
-        bit_mask |= ((uint16_t)((int16_t)(reg_result1.data[i] >> 7) & 1) << i);
+        bit_mask |= ((RenderUInt16)((RenderInt16)(reg_result1._0_2_ + i * 2 >> 7) & 1) << i);
     }
     
     // 计算最高有效位
@@ -422,21 +350,33 @@ void FUN_180673850(longlong param_1, longlong *param_2)
     *(uint8_t*)param_2[5] = result_byte;
     
     // 调用安全处理器
-    SIMDSecurityHandler(stack_cookie ^ (uint64_t)&security_params);
+    FUN_1808fc050(stack_cookie ^ (uint64_t)&security_params);
 }
 
 /**
- * 渲染系统高级SIMD处理器
+ * @brief 渲染向量处理器 - 执行高级矢量变换和插值计算
  * 
- * 该函数实现高级SIMD处理功能，包括：
- * - 复杂向量变换和插值
- * - 条件分支和逻辑运算
- * - 高级数据处理和优化
+ * 该函数实现高级矢量处理功能，包括复杂的向量变换、插值计算、
+ * 条件分支处理和批量数据操作。
+ * 
+ * 主要功能：
+ * - 高级矢量变换：执行复杂的矢量变换操作
+ * - 插值计算：进行高精度的插值计算
+ * - 条件分支处理：根据条件执行不同的处理路径
+ * - 批量数据操作：处理大量矢量数据
+ * - 性能优化：通过算法优化提高处理性能
+ * 
+ * @param context 渲染上下文指针
+ * @param data_ptr 数据指针数组
+ * 
+ * @技术特点：
+ * - 复杂的矢量变换算法
+ * - 高精度插值计算
+ * - 条件分支优化
  * - 批量数据处理
- * - 性能监控和调优
  * 
- * @param param_1 渲染系统上下文指针
- * @param param_2 处理数据数组指针
+ * @author Claude Code
+ * @completion_date 2025-08-28
  */
 void FUN_180673970(longlong param_1, longlong *param_2)
 {
@@ -566,14 +506,10 @@ void FUN_180673970(longlong param_1, longlong *param_2)
 // ============================================================================
 
 /**
- * 渲染系统SIMD内存管理器
+ * @brief 渲染系统SIMD内存管理器
  * 
- * 该函数实现SIMD内存管理功能，包括：
- * - 内存分配和释放
- * - 数据对齐处理
- * - 内存优化和整理
- * - 批量内存操作
- * - 安全检查和验证
+ * 该函数实现SIMD内存管理功能，包括内存分配、数据对齐、
+ * 内存优化和批量操作等。
  * 
  * @param param_1 内存基地址
  * @param param_2 内存大小参数
@@ -649,14 +585,10 @@ cleanup_handler:
 }
 
 /**
- * 渲染系统SIMD数据变换器
+ * @brief 渲染系统SIMD数据变换器
  * 
- * 该函数实现SIMD数据变换功能，包括：
- * - 数据格式转换
- * - 向量变换处理
- * - 数据优化和压缩
- * - 批量数据操作
- * - 性能优化处理
+ * 该函数实现SIMD数据变换功能，包括数据格式转换、向量变换、
+ * 数据优化和压缩等。
  * 
  * @param param_1 数据基地址
  * @param param_2 数据大小参数
@@ -729,14 +661,10 @@ void FUN_180673f50(longlong param_1, undefined8 param_2, int param_3, int param_
 }
 
 /**
- * 渲染系统SIMD参数处理器
+ * @brief 渲染系统SIMD参数处理器
  * 
- * 该函数实现SIMD参数处理功能，包括：
- * - 参数验证和转换
- * - 配置优化处理
- * - 参数批量处理
- * - 性能参数调整
- * - 系统参数管理
+ * 该函数实现SIMD参数处理功能，包括参数验证、配置优化、
+ * 批量处理和性能调整等。
  * 
  * @param param_1 参数基地址
  * @param param_2 参数大小
@@ -799,19 +727,11 @@ void FUN_180674040(longlong param_1, int param_2, int param_3, int param_4,
     SIMDSecurityHandler(stack_cookie ^ (uint64_t)&temp_buffer_1);
 }
 
-// ============================================================================
-// 渲染系统SIMD处理函数（续）
-// ============================================================================
-
 /**
- * 渲染系统SIMD坐标变换器
+ * @brief 渲染系统SIMD坐标变换器
  * 
- * 该函数实现SIMD坐标变换功能，包括：
- * - 3D坐标变换
- * - 矩阵运算
- * - 投影变换
- * - 坐标归一化
- * - 视图变换
+ * 该函数实现SIMD坐标变换功能，包括3D坐标变换、矩阵运算、
+ * 投影变换和坐标归一化等。
  * 
  * @param param_1 坐标数据指针
  * @param param_2 坐标数量
@@ -906,14 +826,10 @@ void FUN_180674120(undefined1 *param_1, int param_2, int param_3, int param_4,
 }
 
 /**
- * 渲染系统SIMD优化器
+ * @brief 渲染系统SIMD优化器
  * 
- * 该函数实现SIMD优化功能，包括：
- * - 性能优化
- * - 内存优化
- * - 算法优化
- * - 缓存优化
- * - 指令优化
+ * 该函数实现SIMD优化功能，包括性能优化、内存优化、
+ * 算法优化和缓存优化等。
  * 
  * @param param_1 优化数据地址
  * @param param_2 数据大小
@@ -985,14 +901,10 @@ void FUN_1806742a0(longlong param_1, int param_2, int param_3, int param_4,
 }
 
 /**
- * 渲染系统SIMD资源处理器
+ * @brief 渲染系统SIMD资源处理器
  * 
- * 该函数实现SIMD资源处理功能，包括：
- * - 资源分配和释放
- * - 资源优化和管理
- * - 资源缓存处理
- * - 资源生命周期管理
- * - 资源安全检查
+ * 该函数实现SIMD资源处理功能，包括资源分配、优化、
+ * 缓存管理和生命周期管理等。
  * 
  * @param param_1 资源基地址
  * @param param_2 资源大小
@@ -1064,14 +976,10 @@ void FUN_1806743e0(longlong param_1, undefined8 param_2, int param_3, int param_
 }
 
 /**
- * 渲染系统SIMD内存分配器
+ * @brief 渲染系统SIMD内存分配器
  * 
- * 该函数实现SIMD内存分配功能，包括：
- * - 对齐内存分配
- * - 内存池管理
- * - 内存碎片整理
- * - 内存优化分配
- * - 内存安全检查
+ * 该函数实现SIMD内存分配功能，包括对齐分配、内存池管理、
+ * 碎片整理和优化分配等。
  * 
  * @param param_1 内存请求地址
  * @param param_2 内存大小
@@ -1143,14 +1051,10 @@ void FUN_1806744d0(longlong param_1, int param_2, int param_3, int param_4,
 }
 
 /**
- * 渲染系统SIMD初始化器
+ * @brief 渲染系统SIMD初始化器
  * 
- * 该函数实现SIMD初始化功能，包括：
- * - SIMD硬件检测
- * - 指令集初始化
- * - 寄存器初始化
- * - 内存池初始化
- * - 系统状态初始化
+ * 该函数实现SIMD初始化功能，包括硬件检测、指令集初始化、
+ * 寄存器初始化和系统状态初始化等。
  * 
  * @param param_1 初始化参数地址
  * @param param_2 初始化大小
@@ -1222,14 +1126,10 @@ void FUN_180674610(longlong param_1, undefined8 param_2, int param_3, int param_
 }
 
 /**
- * 渲染系统SIMD数据处理器
+ * @brief 渲染系统SIMD数据处理器
  * 
- * 该函数实现SIMD数据处理功能，包括：
- * - 批量数据处理
- * - 数据变换和转换
- * - 数据验证和检查
- * - 数据优化和压缩
- * - 数据流处理
+ * 该函数实现SIMD数据处理功能，包括批量处理、数据变换、
+ * 验证检查、优化压缩和流处理等。
  * 
  * @param param_1 数据基地址
  * @param param_2 数据大小
@@ -1340,14 +1240,10 @@ void FUN_180674700(longlong param_1, undefined8 param_2, longlong param_3,
 }
 
 /**
- * 渲染系统SIMD清理器
+ * @brief 渲染系统SIMD清理器
  * 
- * 该函数实现SIMD清理功能，包括：
- * - 资源释放
- * - 内存清理
- * - 状态重置
- * - 缓存清理
- * - 系统重置
+ * 该函数实现SIMD清理功能，包括资源释放、内存清理、
+ * 状态重置和系统重置等。
  */
 void FUN_180674930(void)
 {
