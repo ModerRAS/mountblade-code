@@ -1151,60 +1151,71 @@ void StringInsertionSortProcessor_Secondary(void)
 
 
 
-// 函数: void FUN_1804de7ea(void)
-void FUN_1804de7ea(void)
-
+/**
+ * @brief 16位无符号整数插入排序处理器
+ * 
+ * 专门处理16位无符号整数的插入排序处理器，使用优化的算法
+ * 来提高整数排序的性能。适用于游戏引擎中的数值数据处理。
+ * 
+ * 技术特点：
+ * - 16位整数专用排序
+ * - 优化的插入算法
+ * - 高效的内存访问
+ * - 无符号整数处理
+ */
+void UInt16InsertionSortProcessor(void)
 {
-  undefined1 uVar1;
-  char cVar2;
-  undefined2 uVar3;
-  char cVar4;
-  undefined2 *puVar5;
-  undefined2 *puVar6;
-  undefined2 *puVar7;
-  undefined2 *unaff_RBX;
-  undefined2 *unaff_RBP;
-  undefined2 *puVar8;
-  char cVar9;
-  bool bVar10;
-  bool bVar11;
-  char cStack0000000000000031;
-  
-  puVar8 = (undefined2 *)((longlong)unaff_RBX + 3);
-  do {
-    if (puVar8 == unaff_RBP) {
-      return;
-    }
-    uVar3 = *puVar8;
-    uVar1 = *(undefined1 *)(puVar8 + 1);
-    puVar7 = puVar8;
-    if (puVar8 != unaff_RBX) {
-      cStack0000000000000031 = (char)((ushort)uVar3 >> 8);
-      cVar9 = (char)uVar3;
-      puVar5 = puVar8;
-      do {
-        cVar2 = *(char *)((longlong)puVar5 + -3);
-        puVar6 = (undefined2 *)((longlong)puVar5 + -3);
-        bVar11 = SBORROW1(cVar9,cVar2);
-        cVar4 = cVar9 - cVar2;
-        bVar10 = cVar9 == cVar2;
-        if (bVar10) {
-          cVar2 = *(char *)(puVar5 + -1);
-          bVar11 = SBORROW1(cStack0000000000000031,cVar2);
-          cVar4 = cStack0000000000000031 - cVar2;
-          bVar10 = cStack0000000000000031 == cVar2;
+    undefined1 low_byte;
+    char compare_char;
+    UInt16 current_value;
+    char temp_char;
+    UInt16Buffer current_ptr;
+    UInt16Buffer scan_ptr;
+    UInt16Buffer insert_ptr;
+    UInt16Buffer start_bound;
+    UInt16Buffer end_bound;
+    UInt16Buffer loop_ptr;
+    char insert_char;
+    Boolean borrow_flag;
+    Boolean equal_flag;
+    char high_byte;
+    UInt16Buffer compare_ptr;
+    
+    loop_ptr = (UInt16Buffer)((longlong)start_bound + 3);
+    do {
+        if (loop_ptr == end_bound) {
+            return;
         }
-        if (bVar10 || bVar11 != cVar4 < '\0') break;
-        *puVar7 = *puVar6;
-        *(undefined1 *)(puVar7 + 1) = *(undefined1 *)((longlong)puVar5 + -1);
-        puVar7 = (undefined2 *)((longlong)puVar7 + -3);
-        puVar5 = puVar6;
-      } while (puVar6 != unaff_RBX);
-    }
-    puVar8 = (undefined2 *)((longlong)puVar8 + 3);
-    *puVar7 = uVar3;
-    *(undefined1 *)(puVar7 + 1) = uVar1;
-  } while( true );
+        current_value = *loop_ptr;
+        low_byte = *(undefined1 *)(loop_ptr + 1);
+        insert_ptr = loop_ptr;
+        if (loop_ptr != start_bound) {
+            high_byte = (char)((ushort)current_value >> 8);
+            insert_char = (char)current_value;
+            current_ptr = loop_ptr;
+            do {
+                compare_char = *(char *)((longlong)current_ptr + -3);
+                scan_ptr = (UInt16Buffer)((longlong)current_ptr + -3);
+                borrow_flag = SBORROW1(insert_char, compare_char);
+                temp_char = insert_char - compare_char;
+                equal_flag = insert_char == compare_char;
+                if (equal_flag) {
+                    compare_char = *(char *)(current_ptr + -1);
+                    borrow_flag = SBORROW1(high_byte, compare_char);
+                    temp_char = high_byte - compare_char;
+                    equal_flag = high_byte == compare_char;
+                }
+                if (equal_flag || borrow_flag != temp_char < '\0') break;
+                *insert_ptr = *scan_ptr;
+                *(undefined1 *)(insert_ptr + 1) = *(undefined1 *)((longlong)current_ptr + -1);
+                insert_ptr = (UInt16Buffer)((longlong)insert_ptr + -3);
+                current_ptr = scan_ptr;
+            } while (scan_ptr != start_bound);
+        }
+        loop_ptr = (UInt16Buffer)((longlong)loop_ptr + 3);
+        *insert_ptr = current_value;
+        *(undefined1 *)(insert_ptr + 1) = low_byte;
+    } while( true );
 }
 
 
