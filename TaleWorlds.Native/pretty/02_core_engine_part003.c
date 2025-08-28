@@ -1942,7 +1942,7 @@ func_ptr *core_engine_callback_handler_type3(void)
 {
     // 返回回调函数指针
     // 原始实现包含复杂的回调处理逻辑
-    return (code *)0x18025cc00;
+    return (func_ptr *)0x18025cc00;
 }
 
 /**
@@ -1961,7 +1961,7 @@ func_ptr *core_engine_callback_handler_type4(void)
 {
     // 返回回调函数指针
     // 原始实现包含复杂的回调处理逻辑
-    return (code *)0x18025c000;
+    return (func_ptr *)0x18025c000;
 }
 
 /**
@@ -1980,7 +1980,7 @@ func_ptr *core_engine_callback_handler_type5(void)
 {
     // 返回回调函数指针
     // 原始实现包含复杂的回调处理逻辑
-    return (code *)0x18025d270;
+    return (func_ptr *)0x18025d270;
 }
 
 /**
@@ -1999,7 +1999,7 @@ func_ptr *core_engine_callback_handler_type6(void)
 {
     // 返回回调函数指针
     // 原始实现包含复杂的回调处理逻辑
-    return (code *)0x18025e330;
+    return (func_ptr *)0x18025e330;
 }
 
 /**
@@ -2018,7 +2018,7 @@ func_ptr *core_engine_callback_handler_type7(void)
 {
     // 返回回调函数指针
     // 原始实现包含复杂的回调处理逻辑
-    return (code *)0x18025d510;
+    return (func_ptr *)0x18025d510;
 }
 
 /**
@@ -2037,7 +2037,7 @@ func_ptr *core_engine_callback_handler_type8(void)
 {
     // 返回回调函数指针
     // 原始实现包含复杂的回调处理逻辑
-    return (code *)0x1802281a0;
+    return (func_ptr *)0x1802281a0;
 }
 
 /**
