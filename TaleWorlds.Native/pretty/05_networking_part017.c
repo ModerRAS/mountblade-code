@@ -349,7 +349,7 @@ void NetworkingSystem_ConnectionProcessor(NetworkHandle *network_interface, Conn
   unsigned long long security_cookie;
   
   // 安全检查：设置栈保护cookie
-  security_cookie = _DAT_180bf00a8 ^ (unsigned long long)temp_buffer;
+  security_cookie = NetworkingSystem_SecurityCookie ^ (unsigned long long)temp_buffer;
   
   // 初始化连接上下文
   config_context = config_data;
