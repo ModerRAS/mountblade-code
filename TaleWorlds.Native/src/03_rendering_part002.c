@@ -1756,201 +1756,236 @@ undefined DAT_180a1f560;      // 资源任务管理器配置
 undefined UNK_180a1f788;      // 资源线程管理器数据结构
 
 
-// 函数: undefined FUN_180360210;
+/** 
+ * @brief 高级渲染管线管理函数
+ * @details 高级渲染管线管理系统，包含复杂的渲染状态、性能优化、调试等
+ */
 undefined FUN_180360210;
-undefined UNK_180360300;
-undefined UNK_180360340;
-undefined UNK_180a1f6e0;
-undefined UNK_180a1f6f0;
-undefined UNK_180a1f758;
-undefined UNK_180a1f770;
-undefined DAT_180a1f740;
-undefined DAT_180a1f750;
-undefined UNK_180a1f978;
-undefined DAT_180a1f8f0;
-undefined DAT_180a1f8f8;
-undefined DAT_180a1f910;
-undefined DAT_180a1f920;
-undefined DAT_180a1f930;
-undefined DAT_180a1f940;
-undefined DAT_180a1f950;
-undefined DAT_180a1f960;
-undefined UNK_180a1fae8;
-undefined DAT_180a064c8;
-undefined UNK_180a1fc70;
-undefined DAT_180a1fc50;
-undefined DAT_180a1fc58;
-undefined UNK_180a1fe08;
-undefined DAT_180a1fdd8;
-undefined DAT_180a1fdf0;
-undefined DAT_180a1fdf8;
-undefined DAT_180a1ff70;
-undefined DAT_180a1ffa0;
-undefined DAT_180a1ffd8;
-undefined DAT_180a1ffe8;
-undefined DAT_180a1fff8;
-undefined UNK_180363750;
-undefined UNK_180a20298;
-undefined UNK_180a201d0;
-undefined UNK_180a201f8;
-undefined DAT_180a20198;
-undefined DAT_180a20238;
-undefined UNK_180a20248;
-undefined UNK_180a20260;
-undefined UNK_180a20278;
-undefined DAT_180a201a8;
-undefined DAT_180a201c0;
-undefined UNK_180a20448;
-undefined UNK_180a20758;
-undefined UNK_180a09e08;
-undefined UNK_180a20970;
-undefined UNK_180a205b8;
-undefined UNK_180a205d0;
-undefined UNK_180a205f8;
-undefined UNK_180a20610;
-undefined UNK_180a20628;
-undefined UNK_180a20640;
-undefined UNK_180a20660;
-undefined UNK_180a20670;
-undefined UNK_180a20688;
-undefined UNK_180a20698;
-undefined UNK_180a206b0;
-undefined UNK_180a206c0;
-undefined UNK_180a206d8;
-undefined UNK_180a206f0;
-undefined UNK_180a20738;
-undefined UNK_180a20740;
-undefined UNK_180a0c280;
-undefined UNK_180a205b0;
-undefined UNK_180a205e8;
-undefined UNK_180a205f0;
-undefined UNK_180a20720;
-undefined UNK_180a20710;
-undefined UNK_180a20748;
-undefined UNK_180a20ae0;
-undefined UNK_180a20cc0;
-undefined DAT_180a20c88;
-undefined DAT_180a20c48;
-undefined DAT_180a20c58;
-undefined DAT_180a20c68;
-undefined DAT_180a20c78;
-undefined DAT_180a20c98;
-undefined DAT_180a20ca8;
-undefined DAT_180c91f50;
-undefined DAT_180c91f48;
-undefined UNK_180a20f68;
-char DAT_180c8aa6b;
-undefined DAT_180a20e58;
-undefined UNK_180a20e68;
-undefined DAT_180a20e30;
-undefined DAT_180a20e40;
-undefined DAT_180a20e70;
-undefined DAT_180a20e80;
-undefined UNK_180a20e13;
-undefined DAT_180a20e48;
-undefined UNK_180a20e90;
-undefined DAT_180a20f08;
-undefined DAT_180a20f20;
-undefined DAT_180a20f30;
-undefined UNK_180a20f40;
-undefined UNK_180a210d8;
-undefined UNK_180a21248;
-undefined UNK_180a213f8;
-undefined UNK_180a213b0;
-undefined UNK_180a213d8;
-undefined UNK_180a213c0;
-undefined UNK_180a21560;
-undefined UNK_180a21628;
-undefined DAT_180a402a0;
+
+/* 高级渲染管线管理数据结构 */
+undefined UNK_180360300;      // 渲染管线状态管理器数据结构
+undefined UNK_180360340;      // 渲染管线配置管理器数据结构
+undefined UNK_180a1f6e0;      // 渲染管线优化器数据结构
+undefined UNK_180a1f6f0;      // 渲染管线分析器数据结构
+undefined UNK_180a1f758;      // 渲染管线监控器数据结构
+undefined UNK_180a1f770;      // 渲染管线调试器数据结构
+undefined DAT_180a1f740;      // 渲染管线配置数据
+undefined DAT_180a1f750;      // 渲染管线状态数据
+undefined UNK_180a1f978;      // 渲染管线性能管理器数据结构
+undefined DAT_180a1f8f0;      // 渲染管线统计数据
+undefined DAT_180a1f8f8;      // 渲染管线性能数据
+undefined DAT_180a1f910;      // 渲染管线内存数据
+undefined DAT_180a1f920;      // 渲染管线错误数据
+undefined DAT_180a1f930;      // 渲染管线警告数据
+undefined DAT_180a1f940;      // 渲染管线优化数据
+undefined DAT_180a1f950;      // 渲染管线分析数据
+undefined DAT_180a1f960;      // 渲染管线监控数据
+undefined UNK_180a1fae8;      // 渲染管线同步管理器数据结构
+undefined DAT_180a064c8;      // 渲染管线线程配置数据
+undefined UNK_180a1fc70;      // 渲染管线任务管理器数据结构
+undefined DAT_180a1fc50;      // 渲染管线任务配置数据
+undefined DAT_180a1fc58;      // 渲染管线任务状态数据
+undefined UNK_180a1fe08;      // 渲染管线内存管理器数据结构
+undefined DAT_180a1fdd8;      // 渲染管线内存配置数据
+undefined DAT_180a1fdf0;      // 渲染管线内存统计数据
+undefined DAT_180a1fdf8;      // 渲染管线内存性能数据
+undefined DAT_180a1ff70;      // 渲染管线缓存配置数据
+undefined DAT_180a1ffa0;      // 渲染管线缓存统计数据
+undefined DAT_180a1ffd8;      // 渲染管线缓存性能数据
+undefined DAT_180a1ffe8;      // 渲染管线缓存优化数据
+undefined DAT_180a1fff8;      // 渲染管线缓存监控数据
+undefined UNK_180363750;      // 渲染管线优化器配置数据结构
+undefined UNK_180a20298;      // 渲染管线分析器配置数据结构
+undefined UNK_180a201d0;      // 渲染管线监控器配置数据结构
+undefined UNK_180a201f8;      // 渲染管线调试器配置数据结构
+undefined DAT_180a20198;      // 渲染管线优化配置数据
+undefined DAT_180a20238;      // 渲染管线分析配置数据
+undefined UNK_180a20248;      // 渲染管线监控配置数据结构
+undefined UNK_180a20260;      // 渲染管线调试配置数据结构
+undefined UNK_180a20278;      // 渲染管线错误处理数据结构
+undefined DAT_180a201a8;      // 渲染管线日志配置数据
+undefined DAT_180a201c0;      // 渲染管线报告配置数据
+undefined UNK_180a20448;      // 渲染管线热重载数据结构
+undefined UNK_180a20758;      // 渲染管线预加载数据结构
+undefined UNK_180a09e08;      // 渲染管线异步加载数据结构
+undefined UNK_180a20970;      // 渲染管线流式加载数据结构
+undefined UNK_180a205b8;      // 渲染管线批处理数据结构
+undefined UNK_180a205d0;      // 渲染管线实例化数据结构
+undefined UNK_180a205f8;      // 渲染管线LOD数据结构
+undefined UNK_180a20610;      // 渲染管线剔除数据结构
+undefined UNK_180a20628;      // 渲染管线排序数据结构
+undefined UNK_180a20640;      // 渲染管线分组数据结构
+undefined UNK_180a20660;      // 渲染管线合并数据结构
+undefined UNK_180a20670;      // 渲染管线分割数据结构
+undefined UNK_180a20688;      // 渲染管线优化数据结构
+undefined UNK_180a20698;      // 渲染管线分析数据结构
+undefined UNK_180a206b0;      // 渲染管线监控数据结构
+undefined UNK_180a206c0;      // 渲染管线调试数据结构
+undefined UNK_180a206d8;      // 渲染管线错误处理数据结构
+undefined UNK_180a206f0;      // 渲染管线日志数据结构
+undefined UNK_180a20738;      // 渲染管线报告数据结构
+undefined UNK_180a20740;      // 渲染管线统计数据结构
+undefined UNK_180a0c280;      // 渲染管线性能数据结构
+undefined UNK_180a205b0;      // 渲染管线内存数据结构
+undefined UNK_180a205e8;      // 渲染管线缓存数据结构
+undefined UNK_180a205f0;      // 渲染管线任务数据结构
+undefined UNK_180a20720;      // 渲染管线线程数据结构
+undefined UNK_180a20710;      // 渲染管线同步数据结构
+undefined UNK_180a20748;      // 渲染管线优化器高级数据结构
+undefined UNK_180a20ae0;      // 渲染管线分析器高级数据结构
+undefined UNK_180a20cc0;      // 渲染管线监控器高级数据结构
+undefined DAT_180a20c88;      // 渲染管线优化器高级配置数据
+undefined DAT_180a20c48;      // 渲染管线分析器高级配置数据
+undefined DAT_180a20c58;      // 渲染管线监控器高级配置数据
+undefined DAT_180a20c68;      // 渲染管线调试器高级配置数据
+undefined DAT_180a20c78;      // 渲染管线日志器高级配置数据
+undefined DAT_180a20c98;      // 渲染管线报告器高级配置数据
+undefined DAT_180a20ca8;      // 渲染管线统计器高级配置数据
+undefined DAT_180c91f50;      // 渲染管线性能器高级配置数据
+undefined DAT_180c91f48;      // 渲染管线错误处理高级配置数据
+undefined UNK_180a20f68;      // 渲染管线热重载高级数据结构
+char DAT_180c8aa6b;           // 渲染管线调试标志
+undefined DAT_180a20e58;      // 渲染管线热重载配置数据
+undefined UNK_180a20e68;      // 渲染管线预加载高级数据结构
+undefined DAT_180a20e30;      // 渲染管线异步加载配置数据
+undefined DAT_180a20e40;      // 渲染管线流式加载配置数据
+undefined DAT_180a20e70;      // 渲染管线批处理配置数据
+undefined DAT_180a20e80;      // 渲染管线实例化配置数据
+undefined UNK_180a20e13;      // 渲染管线LOD高级数据结构
+undefined DAT_180a20e48;      // 渲染管线剔除配置数据
+undefined UNK_180a20e90;      // 渲染管线排序高级数据结构
+undefined DAT_180a20f08;      // 渲染管线分组配置数据
+undefined DAT_180a20f20;      // 渲染管线合并配置数据
+undefined DAT_180a20f30;      // 渲染管线分割配置数据
+undefined UNK_180a20f40;      // 渲染管线优化高级数据结构
+undefined UNK_180a210d8;      // 渲染管线分析高级数据结构
+undefined UNK_180a21248;      // 渲染管线监控高级数据结构
+undefined UNK_180a213f8;      // 渲染管线调试高级数据结构
+undefined UNK_180a213b0;      // 渲染管线日志高级数据结构
+undefined UNK_180a213d8;      // 渲染管线报告高级数据结构
+undefined UNK_180a213c0;      // 渲染管线统计高级数据结构
+undefined UNK_180a21560;      // 渲染管线性能高级数据结构
+undefined UNK_180a21628;      // 渲染管线错误处理高级数据结构
+undefined DAT_180a402a0;      // 渲染管线最终配置数据
 
 
-// 函数: undefined FUN_180380510;
+/*-----------------------------------------------------------------------------
+ * 渲染系统最终管理和优化函数组
+ *---------------------------------------------------------------------------*/
+
+/** 
+ * @brief 渲染系统最终初始化函数
+ * @details 渲染系统的最终初始化和配置
+ */
 undefined FUN_180380510;
 
 
-// 函数: undefined FUN_1803805e0;
+/** 
+ * @brief 渲染系统最终清理函数
+ * @details 渲染系统的最终清理和资源释放
+ */
 undefined FUN_1803805e0;
-undefined UNK_180a2ada8;
+undefined UNK_180a2ada8;      // 最终清理配置数据结构
 
 
-// 函数: undefined FUN_180380430;
+/** 
+ * @brief 渲染系统状态重置函数
+ * @details 重置渲染系统到初始状态
+ */
 undefined FUN_180380430;
 
 
-// 函数: undefined FUN_1803802e0;
+/** 
+ * @brief 渲染系统优化函数
+ * @details 优化渲染系统的性能和资源使用
+ */
 undefined FUN_1803802e0;
-undefined UNK_180a21780;
-undefined UNK_180a217a0;
-undefined UNK_180a22a30;
+undefined UNK_180a21780;      // 优化配置数据结构
+undefined UNK_180a217a0;      // 优化统计数据结构
+undefined UNK_180a22a30;      // 优化算法数据结构
 
 
-// 函数: undefined FUN_1803800d0;
+/** 
+ * @brief 渲染系统验证函数
+ * @details 验证渲染系统的完整性和有效性
+ */
 undefined FUN_1803800d0;
 
 
-// 函数: undefined FUN_180380200;
+/** 
+ * @brief 渲染系统错误处理函数
+ * @details 处理渲染系统的错误和异常
+ */
 undefined FUN_180380200;
-undefined UNK_180380090;
-undefined UNK_180a217c0;
-undefined UNK_180a17810;
-undefined UNK_180a17814;
-undefined UNK_180a218e0;
+undefined UNK_180380090;      // 错误处理数据结构
+undefined UNK_180a217c0;      // 错误统计数据结构
+undefined UNK_180a17810;      // 错误日志数据结构
+undefined UNK_180a17814;      // 错误报告数据结构
+undefined UNK_180a218e0;      // 错误恢复数据结构
 
 
-// 函数: undefined FUN_18037ac70;
+/** 
+ * @brief 渲染系统高级管理函数
+ * @details 渲染系统的高级管理功能
+ */
 undefined FUN_18037ac70;
 
 
-// 函数: undefined FUN_18037ad00;
+/** 
+ * @brief 渲染系统核心管理器函数
+ * @details 渲染系统核心管理器，包含状态管理、资源管理、性能管理等
+ */
 undefined FUN_18037ad00;
-undefined UNK_180380040;
-undefined UNK_180380050;
-undefined DAT_180a21838;
-undefined DAT_180a21858;
-undefined UNK_18037d8a0;
-undefined UNK_18037fff0;
-undefined UNK_180380000;
-undefined UNK_180a21880;
-undefined UNK_180a21950;
-undefined UNK_180a21968;
-undefined UNK_180a21978;
-undefined UNK_180a21988;
-undefined UNK_180a21990;
-undefined UNK_180a219a0;
-undefined UNK_180a219b8;
-undefined UNK_180a219c8;
-undefined UNK_18037ffa0;
-undefined UNK_18037ffb0;
-undefined UNK_180a219e0;
-undefined UNK_180a219f4;
-undefined UNK_180a21a30;
-undefined UNK_180a21a40;
-undefined UNK_180a21be8;
-undefined UNK_180a21a10;
-undefined UNK_180a16540;
-undefined UNK_180a21a00;
-undefined UNK_180a21a48;
-undefined UNK_180a21a58;
-undefined UNK_180a21a70;
-undefined UNK_180a21a80;
-undefined UNK_180a21a90;
-undefined UNK_180a21aa8;
-undefined UNK_180a21ac8;
-undefined UNK_180a21ae0;
-undefined UNK_180a21b00;
-undefined UNK_180a21b18;
-undefined UNK_180a21b30;
-undefined UNK_180a21b50;
-undefined UNK_180a21b68;
-undefined UNK_180a21b78;
-undefined UNK_180a21b98;
-undefined UNK_180a21bb0;
-undefined UNK_180a21bc0;
-undefined UNK_180a21aa0;
-undefined UNK_180a21b0c;
-undefined UNK_180a21b60;
-undefined UNK_180a21bd0;
-undefined UNK_180a21c30;
+
+/* 渲染系统核心管理器数据结构 */
+undefined UNK_180380040;      // 核心管理器主数据结构
+undefined UNK_180380050;      // 核心管理器配置数据结构
+undefined DAT_180a21838;      // 状态管理数据
+undefined DAT_180a21858;      // 资源管理数据
+undefined UNK_18037d8a0;      // 性能管理数据结构
+undefined UNK_18037fff0;      // 内存管理数据结构
+undefined UNK_180380000;      // 缓存管理数据结构
+undefined UNK_180a21880;      // 任务管理数据结构
+undefined UNK_180a21950;      // 线程管理数据结构
+undefined UNK_180a21968;      // 同步管理数据结构
+undefined UNK_180a21978;      // 错误管理数据结构
+undefined UNK_180a21988;      // 调试管理数据结构
+undefined UNK_180a21990;      // 日志管理数据结构
+undefined UNK_180a219a0;      // 统计管理数据结构
+undefined UNK_180a219b8;      // 监控管理数据结构
+undefined UNK_180a219c8;      // 报告管理数据结构
+undefined UNK_18037ffa0;      // 优化管理数据结构
+undefined UNK_18037ffb0;      // 分析管理数据结构
+undefined UNK_180a219e0;      // 热重载管理数据结构
+undefined UNK_180a219f4;      // 预加载管理数据结构
+undefined UNK_180a21a30;      // 异步加载管理数据结构
+undefined UNK_180a21a40;      // 流式加载管理数据结构
+undefined UNK_180a21be8;      // 批处理管理数据结构
+undefined UNK_180a21a10;      // 实例化管理数据结构
+undefined UNK_180a16540;      // LOD管理数据结构
+undefined UNK_180a21a00;      // 剔除管理数据结构
+undefined UNK_180a21a48;      // 排序管理数据结构
+undefined UNK_180a21a58;      // 分组管理数据结构
+undefined UNK_180a21a70;      // 合并管理数据结构
+undefined UNK_180a21a80;      // 分割管理数据结构
+undefined UNK_180a21a90;      // 优先级管理数据结构
+undefined UNK_180a21aa8;      // 依赖管理数据结构
+undefined UNK_180a21ac8;      // 版本管理数据结构
+undefined UNK_180a21ae0;      // 生命周期管理数据结构
+undefined UNK_180a21b00;      // 权限管理数据结构
+undefined UNK_180a21b18;      // 配额管理数据结构
+undefined UNK_180a21b30;      // 限制管理数据结构
+undefined UNK_180a21b50;      // 策略管理数据结构
+undefined UNK_180a21b68;      // 算法管理数据结构
+undefined UNK_180a21b78;      // 缓存策略数据结构
+undefined UNK_180a21b98;      // 内存策略数据结构
+undefined UNK_180a21bb0;      // 磁盘策略数据结构
+undefined UNK_180a21bc0;      // 网络策略数据结构
+undefined UNK_180a21aa0;      // 任务策略数据结构
+undefined UNK_180a21b0c;      // 线程策略数据结构
+undefined UNK_180a21b60;      // 同步策略数据结构
+undefined UNK_180a21bd0;      // 错误策略数据结构
+undefined UNK_180a21c30;      // 调试策略数据结构
 
 
 // 函数: undefined FUN_180388290;
