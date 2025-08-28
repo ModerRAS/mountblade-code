@@ -81,7 +81,7 @@ void FUN_1805271f0(longlong param_1,uint64_t param_2,uint64_t param_3,longlong *
   int32_t uStack_1a0;
   int32_t uStack_19c;
   int16_t uStack_198;
-  undefined6 uStack_196;
+  uint8_t uStack_196;
   int32_t uStack_190;
   int32_t uStack_18c;
   float fStack_188;
@@ -507,7 +507,7 @@ void FUN_1805271f8(longlong param_1,uint64_t param_2,uint64_t param_3,longlong *
   int32_t uStack_148;
   int32_t uStack_144;
   int16_t uStack_140;
-  undefined6 uStack_13e;
+  uint8_t uStack_13e;
   int32_t uStack_138;
   int32_t uStack_134;
   float fStack_130;

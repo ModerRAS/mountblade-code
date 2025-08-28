@@ -30,7 +30,7 @@ void FUN_18081e5c0(float *param_1,ulonglong param_2,longlong param_3,int param_4
   int iVar21;
   int iVar22;
   int iVar23;
-  undefined6 uVar24;
+  uint8_t uVar24;
   int8_t auVar25 [12];
   int8_t auVar26 [12];
   int8_t auVar27 [12];

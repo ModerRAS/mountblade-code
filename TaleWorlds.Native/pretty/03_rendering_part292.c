@@ -48,7 +48,7 @@ void FUN_180423c1c(int8_t (*param_1) [16],longlong param_2,int param_3,longlong 
   int8_t auVar40 [12];
   int8_t auVar41 [14];
   int8_t auVar42 [12];
-  undefined6 uVar43;
+  uint8_t uVar43;
   int32_t uVar44;
   int16_t uVar45;
   int8_t auVar46 [16];
@@ -126,7 +126,7 @@ void FUN_180423c1c(int8_t (*param_1) [16],longlong param_2,int param_3,longlong 
   int8_t auVar85 [16];
   int8_t auVar86 [16];
   int32_t uVar89;
-  undefined6 uVar90;
+  uint8_t uVar90;
   uint64_t uVar91;
   int8_t auVar92 [12];
   int8_t auVar93 [14];

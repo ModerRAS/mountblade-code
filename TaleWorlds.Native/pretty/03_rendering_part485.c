@@ -84,7 +84,7 @@ void FUN_180527330(void)
   int32_t uStack_148;
   int32_t uStack_144;
   int16_t uStack_140;
-  undefined6 uStack_13e;
+  uint8_t uStack_13e;
   int32_t uStack_138;
   int32_t uStack_134;
   float fStack_130;
@@ -428,7 +428,7 @@ void FUN_18052745f(uint64_t param_1,uint64_t param_2,longlong param_3,uint param
   int32_t uStack_148;
   int32_t uStack_144;
   int16_t uStack_140;
-  undefined6 uStack_13e;
+  uint8_t uStack_13e;
   int32_t uStack_138;
   int32_t uStack_134;
   float fStack_130;
