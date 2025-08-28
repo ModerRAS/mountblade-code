@@ -414,7 +414,7 @@ static void cleanup_and_return(int64_t renderContext, uint64_t stackGuard)
 {
     // 执行安全清理
     // 注意：原函数不返回，而是调用另一个函数
-    FUN_1808fc050(stackGuard ^ (uint64_t)&renderContext);
+    SystemSecurityChecker(stackGuard ^ (uint64_t)&renderContext);
 }
 
 /**
