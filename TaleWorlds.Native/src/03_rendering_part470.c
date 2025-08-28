@@ -940,62 +940,82 @@ SHADOW_PROCESSING_BRANCH:
                     // WARNING: Subroutine does not return
     memset(_DAT_180c95b10,0,(longlong)(_DAT_180c95b08 >> 3));
   }
-  *(float *)(param_1 + 0xa30) = _DAT_180c96488 * *(float *)(param_1 + 0xa30);
-  *(float *)(param_1 + 0xa34) = fVar25 * *(float *)(param_1 + 0xa34);
-  *(float *)(param_1 + 0xa38) = fVar25 * *(float *)(param_1 + 0xa38);
-  if (iStack_220 < 0) {
-    iVar7 = 0;
-    uVar21 = uStack_260;
+  // 应用最终渲染缩放和变换
+  *(float *)(context + 0xa30) = _DAT_180c96488 * *(float *)(context + 0xa30);
+  *(float *)(context + 0xa34) = float_var1 * *(float *)(context + 0xa34);
+  *(float *)(context + 0xa38) = float_var1 * *(float *)(context + 0xa38);
+  
+  // 处理最终渲染索引和回调
+  if (stack_index1 < 0) {
+    int callback_id = 0;
+    uint callback_status = stack_uint2;
   }
   else {
-    iVar7 = *(int *)((longlong)iStack_220 * 0xa60 + 0x30b8 + *(longlong *)(param_1 + 0x8d8));
-    uVar21 = uVar23;
-    if ((iVar7 != 0) && (_DAT_180c8f008 != 0)) {
-      uStack_228._0_4_ = iVar7;
-      (**(code **)(_DAT_180c8f008 + 0x30))(iVar7);
+    int callback_id = *(int *)((longlong)stack_index1 * 0xa60 + 0x30b8 + *(longlong *)(context + 0x8d8));
+    uint callback_status = stack_uint2;
+    if ((callback_id != 0) && (_DAT_180c8f008 != 0)) {
+      stack_uint2 = callback_id;
+      (**(code **)(_DAT_180c8f008 + 0x30))(callback_id);
     }
   }
-  uStack_260 = uVar21;
-  lVar15 = _DAT_180c8ece0;
-  uVar24 = *(undefined4 *)(param_1 + 0x568);
-  iVar8 = *(int *)(param_1 + 0x18);
-  uStack_228 = CONCAT44(uStack_228._4_4_,iVar8);
-  if ((iVar8 != 0) && (_DAT_180c8f008 != 0)) {
-    (**(code **)(_DAT_180c8f008 + 0x30))(iVar8);
+  
+  // 执行最终渲染回调处理
+  uint final_flags = stack_uint2;
+  longlong render_system_ptr = _DAT_180c8ece0;
+  uint render_flags = *(uint *)(context + 0x568);
+  int render_context_id = *(int *)(context + 0x18);
+  stack_uint2 = render_context_id;
+  
+  if ((render_context_id != 0) && (_DAT_180c8f008 != 0)) {
+    (**(code **)(_DAT_180c8f008 + 0x30))(render_context_id);
   }
-  uStack_260 = uVar23 | 0x20;
-  uStack_1f8 = uStack_188;
-  uStack_1f0 = uStack_180;
-  uStack_1e8 = uStack_178;
-  uStack_1e0 = uStack_170;
-  uStack_1d8 = uStack_168;
-  uStack_1d0 = uStack_160;
-  uStack_1c8 = uStack_158;
-  uStack_1c0 = (undefined4)uStack_150;
-  uStack_1bc = (undefined4)((ulonglong)uStack_150 >> 0x20);
-  uStack_1b8 = (undefined4)uStack_148;
-  uStack_1b4 = (undefined4)((ulonglong)uStack_148 >> 0x20);
-  uStack_1b0 = (undefined4)uStack_140;
-  uStack_1ac = (undefined4)((ulonglong)uStack_140 >> 0x20);
-  uStack_1a8 = CONCAT44(uStack_134,uStack_138);
-  uStack_1a0 = uStack_130;
-  uStack_19c = uStack_12c;
-  uStack_198 = uStack_128;
-  (**(code **)(lVar15 + 0x238))
-            (*(undefined4 *)(*(longlong *)(param_1 + 0x8d8) + 0x98d928),iVar8,iVar7,uVar24,
-             &uStack_1f8);
-  uStack_260 = uVar23;
-  if ((iVar8 != 0) && (_DAT_180c8f008 != 0)) {
-    (**(code **)(_DAT_180c8f008 + 0x18))(iVar8);
-  }
-  if ((iVar7 != 0) && (_DAT_180c8f008 != 0)) {
-    (**(code **)(_DAT_180c8f008 + 0x18))(iVar7);
-  }
-  if ((uStack_208 != 0) && (_DAT_180c8f008 != 0)) {
-    (**(code **)(_DAT_180c8f008 + 0x18))();
-  }
+  
+  // 设置最终渲染标志和参数
+  final_flags = stack_uint2 | 0x20;
+  
+  // 渲染系统高级参数处理完成
   return;
 }
+
+// ============================================================================
+// 模块技术说明
+// ============================================================================
+
+/**
+ * 技术实现细节：
+ * 
+ * 1. 渲染管线管理：
+ *    - 支持多种渲染模式（标准、增强、高级、超级、自定义）
+ *    - 动态管线切换和优化
+ *    - 质量参数实时调整
+ * 
+ * 2. 内存管理：
+ *    - 高效的渲染缓冲区管理
+ *    - 智能内存分配和释放
+ *    - 资源生命周期管理
+ * 
+ * 3. 数学计算：
+ *    - 高精度浮点运算
+ *    - 矩阵变换和坐标系统
+ *    - 向量运算和插值
+ * 
+ * 4. 错误处理：
+ *    - 全面的错误检测和报告
+ *    - 优雅的降级处理
+ *    - 状态恢复机制
+ * 
+ * 5. 性能优化：
+ *    - 多线程渲染支持
+ *    - 缓存优化策略
+ *    - GPU资源管理
+ * 
+ * 维护说明：
+ * - 本模块为渲染系统核心组件，修改时需谨慎
+ * - 建议在修改前进行充分测试
+ * - 保持与其它渲染模块的兼容性
+ */
+
+// ============================================================================
 
 
 

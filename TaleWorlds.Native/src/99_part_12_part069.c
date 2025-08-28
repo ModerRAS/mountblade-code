@@ -94,52 +94,91 @@ void Math_MatrixTransformProcessor(float *outputVector, float *inputVector, uint
   longlong currentMatrixIndex;
   float calculationResult_A, calculationResult_B, calculationResult_C, calculationResult_D;
   
-  lVar20 = (longlong)param_5;
-  iVar18 = (int)param_3 >> 2;
-  if (iVar18 != 0) {
-    iVar17 = param_4 * 2;
-    iVar16 = param_4 * 3;
+  // 初始化矩阵索引和循环计数器
+  currentMatrixIndex = (longlong)matrixIndex;
+  loopCounter = (int)elementCount >> 2;  // 除以4，用于4路循环展开
+  
+  // 主循环：处理4个元素为一组的数据块
+  if (loopCounter != 0) {
+    stride_2x = stride * 2;     // 2倍步长
+    stride_3x = stride * 3;     // 3倍步长
+    
     do {
-      lVar19 = *(longlong *)(param_6 + 8 + lVar20 * 0x10);
-      fVar1 = *(float *)(param_6 + lVar20 * 0x10);
-      fVar2 = *(float *)(param_6 + 4 + lVar20 * 0x10);
-      fVar3 = *(float *)(lVar19 + 0x18);
-      fVar4 = *(float *)(lVar19 + 0x14);
-      fVar21 = (*param_2 - fVar1 * *(float *)(lVar19 + 0x1c)) - fVar2 * *(float *)(lVar19 + 0x20);
-      fVar5 = *(float *)(lVar19 + 0x10);
-      *(float *)(param_6 + 4 + lVar20 * 0x10) = fVar1;
-      *(float *)(param_6 + lVar20 * 0x10) = fVar21;
-      lVar19 = *(longlong *)(param_8 + 8 + lVar20 * 0x10);
-      fVar6 = *(float *)(param_8 + lVar20 * 0x10);
-      fVar7 = *(float *)(lVar19 + 0x14);
-      fVar8 = *(float *)(param_8 + 4 + lVar20 * 0x10);
-      fVar9 = *(float *)(lVar19 + 0x18);
-      fVar22 = (*param_2 - fVar6 * *(float *)(lVar19 + 0x1c)) - fVar8 * *(float *)(lVar19 + 0x20);
-      fVar10 = *(float *)(lVar19 + 0x10);
-      *(float *)(param_8 + 4 + lVar20 * 0x10) = fVar6;
-      *(float *)(param_8 + lVar20 * 0x10) = fVar22;
-      lVar19 = *(longlong *)(param_7 + 8 + lVar20 * 0x10);
-      fVar11 = *(float *)(param_7 + 4 + lVar20 * 0x10);
-      fVar12 = *(float *)(lVar19 + 0x18);
-      fVar13 = *(float *)(param_7 + lVar20 * 0x10);
-      fVar14 = *(float *)(lVar19 + 0x14);
-      fVar24 = ((fVar6 * fVar7 + fVar22 * fVar10 + fVar8 * fVar9) -
-               fVar13 * *(float *)(lVar19 + 0x1c)) - fVar11 * *(float *)(lVar19 + 0x20);
-      fVar6 = *(float *)(lVar19 + 0x10);
-      *(float *)(param_7 + 4 + lVar20 * 0x10) = fVar13;
-      *(float *)(param_7 + lVar20 * 0x10) = fVar24;
-      lVar19 = *(longlong *)(param_9 + 8 + lVar20 * 0x10);
-      fVar7 = *(float *)(param_9 + lVar20 * 0x10);
-      fVar8 = *(float *)(param_9 + 4 + lVar20 * 0x10);
-      fVar9 = *(float *)(lVar19 + 0x18);
-      fVar10 = *(float *)(lVar19 + 0x14);
-      fVar23 = (*param_2 - fVar7 * *(float *)(lVar19 + 0x1c)) - fVar8 * *(float *)(lVar19 + 0x20);
-      fVar22 = *(float *)(lVar19 + 0x10);
-      *(float *)(param_9 + 4 + lVar20 * 0x10) = fVar7;
-      *(float *)(param_9 + lVar20 * 0x10) = fVar23;
-      *param_1 = ((fVar1 * fVar4 + fVar21 * fVar5 + fVar2 * fVar3) * param_10 -
-                 (fVar13 * fVar14 + fVar24 * fVar6 + fVar11 * fVar12) * param_11) +
-                 (fVar23 * fVar22 + fVar7 * fVar10 + fVar8 * fVar9) * param_12;
+      // ============ 第一个元素处理 ============
+      
+      // 从矩阵A中读取数据并进行向量变换
+      matrixRowPointer = *(longlong *)(matrixA + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixElement_A1 = *(float *)(matrixA + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixElement_A2 = *(float *)(matrixA + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixElement_A3 = *(float *)(matrixRowPointer + 0x18);
+      matrixElement_A4 = *(float *)(matrixRowPointer + 0x14);
+      
+      // 计算向量变换结果: result = inputVector - (A1 * matrix[0x1c] + A2 * matrix[0x20])
+      intermediateResult_A = (*inputVector - matrixElement_A1 * *(float *)(matrixRowPointer + 0x1c)) - 
+                             matrixElement_A2 * *(float *)(matrixRowPointer + 0x20);
+      matrixElement_A3 = *(float *)(matrixRowPointer + 0x10);
+      
+      // 更新矩阵A中的数据
+      *(float *)(matrixA + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE) = matrixElement_A1;
+      *(float *)(matrixA + currentMatrixIndex * MATRIX_BLOCK_SIZE) = intermediateResult_A;
+      
+      // 从矩阵C中读取数据并进行向量变换
+      matrixRowPointer = *(longlong *)(matrixC + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixElement_C1 = *(float *)(matrixC + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixElement_C2 = *(float *)(matrixRowPointer + 0x14);
+      matrixElement_C3 = *(float *)(matrixC + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixElement_C4 = *(float *)(matrixRowPointer + 0x18);
+      
+      // 计算向量变换结果
+      intermediateResult_C = (*inputVector - matrixElement_C1 * *(float *)(matrixRowPointer + 0x1c)) - 
+                             matrixElement_C3 * *(float *)(matrixRowPointer + 0x20);
+      matrixElement_C4 = *(float *)(matrixRowPointer + 0x10);
+      
+      // 更新矩阵C中的数据
+      *(float *)(matrixC + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE) = matrixElement_C1;
+      *(float *)(matrixC + currentMatrixIndex * MATRIX_BLOCK_SIZE) = intermediateResult_C;
+      
+      // 从矩阵B中读取数据并进行复合计算
+      matrixRowPointer = *(longlong *)(matrixB + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixElement_B1 = *(float *)(matrixB + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixElement_B2 = *(float *)(matrixRowPointer + 0x18);
+      matrixElement_B3 = *(float *)(matrixB + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixElement_B4 = *(float *)(matrixRowPointer + 0x14);
+      
+      // 复合计算: result = (C1*C2 + C_result*C4 + C3*C4) - (B3*matrix[0x1c] + B1*matrix[0x20])
+      intermediateResult_B = ((matrixElement_C1 * matrixElement_C2 + intermediateResult_C * matrixElement_C4 + 
+                               matrixElement_C3 * matrixElement_C4) - 
+                               matrixElement_B3 * *(float *)(matrixRowPointer + 0x1c)) - 
+                               matrixElement_B1 * *(float *)(matrixRowPointer + 0x20);
+      matrixElement_C1 = *(float *)(matrixRowPointer + 0x10);
+      
+      // 更新矩阵B中的数据
+      *(float *)(matrixB + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE) = matrixElement_B3;
+      *(float *)(matrixB + currentMatrixIndex * MATRIX_BLOCK_SIZE) = intermediateResult_B;
+      
+      // 从矩阵D中读取数据并进行向量变换
+      matrixRowPointer = *(longlong *)(matrixD + 8 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixElement_D1 = *(float *)(matrixD + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixElement_D2 = *(float *)(matrixD + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE);
+      matrixElement_D3 = *(float *)(matrixRowPointer + 0x18);
+      matrixElement_D4 = *(float *)(matrixRowPointer + 0x14);
+      
+      // 计算向量变换结果
+      intermediateResult_D = (*inputVector - matrixElement_D1 * *(float *)(matrixRowPointer + 0x1c)) - 
+                             matrixElement_D2 * *(float *)(matrixRowPointer + 0x20);
+      intermediateResult_C = *(float *)(matrixRowPointer + 0x10);
+      
+      // 更新矩阵D中的数据
+      *(float *)(matrixD + 4 + currentMatrixIndex * MATRIX_BLOCK_SIZE) = matrixElement_D1;
+      *(float *)(matrixD + currentMatrixIndex * MATRIX_BLOCK_SIZE) = intermediateResult_D;
+      
+      // 最终加权计算: output = (A_result * weightA - B_result * weightB) + D_result * weightC
+      *outputVector = ((matrixElement_A1 * matrixElement_A4 + intermediateResult_A * matrixElement_A3 + 
+                       matrixElement_A2 * matrixElement_B2) * weightA - 
+                      (matrixElement_B3 * matrixElement_B4 + intermediateResult_B * matrixElement_C1 + 
+                       matrixElement_B1 * matrixElement_B2) * weightB) + 
+                     (intermediateResult_D * intermediateResult_C + matrixElement_D1 * matrixElement_D4 + 
+                      matrixElement_D2 * matrixElement_D3) * weightC;
       lVar19 = *(longlong *)(param_6 + 8 + lVar20 * 0x10);
       fVar1 = *(float *)(param_6 + lVar20 * 0x10);
       fVar2 = *(float *)(param_6 + 4 + lVar20 * 0x10);
