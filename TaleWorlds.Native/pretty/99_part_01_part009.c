@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * @file 99_part_01_part009.c
@@ -217,7 +218,7 @@ void System_ComponentStateController(void* context, void* component)
   ulonglong stack_protection;
   
   // 初始化堆栈保护
-  stack_protection = _DAT_180bf00a8 ^ (ulonglong)local_data;
+  stack_protection = GET_SECURITY_COOKIE() ^ (ulonglong)local_data;
   
   // 获取组件和系统上下文
   sys_context = (SystemContext*)context;

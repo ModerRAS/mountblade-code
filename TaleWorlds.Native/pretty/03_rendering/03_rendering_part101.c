@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part101.c - 渲染系统高级参数处理和比较模块
 
@@ -73,7 +74,7 @@ void RenderingSystem_ParameterComparator(uint64_t render_context, longlong *para
   }
   
   // 同步处理
-  FUN_1808fc050(_DAT_180bf00a8);
+  FUN_1808fc050(GET_SECURITY_COOKIE());
 }
 
 // ===================================================================
@@ -808,7 +809,7 @@ void RenderingSystem_ParameterHandler(void)
 
 // 系统常量
 #define SYSTEM_CONTEXT_OFFSET_150 0x150
-#define SYSTEM_SYNC_ADDRESS _DAT_180bf00a8
+#define SYSTEM_SYNC_ADDRESS GET_SECURITY_COOKIE()
 #define SYSTEM_ALIGNMENT_MASK 0xffffffffffffff00
 
 // ===================================================================

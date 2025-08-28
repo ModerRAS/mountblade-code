@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 //============================================================================
 // 99_part_03_part079.c - 系统资源管理和清理模块
@@ -493,7 +494,7 @@ SystemInt32 SystemResourceMonitor_Monitor(SystemHandle context)
     
     // 初始化监控配置
     thread_monitor = 0xfffffffffffffffe;
-    stack_guard = _DAT_180bf00a8 ^ (SystemUInt64)&monitor_config;
+    stack_guard = GET_SECURITY_COOKIE() ^ (SystemUInt64)&monitor_config;
     
     // 检查系统状态是否允许监控
     if ((*(SystemUInt8*)(context + 0x9a31) != '\0') && 
@@ -656,7 +657,7 @@ void SystemResourceManager_ReleaseAll(SystemHandle context)
     
     // 初始化栈保护
     stack_guard[0] = 0xfffffffffffffffe;
-    stack_guard[1] = _DAT_180bf00a8 ^ (SystemUInt64)&stack_guard;
+    stack_guard[1] = GET_SECURITY_COOKIE() ^ (SystemUInt64)&stack_guard;
     
     // 检查系统状态
     if (((*(SystemUInt8*)(context + 4) & 0x80) != 0) && 

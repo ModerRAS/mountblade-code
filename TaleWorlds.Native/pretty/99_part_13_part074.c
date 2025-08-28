@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * @file 99_part_13_part074.c
@@ -495,7 +496,7 @@ void System_Initialize(void)
   /* 调用系统初始化向量 */
   (*(void (**)())*system_table)();
                     /* WARNING: 子程序不返回 */
-  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0));
+  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
 }
 
 
@@ -1325,7 +1326,7 @@ uint64_t ReferenceCount_Manager(longlong *param_1, uint64_t *param_2)
     status_t status = (*(status_t (**)(void**, void*))(*param_1 + 0x18))(param_1, param_2);
     if (status == SYSTEM_SUCCESS) {
       (*(void (**)(void*, int))(*param_2))(param_2, 0);
-      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), param_2, &unknown_var_7872_ptr, 0xcc, 1);
+      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, &unknown_var_7872_ptr, 0xcc, 1);
     }
   } else {
     status_t status = SYSTEM_SUCCESS;
@@ -1434,7 +1435,7 @@ status_t HashTable_RemoveDataOptimized(void* param_1)
   /* 执行后处理操作 */
   if (((int)status == 0) && (status = (*(system_control_func_t)(*target_reg + 0x18))(), (int)status == 0)) {
     (*(system_control_func_t)*target_reg)(data_reg1, 0);
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0));
+    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
   }
   
   return status;
@@ -1575,7 +1576,7 @@ status_t ReferenceCount_ManagerExtended(void* param_1, uint16_t param_2, void* p
     operation_result = (*(system_control_func_t)(*context_reg + 0x18))();
     if ((int)operation_result == 0) {
       (*(system_control_func_t)*param_1)(data_reg1, 0);
-      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0));
+      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
     }
   }
   else {
@@ -1675,7 +1676,7 @@ status_t HashTable_Cleanup(void)
       (operation_result = (*(system_control_func_t)(*target_reg + 0x18))(), 
        (int)operation_result == 0)) {
     (*(system_control_func_t)*target_reg)();
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0));
+    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
   }
   
   return operation_result;
@@ -2187,7 +2188,7 @@ uint32_t DataBuffer_Manager(void** param_1)
     
     /* 条件性资源清理 */
     if ((0 < (int)buffer_size) && (*param_1 != 0)) {
-      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
+      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
     }
     
     /* 重置缓冲区 */
@@ -2208,7 +2209,7 @@ uint32_t DataBuffer_Manager(void** param_1)
   /* 检查元素计数有效性 */
   if ((int)param_1[1] < 1) {
     if ((0 < *(int *)((uint64_t)param_1 + 0xc)) && (*param_1 != 0)) {
-      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
+      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
     }
     
     /* 完全重置缓冲区 */

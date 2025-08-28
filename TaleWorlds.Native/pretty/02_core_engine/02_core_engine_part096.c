@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part096.c - 7个函数
 
@@ -96,7 +97,7 @@ void process_render_batch(void)
           temp_float4 = alpha_value;
         }
         texture_id = texture_id + 1;
-        render_context = _DAT_180c8a9b0;
+        render_context = SYSTEM_DATA_MANAGER_A;
         transform_ptr = stack_param2;
       } while (texture_id < render_index);
     }
@@ -117,7 +118,7 @@ void process_render_batch(void)
   *(ulonglong *)(transform_ptr + -0x78) = CONCAT44(color_r,blend_mode);
   FUN_180122960(CONCAT44(color_r,blend_mode),*(uint64_t *)(transform_ptr + -0x70),blend_mode,1,
                 depth_value);
-  data_ptr = _DAT_180c8a9b0;
+  data_ptr = SYSTEM_DATA_MANAGER_A;
   if (0 < render_index) {
     batch_count = *(int *)(transform_ptr + 200);
     temp_index = -1;
@@ -152,18 +153,18 @@ void process_render_batch(void)
       temp_float4 = 1.0 / (scale_y - color_a);
     }
     scale_y = (float)func_0x00018011a9b0(texture_handle,(longlong)batch_count % (longlong)render_index & 0xffffffff);
-    data_ptr = _DAT_180c8a9b0;
+    data_ptr = SYSTEM_DATA_MANAGER_A;
     temp_float3 = (scale_y - color_a) * temp_float4;
     scale_y = alpha_value;
     if ((alpha_value <= temp_float3) && (scale_y = temp_float3, 1.0 <= temp_float3)) {
       scale_y = 1.0;
     }
     scale_y = 1.0 - scale_y;
-    position_w = *(float *)(_DAT_180c8a9b0 + 0x1948);
-    temp_float1 = *(float *)(_DAT_180c8a9b0 + 0x194c);
-    temp_param1 = *(int32_t *)(_DAT_180c8a9b0 + 0x1950);
-    temp_float3 = *(float *)(_DAT_180c8a9b0 + 0x1628);
-    temp_float2 = *(float *)(_DAT_180c8a9b0 + 0x1954) * temp_float3;
+    position_w = *(float *)(SYSTEM_DATA_MANAGER_A + 0x1948);
+    temp_float1 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x194c);
+    temp_param1 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1950);
+    temp_float3 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628);
+    temp_float2 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x1954) * temp_float3;
     scale_factor = alpha_value;
     temp_float8 = (float)func_0x000180121e20(&stack0x00000040);
     position_w = *(float *)(data_ptr + 0x1958);
@@ -205,7 +206,7 @@ void process_render_batch(void)
         FUN_180293d20(*(uint64_t *)(*(longlong *)(transform_ptr + -0x80) + 0x2e8),&stack0x00000070,
                       &stack0x00000040,position_x,depth_value);
         color_value = color_value - 1;
-        data_ptr = _DAT_180c8a9b0;
+        data_ptr = SYSTEM_DATA_MANAGER_A;
         transform_ptr = stack_param2;
         temp_float2 = temp_float7;
       } while (color_value != 0);
@@ -344,7 +345,7 @@ void process_text_with_params(void)
   int32_t blend_mode;
   uint64_t stack_param1;
   
-  context_ptr = _DAT_180c8a9b0;
+  context_ptr = SYSTEM_DATA_MANAGER_A;
   text_ptr = *(char **)(transform_ptr + 0xd0);
   if (text_ptr != (char *)0x0) {
     *(int32_t *)(transform_ptr + 0xb0) = blend_mode;
@@ -401,8 +402,8 @@ ulonglong render_text_with_effects(char *text_data,ulonglong position_data,char 
   int32_t stack_buffer3;
   float stack_buffer4;
   
-  render_data = _DAT_180c8a9b0;
-  result = *(ulonglong *)(_DAT_180c8a9b0 + 0x1af8);
+  render_data = SYSTEM_DATA_MANAGER_A;
+  result = *(ulonglong *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
   *(int8_t *)(result + 0xb1) = 1;
   context_ptr = *(longlong *)(render_data + 0x1af8);
   if (*(char *)(context_ptr + 0xb4) == '\0') {
@@ -458,10 +459,10 @@ ulonglong render_text_with_effects(char *text_data,ulonglong position_data,char 
       if (effect_flag != '\0') {
         font_size = *(float *)(render_data + 0x19f8);
         position_z = *(float *)(context_ptr + 0x2a0);
-        stack_buffer1 = *(int32_t *)(_DAT_180c8a9b0 + 0x16c8);
-        stack_buffer2 = *(int32_t *)(_DAT_180c8a9b0 + 0x16cc);
-        stack_buffer3 = *(int32_t *)(_DAT_180c8a9b0 + 0x16d0);
-        stack_buffer4 = *(float *)(_DAT_180c8a9b0 + 0x16d4) * *(float *)(_DAT_180c8a9b0 + 0x1628);
+        stack_buffer1 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x16c8);
+        stack_buffer2 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x16cc);
+        stack_buffer3 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x16d0);
+        stack_buffer4 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x16d4) * *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628);
         render_flags = func_0x000180121e20(&stack_buffer1);
         FUN_180122f40(CONCAT44(font_size * 0.067 + position_y,text_width + position_z + font_size * 0.4 + position_x),render_flags,
                       font_size * 0.866);
@@ -564,11 +565,11 @@ int8_t render_text_element(void)
     if (effect_flag != '\0') {
       font_size = *(float *)(context_ptr + 0x19f8);
       position_z = *(float *)(render_context + 0x2a0);
-      stack_param2 = *(int32_t *)(_DAT_180c8a9b0 + 0x16c8);
-      stack_param3 = *(int32_t *)(_DAT_180c8a9b0 + 0x16cc);
-      stack_param4 = *(int32_t *)(_DAT_180c8a9b0 + 0x16d0);
+      stack_param2 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x16c8);
+      stack_param3 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x16cc);
+      stack_param4 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x16d0);
       stack_param5 =
-           *(float *)(_DAT_180c8a9b0 + 0x16d4) * *(float *)(_DAT_180c8a9b0 + 0x1628);
+           *(float *)(SYSTEM_DATA_MANAGER_A + 0x16d4) * *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628);
       render_flags = func_0x000180121e20(&stack0x00000040);
       FUN_180122f40(CONCAT44(font_size * 0.067 + position_y,text_width + position_z + font_size * 0.4 + position_x),render_flags,
                     font_size * 0.866);

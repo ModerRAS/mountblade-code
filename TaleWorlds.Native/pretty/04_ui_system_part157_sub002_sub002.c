@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 //==============================================================================
 // 文件信息：04_ui_system_part157_sub002_sub002.c
@@ -132,7 +133,7 @@ void FUN_18075f1e0(longlong param_1, int param_2, int32_t *param_3, longlong par
     ulonglong uStack_20;                        // 安全检查值
     
     // 安全检查：栈保护机制
-    uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
+    uStack_20 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_68;
     
     // 初始化数据缓冲区
     puVar3 = (int8_t *)0x0;                 // 初始化为NULL
@@ -295,7 +296,7 @@ ulonglong FUN_18075f4c0(longlong *param_1, ulonglong param_2, ulonglong param_3,
     
     // 检查系统状态和权限
     if (((*(uint *)(*param_1 + 0x78) & 0x10000) == 0) &&  // 检查系统状态
-        (*(char *)(_DAT_180be12f0 + 0x158) == '\0'))     // 检查权限标志
+        (*(char *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x158) == '\0'))     // 检查权限标志
     {
         bVar2 = false;                             // 设置状态为未授权
     }

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * 渲染系统高级纹理采样和边缘检测模块
@@ -202,7 +203,7 @@ void FUN_18035ebe0(uint64_t *param_1)
     
     /* 初始化栈变量 */
     uStack_280 = 0xfffffffffffffffe;
-    uStack_d8 = _DAT_180bf00a8 ^ (ulonglong)auStack_458;
+    uStack_d8 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_458;
     puVar9 = (uint64_t *)0x0;
     alStack_1b8[0] = 0;
     alStack_1b8[1] = 0;

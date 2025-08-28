@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * 03_rendering_part576.c - 渲染系统高级动画控制和物理模拟模块
@@ -165,7 +166,7 @@
 /** 渲染系统全局数据引用 */
 extern uint64_t _DAT_180c8ed30;
 extern uint64_t _DAT_180c8ed18;
-extern uint64_t _DAT_180bf00a8;
+extern uint64_t GET_SECURITY_COOKIE();
 extern uint64_t _DAT_180c8aa00;
 extern uint64_t _DAT_180c92514;
 extern uint64_t _DAT_180c8ece0;

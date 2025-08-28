@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part177_sub002_sub002.c - 1 个函数
 
@@ -144,7 +145,7 @@ void FUN_18037585f(void)
   *(int32_t *)(unaff_RBP + -0x68) = uVar13;
   _cStack0000000000000074 = (uint)(bVar3 >> 5 & 1);
   fStack0000000000000070 =
-       ((float)*(int *)(_DAT_180c86920 + 0xe0) * 0.125 + 0.5) * *(float *)(_DAT_180c86870 + 0x3a4);
+       ((float)*(int *)(SYSTEM_STATE_MANAGER + 0xe0) * 0.125 + 0.5) * *(float *)(_DAT_180c86870 + 0x3a4);
   if ((*(char *)(*(longlong *)(unaff_R15 + 0x2148) + 0x3f62) == '\0') ||
      (*(int *)(_DAT_180c8a9c8 + 0x7e0) != 0)) {
     fStack0000000000000070 = 3.4028235e+38;
@@ -548,7 +549,7 @@ LAB_18037624d:
                                    *(float *)(lVar27 + 0x48);
                           if (((cStack0000000000000074 == '\0') || (fVar40 <= fVar1)) &&
                              ((((-1 < *(int *)(unaff_R13 + 0x60) ||
-                                (0 < *(int *)(_DAT_180c86920 + 0xe0))) || (fVar40 <= 120.0)) &&
+                                (0 < *(int *)(SYSTEM_STATE_MANAGER + 0xe0))) || (fVar40 <= 120.0)) &&
                               (iVar36 = FUN_1801b8ce0(*(longlong *)
                                                        (*(longlong *)(unaff_RBP + 0x290) + 0x2148) +
                                                       0x2998,*(longlong *)(unaff_RBP + -0x78) + 0x30

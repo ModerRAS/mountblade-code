@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 渲染系统高级纹理映射和参数处理模块
 // 包含4个核心函数，涵盖渲染纹理映射、参数处理、资源管理、缓冲区操作等高级渲染功能
@@ -152,7 +153,7 @@ void render_system_texture_mapper(uint64_t render_context, longlong texture_data
     
     // 初始化内存保护
     manager_handle = 0xfffffffffffffffe;
-    memory_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_protector;
+    memory_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_protector;
     
     // 初始化纹理数据
     FUN_1802c22a0(alignment_buffer, &unknown_var_6264_ptr);
@@ -450,7 +451,7 @@ void render_system_parameter_processor(uint64_t *render_context, longlong textur
     
     // 初始化数据保护
     data_coord_y = 0xfffffffffffffffe;
-    checksum = _DAT_180bf00a8 ^ (ulonglong)param_buffer;
+    checksum = GET_SECURITY_COOKIE() ^ (ulonglong)param_buffer;
     data_height = 0;
     texture_size = RENDER_TEXTURE_SIZE_BASE;
     param_index = -1;
@@ -587,7 +588,7 @@ void render_system_texture_allocator(uint64_t *texture_handle, int32_t texture_f
     
     // 初始化缓冲区
     texture_config = 0xfffffffffffffffe;
-    checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     buffer_format = 0;
     float_ptr = (float *)0x0;
     texture_offset = 0;

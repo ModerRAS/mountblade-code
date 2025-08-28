@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_02_part057.c - 2 个函数
 
@@ -48,7 +49,7 @@ void FUN_1801c2d00(uint64_t param_1,uint64_t param_2)
   ulonglong uStack_38;
   
   uStack_a8 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_168;
   puStack_e8 = &unknown_var_3456_ptr;
   uStack_d0 = 0;
   lStack_e0 = 0;

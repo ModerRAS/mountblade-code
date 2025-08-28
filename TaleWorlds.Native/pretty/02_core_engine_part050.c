@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part050.c - 14 个函数
 
@@ -46,7 +47,7 @@ void FUN_18008bb30(uint64_t param_1,longlong param_2,longlong *param_3,longlong 
   ulonglong uStack_48;
   
   uStack_208 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_288;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_288;
   lVar8 = *param_3;
   lVar4 = param_3[2];
   lStack_240 = param_3[1];
@@ -205,7 +206,7 @@ void FUN_18008bf40(uint64_t param_1,longlong param_2,longlong *param_3,longlong 
   ulonglong uStack_48;
   
   uStack_2b8 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_328;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_328;
   alStack_2f0[0] = -1;
   puVar5 = &system_buffer_ptr;
   if (*(void **)(param_2 + 0x60) != (void *)0x0) {
@@ -217,7 +218,7 @@ void FUN_18008bf40(uint64_t param_1,longlong param_2,longlong *param_3,longlong 
   if (cVar1 == '\0') {
     if (alStack_2f0[0] != -1) {
       LOCK();
-      _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+      SYSTEM_HANDLE_COUNTER_ADDR = SYSTEM_HANDLE_COUNTER_ADDR + -1;
       UNLOCK();
       CloseHandle(alStack_2f0[0]);
       alStack_2f0[0] = -1;
@@ -341,7 +342,7 @@ void FUN_18008c320(longlong param_1,longlong *param_2)
   ulonglong uStack_48;
   
   uStack_898 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_8e8;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_8e8;
   uVar8 = 0;
   uStack_8b8 = 0;
   plStack_8a0 = param_2;

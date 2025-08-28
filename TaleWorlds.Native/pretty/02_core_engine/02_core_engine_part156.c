@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part156.c - 27 个函数
 
@@ -351,10 +352,10 @@ longlong read_clipboard_unicode_text(void)
               allocated_size = buffer_size;
             }
             if (_DAT_180d4927c < (int)allocated_size) {
-              if (_DAT_180c8a9b0 != 0) {
-                *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+              if (SYSTEM_DATA_MANAGER_A != 0) {
+                *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
               }
-              new_buffer = func_0x000180120ce0((longlong)(int)allocated_size,_DAT_180c8a9a8);
+              new_buffer = func_0x000180120ce0((longlong)(int)allocated_size,SYSTEM_DATA_MANAGER_B);
               if (_DAT_180d49280 != 0) {
                 memcpy(new_buffer,_DAT_180d49280,(longlong)_DAT_180d49278);
               }
@@ -374,10 +375,10 @@ longlong read_clipboard_unicode_text(void)
     return 0;
   }
   _DAT_180d49278 = 0;
-  if (_DAT_180c8a9b0 != 0) {
-    *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+  if (SYSTEM_DATA_MANAGER_A != 0) {
+    *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
   }
-  FUN_180059ba0(clipboard_data,_DAT_180c8a9a8);
+  FUN_180059ba0(clipboard_data,SYSTEM_DATA_MANAGER_B);
 }
 
 /**
@@ -477,10 +478,10 @@ void add_pointer_to_array(int *array_ptr,uint64_t *element_ptr)
       required_size = new_size;
     }
     if (current_size < required_size) {
-      if (_DAT_180c8a9b0 != 0) {
-        *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+      if (SYSTEM_DATA_MANAGER_A != 0) {
+        *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
       }
-      new_buffer = func_0x000180120ce0((longlong)required_size << 3,_DAT_180c8a9a8);
+      new_buffer = func_0x000180120ce0((longlong)required_size << 3,SYSTEM_DATA_MANAGER_B);
       if (*(longlong *)(array_ptr + 2) != 0) {
         memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr << 3);
       }
@@ -509,7 +510,7 @@ void add_pointer_to_array_reg(void)
   if (memory_tracker != 0) {
     *(int *)(memory_tracker + 0x3a8) = *(int *)(memory_tracker + 0x3a8) + 1;
   }
-  new_buffer = func_0x000180120ce0((longlong)new_capacity << 3,_DAT_180c8a9a8);
+  new_buffer = func_0x000180120ce0((longlong)new_capacity << 3,SYSTEM_DATA_MANAGER_B);
   if (*(longlong *)(array_ptr + 2) != 0) {
     memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr << 3);
   }
@@ -550,33 +551,33 @@ void release_object_resources(uint64_t *object_ptr,uint64_t param2,uint64_t para
   resource_ptr = object_ptr[3];
   if (resource_ptr != 0) {
     object_ptr[2] = 0;
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-    FUN_180059ba0(resource_ptr,_DAT_180c8a9a8,param3,param4,0xfffffffffffffffe);
+    FUN_180059ba0(resource_ptr,SYSTEM_DATA_MANAGER_B,param3,param4,0xfffffffffffffffe);
   }
   resource_ptr = object_ptr[1];
   if (resource_ptr != 0) {
     *object_ptr = 0;
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-    FUN_180059ba0(resource_ptr,_DAT_180c8a9a8,param3,param4,0xfffffffffffffffe);
+    FUN_180059ba0(resource_ptr,SYSTEM_DATA_MANAGER_B,param3,param4,0xfffffffffffffffe);
   }
   *(int32_t *)(object_ptr + 4) = 0;
   resource_ptr = object_ptr[3];
   if (resource_ptr != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-    FUN_180059ba0(resource_ptr,_DAT_180c8a9a8,param3,param4,0xfffffffffffffffe);
+    FUN_180059ba0(resource_ptr,SYSTEM_DATA_MANAGER_B,param3,param4,0xfffffffffffffffe);
   }
   resource_ptr = object_ptr[1];
   if (resource_ptr != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-    FUN_180059ba0(resource_ptr,_DAT_180c8a9a8,param3,param4,0xfffffffffffffffe);
+    FUN_180059ba0(resource_ptr,SYSTEM_DATA_MANAGER_B,param3,param4,0xfffffffffffffffe);
   }
   return;
 }
@@ -592,10 +593,10 @@ void resize_array_capacity(int *array_ptr,int new_capacity)
   uint64_t new_buffer;
   
   if (array_ptr[1] < new_capacity) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
-    new_buffer = func_0x000180120ce0((longlong)new_capacity << 5,_DAT_180c8a9a8);
+    new_buffer = func_0x000180120ce0((longlong)new_capacity << 5,SYSTEM_DATA_MANAGER_B);
     if (*(longlong *)(array_ptr + 2) != 0) {
       memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr << 5);
     }
@@ -620,7 +621,7 @@ void resize_array_capacity_reg(void)
   if (memory_tracker != 0) {
     *(int *)(memory_tracker + 0x3a8) = *(int *)(memory_tracker + 0x3a8) + 1;
   }
-  new_buffer = func_0x000180120ce0(new_capacity << 5,_DAT_180c8a9a8);
+  new_buffer = func_0x000180120ce0(new_capacity << 5,SYSTEM_DATA_MANAGER_B);
   if (*(longlong *)(array_ptr + 2) != 0) {
     memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr << 5);
   }
@@ -697,10 +698,10 @@ void set_array_size(int *array_ptr,int new_size)
     required_size = expanded_size;
   }
   if (current_size < required_size) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
-    new_buffer = func_0x000180120ce0((longlong)required_size * 0x30,_DAT_180c8a9a8);
+    new_buffer = func_0x000180120ce0((longlong)required_size * 0x30,SYSTEM_DATA_MANAGER_B);
     if (*(longlong *)(array_ptr + 2) != 0) {
       memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr * 0x30);
     }
@@ -737,10 +738,10 @@ void set_array_size_reg(int current_size)
     required_size = expanded_size;
   }
   if (current_size < required_size) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
-    new_buffer = func_0x000180120ce0((longlong)required_size * 0x30,_DAT_180c8a9a8);
+    new_buffer = func_0x000180120ce0((longlong)required_size * 0x30,SYSTEM_DATA_MANAGER_B);
     if (*(longlong *)(array_ptr + 2) != 0) {
       memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr * 0x30);
     }
@@ -810,10 +811,10 @@ void add_struct_to_array(int *array_ptr,uint64_t *element_ptr)
       required_size = new_size;
     }
     if (current_size < required_size) {
-      if (_DAT_180c8a9b0 != 0) {
-        *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+      if (SYSTEM_DATA_MANAGER_A != 0) {
+        *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
       }
-      new_buffer = func_0x000180120ce0((longlong)required_size * 0x30,_DAT_180c8a9a8);
+      new_buffer = func_0x000180120ce0((longlong)required_size * 0x30,SYSTEM_DATA_MANAGER_B);
       if (*(longlong *)(array_ptr + 2) != 0) {
         memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr * 0x30);
       }
@@ -858,7 +859,7 @@ void add_struct_to_array_reg(void)
   if (memory_tracker != 0) {
     *(int *)(memory_tracker + 0x3a8) = *(int *)(memory_tracker + 0x3a8) + 1;
   }
-  new_buffer = func_0x000180120ce0((longlong)new_capacity * 0x30,_DAT_180c8a9a8);
+  new_buffer = func_0x000180120ce0((longlong)new_capacity * 0x30,SYSTEM_DATA_MANAGER_B);
   if (*(longlong *)(array_ptr + 2) != 0) {
     memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr * 0x30);
   }
@@ -939,10 +940,10 @@ void release_container_resources(uint64_t *container_ptr,uint64_t param2,uint64_
       index = *(int *)(container_ptr[3] + 8 + offset);
       if ((index != -1) &&
          (resource_ptr = *(longlong *)((longlong)index * 0x60 + container_ptr[1] + 8), resource_ptr != 0)) {
-        if (_DAT_180c8a9b0 != 0) {
-          *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+        if (SYSTEM_DATA_MANAGER_A != 0) {
+          *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
         }
-        FUN_180059ba0(resource_ptr,_DAT_180c8a9a8,param3,param4,0xfffffffffffffffe);
+        FUN_180059ba0(resource_ptr,SYSTEM_DATA_MANAGER_B,param3,param4,0xfffffffffffffffe);
       }
       current_index = (int)max_index + 1;
       offset = offset + 0x10;
@@ -953,35 +954,35 @@ void release_container_resources(uint64_t *container_ptr,uint64_t param2,uint64_
   if (resource_ptr != 0) {
     size_ptr[0] = 0;
     size_ptr[1] = 0;
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-    FUN_180059ba0(resource_ptr,_DAT_180c8a9a8,param3,param4,0xfffffffffffffffe);
+    FUN_180059ba0(resource_ptr,SYSTEM_DATA_MANAGER_B,param3,param4,0xfffffffffffffffe);
   }
   resource_ptr = container_ptr[1];
   if (resource_ptr == 0) {
     *(int32_t *)(container_ptr + 4) = 0;
     resource_ptr = container_ptr[3];
     if (resource_ptr != 0) {
-      if (_DAT_180c8a9b0 != 0) {
-        *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+      if (SYSTEM_DATA_MANAGER_A != 0) {
+        *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
       }
-      FUN_180059ba0(resource_ptr,_DAT_180c8a9a8,param3,param4,0xfffffffffffffffe);
+      FUN_180059ba0(resource_ptr,SYSTEM_DATA_MANAGER_B,param3,param4,0xfffffffffffffffe);
     }
     resource_ptr = container_ptr[1];
     if (resource_ptr == 0) {
       return;
     }
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-    FUN_180059ba0(resource_ptr,_DAT_180c8a9a8,param3,param4,0xfffffffffffffffe);
+    FUN_180059ba0(resource_ptr,SYSTEM_DATA_MANAGER_B,param3,param4,0xfffffffffffffffe);
   }
   *container_ptr = 0;
-  if (_DAT_180c8a9b0 != 0) {
-    *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+  if (SYSTEM_DATA_MANAGER_A != 0) {
+    *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
   }
-  FUN_180059ba0(resource_ptr,_DAT_180c8a9a8,param3,param4,0xfffffffffffffffe);
+  FUN_180059ba0(resource_ptr,SYSTEM_DATA_MANAGER_B,param3,param4,0xfffffffffffffffe);
 }
 
 /**
@@ -1013,10 +1014,10 @@ void set_simple_array_size(int *array_ptr,int new_size)
     required_size = expanded_size;
   }
   if (current_size < required_size) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
-    new_buffer = func_0x000180120ce0((longlong)required_size,_DAT_180c8a9a8);
+    new_buffer = func_0x000180120ce0((longlong)required_size,SYSTEM_DATA_MANAGER_B);
     if (*(longlong *)(array_ptr + 2) != 0) {
       memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr);
     }
@@ -1053,10 +1054,10 @@ void set_simple_array_size_reg(int current_size)
     required_size = expanded_size;
   }
   if (current_size < required_size) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
-    new_buffer = func_0x000180120ce0((longlong)required_size,_DAT_180c8a9a8);
+    new_buffer = func_0x000180120ce0((longlong)required_size,SYSTEM_DATA_MANAGER_B);
     if (*(longlong *)(array_ptr + 2) != 0) {
       memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr);
     }

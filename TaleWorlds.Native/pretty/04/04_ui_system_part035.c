@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 04_ui_system_part035.c - UI系统高级SIMD向量化处理模块
 // 
@@ -132,7 +133,7 @@ void ui_system_simd_vector_processor(longlong system_context, longlong *vector_d
   ulonglong stack_guard;
   
   // 栈保护机制初始化
-  stack_guard = _DAT_180bf00a8 ^ (ulonglong)&stack_protection_1;
+  stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)&stack_protection_1;
   stack_protection_1 = 0x8040100;
   stack_protection_2 = 0x6030205;
   stack_protection_3 = 0xa0d0c09;

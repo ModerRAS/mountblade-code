@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part068.c - 核心引擎缓冲区管理函数
 // 本文件包含缓冲区操作、内存管理和流处理相关函数
@@ -194,7 +195,7 @@ void FUN_18009f170(longlong param_1)
   ulonglong uStack_18;
   
   uStack_40 = 0xfffffffffffffffe;
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_98;
   uVar6 = **(ulonglong **)(param_1 + 0x38);
   if ((uVar6 == 0) || ((longlong)**(int **)(param_1 + 0x50) + uVar6 <= uVar6)) {
     if (*(longlong *)(param_1 + 0x80) != 0) {

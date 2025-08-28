@@ -120,7 +120,7 @@ void SystemStringProcessor_1(longlong param_1, longlong param_2, longlong param_
     
     /* 初始化栈变量 */
     uStack_478 = 0xfffffffffffffffe;
-    uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_498;
+    uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_498;
     puStack_468 = &unknown_var_336_ptr;
     puStack_460 = auStack_450;
     uStack_458 = 0;
@@ -296,11 +296,11 @@ void SystemResourceCleaner_1(uint64_t param_1, uint32_t param_2)
     uint32_t auStackX_10 [6];
     
     /* 获取资源管理器指针 */
-    lVar1 = _DAT_180c86920;
+    lVar1 = SYSTEM_STATE_MANAGER;
     
     /* 检查资源状态并执行清理 */
-    if ((*(longlong *)(_DAT_180c86920 + 0x22f0) != 0) &&
-        (auStackX_10[0] = param_2, cVar2 = (**(code **)(_DAT_180c86920 + 0x22f8))(auStackX_10),
+    if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x22f0) != 0) &&
+        (auStackX_10[0] = param_2, cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x22f8))(auStackX_10),
          param_2 = auStackX_10[0], cVar2 == '\0')) {
         
         /* 处理清理成功的情况 */
@@ -479,7 +479,7 @@ void SystemStringProcessor_2(longlong param_1, longlong param_2, longlong param_
     
     /* 初始化栈变量 */
     uStack_88 = 0xfffffffffffffffe;
-    uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_a8;
+    uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_a8;
     puStack_80 = &unknown_var_672_ptr;
     puStack_78 = auStack_68;
     uStack_70 = 0;
@@ -1069,7 +1069,7 @@ void SystemResourceProcessor(void)
   ulonglong uStack_68;
   
   uStack_4f8 = 0xfffffffffffffffe;
-  uStack_68 = _DAT_180bf00a8 ^ (ulonglong)auStack_698;
+  uStack_68 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_698;
   uStack_5b8 = 0;
   if (*(int *)(_DAT_180c86870 + 0x224) - _DAT_180bf52b0 < 0xfb) {
                     // WARNING: Subroutine does not return
@@ -1234,18 +1234,18 @@ void SystemResourceProcessor(void)
   *puVar7 = 0;
   *(uint8_t *)(puVar7 + 2) = 0;
   FUN_18062dee0(puVar7,puVar9,&system_memory_c7ec);
-  FUN_1800ae730(_DAT_180c86920,puVar7);
+  FUN_1800ae730(SYSTEM_STATE_MANAGER,puVar7);
   if (puVar7[1] != 0) {
     fclose();
     puVar7[1] = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
     if (puVar7[1] != 0) {
       fclose();
       puVar7[1] = 0;
       LOCK();
-      _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+      SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
       UNLOCK();
     }
   }

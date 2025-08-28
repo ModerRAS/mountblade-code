@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part063.c - 17个函数
 // 渲染系统高级处理和控制模块，包含位标志处理、树结构搜索、资源管理、线程同步等核心渲染功能
@@ -667,7 +668,7 @@ void rendering_system_batch_processor(longlong batch_context_ptr, uint64_t proce
   ulonglong stack_canary_value;         // 栈保护值
   
   // 初始化栈保护
-  stack_canary_value = _DAT_180bf00a8 ^ (ulonglong)stack_canary;
+  stack_canary_value = GET_SECURITY_COOKIE() ^ (ulonglong)stack_canary;
   processed_count = 0;
   
   // 初始化渲染参数

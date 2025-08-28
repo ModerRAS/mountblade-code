@@ -251,7 +251,7 @@ extern uint64_t global_state_2016_ptr;               /**< 全局配置数据结�
 extern uint64_t global_state_7304_ptr;               /**< 全局状态数据结构 */
 extern uint64_t global_state_3456_ptr;               /**< 全局错误处理结构 */
 extern uint64_t global_state_720_ptr;               /**< 全局系统配置结构 */
-extern uint64_t _DAT_180c86920;             /**< 全局数据表基地址 */
+extern uint64_t SYSTEM_STATE_MANAGER;             /**< 全局数据表基地址 */
 extern uint64_t _DAT_180c8a9c8;             /**< 全局状态表基地址 */
 
 /*==============================================================================
@@ -443,7 +443,7 @@ void CoreEngine_ConfigModeSetter(uint64_t param_1, int param_2)
     int32_t control_param;
     int32_t adjustment_param;
     
-    system_handle = _DAT_180c86920;
+    system_handle = SYSTEM_STATE_MANAGER;
     
     // 基本配置模式处理（模式0-4）
     if (param_2 < 5) {
@@ -469,14 +469,14 @@ void CoreEngine_ConfigModeSetter(uint64_t param_1, int param_2)
                 else {
                     config_param = control_param;
                     if (param_2 == 5) {
-                        config_param = *(int32_t *)(_DAT_180c86920 + 0xe0);  // 动态配置
+                        config_param = *(int32_t *)(SYSTEM_STATE_MANAGER + 0xe0);  // 动态配置
                     }
                 }
             }
         }
         
         // 设置配置230
-        CoreEngine_SetConfig230(_DAT_180c86920, config_param);
+        CoreEngine_SetConfig230(SYSTEM_STATE_MANAGER, config_param);
         
         // 重新确定配置参数用于170设置
         if (param_2 == 0) {

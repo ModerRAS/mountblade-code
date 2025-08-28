@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part153.c - 14 个函数
 
@@ -838,8 +839,8 @@ void log_collision_event(uint64_t log_format, uint64_t param2, uint64_t param3, 
   uint64_t log_param2;
   uint64_t log_param3;
   
-  if (*(char *)(_DAT_180c8a9b0 + 0x2e38) != '\0') {
-    lVar1 = *(longlong *)(_DAT_180c8a9b0 + 0x2e40);
+  if (*(char *)(SYSTEM_DATA_MANAGER_A + 0x2e38) != '\0') {
+    lVar1 = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x2e40);
     uStackX_10 = param_2;
     uStackX_18 = param_3;
     uStackX_20 = param_4;
@@ -848,7 +849,7 @@ void log_collision_event(uint64_t log_format, uint64_t param2, uint64_t param3, 
       __stdio_common_vfprintf(*puVar2,lVar1,param_1,0,&uStackX_10);
       return;
     }
-    FUN_180122240(_DAT_180c8a9b0 + 0x2e48,param_1,&uStackX_10);
+    FUN_180122240(SYSTEM_DATA_MANAGER_A + 0x2e48,param_1,&uStackX_10);
   }
   return;
 }

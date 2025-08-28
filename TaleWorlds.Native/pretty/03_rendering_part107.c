@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part107.c - 渲染系统纹理处理和数学计算模块
 // 
@@ -119,7 +120,7 @@ void RenderingSystem_TexturePathProcessor(longlong render_context, longlong file
     
     // 初始化渲染系统基础地址
     base_address = _DAT_180c86890;
-    frame_sync = _DAT_180bf00a8 ^ (ulonglong)alignment_buffer;
+    frame_sync = GET_SECURITY_COOKIE() ^ (ulonglong)alignment_buffer;
     calculation_base = _DAT_180c86890 + 0x7440;
     
     // 获取纹理索引指针
@@ -506,7 +507,7 @@ void RenderingSystem_ParameterInterpolator(uint64_t render_context, float *targe
     ulonglong frame_sync;
     
     // 初始化帧同步
-    frame_sync = _DAT_180bf00a8 ^ (ulonglong)workspace;
+    frame_sync = GET_SECURITY_COOKIE() ^ (ulonglong)workspace;
     
     // 复制源数据到目标缓冲区
     simd_result = source_buffer1[1];

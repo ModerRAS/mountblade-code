@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_07_part009.c - 6 个函数
 
@@ -149,8 +150,8 @@ ulonglong FUN_1804a3160(void)
   
   lVar2 = _DAT_180c96070;
   if (_DAT_180c96070 != 0) {
-    in_RAX = (ulonglong)*(uint *)(_DAT_180c86920 + 0xc40);
-    if (*(uint *)(_DAT_180c86920 + 0xc44) != *(uint *)(_DAT_180c86920 + 0xc40)) {
+    in_RAX = (ulonglong)*(uint *)(SYSTEM_STATE_MANAGER + 0xc40);
+    if (*(uint *)(SYSTEM_STATE_MANAGER + 0xc44) != *(uint *)(SYSTEM_STATE_MANAGER + 0xc40)) {
       in_RAX = 0;
       uVar1 = *(uint *)(_DAT_180c96070 + 0x52ed94);
       if (0 < (int)uVar1) {
@@ -183,7 +184,7 @@ LAB_1804a31c9:
   }
   lVar2 = _DAT_180c96118;
   if (_DAT_180c96118 != 0) {
-    iVar4 = *(int *)(_DAT_180c86920 + 0x12d0);
+    iVar4 = *(int *)(SYSTEM_STATE_MANAGER + 0x12d0);
     if (iVar4 == 0) {
       iVar4 = 0x40;
     }
@@ -231,8 +232,8 @@ ulonglong FUN_1804a3164(void)
   
   lVar2 = _DAT_180c96070;
   if (_DAT_180c96070 != 0) {
-    in_RAX = (ulonglong)*(uint *)(_DAT_180c86920 + 0xc40);
-    if (*(uint *)(_DAT_180c86920 + 0xc44) != *(uint *)(_DAT_180c86920 + 0xc40)) {
+    in_RAX = (ulonglong)*(uint *)(SYSTEM_STATE_MANAGER + 0xc40);
+    if (*(uint *)(SYSTEM_STATE_MANAGER + 0xc44) != *(uint *)(SYSTEM_STATE_MANAGER + 0xc40)) {
       in_RAX = 0;
       uVar1 = *(uint *)(_DAT_180c96070 + 0x52ed94);
       if (0 < (int)uVar1) {
@@ -265,7 +266,7 @@ LAB_1804a31c9:
   }
   lVar2 = _DAT_180c96118;
   if (_DAT_180c96118 != 0) {
-    iVar4 = *(int *)(_DAT_180c86920 + 0x12d0);
+    iVar4 = *(int *)(SYSTEM_STATE_MANAGER + 0x12d0);
     if (iVar4 == 0) {
       iVar4 = 0x40;
     }
@@ -342,7 +343,7 @@ LAB_1804a31c9:
   }
   lVar2 = _DAT_180c96118;
   if (_DAT_180c96118 != 0) {
-    iVar4 = *(int *)(_DAT_180c86920 + 0x12d0);
+    iVar4 = *(int *)(SYSTEM_STATE_MANAGER + 0x12d0);
     if (iVar4 == 0) {
       iVar4 = 0x40;
     }
@@ -402,7 +403,7 @@ ulonglong FUN_1804a31cd(void)
   }
   lVar1 = _DAT_180c96118;
   if (_DAT_180c96118 != 0) {
-    iVar3 = *(int *)(_DAT_180c86920 + 0x12d0);
+    iVar3 = *(int *)(SYSTEM_STATE_MANAGER + 0x12d0);
     if (iVar3 == 0) {
       iVar3 = 0x40;
     }
@@ -449,7 +450,7 @@ ulonglong FUN_1804a3220(void)
   }
   lVar2 = _DAT_180c96118;
   if (_DAT_180c96118 != 0) {
-    iVar3 = *(int *)(_DAT_180c86920 + 0x12d0);
+    iVar3 = *(int *)(SYSTEM_STATE_MANAGER + 0x12d0);
     if (iVar3 == 0) {
       iVar3 = 0x40;
     }
@@ -496,7 +497,7 @@ ulonglong FUN_1804a3225(void)
   }
   lVar2 = _DAT_180c96118;
   if (_DAT_180c96118 != 0) {
-    iVar3 = *(int *)(_DAT_180c86920 + 0x12d0);
+    iVar3 = *(int *)(SYSTEM_STATE_MANAGER + 0x12d0);
     if (iVar3 == 0) {
       iVar3 = 0x40;
     }
@@ -536,7 +537,7 @@ int32_t FUN_1804a3256(longlong param_1)
   int32_t uVar1;
   int iVar2;
   
-  iVar2 = *(int *)(_DAT_180c86920 + 0x12d0);
+  iVar2 = *(int *)(SYSTEM_STATE_MANAGER + 0x12d0);
   if (iVar2 == 0) {
     iVar2 = 0x40;
   }
@@ -588,8 +589,8 @@ void FUN_1804a3270(void)
   if (iVar4 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar4);
   }
-  uVar2 = _DAT_180c8a9b0;
-  _DAT_180c8a9b0 = *puVar1;
+  uVar2 = SYSTEM_DATA_MANAGER_A;
+  SYSTEM_DATA_MANAGER_A = *puVar1;
   cVar3 = FUN_1801299b0(&unknown_var_1664_ptr,0,0,in_R9,uVar5);
   if (cVar3 != '\0') {
     FUN_180111070(&unknown_var_1688_ptr,&system_data_8f1a);
@@ -600,7 +601,7 @@ void FUN_1804a3270(void)
   if (system_data_8f1a != '\0') {
     (**(code **)(_DAT_180c8ece0 + 0x318))(*(int32_t *)(_DAT_180c8ece0 + 0x10));
   }
-  _DAT_180c8a9b0 = uVar2;
+  SYSTEM_DATA_MANAGER_A = uVar2;
   iVar4 = _Mtx_unlock(0x180c91970);
   if (iVar4 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar4);

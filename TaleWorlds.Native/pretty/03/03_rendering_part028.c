@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part028.c - 渲染系统数据处理和变换模块
 // 包含6个核心函数，主要处理渲染数据结构、矩阵变换和资源管理
@@ -698,7 +699,7 @@ void advanced_render_processing(longlong render_target, uint64_t material_data, 
     ulonglong checksum;
     
     render_mode = 0xfffffffffffffffe;
-    checksum = _DAT_180bf00a8 ^ (ulonglong)material_buffer;
+    checksum = GET_SECURITY_COOKIE() ^ (ulonglong)material_buffer;
     material_hash = 0;
     
     // 材质系统处理
@@ -849,7 +850,7 @@ material_processing_complete:
 //============================================================================
 
 // 渲染系统全局数据
-static uint64_t _DAT_180bf00a8 = 0;        // 渲染系统数据指针
+static uint64_t GET_SECURITY_COOKIE() = 0;        // 渲染系统数据指针
 static uint64_t _DAT_180c86930 = 0;        // 材质系统数据指针
 static uint64_t _DAT_180c868f0 = 0;        // 材质缓存系统指针
 static uint64_t _DAT_180c8ed18 = 0;        // 渲染队列系统指针

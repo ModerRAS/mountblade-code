@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part148.c - 5 个函数
 
@@ -87,7 +88,7 @@ LAB_180137b1b:
     if (unaff_RSI == 0) goto LAB_180137cc2;
     FUN_18013a5e0(param_1,*(uint64_t *)(unaff_RSI + 0x40),*(uint64_t *)(unaff_RSI + 0x48));
     FUN_18013a920();
-    unaff_RBX = _DAT_180c8a9b0;
+    unaff_RBX = SYSTEM_DATA_MANAGER_A;
   }
   if ((((unaff_RSI != 0) && (*(longlong *)(unaff_RDI + 0x10) == 0)) &&
       (*(int *)(unaff_RDI + 0x20) == 0)) &&
@@ -107,7 +108,7 @@ LAB_180137b1b:
     *(float *)(unaff_RBP + -0x59) = *(float *)(unaff_RDI + 0x38) + *(float *)(unaff_RDI + 0x40);
     uVar7 = func_0x000180121e20(unaff_RBP + -0x29);
     FUN_180293f50(*(uint64_t *)(unaff_RSI + 0x2e8),unaff_RDI + 0x38,unaff_RBP + -0x59,uVar7,0);
-    unaff_RBX = _DAT_180c8a9b0;
+    unaff_RBX = SYSTEM_DATA_MANAGER_A;
   }
 LAB_180137cc2:
   if ((*(char *)(unaff_RBP + -0x69) != '\0') && ((*(byte *)(unaff_RDI + 0xa0) & 4) != 0)) {
@@ -306,7 +307,7 @@ void FUN_180137dd7(int32_t param_1)
     if (unaff_RSI == 0) goto LAB_180137cc2;
     FUN_18013a5e0(param_1,*(uint64_t *)(unaff_RSI + 0x40),*(uint64_t *)(unaff_RSI + 0x48));
     FUN_18013a920();
-    unaff_RBX = _DAT_180c8a9b0;
+    unaff_RBX = SYSTEM_DATA_MANAGER_A;
   }
   if ((((unaff_RSI != 0) && (*(longlong *)(unaff_RDI + 0x10) == 0)) &&
       (*(int *)(unaff_RDI + 0x20) == 0)) &&
@@ -326,7 +327,7 @@ void FUN_180137dd7(int32_t param_1)
     *(float *)(unaff_RBP + -0x59) = *(float *)(unaff_RDI + 0x38) + *(float *)(unaff_RDI + 0x40);
     uVar7 = func_0x000180121e20(unaff_RBP + -0x29);
     FUN_180293f50(*(uint64_t *)(unaff_RSI + 0x2e8),unaff_RDI + 0x38,unaff_RBP + -0x59,uVar7,0);
-    unaff_RBX = _DAT_180c8a9b0;
+    unaff_RBX = SYSTEM_DATA_MANAGER_A;
   }
 LAB_180137cc2:
   if ((*(char *)(unaff_RBP + -0x69) != '\0') && ((*(byte *)(unaff_RDI + 0xa0) & 4) != 0)) {

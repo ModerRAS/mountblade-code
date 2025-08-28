@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part065.c - 渲染系统高级参数控制和资源管理模块
 // 本模块包含12个核心函数，主要负责渲染系统的高级参数控制、资源管理、内存清理和系统初始化
@@ -35,9 +36,9 @@ extern longlong _DAT_180c8ed18;    // 渲染上下文数据
 extern longlong _DAT_180c86950;    // 渲染配置数据
 extern longlong _DAT_180c86890;    // 系统状态数据
 extern longlong _DAT_180c8a9c8;    // 渲染器状态数据
-extern longlong _DAT_180c86920;    // 渲染参数数据
+extern longlong SYSTEM_STATE_MANAGER;    // 渲染参数数据
 extern longlong _DAT_180c82868;    // 渲染缓存数据
-extern longlong _DAT_180bf00a8;    // 栈保护数据
+extern longlong GET_SECURITY_COOKIE();    // 栈保护数据
 
 // 字符串常量
 extern char global_state_3680_ptr[];       // 渲染字符串常量1
@@ -535,7 +536,7 @@ void RenderingSystem_ComplexResourceManagement(longlong *render_context, longlon
     object_pointer = (longlong *)CONCAT44(buffer_size_2, buffer_size_1);
   }
   else if ((*(char *)(resource_manager + 0xd8) == '\0') || 
-           (*(int *)(_DAT_180c86920 + 0x540) + -1 < 0)) {
+           (*(int *)(SYSTEM_STATE_MANAGER + 0x540) + -1 < 0)) {
     object_pointer = (longlong *)CONCAT44(buffer_size_2, buffer_size_1);
     buffer_pointer_1 = object_pointer;
   }
@@ -757,7 +758,7 @@ void RenderingSystem_ComplexResourceManagement(longlong *render_context, longlon
       else {
         state_flag = (**(code **)((void *)*data_array + 0x68))();
       }
-      stack_param = _DAT_180bf00a8;
+      stack_param = GET_SECURITY_COOKIE();
       if (state_flag == '\0') {
         buffer_pointer_4 = &stack_value_1;
         stack_value_1 = *(longlong **)(resource_manager + 0x2670);

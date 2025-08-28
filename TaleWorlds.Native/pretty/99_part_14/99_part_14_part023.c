@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * @file 99_part_14_part023.c
@@ -337,7 +338,7 @@ typedef struct {
  ========================================*/
 
 /** 系统初始化魔数变量 */
-extern ulonglong _DAT_180bf00a8;
+extern ulonglong GET_SECURITY_COOKIE();
 
 /** 系统标识符变量 */
 extern ulonglong _DAT_180bf00a0;
@@ -445,7 +446,7 @@ void SystemInitializerAndRandomSeedGenerator(void)
     int32_t performance_counter_low;
     
     /* 检查系统是否已初始化 */
-    if (_DAT_180bf00a8 == SYSTEM_INIT_MAGIC_NUMBER) {
+    if (GET_SECURITY_COOKIE() == SYSTEM_INIT_MAGIC_NUMBER) {
         /* 获取系统时间 */
         system_time = 0;
         GetSystemTimeAsFileTime(&system_time);
@@ -465,7 +466,7 @@ void SystemInitializerAndRandomSeedGenerator(void)
         QueryPerformanceCounter(&performance_counter);
         
         /* 生成系统ID（使用时间、线程ID、进程ID和性能计数器的组合） */
-        _DAT_180bf00a8 = ((
+        GET_SECURITY_COOKIE() = ((
             (ulonglong)performance_counter << 0x20 ^ 
             CONCAT44(performance_counter_low, performance_counter) ^ 
             generated_id ^ 
@@ -473,13 +474,13 @@ void SystemInitializerAndRandomSeedGenerator(void)
         ) & 0xffffffffffff);
         
         /* 防止生成的ID与魔数相同 */
-        if (_DAT_180bf00a8 == SYSTEM_INIT_MAGIC_NUMBER) {
-            _DAT_180bf00a8 = SYSTEM_INIT_MAGIC_NUMBER_ALT;
+        if (GET_SECURITY_COOKIE() == SYSTEM_INIT_MAGIC_NUMBER) {
+            GET_SECURITY_COOKIE() = SYSTEM_INIT_MAGIC_NUMBER_ALT;
         }
     }
     
     /* 设置系统标识符为系统ID的反码 */
-    _DAT_180bf00a0 = ~_DAT_180bf00a8;
+    _DAT_180bf00a0 = ~GET_SECURITY_COOKIE();
     
     return;
 }

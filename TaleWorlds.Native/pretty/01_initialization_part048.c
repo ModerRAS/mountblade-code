@@ -717,7 +717,7 @@ void InitializationSystem_ConfigManager(longlong *param_1)
     
     // 设置栈保护
     buffer_control = 0xfffffffffffffffe;
-    security_cookie = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
     
     // 获取配置句柄
     config_handle = *(uint64_t*)(param_1[0x37] + 0x1e0);

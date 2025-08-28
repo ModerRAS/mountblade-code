@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part178.c - 1 个函数
 
@@ -90,7 +91,7 @@ FUN_180160d20(uint64_t *param_1,uint64_t param_2,longlong *param_3,uint64_t para
       *(int32_t *)((ulonglong)uVar1 + lVar2) = 0x20736920;
       *(int8_t *)((int32_t *)((ulonglong)uVar1 + lVar2) + 1) = 0;
       *(int *)(param_1 + 2) = iVar9 + 0xd;
-      uVar6 = FUN_1800af9f0(_DAT_180c86920,&puStack_48,&puStack_68,param_4,uVar11);
+      uVar6 = FUN_1800af9f0(SYSTEM_STATE_MANAGER,&puStack_48,&puStack_68,param_4,uVar11);
       FUN_180628320(param_1,uVar6);
       puStack_48 = &unknown_var_3456_ptr;
       if (lStack_40 != 0) {
@@ -155,7 +156,7 @@ FUN_180160d20(uint64_t *param_1,uint64_t param_2,longlong *param_3,uint64_t para
     }
     lVar2 = strstr(puVar7,&unknown_var_9232_ptr);
     if (lVar2 == 0) {
-      FUN_1800af2c0(_DAT_180c86920,&puStack_68,&puStack_48);
+      FUN_1800af2c0(SYSTEM_STATE_MANAGER,&puStack_68,&puStack_48);
     }
     else {
       uVar11 = atoi(lStack_40);

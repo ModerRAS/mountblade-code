@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_02_part044.c - 6 个函数
 
@@ -96,7 +97,7 @@ void FUN_1801b5480(longlong param_1)
   ulonglong uStack_38;
   
   uStack_528 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_618;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_618;
   piVar7 = (int *)((longlong)*(int *)(param_1 + 0xdc0) * 0x128 + param_1 + 0xb70);
   iVar6 = *piVar7;
   iVar2 = 0;
@@ -551,7 +552,7 @@ void FUN_1801b6020(longlong param_1)
   ulonglong uStack_30;
   
   uStack_48 = 0xfffffffffffffffe;
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_e8;
+  uStack_30 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_e8;
   iVar12 = 0;
   uStack_b8 = 0;
   plVar11 = (longlong *)(param_1 + 0x2f0);
@@ -836,7 +837,7 @@ void FUN_1801b65d0(longlong param_1,longlong param_2,uint64_t param_3,uint64_t p
   }
   if (iVar2 == 2) {
     if (((*(char *)(param_1 + 0x3e05) != '\0') && ((*(byte *)(param_1 + 0x3e08) & bStack_40) == 0))
-       && ((0 < *(int *)(_DAT_180c86920 + 0xc40) &&
+       && ((0 < *(int *)(SYSTEM_STATE_MANAGER + 0xc40) &&
            (cVar1 = func_0x0001802e1840(*(longlong *)(param_2 + 0x3580) + 0x560,param_1,param_3,
                                         param_4,0xfffffffffffffffe), cVar1 != '\0')))) {
       return;
@@ -859,7 +860,7 @@ void FUN_1801b65d0(longlong param_1,longlong param_2,uint64_t param_3,uint64_t p
     if ((((*(int *)(_DAT_180c8a9c8 + 0x620) == 0) &&
          (*(char *)(*(longlong *)(param_2 + 0x3580) + 0x5c8) == '\0')) &&
         (*(char *)(param_1 + 0x3e05) != '\0')) &&
-       (((*(byte *)(param_1 + 0x3e08) & 2) == 0 && (0 < *(int *)(_DAT_180c86920 + 0xc40))))) {
+       (((*(byte *)(param_1 + 0x3e08) & 2) == 0 && (0 < *(int *)(SYSTEM_STATE_MANAGER + 0xc40))))) {
       return;
     }
     *(int32_t *)(param_1 + 0x27c0) = 4;
@@ -905,11 +906,11 @@ void FUN_1801b65d0(longlong param_1,longlong param_2,uint64_t param_3,uint64_t p
       } while (lVar4 < iVar2);
     }
     *(int32_t *)(param_1 + 0x27c0) = 6;
-    if ((*(longlong *)(param_1 + 800) != 0) && (0 < *(int *)(_DAT_180c86920 + 0xbd0))) {
+    if ((*(longlong *)(param_1 + 800) != 0) && (0 < *(int *)(SYSTEM_STATE_MANAGER + 0xbd0))) {
       func_0x00018031cb70();
       FUN_1801a99d0(param_1);
       FUN_18031e050(*(uint64_t *)(param_1 + 800));
-      *(int32_t *)(param_1 + 0x3b0) = *(int32_t *)(_DAT_180c86920 + 0xbd0);
+      *(int32_t *)(param_1 + 0x3b0) = *(int32_t *)(SYSTEM_STATE_MANAGER + 0xbd0);
     }
     if (*(char *)(param_1 + 0x2966) != '\0') {
       return;

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 //==============================================================================
 // 文件信息：99_part_12_part041_sub001.c
@@ -120,7 +121,7 @@ uint64_t FUN_180012349(uint64_t param_1, uint64_t param_2)
     ulonglong uStack_8;                         // 安全检查值
     
     // 安全检查：栈保护机制
-    uStack_8 = _DAT_180bf00a8 ^ (ulonglong)auStack_28;
+    uStack_8 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_28;
     
     // 参数有效性检查
     if (param_1 != 0 && param_2 != 0) {

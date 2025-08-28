@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * @file 99_part_06_part009_sub002_sub002.c
@@ -479,7 +480,7 @@ void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
     
     // 初始化系统参数
     uStack_518 = 0xfffffffffffffffe;
-    uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_5d8;
+    uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_5d8;
     uStack_578 = 0;
     uVar9 = *(uint64_t *)(param_1 + 0xe20);
     uVar15 = *(int32_t *)(param_1 + 0xe1c);

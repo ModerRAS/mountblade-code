@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part012.c - 渲染系统数据序列化函数
 

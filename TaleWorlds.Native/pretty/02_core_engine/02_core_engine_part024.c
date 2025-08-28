@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part024.c - 核心引擎文件操作和内存管理模块
 // 本文件包含文件创建、IO完成端口、内存分配、资源清理等核心功能
@@ -27,7 +28,7 @@ void create_file_with_completion_port(longlong engine_context, longlong file_par
   ulonglong uVar8;
   
   uStack_2a0 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_2e8;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_2e8;
   FUN_180624440(&puStack_268);
   puVar4 = &system_buffer_ptr;
   if (puStack_260 != (void *)0x0) {
@@ -919,7 +920,7 @@ void perform_string_replace(longlong string_manager, longlong search_string, lon
   ulonglong uStack_48;
   
   uStack_178 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_198;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_198;
   puStack_168 = &unknown_var_2008_ptr;
   puStack_160 = auStack_150;
   uStack_158 = 0;

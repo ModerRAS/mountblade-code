@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 04_ui_system_part018.c - UI系统高级动画和特效处理模块
 // 包含9个核心函数：UI系统高级动画处理器、特效渲染器、参数计算器、资源管理器等
@@ -32,7 +33,7 @@
 // 全局变量引用
 extern const void* _DAT_180c86938;     // UI系统全局数据
 extern const void* _DAT_180c8ed00;     // UI系统配置数据
-extern const void* _DAT_180bf00a8;     // UI系统安全数据
+extern const void* GET_SECURITY_COOKIE();     // UI系统安全数据
 
 // 函数声明
 void FUN_180403910(void);

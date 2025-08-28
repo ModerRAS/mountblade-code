@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * 04_ui_system_part101.c - UI系统高级数据处理和算法优化模块
@@ -730,7 +731,7 @@ void ui_system_calculate_vector_magnitudes(int *magnitude_ptr, int *scale_ptr, s
 // ui_system_calculate_optimized_sum, ui_system_process_weighted_transformations
 
 // 全局变量定义
-#define UI_SYSTEM_GLOBAL_DATA _DAT_180bf00a8
+#define UI_SYSTEM_GLOBAL_DATA GET_SECURITY_COOKIE()
 #define UI_SYSTEM_AUDIO_TABLE unknown_var_4360
 #define UI_SYSTEM_AUDIO_PARAMS unknown_var_9600
 

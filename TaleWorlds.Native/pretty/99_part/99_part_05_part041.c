@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * @file 99_part_05_part041.c
@@ -761,7 +762,7 @@ void VariableProcessorAndStringOperatorFunc(uint64_t param_1, longlong param_2, 
     
     // 初始化处理参数
     uStack_368 = 0xfffffffffffffffe;
-    uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_4e8;
+    uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_4e8;
     pcVar8 = (char *)0x0;
     pcVar6 = "variables";
     

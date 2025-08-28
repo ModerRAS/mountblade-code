@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part401.c - 5 个函数
 
@@ -605,7 +606,7 @@ uint64_t FUN_18088c290(longlong param_1)
       return 0x1c;
     }
     iVar5 = 0;
-    lVar3 = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x10000,&unknown_var_6880_ptr,0xbb,0,0,1)
+    lVar3 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x10000,&unknown_var_6880_ptr,0xbb,0,0,1)
     ;
     *(longlong *)(lVar1 + 0x180c4ec50) = lVar3;
     if (lVar3 != 0) {
@@ -739,7 +740,7 @@ uint64_t FUN_18088c410(uint param_1)
   {
     if (0 < *(int *)(lVar1 + 0x180c4eb2c)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),
+      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                     *(uint64_t *)
                      ((longlong)(*(int *)(lVar1 + 0x180c4eb30) << 5) * 8 + 0x180c4ec50),
                     &unknown_var_6880_ptr,0xec,1);
@@ -764,7 +765,7 @@ uint64_t FUN_18088c449(void)
   
   if (0 < *(int *)(unaff_RSI + 0xc4eb2c + unaff_R14)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),
+    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                   *(uint64_t *)
                    (unaff_R14 + 0xc4ec50 +
                    (longlong)(*(int *)(unaff_RSI + 0xc4eb30 + unaff_R14) << 5) * 8),&unknown_var_6880_ptr,

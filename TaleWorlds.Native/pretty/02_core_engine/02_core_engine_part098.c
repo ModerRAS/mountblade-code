@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * 核心引擎模块第098部分 - 渲染系统优化和排序
@@ -12,7 +13,7 @@
  */
 
 // 全局变量引用
-extern longlong _DAT_180c8a9b0;  // 引擎全局上下文
+extern longlong SYSTEM_DATA_MANAGER_A;  // 引擎全局上下文
 extern uint global_var_6320_ptr[];      // 哈希计算查找表
 extern void FUN_18011db30(int *param_1, int param_2);  // 动态数组扩容
 extern void *func_0x000180120ce0(longlong param_1, void *param_2);  // 内存分配
@@ -76,7 +77,7 @@ void process_render_queue_optimization(int *render_queue)
     longlong stack_temp2;
     int8_t local_buffer[72];
     
-    engine_context = _DAT_180c8a9b0;
+    engine_context = SYSTEM_DATA_MANAGER_A;
     queue_count = *render_queue;
     item_ptr = (int *)0x0;
     processed_count = 0;
@@ -198,9 +199,9 @@ void process_render_queue_optimization(int *render_queue)
                             stack_temp1 = (uint)temp_ptr;
                         }
                         if (((render_queue[0x13] & 0x800000U) != 0) && 
-                            (*(float *)(_DAT_180c8a9b0 + 0x2e04) <= 0.0)) {
-                            *(int32_t *)(_DAT_180c8a9b0 + 0x2e04) = 
-                                *(int32_t *)(_DAT_180c8a9b0 + 0x1c);
+                            (*(float *)(SYSTEM_DATA_MANAGER_A + 0x2e04) <= 0.0)) {
+                            *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x2e04) = 
+                                *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1c);
                         }
                     }
                     break;
@@ -229,11 +230,11 @@ void process_render_queue_optimization(int *render_queue)
             int_temp2 = int_temp;
         }
         if (processed_count < int_temp2) {
-            if (_DAT_180c8a9b0 != 0) {
-                *(int *)(_DAT_180c8a9b0 + 0x3a8) = 
-                    *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+            if (SYSTEM_DATA_MANAGER_A != 0) {
+                *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = 
+                    *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
             }
-            temp_data = func_0x000180120ce0((longlong)int_temp2 << 3, _DAT_180c8a9a8);
+            temp_data = func_0x000180120ce0((longlong)int_temp2 << 3, SYSTEM_DATA_MANAGER_B);
             if (*(longlong *)(engine_context + 0x1ea0) != 0) {
                 // WARNING: Subroutine does not return
                 memcpy(temp_data, *(longlong *)(engine_context + 0x1ea0),
@@ -299,7 +300,7 @@ void process_render_queue_optimization(int *render_queue)
     }
     
     if ((float_temp4 <= 0.0) || ((*(byte *)(render_queue + 0x13) & 0x40) == 0)) {
-        float_temp4 = *(float *)(_DAT_180c8a9b0 + 0x19f8) * 20.0;
+        float_temp4 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19f8) * 20.0;
         if (0 < queue_count) {
             float_ptr = (float *)(*(longlong *)(render_queue + 2) + 0x1c);
             ulong_temp = ulong_temp3;
@@ -467,7 +468,7 @@ LAB_weight_assignment_complete:
             if (*temp_ptr == int_temp) {
                 temp_ptr = *(int **)(render_queue + 2) + (longlong)processed_count * 10;
                 if (temp_ptr != (int *)0x0) {
-                    float_temp4 = *(float *)(_DAT_180c8a9b0 + 0x19f8);
+                    float_temp4 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19f8);
                     processed_count = (int)(((longlong)processed_count * 0x28) / 0x28);
                     if (processed_count < 1) {
                         float_temp1 = 0.0;
@@ -560,7 +561,7 @@ void calculate_string_hash(longlong context, byte *string)
     uint hash_value;
     int computed_hash;
     
-    engine_context = _DAT_180c8a9b0;
+    engine_context = SYSTEM_DATA_MANAGER_A;
     
     // 检查是否为特殊模式
     if ((*(uint *)(context + 0x4c) & 0x100000) == 0) {
@@ -568,9 +569,9 @@ void calculate_string_hash(longlong context, byte *string)
         computed_hash = FUN_180121250(string, 0,
                                       *(int32_t *)
                                        (*(longlong *)
-                                         (*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x220) + -4 +
+                                         (*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x220) + -4 +
                                          (longlong)*(int *)
-                                         (*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x218) * 4));
+                                         (*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x218) * 4));
         
         // 验证哈希值
         if (*(int *)(engine_context + 0x1b2c) == computed_hash) {
@@ -600,8 +601,8 @@ void calculate_string_hash(longlong context, byte *string)
         hash_value = ~hash_value;
         
         // 更新验证状态
-        if (*(uint *)(_DAT_180c8a9b0 + 0x1b2c) == hash_value) {
-            *(uint *)(_DAT_180c8a9b0 + 0x1b34) = hash_value;
+        if (*(uint *)(SYSTEM_DATA_MANAGER_A + 0x1b2c) == hash_value) {
+            *(uint *)(SYSTEM_DATA_MANAGER_A + 0x1b34) = hash_value;
         }
         if (*(uint *)(engine_context + 0x1b30) == hash_value) {
             *(int8_t *)(engine_context + 0x1b3f) = 1;
@@ -621,7 +622,7 @@ void update_default_hash_validation(void)
     longlong engine_context;
     int computed_hash;
     
-    engine_context = _DAT_180c8a9b0;
+    engine_context = SYSTEM_DATA_MANAGER_A;
     computed_hash = FUN_180121250();
     
     // 验证并更新状态
@@ -671,7 +672,7 @@ void add_render_queue_entry(int *render_queue, int32_t entry_id, longlong entry_
     
     // 设置默认优先级
     if (priority_level == -1) {
-        priority_level = *(int *)(_DAT_180c8a9b0 + 0x1a90) + -1;
+        priority_level = *(int *)(SYSTEM_DATA_MANAGER_A + 0x1a90) + -1;
     }
     
     queue_count = *render_queue;

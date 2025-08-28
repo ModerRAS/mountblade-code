@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 04_ui_system_part075.c - UI系统高级数据处理和控制模块
 // 包含8个核心函数，涵盖UI系统高级数据处理、位操作、编码解码、参数计算等高级UI功能

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part030.c - 渲染系统高级对象管理和材质处理模块
 // 该模块包含4个核心函数，主要处理渲染对象的创建、管理、材质应用和资源清理
@@ -518,7 +519,7 @@ void update_material_system_status(longlong material_system, longlong* texture_d
     
     // 初始化栈保护
     stack_guard = 0xfffffffffffffffe;
-    security_cookie = _DAT_180bf00a8 ^ (ulonglong)name_buffer;
+    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)name_buffer;
     name_length = 0;
     system_handle = *(longlong*)(material_system + 0x3c8);
     texture_ref = &texture_handle;

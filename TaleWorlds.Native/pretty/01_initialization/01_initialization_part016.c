@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 01_initialization_part016.c - 初始化模块第16部分
 // 包含32个函数，主要处理内存管理、字符串操作、线程同步等功能
@@ -108,7 +109,7 @@ void string_search_replace(longlong str_obj, longlong search_str, longlong repla
   unsigned char *dest_ptr;
   unsigned int flags;
   
-  stack_var = _DAT_180bf00a8 ^ (unsigned long long)stack_buffer;
+  stack_var = GET_SECURITY_COOKIE() ^ (unsigned long long)stack_buffer;
   temp_ptr = &global_vtable_1809fcc28;
   dest_ptr = stack_buffer + 64;
   flags = 0;
@@ -243,7 +244,7 @@ void short_string_search_replace(longlong str_obj, longlong search_str, longlong
   unsigned char *dest_ptr;
   unsigned int flags;
   
-  stack_var = _DAT_180bf00a8 ^ (unsigned long long)stack_buffer;
+  stack_var = GET_SECURITY_COOKIE() ^ (unsigned long long)stack_buffer;
   temp_ptr = &global_vtable_1809fcc58;
   dest_ptr = stack_buffer + 32;
   flags = 0;
@@ -566,12 +567,12 @@ bool check_engine_configuration(void)
     has_config = false;
   }
   else {
-    config_result = FUN_1800aecf0(_DAT_180c86920, &file_handle);
+    config_result = FUN_1800aecf0(SYSTEM_STATE_MANAGER, &file_handle);
     if (file_size != 0) {
       fclose();
       file_size = 0;
       LOCK();
-      _DAT_180c8ed60 = _DAT_180c8ed60 - 1;
+      SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR - 1;
       UNLOCK();
     }
     has_config = config_result != '\0';
@@ -580,7 +581,7 @@ bool check_engine_configuration(void)
     fclose();
     file_size = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 - 1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR - 1;
     UNLOCK();
   }
   file_path = &global_vtable_180a3c3e0;
@@ -605,7 +606,7 @@ void initialize_engine_system(void)
   void *config_file;
   unsigned long long stack_var;
   
-  stack_var = _DAT_180bf00a8 ^ (unsigned long long)stack_buffer;
+  stack_var = GET_SECURITY_COOKIE() ^ (unsigned long long)stack_buffer;
   file_flags = 0;
   config_exists = check_engine_configuration();
   if (config_exists == '\0') {
@@ -647,7 +648,7 @@ void initialize_engine_system(void)
     fclose();
     ((void **)config_file)[1] = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 - 1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR - 1;
     UNLOCK();
   }
   // 释放配置文件
@@ -847,8 +848,8 @@ void load_configuration_file(char config_type)
   unsigned int path_length;
   
   if (config_type == '\0') {
-    if ((void *)*_DAT_180c86920 == &global_vtable_180a062e0) {
-      if ((_DAT_180c86920[0x16] == 0) && (*(char *)(_DAT_180c86870 + 496) != '\0')) {
+    if ((void *)*SYSTEM_STATE_MANAGER == &global_vtable_180a062e0) {
+      if ((SYSTEM_STATE_MANAGER[0x16] == 0) && (*(char *)(_DAT_180c86870 + 496) != '\0')) {
         config_status = '\x01';
       }
       else {
@@ -856,7 +857,7 @@ void load_configuration_file(char config_type)
       }
     }
     else {
-      config_status = ((char (*)(void))(*((void **)_DAT_180c86920) + 40))();
+      config_status = ((char (*)(void))(*((void **)SYSTEM_STATE_MANAGER) + 40))();
     }
     if (config_status == '\0') {
       return;
@@ -879,12 +880,12 @@ void load_configuration_file(char config_type)
   }
   path_length = buffer_size;
   FUN_18062dee0(&file_handle, temp_ptr, &config_file_data_1809fc7ec);
-  config_ptr = _DAT_180c86920;
+  config_ptr = SYSTEM_STATE_MANAGER;
   if (file_size == 0) {
     version_info = 3;
   }
   else {
-    config_status = ((char (*)(void *))(*((void **)_DAT_180c86920) + 40))(_DAT_180c86920);
+    config_status = ((char (*)(void *))(*((void **)SYSTEM_STATE_MANAGER) + 40))(SYSTEM_STATE_MANAGER);
     if (config_status != '\0') {
       FUN_1800ae730(config_ptr, &file_handle);
     }
@@ -893,7 +894,7 @@ void load_configuration_file(char config_type)
       fclose();
       file_size = 0;
       LOCK();
-      _DAT_180c8ed60 = _DAT_180c8ed60 - 1;
+      SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR - 1;
       UNLOCK();
       version_info = 0;
     }
@@ -902,7 +903,7 @@ void load_configuration_file(char config_type)
     fclose();
     file_size = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 - 1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR - 1;
     UNLOCK();
   }
   file_path = &global_vtable_180a3c3e0;
@@ -942,7 +943,7 @@ void initialize_version_string(void *version_obj)
   void stack_buffer[32];
   unsigned long long stack_var;
   
-  stack_var = _DAT_180bf00a8 ^ (unsigned long long)stack_buffer;
+  stack_var = GET_SECURITY_COOKIE() ^ (unsigned long long)stack_buffer;
   *version_obj = &global_vtable_18098bcb0;
   ((void **)version_obj)[1] = 0;
   *(unsigned int *)((char *)version_obj + 16) = 0;

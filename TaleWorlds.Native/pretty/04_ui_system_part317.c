@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part317.c - 8 个函数
 
@@ -288,7 +289,7 @@ FUN_18083ccd0(uint64_t param_1,longlong param_2,uint64_t *param_3,uint64_t *para
       uVar2 = uVar2 + 1;
     } while ((longlong)uVar2 < (longlong)param_6);
     if ((int)uVar5 != 0) {
-      uStack_30 = _DAT_180bf00a8 ^ (ulonglong)aiStack_78;
+      uStack_30 = GET_SECURITY_COOKIE() ^ (ulonglong)aiStack_78;
       piStack_40 = (int *)*param_3;
       iVar3 = *(int *)(param_2 + 0x34) >> 1;
       iStack_6c = piStack_40[2];
@@ -301,7 +302,7 @@ FUN_18083ccd0(uint64_t param_1,longlong param_2,uint64_t *param_3,uint64_t *para
       puStack_38 = param_4;
       if (iVar1 - *piStack_40 < 1) {
                     // WARNING: Subroutine does not return
-        FUN_1808fc050(_DAT_180bf00a8);
+        FUN_1808fc050(GET_SECURITY_COOKIE());
       }
       aiStack_78[0] = (iVar1 - *piStack_40) / iStack_6c;
                     // WARNING: Subroutine does not return
@@ -356,7 +357,7 @@ FUN_18083ccea(uint64_t param_1,longlong param_2,uint64_t *param_3,uint64_t *para
                     (longlong)*(int *)param_3[3] & 0xffffffff);
     }
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(_DAT_180bf00a8);
+    FUN_1808fc050(GET_SECURITY_COOKIE());
   }
   return 0;
 }
@@ -394,7 +395,7 @@ void FUN_18083cd26(uint64_t param_1,longlong param_2,uint64_t *param_3)
                   (longlong)*(int *)param_3[3] & 0xffffffff);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(_DAT_180bf00a8);
+  FUN_1808fc050(GET_SECURITY_COOKIE());
 }
 
 
@@ -432,7 +433,7 @@ FUN_18083cd60(uint64_t param_1,longlong param_2,uint64_t *param_3,uint64_t *para
       uVar2 = uVar2 + 1;
     } while ((longlong)uVar2 < (longlong)param_6);
     if ((int)uVar5 != 0) {
-      uStack_30 = _DAT_180bf00a8 ^ (ulonglong)aiStack_78;
+      uStack_30 = GET_SECURITY_COOKIE() ^ (ulonglong)aiStack_78;
       piStack_40 = (int *)*param_3;
       iVar3 = *(int *)(param_2 + 0x34) >> 1;
       iStack_6c = piStack_40[2];
@@ -445,7 +446,7 @@ FUN_18083cd60(uint64_t param_1,longlong param_2,uint64_t *param_3,uint64_t *para
       puStack_38 = param_4;
       if (iVar1 - *piStack_40 < 1) {
                     // WARNING: Subroutine does not return
-        FUN_1808fc050(_DAT_180bf00a8);
+        FUN_1808fc050(GET_SECURITY_COOKIE());
       }
       aiStack_78[0] = (iVar1 - *piStack_40) / iStack_6c;
                     // WARNING: Subroutine does not return
@@ -500,7 +501,7 @@ FUN_18083cd7a(uint64_t param_1,longlong param_2,uint64_t *param_3,uint64_t *para
                     (longlong)*(int *)param_3[3] & 0xffffffff);
     }
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(_DAT_180bf00a8);
+    FUN_1808fc050(GET_SECURITY_COOKIE());
   }
   return 0;
 }
@@ -538,7 +539,7 @@ void FUN_18083cdb6(uint64_t param_1,longlong param_2,uint64_t *param_3)
                   (longlong)*(int *)param_3[3] & 0xffffffff);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(_DAT_180bf00a8);
+  FUN_1808fc050(GET_SECURITY_COOKIE());
 }
 
 
@@ -658,7 +659,7 @@ void FUN_18083d030(uint64_t param_1,longlong param_2,uint64_t *param_3,uint64_t 
   uint64_t uStack_38;
   ulonglong uStack_30;
   
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)aiStack_78;
+  uStack_30 = GET_SECURITY_COOKIE() ^ (ulonglong)aiStack_78;
   piStack_40 = (int *)*param_3;
   iVar2 = *(int *)(param_2 + 0x34) >> 1;
   iStack_6c = piStack_40[2];
@@ -677,7 +678,7 @@ void FUN_18083d030(uint64_t param_1,longlong param_2,uint64_t *param_3,uint64_t 
                   & 0xffffffff);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(_DAT_180bf00a8);
+  FUN_1808fc050(GET_SECURITY_COOKIE());
 }
 
 
@@ -729,7 +730,7 @@ void FUN_18083d5d0(uint64_t param_1,longlong param_2,uint64_t param_3)
   uint64_t uStack_50;
   ulonglong uStack_30;
   
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)&lStack_88;
+  uStack_30 = GET_SECURITY_COOKIE() ^ (ulonglong)&lStack_88;
   lStack_80 = **(longlong **)(param_2 + 0x50);
   lStack_70 = (*(longlong **)(param_2 + 0x50))[0xe];
   lStack_60 = *(longlong *)(lStack_80 + 0x20);

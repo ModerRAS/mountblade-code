@@ -199,7 +199,7 @@ void matrix_transform_interpolator(longlong renderContext)
     uint stackParam5;                           // 栈参数5
     
     // 初始化栈保护
-    stackGuard = _DAT_180bf00a8 ^ (ulonglong)&stackParam1;
+    stackGuard = GET_SECURITY_COOKIE() ^ (ulonglong)&stackParam1;
     
     // 初始化渲染参数
     blendFactor = SIMD_MASK_0F;                  // 初始化混合因子

@@ -1,9 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part238.c - 核心引擎内存管理和资源处理模块 (9个函数)
 
 // 全局变量声明
-extern uint64_t _DAT_180c86920;    // 引擎全局数据结构指针
+extern uint64_t SYSTEM_STATE_MANAGER;    // 引擎全局数据结构指针
 extern uint64_t _DAT_180c8ed18;    // 内存池标识符
 extern uint64_t _DAT_180c86890;    // 资源管理器数据指针
 extern uint64_t _DAT_180c86870;    // 渲染配置数据指针
@@ -98,7 +99,7 @@ void initialize_engine_resource_manager(uint64_t engine_context, longlong *resou
   
   // 调用资源管理配置函数
   FUN_180209470(&stack_resource_ptr);
-  temp_value = _DAT_180c86920;
+  temp_value = SYSTEM_STATE_MANAGER;
   config_offset = loop_counter;
   total_items = loop_counter;
   
@@ -267,7 +268,7 @@ void process_engine_resource_manager_advanced(uint64_t engine_context, longlong 
   
   // 调用资源管理配置函数
   configure_resource_manager(&stack_resource_ptr);
-  temp_value = _DAT_180c86920;
+  temp_value = SYSTEM_STATE_MANAGER;
   config_offset = loop_counter;
   total_items = loop_counter;
   

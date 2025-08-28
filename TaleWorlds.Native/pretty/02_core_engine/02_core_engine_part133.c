@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part133.c - 核心引擎空间计算与优化模块
 // 本文件包含10个函数，主要处理空间搜索、碰撞检测、坐标变换等核心计算功能
@@ -77,8 +78,8 @@ LAB_180130d35:
     }
     
     // 在空间索引中搜索匹配的区域
-    if (0 < *(int *)(_DAT_180c8a9b0 + 0x1600)) {
-      pfVar6 = *(float **)(_DAT_180c8a9b0 + 0x1608);
+    if (0 < *(int *)(SYSTEM_DATA_MANAGER_A + 0x1600)) {
+      pfVar6 = *(float **)(SYSTEM_DATA_MANAGER_A + 0x1608);
       uVar9 = unaff_RSI;
       do {
         iVar8 = (int)uVar9;
@@ -87,7 +88,7 @@ LAB_180130d35:
         uVar9 = (ulonglong)(iVar8 + 1);
         unaff_RSI = unaff_RSI + 1;
         pfVar6 = pfVar6 + 9;
-      } while ((longlong)unaff_RSI < (longlong)*(int *)(_DAT_180c8a9b0 + 0x1600));
+      } while ((longlong)unaff_RSI < (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1600));
     }
     iVar8 = -1;
 LAB_180130dd5:
@@ -141,12 +142,12 @@ ulonglong find_best_matching_region(float *param_1)
   uVar9 = uVar6;
   
   // 遍历所有空间索引区域
-  if (0 < *(int *)(_DAT_180c8a9b0 + 0x1600)) {
+  if (0 < *(int *)(SYSTEM_DATA_MANAGER_A + 0x1600)) {
     do {
       if (fVar16 <= fVar17) {
         return uVar7;
       }
-      lVar1 = *(longlong *)(_DAT_180c8a9b0 + 0x1608);
+      lVar1 = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1608);
       fVar11 = *(float *)(uVar6 + lVar1);
       fVar10 = *(float *)(uVar6 + 4 + lVar1);
       fVar13 = fVar11 + *(float *)(uVar6 + 8 + lVar1);
@@ -191,7 +192,7 @@ ulonglong find_best_matching_region(float *param_1)
       uVar7 = (ulonglong)uVar5;
       uVar9 = (ulonglong)uVar8;
       fVar17 = fVar11;
-    } while ((int)uVar8 < *(int *)(_DAT_180c8a9b0 + 0x1600));
+    } while ((int)uVar8 < *(int *)(SYSTEM_DATA_MANAGER_A + 0x1600));
   }
   return uVar7;
 }
@@ -981,7 +982,7 @@ void update_element_spatial_bounds(longlong param_1,float *param_2,int param_3)
   float fStack_20;
   float fStack_1c;
   
-  lVar10 = _DAT_180c8a9b0;
+  lVar10 = SYSTEM_DATA_MANAGER_A;
   uVar5 = *(uint *)(param_1 + 0x1a8);
   fVar11 = param_2[1] - *(float *)(param_1 + 0x44);
   fVar13 = param_2[2] - *(float *)(param_1 + 0x40);
@@ -989,11 +990,11 @@ void update_element_spatial_bounds(longlong param_1,float *param_2,int param_3)
   fVar16 = *param_2 - *(float *)(param_1 + 0x40);
   
   // 检查是否需要更新临时存储
-  if ((*(char *)(_DAT_180c8a9b0 + 0x1d09) != '\0') &&
-     (*(int *)(_DAT_180c8a9b0 + 0x1cfc) == *(int *)(param_1 + 0x16c))) {
+  if ((*(char *)(SYSTEM_DATA_MANAGER_A + 0x1d09) != '\0') &&
+     (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1cfc) == *(int *)(param_1 + 0x16c))) {
     uVar7 = uVar5 & 0x10;
-    if ((uVar7 == 0) || (*(int *)(_DAT_180c8a9b0 + 0x1d0c) == 0)) {
-      *(int *)(_DAT_180c8a9b0 + 0x1d0c) = param_3;
+    if ((uVar7 == 0) || (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1d0c) == 0)) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x1d0c) = param_3;
       *(float *)(lVar10 + 0x1d10) = fVar16;
       *(float *)(lVar10 + 0x1d14) = fVar11;
       *(float *)(lVar10 + 0x1d18) = fVar13;
@@ -1107,13 +1108,13 @@ void update_element_bounds_with_integers(int param_1,float *param_2,int param_3,
   float fStack0000000000000028;
   float fStack000000000000002c;
   
-  lVar7 = _DAT_180c8a9b0;
+  lVar7 = SYSTEM_DATA_MANAGER_A;
   
   // 检查是否需要更新临时存储
-  if ((*(char *)(_DAT_180c8a9b0 + 0x1d09) != '\0') &&
-     (*(int *)(_DAT_180c8a9b0 + 0x1cfc) == *(int *)(unaff_RBX + 0x16c))) {
-    if (((in_ECX & 0x10) == 0) || (*(int *)(_DAT_180c8a9b0 + 0x1d0c) == 0)) {
-      *(int *)(_DAT_180c8a9b0 + 0x1d0c) = in_R8D;
+  if ((*(char *)(SYSTEM_DATA_MANAGER_A + 0x1d09) != '\0') &&
+     (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1cfc) == *(int *)(unaff_RBX + 0x16c))) {
+    if (((in_ECX & 0x10) == 0) || (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1d0c) == 0)) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x1d0c) = in_R8D;
       *(int *)(lVar7 + 0x1d10) = unaff_XMM6_Da;
       *(int *)(lVar7 + 0x1d14) = param_1;
       *(int *)(lVar7 + 0x1d18) = param_3;

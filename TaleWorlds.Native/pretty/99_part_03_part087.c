@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_03_part087.c - 2 个函数
 
@@ -224,8 +225,8 @@ LAB_18024bd3a:
       if (cVar9 == '\0') goto LAB_18024bd3a;
       uStackX_20 = 1.0;
       dStack0000000000000028 = 1.0;
-      if ((*(char *)(lVar13 + 0xd9) != '\0') && (*(int *)(_DAT_180c86920 + 0x540) - 1U < 4)) {
-        pdVar2 = (double *)(lVar13 + -8 + (longlong)*(int *)(_DAT_180c86920 + 0x540) * 0x10);
+      if ((*(char *)(lVar13 + 0xd9) != '\0') && (*(int *)(SYSTEM_STATE_MANAGER + 0x540) - 1U < 4)) {
+        pdVar2 = (double *)(lVar13 + -8 + (longlong)*(int *)(SYSTEM_STATE_MANAGER + 0x540) * 0x10);
         uStackX_20 = *pdVar2;
         dStack0000000000000028 = pdVar2[1];
       }
@@ -445,8 +446,8 @@ void FUN_18024bc7e(uint64_t param_1,uint64_t param_2)
     if (cVar11 != '\0') {
       uStackX_20 = 1.0;
       dStack0000000000000028 = 1.0;
-      if ((*(char *)(lVar13 + 0xd9) != '\0') && (*(int *)(_DAT_180c86920 + 0x540) - 1U < 4)) {
-        pdVar1 = (double *)(lVar13 + -8 + (longlong)*(int *)(_DAT_180c86920 + 0x540) * 0x10);
+      if ((*(char *)(lVar13 + 0xd9) != '\0') && (*(int *)(SYSTEM_STATE_MANAGER + 0x540) - 1U < 4)) {
+        pdVar1 = (double *)(lVar13 + -8 + (longlong)*(int *)(SYSTEM_STATE_MANAGER + 0x540) * 0x10);
         uStackX_20 = *pdVar1;
         dStack0000000000000028 = pdVar1[1];
       }

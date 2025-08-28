@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * @file 03_rendering_part057.c
@@ -164,12 +165,12 @@ void rendering_system_advanced_texture_mapper(
     longlong lStack_f0;           // 栈变量
     
     // 初始化渲染系统上下文
-    lVar9 = _DAT_180c8a9b0;
+    lVar9 = SYSTEM_DATA_MANAGER_A;
     lVar17 = (longlong)(int)param_3;
-    lStack_120 = _DAT_180c8a9b0;
+    lStack_120 = SYSTEM_DATA_MANAGER_A;
     
     // 设置渲染状态标志
-    *(int8_t *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
+    *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
     lStack_f0 = *(longlong *)(lVar9 + 0x1af8);
     
     // 检查渲染状态
@@ -297,7 +298,7 @@ void rendering_system_advanced_texture_mapper(
                 }
                 uVar29 = (int32_t)((ulonglong)in_stack_fffffffffffffe98 >> 0x20);
                 lVar11 = lVar11 + -1;
-                lVar9 = _DAT_180c8a9b0;
+                lVar9 = SYSTEM_DATA_MANAGER_A;
                 puVar14 = puVar14 + 1;
                 lVar15 = lStack_120;
             } while (lVar11 != 0);
@@ -320,7 +321,7 @@ void rendering_system_advanced_texture_mapper(
     
     // 处理渲染数据
     iStack_138 = -1;
-    lVar9 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
+    lVar9 = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
     iVar8 = param_8;
     if ((int)(float)param_11 < param_8) {
         iVar8 = (int)(float)param_11;
@@ -329,21 +330,21 @@ void rendering_system_advanced_texture_mapper(
     uStack_12c = uVar13;
     
     // 渲染状态检查
-    if ((*(char *)(_DAT_180c8a9b0 + 0x1d07) == '\0') || (*(char *)(_DAT_180c8a9b0 + 0x1d06) != '\0')) {
+    if ((*(char *)(SYSTEM_DATA_MANAGER_A + 0x1d07) == '\0') || (*(char *)(SYSTEM_DATA_MANAGER_A + 0x1d06) != '\0')) {
         if ((((((*(byte *)(lVar9 + 0x148) & 1) == 0) ||
-              (lVar11 = *(longlong *)(lVar9 + 0x3a0), *(longlong *)(_DAT_180c8a9b0 + 0x1b08) != lVar11))
-             || ((((iVar8 = *(int *)(_DAT_180c8a9b0 + 0x1b2c), iVar8 != 0 &&
-                   (iVar8 != *(int *)(lVar9 + 0x144))) && (*(char *)(_DAT_180c8a9b0 + 0x1b3d) == '\0'))
+              (lVar11 = *(longlong *)(lVar9 + 0x3a0), *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b08) != lVar11))
+             || ((((iVar8 = *(int *)(SYSTEM_DATA_MANAGER_A + 0x1b2c), iVar8 != 0 &&
+                   (iVar8 != *(int *)(lVar9 + 0x144))) && (*(char *)(SYSTEM_DATA_MANAGER_A + 0x1b3d) == '\0'))
                   && (iVar8 != *(int *)(lVar9 + 0x84))))) ||
-            ((((*(longlong *)(_DAT_180c8a9b0 + 0x1c98) != 0 &&
-               (lVar15 = *(longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1c98) + 0x3a0), lVar15 != 0)) &&
+            ((((*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1c98) != 0 &&
+               (lVar15 = *(longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1c98) + 0x3a0), lVar15 != 0)) &&
               (*(char *)(lVar15 + 0xb0) != '\0')) &&
              ((lVar15 != lVar11 &&
               (((*(uint *)(lVar15 + 0xc) >> 0x1b & 1) != 0 ||
                ((*(uint *)(lVar15 + 0xc) >> 0x1a & 1) != 0)))))))) ||
-           (((*(longlong *)(lVar9 + 0x28) != *(longlong *)(_DAT_180c8a9b0 + 0x1c80) &&
-             ((*(longlong *)(_DAT_180c8a9b0 + 0x1b78) == 0 ||
-              (lVar11 != *(longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1b78) + 0x3a0))))) ||
+           (((*(longlong *)(lVar9 + 0x28) != *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1c80) &&
+             ((*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b78) == 0 ||
+              (lVar11 != *(longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b78) + 0x3a0))))) ||
             ((*(byte *)(lVar9 + 0x1a8) & 4) != 0)))) goto LAB_180299abc;
         
         if ((*(int *)(lVar9 + 0x144) == *(int *)(lVar9 + 8)) ||
@@ -352,8 +353,8 @@ void rendering_system_advanced_texture_mapper(
             goto joined_r0x0001802999aa;
         }
     } else {
-        if ((*(int *)(_DAT_180c8a9b0 + 0x1ca0) == 0) ||
-           (*(int *)(_DAT_180c8a9b0 + 0x1ca0) != *(int *)(lVar9 + 0x144))) goto LAB_180299abc;
+        if ((*(int *)(SYSTEM_DATA_MANAGER_A + 0x1ca0) == 0) ||
+           (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1ca0) != *(int *)(lVar9 + 0x144))) goto LAB_180299abc;
         if (*(int *)(lVar9 + 0x144) == *(int)(lVar9 + 8)) {
             cVar4 = *(char *)(lVar9 + 0xb1);
         joined_r0x0001802999aa:
@@ -428,7 +429,7 @@ LAB_180299abc:
             uVar6 = func_0x000180121e20();
             uVar3 = uStack_100;
             fVar27 = 1.0 - (float)(uVar6 >> 8 & 0xff) * RENDERING_COLOR_COMPONENT_SCALE;
-            fVar26 = (float)(uVar6 >> 0x18) * *(float *)(_DAT_180c8a9b0 + 0x1628) * RENDERING_COLOR_COMPONENT_SCALE;
+            fVar26 = (float)(uVar6 >> 0x18) * *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628) * RENDERING_COLOR_COMPONENT_SCALE;
             fVar24 = 1.0 - (float)(uVar6 >> 0x10 & 0xff) * RENDERING_COLOR_COMPONENT_SCALE;
             fVar21 = 1.0 - (float)(uVar6 & 0xff) * RENDERING_COLOR_COMPONENT_SCALE;
             
@@ -706,7 +707,7 @@ void rendering_system_advanced_coordinate_transformer(void) {
                 uVar8 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
                 puVar16 = puVar16 + 1;
                 uVar13 = uVar13 - 1;
-                unaff_RBX = _DAT_180c8a9b0;
+                unaff_RBX = SYSTEM_DATA_MANAGER_A;
                 in_R11 = in_stack_00000068;
             } while (uVar13 != 0);
         }
@@ -731,7 +732,7 @@ void rendering_system_advanced_coordinate_transformer(void) {
     // 处理变换数据
     iVar11 = iVar18 + -1;
     iStack0000000000000050 = -1;
-    lVar17 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
+    lVar17 = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
     iVar15 = iVar18;
     if ((int)fVar19 < iVar18) {
         iVar15 = (int)fVar19;
@@ -740,21 +741,21 @@ void rendering_system_advanced_coordinate_transformer(void) {
     uStack000000000000005c = uVar14;
     
     // 变换状态检查
-    if ((*(char *)(_DAT_180c8a9b0 + 0x1d07) == '\0') || (*(char *)(_DAT_180c8a9b0 + 0x1d06) != '\0')) {
+    if ((*(char *)(SYSTEM_DATA_MANAGER_A + 0x1d07) == '\0') || (*(char *)(SYSTEM_DATA_MANAGER_A + 0x1d06) != '\0')) {
         if ((((((*(byte *)(lVar17 + 0x148) & 1) == 0) ||
-              (lVar2 = *(longlong *)(lVar17 + 0x3a0), *(longlong *)(_DAT_180c8a9b0 + 0x1b08) != lVar2))
-             || ((((iVar15 = *(int *)(_DAT_180c8a9b0 + 0x1b2c), iVar15 != 0 &&
-                   (iVar15 != *(int *)(lVar17 + 0x144))) && (*(char *)(_DAT_180c8a9b0 + 0x1b3d) == '\0')
+              (lVar2 = *(longlong *)(lVar17 + 0x3a0), *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b08) != lVar2))
+             || ((((iVar15 = *(int *)(SYSTEM_DATA_MANAGER_A + 0x1b2c), iVar15 != 0 &&
+                   (iVar15 != *(int *)(lVar17 + 0x144))) && (*(char *)(SYSTEM_DATA_MANAGER_A + 0x1b3d) == '\0')
                   ) && (iVar15 != *(int *)(lVar17 + 0x84))))) ||
-            ((((*(longlong *)(_DAT_180c8a9b0 + 0x1c98) != 0 &&
-               (lVar4 = *(longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1c98) + 0x3a0), lVar4 != 0)) &&
+            ((((*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1c98) != 0 &&
+               (lVar4 = *(longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1c98) + 0x3a0), lVar4 != 0)) &&
               (*(char *)(lVar4 + 0xb0) != '\0')) &&
              ((lVar4 != lVar2 &&
               (((*(uint *)(lVar4 + 0xc) >> 0x1b & 1) != 0 || ((*(uint *)(lVar4 + 0xc) >> 0x1a & 1) != 0)
                ))))))) ||
-           (((*(longlong *)(lVar17 + 0x28) != *(longlong *)(_DAT_180c8a9b0 + 0x1c80) &&
-             ((*(longlong *)(_DAT_180c8a9b0 + 0x1b78) == 0 ||
-              (lVar2 != *(longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1b78) + 0x3a0))))) ||
+           (((*(longlong *)(lVar17 + 0x28) != *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1c80) &&
+             ((*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b78) == 0 ||
+              (lVar2 != *(longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b78) + 0x3a0))))) ||
             ((*(byte *)(lVar17 + 0x1a8) & 4) != 0)))) goto LAB_180299abc;
         
         if ((*(int *)(lVar17 + 0x144) == *(int)(lVar17 + 8)) ||
@@ -763,8 +764,8 @@ void rendering_system_advanced_coordinate_transformer(void) {
             goto joined_r0x0001802999aa;
         }
     } else {
-        if ((*(int)(_DAT_180c8a9b0 + 0x1ca0) == 0) ||
-           (*(int *)(_DAT_180c8a9b0 + 0x1ca0) != *(int)(lVar17 + 0x144))) goto LAB_180299abc;
+        if ((*(int)(SYSTEM_DATA_MANAGER_A + 0x1ca0) == 0) ||
+           (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1ca0) != *(int)(lVar17 + 0x144))) goto LAB_180299abc;
         if (*(int *)(lVar17 + 0x144) == *(int)(lVar17 + 8)) {
             cVar6 = *(char *)(lVar17 + 0xb1);
         joined_r0x0001802999aa:
@@ -842,7 +843,7 @@ LAB_180299abc:
             *(int32_t *)(unaff_RBP + -0x78) = uVar8;
             uVar9 = func_0x000180121e20();
             fVar25 = 1.0 - (float)(uVar9 >> 8 & 0xff) * RENDERING_COLOR_COMPONENT_SCALE;
-            fVar23 = (float)(uVar9 >> 0x18) * *(float *)(_DAT_180c8a9b0 + 0x1628) * RENDERING_COLOR_COMPONENT_SCALE;
+            fVar23 = (float)(uVar9 >> 0x18) * *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628) * RENDERING_COLOR_COMPONENT_SCALE;
             fVar20 = 1.0 - (float)(uVar9 >> 0x10 & 0xff) * RENDERING_COLOR_COMPONENT_SCALE;
             fVar26 = 1.0 - (float)(uVar9 & 0xff) * RENDERING_COLOR_COMPONENT_SCALE;
             

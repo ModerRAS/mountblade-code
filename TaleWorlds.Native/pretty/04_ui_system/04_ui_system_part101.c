@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * 04_ui_system_part101.c - UI系统高级数据处理和算法优化模块
@@ -252,7 +253,7 @@ void ui_system_process_data_arrays(void *ui_context, void *data_array, void *par
     ulonglong stack_guard;
     
     // 栈保护机制
-    stack_guard = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     
     max_iterations = *(int *)((char *)ui_context + 0x90c);
     context_offset = (longlong)ui_context + 0xaec;
@@ -359,7 +360,7 @@ void ui_system_transform_data_values(void *ui_context, void *source_data, void *
     ulonglong stack_guard;
     
     // 栈保护机制
-    stack_guard = _DAT_180bf00a8 ^ (ulonglong)source_buffer;
+    stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)source_buffer;
     data_offset = 0;
     transform_mode = *(int32_t *)((char *)ui_context + 0x914);
     
@@ -621,7 +622,7 @@ void ui_system_handle_memory_allocation(void *ui_context, uint64_t memory_params
     ulonglong stack_guard;
     
     // 栈保护机制
-    stack_guard = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     
     // 计算分配大小
     allocation_size = (longlong)*(int *)((char *)ui_context + 0x920) * 2;

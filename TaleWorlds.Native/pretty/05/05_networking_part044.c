@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 05_networking_part044.c - 网络系统高级连接和数据处理模块
 // 包含5个核心函数，涵盖网络连接管理、数据包处理、连接状态监控、网络参数优化和高级网络功能
@@ -139,7 +140,7 @@ int NetworkSystem_ConnectionValidator(longlong connection_context)
     return 0;
   }
   if (((*(byte *)(*(longlong *)(*(longlong *)(connection_context + 0x2c8) + 0x4c0) + 0x7a) & 1) == 0) &&
-     (*(char *)(_DAT_180be12f0 + 0x158) == '\0')) {
+     (*(char *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x158) == '\0')) {
     context_data = 0;
   }
   else {

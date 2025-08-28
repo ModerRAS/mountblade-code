@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part141.c - 核心引擎模块第141部分
 // 包含4个函数定义：渲染队列管理和动画效果处理相关函数
@@ -30,14 +31,14 @@ void update_render_queue_state(longlong render_queue)
     longlong lVar5;
     
     // 获取渲染队列上下文
-    lVar4 = _DAT_180c8a9b0;
-    lVar2 = *(longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x210);
+    lVar4 = SYSTEM_DATA_MANAGER_A;
+    lVar2 = *(longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x210);
     
     // 计算渲染条目位置
     lVar5 = (longlong)*(int *)(lVar2 + 0xc) * 0x1c + *(longlong *)(lVar2 + 0x38);
     
     // 设置渲染状态标志
-    *(int8_t *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
+    *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
     lVar2 = *(longlong *)(lVar4 + 0x1af8);
     
     // 执行渲染队列更新
@@ -117,10 +118,10 @@ int * find_or_create_render_entry(longlong render_context, int render_id, ulongl
             iVar8 = iVar3;
         }
         if (iVar2 < iVar8) {
-            if (_DAT_180c8a9b0 != 0) {
-                *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+            if (SYSTEM_DATA_MANAGER_A != 0) {
+                *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
             }
-            uVar4 = func_0x000180120ce0((longlong)iVar8 << 6,_DAT_180c8a9a8,search_key,lVar9,
+            uVar4 = func_0x000180120ce0((longlong)iVar8 << 6,SYSTEM_DATA_MANAGER_B,search_key,lVar9,
                                       0xfffffffffffffffe);
             if (*(longlong *)(render_context + 0x2d0) != 0) {
                 // 复制现有数据到新内存块
@@ -196,7 +197,7 @@ void process_animation_render_effects(void *animation_data, int frame_count, int
     float fVar23;
     float fVar24;
     
-    lVar6 = _DAT_180c8a9b0;
+    lVar6 = SYSTEM_DATA_MANAGER_A;
     uVar20 = 0;
     iVar11 = frame_count;
     if (animation_data != (void *)0x0) {
@@ -204,7 +205,7 @@ void process_animation_render_effects(void *animation_data, int frame_count, int
     }
     
     // 设置动画状态标志
-    *(int8_t *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
+    *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
     lVar5 = *(longlong *)(lVar6 + 0x1af8);
     
     // 初始化动画参数
@@ -221,9 +222,9 @@ void process_animation_render_effects(void *animation_data, int frame_count, int
                               ));
     
     // 处理动画状态
-    lVar14 = _DAT_180c8a9b0;
-    if (*(int *)(_DAT_180c8a9b0 + 0x1b2c) == iVar11) {
-        *(int *)(_DAT_180c8a9b0 + 0x1b34) = iVar11;
+    lVar14 = SYSTEM_DATA_MANAGER_A;
+    if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b2c) == iVar11) {
+        *(int *)(SYSTEM_DATA_MANAGER_A + 0x1b34) = iVar11;
     }
     if (*(int *)(lVar14 + 0x1b30) == iVar11) {
         *(int8_t *)(lVar14 + 0x1b3f) = 1;
@@ -319,7 +320,7 @@ void process_animation_render_effects(void *animation_data, int frame_count, int
     }
     
     // 处理动画帧渲染
-    lVar6 = _DAT_180c8a9b0;
+    lVar6 = SYSTEM_DATA_MANAGER_A;
     uVar17 = uVar20;
     if (0 < frame_count) {
         do {
@@ -374,14 +375,14 @@ void process_animation_render_effects(void *animation_data, int frame_count, int
     
     // 应用渲染效果
     FUN_180291cf0(*(uint64_t *)(lVar5 + 0x2e8),*(int32_t *)(lVar14 + 0x10));
-    lVar5 = _DAT_180c8a9b0;
-    lVar6 = *(longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x210);
+    lVar5 = SYSTEM_DATA_MANAGER_A;
+    lVar6 = *(longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x210);
     lVar14 = (longlong)*(int *)(lVar6 + 0xc) * 0x1c + *(longlong *)(lVar6 + 0x38);
-    *(int8_t *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
+    *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
     lVar6 = *(longlong *)(lVar5 + 0x1af8);
     FUN_180291b40(*(uint64_t *)(lVar6 + 0x2e8),*(uint64_t *)(lVar14 + 0xc),
                   *(uint64_t *)(lVar14 + 0x14),0);
-    lVar5 = _DAT_180c8a9b0;
+    lVar5 = SYSTEM_DATA_MANAGER_A;
     puVar2 = (uint64_t *)
              (*(longlong *)(*(longlong *)(lVar6 + 0x2e8) + 0x68) + -0x10 +
              (longlong)*(int *)(*(longlong *)(lVar6 + 0x2e8) + 0x60) * 0x10);
@@ -491,7 +492,7 @@ void process_advanced_animation_render_effects(void *animation_data, int frame_c
     // 设置矩阵参数
     *(uint64_t *)(in_RAX + 8) = unaff_RBX;
     *(uint64_t *)(in_RAX + 0x10) = unaff_RBP;
-    lVar6 = _DAT_180c8a9b0;
+    lVar6 = SYSTEM_DATA_MANAGER_A;
     *(uint64_t *)(in_RAX + 0x18) = unaff_RSI;
     *(uint64_t *)(in_RAX + 0x20) = unaff_RDI;
     uVar20 = 0;
@@ -533,9 +534,9 @@ void process_advanced_animation_render_effects(void *animation_data, int frame_c
                               ));
     
     // 处理动画状态
-    lVar14 = _DAT_180c8a9b0;
-    if (*(int *)(_DAT_180c8a9b0 + 0x1b2c) == iVar11) {
-        *(int *)(_DAT_180c8a9b0 + 0x1b34) = iVar11;
+    lVar14 = SYSTEM_DATA_MANAGER_A;
+    if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b2c) == iVar11) {
+        *(int *)(SYSTEM_DATA_MANAGER_A + 0x1b34) = iVar11;
     }
     if (*(int *)(lVar14 + 0x1b30) == iVar11) {
         *(int8_t *)(lVar14 + 0x1b3f) = 1;
@@ -631,7 +632,7 @@ void process_advanced_animation_render_effects(void *animation_data, int frame_c
     }
     
     // 处理动画帧渲染
-    lVar6 = _DAT_180c8a9b0;
+    lVar6 = SYSTEM_DATA_MANAGER_A;
     uVar17 = uVar20;
     if (0 < frame_count) {
         do {
@@ -686,14 +687,14 @@ void process_advanced_animation_render_effects(void *animation_data, int frame_c
     
     // 应用渲染效果
     FUN_180291cf0(*(uint64_t *)(lVar5 + 0x2e8),*(int32_t *)(lVar14 + 0x10));
-    lVar5 = _DAT_180c8a9b0;
-    lVar6 = *(longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x210);
+    lVar5 = SYSTEM_DATA_MANAGER_A;
+    lVar6 = *(longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x210);
     lVar14 = (longlong)*(int *)(lVar6 + 0xc) * 0x1c + *(longlong *)(lVar6 + 0x38);
-    *(int8_t *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
+    *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
     lVar6 = *(longlong *)(lVar5 + 0x1af8);
     FUN_180291b40(*(uint64_t *)(lVar6 + 0x2e8),*(uint64_t *)(lVar14 + 0xc),
                   *(uint64_t *)(lVar14 + 0x14),0);
-    lVar5 = _DAT_180c8a9b0;
+    lVar5 = SYSTEM_DATA_MANAGER_A;
     puVar2 = (uint64_t *)
              (*(longlong *)(*(longlong *)(lVar6 + 0x2e8) + 0x68) + -0x10 +
              (longlong)*(int *)(*(longlong *)(lVar6 + 0x2e8) + 0x60) * 0x10);
@@ -799,7 +800,7 @@ void process_optimized_animation_render_effects(uint64_t matrix_data, int frame_
     
     // 初始化矩阵变换参数
     *(uint64_t *)(in_RAX + 0x10) = unaff_RBP;
-    lVar6 = _DAT_180c8a9b0;
+    lVar6 = SYSTEM_DATA_MANAGER_A;
     *(uint64_t *)(in_RAX + 0x18) = unaff_RSI;
     *(uint64_t *)(in_RAX + 0x20) = unaff_RDI;
     uVar18 = 0;
@@ -834,9 +835,9 @@ void process_optimized_animation_render_effects(uint64_t matrix_data, int frame_
                                    (longlong)*(int *)(lVar5 + 0x218) * 4));
     
     // 处理动画状态同步
-    lVar13 = _DAT_180c8a9b0;
-    if (*(int *)(_DAT_180c8a9b0 + 0x1b2c) == iVar10) {
-        *(int *)(_DAT_180c8a9b0 + 0x1b34) = iVar10;
+    lVar13 = SYSTEM_DATA_MANAGER_A;
+    if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b2c) == iVar10) {
+        *(int *)(SYSTEM_DATA_MANAGER_A + 0x1b34) = iVar10;
     }
     if (*(int *)(lVar13 + 0x1b30) == iVar10) {
         *(int8_t *)(lVar13 + 0x1b3f) = 1;
@@ -932,7 +933,7 @@ void process_optimized_animation_render_effects(uint64_t matrix_data, int frame_
     }
     
     // 优化的动画帧渲染处理
-    lVar6 = _DAT_180c8a9b0;
+    lVar6 = SYSTEM_DATA_MANAGER_A;
     uVar15 = uVar18;
     if (0 < frame_count) {
         do {
@@ -987,14 +988,14 @@ void process_optimized_animation_render_effects(uint64_t matrix_data, int frame_
     
     // 应用优化的渲染效果
     FUN_180291cf0(*(uint64_t *)(lVar5 + 0x2e8),*(int32_t *)(lVar13 + 0x10));
-    lVar5 = _DAT_180c8a9b0;
-    lVar6 = *(longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x210);
+    lVar5 = SYSTEM_DATA_MANAGER_A;
+    lVar6 = *(longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x210);
     lVar13 = (longlong)*(int *)(lVar6 + 0xc) * 0x1c + *(longlong *)(lVar6 + 0x38);
-    *(int8_t *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
+    *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
     lVar6 = *(longlong *)(lVar5 + 0x1af8);
     FUN_180291b40(*(uint64_t *)(lVar6 + 0x2e8),*(uint64_t *)(lVar13 + 0xc),
                   *(uint64_t *)(lVar13 + 0x14),0);
-    lVar5 = _DAT_180c8a9b0;
+    lVar5 = SYSTEM_DATA_MANAGER_A;
     puVar2 = (uint64_t *)
              (*(longlong *)(*(longlong *)(lVar6 + 0x2e8) + 0x68) + -0x10 +
              (longlong)*(int *)(*(longlong *)(lVar6 + 0x2e8) + 0x60) * 0x10);

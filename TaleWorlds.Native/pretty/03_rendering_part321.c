@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part321.c - 5 个函数
 
@@ -30,10 +31,10 @@ void FUN_180438b47(uint64_t param_1,uint64_t param_2,longlong param_3,ulonglong 
     } while (in_R10 < param_4);
   }
   FUN_18006b4c0();
-  FUN_18006b440(_DAT_180c86920,iVar1);
+  FUN_18006b440(SYSTEM_STATE_MANAGER,iVar1);
   FUN_1800ae230();
-  if ((*(int *)(_DAT_180c86920 + 0x540) == 4) && (*(int *)(_DAT_180c86920 + 0x1d50) < 0xf00)) {
-    FUN_18010e3b0(_DAT_180c86920,unaff_R14D);
+  if ((*(int *)(SYSTEM_STATE_MANAGER + 0x540) == 4) && (*(int *)(SYSTEM_STATE_MANAGER + 0x1d50) < 0xf00)) {
+    FUN_18010e3b0(SYSTEM_STATE_MANAGER,unaff_R14D);
   }
   return;
 }
@@ -66,10 +67,10 @@ void FUN_180438b6c(uint64_t param_1,int param_2,longlong param_3,ulonglong param
     unaff_XMM6_Da = fVar1;
   } while (in_R10 < param_4);
   FUN_18006b4c0();
-  FUN_18006b440(_DAT_180c86920,unaff_EBX);
+  FUN_18006b440(SYSTEM_STATE_MANAGER,unaff_EBX);
   FUN_1800ae230();
-  if ((*(int *)(_DAT_180c86920 + 0x540) == 4) && (*(int *)(_DAT_180c86920 + 0x1d50) < 0xf00)) {
-    FUN_18010e3b0(_DAT_180c86920,unaff_R14D);
+  if ((*(int *)(SYSTEM_STATE_MANAGER + 0x540) == 4) && (*(int *)(SYSTEM_STATE_MANAGER + 0x1d50) < 0xf00)) {
+    FUN_18010e3b0(SYSTEM_STATE_MANAGER,unaff_R14D);
   }
   return;
 }
@@ -138,7 +139,7 @@ void FUN_180438c50(void)
   uVar4 = 0;
   uStackX_8 = 0x7000000;
   uStackX_c = 1;
-  if ((*(int *)(_DAT_180c86920 + 0x4d0) - 3U & 0xfffffffd) == 0) {
+  if ((*(int *)(SYSTEM_STATE_MANAGER + 0x4d0) - 3U & 0xfffffffd) == 0) {
     uVar4 = 2;
   }
   uVar3 = FUN_1800ab420(lVar2,&uStackX_8);
@@ -159,7 +160,7 @@ void FUN_180438c50(void)
   uStackX_c = 1;
   uVar3 = FUN_1800ab420(lVar2,&uStackX_8);
   *(uint64_t *)(lVar2 + 0x1e28) = uVar3;
-  iVar1 = *(int *)(_DAT_180c86920 + 0x310);
+  iVar1 = *(int *)(SYSTEM_STATE_MANAGER + 0x310);
   if (iVar1 == 0) {
     uStackX_c = 1;
     uStackX_8 = 6;

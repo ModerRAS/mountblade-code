@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * @file 03_rendering_part471.c
@@ -383,7 +384,7 @@ void RenderingSystemAdvancedStateProcessor(rendering_int param_1, rendering_int*
     rendering_float temp_float_stack[16];
     
     // 初始化栈变量
-    temp_ulong_stack = _DAT_180bf00a8 ^ (rendering_ulong)temp_bytes;
+    temp_ulong_stack = GET_SECURITY_COOKIE() ^ (rendering_ulong)temp_bytes;
     
     // 检查系统状态和上下文有效性
     if ((((*(rendering_long*)(temp_long1 + 0x6d8) == 0) ||

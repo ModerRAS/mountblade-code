@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * 渲染系统高级字符串处理和配置管理模块
@@ -272,7 +273,7 @@ void rendering_system_string_comparator_and_config_processor(
     
     // 初始化栈值
     stack_value_1 = 0xfffffffffffffffe;
-    checksum_value = _DAT_180bf00a8 ^ (ulonglong)string_buffer_1;
+    checksum_value = GET_SECURITY_COOKIE() ^ (ulonglong)string_buffer_1;
     
     // 初始化字符串缓冲区
     pointer_33 = &unknown_var_672_ptr;

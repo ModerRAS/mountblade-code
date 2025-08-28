@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part080.c - 核心引擎模块第080部分
 // 本文件包含3个函数，主要处理文本渲染、布局计算和字体度量功能
@@ -43,8 +44,8 @@ void process_text_layout_and_rendering(ulonglong text_start, ulonglong text_end)
   uint64_t render_buffer2;
   
   // 获取引擎上下文和设置渲染标志
-  engine_context = _DAT_180c8a9b0;
-  *(int8_t *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
+  engine_context = SYSTEM_DATA_MANAGER_A;
+  *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
   render_state = *(longlong *)(engine_context + 0x1af8);
   
   // 检查是否已经启用渲染
@@ -171,7 +172,7 @@ void process_text_layout_and_rendering(ulonglong text_start, ulonglong text_end)
             text_start = char_ptr + 1;
             current_height = current_height + base_font_size;
             stack_temp = CONCAT44(width,(int32_t)stack_temp);
-            engine_context = _DAT_180c8a9b0;
+            engine_context = SYSTEM_DATA_MANAGER_A;
           } while (text_start < text_end);
           
           // 处理剩余的文本
@@ -565,7 +566,7 @@ void process_advanced_text_layout(longlong render_context, longlong text_params)
             
             // 渲染文本行
             FUN_180122320(*(uint64_t *)(layout_data + 0x40),text_start,text_position,0);
-            engine_state = _DAT_180c8a9b0;
+            engine_state = SYSTEM_DATA_MANAGER_A;
             char_height = char_height + font_size;
             text_start = text_position + 1;
             current_height = current_height + font_size;
@@ -928,7 +929,7 @@ void process_optimized_text_rendering(uint64_t render_params)
         
         // 渲染文本行
         FUN_180122320(*(uint64_t *)(layout_data + 0x40),text_start,text_end,0);
-        engine_state = _DAT_180c8a9b0;
+        engine_state = SYSTEM_DATA_MANAGER_A;
         line_height = line_height + font_size;
         text_start = text_end + 1;
         text_height = text_height + font_size;

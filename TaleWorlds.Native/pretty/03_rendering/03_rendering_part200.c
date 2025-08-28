@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part200.c - 渲染系统高级参数处理和材质计算模块
 
@@ -33,7 +34,7 @@ void RenderingSystem_ParameterProcessor(uint64_t render_context, longlong param_
   uint resource_index;
   ulonglong data_offset;
   longlong base_address = _DAT_180c86890;
-  ulonglong frame_sync = _DAT_180bf00a8;
+  ulonglong frame_sync = GET_SECURITY_COOKIE();
   
   // 参数处理循环
   do {
@@ -129,7 +130,7 @@ void RenderingSystem_AdvancedMaterialProcessor(uint64_t render_context, longlong
   }
   
   // 材质数据同步
-  FUN_1808fc050(_DAT_180bf00a8);
+  FUN_1808fc050(GET_SECURITY_COOKIE());
 }
 
 // ===================================================================
@@ -196,7 +197,7 @@ void RenderingSystem_MaterialOptimizer(uint64_t material_context, uint64_t textu
   }
   
   // 优化数据同步
-  FUN_1808fc050(_DAT_180bf00a8);
+  FUN_1808fc050(GET_SECURITY_COOKIE());
 }
 
 // ===================================================================

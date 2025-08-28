@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part334.c - 渲染系统高级控制和数据处理模块
 // 该模块包含34个核心函数，涵盖渲染系统高级控制、数据处理、资源管理、状态管理、
@@ -393,7 +394,7 @@ void FUN_180443b00(void)
     // 初始化上下文管理器
     context_manager = _DAT_180c8a9e0;
     stack_data_218 = RENDERING_SYSTEM_FLAG_FFFFFFFE;
-    stack_data_28 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_278;
+    stack_data_28 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_278;
     
     // 计算系统数据偏移
     system_data = (longlong)*(int *)(_DAT_180c86938 + 0x1d40) * 0xd0 + *(longlong *)(_DAT_180c86938 + 0x1d20);
@@ -525,7 +526,7 @@ void FUN_180443b80(uint64_t param_1, int8_t param_2)
     ulonglong parameter_data_18;
     
     parameter_data_b0 = RENDERING_SYSTEM_FLAG_FFFFFFFE;
-    parameter_data_18 = _DAT_180bf00a8 ^ (ulonglong)parameter_buffer_d8;
+    parameter_data_18 = GET_SECURITY_COOKIE() ^ (ulonglong)parameter_buffer_d8;
     parameter_ptr_b8 = parameter_array_60;
     parameter_ptr = (uint64_t *)FUN_180627910(parameter_array_60, param_1);
     system_context = _DAT_180c8a9e0;
@@ -761,7 +762,7 @@ void FUN_180444030(void)
     if (lock_result != 0) {
         __Throw_C_error_std__YAXH_Z(lock_result);
     }
-    _DAT_180c8a9b0 = *(uint64_t *)*_DAT_180c86960;
+    SYSTEM_DATA_MANAGER_A = *(uint64_t *)*_DAT_180c86960;
     return;
 }
 
@@ -783,16 +784,16 @@ void FUN_180444070(uint64_t param_1, uint64_t *param_2)
     int32_t config_buffer_18;
     int32_t config_buffer_16;
     
-    config_context = _DAT_180c8a9b0;
+    config_context = SYSTEM_DATA_MANAGER_A;
     config_data_1 = *param_2;
     config_data_2 = param_2[1];
     config_buffer_28 = 0;
-    config_buffer_24 = *(int32_t *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_16C8);
-    config_buffer_20 = *(int32_t *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_16CC);
-    config_buffer_18 = *(int32_t *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_16D0);
-    config_buffer_16 = *(int32_t *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_16D4);
+    config_buffer_24 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + RENDERING_SYSTEM_OFFSET_16C8);
+    config_buffer_20 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + RENDERING_SYSTEM_OFFSET_16CC);
+    config_buffer_18 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + RENDERING_SYSTEM_OFFSET_16D0);
+    config_buffer_16 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + RENDERING_SYSTEM_OFFSET_16D4);
     
-    FUN_18013e100(_DAT_180c8a9b0 + 0x1b80, &config_buffer_28);
+    FUN_18013e100(SYSTEM_DATA_MANAGER_A + 0x1b80, &config_buffer_28);
     *(uint64_t *)(config_context + RENDERING_SYSTEM_OFFSET_16C8) = config_data_1;
     *(uint64_t *)(config_context + RENDERING_SYSTEM_OFFSET_16D0) = config_data_2;
     return;
@@ -886,8 +887,8 @@ void FUN_1804442e0(void)
     int32_t original_state;
     longlong stack_array_8 [4];
     
-    render_context = _DAT_180c8a9b0;
-    *(int8_t *)(*(longlong *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_1AF8) + 0xb1) = RENDERING_SYSTEM_STATE_ACTIVE;
+    render_context = SYSTEM_DATA_MANAGER_A;
+    *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + RENDERING_SYSTEM_OFFSET_1AF8) + 0xb1) = RENDERING_SYSTEM_STATE_ACTIVE;
     object_data = *(longlong *)(render_context + RENDERING_SYSTEM_OFFSET_1AF8);
     
     if (*(char *)(object_data + 0xb4) == '\0') {
@@ -985,10 +986,10 @@ void FUN_1804445b0(uint64_t param_1)
     longlong render_context;
     uint64_t texture_data_10 [3];
     
-    render_context = _DAT_180c8a9b0;
+    render_context = SYSTEM_DATA_MANAGER_A;
     texture_data_10[0] = 0;
-    original_state = *(int32_t *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_1660);
-    *(int32_t *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_1660) = 0;
+    original_state = *(int32_t *)(SYSTEM_DATA_MANAGER_A + RENDERING_SYSTEM_OFFSET_1660);
+    *(int32_t *)(SYSTEM_DATA_MANAGER_A + RENDERING_SYSTEM_OFFSET_1660) = 0;
     FUN_18010f6f0(param_1, texture_data_10, 0x200);
     *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_1660) = original_state;
     return;
@@ -1020,7 +1021,7 @@ void FUN_180444600(uint64_t param_1, uint64_t param_2, float param_3, float para
     int8_t parameter_flag_39;
     ulonglong parameter_data_38;
     
-    parameter_data_38 = _DAT_180bf00a8 ^ (ulonglong)parameter_buffer_98;
+    parameter_data_38 = GET_SECURITY_COOKIE() ^ (ulonglong)parameter_buffer_98;
     parameter_flag_48 = 0x6625;
     parameter_flag_46 = 0;
     parameter_data_45 = 0;
@@ -1072,7 +1073,7 @@ void FUN_180444700(uint64_t param_1, int32_t *param_2, int32_t *param_3, int par
     int8_t shader_flag_21;
     ulonglong shader_data_20;
     
-    shader_data_20 = _DAT_180bf00a8 ^ (ulonglong)shader_buffer_78;
+    shader_data_20 = GET_SECURITY_COOKIE() ^ (ulonglong)shader_buffer_78;
     shader_data_38 = *param_2;
     shader_data_34 = *param_3;
     shader_flag_30 = 0x6625;
@@ -1116,7 +1117,7 @@ void FUN_1804447c0(uint64_t param_1, int32_t *param_2, int32_t *param_3, int32_t
     int8_t effect_flag_39;
     ulonglong effect_data_38;
     
-    effect_data_38 = _DAT_180bf00a8 ^ (ulonglong)effect_buffer_98;
+    effect_data_38 = GET_SECURITY_COOKIE() ^ (ulonglong)effect_buffer_98;
     effect_data_58 = *param_2;
     effect_data_54 = *param_3;
     effect_flag_48 = 0x6625;
@@ -1164,7 +1165,7 @@ void FUN_1804448a0(uint64_t param_1, int32_t *param_2, int32_t *param_3, int32_t
     int8_t buffer_flag_39;
     ulonglong buffer_data_38;
     
-    buffer_data_38 = _DAT_180bf00a8 ^ (ulonglong)buffer_data_98;
+    buffer_data_38 = GET_SECURITY_COOKIE() ^ (ulonglong)buffer_data_98;
     buffer_data_58 = *param_2;
     buffer_data_54 = *param_3;
     buffer_flag_48 = 0x6625;
@@ -1198,7 +1199,7 @@ float FUN_1804449a0(void)
 {
     float result;
     
-    result = (float)expf(*(float *)(_DAT_180c86920 + RENDERING_SYSTEM_OFFSET_16C0) * RENDERING_SYSTEM_FLOAT_4_0);
+    result = (float)expf(*(float *)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_16C0) * RENDERING_SYSTEM_FLOAT_4_0);
     return result * RENDERING_SYSTEM_FLOAT_0_05;
 }
 
@@ -1221,7 +1222,7 @@ void FUN_180444a20(uint64_t param_1, uint64_t param_2, int param_3, uint64_t par
     int8_t copy_buffer_144 [268];
     ulonglong copy_data_38;
     
-    copy_data_38 = _DAT_180bf00a8 ^ (ulonglong)copy_buffer_168;
+    copy_data_38 = GET_SECURITY_COOKIE() ^ (ulonglong)copy_buffer_168;
     copy_flag_148 = (int8_t)param_3;
     copy_flag_147 = param_6;
     memcpy(copy_buffer_144, param_1, (longlong)param_3 << 2);
@@ -1245,7 +1246,7 @@ void FUN_180444b70(uint64_t param_1, uint64_t param_2, uint64_t param_3, int par
     int8_t transfer_buffer_1d4 [396];
     ulonglong transfer_data_48;
     
-    transfer_data_48 = _DAT_180bf00a8 ^ (ulonglong)transfer_buffer_1f8;
+    transfer_data_48 = GET_SECURITY_COOKIE() ^ (ulonglong)transfer_buffer_1f8;
     transfer_flag_1d8 = (int8_t)param_4;
     transfer_flag_1d7 = transfer_flag_40;
     memcpy(transfer_buffer_1d4, param_1, (longlong)param_4 << 2);

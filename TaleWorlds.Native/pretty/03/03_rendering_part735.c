@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // ============================================================================
 // TaleWorlds.Native 渲染系统模块
@@ -106,7 +107,7 @@ extern void func_0x00018001b1ed(void* param1, ...);
 // ============================================================================
 // 全局变量声明
 // ============================================================================
-extern ulonglong _DAT_180bf00a8;              // 数据基址
+extern ulonglong GET_SECURITY_COOKIE();              // 数据基址
 extern ulonglong _DAT_180c0c210;              // 临界区指针
 extern int _DAT_180c0c218;                    // 引用计数
 extern int _DAT_180c0c21c;                    // 初始化标志
@@ -557,7 +558,7 @@ void FUN_18069c080(longlong param_1, uint64_t param_2, uint64_t param_3, int8_t 
     ulonglong security_cookie;
     
     // 设置安全cookie
-    security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     data_offset = (longlong)param_6;
     
     // 获取渲染模式
@@ -621,7 +622,7 @@ void FUN_18069c200(longlong param_1, uint64_t param_2, int8_t *param_3, int para
     ulonglong security_cookie;
     
     // 设置安全cookie
-    security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     render_mode = **(byte **)(param_1 + 0xf00);
     data_index = 0;
     

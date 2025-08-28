@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part248.c - 核心引擎模块第248部分
 // 
@@ -46,7 +47,7 @@ void process_resource_cleanup_and_management(uint64_t *context_ptr)
   ulonglong security_cookie;
   
   context_data = 0xfffffffffffffffe;
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)local_buffer;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)local_buffer;
   loop_counter = 0;
   if (*(char *)(context_ptr + 0x86) != '\0') {
     current_time = timeGetTime();

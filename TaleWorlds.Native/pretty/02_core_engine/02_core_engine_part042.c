@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part042.c - 核心引擎内存管理函数
 // 本文件包含14个函数，主要用于内存分配、数据结构管理和容器操作
@@ -662,7 +663,7 @@ void expand_dynamic_array_4byte_typeA(longlong source_array, longlong *target_pt
   ulonglong stack_guard;
   
   stack_param = 0xfffffffffffffffe;
-  stack_guard = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   stack_flag = 0;
   array_size = **(int **)(source_array + 8);
   *(int **)(source_array + 8) = *(int **)(source_array + 8) + 1;
@@ -741,7 +742,7 @@ void expand_dynamic_array_4byte_typeB(longlong source_array, longlong *target_pt
   ulonglong stack_guard;
   
   stack_param = 0xfffffffffffffffe;
-  stack_guard = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   stack_flag = 0;
   array_size = **(int **)(source_array + 8);
   *(int **)(source_array + 8) = *(int **)(source_array + 8) + 1;
@@ -819,7 +820,7 @@ void expand_dynamic_array_2byte(longlong source_array, longlong *target_ptr)
   ulonglong stack_guard;
   
   stack_param = 0xfffffffffffffffe;
-  stack_guard = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   stack_flag = 0;
   array_size = **(int **)(source_array + 8);
   *(int **)(source_array + 8) = *(int **)(source_array + 8) + 1;

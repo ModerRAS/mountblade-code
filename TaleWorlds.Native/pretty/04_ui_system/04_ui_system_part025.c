@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 04_ui_system_part025.c - UI系统高级数据管理和状态控制模块
 // 
@@ -186,7 +187,7 @@ void ui_system_advanced_data_processor(longlong *ui_context_ptr,longlong process
   ulonglong ui_security_cookie;       // UI安全cookie
   
   // 初始化安全cookie和处理参数
-  ui_security_cookie = _DAT_180bf00a8 ^ (ulonglong)ui_stack_guard;
+  ui_security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)ui_stack_guard;
   ui_flag_value = (uint)data_flags;
   ui_process_mask = data_flags & 0xffffffff;
   ui_process_status = 0;
@@ -318,7 +319,7 @@ void ui_system_memory_manager(longlong ui_memory_context,longlong *ui_memory_ptr
   ulonglong ui_security_cookie;         // 安全cookie
   
   // 初始化安全cookie
-  ui_security_cookie = _DAT_180bf00a8 ^ (ulonglong)ui_stack_guard;
+  ui_security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)ui_stack_guard;
   
   // 检查内存指针状态和上下文有效性
   if ((*ui_memory_ptr == 0) && (*(longlong *)(ui_memory_context + 0x1b0) != 0)) {
@@ -663,7 +664,7 @@ void ui_system_config_processor(byte *ui_config_data,uint ui_config_size,longlon
   ulonglong ui_security_cookie;       // 安全cookie
   
   // 初始化安全cookie
-  ui_security_cookie = _DAT_180bf00a8 ^ (ulonglong)ui_stack_guard;
+  ui_security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)ui_stack_guard;
   
   // 验证配置数据范围和有效性
   if (ui_config_data < ui_config_data + ui_config_size) {

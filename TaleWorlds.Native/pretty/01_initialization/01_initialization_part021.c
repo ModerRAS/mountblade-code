@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 01_initialization_part021.c - 初始化模块第21部分
 // 包含11个函数，主要处理资源加载、场景管理和系统初始化
@@ -59,7 +60,7 @@ void process_resource_initialization(longlong *engine_context, longlong resource
   
   // 初始化安全保护机制
   handle_guard = 0xfffffffffffffffe;
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   
   // 初始化资源数据结构
   path_flags = 0;
@@ -287,7 +288,7 @@ void batch_initialize_game_modules(void)
   ulonglong uStack_30;
   
   uStack_38 = 0xfffffffffffffffe;
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_30 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
   plStack_a8 = _DAT_180c86870;
   lVar14 = *(longlong *)(*_DAT_180c86870 + 0x890) - *(longlong *)(*_DAT_180c86870 + 0x888) >> 5;
   iStack_f8 = 0;
@@ -972,8 +973,8 @@ void perform_system_cleanup(void)
     if (lock_result != 0) {
       __Throw_C_error_std__YAXH_Z(lock_result);  // 锁定失败，抛出异常
     }
-    list_state = _DAT_180c8a9b0;
-    _DAT_180c8a9b0 = *cleanup_list;
+    list_state = SYSTEM_DATA_MANAGER_A;
+    SYSTEM_DATA_MANAGER_A = *cleanup_list;
     FUN_1801299b0(&unknown_var_6880_ptr,0,0,register_value,security_cookie);
     
     // 清理配置数据的基本字段
@@ -1002,7 +1003,7 @@ void perform_system_cleanup(void)
     FUN_18010f010(&unknown_var_7264_ptr,*(int32_t *)(config_data + 0x88));
     
     FUN_18012cfe0();  // 执行最终清理
-    _DAT_180c8a9b0 = list_state;
+    SYSTEM_DATA_MANAGER_A = list_state;
     lock_result = _Mtx_unlock(0x180c91970);
     if (lock_result != 0) {
       __Throw_C_error_std__YAXH_Z(lock_result);  // 解锁失败，抛出异常

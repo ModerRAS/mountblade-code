@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /* ============================================================================
  * 渲染系统高级数据比较和优化模块
@@ -344,7 +345,7 @@ void RenderingData_OptimizeBatch(longlong param_1,longlong *param_2,uint param_3
   if ((int)param_3 < 1) {
     return;
   }
-  uStack_c8 = _DAT_180bf00a8 ^ (ulonglong)auStack_158;
+  uStack_c8 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_158;
   lStack_128 = 0;
   uStack_110 = (ulonglong)param_3;
   lStack_118 = 0;
@@ -719,7 +720,7 @@ void RenderingState_ProcessData(longlong param_1,longlong param_2,longlong *para
   float fStack_50;
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_138;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_138;
   uVar4 = 0;
   uStack_118 = 0;
   iStack_100 = 0;

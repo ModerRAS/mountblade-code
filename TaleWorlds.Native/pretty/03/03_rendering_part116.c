@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part116.c - 渲染系统高级数据序列化和资源管理模块
 // 包含6个核心函数，涵盖渲染系统数据序列化、资源管理、内存分配、数据比较等高级渲染功能

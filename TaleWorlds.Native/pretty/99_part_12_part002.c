@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 //==============================================================================
 // 文件信息：99_part_12_part002.c
@@ -218,7 +219,7 @@ void FUN_1807c5c8d(void)
     ulonglong stackGuard;                          // 栈保护值
     
     // 安全检查：栈保护机制初始化
-    stackGuard = _DAT_180bf00a8 ^ (ulonglong)tempBuffer;
+    stackGuard = GET_SECURITY_COOKIE() ^ (ulonglong)tempBuffer;
     
     // 主解析循环
     do {
@@ -401,7 +402,7 @@ void FUN_1807c5ed0(longlong param_1)
     ulonglong stackGuard;                          // 栈保护值
     
     // 安全检查：栈保护机制初始化
-    stackGuard = _DAT_180bf00a8 ^ (ulonglong)securityBuffer;
+    stackGuard = GET_SECURITY_COOKIE() ^ (ulonglong)securityBuffer;
     
     // 初始化解析器参数
     bufferSize = PARSER_BUFFER_SIZE;

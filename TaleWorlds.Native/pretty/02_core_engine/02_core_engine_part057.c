@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part057.c - 核心引擎模块第057部分
 // 包含4个函数：渲染状态更新、资源管理、事件处理和系统初始化
@@ -437,7 +438,7 @@ void shutdown_render_system(uint64_t system_context, uint64_t shutdown_param1, u
     }
     
     // 重置渲染配置
-    *(float *)(render_config + 0x200) = 1.0 / (float)*(int *)(_DAT_180c86920 + 0x1b90);
+    *(float *)(render_config + 0x200) = 1.0 / (float)*(int *)(SYSTEM_STATE_MANAGER + 0x1b90);
     
     lock_result = _Mtx_unlock(mutex_handle);
     if (lock_result != 0) {

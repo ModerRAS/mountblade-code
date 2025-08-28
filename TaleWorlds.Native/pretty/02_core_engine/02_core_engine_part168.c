@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part168.c - 10 个函数
 
@@ -84,7 +85,7 @@ void process_engine_command_dispatcher(longlong context_ptr)
   
   // 初始化栈保护
   stack_guard = 0xfffffffffffffffe;
-  security_checksum = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  security_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   command_type = *(uint *)(context_ptr + 0x98);
   
   // 验证命令类型范围

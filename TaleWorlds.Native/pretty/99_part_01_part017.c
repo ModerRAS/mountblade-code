@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_01_part017.c - 系统调用处理器和资源管理模块
 // 
@@ -209,7 +210,7 @@ void FUN_1800b0a10(uint64_t param_1, uint64_t *param_2, int param_3, longlong pa
   // 初始化关键变量
   plVar15 = param_10;
   uStack_1f8 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_2b8;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_2b8;
   iStack_278 = param_8;
   plVar5 = (longlong *)0x0;
   iStack_25c = 0;

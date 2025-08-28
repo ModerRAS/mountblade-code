@@ -192,7 +192,7 @@ void FUN_1800a73e0(longlong param_1, uint64_t param_2, longlong param_3, int8_t 
     
     // 初始化栈变量
     uStack_6b8 = 0xfffffffffffffffe;
-    uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_9c8;
+    uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_9c8;
     uStack_7e8 = param_7;
     uStack_838 = 0;
     uStack_990 = param_6;

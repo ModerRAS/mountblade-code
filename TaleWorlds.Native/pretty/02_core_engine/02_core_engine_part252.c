@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part252.c - 核心引擎模块第252部分
 // 本文件包含内存管理、数据结构操作和排序算法相关函数

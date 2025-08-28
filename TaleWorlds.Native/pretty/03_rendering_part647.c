@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part647.c - 10 个函数
 
@@ -431,7 +432,7 @@ void FUN_180632aa0(char *param_1)
   int8_t auStack_1b8 [416];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_1d8;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1d8;
   if (*param_1 == '\0') {
     iVar1 = WSAStartup(0x202,auStack_1b8);
     if (iVar1 == 0) {

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_13_part033.c - 7 个函数
 
@@ -16,7 +17,7 @@ void FUN_1808bbebc(void)
   }
   (**(code **)(*plVar1 + 0x28))(plVar1,0);
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar1,&unknown_var_2688_ptr,0x1ee,1);
+  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar1,&unknown_var_2688_ptr,0x1ee,1);
 }
 
 
@@ -50,7 +51,7 @@ uint64_t FUN_1808bbf98(void)
     }
     if ((0 < (int)uVar4) && (*unaff_RBP != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*unaff_RBP,&unknown_var_8432_ptr,0x100);
+      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_RBP,&unknown_var_8432_ptr,0x100);
     }
     *unaff_RBP = 0;
     uVar4 = 0;
@@ -98,7 +99,7 @@ uint64_t FUN_1808bbfac(void)
     }
     if ((0 < (int)uVar4) && (*unaff_RBP != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*unaff_RBP,&unknown_var_8432_ptr,0x100);
+      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_RBP,&unknown_var_8432_ptr,0x100);
     }
     *unaff_RBP = 0;
     uVar4 = 0;
@@ -139,7 +140,7 @@ uint64_t FUN_1808bbffc(longlong param_1)
     }
     (**(code **)(*plVar1 + 0x28))(plVar1,0);
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar1,&unknown_var_2688_ptr,0x1ee,1);
+    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar1,&unknown_var_2688_ptr,0x1ee,1);
   }
   iVar3 = FUN_180744cc0();
   if ((iVar3 == 0) && (iVar3 = FUN_180744e20(unaff_RBP + 2), iVar3 == 0)) {
@@ -159,7 +160,7 @@ uint64_t FUN_1808bbffc(longlong param_1)
     }
     if ((0 < (int)uVar5) && (*unaff_RBP != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*unaff_RBP,&unknown_var_8432_ptr,0x100);
+      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_RBP,&unknown_var_8432_ptr,0x100);
     }
     *unaff_RBP = 0;
     uVar5 = 0;
@@ -683,7 +684,7 @@ void FUN_1808bc650(longlong param_1,longlong param_2)
   int32_t uStack_24;
   ulonglong uStack_20;
   
-  uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
+  uStack_20 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_68;
   plVar13 = (longlong *)0x0;
   plVar8 = (longlong *)(param_1 + 0x500);
   plVar10 = (longlong *)(*plVar8 + -0x20);

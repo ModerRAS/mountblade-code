@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part060.c - 7 个函数
 
@@ -67,7 +68,7 @@ void FUN_180096b60(uint64_t param_1,longlong param_2,longlong param_3,char param
     return;
   }
   uStack_788 = 0xfffffffffffffffe;
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_958;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_958;
   lStack_800 = param_3;
   (**(code **)(*(longlong *)(param_3 + 0x20) + 0x10))((longlong *)(param_3 + 0x20),&system_data_143c);
   FUN_1806279c0(&puStack_7d8,param_2);
@@ -102,7 +103,7 @@ void FUN_180096b60(uint64_t param_1,longlong param_2,longlong param_3,char param
   else {
     plVar10 = (longlong *)*_DAT_180c86960;
   }
-  _DAT_180c8a9b0 = *plVar10;
+  SYSTEM_DATA_MANAGER_A = *plVar10;
   if (0.0 < *(double *)(param_3 + 0x40)) {
     FUN_180096240(puVar4,param_3,lVar9);
   }
@@ -139,8 +140,8 @@ void FUN_180096b60(uint64_t param_1,longlong param_2,longlong param_3,char param
   FUN_180111070(&unknown_var_1936_ptr,lVar9 + 0x125);
   func_0x00018012e760();
   FUN_180111070(&unknown_var_1960_ptr,lVar9 + 0x126);
-  lVar2 = _DAT_180c8a9b0;
-  *(int8_t *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
+  lVar2 = SYSTEM_DATA_MANAGER_A;
+  *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
   lVar2 = *(longlong *)(*(longlong *)(lVar2 + 0x1af8) + 0x210);
   if (lVar2 == 0) {
 LAB_180096e94:
@@ -484,9 +485,9 @@ void FUN_180098ae0(longlong *param_1,int param_2,int param_3,uint64_t param_4)
   ulonglong uStack_38;
   
   uStack_78 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
   lVar3 = *param_1;
-  _DAT_180c8a9b0 = lVar3;
+  SYSTEM_DATA_MANAGER_A = lVar3;
   *(float *)(lVar3 + 0x10) = (float)param_2;
   *(float *)(lVar3 + 0x14) = (float)param_3;
   *(int32_t *)(lVar3 + 0x18) = 0x3c888889;
@@ -633,8 +634,8 @@ void FUN_180098ae0(longlong *param_1,int param_2,int param_3,uint64_t param_4)
   uStack_ac = 0;
   FUN_1800a5110(_DAT_180c86938,&iStack_e0,plStack_138);
   *(longlong *)(*(longlong *)(lVar3 + 0xa0) + 8) = param_1[0xc];
-  fVar1 = *(float *)(_DAT_180c8a9b0 + 0x14);
-  fVar2 = *(float *)(_DAT_180c8a9b0 + 0x10);
+  fVar1 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x14);
+  fVar2 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x10);
   fVar9 = 1.0 / fVar2;
   *(float *)(param_1 + 4) = fVar9 + fVar9;
   *(uint64_t *)((longlong)param_1 + 0x24) = 0;

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part181.c - 核心引擎模块第181部分
 // 本文件包含3个函数：
@@ -79,7 +80,7 @@ void process_engine_string_formatting(uint64_t param_1, uint64_t *param_2, uint6
   ulonglong security_cookie;
   
   local_var19 = 0xfffffffffffffffe;
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)local_buffer1;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)local_buffer1;
   format_flag = 0;
   buffer_ptr2 = param_2;
   if ((param_4[1] - *param_4 & 0xffffffffffffffe0U) == 0x80) {
@@ -481,7 +482,7 @@ void process_engine_file_operations(uint64_t param_1, uint64_t param_2, longlong
   ulonglong security_cookie;
   
   local_var6 = 0xfffffffffffffffe;
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)local_buffer1;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)local_buffer1;
   temp_flag1 = 0;
   // 检查参数范围并处理文件路径
   if (param_3[1] - *param_3 >> 5 != 0) {

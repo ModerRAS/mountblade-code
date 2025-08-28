@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part123.c - 3 个函数
 
@@ -34,7 +35,7 @@ void FUN_18033eb00(uint64_t param_1,longlong param_2,longlong param_3)
   ulonglong uStack_40;
   
   uStack_58 = 0xfffffffffffffffe;
-  uStack_40 = _DAT_180bf00a8 ^ (ulonglong)auStack_a8;
+  uStack_40 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_a8;
   uStack_64 = 1;
   if (*(int *)(param_3 + 0x408) == 0) {
     uStack_64 = (uint)(*(int *)(param_3 + 0x1a8) != 0);
@@ -686,7 +687,7 @@ void FUN_18033fa60(uint64_t param_1,longlong param_2,uint64_t param_3)
   ulonglong uStack_38;
   
   uStack_68 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_e8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_e8;
   uStack_c8 = 0;
   FUN_18033dd20(param_1,&puStack_88);
   puStack_60 = &unknown_var_7512_ptr;
@@ -735,7 +736,7 @@ void FUN_18033fa60(uint64_t param_1,longlong param_2,uint64_t param_3)
     fclose(lVar5);
     lStack_98 = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
     lVar5 = 0;
   }
@@ -743,7 +744,7 @@ void FUN_18033fa60(uint64_t param_1,longlong param_2,uint64_t param_3)
     fclose(lVar5);
     lStack_98 = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
   }
   puStack_c0 = &unknown_var_3456_ptr;

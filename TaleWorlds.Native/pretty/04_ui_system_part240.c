@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part240.c - 6 个函数
 
@@ -120,7 +121,7 @@ void FUN_180805640(longlong *param_1,int param_2,uint64_t param_3,int *param_4,i
   uint64_t uStack_50;
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_f8;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_f8;
   if (*param_4 == 48000) {
     *param_4 = 48000;
     *param_5 = 8;
@@ -236,7 +237,7 @@ void FUN_180805640(longlong *param_1,int param_2,uint64_t param_3,int *param_4,i
                             uStack_d0 = 0;
                             plStack_d8 = (longlong *)((ulonglong)plStack_d8 & 0xffffffff00000000);
                             puVar6 = (uint64_t *)
-                                     FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x10,
+                                     FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x10,
                                                    &unknown_var_7872_ptr,0x301);
                             if (puVar6 != (uint64_t *)0x0) {
                               *(int32_t *)(puVar6 + 1) = 0;
@@ -414,7 +415,7 @@ void FUN_180805689(longlong *param_1,int param_2,int32_t *param_3,int32_t *param
                            && (iVar5 = (**(code **)(*(longlong *)param_1[6] + 0x28))(), -1 < iVar5))
                         {
                           puVar8 = (uint64_t *)
-                                   FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x10,
+                                   FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x10,
                                                  &unknown_var_7872_ptr,0x301,uVar12 & 0xffffffff00000000);
                           if (puVar8 != (uint64_t *)0x0) {
                             *(int32_t *)(puVar8 + 1) = 0;
@@ -476,7 +477,7 @@ void FUN_180805b10(longlong *param_1)
   int8_t auStack_88 [96];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_c8;
   puVar1 = (uint64_t *)*param_1;
   iVar2 = WaitForSingleObject(puVar1[2],100);
   if (iVar2 != -1) {

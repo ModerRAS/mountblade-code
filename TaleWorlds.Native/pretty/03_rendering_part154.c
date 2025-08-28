@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * 03_rendering_part154.c - 渲染系统高级资源管理和数据处理模块
@@ -978,7 +979,7 @@ void RenderingSystem_AdvancedResourceManager(uint64_t param_1) {
     
     // 初始化栈保护
     magic_number = RENDERING_SYSTEM_MAGIC_NUMBER;
-    stack_protection = _DAT_180bf00a8 ^ (ulonglong)stack_guard_array;
+    stack_protection = GET_SECURITY_COOKIE() ^ (ulonglong)stack_guard_array;
     operation_counter = 0;
     
     // 初始化第一个渲染对象
@@ -1440,7 +1441,7 @@ void RenderingSystem_ParameterProcessor(uint64_t param_1) {
     
     // 初始化栈保护
     magic_number = RENDERING_SYSTEM_MAGIC_NUMBER;
-    stack_protection = _DAT_180bf00a8 ^ (ulonglong)stack_guard_array;
+    stack_protection = GET_SECURITY_COOKIE() ^ (ulonglong)stack_guard_array;
     operation_counter = 0;
     
     // 初始化参数对象
@@ -1593,7 +1594,7 @@ void RenderingSystem_AdvancedParameterManager(longlong param_1, longlong param_2
     
     // 初始化栈保护
     stack_guard = RENDERING_SYSTEM_MAGIC_NUMBER;
-    stack_protection = _DAT_180bf00a8 ^ (ulonglong)stack_guard_array;
+    stack_protection = GET_SECURITY_COOKIE() ^ (ulonglong)stack_guard_array;
     buffer_size = *(int *)(param_2 + 0x10);
     
     // 处理不同类型的参数

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part500.c - 渲染系统高级处理模块
 // 包含10个核心函数，涵盖渲染对象变换、矩阵运算、资源管理、状态控制等高级渲染功能
@@ -355,7 +356,7 @@ void rendering_system_process_render_parameters(longlong render_context, uint *p
   uint stack_param_9;
   ulonglong security_cookie;
   
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_data;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_data;
   
   // 检查是否需要处理渲染参数
   if ((*(byte *)(render_context + 0xa8) & 1) == 0) {

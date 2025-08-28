@@ -1,13 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part189.c - 核心引擎模块第189部分
 // 包含14个函数，主要处理窗口管理、光标操作和消息传递
 
 // 全局变量
-uint64_t _DAT_180bf00a8;  // 栈保护变量
+uint64_t GET_SECURITY_COOKIE();  // 栈保护变量
 uint64_t _DAT_180c8ed18;  // 内存分配器
 uint64_t _DAT_180c82868;  // 引擎上下文
-uint64_t _DAT_180c86920;  // 系统配置
+uint64_t SYSTEM_STATE_MANAGER;  // 系统配置
 uint64_t _DAT_180c86950;  // 渲染配置
 uint64_t _DAT_180c868d0;  // 线程状态
 
@@ -584,8 +585,8 @@ int * get_system_metrics(longlong display_context, int *metrics_output)
   monitor_count = (int)((*(longlong *)(display_context + 0x20) - monitor_list) / 0x70);
   
   // 如果有多个监视器，使用第一个监视器的分辨率
-  if ((1 < monitor_count) && (*(int *)(_DAT_180c86920 + 0x1f10) < monitor_count)) {
-    monitor_data = (longlong)*(int *)(_DAT_180c86920 + 0x1f10) * 0x70;
+  if ((1 < monitor_count) && (*(int *)(SYSTEM_STATE_MANAGER + 0x1f10) < monitor_count)) {
+    monitor_data = (longlong)*(int *)(SYSTEM_STATE_MANAGER + 0x1f10) * 0x70;
     resolution_diff = *(int *)(monitor_data + 0x60 + monitor_list) - *(int *)(monitor_data + 0x58 + monitor_list);
     height_diff = (int)resolution_diff >> 0x1f;
     *metrics_output = (resolution_diff ^ height_diff) - height_diff;

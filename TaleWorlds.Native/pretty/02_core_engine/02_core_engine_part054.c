@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part054.c - 核心引擎模块第054部分
 // 包含15个函数，主要涉及数据结构操作、内存管理和线程同步
@@ -286,7 +287,7 @@ void string_replace_and_memory_operation(longlong string_buffer, longlong search
   
   // 初始化栈变量和安全cookie
   stack_value_278 = 0xfffffffffffffffe;
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_298;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_298;
   stack_ptr_268 = &unknown_var_9208_ptr;
   stack_buffer_260 = stack_buffer_250;
   stack_value_258 = 0;
@@ -1242,7 +1243,7 @@ void main_render_loop(void)
   // 获取引擎上下文
   engine_context = _DAT_180c86950;
   cleanup_flag = 0xfffffffffffffffe;
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_d8;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_d8;
   
   // 保存当前渲染状态
   *(int8_t *)(_DAT_180c86950 + 0x1889) = *(int8_t *)(_DAT_180c86950 + 0x1888);
@@ -1256,7 +1257,7 @@ void main_render_loop(void)
   previous_state = *(char *)(engine_context + 0x1889);
   
   // 检查渲染模式
-  if (*(int *)(_DAT_180c86920 + 0x2370) == 0) {
+  if (*(int *)(SYSTEM_STATE_MANAGER + 0x2370) == 0) {
     // 如果状态未改变，跳过处理
     if (current_state == previous_state) goto RENDER_CONTINUE;
     

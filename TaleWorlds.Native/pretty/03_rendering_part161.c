@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * @file 03_rendering_part161.c
@@ -101,7 +102,7 @@ void RenderingSystem_InitializeRenderState(uint64_t render_context)
     ulonglong security_hash;
     
     thread_counter = 0xfffffffffffffffe;
-    security_hash = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+    security_hash = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
     status_flag = 0;
     cleanup_handler = &unknown_var_3480_ptr;
     string_buffer = config_buffer;
@@ -327,7 +328,7 @@ void RenderingSystem_ProcessRenderConfiguration(uint64_t param_1)
   ulonglong uStack_28;
   
   uStack_330 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_368;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_368;
   uStack_348 = 0;
   puStack_2c8 = &unknown_var_3480_ptr;
   puStack_2c0 = auStack_2b0;
@@ -976,7 +977,7 @@ void RenderingSystem_ProcessorInitializer_Standard(longlong render_context) {
     // 设置安全栈保护
     uint64_t stack_guard = 0xfffffffffffffffe;
     int8_t security_buffer[32];
-    ulonglong security_key = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+    ulonglong security_key = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
     
     // 配置处理器模式为标准模式
     *(int8_t *)(render_context + 0xf0) = 0; // 标准模式
@@ -1048,7 +1049,7 @@ void RenderingSystem_ProcessorInitializer_Enhanced(longlong render_context) {
     // 设置安全栈保护
     uint64_t stack_guard = 0xfffffffffffffffe;
     int8_t security_buffer[32];
-    ulonglong security_key = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+    ulonglong security_key = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
     
     // 配置处理器模式为增强模式
     *(int8_t *)(render_context + 0xf0) = 1; // 增强模式

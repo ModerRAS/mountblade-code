@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part202.c - 核心引擎模块第202部分
 // 包含13个函数，主要处理权限请求、语言获取、高亮配置等功能
@@ -32,7 +33,7 @@ void initialize_permission_request_context(uint64_t *param_1)
   ulonglong stack_checksum;
   
   guard_value = 0xfffffffffffffffe;
-  stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   status_flag = 0;
   alloc_ptr = (longlong *)FUN_1808fc418(0x18);
   *alloc_ptr = (longlong)&unknown_var_1080_ptr;
@@ -146,7 +147,7 @@ void request_permissions_async(longlong param_1,longlong *param_2,longlong *para
   ulonglong stack_checksum;
   
   guard_value = 0xfffffffffffffffe;
-  stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   status_flag = 0;
   data_start = *param_2;
   data_end = param_2[1] - data_start >> 2;
@@ -223,7 +224,7 @@ void get_ui_language_async(longlong param_1,longlong *param_2,uint64_t param_3)
   ulonglong stack_checksum;
   
   callback_param = 0xfffffffffffffffe;
-  stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   status_flag = 0;
   data_ptr = param_2;
   data_size = FUN_1808fc418(0x48);
@@ -297,7 +298,7 @@ void process_permission_callback(uint64_t param_1,int param_2,longlong *param_3,
   ulonglong stack_checksum;
   
   result_array[1] = 0xfffffffffffffffe;
-  stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   handler_ptr = (longlong *)param_4[7];
   context_ptr = param_4;
   if (handler_ptr != (longlong *)0x0) {
@@ -426,7 +427,7 @@ void process_permission_data(int param_1,longlong param_2,longlong param_3)
   ulonglong stack_checksum;
   
   temp_var4 = 0xfffffffffffffffe;
-  stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   context_ptr = *(longlong **)(param_3 + 0x38);
   if (context_ptr != (longlong *)0x0) {
     if (param_1 == 0) {
@@ -691,7 +692,7 @@ void configure_highlights_async(longlong param_1,longlong *param_2,longlong *par
   ulonglong stack_checksum;
   
   config_data = 0xfffffffffffffffe;
-  stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   next_item = (uint64_t *)0x0;
   status_flag = 0;
   item_count = 0;
@@ -931,7 +932,7 @@ void get_highlights_user_settings_async(longlong param_1,longlong *param_2,uint6
   ulonglong stack_checksum;
   
   callback_param = 0xfffffffffffffffe;
-  stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   status_flag = 0;
   data_ptr = param_2;
   data_size = FUN_1808fc418(0x48);

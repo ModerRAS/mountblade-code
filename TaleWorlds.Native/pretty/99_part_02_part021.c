@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_02_part021.c - 9 个函数
 
@@ -14,7 +15,7 @@ void FUN_1800fa160(uint64_t param_1)
   ulonglong uStack_18;
   
   uStack_a8 = 0xfffffffffffffffe;
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
   uStack_b8 = 0;
   uStack_a0 = param_1;
                     // WARNING: Subroutine does not return
@@ -418,7 +419,7 @@ void FUN_1800fa7c0(longlong param_1,int32_t *param_2)
   uint64_t auStack_2c8 [64];
   ulonglong uStack_c8;
   
-  uStack_c8 = _DAT_180bf00a8 ^ (ulonglong)auStack_418;
+  uStack_c8 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_418;
   iVar2 = (**(code **)(**(longlong **)(param_1 + 0x28) + 0xb0))();
   (**(code **)(**(longlong **)(param_1 + 0x28) + 0xb8))
             (*(longlong **)(param_1 + 0x28),auStack_2c8,0x40,0);
@@ -551,7 +552,7 @@ void FUN_1800fab40(longlong param_1,int32_t *param_2)
   uint64_t auStack_2d8 [64];
   ulonglong uStack_d8;
   
-  uStack_d8 = _DAT_180bf00a8 ^ (ulonglong)auStack_428;
+  uStack_d8 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_428;
   iVar2 = (**(code **)(**(longlong **)(param_1 + 0x28) + 0xb8))
                     (*(longlong **)(param_1 + 0x28),auStack_2d8,0x40,0);
   (**(code **)(**(longlong **)(param_1 + 0x28) + 0x90))(*(longlong **)(param_1 + 0x28),&fStack_3c0);
@@ -690,7 +691,7 @@ void FUN_1800faf30(longlong param_1,int32_t *param_2,int32_t param_3)
   uint64_t auStack_2d8 [64];
   ulonglong uStack_d8;
   
-  uStack_d8 = _DAT_180bf00a8 ^ (ulonglong)auStack_448;
+  uStack_d8 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_448;
   iVar2 = (**(code **)(**(longlong **)(param_1 + 0x28) + 0xb8))
                     (*(longlong **)(param_1 + 0x28),auStack_2d8,0x40,0);
   (**(code **)(**(longlong **)(param_1 + 0x28) + 0x90))(*(longlong **)(param_1 + 0x28),&fStack_3d8);
@@ -801,7 +802,7 @@ void FUN_1800fb350(longlong param_1,float *param_2)
   uint64_t auStack_4a8 [128];
   ulonglong uStack_a8;
   
-  uStack_a8 = _DAT_180bf00a8 ^ (ulonglong)auStack_538;
+  uStack_a8 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_538;
   iVar2 = (**(code **)(**(longlong **)(param_1 + 0x28) + 0xb0))();
   (**(code **)(**(longlong **)(param_1 + 0x28) + 0xb8))
             (*(longlong **)(param_1 + 0x28),auStack_4a8,0x80,0);

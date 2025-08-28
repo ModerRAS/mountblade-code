@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part187.c - 24 个函数
 
@@ -23,7 +24,7 @@ void initialize_engine_core_module(uint64_t *module_config)
   ulonglong stack_guard_2;
   
   stack_guard_1 = 0xfffffffffffffffe;
-  stack_guard_2 = _DAT_180bf00a8 ^ (ulonglong)temp_buffer_1;
+  stack_guard_2 = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer_1;
   init_status = 0;
   buffer_ptr = temp_buffer_2;
   resource_ptr = &unknown_var_7512_ptr;
@@ -207,7 +208,7 @@ configure_engine_display_settings(uint64_t *param_1)
   
   lVar3 = _DAT_180c86950;
   uStack_b0 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
   uVar6 = 0;
   uStack_b8 = 0;
   lVar4 = *(longlong *)(_DAT_180c86950 + 0x1868);

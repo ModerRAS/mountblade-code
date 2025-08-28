@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_04_part038.c - 13 个函数
 
@@ -71,7 +72,7 @@ FUN_1802aa550(char *param_1,longlong param_2,longlong param_3,longlong param_4,l
   if (1.0 <= fVar12) {
     fVar12 = 1.0;
   }
-  fVar13 = *(float *)(_DAT_180c86920 + 0x2060) * 0.015384615;
+  fVar13 = *(float *)(SYSTEM_STATE_MANAGER + 0x2060) * 0.015384615;
   if (fVar12 <= 0.0) {
     fVar12 = 0.0;
   }

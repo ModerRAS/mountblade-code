@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part249.c - 渲染管线和资源管理函数
 // 包含5个函数，主要处理渲染管线状态、资源查询、字符串比较等功能
@@ -36,7 +37,7 @@ void update_render_pipeline_state(longlong render_context, int render_type, long
   ulonglong security_cookie;
   
   param_block4 = 0xfffffffffffffffe;
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   
   // 处理标准渲染和批处理渲染
   if (((render_type == 8) || (render_type == 0x20)) &&

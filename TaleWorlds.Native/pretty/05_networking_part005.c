@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /*
  * 网络系统客户端管理模块
@@ -107,12 +108,12 @@ void NetworkClient_GetConnectionInfo(uint64_t client_id, ulonglong *connection_i
     ulonglong security_cookie;
     
     // 安全Cookie初始化（反调试保护）
-    security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     
     // 参数验证
     if (connection_info == (ulonglong *)0x0) {
         // 检查调试状态
-        if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+        if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
             // 触发调试陷阱（反调试保护）
             FUN_1808fc050(security_cookie ^ (ulonglong)stack_buffer);
         }
@@ -208,13 +209,13 @@ void NetworkClient_SendMessage(uint64_t client_id, uint64_t message_data, uint64
     ulonglong security_cookie;
     
     // 安全Cookie初始化
-    security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     
     // 获取消息类型
     message_type = FUN_18083fde0();
     
     // 检查调试状态和网络可用性
-    if ((message_type != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
+    if ((message_type != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
         // 序列化消息头
         data_length = FUN_18074b880(temp_buffer, 0x100, message_data);
         
@@ -331,11 +332,11 @@ void NetworkClient_GetPropertyList(uint64_t client_id, int32_t *property_array, 
     ulonglong security_cookie;
     
     // 安全Cookie初始化
-    security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     
     // 参数验证
     if ((property_count == (ulonglong *)0x0) || (*property_count = 0, property_array == (int32_t *)0x0)) {
-        if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+        if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
             // 触发调试陷阱
             FUN_1808fc050(security_cookie ^ (ulonglong)stack_buffer);
         }
@@ -444,11 +445,11 @@ void NetworkClient_GetConnectionCount(ulonglong server_id, uint *connection_coun
     ulonglong security_cookie;
     
     // 安全Cookie初始化
-    security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     
     // 参数验证
     if (connection_count == (uint *)0x0) {
-        if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+        if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
             // 触发调试陷阱
             FUN_1808fc050(security_cookie ^ (ulonglong)stack_buffer);
         }
@@ -529,7 +530,7 @@ void NetworkClient_GetClientInfo(int32_t client_id, int32_t *client_version, int
     ulonglong security_cookie;
     
     // 安全Cookie初始化
-    security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     
     // 初始化输出参数
     if (client_version != (int32_t *)0x0) {
@@ -608,7 +609,7 @@ void NetworkClient_SetClientProperty(uint64_t client_id, longlong property_id, i
   int8_t auStack_148 [256];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_198;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_198;
   if (param_3 != (int32_t *)0x0) {
     *param_3 = 0;
   }
@@ -616,7 +617,7 @@ void NetworkClient_SetClientProperty(uint64_t client_id, longlong property_id, i
     *param_4 = 0;
   }
   if (param_2 == 0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
+    if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
       iVar1 = FUN_18074b880(auStack_148,0x100,0);
       iVar2 = FUN_18074b880(auStack_148 + iVar1,0x100 - iVar1,&system_temp_buffer);
       iVar1 = iVar1 + iVar2;
@@ -689,9 +690,9 @@ void NetworkClient_QueryClientStatus(uint64_t client_id, int32_t status_code, ui
   int8_t auStack_138 [256];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_168;
   iVar1 = FUN_180840600();
-  if ((iVar1 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
+  if ((iVar1 != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
     iVar2 = func_0x00018074b7d0(auStack_138,0x100,param_2);
     iVar3 = FUN_18074b880(auStack_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
     func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
@@ -784,9 +785,9 @@ void NetworkClient_GetClientAddress(ulonglong client_id, int32_t *client_address
   int8_t auStack_118 [256];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_168;
   if (param_2 == (int32_t *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_168);
     }
@@ -851,7 +852,7 @@ void NetworkClient_GetClientData(ulonglong client_id, int8_t *data_buffer, int d
   int8_t auStack_148 [256];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_1a8;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1a8;
   if (param_2 != (int8_t *)0x0) {
     *param_2 = 0;
   }
@@ -880,7 +881,7 @@ void NetworkClient_GetClientData(ulonglong client_id, int8_t *data_buffer, int d
                     // WARNING: Subroutine does not return
     FUN_18088c790(&uStack_178);
   }
-  if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+  if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
     FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_1a8);
   }
@@ -983,9 +984,9 @@ void NetworkClient_GetClientState(ulonglong client_id, int8_t *client_state)
   int8_t auStack_128 [256];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
   if (param_2 == (int8_t *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
     }
@@ -1045,7 +1046,7 @@ void NetworkClient_GetClientVersion(int32_t client_id, int32_t *major_version, i
   longlong alStack_140 [33];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
   if (param_2 != (int32_t *)0x0) {
     *param_2 = 0;
   }
@@ -1102,9 +1103,9 @@ void NetworkClient_GetClientPing(ulonglong client_id, int32_t *ping_time)
   int8_t auStack_128 [256];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
   if (param_2 == (int32_t *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
     }
@@ -1168,7 +1169,7 @@ void NetworkClient_GetClientProperty(ulonglong client_id, uint property_index, i
   int8_t auStack_138 [256];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
   if (param_3 != (int32_t *)0x0) {
     *param_3 = 0;
     if (param_2 < 6) {
@@ -1192,7 +1193,7 @@ void NetworkClient_GetClientProperty(ulonglong client_id, uint property_index, i
       FUN_18088c790(&uStack_158);
     }
   }
-  if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+  if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
     FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_188);
   }
@@ -1235,9 +1236,9 @@ void NetworkClient_IsClientConnected(uint64_t client_id, int32_t *connection_sta
   int8_t auStack_128 [256];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
   if (param_2 == (int32_t *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
     }
@@ -1308,9 +1309,9 @@ void NetworkClient_GetActiveConnections(ulonglong server_id, uint *active_count)
   int8_t auStack_128 [256];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
   if (param_2 == (uint *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
     }
@@ -1378,9 +1379,9 @@ void NetworkClient_GetConnectionHandle(ulonglong client_id, uint64_t *connection
   int8_t auStack_118 [256];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_168;
   if (param_2 == (uint64_t *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_168);
     }

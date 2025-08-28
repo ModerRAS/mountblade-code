@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part186.c - 2 个函数
 
@@ -472,12 +473,12 @@ uint64_t FUN_180776880(longlong param_1,uint param_2)
   *(int *)(param_1 + 0x248) = iVar2;
   if (*(longlong *)(param_1 + 0x240) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(param_1 + 0x240),
+    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(longlong *)(param_1 + 0x240),
                   &unknown_var_4256_ptr,0x259,1);
   }
   iVar2 = iVar2 * 2;
   *(int *)(param_1 + 0x248) = iVar2;
-  lVar3 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar2 + 0x10,&unknown_var_4256_ptr,0x262,0)
+  lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar2 + 0x10,&unknown_var_4256_ptr,0x262,0)
   ;
   *(longlong *)(param_1 + 0x240) = lVar3;
   *(ulonglong *)(param_1 + 0x238) = lVar3 + 0xfU & 0xfffffffffffffff0;
@@ -522,7 +523,7 @@ uint64_t FUN_180776a50(longlong *param_1)
 {
   if (*(longlong *)(*param_1 + 0x2e8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(*param_1 + 0x2e8),
+    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(longlong *)(*param_1 + 0x2e8),
                   &unknown_var_5616_ptr,0xde,1);
   }
   return 0;
@@ -701,7 +702,7 @@ uint64_t FUN_180776b70(longlong param_1)
     *(int *)(param_1 + 0x2f0) = iVar5;
     iVar5 = iVar5 * 4;
     *(int *)(param_1 + 0x2f0) = iVar5;
-    lVar3 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar5 + 0x10,&unknown_var_5616_ptr,0xba,0
+    lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar5 + 0x10,&unknown_var_5616_ptr,0xba,0
                          );
     *(longlong *)(param_1 + 0x2e8) = lVar3;
     *(ulonglong *)(param_1 + 0x2e0) = lVar3 + 0xfU & 0xfffffffffffffff0;
@@ -715,7 +716,7 @@ uint64_t FUN_180776b70(longlong param_1)
     return uVar2;
   }
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(param_1 + 0x2e8),
+  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(longlong *)(param_1 + 0x2e8),
                 &unknown_var_5616_ptr,0xae,1);
 }
 

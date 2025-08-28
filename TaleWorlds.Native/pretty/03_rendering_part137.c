@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part137.c - 16 个函数
 
@@ -253,7 +254,7 @@ void FUN_18034df10(longlong param_1)
           *(int32_t *)(lVar3 + 0x50) = *(int32_t *)(_DAT_180c86870 + 0x224);
           *(ushort *)(lVar3 + 0xa8) = *(ushort *)(lVar3 + 0xa8) | 1;
         }
-        uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_128;
+        uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_128;
         lVar3 = *(longlong *)(param_1 + 0x18);
         iVar21 = 0;
         lVar4 = *(longlong *)(*(longlong *)(param_1 + 0x70) + 0x260);
@@ -422,7 +423,7 @@ void FUN_18034df2d(longlong param_1,longlong param_2)
         *(int32_t *)(lVar3 + 0x50) = *(int32_t *)(_DAT_180c86870 + 0x224);
         *(ushort *)(lVar3 + 0xa8) = *(ushort *)(lVar3 + 0xa8) | 1;
       }
-      uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_100;
+      uStack_30 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_100;
       lVar3 = *(longlong *)(unaff_RBX + 0x18);
       iVar21 = 0;
       lVar4 = *(longlong *)(*(longlong *)(unaff_RBX + 0x70) + 0x260);
@@ -550,7 +551,7 @@ void FUN_18034dfa0(longlong param_1)
   ulonglong *puVar7;
   
   uStack_e0 = 0xfffffffffffffffe;
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_1a8;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1a8;
   puVar5 = (ulonglong *)0x0;
   uStack_164 = 0;
   lVar1 = *(longlong *)(*(longlong *)(param_1 + 0x70) + 0x260);
@@ -737,7 +738,7 @@ void FUN_18034e5f0(uint64_t param_1)
   ulonglong uStack_18;
   
   uStack_f0 = 0xfffffffffffffffe;
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_118;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_118;
   uStack_f8 = 0;
   puStack_d8 = &unknown_var_3480_ptr;
   puStack_d0 = auStack_c0;
@@ -854,7 +855,7 @@ void FUN_18034e770(longlong param_1)
   uint uStack_5c;
   ulonglong uStack_58;
   
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_128;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_128;
   lVar3 = *(longlong *)(param_1 + 0x18);
   iVar21 = 0;
   lVar4 = *(longlong *)(*(longlong *)(param_1 + 0x70) + 0x260);

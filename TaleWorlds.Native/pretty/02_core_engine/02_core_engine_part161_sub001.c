@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part161_sub001.c - 核心引擎模块第161部分子文件1
 // 包含7个函数，主要处理内存分配、数据复制和边界框计算等功能

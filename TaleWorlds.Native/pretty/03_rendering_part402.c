@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part402.c - 15 个函数
 
@@ -34,7 +35,7 @@ void FUN_18048fc80(void *param_1)
   ulonglong uStack_28;
   
   uStack_d8 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_158;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_158;
   if (*(longlong *)(param_1 + 0x58) == 0) {
     uStack_114 = 0;
     uStack_110 = 0;
@@ -82,9 +83,9 @@ void FUN_18048fc80(void *param_1)
   if (iVar3 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar3);
   }
-  uVar1 = _DAT_180c8a9b0;
-  ppuStack_e8 = (void **)_DAT_180c8a9b0;
-  _DAT_180c8a9b0 = *puVar4;
+  uVar1 = SYSTEM_DATA_MANAGER_A;
+  ppuStack_e8 = (void **)SYSTEM_DATA_MANAGER_A;
+  SYSTEM_DATA_MANAGER_A = *puVar4;
   ppuStack_f0 = &puStack_128;
   puStack_128 = &unknown_var_3456_ptr;
   uStack_110 = 0;
@@ -103,7 +104,7 @@ void FUN_18048fc80(void *param_1)
   uStack_118 = 0x1b;
   uVar5 = FUN_18023a940(*(uint64_t *)(param_1 + 0x58));
   FUN_18009a080(uVar5,*(uint64_t *)(param_1 + 0x58));
-  _DAT_180c8a9b0 = uVar1;
+  SYSTEM_DATA_MANAGER_A = uVar1;
   iVar3 = _Mtx_unlock(0x180c91970);
   if (iVar3 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar3);
@@ -141,7 +142,7 @@ void FUN_18048ff50(longlong param_1,int param_2,int param_3,int param_4,int para
   int aiStack_58 [8];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)aiStack_58;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)aiStack_58;
   iVar6 = (int)(param_2 + (param_2 >> 0x1f & 7U)) >> 3;
   iVar10 = (int)((param_4 >> 0x1f & 7U) + param_4) >> 3;
   iVar13 = (int)((param_5 >> 0x1f & 7U) + param_5) >> 3;

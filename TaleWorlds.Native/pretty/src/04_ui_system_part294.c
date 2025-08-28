@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * @file 04_ui_system_part294.c
@@ -690,7 +691,7 @@ void UIMemoryInitializer(UI_SYSTEM_CONTEXT* context, uint32_t memory_size, int i
     ulonglong security_key;
     
     // 安全密钥生成
-    security_key = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    security_key = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     
     // 参数验证和调整
     if (security_param != 0) {

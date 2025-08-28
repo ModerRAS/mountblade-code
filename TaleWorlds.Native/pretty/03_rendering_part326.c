@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /*=============================================================================
  * 03_rendering_part326.c - 渲染系统高级参数处理和状态管理模块
@@ -72,7 +73,7 @@
 #define SystemCommandProcessor                             FUN_1800623b0  /* 系统命令处理器 */
 
 /* 渲染系统全局变量 */
-extern longlong _DAT_180c86920;      /* 渲染系统全局数据指针 */
+extern longlong SYSTEM_STATE_MANAGER;      /* 渲染系统全局数据指针 */
 extern char system_debug_flag;           /* 渲染系统标志位 */
 extern void *system_buffer_ptr;     /* 渲染系统默认数据指针 */
 extern uint64_t global_var_544_ptr;     /* 渲染系统未知数据 */
@@ -96,13 +97,13 @@ void RenderingSystem_ProcessParameterSet1(void)
   uint64_t stack_data;
   int parameter_int;
   
-  render_context = _DAT_180c86920;
+  render_context = SYSTEM_STATE_MANAGER;
   stack_data = _iStack0000000000000048;
   parameter_int = (int)parameter_value;
   
   /* 检查渲染系统状态和条件 */
-  if ((*(longlong *)(_DAT_180c86920 + RENDERING_SYSTEM_OFFSET_4C0) != 0) &&
-     (status_check = (**(code **)(_DAT_180c86920 + RENDERING_SYSTEM_OFFSET_4C8))(&stack0x00000048), 
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_4C0) != 0) &&
+     (status_check = (**(code **)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_4C8))(&stack0x00000048), 
       status_check == '\0')) {
     
     /* 处理标志位检查 */
@@ -140,13 +141,13 @@ void RenderingSystem_ProcessParameterSet2(void)
   uint64_t stack_data;
   int parameter_int;
   
-  render_context = _DAT_180c86920;
+  render_context = SYSTEM_STATE_MANAGER;
   stack_data = _iStack0000000000000048;
   parameter_int = (int)parameter_value;
   
   /* 检查渲染系统高级状态 */
-  if ((*(longlong *)(_DAT_180c86920 + RENDERING_SYSTEM_OFFSET_21A0) != 0) &&
-     (status_check = (**(code **)(_DAT_180c86920 + RENDERING_SYSTEM_OFFSET_21A8))(&stack0x00000048), 
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_21A0) != 0) &&
+     (status_check = (**(code **)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_21A8))(&stack0x00000048), 
       status_check == '\0')) {
     
     /* 处理标志位检查 */
@@ -180,7 +181,7 @@ void RenderingSystem_ExecuteSimpleTransform(void)
   float parameter_value;
   
   /* 执行渲染变换操作 */
-  FUN_18010cdf0(_DAT_180c86920, (int)parameter_value);
+  FUN_18010cdf0(SYSTEM_STATE_MANAGER, (int)parameter_value);
   return;
 }
 
@@ -322,13 +323,13 @@ void RenderingSystem_ProcessRenderConditions(int32_t param_1, int param_2)
     }
     break;
   case 0x26:
-    func_0x00018010e1f0(_DAT_180c86920);
+    func_0x00018010e1f0(SYSTEM_STATE_MANAGER);
     return;
   case 0x27:
-    func_0x00018010d370(_DAT_180c86920);
+    func_0x00018010d370(SYSTEM_STATE_MANAGER);
     return;
   case 0x28:
-    func_0x00018010d430(_DAT_180c86920);
+    func_0x00018010d430(SYSTEM_STATE_MANAGER);
     return;
   case 0x29:
     if ((param_2 != 0) && (param_2 != 1)) {
@@ -345,7 +346,7 @@ void RenderingSystem_ProcessRenderConditions(int32_t param_1, int param_2)
     }
     break;
   case 0x2a:
-    func_0x00018010e130(_DAT_180c86920);
+    func_0x00018010e130(SYSTEM_STATE_MANAGER);
     return;
   case 0x2b:
     if (((param_2 != 0) && (param_2 != 1)) && (param_2 != 2)) {
@@ -373,7 +374,7 @@ void RenderingSystem_ProcessRenderConditions(int32_t param_1, int param_2)
     }
     break;
   case 0x2d:
-    func_0x00018010deb0(_DAT_180c86920);
+    func_0x00018010deb0(SYSTEM_STATE_MANAGER);
     return;
   case 0x2e:
     if (param_2 != 0) {
@@ -393,7 +394,7 @@ void RenderingSystem_ProcessRenderConditions(int32_t param_1, int param_2)
     }
     break;
   case 0x2f:
-    func_0x00018010ddf0(_DAT_180c86920);
+    func_0x00018010ddf0(SYSTEM_STATE_MANAGER);
     return;
   case 0x30:
     if (((param_2 != 0) && (param_2 != 1)) && ((param_2 != 2 && ((param_2 != 3 && (param_2 == 5)))))) {
@@ -418,7 +419,7 @@ void RenderingSystem_ProcessRenderConditions(int32_t param_1, int param_2)
     }
     break;
   case 0x32:
-    func_0x00018010df70(_DAT_180c86920);
+    func_0x00018010df70(SYSTEM_STATE_MANAGER);
     return;
   case 0x33:
     if ((param_2 != 0) && (param_2 != 1)) {
@@ -565,7 +566,7 @@ void RenderingSystem_ProcessRenderConditions(int32_t param_1, int param_2)
       return;
     }
     if (((param_2 != 2) && (param_2 != 3)) &&
-       ((param_2 == 5 && (*(int *)(_DAT_180c86920 + 0xee0) == 0)))) {
+       ((param_2 == 5 && (*(int *)(SYSTEM_STATE_MANAGER + 0xee0) == 0)))) {
       return;
     }
     if (*(int *)(_DAT_180c8a9c8 + 0xcb0) == 0) {
@@ -580,7 +581,7 @@ void RenderingSystem_ProcessRenderConditions(int32_t param_1, int param_2)
       return;
     }
     if ((((param_2 != 2) && (param_2 != 3)) && (param_2 == 5)) &&
-       (*(int *)(_DAT_180c86920 + 0xf50) == 0)) {
+       (*(int *)(SYSTEM_STATE_MANAGER + 0xf50) == 0)) {
       return;
     }
     if (*(int *)(_DAT_180c8a9c8 + 0xd20) == 0) {
@@ -595,7 +596,7 @@ void RenderingSystem_ProcessRenderConditions(int32_t param_1, int param_2)
       return;
     }
     if (((param_2 != 2) && (param_2 != 3)) &&
-       ((param_2 == 5 && (*(int *)(_DAT_180c86920 + 0xfc0) == 0)))) {
+       ((param_2 == 5 && (*(int *)(SYSTEM_STATE_MANAGER + 0xfc0) == 0)))) {
       return;
     }
     if (*(int *)(_DAT_180c8a9c8 + 0xd90) == 0) {
@@ -618,7 +619,7 @@ void RenderingSystem_ProcessRenderConditions(int32_t param_1, int param_2)
     if (param_2 != 5) {
       return;
     }
-    if (*(int *)(_DAT_180c86920 + 0x10a0) == 0) {
+    if (*(int *)(SYSTEM_STATE_MANAGER + 0x10a0) == 0) {
       return;
     }
     if (*(int *)(_DAT_180c8a9c8 + 0xe70) == 0) {
@@ -627,7 +628,7 @@ void RenderingSystem_ProcessRenderConditions(int32_t param_1, int param_2)
     return;
   case 0x42:
     if ((((((param_2 == 0) || (param_2 == 1)) || (param_2 == 2)) ||
-         ((param_2 == 3 || (param_2 != 5)))) || (*(int *)(_DAT_180c86920 + 0x1030) != 0)) &&
+         ((param_2 == 3 || (param_2 != 5)))) || (*(int *)(SYSTEM_STATE_MANAGER + 0x1030) != 0)) &&
        (*(int *)(_DAT_180c8a9c8 + 0xe00) != 0)) {
       return;
     }
@@ -656,10 +657,10 @@ float RenderingSystem_GetRenderValue(int32_t param_1)
   float temp_float2;
   uint64_t stack_data;
   
-  render_context = _DAT_180c86920;
+  render_context = SYSTEM_STATE_MANAGER;
   
   /* 检查渲染系统状态 */
-  if ((*(longlong *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(_DAT_180c86920 + 0x540) < 1)) {
+  if ((*(longlong *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(SYSTEM_STATE_MANAGER + 0x540) < 1)) {
     system_status = false;
   }
   else {
@@ -671,86 +672,86 @@ float RenderingSystem_GetRenderValue(int32_t param_1)
   
   switch(param_1) {
   case 0:
-    float_result = *(float *)(_DAT_180c86920 + 0x1340);
+    float_result = *(float *)(SYSTEM_STATE_MANAGER + 0x1340);
     goto code_r0x00018043b131;
   case 1:
-    float_result = *(float *)(_DAT_180c86920 + 0x1500);
+    float_result = *(float *)(SYSTEM_STATE_MANAGER + 0x1500);
     goto code_r0x00018043b131;
   case 2:
-    float_result = *(float *)(_DAT_180c86920 + 0x13b0);
+    float_result = *(float *)(SYSTEM_STATE_MANAGER + 0x13b0);
     goto code_r0x00018043b131;
   case 3:
-    float_result = *(float *)(_DAT_180c86920 + 0x1420);
+    float_result = *(float *)(SYSTEM_STATE_MANAGER + 0x1420);
     goto code_r0x00018043b131;
   case 4:
-    float_result = *(float *)(_DAT_180c86920 + 0x1490);
+    float_result = *(float *)(SYSTEM_STATE_MANAGER + 0x1490);
     goto code_r0x00018043b131;
   case 5:
     int_value = (**(code **)(*_DAT_180c86878 + 0x98))();
     break;
   case 6:
-    int_value = *(int *)(_DAT_180c86920 + 0x12d0);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x12d0);
     break;
   case 7:
-    int_value = *(int *)(_DAT_180c86920 + 0x15e0);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x15e0);
     break;
   case 8:
-    int_value = *(int *)(_DAT_180c86920 + 0x1650);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x1650);
     break;
   case 9:
-    int_value = *(int *)(_DAT_180c86920 + 0x2370);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x2370);
     break;
   case 10:
-    int_value = *(int *)(_DAT_180c86920 + 0x23e0);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x23e0);
     break;
   case 0xb:
-    float_result = *(float *)(_DAT_180c86920 + 0x16c0);
+    float_result = *(float *)(SYSTEM_STATE_MANAGER + 0x16c0);
     goto code_r0x00018043b131;
   case 0xc:
-    int_value = *(int *)(_DAT_180c86920 + 0x1730);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x1730);
     break;
   case 0xd:
-    float_result = *(float *)(_DAT_180c86920 + 0x18f0);
+    float_result = *(float *)(SYSTEM_STATE_MANAGER + 0x18f0);
     goto code_r0x00018043b131;
   case 0xe:
-    float_result = *(float *)(_DAT_180c86920 + 0x17a0);
+    float_result = *(float *)(SYSTEM_STATE_MANAGER + 0x17a0);
     goto code_r0x00018043b131;
   case 0xf:
-    int_value = *(int *)(_DAT_180c86920 + 0x2300);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x2300);
     break;
   case 0x10:
     if ((*(int *)(*(longlong *)(_DAT_180c868d0 + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
-      int_value = *(int *)(_DAT_180c86920 + 0x2450);
+      int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x2450);
       break;
     }
     goto code_r0x00018043b131;
   case 0x11:
     if ((*(int *)(*(longlong *)(_DAT_180c868d0 + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
-      float_result = *(float *)(_DAT_180c86920 + 0x24c0);
+      float_result = *(float *)(SYSTEM_STATE_MANAGER + 0x24c0);
     }
     goto code_r0x00018043b131;
   case 0x12:
     if ((*(int *)(*(longlong *)(_DAT_180c868d0 + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
-      int_value = *(int *)(_DAT_180c86920 + 0x2530);
+      int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x2530);
       break;
     }
     goto code_r0x00018043b131;
   case 0x13:
-    int_value = *(int *)(_DAT_180c86920 + 0x25a0);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x25a0);
     break;
   case 0x14:
-    int_value = *(int *)(_DAT_180c86920 + 0x1ea0);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x1ea0);
     break;
   case 0x15:
-    int_value = *(int *)(_DAT_180c86920 + 0x1f10);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x1f10);
     break;
   case 0x16:
-    int_value = *(int *)(_DAT_180c86920 + 0x1810);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x1810);
     break;
   case 0x17:
     FUN_180171f10(*(uint64_t *)(_DAT_180c86870 + 8), &stack_data);
-    if (((float)stack_data == (float)*(int *)(_DAT_180c86920 + 0x1d50)) &&
-       (stack_data._4_4_ == (float)*(int *)(_DAT_180c86920 + 0x1dc0))) {
+    if (((float)stack_data == (float)*(int *)(SYSTEM_STATE_MANAGER + 0x1d50)) &&
+       (stack_data._4_4_ == (float)*(int *)(SYSTEM_STATE_MANAGER + 0x1dc0))) {
       int_value = FUN_180438350();
       break;
     }
@@ -762,9 +763,9 @@ float RenderingSystem_GetRenderValue(int32_t param_1)
       do {
         temp_data = FUN_1804386b0(int_value);
         stack_data._0_4_ = (float)temp_data;
-        if (((float)stack_data == (float)*(int *)(_DAT_180c86920 + 0x1d50)) &&
+        if (((float)stack_data == (float)*(int *)(SYSTEM_STATE_MANAGER + 0x1d50)) &&
            (stack_data._4_4_ = (float)((ulonglong)temp_data >> 0x20),
-           stack_data._4_4_ == (float)*(int *)(_DAT_180c86920 + 0x1dc0))) goto code_r0x00018043b12e;
+           stack_data._4_4_ == (float)*(int *)(SYSTEM_STATE_MANAGER + 0x1dc0))) goto code_r0x00018043b12e;
         int_value = int_value + 1;
         stack_data = temp_data;
         temp_value1 = FUN_180438350();
@@ -792,119 +793,119 @@ float RenderingSystem_GetRenderValue(int32_t param_1)
       float_result = 100.0;
     }
     else {
-      float_result = *(float *)(_DAT_180c86920 + 0x20d0);
+      float_result = *(float *)(SYSTEM_STATE_MANAGER + 0x20d0);
     }
     goto code_r0x00018043b131;
   case 0x1a:
-    int_value = *(int *)(_DAT_180c86920 + 0x1b90);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x1b90);
     break;
   case 0x1b:
-    int_value = *(int *)(_DAT_180c86920 + 0x1f80);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x1f80);
     break;
   case 0x1c:
-    float_result = *(float *)(_DAT_180c86920 + 0x1110);
+    float_result = *(float *)(SYSTEM_STATE_MANAGER + 0x1110);
     goto code_r0x00018043b131;
   case 0x1d:
     int_value = FUN_180104d00();
     break;
   case 0x1e:
-    int_value = *(int *)(_DAT_180c86920 + 0x700);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x700);
     break;
   case 0x1f:
-    int_value = *(int *)(_DAT_180c86920 + 0x380);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x380);
     break;
   case 0x20:
-    int_value = *(int *)(_DAT_180c86920 + 0x3f0);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x3f0);
     break;
   case 0x21:
-    int_value = *(int *)(_DAT_180c86920 + 0xcb0);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0xcb0);
     break;
   case 0x22:
-    int_value = *(int *)(_DAT_180c86920 + 0xc40);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0xc40);
     break;
   case 0x23:
-    int_value = *(int *)(_DAT_180c86920 + 0xd20);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0xd20);
     break;
   case 0x24:
-    int_value = *(int *)(_DAT_180c86920 + 0xaf0);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0xaf0);
     break;
   case 0x25:
-    int_value = *(int *)(_DAT_180c86920 + 0xb60);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0xb60);
     break;
   case 0x26:
-    int_value = *(int *)(_DAT_180c86920 + 0xe0);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0xe0);
     break;
   case 0x27:
-    int_value = *(int *)(_DAT_180c86920 + 0xe00);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0xe00);
     break;
   case 0x28:
-    int_value = *(int *)(_DAT_180c86920 + 0xd90);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0xd90);
     break;
   case 0x29:
-    int_value = *(int *)(_DAT_180c86920 + 0xe70);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0xe70);
     break;
   case 0x2a:
-    int_value = *(int *)(_DAT_180c86920 + 0x150);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x150);
     break;
   case 0x2b:
-    int_value = *(int *)(_DAT_180c86920 + 0x1c0);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x1c0);
     break;
   case 0x2c:
-    int_value = *(int *)(_DAT_180c86920 + 0x5b0);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x5b0);
     break;
   case 0x2d:
-    int_value = *(int *)(_DAT_180c86920 + 0x310);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x310);
     break;
   case 0x2e:
-    int_value = *(int *)(_DAT_180c86920 + 0x460);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x460);
     break;
   case 0x2f:
-    int_value = *(int *)(_DAT_180c86920 + 0x4d0);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x4d0);
     break;
   case 0x30:
-    int_value = *(int *)(_DAT_180c86920 + 0x540);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x540);
     break;
   case 0x31:
-    int_value = *(int *)(_DAT_180c86920 + 0xbd0);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0xbd0);
     break;
   case 0x32:
-    int_value = *(int *)(_DAT_180c86920 + 0x2a0);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x2a0);
     break;
   case 0x33:
-    int_value = *(int *)(_DAT_180c86920 + 0x850);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x850);
     break;
   case 0x34:
-    int_value = *(int *)(_DAT_180c86920 + 0x7e0);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x7e0);
     break;
   case 0x35:
-    int_value = *(int *)(_DAT_180c86920 + 0x620);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x620);
     break;
   case 0x36:
-    int_value = *(int *)(_DAT_180c86920 + 0x690);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x690);
     break;
   case 0x37:
-    int_value = *(int *)(_DAT_180c86920 + 0x930);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x930);
     break;
   case 0x38:
-    int_value = *(int *)(_DAT_180c86920 + 0x770);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x770);
     break;
   case 0x39:
-    int_value = *(int *)(_DAT_180c86920 + 0xa80);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0xa80);
     break;
   case 0x3a:
-    int_value = *(int *)(_DAT_180c86920 + 0x8c0);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x8c0);
     break;
   case 0x3b:
-    int_value = *(int *)(_DAT_180c86920 + 0x9a0);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x9a0);
     break;
   case 0x3c:
-    int_value = *(int *)(_DAT_180c86920 + 0xa10);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0xa10);
     break;
   case 0x3d:
-    float_result = *(float *)(_DAT_180c86920 + 0x2060);
+    float_result = *(float *)(SYSTEM_STATE_MANAGER + 0x2060);
     goto code_r0x00018043b131;
   case 0x3e:
-    if ((*(int *)(_DAT_180c86920 + 0xee0) == 0) || (*(int *)(_DAT_180c8a9c8 + 0xcb0) == 0)) {
+    if ((*(int *)(SYSTEM_STATE_MANAGER + 0xee0) == 0) || (*(int *)(_DAT_180c8a9c8 + 0xcb0) == 0)) {
 code_r0x00018043b0b3:
       float_result = 0.0;
     }
@@ -913,38 +914,38 @@ code_r0x00018043b0b3:
     }
     goto code_r0x00018043b131;
   case 0x3f:
-    if ((*(int *)(_DAT_180c86920 + 0xf50) == 0) || (*(int *)(_DAT_180c8a9c8 + 0xd20) == 0))
+    if ((*(int *)(SYSTEM_STATE_MANAGER + 0xf50) == 0) || (*(int *)(_DAT_180c8a9c8 + 0xd20) == 0))
     goto code_r0x00018043b0b3;
     float_result = 1.0;
     goto code_r0x00018043b131;
   case 0x40:
-    if ((*(int *)(_DAT_180c86920 + 0xfc0) == 0) || (*(int *)(_DAT_180c8a9c8 + 0xd90) == 0))
+    if ((*(int *)(SYSTEM_STATE_MANAGER + 0xfc0) == 0) || (*(int *)(_DAT_180c8a9c8 + 0xd90) == 0))
     goto code_r0x00018043b0b3;
     float_result = 1.0;
     goto code_r0x00018043b131;
   case 0x41:
-    if ((*(int *)(_DAT_180c86920 + 0x10a0) == 0) || (*(int *)(_DAT_180c8a9c8 + 0xe70) == 0))
+    if ((*(int *)(SYSTEM_STATE_MANAGER + 0x10a0) == 0) || (*(int *)(_DAT_180c8a9c8 + 0xe70) == 0))
     goto code_r0x00018043b0b3;
     float_result = 1.0;
   case 0x42:
     goto code_r0x00018043b131;
   case 0x43:
-    float_result = *(float *)(_DAT_180c86920 + 0x1180);
+    float_result = *(float *)(SYSTEM_STATE_MANAGER + 0x1180);
     goto code_r0x00018043b131;
   case 0x44:
-    float_result = *(float *)(_DAT_180c86920 + 0x11f0);
+    float_result = *(float *)(SYSTEM_STATE_MANAGER + 0x11f0);
     goto code_r0x00018043b131;
   case 0x45:
-    int_value = *(int *)(_DAT_180c86920 + 0x1ab0);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x1ab0);
     break;
   case 0x46:
-    float_result = *(float *)(_DAT_180c86920 + 0x1260);
+    float_result = *(float *)(SYSTEM_STATE_MANAGER + 0x1260);
     goto code_r0x00018043b131;
   case 0x47:
-    int_value = *(int *)(_DAT_180c86920 + 0x2140);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x2140);
     break;
   case 0x48:
-    int_value = *(int *)(_DAT_180c86920 + 0x21b0);
+    int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x21b0);
     break;
   default:
     goto FUN_18043b139;
@@ -996,7 +997,7 @@ void RenderingSystem_ProcessRenderActions(int32_t param_1)
   bool system_status;
   
   /* 检查渲染系统状态 */
-  if ((*(longlong *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(_DAT_180c86920 + 0x540) < 1)) {
+  if ((*(longlong *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(SYSTEM_STATE_MANAGER + 0x540) < 1)) {
     system_status = false;
   }
   else {
@@ -1139,7 +1140,7 @@ void RenderingSystem_ProcessRenderActions(int32_t param_1)
   case 0x3d:
     return;
   case 0x3e:
-    if (*(int *)(_DAT_180c86920 + 0xee0) == 0) {
+    if (*(int *)(SYSTEM_STATE_MANAGER + 0xee0) == 0) {
       return;
     }
     if (*(int *)(_DAT_180c8a9c8 + 0xcb0) == 0) {
@@ -1147,7 +1148,7 @@ void RenderingSystem_ProcessRenderActions(int32_t param_1)
     }
     return;
   case 0x3f:
-    if (*(int *)(_DAT_180c86920 + 0xf50) == 0) {
+    if (*(int *)(SYSTEM_STATE_MANAGER + 0xf50) == 0) {
       return;
     }
     if (*(int *)(_DAT_180c8a9c8 + 0xd20) == 0) {
@@ -1155,7 +1156,7 @@ void RenderingSystem_ProcessRenderActions(int32_t param_1)
     }
     return;
   case 0x40:
-    if (*(int *)(_DAT_180c86920 + 0xfc0) == 0) {
+    if (*(int *)(SYSTEM_STATE_MANAGER + 0xfc0) == 0) {
       return;
     }
     if (*(int *)(_DAT_180c8a9c8 + 0xd90) == 0) {
@@ -1163,7 +1164,7 @@ void RenderingSystem_ProcessRenderActions(int32_t param_1)
     }
     return;
   case 0x41:
-    if ((*(int *)(_DAT_180c86920 + 0x10a0) != 0) && (*(int *)(_DAT_180c8a9c8 + 0xe70) != 0)) {
+    if ((*(int *)(SYSTEM_STATE_MANAGER + 0x10a0) != 0) && (*(int *)(_DAT_180c8a9c8 + 0xe70) != 0)) {
       return;
     }
     return;
@@ -1206,29 +1207,29 @@ void RenderingSystem_ExecuteRenderBatch(int param_1, int param_2, int param_3, i
   ulonglong stack_guard;
   
   stack_data = 0xfffffffffffffffe;
-  stack_guard = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
+  stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
   
   /* 处理渲染参数 */
   if (param_3 != 0) {
-    FUN_18010d9f0(_DAT_180c86920, *(int32_t *)(_DAT_180c86920 + 0x8c0));
+    FUN_18010d9f0(SYSTEM_STATE_MANAGER, *(int32_t *)(SYSTEM_STATE_MANAGER + 0x8c0));
   }
   if (param_4 != 0) {
-    FUN_18010da70(_DAT_180c86920, *(int32_t *)(_DAT_180c86920 + 0x850));
+    FUN_18010da70(SYSTEM_STATE_MANAGER, *(int32_t *)(SYSTEM_STATE_MANAGER + 0x850));
   }
   if (param_5 != 0) {
-    FUN_18010d870(_DAT_180c86920, *(int32_t *)(_DAT_180c86920 + 0xa10));
+    FUN_18010d870(SYSTEM_STATE_MANAGER, *(int32_t *)(SYSTEM_STATE_MANAGER + 0xa10));
   }
   if (param_6 != 0) {
-    FUN_18010daf0(_DAT_180c86920, *(int32_t *)(_DAT_180c86920 + 0x7e0));
+    FUN_18010daf0(SYSTEM_STATE_MANAGER, *(int32_t *)(SYSTEM_STATE_MANAGER + 0x7e0));
   }
   if (param_2 != 0) {
-    FUN_18010cd70(_DAT_180c86920, *(int32_t *)(_DAT_180c86920 + 0x2060));
+    FUN_18010cd70(SYSTEM_STATE_MANAGER, *(int32_t *)(SYSTEM_STATE_MANAGER + 0x2060));
   }
   if (param_9 != 0) {
     FUN_18043be90();
   }
   if (param_10 != 0) {
-    FUN_18010cdf0(_DAT_180c86920, *(int32_t *)(_DAT_180c86920 + 0x21b0));
+    FUN_18010cdf0(SYSTEM_STATE_MANAGER, *(int32_t *)(SYSTEM_STATE_MANAGER + 0x21b0));
   }
   
   /* 执行渲染系统初始化 */
@@ -1298,7 +1299,7 @@ void RenderingSystem_ProcessRenderString(int param_1)
   ulonglong stack_guard;
   
   stack_data = 0xfffffffffffffffe;
-  stack_guard = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
+  stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
   
   base_address = (longlong)param_1 * 0x70 + *(longlong *)(*(longlong *)(_DAT_180c86870 + 8) + 0x18);
   stack_pointer = &global_var_3480_ptr;
@@ -1361,7 +1362,7 @@ void RenderingSystem_ExecuteRenderCopy(longlong param_1, int32_t param_2)
   char format_buffer[16];
   ulonglong stack_guard;
   
-  stack_guard = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
+  stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
   FUN_180060680(format_buffer, &global_var_4576_ptr, param_2);
   
   data_offset = -1;
@@ -1429,11 +1430,11 @@ void RenderingSystem_ProcessParameterSet3(uint64_t param_1, int32_t param_2)
   void *data_pointer;
   int32_t temp_stack[6];
   
-  render_context = _DAT_180c86920;
+  render_context = SYSTEM_STATE_MANAGER;
   
-  if ((*(longlong *)(_DAT_180c86920 + RENDERING_SYSTEM_OFFSET_1800) != 0) &&
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_1800) != 0) &&
      (temp_stack[0] = param_2, 
-      status_check = (**(code **)(_DAT_180c86920 + RENDERING_SYSTEM_OFFSET_1808))(temp_stack),
+      status_check = (**(code **)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_1808))(temp_stack),
       param_2 = temp_stack[0], status_check == '\0')) {
     
     if (system_debug_flag == '\0') {
@@ -1466,11 +1467,11 @@ void RenderingSystem_ProcessParameterSet4(uint64_t param_1, int32_t param_2)
   void *data_pointer;
   int32_t temp_stack[6];
   
-  render_context = _DAT_180c86920;
+  render_context = SYSTEM_STATE_MANAGER;
   
-  if ((*(longlong *)(_DAT_180c86920 + RENDERING_SYSTEM_OFFSET_1170) != 0) &&
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_1170) != 0) &&
      (temp_stack[0] = param_2, 
-      status_check = (**(code **)(_DAT_180c86920 + RENDERING_SYSTEM_OFFSET_1178))(temp_stack),
+      status_check = (**(code **)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_1178))(temp_stack),
       param_2 = temp_stack[0], status_check == '\0')) {
     
     if (system_debug_flag == '\0') {

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * @file 04_ui_system_part211_sub002_sub002.c
@@ -106,8 +107,8 @@ int UI_SetComponentProperties(void* context, uint32_t flags, void* properties, v
 #define UI_COMPOSITE_COMPONENT_VTABLE &unknown_var_680_ptr
 #define UI_RENDER_COMPONENT_VTABLE &unknown_var_2352_ptr
 #define UI_RESOURCE_CLEANUP_CONFIG &unknown_var_2144_ptr
-#define UI_GLOBAL_DATA_TABLE _DAT_180be12f0
-#define UI_GLOBAL_SECURITY_KEY _DAT_180bf00a8
+#define UI_GLOBAL_DATA_TABLE SYSTEM_MAIN_CONTROL_BLOCK
+#define UI_GLOBAL_SECURITY_KEY GET_SECURITY_COOKIE()
 
 // ==================== 高级函数别名 ====================
 #define UI_ComponentCreationHandler UI_CreateComponent
@@ -218,7 +219,7 @@ void UI_CreateComponent(void* context, void* parent, void** component, char enab
         
         // 初始化组件管理器
         resource_handle = UI_InitializeEventQueue(
-            *(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
+            *(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
             0x250,  // 队列大小
             UI_EVENT_QUEUE_CONFIG,  // 队列配置
             0x123   // 初始化参数

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part069.c - 核心引擎模块第069部分
 // 本文件包含10个函数，主要处理初始化、配置和状态管理功能

@@ -245,8 +245,8 @@ void initialize_system_configuration(void)
     }
     
     // 备份当前值并更新全局数据
-    backup_value = _DAT_180c8a9b0;
-    _DAT_180c8a9b0 = *global_ptr;
+    backup_value = SYSTEM_DATA_MANAGER_A;
+    SYSTEM_DATA_MANAGER_A = *global_ptr;
     
     // 初始化基础配置数据结构
     FUN_1801299b0(&unknown_var_6880_ptr, 0, 0, unused_r9, flag_value);
@@ -280,7 +280,7 @@ void initialize_system_configuration(void)
     FUN_18012cfe0();
     
     // 恢复备份值
-    _DAT_180c8a9b0 = backup_value;
+    SYSTEM_DATA_MANAGER_A = backup_value;
     
     // 解锁共享数据
     lock_result = _Mtx_unlock(0x180c91970);
@@ -597,7 +597,7 @@ void initialize_resource_handler(longlong *param_1)
   ulonglong uStack_28;
   
   uStack_58 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_98;
   plVar4 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0xd0,8,3);
   pplStack_60 = (longlong **)plVar4;
   FUN_180049830(plVar4);
@@ -686,7 +686,7 @@ void monitor_resource_performance(longlong param_1)
   ulonglong uStack_50;
   
   alStack_70[1] = 0xfffffffffffffffe;
-  uStack_50 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
+  uStack_50 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_c8;
   lVar4 = _DAT_180c8ed58;
   if (_DAT_180c8ed58 == 0) {
     QueryPerformanceCounter(&lStack_78);
@@ -868,7 +868,7 @@ void process_resource_event(uint64_t param_1,uint64_t *param_2,int32_t param_3)
   ulonglong uStack_28;
   
   uStack_128 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_158;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_158;
   ppuStack_138 = &puStack_108;
   puStack_108 = &unknown_var_3432_ptr;
   puStack_100 = auStack_f0;

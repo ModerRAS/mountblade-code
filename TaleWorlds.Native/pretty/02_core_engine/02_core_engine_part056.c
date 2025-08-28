@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part056.c - 8 个函数
 // 
@@ -107,7 +108,7 @@ void cleanup_engine_shutdown(ulonglong param_1)
   
   plVar6 = _DAT_180c86950;
   uStack_180 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_2b8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_2b8;
   iVar24 = 0;
   plVar13 = (longlong *)_DAT_180c86950[0x30e];
   lVar20 = _DAT_180c86950[0x30d];

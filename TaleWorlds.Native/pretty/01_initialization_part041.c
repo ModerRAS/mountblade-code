@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 //============================================================================
 // 01_initialization_part041.c - 初始化系统高级模块处理和状态管理模块

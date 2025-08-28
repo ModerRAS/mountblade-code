@@ -1,9 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part022.c - 4 个函数
 
 // 全局变量映射：
-// _DAT_180bf00a8 - 安全检查/校验值
+// GET_SECURITY_COOKIE() - 安全检查/校验值
 // system_buffer_ptr - 默认字符串缓冲区
 // _DAT_180c8ed18 - 内存分配器/池管理器
 // _DAT_180c8f008 - 系统状态标志
@@ -12,9 +13,9 @@
 // _DAT_180c8ed58 - 性能计数器基准
 // _DAT_180c8ed48 - 时间戳基准值
 // _DAT_180c8ed50 - 时间缩放因子
-// _DAT_180c8ed60 - 文件句柄计数器
+// SYSTEM_FILE_COUNTER_ADDR - 文件句柄计数器
 // _DAT_180c8ed08 - 全局对象指针
-// _DAT_180c86920 - 配置参数块1
+// SYSTEM_STATE_MANAGER - 配置参数块1
 // _DAT_180c868b0 - 配置参数块2
 // _DAT_180c86928 - 引擎配置数据
 // _DAT_180c82868 - 系统模块句柄
@@ -95,7 +96,7 @@ void process_string_data(longlong *param_1,longlong param_2,longlong param_3)
   ulonglong uStack_48;
   
   uStack_d8 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_138;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_138;
   uStack_e8 = 0;
   FUN_180057110();
   puVar6 = &system_buffer_ptr;
@@ -453,7 +454,7 @@ void gather_system_info(uint64_t param_1)
   ulonglong uStack_38;
   
   uStack_120 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_368;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_368;
   uStack_310 = 0;
   FUN_180627e10(param_1,&puStack_180,&unknown_var_816_ptr);
   uStack_280 = 0;
@@ -826,7 +827,7 @@ LAB_180065a3e:
     fclose(lVar9);
     lStack_278 = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
     lVar9 = 0;
     puVar4 = puStack_220;
@@ -863,7 +864,7 @@ LAB_180065a3e:
       fclose(lVar9);
       lStack_278 = 0;
       LOCK();
-      _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+      SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
       UNLOCK();
     }
     puStack_180 = &unknown_var_3456_ptr;
@@ -919,7 +920,7 @@ void initialize_string_buffer(void)
   int8_t auStack_228 [512];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_2c8;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_2c8;
   uStack_230 = 0x22657865;
   uStack_260 = 0x736172435c2e2e22;
   uStack_258 = 0x6564616f6c705568;
@@ -992,7 +993,7 @@ void process_system_parameters(uint64_t param_1,longlong param_2,uint64_t param_
   }
   ppuStack_68 = &puStack_a8;
   pplStack_60 = &plStack_b0;
-  FUN_180066140(&ppuStack_68,_DAT_180c86920,&system_memory_c7d8);
+  FUN_180066140(&ppuStack_68,SYSTEM_STATE_MANAGER,&system_memory_c7d8);
   FUN_180066140(&ppuStack_68,_DAT_180c868b0,&system_memory_cfc0);
   pcVar1 = *(code **)(*plStack_b0 + 0x40);
   uVar3 = FUN_180627ae0(&ppuStack_68,_DAT_180c86928 + 0x28);

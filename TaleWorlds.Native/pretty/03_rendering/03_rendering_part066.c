@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part066.c - 渲染系统高级参数处理和状态控制模块
 // 包含21个核心函数，涵盖渲染参数设置、状态管理、数据处理、资源清理等高级渲染功能
@@ -53,7 +54,7 @@
 #define RENDER_OBJECT_TYPE_POST_EFFECT   0x80
 
 // 全局变量声明
-extern longlong _DAT_180c86920;  // 渲染系统全局状态指针
+extern longlong SYSTEM_STATE_MANAGER;  // 渲染系统全局状态指针
 extern longlong _DAT_180c82868;  // 渲染系统内存管理器
 extern longlong _DAT_180c86930;  // 渲染系统设备上下文
 extern longlong _DAT_180c8ed18;  // 渲染系统字符串管理器
@@ -88,9 +89,9 @@ void rendering_system_update_quality_parameters(longlong render_context)
         FUN_1801aa3d0();
         
         // 检查质量参数是否需要更新
-        if (((*(int *)(_DAT_180c86920 + 0xcb4) != *(int *)(_DAT_180c86920 + 0xcb0)) ||
-            (*(int *)(_DAT_180c86920 + 0xd24) != *(int *)(_DAT_180c86920 + 0xd20))) ||
-            (*(int *)(_DAT_180c86920 + 0xc44) != *(int *)(_DAT_180c86920 + 0xc40))) {
+        if (((*(int *)(SYSTEM_STATE_MANAGER + 0xcb4) != *(int *)(SYSTEM_STATE_MANAGER + 0xcb0)) ||
+            (*(int *)(SYSTEM_STATE_MANAGER + 0xd24) != *(int *)(SYSTEM_STATE_MANAGER + 0xd20))) ||
+            (*(int *)(SYSTEM_STATE_MANAGER + 0xc44) != *(int *)(SYSTEM_STATE_MANAGER + 0xc40))) {
             
             // 更新渲染参数
             FUN_180383450(*(longlong *)(render_context + 0x6d0) + 0x120, render_context, *(uint64_t *)(render_context + 0x660));
@@ -108,8 +109,8 @@ void rendering_system_update_quality_parameters(longlong render_context)
                 quality_table = (unsigned char *)(render_manager + 9);
                 
                 // 计算基础质量值
-                base_quality = (float)((int)(*(int *)(_DAT_180c86920 + 0xe0) +
-                                     (*(int *)(_DAT_180c86920 + 0xe0) >> 0x1f & 3U)) >> 2);
+                base_quality = (float)((int)(*(int *)(SYSTEM_STATE_MANAGER + 0xe0) +
+                                     (*(int *)(SYSTEM_STATE_MANAGER + 0xe0) >> 0x1f & 3U)) >> 2);
                 
                 // 计算各质量等级阈值
                 quality_threshold_extreme = base_quality * 112.0 + 208.0;

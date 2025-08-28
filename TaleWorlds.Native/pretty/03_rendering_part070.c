@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part070.c - 渲染系统高级初始化和资源管理模块
 // 本模块包含9个核心函数，涵盖渲染系统初始化、资源管理、内存分配、状态控制、参数处理等高级渲染功能
@@ -157,7 +158,7 @@ void rendering_system_initialize_render_context(longlong *param_1, longlong *par
   
   // 初始化渲染上下文状态变量
   uStack_3b0 = 0xfffffffffffffffe;
-  uStack_68 = _DAT_180bf00a8 ^ (ulonglong)auStack_488;
+  uStack_68 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_488;
   iVar16 = 0;
   iVar12 = 0;
   plVar11 = *(longlong **)(param_1 + 0x1b90);

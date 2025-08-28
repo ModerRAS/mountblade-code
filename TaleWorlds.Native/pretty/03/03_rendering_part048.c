@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * @file 03_rendering_part048.c
@@ -444,10 +445,10 @@ void initialize_render_data_block(longlong param1, int param2, uint64_t param3, 
                 iVar13 = iVar9;
             }
             if (iVar17 < iVar13) {
-                if (_DAT_180c8a9b0 != 0) {
-                    *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+                if (SYSTEM_DATA_MANAGER_A != 0) {
+                    *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
                 }
-                uVar10 = func_0x000180120ce0((longlong)iVar13 << 5,_DAT_180c8a9a8,param3,param4,
+                uVar10 = func_0x000180120ce0((longlong)iVar13 << 5,SYSTEM_DATA_MANAGER_B,param3,param4,
                                              0xfffffffffffffffe);
                 if (*(longlong *)(param1 + 0xa0) != 0) {
                             // WARNING: Subroutine does not return
@@ -1016,7 +1017,7 @@ void execute_float_interpolation_render(longlong param1, longlong param2, int pa
     int iStack_d0;
     ulonglong uStack_c0;
     
-    uStack_c0 = _DAT_180bf00a8 ^ (ulonglong)auStack_f8;
+    uStack_c0 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_f8;
     uStack_e8 = param4;
     if (1 < param3) {
         iVar9 = param3 + -1;

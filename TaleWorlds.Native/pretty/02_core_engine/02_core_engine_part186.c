@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part186.c - 核心引擎模块第186部分
 // 本文件包含12个函数，主要处理内存管理、数据结构操作和字符串处理
@@ -58,12 +59,12 @@ void process_engine_memory_allocation(longlong param_1, uint64_t *param_2, uint6
   
   // 初始化内存管理器
   initialize_memory_manager(2, 0);
-  temp_long3 = _DAT_180c8a9b0;
+  temp_long3 = SYSTEM_DATA_MANAGER_A;
   counter_val = 0;
   temp_flag1 = 0;
   
   // 设置数据结构初始值
-  *(uint64_t *)(_DAT_180c8a9b0 + 0x1bf4) = *param_2;
+  *(uint64_t *)(SYSTEM_DATA_MANAGER_A + 0x1bf4) = *param_2;
   *(uint64_t *)(temp_long3 + 0x1bfc) = 0;
   *(int32_t *)(temp_long3 + 0x1bd0) = 1;
   *(int8_t *)(temp_long3 + 0x1c14) = 1;
@@ -72,37 +73,37 @@ void process_engine_memory_allocation(longlong param_1, uint64_t *param_2, uint6
   
   // 初始化字符串处理模块
   initialize_string_processor(&unknown_var_1792_ptr, 0, 0x907);
-  temp_long3 = _DAT_180c8a9b0;
+  temp_long3 = SYSTEM_DATA_MANAGER_A;
   
   // 设置处理标志
-  *(int8_t *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
+  *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
   temp_long3 = *(longlong *)(temp_long3 + 0x1af8);
   buffer_ptr = (uint *)(temp_long3 + 0x1a8);
   *buffer_ptr = *buffer_ptr | 1;
   
   // 激活数据结构处理器
   activate_data_structure_processor(temp_long3 + 0x1b8);
-  temp_long3 = _DAT_180c8a9b0;
+  temp_long3 = SYSTEM_DATA_MANAGER_A;
   
   // 检查是否需要初始化默认值
   if (*(char *)(param_1 + 0x74) == '\0') {
     stack_data[0] = 5;
-    process_buffer_operation(_DAT_180c8a9b0 + 0x1b80, stack_data);
+    process_buffer_operation(SYSTEM_DATA_MANAGER_A + 0x1b80, stack_data);
     *(uint64_t *)(temp_long3 + 0x1718) = 0x3f8000003f800000;
     *(uint64_t *)(temp_long3 + 0x1720) = 0x3f8000003f800000;
     initialize_default_values(&unknown_var_1776_ptr);
-    temp_long3 = _DAT_180c8a9b0;
+    temp_long3 = SYSTEM_DATA_MANAGER_A;
     
     // 处理数据队列操作
     data_ptr1 = (uint64_t *)
-             (*(longlong *)(_DAT_180c8a9b0 + 0x1b88) + -0x10 +
-             (longlong)*(int *)(_DAT_180c8a9b0 + 0x1b80) * 0x14);
+             (*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x10 +
+             (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14);
     temp_val1 = data_ptr1[1];
     data_ptr2 = (uint64_t *)
-             (_DAT_180c8a9b0 + 0x16c8 +
+             (SYSTEM_DATA_MANAGER_A + 0x16c8 +
              (longlong)
-             *(int *)(*(longlong *)(_DAT_180c8a9b0 + 0x1b88) + -0x14 +
-                     (longlong)*(int *)(_DAT_180c8a9b0 + 0x1b80) * 0x14) * 0x10);
+             *(int *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x14 +
+                     (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14) * 0x10);
     *data_ptr2 = *data_ptr1;
     data_ptr2[1] = temp_val1;
     *(int *)(temp_long3 + 0x1b80) = *(int *)(temp_long3 + 0x1b80) + -1;
@@ -136,8 +137,8 @@ void process_engine_memory_allocation(longlong param_1, uint64_t *param_2, uint6
         *(int *)(param_1 + 0x68) = temp_int1;
       }
       
-      temp_long3 = _DAT_180c8a9b0;
-      status_ptr = (int *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x218);
+      temp_long3 = SYSTEM_DATA_MANAGER_A;
+      status_ptr = (int *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x218);
       *status_ptr = *status_ptr + -1;
       
       if (index_val == temp_int1) {
@@ -190,22 +191,22 @@ void process_engine_memory_allocation(longlong param_1, uint64_t *param_2, uint6
   
   // 清理资源
   cleanup_resources();
-  context_ptr = _DAT_180c8a9b0;
-  temp_long1 = (longlong)*(int *)(_DAT_180c8a9b0 + 0x1b90);
-  temp_long3 = *(longlong *)(_DAT_180c8a9b0 + 0x1b98);
+  context_ptr = SYSTEM_DATA_MANAGER_A;
+  temp_long1 = (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
+  temp_long3 = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
   temp_long2 = (longlong)*(int *)(temp_long3 + -0xc + temp_long1 * 0xc);
   temp_ulong1 = (ulonglong)*(uint *)(&unknown_var_6056_ptr + temp_long2 * 0xc);
   
   // 处理最终数据块
   if (*(int *)(&unknown_var_6048_ptr + temp_long2 * 0xc) == 4) {
     if (*(int *)(&unknown_var_6052_ptr + temp_long2 * 0xc) == 1) {
-      *(int32_t *)(temp_ulong1 + 0x1628 + _DAT_180c8a9b0) =
+      *(int32_t *)(temp_ulong1 + 0x1628 + SYSTEM_DATA_MANAGER_A) =
            *(int32_t *)(temp_long3 + -8 + temp_long1 * 0xc);
       *(int *)(context_ptr + 0x1b90) = *(int *)(context_ptr + 0x1b90) + -1;
       return;
     }
     if (*(int *)(&unknown_var_6052_ptr + temp_long2 * 0xc) == 2) {
-      *(int32_t *)(temp_ulong1 + 0x1628 + _DAT_180c8a9b0) =
+      *(int32_t *)(temp_ulong1 + 0x1628 + SYSTEM_DATA_MANAGER_A) =
            *(int32_t *)(temp_long3 + -8 + temp_long1 * 0xc);
       *(int32_t *)(temp_ulong1 + 0x162c + context_ptr) = *(int32_t *)(temp_long3 + -4 + temp_long1 * 0xc);
     }
@@ -273,8 +274,8 @@ void optimized_memory_allocation_handler(void)
       *(int *)(register_rsi + 0x68) = register_edi;
     }
     
-    register_rbx = _DAT_180c8a9b0;
-    status_ptr = (int *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x218);
+    register_rbx = SYSTEM_DATA_MANAGER_A;
+    status_ptr = (int *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x218);
     *status_ptr = *status_ptr + -1;
     
     if (index_val == register_edi) {
@@ -326,21 +327,21 @@ void optimized_memory_allocation_handler(void)
   
   // 清理资源
   cleanup_resources();
-  temp_long1 = _DAT_180c8a9b0;
-  temp_long2 = (longlong)*(int *)(_DAT_180c8a9b0 + 0x1b90);
-  context_ptr = *(longlong *)(_DAT_180c8a9b0 + 0x1b98);
+  temp_long1 = SYSTEM_DATA_MANAGER_A;
+  temp_long2 = (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
+  context_ptr = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
   temp_long3 = (longlong)*(int *)(context_ptr + -0xc + temp_long2 * 0xc);
   temp_ulong1 = (ulonglong)*(uint *)(&unknown_var_6056_ptr + temp_long3 * 0xc);
   
   // 处理最终数据块
   if (*(int *)(&unknown_var_6048_ptr + temp_long3 * 0xc) == 4) {
     if (*(int *)(&unknown_var_6052_ptr + temp_long3 * 0xc) == 1) {
-      *(int32_t *)(temp_ulong1 + 0x1628 + _DAT_180c8a9b0) = *(int32_t *)(context_ptr + -8 + temp_long2 * 0xc);
+      *(int32_t *)(temp_ulong1 + 0x1628 + SYSTEM_DATA_MANAGER_A) = *(int32_t *)(context_ptr + -8 + temp_long2 * 0xc);
       *(int *)(temp_long1 + 0x1b90) = *(int *)(temp_long1 + 0x1b90) + -1;
       return;
     }
     if (*(int *)(&unknown_var_6052_ptr + temp_long3 * 0xc) == 2) {
-      *(int32_t *)(temp_ulong1 + 0x1628 + _DAT_180c8a9b0) = *(int32_t *)(context_ptr + -8 + temp_long2 * 0xc);
+      *(int32_t *)(temp_ulong1 + 0x1628 + SYSTEM_DATA_MANAGER_A) = *(int32_t *)(context_ptr + -8 + temp_long2 * 0xc);
       *(int32_t *)(temp_ulong1 + 0x162c + temp_long1) = *(int32_t *)(context_ptr + -4 + temp_long2 * 0xc);
     }
   }
@@ -385,21 +386,21 @@ void simplified_state_cleanup(void)
   
   // 清理资源
   cleanup_resources();
-  temp_long2 = _DAT_180c8a9b0;
-  temp_long3 = (longlong)*(int *)(_DAT_180c8a9b0 + 0x1b90);
-  temp_long1 = *(longlong *)(_DAT_180c8a9b0 + 0x1b98);
+  temp_long2 = SYSTEM_DATA_MANAGER_A;
+  temp_long3 = (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
+  temp_long1 = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
   temp_long4 = (longlong)*(int *)(temp_long1 + -0xc + temp_long3 * 0xc);
   temp_ulong1 = (ulonglong)*(uint *)(&unknown_var_6056_ptr + temp_long4 * 0xc);
   
   // 处理最终数据块
   if (*(int *)(&unknown_var_6048_ptr + temp_long4 * 0xc) == 4) {
     if (*(int *)(&unknown_var_6052_ptr + temp_long4 * 0xc) == 1) {
-      *(int32_t *)(temp_ulong1 + 0x1628 + _DAT_180c8a9b0) = *(int32_t *)(temp_long1 + -8 + temp_long3 * 0xc);
+      *(int32_t *)(temp_ulong1 + 0x1628 + SYSTEM_DATA_MANAGER_A) = *(int32_t *)(temp_long1 + -8 + temp_long3 * 0xc);
       *(int *)(temp_long2 + 0x1b90) = *(int *)(temp_long2 + 0x1b90) + -1;
       return;
     }
     if (*(int *)(&unknown_var_6052_ptr + temp_long4 * 0xc) == 2) {
-      *(int32_t *)(temp_ulong1 + 0x1628 + _DAT_180c8a9b0) = *(int32_t *)(temp_long1 + -8 + temp_long3 * 0xc);
+      *(int32_t *)(temp_ulong1 + 0x1628 + SYSTEM_DATA_MANAGER_A) = *(int32_t *)(temp_long1 + -8 + temp_long3 * 0xc);
       *(int32_t *)(temp_ulong1 + 0x162c + temp_long2) = *(int32_t *)(temp_long1 + -4 + temp_long3 * 0xc);
     }
   }
@@ -430,21 +431,21 @@ void set_status_flag_by_index(longlong param_1, longlong param_2)
   
   // 清理资源
   cleanup_resources();
-  temp_long2 = _DAT_180c8a9b0;
-  temp_long3 = (longlong)*(int *)(_DAT_180c8a9b0 + 0x1b90);
-  temp_long1 = *(longlong *)(_DAT_180c8a9b0 + 0x1b98);
+  temp_long2 = SYSTEM_DATA_MANAGER_A;
+  temp_long3 = (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
+  temp_long1 = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
   temp_long4 = (longlong)*(int *)(temp_long1 + -0xc + temp_long3 * 0xc);
   temp_ulong1 = (ulonglong)*(uint *)(&unknown_var_6056_ptr + temp_long4 * 0xc);
   
   // 处理数据块
   if (*(int *)(&unknown_var_6048_ptr + temp_long4 * 0xc) == 4) {
     if (*(int *)(&unknown_var_6052_ptr + temp_long4 * 0xc) == 1) {
-      *(int32_t *)(temp_ulong1 + 0x1628 + _DAT_180c8a9b0) = *(int32_t *)(temp_long1 + -8 + temp_long3 * 0xc);
+      *(int32_t *)(temp_ulong1 + 0x1628 + SYSTEM_DATA_MANAGER_A) = *(int32_t *)(temp_long1 + -8 + temp_long3 * 0xc);
       *(int *)(temp_long2 + 0x1b90) = *(int *)(temp_long2 + 0x1b90) + -1;
       return;
     }
     if (*(int *)(&unknown_var_6052_ptr + temp_long4 * 0xc) == 2) {
-      *(int32_t *)(temp_ulong1 + 0x1628 + _DAT_180c8a9b0) = *(int32_t *)(temp_long1 + -8 + temp_long3 * 0xc);
+      *(int32_t *)(temp_ulong1 + 0x1628 + SYSTEM_DATA_MANAGER_A) = *(int32_t *)(temp_long1 + -8 + temp_long3 * 0xc);
       *(int32_t *)(temp_ulong1 + 0x162c + temp_long2) = *(int32_t *)(temp_long1 + -4 + temp_long3 * 0xc);
     }
   }

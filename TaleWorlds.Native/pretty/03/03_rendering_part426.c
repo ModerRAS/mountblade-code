@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part426.c - 渲染系统高级纹理映射和像素处理模块
 // 包含1个核心函数，负责高级纹理映射、像素处理、SIMD优化和渲染管线控制
@@ -142,7 +143,7 @@ void rendering_advanced_texture_mapper_process_pixel_batches(longlong rendering_
   int8_t temp_array4[RENDERING_MAX_TEXTURE_COORDINATES];
   
   // 初始化安全栈保护
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)&iteration_count;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)&iteration_count;
   max_iterations = RENDERING_PIXEL_PROCESSING_BATCH_SIZE;
   texture_index = 0xf;
   current_batch = param_texture_count + 1;

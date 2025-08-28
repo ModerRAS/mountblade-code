@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part619.c - 渲染系统高级控制和特效处理模块
 // 包含15个核心函数，涵盖渲染系统高级控制、特效处理、资源管理、坐标变换、内存管理、向量计算等高级渲染功能

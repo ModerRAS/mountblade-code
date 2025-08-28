@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_04_part035.c - 7 个函数
 
@@ -129,7 +130,7 @@ void FUN_1802a5260(longlong *param_1,float *param_2,uint64_t param_3,uint64_t *p
   uint64_t auStack_208 [56];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_288;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_288;
   puVar6 = auStack_248;
   lVar7 = 0x40;
   do {
@@ -262,7 +263,7 @@ void FUN_1802a5540(longlong *param_1,float *param_2,uint64_t param_3,int32_t *pa
   int32_t auStack_128 [56];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
   iVar6 = *(ushort *)((longlong)param_1 + 0x5e) - 1;
   fVar12 = (float)iVar6 * param_2[1];
   if (fVar12 <= 0.0) {
@@ -389,7 +390,7 @@ void FUN_1802a57e0(longlong *param_1,float *param_2,uint64_t param_3,int32_t *pa
   int32_t auStack_128 [56];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
   puVar6 = auStack_148;
   lVar7 = 0x40;
   do {
@@ -523,7 +524,7 @@ void FUN_1802a5aa0(longlong *param_1,float *param_2,uint64_t param_3,int32_t *pa
   int32_t auStack_128 [56];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
   puVar6 = auStack_148;
   lVar7 = 0x40;
   do {
@@ -662,7 +663,7 @@ void FUN_1802a5d60(longlong *param_1,float *param_2,uint64_t param_3,int32_t *pa
   uint64_t uStack_50;
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
   puVar6 = auStack_158;
   lVar7 = 0x40;
   do {
@@ -807,7 +808,7 @@ void FUN_1802a6040(longlong *param_1,float *param_2,uint64_t param_3,int32_t *pa
   double adStack_210 [59];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_398;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_398;
   puVar10 = &uStack_338;
   lVar12 = 0x40;
   puStack_368 = param_4;

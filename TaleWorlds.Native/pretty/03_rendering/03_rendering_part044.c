@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part044.c - 渲染系统高级几何处理和递归细分算法
 // 本文件包含用于渲染几何体处理的复杂算法和递归细分功能
@@ -68,7 +69,7 @@ void process_rendering_data_advanced(uint64_t render_context, longlong data_buff
   ulonglong uStack_50;
   
   // 栈保护
-  uStack_50 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
+  uStack_50 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_b8;
   uVar18 = (ulonglong)element_count;
   iVar14 = 0;
   iVar19 = iVar14;

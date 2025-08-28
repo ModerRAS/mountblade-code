@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part203.c - 1 个函数
 
@@ -80,7 +81,7 @@ FUN_180787940(longlong param_1,uint64_t param_2,longlong param_3,int32_t *param_
   }
   uVar9 = (ulonglong)piVar7 & 0xffffffff00000000;
   plVar3 = (longlong *)
-           FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x60,&unknown_var_9968_ptr,0x52b,uVar9);
+           FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x60,&unknown_var_9968_ptr,0x52b,uVar9);
   if (plVar3 == (longlong *)0x0) {
 LAB_180787e12:
     uVar2 = 0x26;
@@ -172,7 +173,7 @@ LAB_180787e12:
       uStack_38 = puVar4[6];
       uStack_30 = puVar4[7];
       piStack_48 = &iStack_c0;
-      lVar5 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x2d8,&unknown_var_9968_ptr,0x55d,uVar9
+      lVar5 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x2d8,&unknown_var_9968_ptr,0x55d,uVar9
                            );
       if (lVar5 == 0) {
         lVar5 = 0;
@@ -219,7 +220,7 @@ LAB_180787e12:
       }
       iVar6 = iStack_e0 * iStack_dc * aiStackX_8[0] * 4;
       *(int *)(plVar3 + 9) = iVar6;
-      lVar5 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar6,&unknown_var_9968_ptr,0x587,
+      lVar5 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar6,&unknown_var_9968_ptr,0x587,
                             uVar9 & 0xffffffff00000000);
       plVar3[7] = lVar5;
       if (lVar5 == 0) goto LAB_180787e12;
@@ -295,7 +296,7 @@ uint64_t FUN_180787983(longlong param_1,uint64_t param_2,uint64_t param_3)
   }
   uVar10 = uVar10 & 0xffffffff00000000;
   plVar5 = (longlong *)
-           FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x60,&unknown_var_9968_ptr,0x52b,uVar10);
+           FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x60,&unknown_var_9968_ptr,0x52b,uVar10);
   if (plVar5 == (longlong *)0x0) {
 LAB_180787e12:
     uVar4 = 0x26;
@@ -387,7 +388,7 @@ LAB_180787e12:
       *(int8_t *)(unaff_RBP + -0x5d) = 1;
       *(int32_t *)(unaff_RBP + -0x61) = 5;
       puVar6 = (uint64_t *)func_0x0001807e5100();
-      lVar7 = _DAT_180be12f0;
+      lVar7 = SYSTEM_MAIN_CONTROL_BLOCK;
       uVar10 = uVar10 & 0xffffffff00000000;
       uVar4 = puVar6[1];
       *(uint64_t *)(unaff_RBP + -0x11) = *puVar6;
@@ -451,7 +452,7 @@ LAB_180787e12:
       }
       iVar8 = iStack0000000000000048 * iStack000000000000004c * *(int *)(unaff_RBP + 0x5f) * 4;
       *(int *)(plVar5 + 9) = iVar8;
-      lVar7 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar8,&unknown_var_9968_ptr,0x587,
+      lVar7 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar8,&unknown_var_9968_ptr,0x587,
                             uVar10 & 0xffffffff00000000);
       plVar5[7] = lVar7;
       if (lVar7 == 0) goto LAB_180787e12;

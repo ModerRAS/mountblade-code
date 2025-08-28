@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * @file 99_part_01_part005.c
@@ -193,7 +194,7 @@ void system_resource_allocator_and_initializer(uint64_t system_handle, longlong 
     
     // 栈保护初始化
     local_stack_value5 = 0xfffffffffffffffe;
-    stack_canary = _DAT_180bf00a8 ^ (ulonglong)local_stack_buffer1;
+    stack_canary = GET_SECURITY_COOKIE() ^ (ulonglong)local_stack_buffer1;
     local_stack_value2 = 0;
     
     // 资源数据初始化
@@ -604,7 +605,7 @@ void directx_subsystem_initializer(longlong system_handle)
     
     // 栈保护初始化
     local_stack_value3 = 0xfffffffffffffffe;
-    stack_canary = _DAT_180bf00a8 ^ (ulonglong)local_stack_buffer1;
+    stack_canary = GET_SECURITY_COOKIE() ^ (ulonglong)local_stack_buffer1;
     
     // DirectX版本检测
     *(int32_t *)(system_handle + 0x121bc) = 4;
@@ -706,7 +707,7 @@ void system_memory_allocator_and_resource_manager(longlong system_handle)
     
     // 栈保护初始化
     local_stack_value4 = 0xfffffffffffffffe;
-    stack_canary = _DAT_180bf00a8 ^ (ulonglong)local_stack_buffer1;
+    stack_canary = GET_SECURITY_COOKIE() ^ (ulonglong)local_stack_buffer1;
     local_stack_value3 = 0;
     
     // 内存池分配
@@ -851,7 +852,7 @@ void resource_configurator_and_state_manager(longlong system_handle, int32_t par
     ulonglong stack_canary;
     
     // 栈保护初始化
-    stack_canary = _DAT_180bf00a8 ^ (ulonglong)local_stack_buffer1;
+    stack_canary = GET_SECURITY_COOKIE() ^ (ulonglong)local_stack_buffer1;
     local_stack_value11 = 0;
     local_stack_value13 = 0;
     local_stack_value4 = param2;
@@ -1004,7 +1005,7 @@ void system_state_manager_and_resource_allocator(longlong system_handle)
     local_var3 = 0;
     local_stack_value1 = 0x7000000;
     local_stack_value2 = 1;
-    if ((*(int *)(_DAT_180c86920 + 0x4d0) - 3U & 0xfffffffd) == 0) {
+    if ((*(int *)(SYSTEM_STATE_MANAGER + 0x4d0) - 3U & 0xfffffffd) == 0) {
         local_var3 = 2;
     }
     
@@ -1033,7 +1034,7 @@ void system_state_manager_and_resource_allocator(longlong system_handle)
     *(uint64_t *)(system_handle + 0x1e28) = local_var2;
     
     // 系统配置读取
-    local_var1 = *(int *)(_DAT_180c86920 + 0x310);
+    local_var1 = *(int *)(SYSTEM_STATE_MANAGER + 0x310);
     if (local_var1 == 0) {
         local_stack_value2 = 1;
         local_stack_value1 = 6;
@@ -1118,7 +1119,7 @@ void resource_sync_manager_and_state_controller(longlong system_handle)
             (**(code **)(*(longlong *)*local_var5 + 0x10))();
             *local_var5 = 0;
         }
-        local_var2 = _DAT_180c86920;
+        local_var2 = SYSTEM_STATE_MANAGER;
         local_var5 = local_var5 + 1;
         local_var6 = local_var6 + -1;
     } while (local_var6 != 0);
@@ -1156,7 +1157,7 @@ void resource_sync_manager_and_state_controller(longlong system_handle)
     *(uint64_t *)(local_var7 + 0x1e28) = local_var3;
     
     // 系统配置读取
-    local_var1 = *(int *)(_DAT_180c86920 + 0x310);
+    local_var1 = *(int *)(SYSTEM_STATE_MANAGER + 0x310);
     if (local_var1 == 0) {
         *(int32_t *)(local_var7 + 0x1c) = 1;
         *(int8_t *)(local_var7 + 0x1a) = 0;

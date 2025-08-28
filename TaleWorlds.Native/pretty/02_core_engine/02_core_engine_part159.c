@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part159.c - 核心引擎模块第159部分 - 渲染系统与数据处理
 // 
@@ -595,7 +596,7 @@ void process_values_data(uint64_t param_1,longlong param_2)
     return;
   }
   uStack_118 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
   pcVar7 = "values";
   do {
     pcVar8 = pcVar7;

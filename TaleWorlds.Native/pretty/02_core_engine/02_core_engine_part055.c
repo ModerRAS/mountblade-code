@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part055.c - 核心引擎初始化和渲染管线设置
 
@@ -308,7 +309,7 @@ void initialize_render_pipeline(void)
 
 // 全局变量定义
 longlong *global_render_context = _DAT_180c86950;
-ulonglong performance_counter_value = _DAT_180bf00a8;
+ulonglong performance_counter_value = GET_SECURITY_COOKIE();
 char performance_timer_enabled = system_buffer_2853;
 longlong performance_timer_address = _DAT_180c86870;
 longlong performance_counter_base = _DAT_180c8ed48;

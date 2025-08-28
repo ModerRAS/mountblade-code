@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part123_sub002_sub002.c - 核心引擎模块第123部分第二子文件第二子部分
 // 包含1个函数：游戏对象更新和渲染处理
@@ -222,8 +223,8 @@ void update_game_object_and_render(uint64_t param_1, longlong param_2)
         if (*(char *)(in_stack_00000040 + 0xb3) != '\0') {
             *(bool *)(in_stack_00000040 + 0xb2) = *(char *)(in_stack_00000040 + 0xb2) == '\0';
             if (((*(uint *)(in_stack_00000040 + 0xc) & 0x100) == 0) &&
-               (*(float *)(_DAT_180c8a9b0 + 0x2e04) <= unaff_XMM13_Da)) {
-                *(int32_t *)(_DAT_180c8a9b0 + 0x2e04) = *(int32_t *)(_DAT_180c8a9b0 + 0x1c);
+               (*(float *)(SYSTEM_DATA_MANAGER_A + 0x2e04) <= unaff_XMM13_Da)) {
+                *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x2e04) = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1c);
             }
             FUN_18012d2e0(in_stack_00000040);
         }

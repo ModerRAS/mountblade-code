@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 01_initialization_part017.c - 初始化系统 - 32 个函数
 
@@ -107,7 +108,7 @@ void Format_String_To_Buffer(longlong buffer_context, uint64_t format_str, uint6
   char formatted_string [32];
   ulonglong stack_cookie;
   
-  stack_cookie = _DAT_180bf00a8 ^ (ulonglong)auStack_78;
+  stack_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_78;
   formatted_param_3 = param_3;
   formatted_param_4 = param_4;
   printf_func = (ulonglong *)func_0x00018004b9a0();
@@ -208,7 +209,7 @@ void Unlock_Global_Mutex(uint64_t *resource_ptr)
 {
   int unlock_result;
   
-  _DAT_180c8a9b0 = *resource_ptr;
+  SYSTEM_DATA_MANAGER_A = *resource_ptr;
   unlock_result = _Mtx_unlock(0x180c91970);
   if (unlock_result != 0) {
     __Throw_C_error_std__YAXH_Z(unlock_result);

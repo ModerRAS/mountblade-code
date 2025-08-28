@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part210.c - 11 个函数
 
@@ -259,14 +260,14 @@ void FUN_18078c760(longlong param_1,int param_2)
   float fVar8;
   int aiStackX_8 [2];
   
-  FUN_180768360(*(uint64_t *)(_DAT_180be12f0 + 0x120));
+  FUN_180768360(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x120));
   plVar2 = *(longlong **)(param_1 + 0x11728);
   do {
     while( true ) {
       plVar6 = plVar2;
       if (plVar6 == (longlong *)(param_1 + 0x11728)) {
                     // WARNING: Subroutine does not return
-        FUN_180768400(*(uint64_t *)(_DAT_180be12f0 + 0x120));
+        FUN_180768400(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x120));
       }
       aiStackX_8[0] = 0;
       plVar2 = (longlong *)*plVar6;
@@ -410,7 +411,7 @@ LAB_18078c8ad:
     unaff_RBX = plVar2;
     if (plVar2 == (longlong *)unaff_R15) {
                     // WARNING: Subroutine does not return
-      FUN_180768400(*(uint64_t *)(_DAT_180be12f0 + 0x120));
+      FUN_180768400(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x120));
     }
   } while( true );
 }
@@ -426,7 +427,7 @@ void FUN_18078c92b(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180768400(*(uint64_t *)(_DAT_180be12f0 + 0x120));
+  FUN_180768400(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x120));
 }
 
 

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * @file 99_part_13_part063.c
@@ -118,7 +119,7 @@ void advanced_data_processor(float *input_data, int32_t *output_data, float *tra
     ulonglong stack_var_58;
     
     // 初始化堆栈变量
-    stack_var_58 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_148;
+    stack_var_58 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_148;
     stack_var_128 = 0;
     stack_var_c8 = 0;
     stack_var_bc = 0;
@@ -416,7 +417,7 @@ void resource_manager(uint64_t resource_params, int32_t *output_data, uint64_t r
     ulonglong stack_var_28;
     
     // 初始化堆栈变量
-    stack_var_28 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_d8;
+    stack_var_28 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_d8;
     stack_var_60 = 0;
     stack_var_b8 = 0;
     stack_var_68 = 0;
@@ -497,7 +498,7 @@ void matrix_transform_processor(uint64_t matrix_params, uint64_t *output_matrix,
     ulonglong stack_var_38;
     
     // 初始化堆栈变量
-    stack_var_38 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_e8;
+    stack_var_38 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_e8;
     stack_var_c8 = 0;
     stack_var_78 = 0;
     stack_var_6c = 0;
@@ -655,7 +656,7 @@ void system_parameter_setup(uint64_t *system_params, uint64_t param_set1, uint64
     ulonglong stack_var_20;
     
     // 初始化堆栈变量
-    stack_var_20 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_68;
+    stack_var_20 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_68;
     temp_ptr1 = system_params + 1;
     *temp_ptr1 = temp_ptr1;
     temp_ptr2 = (int *)(param_set3 + 0x30);
@@ -1401,7 +1402,7 @@ void advanced_resource_manager(longlong *resource_manager, uint64_t *resource_pa
     ulonglong stack_var_20;
     
     // 初始化堆栈变量
-    stack_var_20 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_68;
+    stack_var_20 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_68;
     temp_var4 = resource_manager[0x13];
     
     // 处理资源参数
@@ -1477,7 +1478,7 @@ void system_resource_handler(longlong *resource_processor, uint64_t *resource_pa
     ulonglong stack_var_20;
     
     // 初始化堆栈变量
-    stack_var_20 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_68;
+    stack_var_20 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_68;
     temp_var4 = resource_processor[0x15];
     
     // 处理资源参数

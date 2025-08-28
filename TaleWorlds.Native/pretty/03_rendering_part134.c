@@ -490,7 +490,7 @@ void FUN_180349330(longlong param_1)
   ulonglong uStack_38;
   
   uStack_100 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
   uVar7 = 0;
   plStack_120 = (longlong *)0x0;
   plStack_118 = (longlong *)0x0;
@@ -882,7 +882,7 @@ void FUN_180349a50(uint64_t param_1)
   ulonglong uStack_28;
   
   uStack_1b0 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_1e8;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1e8;
   uStack_1c8 = 0;
   
   // 设置第一个着色器参数
@@ -1013,7 +1013,7 @@ void FUN_180349ce0(uint64_t *param_1,longlong param_2)
   ulonglong uStack_30;
   
   uStack_148 = 0xfffffffffffffffe;
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_30 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_168;
   puVar1 = param_1;
   puStack_140 = param_1;
   FUN_1803456e0();

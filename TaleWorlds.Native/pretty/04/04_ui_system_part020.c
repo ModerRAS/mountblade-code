@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * 04_ui_system_part020.c - UI系统高级数据处理和控制模块
@@ -589,7 +590,7 @@ void ui_system_animation_controller(longlong context, float param2, uint64_t par
 // 全局变量定义
 #define UI_SYSTEM_GLOBAL_DATA_1 unknown_var_1864
 #define UI_SYSTEM_GLOBAL_DATA_2 unknown_var_2072
-#define UI_SYSTEM_GLOBAL_DATA _DAT_180bf00a8
+#define UI_SYSTEM_GLOBAL_DATA GET_SECURITY_COOKIE()
 
 // 内部函数声明
 uint64_t *ui_system_get_matrix_data(longlong param1, int8_t param2, longlong param3);

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part107.c - 9 个函数
 
@@ -57,13 +58,13 @@ void check_and_update_entity_bounds(float param_1, float param_2, float param_3,
   }
   
   // 获取全局数据结构指针
-  lVar7 = _DAT_180c8a9b0;
-  uVar3 = *(int32_t *)(_DAT_180c8a9b0 + 0x19ac);
-  uVar4 = *(int32_t *)(_DAT_180c8a9b0 + 0x19b0);
-  fVar5 = *(float *)(_DAT_180c8a9b0 + 0x19b4);
+  lVar7 = SYSTEM_DATA_MANAGER_A;
+  uVar3 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19ac);
+  uVar4 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19b0);
+  fVar5 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19b4);
   
   // 保存当前边界参数到栈缓冲区
-  *(int32_t *)(unaff_RBP + -0x59) = *(int32_t *)(_DAT_180c8a9b0 + 0x19a8);
+  *(int32_t *)(unaff_RBP + -0x59) = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19a8);
   *(int32_t *)(unaff_RBP + -0x55) = uVar3;
   *(int32_t *)(unaff_RBP + -0x51) = uVar4;
   *(float *)(unaff_RBP + -0x4d) = fVar5;
@@ -91,13 +92,13 @@ void check_and_update_entity_bounds(float param_1, float param_2, float param_3,
   }
   
   // 处理特殊的渲染模式（RDI寄存器的第2位被设置）
-  lVar7 = _DAT_180c8a9b0;
+  lVar7 = SYSTEM_DATA_MANAGER_A;
   if ((unaff_RDI & 2) != 0) {
     lVar2 = *(longlong *)(unaff_RBX + 0x2e8);
-    uVar3 = *(int32_t *)(_DAT_180c8a9b0 + 0x19ac);
-    uVar4 = *(int32_t *)(_DAT_180c8a9b0 + 0x19b0);
-    fVar5 = *(float *)(_DAT_180c8a9b0 + 0x19b4);
-    *(int32_t *)(unaff_RBP + -0x59) = *(int32_t *)(_DAT_180c8a9b0 + 0x19a8);
+    uVar3 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19ac);
+    uVar4 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19b0);
+    fVar5 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19b4);
+    *(int32_t *)(unaff_RBP + -0x59) = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19a8);
     *(int32_t *)(unaff_RBP + -0x55) = uVar3;
     *(int32_t *)(unaff_RBP + -0x51) = uVar4;
     *(float *)(unaff_RBP + -0x4d) = fVar5;
@@ -174,15 +175,15 @@ void perform_bounds_check_and_render_update(void)
   }
   
   // 获取全局数据结构指针
-  lVar5 = _DAT_180c8a9b0;
+  lVar5 = SYSTEM_DATA_MANAGER_A;
   
   // 处理特殊的渲染模式（RDI寄存器的第2位被设置）
   if ((unaff_RDI & 2) != 0) {
     lVar2 = *(longlong *)(unaff_RBX + 0x2e8);
-    uVar3 = *(int32_t *)(_DAT_180c8a9b0 + 0x19ac);
-    uVar4 = *(int32_t *)(_DAT_180c8a9b0 + 0x19b0);
-    fVar7 = *(float *)(_DAT_180c8a9b0 + 0x19b4);
-    *(int32_t *)(unaff_RBP + -0x59) = *(int32_t *)(_DAT_180c8a9b0 + 0x19a8);
+    uVar3 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19ac);
+    uVar4 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19b0);
+    fVar7 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19b4);
+    *(int32_t *)(unaff_RBP + -0x59) = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19a8);
     *(int32_t *)(unaff_RBP + -0x55) = uVar3;
     *(int32_t *)(unaff_RBP + -0x51) = uVar4;
     *(float *)(unaff_RBP + -0x4d) = fVar7;
@@ -246,15 +247,15 @@ void simplified_render_update(void)
   FUN_180291950();
   
   // 获取全局数据结构指针
-  lVar5 = _DAT_180c8a9b0;
+  lVar5 = SYSTEM_DATA_MANAGER_A;
   
   // 处理特殊的渲染模式（RDI寄存器的第2位被设置）
   if ((unaff_RDI & 2) != 0) {
     lVar2 = *(longlong *)(unaff_RBX + 0x2e8);
-    uVar3 = *(int32_t *)(_DAT_180c8a9b0 + 0x19ac);
-    uVar4 = *(int32_t *)(_DAT_180c8a9b0 + 0x19b0);
-    fVar7 = *(float *)(_DAT_180c8a9b0 + 0x19b4);
-    *(int32_t *)(unaff_RBP + -0x59) = *(int32_t *)(_DAT_180c8a9b0 + 0x19a8);
+    uVar3 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19ac);
+    uVar4 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19b0);
+    fVar7 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19b4);
+    *(int32_t *)(unaff_RBP + -0x59) = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19a8);
     *(int32_t *)(unaff_RBP + -0x55) = uVar3;
     *(int32_t *)(unaff_RBP + -0x51) = uVar4;
     *(float *)(unaff_RBP + -0x4d) = fVar7;
@@ -453,9 +454,9 @@ uint64_t *initialize_entity_data_structure(uint64_t *param_1, longlong param_2, 
   // 获取材质索引并更新全局状态
   iVar3 = FUN_180121250(&unknown_var_2380_ptr, 0,
                         *(int32_t *)(param_1[0x44] + -4 + (longlong)*(int *)(param_1 + 0x43) * 4));
-  lVar5 = _DAT_180c8a9b0;
-  if (*(int *)(_DAT_180c8a9b0 + 0x1b2c) == iVar3) {
-    *(int *)(_DAT_180c8a9b0 + 0x1b34) = iVar3;
+  lVar5 = SYSTEM_DATA_MANAGER_A;
+  if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b2c) == iVar3) {
+    *(int *)(SYSTEM_DATA_MANAGER_A + 0x1b34) = iVar3;
   }
   if (*(int *)(lVar5 + 0x1b30) == iVar3) {
     *(int8_t *)(lVar5 + 0x1b3f) = 1;
@@ -543,51 +544,51 @@ void cleanup_multiple_entity_structures(longlong param_1, uint64_t param_2, uint
   // 清理位置 0xf0 处的实体
   lVar1 = *(longlong *)(param_1 + 0xf0);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar1, _DAT_180c8a9a8, param_3, param_4, 0xfffffffffffffffe);
+    FUN_180059ba0(lVar1, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
   }
   
   // 清理位置 0xe0 处的实体
   lVar1 = *(longlong *)(param_1 + 0xe0);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar1, _DAT_180c8a9a8, param_3, param_4, 0xfffffffffffffffe);
+    FUN_180059ba0(lVar1, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
   }
   
   // 清理位置 0xd0 处的实体
   lVar1 = *(longlong *)(param_1 + 0xd0);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar1, _DAT_180c8a9a8, param_3, param_4, 0xfffffffffffffffe);
+    FUN_180059ba0(lVar1, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
   }
   
   // 清理位置 0xc0 处的实体
   lVar1 = *(longlong *)(param_1 + 0xc0);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar1, _DAT_180c8a9a8, param_3, param_4, 0xfffffffffffffffe);
+    FUN_180059ba0(lVar1, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
   }
   
   // 清理位置 0x90 处的实体
   lVar1 = *(longlong *)(param_1 + 0x90);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar1, _DAT_180c8a9a8, param_3, param_4, 0xfffffffffffffffe);
+    FUN_180059ba0(lVar1, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
   }
   return;
 }
@@ -612,11 +613,11 @@ void cleanup_all_entities_in_complex_structure(longlong *param_1, uint64_t param
   // 清理主实体
   lVar2 = *param_1;
   if (lVar2 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar2, _DAT_180c8a9a8, param_3, param_4, 0xfffffffffffffffe);
+    FUN_180059ba0(lVar2, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
   }
   
   // 清理数组中的实体
@@ -626,11 +627,11 @@ void cleanup_all_entities_in_complex_structure(longlong *param_1, uint64_t param
     do {
       lVar1 = *(longlong *)(param_1[0x5a] + lVar2 + 0x38);
       if (lVar1 != 0) {
-        if (_DAT_180c8a9b0 != 0) {
-          *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+        if (SYSTEM_DATA_MANAGER_A != 0) {
+          *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
         }
         // 调用清理函数（不返回）
-        FUN_180059ba0(lVar1, _DAT_180c8a9a8, param_3, param_4, 0xfffffffffffffffe);
+        FUN_180059ba0(lVar1, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
       }
       iVar3 = iVar3 + 1;
       lVar2 = lVar2 + 0x40;
@@ -643,81 +644,81 @@ void cleanup_all_entities_in_complex_structure(longlong *param_1, uint64_t param
   // 清理位置 0x5a 处的实体
   lVar2 = param_1[0x5a];
   if (lVar2 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar2, _DAT_180c8a9a8, param_3, param_4, uVar4);
+    FUN_180059ba0(lVar2, SYSTEM_DATA_MANAGER_B, param_3, param_4, uVar4);
   }
   
   // 清理位置 0x58 处的实体
   lVar2 = param_1[0x58];
   if (lVar2 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar2, _DAT_180c8a9a8, param_3, param_4, uVar4);
+    FUN_180059ba0(lVar2, SYSTEM_DATA_MANAGER_B, param_3, param_4, uVar4);
   }
   
   // 清理位置 0x44 处的实体
   lVar2 = param_1[0x44];
   if (lVar2 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar2, _DAT_180c8a9a8, param_3, param_4, uVar4);
+    FUN_180059ba0(lVar2, SYSTEM_DATA_MANAGER_B, param_3, param_4, uVar4);
   }
   
   // 清理位置 0x3e 处的实体
   lVar2 = param_1[0x3e];
   if (lVar2 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar2, _DAT_180c8a9a8, param_3, param_4, 0xfffffffffffffffe);
+    FUN_180059ba0(lVar2, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
   }
   
   // 清理位置 0x3c 处的实体
   lVar2 = param_1[0x3c];
   if (lVar2 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar2, _DAT_180c8a9a8, param_3, param_4, 0xfffffffffffffffe);
+    FUN_180059ba0(lVar2, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
   }
   
   // 清理位置 0x3a 处的实体
   lVar2 = param_1[0x3a];
   if (lVar2 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar2, _DAT_180c8a9a8, param_3, param_4, 0xfffffffffffffffe);
+    FUN_180059ba0(lVar2, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
   }
   
   // 清理位置 0x38 处的实体
   lVar2 = param_1[0x38];
   if (lVar2 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar2, _DAT_180c8a9a8, param_3, param_4, 0xfffffffffffffffe);
+    FUN_180059ba0(lVar2, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
   }
   
   // 清理位置 0x32 处的实体
   lVar2 = param_1[0x32];
   if (lVar2 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar2, _DAT_180c8a9a8, param_3, param_4, 0xfffffffffffffffe);
+    FUN_180059ba0(lVar2, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
   }
   return;
 }
@@ -737,11 +738,11 @@ void cleanup_single_entity_structure(longlong param_1, uint64_t param_2, uint64_
   // 清理位置 0x38 处的实体
   lVar1 = *(longlong *)(param_1 + 0x38);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar1, _DAT_180c8a9a8, param_3, param_4, 0xfffffffffffffffe);
+    FUN_180059ba0(lVar1, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
   }
   return;
 }
@@ -764,11 +765,11 @@ void update_material_index_status(longlong param_1, uint64_t param_2)
                          (longlong)*(int *)(param_1 + 0x218) * 4));
   
   // 获取全局数据结构指针
-  lVar1 = _DAT_180c8a9b0;
+  lVar1 = SYSTEM_DATA_MANAGER_A;
   
   // 更新全局材质索引状态
-  if (*(int *)(_DAT_180c8a9b0 + 0x1b2c) == iVar2) {
-    *(int *)(_DAT_180c8a9b0 + 0x1b34) = iVar2;
+  if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b2c) == iVar2) {
+    *(int *)(SYSTEM_DATA_MANAGER_A + 0x1b34) = iVar2;
   }
   if (*(int *)(lVar1 + 0x1b30) == iVar2) {
     *(int8_t *)(lVar1 + 0x1b3f) = 1;

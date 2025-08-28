@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 99_part_12_part078_sub001.c - 高级系统状态管理和控制模块
 // 包含7个核心函数，涵盖系统状态管理、参数配置、资源分配、内存管理、数据验证等高级系统功能

@@ -304,7 +304,7 @@ void UISystem_StateProcessor(longlong param_1, longlong param_2)
     ulonglong uStack_40;
     
     // 安全检查和数据初始化
-    uStack_40 = _DAT_180bf00a8 ^ (ulonglong)auStack_e8;
+    uStack_40 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_e8;
     lVar6 = **(longlong **)(param_1 + UI_SYSTEM_OFFSET_38);
     plVar8 = (longlong *)(lVar6 + UI_SYSTEM_OFFSET_60);
     plVar7 = (longlong *)*plVar8;

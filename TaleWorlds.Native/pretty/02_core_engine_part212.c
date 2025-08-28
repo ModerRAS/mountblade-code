@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part212.c - 2 个函数
 
@@ -45,7 +46,7 @@ void FUN_18018ee00(void)
   ulonglong uStack_38;
   
   uStack_1c0 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_208;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_208;
   lStack_1e0 = _DAT_180c8a9f8;
   lStack_1c8 = _DAT_180c86930;
   plStack_1d0 = *(longlong **)(_DAT_180c86930 + 0xa0);
@@ -419,7 +420,7 @@ void FUN_18018f6a0(uint64_t param_1,longlong param_2)
   ulonglong uStack_38;
   
   uStack_630 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_698;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_698;
   FUN_18005d260(param_2,*(uint64_t *)(param_2 + 0x10));
   *(longlong *)param_2 = param_2;
   *(longlong *)(param_2 + 8) = param_2;

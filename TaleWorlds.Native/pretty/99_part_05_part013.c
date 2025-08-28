@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_05_part013.c - 5 个函数
 
@@ -231,7 +232,7 @@ void FUN_1802dccd0(longlong param_1,longlong param_2)
     }
     *(ulonglong *)(param_1 + 0x208) = uVar18;
   }
-  if ((*(int *)(_DAT_180c86920 + 0xa80) != 0) &&
+  if ((*(int *)(SYSTEM_STATE_MANAGER + 0xa80) != 0) &&
      ((*(ulonglong *)(*(longlong *)(param_1 + 0x280) + 0x140) &
       *(ulonglong *)(*(longlong *)(param_1 + 0x280) + 0x390)) != 0)) {
     *(int8_t *)(param_1 + 0x9f) = 6;
@@ -510,7 +511,7 @@ void FUN_1802dccdc(longlong param_1,longlong param_2)
     }
     *(ulonglong *)(param_1 + 0x208) = uVar22;
   }
-  if ((*(int *)(_DAT_180c86920 + 0xa80) != 0) &&
+  if ((*(int *)(SYSTEM_STATE_MANAGER + 0xa80) != 0) &&
      ((*(ulonglong *)(*(longlong *)(param_1 + 0x280) + 0x140) &
       *(ulonglong *)(*(longlong *)(param_1 + 0x280) + 0x390)) != 0)) {
     *(int8_t *)(param_1 + 0x9f) = 6;
@@ -564,7 +565,7 @@ void FUN_1802dd188(uint64_t param_1,longlong param_2)
     } while (unaff_R14 < (ulonglong)((*(longlong *)(unaff_R15 + 0x370) - lVar7) / 0x58));
   }
   *(ulonglong *)(unaff_RDI + 0x208) = uVar8;
-  if ((*(int *)(_DAT_180c86920 + 0xa80) != 0) &&
+  if ((*(int *)(SYSTEM_STATE_MANAGER + 0xa80) != 0) &&
      ((*(ulonglong *)(*(longlong *)(unaff_RDI + 0x280) + 0x140) &
       *(ulonglong *)(*(longlong *)(unaff_RDI + 0x280) + 0x390)) != 0)) {
     *(int8_t *)(unaff_RDI + 0x9f) = 6;
@@ -587,7 +588,7 @@ void FUN_1802dd243(void)
 {
   longlong unaff_RDI;
   
-  if ((*(int *)(_DAT_180c86920 + 0xa80) != 0) &&
+  if ((*(int *)(SYSTEM_STATE_MANAGER + 0xa80) != 0) &&
      ((*(ulonglong *)(*(longlong *)(unaff_RDI + 0x280) + 0x140) &
       *(ulonglong *)(*(longlong *)(unaff_RDI + 0x280) + 0x390)) != 0)) {
     *(int8_t *)(unaff_RDI + 0x9f) = 6;

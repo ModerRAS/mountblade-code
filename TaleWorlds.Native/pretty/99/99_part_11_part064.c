@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 99_part_11_part064.c - 高级系统数据处理和配置管理模块
 // 包含9个核心函数，涵盖系统数据处理、配置管理、内存管理、
@@ -384,7 +385,7 @@ void resource_allocator_and_batch_operation_processor(longlong param_1, int para
 {
   longlong lVar1;
   
-  lVar1 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), param_2 * param_3, &unknown_var_7376_ptr,
+  lVar1 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2 * param_3, &unknown_var_7376_ptr,
                         0x22, 0);
   if ((lVar1 != 0) && (param_1 != 0)) {
     *(int *)(param_1 + 0x4f0) = *(int *)(param_1 + 0x4f0) + param_2 * param_3;
@@ -403,7 +404,7 @@ void resource_allocator_and_batch_operation_processor(longlong param_1, int para
  */
 void resource_cleaner_and_release_processor(uint64_t param_1, uint64_t param_2)
 {
-  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), param_2, &unknown_var_7376_ptr, 0x52, 1);
+  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, &unknown_var_7376_ptr, 0x52, 1);
 }
 
 /**
@@ -419,7 +420,7 @@ void memory_manager_and_single_operation_processor(longlong param_1, int param_2
 {
   longlong lVar1;
   
-  lVar1 = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), param_2, &unknown_var_7376_ptr, 0x15, 0, 0, 1);
+  lVar1 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, &unknown_var_7376_ptr, 0x15, 0, 0, 1);
   if ((lVar1 != 0) && (param_1 != 0)) {
     *(int *)(param_1 + 0x4f0) = *(int *)(param_1 + 0x4f0) + param_2;
   }
@@ -440,7 +441,7 @@ void advanced_resource_manager_and_operation_processor(longlong param_1, uint64_
 {
   longlong lVar1;
   
-  lVar1 = FUN_180742650(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), param_2, param_3, &unknown_var_7376_ptr, 0x3c,
+  lVar1 = FUN_180742650(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, param_3, &unknown_var_7376_ptr, 0x3c,
                         0);
   if ((lVar1 != 0) && (param_1 != 0)) {
     *(int *)(param_1 + 0x4f0) = *(int *)(param_1 + 0x4f0) + param_3;
@@ -828,7 +829,7 @@ void system_configurator_and_initialization_manager(longlong param_1)
   uint64_t uStack_20;
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_68;
   *(int32_t *)(param_1 + 0x28) = 0xb;
   *(uint64_t *)(param_1 + 0x120) = 0;
   *(uint64_t *)(param_1 + 0x128) = 0;
@@ -904,7 +905,7 @@ void system_configurator_and_initialization_manager(longlong param_1)
         iVar1 = FUN_180769080(*(uint64_t *)(param_1 + 0x170));
         if (iVar1 == 0) {
           uStack_48 = CONCAT71(uStack_48._1_7_,1);
-          FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *(uint64_t *)(param_1 + 0x170),
+          FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *(uint64_t *)(param_1 + 0x170),
                         &unknown_var_7680_ptr, 0xb4);
         }
       }
@@ -985,7 +986,7 @@ void advanced_system_manager_and_configuration_processor(void)
     *(int32_t *)(unaff_RBX + 0x18) = unaff_ESI;
     iVar1 = FUN_180769080(*(uint64_t *)(unaff_RBX + 0x170));
     if (iVar1 == 0) {
-      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *(uint64_t *)(unaff_RBX + 0x170),
+      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *(uint64_t *)(unaff_RBX + 0x170),
                     &unknown_var_7680_ptr, 0xb4, 1);
     }
   }

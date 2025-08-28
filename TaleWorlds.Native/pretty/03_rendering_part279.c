@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part279.c - 9 个函数
 
@@ -33,7 +34,7 @@ void FUN_18041cce0(uint *param_1,longlong param_2,longlong param_3,uint64_t para
   uint64_t auStack_c8 [16];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_2f8;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_2f8;
   iVar8 = 1 << ((byte)*(int32_t *)((ulonglong)*param_1 * 0x28 + 0x180bf02d0) & 0x1f);
   iVar3 = 1 << ((byte)*(int32_t *)((ulonglong)*param_1 * 0x28 + 0x180bf02d4) & 0x1f);
   uStack_2d8 = CONCAT44(iVar3,iVar8);
@@ -311,7 +312,7 @@ void FUN_18041d4f0(longlong param_1,uint64_t *param_2)
   ulonglong uStack_38;
   
   uStack_c0 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_f8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_f8;
   cVar2 = FUN_18041dfa0(param_1,(longlong)param_2 + 0x14);
   if (cVar2 != '\0') {
     uStack_d8 = 0;
@@ -353,7 +354,7 @@ void FUN_18041d4f0(longlong param_1,uint64_t *param_2)
       fclose(lVar1);
       lStack_d0 = 0;
       LOCK();
-      _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+      SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
       UNLOCK();
     }
   }
@@ -757,7 +758,7 @@ void FUN_18041dfa0(longlong param_1,longlong param_2)
   uint uStack_4c;
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_f8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_f8;
   puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,3);
   puVar8 = (uint64_t *)0x0;
   *puVar3 = 0;
@@ -1041,7 +1042,7 @@ void FUN_18041eb10(uint64_t param_1,int param_2,int param_3,int param_4)
   int8_t auStack_858 [2048];
   ulonglong uStack_58;
   
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_878;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_878;
   uVar2 = (longlong)param_4 * (longlong)param_2;
   if (0 < param_3 >> 1) {
     uVar1 = (ulonglong)(uint)(param_3 >> 1);

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part055.c - 渲染系统高级粒子效果和动画处理模块 - 8 个函数
 
@@ -91,7 +92,7 @@ void RenderSystem_ParticleSystem_Update(void)
   *(uint64_t *)(in_R11 + 0x18) = unaff_RDI;
   lVar8 = 4;
   *(uint64_t *)(in_R11 + -0x18) = unaff_R13;
-  lVar5 = _DAT_180c8a9b0;
+  lVar5 = SYSTEM_DATA_MANAGER_A;
   *(uint64_t *)(in_R11 + -0x20) = unaff_R14;
   lVar3 = *(longlong *)(lVar5 + 0xa0);
   

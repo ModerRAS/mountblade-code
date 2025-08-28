@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /*
  * ==============================================================================
@@ -282,7 +283,7 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
     
     // 初始化堆栈数据
     stack_data2 = SPECIAL_ADDRESS_1;
-    stack_memory_size2 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
+    stack_memory_size2 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer1;
     
     // 获取系统配置和线程ID
     status2 = *(int *)(*(longlong *)(*(longlong *)(_DAT_180c82868 + 8) + 8) + 0x48);
@@ -324,7 +325,7 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
     
     // 根据标志位执行不同操作
     if (flags != '\0') {
-        if (*(int *)(_DAT_180c86920 + 0x1ea0) == 2) {
+        if (*(int *)(SYSTEM_STATE_MANAGER + 0x1ea0) == 2) {
             // 特殊模式处理
             stack_int3 = MAX_RESOURCE_COUNT;
             stack_int2 = SYSTEM_CONFIG_PRIORITY;
@@ -340,7 +341,7 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
                        ((float)param2 == *(float *)(temp_handle2 + 4 + memory_size1 * 0x10))) {
                         data_val1 = *(float *)(temp_handle2 + 0xc + memory_size1 * 0x10);
                         data_val2 = *(float *)(temp_handle2 + 8 + memory_size1 * 0x10);
-                        data_val3 = ABS(data_val2 / data_val1 - *(float *)(_DAT_180c86920 + 0x1e30));
+                        data_val3 = ABS(data_val2 / data_val1 - *(float *)(SYSTEM_STATE_MANAGER + 0x1e30));
                         
                         if (data_val3 < data_val4) {
                             stack_int3 = (int)data_val2;
@@ -387,8 +388,8 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
                     (*(longlong **)(handle + 0x1d70), 1, stack_handle_ptr2);
             
             // 更新系统配置
-            FUN_18006b4c0(_DAT_180c86920, stack_data3 & 0xffffffff);
-            FUN_18006b440(_DAT_180c86920, stack_data3._4_4_);
+            FUN_18006b4c0(SYSTEM_STATE_MANAGER, stack_data3 & 0xffffffff);
+            FUN_18006b440(SYSTEM_STATE_MANAGER, stack_data3._4_4_);
             FUN_1800ae230((stack_memory_size1 & 0xffffffff) / (stack_memory_size1 >> 0x20),
                           (stack_memory_size1 & 0xffffffff) % (stack_memory_size1 >> 0x20));
             
@@ -565,7 +566,7 @@ uint64_t SystemResourceManager(SystemHandle handle, uint64_t *config_data)
     
     // 执行系统初始化
     FUN_1802055a0(_DAT_180c8aa50);
-    status2 = *(int *)(_DAT_180c86920 + 0x1f80);
+    status2 = *(int *)(SYSTEM_STATE_MANAGER + 0x1f80);
     
     // 检查资源状态
     if (0 < *(int *)(handle + 0x1d5c)) {
@@ -668,7 +669,7 @@ void SystemDataInitializer(SystemHandle handle, uint flags, int param1, int para
     
     // 初始化堆栈数据
     stack_data3 = SPECIAL_ADDRESS_1;
-    stack_memory_size = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
+    stack_memory_size = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer1;
     data_ptr2 = (uint64_t *)0x0;
     stack_uint5 = 0;
     stack_val2 = 0;
@@ -922,7 +923,7 @@ void SystemStateSynchronizer(void **resource_ptrs, uint *resource_ids, longlong 
     
     // 初始化堆栈数据
     stack_data6 = SPECIAL_ADDRESS_1;
-    stack_memory_size = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
+    stack_memory_size = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer1;
     
     // 复制资源数据到同步句柄
     temp_data1 = *(uint64_t *)(resource_ids + 2);

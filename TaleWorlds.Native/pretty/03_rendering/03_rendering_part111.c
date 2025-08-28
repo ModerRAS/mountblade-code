@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * 03_rendering_part111.c - 渲染系统高级数据处理和资源管理模块
@@ -76,7 +77,7 @@
 // ============================================================================
 
 /** 渲染系统全局数据引用 */
-extern uint64_t _DAT_180bf00a8;
+extern uint64_t GET_SECURITY_COOKIE();
 extern uint64_t _DAT_180c8ed18;
 extern uint64_t system_buffer_ptr;
 extern uint64_t global_var_720;

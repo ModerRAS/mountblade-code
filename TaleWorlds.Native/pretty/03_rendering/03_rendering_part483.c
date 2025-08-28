@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // =============================================================================
 // 03_rendering_part483.c - 渲染系统高级参数处理和状态管理模块

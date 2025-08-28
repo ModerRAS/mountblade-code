@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 01_initialization_part027.c - 初始化组件管理器 - 14 个函数
 
@@ -646,7 +647,7 @@ void execute_component_callback(longlong *param_1)
   ulonglong uStack_18;
   
   uStack_d8 = 0xfffffffffffffffe;
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_128;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_128;
   iVar1 = *(int *)(*(longlong *)(*(longlong *)(_DAT_180c82868 + 8) + 8) + 0x48);
   plStack_d0 = param_1;
   iVar3 = _Thrd_id();
@@ -1221,7 +1222,7 @@ void format_value_to_buffer(ulonglong value, longlong buffer)
   }
   uStackX_20 = (ulonglong)(uint)(int)cVar1;
   dStackX_18 = (double)(fVar9 * fVar10);
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_478;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_478;
   puVar4 = (ulonglong *)func_0x00018004b9a0();
   lVar5 = 0;
   uStack_458 = 0;

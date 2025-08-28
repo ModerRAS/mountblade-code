@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part730.c - 渲染系统图像处理和SIMD优化模块
 // 本模块包含20个核心函数，主要功能包括：

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /*==============================================================================
 * 模块: 03_rendering_part518.c - 渲染系统高级渲染管线和状态管理模块
@@ -605,7 +606,7 @@ void FUN_180548460(longlong param_1,longlong param_2,longlong param_3,longlong p
   ulonglong uStack_30;
   
   uStack_58 = 0xfffffffffffffffe;
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_78;
+  uStack_30 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_78;
   plStack_50 = *(longlong **)(param_1 + 0x100);
   if (plStack_50 != (longlong *)0x0) {
     (**(code **)(*plStack_50 + 0x28))();

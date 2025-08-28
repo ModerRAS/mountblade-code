@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part191.c - 17 个函数
 
@@ -38,8 +39,8 @@ void adjust_window_position_and_size(longlong window_context,int width,int heigh
   int adjusted_height_result;
   ulonglong stack_guard_value;
   
-  stack_guard_value = _DAT_180bf00a8 ^ (ulonglong)stack_guard;
-  display_mode = *(int *)(_DAT_180c86920 + 0x1ea0);
+  stack_guard_value = GET_SECURITY_COOKIE() ^ (ulonglong)stack_guard;
+  display_mode = *(int *)(SYSTEM_STATE_MANAGER + 0x1ea0);
   needs_update = update_flag;
   if (display_mode != 2) {
     screen_width = GetSystemMetrics(0);
@@ -52,7 +53,7 @@ void adjust_window_position_and_size(longlong window_context,int width,int heigh
     vertical_offset = 0;
     if (total_displays != display_count) {
       do {
-        if ((int)display_index == *(int *)(_DAT_180c86920 + 0x1f10)) {
+        if ((int)display_index == *(int *)(SYSTEM_STATE_MANAGER + 0x1f10)) {
           display_count = display_index * 0x70;
           horizontal_offset = *(int *)(display_count + 0x58 + config_start);
           vertical_offset = *(int *)(display_count + 0x5c + config_start);
@@ -152,7 +153,7 @@ void configure_window_style_and_position(int display_mode,int window_width,int w
   vertical_offset = 0;
   if (total_displays != display_count) {
     do {
-      if ((int)display_index == *(int *)(_DAT_180c86920 + 0x1f10)) {
+      if ((int)display_index == *(int *)(SYSTEM_STATE_MANAGER + 0x1f10)) {
         display_count = display_index * 0x70;
         horizontal_offset = *(int *)(display_count + 0x58 + config_start);
         vertical_offset = *(int *)(display_count + 0x5c + config_start);
@@ -431,11 +432,11 @@ void FUN_180173c40(longlong param_1)
   int8_t auStack_438 [1024];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_508;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_508;
   FUN_180171610();
-  iVar13 = *(int *)(_DAT_180c86920 + 0x1d50);
-  iVar11 = *(int *)(_DAT_180c86920 + 0x1dc0);
-  *(int32_t *)(param_1 + 0x38) = *(int32_t *)(_DAT_180c86920 + 0x1ea0);
+  iVar13 = *(int *)(SYSTEM_STATE_MANAGER + 0x1d50);
+  iVar11 = *(int *)(SYSTEM_STATE_MANAGER + 0x1dc0);
+  *(int32_t *)(param_1 + 0x38) = *(int32_t *)(SYSTEM_STATE_MANAGER + 0x1ea0);
   iVar2 = GetSystemMetrics(0);
   iVar3 = GetSystemMetrics(1);
   lVar1 = *(longlong *)(param_1 + 0x18);
@@ -445,7 +446,7 @@ void FUN_180173c40(longlong param_1)
   lVar7 = lVar7 / 0x70 + lVar8;
   if (lVar7 != lVar8) {
     do {
-      if ((int)uVar10 == *(int *)(_DAT_180c86920 + 0x1f10)) {
+      if ((int)uVar10 == *(int *)(SYSTEM_STATE_MANAGER + 0x1f10)) {
         lVar8 = uVar10 * 0x70;
         uVar4 = *(int *)(lVar8 + 0x60 + lVar1) - *(int *)(lVar8 + 0x58 + lVar1);
         uVar9 = (int)uVar4 >> 0x1f;
@@ -684,7 +685,7 @@ void FUN_180174340(void **param_1,void **param_2,longlong param_3)
   ulonglong uStack_48;
   
   uStack_c8 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_108;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_108;
   ppuStack_e8 = param_1;
   if (((longlong *)param_1)[1] != ((longlong *)param_1)[2]) {
     ppuStack_e0 = param_2;

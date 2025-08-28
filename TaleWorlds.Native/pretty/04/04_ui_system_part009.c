@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 04_ui_system_part009.c - UI系统向量计算和动画控制模块
 // 本文件包含4个核心函数，涵盖UI向量归一化、动画插值、参数更新和复杂动画系统等关键功能
@@ -215,7 +216,7 @@ void update_ui_animation_parameters(float *animation_data, float time_delta, lon
   ulonglong hash_key;
   
   // 初始化基本参数
-  hash_key = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  hash_key = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   weight_sum = 0.0;
   element_index = 0;
   stack_param5 = additional_params;

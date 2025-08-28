@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 04_ui_system_part028.c - UI系统高级渲染和批处理管理模块
 // 
@@ -57,7 +58,7 @@
 // 全局变量引用
 //===================================================================
 
-extern uint64_t _DAT_180bf00a8;     // UI系统全局数据
+extern uint64_t GET_SECURITY_COOKIE();     // UI系统全局数据
 extern uint64_t global_state_3480;      // UI系统字符串常量
 
 //===================================================================
@@ -162,7 +163,7 @@ void ui_system_advanced_rendering_batch_processor(longlong ui_context, longlong 
   ulonglong stack_guard;
   
   // 栈保护初始化
-  stack_guard = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   
   // 获取渲染配置
   current_batch = *(int *)(ui_context + 0x43a4);

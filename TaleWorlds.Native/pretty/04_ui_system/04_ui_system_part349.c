@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * @file 04_ui_system_part349.c
@@ -140,7 +141,7 @@ void ui_system_control_state_manager(longlong param_1, longlong param_2)
     ulonglong security_cookie;
     
     // 安全检查和初始化
-    security_cookie = _DAT_180bf00a8 ^ (ulonglong)local_buffer;
+    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)local_buffer;
     context_ptr = **(longlong **)(param_1 + 0x38);
     control_list_ptr = (longlong *)(context_ptr + 0x60);
     current_control_ptr = (longlong *)*control_list_ptr;
@@ -430,7 +431,7 @@ uint64_t ui_system_event_handler(longlong param_1)
 // =============================================================================
 
 /**
- * @var _DAT_180bf00a8
+ * @var GET_SECURITY_COOKIE()
  * @brief 安全cookie全局变量
  * @details 用于栈溢出检测的安全cookie，与局部变量进行异或操作
  * 

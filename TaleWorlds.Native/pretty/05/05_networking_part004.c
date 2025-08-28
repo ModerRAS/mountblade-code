@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 05_networking_part004.c - 网络系统数据包处理模块
 // 本模块包含28个网络数据包处理函数，主要负责各种类型数据包的序列化和反序列化
@@ -1046,12 +1047,12 @@ void network_connection_handler(ulonglong connection_id, uint64_t *output_data)
   ulonglong stack_buffer_28;
   
   // 安全检查：获取栈保护值
-  stack_buffer_28 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_178;
+  stack_buffer_28 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_178;
   
   // 检查输出数据指针是否为空
   if (output_data == (uint64_t *)0x0) {
     // 检查调试标志
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
       // 调试模式下直接退出
       FUN_1808fc050(stack_buffer_28 ^ (ulonglong)stack_buffer_178);
     }
@@ -1132,12 +1133,12 @@ void network_data_sender(uint64_t target_id, longlong data_ptr)
   ulonglong stack_buffer_28;
   
   // 安全检查：获取栈保护值
-  stack_buffer_28 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_168;
+  stack_buffer_28 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_168;
   
   // 检查数据指针是否为空
   if (data_ptr == 0) {
     // 检查调试标志
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
+    if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
       // 初始化错误处理缓冲区
       func_0x00018074bda0(stack_buffer_128, 0x100, 0);
       stack_buffer_148 = stack_buffer_128;
@@ -1197,13 +1198,13 @@ void network_broadcast_sender(uint64_t target_id, uint64_t data_ptr, uint64_t me
   ulonglong stack_buffer_38;
   
   // 安全检查：获取栈保护值
-  stack_buffer_38 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_168;
+  stack_buffer_38 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_168;
   
   // 获取网络状态
   status_code = FUN_18083fc50();
   
   // 检查调试模式和状态
-  if ((status_code != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
+  if ((status_code != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
     // 初始化广播缓冲区
     sub_status = FUN_18074b880(stack_buffer_138, 0x100, data_ptr);
     temp_status = FUN_18074b880(stack_buffer_138 + sub_status, 0x100 - sub_status, NETWORK_PROTOCOL_SEPARATOR);
@@ -1268,7 +1269,7 @@ void network_resource_handler(uint64_t resource_id, int32_t *result_ptr, uint64_
   ulonglong stack_buffer_38;
   
   // 安全检查：获取栈保护值
-  stack_buffer_38 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_178;
+  stack_buffer_38 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_178;
   
   // 尝试获取资源
   status_code = func_0x00018088c590(resource_id, stack_buffer_148);
@@ -1289,7 +1290,7 @@ void network_resource_handler(uint64_t resource_id, int32_t *result_ptr, uint64_
   }
   
   // 检查调试模式
-  if ((status_code != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
+  if ((status_code != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
     // 初始化错误处理缓冲区
     sub_status = func_0x00018074bda0(stack_buffer_138, 0x100, result_ptr);
     temp_status = FUN_18074b880(stack_buffer_138 + sub_status, 0x100 - sub_status, NETWORK_PROTOCOL_SEPARATOR);
@@ -1354,12 +1355,12 @@ void network_data_extractor(uint64_t resource_id, uint64_t *output_data)
   ulonglong stack_buffer_28;
   
   // 安全检查：获取栈保护值
-  stack_buffer_28 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_178;
+  stack_buffer_28 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_178;
   
   // 检查输出数据指针
   if (output_data == (uint64_t *)0x0) {
     // 检查调试标志
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
       // 调试模式下直接退出
       FUN_1808fc050(stack_buffer_28 ^ (ulonglong)stack_buffer_178);
     }
@@ -1429,7 +1430,7 @@ void network_metadata_handler(uint64_t resource_id, uint64_t *output_data)
   ulonglong stack_buffer_18;
   
   // 安全检查：获取栈保护值
-  stack_buffer_18 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_158;
+  stack_buffer_18 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_158;
   
   // 检查输出数据指针
   if (output_data == (uint64_t *)0x0) {
@@ -1450,7 +1451,7 @@ void network_metadata_handler(uint64_t resource_id, uint64_t *output_data)
   }
   
   // 处理元数据获取失败
-  if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
+  if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
     // 初始化错误处理缓冲区
     func_0x00018074bda0(stack_buffer_118, 0x100, output_data);
     stack_buffer_138 = stack_buffer_118;

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part201.c - 13 个函数
 
@@ -49,7 +50,7 @@ void write_engine_module_info(longlong module_base, uint64_t param_2, uint64_t p
       fclose(lStack_38);
       lStack_38 = 0;
       LOCK();
-      _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+      SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
       UNLOCK();
       lVar4 = 0;
     }
@@ -58,7 +59,7 @@ void write_engine_module_info(longlong module_base, uint64_t param_2, uint64_t p
     fclose(lVar4);
     lStack_38 = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
   }
   puStack_28 = &unknown_var_3456_ptr;

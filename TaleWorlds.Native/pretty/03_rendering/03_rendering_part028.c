@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part028.c - 渲染系统高级批处理和变换模块
 // 本文件包含渲染系统的高级批处理、变换矩阵计算和资源管理功能
@@ -710,7 +711,7 @@ void setup_render_context(longlong param_1, uint64_t param_2, longlong param_3)
   
   // 初始化上下文参数
   lock_timeout = RENDER_LOCK_TIMEOUT;
-  temp_security = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  temp_security = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   hash_key = 0;
   
   // 检查配置有效性

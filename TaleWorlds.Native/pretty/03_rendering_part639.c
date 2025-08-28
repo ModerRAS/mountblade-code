@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * 03_rendering_part639.c - 渲染系统高级字符串处理和路径管理模块
@@ -147,7 +148,7 @@ void RenderingSystem_DebugStringFormatter1(uint64_t param_1, uint64_t param_2, u
     
     /* 初始化安全参数 */
     uStack_98 = 0xfffffffffffffffe;
-    uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+    uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
     
     /* 初始化字符串缓冲区 */
     FUN_1806279c0(auStack_88);
@@ -233,7 +234,7 @@ void RenderingSystem_DebugStringFormatter2(uint64_t param_1, uint64_t param_2, u
     
     /* 初始化安全参数和缓冲区 */
     uStack_b8 = 0xfffffffffffffffe;
-    uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_f8;
+    uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_f8;
     
     /* 初始化多个参数缓冲区 */
     FUN_1806279c0(auStack_a8);
@@ -1086,7 +1087,7 @@ void RenderingSystem_DebugStringGenerator5(void)
     
     /* 初始化安全参数 */
     uStack_b8 = 0xfffffffffffffffe;
-    uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+    uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
     
     /* 初始化状态变量 */
     uStack_168 = 0;
@@ -1139,7 +1140,7 @@ void RenderingSystem_DebugStringGenerator5(void)
         fclose();
         lStack_f8 = 0;
         LOCK();
-        _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+        SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
         UNLOCK();
     }
     
@@ -1198,7 +1199,7 @@ void RenderingSystem_DebugStringGenerator5(void)
                 fclose();
                 lStack_e0 = 0;
                 LOCK();
-                _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+                SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
                 UNLOCK();
             }
             
@@ -1260,7 +1261,7 @@ void RenderingSystem_DebugStringGenerator5(void)
                     fclose();
                     lStack_c8 = 0;
                     LOCK();
-                    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+                    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
                     UNLOCK();
                 }
                 
@@ -1385,7 +1386,7 @@ void RenderingSystem_DebugStringFormatter3(uint64_t param_1, uint64_t param_2, u
     ulonglong uStack_28;       /* 异常处理参数 */
     
     /* 初始化异常处理参数 */
-    uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_258;
+    uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_258;
     
     /* 设置可变参数 */
     uStackX_10 = param_2;
@@ -1497,7 +1498,7 @@ void RenderingSystem_DebugStringFormatter4(uint64_t param_1, uint64_t param_2, u
     ulonglong uStack_28;       /* 异常处理参数 */
     
     /* 初始化异常处理参数 */
-    uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_258;
+    uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_258;
     
     /* 设置可变参数 */
     uStackX_10 = param_2;
@@ -1575,7 +1576,7 @@ void RenderingSystem_DebugStringFormatter5(uint64_t param_1, uint64_t param_2, u
     ulonglong uStack_28;       /* 异常处理参数 */
     
     /* 初始化异常处理参数 */
-    uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_258;
+    uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_258;
     
     /* 设置可变参数 */
     uStackX_10 = param_2;
@@ -1687,7 +1688,7 @@ void RenderingSystem_DebugStringFormatter6(uint64_t param_1, uint64_t param_2, u
     ulonglong uStack_28;       /* 异常处理参数 */
     
     /* 初始化异常处理参数 */
-    uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_258;
+    uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_258;
     
     /* 设置可变参数 */
     uStackX_10 = param_2;

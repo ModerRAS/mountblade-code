@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_06_part011.c - 1 个函数
 
@@ -65,7 +66,7 @@ void FUN_1803af3d0(uint64_t *param_1)
   param_1[0x3cc] = 0;
   param_1[0x3cd] = 0;
   *(int32_t *)(param_1 + 0x3ce) = 3;
-  iVar5 = *(int *)(_DAT_180c86920 + 0xe70);
+  iVar5 = *(int *)(SYSTEM_STATE_MANAGER + 0xe70);
   *(bool *)(param_1 + 0x3ca) = iVar5 == 0;
   if (iVar5 == 0) {
     iVar5 = *(int *)(*(longlong *)(_DAT_180c868a8 + 8) + 0x30);

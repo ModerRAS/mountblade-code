@@ -737,7 +737,7 @@ void UI_System_Secure_Cleanup(void)
   ulonglong security_key;
   
   cleanup_param = 0xfffffffffffffffe;
-  security_key = _DAT_180bf00a8 ^ (ulonglong)secure_buffer;
+  security_key = GET_SECURITY_COOKIE() ^ (ulonglong)secure_buffer;
                     // WARNING: Subroutine does not return
   memset(cleanup_area, 0, 0x118);
 }
@@ -770,7 +770,7 @@ void UI_Thread_Safe_Process(uint64_t thread_param, longlong *data_array)
   ulonglong stack_guard;
   
   mutex_handle = 0xfffffffffffffffe;
-  stack_guard = _DAT_180bf00a8 ^ (ulonglong)thread_buffer;
+  stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)thread_buffer;
   System_Thread_Initialize();
   backup_handle = 0x180c96740;
   mutex_result = _Mtx_lock(0x180c96740);
@@ -1105,7 +1105,7 @@ void UI_Load_Assembly(void)
   
   domain_handle = _DAT_180c91020;
   stack_value_50 = 0xfffffffffffffffe;
-  stack_guard = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   stack_value_98 = 0;
   stack_ptr_b8 = &unknown_var_3456_ptr;
   stack_size_a0 = 0;

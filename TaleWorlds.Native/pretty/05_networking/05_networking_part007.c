@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * 网络系统消息处理器和连接管理模块
@@ -700,7 +701,7 @@ void network_string_parser(char *string_data, uint64_t *parsed_data)
     ulonglong security_cookie;
     
     // 安全检查
-    security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     if (parsed_data != (uint64_t *)0x0) {
         if ((((string_data == (char *)0x0) || (validation_result = func_0x00018076b690(), validation_result != 0x26)) ||
             (*string_data != '{')) || (string_data[0x25] != '}')) {
@@ -967,7 +968,7 @@ uint64_t network_memory_allocator(longlong *memory_ptr, uint64_t size)
     allocated_memory = 0;
     if (result != 0) {
         if (result - 1U < 0x3fffffff) {
-            allocated_memory = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), size, &unknown_var_8432_ptr, NETWORK_HEADER_SIZE, 0, 0,
+            allocated_memory = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), size, &unknown_var_8432_ptr, NETWORK_HEADER_SIZE, 0, 0,
                                         1);
             if (allocated_memory != 0) {
                 if ((int)memory_ptr[1] != 0) {
@@ -982,7 +983,7 @@ uint64_t network_memory_allocator(longlong *memory_ptr, uint64_t size)
 allocation_complete:
     if ((0 < *(int *)((longlong)memory_ptr + 0xc)) && (*memory_ptr != 0)) {
         // 释放旧内存
-        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *memory_ptr, &unknown_var_8432_ptr, BUFFER_SIZE, 1);
+        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *memory_ptr, &unknown_var_8432_ptr, BUFFER_SIZE, 1);
     }
     *memory_ptr = allocated_memory;
     *(int *)((longlong)memory_ptr + 0xc) = result;
@@ -1009,14 +1010,14 @@ uint64_t network_memory_deallocator(uint64_t param1, uint64_t size)
     release_complete:
         if ((0 < *(int *)((longlong)memory_ptr + 0xc)) && (*memory_ptr != 0)) {
             // 释放内存
-            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *memory_ptr, &unknown_var_8432_ptr, BUFFER_SIZE, 1);
+            FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *memory_ptr, &unknown_var_8432_ptr, BUFFER_SIZE, 1);
         }
         *memory_ptr = allocated_memory;
         *(int *)((longlong)memory_ptr + 0xc) = size_int;
         return NETWORK_ERROR_NONE;
     }
     if ((int)size - 1U < 0x3fffffff) {
-        allocated_memory = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), size, &unknown_var_8432_ptr, NETWORK_HEADER_SIZE, 0);
+        allocated_memory = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), size, &unknown_var_8432_ptr, NETWORK_HEADER_SIZE, 0);
         if (allocated_memory != 0) {
             if ((int)memory_ptr[1] != 0) {
                 // 复制数据到新内存
@@ -1068,7 +1069,7 @@ uint64_t network_connection_array_manager(longlong *connection_array, int array_
     if (array_size != 0) {
         if (array_size * 0x14 - 1U < 0x3fffffff) {
             dest_ptr = (int32_t *)
-                     FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), array_size * 0x14, &unknown_var_8432_ptr,
+                     FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), array_size * 0x14, &unknown_var_8432_ptr,
                                    NETWORK_HEADER_SIZE, 0, 0, 1);
             if (dest_ptr != (int32_t *)0x0) {
                 current_size = (int)connection_array[1];
@@ -1098,7 +1099,7 @@ uint64_t network_connection_array_manager(longlong *connection_array, int array_
 array_management_complete:
     if ((0 < *(int *)((longlong)connection_array + 0xc)) && (*connection_array != 0)) {
         // 清理旧数组
-        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *connection_array, &unknown_var_8432_ptr, BUFFER_SIZE, 1);
+        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *connection_array, &unknown_var_8432_ptr, BUFFER_SIZE, 1);
     }
     *connection_array = (longlong)dest_ptr;
     *(int *)((longlong)connection_array + 0xc) = array_size;
@@ -1133,7 +1134,7 @@ uint64_t network_connection_array_cleaner(uint64_t param1, int array_size)
     array_clean_complete:
         if ((0 < *(int *)((longlong)memory_ptr + 0xc)) && (*memory_ptr != 0)) {
             // 清理数组内存
-            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *memory_ptr, &unknown_var_8432_ptr, BUFFER_SIZE, 1);
+            FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *memory_ptr, &unknown_var_8432_ptr, BUFFER_SIZE, 1);
         }
         *memory_ptr = (longlong)dest_ptr;
         *(int *)((longlong)memory_ptr + 0xc) = size_int;
@@ -1141,7 +1142,7 @@ uint64_t network_connection_array_cleaner(uint64_t param1, int array_size)
     }
     if (array_size * 0x14 - 1U < 0x3fffffff) {
         dest_ptr = (int32_t *)
-                 FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), array_size * 0x14, &unknown_var_8432_ptr,
+                 FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), array_size * 0x14, &unknown_var_8432_ptr,
                                NETWORK_HEADER_SIZE, 0);
         if (dest_ptr != (int32_t *)0x0) {
             current_size = (int)memory_ptr[1];
@@ -1198,7 +1199,7 @@ void network_message_broadcaster(uint64_t message_id)
     ulonglong security_cookie;
     
     // 安全检查
-    security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     stack_array[1] = 0;
     result = func_0x00018088c590(message_id, stack_array);
     if (result == 0) {
@@ -1242,7 +1243,7 @@ void network_connection_closer(ulonglong connection_id)
     ulonglong security_cookie;
     
     // 安全检查
-    security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     result = func_0x00018088c590(connection_id, stack_array + 2);
     if (result == 0) {
         if ((*(uint *)(stack_array[2] + 0x24) >> 1 & 1) != 0) {
@@ -1261,7 +1262,7 @@ void network_connection_closer(ulonglong connection_id)
         result = FUN_180883a30();
         if (result == 0) goto connection_close_complete;
     }
-    if ((result != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
+    if ((result != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
         stack_ptr = large_buffer;
         large_buffer[0] = 0;
         // 记录关闭日志
@@ -1297,9 +1298,9 @@ void network_config_setter(uint64_t config_id, uint64_t *config_data)
     ulonglong security_cookie;
     
     // 安全检查
-    security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     if (config_data == (uint64_t *)0x0) {
-        if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+        if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
             // 安全清理
             FUN_1808fc050(security_cookie ^ (ulonglong)stack_buffer);
         }
@@ -1369,10 +1370,10 @@ void network_connection_validator(uint64_t connection_id, uint64_t validation_da
     ulonglong security_cookie;
     
     // 安全检查
-    security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     result = func_0x00018088c590(connection_id, stack_array);
     if ((((result != 0) || (result = FUN_180889f10(stack_array[0], validation_data), result != 0)) && (result != 0)
-        ) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
+        ) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
         func_0x00018074bda0(large_buffer, 0x100, validation_data);
         stack_ptr = large_buffer;
         // 记录验证日志
@@ -1404,7 +1405,7 @@ void network_parameter_setter(int32_t param_id, longlong param_value, int32_t pa
     ulonglong security_cookie;
     
     // 安全检查
-    security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     stack_long = 0;
     stack_value1 = 0;
     stack_value2 = 0;

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part116.c - 核心引擎渲染元素处理与边界计算模块
 // 本文件包含8个函数，主要负责渲染元素的边界条件处理、队列管理、坐标变换等核心功能
@@ -36,14 +37,14 @@ void process_render_element_boundary_conditions(void)
   float unaff_XMM8_Da;
   float unaff_XMM9_Da;
   
-  lVar7 = _DAT_180c8a9b0;
+  lVar7 = SYSTEM_DATA_MANAGER_A;
   if ((*(char *)(unaff_RBX + 0x17d) == '\0') || ((*(uint *)(unaff_RBX + 0xc) & 0x800000) != 0)) {
     // 获取边界矩形参数
     uVar3 = *(int32_t *)(unaff_RBP + -0x50);
     uVar4 = *(int32_t *)(unaff_RBP + -0x4c);
     uVar5 = *(int32_t *)(unaff_RBP + -0x48);
     uVar6 = *(int32_t *)(unaff_RBP + -0x44);
-    lVar9 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
+    lVar9 = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
     // 初始化渲染队列项
     *(uint64_t *)(lVar9 + 0x144) = 0;
     *(int32_t *)(lVar9 + 0x14c) = uVar3;
@@ -67,12 +68,12 @@ void process_render_element_boundary_conditions(void)
   else {
     // 执行渲染操作
     FUN_180124190(unaff_RBP + -0x50,*(int32_t *)(unaff_RBX + 0x88),0);
-    if (*(int *)(unaff_RBX + 0x88) == *(int *)(_DAT_180c8a9b0 + 0x1ca0)) {
+    if (*(int *)(unaff_RBX + 0x88) == *(int *)(SYSTEM_DATA_MANAGER_A + 0x1ca0)) {
       FUN_1801230e0(unaff_RBP + -0x50,1);
     }
     // 处理特殊边界情况
     if ((*(int *)(unaff_RBX + 0x174) == 0) && (unaff_RBX == *(longlong *)(unaff_RDI + 0x1c98))) {
-      iVar1 = *(int *)(_DAT_180c8a9b0 + 0x1ca0);
+      iVar1 = *(int *)(SYSTEM_DATA_MANAGER_A + 0x1ca0);
       // 调整边界偏移
       *(float *)(unaff_RBP + -0x48) = *(float *)(unaff_RBP + -0x48) + 2.0;
       *(float *)(unaff_RBP + -0x44) = *(float *)(unaff_RBP + -0x44) + 2.0;
@@ -120,14 +121,14 @@ int8_t update_render_queue_status(int32_t param_1,uint64_t param_2)
   int32_t uStack_1c;
   int32_t uStack_18;
   
-  lVar4 = _DAT_180c8a9b0;
+  lVar4 = SYSTEM_DATA_MANAGER_A;
   // 初始化渲染参数
   uStack_28 = 3;
-  uStack_24 = *(int32_t *)(_DAT_180c8a9b0 + 0x16f8);
-  uStack_20 = *(int32_t *)(_DAT_180c8a9b0 + 0x16fc);
-  uStack_1c = *(int32_t *)(_DAT_180c8a9b0 + 0x1700);
-  uStack_18 = *(int32_t *)(_DAT_180c8a9b0 + 0x1704);
-  FUN_18013e100(_DAT_180c8a9b0 + 0x1b80,&uStack_28);
+  uStack_24 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x16f8);
+  uStack_20 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x16fc);
+  uStack_1c = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1700);
+  uStack_18 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1704);
+  FUN_18013e100(SYSTEM_DATA_MANAGER_A + 0x1b80,&uStack_28);
   // 更新渲染状态
   *(int32_t *)(lVar4 + 0x16f8) = *(int32_t *)(lVar4 + 0x1738);
   *(int32_t *)(lVar4 + 0x16fc) = *(int32_t *)(lVar4 + 0x173c);
@@ -138,18 +139,18 @@ int8_t update_render_queue_status(int32_t param_1,uint64_t param_2)
   FUN_18012d9c0(7,*(int32_t *)(lVar4 + 0x1668));
   FUN_18012da40(1,lVar4 + 0x165c);
   uVar7 = FUN_1801283f0(0,param_1,param_2);
-  lVar6 = _DAT_180c8a9b0;
-  lVar8 = (longlong)*(int *)(_DAT_180c8a9b0 + 0x1b90);
-  lVar4 = *(longlong *)(_DAT_180c8a9b0 + 0x1b98);
+  lVar6 = SYSTEM_DATA_MANAGER_A;
+  lVar8 = (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
+  lVar4 = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
   lVar9 = (longlong)*(int *)(lVar4 + -0xc + lVar8 * 0xc);
   uVar10 = (ulonglong)*(uint *)(&unknown_var_6056_ptr + lVar9 * 0xc);
   // 处理渲染队列项
   if (*(int *)(&unknown_var_6048_ptr + lVar9 * 0xc) == 4) {
     if (*(int *)(&unknown_var_6052_ptr + lVar9 * 0xc) == 1) {
-      *(int32_t *)(uVar10 + 0x1628 + _DAT_180c8a9b0) = *(int32_t *)(lVar4 + -8 + lVar8 * 0xc);
+      *(int32_t *)(uVar10 + 0x1628 + SYSTEM_DATA_MANAGER_A) = *(int32_t *)(lVar4 + -8 + lVar8 * 0xc);
     }
     else if (*(int *)(&unknown_var_6052_ptr + lVar9 * 0xc) == 2) {
-      *(int32_t *)(uVar10 + 0x1628 + _DAT_180c8a9b0) = *(int32_t *)(lVar4 + -8 + lVar8 * 0xc);
+      *(int32_t *)(uVar10 + 0x1628 + SYSTEM_DATA_MANAGER_A) = *(int32_t *)(lVar4 + -8 + lVar8 * 0xc);
       *(int32_t *)(uVar10 + 0x162c + lVar6) = *(int32_t *)(lVar4 + -4 + lVar8 * 0xc);
     }
   }
@@ -243,12 +244,12 @@ ulonglong create_render_element_instance(uint64_t param_1,uint64_t param_2,ulong
   float fVar17;
   uint64_t uStackX_20;
   
-  lVar3 = _DAT_180c8a9b0;
-  if (_DAT_180c8a9b0 != 0) {
-    *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+  lVar3 = SYSTEM_DATA_MANAGER_A;
+  if (SYSTEM_DATA_MANAGER_A != 0) {
+    *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
   }
   // 分配元素内存
-  lVar7 = func_0x000180120ce0(0x438,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+  lVar7 = func_0x000180120ce0(0x438,SYSTEM_DATA_MANAGER_B,param_3,param_4,0xfffffffffffffffe);
   uVar9 = 0;
   iVar11 = 0;
   uVar8 = uVar9;
@@ -258,8 +259,8 @@ ulonglong create_render_element_instance(uint64_t param_1,uint64_t param_2,ulong
   uVar15 = (uint)param_3;
   *(uint *)(uVar8 + 0xc) = uVar15;
   FUN_180122160(lVar3 + 0x1ae0,*(int32_t *)(uVar8 + 8),uVar8);
-  lVar14 = _DAT_180c8a9b0;
-  lVar7 = **(longlong **)(_DAT_180c8a9b0 + 0x1c70);
+  lVar14 = SYSTEM_DATA_MANAGER_A;
+  lVar7 = **(longlong **)(SYSTEM_DATA_MANAGER_A + 0x1c70);
   fVar16 = *(float *)(lVar7 + 0xc);
   // 设置元素位置
   *(float *)(uVar8 + 0x40) = *(float *)(lVar7 + 8) + 60.0;
@@ -443,18 +444,18 @@ uint64_t * calculate_transform_bounds(uint64_t *param_1,longlong param_2,uint64_
   int32_t uStack_34;
   uint64_t uStack_30;
   
-  lVar1 = _DAT_180c8a9b0;
+  lVar1 = SYSTEM_DATA_MANAGER_A;
   uStackX_8._0_4_ = (float)param_3;
   uStackX_8._4_4_ = (float)((ulonglong)param_3 >> 0x20);
   uStack_30._4_4_ = uStackX_8._4_4_;
   uStack_30._0_4_ = (float)uStackX_8;
   uVar2 = param_3;
   // 处理边界约束
-  if (*(int *)(_DAT_180c8a9b0 + 0x1be0) != 0) {
-    uStack_30._0_4_ = *(float *)(_DAT_180c8a9b0 + 0x1c18);
-    uStack_30._4_4_ = *(float *)(_DAT_180c8a9b0 + 0x1c1c);
-    fVar4 = *(float *)(_DAT_180c8a9b0 + 0x1c20);
-    fVar5 = *(float *)(_DAT_180c8a9b0 + 0x1c24);
+  if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1be0) != 0) {
+    uStack_30._0_4_ = *(float *)(SYSTEM_DATA_MANAGER_A + 0x1c18);
+    uStack_30._4_4_ = *(float *)(SYSTEM_DATA_MANAGER_A + 0x1c1c);
+    fVar4 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x1c20);
+    fVar5 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x1c24);
     if (((float)uStack_30 < 0.0) || (fVar4 < 0.0)) {
       uStack_30._0_4_ = *(float *)(param_2 + 0x50);
       uStackX_8 = CONCAT44(uStackX_8._4_4_,(float)uStack_30);
@@ -490,14 +491,14 @@ uint64_t * calculate_transform_bounds(uint64_t *param_1,longlong param_2,uint64_
     }
     uVar2 = uStackX_8;
     // 调用变换回调
-    if (*(code **)(_DAT_180c8a9b0 + 0x1c28) != (code *)0x0) {
+    if (*(code **)(SYSTEM_DATA_MANAGER_A + 0x1c28) != (code *)0x0) {
       uStack_40 = *(int32_t *)(param_2 + 0x40);
       uStack_3c = *(int32_t *)(param_2 + 0x44);
-      uStack_48 = *(uint64_t *)(_DAT_180c8a9b0 + 0x1c30);
+      uStack_48 = *(uint64_t *)(SYSTEM_DATA_MANAGER_A + 0x1c30);
       uStack_38 = *(int32_t *)(param_2 + 0x50);
       uStack_34 = *(int32_t *)(param_2 + 0x54);
       uStack_30 = uStackX_8;
-      (**(code **)(_DAT_180c8a9b0 + 0x1c28))(&uStack_48);
+      (**(code **)(SYSTEM_DATA_MANAGER_A + 0x1c28))(&uStack_48);
       uVar2 = uStack_30;
     }
   }
@@ -518,9 +519,9 @@ uint64_t * calculate_transform_bounds(uint64_t *param_1,longlong param_2,uint64_
     }
     // 计算偏移量
     if ((*(uint *)(lVar3 + 0xc) & 1) == 0) {
-      fVar8 = *(float *)(_DAT_180c8a9b0 + 0x19fc) * *(float *)(lVar3 + 0x2d8) *
+      fVar8 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19fc) * *(float *)(lVar3 + 0x2d8) *
               *(float *)(lVar3 + 0x2dc) +
-              *(float *)(_DAT_180c8a9b0 + 0x1660) + *(float *)(_DAT_180c8a9b0 + 0x1660);
+              *(float *)(SYSTEM_DATA_MANAGER_A + 0x1660) + *(float *)(SYSTEM_DATA_MANAGER_A + 0x1660);
     }
     else {
       fVar8 = 0.0;
@@ -529,9 +530,9 @@ uint64_t * calculate_transform_bounds(uint64_t *param_1,longlong param_2,uint64_
       fVar6 = 0.0;
     }
     else {
-      fVar6 = *(float *)(_DAT_180c8a9b0 + 0x19fc) * *(float *)(lVar3 + 0x2d8) *
+      fVar6 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19fc) * *(float *)(lVar3 + 0x2d8) *
               *(float *)(lVar3 + 0x2dc) + *(float *)(lVar3 + 0x184) +
-              *(float *)(_DAT_180c8a9b0 + 0x1660) + *(float *)(_DAT_180c8a9b0 + 0x1660);
+              *(float *)(SYSTEM_DATA_MANAGER_A + 0x1660) + *(float *)(SYSTEM_DATA_MANAGER_A + 0x1660);
     }
     fVar7 = *(float *)(lVar1 + 0x1634) - 1.0;
     if (fVar7 <= 0.0) {
@@ -580,9 +581,9 @@ uint64_t * calculate_clipping_area(uint64_t *param_1,longlong param_2,float *par
   float fStackX_10;
   float fStackX_14;
   
-  lVar3 = _DAT_180c8a9b0;
-  fVar6 = *(float *)(_DAT_180c8a9b0 + 0x163c);
-  fStackX_c = *(float *)(_DAT_180c8a9b0 + 0x1640);
+  lVar3 = SYSTEM_DATA_MANAGER_A;
+  fVar6 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x163c);
+  fStackX_c = *(float *)(SYSTEM_DATA_MANAGER_A + 0x1640);
   // 处理裁剪限制
   if ((*(uint *)(param_2 + 0xc) & 0x14000000) != 0) {
     if (4.0 <= fVar6) {
@@ -600,18 +601,18 @@ uint64_t * calculate_clipping_area(uint64_t *param_1,longlong param_2,float *par
     fVar5 = 3.4028235e+38;
   }
   iVar2 = *(int *)(param_2 + 0x3c);
-  if ((-1 < iVar2) && (iVar2 < *(int *)(_DAT_180c8a9b0 + 0x1600))) {
-    fVar4 = *(float *)(*(longlong *)(_DAT_180c8a9b0 + 0x1608) + 0x18 + (longlong)iVar2 * 0x24);
-    fVar5 = *(float *)(*(longlong *)(_DAT_180c8a9b0 + 0x1608) + 0x1c + (longlong)iVar2 * 0x24);
+  if ((-1 < iVar2) && (iVar2 < *(int *)(SYSTEM_DATA_MANAGER_A + 0x1600))) {
+    fVar4 = *(float *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1608) + 0x18 + (longlong)iVar2 * 0x24);
+    fVar5 = *(float *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1608) + 0x1c + (longlong)iVar2 * 0x24);
   }
   // 调整边界
-  fVar4 = fVar4 - (*(float *)(_DAT_180c8a9b0 + 0x16b4) + *(float *)(_DAT_180c8a9b0 + 0x16b4));
+  fVar4 = fVar4 - (*(float *)(SYSTEM_DATA_MANAGER_A + 0x16b4) + *(float *)(SYSTEM_DATA_MANAGER_A + 0x16b4));
   fVar1 = param_3[1];
   if (fVar4 <= fVar6) {
     fVar4 = fVar6;
   }
   if (fStackX_c <= fVar1) {
-    fVar5 = fVar5 - (*(float *)(_DAT_180c8a9b0 + 0x16b8) + *(float *)(_DAT_180c8a9b0 + 0x16b8));
+    fVar5 = fVar5 - (*(float *)(SYSTEM_DATA_MANAGER_A + 0x16b8) + *(float *)(SYSTEM_DATA_MANAGER_A + 0x16b8));
     if (fVar5 <= fStackX_c) {
       fVar5 = fStackX_c;
     }
@@ -667,7 +668,7 @@ float * calculate_position_offset(float *param_1,longlong param_2,char param_3)
   float fVar6;
   float fVar7;
   
-  lVar2 = _DAT_180c8a9b0;
+  lVar2 = SYSTEM_DATA_MANAGER_A;
   fVar5 = *(float *)(param_2 + 0x94);
   *(uint64_t *)param_1 = *(uint64_t *)(param_2 + 0x8c);
   if (fVar5 < 3.4028235e+38) {

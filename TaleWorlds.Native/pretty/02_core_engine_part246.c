@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part246.c - 18 个函数
 
@@ -902,8 +903,8 @@ void FUN_1802122e0(longlong *param_1,uint64_t param_2,int param_3)
   ulonglong uStack_48;
   
   uStack_cc8 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_d58;
-  *(bool *)(param_1 + 0x42) = *(int *)(_DAT_180c86920 + 0x1ce0) != 0;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d58;
+  *(bool *)(param_1 + 0x42) = *(int *)(SYSTEM_STATE_MANAGER + 0x1ce0) != 0;
   uStack_d30 = 0xffffffff;
   pcStack_d38 = FUN_180059ba0;
   FUN_180738730(0,0,&unknown_var_1648_ptr,FUN_180211f70);
@@ -920,7 +921,7 @@ void FUN_1802122e0(longlong *param_1,uint64_t param_2,int param_3)
   if (param_3 != 0) {
     (**(code **)(*param_1 + 0x1a0))(param_1,param_3,4);
   }
-  FUN_18073bc20(*plVar1,*(int32_t *)(_DAT_180c86920 + 0x1570));
+  FUN_18073bc20(*plVar1,*(int32_t *)(SYSTEM_STATE_MANAGER + 0x1570));
   FUN_18073bdc0(*plVar1,0x400);
                     // WARNING: Subroutine does not return
   memset(auStack_b98,0,0x68);
@@ -1078,7 +1079,7 @@ void FUN_180212e80(uint64_t param_1,uint64_t param_2)
   ulonglong uStack_48;
   
   uStack_470 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_4f8;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_4f8;
   uStack_4b8 = 0;
   uStack_468 = param_2;
                     // WARNING: Subroutine does not return

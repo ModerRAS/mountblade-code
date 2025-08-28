@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part646.c - 7 个函数
 
@@ -21,7 +22,7 @@ void FUN_1806307a0(longlong param_1,longlong param_2,char *param_3,uint64_t *par
   char acStack_138 [256];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
   uVar2 = *param_4;
   uStack_148._0_4_ = (float)uVar2;
   if (ABS((float)uStack_148) < 0.001) {
@@ -122,7 +123,7 @@ void FUN_180630980(longlong param_1,longlong param_2,uint64_t param_3,int32_t *p
   char acStack_138 [256];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_168;
   uStack_148 = param_4[1];
   FUN_1800634b0(acStack_138,0x100,&unknown_var_5344_ptr,*param_4);
   param_1 = param_1 + 0x60;
@@ -290,7 +291,7 @@ void FUN_180630c80(longlong param_1,longlong param_2,char *param_3)
   char acStack_78 [64];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_a8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_a8;
   FUN_1800634b0(acStack_78,0x40,&unknown_var_4576_ptr);
   param_1 = param_1 + 0x60;
   pcVar5 = acStack_78;
@@ -377,7 +378,7 @@ void FUN_180630e10(longlong param_1,longlong param_2,char *param_3)
   char acStack_78 [64];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_a8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_a8;
   FUN_1800634b0(acStack_78,0x40,&unknown_var_2212_ptr);
   param_1 = param_1 + 0x60;
   pcVar5 = acStack_78;
@@ -730,7 +731,7 @@ void FUN_180631420(ulonglong param_1,uint64_t param_2,longlong *param_3)
   ulonglong uStack_48;
   
   uStack_390 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_408;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_408;
   uStack_3d8 = param_1;
   uStack_3b8 = param_2;
   FUN_180627340(&unknown_var_5480_ptr,param_1);
@@ -825,7 +826,7 @@ LAB_18063163c:
   }
   if (lVar3 != -1) {
     LOCK();
-    _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+    SYSTEM_HANDLE_COUNTER_ADDR = SYSTEM_HANDLE_COUNTER_ADDR + -1;
     UNLOCK();
     CloseHandle(alStack_3d0[0]);
     lVar3 = -1;

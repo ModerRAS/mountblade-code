@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_13_part083.c - 22 个函数
 
@@ -216,7 +217,7 @@ uint64_t FUN_1808e2d90(longlong param_1)
 {
   longlong lVar1;
   
-  lVar1 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),
+  lVar1 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                         *(int *)(param_1 + 0x4c) * 0x128 + 0xc,&unknown_var_8576_ptr,0x3a,0);
   *(longlong *)(param_1 + 0x30) = lVar1;
   if (lVar1 == 0) {
@@ -242,7 +243,7 @@ uint64_t FUN_1808e2e40(longlong param_1,longlong *param_2)
   uVar1 = *(uint *)(param_1 + 0x4c);
   if (uVar1 <= uVar3 + 1) {
     *(uint *)(param_1 + 0x4c) = uVar1 * 2;
-    lVar2 = FUN_180742650(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(uint64_t *)(param_1 + 0x30),
+    lVar2 = FUN_180742650(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(uint64_t *)(param_1 + 0x30),
                           uVar1 * 0x250 + 0xc,&unknown_var_8576_ptr,0x161,0);
     *(longlong *)(param_1 + 0x30) = lVar2;
     if (lVar2 == 0) {
@@ -340,11 +341,11 @@ void FUN_1808e2f70(longlong param_1)
 {
   if (*(longlong *)(param_1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(param_1 + 0x30),
+    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(longlong *)(param_1 + 0x30),
                   &unknown_var_8576_ptr,0x59,1);
   }
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_1,&unknown_var_8576_ptr,0x5f,1);
+  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,&unknown_var_8576_ptr,0x5f,1);
 }
 
 
@@ -484,7 +485,7 @@ void FUN_1808e31cb(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0));
+  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
 }
 
 
@@ -504,7 +505,7 @@ void FUN_1808e3200(longlong param_1,int param_2,int param_3,int param_4)
   int iVar4;
   uint uVar5;
   
-  piVar3 = (int *)FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x28,&unknown_var_9024_ptr,0xe7,0);
+  piVar3 = (int *)FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_9024_ptr,0xe7,0);
   piVar3[6] = 0;
   piVar3[7] = 0;
   piVar3[8] = 0;
@@ -556,7 +557,7 @@ void FUN_1808e3310(longlong param_1)
   FUN_180768360(uVar1);
   if (0 < *(int *)(param_1 + 0x38)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),**(uint64_t **)(param_1 + 0x30),
+    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),**(uint64_t **)(param_1 + 0x30),
                   &unknown_var_9024_ptr,0x137,1);
   }
   FUN_180744d60(param_1 + 0x30);
@@ -579,7 +580,7 @@ void FUN_1808e333b(void)
   longlong unaff_RBX;
   
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),**(uint64_t **)(unaff_RBX + 0x30),
+  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),**(uint64_t **)(unaff_RBX + 0x30),
                 &unknown_var_9024_ptr,0x137,1);
 }
 
@@ -664,7 +665,7 @@ void FUN_1808e3480(longlong param_1,uint64_t *param_2)
   int32_t uStack_30;
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_68;
   uVar1 = *(uint64_t *)(param_1 + 0x28);
   FUN_180768360(uVar1);
   if (*(int *)(param_1 + 0x38) == 0) {
@@ -688,7 +689,7 @@ void FUN_1808e3480(longlong param_1,uint64_t *param_2)
             *(int *)(param_1 + 0x38) = iVar3 + -1;
             *(int *)(param_1 + 0x40) = *(int *)(param_1 + 0x40) - *piVar2;
                     // WARNING: Subroutine does not return
-            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),piVar2,&unknown_var_9024_ptr,0x9b);
+            FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),piVar2,&unknown_var_9024_ptr,0x9b);
           }
                     // WARNING: Subroutine does not return
           memmove(*(longlong *)(param_1 + 0x30),*(longlong *)(param_1 + 0x30) + 8,
@@ -729,7 +730,7 @@ void FUN_1808e34b7(void)
           *(int *)(unaff_RDI + 0x38) = iVar2 + -1;
           *(int *)(unaff_RDI + 0x40) = *(int *)(unaff_RDI + 0x40) - *piVar1;
                     // WARNING: Subroutine does not return
-          FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),piVar1,&unknown_var_9024_ptr,0x9b,1);
+          FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),piVar1,&unknown_var_9024_ptr,0x9b,1);
         }
                     // WARNING: Subroutine does not return
         memmove(*(longlong *)(unaff_RDI + 0x30),*(longlong *)(unaff_RDI + 0x30) + 8,
@@ -882,7 +883,7 @@ uint64_t FUN_1808e36f0(uint64_t param_1,longlong *param_2)
     puStack_58 = &unknown_var_9416_ptr;
     iVar1 = (int)uStack_60;
     iVar4 = iVar1 + 0xc;
-    piVar3 = (int *)FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar4,&unknown_var_9024_ptr,0x28,
+    piVar3 = (int *)FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar4,&unknown_var_9024_ptr,0x28,
                                   0);
     if (piVar3 == (int *)0x0) {
       uVar2 = 0x26;
@@ -989,7 +990,7 @@ uint64_t FUN_1808e3830(uint64_t param_1,longlong *param_2)
     puStack_58 = &unknown_var_9416_ptr;
     iVar1 = (int)uStack_60;
     iVar4 = iVar1 + 0xc;
-    piVar3 = (int *)FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar4,&unknown_var_9024_ptr,0x28,
+    piVar3 = (int *)FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar4,&unknown_var_9024_ptr,0x28,
                                   0);
     if (piVar3 == (int *)0x0) {
       uVar2 = 0x26;
@@ -1096,7 +1097,7 @@ uint64_t FUN_1808e3970(uint64_t param_1,longlong *param_2)
     puStack_58 = &unknown_var_9416_ptr;
     iVar1 = (int)uStack_60;
     iVar4 = iVar1 + 0xc;
-    piVar3 = (int *)FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar4,&unknown_var_9024_ptr,0x28,
+    piVar3 = (int *)FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar4,&unknown_var_9024_ptr,0x28,
                                   0);
     if (piVar3 == (int *)0x0) {
       uVar2 = 0x26;

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part013.c - 渲染系统组件 (7个函数)
 // 渲染数据初始化、材质管理、碰撞检测、渲染优化等功能的实现

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part114.c - 9 个函数
 
@@ -315,9 +316,9 @@ void FUN_180127860(void)
   longlong lVar19;
   ulonglong auStack_38 [2];
   
-  lVar4 = _DAT_180c8a9b0;
-  iVar7 = *(int *)(_DAT_180c8a9b0 + 0x1a90);
-  if (*(int *)(_DAT_180c8a9b0 + 0x1a94) != iVar7) {
+  lVar4 = SYSTEM_DATA_MANAGER_A;
+  iVar7 = *(int *)(SYSTEM_DATA_MANAGER_A + 0x1a90);
+  if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1a94) != iVar7) {
     FUN_180127440();
     iVar7 = *(int *)(lVar4 + 0x1a90);
   }
@@ -742,8 +743,8 @@ FUN_180127c60(uint64_t *param_1,char *param_2,char *param_3,char param_4,int32_t
       }
     }
   }
-  pfVar2 = *(float **)(_DAT_180c8a9b0 + 0x19f0);
-  fVar1 = *(float *)(_DAT_180c8a9b0 + 0x19f8);
+  pfVar2 = *(float **)(SYSTEM_DATA_MANAGER_A + 0x19f0);
+  fVar1 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19f8);
   if (param_2 != param_3) {
     FUN_180297340(pfVar2,&fStackX_10,fVar1,0x7f7fffff,param_5,param_2,param_3,0);
     if (0.0 < fStackX_10) {
@@ -790,16 +791,16 @@ void FUN_180127d70(void)
   float fStack_5c;
   float fVar4;
   
-  lVar7 = _DAT_180c8a9b0;
+  lVar7 = SYSTEM_DATA_MANAGER_A;
   lVar10 = 0;
-  lVar14 = *(longlong *)(_DAT_180c8a9b0 + 0x1b78);
+  lVar14 = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b78);
   if (lVar14 == 0) {
     lVar14 = 0;
     lVar5 = lVar10;
   }
   else {
     lVar5 = *(longlong *)(lVar14 + 0x28);
-    *(uint64_t *)(lVar14 + 0x28) = *(uint64_t *)(_DAT_180c8a9b0 + 0x1c80);
+    *(uint64_t *)(lVar14 + 0x28) = *(uint64_t *)(SYSTEM_DATA_MANAGER_A + 0x1c80);
     lVar14 = *(longlong *)(lVar7 + 0x1b78);
   }
   lVar8 = lVar10;

@@ -1177,7 +1177,7 @@ void FUN_1800ba4b0(uint64_t debug_param)
     ulonglong stack_checksum;            /**< 栈校验和 */
     
     debug_value2 = SYSTEM_STACK_ALIGNMENT;
-    stack_checksum = _DAT_180bf00a8 ^ (ulonglong)debug_buffer;
+    stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)debug_buffer;
     debug_flag = 0;
     debug_value1 = debug_param;
     memset(large_buffer, 0, DEBUG_BUFFER_SIZE);
@@ -1221,7 +1221,7 @@ void FUN_1800ba6f0(uint64_t module_param)
     ulonglong stack_checksum;           /**< 栈校验和 */
     
     buffer_value9 = SYSTEM_STACK_ALIGNMENT;
-    stack_checksum = _DAT_180bf00a8 ^ (ulonglong)debug_buffer;
+    stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)debug_buffer;
     buffer_value8 = 0;
     buffer_value10 = module_param;
     path_length = GetModuleFileNameW(0, module_name, PATH_MAX_LENGTH);
@@ -1382,7 +1382,7 @@ void FUN_1800baa80(uint64_t* dir_param)
     ulonglong stack_checksum;           /**< 栈校验和 */
     
     buffer_value1 = SYSTEM_STACK_ALIGNMENT;
-    stack_checksum = _DAT_180bf00a8 ^ (ulonglong)debug_buffer;
+    stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)debug_buffer;
     buffer_flag = 0;
     buffer_ptr = large_buffer;
     buffer_ptr2 = dir_param;

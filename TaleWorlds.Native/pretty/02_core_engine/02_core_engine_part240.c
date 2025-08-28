@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part240.c - 核心引擎模块第240部分
 // 包含字符串处理、数据结构操作和内存管理相关函数

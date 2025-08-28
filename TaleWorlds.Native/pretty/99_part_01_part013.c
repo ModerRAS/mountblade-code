@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_01_part013.c - 15 个函数
 
@@ -28,7 +29,7 @@ void FUN_1800acb60(longlong param_1)
   int8_t uStack_84;
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
   lVar10 = 0;
   uStack_148 = 0;
   uVar1 = func_0x0001800ab2c0(4);
@@ -370,7 +371,7 @@ void FUN_1800ad2a0(longlong param_1)
   int32_t uStack_3c;
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_a8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_a8;
   iVar10 = 0;
   puStack_78 = (uint64_t *)(param_1 + 0x1e50);
   lStack_70 = param_1;
@@ -503,9 +504,9 @@ void FUN_1800ad510(longlong param_1)
     uVar8 = 0;
     *(uint64_t *)(_DAT_180c86870 + 0x80) = *(uint64_t *)(_DAT_180c86870 + 0x78);
     iVar3 = 0;
-    if ((ulonglong)(longlong)*(int *)(_DAT_180c86920 + 0x1f10) <
+    if ((ulonglong)(longlong)*(int *)(SYSTEM_STATE_MANAGER + 0x1f10) <
         (ulonglong)(*(longlong *)(param_1 + 0x121c8) - *(longlong *)(param_1 + 0x121c0) >> 3)) {
-      iVar3 = *(int *)(_DAT_180c86920 + 0x1f10);
+      iVar3 = *(int *)(SYSTEM_STATE_MANAGER + 0x1f10);
     }
     plVar1 = *(longlong **)(*(longlong *)(param_1 + 0x121c0) + (longlong)iVar3 * 8);
     iVar3 = (**(code **)(*plVar1 + 0x40))(plVar1,*(int32_t *)(param_1 + 0x1d80),1,auStackX_8,0);
@@ -584,9 +585,9 @@ void FUN_1800ad52d(longlong param_1,longlong param_2)
   uVar8 = 0;
   *(uint64_t *)(param_2 + 0x80) = *(uint64_t *)(param_2 + 0x78);
   iVar3 = 0;
-  if ((ulonglong)(longlong)*(int *)(_DAT_180c86920 + 0x1f10) <
+  if ((ulonglong)(longlong)*(int *)(SYSTEM_STATE_MANAGER + 0x1f10) <
       (ulonglong)(*(longlong *)(param_1 + 0x121c8) - *(longlong *)(param_1 + 0x121c0) >> 3)) {
-    iVar3 = *(int *)(_DAT_180c86920 + 0x1f10);
+    iVar3 = *(int *)(SYSTEM_STATE_MANAGER + 0x1f10);
   }
   plVar1 = *(longlong **)(*(longlong *)(param_1 + 0x121c0) + (longlong)iVar3 * 8);
   iVar3 = (**(code **)(*plVar1 + 0x40))

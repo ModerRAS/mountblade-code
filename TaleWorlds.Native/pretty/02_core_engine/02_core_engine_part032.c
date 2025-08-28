@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part032.c - 核心引擎模块 - 资源管理和状态控制函数
 
@@ -389,7 +390,7 @@ void process_resource_event_callbacks(longlong *param_1)
     ulonglong uStack_20;
     
     uStack_60 = 0xfffffffffffffffe;
-    uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
+    uStack_20 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_88;
     uVar1 = *(uint64_t *)(param_1[0x37] + 0x1e0);
     puStack_58 = &unknown_var_672_ptr;
     puStack_50 = auStack_40;

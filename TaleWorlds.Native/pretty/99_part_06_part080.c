@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * 99_part_06_part080.c - 系统资源管理和状态同步模块
@@ -343,7 +344,7 @@ void SystemRenderer_UpdateRenderParameters(longlong *rendererContext, uint64_t r
   ulonglong securityChecksum;
   
   /* 安全检查和初始化 */
-  securityChecksum = _DAT_180bf00a8 ^ (ulonglong)securityBuffer;
+  securityChecksum = GET_SECURITY_COOKIE() ^ (ulonglong)securityBuffer;
   qualityLevel = (int)rendererContext[0x8b];
   renderSystem = *(longlong *)(_DAT_180c86938 + 0x1cd8);
   
@@ -483,7 +484,7 @@ void UIEventHandler_ProcessEvent(longlong *uiContext, longlong eventData)
   
   /* 初始化安全检查和内存管理 */
   memoryFlags = 0xfffffffffffffffe;
-  securityChecksum = _DAT_180bf00a8 ^ (ulonglong)securityBuffer;
+  securityChecksum = GET_SECURITY_COOKIE() ^ (ulonglong)securityBuffer;
   UIEventSystem_Initialize();
   
   /* 初始化事件缓冲区 */
@@ -703,7 +704,7 @@ void SystemResourceCleaner_CleanupAndUnload(longlong *resourceContext, uint64_t 
   
   /* 初始化安全检查和内存管理 */
   memoryFlags = 0xfffffffffffffffe;
-  securityChecksum = _DAT_180bf00a8 ^ (ulonglong)securityBuffer;
+  securityChecksum = GET_SECURITY_COOKIE() ^ (ulonglong)securityBuffer;
   resourceManager = &ResourceManager_DefaultHandler;
   resourceCache = resourceData;
   resourceData[0] = 0;
@@ -1185,7 +1186,7 @@ void UIResourceManager_ManageUIResources(longlong *uiManager, longlong eventData
   
   /* 初始化安全检查和内存管理 */
   memoryFlags = 0xfffffffffffffffe;
-  securityChecksum = _DAT_180bf00a8 ^ (ulonglong)securityBuffer;
+  securityChecksum = GET_SECURITY_COOKIE() ^ (ulonglong)securityBuffer;
   UIResourceManager_Initialize();
   
   /* 初始化UI资源参数 */

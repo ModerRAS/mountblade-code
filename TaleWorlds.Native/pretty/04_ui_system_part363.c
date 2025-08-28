@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part363.c - 2 个函数
 
@@ -70,7 +71,7 @@ int FUN_180864040(longlong param_1)
     return 0;
   }
   if (((*(byte *)(*(longlong *)(*(longlong *)(param_1 + 0x2c8) + 0x4c0) + 0x7a) & 1) == 0) &&
-     (*(char *)(_DAT_180be12f0 + 0x158) == '\0')) {
+     (*(char *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x158) == '\0')) {
     lStack_48 = 0;
   }
   else {

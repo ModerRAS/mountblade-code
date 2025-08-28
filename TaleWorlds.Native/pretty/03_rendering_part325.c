@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part325.c - 32 个函数
 
@@ -13,11 +14,11 @@ void FUN_180439b36(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0x1f00) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0x1f08))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x1f00) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1f08))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x1eb0) != (void *)0x0) {
@@ -50,9 +51,9 @@ void FUN_180439b55(void)
   longlong unaff_RBP;
   float unaff_XMM6_Da;
   
-  lVar2 = _DAT_180c86920;
+  lVar2 = SYSTEM_STATE_MANAGER;
   iVar4 = (int)unaff_XMM6_Da;
-  lVar1 = *(longlong *)(_DAT_180c86920 + 0x1f70);
+  lVar1 = *(longlong *)(SYSTEM_STATE_MANAGER + 0x1f70);
   *(int *)(unaff_RBP + 0x10) = iVar4;
   if (lVar1 != 0) {
     cVar3 = (**(code **)(lVar2 + 0x1f78))(unaff_RBP + 0x10);
@@ -105,11 +106,11 @@ void FUN_180439be0(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0x1870) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0x1878))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x1870) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1878))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x1820) != (void *)0x0) {
@@ -141,11 +142,11 @@ void FUN_180439bf8(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0xbc0) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0xbc8))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0xbc0) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xbc8))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0xb70) != (void *)0x0) {
@@ -177,11 +178,11 @@ void FUN_180439c17(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0xb50) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0xb58))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0xb50) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xb58))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0xb00) != (void *)0x0) {
@@ -213,11 +214,11 @@ void FUN_180439c36(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0x3e0) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 1000))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x3e0) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 1000))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x390) != (void *)0x0) {
@@ -249,11 +250,11 @@ void FUN_180439c55(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0x450) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0x458))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x450) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x458))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x400) != (void *)0x0) {
@@ -284,11 +285,11 @@ void FUN_180439c74(uint64_t param_1,int32_t param_2)
   uint64_t uStack0000000000000030;
   int32_t uStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   uStack0000000000000030 = _uStack0000000000000048;
-  if ((*(longlong *)(_DAT_180c86920 + 0x1800) != 0) &&
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x1800) != 0) &&
      (uStack0000000000000048 = param_2,
-     cVar2 = (**(code **)(_DAT_180c86920 + 0x1808))(&stack0x00000048),
+     cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1808))(&stack0x00000048),
      param_2 = uStack0000000000000048, cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
@@ -321,11 +322,11 @@ void FUN_180439c88(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0x760) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0x768))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x760) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x768))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x710) != (void *)0x0) {
@@ -357,11 +358,11 @@ void FUN_180439ca7(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0x920) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0x928))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x920) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x928))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x8d0) != (void *)0x0) {
@@ -393,11 +394,11 @@ void FUN_180439cc6(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0x8b0) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0x8b8))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x8b0) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x8b8))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x860) != (void *)0x0) {
@@ -429,11 +430,11 @@ void FUN_180439ce5(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0xae0) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0xae8))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0xae0) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xae8))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0xa90) != (void *)0x0) {
@@ -465,11 +466,11 @@ void FUN_180439d04(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0x990) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0x998))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x990) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x998))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x940) != (void *)0x0) {
@@ -501,11 +502,11 @@ void FUN_180439d23(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0xa70) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0xa78))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0xa70) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xa78))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0xa20) != (void *)0x0) {
@@ -537,11 +538,11 @@ void FUN_180439d42(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 2000) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0x7d8))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 2000) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x7d8))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x780) != (void *)0x0) {
@@ -573,11 +574,11 @@ void FUN_180439d61(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0xa00) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0xa08))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0xa00) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xa08))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x9b0) != (void *)0x0) {
@@ -609,11 +610,11 @@ void FUN_180439d80(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0x840) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0x848))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x840) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x848))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x7f0) != (void *)0x0) {
@@ -645,14 +646,14 @@ void FUN_180439d9f(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   if (*(int *)(_DAT_180c8a9c8 + 0xcb0) == 0) {
     return;
   }
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0xf40) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0xf48))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0xf40) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xf48))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0xef0) != (void *)0x0) {
@@ -684,14 +685,14 @@ void FUN_180439dd2(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   if (*(int *)(_DAT_180c8a9c8 + 0xd20) == 0) {
     return;
   }
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0xfb0) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0xfb8))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0xfb0) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xfb8))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0xf60) != (void *)0x0) {
@@ -723,14 +724,14 @@ void FUN_180439e05(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   if (*(int *)(_DAT_180c8a9c8 + 0xd90) == 0) {
     return;
   }
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0x1020) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0x1028))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x1020) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1028))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0xfd0) != (void *)0x0) {
@@ -762,14 +763,14 @@ void FUN_180439e38(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   if (*(int *)(_DAT_180c8a9c8 + 0xe70) == 0) {
     return;
   }
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0x1100) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0x1108))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x1100) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1108))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x10b0) != (void *)0x0) {
@@ -801,14 +802,14 @@ void FUN_180439e6b(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   if (*(int *)(_DAT_180c8a9c8 + 0xe00) == 0) {
     return;
   }
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0x1090) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0x1098))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x1090) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1098))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x1040) != (void *)0x0) {
@@ -840,11 +841,11 @@ void FUN_180439e9e(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0x140) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0x148))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x140) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x148))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0xf0) != (void *)0x0) {
@@ -876,11 +877,11 @@ void FUN_180439ebd(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0xe60) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0xe68))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0xe60) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xe68))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0xe10) != (void *)0x0) {
@@ -912,11 +913,11 @@ void FUN_180439edc(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0xdf0) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0xdf8))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0xdf0) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xdf8))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0xda0) != (void *)0x0) {
@@ -948,11 +949,11 @@ void FUN_180439efb(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0xed0) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0xed8))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0xed0) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xed8))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0xe80) != (void *)0x0) {
@@ -984,11 +985,11 @@ void FUN_180439f1a(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0x1b0) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0x1b8))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x1b0) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1b8))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x160) != (void *)0x0) {
@@ -1020,11 +1021,11 @@ void FUN_180439f39(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0x220) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0x228))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x220) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x228))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x1d0) != (void *)0x0) {
@@ -1056,11 +1057,11 @@ void FUN_180439f58(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0xc30) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0xc38))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0xc30) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xc38))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0xbe0) != (void *)0x0) {
@@ -1092,11 +1093,11 @@ void FUN_180439f77(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0x300) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0x308))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x300) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x308))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x2b0) != (void *)0x0) {
@@ -1128,11 +1129,11 @@ void FUN_180439f96(void)
   uint64_t uStack0000000000000030;
   int iStack0000000000000048;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   uStack0000000000000030 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
-  if ((*(longlong *)(_DAT_180c86920 + 0x370) != 0) &&
-     (cVar2 = (**(code **)(_DAT_180c86920 + 0x378))(&stack0x00000048), cVar2 == '\0')) {
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x370) != 0) &&
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x378))(&stack0x00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 800) != (void *)0x0) {

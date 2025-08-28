@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part137.c - 7 个函数
 
@@ -594,37 +595,37 @@ void FUN_180133110(void)
   float fStack_50;
   float fStack_4c;
   
-  piVar1 = (int *)(_DAT_180c8a9b0 + 0x1d98);
-  if ((*(int *)(_DAT_180c8a9b0 + 0x1d38) == 0) && (*piVar1 == 0)) {
-    if (*(int *)(_DAT_180c8a9b0 + 0x1ca0) != 0) {
-      *(int16_t *)(_DAT_180c8a9b0 + 0x1d06) = 0x100;
+  piVar1 = (int *)(SYSTEM_DATA_MANAGER_A + 0x1d98);
+  if ((*(int *)(SYSTEM_DATA_MANAGER_A + 0x1d38) == 0) && (*piVar1 == 0)) {
+    if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1ca0) != 0) {
+      *(int16_t *)(SYSTEM_DATA_MANAGER_A + 0x1d06) = 0x100;
       return;
     }
   }
   else {
     lVar6 = 0x1d38;
-    if (*(int *)(_DAT_180c8a9b0 + 0x1d38) == 0) {
+    if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1d38) == 0) {
       lVar6 = 0x1d98;
     }
-    piVar7 = (int *)(lVar6 + _DAT_180c8a9b0);
-    if ((*(byte *)(_DAT_180c8a9b0 + 0x1d24) & 0x20) != 0) {
-      iVar3 = *(int *)(_DAT_180c8a9b0 + 0x1d68);
-      if ((iVar3 != 0) && (iVar3 != *(int *)(_DAT_180c8a9b0 + 0x1ca0))) {
-        piVar7 = (int *)(_DAT_180c8a9b0 + 0x1d68);
+    piVar7 = (int *)(lVar6 + SYSTEM_DATA_MANAGER_A);
+    if ((*(byte *)(SYSTEM_DATA_MANAGER_A + 0x1d24) & 0x20) != 0) {
+      iVar3 = *(int *)(SYSTEM_DATA_MANAGER_A + 0x1d68);
+      if ((iVar3 != 0) && (iVar3 != *(int *)(SYSTEM_DATA_MANAGER_A + 0x1ca0))) {
+        piVar7 = (int *)(SYSTEM_DATA_MANAGER_A + 0x1d68);
       }
     }
     if (((piVar7 != piVar1) && (*piVar1 != 0)) &&
-       (*(longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1da0) + 0x398) ==
-        *(longlong *)(_DAT_180c8a9b0 + 0x1c98))) {
-      if ((*(float *)(_DAT_180c8a9b0 + 0x1da8) < (float)piVar7[4]) ||
-         ((*(float *)(_DAT_180c8a9b0 + 0x1da8) == (float)piVar7[4] &&
-          (*(float *)(_DAT_180c8a9b0 + 0x1dac) <= (float)piVar7[5] &&
-           (float)piVar7[5] != *(float *)(_DAT_180c8a9b0 + 0x1dac))))) {
+       (*(longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1da0) + 0x398) ==
+        *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1c98))) {
+      if ((*(float *)(SYSTEM_DATA_MANAGER_A + 0x1da8) < (float)piVar7[4]) ||
+         ((*(float *)(SYSTEM_DATA_MANAGER_A + 0x1da8) == (float)piVar7[4] &&
+          (*(float *)(SYSTEM_DATA_MANAGER_A + 0x1dac) <= (float)piVar7[5] &&
+           (float)piVar7[5] != *(float *)(SYSTEM_DATA_MANAGER_A + 0x1dac))))) {
         piVar7 = piVar1;
       }
     }
-    lVar6 = _DAT_180c8a9b0;
-    if (*(int *)(_DAT_180c8a9b0 + 0x1cfc) == 0) {
+    lVar6 = SYSTEM_DATA_MANAGER_A;
+    if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1cfc) == 0) {
       lVar8 = *(longlong *)(piVar7 + 2);
       fVar11 = *(float *)(lVar8 + 0x40) + (float)piVar7[9];
       fVar9 = *(float *)(lVar8 + 0x40) + (float)piVar7[7];

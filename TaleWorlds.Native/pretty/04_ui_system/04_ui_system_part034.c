@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 04_ui_system_part034.c - UI系统高级路径优化和移动处理模块
 // 包含3个核心函数，用于UI系统高级路径优化、移动处理和坐标变换
@@ -88,7 +89,7 @@ void ui_system_advanced_path_optimizer(longlong param_1, longlong param_2, longl
     ulonglong stack_protection_3;
     
     // 栈保护初始化
-    stack_protection_3 = _DAT_180bf00a8 ^ (ulonglong)stack_protection_1;
+    stack_protection_3 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_protection_1;
     grid_width = *(int *)(param_1 + 0x1e70);
     grid_data_x = *(longlong *)(param_1 + 0x2398);
     
@@ -623,7 +624,7 @@ void ui_system_coordinate_transformer(longlong param_1, longlong *param_2)
     ulonglong stack_protection_var;
     
     // 栈保护初始化
-    stack_protection_var = _DAT_180bf00a8 ^ (ulonglong)stack_protection;
+    stack_protection_var = GET_SECURITY_COOKIE() ^ (ulonglong)stack_protection;
     coordinate_ptr = (short *)*param_2;
     
     // 变换数据加载

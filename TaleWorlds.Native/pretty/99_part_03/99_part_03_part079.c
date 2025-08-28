@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // ============================================================================
 // 99_part_03_part079.c - 未匹配函数高级系统初始化和资源管理模块
@@ -212,7 +213,7 @@ static void unmatched_advanced_resource_processor(longlong param_1)
     ulonglong stack_guard;
     
     // 初始化栈保护
-    stack_guard = _DAT_180bf00a8 ^ (ulonglong)local_buffer;
+    stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)local_buffer;
     
     // 检查系统状态
     if ((*(char *)(param_1 + 0x9a31) != '\0') && (*(longlong *)(param_1 + 0x99b8) != 0)) {
@@ -290,7 +291,7 @@ static void unmatched_system_resource_manager(longlong param_1)
     ulonglong stack_guard;
     
     // 初始化栈保护
-    stack_guard = _DAT_180bf00a8 ^ (ulonglong)local_buffer;
+    stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)local_buffer;
     
     // 检查系统状态
     if (((*(byte *)(param_1 + 4) & 0x80) != 0) && (*(longlong *)(param_1 + 0x96a8) == 0)) {

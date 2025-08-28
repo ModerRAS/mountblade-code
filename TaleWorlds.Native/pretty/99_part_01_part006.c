@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 //==============================================================================
 // 文件信息：99_part_01_part006.c
@@ -226,7 +227,7 @@ void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char para
     
     // 初始化栈保护值
     stackUlong2 = STACK_GUARD_VALUE;
-    stackUlong6 = _DAT_180bf00a8 ^ (ulonglong)stackBuffer1;
+    stackUlong6 = GET_SECURITY_COOKIE() ^ (ulonglong)stackBuffer1;
     
     // 获取系统信息
     tempInt2 = *(int *)(*(longlong *)(*(longlong *)(_DAT_180c82868 + 8) + 8) + 0x48);
@@ -271,7 +272,7 @@ void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char para
     
     // 检查标志位
     if (param_4 != '\0') {
-        if (*(int *)(_DAT_180c86920 + 0x1ea0) == 2) {
+        if (*(int *)(SYSTEM_STATE_MANAGER + 0x1ea0) == 2) {
             // 数据处理逻辑
             stackInt3 = 0x3c;
             stackInt4 = 1;
@@ -287,7 +288,7 @@ void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char para
                        ((float)param_3 == *(float *)(tempLong1 + 4 + tempUlong1 * 0x10))) {
                         tempFloat1 = *(float *)(tempLong1 + 0xc + tempUlong1 * 0x10);
                         tempFloat2 = *(float *)(tempLong1 + 8 + tempUlong1 * 0x10);
-                        tempFloat1 = ABS(tempFloat2 / tempFloat1 - *(float *)(_DAT_180c86920 + 0x1e30));
+                        tempFloat1 = ABS(tempFloat2 / tempFloat1 - *(float *)(SYSTEM_STATE_MANAGER + 0x1e30));
                         if (tempFloat1 < tempFloat2) {
                             stackInt3 = (int)tempFloat2;
                             stackInt4 = (int)tempFloat1;
@@ -334,8 +335,8 @@ void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char para
                       (*(longlong **)(param_1 + 0x1d70), 1, stackPointer2);
             
             // 清理和更新
-            FUN_18006b4c0(_DAT_180c86920, stackUlong3 & 0xffffffff);
-            FUN_18006b440(_DAT_180c86920, stackUlong3._4_4_);
+            FUN_18006b4c0(SYSTEM_STATE_MANAGER, stackUlong3 & 0xffffffff);
+            FUN_18006b440(SYSTEM_STATE_MANAGER, stackUlong3._4_4_);
             FUN_1800ae230((stackUlong4 & 0xffffffff) / (stackUlong4 >> 0x20),
                          (stackUlong4 & 0xffffffff) % (stackUlong4 >> 0x20));
             stackUlong4 = 0;
@@ -513,7 +514,7 @@ uint64_t SystemParameterCalculator(longlong param_1, uint64_t *param_2)
     
     // 初始化系统
     FUN_1802055a0(_DAT_180c8aa50);
-    systemStatus = *(int *)(_DAT_180c86920 + 0x1f80);
+    systemStatus = *(int *)(SYSTEM_STATE_MANAGER + 0x1f80);
     
     // 检查系统状态
     if (0 < *(int *)(param_1 + 0x1d5c)) {
@@ -617,7 +618,7 @@ void ComplexAlgorithmHandler(longlong param_1, uint param_2, int param_3, int pa
     
     // 初始化栈保护值
     stackUlong3 = STACK_GUARD_VALUE;
-    stackUlong4 = _DAT_180bf00a8 ^ (ulonglong)stackBuffer1;
+    stackUlong4 = GET_SECURITY_COOKIE() ^ (ulonglong)stackBuffer1;
     
     // 初始化资源指针
     resourcePtr2 = (uint64_t *)0x0;
@@ -891,7 +892,7 @@ void ResourceDataManager(void **param_1, uint *param_2, longlong param_3)
     
     // 初始化栈保护值
     stackUlong6 = STACK_GUARD_VALUE;
-    stackUlong9 = _DAT_180bf00a8 ^ (ulonglong)stackBuffer1;
+    stackUlong9 = GET_SECURITY_COOKIE() ^ (ulonglong)stackBuffer1;
     
     // 解析输入参数
     tempUlong2 = *(uint64_t *)(param_2 + 2);

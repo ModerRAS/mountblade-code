@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 05_networking_part097.c - 6 个函数
 
@@ -710,7 +711,7 @@ uint64_t FUN_180898d60(longlong *param_1,int param_2)
   if (param_2 != 0) {
     if (param_2 * 3 - 1U < 0x3fffffff) {
       puVar3 = (int16_t *)
-               FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_2 * 3,&unknown_var_8432_ptr,0xf4
+               FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 3,&unknown_var_8432_ptr,0xf4
                              ,0,0,1);
       if (puVar3 != (int16_t *)0x0) {
         iVar1 = (int)param_1[1];
@@ -733,7 +734,7 @@ uint64_t FUN_180898d60(longlong *param_1,int param_2)
 LAB_180898e0b:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
+    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
   }
   *param_1 = (longlong)puVar3;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -760,7 +761,7 @@ uint64_t FUN_180898d84(uint64_t param_1,int param_2)
 LAB_180898e0b:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*unaff_RBX,&unknown_var_8432_ptr,0x100,1);
+      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_RBX,&unknown_var_8432_ptr,0x100,1);
     }
     *unaff_RBX = (longlong)puVar3;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
@@ -768,7 +769,7 @@ LAB_180898e0b:
   }
   if (param_2 * 3 - 1U < 0x3fffffff) {
     puVar3 = (int16_t *)
-             FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_2 * 3,&unknown_var_8432_ptr,0xf4,0
+             FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 3,&unknown_var_8432_ptr,0xf4,0
                           );
     if (puVar3 != (int16_t *)0x0) {
       iVar1 = (int)unaff_RBX[1];

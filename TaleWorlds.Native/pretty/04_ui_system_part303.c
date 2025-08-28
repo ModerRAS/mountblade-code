@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part303.c - 2 个函数
 
@@ -80,7 +81,7 @@ void FUN_180834fc0(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
   int8_t auVar55 [16];
   
   puVar17 = auStack_98;
-  auStack_98[0] = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  auStack_98[0] = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_98;
   if ((((ulonglong)param_1 & 0xf) != 0) && (param_2 != 0)) {
     uVar19 = *param_4;
     iVar18 = (int)*param_5;
@@ -492,7 +493,7 @@ void FUN_180835500(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
   int8_t auVar29 [16];
   
   puVar18 = auStack_88;
-  auStack_88[0] = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
+  auStack_88[0] = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_88;
   uVar6 = (ulonglong)param_1 & 0xf;
   for (; (uVar6 != 0 && (param_2 != 0)); param_2 = param_2 - 1) {
     fVar26 = (float)(int)*(short *)(param_3 + (ulonglong)param_4[1] * 2) * 3.0517578e-05;

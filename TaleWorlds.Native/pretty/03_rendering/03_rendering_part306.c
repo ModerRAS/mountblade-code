@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part306.c - 渲染系统图像处理和滤镜效果模块
 // 
@@ -597,7 +598,7 @@ void RenderingSystem_AdvancedImageCompressor(uint64_t compression_context, uint6
     ulonglong security_cookie;
     
     // 初始化安全cookie
-    security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     size_output = output_size;
     row_size = compression_level * width;
     chunk_header = 0xffffffff;  // IDAT chunk header

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 05_networking_part039.c - 4 个函数
 
@@ -108,7 +109,7 @@ LAB_18086154d:
     plVar10[1] = (longlong)plVar10;
     *plVar10 = (longlong)plVar10;
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar10,&unknown_var_2624_ptr,0xadc,1);
+    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar10,&unknown_var_2624_ptr,0xadc,1);
   }
 LAB_180861693:
                     // WARNING: Subroutine does not return

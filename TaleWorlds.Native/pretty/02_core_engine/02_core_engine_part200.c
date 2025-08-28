@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part200.c - 核心引擎系统状态管理模块
 // 
@@ -115,7 +116,7 @@ void CoreEngineSystemStateManager(void)
   // 初始化系统上下文和安全检查
   system_context = _DAT_180c86870;
   system_handle = 0xfffffffffffffffe;
-  checksum_value = _DAT_180bf00a8 ^ (ulonglong)system_stack;
+  checksum_value = GET_SECURITY_COOKIE() ^ (ulonglong)system_stack;
   loop_counter = 0;
   version_info = 0;
   

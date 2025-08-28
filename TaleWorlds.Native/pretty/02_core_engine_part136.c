@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part136.c - 1 个函数
 
@@ -452,7 +453,7 @@ void FUN_180131dad(void)
     cVar7 = '\x01';
   }
   *(char *)(unaff_RBX + 0x391) = cVar7;
-  lVar18 = _DAT_180c8a9b0;
+  lVar18 = SYSTEM_DATA_MANAGER_A;
   if ((((cVar7 == '\0') || (*(int *)(unaff_RBX + 0x1ca0) == 0)) ||
       (*(char *)(unaff_RBX + 0x1d06) != '\0')) &&
      ((*(longlong *)(unaff_RBX + 0x1cd8) == 0 && (*(char *)(unaff_RBX + 0x1d09) == '\0')))) {
@@ -485,7 +486,7 @@ void FUN_180131dad(void)
                              (*(longlong *)(unaff_RBX + 0x1bb8) + -0x28 + (longlong)iVar11 * 0x30) +
                            0xc) & 0x8000000) == 0) {
           FUN_18012ee20(iVar11 + -1,CONCAT71((int7)(int3)((uint)iVar11 >> 8),1));
-          lVar18 = _DAT_180c8a9b0;
+          lVar18 = SYSTEM_DATA_MANAGER_A;
         }
       }
       else {

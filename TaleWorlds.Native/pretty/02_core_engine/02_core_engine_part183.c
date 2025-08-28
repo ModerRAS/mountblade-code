@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part183.c - 核心引擎高级数据处理和内存管理模块
 // 本模块包含6个核心函数，主要功能包括：

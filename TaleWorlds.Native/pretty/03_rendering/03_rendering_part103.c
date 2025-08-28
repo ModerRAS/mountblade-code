@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * 渲染系统高级数据处理和资源管理模块
@@ -899,7 +900,7 @@ void RenderingSystemResourceLoader(longlong render_context, longlong file_handle
             fclose();
             resource_buffer[1] = 0;
             LOCK();
-            _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+            SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
             UNLOCK();
         }
         FUN_18064e900(resource_buffer);
@@ -1023,13 +1024,13 @@ void RenderingSystemResourceLoader(longlong render_context, longlong file_handle
         fclose();
         resource_buffer[1] = 0;
         LOCK();
-        _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+        SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
         UNLOCK();
         if (resource_buffer[1] != 0) {
             fclose();
             resource_buffer[1] = 0;
             LOCK();
-            _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+            SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
             UNLOCK();
         }
     }

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part253.c - 核心引擎模块第253部分
 // 包含15个函数，主要处理字符串比较、排序算法、文件读取和系统初始化等功能
@@ -553,7 +554,7 @@ void process_config_file_reading(longlong config_ptr)
     uint8_t processed_buffer[512];
     ulonglong stack_guard;
     
-    stack_guard = _DAT_180bf00a8 ^ (ulonglong)line_buffer;
+    stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)line_buffer;
     initialize_texture_manager(config_ptr + 0x260);
     initialize_resource_manager();
     initialize_string_buffers(processed_buffer, line_buffer);

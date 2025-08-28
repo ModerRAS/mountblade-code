@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_07_part016.c - 15 个函数
 
@@ -298,7 +299,7 @@ void FUN_1804aa470(longlong param_1,uint64_t param_2,longlong param_3,longlong p
   ulonglong uStack_48;
   
   uStack_d0 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_108;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_108;
   puStack_a8 = &unknown_var_3480_ptr;
   puStack_a0 = auStack_90;
   auStack_90[0] = 0;
@@ -393,7 +394,7 @@ void FUN_1804aa710(longlong param_1)
   ulonglong uStack_28;
   
   uStack_98 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
   puStack_88 = &unknown_var_3480_ptr;
   puStack_80 = auStack_70;
   auStack_70[0] = 0;
@@ -685,7 +686,7 @@ void FUN_1804aac20(longlong param_1,longlong param_2)
   ulonglong uStack_48;
   
   uStack_420 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_488;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_488;
   FUN_18005d260(param_2,*(uint64_t *)(param_2 + 0x10));
   *(longlong *)param_2 = param_2;
   *(longlong *)(param_2 + 8) = param_2;

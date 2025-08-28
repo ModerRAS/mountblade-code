@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part126.c - 2 个函数
 
@@ -45,7 +46,7 @@ void FUN_180341be0(void)
   ulonglong uStack_38;
   
   uStack_b8 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_138;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_138;
   iVar14 = 0;
   uStack_f8 = 0;
   puStack_118 = &unknown_var_3456_ptr;
@@ -431,7 +432,7 @@ void FUN_180341be0(void)
     fclose(lVar11);
     lStack_c8 = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
     lVar11 = 0;
   }
@@ -439,7 +440,7 @@ void FUN_180341be0(void)
     fclose(lVar11);
     lStack_c8 = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
   }
   puStack_f0 = &unknown_var_3456_ptr;
@@ -506,7 +507,7 @@ void FUN_1803427a0(void)
   ulonglong uStack_38;
   
   uStack_78 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_f8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_f8;
   iVar12 = 0;
   uStack_b8 = 0;
   puStack_d8 = &unknown_var_3456_ptr;
@@ -760,7 +761,7 @@ void FUN_1803427a0(void)
     fclose(lVar11);
     lStack_88 = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
     lVar11 = 0;
   }
@@ -768,7 +769,7 @@ void FUN_1803427a0(void)
     fclose(lVar11);
     lStack_88 = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
   }
   puStack_b0 = &unknown_var_3456_ptr;

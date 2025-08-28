@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part222.c - 核心引擎模块第222部分
 // 本文件包含5个函数，主要处理核心引擎的组件管理和事件处理
@@ -57,7 +58,7 @@ void process_engine_component_initialization(longlong engine_instance, uint64_t 
   
   // 初始化栈变量
   param2_copy = 0xfffffffffffffffe;
-  stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   stack_size = 0;
   stack_component_ptr2 = (longlong *)0x0;
   stack_component_ptr3 = (longlong *)0x0;

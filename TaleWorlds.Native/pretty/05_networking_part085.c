@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 05_networking_part085.c - 12 个函数
 
@@ -19,7 +20,7 @@ void FUN_18088e970(longlong param_1,longlong *param_2,int32_t param_3)
   int8_t auStack_138 [256];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
   (**(code **)(*param_2 + 8))(param_2,auStack_138,0x100);
   uVar2 = (**(code **)*param_2)(param_2);
   iVar1 = (**(code **)(*param_2 + 0x38))(param_2);
@@ -664,7 +665,7 @@ void FUN_18088f1a0(uint64_t param_1,longlong param_2)
   int8_t auStack_12 [2];
   ulonglong uStack_10;
   
-  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_10 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_98;
   iVar1 = FUN_18088f710(param_1,&uStack_28);
   if (iVar1 == 0) {
     puStack_38 = auStack_12;

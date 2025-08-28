@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 01_initialization_part019.c - 初始化模块第19部分
 // 本文件包含12个函数，主要处理内存管理、资源清理和系统初始化相关功能
@@ -77,7 +78,7 @@ void perform_system_cleanup(void)
     
     system_context = _DAT_180c86870;
     uStack_60 = 0xfffffffffffffffe;
-    stack_cookie = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
+    stack_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
     FUN_18005e630(_DAT_180c82868);
     do {
         cleanup_flag = _DAT_180c82868;
@@ -227,7 +228,7 @@ void update_performance_counter(longlong system_context, uint64_t time_delta)
     ulonglong resource_index;
     
     performance_info = 0xfffffffffffffffe;
-    stack_cookie = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
+    stack_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
     performance_value = (float)time_delta;
     _DAT_180c8ed20 = (longlong)(performance_value * 100000.0);
     _DAT_180c8ed30 = _DAT_180c8ed30 + _DAT_180c8ed20;
@@ -591,7 +592,7 @@ void execute_module_initialization(longlong module_context)
     ulonglong stack_cookie;
     
     init_data = 0xfffffffffffffffe;
-    stack_cookie = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
+    stack_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
     init_flag = 0;
     context_ptr = module_context;
     FUN_180627ae0(module_context,_DAT_180c86870 + 0x170);

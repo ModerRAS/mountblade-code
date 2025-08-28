@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * @file 99_part_13_part014.c
@@ -166,7 +167,7 @@ typedef enum {
  ========================================*/
 
 /** 系统数据表指针 */
-extern uint64_t _DAT_180be12f0;
+extern uint64_t SYSTEM_MAIN_CONTROL_BLOCK;
 
 /** 虚表指针 */
 extern uint64_t global_state_9360_ptr;
@@ -284,7 +285,7 @@ StatusCode SystemDataProcessorAndObjectCreator(longlong param_1, longlong *param
     if (index == 0) {
         /* 创建基础对象 */
         object_ptr = (ObjectPtr)
-                 FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
+                 FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
                               SYSTEM_SIZE_0X20, &global_state_9456_ptr, 0x112, 
                               (ulonglong)flags << 0x20, 0, 1);
         
@@ -327,7 +328,7 @@ StatusCode SystemDataProcessorAndObjectCreator(longlong param_1, longlong *param
     } else if (index == 2) {
         /* 处理特殊对象 */
         object_ptr = (ObjectPtr)
-                 FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
+                 FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
                               SYSTEM_SIZE_0X20, &global_state_9456_ptr, 0x120, 
                               (ulonglong)flags << 0x20, 0, 1);
         
@@ -356,7 +357,7 @@ StatusCode SystemDataProcessorAndObjectCreator(longlong param_1, longlong *param
         }
         
         object_ptr = (ObjectPtr)
-                 FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
+                 FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
                               SYSTEM_SIZE_0X20, &global_state_9456_ptr, 0x127, 
                               flags & 0xffffffff00000000, 0, 1);
         
@@ -508,7 +509,7 @@ StatusCode SystemDataValidatorAndStateManager(uint64_t param_1, longlong *param_
     if (type_index == 0) {
         /* 基础类型验证 */
         created_object = (ObjectPtr)
-                 FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
+                 FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
                               SYSTEM_SIZE_0X20, &global_state_9456_ptr, 0x112, 
                               CONCAT44(validation_flags, index));
         
@@ -549,7 +550,7 @@ StatusCode SystemDataValidatorAndStateManager(uint64_t param_1, longlong *param_
     } else if (type_index == 2) {
         /* 特殊类型验证 */
         created_object = (ObjectPtr)
-                 FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
+                 FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
                               SYSTEM_SIZE_0X20, &global_state_9456_ptr, 0x120, 
                               CONCAT44(validation_flags, index));
         
@@ -578,7 +579,7 @@ StatusCode SystemDataValidatorAndStateManager(uint64_t param_1, longlong *param_
         }
         
         created_object = (ObjectPtr)
-                 FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
+                 FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
                               SYSTEM_SIZE_0X20, &global_state_9456_ptr, 0x127, 
                               CONCAT44(validation_flags, index));
         
@@ -715,7 +716,7 @@ StatusCode SystemMemoryAllocatorAndObjectInitializer(void)
         } else if (type_index == 2) {
             /* 特殊类型分配 */
             created_object = (ObjectPtr)
-                     FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
+                     FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
                                   SYSTEM_SIZE_0X20, &global_state_9456_ptr, 0x120);
             
             if (created_object == (ObjectPtr)0x0) {
@@ -743,7 +744,7 @@ StatusCode SystemMemoryAllocatorAndObjectInitializer(void)
             }
             
             created_object = (ObjectPtr)
-                     FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
+                     FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
                                   SYSTEM_SIZE_0X20, &global_state_9456_ptr, 0x127);
             
             if (created_object == (ObjectPtr)0x0) {
@@ -806,7 +807,7 @@ StatusCode SystemMemoryAllocatorAndObjectInitializer(void)
     
     /* 基础类型分配 */
     created_object = (ObjectPtr)
-             FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
+             FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
                           SYSTEM_SIZE_0X20, &global_state_9456_ptr, 0x112);
     
     if (created_object == (ObjectPtr)0x0) {
@@ -883,7 +884,7 @@ StatusCode SystemErrorHandlerAndReturnCodeManager(void)
         } else if (*((int *)&stack_param + 1) == 2) {
             /* 处理类型2错误 */
             error_object = (ObjectPtr)
-                     FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
+                     FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
                                   SYSTEM_SIZE_0X20, &global_state_9456_ptr, 0x120);
             
             if (error_object == (ObjectPtr)0x0) {
@@ -911,7 +912,7 @@ StatusCode SystemErrorHandlerAndReturnCodeManager(void)
             }
             
             error_object = (ObjectPtr)
-                     FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
+                     FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
                                   SYSTEM_SIZE_0X20, &global_state_9456_ptr, 0x127);
             
             if (error_object == (ObjectPtr)0x0) {
@@ -974,7 +975,7 @@ StatusCode SystemErrorHandlerAndReturnCodeManager(void)
     
     /* 处理通用错误 */
     error_object = (ObjectPtr)
-             FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
+             FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
                           SYSTEM_SIZE_0X20, &global_state_9456_ptr, 0x112);
     
     if (error_object == (ObjectPtr)0x0) {

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part184.c - 1 个函数
 
@@ -79,7 +80,7 @@ void FUN_180376cad(void)
       fStack000000000000003c = 100.0;
     }
     if ((int)*(uint *)(unaff_R13 + 0x60) < 0) {
-      if (*(int *)(_DAT_180c86920 + 0xe0) == 0) {
+      if (*(int *)(SYSTEM_STATE_MANAGER + 0xe0) == 0) {
         fVar40 = 0.2;
       }
       else {
@@ -90,7 +91,7 @@ void FUN_180376cad(void)
            (*(float *)(unaff_RSI + 0x28) + *(float *)(unaff_RSI + 0x18)) * fVar40;
     }
   }
-  iVar9 = *(int *)(_DAT_180c86920 + 0xe0);
+  iVar9 = *(int *)(SYSTEM_STATE_MANAGER + 0xe0);
   unaff_RBP[0x7e] = 1.4013e-43;
   unaff_RBP[0x7a] = 0.0;
   unaff_RBP[0x7b] = 4.2039e-44;

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_01_part052_sub002_sub002.c - 1 个函数
 
@@ -672,8 +673,8 @@ uint64_t * FUN_1800d9060(uint64_t *param_1)
   *(int32_t *)((longlong)param_1 + 0x1354) = 0xffffffff;
   *(int8_t *)(param_1 + 0x26a) = 0;
   *(int16_t *)((longlong)param_1 + 0x1504) = 0;
-  lVar2 = _DAT_180c86920;
-  *(int32_t *)(param_1 + 0x2a1) = *(int32_t *)(_DAT_180c86920 + 0x4d0);
+  lVar2 = SYSTEM_STATE_MANAGER;
+  *(int32_t *)(param_1 + 0x2a1) = *(int32_t *)(SYSTEM_STATE_MANAGER + 0x4d0);
   *(int32_t *)((longlong)param_1 + 0x150c) = *(int32_t *)(lVar2 + 0x540);
   *(int32_t *)(param_1 + 0x26b) = 0;
   if ((longlong)*(int *)(param_1 + 0x466) != 0) {

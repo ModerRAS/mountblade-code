@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part197.c - 15 个函数
 
@@ -458,16 +459,16 @@ void FUN_18017b850(longlong param_1)
   longlong *plVar10;
   void *puVar11;
   
-  FUN_18010d9f0(_DAT_180c86920,*(int32_t *)(_DAT_180c86920 + 0x8c0));
-  FUN_18010da70(_DAT_180c86920,*(int32_t *)(_DAT_180c86920 + 0x850));
-  FUN_18010d970(_DAT_180c86920,*(int32_t *)(_DAT_180c86920 + 0x930));
-  FUN_18010d1f0(_DAT_180c86920,*(int32_t *)(_DAT_180c86920 + 0xf50));
-  FUN_18010d070(_DAT_180c86920,*(int32_t *)(_DAT_180c86920 + 0x10a0));
-  FUN_18010d8f0(_DAT_180c86920,*(int32_t *)(_DAT_180c86920 + 0x9a0));
-  FUN_18010d270(_DAT_180c86920,*(int32_t *)(_DAT_180c86920 + 0xee0));
-  FUN_18010d170(_DAT_180c86920,*(int32_t *)(_DAT_180c86920 + 0xfc0));
-  FUN_18010d870(_DAT_180c86920,*(int32_t *)(_DAT_180c86920 + 0xa10));
-  FUN_18010d0f0(_DAT_180c86920,*(int32_t *)(_DAT_180c8a9c8 + 0xe00));
+  FUN_18010d9f0(SYSTEM_STATE_MANAGER,*(int32_t *)(SYSTEM_STATE_MANAGER + 0x8c0));
+  FUN_18010da70(SYSTEM_STATE_MANAGER,*(int32_t *)(SYSTEM_STATE_MANAGER + 0x850));
+  FUN_18010d970(SYSTEM_STATE_MANAGER,*(int32_t *)(SYSTEM_STATE_MANAGER + 0x930));
+  FUN_18010d1f0(SYSTEM_STATE_MANAGER,*(int32_t *)(SYSTEM_STATE_MANAGER + 0xf50));
+  FUN_18010d070(SYSTEM_STATE_MANAGER,*(int32_t *)(SYSTEM_STATE_MANAGER + 0x10a0));
+  FUN_18010d8f0(SYSTEM_STATE_MANAGER,*(int32_t *)(SYSTEM_STATE_MANAGER + 0x9a0));
+  FUN_18010d270(SYSTEM_STATE_MANAGER,*(int32_t *)(SYSTEM_STATE_MANAGER + 0xee0));
+  FUN_18010d170(SYSTEM_STATE_MANAGER,*(int32_t *)(SYSTEM_STATE_MANAGER + 0xfc0));
+  FUN_18010d870(SYSTEM_STATE_MANAGER,*(int32_t *)(SYSTEM_STATE_MANAGER + 0xa10));
+  FUN_18010d0f0(SYSTEM_STATE_MANAGER,*(int32_t *)(_DAT_180c8a9c8 + 0xe00));
   plVar9 = _DAT_180c86938;
   FUN_18021fbb0(_DAT_180c86938);
   FUN_180220fe0(plVar9);
@@ -479,8 +480,8 @@ void FUN_18017b850(longlong param_1)
     FUN_1800ac530(plVar9);
     FUN_1801c93c0();
     FUN_1800ab6f0(plVar9);
-    FUN_1800a3880(plVar9,*(int32_t *)(_DAT_180c86920 + 0x1d50),
-                  *(int32_t *)(_DAT_180c86920 + 0x1dc0),0);
+    FUN_1800a3880(plVar9,*(int32_t *)(SYSTEM_STATE_MANAGER + 0x1d50),
+                  *(int32_t *)(SYSTEM_STATE_MANAGER + 0x1dc0),0);
   }
   else {
     (**(code **)((void *)*plVar9 + 0xa8))(plVar9);
@@ -584,7 +585,7 @@ void FUN_18017bc20(uint64_t param_1)
   ulonglong uStack_18;
   
   uStack_f0 = 0xfffffffffffffffe;
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_118;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_118;
   uStack_f8 = 0;
   puStack_d8 = &unknown_var_3480_ptr;
   puStack_d0 = auStack_c0;
@@ -682,7 +683,7 @@ void FUN_18017bd30(uint64_t param_1)
   ulonglong uStack_28;
   
   uStack_630 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_668;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_668;
   uStack_648 = 0;
   puStack_5c8 = &unknown_var_3480_ptr;
   puStack_5c0 = auStack_5b0;
@@ -1018,7 +1019,7 @@ void FUN_18017c7e0(uint64_t param_1,longlong param_2)
   uStack_30 = 0x18017c80a;
   puVar1 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0xe0,8,3);
   uStack_148 = 0xfffffffffffffffe;
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_30 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_168;
   puVar2 = puVar1;
   puStack_140 = puVar1;
   FUN_1803456e0(puVar1,param_2,param_1);

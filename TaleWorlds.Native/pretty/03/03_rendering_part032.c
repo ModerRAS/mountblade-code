@@ -1,12 +1,13 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part032.c - 渲染系统模块第32部分
 // 本文件包含9个函数，主要处理渲染数据结构管理、缓冲区操作和资源清理
 
 // 全局变量声明
 uint64_t _DAT_180c8ed18;  // 内存分配器
-uint64_t _DAT_180c8ed60;  // 渲染上下文
-uint64_t _DAT_180c8a9b0;  // 引擎状态数据
+uint64_t SYSTEM_FILE_COUNTER_ADDR;  // 渲染上下文
+uint64_t SYSTEM_DATA_MANAGER_A;  // 引擎状态数据
 uint64_t unknown_var_3456_ptr;   // 渲染资源管理器
 uint64_t unknown_var_720_ptr;   // 纹理管理器
 uint64_t unknown_var_3480_ptr;   // 缓冲区管理器

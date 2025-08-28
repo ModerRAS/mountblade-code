@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part078.c - 核心引擎模块第078部分
 // 功能：字符串处理、配置管理和内存操作
@@ -55,7 +56,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
   
   // 初始化堆栈保护值和上下文ID
   stack_value3 = 0xfffffffffffffffe;
-  context_id = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  context_id = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   request_type = *(int *)(request_id + 0x10);
   context_data = context_ptr;
   
@@ -535,7 +536,7 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
       fclose();
       *(uint64_t *)(file_ptr + 8) = 0;
       LOCK();
-      _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+      SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
       UNLOCK();
     }
     puStack_d8 = &unknown_var_3456_ptr;

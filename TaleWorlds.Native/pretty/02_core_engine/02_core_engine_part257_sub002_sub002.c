@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * 02_core_engine_part257_sub002_sub002.c - 核心引擎数据处理模块
@@ -81,7 +82,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
   ulonglong uVar7;
   
   uStack_160 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_1b8;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1b8;
   lVar11 = 0;
   *param_2 = 0;
   param_2[1] = 0;

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part102_sub002_sub002.c - 数值插值和计算函数模块
 // 
@@ -94,7 +95,7 @@ uint8_t calculate_integer_interpolation_bounds(float *rect_coords, int type_id, 
     float temp_array[2];
     uint8_t status_flag = 0;
     
-    global_context = _DAT_180c8a9b0;
+    global_context = SYSTEM_DATA_MANAGER_A;
     width = rect_coords[2];
     interpolation_factor = 0.0;
     current_type = *(int *)(global_context + RENDER_STATE_OFFSET);
@@ -260,7 +261,7 @@ uint8_t calculate_uint_interpolation_bounds(float *rect_coords, int type_id, uin
     float temp_array[2];
     uint8_t status_flag = 0;
     
-    global_context = _DAT_180c8a9b0;
+    global_context = SYSTEM_DATA_MANAGER_A;
     width = rect_coords[2];
     interpolation_factor = 0.0;
     current_type = *(int *)(global_context + RENDER_STATE_OFFSET);
@@ -427,7 +428,7 @@ uint8_t calculate_longlong_interpolation_bounds(float *rect_coords, int type_id,
     uint8_t status_flag = 0;
     
     range_end = range_end;
-    global_context = _DAT_180c8a9b0;
+    global_context = SYSTEM_DATA_MANAGER_A;
     width = rect_coords[2];
     interpolation_factor = 0.0;
     current_type = *(int *)(global_context + RENDER_STATE_OFFSET);
@@ -596,7 +597,7 @@ uint8_t calculate_ulonglong_interpolation_bounds(float *rect_coords, int type_id
     uint8_t status_flag = 0;
     
     range_end = range_end;
-    global_context = _DAT_180c8a9b0;
+    global_context = SYSTEM_DATA_MANAGER_A;
     width = rect_coords[2];
     range_diff = range_end - range_start;
     if (range_end <= range_start) {
@@ -824,7 +825,7 @@ uint8_t calculate_float_interpolation_bounds(float param1, int type_id, uint64_t
     int8_t status_flag = 0;
     float temp_array[2];
     
-    global_context = _DAT_180c8a9b0;
+    global_context = SYSTEM_DATA_MANAGER_A;
     rect_coords = (float *)&param1;
     width = rect_coords[2];
     adjusted_width = (width - *rect_coords) - 4.0;
@@ -1166,7 +1167,7 @@ uint8_t calculate_double_interpolation_bounds(float *rect_coords, int type_id, u
     
     range_end = range_end;
     range_start = range_start;
-    global_context = _DAT_180c8a9b0;
+    global_context = SYSTEM_DATA_MANAGER_A;
     temp_float2 = range_start._0_4_;
     width = rect_coords[2];
     temp_param = SUB84(range_end, 0);

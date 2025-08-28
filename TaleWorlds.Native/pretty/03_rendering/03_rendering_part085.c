@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // =============================================================================
 // 03_rendering_part085.c - 渲染系统高级变换和资源处理模块
@@ -17,7 +18,7 @@
 
 // 全局变量
 extern longlong _DAT_180c86938;
-extern longlong _DAT_180bf00a8;
+extern longlong GET_SECURITY_COOKIE();
 extern longlong _DAT_180bf02a0;
 extern longlong _DAT_180c86890;
 extern longlong _DAT_180c8ed18;
@@ -272,7 +273,7 @@ void rendering_system_initialize_state(longlong render_context)
     
     // 设置堆栈保护值
     stack_value_1 = 0xfffffffffffffffe;
-    xor_value = _DAT_180bf00a8 ^ (ulonglong)stack_data;
+    xor_value = GET_SECURITY_COOKIE() ^ (ulonglong)stack_data;
     
     // 获取配置偏移
     config_offset = *(longlong *)(render_context + 0x9650);
@@ -370,7 +371,7 @@ void rendering_system_advanced_render_control(longlong render_engine, longlong r
     
     // 设置堆栈保护
     stack_value_10 = 0xfffffffffffffffe;
-    stack_xor = _DAT_180bf00a8 ^ (ulonglong)stack_protect;
+    stack_xor = GET_SECURITY_COOKIE() ^ (ulonglong)stack_protect;
     
     // 设置目标缓冲区
     stack_context = target_buffer;

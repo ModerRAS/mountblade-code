@@ -30,6 +30,27 @@
 typedef long long int64;
 typedef unsigned long long uint64;
 
+// =============================================================================
+// 全局变量定义 (Global Variable Definitions)
+// =============================================================================
+
+// 系统状态管理全局变量
+static uint64_t* system_state_flag_ptr = (uint64_t*)0x180c821d0;          // 系统状态标志指针
+static uint64_t* module_state_ptr = (uint64_t*)0x180bf52c0;             // 模块状态指针
+static uint64_t* module_status_ptr = (uint64_t*)0x180bf52c8;            // 模块状态指针
+static uint64_t* module_cleanup_ptr = (uint64_t*)0x180bf52d8;           // 模块清理指针
+static uint64_t* module_base_ptr = (uint64_t*)0x180bf5248;              // 模块基地址指针
+static uint64_t* module_end_ptr = (uint64_t*)0x180bf5250;                // 模块结束地址指针
+static uint64_t* module_init_ptr = (uint64_t*)0x180bf5288;               // 模块初始化指针
+static uint64_t* system_handle_ptr = (uint64_t*)0x180c91900;             // 系统句柄指针
+static uint64_t* memory_pool_ptr = (uint64_t*)0x180d49200;              // 内存池指针
+static uint64_t* memory_pool_status_ptr = (uint64_t*)0x180d49208;        // 内存池状态指针
+static uint64_t* exception_handler_ptr = (uint64_t*)0x180d493f8;        // 异常处理器指针
+
+// 系统默认值常量
+static const uint64_t SYSTEM_DEFAULT_VALUE = 0x18098bcb0;               // 系统默认值
+static const uint64_t SYSTEM_INIT_VALUE = 0x180a3c3e0;                  // 系统初始化值
+
 // 工具函数模块常量定义
 #define UTILITIES_FLAG_NEGATIVE_0x3FFFFFFB -0x3ffffffb  // 负数标志位
 #define UTILITIES_FLAG_MASK_0x3F 0x3f                    // 标志掩码
@@ -348,23 +369,6 @@ void utilities_system_function_executor(uint64_t *param_1)
 }
 
 
-
-// 全局变量定义 - 系统状态管理
-static uint64_t* system_state_flag_ptr = (uint64_t*)0x180c821d0;          // 系统状态标志指针
-static uint64_t* module_state_ptr = (uint64_t*)0x180bf52c0;             // 模块状态指针
-static uint64_t* module_status_ptr = (uint64_t*)0x180bf52c8;            // 模块状态指针
-static uint64_t* module_cleanup_ptr = (uint64_t*)0x180bf52d8;           // 模块清理指针
-static uint64_t* module_base_ptr = (uint64_t*)0x180bf5248;              // 模块基地址指针
-static uint64_t* module_end_ptr = (uint64_t*)0x180bf5250;                // 模块结束地址指针
-static uint64_t* module_init_ptr = (uint64_t*)0x180bf5288;               // 模块初始化指针
-static uint64_t* system_handle_ptr = (uint64_t*)0x180c91900;             // 系统句柄指针
-static uint64_t* memory_pool_ptr = (uint64_t*)0x180d49200;              // 内存池指针
-static uint64_t* memory_pool_status_ptr = (uint64_t*)0x180d49208;        // 内存池状态指针
-static uint64_t* exception_handler_ptr = (uint64_t*)0x180d493f8;        // 异常处理器指针
-
-// 系统默认值常量
-static const uint64_t SYSTEM_DEFAULT_VALUE = 0x18098bcb0;               // 系统默认值
-static const uint64_t SYSTEM_INIT_VALUE = 0x180a3c3e0;                  // 系统初始化值
 
 // 系统管理相关指针
 static uint64_t* system_config_ptr = (uint64_t*)0x180bf5208;            // 系统配置指针
@@ -1215,29 +1219,23 @@ void utilities_system_data_state_manager(void)
 void utilities_system_exception_handler(void)
 
 {
-  int *piVar1;
-  uint64_t *puVar2;
-  long long lVar3;
-  ulong long uVar4;
-  
-  // 变量重命名以提高可读性：
-  // piVar1 -> exception_count: 异常计数器
-  // puVar2 -> exception_ptr: 异常指针
-  // lVar3 -> exception_offset: 异常偏移量
-  // uVar4 -> exception_mask: 异常掩码
+  int *exception_count;
+  uint64_t *exception_ptr;
+  long long exception_offset;
+  unsigned long long exception_mask;
   
   // 获取异常指针
-  exception_ptr = *exception_handler_ptr;
+  exception_ptr = (uint64_t *)*exception_handler_ptr;
   if (*exception_handler_ptr == (uint64_t *)0x0) {
     return;
   }
   
   // 计算异常掩码
-  exception_mask = (ulong long)*exception_handler_ptr & 0xffffffffffc00000;
+  exception_mask = (unsigned long long)*exception_handler_ptr & 0xffffffffffc00000;
   if (exception_mask != 0) {
     // 计算异常偏移量
     exception_offset = exception_mask + 0x80 + ((long long)*exception_handler_ptr - exception_mask >> 0x10) * 0x50;
-    exception_offset = exception_offset - (ulong long)*(uint *)(exception_offset + 4);
+    exception_offset = exception_offset - (unsigned long long)*(uint *)(exception_offset + 4);
     
     // 检查异常列表状态
     if ((*(void ***)(exception_mask + 0x70) == &ExceptionList) && (*(char *)(exception_offset + 0xe) == '\0')) {

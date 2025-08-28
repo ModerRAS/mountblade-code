@@ -419,7 +419,7 @@ void parse_material_data(longlong render_context, longlong material_manager, lon
     
     // 初始化安全哈希和字符串处理
     uv_coords[1] = 0xfffffffffffffffe;
-    security_hash = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
+    security_hash = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
     temp_ptr = (longlong *)0x0;
     string_handler = &unknown_var_3432_ptr;
     string_buffer = name_buffer;

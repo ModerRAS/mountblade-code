@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * @file 03_rendering_part244.c
@@ -953,7 +954,7 @@ void FUN_180406b10(longlong param_1)
   ulonglong uStack_38;
   
   uStack_150 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_1b8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1b8;
   lVar3 = *(longlong *)(param_1 + 0x80);
   if (lVar3 == 0) goto LAB_180406f75;
   if (*(int *)(_DAT_180c8a9c8 + 0x9a0) != 0) {

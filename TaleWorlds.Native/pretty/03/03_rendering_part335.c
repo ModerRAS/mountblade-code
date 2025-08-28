@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part335.c - 渲染系统高级渲染效果和材质处理模块
 // 包含35个核心函数，涵盖渲染系统颜色处理、材质管理、渲染参数设置、纹理操作、

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_13_part088.c - 7 个函数
 
@@ -767,7 +768,7 @@ void FUN_1808e63a0(longlong param_1)
   iVar1 = (**(code **)(*(longlong *)(param_1 + 0x28) + 0x58))(param_1,auStackX_8);
   if (iVar1 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),auStackX_8[0],&unknown_var_9152_ptr,0x6e,1);
+    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),auStackX_8[0],&unknown_var_9152_ptr,0x6e,1);
   }
   return;
 }
@@ -787,7 +788,7 @@ void FUN_1808e6410(longlong *param_1)
   
   if (param_1[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_1[1],&unknown_var_9296_ptr,0x36,1);
+    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1[1],&unknown_var_9296_ptr,0x36,1);
   }
   if (*param_1 != 0) {
     iVar1 = FUN_180768380(*param_1,0);
@@ -813,12 +814,12 @@ uint64_t FUN_1808e64f0(longlong param_1)
   
   iVar5 = *(int *)(param_1 + 0x10) * 2;
   if (iVar5 < 0x8000001) {
-    lVar2 = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar5,&unknown_var_9296_ptr,0x8e,0,0,1);
+    lVar2 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar5,&unknown_var_9296_ptr,0x8e,0,0,1);
     if (lVar2 != 0) {
       iVar5 = *(int *)(param_1 + 0x1c) - *(uint *)(param_1 + 0x14);
       if (iVar5 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(uint64_t *)(param_1 + 8),
+        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(uint64_t *)(param_1 + 8),
                       &unknown_var_9296_ptr,0xa8,1);
       }
       iVar1 = *(int *)(param_1 + 0x10);
@@ -853,7 +854,7 @@ void FUN_1808e6552(void)
   iVar1 = *(int *)(unaff_RDI + 0x1c) - in_EAX;
   if (iVar1 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(uint64_t *)(unaff_RDI + 8),
+    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(uint64_t *)(unaff_RDI + 8),
                   &unknown_var_9296_ptr,0xa8,1);
   }
   if ((int)((*(int *)(unaff_RDI + 0x10) - 1U & in_EAX) + iVar1) <= *(int *)(unaff_RDI + 0x10)) {

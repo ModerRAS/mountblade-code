@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part182.c - 1 个函数
 
@@ -153,7 +154,7 @@ void FUN_180376ab0(uint64_t param_1,longlong param_2,int *param_3,longlong param
   int aiStack_100 [6];
   ulonglong uStack_e8;
   
-  uStack_e8 = _DAT_180bf00a8 ^ (ulonglong)auStack_3e8;
+  uStack_e8 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_3e8;
   lVar18 = *(longlong *)(param_4 + 0x68);
   iVar13 = *param_3;
   iVar24 = *(int *)(lVar18 + 0x3054);
@@ -226,7 +227,7 @@ void FUN_180376ab0(uint64_t param_1,longlong param_2,int *param_3,longlong param
         }
         fStack_3ac = fVar41;
         if ((int)*(uint *)(lVar16 + 0x60) < 0) {
-          if (*(int *)(_DAT_180c86920 + 0xe0) == 0) {
+          if (*(int *)(SYSTEM_STATE_MANAGER + 0xe0) == 0) {
             fVar43 = 0.2;
           }
           else {
@@ -235,7 +236,7 @@ void FUN_180376ab0(uint64_t param_1,longlong param_2,int *param_3,longlong param
           fStack_3ac = fVar41 * ((float)param_3[10] + (float)param_3[6]) * fVar43;
         }
       }
-      iVar13 = *(int *)(_DAT_180c86920 + 0xe0);
+      iVar13 = *(int *)(SYSTEM_STATE_MANAGER + 0xe0);
       aiStack_100[4] = 100;
       aiStack_100[0] = 0;
       aiStack_100[1] = 0x1e;

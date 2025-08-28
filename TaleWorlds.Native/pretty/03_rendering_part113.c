@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part113.c - 渲染系统数据序列化和批处理模块
 // 包含9个核心函数，涵盖渲染系统数据序列化、批处理、缓冲区管理、

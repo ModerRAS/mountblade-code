@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part235.c - 核心引擎排序和数据处理模块
 // 本文件包含12个函数，主要用于数据排序、内存管理和资源处理
@@ -947,7 +948,7 @@ void complex_initialization(uint64_t param_1, longlong *param_2, uint64_t param_
   ulonglong uStack_48;
   
   uStack_198 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_218;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_218;
   uStack_1d8 = *(int8_t *)(*param_2 + 0x15);
   uStack_1d4 = *(int32_t *)(*param_2 + 0x10);
   plStack_1c0 = param_2;

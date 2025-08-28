@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part427.c - 渲染系统高级批处理和纹理映射模块 - 13个函数
 
@@ -90,7 +91,7 @@ void rendering_system_advanced_batch_processor(longlong rendering_context, uint6
   uint64_t v_coord_data;
   ulonglong security_hash;
   
-  security_hash = _DAT_180bf00a8 ^ (ulonglong)batch_index_ptr;
+  security_hash = GET_SECURITY_COOKIE() ^ (ulonglong)batch_index_ptr;
   current_texture = 0;
   batch_width = 8;
   batch_height = output_buffer4;
@@ -312,7 +313,7 @@ void rendering_system_process_texture_data(uint64_t param1)
   ulonglong security_hash;
   
   process_context = 0xfffffffffffffffe;
-  security_hash = _DAT_180bf00a8 ^ (ulonglong)texture_buffer;
+  security_hash = GET_SECURITY_COOKIE() ^ (ulonglong)texture_buffer;
   process_param = 0;
   process_ptr = &unknown_var_3432_ptr;
   texture_data_ptr = data_buffer;
@@ -553,7 +554,7 @@ void rendering_system_initialize_render_manager(uint64_t *param1)
   ulonglong security_hash;
   
   data_buffer = 0xfffffffffffffffe;
-  security_hash = _DAT_180bf00a8 ^ (ulonglong)init_buffer;
+  security_hash = GET_SECURITY_COOKIE() ^ (ulonglong)init_buffer;
   data_param = 0;
   *param1 = &unknown_var_4416_ptr;
   *param1 = &unknown_var_2120_ptr;

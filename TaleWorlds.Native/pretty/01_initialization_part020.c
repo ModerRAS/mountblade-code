@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // ============================================================================
 // 01_initialization_part020.c - 初始化系统高级配置和数学计算模块
@@ -134,11 +135,11 @@ void InitializationSystem_AdvancedMathCalculator(SystemHandle system_context, Ma
   MathFloat stack_value2;
   
   // 初始化系统管理器
-  system_manager = _DAT_180c86920;
+  system_manager = SYSTEM_STATE_MANAGER;
   
   // 检查系统状态条件
-  if ((*(longlong *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(_DAT_180c86920 + 0x540) < 1)) {
-    condition_flag = *(int *)(_DAT_180c86920 + 0x2140) != 0;
+  if ((*(longlong *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(SYSTEM_STATE_MANAGER + 0x540) < 1)) {
+    condition_flag = *(int *)(SYSTEM_STATE_MANAGER + 0x2140) != 0;
   }
   else {
     condition_flag = false;
@@ -146,7 +147,7 @@ void InitializationSystem_AdvancedMathCalculator(SystemHandle system_context, Ma
   
   // 执行高级数学计算
   if (condition_flag) {
-    base_value = (float)exp2f(_DAT_180c86920, config_param1, config_param2, config_param2, 0xfffffffffffffffe);
+    base_value = (float)exp2f(SYSTEM_STATE_MANAGER, config_param1, config_param2, config_param2, 0xfffffffffffffffe);
     
     // 处理线程局部存储和条件检查
     if (*(char *)(system_context + 0x22d) == '\0') {
@@ -166,17 +167,17 @@ void InitializationSystem_AdvancedMathCalculator(SystemHandle system_context, Ma
       
       // 优化计算结果
       _DAT_180d49144 = (MATH_NORMALIZATION_FACTOR - calculated_value1) * _DAT_180d49144 + calculated_value1 * float_param;
-      optimized_value = (float)*(int *)(_DAT_180c86920 + 0x21b0);
+      optimized_value = (float)*(int *)(SYSTEM_STATE_MANAGER + 0x21b0);
       
       // 应用范围限制
-      if (*(float *)(_DAT_180c86870 + 0x1f8) <= (float)*(int *)(_DAT_180c86920 + 0x21b0)) {
+      if (*(float *)(_DAT_180c86870 + 0x1f8) <= (float)*(int *)(SYSTEM_STATE_MANAGER + 0x21b0)) {
         optimized_value = *(float *)(_DAT_180c86870 + 0x1f8);
       }
       
       // 计算优化参数
-      temp_value1 = *(float *)(_DAT_180c86920 + 0x1e30);
-      if (0 < *(int *)(_DAT_180c86920 + 0x1f80)) {
-        temp_value1 = temp_value1 / (float)*(int *)(_DAT_180c86920 + 0x1f80);
+      temp_value1 = *(float *)(SYSTEM_STATE_MANAGER + 0x1e30);
+      if (0 < *(int *)(SYSTEM_STATE_MANAGER + 0x1f80)) {
+        temp_value1 = temp_value1 / (float)*(int *)(SYSTEM_STATE_MANAGER + 0x1f80);
       }
       
       calculated_value2 = (float)((int)temp_value1 + -1);
@@ -219,11 +220,11 @@ void InitializationSystem_AdvancedMathCalculator(SystemHandle system_context, Ma
       // 更新系统状态
       system_manager = _DAT_180c86950;
       *(int8_t *)(_DAT_180c86950 + 0x162b) = 1;
-      temp_pointer = _DAT_180c86920;
+      temp_pointer = SYSTEM_STATE_MANAGER;
     }
     else {
       *(float *)(system_context + 0x238) = base_value;
-      temp_pointer = _DAT_180c86920;
+      temp_pointer = SYSTEM_STATE_MANAGER;
       system_manager = _DAT_180c86950;
     }
   }
@@ -380,7 +381,7 @@ void InitializationSystem_ConfigManager(SystemHandle *config_array, ConfigHandle
   temp_stack_pointer = config_array;
   
   // 检查配置状态并执行初始化
-  if (*(int *)(_DAT_180c86920 + 0xd94) != *(int *)(_DAT_180c86920 + 0xd90)) {
+  if (*(int *)(SYSTEM_STATE_MANAGER + 0xd94) != *(int *)(SYSTEM_STATE_MANAGER + 0xd90)) {
     FUN_18004caf0(_DAT_180c86870, config_param1, config_param2, status_flag, 0xfffffffffffffffe);
   }
   
@@ -412,9 +413,9 @@ void InitializationSystem_ConfigManager(SystemHandle *config_array, ConfigHandle
   (**(code **)(**(longlong **)(system_manager + 0x2b0) + 0xd0))();
   
   // 检查系统状态并执行相应操作
-  if (((*(int *)(_DAT_180c86920 + 0x4d4) != *(int *)(_DAT_180c86920 + 0x4d0)) ||
-      (*(int *)(_DAT_180c86920 + 0x314) != *(int *)(_DAT_180c86920 + 0x310))) ||
-     (*(int *)(_DAT_180c86920 + 0x544) != *(int *)(_DAT_180c86920 + 0x540))) {
+  if (((*(int *)(SYSTEM_STATE_MANAGER + 0x4d4) != *(int *)(SYSTEM_STATE_MANAGER + 0x4d0)) ||
+      (*(int *)(SYSTEM_STATE_MANAGER + 0x314) != *(int *)(SYSTEM_STATE_MANAGER + 0x310))) ||
+     (*(int *)(SYSTEM_STATE_MANAGER + 0x544) != *(int *)(SYSTEM_STATE_MANAGER + 0x540))) {
     temp_stack_pointer = temp_array1;
     temp_pointer1 = &unknown_var_5376_ptr;
     temp_pointer2 = &unknown_var_5360_ptr;
@@ -423,8 +424,8 @@ void InitializationSystem_ConfigManager(SystemHandle *config_array, ConfigHandle
   
   // 处理高级系统配置
   if ((_DAT_180c8a9d0 != 0) &&
-     ((*(int *)(_DAT_180c86920 + 900) != *(int *)(_DAT_180c86920 + 0x380) ||
-      (*(int *)(_DAT_180c86920 + 0x3f4) != *(int *)(_DAT_180c86920 + 0x3f0))))) {
+     ((*(int *)(SYSTEM_STATE_MANAGER + 900) != *(int *)(SYSTEM_STATE_MANAGER + 0x380) ||
+      (*(int *)(SYSTEM_STATE_MANAGER + 0x3f4) != *(int *)(SYSTEM_STATE_MANAGER + 0x3f0))))) {
     callback_param = FUN_18062b1e0(_DAT_180c8ed18, 0x40, 8, 3);
     temp_stack_pointer = temp_array2;
     temp_pointer3 = &unknown_var_5328_ptr;
@@ -452,10 +453,10 @@ void InitializationSystem_ConfigManager(SystemHandle *config_array, ConfigHandle
   }
   
   // 更新系统配置参数
-  resource_manager = _DAT_180c86920;
-  if ((*(longlong *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(_DAT_180c86920 + 0x540) < 1)) {
-    if (*(int *)(_DAT_180c86920 + 0x2140) == 0) {
-      calculated_value1 = *(float *)(_DAT_180c86920 + 0x20d0);
+  resource_manager = SYSTEM_STATE_MANAGER;
+  if ((*(longlong *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(SYSTEM_STATE_MANAGER + 0x540) < 1)) {
+    if (*(int *)(SYSTEM_STATE_MANAGER + 0x2140) == 0) {
+      calculated_value1 = *(float *)(SYSTEM_STATE_MANAGER + 0x20d0);
     }
     else {
       calculated_value1 = INIT_CONFIG_MAX_FLOAT_VALUE;
@@ -539,7 +540,7 @@ void InitializationSystem_StringProcessor(StringHandle string_buffer, longlong b
   
   // 初始化安全cookie和参数
   temp_param1 = 0xfffffffffffffffe;
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
   
   // 初始化缓冲区和系统调用
   FUN_180047d40(temp_buffer2,
@@ -657,7 +658,7 @@ void InitializationSystem_ResourceManager(ResourceHandle resource_handle, Config
   
   // 初始化安全cookie和参数
   temp_param7 = 0xfffffffffffffffe;
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
   memory_pointer = (int8_t *)0x0;
   temp_value1 = 0;
   temp_param3 = config_param;

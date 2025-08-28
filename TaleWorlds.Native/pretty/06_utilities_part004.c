@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * @file 06_utilities_part004.c
@@ -506,7 +507,7 @@ int UtilitiesSystem_DataHandler1(longlong param_1)
     // 检查数据指针
     if (data_pointer != 0) {
         // 执行系统调用
-        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
+        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                      data_pointer, 
                      &unknown_var_2144_ptr, 
                      0xb8, 
@@ -621,7 +622,7 @@ ulonglong UtilitiesSystem_ResultProcessor1(longlong param_1, uint64_t param_2)
                 result_flags = UTIL_SUCCESS;
             } else if (data_pointer != 0) {
                 // 执行清理操作
-                FUN_180741df0(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
+                FUN_180741df0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                              data_pointer, 
                              &unknown_var_8432_ptr, 
                              0xe9);
@@ -684,7 +685,7 @@ int UtilitiesSystem_ConfigValidator1(int32_t param_1)
         validation_status = UTIL_SUCCESS;
     } else if (config_pointer != 0) {
         // 执行配置清理
-        FUN_180741df0(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
+        FUN_180741df0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                      config_pointer, 
                      &unknown_var_8432_ptr, 
                      0xe9, 
@@ -1757,7 +1758,7 @@ void UtilitiesSystem_ArrayProcessor1(longlong param_1, longlong param_2)
         // 分配新内存
         if (new_size != 0) {
             if ((0x3ffffffe < new_size * 8 - 1U) ||
-                (data_pointer = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
+                (data_pointer = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                                              new_size * 8, 
                                              &unknown_var_8432_ptr, 
                                              UTIL_MEMORY_BLOCK_SIZE, 
@@ -1778,7 +1779,7 @@ void UtilitiesSystem_ArrayProcessor1(longlong param_1, longlong param_2)
         // 释放旧内存
         if ((0 < *(int *)(stack_data2 + 0x2c)) && 
             (*(longlong *)(stack_data2 + 0x20) != 0)) {
-            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
+            FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                          *(longlong *)(stack_data2 + 0x20), 
                          &unknown_var_8432_ptr, 
                          0x100, 
@@ -1881,7 +1882,7 @@ void UtilitiesSystem_ArrayProcessor2(uint64_t param_1, uint64_t param_2,
         // 分配新内存
         if (new_size != 0) {
             if ((0x3ffffffe < new_size * 8 - 1U) ||
-                (data_pointer = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
+                (data_pointer = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                                              new_size * 8, 
                                              &unknown_var_8432_ptr, 
                                              UTIL_MEMORY_BLOCK_SIZE, 
@@ -1900,7 +1901,7 @@ void UtilitiesSystem_ArrayProcessor2(uint64_t param_1, uint64_t param_2,
         // 释放旧内存
         if ((0 < *(int *)(in_stack_00000070 + 0x2c)) && 
             (*(longlong *)(in_stack_00000070 + 0x20) != 0)) {
-            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
+            FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                          *(longlong *)(in_stack_00000070 + 0x20), 
                          &unknown_var_8432_ptr, 
                          0x100, 
@@ -1994,7 +1995,7 @@ void UtilitiesSystem_ArrayProcessor3(longlong in_RAX, uint64_t in_stack_00000060
                 goto LAB_180891fc0;
             }
             
-            data_pointer = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
+            data_pointer = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                                         new_size * 8, 
                                         &unknown_var_8432_ptr, 
                                         UTIL_MEMORY_BLOCK_SIZE, 
@@ -2014,7 +2015,7 @@ void UtilitiesSystem_ArrayProcessor3(longlong in_RAX, uint64_t in_stack_00000060
         // 释放旧内存
         if ((0 < *(int *)(unaff_RBX + 0x2c)) && 
             (*(longlong *)(unaff_RBX + 0x20) != 0)) {
-            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
+            FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                          *(longlong *)(unaff_RBX + 0x20), 
                          &unknown_var_8432_ptr, 
                          0x100, 
@@ -2094,7 +2095,7 @@ void UtilitiesSystem_ArrayProcessor4(int param_1, int param_2,
                 goto LAB_180891fc0;
             }
             
-            unaff_RSI = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
+            unaff_RSI = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                                      new_size * 8, 
                                      &unknown_var_8432_ptr, 
                                      UTIL_MEMORY_BLOCK_SIZE);
@@ -2113,7 +2114,7 @@ void UtilitiesSystem_ArrayProcessor4(int param_1, int param_2,
         // 释放旧内存
         if ((0 < *(int *)(unaff_RBX + 0x2c)) && 
             (*(longlong *)(unaff_RBX + 0x20) != 0)) {
-            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
+            FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                          *(longlong *)(unaff_RBX + 0x20), 
                          &unknown_var_8432_ptr, 
                          0x100, 

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_08_part011_sub002_sub002.c - 1 个函数
 
@@ -159,7 +160,7 @@ void FUN_1804e93e0(int *param_1,float param_2)
   ulonglong uStack_d8;
   
   uStack_290 = 0xfffffffffffffffe;
-  uStack_d8 = _DAT_180bf00a8 ^ (ulonglong)auStack_568;
+  uStack_d8 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_568;
   if (*(int *)(_DAT_180c8a9c8 + 0xe0) != 0) {
     _DAT_180bf65b8 = param_1[0x21ef40] ^ 0x41c64e6d;
   }
@@ -175,8 +176,8 @@ void FUN_1804e93e0(int *param_1,float param_2)
   _DAT_180c8ed38 = _DAT_180c8ed38 + _DAT_180c8ed28;
   _DAT_180bf3ffc = afStack_528[0];
   (**(code **)(_DAT_180c8ece0 + 0x280))(param_1[0x26364a]);
-  lVar18 = _DAT_180c86920;
-  fVar37 = afStack_528[0] * *(float *)(_DAT_180c86920 + 0x19d0);
+  lVar18 = SYSTEM_STATE_MANAGER;
+  fVar37 = afStack_528[0] * *(float *)(SYSTEM_STATE_MANAGER + 0x19d0);
   fVar38 = (float)param_1[0x2634a3];
   if ((((fVar37 < fVar38) || (fVar40 = (float)param_1[0x2634a4], fVar37 < fVar40)) ||
       (fVar37 < (float)param_1[0x2634a5])) || (fVar37 < (float)param_1[0x2634a6])) {
@@ -1253,7 +1254,7 @@ LAB_1804eb07a:
   strcpy_s(auStack_1f0,0x10,&unknown_var_3752_ptr);
   (*pcVar8)(_DAT_180c86878,&puStack_208);
   puStack_208 = &unknown_var_720_ptr;
-  if (0 < *(int *)(_DAT_180c86920 + 0x23e0)) {
+  if (0 < *(int *)(SYSTEM_STATE_MANAGER + 0x23e0)) {
     FUN_1804f6fd0(param_1);
   }
                     // WARNING: Subroutine does not return

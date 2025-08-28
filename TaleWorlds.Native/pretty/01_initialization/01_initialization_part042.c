@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 01_initialization_part042.c - 初始化模块第42部分
 // 包含2个函数，主要涉及错误处理和日志记录功能
@@ -64,7 +65,7 @@ void process_error_log_and_show_ui(uint64_t context_ptr, longlong error_msg_ptr,
   longlong lVar17;
   
   uStack_60 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
   cStack_120 = param_5;
   puVar10 = (int8_t *)0x0;
   uVar14 = 0;

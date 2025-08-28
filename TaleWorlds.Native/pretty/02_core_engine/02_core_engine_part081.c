@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part081.c - 核心引擎模块第081部分
 // 包含10个函数，主要涉及文本处理、位置计算和状态管理
@@ -122,7 +123,7 @@ void process_text_layout_and_position_calculation(void)
         unaff_xmm11_da = temp_float_2;
       }
       process_text_line(*(uint64_t *)(unaff_rbp + 0x40), unaff_rdi, ulong_var_1, 0);
-      unaff_rsi = _DAT_180c8a9b0;
+      unaff_rsi = SYSTEM_DATA_MANAGER_A;
       temp_float_3 = temp_float_3 + unaff_xmm10_da;
       unaff_rdi = ulong_var_1 + 1;
       unaff_xmm6_da = unaff_xmm6_da + unaff_xmm10_da;
@@ -233,7 +234,7 @@ void process_text_layout_simple(void)
       unaff_xmm11_da = temp_float_2;
     }
     process_text_line(*(uint64_t *)(unaff_rbp + 0x40), unaff_rdi, ulong_var_1, 0);
-    unaff_rsi = _DAT_180c8a9b0;
+    unaff_rsi = SYSTEM_DATA_MANAGER_A;
     unaff_xmm6_da = unaff_xmm6_da + unaff_xmm10_da;
     unaff_rdi = ulong_var_1 + 1;
     temp_float_4 = temp_float_4 + unaff_xmm10_da;
@@ -463,8 +464,8 @@ void process_text_with_params(uint64_t param_1, uint64_t param_2)
   longlong long_var_2;
   int int_var;
   
-  long_var_2 = _DAT_180c8a9b0;
-  *(int8_t *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
+  long_var_2 = SYSTEM_DATA_MANAGER_A;
+  *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
   if (*(char *)(*(longlong *)(long_var_2 + 0x1af8) + 0xb4) == '\0') {
     long_var_1 = long_var_2 + 0x3054;
     int_var = buffer_operation(long_var_1, 0xc01, param_1, param_2);

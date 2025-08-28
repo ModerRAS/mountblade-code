@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part132.c - 核心引擎模块第132部分
 // 包含5个函数：游戏对象状态更新、渲染上下文管理、游戏对象创建等
@@ -159,8 +160,8 @@ void update_game_object_states(void)
       if (*(longlong *)(lVar2 + 0x78) == 0) {
         uVar9 = unaff_RSI & 0xffffffff;
         uVar7 = unaff_RSI;
-        lVar8 = _DAT_180c8a9b0;
-        if (*(int *)(_DAT_180c8a9b0 + 0x1aa0) != iVar11) {
+        lVar8 = SYSTEM_DATA_MANAGER_A;
+        if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1aa0) != iVar11) {
           do {
             iVar13 = (int)uVar9;
             lVar3 = *(longlong *)(uVar7 + *(longlong *)(lVar8 + 0x1aa8));
@@ -196,18 +197,18 @@ LAB_180130774:
     uVar14 = unaff_RSI;
     if (*(int *)(unaff_RBX + 0x130) != 0) {
       uVar7 = unaff_RSI & 0xffffffff;
-      if (0 < *(int *)(_DAT_180c8a9b0 + 0x1c68)) {
-        puVar6 = *(uint64_t **)(_DAT_180c8a9b0 + 0x1c70);
+      if (0 < *(int *)(SYSTEM_DATA_MANAGER_A + 0x1c68)) {
+        puVar6 = *(uint64_t **)(SYSTEM_DATA_MANAGER_A + 0x1c70);
         uVar9 = unaff_RSI;
         do {
           if (*(int *)*puVar6 == *(int *)(unaff_RBX + 0x130)) {
-            uVar14 = (*(uint64_t **)(_DAT_180c8a9b0 + 0x1c70))[(int)uVar7];
+            uVar14 = (*(uint64_t **)(SYSTEM_DATA_MANAGER_A + 0x1c70))[(int)uVar7];
             break;
           }
           uVar7 = (ulonglong)((int)uVar7 + 1);
           uVar9 = uVar9 + 1;
           puVar6 = puVar6 + 1;
-        } while ((longlong)uVar9 < (longlong)*(int *)(_DAT_180c8a9b0 + 0x1c68));
+        } while ((longlong)uVar9 < (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1c68));
       }
     }
     uVar7 = uVar14;
@@ -229,7 +230,7 @@ LAB_18013078e:
   if (*(char *)(unaff_RBX + 0x1dd0) == cVar10) {
     if (*(int *)(unaff_RBX + 0x1b2c) != iVar11) {
       do {
-        if (*(char *)(_DAT_180c8a9b0 + 0x120 + unaff_RSI) != '\0') {
+        if (*(char *)(SYSTEM_DATA_MANAGER_A + 0x120 + unaff_RSI) != '\0') {
           return;
         }
         unaff_RSI = unaff_RSI + 1;
@@ -287,18 +288,18 @@ LAB_180130774:
     uVar1 = unaff_RSI;
     if (*(int *)(unaff_RBX + 0x130) != 0) {
       uVar3 = unaff_RSI & 0xffffffff;
-      if (0 < *(int *)(_DAT_180c8a9b0 + 0x1c68)) {
-        puVar2 = *(uint64_t **)(_DAT_180c8a9b0 + 0x1c70);
+      if (0 < *(int *)(SYSTEM_DATA_MANAGER_A + 0x1c68)) {
+        puVar2 = *(uint64_t **)(SYSTEM_DATA_MANAGER_A + 0x1c70);
         uVar4 = unaff_RSI;
         do {
           if (*(int *)*puVar2 == *(int *)(unaff_RBX + 0x130)) {
-            uVar1 = (*(uint64_t **)(_DAT_180c8a9b0 + 0x1c70))[(int)uVar3];
+            uVar1 = (*(uint64_t **)(SYSTEM_DATA_MANAGER_A + 0x1c70))[(int)uVar3];
             break;
           }
           uVar3 = (ulonglong)((int)uVar3 + 1);
           uVar4 = uVar4 + 1;
           puVar2 = puVar2 + 1;
-        } while ((longlong)uVar4 < (longlong)*(int *)(_DAT_180c8a9b0 + 0x1c68));
+        } while ((longlong)uVar4 < (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1c68));
       }
     }
     uVar3 = uVar1;
@@ -320,7 +321,7 @@ LAB_18013078e:
   if (*(char *)(unaff_RBX + 0x1dd0) == (char)unaff_RSI) {
     if (*(int *)(unaff_RBX + 0x1b2c) != (int)unaff_RSI) {
       do {
-        if (*(char *)(_DAT_180c8a9b0 + 0x120 + unaff_RSI) != '\0') {
+        if (*(char *)(SYSTEM_DATA_MANAGER_A + 0x120 + unaff_RSI) != '\0') {
           return;
         }
         unaff_RSI = unaff_RSI + 1;
@@ -384,10 +385,10 @@ int * create_game_object(longlong param_1,int param_2,uint64_t *param_3,uint64_t
   float fStack_30;
   float fStack_2c;
   
-  lVar3 = _DAT_180c8a9b0;
+  lVar3 = SYSTEM_DATA_MANAGER_A;
   if (param_1 != 0) {
-    if ((*(longlong *)(_DAT_180c8a9b0 + 0x1b78) != 0) &&
-       (*(longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1b78) + 0x3a0) == param_1)) {
+    if ((*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b78) != 0) &&
+       (*(longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b78) + 0x3a0) == param_1)) {
       param_5 = param_5 | 0xc;
     }
     uVar2 = param_5 | 8;
@@ -400,12 +401,12 @@ int * create_game_object(longlong param_1,int param_2,uint64_t *param_3,uint64_t
     }
   }
   iVar6 = 0;
-  iVar1 = *(int *)(_DAT_180c8a9b0 + 0x1c68);
+  iVar1 = *(int *)(SYSTEM_DATA_MANAGER_A + 0x1c68);
   if (0 < iVar1) {
-    puVar7 = *(uint64_t **)(_DAT_180c8a9b0 + 0x1c70);
+    puVar7 = *(uint64_t **)(SYSTEM_DATA_MANAGER_A + 0x1c70);
     do {
       if (*(int *)*puVar7 == param_2) {
-        piVar5 = (int *)(*(uint64_t **)(_DAT_180c8a9b0 + 0x1c70))[iVar6];
+        piVar5 = (int *)(*(uint64_t **)(SYSTEM_DATA_MANAGER_A + 0x1c70))[iVar6];
         goto LAB_1801308eb;
       }
       iVar6 = iVar6 + 1;
@@ -415,10 +416,10 @@ int * create_game_object(longlong param_1,int param_2,uint64_t *param_3,uint64_t
   piVar5 = (int *)0x0;
 LAB_1801308eb:
   if (piVar5 == (int *)0x0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
-    piStackX_8 = (int *)func_0x000180120ce0(0xf0,_DAT_180c8a9a8,iVar1,param_4,0xfffffffffffffffe);
+    piStackX_8 = (int *)func_0x000180120ce0(0xf0,SYSTEM_DATA_MANAGER_B,iVar1,param_4,0xfffffffffffffffe);
     if (piStackX_8 == (int *)0x0) {
       piVar5 = (int *)0x0;
     }
@@ -501,7 +502,7 @@ void initialize_game_object(longlong param_1)
   uint64_t extraout_XMM0_Qa;
   uint64_t uStackX_8;
   
-  lVar5 = _DAT_180c8a9b0;
+  lVar5 = SYSTEM_DATA_MANAGER_A;
   uVar1 = *(uint *)(param_1 + 0xc);
   *(int32_t *)(param_1 + 0x3c) = 0xffffffff;
   puVar2 = (int32_t *)**(uint64_t **)(lVar5 + 0x1c70);
@@ -553,10 +554,10 @@ void initialize_game_object(longlong param_1)
     }
     if ((((*(longlong *)(lVar5 + 0x1b78) != 0) &&
          (*(longlong *)(*(longlong *)(lVar5 + 0x1b78) + 0x3a0) == param_1)) &&
-        (-256000.0 < *(float *)(_DAT_180c8a9b0 + 0x118) ||
-         *(float *)(_DAT_180c8a9b0 + 0x118) == -256000.0)) &&
-       (-256000.0 < *(float *)(_DAT_180c8a9b0 + 0x11c) ||
-        *(float *)(_DAT_180c8a9b0 + 0x11c) == -256000.0)) {
+        (-256000.0 < *(float *)(SYSTEM_DATA_MANAGER_A + 0x118) ||
+         *(float *)(SYSTEM_DATA_MANAGER_A + 0x118) == -256000.0)) &&
+       (-256000.0 < *(float *)(SYSTEM_DATA_MANAGER_A + 0x11c) ||
+        *(float *)(SYSTEM_DATA_MANAGER_A + 0x11c) == -256000.0)) {
       if ((*(longlong *)(param_1 + 0x28) != 0) &&
          (*(longlong *)(*(longlong *)(param_1 + 0x28) + 0x78) == param_1)) {
         uVar8 = create_game_object(extraout_XMM0_Qa,*(int32_t *)(param_1 + 8),param_1 + 0x40,
@@ -654,8 +655,8 @@ LAB_180130d35:
       uStackX_8 = uVar8;
       pfVar10 = (float *)func_0x000180131890(&uStackX_8);
     }
-    if (0 < *(int *)(_DAT_180c8a9b0 + 0x1600)) {
-      pfVar12 = *(float **)(_DAT_180c8a9b0 + 0x1608);
+    if (0 < *(int *)(SYSTEM_DATA_MANAGER_A + 0x1600)) {
+      pfVar12 = *(float **)(SYSTEM_DATA_MANAGER_A + 0x1608);
       uVar15 = uVar13;
       do {
         iVar14 = (int)uVar15;
@@ -665,7 +666,7 @@ LAB_180130d35:
         uVar15 = (ulonglong)(iVar14 + 1);
         uVar13 = uVar13 + 1;
         pfVar12 = pfVar12 + 9;
-      } while ((longlong)uVar13 < (longlong)*(int *)(_DAT_180c8a9b0 + 0x1600));
+      } while ((longlong)uVar13 < (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1600));
     }
     iVar14 = -1;
 LAB_180130dd5:
@@ -765,10 +766,10 @@ void set_game_object_properties(uint64_t param_1)
     param_1 = extraout_XMM0_Qa_02;
     if ((((*(longlong *)(unaff_RDI + 0x1b78) != 0) &&
          (*(longlong *)(*(longlong *)(unaff_RDI + 0x1b78) + 0x3a0) == unaff_RBX)) &&
-        (-256000.0 < *(float *)(_DAT_180c8a9b0 + 0x118) ||
-         *(float *)(_DAT_180c8a9b0 + 0x118) == -256000.0)) &&
-       (-256000.0 < *(float *)(_DAT_180c8a9b0 + 0x11c) ||
-        *(float *)(_DAT_180c8a9b0 + 0x11c) == -256000.0)) {
+        (-256000.0 < *(float *)(SYSTEM_DATA_MANAGER_A + 0x118) ||
+         *(float *)(SYSTEM_DATA_MANAGER_A + 0x118) == -256000.0)) &&
+       (-256000.0 < *(float *)(SYSTEM_DATA_MANAGER_A + 0x11c) ||
+        *(float *)(SYSTEM_DATA_MANAGER_A + 0x11c) == -256000.0)) {
       if ((*(longlong *)(unaff_RBX + 0x28) != 0) &&
          (*(longlong *)(*(longlong *)(unaff_RBX + 0x28) + 0x78) == unaff_RBX)) {
         uVar6 = create_game_object(extraout_XMM0_Qa_02,*(int32_t *)(unaff_RBX + 8),unaff_RBX + 0x40,
@@ -868,8 +869,8 @@ LAB_180130d35:
       _fStack0000000000000060 = uVar6;
       pfVar7 = (float *)func_0x000180131890(&stack0x00000060);
     }
-    if (0 < *(int *)(_DAT_180c8a9b0 + 0x1600)) {
-      pfVar9 = *(float **)(_DAT_180c8a9b0 + 0x1608);
+    if (0 < *(int *)(SYSTEM_DATA_MANAGER_A + 0x1600)) {
+      pfVar9 = *(float **)(SYSTEM_DATA_MANAGER_A + 0x1608);
       uVar11 = unaff_RSI;
       do {
         iVar10 = (int)uVar11;
@@ -878,7 +879,7 @@ LAB_180130d35:
         uVar11 = (ulonglong)(iVar10 + 1);
         unaff_RSI = unaff_RSI + 1;
         pfVar9 = pfVar9 + 9;
-      } while ((longlong)unaff_RSI < (longlong)*(int *)(_DAT_180c8a9b0 + 0x1600));
+      } while ((longlong)unaff_RSI < (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1600));
     }
     iVar10 = -1;
 LAB_180130dd5:

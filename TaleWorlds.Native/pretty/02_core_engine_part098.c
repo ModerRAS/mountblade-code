@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part098.c - 5 个函数
 
@@ -45,7 +46,7 @@ void FUN_18011b260(int *param_1)
   longlong lStackX_20;
   int8_t auStack_88 [72];
   
-  lVar13 = _DAT_180c8a9b0;
+  lVar13 = SYSTEM_DATA_MANAGER_A;
   iVar14 = *param_1;
   piVar22 = (int *)0x0;
   iVar24 = 0;
@@ -158,9 +159,9 @@ void FUN_18011b260(int *param_1)
               }
               uStackX_8 = (uint)piVar19;
             }
-            if (((param_1[0x13] & 0x800000U) != 0) && (*(float *)(_DAT_180c8a9b0 + 0x2e04) <= 0.0))
+            if (((param_1[0x13] & 0x800000U) != 0) && (*(float *)(SYSTEM_DATA_MANAGER_A + 0x2e04) <= 0.0))
             {
-              *(int32_t *)(_DAT_180c8a9b0 + 0x2e04) = *(int32_t *)(_DAT_180c8a9b0 + 0x1c);
+              *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x2e04) = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1c);
             }
           }
           break;
@@ -187,10 +188,10 @@ void FUN_18011b260(int *param_1)
       iVar29 = iVar15;
     }
     if (iVar24 < iVar29) {
-      if (_DAT_180c8a9b0 != 0) {
-        *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+      if (SYSTEM_DATA_MANAGER_A != 0) {
+        *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
       }
-      uVar16 = func_0x000180120ce0((longlong)iVar29 << 3,_DAT_180c8a9a8);
+      uVar16 = func_0x000180120ce0((longlong)iVar29 << 3,SYSTEM_DATA_MANAGER_B);
       if (*(longlong *)(lVar13 + 0x1ea0) != 0) {
                     // WARNING: Subroutine does not return
         memcpy(uVar16,*(longlong *)(lVar13 + 0x1ea0),(longlong)*(int *)(lVar13 + 0x1e98) << 3);
@@ -249,7 +250,7 @@ void FUN_18011b260(int *param_1)
     fVar35 = fVar35 - ((float)param_1[0xc] - (float)param_1[10]);
   }
   if ((fVar35 <= 0.0) || ((*(byte *)(param_1 + 0x13) & 0x40) == 0)) {
-    fVar35 = *(float *)(_DAT_180c8a9b0 + 0x19f8) * 20.0;
+    fVar35 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19f8) * 20.0;
     if (0 < iVar14) {
       pfVar18 = (float *)(*(longlong *)(param_1 + 2) + 0x1c);
       uVar20 = uVar23;
@@ -391,7 +392,7 @@ LAB_18011b77c:
       if (*piVar19 == iVar15) {
         piVar19 = *(int **)(param_1 + 2) + (longlong)iVar24 * 10;
         if (piVar19 != (int *)0x0) {
-          fVar35 = *(float *)(_DAT_180c8a9b0 + 0x19f8);
+          fVar35 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19f8);
           iVar24 = (int)(((longlong)iVar24 * 0x28) / 0x28);
           if (iVar24 < 1) {
             fVar32 = 0.0;
@@ -475,12 +476,12 @@ void FUN_18011bac0(longlong param_1,byte *param_2)
   uint uVar4;
   int iVar5;
   
-  lVar3 = _DAT_180c8a9b0;
+  lVar3 = SYSTEM_DATA_MANAGER_A;
   if ((*(uint *)(param_1 + 0x4c) & 0x100000) == 0) {
     iVar5 = FUN_180121250(param_2,0,
                           *(int32_t *)
-                           (*(longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x220) + -4 +
-                           (longlong)*(int *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x218) * 4));
+                           (*(longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x220) + -4 +
+                           (longlong)*(int *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x218) * 4));
     if (*(int *)(lVar3 + 0x1b2c) == iVar5) {
       *(int *)(lVar3 + 0x1b34) = iVar5;
     }
@@ -502,8 +503,8 @@ void FUN_18011bac0(longlong param_1,byte *param_2)
       pbVar2 = pbVar2 + 1;
     }
     uVar4 = ~uVar4;
-    if (*(uint *)(_DAT_180c8a9b0 + 0x1b2c) == uVar4) {
-      *(uint *)(_DAT_180c8a9b0 + 0x1b34) = uVar4;
+    if (*(uint *)(SYSTEM_DATA_MANAGER_A + 0x1b2c) == uVar4) {
+      *(uint *)(SYSTEM_DATA_MANAGER_A + 0x1b34) = uVar4;
     }
     if (*(uint *)(lVar3 + 0x1b30) == uVar4) {
       *(int8_t *)(lVar3 + 0x1b3f) = 1;
@@ -526,7 +527,7 @@ void FUN_18011bb4f(void)
   longlong lVar1;
   int iVar2;
   
-  lVar1 = _DAT_180c8a9b0;
+  lVar1 = SYSTEM_DATA_MANAGER_A;
   iVar2 = FUN_180121250();
   if (*(int *)(lVar1 + 0x1b2c) == iVar2) {
     *(int *)(lVar1 + 0x1b34) = iVar2;
@@ -571,7 +572,7 @@ void FUN_18011bbb0(int *param_1,int32_t param_2,longlong param_3)
   uVar2 = *(int32_t *)(param_3 + 8);
   iStack_28 = param_1[8];
   if (iStack_28 == -1) {
-    iStack_28 = *(int *)(_DAT_180c8a9b0 + 0x1a90) + -1;
+    iStack_28 = *(int *)(SYSTEM_DATA_MANAGER_A + 0x1a90) + -1;
   }
   iVar6 = *param_1;
   iVar5 = param_1[1];

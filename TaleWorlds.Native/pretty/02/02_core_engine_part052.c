@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 核心引擎模块 - 第052部分
 // 本文件为核心引擎模块的组成部分，包含引擎数据结构管理功能

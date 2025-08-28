@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 01_initialization_part021.c - 11 个函数
 
@@ -47,7 +48,7 @@ void initialize_resource_manager(longlong *engine_context,longlong resource_para
   ulonglong stack_checksum;
   
   stack_resource_hash = 0xfffffffffffffffe;
-  stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   stack_param2 = 0;
   stack_ptr_ptr = &stack_string_ptr;
   stack_string_ptr = &unknown_var_3456_ptr;
@@ -245,7 +246,7 @@ void process_shader_files(void)
   ulonglong stack_guard;
   
   shader_config = 0xfffffffffffffffe;
-  stack_guard = _DAT_180bf00a8 ^ (ulonglong)shader_buffer;
+  stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)shader_buffer;
   global_engine_ptr = _DAT_180c86870;
   total_files = *(longlong *)(*_DAT_180c86870 + 0x890) - *(longlong *)(*_DAT_180c86870 + 0x888) >> 5;
   file_count = 0;
@@ -862,8 +863,8 @@ void finalize_initialization(void)
     if (lock_status != 0) {
       __Throw_C_error_std__YAXH_Z(lock_status);
     }
-    temp_value = _DAT_180c8a9b0;
-    _DAT_180c8a9b0 = *global_ptr;
+    temp_value = SYSTEM_DATA_MANAGER_A;
+    SYSTEM_DATA_MANAGER_A = *global_ptr;
     FUN_1801299b0(&unknown_var_6880_ptr,0,0,unused_param,stack_guard);
     FUN_18010f010(&unknown_var_6896_ptr,*(int32_t *)(config_data + 4));
     FUN_18010f010(&unknown_var_6928_ptr,*(int32_t *)(config_data + 8));
@@ -883,7 +884,7 @@ void finalize_initialization(void)
     FUN_18010f010(&unknown_var_7224_ptr,*(int32_t *)(config_data + 0x84));
     FUN_18010f010(&unknown_var_7264_ptr,*(int32_t *)(config_data + 0x88));
     FUN_18012cfe0();
-    _DAT_180c8a9b0 = temp_value;
+    SYSTEM_DATA_MANAGER_A = temp_value;
     lock_status = _Mtx_unlock(0x180c91970);
     if (lock_status != 0) {
       __Throw_C_error_std__YAXH_Z(lock_status);

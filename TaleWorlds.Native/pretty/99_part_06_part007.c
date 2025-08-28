@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 //==============================================================================
 // 文件名称：99_part_06_part007.c

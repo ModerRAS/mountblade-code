@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part265.c - 核心引擎模块第265部分
 // 包含10个函数，主要负责场景对象组件复制、纹理数据复制、对象生命周期管理和事件处理
@@ -235,7 +236,7 @@ void 复制场景对象组件数据(longlong target_object, longlong source_obje
   
   // 第十五阶段：初始化生命周期事件处理
   stack_temp_value_4 = DEFAULT_STACK_PROTECTION;
-  stack_protection_value = _DAT_180bf00a8 ^ (ulonglong)stack_protection_buffer_1;
+  stack_protection_value = GET_SECURITY_COOKIE() ^ (ulonglong)stack_protection_buffer_1;
   event_registration_success = false;
   stack_temp_value_3 = 0;
   *(uint64_t *)(target_object + OFFSET_OBJECT_LIFETIME_EVENT) = 0;
@@ -505,7 +506,7 @@ void 创建场景对象实例(longlong scene_data, longlong *object_ptr) {
   
   // 初始化堆栈保护
   stack_temp_value_2 = DEFAULT_STACK_PROTECTION;
-  stack_protection_value = _DAT_180bf00a8 ^ (ulonglong)name_buffer;
+  stack_protection_value = GET_SECURITY_COOKIE() ^ (ulonglong)name_buffer;
   stack_temp_value_1 = 0;
   output_ptr = object_ptr;
   
@@ -703,7 +704,7 @@ void 设置对象组件(longlong object_ptr, int component_index, longlong *comp
   
   // 第二阶段：初始化生命周期事件处理
   stack_temp_value_4 = DEFAULT_STACK_PROTECTION;
-  stack_protection_value = _DAT_180bf00a8 ^ (ulonglong)stack_protection_buffer_1;
+  stack_protection_value = GET_SECURITY_COOKIE() ^ (ulonglong)stack_protection_buffer_1;
   event_registration_success = false;
   stack_temp_value_3 = 0;
   *(uint64_t *)(object_ptr + OFFSET_OBJECT_LIFETIME_EVENT) = 0;
@@ -930,7 +931,7 @@ void 销毁场景对象(longlong object_ptr) {
   
   // 初始化堆栈保护
   stack_temp_value_4 = DEFAULT_STACK_PROTECTION;
-  stack_protection_value = _DAT_180bf00a8 ^ (ulonglong)stack_protection_buffer_1;
+  stack_protection_value = GET_SECURITY_COOKIE() ^ (ulonglong)stack_protection_buffer_1;
   event_registration_success = false;
   stack_temp_value_3 = 0;
   *(uint64_t *)(object_ptr + OFFSET_OBJECT_LIFETIME_EVENT) = 0;
@@ -1385,7 +1386,7 @@ void 发送对象销毁通知(longlong object_ptr) {
   
   // 初始化堆栈保护
   stack_temp_value_1 = DEFAULT_STACK_PROTECTION;
-  stack_protection_value = _DAT_180bf00a8 ^ (ulonglong)stack_protection_buffer;
+  stack_protection_value = GET_SECURITY_COOKIE() ^ (ulonglong)stack_protection_buffer;
   
   // 获取对象类型信息
   object_type_data = *(uint64_t *)(object_ptr + OFFSET_OBJECT_TYPE_INFO);

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 //==============================================================================
 // 03_rendering_part151.c - 渲染系统高级数据处理和渲染管线管理模块
@@ -378,7 +379,7 @@ void RenderingSystem_AdvancedVertexProcessor(longlong renderContext, longlong re
   // 第二阶段：渲染系统初始化
   // 初始化渲染管线状态、缓冲区和内存管理器
   uStack_280 = 0xfffffffffffffffe;                    // 设置渲染管线状态掩码
-  uStack_d8 = _DAT_180bf00a8 ^ (ulonglong)auStack_458; // 计算内存保护密钥
+  uStack_d8 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_458; // 计算内存保护密钥
   puVar10 = (uint64_t *)0x0;                         // 初始化渲染数据指针
   
   // 初始化渲染管线数组

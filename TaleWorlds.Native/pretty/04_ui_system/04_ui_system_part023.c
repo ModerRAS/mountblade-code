@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 04_ui_system_part023.c - UI系统高级安全管理和数据处理模块
 // 包含9个核心函数：UI系统安全初始化器、UI系统内存分配器、UI系统数据验证器、UI系统状态管理器、UI系统资源清理器、UI系统参数处理器、UI系统数据代码分析器、UI系统安全检查器、UI系统内存释放器
@@ -151,7 +152,7 @@ void ui_system_data_validator(uint64_t validation_context, uint64_t validation_f
   ulonglong security_key;
   
   // 安全密钥初始化
-  security_key = _DAT_180bf00a8 ^ (ulonglong)&temp_value_1;
+  security_key = GET_SECURITY_COOKIE() ^ (ulonglong)&temp_value_1;
   
   // 数据验证处理
   temp_value_1 = UI_MAGIC_NUMBER_0X3F800000;
@@ -180,7 +181,7 @@ void ui_system_state_manager(uint64_t state_context, uint64_t state_flags)
   ulonglong security_key;
   
   // 安全密钥初始化
-  security_key = _DAT_180bf00a8 ^ (ulonglong)&temp_value_1;
+  security_key = GET_SECURITY_COOKIE() ^ (ulonglong)&temp_value_1;
   
   // 状态管理处理
   temp_value_1 = UI_MAGIC_NUMBER_0X3F800000;
@@ -209,7 +210,7 @@ void ui_system_resource_cleaner(uint64_t cleanup_context, uint64_t cleanup_flags
   ulonglong security_key;
   
   // 安全密钥初始化
-  security_key = _DAT_180bf00a8 ^ (ulonglong)&temp_value_1;
+  security_key = GET_SECURITY_COOKIE() ^ (ulonglong)&temp_value_1;
   
   // 资源清理处理
   temp_value_1 = UI_MAGIC_NUMBER_0X3F800000;
@@ -283,7 +284,7 @@ void ui_system_data_transformer(uint64_t transform_context, uint64_t transform_f
   ulonglong security_key;
   
   // 安全密钥初始化
-  security_key = _DAT_180bf00a8 ^ (ulonglong)&temp_value_1;
+  security_key = GET_SECURITY_COOKIE() ^ (ulonglong)&temp_value_1;
   
   // 数据转换处理
   temp_value_1 = UI_MAGIC_NUMBER_0X3F800000;
@@ -312,7 +313,7 @@ void ui_system_security_checker(uint64_t security_context, uint64_t security_fla
   ulonglong security_key;
   
   // 安全密钥初始化
-  security_key = _DAT_180bf00a8 ^ (ulonglong)&temp_value_1;
+  security_key = GET_SECURITY_COOKIE() ^ (ulonglong)&temp_value_1;
   
   // 安全检查处理
   temp_value_1 = UI_MAGIC_NUMBER_0X3F800000;

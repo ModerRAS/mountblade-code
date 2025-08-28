@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /*============================================================================
   99_part_06_part027.c - 高级数据处理和配置管理模块

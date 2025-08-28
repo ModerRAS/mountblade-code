@@ -579,9 +579,9 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
     uint_stack_ptr20 = control_ptr;
     system_handle = SystemTimestampGetter();
     StringInitializer(&ptr_stack_c8, system_handle);
-    temp_offset = _DAT_180c8a9b0;
+    temp_offset = SYSTEM_DATA_MANAGER_A;
     status_flag = *(char *)(data_ptr + 0xc);
-    *(int32_t *)(_DAT_180c8a9b0 + 0x1c04) = 0x44200000;
+    *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1c04) = 0x44200000;
     *(int32_t *)(temp_offset + 0x1c08) = 0x43f00000;
     *(int32_t *)(temp_offset + 0x1bd4) = 4;
     temp_ptr1 = &system_buffer_ptr;
@@ -591,7 +591,7 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
     
     // 执行字符串比较和状态检查
     status_flag = StringComparator(temp_ptr1, &system_memory_2862, -(uint)(status_flag != '\0') & 0x2020);
-    temp_offset = _DAT_180c8a9b0;
+    temp_offset = SYSTEM_DATA_MANAGER_A;
     resource_id = 0;
     if (status_flag == '\0') {
         SystemController();
@@ -600,10 +600,10 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
         // 处理数据流配置
         quad_stack_ptr8 = (QuadPointer *)
                           ((ulonglong)
-                           (uint)(*(float *)(_DAT_180c8a9b0 + 0x1660) + *(float *)(_DAT_180c8a9b0 + 0x1660) +
-                                  *(float *)(_DAT_180c8a9b0 + 0x19f8) + *(float *)(_DAT_180c8a9b0 + 0x1670)) << 0x20
+                           (uint)(*(float *)(SYSTEM_DATA_MANAGER_A + 0x1660) + *(float *)(SYSTEM_DATA_MANAGER_A + 0x1660) +
+                                  *(float *)(SYSTEM_DATA_MANAGER_A + 0x19f8) + *(float *)(SYSTEM_DATA_MANAGER_A + 0x1670)) << 0x20
                            ^ 0x8000000000000000);
-        *(int8_t *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
+        *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
         resource_id = ResourceIdGetter(&unknown_var_1736_ptr, 0,
                                       *(int32_t *)
                                        (*(longlong *)(*(longlong *)(temp_offset + 0x1af8) + 0x220) + -4 +
@@ -616,11 +616,11 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
         }
         stack_var22 = 0x800;
         ResourceStatusSetter(&unknown_var_1736_ptr, resource_id, &quad_stack_ptr8);
-        temp_offset = _DAT_180c8a9b0;
+        temp_offset = SYSTEM_DATA_MANAGER_A;
         resource_id = ResourceIdGetter(&unknown_var_2576_ptr, 0,
                                       *(int32_t *)
-                                       (*(longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x220) + -4 +
-                                        (longlong)*(int *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x218) * 4));
+                                       (*(longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x220) + -4 +
+                                        (longlong)*(int *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x218) * 4));
         if (*(int *)(temp_offset + 0x1b2c) == resource_id) {
             *(int *)(temp_offset + 0x1b34) = resource_id;
         }
@@ -667,11 +667,11 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
         }
         
         // 执行数据配置和管理
-        temp_offset = _DAT_180c8a9b0;
-        stack_d8._4_4_ = *(int32_t *)(_DAT_180c8a9b0 + 0x166c);
-        stack_d0 = *(int32_t *)(_DAT_180c8a9b0 + 0x1670);
+        temp_offset = SYSTEM_DATA_MANAGER_A;
+        stack_d8._4_4_ = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x166c);
+        stack_d0 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1670);
         stack_d8._0_4_ = 0xd;
-        DataConfigurator(_DAT_180c8a9b0 + 0x1b90, &stack_d8);
+        DataConfigurator(SYSTEM_DATA_MANAGER_A + 0x1b90, &stack_d8);
         *(int32_t *)(temp_offset + 0x166c) = 0x40800000;
         *(int32_t *)(temp_offset + 0x1670) = 0x3f800000;
         data_array = *data_ptr;
@@ -720,9 +720,9 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
                 }
                 
                 // 执行数据管理操作
-                config_offset = _DAT_180c8a9b0;
+                config_offset = SYSTEM_DATA_MANAGER_A;
                 if (*(char *)((longlong)data_ptr + 0x72) != '\0') {
-                    *(int8_t *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
+                    *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
                     data_offset = *(longlong *)(config_offset + 0x1af8);
                     *(int8_t *)(data_offset + 0xb1) = 1;
                     config_offset = *(longlong *)(config_offset + 0x1af8);
@@ -734,13 +734,13 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
                 }
                 
                 // 执行数据流控制
-                config_offset = _DAT_180c8a9b0;
+                config_offset = SYSTEM_DATA_MANAGER_A;
                 int_stack_a8 = 0;
-                int_stack_a4 = (int32_t)*(uint64_t *)(_DAT_180c8a9b0 + 0x16c8);
-                int_stack_a0 = (int32_t)((ulonglong)*(uint64_t *)(_DAT_180c8a9b0 + 0x16c8) >> 0x20);
-                int_stack_9c = (int32_t)*(uint64_t *)(_DAT_180c8a9b0 + 0x16d0);
-                int_stack_98 = (int32_t)((ulonglong)*(uint64_t *)(_DAT_180c8a9b0 + 0x16d0) >> 0x20);
-                DataManager(_DAT_180c8a9b0 + 0x1b80, &int_stack_a8);
+                int_stack_a4 = (int32_t)*(uint64_t *)(SYSTEM_DATA_MANAGER_A + 0x16c8);
+                int_stack_a0 = (int32_t)((ulonglong)*(uint64_t *)(SYSTEM_DATA_MANAGER_A + 0x16c8) >> 0x20);
+                int_stack_9c = (int32_t)*(uint64_t *)(SYSTEM_DATA_MANAGER_A + 0x16d0);
+                int_stack_98 = (int32_t)((ulonglong)*(uint64_t *)(SYSTEM_DATA_MANAGER_A + 0x16d0) >> 0x20);
+                DataManager(SYSTEM_DATA_MANAGER_A + 0x1b80, &int_stack_a8);
                 *(ulonglong *)(config_offset + 0x16c8) = CONCAT44(stack_d8._4_4_, (int32_t)stack_d8);
                 *(ulonglong *)(config_offset + 0x16d0) = CONCAT44(stack_cc, stack_d0);
                 temp_ptr1 = *(void **)(temp_offset + 0x10 + (longlong)data_array);
@@ -749,16 +749,16 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
                     temp_ptr2 = temp_ptr1;
                 }
                 ResourceReleaser(temp_ptr2, 0);
-                config_offset = _DAT_180c8a9b0;
+                config_offset = SYSTEM_DATA_MANAGER_A;
                 system_data = (uint64_t *)
-                              (*(longlong *)(_DAT_180c8a9b0 + 0x1b88) + -0x10 +
-                               (longlong)*(int *)(_DAT_180c8a9b0 + 0x1b80) * 0x14);
+                              (*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x10 +
+                               (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14);
                 system_handle = system_data[1];
                 resource_data = (uint64_t *)
-                               (_DAT_180c8a9b0 + 0x16c8 +
+                               (SYSTEM_DATA_MANAGER_A + 0x16c8 +
                                 (longlong)
-                                *(int *)(*(longlong *)(_DAT_180c8a9b0 + 0x1b88) + -0x14 +
-                                        (longlong)*(int *)(_DAT_180c8a9b0 + 0x1b80) * 0x14) * 0x10);
+                                *(int *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x14 +
+                                        (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14) * 0x10);
                 *resource_data = *system_data;
                 resource_data[1] = system_handle;
                 *(int *)(config_offset + 0x1b80) = *(int *)(config_offset + 0x1b80) + -1;
@@ -771,18 +771,18 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
         }
         
         // 执行最终数据配置
-        config_offset = _DAT_180c8a9b0;
-        data_offset = (longlong)*(int *)(_DAT_180c8a9b0 + 0x1b90);
-        temp_offset = *(longlong *)(_DAT_180c8a9b0 + 0x1b98);
+        config_offset = SYSTEM_DATA_MANAGER_A;
+        data_offset = (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
+        temp_offset = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
         stream_offset = (longlong)*(int *)(temp_offset + -0xc + data_offset * 0xc);
         temp_size = (ulonglong)*(uint *)(&unknown_var_6056_ptr + stream_offset * 0xc);
         if (*(int *)(&unknown_var_6048_ptr + stream_offset * 0xc) == 4) {
             if (*(int *)(&unknown_var_6052_ptr + stream_offset * 0xc) == 1) {
-                *(int32_t *)(temp_size + 0x1628 + _DAT_180c8a9b0) =
+                *(int32_t *)(temp_size + 0x1628 + SYSTEM_DATA_MANAGER_A) =
                      *(int32_t *)(temp_offset + -8 + data_offset * 0xc);
             }
             else if (*(int *)(&unknown_var_6052_ptr + stream_offset * 0xc) == 2) {
-                *(int32_t *)(temp_size + 0x1628 + _DAT_180c8a9b0) =
+                *(int32_t *)(temp_size + 0x1628 + SYSTEM_DATA_MANAGER_A) =
                      *(int32_t *)(temp_offset + -8 + data_offset * 0xc);
                 *(int32_t *)(temp_size + 0x162c + config_offset) = *(int32_t *)(temp_offset + -4 + data_offset * 0xc);
             }
@@ -793,9 +793,9 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
         quad_stack_ptr8 = (QuadPointer)0x0;
         status_flag = EventHandler(&unknown_var_1756_ptr, (longlong)data_ptr + 0x74, 0x400, &quad_stack_ptr8, 0x3e0,
                                   &unknown_var_5328_ptr, data_ptr);
-        temp_offset = _DAT_180c8a9b0;
+        temp_offset = SYSTEM_DATA_MANAGER_A;
         if (status_flag != '\0') {
-            *(int8_t *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
+            *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
             temp_offset = *(longlong *)(temp_offset + 0x1af8);
             *(int32_t *)(temp_offset + 0x400) = *(int32_t *)(temp_offset + 0x3f0);
             *(int32_t *)(temp_offset + 0x404) = 0x7fffffff;
@@ -835,7 +835,7 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
             int_stack_a4 = 1;
             *(int8_t *)((longlong)data_ptr + 0x72) = 1;
             *(int8_t *)((longlong)data_ptr + 0x74) = 0;
-            temp_offset = _DAT_180c8a9b0;
+            temp_offset = SYSTEM_DATA_MANAGER_A;
             *(int8_t *)(data_ptr + 0xc) = 0;
             *(int32_t *)((longlong)data_ptr + 100) = 0xffffffff;
         }
@@ -1135,43 +1135,43 @@ void core_engine_data_synchronizer(longlong sync_handle, uint64_t *config_ptr, u
     
     // 初始化系统状态
     SystemInitializer(2, 0);
-    temp_offset = _DAT_180c8a9b0;
+    temp_offset = SYSTEM_DATA_MANAGER_A;
     temp_size = 0;
     temp_int = 0;
-    *(uint64_t *)(_DAT_180c8a9b0 + 0x1bf4) = *config_ptr;
+    *(uint64_t *)(SYSTEM_DATA_MANAGER_A + 0x1bf4) = *config_ptr;
     *(uint64_t *)(temp_offset + 0x1bfc) = 0;
     *(int32_t *)(temp_offset + 0x1bd0) = 1;
     *(int8_t *)(temp_offset + 0x1c14) = 1;
     *(uint64_t *)(temp_offset + 0x1c04) = *data_ptr;
     *(int32_t *)(temp_offset + 0x1bd4) = 1;
     StringComparator(&unknown_var_1792_ptr, 0, 0x907);
-    temp_offset = _DAT_180c8a9b0;
-    *(int8_t *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
+    temp_offset = SYSTEM_DATA_MANAGER_A;
+    *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
     temp_offset = *(longlong *)(temp_offset + 0x1af8);
     system_flag = (uint *)(temp_offset + 0x1a8);
     *system_flag = *system_flag | 1;
     DataFlowController(temp_offset + 0x1b8);
-    temp_offset = _DAT_180c8a9b0;
+    temp_offset = SYSTEM_DATA_MANAGER_A;
     
     // 检查数据状态并初始化
     if (*(char *)(sync_handle + 0x74) == '\0') {
-        uint_stack_64 = *(uint64_t *)(_DAT_180c8a9b0 + 0x1718);
-        uint_stack_5c = *(uint64_t *)(_DAT_180c8a9b0 + 0x1720);
+        uint_stack_64 = *(uint64_t *)(SYSTEM_DATA_MANAGER_A + 0x1718);
+        uint_stack_5c = *(uint64_t *)(SYSTEM_DATA_MANAGER_A + 0x1720);
         int_stack_68 = 5;
-        DataManager(_DAT_180c8a9b0 + 0x1b80, &int_stack_68);
+        DataManager(SYSTEM_DATA_MANAGER_A + 0x1b80, &int_stack_68);
         *(uint64_t *)(temp_offset + 0x1718) = 0x3f8000003f800000;
         *(uint64_t *)(temp_offset + 0x1720) = 0x3f8000003f800000;
         ResourceMonitor(&unknown_var_1776_ptr);
-        temp_offset = _DAT_180c8a9b0;
+        temp_offset = SYSTEM_DATA_MANAGER_A;
         config_data = (uint64_t *)
-                     (*(longlong *)(_DAT_180c8a9b0 + 0x1b88) + -0x10 +
-                      (longlong)*(int *)(_DAT_180c8a9b0 + 0x1b80) * 0x14);
+                     (*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x10 +
+                      (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14);
         system_handle = config_data[1];
         data_stream = (uint64_t *)
-                      (_DAT_180c8a9b0 + 0x16c8 +
+                      (SYSTEM_DATA_MANAGER_A + 0x16c8 +
                        (longlong)
-                       *(int *)(*(longlong *)(_DAT_180c8a9b0 + 0x1b88) + -0x14 +
-                               (longlong)*(int *)(_DAT_180c8a9b0 + 0x1b80) * 0x14) * 0x10);
+                       *(int *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x14 +
+                               (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14) * 0x10);
         *data_stream = *config_data;
         data_stream[1] = system_handle;
         *(int *)(temp_offset + 0x1b80) = *(int *)(temp_offset + 0x1b80) + -1;
@@ -1202,8 +1202,8 @@ void core_engine_data_synchronizer(longlong sync_handle, uint64_t *config_ptr, u
             if (status_flag != '\0') {
                 *(int *)(sync_handle + 0x68) = data_index;
             }
-            temp_offset = _DAT_180c8a9b0;
-            status_ptr = (int *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x218);
+            temp_offset = SYSTEM_DATA_MANAGER_A;
+            status_ptr = (int *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x218);
             *status_ptr = *status_ptr + -1;
             if (resource_id == data_index) {
                 if (*(char *)(sync_handle + 0x70) != '\0') {
@@ -1251,20 +1251,20 @@ void core_engine_data_synchronizer(longlong sync_handle, uint64_t *config_ptr, u
     }
     *(int32_t *)(temp_offset + 0x1a8) = temp_int;
     SystemController();
-    config_offset = _DAT_180c8a9b0;
-    data_offset = (longlong)*(int *)(_DAT_180c8a9b0 + 0x1b90);
-    temp_offset = *(longlong *)(_DAT_180c8a9b0 + 0x1b98);
+    config_offset = SYSTEM_DATA_MANAGER_A;
+    data_offset = (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
+    temp_offset = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
     stream_offset = (longlong)*(int *)(temp_offset + -0xc + data_offset * 0xc);
     temp_size = (ulonglong)*(uint *)(&unknown_var_6056_ptr + stream_offset * 0xc);
     if (*(int *)(&unknown_var_6048_ptr + stream_offset * 0xc) == 4) {
         if (*(int *)(&unknown_var_6052_ptr + stream_offset * 0xc) == 1) {
-            *(int32_t *)(temp_size + 0x1628 + _DAT_180c8a9b0) =
+            *(int32_t *)(temp_size + 0x1628 + SYSTEM_DATA_MANAGER_A) =
                  *(int32_t *)(temp_offset + -8 + data_offset * 0xc);
             *(int *)(config_offset + 0x1b90) = *(int *)(config_offset + 0x1b90) + -1;
             return;
         }
         if (*(int *)(&unknown_var_6052_ptr + stream_offset * 0xc) == 2) {
-            *(int32_t *)(temp_size + 0x1628 + _DAT_180c8a9b0) =
+            *(int32_t *)(temp_size + 0x1628 + SYSTEM_DATA_MANAGER_A) =
                  *(int32_t *)(temp_offset + -8 + data_offset * 0xc);
             *(int32_t *)(temp_size + 0x162c + config_offset) = *(int32_t *)(temp_offset + -4 + data_offset * 0xc);
         }

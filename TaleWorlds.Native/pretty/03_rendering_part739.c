@@ -669,7 +669,7 @@ void RenderingSystem_AdvancedPipelineManager(longlong param_1, longlong param_2,
     ulonglong uStack_48;
     
     /* 初始化渲染管线 */
-    uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_f8;
+    uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_f8;
     lVar1 = param_1 + 0x42c0;
     lStack_70 = param_2;
     

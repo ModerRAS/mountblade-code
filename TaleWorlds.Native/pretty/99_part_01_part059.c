@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_01_part059.c - 2 个函数
 
@@ -213,7 +214,7 @@ LAB_1800dece7:
     else {
       lVar8 = (**(code **)(*plVar3 + 0xb8))(plVar3,fVar16,fVar18,fVar20,fVar22);
       unaff_RBX = _DAT_180c86938;
-      unaff_R14 = _DAT_180c86920;
+      unaff_R14 = SYSTEM_STATE_MANAGER;
       uVar11 = extraout_XMM0_Qa;
     }
     if (lVar8 != 0) {
@@ -221,7 +222,7 @@ LAB_1800dece7:
       if (pcVar4 != (code *)&unknown_var_128_ptr) {
         uVar11 = (*pcVar4)();
         unaff_RBX = _DAT_180c86938;
-        unaff_R14 = _DAT_180c86920;
+        unaff_R14 = SYSTEM_STATE_MANAGER;
       }
       *(int32_t *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d5c) = 0x41f00000;
       pcVar4 = *(code **)(**(longlong **)(unaff_RSI + 0x3580) + 0xb8);
@@ -231,7 +232,7 @@ LAB_1800dece7:
       else {
         lVar8 = (*pcVar4)(uVar11);
         unaff_RBX = _DAT_180c86938;
-        unaff_R14 = _DAT_180c86920;
+        unaff_R14 = SYSTEM_STATE_MANAGER;
       }
       uVar6 = *(uint64_t *)(lVar8 + 0x3f44);
       lVar5 = *(longlong *)(unaff_RBX + 0x1cd8);
@@ -244,7 +245,7 @@ LAB_1800dece7:
       else {
         lVar8 = (*pcVar4)();
         unaff_RBX = _DAT_180c86938;
-        unaff_R14 = _DAT_180c86920;
+        unaff_R14 = SYSTEM_STATE_MANAGER;
       }
       *(int32_t *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d7c) = *(int32_t *)(lVar8 + 0x3f38);
       goto LAB_1800df320;
@@ -419,7 +420,7 @@ void FUN_1800df203(longlong *param_1)
   else {
     lVar14 = (**(code **)(*param_1 + 0xb8))();
     unaff_RBX = _DAT_180c86938;
-    unaff_R14 = _DAT_180c86920;
+    unaff_R14 = SYSTEM_STATE_MANAGER;
   }
   if (lVar14 == 0) {
     *(int32_t *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d5c) = 0x43960000;
@@ -432,7 +433,7 @@ void FUN_1800df203(longlong *param_1)
     if (pcVar10 != (code *)&unknown_var_128_ptr) {
       (*pcVar10)();
       unaff_RBX = _DAT_180c86938;
-      unaff_R14 = _DAT_180c86920;
+      unaff_R14 = SYSTEM_STATE_MANAGER;
     }
     *(int32_t *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d5c) = 0x41f00000;
     pcVar10 = *(code **)(**(longlong **)(unaff_RSI + 0x3580) + 0xb8);
@@ -442,7 +443,7 @@ void FUN_1800df203(longlong *param_1)
     else {
       lVar14 = (*pcVar10)();
       unaff_RBX = _DAT_180c86938;
-      unaff_R14 = _DAT_180c86920;
+      unaff_R14 = SYSTEM_STATE_MANAGER;
     }
     uVar12 = *(uint64_t *)(lVar14 + 0x3f44);
     lVar11 = *(longlong *)(unaff_RBX + 0x1cd8);
@@ -455,7 +456,7 @@ void FUN_1800df203(longlong *param_1)
     else {
       lVar14 = (*pcVar10)();
       unaff_RBX = _DAT_180c86938;
-      unaff_R14 = _DAT_180c86920;
+      unaff_R14 = SYSTEM_STATE_MANAGER;
     }
     *(int32_t *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d7c) = *(int32_t *)(lVar14 + 0x3f38);
   }

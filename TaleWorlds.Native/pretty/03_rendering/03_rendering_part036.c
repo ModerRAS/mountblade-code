@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part036.c - 渲染系统高级管理和初始化模块
 // 包含5个核心函数，涵盖渲染系统初始化、资源管理、场景创建、系统配置和内存清理等功能
@@ -69,7 +70,7 @@ void initialize_rendering_manager(uint64_t *render_manager)
     
     // 初始化堆栈数据
     stack_resource_handle = 0xfffffffffffffffe;
-    stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     stack_counter = 0;
     stack_manager_ptr = render_manager;
     

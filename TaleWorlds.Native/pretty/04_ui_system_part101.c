@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 //==============================================================================
 // 文件信息：04_ui_system_part101.c
@@ -357,7 +358,7 @@ void FUN_1807294f0(longlong param_1, longlong param_2, uint64_t param_3, int par
     ulonglong uStack_48;                         // 安全检查值
     
     // 安全检查：栈保护机制
-    uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
+    uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_68;
     
     // 获取系统配置信息
     iVar8 = *(int *)(param_1 + 0x90c);
@@ -498,7 +499,7 @@ void FUN_180729ba0(longlong param_1, longlong param_2, int param_3)
     ulonglong uStack_38;                        // 安全检查值
     
     // 安全检查：栈保护机制
-    uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_a8;
+    uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_a8;
     
     // 初始化变量
     lVar4 = 0;
@@ -912,7 +913,7 @@ void FUN_180729e70(longlong param_1, uint64_t param_2, uint64_t param_3)
     ulonglong uStack_48;                        // 安全检查值
     
     // 安全检查：栈保护机制
-    uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_108;
+    uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_108;
     
     // 计算内存分配需求
     uVar1 = (longlong)*(int *)(param_1 + 0x920) * 2;

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // ============================================================================
 // 99_part_13_part045.c - 系统高级数据处理和资源管理模块
@@ -206,7 +207,7 @@ void FUN_1808c3980(longlong *param_1, uint64_t *param_2)
     ulonglong uStack_30;
     
     // 初始化栈安全检查
-    uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
+    uStack_30 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_c8;
     
     // 检查数据结构参数
     if (param_1[0xb] != 0) {

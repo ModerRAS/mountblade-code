@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part247.c - 核心引擎模块第247部分
 // 本文件包含事件系统、线程安全和资源管理相关功能
@@ -498,7 +499,7 @@ void add_event_to_queue(longlong event_context, uint64_t event_data)
   ulonglong security_check;
   
   debug_handle = 0xfffffffffffffffe;
-  security_check = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  security_check = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   
   lock_address = event_context + 0x318;
   lock_result = _Mtx_lock(lock_address);
@@ -651,7 +652,7 @@ void initialize_event_system_config(longlong event_context, uint64_t *config_dat
   int32_t u_stack_24;
   ulonglong security_check;
   
-  security_check = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  security_check = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   
   // 检查事件系统是否已禁用
   if (*(char *)(event_context + 0x210) == '\0') {
@@ -829,7 +830,7 @@ void update_event_rendering_params(longlong event_context)
   int32_t u_stack_24;
   ulonglong security_check;
   
-  security_check = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  security_check = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   
   // 获取当前渲染参数
   FUN_1808452a0(*(uint64_t *)(event_context + 0x368), &render_params[3], &render_params[2]);

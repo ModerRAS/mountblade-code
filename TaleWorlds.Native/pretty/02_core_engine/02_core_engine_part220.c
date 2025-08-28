@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part220.c - 核心引擎模块第220部分
 // 本文件包含8个函数，主要负责资源管理、内存清理和渲染相关操作

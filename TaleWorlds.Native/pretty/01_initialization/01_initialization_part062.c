@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 01_initialization_part062.c - 初始化模块第62部分
 // 包含16个函数，主要处理内存分配、数据复制和初始化操作
@@ -939,7 +940,7 @@ void process_data_with_buffers(uint64_t param_1, longlong param_2, uint64_t para
   ulonglong stack_hash;
   
   stack_param = 0xfffffffffffffffe;
-  stack_hash = _DAT_180bf00a8 ^ (ulonglong)stack_data;
+  stack_hash = GET_SECURITY_COOKIE() ^ (ulonglong)stack_data;
   
   // 更新数据指针
   *(longlong *)(param_4 + 8) = *(longlong *)(param_4 + 8) + 4;

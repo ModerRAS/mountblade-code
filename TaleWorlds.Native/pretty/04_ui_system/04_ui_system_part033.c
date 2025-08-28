@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 04_ui_system_part033.c - UI系统高级路径搜索和优化模块
 // 包含5个核心函数，涵盖UI系统高级路径搜索、坐标优化、移动处理、参数计算和高级搜索等功能
@@ -74,7 +75,7 @@ void ui_system_advanced_path_searcher(longlong ui_context, longlong render_param
     ulonglong stack_guard;
     
     // 栈保护机制初始化
-    stack_guard = _DAT_180bf00a8 ^ (ulonglong)stack_backup;
+    stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)stack_backup;
     
     // 获取UI系统参数
     iteration_count = *(int *)(ui_context + 0x23d8);
@@ -466,7 +467,7 @@ void ui_system_movement_processor(longlong ui_context, longlong render_params, l
     ulonglong stack_guard;
     
     // 栈保护机制初始化
-    stack_guard = _DAT_180bf00a8 ^ (ulonglong)stack_backup;
+    stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)stack_backup;
     
     // 获取UI系统参数
     best_cost = *(uint *)(ui_context + 0x1e70);
@@ -659,7 +660,7 @@ void ui_system_advanced_movement_processor(longlong ui_context, longlong render_
     ulonglong stack_guard;
     
     // 栈保护机制初始化
-    stack_guard = _DAT_180bf00a8 ^ (ulonglong)stack_backup;
+    stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)stack_backup;
     
     // 获取UI系统参数
     target_x = *source_coords;
@@ -876,7 +877,7 @@ void ui_system_path_searcher_optimized(longlong ui_context, longlong render_para
     ulonglong stack_guard;
     
     // 栈保护机制初始化
-    stack_guard = _DAT_180bf00a8 ^ (ulonglong)stack_backup;
+    stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)stack_backup;
     
     // 获取UI系统参数
     line_width = *(int *)(ui_context + 0x1e70);

@@ -426,7 +426,7 @@ uint8_t SystemStateProcessor(longlong param_1)
     
     // 系统栈初始化
     uStack_e0 = 0xfffffffffffffffe;
-    uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_158;
+    uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_158;
     
     // 系统状态验证
     if ((*(char *)(param_1 + 0x9a31) != '\0') && (*(longlong *)(param_1 + 0x99b8) != 0)) {
@@ -548,7 +548,7 @@ uint8_t SystemConfigProcessor(longlong param_1)
     
     // 配置栈初始化
     uStack_c8 = 0xfffffffffffffffe;
-    uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_118;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_118;
     
     // 配置状态验证
     if (((*(byte *)(param_1 + 4) & 0x80) != 0) && (*(longlong *)(param_1 + 0x96a8) == 0)) {

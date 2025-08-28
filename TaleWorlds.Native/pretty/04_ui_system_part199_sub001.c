@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part199_sub001.c - 2 个函数
 
@@ -52,7 +53,7 @@ void FUN_180784d10(longlong param_1,int *param_2,byte param_3,char param_4)
   float afStack_308 [152];
   ulonglong uStack_a8;
   
-  uStack_a8 = _DAT_180bf00a8 ^ (ulonglong)auStack_378;
+  uStack_a8 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_378;
   param_3 = param_3 ^ 1;
   piVar1 = (int *)(param_1 + 0x278);
   bVar18 = param_3;
@@ -153,7 +154,7 @@ LAB_180784edc:
         fStack_348 = (float)CONCAT31(fStack_348._1_3_,1);
         uStack_350 = (float *)((ulonglong)uStack_350 & 0xffffffffffffff00);
         fStack_358 = 0.0;
-        lVar8 = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0xc0,&unknown_var_9488_ptr,0x5d7);
+        lVar8 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0xc0,&unknown_var_9488_ptr,0x5d7);
         *(longlong *)(param_1 + 0x270) = lVar8;
         if (lVar8 == 0) goto LAB_180785945;
       }
@@ -203,7 +204,7 @@ LAB_180784edc:
         fStack_348 = (float)CONCAT31(fStack_348._1_3_,1);
         uStack_350 = (float *)((ulonglong)uStack_350 & 0xffffffffffffff00);
         fStack_358 = 0.0;
-        lVar8 = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0xc0,&unknown_var_9488_ptr);
+        lVar8 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0xc0,&unknown_var_9488_ptr);
         *(longlong *)(param_1 + 0x260) = lVar8;
         if (lVar8 == 0) goto LAB_180785945;
       }
@@ -225,7 +226,7 @@ LAB_180784edc:
         fStack_348 = (float)CONCAT31(fStack_348._1_3_,1);
         uStack_350 = (float *)((ulonglong)uStack_350 & 0xffffffffffffff00);
         fStack_358 = 0.0;
-        lVar9 = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0xc0,&unknown_var_9488_ptr,0x60c);
+        lVar9 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0xc0,&unknown_var_9488_ptr,0x60c);
         *(longlong *)(param_1 + 0x268) = lVar9;
         if (lVar9 == 0) goto LAB_180785945;
         lVar8 = *(longlong *)(param_1 + 600);

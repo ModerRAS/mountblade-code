@@ -90,7 +90,7 @@ void RenderingSystem_ProcessResourceFile(longlong render_context, longlong outpu
   ulonglong uStack_40;
   
   uStack_78 = 0xfffffffffffffffe;
-  uStack_40 = _DAT_180bf00a8 ^ (ulonglong)auStack_128;
+  uStack_40 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_128;
   iVar10 = 0;
   aiStack_108[0] = 0;
   fread(aiStack_108,4,1,*(uint64_t *)(output_handle + 8));
@@ -191,7 +191,7 @@ void RenderingSystem_ProcessResourceFile(longlong render_context, longlong outpu
           fclose(lVar1);
           lStack_a8 = 0;
           LOCK();
-          _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+          SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
           UNLOCK();
         }
         if (((char)uStack_c0 == '\0') && (alStack_d8[0] != 0)) {
@@ -276,7 +276,7 @@ void RenderingSystem_ExportResourceData(uint64_t render_context, longlong output
   ulonglong uStack_40;
   
   uStack_68 = 0xfffffffffffffffe;
-  uStack_40 = _DAT_180bf00a8 ^ (ulonglong)auStack_138;
+  uStack_40 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_138;
   aiStack_108[0] = 0;
   lStack_80 = resource_data;
   fread(aiStack_108,4,1,*(uint64_t *)(output_handle + 8));
@@ -609,7 +609,7 @@ LAB_180330378:
       fclose(lStack_80);
       lStack_80 = 0;
       LOCK();
-      _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+      SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
       UNLOCK();
     }
     if (lStack_c0 != 0) {
@@ -632,7 +632,7 @@ LAB_180330378:
       fclose(lStack_80);
       lStack_80 = 0;
       LOCK();
-      _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+      SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
       UNLOCK();
     }
     puStack_e8 = &unknown_var_3456_ptr;
@@ -908,7 +908,7 @@ LAB_18033084a:
       fclose(lStack_b0);
       lStack_b0 = 0;
       LOCK();
-      _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+      SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
       UNLOCK();
       lVar7 = lStack_108;
     }
@@ -924,7 +924,7 @@ LAB_18033084a:
       fclose(lStack_b0);
       lStack_b0 = 0;
       LOCK();
-      _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+      SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
       UNLOCK();
       lVar7 = lStack_108;
     }

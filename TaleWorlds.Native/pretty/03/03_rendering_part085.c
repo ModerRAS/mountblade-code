@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * 渲染系统高级资源管理和数据处理模块
@@ -329,7 +330,7 @@ void rendering_system_initialize_state(longlong render_context)
   
   // 设置安全栈检查
   security_cookie = 0xfffffffffffffffe;
-  security_hash = _DAT_180bf00a8 ^ (ulonglong)security_stack_1;
+  security_hash = GET_SECURITY_COOKIE() ^ (ulonglong)security_stack_1;
   
   // 获取上下文数据
   context_data = *(longlong *)(render_context + 0x9650);
@@ -435,7 +436,7 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
   
   // 设置安全栈检查
   resource_data_10 = 0xfffffffffffffffe;
-  security_hash = _DAT_180bf00a8 ^ (ulonglong)security_stack;
+  security_hash = GET_SECURITY_COOKIE() ^ (ulonglong)security_stack;
   
   // 设置渲染数据
   render_buffer = render_data;

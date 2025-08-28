@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * 02_core_engine_part045.c - 核心引擎模块 (28个函数)

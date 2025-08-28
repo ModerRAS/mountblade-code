@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part251.c - 核心引擎数据结构和内存管理模块
 
@@ -32,13 +33,13 @@ void process_engine_component_initialization(longlong *component_context)
   }
   
   engine_data = component_context[0x60];
-  stack_ulonglong_1 = _DAT_180bf00a8 ^ (ulonglong)temp_array_1;
+  stack_ulonglong_1 = GET_SECURITY_COOKIE() ^ (ulonglong)temp_array_1;
   stack_long_1 = 0;
   index = FUN_180754f10(engine_data,&stack_8_1,&stack_long_1);
   
   // 检查错误状态
   if (((index != 0) || (index = func_0x000180753860(stack_8_1), index != 0)) &&
-     ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
+     ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
     temp_ptr_1 = temp_array_2;
     temp_array_2[0] = 0;
     // 处理错误情况
@@ -278,7 +279,7 @@ void process_engine_components(longlong component_context)
   ulonglong stack_ulonglong_1;
   
   temp_8_2 = 0xfffffffffffffffe;
-  stack_ulonglong_1 = _DAT_180bf00a8 ^ (ulonglong)temp_array_1;
+  stack_ulonglong_1 = GET_SECURITY_COOKIE() ^ (ulonglong)temp_array_1;
   
   // 初始化组件处理
   FUN_1801299b0(&unknown_var_5280_ptr,0,0);

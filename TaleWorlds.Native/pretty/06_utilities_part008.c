@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // ============================================================================
 // 工具系统高级内存管理和数据处理模块 - 06_utilities_part008.c (美化版本)
@@ -269,7 +270,7 @@ void UtilitiesProcessData(UtilitiesHandle systemHandle, UtilitiesDataPtr dataPtr
     ulonglong stackGuard;               // 栈保护值
     
     // 初始化栈保护
-    stackGuard = _DAT_180bf00a8 ^ (ulonglong)stackBuffer_738;
+    stackGuard = GET_SECURITY_COOKIE() ^ (ulonglong)stackBuffer_738;
     
     // 获取当前索引和设置结果指针
     currentIndex = *(int *)(systemHandle + UTILITIES_LIMIT_OFFSET);

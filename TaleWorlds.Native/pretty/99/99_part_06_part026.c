@@ -254,7 +254,7 @@ void PrefabConfigManager(void* prefab_data, void* config_data, uint64_t config_f
 {
     uint64_t config_stack[4];
     config_stack[0] = 0xfffffffffffffffe;
-    config_stack[1] = _DAT_180bf00a8 ^ (uint64_t)config_data;
+    config_stack[1] = GET_SECURITY_COOKIE() ^ (uint64_t)config_data;
     
     char* config_string = NULL;
     long long config_offset = (long long)config_data;

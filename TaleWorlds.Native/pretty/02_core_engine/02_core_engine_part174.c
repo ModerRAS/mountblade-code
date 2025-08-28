@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part174.c - 核心引擎模块第174部分
 // 包含15个函数：数据处理、内存管理、资源清理、哈希表操作等功能

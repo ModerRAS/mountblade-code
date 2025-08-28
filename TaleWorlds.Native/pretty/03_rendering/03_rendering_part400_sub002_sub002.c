@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part400_sub002_sub002.c - 渲染系统高级纹理坐标和UV映射处理器模块
 // 包含1个核心函数，涵盖渲染系统高级纹理坐标处理、UV映射计算、纹理采样优化、
@@ -220,7 +221,7 @@ void RenderingSystem_AdvancedTextureCoordinateAndUVMappingProcessor(longlong par
     int8_t texture_proc_temp4[64];   // 纹理处理临时变量4
     
     // 初始化栈控制字
-    stack_temp24 = _DAT_180bf00a8 ^ (ulonglong)stack_temp1;
+    stack_temp24 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_temp1;
     
     // 开始纹理坐标处理
     base_texture_coord = *param_3;

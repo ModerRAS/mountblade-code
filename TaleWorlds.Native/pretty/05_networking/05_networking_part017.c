@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * @file 05_networking_part017.c
@@ -130,7 +131,7 @@ void network_connection_handler(uint64_t *param_1, uint64_t param_2, longlong pa
     ulonglong uStack_50;
     
     // 初始化栈保护和参数
-    uStack_50 = _DAT_180bf00a8 ^ (ulonglong)auStack_148;
+    uStack_50 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_148;
     lStack_c0 = param_3;
     puStack_a8 = param_1;
     puStack_80 = param_4;

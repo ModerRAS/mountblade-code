@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 05_networking_part047.c - 网络系统数据结构处理模块
 // 
@@ -296,7 +297,7 @@ uint64_t FUN_180865c20(longlong param_1, longlong param_2, uint64_t param_3)
     
     // 分配处理缓冲区
     puVar6 = (int32_t *)
-             FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 0x39, &unknown_var_3024_ptr, 0x322, 0);
+             FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x39, &unknown_var_3024_ptr, 0x322, 0);
     if (puVar6 == (int32_t *)0x0) {
         uVar7 = 0x26;
     }
@@ -444,7 +445,7 @@ uint64_t FUN_180865ec0(longlong *param_1)
             return 0x1c;
         }
         if ((0 < (int)uVar5) && (*param_1 != 0)) {
-            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
+            FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
         }
         *param_1 = 0;
         *(int32_t *)((longlong)param_1 + 0xc) = 0;
@@ -557,7 +558,7 @@ uint64_t FUN_180865fc0(longlong param_1, int16_t param_2, uint64_t param_3, char
     
     // 分配处理缓冲区
     puVar6 = (int32_t *)
-             FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 0x39, &unknown_var_3024_ptr, 0x249,
+             FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x39, &unknown_var_3024_ptr, 0x249,
                            uVar11 & 0xffffffff00000000);
     if (puVar6 == (int32_t *)0x0) {
         return 0x26;
@@ -673,7 +674,7 @@ uint64_t FUN_1808661e0(longlong *param_1, longlong param_2, int param_3)
                 return 0x1c;
             }
             if ((0 < (int)uVar5) && (*param_1 != 0)) {
-                FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
+                FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
             }
             *param_1 = 0;
             *(int32_t *)((longlong)param_1 + 0xc) = 0;
@@ -729,7 +730,7 @@ uint64_t FUN_180866340(longlong param_1, uint64_t *param_2)
         *(int *)(param_2 + 1) = *(int *)(param_2 + 1) + 1;
         uVar2 = (*(code *)**(uint64_t **)*param_2)((uint64_t *)*param_2, uVar1, uVar2);
         if ((int)uVar2 == 0) {
-            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), **(uint64_t **)(param_1 + 0x28),
+            FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), **(uint64_t **)(param_1 + 0x28),
                           &unknown_var_3024_ptr, 0x1bf, 1);
         }
     }
@@ -995,7 +996,7 @@ uint64_t FUN_180866ba0(longlong param_1, uint64_t param_2)
     
     // 分配处理缓冲区
     puVar2 = (int32_t *)
-             FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 0x39, &unknown_var_3024_ptr, 0x303, 0);
+             FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x39, &unknown_var_3024_ptr, 0x303, 0);
     if (puVar2 == (int32_t *)0x0) {
         return 0x26;
     }
@@ -1053,7 +1054,7 @@ void FUN_180866550(uint64_t param_1, longlong param_2)
     int8_t auStack_268 [560];
     ulonglong uStack_38;
     
-    uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_268;
+    uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_268;
     plVar1 = (longlong *)func_0x00018084c030(*(int32_t *)(param_2 + 0xc));
     if (plVar1 != (longlong *)0x0) {
         uVar2 = (**(code **)(*plVar1 + 8))(plVar1);

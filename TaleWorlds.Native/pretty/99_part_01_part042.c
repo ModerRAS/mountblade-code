@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_01_part042.c - 5 个函数
 
@@ -233,7 +234,7 @@ void FUN_1800cbf90(longlong param_1,longlong param_2)
   lVar11 = _DAT_180c86938;
   cVar8 = system_debug_flag;
   uStack_c8 = 0xfffffffffffffffe;
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_218;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_218;
   lVar16 = 0;
   uStack_1e8 = 0;
   *(float *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x17ac) = (float)(system_debug_flag == '\0');
@@ -290,10 +291,10 @@ void FUN_1800cbf90(longlong param_1,longlong param_2)
   *(int32_t *)(lVar13 + 0x1664) = uVar17;
   *(int32_t *)(lVar13 + 0x1668) = 0;
   *(int32_t *)(lVar13 + 0x166c) = 0;
-  lVar10 = _DAT_180c86920;
+  lVar10 = SYSTEM_STATE_MANAGER;
   lVar13 = *(longlong *)(lVar11 + 0x1cd8);
   if ((*(byte *)(param_2 + 4) & 0x40) == 0) {
-    auVar19._0_4_ = *(float *)(_DAT_180c86920 + 0x1880);
+    auVar19._0_4_ = *(float *)(SYSTEM_STATE_MANAGER + 0x1880);
   }
   else {
     auVar19._0_4_ = 1.0;
@@ -715,7 +716,7 @@ LAB_1800cc2f2:
   lVar11 = *(longlong *)(param_2 + 0x99d0);
   if ((((lVar11 == 0) || (*(longlong *)(lVar11 + 0x58) - *(longlong *)(lVar11 + 0x50) >> 3 == 0)) ||
       (lVar11 = *(longlong *)(*(longlong *)(*(longlong *)(lVar11 + 0x58) + -8) + 0x428), lVar11 == 0
-      )) || (*(int *)(_DAT_180c86920 + 0xc40) == 0)) {
+      )) || (*(int *)(SYSTEM_STATE_MANAGER + 0xc40) == 0)) {
     lVar13 = FUN_1800be610();
     lVar11 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if (*(char *)(lVar13 + 900) == '\0') {

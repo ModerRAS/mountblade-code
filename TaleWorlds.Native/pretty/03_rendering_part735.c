@@ -68,7 +68,7 @@ extern unsigned char global_var_8608_ptr[];
 extern unsigned long long _DAT_180c0c218;
 extern unsigned long long _DAT_180c0c21c;
 extern unsigned long long _DAT_180c0c210;
-extern unsigned long long _DAT_180bf00a8;
+extern unsigned long long GET_SECURITY_COOKIE();
 extern unsigned char _DAT_180d9e5d0[16];
 extern unsigned char _DAT_180d9e5c0[16];
 extern unsigned char _DAT_180d9e5f0[16];
@@ -687,7 +687,7 @@ void RenderingSystem_ImageTransformer(longlong param_1, unsigned long long param
   int8_t uStack_39;
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_68;
   lVar2 = (longlong)param_6;
   bVar1 = *(byte *)(*(longlong *)(param_1 + 0xf00) + 1);
   uStack_48 = *param_4;
@@ -748,7 +748,7 @@ void RenderingSystem_PixelProcessor(longlong param_1, unsigned long long param_2
   int8_t auStack_28 [16];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_48;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_48;
   bVar1 = **(byte **)(param_1 + 0xf00);
   lVar3 = 0;
   do {

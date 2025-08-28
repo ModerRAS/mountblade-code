@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * @file 99_part_01_part004.c
@@ -1087,7 +1088,7 @@ void CharacterEncodingProcessor(longlong param_1,int param_2)
   int8_t auStack_30 [32];
   ulonglong uStack_10;
   
-  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
+  uStack_10 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_88;
   if (param_2 != -1) {
     uVar1 = **(ulonglong **)(param_1 + 0x40);
     cVar7 = (char)param_2;
@@ -1248,7 +1249,7 @@ void BufferCleaner(longlong param_1)
   int8_t auStack_30 [32];
   ulonglong uStack_10;
   
-  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
+  uStack_10 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_68;
   if (((*(longlong *)(param_1 + 0x68) != 0) && (*(char *)(param_1 + 0x71) != '\0')) &&
      (iVar1 = FUN_1800a16b0(param_1,0xffffffff), iVar1 != -1)) {
     plStack_48 = &lStack_38;

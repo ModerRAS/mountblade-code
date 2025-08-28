@@ -99,7 +99,7 @@ void rendering_system_advanced_initialize(uint64_t *render_context, int init_par
   
   // 初始化堆栈变量
   local_stack_var_1 = 0xfffffffffffffffe;
-  local_stack_var_4 = _DAT_180bf00a8 ^ (ulonglong)local_stack_array_1;
+  local_stack_var_4 = GET_SECURITY_COOKIE() ^ (ulonglong)local_stack_array_1;
   
   // 设置渲染上下文指针
   *render_context = &unknown_var_3952_ptr;

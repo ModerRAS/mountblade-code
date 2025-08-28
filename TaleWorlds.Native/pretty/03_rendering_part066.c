@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part066.c - 21 个函数
 
@@ -16,9 +17,9 @@ void FUN_180303880(longlong param_1)
   
   if (*(longlong *)(param_1 + 0x6d0) != 0) {
     FUN_1801aa3d0();
-    if (((*(int *)(_DAT_180c86920 + 0xcb4) != *(int *)(_DAT_180c86920 + 0xcb0)) ||
-        (*(int *)(_DAT_180c86920 + 0xd24) != *(int *)(_DAT_180c86920 + 0xd20))) ||
-       (*(int *)(_DAT_180c86920 + 0xc44) != *(int *)(_DAT_180c86920 + 0xc40))) {
+    if (((*(int *)(SYSTEM_STATE_MANAGER + 0xcb4) != *(int *)(SYSTEM_STATE_MANAGER + 0xcb0)) ||
+        (*(int *)(SYSTEM_STATE_MANAGER + 0xd24) != *(int *)(SYSTEM_STATE_MANAGER + 0xd20))) ||
+       (*(int *)(SYSTEM_STATE_MANAGER + 0xc44) != *(int *)(SYSTEM_STATE_MANAGER + 0xc40))) {
       FUN_180383450(*(longlong *)(param_1 + 0x6d0) + 0x120,param_1,*(uint64_t *)(param_1 + 0x660))
       ;
       FUN_1802e4490(param_1 + 0x560);
@@ -29,8 +30,8 @@ void FUN_180303880(longlong param_1)
       if (lVar1 != 0) {
         iVar3 = 10;
         puVar2 = (int8_t *)(lVar1 + 9);
-        fVar4 = (float)((int)(*(int *)(_DAT_180c86920 + 0xe0) +
-                             (*(int *)(_DAT_180c86920 + 0xe0) >> 0x1f & 3U)) >> 2);
+        fVar4 = (float)((int)(*(int *)(SYSTEM_STATE_MANAGER + 0xe0) +
+                             (*(int *)(SYSTEM_STATE_MANAGER + 0xe0) >> 0x1f & 3U)) >> 2);
         fVar7 = fVar4 * 112.0 + 208.0;
         fVar6 = fVar4 * 56.0 + 104.0;
         do {

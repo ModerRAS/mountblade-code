@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part266.c - 核心引擎模块第266部分
 // 本文件包含场景管理、材质处理和哈希计算相关功能
@@ -45,7 +46,7 @@ void initialize_scene_materials(longlong scene_context)
   ulonglong stack_guard_value;
   
   guard_value1 = 0xfffffffffffffffe;
-  stack_guard_value = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
+  stack_guard_value = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer1;
   material_index = 0;
   *(uint64_t *)(scene_context + 0x140) = 0;
   material_count = (int)((*(longlong *)(scene_context + 0x370) - *(longlong *)(scene_context + 0x368)) / 0x58);
@@ -307,7 +308,7 @@ void switch_scene_materials(longlong scene_context,uint64_t new_scene,longlong s
   ulonglong stack_guard;
   
   texture_system = 0xfffffffffffffffe;
-  stack_guard = _DAT_180bf00a8 ^ (ulonglong)material_buffer;
+  stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)material_buffer;
   texture_offset = find_scene_material(*(uint64_t *)(scene_context + 0xa8),&system_memory_1228,scene_data + 0x20);
   if (texture_offset == 0) {
     material_list = *(longlong **)(scene_context + 0x1e0);

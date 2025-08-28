@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part008_sub002_sub002.c - UI系统高级数据处理和变换模块
 // 本模块包含7个核心函数，涵盖UI系统数据处理、矩阵变换、优化处理、高级处理、验证、最终处理和布尔检查等功能

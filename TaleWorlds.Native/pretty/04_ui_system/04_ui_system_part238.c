@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // =============================================================================
 // UI系统高级控件和事件处理模块
@@ -358,11 +359,11 @@ void UIControlAdvancedProcessor(UISystemContext* param_1, ulonglong param_2) {
                             // 分配渲染资源
                             current_value = (uint)*(ushort*)((longlong)param_1 + -0x2d) * *(int*)((UIContext)param_1 + 0x748);
                             *(int*)((UIContext)param_1 + 0x74c) = current_value;
-                            resource_handle = FUN_180741d80(*(void*)(_DAT_180be12f0 + 0x1a0), current_value, 0x20, &unknown_var_7648_ptr, CONCAT44(operation_result, 0x1bb));
+                            resource_handle = FUN_180741d80(*(void*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), current_value, 0x20, &unknown_var_7648_ptr, CONCAT44(operation_result, 0x1bb));
                             *(longlong*)((UIContext)param_1 + 0x740) = resource_handle;
                             
                             if (resource_handle != 0) {
-                                context_data = (void*)FUN_180741e10(*(void*)(_DAT_180be12f0 + 0x1a0), 0x10, &unknown_var_7648_ptr, 0x1d2, resource_flags & 0xffffffff00000000);
+                                context_data = (void*)FUN_180741e10(*(void*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x10, &unknown_var_7648_ptr, 0x1d2, resource_flags & 0xffffffff00000000);
                                 if (context_data != (void*)0x0) {
                                     *(uint*)(context_data + 1) = 0;
                                     *(void**)context_data = &unknown_var_7536_ptr;
@@ -549,11 +550,11 @@ void UIEventProcessor(ulonglong param_1, void* param_2, UISystemContext* param_3
                 // 执行事件回调
                 current_value = (uint)*(ushort*)((longlong)param_2 + -0x2d) * *(int*)((UIContext)param_2 + 0x748);
                 *(int*)((UIContext)param_2 + 0x74c) = current_value;
-                resource_handle = FUN_180741d80(*(void*)(_DAT_180be12f0 + 0x1a0), current_value, 0x20, &unknown_var_7648_ptr, CONCAT44(operation_result, 0x1bb));
+                resource_handle = FUN_180741d80(*(void*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), current_value, 0x20, &unknown_var_7648_ptr, CONCAT44(operation_result, 0x1bb));
                 *(longlong*)((UIContext)param_2 + 0x740) = resource_handle;
                 
                 if (resource_handle != 0) {
-                    context_data = (void*)FUN_180741e10(*(void*)(_DAT_180be12f0 + 0x1a0), 0x10, &unknown_var_7648_ptr, 0x1d2, param_1 & 0xffffffff);
+                    context_data = (void*)FUN_180741e10(*(void*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x10, &unknown_var_7648_ptr, 0x1d2, param_1 & 0xffffffff);
                     if (context_data != (void*)0x0) {
                         *(int*)(context_data + 1) = (int)param_1;
                         *(void**)context_data = &unknown_var_7536_ptr;

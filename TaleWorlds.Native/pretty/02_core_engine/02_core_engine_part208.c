@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part208.c - 核心引擎模块第208部分
 // 本文件包含8个函数，主要处理内存管理、数据结构和资源释放等功能
@@ -260,7 +261,7 @@ void parse_texture_data_and_create(longlong texture_params,longlong data_stream)
   ulonglong checksum;
   
   stream_position = 0xfffffffffffffffe;
-  checksum = _DAT_180bf00a8 ^ (ulonglong)name_buffer;
+  checksum = GET_SECURITY_COOKIE() ^ (ulonglong)name_buffer;
   *(longlong *)(data_stream + 8) = *(longlong *)(data_stream + 8) + 4;
   texture_quality = 0;
   texture_data_ptr = &unknown_var_336_ptr;

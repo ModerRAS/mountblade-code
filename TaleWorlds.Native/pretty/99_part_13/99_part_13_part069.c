@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 99_part_13_part069.c - 模块99未匹配函数第13部分第69个文件 - 7个核心函数
 
@@ -31,7 +32,7 @@ void SystemResourceManager(longlong *param_1)
         if (0 < (int)param_1[0xd]) goto LAB_1808d7bbe;
         if ((0 < (int)uVar3) && (param_1[0xc] != 0)) {
                     // WARNING: Subroutine does not return
-          SystemResourceCleanup(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_1[0xc],&unknown_var_8432_ptr,0x100,1)
+          SystemResourceCleanup(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1[0xc],&unknown_var_8432_ptr,0x100,1)
           ;
         }
         param_1[0xc] = 0;
@@ -92,7 +93,7 @@ LAB_1808d7a63:
     plVar5[1] = (longlong)plVar5;
     *plVar5 = (longlong)plVar5;
                     // WARNING: Subroutine does not return
-    SystemResourceCleanup(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar5,&unknown_var_7344_ptr,0x18d,1);
+    SystemResourceCleanup(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar5,&unknown_var_7344_ptr,0x18d,1);
   }
   if (plVar2 == plVar4) {
     plVar2 = (longlong *)0x0;
@@ -109,7 +110,7 @@ LAB_1808d7a63:
   plVar4[1] = (longlong)plVar4;
   *plVar4 = (longlong)plVar4;
                     // WARNING: Subroutine does not return
-  SystemResourceCleanup(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar4,&unknown_var_7344_ptr,0xc0,1);
+  SystemResourceCleanup(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar4,&unknown_var_7344_ptr,0xc0,1);
 }
 
 /**
@@ -328,7 +329,7 @@ LAB_1808d7f9e:
   }
 LAB_1808d7fa7:
   plVar4 = (longlong *)
-           SystemMemoryAllocate(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x20,&unknown_var_7344_ptr,300,0,0,1);
+           SystemMemoryAllocate(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&unknown_var_7344_ptr,300,0,0,1);
   if (plVar4 != (longlong *)0x0) {
     *plVar4 = (longlong)plVar4;
     plVar4[1] = (longlong)plVar4;
@@ -381,7 +382,7 @@ int SystemObjectCreator(uint64_t *param_1,longlong param_2,uint64_t param_3,long
   puVar5 = (uint64_t *)0x0;
   if (puVar1 == (uint64_t *)0x0) {
     puVar1 = (uint64_t *)
-             SystemMemoryAllocate(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x30,&unknown_var_7344_ptr,0xfd,0,0,1);
+             SystemMemoryAllocate(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x30,&unknown_var_7344_ptr,0xfd,0,0,1);
     if (puVar1 == (uint64_t *)0x0) {
       iVar6 = 0x26;
       puVar5 = puVar3;
@@ -425,7 +426,7 @@ int SystemObjectCreator(uint64_t *param_1,longlong param_2,uint64_t param_3,long
   }
   puVar5 = puVar3;
   puVar3 = (uint64_t *)
-           SystemMemoryAllocate(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x88,&unknown_var_7344_ptr,0x1a4,0,0,1);
+           SystemMemoryAllocate(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x88,&unknown_var_7344_ptr,0x1a4,0,0,1);
   if (puVar3 == (uint64_t *)0x0) {
     iVar6 = 0x26;
   }
@@ -701,7 +702,7 @@ LAB_1808d856d:
           plVar2[1] = (longlong)plVar2;
           *plVar2 = (longlong)plVar2;
                     // WARNING: Subroutine does not return
-          SystemResourceCleanup(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar2,&unknown_var_1696_ptr,0xe1,1);
+          SystemResourceCleanup(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar2,&unknown_var_1696_ptr,0xe1,1);
         }
         uVar4 = SystemObjectShutdown(*(uint64_t *)(param_1 + 0x50));
       } while ((int)uVar4 == 0);
@@ -774,7 +775,7 @@ LAB_1808d856d:
         plVar2[1] = (longlong)plVar2;
         *plVar2 = (longlong)plVar2;
                     // WARNING: Subroutine does not return
-        SystemResourceCleanup(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar2,&unknown_var_1696_ptr,0xe1,1);
+        SystemResourceCleanup(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar2,&unknown_var_1696_ptr,0xe1,1);
       }
       uVar4 = SystemObjectShutdown(*(uint64_t *)(unaff_RSI + 0x50));
     } while ((int)uVar4 == 0);

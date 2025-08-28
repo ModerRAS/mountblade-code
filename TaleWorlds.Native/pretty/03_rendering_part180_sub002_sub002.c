@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part180_sub002_sub002.c - 1 个函数
 
@@ -434,7 +435,7 @@ LAB_18037624d:
         fVar30 = SQRT(fVar34 * fVar34 + fVar30 * fVar30 + fVar32 * fVar32) -
                  *(float *)(lVar28 + 0x48);
         if (((cStack0000000000000074 == '\0') || (fVar30 <= unaff_XMM15_Da)) &&
-           ((((-1 < *(int *)(in_stack_00000058 + 0x60) || (0 < *(int *)(_DAT_180c86920 + 0xe0))) ||
+           ((((-1 < *(int *)(in_stack_00000058 + 0x60) || (0 < *(int *)(SYSTEM_STATE_MANAGER + 0xe0))) ||
              (fVar30 <= 120.0)) &&
             (iVar24 = FUN_1801b8ce0(*(longlong *)(*(longlong *)(unaff_RBP + 0x290) + 0x2148) +
                                     0x2998,*(longlong *)(unaff_RBP + -0x78) + 0x30,lVar27 + 0x4c,

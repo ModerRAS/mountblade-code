@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part087.c - 4 个函数
 
@@ -71,7 +72,7 @@ void FUN_1803198f0(uint64_t param_1,longlong param_2,int param_3,int param_4,int
   ulonglong uStack_80;
   
   uStack_178 = 0xfffffffffffffffe;
-  uStack_80 = _DAT_180bf00a8 ^ (ulonglong)auStack_228;
+  uStack_80 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_228;
   FUN_1802c22a0(auStack_1f8,&unknown_var_6264_ptr);
   lVar3 = _DAT_180c86938;
   iVar5 = 0x80 >> ((byte)param_3 & 0x1f);
@@ -324,7 +325,7 @@ void FUN_18031a020(uint64_t *param_1,longlong param_2,int32_t param_3)
   ulonglong uStack_48;
   
   uStack_f8 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
   uStack_138 = 0;
   uVar1 = 0x80;
   iVar4 = -1;
@@ -447,7 +448,7 @@ void FUN_18031a240(uint64_t *param_1,int32_t param_2)
   ulonglong uStack_38;
   
   uStack_c0 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_f8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_f8;
   uStack_c8 = 0;
   pfStack_a8 = (float *)0x0;
   uStack_a0 = 0;

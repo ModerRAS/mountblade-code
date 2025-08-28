@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part014.c - 渲染系统相关函数
 // 本文件包含3个函数，主要用于渲染对象的管理和变换操作
@@ -139,7 +140,7 @@ void perform_render_transform(uint64_t *transform_matrix, longlong transform_typ
   float transform_result[4];
   
   // 栈保护检查
-  stack_data[0] = _DAT_180bf00a8 ^ (ulonglong)stack_vars;
+  stack_data[0] = GET_SECURITY_COOKIE() ^ (ulonglong)stack_vars;
   
   // 检查渲染标志
   if (*(int *)(transform_matrix + 0x42) != 0) {

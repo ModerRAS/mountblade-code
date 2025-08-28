@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_13_part016.c - 10 个函数
 
@@ -511,7 +512,7 @@ void FUN_1808addd0(longlong *param_1)
     }
     if ((0 < (int)uVar4) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
+      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
     }
     *param_1 = 0;
     *(int32_t *)((longlong)param_1 + 0xc) = 0;
@@ -559,7 +560,7 @@ void FUN_1808ade90(longlong *param_1)
     }
     if ((0 < (int)uVar4) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
+      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
     }
     *param_1 = 0;
     *(int32_t *)((longlong)param_1 + 0xc) = 0;
@@ -635,7 +636,7 @@ void FUN_1808adf50(uint64_t *param_1)
   plVar5[1] = (longlong)plVar5;
   *plVar5 = (longlong)plVar5;
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar5,&unknown_var_976_ptr,0x30,1);
+  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar5,&unknown_var_976_ptr,0x30,1);
 }
 
 
@@ -680,7 +681,7 @@ void FUN_1808adfc0(longlong *param_1)
       plVar3[1] = (longlong)plVar3;
       *plVar3 = (longlong)plVar3;
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar3,&unknown_var_1696_ptr,0xe1,1);
+      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar3,&unknown_var_1696_ptr,0xe1,1);
     }
     plVar3 = (longlong *)*param_1;
   }
@@ -876,7 +877,7 @@ uint64_t * FUN_1808ae360(uint64_t *param_1,ulonglong param_2)
   plVar2[1] = (longlong)plVar2;
   *plVar2 = (longlong)plVar2;
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar2,&unknown_var_9872_ptr,0x166,1);
+  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar2,&unknown_var_9872_ptr,0x166,1);
 }
 
 
@@ -1067,7 +1068,7 @@ int32_t FUN_1808ae8e0(longlong param_1,int param_2,uint64_t *param_3)
   uint64_t *puVar1;
   
   puVar1 = (uint64_t *)
-           FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x20,&unknown_var_9456_ptr,0x119,0,0,1);
+           FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&unknown_var_9456_ptr,0x119,0,0,1);
   if (puVar1 == (uint64_t *)0x0) {
     return 0x26;
   }

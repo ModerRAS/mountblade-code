@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 04_ui_system_part025.c - UI系统高级处理模块
 // 包含15个核心函数，涵盖UI系统参数处理、数据转换、状态管理、线程同步、CPU特性检测等高级UI功能
@@ -74,7 +75,7 @@ void FUN_18066c7e0(longlong *param_1,longlong param_2,ulonglong param_3,longlong
   uint uStack_54;
   ulonglong uStack_50;
   
-  uStack_50 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+  uStack_50 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
   uStack_98 = (uint)param_3;
   uVar15 = param_3 & 0xffffffff;
   iStack_a8 = 0;
@@ -375,7 +376,7 @@ void FUN_18066cdf0(longlong param_1,longlong *param_2)
   uint64_t uStack_24;
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_108;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_108;
   if ((*param_2 == 0) && (*(longlong *)(param_1 + 0x1b0) != 0)) {
     uStack_d0 = 0;
     uStack_d8 = 0;
@@ -576,7 +577,7 @@ void FUN_18066d210(byte *param_1,uint param_2,longlong param_3,code *param_4,uin
   byte abStack_38 [16];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_58;
   if (param_1 < param_1 + param_2) {
     if (param_4 != (code *)0x0) {
       uVar1 = param_2;

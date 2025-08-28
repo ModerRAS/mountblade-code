@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * @file 04_ui_system_part294.c
@@ -766,7 +767,7 @@ void FUN_18082e5c0(uint64_t param_1, uint64_t param_2, int param_3, int param_4)
     ulonglong uStack_48;                // 栈变量48：异或值
     
     // 计算异或值
-    uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_f8;
+    uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_f8;
     
     // 参数验证和调整
     if (param_4 != 0) {

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part150.c - 核心引擎模块第150部分
 // 本文件包含6个函数，主要用于渲染、纹理处理和引擎状态管理
@@ -50,8 +51,8 @@ void render_shadow_mapping(void *render_context, longlong context_id, void *text
   float model_matrix[16];
   longlong uniform_buffer;
   
-  transform_matrix = _DAT_180c8a9b0;  // 全局引擎状态指针
-  render_mode = *(char *)(_DAT_180c8a9b0 + 0xc3);  // 渲染模式标志
+  transform_matrix = SYSTEM_DATA_MANAGER_A;  // 全局引擎状态指针
+  render_mode = *(char *)(SYSTEM_DATA_MANAGER_A + 0xc3);  // 渲染模式标志
   shadow_buffer = render_context;
   context_id = context_id;
   texture_data = texture_data;
@@ -65,11 +66,11 @@ void render_shadow_mapping(void *render_context, longlong context_id, void *text
     polygon_count = 2;
     index_buffer = 2;
   }
-  render_state = *(float **)(_DAT_180c8a9b0 + 0x18f8);  // 渲染状态
-  depth_value = *(float *)(_DAT_180c8a9b0 + 0x1900);  // 深度值
-  shadow_intensity = *(float *)(_DAT_180c8a9b0 + 0x1628);  // 阴影强度
-  stencil_value = *(float *)(_DAT_180c8a9b0 + 0x1904) * shadow_intensity;  // 模板值
-  shader_program = _DAT_180c8a9b0;
+  render_state = *(float **)(SYSTEM_DATA_MANAGER_A + 0x18f8);  // 渲染状态
+  depth_value = *(float *)(SYSTEM_DATA_MANAGER_A + 0x1900);  // 深度值
+  shadow_intensity = *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628);  // 阴影强度
+  stencil_value = *(float *)(SYSTEM_DATA_MANAGER_A + 0x1904) * shadow_intensity;  // 模板值
+  shader_program = SYSTEM_DATA_MANAGER_A;
   color_value = (float)func_0x000180121e20(&render_state);  // 计算颜色值
   ambient_light = 0.6;  // 环境光强度
   if (render_mode == '\0') {
@@ -318,7 +319,7 @@ LAB_180139e51:
 }
 
 
-// 全局变量: _DAT_180c8a9b0 - 主引擎状态指针
+// 全局变量: SYSTEM_DATA_MANAGER_A - 主引擎状态指针
 // 警告: 以下全局变量与其他符号地址重叠
 
 
@@ -362,10 +363,10 @@ void create_render_target(longlong engine_ptr, longlong target_ptr, int width, i
   memory_size = (longlong)width;
   if ((texture_params == (uint32_t *)0x0) || (texture_ptr = texture_params, height == 0)) {
     format_flags = FUN_1801358c0();
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
-    buffer_size = func_0x000180120ce0(0xa8,_DAT_180c8a9a8);
+    buffer_size = func_0x000180120ce0(0xa8,SYSTEM_DATA_MANAGER_B);
     if (buffer_size == 0) {
       texture_ptr = (uint32_t *)0x0;
     }
@@ -378,10 +379,10 @@ void create_render_target(longlong engine_ptr, longlong target_ptr, int width, i
   *(longlong *)(texture_ptr + 2) = target_ptr;
   if ((texture_params == (uint32_t *)0x0) || (height == 1)) {
     format_flags = FUN_1801358c0(engine_ptr);
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
-    buffer_size = func_0x000180120ce0(0xa8,_DAT_180c8a9a8);
+    buffer_size = func_0x000180120ce0(0xa8,SYSTEM_DATA_MANAGER_B);
     if (buffer_size == 0) {
       texture_params = (uint32_t *)0x0;
     }
@@ -451,7 +452,7 @@ void create_render_target(longlong engine_ptr, longlong target_ptr, int width, i
     texture_flags = *(byte *)(memory_size + 0xa0);
     if (((texture_flags & 4) != 0) && ((*(byte *)(texture_format + 0xa0) & 4) != 0)) {
       buffer_size = (longlong)*(int *)(target_ptr + 0x50);
-      texture_height = *(float *)(_DAT_180c8a9b0 + 0x163c + buffer_size * 4);
+      texture_height = *(float *)(SYSTEM_DATA_MANAGER_A + 0x163c + buffer_size * 4);
       texture_levels = *(float *)((longlong)target_data + buffer_size * 4) - 2.0;
       texture_height = texture_height + texture_height;
       if (texture_levels <= 0.0) {
@@ -538,7 +539,7 @@ LAB_18013a7a6:
 }
 
 
-// 全局变量: _DAT_180c8a9a8 - 内存管理器指针
+// 全局变量: SYSTEM_DATA_MANAGER_B - 内存管理器指针
 // 警告: 以下全局变量与其他符号地址重叠
 
 
@@ -626,23 +627,23 @@ void update_render_target(longlong engine_ptr, uint32_t *target_params, longlong
     }
     FUN_180122160(*(uint64_t *)(engine_ptr + 0x2df8),*target_texture,0);
     FUN_180136ab0(target_texture);
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
                     // 警告: 子函数不返回
-    FUN_180059ba0(target_texture,_DAT_180c8a9a8);
+    FUN_180059ba0(target_texture,SYSTEM_DATA_MANAGER_B);
   }
   FUN_180122160(*(uint64_t *)(engine_ptr + 0x2df8),*source_texture,0);
   FUN_180136ab0(source_texture);
-  if (_DAT_180c8a9b0 != 0) {
-    *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+  if (SYSTEM_DATA_MANAGER_A != 0) {
+    *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
   }
                     // 警告: 子函数不返回
-  FUN_180059ba0(source_texture,_DAT_180c8a9a8);
+  FUN_180059ba0(source_texture,SYSTEM_DATA_MANAGER_B);
 }
 
 
-// 全局变量: _DAT_180c8a9a8 - 内存管理器指针
+// 全局变量: SYSTEM_DATA_MANAGER_B - 内存管理器指针
 // 警告: 以下全局变量与其他符号地址重叠
 
 
@@ -701,7 +702,7 @@ void calculate_texture_coordinates(longlong mesh_ptr, ulonglong uv_data, ulonglo
     uv_flags = *(byte *)(vertex_format + 0xa0);
     if (((uv_flags & 4) != 0) && ((*(byte *)(texture_format + 0xa0) & 4) != 0)) {
       texture_id = (longlong)*(int *)(mesh_ptr + 0x50);
-      texture_scale = *(float *)(_DAT_180c8a9b0 + 0x163c + texture_id * 4);
+      texture_scale = *(float *)(SYSTEM_DATA_MANAGER_A + 0x163c + texture_id * 4);
       aspect_ratio = *(float *)((longlong)texcoord_data + texture_id * 4) - 2.0;
       texture_scale = texture_scale + texture_scale;
       if (aspect_ratio <= 0.0) {
@@ -792,7 +793,7 @@ LAB_18013a7a6:
 }
 
 
-// 全局变量: _DAT_180c8a9b0 - 全局引擎状态指针
+// 全局变量: SYSTEM_DATA_MANAGER_A - 全局引擎状态指针
 // 警告: 以下全局变量与其他符号地址重叠
 
 
@@ -840,7 +841,7 @@ void process_texture_sampling(longlong sampler_ptr, uint64_t param_2, uint64_t p
     afStackX_20[0] = mip_level;
     if (((sampler_flags & 4) != 0) && ((*(byte *)(sampler_state + 0xa0) & 4) != 0)) {
       texture_id = (longlong)*(int *)(sampler_ptr + 0x50);
-      mip_level = *(float *)(_DAT_180c8a9b0 + 0x163c + texture_id * 4);
+      mip_level = *(float *)(SYSTEM_DATA_MANAGER_A + 0x163c + texture_id * 4);
       max_lod = *(float *)((longlong)&param_5 + texture_id * 4) - in_XMM5_Da;
       mip_level = mip_level + mip_level;
       if (max_lod <= 0.0) {

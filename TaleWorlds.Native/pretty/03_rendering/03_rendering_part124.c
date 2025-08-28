@@ -311,8 +311,8 @@ uint64_t *ShaderPipelineGenerator(uint64_t param_1, uint64_t *param_2, uint64_t 
 #define g_FileStreamConfig         system_memory_c7ec    // 文件流配置
 #define g_ShaderTextureData        unknown_var_640    // 着色器纹理数据
 #define g_GlobalMemoryPool         _DAT_180c8ed18   // 全局内存池
-#define g_SecurityChecksum        _DAT_180bf00a8   // 安全校验和
-#define g_FileHandleCounter       _DAT_180c8ed60   // 文件句柄计数器
+#define g_SecurityChecksum        GET_SECURITY_COOKIE()   // 安全校验和
+#define g_FileHandleCounter       SYSTEM_FILE_COUNTER_ADDR   // 文件句柄计数器
 
 // 着色器类型常量
 #define SHADER_TYPE_VERTEX         0x01             // 顶点着色器
@@ -829,8 +829,8 @@ void ShaderSourceCompiler(uint64_t param_1, longlong param_2, longlong param_3, 
 #define g_FileStreamConfig         system_memory_c7ec    // 文件流配置
 #define g_ShaderTextureData        unknown_var_640    // 着色器纹理数据
 #define g_GlobalMemoryPool         _DAT_180c8ed18   // 全局内存池
-#define g_SecurityChecksum        _DAT_180bf00a8   // 安全校验和
-#define g_FileHandleCounter       _DAT_180c8ed60   // 文件句柄计数器
+#define g_SecurityChecksum        GET_SECURITY_COOKIE()   // 安全校验和
+#define g_FileHandleCounter       SYSTEM_FILE_COUNTER_ADDR   // 文件句柄计数器
 
 // 着色器类型常量
 #define SHADER_TYPE_VERTEX         0x01             // 顶点着色器

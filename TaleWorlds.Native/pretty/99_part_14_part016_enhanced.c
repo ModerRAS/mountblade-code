@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * @file 99_part_14_part016.c
@@ -1058,7 +1059,7 @@ void ThreadLocalStorageCleanup(void* param1, void* param2)
     unsigned long long stack_hash;
     
     // 计算栈哈希值（安全检查）
-    stack_hash = _DAT_180bf00a8 ^ (unsigned long long)stack_buffer;
+    stack_hash = GET_SECURITY_COOKIE() ^ (unsigned long long)stack_buffer;
     
     // 获取虚函数
     vtable_function = *(FunctionPointer*)*param1;

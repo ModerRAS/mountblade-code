@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part651.c - 16 个函数
 
@@ -20,7 +21,7 @@ void FUN_1806382d0(longlong *param_1,float *param_2)
   ulonglong uStack_28;
   
   uStack_b8 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_f8;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_f8;
   plVar1 = param_1 + 0xb;
   plStack_b0 = plVar1;
   iVar3 = _Mtx_lock(plVar1);
@@ -513,7 +514,7 @@ uint FUN_180639250(longlong param_1)
         fclose();
         *(uint64_t *)(lVar1 + 8) = 0;
         LOCK();
-        _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+        SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
         UNLOCK();
       }
                     // WARNING: Subroutine does not return
@@ -547,7 +548,7 @@ uint FUN_180639266(void)
         fclose();
         *(uint64_t *)(lVar1 + 8) = 0;
         LOCK();
-        _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+        SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
         UNLOCK();
       }
                     // WARNING: Subroutine does not return
@@ -577,7 +578,7 @@ int8_t FUN_18063927d(void)
       fclose();
       *(uint64_t *)(lVar1 + 8) = 0;
       LOCK();
-      _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+      SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
       UNLOCK();
     }
                     // WARNING: Subroutine does not return
@@ -718,7 +719,7 @@ void FUN_1806393b0(uint64_t param_1,longlong *param_2,ulonglong param_3)
   uVar4 = auStack_7c._4_8_;
   lVar3 = _DAT_180c8ed70;
   alStack_b0[1] = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_128;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_128;
   uStack_b8 = 0;
   alStack_b0[0] = _DAT_180c8ed70;
   lVar1 = _DAT_180c8ed70 + 200;
@@ -836,7 +837,7 @@ void FUN_180639630(uint8_t *param_1,longlong *param_2,char param_3,char param_4)
   int8_t auStack_68 [40];
   ulonglong uStack_40;
   
-  uStack_40 = _DAT_180bf00a8 ^ (ulonglong)auStack_e8;
+  uStack_40 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_e8;
   uStack_78 = *(int32_t *)param_1;
   uStack_c8 = *(uint *)((longlong)param_1 + 4);
   uStack_b8 = *(uint *)(param_1 + 1);

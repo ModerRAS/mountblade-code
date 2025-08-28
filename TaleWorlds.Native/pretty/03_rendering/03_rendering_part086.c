@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part086.c - 渲染系统高级渲染控制和资源管理模块
 // 包含6个核心函数：渲染控制、资源管理、参数处理等
@@ -17,7 +18,7 @@ static const int RENDERING_FLAG_SHADOW = 0x400000;              // 阴影渲染�
 static const int RENDERING_MODE_COUNT = 6;                      // 渲染模式数量
 
 // 全局变量引用
-extern const void* _DAT_180bf00a8;     // 渲染系统配置数据 (原 _DAT_180bf00a8)
+extern const void* GET_SECURITY_COOKIE();     // 渲染系统配置数据 (原 GET_SECURITY_COOKIE())
 extern const void* _DAT_180c8ed18;     // 渲染系统资源数据 (原 _DAT_180c8ed18)
 extern const void* _DAT_180a1aa00;     // 渲染模式0数据 (原 global_var_5760)
 extern const void* _DAT_180a1aaf8;     // 渲染模式1数据 (原 global_var_6008)

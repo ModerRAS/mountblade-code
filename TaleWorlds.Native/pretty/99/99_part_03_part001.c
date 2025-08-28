@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * @file 99_part_03_part001.c
@@ -633,7 +634,7 @@ void file_data_processor(uint64_t param_1, longlong param_2)
         fclose(temp_long3);
         stack_long5 = 0;
         LOCK();
-        _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+        SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
         UNLOCK();
     }
     
@@ -733,7 +734,7 @@ bool file_validator(longlong param_1)
         
         // 清理文件句柄
         LOCK();
-        _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+        SYSTEM_HANDLE_COUNTER_ADDR = SYSTEM_HANDLE_COUNTER_ADDR + -1;
         UNLOCK();
         CloseHandle(temp_long_array[0]);
         temp_long_array[0] = -1;
@@ -757,7 +758,7 @@ bool file_validator(longlong param_1)
     // 确保文件句柄关闭
     if (temp_long1 != -1) {
         LOCK();
-        _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+        SYSTEM_HANDLE_COUNTER_ADDR = SYSTEM_HANDLE_COUNTER_ADDR + -1;
         UNLOCK();
         CloseHandle(temp_long_array[0]);
         temp_long_array[0] = -1;
@@ -861,7 +862,7 @@ void shader_cache_processor(uint64_t param_1)
         fclose(temp_long1);
         stack_long1 = 0;
         LOCK();
-        _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+        SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
         UNLOCK();
     }
     
@@ -870,7 +871,7 @@ void shader_cache_processor(uint64_t param_1)
         fclose(stack_long1);
         stack_long1 = 0;
         LOCK();
-        _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+        SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
         UNLOCK();
     }
     
@@ -996,7 +997,7 @@ void configuration_file_handler(void)
             fclose(temp_long1);
             stack_long2 = 0;
             LOCK();
-            _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+            SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
             UNLOCK();
             temp_array1[1] = 0;
             stack_ptr4 = &global_config_720_ptr;

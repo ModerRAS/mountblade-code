@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * @file 99_part_12_part042.c
@@ -238,7 +239,7 @@ void DataStreamProcessor(SystemHandle handle, int param2, longlong param3, longl
     UnsignedLongInt securityVar;
     
     // 安全变量初始化
-    securityVar = _DAT_180bf00a8 ^ (UnsignedLongInt)stackBuffer;
+    securityVar = GET_SECURITY_COOKIE() ^ (UnsignedLongInt)stackBuffer;
     remainingSize = param2;
     handleCopy = handle;
     
@@ -970,7 +971,7 @@ void SystemCallProcessor(void)
     UnsignedLongInt securityVar;
     
     // 安全变量初始化
-    securityVar = _DAT_180bf00a8 ^ (UnsignedLongInt)&stack0x00000000;
+    securityVar = GET_SECURITY_COOKIE() ^ (UnsignedLongInt)&stack0x00000000;
     
     // 执行系统调用
     FUN_1808fc050(securityVar);
@@ -988,7 +989,7 @@ void MemoryManagerProcessor(void)
     UnsignedLongInt securityVar;
     
     // 安全变量初始化
-    securityVar = _DAT_180bf00a8 ^ (UnsignedLongInt)&stack0x00000000;
+    securityVar = GET_SECURITY_COOKIE() ^ (UnsignedLongInt)&stack0x00000000;
     
     // 执行内存管理操作
     FUN_1808fc050(securityVar);

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part160.c - 1 个函数
 
@@ -398,7 +399,7 @@ LAB_180760f3a:
           if (iVar5 == 0xb) {
             cStack0000000000000040 = '\x01';
           }
-          else if ((iVar5 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
+          else if ((iVar5 != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
             *(int8_t *)(unaff_RBP + 0x60) = 0;
                     // WARNING: Subroutine does not return
             FUN_180749ef0(iVar5,7);

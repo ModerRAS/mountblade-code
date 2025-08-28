@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 01_initialization_part060.c - 初始化模块第60部分
 // 包含18个函数，主要处理初始化过程中的各种任务

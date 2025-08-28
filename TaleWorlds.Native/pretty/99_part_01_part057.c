@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_01_part057.c - 1 个函数
 
@@ -70,10 +71,10 @@ void FUN_1800debc0(uint64_t param_1,longlong param_2,char param_3)
   uint64_t extraout_XMM0_Qb;
   
   lVar8 = _DAT_180c86938;
-  lVar9 = _DAT_180c86920;
+  lVar9 = SYSTEM_STATE_MANAGER;
   lVar1 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
   if ((*(byte *)(param_2 + 4) & 0x40) == 0) {
-    fVar14 = *(float *)(_DAT_180c86920 + 0x1880);
+    fVar14 = *(float *)(SYSTEM_STATE_MANAGER + 0x1880);
   }
   else {
     fVar14 = 1.0;
@@ -185,7 +186,7 @@ LAB_1800ded07:
     else {
       lVar7 = (**(code **)(*plVar2 + 0xb8))(plVar2,fVar16,fVar20,fVar18,fStack_158,fStack_150);
       lVar8 = _DAT_180c86938;
-      lVar9 = _DAT_180c86920;
+      lVar9 = SYSTEM_STATE_MANAGER;
       uVar11 = extraout_XMM0_Qa;
     }
     if (lVar7 != 0) {
@@ -193,7 +194,7 @@ LAB_1800ded07:
       if (pcVar3 != (code *)&unknown_var_128_ptr) {
         uVar11 = (*pcVar3)();
         lVar8 = _DAT_180c86938;
-        lVar9 = _DAT_180c86920;
+        lVar9 = SYSTEM_STATE_MANAGER;
       }
       *(int32_t *)(*(longlong *)(lVar8 + 0x1cd8) + 0x1d5c) = 0x41f00000;
       pcVar3 = *(code **)(**(longlong **)(param_2 + 0x3580) + 0xb8);
@@ -203,7 +204,7 @@ LAB_1800ded07:
       else {
         lVar7 = (*pcVar3)(uVar11);
         lVar8 = _DAT_180c86938;
-        lVar9 = _DAT_180c86920;
+        lVar9 = SYSTEM_STATE_MANAGER;
       }
       uVar5 = *(uint64_t *)(lVar7 + 0x3f44);
       lVar4 = *(longlong *)(lVar8 + 0x1cd8);
@@ -216,7 +217,7 @@ LAB_1800ded07:
       else {
         lVar7 = (*pcVar3)();
         lVar8 = _DAT_180c86938;
-        lVar9 = _DAT_180c86920;
+        lVar9 = SYSTEM_STATE_MANAGER;
       }
       *(int32_t *)(*(longlong *)(lVar8 + 0x1cd8) + 0x1d7c) = *(int32_t *)(lVar7 + 0x3f38);
       goto LAB_1800df320;

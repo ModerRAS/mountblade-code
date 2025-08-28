@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 //==============================================================================
 // 文件信息：02_core_engine_part083.c
@@ -177,9 +178,9 @@ void FUN_180110540(int param_1)
     float fStack_dc;                             // 栈浮点变量7
     
     // 初始化引擎上下文和计算参数
-    lVar6 = _DAT_180c8a9b0;                       // 获取引擎上下文
+    lVar6 = SYSTEM_DATA_MANAGER_A;                       // 获取引擎上下文
     puVar11 = &unknown_var_2064_ptr;                     // 初始化数据指针
-    lVar4 = *(longlong *)(_DAT_180c8a9b0 + ENGINE_OFFSET_CONTEXT);  // 获取上下文数据
+    lVar4 = *(longlong *)(SYSTEM_DATA_MANAGER_A + ENGINE_OFFSET_CONTEXT);  // 获取上下文数据
     
     // 根据参数选择不同的计算路径
     if (param_1 == 0) {
@@ -372,7 +373,7 @@ void FUN_180110540(int param_1)
         // 保存中间计算结果
         fVar19 = fStack_f4;                           // 保存X位置
         fVar17 = fStack_f8;                           // 保存Y位置
-        lVar7 = _DAT_180c8a9b0;                       // 获取引擎上下文
+        lVar7 = SYSTEM_DATA_MANAGER_A;                       // 获取引擎上下文
         fVar23 = fVar23 - fVar16;                     // 计算Y轴差值
         
         // 确保差值在有效范围内
@@ -424,7 +425,7 @@ void FUN_180110540(int param_1)
                 }
                 
                 // 更新引擎状态和标志
-                *(int *)(_DAT_180c8a9b0 + 0x1b18) = iVar8;  // 设置索引状态
+                *(int *)(SYSTEM_DATA_MANAGER_A + 0x1b18) = iVar8;  // 设置索引状态
                 *(int8_t *)(lVar7 + 0x1b1c) = 0;         // 清除状态标志
                 
                 // 检查状态变化
@@ -689,7 +690,7 @@ void FUN_180110753(void)
         // 保存中间计算结果
         fVar6 = fStack0000000000000034;              // 保存X位置
         fVar10 = in_stack_00000030;                  // 保存Y位置
-        lVar5 = _DAT_180c8a9b0;                      // 获取引擎上下文
+        lVar5 = SYSTEM_DATA_MANAGER_A;                      // 获取引擎上下文
         fVar15 = fVar15 - fVar11;                    // 计算Y轴差值
         
         // 确保差值在有效范围内
@@ -741,7 +742,7 @@ void FUN_180110753(void)
                 }
                 
                 // 更新引擎状态和标志
-                *(int *)(_DAT_180c8a9b0 + 0x1b18) = unaff_R14D;  // 设置索引状态
+                *(int *)(SYSTEM_DATA_MANAGER_A + 0x1b18) = unaff_R14D;  // 设置索引状态
                 *(int8_t *)(lVar5 + 0x1b1c) = 0;         // 清除状态标志
                 
                 // 检查状态变化
@@ -1007,7 +1008,7 @@ void FUN_18011077f(void)
     // 保存增强的中间计算结果
     fVar6 = fStack0000000000000034;                  // 保存X位置
     fVar10 = in_stack_00000030;                      // 保存Y位置
-    lVar5 = _DAT_180c8a9b0;                          // 获取引擎上下文
+    lVar5 = SYSTEM_DATA_MANAGER_A;                          // 获取引擎上下文
     fVar15 = fVar15 - fVar11;                        // 计算Y轴差值
     
     // 确保增强的差值在有效范围内
@@ -1059,7 +1060,7 @@ void FUN_18011077f(void)
             }
             
             // 更新增强的引擎状态和标志
-            *(int *)(_DAT_180c8a9b0 + 0x1b18) = unaff_R14D;  // 设置索引状态
+            *(int *)(SYSTEM_DATA_MANAGER_A + 0x1b18) = unaff_R14D;  // 设置索引状态
             *(int8_t *)(lVar5 + 0x1b1c) = 0;            // 清除状态标志
             
             // 检查增强的状态变化

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_11_part041.c - 13 个函数
 
@@ -935,7 +936,7 @@ void FUN_1807a8f00(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint param
   int8_t auStack_268 [368];
   ulonglong uStack_f8;
   
-  uStack_f8 = _DAT_180bf00a8 ^ (ulonglong)auStack_268;
+  uStack_f8 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_268;
                     // WARNING: Subroutine does not return
   memcpy(param_3,param_2,(ulonglong)param_4 * (longlong)param_5 * 4);
 }

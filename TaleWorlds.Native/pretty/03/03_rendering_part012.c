@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part012.c - 渲染系统数据处理和资源管理模块
 // 包含8个核心函数，主要处理渲染数据序列化、资源初始化、状态管理和内存操作

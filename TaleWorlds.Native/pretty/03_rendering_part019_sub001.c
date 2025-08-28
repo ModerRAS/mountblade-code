@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part019_sub001.c - 渲染系统高级参数和属性设置模块
 // 
@@ -166,7 +167,7 @@ void FUN_180279640(longlong *param_1,longlong *param_2,char param_3)
     
     // 初始化栈保护和校验数据
     uStack_428 = 0xfffffffffffffffe;  // 栈保护标记
-    uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_488;  // 校验和计算
+    uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_488;  // 校验和计算
     
     // 初始化主要参数指针
     plVar14 = (longlong *)param_2[1];  // 获取参数数据指针

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 01_initialization_part059.c - 初始化模块第59部分
 // 包含2个函数：数据处理和缓冲区管理相关功能

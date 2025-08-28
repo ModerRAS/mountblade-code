@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part051.c - 核心引擎模块第51部分
 // 本文件包含数据结构操作和算法实现，共14个函数

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part249.c - 核心引擎模块第249部分
 // 本文件包含引擎渲染、资源管理和事件处理相关功能
@@ -29,7 +30,7 @@ void update_render_pipeline_state(longlong render_context, int operation_type, l
   ulonglong stack_value_58;
   
   stack_value_178 = 0xfffffffffffffffe;
-  stack_value_58 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_1c8;
+  stack_value_58 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_1c8;
   if (((operation_type == 8) || (operation_type == 0x20)) &&
      ((*(longlong *)(render_context + 0x308) != 0 || (*(longlong *)(render_context + 0x310) != 0)))) {
     stack_ptr_190 = (longlong *)0x0;

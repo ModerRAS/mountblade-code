@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part061.c - 18 个函数
 
@@ -56,7 +57,7 @@ void FUN_18029cdd0(longlong param_1,uint64_t *param_2)
   int32_t uStack_2c;
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_58;
   lVar1 = *(longlong *)
            (_DAT_180c86938 + 0x1e50 +
            ((ulonglong)*(byte *)((longlong)param_2 + 0x16) +
@@ -193,7 +194,7 @@ void FUN_18029d0a0(longlong param_1,uint64_t *param_2,int32_t *param_3)
   int32_t uStack_14;
   ulonglong uStack_10;
   
-  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
+  uStack_10 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_58;
   uStack_28 = *param_2;
   uStack_20 = param_2[1];
   uStack_14 = *(int32_t *)((longlong)param_2 + 0x14);
@@ -290,7 +291,7 @@ void FUN_18029d280(longlong param_1,longlong param_2)
   ulonglong uStack_38;
   
   uStack_e0 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_108;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_108;
   iVar6 = 0;
   iVar7 = *(int *)(param_2 + 0x10) + 0x14;
   FUN_1806277c0(param_2,iVar7);
@@ -402,7 +403,7 @@ void FUN_18029d500(longlong param_1,longlong param_2)
   ulonglong uStack_38;
   
   uStack_e8 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_118;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_118;
   iVar3 = 0;
   uStack_f8 = 0;
   iVar2 = *(int *)(param_2 + 0x10) + 0x1a;
@@ -498,7 +499,7 @@ void FUN_18029d760(longlong param_1,int param_2,char param_3,longlong param_4,in
   uint64_t auStack_48 [4];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_98;
   uVar3 = 0;
   auStack_58[0] = 0xffffffff;
   if (param_4 != 0) {
@@ -573,7 +574,7 @@ void FUN_18029d930(longlong param_1,uint64_t param_2,char param_3,longlong param
   uint64_t auStack_40 [4];
   ulonglong uStack_20;
   
-  uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
+  uStack_20 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_88;
   uVar2 = 0;
   if (param_4 != 0) {
     uVar2 = *(uint64_t *)(param_4 + 0x20);
@@ -756,7 +757,7 @@ void FUN_18029de40(longlong param_1,int32_t param_2)
   uint64_t uStack_18;
   ulonglong uStack_10;
   
-  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
+  uStack_10 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_88;
   lVar1 = *(longlong *)(param_1 + 0x83b8);
   bVar3 = lVar1 != *(longlong *)(param_1 + 0x8378);
   if (bVar3) {

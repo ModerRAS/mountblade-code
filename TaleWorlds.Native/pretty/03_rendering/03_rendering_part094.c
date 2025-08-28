@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part094.c - 渲染系统高级资源管理和队列处理模块
 // 
@@ -30,7 +31,7 @@ extern longlong _DAT_180c86870;
 extern longlong _DAT_180c8ed18;
 extern longlong _DAT_180c86878;
 extern longlong _DAT_180c86928;
-extern longlong _DAT_180bf00a8;
+extern longlong GET_SECURITY_COOKIE();
 extern uint8_t system_buffer_ptr;
 extern uint8_t global_state_3456_ptr;
 extern uint8_t global_state_545_ptr;
@@ -845,7 +846,7 @@ void rendering_system_advanced_processor(longlong param_1, longlong param_2, int
   
   // 初始化渲染系统参数
   uStack_88 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_f8;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_f8;
   
   // 检查渲染系统状态
   if (((*(byte *)(param_2 + 0x2e8) & 0xb) == 0xb) && ((*(uint *)(param_2 + 0x2ac) >> 0x12 & 1) != 0)) {

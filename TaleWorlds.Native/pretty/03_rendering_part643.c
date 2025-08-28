@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part643.c - 12 个函数
 
@@ -32,7 +33,7 @@ void FUN_18062b1e0(longlong param_1,ulonglong param_2,ulonglong param_3,int8_t p
   ulonglong uStack_58;
   
   uStack_148 = 0xfffffffffffffffe;
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
   if (param_3 < 0x10) {
     param_3 = 0x10;
   }
@@ -123,7 +124,7 @@ void FUN_18062b420(uint64_t param_1,ulonglong param_2)
   ulonglong uStack_30;
   
   uStack_118 = 0xfffffffffffffffe;
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_148;
+  uStack_30 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_148;
   if (param_2 == 0) goto LAB_18062b644;
   uVar5 = param_2;
   if (param_2 < 0x10) {
@@ -218,7 +219,7 @@ void FUN_18062b680(uint64_t param_1,longlong param_2,ulonglong param_3)
   ulonglong uStack_40;
   
   uStack_128 = 0xfffffffffffffffe;
-  uStack_40 = _DAT_180bf00a8 ^ (ulonglong)auStack_158;
+  uStack_40 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_158;
   if (param_2 == 0) {
     FUN_18062b420(param_1,param_3,3);
   }
@@ -307,7 +308,7 @@ void FUN_18062b8b0(uint64_t param_1,ulonglong param_2,longlong param_3,ulonglong
   ulonglong uStack_50;
   
   uStack_138 = 0xfffffffffffffffe;
-  uStack_50 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_50 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_168;
   if (param_4 < 0x10) {
     param_4 = 0x10;
   }
@@ -543,7 +544,7 @@ void FUN_18062bd50(uint64_t param_1,longlong param_2)
   ulonglong uStack_38;
   
   uStack_68 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_a8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_a8;
   cVar6 = FUN_180624a00();
   if (cVar6 != '\0') {
     puStack_88 = (uint64_t *)0x0;
@@ -633,7 +634,7 @@ void FUN_18062bed0(uint64_t param_1)
   ulonglong uStack_18;
   
   uStack_5b0 = 0xfffffffffffffffe;
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_608;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_608;
   uStack_5d8 = 0;
   uVar1 = FUN_180624440(apuStack_468,param_1);
   FUN_1806279c0(&puStack_5d0,uVar1);
@@ -761,7 +762,7 @@ void FUN_18062c1e0(uint64_t param_1,char param_2)
   ulonglong uStack_28;
   
   uStack_498 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_4d8;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_4d8;
   cVar1 = FUN_180624a00();
   if (cVar1 == '\0') {
     if (param_2 != '\0') {
@@ -832,7 +833,7 @@ void FUN_18062c470(uint64_t param_1)
   ulonglong uStack_18;
   
   uStack_470 = 0xfffffffffffffffe;
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_4f8;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_4f8;
   uVar3 = FUN_180624440(apuStack_468,param_1);
   FUN_1806279c0(&puStack_4c8,uVar3);
   apuStack_468[0] = &unknown_var_720_ptr;
@@ -915,7 +916,7 @@ void FUN_18062c5f0(uint64_t param_1,longlong param_2)
   ulonglong uStack_48;
   
   uStack_6f8 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_778;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_778;
   cVar2 = FUN_180624a00();
   if (cVar2 != '\0') {
     uVar4 = FUN_180624440(&uStack_498,param_1);

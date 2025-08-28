@@ -1,11 +1,12 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part029.c - 核心引擎模块第29部分
 // 包含8个函数，主要处理数据序列化和反序列化操作
 
 // 全局变量声明
 uint64_t _DAT_180c8ed18;  // 内存分配器引用
-uint64_t _DAT_180bf00a8;  // 加密密钥相关
+uint64_t GET_SECURITY_COOKIE();  // 加密密钥相关
 uint64_t _DAT_180c86930;  // 初始化地址
 uint64_t unknown_var_5192_ptr;  // 对象模板
 uint64_t unknown_var_5080;  // 对象模板

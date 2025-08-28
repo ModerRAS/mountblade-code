@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 //==============================================================================
 // 文件信息：03_rendering_part142.c - 渲染系统核心功能模块
@@ -462,7 +463,7 @@ void FUN_1803530c0(longlong *param_1, longlong param_2, uint64_t param_3)
     
     // 初始化栈参数
     uStack_678 = 0xfffffffffffffffe;  // 处理标志
-    uStack_e8 = _DAT_180bf00a8 ^ (ulonglong)auStack_7e8;  // 安全检查
+    uStack_e8 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_7e8;  // 安全检查
     uStack_6b0 = param_3;              // 处理选项
     plStack_6a0 = param_1;             // 渲染对象指针
     
@@ -690,7 +691,7 @@ void FUN_180353e50(longlong *param_1,longlong param_2)
     
     // 初始化安全检查标志
     uStack_308 = 0xfffffffffffffffe;  // 安全检查标志
-    uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_3b8;  // 安全检查异或值
+    uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_3b8;  // 安全检查异或值
     
     // 调用数据准备函数
     FUN_180627ae0(&puStack_328, *(longlong *)(param_2 + 0x10) + 8);
@@ -817,7 +818,7 @@ void FUN_180354170(longlong *param_1)
     
     // 初始化安全检查标志
     uStack_3b0 = 0xfffffffffffffffe;  // 安全检查标志
-    uStack_68 = _DAT_180bf00a8 ^ (ulonglong)auStack_3e8;  // 安全检查异或值
+    uStack_68 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_3e8;  // 安全检查异或值
     
     // 获取渲染对象数据
     uVar1 = *(uint64_t *)(param_1[3] + 0x20);  // 渲染数据指针

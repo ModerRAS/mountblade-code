@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part017.c - 渲染系统对象管理和矩阵变换
 // 本文件包含11个函数，主要用于渲染对象的批量处理、状态管理和变换操作

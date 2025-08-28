@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part152.c - 11 个函数
 
@@ -46,14 +47,14 @@ void FUN_18013b5f5(void)
       }
       else {
         FUN_180136d40(unaff_RBX[0x81]);
-        unaff_RDI = _DAT_180c8a9b0;
+        unaff_RDI = SYSTEM_DATA_MANAGER_A;
         *(char *)((longlong)unaff_RBX + 0xb2) = cVar11;
       }
       goto LAB_18013b83c;
     }
     FUN_180136b10(lVar7);
-    unaff_RDI = _DAT_180c8a9b0;
-    *(uint64_t *)(_DAT_180c8a9b0 + 0x1bf4) = unaff_RBX[8];
+    unaff_RDI = SYSTEM_DATA_MANAGER_A;
+    *(uint64_t *)(SYSTEM_DATA_MANAGER_A + 0x1bf4) = unaff_RBX[8];
     *(ulonglong *)(unaff_RDI + 0x1bfc) = unaff_RBP;
     *(int32_t *)(unaff_RDI + 0x1bd0) = 1;
     *(int8_t *)(unaff_RDI + 0x1c14) = 1;
@@ -153,7 +154,7 @@ LAB_18013b999:
   }
   else {
     FUN_180136d40();
-    unaff_RDI = _DAT_180c8a9b0;
+    unaff_RDI = SYSTEM_DATA_MANAGER_A;
   }
   *(char *)((longlong)unaff_RBX + 0xb2) = cVar11;
 LAB_18013b83c:
@@ -210,7 +211,7 @@ void FUN_18013b670(longlong param_1)
     }
     else {
       FUN_180136d40();
-      unaff_RDI = _DAT_180c8a9b0;
+      unaff_RDI = SYSTEM_DATA_MANAGER_A;
     }
     *(byte *)((longlong)unaff_RBX + 0x432) = *(byte *)((longlong)unaff_RBX + 0x432) & 0xfc;
     *(int8_t *)((longlong)unaff_RBX + 0xb2) = 0;
@@ -237,14 +238,14 @@ void FUN_18013b670(longlong param_1)
       }
       else {
         FUN_180136d40(unaff_RBX[0x81]);
-        unaff_RDI = _DAT_180c8a9b0;
+        unaff_RDI = SYSTEM_DATA_MANAGER_A;
         *(int8_t *)((longlong)unaff_RBX + 0xb2) = 0;
       }
       goto LAB_18013b83c;
     }
     FUN_180136b10(lVar7);
-    unaff_RDI = _DAT_180c8a9b0;
-    *(uint64_t *)(_DAT_180c8a9b0 + 0x1bf4) = unaff_RBX[8];
+    unaff_RDI = SYSTEM_DATA_MANAGER_A;
+    *(uint64_t *)(SYSTEM_DATA_MANAGER_A + 0x1bf4) = unaff_RBX[8];
     *(uint64_t *)(unaff_RDI + 0x1bfc) = 0;
     *(int32_t *)(unaff_RDI + 0x1bd0) = 1;
     *(int8_t *)(unaff_RDI + 0x1c14) = 1;
@@ -344,7 +345,7 @@ LAB_18013b999:
   }
   else {
     FUN_180136d40();
-    unaff_RDI = _DAT_180c8a9b0;
+    unaff_RDI = SYSTEM_DATA_MANAGER_A;
   }
   *(int8_t *)((longlong)unaff_RBX + 0xb2) = 0;
 LAB_18013b83c:
@@ -414,7 +415,7 @@ void FUN_18013b7f6(void)
       }
       else {
         FUN_180136d40();
-        unaff_RDI = _DAT_180c8a9b0;
+        unaff_RDI = SYSTEM_DATA_MANAGER_A;
       }
       *(char *)((longlong)unaff_RBX + 0xb2) = (char)unaff_RBP;
       *(byte *)((longlong)unaff_RBX + 0x432) = *(byte *)((longlong)unaff_RBX + 0x432) & 0xfc;
@@ -731,7 +732,7 @@ void FUN_18013ba30(longlong param_1)
   int32_t extraout_XMM0_Da;
   longlong alStackX_8 [4];
   
-  lVar1 = _DAT_180c8a9b0;
+  lVar1 = SYSTEM_DATA_MANAGER_A;
   *(int32_t *)(param_1 + 0x144) = *(int32_t *)(param_1 + 0x84);
   alStackX_8[0] = *(longlong *)(param_1 + 0x3a0);
   if (*(char *)(lVar1 + 0xc1) == '\0') {
@@ -752,8 +753,8 @@ void FUN_18013ba30(longlong param_1)
   cVar2 = FUN_180135160();
   if (cVar2 != '\0') {
     FUN_180135260(extraout_XMM0_Da,alStackX_8);
-    lVar1 = _DAT_180c8a9b0;
-    if ((*(byte *)(_DAT_180c8a9b0 + 0x1dd4) & 1) == 0) {
+    lVar1 = SYSTEM_DATA_MANAGER_A;
+    if ((*(byte *)(SYSTEM_DATA_MANAGER_A + 0x1dd4) & 1) == 0) {
       FUN_18012cfe0();
     }
     if (*(int *)(lVar1 + 0x1df4) == -1) {
@@ -777,8 +778,8 @@ void FUN_18013baa6(void)
   longlong lVar1;
   
   FUN_180135260();
-  lVar1 = _DAT_180c8a9b0;
-  if ((*(byte *)(_DAT_180c8a9b0 + 0x1dd4) & 1) == 0) {
+  lVar1 = SYSTEM_DATA_MANAGER_A;
+  if ((*(byte *)(SYSTEM_DATA_MANAGER_A + 0x1dd4) & 1) == 0) {
     FUN_18012cfe0();
   }
   if (*(int *)(lVar1 + 0x1df4) == -1) {

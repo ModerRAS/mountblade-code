@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 04_ui_system_part008_sub002_sub002.c - UI系统高级数据结构和碰撞检测模块
 // 

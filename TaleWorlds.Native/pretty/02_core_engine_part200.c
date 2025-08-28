@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part200.c - 1 个函数
 
@@ -62,7 +63,7 @@ void FUN_18017ef40(void)
   
   lVar13 = _DAT_180c86870;
   uStack_120 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_1b8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1b8;
   uVar15 = 0;
   uStack_128 = 0;
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part057.c - 4 个函数
 
@@ -738,7 +739,7 @@ void FUN_180093a20(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     *(int8_t *)(*(longlong *)(lVar3 + 0x1800) + 0xf0) = 1;
     lVar5 = _DAT_180c86870;
   }
-  *(float *)(lVar5 + 0x200) = 1.0 / (float)*(int *)(_DAT_180c86920 + 0x1b90);
+  *(float *)(lVar5 + 0x200) = 1.0 / (float)*(int *)(SYSTEM_STATE_MANAGER + 0x1b90);
   iVar4 = _Mtx_unlock(lVar1);
   if (iVar4 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar4);

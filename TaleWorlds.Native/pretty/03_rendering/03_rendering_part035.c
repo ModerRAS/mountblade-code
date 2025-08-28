@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part035.c - 渲染系统高级矩阵变换和边界计算模块
 // 包含6个核心函数，涵盖矩阵变换、边界计算、内存管理和异常处理等功能
@@ -50,7 +51,7 @@ void transform_bounding_box_with_matrix(longlong render_context, float *matrix_p
     ulonglong stack_guard;
     
     // 栈保护初始化
-    stack_guard = _DAT_180bf00a8 ^ (ulonglong)stack_data;
+    stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)stack_data;
     
     // 提取矩阵数据
     transform_matrix[0] = matrix_ptr[0];  // 第一行第一列

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part010.c - 22 个函数
 
@@ -37,7 +38,7 @@ void process_string_operation(longlong param_1,longlong param_2,longlong param_3
   ulonglong stack_hash;
   
   stack_guard = 0xfffffffffffffffe;
-  stack_hash = _DAT_180bf00a8 ^ (ulonglong)auStack_498;
+  stack_hash = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_498;
   debug_ptr = &unknown_var_336_ptr;
   buffer_ptr = auStack_450;
   buffer_size = 0;
@@ -181,9 +182,9 @@ void set_system_parameter(uint64_t system_handle,int32_t parameter)
   void *error_msg;
   int32_t param_array [6];
   
-  system_base = _DAT_180c86920;
-  if ((*(longlong *)(_DAT_180c86920 + 0x22f0) != 0) &&
-     (param_array[0] = parameter, check_result = (**(code **)(_DAT_180c86920 + 0x22f8))(param_array),
+  system_base = SYSTEM_STATE_MANAGER;
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x22f0) != 0) &&
+     (param_array[0] = parameter, check_result = (**(code **)(SYSTEM_STATE_MANAGER + 0x22f8))(param_array),
      parameter = param_array[0], check_result == '\0')) {
     if (system_debug_flag == '\0') {
       error_msg = &system_buffer_ptr;
@@ -334,7 +335,7 @@ void string_operation_with_guard(longlong param_1,longlong param_2,longlong para
   ulonglong stack_hash;
   
   stack_guard = 0xfffffffffffffffe;
-  stack_hash = _DAT_180bf00a8 ^ (ulonglong)auStack_a8;
+  stack_hash = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_a8;
   debug_ptr = &unknown_var_672_ptr;
   buffer_ptr = auStack_68;
   buffer_size = 0;
@@ -914,7 +915,7 @@ void initialize_game_engine(void)
   ulonglong stack_hash;
   
   stack_guard = 0xfffffffffffffffe;
-  stack_hash = _DAT_180bf00a8 ^ (ulonglong)auStack_698;
+  stack_hash = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_698;
   temp_flag = 0;
   if (*(int *)(_DAT_180c86870 + 0x224) - _DAT_180bf52b0 < 0xfb) {
                     // WARNING: Subroutine does not return
@@ -1079,18 +1080,18 @@ void initialize_game_engine(void)
   *config_ptr = 0;
   *(int8_t *)(config_ptr + 2) = 0;
   FUN_18062dee0(config_ptr,buffer_ptr,&system_memory_c7ec);
-  FUN_1800ae730(_DAT_180c86920,config_ptr);
+  FUN_1800ae730(SYSTEM_STATE_MANAGER,config_ptr);
   if (config_ptr[1] != 0) {
     fclose();
     config_ptr[1] = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
     if (config_ptr[1] != 0) {
       fclose();
       config_ptr[1] = 0;
       LOCK();
-      _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+      SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
       UNLOCK();
     }
   }

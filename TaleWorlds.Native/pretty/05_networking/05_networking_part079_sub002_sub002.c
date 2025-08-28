@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * @file 05_networking_part079_sub002_sub002.c
@@ -343,7 +344,7 @@ void FUN_180883a30(uint64_t param_1)
         // 警告：子函数不会返回
         
         // 发送网络数据，初始化连接
-        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), param_1, &unknown_var_5856_ptr, 0x43b, 1);
+        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_1, &unknown_var_5856_ptr, 0x43b, 1);
     }
     
     return;

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // ==================== 04_ui_system_part027.c ====================
 // 
@@ -70,7 +71,7 @@
 // ==================== 全局变量引用 ====================
 
 // UI系统全局数据
-extern ulonglong _DAT_180bf00a8;                 // UI系统全局数据指针
+extern ulonglong GET_SECURITY_COOKIE();                 // UI系统全局数据指针
 extern uint64_t _DAT_180946ae0;               // UI系统配置数据
 extern uint64_t _DAT_180946af8;               // UI系统状态数据
 extern uint64_t _DAT_180946b10;               // UI系统控制数据

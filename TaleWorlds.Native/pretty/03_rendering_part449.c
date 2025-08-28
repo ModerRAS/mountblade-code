@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part449.c - 8 个函数
 
@@ -119,10 +120,10 @@ void FUN_180510ff0(void)
         FUN_18050c260();
       }
     }
-    if (*(int *)(_DAT_180c86920 + 0x1c0) == 0) {
+    if (*(int *)(SYSTEM_STATE_MANAGER + 0x1c0) == 0) {
       FUN_180532390();
     }
-    else if (*(int *)(_DAT_180c86920 + 0x1c0) == 1) {
+    else if (*(int *)(SYSTEM_STATE_MANAGER + 0x1c0) == 1) {
       FUN_180532740();
     }
   }
@@ -238,10 +239,10 @@ void FUN_180511050(void)
         FUN_18050c260();
       }
     }
-    if (*(int *)(_DAT_180c86920 + 0x1c0) == 0) {
+    if (*(int *)(SYSTEM_STATE_MANAGER + 0x1c0) == 0) {
       FUN_180532390();
     }
-    else if (*(int *)(_DAT_180c86920 + 0x1c0) == 1) {
+    else if (*(int *)(SYSTEM_STATE_MANAGER + 0x1c0) == 1) {
       FUN_180532740();
     }
   }
@@ -344,10 +345,10 @@ void FUN_180511098(int32_t param_1)
         FUN_18050c260();
       }
     }
-    if (*(int *)(_DAT_180c86920 + 0x1c0) == 0) {
+    if (*(int *)(SYSTEM_STATE_MANAGER + 0x1c0) == 0) {
       FUN_180532390();
     }
-    else if (*(int *)(_DAT_180c86920 + 0x1c0) == 1) {
+    else if (*(int *)(SYSTEM_STATE_MANAGER + 0x1c0) == 1) {
       FUN_180532740();
     }
   }
@@ -450,10 +451,10 @@ void FUN_1805110a0(int32_t param_1)
         FUN_18050c260();
       }
     }
-    if (*(int *)(_DAT_180c86920 + 0x1c0) == 0) {
+    if (*(int *)(SYSTEM_STATE_MANAGER + 0x1c0) == 0) {
       FUN_180532390();
     }
-    else if (*(int *)(_DAT_180c86920 + 0x1c0) == 1) {
+    else if (*(int *)(SYSTEM_STATE_MANAGER + 0x1c0) == 1) {
       FUN_180532740();
     }
   }
@@ -541,10 +542,10 @@ void FUN_18051112d(int32_t param_1)
         FUN_18050c260();
       }
     }
-    if (*(int *)(_DAT_180c86920 + 0x1c0) == 0) {
+    if (*(int *)(SYSTEM_STATE_MANAGER + 0x1c0) == 0) {
       FUN_180532390();
     }
-    else if (*(int *)(_DAT_180c86920 + 0x1c0) == 1) {
+    else if (*(int *)(SYSTEM_STATE_MANAGER + 0x1c0) == 1) {
       FUN_180532740();
     }
   }
@@ -632,10 +633,10 @@ void FUN_180511135(int32_t param_1)
         FUN_18050c260();
       }
     }
-    if (*(int *)(_DAT_180c86920 + 0x1c0) == 0) {
+    if (*(int *)(SYSTEM_STATE_MANAGER + 0x1c0) == 0) {
       FUN_180532390();
     }
-    else if (*(int *)(_DAT_180c86920 + 0x1c0) == 1) {
+    else if (*(int *)(SYSTEM_STATE_MANAGER + 0x1c0) == 1) {
       FUN_180532740();
     }
   }

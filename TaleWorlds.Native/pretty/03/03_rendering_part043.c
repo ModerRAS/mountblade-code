@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part043.c - 渲染系统高级数据处理和算法优化模块
 // 
@@ -17,9 +18,9 @@
 // 5. 渲染状态的批量更新
 
 // 全局变量声明
-extern longlong _DAT_180bf00a8;  // 内存管理相关数据
-extern longlong _DAT_180c8a9b0;  // 资源计数器指针
-extern longlong _DAT_180c8a9a8;  // 内存分配器句柄
+extern longlong GET_SECURITY_COOKIE();  // 内存管理相关数据
+extern longlong SYSTEM_DATA_MANAGER_A;  // 资源计数器指针
+extern longlong SYSTEM_DATA_MANAGER_B;  // 内存分配器句柄
 
 // 函数声明
 void FUN_18028e550(longlong param_1, int param_2, longlong param_3, float param_4);
@@ -296,7 +297,7 @@ void setup_rendering_buffer(int *buffer_config, longlong buffer_ptr, int buffer_
   ulonglong checksum;            // 校验和
   
   // 计算校验和
-  checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   config_size = *buffer_config;
   local_var = 0;
   
@@ -306,11 +307,11 @@ void setup_rendering_buffer(int *buffer_config, longlong buffer_ptr, int buffer_
   }
   else {
     // 更新资源计数器
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
     // 分配内存
-    buffer_ptr_local = (int8_t *)func_0x000180120ce0((longlong)(config_size * 2 + 1) << 2, _DAT_180c8a9a8);
+    buffer_ptr_local = (int8_t *)func_0x000180120ce0((longlong)(config_size * 2 + 1) << 2, SYSTEM_DATA_MANAGER_B);
   }
   
   target_ptr = buffer_ptr_local + (longlong)*buffer_config * 4;
@@ -322,11 +323,11 @@ void setup_rendering_buffer(int *buffer_config, longlong buffer_ptr, int buffer_
       // 错误处理
       FUN_1808fc050(checksum ^ (ulonglong)stack_buffer);
     }
-    if ((buffer_ptr_local != (int8_t *)0x0) && (_DAT_180c8a9b0 != 0)) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if ((buffer_ptr_local != (int8_t *)0x0) && (SYSTEM_DATA_MANAGER_A != 0)) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 内存释放
-    FUN_180059ba0(buffer_ptr_local, _DAT_180c8a9a8);
+    FUN_180059ba0(buffer_ptr_local, SYSTEM_DATA_MANAGER_B);
   }
   
   // 清零缓冲区
@@ -380,11 +381,11 @@ void configure_rendering_context(int *context_config, longlong context_ptr, int 
   }
   else {
     // 更新资源计数器
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
     // 分配内存
-    local_buffer = (int8_t *)func_0x000180120ce0((longlong)(config_value * 2 + 1) << 2, _DAT_180c8a9a8);
+    local_buffer = (int8_t *)func_0x000180120ce0((longlong)(config_value * 2 + 1) << 2, SYSTEM_DATA_MANAGER_B);
   }
   
   *(float *)(context_ptr + 4 + (longlong)context_id * 0x14) = (float)(context_config[1] + stack_param) + 1.0;
@@ -395,11 +396,11 @@ void configure_rendering_context(int *context_config, longlong context_ptr, int 
       // 错误处理
       FUN_1808fc050(stack_checksum ^ (ulonglong)&stack0x00000000);
     }
-    if ((local_buffer != (int8_t *)0x0) && (_DAT_180c8a9b0 != 0)) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if ((local_buffer != (int8_t *)0x0) && (SYSTEM_DATA_MANAGER_A != 0)) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 内存释放
-    FUN_180059ba0(local_buffer, _DAT_180c8a9a8);
+    FUN_180059ba0(local_buffer, SYSTEM_DATA_MANAGER_B);
   }
   
   // 清零缓冲区
@@ -450,11 +451,11 @@ void setup_rendering_pipeline(int *pipeline_config, longlong pipeline_ptr, int p
   }
   else {
     // 更新资源计数器
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
     // 分配内存
-    local_buffer = (int8_t *)func_0x000180120ce0((longlong)(config_value * 2 + 1) << 2, _DAT_180c8a9a8);
+    local_buffer = (int8_t *)func_0x000180120ce0((longlong)(config_value * 2 + 1) << 2, SYSTEM_DATA_MANAGER_B);
   }
   
   *(float *)(pipeline_ptr + 4 + (longlong)pipeline_id * 0x14) = (float)(pipeline_config[1] + stack_param) + 1.0;
@@ -465,11 +466,11 @@ void setup_rendering_pipeline(int *pipeline_config, longlong pipeline_ptr, int p
       // 错误处理
       FUN_1808fc050(stack_checksum ^ (ulonglong)&stack0x00000000);
     }
-    if ((local_buffer != (int8_t *)0x0) && (_DAT_180c8a9b0 != 0)) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if ((local_buffer != (int8_t *)0x0) && (SYSTEM_DATA_MANAGER_A != 0)) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 内存释放
-    FUN_180059ba0(local_buffer, _DAT_180c8a9a8);
+    FUN_180059ba0(local_buffer, SYSTEM_DATA_MANAGER_B);
   }
   
   // 清零缓冲区
@@ -500,18 +501,18 @@ void release_rendering_resources(void)
   
   // 释放主要资源
   if (reg_r15 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     FUN_180059ba0();
   }
   
   // 释放栈资源
   if (stack_param1 != &stack0x00000050) {
-    if ((stack_param1 != (int8_t *)0x0) && (_DAT_180c8a9b0 != 0)) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if ((stack_param1 != (int8_t *)0x0) && (SYSTEM_DATA_MANAGER_A != 0)) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-    FUN_180059ba0(stack_param1, _DAT_180c8a9a8);
+    FUN_180059ba0(stack_param1, SYSTEM_DATA_MANAGER_B);
   }
   
   // 清理栈
@@ -525,8 +526,8 @@ void release_rendering_resources(void)
 void free_rendering_buffer(void)
 
 {
-  if (_DAT_180c8a9b0 != 0) {
-    *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+  if (SYSTEM_DATA_MANAGER_A != 0) {
+    *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
   }
   FUN_180059ba0();
 }
@@ -539,10 +540,10 @@ void free_rendering_buffer(void)
 void deallocate_rendering_memory(longlong memory_ptr)
 
 {
-  if ((memory_ptr != 0) && (_DAT_180c8a9b0 != 0)) {
-    *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+  if ((memory_ptr != 0) && (SYSTEM_DATA_MANAGER_A != 0)) {
+    *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
   }
-  FUN_180059ba0(memory_ptr, _DAT_180c8a9a8);
+  FUN_180059ba0(memory_ptr, SYSTEM_DATA_MANAGER_B);
 }
 
 // 函数: void optimize_rendering_data(uint64_t *data_array, int array_size)

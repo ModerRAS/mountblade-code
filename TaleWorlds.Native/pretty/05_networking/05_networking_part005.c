@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 05_networking_part005.c - 网络系统高级功能模块
 // 包含网络查询、数据检索、状态管理、连接配置等22个核心函数
@@ -29,8 +30,8 @@
 
 // 常量定义
 #define NETWORK_BUFFER_SIZE 256
-#define NETWORK_SECURITY_KEY _DAT_180bf00a8
-#define NETWORK_STATUS_FLAG _DAT_180be12f0
+#define NETWORK_SECURITY_KEY GET_SECURITY_COOKIE()
+#define NETWORK_STATUS_FLAG SYSTEM_MAIN_CONTROL_BLOCK
 #define NETWORK_ERROR_MESSAGE &unknown_var_8256_ptr
 #define NETWORK_CONFIG_MESSAGE &unknown_var_416_ptr
 #define NETWORK_EXTENDED_MESSAGE &unknown_var_9904_ptr

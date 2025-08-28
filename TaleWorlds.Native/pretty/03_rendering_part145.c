@@ -215,7 +215,7 @@ void render_string_comparator(longlong param_1, longlong param_2)
     
     /* 初始化渲染状态和超时设置 */
     uStack_6a0 = RENDER_TIMEOUT_DEFAULT;
-    uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_6c8;
+    uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_6c8;
     
     /* 设置字符串比较器初始状态 */
     puStack_338 = &unknown_var_672_ptr;

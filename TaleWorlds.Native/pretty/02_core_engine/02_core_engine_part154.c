@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part154.c - 核心引擎模块第154部分
 // 
@@ -23,8 +24,8 @@
 // DataBuffer_Prepare - 数据缓冲区准备器 (原FUN_18013ce40)
 
 // 全局变量引用
-extern longlong _DAT_180c8a9b0;      // 核心引擎全局数据结构指针
-extern uint64_t _DAT_180c8a9a8;     // 内存分配器相关
+extern longlong SYSTEM_DATA_MANAGER_A;      // 核心引擎全局数据结构指针
+extern uint64_t SYSTEM_DATA_MANAGER_B;     // 内存分配器相关
 extern uint global_config_6320_ptr[256];       // 哈希计算查找表
 extern uint64_t global_config_3184_ptr;      // 字符串处理相关
 extern uint64_t global_config_3176_ptr;      // 字符串处理相关
@@ -60,8 +61,8 @@ void process_string_and_write_buffer(longlong context, char *input_start, char *
   char *line_end;
   char *next_line_start;
   
-  global_data = _DAT_180c8a9b0;
-  buffer_manager = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
+  global_data = SYSTEM_DATA_MANAGER_A;
+  buffer_manager = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
   
   // 如果结束位置为NULL，则使用起始位置作为结束位置
   if ((input_end == (char *)0x0) && (input_end = input_start, input_start != (char *)0xffffffffffffffff)) {
@@ -157,10 +158,10 @@ uint64_t *create_string_hash_entry(byte *input_string)
   uint hash_value;
   uint8_t stack_temp;
   
-  global_data = _DAT_180c8a9b0;
-  new_array = _DAT_180c8a9a8;
-  capacity = *(int *)(_DAT_180c8a9b0 + 0x2e2c);
-  count = *(int *)(_DAT_180c8a9b0 + 0x2e28);
+  global_data = SYSTEM_DATA_MANAGER_A;
+  new_array = SYSTEM_DATA_MANAGER_B;
+  capacity = *(int *)(SYSTEM_DATA_MANAGER_A + 0x2e2c);
+  count = *(int *)(SYSTEM_DATA_MANAGER_A + 0x2e28);
   
   // 检查是否需要扩展数组
   if (count == capacity) {
@@ -178,7 +179,7 @@ uint64_t *create_string_hash_entry(byte *input_string)
     
     // 执行数组扩展
     if (capacity < new_capacity) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
       new_array = MemoryManager_Allocate((longlong)new_capacity * 0x38, new_array);
       
       // 复制现有数据
@@ -292,7 +293,7 @@ uint64_t *create_string_hash_entry_with_params(byte *input_string)
   
   // 保存寄存器值到栈帧
   *(uint64_t *)(frame_ptr + 8) = register_rbx;
-  global_data = _DAT_180c8a9b0;
+  global_data = SYSTEM_DATA_MANAGER_A;
   *(uint64_t *)(frame_ptr + -0x48) = register_rax;
   *(uint64_t *)(frame_ptr + -0x40) = register_rax;
   *(uint64_t *)(frame_ptr + -0x2c) = register_rax;
@@ -301,7 +302,7 @@ uint64_t *create_string_hash_entry_with_params(byte *input_string)
   param_value = (int32_t)register_rax;
   *(uint64_t *)(frame_ptr + -0x20) = register_rax;
   *(uint64_t *)(frame_ptr + 0x18) = register_r14;
-  array_ptr = _DAT_180c8a9a8;
+  array_ptr = SYSTEM_DATA_MANAGER_B;
   count = *(int *)(global_data + 0x2e28);
   stack_param6 = param_value;
   
@@ -641,12 +642,12 @@ void copy_string_to_new_memory(longlong source_string, longlong string_length)
   }
   
   // 更新内存分配计数器
-  if (_DAT_180c8a9b0 != 0) {
-    *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+  if (SYSTEM_DATA_MANAGER_A != 0) {
+    *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
   }
   
   // 分配内存并复制字符串
-  new_memory = MemoryManager_Allocate(string_length + 1, _DAT_180c8a9a8);
+  new_memory = MemoryManager_Allocate(string_length + 1, SYSTEM_DATA_MANAGER_B);
   memcpy(new_memory, source_string, string_length);
 }
 
@@ -685,7 +686,7 @@ void copy_string_with_register_values(longlong source_string, longlong string_le
   }
   
   // 分配内存并复制字符串
-  new_memory = MemoryManager_Allocate(register_rbx + 1, _DAT_180c8a9a8);
+  new_memory = MemoryManager_Allocate(register_rbx + 1, SYSTEM_DATA_MANAGER_B);
   memcpy(new_memory, source_string, register_rbx);
 }
 
@@ -786,13 +787,13 @@ void parse_config_file(void)
         
         // 在哈希表中查找匹配的处理函数
         entry_index = 0;
-        if (0 < *(int *)(_DAT_180c8a9b0 + 0x2e18)) {
-          hash_table = (uint *)(*(longlong *)(_DAT_180c8a9b0 + 0x2e20) + 8);
+        if (0 < *(int *)(SYSTEM_DATA_MANAGER_A + 0x2e18)) {
+          hash_table = (uint *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x2e20) + 8);
           
           do {
             if (*hash_table == ~hash_value) {
               // 找到匹配的节处理器
-              section_handler = (longlong)entry_index * 0x30 + *(longlong *)(_DAT_180c8a9b0 + 0x2e20);
+              section_handler = (longlong)entry_index * 0x30 + *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x2e20);
               if (section_handler == 0) goto handler_not_found;
               
               // 调用节处理函数
@@ -802,7 +803,7 @@ void parse_config_file(void)
             
             entry_index = entry_index + 1;
             hash_table = hash_table + 0xc;
-          } while (entry_index < *(int *)(_DAT_180c8a9b0 + 0x2e18));
+          } while (entry_index < *(int *)(SYSTEM_DATA_MANAGER_A + 0x2e18));
         }
         
         // 未找到匹配的处理器
@@ -823,11 +824,11 @@ continue_parsing:
     // 检查是否到达文件末尾
     if (input_end <= input_ptr) {
       // 清理资源并退出
-      if ((stack_param != 0) && (_DAT_180c8a9b0 != 0)) {
-        *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+      if ((stack_param != 0) && (SYSTEM_DATA_MANAGER_A != 0)) {
+        *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
       }
       
-      ResourceCleaner_Release(stack_param, _DAT_180c8a9a8);
+      ResourceCleaner_Release(stack_param, SYSTEM_DATA_MANAGER_B);
     }
   } while( true );
 }
@@ -849,8 +850,8 @@ void cleanup_with_r14_register(void)
   longlong register_r14;
   
   // 如果R14寄存器不为0且全局数据存在，减少分配计数器
-  if ((register_r14 != 0) && (_DAT_180c8a9b0 != 0)) {
-    *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+  if ((register_r14 != 0) && (SYSTEM_DATA_MANAGER_A != 0)) {
+    *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
   }
   
   // 调用清理函数
@@ -874,8 +875,8 @@ void cleanup_with_r14_register(void)
 void simple_cleanup(void)
 {
   // 如果全局数据存在，减少分配计数器
-  if (_DAT_180c8a9b0 != 0) {
-    *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+  if (SYSTEM_DATA_MANAGER_A != 0) {
+    *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
   }
   
   // 调用清理函数
@@ -978,13 +979,13 @@ void parse_config_file_variant(void)
           
           // 在哈希表中查找匹配的处理函数
           entry_index = 0;
-          if (0 < *(int *)(_DAT_180c8a9b0 + 0x2e18)) {
-            hash_table = (uint *)(*(longlong *)(_DAT_180c8a9b0 + 0x2e20) + 8);
+          if (0 < *(int *)(SYSTEM_DATA_MANAGER_A + 0x2e18)) {
+            hash_table = (uint *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x2e20) + 8);
             
             do {
               if (*hash_table == ~hash_value) {
                 // 找到匹配的节处理器
-                section_handler = (longlong)entry_index * 0x30 + *(longlong *)(_DAT_180c8a9b0 + 0x2e20);
+                section_handler = (longlong)entry_index * 0x30 + *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x2e20);
                 if (section_handler == 0) goto handler_not_found;
                 
                 // 调用节处理函数
@@ -994,7 +995,7 @@ void parse_config_file_variant(void)
               
               entry_index = entry_index + 1;
               hash_table = hash_table + 0xc;
-            } while (entry_index < *(int *)(_DAT_180c8a9b0 + 0x2e18));
+            } while (entry_index < *(int *)(SYSTEM_DATA_MANAGER_A + 0x2e18));
           }
           
           // 未找到匹配的处理器
@@ -1015,11 +1016,11 @@ continue_parsing:
       // 检查是否到达文件末尾
       if (input_end <= input_ptr) {
         // 清理资源并退出
-        if ((stack_param != 0) && (_DAT_180c8a9b0 != 0)) {
-          *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+        if ((stack_param != 0) && (SYSTEM_DATA_MANAGER_A != 0)) {
+          *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
         }
         
-        ResourceCleaner_Release(stack_param, _DAT_180c8a9a8);
+        ResourceCleaner_Release(stack_param, SYSTEM_DATA_MANAGER_B);
       }
     }
   } while( true );
@@ -1048,7 +1049,7 @@ void write_data_to_file(longlong file_path)
   uint64_t data_size;
   
   // 重置全局标志
-  *(int32_t *)(_DAT_180c8a9b0 + 0x2e04) = 0;
+  *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x2e04) = 0;
   
   if (file_path != 0) {
     data_size = 0;

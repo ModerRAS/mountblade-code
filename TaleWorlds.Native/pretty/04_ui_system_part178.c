@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part178.c - 4 个函数
 
@@ -53,7 +54,7 @@ uint64_t FUN_18076fa40(longlong *param_1)
   lVar1 = *param_1;
   lVar2 = *(longlong *)(lVar1 + 0x218);
   if (lVar2 != 0) {
-    FUN_180741df0(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),lVar2,&unknown_var_2192_ptr,0xb8);
+    FUN_180741df0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar2,&unknown_var_2192_ptr,0xb8);
     *(uint64_t *)(lVar1 + 0x218) = 0;
   }
   return 0;
@@ -173,11 +174,11 @@ uint64_t FUN_18076fc90(longlong param_1,int param_2)
       aiStackX_10[0] = aiStackX_10[0] * *(int *)(param_1 + 0x234);
       *(int *)(param_1 + 0x238) = aiStackX_10[0];
       if (*(longlong *)(param_1 + 0x218) != 0) {
-        FUN_180741df0(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(param_1 + 0x218),
+        FUN_180741df0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(longlong *)(param_1 + 0x218),
                       &unknown_var_2192_ptr,0x174);
         aiStackX_10[0] = *(int *)(param_1 + 0x238);
       }
-      lVar5 = FUN_180741d80(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),aiStackX_10[0] * 8,0x10,
+      lVar5 = FUN_180741d80(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),aiStackX_10[0] * 8,0x10,
                             &unknown_var_2192_ptr,0x177,0);
       *(longlong *)(param_1 + 0x218) = lVar5;
       if (lVar5 != 0) {

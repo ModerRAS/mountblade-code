@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * @file 03_rendering_part426.c
@@ -219,7 +220,7 @@ typedef enum {
 // 全局变量引用
 // ============================================================================
 
-extern const void* _DAT_180bf00a8;     // 渲染系统全局数据
+extern const void* GET_SECURITY_COOKIE();     // 渲染系统全局数据
 
 // ============================================================================
 // 核心函数实现
@@ -321,7 +322,7 @@ void RenderingSystem_AdvancedDataProcessorAndOptimizer(
     ulonglong uStack_d8;                      // 无符号长整型栈变量
     
     // 初始化栈保护和数据完整性检查
-    uStack_d8 = _DAT_180bf00a8 ^ (ulonglong)&uStack_208;
+    uStack_d8 = GET_SECURITY_COOKIE() ^ (ulonglong)&uStack_208;
     uStack_1f8 = 4;                           // 初始化批处理大小
     uVar15 = 0xf;                            // 初始化掩码
     uStack_200 = in_stack_00000030 + 1;     // 设置数据块数量

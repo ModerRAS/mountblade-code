@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part022.c - 渲染系统网格组件处理文件
 
@@ -851,7 +852,7 @@ LAB_18027d773:
     fclose();
     file_handle[1] = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
   }
   FUN_18064e900(file_handle);

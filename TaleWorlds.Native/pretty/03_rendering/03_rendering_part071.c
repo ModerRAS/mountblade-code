@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part071.c - 渲染系统高级数据处理和渲染控制模块
 // 包含10个核心函数，涵盖渲染数据高级处理、渲染管线控制、资源管理、内存分配、数据结构操作等高级渲染功能
@@ -37,12 +38,12 @@
 #define g_rendering_system_texture_manager system_buffer_ptr
 #define g_rendering_system_resource_manager system_memory_bc80
 #define g_rendering_system_state_manager system_memory_bcb0
-#define g_rendering_system_heap_base _DAT_180bf00a8
+#define g_rendering_system_heap_base GET_SECURITY_COOKIE()
 #define g_rendering_system_resource_array _DAT_180bfaea0
 #define g_rendering_system_resource_end _DAT_180bfaea8
 #define g_rendering_system_resource_count _DAT_180bfaeb8
 #define g_rendering_system_module_registry _DAT_180c8ed18
-#define g_rendering_system_global_state _DAT_180c86920
+#define g_rendering_system_global_state SYSTEM_STATE_MANAGER
 #define g_rendering_system_name_registry unknown_var_6504
 
 // 函数声明

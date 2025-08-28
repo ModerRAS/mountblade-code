@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part109.c - 9 个函数
 
@@ -246,7 +247,7 @@ void update_render_engine_state(void)
   int frame_count;
   bool buffer_ready;
   
-  engine_context = _DAT_180c8a9b0;
+  engine_context = SYSTEM_DATA_MANAGER_A;
   FUN_180127d70();
   target_handle = 0;
   current_target = target_handle;
@@ -477,11 +478,11 @@ void initialize_render_frame(uint64_t frame_params, uint64_t render_context)
   float max_x, max_y;
   uint64_t frame_params_local[3];
   
-  engine_context = _DAT_180c8a9b0;
+  engine_context = SYSTEM_DATA_MANAGER_A;
   
   // 清理渲染状态
-  if ((*(char *)(_DAT_180c8a9b0 + 0xcb) != '\0') && ((*(byte *)(_DAT_180c8a9b0 + 0xc) & 2) == 0)) {
-    *(int8_t *)(_DAT_180c8a9b0 + 0xcb) = 0;
+  if ((*(char *)(SYSTEM_DATA_MANAGER_A + 0xcb) != '\0') && ((*(byte *)(SYSTEM_DATA_MANAGER_A + 0xc) & 2) == 0)) {
+    *(int8_t *)(SYSTEM_DATA_MANAGER_A + 0xcb) = 0;
   }
   
   // 更新渲染模式标志
@@ -498,11 +499,11 @@ void initialize_render_frame(uint64_t frame_params, uint64_t render_context)
       camera_ptr = FUN_180121420(*(longlong *)(engine_context + 0x20), render_context, frame_params_local);
       if (camera_ptr != 0) {
         FUN_18013cb20(camera_ptr, frame_params_local[0]);
-        if (_DAT_180c8a9b0 != 0) {
-          *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+        if (SYSTEM_DATA_MANAGER_A != 0) {
+          *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
-        FUN_180059ba0(camera_ptr, _DAT_180c8a9a8);
+        FUN_180059ba0(camera_ptr, SYSTEM_DATA_MANAGER_B);
       }
     }
     *(int8_t *)(engine_context + 0x2e00) = 1;
@@ -531,7 +532,7 @@ void initialize_render_frame(uint64_t frame_params, uint64_t render_context)
   
   // 初始化渲染管线
   FUN_180130010();
-  camera_ptr = _DAT_180c8a9b0;
+  camera_ptr = SYSTEM_DATA_MANAGER_A;
   **(int8_t **)(engine_context + 0xa0) = 1;
   
   // 处理纹理数据
@@ -733,11 +734,11 @@ void update_render_frame(uint64_t frame_params, uint64_t render_context)
       material_ptr = FUN_180121420(*(longlong *)(engine_context + 0x20), render_context, &stack_params);
       if (material_ptr != 0) {
         FUN_18013cb20(material_ptr, stack_params);
-        if (_DAT_180c8a9b0 != 0) {
-          *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+        if (SYSTEM_DATA_MANAGER_A != 0) {
+          *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
-        FUN_180059ba0(material_ptr, _DAT_180c8a9a8);
+        FUN_180059ba0(material_ptr, SYSTEM_DATA_MANAGER_B);
       }
     }
     *(int8_t *)(engine_context + 0x2e00) = 1;
@@ -767,7 +768,7 @@ void update_render_frame(uint64_t frame_params, uint64_t render_context)
   
   // 初始化渲染管线
   FUN_180130010();
-  material_ptr = _DAT_180c8a9b0;
+  material_ptr = SYSTEM_DATA_MANAGER_A;
   **(int8_t **)(engine_context + 0xa0) = 1;
   
   // 处理纹理数据
@@ -1057,8 +1058,8 @@ void process_render_batch_update(uint64_t batch_params, int batch_index)
   }
   
   // 初始化渲染参数
-  batch_data = _DAT_180c8a9b0;
-  *(int32_t *)(_DAT_180c8a9b0 + 0x1c04) = 0x43c80000;
+  batch_data = SYSTEM_DATA_MANAGER_A;
+  *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1c04) = 0x43c80000;
   *(int32_t *)(batch_data + 0x1c08) = 0x43c80000;
   *(int32_t *)(batch_data + 0x1bd4) = 4;
   FUN_1801299b0(&unknown_var_2432_ptr, 0, 0);
@@ -1132,8 +1133,8 @@ void process_render_resource_cleanup(void)
   }
   
   // 重置渲染参数
-  resource_ptr = _DAT_180c8a9b0;
-  *(int32_t *)(_DAT_180c8a9b0 + 0x1c04) = 0x43c80000;
+  resource_ptr = SYSTEM_DATA_MANAGER_A;
+  *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1c04) = 0x43c80000;
   *(int32_t *)(resource_ptr + 0x1c08) = 0x43c80000;
   *(int32_t *)(resource_ptr + 0x1bd4) = 4;
   FUN_1801299b0(&unknown_var_2432_ptr, 0, 0);

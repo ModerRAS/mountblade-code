@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 //==============================================================================
 // 01_initialization_part018.c - 初始化系统高级数学计算和内存管理模块
@@ -217,8 +218,8 @@ void InitializationSystem_ParameterCalculator(void* param_1)
     init_float_t intermediate_results[8]; // 中间结果数组
     
     // 获取系统基地址和参数索引
-    system_base = _DAT_180c86920;
-    parameter_index = *(int *)(_DAT_180c86920 + 0xd90) - 1;
+    system_base = SYSTEM_STATE_MANAGER;
+    parameter_index = *(int *)(SYSTEM_STATE_MANAGER + 0xd90) - 1;
     calculated_index = 0;
     
     // 边界检查和索引限制

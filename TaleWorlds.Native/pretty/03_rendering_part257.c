@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part257.c - 11 个函数
 
@@ -192,7 +193,7 @@ void FUN_180410220(longlong param_1,longlong *param_2,int param_3)
   float fStack_c0;
   ulonglong uStack_a8;
   
-  uStack_a8 = _DAT_180bf00a8 ^ (ulonglong)auStack_138;
+  uStack_a8 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_138;
   lStack_f8 = param_1;
   (**(code **)(*param_2 + 0x10))(param_2,&fStack_c8,0,0);
   iStack_108 = param_3 * 3;
@@ -482,7 +483,7 @@ void FUN_1804107f0(longlong param_1,longlong param_2,longlong *param_3,int param
   float fStack_d8;
   ulonglong uStack_d0;
   
-  uStack_d0 = _DAT_180bf00a8 ^ (ulonglong)auStack_198;
+  uStack_d0 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_198;
   lVar31 = (longlong)param_5;
   lStack_168 = param_1;
   plStack_158 = param_3;
@@ -893,7 +894,7 @@ void FUN_180410da0(longlong param_1,longlong *param_2,longlong param_3,int param
   if (param_4 < 1) {
     return;
   }
-  uStack_c0 = _DAT_180bf00a8 ^ (ulonglong)auStack_148;
+  uStack_c0 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_148;
   lVar16 = 0;
   lStack_108 = (longlong)param_4;
   lStack_118 = param_3;

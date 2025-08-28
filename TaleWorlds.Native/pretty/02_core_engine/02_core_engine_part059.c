@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part059.c - 核心引擎模块第059部分
 // 本文件包含5个函数，主要处理资源管理、字符串操作和排序功能
@@ -81,7 +82,7 @@ void initialize_core_engine_data(uint64_t engine_context, int32_t param2, int32_
   
   // 获取时间戳并初始化数据
   timestamp = FUN_180124730();
-  _DAT_180c8a9b0 = timestamp;
+  SYSTEM_DATA_MANAGER_A = timestamp;
   FUN_180290fd0(0);
   
   // 分配和初始化第一个数据块
@@ -91,7 +92,7 @@ void initialize_core_engine_data(uint64_t engine_context, int32_t param2, int32_
   
   // 分配和初始化第二个数据块
   temp_value = FUN_180124730();
-  _DAT_180c8a9b0 = temp_value;
+  SYSTEM_DATA_MANAGER_A = temp_value;
   FUN_180290fd0(0);
   timestamp = FUN_18062b1e0(_DAT_180c8ed18, 0xe8, 8, 3);
   temp_value = FUN_180095350(timestamp, temp_value);
@@ -102,7 +103,7 @@ void initialize_core_engine_data(uint64_t engine_context, int32_t param2, int32_
   FUN_180098ae0(engine_data_ptr[1], param2, param3, 0);
   
   // 更新全局状态
-  _DAT_180c8a9b0 = *(uint64_t *)*engine_data_ptr;
+  SYSTEM_DATA_MANAGER_A = *(uint64_t *)*engine_data_ptr;
   
   // 初始化第一个数据区域
   FUN_180080ca0(engine_data_ptr + 0xf, 0x96);

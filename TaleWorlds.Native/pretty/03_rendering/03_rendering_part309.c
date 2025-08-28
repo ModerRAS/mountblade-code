@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // ============================================================================
 // 03_rendering_part309.c - 渲染系统高级图像处理和颜色转换模块

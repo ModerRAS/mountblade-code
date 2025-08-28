@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part019_sub002_sub002.c - 渲染系统高级参数处理器
 // 
@@ -278,7 +279,7 @@ void rendering_system_parameter_processor(
     
     // 初始化栈保护变量
     stack_guard_428 = RENDERING_STATE_INITIALIZED;
-    stack_checksum_58 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_488;
+    stack_checksum_58 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_488;
     
     // 设置栈上下文
     stack_context_468 = param_context;

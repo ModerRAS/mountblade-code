@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 04_ui_system_part014.c - UI系统插值处理和向量标准化模块
 // 包含3个核心函数：插值处理器、标准化处理器和向量赋值处理器
@@ -22,7 +23,7 @@
 
 // 全局变量引用
 extern const void* _DAT_180c86938;     // UI系统全局数据
-extern const void* _DAT_180bf00a8;     // UI系统配置数据
+extern const void* GET_SECURITY_COOKIE();     // UI系统配置数据
 
 /**
  * UI系统插值处理器

@@ -1,10 +1,11 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part243.c - 核心引擎模块第243部分
 // 本文件包含6个函数，主要用于字符串处理、数据结构遍历和内存管理
 
 // 全局变量定义
-ulonglong g_string_buffer_size = _DAT_180bf00a8;  // 字符串缓冲区大小
+ulonglong g_string_buffer_size = GET_SECURITY_COOKIE();  // 字符串缓冲区大小
 longlong g_memory_allocator = _DAT_180c868e8;     // 内存分配器
 longlong g_string_constants = _DAT_180c8ed18;     // 字符串常量池
 char g_empty_string[] = "";                       // 空字符串常量

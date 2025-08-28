@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part072.c - UI系统向量和矩阵计算模块
 // 
@@ -326,7 +327,7 @@ void UISystem_MemoryAllocator(uint64_t context_ptr, uint64_t param2, uint64_t pa
   ulonglong stack_protector;
   
   // 栈保护机制
-  stack_protector = _DAT_180bf00a8 ^ (ulonglong)&stack_param3;
+  stack_protector = GET_SECURITY_COOKIE() ^ (ulonglong)&stack_param3;
   stack_param3 = param3;
   stack_param4 = param4;
   stack_context = context_ptr;

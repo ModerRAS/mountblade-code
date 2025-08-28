@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part077.c - 渲染系统高级缓冲区管理和资源处理
 // 本文件包含11个核心函数，主要负责渲染系统的高级缓冲区管理、资源处理和状态同步

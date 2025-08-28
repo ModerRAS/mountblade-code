@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part090.c - 9 个函数
 
@@ -18,8 +19,8 @@ void FUN_180114bc0(int32_t *param_1,longlong param_2,int param_3)
   lVar3 = *(longlong *)(param_2 + 0x10);
   fVar8 = 0.0;
   fVar6 = 0.0;
-  pfVar4 = *(float **)(_DAT_180c8a9b0 + 0x19f0);
-  fVar1 = *(float *)(_DAT_180c8a9b0 + 0x19f8);
+  pfVar4 = *(float **)(SYSTEM_DATA_MANAGER_A + 0x19f0);
+  fVar1 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19f8);
   puVar5 = (ushort *)((longlong)param_3 * 2 + lVar3);
   do {
     fVar7 = 0.0;
@@ -534,7 +535,7 @@ void FUN_180115200(float *param_1,longlong param_2,float param_3,int param_4)
     param_1[5] = fVar5;
     param_1[2] = fStack_28 - fStack_2c;
     *param_1 = fStack_38;
-    lVar3 = _DAT_180c8a9b0;
+    lVar3 = SYSTEM_DATA_MANAGER_A;
     if ((int)fVar7 < (int)param_3) {
       lVar8 = (longlong)(int)fVar7 * 2;
       do {

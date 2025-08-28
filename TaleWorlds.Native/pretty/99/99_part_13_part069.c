@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 99_part_13_part069.c - 高级系统资源管理和状态控制模块
 // 
@@ -872,7 +873,7 @@ LAB_1808d856d:
 }
 
 // 常量定义：系统内存管理基础地址
-#define SYSTEM_MEMORY_BASE _DAT_180be12f0
+#define SYSTEM_MEMORY_BASE SYSTEM_MAIN_CONTROL_BLOCK
 #define MEMORY_CLEANUP_TARGET unknown_var_8432
 #define MEMORY_DEALLOC_TARGET unknown_var_7344
 #define MEMORY_ALLOC_TARGET unknown_var_7344

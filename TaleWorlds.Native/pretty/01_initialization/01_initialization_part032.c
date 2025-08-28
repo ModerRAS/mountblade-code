@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 01_initialization_part032.c - 16 个函数
 
@@ -829,7 +830,7 @@ void 初始化线程池资源(uint64_t param1,longlong config_ptr)
   lVar2 = _DAT_180c86928;
   lVar1 = _DAT_180c82868;
   uStack_1b8 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_268;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_268;
   lStack_210 = _DAT_180c86928;
   puStack_1a8 = &unknown_var_7512_ptr;
   puStack_1a0 = auStack_190;
@@ -1210,7 +1211,7 @@ void 初始化时间相关资源(void)
   ulonglong uStack_38;
   
   uStack_178 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_208;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_208;
   uStack_1d8 = 0;
   uStack_180 = _DAT_180c86928;
   uStack_190 = _time64(0);

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * @file 99_part_12_part050.c
@@ -286,7 +287,7 @@ int AudioSimd_InitializeBuffers(void* audio_context, float time_scale)
     
     // 分配内存
     void* allocated_memory = Memory_AllocateAligned(
-        *(void**)((uintptr_t)_DAT_180be12f0 + 0x1a0), 
+        *(void**)((uintptr_t)SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
         total_size * 4, 
         &unknown_var_3008_ptr, 
         0x9b, 

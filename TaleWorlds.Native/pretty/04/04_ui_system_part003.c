@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 04_ui_system_part003.c - 32 个函数
 // 
@@ -61,7 +62,7 @@ void ui_log_formatted_message(ui_widget_t *widget, log_context_t *log_ctx,
   uint64_t guard_value;
   
   if (format != NULL) {
-    guard_value = _DAT_180bf00a8 ^ (uint64_t)stack_guard;
+    guard_value = GET_SECURITY_COOKIE() ^ (uint64_t)stack_guard;
     
     // 获取线程本地存储标志
     thread_local_flag = (char *)(*(longlong *)
@@ -324,7 +325,7 @@ void ui_parse_environment_variable(int *config_data)
   char env_var_value[80];
   ulonglong guard_value;
   
-  guard_value = _DAT_180bf00a8 ^ (ulonglong)stack_guard;
+  guard_value = GET_SECURITY_COOKIE() ^ (ulonglong)stack_guard;
   env_var_name[0] = '\0';
   strncpy(env_var_name, &ui_env_prefix_string, 0x40);
   env_var_name[0x40] = 0;
@@ -1065,7 +1066,7 @@ void ui_load_library_with_resource_check(longlong library_info)
   
   operation_flag = 0xfffffffffffffffe;
   // 栈保护值初始化 - 使用随机种子与栈地址异或生成保护值
-  stack_guard_value = _DAT_180bf00a8 ^ (ulonglong)stack_guard_buffer;  // _DAT_180bf00a8: 栈保护随机种子
+  stack_guard_value = GET_SECURITY_COOKIE() ^ (ulonglong)stack_guard_buffer;  // GET_SECURITY_COOKIE(): 栈保护随机种子
   library_path_ptr = &system_buffer_ptr;
   if (*(void **)(library_info + 8) != (void *)0x0) {
     library_path_ptr = *(void **)(library_info + 8);
@@ -1159,7 +1160,7 @@ void ui_create_process_snapshot(void)
   
   operation_flag = 0xfffffffffffffffe;
   // 栈保护值初始化 - 使用随机种子与栈地址异或生成保护值
-  stack_guard_value = _DAT_180bf00a8 ^ (ulonglong)stack_guard_buffer;  // _DAT_180bf00a8: 栈保护随机种子
+  stack_guard_value = GET_SECURITY_COOKIE() ^ (ulonglong)stack_guard_buffer;  // GET_SECURITY_COOKIE(): 栈保护随机种子
   mutex_handle = 0x180c96740;
   lock_result = _Mtx_lock(0x180c96740);
   if (lock_result != 0) {

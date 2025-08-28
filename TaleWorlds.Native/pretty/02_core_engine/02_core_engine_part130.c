@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part130.c - 核心引擎模块第130部分
 // 本文件包含8个函数，主要处理渲染系统的状态管理、边界计算和坐标转换
@@ -37,16 +38,16 @@ void process_render_system_state_update(void)
     float boundary_x;             // X轴边界
     float boundary_y;             // Y轴边界
     
-    engine_context = _DAT_180c8a9b0;
-    render_state = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
+    engine_context = SYSTEM_DATA_MANAGER_A;
+    render_state = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
     
     // 检查渲染系统状态条件
-    if ((((*(longlong *)(_DAT_180c8a9b0 + 0x1c98) == render_state) &&
-         (*(char *)(_DAT_180c8a9b0 + 0x1d21) != '\0')) && (*(int *)(_DAT_180c8a9b0 + 0x1d38) == 0)) &&
-        (((*(int *)(_DAT_180c8a9b0 + 0x1d98) == 0 && (*(int *)(_DAT_180c8a9b0 + 0x1d28) == 0)) &&
-         (state_flag = *(int *)(_DAT_180c8a9b0 + 0x1cfc), state_flag == 0)))) {
+    if ((((*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1c98) == render_state) &&
+         (*(char *)(SYSTEM_DATA_MANAGER_A + 0x1d21) != '\0')) && (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1d38) == 0)) &&
+        (((*(int *)(SYSTEM_DATA_MANAGER_A + 0x1d98) == 0 && (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1d28) == 0)) &&
+         (state_flag = *(int *)(SYSTEM_DATA_MANAGER_A + 0x1cfc), state_flag == 0)))) {
         
-        mode_type = *(int *)(_DAT_180c8a9b0 + 0x1d2c);
+        mode_type = *(int *)(SYSTEM_DATA_MANAGER_A + 0x1d2c);
         param_x = *(int32_t *)(render_state + 0x3d0);
         param_y = *(int32_t *)(render_state + 0x3d8);
         index_value = mode_type;
@@ -66,7 +67,7 @@ void process_render_system_state_update(void)
             
             offset_x = *(float *)(render_state + 0x90);
             scale_factor = scale_factor - offset_x;
-            *(int8_t *)(_DAT_180c8a9b0 + 0x1d21) = 0;
+            *(int8_t *)(SYSTEM_DATA_MANAGER_A + 0x1d21) = 0;
             *(bool *)(engine_context + 0x1d08) = *offset_x != '\0';
             *(int32_t *)(engine_context + 0x1d2c) = 2;
             *(int *)(engine_context + 0x1d34) = mode_type;
@@ -105,9 +106,9 @@ void process_render_system_state_update(void)
     }
     
     // 处理渲染系统清理和资源释放
-    render_state = _DAT_180c8a9b0;
-    if ((1 < *(int *)(_DAT_180c8a9b0 + 0x1ad0)) || (*(char *)(_DAT_180c8a9b0 + 2) == '\0')) {
-        engine_context = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
+    render_state = SYSTEM_DATA_MANAGER_A;
+    if ((1 < *(int *)(SYSTEM_DATA_MANAGER_A + 0x1ad0)) || (*(char *)(SYSTEM_DATA_MANAGER_A + 2) == '\0')) {
+        engine_context = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
         
         if (*(longlong *)(engine_context + 0x210) != 0) {
             cleanup_render_resources();
@@ -120,9 +121,9 @@ void process_render_system_state_update(void)
         }
         
         // 处理文件和内存清理
-        temp_ptr = _DAT_180c8a9b0;
+        temp_ptr = SYSTEM_DATA_MANAGER_A;
         queue_ptr = 0;
-        if (((status_flag >> 0x18 & 1) == 0) && (offset_x = (char *)(_DAT_180c8a9b0 + 0x2e38), *offset_x != '\0')) {
+        if (((status_flag >> 0x18 & 1) == 0) && (offset_x = (char *)(SYSTEM_DATA_MANAGER_A + 0x2e38), *offset_x != '\0')) {
             
             process_render_cleanup(&unknown_var_3196_ptr);
             
@@ -141,11 +142,11 @@ void process_render_system_state_update(void)
             counter = (int *)(temp_ptr + 0x2e48);
             memory_ptr = *(longlong *)(temp_ptr + 0x2e50);
             if ((memory_ptr != 0) && (1 < *counter + -1)) {
-                if (*(code **)(_DAT_180c8a9b0 + 0x100) != (code *)0x0) {
-                    (**(code **)(_DAT_180c8a9b0 + 0x100))(*(uint64_t *)(_DAT_180c8a9b0 + 0x108), memory_ptr);
+                if (*(code **)(SYSTEM_DATA_MANAGER_A + 0x100) != (code *)0x0) {
+                    (**(code **)(SYSTEM_DATA_MANAGER_A + 0x100))(*(uint64_t *)(SYSTEM_DATA_MANAGER_A + 0x108), memory_ptr);
                     memory_ptr = *(longlong *)(temp_ptr + 0x2e50);
                 }
-                temp_ptr = _DAT_180c8a9b0;
+                temp_ptr = SYSTEM_DATA_MANAGER_A;
                 if (memory_ptr != 0) {
                     counter[0] = 0;
                     counter[1] = 0;
@@ -154,11 +155,11 @@ void process_render_system_state_update(void)
                         *counter = *counter + -1;
                     }
                     // 释放内存资源
-                    free_render_memory(memory_ptr, _DAT_180c8a9a8);
+                    free_render_memory(memory_ptr, SYSTEM_DATA_MANAGER_B);
                 }
             }
             
-            temp_ptr = _DAT_180c8a9b0;
+            temp_ptr = SYSTEM_DATA_MANAGER_A;
             *offset_x = '\0';
         }
         
@@ -252,7 +253,7 @@ void calculate_rectangle_boundary_and_adjustment(float *param_1, float *param_2,
     int32_t stack_param_2;     // 栈参数2
     ulonglong security_cookie;    // 安全cookie
     
-    security_cookie = _DAT_180bf00a8 ^ (ulonglong)&stack_param;
+    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)&stack_param;
     boundary_width = param_2[1];
     source_x = *param_3;
     source_y = param_3[1];
@@ -445,7 +446,7 @@ float * calculate_boundary_box_and_coordinate_transform(float *param_1, longlong
     float offset_x;               // X轴偏移
     float offset_y;               // Y轴偏移
     
-    engine_context = _DAT_180c8a9b0;
+    engine_context = SYSTEM_DATA_MANAGER_A;
     
     // 初始化边界框为极限值
     *param_1 = 3.4028235e+38;        // MAX_FLOAT
@@ -547,8 +548,8 @@ uint64_t * process_render_position_calculation_and_boundary_detection(uint64_t *
             }
             else {
                 // 缩放调整模式
-                scale_factor = *(float *)(_DAT_180c8a9b0 + 0x16bc);
-                engine_context = _DAT_180c8a9b0;
+                scale_factor = *(float *)(SYSTEM_DATA_MANAGER_A + 0x16bc);
+                engine_context = SYSTEM_DATA_MANAGER_A;
                 calculate_transform_parameters(&position_x);
                 calculate_boundary_box_and_coordinate_transform(boundary_data, param_2);
                 
@@ -592,9 +593,9 @@ uint64_t * process_render_position_calculation_and_boundary_detection(uint64_t *
     }
     else {
         // 高级渲染模式
-        scale_factor = *(float *)(_DAT_180c8a9b0 + 0x166c);
+        scale_factor = *(float *)(SYSTEM_DATA_MANAGER_A + 0x166c);
         engine_context = *(longlong *)(param_2 + 0x398);
-        object_data = _DAT_180c8a9b0;
+        object_data = SYSTEM_DATA_MANAGER_A;
         calculate_boundary_box_and_coordinate_transform(boundary_data);
         
         if (*(char *)(engine_context + 0x17e) == '\0') {
@@ -1021,8 +1022,8 @@ void process_render_position_direct_setting(void)
 }
 
 // 全局变量和函数声明
-uint64_t _DAT_180c8a9b0 = 0;          // 引擎全局上下文
-uint64_t _DAT_180bf00a8 = 0;          // 安全cookie基址
+uint64_t SYSTEM_DATA_MANAGER_A = 0;          // 引擎全局上下文
+uint64_t GET_SECURITY_COOKIE() = 0;          // 安全cookie基址
 uint64_t unknown_var_3196_ptr = 0;           // 未知数据引用
 
 // 函数声明

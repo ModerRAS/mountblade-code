@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part144.c - 核心引擎模块第144部分
 // 包含9个函数，主要处理游戏引擎的资源管理、清理和初始化
@@ -37,8 +38,8 @@ void cleanup_engine_resources(longlong engine_context)
     if ((*(byte *)(engine_context + 8) & 0x40) == 0) {
         if ((0 < *resource_count) || (0 < resource_count[4])) {
             trigger_resource_cleanup();
-            global_context = _DAT_180c8a9b0;
-            resource_count = *(int **)(_DAT_180c8a9b0 + 0x2df8);
+            global_context = SYSTEM_DATA_MANAGER_A;
+            resource_count = *(int **)(SYSTEM_DATA_MANAGER_A + 0x2df8);
             temp_array = (uint64_t *)0x0;
             resource_index = 0;
             array_ptr = temp_array;
@@ -65,11 +66,11 @@ void cleanup_engine_resources(longlong engine_context)
                                 new_size = resource_index;
                             }
                             if (item_count < (int)new_size) {
-                                if (_DAT_180c8a9b0 != 0) {
-                                    *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+                                if (SYSTEM_DATA_MANAGER_A != 0) {
+                                    *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
                                 }
                                 alloc_array = (uint64_t *)
-                                         allocate_memory_array((longlong)(int)new_size << 3,_DAT_180c8a9a8);
+                                         allocate_memory_array((longlong)(int)new_size << 3,SYSTEM_DATA_MANAGER_B);
                                 if (final_array != (uint64_t *)0x0) {
                                     // 复制现有数组内容到新数组
                                     memcpy(alloc_array,final_array,(longlong)array_size << 3);
@@ -123,30 +124,30 @@ void cleanup_engine_resources(longlong engine_context)
             if (global_context != 0) {
                 resource_count[0] = 0;
                 resource_count[1] = 0;
-                if (_DAT_180c8a9b0 != 0) {
-                    *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+                if (SYSTEM_DATA_MANAGER_A != 0) {
+                    *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
                 }
                 // 释放资源数组内存
-                free_memory_array(global_context,_DAT_180c8a9a8);
+                free_memory_array(global_context,SYSTEM_DATA_MANAGER_B);
             }
             global_context = *(longlong *)(resource_count + 6);
             if (global_context != 0) {
                 resource_count[4] = 0;
                 resource_count[5] = 0;
-                if (_DAT_180c8a9b0 != 0) {
-                    *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+                if (SYSTEM_DATA_MANAGER_A != 0) {
+                    *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
                 }
                 // 释放资源数组内存
-                free_memory_array(global_context,_DAT_180c8a9a8);
+                free_memory_array(global_context,SYSTEM_DATA_MANAGER_B);
             }
             if (alloc_array == (uint64_t *)0x0) {
                 return;
             }
-            if (_DAT_180c8a9b0 != 0) {
-                *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+            if (SYSTEM_DATA_MANAGER_A != 0) {
+                *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
             }
             // 释放分配的数组内存
-            free_memory_array(alloc_array,_DAT_180c8a9a8);
+            free_memory_array(alloc_array,SYSTEM_DATA_MANAGER_B);
         }
     }
     else {
@@ -166,10 +167,10 @@ void cleanup_engine_resources(longlong engine_context)
         if ((char)resource_count[0xc] != '\0') {
             global_context = *(longlong *)(engine_context + 0x2df8);
             initialize_resource_cleanup(0);
-            cleanup_status = (int *)(_DAT_180c8a9b0 + 0x1aa0);
+            cleanup_status = (int *)(SYSTEM_DATA_MANAGER_A + 0x1aa0);
             if (0 < *cleanup_status) {
-                resource_array = (longlong *)(_DAT_180c8a9b0 + 0x1aa8);
-                loop_var = _DAT_180c8a9b0;
+                resource_array = (longlong *)(SYSTEM_DATA_MANAGER_A + 0x1aa8);
+                loop_var = SYSTEM_DATA_MANAGER_A;
                 cleanup_flag = temp_val;
                 do {
                     item_address = *(longlong *)(cleanup_flag + *resource_array);
@@ -178,7 +179,7 @@ void cleanup_engine_resources(longlong engine_context)
                     }
                     else {
                         cleanup_resource_data(*(longlong *)(item_address + 0x408),item_address,*(int32_t *)(item_address + 0x418));
-                        loop_var = _DAT_180c8a9b0;
+                        loop_var = SYSTEM_DATA_MANAGER_A;
                     }
                     *(byte *)(item_address + 0x432) = *(byte *)(item_address + 0x432) & 0xfc;
                     *(int8_t *)(item_address + 0xb2) = 0;
@@ -214,7 +215,7 @@ void cleanup_engine_resources(longlong engine_context)
                         else {
                             cleanup_resource_data(*(longlong *)(item_address + 0x408),item_address,0);
                         }
-                        loop_var = _DAT_180c8a9b0;
+                        loop_var = SYSTEM_DATA_MANAGER_A;
                         *(byte *)(item_address + 0x432) = *(byte *)(item_address + 0x432) & 0xfc;
                         *(int8_t *)(item_address + 0xb2) = 0;
                         if (*(float *)(loop_var + 0x2e04) <= 0.0) {
@@ -263,10 +264,10 @@ void cleanup_specific_resources(longlong context)
     }
     if ((char)status_array[0xc] != '\0') {
         initialize_resource_cleanup(0);
-        resource_ptr = (int *)(_DAT_180c8a9b0 + 0x1aa0);
+        resource_ptr = (int *)(SYSTEM_DATA_MANAGER_A + 0x1aa0);
         if (0 < *resource_ptr) {
-            array_ptr = (longlong *)(_DAT_180c8a9b0 + 0x1aa8);
-            current_item = _DAT_180c8a9b0;
+            array_ptr = (longlong *)(SYSTEM_DATA_MANAGER_A + 0x1aa8);
+            current_item = SYSTEM_DATA_MANAGER_A;
             array_index = loop_counter;
             do {
                 item_address = *(longlong *)(array_index + *array_ptr);
@@ -275,7 +276,7 @@ void cleanup_specific_resources(longlong context)
                 }
                 else {
                     cleanup_resource_data(*(longlong *)(item_address + 0x408),item_address,*(int32_t *)(item_address + 0x418));
-                    current_item = _DAT_180c8a9b0;
+                    current_item = SYSTEM_DATA_MANAGER_A;
                 }
                 *(byte *)(item_address + 0x432) = *(byte *)(item_address + 0x432) & 0xfc;
                 *(int8_t *)(item_address + 0xb2) = 0;
@@ -311,7 +312,7 @@ void cleanup_specific_resources(longlong context)
                     else {
                         cleanup_resource_data(*(longlong *)(data_ptr + 0x408),data_ptr,0);
                     }
-                    item_address = _DAT_180c8a9b0;
+                    item_address = SYSTEM_DATA_MANAGER_A;
                     *(byte *)(data_ptr + 0x432) = *(byte *)(data_ptr + 0x432) & 0xfc;
                     *(int8_t *)(data_ptr + 0xb2) = 0;
                     if (*(float *)(item_address + 0x2e04) <= 0.0) {
@@ -344,10 +345,10 @@ void perform_global_resource_cleanup(void)
     
     initialize_resource_cleanup(0);
     index = array_size & 0xffffffff;
-    resource_count = (int *)(_DAT_180c8a9b0 + 0x1aa0);
+    resource_count = (int *)(SYSTEM_DATA_MANAGER_A + 0x1aa0);
     if ((int)array_size < *resource_count) {
-        resource_array = (longlong *)(_DAT_180c8a9b0 + 0x1aa8);
-        data_ptr = _DAT_180c8a9b0;
+        resource_array = (longlong *)(SYSTEM_DATA_MANAGER_A + 0x1aa8);
+        data_ptr = SYSTEM_DATA_MANAGER_A;
         do {
             item_address = *(longlong *)(array_size + *resource_array);
             if (*(longlong *)(item_address + 0x408) == 0) {
@@ -355,7 +356,7 @@ void perform_global_resource_cleanup(void)
             }
             else {
                 cleanup_resource_data(*(longlong *)(item_address + 0x408),item_address,*(int32_t *)(item_address + 0x418));
-                data_ptr = _DAT_180c8a9b0;
+                data_ptr = SYSTEM_DATA_MANAGER_A;
             }
             *(byte *)(item_address + 0x432) = *(byte *)(item_address + 0x432) & 0xfc;
             *(int8_t *)(item_address + 0xb2) = 0;
@@ -391,7 +392,7 @@ void perform_global_resource_cleanup(void)
                     else {
                         cleanup_resource_data(*(longlong *)(item_address + 0x408),item_address,0);
                     }
-                    data_ptr = _DAT_180c8a9b0;
+                    data_ptr = SYSTEM_DATA_MANAGER_A;
                     *(byte *)(item_address + 0x432) = *(byte *)(item_address + 0x432) & 0xfc;
                     *(int8_t *)(item_address + 0xb2) = 0;
                     if (*(float *)(data_ptr + 0x2e04) <= time_threshold) {
@@ -432,7 +433,7 @@ void cleanup_resources_with_params(uint64_t param_1,longlong context)
         }
         else {
             cleanup_resource_data(*(longlong *)(item_address + 0x408),item_address,*(int32_t *)(item_address + 0x418));
-            context = _DAT_180c8a9b0;
+            context = SYSTEM_DATA_MANAGER_A;
         }
         *(byte *)(item_address + 0x432) = *(byte *)(item_address + 0x432) & 0xfc;
         *(int8_t *)(item_address + 0xb2) = 0;
@@ -465,7 +466,7 @@ void cleanup_resources_with_params(uint64_t param_1,longlong context)
                     else {
                         cleanup_resource_data(*(longlong *)(data_ptr + 0x408),data_ptr,0);
                     }
-                    item_address = _DAT_180c8a9b0;
+                    item_address = SYSTEM_DATA_MANAGER_A;
                     *(byte *)(data_ptr + 0x432) = *(byte *)(data_ptr + 0x432) & 0xfc;
                     *(int8_t *)(data_ptr + 0xb2) = 0;
                     if (*(float *)(item_address + 0x2e04) <= time_threshold) {
@@ -518,7 +519,7 @@ void quick_resource_cleanup(void)
                     else {
                         cleanup_resource_data(*(longlong *)(data_ptr + 0x408),data_ptr,0);
                     }
-                    item_address = _DAT_180c8a9b0;
+                    item_address = SYSTEM_DATA_MANAGER_A;
                     *(byte *)(data_ptr + 0x432) = *(byte *)(data_ptr + 0x432) & 0xfc;
                     *(int8_t *)(data_ptr + 0xb2) = 0;
                     if (*(float *)(item_address + 0x2e04) <= time_threshold) {
@@ -567,7 +568,7 @@ void minimal_resource_cleanup(void)
                     else {
                         cleanup_resource_data(*(longlong *)(data_ptr + 0x408),data_ptr,0);
                     }
-                    item_address = _DAT_180c8a9b0;
+                    item_address = SYSTEM_DATA_MANAGER_A;
                     *(byte *)(data_ptr + 0x432) = *(byte *)(data_ptr + 0x432) & 0xfc;
                     *(int8_t *)(data_ptr + 0xb2) = 0;
                     if (*(float *)(item_address + 0x2e04) <= time_threshold) {
@@ -641,10 +642,10 @@ int32_t *create_resource_object(longlong context,int resource_type,uint64_t para
     if (resource_type == 0) {
         resource_type = generate_unique_resource_id();
     }
-    if (_DAT_180c8a9b0 != 0) {
-        *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+        *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
-    allocated_memory = allocate_memory_array(0xa8,_DAT_180c8a9a8);
+    allocated_memory = allocate_memory_array(0xa8,SYSTEM_DATA_MANAGER_B);
     stack_ptr = stack_data;
     if (allocated_memory == 0) {
         resource_obj = (int32_t *)0x0;
@@ -764,19 +765,19 @@ void process_resource_release(longlong context,uint64_t *resource_obj,char relea
             }
             register_resource_object(*(uint64_t *)(context + 0x2df8),*next_obj,0);
             finalize_resource_object(next_obj);
-            if (_DAT_180c8a9b0 != 0) {
-                *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+            if (SYSTEM_DATA_MANAGER_A != 0) {
+                *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
             }
             // 释放资源对象内存
-            free_memory_array(next_obj,_DAT_180c8a9a8);
+            free_memory_array(next_obj,SYSTEM_DATA_MANAGER_B);
         }
         register_resource_object(*(uint64_t *)(context + 0x2df8),*prev_obj,0);
         finalize_resource_object(prev_obj);
-        if (_DAT_180c8a9b0 != 0) {
-            *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+        if (SYSTEM_DATA_MANAGER_A != 0) {
+            *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
         }
         // 释放资源对象内存
-        free_memory_array(prev_obj,_DAT_180c8a9a8);
+        free_memory_array(prev_obj,SYSTEM_DATA_MANAGER_B);
     }
     register_resource_object(resource_handle,*(int32_t *)resource_obj,0,resource_handle,0xfffffffffffffffe);
     cleanup_resource_memory(resource_obj[6]);
@@ -785,14 +786,14 @@ void process_resource_release(longlong context,uint64_t *resource_obj,char relea
     resource_obj[2] = 0;
     resource_data = resource_obj[5];
     if (resource_data != 0) {
-        if (_DAT_180c8a9b0 != 0) {
-            *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+        if (SYSTEM_DATA_MANAGER_A != 0) {
+            *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
         }
         // 释放资源数据内存
-        free_memory_array(resource_data,_DAT_180c8a9a8);
+        free_memory_array(resource_data,SYSTEM_DATA_MANAGER_B);
     }
-    if (_DAT_180c8a9b0 != 0) {
-        *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+        *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     if (resource_obj != (uint64_t *)0x0) {
         link_count = (ulonglong)resource_obj & 0xffffffffffc00000;
@@ -846,7 +847,7 @@ void process_resource_batch(longlong context,longlong resource_data,int batch_si
     if (batch_size < 1) {
         return;
     }
-    stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_data;
+    stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_data;
     coord_ptr = (short *)(resource_data + 0x12);
     loop_var = (longlong)batch_size;
     do {
@@ -904,7 +905,7 @@ void process_resource_batch(longlong context,longlong resource_data,int batch_si
                 status_flag = *byte_ptr;
                 byte_ptr = byte_ptr + 1;
             }
-            hash_value = get_resource_handle(_DAT_180c8a9b0 + 0x1ae0,~hash_result);
+            hash_value = get_resource_handle(SYSTEM_DATA_MANAGER_A + 0x1ae0,~hash_result);
             *(uint64_t *)(next_obj + 0x1a) = hash_value;
         }
         coord_ptr = coord_ptr + 0x10;

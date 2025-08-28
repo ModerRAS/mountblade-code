@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 04_ui_system_part020.c - UI系统高级矩阵变换和内存管理模块
 // 包含7个核心函数：UI系统矩阵变换处理器、UI系统内存管理器、UI系统状态初始化器、UI系统资源管理器、UI系统高级变换处理器、UI系统数据同步器、UI系统参数更新器
@@ -274,7 +275,7 @@ void ui_system_advanced_transform_processor(longlong transform_context, longlong
   ulonglong security_key;
   
   // 安全密钥初始化
-  security_key = _DAT_180bf00a8 ^ (ulonglong)conversion_buffer;
+  security_key = GET_SECURITY_COOKIE() ^ (ulonglong)conversion_buffer;
   
   // 获取变换类型
   transform_type_1 = *(char *)(transform_context + 0xa4);
@@ -456,7 +457,7 @@ void ui_system_data_synchronizer(longlong sync_context, longlong resource_manage
   ulonglong security_key;
   
   // 安全密钥初始化
-  security_key = _DAT_180bf00a8 ^ (ulonglong)&sync_data_1;
+  security_key = GET_SECURITY_COOKIE() ^ (ulonglong)&sync_data_1;
   
   // 获取同步标志
   sync_flag = *(char *)(sync_context + 0xa4);

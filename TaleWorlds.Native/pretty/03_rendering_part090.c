@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // =============================================================================
 // 03_rendering_part090.c - 渲染系统高级渲染控制和特效处理模块
@@ -262,7 +263,7 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
     
     // 初始化栈保护和变量
     uStack_150 = 0xfffffffffffffffe;
-    uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_268;
+    uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_268;
     ppcVar8 = (code **)0x0;
     
     // 初始化渲染字符串处理
@@ -586,7 +587,7 @@ void RenderingSystemParameterProcessor(longlong *param_1)
     ulonglong uVar17;
     
     // 初始化栈保护和变量
-    uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+    uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
     
     // 执行渲染管线初始化
     (**(code **)(**(longlong **)(_DAT_180c86938 + 0x1cd8) + 0x198))(*(longlong **)(_DAT_180c86938 + 0x1cd8), *param_1, param_1[1]);
@@ -1032,7 +1033,7 @@ void RenderingSystemCleanupHandler(void)
 static longlong _DAT_180c86938 = 0;
 static longlong _DAT_180c8695c = 0;
 static longlong _DAT_180c86968 = 0;
-static longlong _DAT_180bf00a8 = 0;
+static longlong GET_SECURITY_COOKIE() = 0;
 
 // 渲染系统常量数据
 static uint64_t unknown_var_6768_ptr = 0;

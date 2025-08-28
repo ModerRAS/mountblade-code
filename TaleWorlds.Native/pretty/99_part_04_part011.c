@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * @file 99_part_04_part011.c
@@ -300,7 +301,7 @@ void DataStructureProcessor(uint64_t context_ptr, longlong data_buffer, uint *re
     
     // 初始化栈保护
     stack_guard = MEMORY_STACK_GUARD;
-    stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     
     // 更新数据缓冲区位置
     *(longlong *)(data_buffer + 8) = *(longlong *)(data_buffer + 8) + 4;

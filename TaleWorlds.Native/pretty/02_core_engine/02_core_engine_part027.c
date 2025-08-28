@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part027.c - 核心引擎模块第27部分 - 错误处理和调试系统
 // 本文件包含错误报告、调试信息输出和异常处理相关功能

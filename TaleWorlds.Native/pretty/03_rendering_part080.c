@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part080.c - 3 个函数
 // 渲染系统高级处理模块
@@ -201,7 +202,7 @@ void rendering_system_process_render_data(void)
   _fStack0000000000000048 = CONCAT14(0xff,fStack0000000000000048);
   FUN_180310a00();
   uVar33 = (int16_t)((uint)fVar15 >> 0x10);
-  iVar7 = *(int *)(_DAT_180c86920 + 0x2300);
+  iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0x2300);
   cVar12 = (char)unaff_R13D;
   if (*(byte *)(unaff_RBP + -0x2c) < unaff_R14B) {
     if ((((*(float *)(unaff_RSI + 0x68) != unaff_XMM7_Da) && (*(float *)(unaff_RSI + 0x68) <= 0.2))
@@ -279,7 +280,7 @@ void rendering_system_process_render_data(void)
   else {
     uVar16 = 0;
   }
-  lVar6 = _DAT_180c86920;
+  lVar6 = SYSTEM_STATE_MANAGER;
   uVar11 = *(int32_t *)(unaff_RBP + -0x34);
   *(int32_t *)(unaff_RSI + 0x338) = *(int32_t *)(unaff_RBP + -0x38);
   *(int32_t *)(unaff_RSI + 0x340) = *(int32_t *)(unaff_RBP + -0x30);

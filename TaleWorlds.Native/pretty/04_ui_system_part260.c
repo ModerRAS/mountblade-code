@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part260.c - 9 个函数
 
@@ -37,7 +38,7 @@ void FUN_1808168c0(longlong param_1,uint param_2,char param_3)
   int32_t uStack_40;
   ulonglong uStack_30;
   
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_e8;
+  uStack_30 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_e8;
   cVar7 = '\0';
   cStack_b7 = '\0';
   cStack_b8 = param_3;
@@ -62,7 +63,7 @@ void FUN_1808168c0(longlong param_1,uint param_2,char param_3)
               uVar8 = 0x28;
             }
             piStack_c8 = (int *)((ulonglong)piStack_c8 & 0xffffffff00000000);
-            lVar4 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),uVar8,&unknown_var_720_ptr,0x48)
+            lVar4 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar8,&unknown_var_720_ptr,0x48)
             ;
             *(longlong *)(param_1 + 0x230) = lVar4;
             if (lVar4 == 0) break;
@@ -81,11 +82,11 @@ joined_r0x000180816c9e:
               if (*(longlong *)(param_1 + 0x1e8) != 0) {
                 piStack_c8 = (int *)CONCAT71(piStack_c8._1_7_,1);
                     // WARNING: Subroutine does not return
-                FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(param_1 + 0x1e8)
+                FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(longlong *)(param_1 + 0x1e8)
                               ,&unknown_var_720_ptr,0x77);
               }
               piStack_c8 = (int *)((ulonglong)piStack_c8 & 0xffffffff00000000);
-              lVar4 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),
+              lVar4 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                                     *(int *)(param_1 + 0x1e0) * 0x13c,&unknown_var_720_ptr,0x7a);
               *(longlong *)(param_1 + 0x1e8) = lVar4;
               if (lVar4 == 0) break;
@@ -260,7 +261,7 @@ void FUN_180816928(void)
           if (uVar6 < 0x28) {
             uVar6 = 0x28;
           }
-          lVar3 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),uVar6,&unknown_var_720_ptr,0x48,
+          lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar6,&unknown_var_720_ptr,0x48,
                                 uVar8 & 0xffffffff00000000);
           *(longlong *)(unaff_RBX + 0x230) = lVar3;
           if (lVar3 == 0) break;
@@ -278,10 +279,10 @@ joined_r0x000180816c9e:
           if (*(int *)(unaff_RBX + 0x1e0) != 0) {
             if (*(longlong *)(unaff_RBX + 0x1e8) != 0) {
                     // WARNING: Subroutine does not return
-              FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(unaff_RBX + 0x1e8)
+              FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(longlong *)(unaff_RBX + 0x1e8)
                             ,&unknown_var_720_ptr,0x77,1);
             }
-            lVar3 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),
+            lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                                   *(int *)(unaff_RBX + 0x1e0) * 0x13c,&unknown_var_720_ptr,0x7a,
                                   uVar8 & 0xffffffff00000000);
             *(longlong *)(unaff_RBX + 0x1e8) = lVar3;
@@ -471,10 +472,10 @@ void FUN_180816a57(void)
       if (*(int *)(unaff_RBX + 0x1e0) != 0) {
         if (*(longlong *)(unaff_RBX + 0x1e8) != 0) {
                     // WARNING: Subroutine does not return
-          FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(unaff_RBX + 0x1e8),
+          FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(longlong *)(unaff_RBX + 0x1e8),
                         &unknown_var_720_ptr,0x77,1);
         }
-        lVar3 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),
+        lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                               *(int *)(unaff_RBX + 0x1e0) * 0x13c,&unknown_var_720_ptr,0x7a,
                               unaff_R13 & 0xffffffff);
         *(longlong *)(unaff_RBX + 0x1e8) = lVar3;
@@ -621,7 +622,7 @@ LAB_180816b9b:
         if (uVar7 < 0x28) {
           uVar7 = 0x28;
         }
-        lVar3 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),uVar7,&unknown_var_720_ptr,0x48,
+        lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar7,&unknown_var_720_ptr,0x48,
                               CONCAT44(uVar9,iVar6));
         *(longlong *)(unaff_RBX + 0x230) = lVar3;
         if (lVar3 == 0) goto LAB_180816a24;

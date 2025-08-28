@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part258.c - 12 个函数
 
@@ -32,7 +33,7 @@ void FUN_180225ee0(uint64_t param_1,uint64_t param_2,int32_t param_3,uint64_t pa
   
   plVar1 = _DAT_180c86938;
   uStack_b8 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_f8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_f8;
   FUN_1806279c0(&puStack_d8);
   FUN_1800b2a30();
   puStack_d8 = &unknown_var_3456_ptr;
@@ -346,7 +347,7 @@ void FUN_1802265d0(uint64_t param_1,uint64_t *param_2)
   ulonglong uStack_18;
   
   uStack_230 = 0xfffffffffffffffe;
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_268;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_268;
   uStack_248 = 0;
   uStack_240 = 0;
   uStack_238 = 0;
@@ -420,7 +421,7 @@ void FUN_1802267d0(longlong *param_1)
   ulonglong uStack_18;
   
   uStack_c8 = 0xfffffffffffffffe;
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_e8;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_e8;
   if (*param_1 == 0) {
     puStack_c0 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x98,8,3);
     *puStack_c0 = &unknown_var_720_ptr;
@@ -817,7 +818,7 @@ void FUN_180226e10(char *param_1,longlong param_2)
   ulonglong uStack_38;
   
   uStack_470 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_498;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_498;
   iVar8 = 0;
   uStack_474 = 0;
   *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + 4;

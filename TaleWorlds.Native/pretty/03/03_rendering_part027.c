@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part027.c - 3 个函数
 
@@ -52,7 +53,7 @@ void RenderingBatchManager(void *render_context, longlong *batch_data)
     ulonglong index_offset;
     
     // 初始化堆栈保护
-    stream_offset = _DAT_180bf00a8 ^ (ulonglong)stack_guard;
+    stream_offset = GET_SECURITY_COOKIE() ^ (ulonglong)stack_guard;
     texture_id = batch_data[7];
     current_batch = 0;
     vertex_buffer = batch_data;

@@ -587,7 +587,7 @@ void FUN_180244ff0(longlong param_1)
     
     /* 初始化栈变量 */
     uStack_e0 = STATUS_PENDING;
-    uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_158;
+    uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_158;
     
     /* 检查系统状态 */
     if ((*(char *)(param_1 + 0x9a31) != '\0') && (*(longlong *)(param_1 + 0x99b8) != 0)) {
@@ -714,7 +714,7 @@ void FUN_180245280(longlong param_1)
     
     /* 初始化栈变量 */
     uStack_c8 = STATUS_PENDING;
-    uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_118;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_118;
     
     /* 检查系统状态 */
     if (((*(byte *)(param_1 + 4) & 0x80) != 0) && (*(longlong *)(param_1 + 0x96a8) == 0)) {

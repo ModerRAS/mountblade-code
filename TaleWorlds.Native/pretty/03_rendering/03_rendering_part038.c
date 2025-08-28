@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part038.c - 渲染系统时间和动画控制模块
 // 该模块包含14个函数，主要处理渲染时间控制、动画更新、字符串处理、资源清理等功能

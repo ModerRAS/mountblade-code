@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part045.c - 数据结构操作和内存管理模块
 // 本文件包含数据结构操作、内存管理、数组操作和对象创建功能

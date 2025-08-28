@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 01_initialization_part030.c - 初始化模块第30部分
 // 包含8个函数，主要涉及动态数组、线程本地存储、内存池管理等初始化功能

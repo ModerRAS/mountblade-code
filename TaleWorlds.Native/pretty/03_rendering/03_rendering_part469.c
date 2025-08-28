@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // ============================================================================
 // 渲染系统高级处理模块 - 第469部分
@@ -332,7 +333,7 @@ void RenderingSystem_AdvancedDataCalculator(longlong param_1, uint64_t *param_2,
     RenderingSystem_FloatValue final_result;
     
     // 初始化计算环境
-    ulonglong stack_guard = _DAT_180bf00a8 ^ (ulonglong)&temp_values[0];
+    ulonglong stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)&temp_values[0];
     uint *data_pointer = (uint *)((longlong)param_3 * 0x100 + *(longlong *)(*(longlong *)(param_1 + 0x658) + 0x18));
     
     // 获取渲染数据锁

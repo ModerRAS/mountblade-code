@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 01_initialization_part043.c - 初始化模块第43部分
 // 包含4个函数：参数处理、事件处理、状态检查和日志记录

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part134.c - 4 个函数
 
@@ -202,12 +203,12 @@ void FUN_1801319b0(int param_1,int param_2)
   if (param_2 == 0) {
     return;
   }
-  fVar2 = *(float *)(_DAT_180c8a9b0 + 0x1488 + (longlong)param_1 * 4);
+  fVar2 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x1488 + (longlong)param_1 * 4);
   if (fVar2 < 0.0) {
     if (param_2 != 2) {
       return;
     }
-    pfVar1 = (float *)(_DAT_180c8a9b0 + 0x14dc + (longlong)param_1 * 4);
+    pfVar1 = (float *)(SYSTEM_DATA_MANAGER_A + 0x14dc + (longlong)param_1 * 4);
     if (*pfVar1 <= 0.0 && *pfVar1 != 0.0) {
       return;
     }
@@ -220,22 +221,22 @@ void FUN_1801319b0(int param_1,int param_2)
     return;
   }
   if (param_2 == 3) {
-    fVar4 = *(float *)(_DAT_180c8a9b0 + 0x94) * 0.8;
+    fVar4 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x94) * 0.8;
   }
   else {
     if (param_2 == 4) {
-      fVar3 = *(float *)(_DAT_180c8a9b0 + 0x90);
-      fVar4 = *(float *)(_DAT_180c8a9b0 + 0x94) + *(float *)(_DAT_180c8a9b0 + 0x94);
+      fVar3 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x90);
+      fVar4 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x94) + *(float *)(SYSTEM_DATA_MANAGER_A + 0x94);
       goto LAB_180131a76;
     }
     if (param_2 != 5) {
       return;
     }
-    fVar4 = *(float *)(_DAT_180c8a9b0 + 0x94) * 0.3;
+    fVar4 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x94) * 0.3;
   }
-  fVar3 = *(float *)(_DAT_180c8a9b0 + 0x90) * 0.8;
+  fVar3 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x90) * 0.8;
 LAB_180131a76:
-  func_0x000180128180(param_1,fVar2 - *(float *)(_DAT_180c8a9b0 + 0x18),fVar3,fVar4);
+  func_0x000180128180(param_1,fVar2 - *(float *)(SYSTEM_DATA_MANAGER_A + 0x18),fVar3,fVar4);
   return;
 }
 
@@ -286,8 +287,8 @@ float * FUN_180131aa0(float *param_1,uint param_2,uint param_3,float param_4,flo
     param_1[1] = fVar7;
     *param_1 = (fVar5 - fVar6) + *param_1;
   }
-  lVar1 = _DAT_180c8a9b0;
-  if ((param_4 != 0.0) && (0.0 < *(float *)(_DAT_180c8a9b0 + 0x370))) {
+  lVar1 = SYSTEM_DATA_MANAGER_A;
+  if ((param_4 != 0.0) && (0.0 < *(float *)(SYSTEM_DATA_MANAGER_A + 0x370))) {
     fVar7 = fVar7 * param_4;
     param_1[1] = fVar7;
     *param_1 = param_4 * *param_1;
@@ -348,8 +349,8 @@ float * FUN_180131aac(float *param_1,uint param_2,uint param_3,float param_4)
     param_1[1] = fVar7;
     *param_1 = (fVar5 - fVar6) + *param_1;
   }
-  lVar1 = _DAT_180c8a9b0;
-  if ((param_4 != 0.0) && (0.0 < *(float *)(_DAT_180c8a9b0 + 0x370))) {
+  lVar1 = SYSTEM_DATA_MANAGER_A;
+  if ((param_4 != 0.0) && (0.0 < *(float *)(SYSTEM_DATA_MANAGER_A + 0x370))) {
     fVar7 = fVar7 * param_4;
     param_1[1] = fVar7;
     *param_1 = param_4 * *param_1;

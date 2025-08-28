@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * @file 05_networking_part002.c
@@ -115,7 +116,7 @@ void NetworkInitializePacket(uint64_t packet_context)
     ulonglong security_key;               // 安全密钥
     
     // 安全密钥初始化（用于数据包验证）
-    security_key = _DAT_180bf00a8 ^ (ulonglong)buffer_area;
+    security_key = GET_SECURITY_COOKIE() ^ (ulonglong)buffer_area;
     
     // 获取网络句柄
     status_code = func_0x00018088c590(packet_context, network_handles);
@@ -155,7 +156,7 @@ void NetworkInitializePacket(uint64_t packet_context)
     }
     
     // 检查调试模式并记录错误
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
+    if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
         packet_buffer = stack_buffer;
         stack_buffer[0] = 0;
         // 错误报告函数调用（不返回）

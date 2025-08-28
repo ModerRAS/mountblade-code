@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part080.c - 文本渲染引擎模块
 // 包含3个函数：文本布局计算、文本渲染处理、文本区域管理
@@ -44,7 +45,7 @@ void calculate_text_layout(ulonglong render_context, ulonglong text_content)
   uint64_t margin_data;
   uint64_t padding_data;
   
-  context_base = _DAT_180c8a9b0;  // 获取全局渲染上下文
+  context_base = SYSTEM_DATA_MANAGER_A;  // 获取全局渲染上下文
   *(int8_t *)(*(longlong *)(context_base + 0x1af8) + 0xb1) = 1;  // 设置布局标志
   render_data = *(longlong *)(context_base + 0x1af8);  // 获取渲染数据指针
   if (*(char *)(render_data + 0xb4) != '\0') {  // 检查是否已完成布局
@@ -137,7 +138,7 @@ void calculate_text_layout(ulonglong render_context, ulonglong text_content)
             text_content = text_end + 1;  // 移动到下一行
             baseline = baseline + line_height;  // 更新基线位置
             bounding_box_data = CONCAT44(vertical_offset, (int32_t)bounding_box_data);  // 更新边界框
-            context_base = _DAT_180c8a9b0;  // 重新获取上下文
+            context_base = SYSTEM_DATA_MANAGER_A;  // 重新获取上下文
           } while (text_content < text_end);
           for (; text_content < text_end; text_content = text_content + 1) {
             text_content = memchr(text_content, 10, text_end - text_content);  // 查找剩余换行符
@@ -472,7 +473,7 @@ void render_text_with_params(longlong render_params, longlong text_content)
               fVar21 = fVar16;
             }
             FUN_180122320(*(uint64_t *)(unaff_RBP + 0x40),unaff_RDI,uVar8,0);
-            unaff_RSI = _DAT_180c8a9b0;
+            unaff_RSI = SYSTEM_DATA_MANAGER_A;
             fVar18 = fVar18 + fVar19;
             unaff_RDI = uVar8 + 1;
             fVar17 = fVar17 + fVar19;
@@ -764,7 +765,7 @@ void update_text_area(uint64_t area_params)
           fVar16 = fVar12;
         }
         FUN_180122320(*(uint64_t *)(unaff_RBP + 0x40),unaff_RDI,uVar7,0);
-        unaff_RSI = _DAT_180c8a9b0;
+        unaff_RSI = SYSTEM_DATA_MANAGER_A;
         fVar14 = fVar14 + fVar1;
         unaff_RDI = uVar7 + 1;
         fVar13 = fVar13 + fVar1;

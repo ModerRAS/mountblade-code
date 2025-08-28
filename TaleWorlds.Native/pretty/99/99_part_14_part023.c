@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * @file 99_part_14_part023.c
@@ -242,7 +243,7 @@ void SystemRandomInitializer(void) {
     int32_t performance_high;
     
     // 检查是否已经初始化
-    if (_DAT_180bf00a8 == SYSTEM_INIT_CHECK_VALUE) {
+    if (GET_SECURITY_COOKIE() == SYSTEM_INIT_CHECK_VALUE) {
         performance_value = 0;
         GetSystemTimeAsFileTime(&performance_value);
         time_value = performance_value;
@@ -258,18 +259,18 @@ void SystemRandomInitializer(void) {
         QueryPerformanceCounter(&performance_low);
         
         // 生成随机种子
-        _DAT_180bf00a8 = ((ulonglong)performance_low << 0x20 ^ 
+        GET_SECURITY_COOKIE() = ((ulonglong)performance_low << 0x20 ^ 
                          CONCAT44(performance_high, performance_low) ^ 
                          time_value ^ (ulonglong)&time_value) & 0xffffffffffff;
         
         // 防止种子值冲突
-        if (_DAT_180bf00a8 == SYSTEM_INIT_CHECK_VALUE) {
-            _DAT_180bf00a8 = SYSTEM_INIT_BACKUP_VALUE;
+        if (GET_SECURITY_COOKIE() == SYSTEM_INIT_CHECK_VALUE) {
+            GET_SECURITY_COOKIE() = SYSTEM_INIT_BACKUP_VALUE;
         }
     }
     
     // 设置反码值
-    _DAT_180bf00a0 = ~_DAT_180bf00a8;
+    _DAT_180bf00a0 = ~GET_SECURITY_COOKIE();
     
     return;
 }

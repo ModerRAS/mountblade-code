@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part104.c - 渲染系统高级文件处理和资源管理模块
 // 包含3个核心函数，涵盖渲染文件处理、资源管理、数据序列化、内存管理、文件操作等高级渲染功能
@@ -419,7 +420,7 @@ void RenderingSystemFileResourceProcessor(longlong render_context, longlong file
   ulonglong stack_guard;
   
   allocation_context = RENDERING_STACK_ALIGNMENT;
-  stack_guard = _DAT_180bf00a8 ^ (ulonglong)path_buffer;
+  stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)path_buffer;
   count_array[0] = 0;
   write_buffer = (int32_t *)0x0;
   read_buffer = (int32_t *)0x0;
@@ -561,7 +562,7 @@ LAB_18032d78f:
         fclose(resource_handle);
         file_data = 0;
         LOCK();
-        _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+        SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
         UNLOCK();
         resource_handle = 0;
         context_offset = path_data[0];
@@ -580,7 +581,7 @@ LAB_18032d78f:
         fclose(resource_handle);
         file_data = 0;
         LOCK();
-        _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+        SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
         UNLOCK();
         output_buffer = write_buffer;
         final_buffer = read_buffer;

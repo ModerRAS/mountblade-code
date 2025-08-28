@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part190.c - 1 个函数
 
@@ -31,7 +32,7 @@ uint64_t FUN_18077a0e0(longlong param_1,int param_2,uint param_3)
     plVar5 = (longlong *)(param_1 + 0x228);
     do {
       if (*plVar5 == 0) {
-        lVar3 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x10010,&unknown_var_6016_ptr,0x1c8,0
+        lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x10010,&unknown_var_6016_ptr,0x1c8,0
                              );
         *plVar5 = lVar3;
         if (lVar3 == 0) {
@@ -53,10 +54,10 @@ uint64_t FUN_18077a0e0(longlong param_1,int param_2,uint param_3)
     auStackX_10[0] = uVar4;
     if (*(longlong *)(param_1 + 0x328) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(param_1 + 0x328),
+      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(longlong *)(param_1 + 0x328),
                     &unknown_var_6016_ptr,0x1d9,1);
     }
-    lVar3 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),uVar4 * param_2 * 4 + 0x10,
+    lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar4 * param_2 * 4 + 0x10,
                           &unknown_var_6016_ptr,0x1db,0);
     *(longlong *)(param_1 + 0x328) = lVar3;
     if (lVar3 == 0) {
@@ -69,10 +70,10 @@ uint64_t FUN_18077a0e0(longlong param_1,int param_2,uint param_3)
     if (param_3 != uVar2) {
       if (*(longlong *)(param_1 + 0x220) != 0) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(param_1 + 0x220),
+        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(longlong *)(param_1 + 0x220),
                       &unknown_var_6016_ptr,0x1eb,1);
       }
-      lVar3 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_3 * 8 + 0x10,
+      lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_3 * 8 + 0x10,
                             &unknown_var_6016_ptr,0x1ed,0);
       *(longlong *)(param_1 + 0x220) = lVar3;
       if (lVar3 == 0) {
@@ -144,7 +145,7 @@ uint64_t FUN_18077a410(longlong *param_1)
 {
   if (*(longlong *)(*param_1 + 0x230) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(*param_1 + 0x230),
+    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(longlong *)(*param_1 + 0x230),
                   &unknown_var_6400_ptr,0x97,1);
   }
   return 0;

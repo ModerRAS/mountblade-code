@@ -246,7 +246,7 @@ uint64_t AdvancedDataProcessor(SystemContext system_context, DataProcessParams* 
     
     /* 初始化安全cookie和栈保护 */
     temp_storage3 = 0xfffffffffffffffe;
-    temp_storage14 = _DAT_180bf00a8 ^ (ulonglong)stack_guard;
+    temp_storage14 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_guard;
     
     /* 提取资源配置参数 */
     config_param2 = resource_params[1];
@@ -575,7 +575,7 @@ uint64_t ResourceInitializer(longlong system_context, int* init_params, longlong
     
     /* 初始化安全cookie和栈保护 */
     temp_storage19 = 0xfffffffffffffffe;
-    temp_storage35 = _DAT_180bf00a8 ^ (ulonglong)stack_guard;
+    temp_storage35 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_guard;
     param_ptr = init_params;
     
     /* 初始化资源句柄 */

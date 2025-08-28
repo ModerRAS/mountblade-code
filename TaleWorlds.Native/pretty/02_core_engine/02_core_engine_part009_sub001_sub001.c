@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part009_sub001_sub001.c - 核心引擎模块子组件1
 // 本文件包含27个函数，主要负责进程管理、线程管理、互斥锁初始化等核心功能
@@ -827,7 +828,7 @@ void initialize_system_environment(void)
     ulonglong uStack_28;
     
     uStack_198 = 0xfffffffffffffffe;
-    uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_248;
+    uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_248;
     uStack_200 = 0;
     
     // 检查是否需要初始化

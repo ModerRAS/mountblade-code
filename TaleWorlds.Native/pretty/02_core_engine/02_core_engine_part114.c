@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part114.c - 核心引擎模块第114部分
 // 包含9个函数，主要处理游戏对象管理、内存分配和状态更新
@@ -341,9 +342,9 @@ void initialize_game_object_system(void)
     ulonglong auStack_38 [2];
     
     // 获取系统全局数据
-    lVar4 = _DAT_180c8a9b0;
-    iVar7 = *(int *)(_DAT_180c8a9b0 + 0x1a90);
-    if (*(int *)(_DAT_180c8a9b0 + 0x1a94) != iVar7) {
+    lVar4 = SYSTEM_DATA_MANAGER_A;
+    iVar7 = *(int *)(SYSTEM_DATA_MANAGER_A + 0x1a90);
+    if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1a94) != iVar7) {
         validate_system_state();
         iVar7 = *(int *)(lVar4 + 0x1a90);
     }
@@ -788,8 +789,8 @@ uint64_t *parse_string_and_calculate(uint64_t *param_1,char *param_2,char *param
     }
     
     // 获取系统参数并计算
-    pfVar2 = *(float **)(_DAT_180c8a9b0 + 0x19f0);
-    fVar1 = *(float *)(_DAT_180c8a9b0 + 0x19f8);
+    pfVar2 = *(float **)(SYSTEM_DATA_MANAGER_A + 0x19f0);
+    fVar1 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19f8);
     if (param_2 != param_3) {
         calculate_text_dimensions(pfVar2,&fStackX_10,fVar1,0x7f7fffff,param_5,param_2,param_3,0);
         if (0.0 < fStackX_10) {
@@ -833,16 +834,16 @@ void process_object_selection_and_collision(void)
     float fVar4;
     
     // 获取系统全局数据
-    lVar7 = _DAT_180c8a9b0;
+    lVar7 = SYSTEM_DATA_MANAGER_A;
     lVar10 = 0;
-    lVar14 = *(longlong *)(_DAT_180c8a9b0 + 0x1b78);
+    lVar14 = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b78);
     if (lVar14 == 0) {
         lVar14 = 0;
         lVar5 = lVar10;
     }
     else {
         lVar5 = *(longlong *)(lVar14 + 0x28);
-        *(uint64_t *)(lVar14 + 0x28) = *(uint64_t *)(_DAT_180c8a9b0 + 0x1c80);
+        *(uint64_t *)(lVar14 + 0x28) = *(uint64_t *)(SYSTEM_DATA_MANAGER_A + 0x1c80);
         lVar14 = *(longlong *)(lVar7 + 0x1b78);
     }
     lVar8 = lVar10;

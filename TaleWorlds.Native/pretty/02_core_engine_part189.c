@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part189.c - 14 个函数
 
@@ -69,7 +70,7 @@ void FUN_1801712c0(longlong param_1)
   int32_t uStack_1c;
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_98;
   uStack_78 = 0;
   uStack_70 = 0;
   uStack_68 = 0;
@@ -149,7 +150,7 @@ void FUN_180171410(longlong param_1,uint64_t *param_2)
   ulonglong uStack_20;
   
   uStack_60 = 0xfffffffffffffffe;
-  uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_20 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_98;
   *(uint64_t *)(param_1 + 0x10) = *param_2;
   plVar5 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x218,8,3);
   lVar1 = _DAT_180c82868 + 0x70;
@@ -593,8 +594,8 @@ int * FUN_180171f10(longlong param_1,int *param_2)
   
   lVar1 = *(longlong *)(param_1 + 0x18);
   iVar3 = (int)((*(longlong *)(param_1 + 0x20) - lVar1) / 0x70);
-  if ((1 < iVar3) && (*(int *)(_DAT_180c86920 + 0x1f10) < iVar3)) {
-    lVar4 = (longlong)*(int *)(_DAT_180c86920 + 0x1f10) * 0x70;
+  if ((1 < iVar3) && (*(int *)(SYSTEM_STATE_MANAGER + 0x1f10) < iVar3)) {
+    lVar4 = (longlong)*(int *)(SYSTEM_STATE_MANAGER + 0x1f10) * 0x70;
     uVar2 = *(int *)(lVar4 + 0x60 + lVar1) - *(int *)(lVar4 + 0x58 + lVar1);
     uVar5 = (int)uVar2 >> 0x1f;
     *param_2 = (uVar2 ^ uVar5) - uVar5;

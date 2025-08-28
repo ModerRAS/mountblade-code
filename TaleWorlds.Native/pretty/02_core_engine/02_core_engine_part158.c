@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part158.c - 核心引擎模块第158部分
 // 本文件包含6个函数，主要处理字符串操作、内存管理和数据结构初始化
@@ -142,7 +143,7 @@ void process_module_path_and_configuration(longlong module_context)
   ulonglong security_hash;
   
   security_param = 0xfffffffffffffffe;
-  security_hash = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  security_hash = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   operation_flag = 0;
   initialize_module_component(module_context + 0x20, _DAT_180c86870 + 0x290);
   ptr_to_stack_ptr = &stack_ptr;
@@ -651,7 +652,7 @@ void process_module_configuration_update(longlong module_context, uint64_t *conf
   longlong temp_offset;
   
   temp_value = 0xfffffffffffffffe;
-  security_hash = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  security_hash = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   operation_flag = 0;
   stack_ptr = &STRING_TERMINATOR;
   temp_value._0_4_ = 0;

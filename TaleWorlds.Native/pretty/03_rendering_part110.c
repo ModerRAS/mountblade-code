@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * @file 03_rendering_part110.c
@@ -499,7 +500,7 @@ void RenderingSystem_InitializeResourceHandler(longlong resource_manager, char i
       fclose();
       *(uint64_t *)(lVar2 + 8) = 0;
       LOCK();
-      _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+      SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
       UNLOCK();
       lVar2 = *(longlong *)(param_1 + 0x200);
     }
@@ -508,7 +509,7 @@ void RenderingSystem_InitializeResourceHandler(longlong resource_manager, char i
         fclose();
         *(uint64_t *)(lVar2 + 8) = 0;
         LOCK();
-        _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+        SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
         UNLOCK();
       }
                     // WARNING: Subroutine does not return
@@ -646,7 +647,7 @@ void RenderingSystem_ProcessResourceData(uint64_t resource_data)
   ulonglong uStack_48;
   
   uStack_150 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_1b8;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1b8;
   FUN_180320f40(param_1,auStack_178);
                     // WARNING: Subroutine does not return
   memset(auStack_148,0,0x100);

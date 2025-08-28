@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part059.c - 12 个函数
 // 渲染系统高级数据处理和渲染控制模块
@@ -20,11 +21,11 @@
 #define render_thread_operation_alt FUN_18029b390
 
 // 全局变量声明
-extern uint64_t _DAT_180c86920;
+extern uint64_t SYSTEM_STATE_MANAGER;
 extern uint64_t _DAT_180c86938;
 extern uint64_t _DAT_180c82868;
 extern uint64_t _DAT_180c8ed18;
-extern uint64_t _DAT_180bf00a8;
+extern uint64_t GET_SECURITY_COOKIE();
 extern uint64_t global_state_928_ptr;
 extern uint64_t global_state_2024_ptr;
 extern uint64_t global_state_720_ptr;
@@ -441,8 +442,8 @@ void render_state_initialize(longlong *render_context)
   (**(code **)(*render_context + 0x110))(render_context,7,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1ca8));
   
   // 加载配置参数
-  config_base = _DAT_180c86920;
-  param_value = *(float *)(_DAT_180c86920 + 0x1880);
+  config_base = SYSTEM_STATE_MANAGER;
+  param_value = *(float *)(SYSTEM_STATE_MANAGER + 0x1880);
   *(float *)(render_context + 0x2a4) = param_value;
   *(float *)((longlong)render_context + 0x1524) = 1.0 / param_value;
   *(float *)((longlong)render_context + 0x1d54) = *(float *)(config_base + 0x2060) * 0.01;
@@ -574,8 +575,8 @@ void render_state_initialize_alt(longlong *render_context)
   (**(code **)(*render_context + 0x110))(render_context,7,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1ca8));
   
   // 加载配置参数
-  config_base = _DAT_180c86920;
-  param_value = *(float *)(_DAT_180c86920 + 0x1880);
+  config_base = SYSTEM_STATE_MANAGER;
+  param_value = *(float *)(SYSTEM_STATE_MANAGER + 0x1880);
   *(float *)(render_context + 0x2a4) = param_value;
   *(float *)((longlong)render_context + 0x1524) = 1.0 / param_value;
   *(float *)((longlong)render_context + 0x1d54) = *(float *)(config_base + 0x2060) * 0.01;
@@ -683,8 +684,8 @@ void render_state_update_batch(void)
   (**(code **)(*render_context + 0x110))(update_result,7,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1ca8));
   
   // 加载配置参数
-  config_base = _DAT_180c86920;
-  param_value = *(float *)(_DAT_180c86920 + 0x1880);
+  config_base = SYSTEM_STATE_MANAGER;
+  param_value = *(float *)(SYSTEM_STATE_MANAGER + 0x1880);
   *(float *)(render_context + 0x2a4) = param_value;
   *(float *)((longlong)render_context + 0x1524) = 1.0 / param_value;
   *(float *)((longlong)render_context + 0x1d54) = *(float *)(config_base + 0x2060) * 0.01;
@@ -763,8 +764,8 @@ void render_parameter_update(int32_t update_param)
   (**(code **)(*render_context + 0x110))(update_result,7,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1ca8));
   
   // 加载配置参数
-  config_base = _DAT_180c86920;
-  param_float = *(float *)(_DAT_180c86920 + 0x1880);
+  config_base = SYSTEM_STATE_MANAGER;
+  param_float = *(float *)(SYSTEM_STATE_MANAGER + 0x1880);
   *(float *)(render_context + 0x2a4) = param_float;
   *(float *)((longlong)render_context + 0x1524) = 1.0 / param_float;
   *(float *)((longlong)render_context + 0x1d54) = *(float *)(config_base + 0x2060) * 0.01;
@@ -897,8 +898,8 @@ void render_callback_execute(uint64_t param_1,code *callback_ptr)
   (**(code **)(*render_context + 0x110))(callback_result,7,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1ca8));
   
   // 加载配置参数
-  config_base = _DAT_180c86920;
-  param_float = *(float *)(_DAT_180c86920 + 0x1880);
+  config_base = SYSTEM_STATE_MANAGER;
+  param_float = *(float *)(SYSTEM_STATE_MANAGER + 0x1880);
   *(float *)(render_context + 0x2a4) = param_float;
   *(float *)((longlong)render_context + 0x1524) = 1.0 / param_float;
   *(float *)((longlong)render_context + 0x1d54) = *(float *)(config_base + 0x2060) * 0.01;
@@ -989,7 +990,7 @@ void render_thread_safe_operation(longlong *render_context,uint64_t operation_pa
   
   // 设置安全cookie
   security_cookie = 0xfffffffffffffffe;
-  stack_cookie = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  stack_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
   
   // 检查是否在主线程
   main_thread_id = *(int *)(*(longlong *)(*(longlong *)(_DAT_180c82868 + 8) + 8) + 0x48);
@@ -1092,7 +1093,7 @@ void render_thread_operation_alt(longlong *render_context,uint64_t operation_par
   
   // 设置安全cookie
   security_cookie = 0xfffffffffffffffe;
-  stack_cookie = _DAT_180bf00a8 ^ (ulonglong)auStack_148;
+  stack_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_148;
   
   // 检查是否在主线程
   main_thread_id = *(int *)(*(longlong *)(*(longlong *)(_DAT_180c82868 + 8) + 8) + 0x48);

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part054.c - 15 个函数
 
@@ -207,7 +208,7 @@ void FUN_18008fe90(longlong param_1,longlong param_2,longlong param_3)
   ulonglong uStack_48;
   
   uStack_278 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_298;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_298;
   puStack_268 = &unknown_var_9208_ptr;
   puStack_260 = auStack_250;
   uStack_258 = 0;
@@ -849,13 +850,13 @@ void FUN_180091020(void)
   
   lVar6 = _DAT_180c86950;
   uStack_90 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
   *(int8_t *)(_DAT_180c86950 + 0x1889) = *(int8_t *)(_DAT_180c86950 + 0x1888);
   cVar1 = *(char *)(*(longlong *)(_DAT_180c86870 + 8) + 0xbc +
                    (ulonglong)(*(uint *)(*(longlong *)(_DAT_180c86870 + 8) + 0x13c) & 1) * 0x48);
   *(char *)(lVar6 + 0x1888) = cVar1;
   cVar2 = *(char *)(lVar6 + 0x1889);
-  if (*(int *)(_DAT_180c86920 + 0x2370) == 0) {
+  if (*(int *)(SYSTEM_STATE_MANAGER + 0x2370) == 0) {
     if (cVar1 == cVar2) goto LAB_1800911c4;
     if (cVar1 != '\0') goto LAB_180091164;
     puStack_88 = &unknown_var_3480_ptr;

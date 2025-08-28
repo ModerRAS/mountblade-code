@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part011.c - 渲染材质处理模块
 // 包含3个函数：材质数据解析、材质序列化、材质结构初始化
@@ -207,7 +208,7 @@ void parse_rendering_material_data(material_info_t *material_info, data_stream_t
     
     // 初始化栈保护机制
     stack_guard_value = 0xfffffffffffffffe;
-    stack_guard_final = _DAT_180bf00a8 ^ (ulonglong)stack_guard_buffer;
+    stack_guard_final = GET_SECURITY_COOKIE() ^ (ulonglong)stack_guard_buffer;
     
     // 读取材质ID
     material_id = **(uint **)(data_stream + 8);

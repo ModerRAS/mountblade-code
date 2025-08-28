@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * @file 99_part_04_part031.c
@@ -185,7 +186,7 @@ void FUN_1802a26b0(uint64_t param_1, uint64_t *param_2, longlong *param_3, float
   ulonglong uStack_58;
   
   // 栈保护变量初始化
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_a8;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_a8;
   puStack_80 = param_2;
   
   // 模式0：直接坐标映射
@@ -596,7 +597,7 @@ void FUN_1802a2ab0(uint64_t param_1, short *param_2, longlong *param_3, float *p
   ulonglong uStack_58;
   
   // 栈保护变量初始化
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_98;
   
   // 模式0：直接坐标映射
   if (param_5 == 0) {
@@ -839,7 +840,7 @@ void FUN_1802a2d10(uint64_t param_1, char *param_2, longlong *param_3, float *pa
   ulonglong uStack_50;
   
   // 栈保护变量初始化
-  uStack_50 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
+  uStack_50 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_88;
   
   // 模式0：直接坐标映射
   if (param_5 == 0) {
@@ -1081,7 +1082,7 @@ void FUN_1802a2f60(uint64_t param_1, int32_t *param_2, longlong *param_3, float 
   ulonglong uStack_58;
   
   // 栈保护变量初始化
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_98;
   puStack_70 = param_2;
   
   // 模式0：直接坐标映射

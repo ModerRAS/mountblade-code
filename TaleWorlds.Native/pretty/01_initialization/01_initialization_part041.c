@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 01_initialization_part041.c - 初始化模块第41部分
 // 本文件包含错误处理、调试输出和程序退出相关功能

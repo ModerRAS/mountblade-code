@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /*
  * 渲染系统高级资源管理和对象处理模块
@@ -445,7 +446,7 @@ void rendering_system_update_render_system(longlong render_context)
     ulonglong checksum;
     
     // 设置栈保护
-    checksum = _DAT_180bf00a8 ^ (ulonglong)stack_protector;
+    checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_protector;
     
     // 检查渲染状态
     if (*(char *)(*(longlong *)(render_context + 0x18) + 0x2e5) != '\0') {
@@ -552,7 +553,7 @@ void rendering_system_process_render_parameters(longlong render_context, longlon
     
     // 设置栈保护
     stack_value_130 = 0xfffffffffffffffe;
-    checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     
     // 检查渲染状态
     if (*(char *)(*(longlong *)(render_context + 0x18) + 0x2e5) != '\0') {
@@ -1080,7 +1081,7 @@ void rendering_system_manage_render_resources(longlong render_context)
     
     // 设置栈保护
     stack_value_140 = 0xfffffffffffffffe;
-    checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     
     // 检查资源状态
     if (*(char *)(render_context + 0xa4) != '\0') {

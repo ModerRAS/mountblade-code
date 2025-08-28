@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part245.c - 核心引擎线程和同步管理模块
 // 本模块包含线程管理、同步原语、内存分配和任务调度相关功能
@@ -1003,7 +1004,7 @@ void create_task_execution_environment(uint64_t *context_ptr)
     ulonglong uStack_18;
     
     uStack_c8 = DEFAULT_TIMEOUT;
-    uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_f8;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_f8;
     plStack_d8 = alStack_b8;
     _Cnd_init_in_situ(alStack_b8);
     plStack_d8 = alStack_70;

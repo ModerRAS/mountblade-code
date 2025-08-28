@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * @file 03_rendering_part152.c
@@ -417,7 +418,7 @@ void FUN_18035ec60(longlong param_1)
   ulonglong stack_guard;                             // 栈保护器
   
   uStack_280 = 0xfffffffffffffffe;
-  uStack_d8 = _DAT_180bf00a8 ^ (ulonglong)auStack_458;
+  uStack_d8 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_458;
   puVar9 = (uint64_t *)0x0;
   alStack_1b8[0] = 0;
   alStack_1b8[1] = 0;
@@ -1000,7 +1001,7 @@ void FUN_18035fff0(uint64_t param_1)
   ulonglong uStack_28;
   
   uStack_1b0 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_1e8;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1e8;
   uStack_1c8 = 0;
   puStack_148 = &unknown_var_3480_ptr;
   puStack_140 = auStack_130;

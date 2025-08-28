@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 01_initialization_part033.c - 初始化模块第33部分
 // 包含8个函数，主要处理控制台输出、字符串处理和系统初始化功能
@@ -35,7 +36,7 @@ void initialize_console_output_system(int *output_counter)
   ulonglong uStack_38;
   
   uStack_148 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_1f8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1f8;
   iVar8 = 0;
   uStack_190 = 0;
   output_counter = output_counter + 1;
@@ -537,7 +538,7 @@ void initialize_system_buffers(uint64_t system_param)
   ulonglong security_check;
   
   stack_cookie = 0xfffffffffffffffe;
-  security_check = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  security_check = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   param_value = system_param;
   initialize_buffer_manager(config_buffer,_DAT_180c86928 + 0x28);
                     // WARNING: Subroutine does not return
@@ -641,7 +642,7 @@ void scan_file_system(void)
   ulonglong file_index;
   
   stack_cookie = 0xfffffffffffffffe;
-  security_check = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  security_check = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   file_index = 0;
   initialize_file_scanner(&file_scanner);
   file_array1 = (uint64_t *)0x0;
@@ -776,7 +777,7 @@ void FUN_180064010(uint64_t param_1)
   ulonglong uStack_38;
   
   uStack_240 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_358;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_358;
   FUN_1800ba940(&puStack_2a0);
   puStack_318 = (uint64_t *)0x0;
   puStack_310 = (uint64_t *)0x0;
@@ -826,12 +827,12 @@ void FUN_180064010(uint64_t param_1)
     puVar3 = puStack_278;
   }
   FUN_18062dee0(&uStack_2f8,puVar3,&unknown_var_572_ptr);
-  FUN_1800ae730(_DAT_180c86920,&uStack_2f8);
+  FUN_1800ae730(SYSTEM_STATE_MANAGER,&uStack_2f8);
   if (lStack_2f0 != 0) {
     fclose();
     lStack_2f0 = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
   }
   puStack_280 = &unknown_var_3456_ptr;
@@ -846,7 +847,7 @@ void FUN_180064010(uint64_t param_1)
     fclose();
     lStack_2f0 = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
   }
   uStack_2e0 = 0;
@@ -862,7 +863,7 @@ void FUN_180064010(uint64_t param_1)
     fclose();
     lStack_2d8 = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
   }
   puStack_260 = &unknown_var_3456_ptr;
@@ -877,7 +878,7 @@ void FUN_180064010(uint64_t param_1)
     fclose();
     lStack_2d8 = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
   }
                     // WARNING: Subroutine does not return
@@ -974,12 +975,12 @@ ulonglong process_file_operations(uint64_t file_handle)
       fclose(file_handle2);
       log_handle = 0;
       LOCK();
-      operation_result = (ulonglong)_DAT_180c8ed60;
+      operation_result = (ulonglong)SYSTEM_FILE_COUNTER_ADDR;
       UNLOCK();
       file_handle2 = 0;
       file_list2 = file_array1;
       file_list3 = file_array2;
-      _DAT_180c8ed60 = _DAT_180c8ed60 - 1;
+      SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR - 1;
     }
     output_buffer = &unknown_var_3456_ptr;
     if (stream_handle != 0) {
@@ -1002,7 +1003,7 @@ ulonglong process_file_operations(uint64_t file_handle)
       operation_result = fclose(file_handle2);
       log_handle = 0;
       LOCK();
-      _DAT_180c8ed60 = _DAT_180c8ed60 - 1;
+      SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR - 1;
       UNLOCK();
       file_list2 = file_array1;
       file_list3 = file_array2;

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * UI系统高级数据处理和状态控制模块
@@ -123,7 +124,7 @@ void ui_system_advanced_render_batch_processor(longlong ui_context, longlong ren
     ulonglong stack_security;
     
     // 安全检查和初始化
-    stack_security = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    stack_security = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     current_index = *(int *)(ui_context + 0x43a4);
     stack_vertex = *(longlong *)(ui_context + 0x12a0);
     stack_limit = *(int *)(ui_context + 0x1e78) + current_index;

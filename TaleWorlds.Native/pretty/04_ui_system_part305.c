@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 //==============================================================================
 // 文件信息：04_ui_system_part305.c
@@ -336,7 +337,7 @@ void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,longlong param_3,
   ulonglong auStack_b8 [22];
   
   puVar18 = auStack_b8;
-  auStack_b8[0] = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
+  auStack_b8[0] = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_b8;
   uVar17 = (ulonglong)param_1 & 0x1f;
                     // WARNING: Read-only address (ram,0x000180980c00) is written
                     // WARNING: Read-only address (ram,0x000180980ca0) is written

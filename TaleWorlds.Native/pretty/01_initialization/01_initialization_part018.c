@@ -1,10 +1,11 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 01_initialization_part018.c - 初始化模块第18部分 (7个函数)
 // 本文件包含系统初始化、资源管理、配置计算等功能
 
 // 全局变量声明
-uint64_t _DAT_180c86920;  // 引擎配置数据
+uint64_t SYSTEM_STATE_MANAGER;  // 引擎配置数据
 uint64_t _DAT_180c86918;  // 全局状态指针
 uint64_t _DAT_180c86950;  // 配置参数指针
 uint64_t _DAT_180c86870;  // 主引擎指针
@@ -15,7 +16,7 @@ uint64_t _DAT_180c86930;  // 高级配置指针
 uint64_t _DAT_180c868a8;  // 替代配置指针
 uint64_t _DAT_180c8ed08;  // 外部接口指针
 uint64_t _DAT_180c8ed18;  // 内存管理器
-uint64_t _DAT_180bf00a8;  // 安全验证数据
+uint64_t GET_SECURITY_COOKIE();  // 安全验证数据
 uint64_t _DAT_180bf65b8;  // 时间戳数据
 
 /**
@@ -37,8 +38,8 @@ void calculate_render_quality_parameters(longlong config_ptr)
   float sum1;                  // 和值1
   float sum2;                  // 和值2
   
-  engine_config = _DAT_180c86920;
-  quality_level = *(int *)(_DAT_180c86920 + 0xd90) + -1;
+  engine_config = SYSTEM_STATE_MANAGER;
+  quality_level = *(int *)(SYSTEM_STATE_MANAGER + 0xd90) + -1;
   adjusted_level = 0;
   if ((-1 < quality_level) && (adjusted_level = quality_level, 3 < quality_level)) {
     adjusted_level = 3;
@@ -452,7 +453,7 @@ void parse_config_string(uint64_t config_handle, longlong string_param)
   
   lVar24 = _DAT_180c86870;
   uStack_a8 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_368;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_368;
   puVar11 = (int8_t *)0x0;
   uStack_334 = 0;
   lStack_260 = _DAT_180c86870;
@@ -536,12 +537,12 @@ void update_render_config(longlong config_ptr)
   // 处理渲染模式2
   if (*(int *)(*(longlong *)(config_ptr + 8) + 0x38) == 2) {
     if ((*(char *)(config_ptr + 0x3d4) != '\0') || (*(char *)(config_ptr + 0x3d5) != '\0')) {
-      temp_config = *(int32_t *)(_DAT_180c86920 + 0x1ea0);
-      FUN_18005ca20(_DAT_180c86920, 0);
+      temp_config = *(int32_t *)(SYSTEM_STATE_MANAGER + 0x1ea0);
+      FUN_18005ca20(SYSTEM_STATE_MANAGER, 0);
       FUN_1801725e0(*(uint64_t *)(config_ptr + 8), *(int32_t *)(config_ptr + 0x3cc), *dimension_ptr,
                     *(int8_t *)(config_ptr + 0x3d5));
       FUN_1800a3880(_DAT_180c86938, *(int32_t *)(config_ptr + 0x3cc), *dimension_ptr, 1);
-      FUN_18005ca20(_DAT_180c86920, temp_config);
+      FUN_18005ca20(SYSTEM_STATE_MANAGER, temp_config);
       FUN_1801725e0(*(uint64_t *)(config_ptr + 8), *(int32_t *)(config_ptr + 0x3cc), *dimension_ptr,
                     *(int8_t *)(config_ptr + 0x3d5));
       use_secondary = true;
@@ -551,7 +552,7 @@ void update_render_config(longlong config_ptr)
   else {
     // 处理其他渲染模式
     if (*(char *)(config_ptr + 0x3d4) != '\0') {
-      render_mode = *(int *)(_DAT_180c86920 + 0x1ea0);
+      render_mode = *(int *)(SYSTEM_STATE_MANAGER + 0x1ea0);
       if ((*(char *)(config_ptr + 0x3d5) != '\0') || (needs_update)) {
         update_flag = 1;
       }
@@ -793,7 +794,7 @@ void manage_config_buffers(uint64_t param_1, uint64_t param_2, uint64_t param_3,
   buffer_size_total = 0;
   
   // 处理第一个配置块
-  if (*(int *)(_DAT_180c86920 + 0x1ea0) == 0) {
+  if (*(int *)(SYSTEM_STATE_MANAGER + 0x1ea0) == 0) {
     buffer_size1 = *(uint *)(_DAT_180c868b0 + 0xe40);
     data_size = (ulonglong)buffer_size1;
     if (*(longlong *)(_DAT_180c868b0 + 0xe38) != 0) {
@@ -896,7 +897,7 @@ void initialize_system_parameters(void)
   
   main_engine = _DAT_180c86870;
   stack_guard = 0xfffffffffffffffe;
-  security_hash = _DAT_180bf00a8 ^ (ulonglong)temp_buffer1;
+  security_hash = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer1;
   
   // 检查系统状态并设置时间戳
   if (*(void **)*_DAT_180c8ed08 == &unknown_var_424_ptr) {
@@ -914,13 +915,13 @@ void initialize_system_parameters(void)
     _DAT_180bf65b8 = 0xb061;
   }
   
-  engine_config = _DAT_180c86920;
+  engine_config = SYSTEM_STATE_MANAGER;
   _DAT_180bf65b8 = _DAT_180bf65b8 ^ 0x41c64e6d;
   
   // 计算缩放因子
-  if ((*(longlong *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(_DAT_180c86920 + 0x540) < 1)) {
-    if (*(int *)(_DAT_180c86920 + 0x2140) == 0) {
-      scale_factor = *(float *)(_DAT_180c86920 + 0x20d0);
+  if ((*(longlong *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(SYSTEM_STATE_MANAGER + 0x540) < 1)) {
+    if (*(int *)(SYSTEM_STATE_MANAGER + 0x2140) == 0) {
+      scale_factor = *(float *)(SYSTEM_STATE_MANAGER + 0x20d0);
     }
     else {
       scale_factor = 100.0;
@@ -973,7 +974,7 @@ void initialize_system_parameters(void)
   *(int32_t *)(main_engine + 0x248) = log_result;
   log_result = log2f();
   *(int32_t *)(main_engine + 0x24c) = log_result;
-  log_result = log2f(*(float *)(_DAT_180c86920 + 0x2220) * 0.01);
+  log_result = log2f(*(float *)(SYSTEM_STATE_MANAGER + 0x2220) * 0.01);
   *(int32_t *)(main_engine + 0x23c) = log_result;
   
   // 设置双精度浮点参数

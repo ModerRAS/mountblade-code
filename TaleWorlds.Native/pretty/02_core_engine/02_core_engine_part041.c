@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part041.c - 核心引擎内存管理和数据处理模块
 // 本文件包含24个函数，主要涉及内存管理、数据处理和系统操作
@@ -52,7 +53,7 @@ void release_engine_resources(longlong *resource_ptr)
     ulonglong security_cookie;
     
     cleanup_flag = 0xfffffffffffffffe;
-    security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     LOCK();
     resource_manager = resource_ptr + 2;
     ref_count = *resource_manager;

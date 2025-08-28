@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * 05_networking_part009.c - 网络系统高级通信和数据包处理模块
@@ -217,13 +218,13 @@ void network_connection_initializer(uint64_t param_1)
     ulonglong stack_protection;  // 栈保护变量
     
     // 设置栈保护
-    stack_protection = _DAT_180bf00a8 ^ (ulonglong)protection_stack;
+    stack_protection = GET_SECURITY_COOKIE() ^ (ulonglong)protection_stack;
     
     // 获取初始化状态
     initialization_status = FUN_1808401c0();
     
     // 检查网络活动状态
-    if ((initialization_status != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & NETWORK_FLAG_ACTIVE) != 0)) {
+    if ((initialization_status != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & NETWORK_FLAG_ACTIVE) != 0)) {
         message_buffer = large_buffer;
         large_buffer[0] = 0;
         
@@ -257,13 +258,13 @@ void network_connection_processor(uint64_t param_1)
     ulonglong stack_protection;   // 栈保护变量
     
     // 设置栈保护
-    stack_protection = _DAT_180bf00a8 ^ (ulonglong)protection_stack;
+    stack_protection = GET_SECURITY_COOKIE() ^ (ulonglong)protection_stack;
     
     // 检查连接状态
     processing_status = network_connection_status_checker(param_1, 0);
     
     // 检查网络活动状态
-    if ((processing_status != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & NETWORK_FLAG_ACTIVE) != 0)) {
+    if ((processing_status != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & NETWORK_FLAG_ACTIVE) != 0)) {
         message_buffer = large_buffer;
         large_buffer[0] = 0;
         
@@ -298,7 +299,7 @@ void network_connection_validator(uint64_t param_1)
     ulonglong stack_protection;   // 栈保护变量
     
     // 设置栈保护
-    stack_protection = _DAT_180bf00a8 ^ (ulonglong)protection_stack;
+    stack_protection = GET_SECURITY_COOKIE() ^ (ulonglong)protection_stack;
     
     // 获取连接数据
     validation_status = func_0x00018088c590(param_1, connection_data);
@@ -317,7 +318,7 @@ void network_connection_validator(uint64_t param_1)
     }
     
     // 检查网络活动状态
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & NETWORK_FLAG_ACTIVE) != 0) {
+    if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & NETWORK_FLAG_ACTIVE) != 0) {
         message_buffer = large_buffer;
         large_buffer[0] = 0;
         
@@ -365,7 +366,7 @@ void network_packet_processor(uint64_t param_1, uint64_t *param_2, longlong *par
     ulonglong stack_protection;    // 栈保护变量
     
     // 设置栈保护
-    stack_protection = _DAT_180bf00a8 ^ (ulonglong)protection_stack;
+    stack_protection = GET_SECURITY_COOKIE() ^ (ulonglong)protection_stack;
     
     // 遍历数据包数据
     for (packet_data = (int32_t *)*param_2;
@@ -425,7 +426,7 @@ void network_state_manager(longlong param_1, longlong param_2)
     ulonglong stack_protection;    // 栈保护变量
     
     // 设置栈保护
-    stack_protection = _DAT_180bf00a8 ^ (ulonglong)protection_stack;
+    stack_protection = GET_SECURITY_COOKIE() ^ (ulonglong)protection_stack;
     
     // 检查连接状态
     is_connected = *(int *)(param_2 + 0xb0) != -1;
@@ -473,7 +474,7 @@ void network_data_transmitter(longlong param_1, longlong param_2)
     ulonglong stack_protection;    // 栈保护变量
     
     // 设置栈保护
-    stack_protection = _DAT_180bf00a8 ^ (ulonglong)protection_stack;
+    stack_protection = GET_SECURITY_COOKIE() ^ (ulonglong)protection_stack;
     
     // 检查传输参数
     if (1.1920929e-07 < *(float *)(param_2 + 0x94)) {
@@ -536,7 +537,7 @@ void network_message_processor(longlong param_1, longlong param_2)
     ulonglong stack_protection;    // 栈保护变量
     
     // 设置栈保护
-    stack_protection = _DAT_180bf00a8 ^ (ulonglong)protection_stack;
+    stack_protection = GET_SECURITY_COOKIE() ^ (ulonglong)protection_stack;
     
     // 设置连接状态
     *(bool *)(param_1 + 8) = *(int *)(param_2 + 0xb0) != -1;
@@ -666,7 +667,7 @@ void network_data_manager(longlong *param_1, longlong param_2, longlong *param_3
     ulonglong stack_protection;    // 栈保护变量
     
     // 设置栈保护
-    stack_protection = _DAT_180bf00a8 ^ (ulonglong)protection_stack;
+    stack_protection = GET_SECURITY_COOKIE() ^ (ulonglong)protection_stack;
     
     // 初始化数据处理
     (**(code **)(*param_1 + 0x48))();
@@ -804,7 +805,7 @@ void network_connection_manager(longlong param_1, longlong param_2)
     ulonglong stack_protection;   // 栈保护变量
     
     // 设置栈保护
-    stack_protection = _DAT_180bf00a8 ^ (ulonglong)protection_stack;
+    stack_protection = GET_SECURITY_COOKIE() ^ (ulonglong)protection_stack;
     
     // 检查传输参数
     if (*(float *)(param_2 + 0x94) <= 1.1920929e-07) {
@@ -999,7 +1000,7 @@ void network_buffer_manager(longlong *param_1, longlong param_2, longlong *param
     ulonglong stack_protection;   // 栈保护变量
     
     // 设置栈保护
-    stack_protection = _DAT_180bf00a8 ^ (ulonglong)protection_stack;
+    stack_protection = GET_SECURITY_COOKIE() ^ (ulonglong)protection_stack;
     
     // 初始化缓冲区管理
     (**(code **)(*param_1 + 0x40))();
@@ -1161,7 +1162,7 @@ uint64_t * string_parser_processor(char *param_1, uint64_t *param_2)
     ulonglong stack_protection;    // 栈保护变量
     
     // 设置栈保护
-    stack_protection = _DAT_180bf00a8 ^ (ulonglong)protection_stack;
+    stack_protection = GET_SECURITY_COOKIE() ^ (ulonglong)protection_stack;
     
     if (param_2 != (uint64_t *)0x0) {
         // 验证输入参数
@@ -1346,7 +1347,7 @@ uint network_resource_cleaner1(longlong *param_1)
         
         if ((0 < (int)resource_count) && (*param_1 != 0)) {
             // 清理资源
-            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
+            FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
         }
         
         *param_1 = 0;
@@ -1387,7 +1388,7 @@ uint network_resource_cleaner1(longlong *param_1)
     
     if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
         // 清理资源
-        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
+        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
     }
     
     *param_1 = 0;
@@ -1426,7 +1427,7 @@ uint network_resource_cleaner2(longlong *param_1)
         
         if ((0 < (int)resource_count) && (*param_1 != 0)) {
             // 清理资源
-            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
+            FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
         }
         
         *param_1 = 0;
@@ -1453,7 +1454,7 @@ uint network_resource_cleaner2(longlong *param_1)
     
     if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
         // 清理资源
-        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
+        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
     }
     
     *param_1 = 0;

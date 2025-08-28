@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part087.c - 17 个函数
 
@@ -663,7 +664,7 @@ void FUN_18071b790(uint64_t param_1,longlong param_2,uint64_t param_3,uint64_t p
   longlong lStack_40;
   ulonglong uStack_30;
   
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_a8;
+  uStack_30 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_a8;
   lStack_40 = param_2 + -4;
   uVar1 = ((longlong)in_stack_00000058 + 2) * 2;
   iStack_70 = in_stack_00000058;
@@ -801,7 +802,7 @@ void FUN_18071c290(uint64_t param_1,int32_t param_2,int32_t param_3,longlong par
   uint64_t uStack_60;
   ulonglong uStack_58;
   
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_b8;
   uStack_78 = 0;
   iVar3 = param_5 >> 4;
   uStack_70 = 0;
@@ -854,7 +855,7 @@ void FUN_18071c7f0(longlong param_1,uint64_t param_2,int param_3,int param_4,int
   short asStack_68 [16];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_98;
   if (param_4 == 0) {
     pcVar9 = (char *)(param_1 + 0x1288);
   }

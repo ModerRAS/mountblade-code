@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 05_networking_part017.c - 网络系统连接管理和数据传输模块
 // 包含3个函数，主要负责网络连接的建立、数据传输和连接状态管理
@@ -112,7 +113,7 @@ void process_network_connection_state(uint64_t *network_context, uint64_t connec
   ulonglong security_checksum;
   
   // 初始化安全校验和
-  security_checksum = _DAT_180bf00a8 ^ (ulonglong)encryption_buffer;
+  security_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)encryption_buffer;
   connection_timeout = connection_params;
   network_adapter = network_context;
   protocol_stack = result_output;

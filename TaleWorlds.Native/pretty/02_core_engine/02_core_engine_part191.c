@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part191.c - 17 个函数
 
@@ -33,8 +34,8 @@ void adjust_window_position_and_size(longlong window_context, int width, int hei
   ulonglong stack_guard_value;
   
   // 安全栈检查
-  stack_guard_value = _DAT_180bf00a8 ^ (ulonglong)stack_guard;
-  display_mode = *(int *)(_DAT_180c86920 + 0x1ea0);
+  stack_guard_value = GET_SECURITY_COOKIE() ^ (ulonglong)stack_guard;
+  display_mode = *(int *)(SYSTEM_STATE_MANAGER + 0x1ea0);
   needs_update = update_flag;
   // 如果不是全屏模式(2)
   if (display_mode != 2) {
@@ -50,7 +51,7 @@ void adjust_window_position_and_size(longlong window_context, int width, int hei
     // 查找匹配的显示区域
     if (total_displays != display_count) {
       do {
-        if ((int)display_index == *(int *)(_DAT_180c86920 + 0x1f10)) {
+        if ((int)display_index == *(int *)(SYSTEM_STATE_MANAGER + 0x1f10)) {
           display_count = display_index * 0x70;
           horizontal_offset = *(int *)(display_count + 0x58 + config_start);
           vertical_offset = *(int *)(display_count + 0x5c + config_start);
@@ -154,7 +155,7 @@ void FUN_180173771(void)
   iVar11 = 0;
   if (lVar8 != lVar6) {
     do {
-      if ((int)uVar10 == *(int *)(_DAT_180c86920 + 0x1f10)) {
+      if ((int)uVar10 == *(int *)(SYSTEM_STATE_MANAGER + 0x1f10)) {
         lVar6 = uVar10 * 0x70;
         iStack0000000000000044 = *(int *)(lVar6 + 0x58 + lVar1);
         iVar11 = *(int *)(lVar6 + 0x5c + lVar1);
@@ -744,7 +745,7 @@ void FUN_180174340(void **param_1,void **param_2,longlong param_3)
   ulonglong uStack_48;
   
   uStack_c8 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_108;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_108;
   ppuStack_e8 = param_1;
   if (((longlong *)param_1)[1] != ((longlong *)param_1)[2]) {
     ppuStack_e0 = param_2;

@@ -159,7 +159,7 @@ extern uint64_t _DAT_180c8ed18;
 extern uint64_t _DAT_180c86928;
 
 /** 渲染系统魔数地址 */
-extern uint64_t _DAT_180bf00a8;
+extern uint64_t GET_SECURITY_COOKIE();
 
 /** 渲染系统数据地址 */
 extern int32_t system_memory_cc18;
@@ -593,7 +593,7 @@ void FUN_18043c3b0(int32_t *param_1, int32_t *param_2, int32_t param_3, int8_t p
     
     lVar1 = _DAT_180c8ed68;
     uStack_a8 = INVALID_HANDLE;
-    uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_f8;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_f8;
     uStack_b8 = *param_2;
     uStack_b4 = param_2[1];
     uStack_b0 = param_2[2];
@@ -692,7 +692,7 @@ void FUN_18043c510(uint64_t *param_1, uint64_t *param_2, uint64_t *param_3, int3
     
     lVar1 = _DAT_180c8ed68;
     uStack_108 = INVALID_HANDLE;
-    uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_138;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_138;
     uStack_f8 = *param_2;
     uStack_f0 = param_2[1];
     uStack_e8 = *param_1;

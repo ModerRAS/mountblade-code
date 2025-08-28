@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * 04_ui_system_part390.c - UI系统高级事件处理和回调管理模块
@@ -1380,7 +1381,7 @@ void ui_system_resource_manager_type1(longlong ui_manager, uint64_t resource_dat
     ulonglong stack_guard;
     
     // 栈保护机制
-    stack_guard = _DAT_180bf00a8 ^ (ulonglong)stack_protector_1;
+    stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)stack_protector_1;
     
     // 调用虚拟函数处理资源
     handle_result = (**(code **)(**(longlong **)(ui_manager + UI_MANAGER_OFFSET) + UI_VTABLE_OFFSET_22))

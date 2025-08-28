@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * 03_rendering_part099.c - 渲染系统高级数据处理和状态管理模块
@@ -214,7 +215,7 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
     
     // 初始化栈保护和安全检查
     uStack_b8 = STACK_CANARY_VALUE;
-    uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+    uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_168;
     lStack_c0 = param_5;
     uStack_110 = 0;
     

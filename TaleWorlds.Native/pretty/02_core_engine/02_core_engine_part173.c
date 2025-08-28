@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part173.c - 引擎配置和数据处理模块
 // 核心引擎模块第173部分：包含引擎配置设置、数据处理、资源管理和文件操作功能
@@ -22,7 +23,7 @@ void set_engine_configuration(longlong *engine_context, int config_type)
   ulonglong uStack_18;
   
   uStack_48 = 0xfffffffffffffffe;
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_68;
   if (param_2 == 0) {
     pcVar1 = *(code **)(*param_1 + 0x18);
     puStack_40 = &unknown_var_7512_ptr;
@@ -350,7 +351,7 @@ void update_engine_state(uint64_t state_manager, longlong state_id)
     if ((cVar6 != '\0') && (lVar4 == param_2)) {
       (**(code **)(**(longlong **)(lVar8 + 8) + 0x78))();
       (**(code **)(**(longlong **)(lVar8 + 8) + 0xf8))
-                (*(longlong **)(lVar8 + 8),*(int32_t *)(_DAT_180c86920 + 0x1500));
+                (*(longlong **)(lVar8 + 8),*(int32_t *)(SYSTEM_STATE_MANAGER + 0x1500));
     }
     lVar8 = *(longlong *)(lVar8 + 0x10);
     while (lVar8 == 0) {
@@ -733,7 +734,7 @@ void set_engine_path_string(uint64_t param_1, longlong path_ptr)
   ulonglong uStack_18;
   
   uStack_50 = 0xfffffffffffffffe;
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_78;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_78;
   uStack_58 = 0;
   puStack_40 = &unknown_var_7512_ptr;
   puStack_38 = auStack_28;
@@ -888,7 +889,7 @@ uint64_t write_extended_engine_data(uint64_t param_1, uint64_t param_2, uint64_t
   FUN_1801595d0();
   FUN_1806281a0(param_2,&unknown_var_7428_ptr,param_3,param_4,2,uVar1);
   FUN_1806281a0(param_2,*(uint64_t *)
-                         (&unknown_var_7376_ptr + (longlong)*(int *)(_DAT_180c86920 + 0x15e0) * 8),param_3,
+                         (&unknown_var_7376_ptr + (longlong)*(int *)(SYSTEM_STATE_MANAGER + 0x15e0) * 8),param_3,
                 param_4,1);
   return param_2;
 }
@@ -1176,7 +1177,7 @@ ulonglong calculate_engine_resource_checksum(longlong *engine_context, int start
         fclose(lVar2);
         lStack_78 = 0;
         LOCK();
-        _DAT_180c8ed60 = _DAT_180c8ed60 - 1;
+        SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR - 1;
         UNLOCK();
         uVar5 = 0xffffffff;
         uVar4 = 0xffffffff;
@@ -1203,9 +1204,9 @@ ulonglong calculate_engine_resource_checksum(longlong *engine_context, int start
         fclose(lStack_78);
         lStack_78 = 0;
         LOCK();
-        uVar5 = (ulonglong)_DAT_180c8ed60;
+        uVar5 = (ulonglong)SYSTEM_FILE_COUNTER_ADDR;
         UNLOCK();
-        _DAT_180c8ed60 = _DAT_180c8ed60 - 1;
+        SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR - 1;
       }
       puStack_68 = &unknown_var_3456_ptr;
       if (puStack_60 != (int8_t *)0x0) {

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part167.c - 8 个函数
 // 核心引擎模块第167部分：包含引擎计数器更新、上下文初始化、字符串处理、内存管理和系统关闭功能
@@ -364,7 +365,7 @@ void shutdown_engine_system(longlong param_1)
   ulonglong checksum;
   
   context_flag = 0xfffffffffffffffe;
-  checksum = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  checksum = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   string_buffer = (char *)0x0;
   operation_result = 0;
   if (*(char *)(_DAT_180c86890 + 0x12f3) != '\0') {
@@ -375,25 +376,25 @@ void shutdown_engine_system(longlong param_1)
   if (status_code != 0) {
     __Throw_C_error_std__YAXH_Z(status_code);
   }
-  context_stack_ptr = _DAT_180c8a9b0;
-  callback_ptr_3 = _DAT_180c8a9b0;
-  _DAT_180c8a9b0 = (void **)*thread_context;
+  context_stack_ptr = SYSTEM_DATA_MANAGER_A;
+  callback_ptr_3 = SYSTEM_DATA_MANAGER_A;
+  SYSTEM_DATA_MANAGER_A = (void **)*thread_context;
   FUN_18009b220((longlong)*(int *)(_DAT_180c86890 + 0x1590) * 0x238 + _DAT_180c86890 + 0x1598);
-  *(int32_t *)((longlong)_DAT_180c8a9b0 + 0x18) = _DAT_180bf3ff8;
+  *(int32_t *)((longlong)SYSTEM_DATA_MANAGER_A + 0x18) = _DAT_180bf3ff8;
   FUN_180125780();
   data_ptr = _DAT_180c86960;
   if (*(char *)(_DAT_180c86960 + 7) != '\0') {
-    if (((*(char *)((longlong)_DAT_180c8a9b0 + 0x38c) == '\0') &&
-        (*(char *)((longlong)_DAT_180c8a9b0 + 0x38d) == '\0')) &&
-       (*(char *)((longlong)_DAT_180c8a9b0 + 0x38e) == '\0')) {
+    if (((*(char *)((longlong)SYSTEM_DATA_MANAGER_A + 0x38c) == '\0') &&
+        (*(char *)((longlong)SYSTEM_DATA_MANAGER_A + 0x38d) == '\0')) &&
+       (*(char *)((longlong)SYSTEM_DATA_MANAGER_A + 0x38e) == '\0')) {
       bool_result = 0;
     }
     else {
       bool_result = 1;
     }
     *(int8_t *)(_DAT_180c86960 + 0xe) = bool_result;
-    if ((*(char *)((longlong)_DAT_180c8a9b0 + 0x38d) == '\0') &&
-       (*(char *)((longlong)_DAT_180c8a9b0 + 0x38e) == '\0')) {
+    if ((*(char *)((longlong)SYSTEM_DATA_MANAGER_A + 0x38d) == '\0') &&
+       (*(char *)((longlong)SYSTEM_DATA_MANAGER_A + 0x38e) == '\0')) {
       bool_result = 0;
     }
     else {
@@ -401,7 +402,7 @@ void shutdown_engine_system(longlong param_1)
     }
     *(int8_t *)((longlong)data_ptr + 0x71) = bool_result;
   }
-  _DAT_180c8a9b0 = context_stack_ptr;
+  SYSTEM_DATA_MANAGER_A = context_stack_ptr;
   status_code = _Mtx_unlock(0x180c91970);
   if (status_code != 0) {
     __Throw_C_error_std__YAXH_Z(status_code);
@@ -448,7 +449,7 @@ void shutdown_engine_system(longlong param_1)
         __Throw_C_error_std__YAXH_Z(iVar3);
       }
     }
-    if (((lVar4 != 0) && (0 < *(int *)(_DAT_180c86920 + 0x1b20))) &&
+    if (((lVar4 != 0) && (0 < *(int *)(SYSTEM_STATE_MANAGER + 0x1b20))) &&
        (*(char *)(_DAT_180c86870 + 0x2b) != '\0')) {
       fVar17 = *(float *)(_DAT_180c86950 + 0x17ec);
       puStack_1a0 = &unknown_var_3456_ptr;
@@ -526,9 +527,9 @@ void shutdown_engine_system(longlong param_1)
         if (iVar3 != 0) {
           __Throw_C_error_std__YAXH_Z(iVar3);
         }
-        ppuVar1 = _DAT_180c8a9b0;
-        ppuStack_178 = _DAT_180c8a9b0;
-        _DAT_180c8a9b0 = (void **)*puVar12;
+        ppuVar1 = SYSTEM_DATA_MANAGER_A;
+        ppuStack_178 = SYSTEM_DATA_MANAGER_A;
+        SYSTEM_DATA_MANAGER_A = (void **)*puVar12;
         FUN_1801299b0(&unknown_var_7632_ptr,0,0x40);
         for (lVar6 = *(longlong *)(lVar4 + 0x8210); lVar6 != lVar4 + 0x8208;
             lVar6 = func_0x00018066bd70(lVar6)) {
@@ -562,7 +563,7 @@ void shutdown_engine_system(longlong param_1)
           }
         }
         FUN_18012cfe0();
-        _DAT_180c8a9b0 = ppuVar1;
+        SYSTEM_DATA_MANAGER_A = ppuVar1;
         iVar3 = _Mtx_unlock(0x180c91970);
         if (iVar3 != 0) {
           __Throw_C_error_std__YAXH_Z(iVar3);
@@ -631,13 +632,13 @@ void shutdown_engine_system(longlong param_1)
     if (iVar3 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar3);
     }
-    ppuVar1 = _DAT_180c8a9b0;
-    ppuStack_158 = _DAT_180c8a9b0;
-    _DAT_180c8a9b0 = (void **)*puVar12;
+    ppuVar1 = SYSTEM_DATA_MANAGER_A;
+    ppuStack_158 = SYSTEM_DATA_MANAGER_A;
+    SYSTEM_DATA_MANAGER_A = (void **)*puVar12;
     FUN_180099430(*_DAT_180c86960,
                   *(uint64_t *)
                    (_DAT_180c86890 + 0x1a08 + (longlong)*(int *)(_DAT_180c86890 + 0x1590) * 8));
-    _DAT_180c8a9b0 = ppuVar1;
+    SYSTEM_DATA_MANAGER_A = ppuVar1;
     iVar3 = _Mtx_unlock(0x180c91970);
     if (iVar3 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar3);
@@ -647,16 +648,16 @@ void shutdown_engine_system(longlong param_1)
     if (iVar3 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar3);
     }
-    ppuVar1 = _DAT_180c8a9b0;
-    ppuStack_150 = _DAT_180c8a9b0;
-    _DAT_180c8a9b0 = (void **)*plVar5;
+    ppuVar1 = SYSTEM_DATA_MANAGER_A;
+    ppuStack_150 = SYSTEM_DATA_MANAGER_A;
+    SYSTEM_DATA_MANAGER_A = (void **)*plVar5;
     FUN_180127860();
-    pcVar9 = (char *)(**(longlong **)((longlong)_DAT_180c8a9b0 + 0x1c70) + 0x88);
+    pcVar9 = (char *)(**(longlong **)((longlong)SYSTEM_DATA_MANAGER_A + 0x1c70) + 0x88);
     if (*pcVar9 == '\0') {
       pcVar9 = pcVar14;
     }
     FUN_180099430(_DAT_180c86960[1],pcVar9);
-    _DAT_180c8a9b0 = ppuVar1;
+    SYSTEM_DATA_MANAGER_A = ppuVar1;
     iVar3 = _Mtx_unlock(0x180c91970);
     if (iVar3 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar3);

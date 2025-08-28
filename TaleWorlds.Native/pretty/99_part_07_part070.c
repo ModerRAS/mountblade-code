@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_07_part070.c - 9 个函数
 
@@ -219,7 +220,7 @@ void FUN_1804d9b70(uint64_t *param_1)
   ulonglong uStack_28;
   
   uStack_d8 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_138;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_138;
   *param_1 = &unknown_var_3952_ptr;
   uVar5 = 0;
   param_1[1] = 0;
@@ -500,8 +501,8 @@ void FUN_1804da310(longlong param_1)
   float fVar6;
   float fVar7;
   
-  lVar1 = _DAT_180c86920;
-  iVar2 = *(int *)(_DAT_180c86920 + 0xe00) + -1;
+  lVar1 = SYSTEM_STATE_MANAGER;
+  iVar2 = *(int *)(SYSTEM_STATE_MANAGER + 0xe00) + -1;
   iVar3 = 0;
   if ((-1 < iVar2) && (iVar3 = iVar2, 3 < iVar2)) {
     iVar3 = 3;
@@ -551,8 +552,8 @@ void FUN_1804da440(longlong param_1,uint64_t param_2,uint64_t param_3)
   
   uVar7 = 0xfffffffffffffffe;
   lVar3 = param_1;
-  lVar6 = _DAT_180c86920;
-  if (*(int *)(_DAT_180c86920 + 0xe04) != *(int *)(_DAT_180c86920 + 0xe00)) {
+  lVar6 = SYSTEM_STATE_MANAGER;
+  if (*(int *)(SYSTEM_STATE_MANAGER + 0xe04) != *(int *)(SYSTEM_STATE_MANAGER + 0xe00)) {
     FUN_1804da310();
   }
   uVar5 = 0;
@@ -569,7 +570,7 @@ void FUN_1804da440(longlong param_1,uint64_t param_2,uint64_t param_3)
         puStackX_10 = &uStackX_8;
         uStackX_8 = 0;
         FUN_1800f5a90(lVar4,*(uint64_t *)(lVar3 + 8),param_3,&uStackX_8,uVar7);
-        lVar6 = _DAT_180c86920;
+        lVar6 = SYSTEM_STATE_MANAGER;
       }
 LAB_1804da4f5:
       uVar1 = uVar5 + 1;

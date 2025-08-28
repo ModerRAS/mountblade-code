@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 04_ui_system_part006.c - UI系统字符串处理和资源管理模块
 // 本文件包含11个函数，主要处理UI系统的字符串操作、内存分配、资源管理和路径处理
@@ -599,7 +600,7 @@ void ui_initialize_resource_loader(ulonglong *param_1)
   ulonglong security_cookie;
   
   stack_var = 0xfffffffffffffffe;
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   size_val = 0;
   buffer_flag = 0;
   format_handler = &unknown_var_7512_ptr;

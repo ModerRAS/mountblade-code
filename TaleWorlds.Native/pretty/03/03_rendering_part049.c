@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part049.c - 渲染系统高级数据处理和渲染控制模块
 // 包含29个核心函数，涵盖渲染数据高级处理、渲染控制、数据转换、渲染状态管理等功能
@@ -27,7 +28,7 @@ void process_rendering_index_buffer(longlong render_context, uint64_t *data_ptr,
   int iStack_84;
   ulonglong uStack_80;
   
-  uStack_80 = _DAT_180bf00a8 ^ (ulonglong)&uStack_88;
+  uStack_80 = GET_SECURITY_COOKIE() ^ (ulonglong)&uStack_88;
   uVar5 = (ulonglong)vertex_count;
   if (2 < (int)vertex_count) {
     uVar1 = **(int32_t **)(render_context + 0x38);

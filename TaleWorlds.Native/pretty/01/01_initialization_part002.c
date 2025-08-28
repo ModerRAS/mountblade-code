@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 01_initialization_part002.c - 初始化模块第二部分 - 26个函数
 // 本文件包含系统初始化相关的函数，主要用于注册各种系统组件

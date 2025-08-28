@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part018.c - 核心引擎模块第18部分
 // 本文件包含内存管理、字符串处理和数据结构操作相关功能
@@ -123,14 +124,14 @@ void initialize_memory_pool(longlong *param_1)
     uVar9 = allocate_memory_block(_DAT_180c8ed18, 0x270, 8, 3);
     uStack_30 = 0x18005902b;
     lVar10 = get_memory_address(uVar9);
-    uVar7 = *(int32_t *)(_DAT_180c86920 + 0x1dc0);
+    uVar7 = *(int32_t *)(SYSTEM_STATE_MANAGER + 0x1dc0);
     _DAT_180c8a9d0 = lVar10;
-    *(int32_t *)(lVar10 + 0x1e0) = *(int32_t *)(_DAT_180c86920 + 0x1d50);
+    *(int32_t *)(lVar10 + 0x1e0) = *(int32_t *)(SYSTEM_STATE_MANAGER + 0x1d50);
     *(int32_t *)(lVar10 + 0x1e4) = uVar7;
     uStack_30 = 0x180059066;
     (**(code **)(**(longlong **)(*param_1 + 0x2b0) + 0xf8))();
     uStack_298 = 0xfffffffffffffffe;
-    uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_3b8;
+    uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_3b8;
     uStack_378 = 0;
     lStack_310 = _DAT_180c8a9d0;
     *(uint64_t *)(_DAT_180c8a9d0 + 0xf0) = 0;

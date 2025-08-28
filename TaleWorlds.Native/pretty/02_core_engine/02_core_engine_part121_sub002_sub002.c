@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part121_sub002_sub002.c - 核心引擎模块第121部分第二子文件第二子文件
 // 包含1个函数：处理渲染对象的核心逻辑
@@ -303,4 +304,4 @@ void process_render_object(uint64_t object_context)
 }
 
 // 全局变量声明
-#define GLOBAL_RENDER_DATA _DAT_180c8a9b0
+#define GLOBAL_RENDER_DATA SYSTEM_DATA_MANAGER_A

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 01_initialization_part015_sub001_sub001.c - 11 个函数
 
@@ -313,13 +314,13 @@ void FUN_180047fc0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     fclose();
     puVar5[1] = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
     if (puVar5[1] != 0) {
       fclose();
       puVar5[1] = 0;
       LOCK();
-      _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+      SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
       UNLOCK();
     }
   }
@@ -440,7 +441,7 @@ void FUN_180048a50(longlong param_1)
       fclose();
       *(uint64_t *)(param_1 + 8) = 0;
       LOCK();
-      _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+      SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
       UNLOCK();
     }
                     // WARNING: Subroutine does not return
@@ -995,7 +996,7 @@ void FUN_1800495d0(uint64_t param_1,uint64_t *param_2,longlong *param_3)
   int iStack_30;
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_58;
   if (*param_3 < 1) {
     lStack_38 = 0;
     iStack_30 = 0;

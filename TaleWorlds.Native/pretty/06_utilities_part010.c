@@ -126,7 +126,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, longlong dat
   int8_t data_buffer [520];
   
   // 安全检查：设置栈保护cookie
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   process_result = 0;
   
   // 处理配置数据
@@ -760,7 +760,7 @@ void UtilitiesSystem_ParameterValidator(longlong *param_handler, longlong *valid
   ulonglong security_cookie;
   
   // 安全检查：设置栈保护cookie
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   handler_context = param_handler[4];
   
   // 验证参数和处理数据

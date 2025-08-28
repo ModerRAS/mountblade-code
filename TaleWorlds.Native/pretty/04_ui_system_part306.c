@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part306.c - 3 个函数
 
@@ -39,7 +40,7 @@ void FUN_180836c90(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
   ulonglong auStack_98 [18];
   
   puVar21 = auStack_98;
-  auStack_98[0] = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  auStack_98[0] = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_98;
   uVar17 = (ulonglong)param_1 & 0x1f;
   while ((uVar17 != 0 && (param_2 != 0))) {
     param_2 = param_2 - 1;
@@ -230,7 +231,7 @@ void FUN_180837050(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
   ulonglong auStack_78 [14];
   
   puVar13 = auStack_78;
-  auStack_78[0] = _DAT_180bf00a8 ^ (ulonglong)auStack_78;
+  auStack_78[0] = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_78;
   uVar10 = (ulonglong)param_1 & 0x1f;
   auVar12 = _DAT_180980c60;
                     // WARNING: Read-only address (ram,0x000180980c60) is written
@@ -381,7 +382,7 @@ void FUN_1808372e0(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
   ulonglong uStack_e0;
   
   puVar25 = auStack_128;
-  uStack_e0 = _DAT_180bf00a8 ^ (ulonglong)auStack_128;
+  uStack_e0 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_128;
   uVar22 = (ulonglong)param_1 & 0x1f;
                     // WARNING: Read-only address (ram,0x000180980be0) is written
                     // WARNING: Read-only address (ram,0x000180980c20) is written

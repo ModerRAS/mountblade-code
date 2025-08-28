@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part212.c - 核心引擎模块第212部分
 // 包含2个函数：资源管理器和数据加载器
@@ -52,7 +53,7 @@ void process_resource_manager_batches(void)
     ulonglong stack_guard2;
     
     stack_guard1 = 0xfffffffffffffffe;
-    stack_guard2 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    stack_guard2 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     context_backup1 = g_engine_context;
     context_backup2 = g_resource_manager_base;
     iterator_ptr = *(longlong **)(g_resource_manager_base + 0xa0);
@@ -448,7 +449,7 @@ void load_and_process_resource_data(uint64_t param_1, longlong param_2)
     ulonglong final_guard;
     
     stack_guard2 = 0xfffffffffffffffe;
-    final_guard = _DAT_180bf00a8 ^ (ulonglong)stack_guard;
+    final_guard = GET_SECURITY_COOKIE() ^ (ulonglong)stack_guard;
     
     // 初始化数据结构
     initialize_data_structure(param_2, *(uint64_t *)(param_2 + 0x10));

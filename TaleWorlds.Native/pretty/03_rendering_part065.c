@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part065.c - 10 个函数
 
@@ -325,7 +326,7 @@ void FUN_180302370(longlong *param_1,longlong *param_2)
   ulonglong uStack_58;
   
   uStack_1a0 = 0xfffffffffffffffe;
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_298;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_298;
   lVar1 = param_1[0xa3];
   lVar2 = param_1[0xda];
   iVar18 = 0;
@@ -373,7 +374,7 @@ void FUN_180302370(longlong *param_1,longlong *param_2)
   if (cVar13 == '\0') {
     plVar12 = (longlong *)CONCAT44(iStack_25c,iStack_260);
   }
-  else if ((*(char *)(lVar2 + 0xd8) == '\0') || (*(int *)(_DAT_180c86920 + 0x540) + -1 < 0)) {
+  else if ((*(char *)(lVar2 + 0xd8) == '\0') || (*(int *)(SYSTEM_STATE_MANAGER + 0x540) + -1 < 0)) {
     plVar12 = (longlong *)CONCAT44(iStack_25c,iStack_260);
     plStack_250 = plVar12;
   }
@@ -631,7 +632,7 @@ void FUN_180302c30(longlong param_1)
   ulonglong uStack_30;
   
   uStack_60 = 0xfffffffffffffffe;
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_a8;
+  uStack_30 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_a8;
   *(int8_t *)(param_1 + 0x878) = 1;
                     // WARNING: Subroutine does not return
   memset(param_1 + 0x118,0,0x400);

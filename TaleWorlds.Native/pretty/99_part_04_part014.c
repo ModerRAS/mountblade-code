@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /* ============================================================================
  * 高级数据处理和内存管理模块

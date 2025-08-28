@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part064.c - 12 个函数
 
@@ -446,8 +447,8 @@ longlong * FUN_180301040(longlong *param_1)
   *(int32_t *)(param_1 + 0xb0) = 0x400;
   iVar6 = 0;
   *(int32_t *)((longlong)param_1 + 0x56c) = 0;
-  lVar7 = _DAT_180c86920;
-  iVar1 = *(int *)(_DAT_180c86920 + 0xc40);
+  lVar7 = SYSTEM_STATE_MANAGER;
+  iVar1 = *(int *)(SYSTEM_STATE_MANAGER + 0xc40);
   iVar5 = iVar6;
   if ((-1 < iVar1) && (iVar5 = iVar1, 2 < iVar1)) {
     iVar5 = 2;
@@ -497,7 +498,7 @@ longlong * FUN_180301040(longlong *param_1)
   }
   lVar7 = 0x3ff0000000000000;
   lVar8 = 0x3ff0000000000000;
-  if ((puVar3[0xd9] != '\0') && (iVar1 = *(int *)(_DAT_180c86920 + 0x540), iVar1 - 1U < 4)) {
+  if ((puVar3[0xd9] != '\0') && (iVar1 = *(int *)(SYSTEM_STATE_MANAGER + 0x540), iVar1 - 1U < 4)) {
     lVar7 = *(longlong *)(puVar3 + (longlong)iVar1 * 0x10 + -8);
     lVar8 = *(longlong *)(puVar3 + (longlong)iVar1 * 0x10);
   }
@@ -666,7 +667,7 @@ void FUN_1803014f0(longlong param_1)
       dVar10 = 1.0;
       lVar6 = *(longlong *)(_DAT_180c86890 + 0x7ab8);
       if ((*(char *)(lVar6 + 0xd9) != '\0') &&
-         (iVar2 = *(int *)(_DAT_180c86920 + 0x540), iVar2 - 1U < 4)) {
+         (iVar2 = *(int *)(SYSTEM_STATE_MANAGER + 0x540), iVar2 - 1U < 4)) {
         dVar9 = *(double *)(lVar6 + -8 + (longlong)iVar2 * 0x10);
         dVar10 = *(double *)(lVar6 + (longlong)iVar2 * 0x10);
       }
@@ -785,7 +786,7 @@ void FUN_180301506(longlong param_1)
       dVar10 = 1.0;
       lVar6 = *(longlong *)(_DAT_180c86890 + 0x7ab8);
       if ((*(char *)(lVar6 + 0xd9) != '\0') &&
-         (iVar2 = *(int *)(_DAT_180c86920 + 0x540), iVar2 - 1U < 4)) {
+         (iVar2 = *(int *)(SYSTEM_STATE_MANAGER + 0x540), iVar2 - 1U < 4)) {
         dVar9 = *(double *)(lVar6 + -8 + (longlong)iVar2 * 0x10);
         dVar10 = *(double *)(lVar6 + (longlong)iVar2 * 0x10);
       }

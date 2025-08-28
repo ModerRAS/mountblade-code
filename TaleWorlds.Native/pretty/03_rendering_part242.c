@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part242.c - 4 个函数
 
@@ -87,7 +88,7 @@ void FUN_180404a10(uint64_t param_1,uint64_t param_2,float param_3,longlong para
   ulonglong uStack_d8;
   
   uStack_d48 = 0xfffffffffffffffe;
-  uStack_d8 = _DAT_180bf00a8 ^ (ulonglong)auStack_d98;
+  uStack_d8 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d98;
   puVar10 = auStack_cd8;
   lVar13 = 0x40;
   fStack_d68 = param_3;
@@ -519,7 +520,7 @@ void FUN_180405430(longlong *param_1,longlong param_2)
   ulonglong uStack_18;
   
   uStack_a8 = 0xfffffffffffffffe;
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_c8;
   plStack_60 = (longlong *)0x0;
   puVar1 = *(uint64_t **)(param_2 + 0x38);
   if (puVar1 != (uint64_t *)0x0) {

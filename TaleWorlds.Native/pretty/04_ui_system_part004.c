@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part004.c - 19 个函数
 
@@ -561,7 +562,7 @@ void FUN_1806526f0(void)
   ulonglong uStack_58;
   
   uStack_218 = 0xfffffffffffffffe;
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_2a8;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_2a8;
                     // WARNING: Subroutine does not return
   memset(auStack_178,0,0x118);
 }
@@ -586,7 +587,7 @@ void FUN_180652b60(uint64_t param_1,longlong *param_2)
   ulonglong uStack_48;
   
   uStack_d10 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_de8;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_de8;
   FUN_180057110();
   uStack_d08 = 0x180c96740;
   iVar1 = _Mtx_lock(0x180c96740);
@@ -853,7 +854,7 @@ void FUN_180653940(void)
   
   plVar1 = _DAT_180c91020;
   uStack_50 = 0xfffffffffffffffe;
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+  uStack_30 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
   uStack_98 = 0;
   puStack_b8 = &unknown_var_3456_ptr;
   uStack_a0 = 0;

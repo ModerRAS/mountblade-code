@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part306.c - 渲染系统图像处理和滤镜效果模块
 // 
@@ -697,7 +698,7 @@ void rendering_system_advanced_image_compressor(uint64_t param_1, uint64_t param
     int32_t png_header;
     ulonglong security_cookie;
   
-  uStack_40 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+  uStack_40 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
   piStack_68 = param_6;
   uVar9 = param_5 * param_3;
   uStack_60 = 0xffffffff;

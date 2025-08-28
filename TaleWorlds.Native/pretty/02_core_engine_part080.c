@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part080.c - 3 个函数
 
@@ -35,8 +36,8 @@ void FUN_18010e8a0(ulonglong param_1,ulonglong param_2)
   uint64_t uStack_d8;
   uint64_t uStack_d0;
   
-  lVar11 = _DAT_180c8a9b0;
-  *(int8_t *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
+  lVar11 = SYSTEM_DATA_MANAGER_A;
+  *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
   lVar10 = *(longlong *)(lVar11 + 0x1af8);
   if (*(char *)(lVar10 + 0xb4) != '\0') {
     return;
@@ -128,7 +129,7 @@ void FUN_18010e8a0(ulonglong param_1,ulonglong param_2)
             param_1 = uVar7 + 1;
             fVar19 = fVar19 + fVar18;
             uStackX_18 = CONCAT44(fVar20,(int32_t)uStackX_18);
-            lVar11 = _DAT_180c8a9b0;
+            lVar11 = SYSTEM_DATA_MANAGER_A;
           } while (param_1 < param_2);
           for (; param_1 < param_2; param_1 = param_1 + 1) {
             param_1 = memchr(param_1,10,param_2 - param_1);
@@ -453,7 +454,7 @@ void FUN_18010e8e1(longlong param_1,longlong param_2)
               fVar21 = fVar16;
             }
             FUN_180122320(*(uint64_t *)(unaff_RBP + 0x40),unaff_RDI,uVar8,0);
-            unaff_RSI = _DAT_180c8a9b0;
+            unaff_RSI = SYSTEM_DATA_MANAGER_A;
             fVar18 = fVar18 + fVar19;
             unaff_RDI = uVar8 + 1;
             fVar17 = fVar17 + fVar19;
@@ -741,7 +742,7 @@ void FUN_18010e97b(uint64_t param_1)
           fVar16 = fVar12;
         }
         FUN_180122320(*(uint64_t *)(unaff_RBP + 0x40),unaff_RDI,uVar7,0);
-        unaff_RSI = _DAT_180c8a9b0;
+        unaff_RSI = SYSTEM_DATA_MANAGER_A;
         fVar14 = fVar14 + fVar1;
         unaff_RDI = uVar7 + 1;
         fVar13 = fVar13 + fVar1;

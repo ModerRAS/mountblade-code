@@ -193,7 +193,7 @@ void rendering_system_calculate_collision_parameters(
     ulonglong stack_protection_b8;
     
     /* 初始化栈保护 */
-    stack_protection_b8 = _DAT_180bf00a8 ^ (ulonglong)&stack_protection_108;
+    stack_protection_b8 = GET_SECURITY_COOKIE() ^ (ulonglong)&stack_protection_108;
     
     /* 获取资源数据指针 */
     resource_data_ptr = (uint *)((longlong)processing_mode * 0x100 +

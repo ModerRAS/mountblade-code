@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part052.c - 核心引擎模块第52部分
 // 包含20个函数，主要负责引擎内存管理、排序算法和数据处理

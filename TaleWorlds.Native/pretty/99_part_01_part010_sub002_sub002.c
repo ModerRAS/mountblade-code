@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // ============================================================================
 // 99_part_01_part010_sub002_sub002.c - 文件路径构建和处理模块
@@ -260,7 +261,7 @@ void FUN_1800a73e0(longlong param_1, uint64_t param_2, longlong param_3, int8_t 
   
   // 基本参数初始化
   uStack_6b8 = 0xfffffffffffffffe;          // 初始化文件控制变量
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_9c8;  // 栈保护变量初始化
+  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_9c8;  // 栈保护变量初始化
   uStack_7e8 = param_7;                      // 存储附加路径参数2
   uStack_838 = 0;                            // 重置路径控制变量11
   uStack_990 = param_6;                      // 存储附加路径参数1
@@ -870,7 +871,7 @@ LAB_1800a814a:
         fclose(lVar7);
         lStack_6e8 = 0;
         LOCK();
-        _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+        SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
         UNLOCK();
         lVar8 = lStack_760;
       }
@@ -901,7 +902,7 @@ LAB_1800a814a:
         lVar7 = FUN_18062b420(_DAT_180c8ed18,lVar6 + 1,3);
         FUN_18063bc80(alStack_7e0,lVar7,lVar6);
         LOCK();
-        _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+        SYSTEM_HANDLE_COUNTER_ADDR = SYSTEM_HANDLE_COUNTER_ADDR + -1;
         UNLOCK();
         CloseHandle(alStack_7e0[0]);
         alStack_7e0[0] = -1;
@@ -1015,7 +1016,7 @@ LAB_1800a837b:
       puStack_898 = &unknown_var_720_ptr;
       if (lVar9 != -1) {
         LOCK();
-        _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+        SYSTEM_HANDLE_COUNTER_ADDR = SYSTEM_HANDLE_COUNTER_ADDR + -1;
         UNLOCK();
         CloseHandle(alStack_7e0[0]);
         alStack_7e0[0] = -1;
@@ -1055,7 +1056,7 @@ LAB_1800a87af:
       fclose(lVar8);
       lStack_760 = 0;
       LOCK();
-      _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+      SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
       UNLOCK();
     }
   }

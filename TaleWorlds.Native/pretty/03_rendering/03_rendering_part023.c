@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part023.c - 渲染系统组件处理和状态管理功能
 // 本文件包含5个主要函数，用于处理渲染组件的状态更新、计数统计和对象管理

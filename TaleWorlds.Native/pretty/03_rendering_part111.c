@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * 03_rendering_part111.c - 渲染系统高级数据处理和变换模块
@@ -101,7 +102,7 @@ void RenderingSystem_DataTransformer(longlong render_context, longlong output_ha
   ulonglong security_cookie;
   
   // 安全检查：初始化安全cookie
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   current_index = 0;
   
   // 计算资源范围

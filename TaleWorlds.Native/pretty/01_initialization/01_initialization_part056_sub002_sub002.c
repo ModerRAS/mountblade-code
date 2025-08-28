@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 01_initialization_part056_sub002_sub002.c - 初始化模块：骨骼动画系统初始化（简化实现）
 // 

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 05_networking_part002.c - 网络系统数据包处理和协议实现
 // 本文件包含多个网络系统核心功能，包括数据包处理、校验和计算、加密传输、压缩等功能
@@ -16,8 +17,8 @@
 // 10. 安全连接处理：process_secure_connection - 处理安全连接数据
 
 // 全局常量定义
-#define NETWORK_SECURITY_KEY    _DAT_180bf00a8
-#define NETWORK_ERROR_LOGGER    _DAT_180be12f0
+#define NETWORK_SECURITY_KEY    GET_SECURITY_COOKIE()
+#define NETWORK_ERROR_LOGGER    SYSTEM_MAIN_CONTROL_BLOCK
 #define PACKET_HEADER_PTR      NETWORK_PACKET_HEADER
 #define ERROR_MESSAGE_PTR      NETWORK_ERROR_MESSAGE
 #define unknown_var_4736          BASIC_PACKET_CONFIG

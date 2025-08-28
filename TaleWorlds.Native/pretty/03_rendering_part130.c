@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part130.c - 12 个函数
 
@@ -349,7 +350,7 @@ void FUN_180345840(longlong param_1)
   int8_t auStack_298 [544];
   ulonglong uStack_78;
   
-  uStack_78 = _DAT_180bf00a8 ^ (ulonglong)auStack_348;
+  uStack_78 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_348;
   if ((*(longlong *)(param_1 + 0x58) - *(longlong *)(param_1 + 0x50)) / 0x30 != 0) {
                     // WARNING: Subroutine does not return
     memset(auStack_298,0,0x200);

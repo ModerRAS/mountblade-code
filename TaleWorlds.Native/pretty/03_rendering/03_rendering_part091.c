@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part091.c - 渲染系统高级处理模块
 // 包含6个核心函数，涵盖渲染系统高级处理、资源管理、参数处理、数据变换、内存优化等功能
@@ -85,7 +86,7 @@ void rendering_system_advanced_processor(code **render_context, code *render_dat
     
     // 初始化安全保护机制
     security_key = 0xfffffffffffffffe;
-    memory_checksum = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+    memory_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
     temp_context = (code **)0x0;
     resource_base = (code *)&unknown_var_3480_ptr;
     texture_resource = (code *)vertex_indices;
@@ -390,7 +391,7 @@ void rendering_system_resource_manager(longlong render_context)
     
     // 初始化安全保护机制
     resource_guard = 0xfffffffffffffffe;
-    checksum_value = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+    checksum_value = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
     
     // 根据状态标志选择不同的资源管理路径
     if (*(int *)(render_context + 0x60) == 0) {
@@ -538,7 +539,7 @@ void rendering_system_data_transformer(longlong source_context, longlong target_
     
     // 初始化安全保护机制
     vector_data = 0xfffffffffffffffe;
-    checksum_value = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+    checksum_value = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
     matrix_flags = 0;
     vector_processor = *(longlong **)(source_context + 0x1c8);
     if (vector_processor != (longlong *)0x0) {
@@ -770,7 +771,7 @@ void rendering_system_data_transformer(longlong source_context, longlong target_
     scale_factor_1 = 1.0;
     scale_factor_2 = 1.0;
     if ((*(char *)(data_offset + 0xd9) != '\0') &&
-        (iteration_limit = *(int *)(_DAT_180c86920 + 0x540), iteration_limit - 1U < 4)) {
+        (iteration_limit = *(int *)(SYSTEM_STATE_MANAGER + 0x540), iteration_limit - 1U < 4)) {
         scale_factor_1 = *(double *)(data_offset + -8 + (longlong)iteration_limit * 0x10);
         scale_factor_2 = *(double *)(data_offset + (longlong)iteration_limit * 0x10);
     }

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 04_ui_system_part076.c - UI系统音频处理和控制模块
 // 包含6个核心函数：音频信号处理、音频格式转换、UI系统初始化、资源清理等

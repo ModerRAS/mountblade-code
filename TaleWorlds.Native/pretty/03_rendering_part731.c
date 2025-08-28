@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part731.c - 渲染系统资源管理和优化模块
 // 该模块包含15个核心函数，主要功能包括：
@@ -1221,7 +1222,7 @@ void FUN_1806988d0(int *param_1, int param_2, int param_3)
   ulonglong uStack_88;
   
   // 初始化栈保护和随机数生成器
-  uStack_88 = _DAT_180bf00a8 ^ (ulonglong)auStack_1d8;
+  uStack_88 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1d8;
   func_0x000180001000();
   
   // 初始化变量

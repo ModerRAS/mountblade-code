@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part068.c - 渲染系统高级初始化和资源管理模块
 // 本模块包含8个核心函数，涵盖渲染系统初始化、资源管理、状态控制、参数处理、可见性检查、批处理优化等高级渲染功能
@@ -95,7 +96,7 @@ void rendering_system_advanced_initializer(longlong param_1, longlong param_2, l
   
   // 初始化堆栈保护和内存对齐
   stack_guard = 0xfffffffffffffffe;
-  memory_guard = _DAT_180bf00a8 ^ (ulonglong)alignment_buffer;
+  memory_guard = GET_SECURITY_COOKIE() ^ (ulonglong)alignment_buffer;
   
   // 初始化系统状态计数器
   LOCK();
@@ -151,7 +152,7 @@ void rendering_system_advanced_initializer(longlong param_1, longlong param_2, l
               quality_params[2] = 0x28;
               quality_params[3] = 0x78;
               quality_params[4] = 0xf0;
-              iteration_count = *(int *)(_DAT_180c86920 + 0x2a0);
+              iteration_count = *(int *)(SYSTEM_STATE_MANAGER + 0x2a0);
               if (iteration_count < 0) {
                 iteration_count = 0;
               }

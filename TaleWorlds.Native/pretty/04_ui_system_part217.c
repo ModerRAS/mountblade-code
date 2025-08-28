@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part217.c - 5 个函数
 
@@ -70,7 +71,7 @@ void FUN_180791615(uint64_t *param_1,uint64_t param_2,uint64_t param_3,ulonglong
       puVar6 = unaff_RDI;
       if ((iVar9 == 0) || (unaff_R14[2] == 0)) {
         puVar5 = (uint64_t *)
-                 FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x88,&unknown_var_2784_ptr,0x12d);
+                 FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x88,&unknown_var_2784_ptr,0x12d);
         if (puVar5 != (uint64_t *)0x0) {
           *puVar5 = &unknown_var_2456_ptr;
           puVar6 = puVar5;
@@ -78,7 +79,7 @@ void FUN_180791615(uint64_t *param_1,uint64_t param_2,uint64_t param_3,ulonglong
       }
       else {
         puVar5 = (uint64_t *)
-                 FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0xb0,&unknown_var_2784_ptr,0x132);
+                 FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0xb0,&unknown_var_2784_ptr,0x132);
         if (puVar5 != (uint64_t *)0x0) {
           puVar6 = puVar5 + 0x12;
           *puVar5 = &unknown_var_2520_ptr;
@@ -152,7 +153,7 @@ FUN_1807916e0(longlong param_1,uint64_t param_2,int param_3,uint64_t param_4,int
   *(int *)(param_1 + 0x18) = param_6;
   *(int *)(param_1 + 0x20) = param_5 + param_6;
   *(int *)(param_1 + 0x24) = param_3 * 2;
-  lVar1 = FUN_180741d80(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_3 * 4,0x10,&unknown_var_2784_ptr,0x87
+  lVar1 = FUN_180741d80(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_3 * 4,0x10,&unknown_var_2784_ptr,0x87
                         ,0);
   *(longlong *)(param_1 + 0x40) = lVar1;
   uVar2 = 0;
@@ -211,7 +212,7 @@ void FUN_180791770(longlong *param_1,uint64_t param_2,uint64_t param_3,int32_t p
   longlong alStack_178 [32];
   ulonglong uStack_78;
   
-  uStack_78 = _DAT_180bf00a8 ^ (ulonglong)auStack_318;
+  uStack_78 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_318;
   cVar2 = *(char *)((longlong)param_1 + 0x14);
   iVar5 = 1;
   if (cVar2 == '\0') {

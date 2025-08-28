@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part131.c - 渲染系统高级参数处理和状态管理模块
 // 包含12个核心函数，涵盖渲染参数处理、状态管理、资源分配、矩阵变换、渲染控制等高级渲染功能
@@ -880,7 +881,7 @@ void rendering_system_execute_render_parameter_callback(uint64_t callback_param)
   ulonglong callback_info;
   
   callback_data = 0xfffffffffffffffe;
-  callback_info = _DAT_180bf00a8 ^ (ulonglong)callback_stack;
+  callback_info = GET_SECURITY_COOKIE() ^ (ulonglong)callback_stack;
   callback_flag = 0;
   callback_ptr = &unknown_var_3480_ptr;
   callback_string_ptr = callback_buffer;

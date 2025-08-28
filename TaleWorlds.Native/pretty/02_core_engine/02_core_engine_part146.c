@@ -1,12 +1,13 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part146.c - 核心引擎模块第146部分
 // 包含9个函数，主要处理引擎资源管理、状态更新和渲染相关功能
 
 // 全局变量
-longlong *g_engine_context = _DAT_180c8a9b0;          // 引擎全局上下文
-longlong *g_resource_manager = _DAT_180c8a9a8;        // 资源管理器
-ulonglong g_stack_cookie = _DAT_180bf00a8;             // 栈保护cookie
+longlong *g_engine_context = SYSTEM_DATA_MANAGER_A;          // 引擎全局上下文
+longlong *g_resource_manager = SYSTEM_DATA_MANAGER_B;        // 资源管理器
+ulonglong g_stack_cookie = GET_SECURITY_COOKIE();             // 栈保护cookie
 
 // 函数：transfer_engine_resources - 转移引擎资源
 // 参数：dest_context - 目标上下文，src_context - 源上下文

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part008.c - 渲染系统高级渲染管线和数据处理模块
 // 包含4个核心函数，涵盖渲染管线执行、渲染状态更新、渲染参数处理、渲染命令处理等高级渲染功能
@@ -757,7 +758,7 @@ void rendering_system_process_render_commands(longlong param1, longlong param2)
   ulonglong stack_data_offset;
   
   stack_param_1 = 0xfffffffffffffffe;
-  stack_data_offset = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  stack_data_offset = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   render_data = *(longlong *)(param2 + 8);
   int_ptr = (int *)(render_data + 4);
   *(int **)(param2 + 8) = int_ptr;

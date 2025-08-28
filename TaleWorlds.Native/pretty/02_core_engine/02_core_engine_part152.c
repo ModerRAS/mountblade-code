@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part152.c - 核心引擎渲染和状态管理模块
 // 本文件包含11个函数，主要负责渲染状态管理、资源处理和引擎控制
@@ -51,14 +52,14 @@ void update_engine_render_state(void)
       }
       else {
         release_resource(engine_context[0x81]);
-        global_data = _DAT_180c8a9b0;
+        global_data = SYSTEM_DATA_MANAGER_A;
         *(char *)((longlong)engine_context + 0xb2) = state_char;
       }
       goto setup_render_context;
     }
     activate_resource(current_resource);
-    global_data = _DAT_180c8a9b0;
-    *(uint64_t *)(_DAT_180c8a9b0 + 0x1bf4) = engine_context[8];
+    global_data = SYSTEM_DATA_MANAGER_A;
+    *(uint64_t *)(SYSTEM_DATA_MANAGER_A + 0x1bf4) = engine_context[8];
     *(ulonglong *)(global_data + 0x1bfc) = frame_counter;
     *(int32_t *)(global_data + 0x1bd0) = 1;
     *(int8_t *)(global_data + 0x1c14) = 1;
@@ -162,7 +163,7 @@ void update_engine_render_state(void)
   }
   else {
     release_all_resources();
-    global_data = _DAT_180c8a9b0;
+    global_data = SYSTEM_DATA_MANAGER_A;
   }
   *(char *)((longlong)engine_context + 0xb2) = state_char;
   
@@ -224,7 +225,7 @@ void update_engine_state_with_param(longlong param_1)
     }
     else {
       release_resource(engine_context[0x81]);
-      global_data = _DAT_180c8a9b0;
+      global_data = SYSTEM_DATA_MANAGER_A;
     }
     *(byte *)((longlong)engine_context + 0x432) = *(byte *)((longlong)engine_context + 0x432) & 0xfc;
     *(int8_t *)((longlong)engine_context + 0xb2) = 0;
@@ -252,14 +253,14 @@ void update_engine_state_with_param(longlong param_1)
       }
       else {
         release_resource(engine_context[0x81]);
-        global_data = _DAT_180c8a9b0;
+        global_data = SYSTEM_DATA_MANAGER_A;
         *(int8_t *)((longlong)engine_context + 0xb2) = 0;
       }
       goto setup_render_context;
     }
     activate_resource(resource_chain);
-    global_data = _DAT_180c8a9b0;
-    *(uint64_t *)(_DAT_180c8a9b0 + 0x1bf4) = engine_context[8];
+    global_data = SYSTEM_DATA_MANAGER_A;
+    *(uint64_t *)(SYSTEM_DATA_MANAGER_A + 0x1bf4) = engine_context[8];
     *(uint64_t *)(global_data + 0x1bfc) = 0;
     *(int32_t *)(global_data + 0x1bd0) = 1;
     *(int8_t *)(global_data + 0x1c14) = 1;
@@ -363,7 +364,7 @@ void update_engine_state_with_param(longlong param_1)
   }
   else {
     release_all_resources();
-    global_data = _DAT_180c8a9b0;
+    global_data = SYSTEM_DATA_MANAGER_A;
   }
   *(int8_t *)((longlong)engine_context + 0xb2) = 0;
   
@@ -439,7 +440,7 @@ void process_resource_priority(void)
       }
       else {
         release_resource(engine_context[0x81]);
-        global_data = _DAT_180c8a9b0;
+        global_data = SYSTEM_DATA_MANAGER_A;
       }
       *(char *)((longlong)engine_context + 0xb2) = (char)resource_counter;
       *(byte *)((longlong)engine_context + 0x432) = *(byte *)((longlong)engine_context + 0x432) & 0xfc;
@@ -772,7 +773,7 @@ void validate_render_parameters(longlong param_1)
   longlong render_stack[4];
   
   // 获取全局上下文
-  global_context = _DAT_180c8a9b0;
+  global_context = SYSTEM_DATA_MANAGER_A;
   *(int32_t *)(param_1 + 0x144) = *(int32_t *)(param_1 + 0x84);
   render_stack[0] = *(longlong *)(param_1 + 0x3a0);
   
@@ -797,8 +798,8 @@ void validate_render_parameters(longlong param_1)
   validation_result = validate_render_context();
   if (validation_result != '\0') {
     allocate_render_resources(xmm0_value,render_stack);
-    global_context = _DAT_180c8a9b0;
-    if ((*(byte *)(_DAT_180c8a9b0 + 0x1dd4) & 1) == 0) {
+    global_context = SYSTEM_DATA_MANAGER_A;
+    if ((*(byte *)(SYSTEM_DATA_MANAGER_A + 0x1dd4) & 1) == 0) {
       initialize_render_system();
     }
     if (*(int *)(global_context + 0x1df4) == -1) {
@@ -824,8 +825,8 @@ void allocate_render_resources(void)
   
   // 分配渲染资源
   allocate_render_resources();
-  global_context = _DAT_180c8a9b0;
-  if ((*(byte *)(_DAT_180c8a9b0 + 0x1dd4) & 1) == 0) {
+  global_context = SYSTEM_DATA_MANAGER_A;
+  if ((*(byte *)(SYSTEM_DATA_MANAGER_A + 0x1dd4) & 1) == 0) {
     initialize_render_system();
   }
   if (*(int *)(global_context + 0x1df4) == -1) {

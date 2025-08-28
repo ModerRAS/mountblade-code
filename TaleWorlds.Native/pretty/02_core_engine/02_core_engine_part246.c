@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part246.c - 核心引擎模块第246部分
 // 本文件包含18个函数，主要涉及线程同步、条件变量、内存管理等功能
@@ -1071,8 +1072,8 @@ void initialize_processing_context(longlong *context_ptr, uint64_t param2, int p
   ulonglong temp_value;
   
   config_param8 = 0xfffffffffffffffe;
-  temp_value = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
-  *(bool *)(context_ptr + 0x42) = *(int *)(_DAT_180c86920 + 0x1ce0) != 0;
+  temp_value = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
+  *(bool *)(context_ptr + 0x42) = *(int *)(SYSTEM_STATE_MANAGER + 0x1ce0) != 0;
   config_param1 = 0xffffffff;
   callback_func = FUN_180059ba0;
   FUN_180738730(0, 0, &unknown_var_1648_ptr, FUN_180211f70);
@@ -1092,7 +1093,7 @@ void initialize_processing_context(longlong *context_ptr, uint64_t param2, int p
     (**(code **)(*context_ptr + 0x1a0))(context_ptr, param3, 4);
   }
   
-  FUN_18073bc20(*resource_ptr, *(int32_t *)(_DAT_180c86920 + 0x1570));
+  FUN_18073bc20(*resource_ptr, *(int32_t *)(SYSTEM_STATE_MANAGER + 0x1570));
   FUN_18073bdc0(*resource_ptr, 0x400);
   memset(large_buffer, 0, 0x68);  // 初始化大缓冲区
 }
@@ -1264,7 +1265,7 @@ void execute_config_operation(uint64_t param1, uint64_t param2)
   ulonglong temp_value;
   
   operation_data = 0xfffffffffffffffe;
-  temp_value = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  temp_value = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   operation_param = 0;
   operation_context = param2;
   memset(large_buffer, 0, 0x400);  // 初始化大缓冲区

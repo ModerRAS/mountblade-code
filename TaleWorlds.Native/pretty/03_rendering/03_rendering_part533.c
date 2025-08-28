@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part533.c - 渲染系统高级资源管理和数据处理模块
 // 
@@ -36,7 +37,7 @@ extern uint64_t _DAT_180c8ed18;     // 内存管理器实例
 extern uint64_t _DAT_180c8ed48;     // 性能计数器基准时间
 extern double _DAT_180c8ed50;          // 性能计数器频率
 extern uint64_t _DAT_180c8ed58;     // 性能计数器状态
-extern uint64_t _DAT_180bf00a8;     // 安全检查cookie
+extern uint64_t GET_SECURITY_COOKIE();     // 安全检查cookie
 
 // 函数别名定义
 #define ProcessResourcePoolCleanup FUN_18055b600
@@ -1233,7 +1234,7 @@ void ProcessResourceUpdateLoop(longlong param_1)
   ulonglong uStack_38;
   
   // 安全检查cookie
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
   uVar8 = 0;
   
   // 主资源更新循环

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 01_initialization_part034.c - 4 个函数
 
@@ -24,9 +25,9 @@ extern longlong _DAT_180c86870;       // 引擎核心数据
 extern longlong _DAT_180c8ed48;       // 性能计数器基准
 extern double _DAT_180c8ed50;         // 性能计数器频率
 extern longlong _DAT_180c8ed58;       // 性能计数器缓存
-extern longlong _DAT_180c8ed60;       // 文件句柄计数器
+extern longlong SYSTEM_FILE_COUNTER_ADDR;       // 文件句柄计数器
 extern longlong _DAT_180c8ed08;       // 引擎管理器
-extern longlong _DAT_180c86920;       // 路径配置
+extern longlong SYSTEM_STATE_MANAGER;       // 路径配置
 extern longlong _DAT_180c868b0;       // 系统配置
 extern longlong _DAT_180c86928;       // 启动参数配置
 extern longlong _DAT_180c82868;       // 默认配置数据
@@ -64,7 +65,7 @@ extern char global_var_552_ptr;            // 格式字符串常量
 extern char system_memory_c7d8;            // 格式字符串常量
 extern char system_memory_cfc0;            // 格式字符串常量
 
-extern ulonglong _DAT_180bf00a8;      // 栈保护常量
+extern ulonglong GET_SECURITY_COOKIE();      // 栈保护常量
 
 /**
  * 字符串处理和内存管理函数
@@ -129,7 +130,7 @@ void ProcessStringAndMemoryManagement(longlong *param_1, longlong param_2, longl
   
   // 栈保护初始化
   uStack_d8 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_138;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_138;
   uStack_e8 = 0;
   
   // 初始化内存管理
@@ -524,7 +525,7 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   
   // 栈保护初始化
   uStack_120 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_368;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_368;
   uStack_310 = 0;
   
   // 解析初始化参数
@@ -952,7 +953,7 @@ LAB_180065a3e:
     fclose(lVar9);
     lStack_278 = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
     lVar9 = 0;
     puVar4 = puStack_220;
@@ -991,7 +992,7 @@ LAB_180065a3e:
       fclose(lVar9);
       lStack_278 = 0;
       LOCK();
-      _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+      SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
       UNLOCK();
     }
     puStack_180 = &global_var_3456_ptr;
@@ -1034,7 +1035,7 @@ void PerformSimpleInitialization(void)
   ulonglong uStack_28;
   
   // 栈保护初始化
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_2c8;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_2c8;
   
   // 设置日志文件头标识
   uStack_230 = 0x22657865;  // "exe"
@@ -1117,7 +1118,7 @@ void ProcessStartupParametersAndInitialize(uint64_t param_1, longlong param_2, u
   pplStack_60 = &plStack_b0;
   
   // 添加系统路径配置
-  FUN_180066140(&ppuStack_68, _DAT_180c86920, &system_memory_c7d8);
+  FUN_180066140(&ppuStack_68, SYSTEM_STATE_MANAGER, &system_memory_c7d8);
   FUN_180066140(&ppuStack_68, _DAT_180c868b0, &system_memory_cfc0);
   
   // 执行引擎初始化

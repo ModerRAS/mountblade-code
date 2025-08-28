@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part021.c - 渲染系统：MMD模型加载和处理模块
 
@@ -638,4 +639,4 @@ LAB_18027c306:
 #define MODEL_LOADING_LOGGER (&unknown_var_9040_ptr)      // 模型加载日志器
 #define MATERIAL_LOGGER (&unknown_var_8944_ptr)           // 材质日志器
 #define GLOBAL_MEMORY_MANAGER (_DAT_180c8ed18)      // 全局内存管理器
-#define GLOBAL_FILE_COUNTER (_DAT_180c8ed60)       // 全局文件计数器
+#define GLOBAL_FILE_COUNTER (SYSTEM_FILE_COUNTER_ADDR)       // 全局文件计数器

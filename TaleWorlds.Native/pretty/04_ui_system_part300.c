@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * @file 04_ui_system_part300.c
@@ -1179,7 +1180,7 @@ void FUN_180833610(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
   ulonglong auStack_b8 [22];
   
   puVar30 = auStack_b8;
-  auStack_b8[0] = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
+  auStack_b8[0] = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_b8;
   uVar28 = (ulonglong)param_1 & 0xf;
   for (; (uVar28 != 0 && (param_2 != 0)); param_2 = param_2 - 1) {
     uVar29 = param_4[1] * 6;

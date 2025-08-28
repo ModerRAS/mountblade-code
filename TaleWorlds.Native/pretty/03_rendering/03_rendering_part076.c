@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part076.c - 渲染系统高级胶囊体碰撞检测和数据处理模块
 // 该模块包含1个核心函数，用于处理3D渲染中的胶囊体碰撞检测、骨骼绑定、权重计算等高级功能
@@ -186,7 +187,7 @@ void RenderingSystemProcessCapsuleCollision(longlong render_context, longlong ca
     
     // 初始化栈变量和安全检查
     uStack_198 = 0xfffffffffffffffe;
-    uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_218;
+    uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_218;
     
     // 第一阶段：GUID数据处理
     // 解析渲染对象的GUID标识符

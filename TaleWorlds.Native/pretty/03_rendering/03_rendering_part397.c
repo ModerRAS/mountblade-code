@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // ============================================================================
 // 03_rendering_part397.c - 渲染系统高级渲染管线和资源管理模块
@@ -269,7 +270,7 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
     
     // 初始化内存对齐和状态标志
     uStack_218 = RENDERING_MEMORY_ALIGNMENT_MASK;
-    uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_418;
+    uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_418;
     uVar16 = 0;
     uStack_3c0 = 0;
     
@@ -520,7 +521,7 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
     }
     
     // 根据配置设置缓冲区大小
-    iVar6 = *(int *)(_DAT_180c86920 + 0x380);
+    iVar6 = *(int *)(SYSTEM_STATE_MANAGER + 0x380);
     if (iVar6 == 4) {
         uVar22 = RENDERING_MAX_BUFFER_SIZE;
     }

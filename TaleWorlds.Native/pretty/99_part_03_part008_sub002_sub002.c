@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_03_part008_sub002_sub002.c - 1 个函数
 
@@ -341,12 +342,12 @@ LAB_1801ce0ff:
   uStack_198 = 0;
   cVar26 = (char)param_9;
   if ((char)param_9 != '\0') {
-    if (*(int *)(_DAT_180c86920 + 0x700) == 2) {
+    if (*(int *)(SYSTEM_STATE_MANAGER + 0x700) == 2) {
       uStack_198 = 0x400;
     }
     else {
       uStack_198 = 0;
-      if (*(int *)(_DAT_180c86920 + 0x700) == 0) {
+      if (*(int *)(SYSTEM_STATE_MANAGER + 0x700) == 0) {
         uStack_198 = 0x200;
       }
     }

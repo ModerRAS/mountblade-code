@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part128.c - 4 个函数
 
@@ -42,7 +43,7 @@ void FUN_1807426bf(void)
   *(int *)(unaff_RBX + 0x68) = (int)unaff_RBX[0x68] - iVar1;
   if ((code *)unaff_RBX[0x6c] == (code *)0x0) {
     if ((code *)unaff_RBX[0x6b] != (code *)0x0) {
-      uVar9 = uVar9 & *(uint *)(_DAT_180be12f0 + 0x24);
+      uVar9 = uVar9 & *(uint *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x24);
       piVar3 = (int *)(*(code *)unaff_RBX[0x6b])(unaff_ESI + 8,uVar9,0);
       if (piVar3 != (int *)0x0) {
         *piVar3 = unaff_ESI + 8;
@@ -152,7 +153,7 @@ void FUN_1807426bf(void)
   }
   else {
     unaff_ESI = unaff_ESI + 8;
-    uVar9 = uVar9 & *(uint *)(_DAT_180be12f0 + 0x24);
+    uVar9 = uVar9 & *(uint *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x24);
     piVar3 = (int *)(*(code *)unaff_RBX[0x6c])(unaff_RDI + -2,unaff_ESI,uVar9,0);
     if (piVar3 == (int *)0x0) goto LAB_180742a3a;
     *piVar3 = unaff_ESI;
@@ -314,7 +315,7 @@ FUN_180742cd0(longlong param_1,int param_2,uint64_t param_3,int32_t param_4,int3
   
   if (*(longlong *)((longlong)param_2 * 8 + 0x10f90 + param_1) == 0) {
     plVar1 = (longlong *)
-             FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x3c0,&unknown_var_8208_ptr,0x264,0);
+             FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x3c0,&unknown_var_8208_ptr,0x264,0);
     if (plVar1 == (longlong *)0x0) {
       return 0x26;
     }
@@ -347,7 +348,7 @@ uint64_t FUN_180742d90(longlong param_1,int param_2)
     uVar2 = FUN_180770580(lVar1);
     if ((int)uVar2 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),lVar1,&unknown_var_8208_ptr,0x28c,1);
+      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar1,&unknown_var_8208_ptr,0x28c,1);
     }
   }
   return uVar2;
@@ -395,7 +396,7 @@ int32_t FUN_180742e60(longlong param_1)
     return 0x26;
   }
   plVar2 = (longlong *)
-           FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x20,&unknown_var_8208_ptr,0x7e,0);
+           FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&unknown_var_8208_ptr,0x7e,0);
   if (plVar2 != (longlong *)0x0) {
     plVar2[2] = 0;
     plVar2[3] = lVar1;

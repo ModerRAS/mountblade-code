@@ -402,7 +402,7 @@ typedef struct {
 /** @defgroup GlobalVariables 全局变量
  *  @{
  */
-extern UInt64   _DAT_180bf00a8;                ///< 全局数据变量1
+extern UInt64   GET_SECURITY_COOKIE();                ///< 全局数据变量1
 extern UInt32   _DAT_180c8ed38;                ///< 全局数据变量2
 extern UInt32   _DAT_180c92514;                ///< 全局数据变量3
 extern UInt64   _DAT_180c925a0;                ///< 全局数据变量4
@@ -509,7 +509,7 @@ void RenderingSystem_StateManager(UInt32 stateParameter, Int32* controlPointer) 
     UInt8 operationResult;               ///< 操作结果
     
     // 初始化栈缓冲区
-    contextPointer = _DAT_180bf00a8 ^ (UInt64)stackBuffer;
+    contextPointer = GET_SECURITY_COOKIE() ^ (UInt64)stackBuffer;
     
     // 上下文和资源验证
     if ((((*(Int64*)(rcx + SYSTEM_CONTEXT_OFFSET) == 0) ||

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 05_networking_part004.c - 网络系统数据包序列化和连接管理模块
 // 本文件包含32个主要函数，涵盖网络数据包序列化、连接管理、错误处理、消息传递等功能
@@ -674,9 +675,9 @@ void get_network_connection_info(ulonglong connection_handle, uint64_t *connecti
   ulonglong security_token;
   
   // 安全检查
-  security_token = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
+  security_token = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
   if (connection_info == (uint64_t *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
       // 安全验证失败
       FUN_1808fc050(security_token ^ (ulonglong)temp_buffer);
     }
@@ -741,9 +742,9 @@ void set_network_connection_settings(uint64_t connection_handle, longlong settin
   ulonglong security_token;
   
   // 安全检查
-  security_token = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
+  security_token = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
   if (settings_data == 0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
+    if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
       func_0x00018074bda0(local_buffer, 0x100, 0);
       buffer_ptr = local_buffer;
       // 记录错误日志
@@ -790,9 +791,9 @@ void broadcast_network_connection(uint64_t connection_handle, uint64_t message_d
   ulonglong security_token;
   
   // 安全检查
-  security_token = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
+  security_token = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
   status_code = FUN_18083fc50();
-  if ((status_code != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
+  if ((status_code != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
     error_code = FUN_18074b880(local_buffer, 0x100, message_data);
     message_length = FUN_18074b880(local_buffer + error_code, 0x100 - error_code, &NETWORK_BUFFER_MANAGER);
     func_0x00018074bda0(local_buffer + (error_code + message_length), 0x100 - (error_code + message_length), message_size);
@@ -840,7 +841,7 @@ void validate_network_connection(uint64_t connection_handle, int32_t *validation
   ulonglong security_token;
   
   // 安全检查
-  security_token = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
+  security_token = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
   status_code = func_0x00018088c590(connection_handle, connection_buffers);
   if ((status_code == 0) && ((*(uint *)(connection_buffers[0] + 0x24) >> 1 & 1) == 0)) {
     status_code = 0x4b;
@@ -850,7 +851,7 @@ void validate_network_connection(uint64_t connection_handle, int32_t *validation
   if (validation_result != (int32_t *)0x0) {
     *validation_result = 0;
   }
-  if ((status_code != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
+  if ((status_code != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
     error_code = func_0x00018074bda0(local_buffer, 0x100, validation_result);
     validation_length = FUN_18074b880(local_buffer + error_code, 0x100 - error_code, &NETWORK_BUFFER_MANAGER);
     func_0x00018074bda0(local_buffer + (error_code + validation_length), 0x100 - (error_code + validation_length), validation_data);
@@ -899,9 +900,9 @@ void query_network_connection_status(uint64_t connection_handle, uint64_t *statu
   ulonglong security_token;
   
   // 安全检查
-  security_token = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
+  security_token = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
   if (status_info == (uint64_t *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
       // 安全验证失败
       FUN_1808fc050(security_token ^ (ulonglong)temp_buffer);
     }
@@ -953,7 +954,7 @@ void get_network_connection_id(uint64_t connection_handle, uint64_t *connection_
   ulonglong security_token;
   
   // 安全检查
-  security_token = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
+  security_token = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
   if (connection_id == (uint64_t *)0x0) {
     status_code = 0x1f;
   }
@@ -965,7 +966,7 @@ void get_network_connection_id(uint64_t connection_handle, uint64_t *connection_
       goto success_handler;
     }
   }
-  if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
+  if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
     func_0x00018074bda0(local_buffer, 0x100, connection_id);
     buffer_ptr = local_buffer;
     // 记录错误日志

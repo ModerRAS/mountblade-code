@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 01_initialization_part004_sub001.c - 初始化模块第4部分子文件1
 // 本文件包含各种系统组件的初始化函数，主要用于注册和管理系统模块

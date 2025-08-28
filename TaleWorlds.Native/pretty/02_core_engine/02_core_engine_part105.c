@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part105.c - 核心引擎渲染与碰撞处理模块
 // 本文件包含7个函数，主要用于处理渲染相关的碰撞检测和坐标变换
@@ -36,15 +37,15 @@ void process_render_collision_detection(longlong engine_context, float *position
   uint64_t stack_transform_x;
   uint64_t stack_transform_y;
   
-  engine_base = _DAT_180c8a9b0;  // 获取引擎基础地址
+  engine_base = SYSTEM_DATA_MANAGER_A;  // 获取引擎基础地址
   stack_temp_x = *(uint64_t *)position_x;
   adjusted_x = (float)stack_temp_x;
   adjusted_y = (float)((ulonglong)stack_temp_x >> 0x20);
   
   // 处理碰撞数据
   if (collision_data == (longlong *)0x0) {
-    scale_factor = *(float *)(_DAT_180c8a9b0 + 0x19f8);
-    width_ptr = *(float **)(_DAT_180c8a9b0 + 0x19f0);
+    scale_factor = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19f8);
+    width_ptr = *(float **)(SYSTEM_DATA_MANAGER_A + 0x19f0);
     
     if (text_start == text_end) {
       collision_data = (longlong *)((ulonglong)(uint)scale_factor << 0x20);

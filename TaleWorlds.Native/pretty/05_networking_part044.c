@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 05_networking_part044.c - 网络系统高级连接和数据处理模块
 // 包含6个核心函数，涵盖网络连接状态验证、连接处理、连接管理、连接终结、连接验证和连接管理等功能
@@ -169,7 +170,7 @@ int NetworkSystem_ConnectionValidator(longlong connection_handle)
   
   // 检查连接是否处于活动状态
   if (((*(byte *)(*(longlong *)(*(longlong *)(connection_handle + 0x2c8) + NETWORK_CONNECTION_BASE_ADDR) + 0x7a) & 1) == 0) &&
-     (*(char *)(_DAT_180be12f0 + 0x158) == '\0')) {
+     (*(char *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x158) == '\0')) {
     context_handle = 0;  // 连接非活动状态
   }
   else {

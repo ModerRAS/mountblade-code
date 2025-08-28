@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_14_part013.c - 14 个函数
 
@@ -454,7 +455,7 @@ void FUN_1808f3c80(longlong param_1)
   uint64_t uStack_40;
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
   uVar5 = GetCurrentThread();
   SetThreadPriority(uVar5,0xf);
   lVar7 = *(longlong *)(param_1 + 0x18);
@@ -1129,7 +1130,7 @@ void FUN_1808f4720(uint64_t param_1,uint64_t param_2,int8_t param_3)
   int8_t auStack_b8 [112];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_b8;
                     // WARNING: Subroutine does not return
   memset(param_2,0,param_3);
 }

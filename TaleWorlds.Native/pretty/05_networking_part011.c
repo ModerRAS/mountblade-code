@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 05_networking_part011.c - 6 个函数
 
@@ -32,7 +33,7 @@ void FUN_18084c8cc(int32_t param_1)
     if ((int)unaff_R14[1] <= (int)uVar13) {
       if ((0 < (int)uVar8) && (*unaff_R14 != 0)) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*unaff_R14,&unknown_var_8432_ptr,0x100,1);
+        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_R14,&unknown_var_8432_ptr,0x100,1);
       }
       *unaff_R14 = unaff_R12;
       *(uint *)((longlong)unaff_R14 + 0xc) = uVar13;
@@ -78,7 +79,7 @@ LAB_18084c923:
     if ((int)uVar13 < *(int *)(unaff_R15 + 0x10)) goto LAB_18084ca76;
     if ((0 < (int)uVar8) && (unaff_R15[0xf] != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),unaff_R15[0xf],&unknown_var_8432_ptr,0x100,1);
+      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),unaff_R15[0xf],&unknown_var_8432_ptr,0x100,1);
     }
     unaff_R15[0xf] = unaff_R12;
     *(uint *)((longlong)unaff_R15 + 0x84) = uVar13;

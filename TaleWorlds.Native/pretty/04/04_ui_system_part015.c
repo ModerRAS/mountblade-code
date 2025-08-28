@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 04_ui_system_part015.c - UI系统高级粒子效果和动画控制模块
 // 包含1个核心函数，涵盖UI粒子系统更新、动画控制、参数计算、矩阵变换等高级UI功能
@@ -137,7 +138,7 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
     ulonglong stack_id;
     
     // 初始化栈变量
-    stack_id = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    stack_id = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     particle_intensity = *(float *)(ui_context + 0x6150);
     stack_context_2 = *(longlong *)(particle_data + 0x208);
     stack_effect_ptr = effect_params;

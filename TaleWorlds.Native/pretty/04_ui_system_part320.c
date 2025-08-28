@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part320.c - 6 个函数
 
@@ -234,7 +235,7 @@ void FUN_180840950(uint64_t param_1,longlong param_2,longlong param_3,int *param
   int8_t auStack_40 [16];
   ulonglong uStack_30;
   
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
+  uStack_30 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_68;
   if (param_3 != 0) {
     iVar2 = FUN_18076b6f0(param_3,&unknown_var_368_ptr,10);
     if (iVar2 == 0) {
@@ -341,7 +342,7 @@ void FUN_180840af0(longlong param_1,longlong param_2,int *param_3)
   longlong lStack_30;
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_58;
   if (param_2 != 0) {
     bVar1 = false;
     iVar2 = FUN_18076b6f0(param_2,&unknown_var_368_ptr,10);
@@ -411,7 +412,7 @@ void FUN_180840c00(uint64_t param_1)
   int8_t auStack_118 [256];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_168;
   iVar1 = func_0x00018088c590(param_1,alStack_138);
   if ((iVar1 == 0) && ((*(uint *)(alStack_138[0] + 0x24) >> 1 & 1) == 0)) {
     iVar1 = 0x4b;
@@ -440,7 +441,7 @@ LAB_180840d1b:
     }
     goto LAB_180840d1b;
   }
-  if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
+  if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
     puStack_148 = auStack_118;
     auStack_118[0] = 0;
                     // WARNING: Subroutine does not return

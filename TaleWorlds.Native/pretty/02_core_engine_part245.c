@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part245.c - 14 个函数
 
@@ -867,7 +868,7 @@ void FUN_18020f150(uint64_t *param_1)
   ulonglong uStack_18;
   
   uStack_c8 = 0xfffffffffffffffe;
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_f8;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_f8;
   plStack_d8 = alStack_b8;
   _Cnd_init_in_situ(alStack_b8);
   plStack_d8 = alStack_70;

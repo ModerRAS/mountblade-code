@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_13_part087.c - 6 个函数
 
@@ -23,7 +24,7 @@ void FUN_1808e5800(longlong *param_1,longlong param_2,int param_3,int32_t param_
   int8_t auStack_88 [40];
   ulonglong uStack_60;
   
-  uStack_60 = _DAT_180bf00a8 ^ (ulonglong)auStack_a8;
+  uStack_60 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_a8;
   lVar13 = (longlong)(int)param_1[4];
   plVar1 = param_1 + 0x13;
   uVar11 = 1;
@@ -268,7 +269,7 @@ void FUN_1808e5ab0(longlong param_1,longlong param_2,int8_t *param_3)
   int8_t auStack_68 [40];
   ulonglong uStack_40;
   
-  uStack_40 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_40 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_98;
   plVar8 = *(longlong **)(*(longlong *)(param_1 + 0x28) + 800);
   lVar4 = (**(code **)(*plVar8 + 0x330))(plVar8,param_2 + 0x50,1);
   if (lVar4 == 0) {
@@ -389,7 +390,7 @@ void FUN_1808e5d30(void)
   int8_t auStack_118 [224];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_158;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_158;
                     // WARNING: Subroutine does not return
   memset(auStack_118,0,0xd8);
 }

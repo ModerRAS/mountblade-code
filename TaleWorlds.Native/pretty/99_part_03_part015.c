@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * @file 99_part_03_part015.c
@@ -283,7 +284,7 @@ void DataFlowProcessor(longlong param_1, longlong param_2, longlong param_3)
     
     /* 初始化安全参数和缓冲区 */
     uStack_d8 = 0xfffffffffffffffe;
-    uStack_50 = _DAT_180bf00a8 ^ (ulonglong)auStack_2f8;
+    uStack_50 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_2f8;
     lStack_248 = param_3;
     lStack_218 = param_2;
     
@@ -430,7 +431,7 @@ LAB_1801d907b:
         
         /* 释放文件句柄 */
         LOCK();
-        _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+        SYSTEM_HANDLE_COUNTER_ADDR = SYSTEM_HANDLE_COUNTER_ADDR + -1;
         UNLOCK();
         CloseHandle(alStack_1f8[0]);
         alStack_1f8[0] = -1;
@@ -818,7 +819,7 @@ LAB_1801d94be:
                 /* 清理文件资源 */
                 if (lVar22 != -1) {
                     LOCK();
-                    _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+                    SYSTEM_HANDLE_COUNTER_ADDR = SYSTEM_HANDLE_COUNTER_ADDR + -1;
                     UNLOCK();
                     CloseHandle(alStack_210[0]);
                     lVar22 = -1;
@@ -826,7 +827,7 @@ LAB_1801d94be:
                 }
                 if (lVar22 != -1) {
                     LOCK();
-                    _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+                    SYSTEM_HANDLE_COUNTER_ADDR = SYSTEM_HANDLE_COUNTER_ADDR + -1;
                     UNLOCK();
                     CloseHandle(alStack_210[0]);
                     alStack_210[0] = -1;
@@ -916,7 +917,7 @@ void DataFlowValidator(uint64_t param_1, uint64_t param_2, uint64_t param_3)
     
     /* 初始化验证参数 */
     uStack_98 = 0xfffffffffffffffe;
-    uStack_40 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+    uStack_40 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
     iVar9 = -1;
     puStack_b8 = (uint64_t *)0x0;
     puStack_b0 = (uint64_t *)0x0;
@@ -1178,7 +1179,7 @@ void DataFlowSynchronizer(uint64_t param_1, longlong param_2, uint64_t param_3, 
     
     /* 初始化同步参数 */
     uStack_b8 = 0xfffffffffffffffe;
-    uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_118;
+    uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_118;
     plStack_b0 = param_6;
     uVar11 = param_5[1] - *param_5 >> 2;
     uVar3 = *(uint64_t *)(param_2 + 0x1e0);

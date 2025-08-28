@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part575.c - 4 个函数
 
@@ -555,13 +556,13 @@ void FUN_180581b00(longlong param_1,longlong param_2,int8_t param_3,longlong par
   lVar15 = *(longlong *)(param_1 + 0x10);
   if (iVar3 == -1) {
     if ((*(int *)((longlong)iVar6 * 0xa60 + 0x3610 + lVar15) == 2) &&
-       (0.01 < *(float *)(_DAT_180c86920 + 0x17a0))) {
+       (0.01 < *(float *)(SYSTEM_STATE_MANAGER + 0x17a0))) {
       uVar8 = FUN_1802e5900(*(longlong *)(lVar15 + 0x18) + 0x8228,0xffffff01);
       *(int32_t *)(param_1 + 0x2a4) = uVar8;
     }
   }
   else if ((*(int *)((longlong)iVar6 * 0xa60 + 0x3610 + lVar15) == 2) &&
-          (*(float *)(_DAT_180c86920 + 0x17a0) <= 0.01)) {
+          (*(float *)(SYSTEM_STATE_MANAGER + 0x17a0) <= 0.01)) {
     FUN_1802e5a50(*(longlong *)(lVar15 + 0x18) + 0x8228);
     *(int32_t *)(param_1 + 0x2a4) = 0xffffffff;
   }

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part241.c - 核心引擎材质和纹理处理模块 (2个函数)
 // 本文件包含2个函数，主要用于材质加载、纹理处理和资源管理

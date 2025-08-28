@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part021.c - 渲染系统材质文件加载处理器
 // 本文件包含材质文件解析、加载和处理的复杂函数
@@ -558,7 +559,7 @@ LAB_18027c306:
     fclose();
     file_handle[1] = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
   }
                     // WARNING: Subroutine does not return

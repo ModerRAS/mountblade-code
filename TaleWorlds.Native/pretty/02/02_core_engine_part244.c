@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part244.c - 核心引擎模块第244部分
 // 包含10个函数，主要负责资源管理、数据结构操作和字符串处理
@@ -1080,7 +1081,7 @@ void format_resource_info_output(uint64_t output_handle, longlong resource_info)
     ulonglong security_cookie;
     
     output_flag_7e8 = 0xfffffffffffffffe;
-    security_cookie = _DAT_180bf00a8 ^ (ulonglong)output_buffer;
+    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)output_buffer;
     output_length_808 = 0;
     output_ptr_6b8 = &unknown_var_2008_ptr;
     output_ptr_6b0 = output_buffer_6a0;
@@ -1168,7 +1169,7 @@ void format_resource_info_output(uint64_t output_handle, longlong resource_info)
  * - _DAT_180c8f008 -> RESOURCE_MANAGER_PTR (资源管理器指针)
  * - _DAT_180c8a9c0 -> RESOURCE_CLEANUP_HANDLER (资源清理处理器)
  * - _DAT_180c8ed18 -> MEMORY_ALLOCATOR (内存分配器)
- * - _DAT_180bf00a8 -> SECURITY_COOKIE (安全cookie)
+ * - GET_SECURITY_COOKIE() -> SECURITY_COOKIE (安全cookie)
  * - system_allocation_flags -> DEFAULT_RESOURCE_DATA (默认资源数据)
  * 
  * 函数名称映射：

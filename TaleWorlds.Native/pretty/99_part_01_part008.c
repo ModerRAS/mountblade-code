@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * @file 99_part_01_part008.c
@@ -151,7 +152,7 @@ typedef struct {
 #define SystemResourceFinalizer FUN_1800a62e7
 
 /* 全局变量声明 */
-extern uint64_t _DAT_180bf00a8;
+extern uint64_t GET_SECURITY_COOKIE();
 extern uint64_t _DAT_180c8ed18;
 extern uint64_t _DAT_180c86870;
 extern uint64_t _DAT_180d48d28;
@@ -265,7 +266,7 @@ void SystemDataStreamProcessor(int64_t param_1, int64_t *param_2, int32_t param_
     
     /* 初始化栈保护 */
     local_stack_f8 = 0xfffffffffffffffe;
-    local_stack_48 = _DAT_180bf00a8 ^ (uint64_t)local_stack_188;
+    local_stack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)local_stack_188;
     
     /* 获取系统状态标志 */
     LOCK();
@@ -726,7 +727,7 @@ void SystemStreamManager(int64_t param_1, int64_t param_2, int64_t *param_3)
     uint64_t local_ulong2;
     
     /* 初始化栈保护 */
-    local_stack_48 = _DAT_180bf00a8 ^ (uint64_t)local_stack_a18;
+    local_stack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)local_stack_a18;
     
     local_ptr1 = *(int64_t **)(param_2 + 8);
     local_stack_9c8 = param_1;

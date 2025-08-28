@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * 03_rendering_part730.c - 渲染系统高级图像处理和向量运算模块

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part036.c - 核心引擎模块第36部分
 // 包含4个函数，主要处理3D变换、矩阵运算和骨骼动画

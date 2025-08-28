@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part638.c - 17 个函数
 
@@ -25,7 +26,7 @@ void FUN_1806240a0(uint64_t *param_1)
   ulonglong uStack_28;
   
   uStack_390 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_3f8;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_3f8;
   uStack_3b8 = 0;
   puStack_388 = param_1;
   iVar1 = GetModuleFileNameW(0,auStack_258,0x118);
@@ -86,7 +87,7 @@ void FUN_1806242f0(uint64_t *param_1)
   ulonglong uStack_18;
   
   uStack_260 = 0xfffffffffffffffe;
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_298;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_298;
   uStack_268 = 0;
   puStack_278 = auStack_248;
   puStack_258 = param_1;
@@ -146,7 +147,7 @@ void FUN_180624440(uint64_t param_1)
   ulonglong uStack_48;
   
   uStack_2d0 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_2f8;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_2f8;
   uStack_2d8 = 0;
   puStack_2b8 = &unknown_var_7512_ptr;
   puStack_2b0 = auStack_2a0;
@@ -190,7 +191,7 @@ void FUN_180624730(longlong param_1)
   ulonglong uStack_38;
   
   uStack_ca0 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_d08;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d08;
   uStack_ca8 = 0;
   lStack_c98 = param_1;
   uVar2 = FUN_180624440(apuStack_c88);
@@ -238,7 +239,7 @@ void FUN_180624910(uint64_t param_1)
   ulonglong uStack_18;
   
   uStack_478 = 0xfffffffffffffffe;
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_4c8;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_4c8;
   uVar1 = FUN_180624440(apuStack_468,param_1);
   FUN_1806279c0(&puStack_498,uVar1);
   apuStack_468[0] = &unknown_var_720_ptr;
@@ -281,7 +282,7 @@ void FUN_180624a00(uint64_t param_1)
   ulonglong uStack_18;
   
   uStack_478 = 0xfffffffffffffffe;
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_4c8;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_4c8;
   uVar1 = FUN_180624440(apuStack_468,param_1);
   FUN_1806279c0(&puStack_498,uVar1);
   apuStack_468[0] = &unknown_var_720_ptr;
@@ -324,7 +325,7 @@ void FUN_180624af0(uint64_t param_1)
   ulonglong uStack_18;
   
   uStack_478 = 0xfffffffffffffffe;
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_4c8;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_4c8;
   uVar1 = FUN_180624440(apuStack_468,param_1);
   FUN_1806279c0(&puStack_498,uVar1);
   apuStack_468[0] = &unknown_var_720_ptr;
@@ -361,7 +362,7 @@ void FUN_180624be0(longlong *param_1)
   int8_t auStack_20 [16];
   ulonglong uStack_10;
   
-  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_48;
+  uStack_10 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_48;
   auStack_28[0] = 0x10;
   iVar2 = GetComputerNameA(auStack_20,auStack_28);
   if (iVar2 == 0) {
@@ -423,7 +424,7 @@ void FUN_180624c70(uint64_t param_1,longlong param_2)
   ulonglong uStack_48;
   
   uStack_230 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_258;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_258;
   uVar7 = 0;
   uStack_238 = 0;
   uStack_228 = param_1;
@@ -639,7 +640,7 @@ void FUN_1806252c0(int32_t *param_1)
   int8_t auStack_c18 [3072];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_cf8;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_cf8;
   *param_1 = 0xffffffff;
                     // WARNING: Subroutine does not return
   memset(auStack_c18,0,0x400);
@@ -870,7 +871,7 @@ void FUN_1806257b0(uint64_t *param_1)
   
   cVar1 = system_exception_handler;
   uStack_470 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_4e8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_4e8;
   *param_1 = &unknown_var_3080_ptr;
   *(int8_t *)(param_1 + 1) = 0;
   uVar2 = GetCurrentProcessId();
@@ -953,7 +954,7 @@ void FUN_1806259b0(longlong param_1,int32_t param_2)
   ulonglong uStack_20;
   
   uStack_48 = 0xfffffffffffffffe;
-  uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
+  uStack_20 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_88;
   FUN_180627910(&puStack_68,&system_data_c230);
   uVar3 = uStack_58 + 3;
   FUN_1806277c0(&puStack_68,uVar3);

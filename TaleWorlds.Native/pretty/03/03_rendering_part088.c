@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * 渲染系统状态管理模块
@@ -181,7 +182,7 @@ void rendering_system_state_manager(uint64_t *render_context, longlong render_pa
   
   // 初始化安全堆栈
   temp_var9 = 0xfffffffffffffffe;
-  security_hash = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  security_hash = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   
   // 检查渲染上下文状态
   if (render_context[8] != 0) {
@@ -812,7 +813,7 @@ void rendering_system_manage_resources(longlong render_context, longlong *resour
   
   // 初始化安全堆栈
   temp_var1 = 0xfffffffffffffffe;
-  security_hash = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  security_hash = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   
   // 处理资源1
   if (resource1 != (longlong *)0x0) {

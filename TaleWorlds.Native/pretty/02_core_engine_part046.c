@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part046.c - 3 个函数
 
@@ -23,7 +24,7 @@ void FUN_180086e40(longlong param_1,longlong *param_2,longlong param_3)
   ulonglong uStack_38;
   
   alStack_268[1] = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_2a8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_2a8;
   uVar2 = 0;
   puStack_258 = &unknown_var_9208_ptr;
   puStack_250 = auStack_240;
@@ -567,7 +568,7 @@ void FUN_180087700(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3,uint64_
   ulonglong uStack_50;
   
   uStack_b0 = 0xfffffffffffffffe;
-  uStack_50 = _DAT_180bf00a8 ^ (ulonglong)auStack_158;
+  uStack_50 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_158;
   plVar18 = (longlong *)0x0;
   *param_1 = 0;
   puStack_128 = &unknown_var_3456_ptr;
@@ -620,7 +621,7 @@ void FUN_180087700(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3,uint64_
     FUN_180628040(param_4,&unknown_var_8088_ptr,puVar11);
     if (alStack_108[0] != -1) {
       LOCK();
-      _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+      SYSTEM_HANDLE_COUNTER_ADDR = SYSTEM_HANDLE_COUNTER_ADDR + -1;
       UNLOCK();
       CloseHandle(alStack_108[0]);
       alStack_108[0] = -1;
@@ -655,7 +656,7 @@ LAB_18008807f:
       FUN_180628040(param_4,&unknown_var_8112_ptr,puVar11);
       if (lVar15 != -1) {
         LOCK();
-        _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+        SYSTEM_HANDLE_COUNTER_ADDR = SYSTEM_HANDLE_COUNTER_ADDR + -1;
         UNLOCK();
         CloseHandle(alStack_108[0]);
         alStack_108[0] = -1;
@@ -719,7 +720,7 @@ LAB_18008807f:
         }
         if (lVar15 != -1) {
           LOCK();
-          _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+          SYSTEM_HANDLE_COUNTER_ADDR = SYSTEM_HANDLE_COUNTER_ADDR + -1;
           UNLOCK();
           CloseHandle(alStack_108[0]);
           alStack_108[0] = -1;
@@ -932,7 +933,7 @@ LAB_180087f16:
       FUN_180628040(param_4,&unknown_var_8168_ptr,uStack_94,puVar11);
       if (lVar15 != -1) {
         LOCK();
-        _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+        SYSTEM_HANDLE_COUNTER_ADDR = SYSTEM_HANDLE_COUNTER_ADDR + -1;
         UNLOCK();
         CloseHandle(alStack_108[0]);
         alStack_108[0] = -1;
@@ -952,7 +953,7 @@ LAB_180087f16:
       FUN_180628040(param_4,&unknown_var_8136_ptr,puVar11);
       if (lVar15 != -1) {
         LOCK();
-        _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+        SYSTEM_HANDLE_COUNTER_ADDR = SYSTEM_HANDLE_COUNTER_ADDR + -1;
         UNLOCK();
         CloseHandle(alStack_108[0]);
         alStack_108[0] = -1;

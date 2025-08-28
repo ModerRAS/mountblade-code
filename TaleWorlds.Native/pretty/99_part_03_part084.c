@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_03_part084.c - 5 个函数
 
@@ -307,7 +308,7 @@ LAB_18024a311:
     FUN_18024cf70(param_1 + 0x3138,lVar10 + 0x1f8,lVar10 + 0x200,&lStack_b8,plVar14);
     return 1;
   }
-  if (((*(uint *)(lVar19 + 0x138) & 0x40000) == 0) || (*(int *)(_DAT_180c86920 + 0x700) < 1)) {
+  if (((*(uint *)(lVar19 + 0x138) & 0x40000) == 0) || (*(int *)(SYSTEM_STATE_MANAGER + 0x700) < 1)) {
     bVar25 = false;
   }
   else {

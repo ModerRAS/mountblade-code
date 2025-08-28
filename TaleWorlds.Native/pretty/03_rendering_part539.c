@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 //============================================================================
 //
@@ -306,7 +307,7 @@ void RenderingSystem_AdvancedDataFlowProcessor(longlong target_ptr, longlong sou
     
     // 初始化栈保护和校验
     stack_value_1 = RENDERING_SYSTEM_FLAG_MASK;
-    stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_1;
+    stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_1;
     
     // 第一阶段：基础渲染参数解析
     param_count_1 = **(RenderParamPointer **)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET);

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part382.c - 13 个函数
 
@@ -28,7 +29,7 @@ void FUN_180478410(longlong param_1,uint64_t *param_2)
   ulonglong uStack_20;
   
   uStack_70 = 0xfffffffffffffffe;
-  uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_20 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_98;
   uStack_78 = 0;
   lVar7 = *(longlong *)(param_1 + 8);
   puStack_68 = param_2;
@@ -453,7 +454,7 @@ void FUN_1804789b0(uint64_t param_1,uint64_t param_2)
   ulonglong uStack_28;
   
   uStack_50 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_128;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_128;
   bVar4 = false;
   uStack_f8 = 0;
   FUN_18047a1e0(&lStack_78,&unknown_var_4648_ptr);
@@ -633,7 +634,7 @@ void FUN_180478cf0(uint64_t param_1,uint64_t param_2)
   ulonglong uStack_38;
   
   uStack_60 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_138;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_138;
   bVar4 = false;
   uStack_108 = 0;
   FUN_18047a1e0(&lStack_88,&unknown_var_4680_ptr);
@@ -814,7 +815,7 @@ void FUN_180479a10(char *param_1,longlong *param_2,uint64_t param_3,uint64_t *pa
   ulonglong uStack_58;
   
   uStack_288 = 0xfffffffffffffffe;
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_2b8;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_2b8;
   puStack_290 = (int8_t *)param_7;
   uStack_298 = 0;
   iVar13 = 1;

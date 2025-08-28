@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_02_part011.c - 1 个函数
 
@@ -277,7 +278,7 @@ LAB_1800ef4ce:
           bVar29 = false;
           do {
             lVar19 = *(longlong *)(lVar27 + (longlong)pppppplVar8[7]);
-            iVar13 = *(int *)(_DAT_180c86920 + 0x620);
+            iVar13 = *(int *)(SYSTEM_STATE_MANAGER + 0x620);
             if (iVar13 == -1) {
 LAB_1800ef36c:
               if (bVar28) goto LAB_1800ef375;
@@ -401,7 +402,7 @@ LAB_1800ef846:
               lVar27 = 0;
               do {
                 lVar19 = *(longlong *)(lVar27 + (longlong)pppppplStack_e0[7]);
-                iVar13 = *(int *)(_DAT_180c86920 + 0x620);
+                iVar13 = *(int *)(SYSTEM_STATE_MANAGER + 0x620);
                 if (iVar13 == -1) {
 LAB_1800ef81c:
                   cVar12 = (char)uStackX_10;

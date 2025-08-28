@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 04_ui_system_part031.c - UI系统高级数据处理和控制模块
 // 包含17个核心函数，涵盖UI系统高级数据处理、线程管理、资源分配、内存管理、信号量处理等高级UI功能
@@ -294,7 +295,7 @@ void ui_system_thread_worker(int *thread_params)
     ulonglong stack_cookie;
     
     // 栈保护cookie初始化
-    stack_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_protector_1;
+    stack_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_protector_1;
     
     thread_pool_context = *(longlong *)(thread_params + 2);
     thread_id = *thread_params;

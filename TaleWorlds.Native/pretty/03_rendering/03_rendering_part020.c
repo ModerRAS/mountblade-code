@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * 渲染系统材质处理和MDM模型加载模块
@@ -1147,7 +1148,7 @@ void load_mdm_model_data(longlong model_context, longlong file_data)
             fclose();
             file_handle[1] = 0;
             LOCK();
-            _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+            SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
             UNLOCK();
         }
     }

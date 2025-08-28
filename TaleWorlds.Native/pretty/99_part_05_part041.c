@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_05_part041.c - 系统高级资源管理和数据处理模块
 // 模块功能：系统资源管理、数据结构操作、内存管理、状态管理、线程同步等高级系统功能
@@ -655,7 +656,7 @@ void SystemConfigurationProcessor(uint64_t param_1, longlong param_2, longlong *
     
     // 初始化配置处理环境
     uStack_368 = 0xfffffffffffffffe;
-    uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_4e8;
+    uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_4e8;
     pcVar8 = (char *)0x0;
     pcVar6 = "variables";
     

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // ============================================================================
 // 99_part_11_part057.c - 高级数据流处理和状态管理模块
@@ -87,7 +88,7 @@
 // 全局变量引用
 // ============================================================================
 
-extern uint64_t _DAT_180bf00a8;     // 安全检查常量
+extern uint64_t GET_SECURITY_COOKIE();     // 安全检查常量
 extern uint64_t global_state_6632_ptr;      // 未知数据引用258
 extern uint64_t global_state_6648_ptr;      // 未知数据引用268
 extern uint64_t global_state_6664_ptr;      // 未知数据引用278
@@ -163,7 +164,7 @@ void FUN_1807bb100(longlong *param_1, char param_2, int8_t param_3)
     ulonglong uVar9;
     
     // 安全检查初始化
-    uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+    uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
     
     // 检查数据流状态和条件
     if ((param_1[1] != 0) && (*(char *)((longlong)param_1 + 0x24) == '\0')) {

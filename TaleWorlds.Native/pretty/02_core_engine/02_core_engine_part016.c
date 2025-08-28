@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part016.c - 核心引擎内存管理模块
 // 该模块包含内存分配、缓冲区管理和资源清理功能

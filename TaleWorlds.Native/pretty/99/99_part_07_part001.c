@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // ============================================================================
 // 模块99未匹配函数第7部分第1个文件
@@ -363,7 +364,7 @@ void FUN_1803f94b0(longlong param_1, longlong param_2) {
     
     // 系统初始化和配置
     uStack_190 = 0xfffffffffffffffe;
-    uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_258;
+    uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_258;
     FUN_1801f9270();
     uStack_1c0 = 1;
     uStack_1bc = 1;
@@ -655,7 +656,7 @@ void FUN_1803f9a40(uint64_t *param_1, uint64_t param_2, longlong param_3, int32_
     
     // 系统初始化和配置
     uStack_208 = 0xfffffffffffffffe;
-    uStack_78 = _DAT_180bf00a8 ^ (ulonglong)auStack_2a8;
+    uStack_78 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_2a8;
     puStack_118 = &global_state_3432_ptr;
     puStack_110 = auStack_100;
     auStack_100[0] = 0;
@@ -1263,7 +1264,7 @@ void FUN_1803fa980(longlong *param_1, longlong param_2) {
     
     // 系统初始化和配置
     uStack_178 = 0xfffffffffffffffe;
-    uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_1e8;
+    uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1e8;
     FUN_1801f9270();
     
     // 渲染参数初始化

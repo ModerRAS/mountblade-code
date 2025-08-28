@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * 99_part_01_part004.c - 模块99未匹配函数第1部分第4个文件
@@ -1141,7 +1142,7 @@ void SystemCharacterWriter(longlong stream_handle, int character)
   int8_t local_buffer3[32];
   ulonglong stack_cookie2;
   
-  stack_cookie2 = _DAT_180bf00a8 ^ (ulonglong)local_buffer;
+  stack_cookie2 = GET_SECURITY_COOKIE() ^ (ulonglong)local_buffer;
   
   if (character != -1) {
     stack_cookie = **(ulonglong **)(stream_handle + 0x40);
@@ -1293,7 +1294,7 @@ void SystemStreamFlusher(longlong stream_handle)
   int8_t local_buffer2[32];
   ulonglong stack_cookie;
   
-  stack_cookie = _DAT_180bf00a8 ^ (ulonglong)local_buffer;
+  stack_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)local_buffer;
   
   if (((*(longlong *)(stream_handle + 0x68) != 0) && (*(char *)(stream_handle + 0x71) != '\0')) &&
      (flush_result = SystemCharacterWriter(stream_handle, 0xffffffff), flush_result != -1)) {

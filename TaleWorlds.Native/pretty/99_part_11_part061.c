@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_11_part061.c - 10 个函数
 
@@ -105,7 +106,7 @@ void FUN_1807bf5f8(void)
         *(int *)(unaff_RDI + 0xbd0) = iVar8;
         iVar3 = FUN_180769ed0(*(uint64_t *)(unaff_RDI + 0x170),unaff_RDI + 0x178,1);
         if (iVar3 == 0) {
-          lVar4 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),
+          lVar4 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                                 *(int *)(unaff_RDI + 0x8fc) << 3,&unknown_var_7040_ptr,0x542,
                                 unaff_R14 & 0xffffffff);
           *(longlong *)(unaff_RDI + 0x848) = lVar4;
@@ -277,7 +278,7 @@ void FUN_1807bf683(void)
   *(int *)(unaff_RDI + 0xbd0) = iVar8;
   iVar3 = FUN_180769ed0(*(uint64_t *)(unaff_RDI + 0x170),unaff_RDI + 0x178,1);
   if (iVar3 == 0) {
-    lVar4 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(int *)(unaff_RDI + 0x8fc) << 3,
+    lVar4 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int *)(unaff_RDI + 0x8fc) << 3,
                           &unknown_var_7040_ptr,0x542,unaff_R14 & 0xffffffff);
     *(longlong *)(unaff_RDI + 0x848) = lVar4;
     if (lVar4 != 0) {

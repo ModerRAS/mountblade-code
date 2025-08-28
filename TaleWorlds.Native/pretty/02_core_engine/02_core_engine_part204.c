@@ -1,10 +1,11 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part204.c - 核心引擎内存管理和数据处理模块 (17个函数)
 
 // 全局变量声明
 extern uint64_t _DAT_180c8a9e0;    // 核心引擎数据结构指针
-extern uint64_t _DAT_180bf00a8;    // 安全检查相关数据
+extern uint64_t GET_SECURITY_COOKIE();    // 安全检查相关数据
 extern int8_t global_var_3456_ptr;     // 空字符串标记
 extern int8_t global_var_720_ptr;      // 字符串常量
 extern int8_t global_var_276_ptr;      // 格式化字符串
@@ -147,7 +148,7 @@ void format_and_process_string_data(uint64_t context, uint64_t *data_ptr)
   
   engine_data = _DAT_180c8a9e0;
   cleanup_flag = 0xfffffffffffffffe;
-  security_xor = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  security_xor = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   output_data = data_ptr;
   if (*(longlong *)(_DAT_180c8a9e0 + 8) == 0) {
     *data_ptr = &global_var_3456_ptr;
@@ -303,7 +304,7 @@ void process_dual_parameter_formatting(uint64_t context, uint64_t *first_data, u
   
   engine_data = _DAT_180c8a9e0;
   cleanup_flag = 0xfffffffffffffffe;
-  security_xor = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  security_xor = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   output_first = first_data;
   output_second = second_data;
   if (*(longlong *)(_DAT_180c8a9e0 + 8) == 0) {
@@ -440,7 +441,7 @@ void process_quad_parameter_formatting(uint64_t context, uint64_t *first_data, u
   
   engine_data = _DAT_180c8a9e0;
   cleanup_flag = 0xfffffffffffffffe;
-  security_xor = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  security_xor = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   output_first = first_data;
   output_second = second_data;
   if (*(longlong *)(_DAT_180c8a9e0 + 8) == 0) {
@@ -555,7 +556,7 @@ void process_array_data_formatting(uint64_t context, longlong array_data, ulongl
   
   engine_data = _DAT_180c8a9e0;
   cleanup_flag = 0xfffffffffffffffe;
-  security_xor = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  security_xor = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   if (*(longlong *)(_DAT_180c8a9e0 + 8) != 0) {
     array_head = (void **)0x0;
     array_tail = (void **)0x0;
@@ -800,7 +801,7 @@ void process_string_map_structure(void **map_ptr, longlong search_key)
   ulonglong security_xor;
   
   cleanup_flag = 0xfffffffffffffffe;
-  security_xor = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  security_xor = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   current_node = (uint64_t *)*map_ptr;
   map_pointer = map_ptr;
   key_length = search_key;

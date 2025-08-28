@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part026.c - 2 个核心引擎错误处理和日志记录函数
 // 
@@ -95,7 +96,7 @@ void log_engine_error_with_context(uint64_t param_1, longlong param_2, int32_t p
   
   // 设置安全cookie防止栈溢出
   temp_value3 = 0xfffffffffffffffe;
-  stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_cookie;
+  stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_cookie;
   
   // 初始化变量
   error_type = param_5;

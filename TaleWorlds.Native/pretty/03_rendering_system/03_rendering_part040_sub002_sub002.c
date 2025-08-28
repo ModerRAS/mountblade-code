@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part040_sub002_sub002.c - 渲染系统高级资源管理和数据处理模块
 // 包含11个核心函数，涵盖渲染资源处理、缓冲区管理、数据流处理、内存分配、纹理映射等高级渲染功能
@@ -36,8 +37,8 @@ extern char global_config_680_ptr[4];
 extern char global_config_688_ptr[4];
 extern char global_config_664_ptr[4];
 extern char global_config_672_ptr[4];
-extern longlong _DAT_180c8a9a8;
-extern longlong _DAT_180c8a9b0;
+extern longlong SYSTEM_DATA_MANAGER_B;
+extern longlong SYSTEM_DATA_MANAGER_A;
 
 // 函数: void validate_render_data(uint64_t render_context, int start_pos, int data_size, longlong *data_ptr)
 // 功能: 验证渲染数据的有效性
@@ -1296,21 +1297,21 @@ ulonglong process_vertex_transformations(longlong transform_data, uint64_t rende
           } while (vertex_count != 0);
         }
         
-        if (_DAT_180c8a9b0 != 0) {
-          *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+        if (SYSTEM_DATA_MANAGER_A != 0) {
+          *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
         }
         
-        batch_count = func_0x000180120ce0((longlong)transform_index * 0xe, _DAT_180c8a9a8);
+        batch_count = func_0x000180120ce0((longlong)transform_index * 0xe, SYSTEM_DATA_MANAGER_B);
         if (batch_count != 0) {
           // 批量复制变换后的顶点数据
           memcpy(batch_count, local_offset, local_offset * 0xe);
         }
         
         if (local_offset != 0) {
-          if (_DAT_180c8a9b0 != 0) {
-            *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+          if (SYSTEM_DATA_MANAGER_A != 0) {
+            *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
           }
-          FUN_180059ba0(local_offset, _DAT_180c8a9a8);
+          FUN_180059ba0(local_offset, SYSTEM_DATA_MANAGER_B);
         }
         goto set_transform_result;
       }
@@ -1328,8 +1329,8 @@ ulonglong process_vertex_transformations(longlong transform_data, uint64_t rende
       texture_coord = vertex_weight + 1 + (uint)weight_data * 0x100;
       transform_result = (ulonglong)texture_coord;
       
-      if (_DAT_180c8a9b0 != 0) {
-        *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+      if (SYSTEM_DATA_MANAGER_A != 0) {
+        *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
       }
       
       texture_size = func_0x000180120ce0((longlong)(int)(vertex_weight + 1 + (uint)weight_data * 0x100 + vertex_index * 2) * 0xe);

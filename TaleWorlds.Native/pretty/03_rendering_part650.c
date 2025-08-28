@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part650.c - 11 个函数
 
@@ -536,7 +537,7 @@ void FUN_180637890(longlong *param_1,int8_t param_2)
   ulonglong uStack_28;
   
   uStack_b8 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
   plVar1 = param_1 + 0xb;
   plStack_b0 = plVar1;
   iVar3 = _Mtx_lock(plVar1);
@@ -587,7 +588,7 @@ void FUN_1806379a0(longlong *param_1,int16_t param_2)
   ulonglong uStack_28;
   
   uStack_b8 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
   plVar1 = param_1 + 0xb;
   plStack_b0 = plVar1;
   iVar3 = _Mtx_lock(plVar1);
@@ -638,7 +639,7 @@ void FUN_180637ab0(longlong *param_1,short param_2)
   ulonglong uStack_28;
   
   uStack_b8 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
   plVar1 = param_1 + 0xb;
   plStack_b0 = plVar1;
   iVar3 = _Mtx_lock(plVar1);
@@ -689,7 +690,7 @@ void FUN_180637bc0(longlong *param_1,int32_t param_2)
   ulonglong uStack_28;
   
   uStack_b8 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
   plVar1 = param_1 + 0xb;
   plStack_b0 = plVar1;
   iVar3 = _Mtx_lock(plVar1);
@@ -748,7 +749,7 @@ void FUN_180637cd0(longlong *param_1,ulonglong param_2)
   ulonglong uStack_38;
   
   uStack_c8 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_108;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_108;
   plVar1 = param_1 + 0xb;
   plStack_c0 = plVar1;
   iVar2 = _Mtx_lock(plVar1);
@@ -844,7 +845,7 @@ void FUN_180637ee0(longlong *param_1,ulonglong param_2)
   ulonglong uStack_38;
   
   uStack_c8 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_108;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_108;
   plVar1 = param_1 + 0xb;
   plStack_c0 = plVar1;
   iVar2 = _Mtx_lock(plVar1);
@@ -963,7 +964,7 @@ void FUN_1806381a0(longlong *param_1,float param_2)
   ulonglong uStack_38;
   
   uStack_c8 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_e8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_e8;
   plVar1 = param_1 + 0xb;
   plStack_c0 = plVar1;
   iVar3 = _Mtx_lock(plVar1);

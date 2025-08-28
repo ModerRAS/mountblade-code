@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * @file 05_networking_part089.c
@@ -403,7 +404,7 @@ uint64_t network_data_synchronizer(void);
 /** @{ */
 
 /** 网络配置数据 */
-extern uint64_t _DAT_180bf00a8;        /**< 网络配置基地址 */
+extern uint64_t GET_SECURITY_COOKIE();        /**< 网络配置基地址 */
 extern int32_t system_buffer_ptr;          /**< 网络状态数据 */
 
 /** 网络连接数据 */

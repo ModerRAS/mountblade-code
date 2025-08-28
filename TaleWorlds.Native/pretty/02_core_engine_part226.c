@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part226.c - 2 个函数
 
@@ -489,10 +490,10 @@ void FUN_18019d190(uint64_t *param_1,ulonglong param_2)
   if (iVar5 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar5);
   }
-  uVar13 = _DAT_180c8a9b0;
-  uStackX_18 = _DAT_180c8a9b0;
-  uStackX_20 = _DAT_180c8a9b0;
-  _DAT_180c8a9b0 = *plVar1;
+  uVar13 = SYSTEM_DATA_MANAGER_A;
+  uStackX_18 = SYSTEM_DATA_MANAGER_A;
+  uStackX_20 = SYSTEM_DATA_MANAGER_A;
+  SYSTEM_DATA_MANAGER_A = *plVar1;
   if (*(char *)(param_1 + 0xc0e7) == '\0') {
     FUN_180199930(param_1);
   }
@@ -696,10 +697,10 @@ LAB_18019d50f:
   else {
     *(int8_t *)(param_1 + 0xc0f4) = 1;
   }
-  lVar8 = _DAT_180c8a9b0;
+  lVar8 = SYSTEM_DATA_MANAGER_A;
   if (*(int *)(param_1 + 0xc0f2) != 0) {
     puStackX_8 = (uint64_t *)CONCAT71(puStackX_8._1_7_,1);
-    *(int32_t *)(_DAT_180c8a9b0 + 0x1c04) = 0x43c80000;
+    *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1c04) = 0x43c80000;
     *(int32_t *)(lVar8 + 0x1c08) = 0x43960000;
     *(int32_t *)(lVar8 + 0x1bd4) = 4;
     FUN_1801299b0(&unknown_var_3184_ptr,&puStackX_8,0);
@@ -735,7 +736,7 @@ LAB_18019d905:
       puStack_a8 = (int8_t *)0x0;
       uStack_98 = uStack_98 & 0xffffffff00000000;
       puStack_b0 = &unknown_var_720_ptr;
-      _DAT_180c8a9b0 = uVar13;
+      SYSTEM_DATA_MANAGER_A = uVar13;
       iVar5 = _Mtx_unlock(0x180c91970);
       if (iVar5 != 0) {
         __Throw_C_error_std__YAXH_Z(iVar5);

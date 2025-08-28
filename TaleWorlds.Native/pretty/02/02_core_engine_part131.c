@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * 核心引擎模块第131部分
@@ -75,7 +76,7 @@ uint64_t process_object_collision(longlong param_1, int32_t *param_2)
     float fStack_30;
     float fStack_2c;
     
-    lVar5 = _DAT_180c8a9b0;
+    lVar5 = SYSTEM_DATA_MANAGER_A;
     if ((((param_2[1] & 0x400) != 0) && (puVar3 = *(int32_t **)(param_1 + 0x28), puVar3 != param_2)
         ) && (*(char *)((longlong)param_2 + 0x77) == '\0')) {
         fVar1 = *(float *)(param_1 + 0x40);
@@ -162,10 +163,10 @@ longlong find_object_in_space(uint64_t param_1)
     lVar2 = 0;
     fStack_14 = (float)((ulonglong)param_1 >> 0x20);
     fStack_18 = (float)param_1;
-    lVar4 = (longlong)*(int *)(_DAT_180c8a9b0 + 0x1c68);
+    lVar4 = (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1c68);
     lVar6 = lVar2;
     if (3 < lVar4) {
-        plVar3 = (longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1c70) + 0x10);
+        plVar3 = (longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1c70) + 0x10);
         lVar5 = (lVar4 - 4U >> 2) + 1;
         lVar6 = lVar5 * 4;
         do {
@@ -215,7 +216,7 @@ longlong find_object_in_space(uint64_t param_1)
     }
     if (lVar6 < lVar4) {
         lVar4 = lVar4 - lVar6;
-        plVar3 = (longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1c70) + lVar6 * 8);
+        plVar3 = (longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1c70) + lVar6 * 8);
         do {
             lVar6 = *plVar3;
             if (((*(byte *)(lVar6 + 4) & 8) == 0) && (*(char *)(lVar6 + 0x77) == '\0')) {
@@ -270,11 +271,11 @@ void update_render_states(void)
     float fStack_70;
     float fStack_6c;
     
-    lVar5 = _DAT_180c8a9b0;
+    lVar5 = SYSTEM_DATA_MANAGER_A;
     uVar10 = 0;
     uVar9 = uVar10;
     uVar12 = uVar10;
-    if (0 < *(int *)(_DAT_180c8a9b0 + 0x1c68)) {
+    if (0 < *(int *)(SYSTEM_DATA_MANAGER_A + 0x1c68)) {
         do {
             lVar2 = *(longlong *)(*(longlong *)(lVar5 + 0x1c70) + uVar9 * 8);
             if ((uVar9 == 0) || (*(char *)(lVar2 + 0x76) != '\0')) {
@@ -428,8 +429,8 @@ void update_render_states(void)
                 if (*(longlong *)(lVar11 + 0x78) == 0) {
                     uVar9 = uVar10;
                     uVar15 = uVar10;
-                    lVar16 = _DAT_180c8a9b0;
-                    if (*(int *)(_DAT_180c8a9b0 + 0x1aa0) != 0) {
+                    lVar16 = SYSTEM_DATA_MANAGER_A;
+                    if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1aa0) != 0) {
                         do {
                             iVar14 = (int)uVar15;
                             lVar3 = *(longlong *)(uVar9 + *(longlong *)(lVar16 + 0x1aa8));
@@ -464,19 +465,19 @@ LAB_180130774:
     }
     else {
         uVar9 = uVar10;
-        if ((*(int *)(lVar5 + 0x130) != 0) && (0 < *(int *)(_DAT_180c8a9b0 + 0x1c68))) {
-            puVar8 = *(uint64_t **)(_DAT_180c8a9b0 + 0x1c70);
+        if ((*(int *)(lVar5 + 0x130) != 0) && (0 < *(int *)(SYSTEM_DATA_MANAGER_A + 0x1c68))) {
+            puVar8 = *(uint64_t **)(SYSTEM_DATA_MANAGER_A + 0x1c70);
             uVar12 = uVar10;
             uVar15 = uVar10;
             do {
                 if (*(int *)*puVar8 == *(int *)(lVar5 + 0x130)) {
-                    uVar9 = (*(uint64_t **)(_DAT_180c8a9b0 + 0x1c70))[(int)uVar15];
+                    uVar9 = (*(uint64_t **)(SYSTEM_DATA_MANAGER_A + 0x1c70))[(int)uVar15];
                     break;
                 }
                 uVar15 = (ulonglong)((int)uVar15 + 1);
                 uVar12 = uVar12 + 1;
                 puVar8 = puVar8 + 1;
-            } while ((longlong)uVar12 < (longlong)*(int *)(_DAT_180c8a9b0 + 0x1c68));
+            } while ((longlong)uVar12 < (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1c68));
         }
         uVar12 = uVar9;
         if (uVar9 != 0) {
@@ -497,7 +498,7 @@ LAB_18013078e:
     if (*(char *)(lVar5 + 0x1dd0) == '\0') {
         if (*(int *)(lVar5 + 0x1b2c) != 0) {
             do {
-                if (*(char *)(_DAT_180c8a9b0 + 0x120 + uVar10) != '\0') {
+                if (*(char *)(SYSTEM_DATA_MANAGER_A + 0x120 + uVar10) != '\0') {
                     return;
                 }
                 uVar10 = uVar10 + 1;
@@ -765,8 +766,8 @@ void batch_update_object_properties(uint64_t *in_RAX, ulonglong unaff_RSI)
                 if (*(longlong *)(lVar16 + 0x78) == 0) {
                     uVar17 = unaff_RSI_param & 0xffffffff;
                     uVar21 = unaff_RSI_param;
-                    lVar23 = _DAT_180c8a9b0;
-                    if (*(int *)(_DAT_180c8a9b0 + 0x1aa0) != iVar20) {
+                    lVar23 = SYSTEM_DATA_MANAGER_A;
+                    if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1aa0) != iVar20) {
                         do {
                             iVar22 = (int)uVar17;
                             lVar3 = *(longlong *)(uVar21 + *(longlong *)(lVar23 + 0x1aa8));
@@ -809,18 +810,18 @@ LAB_180130774:
         uVar15 = unaff_RSI_param;
         if (*(int *)(unaff_RBX + 0x130) != 0) {
             uVar21 = unaff_RSI_param & 0xffffffff;
-            if (0 < *(int *)(_DAT_180c8a9b0 + 0x1c68)) {
-                puVar14 = *(uint64_t **)(_DAT_180c8a9b0 + 0x1c70);
+            if (0 < *(int *)(SYSTEM_DATA_MANAGER_A + 0x1c68)) {
+                puVar14 = *(uint64_t **)(SYSTEM_DATA_MANAGER_A + 0x1c70);
                 uVar17 = unaff_RSI_param;
                 do {
                     if (*(int *)*puVar14 == *(int *)(unaff_RBX + 0x130)) {
-                        uVar15 = (*(uint64_t **)(_DAT_180c8a9b0 + 0x1c70))[(int)uVar21];
+                        uVar15 = (*(uint64_t **)(SYSTEM_DATA_MANAGER_A + 0x1c70))[(int)uVar21];
                         break;
                     }
                     uVar21 = (ulonglong)((int)uVar21 + 1);
                     uVar17 = uVar17 + 1;
                     puVar14 = puVar14 + 1;
-                } while ((longlong)uVar17 < (longlong)*(int *)(_DAT_180c8a9b0 + 0x1c68));
+                } while ((longlong)uVar17 < (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1c68));
             }
         }
         uVar21 = uVar15;
@@ -842,7 +843,7 @@ LAB_18013078e:
     if (*(char *)(unaff_RBX + 0x1dd0) == cVar19) {
         if (*(int *)(unaff_RBX + 0x1b2c) != iVar20) {
             do {
-                if (*(char *)(_DAT_180c8a9b0 + 0x120 + unaff_RSI_param) != '\0') {
+                if (*(char *)(SYSTEM_DATA_MANAGER_A + 0x120 + unaff_RSI_param) != '\0') {
                     return;
                 }
                 unaff_RSI_param = unaff_RSI_param + 1;

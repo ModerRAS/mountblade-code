@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_13_part003.c - 10 个函数
 
@@ -80,7 +81,7 @@ uint64_t FUN_1808a75c0(uint64_t *param_1,longlong param_2)
             return uVar1;
           }
           plVar4 = (longlong *)
-                   FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x30,&unknown_var_1696_ptr,0xbf,0,
+                   FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x30,&unknown_var_1696_ptr,0xbf,0,
                                  0,1);
           if (plVar4 == (longlong *)0x0) {
             uVar1 = 0x26;
@@ -193,7 +194,7 @@ ulonglong FUN_1808a75ed(int32_t param_1)
           return uVar2;
         }
         plVar4 = (longlong *)
-                 FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x30,&unknown_var_1696_ptr,0xbf);
+                 FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x30,&unknown_var_1696_ptr,0xbf);
         if (plVar4 == (longlong *)0x0) {
           uVar2 = 0x26;
           uVar6 = extraout_XMM0_Da;

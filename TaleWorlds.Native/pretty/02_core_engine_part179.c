@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 //============================================================================
 // 核心引擎高级数据处理和资源管理模块

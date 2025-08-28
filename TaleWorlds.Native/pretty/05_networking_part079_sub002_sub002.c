@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /*=============================================================================
  * 05_networking_part079_sub002_sub002.c - 网络系统高级哈希表处理模块
@@ -45,7 +46,7 @@ void FUN_180883a30(uint64_t param_1)
     FUN_180873460(param_1);
                     // WARNING: Subroutine does not return
     // 重新初始化网络系统
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_1,&unknown_var_5856_ptr,0x43b,1);
+    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,&unknown_var_5856_ptr,0x43b,1);
   }
   return;
 }

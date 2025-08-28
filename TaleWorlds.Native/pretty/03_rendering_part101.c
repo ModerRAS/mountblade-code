@@ -104,7 +104,7 @@
 #define SYSTEM_CONTEXT_OFFSET_MAIN 0x178          /**< 主上下文偏移量 */
 
 /** 系统同步地址 */
-#define SYSTEM_SYNC_ADDRESS _DAT_180bf00a8
+#define SYSTEM_SYNC_ADDRESS GET_SECURITY_COOKIE()
 
 /** 系统对齐掩码 */
 #define SYSTEM_ALIGNMENT_MASK 0xffffffffffffff00

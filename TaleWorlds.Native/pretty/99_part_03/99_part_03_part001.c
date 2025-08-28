@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 99_part_03_part001.c - 游戏存档和序列化模块
 // 包含7个核心函数，涵盖存档处理、序列化、文件操作、数据验证等功能
@@ -271,7 +272,7 @@ void load_game_data(uint64_t param1, longlong context_ptr)
     
     temp_long1 = _DAT_180c8aa08;
     stack_data51 = 0xfffffffffffffffe;
-    stack_data57 = _DAT_180bf00a8 ^ (ulonglong)stack_data1;
+    stack_data57 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_data1;
     stack_data22 = _DAT_180c8aa08;
     FUN_1801d8e90(_DAT_180c8aa08, context_ptr, 0);
     stack_data8 = &unknown_var_3456_ptr;
@@ -522,7 +523,7 @@ data_not_found:
         fclose(temp_long2);
         stack_data26 = 0;
         LOCK();
-        _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+        SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
         UNLOCK();
     }
     stack_data8 = &unknown_var_3456_ptr;
@@ -606,7 +607,7 @@ bool validate_save_file(longlong file_handle)
         } while (((temp_int1 != 0) && (stack_array3[0] != 0)) && (bytes_read2 = bytes_read2 + stack_array3[0], bytes_read2 < 4))
         ;
         LOCK();
-        _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+        SYSTEM_HANDLE_COUNTER_ADDR = SYSTEM_HANDLE_COUNTER_ADDR + -1;
         UNLOCK();
         CloseHandle(stack_array4[0]);
         stack_array4[0] = -1;
@@ -625,7 +626,7 @@ bool validate_save_file(longlong file_handle)
     }
     if (temp_long1 != -1) {
         LOCK();
-        _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+        SYSTEM_HANDLE_COUNTER_ADDR = SYSTEM_HANDLE_COUNTER_ADDR + -1;
         UNLOCK();
         CloseHandle(stack_array4[0]);
         stack_array4[0] = -1;
@@ -665,7 +666,7 @@ void process_save_chunk(uint64_t param1)
     ulonglong stack_data14;
     
     stack_data9 = 0xfffffffffffffffe;
-    stack_data14 = _DAT_180bf00a8 ^ (ulonglong)stack_data1;
+    stack_data14 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_data1;
     temp_data1 = 0;
     stack_array1[1] = 0;
     stack_data3 = &unknown_var_3456_ptr;
@@ -715,14 +716,14 @@ void process_save_chunk(uint64_t param1)
         fclose(temp_long1);
         stack_data8 = 0;
         LOCK();
-        _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+        SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
         UNLOCK();
     }
     if (stack_data8 != 0) {
         fclose(stack_data8);
         stack_data8 = 0;
         LOCK();
-        _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+        SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
         UNLOCK();
     }
     stack_data3 = &unknown_var_3456_ptr;
@@ -767,7 +768,7 @@ void create_save_file(void)
     ulonglong stack_data17;
     
     stack_data12 = 0xfffffffffffffffe;
-    stack_data17 = _DAT_180bf00a8 ^ (ulonglong)stack_data1;
+    stack_data17 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_data1;
     stack_array1[1] = 0;
     if (*(char *)(_DAT_180c86870 + 0x168) == '\0') {
         stack_data6 = &unknown_var_3456_ptr;
@@ -832,7 +833,7 @@ void create_save_file(void)
             fclose(temp_long1);
             stack_data11 = 0;
             LOCK();
-            _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+            SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
             UNLOCK();
             stack_array1[1] = 0;
             stack_data13 = &unknown_var_720_ptr;
@@ -878,7 +879,7 @@ void build_save_path(longlong *path_ptr, longlong context_ptr)
     ulonglong stack_data8;
     
     stack_data3 = 0xfffffffffffffffe;
-    stack_data8 = _DAT_180bf00a8 ^ (ulonglong)stack_data1;
+    stack_data8 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_data1;
     stack_data2 = 0;
     *(int32_t *)(path_ptr + 2) = 0;
     if ((int8_t *)path_ptr[1] != (int8_t *)0x0) {

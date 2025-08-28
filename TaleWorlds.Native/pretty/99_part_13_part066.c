@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_13_part066.c - 8 个函数
 
@@ -39,7 +40,7 @@ void FUN_1808d6010(int param_1,int param_2,uint64_t *param_3,longlong param_4,fl
   int8_t auStack_b0 [32];
   ulonglong uStack_90;
   
-  uStack_90 = _DAT_180bf00a8 ^ (ulonglong)auStack_1a8;
+  uStack_90 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1a8;
   pfStack_168 = param_8;
   bVar4 = (param_1 - 1U & 0xfffffff7) != 0;
   puVar3 = (int8_t *)0x0;
@@ -332,7 +333,7 @@ void FUN_1808d6410(longlong param_1,uint64_t *param_2,uint64_t param_3,longlong 
   int8_t auStack_88 [40];
   ulonglong uStack_60;
   
-  uStack_60 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
+  uStack_60 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_b8;
   lVar6 = *(longlong *)(param_1 + 0x18);
   if (lVar6 != 0) {
     lVar1 = lVar6 + 0x10;
@@ -351,7 +352,7 @@ void FUN_1808d6410(longlong param_1,uint64_t *param_2,uint64_t param_3,longlong 
       FUN_1808b1880(lVar6);
       lStack_98 = CONCAT71(lStack_98._1_7_,1);
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),lVar6,&unknown_var_7152_ptr,0x1c2);
+      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar6,&unknown_var_7152_ptr,0x1c2);
     }
   }
   else {
@@ -460,7 +461,7 @@ void FUN_1808d6449(longlong *param_1)
     if (lVar6 != 0) {
       FUN_1808b1880(lVar6);
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),lVar6,&unknown_var_7152_ptr,0x1c2,1);
+      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar6,&unknown_var_7152_ptr,0x1c2,1);
     }
   }
   else {
@@ -556,7 +557,7 @@ void FUN_1808d6482(int32_t param_1)
     if (lVar1 != 0) {
       FUN_1808b1880(lVar1);
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),lVar1,&unknown_var_7152_ptr,0x1c2,1);
+      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar1,&unknown_var_7152_ptr,0x1c2,1);
     }
   }
   else {

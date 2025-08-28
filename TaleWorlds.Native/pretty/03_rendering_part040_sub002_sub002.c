@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part040_sub002_sub002.c - 1 个函数
 
@@ -1107,20 +1108,20 @@ LAB_18028d060:
             lVar37 = lVar37 + -1;
           } while (lVar37 != 0);
         }
-        if (_DAT_180c8a9b0 != 0) {
-          *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+        if (SYSTEM_DATA_MANAGER_A != 0) {
+          *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
         }
-        lVar33 = func_0x000180120ce0((longlong)iVar7 * 0xe,_DAT_180c8a9a8);
+        lVar33 = func_0x000180120ce0((longlong)iVar7 * 0xe,SYSTEM_DATA_MANAGER_B);
         if (lVar33 != 0) {
                     // WARNING: Subroutine does not return
           memcpy(lVar33,lStackX_8,lVar29 * 0xe);
         }
         if (lStackX_8 != 0) {
-          if (_DAT_180c8a9b0 != 0) {
-            *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+          if (SYSTEM_DATA_MANAGER_A != 0) {
+            *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
           }
                     // WARNING: Subroutine does not return
-          FUN_180059ba0(lStackX_8,_DAT_180c8a9a8);
+          FUN_180059ba0(lStackX_8,SYSTEM_DATA_MANAGER_B);
         }
         goto LAB_18028d060;
       }
@@ -1137,8 +1138,8 @@ LAB_18028d060:
                         lVar33);
       uVar39 = bVar5 + 1 + (uint)bVar15 * 0x100;
       uVar13 = (ulonglong)uVar39;
-      if (_DAT_180c8a9b0 != 0) {
-        *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+      if (SYSTEM_DATA_MANAGER_A != 0) {
+        *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
       }
       uVar11 = func_0x000180120ce0((longlong)(int)(bVar5 + 1 + (uint)bVar15 * 0x100 + sVar16 * 2) *
                                    0xe);

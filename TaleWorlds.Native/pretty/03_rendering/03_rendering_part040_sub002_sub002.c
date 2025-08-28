@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part040_sub002_sub002.c - 渲染系统高级资源管理子模块
 // 代码美化完成：渲染系统高级资源管理子模块，包含7个核心函数，涵盖渲染参数计算、数据解析、资源管理、矩阵变换等高级渲染功能
@@ -1342,22 +1343,22 @@ set_matrix_size:
         }
         
         // 更新统计信息
-        if (_DAT_180c8a9b0 != 0) {
-          *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+        if (SYSTEM_DATA_MANAGER_A != 0) {
+          *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
         }
         
-        temp_long_3 = func_0x000180120ce0((longlong)matrix_int * 0xe, _DAT_180c8a9a8);
+        temp_long_3 = func_0x000180120ce0((longlong)matrix_int * 0xe, SYSTEM_DATA_MANAGER_B);
         if (temp_long_3 != 0) {
           // WARNING: Subroutine does not return
           memcpy(temp_long_3, stack_param_1, temp_long * 0xe);
         }
         
         if (stack_param_1 != 0) {
-          if (_DAT_180c8a9b0 != 0) {
-            *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+          if (SYSTEM_DATA_MANAGER_A != 0) {
+            *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
           }
           // WARNING: Subroutine does not return
-          FUN_180059ba0(stack_param_1, _DAT_180c8a9a8);
+          FUN_180059ba0(stack_param_1, SYSTEM_DATA_MANAGER_B);
         }
         goto set_matrix_size;
       }
@@ -1375,8 +1376,8 @@ set_matrix_size:
       temp_value_3 = temp_byte + 1 + (uint)temp_byte * 0x100;
       temp_offset_3 = (ulonglong)temp_value_3;
       
-      if (_DAT_180c8a9b0 != 0) {
-        *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+      if (SYSTEM_DATA_MANAGER_A != 0) {
+        *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
       }
       
       temp_offset_1 = func_0x000180120ce0((longlong)(int)(temp_byte + 1 + (uint)temp_byte * 0x100 + temp_short * 2) * 0xe);

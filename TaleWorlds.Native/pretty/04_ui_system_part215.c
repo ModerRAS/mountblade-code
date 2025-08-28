@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part215.c - 5 个函数
 
@@ -12,7 +13,7 @@ void FUN_180790266(void)
   FUN_180773410();
   if (unaff_R14 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0));
+    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
   }
                     // WARNING: Subroutine does not return
   FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x42a0) ^ (ulonglong)&stack0x00000000);
@@ -29,7 +30,7 @@ void FUN_18079027d(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0));
+  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
 }
 
 
@@ -261,7 +262,7 @@ int FUN_180790500(longlong param_1,int param_2,longlong *param_3)
   do {
     if (plVar2 == plVar1) {
       iVar5 = 0;
-      lVar4 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x70,&unknown_var_2272_ptr,0x5c,0);
+      lVar4 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x70,&unknown_var_2272_ptr,0x5c,0);
       *param_3 = lVar4;
       if (lVar4 == 0) {
         iVar5 = 0x26;
@@ -322,7 +323,7 @@ int FUN_180790523(uint64_t param_1)
   do {
     if (plVar2 == plVar1) {
       iVar5 = 0;
-      lVar4 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x70,&unknown_var_2272_ptr,0x5c,0);
+      lVar4 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x70,&unknown_var_2272_ptr,0x5c,0);
       *unaff_RDI = lVar4;
       if (lVar4 == 0) {
         iVar5 = 0x26;
@@ -641,11 +642,11 @@ uint64_t FUN_1807906f0(longlong param_1)
   int32_t uVar10;
   int32_t auStackX_8 [2];
   
-  uVar6 = *(uint64_t *)(_DAT_180be12f0 + 0x160 + (longlong)*(int *)(param_1 + 0x30) * 8);
+  uVar6 = *(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x160 + (longlong)*(int *)(param_1 + 0x30) * 8);
   lVar4 = FUN_180791040();
   uVar8 = 0;
   puVar5 = (uint64_t *)
-           FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x40,&unknown_var_2784_ptr,0x24c,0,0,1);
+           FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x40,&unknown_var_2784_ptr,0x24c,0,0,1);
   if (puVar5 == (uint64_t *)0x0) {
     uVar6 = 0x26;
   }

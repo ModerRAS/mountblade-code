@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part187.c - 引擎核心模块功能实现
 
@@ -118,7 +119,7 @@ void initialize_engine_core_module(uint64_t *module_config)
   ulonglong stack_guard_2;
   
   stack_guard_1 = 0xfffffffffffffffe;
-  stack_guard_2 = _DAT_180bf00a8 ^ (ulonglong)temp_buffer_1;
+  stack_guard_2 = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer_1;
   init_status = 0;
   buffer_ptr = temp_buffer_2;
   resource_ptr = &unknown_var_7512_ptr;

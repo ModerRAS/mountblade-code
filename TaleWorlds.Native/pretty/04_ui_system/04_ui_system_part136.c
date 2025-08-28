@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 04_ui_system_part136.c - 8 个函数
 // UI系统高级事件处理和控件管理模块
@@ -59,7 +60,7 @@ int ui_process_control_initialization(longlong control_context)
   int32_t parameter_value;
   
   // 获取系统资源句柄
-  resource_handle = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 0x4d0, &unknown_var_8576_ptr, 0x146,
+  resource_handle = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x4d0, &unknown_var_8576_ptr, 0x146,
                         stack_parameter & 0xffffffff00000000, 0, 1);
   resource_pointer = (longlong *)0x0;
   if (resource_handle != 0) {
@@ -396,7 +397,7 @@ void ui_handle_control_events(longlong control_context)
   int8_t render_workspace [48];
   ulonglong workspace_size;
   
-  workspace_size = _DAT_180bf00a8 ^ (ulonglong)stack_data;
+  workspace_size = GET_SECURITY_COOKIE() ^ (ulonglong)stack_data;
   if (*(byte *)(control_context + 8) != '\0') {
     // 检查是否有事件处理器注册
     if ((*(code **)(control_context + 0x11838) != (code *)0x0) &&
@@ -696,7 +697,7 @@ void ui_reset_control_system(longlong control_context)
   ulonglong system_size;
   ulonglong iteration_counter;
   
-  system_size = _DAT_180bf00a8 ^ (ulonglong)reset_buffer;
+  system_size = GET_SECURITY_COOKIE() ^ (ulonglong)reset_buffer;
   if (*(byte *)(control_context + 8) == '\0') goto reset_complete;
   iteration_counter = 0;
   reset_status = 0;

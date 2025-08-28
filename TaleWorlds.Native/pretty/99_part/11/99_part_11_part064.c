@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../../include/global_constants.h"
 
 /**
  * @file 99_part_11_part064.c
@@ -302,8 +303,8 @@ void exception_termination_handler(void);
 /** @{ */
 
 /** 系统配置数据 */
-extern uint64_t _DAT_180be12f0;        /**< 系统配置基地址 */
-extern uint64_t _DAT_180bf00a8;        /**< 安全配置数据 */
+extern uint64_t SYSTEM_MAIN_CONTROL_BLOCK;        /**< 系统配置基地址 */
+extern uint64_t GET_SECURITY_COOKIE();        /**< 安全配置数据 */
 
 /** 内存管理数据 */
 extern uint8_t global_state_7376;          /**< 内存池指针 */

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part232_sub001.c - 13 个函数
 // 核心引擎模块第232部分子文件001 - 浮点数排序和统计计算模块

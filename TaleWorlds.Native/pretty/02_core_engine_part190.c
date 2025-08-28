@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part190.c - 6 个函数
 
@@ -104,7 +105,7 @@ void FUN_1801727d0(longlong param_1,uint64_t param_2,uint param_3,longlong param
   ulonglong uStack_58;
   
   lVar3 = _DAT_180c86950;
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_8d8;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_8d8;
   uStack_888 = param_3;
   if (0x120 < param_3) {
     sVar5 = (short)((ulonglong)param_4 >> 0x10);
@@ -345,7 +346,7 @@ void FUN_1801727d0(longlong param_1,uint64_t param_2,uint param_3,longlong param
         if ((_DAT_180c86870 != 0) && (_DAT_180c86950 != 0)) {
           if (param_4 - 1U < 2) {
             if (*(char *)(param_1 + 0x3c) != '\0') {
-              uVar17 = FUN_18005ca20(_DAT_180c86920,2);
+              uVar17 = FUN_18005ca20(SYSTEM_STATE_MANAGER,2);
               uStack_8b8 = uStack_8b8 & 0xffffff00;
               func_0x000180055000(uVar17,(int)*(float *)(_DAT_180c86950 + 0x17ec),
                                   (int)*(float *)(_DAT_180c86950 + 0x17f0));
@@ -355,7 +356,7 @@ void FUN_1801727d0(longlong param_1,uint64_t param_2,uint param_3,longlong param
           else if (*(int *)(param_1 + 0x38) == 2) {
             ShowWindow(param_2,7);
             ChangeDisplaySettingsA(0,0);
-            uVar17 = FUN_18005ca20(_DAT_180c86920,0);
+            uVar17 = FUN_18005ca20(SYSTEM_STATE_MANAGER,0);
             uStack_8b8 = uStack_8b8 & 0xffffff00;
             func_0x000180055000(uVar17,(int)*(float *)(_DAT_180c86950 + 0x17ec),
                                 (int)*(float *)(_DAT_180c86950 + 0x17f0));

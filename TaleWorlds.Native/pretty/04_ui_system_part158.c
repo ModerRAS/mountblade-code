@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part158.c - 6 个函数
 
@@ -416,7 +417,7 @@ void FUN_180760970(longlong param_1,longlong param_2,uint64_t param_3,int32_t pa
   
   pbVar6 = param_8;
   iVar3 = param_7;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_198;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_198;
   pbStack_150 = param_8;
   if (param_7 == *(int *)(param_1 + 0x58)) {
     if (param_8 != (byte *)0x0) {
@@ -440,7 +441,7 @@ void FUN_180760970(longlong param_1,longlong param_2,uint64_t param_3,int32_t pa
     *(longlong *)(lVar4 + 0xb0) = lVar4;
     iVar2 = (**(code **)(*(longlong *)(param_1 + 0x60) + 0x120))
                       (*(longlong *)(param_1 + 0x60) + 0xb0,1,0);
-    if ((iVar2 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
+    if ((iVar2 != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
       puStack_178 = (int32_t *)auStack_148;
       auStack_148[0] = 0;
                     // WARNING: Subroutine does not return
@@ -568,7 +569,7 @@ void FUN_1807609d5(void)
     *(longlong *)(lVar1 + 0xb0) = lVar1;
     iVar4 = (**(code **)(*(longlong *)(unaff_RBX + 0x60) + 0x120))
                       (*(longlong *)(unaff_RBX + 0x60) + 0xb0,1,0,0,puVar6);
-    if ((iVar4 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
+    if ((iVar4 != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
                     // WARNING: Subroutine does not return
       FUN_180749ef0(iVar4,7);
     }

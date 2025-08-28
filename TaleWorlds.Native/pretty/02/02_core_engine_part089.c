@@ -1,11 +1,12 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part089.c - 核心引擎模块第089部分
 // 包含文本处理、数值计算和渲染相关的函数
 
 // 全局变量
-extern longlong _DAT_180c8a9b0;      // 引擎全局上下文
-extern ulonglong _DAT_180bf00a8;     // 安全检查相关
+extern longlong SYSTEM_DATA_MANAGER_A;      // 引擎全局上下文
+extern ulonglong GET_SECURITY_COOKIE();     // 安全检查相关
 extern char global_var_5912_ptr[];          // 数据类型映射表
 extern char system_buffer_ptr;            // 默认格式字符串
 extern char global_var_2224_ptr;            // 操作符标识
@@ -45,8 +46,8 @@ void process_formatted_text_render(float *param_1, int param_2, uint64_t param_3
   char processed_text[33];
   ulonglong security_token;
   
-  engine_context = _DAT_180c8a9b0;
-  security_token = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  engine_context = SYSTEM_DATA_MANAGER_A;
+  security_token = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   
   // 初始化渲染状态
   *(int8_t *)(*(longlong *)(engine_context + 0x1af8) + 0xb1) = 1;
@@ -127,7 +128,7 @@ void process_formatted_text_render(float *param_1, int param_2, uint64_t param_3
   // 更新渲染上下文
   if (*(int *)(engine_context + 0x2da0) == 0) {
     *(int32_t *)(engine_context + 0x2da0) = *(int32_t *)(engine_context + 0x1b2c);
-    temp_ptr = _DAT_180c8a9b0;
+    temp_ptr = SYSTEM_DATA_MANAGER_A;
     *(int *)(engine_context + 0x1b18) = param_2;
     *(int8_t *)(temp_ptr + 0x1b1c) = 0;
     if ((param_2 != 0) && (*(int *)(temp_ptr + 0x1b20) != param_2)) {
@@ -175,8 +176,8 @@ void execute_numeric_operation(char *param_1, uint param_2, double *param_3, dou
   int8_t temp_buffer[64];
   ulonglong security_token;
   
-  engine_context = _DAT_180c8a9b0;
-  security_token = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  engine_context = SYSTEM_DATA_MANAGER_A;
+  security_token = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   *(int8_t *)(*(longlong *)(engine_context + 0x1af8) + 0xb1) = 1;
   
   // 检查渲染状态
@@ -618,7 +619,7 @@ ulonglong process_batch_numeric_operations(char *param_1, uint64_t param_2, long
   byte batch_result;
   int32_t operation_flag;
   
-  context_base = _DAT_180c8a9b0;
+  context_base = SYSTEM_DATA_MANAGER_A;
   *(int8_t *)(*(longlong *)(context_base + 0x1af8) + 0xb1) = 1;
   status_flag = *(ulonglong *)(context_base + 0x1af8);
   
@@ -633,14 +634,14 @@ ulonglong process_batch_numeric_operations(char *param_1, uint64_t param_2, long
   FUN_18012d4c0(param_4);
   
   array_index = 0;
-  context_base = _DAT_180c8a9b0;
+  context_base = SYSTEM_DATA_MANAGER_A;
   if (0 < param_4) {
     do {
       FUN_18012e2d0(array_index);
       operation_success = FUN_180114450(&global_var_2224_ptr, 4, param_3, 0, 0, param_7, 0);
       batch_result = batch_result | operation_success;
       func_0x00018012e760(0, *(int32_t *)(engine_context + 0x1674));
-      context_base = _DAT_180c8a9b0;
+      context_base = SYSTEM_DATA_MANAGER_A;
       render_counter = (int *)(*(longlong *)(context_base + 0x1af8) + 0x218);
       *render_counter = *render_counter + -1;
       *(int8_t *)(*(longlong *)(context_base + 0x1af8) + 0xb1) = 1;
@@ -698,14 +699,14 @@ byte process_batch_numeric_operations_simple(void)
   FUN_18012d4c0(operation_count);
   
   array_index = 0;
-  context_base = _DAT_180c8a9b0;
+  context_base = SYSTEM_DATA_MANAGER_A;
   if (0 < operation_count) {
     do {
       FUN_18012e2d0(array_index);
       operation_success = FUN_180114450(&global_var_2224_ptr, 4, value_array, 0, 0);
       batch_result = batch_result | operation_success;
       func_0x00018012e760(0, *(int32_t *)(context_ptr + 0x1674));
-      context_base = _DAT_180c8a9b0;
+      context_base = SYSTEM_DATA_MANAGER_A;
       render_counter = (int *)(*(longlong *)(context_base + 0x1af8) + 0x218);
       *render_counter = *render_counter + -1;
       *(int8_t *)(*(longlong *)(context_base + 0x1af8) + 0xb1) = 1;
@@ -761,7 +762,7 @@ byte process_loop_batch_numeric_operations(void)
     operation_success = FUN_180114450(&global_var_2224_ptr, 4, value_array);
     loop_result = loop_result | operation_success;
     func_0x00018012e760(0, *(int32_t *)(context_ptr + 0x1674));
-    context_base = _DAT_180c8a9b0;
+    context_base = SYSTEM_DATA_MANAGER_A;
     render_counter = (int *)(*(longlong *)(context_base + 0x1af8) + 0x218);
     *render_counter = *render_counter + -1;
     *(int8_t *)(*(longlong *)(context_base + 0x1af8) + 0xb1) = 1;

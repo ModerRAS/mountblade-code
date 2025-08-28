@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 01_initialization_part036.c - 初始化模块第36部分
 // 本文件包含文件系统、I/O完成端口和内存管理相关的初始化函数
@@ -28,7 +29,7 @@ void create_file_handle_with_completion_port(longlong engine_context, longlong f
   
   // 初始化栈保护和安全cookie
   stack_guard = 0xfffffffffffffffe;
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   initialize_string_helper(&temp_ptr1);
   
   // 获取文件路径
@@ -1125,7 +1126,7 @@ void string_search_and_replace(longlong target_string, longlong search_string, l
   
   // 初始化栈保护
   stack_guard = 0xfffffffffffffffe;
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   temp_ptr = &unknown_var_2008_ptr;
   result_buffer = work_buffer;
   result_len = 0;

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part007.c - 核心引擎组件注册函数
 // 本文件包含25个函数，主要用于注册各种引擎组件和初始化系统

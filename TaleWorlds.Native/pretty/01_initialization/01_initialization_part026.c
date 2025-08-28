@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 01_initialization_part026.c - 初始化模块第26部分
 // 包含25个函数，主要涉及内存管理、字符串操作和系统初始化功能

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 05_networking_part066.c - 10 个函数
 
@@ -344,7 +345,7 @@ LAB_1808769aa:
         (iVar5 = FUN_1808dea80(), uVar15 = extraout_XMM0_Da_06, iVar5 == 0)))) {
       (**(code **)*unaff_RSI)(uVar15,0);
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0));
+      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
     }
   }
 LAB_180876b83:
@@ -421,7 +422,7 @@ void FUN_180876d90(longlong param_1,longlong *param_2)
   int8_t auStack_38 [40];
   ulonglong uStack_10;
   
-  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
+  uStack_10 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_58;
   if (*(int *)(param_1 + 0x48) == 0) {
     lVar3 = (**(code **)(*param_2 + 0x110))(param_2,param_1 + 0x30,1);
     if (lVar3 == 0) {
@@ -481,7 +482,7 @@ void FUN_180876eb0(longlong param_1,longlong *param_2)
   int8_t auStack_60 [40];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_98;
   puStack_78 = &unknown_var_6824_ptr;
   uStack_70 = 0x7f7fffff;
   uStack_6c = 0;
@@ -561,7 +562,7 @@ void FUN_180877030(longlong param_1,longlong *param_2,longlong param_3)
   int8_t auStack_c8 [128];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_158;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_158;
   lStack_e8 = param_3;
   if (*(uint *)(param_1 + 0x218) < 0x49) {
     for (iVar8 = 0; (-1 < iVar8 && (iVar8 < *(int *)(param_1 + 0x1a8))); iVar8 = iVar8 + 1) {
@@ -724,7 +725,7 @@ void FUN_180877560(longlong *param_1,longlong *param_2,longlong *param_3)
   int8_t auStack_80 [40];
   ulonglong uStack_58;
   
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_118;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_118;
   iVar3 = (int)param_1[1];
   lVar7 = (longlong)iVar3;
   uVar5 = (int)*(uint *)((longlong)param_2 + 0xc) >> 0x1f;

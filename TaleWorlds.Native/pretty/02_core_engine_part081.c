@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part081.c - 10 个函数
 
@@ -110,7 +111,7 @@ void FUN_18010e9ca(void)
         unaff_XMM11_Da = fVar11;
       }
       FUN_180122320(*(uint64_t *)(unaff_RBP + 0x40),unaff_RDI,uVar6,0);
-      unaff_RSI = _DAT_180c8a9b0;
+      unaff_RSI = SYSTEM_DATA_MANAGER_A;
       fVar12 = fVar12 + unaff_XMM10_Da;
       unaff_RDI = uVar6 + 1;
       unaff_XMM6_Da = unaff_XMM6_Da + unaff_XMM10_Da;
@@ -216,7 +217,7 @@ void FUN_18010ea4d(void)
       unaff_XMM11_Da = fVar9;
     }
     FUN_180122320(*(uint64_t *)(unaff_RBP + 0x40),unaff_RDI,uVar5,0);
-    unaff_RSI = _DAT_180c8a9b0;
+    unaff_RSI = SYSTEM_DATA_MANAGER_A;
     unaff_XMM6_Da = unaff_XMM6_Da + unaff_XMM10_Da;
     unaff_RDI = uVar5 + 1;
     fVar11 = fVar11 + unaff_XMM10_Da;
@@ -447,8 +448,8 @@ void FUN_18010f040(uint64_t param_1,uint64_t param_2)
   longlong lVar2;
   int iVar3;
   
-  lVar2 = _DAT_180c8a9b0;
-  *(int8_t *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
+  lVar2 = SYSTEM_DATA_MANAGER_A;
+  *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
   if (*(char *)(*(longlong *)(lVar2 + 0x1af8) + 0xb4) == '\0') {
     lVar1 = lVar2 + 0x3054;
     iVar3 = FUN_18004b9b0(lVar1,0xc01,param_1,param_2);

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 核心引擎模块第227部分
 // 该文件包含核心引擎的复杂函数实现

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part061.c - 渲染系统高级状态管理和参数控制模块
 // 包含18个核心函数，涵盖渲染状态管理、参数设置、标志位处理、
@@ -64,7 +65,7 @@
 #define RenderingSystem_CheckRenderCapability FUN_18029e2f0
 
 // 全局变量引用
-extern ulonglong _DAT_180bf00a8;      // 渲染系统全局数据指针
+extern ulonglong GET_SECURITY_COOKIE();      // 渲染系统全局数据指针
 extern longlong _DAT_180c86938;      // 渲染系统核心数据指针
 extern longlong _DAT_180c86870;      // 渲染系统参数指针
 extern char system_buffer_2846;           // 渲染系统状态标志
@@ -126,7 +127,7 @@ void FUN_18029cdd0(longlong param_1,uint64_t *param_2)
   ulonglong security_key;
   
   // 初始化安全缓冲区
-  security_key = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  security_key = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   
   // 计算材质句柄
   material_handle = *(longlong *)
@@ -307,7 +308,7 @@ void FUN_18029d0a0(longlong param_1,uint64_t *param_2,int32_t *param_3)
   ulonglong security_key;
   
   // 初始化安全缓冲区
-  security_key = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  security_key = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   
   // 提取纹理数据
   texture_handle1 = *param_2;                    // 纹理句柄1
@@ -444,7 +445,7 @@ void FUN_18029d280(longlong param_1,longlong param_2)
   ulonglong security_key;
   
   magic_value = 0xfffffffffffffffe;
-  security_key = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  security_key = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   slot_index = 0;
   
   // 初始化报告缓冲区
@@ -575,7 +576,7 @@ void FUN_18029d500(longlong param_1,longlong param_2)
   ulonglong security_key;
   
   magic_value = 0xfffffffffffffffe;
-  security_key = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  security_key = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   slot_index = 0;
   report_type = 0;
   buffer_size = *(int *)(param_2 + 0x10) + 0x1a;
@@ -690,7 +691,7 @@ void FUN_18029d760(longlong param_1,int param_2,char param_3,longlong param_4,in
   uint64_t target_handles[RENDER_PARAM_MAX_SLOTS];
   ulonglong security_key;
   
-  security_key = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  security_key = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   target_data = 0;
   target_formats[0] = 0xffffffff;  // 默认格式
   
@@ -788,7 +789,7 @@ void FUN_18029d930(longlong param_1,uint64_t param_2,char param_3,longlong param
   uint64_t texture_handles[RENDER_PARAM_MAX_SLOTS];
   ulonglong security_key;
   
-  security_key = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  security_key = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   texture_data = 0;
   
   // 处理纹理数据
@@ -1026,7 +1027,7 @@ void FUN_18029de40(longlong param_1,int32_t param_2)
   uint64_t slot_handle_depth;
   ulonglong security_key;
   
-  security_key = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  security_key = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   
   // 检查插槽0的变化
   slot_data = *(longlong *)(param_1 + 0x83b8);

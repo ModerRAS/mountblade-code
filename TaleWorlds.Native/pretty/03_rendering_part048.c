@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part048.c - 11 个函数
 
@@ -333,10 +334,10 @@ void FUN_180291cf0(longlong param_1,int param_2,uint64_t param_3,uint64_t param_
         iVar13 = iVar9;
       }
       if (iVar17 < iVar13) {
-        if (_DAT_180c8a9b0 != 0) {
-          *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+        if (SYSTEM_DATA_MANAGER_A != 0) {
+          *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
         }
-        uVar10 = func_0x000180120ce0((longlong)iVar13 << 5,_DAT_180c8a9a8,param_3,param_4,
+        uVar10 = func_0x000180120ce0((longlong)iVar13 << 5,SYSTEM_DATA_MANAGER_B,param_3,param_4,
                                      0xfffffffffffffffe);
         if (*(longlong *)(param_1 + 0xa0) != 0) {
                     // WARNING: Subroutine does not return
@@ -885,7 +886,7 @@ void FUN_1802923e0(longlong param_1,longlong param_2,int param_3,uint param_4,ch
   int iStack_d0;
   ulonglong uStack_c0;
   
-  uStack_c0 = _DAT_180bf00a8 ^ (ulonglong)auStack_f8;
+  uStack_c0 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_f8;
   uStack_e8 = param_4;
   if (1 < param_3) {
     iVar9 = param_3 + -1;

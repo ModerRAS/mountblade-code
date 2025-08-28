@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part029.c - 渲染系统高级处理模块
 // 包含6个核心函数，涵盖渲染对象处理、材质管理、资源清理、状态比较和初始化等功能
@@ -652,7 +653,7 @@ void initialize_rendering_system(void) {
 
 // 常量定义
 #define GLOBAL_RENDER_CONTEXT _DAT_180c8ed18
-#define GLOBAL_SECURITY_COOKIE _DAT_180bf00a8
+#define GLOBAL_SECURITY_COOKIE GET_SECURITY_COOKIE()
 #define GLOBAL_TEXTURE_MANAGER _DAT_180c86930
 #define DEFAULT_MATERIAL_NAME &system_buffer_ptr
 #define DEFAULT_TEXTURE_NAME &system_buffer_ptr

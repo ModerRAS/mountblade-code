@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 99_part_01_part021.c - 系统资源管理和事件处理模块
 // 本模块包含7个核心函数，主要功能包括：
@@ -101,7 +102,7 @@ void SystemResourceBatchProcessor(uint64_t param_1, char param_2, char param_3) 
     // 初始化系统资源管理器
     lVar4 = _DAT_180c86930;
     uStack_50 = 0xfffffffffffffffe;
-    alStack_48[3] = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
+    alStack_48[3] = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_c8;
     lStack_a0 = _DAT_180c86930;
     lStack_58 = _DAT_180c86930 + 0x770;
     cStack_a8 = param_2;
@@ -675,7 +676,7 @@ void SystemMemoryManager(uint64_t param_1, longlong *param_2) {
     
     // 初始化内存管理器
     uStack_a0 = 0xfffffffffffffffe;
-    uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+    uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
     lStack_a8 = _DAT_180c86930;
     plVar7 = *(longlong **)(_DAT_180c86930 + 0x1d0);
     lVar8 = _DAT_180c86930;
@@ -851,7 +852,7 @@ void SystemStatusMonitor(uint64_t param_1, longlong *param_2, float param_3) {
     // 初始化状态监控器
     lVar1 = _DAT_180c86930;
     uStack_60 = 0xfffffffffffffffe;
-    uStack_40 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
+    uStack_40 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_b8;
     iVar7 = 0;
     uStack_98 = 0;
     plVar6 = (longlong *)(_DAT_180c86930 + 0xc60);

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part180.c - 引擎初始化和字符串处理模块
 // 本模块包含引擎核心初始化、字符串搜索、数据处理和系统资源管理功能
@@ -35,7 +36,7 @@ void initialize_engine_system(void)
   ulonglong uStack_20;
   
   uStack_108 = 0xfffffffffffffffe;
-  uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_138;
+  uStack_20 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_138;
   plVar1 = *(longlong **)(_DAT_180c8ed08 + 0x18);
   if (plVar1 != (longlong *)0x0) {
     pcVar2 = *(code **)(*plVar1 + 0x20);

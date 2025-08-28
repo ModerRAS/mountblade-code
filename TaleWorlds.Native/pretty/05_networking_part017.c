@@ -179,7 +179,7 @@
 #define NetworkingSystem_ConfigPtr network_config_global_ptr
 
 // 系统安全Cookie变量 - 用于栈保护和安全检查
-#define NetworkingSystem_SecurityCookie _DAT_180bf00a8
+#define NetworkingSystem_SecurityCookie GET_SECURITY_COOKIE()
 
 // 数据拼接宏 - 用于将不同位宽的数据拼接成完整数据
 #define NetworkingSystem_Concat32Low CONCAT44     // 32位数据拼接（低32位）

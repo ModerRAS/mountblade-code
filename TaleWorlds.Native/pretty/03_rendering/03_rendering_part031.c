@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part031.c - 渲染系统高级数据结构和缓存管理模块
 // 包含16个核心函数，涵盖渲染数据结构操作、缓存管理、内存分配、哈希表处理和高级渲染数据管理等功能

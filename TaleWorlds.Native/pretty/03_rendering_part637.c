@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part637.c - 18 个函数
 
@@ -654,7 +655,7 @@ void FUN_180623800(uint64_t *param_1)
   ulonglong uStack_18;
   
   uStack_b8 = 0xfffffffffffffffe;
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
   puVar4 = _DAT_180c8ecf0;
   puStack_b0 = param_1;
   if (_DAT_180c8ecf0 == (uint64_t *)0x0) {
@@ -913,7 +914,7 @@ void FUN_180623ce0(void)
   int32_t auStack_68 [20];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_88;
   auStack_68[0] = 0x48;
   uVar1 = GetCurrentProcess();
   K32GetProcessMemoryInfo(uVar1,auStack_68,0x48);
@@ -940,7 +941,7 @@ void FUN_180623d40(void)
   longlong lStack_48;
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_78;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_78;
   auStack_58[0] = 0x40;
   iVar1 = GlobalMemoryStatusEx(auStack_58);
   if (iVar1 != 0) {
@@ -1000,7 +1001,7 @@ void FUN_180623de0(longlong *param_1)
   ulonglong uStack_18;
   
   uStack_a0 = 0xfffffffffffffffe;
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
   *param_1 = (longlong)&unknown_var_720_ptr;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;

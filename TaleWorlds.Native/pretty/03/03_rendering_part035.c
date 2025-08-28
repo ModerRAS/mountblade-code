@@ -502,7 +502,7 @@ void copy_error_message(uint64_t dest, uint64_t size, char *src,
                        uint64_t param4, uint64_t param5, uint64_t param6);
 
 /* 全局变量声明 */
-extern uint64_t _DAT_180bf00a8;    // 栈保护cookie
+extern uint64_t GET_SECURITY_COOKIE();    // 栈保护cookie
 extern uint64_t _DAT_180c8ed08;    // 全局数据指针
 extern void *global_state_424;         // 虚表地址
 extern uint64_t _DAT_180c8a9c8;     // 配置数据

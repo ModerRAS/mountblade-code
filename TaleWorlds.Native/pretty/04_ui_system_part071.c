@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part071.c - 7 个函数
 
@@ -37,7 +38,7 @@ void FUN_180705980(uint64_t *param_1,int32_t *param_2,uint64_t param_3,int param
   uint64_t *puStack_40;
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_a8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_a8;
   uStack_70 = 0;
   uStack_6c = 0;
   if (param_2[0x11] != 0) {
@@ -227,7 +228,7 @@ void FUN_180706b30(longlong param_1,int param_2,int param_3)
   int32_t uStack_214;
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_258;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_258;
   if (((0 < param_2) && (param_2 != param_3)) && (param_2 <= param_3)) {
     uStack_214 = 0;
                     // WARNING: Subroutine does not return

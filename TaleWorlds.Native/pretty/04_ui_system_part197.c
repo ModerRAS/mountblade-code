@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part197.c - 7 个函数
 
@@ -260,7 +261,7 @@ uint64_t FUN_180782790(longlong *param_1)
         uVar5 = FUN_1807d4800();
         if ((int)uVar5 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(uint64_t *)(lVar2 + 0x270),
+          FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(uint64_t *)(lVar2 + 0x270),
                         &unknown_var_9488_ptr,0x114,1);
         }
       }
@@ -269,7 +270,7 @@ uint64_t FUN_180782790(longlong *param_1)
       uVar5 = FUN_1807d4800();
       if ((int)uVar5 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(uint64_t *)(lVar2 + 0x268),
+        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(uint64_t *)(lVar2 + 0x268),
                       &unknown_var_9488_ptr,0x10b,1);
       }
     }
@@ -278,7 +279,7 @@ uint64_t FUN_180782790(longlong *param_1)
     uVar5 = FUN_1807d4800();
     if ((int)uVar5 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(uint64_t *)(lVar2 + 0x260),
+      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(uint64_t *)(lVar2 + 0x260),
                     &unknown_var_9488_ptr,0x102,1);
     }
   }
@@ -605,7 +606,7 @@ void FUN_180783090(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   int8_t auStack_b8 [96];
   ulonglong uStack_58;
   
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_b8;
                     // WARNING: Subroutine does not return
   memset(param_3,0,0xa0);
 }

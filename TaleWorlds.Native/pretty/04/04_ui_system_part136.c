@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // =============================================================================
 // 04_ui_system_part136.c - UI系统高级事件处理和状态管理模块
@@ -217,7 +218,7 @@ int ui_system_process_event_queue(longlong event_context)
     int32_t validation_flag;
     
     // 分配事件资源
-    resource_handle = ui_system_allocate_event_resources(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
+    resource_handle = ui_system_allocate_event_resources(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                                                      UI_RESOURCE_POOL_SIZE, 
                                                      &global_state_8576_ptr, 
                                                      UI_RESOURCE_ALIGNMENT, 
@@ -651,7 +652,7 @@ void ui_system_event_handler_thunk(longlong event_context)
     ulonglong workspace_cookie;
     
     // 初始化栈保护cookie
-    workspace_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    workspace_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     
     // 检查事件上下文状态
     if (*(char *)(event_context + 8) != '\0') {
@@ -943,7 +944,7 @@ void ui_system_validate_event_state(longlong event_context)
     ulonglong config_cookie;
     
     // 初始化栈保护cookie
-    stack_cookie = _DAT_180bf00a8 ^ (ulonglong)event_stack;
+    stack_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)event_stack;
     
     // 检查事件上下文状态
     if (*(char *)(event_context + 8) == '\0') goto validation_complete;

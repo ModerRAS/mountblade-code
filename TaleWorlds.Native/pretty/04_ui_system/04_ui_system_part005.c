@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 04_ui_system_part005.c - UI系统事件处理器和控件管理器
 // 本文件包含UI系统的事件处理、控件管理、属性设置等功能
@@ -82,7 +83,7 @@ void ui_system_resource_manager(void)
   ulonglong stack_parameter;
   
   stack_parameter = 0xfffffffffffffffe;
-  resource_hash_value = _DAT_180bf00a8 ^ (ulonglong)resource_buffer;
+  resource_hash_value = GET_SECURITY_COOKIE() ^ (ulonglong)resource_buffer;
   resource_data_ptr = (int8_t *)0x0;
   resource_count = 0;
   temp_resource_type = 0;

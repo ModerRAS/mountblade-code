@@ -651,7 +651,7 @@ void FUN_180852090(uint64_t *param_1, uint64_t *param_2)
     
     // 第一阶段：安全初始化和栈保护
     // 初始化安全栈变量，防止栈溢出和内存破坏攻击
-    uStack_50 = _DAT_180bf00a8 ^ (ulonglong)auStack_338;
+    uStack_50 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_338;
     
     // 第二阶段：会话参数验证和初始化
     // 验证会话句柄的有效性并初始化会话状态
@@ -965,7 +965,7 @@ LAB_180852518:
                 if ((0 < (int)uVar17) && (*plVar13 != 0)) {
                     plStack_318 = (longlong *)CONCAT71(plStack_318._1_7_, 1);
                     // 警告：子函数不返回
-                    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *plVar13, &unknown_var_8432_ptr, 0x100);
+                    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *plVar13, &unknown_var_8432_ptr, 0x100);
                 }
                 *plVar13 = 0;
                 *(int32_t *)((longlong)param_1 + 0x8c) = 0;
@@ -1037,7 +1037,7 @@ LAB_1808526bf:
             if ((0 < (int)uVar17) && (*plVar13 != 0)) {
                 plStack_318 = (longlong *)CONCAT71(plStack_318._1_7_, 1);
                 // 警告：子函数不返回
-                FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *plVar13, &unknown_var_8432_ptr, 0x100);
+                FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *plVar13, &unknown_var_8432_ptr, 0x100);
             }
             *plVar13 = 0;
             *(int32_t *)((longlong)param_1 + 0x9c) = 0;

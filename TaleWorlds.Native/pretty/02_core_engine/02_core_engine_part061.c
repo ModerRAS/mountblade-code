@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part061.c - 核心引擎模块第061部分
 // 包含4个函数：渲染状态管理、内存清理、渲染资源分配和场景渲染
@@ -90,7 +91,7 @@ void process_render_state(longlong render_context, longlong scene_data)
     return;
   }
   uStack_280 = 0xfffffffffffffffe;
-  uStack_68 = _DAT_180bf00a8 ^ (ulonglong)auStack_2f8;
+  uStack_68 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_2f8;
   lVar17 = (longlong)*(int *)(param_2 + 0x10);
   lStack_2a8 = param_2;
   lStack_298 = param_1;

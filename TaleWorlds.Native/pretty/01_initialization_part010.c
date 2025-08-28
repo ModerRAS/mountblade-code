@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * 01_initialization_part010.c - 初始化系统组件注册和配置模块

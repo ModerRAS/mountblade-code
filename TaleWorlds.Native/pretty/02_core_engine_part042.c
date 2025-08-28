@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part042.c - 14 个函数
 
@@ -82,7 +83,7 @@ void FUN_180081220(uint64_t param_1,longlong *param_2,int param_3)
   
   uVar1 = _DAT_180c8a998;
   uStack_a0 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_c8;
   uStack_a8 = 0;
   param_3 = param_3 * 4;
   puStack_88 = &unknown_var_3480_ptr;
@@ -128,7 +129,7 @@ void FUN_180081350(uint64_t param_1,longlong *param_2,int param_3)
   
   uVar1 = _DAT_180c8a998;
   uStack_a0 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_c8;
   uStack_a8 = 0;
   param_3 = param_3 * 2;
   puStack_88 = &unknown_var_3480_ptr;
@@ -172,7 +173,7 @@ void FUN_180081480(uint64_t param_1,longlong *param_2,int32_t param_3)
   ulonglong uStack_28;
   
   uStack_a0 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_c8;
   uStack_a8 = 0;
   puStack_88 = &unknown_var_3480_ptr;
   puStack_80 = auStack_70;
@@ -217,7 +218,7 @@ void FUN_180081590(uint64_t param_1,longlong *param_2,int32_t param_3)
   
   uVar1 = _DAT_180c8a998;
   uStack_a0 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_c8;
   uStack_a8 = 0;
   puStack_88 = &unknown_var_3480_ptr;
   puStack_80 = auStack_70;
@@ -264,7 +265,7 @@ void FUN_1800816c0(longlong param_1,longlong *param_2)
   ulonglong uStack_38;
   
   uStack_a0 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
   uStack_b8 = 0;
   iVar1 = **(int **)(param_1 + 8);
   *(int **)(param_1 + 8) = *(int **)(param_1 + 8) + 1;
@@ -335,7 +336,7 @@ void FUN_180081870(longlong param_1,longlong *param_2)
   ulonglong uStack_38;
   
   uStack_a0 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
   uStack_b8 = 0;
   iVar1 = **(int **)(param_1 + 8);
   *(int **)(param_1 + 8) = *(int **)(param_1 + 8) + 1;
@@ -406,7 +407,7 @@ void FUN_180081a20(longlong param_1,longlong *param_2)
   ulonglong uStack_38;
   
   uStack_a0 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
   uStack_b8 = 0;
   iVar4 = **(int **)(param_1 + 8);
   *(int **)(param_1 + 8) = *(int **)(param_1 + 8) + 1;
@@ -477,7 +478,7 @@ void FUN_180081bd0(longlong param_1,longlong *param_2)
   ulonglong uStack_38;
   
   uStack_a0 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
   uStack_b8 = 0;
   iVar1 = **(int **)(param_1 + 8);
   *(int **)(param_1 + 8) = *(int **)(param_1 + 8) + 1;
@@ -548,7 +549,7 @@ void FUN_180081d80(longlong param_1,longlong *param_2)
   ulonglong uStack_38;
   
   uStack_a0 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
   uStack_b8 = 0;
   iVar1 = **(int **)(param_1 + 8);
   *(int **)(param_1 + 8) = *(int **)(param_1 + 8) + 1;
@@ -619,7 +620,7 @@ void FUN_180081f30(longlong param_1,longlong *param_2)
   ulonglong uStack_38;
   
   uStack_a0 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
   uStack_b8 = 0;
   iVar1 = **(int **)(param_1 + 8);
   *(int **)(param_1 + 8) = *(int **)(param_1 + 8) + 1;
@@ -689,7 +690,7 @@ void FUN_1800820e0(longlong param_1,longlong *param_2)
   ulonglong uStack_38;
   
   uStack_a0 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
   uStack_b8 = 0;
   iVar1 = **(int **)(param_1 + 8);
   *(int **)(param_1 + 8) = *(int **)(param_1 + 8) + 1;

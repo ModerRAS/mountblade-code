@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part654.c - 8 个函数
 
@@ -28,7 +29,7 @@ void FUN_18063c230(longlong param_1,float *param_2)
   int aiStack_c8 [6];
   ulonglong uStack_b0;
   
-  uStack_b0 = _DAT_180bf00a8 ^ (ulonglong)aiStack_c8;
+  uStack_b0 = GET_SECURITY_COOKIE() ^ (ulonglong)aiStack_c8;
   fVar1 = param_2[0xc];
   pfVar18 = (float *)(param_1 + 0x18);
   fVar2 = param_2[8];
@@ -137,7 +138,7 @@ void FUN_18063c5e0(longlong param_1,longlong param_2)
   uint64_t uStack_40;
   ulonglong uStack_30;
   
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)&uStack_48;
+  uStack_30 = GET_SECURITY_COOKIE() ^ (ulonglong)&uStack_48;
   uVar2 = *(uint64_t *)(param_2 + 0x20);
   pfVar11 = (float *)(param_1 + 0x18);
   fVar1 = *(float *)(param_2 + 0xb0);
@@ -291,7 +292,7 @@ void FUN_18063c930(longlong param_1,longlong param_2)
   uint64_t uStack_60;
   ulonglong uStack_50;
   
-  uStack_50 = _DAT_180bf00a8 ^ (ulonglong)&uStack_68;
+  uStack_50 = GET_SECURITY_COOKIE() ^ (ulonglong)&uStack_68;
   uVar6 = *(uint64_t *)(param_2 + 0x20);
   pfVar14 = (float *)(param_1 + 0x18);
   lVar13 = 0;
@@ -478,7 +479,7 @@ void FUN_18063cde0(longlong *param_1,int8_t *param_2)
   int8_t auStack_518 [1232];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_578;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_578;
   param_1[1] = *param_1;
   if (param_2 == (int8_t *)0x0) {
     RtlCaptureContext(auStack_518);
@@ -619,7 +620,7 @@ void FUN_18063d0c0(void)
   ulonglong uStack_58;
   
   uStack_218 = 0xfffffffffffffffe;
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_2a8;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_2a8;
                     // WARNING: Subroutine does not return
   memset(auStack_178,0,0x118);
 }
@@ -715,7 +716,7 @@ void FUN_18063d700(uint64_t param_1,longlong *param_2)
   ulonglong uStack_48;
   
   uStack_d10 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_de8;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_de8;
   FUN_180057110();
   uStack_d08 = 0x180c96740;
   iVar1 = _Mtx_lock(0x180c96740);

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part300_sub002_sub002.c - 渲染系统高级颜色处理和数据转换模块
 // 包含6个核心函数，涵盖颜色数据提取、数据缓冲处理、像素数据读取、纹理数据处理、字符串匹配和位标志处理等高级渲染功能

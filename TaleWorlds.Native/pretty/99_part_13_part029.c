@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_13_part029.c - 2 个函数
 
@@ -11,7 +12,7 @@ void FUN_1808b8620(uint64_t *param_1,longlong param_2,uint64_t param_3)
   int8_t auStack_78 [80];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_98;
   lVar1 = (**(code **)(*(longlong *)*param_1 + 0x110))((longlong *)*param_1,param_2 + 0x20,1);
   if (lVar1 == 0) {
                     // WARNING: Subroutine does not return
@@ -64,7 +65,7 @@ LAB_1808b877e:
     if (plVar4 != (longlong *)0x0) {
       iVar6 = 0;
       plVar2 = (longlong *)
-               FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x40,&unknown_var_2288_ptr,0x1f5,0,0,1
+               FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x40,&unknown_var_2288_ptr,0x1f5,0,0,1
                             );
       if (plVar2 == (longlong *)0x0) {
         return 0x26;
@@ -160,7 +161,7 @@ LAB_1808b877e:
     if (plVar4 != (longlong *)0x0) {
       iVar6 = 0;
       plVar2 = (longlong *)
-               FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x40,&unknown_var_2288_ptr,0x1f5,0,0,1
+               FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x40,&unknown_var_2288_ptr,0x1f5,0,0,1
                             );
       if (plVar2 == (longlong *)0x0) {
         return 0x26;

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 04_ui_system_part021_sub002_sub002.c - UI系统高级动画和变换处理模块
 // 
@@ -253,7 +254,7 @@ void ProcessUIAdvancedAnimationTransform(
     ulonglong stack_ulong_1;
     
     // 初始化堆栈保护变量
-    stack_ulong_1 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_1;
+    stack_ulong_1 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_1;
     
     // 初始化变量
     animation_counter = 0;

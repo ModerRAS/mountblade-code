@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part251.c - 16 个函数
 
@@ -25,11 +26,11 @@ void FUN_180217300(longlong *param_1)
     } while ((ulonglong)(longlong)iVar2 < (ulonglong)(param_1[0x57] - param_1[0x56] >> 4));
   }
   lVar1 = param_1[0x60];
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_158;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_158;
   lStack_128 = 0;
   iVar2 = FUN_180754f10(lVar1,&uStack_120,&lStack_128);
   if (((iVar2 != 0) || (iVar2 = func_0x000180753860(uStack_120), iVar2 != 0)) &&
-     ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
+     ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
     puStack_138 = auStack_118;
     auStack_118[0] = 0;
                     // WARNING: Subroutine does not return
@@ -235,7 +236,7 @@ void FUN_1802177f0(longlong param_1)
   ulonglong uStack_38;
   
   uStack_148 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_1a8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1a8;
   FUN_1801299b0(&unknown_var_5280_ptr,0,0);
   plVar1 = *(longlong **)(param_1 + 0x38);
   lVar6 = *plVar1;

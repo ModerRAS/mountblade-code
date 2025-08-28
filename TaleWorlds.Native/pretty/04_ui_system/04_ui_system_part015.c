@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 04_ui_system_part015.c - UI系统高级矩阵变换和骨骼动画处理器
 // 包含1个核心函数：UI系统高级矩阵变换和骨骼动画处理器
@@ -138,7 +139,7 @@ void ui_system_advanced_matrix_transform_processor(longlong context_ptr,longlong
   int8_t uStack_f4;
   ulonglong uStack_e8;
   
-  uStack_e8 = _DAT_180bf00a8 ^ (ulonglong)auStack_1c8;
+  uStack_e8 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1c8;
   fVar39 = *(float *)(param_1 + 0x6150);
   lStack_188 = *(longlong *)(param_2 + 0x208);
   puStack_138 = param_5;

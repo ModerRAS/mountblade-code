@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_06_part001.c - 18 个函数
 
@@ -417,7 +418,7 @@ void FUN_1803a42d0(longlong param_1,longlong param_2,int32_t *param_3,int32_t pa
   int8_t auStack_168 [288];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_1c8;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1c8;
   iVar1 = *(int *)(param_2 + 0x10);
   uVar5 = 0;
   *(int32_t *)(param_1 + 0x24) = *param_3;
@@ -489,7 +490,7 @@ void FUN_1803a42d0(longlong param_1,longlong param_2,int32_t *param_3,int32_t pa
         fclose();
         puVar6[1] = 0;
         LOCK();
-        _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+        SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
         UNLOCK();
       }
     }
@@ -498,7 +499,7 @@ void FUN_1803a42d0(longlong param_1,longlong param_2,int32_t *param_3,int32_t pa
     fclose();
     puVar6[1] = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
   }
                     // WARNING: Subroutine does not return

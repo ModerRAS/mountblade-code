@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * @file 03_rendering_part109.c
@@ -382,7 +383,7 @@ void RenderingSystem_ExecuteResourceProcessing(longlong *resource_manager, int s
     return;
   }
   uStack_e8 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_248;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_248;
   uVar13 = (ulonglong)(uint)(param_3 - param_2);
   plStack_190 = param_1;
   do {

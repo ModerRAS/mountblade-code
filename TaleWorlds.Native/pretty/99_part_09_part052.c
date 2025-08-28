@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_09_part052.c - 12 个函数
 
@@ -89,7 +90,7 @@ void FUN_1805d4fe0(longlong *param_1)
   ulonglong uStack_88;
   
   uStack_118 = 0xfffffffffffffffe;
-  uStack_88 = _DAT_180bf00a8 ^ (ulonglong)auStack_198;
+  uStack_88 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_198;
   *(int32_t *)(param_1 + 0x22) = 0;
   lVar2 = *param_1;
   if ((*(longlong *)(lVar2 + 0x20f0) != 0) &&

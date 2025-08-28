@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part339.c - 2 个函数
 
@@ -259,7 +260,7 @@ LAB_180852518:
       if (*(int *)(unaff_R15 + 0x11) < 1) {
         if ((0 < (int)uVar16) && (*plVar12 != 0)) {
                     // WARNING: Subroutine does not return
-          FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*plVar12,&unknown_var_8432_ptr,0x100,1);
+          FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*plVar12,&unknown_var_8432_ptr,0x100,1);
         }
         *plVar12 = 0;
         *(int32_t *)((longlong)unaff_R15 + 0x8c) = 0;
@@ -326,7 +327,7 @@ LAB_1808526bf:
       if (0 < *(int *)(unaff_R15 + 0x13)) goto LAB_180852954;
       if ((0 < (int)uVar16) && (*plVar12 != 0)) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*plVar12,&unknown_var_8432_ptr,0x100,1);
+        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*plVar12,&unknown_var_8432_ptr,0x100,1);
       }
       *plVar12 = 0;
       *(int32_t *)((longlong)unaff_R15 + 0x9c) = 0;

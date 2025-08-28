@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_03_part035.c - 17 个函数
 
@@ -102,7 +103,7 @@ LAB_1801edb41:
     fVar20 = *(float *)(unaff_RBP + 0x67);
     if (SQRT(fVar19 * fVar19 + fVar20 * fVar20) != unaff_XMM7_Da) {
       fVar3 = *(float *)(lVar9 + 0x17f0);
-      fVar16 = (float)expf(*(float *)(_DAT_180c86920 + 0x16c0) * 4.0);
+      fVar16 = (float)expf(*(float *)(SYSTEM_STATE_MANAGER + 0x16c0) * 4.0);
       fVar18 = *(float *)(unaff_RBX + 0x202c);
       fVar17 = (float)powf();
       lVar8 = _DAT_180c86870;
@@ -207,7 +208,7 @@ void FUN_1801edb8b(void)
   fVar14 = *(float *)(unaff_RBP + 0x67);
   if (SQRT(fVar13 * fVar13 + fVar14 * fVar14) != unaff_XMM7_Da) {
     fVar1 = *(float *)(unaff_RDI + 0x17f0);
-    fVar10 = (float)expf(*(float *)(_DAT_180c86920 + 0x16c0) * 4.0);
+    fVar10 = (float)expf(*(float *)(SYSTEM_STATE_MANAGER + 0x16c0) * 4.0);
     fVar12 = *(float *)(unaff_RBX + 0x202c);
     fVar11 = (float)powf();
     lVar9 = _DAT_180c86870;

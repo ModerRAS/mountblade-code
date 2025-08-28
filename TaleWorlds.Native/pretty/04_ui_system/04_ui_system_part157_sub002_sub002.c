@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 04_ui_system_part157_sub002_sub002.c - UI系统高级事件处理和状态管理模块
 // 本文件包含11个核心函数，涵盖UI系统高级事件处理、状态管理、资源清理、内存管理、错误处理等高级UI功能
@@ -84,7 +85,7 @@ void UI_SystemEventHandler(longlong param_1, int param_2, int32_t *param_3, long
   ulonglong uStack_20;
   
   // 初始化栈保护和安全检查
-  uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
+  uStack_20 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_68;
   puVar3 = (int8_t *)0x0;
   auStack_48[0] = 0;
   
@@ -187,7 +188,7 @@ ulonglong UI_SystemStateManager(longlong *param_1, ulonglong param_2, ulonglong 
   ulonglong uVar12;
   
   // 检查系统状态标志
-  if (((*(uint *)(*param_1 + 0x78) & 0x10000) == 0) && (*(char *)(_DAT_180be12f0 + 0x158) == '\0')) {
+  if (((*(uint *)(*param_1 + 0x78) & 0x10000) == 0) && (*(char *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x158) == '\0')) {
     bVar2 = false;
   } else {
     bVar2 = true;
@@ -499,7 +500,7 @@ LAB_18075fba0:
                   *(longlong *)(*plVar6 + 8) = plVar6[1];
                   plVar6[1] = (longlong)plVar6;
                   *plVar6 = (longlong)plVar6;
-                  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), plVar6, &unknown_var_1040_ptr, 0xb73,
+                  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar6, &unknown_var_1040_ptr, 0xb73,
                                 1);
                 }
               }
@@ -520,7 +521,7 @@ LAB_18075fba0:
           
           // 处理事件系统清理
           if ((*(uint *)(param_1 + 100) >> 1 & 1) != 0) {
-            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *(uint64_t *)(param_1 + 0xe8),
+            FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *(uint64_t *)(param_1 + 0xe8),
                           &unknown_var_1040_ptr, 0xb8f, 1);
           }
           
@@ -533,7 +534,7 @@ LAB_18075fba0:
               uVar7 = 0xb9a;
               param_1 = *(longlong *)(param_1 + 0x130);
             }
-            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), param_1, &unknown_var_1040_ptr, uVar7, 1);
+            FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_1, &unknown_var_1040_ptr, uVar7, 1);
           }
           uVar4 = 0;
         }
@@ -541,7 +542,7 @@ LAB_18075fba0:
         // 处理资源释放失败的情况
         if (*(longlong *)(param_1 + 0x1f0) == 0) {
 LAB_18075fb15:
-          FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), lVar1, &unknown_var_1040_ptr, 0xb53, 1);
+          FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), lVar1, &unknown_var_1040_ptr, 0xb53, 1);
         }
         uVar4 = FUN_180743cc0(*(uint64_t *)(param_1 + 0xa8), 0);
         if ((int)uVar4 == 0) {
@@ -631,7 +632,7 @@ LAB_18075fba0:
               *(longlong *)(*plVar6 + 8) = plVar6[1];
               plVar6[1] = (longlong)plVar6;
               *plVar6 = (longlong)plVar6;
-              FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), plVar6, &unknown_var_1040_ptr, 0xb73,
+              FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar6, &unknown_var_1040_ptr, 0xb73,
                             1);
             }
           }
@@ -652,7 +653,7 @@ LAB_18075fba0:
       
       // 处理事件系统清理
       if ((*(uint *)(param_1 + 100) >> 1 & 1) != 0) {
-        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *(uint64_t *)(param_1 + 0xe8),
+        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *(uint64_t *)(param_1 + 0xe8),
                       &unknown_var_1040_ptr, 0xb8f, 1);
       }
       
@@ -665,7 +666,7 @@ LAB_18075fba0:
           uVar7 = 0xb9a;
           param_1 = *(longlong *)(param_1 + 0x130);
         }
-        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), param_1, &unknown_var_1040_ptr, uVar7, 1);
+        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_1, &unknown_var_1040_ptr, uVar7, 1);
       }
       uVar4 = 0;
     }
@@ -673,7 +674,7 @@ LAB_18075fba0:
     // 处理资源释放失败的情况
     if (*(longlong *)(param_1 + 0x1f0) == 0) {
 LAB_18075fb15:
-      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), lVar1, &unknown_var_1040_ptr, 0xb53, 1);
+      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), lVar1, &unknown_var_1040_ptr, 0xb53, 1);
     }
     uVar4 = FUN_180743cc0(*(uint64_t *)(param_1 + 0xa8), 0);
     if ((int)uVar4 == 0) {

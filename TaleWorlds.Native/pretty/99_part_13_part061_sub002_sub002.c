@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_13_part061_sub002_sub002.c - 1 个函数
 
@@ -925,7 +926,7 @@ uint64_t FUN_1808d0d90(longlong param_1,ulonglong param_2)
       }
       (**(code **)(*plVar8 + 0x28))(plVar8,0);
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar8,&unknown_var_5904_ptr,0xed7,1);
+      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar8,&unknown_var_5904_ptr,0xed7,1);
     }
   }
   return 0x1c;

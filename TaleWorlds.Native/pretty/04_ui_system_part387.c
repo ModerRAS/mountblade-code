@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part387.c - 3 个函数
 
@@ -149,7 +150,7 @@ LAB_1808784e0:
                   lVar10 = 0;
                   if (iVar11 != 0) {
                     if ((0x3ffffffe < iVar11 * 0x10 - 1U) ||
-                       (lVar10 = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar11 * 0x10
+                       (lVar10 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar11 * 0x10
                                                ,&unknown_var_8432_ptr,0xf4,0), lVar10 == 0))
                     goto LAB_180878734;
                     if (*(int *)(lVar7 + 0x60) != 0) {
@@ -160,7 +161,7 @@ LAB_1808784e0:
                   }
                   if ((0 < *(int *)(lVar7 + 100)) && (*(longlong *)(lVar7 + 0x58) != 0)) {
                     // WARNING: Subroutine does not return
-                    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),
+                    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                                   *(longlong *)(lVar7 + 0x58),&unknown_var_8432_ptr,0x100,1);
                   }
                   *(longlong *)(lVar7 + 0x58) = lVar10;
@@ -341,7 +342,7 @@ LAB_1808784e0:
               lVar7 = 0;
               if (iVar10 != 0) {
                 if ((0x3ffffffe < iVar10 * 0x10 - 1U) ||
-                   (lVar7 = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar10 * 0x10,
+                   (lVar7 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar10 * 0x10,
                                           &unknown_var_8432_ptr,0xf4,0), lVar7 == 0)) goto LAB_180878734;
                 if (*(int *)(lVar9 + 0x60) != 0) {
                     // WARNING: Subroutine does not return
@@ -350,7 +351,7 @@ LAB_1808784e0:
               }
               if ((0 < *(int *)(lVar9 + 100)) && (*(longlong *)(lVar9 + 0x58) != 0)) {
                     // WARNING: Subroutine does not return
-                FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(lVar9 + 0x58),
+                FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(longlong *)(lVar9 + 0x58),
                               &unknown_var_8432_ptr,0x100,1);
               }
               *(longlong *)(lVar9 + 0x58) = lVar7;

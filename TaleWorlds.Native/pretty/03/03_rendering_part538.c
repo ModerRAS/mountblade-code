@@ -1,6 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
 #include <stdlib.h>
 #include <string.h>
+#include "../include/global_constants.h"
 
 /*==============================================================================
  TaleWorlds.Native 渲染系统 - 核心缓冲区管理模块 (03_rendering_part538.c)

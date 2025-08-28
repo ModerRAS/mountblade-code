@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part091.c - 渲染系统高级管线处理和资源管理模块
 // 包含6个核心函数：渲染管线管理器、资源清理器、渲染对象处理器、材质处理器、渲染数据传输器和内存管理器
@@ -137,7 +138,7 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
   
   // 初始化渲染管线状态
   depth_stencil_state = 0xfffffffffffffffe;
-  frame_sync = _DAT_180bf00a8 ^ (ulonglong)alignment_buffer;
+  frame_sync = GET_SECURITY_COOKIE() ^ (ulonglong)alignment_buffer;
   render_pass = (code **)0x0;
   vertex_shader = (code *)&unknown_var_3480_ptr;
   pixel_shader = (code *)vertex_data;
@@ -498,7 +499,7 @@ void RenderingSystem_ObjectProcessor(longlong render_object)
   
   // 初始化渲染对象状态
   viewport = 0xfffffffffffffffe;
-  frame_sync = _DAT_180bf00a8 ^ (ulonglong)alignment_buffer;
+  frame_sync = GET_SECURITY_COOKIE() ^ (ulonglong)alignment_buffer;
   
   // 检查渲染状态模式
   if (*(int *)(render_object + 0x60) == 0) {
@@ -702,7 +703,7 @@ void RenderingSystem_DataTransfer(longlong source_context, longlong target_conte
   
   // 初始化数据传输状态
   render_state_data = 0xfffffffffffffffe;
-  frame_sync = _DAT_180bf00a8 ^ (ulonglong)alignment_buffer;
+  frame_sync = GET_SECURITY_COOKIE() ^ (ulonglong)alignment_buffer;
   transfer_flag = 0;
   
   // 传输顶点着色器资源
@@ -944,7 +945,7 @@ void RenderingSystem_DataTransfer(longlong source_context, longlong target_conte
   aspect_ratio_x = 1.0;
   aspect_ratio_y = 1.0;
   if ((*(char *)(shader_program + 0xd9) != '\0') &&
-     (texture_index = *(int *)(_DAT_180c86920 + 0x540), texture_index - 1U < 4)) {
+     (texture_index = *(int *)(SYSTEM_STATE_MANAGER + 0x540), texture_index - 1U < 4)) {
     aspect_ratio_x = *(double *)(shader_program + -8 + (longlong)texture_index * 0x10);
     aspect_ratio_y = *(double *)(shader_program + (longlong)texture_index * 0x10);
   }

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part361.c - 5 个函数
 
@@ -106,7 +107,7 @@ ulonglong FUN_180862e00(longlong param_1,byte param_2)
               FUN_1808559c0(param_1 + 200);
               (**(code **)(*(longlong *)(param_1 + 8) + 0x28))(param_1 + 8,0);
                     // WARNING: Subroutine does not return
-              FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_1,&unknown_var_2288_ptr,0x4c4,1);
+              FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,&unknown_var_2288_ptr,0x4c4,1);
             }
           }
         }
@@ -363,7 +364,7 @@ int FUN_180863420(longlong param_1)
   uVar13 = 0;
   bVar11 = false;
   if (((*(byte *)(*(longlong *)(*(longlong *)(param_1 + 0x2c8) + 0x4c0) + 0x7a) & 1) == 0) &&
-     (*(char *)(_DAT_180be12f0 + 0x158) == '\0')) {
+     (*(char *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x158) == '\0')) {
     lStack_28 = 0;
     uVar10 = 0xffffbfff;
     uVar12 = 0;
@@ -528,7 +529,7 @@ ulonglong FUN_180863430(ulonglong param_1)
   cVar14 = (char)unaff_R14;
   uVar15 = (uint)unaff_R14;
   if (((*(byte *)(*(longlong *)(in_RAX + 0x4c0) + 0x7a) & 1) == 0) &&
-     (*(char *)(_DAT_180be12f0 + 0x158) == cVar14)) {
+     (*(char *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x158) == cVar14)) {
     uVar10 = 0xffffbfff;
     uVar7 = uVar15;
     uVar17 = unaff_R14;
@@ -987,7 +988,7 @@ void FUN_180863bd0(void)
   int8_t auStack_2a8 [624];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_2e8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_2e8;
                     // WARNING: Subroutine does not return
   memset(auStack_2a8,0,0x60);
 }

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_06_part078.c - 9 个函数
 
@@ -438,7 +439,7 @@ void FUN_1803f5570(char *param_1,uint param_2)
   ulonglong uStack_18;
   
   uStack_40 = 0xfffffffffffffffe;
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_68;
   uStack_48 = 0;
   pcVar3 = acStack_1c + 1;
   uVar2 = (ulonglong)param_2;
@@ -800,7 +801,7 @@ void FUN_1803f5c20(longlong param_1,longlong param_2)
   ulonglong uStack_58;
   
   uStack_140 = 0xfffffffffffffffe;
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_1c8;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1c8;
   cVar9 = (**(code **)(**(longlong **)(param_2 + 0x3580) + 0x78))();
   if (cVar9 == '\0') goto LAB_1803f606d;
   FUN_1801f9270(param_1,param_2);
@@ -822,7 +823,7 @@ void FUN_1803f5c20(longlong param_1,longlong param_2)
   lVar5 = *(longlong *)(_DAT_180c86890 + 0x7ab8);
   iStack_1a0 = *(int *)(param_2 + 0x3588);
   iStack_19c = *(int *)(param_2 + 0x358c);
-  iVar4 = *(int *)(_DAT_180c86920 + 0x540);
+  iVar4 = *(int *)(SYSTEM_STATE_MANAGER + 0x540);
   iVar13 = 2;
   if (iVar4 != 3) {
     if (iVar4 == 2) {
@@ -891,7 +892,7 @@ void FUN_1803f5c20(longlong param_1,longlong param_2)
                            (*(longlong **)(lVar5 + 0xe0),&unknown_var_3760_ptr,aiStack_1a8);
         if (((uVar10 & 0xfff00000) != 0xbad00000) && (aiStack_1a8[0] != 0)) {
           *(int8_t *)(lVar5 + 0xd9) = 1;
-          if ((*(char *)(lVar5 + 0xd8) != '\0') && (-1 < *(int *)(_DAT_180c86920 + 0x540) + -1)) {
+          if ((*(char *)(lVar5 + 0xd8) != '\0') && (-1 < *(int *)(SYSTEM_STATE_MANAGER + 0x540) + -1)) {
             FUN_1802aa800(lVar5,&uStack_198,&iStack_1a0);
             uVar8 = uStack_198;
           }
@@ -962,7 +963,7 @@ void FUN_1803f60b0(longlong *param_1,uint64_t param_2,longlong param_3)
   ulonglong uStack_48;
   
   uStack_160 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_1d8;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1d8;
   cVar2 = (**(code **)(**(longlong **)(param_3 + 0x3580) + 0x78))();
   if (cVar2 != '\0') {
     puStack_e8 = &unknown_var_3432_ptr;

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part267.c - 8 个函数
 
@@ -184,7 +185,7 @@ void FUN_18081b980(longlong param_1)
   ulonglong uStack_38;
   longlong *plVar7;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_98;
   uStack_48 = 0;
   uStack_40 = 0;
   iVar2 = FUN_1807ff640(*(uint64_t *)(param_1 + 0x20),&uStack_48,0xc,aiStack_78);
@@ -347,7 +348,7 @@ void FUN_18081bc90(longlong param_1)
             iVar1 = FUN_18081bd20(param_1 + 0x520);
             if (iVar1 == 0) {
                     // WARNING: Subroutine does not return
-              FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_1,&unknown_var_1152_ptr,0x1c8,1);
+              FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,&unknown_var_1152_ptr,0x1c8,1);
             }
           }
         }
@@ -368,7 +369,7 @@ void FUN_18081bd20(uint64_t *param_1)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*param_1,&unknown_var_1152_ptr,0x172,1);
+  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_1152_ptr,0x172,1);
 }
 
 

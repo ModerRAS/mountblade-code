@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part099.c - 核心引擎模块第099部分
 // 包含游戏对象管理、碰撞检测和渲染相关的函数
@@ -96,17 +97,17 @@ int * process_object_collision(int *object_data)
   int32_t stack_param4;
   int32_t stack_param5;
   
-  engine_base = _DAT_180c8a9b0;
-  position_x = *(float *)(_DAT_180c8a9b0 + 0x1660);
-  object_transform = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
-  position_y = *(float *)(_DAT_180c8a9b0 + 0x19f8);
+  engine_base = SYSTEM_DATA_MANAGER_A;
+  position_x = *(float *)(SYSTEM_DATA_MANAGER_A + 0x1660);
+  object_transform = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
+  position_y = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19f8);
   collision_height = position_y - 2.0;
   width = *(float *)(object_transform + 0x104);
   height = *(float *)(object_transform + 0x100);
   collision_width = (position_y + collision_height) - 2.0;
   if ((((height < (float)object_data[10]) || (width < (float)object_data[0xb])) ||
       ((float)object_data[0xc] < height + collision_width)) || ((float)object_data[0xd] < width)) {
-    depth = *(float *)(_DAT_180c8a9b0 + 0x1674);
+    depth = *(float *)(SYSTEM_DATA_MANAGER_A + 0x1674);
     is_colliding = true;
     velocity_x = (float)object_data[0xc];
     boundary_check = object_data[0xd];
@@ -124,7 +125,7 @@ int * process_object_collision(int *object_data)
   else {
     is_colliding = false;
   }
-  camera_data = _DAT_180c8a9b0;
+  camera_data = SYSTEM_DATA_MANAGER_A;
   temp_param1 = *(int32_t *)(engine_base + 0x16c8);
   temp_param2 = *(int32_t *)(engine_base + 0x16cc);
   render_state1 = *(int32_t *)(engine_base + 0x16d0);
@@ -132,22 +133,22 @@ int * process_object_collision(int *object_data)
   collision_result = (int *)0x0;
   boundary_check = 0;
   stack_param1 = 0;
-  stack_param2 = *(int32_t *)(_DAT_180c8a9b0 + 0x16c8);
-  stack_param3 = *(int32_t *)(_DAT_180c8a9b0 + 0x16cc);
-  stack_param4 = *(int32_t *)(_DAT_180c8a9b0 + 0x16d0);
-  stack_param5 = *(int32_t *)(_DAT_180c8a9b0 + 0x16d4);
-  FUN_18013e100(_DAT_180c8a9b0 + 0x1b80, &stack_param1);
+  stack_param2 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x16c8);
+  stack_param3 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x16cc);
+  stack_param4 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x16d0);
+  stack_param5 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x16d4);
+  FUN_18013e100(SYSTEM_DATA_MANAGER_A + 0x1b80, &stack_param1);
   stack_param1 = 0x15;
   *(int32_t *)(camera_data + 0x16c8) = temp_param1;
   *(int32_t *)(camera_data + 0x16cc) = temp_param2;
   *(int32_t *)(camera_data + 0x16d0) = render_state1;
   *(float *)(camera_data + 0x16d4) = velocity_x * 0.5;
-  camera_data = _DAT_180c8a9b0;
-  stack_param2 = *(int32_t *)(_DAT_180c8a9b0 + 0x1818);
-  stack_param3 = *(int32_t *)(_DAT_180c8a9b0 + 0x181c);
-  stack_param4 = *(int32_t *)(_DAT_180c8a9b0 + 0x1820);
-  stack_param5 = *(int32_t *)(_DAT_180c8a9b0 + 0x1824);
-  FUN_18013e100(_DAT_180c8a9b0 + 0x1b80, &stack_param1);
+  camera_data = SYSTEM_DATA_MANAGER_A;
+  stack_param2 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1818);
+  stack_param3 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x181c);
+  stack_param4 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1820);
+  stack_param5 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1824);
+  FUN_18013e100(SYSTEM_DATA_MANAGER_A + 0x1b80, &stack_param1);
   *(uint64_t *)(camera_data + 0x1818) = 0;
   *(uint64_t *)(camera_data + 0x1820) = 0;
   temp_param1 = *(int32_t *)(engine_base + 0x90);
@@ -166,19 +167,19 @@ int * process_object_collision(int *object_data)
   }
   *(float *)(object_transform + 0x100) = (position_x - collision_width) + collision_height;
   collision_result_char = FUN_18010fad0(&unknown_var_2316_ptr, 1, matrix_data);
-  camera_data = _DAT_180c8a9b0;
+  camera_data = SYSTEM_DATA_MANAGER_A;
   if (collision_result_char != '\0') {
     boundary_check = 1;
   }
   collision_data = (uint64_t *)
-           (*(longlong *)(_DAT_180c8a9b0 + 0x1b88) + -0x10 +
-           (longlong)*(int *)(_DAT_180c8a9b0 + 0x1b80) * 0x14);
+           (*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x10 +
+           (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14);
   matrix_data = collision_data[1];
   transform_data = (uint64_t *)
-           (_DAT_180c8a9b0 + 0x16c8 +
+           (SYSTEM_DATA_MANAGER_A + 0x16c8 +
            (longlong)
-           *(int *)(*(longlong *)(_DAT_180c8a9b0 + 0x1b88) + -0x14 +
-                   (longlong)*(int *)(_DAT_180c8a9b0 + 0x1b80) * 0x14) * 0x10);
+           *(int *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x14 +
+                   (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14) * 0x10);
   *transform_data = *collision_data;
   transform_data[1] = matrix_data;
   collision_flags = *(int *)(camera_data + 0x1b80);
@@ -264,13 +265,13 @@ ulonglong update_object_position(int *object_data)
   int32_t stack_param5;
   ulonglong collision_result;
   
-  engine_base = _DAT_180c8a9b0;
-  object_transform = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
+  engine_base = SYSTEM_DATA_MANAGER_A;
+  object_transform = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
   position_x = *(int32_t *)(object_transform + 0x100);
   position_y = *(int32_t *)(object_transform + 0x104);
   position_z = (float)object_data[0xc] -
-           (*(float *)(_DAT_180c8a9b0 + 0x1660) + *(float *)(_DAT_180c8a9b0 + 0x1660) +
-           *(float *)(_DAT_180c8a9b0 + 0x19f8));
+           (*(float *)(SYSTEM_DATA_MANAGER_A + 0x1660) + *(float *)(SYSTEM_DATA_MANAGER_A + 0x1660) +
+           *(float *)(SYSTEM_DATA_MANAGER_A + 0x19f8));
   object_data[0xc] = (int)position_z;
   if (*(char *)(object_transform + 0xb7) != '\0') {
     position_z = position_z + *(float *)(engine_base + 0x1674);
@@ -294,25 +295,25 @@ ulonglong update_object_position(int *object_data)
   *(int32_t *)(engine_base + 0x16cc) = render_state2;
   *(int32_t *)(engine_base + 0x16d0) = render_state3;
   *(float *)(engine_base + 0x16d4) = position_z * 0.5;
-  engine_base = _DAT_180c8a9b0;
-  stack_param2 = *(int32_t *)(_DAT_180c8a9b0 + 0x1818);
-  stack_param3 = *(int32_t *)(_DAT_180c8a9b0 + 0x181c);
-  stack_param4 = *(int32_t *)(_DAT_180c8a9b0 + 0x1820);
-  stack_param5 = *(int32_t *)(_DAT_180c8a9b0 + 0x1824);
-  FUN_18013e100(_DAT_180c8a9b0 + 0x1b80, &stack_param1);
+  engine_base = SYSTEM_DATA_MANAGER_A;
+  stack_param2 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1818);
+  stack_param3 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x181c);
+  stack_param4 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1820);
+  stack_param5 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1824);
+  FUN_18013e100(SYSTEM_DATA_MANAGER_A + 0x1b80, &stack_param1);
   *(uint64_t *)(engine_base + 0x1818) = 0;
   *(uint64_t *)(engine_base + 0x1820) = 0;
   update_flag = FUN_1801129b0(&unknown_var_2224_ptr, 0, 0x41);
-  camera_offset = _DAT_180c8a9b0;
+  camera_offset = SYSTEM_DATA_MANAGER_A;
   position_data = (uint64_t *)
-           (*(longlong *)(_DAT_180c8a9b0 + 0x1b88) + -0x10 +
-           (longlong)*(int *)(_DAT_180c8a9b0 + 0x1b80) * 0x14);
+           (*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x10 +
+           (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14);
   matrix_data = position_data[1];
   transform_data = (uint64_t *)
-           (_DAT_180c8a9b0 + 0x16c8 +
+           (SYSTEM_DATA_MANAGER_A + 0x16c8 +
            (longlong)
-           *(int *)(*(longlong *)(_DAT_180c8a9b0 + 0x1b88) + -0x14 +
-                   (longlong)*(int *)(_DAT_180c8a9b0 + 0x1b80) * 0x14) * 0x10);
+           *(int *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x14 +
+                   (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14) * 0x10);
   *transform_data = *position_data;
   transform_data[1] = matrix_data;
   array_size = *(int *)(camera_offset + 0x1b80);
@@ -418,24 +419,24 @@ ulonglong calculate_object_distance(float distance_x, float distance_y)
   *(int32_t *)(register_RBX + 0x16cc) = render_state2;
   *(int32_t *)(register_RBX + 0x16d0) = stack_param3;
   *(float *)(register_RBX + 0x16d4) = calculated_distance;
-  engine_base = _DAT_180c8a9b0;
-  stack_param4 = *(int32_t *)(_DAT_180c8a9b0 + 0x1818);
-  stack_param5 = *(int32_t *)(_DAT_180c8a9b0 + 0x181c);
-  stack_param6 = *(int32_t *)(_DAT_180c8a9b0 + 0x1820);
-  FUN_18013e100(_DAT_180c8a9b0 + 0x1b80, &stack0x00000030);
+  engine_base = SYSTEM_DATA_MANAGER_A;
+  stack_param4 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1818);
+  stack_param5 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x181c);
+  stack_param6 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1820);
+  FUN_18013e100(SYSTEM_DATA_MANAGER_A + 0x1b80, &stack0x00000030);
   *(uint64_t *)(engine_base + 0x1818) = 0;
   *(uint64_t *)(engine_base + 0x1820) = 0;
   update_flag = FUN_1801129b0(&unknown_var_2224_ptr, 0, 0x41);
-  camera_offset = _DAT_180c8a9b0;
+  camera_offset = SYSTEM_DATA_MANAGER_A;
   distance_data = (uint64_t *)
-           (*(longlong *)(_DAT_180c8a9b0 + 0x1b88) + -0x10 +
-           (longlong)*(int *)(_DAT_180c8a9b0 + 0x1b80) * 0x14);
+           (*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x10 +
+           (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14);
   matrix_data = distance_data[1];
   transform_data = (uint64_t *)
-           (_DAT_180c8a9b0 + 0x16c8 +
+           (SYSTEM_DATA_MANAGER_A + 0x16c8 +
            (longlong)
-           *(int *)(*(longlong *)(_DAT_180c8a9b0 + 0x1b88) + -0x14 +
-                   (longlong)*(int *)(_DAT_180c8a9b0 + 0x1b80) * 0x14) * 0x10);
+           *(int *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x14 +
+                   (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14) * 0x10);
   *transform_data = *distance_data;
   transform_data[1] = matrix_data;
   array_size = *(int *)(camera_offset + 0x1b80);

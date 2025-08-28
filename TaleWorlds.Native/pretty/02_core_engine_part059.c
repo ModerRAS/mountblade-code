@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part059.c - 5 个函数
 
@@ -331,20 +332,20 @@ void FUN_180095bf0(uint64_t param_1,int32_t param_2,int32_t param_3)
     __Throw_C_error_std__YAXH_Z(iVar2);
   }
   uVar3 = FUN_180124730();
-  _DAT_180c8a9b0 = uVar3;
+  SYSTEM_DATA_MANAGER_A = uVar3;
   FUN_180290fd0(0);
   uVar6 = FUN_18062b1e0(_DAT_180c8ed18,0xe8,8,3,uVar6);
   uVar6 = FUN_180095350(uVar6,uVar3);
   *puVar1 = uVar6;
   uVar6 = FUN_180124730();
-  _DAT_180c8a9b0 = uVar6;
+  SYSTEM_DATA_MANAGER_A = uVar6;
   FUN_180290fd0(0);
   uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0xe8,8,3);
   uVar6 = FUN_180095350(uVar3,uVar6);
   puVar1[1] = uVar6;
   FUN_180098ae0(*puVar1,param_2,param_3,FUN_180098980);
   FUN_180098ae0(puVar1[1],param_2,param_3,0);
-  _DAT_180c8a9b0 = *(uint64_t *)*puVar1;
+  SYSTEM_DATA_MANAGER_A = *(uint64_t *)*puVar1;
   FUN_180080ca0(puVar1 + 0xf,0x96);
   puVar5 = (int32_t *)puVar1[0xf];
   uVar4 = (ulonglong)((longlong)puVar1[0x10] + (3 - (longlong)puVar5)) >> 2;

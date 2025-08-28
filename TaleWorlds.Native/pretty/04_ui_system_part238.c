@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part238.c - 4 个函数
 
@@ -174,12 +175,12 @@ void FUN_180803d63(longlong *param_1,longlong param_2)
               iVar7 = (uint)*(ushort *)(unaff_RBP + -0x2d) * *(int *)(unaff_RDI + 0x748);
               uVar15 = CONCAT44(uVar12,0x1bb);
               *(int *)(unaff_RDI + 0x74c) = iVar7;
-              lVar9 = FUN_180741d80(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar7,0x20,
+              lVar9 = FUN_180741d80(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar7,0x20,
                                     &unknown_var_7648_ptr,uVar15);
               *(longlong *)(unaff_RDI + 0x740) = lVar9;
               if (lVar9 != 0) {
                 puVar10 = (uint64_t *)
-                          FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x10,&unknown_var_7648_ptr,
+                          FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x10,&unknown_var_7648_ptr,
                                         0x1d2,uVar15 & 0xffffffff00000000);
                 if (puVar10 != (uint64_t *)0x0) {
                   *(int32_t *)(puVar10 + 1) = 0;
@@ -364,12 +365,12 @@ void FUN_180803ddf(uint64_t param_1,uint64_t param_2,longlong param_3)
          (iVar6 = (**(code **)(*(longlong *)*unaff_RSI + 0x50))(), -1 < iVar6)) {
         iVar6 = (uint)*(ushort *)(unaff_RBP + -0x2d) * *(int *)(unaff_RDI + 0x748);
         *(int *)(unaff_RDI + 0x74c) = iVar6;
-        lVar8 = FUN_180741d80(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar6,0x20,&unknown_var_7648_ptr,
+        lVar8 = FUN_180741d80(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar6,0x20,&unknown_var_7648_ptr,
                               CONCAT44(uVar11,0x1bb));
         *(longlong *)(unaff_RDI + 0x740) = lVar8;
         if (lVar8 != 0) {
           puVar9 = (uint64_t *)
-                   FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x10,&unknown_var_7648_ptr,0x1d2,
+                   FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x10,&unknown_var_7648_ptr,0x1d2,
                                  (ulonglong)unaff_RBX & 0xffffffff);
           if (puVar9 != (uint64_t *)0x0) {
             *(int *)(puVar9 + 1) = (int)unaff_RBX;

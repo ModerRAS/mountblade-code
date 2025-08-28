@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part624.c - 渲染系统参数获取和设置模块
 // 
@@ -186,7 +187,7 @@ void RenderingSystem_ParameterProcessor(longlong param_1, uint64_t *param_2)
     ulonglong uStack_98;
     
     // 执行堆栈安全检查
-    uStack_98 = _DAT_180bf00a8 ^ (ulonglong)auStack_1c8;
+    uStack_98 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1c8;
     
     // 从参数数组中提取数据
     uStack_158 = *(int32_t *)(param_2 + 4);
@@ -409,7 +410,7 @@ void RenderingSystem_GetIntegerParameter(uint64_t param_1, int32_t *param_2)
     ulonglong uStack_18;
     
     // 执行堆栈安全检查
-    uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_238;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_238;
     *param_2 = 0;
     
     // 检查系统状态
@@ -439,7 +440,7 @@ void RenderingSystem_ValidateIntegerParameter(uint64_t param_1, int32_t *param_2
     ulonglong uStack_18;
     
     // 执行堆栈安全检查
-    uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_238;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_238;
     *param_2 = 0;
     
     // 检查系统状态
@@ -469,7 +470,7 @@ void RenderingSystem_GetUnsignedParameter(uint64_t param_1, uint64_t *param_2)
     ulonglong uStack_18;
     
     // 执行堆栈安全检查
-    uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_238;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_238;
     *param_2 = 0;
     
     // 检查系统状态
@@ -505,7 +506,7 @@ void RenderingSystem_ReadMemoryRegion(ulonglong *param_1, ulonglong *param_2)
     ulonglong uStack_28;
     
     // 执行堆栈安全检查
-    uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_268;
+    uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_268;
     *param_2 = 0;
     
     // 检查系统状态
@@ -551,7 +552,7 @@ void RenderingSystem_GetBooleanParameter(uint64_t param_1, int32_t *param_2)
     ulonglong uStack_18;
     
     // 执行堆栈安全检查
-    uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_238;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_238;
     *param_2 = 0;
     
     // 检查系统状态
@@ -597,7 +598,7 @@ void RenderingSystem_GetStringParameter(char *param_1)
     
     // 初始化变量
     uStack_840 = 0xfffffffffffffffe;
-    uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_888;
+    uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_888;
     
     // 检查系统状态
     if (_DAT_180c95dc8 == 0) {
@@ -681,7 +682,7 @@ void RenderingSystem_ValidateIntegerIndex(int param_1, int *param_2)
     ulonglong uStack_18;
     
     // 执行堆栈安全检查
-    uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_248;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_248;
     
     // 验证索引范围
     if ((param_1 < *param_2) || (param_2[1] < param_1)) {
@@ -720,7 +721,7 @@ void RenderingSystem_ValidateUnsignedIndex(uint param_1, uint *param_2)
     ulonglong uStack_18;
     
     // 执行堆栈安全检查
-    uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_248;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_248;
     
     // 验证索引范围
     if ((param_1 < *param_2) || (param_2[1] < param_1)) {
@@ -759,7 +760,7 @@ void RenderingSystem_ValidateLongIndex(longlong param_1, longlong *param_2)
     ulonglong uStack_18;
     
     // 执行堆栈安全检查
-    uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_248;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_248;
     
     // 验证索引范围
     if ((param_1 < *param_2) || (param_2[1] < param_1)) {
@@ -798,7 +799,7 @@ void RenderingSystem_ValidateUnsignedLongIndex(ulonglong param_1, ulonglong *par
     ulonglong uStack_18;
     
     // 执行堆栈安全检查
-    uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_248;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_248;
     
     // 验证索引范围
     if ((param_1 < *param_2) || (param_2[1] < param_1)) {
@@ -837,7 +838,7 @@ void RenderingSystem_ValidateFloatParameter(float param_1, float *param_2)
     ulonglong uStack_28;
     
     // 执行堆栈安全检查
-    uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_258;
+    uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_258;
     
     // 验证浮点数范围
     if ((param_2[1] + param_2[2] * 0.5 < param_1) || (param_1 < *param_2 - param_2[2] * 0.5)) {
@@ -880,7 +881,7 @@ void RenderingSystem_ProcessStringLength(uint64_t param_1)
     
     // 获取系统状态
     lVar1 = _DAT_180c95dd0;
-    uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_238;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_238;
     
     // 检查系统状态
     if (_DAT_180c95dd0 == 0) {
@@ -911,7 +912,7 @@ void RenderingSystem_ProcessDataBlock(longlong *param_1, int param_2, int32_t pa
     ulonglong uStack_28;
     
     // 执行堆栈安全检查
-    uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_248;
+    uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_248;
     
     // 检查系统状态
     if (_DAT_180c95dd0 == 0) {
@@ -938,7 +939,7 @@ void RenderingSystem_ReadPerformanceCounter(void)
     ulonglong uStack_18;
     
     // 执行堆栈安全检查
-    uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_248;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_248;
     
     // 检查性能计数器状态
     if (_DAT_180c92514 == 1) {
@@ -969,7 +970,7 @@ void RenderingSystem_SetThreadStatus(int8_t param_1)
     ulonglong uStack_18;
     
     // 执行堆栈安全检查
-    uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_238;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_238;
     
     // 获取线程锁
     iVar1 = _Mtx_lock(0x180c95d70);
@@ -1005,7 +1006,7 @@ void RenderingSystem_ClearThreadStatus(int8_t param_1)
     ulonglong uStack_18;
     
     // 执行堆栈安全检查
-    uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_238;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_238;
     
     // 清理线程状态
     _DAT_180c95dd0 = 0;
@@ -1131,7 +1132,7 @@ void RenderingSystem_ProcessNetworkAddress(void)
     
     // 初始化变量
     uStack_58 = 0xfffffffffffffffe;
-    uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_78;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_78;
     
     // 获取网络地址
     lVar2 = inet_ntoa();
@@ -1392,7 +1393,7 @@ void RenderingSystem_ReadDataBlock(longlong *param_1, int param_2, int32_t param
     ulonglong uStack_38;
     
     // 执行堆栈安全检查
-    uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_268;
+    uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_268;
     
     // 检查系统状态
     if (_DAT_180c95dc8 == 0) {

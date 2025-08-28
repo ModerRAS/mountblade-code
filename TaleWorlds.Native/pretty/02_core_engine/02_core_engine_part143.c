@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part143.c - 核心引擎模块第143部分
 // 包含8个函数，主要涉及渲染状态管理、内存清理和初始化操作
@@ -43,7 +44,7 @@ void update_render_state_with_bounds(void)
   float fStack000000000000011c;
   
   uVar9 = (ulonglong)(unaff_ESI + 0x1b);
-  lVar7 = _DAT_180c8a9b0;
+  lVar7 = SYSTEM_DATA_MANAGER_A;
   do {
     lVar5 = *(longlong *)(*(longlong *)(lVar7 + 0x1af8) + 0x210);
     iVar8 = unaff_ESI;
@@ -104,7 +105,7 @@ void update_render_state_with_bounds(void)
       uVar4 = func_0x000180121e20(&stack0x00000048);
       FUN_180293d20(*(uint64_t *)(unaff_RBP + 0x2e8),&stack0x00000030,&stack0x00000118,uVar4,
                     0x3f800000);
-      lVar7 = _DAT_180c8a9b0;
+      lVar7 = SYSTEM_DATA_MANAGER_A;
       unaff_R14D = iVar8;
     }
     unaff_ESI = unaff_ESI + 1;
@@ -264,7 +265,7 @@ void update_render_state_variant(void)
       uVar4 = func_0x000180121e20(&stack0x00000048);
       FUN_180293d20(*(uint64_t *)(unaff_RBP + 0x2e8),&stack0x00000030,&stack0x00000118,uVar4,
                     0x3f800000);
-      unaff_RDI = _DAT_180c8a9b0;
+      unaff_RDI = SYSTEM_DATA_MANAGER_A;
       unaff_R14D = iVar7;
     }
     unaff_ESI = unaff_ESI + 1;
@@ -446,9 +447,9 @@ void initialize_render_parameters(int render_mode, uint64_t context_handle, uint
   longlong lVar1;
   uint uVar2;
   
-  lVar1 = _DAT_180c8a9b0;
+  lVar1 = SYSTEM_DATA_MANAGER_A;
   uVar2 = param_3 & 0xff ^ 1;
-  *(int8_t *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
+  *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
   lVar1 = *(longlong *)(*(longlong *)(lVar1 + 0x1af8) + 0x210);
   if (lVar1 != 0) {
     if ((*(int *)(lVar1 + 0x10) == param_1) && (*(uint *)(lVar1 + 4) == uVar2)) {
@@ -476,8 +477,8 @@ void reset_render_system_state(void)
   uint64_t uVar1;
   longlong lVar2;
   
-  lVar2 = _DAT_180c8a9b0;
-  *(int8_t *)(_DAT_180c8a9b0 + 0x1dd0) = 0;
+  lVar2 = SYSTEM_DATA_MANAGER_A;
+  *(int8_t *)(SYSTEM_DATA_MANAGER_A + 0x1dd0) = 0;
   *(uint64_t *)(lVar2 + 0x1dec) = 0;
   *(uint64_t *)(lVar2 + 0x1de0) = 0;
   *(int32_t *)(lVar2 + 0x1de8) = 0;
@@ -492,7 +493,7 @@ void reset_render_system_state(void)
   *(uint64_t *)(lVar2 + 0x1e3c) = 0;
   *(int32_t *)(lVar2 + 0x1e38) = 0x7f7fffff;
   *(int32_t *)(lVar2 + 0x1e44) = 0xffffffff;
-  uVar1 = _DAT_180c8a9a8;
+  uVar1 = SYSTEM_DATA_MANAGER_B;
   if (*(longlong *)(lVar2 + 0x1e50) != 0) {
     *(uint64_t *)(lVar2 + 0x1e48) = 0;
     *(int *)(lVar2 + 0x3a8) = *(int *)(lVar2 + 0x3a8) + -1;
@@ -520,13 +521,13 @@ ulonglong get_render_status_flags(void)
   ulonglong in_RAX;
   float fVar5;
   
-  lVar4 = _DAT_180c8a9b0;
-  lVar3 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
+  lVar4 = SYSTEM_DATA_MANAGER_A;
+  lVar3 = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
   iVar1 = *(int *)(lVar3 + 0x144);
-  if ((((iVar1 == 0) || (*(int *)(_DAT_180c8a9b0 + 0x1b2c) == iVar1)) &&
-      (*(char *)(_DAT_180c8a9b0 + 0x120) != '\0')) &&
+  if ((((iVar1 == 0) || (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b2c) == iVar1)) &&
+      (*(char *)(SYSTEM_DATA_MANAGER_A + 0x120) != '\0')) &&
      ((iVar1 != 0 &&
-      (*(int8_t *)(_DAT_180c8a9b0 + 0x1b3d) = 0, *(int *)(lVar4 + 0x1b2c) == iVar1)))) {
+      (*(int8_t *)(SYSTEM_DATA_MANAGER_A + 0x1b3d) = 0, *(int *)(lVar4 + 0x1b2c) == iVar1)))) {
     in_RAX = *(ulonglong *)(lVar3 + 0x220);
     uVar2 = *(int32_t *)((in_RAX - 4) + (longlong)*(int *)(lVar3 + 0x218) * 4);
     if ((*(char *)(lVar4 + 0x120) != '\0') &&
@@ -566,8 +567,8 @@ longlong set_render_context(uint64_t context_handle, uint64_t *parameter_array)
   longlong lVar2;
   int iVar3;
   
-  lVar2 = _DAT_180c8a9b0;
-  strncpy(_DAT_180c8a9b0 + 0x1df8,&unknown_var_2304_ptr,0x21);
+  lVar2 = SYSTEM_DATA_MANAGER_A;
+  strncpy(SYSTEM_DATA_MANAGER_A + 0x1df8,&unknown_var_2304_ptr,0x21);
   *(int8_t *)(lVar2 + 0x1e18) = 0;
   FUN_18013de90(lVar2 + 0x1e48,0);
   puVar1 = (uint64_t *)(lVar2 + 0x1e58);
@@ -598,9 +599,9 @@ longlong get_render_context(void)
   int iVar2;
   float fVar3;
   
-  lVar1 = _DAT_180c8a9b0;
-  if (*(int *)(_DAT_180c8a9b0 + 0x1df4) != -1) {
-    iVar2 = strcmp(&unknown_var_2304_ptr,_DAT_180c8a9b0 + 0x1df8);
+  lVar1 = SYSTEM_DATA_MANAGER_A;
+  if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1df4) != -1) {
+    iVar2 = strcmp(&unknown_var_2304_ptr,SYSTEM_DATA_MANAGER_A + 0x1df8);
     if (iVar2 == 0) {
       iVar2 = *(int *)(lVar1 + 0x1e30);
       fVar3 = (*(float *)(lVar1 + 0x1e28) - *(float *)(lVar1 + 0x1e20)) *
@@ -708,17 +709,17 @@ void cleanup_render_resources(longlong resource_manager, uint64_t cleanup_params
         *(uint64_t *)(lVar1 + 0x10) = 0;
         lVar2 = *(longlong *)(lVar1 + 0x28);
         if (lVar2 == 0) {
-          if (_DAT_180c8a9b0 != 0) {
-            *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+          if (SYSTEM_DATA_MANAGER_A != 0) {
+            *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
           }
                     // WARNING: Subroutine does not return
-          FUN_180059ba0(lVar1,_DAT_180c8a9a8,param_3,param_4,uVar7);
+          FUN_180059ba0(lVar1,SYSTEM_DATA_MANAGER_B,param_3,param_4,uVar7);
         }
-        if (_DAT_180c8a9b0 != 0) {
-          *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+        if (SYSTEM_DATA_MANAGER_A != 0) {
+          *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
-        FUN_180059ba0(lVar2,_DAT_180c8a9a8,param_3,param_4,uVar7);
+        FUN_180059ba0(lVar2,SYSTEM_DATA_MANAGER_B,param_3,param_4,uVar7);
       }
       uVar4 = (int)uVar5 + 1;
       uVar3 = uVar3 + 0x10;
@@ -732,33 +733,33 @@ void cleanup_render_resources(longlong resource_manager, uint64_t cleanup_params
   }
   lVar1 = *(longlong *)(piVar6 + 10);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(lVar1,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(lVar1,SYSTEM_DATA_MANAGER_B,param_3,param_4,0xfffffffffffffffe);
   }
   lVar1 = *(longlong *)(piVar6 + 6);
   if (lVar1 == 0) {
     lVar1 = *(longlong *)(piVar6 + 2);
     if (lVar1 == 0) {
-      if (_DAT_180c8a9b0 != 0) {
-        *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+      if (SYSTEM_DATA_MANAGER_A != 0) {
+        *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
       }
                     // WARNING: Subroutine does not return
-      FUN_180059ba0(piVar6,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+      FUN_180059ba0(piVar6,SYSTEM_DATA_MANAGER_B,param_3,param_4,0xfffffffffffffffe);
     }
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(lVar1,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(lVar1,SYSTEM_DATA_MANAGER_B,param_3,param_4,0xfffffffffffffffe);
   }
-  if (_DAT_180c8a9b0 != 0) {
-    *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+  if (SYSTEM_DATA_MANAGER_A != 0) {
+    *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
   }
                     // WARNING: Subroutine does not return
-  FUN_180059ba0(lVar1,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+  FUN_180059ba0(lVar1,SYSTEM_DATA_MANAGER_B,param_3,param_4,0xfffffffffffffffe);
 }
 
 

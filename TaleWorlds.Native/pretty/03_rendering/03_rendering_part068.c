@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part068.c - 渲染系统高级状态管理和资源控制模块
 // 包含10个核心函数，涵盖渲染系统状态初始化、资源管理、参数处理等高级渲染功能
@@ -67,7 +68,7 @@ void rendering_system_initialize_render_context(longlong render_context, longlon
   ulonglong system_checksum;
   
   stack_guard = 0xfffffffffffffffe;
-  system_checksum = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  system_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
   LOCK();
   *(int32_t *)(render_context + 0x78) = 0;
   UNLOCK();
@@ -110,7 +111,7 @@ void rendering_system_initialize_render_context(longlong render_context, longlon
               priority_levels[2] = 0x28;
               priority_levels[3] = 0x78;
               priority_levels[4] = 0xf0;
-              lock_result = *(int *)(_DAT_180c86920 + 0x2a0);
+              lock_result = *(int *)(SYSTEM_STATE_MANAGER + 0x2a0);
               if (lock_result < 0) {
                 lock_result = 0;
               }

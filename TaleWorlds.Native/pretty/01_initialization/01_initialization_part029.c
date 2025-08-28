@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 01_initialization_part029.c - 初始化模块第29部分
 // 包含6个函数，主要涉及对象引用管理、线程同步和内存分配

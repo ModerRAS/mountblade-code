@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part112.c - 4 个函数
 
@@ -54,8 +55,8 @@ void FUN_180126edf(void)
       if (unaff_RBX != 0) {
         lVar14 = 0x3b0;
       }
-      fVar18 = *(float *)(_DAT_180c8a9b0 + 0x1628);
-      puVar2 = (int32_t *)(lVar14 + 0x1628 + _DAT_180c8a9b0);
+      fVar18 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628);
+      puVar2 = (int32_t *)(lVar14 + 0x1628 + SYSTEM_DATA_MANAGER_A);
       uVar9 = puVar2[1];
       uVar6 = puVar2[2];
       fVar21 = (float)puVar2[3];
@@ -108,13 +109,13 @@ void FUN_180126edf(void)
       uVar8 = *(int32_t *)(lVar4 + 0x44);
       fVar23 = *pfVar1;
       uVar7 = *(int32_t *)(lVar4 + 0x44);
-      uVar9 = *(int32_t *)(_DAT_180c8a9b0 + 0x19cc);
-      uVar6 = *(int32_t *)(_DAT_180c8a9b0 + 0x19d0);
-      fVar21 = *(float *)(_DAT_180c8a9b0 + 0x19d4);
-      fVar25 = *(float *)(_DAT_180c8a9b0 + 0x1628);
+      uVar9 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19cc);
+      uVar6 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19d0);
+      fVar21 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19d4);
+      fVar25 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628);
       fVar24 = *pfVar1 + *(float *)(lVar4 + 0x48);
       fVar26 = *(float *)(lVar4 + 0x44) + *(float *)(lVar4 + 0x4c);
-      *(int32_t *)(unaff_RBP + -0x59) = *(int32_t *)(_DAT_180c8a9b0 + 0x19c8);
+      *(int32_t *)(unaff_RBP + -0x59) = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19c8);
       *(int32_t *)(unaff_RBP + -0x55) = uVar9;
       *(int32_t *)(unaff_RBP + -0x51) = uVar6;
       *(float *)(unaff_RBP + -0x4d) = fVar21;
@@ -162,11 +163,11 @@ void FUN_180126edf(void)
       fVar23 = fVar22 + fVar23;
       fVar21 = fVar22 + fVar21;
     }
-    fVar22 = *(float *)(_DAT_180c8a9b0 + 0x19b8);
-    uVar9 = *(int32_t *)(_DAT_180c8a9b0 + 0x19bc);
-    uVar6 = *(int32_t *)(_DAT_180c8a9b0 + 0x19c0);
-    fVar19 = *(float *)(_DAT_180c8a9b0 + 0x19c4);
-    fVar20 = *(float *)(unaff_RDI + 0x1cf4) * *(float *)(_DAT_180c8a9b0 + 0x1628) * fVar19;
+    fVar22 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19b8);
+    uVar9 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19bc);
+    uVar6 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19c0);
+    fVar19 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19c4);
+    fVar20 = *(float *)(unaff_RDI + 0x1cf4) * *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628) * fVar19;
     *(float *)(unaff_RBP + -0x59) = fVar22;
     *(int32_t *)(unaff_RBP + -0x55) = uVar9;
     *(int32_t *)(unaff_RBP + -0x51) = uVar6;
@@ -288,13 +289,13 @@ void FUN_180126ffa(void)
       uVar8 = *(int32_t *)(lVar4 + 0x44);
       fVar21 = *pfVar1;
       uVar7 = *(int32_t *)(lVar4 + 0x44);
-      uVar9 = *(int32_t *)(_DAT_180c8a9b0 + 0x19cc);
-      uVar6 = *(int32_t *)(_DAT_180c8a9b0 + 0x19d0);
-      fVar19 = *(float *)(_DAT_180c8a9b0 + 0x19d4);
-      fVar23 = *(float *)(_DAT_180c8a9b0 + 0x1628);
+      uVar9 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19cc);
+      uVar6 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19d0);
+      fVar19 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19d4);
+      fVar23 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628);
       fVar22 = *pfVar1 + *(float *)(lVar4 + 0x48);
       fVar24 = *(float *)(lVar4 + 0x44) + *(float *)(lVar4 + 0x4c);
-      *(int32_t *)(unaff_RBP + -0x59) = *(int32_t *)(_DAT_180c8a9b0 + 0x19c8);
+      *(int32_t *)(unaff_RBP + -0x59) = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19c8);
       *(int32_t *)(unaff_RBP + -0x55) = uVar9;
       *(int32_t *)(unaff_RBP + -0x51) = uVar6;
       *(float *)(unaff_RBP + -0x4d) = fVar19;
@@ -342,11 +343,11 @@ void FUN_180126ffa(void)
       fVar21 = fVar20 + fVar21;
       fVar19 = fVar20 + fVar19;
     }
-    fVar20 = *(float *)(_DAT_180c8a9b0 + 0x19b8);
-    uVar9 = *(int32_t *)(_DAT_180c8a9b0 + 0x19bc);
-    uVar6 = *(int32_t *)(_DAT_180c8a9b0 + 0x19c0);
-    fVar17 = *(float *)(_DAT_180c8a9b0 + 0x19c4);
-    fVar18 = *(float *)(unaff_RDI + 0x1cf4) * *(float *)(_DAT_180c8a9b0 + 0x1628) * fVar17;
+    fVar20 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19b8);
+    uVar9 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19bc);
+    uVar6 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19c0);
+    fVar17 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19c4);
+    fVar18 = *(float *)(unaff_RDI + 0x1cf4) * *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628) * fVar17;
     *(float *)(unaff_RBP + -0x59) = fVar20;
     *(int32_t *)(unaff_RBP + -0x55) = uVar9;
     *(int32_t *)(unaff_RBP + -0x51) = uVar6;
@@ -466,13 +467,13 @@ void FUN_18012700b(void)
     uVar8 = *(int32_t *)(lVar4 + 0x44);
     fVar21 = *pfVar1;
     uVar7 = *(int32_t *)(lVar4 + 0x44);
-    uVar9 = *(int32_t *)(_DAT_180c8a9b0 + 0x19cc);
-    uVar6 = *(int32_t *)(_DAT_180c8a9b0 + 0x19d0);
-    fVar19 = *(float *)(_DAT_180c8a9b0 + 0x19d4);
-    fVar23 = *(float *)(_DAT_180c8a9b0 + 0x1628);
+    uVar9 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19cc);
+    uVar6 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19d0);
+    fVar19 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19d4);
+    fVar23 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628);
     fVar22 = *pfVar1 + *(float *)(lVar4 + 0x48);
     fVar24 = *(float *)(lVar4 + 0x44) + *(float *)(lVar4 + 0x4c);
-    *(int32_t *)(unaff_RBP + -0x59) = *(int32_t *)(_DAT_180c8a9b0 + 0x19c8);
+    *(int32_t *)(unaff_RBP + -0x59) = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19c8);
     *(int32_t *)(unaff_RBP + -0x55) = uVar9;
     *(int32_t *)(unaff_RBP + -0x51) = uVar6;
     *(float *)(unaff_RBP + -0x4d) = fVar19;
@@ -520,11 +521,11 @@ void FUN_18012700b(void)
     fVar21 = fVar20 + fVar21;
     fVar19 = fVar20 + fVar19;
   }
-  fVar20 = *(float *)(_DAT_180c8a9b0 + 0x19b8);
-  uVar9 = *(int32_t *)(_DAT_180c8a9b0 + 0x19bc);
-  uVar6 = *(int32_t *)(_DAT_180c8a9b0 + 0x19c0);
-  fVar17 = *(float *)(_DAT_180c8a9b0 + 0x19c4);
-  fVar18 = *(float *)(unaff_RDI + 0x1cf4) * *(float *)(_DAT_180c8a9b0 + 0x1628) * fVar17;
+  fVar20 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19b8);
+  uVar9 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19bc);
+  uVar6 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19c0);
+  fVar17 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19c4);
+  fVar18 = *(float *)(unaff_RDI + 0x1cf4) * *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628) * fVar17;
   *(float *)(unaff_RBP + -0x59) = fVar20;
   *(int32_t *)(unaff_RBP + -0x55) = uVar9;
   *(int32_t *)(unaff_RBP + -0x51) = uVar6;
@@ -642,13 +643,13 @@ void FUN_180127012(void)
     uVar7 = *(int32_t *)(lVar3 + 0x44);
     fVar20 = *pfVar1;
     uVar6 = *(int32_t *)(lVar3 + 0x44);
-    uVar8 = *(int32_t *)(_DAT_180c8a9b0 + 0x19cc);
-    uVar5 = *(int32_t *)(_DAT_180c8a9b0 + 0x19d0);
-    fVar18 = *(float *)(_DAT_180c8a9b0 + 0x19d4);
-    fVar22 = *(float *)(_DAT_180c8a9b0 + 0x1628);
+    uVar8 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19cc);
+    uVar5 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19d0);
+    fVar18 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19d4);
+    fVar22 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628);
     fVar21 = *pfVar1 + *(float *)(lVar3 + 0x48);
     fVar23 = *(float *)(lVar3 + 0x44) + *(float *)(lVar3 + 0x4c);
-    *(int32_t *)(unaff_RBP + -0x59) = *(int32_t *)(_DAT_180c8a9b0 + 0x19c8);
+    *(int32_t *)(unaff_RBP + -0x59) = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19c8);
     *(int32_t *)(unaff_RBP + -0x55) = uVar8;
     *(int32_t *)(unaff_RBP + -0x51) = uVar5;
     *(float *)(unaff_RBP + -0x4d) = fVar18;
@@ -696,11 +697,11 @@ void FUN_180127012(void)
     fVar20 = fVar19 + fVar20;
     fVar18 = fVar19 + fVar18;
   }
-  fVar19 = *(float *)(_DAT_180c8a9b0 + 0x19b8);
-  uVar8 = *(int32_t *)(_DAT_180c8a9b0 + 0x19bc);
-  uVar5 = *(int32_t *)(_DAT_180c8a9b0 + 0x19c0);
-  fVar16 = *(float *)(_DAT_180c8a9b0 + 0x19c4);
-  fVar17 = *(float *)(unaff_RDI + 0x1cf4) * *(float *)(_DAT_180c8a9b0 + 0x1628) * fVar16;
+  fVar19 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19b8);
+  uVar8 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19bc);
+  uVar5 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19c0);
+  fVar16 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19c4);
+  fVar17 = *(float *)(unaff_RDI + 0x1cf4) * *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628) * fVar16;
   *(float *)(unaff_RBP + -0x59) = fVar19;
   *(int32_t *)(unaff_RBP + -0x55) = uVar8;
   *(int32_t *)(unaff_RBP + -0x51) = uVar5;

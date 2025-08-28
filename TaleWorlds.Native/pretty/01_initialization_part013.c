@@ -913,7 +913,7 @@ void SystemEnvironmentInitializer(void)
     
     /* 初始化环境参数 */
     uStack_198 = 0xfffffffffffffffe;
-    uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_248;
+    uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_248;
     uStack_200 = 0;
     
     /* 检查系统环境状态 */

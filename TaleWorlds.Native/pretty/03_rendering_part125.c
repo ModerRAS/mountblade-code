@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part125.c - 4 个函数
 
@@ -256,7 +257,7 @@ void FUN_180341100(uint64_t param_1,longlong param_2,uint64_t param_3)
   ulonglong uStack_38;
   
   uStack_68 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_e8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_e8;
   uStack_c8 = 0;
   FUN_18033ffe0(param_1,&puStack_88);
   puStack_60 = &unknown_var_7512_ptr;
@@ -312,7 +313,7 @@ void FUN_180341100(uint64_t param_1,longlong param_2,uint64_t param_3)
     fclose(lVar6);
     lStack_98 = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
     lVar6 = 0;
   }
@@ -320,7 +321,7 @@ void FUN_180341100(uint64_t param_1,longlong param_2,uint64_t param_3)
     fclose(lVar6);
     lStack_98 = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
   }
   puStack_c0 = &unknown_var_3456_ptr;
@@ -379,7 +380,7 @@ void FUN_180341380(uint64_t param_1,longlong param_2,uint64_t param_3)
   ulonglong uStack_38;
   
   uStack_68 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_e8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_e8;
   uStack_c8 = 0;
   FUN_1803400b0(param_1,&puStack_88);
   puStack_60 = &unknown_var_7512_ptr;
@@ -434,7 +435,7 @@ void FUN_180341380(uint64_t param_1,longlong param_2,uint64_t param_3)
     fclose(lVar6);
     lStack_98 = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
     lVar6 = 0;
   }
@@ -442,7 +443,7 @@ void FUN_180341380(uint64_t param_1,longlong param_2,uint64_t param_3)
     fclose(lVar6);
     lStack_98 = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
   }
   puStack_c0 = &unknown_var_3456_ptr;

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_12_part077.c - 4 个函数
 
@@ -34,7 +35,7 @@ void FUN_1807ff500(void)
   int8_t auStack_1b8 [416];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_1d8;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1d8;
   WSAStartup(2,auStack_1b8);
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_1d8);
@@ -60,7 +61,7 @@ void FUN_1807ff550(int16_t param_1,int8_t param_2,longlong *param_3)
   uint64_t uStack_40;
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_68;
   lVar4 = socket(2,1);
   if ((lVar4 != -1) && (iVar2 = FUN_1807ff700(lVar4,param_2), iVar2 == 0)) {
     uStack_48 = 2;
@@ -149,7 +150,7 @@ void FUN_1807ff700(uint64_t param_1,byte param_2)
   int iStack_20;
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_88;
   auStack_38[0] = (uint)param_2;
   iVar1 = ioctlsocket(param_1,0x8004667e,auStack_38);
   if (iVar1 != -1) {

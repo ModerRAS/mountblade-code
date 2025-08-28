@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 //==============================================================================
 // 文件信息：99_part_01_part011.c
@@ -256,7 +257,7 @@ void AdvancedDataAlgorithmProcessor(longlong param_1, ulonglong param_2, int *pa
     
     // 初始化栈保护值
     stackUlong10 = STACK_GUARD_VALUE;
-    stackUlong12 = _DAT_180bf00a8 ^ (ulonglong)stackBuffer1;
+    stackUlong12 = GET_SECURITY_COOKIE() ^ (ulonglong)stackBuffer1;
     
     // 解析输入参数
     tempLongPtr5 = (longlong *)(param_3 + 2);
@@ -832,12 +833,12 @@ void SystemStateManager(longlong param_1)
     FUN_1800ab6f0(param_1);
     
     // 获取系统参数
-    tempUint2 = *(int32_t *)(_DAT_180c86920 + 0x1dc0);
-    tempUint1 = *(int32_t *)(_DAT_180c86920 + 0x1d50);
+    tempUint2 = *(int32_t *)(SYSTEM_STATE_MANAGER + 0x1dc0);
+    tempUint1 = *(int32_t *)(SYSTEM_STATE_MANAGER + 0x1d50);
     
     // 初始化栈保护值
     stackUlong2 = STACK_GUARD_VALUE;
-    stackUlong3 = _DAT_180bf00a8 ^ (ulonglong)stackBuffer1;
+    stackUlong3 = GET_SECURITY_COOKIE() ^ (ulonglong)stackBuffer1;
     
     // 获取线程信息
     tempInt2 = *(int *)(*(longlong *)(*(longlong *)(_DAT_180c82868 + 8) + 8) + 0x48);
@@ -1095,7 +1096,7 @@ void AlgorithmExecutionController(longlong param_1, int8_t *param_2)
     ulonglong stackUlong3;             // 栈无符号长整数3
     
     // 初始化栈保护值
-    stackUlong3 = _DAT_180bf00a8 ^ (ulonglong)stackBuffer1;
+    stackUlong3 = GET_SECURITY_COOKIE() ^ (ulonglong)stackBuffer1;
     stackUint4 = 1;
     stackUint1 = 0;
     
@@ -1177,12 +1178,12 @@ void AlgorithmExecutionController(longlong param_1, int8_t *param_2)
     stackUlong2 = 0x3f8000003f800000;
     stackUlong1 = 0x3f8000003f800000;
     
-    tempInt1 = *(int *)(_DAT_180c86920 + 0x540);
+    tempInt1 = *(int *)(SYSTEM_STATE_MANAGER + 0x540);
     stackFloat1 = 0.0;
     
     // 计算算法参数
     if (tempInt1 == 0) {
-        if ((*(int *)(_DAT_180c86920 + 0x2140) != 0) || (100.0 <= *(float *)(_DAT_180c86920 + 0x20d0))) {
+        if ((*(int *)(SYSTEM_STATE_MANAGER + 0x2140) != 0) || (100.0 <= *(float *)(SYSTEM_STATE_MANAGER + 0x20d0))) {
             tempChar1 = param_2[2];
             if (tempChar1 != '\0') {
                 if (tempChar1 == '\x01') {
@@ -1196,7 +1197,7 @@ void AlgorithmExecutionController(longlong param_1, int8_t *param_2)
                 }
             }
         } else {
-            stackFloat1 = (float)log2f(100.0 / *(float *)(_DAT_180c86920 + 0x20d0));
+            stackFloat1 = (float)log2f(100.0 / *(float *)(SYSTEM_STATE_MANAGER + 0x20d0));
             stackFloat1 = -stackFloat1;
         }
     } else {

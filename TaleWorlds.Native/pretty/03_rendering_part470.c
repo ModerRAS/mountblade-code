@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // ============================================================================
 // 03_rendering_part470.c - 渲染系统高级参数处理和渲染管线管理模块

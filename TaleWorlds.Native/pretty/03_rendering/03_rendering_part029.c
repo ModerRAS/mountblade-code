@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part029.c - 渲染系统高级处理模块 - 6个函数
 // 本文件包含渲染系统的高级处理功能，主要涉及渲染对象的复杂处理、数据结构管理和比较功能
@@ -17,7 +18,7 @@
 #define RENDER_DATA_PTR_4       unknown_var_9304
 #define RENDER_STRING_PTR       system_memory_ff10
 #define RENDER_EMPTY_STRING     system_buffer_ptr
-#define RENDER_SECURITY_KEY      _DAT_180bf00a8
+#define RENDER_SECURITY_KEY      GET_SECURITY_COOKIE()
 #define RENDER_CONFIG_DATA       _DAT_180c8ed18
 #define RENDER_RESOURCE_DATA    _DAT_180c86930
 

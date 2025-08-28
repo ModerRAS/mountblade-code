@@ -1,78 +1,124 @@
+/*******************************************************************************
+ * TaleWorlds.Native - 代码美化版本
+ * 文件名: 99_part_01_part070.c
+ * 模块: 模块99未匹配函数第1部分第70个文件
+ * 
+ * 本文件包含15个核心函数，涵盖内存管理、数据结构操作、资源清理等高级系统功能。
+ * 
+ * 主要功能包括：
+ * - 内存块清理和重置
+ * - 复杂数据结构初始化
+ * - 批量内存处理
+ * - 动态内存分配和释放
+ * - 数据结构排序和搜索
+ * - 资源清理和内存池管理
+ * - 数组结构创建和管理
+ * 
+ * @author Claude Code
+ * @version 1.0
+ * @date 2025-08-28
+ *******************************************************************************/
+
 #include "TaleWorlds.Native.Split.h"
 
-// 99_part_01_part070.c - 内存管理和数据结构操作模块
-// 本文件包含内存管理、数据结构操作和资源清理功能
-// 
-// 主要功能：
-// 1. 内存清理：清理内存块、重置内存区域
-// 2. 数据结构初始化：初始化复杂数据结构
-// 3. 内存分配和释放：动态内存管理
-// 4. 排序和搜索：数据结构的排序和搜索操作
-// 5. 资源清理：安全的资源释放和清理
-//
-// 文件包含15个核心函数，用于内存管理和数据结构操作
+/*******************************************************************************
+ * 常量定义和宏定义
+ *******************************************************************************/
 
-// 全局常量定义
-// 内存管理常量
-#define MEMORY_BLOCK_SIZE           0x60
-#define MEMORY_LARGE_BLOCK_SIZE     0x330
-#define MEMORY_CHUNK_SIZE           0x200
-#define MEMORY_SMALL_CHUNK_SIZE     0x10
-#define MEMORY_PAGE_SIZE            0x800
-#define MEMORY_ENTRY_SIZE           0x18
-#define MEMORY_LARGE_ENTRY_SIZE     0x12c30
-#define MEMORY_ALLOC_BASE_SIZE      0x10
+/**
+ * @defgroup memory_constants 内存管理常量
+ * @{
+ */
+#define MEMORY_BLOCK_SIZE           0x60    /**< 内存块大小 */
+#define MEMORY_LARGE_BLOCK_SIZE     0x330   /**< 大内存块大小 */
+#define MEMORY_CHUNK_SIZE           0x200   /**< 内存块组大小 */
+#define MEMORY_SMALL_CHUNK_SIZE     0x10    /**< 小内存块大小 */
+#define MEMORY_PAGE_SIZE            0x800   /**< 内存页大小 */
+#define MEMORY_ENTRY_SIZE           0x18    /**< 内存条目大小 */
+#define MEMORY_LARGE_ENTRY_SIZE     0x12c30 /**< 大内存条目大小 */
+#define MEMORY_ALLOC_BASE_SIZE      0x10    /**< 内存分配基础大小 */
+/* @} */
 
-// 函数别名定义
-#define clear_memory_block          FUN_1800e94a0
-#define clear_memory_block_fast     FUN_1800e94be
-#define empty_function              FUN_1800e9522
-#define initialize_memory_structure FUN_1800e9540
-#define process_memory_batch        FUN_1800e9790
-#define allocate_memory_structure   FUN_1800e97f0
-#define free_memory_structure       FUN_1800e9840
-#define sort_data_structure         FUN_1800e98d0
-#define merge_data_structures       FUN_1800e98fb
-#define insert_data_sorted          FUN_1800e996b
-#define add_data_entry              FUN_1800e9a94
-#define empty_function_2            FUN_1800e9ab1
-#define empty_function_3            FUN_1800e9ab9
-#define empty_function_4            FUN_1800e9ac1
-#define create_array_structure      FUN_1800e9ae0
-#define cleanup_memory_handlers      FUN_1800e9b50
-#define cleanup_memory_handlers_fast FUN_1800e9b5a
-#define cleanup_memory_pool          FUN_1800e9b7d
+/**
+ * @defgroup function_aliases 函数别名定义
+ * @{
+ */
+#define clear_memory_block          FUN_1800e94a0    /**< 内存块清理函数 */
+#define clear_memory_block_fast     FUN_1800e94be    /**< 快速内存块清理函数 */
+#define empty_function              FUN_1800e9522    /**< 空函数 */
+#define initialize_memory_structure FUN_1800e9540    /**< 内存结构初始化函数 */
+#define process_memory_batch        FUN_1800e9790    /**< 批量内存处理函数 */
+#define allocate_memory_structure   FUN_1800e97f0    /**< 内存结构分配函数 */
+#define free_memory_structure       FUN_1800e9840    /**< 内存结构释放函数 */
+#define sort_data_structure         FUN_1800e98d0    /**< 数据结构排序函数 */
+#define merge_data_structures       FUN_1800e98fb    /**< 数据结构合并函数 */
+#define insert_data_sorted          FUN_1800e996b    /**< 有序数据插入函数 */
+#define add_data_entry              FUN_1800e9a94    /**< 数据条目添加函数 */
+#define empty_function_2            FUN_1800e9ab1    /**< 空函数2 */
+#define empty_function_3            FUN_1800e9ab9    /**< 空函数3 */
+#define empty_function_4            FUN_1800e9ac1    /**< 空函数4 */
+#define create_array_structure      FUN_1800e9ae0    /**< 数组结构创建函数 */
+#define cleanup_memory_handlers      FUN_1800e9b50    /**< 内存处理器清理函数 */
+#define cleanup_memory_handlers_fast FUN_1800e9b5a   /**< 快速内存处理器清理函数 */
+#define cleanup_memory_pool          FUN_1800e9b7d    /**< 内存池清理函数 */
+/* @} */
 
-// 函数: void clear_memory_block(longlong memory_ptr, uint block_index)
-// 内存块清理函数
-// 参数: memory_ptr - 内存指针, block_index - 块索引
-// 功能: 清理指定内存块，将内存区域重置为0
+/**
+ * @brief 内存块清理函数
+ * 
+ * 清理指定内存块，将内存区域重置为0。
+ * 使用内存偏移计算和块索引来确定要清理的内存区域。
+ * 
+ * @param memory_ptr 内存指针，指向内存管理结构
+ * @param block_index 块索引，指定要清理的内存块
+ * @return void
+ * 
+ * @note 此函数使用位运算优化内存地址计算
+ * @warning 当内存块索引有效时，函数不会返回（memset操作）
+ */
 void clear_memory_block(longlong memory_ptr, uint block_index)
-
 {
-  if ((int)block_index < (int)(block_index + MEMORY_CHUNK_SIZE)) {
-                    // WARNING: Subroutine does not return
-    memset(*(longlong *)(memory_ptr + 8 + (ulonglong)(block_index >> 9) * 8) +
-           (longlong)(int)(block_index + (block_index >> 9) * -MEMORY_CHUNK_SIZE) * MEMORY_BLOCK_SIZE,0,MEMORY_BLOCK_SIZE);
-  }
-  return;
+    // 检查块索引是否在有效范围内
+    if ((int)block_index < (int)(block_index + MEMORY_CHUNK_SIZE)) {
+        // 计算内存块地址并清零
+        memset(
+            *(longlong *)(memory_ptr + 8 + (ulonglong)(block_index >> 9) * 8) +
+            (longlong)(int)(block_index + (block_index >> 9) * -MEMORY_CHUNK_SIZE) * MEMORY_BLOCK_SIZE,
+            0,
+            MEMORY_BLOCK_SIZE
+        );
+    }
+    return;
 }
 
 
 
-// 函数: void clear_memory_block_fast(void)
-// 快速内存块清理函数
-// 参数: 无参数，使用寄存器变量
-// 功能: 快速清理内存块，使用优化的内存清理路径
+/**
+ * @brief 快速内存块清理函数
+ * 
+ * 快速清理内存块，使用优化的内存清理路径。
+ * 此函数使用寄存器变量，避免了参数传递的开销。
+ * 
+ * @param unaff_EBX 寄存器变量，包含块索引信息
+ * @param unaff_RBP 寄存器变量，包含内存指针信息
+ * @return void
+ * 
+ * @note 此函数是clear_memory_block的优化版本，直接使用寄存器变量
+ * @warning 函数不会返回，直接执行memset操作
+ * @see clear_memory_block
+ */
 void clear_memory_block_fast(void)
-
 {
-  uint unaff_EBX;
-  longlong unaff_RBP;
-  
-                    // WARNING: Subroutine does not return
-  memset(*(longlong *)(unaff_RBP + 8 + (ulonglong)(unaff_EBX >> 9) * 8) +
-         (longlong)(int)(unaff_EBX + (unaff_EBX >> 9) * -MEMORY_CHUNK_SIZE) * MEMORY_BLOCK_SIZE,0,MEMORY_BLOCK_SIZE);
+    uint unaff_EBX;
+    longlong unaff_RBP;
+    
+    // 使用寄存器变量直接计算内存地址并清零
+    memset(
+        *(longlong *)(unaff_RBP + 8 + (ulonglong)(unaff_EBX >> 9) * 8) +
+        (longlong)(int)(unaff_EBX + (unaff_EBX >> 9) * -MEMORY_CHUNK_SIZE) * MEMORY_BLOCK_SIZE,
+        0,
+        MEMORY_BLOCK_SIZE
+    );
 }
 
 

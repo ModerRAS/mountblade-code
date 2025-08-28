@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part079.c - 3 个函数
 
@@ -149,7 +150,7 @@ void FUN_18030f2c0(longlong param_1)
   uint64_t uStack_20;
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_48;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_48;
   *(int32_t *)(param_1 + 0x328) = 0xffffffff;
   uVar2 = 0;
   do {
@@ -252,7 +253,7 @@ void FUN_18030f390(longlong param_1)
   char cStack_ec;
   ulonglong uStack_d8;
   
-  uStack_d8 = _DAT_180bf00a8 ^ (ulonglong)auStack_298;
+  uStack_d8 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_298;
   *(int32_t *)(param_1 + 100) = 0;
   cVar13 = '\x01';
   if (*(int *)(param_1 + 0x328) != -1) {
@@ -461,7 +462,7 @@ void FUN_18030f390(longlong param_1)
           cVar8 = cVar13;
         }
       }
-      if ((*(int *)(_DAT_180c86920 + 0x2300) != 0) &&
+      if ((*(int *)(SYSTEM_STATE_MANAGER + 0x2300) != 0) &&
          ((*(char *)(param_1 + 0x80) != '\0' || (cVar8 != '\0')))) {
         uStack_278 = (float)CONCAT22((short)(int)(fVar26 * 65535.0),(short)(int)(fVar25 * 65535.0));
         XInputSetState(*(int32_t *)(param_1 + 0x328),&uStack_278);
@@ -548,7 +549,7 @@ void FUN_18030f390(longlong param_1)
         }
         uStack_250._0_5_ = CONCAT14(0xff,(float)uStack_250);
         FUN_180310a00(param_1,&uStack_250);
-        iVar6 = *(int *)(_DAT_180c86920 + 0x2300);
+        iVar6 = *(int *)(SYSTEM_STATE_MANAGER + 0x2300);
         if (cStack_1c4 == '\0') {
           if ((((*(float *)(param_1 + 0x68) != -1.0) && (*(float *)(param_1 + 0x68) <= 0.2)) &&
               (*(char *)(param_1 + 0x7c) == '\0')) &&
@@ -630,7 +631,7 @@ void FUN_18030f390(longlong param_1)
         else {
           uVar7 = 0;
         }
-        lVar5 = _DAT_180c86920;
+        lVar5 = SYSTEM_STATE_MANAGER;
         *(int32_t *)(param_1 + 0x338) = uStack_1d0;
         *(int32_t *)(param_1 + 0x340) = uStack_1c8;
         *(int32_t *)(param_1 + 0x33c) = uStack_1cc;

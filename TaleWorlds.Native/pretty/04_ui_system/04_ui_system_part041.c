@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 04_ui_system_part041.c - UI系统高级控件处理模块
 // 包含9个核心函数，涵盖UI系统SIMD优化、数据传输、控件处理、内存管理等高级UI功能

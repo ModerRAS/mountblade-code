@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part255.c - 核心引擎模块第255部分
 // 本文件包含2个函数，主要负责资源管理和系统初始化
@@ -101,7 +102,7 @@ void initialize_resource_manager(longlong engine_context)
   
   // 初始化堆栈保护
   stack_guard_value = 0xfffffffffffffffe;
-  checksum_value = _DAT_180bf00a8 ^ (ulonglong)resource_name_buffer;
+  checksum_value = GET_SECURITY_COOKIE() ^ (ulonglong)resource_name_buffer;
   
   // 初始化纹理资源
   system_state_ptr = SYSTEM_STATE_ACTIVE;

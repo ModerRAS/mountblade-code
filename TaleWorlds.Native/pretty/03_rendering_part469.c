@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // ============================================================================
 // 渲染系统高级处理模块
@@ -525,7 +526,7 @@ void FUN_18051bd60(longlong param_1,uint64_t *param_2,char param_3,float *param_
   uint64_t uStack_c0;
   ulonglong uStack_b8;
   
-  uStack_b8 = _DAT_180bf00a8 ^ (ulonglong)&fStack_108;
+  uStack_b8 = GET_SECURITY_COOKIE() ^ (ulonglong)&fStack_108;
   puVar12 = (uint *)((longlong)param_3 * 0x100 +
                     *(longlong *)(*(longlong *)(param_1 + 0x658) + 0x18));
   do {

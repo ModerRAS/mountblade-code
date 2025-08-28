@@ -87,7 +87,7 @@ void RenderingSystem_ProcessResourceData(longlong render_context, longlong outpu
   ulonglong uStack_40;
   
   uStack_68 = 0xfffffffffffffffe;
-  uStack_40 = _DAT_180bf00a8 ^ (ulonglong)auStack_138;
+  uStack_40 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_138;
   aiStack_f8[0] = 0;
   puStack_c8 = (int32_t *)0x0;
   puStack_c0 = (int32_t *)0x0;
@@ -493,7 +493,7 @@ LAB_18032e74e:
     fclose(lVar10);
     lStack_58 = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
     lVar10 = 0;
   }
@@ -517,7 +517,7 @@ LAB_18032e74e:
     fclose(lVar10);
     lStack_58 = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
     puVar17 = puStack_c0;
     puVar11 = puStack_e0;
@@ -645,7 +645,7 @@ void RenderingSystem_ProcessTexturePath(longlong render_context, longlong output
   ulonglong uStack_50;
   
   uStack_68 = 0xfffffffffffffffe;
-  uStack_50 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+  uStack_50 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
   uStack_168 = 0;
   iStack_164 = 0;
   lStack_c8 = 0;
@@ -946,7 +946,7 @@ LAB_18032f333:
     fclose(lStack_70);
     lStack_70 = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
     lVar12 = lStack_d0;
     puVar5 = puStack_b8;
@@ -965,7 +965,7 @@ LAB_18032f333:
     lVar7 = 0;
     lStack_70 = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
     lVar12 = lStack_d0;
     puVar5 = puStack_b8;

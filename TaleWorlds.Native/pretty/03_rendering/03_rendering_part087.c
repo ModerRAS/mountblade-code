@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part087.c - 4个函数
 // 渲染系统高级参数处理和资源管理模块
@@ -94,7 +95,7 @@ void rendering_system_advanced_parameter_setup(uint64_t param_1, longlong param_
   
   // 安全检查：设置堆栈保护
   render_context = RENDERING_SYSTEM_STACK_CANARY;
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_canary_check;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_canary_check;
   
   // 初始化纹理参数
   FUN_1802c22a0(alignment_pad, &unknown_var_6264_ptr);
@@ -383,7 +384,7 @@ void rendering_system_batch_process_and_apply(uint64_t *param_1, longlong param_
   
   // 安全检查：设置堆栈保护
   render_params = RENDERING_SYSTEM_STACK_CANARY;
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_canary_check;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_canary_check;
   render_param1 = 0;
   texture_index = RENDERING_SYSTEM_MAX_RESOLUTION;
   resolution_level = -1;
@@ -518,7 +519,7 @@ void rendering_system_texture_generation_and_coord_calculation(uint64_t *param_1
   
   // 安全检查：设置堆栈保护
   texture_type = RENDERING_SYSTEM_STACK_CANARY;
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_canary_check;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_canary_check;
   texture_param2 = 0;
   pixel_data = (float *)0x0;
   texture_size = 0;

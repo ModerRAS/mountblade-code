@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_14_part021.c - 26 个函数
 
@@ -70,7 +71,7 @@ void FUN_1808fbf50(longlong param_1,uint64_t param_2)
   int8_t auStack_228 [528];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_248;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_248;
   if (param_1 != 0) {
     uVar1 = _set_invalid_parameter_handler(&unknown_var_1520_ptr);
 
@@ -115,7 +116,7 @@ void FUN_1808fc050(longlong param_1)
   int8_t auStack_38 [8];
   int8_t auStack_30 [48];
   
-  if ((param_1 == _DAT_180bf00a8) && ((short)((ulonglong)param_1 >> 0x30) == 0)) {
+  if ((param_1 == GET_SECURITY_COOKIE()) && ((short)((ulonglong)param_1 >> 0x30) == 0)) {
     return;
   }
   puVar3 = auStack_38;
@@ -134,7 +135,7 @@ void FUN_1808fc050(longlong param_1)
   _DAT_180c82264 = 1;
   _DAT_180c82278 = 1;
   uRam0000000180c82280 = 2;
-  *(longlong *)(puVar3 + 0x20) = _DAT_180bf00a8;
+  *(longlong *)(puVar3 + 0x20) = GET_SECURITY_COOKIE();
   *(uint64_t *)(puVar3 + 0x28) = _DAT_180bf00a0;
   *(uint64_t *)(puVar3 + -8) = 0x1808fcdc0;
   _DAT_180c823f8 = _DAT_180c82270;
@@ -641,9 +642,9 @@ uint64_t FUN_1808fc7d0(uint64_t param_1)
   byte bVar2;
   uint64_t uVar3;
   
-  bVar2 = (byte)_DAT_180bf00a8 & 0x3f;
-  if (((_DAT_180bf00a8 ^ _DAT_180c821e0) >> bVar2 |
-      (_DAT_180bf00a8 ^ _DAT_180c821e0) << 0x40 - bVar2) == 0xffffffffffffffff) {
+  bVar2 = (byte)GET_SECURITY_COOKIE() & 0x3f;
+  if (((GET_SECURITY_COOKIE() ^ _DAT_180c821e0) >> bVar2 |
+      (GET_SECURITY_COOKIE() ^ _DAT_180c821e0) << 0x40 - bVar2) == 0xffffffffffffffff) {
     iVar1 = _crt_atexit(param_1);
   }
   else {
@@ -753,11 +754,11 @@ FUN_1808fc978(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   else {
     _DAT_180c82240 = 0;
     _guard_dispatch_icall(0x180c82238);
-    bVar9 = 0x40 - ((byte)_DAT_180bf00a8 & 0x3f);
+    bVar9 = 0x40 - ((byte)GET_SECURITY_COOKIE() & 0x3f);
     bVar2 = bVar9 & 0x3f;
-    _DAT_180c82248 = _DAT_180bf00a8 ^ (uVar6 >> bVar2 | uVar6 << 0x40 - bVar2);
+    _DAT_180c82248 = GET_SECURITY_COOKIE() ^ (uVar6 >> bVar2 | uVar6 << 0x40 - bVar2);
     bVar9 = bVar9 & 0x3f;
-    _DAT_180c82250 = _DAT_180bf00a8 ^ (uVar7 >> bVar9 | uVar7 << 0x40 - bVar9);
+    _DAT_180c82250 = GET_SECURITY_COOKIE() ^ (uVar7 >> bVar9 | uVar7 << 0x40 - bVar9);
 LAB_1808fca68:
     cVar3 = FUN_1808fc60c(0);
     if (cVar3 != '\0') {
@@ -815,11 +816,11 @@ void FUN_1808fcb00(int32_t *param_1)
     ResetEvent(_DAT_180c82240);
     return;
   }
-  bVar1 = (byte)_DAT_180bf00a8 & 0x3f;
+  bVar1 = (byte)GET_SECURITY_COOKIE() & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((_DAT_180bf00a8 ^ _DAT_180c82250) >> bVar1 |
-            (_DAT_180bf00a8 ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((GET_SECURITY_COOKIE() ^ _DAT_180c82250) >> bVar1 |
+            (GET_SECURITY_COOKIE() ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -850,11 +851,11 @@ void FUN_1808fcb30(int *param_1)
     ResetEvent(_DAT_180c82240);
     return;
   }
-  bVar1 = (byte)_DAT_180bf00a8 & 0x3f;
+  bVar1 = (byte)GET_SECURITY_COOKIE() & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((_DAT_180bf00a8 ^ _DAT_180c82250) >> bVar1 |
-            (_DAT_180bf00a8 ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((GET_SECURITY_COOKIE() ^ _DAT_180c82250) >> bVar1 |
+            (GET_SECURITY_COOKIE() ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -909,11 +910,11 @@ void FUN_1808fcbf8(void)
     ResetEvent(_DAT_180c82240);
     return;
   }
-  bVar1 = (byte)_DAT_180bf00a8 & 0x3f;
+  bVar1 = (byte)GET_SECURITY_COOKIE() & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((_DAT_180bf00a8 ^ _DAT_180c82250) >> bVar1 |
-            (_DAT_180bf00a8 ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((GET_SECURITY_COOKIE() ^ _DAT_180c82250) >> bVar1 |
+            (GET_SECURITY_COOKIE() ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -938,11 +939,11 @@ void FUN_1808fcc48(int32_t param_1)
     EnterCriticalSection(0x180c82210);
     return;
   }
-  bVar1 = (byte)_DAT_180bf00a8 & 0x3f;
+  bVar1 = (byte)GET_SECURITY_COOKIE() & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((_DAT_180bf00a8 ^ _DAT_180c82248) >> bVar1 |
-            (_DAT_180bf00a8 ^ _DAT_180c82248) << 0x40 - bVar1))(0x180c82238,0x180c82210,param_1);
+  (*(code *)((GET_SECURITY_COOKIE() ^ _DAT_180c82248) >> bVar1 |
+            (GET_SECURITY_COOKIE() ^ _DAT_180c82248) << 0x40 - bVar1))(0x180c82238,0x180c82210,param_1);
   return;
 }
 
@@ -999,7 +1000,7 @@ void FUN_1808fccf4(void)
   _DAT_180c82264 = 1;
   _DAT_180c82278 = 1;
   uRam0000000180c82280 = 2;
-  *(uint64_t *)(puVar3 + 0x20) = _DAT_180bf00a8;
+  *(uint64_t *)(puVar3 + 0x20) = GET_SECURITY_COOKIE();
   *(uint64_t *)(puVar3 + 0x28) = _DAT_180bf00a0;
   *(uint64_t *)(puVar3 + -8) = 0x1808fcdc0;
   _DAT_180c823f8 = _DAT_180c82270;
@@ -1296,7 +1297,7 @@ void FUN_1808fd18c(ulonglong param_1,longlong param_2,uint *param_3)
     param_1 = param_1 + (*(byte *)(uVar3 + 3 + *(longlong *)(param_2 + 8)) & 0xfffffff0);
   }
   param_1 = param_1 ^ *(ulonglong *)((longlong)(int)(*param_3 & 0xfffffff8) + uVar5);
-  if ((param_1 == _DAT_180bf00a8) && ((short)(param_1 >> 0x30) == 0)) {
+  if ((param_1 == GET_SECURITY_COOKIE()) && ((short)(param_1 >> 0x30) == 0)) {
     return;
   }
   puVar4 = auStack_38;
@@ -1315,7 +1316,7 @@ void FUN_1808fd18c(ulonglong param_1,longlong param_2,uint *param_3)
   _DAT_180c82264 = 1;
   _DAT_180c82278 = 1;
   uRam0000000180c82280 = 2;
-  *(ulonglong *)(puVar4 + 0x20) = _DAT_180bf00a8;
+  *(ulonglong *)(puVar4 + 0x20) = GET_SECURITY_COOKIE();
   *(uint64_t *)(puVar4 + 0x28) = _DAT_180bf00a0;
   *(uint64_t *)(puVar4 + -8) = 0x1808fcdc0;
   _DAT_180c823f8 = _DAT_180c82270;

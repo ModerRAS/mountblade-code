@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part150.c - 1 个函数
 
@@ -8,15 +9,15 @@ void FUN_180755270(longlong *param_1)
 {
   if (param_1[0xc] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_1[0xc],&unknown_var_336_ptr,0xb7,1);
+    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1[0xc],&unknown_var_336_ptr,0xb7,1);
   }
-  FUN_180768360(*(uint64_t *)(_DAT_180be12f0 + 0x120));
+  FUN_180768360(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x120));
   *(longlong *)param_1[1] = *param_1;
   *(longlong *)(*param_1 + 8) = param_1[1];
   param_1[1] = (longlong)param_1;
   *param_1 = (longlong)param_1;
                     // WARNING: Subroutine does not return
-  FUN_180768400(*(uint64_t *)(_DAT_180be12f0 + 0x120));
+  FUN_180768400(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x120));
 }
 
 

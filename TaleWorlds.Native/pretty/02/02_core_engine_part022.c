@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part022.c - 核心引擎模块第22部分
 // 包含4个函数：字符串处理、路径处理、内存管理和系统调用
@@ -54,7 +55,7 @@ void process_and_add_path_to_container(longlong *container_ptr, longlong source_
     ulonglong stack_ulong9;
     
     stack_ulong2 = 0xfffffffffffffffe;
-    stack_ulong9 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
+    stack_ulong9 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer1;
     stack_uint2 = 0;
     FUN_180057110();
     temp_ptr4 = &system_buffer_ptr;
@@ -390,7 +391,7 @@ void generate_system_info_report(uint64_t report_param)
     ulonglong stack_ulong14;
     
     stack_ulong12 = 0xfffffffffffffffe;
-    stack_ulong14 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
+    stack_ulong14 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer1;
     stack_uint1 = 0;
     FUN_180627e10(report_param, &stack_ptr19, &unknown_var_816_ptr);
     stack_ulong7 = 0;
@@ -762,7 +763,7 @@ STRING_MATCH_FOUND:
         fclose(temp_long1);
         stack_long2 = 0;
         LOCK();
-        _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+        SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
         UNLOCK();
         temp_long1 = 0;
         temp_ptr2 = stack_ptr12;
@@ -799,7 +800,7 @@ STRING_MATCH_FOUND:
             fclose(temp_long1);
             stack_long2 = 0;
             LOCK();
-            _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+            SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
             UNLOCK();
         }
         stack_ptr19 = &unknown_var_3456_ptr;
@@ -839,7 +840,7 @@ void initialize_error_handling_path(void)
     int8_t stack_buffer2[512];
     ulonglong stack_ulong3;
     
-    stack_ulong3 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
+    stack_ulong3 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer1;
     stack_uint9 = 0x22657865;
     stack_ulong1 = 0x736172435c2e2e22;
     stack_ulong2 = 0x6564616f6c705568;
@@ -892,7 +893,7 @@ void execute_engine_core_operation(uint64_t operation_type, longlong operation_p
     }
     ptr_ptr = &ptr1;
     long_ptr_ptr_ptr = &long_ptr_ptr;
-    FUN_180066140(&ptr_ptr, _DAT_180c86920, &system_memory_c7d8);
+    FUN_180066140(&ptr_ptr, SYSTEM_STATE_MANAGER, &system_memory_c7d8);
     FUN_180066140(&ptr_ptr, _DAT_180c868b0, &system_memory_cfc0);
     code_ptr = *(code **)(*long_ptr_ptr + 0x40);
     temp_ulong = FUN_180627ae0(&ptr_ptr, _DAT_180c86928 + 0x28);

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part059.c - 12 个函数
 
@@ -302,8 +303,8 @@ void FUN_18029ae20(longlong *param_1)
   (**(code **)(*param_1 + 0x110))(param_1,5,1,*(uint64_t *)(_DAT_180c86938 + 0x1c98));
   (**(code **)(*param_1 + 0x110))(param_1,6,0x17,*(uint64_t *)(_DAT_180c86938 + 0x1ca0));
   (**(code **)(*param_1 + 0x110))(param_1,7,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1ca8));
-  lVar1 = _DAT_180c86920;
-  fVar8 = *(float *)(_DAT_180c86920 + 0x1880);
+  lVar1 = SYSTEM_STATE_MANAGER;
+  fVar8 = *(float *)(SYSTEM_STATE_MANAGER + 0x1880);
   *(float *)(param_1 + 0x2a4) = fVar8;
   *(float *)((longlong)param_1 + 0x1524) = 1.0 / fVar8;
   *(float *)((longlong)param_1 + 0x1d54) = *(float *)(lVar1 + 0x2060) * 0.01;
@@ -411,8 +412,8 @@ void FUN_18029ae29(longlong *param_1)
   (**(code **)(*param_1 + 0x110))(param_1,5,1,*(uint64_t *)(_DAT_180c86938 + 0x1c98));
   (**(code **)(*param_1 + 0x110))(param_1,6,0x17,*(uint64_t *)(_DAT_180c86938 + 0x1ca0));
   (**(code **)(*param_1 + 0x110))(param_1,7,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1ca8));
-  lVar1 = _DAT_180c86920;
-  fVar8 = *(float *)(_DAT_180c86920 + 0x1880);
+  lVar1 = SYSTEM_STATE_MANAGER;
+  fVar8 = *(float *)(SYSTEM_STATE_MANAGER + 0x1880);
   *(float *)(param_1 + 0x2a4) = fVar8;
   *(float *)((longlong)param_1 + 0x1524) = 1.0 / fVar8;
   *(float *)((longlong)param_1 + 0x1d54) = *(float *)(lVar1 + 0x2060) * 0.01;
@@ -503,8 +504,8 @@ void FUN_18029ae76(void)
   uVar6 = (**(code **)(*unaff_RBX + 0x110))(uVar6,5,1,*(uint64_t *)(_DAT_180c86938 + 0x1c98));
   uVar6 = (**(code **)(*unaff_RBX + 0x110))(uVar6,6,0x17,*(uint64_t *)(_DAT_180c86938 + 0x1ca0));
   (**(code **)(*unaff_RBX + 0x110))(uVar6,7,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1ca8));
-  lVar1 = _DAT_180c86920;
-  fVar8 = *(float *)(_DAT_180c86920 + 0x1880);
+  lVar1 = SYSTEM_STATE_MANAGER;
+  fVar8 = *(float *)(SYSTEM_STATE_MANAGER + 0x1880);
   *(float *)(unaff_RBX + 0x2a4) = fVar8;
   *(float *)((longlong)unaff_RBX + 0x1524) = 1.0 / fVar8;
   *(float *)((longlong)unaff_RBX + 0x1d54) = *(float *)(lVar1 + 0x2060) * 0.01;
@@ -568,8 +569,8 @@ void FUN_18029af73(int32_t param_1)
   uVar2 = (**(code **)(*unaff_RBX + 0x110))(uVar2,5,1,*(uint64_t *)(_DAT_180c86938 + 0x1c98));
   uVar2 = (**(code **)(*unaff_RBX + 0x110))(uVar2,6,0x17,*(uint64_t *)(_DAT_180c86938 + 0x1ca0));
   (**(code **)(*unaff_RBX + 0x110))(uVar2,7,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1ca8));
-  lVar1 = _DAT_180c86920;
-  fVar4 = *(float *)(_DAT_180c86920 + 0x1880);
+  lVar1 = SYSTEM_STATE_MANAGER;
+  fVar4 = *(float *)(SYSTEM_STATE_MANAGER + 0x1880);
   *(float *)(unaff_RBX + 0x2a4) = fVar4;
   *(float *)((longlong)unaff_RBX + 0x1524) = 1.0 / fVar4;
   *(float *)((longlong)unaff_RBX + 0x1d54) = *(float *)(lVar1 + 0x2060) * 0.01;
@@ -669,8 +670,8 @@ void FUN_18029b1c0(uint64_t param_1,code *param_2)
   uVar3 = (**(code **)(*unaff_RBX + 0x110))(uVar3,5,1,*(uint64_t *)(_DAT_180c86938 + 0x1c98));
   uVar3 = (**(code **)(*unaff_RBX + 0x110))(uVar3,6,0x17,*(uint64_t *)(_DAT_180c86938 + 0x1ca0));
   (**(code **)(*unaff_RBX + 0x110))(uVar3,7,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1ca8));
-  lVar1 = _DAT_180c86920;
-  fVar4 = *(float *)(_DAT_180c86920 + 0x1880);
+  lVar1 = SYSTEM_STATE_MANAGER;
+  fVar4 = *(float *)(SYSTEM_STATE_MANAGER + 0x1880);
   *(float *)(unaff_RBX + 0x2a4) = fVar4;
   *(float *)((longlong)unaff_RBX + 0x1524) = 1.0 / fVar4;
   *(float *)((longlong)unaff_RBX + 0x1d54) = *(float *)(lVar1 + 0x2060) * 0.01;
@@ -743,7 +744,7 @@ void FUN_18029b1d0(longlong *param_1,uint64_t param_2,int32_t param_3,longlong *
   ulonglong uStack_48;
   
   uStack_138 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
   iVar1 = *(int *)(*(longlong *)(*(longlong *)(_DAT_180c82868 + 8) + 8) + 0x48);
   iVar3 = _Thrd_id();
   if (iVar3 == iVar1) {
@@ -825,7 +826,7 @@ void FUN_18029b390(longlong *param_1,uint64_t param_2,longlong *param_3)
   ulonglong uStack_28;
   
   uStack_118 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_148;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_148;
   iVar1 = *(int *)(*(longlong *)(*(longlong *)(_DAT_180c82868 + 8) + 8) + 0x48);
   iVar3 = _Thrd_id();
   if (iVar3 == iVar1) {

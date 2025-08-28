@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part322_sub002_sub002.c - 1 个函数
 
@@ -27,13 +28,13 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
   float afStackX_8 [2];
   ulonglong in_stack_00000018;
   
-  lVar1 = _DAT_180c86920;
+  lVar1 = SYSTEM_STATE_MANAGER;
   if (param_1 < 0x49) {
     switch(param_1) {
     case 0:
       afStackX_8[0] = param_2;
-      if (*(longlong *)(_DAT_180c86920 + 0x13a0) != 0) {
-        cVar2 = (**(code **)(_DAT_180c86920 + 0x13a8))(afStackX_8);
+      if (*(longlong *)(SYSTEM_STATE_MANAGER + 0x13a0) != 0) {
+        cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x13a8))(afStackX_8);
         if (cVar2 == '\0') {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
@@ -51,8 +52,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 1:
       afStackX_8[0] = param_2;
-      if (*(longlong *)(_DAT_180c86920 + 0x1560) != 0) {
-        cVar2 = (**(code **)(_DAT_180c86920 + 0x1568))(afStackX_8);
+      if (*(longlong *)(SYSTEM_STATE_MANAGER + 0x1560) != 0) {
+        cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1568))(afStackX_8);
         if (cVar2 == '\0') {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
@@ -70,8 +71,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 2:
       afStackX_8[0] = param_2;
-      if (*(longlong *)(_DAT_180c86920 + 0x1410) != 0) {
-        cVar2 = (**(code **)(_DAT_180c86920 + 0x1418))(afStackX_8);
+      if (*(longlong *)(SYSTEM_STATE_MANAGER + 0x1410) != 0) {
+        cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1418))(afStackX_8);
         if (cVar2 == '\0') {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
@@ -89,8 +90,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 3:
       afStackX_8[0] = param_2;
-      if (*(longlong *)(_DAT_180c86920 + 0x1480) != 0) {
-        cVar2 = (**(code **)(_DAT_180c86920 + 0x1488))(afStackX_8);
+      if (*(longlong *)(SYSTEM_STATE_MANAGER + 0x1480) != 0) {
+        cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1488))(afStackX_8);
         if (cVar2 == '\0') {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
@@ -108,8 +109,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 4:
       afStackX_8[0] = param_2;
-      if (*(longlong *)(_DAT_180c86920 + 0x14f0) != 0) {
-        cVar2 = (**(code **)(_DAT_180c86920 + 0x14f8))(afStackX_8);
+      if (*(longlong *)(SYSTEM_STATE_MANAGER + 0x14f0) != 0) {
+        cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x14f8))(afStackX_8);
         if (cVar2 == '\0') {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
@@ -129,8 +130,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       fVar11 = (float)(int)param_2;
       afStackX_8[0] = fVar11;
       fVar3 = fVar11;
-      if (*(longlong *)(_DAT_180c86920 + 0x15d0) != 0) {
-        cVar2 = (**(code **)(_DAT_180c86920 + 0x15d8))(afStackX_8);
+      if (*(longlong *)(SYSTEM_STATE_MANAGER + 0x15d0) != 0) {
+        cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x15d8))(afStackX_8);
         if (cVar2 == '\0') {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
@@ -151,8 +152,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       (**(code **)(*_DAT_180c86878 + 0xa8))(_DAT_180c86878,fVar11);
       return;
     case 6:
-      if ((*(longlong *)(_DAT_180c86920 + 0x1330) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x1338))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x1330) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1338))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x12e0) != (void *)0x0) {
@@ -167,8 +168,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 7:
       afStackX_8[0] = (float)(int)param_2;
-      if (*(longlong *)(_DAT_180c86920 + 0x1640) != 0) {
-        cVar2 = (**(code **)(_DAT_180c86920 + 0x1648))(afStackX_8);
+      if (*(longlong *)(SYSTEM_STATE_MANAGER + 0x1640) != 0) {
+        cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1648))(afStackX_8);
         if (cVar2 == '\0') {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
@@ -185,8 +186,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 8:
       afStackX_8[0] = (float)(int)param_2;
-      if (*(longlong *)(_DAT_180c86920 + 0x16b0) != 0) {
-        cVar2 = (**(code **)(_DAT_180c86920 + 0x16b8))(afStackX_8);
+      if (*(longlong *)(SYSTEM_STATE_MANAGER + 0x16b0) != 0) {
+        cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x16b8))(afStackX_8);
         if (cVar2 == '\0') {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
@@ -203,8 +204,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 9:
       afStackX_8[0] = (float)(int)param_2;
-      if (*(longlong *)(_DAT_180c86920 + 0x23d0) != 0) {
-        cVar2 = (**(code **)(_DAT_180c86920 + 0x23d8))(afStackX_8);
+      if (*(longlong *)(SYSTEM_STATE_MANAGER + 0x23d0) != 0) {
+        cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x23d8))(afStackX_8);
         if (cVar2 == '\0') {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
@@ -221,8 +222,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 10:
       afStackX_8[0] = (float)(int)param_2;
-      if (*(longlong *)(_DAT_180c86920 + 0x2440) != 0) {
-        cVar2 = (**(code **)(_DAT_180c86920 + 0x2448))(afStackX_8);
+      if (*(longlong *)(SYSTEM_STATE_MANAGER + 0x2440) != 0) {
+        cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x2448))(afStackX_8);
         if (cVar2 == '\0') {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
@@ -239,8 +240,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0xb:
       afStackX_8[0] = param_2;
-      if (*(longlong *)(_DAT_180c86920 + 0x1720) != 0) {
-        cVar2 = (**(code **)(_DAT_180c86920 + 0x1728))(afStackX_8);
+      if (*(longlong *)(SYSTEM_STATE_MANAGER + 0x1720) != 0) {
+        cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1728))(afStackX_8);
         if (cVar2 == '\0') {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
@@ -258,8 +259,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0xc:
       afStackX_8[0] = (float)(int)param_2;
-      if (*(longlong *)(_DAT_180c86920 + 0x1790) != 0) {
-        cVar2 = (**(code **)(_DAT_180c86920 + 0x1798))(afStackX_8);
+      if (*(longlong *)(SYSTEM_STATE_MANAGER + 0x1790) != 0) {
+        cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1798))(afStackX_8);
         if (cVar2 == '\0') {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
@@ -276,8 +277,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0xd:
       afStackX_8[0] = param_2;
-      if (*(longlong *)(_DAT_180c86920 + 0x1950) != 0) {
-        cVar2 = (**(code **)(_DAT_180c86920 + 0x1958))(afStackX_8);
+      if (*(longlong *)(SYSTEM_STATE_MANAGER + 0x1950) != 0) {
+        cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1958))(afStackX_8);
         if (cVar2 == '\0') {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
@@ -294,8 +295,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(float *)(lVar1 + 0x18f0) = param_2;
       return;
     case 0xe:
-      if ((*(longlong *)(_DAT_180c86920 + 0x1800) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x1808))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x1800) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1808))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x17b0) != (void *)0x0) {
@@ -310,8 +311,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0xf:
       afStackX_8[0] = (float)(int)param_2;
-      if (*(longlong *)(_DAT_180c86920 + 0x2360) != 0) {
-        cVar2 = (**(code **)(_DAT_180c86920 + 0x2368))(afStackX_8);
+      if (*(longlong *)(SYSTEM_STATE_MANAGER + 0x2360) != 0) {
+        cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x2368))(afStackX_8);
         if (cVar2 == '\0') {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
@@ -328,8 +329,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x10:
       afStackX_8[0] = (float)(int)param_2;
-      if (*(longlong *)(_DAT_180c86920 + 0x24b0) != 0) {
-        cVar2 = (**(code **)(_DAT_180c86920 + 0x24b8))(afStackX_8);
+      if (*(longlong *)(SYSTEM_STATE_MANAGER + 0x24b0) != 0) {
+        cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x24b8))(afStackX_8);
         if (cVar2 == '\0') {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
@@ -346,8 +347,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x11:
       afStackX_8[0] = param_2;
-      if (*(longlong *)(_DAT_180c86920 + 0x2520) != 0) {
-        cVar2 = (**(code **)(_DAT_180c86920 + 0x2528))(afStackX_8);
+      if (*(longlong *)(SYSTEM_STATE_MANAGER + 0x2520) != 0) {
+        cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x2528))(afStackX_8);
         if (cVar2 == '\0') {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
@@ -365,8 +366,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x12:
       afStackX_8[0] = (float)(int)param_2;
-      if (*(longlong *)(_DAT_180c86920 + 0x2590) != 0) {
-        cVar2 = (**(code **)(_DAT_180c86920 + 0x2598))(afStackX_8);
+      if (*(longlong *)(SYSTEM_STATE_MANAGER + 0x2590) != 0) {
+        cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x2598))(afStackX_8);
         if (cVar2 == '\0') {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
@@ -383,8 +384,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x13:
       afStackX_8[0] = (float)(int)param_2;
-      if (*(longlong *)(_DAT_180c86920 + 0x2600) != 0) {
-        cVar2 = (**(code **)(_DAT_180c86920 + 0x2608))(afStackX_8);
+      if (*(longlong *)(SYSTEM_STATE_MANAGER + 0x2600) != 0) {
+        cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x2608))(afStackX_8);
         if (cVar2 == '\0') {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
@@ -400,8 +401,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(float *)(lVar1 + 0x25a0) = afStackX_8[0];
       return;
     case 0x14:
-      if ((*(longlong *)(_DAT_180c86920 + 0x1f00) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x1f08))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x1f00) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1f08))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x1eb0) != (void *)0x0) {
@@ -416,8 +417,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x15:
       afStackX_8[0] = (float)(int)param_2;
-      if (*(longlong *)(_DAT_180c86920 + 0x1f70) != 0) {
-        cVar2 = (**(code **)(_DAT_180c86920 + 0x1f78))(afStackX_8);
+      if (*(longlong *)(SYSTEM_STATE_MANAGER + 0x1f70) != 0) {
+        cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1f78))(afStackX_8);
         if (cVar2 == '\0') {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
@@ -433,8 +434,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(float *)(lVar1 + 0x1f10) = afStackX_8[0];
       return;
     case 0x16:
-      if ((*(longlong *)(_DAT_180c86920 + 0x1870) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x1878))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x1870) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1878))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x1820) != (void *)0x0) {
@@ -453,17 +454,17 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
         iVar6 = FUN_180438350();
         if (param_2 == (float)iVar6) {
           FUN_180171f10(*(uint64_t *)(_DAT_180c86870 + 8),&stack0x00000018);
-          FUN_18006b4c0(_DAT_180c86920,in_stack_00000018 & 0xffffffff);
+          FUN_18006b4c0(SYSTEM_STATE_MANAGER,in_stack_00000018 & 0xffffffff);
           iVar6 = (int)(in_stack_00000018 >> 0x20);
         }
         else {
           uVar4 = FUN_1804386b0((int)param_2);
-          FUN_18006b4c0(_DAT_180c86920,(int)(float)uVar4);
+          FUN_18006b4c0(SYSTEM_STATE_MANAGER,(int)(float)uVar4);
           iVar6 = (int)(float)((ulonglong)uVar4 >> 0x20);
         }
-        lVar1 = _DAT_180c86920;
-        if ((*(longlong *)(_DAT_180c86920 + 0x1e20) != 0) &&
-           (cVar2 = (**(code **)(_DAT_180c86920 + 0x1e28))(&stack0x00000010), cVar2 == '\0')) {
+        lVar1 = SYSTEM_STATE_MANAGER;
+        if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x1e20) != 0) &&
+           (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1e28))(&stack0x00000010), cVar2 == '\0')) {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
             if (*(void **)(lVar1 + 0x1dd0) != (void *)0x0) {
@@ -480,9 +481,9 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       break;
     case 0x18:
       iVar6 = FUN_180438940((int)param_2);
-      lVar1 = _DAT_180c86920;
-      if ((*(longlong *)(_DAT_180c86920 + 0x1e90) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x1e98))(&stack0x00000010), cVar2 == '\0')) {
+      lVar1 = SYSTEM_STATE_MANAGER;
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x1e90) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1e98))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x1e40) != (void *)0x0) {
@@ -496,8 +497,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(float *)(lVar1 + 0x1e30) = (float)iVar6;
       return;
     case 0x19:
-      if ((*(longlong *)(_DAT_180c86920 + 0x2130) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x2138))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x2130) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x2138))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x20e0) != (void *)0x0) {
@@ -511,8 +512,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(float *)(lVar1 + 0x20d0) = param_2;
       return;
     case 0x1a:
-      if ((*(longlong *)(_DAT_180c86920 + 0x1bf0) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x1bf8))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x1bf0) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1bf8))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x1ba0) != (void *)0x0) {
@@ -526,8 +527,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0x1b90) = (int)param_2;
       return;
     case 0x1b:
-      if ((*(longlong *)(_DAT_180c86920 + 0x1fe0) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x1fe8))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x1fe0) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1fe8))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x1f90) != (void *)0x0) {
@@ -541,8 +542,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0x1f80) = (int)param_2;
       return;
     case 0x1c:
-      if ((*(longlong *)(_DAT_180c86920 + 0x1170) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x1178))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x1170) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1178))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x1120) != (void *)0x0) {
@@ -578,12 +579,12 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
             else {
               uVar5 = uVar12;
               if (iVar6 == 5) {
-                uVar5 = *(int32_t *)(_DAT_180c86920 + 0xe0);
+                uVar5 = *(int32_t *)(SYSTEM_STATE_MANAGER + 0xe0);
               }
             }
           }
         }
-        FUN_18010e230(_DAT_180c86920,uVar5);
+        FUN_18010e230(SYSTEM_STATE_MANAGER,uVar5);
         if (iVar6 == 0) {
           uVar5 = 0;
         }
@@ -1037,8 +1038,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       }
       return;
     case 0x1e:
-      if ((*(longlong *)(_DAT_180c86920 + 0x760) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x768))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x760) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x768))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x710) != (void *)0x0) {
@@ -1052,8 +1053,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0x700) = (int)param_2;
       return;
     case 0x1f:
-      if ((*(longlong *)(_DAT_180c86920 + 0x3e0) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 1000))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x3e0) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 1000))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x390) != (void *)0x0) {
@@ -1067,8 +1068,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0x380) = (int)param_2;
       return;
     case 0x20:
-      if ((*(longlong *)(_DAT_180c86920 + 0x450) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x458))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x450) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x458))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x400) != (void *)0x0) {
@@ -1082,8 +1083,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0x3f0) = (int)param_2;
       return;
     case 0x21:
-      if ((*(longlong *)(_DAT_180c86920 + 0xd10) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0xd18))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0xd10) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xd18))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0xcc0) != (void *)0x0) {
@@ -1097,8 +1098,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0xcb0) = (int)param_2;
       return;
     case 0x22:
-      if ((*(longlong *)(_DAT_180c86920 + 0xca0) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0xca8))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0xca0) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xca8))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0xc50) != (void *)0x0) {
@@ -1112,8 +1113,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0xc40) = (int)param_2;
       return;
     case 0x23:
-      if ((*(longlong *)(_DAT_180c86920 + 0xd80) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0xd88))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0xd80) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xd88))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0xd30) != (void *)0x0) {
@@ -1127,8 +1128,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0xd20) = (int)param_2;
       return;
     case 0x24:
-      if ((*(longlong *)(_DAT_180c86920 + 0xb50) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0xb58))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0xb50) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xb58))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0xb00) != (void *)0x0) {
@@ -1142,8 +1143,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0xaf0) = (int)param_2;
       return;
     case 0x25:
-      if ((*(longlong *)(_DAT_180c86920 + 0xbc0) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0xbc8))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0xbc0) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xbc8))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0xb70) != (void *)0x0) {
@@ -1157,8 +1158,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0xb60) = (int)param_2;
       return;
     case 0x26:
-      if ((*(longlong *)(_DAT_180c86920 + 0x140) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x148))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x140) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x148))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0xf0) != (void *)0x0) {
@@ -1172,8 +1173,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0xe0) = (int)param_2;
       return;
     case 0x27:
-      if ((*(longlong *)(_DAT_180c86920 + 0xe60) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0xe68))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0xe60) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xe68))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0xe10) != (void *)0x0) {
@@ -1187,8 +1188,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0xe00) = (int)param_2;
       return;
     case 0x28:
-      if ((*(longlong *)(_DAT_180c86920 + 0xdf0) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0xdf8))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0xdf0) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xdf8))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0xda0) != (void *)0x0) {
@@ -1202,8 +1203,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0xd90) = (int)param_2;
       return;
     case 0x29:
-      if ((*(longlong *)(_DAT_180c86920 + 0xed0) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0xed8))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0xed0) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xed8))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0xe80) != (void *)0x0) {
@@ -1217,8 +1218,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0xe70) = (int)param_2;
       return;
     case 0x2a:
-      if ((*(longlong *)(_DAT_180c86920 + 0x1b0) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x1b8))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x1b0) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1b8))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x160) != (void *)0x0) {
@@ -1232,8 +1233,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0x150) = (int)param_2;
       return;
     case 0x2b:
-      if ((*(longlong *)(_DAT_180c86920 + 0x220) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x228))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x220) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x228))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x1d0) != (void *)0x0) {
@@ -1247,8 +1248,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0x1c0) = (int)param_2;
       return;
     case 0x2c:
-      if ((*(longlong *)(_DAT_180c86920 + 0x610) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x618))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x610) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x618))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x5c0) != (void *)0x0) {
@@ -1262,8 +1263,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0x5b0) = (int)param_2;
       return;
     case 0x2d:
-      if ((*(longlong *)(_DAT_180c86920 + 0x370) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x378))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x370) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x378))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 800) != (void *)0x0) {
@@ -1277,8 +1278,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0x310) = (int)param_2;
       return;
     case 0x2e:
-      if ((*(longlong *)(_DAT_180c86920 + 0x4c0) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x4c8))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x4c0) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x4c8))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x470) != (void *)0x0) {
@@ -1292,8 +1293,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0x460) = (int)param_2;
       return;
     case 0x2f:
-      if ((*(longlong *)(_DAT_180c86920 + 0x530) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x538))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x530) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x538))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x4e0) != (void *)0x0) {
@@ -1307,8 +1308,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0x4d0) = (int)param_2;
       return;
     case 0x30:
-      if ((*(longlong *)(_DAT_180c86920 + 0x5a0) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x5a8))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x5a0) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x5a8))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x550) != (void *)0x0) {
@@ -1322,8 +1323,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0x540) = (int)param_2;
       return;
     case 0x31:
-      if ((*(longlong *)(_DAT_180c86920 + 0xc30) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0xc38))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0xc30) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xc38))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0xbe0) != (void *)0x0) {
@@ -1337,8 +1338,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0xbd0) = (int)param_2;
       return;
     case 0x32:
-      if ((*(longlong *)(_DAT_180c86920 + 0x300) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x308))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x300) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x308))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x2b0) != (void *)0x0) {
@@ -1352,8 +1353,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0x2a0) = (int)param_2;
       return;
     case 0x33:
-      if ((*(longlong *)(_DAT_180c86920 + 0x8b0) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x8b8))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x8b0) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x8b8))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x860) != (void *)0x0) {
@@ -1367,8 +1368,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0x850) = (int)param_2;
       return;
     case 0x34:
-      if ((*(longlong *)(_DAT_180c86920 + 0x840) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x848))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x840) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x848))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x7f0) != (void *)0x0) {
@@ -1382,8 +1383,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0x7e0) = (int)param_2;
       return;
     case 0x35:
-      if ((*(longlong *)(_DAT_180c86920 + 0x680) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x688))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x680) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x688))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x630) != (void *)0x0) {
@@ -1397,8 +1398,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0x620) = (int)param_2;
       return;
     case 0x36:
-      if ((*(longlong *)(_DAT_180c86920 + 0x6f0) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x6f8))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x6f0) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x6f8))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x6a0) != (void *)0x0) {
@@ -1412,8 +1413,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0x690) = (int)param_2;
       return;
     case 0x37:
-      if ((*(longlong *)(_DAT_180c86920 + 0x990) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x998))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x990) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x998))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x940) != (void *)0x0) {
@@ -1427,8 +1428,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0x930) = (int)param_2;
       return;
     case 0x38:
-      if ((*(longlong *)(_DAT_180c86920 + 2000) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x7d8))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 2000) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x7d8))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x780) != (void *)0x0) {
@@ -1442,8 +1443,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0x770) = (int)param_2;
       return;
     case 0x39:
-      if ((*(longlong *)(_DAT_180c86920 + 0xae0) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0xae8))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0xae0) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xae8))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0xa90) != (void *)0x0) {
@@ -1457,8 +1458,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0xa80) = (int)param_2;
       return;
     case 0x3a:
-      if ((*(longlong *)(_DAT_180c86920 + 0x920) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x928))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x920) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x928))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x8d0) != (void *)0x0) {
@@ -1472,8 +1473,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0x8c0) = (int)param_2;
       return;
     case 0x3b:
-      if ((*(longlong *)(_DAT_180c86920 + 0xa00) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0xa08))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0xa00) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xa08))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x9b0) != (void *)0x0) {
@@ -1487,8 +1488,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0x9a0) = (int)param_2;
       return;
     case 0x3c:
-      if ((*(longlong *)(_DAT_180c86920 + 0xa70) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0xa78))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0xa70) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xa78))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0xa20) != (void *)0x0) {
@@ -1502,8 +1503,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0xa10) = (int)param_2;
       return;
     case 0x3d:
-      if ((*(longlong *)(_DAT_180c86920 + 0x20c0) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x20c8))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x20c0) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x20c8))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x2070) != (void *)0x0) {
@@ -1518,8 +1519,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x3e:
       if (*(int *)(_DAT_180c8a9c8 + 0xcb0) != 0) {
-        if ((*(longlong *)(_DAT_180c86920 + 0xf40) != 0) &&
-           (cVar2 = (**(code **)(_DAT_180c86920 + 0xf48))(&stack0x00000010), cVar2 == '\0')) {
+        if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0xf40) != 0) &&
+           (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xf48))(&stack0x00000010), cVar2 == '\0')) {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
             if (*(void **)(lVar1 + 0xef0) != (void *)0x0) {
@@ -1536,8 +1537,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       break;
     case 0x3f:
       if (*(int *)(_DAT_180c8a9c8 + 0xd20) != 0) {
-        if ((*(longlong *)(_DAT_180c86920 + 0xfb0) != 0) &&
-           (cVar2 = (**(code **)(_DAT_180c86920 + 0xfb8))(&stack0x00000010), cVar2 == '\0')) {
+        if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0xfb0) != 0) &&
+           (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xfb8))(&stack0x00000010), cVar2 == '\0')) {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
             if (*(void **)(lVar1 + 0xf60) != (void *)0x0) {
@@ -1554,8 +1555,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       break;
     case 0x40:
       if (*(int *)(_DAT_180c8a9c8 + 0xd90) != 0) {
-        if ((*(longlong *)(_DAT_180c86920 + 0x1020) != 0) &&
-           (cVar2 = (**(code **)(_DAT_180c86920 + 0x1028))(&stack0x00000010), cVar2 == '\0')) {
+        if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x1020) != 0) &&
+           (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1028))(&stack0x00000010), cVar2 == '\0')) {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
             if (*(void **)(lVar1 + 0xfd0) != (void *)0x0) {
@@ -1572,8 +1573,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       break;
     case 0x41:
       if (*(int *)(_DAT_180c8a9c8 + 0xe70) != 0) {
-        if ((*(longlong *)(_DAT_180c86920 + 0x1100) != 0) &&
-           (cVar2 = (**(code **)(_DAT_180c86920 + 0x1108))(&stack0x00000010), cVar2 == '\0')) {
+        if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x1100) != 0) &&
+           (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1108))(&stack0x00000010), cVar2 == '\0')) {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
             if (*(void **)(lVar1 + 0x10b0) != (void *)0x0) {
@@ -1590,8 +1591,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       break;
     case 0x42:
       if (*(int *)(_DAT_180c8a9c8 + 0xe00) != 0) {
-        if ((*(longlong *)(_DAT_180c86920 + 0x1090) != 0) &&
-           (cVar2 = (**(code **)(_DAT_180c86920 + 0x1098))(&stack0x00000010), cVar2 == '\0')) {
+        if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x1090) != 0) &&
+           (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1098))(&stack0x00000010), cVar2 == '\0')) {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
             if (*(void **)(lVar1 + 0x1040) != (void *)0x0) {
@@ -1608,8 +1609,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       break;
     case 0x43:
       afStackX_8[0] = param_2;
-      if (*(longlong *)(_DAT_180c86920 + 0x11e0) != 0) {
-        cVar2 = (**(code **)(_DAT_180c86920 + 0x11e8))(afStackX_8);
+      if (*(longlong *)(SYSTEM_STATE_MANAGER + 0x11e0) != 0) {
+        cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x11e8))(afStackX_8);
         if (cVar2 == '\0') {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
@@ -1627,8 +1628,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x44:
       afStackX_8[0] = param_2;
-      if (*(longlong *)(_DAT_180c86920 + 0x1250) != 0) {
-        cVar2 = (**(code **)(_DAT_180c86920 + 0x1258))(afStackX_8);
+      if (*(longlong *)(SYSTEM_STATE_MANAGER + 0x1250) != 0) {
+        cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1258))(afStackX_8);
         if (cVar2 == '\0') {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
@@ -1646,8 +1647,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x45:
       afStackX_8[0] = (float)(int)param_2;
-      if (*(longlong *)(_DAT_180c86920 + 0x1b10) != 0) {
-        cVar2 = (**(code **)(_DAT_180c86920 + 0x1b18))(afStackX_8);
+      if (*(longlong *)(SYSTEM_STATE_MANAGER + 0x1b10) != 0) {
+        cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1b18))(afStackX_8);
         if (cVar2 == '\0') {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
@@ -1664,8 +1665,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x46:
       afStackX_8[0] = param_2;
-      if (*(longlong *)(_DAT_180c86920 + 0x12c0) != 0) {
-        cVar2 = (**(code **)(_DAT_180c86920 + 0x12c8))(afStackX_8);
+      if (*(longlong *)(SYSTEM_STATE_MANAGER + 0x12c0) != 0) {
+        cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x12c8))(afStackX_8);
         if (cVar2 == '\0') {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
@@ -1682,8 +1683,8 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(float *)(lVar1 + 0x1260) = param_2;
       return;
     case 0x47:
-      if ((*(longlong *)(_DAT_180c86920 + 0x21a0) != 0) &&
-         (cVar2 = (**(code **)(_DAT_180c86920 + 0x21a8))(&stack0x00000010), cVar2 == '\0')) {
+      if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x21a0) != 0) &&
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x21a8))(&stack0x00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x2150) != (void *)0x0) {
@@ -1697,7 +1698,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0x2140) = (int)param_2;
       return;
     case 0x48:
-      FUN_18010cdf0(_DAT_180c86920,(int)param_2,param_3,param_4,
+      FUN_18010cdf0(SYSTEM_STATE_MANAGER,(int)param_2,param_3,param_4,
                     CONCAT44(unaff_XMM6_Db,unaff_XMM6_Da),CONCAT44(unaff_XMM6_Dd,unaff_XMM6_Dc));
     }
   }

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part050.c - 核心引擎模块第050部分
 // 本文件包含14个函数，主要涉及文件操作、内存管理、数据结构处理等功能
@@ -55,7 +56,7 @@ void process_engine_data_stream(uint64_t param_1, longlong param_2, longlong *pa
   
   // 初始化堆栈保护和数据流状态
   uStack_208 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_288;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_288;
   lVar8 = *param_3;
   lVar4 = param_3[2];
   lStack_240 = param_3[1];
@@ -233,7 +234,7 @@ void process_file_data_read(uint64_t param_1, longlong param_2, longlong *param_
   
   // 初始化文件操作参数
   uStack_2b8 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_328;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_328;
   alStack_2f0[0] = -1;
   puVar5 = &system_buffer_ptr;
   if (*(void **)(param_2 + 0x60) != (void *)0x0) {
@@ -247,7 +248,7 @@ void process_file_data_read(uint64_t param_1, longlong param_2, longlong *param_
   if (cVar1 == '\0') {
     if (alStack_2f0[0] != -1) {
       acquire_thread_lock();
-      _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+      SYSTEM_HANDLE_COUNTER_ADDR = SYSTEM_HANDLE_COUNTER_ADDR + -1;
       release_thread_lock();
       CloseHandle(alStack_2f0[0]);
       alStack_2f0[0] = -1;
@@ -376,7 +377,7 @@ void insert_data_structure_item(longlong param_1, longlong *param_2)
   
   // 初始化数据结构操作参数
   uStack_898 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_8e8;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_8e8;
   uVar8 = 0;
   uStack_8b8 = 0;
   plStack_8a0 = param_2;

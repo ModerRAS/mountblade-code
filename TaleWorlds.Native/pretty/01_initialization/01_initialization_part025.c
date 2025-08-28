@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 01_initialization_part025.c - 14 个函数
 
@@ -81,14 +82,14 @@ void initialize_resource_manager(longlong *context_ptr)
   uVar9 = FUN_18062b1e0(_DAT_180c8ed18,0x270,8,3);
   uStack_30 = 0x18005902b;
   lVar10 = FUN_180175aa0(uVar9);
-  uVar7 = *(int32_t *)(_DAT_180c86920 + 0x1dc0);
+  uVar7 = *(int32_t *)(SYSTEM_STATE_MANAGER + 0x1dc0);
   _DAT_180c8a9d0 = lVar10;
-  *(int32_t *)(lVar10 + 0x1e0) = *(int32_t *)(_DAT_180c86920 + 0x1d50);
+  *(int32_t *)(lVar10 + 0x1e0) = *(int32_t *)(SYSTEM_STATE_MANAGER + 0x1d50);
   *(int32_t *)(lVar10 + 0x1e4) = uVar7;
   uStack_30 = 0x180059066;
   (**(code **)(**(longlong **)(*param_1 + 0x2b0) + 0xf8))();
   uStack_298 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_3b8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_3b8;
   uStack_378 = 0;
   lStack_310 = _DAT_180c8a9d0;
   *(uint64_t *)(_DAT_180c8a9d0 + 0xf0) = 0;

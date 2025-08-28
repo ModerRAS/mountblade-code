@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // ============================================================================
 // 工具函数模块 008 - 高级数据结构和哈希表处理
@@ -137,7 +138,7 @@ void Utilities_ProcessData(longlong system_handle, int8_t *output_ptr, int *coun
     ulonglong security_cookie;              // 安全cookie
     
     // 安全cookie初始化
-    security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_738;
+    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_738;
     
     // 获取当前索引和基础偏移量
     current_index = *(int *)(system_handle + 0xac);

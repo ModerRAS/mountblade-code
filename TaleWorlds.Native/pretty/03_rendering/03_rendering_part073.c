@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part073.c - 渲染系统高级矩阵变换和渲染管线处理模块
 // 包含3个核心函数，涵盖渲染矩阵变换、渲染管线处理、高级渲染控制等功能
@@ -1075,7 +1076,7 @@ void rendering_system_advanced_control
 
 // 渲染系统全局变量
 uint32_t _DAT_180bf65b8 = 0;              // 渲染系统随机数种子
-float* _DAT_180c86920 = NULL;              // 渲染系统数据指针
+float* SYSTEM_STATE_MANAGER = NULL;              // 渲染系统数据指针
 float* _DAT_180c86870 = NULL;              // 渲染系统配置指针
 float* _DAT_180c8a980 = NULL;              // 渲染系统状态指针
 float* _DAT_180c8ed30 = NULL;              // 渲染系统参数指针

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part173.c - 10 个函数
 
@@ -16,7 +17,7 @@ void FUN_180158780(longlong *param_1,int param_2)
   ulonglong uStack_18;
   
   uStack_48 = 0xfffffffffffffffe;
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_68;
   if (param_2 == 0) {
     pcVar1 = *(code **)(*param_1 + 0x18);
     puStack_40 = &unknown_var_7512_ptr;
@@ -319,7 +320,7 @@ void FUN_180158e10(uint64_t param_1,longlong param_2)
     if ((cVar6 != '\0') && (lVar4 == param_2)) {
       (**(code **)(**(longlong **)(lVar8 + 8) + 0x78))();
       (**(code **)(**(longlong **)(lVar8 + 8) + 0xf8))
-                (*(longlong **)(lVar8 + 8),*(int32_t *)(_DAT_180c86920 + 0x1500));
+                (*(longlong **)(lVar8 + 8),*(int32_t *)(SYSTEM_STATE_MANAGER + 0x1500));
     }
     lVar8 = *(longlong *)(lVar8 + 0x10);
     while (lVar8 == 0) {
@@ -669,7 +670,7 @@ void FUN_1801595d0(uint64_t param_1,longlong param_2)
   ulonglong uStack_18;
   
   uStack_50 = 0xfffffffffffffffe;
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_78;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_78;
   uStack_58 = 0;
   puStack_40 = &unknown_var_7512_ptr;
   puStack_38 = auStack_28;
@@ -781,7 +782,7 @@ FUN_180159870(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   FUN_1801595d0();
   FUN_1806281a0(param_2,&unknown_var_7428_ptr,param_3,param_4,2,uVar1);
   FUN_1806281a0(param_2,*(uint64_t *)
-                         (&unknown_var_7376_ptr + (longlong)*(int *)(_DAT_180c86920 + 0x15e0) * 8),param_3,
+                         (&unknown_var_7376_ptr + (longlong)*(int *)(SYSTEM_STATE_MANAGER + 0x15e0) * 8),param_3,
                 param_4,1);
   return param_2;
 }
@@ -1046,7 +1047,7 @@ ulonglong FUN_18015acc0(longlong *param_1,int param_2,int param_3)
         fclose(lVar2);
         lStack_78 = 0;
         LOCK();
-        _DAT_180c8ed60 = _DAT_180c8ed60 - 1;
+        SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR - 1;
         UNLOCK();
         uVar5 = 0xffffffff;
         uVar4 = 0xffffffff;
@@ -1073,9 +1074,9 @@ ulonglong FUN_18015acc0(longlong *param_1,int param_2,int param_3)
         fclose(lStack_78);
         lStack_78 = 0;
         LOCK();
-        uVar5 = (ulonglong)_DAT_180c8ed60;
+        uVar5 = (ulonglong)SYSTEM_FILE_COUNTER_ADDR;
         UNLOCK();
-        _DAT_180c8ed60 = _DAT_180c8ed60 - 1;
+        SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR - 1;
       }
       puStack_68 = &unknown_var_3456_ptr;
       if (puStack_60 != (int8_t *)0x0) {

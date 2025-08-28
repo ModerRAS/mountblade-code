@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part138.c - 核心引擎模块第138部分
 // 本文件包含11个函数，主要处理游戏对象的状态管理、选择更新和动画控制
@@ -212,15 +213,15 @@ void update_object_selection_state(int selection_direction)
     ulonglong uVar7;
     ulonglong uVar8;
     
-    lVar2 = _DAT_180c8a9b0;
-    if ((*(uint *)(*(longlong *)(_DAT_180c8a9b0 + 0x1cd8) + 0xc) & 0x8000000) == 0) {
-        iVar5 = *(int *)(_DAT_180c8a9b0 + 0x1ab0) + -1;
+    lVar2 = SYSTEM_DATA_MANAGER_A;
+    if ((*(uint *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1cd8) + 0xc) & 0x8000000) == 0) {
+        iVar5 = *(int *)(SYSTEM_DATA_MANAGER_A + 0x1ab0) + -1;
         uVar7 = (ulonglong)iVar5;
         if (-1 < iVar5) {
-            plVar4 = (longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1ab8) + uVar7 * 8);
+            plVar4 = (longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1ab8) + uVar7 * 8);
             uVar8 = uVar7;
             do {
-                if (*plVar4 == *(longlong *)(_DAT_180c8a9b0 + 0x1cd8)) goto LAB_1801336e8;
+                if (*plVar4 == *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1cd8)) goto LAB_1801336e8;
                 uVar8 = (ulonglong)((int)uVar8 - 1);
                 plVar4 = plVar4 + -1;
                 uVar7 = uVar7 - 1;
@@ -232,11 +233,11 @@ LAB_1801336e8:
         if (-1 < iVar6) {
             lVar3 = (longlong)iVar6;
             do {
-                if ((*(int *)(_DAT_180c8a9b0 + 0x1ab0) <= lVar3) || (lVar3 == -0x7fffffff)) break;
-                lVar1 = *(longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1ab8) + lVar3 * 8);
+                if ((*(int *)(SYSTEM_DATA_MANAGER_A + 0x1ab0) <= lVar3) || (lVar3 == -0x7fffffff)) break;
+                lVar1 = *(longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1ab8) + lVar3 * 8);
                 if ((*(char *)(lVar1 + 0xaf) != '\0') &&
                    ((lVar1 == *(longlong *)(lVar1 + 0x3a8) && ((*(uint *)(lVar1 + 0xc) & 0x80000) == 0)))) {
-                    lVar3 = *(longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1ab8) + (longlong)iVar6 * 8);
+                    lVar3 = *(longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1ab8) + (longlong)iVar6 * 8);
                     if (lVar3 != 0) goto LAB_180133764;
                     break;
                 }
@@ -376,30 +377,30 @@ void process_main_object_update(void)
     int8_t auStackX_8 [8];
     int8_t auStackX_10 [8];
     
-    lVar2 = _DAT_180c8a9b0;
+    lVar2 = SYSTEM_DATA_MANAGER_A;
     lVar11 = 0;
     bVar1 = false;
     lVar12 = 0;
-    if (0 < *(int *)(_DAT_180c8a9b0 + 0x1bb0)) {
-        lVar9 = (longlong)*(int *)(_DAT_180c8a9b0 + 0x1bb0) + -1;
-        plVar13 = (longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1bb8) + 8 + lVar9 * 0x30);
+    if (0 < *(int *)(SYSTEM_DATA_MANAGER_A + 0x1bb0)) {
+        lVar9 = (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1bb0) + -1;
+        plVar13 = (longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1bb8) + 8 + lVar9 * 0x30);
         do {
             if ((*plVar13 != 0) && ((*(uint *)(*plVar13 + 0xc) & 0x8000000) != 0)) {
-                *(uint64_t *)(_DAT_180c8a9b0 + 0x1cd8) = 0;
+                *(uint64_t *)(SYSTEM_DATA_MANAGER_A + 0x1cd8) = 0;
                 return;
             }
             plVar13 = plVar13 + -6;
             lVar9 = lVar9 + -1;
         } while (-1 < lVar9);
     }
-    if ((*(longlong *)(_DAT_180c8a9b0 + 0x1ce0) != 0) && (*(longlong *)(_DAT_180c8a9b0 + 0x1cd8) == 0)
+    if ((*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1ce0) != 0) && (*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1cd8) == 0)
        ) {
-        pfVar6 = (float *)(_DAT_180c8a9b0 + 0x1dc8);
-        fVar15 = *(float *)(_DAT_180c8a9b0 + 0x1cf4) - *(float *)(_DAT_180c8a9b0 + 0x18) * 10.0;
+        pfVar6 = (float *)(SYSTEM_DATA_MANAGER_A + 0x1dc8);
+        fVar15 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x1cf4) - *(float *)(SYSTEM_DATA_MANAGER_A + 0x18) * 10.0;
         if (fVar15 <= 0.0) {
             fVar15 = 0.0;
         }
-        *(float *)(_DAT_180c8a9b0 + 0x1cf4) = fVar15;
+        *(float *)(SYSTEM_DATA_MANAGER_A + 0x1cf4) = fVar15;
         if ((*pfVar6 <= 0.0) && (fVar15 <= 0.0)) {
             *(uint64_t *)(lVar2 + 0x1ce0) = 0;
         }
@@ -942,7 +943,7 @@ void reset_current_object_selection(void)
 }
 
 // 全局变量定义
-uint64_t _DAT_180c8a9b0 = 0;  // 全局引擎状态指针
+uint64_t SYSTEM_DATA_MANAGER_A = 0;  // 全局引擎状态指针
 
 // 函数声明
 void initialize_object_selection(longlong engine_context);

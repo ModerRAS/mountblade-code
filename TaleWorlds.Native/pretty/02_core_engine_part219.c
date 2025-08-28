@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part219.c - 8 个函数
 
@@ -821,7 +822,7 @@ uint64_t * FUN_1801954d0(uint64_t *param_1,longlong param_2)
   param_1[0x78] = 0;
   *(int8_t *)(param_1 + 2) = 0;
   param_1[0x6b] = 0;
-  *(int32_t *)(param_1 + 0x8a) = *(int32_t *)(_DAT_180c86920 + 0xe0);
+  *(int32_t *)(param_1 + 0x8a) = *(int32_t *)(SYSTEM_STATE_MANAGER + 0xe0);
   (**(code **)(*plVar7 + 0x38))(plVar7);
   return param_1;
 }

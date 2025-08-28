@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part077.c - 渲染系统高级数据处理和渲染控制模块
 // 包含9个核心函数，涵盖渲染对象处理、数据复制、内存管理、资源清理、

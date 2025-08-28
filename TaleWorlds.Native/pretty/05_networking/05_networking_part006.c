@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 05_networking_part006.c - 31 个函数
 
@@ -57,9 +58,9 @@ void network_get_connection_info(ulonglong param_1,uint64_t *param_2)
   int8_t auStack_128 [256];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
   if (param_2 == (uint64_t *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
     }
@@ -107,9 +108,9 @@ void network_log_connection_event(uint64_t param_1,uint64_t param_2,uint64_t par
   int8_t auStack_138 [256];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_168;
   iVar1 = FUN_180840790();
-  if ((iVar1 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
+  if ((iVar1 != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
     iVar2 = FUN_18074b880(auStack_138,0x100,param_2);
     iVar3 = FUN_18074b880(auStack_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
     func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
@@ -170,9 +171,9 @@ void network_log_server_event(uint64_t param_1,uint64_t param_2,uint64_t param_3
   int8_t auStack_138 [256];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_168;
   iVar1 = FUN_18083ff70();
-  if ((iVar1 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
+  if ((iVar1 != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
     iVar2 = FUN_18074b880(auStack_138,0x100,param_2);
     iVar3 = FUN_18074b880(auStack_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
     func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
@@ -233,7 +234,7 @@ void network_get_peer_address_info(int32_t param_1,int32_t *param_2,int32_t *par
   longlong alStack_140 [33];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
   if (param_2 != (int32_t *)0x0) {
     *param_2 = 0;
   }
@@ -284,7 +285,7 @@ void network_extract_peer_data(longlong param_1,uint64_t *param_2,int8_t param_3
   int32_t uStack_2c;
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_58;
   if (*(int *)(param_1 + 0x58) < 1) {
     puVar6 = &system_buffer_ptr;
   }
@@ -353,14 +354,14 @@ void network_log_multi_param_event(uint64_t param_1,int32_t param_2,int32_t para
   int8_t auStack_148 [256];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
   iVar1 = func_0x00018088c590(param_1,auStack_158);
   if (iVar1 == 0) {
     puStack_168 = (int8_t *)param_5;
     iVar1 = FUN_18087cbd0(auStack_158[0],param_2,param_3,param_4);
     if (iVar1 == 0) goto LAB_1808477fa;
   }
-  if ((iVar1 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
+  if ((iVar1 != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
     iVar2 = func_0x00018074b7d0(auStack_148,0x100,param_2);
     iVar3 = FUN_18074b880(auStack_148 + iVar2,0x100 - iVar2,&system_temp_buffer);
     iVar2 = iVar2 + iVar3;
@@ -463,9 +464,9 @@ void network_get_connection_status(ulonglong param_1,int8_t *param_2)
   int8_t auStack_118 [256];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_168;
   if (param_2 == (int8_t *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_168);
     }
@@ -516,7 +517,7 @@ void network_check_connection_readiness(longlong param_1,longlong *param_2,byte 
   longlong *plStack_48;
   ulonglong uStack_30;
   
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
+  uStack_30 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_88;
   lVar4 = *(longlong *)(param_1 + 0xd0);
   if ((*(uint *)(lVar4 + 4) >> 3 & 1) == 0) {
     bVar6 = 0;
@@ -608,7 +609,7 @@ void network_check_connection_stability(longlong param_1,longlong *param_2,byte 
   int8_t auStack_60 [40];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_98;
   lVar4 = *(longlong *)(param_1 + 0xd0);
   if ((*(uint *)(lVar4 + 4) >> 7 & 1) == 0) {
     bVar7 = ~(byte)(*(uint *)(param_1 + 0xf8) >> 1) & 1;
@@ -679,9 +680,9 @@ void network_get_connection_stability_status(ulonglong param_1,int8_t *param_2)
   int8_t auStack_118 [256];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_168;
   if (param_2 == (int8_t *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_168);
     }
@@ -738,7 +739,7 @@ void network_send_connection_notification(uint64_t param_1)
   uint64_t *apuStack_128 [34];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_168;
   alStack_138[1] = 0;
   iVar1 = func_0x00018088c590(param_1,alStack_138);
   if (iVar1 == 0) {
@@ -787,12 +788,12 @@ void network_send_data_packet(ulonglong param_1,longlong param_2,int32_t param_3
   int8_t auStack_158 [256];
   ulonglong uStack_58;
   
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_1a8;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1a8;
   uStack_178 = param_3;
   if (((param_4 == (uint64_t *)0x0) || (*param_4 = 0, param_2 == 0)) ||
      (iVar2 = func_0x00018076b690(param_2), 0x1ff < iVar2)) {
     uVar1 = uStack_178;
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_1a8);
     }
@@ -847,7 +848,7 @@ void network_send_simple_notification(uint64_t param_1)
   uint64_t *apuStack_128 [34];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_168;
   alStack_138[1] = 0;
   iVar1 = func_0x00018088c590(param_1,alStack_138);
   if (iVar1 == 0) {

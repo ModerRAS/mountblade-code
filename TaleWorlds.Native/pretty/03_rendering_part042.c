@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part042.c - 9 个函数
 
@@ -70,7 +71,7 @@ void FUN_18028d680(longlong param_1,int32_t param_2,uint64_t param_3)
   uint auStack_180 [38];
   ulonglong uStack_e8;
   
-  uStack_e8 = _DAT_180bf00a8 ^ (ulonglong)auStack_308;
+  uStack_e8 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_308;
   iStack_29c = 0;
   auStack_278._0_8_ = *(uint64_t *)(param_1 + 0x70);
   auStack_278._8_8_ = *(uint64_t *)(param_1 + 0x78);
@@ -622,10 +623,10 @@ int32_t FUN_18028e390(uint64_t param_1,int32_t param_2,uint64_t *param_3)
   uStack_20 = 0;
   iVar1 = FUN_18028d680(0,0,&uStack_78);
   if (iVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
-    uStack_18 = func_0x000180120ce0((longlong)iStack_48 * 0xe,_DAT_180c8a9a8);
+    uStack_18 = func_0x000180120ce0((longlong)iStack_48 * 0xe,SYSTEM_DATA_MANAGER_B);
     *param_3 = uStack_18;
     iVar1 = FUN_18028d680(param_1,param_2,&uStack_40);
     if (iVar1 != 0) {
@@ -680,10 +681,10 @@ ulonglong FUN_18028e460(longlong param_1,int32_t param_2,uint64_t *param_3)
     uStack_20 = 0;
     iVar1 = FUN_18028d680(0,0,&uStack_78);
     if (iVar1 != 0) {
-      if (_DAT_180c8a9b0 != 0) {
-        *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+      if (SYSTEM_DATA_MANAGER_A != 0) {
+        *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
       }
-      uStack_18 = func_0x000180120ce0((longlong)iStack_48 * 0xe,_DAT_180c8a9a8);
+      uStack_18 = func_0x000180120ce0((longlong)iStack_48 * 0xe,SYSTEM_DATA_MANAGER_B);
       *param_3 = uStack_18;
       iVar1 = FUN_18028d680(param_1,param_2,&uStack_40);
       if (iVar1 != 0) {
@@ -734,10 +735,10 @@ FUN_18028e48d(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   uStack0000000000000060 = in_XMM0_Qa;
   iVar1 = FUN_18028d680(param_1,0,&stack0x00000020,param_4,1);
   if (iVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
-    in_stack_00000080 = func_0x000180120ce0((longlong)iStack0000000000000050 * 0xe,_DAT_180c8a9a8);
+    in_stack_00000080 = func_0x000180120ce0((longlong)iStack0000000000000050 * 0xe,SYSTEM_DATA_MANAGER_B);
     *unaff_RSI = in_stack_00000080;
     iVar1 = FUN_18028d680(extraout_XMM0_Qa,unaff_EBP,&stack0x00000058,param_4,uVar2);
     if (iVar1 != 0) {

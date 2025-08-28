@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * 渲染系统高级纹理处理和资源管理模块
@@ -190,7 +191,7 @@ void rendering_texture_batch_processor(longlong render_context, longlong resourc
     ulonglong security_cookie;
     
     global_data = _DAT_180c86870;
-    security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     context_ptr = *(longlong **)(render_context + RENDER_CONTEXT_OFFSET);
     stack_array[3] = param3 + param1;
     stack_param3 = *(uint64_t *)(resource2 + 0x10);
@@ -315,7 +316,7 @@ void rendering_resource_allocator(uint64_t render_context, longlong resource_dat
     ulonglong security_cookie;
     
     stack_param15 = 0xfffffffffffffffe;
-    security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     param_value1 = (uint)(*(ushort *)(resource_data + 0x32c) >> ((byte)param2 & 0x1f));
     param_value2 = 1;
     if (1 < param_value1) {
@@ -470,7 +471,7 @@ void rendering_memory_manager(longlong render_context, longlong resource_data, i
     int32_t stack_flag2;
     ulonglong security_cookie;
     
-    security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
     context_ptr = *(longlong **)(render_context + RENDER_CONTEXT_OFFSET);
     stack_array[3] = param2 + param1;
     stack_param3 = 0;
@@ -586,7 +587,7 @@ void rendering_resource_manager(longlong render_context, longlong resource_data,
     ulonglong security_cookie;
     
     stack_param19 = 0xfffffffffffffffe;
-    security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
+    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer1;
     stack_ptr3 = param3;
     stack_param18 = render_context;
     
@@ -709,7 +710,7 @@ void rendering_texture_loader(longlong render_context, longlong texture_data)
     int32_t stack_param;
     ulonglong security_cookie;
     
-    security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
+    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer1;
     texture_handle = FUN_18023a940(texture_data);
     context_ptr = *(longlong **)(render_context + RENDER_CONTEXT_OFFSET);
     resource_ptr = *(longlong **)(texture_handle + 8);
@@ -807,7 +808,7 @@ void rendering_performance_optimizer(longlong render_context, longlong resource_
     ulonglong security_cookie;
     
     stack_param6 = 0xfffffffffffffffe;
-    security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
+    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer1;
     stack_param1 = 0;
     optimization_result = (**(code **)(**(longlong **)(render_context + RENDER_CONTEXT_OFFSET) + 0xe8))
                           (*(longlong **)(render_context + RENDER_CONTEXT_OFFSET), *(uint64_t *)(resource_data + 0x68), &stack_param7,

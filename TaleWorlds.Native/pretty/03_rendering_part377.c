@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part377.c - 7 个函数
 
@@ -69,7 +70,7 @@ void FUN_180472d60(uint64_t *param_1,int8_t *param_2,ulonglong *param_3,longlong
   ulonglong uStack_48;
   
   uStack_d0 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_1a8;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1a8;
   lVar11 = 0;
   uStack_188 = 0;
   pbVar14 = (byte *)(param_1[1] + param_4);
@@ -234,7 +235,7 @@ void FUN_1804730d0(longlong param_1,ushort *param_2)
   int8_t uStack_12;
   ulonglong uStack_10;
   
-  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_48;
+  uStack_10 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_48;
   iVar5 = 0;
   *param_2 = 0;
   uStack_18 = 0x44434241;
@@ -385,7 +386,7 @@ void FUN_1804732b0(int8_t *param_1,longlong param_2,uint64_t *param_3)
   ulonglong uStack_48;
   
   uStack_148 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
   uStack_158 = 0;
   puStack_150 = param_1;
   puStack_138 = param_1;
@@ -745,7 +746,7 @@ void FUN_180473be0(char *param_1,uint64_t param_2,uint64_t param_3)
   ulonglong uStack_20;
   
   uStack_80 = 0xfffffffffffffffe;
-  uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
+  uStack_20 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_b8;
   uStack_98 = 0;
   uStack_30 = 0;
   uStack_28 = 0xf;
@@ -875,7 +876,7 @@ void FUN_180473e00(int8_t *param_1,longlong param_2,uint64_t param_3)
   ulonglong uStack_28;
   
   uStack_60 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_98;
   lVar6 = 0;
   uStack_78 = 0;
   do {
@@ -977,7 +978,7 @@ void FUN_180473fd0(int8_t *param_1,longlong param_2,uint64_t param_3)
   ulonglong uStack_28;
   
   uStack_60 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_a8;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_a8;
   lVar6 = 0;
   uStack_88 = 0;
   lVar5 = *(longlong *)(param_2 + 8);

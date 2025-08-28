@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 04_ui_system_part102.c - UI系统高级数学计算模块
 // 
@@ -158,7 +159,7 @@ void UIMatrixInverseTransform(longlong param_1, longlong param_2, int param_3)
   ulonglong security_cookie;
   
   // 安全检查：栈保护cookie
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_protector;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_protector;
   element_count = (ulonglong)param_3;
   element_index = 0;
   buffer_ptr = (int8_t (*) [16])stack_protector;
@@ -821,7 +822,7 @@ void UIDoubleArrayProcessor(double *param_1, longlong param_2, float param_3, in
   ulonglong security_cookie;
   
   // 安全检查：栈保护cookie
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)filter_buffer1;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)filter_buffer1;
   filter_order = (longlong)param_5;
   
   // 初始化滤波器缓冲区
@@ -1076,7 +1077,7 @@ void UIEncodedDataProcessor(longlong param_1, longlong param_2, int param_3, ulo
   ulonglong security_cookie;
   
   // 安全检查：栈保护cookie
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_guard;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_guard;
   data_size = (uint)param_4;
   
   // 根据编码模式选择参数

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part036.c - 渲染系统初始化和管理模块
 // 本文件包含渲染系统核心初始化、内存管理和资源处理功能

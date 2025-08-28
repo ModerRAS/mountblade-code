@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part193.c - 3 个函数
 
@@ -20,7 +21,7 @@ void FUN_1801760d0(longlong param_1,longlong *param_2,int32_t param_3,int param_
   int iStack_4c;
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_a8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_a8;
   lStack_70 = 0;
   __0GpuCacheCreationParameters_Granite_Graphine__QEAA_XZ(aiStack_60);
   piStack_88 = aiStack_60;
@@ -140,7 +141,7 @@ void FUN_1801762b0(longlong param_1,void **param_2,longlong param_3,void **param
   ulonglong uStack_48;
   
   uStack_670 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_718;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_718;
   plVar10 = *(longlong **)(param_1 + 200);
   appuStack_680[0] = param_2;
   for (plVar12 = *(longlong **)(param_1 + 0xc0); lStack_6d8 = param_3, ppuStack_6c8 = param_4,
@@ -434,7 +435,7 @@ void FUN_1801769e0(longlong param_1)
   ulonglong uStack_58;
   
   uStack_70 = 0xfffffffffffffffe;
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_c8;
   uStack_68 = param_1;
   FUN_180176060();
   plStack_98 = (longlong *)0x0;
@@ -548,7 +549,7 @@ LAB_180176af7:
       FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_c8);
     }
     lVar4 = *plVar9;
-    iVar2 = *(int *)(_DAT_180c86920 + 0x380);
+    iVar2 = *(int *)(SYSTEM_STATE_MANAGER + 0x380);
     if (iVar2 == 3) {
       iVar7 = 0x138;
     }
@@ -561,7 +562,7 @@ LAB_180176af7:
         iVar7 = 0x4e;
       }
     }
-    iVar2 = *(int *)(_DAT_180c86920 + 0x3f0);
+    iVar2 = *(int *)(SYSTEM_STATE_MANAGER + 0x3f0);
     if (iVar2 == 2) {
       uVar17 = 0;
 LAB_180176cb5:

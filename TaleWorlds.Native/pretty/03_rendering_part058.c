@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part058.c - 8 个函数
 
@@ -98,7 +99,7 @@ void render_advanced_data_processing_controller(void)
         texture_id_2 = (int32_t)((ulonglong)render_target >> 0x20);
         texture_array_ptr = texture_array_ptr + 1;
         render_flags = render_flags - 1;
-        transform_matrix = _DAT_180c8a9b0;
+        transform_matrix = SYSTEM_DATA_MANAGER_A;
         viewport_height = uniform_buffer;
       } while (render_flags != 0);
     }
@@ -119,29 +120,29 @@ void render_advanced_data_processing_controller(void)
                 uVar27);
   iVar9 = iVar16 + -1;
   iStack0000000000000050 = -1;
-  lVar15 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
+  lVar15 = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
   iVar13 = iVar16;
   if ((int)unaff_XMM11_Da < iVar16) {
     iVar13 = (int)unaff_XMM11_Da;
   }
   uVar12 = iVar13 - 1;
   uStack000000000000005c = uVar12;
-  if ((*(char *)(_DAT_180c8a9b0 + 0x1d07) == '\0') || (*(char *)(_DAT_180c8a9b0 + 0x1d06) != '\0'))
+  if ((*(char *)(SYSTEM_DATA_MANAGER_A + 0x1d07) == '\0') || (*(char *)(SYSTEM_DATA_MANAGER_A + 0x1d06) != '\0'))
   {
     if ((((((*(byte *)(lVar15 + 0x148) & 1) == 0) ||
-          (lVar2 = *(longlong *)(lVar15 + 0x3a0), *(longlong *)(_DAT_180c8a9b0 + 0x1b08) != lVar2))
-         || ((((iVar13 = *(int *)(_DAT_180c8a9b0 + 0x1b2c), iVar13 != 0 &&
-               (iVar13 != *(int *)(lVar15 + 0x144))) && (*(char *)(_DAT_180c8a9b0 + 0x1b3d) == '\0')
+          (lVar2 = *(longlong *)(lVar15 + 0x3a0), *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b08) != lVar2))
+         || ((((iVar13 = *(int *)(SYSTEM_DATA_MANAGER_A + 0x1b2c), iVar13 != 0 &&
+               (iVar13 != *(int *)(lVar15 + 0x144))) && (*(char *)(SYSTEM_DATA_MANAGER_A + 0x1b3d) == '\0')
               ) && (iVar13 != *(int *)(lVar15 + 0x84))))) ||
-        (((((*(longlong *)(_DAT_180c8a9b0 + 0x1c98) != 0 &&
-            (lVar3 = *(longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1c98) + 0x3a0), lVar3 != 0)) &&
+        (((((*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1c98) != 0 &&
+            (lVar3 = *(longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1c98) + 0x3a0), lVar3 != 0)) &&
            (*(char *)(lVar3 + 0xb0) != '\0')) &&
           ((lVar3 != lVar2 &&
            (((*(uint *)(lVar3 + 0xc) >> 0x1b & 1) != 0 ||
             ((*(uint *)(lVar3 + 0xc) >> 0x1a & 1) != 0)))))) ||
-         ((*(longlong *)(lVar15 + 0x28) != *(longlong *)(_DAT_180c8a9b0 + 0x1c80) &&
-          ((*(longlong *)(_DAT_180c8a9b0 + 0x1b78) == 0 ||
-           (lVar2 != *(longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1b78) + 0x3a0))))))))) ||
+         ((*(longlong *)(lVar15 + 0x28) != *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1c80) &&
+          ((*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b78) == 0 ||
+           (lVar2 != *(longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b78) + 0x3a0))))))))) ||
        ((*(byte *)(lVar15 + 0x1a8) & 4) != 0)) goto LAB_180299abc;
     if ((*(int *)(lVar15 + 0x144) == *(int *)(lVar15 + 8)) ||
        (*(int *)(lVar15 + 0x144) == *(int *)(lVar15 + 0x84))) {
@@ -150,8 +151,8 @@ void render_advanced_data_processing_controller(void)
     }
   }
   else {
-    if ((*(int *)(_DAT_180c8a9b0 + 0x1ca0) == 0) ||
-       (*(int *)(_DAT_180c8a9b0 + 0x1ca0) != *(int *)(lVar15 + 0x144))) goto LAB_180299abc;
+    if ((*(int *)(SYSTEM_DATA_MANAGER_A + 0x1ca0) == 0) ||
+       (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1ca0) != *(int *)(lVar15 + 0x144))) goto LAB_180299abc;
     if (*(int *)(lVar15 + 0x144) == *(int *)(lVar15 + 8)) {
       cVar5 = *(char *)(lVar15 + 0xb1);
 joined_r0x0001802999aa:
@@ -213,7 +214,7 @@ LAB_180299abc:
       *(int32_t *)(unaff_RBP + -0x78) = uVar7;
       uVar8 = func_0x000180121e20();
       fVar22 = 1.0 - (float)(uVar8 >> 8 & 0xff) * 0.003921569;
-      fVar17 = (float)(uVar8 >> 0x18) * *(float *)(_DAT_180c8a9b0 + 0x1628) * 0.003921569;
+      fVar17 = (float)(uVar8 >> 0x18) * *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628) * 0.003921569;
       fVar21 = 1.0 - (float)(uVar8 >> 0x10 & 0xff) * 0.003921569;
       fVar23 = 1.0 - (float)(uVar8 & 0xff) * 0.003921569;
       fVar18 = unaff_XMM7_Da;
@@ -368,7 +369,7 @@ void render_resource_manager_process(longlong resource_pool,longlong context_id,
   
   // 初始化资源管理器状态和资源ID计算
   resource_metadata = 0xfffffffffffffffe;
-  resource_id = _DAT_180bf00a8 ^ (ulonglong)resource_buffer;
+  resource_id = GET_SECURITY_COOKIE() ^ (ulonglong)resource_buffer;
   status_output = status_flag;
   vertex_buffer = resource_data;
   resource_hash = FUN_180241250(*resource_data); // 计算资源哈希值
@@ -441,7 +442,7 @@ LAB_180299f92:
         FUN_180240b30(lVar3);
         uVar8 = *(ulonglong *)(lVar3 + 0x15c0);
       }
-      if ((*(int *)(_DAT_180c86920 + 0xa80) != 0) && ((param_3[1] & uVar8 & 0xffffffff) != 0)) {
+      if ((*(int *)(SYSTEM_STATE_MANAGER + 0xa80) != 0) && ((param_3[1] & uVar8 & 0xffffffff) != 0)) {
         uVar14 = uVar14 | 6;
       }
       uVar6 = *(uint *)(lVar3 + 0x1588);

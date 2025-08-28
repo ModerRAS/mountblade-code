@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part628.c - 7 个函数
 
@@ -29,7 +30,7 @@ void FUN_18061c7a0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   ulonglong uStack_48;
   
   uStack_258 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_2a8;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_2a8;
   uStackX_10 = param_2;
   uStackX_18 = param_3;
   uStackX_20 = param_4;
@@ -101,7 +102,7 @@ void FUN_18061c990(longlong param_1,int param_2,uint64_t param_3)
   int8_t auStack_218 [512];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_248;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_248;
   if ((param_1 != 0) && (-1 < param_2)) {
                     // WARNING: Subroutine does not return
     FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_248);
@@ -127,7 +128,7 @@ void FUN_18061ca10(longlong param_1,int param_2)
   int8_t auStack_218 [512];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_238;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_238;
   if ((param_1 != 0) && (-2 < param_2)) {
                     // WARNING: Subroutine does not return
     FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_238);
@@ -155,7 +156,7 @@ void FUN_18061ca90(uint param_1)
   int8_t auStack_218 [512];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_248;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_248;
   iVar2 = (int)_DAT_180c92514;
   if (iVar2 - 2U < 2) {
     if (iVar2 == 1) {

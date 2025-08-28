@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part047.c - 6个函数
 
@@ -53,7 +54,7 @@ void process_system_resources(uint64_t param_1, int8_t param_2)
   
   data_array_ptr = _DAT_180c868a8;
   stack_data_4 = 0xfffffffffffffffe;
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
   total_items = 0;
   array_base_ptr = _DAT_180c868a8;
   processing_index = 0;
@@ -531,7 +532,7 @@ void batch_process_system_data(void)
   
   data_limit = _DAT_180c868a8;
   stack_data_1 = 0xfffffffffffffffe;
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
   data_base = *_DAT_180c86870;
   data_offset = 0;
   item_count = (int)(*(longlong *)(data_base + 0x8b0) - *(longlong *)(data_base + 0x8a8) >> 5);

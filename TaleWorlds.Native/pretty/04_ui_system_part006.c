@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * @file 04_ui_system_part006.c
@@ -1061,7 +1062,7 @@ void UISystem_ResourceManager(ulonglong *resource_context)
   ulonglong security_cookie;
   
   memory_management_flag = 0xfffffffffffffffe;
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)format_buffer;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)format_buffer;
   resource_id = 0;
   buffer_flag = 0;
   context_ptr = &unknown_var_7512_ptr;

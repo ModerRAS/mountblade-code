@@ -1,10 +1,11 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part071.c - 核心引擎模块第071部分
 // 包含5个函数：初始化引擎状态、更新渲染参数、设置引擎配置、处理引擎属性、初始化渲染系统
 
 // 全局变量引用
-extern uint64_t _DAT_180c86920;  // 引擎配置数据
+extern uint64_t SYSTEM_STATE_MANAGER;  // 引擎配置数据
 extern uint64_t _DAT_180c8ed18;  // 引擎内存管理器
 extern uint64_t _DAT_180c82868;  // 引擎状态标志
 extern uint64_t _DAT_180c86870;  // 引擎主控制块
@@ -12,7 +13,7 @@ extern uint64_t _DAT_180c86890;  // 引擎渲染状态
 extern uint64_t _DAT_180c868d0;  // 引擎设备信息
 extern uint64_t _DAT_180c86928;  // 引擎初始化参数
 extern uint64_t _DAT_180c86938;  // 引擎更新标志
-extern uint64_t _DAT_180c8ed60;  // 引擎文件句柄计数
+extern uint64_t SYSTEM_FILE_COUNTER_ADDR;  // 引擎文件句柄计数
 
 // 函数：初始化引擎状态
 // 参数：param_1 - 引擎上下文指针，param_2 - 初始化标志
@@ -27,7 +28,7 @@ void initialize_engine_state(longlong *engine_context, int8_t init_flag)
     int32_t init_params[6];
     
     // 获取引擎配置数据
-    config_data = _DAT_180c86920;
+    config_data = SYSTEM_STATE_MANAGER;
     temp_context = engine_context;
     
     // 分配内存资源
@@ -197,7 +198,7 @@ apply_texture_settings:
     if (*(int *)(render_config + 0x1b94) != *(int *)(render_config + 0x1b90)) {
         quality_factor = (float)*(int *)(render_config + 0x1b90);
         if (quality_factor <= 0.0) {
-            *(float *)(_DAT_180c86870 + 0x200) = 1.0 / (float)(int)_DAT_180c86920[0x372];
+            *(float *)(_DAT_180c86870 + 0x200) = 1.0 / (float)(int)SYSTEM_STATE_MANAGER[0x372];
         } else {
             *(float *)(_DAT_180c86870 + 0x200) = 1.0 / quality_factor;
         }
@@ -216,14 +217,14 @@ apply_texture_settings:
     update_render_system();
     
     render_mode = 0;
-    if ((void *)*_DAT_180c86920 == &global_state_2016_ptr) {
-        if ((_DAT_180c86920[0x16] == 0) && (*(char *)(_DAT_180c86870 + 0x1f0) != '\0')) {
+    if ((void *)*SYSTEM_STATE_MANAGER == &global_state_2016_ptr) {
+        if ((SYSTEM_STATE_MANAGER[0x16] == 0) && (*(char *)(_DAT_180c86870 + 0x1f0) != '\0')) {
             status_flag = '\x01';
         } else {
             status_flag = '\0';
         }
     } else {
-        status_flag = (**(code **)((void *)*_DAT_180c86920 + 0x28))();
+        status_flag = (**(code **)((void *)*SYSTEM_STATE_MANAGER + 0x28))();
     }
     
     // 写入调试信息
@@ -243,11 +244,11 @@ apply_texture_settings:
         }
         buffer_size = buffer_size;
         write_debug_file(&file_handle, file_path, &system_memory_c7ec);
-        context_ptr = _DAT_180c86920;
+        context_ptr = SYSTEM_STATE_MANAGER;
         if (file_size == 0) {
             render_mode = 3;
         } else {
-            status_flag = (**(code **)(*_DAT_180c86920 + 0x28))(_DAT_180c86920);
+            status_flag = (**(code **)(*SYSTEM_STATE_MANAGER + 0x28))(SYSTEM_STATE_MANAGER);
             if (status_flag != '\0') {
                 write_debug_data(context_ptr, &file_handle);
             }
@@ -255,7 +256,7 @@ apply_texture_settings:
                 fclose();
                 file_size = 0;
                 LOCK();
-                _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+                SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
                 UNLOCK();
                 render_mode = 0;
             }
@@ -264,7 +265,7 @@ apply_texture_settings:
             fclose();
             file_size = 0;
             LOCK();
-            _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+            SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
             UNLOCK();
         }
         buffer_ptr = &global_state_3456_ptr;
@@ -392,7 +393,7 @@ apply_settings:
     if (*(int *)(render_config + 0x1b94) != *(int *)(render_config + 0x1b90)) {
         quality_factor = (float)*(int *)(render_config + 0x1b90);
         if (quality_factor <= 0.0) {
-            *(float *)(_DAT_180c86870 + 0x200) = 1.0 / (float)(int)_DAT_180c86920[0x372];
+            *(float *)(_DAT_180c86870 + 0x200) = 1.0 / (float)(int)SYSTEM_STATE_MANAGER[0x372];
         } else {
             *(float *)(_DAT_180c86870 + 0x200) = 1.0 / quality_factor;
         }
@@ -411,14 +412,14 @@ apply_settings:
     update_render_system();
     
     render_mode = 0;
-    if ((void *)*_DAT_180c86920 == &global_state_2016_ptr) {
-        if ((_DAT_180c86920[0x16] == 0) && (*(char *)(_DAT_180c86870 + 0x1f0) != '\0')) {
+    if ((void *)*SYSTEM_STATE_MANAGER == &global_state_2016_ptr) {
+        if ((SYSTEM_STATE_MANAGER[0x16] == 0) && (*(char *)(_DAT_180c86870 + 0x1f0) != '\0')) {
             status_flag = '\x01';
         } else {
             status_flag = '\0';
         }
     } else {
-        status_flag = (**(code **)((void *)*_DAT_180c86920 + 0x28))();
+        status_flag = (**(code **)((void *)*SYSTEM_STATE_MANAGER + 0x28))();
     }
     
     // 写入调试信息
@@ -436,11 +437,11 @@ apply_settings:
             file_path = return_address;
         }
         write_debug_file(&file_handle, file_path, &system_memory_c7ec);
-        context_ptr = _DAT_180c86920;
+        context_ptr = SYSTEM_STATE_MANAGER;
         if (file_size == 0) {
             render_mode = 3;
         } else {
-            status_flag = (**(code **)(*_DAT_180c86920 + 0x28))(_DAT_180c86920);
+            status_flag = (**(code **)(*SYSTEM_STATE_MANAGER + 0x28))(SYSTEM_STATE_MANAGER);
             if (status_flag != '\0') {
                 write_debug_data(context_ptr, &file_handle);
             }
@@ -448,7 +449,7 @@ apply_settings:
                 fclose();
                 file_size = 0;
                 LOCK();
-                _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+                SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
                 UNLOCK();
                 render_mode = 0;
             }
@@ -457,7 +458,7 @@ apply_settings:
             fclose();
             file_size = 0;
             LOCK();
-            _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+            SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
             UNLOCK();
         }
         buffer_ptr = &global_state_3456_ptr;
@@ -487,7 +488,7 @@ void initialize_render_system(uint64_t renderer_instance, int render_mode)
     int32_t render_params[2];
     
     // 获取渲染器数据
-    renderer_data = _DAT_180c86920;
+    renderer_data = SYSTEM_STATE_MANAGER;
     
     // 初始化基础渲染设置
     initialize_render_buffer(renderer_data, 0);
@@ -581,11 +582,11 @@ apply_mode_settings:
     screen_height = (int)((*(longlong *)(*(longlong *)(_DAT_180c86870 + 8) + 0x20) - display_info) / 0x70);
     
     // 确定屏幕分辨率
-    if ((screen_height < 2) || (screen_height <= *(int *)(_DAT_180c86920 + 0x1f10))) {
+    if ((screen_height < 2) || (screen_height <= *(int *)(SYSTEM_STATE_MANAGER + 0x1f10))) {
         screen_height = GetSystemMetrics(0);
         screen_width = GetSystemMetrics(1);
     } else {
-        monitor_info = (longlong)*(int *)(_DAT_180c86920 + 0x1f10) * 0x70;
+        monitor_info = (longlong)*(int *)(SYSTEM_STATE_MANAGER + 0x1f10) * 0x70;
         resolution_x = *(int *)(monitor_info + 0x60 + display_info) - *(int *)(monitor_info + 0x58 + display_info);
         display_width = (int)resolution_x >> 0x1f;
         resolution_y = *(int *)(monitor_info + 100 + display_info) - *(int *)(monitor_info + 0x5c + display_info);
@@ -714,7 +715,7 @@ void initialize_render_pipeline(longlong renderer_instance)
     
     // 初始化文件句柄和校验和
     file_handle = 0xfffffffffffffffe;
-    checksum = _DAT_180bf00a8 ^ (ulonglong)render_config;
+    checksum = GET_SECURITY_COOKIE() ^ (ulonglong)render_config;
     render_flags = 0;
     
     // 设置最小质量要求

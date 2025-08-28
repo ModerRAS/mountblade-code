@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part619.c - 渲染系统高级数据处理和资源管理模块
 // 包含15个核心函数，涵盖渲染系统高级数据处理、资源管理、字符串处理、时间管理、内存管理等高级渲染功能
@@ -642,7 +643,7 @@ void RenderingSystem_AdvancedResourceHandler(uint64_t *param_1, uint64_t param_2
     ulonglong uStack_38;
     
     uStack_2c8 = 0xfffffffffffffffe;
-    uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_3c8;
+    uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_3c8;
     uStack_380 = 0;
     plStack_2b8 = (longlong *)0x0;
     puStack_388 = &uStack_2a8;

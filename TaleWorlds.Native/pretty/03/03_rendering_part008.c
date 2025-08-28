@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part008.c - 4 个函数
 // 渲染系统核心功能模块 - 负责渲染数据的序列化和处理
@@ -698,7 +699,7 @@ void process_rendering_system(longlong render_manager,longlong data_buffer)
   
   // 初始化栈保护和校验
   stack_guard = 0xfffffffffffffffe;
-  stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   
   // 处理数据缓冲区
   temp_value = *(longlong *)(data_buffer + 8);

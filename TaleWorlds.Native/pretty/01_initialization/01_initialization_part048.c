@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 01_initialization_part048.c - 初始化模块第48部分
 // 本文件包含6个函数，主要涉及引用计数管理、状态检查、资源清理和设备处理
@@ -450,7 +451,7 @@ void ProcessDeviceOperations(longlong *device_params)
   ulonglong security_cookie;
   
   stack_var3 = 0xfffffffffffffffe;
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   device_config = *(uint64_t *)(device_params[0x37] + 0x1e0);
   stack_ptr2 = &unknown_var_672_ptr;
   stack_ptr3 = stack_buffer2;

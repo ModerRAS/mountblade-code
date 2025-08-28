@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * @file 06_utilities_part009.c
@@ -483,7 +484,7 @@ int UtilitiesSystem_MemoryManager(int64_t* param_1, int param_2)
         if (param_2 * UTIL_MEMORY_BLOCK_SIZE - 1 < UTIL_MAX_MEMORY_SIZE) {
             // 分配新内存
             new_memory = (uint64_t*)
-                     FUN_180741e10(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), 
+                     FUN_180741e10(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                                   param_2 * UTIL_MEMORY_BLOCK_SIZE, 
                                   &unknown_var_8432_ptr,
                                   UTIL_MEMORY_ALIGNMENT, 0, 0, 1);
@@ -514,7 +515,7 @@ memory_cleanup:
     // 清理现有内存
     if ((0 < *(int*)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
         // 释放现有内存
-        FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
+        FUN_180742250(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
     }
     
     // 更新内存管理器
@@ -562,7 +563,7 @@ int UtilitiesSystem_MemoryManagerVariant(uint64_t param_1, int param_2)
         // 清理现有内存
         if ((0 < *(int*)((int64_t)unaff_rbx + 0xc)) && (*unaff_rbx != 0)) {
             // 释放现有内存
-            FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), *unaff_rbx, &unknown_var_8432_ptr, 0x100, 1);
+            FUN_180742250(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *unaff_rbx, &unknown_var_8432_ptr, 0x100, 1);
         }
         *unaff_rbx = (int64_t)new_memory;
         *(int*)((int64_t)unaff_rbx + 0xc) = unaff_edi;
@@ -573,7 +574,7 @@ int UtilitiesSystem_MemoryManagerVariant(uint64_t param_1, int param_2)
     if (param_2 * UTIL_MEMORY_BLOCK_SIZE - 1 < UTIL_MAX_MEMORY_SIZE) {
         // 分配新内存
         new_memory = (uint64_t*)
-                 FUN_180741e10(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), 
+                 FUN_180741e10(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                               param_2 * UTIL_MEMORY_BLOCK_SIZE, 
                               &unknown_var_8432_ptr,
                               UTIL_MEMORY_ALIGNMENT, 0);
@@ -668,7 +669,7 @@ int UtilitiesSystem_OptimizedMemoryManager(int64_t* param_1, int param_2)
         // 检查内存大小限制
         if (param_2 * UTIL_MEMORY_BLOCK_SIZE - 1 < UTIL_MAX_MEMORY_SIZE) {
             // 分配新内存
-            new_memory = FUN_180741e10(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), 
+            new_memory = FUN_180741e10(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                                        param_2 * UTIL_MEMORY_BLOCK_SIZE, 
                                        &unknown_var_8432_ptr,
                                        UTIL_MEMORY_ALIGNMENT, 0, 0, 1);
@@ -690,7 +691,7 @@ memory_cleanup:
     // 清理现有内存
     if ((0 < *(int*)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
         // 释放现有内存
-        FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
+        FUN_180742250(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
     }
     
     // 更新内存管理器
@@ -734,7 +735,7 @@ int UtilitiesSystem_OptimizedMemoryManagerVariant(uint64_t param_1, int param_2)
         // 清理现有内存
         if ((0 < *(int*)((int64_t)unaff_rbx + 0xc)) && (*unaff_rbx != 0)) {
             // 释放现有内存
-            FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), *unaff_rbx, &unknown_var_8432_ptr, 0x100, 1);
+            FUN_180742250(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *unaff_rbx, &unknown_var_8432_ptr, 0x100, 1);
         }
         *unaff_rbx = new_memory;
         *(int*)((int64_t)unaff_rbx + 0xc) = unaff_edi;
@@ -744,7 +745,7 @@ int UtilitiesSystem_OptimizedMemoryManagerVariant(uint64_t param_1, int param_2)
     // 检查内存大小限制
     if (param_2 * UTIL_MEMORY_BLOCK_SIZE - 1 < UTIL_MAX_MEMORY_SIZE) {
         // 分配新内存
-        new_memory = FUN_180741e10(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), 
+        new_memory = FUN_180741e10(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                                    param_2 * UTIL_MEMORY_BLOCK_SIZE, 
                                    &unknown_var_8432_ptr,
                                    UTIL_MEMORY_ALIGNMENT, 0);
@@ -1009,7 +1010,7 @@ uint64_t UtilitiesSystem_RenderStateManager(int64_t param_1)
                                     }
                                     if ((0 < (int)temp_buffer._4_4_) && (result_buffer != 0)) {
                                         // 释放内存
-                                        FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), result_buffer, &unknown_var_8432_ptr,
+                                        FUN_180742250(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), result_buffer, &unknown_var_8432_ptr,
                                                       0x100, 1);
                                     }
                                     result_buffer = 0;
@@ -1098,7 +1099,7 @@ uint64_t UtilitiesSystem_RenderStateManager(int64_t param_1)
             if (0 < list_index) goto cleanup_render_data;
             if ((0 < iteration_count) && (result_value != 0)) {
                 // 释放内存
-                FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), result_value, &unknown_var_8432_ptr, 0x100, 1);
+                FUN_180742250(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), result_value, &unknown_var_8432_ptr, 0x100, 1);
             }
             result_buffer = 0;
             temp_buffer = 0;
@@ -1354,7 +1355,7 @@ uint64_t UtilitiesSystem_AdvancedMemoryManager(int64_t param_1)
         }
         
         // 分配新缓冲区
-        new_buffer = (int*)FUN_180741e10(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), 
+        new_buffer = (int*)FUN_180741e10(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                                         allocation_size + 0x19,
                                         &unknown_var_9216_ptr, 0x278, 0, 0, 1);
         

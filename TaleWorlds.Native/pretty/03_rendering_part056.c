@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part056.c - 14 个函数
 
@@ -569,10 +570,10 @@ void FUN_180299170(int *param_1,int param_2)
     iVar4 = iVar2;
   }
   if (iVar1 < iVar4) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
-    uVar3 = func_0x000180120ce0((longlong)iVar4 << 4,_DAT_180c8a9a8);
+    uVar3 = func_0x000180120ce0((longlong)iVar4 << 4,SYSTEM_DATA_MANAGER_B);
     if (*(longlong *)(param_1 + 2) != 0) {
                     // WARNING: Subroutine does not return
       memcpy(uVar3,*(longlong *)(param_1 + 2),(longlong)*param_1 << 4);
@@ -603,7 +604,7 @@ void FUN_1802991ad(void)
   if (in_RAX != 0) {
     *(int *)(in_RAX + 0x3a8) = *(int *)(in_RAX + 0x3a8) + 1;
   }
-  uVar1 = func_0x000180120ce0((longlong)unaff_EDI << 4,_DAT_180c8a9a8);
+  uVar1 = func_0x000180120ce0((longlong)unaff_EDI << 4,SYSTEM_DATA_MANAGER_B);
   if (*(longlong *)(unaff_RBX + 2) != 0) {
                     // WARNING: Subroutine does not return
     memcpy(uVar1,*(longlong *)(unaff_RBX + 2),(longlong)*unaff_RBX << 4);
@@ -660,10 +661,10 @@ void FUN_180299230(int *param_1,int param_2)
     iVar4 = iVar2;
   }
   if (iVar1 < iVar4) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
-    uVar3 = func_0x000180120ce0((longlong)iVar4 * 0x28,_DAT_180c8a9a8);
+    uVar3 = func_0x000180120ce0((longlong)iVar4 * 0x28,SYSTEM_DATA_MANAGER_B);
     if (*(longlong *)(param_1 + 2) != 0) {
                     // WARNING: Subroutine does not return
       memcpy(uVar3,*(longlong *)(param_1 + 2),(longlong)*param_1 * 0x28);
@@ -704,10 +705,10 @@ void FUN_18029924a(int param_1)
     iVar3 = iVar1;
   }
   if (param_1 < iVar3) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
-    uVar2 = func_0x000180120ce0((longlong)iVar3 * 0x28,_DAT_180c8a9a8);
+    uVar2 = func_0x000180120ce0((longlong)iVar3 * 0x28,SYSTEM_DATA_MANAGER_B);
     if (*(longlong *)(unaff_RBX + 2) != 0) {
                     // WARNING: Subroutine does not return
       memcpy(uVar2,*(longlong *)(unaff_RBX + 2),(longlong)*unaff_RBX * 0x28);
@@ -781,10 +782,10 @@ void FUN_180299330(int *param_1,uint64_t *param_2)
       iVar6 = iVar4;
     }
     if (iVar2 < iVar6) {
-      if (_DAT_180c8a9b0 != 0) {
-        *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+      if (SYSTEM_DATA_MANAGER_A != 0) {
+        *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
       }
-      uVar5 = func_0x000180120ce0((longlong)iVar6 << 5,_DAT_180c8a9a8);
+      uVar5 = func_0x000180120ce0((longlong)iVar6 << 5,SYSTEM_DATA_MANAGER_B);
       if (*(longlong *)(param_1 + 2) != 0) {
                     // WARNING: Subroutine does not return
         memcpy(uVar5,*(longlong *)(param_1 + 2),(longlong)*param_1 << 5);
@@ -829,7 +830,7 @@ void FUN_180299378(void)
   if (in_RAX != 0) {
     *(int *)(in_RAX + 0x3a8) = *(int *)(in_RAX + 0x3a8) + 1;
   }
-  uVar4 = func_0x000180120ce0((longlong)unaff_EDI << 5,_DAT_180c8a9a8);
+  uVar4 = func_0x000180120ce0((longlong)unaff_EDI << 5,SYSTEM_DATA_MANAGER_B);
   if (*(longlong *)(unaff_RBX + 2) != 0) {
                     // WARNING: Subroutine does not return
     memcpy(uVar4,*(longlong *)(unaff_RBX + 2),(longlong)*unaff_RBX << 5);

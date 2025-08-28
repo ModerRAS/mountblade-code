@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part253.c - 核心引擎模块第253部分
 // 包含20个函数，主要负责字符串比较、内存管理、数据结构操作和系统初始化
@@ -640,7 +641,7 @@ void process_configuration_file(longlong param_1)
   ulonglong stack_cookie2;
   
   stack_cookie1 = 0xfffffffffffffffe;
-  stack_cookie2 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
+  stack_cookie2 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer1;
   FUN_180217c40(param_1 + 0x260);
   FUN_1801596c0();
   FUN_180624440(temp_buffer, stack_buffer2);
@@ -821,7 +822,7 @@ void process_resource_file(longlong param_1, uint64_t param_2, uint64_t param_3,
     fclose(file_handle);
     temp_long2 = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
     string_size = *file_data;
     data_ptr = (uint *)((longlong)file_data + 2);
@@ -1213,7 +1214,7 @@ void initialize_message_system(void)
   ulonglong security_cookie;
   
   stack_cookie = 0xfffffffffffffffe;
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer1;
   queue_size = 0;
   _DAT_180c8aa60 = FUN_18062b1e0(_DAT_180c8ed18, 0x30, 8, 3);
   *(int32_t *)(_DAT_180c8aa60 + 0x19) = 0;

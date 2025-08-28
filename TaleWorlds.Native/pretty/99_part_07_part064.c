@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_07_part064.c - 5 个函数
 
@@ -499,7 +500,7 @@ void FUN_1804d7130(longlong param_1,longlong param_2)
   code *pcStack_18;
   
   uVar4 = 0xfffffffffffffffe;
-  iVar1 = *(int *)(_DAT_180c86920 + 0x1c0);
+  iVar1 = *(int *)(SYSTEM_STATE_MANAGER + 0x1c0);
   lVar2 = *(longlong *)(_DAT_180c86870 + 0x3d8);
   uStack_40 = (int32_t)param_1;
   uStack_3c = (int32_t)((ulonglong)param_1 >> 0x20);
@@ -601,7 +602,7 @@ void FUN_1804d72f0(longlong *param_1,int param_2,int param_3)
             lVar6 = *(longlong *)(*(longlong *)(lVar5 + 0x698) + (longlong)((int)uVar2 >> 10) * 8);
             cVar1 = *(char *)(lVar6 + 0x2c +
                              (longlong)(int)(*(uint *)(lVar5 + 0x6b8) & uVar2) * 0x30);
-            aiStackX_10[0] = (*(int *)(_DAT_180c86920 + 0xe00) != 0) - 1;
+            aiStackX_10[0] = (*(int *)(SYSTEM_STATE_MANAGER + 0xe00) != 0) - 1;
             ppuStackX_20 = apiStack_60;
             puStack_50 = &unknown_var_1168_ptr;
             pcStack_48 = FUN_18054afe0;

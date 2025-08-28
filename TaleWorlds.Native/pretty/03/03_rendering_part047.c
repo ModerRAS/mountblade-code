@@ -1,11 +1,12 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part047.c - 渲染系统参数配置和资源管理模块
 // 本文件包含10个核心函数，涵盖渲染参数初始化、资源管理、内存释放等关键功能
 
 // 全局变量定义
-#define RENDER_CONTEXT_BASE _DAT_180c8a9b0
-#define MEMORY_ALLOCATOR _DAT_180c8a9a8
+#define RENDER_CONTEXT_BASE SYSTEM_DATA_MANAGER_A
+#define MEMORY_ALLOCATOR SYSTEM_DATA_MANAGER_B
 
 // 函数别名定义
 #define initialize_rendering_parameters FUN_180290fd0

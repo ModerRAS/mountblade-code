@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // ============================================================================
 // 99_part_13_part044_sub002_sub002.c - 高级渲染系统和数据管理模块
@@ -1097,7 +1098,7 @@ LAB_1808c2c1e:
   
   // 检查特殊处理条件
   if (((*(uint32 *)(*(int64 *)(param_1 + 0x4c0) + 0x78) & 0x10000) == 0) &&
-     (*(int8 *)(_DAT_180be12f0 + 0x158) == 0)) goto LAB_1808c2bee;
+     (*(int8 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x158) == 0)) goto LAB_1808c2bee;
   
   // 执行特殊数据处理
   plStack_90 = (IntPtr)(param_1 + 0x38);
@@ -1400,7 +1401,7 @@ uint64 FUN_1808c2ec0(int64 param_1, int64 param_2, int8 param_3)
     
     // 分配对象内存
     plVar2 = (IntPtr)
-             FUN_180741e10(*(uint64 *)(_DAT_180be12f0 + 0x1a0), ALLOCATION_SIZE_MEDIUM, &unknown_var_1696_ptr, 0xbf, 0, 0, 1);
+             FUN_180741e10(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), ALLOCATION_SIZE_MEDIUM, &unknown_var_1696_ptr, 0xbf, 0, 0, 1);
     
     if (plVar2 == (IntPtr)NULL_POINTER) {
       return ALLOCATION_ERROR_CODE;
@@ -1573,7 +1574,7 @@ LAB_1808c3135:
       plVar2[1] = (int64)plVar2;
       *plVar2 = (int64)plVar2;
       // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0), plVar2, &unknown_var_1696_ptr, 0xe1, 1);
+      FUN_180742250(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_1696_ptr, 0xe1, 1);
     }
   }
   else {
@@ -1610,7 +1611,7 @@ LAB_1808c3135:
   plVar2[1] = (int64)plVar2;
   *plVar2 = (int64)plVar2;
   // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0), plVar2, &unknown_var_1696_ptr, 0xe1, 1);
+  FUN_180742250(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_1696_ptr, 0xe1, 1);
 }
 
 // ============================================================================
@@ -1723,7 +1724,7 @@ int32 FUN_1808c3220(IntPtr param_1, uint64 param_2, uint64 param_3, UIntPtr para
   
   // 分配对象内存
   puVar7 = (UIntPtr)
-           FUN_180741e10(*(uint64 *)(_DAT_180be12f0 + 0x1a0), ALLOCATION_SIZE_LARGE, &unknown_var_3008_ptr, 0x12f, 0, 0, 1);
+           FUN_180741e10(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), ALLOCATION_SIZE_LARGE, &unknown_var_3008_ptr, 0x12f, 0, 0, 1);
   lVar8 = lStack_60;
   
   if (puVar7 == (UIntPtr)NULL_POINTER) {
@@ -2002,7 +2003,7 @@ int32 FUN_1808c3266(void)
   
   // 分配对象内存
   puVar6 = (UIntPtr)
-           FUN_180741e10(*(uint64 *)(_DAT_180be12f0 + 0x1a0), ALLOCATION_SIZE_LARGE, &unknown_var_3008_ptr, 0x12f, 0);
+           FUN_180741e10(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), ALLOCATION_SIZE_LARGE, &unknown_var_3008_ptr, 0x12f, 0);
   lVar7 = lStack0000000000000058;
   
   if (puVar6 == (UIntPtr)NULL_POINTER) {
@@ -2282,7 +2283,7 @@ uint64 FUN_1808c3700(UIntPtr param_1, IntPtr param_2)
       // 执行对象销毁
       ((*(code **)(*param_2 + 0x28))(param_2, 0));
       // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0), param_2, &unknown_var_3008_ptr, 0x161, 1);
+      FUN_180742250(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, &unknown_var_3008_ptr, 0x161, 1);
     }
   }
   
@@ -2413,7 +2414,7 @@ LAB_1808c38c7:
     if (uVar1 == SUCCESS_CODE) {
       FUN_1808bbe80(plVar2);
       // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0), plVar2, &unknown_var_3008_ptr, 0x172, 1);
+      FUN_180742250(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_3008_ptr, 0x172, 1);
     }
   }
   
@@ -2544,7 +2545,7 @@ LAB_1808c38c7:
     if (uVar2 == SUCCESS_CODE) {
       FUN_1808bbe80(plVar3);
       // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0), plVar3, &unknown_var_3008_ptr, 0x172, 1);
+      FUN_180742250(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar3, &unknown_var_3008_ptr, 0x172, 1);
     }
   }
   

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part010.c - 22 个函数
 
@@ -35,7 +36,7 @@ void FUN_180045fc0(longlong param_1,longlong param_2,longlong param_3)
   ulonglong uStack_48;
   
   uStack_478 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_498;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_498;
   puStack_468 = &unknown_var_336_ptr;
   puStack_460 = auStack_450;
   uStack_458 = 0;
@@ -172,9 +173,9 @@ void FUN_1800462c0(uint64_t param_1,int32_t param_2)
   void *puVar3;
   int32_t auStackX_10 [6];
   
-  lVar1 = _DAT_180c86920;
-  if ((*(longlong *)(_DAT_180c86920 + 0x22f0) != 0) &&
-     (auStackX_10[0] = param_2, cVar2 = (**(code **)(_DAT_180c86920 + 0x22f8))(auStackX_10),
+  lVar1 = SYSTEM_STATE_MANAGER;
+  if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x22f0) != 0) &&
+     (auStackX_10[0] = param_2, cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x22f8))(auStackX_10),
      param_2 = auStackX_10[0], cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
@@ -316,7 +317,7 @@ void FUN_1800464f0(longlong param_1,longlong param_2,longlong param_3)
   ulonglong uStack_48;
   
   uStack_88 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_a8;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_a8;
   puStack_80 = &unknown_var_672_ptr;
   puStack_78 = auStack_68;
   uStack_70 = 0;
@@ -880,7 +881,7 @@ void FUN_180046e20(void)
   ulonglong uStack_68;
   
   uStack_4f8 = 0xfffffffffffffffe;
-  uStack_68 = _DAT_180bf00a8 ^ (ulonglong)auStack_698;
+  uStack_68 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_698;
   uStack_5b8 = 0;
   if (*(int *)(_DAT_180c86870 + 0x224) - _DAT_180bf52b0 < 0xfb) {
                     // WARNING: Subroutine does not return
@@ -1045,18 +1046,18 @@ void FUN_180046e20(void)
   *puVar7 = 0;
   *(int8_t *)(puVar7 + 2) = 0;
   FUN_18062dee0(puVar7,puVar9,&system_data_c7ec);
-  FUN_1800ae730(_DAT_180c86920,puVar7);
+  FUN_1800ae730(SYSTEM_STATE_MANAGER,puVar7);
   if (puVar7[1] != 0) {
     fclose();
     puVar7[1] = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
     if (puVar7[1] != 0) {
       fclose();
       puVar7[1] = 0;
       LOCK();
-      _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+      SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
       UNLOCK();
     }
   }

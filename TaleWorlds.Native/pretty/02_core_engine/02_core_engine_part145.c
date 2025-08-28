@@ -1,11 +1,12 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part145.c - 核心引擎模块第145部分
 // 本文件包含11个函数，主要处理游戏对象管理、状态更新和内存操作
 
 /* 全局变量引用 */
-extern uint64_t _DAT_180c8a9b0;  // 全局数据基地址
-extern uint64_t _DAT_180c8a9a8;  // 全局配置基地址
+extern uint64_t SYSTEM_DATA_MANAGER_A;  // 全局数据基地址
+extern uint64_t SYSTEM_DATA_MANAGER_B;  // 全局配置基地址
 extern uint64_t global_var_2680_ptr;    // 未知数据结构
 extern uint64_t global_var_6320_ptr;    // 哈希表数据
 
@@ -122,7 +123,7 @@ void process_game_object_batch(longlong context, longlong data_ptr, int count, u
       }
       
       // 设置对象哈希值
-      hash_result = FUN_180121fa0(_DAT_180c8a9b0 + 0x1ae0,~hash_value);
+      hash_result = FUN_180121fa0(SYSTEM_DATA_MANAGER_A + 0x1ae0,~hash_value);
       *(uint64_t *)(game_obj_ptr + 0x1a) = hash_result;
     }
     
@@ -322,10 +323,10 @@ void manage_game_object_links(longlong context, longlong obj_data)
   if (result_obj != target_obj) {
     count = *(int *)(result_obj + 4);
     if ((0 < count) && (result_obj[6] == 0)) {
-      if (_DAT_180c8a9b0 != 0) {
-        *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+      if (SYSTEM_DATA_MANAGER_A != 0) {
+        *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
       }
-      stack_obj_ptr = (uint64_t *)func_0x000180120ce0(0x60, _DAT_180c8a9a8);
+      stack_obj_ptr = (uint64_t *)func_0x000180120ce0(0x60, SYSTEM_DATA_MANAGER_B);
       stack_data_ptr = stack_buffer;
       main_obj_ptr = null_ptr;
       if (stack_obj_ptr != (uint64_t *)0x0) {
@@ -416,8 +417,8 @@ void manage_game_object_links(longlong context, longlong obj_data)
   }
   
   // 更新全局时间值
-  if (*(float *)(_DAT_180c8a9b0 + 0x2e04) <= 0.0) {
-    *(int32_t *)(_DAT_180c8a9b0 + 0x2e04) = *(int32_t *)(_DAT_180c8a9b0 + 0x1c);
+  if (*(float *)(SYSTEM_DATA_MANAGER_A + 0x2e04) <= 0.0) {
+    *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x2e04) = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1c);
   }
   return;
 }
@@ -453,10 +454,10 @@ void create_and_initialize_game_object(longlong context, int32_t *obj_ptr)
   // 如果对象不存在或已有特殊标志，则创建新对象
   if ((context_data == 0) || ((*(byte *)(obj_ptr + 0x28) & 0x20) != 0)) {
     obj_type = FUN_1801358c0(context);
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
-    stack_obj_handle = func_0x000180120ce0(0xa8, _DAT_180c8a9a8);
+    stack_obj_handle = func_0x000180120ce0(0xa8, SYSTEM_DATA_MANAGER_B);
     stack_data_ptr = stack_buffer;
     temp_obj_ptr = (int32_t *)0x0;
     new_obj_ptr = temp_obj_ptr;
@@ -512,8 +513,8 @@ void create_and_initialize_game_object(longlong context, int32_t *obj_ptr)
   }
   
   // 更新全局时间值
-  if (*(float *)(_DAT_180c8a9b0 + 0x2e04) <= 0.0) {
-    *(int32_t *)(_DAT_180c8a9b0 + 0x2e04) = *(int32_t *)(_DAT_180c8a9b0 + 0x1c);
+  if (*(float *)(SYSTEM_DATA_MANAGER_A + 0x2e04) <= 0.0) {
+    *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x2e04) = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1c);
   }
   return;
 }
@@ -595,11 +596,11 @@ void cleanup_game_object_resources(longlong obj_ptr, uint64_t param2, uint64_t p
   *(uint64_t *)(obj_ptr + 0x10) = 0;             // 清空数据指针2
   resource_ptr = *(longlong *)(obj_ptr + 0x28);
   if (resource_ptr != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resource_ptr, _DAT_180c8a9a8, param3, param4, cleanup_flag);
+    FUN_180059ba0(resource_ptr, SYSTEM_DATA_MANAGER_B, param3, param4, cleanup_flag);
   }
   return;
 }
@@ -665,10 +666,10 @@ void add_game_object_to_container(int32_t *container, longlong obj_ptr, char fla
 LAB_180136c0c:
   if (param_3 != '\0') {
     if (*(longlong *)(param_1 + 0xc) == 0) {
-      if (_DAT_180c8a9b0 != 0) {
-        *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+      if (SYSTEM_DATA_MANAGER_A != 0) {
+        *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
       }
-      puVar4 = (uint64_t *)func_0x000180120ce0(0x60,_DAT_180c8a9a8);
+      puVar4 = (uint64_t *)func_0x000180120ce0(0x60,SYSTEM_DATA_MANAGER_B);
       puVar7 = (uint64_t *)0x0;
       puVar5 = puVar7;
       if (puVar4 != (uint64_t *)0x0) {
@@ -755,7 +756,7 @@ void remove_game_object_from_container(int *container, longlong obj_ptr, int32_t
   ulonglong uVar20;
   
   *(byte *)(param_2 + 0x432) = *(byte *)(param_2 + 0x432) & 0xfa;
-  lVar7 = _DAT_180c8a9b0;
+  lVar7 = SYSTEM_DATA_MANAGER_A;
   *(uint64_t *)(param_2 + 0x408) = 0;
   *(int32_t *)(param_2 + 0x418) = param_3;
   *(uint64_t *)(param_2 + 0x398) = 0;
@@ -874,19 +875,19 @@ void remove_game_object_from_container(int *container, longlong obj_ptr, int32_t
           }
           FUN_180122160(*(uint64_t *)(lVar7 + 0x2df8),*puVar9,0);
           FUN_180136ab0(puVar9);
-          if (_DAT_180c8a9b0 != 0) {
-            *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+          if (SYSTEM_DATA_MANAGER_A != 0) {
+            *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
           }
                     // WARNING: Subroutine does not return
-          FUN_180059ba0(puVar9,_DAT_180c8a9a8);
+          FUN_180059ba0(puVar9,SYSTEM_DATA_MANAGER_B);
         }
         FUN_180122160(*(uint64_t *)(lVar7 + 0x2df8),*puVar8,0);
         FUN_180136ab0(puVar8);
-        if (_DAT_180c8a9b0 != 0) {
-          *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+        if (SYSTEM_DATA_MANAGER_A != 0) {
+          *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
-        FUN_180059ba0(puVar8,_DAT_180c8a9a8);
+        FUN_180059ba0(puVar8,SYSTEM_DATA_MANAGER_B);
       }
       FUN_180122160(uVar5,*param_1,0,uVar5,0xfffffffffffffffe);
       FUN_18013ea00(*(uint64_t *)(param_1 + 0xc));
@@ -898,14 +899,14 @@ void remove_game_object_from_container(int *container, longlong obj_ptr, int32_t
       param_1[5] = 0;
       lVar15 = *(longlong *)(param_1 + 10);
       if (lVar15 != 0) {
-        if (_DAT_180c8a9b0 != 0) {
-          *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+        if (SYSTEM_DATA_MANAGER_A != 0) {
+          *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
-        FUN_180059ba0(lVar15,_DAT_180c8a9a8);
+        FUN_180059ba0(lVar15,SYSTEM_DATA_MANAGER_B);
       }
-      if (_DAT_180c8a9b0 != 0) {
-        *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+      if (SYSTEM_DATA_MANAGER_A != 0) {
+        *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
       }
       if (param_1 != (int *)0x0) {
         uVar20 = (ulonglong)param_1 & 0xffffffffffc00000;
@@ -1016,7 +1017,7 @@ void link_game_objects(longlong obj1, longlong obj2)
       uVar5 = uVar5 + 8;
     } while ((int)uVar7 < *(int *)(param_2 + 0x20));
   }
-  lVar3 = _DAT_180c8a9b0;
+  lVar3 = SYSTEM_DATA_MANAGER_A;
   lVar2 = *(longlong *)(param_2 + 0x28);
   if (lVar2 == 0) {
     if ((bVar6 == 0) && (lVar2 = *(longlong *)(param_2 + 0x30), lVar2 != 0)) {
@@ -1035,7 +1036,7 @@ void link_game_objects(longlong obj1, longlong obj2)
     *piVar1 = *piVar1 + -1;
   }
                     // WARNING: Subroutine does not return
-  FUN_180059ba0(lVar2,_DAT_180c8a9a8);
+  FUN_180059ba0(lVar2,SYSTEM_DATA_MANAGER_B);
 }
 
 

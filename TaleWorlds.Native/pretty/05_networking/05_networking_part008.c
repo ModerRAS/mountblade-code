@@ -98,7 +98,7 @@ void FUN_180849820(int32_t param_1, longlong param_2, int32_t param_3)
   longlong alStack_140 [33];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
   lStack_148 = 0;
   uStack_158 = 0;
   uStack_150 = 0;
@@ -223,9 +223,9 @@ void FUN_180849990(uint64_t param_1,int32_t param_2,uint64_t *param_3,uint64_t *
   int8_t auStack_148 [256];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_198;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_198;
   if (param_3 == (uint64_t *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_198);
     }
@@ -326,7 +326,7 @@ void FUN_180849bb0(uint64_t param_1,uint64_t param_2,int32_t param_3,int8_t para
   uint64_t auStack_158 [34];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_198;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_198;
   auStack_158[0] = 0;
   iVar1 = func_0x00018088c590(param_1,&lStack_168);
   if (iVar1 == 0) {
@@ -390,9 +390,9 @@ void FUN_180849d40(ulonglong param_1,longlong param_2,int32_t param_3)
   int8_t auStack_158 [256];
   ulonglong uStack_58;
   
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_1a8;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1a8;
   if ((param_2 == 0) || (iVar1 = func_0x00018076b690(param_2), 0x7f < iVar1)) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_1a8);
     }
@@ -464,9 +464,9 @@ void FUN_180849f40(ulonglong param_1,longlong param_2,int32_t param_3)
   int8_t auStack_158 [256];
   ulonglong uStack_58;
   
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_1a8;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1a8;
   if ((param_2 == 0) || (iVar1 = func_0x00018076b690(param_2), 0x7f < iVar1)) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_1a8);
     }
@@ -533,7 +533,7 @@ void FUN_18084a140(uint64_t param_1,int8_t param_2)
   uint64_t *apuStack_138 [34];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
   alStack_148[1] = 0;
   iVar1 = func_0x00018088c590(param_1,alStack_148);
   if (iVar1 == 0) {
@@ -592,7 +592,7 @@ void FUN_18084a280(uint64_t param_1,int32_t param_2)
   uint64_t *apuStack_138 [34];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
   alStack_148[1] = 0;
   iVar1 = func_0x00018088c590(param_1,alStack_148);
   if (iVar1 == 0) {
@@ -652,7 +652,7 @@ void FUN_18084a3d0(uint64_t param_1,int32_t param_2,int32_t param_3)
   uint64_t *apuStack_148 [34];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
   alStack_158[1] = 0;
   iVar1 = func_0x00018088c590(param_1,alStack_158);
   if (iVar1 == 0) {
@@ -712,7 +712,7 @@ void FUN_18084a550(uint64_t param_1,int32_t param_2)
   uint64_t *apuStack_138 [34];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
   alStack_148[1] = 0;
   iVar1 = func_0x00018088c590(param_1,alStack_148);
   if (iVar1 == 0) {
@@ -771,7 +771,7 @@ void FUN_18084a680(int32_t param_1,uint64_t param_2)
   longlong alStack_120 [33];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_168;
   lStack_128 = 0;
   uStack_138 = 0;
   uStack_130 = 0;
@@ -820,7 +820,7 @@ void FUN_18084a7a0(int32_t param_1,uint64_t param_2)
   longlong alStack_120 [33];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_168;
   lStack_128 = 0;
   uStack_138 = 0;
   uStack_130 = 0;
@@ -874,7 +874,7 @@ void FUN_18084a8c0(uint64_t param_1,int32_t param_2)
   uint64_t *apuStack_138 [34];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
   alStack_148[1] = 0;
   iVar1 = func_0x00018088c590(param_1,alStack_148);
   if (iVar1 == 0) {
@@ -933,7 +933,7 @@ void FUN_18084aa10(uint64_t param_1,int32_t param_2)
   uint64_t *apuStack_138 [34];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
   alStack_148[1] = 0;
   iVar1 = func_0x00018088c590(param_1,alStack_148);
   if (iVar1 == 0) {
@@ -992,7 +992,7 @@ void FUN_18084ab60(uint64_t param_1,int32_t param_2)
   uint64_t *apuStack_138 [34];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
   alStack_148[1] = 0;
   iVar1 = func_0x00018088c590(param_1,alStack_148);
   if (iVar1 == 0) {
@@ -1050,7 +1050,7 @@ void FUN_18084acb0(uint64_t param_1)
   uint64_t *apuStack_128 [34];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_168;
   alStack_138[1] = 0;
   iVar1 = func_0x00018088c590(param_1,alStack_138);
   if (iVar1 == 0) {
@@ -1108,7 +1108,7 @@ void FUN_18084ade0(uint64_t param_1,int32_t param_2)
   uint64_t *apuStack_138 [34];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
   alStack_148[1] = 0;
   iVar1 = func_0x00018088c590(param_1,alStack_148);
   if (iVar1 == 0) {

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part064.c - 渲染系统高级数据处理和渲染控制模块
 // 包含12个核心函数，涵盖渲染参数设置、内存管理、数据复制、字符串处理、
@@ -54,7 +55,7 @@
 // 全局变量引用
 #define global_render_context _DAT_180c8ed18
 #define global_string_constants _DAT_180c86890
-#define global_render_settings _DAT_180c86920
+#define global_render_settings SYSTEM_STATE_MANAGER
 #define global_render_state _DAT_180c86950
 
 /**

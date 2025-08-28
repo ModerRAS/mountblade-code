@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // ============================================================================
 // TaleWorlds.Native - 高级系统管理和资源清理模块
@@ -382,7 +383,7 @@ void SystemGraphicsRenderer(SystemInt64 param_1) {
     stack_alignment = SYSTEM_STACK_ALIGNMENT_MASK;
     
     // 计算栈校验和
-    stack_checksum = _DAT_180bf00a8 ^ (SystemUInt64)stack_buffer;
+    stack_checksum = GET_SECURITY_COOKIE() ^ (SystemUInt64)stack_buffer;
     
     // 第二阶段：渲染状态检查
     // 检查系统是否处于可渲染状态
@@ -527,7 +528,7 @@ void SystemResourceCleanup(SystemInt64 param_1) {
     stack_alignment = SYSTEM_STACK_ALIGNMENT_MASK;
     
     // 计算栈校验和
-    stack_checksum = _DAT_180bf00a8 ^ (SystemUInt64)stack_buffer;
+    stack_checksum = GET_SECURITY_COOKIE() ^ (SystemUInt64)stack_buffer;
     
     // 第二阶段：资源状态检查
     // 检查系统资源状态标志

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part145.c - 渲染系统高级参数处理和状态管理模块
 // 包含2个核心函数，涵盖渲染系统参数处理、状态查询、字符串处理、缓冲区管理、资源分配等高级渲染功能
@@ -38,7 +39,7 @@
 #define RenderingSystem_ComponentProcessor FUN_1808fc050
 
 // 全局变量引用
-extern uint64_t _DAT_180bf00a8;
+extern uint64_t GET_SECURITY_COOKIE();
 extern uint8_t global_state_672_ptr;
 extern char system_memory_eb78;
 extern uint8_t global_state_720_ptr;
@@ -174,7 +175,7 @@ void RenderingSystem_ParameterProcessor(longlong render_context, longlong parame
     
     // 初始化安全栈值
     stack_value = 0xfffffffffffffffe;
-    security_hash = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+    security_hash = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
     
     // 初始化字符串缓冲区
     buffer_ptr_32 = &global_state_672_ptr;

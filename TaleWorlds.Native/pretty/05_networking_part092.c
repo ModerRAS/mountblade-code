@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 05_networking_part092.c - 4 个函数
 
@@ -26,7 +27,7 @@ void FUN_180895360(longlong param_1,int8_t *param_2,int *param_3)
   int8_t auStack_648 [1536];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_738;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_738;
   iVar4 = *(int *)(param_1 + 0xac);
   lVar7 = (longlong)iVar4;
   piStack_6f0 = param_3;

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part282.c - 9 个函数
 
@@ -356,7 +357,7 @@ void FUN_1808281a0(uint64_t param_1)
   int32_t uStack_40;
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_48;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_48;
   auStack_48[0] = 0;
   iVar1 = FUN_18080b990(param_1,0x18);
   if (iVar1 == 0x564342) {
@@ -392,7 +393,7 @@ void FUN_180828690(uint64_t param_1,uint64_t param_2)
   int32_t auStack_48 [4];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_48;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_48;
   auStack_48[0] = 0;
                     // WARNING: Subroutine does not return
   memset(param_2,0,0x78);
@@ -414,7 +415,7 @@ void FUN_180828b00(uint64_t param_1,uint64_t param_2,uint64_t param_3,longlong p
   uint64_t uStack_40;
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_58;
   auStack_58[0] = param_1;
   uStack_40 = param_3;
   if (0 < *(short *)(param_4 + 0x62)) {
@@ -427,7 +428,7 @@ void FUN_180828b00(uint64_t param_1,uint64_t param_2,uint64_t param_3,longlong p
     FUN_1808fd200(uVar2 & 0xfffffffffffffff0);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(_DAT_180bf00a8);
+  FUN_1808fc050(GET_SECURITY_COOKIE());
 }
 
 
@@ -488,7 +489,7 @@ void FUN_1808291f0(void)
   int8_t auStack_b8 [144];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
                     // WARNING: Subroutine does not return
   memset(auStack_b8,0,0x84);
 }
@@ -506,7 +507,7 @@ void FUN_180829400(uint64_t param_1,uint64_t param_2)
   int32_t auStack_48 [4];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_48;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_48;
   auStack_48[0] = 0;
   FUN_18080b990(param_2,5);
                     // WARNING: Subroutine does not return
@@ -920,7 +921,7 @@ void FUN_180829f10(uint64_t param_1,uint64_t param_2,ushort param_3)
   uint64_t uStack_40;
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_68;
   auStack_68[0] = param_3;
   uStack_50 = param_2;
   uStack_40 = param_1;
@@ -958,8 +959,8 @@ void FUN_18082a180(longlong *param_1,uint64_t param_2,int *param_3,uint64_t *par
   uint64_t *puStack_40;
   ulonglong uStack_38;
   
-  uVar6 = _DAT_180bf00a8;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
+  uVar6 = GET_SECURITY_COOKIE();
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_88;
   iVar9 = 0;
   lStack_48 = *(longlong *)(*param_1 + 0x20);
   iStack_78 = param_3[8];

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 02_core_engine_part231_sub002_sub002.c - 1 个函数
 
@@ -81,7 +82,7 @@ void FUN_180200780(uint64_t param_1,int param_2,void **param_3)
   
   lVar5 = _DAT_180c8aa40;
   uStack_118 = 0xfffffffffffffffe;
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_238;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_238;
   uVar14 = 0;
   uVar18 = 0;
   uStack_1c0 = 0;
@@ -405,7 +406,7 @@ void FUN_180200780(uint64_t param_1,int param_2,void **param_3)
         }
       }
       FUN_180628040(&puStack_208,&unknown_var_352_ptr,puVar31);
-      iVar7 = *(int *)(_DAT_180c86920 + 0x620);
+      iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0x620);
       iVar32 = 1;
       if (iVar7 == 0) {
         puVar31 = &unknown_var_220_ptr;
@@ -426,7 +427,7 @@ void FUN_180200780(uint64_t param_1,int param_2,void **param_3)
         }
       }
       FUN_180628040(&puStack_208,&unknown_var_376_ptr,puVar31);
-      iVar7 = *(int *)(_DAT_180c86920 + 0x690);
+      iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0x690);
       if (iVar7 == 0) {
         puVar31 = &unknown_var_220_ptr;
       }
@@ -466,8 +467,8 @@ void FUN_180200780(uint64_t param_1,int param_2,void **param_3)
         }
       }
       FUN_180628040(&puStack_208,&unknown_var_328_ptr,puVar31);
-      lVar11 = _DAT_180c86920;
-      iVar7 = func_0x00018010cc20(_DAT_180c86920);
+      lVar11 = SYSTEM_STATE_MANAGER;
+      iVar7 = func_0x00018010cc20(SYSTEM_STATE_MANAGER);
       if (iVar7 == 0) {
         puVar31 = &unknown_var_208_ptr;
       }
@@ -537,7 +538,7 @@ void FUN_180200780(uint64_t param_1,int param_2,void **param_3)
         }
       }
       FUN_180628040(&puStack_208,&unknown_var_408_ptr,puVar31);
-      iVar7 = *(int *)(_DAT_180c86920 + 0x5b0);
+      iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0x5b0);
       if (iVar7 == 0) {
         puVar31 = &unknown_var_220_ptr;
       }
@@ -597,7 +598,7 @@ void FUN_180200780(uint64_t param_1,int param_2,void **param_3)
         }
       }
       FUN_180628040(&puStack_208,&unknown_var_600_ptr,puVar31);
-      iVar7 = *(int *)(_DAT_180c86920 + 0x8c0);
+      iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0x8c0);
       if (iVar7 < 1) {
         if (iVar7 != 0) {
           if (0 < iVar7) goto LAB_1802012f1;
@@ -619,7 +620,7 @@ LAB_180201300:
         }
       }
       FUN_180628040(&puStack_208,&unknown_var_512_ptr,puVar31);
-      iVar7 = *(int *)(_DAT_180c86920 + 0xfc0);
+      iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0xfc0);
       if (iVar7 == 0) {
         puVar31 = &unknown_var_220_ptr;
       }
@@ -639,7 +640,7 @@ LAB_180201300:
         }
       }
       FUN_180628040(&puStack_208,&unknown_var_536_ptr,puVar31);
-      iVar7 = *(int *)(_DAT_180c86920 + 0x850);
+      iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0x850);
       if (iVar7 == 0) {
         puVar31 = &unknown_var_220_ptr;
       }
@@ -659,7 +660,7 @@ LAB_180201300:
         }
       }
       FUN_180628040(&puStack_208,&unknown_var_680_ptr,puVar31);
-      iVar7 = *(int *)(_DAT_180c86920 + 0x9a0);
+      iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0x9a0);
       if (iVar7 == 0) {
         puVar31 = &unknown_var_220_ptr;
       }
@@ -680,11 +681,11 @@ LAB_180201300:
       }
       FUN_180628040(&puStack_208,&unknown_var_696_ptr,puVar31);
       puVar31 = &unknown_var_292_ptr;
-      if (0 < *(int *)(_DAT_180c86920 + 0x1030)) {
+      if (0 < *(int *)(SYSTEM_STATE_MANAGER + 0x1030)) {
         puVar31 = &unknown_var_280_ptr;
       }
       FUN_180628040(&puStack_208,&unknown_var_624_ptr,puVar31);
-      iVar7 = *(int *)(_DAT_180c86920 + 0xee0);
+      iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0xee0);
       if (iVar7 == 0) {
         puVar31 = &unknown_var_220_ptr;
       }
@@ -704,7 +705,7 @@ LAB_180201300:
         }
       }
       FUN_180628040(&puStack_208,&unknown_var_656_ptr,puVar31);
-      iVar7 = *(int *)(_DAT_180c86920 + 0xa10);
+      iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0xa10);
       if (iVar7 == 0) {
         puVar31 = &unknown_var_220_ptr;
       }
@@ -724,7 +725,7 @@ LAB_180201300:
         }
       }
       FUN_180628040(&puStack_208,&unknown_var_768_ptr,puVar31);
-      iVar7 = *(int *)(_DAT_180c86920 + 0x7e0);
+      iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0x7e0);
       if (iVar7 == 0) {
         puVar31 = &unknown_var_188_ptr;
       }
@@ -744,7 +745,7 @@ LAB_180201300:
         }
       }
       FUN_180628040(&puStack_208,&unknown_var_792_ptr,puVar31);
-      iVar7 = *(int *)(_DAT_180c86920 + 0x770);
+      iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0x770);
       if (iVar7 == 0) {
         puVar31 = &unknown_var_220_ptr;
       }
@@ -764,7 +765,7 @@ LAB_180201300:
         }
       }
       FUN_180628040(&puStack_208,&unknown_var_720_ptr,puVar31);
-      iVar7 = *(int *)(_DAT_180c86920 + 0xf50);
+      iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0xf50);
       if (iVar7 == 0) {
         puVar31 = &unknown_var_220_ptr;
       }
@@ -784,7 +785,7 @@ LAB_180201300:
         }
       }
       FUN_180628040(&puStack_208,&unknown_var_744_ptr,puVar31);
-      iVar7 = *(int *)(_DAT_180c86920 + 0x930);
+      iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0x930);
       if (iVar7 == 0) {
         puVar31 = &unknown_var_220_ptr;
       }
@@ -805,7 +806,7 @@ LAB_180201300:
       }
       FUN_180628040(&puStack_208,&unknown_var_864_ptr,puVar31);
       puVar31 = &unknown_var_292_ptr;
-      if (-1 < *(int *)(_DAT_180c86920 + 0x10a0)) {
+      if (-1 < *(int *)(SYSTEM_STATE_MANAGER + 0x10a0)) {
         puVar31 = &unknown_var_280_ptr;
       }
       FUN_180628040(&puStack_208,&unknown_var_888_ptr,puVar31);
@@ -829,7 +830,7 @@ LAB_180201300:
         }
       }
       FUN_180628040(&puStack_208,&unknown_var_808_ptr,puVar31);
-      iVar7 = *(int *)(_DAT_180c86920 + 0xd20);
+      iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0xd20);
       if (iVar7 < 1) {
         if (iVar7 == 0) {
           puVar31 = &unknown_var_208_ptr;
@@ -871,7 +872,7 @@ LAB_1802016f7:
         }
       }
       FUN_180628040(&puStack_208,&unknown_var_960_ptr,puVar31);
-      iVar7 = *(int *)(_DAT_180c86920 + 0xc40);
+      iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0xc40);
       if (iVar7 == 1) {
         puVar31 = &unknown_var_220_ptr;
       }
@@ -911,7 +912,7 @@ LAB_1802016f7:
         }
       }
       FUN_180628040(&puStack_208,&unknown_var_912_ptr,puVar31);
-      iVar7 = *(int *)(_DAT_180c86920 + 0xa80);
+      iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0xa80);
       if (iVar7 == 0) {
         puVar31 = &unknown_var_188_ptr;
       }

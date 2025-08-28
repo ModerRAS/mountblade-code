@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 04_ui_system_part016.c - UI系统高级数据处理和状态管理模块
 // 包含14个函数，主要负责UI系统的数据初始化、状态管理和插值计算
@@ -77,7 +78,7 @@
 
 // ====================== 全局变量引用 ======================
 extern const void* _DAT_180c8ed00;     // UI系统配置数据
-extern const void* _DAT_180bf00a8;     // UI系统安全数据
+extern const void* GET_SECURITY_COOKIE();     // UI系统安全数据
 extern const void* system_memory_fd38;       // UI系统引用数据
 extern const void* global_state_1840_ptr;       // UI系统资源数据1
 extern const void* global_state_1864_ptr;       // UI系统资源数据2
@@ -656,7 +657,7 @@ void ui_system_resource_manager(longlong param_1)
     ulonglong temp_var;
     
     // 安全检查
-    security_hash = _DAT_180bf00a8 ^ (ulonglong)security_stack;
+    security_hash = GET_SECURITY_COOKIE() ^ (ulonglong)security_stack;
     
     // 资源数组初始化
     resource_array[0] = (void*)&global_state_3028_ptr;

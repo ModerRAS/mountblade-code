@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 04_ui_system_part326.c - UI系统高级控件和事件处理模块
 // 
@@ -177,7 +178,7 @@ void FUN_180848e50(char *param_1,uint64_t *param_2)
   ulonglong uStack_38;
   
   // 初始化栈保护机制
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_b8;
   
   // 检查输出参数有效性
   if (param_2 != (uint64_t *)0x0) {
@@ -473,7 +474,7 @@ uint64_t FUN_180849030(longlong *param_1,uint64_t param_2)
   lVar1 = 0;
   if (iVar2 != 0) {
     if (iVar2 - 1U < 0x3fffffff) {
-      lVar1 = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_2,&unknown_var_8432_ptr,0xf4,0,0,
+      lVar1 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2,&unknown_var_8432_ptr,0xf4,0,0,
                             1);
       if (lVar1 != 0) {
         if ((int)param_1[1] != 0) {
@@ -488,7 +489,7 @@ uint64_t FUN_180849030(longlong *param_1,uint64_t param_2)
 LAB_1808490b9:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
+    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
   }
   *param_1 = lVar1;
   *(int *)((longlong)param_1 + 0xc) = iVar2;
@@ -519,14 +520,14 @@ uint64_t FUN_180849054(uint64_t param_1,uint64_t param_2)
 LAB_1808490b9:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*unaff_RBX,&unknown_var_8432_ptr,0x100,1);
+      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_RBX,&unknown_var_8432_ptr,0x100,1);
     }
     *unaff_RBX = lVar1;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
     return 0;
   }
   if ((int)param_2 - 1U < 0x3fffffff) {
-    lVar1 = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_2,&unknown_var_8432_ptr,0xf4,0);
+    lVar1 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2,&unknown_var_8432_ptr,0xf4,0);
     if (lVar1 != 0) {
       if ((int)unaff_RBX[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -584,7 +585,7 @@ uint64_t FUN_180849120(longlong *param_1,int param_2)
   if (param_2 != 0) {
     if (param_2 * 0x14 - 1U < 0x3fffffff) {
       puVar7 = (int32_t *)
-               FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_2 * 0x14,&unknown_var_8432_ptr,
+               FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x14,&unknown_var_8432_ptr,
                              0xf4,0,0,1);
       if (puVar7 != (int32_t *)0x0) {
         iVar2 = (int)param_1[1];
@@ -613,7 +614,7 @@ uint64_t FUN_180849120(longlong *param_1,int param_2)
 LAB_1808491ce:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
+    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
   }
   *param_1 = (longlong)puVar7;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -652,7 +653,7 @@ uint64_t FUN_180849144(uint64_t param_1,int param_2)
 LAB_1808491ce:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*unaff_RBX,&unknown_var_8432_ptr,0x100,1);
+      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_RBX,&unknown_var_8432_ptr,0x100,1);
     }
     *unaff_RBX = (longlong)puVar7;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
@@ -660,7 +661,7 @@ LAB_1808491ce:
   }
   if (param_2 * 0x14 - 1U < 0x3fffffff) {
     puVar7 = (int32_t *)
-             FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_2 * 0x14,&unknown_var_8432_ptr,
+             FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x14,&unknown_var_8432_ptr,
                            0xf4,0);
     if (puVar7 != (int32_t *)0x0) {
       iVar2 = (int)unaff_RBX[1];
@@ -725,7 +726,7 @@ void FUN_180849230(uint64_t param_1)
   uint64_t *apuStack_128 [34];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_168;
   alStack_138[1] = 0;
   iVar1 = func_0x00018088c590(param_1,alStack_138);
   if (iVar1 == 0) {
@@ -775,7 +776,7 @@ void FUN_180849360(ulonglong param_1)
   int8_t auStack_118 [256];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_168;
   iVar1 = func_0x00018088c590(param_1,alStack_138 + 2);
   if (iVar1 == 0) {
     if ((*(uint *)(alStack_138[2] + 0x24) >> 1 & 1) != 0) {
@@ -793,7 +794,7 @@ void FUN_180849360(ulonglong param_1)
     iVar1 = FUN_180883a30();
     if (iVar1 == 0) goto LAB_180849462;
   }
-  if ((iVar1 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
+  if ((iVar1 != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
     puStack_148 = auStack_118;
     auStack_118[0] = 0;
                     // WARNING: Subroutine does not return
@@ -835,9 +836,9 @@ void FUN_180849490(uint64_t param_1,uint64_t *param_2)
   int8_t auStack_128 [256];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
   if (param_2 == (uint64_t *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
     }
@@ -912,10 +913,10 @@ void FUN_180849600(uint64_t param_1,uint64_t param_2)
   int8_t auStack_118 [256];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_158;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_158;
   iVar1 = func_0x00018088c590(param_1,auStack_128);
   if ((((iVar1 != 0) || (iVar1 = FUN_180889f10(auStack_128[0],param_2), iVar1 != 0)) && (iVar1 != 0)
-      ) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
+      ) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
     func_0x00018074bda0(auStack_118,0x100,param_2);
     puStack_138 = auStack_118;
                     // WARNING: Subroutine does not return
@@ -953,7 +954,7 @@ void FUN_1808496c0(int32_t param_1,longlong param_2,int32_t param_3)
   longlong alStack_140 [33];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
   lStack_148 = 0;
   uStack_158 = 0;
   uStack_150 = 0;
@@ -1052,7 +1053,7 @@ void FUN_180849820(int32_t param_1,longlong param_2,int32_t param_3)
   longlong alStack_140 [33];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
   lStack_148 = 0;
   uStack_158 = 0;
   uStack_150 = 0;
@@ -1161,9 +1162,9 @@ void FUN_180849990(uint64_t param_1,int32_t param_2,uint64_t *param_3,uint64_t *
   int8_t auStack_148 [256];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_198;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_198;
   if (param_3 == (uint64_t *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+    if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_198);
     }
@@ -1257,7 +1258,7 @@ void FUN_180849bb0(uint64_t param_1,uint64_t param_2,int32_t param_3,int8_t para
   ulonglong uStack_48;
   
   // 初始化栈保护机制
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_198;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_198;
   auStack_158[0] = 0;
   
   // 获取事件系统上下文

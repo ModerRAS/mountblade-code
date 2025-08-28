@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_03_part033.c - 12 个函数
 
@@ -754,7 +755,7 @@ LAB_1801edb41:
     uStackX_8._0_4_ = (float)*(uint64_t *)(pcVar2 + 0x14d4);
     if (SQRT(uStackX_8._4_4_ * uStackX_8._4_4_ + (float)uStackX_8 * (float)uStackX_8) != 0.0) {
       fVar17 = *(float *)(_DAT_180c86950 + 0x17f0);
-      fVar15 = (float)expf(*(float *)(_DAT_180c86920 + 0x16c0) * 4.0);
+      fVar15 = (float)expf(*(float *)(SYSTEM_STATE_MANAGER + 0x16c0) * 4.0);
       fVar18 = *(float *)(pcVar2 + 0x202c);
       fVar16 = (float)powf();
       lVar8 = _DAT_180c86870;

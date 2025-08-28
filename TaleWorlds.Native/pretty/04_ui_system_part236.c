@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part236.c - 6 个函数
 
@@ -161,16 +162,16 @@ void FUN_180802653(void)
         iVar7 = (**(code **)(*(longlong *)*puVar2 + 0xb8))();
         uVar9 = (ulonglong)puVar19 & 0xffffffff00000000;
         *(bool *)(unaff_RBX + 0x460) = iVar7 == 0;
-        lVar11 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar16 * 0x18,&unknown_var_7392_ptr,
+        lVar11 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar16 * 0x18,&unknown_var_7392_ptr,
                                400,uVar9);
         *(longlong *)(unaff_RBX + 0x440) = lVar11;
         if (lVar11 != 0) {
           uVar9 = uVar9 & 0xffffffff00000000;
-          lVar11 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar16 * 0x34,
+          lVar11 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar16 * 0x34,
                                  &unknown_var_7392_ptr,0x196,uVar9);
           *(longlong *)(unaff_RBX + 0x448) = lVar11;
           if (lVar11 != 0) {
-            lVar11 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),
+            lVar11 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                                    *unaff_R15 * *(int *)(unaff_RBX + 0x470) * 4,&unknown_var_7392_ptr,0x19d
                                    ,uVar9 & 0xffffffff00000000);
             *(longlong *)(unaff_RBX + 0x458) = lVar11;
@@ -208,7 +209,7 @@ void FUN_180802653(void)
                                 ((longlong *)*puVar2,*(uint64_t *)(unaff_RBX + 0x440),iVar16,
                                  *(int32_t *)(unaff_RBX + 0x470),puVar19);
               if (iVar7 == 0) {
-                uVar10 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar16 * 8,
+                uVar10 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar16 * 8,
                                        &unknown_var_7392_ptr,0x1b9,(ulonglong)puVar19 & 0xffffffff00000000)
                 ;
                 *(uint64_t *)(*(longlong *)(unaff_RBX + 0x48) + 0x11630) = uVar10;
@@ -367,16 +368,16 @@ void FUN_1808027ec(void)
     iVar6 = (**(code **)(*(longlong *)*unaff_R13 + 0xb8))();
     uVar9 = (ulonglong)puVar12 & 0xffffffff00000000;
     *(bool *)(unaff_RBX + 0x460) = iVar6 == 0;
-    lVar8 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar15 * 0x18,&unknown_var_7392_ptr,400,
+    lVar8 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar15 * 0x18,&unknown_var_7392_ptr,400,
                           uVar9);
     *(longlong *)(unaff_RBX + 0x440) = lVar8;
     if (lVar8 != 0) {
       uVar9 = uVar9 & 0xffffffff00000000;
-      lVar8 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar15 * 0x34,&unknown_var_7392_ptr,
+      lVar8 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar15 * 0x34,&unknown_var_7392_ptr,
                             0x196,uVar9);
       *(longlong *)(unaff_RBX + 0x448) = lVar8;
       if (lVar8 != 0) {
-        lVar8 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),
+        lVar8 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                               *unaff_R15 * *(int *)(unaff_RBX + 0x470) * 4,&unknown_var_7392_ptr,0x19d,
                               uVar9 & 0xffffffff00000000);
         *(longlong *)(unaff_RBX + 0x458) = lVar8;
@@ -415,7 +416,7 @@ void FUN_1808027ec(void)
                             (plVar2,*(uint64_t *)(unaff_RBX + 0x440),iVar15,
                              *(int32_t *)(unaff_RBX + 0x470),puVar17);
           if (iVar6 == 0) {
-            uVar10 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar15 * 8,&unknown_var_7392_ptr
+            uVar10 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar15 * 8,&unknown_var_7392_ptr
                                    ,0x1b9,(ulonglong)puVar17 & 0xffffffff00000000);
             *(uint64_t *)(*(longlong *)(unaff_RBX + 0x48) + 0x11630) = uVar10;
             if (*(longlong *)(*(longlong *)(unaff_RBX + 0x48) + 0x11630) != 0) {
@@ -493,7 +494,7 @@ void FUN_180802c10(longlong param_1,uint64_t param_2,uint64_t param_3,int32_t pa
   double adStack_60 [5];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_88;
   plVar2 = (longlong *)(param_1 + 0x448);
   if (param_1 == 0) {
     plVar2 = (longlong *)0x450;
@@ -626,7 +627,7 @@ uint64_t FUN_180802e50(longlong param_1,longlong param_2)
   }
   iVar1 = *piVar3;
   *(int *)(param_2 + 0x24) = iVar1 * 2;
-  lVar4 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),
+  lVar4 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                         iVar2 * (int)(((ulonglong)(uint)(iVar1 * 2) << 5) >> 3),&unknown_var_7392_ptr,0x2dc
                         ,0);
   plVar5 = (longlong *)(param_1 + 0x4b0);
@@ -688,7 +689,7 @@ uint64_t FUN_180802ea1(longlong *param_1)
   }
   iVar1 = *piVar3;
   *(int *)(unaff_RSI + 0x24) = iVar1 * 2;
-  lVar4 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),
+  lVar4 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                         iVar2 * (int)(((ulonglong)(uint)(iVar1 * 2) << 5) >> 3),&unknown_var_7392_ptr,0x2dc
                         ,0);
   plVar5 = (longlong *)(unaff_RBX + 0x4b0);
@@ -742,7 +743,7 @@ int32_t FUN_180802ecf(void)
   }
   iVar1 = *piVar2;
   *(int *)(unaff_RSI + 0x24) = iVar1 * 2;
-  lVar3 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),
+  lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                         in_stack_00000050 * (int)(((ulonglong)(uint)(iVar1 * 2) << 5) >> 3),
                         &unknown_var_7392_ptr,0x2dc);
   plVar4 = (longlong *)(unaff_RBX + 0x4b0);

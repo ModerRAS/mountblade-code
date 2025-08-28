@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * 99_part_11_part057.c - 高级数据处理和状态管理模块
@@ -95,7 +96,7 @@ extern uint64_t global_state_6728_ptr;                  ///< 资源管理数据
 extern uint64_t global_state_6744_ptr;                  ///< 数据验证数据
 extern uint64_t global_state_6760_ptr;                  ///< 自定义操作数据
 extern uint64_t system_memory_64c8;                  ///< 系统配置表
-extern uint64_t _DAT_180bf00a8;                 ///< 系统数据表
+extern uint64_t GET_SECURITY_COOKIE();                 ///< 系统数据表
 
 // ============================================================================
 // 核心函数实现
@@ -153,7 +154,7 @@ void AdvancedDataProcessor(longlong *param_1, char param_2, int8_t param_3)
     ulonglong uVar9;                            ///< 无符号长整型变量9
     
     // 初始化栈变量
-    uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+    uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
     
     // 状态检查和初始化
     if ((param_1[1] != 0) && (*(char *)((longlong)param_1 + 0x24) == '\0')) {

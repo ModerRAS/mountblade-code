@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part448.c - 5 个函数
 
@@ -154,10 +155,10 @@ void FUN_180510e50(longlong param_1,float param_2,char param_3)
           FUN_18050c260(param_1);
         }
       }
-      if (*(int *)(_DAT_180c86920 + 0x1c0) == 0) {
+      if (*(int *)(SYSTEM_STATE_MANAGER + 0x1c0) == 0) {
         FUN_180532390(param_1,param_2);
       }
-      else if (*(int *)(_DAT_180c86920 + 0x1c0) == 1) {
+      else if (*(int *)(SYSTEM_STATE_MANAGER + 0x1c0) == 1) {
         FUN_180532740(param_1,param_2);
       }
     }
@@ -315,10 +316,10 @@ void FUN_180510f25(void)
         FUN_18050c260();
       }
     }
-    if (*(int *)(_DAT_180c86920 + 0x1c0) == 0) {
+    if (*(int *)(SYSTEM_STATE_MANAGER + 0x1c0) == 0) {
       FUN_180532390();
     }
-    else if (*(int *)(_DAT_180c86920 + 0x1c0) == 1) {
+    else if (*(int *)(SYSTEM_STATE_MANAGER + 0x1c0) == 1) {
       FUN_180532740();
     }
   }
@@ -471,10 +472,10 @@ void FUN_180510f54(longlong param_1,longlong param_2)
         FUN_18050c260();
       }
     }
-    if (*(int *)(_DAT_180c86920 + 0x1c0) == 0) {
+    if (*(int *)(SYSTEM_STATE_MANAGER + 0x1c0) == 0) {
       FUN_180532390();
     }
-    else if (*(int *)(_DAT_180c86920 + 0x1c0) == 1) {
+    else if (*(int *)(SYSTEM_STATE_MANAGER + 0x1c0) == 1) {
       FUN_180532740();
     }
   }
@@ -617,10 +618,10 @@ void FUN_180510fad(float param_1)
         FUN_18050c260();
       }
     }
-    if (*(int *)(_DAT_180c86920 + 0x1c0) == 0) {
+    if (*(int *)(SYSTEM_STATE_MANAGER + 0x1c0) == 0) {
       FUN_180532390();
     }
-    else if (*(int *)(_DAT_180c86920 + 0x1c0) == 1) {
+    else if (*(int *)(SYSTEM_STATE_MANAGER + 0x1c0) == 1) {
       FUN_180532740();
     }
   }
@@ -764,10 +765,10 @@ void FUN_180510fc5(void)
         FUN_18050c260();
       }
     }
-    if (*(int *)(_DAT_180c86920 + 0x1c0) == 0) {
+    if (*(int *)(SYSTEM_STATE_MANAGER + 0x1c0) == 0) {
       FUN_180532390();
     }
-    else if (*(int *)(_DAT_180c86920 + 0x1c0) == 1) {
+    else if (*(int *)(SYSTEM_STATE_MANAGER + 0x1c0) == 1) {
       FUN_180532740();
     }
   }

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 04_ui_system_part335.c - 3 个函数
 
@@ -241,7 +242,7 @@ LAB_180850330:
 LAB_180850347:
   FUN_1808bb9e0(plVar6);
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar6,&unknown_var_2080_ptr,0x193,1);
+  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar6,&unknown_var_2080_ptr,0x193,1);
 }
 
 
@@ -488,7 +489,7 @@ LAB_180850330:
 LAB_180850347:
   FUN_1808bb9e0(plVar5);
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar5,&unknown_var_2080_ptr,0x193,1);
+  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar5,&unknown_var_2080_ptr,0x193,1);
 }
 
 
@@ -734,7 +735,7 @@ LAB_180850810:
 LAB_180850827:
   FUN_1808bbe80(plVar6);
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar6,&unknown_var_2080_ptr,0x193,1);
+  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar6,&unknown_var_2080_ptr,0x193,1);
 }
 
 
@@ -981,7 +982,7 @@ LAB_180850810:
 LAB_180850827:
   FUN_1808bbe80(plVar5);
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar5,&unknown_var_2080_ptr,0x193,1);
+  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar5,&unknown_var_2080_ptr,0x193,1);
 }
 
 

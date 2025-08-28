@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 /**
  * 核心引擎模块第112部分 - 高级渲染效果处理
@@ -11,7 +12,7 @@
  */
 
 // 全局变量引用
-extern longlong _DAT_180c8a9b0;  // 引擎全局上下文
+extern longlong SYSTEM_DATA_MANAGER_A;  // 引擎全局上下文
 extern uint64_t FUN_1801247c0(longlong param_1);  // 渲染资源处理
 extern void FUN_180293f50(longlong param_1, longlong param_2, float *param_3, int32_t param_4);  // 渲染效果应用
 extern int32_t func_0x000180121e20(void *param_1);  // 参数计算
@@ -99,8 +100,8 @@ void process_render_queue_batch_effects(longlong context, longlong exclude_queue
             }
             
             // 获取基础渲染参数
-            position_x = *(float *)(_DAT_180c8a9b0 + 0x1628);
-            data_ptr = (int32_t *)(effect_context + 0x1628 + _DAT_180c8a9b0);
+            position_x = *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628);
+            data_ptr = (int32_t *)(effect_context + 0x1628 + SYSTEM_DATA_MANAGER_A);
             temp_data_4 = data_ptr[1];
             temp_data_1 = data_ptr[2];
             position_w = (float)data_ptr[3];
@@ -171,15 +172,15 @@ void process_render_queue_batch_effects(longlong context, longlong exclude_queue
             temp_data_3 = *(int32_t *)(resource_handle + 0x44);
             blend_factor = *float_ptr;
             temp_data_2 = *(int32_t *)(resource_handle + 0x44);
-            temp_data_4 = *(int32_t *)(_DAT_180c8a9b0 + 0x19cc);
-            temp_data_1 = *(int32_t *)(_DAT_180c8a9b0 + 0x19d0);
-            position_w = *(float *)(_DAT_180c8a9b0 + 0x19d4);
-            opacity = *(float *)(_DAT_180c8a9b0 + 0x1628);
+            temp_data_4 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19cc);
+            temp_data_1 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19d0);
+            position_w = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19d4);
+            opacity = *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628);
             size_x = *float_ptr + *(float *)(resource_handle + 0x48);
             size_z = *(float *)(resource_handle + 0x44) + *(float *)(resource_handle + 0x4c);
             
             // 存储颜色参数
-            *(int32_t *)(primary_handle + -0x59) = *(int32_t *)(_DAT_180c8a9b0 + 0x19c8);
+            *(int32_t *)(primary_handle + -0x59) = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19c8);
             *(int32_t *)(primary_handle + -0x55) = temp_data_4;
             *(int32_t *)(primary_handle + -0x51) = temp_data_1;
             *(float *)(primary_handle + -0x4d) = position_w;
@@ -240,11 +241,11 @@ void process_render_queue_batch_effects(longlong context, longlong exclude_queue
         }
         
         // 计算颜色值
-        size_y = *(float *)(_DAT_180c8a9b0 + 0x19b8);
-        temp_data_4 = *(int32_t *)(_DAT_180c8a9b0 + 0x19bc);
-        temp_data_1 = *(int32_t *)(_DAT_180c8a9b0 + 0x19c0);
-        position_y = *(float *)(_DAT_180c8a9b0 + 0x19c4);
-        position_z = *(float *)(render_context + 0x1cf4) * *(float *)(_DAT_180c8a9b0 + 0x1628) * position_y;
+        size_y = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19b8);
+        temp_data_4 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19bc);
+        temp_data_1 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19c0);
+        position_y = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19c4);
+        position_z = *(float *)(render_context + 0x1cf4) * *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628) * position_y;
         
         *(float *)(primary_handle + -0x59) = size_y;
         *(int32_t *)(primary_handle + -0x55) = temp_data_4;
@@ -388,15 +389,15 @@ void process_primary_queue_advanced_effects(longlong context, longlong primary_q
             temp_data_3 = *(int32_t *)(resource_handle + 0x44);
             blend_factor = *float_ptr;
             temp_data_2 = *(int32_t *)(resource_handle + 0x44);
-            temp_data_4 = *(int32_t *)(_DAT_180c8a9b0 + 0x19cc);
-            temp_data_1 = *(int32_t *)(_DAT_180c8a9b0 + 0x19d0);
-            position_z = *(float *)(_DAT_180c8a9b0 + 0x19d4);
-            opacity = *(float *)(_DAT_180c8a9b0 + 0x1628);
+            temp_data_4 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19cc);
+            temp_data_1 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19d0);
+            position_z = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19d4);
+            opacity = *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628);
             size_x = *float_ptr + *(float *)(resource_handle + 0x48);
             size_y = *(float *)(resource_handle + 0x44) + *(float *)(resource_handle + 0x4c);
             
             // 存储颜色参数
-            *(int32_t *)(primary_queue + -0x59) = *(int32_t *)(_DAT_180c8a9b0 + 0x19c8);
+            *(int32_t *)(primary_queue + -0x59) = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19c8);
             *(int32_t *)(primary_queue + -0x55) = temp_data_4;
             *(int32_t *)(primary_queue + -0x51) = temp_data_1;
             *(float *)(primary_queue + -0x4d) = position_z;
@@ -457,11 +458,11 @@ void process_primary_queue_advanced_effects(longlong context, longlong primary_q
         }
         
         // 计算颜色值
-        position_w = *(float *)(_DAT_180c8a9b0 + 0x19b8);
-        temp_data_4 = *(int32_t *)(_DAT_180c8a9b0 + 0x19bc);
-        temp_data_1 = *(int32_t *)(_DAT_180c8a9b0 + 0x19c0);
-        position_y = *(float *)(_DAT_180c8a9b0 + 0x19c4);
-        position_z = *(float *)(context + 0x1cf4) * *(float *)(_DAT_180c8a9b0 + 0x1628) * position_y;
+        position_w = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19b8);
+        temp_data_4 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19bc);
+        temp_data_1 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19c0);
+        position_y = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19c4);
+        position_z = *(float *)(context + 0x1cf4) * *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628) * position_y;
         
         *(float *)(primary_queue + -0x59) = position_w;
         *(int32_t *)(primary_queue + -0x55) = temp_data_4;
@@ -603,15 +604,15 @@ void process_secondary_queue_advanced_effects(longlong context, longlong seconda
         temp_data_3 = *(int32_t *)(resource_handle + 0x44);
         blend_factor = *float_ptr;
         temp_data_2 = *(int32_t *)(resource_handle + 0x44);
-        temp_data_4 = *(int32_t *)(_DAT_180c8a9b0 + 0x19cc);
-        temp_data_1 = *(int32_t *)(_DAT_180c8a9b0 + 0x19d0);
-        position_z = *(float *)(_DAT_180c8a9b0 + 0x19d4);
-        opacity = *(float *)(_DAT_180c8a9b0 + 0x1628);
+        temp_data_4 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19cc);
+        temp_data_1 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19d0);
+        position_z = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19d4);
+        opacity = *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628);
         size_x = *float_ptr + *(float *)(resource_handle + 0x48);
         size_y = *(float *)(resource_handle + 0x44) + *(float *)(resource_handle + 0x4c);
         
         // 存储颜色参数
-        *(int32_t *)(secondary_queue + -0x59) = *(int32_t *)(_DAT_180c8a9b0 + 0x19c8);
+        *(int32_t *)(secondary_queue + -0x59) = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19c8);
         *(int32_t *)(secondary_queue + -0x55) = temp_data_4;
         *(int32_t *)(secondary_queue + -0x51) = temp_data_1;
         *(float *)(secondary_queue + -0x4d) = position_z;
@@ -672,11 +673,11 @@ void process_secondary_queue_advanced_effects(longlong context, longlong seconda
     }
     
     // 计算颜色值
-    position_w = *(float *)(_DAT_180c8a9b0 + 0x19b8);
-    temp_data_4 = *(int32_t *)(_DAT_180c8a9b0 + 0x19bc);
-    temp_data_1 = *(int32_t *)(_DAT_180c8a9b0 + 0x19c0);
-    position_y = *(float *)(_DAT_180c8a9b0 + 0x19c4);
-    position_z = *(float *)(context + 0x1cf4) * *(float *)(_DAT_180c8a9b0 + 0x1628) * position_y;
+    position_w = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19b8);
+    temp_data_4 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19bc);
+    temp_data_1 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19c0);
+    position_y = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19c4);
+    position_z = *(float *)(context + 0x1cf4) * *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628) * position_y;
     
     *(float *)(secondary_queue + -0x59) = position_w;
     *(int32_t *)(secondary_queue + -0x55) = temp_data_4;
@@ -815,15 +816,15 @@ void process_special_render_effects(longlong context, longlong render_context,
         temp_data_3 = *(int32_t *)(resource_handle + 0x44);
         effect_strength = *float_ptr;
         temp_data_2 = *(int32_t *)(resource_handle + 0x44);
-        temp_data_4 = *(int32_t *)(_DAT_180c8a9b0 + 0x19cc);
-        temp_data_1 = *(int32_t *)(_DAT_180c8a9b0 + 0x19d0);
-        position_w = *(float *)(_DAT_180c8a9b0 + 0x19d4);
-        opacity = *(float *)(_DAT_180c8a9b0 + 0x1628);
+        temp_data_4 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19cc);
+        temp_data_1 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19d0);
+        position_w = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19d4);
+        opacity = *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628);
         size_x = *float_ptr + *(float *)(resource_handle + 0x48);
         size_y = *(float *)(resource_handle + 0x44) + *(float *)(resource_handle + 0x4c);
         
         // 存储颜色参数
-        *(int32_t *)(render_context + -0x59) = *(int32_t *)(_DAT_180c8a9b0 + 0x19c8);
+        *(int32_t *)(render_context + -0x59) = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19c8);
         *(int32_t *)(render_context + -0x55) = temp_data_4;
         *(int32_t *)(render_context + -0x51) = temp_data_1;
         *(float *)(render_context + -0x4d) = position_w;
@@ -884,11 +885,11 @@ void process_special_render_effects(longlong context, longlong render_context,
     }
     
     // 计算颜色值
-    position_z = *(float *)(_DAT_180c8a9b0 + 0x19b8);
-    temp_data_4 = *(int32_t *)(_DAT_180c8a9b0 + 0x19bc);
-    temp_data_1 = *(int32_t *)(_DAT_180c8a9b0 + 0x19c0);
-    position_y = *(float *)(_DAT_180c8a9b0 + 0x19c4);
-    position_w = *(float *)(context + 0x1cf4) * *(float *)(_DAT_180c8a9b0 + 0x1628) * position_y;
+    position_z = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19b8);
+    temp_data_4 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19bc);
+    temp_data_1 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x19c0);
+    position_y = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19c4);
+    position_w = *(float *)(context + 0x1cf4) * *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628) * position_y;
     
     *(float *)(render_context + -0x59) = position_z;
     *(int32_t *)(render_context + -0x55) = temp_data_4;

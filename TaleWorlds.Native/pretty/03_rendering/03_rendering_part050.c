@@ -1,15 +1,16 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 渲染系统高级资源清理和内存管理模块
 // 03_rendering_part050.c - 9个核心函数
 // 功能：渲染系统高级资源清理、内存管理、批量处理、索引处理、循环处理、快速清理、参数化清理、资源初始化、高级初始化和扩展初始化等高级渲染功能
 
 // 全局变量声明
-extern void *_DAT_180c8a9b0;  // 渲染系统全局状态指针
-extern void *_DAT_180c8a9a8;  // 渲染系统内存管理器指针
+extern void *SYSTEM_DATA_MANAGER_A;  // 渲染系统全局状态指针
+extern void *SYSTEM_DATA_MANAGER_B;  // 渲染系统内存管理器指针
 extern void *global_config_720_ptr;   // 渲染系统默认参数配置指针
 extern void *global_config_704_ptr;   // 渲染系统算法配置指针
-extern uint64_t _DAT_180bf00a8; // 渲染系统安全校验常量
+extern uint64_t GET_SECURITY_COOKIE(); // 渲染系统安全校验常量
 
 // 外部函数声明
 extern void FUN_180059ba0(void *resource, void *memory_manager);  // 资源释放函数
@@ -33,19 +34,19 @@ void release_render_resources(void *render_context)
     // 释放第一个资源
     resource_1 = *(void **)((uint8_t *)render_context + 0x18);
     if (resource_1 != NULL) {
-        if (_DAT_180c8a9b0 != NULL) {
-            *(int *)((uint8_t *)_DAT_180c8a9b0 + 0x3a8) = *(int *)((uint8_t *)_DAT_180c8a9b0 + 0x3a8) - 1;
+        if (SYSTEM_DATA_MANAGER_A != NULL) {
+            *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) - 1;
         }
-        FUN_180059ba0(resource_1, _DAT_180c8a9a8);
+        FUN_180059ba0(resource_1, SYSTEM_DATA_MANAGER_B);
     }
     
     // 释放第二个资源
     resource_2 = *(void **)((uint8_t *)render_context + 0x20);
     if (resource_2 != NULL) {
-        if (_DAT_180c8a9b0 != NULL) {
-            *(int *)((uint8_t *)_DAT_180c8a9b0 + 0x3a8) = *(int *)((uint8_t *)_DAT_180c8a9b0 + 0x3a8) - 1;
+        if (SYSTEM_DATA_MANAGER_A != NULL) {
+            *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) - 1;
         }
-        FUN_180059ba0(resource_2, _DAT_180c8a9a8);
+        FUN_180059ba0(resource_2, SYSTEM_DATA_MANAGER_B);
     }
     
     // 清理指针
@@ -82,10 +83,10 @@ void release_batch_render_resources(void *render_context)
             resource_array = *(void **)(resource_index + *(uint64_t *)((uint8_t *)render_context + 0x68));
             if ((resource_array != NULL) && 
                 (*((uint8_t *)resource_index + 0xc + *(uint64_t *)((uint8_t *)render_context + 0x68)) != '\0')) {
-                if (_DAT_180c8a9b0 != NULL) {
-                    *(int *)((uint8_t *)_DAT_180c8a9b0 + 0x3a8) = *(int *)((uint8_t *)_DAT_180c8a9b0 + 0x3a8) - 1;
+                if (SYSTEM_DATA_MANAGER_A != NULL) {
+                    *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) - 1;
                 }
-                FUN_180059ba0(resource_array, _DAT_180c8a9a8);
+                FUN_180059ba0(resource_array, SYSTEM_DATA_MANAGER_B);
             }
             current_count = (uint32_t)resource_offset + 1;
             resource_offset = (uint64_t)current_count;
@@ -113,7 +114,7 @@ void release_batch_render_resources(void *render_context)
         } while ((int)current_count < *(int *)((uint8_t *)render_context + 0x40));
     }
     
-    resource_manager = _DAT_180c8a9b0;
+    resource_manager = SYSTEM_DATA_MANAGER_A;
     resource_array = *(void **)((uint8_t *)render_context + 0x68);
     if (resource_array == NULL) {
         resource_array = *(void **)((uint8_t *)render_context + 0x58);
@@ -122,13 +123,13 @@ void release_batch_render_resources(void *render_context)
             if (resource_manager != NULL) {
                 *(int *)((uint8_t *)resource_manager + 0x3a8) = *(int *)((uint8_t *)resource_manager + 0x3a8) - 1;
             }
-            FUN_180059ba0(resource_array, _DAT_180c8a9a8);
+            FUN_180059ba0(resource_array, SYSTEM_DATA_MANAGER_B);
         }
         
         *(uint32_t *)((uint8_t *)render_context + 0x70) = 0xffffffff;
         release_render_resources(render_context);
         
-        resource_array = _DAT_180c8a9b0;
+        resource_array = SYSTEM_DATA_MANAGER_A;
         resource_offset = array_offset;
         
         // 清理资源数组
@@ -138,10 +139,10 @@ void release_batch_render_resources(void *render_context)
                 resource_manager = *(void **)(resource_offset + *(uint64_t *)((uint8_t *)render_context + 0x48));
                 if (resource_manager != NULL) {
                     FUN_180296ad0(resource_manager);
-                    if (_DAT_180c8a9b0 != NULL) {
-                        *(int *)((uint8_t *)_DAT_180c8a9b0 + 0x3a8) = *(int *)((uint8_t *)_DAT_180c8a9b0 + 0x3a8) - 1;
+                    if (SYSTEM_DATA_MANAGER_A != NULL) {
+                        *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) - 1;
                     }
-                    FUN_180059ba0(resource_manager, _DAT_180c8a9a8);
+                    FUN_180059ba0(resource_manager, SYSTEM_DATA_MANAGER_B);
                 }
                 current_count = (uint32_t)array_offset + 1;
                 array_offset = (uint64_t)current_count;
@@ -159,14 +160,14 @@ void release_batch_render_resources(void *render_context)
             resource_count_ptr = (int *)((uint8_t *)resource_array + 0x3a8);
             *resource_count_ptr = *resource_count_ptr - 1;
         }
-        FUN_180059ba0(resource_manager, _DAT_180c8a9a8);
+        FUN_180059ba0(resource_manager, SYSTEM_DATA_MANAGER_B);
     }
     
     *(uint64_t *)((uint8_t *)render_context + 0x60) = 0;
     if (resource_manager != NULL) {
         *(int *)((uint8_t *)resource_manager + 0x3a8) = *(int *)((uint8_t *)resource_manager + 0x3a8) - 1;
     }
-    FUN_180059ba0(resource_array, _DAT_180c8a9a8);
+    FUN_180059ba0(resource_array, SYSTEM_DATA_MANAGER_B);
 }
 
 /**
@@ -197,10 +198,10 @@ void release_selective_render_resources(void *render_context, int index)
             resource_array = *(void **)(array_index + *(uint64_t *)((uint8_t *)render_context + 0x68));
             if ((resource_array != NULL) &&
                 (*((uint8_t *)array_index + 0xc + *(uint64_t *)((uint8_t *)render_context + 0x68)) != (char)index)) {
-                if (_DAT_180c8a9b0 != NULL) {
-                    *(int *)((uint8_t *)_DAT_180c8a9b0 + 0x3a8) = *(int *)((uint8_t *)_DAT_180c8a9b0 + 0x3a8) - 1;
+                if (SYSTEM_DATA_MANAGER_A != NULL) {
+                    *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) - 1;
                 }
-                FUN_180059ba0(resource_array, _DAT_180c8a9a8);
+                FUN_180059ba0(resource_array, SYSTEM_DATA_MANAGER_B);
             }
             counter = (uint32_t)index_value + 1;
             index_value = (uint64_t)counter;
@@ -227,7 +228,7 @@ void release_selective_render_resources(void *render_context, int index)
         } while ((int)counter < *(int *)((uint8_t *)render_context + 0x40));
     }
     
-    resource_manager = _DAT_180c8a9b0;
+    resource_manager = SYSTEM_DATA_MANAGER_A;
     resource_array = *(void **)((uint8_t *)render_context + 0x68);
     if (resource_array == NULL) {
         resource_array = *(void **)((uint8_t *)render_context + 0x58);
@@ -236,13 +237,13 @@ void release_selective_render_resources(void *render_context, int index)
             if (resource_manager != NULL) {
                 *(int *)((uint8_t *)resource_manager + 0x3a8) = *(int *)((uint8_t *)resource_manager + 0x3a8) - 1;
             }
-            FUN_180059ba0(resource_array, _DAT_180c8a9a8);
+            FUN_180059ba0(resource_array, SYSTEM_DATA_MANAGER_B);
         }
         
         *(uint32_t *)((uint8_t *)render_context + 0x70) = 0xffffffff;
         release_render_resources(render_context);
         
-        resource_array = _DAT_180c8a9b0;
+        resource_array = SYSTEM_DATA_MANAGER_A;
         array_index = index_value;
         index_value = (uint64_t)index;
         
@@ -252,10 +253,10 @@ void release_selective_render_resources(void *render_context, int index)
                 resource_manager = *(void **)(index_value + *(uint64_t *)((uint8_t *)render_context + 0x48));
                 if (resource_manager != NULL) {
                     FUN_180296ad0(resource_manager);
-                    if (_DAT_180c8a9b0 != NULL) {
-                        *(int *)((uint8_t *)_DAT_180c8a9b0 + 0x3a8) = *(int *)((uint8_t *)_DAT_180c8a9b0 + 0x3a8) - 1;
+                    if (SYSTEM_DATA_MANAGER_A != NULL) {
+                        *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) - 1;
                     }
-                    FUN_180059ba0(resource_manager, _DAT_180c8a9a8);
+                    FUN_180059ba0(resource_manager, SYSTEM_DATA_MANAGER_B);
                 }
                 counter = (uint32_t)array_index + 1;
                 array_index = (uint64_t)counter;
@@ -273,14 +274,14 @@ void release_selective_render_resources(void *render_context, int index)
             resource_count_ptr = (int *)((uint8_t *)resource_array + 0x3a8);
             *resource_count_ptr = *resource_count_ptr - 1;
         }
-        FUN_180059ba0(resource_manager, _DAT_180c8a9a8);
+        FUN_180059ba0(resource_manager, SYSTEM_DATA_MANAGER_B);
     }
     
     *(uint64_t *)((uint8_t *)render_context + 0x60) = index_value;
     if (resource_manager != NULL) {
         *(int *)((uint8_t *)resource_manager + 0x3a8) = *(int *)((uint8_t *)resource_manager + 0x3a8) - 1;
     }
-    FUN_180059ba0(resource_array, _DAT_180c8a9a8);
+    FUN_180059ba0(resource_array, SYSTEM_DATA_MANAGER_B);
 }
 
 /**
@@ -299,7 +300,7 @@ void release_loop_render_resources(void *render_context, int start_index, int en
     int current_index;
     int loop_index;
     
-    resource_manager = _DAT_180c8a9b0;
+    resource_manager = SYSTEM_DATA_MANAGER_A;
     current_index = end_index;
     
     // 循环释放资源数组
@@ -307,10 +308,10 @@ void release_loop_render_resources(void *render_context, int start_index, int en
         resource_array = *(void **)(current_index + *(uint64_t *)((uint8_t *)render_context + 0x48));
         if (resource_array != NULL) {
             FUN_180296ad0(resource_array);
-            if (_DAT_180c8a9b0 != NULL) {
-                *(int *)((uint8_t *)_DAT_180c8a9b0 + 0x3a8) = *(int *)((uint8_t *)_DAT_180c8a9b0 + 0x3a8) - 1;
+            if (SYSTEM_DATA_MANAGER_A != NULL) {
+                *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) - 1;
             }
-            FUN_180059ba0(resource_array, _DAT_180c8a9a8);
+            FUN_180059ba0(resource_array, SYSTEM_DATA_MANAGER_B);
         }
         start_index = start_index + 1;
         current_index = current_index + 8;
@@ -323,7 +324,7 @@ void release_loop_render_resources(void *render_context, int start_index, int en
             resource_count_ptr = (int *)((uint8_t *)resource_manager + 0x3a8);
             *resource_count_ptr = *resource_count_ptr - 1;
         }
-        FUN_180059ba0(resource_array, _DAT_180c8a9a8);
+        FUN_180059ba0(resource_array, SYSTEM_DATA_MANAGER_B);
     }
 }
 
@@ -340,7 +341,7 @@ void release_fast_render_resources(void *render_context, uint64_t reset_value)
     void *resource_array;
     void *resource_manager;
     
-    resource_manager = _DAT_180c8a9b0;
+    resource_manager = SYSTEM_DATA_MANAGER_A;
     resource_array = *(void **)((uint8_t *)render_context + 0x48);
     if (resource_array != NULL) {
         *(uint64_t *)((uint8_t *)render_context + 0x40) = reset_value;
@@ -348,7 +349,7 @@ void release_fast_render_resources(void *render_context, uint64_t reset_value)
             resource_count_ptr = (int *)((uint8_t *)resource_manager + 0x3a8);
             *resource_count_ptr = *resource_count_ptr - 1;
         }
-        FUN_180059ba0(resource_array, _DAT_180c8a9a8);
+        FUN_180059ba0(resource_array, SYSTEM_DATA_MANAGER_B);
     }
 }
 
@@ -365,13 +366,13 @@ void release_single_render_resource(void *render_context, void *resource, uint64
     int *resource_count_ptr;
     void *resource_manager;
     
-    resource_manager = _DAT_180c8a9b0;
+    resource_manager = SYSTEM_DATA_MANAGER_A;
     *(uint64_t *)((uint8_t *)render_context + 0x40) = reset_value;
     if (resource_manager != NULL) {
         resource_count_ptr = (int *)((uint8_t *)resource_manager + 0x3a8);
         *resource_count_ptr = *resource_count_ptr - 1;
     }
-    FUN_180059ba0(resource, _DAT_180c8a9a8);
+    FUN_180059ba0(resource, SYSTEM_DATA_MANAGER_B);
 }
 
 /**
@@ -396,7 +397,7 @@ void initialize_render_parameters_with_resources(void *render_context, void **pa
     uint8_t current_byte;
     
     // 栈安全检查
-    uint64_t stack_cookie = _DAT_180bf00a8 ^ (uint64_t)&render_context;
+    uint64_t stack_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)&render_context;
     
     if (*(uint64_t *)((uint8_t *)render_context + 0x20) == 0) {
         if (*(uint64_t *)((uint8_t *)render_context + 0x18) == 0) {
@@ -423,12 +424,12 @@ void initialize_render_parameters_with_resources(void *render_context, void **pa
             width = *(int *)((uint8_t *)render_context + 0x28);
             height = *(int *)((uint8_t *)render_context + 0x2c);
             
-            if (_DAT_180c8a9b0 != NULL) {
-                *(int *)((uint8_t *)_DAT_180c8a9b0 + 0x3a8) = *(int *)((uint8_t *)_DAT_180c8a9b0 + 0x3a8) + 1;
+            if (SYSTEM_DATA_MANAGER_A != NULL) {
+                *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
             }
             
             // 分配像素数据内存
-            pixel_data = (uint32_t *)func_0x000180120ce0((uint64_t)height * (uint64_t)width * 4, _DAT_180c8a9a8);
+            pixel_data = (uint32_t *)func_0x000180120ce0((uint64_t)height * (uint64_t)width * 4, SYSTEM_DATA_MANAGER_B);
             *(uint32_t **)((uint8_t *)render_context + 0x20) = pixel_data;
             
             // 转换字节数据为像素数据
@@ -524,12 +525,12 @@ void initialize_advanced_render_parameters(void *render_context, void **param_2,
             width = *(int *)((uint8_t *)render_context + 0x28);
             height = *(int *)((uint8_t *)render_context + 0x2c);
             
-            if (_DAT_180c8a9b0 != NULL) {
-                *(int *)((uint8_t *)_DAT_180c8a9b0 + 0x3a8) = *(int *)((uint8_t *)_DAT_180c8a9b0 + 0x3a8) + 1;
+            if (SYSTEM_DATA_MANAGER_A != NULL) {
+                *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
             }
             
             // 分配像素数据内存
-            pixel_data = (uint32_t *)func_0x000180120ce0((uint64_t)height * (uint64_t)width * 4, _DAT_180c8a9a8);
+            pixel_data = (uint32_t *)func_0x000180120ce0((uint64_t)height * (uint64_t)width * 4, SYSTEM_DATA_MANAGER_B);
             *(uint32_t **)((uint8_t *)render_context + 0x20) = pixel_data;
             
             // 转换字节数据为像素数据
@@ -624,12 +625,12 @@ void initialize_optimized_render_parameters(void *render_context, void **param_2
             width = *(int *)((uint8_t *)render_context + 0x28);
             height = *(int *)((uint8_t *)render_context + 0x2c);
             
-            if (_DAT_180c8a9b0 != NULL) {
-                *(int *)((uint8_t *)_DAT_180c8a9b0 + 0x3a8) = *(int *)((uint8_t *)_DAT_180c8a9b0 + 0x3a8) + 1;
+            if (SYSTEM_DATA_MANAGER_A != NULL) {
+                *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
             }
             
             // 分配像素数据内存
-            pixel_data = (uint32_t *)func_0x000180120ce0((uint64_t)height * (uint64_t)width * 4, _DAT_180c8a9a8);
+            pixel_data = (uint32_t *)func_0x000180120ce0((uint64_t)height * (uint64_t)width * 4, SYSTEM_DATA_MANAGER_B);
             *(uint32_t **)((uint8_t *)render_context + 0x20) = pixel_data;
             
             // 优化的字节数据转换

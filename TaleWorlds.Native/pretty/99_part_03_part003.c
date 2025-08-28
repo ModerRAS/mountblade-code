@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_03_part003.c - 2 个函数
 
@@ -87,7 +88,7 @@ void FUN_1801c6120(void)
           fclose(lVar7);
           lStack_a0 = 0;
           LOCK();
-          _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+          SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
           UNLOCK();
         }
         else {
@@ -113,7 +114,7 @@ void FUN_1801c6120(void)
             fclose(lVar7);
             lStack_d0 = 0;
             LOCK();
-            _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+            SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
             UNLOCK();
             lVar7 = 0;
           }
@@ -129,7 +130,7 @@ void FUN_1801c6120(void)
             fclose(lVar7);
             lStack_d0 = 0;
             LOCK();
-            _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+            SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
             UNLOCK();
           }
         }
@@ -213,7 +214,7 @@ void FUN_1801c6120(void)
         fclose(lVar6);
         lStack_b8 = 0;
         LOCK();
-        _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+        SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
         UNLOCK();
         lVar6 = 0;
       }
@@ -221,7 +222,7 @@ void FUN_1801c6120(void)
         fclose(lVar6);
         lStack_b8 = 0;
         LOCK();
-        _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+        SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
         UNLOCK();
       }
       puStack_158 = &unknown_var_3456_ptr;
@@ -290,7 +291,7 @@ void FUN_1801c6120(void)
       fclose(lVar4);
       lStack_88 = 0;
       LOCK();
-      _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+      SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
       UNLOCK();
       puStack_138 = &unknown_var_3456_ptr;
       if (puStack_130 != (int8_t *)0x0) {
@@ -365,7 +366,7 @@ void FUN_1801c6120(void)
       fclose(lVar4);
       lStack_70 = 0;
       LOCK();
-      _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+      SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
       UNLOCK();
       puStack_118 = &unknown_var_3456_ptr;
       if (puStack_110 != (int8_t *)0x0) {
@@ -519,7 +520,7 @@ uint64_t FUN_1801c6d60(uint64_t param_1,longlong param_2,int *param_3)
     fread(uVar8,iVar4,1,lVar3);
     fclose(lVar3);
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
     *param_3 = iVar4;
     return uVar8;
@@ -716,7 +717,7 @@ LAB_1801c720f:
   }
   if (lVar11 != -1) {
     LOCK();
-    _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+    SYSTEM_HANDLE_COUNTER_ADDR = SYSTEM_HANDLE_COUNTER_ADDR + -1;
     UNLOCK();
     CloseHandle(alStack_70[0]);
     lVar11 = -1;
@@ -724,7 +725,7 @@ LAB_1801c720f:
   }
   if (lVar11 != -1) {
     LOCK();
-    _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+    SYSTEM_HANDLE_COUNTER_ADDR = SYSTEM_HANDLE_COUNTER_ADDR + -1;
     UNLOCK();
     CloseHandle(alStack_70[0]);
     alStack_70[0] = -1;

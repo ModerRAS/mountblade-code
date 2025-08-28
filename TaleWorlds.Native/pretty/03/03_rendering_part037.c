@@ -290,7 +290,7 @@ void finalize_resource_processing(longlong context, uint64_t *cache,
 uint64_t get_callback_address(void);
 
 /* 全局变量声明 */
-extern uint64_t _DAT_180bf00a8;    // 栈保护cookie
+extern uint64_t GET_SECURITY_COOKIE();    // 栈保护cookie
 extern uint64_t _DAT_180c8ed08;    // 全局数据指针
 extern void *global_var_424;         // 虚表地址
 extern uint64_t _DAT_180c8a9c8;     // 配置数据

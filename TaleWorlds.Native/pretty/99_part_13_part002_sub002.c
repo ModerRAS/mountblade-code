@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_13_part002_sub002.c - 1 个函数
 
@@ -18,7 +19,7 @@ void FUN_1808a736f(void)
   unaff_RBX[1] = (longlong)unaff_RBX;
   *unaff_RBX = (longlong)unaff_RBX;
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0));
+  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
 }
 
 

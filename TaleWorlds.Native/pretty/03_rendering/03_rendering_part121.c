@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part121.c - 渲染系统高级数据结构和算法模块
 // 本模块包含6个核心函数，涵盖渲染系统高级数据结构、排序算法、内存管理、

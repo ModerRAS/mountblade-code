@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 03_rendering_part056.c - 14 个函数
 // 渲染系统高级弧线计算和数据处理模块
@@ -652,10 +653,10 @@ void render_array_resize_16bit(int *param_1, int param_2)
     final_capacity = new_capacity;
   }
   if (current_capacity < final_capacity) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
-    new_memory_ptr = func_0x000180120ce0((longlong)final_capacity << 4,_DAT_180c8a9a8);
+    new_memory_ptr = func_0x000180120ce0((longlong)final_capacity << 4,SYSTEM_DATA_MANAGER_B);
     if (*(longlong *)(param_1 + 2) != 0) {
       // WARNING: Subroutine does not return
       memcpy(new_memory_ptr,*(longlong *)(param_1 + 2),(longlong)*param_1 << 4);
@@ -690,7 +691,7 @@ void render_array_resize_inline(void)
   if (context_ptr != 0) {
     *(int *)(context_ptr + 0x3a8) = *(int *)(context_ptr + 0x3a8) + 1;
   }
-  new_memory_ptr = func_0x000180120ce0((longlong)new_capacity << 4,_DAT_180c8a9a8);
+  new_memory_ptr = func_0x000180120ce0((longlong)new_capacity << 4,SYSTEM_DATA_MANAGER_B);
   if (*(longlong *)(array_ptr + 2) != 0) {
     // WARNING: Subroutine does not return
     memcpy(new_memory_ptr,*(longlong *)(array_ptr + 2),(longlong)*array_ptr << 4);
@@ -758,10 +759,10 @@ void render_array_resize_40bit(int *param_1, int param_2)
     final_capacity = new_capacity;
   }
   if (current_capacity < final_capacity) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
-    new_memory_ptr = func_0x000180120ce0((longlong)final_capacity * 0x28,_DAT_180c8a9a8);
+    new_memory_ptr = func_0x000180120ce0((longlong)final_capacity * 0x28,SYSTEM_DATA_MANAGER_B);
     if (*(longlong *)(param_1 + 2) != 0) {
       // WARNING: Subroutine does not return
       memcpy(new_memory_ptr,*(longlong *)(param_1 + 2),(longlong)*param_1 * 0x28);
@@ -808,10 +809,10 @@ void render_array_resize_alt(int param_1)
     new_capacity = current_size;
   }
   if (param_1 < new_capacity) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+    if (SYSTEM_DATA_MANAGER_A != 0) {
+      *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
-    new_memory_ptr = func_0x000180120ce0((longlong)new_capacity * 0x28,_DAT_180c8a9a8);
+    new_memory_ptr = func_0x000180120ce0((longlong)new_capacity * 0x28,SYSTEM_DATA_MANAGER_B);
     if (*(longlong *)(array_ptr + 2) != 0) {
       // WARNING: Subroutine does not return
       memcpy(new_memory_ptr,*(longlong *)(array_ptr + 2),(longlong)*array_ptr * 0x28);
@@ -900,10 +901,10 @@ void render_array_append_32bit(int *param_1, uint64_t *param_2)
       new_size = new_capacity;
     }
     if (current_capacity < new_size) {
-      if (_DAT_180c8a9b0 != 0) {
-        *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+      if (SYSTEM_DATA_MANAGER_A != 0) {
+        *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
       }
-      new_memory_ptr = func_0x000180120ce0((longlong)new_size << 5,_DAT_180c8a9a8);
+      new_memory_ptr = func_0x000180120ce0((longlong)new_size << 5,SYSTEM_DATA_MANAGER_B);
       if (*(longlong *)(param_1 + 2) != 0) {
         // WARNING: Subroutine does not return
         memcpy(new_memory_ptr,*(longlong *)(param_1 + 2),(longlong)*param_1 << 5);
@@ -952,7 +953,7 @@ void render_array_append_inline(void)
   if (context_ptr != 0) {
     *(int *)(context_ptr + 0x3a8) = *(int *)(context_ptr + 0x3a8) + 1;
   }
-  new_memory_ptr = func_0x000180120ce0((longlong)new_capacity << 5,_DAT_180c8a9a8);
+  new_memory_ptr = func_0x000180120ce0((longlong)new_capacity << 5,SYSTEM_DATA_MANAGER_B);
   if (*(longlong *)(array_ptr + 2) != 0) {
     // WARNING: Subroutine does not return
     memcpy(new_memory_ptr,*(longlong *)(array_ptr + 2),(longlong)*array_ptr << 5);

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 //==============================================================================
 // 文件信息：05_networking_part019.c
@@ -177,7 +178,7 @@ void FUN_180852090(uint64_t *param_1, uint64_t *param_2)
     
     // 第一阶段：网络系统初始化和安全检查
     // 初始化网络系统状态和执行安全保护机制
-    uStack_50 = _DAT_180bf00a8 ^ (ulonglong)auStack_338;  // 计算网络安全保护密钥
+    uStack_50 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_338;  // 计算网络安全保护密钥
     
     // 第二阶段：网络连接状态检查和初始化
     // 获取网络连接状态并执行必要的初始化操作
@@ -579,7 +580,7 @@ LAB_180852518:
                 if ((0 < (int)uVar17) && (*plVar13 != 0)) {
                     plStack_318 = (longlong *)CONCAT71(plStack_318._1_7_, 1);  // 设置验证标志
                     // 执行数据验证操作
-                    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *plVar13, &unknown_var_8432_ptr, 0x100);
+                    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *plVar13, &unknown_var_8432_ptr, 0x100);
                 }
                 
                 // 清理数据指针
@@ -685,7 +686,7 @@ LAB_1808526bf:
             if ((0 < (int)uVar17) && (*plVar13 != 0)) {
                 plStack_318 = (longlong *)CONCAT71(plStack_318._1_7_, 1);  // 设置验证标志
                 // 执行数据验证操作
-                FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *plVar13, &unknown_var_8432_ptr, 0x100);
+                FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *plVar13, &unknown_var_8432_ptr, 0x100);
             }
             
             // 清理第二组数据指针

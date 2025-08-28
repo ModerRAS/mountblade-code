@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 01_initialization_part038.c - 初始化模块核心功能
 // 包含任务调度、内存管理、线程同步等功能
@@ -76,7 +77,7 @@ void Initialization_MainLoop(longlong context)
   
   // 初始化安全cookie和线程ID
   thread_id = 0xfffffffffffffffe;
-  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   status_flag = *(char *)(*(longlong *)(context + 1000) + 0x58);
   do {
     // 检查初始化状态

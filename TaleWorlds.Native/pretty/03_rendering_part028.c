@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 03_rendering_part028.c - 渲染系统哈希表和资源管理模块
 // 本文件包含渲染系统的核心功能，包括哈希表管理、资源分配和矩阵变换操作
@@ -671,7 +672,7 @@ execute_render_pipeline(longlong param_1,uint64_t param_2,longlong param_3)
   ulonglong uStack_48;
   
   uStack_b0 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_128;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_128;
   uVar13 = 0;
   if (0 < *(int *)(param_3 + 0xc0)) {
     lVar3 = FUN_1800b6de0(_DAT_180c86930,param_3 + 0xb0,0);

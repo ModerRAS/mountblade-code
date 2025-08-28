@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part020.c - 核心引擎模块第20部分
 // 包含16个函数，主要涉及线程管理、信号量操作、内存管理和同步机制
@@ -872,7 +873,7 @@ void initialize_engine_core(uint64_t engine_param, longlong config_data)
   system_address = _DAT_180c86928;
   engine_base = _DAT_180c82868;
   buffer_flags = TIMEOUT_INFINITE;
-  checksum = _DAT_180bf00a8 ^ (ulonglong)local_config;
+  checksum = GET_SECURITY_COOKIE() ^ (ulonglong)local_config;
   stack_config = _DAT_180c86928;
   stack_pointer = &unknown_var_7512_ptr;
   config_pointer = local_buffer;
@@ -1243,7 +1244,7 @@ void execute_engine_time_sync(void)
   ulonglong sync_checksum;
   
   daylight_info = TIMEOUT_INFINITE;
-  sync_checksum = _DAT_180bf00a8 ^ (ulonglong)time_buffer;
+  sync_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)time_buffer;
   sync_flags = 0;
   timezone_info = _DAT_180c86928;
   current_time = _time64(0);

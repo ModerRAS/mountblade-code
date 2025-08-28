@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 /**
  * 04_ui_system_part408.c - UI系统高级控件和事件处理模块
@@ -641,7 +642,7 @@ void ui_control_creator(longlong control_handle, longlong creation_context)
     uint64_t security_cookie;
     
     // 安全检查：栈保护
-    security_cookie = _DAT_180bf00a8 ^ (uint64_t)stack_data;
+    security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)stack_data;
     
     // 验证控件参数
     creation_result = func_0x00018088c530(*(uint32_t*)(control_handle + UI_CONTROL_OFFSET_BASE), &stack_context);
@@ -1785,7 +1786,7 @@ void ui_system_memory_allocator(longlong control_handle, uint64_t allocation_siz
     uint64_t security_cookie;
     
     // 安全检查：栈保护
-    security_cookie = _DAT_180bf00a8 ^ (uint64_t)temp_data;
+    security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)temp_data;
     temp_param = allocation_size;
     
     // 验证控件参数

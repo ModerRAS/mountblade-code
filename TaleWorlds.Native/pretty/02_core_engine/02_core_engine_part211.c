@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part211.c - 核心引擎模块第211部分
 // 包含字符串搜索、评分计算和数据结构初始化功能
@@ -45,7 +46,7 @@ void process_string_search_and_scoring(uint64_t param_1, longlong param_2, longl
   longlong alStack_e8 [24];
   
   uStack_100 = 0xfffffffffffffffe;
-  alStack_e8[2] = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+  alStack_e8[2] = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
   puVar10 = (ulonglong *)0x0;
   uStack_130 = 0;
   puStack_120 = (ulonglong *)0x0;

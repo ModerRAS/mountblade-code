@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // =============================================================================
 // UI系统高级控件和事件处理模块
@@ -508,7 +509,7 @@ void UI_System_ProcessControlData2(UI_System_ControlHandle param_1, UI_System_Ev
     ulonglong stack_checksum;
     
     // 计算栈校验和
-    stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_data;
+    stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_data;
     
     // 验证控件状态
     validation_result = func_0x00018088c530(*(UI_System_UIntValue *)(param_1 + 0x10), &stack_data_48);
@@ -1417,7 +1418,7 @@ void UI_System_AllocateControlResources(UI_System_ControlHandle param_1, UI_Syst
     UI_System_EventHandler stack_data_38;
     ulonglong stack_checksum;
     
-    stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_data;
+    stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_data;
     stack_data_38 = param_2;
     allocation_result = func_0x00018088c530(*(UI_System_UIntValue *)(param_1 + 0x10), stack_data);
     if (allocation_result == UI_SYSTEM_STATUS_SUCCESS) {

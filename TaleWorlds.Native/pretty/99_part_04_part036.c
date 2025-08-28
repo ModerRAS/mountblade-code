@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // 99_part_04_part036.c - 6 个函数
 
@@ -181,7 +182,7 @@ void FUN_1802a69d0(uint param_1,int param_2,int param_3,byte *param_4,longlong p
   char cStack_41;
   ulonglong uStack_40;
   
-  uStack_40 = _DAT_180bf00a8 ^ (ulonglong)&iStack_68;
+  uStack_40 = GET_SECURITY_COOKIE() ^ (ulonglong)&iStack_68;
   bVar5 = (byte)((ushort)*(int16_t *)param_4 >> 8);
   cStack_50 = (*param_4 & 0xf) * '\x11';
   cStack_4f = ((byte)*(int16_t *)param_4 >> 4) * '\x11';
@@ -354,7 +355,7 @@ void FUN_1802a6ea0(uint param_1,int param_2,int param_3,byte *param_4,longlong p
   byte abStack_58 [16];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)&iStack_88;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)&iStack_88;
   bVar1 = *param_4;
   bVar2 = param_4[1];
   puVar16 = (uint3 *)(param_4 + 2);
@@ -491,7 +492,7 @@ void FUN_1802a72a0(uint param_1,int param_2,uint param_3,uint64_t param_4,byte *
   byte abStack_48 [16];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)afStack_68;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)afStack_68;
   afStack_68[0] = (float)*param_5 * 0.003921569;
   afStack_68[1] = (float)param_5[1] * 0.003921569;
   if (afStack_68[0] <= afStack_68[1]) {
@@ -567,7 +568,7 @@ void FUN_1802a7570(uint param_1,int param_2,int param_3,uint64_t param_4,longlon
   int32_t auStack_b8 [32];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_e8;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_e8;
   puStack_c0 = auStack_b8;
   lStack_c8 = param_5;
   FUN_1802a72a0(0,0,0x10);
@@ -654,7 +655,7 @@ void FUN_1802a7680(longlong param_1,uint64_t *param_2)
   ulonglong uStack_48;
   
   uStack_388 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_418;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_418;
   uVar8 = 0;
   *(int32_t *)((longlong)param_2 + 0x62) = 0;
   *(uint64_t *)((longlong)param_2 + 0x54) = 0;
@@ -746,7 +747,7 @@ void FUN_1802a7680(longlong param_1,uint64_t *param_2)
                 fclose();
                 puVar7[1] = 0;
                 LOCK();
-                _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+                SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
                 UNLOCK();
               }
                     // WARNING: Subroutine does not return

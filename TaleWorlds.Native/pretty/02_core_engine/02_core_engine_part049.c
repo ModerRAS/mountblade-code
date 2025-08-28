@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // 02_core_engine_part049.c - 核心引擎路径处理和资源管理模块
 // 本模块包含3个函数，主要用于路径解析、资源管理和内存操作
@@ -11,7 +12,7 @@
 #define INVALID_HANDLE 0xfffffffffffffffe  // 无效句柄
 
 /* 全局变量引用 */
-extern uint64_t _DAT_180bf00a8;    // XOR加密密钥
+extern uint64_t GET_SECURITY_COOKIE();    // XOR加密密钥
 extern uint64_t system_memory_6680;     // 队列管理数据
 extern uint64_t global_var_3456_ptr;     // 空字符串指针
 extern uint64_t global_var_2008_ptr;     // 字符串操作对象
@@ -136,7 +137,7 @@ void process_path_and_resource_queue(uint64_t *context)
     uint8_t local_buffer5[264];
     ulonglong xor_key;                // XOR加密密钥
     
-    xor_key = _DAT_180bf00a8 ^ (ulonglong)local_buffer;
+    xor_key = GET_SECURITY_COOKIE() ^ (ulonglong)local_buffer;
     queue_size = 0;
     stack_ptr6 = context;
     

@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // ============================================================================
 // 99_part_06_part003.c - 高级数据处理和资源管理模块
@@ -386,7 +387,7 @@ void ThreadSafeDataProcessor(longlong param_1, longlong *param_2)
     ulonglong uStack_48;
     
     uStack_78 = 0xfffffffffffffffe;
-    uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_a8;
+    uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_a8;
     plStack_70 = param_2;
     lStack_68 = param_1;
     iVar3 = _Mtx_lock();
@@ -453,7 +454,7 @@ LAB_1803a62d7:
     aiStack_60[3] = 2;
     lVar5 = 1;
     aiStack_60[4] = 1;
-    iVar10 = *(int *)(_DAT_180c86920 + 0x2a0);
+    iVar10 = *(int *)(SYSTEM_STATE_MANAGER + 0x2a0);
     if (iVar10 < 0) {
         iVar10 = 0;
     }
@@ -762,7 +763,7 @@ void SystemConfigurationProcessor(longlong *param_1)
     ulonglong uStack_18;
     
     uStack_60 = 0xfffffffffffffffe;
-    uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_88;
     *param_1 = (longlong)&unknown_var_720_ptr;
     param_1[1] = 0;
     *(int32_t *)(param_1 + 2) = 0;
