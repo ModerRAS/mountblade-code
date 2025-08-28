@@ -119,8 +119,8 @@ typedef enum {
 // 全局变量
 //============================================================================
 
-uint64_t* _DAT_180c868f8 = NULL;  // 核心引擎全局数据指针
-uint64_t* _DAT_180c8ed18 = NULL;  // 内存分配器数据指针
+uint64_t* core_system_data_buffer = NULL;  // 核心引擎全局数据指针
+uint64_t* system_memory_pool_ptr = NULL;  // 内存分配器数据指针
 void* unknown_var_3456_ptr = NULL;    // 未知数据结构指针
 void* system_buffer_ptr = NULL;    // 字符串处理数据指针
 void* unknown_var_720_ptr = NULL;    // 配置数据指针
@@ -174,7 +174,7 @@ void CoreEngineDataProcessor(longlong param_1, longlong param_2)
     }
     
     // 分配新的内存空间
-    new_buffer = (CoreEngineDataPointer)FUN_18062b420(_DAT_180c8ed18, data_size * 8, *(int8_t*)(param_1 + 0x40));
+    new_buffer = (CoreEngineDataPointer)FUN_18062b420(system_memory_pool_ptr, data_size * 8, *(int8_t*)(param_1 + 0x40));
     data_start = *(CoreEngineDataPointer*)(param_1 + 0x28);
     data_current = *(CoreEngineDataPointer*)(param_1 + 0x30);
     
@@ -307,7 +307,7 @@ CoreEngineDataPointer CoreEngineResourceAllocator(longlong param_1, CoreEngineDa
                     if (data_size == 0) {
                         data_size = CORE_ENGINE_DEFAULT_CAPACITY;
 LAB_180162130:
-                        temp_buffer = (CoreEngineDataPointer)FUN_18062b420(_DAT_180c8ed18, data_size * 8, (char)param_2[3]);
+                        temp_buffer = (CoreEngineDataPointer)FUN_18062b420(system_memory_pool_ptr, data_size * 8, (char)param_2[3]);
                         result_array = (CoreEngineDataPointer)param_2[1];
                     } else {
                         data_size = data_size * 2;
@@ -574,18 +574,18 @@ void CoreEngineMemoryManager(void)
     uint64_t temp_data;
     uint64_t local_data;
     
-    global_pointer = _DAT_180c868f8;
+    global_pointer = core_system_data_buffer;
     local_data = 0xfffffffffffffffe;
     
     // 分配内存块
-    memory_handle = FUN_18062b1e0(_DAT_180c8ed18, 0x88, 8, 3);
+    memory_handle = FUN_18062b1e0(system_memory_pool_ptr, 0x88, 8, 3);
     temp_buffer = &unknown_var_3456_ptr;
     temp_data = 0;
     string_buffer = (int32_t*)0x0;
     init_flags = 0;
     
     // 初始化字符串缓冲区
-    string_buffer = (int32_t*)FUN_18062b420(_DAT_180c8ed18, 0x16, 0x13);
+    string_buffer = (int32_t*)FUN_18062b420(system_memory_pool_ptr, 0x16, 0x13);
     *(int8_t*)string_buffer = 0;
     string_buffer = string_buffer;
     init_flags = FUN_18064e990(string_buffer);

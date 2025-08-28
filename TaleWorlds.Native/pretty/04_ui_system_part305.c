@@ -410,12 +410,12 @@ void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,longlong param_3,
     auVar36._16_8_ = lVar3;
     auVar36._24_8_ = lVar3;
     puVar18 = (ulonglong *)auStack_f8;
-    auVar23 = _DAT_180980c00;
-    auVar26 = _DAT_180a40840;
-    auVar24 = _DAT_180980ca0;
+    auVar23 = ui_system_memory_ui;
+    auVar26 = ui_system_ui;
+    auVar24 = ui_system_memory_ui;
     do {
       auStack_e0 = auVar21;
-      auVar15 = _DAT_180980c00;
+      auVar15 = ui_system_memory_ui;
       auVar23 = vpermd_avx2(auVar23,auStack_e0);
       auVar21 = vpermd_avx2(SUB6432(ZEXT1664((int8_t  [16])0x0),0),auStack_e0);
       auVar22 = vpsrld_avx2(auVar21,1);
@@ -483,10 +483,10 @@ void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,longlong param_3,
       *param_1 = auVar23;
       auVar23 = vmovntps_avx(auVar34);
       param_1[1] = auVar23;
-      auVar24 = _DAT_180980ca0;
+      auVar24 = ui_system_memory_ui;
       auVar23 = vmovntps_avx(auVar33);
       param_1[2] = auVar23;
-      auVar26 = _DAT_180a40840;
+      auVar26 = ui_system_ui;
       auVar23 = vmovntps_avx(auVar22);
       param_1[3] = auVar23;
       param_1 = param_1 + 4;
@@ -580,8 +580,8 @@ void UIInterpolatorCalculator(int8_t (*param_1) [32],uint param_2,longlong param
   int8_t auVar23 [32];
   
   uVar6 = (ulonglong)param_1 & 0x1f;
-  auVar7 = _DAT_180980c40;
-  while ((_DAT_180980c40 = auVar7, uVar6 != 0 && (param_2 != 0))) {
+  auVar7 = ui_system_memory_ui;
+  while ((ui_system_memory_ui = auVar7, uVar6 != 0 && (param_2 != 0))) {
     param_2 = param_2 - 1;
     fVar2 = *(float *)(param_3 + (ulonglong)param_4[1] * 4);
     auVar13 = vfmadd213ss_fma(SUB6416(ZEXT464(UI_VECTOR_CONST_FLOAT_SCALE),0),
@@ -592,7 +592,7 @@ void UIInterpolatorCalculator(int8_t (*param_1) [32],uint param_2,longlong param
     param_1 = (int8_t (*) [32])(*param_1 + 4);
     *(longlong *)param_4 = *(longlong *)param_4 + *param_5;
     uVar6 = (ulonglong)param_1 & 0x1f;
-    auVar7 = _DAT_180980c40;
+    auVar7 = ui_system_memory_ui;
   }
   iVar11 = (int)param_2 >> 3;
   if (iVar11 != 0) {
@@ -731,8 +731,8 @@ void UIBatchTransformer(int8_t (*param_1) [32],uint param_2,longlong param_3,uin
   int8_t auVar23 [32];
   
   uVar6 = (ulonglong)param_1 & 0x1f;
-  auVar7 = _DAT_180980c40;
-  while ((_DAT_180980c40 = auVar7, uVar6 != 0 && (param_2 != 0))) {
+  auVar7 = ui_system_memory_ui;
+  while ((ui_system_memory_ui = auVar7, uVar6 != 0 && (param_2 != 0))) {
     param_2 = param_2 - 1;
     fVar2 = *(float *)(param_3 + (ulonglong)param_4[1] * 4);
     auVar13 = vfmadd213ss_fma(SUB6416(ZEXT464(UI_VECTOR_CONST_FLOAT_SCALE),0),
@@ -743,7 +743,7 @@ void UIBatchTransformer(int8_t (*param_1) [32],uint param_2,longlong param_3,uin
     param_1 = (int8_t (*) [32])(*param_1 + 4);
     *(longlong *)param_4 = *(longlong *)param_4 + *unaff_R15;
     uVar6 = (ulonglong)param_1 & 0x1f;
-    auVar7 = _DAT_180980c40;
+    auVar7 = ui_system_memory_ui;
   }
   iVar11 = (int)param_2 >> 3;
   if (iVar11 != 0) {

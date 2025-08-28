@@ -32,7 +32,7 @@ void FUN_18054b8c0(longlong param_1,longlong param_2)
   int iStack_50;
   uint64_t uStack_48;
   
-  lStackX_8 = FUN_18062b1e0(_DAT_180c8ed18,0x30,8,3);
+  lStackX_8 = FUN_18062b1e0(system_memory_pool_ptr,0x30,8,3);
   pcVar18 = (char *)0x0;
   *(uint64_t *)(lStackX_8 + 0x28) = 3;
   *(int32_t *)(lStackX_8 + 0x19) = 0;
@@ -665,52 +665,52 @@ void FUN_18054c430(void)
   ulonglong uVar4;
   
   iVar5 = 0;
-  uVar4 = (_DAT_180c96158 - _DAT_180c96150) / 0x68;
+  uVar4 = (render_system_memory - render_system_memory) / 0x68;
   uVar3 = (uint)uVar4;
   iVar1 = uVar3 - 1;
-  _DAT_180bfbc98 = 0;
+  render_system_control_memory = 0;
   while (uVar3 != 0) {
-    _DAT_180bfbc98 = _DAT_180bfbc98 + 1;
+    render_system_control_memory = render_system_control_memory + 1;
     uVar3 = (uint)uVar4 >> 1;
     uVar4 = (ulonglong)uVar3;
   }
-  _DAT_180bfbc90 = CONCAT44(iVar1,0xffffffff);
-  _DAT_180bfbcb8 = 0;
-  uVar2 = *(int *)(_DAT_180c8aa00 + 0x40) - 1;
+  render_system_control_memory = CONCAT44(iVar1,0xffffffff);
+  render_system_control_memory = 0;
+  uVar2 = *(int *)(render_system_data_memory + 0x40) - 1;
   for (uVar3 = uVar2; uVar3 != 0; uVar3 = uVar3 >> 1) {
-    _DAT_180bfbcb8 = _DAT_180bfbcb8 + 1;
+    render_system_control_memory = render_system_control_memory + 1;
   }
-  _DAT_180bfbcb0 = (ulonglong)uVar2 << 0x20;
-  uVar3 = (**(code **)(*_DAT_180c86878 + 0xe8))();
+  render_system_control_memory = (ulonglong)uVar2 << 0x20;
+  uVar3 = (**(code **)(*render_system_data_memory + 0xe8))();
   iVar1 = uVar3 - 1;
-  _DAT_180bfbcc8 = 0;
+  render_system_control_memory = 0;
   for (; uVar3 != 0; uVar3 = uVar3 >> 1) {
-    _DAT_180bfbcc8 = _DAT_180bfbcc8 + 1;
+    render_system_control_memory = render_system_control_memory + 1;
   }
-  _DAT_180bfbcc0 = CONCAT44(iVar1,0xffffffff);
-  uVar3 = *(uint *)(_DAT_180c86970 + 0x40);
+  render_system_control_memory = CONCAT44(iVar1,0xffffffff);
+  uVar3 = *(uint *)(render_system_data_memory + 0x40);
   iVar1 = uVar3 - 1;
-  _DAT_180bfbca8 = 0;
+  render_system_control_memory = 0;
   for (; uVar3 != 0; uVar3 = uVar3 >> 1) {
-    _DAT_180bfbca8 = _DAT_180bfbca8 + 1;
+    render_system_control_memory = render_system_control_memory + 1;
   }
-  _DAT_180bfbca0 = CONCAT44(iVar1,0xffffffff);
-  uVar4 = (_DAT_180c960c8 - _DAT_180c960c0) / 0x38;
+  render_system_control_memory = CONCAT44(iVar1,0xffffffff);
+  uVar4 = (render_system_memory - render_system_memory) / 0x38;
   uVar3 = (uint)uVar4;
   iVar1 = uVar3 - 1;
-  _DAT_180bfbcd8 = 0;
+  render_system_control_memory = 0;
   while (uVar3 != 0) {
-    _DAT_180bfbcd8 = _DAT_180bfbcd8 + 1;
+    render_system_control_memory = render_system_control_memory + 1;
     uVar3 = (uint)uVar4 >> 1;
     uVar4 = (ulonglong)uVar3;
   }
-  _DAT_180bfbcd0 = CONCAT44(iVar1,0xffffffff);
-  iVar1 = (**(code **)(*_DAT_180c86878 + 0xf0))();
+  render_system_control_memory = CONCAT44(iVar1,0xffffffff);
+  iVar1 = (**(code **)(*render_system_data_memory + 0xf0))();
   for (uVar3 = iVar1 - 1U; uVar3 != 0; uVar3 = uVar3 >> 1) {
     iVar5 = iVar5 + 1;
   }
-  _DAT_180bfbce0 = (ulonglong)(iVar1 - 1U) << 0x20;
-  _DAT_180bfbce8 = iVar5;
+  render_system_control_memory = (ulonglong)(iVar1 - 1U) << 0x20;
+  render_system_control_memory = iVar5;
   return;
 }
 

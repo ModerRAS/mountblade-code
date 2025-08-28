@@ -605,7 +605,7 @@ longlong * FUN_1802f63a0(longlong param_1,longlong *param_2)
   longlong **pplStackX_18;
   
   plStackX_10 = param_2;
-  uVar2 = FUN_18062b1e0(_DAT_180c8ed18,0x298,8,3,0,0xfffffffffffffffe);
+  uVar2 = FUN_18062b1e0(system_memory_pool_ptr,0x298,8,3,0,0xfffffffffffffffe);
   plVar3 = (longlong *)FUN_1802f5f70(uVar2);
   *param_2 = (longlong)plVar3;
   if (plVar3 != (longlong *)0x0) {

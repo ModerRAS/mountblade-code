@@ -720,10 +720,10 @@ void FUN_1805e0e00(longlong param_1)
       fVar8 = fVar10;
     }
     fVar9 = *(float *)(plVar1 + 0x28d);
-    fVar7 = _DAT_180c96390 * *(float *)(lVar6 + 0x3f0);
-    fVar12 = (fVar10 * _DAT_180c9638c) / fVar7;
+    fVar7 = system_system_config * *(float *)(lVar6 + 0x3f0);
+    fVar12 = (fVar10 * system_system_config) / fVar7;
     fVar7 = *(float *)(lVar6 + 0x3f0) - fVar7;
-    fVar10 = (1.0 - _DAT_180c9638c) * fVar10 - fVar7 * fVar12;
+    fVar10 = (1.0 - system_system_config) * fVar10 - fVar7 * fVar12;
     fVar11 = 0.5;
     fVar10 = (fVar8 / ((fVar10 + fVar10) / fVar7 + fVar12)) * fVar8 * 0.5;
     cVar2 = func_0x000180522f60();
@@ -799,10 +799,10 @@ void FUN_1805e0e06(longlong param_1)
       fVar8 = fVar10;
     }
     fVar9 = *(float *)(plVar1 + 0x28d);
-    fVar7 = _DAT_180c96390 * *(float *)(lVar6 + 0x3f0);
-    fVar12 = (fVar10 * _DAT_180c9638c) / fVar7;
+    fVar7 = system_system_config * *(float *)(lVar6 + 0x3f0);
+    fVar12 = (fVar10 * system_system_config) / fVar7;
     fVar7 = *(float *)(lVar6 + 0x3f0) - fVar7;
-    fVar10 = (1.0 - _DAT_180c9638c) * fVar10 - fVar7 * fVar12;
+    fVar10 = (1.0 - system_system_config) * fVar10 - fVar7 * fVar12;
     fVar11 = 0.5;
     fVar10 = (fVar8 / ((fVar10 + fVar10) / fVar7 + fVar12)) * fVar8 * 0.5;
     cVar2 = func_0x000180522f60();
@@ -858,10 +858,10 @@ void FUN_1805e0e79(longlong param_1,ulonglong param_2,uint64_t param_3,longlong 
     fVar3 = fVar5;
   }
   fVar4 = *(float *)(unaff_RDI + 0x1468);
-  fVar2 = _DAT_180c96390 * *(float *)(param_1 + 0x3f0);
-  fVar7 = (fVar5 * _DAT_180c9638c) / fVar2;
+  fVar2 = system_system_config * *(float *)(param_1 + 0x3f0);
+  fVar7 = (fVar5 * system_system_config) / fVar2;
   fVar2 = *(float *)(param_1 + 0x3f0) - fVar2;
-  fVar5 = (1.0 - _DAT_180c9638c) * fVar5 - fVar2 * fVar7;
+  fVar5 = (1.0 - system_system_config) * fVar5 - fVar2 * fVar7;
   fVar6 = 0.5;
   fVar5 = (fVar3 / ((fVar5 + fVar5) / fVar2 + fVar7)) * fVar3 * 0.5;
   cVar1 = func_0x000180522f60();

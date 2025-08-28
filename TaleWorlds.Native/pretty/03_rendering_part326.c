@@ -569,7 +569,7 @@ void RenderingSystem_ProcessRenderConditions(int32_t param_1, int param_2)
        ((param_2 == 5 && (*(int *)(SYSTEM_STATE_MANAGER + 0xee0) == 0)))) {
       return;
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xcb0) == 0) {
+    if (*(int *)(render_system_data_config + 0xcb0) == 0) {
       return;
     }
     return;
@@ -584,7 +584,7 @@ void RenderingSystem_ProcessRenderConditions(int32_t param_1, int param_2)
        (*(int *)(SYSTEM_STATE_MANAGER + 0xf50) == 0)) {
       return;
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xd20) == 0) {
+    if (*(int *)(render_system_data_config + 0xd20) == 0) {
       return;
     }
     return;
@@ -599,7 +599,7 @@ void RenderingSystem_ProcessRenderConditions(int32_t param_1, int param_2)
        ((param_2 == 5 && (*(int *)(SYSTEM_STATE_MANAGER + 0xfc0) == 0)))) {
       return;
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xd90) == 0) {
+    if (*(int *)(render_system_data_config + 0xd90) == 0) {
       return;
     }
     return;
@@ -622,14 +622,14 @@ void RenderingSystem_ProcessRenderConditions(int32_t param_1, int param_2)
     if (*(int *)(SYSTEM_STATE_MANAGER + 0x10a0) == 0) {
       return;
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xe70) == 0) {
+    if (*(int *)(render_system_data_config + 0xe70) == 0) {
       return;
     }
     return;
   case 0x42:
     if ((((((param_2 == 0) || (param_2 == 1)) || (param_2 == 2)) ||
          ((param_2 == 3 || (param_2 != 5)))) || (*(int *)(SYSTEM_STATE_MANAGER + 0x1030) != 0)) &&
-       (*(int *)(_DAT_180c8a9c8 + 0xe00) != 0)) {
+       (*(int *)(render_system_data_config + 0xe00) != 0)) {
       return;
     }
     return;
@@ -660,7 +660,7 @@ float RenderingSystem_GetRenderValue(int32_t param_1)
   render_context = SYSTEM_STATE_MANAGER;
   
   /* 检查渲染系统状态 */
-  if ((*(longlong *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(SYSTEM_STATE_MANAGER + 0x540) < 1)) {
+  if ((*(longlong *)(system_parameter_buffer + 0x7ab8) == 0) || (*(int *)(SYSTEM_STATE_MANAGER + 0x540) < 1)) {
     system_status = false;
   }
   else {
@@ -687,7 +687,7 @@ float RenderingSystem_GetRenderValue(int32_t param_1)
     float_result = *(float *)(SYSTEM_STATE_MANAGER + 0x1490);
     goto code_r0x00018043b131;
   case 5:
-    int_value = (**(code **)(*_DAT_180c86878 + 0x98))();
+    int_value = (**(code **)(*render_system_data_config + 0x98))();
     break;
   case 6:
     int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x12d0);
@@ -720,18 +720,18 @@ float RenderingSystem_GetRenderValue(int32_t param_1)
     int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x2300);
     break;
   case 0x10:
-    if ((*(int *)(*(longlong *)(_DAT_180c868d0 + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
+    if ((*(int *)(*(longlong *)(render_system_data_config + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
       int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x2450);
       break;
     }
     goto code_r0x00018043b131;
   case 0x11:
-    if ((*(int *)(*(longlong *)(_DAT_180c868d0 + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
+    if ((*(int *)(*(longlong *)(render_system_data_config + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
       float_result = *(float *)(SYSTEM_STATE_MANAGER + 0x24c0);
     }
     goto code_r0x00018043b131;
   case 0x12:
-    if ((*(int *)(*(longlong *)(_DAT_180c868d0 + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
+    if ((*(int *)(*(longlong *)(render_system_data_config + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
       int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x2530);
       break;
     }
@@ -749,7 +749,7 @@ float RenderingSystem_GetRenderValue(int32_t param_1)
     int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x1810);
     break;
   case 0x17:
-    FUN_180171f10(*(uint64_t *)(_DAT_180c86870 + 8), &stack_data);
+    FUN_180171f10(*(uint64_t *)(system_main_module_state + 8), &stack_data);
     if (((float)stack_data == (float)*(int *)(SYSTEM_STATE_MANAGER + 0x1d50)) &&
        (stack_data._4_4_ == (float)*(int *)(SYSTEM_STATE_MANAGER + 0x1dc0))) {
       int_value = FUN_180438350();
@@ -905,7 +905,7 @@ float RenderingSystem_GetRenderValue(int32_t param_1)
     float_result = *(float *)(SYSTEM_STATE_MANAGER + 0x2060);
     goto code_r0x00018043b131;
   case 0x3e:
-    if ((*(int *)(SYSTEM_STATE_MANAGER + 0xee0) == 0) || (*(int *)(_DAT_180c8a9c8 + 0xcb0) == 0)) {
+    if ((*(int *)(SYSTEM_STATE_MANAGER + 0xee0) == 0) || (*(int *)(render_system_data_config + 0xcb0) == 0)) {
 code_r0x00018043b0b3:
       float_result = 0.0;
     }
@@ -914,17 +914,17 @@ code_r0x00018043b0b3:
     }
     goto code_r0x00018043b131;
   case 0x3f:
-    if ((*(int *)(SYSTEM_STATE_MANAGER + 0xf50) == 0) || (*(int *)(_DAT_180c8a9c8 + 0xd20) == 0))
+    if ((*(int *)(SYSTEM_STATE_MANAGER + 0xf50) == 0) || (*(int *)(render_system_data_config + 0xd20) == 0))
     goto code_r0x00018043b0b3;
     float_result = 1.0;
     goto code_r0x00018043b131;
   case 0x40:
-    if ((*(int *)(SYSTEM_STATE_MANAGER + 0xfc0) == 0) || (*(int *)(_DAT_180c8a9c8 + 0xd90) == 0))
+    if ((*(int *)(SYSTEM_STATE_MANAGER + 0xfc0) == 0) || (*(int *)(render_system_data_config + 0xd90) == 0))
     goto code_r0x00018043b0b3;
     float_result = 1.0;
     goto code_r0x00018043b131;
   case 0x41:
-    if ((*(int *)(SYSTEM_STATE_MANAGER + 0x10a0) == 0) || (*(int *)(_DAT_180c8a9c8 + 0xe70) == 0))
+    if ((*(int *)(SYSTEM_STATE_MANAGER + 0x10a0) == 0) || (*(int *)(render_system_data_config + 0xe70) == 0))
     goto code_r0x00018043b0b3;
     float_result = 1.0;
   case 0x42:
@@ -997,7 +997,7 @@ void RenderingSystem_ProcessRenderActions(int32_t param_1)
   bool system_status;
   
   /* 检查渲染系统状态 */
-  if ((*(longlong *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(SYSTEM_STATE_MANAGER + 0x540) < 1)) {
+  if ((*(longlong *)(system_parameter_buffer + 0x7ab8) == 0) || (*(int *)(SYSTEM_STATE_MANAGER + 0x540) < 1)) {
     system_status = false;
   }
   else {
@@ -1016,7 +1016,7 @@ void RenderingSystem_ProcessRenderActions(int32_t param_1)
   case 4:
     return;
   case 5:
-    (**(code **)(*_DAT_180c86878 + 0x98))();
+    (**(code **)(*render_system_data_config + 0x98))();
     return;
   case 6:
     return;
@@ -1039,17 +1039,17 @@ void RenderingSystem_ProcessRenderActions(int32_t param_1)
   case 0xf:
     return;
   case 0x10:
-    if ((*(int *)(*(longlong *)(_DAT_180c868d0 + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
+    if ((*(int *)(*(longlong *)(render_system_data_config + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
       return;
     }
     break;
   case 0x11:
-    if ((*(int *)(*(longlong *)(_DAT_180c868d0 + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
+    if ((*(int *)(*(longlong *)(render_system_data_config + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
       return;
     }
     break;
   case 0x12:
-    if ((*(int *)(*(longlong *)(_DAT_180c868d0 + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
+    if ((*(int *)(*(longlong *)(render_system_data_config + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
       return;
     }
     break;
@@ -1143,7 +1143,7 @@ void RenderingSystem_ProcessRenderActions(int32_t param_1)
     if (*(int *)(SYSTEM_STATE_MANAGER + 0xee0) == 0) {
       return;
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xcb0) == 0) {
+    if (*(int *)(render_system_data_config + 0xcb0) == 0) {
       return;
     }
     return;
@@ -1151,7 +1151,7 @@ void RenderingSystem_ProcessRenderActions(int32_t param_1)
     if (*(int *)(SYSTEM_STATE_MANAGER + 0xf50) == 0) {
       return;
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xd20) == 0) {
+    if (*(int *)(render_system_data_config + 0xd20) == 0) {
       return;
     }
     return;
@@ -1159,12 +1159,12 @@ void RenderingSystem_ProcessRenderActions(int32_t param_1)
     if (*(int *)(SYSTEM_STATE_MANAGER + 0xfc0) == 0) {
       return;
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xd90) == 0) {
+    if (*(int *)(render_system_data_config + 0xd90) == 0) {
       return;
     }
     return;
   case 0x41:
-    if ((*(int *)(SYSTEM_STATE_MANAGER + 0x10a0) != 0) && (*(int *)(_DAT_180c8a9c8 + 0xe70) != 0)) {
+    if ((*(int *)(SYSTEM_STATE_MANAGER + 0x10a0) != 0) && (*(int *)(render_system_data_config + 0xe70) != 0)) {
       return;
     }
     return;
@@ -1247,7 +1247,7 @@ void RenderingSystem_ExecuteRenderBatch(int param_1, int param_2, int param_3, i
   buffer_value = 0x1b;
   
   /* 执行批处理操作 */
-  temp_data = FUN_18062b1e0(_DAT_180c8ed18, 0x100, 8, 3);
+  temp_data = FUN_18062b1e0(system_memory_pool_ptr, 0x100, 8, 3);
   pointer_ptr = (void **)FUN_18005ce30(temp_data, &buffer_pointer);
   temp_pointer = pointer_ptr;
   
@@ -1255,7 +1255,7 @@ void RenderingSystem_ExecuteRenderBatch(int param_1, int param_2, int param_3, i
     (**(code **)(*pointer_ptr + 0x28))(pointer_ptr);
   }
   
-  temp_data = _DAT_180c82868;
+  temp_data = system_context_ptr;
   triple_pointer = &pointer_stack;
   pointer_stack = pointer_ptr;
   
@@ -1301,7 +1301,7 @@ void RenderingSystem_ProcessRenderString(int param_1)
   stack_data = 0xfffffffffffffffe;
   stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
   
-  base_address = (longlong)param_1 * 0x70 + *(longlong *)(*(longlong *)(_DAT_180c86870 + 8) + 0x18);
+  base_address = (longlong)param_1 * 0x70 + *(longlong *)(*(longlong *)(system_main_module_state + 8) + 0x18);
   stack_pointer = &global_var_3480_ptr;
   string_buffer = work_buffer;
   work_buffer[0] = 0;
@@ -1341,7 +1341,7 @@ void RenderingSystem_ProcessRenderString(int param_1)
     buffer_size = buffer_size + 1;
   }
   
-  (**(code **)(*_DAT_180c8f008 + 0x70))(_DAT_180c8f008, &stack_pointer);
+  (**(code **)(*system_cache_buffer + 0x70))(system_cache_buffer, &stack_pointer);
   stack_pointer = &global_var_720_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(stack_guard ^ (ulonglong)temp_buffer);
@@ -1499,7 +1499,7 @@ void RenderingSystem_ProcessParameterSet4(uint64_t param_1, int32_t param_2)
  *=============================================================================*/
 void RenderingSystem_ExecuteRenderCommand(int32_t param_1, uint64_t param_2, int32_t param_3, uint64_t param_4)
 {
-  FUN_1800623b0(_DAT_180c86928, param_1, param_4, param_3, &global_var_6496_ptr, param_2);
+  FUN_1800623b0(system_message_context, param_1, param_4, param_3, &global_var_6496_ptr, param_2);
   return;
 }
 

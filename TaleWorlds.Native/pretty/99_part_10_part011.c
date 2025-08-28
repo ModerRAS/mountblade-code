@@ -404,7 +404,7 @@ StructureInitializerFunc StructureInitializerAndConfigurator_impl = StructureIni
  * - unknown_var_5432_ptr：内存管理器配置
  * - unknown_var_5360_ptr：默认配置数据
  * - system_buffer_ptr：默认数据值
- * - _DAT_180be0050：全局管理器
+ * - system_system_buffer_config：全局管理器
  * 
  * 调用关系：
  * - 本模块被上层游戏引擎调用来管理数据结构
@@ -1197,8 +1197,8 @@ uint64_t * FUN_1806a9b80(uint64_t *param_1)
   param_1[0x10] = 0;
   param_1[0x11] = 0;
   param_1[0x12] = 0;
-  lVar1 = (**(code **)(*_DAT_180be0050 + 8))
-                    (_DAT_180be0050,0xb8,&unknown_var_5432_ptr,&unknown_var_5360_ptr,0x1ac);
+  lVar1 = (**(code **)(*system_system_buffer_config + 8))
+                    (system_system_buffer_config,0xb8,&unknown_var_5432_ptr,&unknown_var_5360_ptr,0x1ac);
   if (lVar1 != 0) {
     uVar2 = FUN_1806a9cc0(lVar1);
   }

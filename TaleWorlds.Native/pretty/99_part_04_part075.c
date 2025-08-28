@@ -487,7 +487,7 @@ longlong * FUN_1802cda00(longlong *param_1,longlong *param_2)
 void FUN_1802cdce0(int32_t *param_1)
 
 {
-  FUN_18029fb10(*(uint64_t *)(_DAT_180c86938 + 0x1cd8),*param_1,0,param_1[4],0xfffffffffffffffe);
+  FUN_18029fb10(*(uint64_t *)(system_message_buffer + 0x1cd8),*param_1,0,param_1[4],0xfffffffffffffffe);
   return;
 }
 
@@ -502,7 +502,7 @@ void FUN_1802cdce0(int32_t *param_1)
 void FUN_1802cdd10(int32_t *param_1)
 
 {
-  FUN_18029d760(*(uint64_t *)(_DAT_180c86938 + 0x1cd8),*param_1,*(int8_t *)(param_1 + 4),0,
+  FUN_18029d760(*(uint64_t *)(system_message_buffer + 0x1cd8),*param_1,*(int8_t *)(param_1 + 4),0,
                 0xffffffff,1,0xfffffffffffffffe);
   return;
 }

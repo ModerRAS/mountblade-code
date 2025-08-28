@@ -588,7 +588,7 @@ void FUN_18066ae20(longlong param_1,longlong param_2,float *param_3,float *param
   uStack_78 = CONCAT44(fVar6 - fStack_a4,fVar5 - fStack_a8);
   uStack_70 = CONCAT44(0x7f7fffff,fVar4 - fStack_a0);
   uStack_68 = CONCAT44(*param_6,*param_6);
-  uStack_60 = CONCAT44(param_8,(float)_DAT_180c8ed30 * 1e-05);
+  uStack_60 = CONCAT44(param_8,(float)system_error_code * 1e-05);
   if (param_5 == '\0') {
     lVar3 = 0x98;
     if (param_7 != 0) {

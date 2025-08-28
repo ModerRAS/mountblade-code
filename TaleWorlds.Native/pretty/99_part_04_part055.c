@@ -232,7 +232,7 @@ void FUN_1802b7d90(longlong *param_1,float param_2)
   pfVar14 = *(float **)(lVar25 + 0x81f0);
   fVar2 = pfVar14[3];
   fVar34 = ABS(*(float *)((longlong)param_1 + 0xe4) + *(float *)(param_1 + 0x1c)) * 8.0 +
-           (float)_DAT_180c8ed30 * 8e-05;
+           (float)system_error_code * 8e-05;
   unaff_RBP[-0x14] = fVar43;
   unaff_RBP[-0x13] = fStack000000000000007c;
   unaff_RBP[-0x12] = fStack000000000000007c;

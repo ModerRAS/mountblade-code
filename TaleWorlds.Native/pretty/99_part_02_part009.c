@@ -888,12 +888,12 @@ longlong FUN_1800ed9c0(longlong param_1)
   *(uint64_t *)(param_1 + 0x348) = 0;
   *(int32_t *)(param_1 + 0x350) = 3;
   *(uint64_t *)(param_1 + 0x308) = 8;
-  lVar3 = FUN_18062b420(_DAT_180c8ed18,0x40,*(int8_t *)(param_1 + 0x350));
+  lVar3 = FUN_18062b420(system_memory_pool_ptr,0x40,*(int8_t *)(param_1 + 0x350));
   *(longlong *)(param_1 + 0x300) = lVar3;
   plVar2 = (longlong *)(lVar3 + (*(longlong *)(param_1 + 0x308) - 1U >> 1) * 8);
   plVar1 = plVar2;
   for (uVar5 = (ulonglong)(plVar2 <= plVar2 + 1); uVar5 != 0; uVar5 = uVar5 - 1) {
-    lVar3 = FUN_18062b420(_DAT_180c8ed18,0x1e0,*(int8_t *)(param_1 + 0x350));
+    lVar3 = FUN_18062b420(system_memory_pool_ptr,0x1e0,*(int8_t *)(param_1 + 0x350));
     *plVar1 = lVar3;
     plVar1 = plVar1 + 1;
   }

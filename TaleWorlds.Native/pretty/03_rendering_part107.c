@@ -119,12 +119,12 @@ void RenderingSystem_TexturePathProcessor(longlong render_context, longlong file
     ulonglong frame_sync;
     
     // 初始化渲染系统基础地址
-    base_address = _DAT_180c86890;
+    base_address = system_parameter_buffer;
     frame_sync = GET_SECURITY_COOKIE() ^ (ulonglong)alignment_buffer;
-    calculation_base = _DAT_180c86890 + 0x7440;
+    calculation_base = system_parameter_buffer + 0x7440;
     
     // 获取纹理索引指针
-    index_ptr = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0x74e0) * 0x50 + calculation_base);
+    index_ptr = (uint *)((longlong)*(int *)(system_parameter_buffer + 0x74e0) * 0x50 + calculation_base);
     
     // 原子操作获取纹理计数
     LOCK();
@@ -147,7 +147,7 @@ void RenderingSystem_TexturePathProcessor(longlong render_context, longlong file
         // 检查纹理数据指针有效性
         if (*(longlong *)param_ptr == 0) {
             // 分配纹理数据内存
-            path_buffer = FUN_18062b420(_DAT_180c8ed18, 0x48000, 0x25);
+            path_buffer = FUN_18062b420(system_memory_pool_ptr, 0x48000, 0x25);
             LOCK();
             is_allocated = *(longlong *)(param_ptr + (longlong)path_index * 2 + 2) == 0;
             if (is_allocated) {

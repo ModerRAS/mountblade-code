@@ -28,7 +28,7 @@ void FUN_1807a063f(void)
   int iStack0000000000000050;
   longlong lStack0000000000000058;
   
-  _DAT_180c1b958 = 0;
+  system_system_config = 0;
   iStack0000000000000050 = 1;
   iVar16 = 1;
   iVar9 = iVar16;

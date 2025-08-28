@@ -69,13 +69,13 @@ void FUN_1808fea60(uint64_t param_1,uint64_t param_2)
   auVar36._0_8_ = (ulonglong)dVar19 & 0xfffffffffffff;
   auVar36._8_4_ = SUB84(dVar4,0);
   auVar36._12_4_ = uVar8 & 0xfffff;
-  dVar34 = SUB168(auVar36 | _DAT_180da3280,0);
+  dVar34 = SUB168(auVar36 | system_system_memory,0);
   fVar15 = (float)dVar34;
-  dVar38 = SUB168(auVar36 | _DAT_180da3280,8);
+  dVar38 = SUB168(auVar36 | system_system_memory,8);
   fVar16 = (float)dVar38;
-  dVar27 = SUB168(auVar28 | _DAT_180da3280,0);
+  dVar27 = SUB168(auVar28 | system_system_memory,0);
   fVar22 = (float)dVar27;
-  dVar30 = SUB168(auVar28 | _DAT_180da3280,8);
+  dVar30 = SUB168(auVar28 | system_system_memory,8);
   fVar23 = (float)dVar30;
   auVar20._4_4_ = fVar16;
   auVar20._0_4_ = fVar15;
@@ -109,19 +109,19 @@ void FUN_1808fea60(uint64_t param_1,uint64_t param_2)
   auVar18._12_4_ = (int)((ulonglong)dVar30 >> 0x20);
   dVar35 = (dVar34 + (dVar34 * 0.33333333333308374 + -0.49999999999988803) * dVar34 * dVar34 +
             *(double *)(&unknown_var_9296_ptr + (int)uVar7) +
-           ((double)(uint)((ulonglong)dVar19 >> 0x34) - SUB168(auVar25 | _DAT_180da34c0,0)) *
+           ((double)(uint)((ulonglong)dVar19 >> 0x34) - SUB168(auVar25 | system_system_memory,0)) *
            0.6931471805599453) * (double)afStack_100[0];
   dVar39 = (dVar38 + (dVar38 * 0.33333333333308374 + -0.49999999999988803) * dVar38 * dVar38 +
             *(double *)(&unknown_var_9296_ptr + (int)(uint)((ulonglong)dVar1 >> 0x28)) +
-           ((double)(uVar8 >> 0x14) - SUB168(auVar25 | _DAT_180da34c0,8)) * 0.6931471805599453) *
+           ((double)(uVar8 >> 0x14) - SUB168(auVar25 | system_system_memory,8)) * 0.6931471805599453) *
            (double)fVar33;
   dVar38 = (dVar27 + (dVar27 * 0.33333333333308374 + -0.49999999999988803) * dVar27 * dVar27 +
             *(double *)(&unknown_var_9296_ptr + (int)(uint)((ulonglong)dVar2 >> 0x28)) +
            ((double)(uint)((ulonglong)(double)in_XMM0_Dc >> 0x34) -
-           SUB168(auVar17 | _DAT_180da34c0,0)) * 0.6931471805599453) * (double)in_XMM1_Dc;
+           SUB168(auVar17 | system_system_memory,0)) * 0.6931471805599453) * (double)in_XMM1_Dc;
   dVar31 = (dVar30 + (dVar30 * 0.33333333333308374 + -0.49999999999988803) * auVar18._8_8_ * dVar30
             + *(double *)(&unknown_var_9296_ptr + (int)(uint)((ulonglong)dVar3 >> 0x28)) +
-           ((double)(uVar26 >> 0x14) - SUB168(auVar17 | _DAT_180da34c0,8)) * 0.6931471805599453) *
+           ((double)(uVar26 >> 0x14) - SUB168(auVar17 | system_system_memory,8)) * 0.6931471805599453) *
            (double)in_XMM1_Dd;
   dVar30 = dVar35 * 2954.639443740597;
   dVar34 = dVar39 * 2954.639443740597;
@@ -464,8 +464,8 @@ void FUN_1808ffb1c(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   uint64_t uVar3;
   
   uVar3 = 0xfffffffffffffffe;
-  while (puVar1 = _DAT_180c82800, _DAT_180c82800 != (uint64_t *)0x0) {
-    _DAT_180c82800 = (uint64_t *)*_DAT_180c82800;
+  while (puVar1 = system_system_data_memory, system_system_data_memory != (uint64_t *)0x0) {
+    system_system_data_memory = (uint64_t *)*system_system_data_memory;
     lVar2 = _guard_dispatch_icall();
     if (lVar2 != 0) {
       _guard_dispatch_icall(lVar2,1,param_3,param_4,uVar3);

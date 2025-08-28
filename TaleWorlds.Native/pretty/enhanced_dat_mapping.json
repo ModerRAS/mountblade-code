@@ -1,0 +1,319 @@
+{
+  "predefined_mappings": {
+    "DAT_180c8aa08": "system_global_data_ptr",
+    "DAT_180c8a9b0": "system_global_data_ptr_alt",
+    "DAT_180c8ed18": "system_memory_pool_ptr",
+    "DAT_180c82868": "system_context_ptr",
+    "DAT_180c86908": "system_module_state",
+    "DAT_180c86928": "system_message_context",
+    "DAT_180c86870": "system_main_module_state",
+    "DAT_180c86920": "system_thread_context",
+    "DAT_180c86930": "system_resource_state",
+    "DAT_180c86950": "system_operation_state",
+    "DAT_180bf00a8": "system_stack_cookie",
+    "DAT_180c82860": "system_debug_flag",
+    "DAT_180c82842": "system_debug_flag2",
+    "DAT_180bf65bc": "system_allocation_flags",
+    "DAT_180bf65b8": "system_memory_flags",
+    "DAT_180c8ed60": "system_file_counter",
+    "DAT_180c8ed64": "system_handle_counter",
+    "DAT_180c8ed30": "system_error_code",
+    "DAT_180c92514": "system_status_flag",
+    "DAT_180c8ed10": "system_heap_base",
+    "DAT_180c8ed14": "system_heap_size",
+    "DAT_180c8ed1c": "system_stack_base",
+    "DAT_180c8ed20": "system_stack_size",
+    "DAT_18098bc73": "system_buffer_ptr",
+    "DAT_180be12f0": "system_data_buffer",
+    "DAT_180a06434": "system_temp_buffer",
+    "DAT_180c8f008": "system_cache_buffer",
+    "DAT_180c86938": "system_message_buffer",
+    "DAT_180c86890": "system_parameter_buffer",
+    "DAT_180c8a9a8": "system_resource_buffer",
+    "DAT_180c82858": "system_callback_ptr",
+    "DAT_180c82850": "system_event_handler",
+    "DAT_180c82848": "system_interrupt_handler",
+    "DAT_180c82840": "system_exception_handler",
+    "DAT_180d49830": "system_config_data",
+    "DAT_180d49950": "system_resource_config",
+    "DAT_180d49970": "system_module_config",
+    "DAT_180bfc140": "system_cache_config",
+    "DAT_1803f48b2": "system_temp_config"
+  },
+  "address_prefix_mapping": {
+    "180c8": "system_data",
+    "180bf": "system_control",
+    "18098": "system_memory",
+    "180be": "system_buffer",
+    "180a0": "system_temp",
+    "180d4": "system_config",
+    "180bfc": "system_cache",
+    "1803f": "system_handler"
+  },
+  "address_suffix_mapping": {
+    "ed18": "memory_pool",
+    "a9b0": "global_data",
+    "aa08": "main_data",
+    "2868": "context",
+    "6908": "module_state",
+    "6928": "message_context",
+    "8670": "main_module_state",
+    "6920": "thread_context",
+    "6930": "resource_state",
+    "6950": "operation_state",
+    "ed60": "file_counter",
+    "ed64": "handle_counter",
+    "ed30": "error_code",
+    "2514": "status_flag",
+    "00a8": "stack_cookie",
+    "65bc": "allocation_flags",
+    "65b8": "memory_flags",
+    "bc73": "buffer_ptr",
+    "12f0": "data_buffer",
+    "6434": "temp_buffer",
+    "9830": "config_data",
+    "9950": "resource_config",
+    "9970": "module_config",
+    "0140": "cache_config",
+    "48b2": "temp_config"
+  },
+  "context_keywords": {
+    "memory": [
+      "memory",
+      "alloc",
+      "malloc",
+      "free",
+      "heap",
+      "stack",
+      "pool"
+    ],
+    "buffer": [
+      "buffer",
+      "buf",
+      "cache",
+      "temp",
+      "queue",
+      "block"
+    ],
+    "state": [
+      "state",
+      "status",
+      "flag",
+      "mode",
+      "condition"
+    ],
+    "counter": [
+      "counter",
+      "count",
+      "index",
+      "num",
+      "size"
+    ],
+    "config": [
+      "config",
+      "setting",
+      "param",
+      "option",
+      "cfg"
+    ],
+    "pointer": [
+      "ptr",
+      "pointer",
+      "ref",
+      "addr",
+      "handle"
+    ],
+    "handler": [
+      "handler",
+      "callback",
+      "function",
+      "proc",
+      "routine"
+    ],
+    "mutex": [
+      "mutex",
+      "lock",
+      "sync",
+      "critical",
+      "semaphore"
+    ],
+    "string": [
+      "string",
+      "str",
+      "text",
+      "char",
+      "wchar"
+    ],
+    "file": [
+      "file",
+      "handle",
+      "stream",
+      "io",
+      "fs"
+    ],
+    "network": [
+      "network",
+      "net",
+      "socket",
+      "connection",
+      "tcp",
+      "udp"
+    ],
+    "render": [
+      "render",
+      "draw",
+      "graphic",
+      "display",
+      "gpu",
+      "opengl",
+      "directx"
+    ],
+    "audio": [
+      "audio",
+      "sound",
+      "music",
+      "wave",
+      "pcm",
+      "audio"
+    ],
+    "input": [
+      "input",
+      "key",
+      "mouse",
+      "controller",
+      "keyboard",
+      "gamepad"
+    ],
+    "physics": [
+      "physics",
+      "collision",
+      "rigidbody",
+      "force",
+      "dynamics"
+    ],
+    "animation": [
+      "animation",
+      "anim",
+      "bone",
+      "skeleton",
+      "transform"
+    ],
+    "ui": [
+      "ui",
+      "interface",
+      "gui",
+      "widget",
+      "window",
+      "dialog"
+    ],
+    "texture": [
+      "texture",
+      "tex",
+      "image",
+      "bitmap",
+      "surface"
+    ],
+    "shader": [
+      "shader",
+      "program",
+      "pipeline",
+      "vertex",
+      "fragment"
+    ],
+    "camera": [
+      "camera",
+      "view",
+      "projection",
+      "matrix",
+      "transform"
+    ],
+    "light": [
+      "light",
+      "illumination",
+      "shadow",
+      "ambient",
+      "diffuse"
+    ],
+    "material": [
+      "material",
+      "mat",
+      "surface",
+      "texture",
+      "shader"
+    ],
+    "mesh": [
+      "mesh",
+      "model",
+      "geometry",
+      "vertex",
+      "index"
+    ],
+    "resource": [
+      "resource",
+      "asset",
+      "data",
+      "object",
+      "instance"
+    ]
+  },
+  "file_type_mapping": {
+    "01_initialization": "init",
+    "02_core_engine": "core",
+    "03_rendering": "render",
+    "04_ui_system": "ui",
+    "05_networking": "network",
+    "99_part": "system"
+  },
+  "existing_meaningful_names": [
+    "system_interrupt_handler",
+    "system_temp_buffer",
+    "system_heap_size",
+    "system_cache_buffer",
+    "system_status_flag",
+    "system_data_buffer",
+    "system_stack_cookie",
+    "system_resource_config",
+    "system_callback_ptr",
+    "system_cache_config",
+    "system_file_counter",
+    "system_handle_counter",
+    "system_context_ptr",
+    "system_temp_config",
+    "system_module_state",
+    "system_allocation_flags",
+    "system_main_module_state",
+    "system_stack_size",
+    "system_global_data_ptr",
+    "system_event_handler",
+    "system_message_context",
+    "system_operation_state",
+    "system_message_buffer",
+    "system_stack_base",
+    "system_resource_state",
+    "system_thread_context",
+    "system_memory_flags",
+    "system_error_code",
+    "system_memory_pool_ptr",
+    "system_buffer_ptr",
+    "system_debug_flag",
+    "system_module_config",
+    "system_config_data",
+    "system_heap_base",
+    "system_debug_flag2",
+    "system_exception_handler",
+    "system_resource_buffer",
+    "system_parameter_buffer"
+  ],
+  "statistics": {
+    "total_files": 4247,
+    "modified_files": 0,
+    "total_dat_occurrences": 0,
+    "predefined_replacements": 0,
+    "context_based_replacements": 0,
+    "pattern_based_replacements": 0,
+    "file_type_based_replacements": 0,
+    "dat_context_analysis": {},
+    "address_pattern_analysis": {},
+    "file_type_analysis": {}
+  }
+}

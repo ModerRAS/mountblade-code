@@ -170,10 +170,10 @@ void * FUN_180847820(void)
 
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-              0x48) < _DAT_180c4ea90) {
+              0x48) < ui_system_config) {
     FUN_1808fcb90(&system_ptr_ea90);
-    if (_DAT_180c4ea90 == -1) {
-      _DAT_180c4ea80 = 0;
+    if (ui_system_config == -1) {
+      ui_system_config = 0;
       uRam0000000180c4ea84 = 0;
       uRam0000000180c4ea88 = 0;
       uRam0000000180c4ea8c = 0;

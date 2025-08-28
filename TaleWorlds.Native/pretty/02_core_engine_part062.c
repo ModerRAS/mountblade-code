@@ -142,7 +142,7 @@ LAB_18009a8d1:
       }
       lVar4 = strstr(puVar9,&system_data_1440);
       if (lVar4 == 0) {
-        puVar5 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3);
+        puVar5 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x70,8,3);
         uVar11 = uStack_b0;
         *puVar5 = &unknown_var_720_ptr;
         puVar5[1] = 0;
@@ -443,11 +443,11 @@ void FUN_18009af00(uint64_t *param_1)
   float fStackX_10;
   float fStackX_14;
   
-  lVar3 = _DAT_180c868d0;
-  fStackX_10 = (float)*(uint64_t *)(_DAT_180c86950 + 0x17ec);
-  fStackX_14 = (float)((ulonglong)*(uint64_t *)(_DAT_180c86950 + 0x17ec) >> 0x20);
-  *param_1 = CONCAT44(fStackX_14 * *(float *)(_DAT_180c86950 + 0x17e4),
-                      fStackX_10 * *(float *)(_DAT_180c86950 + 0x17e0));
+  lVar3 = core_system_data_config;
+  fStackX_10 = (float)*(uint64_t *)(system_operation_state + 0x17ec);
+  fStackX_14 = (float)((ulonglong)*(uint64_t *)(system_operation_state + 0x17ec) >> 0x20);
+  *param_1 = CONCAT44(fStackX_14 * *(float *)(system_operation_state + 0x17e4),
+                      fStackX_10 * *(float *)(system_operation_state + 0x17e0));
   *(float *)(param_1 + 1) =
        (float)*(int *)(*(longlong *)(lVar3 + 0x2010) + 0x74) /
        *(float *)(*(longlong *)(lVar3 + 0x2010) + 0xc);
@@ -557,7 +557,7 @@ void FUN_18009af00(uint64_t *param_1)
         lVar10 = 0;
       }
       else {
-        lVar10 = FUN_18062b420(_DAT_180c8ed18,uVar9 * 4,*(int8_t *)(param_1 + 0x46));
+        lVar10 = FUN_18062b420(system_memory_pool_ptr,uVar9 * 4,*(int8_t *)(param_1 + 0x46));
       }
       if (lVar3 != lVar2) {
                     // WARNING: Subroutine does not return
@@ -628,7 +628,7 @@ void FUN_18009b10b(longlong param_1)
       lVar3 = 0;
     }
     else {
-      lVar3 = FUN_18062b420(_DAT_180c8ed18,uVar5 * 4,(char)unaff_RBX[3]);
+      lVar3 = FUN_18062b420(system_memory_pool_ptr,uVar5 * 4,(char)unaff_RBX[3]);
     }
     if (lVar2 != lVar1) {
                     // WARNING: Subroutine does not return
@@ -690,7 +690,7 @@ void FUN_18009b13a(void)
     lVar2 = 0;
   }
   else {
-    lVar2 = FUN_18062b420(_DAT_180c8ed18,unaff_RBP * 4,(char)unaff_RBX[3]);
+    lVar2 = FUN_18062b420(system_memory_pool_ptr,unaff_RBP * 4,(char)unaff_RBX[3]);
   }
   if (unaff_RDI != unaff_RSI) {
                     // WARNING: Subroutine does not return

@@ -146,7 +146,7 @@ void FUN_18049b010(ulonglong *param_1,float *param_2,uint64_t param_3,double par
     iVar6 = ((int)(iVar6 + (iVar6 >> 0x1f & 7U)) >> 3) + 4;
   }
   if (iVar6 != 0) {
-    uVar9 = FUN_18062b420(_DAT_180c8ed18,(longlong)iVar6,CONCAT71((uint7)(byte)(uVar3 >> 8),4));
+    uVar9 = FUN_18062b420(system_memory_pool_ptr,(longlong)iVar6,CONCAT71((uint7)(byte)(uVar3 >> 8),4));
   }
   *param_1 = uVar9;
                     // WARNING: Subroutine does not return
@@ -334,7 +334,7 @@ void FUN_18049b063(void)
     iVar6 = ((int)(iVar6 + (iVar6 >> 0x1f & 7U)) >> 3) + 4;
   }
   if (iVar6 != 0) {
-    uVar8 = FUN_18062b420(_DAT_180c8ed18,(longlong)iVar6,CONCAT71((uint7)(byte)(uVar3 >> 8),4));
+    uVar8 = FUN_18062b420(system_memory_pool_ptr,(longlong)iVar6,CONCAT71((uint7)(byte)(uVar3 >> 8),4));
   }
   *unaff_RDI = uVar8;
                     // WARNING: Subroutine does not return
@@ -450,7 +450,7 @@ void FUN_18049b105(void)
     uVar5 = CONCAT44(unaff_0000001c,unaff_EBX);
   }
   else {
-    uVar5 = FUN_18062b420(_DAT_180c8ed18,(longlong)iVar4,CONCAT71((uint7)(byte)(uVar2 >> 8),4));
+    uVar5 = FUN_18062b420(system_memory_pool_ptr,(longlong)iVar4,CONCAT71((uint7)(byte)(uVar2 >> 8),4));
   }
   *unaff_RDI = uVar5;
                     // WARNING: Subroutine does not return
@@ -488,7 +488,7 @@ void FUN_18049b290(void)
     uVar3 = CONCAT44(unaff_0000001c,unaff_EBX);
   }
   else {
-    uVar3 = FUN_18062b420(_DAT_180c8ed18,(longlong)iVar2,CONCAT71((uint7)(byte)(uVar1 >> 8),4));
+    uVar3 = FUN_18062b420(system_memory_pool_ptr,(longlong)iVar2,CONCAT71((uint7)(byte)(uVar1 >> 8),4));
   }
   *unaff_RDI = uVar3;
                     // WARNING: Subroutine does not return
@@ -544,7 +544,7 @@ void FUN_18049b4b0(uint64_t *param_1,ulonglong param_2)
     puVar3 = (uint64_t *)0x0;
     if (uVar10 != 0) {
       puVar3 = (uint64_t *)
-               FUN_18062b420(_DAT_180c8ed18,uVar10 * 0x4a,*(int8_t *)(param_1 + 3),puVar9,
+               FUN_18062b420(system_memory_pool_ptr,uVar10 * 0x4a,*(int8_t *)(param_1 + 3),puVar9,
                              0xfffffffffffffffe);
       puVar9 = (uint64_t *)param_1[1];
       puVar5 = (uint64_t *)*param_1;

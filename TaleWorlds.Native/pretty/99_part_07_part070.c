@@ -723,7 +723,7 @@ void FUN_1804da7e0(int32_t *param_1,uint64_t param_2,longlong param_3)
   void *puStack_18;
   
   alStack_68[1] = 0xfffffffffffffffe;
-  if (*(char *)(_DAT_180c86870 + 0xfd) != '\0') {
+  if (*(char *)(system_main_module_state + 0xfd) != '\0') {
     uVar3 = *(uint64_t *)(param_3 + 0xf8);
     *(uint64_t *)(param_1 + 10) = *(uint64_t *)(param_3 + 0xf0);
     *(uint64_t *)(param_1 + 0xc) = uVar3;
@@ -757,7 +757,7 @@ void FUN_1804da7e0(int32_t *param_1,uint64_t param_2,longlong param_3)
     puStack_18 = &unknown_var_9552_ptr;
     alStack_68[0] = param_3;
     uStack_50 = param_1;
-    apuStack_30[0] = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,system_allocation_flags);
+    apuStack_30[0] = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr,0x20,8,system_allocation_flags);
     *apuStack_30[0] = (int32_t)uStack_50;
     apuStack_30[0][1] = uStack_50._4_4_;
     apuStack_30[0][2] = (int32_t)uStack_48;

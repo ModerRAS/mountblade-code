@@ -321,7 +321,7 @@ LAB_18080177e:
 uint64_t FUN_180801cc0(void)
 
 {
-  FUN_180803120(_DAT_180c36cd0);
+  FUN_180803120(ui_system_config);
   return 0;
 }
 
@@ -349,7 +349,7 @@ uint64_t FUN_180801ce0(longlong param_1)
   if ((longlong *)*plVar4 != (longlong *)0x0) {
     (**(code **)(*(longlong *)*plVar4 + 0x10))();
     *plVar4 = 0;
-    _DAT_180c36cd0 = 0;
+    ui_system_config = 0;
   }
   plVar4 = (longlong *)(param_1 + 0x4a0);
   if (param_1 == 0) {
@@ -432,7 +432,7 @@ void FUN_180801ef0(longlong param_1)
   ulonglong uStack_38;
   
   uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)&uStack_288;
-  if ((*(char *)(param_1 + 0x310) == '\0') && (_DAT_180c36cd0 == 0)) {
+  if ((*(char *)(param_1 + 0x310) == '\0') && (ui_system_config == 0)) {
     plVar4 = alStack_270;
     alStack_270[0] = 0;
     aiStack_284[0] = 0;
@@ -752,7 +752,7 @@ void FUN_1808025c0(longlong param_1,int param_2,uint64_t param_3,int *param_4,in
                   } while ((int)uVar8 < *(int *)(*plVar1 + 0x24 + lVar16));
                 }
                 piStack_f8 = (int *)(param_1 + 0x418);
-                _DAT_180c36cd0 = param_1;
+                ui_system_config = param_1;
                 *(void **)(param_1 + 0x428) = &unknown_var_6832_ptr;
                 *(void **)piStack_f8 = &unknown_var_6880_ptr;
                 *(code **)(param_1 + 0x420) = _guard_check_icall;

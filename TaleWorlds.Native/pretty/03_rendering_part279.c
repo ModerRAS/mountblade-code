@@ -759,7 +759,7 @@ void FUN_18041dfa0(longlong param_1,longlong param_2)
   ulonglong uStack_38;
   
   uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_f8;
-  puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,3);
+  puVar3 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,3);
   puVar8 = (uint64_t *)0x0;
   *puVar3 = 0;
   puVar3[1] = 0;
@@ -917,7 +917,7 @@ void FUN_18041e290(longlong param_1)
   longlong *plVar2;
   uint64_t *in_stack_00000030;
   
-  uVar1 = _DAT_180c8ed18;
+  uVar1 = system_memory_pool_ptr;
   *in_stack_00000030 = 8;
   *(int32_t *)(in_stack_00000030 + 1) = 0;
   plVar2 = (longlong *)FUN_18062b420(uVar1,0x4888,0x22);

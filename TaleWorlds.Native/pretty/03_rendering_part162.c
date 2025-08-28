@@ -37,7 +37,7 @@ void FUN_18036ae60(uint64_t param_1,longlong param_2,uint64_t param_3,uint64_t p
     puStack_58 = (uint64_t *)0x0;
     uStack_50 = 0;
     puVar3 = (uint64_t *)
-             FUN_18062b420(_DAT_180c8ed18,(int)lVar5 + 0xc,&unknown_var_1379_ptr,param_4,0xfffffffffffffffe
+             FUN_18062b420(system_memory_pool_ptr,(int)lVar5 + 0xc,&unknown_var_1379_ptr,param_4,0xfffffffffffffffe
                           );
     *(int8_t *)puVar3 = 0;
     puStack_58 = puVar3;
@@ -60,7 +60,7 @@ void FUN_18036ae60(uint64_t param_1,longlong param_2,uint64_t param_3,uint64_t p
     uStack_28 = 0;
     puStack_38 = (uint64_t *)0x0;
     uStack_30 = 0;
-    puVar3 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13,param_4,uVar6);
+    puVar3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13,param_4,uVar6);
     *(int8_t *)puVar3 = 0;
     puStack_38 = puVar3;
     uVar2 = FUN_18064e990(puVar3);
@@ -81,7 +81,7 @@ void FUN_18036ae60(uint64_t param_1,longlong param_2,uint64_t param_3,uint64_t p
     uStack_48 = 0;
     puStack_58 = (uint64_t *)0x0;
     uStack_50 = 0;
-    puVar3 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+    puVar3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
     *(int8_t *)puVar3 = 0;
     puStack_58 = puVar3;
     uVar2 = FUN_18064e990(puVar3);
@@ -104,7 +104,7 @@ void FUN_18036ae60(uint64_t param_1,longlong param_2,uint64_t param_3,uint64_t p
     uStack_28 = 0;
     puStack_38 = (uint64_t *)0x0;
     uStack_30 = 0;
-    puVar4 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,0x17,0x13);
+    puVar4 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x17,0x13);
     *(int8_t *)puVar4 = 0;
     puStack_38 = (uint64_t *)puVar4;
     uVar2 = FUN_18064e990(puVar4);
@@ -173,7 +173,7 @@ void FUN_18036b140(longlong param_1)
   uStack_30 = 0xfffffffffffffffe;
   uStack_38 = 0;
   uVar17 = *(uint64_t *)(*(longlong *)(param_1 + 0x18) + 0x20);
-  uVar7 = FUN_18062b1e0(_DAT_180c8ed18,0x2f0,0x10,0xd);
+  uVar7 = FUN_18062b1e0(system_memory_pool_ptr,0x2f0,0x10,0xd);
   plVar8 = (longlong *)FUN_1802e6b00(uVar7,4);
   plStackX_10 = plVar8;
   if (plVar8 != (longlong *)0x0) {

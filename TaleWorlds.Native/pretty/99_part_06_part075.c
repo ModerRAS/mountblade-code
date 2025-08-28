@@ -841,7 +841,7 @@ DataErrorCode DataResourceCleaner(void* param_1)
     (*(void (**)(void**, void*))(cleanup_array[0] + 0x10))(cleanup_array, cleanup_data);
     
     // 分配资源清理内存
-    cleanup_pointer = (uint64_t*)MemoryPoolAllocate(_DAT_180c8ed18, 0x18, 8, 3);
+    cleanup_pointer = (uint64_t*)MemoryPoolAllocate(system_memory_pool_ptr, 0x18, 8, 3);
     *cleanup_pointer = 0;
     *(uint8_t*)(cleanup_pointer + 2) = 0;
     

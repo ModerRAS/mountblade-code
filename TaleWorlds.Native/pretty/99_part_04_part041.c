@@ -611,7 +611,7 @@ uint64_t* ObjectManagerProcessor(longlong param_1, uint64_t* param_2)
     longlong **temp_context_manager;
     
     parameter_buffer = param_2;
-    object_handle = SystemObjectFactory(_DAT_180c8ed18, MEMORY_POOL_SIZE, MEMORY_ALIGNMENT, SYSTEM_FLAG_PROCESS, SYSTEM_NULL_PTR, SYSTEM_VALID_HANDLE);
+    object_handle = SystemObjectFactory(system_memory_pool_ptr, MEMORY_POOL_SIZE, MEMORY_ALIGNMENT, SYSTEM_FLAG_PROCESS, SYSTEM_NULL_PTR, SYSTEM_VALID_HANDLE);
     object_instance = (longlong *)SystemObjectInitializer(object_handle);
     temp_buffer_2 = object_instance;
     

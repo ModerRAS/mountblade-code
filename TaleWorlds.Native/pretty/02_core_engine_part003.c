@@ -101,14 +101,14 @@ extern uint64_t global_var_224;
 extern uint64_t global_var_736_ptr;
 
 /** 系统全局变量 */
-extern uint64_t _DAT_180c91d5c;
-extern uint64_t _DAT_180bf7e90;
-extern uint64_t _DAT_180bf7e98;
-extern uint64_t _DAT_180c91d60;
-extern uint64_t _DAT_180c91d64;
-extern uint64_t _DAT_180c91d68;
-extern uint64_t _DAT_180c91d6c;
-extern uint64_t _DAT_180c91d70;
+extern uint64_t core_system_memory;
+extern uint64_t core_system_control_memory;
+extern uint64_t core_system_control_memory;
+extern uint64_t core_system_memory;
+extern uint64_t core_system_memory;
+extern uint64_t core_system_memory;
+extern uint64_t core_system_memory;
+extern uint64_t core_system_memory;
 
 extern uint64_t global_var_3432_ptr;
 extern uint64_t global_var_3480_ptr;
@@ -384,7 +384,7 @@ void core_engine_system_initializer_type4(void)
     strcpy_s(buffer_data, BUFFER_SIZE, &global_var_8184_ptr, parameter_register, 0xfffffffffffffffe);
     
     // 注册字符串处理器
-    _DAT_180c91d5c = FUN_180623800(&string_processor);
+    core_system_memory = FUN_180623800(&string_processor);
     
     return;
 }
@@ -405,8 +405,8 @@ int core_engine_system_initializer_type5(void)
     uint64_t parameter_register;
 
     // 设置系统状态指针
-    _DAT_180bf7e90 = &global_var_3480_ptr;
-    _DAT_180bf7e98 = &system_memory_7ea8;
+    core_system_control_memory = &global_var_3480_ptr;
+    core_system_control_memory = &system_memory_7ea8;
 
     return 0;
 }
@@ -439,7 +439,7 @@ void core_engine_system_initializer_type6(void)
     strcpy_s(buffer_data, BUFFER_SIZE, &global_var_8872_ptr, parameter_register, 0xfffffffffffffffe);
     
     // 注册字符串处理器
-    _DAT_180c91d60 = FUN_180623800(&string_processor);
+    core_system_memory = FUN_180623800(&string_processor);
     
     return;
 }
@@ -472,7 +472,7 @@ void core_engine_system_initializer_type7(void)
     strcpy_s(buffer_data, BUFFER_SIZE, &global_var_9280_ptr, parameter_register, 0xfffffffffffffffe);
     
     // 注册字符串处理器
-    _DAT_180c91d64 = FUN_180623800(&string_processor);
+    core_system_memory = FUN_180623800(&string_processor);
     
     return;
 }
@@ -505,7 +505,7 @@ void core_engine_system_initializer_type8(void)
     strcpy_s(buffer_data, BUFFER_SIZE, &global_var_264_ptr, parameter_register, 0xfffffffffffffffe);
     
     // 注册字符串处理器
-    _DAT_180c91d68 = FUN_180623800(&string_processor);
+    core_system_memory = FUN_180623800(&string_processor);
     
     return;
 }
@@ -538,7 +538,7 @@ void core_engine_system_initializer_type9(void)
     strcpy_s(buffer_data, BUFFER_SIZE, &system_memory_4640, parameter_register, 0xfffffffffffffffe);
     
     // 注册字符串处理器
-    _DAT_180c91d6c = FUN_180623800(&string_processor);
+    core_system_memory = FUN_180623800(&string_processor);
     
     return;
 }
@@ -571,7 +571,7 @@ void core_engine_system_initializer_type10(void)
     strcpy_s(buffer_data, BUFFER_SIZE, &global_var_736_ptr, parameter_register, 0xfffffffffffffffe);
     
     // 注册字符串处理器
-    _DAT_180c91d70 = FUN_180623800(&string_processor);
+    core_system_memory = FUN_180623800(&string_processor);
     
     return;
 }

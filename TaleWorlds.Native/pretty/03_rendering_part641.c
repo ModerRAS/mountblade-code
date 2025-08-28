@@ -251,13 +251,13 @@ void * FUN_180628ca0(void)
 
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-              0x48) < _DAT_180d4a060) {
+              0x48) < render_system_config_config) {
     FUN_1808fcb90(&system_ptr_a060);
-    if (_DAT_180d4a060 == -1) {
-      _DAT_180d4a068 = &unknown_var_3456_ptr;
-      _DAT_180d4a080 = 0;
-      _DAT_180d4a070 = 0;
-      _DAT_180d4a078 = 0;
+    if (render_system_config_config == -1) {
+      render_system_config_config = &unknown_var_3456_ptr;
+      render_system_config_config = 0;
+      render_system_config_config = 0;
+      render_system_config_config = 0;
       FUN_1808fc820(FUN_1809430e0);
       FUN_1808fcb30(&system_ptr_a060);
       return &system_ptr_a068;
@@ -401,7 +401,7 @@ void FUN_180629020(char *param_1)
     if (iVar1 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar1);
     }
-    SymCleanup(_DAT_180c96218);
+    SymCleanup(render_system_config);
     *param_1 = '\0';
     iVar1 = _Mtx_unlock(param_1 + 8);
     if (iVar1 != 0) {
@@ -472,7 +472,7 @@ void FUN_180629770(void)
   }
   puVar1[4] = 0;
   puVar1[5] = _guard_check_icall;
-  _DAT_180c8ed18 = puVar1;
+  system_memory_pool_ptr = puVar1;
   FUN_18064f4b0();
 
 

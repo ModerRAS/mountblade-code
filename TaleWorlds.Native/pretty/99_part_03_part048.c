@@ -434,7 +434,7 @@ LAB_1801fdfff:
           if (iVar3 < 0x10) {
             iVar3 = 0x10;
           }
-          pcVar6 = (char *)FUN_18062b420(_DAT_180c8ed18,(longlong)iVar3,0x13);
+          pcVar6 = (char *)FUN_18062b420(system_memory_pool_ptr,(longlong)iVar3,0x13);
           uVar21 = (int32_t)((ulonglong)uVar20 >> 0x20);
           *pcVar6 = '\0';
           pcVar18 = pcVar6;
@@ -544,7 +544,7 @@ void FUN_1801fe1c0(uint64_t *param_1)
   int iVar4;
   
   (**(code **)(param_1[5] + 0x10))(param_1 + 5,&unknown_var_9856_ptr);
-  uVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x3d8,8,3);
+  uVar1 = FUN_18062b1e0(system_memory_pool_ptr,0x3d8,8,3);
   lVar2 = FUN_1801fa330(uVar1);
   param_1[1] = lVar2;
   iVar4 = 1;
@@ -552,7 +552,7 @@ void FUN_1801fe1c0(uint64_t *param_1)
   *param_1 = param_1[1];
   plVar3 = param_1 + 2;
   do {
-    uVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x3d8,8,3);
+    uVar1 = FUN_18062b1e0(system_memory_pool_ptr,0x3d8,8,3);
     lVar2 = FUN_1801fa330(uVar1);
     *plVar3 = lVar2;
     *(uint64_t *)(lVar2 + 0x3c8) = *param_1;

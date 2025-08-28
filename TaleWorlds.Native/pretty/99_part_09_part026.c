@@ -262,7 +262,7 @@ LAB_1805c9b87:
                     if (bVar25) {
                       iVar20 = *(int *)(lVar23 + 0x5c + plVar24[0x1a]);
                       bVar18 = *(byte *)((longlong)*(int *)(lVar23 + 100 + plVar24[0x1a]) * 0x170 +
-                                         0x140 + _DAT_180c95ff0);
+                                         0x140 + system_system_memory);
                       bVar11 = bVar18;
                       if ((iVar20 == 0xf) && ((*(uint *)(*param_1 + 0x56c) & 0x1000000) != 0)) {
                         bVar11 = bVar18 & 0xfd;
@@ -279,7 +279,7 @@ LAB_1805c9b87:
 LAB_1805c9bec:
                       iVar20 = *(int *)(lVar23 + 0x5c + plVar24[0x1a]);
                       bVar18 = *(byte *)((longlong)*(int *)(lVar23 + 100 + plVar24[0x1a]) * 0x170 +
-                                         0x140 + _DAT_180c95ff0);
+                                         0x140 + system_system_memory);
                       bVar11 = bVar18;
                       if ((iVar20 == 0xf) && ((*(uint *)(*param_1 + 0x56c) & 0x1000000) != 0)) {
                         bVar11 = bVar18 & 0xfd;
@@ -319,7 +319,7 @@ LAB_1805c9d0e:
                               0) && (*(short *)(lVar12 + 8) < 1)) ||
                            ((*(byte *)((longlong)
                                        *(int *)(lVar16 + 100 + *(longlong *)(lVar12 + 0xd0)) * 0x170
-                                       + 0x140 + _DAT_180c95ff0) & 0x10) == 0)) goto LAB_1805c9d0e;
+                                       + 0x140 + system_system_memory) & 0x10) == 0)) goto LAB_1805c9d0e;
                         uVar8 = 1;
                       }
                       uVar28 = FUN_1805ca260(param_1,plVar24,iVar17,param_3,param_4,param_5,uVar8);
@@ -338,7 +338,7 @@ LAB_1805c9d0e:
                            (((*(uint *)((longlong)param_1 + 0x209c) >> 2 & 1) != 0 &&
                             (((bVar18 != 0 && (bVar5)) ||
                              ((*(byte *)((longlong)*(int *)(lVar23 + 100 + lVar12) * 0x170 + 0x140 +
-                                        _DAT_180c95ff0) & 0x10) != 0)))))) goto LAB_1805c9def;
+                                        system_system_memory) & 0x10) != 0)))))) goto LAB_1805c9def;
                       }
                       else {
 LAB_1805c9def:
@@ -632,7 +632,7 @@ LAB_1805c9b87:
 LAB_1805c9bec:
                     iVar18 = *(int *)(lVar21 + 0x5c + plVar22[0x1a]);
                     bVar16 = *(byte *)((longlong)*(int *)(lVar21 + 100 + plVar22[0x1a]) * 0x170 +
-                                       0x140 + _DAT_180c95ff0);
+                                       0x140 + system_system_memory);
                     bVar9 = bVar16;
                     if ((iVar18 == 0xf) && ((*(uint *)(*unaff_R15 + 0x56c) & 0x1000000) != 0)) {
                       bVar9 = bVar16 & 0xfd;
@@ -648,7 +648,7 @@ LAB_1805c9bec:
                   else {
                     iVar18 = *(int *)(lVar21 + 0x5c + plVar22[0x1a]);
                     bVar16 = *(byte *)((longlong)*(int *)(lVar21 + 100 + plVar22[0x1a]) * 0x170 +
-                                       0x140 + _DAT_180c95ff0);
+                                       0x140 + system_system_memory);
                     bVar9 = bVar16;
                     if ((iVar18 == 0xf) && ((*(uint *)(*unaff_R15 + 0x56c) & 0x1000000) != 0)) {
                       bVar9 = bVar16 & 0xfd;
@@ -693,7 +693,7 @@ LAB_1805c9bec:
                          (((*(uint *)((longlong)unaff_R15 + 0x209c) >> 2 & 1) != 0 &&
                           (((bVar16 != 0 && (cStack0000000000000040 != '\0')) ||
                            ((*(byte *)((longlong)*(int *)(lVar21 + 100 + lVar10) * 0x170 + 0x140 +
-                                      _DAT_180c95ff0) & 0x10) != 0)))))) goto LAB_1805c9def;
+                                      system_system_memory) & 0x10) != 0)))))) goto LAB_1805c9def;
                     }
                     else {
 LAB_1805c9def:

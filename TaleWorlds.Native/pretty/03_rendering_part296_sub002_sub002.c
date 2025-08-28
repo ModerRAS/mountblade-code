@@ -540,7 +540,7 @@ FUN_1804256d0(longlong *param_1,byte *param_2,uint param_3,int param_4,uint para
   }
   else {
     puVar72 = (int16_t *)
-              FUN_18062b420(_DAT_180c8ed18,(longlong)(int)(iVar79 * param_5 * param_6),
+              FUN_18062b420(system_memory_pool_ptr,(longlong)(int)(iVar79 * param_5 * param_6),
                             CONCAT71((uint7)(uint3)(uStackX_8 >> 8),0x22));
   }
   param_1[3] = (longlong)puVar72;

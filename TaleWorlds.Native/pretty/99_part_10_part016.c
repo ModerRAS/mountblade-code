@@ -419,7 +419,7 @@ LAB_1806abc5a:
 LAB_1806abfac:
   if (puVar13 != (uint64_t *)0x0) {
     (**(code **)*puVar13)(puVar13,0);
-    (**(code **)(*_DAT_180be0050 + 0x10))(_DAT_180be0050,puVar13);
+    (**(code **)(*system_system_buffer_ui + 0x10))(system_system_buffer_ui,puVar13);
   }
   goto LAB_1806abfce;
 }

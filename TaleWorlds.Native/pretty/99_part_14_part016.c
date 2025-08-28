@@ -792,14 +792,14 @@ uint64_t NVSDK_NGX_D3D11_AllocateParameters(uint64_t param_1)
   uint64_t uVar1;
   
                     // 0x8f8b60  1  NVSDK_NGX_D3D11_AllocateParameters
-  UNRECOVERED_JUMPTABLE = _DAT_180c69ec0;
-  if (_DAT_180c69e80 == 0) {
+  UNRECOVERED_JUMPTABLE = system_system_config;
+  if (system_system_config == 0) {
     return 0xbad00007;
   }
-  if (_DAT_180c69ec0 == (code *)0x0) {
+  if (system_system_config == (code *)0x0) {
     return 0xbad0000c;
   }
-  _guard_check_icall(_DAT_180c69ec0);
+  _guard_check_icall(system_system_config);
                     // WARNING: Could not recover jumptable at 0x0001808f8bb8. Too many branches
                     // WARNING: Treating indirect jump as call
   uVar1 = (*UNRECOVERED_JUMPTABLE)(param_1);
@@ -816,11 +816,11 @@ uint64_t FUN_1808f8b7e(void)
   code *UNRECOVERED_JUMPTABLE;
   uint64_t uVar1;
   
-  UNRECOVERED_JUMPTABLE = _DAT_180c69ec0;
-  if (_DAT_180c69ec0 == (code *)0x0) {
+  UNRECOVERED_JUMPTABLE = system_system_config;
+  if (system_system_config == (code *)0x0) {
     return 0xbad0000c;
   }
-  _guard_check_icall(_DAT_180c69ec0);
+  _guard_check_icall(system_system_config);
                     // WARNING: Could not recover jumptable at 0x0001808f8bb8. Too many branches
                     // WARNING: Treating indirect jump as call
   uVar1 = (*UNRECOVERED_JUMPTABLE)();
@@ -858,12 +858,12 @@ NVSDK_NGX_D3D11_CreateFeature
   uint64_t uVar2;
   
                     // 0x8f8bc0  2  NVSDK_NGX_D3D11_CreateFeature
-  pcVar1 = _DAT_180c69ea8;
-  if (_DAT_180c69ea8 == (code *)0x0) {
+  pcVar1 = system_system_config;
+  if (system_system_config == (code *)0x0) {
     uVar2 = 0xbad00007;
   }
   else {
-    _guard_check_icall(_DAT_180c69ea8);
+    _guard_check_icall(system_system_config);
     uVar2 = (*pcVar1)(param_1,param_2,param_3,param_4);
   }
   return uVar2;
@@ -880,14 +880,14 @@ uint64_t NVSDK_NGX_D3D11_DestroyParameters(uint64_t param_1)
   uint64_t uVar1;
   
                     // 0x8f8c30  3  NVSDK_NGX_D3D11_DestroyParameters
-  UNRECOVERED_JUMPTABLE = _DAT_180c69ed0;
-  if (_DAT_180c69e80 == 0) {
+  UNRECOVERED_JUMPTABLE = system_system_config;
+  if (system_system_config == 0) {
     return 0xbad00007;
   }
-  if (_DAT_180c69ed0 == (code *)0x0) {
+  if (system_system_config == (code *)0x0) {
     return 0xbad0000c;
   }
-  _guard_check_icall(_DAT_180c69ed0);
+  _guard_check_icall(system_system_config);
                     // WARNING: Could not recover jumptable at 0x0001808f8c88. Too many branches
                     // WARNING: Treating indirect jump as call
   uVar1 = (*UNRECOVERED_JUMPTABLE)(param_1);
@@ -904,11 +904,11 @@ uint64_t FUN_1808f8c4e(void)
   code *UNRECOVERED_JUMPTABLE;
   uint64_t uVar1;
   
-  UNRECOVERED_JUMPTABLE = _DAT_180c69ed0;
-  if (_DAT_180c69ed0 == (code *)0x0) {
+  UNRECOVERED_JUMPTABLE = system_system_config;
+  if (system_system_config == (code *)0x0) {
     return 0xbad0000c;
   }
-  _guard_check_icall(_DAT_180c69ed0);
+  _guard_check_icall(system_system_config);
                     // WARNING: Could not recover jumptable at 0x0001808f8c88. Too many branches
                     // WARNING: Treating indirect jump as call
   uVar1 = (*UNRECOVERED_JUMPTABLE)();
@@ -946,12 +946,12 @@ NVSDK_NGX_D3D11_EvaluateFeature
   uint64_t uVar2;
   
                     // 0x8f8c90  4  NVSDK_NGX_D3D11_EvaluateFeature
-  pcVar1 = _DAT_180c69eb0;
-  if (_DAT_180c69eb0 == (code *)0x0) {
+  pcVar1 = system_system_config;
+  if (system_system_config == (code *)0x0) {
     uVar2 = 0xbad00007;
   }
   else {
-    _guard_check_icall(_DAT_180c69eb0);
+    _guard_check_icall(system_system_config);
     uVar2 = (*pcVar1)(param_1,param_2,param_3,param_4);
   }
   return uVar2;
@@ -969,10 +969,10 @@ NVSDK_NGX_D3D11_EvaluateFeature_C
   uint64_t uVar1;
   
                     // 0x8f8d00  5  NVSDK_NGX_D3D11_EvaluateFeature_C
-  if (_DAT_180c69eb0 == 0) {
+  if (system_system_config == 0) {
     return 0xbad00007;
   }
-  uVar1 = FUN_1808f88b0(_DAT_180c69eb0,param_1,param_2,param_3,param_4);
+  uVar1 = FUN_1808f88b0(system_system_config,param_1,param_2,param_3,param_4);
   return uVar1;
 }
 
@@ -987,14 +987,14 @@ uint64_t NVSDK_NGX_D3D11_GetCapabilityParameters(uint64_t param_1)
   uint64_t uVar1;
   
                     // 0x8f8d40  6  NVSDK_NGX_D3D11_GetCapabilityParameters
-  UNRECOVERED_JUMPTABLE = _DAT_180c69ec8;
-  if (_DAT_180c69e80 == 0) {
+  UNRECOVERED_JUMPTABLE = system_system_config;
+  if (system_system_config == 0) {
     return 0xbad00007;
   }
-  if (_DAT_180c69ec8 == (code *)0x0) {
+  if (system_system_config == (code *)0x0) {
     return 0xbad0000c;
   }
-  _guard_check_icall(_DAT_180c69ec8);
+  _guard_check_icall(system_system_config);
                     // WARNING: Could not recover jumptable at 0x0001808f8d98. Too many branches
                     // WARNING: Treating indirect jump as call
   uVar1 = (*UNRECOVERED_JUMPTABLE)(param_1);
@@ -1011,11 +1011,11 @@ uint64_t FUN_1808f8d5e(void)
   code *UNRECOVERED_JUMPTABLE;
   uint64_t uVar1;
   
-  UNRECOVERED_JUMPTABLE = _DAT_180c69ec8;
-  if (_DAT_180c69ec8 == (code *)0x0) {
+  UNRECOVERED_JUMPTABLE = system_system_config;
+  if (system_system_config == (code *)0x0) {
     return 0xbad0000c;
   }
-  _guard_check_icall(_DAT_180c69ec8);
+  _guard_check_icall(system_system_config);
                     // WARNING: Could not recover jumptable at 0x0001808f8d98. Too many branches
                     // WARNING: Treating indirect jump as call
   uVar1 = (*UNRECOVERED_JUMPTABLE)();

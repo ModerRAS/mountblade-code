@@ -177,7 +177,7 @@ longlong * FUN_18019eb80(longlong param_1,longlong *param_2)
   longlong *plStack_e8;
   
   uStack_f8 = 0xfffffffffffffffe;
-  uVar7 = FUN_18062b1e0(_DAT_180c8ed18,0x3d0,8,3);
+  uVar7 = FUN_18062b1e0(system_memory_pool_ptr,0x3d0,8,3);
   plVar8 = (longlong *)FUN_180275090(uVar7);
   (**(code **)(*plVar8 + 0x100))(plVar8,0);
   lVar14 = *param_2;
@@ -289,7 +289,7 @@ longlong * FUN_18019eb80(longlong param_1,longlong *param_2)
           if (*(longlong *)(lVar17 + 0xf8) - (longlong)*(uint64_t **)(lVar17 + 0xf0) >> 3 != 0) {
             (**(code **)(*(longlong *)**(uint64_t **)(lVar17 + 0xf0) + 0x178))();
           }
-          lVar14 = _DAT_180c86898;
+          lVar14 = core_system_data_memory;
           fStack_2c8 = (float)lStack_2e8;
           puStack_278 = (uint64_t *)CONCAT44(puStack_278._4_4_,uStack_2f0._4_4_);
           fStack_2c4 = ((float)lStack_2e8 + (float)uStack_2a0) * 0.5;
@@ -317,7 +317,7 @@ longlong * FUN_18019eb80(longlong param_1,longlong *param_2)
           fStack_190 = 0.0;
           uStack_18c = 0x7f7fffff;
           fStack_198 = fStack_244;
-          if (*(longlong *)(_DAT_180c86898 + 0x350) == 0) {
+          if (*(longlong *)(core_system_data_memory + 0x350) == 0) {
             puVar9 = (uint64_t *)FUN_180094e80();
             uVar7 = *puVar9;
             *puVar9 = 0;
@@ -462,7 +462,7 @@ longlong * FUN_18019eb80(longlong param_1,longlong *param_2)
           lVar14 = 0;
           fVar24 = 0.0;
           do {
-            lVar17 = _DAT_180c86898;
+            lVar17 = core_system_data_memory;
             fVar34 = (*(float *)(lStack_150 + 8 + lVar14) + *(float *)(lStack_118 + 8 + lVar14)) *
                      0.5;
             fVar29 = (*(float *)(lStack_150 + 4 + lVar14) + *(float *)(lStack_118 + 4 + lVar14)) *
@@ -492,7 +492,7 @@ longlong * FUN_18019eb80(longlong param_1,longlong *param_2)
             fStack_184 = -fStack_1c8;
             fStack_1c4 = fVar25;
             fStack_188 = fVar25;
-            if (*(longlong *)(_DAT_180c86898 + 0x350) == 0) {
+            if (*(longlong *)(core_system_data_memory + 0x350) == 0) {
               puVar10 = (uint64_t *)
                         FUN_180094e80(auVar23._0_8_,&plStack_168,&system_data_35c0,fStack_184,puVar35,
                                       puVar9,iVar13);

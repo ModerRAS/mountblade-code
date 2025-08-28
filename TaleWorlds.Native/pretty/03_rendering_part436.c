@@ -89,8 +89,8 @@ int * FUN_180507810(longlong param_1,int *param_2)
   
   iVar1 = *(int *)(param_1 + 0x18);
   *param_2 = iVar1;
-  if ((iVar1 != 0) && (_DAT_180c8f008 != 0)) {
-    (**(code **)(_DAT_180c8f008 + 0x30))();
+  if ((iVar1 != 0) && (system_cache_buffer != 0)) {
+    (**(code **)(system_cache_buffer + 0x30))();
   }
   return param_2;
 }
@@ -614,9 +614,9 @@ void FUN_180508510(longlong param_1,short param_2,int param_3,uint64_t param_4)
   else {
     plStackX_8 = (longlong *)0x0;
     if (((*(uint *)(param_1 + 0x56c) & 0x800) != 0) ||
-       (fVar15 = *(float *)(_DAT_180c86878 + 0x1bc) - *(float *)(lVar2 + 0x8e8),
-       fVar16 = *(float *)(_DAT_180c86878 + 0x1b8) - *pfVar13,
-       fVar14 = *(float *)(_DAT_180c86878 + 0x1c0) - *(float *)(lVar2 + 0x8ec), pplVar10 = pplVar12,
+       (fVar15 = *(float *)(render_system_data_config + 0x1bc) - *(float *)(lVar2 + 0x8e8),
+       fVar16 = *(float *)(render_system_data_config + 0x1b8) - *pfVar13,
+       fVar14 = *(float *)(render_system_data_config + 0x1c0) - *(float *)(lVar2 + 0x8ec), pplVar10 = pplVar12,
        fVar16 * fVar16 + fVar15 * fVar15 + fVar14 * fVar14 <= 100.0)) {
       pplVar10 = &plStackX_8;
     }
@@ -642,16 +642,16 @@ void FUN_180508510(longlong param_1,short param_2,int param_3,uint64_t param_4)
       (**(code **)(*plVar6 + 0x38))(plVar6);
     }
   }
-  if (((param_3 != 0) && ((_DAT_180c92514 - 2U & 0xfffffffc) == 0)) &&
-     ((_DAT_180c92514 != 4 &&
+  if (((param_3 != 0) && ((system_status_flag - 2U & 0xfffffffc) == 0)) &&
+     ((system_status_flag != 4 &&
       ((iVar8 = *(int *)(*(longlong *)(param_1 + 0x6d8) + 0x8b4), -1 < iVar8 &&
-       (iVar8 = *(int *)(*(longlong *)((longlong)iVar8 * 0x60 + 0x48 + _DAT_180c960e0) +
+       (iVar8 = *(int *)(*(longlong *)((longlong)iVar8 * 0x60 + 0x48 + render_system_config) +
                         (longlong)param_2 * 4), iVar8 != -1)))))) {
     pplVar10 = pplVar12;
     if (param_3 == 1) {
       pplVar10 = *(longlong ***)(param_1 + 0x8e8);
     }
-    fVar14 = *(float *)(*_DAT_180c96110 + 4 + (longlong)iVar8 * 0x14);
+    fVar14 = *(float *)(*render_system_config + 4 + (longlong)iVar8 * 0x14);
     uVar9 = FUN_18055caa0(&system_data_25a0);
     uVar1 = *(int32_t *)(param_1 + 0x10);
     cVar7 = FUN_180645c10(uVar9,0,&unknown_var_3504_ptr);
@@ -660,9 +660,9 @@ void FUN_180508510(longlong param_1,short param_2,int param_3,uint64_t param_4)
        (cVar7 = FUN_180645c10(uVar9,(int)param_2,&system_data_bcd0), cVar7 != '\0')) {
       FUN_1805aea10(uVar9,param_4);
     }
-    _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
-    iVar8 = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
-    lVar11 = _DAT_180c92cd8;
+    render_system_config = render_system_config & 0xffffffff00000000;
+    iVar8 = (int)(render_system_config - render_system_config >> 3);
+    lVar11 = render_system_config;
     if (0 < iVar8) {
       do {
         lVar4 = *(longlong *)(lVar11 + (longlong)pplVar12 * 8);
@@ -675,17 +675,17 @@ void FUN_180508510(longlong param_1,short param_2,int param_3,uint64_t param_4)
                      fVar15 = *(float *)(lVar2 + 0x8ec) - *(float *)(lVar4 + 0x5908),
                      fVar17 * fVar17 + fVar16 * fVar16 + fVar15 * fVar15 < fVar14 * fVar14)))) {
           FUN_1805b59d0(lVar4,0x180c95578);
-          lVar11 = _DAT_180c92cd8;
+          lVar11 = render_system_config;
         }
         pplVar12 = (longlong **)((longlong)pplVar12 + 1);
       } while ((longlong)pplVar12 < (longlong)iVar8);
     }
-    if (_DAT_180c96070 != 0) {
-      FUN_180567f30(_DAT_180c92580,0x180c95578);
+    if (render_system_config != 0) {
+      FUN_180567f30(render_system_config,0x180c95578);
     }
-    _DAT_180c95b3c = 0;
+    render_system_config = 0;
                     // WARNING: Subroutine does not return
-    memset(_DAT_180c95b10,0,(longlong)(_DAT_180c95b08 >> 3));
+    memset(render_system_config,0,(longlong)(render_system_config >> 3));
   }
   return;
 }
@@ -776,32 +776,32 @@ void FUN_180508bd0(longlong param_1,char param_2)
   
   if (*(char *)(param_1 + 0x604) != param_2) {
     *(char *)(param_1 + 0x604) = param_2;
-    if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
+    if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
       iVar2 = _Mtx_lock(0x180c95528);
       if (iVar2 != 0) {
         __Throw_C_error_std__YAXH_Z(iVar2);
       }
       FUN_1805ae1e0(0x180c95578,*(int32_t *)(param_1 + 0x10),*(int8_t *)(param_1 + 0x604));
-      _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
-      iVar2 = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
+      render_system_config = render_system_config & 0xffffffff00000000;
+      iVar2 = (int)(render_system_config - render_system_config >> 3);
       if (0 < iVar2) {
         lVar4 = 0;
-        lVar3 = _DAT_180c92cd8;
+        lVar3 = render_system_config;
         do {
           lVar1 = *(longlong *)(lVar3 + lVar4 * 8);
           if ((lVar1 != 0) && (*(char *)(*(longlong *)(lVar1 + 0x58f8) + 0x1c) != '\0')) {
             FUN_1805b59d0(lVar1,0x180c95578);
-            lVar3 = _DAT_180c92cd8;
+            lVar3 = render_system_config;
           }
           lVar4 = lVar4 + 1;
         } while (lVar4 < iVar2);
       }
-      if (_DAT_180c96070 != 0) {
-        FUN_180567f30(_DAT_180c92580,0x180c95578);
+      if (render_system_config != 0) {
+        FUN_180567f30(render_system_config,0x180c95578);
       }
-      _DAT_180c95b3c = 0;
+      render_system_config = 0;
                     // WARNING: Subroutine does not return
-      memset(_DAT_180c95b10,0,(longlong)(_DAT_180c95b08 >> 3));
+      memset(render_system_config,0,(longlong)(render_system_config >> 3));
     }
     *(char *)(*(longlong *)(param_1 + 0x738) + 0xf4) = param_2;
   }
@@ -829,26 +829,26 @@ void FUN_180508c19(void)
     __Throw_C_error_std__YAXH_Z(iVar2);
   }
   FUN_1805ae1e0(0x180c95578,*(int32_t *)(unaff_RDI + 0x10),*(int8_t *)(unaff_RDI + 0x604));
-  _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
-  iVar2 = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
+  render_system_config = render_system_config & 0xffffffff00000000;
+  iVar2 = (int)(render_system_config - render_system_config >> 3);
   if (0 < iVar2) {
     lVar4 = 0;
-    lVar3 = _DAT_180c92cd8;
+    lVar3 = render_system_config;
     do {
       lVar1 = *(longlong *)(lVar3 + lVar4 * 8);
       if ((lVar1 != 0) && (*(char *)(*(longlong *)(lVar1 + 0x58f8) + 0x1c) != '\0')) {
         FUN_1805b59d0(lVar1,0x180c95578);
-        lVar3 = _DAT_180c92cd8;
+        lVar3 = render_system_config;
       }
       lVar4 = lVar4 + 1;
     } while (lVar4 < iVar2);
   }
-  if (_DAT_180c96070 != 0) {
-    FUN_180567f30(_DAT_180c92580,0x180c95578);
+  if (render_system_config != 0) {
+    FUN_180567f30(render_system_config,0x180c95578);
   }
-  _DAT_180c95b3c = 0;
+  render_system_config = 0;
                     // WARNING: Subroutine does not return
-  memset(_DAT_180c95b10,0,(longlong)(_DAT_180c95b08 >> 3));
+  memset(render_system_config,0,(longlong)(render_system_config >> 3));
 }
 
 
@@ -870,16 +870,16 @@ void FUN_180508c6d(uint64_t param_1,longlong param_2)
     lVar1 = *(longlong *)(param_2 + lVar2 * 8);
     if ((lVar1 != 0) && (*(char *)(*(longlong *)(lVar1 + 0x58f8) + 0x1c) != '\0')) {
       FUN_1805b59d0(lVar1,0x180c95578);
-      param_2 = _DAT_180c92cd8;
+      param_2 = render_system_config;
     }
     lVar2 = lVar2 + 1;
   } while (lVar2 < unaff_RSI);
-  if (_DAT_180c96070 != 0) {
-    FUN_180567f30(_DAT_180c92580,0x180c95578);
+  if (render_system_config != 0) {
+    FUN_180567f30(render_system_config,0x180c95578);
   }
-  _DAT_180c95b3c = 0;
+  render_system_config = 0;
                     // WARNING: Subroutine does not return
-  memset(_DAT_180c95b10,0,(longlong)(_DAT_180c95b08 >> 3));
+  memset(render_system_config,0,(longlong)(render_system_config >> 3));
 }
 
 
@@ -892,12 +892,12 @@ void FUN_180508c6d(uint64_t param_1,longlong param_2)
 void FUN_180508caa(void)
 
 {
-  if (_DAT_180c96070 != 0) {
-    FUN_180567f30(_DAT_180c92580,0x180c95578);
+  if (render_system_config != 0) {
+    FUN_180567f30(render_system_config,0x180c95578);
   }
-  _DAT_180c95b3c = 0;
+  render_system_config = 0;
                     // WARNING: Subroutine does not return
-  memset(_DAT_180c95b10,0,(longlong)(_DAT_180c95b08 >> 3));
+  memset(render_system_config,0,(longlong)(render_system_config >> 3));
 }
 
 
@@ -910,10 +910,10 @@ void FUN_180508caa(void)
 void FUN_180508cb9(void)
 
 {
-  FUN_180567f30(_DAT_180c92580,0x180c95578);
-  _DAT_180c95b3c = 0;
+  FUN_180567f30(render_system_config,0x180c95578);
+  render_system_config = 0;
                     // WARNING: Subroutine does not return
-  memset(_DAT_180c95b10,0,(longlong)(_DAT_180c95b08 >> 3));
+  memset(render_system_config,0,(longlong)(render_system_config >> 3));
 }
 
 

@@ -284,7 +284,7 @@ static uint64_t* allocate_color_data_memory(uint32_t count)
     total_size = count * COLOR_DATA_SIZE;
     
     // 分配内存（使用系统内存分配函数）
-    memory_ptr = (uint64_t*)FUN_18062b420(_DAT_180c8ed18, total_size, 0x12);
+    memory_ptr = (uint64_t*)FUN_18062b420(system_memory_pool_ptr, total_size, 0x12);
     
     return memory_ptr;
 }

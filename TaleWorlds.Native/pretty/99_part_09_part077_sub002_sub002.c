@@ -1267,7 +1267,7 @@ void FUN_1805f0650(longlong param_1,longlong param_2)
         uStack_70c = *(int32_t *)(lVar23 + 0xac);
         FUN_180084ae0(&uStack_748);
         iVar12 = *(int *)(lVar28 + 0x44);
-        lVar23 = (longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
+        lVar23 = (longlong)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc28;
         iVar8 = (int)((*(longlong *)(*(longlong *)(param_1 + 0x100) + 0x20) -
                       *(longlong *)(*(longlong *)(param_1 + 0x100) + 0x18)) / 0x128);
         if (0 < iVar8) {
@@ -1595,7 +1595,7 @@ void FUN_1805f0650(longlong param_1,longlong param_2)
       (*pcVar26)(plVar27,*puVar18,&uStack_a08);
       (**(code **)(**(longlong **)(param_1 + 0xd8) + 0x60))
                 (*(longlong **)(param_1 + 0xd8),*(int32_t *)(param_1 + 0x1e0));
-      lVar23 = _DAT_180c86870;
+      lVar23 = system_main_module_state;
       cVar10 = '\0';
       *(int32_t *)(param_1 + 0x1e0) = 0;
       *(int32_t *)(param_1 + 0x1e4) = *(int32_t *)(lVar23 + 0x224);

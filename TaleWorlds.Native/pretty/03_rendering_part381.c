@@ -495,13 +495,13 @@ void FUN_180477750(longlong *param_1)
 void * FUN_1804777d0(void)
 
 {
-  _DAT_180c92478 = (uint64_t *)FUN_1808fc418(0x20);
-  *(int32_t *)(_DAT_180c92478 + 1) = 1;
-  *(int32_t *)((longlong)_DAT_180c92478 + 0xc) = 1;
-  *_DAT_180c92478 = &unknown_var_4400_ptr;
-  _DAT_180c92470 = _DAT_180c92478 + 2;
-  *_DAT_180c92470 = &unknown_var_4320_ptr;
-  *_DAT_180c92470 = &unknown_var_4520_ptr;
+  render_system_config = (uint64_t *)FUN_1808fc418(0x20);
+  *(int32_t *)(render_system_config + 1) = 1;
+  *(int32_t *)((longlong)render_system_config + 0xc) = 1;
+  *render_system_config = &unknown_var_4400_ptr;
+  render_system_config = render_system_config + 2;
+  *render_system_config = &unknown_var_4320_ptr;
+  *render_system_config = &unknown_var_4520_ptr;
   return &system_data_2470;
 }
 

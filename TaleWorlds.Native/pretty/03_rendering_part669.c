@@ -421,9 +421,9 @@ void FUN_18064db40(longlong *param_1,int8_t param_2)
 
 {
   *(longlong *)*param_1 = *(longlong *)*param_1 + 1;
-  if ((_DAT_180ca8b90 != (code *)0x0) && (*(char *)(*param_1 + 8) == '\0')) {
+  if ((render_system_config != (code *)0x0) && (*(char *)(*param_1 + 8) == '\0')) {
     *(int8_t *)(*param_1 + 8) = 1;
-    (*_DAT_180ca8b90)(param_2,*(uint64_t *)*param_1,_DAT_180c9e8d0);
+    (*render_system_config)(param_2,*(uint64_t *)*param_1,render_system_config);
     *(int8_t *)(*param_1 + 8) = 0;
   }
   return;
@@ -441,14 +441,14 @@ uint * FUN_18064dba0(longlong *param_1,ulonglong param_2)
   ulonglong uVar3;
   longlong *plVar4;
   
-  if (param_2 < ~_DAT_180bf66a8) {
-    uVar3 = _DAT_180bf66a8 - 1;
+  if (param_2 < ~render_system_control_config) {
+    uVar3 = render_system_control_config - 1;
     param_2 = uVar3 + param_2;
-    if ((uVar3 & _DAT_180bf66a8) == 0) {
+    if ((uVar3 & render_system_control_config) == 0) {
       param_2 = ~uVar3 & param_2;
     }
     else {
-      param_2 = param_2 - param_2 % _DAT_180bf66a8;
+      param_2 = param_2 - param_2 % render_system_control_config;
     }
   }
   if (param_2 < 0x200001) {
@@ -545,9 +545,9 @@ FUN_18064ddd0(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
     }
   }
   *(longlong *)*param_1 = *(longlong *)*param_1 + 1;
-  if ((_DAT_180ca8b90 != (code *)0x0) && (*(char *)(*param_1 + 8) == '\0')) {
+  if ((render_system_config != (code *)0x0) && (*(char *)(*param_1 + 8) == '\0')) {
     *(int8_t *)(*param_1 + 8) = 1;
-    (*_DAT_180ca8b90)(0,*(uint64_t *)*param_1,_DAT_180c9e8d0,param_4,uVar3);
+    (*render_system_config)(0,*(uint64_t *)*param_1,render_system_config,param_4,uVar3);
     *(int8_t *)(*param_1 + 8) = 0;
   }
   FUN_18064d420(param_1);
@@ -692,7 +692,7 @@ void FUN_18064e0d0(longlong *param_1,int param_2)
   aiStackX_10[0] = param_2;
   FUN_18064db40(param_1,0 < param_2);
   if (aiStackX_10[0] == 1) {
-    if ((((_DAT_180bf4b20 != (void **)0x0) && (_DAT_180bf4b20 != &ExceptionList)) ||
+    if ((((render_system_control_config != (void **)0x0) && (render_system_control_config != &ExceptionList)) ||
         (lVar3 = *param_1, *(longlong **)(lVar3 + 0x10) != param_1)) ||
        ((char)param_1[0x17d] != '\0')) goto LAB_18064e189;
     lVar5 = func_0x00018064c400();
@@ -778,7 +778,7 @@ void FUN_18064e0f8(uint64_t param_1)
   
   FUN_18064db40(param_1,in_OF == in_SF);
   if (in_stack_00000048 == 1) {
-    if ((((_DAT_180bf4b20 != (void **)0x0) && (_DAT_180bf4b20 != &ExceptionList)) ||
+    if ((((render_system_control_config != (void **)0x0) && (render_system_control_config != &ExceptionList)) ||
         (*(longlong **)(*unaff_RBX + 0x10) != unaff_RBX)) || ((char)unaff_RBX[0x17d] != '\0'))
     goto LAB_18064e189;
     lVar5 = func_0x00018064c400();

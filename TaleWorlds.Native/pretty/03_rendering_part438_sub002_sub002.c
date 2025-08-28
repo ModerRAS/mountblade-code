@@ -389,7 +389,7 @@ FUN_180509710(longlong param_1,longlong param_2,float *param_3,float *param_4,fl
   fVar1 = *(float *)(&system_data_64f0 + (ulonglong)param_8 * 4);
   fStack_b4 = fVar7 * param_6[1] + param_3[1];
   fStack_b0 = fVar7 * param_6[2] + param_3[2];
-  fVar8 = param_3[8] * _DAT_180c964f8;
+  fVar8 = param_3[8] * render_system_memory;
   lVar6 = *(longlong *)(*(longlong *)(param_1 + 0x6d8) + 0x8a8) + 0x70;
   uStack_c8 = *(uint64_t *)param_3;
   uStack_c0 = *(uint64_t *)(param_3 + 2);
@@ -539,7 +539,7 @@ uint64_t FUN_18050977b(longlong param_1,longlong param_2,float *param_3,longlong
   fVar3 = unaff_RSI[2];
   fVar4 = param_3[1];
   fVar5 = param_3[2];
-  fVar14 = param_3[8] * _DAT_180c964f8;
+  fVar14 = param_3[8] * render_system_memory;
   lVar11 = *(longlong *)(*(longlong *)(param_1 + 0x6d8) + 0x8a8) + 0x70;
   uVar7 = *(uint64_t *)param_3;
   uVar8 = *(uint64_t *)(param_3 + 2);

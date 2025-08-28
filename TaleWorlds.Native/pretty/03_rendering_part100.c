@@ -18,7 +18,7 @@ void FUN_1803276a0(longlong param_1,longlong *param_2,longlong param_3)
   int32_t uStack_10;
   
   uStack_30 = 0xfffffffffffffffe;
-  FUN_1800b30d0(_DAT_180c86930,&plStackX_20,param_3,0);
+  FUN_1800b30d0(system_resource_state,&plStackX_20,param_3,0);
   if (plStackX_20 == (longlong *)0x0) {
     puVar3 = &system_buffer_ptr;
     if (*(void **)(param_3 + 8) != (void *)0x0) {
@@ -562,10 +562,10 @@ LAB_1803281b2:
     uVar11 = uVar11 & 0xffffffff;
     uVar12 = uVar8;
     do {
-      if ((*(int *)(lVar10 + 0x48) < _DAT_180d48e24) &&
-         (FUN_1808fcb90(&system_ptr_8e24), _DAT_180d48e24 == -1)) {
-        _DAT_180d48e60 = &unknown_var_3480_ptr;
-        _DAT_180d48e68 = &system_ptr_8e78;
-        _DAT_180d48e70 = 0;
+      if ((*(int *)(lVar10 + 0x48) < render_system_config_memory) &&
+         (FUN_1808fcb90(&system_ptr_8e24), render_system_config_memory == -1)) {
+        render_system_config_memory = &unknown_var_3480_ptr;
+        render_system_config_memory = &system_ptr_8e78;
+        render_system_config_memory = 0;
 
 

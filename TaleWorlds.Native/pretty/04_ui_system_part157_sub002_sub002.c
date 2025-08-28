@@ -211,7 +211,7 @@ void FUN_18075f1e0(longlong param_1, int param_2, int32_t *param_3, longlong par
 uint64_t FUN_18075f4a0(void)
 {
     // 执行系统调用
-    (**(code **)(_DAT_180c0c6d0 + 8))();
+    (**(code **)(ui_system_ui + 8))();
     
     return UI_ERROR_SUCCESS;                     // 返回成功状态
 }

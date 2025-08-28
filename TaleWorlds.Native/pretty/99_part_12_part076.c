@@ -935,7 +935,7 @@ void FUN_1807ff354(void)
            (((iVar2 = connect(lVar3,*(uint64_t *)(lVar4 + 0x20),*(int32_t *)(lVar4 + 0x10)),
              iVar2 != -1 || (iVar2 = WSAGetLastError(), iVar2 == 0x2733)) ||
             (iVar2 = WSAGetLastError(), iVar2 == 0x2734)))) {
-          iVar2 = _DAT_180be4ca8;
+          iVar2 = system_system_buffer_memory;
           *(longlong *)(unaff_RBP + -0x78) = lVar3;
           *(int32_t *)(unaff_RBP + -0x80) = 1;
           iStack0000000000000048 = iVar2 / 1000;

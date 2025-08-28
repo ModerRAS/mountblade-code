@@ -1922,7 +1922,7 @@ ulonglong FUN_18072ab70(longlong param_1, longlong param_2, uint param_3, uint p
     uVar9 = uVar13;
     
     // 检查SIMD处理条件
-    if (((0 < (int)param_4) && (uVar6 = 0, 7 < param_4)) && (1 < _DAT_180bf00b0)) {
+    if (((0 < (int)param_4) && (uVar6 = 0, 7 < param_4)) && (1 < ui_system_control_config)) {
         // 初始化SIMD处理变量
         iVar14 = 0;
         iVar18 = 0;

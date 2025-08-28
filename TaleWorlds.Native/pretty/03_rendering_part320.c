@@ -369,20 +369,20 @@ void FUN_180438210(void)
   uint64_t uVar1;
   longlong lVar2;
   
-  lVar2 = *(longlong *)(_DAT_180c868b0 + 5000) - *(longlong *)(_DAT_180c868b0 + 0x1380) >> 5;
+  lVar2 = *(longlong *)(render_system_data_config + 5000) - *(longlong *)(render_system_data_config + 0x1380) >> 5;
   if (lVar2 != 0) {
                     // WARNING: Could not recover jumptable at 0x00018043824e. Too many branches
                     // WARNING: Treating indirect jump as call
-    (**(code **)(*_DAT_180c8f008 + 0x70))
-              (_DAT_180c8f008,lVar2 * 0x20 + *(longlong *)(_DAT_180c868b0 + 0x1380) + -0x20);
+    (**(code **)(*system_cache_buffer + 0x70))
+              (system_cache_buffer,lVar2 * 0x20 + *(longlong *)(render_system_data_config + 0x1380) + -0x20);
     return;
   }
   FUN_180626f80(&unknown_var_6416_ptr);
-  UNRECOVERED_JUMPTABLE = *(code **)(*_DAT_180c8f008 + 0x70);
+  UNRECOVERED_JUMPTABLE = *(code **)(*system_cache_buffer + 0x70);
   uVar1 = FUN_180628ca0();
                     // WARNING: Could not recover jumptable at 0x00018043828c. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*UNRECOVERED_JUMPTABLE)(_DAT_180c8f008,uVar1);
+  (*UNRECOVERED_JUMPTABLE)(system_cache_buffer,uVar1);
   return;
 }
 
@@ -400,10 +400,10 @@ FUN_1804382b0(int32_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4
   void *puStack_30;
   longlong lStack_28;
   
-  pcVar1 = *(code **)(*_DAT_180c8f008 + 0x78);
-  uVar3 = (**(code **)(*_DAT_180c86878 + 0xa0))
-                    (_DAT_180c86878,&puStack_30,param_1,param_4,0xfffffffffffffffe);
-  uVar2 = (*pcVar1)(_DAT_180c8f008,uVar3);
+  pcVar1 = *(code **)(*system_cache_buffer + 0x78);
+  uVar3 = (**(code **)(*render_system_data_config + 0xa0))
+                    (render_system_data_config,&puStack_30,param_1,param_4,0xfffffffffffffffe);
+  uVar2 = (*pcVar1)(system_cache_buffer,uVar3);
   puStack_30 = &unknown_var_3456_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
@@ -438,7 +438,7 @@ ulonglong FUN_180438350(void)
   float *pfVar17;
   int32_t uVar18;
   
-  lVar4 = _DAT_180c86870;
+  lVar4 = system_main_module_state;
   uVar14 = 0xfffffffffffffffe;
   pfVar15 = (float *)0x0;
   pfVar16 = (float *)0x0;
@@ -447,10 +447,10 @@ ulonglong FUN_180438350(void)
   uVar18 = 3;
   iVar3 = *(int *)(SYSTEM_STATE_MANAGER + 0x540);
   uVar12 = 0;
-  lVar13 = *(longlong *)(_DAT_180c86870 + 0x78);
+  lVar13 = *(longlong *)(system_main_module_state + 0x78);
   pfVar9 = (float *)0x0;
   pfVar6 = (float *)0x0;
-  if (*(longlong *)(_DAT_180c86870 + 0x80) - lVar13 >> 4 != 0) {
+  if (*(longlong *)(system_main_module_state + 0x80) - lVar13 >> 4 != 0) {
     uVar7 = 0;
     pfVar8 = pfVar9;
     pfVar10 = pfVar6;
@@ -475,7 +475,7 @@ ulonglong FUN_180438350(void)
           if (lVar13 == 0) {
             lVar13 = 1;
 LAB_180438479:
-            pfVar6 = (float *)FUN_18062b420(_DAT_180c8ed18,lVar13 * 8,
+            pfVar6 = (float *)FUN_18062b420(system_memory_pool_ptr,lVar13 * 8,
                                             CONCAT71((int7)((ulonglong)pfVar11 >> 8),3),iVar3,uVar14
                                             ,pfVar15,pfVar16,pfVar17,uVar18);
           }
@@ -532,8 +532,8 @@ void FUN_180438560(int *param_1,int *param_2)
   uint uVar5;
   int iVar6;
   
-  lVar1 = *(longlong *)(*(longlong *)(_DAT_180c86870 + 8) + 0x18);
-  iVar6 = (int)((*(longlong *)(*(longlong *)(_DAT_180c86870 + 8) + 0x20) - lVar1) / 0x70);
+  lVar1 = *(longlong *)(*(longlong *)(system_main_module_state + 8) + 0x18);
+  iVar6 = (int)((*(longlong *)(*(longlong *)(system_main_module_state + 8) + 0x20) - lVar1) / 0x70);
   if ((iVar6 < 2) || (iVar6 <= *(int *)(SYSTEM_STATE_MANAGER + 0x1f10))) {
     iVar6 = GetSystemMetrics(0);
     GetSystemMetrics(1);
@@ -545,7 +545,7 @@ void FUN_180438560(int *param_1,int *param_2)
     iVar6 = (uVar3 ^ uVar5) - uVar5;
   }
   lVar2 = SYSTEM_STATE_MANAGER;
-  lVar4 = _DAT_180c86870;
+  lVar4 = system_main_module_state;
   *param_1 = iVar6;
   lVar1 = *(longlong *)(*(longlong *)(lVar4 + 8) + 0x18);
   iVar6 = (int)((*(longlong *)(*(longlong *)(lVar4 + 8) + 0x20) - lVar1) / 0x70);
@@ -624,7 +624,7 @@ uint64_t FUN_1804386b0(int param_1)
   float *pfVar17;
   int32_t uVar18;
   
-  lVar4 = _DAT_180c86870;
+  lVar4 = system_main_module_state;
   uVar14 = 0xfffffffffffffffe;
   pfVar15 = (float *)0x0;
   pfVar16 = (float *)0x0;
@@ -633,9 +633,9 @@ uint64_t FUN_1804386b0(int param_1)
   uVar18 = 3;
   iVar3 = *(int *)(SYSTEM_STATE_MANAGER + 0x540);
   uVar12 = 0;
-  lVar13 = *(longlong *)(_DAT_180c86870 + 0x78);
+  lVar13 = *(longlong *)(system_main_module_state + 0x78);
   pfVar6 = (float *)0x0;
-  if (*(longlong *)(_DAT_180c86870 + 0x80) - lVar13 >> 4 != 0) {
+  if (*(longlong *)(system_main_module_state + 0x80) - lVar13 >> 4 != 0) {
     uVar7 = 0;
     pfVar8 = (float *)0x0;
     pfVar10 = pfVar6;
@@ -660,7 +660,7 @@ uint64_t FUN_1804386b0(int param_1)
           if (lVar13 == 0) {
             lVar13 = 1;
 LAB_1804387d9:
-            pfVar6 = (float *)FUN_18062b420(_DAT_180c8ed18,lVar13 * 8,
+            pfVar6 = (float *)FUN_18062b420(system_memory_pool_ptr,lVar13 * 8,
                                             CONCAT71((int7)((ulonglong)pfVar11 >> 8),3),iVar3,uVar14
                                             ,pfVar15,pfVar16,pfVar17,uVar18);
           }
@@ -716,8 +716,8 @@ int FUN_180438940(int param_1)
   
   iVar3 = 0;
   uVar4 = 0;
-  lVar1 = *(longlong *)(_DAT_180c86870 + 0x78);
-  uVar5 = *(longlong *)(_DAT_180c86870 + 0x80) - lVar1 >> 4;
+  lVar1 = *(longlong *)(system_main_module_state + 0x78);
+  uVar5 = *(longlong *)(system_main_module_state + 0x80) - lVar1 >> 4;
   if (uVar5 != 0) {
     uVar2 = 0;
     do {
@@ -765,8 +765,8 @@ void FUN_1804389f0(void)
   ulonglong uVar8;
   
   FUN_1800ad510();
-  pfVar2 = *(float **)(_DAT_180c86870 + 0x78);
-  uVar10 = *(longlong *)(_DAT_180c86870 + 0x80) - (longlong)pfVar2 >> 4;
+  pfVar2 = *(float **)(system_main_module_state + 0x78);
+  uVar10 = *(longlong *)(system_main_module_state + 0x80) - (longlong)pfVar2 >> 4;
   if (uVar10 != 0) {
     bVar3 = false;
     uVar12 = 0;

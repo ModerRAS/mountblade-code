@@ -559,7 +559,7 @@ uint64_t FUN_180891650(longlong param_1,longlong param_2)
   piVar2 = (int *)(param_1 + 0x18);
   if (0 < *(int *)(param_1 + 0x10)) {
     do {
-      if (((*piVar2 != _DAT_180c4eaa0) || (piVar2[1] != _DAT_180c4eaa4)) &&
+      if (((*piVar2 != network_system_config) || (piVar2[1] != network_system_config)) &&
          (uVar1 = FUN_1808678e0(param_2 + 0x60,(int *)(param_1 + 0x18) + (longlong)iVar4 * 2,*puVar3
                                 ,*(int8_t *)(param_1 + 0x14)), (int)uVar1 != 0)) {
         return uVar1;

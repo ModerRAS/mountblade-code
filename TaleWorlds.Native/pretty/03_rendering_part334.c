@@ -260,7 +260,7 @@ void FUN_1804439e4(void)
     ulonglong object_index;
     uint object_count;
     
-    render_context = _DAT_180c8a9e0;
+    render_context = render_system_data_config;
     object_index = (ulonglong)object_count;
     
     do {
@@ -384,20 +384,20 @@ void FUN_180443b00(void)
     ulonglong stack_data_28;
     
     // 清理现有资源
-    resource_ptr = (uint64_t *)*_DAT_180c8a9e0;
+    resource_ptr = (uint64_t *)*render_system_data_config;
     if (resource_ptr != (uint64_t *)0x0) {
-        *_DAT_180c8a9e0 = 0;
+        *render_system_data_config = 0;
         stack_data_30 = 0x180443b24;
         (**(code **)*resource_ptr)(resource_ptr, 1);
     }
     
     // 初始化上下文管理器
-    context_manager = _DAT_180c8a9e0;
+    context_manager = render_system_data_config;
     stack_data_218 = RENDERING_SYSTEM_FLAG_FFFFFFFE;
     stack_data_28 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_278;
     
     // 计算系统数据偏移
-    system_data = (longlong)*(int *)(_DAT_180c86938 + 0x1d40) * 0xd0 + *(longlong *)(_DAT_180c86938 + 0x1d20);
+    system_data = (longlong)*(int *)(system_message_buffer + 0x1d40) * 0xd0 + *(longlong *)(system_message_buffer + 0x1d20);
     
     // 设置纹理数据指针
     stack_ptr_c8 = &unknown_var_3432_ptr;
@@ -464,11 +464,11 @@ void FUN_180443b00(void)
         
         if (-1 < stack_array_1d0[0]) {
             config_data = func_0x0001801836e0();
-            FUN_180062300(_DAT_180c86928, &unknown_var_9712_ptr, config_data);
+            FUN_180062300(system_message_context, &unknown_var_9712_ptr, config_data);
         }
         
         config_data = func_0x0001801836e0();
-        FUN_180062300(_DAT_180c86928, &unknown_var_9856_ptr, config_data);
+        FUN_180062300(system_message_context, &unknown_var_9856_ptr, config_data);
     }
     
     // 设置渲染配置
@@ -529,10 +529,10 @@ void FUN_180443b80(uint64_t param_1, int8_t param_2)
     parameter_data_18 = GET_SECURITY_COOKIE() ^ (ulonglong)parameter_buffer_d8;
     parameter_ptr_b8 = parameter_array_60;
     parameter_ptr = (uint64_t *)FUN_180627910(parameter_array_60, param_1);
-    system_context = _DAT_180c8a9e0;
+    system_context = render_system_data_config;
     parameter_ptr_a8 = parameter_ptr;
     
-    if (*(longlong *)(_DAT_180c8a9e0 + 8) == 0) {
+    if (*(longlong *)(render_system_data_config + 8) == 0) {
         *parameter_ptr = &unknown_var_3456_ptr;
         if (parameter_ptr[1] != 0) {
             FUN_18064e900();
@@ -682,7 +682,7 @@ void FUN_180443df0(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
             }
             data_processor_3 = data_processor_4;
             if (data_capacity != 0) {
-                data_processor_3 = (longlong *)FUN_18062b420(_DAT_180c8ed18, data_capacity * 8, CONCAT71((int7)((ulonglong)data_processor_6 >> 8), 3));
+                data_processor_3 = (longlong *)FUN_18062b420(system_memory_pool_ptr, data_capacity * 8, CONCAT71((int7)((ulonglong)data_processor_6 >> 8), 3));
             }
             
             if (data_processor_2 != data_processor_6) {
@@ -762,7 +762,7 @@ void FUN_180444030(void)
     if (lock_result != 0) {
         __Throw_C_error_std__YAXH_Z(lock_result);
     }
-    SYSTEM_DATA_MANAGER_A = *(uint64_t *)*_DAT_180c86960;
+    SYSTEM_DATA_MANAGER_A = *(uint64_t *)*render_system_data_config;
     return;
 }
 
@@ -1269,7 +1269,7 @@ void FUN_180444dd0(char param_1, char param_2, char param_3, char param_4, char 
     int32_t color_data_18;
     int16_t color_data_14;
     
-    color_context = *(longlong *)(_DAT_180c868d0 + 0x2018);
+    color_context = *(longlong *)(render_system_data_config + 0x2018);
     color_data_18._0_2_ = CONCAT11(param_2, param_1);
     color_data_18 = CONCAT13(param_4, CONCAT12(param_3, (int16_t)color_data_18));
     color_data_14 = CONCAT11(param_6, param_5);
@@ -1335,7 +1335,7 @@ void FUN_180444e90(float param_1, float param_2, float param_3)
     color_data_9 = (int8_t)(int)(param_2 * RENDERING_SYSTEM_FLOAT_256_0);
     color_data_a = (int8_t)(int)(blue_component * RENDERING_SYSTEM_FLOAT_256_0);
     
-    FUN_1808eea10(*(int32_t *)(*(longlong *)(_DAT_180c868d0 + 0x2018) + 0x32c), &color_data_8);
+    FUN_1808eea10(*(int32_t *)(*(longlong *)(render_system_data_config + 0x2018) + 0x32c), &color_data_8);
     return;
 }
 
@@ -1426,8 +1426,8 @@ int32_t FUN_180445180(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint
     validation_data_28 = 0;
     validation_data_20 = 0;
     
-    FUN_1801717e0(*(uint64_t *)(_DAT_180c86870 + 8), &validation_ptr_30, param_3, param_4, RENDERING_SYSTEM_FLAG_FFFFFFFE);
-    validation_result = (**(code **)(*_DAT_180c8f008 + 0x78))(_DAT_180c8f008, &validation_ptr_30);
+    FUN_1801717e0(*(uint64_t *)(system_main_module_state + 8), &validation_ptr_30, param_3, param_4, RENDERING_SYSTEM_FLAG_FFFFFFFE);
+    validation_result = (**(code **)(*system_cache_buffer + 0x78))(system_cache_buffer, &validation_ptr_30);
     validation_ptr_30 = &unknown_var_3456_ptr;
     
     if (validation_data_28 != 0) {
@@ -1454,7 +1454,7 @@ int32_t * FUN_180445390(int32_t *param_1, float param_2)
     int32_t parameter_data_2c;
     int32_t parameter_data_24;
     
-    parameter_handle = FUN_18062b1e0(_DAT_180c8ed18, 0x468, 8, 3, RENDERING_SYSTEM_FLAG_FFFFFFFE);
+    parameter_handle = FUN_18062b1e0(system_memory_pool_ptr, 0x468, 8, 3, RENDERING_SYSTEM_FLAG_FFFFFFFE);
     parameter_manager = (longlong *)FUN_1803dd0f0(parameter_handle);
     
     if (parameter_manager != (longlong *)0x0) {

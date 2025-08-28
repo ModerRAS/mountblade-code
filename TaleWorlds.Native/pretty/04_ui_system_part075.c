@@ -714,8 +714,8 @@ void FUN_18070fc20(longlong param_1,int param_2,int param_3,float *param_4)
   float *pfStackX_20;
   longlong lStack_a8;
   
-  auVar3 = _DAT_180a401b0;
-  auVar2 = _DAT_18094ed40;
+  auVar3 = ui_system_config;
+  auVar2 = ui_system_config;
   lVar19 = (longlong)param_3;
   if ((((0 < param_3) && (0 < param_2)) && (param_1 != 0)) && (param_4 != (float *)0x0)) {
     uVar11 = param_2 * param_3;

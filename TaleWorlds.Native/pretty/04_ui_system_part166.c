@@ -779,10 +779,10 @@ bool FUN_1807681a0(uint param_1)
   uint uVar4;
   byte in_XCR0;
   
-  if (_DAT_180c0c720 == 0) {
+  if (ui_system_config == 0) {
     piVar1 = (int *)cpuid_basic_info(0);
     uVar4 = 0;
-    _DAT_180c0c720 = uVar4;
+    ui_system_config = uVar4;
     if (0 < *piVar1) {
       lVar2 = cpuid_Version_info(1);
       uVar3 = *(uint *)(lVar2 + 0xc);
@@ -792,21 +792,21 @@ bool FUN_1807681a0(uint param_1)
       if ((uVar3 >> 0xc & 1) != 0) {
         uVar4 = uVar4 | 0x10;
       }
-      _DAT_180c0c720 = uVar4;
+      ui_system_config = uVar4;
       if ((((uVar3 & 0x18000000) == 0x18000000) && ((in_XCR0 & 6) == 6)) &&
-         (_DAT_180c0c720 = uVar4 | 2, 6 < *piVar1)) {
+         (ui_system_config = uVar4 | 2, 6 < *piVar1)) {
         lVar2 = cpuid_Extended_Feature_Enumeration_info(7);
         if ((*(uint *)(lVar2 + 4) & 0x20) != 0) {
-          _DAT_180c0c720 = uVar4 | 6;
+          ui_system_config = uVar4 | 6;
         }
         if (((*(uint *)(lVar2 + 4) >> 0x10 & 1) != 0) && ((in_XCR0 & 0xe0) == 0xe0)) {
-          _DAT_180c0c720 = _DAT_180c0c720 | 8;
+          ui_system_config = ui_system_config | 8;
         }
       }
     }
-    _DAT_180c0c720 = _DAT_180c0c720 | 0x40;
+    ui_system_config = ui_system_config | 0x40;
   }
-  return (_DAT_180c0c720 >> (param_1 & 0x1f) & 1) != 0;
+  return (ui_system_config >> (param_1 & 0x1f) & 1) != 0;
 }
 
 
@@ -899,7 +899,7 @@ bool FUN_1807681b9(uint64_t param_1,uint64_t param_2,uint param_3)
       }
     }
   }
-  _DAT_180c0c720 = param_3 | 0x40;
+  ui_system_config = param_3 | 0x40;
   return ((param_3 | 0x40) >> (in_R11D & 0x1f) & 1) != 0;
 }
 
@@ -923,8 +923,8 @@ uint64_t FUN_180768280(int8_t *param_1)
   longlong lVar1;
   int iVar2;
   
-  lVar1 = _DAT_180c0c6f0;
-  if (*(int *)(_DAT_180c0c6f0 + 8) != 0) {
+  lVar1 = ui_system_config;
+  if (*(int *)(ui_system_config + 8) != 0) {
     iVar2 = timeGetTime();
     if (1000 < (uint)(iVar2 - *(int *)(lVar1 + 8))) {
       *(int32_t *)(lVar1 + 8) = 0;

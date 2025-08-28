@@ -161,7 +161,7 @@ void FUN_1807ff700(uint64_t param_1,byte param_2)
       uStack_28 = 1;
       uStack_48 = 0;
       uStack_50 = 0;
-      iStack_24 = _DAT_180be4cac / 10;
+      iStack_24 = system_system_buffer_config / 10;
       puStack_58 = auStack_30;
       uStack_60 = 0;
       uStack_68 = 0;

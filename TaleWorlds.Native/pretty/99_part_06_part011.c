@@ -40,7 +40,7 @@ void FUN_1803af3d0(uint64_t *param_1)
   param_1[0x2c] = 0;
   param_1[0x2d] = 0;
   *(int32_t *)(param_1 + 0x30) = 0;
-  param_1[0x2f] = _DAT_180c8ed30;
+  param_1[0x2f] = system_error_code;
   param_1[0x35] = 0;
   param_1[0x34] = 0;
   param_1[0x31] = 0;
@@ -69,16 +69,16 @@ void FUN_1803af3d0(uint64_t *param_1)
   iVar5 = *(int *)(SYSTEM_STATE_MANAGER + 0xe70);
   *(bool *)(param_1 + 0x3ca) = iVar5 == 0;
   if (iVar5 == 0) {
-    iVar5 = *(int *)(*(longlong *)(_DAT_180c868a8 + 8) + 0x30);
-    if (iVar5 == _DAT_180bf6540) {
+    iVar5 = *(int *)(*(longlong *)(system_system_data_config + 8) + 0x30);
+    if (iVar5 == system_system_control_config) {
       if (iVar5 == 0) {
 LAB_1803af5e2:
-        if (_DAT_180bf6540 != 0) goto LAB_1803af5ea;
+        if (system_system_control_config != 0) goto LAB_1803af5ea;
         bVar9 = true;
       }
       else {
-        pcVar6 = *(char **)(*(longlong *)(_DAT_180c868a8 + 8) + 0x28);
-        lVar8 = _DAT_180bf6538 - (longlong)pcVar6;
+        pcVar6 = *(char **)(*(longlong *)(system_system_data_config + 8) + 0x28);
+        lVar8 = system_system_control_config - (longlong)pcVar6;
         do {
           cVar1 = *pcVar6;
           cVar2 = pcVar6[lVar8];
@@ -95,21 +95,21 @@ LAB_1803af5ea:
     }
     *(bool *)(param_1 + 0x3ca) = bVar9;
   }
-  if (*(char *)(_DAT_180c8aa08 + 9) == '\0') goto LAB_1803af6d5;
+  if (*(char *)(system_global_data_ptr + 9) == '\0') goto LAB_1803af6d5;
   puStack_48 = &unknown_var_3456_ptr;
   uStack_30 = 0;
   puStack_40 = (int8_t *)0x0;
   iStack_38 = 0;
-  FUN_1806277c0(&puStack_48,_DAT_180bf5218);
-  if (0 < _DAT_180bf5218) {
+  FUN_1806277c0(&puStack_48,system_system_control_config);
+  if (0 < system_system_control_config) {
     puVar7 = &system_buffer_ptr;
-    if (_DAT_180bf5210 != (void *)0x0) {
-      puVar7 = _DAT_180bf5210;
+    if (system_system_control_config != (void *)0x0) {
+      puVar7 = system_system_control_config;
     }
                     // WARNING: Subroutine does not return
-    memcpy(puStack_40,puVar7,(longlong)(_DAT_180bf5218 + 1));
+    memcpy(puStack_40,puVar7,(longlong)(system_system_control_config + 1));
   }
-  if (_DAT_180bf5210 != (void *)0x0) {
+  if (system_system_control_config != (void *)0x0) {
     iStack_38 = 0;
     if (puStack_40 != (int8_t *)0x0) {
       *puStack_40 = 0;

@@ -441,7 +441,7 @@ void FUN_180032510(void)
   auStack_88[0] = 0;
   uStack_90 = 0xb;
   strcpy_s(auStack_88,0x80,&unknown_var_7240_ptr,in_R9,0xfffffffffffffffe);
-  _DAT_180c91d54 = FUN_180623800(&puStack_a0);
+  init_system_ui = FUN_180623800(&puStack_a0);
   return;
 }
 
@@ -831,7 +831,7 @@ void FUN_180032ca0(void)
   auStack_88[0] = 0;
   uStack_90 = 10;
   strcpy_s(auStack_88,0x80,&unknown_var_8184_ptr,in_R9,0xfffffffffffffffe);
-  _DAT_180c91d5c = FUN_180623800(&puStack_a0);
+  init_system_ui = FUN_180623800(&puStack_a0);
   return;
 }
 
@@ -845,8 +845,8 @@ int FUN_180032d30(void)
   longlong lVar1;
   uint64_t in_R9;
   
-  _DAT_180bf7e90 = &unknown_var_3480_ptr;
-  _DAT_180bf7e98 = &system_data_7ea8;
+  init_system_control_ui = &unknown_var_3480_ptr;
+  init_system_control_ui = &system_data_7ea8;
 
 
 
@@ -865,7 +865,7 @@ void FUN_180033780(void)
   auStack_88[0] = 0;
   uStack_90 = 9;
   strcpy_s(auStack_88,0x80,&unknown_var_8872_ptr,in_R9,0xfffffffffffffffe);
-  _DAT_180c91d60 = FUN_180623800(&puStack_a0);
+  init_system_ui = FUN_180623800(&puStack_a0);
   return;
 }
 
@@ -891,7 +891,7 @@ void FUN_180033810(void)
   auStack_88[0] = 0;
   uStack_90 = 0xf;
   strcpy_s(auStack_88,0x80,&unknown_var_9280_ptr,in_R9,0xfffffffffffffffe);
-  _DAT_180c91d64 = FUN_180623800(&puStack_a0);
+  init_system_ui = FUN_180623800(&puStack_a0);
   return;
 }
 
@@ -917,7 +917,7 @@ void FUN_1800338a0(void)
   auStack_88[0] = 0;
   uStack_90 = 0xc;
   strcpy_s(auStack_88,0x80,&unknown_var_264_ptr,in_R9,0xfffffffffffffffe);
-  _DAT_180c91d68 = FUN_180623800(&puStack_a0);
+  init_system_ui = FUN_180623800(&puStack_a0);
   return;
 }
 
@@ -943,7 +943,7 @@ void FUN_180033930(void)
   auStack_88[0] = 0;
   uStack_90 = 7;
   strcpy_s(auStack_88,0x80,&system_data_4640,in_R9,0xfffffffffffffffe);
-  _DAT_180c91d6c = FUN_180623800(&puStack_a0);
+  init_system_ui = FUN_180623800(&puStack_a0);
   return;
 }
 
@@ -969,7 +969,7 @@ void FUN_1800339c0(void)
   auStack_88[0] = 0;
   uStack_90 = 0x13;
   strcpy_s(auStack_88,0x80,&unknown_var_736_ptr,in_R9,0xfffffffffffffffe);
-  _DAT_180c91d70 = FUN_180623800(&puStack_a0);
+  init_system_ui = FUN_180623800(&puStack_a0);
   return;
 }
 

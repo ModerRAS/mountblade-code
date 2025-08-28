@@ -28,7 +28,7 @@ void FUN_1806efb7c(longlong *param_1)
   pcVar9 = in_stack_00000078;
   plStack0000000000000060 = param_1;
   if (in_stack_00000078 != (char *)0x0) {
-    _DAT_180c0c324 = _DAT_180c0c324 + 1;
+    system_system_memory = system_system_memory + 1;
     pcVar4 = in_stack_00000078;
     uVar7 = unaff_EBP;
     if (*in_stack_00000078 != (char)unaff_EBP) {
@@ -281,7 +281,7 @@ void FUN_1806efd00(longlong *param_1,uint64_t param_2,ulonglong *param_3,int32_t
   cVar2 = (**(code **)(*param_1 + 0x10))(param_1,param_2,&pcStackX_20);
   if (cVar2 != '\0') {
     if (pcStackX_20 != (char *)0x0) {
-      _DAT_180c0c320 = _DAT_180c0c320 + 1;
+      system_system_memory = system_system_memory + 1;
       pcVar8 = pcStackX_20;
       if (*pcStackX_20 != '\0') {
         do {
@@ -376,7 +376,7 @@ void FUN_1806efd3c(longlong *param_1)
   pcVar9 = in_stack_00000078;
   plStack0000000000000060 = param_1;
   if (in_stack_00000078 != (char *)0x0) {
-    _DAT_180c0c320 = _DAT_180c0c320 + 1;
+    system_system_memory = system_system_memory + 1;
     pcVar4 = in_stack_00000078;
     uVar7 = unaff_ESI;
     if (*in_stack_00000078 != (char)unaff_ESI) {
@@ -633,7 +633,7 @@ void FUN_1806efec0(longlong *param_1,uint64_t param_2,longlong *param_3,int32_t 
   if (cVar1 != '\0') {
     uVar10 = 0;
     if (pcStackX_20 != (char *)0x0) {
-      _DAT_180c0c330 = _DAT_180c0c330 + 1;
+      system_system_memory = system_system_memory + 1;
       if (*pcStackX_20 != '\0') {
         pcVar9 = pcStackX_20;
         iVar7 = 0;
@@ -744,7 +744,7 @@ FUN_1806effec:
     (**(code **)(*plStack0000000000000080 + 0x10))(plStack0000000000000080,0);
     return;
   }
-  _DAT_180c0c330 = _DAT_180c0c330 + 1;
+  system_system_memory = system_system_memory + 1;
   pcVar8 = in_stack_00000088;
   uVar7 = unaff_EBP;
   if (*in_stack_00000088 != (char)unaff_EBP) {
@@ -1050,7 +1050,7 @@ void FUN_1806f0110(longlong *param_1,uint64_t param_2,ulonglong *param_3,int32_t
   cVar2 = (**(code **)(*param_1 + 0x10))(param_1,param_2,&pcStackX_20);
   if (cVar2 != '\0') {
     if (pcStackX_20 != (char *)0x0) {
-      _DAT_180c0c328 = _DAT_180c0c328 + 1;
+      system_system_memory = system_system_memory + 1;
       pcVar9 = pcStackX_20;
       if (*pcStackX_20 != '\0') {
         do {

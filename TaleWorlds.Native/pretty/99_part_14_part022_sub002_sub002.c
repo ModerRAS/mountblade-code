@@ -44,37 +44,37 @@ uint64_t FUN_1808fd254(void)
   uint uVar6;
   byte in_XCR0;
   
-  _DAT_180bf00b4 = 2;
-  _DAT_180bf00b0 = 1;
+  system_system_control_ui = 2;
+  system_system_control_ui = 1;
   piVar1 = (int *)cpuid_basic_info(0);
   uVar6 = 0;
   puVar2 = (uint *)cpuid_Version_info(1);
   uVar4 = puVar2[3];
   if ((piVar1[1] == 0x756e6547 && piVar1[3] == 0x6c65746e) && piVar1[2] == 0x49656e69) {
-    _DAT_180bf00b8 = 0xffffffffffffffff;
+    system_system_control_ui = 0xffffffffffffffff;
     uVar5 = *puVar2 & 0xfff3ff0;
     if ((((uVar5 == 0x106c0) || (uVar5 == 0x20660)) || (uVar5 == 0x20670)) ||
        ((uVar5 - 0x30650 < 0x21 &&
         ((0x100010001U >> ((ulonglong)(uVar5 - 0x30650) & 0x3f) & 1) != 0)))) {
-      _DAT_180c827d0 = _DAT_180c827d0 | 1;
+      system_system_data_ui = system_system_data_ui | 1;
     }
   }
   if (6 < *piVar1) {
     lVar3 = cpuid_Extended_Feature_Enumeration_info(7);
     uVar6 = *(uint *)(lVar3 + 4);
     if ((uVar6 >> 9 & 1) != 0) {
-      _DAT_180c827d0 = _DAT_180c827d0 | 2;
+      system_system_data_ui = system_system_data_ui | 2;
     }
   }
   if ((uVar4 >> 0x14 & 1) != 0) {
-    _DAT_180bf00b0 = 2;
-    _DAT_180bf00b4 = 6;
+    system_system_control_ui = 2;
+    system_system_control_ui = 6;
     if ((((uVar4 >> 0x1b & 1) != 0) && ((uVar4 >> 0x1c & 1) != 0)) && ((in_XCR0 & 6) == 6)) {
-      _DAT_180bf00b4 = 0xe;
-      _DAT_180bf00b0 = 3;
+      system_system_control_ui = 0xe;
+      system_system_control_ui = 3;
       if ((uVar6 & 0x20) != 0) {
-        _DAT_180bf00b0 = 5;
-        _DAT_180bf00b4 = 0x2e;
+        system_system_control_ui = 5;
+        system_system_control_ui = 0x2e;
       }
     }
   }
@@ -138,7 +138,7 @@ ulonglong thunk_FUN_1808fd8e0(uint64_t param_1,int32_t param_2)
   
   fVar13 = in_XMM0._0_4_;
   fVar14 = in_XMM0._4_4_;
-  auVar37 = in_XMM0 & _DAT_180d9f600;
+  auVar37 = in_XMM0 & system_system_ui;
   fVar20 = (float)system_data_f5d0;
   uVar35 = -(uint)(0x461c4000 < auVar37._0_4_);
   uVar39 = -(uint)(0x461c4000 < auVar37._4_4_);
@@ -171,7 +171,7 @@ ulonglong thunk_FUN_1808fd8e0(uint64_t param_1,int32_t param_2)
   iVar9 = (int)(fVar14 * 0.31830987);
   iVar11 = (int)(in_XMM0._8_4_ * 0.31830987);
   iVar12 = (int)(in_XMM0._12_4_ * 0.31830987);
-  auVar37 = in_XMM0 & _DAT_180d9f600;
+  auVar37 = in_XMM0 & system_system_ui;
   fVar5 = auVar37._0_4_;
   auVar34._0_4_ = -(uint)(0x4e800000 < (int)fVar5);
   fVar8 = auVar37._4_4_;
@@ -185,9 +185,9 @@ ulonglong thunk_FUN_1808fd8e0(uint64_t param_1,int32_t param_2)
       auVar32._4_4_ = 0;
       auVar32._8_4_ = (int)((double)fVar8 * 0.6366197723675814) + 1;
       auVar32._12_4_ = 0;
-      auVar32 = auVar32 & _DAT_180d9f680;
-      dVar36 = SUB168(_DAT_180d9f670 | auVar32,0) - 6755399441055744.0;
-      dVar40 = SUB168(_DAT_180d9f670 | auVar32,8) - 6755399441055744.0;
+      auVar32 = auVar32 & system_system_ui;
+      dVar36 = SUB168(system_system_ui | auVar32,0) - 6755399441055744.0;
+      dVar40 = SUB168(system_system_ui | auVar32,8) - 6755399441055744.0;
       dVar21 = (double)fVar5 - dVar36 * 1.5707950592041016;
       dVar24 = (double)fVar8 - dVar40 * 1.5707950592041016;
       dVar22 = dVar21 - dVar36 * 1.267590960196685e-06;
@@ -217,7 +217,7 @@ ulonglong thunk_FUN_1808fd8e0(uint64_t param_1,int32_t param_2)
                     -0.16666658) * fVar15 * fVar20 + fVar20,
                     (((fVar14 * 2.608e-06 + -0.000198107) * fVar14 + 0.008333075) * fVar14 +
                     -0.16666658) * fVar14 * fVar13 + fVar13) ^
-           CONCAT44(SUB164(_DAT_180d9f610 & auVar33,0xc),SUB164(_DAT_180d9f610 & auVar33,4)) ^
+           CONCAT44(SUB164(system_system_ui & auVar33,0xc),SUB164(system_system_ui & auVar33,4)) ^
            uStack_d8;
     }
     else {
@@ -229,11 +229,11 @@ ulonglong thunk_FUN_1808fd8e0(uint64_t param_1,int32_t param_2)
       auVar30._4_4_ = 0;
       auVar30._8_4_ = (int)((double)fVar8 * 0.6366197723675814) + 1;
       auVar30._12_4_ = 0;
-      auVar30 = auVar30 & _DAT_180d9f680;
-      dVar36 = SUB168(_DAT_180d9f670 | auVar30,0) - 6755399441055744.0;
-      dVar40 = SUB168(_DAT_180d9f670 | auVar30,8) - 6755399441055744.0;
-      uStack_b8 = SUB164(auVar38 ^ _DAT_180d9f6b0,0);
-      uStack_b4 = SUB164(auVar38 ^ _DAT_180d9f6b0,4);
+      auVar30 = auVar30 & system_system_ui;
+      dVar36 = SUB168(system_system_ui | auVar30,0) - 6755399441055744.0;
+      dVar40 = SUB168(system_system_ui | auVar30,8) - 6755399441055744.0;
+      uStack_b8 = SUB164(auVar38 ^ system_system_ui,0);
+      uStack_b4 = SUB164(auVar38 ^ system_system_ui,4);
       dVar21 = (double)fVar5 - dVar36 * 1.5707950592041016;
       dVar24 = (double)fVar8 - dVar40 * 1.5707950592041016;
       dVar22 = dVar21 - dVar36 * 1.267590960196685e-06;
@@ -265,7 +265,7 @@ ulonglong thunk_FUN_1808fd8e0(uint64_t param_1,int32_t param_2)
                     -0.16666658) * fVar16 * fVar14 + fVar14,
                     (((fVar15 * 2.608e-06 + -0.000198107) * fVar15 + 0.008333075) * fVar15 +
                     -0.16666658) * fVar15 * fVar13 + fVar13) ^
-           ((CONCAT44(SUB164(_DAT_180d9f610 & auVar31,0xc),SUB164(_DAT_180d9f610 & auVar31,4)) ^
+           ((CONCAT44(SUB164(system_system_ui & auVar31,0xc),SUB164(system_system_ui & auVar31,4)) ^
             uStack_d8) & auVar38._0_8_ |
            CONCAT44(iVar9 << 0x1f & uStack_b4,iVar7 << 0x1f & uStack_b8));
     }
@@ -435,7 +435,7 @@ ulonglong FUN_1808fd400(uint64_t param_1,int32_t param_2)
   uStack_d8 = (ulonglong)system_data_f6d0 & aauStack_f8[0]._0_8_;
   iVar7 = (int)(fVar12 * 0.31830987);
   iVar9 = (int)(fVar13 * 0.31830987);
-  aauStack_f8[0] = aauStack_f8[0] & _DAT_180d9f600;
+  aauStack_f8[0] = aauStack_f8[0] & system_system_ui;
   fVar8 = aauStack_f8[0]._0_4_;
   auVar31._0_4_ = -(uint)(0x4e800000 < (int)fVar8);
   fVar11 = aauStack_f8[0]._4_4_;
@@ -449,9 +449,9 @@ ulonglong FUN_1808fd400(uint64_t param_1,int32_t param_2)
       auVar29._4_4_ = 0;
       auVar29._8_4_ = (int)((double)fVar11 * 0.6366197723675814) + 1;
       auVar29._12_4_ = 0;
-      auVar29 = auVar29 & _DAT_180d9f680;
-      dVar33 = SUB168(_DAT_180d9f670 | auVar29,0) - 6755399441055744.0;
-      dVar36 = SUB168(_DAT_180d9f670 | auVar29,8) - 6755399441055744.0;
+      auVar29 = auVar29 & system_system_ui;
+      dVar33 = SUB168(system_system_ui | auVar29,0) - 6755399441055744.0;
+      dVar36 = SUB168(system_system_ui | auVar29,8) - 6755399441055744.0;
       dVar18 = (double)fVar8 - dVar33 * 1.5707950592041016;
       dVar21 = (double)fVar11 - dVar36 * 1.5707950592041016;
       dVar19 = dVar18 - dVar33 * 1.267590960196685e-06;
@@ -481,7 +481,7 @@ ulonglong FUN_1808fd400(uint64_t param_1,int32_t param_2)
                     -0.16666658) * fVar17 * fVar13 + fVar13,
                     (((fVar5 * 2.608e-06 + -0.000198107) * fVar5 + 0.008333075) * fVar5 +
                     -0.16666658) * fVar5 * fVar12 + fVar12) ^
-           CONCAT44(SUB164(_DAT_180d9f610 & auVar30,0xc),SUB164(_DAT_180d9f610 & auVar30,4)) ^
+           CONCAT44(SUB164(system_system_ui & auVar30,0xc),SUB164(system_system_ui & auVar30,4)) ^
            uStack_d8;
     }
     else {
@@ -493,11 +493,11 @@ ulonglong FUN_1808fd400(uint64_t param_1,int32_t param_2)
       auVar27._4_4_ = 0;
       auVar27._8_4_ = (int)((double)fVar11 * 0.6366197723675814) + 1;
       auVar27._12_4_ = 0;
-      auVar27 = auVar27 & _DAT_180d9f680;
-      dVar33 = SUB168(_DAT_180d9f670 | auVar27,0) - 6755399441055744.0;
-      dVar36 = SUB168(_DAT_180d9f670 | auVar27,8) - 6755399441055744.0;
-      uStack_b8 = SUB164(auVar34 ^ _DAT_180d9f6b0,0);
-      uStack_b4 = SUB164(auVar34 ^ _DAT_180d9f6b0,4);
+      auVar27 = auVar27 & system_system_ui;
+      dVar33 = SUB168(system_system_ui | auVar27,0) - 6755399441055744.0;
+      dVar36 = SUB168(system_system_ui | auVar27,8) - 6755399441055744.0;
+      uStack_b8 = SUB164(auVar34 ^ system_system_ui,0);
+      uStack_b4 = SUB164(auVar34 ^ system_system_ui,4);
       dVar18 = (double)fVar8 - dVar33 * 1.5707950592041016;
       dVar21 = (double)fVar11 - dVar36 * 1.5707950592041016;
       dVar19 = dVar18 - dVar33 * 1.267590960196685e-06;
@@ -529,7 +529,7 @@ ulonglong FUN_1808fd400(uint64_t param_1,int32_t param_2)
                     -0.16666658) * fVar15 * fVar5 + fVar5,
                     (((fVar14 * 2.608e-06 + -0.000198107) * fVar14 + 0.008333075) * fVar14 +
                     -0.16666658) * fVar14 * fVar12 + fVar12) ^
-           ((CONCAT44(SUB164(_DAT_180d9f610 & auVar28,0xc),SUB164(_DAT_180d9f610 & auVar28,4)) ^
+           ((CONCAT44(SUB164(system_system_ui & auVar28,0xc),SUB164(system_system_ui & auVar28,4)) ^
             uStack_d8) & auVar34._0_8_ |
            CONCAT44(iVar9 << 0x1f & uStack_b4,iVar7 << 0x1f & uStack_b8));
     }
@@ -656,7 +656,7 @@ ulonglong thunk_FUN_1808fe1a0(uint64_t param_1,int32_t param_2)
   uint uStack_b4;
   int8_t aauStack_38 [3] [16];
   
-  auVar8 = in_XMM0 & _DAT_180d9fd20;
+  auVar8 = in_XMM0 & system_system_ui;
   fVar16 = auVar8._0_4_;
   fVar20 = auVar8._4_4_;
   fVar11 = auVar8._12_4_;
@@ -688,7 +688,7 @@ ulonglong thunk_FUN_1808fe1a0(uint64_t param_1,int32_t param_2)
                     -0.16666658) * fVar35 * fVar16 + fVar16) ^
            CONCAT44((int)fVar10 << 0x1f,(int)fVar5 << 0x1f);
   }
-  aauStack_d8[0] = in_XMM0 & _DAT_180d9fd20;
+  aauStack_d8[0] = in_XMM0 & system_system_ui;
   fVar7 = aauStack_d8[0]._0_4_;
   auVar37._0_4_ = -(uint)(0x4e800000 < (int)fVar7);
   fVar12 = aauStack_d8[0]._4_4_;
@@ -702,9 +702,9 @@ ulonglong thunk_FUN_1808fe1a0(uint64_t param_1,int32_t param_2)
       auVar32._4_4_ = 0;
       auVar32._8_4_ = (int)((double)fVar12 * 0.6366197723675814);
       auVar32._12_4_ = 0;
-      auVar32 = auVar32 | _DAT_180d9fda0;
-      dVar26 = SUB168(_DAT_180d9fd90 | auVar32,0) - 6755399441055744.0;
-      dVar29 = SUB168(_DAT_180d9fd90 | auVar32,8) - 6755399441055744.0;
+      auVar32 = auVar32 | system_system_ui;
+      dVar26 = SUB168(system_system_ui | auVar32,0) - 6755399441055744.0;
+      dVar29 = SUB168(system_system_ui | auVar32,8) - 6755399441055744.0;
       dVar17 = (double)fVar7 - dVar26 * 1.5707950592041016;
       dVar21 = (double)fVar12 - dVar29 * 1.5707950592041016;
       dVar18 = dVar17 - dVar26 * 1.267590960196685e-06;
@@ -721,7 +721,7 @@ ulonglong thunk_FUN_1808fe1a0(uint64_t param_1,int32_t param_2)
       dVar24 = dVar23 + dVar18;
       dVar22 = dVar21 - dVar26 * -1.3350302175814904e-19;
       dVar25 = dVar24 - dVar29 * -1.3350302175814904e-19;
-      auVar8 = _DAT_180d9fd30 & auVar33 ^ _DAT_180d9fd30;
+      auVar8 = system_system_ui & auVar33 ^ system_system_ui;
       fVar16 = (float)(((dVar17 + (dVar19 - dVar21) +
                         ((dVar21 - dVar22) - dVar26 * -1.3350302175814904e-19)) -
                        dVar26 * 1.6446256936324258e-26) + dVar22);
@@ -741,15 +741,15 @@ ulonglong thunk_FUN_1808fe1a0(uint64_t param_1,int32_t param_2)
       fVar11 = (float)(int)fVar10 - 0.5;
       fVar35 = ((fVar16 - fVar35 * fVar6) - fVar36 * fVar6) - fVar6 * 1.5099067e-07;
       fVar36 = ((fVar20 - fVar27 * fVar11) - fVar28 * fVar11) - fVar11 * 1.5099067e-07;
-      uStack_b8 = SUB164(auVar8 ^ _DAT_180d9fdc0,0);
-      uStack_b4 = SUB164(auVar8 ^ _DAT_180d9fdc0,4);
+      uStack_b8 = SUB164(auVar8 ^ system_system_ui,0);
+      uStack_b4 = SUB164(auVar8 ^ system_system_ui,4);
       auVar30._0_4_ = (uint)((double)fVar7 * 0.6366197723675814);
       auVar30._4_4_ = 0;
       auVar30._8_4_ = (int)((double)fVar12 * 0.6366197723675814);
       auVar30._12_4_ = 0;
-      auVar30 = auVar30 | _DAT_180d9fda0;
-      dVar26 = SUB168(_DAT_180d9fd90 | auVar30,0) - 6755399441055744.0;
-      dVar29 = SUB168(_DAT_180d9fd90 | auVar30,8) - 6755399441055744.0;
+      auVar30 = auVar30 | system_system_ui;
+      dVar26 = SUB168(system_system_ui | auVar30,0) - 6755399441055744.0;
+      dVar29 = SUB168(system_system_ui | auVar30,8) - 6755399441055744.0;
       dVar17 = (double)fVar7 - dVar26 * 1.5707950592041016;
       dVar21 = (double)fVar12 - dVar29 * 1.5707950592041016;
       dVar18 = dVar17 - dVar26 * 1.267590960196685e-06;
@@ -766,7 +766,7 @@ ulonglong thunk_FUN_1808fe1a0(uint64_t param_1,int32_t param_2)
       dVar24 = dVar23 + dVar18;
       dVar22 = dVar21 - dVar26 * -1.3350302175814904e-19;
       dVar25 = dVar24 - dVar29 * -1.3350302175814904e-19;
-      auVar37 = _DAT_180d9fd30 & auVar31 ^ _DAT_180d9fd30;
+      auVar37 = system_system_ui & auVar31 ^ system_system_ui;
       fVar27 = (float)(((dVar17 + (dVar19 - dVar21) +
                         ((dVar21 - dVar22) - dVar26 * -1.3350302175814904e-19)) -
                        dVar26 * 1.6446256936324258e-26) + dVar22);
@@ -929,13 +929,13 @@ void thunk_FUN_1808fea60(uint64_t param_1,uint64_t param_2)
   auVar36._0_8_ = (ulonglong)dVar19 & 0xfffffffffffff;
   auVar36._8_4_ = SUB84(dVar4,0);
   auVar36._12_4_ = uVar8 & 0xfffff;
-  dVar34 = SUB168(auVar36 | _DAT_180da3280,0);
+  dVar34 = SUB168(auVar36 | system_system_ui,0);
   fVar15 = (float)dVar34;
-  dVar38 = SUB168(auVar36 | _DAT_180da3280,8);
+  dVar38 = SUB168(auVar36 | system_system_ui,8);
   fVar16 = (float)dVar38;
-  dVar27 = SUB168(auVar28 | _DAT_180da3280,0);
+  dVar27 = SUB168(auVar28 | system_system_ui,0);
   fVar22 = (float)dVar27;
-  dVar30 = SUB168(auVar28 | _DAT_180da3280,8);
+  dVar30 = SUB168(auVar28 | system_system_ui,8);
   fVar23 = (float)dVar30;
   auVar20._4_4_ = fVar16;
   auVar20._0_4_ = fVar15;
@@ -969,19 +969,19 @@ void thunk_FUN_1808fea60(uint64_t param_1,uint64_t param_2)
   auVar18._12_4_ = (int)((ulonglong)dVar30 >> 0x20);
   dVar35 = (dVar34 + (dVar34 * 0.33333333333308374 + -0.49999999999988803) * dVar34 * dVar34 +
             *(double *)(&unknown_var_9296_ptr + (int)uVar7) +
-           ((double)(uint)((ulonglong)dVar19 >> 0x34) - SUB168(auVar25 | _DAT_180da34c0,0)) *
+           ((double)(uint)((ulonglong)dVar19 >> 0x34) - SUB168(auVar25 | system_system_ui,0)) *
            0.6931471805599453) * (double)afStack_100[0];
   dVar39 = (dVar38 + (dVar38 * 0.33333333333308374 + -0.49999999999988803) * dVar38 * dVar38 +
             *(double *)(&unknown_var_9296_ptr + (int)(uint)((ulonglong)dVar1 >> 0x28)) +
-           ((double)(uVar8 >> 0x14) - SUB168(auVar25 | _DAT_180da34c0,8)) * 0.6931471805599453) *
+           ((double)(uVar8 >> 0x14) - SUB168(auVar25 | system_system_ui,8)) * 0.6931471805599453) *
            (double)fVar33;
   dVar38 = (dVar27 + (dVar27 * 0.33333333333308374 + -0.49999999999988803) * dVar27 * dVar27 +
             *(double *)(&unknown_var_9296_ptr + (int)(uint)((ulonglong)dVar2 >> 0x28)) +
            ((double)(uint)((ulonglong)(double)in_XMM0_Dc >> 0x34) -
-           SUB168(auVar17 | _DAT_180da34c0,0)) * 0.6931471805599453) * (double)in_XMM1_Dc;
+           SUB168(auVar17 | system_system_ui,0)) * 0.6931471805599453) * (double)in_XMM1_Dc;
   dVar31 = (dVar30 + (dVar30 * 0.33333333333308374 + -0.49999999999988803) * auVar18._8_8_ * dVar30
             + *(double *)(&unknown_var_9296_ptr + (int)(uint)((ulonglong)dVar3 >> 0x28)) +
-           ((double)(uVar26 >> 0x14) - SUB168(auVar17 | _DAT_180da34c0,8)) * 0.6931471805599453) *
+           ((double)(uVar26 >> 0x14) - SUB168(auVar17 | system_system_ui,8)) * 0.6931471805599453) *
            (double)in_XMM1_Dd;
   dVar30 = dVar35 * 2954.639443740597;
   dVar34 = dVar39 * 2954.639443740597;

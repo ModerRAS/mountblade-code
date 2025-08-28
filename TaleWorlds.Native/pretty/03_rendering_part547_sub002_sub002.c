@@ -709,11 +709,11 @@ uint64_t * FUN_18056ca30(uint64_t *param_1,int16_t param_2,int32_t param_3)
   FUN_18056f5d0();
   param_1[0x8d87] = param_1[0x8d86];
   param_1[0x8d8b] = param_1[0x8d8a];
-  *(uint64_t *)((longlong)param_1 + 0x71c) = _DAT_180c966e8;
-  *(uint64_t *)((longlong)param_1 + 0x724) = _DAT_180c966e8;
+  *(uint64_t *)((longlong)param_1 + 0x71c) = render_system_config;
+  *(uint64_t *)((longlong)param_1 + 0x724) = render_system_config;
   *(int32_t *)((longlong)param_1 + 0x72c) = 0;
   do {
-    *puVar4 = _DAT_180c966e8;
+    *puVar4 = render_system_config;
     puVar4 = puVar4 + 1;
     lVar2 = lVar2 + -1;
   } while (lVar2 != 0);
@@ -727,7 +727,7 @@ uint64_t * FUN_18056ca30(uint64_t *param_1,int16_t param_2,int32_t param_3)
   param_1[0x8d98] = 0;
   param_1[0x8d94] = 0;
   param_1[0x8d99] = 0;
-  param_1[0xd7] = _DAT_180c966e8;
+  param_1[0xd7] = render_system_config;
   param_1[0xe0] = 0;
   *(int32_t *)(param_1 + 0xe3) = 0xffffffff;
   param_1[0x9892] = param_1[0x9891];

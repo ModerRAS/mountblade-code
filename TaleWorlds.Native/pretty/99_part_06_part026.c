@@ -643,7 +643,7 @@ LAB_1803be3f4:
                     uStack_140 = 0;
                     puStack_150 = (int32_t *)0x0;
                     uStack_148 = 0;
-                    puStack_150 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+                    puStack_150 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
                     *(int8_t *)puStack_150 = 0;
                     uVar4 = FUN_18064e990(puStack_150);
                     *puStack_150 = 0x6576656c;

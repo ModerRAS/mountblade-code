@@ -690,7 +690,7 @@ void FUN_18051fea0(longlong param_1,int param_2,longlong param_3,uint64_t param_
   iVar9 = *(int *)(lVar12 + 0x9e0);
   lVar10 = lVar12 + (longlong)param_2 * 0x1f8;
   bVar5 = false;
-  if ((((_DAT_180c92514 == 1) || (*(int *)(lVar12 + 0x9e4) < 0)) ||
+  if ((((system_status_flag == 1) || (*(int *)(lVar12 + 0x9e4) < 0)) ||
       (param_2 != *(int *)(lVar12 + 0x9e4))) || (-1 < *(int *)(param_3 + 0xfc))) {
 LAB_18051ff20:
     if (-1 < iVar9) {
@@ -791,17 +791,17 @@ LAB_18051ff40:
       (piVar3 + lVar10 * 0x7e + 2)[1] = 0;
       if (*(int *)((longlong)*piVar3 * 0xa60 + 0x30b8 + *(longlong *)(piVar3 + 0x286)) != 0) {
         iVar8 = *(int *)((longlong)*piVar3 * 0xa60 + 0x30b8 + *(longlong *)(piVar3 + 0x286));
-        if ((iVar8 != 0) && (_DAT_180c8f008 != 0)) {
-          (**(code **)(_DAT_180c8f008 + 0x30))(iVar8);
+        if ((iVar8 != 0) && (system_cache_buffer != 0)) {
+          (**(code **)(system_cache_buffer + 0x30))(iVar8);
         }
-        (**(code **)(_DAT_180c8ece0 + 0x98))(iVar8,piVar3[0x278]);
-        if ((iVar8 != 0) && (_DAT_180c8f008 != 0)) {
-          (**(code **)(_DAT_180c8f008 + 0x18))(iVar8);
+        (**(code **)(render_system_data_config + 0x98))(iVar8,piVar3[0x278]);
+        if ((iVar8 != 0) && (system_cache_buffer != 0)) {
+          (**(code **)(system_cache_buffer + 0x18))(iVar8);
         }
       }
     }
   }
-  if ((_DAT_180c92514 != 1) && (bVar5)) {
+  if ((system_status_flag != 1) && (bVar5)) {
     FUN_180531300(param_1,iVar9,*(uint *)(param_1 + 0x564) >> 0x1f ^ 1,0,
                   param_6 & 0xffffffffffffff00,param_7 & 0xffffffff00000000,param_8 & 0xffffff00);
   }
@@ -839,15 +839,15 @@ LAB_18051ff40:
     FUN_1804f41b0(*(uint64_t *)(param_1 + 0x8d8));
   }
   *(int8_t *)(*(longlong *)(param_1 + 0x8d8) + 0x87b728) = 1;
-  lVar10 = _DAT_180c8ece0;
+  lVar10 = render_system_data_config;
   if ((param_11 == '\0') && (*(int *)(param_1 + 0x18) != 0)) {
     iVar9 = *(int *)(param_1 + 0x18);
-    if ((iVar9 != 0) && (_DAT_180c8f008 != 0)) {
-      (**(code **)(_DAT_180c8f008 + 0x30))(iVar9);
+    if ((iVar9 != 0) && (system_cache_buffer != 0)) {
+      (**(code **)(system_cache_buffer + 0x30))(iVar9);
     }
     (**(code **)(lVar10 + 0xd0))(iVar9);
-    if ((iVar9 != 0) && (_DAT_180c8f008 != 0)) {
-      (**(code **)(_DAT_180c8f008 + 0x18))(iVar9);
+    if ((iVar9 != 0) && (system_cache_buffer != 0)) {
+      (**(code **)(system_cache_buffer + 0x18))(iVar9);
     }
   }
   FUN_18050c1c0(param_1);

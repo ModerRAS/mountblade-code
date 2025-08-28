@@ -153,7 +153,7 @@ void RenderingSystem_CreateRenderContext(uint64_t *context_ptr)
     thread_counter = 0;
     string_buffer = (uint64_t *)0x0;
     buffer_length = 0;
-    context_data = (uint64_t *)SystemMemoryAllocator(_DAT_180c8ed18, 0x10, 0x13);
+    context_data = (uint64_t *)SystemMemoryAllocator(system_memory_pool_ptr, 0x10, 0x13);
     *(int8_t *)context_data = 0;
     string_buffer = context_data;
     string_length = SystemStringHashCalculator(context_data);
@@ -222,7 +222,7 @@ void RenderingSystem_SetupRenderParameters(uint64_t param_1, uint64_t param_2)
   uint64_t uStack_28;
   
   uStack_30 = 0x18036981a;
-  puVar3 = (uint64_t *)SystemMemoryManager(_DAT_180c8ed18,0x90,8,3);
+  puVar3 = (uint64_t *)SystemMemoryManager(system_memory_pool_ptr,0x90,8,3);
   uStack_28 = 0xfffffffffffffffe;
   puVar2 = puVar3;
   SystemBaseInitializer(puVar3,param_2,param_1);
@@ -231,7 +231,7 @@ void RenderingSystem_SetupRenderParameters(uint64_t param_1, uint64_t param_2)
   uStack_f0 = 0;
   puStack_100 = (uint64_t *)0x0;
   uStack_f8 = 0;
-  puVar2 = (uint64_t *)SystemMemoryAllocator(_DAT_180c8ed18,0x10,0x13);
+  puVar2 = (uint64_t *)SystemMemoryAllocator(system_memory_pool_ptr,0x10,0x13);
   *(int8_t *)puVar2 = 0;
   puStack_100 = puVar2;
   uVar1 = SystemStringHashCalculator(puVar2);
@@ -460,7 +460,7 @@ void RenderingSystem_ColorInterpolatorBase(longlong render_context) {
     
     // 计算时间相关的插值因子
     float interpolation_factor = (float)fmodf(
-        (float)(*(longlong *)(&system_error_code + (longlong)_DAT_180c91f50 * 8) - _DAT_180c91f48) * 1e-05 + 
+        (float)(*(longlong *)(&system_error_code + (longlong)render_system_string * 8) - render_system_string) * 1e-05 + 
         *(float *)(render_context + 0x88)
     );
     
@@ -548,7 +548,7 @@ void RenderingSystem_ColorInterpolatorAdvanced(longlong color_index, longlong re
     
     // 基于索引计算插值因子
     float interpolation_factor = (float)fmodf(
-        (float)(*(longlong *)(color_index + array_index * 8) - _DAT_180c91f48) * 1e-05 +
+        (float)(*(longlong *)(color_index + array_index * 8) - render_system_string) * 1e-05 +
         *(float *)(register_base + 0x88)
     );
     
@@ -722,7 +722,7 @@ void RenderingSystem_StringManagerInitializer(uint64_t *string_manager) {
     uint64_t *buffer_target = processor_ptr;
     
     // 分配字符串缓冲区内存
-    int32_t *string_data = (int32_t *)SystemMemoryAllocator(_DAT_180c8ed18, 0x10, 0x13);
+    int32_t *string_data = (int32_t *)SystemMemoryAllocator(system_memory_pool_ptr, 0x10, 0x13);
     *(int8_t *)string_data = 0; // 清零字符串数据
     buffer_ptr = (uint64_t *)string_data;
     
@@ -772,7 +772,7 @@ void RenderingSystem_StringManagerInitializer(uint64_t *string_manager) {
     buffer_ptr = (uint64_t *)0x0;
     buffer_length = 0;
     
-    uint64_t *main_buffer = (uint64_t *)SystemMemoryAllocator(_DAT_180c8ed18, 0x10, 0x13);
+    uint64_t *main_buffer = (uint64_t *)SystemMemoryAllocator(system_memory_pool_ptr, 0x10, 0x13);
     *(int8_t *)main_buffer = 0; // 清零主缓冲区
     buffer_ptr = main_buffer;
     
@@ -904,7 +904,7 @@ void RenderingSystem_ParameterInitializer(longlong render_context, uint64_t para
     int32_t string_length = 0;
     
     // 分配字符串内存
-    int32_t *string_data = (int32_t *)SystemMemoryAllocator(_DAT_180c8ed18, 0x10, 0x13, param_4, 0xfffffffffffffffe);
+    int32_t *string_data = (int32_t *)SystemMemoryAllocator(system_memory_pool_ptr, 0x10, 0x13, param_4, 0xfffffffffffffffe);
     *(int8_t *)string_data = 0; // 清零字符串数据
     string_ptr = string_data;
     
@@ -990,7 +990,7 @@ void RenderingSystem_ProcessorInitializer_Standard(longlong render_context) {
         int32_t string_length = 7;
         strcpy_s(security_buffer, 0x10, &unknown_var_1464_ptr); // 复制调试字符串
         
-        uint64_t string_handle = SystemStringHandleManager(_DAT_180c86930, &string_ptr, 1);
+        uint64_t string_handle = SystemStringHandleManager(system_resource_state, &string_ptr, 1);
         *(uint64_t *)(render_context + 0x98) = string_handle;
         string_ptr = &unknown_var_720_ptr; // 重置字符串指针
     }
@@ -1062,7 +1062,7 @@ void RenderingSystem_ProcessorInitializer_Enhanced(longlong render_context) {
         int32_t string_length = 7;
         strcpy_s(security_buffer, 0x10, &unknown_var_1464_ptr); // 复制调试字符串
         
-        uint64_t string_handle = SystemStringHandleManager(_DAT_180c86930, &string_ptr, 1);
+        uint64_t string_handle = SystemStringHandleManager(system_resource_state, &string_ptr, 1);
         *(uint64_t *)(render_context + 0x98) = string_handle;
         string_ptr = &unknown_var_720_ptr; // 重置字符串指针
     }
@@ -1119,7 +1119,7 @@ void RenderingSystem_ProcessorInitializer_Enhanced(longlong render_context) {
  */
 void RenderingSystem_ManagerCreator(uint64_t param_1, uint64_t param_2) {
     // 分配管理器内存
-    uint64_t *manager = (uint64_t *)SystemMemoryManager(_DAT_180c8ed18, 0x118, 8, 3);
+    uint64_t *manager = (uint64_t *)SystemMemoryManager(system_memory_pool_ptr, 0x118, 8, 3);
     uint64_t stack_guard = 0xfffffffffffffffe;
     
     uint64_t *manager_ptr = manager;
@@ -1166,7 +1166,7 @@ void RenderingSystem_ManagerCreator(uint64_t param_1, uint64_t param_2) {
     uint64_t *buffer_target = processor_ptr;
     
     // 分配字符串缓冲区内存
-    int32_t *string_data = (int32_t *)SystemMemoryAllocator(_DAT_180c8ed18, 0x10, 0x13);
+    int32_t *string_data = (int32_t *)SystemMemoryAllocator(system_memory_pool_ptr, 0x10, 0x13);
     *(int8_t *)string_data = 0; // 清零字符串数据
     buffer_ptr = (uint64_t *)string_data;
     
@@ -1216,7 +1216,7 @@ void RenderingSystem_ManagerCreator(uint64_t param_1, uint64_t param_2) {
     buffer_ptr = (uint64_t *)0x0;
     buffer_length = 0;
     
-    uint64_t *main_buffer = (uint64_t *)SystemMemoryAllocator(_DAT_180c8ed18, 0x10, 0x13);
+    uint64_t *main_buffer = (uint64_t *)SystemMemoryAllocator(system_memory_pool_ptr, 0x10, 0x13);
     *(int8_t *)main_buffer = 0; // 清零主缓冲区
     buffer_ptr = main_buffer;
     

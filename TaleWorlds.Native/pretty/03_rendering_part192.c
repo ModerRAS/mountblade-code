@@ -111,7 +111,7 @@ typedef struct {
 extern void* system_data_1858;          // 系统数据结构 1858
 extern void* system_data_1838;          // 系统数据结构 1838
 extern void* system_data_1028;          // 系统数据结构 1028
-extern void* _DAT_180c8ed18;            // 全局数据段
+extern void* system_memory_pool_ptr;            // 全局数据段
 extern void* unknown_var_9120_ptr;      // 未知变量 9120
 extern void* unknown_var_1040_ptr;      // 未知变量 1040
 extern void* unknown_var_1024_ptr;      // 未知变量 1024
@@ -230,7 +230,7 @@ void FUN_18037c8d0(RenderContextHandle contextHandle, uint64_t bufferFlags)
             
             // 检查是否需要分配主渲染缓冲区
             if (*(longlong *)(bufferInfoPtr + 0xb8) == 0) {
-                resourceHandle = RenderSystem_AllocateRenderBuffer(_DAT_180c8ed18, 0x3b0, 0x10, 3, allocationFlags);
+                resourceHandle = RenderSystem_AllocateRenderBuffer(system_memory_pool_ptr, 0x3b0, 0x10, 3, allocationFlags);
                 resourcePtr = (longlong *)RenderSystem_CreateRenderResource(resourceHandle, 1);
                 if (resourcePtr != (longlong *)0x0) {
                     (**(code **)(*resourcePtr + 0x28))(resourcePtr);
@@ -242,7 +242,7 @@ void FUN_18037c8d0(RenderContextHandle contextHandle, uint64_t bufferFlags)
             
             // 检查是否需要分配辅助渲染缓冲区
             if (*(longlong *)(bufferInfoPtr + 200) == 0) {
-                resourceHandle = RenderSystem_AllocateRenderBuffer(_DAT_180c8ed18, 0x3b0, 0x10, 3, allocationFlags);
+                resourceHandle = RenderSystem_AllocateRenderBuffer(system_memory_pool_ptr, 0x3b0, 0x10, 3, allocationFlags);
                 resourcePtr = (longlong *)RenderSystem_CreateRenderResource(resourceHandle, 1);
                 if (resourcePtr != (longlong *)0x0) {
                     (**(code **)(*resourcePtr + 0x28))(resourcePtr);
@@ -348,7 +348,7 @@ void FUN_18037caf0(uint64_t *objectArray, uint64_t filterFlags, uint64_t memoryT
                     newArraySize = 1;
 LAB_18037cbba:
                     tempArray = (uint64_t *)
-                             RenderSystem_AllocateMemory(_DAT_180c8ed18, newArraySize * 8, 3, allocationSize, allocationFlags, prevArray, filteredObjects, nextArray, arrayCapacity);
+                             RenderSystem_AllocateMemory(system_memory_pool_ptr, newArraySize * 8, 3, allocationSize, allocationFlags, prevArray, filteredObjects, nextArray, arrayCapacity);
                 }
                 else {
                     newArraySize = newArraySize * 2;
@@ -515,7 +515,7 @@ LAB_18037cdee:
                                     }
                                     
                                     if (currentState == stateInfoPtr) {
-                                        stateFlags = RenderSystem_AllocateRenderBuffer(_DAT_180c8ed18, 0x178, 8,
+                                        stateFlags = RenderSystem_AllocateRenderBuffer(system_memory_pool_ptr, 0x178, 8,
                                               CONCAT71((int7)((ulonglong)bucketSize >> 8), 3));
                                         tempValue1 = RenderSystem_InitializeRenderContext(stateFlags, *(uint64_t *)(dependencyChain + 0x68));
                                         aiStack_78[0] = dependencyIndex;
@@ -542,7 +542,7 @@ LAB_18037cdee:
                                                 stateSize = 0;
                                             }
                                             else {
-                                                stateSize = RenderSystem_AllocateMemory(_DAT_180c8ed18, stateSize << 5, allocationFlags & 0xff);
+                                                stateSize = RenderSystem_AllocateMemory(system_memory_pool_ptr, stateSize << 5, allocationFlags & 0xff);
                                             }
                                             
                                             allocationSize = stateSize * 0x20 + stateSize;
@@ -556,7 +556,7 @@ LAB_18037cdee:
                                             tempPtr3 = *(longlong **)(stateSize + 0x38);
                                             if (*(longlong *)(stateSize + 0x40) - (longlong)tempPtr3 >> 4 != 0) {
                                                 stateKey = *(ulonglong *)(*tempPtr3 + 0x1b8);
-                                                stateSize = RenderSystem_AllocateMemory(_DAT_180c8ed18, 0x28, *(int8_t *)(stateArray + 5));
+                                                stateSize = RenderSystem_AllocateMemory(system_memory_pool_ptr, 0x28, *(int8_t *)(stateArray + 5));
                                                 *(ulonglong *)(stateSize + 0x20) = stateKey;
                                                 hasDependency = true;
                                                 hashTablePtr = (uint64_t *)stateArray[2];
@@ -725,7 +725,7 @@ ulonglong FUN_18037d0d0(uint64_t statsHandle)
     tempValue18 = 0;
     
     // 同步渲染状态
-    RenderSystem_SyncRenderState(statsHandle, &pppppppuStack_1c8);
+    FUN_18037ccb0(statsHandle, &pppppppuStack_1c8);
     
     tempValue5 = 3;
     pppppppuStack_280 = &pppppppuStack_280;
@@ -739,7 +739,7 @@ ulonglong FUN_18037d0d0(uint64_t statsHandle)
     if ((uint64_t ********)pppppppuStack_1c0 != &pppppppuStack_1c8) {
         do {
             ppppppuVar20 = pppppppuVar10[4];
-            if ((((_DAT_180c8a9d0 != 0) && (*(char *)(_DAT_180c8a9d0 + 0x1f1) != '\0')) ||
+            if ((((render_system_data_buffer != 0) && (*(char *)(render_system_data_buffer + 0x1f1) != '\0')) ||
                 (*(char *)(ppppppuVar20 + 0x3b) != '\0')) ||
                ((*(int *)(ppppppuVar20 + 0x3a) == -1 || (*(int *)(ppppppuVar20 + 0x3a) == 0)))) {
                 
@@ -771,7 +771,7 @@ ulonglong FUN_18037d0d0(uint64_t statsHandle)
                     
                     if (pppppppuVar9[4] < ppppppuVar2) {
 LAB_18037d26b:
-                        tempSize = RenderSystem_AllocateMemory(_DAT_180c8ed18, 0x28, (int8_t)tempValue5);
+                        tempSize = RenderSystem_AllocateMemory(system_memory_pool_ptr, 0x28, (int8_t)tempValue5);
                         *(uint64_t *******)(tempSize + 0x20) = ppppppuVar2;
                         
                         if (((uint64_t ********)pppppppuVar7 == &pppppppuStack_280) ||

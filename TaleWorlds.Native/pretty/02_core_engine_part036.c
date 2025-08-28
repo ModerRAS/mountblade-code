@@ -70,8 +70,8 @@ void FUN_1800786e0(uint64_t *param_1,longlong param_2)
     plVar8 = plVar8 + 1;
   } while (iVar9 < 7);
   uVar4 = FUN_1801fc6c0(param_2,&uStack_58);
-  lVar1 = _DAT_180c8aa00;
-  iVar9 = FUN_180191c00(_DAT_180c8aa00,uVar4);
+  lVar1 = core_system_data_config;
+  iVar9 = FUN_180191c00(core_system_data_config,uVar4);
   if ((iVar9 == -1) || (lVar7 = (longlong)iVar9 * 0x68 + *(longlong *)(lVar1 + 0x38), lVar7 == 0)) {
     lVar7 = *(longlong *)(lVar1 + 0x28);
   }
@@ -84,7 +84,7 @@ void FUN_1800786e0(uint64_t *param_1,longlong param_2)
   uStack_40 = 0;
   uStack_58 = &unknown_var_720_ptr;
   if (lVar7 == 0) {
-    lVar7 = *(longlong *)(_DAT_180c8aa00 + 0x38);
+    lVar7 = *(longlong *)(core_system_data_config + 0x38);
   }
   param_1[0x26] = lVar7;
   if ((*(char *)(param_2 + 0x248) == '\0') && (*(longlong *)(param_2 + 0x3c8) != 0)) {

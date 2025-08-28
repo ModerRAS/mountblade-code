@@ -241,14 +241,14 @@ void FUN_180572c50(longlong param_1,int32_t *param_2,uint64_t param_3,uint64_t p
     } while ((longlong)uVar13 < (longlong)*(char *)(param_1 + 0x25e8));
   }
   uVar1 = param_2[5];
-  lVar15 = (longlong)*(int *)(param_1 + 0xac) * 0xe0 + _DAT_180c95fb0;
+  lVar15 = (longlong)*(int *)(param_1 + 0xac) * 0xe0 + render_system_config;
   *(int32_t *)(param_1 + 0x3460) = uVar1;
   *(int32_t *)(param_1 + 0x3464) = uVar1;
   *(int32_t *)(param_1 + 0x3498) = 0;
-  _DAT_180bf65b8 = _DAT_180bf65b8 << 0xd ^ _DAT_180bf65b8;
-  _DAT_180bf65b8 = _DAT_180bf65b8 >> 0x11 ^ _DAT_180bf65b8;
-  uVar8 = _DAT_180bf65b8 << 5 ^ _DAT_180bf65b8;
-  _DAT_180bf65b8 = uVar8;
+  system_memory_flags = system_memory_flags << 0xd ^ system_memory_flags;
+  system_memory_flags = system_memory_flags >> 0x11 ^ system_memory_flags;
+  uVar8 = system_memory_flags << 5 ^ system_memory_flags;
+  system_memory_flags = uVar8;
   *(uint64_t *)(param_1 + 0x34a0) = 0;
   *(int32_t *)(param_1 + 0x34a8) = 0xbf800000;
   *(float *)(param_1 + 0x349c) = (float)(uVar8 - 1) * 2.3283064e-10;
@@ -405,14 +405,14 @@ void FUN_180572c5b(longlong param_1,int32_t *param_2,uint64_t param_3,uint64_t p
     } while ((longlong)uVar14 < (longlong)*(char *)(param_1 + 0x25e8));
   }
   uVar1 = param_2[5];
-  lVar15 = (longlong)*(int *)(param_1 + 0xac) * 0xe0 + _DAT_180c95fb0;
+  lVar15 = (longlong)*(int *)(param_1 + 0xac) * 0xe0 + render_system_config;
   *(int32_t *)(param_1 + 0x3460) = uVar1;
   *(int32_t *)(param_1 + 0x3464) = uVar1;
   *(int32_t *)(param_1 + 0x3498) = 0;
-  _DAT_180bf65b8 = _DAT_180bf65b8 << 0xd ^ _DAT_180bf65b8;
-  _DAT_180bf65b8 = _DAT_180bf65b8 >> 0x11 ^ _DAT_180bf65b8;
-  uVar9 = _DAT_180bf65b8 << 5 ^ _DAT_180bf65b8;
-  _DAT_180bf65b8 = uVar9;
+  system_memory_flags = system_memory_flags << 0xd ^ system_memory_flags;
+  system_memory_flags = system_memory_flags >> 0x11 ^ system_memory_flags;
+  uVar9 = system_memory_flags << 5 ^ system_memory_flags;
+  system_memory_flags = uVar9;
   *(uint64_t *)(param_1 + 0x34a0) = 0;
   *(int32_t *)(param_1 + 0x34a8) = 0xbf800000;
   *(float *)(param_1 + 0x349c) = (float)(uVar9 - 1) * 2.3283064e-10;
@@ -570,14 +570,14 @@ void FUN_180572c63(longlong param_1,int32_t *param_2,uint64_t param_3)
     } while ((longlong)uVar14 < (longlong)*(char *)(param_1 + 0x25e8));
   }
   uVar1 = param_2[5];
-  lVar15 = (longlong)*(int *)(param_1 + 0xac) * 0xe0 + _DAT_180c95fb0;
+  lVar15 = (longlong)*(int *)(param_1 + 0xac) * 0xe0 + render_system_config;
   *(int32_t *)(param_1 + 0x3460) = uVar1;
   *(int32_t *)(param_1 + 0x3464) = uVar1;
   *(int32_t *)(param_1 + 0x3498) = 0;
-  _DAT_180bf65b8 = _DAT_180bf65b8 << 0xd ^ _DAT_180bf65b8;
-  _DAT_180bf65b8 = _DAT_180bf65b8 >> 0x11 ^ _DAT_180bf65b8;
-  uVar9 = _DAT_180bf65b8 << 5 ^ _DAT_180bf65b8;
-  _DAT_180bf65b8 = uVar9;
+  system_memory_flags = system_memory_flags << 0xd ^ system_memory_flags;
+  system_memory_flags = system_memory_flags >> 0x11 ^ system_memory_flags;
+  uVar9 = system_memory_flags << 5 ^ system_memory_flags;
+  system_memory_flags = uVar9;
   *(uint64_t *)(param_1 + 0x34a0) = 0;
   *(int32_t *)(param_1 + 0x34a8) = 0xbf800000;
   *(float *)(param_1 + 0x349c) = (float)(uVar9 - 1) * 2.3283064e-10;

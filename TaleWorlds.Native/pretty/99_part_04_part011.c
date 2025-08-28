@@ -751,7 +751,7 @@ void SmallDataContainerManager(longlong *container_ptr, ulonglong required_space
         current_capacity = 0;
     }
     else {
-        current_capacity = FUN_18062b420(_DAT_180c8ed18, new_capacity * CONTAINER_SIZE_0x18, 
+        current_capacity = FUN_18062b420(system_memory_pool_ptr, new_capacity * CONTAINER_SIZE_0x18, 
                                        (char)container_ptr[3]);
         container_start = *container_ptr;
         container_end = container_ptr[1];
@@ -835,7 +835,7 @@ void SmallDataExpander(void)
         calculated_size = 0;
     }
     else {
-        calculated_size = FUN_18062b420(_DAT_180c8ed18, required_capacity * CONTAINER_SIZE_0x18, 
+        calculated_size = FUN_18062b420(system_memory_pool_ptr, required_capacity * CONTAINER_SIZE_0x18, 
                                        (char)container_ptr[3]);
         data_pointer = *container_ptr;
         index_pointer = container_ptr[1];
@@ -945,7 +945,7 @@ void LargeContainerManager(longlong *container_ptr, ulonglong required_capacity)
     uint64_t *temp_ptr2;                                    /**< 临时指针2 */
     
     // 获取容器当前状态
-    container_start = _DAT_180c8aa00;
+    container_start = system_system_data_pointer;
     data_ptr = (uint64_t *)container_ptr[1];
     
     // 检查是否有足够空间
@@ -967,7 +967,7 @@ void LargeContainerManager(longlong *container_ptr, ulonglong required_capacity)
         // 分配新内存
         current_capacity = 0;
         if (new_capacity != 0) {
-            current_capacity = FUN_18062b420(_DAT_180c8ed18, new_capacity * CONTAINER_SIZE_0x88, 
+            current_capacity = FUN_18062b420(system_memory_pool_ptr, new_capacity * CONTAINER_SIZE_0x88, 
                                            (char)container_ptr[3]);
             data_ptr = (uint64_t *)container_ptr[1];
             container_start = *container_ptr;
@@ -976,7 +976,7 @@ void LargeContainerManager(longlong *container_ptr, ulonglong required_capacity)
         // 处理数据迁移
         FUN_1801bd320(&temp_ptr1, container_start, data_ptr, current_capacity);
         data_ptr = temp_ptr1;
-        container_start = _DAT_180c8aa00;
+        container_start = system_system_data_pointer;
         
         // 初始化新分配的空间
         if (required_capacity != 0) {
@@ -1114,7 +1114,7 @@ void IndexedContainerManager(longlong *container_ptr, ulonglong required_capacit
         // 分配新内存
         container_start = 0;
         if (available_capacity != 0) {
-            container_start = FUN_18062b420(_DAT_180c8ed18, available_capacity * CONTAINER_SIZE_0x14, 
+            container_start = FUN_18062b420(system_memory_pool_ptr, available_capacity * CONTAINER_SIZE_0x14, 
                                            (char)container_ptr[3]);
             temp_ptr = (int32_t *)*container_ptr;
             index_ptr = (int32_t *)container_ptr[1];
@@ -1218,7 +1218,7 @@ void IndexedContainerExpander(longlong param_1, uint64_t param_2, uint64_t param
     // 分配新内存
     calculated_size = 0;
     if (required_capacity != 0) {
-        calculated_size = FUN_18062b420(_DAT_180c8ed18, required_capacity * CONTAINER_SIZE_0x14, 
+        calculated_size = FUN_18062b420(system_memory_pool_ptr, required_capacity * CONTAINER_SIZE_0x14, 
                                        (char)container_ptr[3]);
         param_4 = *container_ptr;
         current_position = container_ptr[1];
@@ -1353,7 +1353,7 @@ void MediumContainerManager(longlong *container_ptr, ulonglong required_capacity
         // 分配新内存
         current_capacity = 0;
         if (new_capacity != 0) {
-            current_capacity = FUN_18062b420(_DAT_180c8ed18, new_capacity * CONTAINER_SIZE_0x60, 
+            current_capacity = FUN_18062b420(system_memory_pool_ptr, new_capacity * CONTAINER_SIZE_0x60, 
                                            (char)container_ptr[3]);
             data_ptr = (uint64_t *)container_ptr[1];
             container_start = *container_ptr;
@@ -1492,7 +1492,7 @@ void LargeContainerExpander(longlong *container_ptr, ulonglong required_capacity
         temp_ptr1 = (int32_t *)0x0;
         if (new_capacity != 0) {
             temp_ptr1 = (int32_t *)
-                     FUN_18062b420(_DAT_180c8ed18, new_capacity * CONTAINER_SIZE_0x48, 
+                     FUN_18062b420(system_memory_pool_ptr, new_capacity * CONTAINER_SIZE_0x48, 
                                    (char)container_ptr[3], temp_ptr5, MEMORY_STACK_GUARD);
             temp_ptr5 = (uint64_t *)container_ptr[1];
             temp_ptr4 = (uint64_t *)*container_ptr;
@@ -1683,7 +1683,7 @@ void MediumContainerExpander(longlong *container_ptr, ulonglong required_capacit
         temp_ptr1 = (int32_t *)0x0;
         if (new_capacity != 0) {
             temp_ptr1 = (int32_t *)
-                     FUN_18062b420(_DAT_180c8ed18, new_capacity * CONTAINER_SIZE_0x38, 
+                     FUN_18062b420(system_memory_pool_ptr, new_capacity * CONTAINER_SIZE_0x38, 
                                    (char)container_ptr[3], temp_ptr5, MEMORY_STACK_GUARD);
             temp_ptr5 = (uint64_t *)container_ptr[1];
             temp_ptr4 = (uint64_t *)*container_ptr;

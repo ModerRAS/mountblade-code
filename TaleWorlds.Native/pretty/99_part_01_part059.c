@@ -213,7 +213,7 @@ LAB_1800dece7:
     }
     else {
       lVar8 = (**(code **)(*plVar3 + 0xb8))(plVar3,fVar16,fVar18,fVar20,fVar22);
-      unaff_RBX = _DAT_180c86938;
+      unaff_RBX = system_message_buffer;
       unaff_R14 = SYSTEM_STATE_MANAGER;
       uVar11 = extraout_XMM0_Qa;
     }
@@ -221,7 +221,7 @@ LAB_1800dece7:
       pcVar4 = *(code **)(**(longlong **)(unaff_RSI + 0x3580) + 0xb8);
       if (pcVar4 != (code *)&unknown_var_128_ptr) {
         uVar11 = (*pcVar4)();
-        unaff_RBX = _DAT_180c86938;
+        unaff_RBX = system_message_buffer;
         unaff_R14 = SYSTEM_STATE_MANAGER;
       }
       *(int32_t *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d5c) = 0x41f00000;
@@ -231,7 +231,7 @@ LAB_1800dece7:
       }
       else {
         lVar8 = (*pcVar4)(uVar11);
-        unaff_RBX = _DAT_180c86938;
+        unaff_RBX = system_message_buffer;
         unaff_R14 = SYSTEM_STATE_MANAGER;
       }
       uVar6 = *(uint64_t *)(lVar8 + 0x3f44);
@@ -244,7 +244,7 @@ LAB_1800dece7:
       }
       else {
         lVar8 = (*pcVar4)();
-        unaff_RBX = _DAT_180c86938;
+        unaff_RBX = system_message_buffer;
         unaff_R14 = SYSTEM_STATE_MANAGER;
       }
       *(int32_t *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d7c) = *(int32_t *)(lVar8 + 0x3f38);
@@ -419,7 +419,7 @@ void FUN_1800df203(longlong *param_1)
   }
   else {
     lVar14 = (**(code **)(*param_1 + 0xb8))();
-    unaff_RBX = _DAT_180c86938;
+    unaff_RBX = system_message_buffer;
     unaff_R14 = SYSTEM_STATE_MANAGER;
   }
   if (lVar14 == 0) {
@@ -432,7 +432,7 @@ void FUN_1800df203(longlong *param_1)
     pcVar10 = *(code **)(**(longlong **)(unaff_RSI + 0x3580) + 0xb8);
     if (pcVar10 != (code *)&unknown_var_128_ptr) {
       (*pcVar10)();
-      unaff_RBX = _DAT_180c86938;
+      unaff_RBX = system_message_buffer;
       unaff_R14 = SYSTEM_STATE_MANAGER;
     }
     *(int32_t *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d5c) = 0x41f00000;
@@ -442,7 +442,7 @@ void FUN_1800df203(longlong *param_1)
     }
     else {
       lVar14 = (*pcVar10)();
-      unaff_RBX = _DAT_180c86938;
+      unaff_RBX = system_message_buffer;
       unaff_R14 = SYSTEM_STATE_MANAGER;
     }
     uVar12 = *(uint64_t *)(lVar14 + 0x3f44);
@@ -455,7 +455,7 @@ void FUN_1800df203(longlong *param_1)
     }
     else {
       lVar14 = (*pcVar10)();
-      unaff_RBX = _DAT_180c86938;
+      unaff_RBX = system_message_buffer;
       unaff_R14 = SYSTEM_STATE_MANAGER;
     }
     *(int32_t *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0x1d7c) = *(int32_t *)(lVar14 + 0x3f38);

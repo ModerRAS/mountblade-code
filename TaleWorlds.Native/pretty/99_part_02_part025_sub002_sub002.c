@@ -284,8 +284,8 @@ void FUN_1800fe640(uint64_t param_1,longlong *param_2,longlong param_3)
         uVar131 = (ulonglong)((iVar3 - 1U >> 4) + 1);
         pauVar126 = pauVar127;
         pauVar133 = pauVar122;
-        auVar135 = _DAT_180a3f880;
-        auVar136 = _DAT_180a3f8f0;
+        auVar135 = system_system_ui;
+        auVar136 = system_system_ui;
         do {
           uVar1 = *puVar130;
           uVar2 = *puVar129;
@@ -780,7 +780,7 @@ void FUN_1800fe640(uint64_t param_1,longlong *param_2,longlong param_3)
           auVar184[0xe] = (0 < sVar31) * (sVar31 < 0x100) * auVar135[0xe] - (0xff < sVar31);
           auVar184[0xf] = 0;
           pauVar123[3] = auVar184;
-          auVar136 = _DAT_180a3f8f0;
+          auVar136 = system_system_ui;
           auVar182._0_2_ = sVar214 + sVar239 * -0x19 + sVar205 * -0x34;
           auVar182._2_2_ = sVar215 + sVar242 * -0x19 + sVar206 * -0x34;
           auVar182._4_2_ = sVar216 + sVar243 * -0x19 + sVar207 * -0x34;
@@ -1000,7 +1000,7 @@ void FUN_1800fe640(uint64_t param_1,longlong *param_2,longlong param_3)
           auVar186._4_11_ = auVar49._4_11_;
           auVar186[0xf] = 0;
           pauVar126[2] = auVar186;
-          auVar135 = _DAT_180a3f880;
+          auVar135 = system_system_ui;
           auVar231[2] = cVar15;
           auVar231._0_2_ = (short)((unkuint10)auVar227._0_10_ >> 0x40);
           auVar231[3] = 0;

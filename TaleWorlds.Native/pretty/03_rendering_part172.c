@@ -620,7 +620,7 @@ LAB_180374a51:
                        (piVar10 = piVar3, iVar12 != *piVar3)); piVar3 = *(int **)(piVar3 + 4)) {
                 }
                 if (piVar10 == piVar4) {
-                  uVar7 = FUN_18062b1e0(_DAT_180c8ed18,0x178,8,
+                  uVar7 = FUN_18062b1e0(system_memory_pool_ptr,0x178,8,
                                         CONCAT71((int7)((ulonglong)lVar11 >> 8),3));
                   aiStack_1d0[0] = iVar12;
                   uStack_1c8 = FUN_180372430(uVar7,*(uint64_t *)(param_2 + 0x68));

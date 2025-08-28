@@ -216,7 +216,7 @@ void FUN_180074c20(uint64_t *param_1,ulonglong param_2)
     plVar1 = (longlong *)0x0;
     if (uVar9 != 0) {
       plVar1 = (longlong *)
-               FUN_18062b420(_DAT_180c8ed18,uVar9 * 0x24,*(int8_t *)(param_1 + 3),puVar7,
+               FUN_18062b420(system_memory_pool_ptr,uVar9 * 0x24,*(int8_t *)(param_1 + 3),puVar7,
                              0xfffffffffffffffe);
       puVar7 = (uint64_t *)param_1[1];
       puVar3 = (uint64_t *)*param_1;
@@ -566,7 +566,7 @@ uint64_t * FUN_180075030(uint64_t *param_1,char param_2,char param_3)
   *(int32_t *)(param_1 + 0x35) = 0x3f800000;
   *(int32_t *)((longlong)param_1 + 0x1ac) = 0x7f7fffff;
   *(int32_t *)(param_1 + 0x3a) = 0xffffffff;
-  plVar3 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x70,8,9,plVar4,plVar3);
+  plVar3 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,0x70,8,9,plVar4,plVar3);
   *plVar3 = (longlong)&unknown_var_3552_ptr;
   *plVar3 = (longlong)&unknown_var_3696_ptr;
   *(int32_t *)(plVar3 + 1) = 0;

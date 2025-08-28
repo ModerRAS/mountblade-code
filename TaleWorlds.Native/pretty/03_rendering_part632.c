@@ -34,7 +34,7 @@ void FUN_18061dc3a(longlong param_1)
     lVar13 = 0;
   }
   else {
-    lVar13 = FUN_18062b420(_DAT_180c8ed18,unaff_RBX * 8,*(int8_t *)(unaff_RDI + 0x160));
+    lVar13 = FUN_18062b420(system_memory_pool_ptr,unaff_RBX * 8,*(int8_t *)(unaff_RDI + 0x160));
     param_1 = *(longlong *)(unaff_RDI + 0x148);
   }
   if (param_1 == *(longlong *)(unaff_RDI + 0x150)) {
@@ -349,7 +349,7 @@ void FUN_18061e100(longlong param_1,longlong param_2)
   int8_t auStack_fc [16];
   int8_t auStack_ec [196];
   
-  if (*(int *)(_DAT_180c86890 + 0x1358) - 7U < 2) {
+  if (*(int *)(system_parameter_buffer + 0x1358) - 7U < 2) {
     uVar12 = 0;
     uVar9 = uVar12;
     uVar11 = uVar12;
@@ -362,7 +362,7 @@ void FUN_18061e100(longlong param_1,longlong param_2)
       } while ((ulonglong)(longlong)(int)uVar10 <
                (ulonglong)(*(longlong *)(param_1 + 0x50) - *(longlong *)(param_1 + 0x48) >> 3));
     }
-    if ((*(int *)(_DAT_180c86890 + 0x1358) == 8) &&
+    if ((*(int *)(system_parameter_buffer + 0x1358) == 8) &&
        (lVar7 = *(longlong *)(param_1 + 0x1c0), uVar9 = uVar12,
        *(longlong *)(param_1 + 0x1c8) - lVar7 >> 3 != 0)) {
       do {
@@ -572,7 +572,7 @@ void FUN_18061e13c(longlong param_1)
       in_XMM0_Da = FUN_18061dd90(in_XMM0_Da,
                                  *(uint64_t *)(*(longlong *)(unaff_RSI + 0x48) + uVar14));
       uVar11 = (int)uVar12 + 1;
-      param_1 = _DAT_180c86890;
+      param_1 = system_parameter_buffer;
       uVar14 = uVar14 + 8;
       uVar12 = (ulonglong)uVar11;
     } while ((ulonglong)(longlong)(int)uVar11 <

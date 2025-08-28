@@ -196,7 +196,7 @@ uint64_t FUN_180286010(longlong param_1,uint64_t param_2,char param_3)
     dStack_160 = (dVar2 + dVar2) * dVar7;
     dVar7 = (dVar6 + dVar3) * dVar7;
     auStack_148._8_8_ = dVar7;
-    if ((param_3 != '\0') && (*(int *)(_DAT_180c8a9c8 + 0xa10) != 0)) {
+    if ((param_3 != '\0') && (*(int *)(render_system_data_config + 0xa10) != 0)) {
       uStack_100 = 0;
       uStack_f8 = 0;
       uStack_b0 = 0xbff0000000000000;

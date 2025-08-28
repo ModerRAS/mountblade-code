@@ -205,7 +205,7 @@ void DynamicArrayProcessor_104ByteElements(ArrayControlBlock* array_control, uin
     }
     
     // 分配新的缓冲区
-    new_buffer = (DataBuffer)MemoryAllocator_Alloc(_DAT_180c8ed18, 
+    new_buffer = (DataBuffer)MemoryAllocator_Alloc(system_memory_pool_ptr, 
                                          new_capacity * ARRAY_ELEMENT_SIZE_104, 
                                          array_control->memory_flags, 
                                          old_buffer, 
@@ -343,7 +343,7 @@ void DynamicArrayProcessor_26ByteElements(ArrayControlBlock* array_control, uint
     }
     
     // 分配新的缓冲区
-    new_buffer = (DataBuffer)MemoryAllocator_Alloc(_DAT_180c8ed18, 
+    new_buffer = (DataBuffer)MemoryAllocator_Alloc(system_memory_pool_ptr, 
                                          new_capacity * ARRAY_ELEMENT_SIZE_26, 
                                          array_control->memory_flags, 
                                          old_buffer, 
@@ -485,7 +485,7 @@ void DynamicArrayProcessor_48ByteElements(ArrayControlBlock* array_control, uint
     }
     
     // 分配新的缓冲区
-    new_buffer = (DataBuffer)MemoryAllocator_Alloc(_DAT_180c8ed18, 
+    new_buffer = (DataBuffer)MemoryAllocator_Alloc(system_memory_pool_ptr, 
                                          new_capacity * ARRAY_ELEMENT_SIZE_48, 
                                          array_control->memory_flags, 
                                          old_buffer, 
