@@ -1,72 +1,79 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part181.c - 2 个函数
+// 02_core_engine_part181.c - 核心引擎模块第181部分
+// 本文件包含3个函数，主要处理字符串操作和内存管理
 
-// 函数: void FUN_180166dd0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,longlong *param_4)
-void FUN_180166dd0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,longlong *param_4)
+// 函数: 处理核心引擎字符串格式化操作
+// 参数:
+//   param_1: 上下文参数
+//   param_2: 输出缓冲区指针
+//   param_3: 操作标识符
+//   param_4: 数据块指针
+void process_engine_string_formatting(undefined8 param_1, undefined8 *param_2, undefined8 param_3, longlong *param_4)
 
 {
-  undefined8 *puVar1;
-  undefined4 *puVar2;
-  uint uVar3;
-  undefined *puVar4;
-  undefined1 auStack_3d8 [32];
-  undefined **ppuStack_3b8;
-  undefined4 uStack_3b0;
-  undefined *puStack_3a8;
-  byte *pbStack_3a0;
-  int iStack_398;
-  undefined4 uStack_390;
-  undefined *puStack_388;
-  undefined *puStack_380;
-  undefined4 uStack_370;
-  undefined *puStack_368;
-  undefined *puStack_360;
-  undefined4 uStack_358;
-  undefined4 uStack_350;
-  undefined *puStack_348;
-  undefined *puStack_340;
-  undefined4 uStack_330;
-  undefined8 uStack_328;
-  undefined8 uStack_320;
-  undefined8 uStack_318;
-  undefined8 uStack_310;
-  undefined8 uStack_308;
-  undefined8 uStack_300;
-  undefined8 uStack_2f8;
-  undefined8 uStack_2f0;
-  undefined8 uStack_2e8;
-  undefined8 uStack_2e0;
-  undefined8 uStack_2d8;
-  undefined8 uStack_2d0;
-  undefined8 uStack_2c8;
-  undefined8 uStack_2c0;
-  undefined8 uStack_2b8;
-  undefined8 uStack_2b0;
-  undefined8 uStack_2a8;
-  undefined8 uStack_2a0;
-  undefined8 uStack_298;
-  undefined8 *puStack_290;
-  undefined *puStack_288;
-  undefined1 *puStack_280;
-  undefined4 uStack_278;
-  undefined1 auStack_270 [64];
-  undefined *puStack_230;
-  undefined1 *puStack_228;
-  undefined4 uStack_220;
-  undefined1 auStack_218 [64];
-  undefined *puStack_1d8;
-  undefined1 *puStack_1d0;
-  undefined4 uStack_1c8;
-  undefined1 auStack_1c0 [64];
-  undefined1 uStack_180;
-  undefined *puStack_178;
-  undefined1 *puStack_170;
-  undefined4 uStack_168;
-  undefined1 auStack_160 [72];
-  undefined1 auStack_118 [176];
-  undefined1 auStack_68 [48];
-  ulonglong uStack_38;
+  undefined8 *buffer_ptr;
+  undefined4 *format_ptr;
+  uint char_count;
+  undefined *string_ptr;
+  undefined1 local_buffer1[32];
+  undefined **output_ptr;
+  undefined4 format_flag;
+  undefined *temp_ptr1;
+  byte *byte_ptr;
+  int status_flag;
+  undefined4 temp_flag1;
+  undefined *temp_ptr2;
+  undefined *temp_ptr3;
+  undefined4 temp_flag2;
+  undefined *temp_ptr4;
+  undefined *temp_ptr5;
+  undefined4 temp_flag3;
+  undefined4 temp_flag4;
+  undefined *temp_ptr6;
+  undefined *temp_ptr7;
+  undefined4 temp_flag5;
+  undefined8 local_var1;
+  undefined8 local_var2;
+  undefined8 local_var3;
+  undefined8 local_var4;
+  undefined8 local_var5;
+  undefined8 local_var6;
+  undefined8 local_var7;
+  undefined8 local_var8;
+  undefined8 local_var9;
+  undefined8 local_var10;
+  undefined8 local_var11;
+  undefined8 local_var12;
+  undefined8 local_var13;
+  undefined8 local_var14;
+  undefined8 local_var15;
+  undefined8 local_var16;
+  undefined8 local_var17;
+  undefined8 local_var18;
+  undefined8 local_var19;
+  undefined8 local_var20;
+  undefined8 *buffer_ptr2;
+  undefined *temp_ptr8;
+  undefined1 *char_buffer1;
+  undefined4 buffer_size1;
+  undefined1 local_buffer2[64];
+  undefined *temp_ptr9;
+  undefined1 *char_buffer2;
+  undefined4 buffer_size2;
+  undefined1 local_buffer3[64];
+  undefined *temp_ptr10;
+  undefined1 *char_buffer3;
+  undefined4 buffer_size3;
+  undefined1 local_buffer4[64];
+  undefined1 local_flag1;
+  undefined *temp_ptr11;
+  undefined1 *char_buffer4;
+  undefined4 buffer_size4;
+  undefined1 local_buffer5[72];
+  undefined1 local_buffer6[176];
+  undefined1 local_buffer7[48];
+  ulonglong security_cookie;
   
   uStack_298 = 0xfffffffffffffffe;
   uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_3d8;
