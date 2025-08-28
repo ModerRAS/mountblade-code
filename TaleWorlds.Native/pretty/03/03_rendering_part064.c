@@ -1118,37 +1118,54 @@ void render_system_empty_function_3(void)
 
 
 
-undefined8 *
-FUN_180301830(longlong param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 创建字符串缓冲区
+ * @param param1 参数1
+ * @param string_buffer 字符串缓冲区指针
+ * @param param3 参数3
+ * @param param4 参数4
+ * @return 字符串缓冲区指针
+ */
+undefined8 *render_system_create_string_buffer(longlong param1, undefined8 *string_buffer, undefined8 param3, undefined8 param4)
 {
-  undefined4 *puVar1;
-  longlong lVar2;
-  undefined4 uVar3;
-  
-  *param_2 = &UNK_18098bcb0;
-  param_2[1] = 0;
-  *(undefined4 *)(param_2 + 2) = 0;
-  *param_2 = &UNK_180a3c3e0;
-  param_2[3] = 0;
-  param_2[1] = 0;
-  *(undefined4 *)(param_2 + 2) = 0;
-  FUN_1806277c0(param_2,0xf,param_3,param_4,0,0xfffffffffffffffe);
-  puVar1 = (undefined4 *)param_2[1];
-  *puVar1 = 0x536c6772;
-  puVar1[1] = 0x656e6563;
-  puVar1[2] = 0x6569765f;
-  puVar1[3] = 0x3a3a77;
-  *(undefined4 *)(param_2 + 2) = 0xf;
-  uVar3 = 1;
-  lVar2 = *(longlong *)(param_1 + 0x6d0);
-  if ((lVar2 != 0) && (0 < *(int *)(lVar2 + 0x4e8))) {
-    FUN_1806277c0(param_2,*(int *)(param_2 + 2) + *(int *)(lVar2 + 0x4e8));
-                    // WARNING: Subroutine does not return
-    memcpy((ulonglong)*(uint *)(param_2 + 2) + param_2[1],*(undefined8 *)(lVar2 + 0x4e0),
-           (longlong)(*(int *)(lVar2 + 0x4e8) + 1),param_4,uVar3);
-  }
-  return param_2;
+    undefined4 *buffer_data;
+    longlong context_data;
+    undefined4 copy_flag;
+    
+    // 初始化字符串缓冲区结构
+    *string_buffer = &UNK_18098bcb0;
+    string_buffer[1] = 0;
+    *(undefined4 *)(string_buffer + 2) = 0;
+    
+    *string_buffer = &UNK_180a3c3e0;
+    string_buffer[3] = 0;
+    string_buffer[1] = 0;
+    *(undefined4 *)(string_buffer + 2) = 0;
+    
+    // 调用缓冲区初始化函数
+    FUN_1806277c0(string_buffer, RENDERER_CONFIG_BASIC, param3, param4, 0, 0xfffffffffffffffe);
+    
+    // 设置缓冲区数据
+    buffer_data = (undefined4 *)string_buffer[1];
+    *buffer_data = RENDER_MAGIC_NUMBER_1;  // "Slgr"
+    buffer_data[1] = RENDER_MAGIC_NUMBER_2;  // "ence"
+    buffer_data[2] = RENDER_MAGIC_NUMBER_3;  // "eiv_"
+    buffer_data[3] = RENDER_MAGIC_NUMBER_4;  // "::w"
+    *(undefined4 *)(string_buffer + 2) = RENDERER_CONFIG_BASIC;
+    
+    copy_flag = 1;
+    context_data = *(longlong *)(param1 + 0x6d0);
+    
+    // 如果存在上下文数据且字符串长度大于0，则复制字符串数据
+    if ((context_data != 0) && (0 < *(int *)(context_data + 0x4e8))) {
+        FUN_1806277c0(string_buffer, *(int *)(string_buffer + 2) + *(int *)(context_data + 0x4e8));
+        // WARNING: Subroutine does not return
+        memcpy((ulonglong)*(uint *)(string_buffer + 2) + string_buffer[1], 
+               *(undefined8 *)(context_data + 0x4e0),
+               (longlong)(*(int *)(context_data + 0x4e8) + 1), param4, copy_flag);
+    }
+    
+    return string_buffer;
 }
 
 
