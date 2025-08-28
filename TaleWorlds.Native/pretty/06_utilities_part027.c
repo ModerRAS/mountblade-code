@@ -859,7 +859,7 @@ void FUN_180941880(void)
 
 {
   // 重置系统标志指针并设置为默认值
-  _DAT_180bf65f0 = &UNK_18098bcb0;  // 设置默认标志指针
+  *system_flag_ptr = SYSTEM_DEFAULT_VALUE;  // 设置默认标志指针
   return;
 }
 

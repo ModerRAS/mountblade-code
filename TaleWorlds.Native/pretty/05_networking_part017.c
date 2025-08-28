@@ -390,7 +390,7 @@ void NetworkingSystem_ConnectionProcessor(NetworkHandle *network_interface, Conn
   // 根据连接类型进行处理
   if (connection_status == CONNECTION_TYPE_TCP) {
     if ((*(NetworkByte *)(connection_context + 0xc4) & NETWORK_FLAG_CONNECTED) != 0) {
-      protocol_handler = &UNK_180984c90;
+      protocol_handler = &network_tcp_handler_ptr;
       goto SETUP_PROTOCOL_HANDLER;
     }
 PROTOCOL_SETUP_COMPLETE:
@@ -799,7 +799,7 @@ void NetworkingSystem_ResourceCleaner(ConnectionContext connection_context)
   // 根据连接状态进行清理
   if (connection_status == CONNECTION_TYPE_TCP) {
     if ((*(NetworkByte *)(network_context + 0xc4) & NETWORK_FLAG_CONNECTED) != 0) {
-      protocol_handler = &UNK_180984c90;
+      protocol_handler = &network_tcp_handler_ptr;
       goto CLEANUP_PROTOCOL_HANDLER;
     }
 CLEANUP_PROTOCOL_COMPLETE:
