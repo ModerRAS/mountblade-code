@@ -783,75 +783,96 @@ void ui_no_operation_placeholder(void)
 
 
 
-// 函数: void FUN_180650950(longlong param_1,longlong param_2)
-void FUN_180650950(longlong param_1,longlong param_2)
+// 函数: void ui_extract_filename_from_path(path_info_t *path_info, char *output_buffer)
+// 功能: 从路径信息中提取文件名并复制到输出缓冲区
+// 参数:
+//   path_info - 路径信息结构体指针，包含源路径字符串
+//   output_buffer - 输出缓冲区，用于存储提取的文件名
+// 返回值: 无
+// 说明: 此函数处理两个路径，比较它们最后一个反斜杠的位置，选择较长的文件名进行复制
+void ui_extract_filename_from_path(path_info_t *path_info, char *output_buffer)
 
 {
-  char cVar1;
-  ulonglong uVar2;
-  ulonglong uVar3;
-  undefined *puVar4;
-  char *pcVar5;
+  char current_char;
+  ulonglong last_backslash_1;
+  ulonglong last_backslash_2;
+  char *path_string_1;
+  char *path_string_2;
+  char *source_ptr;
   
-  puVar4 = &DAT_18098bc73;
-  if (*(undefined **)(param_1 + 8) != (undefined *)0x0) {
-    puVar4 = *(undefined **)(param_1 + 8);
+  // 获取第一个路径字符串
+  path_string_1 = &ui_empty_path_string;
+  if (*(char **)(path_info + 8) != (char *)0x0) {
+    path_string_1 = *(char **)(path_info + 8);
   }
-  uVar2 = strrchr(puVar4,0x5c);
-  puVar4 = &DAT_18098bc73;
-  if (*(undefined **)(param_1 + 8) != (undefined *)0x0) {
-    puVar4 = *(undefined **)(param_1 + 8);
+  
+  // 查找第一个路径中最后一个反斜杠
+  last_backslash_1 = strrchr(path_string_1, '\\');
+  
+  // 获取第二个路径字符串
+  path_string_2 = &ui_empty_path_string;
+  if (*(char **)(path_info + 8) != (char *)0x0) {
+    path_string_2 = *(char **)(path_info + 8);
   }
-  uVar3 = strrchr(puVar4,0x5c);
-  if (uVar2 == 0) {
-    if (uVar3 == 0) {
-      pcVar5 = "";
-      if (*(char **)(param_1 + 8) != (char *)0x0) {
-        pcVar5 = *(char **)(param_1 + 8);
+  
+  // 查找第二个路径中最后一个反斜杠
+  last_backslash_2 = strrchr(path_string_2, '\\');
+  
+  // 根据反斜杠位置选择源字符串
+  if (last_backslash_1 == 0) {
+    if (last_backslash_2 == 0) {
+      // 两个路径都没有反斜杠，使用完整路径
+      source_ptr = "";
+      if (*(char **)(path_info + 8) != (char *)0x0) {
+        source_ptr = *(char **)(path_info + 8);
       }
-      param_2 = param_2 - (longlong)pcVar5;
+      output_buffer = output_buffer - (longlong)source_ptr;
       do {
-        cVar1 = *pcVar5;
-        pcVar5[param_2] = cVar1;
-        pcVar5 = pcVar5 + 1;
-      } while (cVar1 != '\0');
+        current_char = *source_ptr;
+        source_ptr[output_buffer] = current_char;
+        source_ptr = source_ptr + 1;
+      } while (current_char != '\0');
     }
     else {
-      pcVar5 = (char *)(uVar3 + 1);
-      param_2 = param_2 - (longlong)pcVar5;
+      // 只有第二个路径有反斜杠，使用第二个路径的文件名部分
+      source_ptr = (char *)(last_backslash_2 + 1);
+      output_buffer = output_buffer - (longlong)source_ptr;
       do {
-        cVar1 = *pcVar5;
-        pcVar5[param_2] = cVar1;
-        pcVar5 = pcVar5 + 1;
-      } while (cVar1 != '\0');
+        current_char = *source_ptr;
+        source_ptr[output_buffer] = current_char;
+        source_ptr = source_ptr + 1;
+      } while (current_char != '\0');
     }
   }
-  else if (uVar3 == 0) {
-    pcVar5 = (char *)(uVar2 + 1);
-    param_2 = param_2 - (longlong)pcVar5;
+  else if (last_backslash_2 == 0) {
+    // 只有第一个路径有反斜杠，使用第一个路径的文件名部分
+    source_ptr = (char *)(last_backslash_1 + 1);
+    output_buffer = output_buffer - (longlong)source_ptr;
     do {
-      cVar1 = *pcVar5;
-      pcVar5[param_2] = cVar1;
-      pcVar5 = pcVar5 + 1;
-    } while (cVar1 != '\0');
+      current_char = *source_ptr;
+      source_ptr[output_buffer] = current_char;
+      source_ptr = source_ptr + 1;
+    } while (current_char != '\0');
   }
-  else if (uVar3 < uVar2) {
-    pcVar5 = (char *)(uVar2 + 1);
-    param_2 = param_2 - (longlong)pcVar5;
+  else if (last_backslash_2 < last_backslash_1) {
+    // 第一个路径的反斜杠位置更靠后，使用第一个路径的文件名部分
+    source_ptr = (char *)(last_backslash_1 + 1);
+    output_buffer = output_buffer - (longlong)source_ptr;
     do {
-      cVar1 = *pcVar5;
-      pcVar5[param_2] = cVar1;
-      pcVar5 = pcVar5 + 1;
-    } while (cVar1 != '\0');
+      current_char = *source_ptr;
+      source_ptr[output_buffer] = current_char;
+      source_ptr = source_ptr + 1;
+    } while (current_char != '\0');
   }
   else {
-    pcVar5 = (char *)(uVar3 + 1);
-    param_2 = param_2 - (longlong)pcVar5;
+    // 第二个路径的反斜杠位置更靠后，使用第二个路径的文件名部分
+    source_ptr = (char *)(last_backslash_2 + 1);
+    output_buffer = output_buffer - (longlong)source_ptr;
     do {
-      cVar1 = *pcVar5;
-      pcVar5[param_2] = cVar1;
-      pcVar5 = pcVar5 + 1;
-    } while (cVar1 != '\0');
+      current_char = *source_ptr;
+      source_ptr[output_buffer] = current_char;
+      source_ptr = source_ptr + 1;
+    } while (current_char != '\0');
   }
   return;
 }
@@ -862,11 +883,19 @@ void FUN_180650950(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180650a70(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180650a70(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void ui_library_operation_wrapper(void *operation_data, void *root_node, void *param_3, void *param_4)
+// 功能: 库操作包装函数，用于调用树节点操作函数
+// 参数:
+//   operation_data - 操作数据指针
+//   root_node - 根节点指针
+//   param_3 - 参数3
+//   param_4 - 参数4
+// 返回值: 无
+// 说明: 这是一个包装函数，调用树节点操作函数并传递特定标志位
+void ui_library_operation_wrapper(void *operation_data, void *root_node, void *param_3, void *param_4)
 
 {
-  FUN_180651560(param_1,_DAT_180c967a0,param_3,param_4,0xfffffffffffffffe);
+  ui_tree_node_operation(operation_data, root_node, param_3, param_4, 0xfffffffffffffffe);
   return;
 }
 

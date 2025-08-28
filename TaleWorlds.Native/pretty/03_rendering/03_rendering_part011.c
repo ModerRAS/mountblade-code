@@ -408,8 +408,14 @@ LAB_180273eb0:
 
 
 
-// 函数: void FUN_180274220(undefined4 *param_1,longlong *param_2)
-void FUN_180274220(undefined4 *param_1,longlong *param_2)
+/**
+ * 材质序列化函数
+ * 将材质数据序列化到数据流中
+ * 
+ * @param material_header 材质头部信息
+ * @param data_stream 数据流指针
+ */
+void serialize_material_data(undefined4 *material_header, longlong *data_stream)
 
 {
   int iVar1;
@@ -734,7 +740,14 @@ void FUN_180274220(undefined4 *param_1,longlong *param_2)
 
 
 
-undefined8 * FUN_180274ab0(undefined8 *param_1)
+/**
+ * 材质对象初始化函数
+ * 初始化材质对象的默认值和属性
+ * 
+ * @param material_obj 材质对象指针
+ * @return 初始化后的材质对象指针
+ */
+undefined8 * initialize_material_object(undefined8 *material_obj)
 
 {
   param_1[0x24] = 0;
