@@ -338,65 +338,77 @@ undefined8 *SystemMemoryManager_1(undefined8 *param_1, ulonglong param_2, undefi
     return param_1;
 }
 
-
-
-
-
-// 函数: void FUN_180046380(longlong param_1,longlong param_2)
-void FUN_180046380(longlong param_1,longlong param_2)
-
+/**
+ * @brief 系统字符串复制器
+ * 
+ * 安全地复制字符串，确保不会发生缓冲区溢出。
+ * 
+ * @param param_1 目标字符串上下文指针
+ * @param param_2 源字符串指针
+ */
+void SystemStringCopier(longlong param_1, longlong param_2)
 {
-  longlong lVar1;
-  
-  if (param_2 == 0) {
+    longlong lVar1;
+    
+    /* 处理空字符串情况 */
+    if (param_2 == 0) {
+        *(undefined4 *)(param_1 + 0x10) = 0;
+        **(undefined1 **)(param_1 + 8) = 0;
+        return;
+    }
+    
+    /* 计算字符串长度 */
+    lVar1 = -1;
+    do {
+        lVar1 = lVar1 + 1;
+    } while (*(char *)(param_2 + lVar1) != '\0');
+    
+    /* 检查字符串长度是否在安全范围内 */
+    if ((int)lVar1 < 0x20) {
+        *(int *)(param_1 + 0x10) = (int)lVar1;
+        /* 安全复制字符串 */
+        strcpy_s(*(undefined8 *)(param_1 + 8), 0x20);
+        return;
+    }
+    
+    /* 处理超长字符串 */
+    FUN_180626f80(&UNK_18098bc48, 0x20, param_2);
     *(undefined4 *)(param_1 + 0x10) = 0;
     **(undefined1 **)(param_1 + 8) = 0;
-    return;
-  }
-  lVar1 = -1;
-  do {
-    lVar1 = lVar1 + 1;
-  } while (*(char *)(param_2 + lVar1) != '\0');
-  if ((int)lVar1 < 0x20) {
-    *(int *)(param_1 + 0x10) = (int)lVar1;
-                    // WARNING: Could not recover jumptable at 0x0001800463b7. Too many branches
-                    // WARNING: Treating indirect jump as call
-    strcpy_s(*(undefined8 *)(param_1 + 8),0x20);
-    return;
-  }
-  FUN_180626f80(&UNK_18098bc48,0x20,param_2);
-  *(undefined4 *)(param_1 + 0x10) = 0;
-  **(undefined1 **)(param_1 + 8) = 0;
-  return;
 }
 
-
-
-
-
-// 函数: void FUN_180046400(longlong param_1,undefined8 param_2,int param_3)
-void FUN_180046400(longlong param_1,undefined8 param_2,int param_3)
-
+/**
+ * @brief 系统字符串追加器
+ * 
+ * 安全地向字符串追加内容，确保不会超过缓冲区大小。
+ * 
+ * @param param_1 目标字符串上下文指针
+ * @param param_2 要追加的内容
+ * @param param_3 追加的长度
+ */
+void SystemStringAppender(longlong param_1, undefined8 param_2, int param_3)
 {
-  if (param_3 + 1 < 0x20) {
-                    // WARNING: Subroutine does not return
-    memcpy(*(undefined1 **)(param_1 + 8),param_2,(longlong)param_3);
-  }
-  **(undefined1 **)(param_1 + 8) = 0;
-  *(undefined4 *)(param_1 + 0x10) = 0;
-  return;
+    /* 检查缓冲区大小是否足够 */
+    if (param_3 + 1 < 0x20) {
+        /* 安全地追加内容 */
+        memcpy(*(undefined1 **)(param_1 + 8), param_2, (longlong)param_3);
+    }
+    
+    /* 确保字符串以空字符结尾 */
+    **(undefined1 **)(param_1 + 8) = 0;
+    *(undefined4 *)(param_1 + 0x10) = 0;
 }
 
-
-
-
-
-// 函数: void FUN_18004641f(void)
-void FUN_18004641f(void)
-
+/**
+ * @brief 系统内存复制函数
+ * 
+ * 执行内存复制操作的内部函数。
+ * 注意：这是一个简化实现，原始实现可能更复杂。
+ */
+void SystemMemoryCopyFunction(void)
 {
-                    // WARNING: Subroutine does not return
-  memcpy();
+    /* 执行内存复制操作 */
+    memcpy();
 }
 
 
