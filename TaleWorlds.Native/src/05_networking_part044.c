@@ -1,7 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 05_networking_part044.c - 网络系统高级连接和数据处理模块
-// 包含5个核心函数，涵盖网络连接管理、数据包处理、连接状态监控、网络参数优化和高级网络功能
+// 包含6个核心函数，涵盖网络连接状态验证、连接处理、连接管理、连接终结、连接验证和连接管理等功能
 
 // 网络系统常量定义
 #define NETWORK_CONNECTION_POOL_SIZE 0x4c8  // 网络连接池大小
@@ -12,10 +12,36 @@
 #define NETWORK_RESOURCE_POOL_SIZE 0x278   // 网络资源池大小
 #define NETWORK_CONNECTION_INFO_1_OFFSET 0x378  // 网络连接信息1偏移
 #define NETWORK_CONNECTION_INFO_2_OFFSET 0x3f8  // 网络连接信息2偏移
+#define NETWORK_CONNECTION_STATE_OFFSET 0x2e4  // 网络连接状态偏移
+#define NETWORK_CONNECTION_FLAGS_OFFSET 0x2d8  // 网络连接标志偏移
+#define NETWORK_CONNECTION_DATA_OFFSET 0x328  // 网络连接数据偏移
+#define NETWORK_CONNECTION_CONTEXT_OFFSET 0x2b0  // 网络连接上下文偏移
+#define NETWORK_CONNECTION_TIMEOUT_OFFSET 0x338  // 网络连接超时偏移
+#define NETWORK_CONNECTION_LIMIT_OFFSET 0x340  // 网络连接限制偏移
+#define NETWORK_CONNECTION_SCHEDULE_OFFSET 0x348  // 网络连接调度偏移
+#define NETWORK_CONNECTION_STATS_OFFSET 0x478  // 网络连接统计偏移
+#define NETWORK_CONNECTION_HANDLE_OFFSET 0x2b8  // 网络连接句柄偏移
+#define NETWORK_CONNECTION_PERF_OFFSET 0x488  // 网络连接性能偏移
+#define NETWORK_CONNECTION_RESOURCE_OFFSET 0x80  // 网络连接资源偏移
 
 // 网络质量值定义
 #define NETWORK_QUALITY_MIN 0xbf800000     // 最小网络质量值 (-1.0f)
 #define NETWORK_QUALITY_MAX 0x3f800000     // 最大网络质量值 (1.0f)
+
+// 网络连接状态定义
+#define NETWORK_STATE_INITIALIZING 1       // 初始化状态
+#define NETWORK_STATE_CONNECTING 2        // 连接状态
+#define NETWORK_STATE_CONNECTED 3         // 已连接状态
+#define NETWORK_STATE_ACTIVE 4             // 活动状态
+#define NETWORK_STATE_TRANSFERRING 5      // 传输状态
+#define NETWORK_STATE_OPTIMIZING 6        // 优化状态
+#define NETWORK_STATE_STABILIZING 7       // 稳定状态
+#define NETWORK_STATE_MANAGED 8           // 管理状态
+
+// 网络错误码定义
+#define NETWORK_ERROR_SUCCESS 0            // 成功
+#define NETWORK_ERROR_RESOURCE_INVALID 0x1c  // 资源无效
+#define NETWORK_ERROR_VALIDATION_FAILED 1  // 验证失败
 
 // 函数别名定义
 #define NetworkSystem_ConnectionProcessor FUN_180863f57                    // 网络连接处理器
@@ -94,615 +120,740 @@ LAB_180864019:
   FUN_1808fc050(*(ulonglong *)(system_context + 0x1b0) ^ (ulonglong)&stack0x00000000);
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-int FUN_180864040(longlong param_1)
+/**
+ * 网络连接验证器 - 验证和管理网络连接状态
+ * 
+ * 该函数负责验证网络连接的有效性，处理连接状态转换，
+ * 管理网络资源，并确保连接的稳定性和可靠性。
+ * 这是网络系统中连接管理的核心验证函数。
+ * 
+ * @param connection_handle 网络连接句柄
+ * 
+ * 处理流程：
+ * 1. 检查网络系统状态
+ * 2. 验证连接的基本参数
+ * 3. 处理连接状态转换逻辑
+ * 4. 执行连接资源管理
+ * 5. 验证连接的各个状态参数
+ * 6. 处理连接超时和重连逻辑
+ * 7. 更新连接状态统计信息
+ * 
+ * @return int 返回连接状态码 (0=成功，非0=错误码)
+ */
+int NetworkSystem_ConnectionValidator(longlong connection_handle)
 
 {
-  longlong *plVar1;
-  uint uVar2;
-  bool bVar3;
-  byte bVar4;
-  char cVar5;
-  int iVar6;
-  undefined4 uVar7;
-  int iVar8;
-  undefined8 *puVar9;
-  longlong lVar10;
-  undefined8 uVar11;
-  float fVar12;
-  ulonglong uStackX_18;
-  undefined8 uStackX_20;
-  longlong lStack_48;
-  uint uStack_40;
-  byte bStack_3c;
+  longlong *connection_info_ptr;
+  uint network_flags;
+  bool connection_active;
+  byte flag_bit;
+  char status_char;
+  int result_code;
+  undefined4 status_value;
+  int connection_state;
+  undefined8 *resource_pool_ptr;
+  longlong resource_handle;
+  undefined8 connection_data;
+  float quality_metric;
+  ulonglong timeout_counter;
+  undefined8 backup_data;
+  longlong context_handle;
+  uint start_time;
+  byte performance_flag;
   
-  iVar6 = FUN_1808605e0();
-  if (iVar6 == 2) {
-    return 0;
+  // 获取网络系统状态
+  result_code = FUN_1808605e0();
+  if (result_code == 2) {
+    return 0;  // 系统处于特殊状态，直接返回成功
   }
-  if (((*(byte *)(*(longlong *)(*(longlong *)(param_1 + 0x2c8) + 0x4c0) + 0x7a) & 1) == 0) &&
+  
+  // 检查连接是否处于活动状态
+  if (((*(byte *)(*(longlong *)(*(longlong *)(connection_handle + 0x2c8) + NETWORK_CONNECTION_BASE_ADDR) + 0x7a) & 1) == 0) &&
      (*(char *)(_DAT_180be12f0 + 0x158) == '\0')) {
-    lStack_48 = 0;
+    context_handle = 0;  // 连接非活动状态
   }
   else {
-    bStack_3c = (byte)(*(uint *)(param_1 + 0x2d8) >> 0xe) & 1;
-    FUN_180768b90(&uStack_40);
-    lStack_48 = param_1;
+    // 记录性能标志和上下文
+    performance_flag = (byte)(*(uint *)(connection_handle + NETWORK_CONNECTION_FLAGS_OFFSET) >> 0xe) & 1;
+    FUN_180768b90(&start_time);
+    context_handle = connection_handle;
   }
-  if (*(int *)(param_1 + 0x2e4) - 1U < 2) {
-    iVar6 = FUN_1808650a0(param_1,0);
-    if (iVar6 != 0) goto LAB_180864627;
-    if (1 < *(int *)(param_1 + 0x2e4) - 1U) goto LAB_1808640fb;
+  
+  // 处理连接状态验证
+  if (*(int *)(connection_handle + NETWORK_CONNECTION_STATE_OFFSET) - 1U < 2) {
+    result_code = FUN_1808650a0(connection_handle, 0);
+    if (result_code != 0) goto LAB_180864627;  // 基础验证失败
+    if (1 < *(int *)(connection_handle + NETWORK_CONNECTION_STATE_OFFSET) - 1U) goto LAB_1808640fb;
   }
   else {
 LAB_1808640fb:
-    bVar4 = (byte)(*(uint *)(param_1 + 0x2d8) >> 0xb) & 1;
-    *(uint *)(param_1 + 0x2d8) =
-         ((uint)bVar4 << 10 | *(uint *)(param_1 + 0x2d8)) & ~((bVar4 ^ 1) << 10) & 0xffffb7ff;
-    iVar6 = FUN_180865550(param_1,0);
-    if ((iVar6 != 0) || (iVar6 = FUN_180863b80(param_1), iVar6 != 0)) goto LAB_180864627;
-    if ((*(uint *)(param_1 + 0x2d8) >> 1 & 1) != 0) {
-      lVar10 = *(longlong *)(*(longlong *)(param_1 + 0x2b0) + 0x78);
-      if (lVar10 == 0) {
-        iVar6 = 0x1c;
+    // 处理连接标志位
+    flag_bit = (byte)(*(uint *)(connection_handle + NETWORK_CONNECTION_FLAGS_OFFSET) >> 0xb) & 1;
+    *(uint *)(connection_handle + NETWORK_CONNECTION_FLAGS_OFFSET) =
+         ((uint)flag_bit << 10 | *(uint *)(connection_handle + NETWORK_CONNECTION_FLAGS_OFFSET)) & ~((flag_bit ^ 1) << 10) & 0xffffb7ff;
+    
+    // 执行高级连接验证
+    result_code = FUN_180865550(connection_handle, 0);
+    if ((result_code != 0) || (result_code = FUN_180863b80(connection_handle), result_code != 0)) 
+      goto LAB_180864627;  // 高级验证失败
+    
+    // 处理连接资源分配
+    if ((*(uint *)(connection_handle + NETWORK_CONNECTION_FLAGS_OFFSET) >> 1 & 1) != 0) {
+      resource_handle = *(longlong *)(*(longlong *)(connection_handle + NETWORK_CONNECTION_CONTEXT_OFFSET) + 0x78);
+      if (resource_handle == 0) {
+        result_code = NETWORK_ERROR_RESOURCE_INVALID;  // 资源句柄无效
         goto LAB_180864627;
       }
-      uStackX_18 = 0;
-      iVar6 = FUN_18073c730(lVar10,0,&uStackX_18,0);
-      if (iVar6 != 0) goto LAB_180864627;
-      if (*(ulonglong *)(param_1 + 0x338) <= uStackX_18) goto LAB_180864477;
-      iVar6 = FUN_18073d8a0(lVar10,1);
+      timeout_counter = 0;
+      result_code = FUN_18073c730(resource_handle, 0, &timeout_counter, 0);
+      if (result_code != 0) goto LAB_180864627;  // 资源分配失败
+      
+      // 检查超时状态
+      if (*(ulonglong *)(connection_handle + NETWORK_CONNECTION_TIMEOUT_OFFSET) <= timeout_counter) goto LAB_180864477;
+      result_code = FUN_18073d8a0(resource_handle, 1);
 joined_r0x0001808641af:
-      if (iVar6 != 0) goto LAB_180864627;
+      if (result_code != 0) goto LAB_180864627;
 LAB_180864477:
-      if (((*(int *)(param_1 + 0x2e4) == 4) &&
-          (cVar5 = FUN_1808d38d0(param_1 + 0x280), cVar5 != '\0')) &&
-         (iVar6 = FUN_18085f2b0(param_1), iVar6 != 0)) goto LAB_180864627;
-      if (*(int *)(param_1 + 0x2e4) == 5) {
-        FUN_1808d0490(param_1 + 0x378,*(undefined8 *)(param_1 + 0x328),1);
-        FUN_1808d0490(param_1 + 0x3f8,*(undefined8 *)(param_1 + 0x328),1);
-        if (*(ulonglong *)(param_1 + 0x328) < *(ulonglong *)(*(longlong *)(param_1 + 0x2b0) + 0x30))
-        {
-          *(undefined4 *)(param_1 + 0x2e4) = 6;
+      // 处理连接状态4的特殊逻辑
+      if (((*(int *)(connection_handle + NETWORK_CONNECTION_STATE_OFFSET) == NETWORK_STATE_ACTIVE) &&
+          (status_char = FUN_1808d38d0(connection_handle + 0x280), status_char != '\0')) &&
+         (result_code = FUN_18085f2b0(connection_handle), result_code != 0)) 
+        goto LAB_180864627;
+      
+      // 处理连接状态5
+      if (*(int *)(connection_handle + NETWORK_CONNECTION_STATE_OFFSET) == NETWORK_STATE_TRANSFERRING) {
+        FUN_1808d0490(connection_handle + NETWORK_CONNECTION_INFO_1_OFFSET, *(undefined8 *)(connection_handle + NETWORK_CONNECTION_DATA_OFFSET), 1);
+        FUN_1808d0490(connection_handle + NETWORK_CONNECTION_INFO_2_OFFSET, *(undefined8 *)(connection_handle + NETWORK_CONNECTION_DATA_OFFSET), 1);
+        if (*(ulonglong *)(connection_handle + NETWORK_CONNECTION_DATA_OFFSET) < *(ulonglong *)(*(longlong *)(connection_handle + NETWORK_CONNECTION_CONTEXT_OFFSET) + 0x30)) {
+          *(undefined4 *)(connection_handle + NETWORK_CONNECTION_STATE_OFFSET) = NETWORK_STATE_OPTIMIZING;  // 转换到优化状态
         }
       }
-      if (*(int *)(param_1 + 0x2e4) == 6) {
-        iVar6 = FUN_1808ca6f0(param_1 + 0x378);
-        if ((iVar6 != 0) || (iVar6 = FUN_1808ca6f0(param_1 + 0x3f8), iVar6 != 0))
-        goto LAB_180864627;
-        uStackX_18 = uStackX_18 & 0xffffffffffffff00;
-        uStackX_20 = 0;
-        iVar6 = FUN_18073c380(*(undefined8 *)(*(longlong *)(param_1 + 0x2b0) + 0x78),0xffffffff,
-                              &uStackX_20);
-        if (((iVar6 != 0) || (iVar6 = FUN_180740410(uStackX_20,&uStackX_18), iVar6 != 0)) &&
-           (iVar6 != 0)) goto LAB_180864627;
-        if (((char)uStackX_18 != '\0') ||
-           (fVar12 = (float)func_0x000180851e30(*(undefined8 *)(param_1 + 0x2b0)), fVar12 == 0.0)) {
-          *(undefined4 *)(param_1 + 0x2e4) = 7;
+      
+      // 处理连接状态6
+      if (*(int *)(connection_handle + NETWORK_CONNECTION_STATE_OFFSET) == NETWORK_STATE_OPTIMIZING) {
+        result_code = FUN_1808ca6f0(connection_handle + NETWORK_CONNECTION_INFO_1_OFFSET);
+        if ((result_code != 0) || (result_code = FUN_1808ca6f0(connection_handle + NETWORK_CONNECTION_INFO_2_OFFSET), result_code != 0))
+          goto LAB_180864627;
+        
+        // 处理超时和清理
+        timeout_counter = timeout_counter & 0xffffffffffffff00;
+        backup_data = 0;
+        result_code = FUN_18073c380(*(undefined8 *)(*(longlong *)(connection_handle + NETWORK_CONNECTION_CONTEXT_OFFSET) + 0x78), 0xffffffff, &backup_data);
+        if (((result_code != 0) || (result_code = FUN_180740410(backup_data, &timeout_counter), result_code != 0)) &&
+           (result_code != 0)) goto LAB_180864627;
+        
+        // 检查连接质量
+        if (((char)timeout_counter != '\0') ||
+           (quality_metric = (float)func_0x000180851e30(*(undefined8 *)(connection_handle + NETWORK_CONNECTION_CONTEXT_OFFSET)), quality_metric == 0.0)) {
+          *(undefined4 *)(connection_handle + NETWORK_CONNECTION_STATE_OFFSET) = NETWORK_STATE_STABILIZING;  // 转换到稳定状态
         }
       }
-      if (*(int *)(param_1 + 0x2e4) == 7) {
-        iVar6 = FUN_1808ca6f0(param_1 + 0x378);
-        if ((iVar6 != 0) || (iVar6 = FUN_1808ca6f0(param_1 + 0x3f8), iVar6 != 0))
-        goto LAB_180864627;
-        if (*(int *)(param_1 + 0x4e8) != 0) goto LAB_18086460a;
-        if ((*(longlong *)(param_1 + 0x2b8) == 0) || ((*(uint *)(param_1 + 0x2d8) >> 6 & 1) == 0)) {
+      
+      // 处理连接状态7
+      if (*(int *)(connection_handle + NETWORK_CONNECTION_STATE_OFFSET) == NETWORK_STATE_STABILIZING) {
+        result_code = FUN_1808ca6f0(connection_handle + NETWORK_CONNECTION_INFO_1_OFFSET);
+        if ((result_code != 0) || (result_code = FUN_1808ca6f0(connection_handle + NETWORK_CONNECTION_INFO_2_OFFSET), result_code != 0))
+          goto LAB_180864627;
+        
+        if (*(int *)(connection_handle + 0x4e8) != 0) goto LAB_18086460a;
+        if ((*(longlong *)(connection_handle + NETWORK_CONNECTION_HANDLE_OFFSET) == 0) || ((*(uint *)(connection_handle + NETWORK_CONNECTION_FLAGS_OFFSET) >> 6 & 1) == 0)) {
 LAB_1808645f6:
-          iVar6 = FUN_18085f0e0(param_1,0);
-          if (iVar6 == 0) goto LAB_18086460a;
+          result_code = FUN_18085f0e0(connection_handle, 0);
+          if (result_code == 0) goto LAB_18086460a;
         }
         else {
-          iVar6 = FUN_1808538a0(*(longlong *)(param_1 + 0x2b8),param_1);
-          if (iVar6 == 0) {
-            *(uint *)(param_1 + 0x2d8) = *(uint *)(param_1 + 0x2d8) & 0xffffffbf;
+          result_code = FUN_1808538a0(*(longlong *)(connection_handle + NETWORK_CONNECTION_HANDLE_OFFSET), connection_handle);
+          if (result_code == 0) {
+            *(uint *)(connection_handle + NETWORK_CONNECTION_FLAGS_OFFSET) = *(uint *)(connection_handle + NETWORK_CONNECTION_FLAGS_OFFSET) & 0xffffffbf;
             goto LAB_1808645f6;
           }
         }
-        if (iVar6 != 0) goto LAB_180864627;
+        if (result_code != 0) goto LAB_180864627;
       }
 LAB_18086460a:
-      lVar10 = *(longlong *)(param_1 + 0x80);
-      if (lVar10 != 0) {
-        uVar7 = FUN_1808605e0(param_1);
-        *(undefined4 *)(lVar10 + 0x80) = uVar7;
+      // 更新连接状态信息
+      resource_handle = *(longlong *)(connection_handle + NETWORK_CONNECTION_RESOURCE_OFFSET);
+      if (resource_handle != 0) {
+        status_value = FUN_1808605e0(connection_handle);
+        *(undefined4 *)(resource_handle + 0x80) = status_value;
       }
       goto LAB_180864624;
     }
-    uVar11 = *(undefined8 *)(*(longlong *)(param_1 + 0x2b0) + 0x30);
-    *(undefined8 *)(param_1 + 0x330) = uVar11;
-    for (puVar9 = *(undefined8 **)(param_1 + 0x260);
-        (*(undefined8 **)(param_1 + 0x260) <= puVar9 &&
-        (puVar9 < *(undefined8 **)(param_1 + 0x260) + *(int *)(param_1 + 0x268)));
-        puVar9 = puVar9 + 1) {
-      iVar6 = FUN_1808d7550(*puVar9);
-      if (iVar6 != 0) goto LAB_180864627;
+    
+    // 处理连接数据同步
+    connection_data = *(undefined8 *)(*(longlong *)(connection_handle + NETWORK_CONNECTION_CONTEXT_OFFSET) + 0x30);
+    *(undefined8 *)(connection_handle + 0x330) = connection_data;
+    
+    // 验证资源池中的所有资源
+    for (resource_pool_ptr = *(undefined8 **)(connection_handle + 0x260);
+        (*(undefined8 **)(connection_handle + 0x260) <= resource_pool_ptr &&
+        (resource_pool_ptr < *(undefined8 **)(connection_handle + 0x260) + *(int *)(connection_handle + 0x268)));
+        resource_pool_ptr = resource_pool_ptr + 1) {
+      result_code = FUN_1808d7550(*resource_pool_ptr);
+      if (result_code != 0) goto LAB_180864627;  // 资源验证失败
     }
-    iVar6 = FUN_18085ca30(param_1 + 200,uVar11);
-    if ((((iVar6 != 0) || (iVar6 = FUN_1808d0d90(param_1 + 0x378,uVar11), iVar6 != 0)) ||
-        (iVar6 = FUN_1808d0d90(param_1 + 0x3f8,uVar11), iVar6 != 0)) ||
-       (iVar6 = func_0x0001808d57c0(param_1 + 0x280,uVar11), iVar6 != 0)) goto LAB_180864627;
-    if (*(int *)(param_1 + 0x2e4) != 8) {
-      if (*(longlong *)(param_1 + 0x478) != 0) {
-        uStackX_18 = 0;
-        iVar6 = FUN_18073c730(*(undefined8 *)(*(longlong *)(param_1 + 0x2b0) + 0x78),&uStackX_18,0,0
-                             );
-        if (iVar6 != 0) goto LAB_180864627;
-        if ((uStackX_18 == 0) || (uStackX_18 <= *(ulonglong *)(param_1 + 0x338))) {
-          uVar11 = 1;
+    
+    // 执行连接数据验证
+    result_code = FUN_18085ca30(connection_handle + 200, connection_data);
+    if ((((result_code != 0) || (result_code = FUN_1808d0d90(connection_handle + NETWORK_CONNECTION_INFO_1_OFFSET, connection_data), result_code != 0)) ||
+        (result_code = FUN_1808d0d90(connection_handle + NETWORK_CONNECTION_INFO_2_OFFSET, connection_data), result_code != 0)) ||
+       (result_code = func_0x0001808d57c0(connection_handle + 0x280, connection_data), result_code != 0)) 
+      goto LAB_180864627;
+    
+    // 处理连接状态8的特殊逻辑
+    if (*(int *)(connection_handle + NETWORK_CONNECTION_STATE_OFFSET) != NETWORK_STATE_MANAGED) {
+      if (*(longlong *)(connection_handle + NETWORK_CONNECTION_STATS_OFFSET) != 0) {
+        timeout_counter = 0;
+        result_code = FUN_18073c730(*(undefined8 *)(*(longlong *)(connection_handle + NETWORK_CONNECTION_CONTEXT_OFFSET) + 0x78), &timeout_counter, 0, 0);
+        if (result_code != 0) goto LAB_180864627;
+        
+        // 检查超时状态
+        if ((timeout_counter == 0) || (timeout_counter <= *(ulonglong *)(connection_handle + NETWORK_CONNECTION_TIMEOUT_OFFSET))) {
+          connection_data = 1;
         }
         else {
-          uVar11 = 0;
+          connection_data = 0;
         }
-        iVar6 = FUN_1808d9380(*(undefined8 *)(param_1 + 0x478),uVar11);
-        if (iVar6 != 0) goto LAB_180864627;
+        result_code = FUN_1808d9380(*(undefined8 *)(connection_handle + NETWORK_CONNECTION_STATS_OFFSET), connection_data);
+        if (result_code != 0) goto LAB_180864627;
       }
-      if (*(ulonglong *)(param_1 + 0x340) != 0) {
-        cVar5 = *(ulonglong *)(param_1 + 0x338) < *(ulonglong *)(param_1 + 0x340);
-        uStackX_18 = CONCAT71(uStackX_18._1_7_,cVar5);
-        if (((bool)cVar5) && (*(longlong *)(param_1 + 0x478) == 0)) {
-          FUN_18073cd10(*(undefined8 *)(*(longlong *)(param_1 + 0x2b0) + 0x78),&uStackX_18);
-          cVar5 = (char)uStackX_18;
+      
+      // 处理连接超时和重连逻辑
+      if (*(ulonglong *)(connection_handle + NETWORK_CONNECTION_LIMIT_OFFSET) != 0) {
+        status_char = *(ulonglong *)(connection_handle + NETWORK_CONNECTION_TIMEOUT_OFFSET) < *(ulonglong *)(connection_handle + NETWORK_CONNECTION_LIMIT_OFFSET);
+        timeout_counter = CONCAT71(timeout_counter._1_7_, status_char);
+        if (((bool)status_char) && (*(longlong *)(connection_handle + NETWORK_CONNECTION_STATS_OFFSET) == 0)) {
+          FUN_18073cd10(*(undefined8 *)(*(longlong *)(connection_handle + NETWORK_CONNECTION_CONTEXT_OFFSET) + 0x78), &timeout_counter);
+          status_char = (char)timeout_counter;
         }
-        if (cVar5 == '\0') {
-          uVar2 = *(uint *)(param_1 + 0x2d8);
-          if ((uVar2 >> 8 & 1) != 0) {
-            lVar10 = *(longlong *)(param_1 + 0x2b8);
-            if (lVar10 != 0) goto LAB_18086428a;
+        if (status_char == '\0') {
+          network_flags = *(uint *)(connection_handle + NETWORK_CONNECTION_FLAGS_OFFSET);
+          if ((network_flags >> 8 & 1) != 0) {
+            resource_handle = *(longlong *)(connection_handle + NETWORK_CONNECTION_HANDLE_OFFSET);
+            if (resource_handle != 0) goto LAB_18086428a;
             goto LAB_1808642a1;
           }
-          *(uint *)(param_1 + 0x2d8) = uVar2 | 0x100;
+          *(uint *)(connection_handle + NETWORK_CONNECTION_FLAGS_OFFSET) = network_flags | 0x100;
         }
       }
-      if ((((*(uint *)(*(longlong *)(param_1 + 0x88) + 0xf8) >> 1 & 1) == 0) ||
-          ((*(uint *)(param_1 + 0x2d8) >> 0xf & 1) != 0)) ||
-         ((*(ulonglong *)(param_1 + 0x348) != 0 &&
-          (*(ulonglong *)(param_1 + 0x348) <= *(ulonglong *)(param_1 + 0x338))))) {
-        bVar3 = true;
+      
+      // 检查连接活动状态
+      if ((((*(uint *)(*(longlong *)(connection_handle + 0x88) + 0xf8) >> 1 & 1) == 0) ||
+          ((*(uint *)(connection_handle + NETWORK_CONNECTION_FLAGS_OFFSET) >> 0xf & 1) != 0)) ||
+         ((*(ulonglong *)(connection_handle + NETWORK_CONNECTION_SCHEDULE_OFFSET) != 0 &&
+          (*(ulonglong *)(connection_handle + NETWORK_CONNECTION_SCHEDULE_OFFSET) <= *(ulonglong *)(connection_handle + NETWORK_CONNECTION_TIMEOUT_OFFSET))))) {
+        connection_active = true;
       }
       else {
-        bVar3 = false;
+        connection_active = false;
       }
-      if ((((*(int *)(param_1 + 0x2e4) == 3) && (bVar3)) &&
-          (plVar1 = (longlong *)(param_1 + 0x400), (longlong *)*plVar1 == plVar1)) &&
-         ((*(longlong **)(param_1 + 0x408) == plVar1 &&
-          (cVar5 = func_0x000180857b00(param_1 + 200), cVar5 != '\0')))) {
-        iVar8 = *(int *)(param_1 + 0x2e4);
-        if ((*(longlong *)(param_1 + 0x2b8) != 0) && ((*(uint *)(param_1 + 0x2d8) >> 6 & 1) != 0)) {
-          iVar6 = FUN_1808538a0(*(longlong *)(param_1 + 0x2b8),param_1);
-          if (iVar6 != 0) goto joined_r0x0001808641af;
-          *(uint *)(param_1 + 0x2d8) = *(uint *)(param_1 + 0x2d8) & 0xffffffbf;
+      
+      // 处理连接状态3的特殊逻辑
+      if ((((*(int *)(connection_handle + NETWORK_CONNECTION_STATE_OFFSET) == NETWORK_STATE_CONNECTED) && (connection_active)) &&
+          (connection_info_ptr = (longlong *)(connection_handle + 0x400), (longlong *)*connection_info_ptr == connection_info_ptr)) &&
+         ((*(longlong **)(connection_handle + 0x408) == connection_info_ptr &&
+          (status_char = func_0x000180857b00(connection_handle + 200), status_char != '\0')))) {
+        connection_state = *(int *)(connection_handle + NETWORK_CONNECTION_STATE_OFFSET);
+        if ((*(longlong *)(connection_handle + NETWORK_CONNECTION_HANDLE_OFFSET) != 0) && ((*(uint *)(connection_handle + NETWORK_CONNECTION_FLAGS_OFFSET) >> 6 & 1) != 0)) {
+          result_code = FUN_1808538a0(*(longlong *)(connection_handle + NETWORK_CONNECTION_HANDLE_OFFSET), connection_handle);
+          if (result_code != 0) goto joined_r0x0001808641af;
+          *(uint *)(connection_handle + NETWORK_CONNECTION_FLAGS_OFFSET) = *(uint *)(connection_handle + NETWORK_CONNECTION_FLAGS_OFFSET) & 0xffffffbf;
         }
-        if (iVar8 - 1U < 2) {
-          iVar6 = FUN_18085f0e0(param_1,0);
+        if (connection_state - 1U < 2) {
+          result_code = FUN_18085f0e0(connection_handle, 0);
         }
         else {
-          if (*(int *)(param_1 + 0x2e4) != 3) goto LAB_180864477;
-          iVar6 = FUN_18085f340(param_1);
+          if (*(int *)(connection_handle + NETWORK_CONNECTION_STATE_OFFSET) != NETWORK_STATE_CONNECTED) goto LAB_180864477;
+          result_code = FUN_18085f340(connection_handle);
         }
-        if (iVar6 != 0) goto joined_r0x0001808641af;
+        if (result_code != 0) goto joined_r0x0001808641af;
       }
       goto LAB_180864477;
     }
-    lVar10 = *(longlong *)(param_1 + 0x2b8);
-    if (lVar10 == 0) {
+    
+    // 处理连接句柄验证
+    resource_handle = *(longlong *)(connection_handle + NETWORK_CONNECTION_HANDLE_OFFSET);
+    if (resource_handle == 0) {
 LAB_1808642a1:
-      iVar6 = FUN_18085f0e0(param_1,0);
-      if (iVar6 == 0) goto LAB_180864624;
+      result_code = FUN_18085f0e0(connection_handle, 0);
+      if (result_code == 0) goto LAB_180864624;
     }
     else {
-      uVar2 = *(uint *)(param_1 + 0x2d8);
+      network_flags = *(uint *)(connection_handle + NETWORK_CONNECTION_FLAGS_OFFSET);
 LAB_18086428a:
-      if ((uVar2 >> 6 & 1) == 0) goto LAB_1808642a1;
-      iVar6 = FUN_1808538a0(lVar10,param_1);
-      if (iVar6 == 0) {
-        *(uint *)(param_1 + 0x2d8) = *(uint *)(param_1 + 0x2d8) & 0xffffffbf;
+      if ((network_flags >> 6 & 1) == 0) goto LAB_1808642a1;
+      result_code = FUN_1808538a0(resource_handle, connection_handle);
+      if (result_code == 0) {
+        *(uint *)(connection_handle + NETWORK_CONNECTION_FLAGS_OFFSET) = *(uint *)(connection_handle + NETWORK_CONNECTION_FLAGS_OFFSET) & 0xffffffbf;
         goto LAB_1808642a1;
       }
     }
-    if (iVar6 != 0) goto LAB_180864627;
+    if (result_code != 0) goto LAB_180864627;
   }
 LAB_180864624:
-  iVar6 = 0;
+  result_code = NETWORK_ERROR_SUCCESS;  // 验证成功
 LAB_180864627:
-  if (lStack_48 != 0) {
-    iVar8 = FUN_1808605e0();
-    if (iVar8 == 2) {
-      *(undefined4 *)(lStack_48 + 0x488) = 0;
+  // 更新性能统计信息
+  if (context_handle != 0) {
+    connection_state = FUN_1808605e0();
+    if (connection_state == 2) {
+      *(undefined4 *)(context_handle + NETWORK_CONNECTION_PERF_OFFSET) = 0;
     }
     else {
-      FUN_180768b90(&uStackX_18);
-      if (uStack_40 <= (uint)uStackX_18) {
-        if (bStack_3c == 0) {
-          *(uint *)(lStack_48 + 0x488) = (uint)uStackX_18 - uStack_40;
+      FUN_180768b90(&timeout_counter);
+      if (start_time <= (uint)timeout_counter) {
+        if (performance_flag == 0) {
+          *(undefined4 *)(context_handle + NETWORK_CONNECTION_PERF_OFFSET) = (uint)timeout_counter - start_time;
         }
         else {
-          *(int *)(lStack_48 + 0x488) = *(int *)(lStack_48 + 0x488) + ((uint)uStackX_18 - uStack_40)
-          ;
+          *(int *)(context_handle + NETWORK_CONNECTION_PERF_OFFSET) = *(int *)(context_handle + NETWORK_CONNECTION_PERF_OFFSET) + ((uint)timeout_counter - start_time);
         }
       }
     }
   }
-  return iVar6;
+  return result_code;
 }
 
-
-
-ulonglong FUN_1808640c7(undefined4 param_1)
+/**
+ * 网络连接优化器 - 优化网络连接性能和状态
+ * 
+ * 该函数负责优化网络连接的性能参数，处理连接状态转换，
+ * 管理网络资源，并确保连接的稳定性和可靠性。
+ * 
+ * @param optimization_param 优化参数
+ * 
+ * 处理流程：
+ * 1. 验证优化参数
+ * 2. 处理连接状态优化
+ * 3. 执行资源管理优化
+ * 4. 处理连接超时和重连逻辑
+ * 5. 更新连接性能统计
+ * 
+ * @return ulonglong 返回优化结果状态码
+ */
+ulonglong NetworkSystem_ConnectionOptimizer(undefined4 optimization_param)
 
 {
-  longlong *plVar1;
-  int *piVar2;
-  longlong lVar3;
-  bool bVar4;
-  byte bVar5;
-  char cVar6;
-  uint in_EAX;
-  uint uVar7;
-  undefined4 uVar8;
-  int iVar9;
-  undefined8 *puVar10;
-  undefined8 uVar11;
-  longlong unaff_RBP;
-  ulonglong uVar12;
-  longlong unaff_RDI;
-  char cVar13;
-  ulonglong unaff_R15;
+  longlong *connection_info_ptr;
+  int *stats_ptr;
+  longlong resource_handle;
+  bool connection_active;
+  byte flag_bit;
+  char status_char;
+  uint param_value;
+  undefined4 status_value;
+  int connection_state;
+  undefined8 *resource_pool_ptr;
+  undefined8 connection_data;
+  longlong system_context;
+  ulonglong result_code;
+  longlong connection_context;
+  char perf_flag;
+  ulonglong timeout_counter;
   undefined4 extraout_XMM0_Da;
-  undefined4 extraout_XMM0_Da_00;
-  undefined4 extraout_XMM0_Da_01;
-  undefined4 extraout_XMM0_Da_02;
-  undefined4 extraout_XMM0_Da_03;
-  undefined4 extraout_XMM0_Da_04;
-  float fVar14;
-  undefined4 extraout_XMM0_Da_05;
-  undefined4 extraout_XMM0_Da_06;
   
-  cVar13 = (char)unaff_R15;
-  if (in_EAX < 2) {
-    uVar7 = FUN_1808650a0(param_1,0);
-    uVar12 = (ulonglong)uVar7;
-    if (uVar7 != 0) goto LAB_180864627;
-    param_1 = extraout_XMM0_Da;
-    if (1 < *(int *)(unaff_RDI + 0x2e4) - 1U) goto LAB_1808640fb;
+  perf_flag = (char)timeout_counter;
+  if (param_value < 2) {
+    result_code = FUN_1808650a0(optimization_param, 0);
+    if (result_code != 0) goto LAB_180864627;
+    optimization_param = extraout_XMM0_Da;
+    if (1 < *(int *)(connection_context + NETWORK_CONNECTION_STATE_OFFSET) - 1U) goto LAB_1808640fb;
   }
   else {
 LAB_1808640fb:
-    bVar5 = (byte)(*(uint *)(unaff_RDI + 0x2d8) >> 0xb) & 1;
-    *(uint *)(unaff_RDI + 0x2d8) =
-         ((uint)bVar5 << 10 | *(uint *)(unaff_RDI + 0x2d8)) & ~((bVar5 ^ 1) << 10) & 0xffffb7ff;
-    uVar7 = FUN_180865550(param_1,0);
-    uVar12 = (ulonglong)uVar7;
-    if (uVar7 != 0) goto LAB_180864627;
-    uVar7 = FUN_180863b80();
-    uVar12 = (ulonglong)uVar7;
-    if (uVar7 != 0) goto LAB_180864627;
-    if ((*(uint *)(unaff_RDI + 0x2d8) >> 1 & 1) == 0) {
-      uVar11 = *(undefined8 *)(*(longlong *)(unaff_RDI + 0x2b0) + 0x30);
-      *(undefined8 *)(unaff_RDI + 0x330) = uVar11;
-      for (puVar10 = *(undefined8 **)(unaff_RDI + 0x260);
-          (*(undefined8 **)(unaff_RDI + 0x260) <= puVar10 &&
-          (puVar10 < *(undefined8 **)(unaff_RDI + 0x260) + *(int *)(unaff_RDI + 0x268)));
-          puVar10 = puVar10 + 1) {
-        uVar7 = FUN_1808d7550(*puVar10);
-        uVar12 = (ulonglong)uVar7;
-        if (uVar7 != 0) goto LAB_180864627;
+    // 处理连接标志位优化
+    flag_bit = (byte)(*(uint *)(connection_context + NETWORK_CONNECTION_FLAGS_OFFSET) >> 0xb) & 1;
+    *(uint *)(connection_context + NETWORK_CONNECTION_FLAGS_OFFSET) =
+         ((uint)flag_bit << 10 | *(uint *)(connection_context + NETWORK_CONNECTION_FLAGS_OFFSET)) & ~((flag_bit ^ 1) << 10) & 0xffffb7ff;
+    
+    // 执行连接优化
+    result_code = FUN_180865550(optimization_param, 0);
+    if (result_code != 0) goto LAB_180864627;
+    result_code = FUN_180863b80();
+    if (result_code != 0) goto LAB_180864627;
+    
+    // 处理资源优化
+    if ((*(uint *)(connection_context + NETWORK_CONNECTION_FLAGS_OFFSET) >> 1 & 1) == 0) {
+      connection_data = *(undefined8 *)(*(longlong *)(connection_context + NETWORK_CONNECTION_CONTEXT_OFFSET) + 0x30);
+      *(undefined8 *)(connection_context + 0x330) = connection_data;
+      
+      // 验证资源池中的所有资源
+      for (resource_pool_ptr = *(undefined8 **)(connection_context + 0x260);
+          (*(undefined8 **)(connection_context + 0x260) <= resource_pool_ptr &&
+          (resource_pool_ptr < *(undefined8 **)(connection_context + 0x260) + *(int *)(connection_context + 0x268)));
+          resource_pool_ptr = resource_pool_ptr + 1) {
+        result_code = FUN_1808d7550(*resource_pool_ptr);
+        if (result_code != 0) goto LAB_180864627;  // 资源验证失败
       }
-      uVar7 = FUN_18085ca30(unaff_RDI + 200,uVar11);
-      uVar12 = (ulonglong)uVar7;
-      if (uVar7 != 0) goto LAB_180864627;
-      uVar7 = FUN_1808d0d90(unaff_RDI + 0x378,uVar11);
-      uVar12 = (ulonglong)uVar7;
-      if (uVar7 != 0) goto LAB_180864627;
-      uVar7 = FUN_1808d0d90(unaff_RDI + 0x3f8,uVar11);
-      uVar12 = (ulonglong)uVar7;
-      if (uVar7 != 0) goto LAB_180864627;
-      uVar7 = func_0x0001808d57c0(unaff_RDI + 0x280,uVar11);
-      uVar12 = (ulonglong)uVar7;
-      if (uVar7 != 0) goto LAB_180864627;
-      uVar8 = extraout_XMM0_Da_00;
-      if (*(int *)(unaff_RDI + 0x2e4) != 8) {
-        if (*(ulonglong *)(unaff_RDI + 0x478) != unaff_R15) {
-          lVar3 = *(longlong *)(unaff_RDI + 0x2b0);
-          *(ulonglong *)(unaff_RBP + 0x28) = unaff_R15;
-          uVar7 = FUN_18073c730(*(undefined8 *)(lVar3 + 0x78),unaff_RBP + 0x28,0,0);
-          uVar12 = (ulonglong)uVar7;
-          if (uVar7 != 0) goto LAB_180864627;
-          if ((*(ulonglong *)(unaff_RBP + 0x28) == 0) ||
-             (*(ulonglong *)(unaff_RBP + 0x28) <= *(ulonglong *)(unaff_RDI + 0x338))) {
-            uVar11 = 1;
+      
+      // 执行连接数据优化
+      result_code = FUN_18085ca30(connection_context + 200, connection_data);
+      if (result_code != 0) goto LAB_180864627;
+      result_code = FUN_1808d0d90(connection_context + NETWORK_CONNECTION_INFO_1_OFFSET, connection_data);
+      if (result_code != 0) goto LAB_180864627;
+      result_code = FUN_1808d0d90(connection_context + NETWORK_CONNECTION_INFO_2_OFFSET, connection_data);
+      if (result_code != 0) goto LAB_180864627;
+      result_code = func_0x0001808d57c0(connection_context + 0x280, connection_data);
+      if (result_code != 0) goto LAB_180864627;
+      status_value = extraout_XMM0_Da_00;
+      
+      // 处理非管理状态的优化
+      if (*(int *)(connection_context + NETWORK_CONNECTION_STATE_OFFSET) != NETWORK_STATE_MANAGED) {
+        if (*(ulonglong *)(connection_context + NETWORK_CONNECTION_STATS_OFFSET) != timeout_counter) {
+          resource_handle = *(longlong *)(connection_context + NETWORK_CONNECTION_CONTEXT_OFFSET);
+          *(ulonglong *)(system_context + 0x28) = timeout_counter;
+          result_code = FUN_18073c730(*(undefined8 *)(resource_handle + 0x78), system_context + 0x28, 0, 0);
+          if (result_code != 0) goto LAB_180864627;
+          
+          // 检查超时状态
+          if ((*(ulonglong *)(system_context + 0x28) == 0) ||
+             (*(ulonglong *)(system_context + 0x28) <= *(ulonglong *)(connection_context + NETWORK_CONNECTION_TIMEOUT_OFFSET))) {
+            connection_data = 1;
           }
           else {
-            uVar11 = 0;
+            connection_data = 0;
           }
-          uVar7 = FUN_1808d9380(*(undefined8 *)(unaff_RDI + 0x478),uVar11);
-          uVar12 = (ulonglong)uVar7;
-          uVar8 = extraout_XMM0_Da_02;
-          if (uVar7 != 0) goto LAB_180864627;
+          result_code = FUN_1808d9380(*(undefined8 *)(connection_context + NETWORK_CONNECTION_STATS_OFFSET), connection_data);
+          if (result_code != 0) goto LAB_180864627;
+          status_value = extraout_XMM0_Da_02;
         }
-        if (*(ulonglong *)(unaff_RDI + 0x340) != 0) {
-          cVar6 = *(ulonglong *)(unaff_RDI + 0x338) < *(ulonglong *)(unaff_RDI + 0x340);
-          *(char *)(unaff_RBP + 0x28) = cVar6;
-          if (((bool)cVar6) && (*(ulonglong *)(unaff_RDI + 0x478) == unaff_R15)) {
-            uVar8 = FUN_18073cd10(*(undefined8 *)(*(longlong *)(unaff_RDI + 0x2b0) + 0x78),
-                                  unaff_RBP + 0x28);
-            cVar6 = *(char *)(unaff_RBP + 0x28);
+        
+        // 处理连接限制和超时优化
+        if (*(ulonglong *)(connection_context + NETWORK_CONNECTION_LIMIT_OFFSET) != 0) {
+          status_char = *(ulonglong *)(connection_context + NETWORK_CONNECTION_TIMEOUT_OFFSET) < *(ulonglong *)(connection_context + NETWORK_CONNECTION_LIMIT_OFFSET);
+          *(char *)(system_context + 0x28) = status_char;
+          if (((bool)status_char) && (*(ulonglong *)(connection_context + NETWORK_CONNECTION_STATS_OFFSET) == timeout_counter)) {
+            status_value = FUN_18073cd10(*(undefined8 *)(*(longlong *)(connection_context + NETWORK_CONNECTION_CONTEXT_OFFSET) + 0x78), system_context + 0x28);
+            status_char = *(char *)(system_context + 0x28);
           }
-          if (cVar6 == '\0') {
-            uVar7 = *(uint *)(unaff_RDI + 0x2d8);
-            if ((uVar7 >> 8 & 1) != 0) {
-              if (*(longlong *)(unaff_RDI + 0x2b8) != 0) goto LAB_18086428a;
+          if (status_char == '\0') {
+            result_code = *(uint *)(connection_context + NETWORK_CONNECTION_FLAGS_OFFSET);
+            if ((result_code >> 8 & 1) != 0) {
+              if (*(longlong *)(connection_context + NETWORK_CONNECTION_HANDLE_OFFSET) != 0) goto LAB_18086428a;
               goto LAB_1808642a1;
             }
-            *(uint *)(unaff_RDI + 0x2d8) = uVar7 | 0x100;
+            *(uint *)(connection_context + NETWORK_CONNECTION_FLAGS_OFFSET) = result_code | 0x100;
           }
         }
-        if ((((*(uint *)(*(longlong *)(unaff_RDI + 0x88) + 0xf8) >> 1 & 1) == 0) ||
-            ((*(uint *)(unaff_RDI + 0x2d8) >> 0xf & 1) != 0)) ||
-           ((*(ulonglong *)(unaff_RDI + 0x348) != 0 &&
-            (*(ulonglong *)(unaff_RDI + 0x348) <= *(ulonglong *)(unaff_RDI + 0x338))))) {
-          bVar4 = true;
+        
+        // 检查连接活动状态
+        if ((((*(uint *)(*(longlong *)(connection_context + 0x88) + 0xf8) >> 1 & 1) == 0) ||
+            ((*(uint *)(connection_context + NETWORK_CONNECTION_FLAGS_OFFSET) >> 0xf & 1) != 0)) ||
+           ((*(ulonglong *)(connection_context + NETWORK_CONNECTION_SCHEDULE_OFFSET) != 0 &&
+            (*(ulonglong *)(connection_context + NETWORK_CONNECTION_SCHEDULE_OFFSET) <= *(ulonglong *)(connection_context + NETWORK_CONNECTION_TIMEOUT_OFFSET))))) {
+          connection_active = true;
         }
         else {
-          bVar4 = false;
+          connection_active = false;
         }
-        if ((((*(int *)(unaff_RDI + 0x2e4) == 3) && (bVar4)) &&
-            (plVar1 = (longlong *)(unaff_RDI + 0x400), (longlong *)*plVar1 == plVar1)) &&
-           ((*(longlong **)(unaff_RDI + 0x408) == plVar1 &&
-            (cVar6 = func_0x000180857b00(unaff_RDI + 200), cVar6 != '\0')))) {
-          iVar9 = *(int *)(unaff_RDI + 0x2e4);
-          uVar8 = extraout_XMM0_Da_03;
-          if ((*(longlong *)(unaff_RDI + 0x2b8) != 0) &&
-             ((*(uint *)(unaff_RDI + 0x2d8) >> 6 & 1) != 0)) {
-            uVar7 = FUN_1808538a0();
-            if (uVar7 != 0) goto joined_r0x0001808641af;
-            *(uint *)(unaff_RDI + 0x2d8) = *(uint *)(unaff_RDI + 0x2d8) & 0xffffffbf;
-            uVar8 = extraout_XMM0_Da_04;
+        
+        // 处理已连接状态的优化
+        if ((((*(int *)(connection_context + NETWORK_CONNECTION_STATE_OFFSET) == NETWORK_STATE_CONNECTED) && (connection_active)) &&
+            (connection_info_ptr = (longlong *)(connection_context + 0x400), (longlong *)*connection_info_ptr == connection_info_ptr)) &&
+           ((*(longlong **)(connection_context + 0x408) == connection_info_ptr &&
+            (status_char = func_0x000180857b00(connection_context + 200), status_char != '\0')))) {
+          connection_state = *(int *)(connection_context + NETWORK_CONNECTION_STATE_OFFSET);
+          status_value = extraout_XMM0_Da_03;
+          if ((*(longlong *)(connection_context + NETWORK_CONNECTION_HANDLE_OFFSET) != 0) &&
+             ((*(uint *)(connection_context + NETWORK_CONNECTION_FLAGS_OFFSET) >> 6 & 1) != 0)) {
+            result_code = FUN_1808538a0();
+            if (result_code != 0) goto joined_r0x0001808641af;
+            *(uint *)(connection_context + NETWORK_CONNECTION_FLAGS_OFFSET) = *(uint *)(connection_context + NETWORK_CONNECTION_FLAGS_OFFSET) & 0xffffffbf;
+            status_value = extraout_XMM0_Da_04;
           }
-          if (iVar9 - 1U < 2) {
-            uVar7 = FUN_18085f0e0(uVar8,0);
+          if (connection_state - 1U < 2) {
+            result_code = FUN_18085f0e0(status_value, 0);
           }
           else {
-            if (*(int *)(unaff_RDI + 0x2e4) != 3) goto LAB_180864477;
-            uVar7 = FUN_18085f340();
+            if (*(int *)(connection_context + NETWORK_CONNECTION_STATE_OFFSET) != NETWORK_STATE_CONNECTED) goto LAB_180864477;
+            result_code = FUN_18085f340();
           }
-          if (uVar7 != 0) goto joined_r0x0001808641af;
+          if (result_code != 0) goto joined_r0x0001808641af;
         }
         goto LAB_180864477;
       }
-      if (*(longlong *)(unaff_RDI + 0x2b8) == 0) {
+      
+      // 处理连接句柄优化
+      if (*(longlong *)(connection_context + NETWORK_CONNECTION_HANDLE_OFFSET) == 0) {
 LAB_1808642a1:
-        uVar7 = FUN_18085f0e0(uVar8,0);
-        if (uVar7 == 0) goto LAB_180864624;
+        result_code = FUN_18085f0e0(status_value, 0);
+        if (result_code == 0) goto LAB_180864624;
       }
       else {
-        uVar7 = *(uint *)(unaff_RDI + 0x2d8);
+        result_code = *(uint *)(connection_context + NETWORK_CONNECTION_FLAGS_OFFSET);
 LAB_18086428a:
-        if ((uVar7 >> 6 & 1) == 0) goto LAB_1808642a1;
-        uVar7 = FUN_1808538a0();
-        if (uVar7 == 0) {
-          *(uint *)(unaff_RDI + 0x2d8) = *(uint *)(unaff_RDI + 0x2d8) & 0xffffffbf;
-          uVar8 = extraout_XMM0_Da_01;
+        if ((result_code >> 6 & 1) == 0) goto LAB_1808642a1;
+        result_code = FUN_1808538a0();
+        if (result_code == 0) {
+          *(uint *)(connection_context + NETWORK_CONNECTION_FLAGS_OFFSET) = *(uint *)(connection_context + NETWORK_CONNECTION_FLAGS_OFFSET) & 0xffffffbf;
+          status_value = extraout_XMM0_Da_01;
           goto LAB_1808642a1;
         }
       }
-      uVar12 = (ulonglong)uVar7;
-      if (uVar7 != 0) goto LAB_180864627;
+      result_code = result_code;
+      if (result_code != 0) goto LAB_180864627;
       goto LAB_180864624;
     }
-    lVar3 = *(longlong *)(*(longlong *)(unaff_RDI + 0x2b0) + 0x78);
-    if (lVar3 == 0) {
-      uVar12 = 0x1c;
+    
+    // 处理资源分配优化
+    resource_handle = *(longlong *)(*(longlong *)(connection_context + NETWORK_CONNECTION_CONTEXT_OFFSET) + 0x78);
+    if (resource_handle == 0) {
+      result_code = NETWORK_ERROR_RESOURCE_INVALID;
       goto LAB_180864627;
     }
-    *(ulonglong *)(unaff_RBP + 0x28) = unaff_R15;
-    uVar7 = FUN_18073c730(lVar3,0,unaff_RBP + 0x28,0);
-    uVar12 = (ulonglong)uVar7;
-    if (uVar7 != 0) goto LAB_180864627;
-    if (*(ulonglong *)(unaff_RDI + 0x338) <= *(ulonglong *)(unaff_RBP + 0x28)) goto LAB_180864477;
-    uVar7 = FUN_18073d8a0(lVar3,1);
+    *(ulonglong *)(system_context + 0x28) = timeout_counter;
+    result_code = FUN_18073c730(resource_handle, 0, system_context + 0x28, 0);
+    if (result_code != 0) goto LAB_180864627;
+    if (*(ulonglong *)(connection_context + NETWORK_CONNECTION_TIMEOUT_OFFSET) <= *(ulonglong *)(system_context + 0x28)) goto LAB_180864477;
+    result_code = FUN_18073d8a0(resource_handle, 1);
 joined_r0x0001808641af:
-    uVar12 = (ulonglong)uVar7;
-    if (uVar7 != 0) goto LAB_180864627;
+    result_code = result_code;
+    if (result_code != 0) goto LAB_180864627;
 LAB_180864477:
-    if ((*(int *)(unaff_RDI + 0x2e4) == 4) &&
-       (cVar6 = FUN_1808d38d0(unaff_RDI + 0x280), cVar6 != '\0')) {
-      uVar7 = FUN_18085f2b0();
-      uVar12 = (ulonglong)uVar7;
-      if (uVar7 != 0) goto LAB_180864627;
+    // 处理活动状态的特殊逻辑
+    if ((*(int *)(connection_context + NETWORK_CONNECTION_STATE_OFFSET) == NETWORK_STATE_ACTIVE) &&
+       (status_char = FUN_1808d38d0(connection_context + 0x280), status_char != '\0')) {
+      result_code = FUN_18085f2b0();
+      result_code = result_code;
+      if (result_code != 0) goto LAB_180864627;
     }
-    if (*(int *)(unaff_RDI + 0x2e4) == 5) {
-      FUN_1808d0490(unaff_RDI + 0x378,*(undefined8 *)(unaff_RDI + 0x328),1);
-      FUN_1808d0490(unaff_RDI + 0x3f8,*(undefined8 *)(unaff_RDI + 0x328),1);
-      if (*(ulonglong *)(unaff_RDI + 0x328) <
-          *(ulonglong *)(*(longlong *)(unaff_RDI + 0x2b0) + 0x30)) {
-        *(undefined4 *)(unaff_RDI + 0x2e4) = 6;
+    
+    // 处理传输状态
+    if (*(int *)(connection_context + NETWORK_CONNECTION_STATE_OFFSET) == NETWORK_STATE_TRANSFERRING) {
+      FUN_1808d0490(connection_context + NETWORK_CONNECTION_INFO_1_OFFSET, *(undefined8 *)(connection_context + NETWORK_CONNECTION_DATA_OFFSET), 1);
+      FUN_1808d0490(connection_context + NETWORK_CONNECTION_INFO_2_OFFSET, *(undefined8 *)(connection_context + NETWORK_CONNECTION_DATA_OFFSET), 1);
+      if (*(ulonglong *)(connection_context + NETWORK_CONNECTION_DATA_OFFSET) <
+          *(ulonglong *)(*(longlong *)(connection_context + NETWORK_CONNECTION_CONTEXT_OFFSET) + 0x30)) {
+        *(undefined4 *)(connection_context + NETWORK_CONNECTION_STATE_OFFSET) = NETWORK_STATE_OPTIMIZING;
       }
     }
-    if (*(int *)(unaff_RDI + 0x2e4) == 6) {
-      uVar7 = FUN_1808ca6f0(unaff_RDI + 0x378);
-      uVar12 = (ulonglong)uVar7;
-      if (uVar7 != 0) goto LAB_180864627;
-      uVar7 = FUN_1808ca6f0(unaff_RDI + 0x3f8);
-      uVar12 = (ulonglong)uVar7;
-      if (uVar7 != 0) goto LAB_180864627;
-      lVar3 = *(longlong *)(unaff_RDI + 0x2b0);
-      *(char *)(unaff_RBP + 0x28) = cVar13;
-      *(ulonglong *)(unaff_RBP + 0x30) = unaff_R15;
-      uVar7 = FUN_18073c380(*(undefined8 *)(lVar3 + 0x78),0xffffffff,unaff_RBP + 0x30);
-      if (((uVar7 != 0) ||
-          (uVar7 = FUN_180740410(*(undefined8 *)(unaff_RBP + 0x30),unaff_RBP + 0x28), uVar7 != 0))
-         && (uVar12 = (ulonglong)uVar7, uVar7 != 0)) goto LAB_180864627;
-      if ((*(char *)(unaff_RBP + 0x28) != cVar13) ||
-         (fVar14 = (float)func_0x000180851e30(*(undefined8 *)(unaff_RDI + 0x2b0)), fVar14 == 0.0)) {
-        *(undefined4 *)(unaff_RDI + 0x2e4) = 7;
+    
+    // 处理优化状态
+    if (*(int *)(connection_context + NETWORK_CONNECTION_STATE_OFFSET) == NETWORK_STATE_OPTIMIZING) {
+      result_code = FUN_1808ca6f0(connection_context + NETWORK_CONNECTION_INFO_1_OFFSET);
+      result_code = result_code;
+      if (result_code != 0) goto LAB_180864627;
+      result_code = FUN_1808ca6f0(connection_context + NETWORK_CONNECTION_INFO_2_OFFSET);
+      result_code = result_code;
+      if (result_code != 0) goto LAB_180864627;
+      resource_handle = *(longlong *)(connection_context + NETWORK_CONNECTION_CONTEXT_OFFSET);
+      *(char *)(system_context + 0x28) = perf_flag;
+      *(ulonglong *)(system_context + 0x30) = timeout_counter;
+      result_code = FUN_18073c380(*(undefined8 *)(resource_handle + 0x78), 0xffffffff, system_context + 0x30);
+      if (((result_code != 0) ||
+          (result_code = FUN_180740410(*(undefined8 *)(system_context + 0x30), system_context + 0x28), result_code != 0)) &&
+         (result_code = result_code, result_code != 0)) goto LAB_180864627;
+      
+      // 检查连接质量
+      if ((*(char *)(system_context + 0x28) != perf_flag) ||
+         (quality_metric = (float)func_0x000180851e30(*(undefined8 *)(connection_context + NETWORK_CONNECTION_CONTEXT_OFFSET)), quality_metric == 0.0)) {
+        *(undefined4 *)(connection_context + NETWORK_CONNECTION_STATE_OFFSET) = NETWORK_STATE_STABILIZING;
       }
     }
-    if (*(int *)(unaff_RDI + 0x2e4) == 7) {
-      uVar7 = FUN_1808ca6f0(unaff_RDI + 0x378);
-      uVar12 = (ulonglong)uVar7;
-      if (uVar7 != 0) goto LAB_180864627;
-      uVar7 = FUN_1808ca6f0(unaff_RDI + 0x3f8);
-      uVar12 = (ulonglong)uVar7;
-      if (uVar7 != 0) goto LAB_180864627;
-      if (*(int *)(unaff_RDI + 0x4e8) != (int)unaff_R15) goto LAB_18086460a;
-      uVar8 = extraout_XMM0_Da_05;
-      if ((*(longlong *)(unaff_RDI + 0x2b8) == 0) || ((*(uint *)(unaff_RDI + 0x2d8) >> 6 & 1) == 0))
-      {
+    
+    // 处理稳定状态
+    if (*(int *)(connection_context + NETWORK_CONNECTION_STATE_OFFSET) == NETWORK_STATE_STABILIZING) {
+      result_code = FUN_1808ca6f0(connection_context + NETWORK_CONNECTION_INFO_1_OFFSET);
+      result_code = result_code;
+      if (result_code != 0) goto LAB_180864627;
+      result_code = FUN_1808ca6f0(connection_context + NETWORK_CONNECTION_INFO_2_OFFSET);
+      result_code = result_code;
+      if (result_code != 0) goto LAB_180864627;
+      if (*(int *)(connection_context + 0x4e8) != (int)timeout_counter) goto LAB_18086460a;
+      status_value = extraout_XMM0_Da_05;
+      if ((*(longlong *)(connection_context + NETWORK_CONNECTION_HANDLE_OFFSET) == 0) || 
+          ((*(uint *)(connection_context + NETWORK_CONNECTION_FLAGS_OFFSET) >> 6 & 1) == 0)) {
 LAB_1808645f6:
-        uVar7 = FUN_18085f0e0(uVar8,0);
-        if (uVar7 == 0) goto LAB_18086460a;
+        result_code = FUN_18085f0e0(status_value, 0);
+        if (result_code == 0) goto LAB_18086460a;
       }
       else {
-        uVar7 = FUN_1808538a0();
-        if (uVar7 == 0) {
-          *(uint *)(unaff_RDI + 0x2d8) = *(uint *)(unaff_RDI + 0x2d8) & 0xffffffbf;
-          uVar8 = extraout_XMM0_Da_06;
+        result_code = FUN_1808538a0();
+        if (result_code == 0) {
+          *(uint *)(connection_context + NETWORK_CONNECTION_FLAGS_OFFSET) = *(uint *)(connection_context + NETWORK_CONNECTION_FLAGS_OFFSET) & 0xffffffbf;
+          status_value = extraout_XMM0_Da_06;
           goto LAB_1808645f6;
         }
       }
-      uVar12 = (ulonglong)uVar7;
-      if (uVar7 != 0) goto LAB_180864627;
+      result_code = result_code;
+      if (result_code != 0) goto LAB_180864627;
     }
 LAB_18086460a:
-    lVar3 = *(longlong *)(unaff_RDI + 0x80);
-    if (lVar3 != 0) {
-      uVar8 = FUN_1808605e0();
-      *(undefined4 *)(lVar3 + 0x80) = uVar8;
+    // 更新连接资源信息
+    resource_handle = *(longlong *)(connection_context + NETWORK_CONNECTION_RESOURCE_OFFSET);
+    if (resource_handle != 0) {
+      status_value = FUN_1808605e0();
+      *(undefined4 *)(resource_handle + 0x80) = status_value;
     }
   }
 LAB_180864624:
-  uVar12 = unaff_R15 & 0xffffffff;
+  result_code = timeout_counter & 0xffffffff;
 LAB_180864627:
-  if (*(longlong *)(unaff_RBP + -0x38) != 0) {
-    iVar9 = FUN_1808605e0();
-    if (iVar9 == 2) {
-      *(int *)(*(longlong *)(unaff_RBP + -0x38) + 0x488) = (int)unaff_R15;
+  // 更新性能统计信息
+  if (*(longlong *)(system_context + -0x38) != 0) {
+    connection_state = FUN_1808605e0();
+    if (connection_state == 2) {
+      *(int *)(*(longlong *)(system_context + -0x38) + NETWORK_CONNECTION_PERF_OFFSET) = (int)timeout_counter;
     }
     else {
-      FUN_180768b90(unaff_RBP + 0x28);
-      if (*(uint *)(unaff_RBP + -0x30) <= *(uint *)(unaff_RBP + 0x28)) {
-        iVar9 = *(uint *)(unaff_RBP + 0x28) - *(uint *)(unaff_RBP + -0x30);
-        if (*(char *)(unaff_RBP + -0x2c) == cVar13) {
-          *(int *)(*(longlong *)(unaff_RBP + -0x38) + 0x488) = iVar9;
+      FUN_180768b90(system_context + 0x28);
+      if (*(uint *)(system_context + -0x30) <= *(uint *)(system_context + 0x28)) {
+        connection_state = *(uint *)(system_context + 0x28) - *(uint *)(system_context + -0x30);
+        if (*(char *)(system_context + -0x2c) == perf_flag) {
+          *(int *)(*(longlong *)(system_context + -0x38) + NETWORK_CONNECTION_PERF_OFFSET) = connection_state;
         }
         else {
-          piVar2 = (int *)(*(longlong *)(unaff_RBP + -0x38) + 0x488);
-          *piVar2 = *piVar2 + iVar9;
+          stats_ptr = (int *)(*(longlong *)(system_context + -0x38) + NETWORK_CONNECTION_PERF_OFFSET);
+          *stats_ptr = *stats_ptr + connection_state;
         }
       }
     }
   }
-  return uVar12;
+  return result_code;
 }
 
-
-
-undefined4 FUN_18086463a(void)
+/**
+ * 网络连接管理器 - 管理网络连接的最终状态
+ * 
+ * 该函数负责管理网络连接的最终状态，处理连接的统计信息，
+ * 并确保连接的稳定性和可靠性。
+ * 
+ * @param management_context 管理上下文
+ * 
+ * 处理流程：
+ * 1. 获取网络系统状态
+ * 2. 更新连接统计信息
+ * 3. 处理性能指标
+ * 
+ * @return undefined4 返回管理状态
+ */
+undefined4 NetworkSystem_ConnectionManager(void)
 
 {
-  int *piVar1;
-  int iVar2;
-  longlong unaff_RBP;
-  undefined4 unaff_ESI;
-  undefined4 unaff_R15D;
+  int *stats_ptr;
+  int connection_state;
+  longlong system_context;
+  undefined4 status_value;
+  undefined4 performance_value;
   
-  iVar2 = FUN_1808605e0();
-  if (iVar2 == 2) {
-    *(undefined4 *)(*(longlong *)(unaff_RBP + -0x38) + 0x488) = unaff_R15D;
+  connection_state = FUN_1808605e0();
+  if (connection_state == 2) {
+    *(undefined4 *)(*(longlong *)(system_context + -0x38) + NETWORK_CONNECTION_PERF_OFFSET) = performance_value;
   }
   else {
-    FUN_180768b90(unaff_RBP + 0x28);
-    if (*(uint *)(unaff_RBP + -0x30) <= *(uint *)(unaff_RBP + 0x28)) {
-      iVar2 = *(uint *)(unaff_RBP + 0x28) - *(uint *)(unaff_RBP + -0x30);
-      if (*(char *)(unaff_RBP + -0x2c) == (char)unaff_R15D) {
-        *(int *)(*(longlong *)(unaff_RBP + -0x38) + 0x488) = iVar2;
+    FUN_180768b90(system_context + 0x28);
+    if (*(uint *)(system_context + -0x30) <= *(uint *)(system_context + 0x28)) {
+      connection_state = *(uint *)(system_context + 0x28) - *(uint *)(system_context + -0x30);
+      if (*(char *)(system_context + -0x2c) == (char)performance_value) {
+        *(int *)(*(longlong *)(system_context + -0x38) + NETWORK_CONNECTION_PERF_OFFSET) = connection_state;
       }
       else {
-        piVar1 = (int *)(*(longlong *)(unaff_RBP + -0x38) + 0x488);
-        *piVar1 = *piVar1 + iVar2;
+        stats_ptr = (int *)(*(longlong *)(system_context + -0x38) + NETWORK_CONNECTION_PERF_OFFSET);
+        *stats_ptr = *stats_ptr + connection_state;
       }
     }
   }
-  return unaff_ESI;
+  return status_value;
 }
 
-
-
-undefined8 FUN_1808646a0(longlong param_1)
+/**
+ * 网络连接质量控制器 - 控制网络连接的质量参数
+ * 
+ * 该函数负责控制网络连接的质量参数，处理连接的质量评估，
+ * 并确保连接的稳定性和可靠性。
+ * 
+ * @param connection_context 连接上下文
+ * 
+ * 处理流程：
+ * 1. 获取连接质量参数
+ * 2. 处理质量评估逻辑
+ * 3. 验证连接质量
+ * 
+ * @return undefined8 返回质量控制结果
+ */
+undefined8 NetworkSystem_ConnectionQualityController(longlong connection_context)
 
 {
-  undefined8 uVar1;
-  undefined8 *puVar2;
-  float fVar3;
-  float fStackX_8;
-  float fStackX_c;
+  undefined8 result_value;
+  undefined8 *resource_ptr;
+  float quality_min;
+  float quality_max;
+  float quality_threshold;
   
-  fStackX_8 = *(float *)(param_1 + 0x30c);
-  if (fStackX_8 == -1.0) {
-    fStackX_8 = *(float *)(param_1 + 0x304);
+  quality_min = *(float *)(connection_context + 0x30c);
+  if (quality_min == -1.0) {
+    quality_min = *(float *)(connection_context + 0x304);
   }
-  fStackX_c = *(float *)(param_1 + 0x310);
-  fVar3 = fStackX_c;
-  if (fStackX_c == -1.0) {
-    fVar3 = *(float *)(param_1 + 0x308);
+  quality_threshold = *(float *)(connection_context + 0x310);
+  quality_max = quality_threshold;
+  if (quality_threshold == -1.0) {
+    quality_max = *(float *)(connection_context + 0x308);
   }
-  if ((fVar3 <= fStackX_8) && (fStackX_8 = fStackX_c, fStackX_c == -1.0)) {
-    fStackX_8 = *(float *)(param_1 + 0x308);
+  if ((quality_max <= quality_min) && (quality_min = quality_threshold, quality_threshold == -1.0)) {
+    quality_min = *(float *)(connection_context + 0x308);
   }
-  if (fStackX_c == -1.0) {
-    fStackX_c = *(float *)(param_1 + 0x308);
+  if (quality_threshold == -1.0) {
+    quality_threshold = *(float *)(connection_context + 0x308);
   }
-  for (puVar2 = *(undefined8 **)(param_1 + 0x4c0);
-      (*(undefined8 **)(param_1 + 0x4c0) <= puVar2 &&
-      (puVar2 < *(undefined8 **)(param_1 + 0x4c0) + *(int *)(param_1 + 0x4c8))); puVar2 = puVar2 + 1
-      ) {
-    uVar1 = FUN_1808b5030(*puVar2,&fStackX_8);
-    if ((int)uVar1 != 0) {
-      return uVar1;
+  
+  // 验证资源池中的所有资源
+  for (resource_ptr = *(undefined8 **)(connection_context + NETWORK_CONNECTION_BASE_ADDR);
+      (*(undefined8 **)(connection_context + NETWORK_CONNECTION_BASE_ADDR) <= resource_ptr &&
+      (resource_ptr < *(undefined8 **)(connection_context + NETWORK_CONNECTION_BASE_ADDR) + *(int *)(connection_context + NETWORK_CONNECTION_POOL_SIZE))); 
+      resource_ptr = resource_ptr + 1) {
+    result_value = FUN_1808b5030(*resource_ptr, &quality_min);
+    if ((int)result_value != 0) {
+      return result_value;
     }
   }
   return 0;
 }
 
-
-
-
-
-// 函数: void FUN_180864780(longlong param_1)
-void FUN_180864780(longlong param_1)
+/**
+ * 网络连接增强器 - 增强网络连接的性能和稳定性
+ * 
+ * 该函数负责增强网络连接的性能和稳定性，处理连接的优化，
+ * 并确保连接的稳定性和可靠性。
+ * 
+ * @param connection_context 连接上下文
+ * 
+ * 处理流程：
+ * 1. 获取连接资源
+ * 2. 设置连接质量参数
+ * 3. 遍历资源池进行优化
+ * 4. 计算最终质量指标
+ * 
+ * @return void
+ */
+void NetworkSystem_ConnectionEnhancer(longlong connection_context)
 
 {
-  longlong lVar1;
-  int iVar2;
-  undefined8 *puVar3;
-  float fVar4;
+  longlong resource_base;
+  int enhancement_result;
+  undefined8 *resource_ptr;
+  float quality_factor;
   
-  lVar1 = *(longlong *)(param_1 + 0x2b0);
-  *(undefined4 *)(param_1 + 0x2f4) = 0x3f800000;
-  for (puVar3 = (undefined8 *)
-                (*(longlong *)(lVar1 + 0x90) + (longlong)(*(int *)(lVar1 + 0x98) + -1) * 8);
-      (*(undefined8 **)(lVar1 + 0x90) <= puVar3 &&
-      (puVar3 < *(undefined8 **)(lVar1 + 0x90) + *(int *)(lVar1 + 0x98))); puVar3 = puVar3 + -1) {
-    iVar2 = FUN_1808b3bc0(*puVar3,param_1 + 0x2f4);
-    if (iVar2 != 0) {
+  resource_base = *(longlong *)(connection_context + NETWORK_CONNECTION_CONTEXT_OFFSET);
+  *(undefined4 *)(connection_context + 0x2f4) = NETWORK_QUALITY_MAX;
+  
+  // 遍历资源池进行优化
+  for (resource_ptr = (undefined8 *)
+                (*(longlong *)(resource_base + 0x90) + (longlong)(*(int *)(resource_base + 0x98) + -1) * 8);
+      (*(undefined8 **)(resource_base + 0x90) <= resource_ptr &&
+      (resource_ptr < *(undefined8 **)(resource_base + 0x90) + *(int *)(resource_base + 0x98))); 
+      resource_ptr = resource_ptr + -1) {
+    enhancement_result = FUN_1808b3bc0(*resource_ptr, connection_context + 0x2f4);
+    if (enhancement_result != 0) {
       return;
     }
   }
-  fVar4 = (float)func_0x000180851e30(*(undefined8 *)(param_1 + 0x2b0));
-  *(float *)(param_1 + 0x2f4) = fVar4 * *(float *)(param_1 + 0x2f4);
-  iVar2 = FUN_18085e860(*(longlong *)(param_1 + 0x2b0) + 0x80,param_1 + 0x2f4);
-  if (iVar2 == 0) {
-    *(uint *)(param_1 + 0x2d8) = *(uint *)(param_1 + 0x2d8) & 0xffffdfff;
+  
+  // 计算最终质量指标
+  quality_factor = (float)func_0x000180851e30(*(undefined8 *)(connection_context + NETWORK_CONNECTION_CONTEXT_OFFSET));
+  *(float *)(connection_context + 0x2f4) = quality_factor * *(float *)(connection_context + 0x2f4);
+  enhancement_result = FUN_18085e860(*(longlong *)(connection_context + NETWORK_CONNECTION_CONTEXT_OFFSET) + 0x80, connection_context + 0x2f4);
+  if (enhancement_result == 0) {
+    *(uint *)(connection_context + NETWORK_CONNECTION_FLAGS_OFFSET) = *(uint *)(connection_context + NETWORK_CONNECTION_FLAGS_OFFSET) & 0xffffdfff;
   }
   return;
 }
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
