@@ -284,3 +284,262 @@ typedef uint64_t UIMatrixTransformHandle;          // UI矩阵变换句柄
    - 最小权限原则
    - 安全的默认值
 */
+
+//------------------------------------------------------------------------------
+// 函数实现部分
+//------------------------------------------------------------------------------
+
+// 函数: UI向量数据处理器 - 主要向量运算函数
+void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,longlong param_3,longlong *param_4,
+                           longlong *param_5)
+
+{
+  float *pfVar1;
+  int32_t uVar2;
+  longlong lVar3;
+  longlong lVar4;
+  int8_t auVar5 [16];
+  int8_t auVar6 [32];
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  float fVar10;
+  float fVar11;
+  float fVar12;
+  float fVar13;
+  float fVar14;
+  int8_t auVar15 [32];
+  uint uVar16;
+  ulonglong uVar17;
+  ulonglong *puVar18;
+  int iVar19;
+  int8_t auVar20 [16];
+  int8_t auVar21 [32];
+  int8_t auVar22 [32];
+  int8_t auVar23 [32];
+  int8_t auVar24 [32];
+  float fVar25;
+  int8_t auVar26 [32];
+  float fVar27;
+  float fVar28;
+  float fVar29;
+  float fVar30;
+  float fVar31;
+  float fVar32;
+  int8_t in_ZMM2 [64];
+  int8_t auVar33 [32];
+  int8_t auVar34 [32];
+  int8_t auVar35 [32];
+  int8_t auVar36 [32];
+  int8_t auStack_f8 [24];
+  int8_t auStack_e0 [32];
+  ulonglong auStack_b8 [22];
+  
+  puVar18 = auStack_b8;
+  auStack_b8[0] = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
+  uVar17 = (ulonglong)param_1 & 0x1f;
+                    // WARNING: Read-only address (ram,0x000180980c00) is written
+                    // WARNING: Read-only address (ram,0x000180980ca0) is written
+                    // WARNING: Read-only address (ram,0x000180a40840) is written
+  while ((uVar17 != 0 && (param_2 != 0))) {
+    param_2 = param_2 - 1;
+    uVar2 = (int32_t)*param_4;
+    auVar21._4_4_ = uVar2;
+    auVar21._0_4_ = uVar2;
+    auVar21._8_4_ = uVar2;
+    auVar21._12_4_ = uVar2;
+    auVar21._16_4_ = uVar2;
+    auVar21._20_4_ = uVar2;
+    auVar21._24_4_ = uVar2;
+    auVar21._28_4_ = uVar2;
+    uVar17 = (ulonglong)(uint)(*(int *)((longlong)param_4 + 4) << 3);
+    auVar21 = vpsrld_avx2(auVar21,1);
+    auVar21 = vcvtdq2ps_avx(auVar21);
+    auVar23 = vsubps_avx(*(int8_t (*) [32])(param_3 + 0x20 + uVar17 * 4),
+                         *(int8_t (*) [32])(param_3 + uVar17 * 4));
+    fVar25 = auVar21._0_4_ * UI_VECTOR_CONST_SCALE_FACTOR * auVar23._0_4_;
+    fVar27 = auVar21._4_4_ * UI_VECTOR_CONST_SCALE_FACTOR * auVar23._4_4_;
+    fVar28 = auVar21._8_4_ * UI_VECTOR_CONST_SCALE_FACTOR * auVar23._8_4_;
+    fVar29 = auVar21._12_4_ * UI_VECTOR_CONST_SCALE_FACTOR * auVar23._12_4_;
+    fVar30 = auVar21._16_4_ * UI_VECTOR_CONST_SCALE_FACTOR * auVar23._16_4_;
+    fVar31 = auVar21._20_4_ * UI_VECTOR_CONST_SCALE_FACTOR * auVar23._20_4_;
+    fVar7 = in_ZMM2._28_4_;
+    fVar32 = auVar21._24_4_ * UI_VECTOR_CONST_SCALE_FACTOR * auVar23._24_4_;
+    in_ZMM2 = ZEXT3264(CONCAT428(fVar7,CONCAT424(fVar32,CONCAT420(fVar31,CONCAT416(fVar30,CONCAT412(
+                                                  fVar29,CONCAT48(fVar28,CONCAT44(fVar27,fVar25)))))
+                                                )));
+    pfVar1 = (float *)(param_3 + uVar17 * 4);
+    fVar8 = pfVar1[1];
+    fVar9 = pfVar1[2];
+    fVar10 = pfVar1[3];
+    fVar11 = pfVar1[4];
+    fVar12 = pfVar1[5];
+    fVar13 = pfVar1[6];
+    fVar14 = pfVar1[7];
+    *(float *)*param_1 = fVar25 + *pfVar1;
+    *(float *)(*param_1 + 4) = fVar27 + fVar8;
+    *(float *)(*param_1 + 8) = fVar28 + fVar9;
+    *(float *)(*param_1 + 0xc) = fVar29 + fVar10;
+    *(float *)(*param_1 + 0x10) = fVar30 + fVar11;
+    *(float *)(*param_1 + 0x14) = fVar31 + fVar12;
+    *(float *)(*param_1 + 0x18) = fVar32 + fVar13;
+    *(float *)(*param_1 + 0x1c) = fVar7 + fVar14;
+    param_1 = param_1 + 1;
+    *param_4 = *param_4 + *param_5;
+    uVar17 = (ulonglong)param_1 & 0x1f;
+  }
+  iVar19 = (int)param_2 >> 2;
+  if (iVar19 != 0) {
+    lVar4 = *param_5;
+    lVar3 = *param_4;
+    auVar26._8_8_ = lVar3;
+    auVar26._0_8_ = lVar3;
+    auVar26._16_8_ = lVar3;
+    auVar26._24_8_ = lVar3;
+    auVar5 = vpinsrq_avx((int8_t  [16])0x0,lVar4,1);
+    lVar3 = lVar4 * 4;
+    auVar20._8_8_ = 0;
+    auVar20._0_8_ = lVar4 * 2;
+    auVar20 = vpinsrq_avx(auVar20,lVar4 * 3,1);
+    auVar23._16_16_ = auVar20;
+    auVar23._0_16_ = auVar5;
+    auVar21 = vpaddq_avx2(auVar23,auVar26);
+    auVar36._8_8_ = lVar3;
+    auVar36._0_8_ = lVar3;
+    auVar36._16_8_ = lVar3;
+    auVar36._24_8_ = lVar3;
+    puVar18 = (ulonglong *)auStack_f8;
+    auVar23 = _DAT_180980c00;
+    auVar26 = _DAT_180a40840;
+    auVar24 = _DAT_180980ca0;
+    do {
+      auStack_e0 = auVar21;
+      auVar15 = _DAT_180980c00;
+      auVar23 = vpermd_avx2(auVar23,auStack_e0);
+      auVar21 = vpermd_avx2(SUB6432(ZEXT1664((int8_t  [16])0x0),0),auStack_e0);
+      auVar22 = vpsrld_avx2(auVar21,1);
+      auVar21 = *(int8_t (*) [32])(param_3 + (ulonglong)(uint)(auStack_e0._4_4_ << 3) * 4);
+      auVar22 = vcvtdq2ps_avx(auVar22);
+      auVar6 = vpermd_avx2(auVar26,auStack_e0);
+      auVar33 = vpermd_avx2(auVar24,auStack_e0);
+      auVar23 = vpsrld_avx2(auVar23,1);
+      auVar26 = vcvtdq2ps_avx(auVar23);
+      auVar23 = vpsrld_avx2(auVar6,1);
+      auVar24 = vcvtdq2ps_avx(auVar23);
+      auVar23 = vpsrld_avx2(auVar33,1);
+      auVar6 = vcvtdq2ps_avx(auVar23);
+      auVar33 = vsubps_avx(*(int8_t (*) [32])
+                            (param_3 + 0x20 + (ulonglong)(uint)(auStack_e0._4_4_ << 3) * 4),auVar21)
+      ;
+      fVar7 = auVar6._28_4_;
+      auVar23 = *(int8_t (*) [32])(param_3 + (ulonglong)(uint)(auStack_e0._12_4_ << 3) * 4);
+      uVar16 = auStack_e0._20_4_ << 3;
+      auVar35._0_4_ = auVar33._0_4_ * auVar22._0_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar21._0_4_;
+      auVar35._4_4_ = auVar33._4_4_ * auVar22._4_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar21._4_4_;
+      auVar35._8_4_ = auVar33._8_4_ * auVar22._8_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar21._8_4_;
+      auVar35._12_4_ = auVar33._12_4_ * auVar22._12_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar21._12_4_;
+      auVar35._16_4_ = auVar33._16_4_ * auVar22._16_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar21._16_4_;
+      auVar35._20_4_ = auVar33._20_4_ * auVar22._20_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar21._20_4_;
+      auVar35._24_4_ = auVar33._24_4_ * auVar22._24_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar21._24_4_;
+      auVar35._28_4_ = fVar7 + auVar21._28_4_;
+      auVar21 = vsubps_avx(*(int8_t (*) [32])
+                            (param_3 + 0x20 + (ulonglong)(uint)(auStack_e0._12_4_ << 3) * 4),auVar23
+                          );
+      auVar22 = vsubps_avx(*(int8_t (*) [32])(param_3 + 0x20 + (ulonglong)uVar16 * 4),
+                           *(int8_t (*) [32])(param_3 + (ulonglong)uVar16 * 4));
+      auVar34._0_4_ = auVar21._0_4_ * auVar26._0_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar23._0_4_;
+      auVar34._4_4_ = auVar21._4_4_ * auVar26._4_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar23._4_4_;
+      auVar34._8_4_ = auVar21._8_4_ * auVar26._8_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar23._8_4_;
+      auVar34._12_4_ = auVar21._12_4_ * auVar26._12_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar23._12_4_;
+      auVar34._16_4_ = auVar21._16_4_ * auVar26._16_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar23._16_4_;
+      auVar34._20_4_ = auVar21._20_4_ * auVar26._20_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar23._20_4_;
+      auVar34._24_4_ = auVar21._24_4_ * auVar26._24_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar23._24_4_;
+      auVar34._28_4_ = fVar7 + auVar23._28_4_;
+      uVar17 = (ulonglong)(uint)(auStack_e0._28_4_ << 3);
+      pfVar1 = (float *)(param_3 + (ulonglong)uVar16 * 4);
+      auVar33._0_4_ = auVar22._0_4_ * auVar24._0_4_ * UI_VECTOR_CONST_SCALE_FACTOR + *pfVar1;
+      auVar33._4_4_ = auVar22._4_4_ * auVar24._4_4_ * UI_VECTOR_CONST_SCALE_FACTOR + pfVar1[1];
+      auVar33._8_4_ = auVar22._8_4_ * auVar24._8_4_ * UI_VECTOR_CONST_SCALE_FACTOR + pfVar1[2];
+      auVar33._12_4_ = auVar22._12_4_ * auVar24._12_4_ * UI_VECTOR_CONST_SCALE_FACTOR + pfVar1[3];
+      auVar33._16_4_ = auVar22._16_4_ * auVar24._16_4_ * UI_VECTOR_CONST_SCALE_FACTOR + pfVar1[4];
+      auVar33._20_4_ = auVar22._20_4_ * auVar24._20_4_ * UI_VECTOR_CONST_SCALE_FACTOR + pfVar1[5];
+      auVar33._24_4_ = auVar22._24_4_ * auVar24._24_4_ * UI_VECTOR_CONST_SCALE_FACTOR + pfVar1[6];
+      auVar33._28_4_ = fVar7 + pfVar1[7];
+      auVar21 = vpaddq_avx2(auVar36,auStack_e0);
+      auVar23 = vsubps_avx(*(int8_t (*) [32])(param_3 + 0x20 + uVar17 * 4),
+                           *(int8_t (*) [32])(param_3 + uVar17 * 4));
+      pfVar1 = (float *)(param_3 + uVar17 * 4);
+      auVar22._0_4_ = auVar23._0_4_ * auVar6._0_4_ * UI_VECTOR_CONST_SCALE_FACTOR + *pfVar1;
+      auVar22._4_4_ = auVar23._4_4_ * auVar6._4_4_ * UI_VECTOR_CONST_SCALE_FACTOR + pfVar1[1];
+      auVar22._8_4_ = auVar23._8_4_ * auVar6._8_4_ * UI_VECTOR_CONST_SCALE_FACTOR + pfVar1[2];
+      auVar22._12_4_ = auVar23._12_4_ * auVar6._12_4_ * UI_VECTOR_CONST_SCALE_FACTOR + pfVar1[3];
+      auVar22._16_4_ = auVar23._16_4_ * auVar6._16_4_ * UI_VECTOR_CONST_SCALE_FACTOR + pfVar1[4];
+      auVar22._20_4_ = auVar23._20_4_ * auVar6._20_4_ * UI_VECTOR_CONST_SCALE_FACTOR + pfVar1[5];
+      auVar22._24_4_ = auVar23._24_4_ * auVar6._24_4_ * UI_VECTOR_CONST_SCALE_FACTOR + pfVar1[6];
+      auVar22._28_4_ = fVar7 + pfVar1[7];
+      in_ZMM2 = ZEXT3264(auVar22);
+      auVar23 = vmovntps_avx(auVar35);
+      *param_1 = auVar23;
+      auVar23 = vmovntps_avx(auVar34);
+      param_1[1] = auVar23;
+      auVar24 = _DAT_180980ca0;
+      auVar23 = vmovntps_avx(auVar33);
+      param_1[2] = auVar23;
+      auVar26 = _DAT_180a40840;
+      auVar23 = vmovntps_avx(auVar22);
+      param_1[3] = auVar23;
+      param_1 = param_1 + 4;
+      iVar19 = iVar19 + -1;
+      auVar23 = auVar15;
+    } while (iVar19 != 0);
+    *param_4 = auVar21._0_8_;
+  }
+  for (param_2 = param_2 & 3; param_2 != 0; param_2 = param_2 - 1) {
+    uVar2 = (int32_t)*param_4;
+    auVar24._4_4_ = uVar2;
+    auVar24._0_4_ = uVar2;
+    auVar24._8_4_ = uVar2;
+    auVar24._12_4_ = uVar2;
+    auVar24._16_4_ = uVar2;
+    auVar24._20_4_ = uVar2;
+    auVar24._24_4_ = uVar2;
+    auVar24._28_4_ = uVar2;
+    uVar17 = (ulonglong)(uint)(*(int *)((longlong)param_4 + 4) << 3);
+    auVar21 = vpsrld_avx2(auVar24,1);
+    auVar21 = vcvtdq2ps_avx(auVar21);
+    auVar23 = vsubps_avx(*(int8_t (*) [32])(param_3 + 0x20 + uVar17 * 4),
+                         *(int8_t (*) [32])(param_3 + uVar17 * 4));
+    fVar25 = auVar21._0_4_ * UI_VECTOR_CONST_SCALE_FACTOR * auVar23._0_4_;
+    fVar27 = auVar21._4_4_ * UI_VECTOR_CONST_SCALE_FACTOR * auVar23._4_4_;
+    fVar28 = auVar21._8_4_ * UI_VECTOR_CONST_SCALE_FACTOR * auVar23._8_4_;
+    fVar29 = auVar21._12_4_ * UI_VECTOR_CONST_SCALE_FACTOR * auVar23._12_4_;
+    fVar30 = auVar21._16_4_ * UI_VECTOR_CONST_SCALE_FACTOR * auVar23._16_4_;
+    fVar31 = auVar21._20_4_ * UI_VECTOR_CONST_SCALE_FACTOR * auVar23._20_4_;
+    fVar7 = in_ZMM2._28_4_;
+    fVar32 = auVar21._24_4_ * UI_VECTOR_CONST_SCALE_FACTOR * auVar23._24_4_;
+    in_ZMM2 = ZEXT3264(CONCAT428(fVar7,CONCAT424(fVar32,CONCAT420(fVar31,CONCAT416(fVar30,CONCAT412(
+                                                  fVar29,CONCAT48(fVar28,CONCAT44(fVar27,fVar25)))))
+                                                )));
+    pfVar1 = (float *)(param_3 + uVar17 * 4);
+    fVar8 = pfVar1[1];
+    fVar9 = pfVar1[2];
+    fVar10 = pfVar1[3];
+    fVar11 = pfVar1[4];
+    fVar12 = pfVar1[5];
+    fVar13 = pfVar1[6];
+    fVar14 = pfVar1[7];
+    *(float *)*param_1 = fVar25 + *pfVar1;
+    *(float *)(*param_1 + 4) = fVar27 + fVar8;
+    *(float *)(*param_1 + 8) = fVar28 + fVar9;
+    *(float *)(*param_1 + 0xc) = fVar29 + fVar10;
+    *(float *)(*param_1 + 0x10) = fVar30 + fVar11;
+    *(float *)(*param_1 + 0x14) = fVar31 + fVar12;
+    *(float *)(*param_1 + 0x18) = fVar32 + fVar13;
+    *(float *)(*param_1 + 0x1c) = fVar7 + fVar14;
+    *param_4 = *param_4 + *param_5;
+    param_1 = param_1 + 1;
+  }
+                    // WARNING: Subroutine does not return
+  *(uint64_t *)((longlong)puVar18 + -8) = 0x180836966;
+  FUN_1808fc050(auStack_b8[0] ^ (ulonglong)auStack_b8);
+}

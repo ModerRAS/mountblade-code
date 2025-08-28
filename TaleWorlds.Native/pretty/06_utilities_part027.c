@@ -157,7 +157,7 @@ void utilities_system_function_invoker(uint64_t *param_1, longlong param_2)
 // 参数：param_1 - 系统状态指针
 // 返回值：bool - 验证结果（true表示状态有效，false表示状态无效）
 // =============================================================================
-bool FUN_1809413d5(uint64_t *param_1)
+bool utilities_system_state_validator(uint64_t *param_1)
 
 {
   // 检查系统状态是否为预定义的负数标志
@@ -175,7 +175,7 @@ bool FUN_1809413d5(uint64_t *param_1)
 // 参数：param_1 - 系统上下文，param_2 - 资源参数
 // 返回值：无
 // =============================================================================
-void FUN_1809413ed(uint64_t param_1,longlong param_2)
+void utilities_system_resource_handler(uint64_t param_1, longlong param_2)
 
 {
   // 检查资源状态是否为空闲
@@ -200,7 +200,7 @@ void FUN_1809413ed(uint64_t param_1,longlong param_2)
 // 参数：param_1 - 系统上下文，param_2 - 数据参数
 // 返回值：无
 // =============================================================================
-void FUN_180941419(uint64_t param_1,longlong param_2)
+void utilities_system_data_processor(uint64_t param_1, longlong param_2)
 
 {
   // 检查数据状态是否为空闲
@@ -223,7 +223,7 @@ void FUN_180941419(uint64_t param_1,longlong param_2)
 // 参数：param_1 - 系统上下文，param_2 - 状态参数
 // 返回值：int32_t - 状态码（0表示成功）
 // =============================================================================
-int32_t FUN_180941445(uint64_t param_1,longlong param_2)
+int32_t utilities_system_state_initializer(uint64_t param_1, longlong param_2)
 
 {
   // 设置系统状态参数
