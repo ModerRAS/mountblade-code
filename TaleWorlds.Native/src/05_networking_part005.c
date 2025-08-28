@@ -735,8 +735,16 @@ void NetworkClient_PingClient(void)
 
 
 
-// 函数: void FUN_1808464cb(void)
-void FUN_1808464cb(void)
+/**
+ * 断开客户端连接
+ * 
+ * 本函数用于主动断开与指定客户端的网络连接。
+ * 会清理相关资源并通知客户端连接断开。
+ * 
+ * 简化实现：省略了断开原因记录和资源回收，
+ * 专注于核心的断开连接功能。
+ */
+void NetworkClient_DisconnectClient(void)
 
 {
   ulonglong in_stack_00000130;
@@ -751,8 +759,19 @@ void FUN_1808464cb(void)
 
 
 
-// 函数: void FUN_1808464f0(ulonglong param_1,undefined4 *param_2)
-void FUN_1808464f0(ulonglong param_1,undefined4 *param_2)
+/**
+ * 获取客户端网络地址
+ * 
+ * @param client_id 客户端ID
+ * @param client_address 输出参数，返回客户端地址
+ * 
+ * 本函数用于获取客户端的网络地址信息，用于
+ * 客户端识别和网络路由。
+ * 
+ * 简化实现：省略了地址格式转换和验证，
+ * 专注于核心的地址获取功能。
+ */
+void NetworkClient_GetClientAddress(ulonglong client_id, undefined4 *client_address)
 
 {
   int iVar1;

@@ -926,13 +926,13 @@ SKIP_REALLOCATION:
         // 检查引号匹配
         if (quote_flag) {
             SystemCleaner(&UNK_180a08898);
-            FUN_180057110(config_ptr);
+            ConfigValidator(config_ptr);
         }
     }
     
     // 验证配置结构
     if (*config_ptr != config_ptr[1]) {
-        FUN_180095280(config_ptr);
+        ConfigApplier(config_ptr);
     }
     return config_ptr;
 }
@@ -1098,7 +1098,7 @@ PROCESS_DATA:
         stack_ptr_8 = (longlong *)0x0;
         stack_ptr_9 = (longlong *)0x0;
         stack_data_12 = 3;
-        data_array = (longlong **)FUN_180161f80(data_handle, &stack_ptr_11, &stack_ptr_10);
+        data_array = (longlong **)DataHandleCreator(data_handle, &stack_ptr_11, &stack_ptr_10);
         stack_ptr_1 = (longlong *)0x0;
         temp_ptr_3 = temp_ptr_2;
         if (&stack_ptr_7 != data_array) {
@@ -1172,7 +1172,7 @@ PROCESS_DATA:
                     FUN_1806277c0(&stack_ptr_4, 1);
                     *(undefined2 *)((stack_data_3 & 0xffffffff) + stack_data_5) = 0x2e;
                     stack_data_3 = CONCAT44(stack_data_3._4_4_, 1);
-                    data_handle = FUN_180627ce0(&stack_ptr_4, &stack_ptr_11, *stack_ptr_1);
+                    data_handle = DataContextCreator(&stack_ptr_4, &stack_ptr_11, *stack_ptr_1);
                     
                     if (stack_ptr_3 != (undefined1 *)0x0) {
                         ErrorHandler();
@@ -1344,7 +1344,7 @@ core_engine_parameter_handler(longlong *param_array, undefined8 *config_ptr, und
             }
             else {
                 process_result = FUN_180628ca0();
-                FUN_180627ce0(process_result, config_ptr, param_array[2]);
+                DataContextCreator(process_result, config_ptr, param_array[2]);
             }
         }
         else {
