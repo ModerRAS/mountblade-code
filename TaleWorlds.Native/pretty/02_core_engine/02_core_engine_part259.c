@@ -177,6 +177,17 @@ void initialize_engine_core(longlong engine_context)
   engine_core_initialization_complete(texture_checksum_38 ^ (ulonglong)stack_buffer_1b8);
 }
 
+/*
+ * 核心引擎辅助功能说明：
+ * - 提供引擎核心初始化功能
+ * - 支持资源管理和清理
+ * - 实现渲染系统初始化
+ * - 处理资源链表和对象数组
+ * - 支持渲染批次和材质处理
+ */
+
+// 简化实现：当前版本为基础框架，后续将扩展完整功能
+
 
 
 /**
