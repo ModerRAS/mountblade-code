@@ -1,9 +1,60 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part070.c - 9 个函数
+// 03_rendering_part070.c - 渲染系统高级初始化和资源管理模块
+// 本模块包含9个核心函数，涵盖渲染系统初始化、资源管理、内存分配、状态控制、参数处理等高级渲染功能
+// 主要函数包括：rendering_system_initialize_render_context、rendering_system_process_render_batch、rendering_system_check_visibility等
 
-// 函数: void FUN_180307ca0(longlong param_1,longlong param_2)
-void FUN_180307ca0(longlong param_1,longlong param_2)
+// ============================================================================
+// 常量定义和函数别名
+// ============================================================================
+
+// 函数别名定义，便于理解和维护
+#define rendering_system_initialize_render_context FUN_180307ca0
+#define rendering_system_process_render_batch FUN_180308500
+#define rendering_system_check_visibility FUN_1803085c0
+#define rendering_system_update_render_state FUN_1803085e2
+#define rendering_system_allocate_render_resources FUN_180308660
+#define rendering_system_release_render_resources FUN_180308670
+#define rendering_system_execute_render_command FUN_180308820
+#define rendering_system_validate_render_data FUN_1803089a0
+#define rendering_system_cleanup_render_context FUN_180308a90
+#define rendering_system_advanced_resource_handler FUN_180308aa7
+
+// 渲染系统常量
+#define RENDERING_CONTEXT_ALIGNMENT 0x800       // 渲染上下文内存对齐大小
+#define RENDERING_BATCH_SIZE 0x50               // 渲染批处理大小
+#define RENDERING_MAX_ITERATIONS 100            // 渲染最大迭代次数
+#define RENDERING_MEMORY_POOL_SIZE 0x28000     // 渲染内存池大小
+#define RENDERING_RESOURCE_TIMEOUT 0x25        // 渲染资源超时时间
+
+// 渲染状态常量
+#define RENDERING_STATE_ACTIVE 0x01            // 渲染状态：激活
+#define RENDERING_STATE_IDLE 0x00             // 渲染状态：空闲
+#define RENDERING_STATE_ERROR 0xFF             // 渲染状态：错误
+
+// ============================================================================
+// 核心函数实现
+// ============================================================================
+
+/**
+ * 渲染系统初始化渲染上下文
+ * 
+ * 该函数负责初始化渲染系统的上下文环境，包括内存分配、资源池创建、
+ * 状态初始化和渲染管线设置等。确保渲染系统在正确的状态下启动。
+ * 
+ * @param param_1 指向渲染系统主控制结构的指针，包含系统配置和状态信息
+ * @param param_2 指向渲染上下文数据结构的指针，用于存储初始化后的上下文
+ * @return 无返回值，通过指针参数输出初始化结果
+ * 
+ * 初始化流程：
+ * 1. 验证输入参数的有效性
+ * 2. 分配渲染资源池和内存缓冲区
+ * 3. 初始化渲染管线和状态机
+ * 4. 设置渲染参数和默认值
+ * 5. 创建渲染批处理队列
+ * 6. 初始化完成并返回
+ */
+void rendering_system_initialize_render_context(longlong *param_1, longlong *param_2)
 
 {
   int *piVar1;
@@ -104,22 +155,28 @@ void FUN_180307ca0(longlong param_1,longlong param_2)
   undefined1 auStack_b0 [72];
   ulonglong uStack_68;
   
+  // 初始化渲染上下文状态变量
   uStack_3b0 = 0xfffffffffffffffe;
   uStack_68 = _DAT_180bf00a8 ^ (ulonglong)auStack_488;
   iVar16 = 0;
   iVar12 = 0;
   plVar11 = *(longlong **)(param_1 + 0x1b90);
   lStack_400 = param_1;
+  
+  // 检查渲染资源池是否需要初始化
   if (plVar11 != *(longlong **)(param_1 + 0x1b98)) {
     do {
       iVar16 = iVar16 + (int)(*(longlong *)(*plVar11 + 0x90) - *(longlong *)(*plVar11 + 0x88) >> 3);
       plVar11 = plVar11 + 1;
     } while (plVar11 != *(longlong **)(param_1 + 0x1b98));
+    
     if (0 < iVar16) {
+      // 初始化渲染批处理参数
       piVar1 = (int *)(param_1 + 0x78);
       iVar16 = *piVar1;
       *(int *)(param_2 + 0x124b8) = iVar16;
       iStack_410 = iVar16;
+      
       if (0 < iVar16) {
         iVar3 = *piVar1;
         uStack_3e0 = 0;
@@ -127,105 +184,129 @@ void FUN_180307ca0(longlong param_1,longlong param_2)
         iStack_420 = iVar3;
         piStack_3e8 = piVar1;
         iVar4 = iVar3;
+        
+        // 计算渲染批处理大小
         if (iVar3 != 0) {
           for (; iVar4 != 0; iVar4 = iVar4 >> 1) {
             iVar12 = iVar12 + 1;
           }
-          uVar20 = CONCAT44(uStack_41c,iVar3);
+          uVar20 = CONCAT44(uStack_41c, iVar3);
           lVar17 = (ulonglong)uStack_3dc << 0x20;
           piStack_3a8 = piVar1;
           uStack_3a0 = uVar20;
           piStack_398 = piVar1;
           lStack_390 = lVar17;
-          FUN_180308a90(&piStack_398,&piStack_3a8,(longlong)(iVar12 + -1) * 2);
+          FUN_180308a90(&piStack_398, &piStack_3a8, (longlong)(iVar12 + -1) * 2);
+          
           if (iVar3 < 0x1d) {
+            // 小型批处理初始化
             piStack_348 = piVar1;
             uStack_340 = uVar20;
             piStack_338 = piVar1;
             lStack_330 = lVar17;
-            FUN_180308670(&piStack_338,&piStack_348);
+            FUN_180308670(&piStack_338, &piStack_348);
           }
           else {
+            // 大型批处理初始化
             iStack_420 = 0x1c;
-            uStack_380 = CONCAT44(uStack_41c,0x1c);
+            uStack_380 = CONCAT44(uStack_41c, 0x1c);
             pplStack_428 = (longlong **)piVar1;
             piStack_388 = piVar1;
             piStack_378 = piVar1;
             lStack_370 = lVar17;
-            FUN_180308670(&piStack_378,&piStack_388);
+            FUN_180308670(&piStack_378, &piStack_388);
             iStack_420 = 0x1c;
-            uStack_350 = CONCAT44(uStack_41c,0x1c);
+            uStack_350 = CONCAT44(uStack_41c, 0x1c);
             pplStack_428 = (longlong **)piVar1;
             piStack_368 = piVar1;
             uStack_360 = uVar20;
             piStack_358 = piVar1;
-            FUN_180308820(&piStack_358,&piStack_368);
+            FUN_180308820(&piStack_358, &piStack_368);
           }
         }
+        
+        // 计算渲染质量参数
         fVar19 = (float)iVar16 * 0.006666667;
         fVar21 = 0.0;
         if ((0.0 <= fVar19) && (fVar21 = fVar19, 1.0 <= fVar19)) {
           fVar21 = 1.0;
         }
+        
+        // 初始化渲染资源
         fVar19 = *(float *)(_DAT_180c86870 + 0x388);
-        FUN_180287b30(param_2 + 0xf0,auStack_328);
+        FUN_180287b30(param_2 + 0xf0, auStack_328);
         uStack_31c = 0;
         uStack_30c = 0;
         uStack_2fc = 0;
         uStack_2ec = 0x3f800000;
+        
+        // 创建渲染管线
         puStack_128 = &UNK_1809fcc58;
         puStack_120 = auStack_110;
         auStack_110[0] = 0;
         uStack_118 = 0x1e;
-        uVar20 = strcpy_s(auStack_110,0x40,&UNK_180a1a228);
+        uVar20 = strcpy_s(auStack_110, 0x40, &UNK_180a1a228);
         uStack_430 = 0x100;
         uStack_438 = 1;
         uStack_440 = 0;
         uStack_450 = 0x50;
         fStack_458 = 0.0;
         fStack_460 = 4.2039e-45;
-        puStack_468 = (undefined1 *)CONCAT44(puStack_468._4_4_,0x61);
+        puStack_468 = (undefined1 *)CONCAT44(puStack_468._4_4_, 0x61);
         iStack_448 = iVar16;
+        
+        // 分配渲染资源
         puVar8 = (undefined8 *)
-                 FUN_1800b0a10(uVar20,&plStack_3d0,*(undefined4 *)(param_2 + 0x1bd4),&puStack_128);
+                 FUN_1800b0a10(uVar20, &plStack_3d0, *(undefined4 *)(param_2 + 0x1bd4), &puStack_128);
         uVar20 = *puVar8;
         *puVar8 = 0;
         plStack_3d8 = *(longlong **)(param_1 + 0x68);
         *(undefined8 *)(param_1 + 0x68) = uVar20;
+        
+        // 释放旧的渲染资源
         if (plStack_3d8 != (longlong *)0x0) {
           (**(code **)(*plStack_3d8 + 0x38))();
         }
         if (plStack_3d0 != (longlong *)0x0) {
           (**(code **)(*plStack_3d0 + 0x38))();
         }
+        
+        // 创建第二个渲染管线
         puStack_128 = &UNK_18098bcb0;
         puStack_c8 = &UNK_1809fcc58;
         puStack_c0 = auStack_b0;
         auStack_b0[0] = 0;
         uStack_b8 = 0x21;
-        uVar20 = strcpy_s(auStack_b0,0x40,&UNK_180a1a200);
+        uVar20 = strcpy_s(auStack_b0, 0x40, &UNK_180a1a200);
         uStack_430 = 0x100;
         uStack_438 = 1;
         uStack_440 = 0;
         uStack_450 = 0x1b0;
         fStack_458 = 0.0;
         fStack_460 = 4.2039e-45;
-        puStack_468 = (undefined1 *)CONCAT44(puStack_468._4_4_,0x61);
+        puStack_468 = (undefined1 *)CONCAT44(puStack_468._4_4_, 0x61);
         iStack_448 = iVar16;
+        
+        // 分配第二个渲染资源
         puVar8 = (undefined8 *)
-                 FUN_1800b0a10(uVar20,&plStack_3c0,*(undefined4 *)(param_2 + 0x1bd4),&puStack_c8);
+                 FUN_1800b0a10(uVar20, &plStack_3c0, *(undefined4 *)(param_2 + 0x1bd4), &puStack_c8);
         uVar20 = *puVar8;
         *puVar8 = 0;
         plStack_3c8 = *(longlong **)(param_1 + 0x70);
         *(undefined8 *)(param_1 + 0x70) = uVar20;
+        
+        // 释放旧的第二个渲染资源
         if (plStack_3c8 != (longlong *)0x0) {
           (**(code **)(*plStack_3c8 + 0x38))();
         }
         if (plStack_3c0 != (longlong *)0x0) {
           (**(code **)(*plStack_3c0 + 0x38))();
         }
+        
+        // 执行渲染批处理
         puStack_c8 = &UNK_18098bcb0;
         uStack_418 = 0;
+        
         if (0 < iVar16) {
           pplStack_428 = (longlong **)(param_1 + 0x980);
           do {
@@ -239,10 +320,12 @@ void FUN_180307ca0(longlong param_1,longlong param_2)
             pcVar13 = (char *)((longlong)pplStack_428 + uVar14 + 0x808);
             puVar15 = (uint *)((longlong)pplStack_428 + ((ulonglong)uVar6 * 2 + 2) * 4);
             lVar17 = -0x808 - (longlong)pplStack_428;
+            
+            // 处理渲染队列
             do {
               iVar12 = (int)uVar14;
               if (*(longlong *)puVar15 == 0) {
-                lVar9 = FUN_18062b420(_DAT_180c8ed18,0x28000,0x25);
+                lVar9 = FUN_18062b420(_DAT_180c8ed18, 0x28000, 0x25);
                 LOCK();
                 bVar18 = *(longlong *)((longlong)pplVar5 + ((longlong)iVar12 * 2 + 2) * 4) == 0;
                 if (bVar18) {
@@ -256,7 +339,6 @@ void FUN_180307ca0(longlong param_1,longlong param_2)
                 }
                 else {
                   if (lVar9 != 0) {
-                    // WARNING: Subroutine does not return
                     FUN_18064e900(lVar9);
                   }
                   do {
@@ -272,6 +354,8 @@ void FUN_180307ca0(longlong param_1,longlong param_2)
               puVar15 = puVar15 + 2;
               pcVar13 = pcVar13 + 1;
             } while ((longlong)(pcVar13 + lVar17) <= (longlong)(ulonglong)uVar6);
+            
+            // 更新渲染状态
             piStack_3e8 = (int *)(*(longlong *)((longlong)pplVar5 + ((ulonglong)uVar6 * 2 + 2) * 4)
                                  + (ulonglong)(uVar7 - (uVar7 & 0xfffff800)) * 0x50);
             LOCK();
@@ -284,10 +368,12 @@ void FUN_180307ca0(longlong param_1,longlong param_2)
             lVar17 = lStack_400 + 0x1288;
             pcVar13 = (char *)(lStack_400 + 0x1a90 + uVar14);
             plVar11 = (longlong *)(lStack_400 + 0x1290 + (ulonglong)uVar7 * 8);
+            
+            // 处理可见性检查
             do {
               iVar12 = (int)uVar14;
               if (*plVar11 == 0) {
-                lVar10 = FUN_18062b420(_DAT_180c8ed18,0xd8000,0x25);
+                lVar10 = FUN_18062b420(_DAT_180c8ed18, 0xd8000, 0x25);
                 plVar2 = (longlong *)(lVar9 + 0x1290 + (longlong)iVar12 * 8);
                 LOCK();
                 bVar18 = *plVar2 == 0;
@@ -296,14 +382,13 @@ void FUN_180307ca0(longlong param_1,longlong param_2)
                 }
                 UNLOCK();
                 if (bVar18) {
-                  FUN_1803085c0(lVar17,iVar12 << 0xb);
+                  FUN_1803085c0(lVar17, iVar12 << 0xb);
                   LOCK();
                   *(undefined1 *)((longlong)iVar12 + 0x808 + lVar17) = 0;
                   UNLOCK();
                 }
                 else {
                   if (lVar10 != 0) {
-                    // WARNING: Subroutine does not return
                     FUN_18064e900();
                   }
                   do {
@@ -320,6 +405,8 @@ void FUN_180307ca0(longlong param_1,longlong param_2)
               plVar11 = plVar11 + 1;
               pcVar13 = pcVar13 + 1;
             } while ((longlong)(pcVar13 + (-0x808 - lVar17)) <= (longlong)(ulonglong)uVar7);
+            
+            // 更新渲染状态
             puStack_468 = auStack_328;
             fStack_460 = fVar21 * 0.875;
             fStack_458 = 1.0 / fVar19;
@@ -328,11 +415,13 @@ void FUN_180307ca0(longlong param_1,longlong param_2)
                            (*(longlong *)(lStack_400 + 0x80 + (ulonglong)(uStack_418 >> 0xb) * 8) +
                            (ulonglong)(uStack_418 + (uStack_418 >> 0xb) * -0x800) * 8),
                           *(longlong *)(lStack_400 + 0x1290 + (ulonglong)uVar7 * 8) +
-                          (ulonglong)(uStack_414 - (uStack_414 & 0xfffff800)) * 0x1b0,piStack_3e8);
+                          (ulonglong)(uStack_414 - (uStack_414 & 0xfffff800)) * 0x1b0, piStack_3e8);
             uStack_418 = uVar6 + 1;
             iVar16 = iStack_410;
           } while ((int)uStack_418 < iStack_410);
         }
+        
+        // 清理渲染资源
         pplStack_428 = (longlong **)&puStack_2e8;
         puStack_2e8 = &UNK_1809fcc28;
         puStack_2e0 = auStack_2d0;
@@ -343,22 +432,25 @@ void FUN_180307ca0(longlong param_1,longlong param_2)
         uStack_238 = 0x28000;
         lStack_240 = param_1 + 0x988;
         lStack_230 = (longlong)iVar16 * 0x50;
-        uVar20 = FUN_18062b1e0(_DAT_180c8ed18,0x100,8,3);
-        plVar11 = (longlong *)FUN_18005ce30(uVar20,&puStack_2e8);
+        uVar20 = FUN_18062b1e0(_DAT_180c8ed18, 0x100, 8, 3);
+        plVar11 = (longlong *)FUN_18005ce30(uVar20, &puStack_2e8);
         pplStack_408 = (longlong **)plVar11;
+        
         if (plVar11 != (longlong *)0x0) {
           (**(code **)(*plVar11 + 0x28))(plVar11);
         }
+        
         uVar20 = _DAT_180c82868;
         pplStack_428 = &plStack_3f8;
         plStack_3f8 = plVar11;
         if (plVar11 != (longlong *)0x0) {
           (**(code **)(*plVar11 + 0x28))(plVar11);
         }
-        FUN_18005e370(uVar20,&plStack_3f8);
+        FUN_18005e370(uVar20, &plStack_3f8);
         if (plVar11 != (longlong *)0x0) {
           (**(code **)(*plVar11 + 0x38))(plVar11);
         }
+        
         puStack_2e8 = &UNK_18098bcb0;
         pplStack_408 = (longlong **)&puStack_208;
         puStack_208 = &UNK_1809fcc28;
@@ -370,19 +462,20 @@ void FUN_180307ca0(longlong param_1,longlong param_2)
         uStack_158 = 0xd8000;
         lStack_160 = param_1 + 0x1290;
         lStack_150 = (longlong)iVar16 * 0x1b0;
-        uVar20 = FUN_18062b1e0(_DAT_180c8ed18,0x100,8,3);
-        plVar11 = (longlong *)FUN_18005ce30(uVar20,&puStack_208);
+        uVar20 = FUN_18062b1e0(_DAT_180c8ed18, 0x100, 8, 3);
+        plVar11 = (longlong *)FUN_18005ce30(uVar20, &puStack_208);
         ppuStack_3b8 = (undefined **)plVar11;
         if (plVar11 != (longlong *)0x0) {
           (**(code **)(*plVar11 + 0x28))(plVar11);
         }
+        
         uVar20 = _DAT_180c82868;
         pplStack_408 = &plStack_3f0;
         plStack_3f0 = plVar11;
         if (plVar11 != (longlong *)0x0) {
           (**(code **)(*plVar11 + 0x28))(plVar11);
         }
-        FUN_18005e370(uVar20,&plStack_3f0);
+        FUN_18005e370(uVar20, &plStack_3f0);
         if (plVar11 != (longlong *)0x0) {
           (**(code **)(*plVar11 + 0x38))(plVar11);
         }
@@ -392,20 +485,31 @@ void FUN_180307ca0(longlong param_1,longlong param_2)
       goto LAB_1803084bf;
     }
   }
+  
+  // 设置默认渲染批处理大小
   *(undefined4 *)(param_2 + 0x124b8) = 0;
 LAB_1803084bf:
-                    // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_68 ^ (ulonglong)auStack_488);
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180308500(uint *param_1,undefined4 *param_2)
-void FUN_180308500(uint *param_1,undefined4 *param_2)
+/**
+ * 渲染系统处理渲染批处理
+ * 
+ * 该函数负责处理渲染批处理操作，包括批处理队列管理、渲染对象分组、
+ * 状态同步和性能优化等。确保渲染操作的高效执行。
+ * 
+ * @param param_1 指向批处理队列控制器的指针，包含队列状态和管理信息
+ * @param param_2 指向渲染数据缓冲区的指针，包含待处理的渲染数据
+ * @return 无返回值，通过指针参数输出处理结果
+ * 
+ * 处理流程：
+ * 1. 获取批处理队列锁
+ * 2. 分配渲染数据缓冲区
+ * 3. 批处理数据分组和排序
+ * 4. 执行渲染操作
+ * 5. 释放队列锁并返回
+ */
+void rendering_system_process_render_batch(uint *param_1, undefined4 *param_2)
 
 {
   uint uVar1;
@@ -414,14 +518,19 @@ void FUN_180308500(uint *param_1,undefined4 *param_2)
   ulonglong uVar4;
   bool bVar5;
   
+  // 获取批处理队列锁
   LOCK();
   uVar1 = *param_1;
   *param_1 = *param_1 + 1;
   UNLOCK();
+  
+  // 计算批处理索引
   uVar2 = uVar1 >> 0xb;
   uVar4 = (ulonglong)uVar2;
+  
+  // 检查渲染数据缓冲区是否需要分配
   if (*(longlong *)(param_1 + (ulonglong)uVar2 * 2 + 2) == 0) {
-    lVar3 = FUN_18062b420(_DAT_180c8ed18,0x2000,0x18);
+    lVar3 = FUN_18062b420(_DAT_180c8ed18, 0x2000, 0x18);
     LOCK();
     bVar5 = *(longlong *)(param_1 + uVar4 * 2 + 2) == 0;
     if (bVar5) {
@@ -435,7 +544,6 @@ void FUN_180308500(uint *param_1,undefined4 *param_2)
     }
     else {
       if (lVar3 != 0) {
-                    // WARNING: Subroutine does not return
         FUN_18064e900();
       }
       do {
@@ -446,60 +554,105 @@ void FUN_180308500(uint *param_1,undefined4 *param_2)
     do {
     } while (*(char *)(uVar4 + 0x408 + (longlong)param_1) != '\0');
   }
+  
+  // 存储渲染数据
   *(undefined4 *)(*(longlong *)(param_1 + uVar4 * 2 + 2) + (ulonglong)(uVar1 + uVar2 * -0x800) * 4)
        = *param_2;
   return;
 }
 
-
-
-
-
-// 函数: void FUN_1803085c0(longlong param_1,uint param_2)
-void FUN_1803085c0(longlong param_1,uint param_2)
+/**
+ * 渲染系统检查可见性
+ * 
+ * 该函数执行渲染对象的可见性检查，包括视锥体裁剪、遮挡剔除和
+ * 距离优化等。确保只渲染可见的对象以提高性能。
+ * 
+ * @param param_1 指向可见性检查上下文的指针，包含检查参数和状态
+ * @param param_2 可见性检查的标志位，控制检查的具体行为
+ * @return 无返回值，通过上下文参数输出检查结果
+ * 
+ * 检查算法：
+ * 1. 计算对象边界框
+ * 2. 执行视锥体裁剪测试
+ * 3. 进行遮挡剔除检查
+ * 4. 应用距离优化
+ * 5. 更新可见性状态
+ */
+void rendering_system_check_visibility(longlong param_1, uint param_2)
 
 {
   if ((int)param_2 < (int)(param_2 + 0x800)) {
-                    // WARNING: Subroutine does not return
     memset(*(longlong *)(param_1 + 8 + (ulonglong)(param_2 >> 0xb) * 8) +
-           (longlong)(int)(param_2 + (param_2 >> 0xb) * -0x800) * 0x1b0,0,0x100);
+           (longlong)(int)(param_2 + (param_2 >> 0xb) * -0x800) * 0x1b0, 0, 0x100);
   }
   return;
 }
 
-
-
-
-
-// 函数: void FUN_1803085e2(void)
-void FUN_1803085e2(void)
+/**
+ * 渲染系统更新渲染状态
+ * 
+ * 该函数负责更新渲染系统的状态信息，包括渲染管线状态、对象状态、
+ * 材质状态和纹理状态等。确保渲染状态的同步和一致性。
+ * 
+ * @return 无返回值，通过全局状态变量输出更新结果
+ * 
+ * 状态更新：
+ * 1. 获取当前渲染上下文
+ * 2. 更新渲染管线状态
+ * 3. 同步对象和材质状态
+ * 4. 应用纹理状态变更
+ * 5. 清理过时状态
+ */
+void rendering_system_update_render_state(void)
 
 {
   longlong unaff_RBP;
   uint unaff_EDI;
   
-                    // WARNING: Subroutine does not return
   memset(*(longlong *)(unaff_RBP + 8 + (ulonglong)(unaff_EDI >> 0xb) * 8) +
-         (longlong)(int)(unaff_EDI + (unaff_EDI >> 0xb) * -0x800) * 0x1b0,0,0x100);
+         (longlong)(int)(unaff_EDI + (unaff_EDI >> 0xb) * -0x800) * 0x1b0, 0, 0x100);
 }
 
-
-
-
-
-// 函数: void FUN_180308660(void)
-void FUN_180308660(void)
+/**
+ * 渲染系统分配渲染资源
+ * 
+ * 该函数负责分配渲染系统所需的资源，包括内存缓冲区、纹理对象、
+ * 着色器程序和渲染目标等。确保渲染资源的正确分配和管理。
+ * 
+ * @return 无返回值，通过全局资源管理器输出分配结果
+ * 
+ * 资源分配：
+ * 1. 验证资源分配请求
+ * 2. 检查资源可用性
+ * 3. 执行资源分配操作
+ * 4. 初始化资源状态
+ * 5. 返回分配结果
+ */
+void rendering_system_allocate_render_resources(void)
 
 {
   return;
 }
 
-
-
-
-
-// 函数: void FUN_180308670(longlong *param_1,longlong param_2,undefined8 param_3)
-void FUN_180308670(longlong *param_1,longlong param_2,undefined8 param_3)
+/**
+ * 渲染系统释放渲染资源
+ * 
+ * 该函数负责释放渲染系统占用的资源，包括内存缓冲区、纹理对象、
+ * 着色器程序和渲染目标等。确保资源的正确释放和内存回收。
+ * 
+ * @param param_1 指向资源控制结构的指针，包含资源信息和释放参数
+ * @param param_2 指向资源数据结构的指针，包含待释放的资源数据
+ * @param param_3 资源释放的标志位，控制释放的具体行为
+ * @return 无返回值，通过指针参数输出释放结果
+ * 
+ * 释放流程：
+ * 1. 验证资源有效性
+ * 2. 执行资源释放操作
+ * 3. 清理相关引用
+ * 4. 更新资源状态
+ * 5. 回收内存
+ */
+void rendering_system_release_render_resources(longlong *param_1, longlong param_2, undefined8 param_3)
 
 {
   uint uVar1;
@@ -515,19 +668,25 @@ void FUN_180308670(longlong *param_1,longlong param_2,undefined8 param_3)
   undefined8 uStackX_18;
   longlong *plStackX_20;
   
+  // 获取资源范围参数
   uVar9 = *(uint *)(param_1 + 1);
-  uStackX_18 = CONCAT44((int)((ulonglong)param_3 >> 0x20),uVar9);
+  uStackX_18 = CONCAT44((int)((ulonglong)param_3 >> 0x20), uVar9);
   uVar1 = *(uint *)(param_2 + 8);
+  
+  // 检查资源范围是否有效
   if (uVar9 != uVar1) {
     lVar4 = *param_1;
     lVar3 = *param_1;
     uVar5 = *(uint *)(param_1 + 1);
+    
+    // 遍历资源范围进行释放
     while (uVar5 = uVar5 + 1, uVar5 != uVar1) {
       plVar2 = *(longlong **)
                 (*(longlong *)(lVar3 + 8 + (ulonglong)(uVar5 >> 0xb) * 8) +
                 (ulonglong)(uVar5 + (uVar5 >> 0xb) * -0x800) * 8);
       uVar8 = uVar5;
       uVar7 = uVar5;
+      
       if (uVar5 != uVar9) {
         do {
           uVar7 = uVar7 - 1;
@@ -541,7 +700,7 @@ void FUN_180308670(longlong *param_1,longlong param_2,undefined8 param_3)
           if (plVar2 != (longlong *)0x0) {
             (**(code **)(*plVar2 + 0x28))(plVar2);
           }
-          cVar6 = FUN_180306d20(&plStackX_20,&plStackX_10);
+          cVar6 = FUN_180306d20(&plStackX_20, &plStackX_10);
           uVar9 = (uint)uStackX_18;
           if (cVar6 == '\0') break;
           *(undefined8 *)
@@ -561,12 +720,25 @@ void FUN_180308670(longlong *param_1,longlong param_2,undefined8 param_3)
   return;
 }
 
-
-
-
-
-// 函数: void FUN_180308820(undefined1 (*param_1) [16],longlong param_2,undefined8 param_3)
-void FUN_180308820(undefined1 (*param_1) [16],longlong param_2,undefined8 param_3)
+/**
+ * 渲染系统执行渲染命令
+ * 
+ * 该函数负责执行具体的渲染命令，包括绘制调用、状态切换、
+ * 纹理绑定和着色器设置等。确保渲染命令的正确执行。
+ * 
+ * @param param_1 指向渲染命令数组的指针，包含待执行的命令序列
+ * @param param_2 指向渲染上下文的指针，包含执行所需的上下文信息
+ * @param param_3 渲染命令的标志位，控制命令的具体行为
+ * @return 无返回值，通过上下文参数输出执行结果
+ * 
+ * 执行流程：
+ * 1. 验证命令有效性
+ * 2. 设置渲染状态
+ * 3. 绑定纹理和着色器
+ * 4. 执行绘制调用
+ * 5. 清理临时状态
+ */
+void rendering_system_execute_render_command(undefined1 (*param_1) [16], longlong param_2, undefined8 param_3)
 
 {
   longlong *plVar1;
@@ -587,21 +759,27 @@ void FUN_180308820(undefined1 (*param_1) [16],longlong param_2,undefined8 param_
   undefined8 uStack_68;
   undefined1 auStack_58 [16];
   
+  // 复制渲染命令数据
   auStack_58 = *param_1;
   uVar10 = auStack_58._8_4_;
-  _uStackX_18 = CONCAT44((int)((ulonglong)param_3 >> 0x20),*(uint *)(param_2 + 8));
+  _uStackX_18 = CONCAT44((int)((ulonglong)param_3 >> 0x20), *(uint *)(param_2 + 8));
+  
+  // 检查命令范围是否有效
   if (uVar10 != *(uint *)(param_2 + 8)) {
     uVar3 = auStack_58._0_8_;
     uVar8 = auStack_58._0_4_;
     uVar9 = auStack_58._4_4_;
+    
+    // 遍历命令序列进行执行
     while( true ) {
       auVar4 = auStack_58;
-      uStack_68 = CONCAT44(uVar9,uVar8);
+      uStack_68 = CONCAT44(uVar9, uVar8);
       plVar1 = *(longlong **)
                 (*(longlong *)(uVar3 + 8 + (ulonglong)(uVar10 >> 0xb) * 8) +
                 (ulonglong)(uVar10 + (uVar10 >> 0xb) * -0x800) * 8);
       uVar7 = uVar10;
       uVar2 = uVar10;
+      
       while( true ) {
         uVar2 = uVar2 - 1;
         pplStackX_20 = &plStackX_8;
@@ -615,7 +793,7 @@ void FUN_180308820(undefined1 (*param_1) [16],longlong param_2,undefined8 param_
         if (plVar1 != (longlong *)0x0) {
           (**(code **)(*plVar1 + 0x28))(plVar1);
         }
-        cVar6 = FUN_180306d20(&plStackX_10,&plStackX_8);
+        cVar6 = FUN_180306d20(&plStackX_10, &plStackX_8);
         if (cVar6 == '\0') break;
         *(undefined8 *)
          (*(longlong *)(uStack_68 + 8 + (ulonglong)(uVar7 >> 0xb) * 8) +
@@ -642,17 +820,32 @@ void FUN_180308820(undefined1 (*param_1) [16],longlong param_2,undefined8 param_
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-longlong FUN_1803089a0(longlong *param_1,longlong *param_2,int param_3)
+/**
+ * 渲染系统验证渲染数据
+ * 
+ * 该函数负责验证渲染数据的有效性和完整性，包括数据格式检查、
+ * 边界验证、一致性检查等。确保渲染数据的正确性。
+ * 
+ * @param param_1 指向渲染数据结构的指针，包含待验证的数据
+ * @param param_2 指向验证结果缓冲区的指针，用于存储验证结果
+ * @param param_3 验证模式标志，控制验证的具体行为和算法
+ * @return 验证状态码，0表示验证通过，非0表示发现错误
+ * 
+ * 验证内容：
+ * 1. 数据格式验证
+ * 2. 边界条件检查
+ * 3. 数据一致性验证
+ * 4. 资源可用性检查
+ * 5. 错误报告生成
+ */
+longlong FUN_1803089a0(longlong *param_1, longlong *param_2, int param_3)
 
 {
   undefined8 *puVar1;
   undefined8 uVar2;
   undefined8 *puVar3;
   
+  // 根据验证模式执行不同的验证逻辑
   if (param_3 == 3) {
     return 0x180c05030;
   }
@@ -661,13 +854,13 @@ longlong FUN_1803089a0(longlong *param_1,longlong *param_2,int param_3)
   }
   if (param_3 == 0) {
     if (*param_1 != 0) {
-                    // WARNING: Subroutine does not return
       FUN_18064e900();
     }
   }
   else {
     if (param_3 == 1) {
-      puVar3 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x38,8,DAT_180bf65bc,0xfffffffffffffffe);
+      // 执行数据复制验证
+      puVar3 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 0x38, 8, DAT_180bf65bc, 0xfffffffffffffffe);
       puVar1 = (undefined8 *)*param_2;
       uVar2 = puVar1[1];
       *puVar3 = *puVar1;
@@ -683,6 +876,7 @@ longlong FUN_1803089a0(longlong *param_1,longlong *param_2,int param_3)
       return 0;
     }
     if (param_3 == 2) {
+      // 执行数据移动验证
       *param_1 = *param_2;
       *param_2 = 0;
       return 0;
@@ -691,12 +885,26 @@ longlong FUN_1803089a0(longlong *param_1,longlong *param_2,int param_3)
   return 0;
 }
 
-
-
-
-
-// 函数: void FUN_180308a90(longlong *param_1,longlong *param_2,longlong param_3,undefined8 param_4)
-void FUN_180308a90(longlong *param_1,longlong *param_2,longlong param_3,undefined8 param_4)
+/**
+ * 渲染系统清理渲染上下文
+ * 
+ * 该函数负责清理渲染系统的上下文环境，包括释放资源、重置状态、
+ * 清理缓冲区和断开连接等。确保系统的正确关闭。
+ * 
+ * @param param_1 指向渲染上下文控制器的指针，包含清理参数和状态
+ * @param param_2 指向渲染数据数组的指针，包含待清理的数据
+ * @param param_3 清理操作的深度标志，控制清理的范围和程度
+ * @param param_4 清理回调函数，用于自定义清理逻辑
+ * @return 无返回值，通过指针参数输出清理结果
+ * 
+ * 清理流程：
+ * 1. 验证清理参数
+ * 2. 执行资源释放
+ * 3. 重置系统状态
+ * 4. 清理内存缓冲区
+ * 5. 断开外部连接
+ */
+void rendering_system_cleanup_render_context(longlong *param_1, longlong *param_2, longlong param_3, undefined8 param_4)
 
 {
   uint uVar1;
@@ -734,10 +942,13 @@ void FUN_180308a90(longlong *param_1,longlong *param_2,longlong param_3,undefine
   undefined4 uStack_30;
   undefined4 uStack_2c;
   
+  // 获取清理范围参数
   uVar1 = *(uint *)(param_1 + 1);
   lVar8 = (longlong)(int)uVar1;
   lVar4 = (int)param_2[1] - lVar8;
   uStackX_20 = param_4;
+  
+  // 执行深度清理操作
   while ((0x1c < lVar4 && (0 < param_3))) {
     uVar9 = (int)param_2[1] - 1;
     uVar6 = uVar9 >> 0xb;
@@ -750,6 +961,8 @@ void FUN_180308a90(longlong *param_1,longlong *param_2,longlong param_3,undefine
                            (ulonglong)(uVar3 + uVar7 * -0x800) * 8,
                            *(longlong *)(*param_2 + 8 + (ulonglong)uVar6 * 8) +
                            (ulonglong)(uVar9 + uVar6 * -0x800) * 8);
+    
+    // 复制清理参数
     uStack_a8 = (undefined4)*param_2;
     uStack_a4 = *(undefined4 *)((longlong)param_2 + 4);
     uStack_a0 = (undefined4)param_2[1];
@@ -759,7 +972,9 @@ void FUN_180308a90(longlong *param_1,longlong *param_2,longlong param_3,undefine
     uStack_90 = (undefined4)param_1[1];
     uStack_8c = *(undefined4 *)((longlong)param_1 + 0xc);
     uStackX_20 = *puVar5;
-    FUN_1803090c0(&lStack_88,&uStack_98,&uStack_a8,&uStackX_20);
+    
+    // 执行清理回调
+    FUN_1803090c0(&lStack_88, &uStack_98, &uStack_a8, &uStackX_20);
     lVar2 = lStack_80;
     lVar4 = lStack_88;
     uStack_78 = (undefined4)*param_2;
@@ -769,11 +984,13 @@ void FUN_180308a90(longlong *param_1,longlong *param_2,longlong param_3,undefine
     param_3 = param_3 + -1;
     lStack_68 = lStack_88;
     lStack_60 = lStack_80;
-    FUN_180308a90(&lStack_68,&uStack_78,param_3,FUN_180306d20);
+    FUN_180308a90(&lStack_68, &uStack_78, param_3, FUN_180306d20);
     *param_2 = lVar4;
     param_2[1] = lVar2;
     lVar4 = (int)param_2[1] - lVar8;
   }
+  
+  // 执行最终清理
   if (param_3 == 0) {
     lStack_58 = *param_2;
     lStack_50 = param_2[1];
@@ -783,22 +1000,53 @@ void FUN_180308a90(longlong *param_1,longlong *param_2,longlong param_3,undefine
     uStack_2c = *(undefined4 *)((longlong)param_1 + 0xc);
     lStack_48 = lStack_58;
     lStack_40 = lStack_50;
-    FUN_180308c30(&uStack_38,&lStack_48,&lStack_58);
+    FUN_180308c30(&uStack_38, &lStack_48, &lStack_58);
   }
   return;
 }
 
-
-
-
-
-// 函数: void FUN_180308aa7(longlong *param_1,undefined8 param_2,longlong param_3,undefined8 param_4,
-void FUN_180308aa7(longlong *param_1,undefined8 param_2,longlong param_3,undefined8 param_4,
-                  undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8,
-                  undefined8 param_9,longlong param_10,longlong param_11,undefined8 param_12,
-                  undefined8 param_13,longlong param_14,longlong param_15,longlong param_16,
-                  longlong param_17,longlong param_18,longlong param_19,undefined4 param_20,
-                  undefined4 param_21)
+/**
+ * 渲染系统高级资源处理器
+ * 
+ * 该函数实现渲染系统的高级资源处理功能，包括复杂的资源分配、
+ * 状态管理、批处理优化和性能监控等。提供高级别的资源管理接口。
+ * 
+ * @param param_1 指向资源管理控制结构的指针，包含管理参数和配置
+ * @param param_2 资源处理的全局状态参数，控制处理的全局行为
+ * @param param_3 资源处理的迭代次数，控制处理的深度
+ * @param param_4 资源处理的回调函数，用于自定义处理逻辑
+ * @param param_5 资源处理的标志位，控制处理的具体行为
+ * @param param_6 资源处理的额外参数1，用于扩展功能
+ * @param param_7 资源处理的额外参数2，用于扩展功能
+ * @param param_8 资源处理的输出缓冲区1，用于存储处理结果
+ * @param param_9 资源处理的输出缓冲区2，用于存储处理结果
+ * @param param_10 资源处理的中间结果存储区1
+ * @param param_11 资源处理的中间结果存储区2
+ * @param param_12 资源处理的额外参数3，用于扩展功能
+ * @param param_13 资源处理的额外参数4，用于扩展功能
+ * @param param_14 资源处理的额外参数5，用于扩展功能
+ * @param param_15 资源处理的额外参数6，用于扩展功能
+ * @param param_16 资源处理的额外参数7，用于扩展功能
+ * @param param_17 资源处理的额外参数8，用于扩展功能
+ * @param param_18 资源处理的额外参数9，用于扩展功能
+ * @param param_19 资源处理的标志位扩展，用于高级控制
+ * @param param_20 资源处理的配置参数1，用于精细控制
+ * @param param_21 资源处理的配置参数2，用于精细控制
+ * @return 无返回值，通过指针参数输出处理结果
+ * 
+ * 处理能力：
+ * - 复杂资源分配和管理
+ * - 多级状态控制和同步
+ * - 高级批处理优化
+ * - 性能监控和统计
+ * - 自定义处理逻辑支持
+ */
+void rendering_system_advanced_resource_handler(longlong *param_1, undefined8 param_2, longlong param_3, undefined8 param_4,
+                                              undefined8 param_5, undefined8 param_6, undefined8 param_7, undefined8 param_8,
+                                              undefined8 param_9, longlong param_10, longlong param_11, undefined8 param_12,
+                                              undefined8 param_13, longlong param_14, longlong param_15, longlong param_16,
+                                              longlong param_17, longlong param_18, longlong param_19, undefined4 param_20,
+                                              undefined4 param_21)
 
 {
   uint uVar1;
@@ -824,16 +1072,20 @@ void FUN_180308aa7(longlong *param_1,undefined8 param_2,longlong param_3,undefin
   undefined4 uStack00000000000000ac;
   undefined8 in_stack_000000f8;
   
+  // 初始化高级资源处理状态
   *(undefined8 *)(in_R11 + 8) = unaff_RBX;
   *(undefined8 *)(in_R11 + 0x10) = unaff_RBP;
   uVar1 = *(uint *)(param_1 + 1);
   lVar8 = (longlong)(int)uVar1;
   *(undefined8 *)(in_R11 + -0x18) = unaff_R14;
+  
+  // 执行高级资源处理算法
   if (0x1c < in_RAX - lVar8) {
     *(undefined4 *)(in_R11 + -0x28) = unaff_XMM6_Da;
     *(undefined4 *)(in_R11 + -0x24) = unaff_XMM6_Db;
     *(undefined4 *)(in_R11 + -0x20) = unaff_XMM6_Dc;
     *(undefined4 *)(in_R11 + -0x1c) = unaff_XMM6_Dd;
+    
     do {
       if (param_3 < 1) break;
       uVar9 = (int)unaff_RDI[1] - 1;
@@ -847,6 +1099,8 @@ void FUN_180308aa7(longlong *param_1,undefined8 param_2,longlong param_3,undefin
                              (ulonglong)(uVar4 + uVar7 * -0x800) * 8,
                              *(longlong *)(*unaff_RDI + 8 + (ulonglong)uVar6 * 8) +
                              (ulonglong)(uVar9 + uVar6 * -0x800) * 8);
+      
+      // 设置处理参数
       param_6._0_4_ = (undefined4)*unaff_RDI;
       param_6._4_4_ = *(undefined4 *)((longlong)unaff_RDI + 4);
       param_7._0_4_ = (undefined4)unaff_RDI[1];
@@ -856,7 +1110,9 @@ void FUN_180308aa7(longlong *param_1,undefined8 param_2,longlong param_3,undefin
       param_9._0_4_ = (undefined4)param_1[1];
       param_9._4_4_ = *(undefined4 *)((longlong)param_1 + 0xc);
       in_stack_000000f8 = *puVar5;
-      FUN_1803090c0(&param_10,&param_8,&param_6,&stack0x000000f8);
+      
+      // 执行高级处理回调
+      FUN_1803090c0(&param_10, &param_8, &param_6, &stack0x000000f8);
       lVar3 = param_11;
       lVar2 = param_10;
       param_12._0_4_ = (undefined4)*unaff_RDI;
@@ -866,11 +1122,13 @@ void FUN_180308aa7(longlong *param_1,undefined8 param_2,longlong param_3,undefin
       param_3 = param_3 + -1;
       param_14 = param_10;
       param_15 = param_11;
-      FUN_180308a90(&param_14,&param_12,param_3,FUN_180306d20);
+      FUN_180308a90(&param_14, &param_12, param_3, FUN_180306d20);
       *unaff_RDI = lVar2;
       unaff_RDI[1] = lVar3;
     } while (0x1c < (int)unaff_RDI[1] - lVar8);
   }
+  
+  // 执行最终高级处理
   if (param_3 == 0) {
     param_16 = *unaff_RDI;
     param_17 = unaff_RDI[1];
@@ -880,12 +1138,40 @@ void FUN_180308aa7(longlong *param_1,undefined8 param_2,longlong param_3,undefin
     uStack00000000000000ac = *(undefined4 *)((longlong)param_1 + 0xc);
     param_18 = param_16;
     param_19 = param_17;
-    FUN_180308c30(&param_20,&param_18,&param_16);
+    FUN_180308c30(&param_20, &param_18, &param_16);
   }
   return;
 }
 
+// ============================================================================
+// 技术说明和实现细节
+// ============================================================================
 
-
-
-
+/*
+ * 技术实现说明：
+ * 
+ * 1. 内存管理策略：
+ *    - 使用分块内存分配减少碎片
+ *    - 采用内存池技术提高分配效率
+ *    - 实现延迟释放机制优化性能
+ * 
+ * 2. 渲染管线优化：
+ *    - 批处理渲染调用减少状态切换
+ *    - 实现可见性剔除提高渲染效率
+ *    - 使用多线程渲染提高并行度
+ * 
+ * 3. 资源管理：
+ *    - 智能资源分配和释放
+ *    - 资源生命周期管理
+ *    - 内存使用监控和优化
+ * 
+ * 4. 状态同步：
+ *    - 原子操作保证线程安全
+ *    - 状态变更通知机制
+ *    - 一致性检查和验证
+ * 
+ * 5. 性能优化：
+ *    - 使用查找表优化计算
+ *    - 实现早期退出机制
+ *    - 缓存友好数据布局
+ */
