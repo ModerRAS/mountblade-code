@@ -72,6 +72,44 @@
 // UI系统安全执行器
 #define ui_system_secure_executor FUN_18066d763
 
+// ==================== 常量定义 ====================
+
+// UI系统状态常量
+#define UI_SYSTEM_STATUS_SUCCESS 0x00000000    // 成功状态
+#define UI_SYSTEM_STATUS_ERROR 0x00000001      // 错误状态
+#define UI_SYSTEM_STATUS_BUSY 0x00000002      // 忙碌状态
+#define UI_SYSTEM_STATUS_READY 0x00000003     // 就绪状态
+#define UI_SYSTEM_STATUS_PENDING 0x00000004  // 挂起状态
+
+// UI系统处理标志
+#define UI_SYSTEM_FLAG_NONE 0x00000000        // 无标志
+#define UI_SYSTEM_FLAG_PROCESSING 0x00000001 // 处理中标志
+#define UI_SYSTEM_FLAG_CONFIGURED 0x00000002  // 已配置标志
+#define UI_SYSTEM_FLAG_INITIALIZED 0x00000004 // 已初始化标志
+#define UI_SYSTEM_FLAG_ACTIVE 0x00000008      // 活跃标志
+
+// UI系统错误代码
+#define UI_SYSTEM_ERROR_NONE 0x00000000       // 无错误
+#define UI_SYSTEM_ERROR_INVALID_PARAM 0x00000001  // 无效参数
+#define UI_SYSTEM_ERROR_MEMORY 0x00000002     // 内存错误
+#define UI_SYSTEM_ERROR_TIMEOUT 0x00000004    // 超时错误
+#define UI_SYSTEM_ERROR_NOT_SUPPORTED 0x00000008  // 不支持的操作
+
+// UI系统配置选项
+#define UI_SYSTEM_CONFIG_DEFAULT 0x00000000   // 默认配置
+#define UI_SYSTEM_CONFIG_DEBUG 0x00000001    // 调试配置
+#define UI_SYSTEM_CONFIG_RELEASE 0x00000002  // 发布配置
+#define UI_SYSTEM_CONFIG_TEST 0x00000004     // 测试配置
+
+// UI系统内存管理常量
+#define UI_SYSTEM_MEMORY_POOL_SIZE 0x1000    // 内存池大小
+#define UI_SYSTEM_MAX_OBJECTS 0x100          // 最大对象数
+#define UI_SYSTEM_STACK_SIZE 0x800          // 栈大小
+
+// UI系统安全常量
+#define UI_SYSTEM_SECURITY_COOKIE 0x180bf00a8 // 安全cookie值
+#define UI_SYSTEM_GUARD_SIZE 32              // 保护区域大小
+
 // ==================== UI系统高级数据处理器 ====================
 // 
 // 函数功能：UI系统高级数据处理和状态管理
