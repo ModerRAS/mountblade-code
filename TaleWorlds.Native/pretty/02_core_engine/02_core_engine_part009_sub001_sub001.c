@@ -133,40 +133,51 @@ void initialize_string_system_1(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180043720(void)
-
+/**
+ * 初始化线程本地存储
+ * 功能：初始化线程本地存储数据结构
+ * 返回值：成功返回0，失败返回0xffffffff
+ */
+undefined8 initialize_thread_local_storage(void)
 {
-  longlong lVar1;
-  int *piVar2;
-  
-  lVar1 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
-  *(undefined8 *)(lVar1 + 0x18) = &UNK_18098bcb0;
-  *(undefined8 *)(lVar1 + 0x20) = 0;
-  *(undefined4 *)(lVar1 + 0x28) = 0;
-  *(undefined8 *)(lVar1 + 0x18) = &UNK_180a3c3e0;
-  *(undefined8 *)(lVar1 + 0x30) = 0;
-  *(undefined8 *)(lVar1 + 0x20) = 0;
-  *(undefined4 *)(lVar1 + 0x28) = 0;
-  lVar1 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
-  piVar2 = *(int **)(lVar1 + 0x50);
-  if (piVar2 == (int *)0x0) {
-    piVar2 = (int *)(lVar1 + 0x60);
-  }
-  else {
-    if (*piVar2 != 0x1e) goto LAB_1808fd14a;
-    piVar2 = (int *)malloc(0x100);
-    free(0);
-    if (piVar2 == (int *)0x0) {
-      return 0xffffffff;
+    longlong tls_ptr;
+    int *data_ptr;
+    
+    // 获取线程本地存储指针
+    tls_ptr = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
+    
+    // 设置线程本地存储数据
+    *(undefined8 *)(tls_ptr + 0x18) = &UNK_18098bcb0;
+    *(undefined8 *)(tls_ptr + 0x20) = 0;
+    *(undefined4 *)(tls_ptr + 0x28) = 0;
+    *(undefined8 *)(tls_ptr + 0x18) = &UNK_180a3c3e0;
+    *(undefined8 *)(tls_ptr + 0x30) = 0;
+    *(undefined8 *)(tls_ptr + 0x20) = 0;
+    *(undefined4 *)(tls_ptr + 0x28) = 0;
+    
+    tls_ptr = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
+    data_ptr = *(int **)(tls_ptr + 0x50);
+    
+    // 检查是否需要分配内存
+    if (data_ptr == (int *)0x0) {
+        data_ptr = (int *)(tls_ptr + 0x60);
     }
-    *(undefined8 *)(piVar2 + 2) = *(undefined8 *)(lVar1 + 0x50);
-  }
-  *piVar2 = 0;
-  *(int **)(lVar1 + 0x50) = piVar2;
+    else {
+        if (*data_ptr != 0x1e) goto LAB_1808fd14a;
+        data_ptr = (int *)malloc(0x100);
+        free(0);
+        if (data_ptr == (int *)0x0) {
+            return 0xffffffff;
+        }
+        *(undefined8 *)(data_ptr + 2) = *(undefined8 *)(tls_ptr + 0x50);
+    }
+    
+    *data_ptr = 0;
+    *(int **)(tls_ptr + 0x50) = data_ptr;
 LAB_1808fd14a:
-  *(code **)(piVar2 + (longlong)*piVar2 * 2 + 4) = FUN_1809431a0;
-  *piVar2 = *piVar2 + 1;
-  return 0;
+    *(code **)(data_ptr + (longlong)*data_ptr * 2 + 4) = FUN_1809431a0;
+    *data_ptr = *data_ptr + 1;
+    return 0;
 }
 
 
@@ -178,22 +189,25 @@ LAB_1808fd14a:
 
 
 // 函数: void FUN_180043790(void)
-void FUN_180043790(void)
-
+/**
+ * 初始化字符串处理系统2
+ * 功能：初始化第二个字符串处理系统
+ */
+void initialize_string_system_2(void)
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
-  
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 0x17;
-  strcpy_s(auStack_88,0x80,&UNK_180a3e3d8,in_R9,0xfffffffffffffffe);
-  _DAT_180c967d4 = FUN_180623800(&puStack_a0);
-  return;
+    undefined8 in_R9;
+    undefined *puStack_a0;
+    undefined1 *puStack_98;
+    undefined4 uStack_90;
+    undefined1 auStack_88 [136];
+    
+    puStack_a0 = &UNK_1809fcc28;
+    puStack_98 = auStack_88;
+    auStack_88[0] = 0;
+    uStack_90 = 0x17;
+    strcpy_s(auStack_88, 0x80, &UNK_180a3e3d8, in_R9, 0xfffffffffffffffe);
+    _DAT_180c967d4 = FUN_180623800(&puStack_a0);
+    return;
 }
 
 
