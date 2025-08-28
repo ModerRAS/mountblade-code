@@ -441,8 +441,8 @@ int core_engine_system_initializer_type5(void)
     uint64_t parameter_register;
 
     // 设置系统状态指针
-    core_system_control_memory = &global_var_3480_ptr;
-    core_system_control_memory = &system_memory_7ea8;
+    core_system_control_memory = (uint64_t)&global_var_3480_ptr;
+    core_system_control_memory = (uint64_t)&system_memory_7ea8;
 
     return 0;
 }
