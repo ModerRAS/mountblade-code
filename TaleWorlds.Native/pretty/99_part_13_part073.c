@@ -1068,8 +1068,8 @@ uint64_t ResourceQuickSearch(longlong resource_handle)
 
 
 
-// 函数: void FUN_1808dab52(void)
-void FUN_1808dab52(void)
+// 函数: void ResourceCleanupStart(void)
+void ResourceCleanupStart(void)
 
 {
                     // WARNING: Subroutine does not return
