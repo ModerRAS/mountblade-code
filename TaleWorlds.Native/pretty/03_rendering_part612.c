@@ -10,6 +10,14 @@
 #define RenderingSystem_ConfigManager FUN_1805bdb70  // 渲染系统配置管理器
 #define RenderingSystem_EmptyProcessor1 FUN_180602e71  // 渲染系统空处理器1
 #define RenderingSystem_ParameterCalculator FUN_1805d8e60  // 渲染系统参数计算器
+#define RenderingSystem_EmptyFunction1 FUN_180602b09  // 渲染系统空函数1
+#define RenderingSystem_ParameterProcessor FUN_180602d90  // 渲染系统参数处理器
+#define RenderingSystem_EmptyFunction2 FUN_180602fb7  // 渲染系统空函数2
+#define RenderingSystem_StateChecker FUN_180602fd0  // 渲染系统状态检查器
+#define RenderingSystem_DataQuery FUN_18050d900  // 渲染系统数据查询器
+#define RenderingSystem_ParameterHandler FUN_180603070  // 渲染系统参数处理器
+#define RenderingSystem_Controller FUN_180603100  // 渲染系统控制器
+#define RenderingSystem_DataManager FUN_180603140  // 渲染系统数据管理器
 
 // 03_rendering_part612.c - 9 个函数
 
