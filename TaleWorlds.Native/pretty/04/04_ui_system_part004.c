@@ -1294,8 +1294,18 @@ void UI_Manage_Buffer(longlong buffer_context, undefined8 data_source, int data_
 
 
 
-// 函数: void FUN_180653dac(longlong param_1,longlong param_2,undefined8 param_3,longlong param_4)
-// UI系统动态缓冲区管理函数
+/**
+ * UI系统动态缓冲区管理函数
+ * 
+ * 动态管理UI系统的缓冲区，包括动态内存分配、
+ * 缓冲区扩展、数据迁移、内存优化等。
+ * 
+ * @param target_pos 目标位置指针
+ * @param source_pos 源位置指针
+ * @param data_source 数据源指针
+ * @param data_size 数据大小
+ * @return 无返回值
+ */
 void UI_Dynamic_Buffer_Manage(longlong target_pos, longlong source_pos, undefined8 data_source, longlong data_size)
 {
   longlong current_buffer;
@@ -1360,8 +1370,14 @@ void UI_Dynamic_Buffer_Manage(longlong target_pos, longlong source_pos, undefine
 
 
 
-// 函数: void FUN_180653e6b(void)
-// UI系统内联缓冲区管理函数
+/**
+ * UI系统内联缓冲区管理函数
+ * 
+ * 内联版本的UI系统缓冲区管理函数，用于优化性能，
+ * 直接处理缓冲区操作。
+ * 
+ * @return 无返回值
+ */
 void UI_Buffer_Manage_Inline(void)
 {
   undefined8 buffer_start;
@@ -1380,6 +1396,20 @@ void UI_Buffer_Manage_Inline(void)
                     // WARNING: Treating indirect jump as call
   memcpy((longlong)buffer_offset + *(longlong *)(buffer_context + 0x10));
   return;
+}
+
+/**
+ * UI系统模块结束函数
+ * 
+ * UI系统模块的结束占位符函数，用于标记
+ * UI系统模块的结束位置。
+ * 
+ * @return 无返回值
+ */
+void UI_System_Module_End(void)
+{
+  // UI系统模块结束占位符
+  // 用于标记模块的结束位置
 }
 
 
