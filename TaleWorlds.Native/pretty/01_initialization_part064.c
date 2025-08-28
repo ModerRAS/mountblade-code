@@ -866,6 +866,272 @@ void FUN_18004bb30(longlong param_1)
     return;
 }
 
+/**
+ * @brief 系统资源管理器 - 原始实现
+ * 
+ * 基于反编译代码的实际实现，负责系统资源的管理工作。
+ * 
+ * @param param_1 资源参数指针
+ * @return void 无返回值
+ */
+void FUN_180058c30(longlong param_1)
+{
+    // 调用资源管理相关函数
+    FUN_1800582b0(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
+    
+    return;
+}
+
+/**
+ * @brief 系统状态监控器 - 原始实现
+ * 
+ * 基于反编译代码的实际实现，负责系统状态的监控工作。
+ * 
+ * @param param_1 监控参数指针
+ * @return void 无返回值
+ */
+void FUN_18004bb40(longlong param_1)
+{
+    // 调用状态监控相关函数
+    FUN_180058370(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
+    
+    return;
+}
+
+/**
+ * @brief 系统错误处理器 - 原始实现
+ * 
+ * 基于反编译代码的实际实现，负责系统错误的处理工作。
+ * 
+ * @param param_1 错误参数指针
+ * @return void 无返回值
+ */
+void FUN_180058c40(longlong param_1)
+{
+    // 调用错误处理相关函数
+    FUN_180058420(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
+    
+    return;
+}
+
+/**
+ * @brief 配置验证器 - 原始实现
+ * 
+ * 基于反编译代码的实际实现，负责配置的验证工作。
+ * 
+ * @param param_1 验证参数指针
+ * @return void 无返回值
+ */
+void FUN_18004bb50(longlong param_1)
+{
+    // 调用配置验证相关函数
+    FUN_180057010(param_1 + 0x60);
+    
+    return;
+}
+
+/**
+ * @brief 资源分配器 - 原始实现
+ * 
+ * 基于反编译代码的实际实现，负责资源的分配工作。
+ * 
+ * @param param_1 分配参数指针
+ * @return void 无返回值
+ */
+void FUN_180058c50(longlong param_1)
+{
+    // 调用资源分配相关函数
+    FUN_1800582b0(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
+    
+    return;
+}
+
+/**
+ * @brief 资源释放器 - 原始实现
+ * 
+ * 基于反编译代码的实际实现，负责资源的释放工作。
+ * 
+ * @param param_1 释放参数指针
+ * @return void 无返回值
+ */
+void FUN_18004bb60(longlong param_1)
+{
+    // 调用资源释放相关函数
+    FUN_180057010(param_1 + 0x60);
+    
+    return;
+}
+
+/**
+ * @brief 状态更新器 - 原始实现
+ * 
+ * 基于反编译代码的实际实现，负责状态的更新工作。
+ * 
+ * @param param_1 更新参数指针
+ * @return void 无返回值
+ */
+void FUN_180058c60(longlong param_1)
+{
+    // 调用状态更新相关函数
+    FUN_180058370(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
+    
+    return;
+}
+
+/**
+ * @brief 事件记录器 - 原始实现
+ * 
+ * 基于反编译代码的实际实现，负责事件的记录工作。
+ * 
+ * @param param_1 记录参数指针
+ * @return void 无返回值
+ */
+void FUN_18004bb70(longlong param_1)
+{
+    // 调用事件记录相关函数
+    FUN_180058420(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
+    
+    return;
+}
+
+/**
+ * @brief 内部初始化器 - 原始实现
+ * 
+ * 基于反编译代码的实际实现，负责内部初始化工作。
+ * 
+ * @param param_1 初始化参数指针
+ * @return void 无返回值
+ */
+void FUN_180058c70(longlong param_1)
+{
+    // 调用内部初始化相关函数
+    FUN_1800582b0(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
+    
+    return;
+}
+
+/**
+ * @brief 清理器 - 原始实现
+ * 
+ * 基于反编译代码的实际实现，负责系统的清理工作。
+ * 
+ * @param param_1 清理参数指针
+ * @return void 无返回值
+ */
+void FUN_18004bb80(longlong param_1)
+{
+    // 调用清理相关函数
+    FUN_180057010(param_1 + 0x60);
+    
+    return;
+}
+
+/**
+ * @brief 状态验证器 - 原始实现
+ * 
+ * 基于反编译代码的实际实现，负责状态的验证工作。
+ * 
+ * @param param_1 验证参数指针
+ * @return void 无返回值
+ */
+void FUN_180058c80(longlong param_1)
+{
+    // 调用状态验证相关函数
+    FUN_180058370(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
+    
+    return;
+}
+
+/**
+ * @brief 错误处理器 - 原始实现
+ * 
+ * 基于反编译代码的实际实现，负责错误的处理工作。
+ * 
+ * @param param_1 处理参数指针
+ * @return void 无返回值
+ */
+void FUN_18004bb90(longlong param_1)
+{
+    // 调用错误处理相关函数
+    FUN_180058420(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
+    
+    return;
+}
+
+/* ============================================================================
+ * 辅助函数声明
+ * ============================================================================ */
+
+/**
+ * @brief 系统初始化准备函数
+ * 
+ * 该函数负责系统初始化前的准备工作。
+ * 
+ * @return void 无返回值
+ */
+void FUN_1800591c0(void);
+
+/**
+ * @brief 系统错误处理函数
+ * 
+ * 该函数负责系统错误的处理工作。
+ * 
+ * @return void 无返回值
+ */
+void FUN_18064e900(void);
+
+/**
+ * @brief 配置初始化函数
+ * 
+ * 该函数负责配置的初始化工作。
+ * 
+ * @param param_1 配置参数指针
+ * @return void 无返回值
+ */
+void FUN_180057010(longlong param_1);
+
+/**
+ * @brief 资源管理函数
+ * 
+ * 该函数负责资源的管理工作。
+ * 
+ * @param param_1 资源参数指针
+ * @param param_2 资源参数2
+ * @param param_3 资源参数3
+ * @param param_4 资源参数4
+ * @param param_5 资源参数5
+ * @return void 无返回值
+ */
+void FUN_1800582b0(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5);
+
+/**
+ * @brief 状态管理函数
+ * 
+ * 该函数负责状态的管理工作。
+ * 
+ * @param param_1 状态参数指针
+ * @param param_2 状态参数2
+ * @param param_3 状态参数3
+ * @param param_4 状态参数4
+ * @param param_5 状态参数5
+ * @return void 无返回值
+ */
+void FUN_180058370(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5);
+
+/**
+ * @brief 错误处理函数
+ * 
+ * 该函数负责错误的处理工作。
+ * 
+ * @param param_1 错误参数指针
+ * @param param_2 错误参数2
+ * @param param_3 错误参数3
+ * @param param_4 错误参数4
+ * @param param_5 错误参数5
+ * @return void 无返回值
+ */
+void FUN_180058420(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5);
+
 /* ============================================================================
  * 辅助功能函数实现
  * ============================================================================ */

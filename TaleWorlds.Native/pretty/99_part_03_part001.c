@@ -84,6 +84,24 @@
 #define SystemFunctionPointer2 FUN_1801eb560     // 系统函数指针2
 #define SystemResourceHandler FUN_18006b640      // 系统资源处理器
 
+// 系统全局数据指针
+#define system_global_data_ptr _DAT_180c8aa08     // 系统全局数据指针
+#define system_context_ptr _DAT_180c82868         // 系统上下文指针
+#define system_memory_pool_ptr _DAT_180c8ed18     // 系统内存池指针
+#define system_state_ptr _DAT_180c86870          // 系统状态指针
+#define system_allocation_flags DAT_180bf65bc     // 系统分配标志
+
+// 系统配置字符串
+#define system_config_string_1 UNK_180a0ce90      // 系统配置字符串1
+#define system_config_string_2 UNK_180a0ce64      // 系统配置字符串2
+#define system_config_string_3 UNK_180a0ce70      // 系统配置字符串3
+#define system_config_string_4 UNK_180a0cf50      // 系统配置字符串4
+
+// 系统安全常量
+#define system_stack_cookie _DAT_180bf00a8        // 系统栈cookie（用于安全检查）
+#define system_null_ptr UNK_180a3c3e0             // 系统空指针
+#define system_alt_null_ptr UNK_18098bcb0          // 系统备用空指针
+
 // ============================================================================
 // 核心函数实现
 // ============================================================================
@@ -198,13 +216,13 @@ LAB_1801c44da:
     ppuStackX_18 = &puStack_c8;
     pcStack_58 = SystemFunctionPointer1;
     pcStack_50 = SystemFunctionPointer2;
-    puVar6 = (uint64_t *)SystemMemoryAllocator(_DAT_180c8ed18,0x30,8,DAT_180bf65bc);
+    puVar6 = (uint64_t *)SystemMemoryAllocator(system_memory_pool_ptr,0x30,8,system_allocation_flags);
     *puVar6 = puStack_c8;
     *(int8_t *)(puVar6 + 1) = uStack_c0;
     puStackX_20 = puVar6;
     SystemDataCopier(puVar6 + 2,&puStack_b8);
     ppuStackX_18 = (uint64_t **)&puStack_b8;
-    puStack_b8 = &UNK_180a3c3e0;
+    puStack_b8 = system_null_ptr;
     apuStack_68[0] = puVar6;
     if (lStack_b0 != 0) {
         // WARNING: Subroutine does not return
@@ -212,9 +230,9 @@ LAB_1801c44da:
     }
     lStack_b0 = 0;
     uStack_a0 = 0;
-    puStack_b8 = &UNK_18098bcb0;
+    puStack_b8 = system_alt_null_ptr;
     pppuStackX_10 = (uint64_t ***)&puStack_88;
-    puStack_88 = &UNK_180a3c3e0;
+    puStack_88 = system_null_ptr;
     if (lStack_80 != 0) {
         // WARNING: Subroutine does not return
         SystemErrorHandler();
@@ -233,7 +251,7 @@ LAB_1801c44da:
         (*(code *)(*ppuStackX_8)[7])();
     }
     *(uint64_t *)(puVar1[9] + 0x18) = 0xfffffffffffffffd;
-    uVar4 = _DAT_180c82868;
+    uVar4 = system_context_ptr;
     pppuStackX_10 = &ppuStackX_8;
     ppuStackX_8 = (uint64_t **)puVar1[9];
     if (ppuStackX_8 != (uint64_t **)0x0) {
@@ -388,11 +406,11 @@ void FileOperationProcessor(uint64_t param_1, longlong param_2)
     int32_t uStack_38;
     ulonglong uStack_30;
     
-    lVar16 = _DAT_180c8aa08;
+    lVar16 = system_global_data_ptr;
     uStack_50 = 0xfffffffffffffffe;
-    uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_238;
-    lStack_178 = _DAT_180c8aa08;
-    SystemFileHandler(_DAT_180c8aa08,param_2,0);
+    uStack_30 = system_stack_cookie ^ (ulonglong)auStack_238;
+    lStack_178 = system_global_data_ptr;
+    SystemFileHandler(system_global_data_ptr,param_2,0);
     puStack_1e0 = &UNK_180a3c3e0;
     uStack_1c8 = 0;
     puStack_1d8 = (void *)0x0;
