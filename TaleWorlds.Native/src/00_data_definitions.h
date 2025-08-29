@@ -155,39 +155,39 @@ int initialize_base_resource_manager(void)
 // 初始化纹理资源管理器
 int initialize_texture_resource_manager(void)
 {
-  long long initialization_result;
-  unsigned long long string_length_parameter;
-  void* resource_data_buffer_pointer = &g_resource_data_buffer;
-  void* resource_buffer_value_pointer = &resource_buffer_1;
+  long long init_result;
+  unsigned long long str_length;
+  void* resource_buffer_ptr = &g_resource_data_buffer;
+  void* resource_value_ptr = &resource_buffer_1;
   resource_buffer_1 = 0;
   resource_type_1 = RESOURCE_TYPE_TEXTURE;
-  strcpy_s(&resource_buffer_1, RESOURCE_BUFFER_SIZE, &string_source_002, string_length_parameter, THREAD_POOL_DEFAULT_FLAGS);
-  initialization_result = execute_function(texture_resource_manager_init_function);
-  return (initialization_result != 0) - 1;
+  strcpy_s(&resource_buffer_1, RESOURCE_BUFFER_SIZE, &string_source_002, str_length, THREAD_POOL_DEFAULT_FLAGS);
+  init_result = execute_function(texture_resource_manager_init_function);
+  return (init_result != 0) - 1;
 }
 int initialize_shader_resource_manager_1(void)
 {
-  long long initialization_result;
-  unsigned long long string_length_parameter;
-  void* resource_data_buffer_pointer = &g_resource_data_buffer;
-  void* resource_buffer_value_pointer = &resource_buffer_2;
+  long long init_result;
+  unsigned long long str_length;
+  void* resource_buffer_ptr = &g_resource_data_buffer;
+  void* resource_value_ptr = &resource_buffer_2;
   resource_buffer_2 = 0;
   resource_type_2 = RESOURCE_TYPE_SHADER;
-  strcpy_s(&resource_buffer_2, RESOURCE_BUFFER_SIZE, &string_source_003, string_length_parameter, THREAD_POOL_DEFAULT_FLAGS);
-  initialization_result = execute_function(shader_resource_manager_1_init_function);
-  return (initialization_result != 0) - 1;
+  strcpy_s(&resource_buffer_2, RESOURCE_BUFFER_SIZE, &string_source_003, str_length, THREAD_POOL_DEFAULT_FLAGS);
+  init_result = execute_function(shader_resource_manager_1_init_function);
+  return (init_result != 0) - 1;
 }
 int initialize_shader_resource_manager_2(void)
 {
-  long long initialization_result;
-  unsigned long long string_length_parameter;
-  void* resource_data_buffer_pointer = &g_resource_data_buffer;
-  void* resource_buffer_value_pointer = &resource_buffer_3;
+  long long init_result;
+  unsigned long long str_length;
+  void* resource_buffer_ptr = &g_resource_data_buffer;
+  void* resource_value_ptr = &resource_buffer_3;
   resource_buffer_3 = 0;
   resource_type_3 = RESOURCE_TYPE_SHADER;
-  strcpy_s(&resource_buffer_3, RESOURCE_BUFFER_SIZE, &string_source_004, string_length_parameter, THREAD_POOL_DEFAULT_FLAGS);
-  initialization_result = execute_function(shader_resource_manager_2_init_function);
-  return (initialization_result != 0) - 1;
+  strcpy_s(&resource_buffer_3, RESOURCE_BUFFER_SIZE, &string_source_004, str_length, THREAD_POOL_DEFAULT_FLAGS);
+  init_result = execute_function(shader_resource_manager_2_init_function);
+  return (init_result != 0) - 1;
 }
 int initialize_audio_resource_manager(void)
 {
@@ -1589,34 +1589,34 @@ LAB_1800451a4:
   uVar14 = 0xffffffff;
 LAB_1800451ca:
   if (iVar2 != -1) {
-    setup_thread_parameters(&puStack_98,&puStack_78,uVar3,uVar14);
-    puVar13 = &data_18098bc73;
-    if (puStack_70 != (undefined *)0x0) {
-      puVar13 = puStack_70;
+    setup_thread_parameters(&thread_stack_ptr_98,&thread_stack_ptr_78,uVar3,uVar14);
+    thread_name_ptr = &data_18098bc73;
+    if (thread_stack_ptr_70 != (undefined *)0x0) {
+      thread_name_ptr = thread_stack_ptr_70;
     }
-    uVar4 = atoi(puVar13);
+    uVar4 = atoi(thread_name_ptr);
     *(unsigned int *)(_data_180c82868 + 0x7b4) = uVar4;
-    puStack_78 = &g_threadString2;
-    if (puStack_70 != (undefined *)0x0) {
+    thread_stack_ptr_78 = &g_threadString2;
+    if (thread_stack_ptr_70 != (undefined *)0x0) {
       handle_system_error();
     }
-    puStack_70 = (undefined *)0x0;
-    uStack_60 = 0;
-    puStack_78 = &g_threadString4;
+    thread_stack_ptr_70 = (undefined *)0x0;
+    thread_stack_var_60 = 0;
+    thread_stack_ptr_78 = &g_threadString4;
   }
   initialize_event_system();
   uVar5 = FUN_18062b1e0(_data_180c8ed18,0x213458,8,10);
   _data_180c86940 = FUN_180067bc0(uVar5);
-  plVar6 = (long long *)FUN_18062b1e0(_data_180c8ed18,0xe8,8,3);
-  plStackX_10 = plVar6;
-  cleanup_thread_resources(plVar6);
-  *plVar6 = (long long)&g_threadString3;
-  pplStackX_18 = (long long **)(plVar6 + 0x18);
-  *pplStackX_18 = (long long *)&g_threadString4;
-  plVar6[0x19] = 0;
-  *(unsigned int *)(plVar6 + 0x1a) = 0;
-  *pplStackX_18 = (long long *)&g_threadString2;
-  plVar6[0x1b] = 0;
+  thread_data_ptr = (long long *)FUN_18062b1e0(_data_180c8ed18,0xe8,8,3);
+  thread_stack_ptr_10 = thread_data_ptr;
+  cleanup_thread_resources(thread_data_ptr);
+  *thread_data_ptr = (long long)&g_threadString3;
+  thread_stack_pptr_18 = (long long **)(thread_data_ptr + 0x18);
+  *thread_stack_pptr_18 = (long long *)&g_threadString4;
+  thread_data_ptr[0x19] = 0;
+  *(unsigned int *)(thread_data_ptr + 0x1a) = 0;
+  *thread_stack_pptr_18 = (long long *)&g_threadString2;
+  thread_data_ptr[0x1b] = 0;
   plVar6[0x19] = 0;
   *(unsigned int *)(plVar6 + 0x1a) = 0;
   (*(code *)(*pplStackX_18)[2])(pplStackX_18,handle);
