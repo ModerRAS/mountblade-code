@@ -320,7 +320,7 @@ void* g_static_data_00000000;
 
 void* g_global_input_system;
 
-void* g_global_data_1809fed78;
+void* g_global_scene_manager;
 
 ulonglong g_global_long_000001c8;
 
@@ -331,31 +331,31 @@ uint64_t UNK_000001e8;
 uint64_t UNK_000001f0;
 longlong g_global_long_000001f8;
 undefined1 g_system_flag_a;
-void* g_global_data_1809feda8;
+void* g_global_entity_manager;
 
-void* g_global_data_1809feeb8;
+void* g_global_component_manager;
 
-void* g_global_data_1809feec8;
+void* g_global_game_manager;
 
 void* g_global_font_manager;
 
 char g_system_byte_flag_1;
-void* g_global_data_18006a030;
+void* g_global_save_manager;
 
-void* g_global_data_180a0e170;
+void* g_global_load_manager;
 
-void* g_global_data_180a0e368;
+void* g_global_config_manager;
 
 void* g_global_touch_manager;
 
 undefined1 g_system_byte_flag_2;
-void* g_global_data_1809ff498;
+void* g_global_settings_manager;
 
-void* g_global_data_1809ff390;
+void* g_global_options_manager;
 
 void* g_global_navigation_manager;
 
-void* g_global_data_1809ff488;
+void* g_global_controls_manager;
 
 char g_system_byte_flag_3;
 void* g_global_task_manager;
@@ -364,33 +364,33 @@ void* g_global_schedule_manager;
 
 void* g_global_equipment_manager;
 
-void* g_global_data_1809ff5b8;
+void* g_global_keybind_manager;
 
-void* g_global_data_1809ff5c0;
+void* g_global_display_manager;
 
-void* g_global_data_1809ff5d0;
+void* g_global_graphics_manager;
 
 void* g_global_level_manager;
 
 void* g_global_quest_manager;
 
-void* g_global_data_1809ff630;
+void* g_global_audio_manager;
 
 char g_system_byte_flag_4;
 
-void* g_static_data_180c86908;
+void* g_static_system_manager;
 
-void* g_global_data_1809ff648;
+void* g_global_sound_manager;
 
-void* g_static_data_1809ff660;
+void* g_static_music_manager;
 
 void* g_global_player_manager;
 
-void* g_global_data_1809ff6b0;
+void* g_global_effect_manager;
 
-void* g_global_data_1809ff6bc;
+void* g_global_input_manager;
 
-void* g_global_data_1809ff6c8;
+void* g_global_network_manager;
 
 void* g_global_data_1809ff6e0;
 
@@ -11775,7 +11775,7 @@ int FUN_18003eda0(void)
   longlong lVar1;
 
   FUN_1804777d0();
-  lVar1 = execute_system_init(FUN_180942890);
+  lVar1 = execute_system_init(InitializeCoreSystem);
   return (lVar1 != 0) - 1;
 }
 
@@ -11787,7 +11787,7 @@ int FUN_18003edc0(void)
 
   auStackX_8[0] = 1;
   FUN_180477890(&DAT_180c92490,auStackX_8);
-  lVar1 = execute_system_init(FUN_1809428e0);
+  lVar1 = execute_system_init(InitializeMemoryManager);
   return (lVar1 != 0) - 1;
 }
 
@@ -11799,7 +11799,7 @@ int FUN_18003edf0(void)
 
   auStackX_8[0] = 0;
   FUN_180477890(&DAT_180c92480,auStackX_8);
-  lVar1 = execute_system_init(FUN_180942930);
+  lVar1 = execute_system_init(InitializeProcessManager);
   return (lVar1 != 0) - 1;
 }
 
@@ -11808,7 +11808,7 @@ int FUN_18003ee20(void)
 {
   longlong lVar1;
 
-  lVar1 = execute_system_init(FUN_180942a20);
+  lVar1 = execute_system_init(InitializeThreadManager);
   return (lVar1 != 0) - 1;
 }
 
@@ -11818,7 +11818,7 @@ int FUN_18003ee40(void)
   longlong lVar1;
 
   FUN_1803f2eb0(0x180d49d50);
-  lVar1 = execute_system_init(FUN_1809429f0);
+  lVar1 = execute_system_init(InitializeSecurityManager);
   return (lVar1 != 0) - 1;
 }
 // void FUN_18003ee90(void)
@@ -13944,7 +13944,7 @@ int FUN_180041fa0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   longlong lVar1;
 
   _Mtx_init_in_situ(0x180c96690,2,param_3,param_4,0xfffffffffffffffe);
-  lVar1 = execute_system_init(FUN_180943070);
+  lVar1 = execute_system_init(InitializeFileSystem);
   return (lVar1 != 0) - 1;
 }
 // void FUN_180041fd0(void)
@@ -14978,7 +14978,7 @@ int FUN_1800435a0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   longlong lVar1;
 
   _Mtx_init_in_situ(0x180c966f0,2,param_3,param_4,0xfffffffffffffffe);
-  lVar1 = execute_system_init(FUN_180943140);
+  lVar1 = execute_system_init(InitializeDatabaseSystem);
   return (lVar1 != 0) - 1;
 }
 
@@ -14988,7 +14988,7 @@ int FUN_1800435e0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   longlong lVar1;
 
   _Mtx_init_in_situ(0x180c96740,2,param_3,param_4,0xfffffffffffffffe);
-  lVar1 = execute_system_init(FUN_180943160);
+  lVar1 = execute_system_init(InitializeCacheSystem);
   return (lVar1 != 0) - 1;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
@@ -15004,7 +15004,7 @@ int FUN_180043610(void)
   _DAT_180c967a0 = 0;
   _DAT_180c967a8 = 0;
   _DAT_180c967b0 = 0;
-  lVar1 = execute_system_init(FUN_180943180);
+  lVar1 = execute_system_init(InitializeLogSystem);
   return (lVar1 != 0) - 1;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
@@ -15060,7 +15060,7 @@ uint64_t initialize_thread_local_storage(void)
   *storage_ptr = 0;
   *(int **)(thread_local_base + 0x50) = storage_ptr;
 LAB_1808fd14a:
-  *(code **)(storage_ptr + (longlong)*storage_ptr * 2 + 4) = FUN_1809431a0;
+  *(code **)(storage_ptr + (longlong)*storage_ptr * 2 + 4) = InitializeErrorHandler;
   *storage_ptr = *storage_ptr + 1;
   return 0;
 }
@@ -15115,7 +15115,7 @@ int FUN_1800438b0(void)
   _DAT_180c967f0 = 0;
   _DAT_180c967f8 = 0;
   _DAT_180c96800 = 0;
-  lVar1 = execute_system_init(FUN_180943200);
+  lVar1 = execute_system_init(InitializeConfigurationSystem);
   return (lVar1 != 0) - 1;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
