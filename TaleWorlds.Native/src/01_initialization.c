@@ -4,111 +4,111 @@
 // void InitializeGameDataStructure(void)
 
 void InitializeGameDataStructure(void)
-undefined g_game_data_structure;
+void* g_game_data_structure;
 
-undefined g_game_reserved_data_1;
+void* g_game_reserved_data_1;
 
-undefined g_game_config_data;
+void* g_game_config_data;
 
-undefined g_game_reserved_data_2;
+void* g_game_reserved_data_2;
 
-undefined g_game_state_data;
+void* g_game_state_data;
 
-undefined g_game_reserved_data_3;
+void* g_game_reserved_data_3;
 
-undefined g_game_memory_data;
+void* g_game_memory_data;
 
-undefined g_game_reserved_data_4;
+void* g_game_reserved_data_4;
 
-undefined g_game_render_data;
+void* g_game_render_data;
 
-undefined g_game_reserved_data_5;
+void* g_game_reserved_data_5;
 
-undefined g_game_audio_data;
+void* g_game_audio_data;
 
-undefined g_game_reserved_data_6;
+void* g_game_reserved_data_6;
 
-undefined g_game_network_data;
+void* g_game_network_data;
 
-undefined g_game_reserved_data_7;
+void* g_game_reserved_data_7;
 
-undefined g_game_input_data;
+void* g_game_input_data;
 // undefined InitializeGameEngine;
 
-undefined InitializeGameEngine;
+void* InitializeGameEngine;
 
-undefined g_engine_reserved_data_1;
+void* g_engine_reserved_data_1;
 
-undefined g_engine_config_data;
+void* g_engine_config_data;
 
-undefined g_engine_reserved_data_2;
+void* g_engine_reserved_data_2;
 
-undefined g_engine_state_data;
+void* g_engine_state_data;
 
-undefined g_engine_memory_pool;
+void* g_engine_memory_pool;
 
-undefined g_engine_render_context;
+void* g_engine_render_context;
 
-undefined g_engine_audio_context;
+void* g_engine_audio_context;
 // undefined InitializeGraphicsEngine;
 
-undefined InitializeGraphicsEngine;
+void* InitializeGraphicsEngine;
 
-undefined g_graphics_config;
+void* g_graphics_config;
 // undefined InitializeAudioEngine;
 
-undefined InitializeAudioEngine;
+void* InitializeAudioEngine;
 
-undefined g_audio_config;
+void* g_audio_config;
 // undefined InitializeInputEngine;
 
-undefined InitializeInputEngine;
+void* InitializeInputEngine;
 
-undefined g_input_system;
+void* g_input_system;
 // undefined InitializeNetworkEngine;
 
-undefined InitializeNetworkEngine;
+void* InitializeNetworkEngine;
 
-undefined g_network_socket;
+void* g_network_socket;
 
-undefined g_network_buffer;
+void* g_network_buffer;
 
-undefined g_network_config;
+void* g_network_config;
 
-undefined g_network_state;
+void* g_network_state;
 
-undefined g_network_timeout;
+void* g_network_timeout;
 
-undefined g_network_connection;
+void* g_network_connection;
 
-undefined g_network_buffer_size;
+void* g_network_buffer_size;
 
-undefined g_network_packet;
+void* g_network_packet;
 
-undefined InitializeSubSystemEngine;
+void* InitializeSubSystemEngine;
 
-undefined g_system_reserved_data_system_reserved;
+void* g_system_reserved_data;
 
-undefined g_system_memory_pool_system_memory;
+void* g_system_memory_pool_system_memory;
 
-undefined8 g_system_flags_system_flags;
-undefined g_system_state_system_state;
+uint64_t g_system_flags_system_flags;
+void* g_system_state_system_state;
 
-undefined g_system_config_system_config;
+void* g_system_config_system_config;
 
-undefined g_system_error_system_error;
+void* g_system_error_system_error;
 
-undefined g_system_debug_system_debug;
+void* g_system_debug_system_debug;
 // 系统资源初始化函数
-undefined InitializeSystemResources;
+void* InitializeSystemResources;
 
-undefined g_global_data_180a092c4;
+void* g_global_data_180a092c4;
 // 核心组件初始化函数
 void InitializeCoreComponents_180059620(void);
 // 内存管理器设置函数
 void SetupMemoryManager_180044a30(void);
 
-undefined *g_system_startup_data_180be0000;
+void* *g_system_startup_data_180be0000;
 
 void *g_engine_context_1809fdd78;
 
@@ -118,9 +118,9 @@ void *g_memory_pool_180a02968;
 
 void *g_graphics_context_1809fde10;
 
-undefined _guard_check_icall;
+void* _guard_check_icall;
 // 系统安全检查函数
-undefined SystemSecurityCheck_180046860;
+void* SystemSecurityCheck_180046860;
 // 引擎初始化完成函数
 void CompleteEngineInitialization_18005c060(void);
 
@@ -142,937 +142,937 @@ void *g_file_system_1809fe198;
 
 void *g_config_manager_1809fe1a0;
 
-undefined g_graphics_driver_1809fe258;
+void* g_graphics_driver_1809fe258;
 
-undefined g_audio_driver_1809fe290;
+void* g_audio_driver_1809fe290;
 
-undefined g_input_driver_1800467f0;
+void* g_input_driver_1800467f0;
 
-undefined g_network_driver_180049760;
+void* g_network_driver_180049760;
 
-undefined g_resource_manager_1809fe1f0;
+void* g_resource_manager_1809fe1f0;
 
-undefined g_memory_manager_1809fe200;
+void* g_memory_manager_1809fe200;
 
-undefined g_global_data_1809fe210;
+void* g_global_data_1809fe210;
 
-undefined g_global_data_180a10098;
+void* g_global_data_180a10098;
 
-undefined g_static_data_00000008;
+void* g_static_data_00000008;
 
-undefined g_global_data_180a30778;
+void* g_global_data_180a30778;
 
-undefined g_static_data_1809fc8c8;
+void* g_static_data_1809fc8c8;
 
-undefined g_global_data_1809fe2c0;
+void* g_global_data_1809fe2c0;
 
-undefined g_static_data_180c912f0;
+void* g_static_data_180c912f0;
 
-undefined g_global_data_1809fe5a0;
+void* g_global_data_1809fe5a0;
 
-undefined g_static_data_180d48d28;
+void* g_static_data_180d48d28;
 
-undefined g_static_data_180063480;
+void* g_static_data_180063480;
 
-undefined g_global_data_1809fe5c0;
+void* g_global_data_1809fe5c0;
 
-undefined g_global_data_1809fe5f0;
+void* g_global_data_1809fe5f0;
 
-undefined g_global_data_1809fe608;
+void* g_global_data_1809fe608;
 
-undefined g_global_data_1809fe62c;
+void* g_global_data_1809fe62c;
 
 int g_initialization_status_global_int;
 longlong g_system_memory_size_global_long;
-undefined g_global_data_1809fe650;
+void* g_global_data_1809fe650;
 // undefined g_function_180066dd0;
 
 void InitializeGameFramework_180066dd0;
 
-undefined g_global_data_1809fe800;
+void* g_global_data_1809fe800;
 
-undefined g_global_data_1809fe80c;
+void* g_global_data_1809fe80c;
 
-undefined g_static_data_1809fe810;
+void* g_static_data_1809fe810;
 
-undefined g_global_data_1809fe85c;
+void* g_global_data_1809fe85c;
 
-undefined g_global_data_1809fe868;
+void* g_global_data_1809fe868;
 
-undefined g_global_data_1809fe880;
+void* g_global_data_1809fe880;
 
-undefined g_global_data_1809fe898;
+void* g_global_data_1809fe898;
 
-undefined g_global_data_1809fe8b0;
+void* g_global_data_1809fe8b0;
 
-undefined g_global_data_18098ba10;
+void* g_global_data_18098ba10;
 
-undefined g_static_data_18098ba28;
+void* g_static_data_18098ba28;
 
-undefined g_global_data_18098ba40;
+void* g_global_data_18098ba40;
 
-undefined g_global_data_18098ba50;
+void* g_global_data_18098ba50;
 
-undefined g_global_data_18098ba60;
+void* g_global_data_18098ba60;
 
-undefined g_global_data_18098ba70;
+void* g_global_data_18098ba70;
 
-undefined g_global_data_18098ba80;
+void* g_global_data_18098ba80;
 
-undefined g_global_data_18098ba98;
+void* g_global_data_18098ba98;
 
-undefined g_global_data_18098baa0;
+void* g_global_data_18098baa0;
 
-undefined g_static_data_1809fdf28;
+void* g_static_data_1809fdf28;
 
-undefined g_global_data_1809fe7f8;
+void* g_global_data_1809fe7f8;
 
-undefined g_global_data_1809fe8f8;
+void* g_global_data_1809fe8f8;
 
-undefined g_global_data_1809fe900;
+void* g_global_data_1809fe900;
 
-undefined g_global_data_1809fe910;
+void* g_global_data_1809fe910;
 
-undefined g_global_data_1809fe928;
+void* g_global_data_1809fe928;
 
-undefined g_global_data_1809fe940;
+void* g_global_data_1809fe940;
 
-undefined g_global_data_1809fe950;
+void* g_global_data_1809fe950;
 
-undefined g_global_data_1809fe968;
+void* g_global_data_1809fe968;
 
-undefined g_global_data_1809fe978;
+void* g_global_data_1809fe978;
 
-undefined g_global_data_1809fe988;
+void* g_global_data_1809fe988;
 
-undefined g_global_data_1809fe998;
+void* g_global_data_1809fe998;
 
-undefined g_global_data_1809fe9a8;
+void* g_global_data_1809fe9a8;
 
-undefined g_global_data_1809fe9b8;
+void* g_global_data_1809fe9b8;
 
-undefined g_global_data_1809fe9c8;
+void* g_global_data_1809fe9c8;
 
-undefined g_static_data_1809fc7d8;
+void* g_static_data_1809fc7d8;
 
-undefined g_static_data_1809fcfc0;
+void* g_static_data_1809fcfc0;
 
 char DAT_180c82843;
 
 char DAT_180c82850;
 char DAT_180c82842;
 char DAT_180c82844;
-undefined g_global_data_1809fe848;
+void* g_global_data_1809fe848;
 
-undefined g_global_data_1809fea68;
+void* g_global_data_1809fea68;
 
-undefined g_global_data_1809feaa0;
+void* g_global_data_1809feaa0;
 
-undefined g_global_data_1809feb24;
+void* g_global_data_1809feb24;
 
-undefined g_global_data_1809feb28;
+void* g_global_data_1809feb28;
 
-undefined g_static_data_1809feb50;
+void* g_static_data_1809feb50;
 
-undefined g_global_data_1809feb58;
+void* g_global_data_1809feb58;
 
-undefined g_global_data_1809feb70;
+void* g_global_data_1809feb70;
 
-undefined g_global_data_1809feb88;
+void* g_global_data_1809feb88;
 
-undefined g_global_data_1809feba8;
+void* g_global_data_1809feba8;
 
-undefined g_global_data_1809febc0;
+void* g_global_data_1809febc0;
 
-undefined g_global_data_1809febc8;
+void* g_global_data_1809febc8;
 
-undefined g_global_data_1809febd8;
+void* g_global_data_1809febd8;
 
-undefined g_global_data_1809febf0;
+void* g_global_data_1809febf0;
 
-undefined g_global_data_180a04f08;
+void* g_global_data_180a04f08;
 
-undefined g_global_data_1809fec28;
+void* g_global_data_1809fec28;
 
-undefined g_global_data_1809fec40;
+void* g_global_data_1809fec40;
 
-undefined g_global_data_180068e60;
+void* g_global_data_180068e60;
 
-undefined g_global_data_180068e70;
+void* g_global_data_180068e70;
 
-undefined g_global_data_1809fec50;
+void* g_global_data_1809fec50;
 
-undefined g_global_data_1809fec70;
+void* g_global_data_1809fec70;
 
-undefined g_global_data_1809ff4e0;
+void* g_global_data_1809ff4e0;
 
-undefined g_static_data_00000018;
+void* g_static_data_00000018;
 
-undefined g_static_data_00000010;
+void* g_static_data_00000010;
 
-undefined g_global_data_1809fecd8;
+void* g_global_data_1809fecd8;
 
-undefined g_global_data_1809fed10;
+void* g_global_data_1809fed10;
 
 longlong g_global_long_00000128;
-undefined g_static_data_00000000;
+void* g_static_data_00000000;
 
-undefined g_global_data_1809fed40;
+void* g_global_data_1809fed40;
 
-undefined g_global_data_1809fed78;
+void* g_global_data_1809fed78;
 
 ulonglong g_global_long_000001c8;
 
 ulonglong g_global_long_000001d0;
 ulonglong g_global_long_000001d8;
-undefined8 UNK_000001e0;
-undefined8 UNK_000001e8;
-undefined8 UNK_000001f0;
+uint64_t UNK_000001e0;
+uint64_t UNK_000001e8;
+uint64_t UNK_000001f0;
 longlong g_global_long_000001f8;
 undefined1 DAT_180bf65bc;
-undefined g_global_data_1809feda8;
+void* g_global_data_1809feda8;
 
-undefined g_global_data_1809feeb8;
+void* g_global_data_1809feeb8;
 
-undefined g_global_data_1809feec8;
+void* g_global_data_1809feec8;
 
-undefined g_global_data_1809feed8;
+void* g_global_data_1809feed8;
 
 char DAT_180c82840;
-undefined g_global_data_18006a030;
+void* g_global_data_18006a030;
 
-undefined g_global_data_180a0e170;
+void* g_global_data_180a0e170;
 
-undefined g_global_data_180a0e368;
+void* g_global_data_180a0e368;
 
-undefined g_global_data_1809fefb0;
+void* g_global_data_1809fefb0;
 
 undefined1 DAT_180c8ecee;
-undefined g_global_data_1809ff498;
+void* g_global_data_1809ff498;
 
-undefined g_global_data_1809ff390;
+void* g_global_data_1809ff390;
 
-undefined g_global_data_1809ff3e8;
+void* g_global_data_1809ff3e8;
 
-undefined g_global_data_1809ff488;
+void* g_global_data_1809ff488;
 
 char DAT_180c8aa69;
-undefined g_global_data_1809ff538;
+void* g_global_data_1809ff538;
 
-undefined g_global_data_1809ff550;
+void* g_global_data_1809ff550;
 
-undefined g_global_data_1809ff5b0;
+void* g_global_data_1809ff5b0;
 
-undefined g_global_data_1809ff5b8;
+void* g_global_data_1809ff5b8;
 
-undefined g_global_data_1809ff5c0;
+void* g_global_data_1809ff5c0;
 
-undefined g_global_data_1809ff5d0;
+void* g_global_data_1809ff5d0;
 
-undefined g_global_data_1809ff5f8;
+void* g_global_data_1809ff5f8;
 
-undefined g_global_data_1809ff610;
+void* g_global_data_1809ff610;
 
-undefined g_global_data_1809ff630;
+void* g_global_data_1809ff630;
 
 char DAT_180bf0100;
 
-undefined g_static_data_180c86908;
+void* g_static_data_180c86908;
 
-undefined g_global_data_1809ff648;
+void* g_global_data_1809ff648;
 
-undefined g_static_data_1809ff660;
+void* g_static_data_1809ff660;
 
-undefined g_global_data_1809ff688;
+void* g_global_data_1809ff688;
 
-undefined g_global_data_1809ff6b0;
+void* g_global_data_1809ff6b0;
 
-undefined g_global_data_1809ff6bc;
+void* g_global_data_1809ff6bc;
 
-undefined g_global_data_1809ff6c8;
+void* g_global_data_1809ff6c8;
 
-undefined g_global_data_1809ff6e0;
+void* g_global_data_1809ff6e0;
 
-undefined g_global_data_1809ff7c0;
+void* g_global_data_1809ff7c0;
 
-undefined g_global_data_1809ff800;
+void* g_global_data_1809ff800;
 
-undefined g_global_data_1809ff840;
+void* g_global_data_1809ff840;
 
-undefined g_global_data_1809ff848;
+void* g_global_data_1809ff848;
 
-undefined g_global_data_1809ff888;
+void* g_global_data_1809ff888;
 
-undefined g_global_data_1809ff8a8;
+void* g_global_data_1809ff8a8;
 
-undefined g_global_data_1809ff8d8;
+void* g_global_data_1809ff8d8;
 
-undefined g_global_data_1809ff918;
+void* g_global_data_1809ff918;
 
-undefined g_global_data_1809ff938;
+void* g_global_data_1809ff938;
 
-undefined g_global_data_1809ff958;
+void* g_global_data_1809ff958;
 
-undefined g_global_data_1809ff9a8;
+void* g_global_data_1809ff9a8;
 
-undefined g_global_data_1809ffa18;
+void* g_global_data_1809ffa18;
 
-undefined g_global_data_180a02e68;
+void* g_global_data_180a02e68;
 
-undefined g_global_data_180a13a28;
+void* g_global_data_180a13a28;
 
-undefined g_global_data_180a00208;
+void* g_global_data_180a00208;
 
-undefined g_global_data_180a00270;
+void* g_global_data_180a00270;
 
-undefined g_global_data_180277350;
+void* g_global_data_180277350;
 // undefined g_function_18007bb70;
 
-undefined g_function_18007bb70;
+void* g_function_18007bb70;
 
-undefined g_global_data_1809ffa98;
+void* g_global_data_1809ffa98;
 
-undefined g_global_data_1802426a0;
+void* g_global_data_1802426a0;
 
-undefined g_global_data_180a001e8;
+void* g_global_data_180a001e8;
 
-undefined g_static_data_180c8aa00;
+void* g_static_data_180c8aa00;
 
-undefined g_global_data_1809ffae0;
+void* g_global_data_1809ffae0;
 
-undefined g_static_data_180d49158;
+void* g_static_data_180d49158;
 // undefined g_function_18004c030;
 
-undefined g_function_18004c030;
+void* g_function_18004c030;
 
-undefined g_global_data_180a02b98;
+void* g_global_data_180a02b98;
 // undefined g_function_180056e10;
 
-undefined g_function_180056e10;
+void* g_function_180056e10;
 // undefined g_function_180051cc0;
 
-undefined g_function_180051cc0;
+void* g_function_180051cc0;
 // undefined g_function_180051d00;
 
-undefined g_function_180051d00;
+void* g_function_180051d00;
 
-undefined g_global_data_1800e7f50;
+void* g_global_data_1800e7f50;
 
-undefined g_global_data_1800e7f80;
+void* g_global_data_1800e7f80;
 
-undefined g_global_data_1800e7fb0;
+void* g_global_data_1800e7fb0;
 
-undefined g_global_data_1800e7fe0;
+void* g_global_data_1800e7fe0;
 
-undefined g_global_data_1800e8020;
+void* g_global_data_1800e8020;
 
-undefined g_global_data_1801b9b60;
+void* g_global_data_1801b9b60;
 // undefined g_function_1800596a0;
 
-undefined g_function_1800596a0;
+void* g_function_1800596a0;
 
-undefined g_global_data_180a06950;
+void* g_global_data_180a06950;
 
-undefined g_global_data_180a069b0;
+void* g_global_data_180a069b0;
 
-undefined g_global_data_180a069c0;
+void* g_global_data_180a069c0;
 
-undefined g_global_data_180a071f8;
+void* g_global_data_180a071f8;
 
 char DAT_180c8ecee;
 
-undefined g_global_data_180a069e8;
+void* g_global_data_180a069e8;
 
-undefined g_global_data_180a06be0;
+void* g_global_data_180a06be0;
 
-undefined g_static_data_18098c090;
+void* g_static_data_18098c090;
 
-undefined g_global_data_180a06dc8;
+void* g_global_data_180a06dc8;
 
-undefined g_global_data_180a071e8;
+void* g_global_data_180a071e8;
 
-undefined g_global_data_180a071c8;
+void* g_global_data_180a071c8;
 
-undefined g_global_data_180a071d8;
+void* g_global_data_180a071d8;
 
-undefined g_static_data_180d49288;
+void* g_static_data_180d49288;
 
-undefined g_static_data_180d49290;
+void* g_static_data_180d49290;
 
-undefined g_static_data_180d49298;
+void* g_static_data_180d49298;
 
-undefined g_static_data_180d492a0;
+void* g_static_data_180d492a0;
 
-undefined g_static_data_180d492a8;
+void* g_static_data_180d492a8;
 
-undefined g_static_data_180d492e8;
+void* g_static_data_180d492e8;
 
-undefined g_static_data_180d492f0;
+void* g_static_data_180d492f0;
 
-undefined g_static_data_180d492f8;
+void* g_static_data_180d492f8;
 
-undefined g_static_data_180d49300;
+void* g_static_data_180d49300;
 
-undefined g_static_data_180d49340;
+void* g_static_data_180d49340;
 
-undefined g_static_data_180d49348;
+void* g_static_data_180d49348;
 
-undefined g_static_data_180d49350;
+void* g_static_data_180d49350;
 
-undefined g_static_data_180d49358;
+void* g_static_data_180d49358;
 
-undefined g_static_data_180d49398;
+void* g_static_data_180d49398;
 
-undefined g_static_data_180d493a0;
+void* g_static_data_180d493a0;
 
-undefined g_static_data_180d493a8;
+void* g_static_data_180d493a8;
 
-undefined g_static_data_180d493b0;
+void* g_static_data_180d493b0;
 
-undefined g_global_data_180941ab0;
+void* g_global_data_180941ab0;
 
-undefined g_static_data_180a06990;
+void* g_static_data_180a06990;
 
-undefined g_static_data_180a06998;
+void* g_static_data_180a06998;
 
-undefined g_static_data_180a069a0;
+void* g_static_data_180a069a0;
 
-undefined g_static_data_180a069a8;
+void* g_static_data_180a069a8;
 
-undefined g_global_data_18014f7f0;
+void* g_global_data_18014f7f0;
 // undefined g_function_180049b30;
 
-undefined g_function_180049b30;
+void* g_function_180049b30;
 // undefined g_function_18004ca00;
 
-undefined g_function_18004ca00;
+void* g_function_18004ca00;
 
-undefined g_global_data_180a08fd0;
+void* g_global_data_180a08fd0;
 
-undefined g_global_data_180a09008;
+void* g_global_data_180a09008;
 
-undefined g_global_data_180a09048;
+void* g_global_data_180a09048;
 
-undefined g_global_data_180a09078;
+void* g_global_data_180a09078;
 
-undefined g_global_data_180a090c0;
+void* g_global_data_180a090c0;
 
-undefined g_global_data_180a090e8;
+void* g_global_data_180a090e8;
 
-undefined g_global_data_180a09118;
+void* g_global_data_180a09118;
 
-undefined g_global_data_180a09140;
+void* g_global_data_180a09140;
 
-undefined g_global_data_180a094b0;
+void* g_global_data_180a094b0;
 
-undefined g_global_data_180a094e8;
+void* g_global_data_180a094e8;
 
-undefined g_global_data_180a09520;
+void* g_global_data_180a09520;
 
-undefined g_global_data_180a09548;
+void* g_global_data_180a09548;
 
-undefined g_global_data_180a09578;
+void* g_global_data_180a09578;
 
-undefined g_global_data_180a095b0;
+void* g_global_data_180a095b0;
 
-undefined g_global_data_180a095d0;
+void* g_global_data_180a095d0;
 
-undefined g_global_data_180a095f0;
+void* g_global_data_180a095f0;
 
-undefined g_global_data_180a09198;
+void* g_global_data_180a09198;
 
-undefined g_global_data_180a09220;
+void* g_global_data_180a09220;
 
-undefined g_global_data_180a09158;
+void* g_global_data_180a09158;
 
-undefined g_global_data_180a091c8;
+void* g_global_data_180a091c8;
 
-undefined g_global_data_180a091f0;
+void* g_global_data_180a091f0;
 
-undefined g_global_data_180a09280;
+void* g_global_data_180a09280;
 
-undefined g_global_data_180a09248;
+void* g_global_data_180a09248;
 
-undefined g_global_data_180a193d8;
+void* g_global_data_180a193d8;
 
-undefined g_global_data_180a19458;
+void* g_global_data_180a19458;
 
-undefined g_global_data_180a09420;
+void* g_global_data_180a09420;
 
-undefined g_global_data_180946958;
+void* g_global_data_180946958;
 
-undefined g_static_data_180a089b0;
+void* g_static_data_180a089b0;
 
-undefined g_global_data_1800830b0;
+void* g_global_data_1800830b0;
 
-undefined g_global_data_1800830c0;
+void* g_global_data_1800830c0;
 
-undefined g_global_data_180083130;
+void* g_global_data_180083130;
 // undefined g_function_18004a130;
 
-undefined g_function_18004a130;
+void* g_function_18004a130;
 
-undefined g_global_data_180a0c9a0;
+void* g_global_data_180a0c9a0;
 
-undefined g_global_data_180a0cb40;
+void* g_global_data_180a0cb40;
 
-undefined g_global_data_180a0c808;
+void* g_global_data_180a0c808;
 
-undefined g_global_data_180a0c9b0;
+void* g_global_data_180a0c9b0;
 
-undefined g_global_data_180a0c7d8;
+void* g_global_data_180a0c7d8;
 
-undefined g_global_data_180a0c7f0;
+void* g_global_data_180a0c7f0;
 
-undefined g_global_data_180a0c508;
+void* g_global_data_180a0c508;
 // undefined g_function_180049cd0;
 
-undefined g_function_180049cd0;
+void* g_function_180049cd0;
 // undefined g_function_180049970;
 
-undefined g_function_180049970;
+void* g_function_180049970;
 // undefined g_function_1800586e0;
 
-undefined g_function_1800586e0;
+void* g_function_1800586e0;
 // undefined g_function_180046480;
 
-undefined g_function_180046480;
+void* g_function_180046480;
 
-undefined g_global_data_180a13ad0;
+void* g_global_data_180a13ad0;
 
-undefined g_static_data_180a0ba58;
+void* g_static_data_180a0ba58;
 
-undefined g_static_data_180a0d580;
+void* g_static_data_180a0d580;
 
-undefined g_global_data_180a13aa8;
+void* g_global_data_180a13aa8;
 
-undefined g_global_data_180a13ab8;
+void* g_global_data_180a13ab8;
 
-undefined g_global_data_180a13ae8;
+void* g_global_data_180a13ae8;
 
-undefined g_global_data_180a13bb8;
+void* g_global_data_180a13bb8;
 
-undefined g_global_data_180a13b30;
+void* g_global_data_180a13b30;
 
-undefined g_global_data_180a13b70;
+void* g_global_data_180a13b70;
 
-undefined g_static_data_180a13c30;
+void* g_static_data_180a13c30;
 
-undefined g_global_data_180a03108;
+void* g_global_data_180a03108;
 
-undefined g_global_data_180a13c08;
+void* g_global_data_180a13c08;
 
-undefined g_global_data_180a13c48;
+void* g_global_data_180a13c48;
 
-undefined g_global_data_180a12ea0;
+void* g_global_data_180a12ea0;
 
-undefined g_static_data_180a1388c;
+void* g_static_data_180a1388c;
 
-undefined g_global_data_180a13c2c;
+void* g_global_data_180a13c2c;
 
-undefined g_global_data_180a13c70;
+void* g_global_data_180a13c70;
 
-undefined g_global_data_180a13c88;
+void* g_global_data_180a13c88;
 
-undefined g_global_data_180a13c94;
+void* g_global_data_180a13c94;
 
-undefined g_global_data_180a13ca0;
+void* g_global_data_180a13ca0;
 
-undefined g_global_data_180a13cac;
+void* g_global_data_180a13cac;
 
-undefined g_global_data_180239520;
+void* g_global_data_180239520;
 // undefined g_function_180056de0;
 
-undefined g_function_180056de0;
+void* g_function_180056de0;
 
-undefined g_global_data_180a172e0;
+void* g_global_data_180a172e0;
 
-undefined g_global_data_180a17308;
+void* g_global_data_180a17308;
 
-undefined g_global_data_180a17398;
+void* g_global_data_180a17398;
 
-undefined g_global_data_180a173f0;
+void* g_global_data_180a173f0;
 
-undefined g_global_data_180a17400;
+void* g_global_data_180a17400;
 
-undefined g_global_data_1802a11b8;
+void* g_global_data_1802a11b8;
 
 char UNK_180d48da9;
 
 char DAT_180d48da8;
-undefined g_global_data_1802a1b10;
+void* g_global_data_1802a1b10;
 
-undefined g_global_data_180a17770;
+void* g_global_data_180a17770;
 
-undefined g_global_data_180a17798;
+void* g_global_data_180a17798;
 
-undefined g_global_data_180a177c8;
+void* g_global_data_180a177c8;
 
-undefined g_global_data_180a177f0;
+void* g_global_data_180a177f0;
 
 undefined1 DAT_180d48da8;
 
-undefined g_global_data_1802a1d4c;
+void* g_global_data_1802a1d4c;
 
-undefined g_static_data_180bf5c18;
+void* g_static_data_180bf5c18;
 
-undefined g_static_data_180bf5c28;
+void* g_static_data_180bf5c28;
 
-undefined g_global_data_180a02b03;
+void* g_global_data_180a02b03;
 
-undefined g_global_data_180a17818;
+void* g_global_data_180a17818;
 
-undefined g_global_data_180a27cb0;
+void* g_global_data_180a27cb0;
 
 undefined4 UNK_180bf5c1c;
 undefined4 UNK_180bf5c20;
 undefined4 UNK_180bf5c24;
-undefined g_static_data_180c8ecd0;
+void* g_static_data_180c8ecd0;
 
 char DAT_180d48dac;
 
-undefined g_global_data_18042d5d0;
+void* g_global_data_18042d5d0;
 
-undefined g_global_data_180a17830;
+void* g_global_data_180a17830;
 
-undefined g_global_data_180a17880;
+void* g_global_data_180a17880;
 
-undefined g_static_data_180c8ecb0;
+void* g_static_data_180c8ecb0;
 
-undefined g_static_data_180c8eca8;
+void* g_static_data_180c8eca8;
 
-undefined g_global_data_180a178bc;
+void* g_global_data_180a178bc;
 
-undefined g_global_data_180a178f8;
+void* g_global_data_180a178f8;
 
-undefined g_global_data_180a17900;
+void* g_global_data_180a17900;
 
-undefined g_global_data_180a17a18;
+void* g_global_data_180a17a18;
 
-undefined g_global_data_180a17a68;
+void* g_global_data_180a17a68;
 
 char DAT_180d48daa;
-undefined g_global_data_180a178c8;
+void* g_global_data_180a178c8;
 
-undefined g_global_data_180a178f0;
+void* g_global_data_180a178f0;
 
-undefined g_global_data_180a17910;
+void* g_global_data_180a17910;
 
-undefined g_global_data_180a17940;
+void* g_global_data_180a17940;
 
-undefined g_global_data_180a17960;
+void* g_global_data_180a17960;
 
-undefined g_global_data_180a17980;
+void* g_global_data_180a17980;
 
-undefined g_global_data_180a179a8;
+void* g_global_data_180a179a8;
 
 char DAT_180d48dab;
 
-undefined g_global_data_180a179d0;
+void* g_global_data_180a179d0;
 
-undefined g_global_data_180a17a38;
+void* g_global_data_180a17a38;
 
-undefined g_global_data_180a17ab0;
+void* g_global_data_180a17ab0;
 
-undefined g_global_data_180a17b38;
+void* g_global_data_180a17b38;
 
-undefined g_global_data_180a06428;
+void* g_global_data_180a06428;
 
-undefined g_global_data_180a06438;
+void* g_global_data_180a06438;
 
-undefined g_global_data_180a17b78;
+void* g_global_data_180a17b78;
 
-undefined g_global_data_180a17b88;
+void* g_global_data_180a17b88;
 
-undefined g_global_data_180a17b98;
+void* g_global_data_180a17b98;
 
-undefined g_global_data_180a17ba0;
+void* g_global_data_180a17ba0;
 
-undefined g_global_data_180a17bb0;
+void* g_global_data_180a17bb0;
 
-undefined g_global_data_180a17bc0;
+void* g_global_data_180a17bc0;
 
-undefined g_global_data_180a17bd8;
+void* g_global_data_180a17bd8;
 
-undefined g_global_data_180a17be8;
+void* g_global_data_180a17be8;
 
-undefined g_global_data_180a17bf8;
+void* g_global_data_180a17bf8;
 
-undefined g_global_data_180a17d90;
+void* g_global_data_180a17d90;
 
-undefined g_global_data_180a17c48;
+void* g_global_data_180a17c48;
 
-undefined g_global_data_180a17c60;
+void* g_global_data_180a17c60;
 
-undefined g_global_data_180a17c80;
+void* g_global_data_180a17c80;
 
-undefined g_global_data_180a17c90;
+void* g_global_data_180a17c90;
 
-undefined g_global_data_180a17cb8;
+void* g_global_data_180a17cb8;
 
-undefined g_global_data_180a17cc8;
+void* g_global_data_180a17cc8;
 
-undefined g_global_data_180a17cd8;
+void* g_global_data_180a17cd8;
 
-undefined g_global_data_180a17d00;
+void* g_global_data_180a17d00;
 
-undefined g_global_data_180a17d28;
+void* g_global_data_180a17d28;
 
-undefined g_global_data_180a17d50;
+void* g_global_data_180a17d50;
 
-undefined g_global_data_180a17da8;
+void* g_global_data_180a17da8;
 
-undefined g_global_data_180a17e18;
+void* g_global_data_180a17e18;
 
-undefined g_global_data_180a18648;
+void* g_global_data_180a18648;
 
-undefined g_global_data_180a17e68;
+void* g_global_data_180a17e68;
 
-undefined g_global_data_180a17e78;
+void* g_global_data_180a17e78;
 
-undefined g_global_data_180a17ea8;
+void* g_global_data_180a17ea8;
 
-undefined g_global_data_180a17eb0;
+void* g_global_data_180a17eb0;
 
-undefined g_global_data_180a17ec0;
+void* g_global_data_180a17ec0;
 
-undefined g_global_data_180a17f00;
+void* g_global_data_180a17f00;
 
-undefined g_global_data_180a17f58;
+void* g_global_data_180a17f58;
 
-undefined g_global_data_180a17f90;
+void* g_global_data_180a17f90;
 
-undefined g_static_data_180a09dc0;
+void* g_static_data_180a09dc0;
 
-undefined g_global_data_180a17fe0;
+void* g_global_data_180a17fe0;
 
-undefined g_global_data_180a15728;
+void* g_global_data_180a15728;
 
-undefined g_global_data_180a15748;
+void* g_global_data_180a15748;
 
-undefined g_global_data_180a17fe8;
+void* g_global_data_180a17fe8;
 
-undefined g_global_data_180a157f0;
+void* g_global_data_180a157f0;
 
-undefined g_global_data_180a15828;
+void* g_global_data_180a15828;
 
-undefined g_global_data_180a15830;
+void* g_global_data_180a15830;
 
-undefined g_global_data_180a18010;
+void* g_global_data_180a18010;
 
-undefined g_global_data_180a157a8;
+void* g_global_data_180a157a8;
 
-undefined g_global_data_180a157c8;
+void* g_global_data_180a157c8;
 
-undefined g_global_data_180a04c44;
+void* g_global_data_180a04c44;
 
-undefined g_global_data_180a06420;
+void* g_global_data_180a06420;
 
-undefined g_global_data_180a15750;
+void* g_global_data_180a15750;
 
-undefined g_static_data_180a157e0;
+void* g_static_data_180a157e0;
 
-undefined g_static_data_180a157e4;
+void* g_static_data_180a157e4;
 
-undefined g_global_data_180a157e8;
+void* g_global_data_180a157e8;
 
-undefined g_global_data_180a157f4;
+void* g_global_data_180a157f4;
 
-undefined g_global_data_180a157fc;
+void* g_global_data_180a157fc;
 
-undefined g_global_data_180a18048;
+void* g_global_data_180a18048;
 
-undefined g_global_data_180a18590;
+void* g_global_data_180a18590;
 
-undefined g_global_data_180a18050;
+void* g_global_data_180a18050;
 
-undefined g_global_data_180a18060;
+void* g_global_data_180a18060;
 
-undefined g_global_data_180a18088;
+void* g_global_data_180a18088;
 
-undefined g_global_data_180a18098;
+void* g_global_data_180a18098;
 
-undefined g_global_data_180a180d0;
+void* g_global_data_180a180d0;
 
-undefined g_global_data_180a18038;
+void* g_global_data_180a18038;
 
-undefined g_global_data_180a18528;
+void* g_global_data_180a18528;
 
-undefined g_global_data_180a18120;
+void* g_global_data_180a18120;
 
-undefined g_static_data_180d48db0;
+void* g_static_data_180d48db0;
 
-undefined g_static_data_180d48db8;
+void* g_static_data_180d48db8;
 
-undefined g_static_data_180d48dc0;
+void* g_static_data_180d48dc0;
 
-undefined g_static_data_180d48dc8;
+void* g_static_data_180d48dc8;
 
-undefined g_static_data_180d48dd0;
+void* g_static_data_180d48dd0;
 // undefined g_function_1800670d0;
 
-undefined g_function_1800670d0;
+void* g_function_1800670d0;
 
-undefined g_global_data_180a25980;
+void* g_global_data_180a25980;
 
-undefined g_static_data_180bfc170;
+void* g_static_data_180bfc170;
 
-undefined g_global_data_180a258e0;
+void* g_global_data_180a258e0;
 
-undefined g_global_data_180a258ec;
+void* g_global_data_180a258ec;
 
-undefined g_global_data_180a258f8;
+void* g_global_data_180a258f8;
 
-undefined g_global_data_180a259c0;
+void* g_global_data_180a259c0;
 
-undefined g_global_data_180a259c8;
+void* g_global_data_180a259c8;
 
-undefined g_global_data_180a259e0;
+void* g_global_data_180a259e0;
 
-undefined g_global_data_180a25a10;
+void* g_global_data_180a25a10;
 
-undefined g_static_data_180a0af70;
+void* g_static_data_180a0af70;
 
-undefined g_global_data_180a25998;
+void* g_global_data_180a25998;
 
-undefined g_global_data_180a259a8;
+void* g_global_data_180a259a8;
 
-undefined g_global_data_180a25a74;
+void* g_global_data_180a25a74;
 
-undefined g_global_data_180a25a28;
+void* g_global_data_180a25a28;
 
-undefined g_global_data_180a25a80;
+void* g_global_data_180a25a80;
 
-undefined g_global_data_180a25a98;
+void* g_global_data_180a25a98;
 
-undefined g_static_data_180c92498;
+void* g_static_data_180c92498;
 
-undefined g_global_data_180a25a50;
+void* g_global_data_180a25a50;
 
-undefined g_global_data_180a25a60;
+void* g_global_data_180a25a60;
 
-undefined g_global_data_180a25aa0;
+void* g_global_data_180a25aa0;
 
-undefined g_global_data_180a25ab0;
+void* g_global_data_180a25ab0;
 
-undefined g_global_data_180a25ae8;
+void* g_global_data_180a25ae8;
 
-undefined g_global_data_180a25af0;
+void* g_global_data_180a25af0;
 
-undefined g_global_data_180a25b00;
+void* g_global_data_180a25b00;
 
-undefined g_global_data_180a25ab8;
+void* g_global_data_180a25ab8;
 
-undefined g_global_data_180a25ac8;
+void* g_global_data_180a25ac8;
 
-undefined g_global_data_180a25b10;
+void* g_global_data_180a25b10;
 
-undefined g_global_data_180a25b20;
+void* g_global_data_180a25b20;
 
-undefined g_global_data_180a25b30;
+void* g_global_data_180a25b30;
 
-undefined g_global_data_180a25b40;
+void* g_global_data_180a25b40;
 
-undefined g_global_data_180a25b48;
+void* g_global_data_180a25b48;
 
-undefined g_global_data_180a25b60;
+void* g_global_data_180a25b60;
 
-undefined g_global_data_180a25b6c;
+void* g_global_data_180a25b6c;
 
-undefined g_global_data_180a25b80;
+void* g_global_data_180a25b80;
 
-undefined g_global_data_180a25b88;
+void* g_global_data_180a25b88;
 
-undefined g_global_data_180a25bc8;
+void* g_global_data_180a25bc8;
 
-undefined g_global_data_180a25bd4;
+void* g_global_data_180a25bd4;
 
-undefined g_global_data_180a25be0;
+void* g_global_data_180a25be0;
 
-undefined g_global_data_180a25c58;
+void* g_global_data_180a25c58;
 
-undefined g_global_data_180a25c84;
+void* g_global_data_180a25c84;
 
-undefined g_global_data_180a25c90;
+void* g_global_data_180a25c90;
 
-undefined g_global_data_180a2b468;
+void* g_global_data_180a2b468;
 
-undefined g_global_data_180a25c04;
+void* g_global_data_180a25c04;
 
-undefined g_global_data_180a25c10;
+void* g_global_data_180a25c10;
 
-undefined g_global_data_180a25c20;
+void* g_global_data_180a25c20;
 
-undefined g_global_data_180a25ca0;
+void* g_global_data_180a25ca0;
 
-undefined g_global_data_180a25cdc;
+void* g_global_data_180a25cdc;
 
-undefined g_global_data_180a0dcf8;
+void* g_global_data_180a0dcf8;
 
-undefined g_global_data_180a25bfc;
+void* g_global_data_180a25bfc;
 
-undefined g_global_data_180a25ce8;
+void* g_global_data_180a25ce8;
 
-undefined g_global_data_180a25cf8;
+void* g_global_data_180a25cf8;
 
-undefined g_static_data_180a25d28;
+void* g_static_data_180a25d28;
 
-undefined g_static_data_180a0209c;
+void* g_static_data_180a0209c;
 
-undefined g_static_data_180a022f0;
+void* g_static_data_180a022f0;
 
-undefined g_static_data_180a02320;
+void* g_static_data_180a02320;
 
-undefined g_global_data_180a25ca8;
+void* g_global_data_180a25ca8;
 
-undefined g_static_data_180a25cb4;
+void* g_static_data_180a25cb4;
 
-undefined g_global_data_180a25cc0;
+void* g_global_data_180a25cc0;
 
-undefined g_global_data_180a25cd0;
+void* g_global_data_180a25cd0;
 
-undefined g_global_data_180a25d78;
+void* g_global_data_180a25d78;
 
-undefined g_global_data_180a25d90;
+void* g_global_data_180a25d90;
 
-undefined g_global_data_180a25d98;
+void* g_global_data_180a25d98;
 
-undefined g_global_data_180a25da8;
+void* g_global_data_180a25da8;
 
-undefined g_static_data_180a02030;
+void* g_static_data_180a02030;
 
-undefined g_static_data_180a0206c;
+void* g_static_data_180a0206c;
 
-undefined g_static_data_180a02080;
+void* g_static_data_180a02080;
 
-undefined g_global_data_180a25e58;
+void* g_global_data_180a25e58;
 
-undefined g_global_data_180a25e70;
+void* g_global_data_180a25e70;
 
-undefined g_global_data_180a25e80;
+void* g_global_data_180a25e80;
 
-undefined g_global_data_180a25e90;
+void* g_global_data_180a25e90;
 
-undefined g_global_data_180a25ebc;
+void* g_global_data_180a25ebc;
 
-undefined g_global_data_180a25ec4;
+void* g_global_data_180a25ec4;
 
-undefined g_global_data_180a25ed0;
+void* g_global_data_180a25ed0;
 
-undefined g_global_data_180a25ee0;
+void* g_global_data_180a25ee0;
 
-undefined g_global_data_180a25ef0;
+void* g_global_data_180a25ef0;
 
-undefined g_global_data_180a25ef8;
+void* g_global_data_180a25ef8;
 
-undefined g_global_data_180a25900;
+void* g_global_data_180a25900;
 
-undefined g_global_data_180a25ad0;
+void* g_global_data_180a25ad0;
 
-undefined g_global_data_180a25a6c;
+void* g_global_data_180a25a6c;
 // undefined g_function_18006b8f0;
 
-undefined g_function_18006b8f0;
+void* g_function_18006b8f0;
 // 数据结构初始化函数 - 原名：FUN_18002c340
 
 void InitializeDataStructure(void)
@@ -15028,7 +15028,7 @@ void FUN_180043690(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 初始化线程本地存储
-undefined8 initialize_thread_local_storage(void)
+uint64_t initialize_thread_local_storage(void)
 
 {
   longlong thread_local_base;
@@ -15419,7 +15419,7 @@ LAB_180043e47:
   return;
 }
 
-undefined8 *
+uint64_t *
 FUN_180043f30(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -16023,7 +16023,7 @@ void FUN_180045c00(void)
   FUN_1808fd200();
 }
 
-undefined8 *
+uint64_t *
 FUN_180045d80(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -16035,7 +16035,7 @@ FUN_180045d80(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
 }
 
 // 初始化IO完成端口
-undefined8 * initialize_io_completion_port(undefined8 *port_handle,uint config_flags)
+uint64_t * initialize_io_completion_port(undefined8 *port_handle,uint config_flags)
 
 {
   *param_1 = &UNK_1809fee70;
@@ -16060,7 +16060,7 @@ void _guard_check_icall(void)
   return;
 }
 
-undefined8 *
+uint64_t *
 FUN_180045ea0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -16197,7 +16197,7 @@ void FUN_180046160(undefined8 *param_1)
   return;
 }
 
-undefined8 FUN_180046190(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+uint64_t FUN_180046190(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   char cVar1;
@@ -16284,7 +16284,7 @@ void FUN_1800462c0(undefined8 param_1,undefined4 param_2)
   return;
 }
 
-undefined8 *
+uint64_t *
 FUN_180046340(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -16355,7 +16355,7 @@ void FUN_180046444(undefined1 *param_1)
   return;
 }
 
-undefined8 * FUN_180046480(undefined8 *param_1)
+uint64_t * FUN_180046480(undefined8 *param_1)
 
 {
   *param_1 = &UNK_18098bcb0;
@@ -16407,7 +16407,7 @@ void FUN_1800464f0(longlong param_1,longlong param_2,longlong param_3)
   FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_a8);
 }
 
-undefined8 * FUN_180046650(undefined8 *param_1,ulonglong param_2)
+uint64_t * FUN_180046650(undefined8 *param_1,ulonglong param_2)
 
 {
   *param_1 = &UNK_18098bcb0;
@@ -16462,7 +16462,7 @@ void FUN_180046750(undefined8 *param_1)
   return;
 }
 
-undefined8 *
+uint64_t *
 FUN_180046790(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -17084,7 +17084,7 @@ void FUN_180046e20(void)
   FUN_18064e900(puVar7);
 }
 
-undefined8 *
+uint64_t *
 FUN_180047d40(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -17695,7 +17695,7 @@ longlong FUN_180048a90(longlong param_1,longlong param_2,undefined8 param_3,unde
   return param_1;
 }
 
-undefined8 FUN_180048c70(undefined8 param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+uint64_t FUN_180048c70(undefined8 param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 uVar1;
@@ -17708,7 +17708,7 @@ undefined8 FUN_180048c70(undefined8 param_1,ulonglong param_2,undefined8 param_3
   return param_1;
 }
 
-undefined8 *
+uint64_t *
 FUN_180048cc0(longlong *param_1,undefined8 *param_2,undefined8 param_3,longlong *param_4,
              longlong param_5)
 
@@ -17887,7 +17887,7 @@ LAB_180048f62:
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_180049010(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
+uint64_t * FUN_180049010(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
 
 {
   longlong *plVar1;
@@ -17923,7 +17923,7 @@ undefined8 * FUN_180049010(longlong param_1,longlong *param_2,undefined8 param_3
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_180049110(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+uint64_t * FUN_180049110(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 *puVar1;
@@ -17941,7 +17941,7 @@ undefined8 * FUN_180049110(longlong param_1,longlong param_2,undefined8 param_3,
   return puVar1;
 }
 
-undefined8 *
+uint64_t *
 FUN_1800491b0(undefined8 *param_1,longlong *param_2,longlong *param_3,undefined8 *param_4)
 
 {
@@ -18074,7 +18074,7 @@ void FUN_180049470(undefined8 *param_1)
   return;
 }
 
-undefined8 FUN_1800494f0(undefined8 param_1,ulonglong param_2)
+uint64_t FUN_1800494f0(undefined8 param_1,ulonglong param_2)
 
 {
   FUN_180049470();
@@ -18214,7 +18214,7 @@ void FUN_1800497f0(undefined8 param_1)
   return;
 }
 
-undefined8 *
+uint64_t *
 FUN_180049830(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -18236,7 +18236,7 @@ FUN_180049830(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefine
   return param_1;
 }
 
-undefined8 *
+uint64_t *
 FUN_1800498d0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -18279,7 +18279,7 @@ void FUN_180049956(undefined1 *param_1)
   return;
 }
 
-undefined8 * FUN_180049970(undefined8 *param_1)
+uint64_t * FUN_180049970(undefined8 *param_1)
 
 {
   *param_1 = &UNK_18098bcb0;
@@ -18331,7 +18331,7 @@ void FUN_1800499c0(longlong param_1,longlong param_2,longlong param_3)
   FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_118);
 }
 
-undefined8 *
+uint64_t *
 FUN_180049b30(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -18353,7 +18353,7 @@ FUN_180049b30(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8
   return param_1;
 }
 
-undefined8 *
+uint64_t *
 FUN_180049bb0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -18424,7 +18424,7 @@ void FUN_180049cb4(undefined1 *param_1)
   return;
 }
 
-undefined8 * FUN_180049cd0(undefined8 *param_1)
+uint64_t * FUN_180049cd0(undefined8 *param_1)
 
 {
   *param_1 = &UNK_18098bcb0;
@@ -18476,7 +18476,7 @@ void FUN_180049d20(longlong param_1,longlong param_2,longlong param_3)
   FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_d8);
 }
 
-undefined8 *
+uint64_t *
 FUN_180049eb0(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -18627,7 +18627,7 @@ void FUN_18004a200(void)
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18004a220(longlong param_1,undefined4 param_2,undefined8 param_3,undefined8 param_4)
+uint64_t FUN_18004a220(longlong param_1,undefined4 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   int iVar1;
@@ -18699,7 +18699,7 @@ void FUN_18004a360(undefined8 *param_1)
   return;
 }
 
-undefined8 FUN_18004a3c0(undefined8 param_1,ulonglong param_2)
+uint64_t FUN_18004a3c0(undefined8 param_1,ulonglong param_2)
 
 {
   FUN_18004a360();
@@ -18719,7 +18719,7 @@ void FUN_18004a400(undefined8 *param_1)
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18004a430(longlong param_1,undefined8 param_2)
+uint64_t FUN_18004a430(longlong param_1,undefined8 param_2)
 
 {
   undefined8 uVar1;
@@ -18746,7 +18746,7 @@ void FUN_18004a470(longlong param_1,longlong param_2)
   return;
 }
 
-undefined8 *
+uint64_t *
 FUN_18004a4b0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -19029,7 +19029,7 @@ void FUN_18004afa0(void)
   return;
 }
 
-undefined8 *
+uint64_t *
 FUN_18004b100(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -19074,7 +19074,7 @@ FUN_18004b100(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefine
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18004b1f0(char param_1)
+uint64_t FUN_18004b1f0(char param_1)
 
 {
   longlong *plVar1;
@@ -19272,7 +19272,7 @@ void FUN_18004b5f0(undefined4 *param_1)
   return;
 }
 
-undefined8 *
+uint64_t *
 FUN_18004b640(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -19385,7 +19385,7 @@ void FUN_18004b7de(void)
   return;
 }
 
-undefined8 * FUN_18004b7e0(undefined8 *param_1,ulonglong param_2)
+uint64_t * FUN_18004b7e0(undefined8 *param_1,ulonglong param_2)
 
 {
   *param_1 = &UNK_1809fcc88;
@@ -19395,7 +19395,7 @@ undefined8 * FUN_18004b7e0(undefined8 *param_1,ulonglong param_2)
   return param_1;
 }
 
-undefined8 * FUN_18004b820(undefined8 *param_1,ulonglong param_2)
+uint64_t * FUN_18004b820(undefined8 *param_1,ulonglong param_2)
 
 {
   *param_1 = &UNK_1809fcca0;
@@ -19443,7 +19443,7 @@ void FUN_18004b860(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
   FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_78);
 }
 
-undefined8 * FUN_18004b920(undefined8 *param_1,ulonglong param_2)
+uint64_t * FUN_18004b920(undefined8 *param_1,ulonglong param_2)
 
 {
   *param_1 = &UNK_1809fcce0;
@@ -19453,7 +19453,7 @@ undefined8 * FUN_18004b920(undefined8 *param_1,ulonglong param_2)
   return param_1;
 }
 
-undefined8 * FUN_18004b960(undefined8 *param_1,ulonglong param_2)
+uint64_t * FUN_18004b960(undefined8 *param_1,ulonglong param_2)
 
 {
   *param_1 = &UNK_1809fcd18;
@@ -19605,7 +19605,7 @@ void FUN_18004bce0(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
   return;
 }
 
-undefined8 * FUN_18004bd10(undefined8 *param_1)
+uint64_t * FUN_18004bd10(undefined8 *param_1)
 
 {
   *param_1 = &UNK_18098bcb0;
@@ -19842,7 +19842,7 @@ void FUN_18004c030(longlong *param_1)
   FUN_18064e900();
 }
 
-undefined8 * FUN_18004c050(undefined8 *param_1)
+uint64_t * FUN_18004c050(undefined8 *param_1)
 
 {
   *param_1 = 0;
@@ -20103,7 +20103,7 @@ FUN_18004c330(undefined1 *param_1,undefined8 param_2,undefined8 param_3,undefine
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_18004c480(undefined8 *param_1)
+uint64_t * FUN_18004c480(undefined8 *param_1)
 
 {
   longlong *plVar1;
@@ -20349,7 +20349,7 @@ void FUN_18004ca00(longlong *param_1)
   return;
 }
 
-undefined8 *
+uint64_t *
 FUN_18004ca30(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -21872,7 +21872,7 @@ void FUN_180051d00(longlong param_1)
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_180051d40(undefined8 *param_1,undefined8 *param_2)
+uint64_t * FUN_180051d40(undefined8 *param_1,undefined8 *param_2)
 
 {
   longlong *plVar1;
@@ -22294,7 +22294,7 @@ void FUN_180052200(longlong param_1,longlong param_2,undefined8 param_3,undefine
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1800524c0(undefined8 param_1,undefined8 param_2)
+uint64_t FUN_1800524c0(undefined8 param_1,undefined8 param_2)
 
 {
   longlong lVar1;
@@ -24442,7 +24442,7 @@ void FUN_1800565f0(longlong *param_1)
   FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_98);
 }
 
-undefined8 FUN_1800567c0(undefined8 param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+uint64_t FUN_1800567c0(undefined8 param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 uVar1;
@@ -24692,7 +24692,7 @@ void FUN_180056c50(undefined8 param_1,undefined8 *param_2,undefined4 param_3)
   FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_158);
 }
 
-undefined8 * FUN_180056de0(undefined8 *param_1)
+uint64_t * FUN_180056de0(undefined8 *param_1)
 
 {
   *param_1 = 0;
@@ -24702,7 +24702,7 @@ undefined8 * FUN_180056de0(undefined8 *param_1)
   return param_1;
 }
 
-undefined8 * FUN_180056e10(undefined8 *param_1)
+uint64_t * FUN_180056e10(undefined8 *param_1)
 
 {
   *param_1 = 0;
@@ -24720,7 +24720,7 @@ void FUN_180056e40(void)
   return;
 }
 
-undefined8 * FUN_180056e60(undefined8 *param_1)
+uint64_t * FUN_180056e60(undefined8 *param_1)
 
 {
   *param_1 = 0;
@@ -24730,7 +24730,7 @@ undefined8 * FUN_180056e60(undefined8 *param_1)
   return param_1;
 }
 
-undefined8 * FUN_180056e90(undefined8 *param_1)
+uint64_t * FUN_180056e90(undefined8 *param_1)
 
 {
   undefined8 *puVar1;
@@ -24862,7 +24862,7 @@ void FUN_180057062(void)
   return;
 }
 
-undefined8 *
+uint64_t *
 FUN_180057090(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -25957,7 +25957,7 @@ void FUN_180057bf0(undefined8 *param_1)
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_180057cb0(undefined8 *param_1,uint param_2,undefined8 param_3,undefined8 param_4)
+uint64_t * FUN_180057cb0(undefined8 *param_1,uint param_2,undefined8 param_3,undefined8 param_4)
 
 {
   *param_1 = &UNK_180a08db0;
@@ -26128,7 +26128,7 @@ void FUN_180058020(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
   return;
 }
 
-undefined8 * FUN_180058080(undefined8 *param_1,undefined8 *param_2,longlong param_3)
+uint64_t * FUN_180058080(undefined8 *param_1,undefined8 *param_2,longlong param_3)
 
 {
   byte bVar1;
@@ -27658,7 +27658,7 @@ void FUN_180059000(longlong *param_1)
   FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_3b8);
 }
 
-undefined8 * FUN_1800590b0(undefined8 *param_1,undefined1 *param_2,longlong param_3)
+uint64_t * FUN_1800590b0(undefined8 *param_1,undefined1 *param_2,longlong param_3)
 
 {
   byte bVar1;
@@ -28012,7 +28012,7 @@ void FUN_180059730(longlong param_1)
   return;
 }
 
-undefined8 * FUN_180059780(undefined8 *param_1,undefined8 *param_2,undefined8 *param_3)
+uint64_t * FUN_180059780(undefined8 *param_1,undefined8 *param_2,undefined8 *param_3)
 
 {
   undefined8 *puVar1;
@@ -28094,7 +28094,7 @@ LAB_180059885:
   FUN_18064e900(puVar5);
 }
 
-undefined8 *
+uint64_t *
 FUN_180059900(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -28803,7 +28803,7 @@ void FUN_18005a170(longlong param_1)
   return;
 }
 
-undefined8 FUN_18005a1b0(undefined8 param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+uint64_t FUN_18005a1b0(undefined8 param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 uVar1;
@@ -28892,7 +28892,7 @@ void FUN_18005a200(undefined8 *param_1)
   memset(uVar2,0,0xc0);
 }
 
-undefined8 * FUN_18005a420(undefined8 *param_1,ulonglong param_2)
+uint64_t * FUN_18005a420(undefined8 *param_1,ulonglong param_2)
 
 {
   *param_1 = &UNK_1809fdd78;
@@ -28943,7 +28943,7 @@ void FUN_18005a500(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
   FUN_18064e900(puVar2);
 }
 
-undefined8 FUN_18005a960(undefined8 param_1,ulonglong param_2)
+uint64_t FUN_18005a960(undefined8 param_1,ulonglong param_2)
 
 {
   FUN_18005a9a0();
@@ -29088,7 +29088,7 @@ void FUN_18005ac00(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
   FUN_18064e900(puVar2);
 }
 
-undefined8 FUN_18005b520(undefined8 param_1,ulonglong param_2)
+uint64_t FUN_18005b520(undefined8 param_1,ulonglong param_2)
 
 {
   FUN_18005b560();
@@ -29211,7 +29211,7 @@ void FUN_18005b7c0(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
   return;
 }
 
-undefined8 * FUN_18005b870(undefined8 *param_1)
+uint64_t * FUN_18005b870(undefined8 *param_1)
 
 {
   *param_1 = &UNK_18098bcb0;
@@ -29333,7 +29333,7 @@ void FUN_18005ba80(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
   FUN_18064e900(puVar2);
 }
 
-undefined8 * FUN_18005c060(undefined8 *param_1)
+uint64_t * FUN_18005c060(undefined8 *param_1)
 
 {
   *param_1 = 0;
@@ -29389,7 +29389,7 @@ FUN_18005c1c0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined
   return param_2;
 }
 
-undefined8 * FUN_18005c210(undefined8 *param_1,uint param_2,undefined8 param_3,undefined8 param_4)
+uint64_t * FUN_18005c210(undefined8 *param_1,uint param_2,undefined8 param_3,undefined8 param_4)
 
 {
   if ((code *)param_1[6] != (code *)0x0) {
@@ -29404,7 +29404,7 @@ undefined8 * FUN_18005c210(undefined8 *param_1,uint param_2,undefined8 param_3,u
   return param_1;
 }
 
-undefined8 *
+uint64_t *
 FUN_18005c2a0(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -29523,7 +29523,7 @@ void FUN_18005c560(longlong param_1)
   return;
 }
 
-undefined8 *
+uint64_t *
 FUN_18005c590(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -29657,7 +29657,7 @@ void FUN_18005c830(uint *param_1)
   return;
 }
 
-undefined8 FUN_18005c8a0(longlong param_1,undefined8 param_2)
+uint64_t FUN_18005c8a0(longlong param_1,undefined8 param_2)
 
 {
   char cVar1;
@@ -29753,7 +29753,7 @@ void FUN_18005ca20(longlong param_1,undefined4 param_2)
   return;
 }
 
-undefined8 * FUN_18005caa0(undefined8 *param_1,longlong param_2)
+uint64_t * FUN_18005caa0(undefined8 *param_1,longlong param_2)
 
 {
   *param_1 = &UNK_18098bcb0;
@@ -29888,7 +29888,7 @@ LAB_18005ccff:
   FUN_18066bdc0(lVar3,ppuVar4,ppuVar6,uVar8,uVar9);
 }
 
-undefined8 *
+uint64_t *
 FUN_18005cdb0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -29902,7 +29902,7 @@ FUN_18005cdb0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
   return param_1;
 }
 
-undefined8 * FUN_18005ce30(undefined8 *param_1,undefined8 *param_2)
+uint64_t * FUN_18005ce30(undefined8 *param_1,undefined8 *param_2)
 
 {
   undefined8 *puVar1;
@@ -30224,7 +30224,7 @@ void FUN_18005d3a0(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
   return;
 }
 
-undefined8 * FUN_18005d400(longlong param_1,char *param_2)
+uint64_t * FUN_18005d400(longlong param_1,char *param_2)
 
 {
   char *pcVar1;
@@ -30273,7 +30273,7 @@ undefined8 * FUN_18005d400(longlong param_1,char *param_2)
   } while( true );
 }
 
-undefined8 * FUN_18005d430(undefined8 param_1,undefined8 *param_2)
+uint64_t * FUN_18005d430(undefined8 param_1,undefined8 *param_2)
 
 {
   char *pcVar1;
@@ -30311,7 +30311,7 @@ undefined8 * FUN_18005d430(undefined8 param_1,undefined8 *param_2)
   return (undefined8 *)0x0;
 }
 
-undefined8 * FUN_18005d484(undefined8 param_1,undefined8 *param_2)
+uint64_t * FUN_18005d484(undefined8 param_1,undefined8 *param_2)
 
 {
   char *pcVar1;
@@ -30349,13 +30349,13 @@ undefined8 * FUN_18005d484(undefined8 param_1,undefined8 *param_2)
   return param_2;
 }
 
-undefined8 FUN_18005d498(longlong param_1)
+uint64_t FUN_18005d498(longlong param_1)
 
 {
   return *(undefined8 *)(param_1 + 0x58);
 }
 
-undefined8 * FUN_18005d4b0(longlong param_1,char *param_2,longlong param_3)
+uint64_t * FUN_18005d4b0(longlong param_1,char *param_2,longlong param_3)
 
 {
   char *pcVar1;
@@ -30406,7 +30406,7 @@ undefined8 * FUN_18005d4b0(longlong param_1,char *param_2,longlong param_3)
   } while( true );
 }
 
-undefined8 * FUN_18005d4e0(undefined8 param_1,undefined8 *param_2,longlong param_3)
+uint64_t * FUN_18005d4e0(undefined8 param_1,undefined8 *param_2,longlong param_3)
 
 {
   char *pcVar1;
@@ -30443,7 +30443,7 @@ undefined8 * FUN_18005d4e0(undefined8 param_1,undefined8 *param_2,longlong param
   return (undefined8 *)0x0;
 }
 
-undefined8 * FUN_18005d534(undefined8 param_1,undefined8 *param_2,longlong param_3)
+uint64_t * FUN_18005d534(undefined8 param_1,undefined8 *param_2,longlong param_3)
 
 {
   char *pcVar1;
@@ -30480,7 +30480,7 @@ undefined8 * FUN_18005d534(undefined8 param_1,undefined8 *param_2,longlong param
   return param_2;
 }
 
-undefined8 FUN_18005d548(longlong param_1)
+uint64_t FUN_18005d548(longlong param_1)
 
 {
   return *(undefined8 *)(param_1 + 0x30);
@@ -30526,7 +30526,7 @@ void FUN_18005d580(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
   FUN_18064e900();
 }
 
-undefined8 *
+uint64_t *
 FUN_18005d600(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -31195,7 +31195,7 @@ void FUN_18005e450(longlong param_1,longlong *param_2,undefined8 param_3,undefin
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_18005e4d0(longlong param_1,undefined8 param_2)
+uint64_t * FUN_18005e4d0(longlong param_1,undefined8 param_2)
 
 {
   undefined8 *puVar1;
@@ -31467,7 +31467,7 @@ longlong FUN_18005e890(longlong param_1)
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_18005e950(undefined8 *param_1)
+uint64_t * FUN_18005e950(undefined8 *param_1)
 
 {
   undefined8 uVar1;
@@ -31820,7 +31820,7 @@ longlong FUN_18005ec11(void)
   } while( true );
 }
 
-undefined8 FUN_18005ecfc(undefined8 param_1,undefined8 param_2,longlong *param_3)
+uint64_t FUN_18005ecfc(undefined8 param_1,undefined8 param_2,longlong *param_3)
 
 {
   int *piVar1;
@@ -31950,7 +31950,7 @@ longlong FUN_18005ed54(void)
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_18005ee30(longlong *param_1,char param_2,undefined1 *param_3)
+uint64_t * FUN_18005ee30(longlong *param_1,char param_2,undefined1 *param_3)
 
 {
   longlong *plVar1;
@@ -32072,7 +32072,7 @@ undefined8 * FUN_18005ee30(longlong *param_1,char param_2,undefined1 *param_3)
   } while( true );
 }
 
-undefined8 FUN_18005f040(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
+uint64_t FUN_18005f040(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
 
 {
   ulonglong uVar1;
@@ -32150,7 +32150,7 @@ LAB_18005f0e6:
   return 1;
 }
 
-undefined8 FUN_18005f220(longlong param_1,longlong *param_2)
+uint64_t FUN_18005f220(longlong param_1,longlong *param_2)
 
 {
   ulonglong uVar1;
@@ -32197,7 +32197,7 @@ LAB_18005f30a:
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18005f340(longlong param_1,longlong param_2)
+uint64_t FUN_18005f340(longlong param_1,longlong param_2)
 
 {
   undefined8 *puVar1;
@@ -32246,7 +32246,7 @@ undefined8 FUN_18005f340(longlong param_1,longlong param_2)
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_18005f430(longlong param_1)
+uint64_t * FUN_18005f430(longlong param_1)
 
 {
   longlong *plVar1;
@@ -32311,7 +32311,7 @@ undefined8 * FUN_18005f430(longlong param_1)
   return puVar10;
 }
 
-undefined8 FUN_18005f490(void)
+uint64_t FUN_18005f490(void)
 
 {
   ulonglong uVar1;
@@ -33001,7 +33001,7 @@ ulonglong FUN_180060080(longlong param_1,longlong *param_2,undefined8 param_3)
   return in_RAX & 0xffffffffffffff00;
 }
 
-undefined8 FUN_1800601c0(undefined8 param_1,ulonglong param_2)
+uint64_t FUN_1800601c0(undefined8 param_1,ulonglong param_2)
 
 {
   FUN_180060200();
@@ -33130,7 +33130,7 @@ code_r0x000180060327:
   goto LAB_18006039b;
 }
 
-undefined8 FUN_1800603e0(undefined8 param_1,ulonglong param_2)
+uint64_t FUN_1800603e0(undefined8 param_1,ulonglong param_2)
 
 {
   FUN_180060420();
@@ -33247,7 +33247,7 @@ LAB_1800604d1:
   return;
 }
 
-undefined8 * FUN_1800605d0(undefined8 *param_1,ulonglong param_2)
+uint64_t * FUN_1800605d0(undefined8 *param_1,ulonglong param_2)
 
 {
   *param_1 = &UNK_1809fe210;
@@ -33291,7 +33291,7 @@ void FUN_180060610(undefined8 *param_1,undefined8 param_2,undefined8 param_3,und
   terminate();
 }
 
-undefined8 FUN_180060630(undefined8 param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+uint64_t FUN_180060630(undefined8 param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 uVar1;
@@ -33366,7 +33366,7 @@ LAB_1800607cc:
   return;
 }
 
-undefined8 FUN_1800607f0(longlong param_1,char param_2)
+uint64_t FUN_1800607f0(longlong param_1,char param_2)
 
 {
   longlong lVar1;
@@ -33578,7 +33578,7 @@ longlong * FUN_180060bd0(longlong *param_1)
   return param_1;
 }
 
-undefined8 FUN_180060c60(longlong param_1,undefined8 param_2)
+uint64_t FUN_180060c60(longlong param_1,undefined8 param_2)
 
 {
   longlong *plVar1;
@@ -33671,7 +33671,7 @@ undefined8 FUN_180060c60(longlong param_1,undefined8 param_2)
   return 0;
 }
 
-undefined8 FUN_180060d76(void)
+uint64_t FUN_180060d76(void)
 
 {
   ulonglong *puVar1;
@@ -33723,7 +33723,7 @@ undefined1 FUN_180060e22(void)
   return 0;
 }
 
-undefined8 FUN_180060e40(undefined8 *param_1,longlong param_2,undefined8 param_3)
+uint64_t FUN_180060e40(undefined8 *param_1,longlong param_2,undefined8 param_3)
 
 {
   char cVar1;
@@ -33967,7 +33967,7 @@ void FUN_1800612b0(undefined8 *param_1)
   return;
 }
 
-undefined8 *
+uint64_t *
 FUN_180061300(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -34408,7 +34408,7 @@ void FUN_180062920(int *param_1)
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180062ee0(undefined8 param_1,undefined4 param_2)
+uint64_t FUN_180062ee0(undefined8 param_1,undefined4 param_2)
 
 {
   undefined2 uVar1;
@@ -34710,7 +34710,7 @@ int FUN_1800635e0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   return iVar1;
 }
 
-undefined8 *
+uint64_t *
 FUN_180063650(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -34731,7 +34731,7 @@ FUN_180063650(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
   return param_1;
 }
 
-undefined8 *
+uint64_t *
 FUN_1800636f0(undefined8 *param_1,undefined4 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -37331,7 +37331,7 @@ void FUN_180067f60(longlong param_1,longlong param_2)
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180068250(longlong param_1,longlong param_2,longlong param_3)
+uint64_t FUN_180068250(longlong param_1,longlong param_2,longlong param_3)
 
 {
   ulonglong uVar1;
@@ -37605,7 +37605,7 @@ FUN_180068860(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 p
   return param_2;
 }
 
-undefined8 FUN_180068a90(ulonglong *param_1,undefined8 *param_2)
+uint64_t FUN_180068a90(ulonglong *param_1,undefined8 *param_2)
 
 {
   longlong *plVar1;
@@ -37739,7 +37739,7 @@ LAB_180068c94:
   return 0;
 }
 
-undefined8 FUN_180068ce0(longlong param_1,undefined8 *param_2)
+uint64_t FUN_180068ce0(longlong param_1,undefined8 *param_2)
 
 {
   longlong *plVar1;
@@ -37875,7 +37875,7 @@ longlong FUN_180068ec0(longlong *param_1,longlong *param_2,int param_3,undefined
   return lVar2;
 }
 
-undefined8 *
+uint64_t *
 FUN_180068ff0(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -37897,7 +37897,7 @@ FUN_180068ff0(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8
   return param_1;
 }
 
-undefined8 * FUN_180069070(undefined8 *param_1)
+uint64_t * FUN_180069070(undefined8 *param_1)
 
 {
   *param_1 = &UNK_18098bcb0;
@@ -37948,7 +37948,7 @@ longlong FUN_180069190(longlong param_1,ulonglong param_2,undefined8 param_3,und
   return param_1;
 }
 
-undefined8 *
+uint64_t *
 FUN_1800691e0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -38090,7 +38090,7 @@ void FUN_1800695a0(longlong param_1)
   return;
 }
 
-undefined8 *
+uint64_t *
 FUN_1800696d0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -38103,7 +38103,7 @@ FUN_1800696d0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
   return param_1;
 }
 
-undefined8 * FUN_180069720(undefined8 *param_1,ulonglong param_2)
+uint64_t * FUN_180069720(undefined8 *param_1,ulonglong param_2)
 
 {
   *param_1 = &UNK_1809feeb8;
@@ -38113,7 +38113,7 @@ undefined8 * FUN_180069720(undefined8 *param_1,ulonglong param_2)
   return param_1;
 }
 
-undefined8 FUN_180069760(undefined8 param_1,ulonglong param_2)
+uint64_t FUN_180069760(undefined8 param_1,ulonglong param_2)
 
 {
   FUN_1800697a0();
@@ -38228,7 +38228,7 @@ LAB_180069842:
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_180069920(longlong *param_1)
+uint64_t * FUN_180069920(longlong *param_1)
 
 {
   longlong *plVar1;
@@ -38483,7 +38483,7 @@ LAB_180069dda:
   return uVar5;
 }
 
-undefined8 *
+uint64_t *
 FUN_180069e10(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -38530,7 +38530,7 @@ FUN_180069f00(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined
   return param_2;
 }
 
-undefined8 * FUN_180069f60(undefined8 param_1,undefined8 *param_2)
+uint64_t * FUN_180069f60(undefined8 param_1,undefined8 *param_2)
 
 {
   *param_2 = 0;
@@ -38540,14 +38540,14 @@ undefined8 * FUN_180069f60(undefined8 param_1,undefined8 *param_2)
   return param_2;
 }
 
-undefined8 * FUN_180069fb0(undefined8 param_1,undefined8 *param_2)
+uint64_t * FUN_180069fb0(undefined8 param_1,undefined8 *param_2)
 
 {
   *param_2 = 0;
   return param_2;
 }
 
-undefined8 FUN_180069fe0(undefined8 param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+uint64_t FUN_180069fe0(undefined8 param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 uVar1;
@@ -38561,7 +38561,7 @@ undefined8 FUN_180069fe0(undefined8 param_1,ulonglong param_2,undefined8 param_3
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18006a050(int param_1)
+uint64_t FUN_18006a050(int param_1)
 
 {
   if ((param_1 != -0x3fffff03) && (param_1 != -0x3ffffffb)) {
@@ -38571,7 +38571,7 @@ undefined8 FUN_18006a050(int param_1)
   return 1;
 }
 
-undefined8 * FUN_18006a090(undefined8 *param_1,ulonglong param_2)
+uint64_t * FUN_18006a090(undefined8 *param_1,ulonglong param_2)
 
 {
   *param_1 = &UNK_1809ff040;
@@ -38855,7 +38855,7 @@ longlong FUN_18006b5c0(longlong param_1,uint param_2,undefined8 param_3,undefine
   return param_1;
 }
 
-undefined8 *
+uint64_t *
 FUN_18006b640(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -39037,7 +39037,7 @@ void FUN_18006b940(undefined8 *param_1)
   memset(lVar6 + 0x20,0,0x140000);
 }
 
-undefined8 FUN_18006bd20(undefined8 param_1,ulonglong param_2)
+uint64_t FUN_18006bd20(undefined8 param_1,ulonglong param_2)
 
 {
   FUN_18006bfe0();
@@ -40011,7 +40011,7 @@ LAB_18006cfb1:
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_18006d0b0(longlong *param_1)
+uint64_t * FUN_18006d0b0(longlong *param_1)
 
 {
   longlong *plVar1;
@@ -40207,7 +40207,7 @@ LAB_18006d3bb:
   } while( true );
 }
 
-undefined8 FUN_18006d450(undefined8 param_1,ulonglong param_2)
+uint64_t FUN_18006d450(undefined8 param_1,ulonglong param_2)
 
 {
   FUN_18006cf00();
@@ -40217,7 +40217,7 @@ undefined8 FUN_18006d450(undefined8 param_1,ulonglong param_2)
   return param_1;
 }
 
-undefined8 FUN_18006d4e0(ulonglong *param_1,undefined8 param_2)
+uint64_t FUN_18006d4e0(ulonglong *param_1,undefined8 param_2)
 
 {
   longlong *plVar1;
@@ -40322,7 +40322,7 @@ LAB_18006d67d:
   return 0;
 }
 
-undefined8 FUN_18006d6c0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+uint64_t FUN_18006d6c0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   ulonglong uVar1;
@@ -40374,7 +40374,7 @@ LAB_18006d7fb:
   return 0;
 }
 
-undefined8 FUN_18006d810(longlong param_1,undefined8 param_2)
+uint64_t FUN_18006d810(longlong param_1,undefined8 param_2)
 
 {
   longlong *plVar1;
@@ -40970,7 +40970,7 @@ void FUN_18006e140(void)
   return;
 }
 
-undefined8 * FUN_18006e460(undefined8 *param_1,ulonglong param_2)
+uint64_t * FUN_18006e460(undefined8 *param_1,ulonglong param_2)
 
 {
   *param_1 = &UNK_1809ff488;
@@ -41287,7 +41287,7 @@ void FUN_18006e640(longlong *param_1)
   FUN_18064e900();
 }
 
-undefined8 * FUN_18006e660(undefined8 *param_1,undefined8 param_2,undefined8 param_3)
+uint64_t * FUN_18006e660(undefined8 *param_1,undefined8 param_2,undefined8 param_3)
 
 {
   ulonglong uVar1;
@@ -41552,7 +41552,7 @@ void FUN_18006edf0(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
   return;
 }
 
-undefined8 FUN_18006eec0(longlong param_1)
+uint64_t FUN_18006eec0(longlong param_1)
 
 {
   undefined8 uVar1;
@@ -41758,7 +41758,7 @@ void FUN_18006f530(longlong param_1)
   return;
 }
 
-undefined8 *
+uint64_t *
 FUN_18006f590(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -45884,7 +45884,7 @@ void FUN_1800744b0(longlong param_1,longlong param_2)
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_1800745f0(undefined8 param_1,longlong param_2)
+uint64_t * FUN_1800745f0(undefined8 param_1,longlong param_2)
 
 {
   undefined8 uVar1;
@@ -46337,7 +46337,7 @@ void FUN_180074ed0(longlong *param_1)
   return;
 }
 
-undefined8 *
+uint64_t *
 FUN_180074f20(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -46348,7 +46348,7 @@ FUN_180074f20(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
   return param_1;
 }
 
-undefined8 * FUN_180074f70(undefined8 *param_1,ulonglong param_2)
+uint64_t * FUN_180074f70(undefined8 *param_1,ulonglong param_2)
 
 {
   *param_1 = &UNK_1809ffa18;
@@ -46358,7 +46358,7 @@ undefined8 * FUN_180074f70(undefined8 *param_1,ulonglong param_2)
   return param_1;
 }
 
-undefined8 *
+uint64_t *
 FUN_180074fb0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -46374,7 +46374,7 @@ FUN_180074fb0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefine
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_180075030(undefined8 *param_1,char param_2,char param_3)
+uint64_t * FUN_180075030(undefined8 *param_1,char param_2,char param_3)
 
 {
   longlong *plVar1;
@@ -46576,7 +46576,7 @@ undefined8 * FUN_180075030(undefined8 *param_1,char param_2,char param_3)
   return param_1;
 }
 
-undefined8 FUN_180075580(undefined8 param_1,ulonglong param_2)
+uint64_t FUN_180075580(undefined8 param_1,ulonglong param_2)
 
 {
   FUN_1800756e0();
@@ -47745,7 +47745,7 @@ void FUN_180076a80(longlong param_1)
   return;
 }
 
-undefined8 FUN_180076b90(longlong param_1)
+uint64_t FUN_180076b90(longlong param_1)
 
 {
   byte bVar1;
@@ -48117,7 +48117,7 @@ LAB_18007738d:
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180077420(longlong param_1,longlong param_2)
+uint64_t FUN_180077420(longlong param_1,longlong param_2)
 
 {
   uint *puVar1;
@@ -50317,7 +50317,7 @@ void FUN_1800783b0(void)
   return;
 }
 
-undefined8 * FUN_1800784e0(undefined8 *param_1,ulonglong param_2)
+uint64_t * FUN_1800784e0(undefined8 *param_1,ulonglong param_2)
 
 {
   undefined8 uVar1;
@@ -52445,7 +52445,7 @@ void FUN_18007940e(void)
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined * FUN_180079430(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void* * FUN_180079430(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 uVar1;
@@ -54958,7 +54958,7 @@ void FUN_18007c790(longlong *param_1)
   return;
 }
 
-undefined8 * FUN_18007c7f0(undefined8 *param_1,undefined8 *param_2)
+uint64_t * FUN_18007c7f0(undefined8 *param_1,undefined8 *param_2)
 
 {
   longlong *plVar1;
@@ -56892,7 +56892,7 @@ void FUN_18007f2cf(void)
   return;
 }
 
-undefined8 * FUN_18007f2f0(undefined8 *param_1)
+uint64_t * FUN_18007f2f0(undefined8 *param_1)
 
 {
   *param_1 = &UNK_180a21690;
@@ -56925,7 +56925,7 @@ undefined8 * FUN_18007f2f0(undefined8 *param_1)
   return param_1;
 }
 
-undefined8 * FUN_18007f3b0(undefined8 *param_1,ulonglong param_2)
+uint64_t * FUN_18007f3b0(undefined8 *param_1,ulonglong param_2)
 
 {
   *param_1 = &UNK_1809fffc8;
@@ -58488,24 +58488,24 @@ void FUN_18007fd60(undefined8 param_1,longlong param_2,undefined8 param_3,longlo
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 // undefined g_function_18004b6f0;
-undefined g_function_18004b6f0;
+void* g_function_18004b6f0;
 // undefined g_function_18006f4c0;
 
-undefined g_function_18006f4c0;
+void* g_function_18006f4c0;
 // undefined g_function_18004c090;
 
-undefined g_function_18004c090;
+void* g_function_18004c090;
 // undefined g_function_180055ed0;
 
-undefined g_function_180055ed0;
+void* g_function_180055ed0;
 
 undefined4 UNK_180d49150;
 
-undefined g_global_data_1800a0f67;
+void* g_global_data_1800a0f67;
 
-undefined g_global_data_1800a127e;
+void* g_global_data_1800a127e;
 
-undefined8 FUN_180779434(void)
+uint64_t FUN_180779434(void)
 
 {
   float fVar1;
@@ -58735,7 +58735,7 @@ undefined8 FUN_180779434(void)
   return 0;
 }
 
-undefined8 FUN_1807794c5(void)
+uint64_t FUN_1807794c5(void)
 
 {
   float fVar1;
@@ -58936,7 +58936,7 @@ undefined8 FUN_1807794c5(void)
   return 0;
 }
 
-undefined8 FUN_1807794dd(int param_1,undefined8 param_2,undefined8 param_3,uint param_4)
+uint64_t FUN_1807794dd(int param_1,undefined8 param_2,undefined8 param_3,uint param_4)
 
 {
   float fVar1;
@@ -59128,7 +59128,7 @@ undefined8 FUN_1807794dd(int param_1,undefined8 param_2,undefined8 param_3,uint 
   return 0;
 }
 
-undefined8 FUN_180779635(int param_1,undefined8 param_2,undefined8 param_3,float param_4)
+uint64_t FUN_180779635(int param_1,undefined8 param_2,undefined8 param_3,float param_4)
 
 {
   float fVar1;
@@ -59197,7 +59197,7 @@ undefined8 FUN_180779635(int param_1,undefined8 param_2,undefined8 param_3,float
   return 0;
 }
 
-undefined8 FUN_1807797e0(longlong param_1,uint param_2)
+uint64_t FUN_1807797e0(longlong param_1,uint param_2)
 
 {
   float fVar1;
@@ -59384,7 +59384,7 @@ undefined8 FUN_1807797e0(longlong param_1,uint param_2)
   return 0;
 }
 
-undefined8 FUN_180779832(undefined8 param_1,undefined8 param_2,uint param_3)
+uint64_t FUN_180779832(undefined8 param_1,undefined8 param_2,uint param_3)
 
 {
   float fVar1;
@@ -59568,23 +59568,23 @@ undefined8 FUN_180779832(undefined8 param_1,undefined8 param_2,uint param_3)
   return 0;
 }
 
-undefined8 FUN_180779d6c(void)
+uint64_t FUN_180779d6c(void)
 
 {
   return 0;
 }
 // undefined g_function_180058c20;
 
-undefined g_function_180058c20;
+void* g_function_180058c20;
 // undefined g_function_18004bb30;
 
-undefined g_function_18004bb30;
+void* g_function_18004bb30;
 
-undefined g_static_data_180d49830;
+void* g_static_data_180d49830;
 
-undefined8 UNK_180d498a0;
+uint64_t UNK_180d498a0;
 undefined4 UNK_180d498a8;
-undefined *UNK_180d498b0;
+void* *UNK_180d498b0;
 undefined1 *UNK_180d498b8;
 undefined4 UNK_180d498c0;
 longlong g_global_long_180d49908;
@@ -59593,19 +59593,19 @@ longlong g_global_long_180d49928;
 longlong g_global_long_180d49930;
 undefined4 UNK_180d49948;
 undefined4 UNK_180d4994c;
-undefined g_static_data_180d49950;
+void* g_static_data_180d49950;
 
-undefined g_static_data_180d49970;
+void* g_static_data_180d49970;
 
-undefined g_static_data_180bfc140;
+void* g_static_data_180bfc140;
 
-undefined g_static_data_1803f48b2;
+void* g_static_data_1803f48b2;
 
-undefined g_global_data_180d49d58;
+void* g_global_data_180d49d58;
 
 longlong g_global_long_180d49d68;
 
-undefined8 UNK_180d49d70;
+uint64_t UNK_180d49d70;
 longlong g_global_long_180d49d78;
 longlong *UNK_system_flags;
 
