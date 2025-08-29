@@ -144,8 +144,8 @@ int initialize_io_thread_pool(void* handle, void* flags, void* mutex_attr, int m
 // 初始化基础资源管理器
 int initialize_base_resource_manager(void)
 {
-  longlong initialization_result;
-  undefined8 string_length_parameter;
+  long long initialization_result;
+  unsigned long long string_length_parameter;
   g_resource_string_1 = 0;
   g_resource_id_1 = 6;
   strcpy_s(&g_resource_string_1,0x10,&string_source_001,string_length_parameter,0xfffffffffffffffe);
@@ -155,8 +155,8 @@ int initialize_base_resource_manager(void)
 // 初始化纹理资源管理器
 int initialize_texture_resource_manager(void)
 {
-  longlong initialization_result;
-  undefined8 string_length_parameter;
+  long long initialization_result;
+  unsigned long long string_length_parameter;
   resource_data_buffer_pointer = &g_resource_data_buffer;
   resource_buffer_value_pointer = &resource_buffer_1;
   resource_buffer_1 = 0;

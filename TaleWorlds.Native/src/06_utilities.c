@@ -883,7 +883,7 @@ data renderDrawCallData;
 
 // 函数: data renderDescriptorInitialize;
 data renderDescriptorInitialize;
-data DAT_180bf9c30;
+data renderDescriptorParam1;
 data DAT_180bf9c38;
 data DAT_180bf9c40;
 data DAT_180bf9c48;
@@ -1467,11 +1467,11 @@ data cameraBufferPool22;
 data cameraBufferPool23;
 data cameraBufferPool24;
 data cameraBufferPool25;
-data unknown_1801562a0;
-data unknown_1801562c0;
-data unknown_1801562e0;
-data unknown_180a073f0;
-data unknown_180a07400;
+data cameraBufferPool26;
+data cameraBufferPool27;
+data cameraBufferPool28;
+data cameraBufferPool29;
+data cameraBufferPool30;
 data unknown_180a07420;
 data unknown_180a07438;
 data unknown_180a07450;
@@ -81331,7 +81331,7 @@ void renderDescriptorInitialize(void)
 void renderCommandInitialize(void)
 
 {
-  _DAT_180bf9c30 = &threadLocalStorageCleanup;
+  _renderDescriptorParam1 = &threadLocalStorageCleanup;
   return;
 }
 
