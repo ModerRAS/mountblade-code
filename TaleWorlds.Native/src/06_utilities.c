@@ -1047,30 +1047,30 @@ data DAT_180bfa350;
 data DAT_180bfa358;
 data DAT_180bfa360;
 data DAT_180bfa368;
-data DAT_180bfa3e8;
-data DAT_180bfa3f0;
-data DAT_180bfa3f8;
-data DAT_180bfa400;
-data DAT_180bfa480;
-data DAT_180bfa488;
-data DAT_180bfa490;
-data DAT_180bfa498;
-data DAT_180bfa518;
-data DAT_180bfa520;
-data DAT_180bfa528;
-data DAT_180bfa530;
-data DAT_180bfa5b0;
-data DAT_180bfa5b8;
-data DAT_180bfa5c0;
-data DAT_180bfa5c8;
-data DAT_180bfa648;
-data DAT_180bfa650;
-data DAT_180bfa658;
-data DAT_180bfa660;
-data DAT_180bfa6e0;
-data DAT_180bfa6e8;
-data DAT_180bfa6f0;
-data DAT_180bfa6f8;
+data particleEmissionRate;  /* 原: DAT_180bfa3e8 */
+data particleSpawnPosition;  /* 原: DAT_180bfa3f0 */
+data particleSpawnDirection;  /* 原: DAT_180bfa3f8 */
+data particleSpawnColor;  /* 原: DAT_180bfa400 */
+data particleSizeRange;  /* 原: DAT_180bfa480 */
+data particleLifeRange;  /* 原: DAT_180bfa488 */
+data particleSpeedRange;  /* 原: DAT_180bfa490 */
+data particleRotationRange;  /* 原: DAT_180bfa498 */
+data particleGravity;  /* 原: DAT_180bfa518 */
+data particleWindEffect;  /* 原: DAT_180bfa520 */
+data particleTurbulence;  /* 原: DAT_180bfa528 */
+data particleCollisionData;  /* 原: DAT_180bfa530 */
+data particleTextureData;  /* 原: DAT_180bfa5b0 */
+data particleShaderData;  /* 原: DAT_180bfa5b8 */
+data particleBlendMode;  /* 原: DAT_180bfa5c0 */
+data particleDepthTest;  /* 原: DAT_180bfa5c8 */
+data particleSortMode;  /* 原: DAT_180bfa648 */
+data particleCullingData;  /* 原: DAT_180bfa650 */
+data particleLodData;  /* 原: DAT_180bfa658 */
+data particleBatchData;  /* 原: DAT_180bfa660 */
+data postProcessExposure;  /* 原: DAT_180bfa6e0 */
+data postProcessContrast;  /* 原: DAT_180bfa6e8 */
+data postProcessSaturation;  /* 原: DAT_180bfa6f0 */
+data postProcessBrightness;  /* 原: DAT_180bfa6f8 */
 data particleSimulationData;
 data particleRenderData;
 data particleLifetimeData;
@@ -1079,24 +1079,24 @@ data postProcessChain;
 data postProcessSettings;
 data postProcessBuffer;
 data postProcessUniforms;
-data DAT_180bfa780;
-data DAT_180bfa788;
-data DAT_180bfa790;
-data DAT_180bfa798;
-data DAT_180bfa818;
-data DAT_180bfa820;
-data DAT_180bfa828;
-data DAT_180bfa830;
-data DAT_180bfa8b0;
-data DAT_180bfa8b8;
-data DAT_180bfa8c0;
-data DAT_180bfa8c8;
-data DAT_180bfa948;
-data DAT_180bfa950;
-data DAT_180bfa958;
-data DAT_180bfa960;
-data DAT_180bfa9e0;
-data DAT_180bfa9e8;
+data postProcessBloom;  /* 原: DAT_180bfa780 */
+data postProcessVignette;  /* 原: DAT_180bfa788 */
+data postProcessDepthOfField;  /* 原: DAT_180bfa790 */
+data postProcessMotionBlur;  /* 原: DAT_180bfa798 */
+data postProcessAmbientOcclusion;  /* 原: DAT_180bfa818 */
+data postProcessScreenReflection;  /* 原: DAT_180bfa820 */
+data postProcessAntiAliasing;  /* 原: DAT_180bfa828 */
+data postProcessColorGrading;  /* 原: DAT_180bfa830 */
+data postProcessLensFlare;  /* 原: DAT_180bfa8b0 */
+data postProcessLensDistortion;  /* 原: DAT_180bfa8b8 */
+data postProcessChromaticAberration;  /* 原: DAT_180bfa8c0 */
+data postProcessFilmGrain;  /* 原: DAT_180bfa8c8 */
+data postProcessSharpen;  /* 原: DAT_180bfa948 */
+data postProcessBlur;  /* 原: DAT_180bfa950 */
+data postProcessNoise;  /* 原: DAT_180bfa958 */
+data postProcessGamma;  /* 原: DAT_180bfa960 */
+data renderTargetWidth;  /* 原: DAT_180bfa9e0 */
+data renderTargetHeight;  /* 原: DAT_180bfa9e8 */
 data DAT_180bfa9f0;
 data DAT_180bfa9f8;
 data DAT_180bfaa78;
@@ -1329,8 +1329,8 @@ data fileDirectoryTree;
 data systemStatusFlag4;
 data fileAccessTable;
 data DAT_180c8ed10;
-data unknown_180a3c410;
-data unknown_180a3c428;
+data networkConnectionPool;
+data networkPacketQueue;
 data DAT_180c8ed08;
 data DAT_180c8ed68;
 data DAT_180c8ed00;
@@ -1352,15 +1352,15 @@ char DAT_180c82860;
 data allocatorControlFlag;
 data DAT_180c86920;
 void *ExceptionList;
-data unknown_180046dd0;
+data databaseSchemaData;
 data allocatorMemoryPool;
 data DAT_180c86960;
 data DAT_180bf52b8;
 data DAT_180bf52bc;
 data DAT_180bf5248;
 data DAT_180c8ed60;
-data unknown_180047d20;
-data unknown_1800adc10;
+data encryptionKeyData;
+data encryptionAlgorithm;
 data allocatorHeapBase;
 data allocatorHeapSize;
 data allocatorHeapFlags;
@@ -1375,21 +1375,21 @@ data DAT_180d49170;
 data DAT_180d49178;
 data eventQueueState;
 data DAT_180a001d0;
-data unknown_180083380;
-data unknown_180a00030;
-data unknown_180a00100;
-data unknown_180a00168;
+data compressionBuffer;
+data compressionLevel;
+data compressionAlgorithm;
+data compressionStream;
 
 // 函数: data FUN_180941920;
 data FUN_180941920;
-data unknown_180a009a8;
-data unknown_180a00a18;
-data unknown_180a00ae8;
+data serializationBuffer;
+data serializationContext;
+data serializationTypeData;
 
 // 函数: data FUN_1809419e0;
 data FUN_1809419e0;
-data unknown_180a015f0;
-data unknown_180a015fc;
+data serializationObjectPool;
+data serializationReferenceTable;
 data unknown_180a01604;
 data unknown_180a01610;
 data DAT_180a01440;
@@ -4460,7 +4460,7 @@ LAB_180891a52:
 
 
 
-uint64 FUN_180891a80(longlong resourceHandle,longlong memorySize)
+uint64 check_file_access(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
@@ -4486,8 +4486,8 @@ uint64 FUN_180891a80(longlong resourceHandle,longlong memorySize)
 
 
 
-// 函数: void FUN_180891af0(longlong resourceHandle,longlong memorySize)
-void FUN_180891af0(longlong resourceHandle,longlong memorySize)
+// 函数: void lock_file(longlong resourceHandle,longlong memorySize)
+void lock_file(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
@@ -4504,7 +4504,7 @@ void FUN_180891af0(longlong resourceHandle,longlong memorySize)
 
 
 
-uint64 FUN_180891b40(longlong resourceHandle,longlong memorySize)
+uint64 unlock_file(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
@@ -9453,7 +9453,7 @@ LAB_1808962af:
         localUInt = localUInt & 0xffffffff00000000;
         plStack_108 = (longlong *)&unknown_180982dc0;
         alocalInt[0] = *(int *)(uVar6 + lVar5 * 4);
-        FUN_180891af0(&plStack_108,*(uint64 *)(resourceHandle + 0x58));
+        lock_file(&plStack_108,*(uint64 *)(resourceHandle + 0x58));
         lVar5 = lVar5 + -1;
       } while (-1 < lVar5);
     }
@@ -80247,8 +80247,8 @@ void ConfigureMemorySettings(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941630(void) # 内存验证函数
-void FUN_180941630(void) # 内存验证函数
+// 函数: void ValidateMemoryConfiguration(void) # 内存验证函数
+void ValidateMemoryConfiguration(void) # 内存验证函数
 
 {
   _errorHandlerState1 = &threadLocalStorageCleanup;
