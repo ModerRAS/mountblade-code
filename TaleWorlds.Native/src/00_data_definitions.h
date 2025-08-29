@@ -779,7 +779,7 @@ int initialize_ui_module(void)
   data_180bf9288 = 0;
   _data_180bf9280 = 0x12;
   strcpy_s(&data_180bf9288,0x40,&g_moduleString3,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_030);
+  init_result = execute_function(resource_manager_7_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_scripting_module(void)
@@ -791,7 +791,7 @@ int initialize_scripting_module(void)
   data_180bf92e8 = 0;
   _data_180bf92e0 = 0x12;
   strcpy_s(&data_180bf92e8,0x40,&g_moduleString4,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_031);
+  init_result = execute_function(resource_manager_8_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_audio_engine(void)
@@ -803,7 +803,7 @@ int initialize_audio_engine(void)
   data_180bf9348 = 0;
   _data_180bf9340 = 0xd;
   strcpy_s(&data_180bf9348,0x40,&g_moduleString5,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_032);
+  init_result = execute_function(resource_manager_9_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_video_subsystem(void)
@@ -815,7 +815,7 @@ int initialize_video_subsystem(void)
   data_180bf93a8 = 0;
   _data_180bf93a0 = 0x10;
   strcpy_s(&data_180bf93a8,0x40,&g_moduleString6,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_033);
+  init_result = execute_function(resource_manager_10_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_input_handler(void)
@@ -827,7 +827,7 @@ int initialize_input_handler(void)
   data_180bf9408 = 0;
   _data_180bf9400 = 0x17;
   strcpy_s(&data_180bf9408,0x40,&g_moduleString7,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_034);
+  init_result = execute_function(resource_manager_11_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_network_stack(void)
@@ -839,7 +839,7 @@ int initialize_network_stack(void)
   data_180bf9468 = 0;
   _data_180bf9460 = 0x10;
   strcpy_s(&data_180bf9468,0x40,&g_moduleString8,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_035);
+  init_result = execute_function(resource_manager_12_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_file_system(void)
@@ -851,7 +851,7 @@ int initialize_file_system(void)
   data_180bf94c8 = 0;
   _data_180bf94c0 = 0xd;
   strcpy_s(&data_180bf94c8,0x40,&g_moduleString9,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_036);
+  init_result = execute_function(resource_manager_13_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_memory_manager(void)
@@ -863,7 +863,7 @@ int initialize_memory_manager(void)
   data_180bf9528 = 0;
   _data_180bf9520 = 0xc;
   strcpy_s(&data_180bf9528,0x40,&g_moduleString10,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_037);
+  init_result = execute_function(resource_manager_14_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_thread_manager(void)
@@ -875,7 +875,7 @@ int initialize_thread_manager(void)
   data_180bf9588 = 0;
   _data_180bf9580 = 0x16;
   strcpy_s(&data_180bf9588,0x40,&g_moduleString11,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_038);
+  init_result = execute_function(resource_manager_15_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_event_system(void)
@@ -887,7 +887,7 @@ int initialize_event_system(void)
   data_180bf95e8 = 0;
   _data_180bf95e0 = 0x13;
   strcpy_s(&data_180bf95e8,0x40,&g_moduleString12,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_039);
+  init_result = execute_function(resource_manager_16_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_timer_service(void)
@@ -899,7 +899,7 @@ int initialize_timer_service(void)
   data_180bf9648 = 0;
   _data_180bf9640 = 0x14;
   strcpy_s(&data_180bf9648,0x40,&g_moduleString13,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_040);
+  init_result = execute_function(resource_manager_17_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_logger_system(void)
@@ -911,7 +911,7 @@ int initialize_logger_system(void)
   data_180bf96a8 = 0;
   _data_180bf96a0 = 0x17;
   strcpy_s(&data_180bf96a8,0x40,&data_180a22cb0,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_041);
+  init_result = execute_function(resource_manager_18_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_config_system(void)
@@ -923,7 +923,7 @@ int initialize_config_system(void)
   data_180bf9708 = 0;
   _data_180bf9700 = 0x17;
   strcpy_s(&data_180bf9708,0x40,&g_moduleString14,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_042);
+  init_result = execute_function(resource_manager_19_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_resource_cache(void)
@@ -935,7 +935,7 @@ int initialize_resource_cache(void)
   data_180bf9768 = 0;
   _data_180bf9760 = 0x20;
   strcpy_s(&data_180bf9768,0x40,&g_moduleString15,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_043);
+  init_result = execute_function(resource_manager_20_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_asset_loader(void)
@@ -947,7 +947,7 @@ int initialize_asset_loader(void)
   data_180bf97c8 = 0;
   _data_180bf97c0 = 0x13;
   strcpy_s(&data_180bf97c8,0x40,&g_moduleString16,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_044);
+  init_result = execute_function(resource_manager_21_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_shader_system(void)
@@ -959,7 +959,7 @@ int initialize_shader_system(void)
   data_180bf9828 = 0;
   _data_180bf9820 = 0x1e;
   strcpy_s(&data_180bf9828,0x40,&g_moduleString17,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_045);
+  init_result = execute_function(resource_manager_22_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_texture_manager(void)
@@ -971,7 +971,7 @@ int initialize_texture_manager(void)
   data_180bf9888 = 0;
   _data_180bf9880 = 0x1b;
   strcpy_s(&data_180bf9888,0x40,&g_moduleString18,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_046);
+  init_result = execute_function(resource_manager_23_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_mesh_system(void)
@@ -983,7 +983,7 @@ int initialize_mesh_system(void)
   data_180bf98e8 = 0;
   _data_180bf98e0 = 0x1b;
   strcpy_s(&data_180bf98e8,0x40,&g_moduleString19,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_047);
+  init_result = execute_function(resource_manager_24_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_animation_system(void)
@@ -995,7 +995,7 @@ int initialize_animation_system(void)
   data_180bf9948 = 0;
   _data_180bf9940 = 0x1c;
   strcpy_s(&data_180bf9948,0x40,&g_moduleString20,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_048);
+  init_result = execute_function(resource_manager_25_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_particle_system(void)
@@ -1007,7 +1007,7 @@ int initialize_particle_system(void)
   data_180bf99a8 = 0;
   _data_180bf99a0 = 0x1d;
   strcpy_s(&data_180bf99a8,0x40,&g_moduleString21,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_049);
+  init_result = execute_function(resource_manager_26_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_physics_engine(void)
@@ -1019,7 +1019,7 @@ int initialize_physics_engine(void)
   data_180bf9a08 = 0;
   _data_180bf9a00 = 0x20;
   strcpy_s(&data_180bf9a08,0x40,&g_moduleString22,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_050);
+  init_result = execute_function(resource_manager_27_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_collision_system(void)
@@ -1031,7 +1031,7 @@ int initialize_collision_system(void)
   data_180bf9a68 = 0;
   _data_180bf9a60 = 0x1d;
   strcpy_s(&data_180bf9a68,0x40,&g_moduleString23,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_051);
+  init_result = execute_function(resource_manager_28_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_ai_system(void)
@@ -1043,7 +1043,7 @@ int initialize_ai_system(void)
   g_string_buffer_180bf9ac8 = 0;
   g_string_manager_type_180bf9ac0 = 0x1c;
   strcpy_s(&g_string_buffer_180bf9ac8,0x40,&data_180a22d48,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_052);
+  init_result = execute_function(resource_manager_29_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_navigation_system(void)
@@ -1055,7 +1055,7 @@ int initialize_navigation_system(void)
   data_180bf9b28 = 0;
   _data_180bf9b20 = 0x17;
   strcpy_s(&data_180bf9b28,0x40,&g_moduleString24,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_053);
+  init_result = execute_function(resource_manager_30_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_ui_framework(void)
@@ -1067,7 +1067,7 @@ int initialize_ui_framework(void)
   data_180bf9b88 = 0;
   _data_180bf9b80 = 0x1f;
   strcpy_s(&data_180bf9b88,0x40,&g_moduleString25,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_054);
+  init_result = execute_function(resource_manager_31_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_scripting_engine(void)
@@ -1079,7 +1079,7 @@ int initialize_scripting_engine(void)
   data_180bf9be8 = 0;
   _data_180bf9be0 = 0x21;
   strcpy_s(&data_180bf9be8,0x40,&g_moduleString26,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_055);
+  init_result = execute_function(resource_manager_32_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_database_system(void)
@@ -1091,7 +1091,7 @@ int initialize_database_system(void)
   data_180bf9c48 = 0;
   _data_180bf9c40 = 0x25;
   strcpy_s(&data_180bf9c48,0x40,&g_moduleString27,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_056);
+  init_result = execute_function(resource_manager_33_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_network_manager(void)
@@ -1103,7 +1103,7 @@ int initialize_network_manager(void)
   data_180bf9ca8 = 0;
   _data_180bf9ca0 = 0x23;
   strcpy_s(&data_180bf9ca8,0x40,&g_moduleString28,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_057);
+  init_result = execute_function(resource_manager_34_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_security_system(void)
@@ -1115,7 +1115,7 @@ int initialize_security_system(void)
   data_180bf9d08 = 0;
   _data_180bf9d00 = 0x1e;
   strcpy_s(&data_180bf9d08,0x40,&g_moduleString29,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_058);
+  init_result = execute_function(resource_manager_35_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_encryption_service(void)
@@ -1127,7 +1127,7 @@ int initialize_encryption_service(void)
   data_180bf9d68 = 0;
   _data_180bf9d60 = 0x1e;
   strcpy_s(&data_180bf9d68,0x40,&g_moduleString30,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_059);
+  init_result = execute_function(resource_manager_36_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_authentication_system(void)
@@ -1139,7 +1139,7 @@ int initialize_authentication_system(void)
   data_180bf9dc8 = 0;
   _data_180bf9dc0 = 0x12;
   strcpy_s(&data_180bf9dc8,0x40,&g_moduleString31,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_060);
+  init_result = execute_function(resource_manager_37_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_permission_manager(void)
@@ -1151,7 +1151,7 @@ int initialize_permission_manager(void)
   data_180bf9e28 = 0;
   _data_180bf9e20 = 0x13;
   strcpy_s(&data_180bf9e28,0x40,&g_moduleString32,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_061);
+  init_result = execute_function(resource_manager_38_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_session_manager(void)
@@ -1163,7 +1163,7 @@ int initialize_session_manager(void)
   data_180bf9e88 = 0;
   _data_180bf9e80 = 0x13;
   strcpy_s(&data_180bf9e88,0x40,&g_moduleString33,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_062);
+  init_result = execute_function(resource_manager_39_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_user_profile_system(void)
@@ -1175,7 +1175,7 @@ int initialize_user_profile_system(void)
   data_180bf9ee8 = 0;
   _data_180bf9ee0 = 0x16;
   strcpy_s(&data_180bf9ee8,0x40,&g_moduleString34,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_063);
+  init_result = execute_function(resource_manager_40_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_save_system(void)
@@ -1187,7 +1187,7 @@ int initialize_save_system(void)
   data_180bf9f48 = 0;
   _data_180bf9f40 = 0x1a;
   strcpy_s(&data_180bf9f48,0x40,&g_moduleString35,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_064);
+  init_result = execute_function(resource_manager_41_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_achievement_system(void)
@@ -1199,7 +1199,7 @@ int initialize_achievement_system(void)
   data_180bf9fa8 = 0;
   _data_180bf9fa0 = 0x15;
   strcpy_s(&data_180bf9fa8,0x40,&g_moduleString36,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_065);
+  init_result = execute_function(resource_manager_42_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_statistics_system(void)
@@ -1211,7 +1211,7 @@ int initialize_statistics_system(void)
   data_180bfa008 = 0;
   _data_180bfa000 = 0x13;
   strcpy_s(&data_180bfa008,0x40,&g_moduleString37,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_066);
+  init_result = execute_function(resource_manager_43_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_analytics_service(void)
@@ -1223,7 +1223,7 @@ int initialize_analytics_service(void)
   data_180bfa068 = 0;
   _data_180bfa060 = 0x13;
   strcpy_s(&data_180bfa068,0x40,&g_moduleString38,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_067);
+  init_result = execute_function(resource_manager_44_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_debug_system(void)
@@ -1235,7 +1235,7 @@ int initialize_debug_system(void)
   data_180bfa0c8 = 0;
   _data_180bfa0c0 = 0x1b;
   strcpy_s(&data_180bfa0c8,0x40,&g_moduleString39,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_068);
+  init_result = execute_function(resource_manager_45_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_profiling_system(void)
@@ -1247,7 +1247,7 @@ int initialize_profiling_system(void)
   data_180bfa128 = 0;
   _data_180bfa120 = 0x19;
   strcpy_s(&data_180bfa128,0x40,&g_moduleString40,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_069);
+  init_result = execute_function(resource_manager_46_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_crash_handler(void)
@@ -1259,7 +1259,7 @@ int initialize_crash_handler(void)
   data_180bfa188 = 0;
   _data_180bfa180 = 0x15;
   strcpy_s(&data_180bfa188,0x40,&g_moduleString41,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_070);
+  init_result = execute_function(resource_manager_47_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_error_reporting(void)
@@ -1271,7 +1271,7 @@ int initialize_error_reporting(void)
   data_180bfa1e8 = 0;
   _data_180bfa1e0 = 0x28;
   strcpy_s(&data_180bfa1e8,0x40,&data_180a22fd0,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_071);
+  init_result = execute_function(resource_manager_48_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_update_system(void)
@@ -1283,7 +1283,7 @@ int initialize_update_system(void)
   data_180bfa248 = 0;
   _data_180bfa240 = 0x23;
   strcpy_s(&data_180bfa248,0x40,&data_180a22fa8,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_072);
+  init_result = execute_function(resource_manager_49_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_patch_manager(void)
@@ -1295,32 +1295,32 @@ int initialize_patch_manager(void)
   data_180bfa2a8 = 0;
   _data_180bfa2a0 = 0x17;
   strcpy_s(&data_180bfa2a8,0x40,&g_moduleString42,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_073);
+  init_result = execute_function(resource_manager_50_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_diagnostics_system(void)
 {
   longlong init_result;
-  init_result = execute_function(callback_function_074);
+  init_result = execute_function(resource_manager_51_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_monitoring_service(void)
 {
   longlong init_result;
-  init_result = execute_function(callback_function_075);
+  init_result = execute_function(resource_manager_52_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_health_checker(void)
 {
   longlong init_result;
-  init_result = execute_function(callback_function_076);
+  init_result = execute_function(resource_manager_53_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_worker_thread_pool(undefined8 handle,undefined8 flags,undefined8 mutex_attr,undefined8 mutex_type)
 {
   longlong init_result;
   _Mtx_init_in_situ(0x180c91f70,2,mutex_attr,mutex_type,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_077);
+  init_result = execute_function(resource_manager_54_init_function);
   return (init_result != 0) - 1;
 }
   data_180bfa368 = 0;
@@ -1441,7 +1441,7 @@ int initialize_backup_system(void)
   data_180bfc140 = 0;
   _data_180bfc160 = 0;
   _data_180bfc168 = 0;
-  init_result = execute_function(callback_function_078);
+  init_result = execute_function(resource_manager_55_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_recovery_system(void)
@@ -1453,7 +1453,7 @@ int initialize_recovery_system(void)
   _data_180bfaed0 = 0;
   _data_180bfaed8 = 0;
   _data_180bfaee0 = 0;
-  init_result = execute_function(callback_function_079);
+  init_result = execute_function(resource_manager_56_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_priority_thread_pool(undefined8 handle,undefined8 flags,undefined8 mutex_attr,undefined8 mutex_type)
@@ -1464,7 +1464,7 @@ int initialize_priority_thread_pool(undefined8 handle,undefined8 flags,undefined
   _data_180c92058 = &data_180c92068;
   _data_180c92060 = 0;
   data_180c92068 = 0;
-  init_result = execute_function(callback_function_080);
+  init_result = execute_function(resource_manager_57_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_maintenance_service(void)
@@ -1476,7 +1476,7 @@ int initialize_maintenance_service(void)
   data_180bfaf08 = 0;
   _data_180bfaf00 = 0x10;
   strcpy_s(&data_180bfaf08,0x400,&g_largeString1,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_081);
+  init_result = execute_function(resource_manager_58_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_optimization_system(void)
@@ -1488,7 +1488,7 @@ int initialize_optimization_system(void)
   data_180bfb328 = 0;
   _data_180bfb320 = 3;
   strcpy_s(&data_180bfb328,0x400,&g_largeString2,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_082);
+  init_result = execute_function(resource_manager_59_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_performance_monitor(void)
@@ -1500,13 +1500,13 @@ int initialize_performance_monitor(void)
   data_180bfb748 = 0;
   _data_180bfb740 = 5;
   strcpy_s(&data_180bfb748,0x400,&g_largeString3,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_083);
+  init_result = execute_function(resource_manager_60_init_function);
   return (init_result != 0) - 1;
 }
   data_180bf6060 = 0;
   _data_180bf6058 = 0xd;
   strcpy_s(&data_180bf6060,0x20,&g_configString1,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_084);
+  init_result = execute_function(resource_manager_61_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_load_balancer(void)
@@ -1518,13 +1518,13 @@ int initialize_load_balancer(void)
   data_180bf64b0 = 0;
   _data_180bf64a8 = 9;
   strcpy_s(&data_180bf64b0,0x20,&g_configString2,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_085);
+  init_result = execute_function(resource_manager_62_init_function);
   return (init_result != 0) - 1;
 }
   data_180bf6510 = 0;
   _data_180bf6508 = 0xd;
   strcpy_s(&data_180bf6510,0x20,&g_configString1,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_086);
+  init_result = execute_function(resource_manager_63_init_function);
   return (init_result != 0) - 1;
 }
 int initialize_scaling_system(void)
@@ -1536,7 +1536,7 @@ int initialize_scaling_system(void)
   data_180bf6570 = 0;
   _data_180bf6568 = 9;
   strcpy_s(&data_180bf6570,0x20,&g_configString2,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_087);
+  init_result = execute_function(resource_manager_64_init_function);
   return (init_result != 0) - 1;
 }
   data_180c82841 = 1;
