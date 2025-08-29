@@ -412,11 +412,11 @@ void* g_global_data_1809ff918;
 
 void* g_global_data_1809ff938;
 
-void* g_global_data_1809ff958;
+void* g_global_storage_system;
 
 void* g_global_data_1809ff9a8;
 
-void* g_global_data_1809ffa18;
+void* g_global_weapon_system;
 
 void* g_global_data_180a02e68;
 
