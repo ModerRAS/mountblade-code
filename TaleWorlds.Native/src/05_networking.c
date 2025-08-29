@@ -2,7 +2,7 @@
 
 // 05_networking.c - 908 个函数
 
-// 函数: void* NetworkInitializeSystem;
+// 网络初始化系统函数指针
 void* NetworkInitializeSystem;
 void* g_networkSessionId;
 void* g_networkClientId;
