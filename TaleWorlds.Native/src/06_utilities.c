@@ -1210,7 +1210,7 @@ data resourceCacheStrategy;  /* 原: systemCallVar5; */
 data renderVertexShaderData;  /* 原: aiSystemVar1; */
 data resourceCacheCompression;  /* 原: aiSystemVar2; */
 data aiSystemVar3;  /* 原: DAT_180a2c338 */
-data aiSystemVar4;;
+data aiSystemVar4;  /* 原: DAT_180a2c510 */
 data sceneManagerVar1;;
 data resourceCacheBuffer1;
 data resourceCacheBuffer2;
@@ -1764,7 +1764,7 @@ data unknown_180a30330;
 data unknown_180a30368;
 data resourceCacheState;
 data resourcePoolState;
-data DAT_180bfbcc0;
+data resourceCacheControlBuffer;
 data resourceControlFlag1;
 data resourceControlFlag2;
 data unknown_180a30568;

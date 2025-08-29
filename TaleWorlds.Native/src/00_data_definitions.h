@@ -1732,25 +1732,25 @@ void WotsMainNativeCoreCLR(unsigned long long handle)
           puStack_2c8 = &g_threadString2;
           uStack_2b0 = 0;
           puStack_2c0 = (unsigned char *)0x0;
-          uStack_2b8 = 0;
-          if (puVar17 != (undefined *)0x0) {
-            lVar20 = -1;
+          stack_var_2b8 = 0;
+          if (string_ptr_17 != (undefined *)0x0) {
+            string_length = -1;
             do {
-              lVar9 = lVar20;
-              lVar20 = lVar9 + 1;
-            } while (puVar17[lVar20] != '\0');
-            if ((int)lVar20 != 0) {
-              iVar19 = (int)lVar9 + 2;
-              iVar6 = iVar19;
-              if (iVar19 < STRING_BUFFER_SIZE) {
-                iVar6 = STRING_BUFFER_SIZE;
+              prev_length = string_length;
+              string_length = prev_length + 1;
+            } while (string_ptr_17[string_length] != '\0');
+            if ((int)string_length != 0) {
+              buffer_size = (int)prev_length + 2;
+              alloc_size = buffer_size;
+              if (buffer_size < STRING_BUFFER_SIZE) {
+                alloc_size = STRING_BUFFER_SIZE;
               }
-              puVar11 = (unsigned char *)FUN_18062b420(_data_180c8ed18,(long long)iVar6,0x13);
-              *puVar11 = 0;
-              puStack_2c0 = puVar11;
-              uVar7 = allocate_helper_buffer(puVar11);
-              uStack_2b0 = CONCAT44(uStack_2b0._4_4_,uVar7);
-              memcpy(puVar11,puVar17,iVar19);
+              buffer_ptr = (unsigned char *)FUN_18062b420(_data_180c8ed18,(long long)alloc_size,0x13);
+              *buffer_ptr = 0;
+              stack_ptr_2c0 = buffer_ptr;
+              buffer_handle = allocate_helper_buffer(buffer_ptr);
+              stack_var_2b0 = CONCAT44(stack_var_2b0._4_4_,buffer_handle);
+              memcpy(buffer_ptr,string_ptr_17,buffer_size);
             }
           }
           uStack_2b8 = 0;
