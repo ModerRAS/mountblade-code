@@ -5208,17 +5208,17 @@ void* * NetworkGetThreadLocalStorage(void)
 
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-              0x48) < _DAT_180c4ea90) {
-    FUN_1808fcb90(&DAT_180c4ea90);
-    if (_DAT_180c4ea90 == -1) {
-      _DAT_180c4ea80 = 0;
+              0x48) < _networkConnectionLimit;  /* 原: DAT_180c4ea90 */) {
+    FUN_1808fcb90(&networkConnectionLimit;  /* 原: DAT_180c4ea90 */);
+    if (_networkConnectionLimit;  /* 原: DAT_180c4ea90 */ == -1) {
+      _networkTimeoutMin;  /* 原: DAT_180c4ea80 */ = 0;
       uRam0000000180c4ea84 = 0;
       uRam0000000180c4ea88 = 0;
       uRam0000000180c4ea8c = 0;
-      FUN_1808fcb30(&DAT_180c4ea90);
+      FUN_1808fcb30(&networkConnectionLimit;  /* 原: DAT_180c4ea90 */);
     }
   }
-  return &DAT_180c4ea80;
+  return &networkTimeoutMin;  /* 原: DAT_180c4ea80 */;
 }
 
 
@@ -10577,12 +10577,12 @@ uint * FUN_18084cde0(longlong socketHandle,uint *dataBuffer)
         connectionIndex = *(uint *)((longlong)ptimeoutValue + 0x34);
       }
       *dataBuffer = connectionIndex;
-      if ((*(int *)(connectionInfo + 0x48) < _DAT_180c4ea98) &&
-         (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-        _DAT_180c4ea94 = 0;
-        FUN_1808fcb30(&DAT_180c4ea98);
+      if ((*(int *)(connectionInfo + 0x48) < _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */) &&
+         (FUN_1808fcb90(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */), _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */ == -1)) {
+        _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */ = 0;
+        FUN_1808fcb30(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */);
       }
-      if (*(int *)(ptimeoutValue + 0x14) != _DAT_180c4ea94) {
+      if (*(int *)(ptimeoutValue + 0x14) != _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */) {
         pdataBuffer = *(longlong **)(socketHandle + 0x78);
         pnetworkTimeout1 = pdataBuffer;
         while( true ) {
@@ -10721,12 +10721,12 @@ uint * FUN_18084cde8(longlong socketHandle,uint *dataBuffer)
         connectionIndex = *(uint *)((longlong)ptimeoutValue + 0x34);
       }
       *dataBuffer = connectionIndex;
-      if ((*(int *)(connectionInfo + 0x48) < _DAT_180c4ea98) &&
-         (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-        _DAT_180c4ea94 = 0;
-        FUN_1808fcb30(&DAT_180c4ea98);
+      if ((*(int *)(connectionInfo + 0x48) < _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */) &&
+         (FUN_1808fcb90(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */), _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */ == -1)) {
+        _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */ = 0;
+        FUN_1808fcb30(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */);
       }
-      if (*(int *)(ptimeoutValue + 0x14) != _DAT_180c4ea94) {
+      if (*(int *)(ptimeoutValue + 0x14) != _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */) {
         pdataBuffer = *(longlong **)(socketHandle + 0x78);
         pnetworkTimeout1 = pdataBuffer;
         while( true ) {
@@ -10815,13 +10815,13 @@ void FUN_18084cf13(longlong socketHandle,uint64_t *dataBuffer,uint64_t *bufferCa
       dataPointer = *(uint *)((longlong)bufferCapacity + 0x34);
     }
     *unaff_RDI = dataPointer;
-    if ((*(int *)(socketDescriptor + 0x48) < _DAT_180c4ea98) &&
-       (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-      _DAT_180c4ea94 = unaff_R12D;
-      FUN_1808fcb30(&DAT_180c4ea98);
+    if ((*(int *)(socketDescriptor + 0x48) < _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */) &&
+       (FUN_1808fcb90(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */), _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */ == -1)) {
+      _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */ = unaff_R12D;
+      FUN_1808fcb30(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */);
     }
     dataPointer = (uint)unaff_RBP;
-    if (*(int *)(unaff_RBX + 0x14) != _DAT_180c4ea94) {
+    if (*(int *)(unaff_RBX + 0x14) != _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */) {
       pconnectionInfo = *(longlong **)(unaff_RSI + 0x78);
       pnetworkTimeout0 = pconnectionInfo;
       while( true ) {
@@ -10968,14 +10968,14 @@ void FUN_18084d068(void)
   uint in_stack_00000050;
   
   do {
-    FUN_1808fcb90(&DAT_180c4ea98);
-    if (_DAT_180c4ea98 == -1) {
-      _DAT_180c4ea94 = unaff_R12D;
-      FUN_1808fcb30(&DAT_180c4ea98);
+    FUN_1808fcb90(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */);
+    if (_networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */ == -1) {
+      _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */ = unaff_R12D;
+      FUN_1808fcb30(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */);
     }
     do {
       bufferCapacity = (uint)unaff_RBP;
-      if (*(int *)(unaff_RBX + 0x14) != _DAT_180c4ea94) {
+      if (*(int *)(unaff_RBX + 0x14) != _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */) {
         psocketDescriptor = *(longlong **)(unaff_RSI + 0x78);
         plVar9 = psocketDescriptor;
         while( true ) {
@@ -11029,7 +11029,7 @@ LAB_18084cfd9:
         bufferCapacity = *(uint *)((longlong)unaff_RBX + 0x34);
       }
       *unaff_RDI = bufferCapacity;
-    } while (_DAT_180c4ea98 <= *unaff_R15);
+    } while (_networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */ <= *unaff_R15);
   } while( true );
 }
 
@@ -12035,14 +12035,14 @@ void* * FUN_18084da10(void)
 
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-              0x48) < _DAT_180c4ea98) {
-    FUN_1808fcb90(&DAT_180c4ea98);
-    if (_DAT_180c4ea98 == -1) {
-      _DAT_180c4ea94 = 0;
-      FUN_1808fcb30(&DAT_180c4ea98);
+              0x48) < _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */) {
+    FUN_1808fcb90(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */);
+    if (_networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */ == -1) {
+      _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */ = 0;
+      FUN_1808fcb30(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */);
     }
   }
-  return &DAT_180c4ea94;
+  return &networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */;
 }
 
 
@@ -25599,13 +25599,13 @@ LAB_180857f82:
 LAB_1808580a0:
   do {
     while( true ) {
-      if ((*pnetworkIntStack_100 < _DAT_180c4ea98) && (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1))
+      if ((*pnetworkIntStack_100 < _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */) && (FUN_1808fcb90(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */), _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */ == -1))
       {
-        _DAT_180c4ea94 = 0;
-        FUN_1808fcb30(&DAT_180c4ea98);
+        _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */ = 0;
+        FUN_1808fcb30(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */);
       }
       bufferSize = (uint)networkResult2;
-      if (bufferSize <= _DAT_180c4ea94) {
+      if (bufferSize <= _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */) {
         return 0;
       }
       if (*(longlong *)(socketHandle + 0x140) == 0) break;
@@ -25755,12 +25755,12 @@ LAB_1808580a0:
         connectionIndex = networkUintStack_168;
         networkUintStack_158 = socketStatus;
       }
-      if ((*(int *)(*pnetworkLongStack_c8 + 0x48) < _DAT_180c4ea98) &&
-         (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-        _DAT_180c4ea94 = 0;
-        FUN_1808fcb30(&DAT_180c4ea98);
+      if ((*(int *)(*pnetworkLongStack_c8 + 0x48) < _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */) &&
+         (FUN_1808fcb90(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */), _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */ == -1)) {
+        _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */ = 0;
+        FUN_1808fcb30(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */);
       }
-      if (_DAT_180c4ea94 < networkUintStack_158) {
+      if (_networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */ < networkUintStack_158) {
         uVar9 = 0;
         if ((char)networkUintStack_150 != '\0') {
           uVar9 = networkUintStack_80;
@@ -25818,12 +25818,12 @@ LAB_180859163:
           }
           return networkResult8;
         }
-        if ((*(int *)(*pnetworkLongStack_c8 + 0x48) < _DAT_180c4ea98) &&
-           (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-          _DAT_180c4ea94 = bufferSize;
-          FUN_1808fcb30(&DAT_180c4ea98);
+        if ((*(int *)(*pnetworkLongStack_c8 + 0x48) < _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */) &&
+           (FUN_1808fcb90(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */), _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */ == -1)) {
+          _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */ = bufferSize;
+          FUN_1808fcb30(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */);
         }
-        *(uint *)(socketHandle + 0x148) = _DAT_180c4ea94;
+        *(uint *)(socketHandle + 0x148) = _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */;
         bufferSize = FUN_180855810(socketHandle,packetLength6);
         networkResult8 = (ulonglong)bufferSize;
         if (bufferSize != 0) goto LAB_180859163;
@@ -25956,12 +25956,12 @@ LAB_180858c20:
           return networkResult8;
         }
       }
-      if ((*(int *)(*pnetworkLongStack_c8 + 0x48) < _DAT_180c4ea98) &&
-         (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-        _DAT_180c4ea94 = 0;
-        FUN_1808fcb30(&DAT_180c4ea98);
+      if ((*(int *)(*pnetworkLongStack_c8 + 0x48) < _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */) &&
+         (FUN_1808fcb90(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */), _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */ == -1)) {
+        _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */ = 0;
+        FUN_1808fcb30(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */);
       }
-      if (*(uint *)(networkTimeout5 + 0xa0) != _DAT_180c4ea94) {
+      if (*(uint *)(networkTimeout5 + 0xa0) != _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */) {
         connectionBuffer4 = (uint32_t *)FUN_18084da10();
         bufferSize = networkStack_140[0];
         psocketDescriptor4 = (longlong *)(socketHandle + 0x70);
@@ -26195,12 +26195,12 @@ LAB_180858e04:
     }
     *(uint *)(socketHandle + 8) = bufferSize;
     *(uint32_t *)(socketHandle + 0xc) = 2;
-    if ((*(int *)(networkLongStack_c0 + 0x48) < _DAT_180c4ea98) &&
-       (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-      _DAT_180c4ea94 = 0;
-      FUN_1808fcb30(&DAT_180c4ea98);
+    if ((*(int *)(networkLongStack_c0 + 0x48) < _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */) &&
+       (FUN_1808fcb90(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */), _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */ == -1)) {
+      _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */ = 0;
+      FUN_1808fcb30(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */);
     }
-    networkUintStack_15c = _DAT_180c4ea94;
+    networkUintStack_15c = _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */;
     psocketDescriptor4 = (longlong *)(socketHandle + 0x70);
     if (isAvailable8) {
       socketStatus = *(uint *)(*(longlong *)(socketHandle + 0x168) + 0x774);
@@ -28242,12 +28242,12 @@ LAB_180857f18:
 LAB_1808580a0:
   do {
     while( true ) {
-      if ((*pnetworkIntStack_100 < _DAT_180c4ea98) && (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1))
+      if ((*pnetworkIntStack_100 < _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */) && (FUN_1808fcb90(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */), _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */ == -1))
       {
-        _DAT_180c4ea94 = 0;
-        FUN_1808fcb30(&DAT_180c4ea98);
+        _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */ = 0;
+        FUN_1808fcb30(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */);
       }
-      if (packetLength7 <= _DAT_180c4ea94) {
+      if (packetLength7 <= _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */) {
         return 0;
       }
       if (*(longlong *)(socketHandle + 0x140) == 0) break;
@@ -28399,12 +28399,12 @@ LAB_1808580a0:
         socketStatus = networkUintStack_168;
         networkUintStack_158 = bufferSize;
       }
-      if ((*(int *)(*pnetworkLongStack_c8 + 0x48) < _DAT_180c4ea98) &&
-         (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-        _DAT_180c4ea94 = 0;
-        FUN_1808fcb30(&DAT_180c4ea98);
+      if ((*(int *)(*pnetworkLongStack_c8 + 0x48) < _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */) &&
+         (FUN_1808fcb90(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */), _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */ == -1)) {
+        _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */ = 0;
+        FUN_1808fcb30(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */);
       }
-      if (_DAT_180c4ea94 < networkUintStack_158) {
+      if (_networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */ < networkUintStack_158) {
         networkResult0 = 0;
         if ((char)networkUintStack_150 != '\0') {
           networkResult0 = networkUintStack_80;
@@ -28462,12 +28462,12 @@ LAB_180859163:
           }
           return networkResult9;
         }
-        if ((*(int *)(*pnetworkLongStack_c8 + 0x48) < _DAT_180c4ea98) &&
-           (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-          _DAT_180c4ea94 = bufferSize;
-          FUN_1808fcb30(&DAT_180c4ea98);
+        if ((*(int *)(*pnetworkLongStack_c8 + 0x48) < _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */) &&
+           (FUN_1808fcb90(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */), _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */ == -1)) {
+          _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */ = bufferSize;
+          FUN_1808fcb30(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */);
         }
-        *(uint *)(socketHandle + 0x148) = _DAT_180c4ea94;
+        *(uint *)(socketHandle + 0x148) = _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */;
         bufferSize = FUN_180855810(socketHandle,packetLength6);
         networkResult9 = (ulonglong)bufferSize;
         if (bufferSize != 0) goto LAB_180859163;
@@ -28603,13 +28603,13 @@ LAB_180858c20:
           return networkResult9;
         }
       }
-      if ((*(int *)(*pnetworkLongStack_c8 + 0x48) < _DAT_180c4ea98) &&
-         (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-        _DAT_180c4ea94 = 0;
-        FUN_1808fcb30(&DAT_180c4ea98);
+      if ((*(int *)(*pnetworkLongStack_c8 + 0x48) < _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */) &&
+         (FUN_1808fcb90(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */), _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */ == -1)) {
+        _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */ = 0;
+        FUN_1808fcb30(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */);
       }
       packetLength7 = networkUintStack_15c;
-      if (*(uint *)(networkTimeout4 + 0xa0) != _DAT_180c4ea94) {
+      if (*(uint *)(networkTimeout4 + 0xa0) != _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */) {
         connectionBuffer3 = (uint32_t *)FUN_18084da10();
         bufferSize = networkStack_140[0];
         pnetworkTimeout7 = (longlong *)(socketHandle + 0x70);
@@ -28843,12 +28843,12 @@ LAB_180858e04:
     }
     *(uint *)(socketHandle + 8) = bufferSize;
     *(uint32_t *)(socketHandle + 0xc) = 2;
-    if ((*(int *)(networkLongStack_c0 + 0x48) < _DAT_180c4ea98) &&
-       (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-      _DAT_180c4ea94 = 0;
-      FUN_1808fcb30(&DAT_180c4ea98);
+    if ((*(int *)(networkLongStack_c0 + 0x48) < _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */) &&
+       (FUN_1808fcb90(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */), _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */ == -1)) {
+      _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */ = 0;
+      FUN_1808fcb30(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */);
     }
-    packetLength7 = _DAT_180c4ea94;
+    packetLength7 = _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */;
     pnetworkTimeout7 = (longlong *)(socketHandle + 0x70);
     if (isAvailable9) {
       packetLength1 = *(uint *)(*(longlong *)(socketHandle + 0x168) + 0x774);
@@ -28982,15 +28982,15 @@ FUN_18085acd0(longlong socketHandle,longlong *dataBuffer,uint *bufferCapacity,ul
       return 0;
     }
     isReady = false;
-    if ((*(int *)(*pnetworkTimeout + 0x48) < _DAT_180c4ea98) &&
-       (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-      _DAT_180c4ea94 = 0;
-      FUN_1808fcb30(&DAT_180c4ea98);
+    if ((*(int *)(*pnetworkTimeout + 0x48) < _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */) &&
+       (FUN_1808fcb90(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */), _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */ == -1)) {
+      _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */ = 0;
+      FUN_1808fcb30(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */);
     }
     timeoutValue = *(uint *)(networkResult3 + 0x10);
     dataPointer = *bufferCapacity;
     if ((timeoutValue < dataPointer) || (uVar9 = timeoutValue, bufferCapacity[1] <= timeoutValue)) {
-      networkResult0 = _DAT_180c4ea94;
+      networkResult0 = _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */;
       if ((networkParam != '\0') && (timeoutValue <= dataPointer)) {
         socketStatus = 0xffffffff;
         if ((ulonglong)*(uint *)(networkResult3 + 0x14) + (ulonglong)timeoutValue < 0x100000000) {
@@ -62934,12 +62934,12 @@ LAB_1808788de:
         if (pnetworkTimeout6 != pnetworkTimeout) {
           connectionInfo = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
           do {
-            if ((*(int *)(connectionInfo + 0x48) < _DAT_180c4ea98) &&
-               (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-              _DAT_180c4ea94 = 0;
-              FUN_1808fcb30(&DAT_180c4ea98);
+            if ((*(int *)(connectionInfo + 0x48) < _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */) &&
+               (FUN_1808fcb90(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */), _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */ == -1)) {
+              _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */ = 0;
+              FUN_1808fcb30(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */);
             }
-            if ((int)pnetworkTimeout6[0x14] != _DAT_180c4ea94) {
+            if ((int)pnetworkTimeout6[0x14] != _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */) {
               for (networkResult0 = pnetworkTimeout6[0x10];
                   (networkResult2 = pnetworkTimeout6[0x10], networkResult2 <= networkResult0 &&
                   (networkResult0 < networkResult2 + (longlong)(int)pnetworkTimeout6[0x11] * 0x18)); networkResult0 = networkResult0 + 0x18)
@@ -63226,12 +63226,12 @@ void FUN_1808789b7(float socketHandle)
         if (pnetworkTimeout7 != pnetworkTimeout) {
           connectionInfo = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
           do {
-            if ((*(int *)(connectionInfo + 0x48) < _DAT_180c4ea98) &&
-               (socketHandle = (float)FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-              _DAT_180c4ea94 = 0;
-              socketHandle = (float)FUN_1808fcb30(&DAT_180c4ea98);
+            if ((*(int *)(connectionInfo + 0x48) < _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */) &&
+               (socketHandle = (float)FUN_1808fcb90(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */), _networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */ == -1)) {
+              _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */ = 0;
+              socketHandle = (float)FUN_1808fcb30(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */);
             }
-            if ((int)pnetworkTimeout7[0x14] != _DAT_180c4ea94) {
+            if ((int)pnetworkTimeout7[0x14] != _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */) {
               for (networkResult3 = pnetworkTimeout7[0x10];
                   (networkResult4 = pnetworkTimeout7[0x10], networkResult4 <= networkResult3 &&
                   (networkResult3 < networkResult4 + (longlong)(int)pnetworkTimeout7[0x11] * 0x18)); networkResult3 = networkResult3 + 0x18)
@@ -63471,13 +63471,13 @@ void FUN_180879232(void)
   int stackContext;
   
   do {
-    packetLength0 = FUN_1808fcb90(&DAT_180c4ea98);
-    if (_DAT_180c4ea98 == -1) {
-      _DAT_180c4ea94 = unaff_R12D;
-      packetLength0 = FUN_1808fcb30(&DAT_180c4ea98);
+    packetLength0 = FUN_1808fcb90(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */);
+    if (_networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */ == -1) {
+      _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */ = unaff_R12D;
+      packetLength0 = FUN_1808fcb30(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */);
     }
     do {
-      if ((int)unaff_RDI[0x14] != _DAT_180c4ea94) {
+      if ((int)unaff_RDI[0x14] != _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */) {
         for (networkResult3 = unaff_RDI[0x10];
             (networkResult4 = unaff_RDI[0x10], networkResult4 <= networkResult3 &&
             (networkResult3 < networkResult4 + (longlong)(int)unaff_RDI[0x11] * 0x18)); networkResult3 = networkResult3 + 0x18) {
@@ -63524,7 +63524,7 @@ void FUN_180879232(void)
         responseBuffer = 0x48;
         unaff_R13 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
       }
-    } while (_DAT_180c4ea98 <= *(int *)(responseBuffer + unaff_R13));
+    } while (_networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */ <= *(int *)(responseBuffer + unaff_R13));
   } while( true );
 LAB_180878cc1:
   errorCode = (int)networkResult4;
