@@ -177,23 +177,23 @@ undefined g_networkConnectionPoolProcessor;
 undefined g_networkConnectionPoolExecutor;
 undefined g_networkConnectionPoolScheduler;
 undefined g_networkConnectionPoolDispatcher;
-undefined UNK_180986c30;
-undefined UNK_180986d18;
-undefined UNK_180986948;
-undefined UNK_180986ab8;
-undefined UNK_180986938;
-undefined UNK_180986b40;
-undefined UNK_180987010;
-undefined UNK_1808b168c;
-undefined UNK_1808b16c0;
-undefined UNK_1808b16f4;
-undefined UNK_180984c08;
-undefined UNK_180987090;
-undefined UNK_180987110;
-undefined UNK_180987190;
-undefined UNK_1809871b0;
-undefined UNK_180987170;
-undefined UNK_180987150;
+undefined g_networkConnectionPoolWorker;
+undefined g_networkConnectionPoolTask;
+undefined g_networkConnectionPoolJob;
+undefined g_networkConnectionPoolOperation;
+undefined g_networkConnectionPoolAction;
+undefined g_networkConnectionPoolCommand;
+undefined g_networkConnectionPoolRequest;
+undefined g_networkConnectionPoolResponse;
+undefined g_networkConnectionPoolMessage;
+undefined g_networkConnectionPoolEvent;
+undefined g_networkConnectionPoolNotification;
+undefined g_networkConnectionPoolAlert;
+undefined g_networkConnectionPoolWarning;
+undefined g_networkConnectionPoolError;
+undefined g_networkConnectionPoolException;
+undefined g_networkConnectionPoolFault;
+undefined g_networkConnectionPoolCritical;
 
 // 函数: void NetworkInitializeConnection(void)
 void NetworkInitializeConnection(void)
@@ -541,8 +541,8 @@ void NetworkSendData(undefined4 socketParam,int dataParam,longlong sizeParam)
 
 
 
-// 函数: void FUN_18084062e(undefined8 socketParam,undefined8 dataParam,undefined1 sizeParam,undefined8 timeoutParam,
-void FUN_18084062e(undefined8 socketParam,undefined8 dataParam,undefined1 sizeParam,undefined8 timeoutParam,
+// 函数: void NetworkSendDataChunk(undefined8 socketParam,undefined8 dataParam,undefined1 sizeParam,undefined8 timeoutParam,
+void NetworkSendDataChunk(undefined8 socketParam,undefined8 dataParam,undefined1 sizeParam,undefined8 timeoutParam,
                   undefined8 param_5,undefined8 param_6,longlong param_7)
 
 {
@@ -581,8 +581,8 @@ void FUN_18084062e(undefined8 socketParam,undefined8 dataParam,undefined1 sizePa
 
 
 
-// 函数: void FUN_18084063e(undefined8 socketParam,undefined8 dataParam,undefined8 sizeParam,undefined8 timeoutParam,
-void FUN_18084063e(undefined8 socketParam,undefined8 dataParam,undefined8 sizeParam,undefined8 timeoutParam,
+// 函数: void NetworkSendDataBuffer(undefined8 socketParam,undefined8 dataParam,undefined8 sizeParam,undefined8 timeoutParam,
+void NetworkSendDataBuffer(undefined8 socketParam,undefined8 dataParam,undefined8 sizeParam,undefined8 timeoutParam,
                   undefined8 param_5,undefined8 param_6,longlong param_7)
 
 {
@@ -622,8 +622,8 @@ void FUN_18084063e(undefined8 socketParam,undefined8 dataParam,undefined8 sizePa
 
 
 
-// 函数: void FUN_180840746(void)
-void FUN_180840746(void)
+// 函数: void NetworkCleanupConnection(void)
+void NetworkCleanupConnection(void)
 
 {
   undefined8 *unaff_RBX;
@@ -643,8 +643,8 @@ void FUN_180840746(void)
 
 
 
-// 函数: void FUN_18084076d(void)
-void FUN_18084076d(void)
+// 函数: void NetworkResetConnection(void)
+void NetworkResetConnection(void)
 
 {
   ulonglong in_stack_00000068;
@@ -743,8 +743,8 @@ LAB_1808408dd:
 
 
 
-// 函数: void FUN_1808407ce(undefined8 socketParam,undefined8 dataParam,undefined8 sizeParam,undefined8 timeoutParam)
-void FUN_1808407ce(undefined8 socketParam,undefined8 dataParam,undefined8 sizeParam,undefined8 timeoutParam)
+// 函数: void NetworkSendDataWithTimeout(undefined8 socketParam,undefined8 dataParam,undefined8 sizeParam,undefined8 timeoutParam)
+void NetworkSendDataWithTimeout(undefined8 socketParam,undefined8 dataParam,undefined8 sizeParam,undefined8 timeoutParam)
 
 {
   undefined8 *connectionData;
@@ -930,7 +930,7 @@ LAB_180840a03:
 
 
 
-undefined8 FUN_180840a90(undefined8 *socketParam,int *dataParam,int *sizeParam)
+undefined8 NetworkCheckSocketData(undefined8 *socketParam,int *dataParam,int *sizeParam)
 
 {
   undefined8 uVar1;
@@ -964,8 +964,8 @@ LAB_180840ad5:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180840af0(longlong socketParam,longlong dataParam,int *sizeParam)
-void FUN_180840af0(longlong socketParam,longlong dataParam,int *sizeParam)
+// 函数: void NetworkSendToSocket(longlong socketParam,longlong dataParam,int *sizeParam)
+void NetworkSendToSocket(longlong socketParam,longlong dataParam,int *sizeParam)
 
 {
   bool bVar1;
@@ -1035,8 +1035,8 @@ LAB_180840b99:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180840c00(undefined8 socketParam)
-void FUN_180840c00(undefined8 socketParam)
+// 函数: void NetworkCloseSocket(undefined8 socketParam)
+void NetworkCloseSocket(undefined8 socketParam)
 
 {
   int status;
@@ -1089,7 +1089,7 @@ LAB_180840cf0:
 
 
 
-int FUN_180840d60(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkSendDataImmediate(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -1107,8 +1107,8 @@ int FUN_180840d60(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-// 函数: void FUN_180840dd0(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
-void FUN_180840dd0(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
+// 函数: void NetworkSendDataPacket(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
+void NetworkSendDataPacket(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
 
 {
   FUN_18083faf0(dataParam,sizeParam,*(undefined4 *)(socketParam + 0x10),*(undefined4 *)(socketParam + 0x18),
@@ -1118,7 +1118,7 @@ void FUN_180840dd0(longlong socketParam,undefined8 dataParam,undefined4 sizePara
 
 
 
-int FUN_180840e00(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataChunk(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -1153,7 +1153,7 @@ int FUN_180840e00(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180840f10(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataBuffer(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined8 uVar1;
@@ -1170,7 +1170,7 @@ int FUN_180840f10(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180840f80(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithFlags(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined1 uVar1;
@@ -1187,7 +1187,7 @@ int FUN_180840f80(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180840ff0(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithTimeout(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -1204,7 +1204,7 @@ int FUN_180840ff0(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180841060(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataNonBlocking(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -1221,7 +1221,7 @@ int FUN_180841060(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_1808410d0(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithPeek(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -1244,7 +1244,7 @@ int FUN_1808410d0(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180841180(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithUrgent(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -1267,7 +1267,7 @@ int FUN_180841180(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180841230(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithTruncation(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   int status;
@@ -1302,7 +1302,7 @@ int FUN_180841230(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_1808412b0(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataSimple(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -1319,7 +1319,7 @@ int FUN_1808412b0(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180841320(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithControl(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -1348,7 +1348,7 @@ int FUN_180841320(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180841410(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithOptions(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined1 uVar1;
@@ -1375,7 +1375,7 @@ int FUN_180841410(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_1808414f0(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithEncryption(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -1402,7 +1402,7 @@ int FUN_1808414f0(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_1808415e0(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithCompression(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined1 uVar1;
@@ -1427,7 +1427,7 @@ int FUN_1808415e0(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_1808416d0(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithChecksum(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -1450,7 +1450,7 @@ int FUN_1808416d0(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180841790(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithPriority(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -1475,7 +1475,7 @@ int FUN_180841790(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180841830(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithRetry(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -1492,7 +1492,7 @@ int FUN_180841830(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_1808418a0(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithAck(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -1509,7 +1509,7 @@ int FUN_1808418a0(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180841910(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithQueue(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -1550,7 +1550,7 @@ int FUN_180841910(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_1808419e0(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithBuffer(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -1573,7 +1573,7 @@ int FUN_1808419e0(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180841a90(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithStreaming(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -1608,7 +1608,7 @@ int FUN_180841a90(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180841bc0(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithValidation(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined1 uVar1;
@@ -1657,7 +1657,7 @@ int FUN_180841bc0(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180841cc0(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithLogging(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -1674,7 +1674,7 @@ int FUN_180841cc0(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180841d30(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithStats(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -1699,7 +1699,7 @@ int FUN_180841d30(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180841df0(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithMetrics(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined1 uVar1;
@@ -1722,7 +1722,7 @@ int FUN_180841df0(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180841ea0(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithMonitoring(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -1745,7 +1745,7 @@ int FUN_180841ea0(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180841f50(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithDiagnostics(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined1 uVar1;
@@ -1767,8 +1767,8 @@ int FUN_180841f50(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-// 函数: void FUN_180842030(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
-void FUN_180842030(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
+// 函数: void NetworkSendPacketType1(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
+void NetworkSendPacketType1(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
 
 {
   FUN_18083f850(dataParam,sizeParam,&UNK_180983020,*(undefined4 *)(socketParam + 0x10),
@@ -1779,8 +1779,8 @@ void FUN_180842030(longlong socketParam,undefined8 dataParam,undefined4 sizePara
 
 
 
-// 函数: void FUN_180842060(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
-void FUN_180842060(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
+// 函数: void NetworkSendPacketType2(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
+void NetworkSendPacketType2(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
 
 {
   FUN_18083f8f0(dataParam,sizeParam,&UNK_1809830a0,*(undefined4 *)(socketParam + 0x10),
@@ -1790,7 +1790,7 @@ void FUN_180842060(longlong socketParam,undefined8 dataParam,undefined4 sizePara
 
 
 
-int FUN_1808420a0(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkSendPacketWithHeader(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -1832,8 +1832,8 @@ int FUN_1808420a0(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-// 函数: void FUN_1808421c0(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
-void FUN_1808421c0(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
+// 函数: void NetworkSendPacketType3(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
+void NetworkSendPacketType3(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
 
 {
   FUN_18083f850(dataParam,sizeParam,&UNK_180982ea0,*(undefined4 *)(socketParam + 0x10),
@@ -1844,8 +1844,8 @@ void FUN_1808421c0(longlong socketParam,undefined8 dataParam,undefined4 sizePara
 
 
 
-// 函数: void FUN_1808421f0(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
-void FUN_1808421f0(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
+// 函数: void NetworkSendPacketType4(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
+void NetworkSendPacketType4(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
 
 {
   FUN_18083f8f0(dataParam,sizeParam,&UNK_180982f20,*(undefined4 *)(socketParam + 0x10),
@@ -1855,7 +1855,7 @@ void FUN_1808421f0(longlong socketParam,undefined8 dataParam,undefined4 sizePara
 
 
 
-int FUN_180842230(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkSendPacketWithFooter(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -1897,8 +1897,8 @@ int FUN_180842230(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-// 函数: void FUN_180842350(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
-void FUN_180842350(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
+// 函数: void NetworkSendPacketType5(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
+void NetworkSendPacketType5(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
 
 {
   FUN_18083f850(dataParam,sizeParam,&UNK_180982c20,*(undefined4 *)(socketParam + 0x10),
@@ -1909,8 +1909,8 @@ void FUN_180842350(longlong socketParam,undefined8 dataParam,undefined4 sizePara
 
 
 
-// 函数: void FUN_180842380(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
-void FUN_180842380(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
+// 函数: void NetworkSendPacketType6(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
+void NetworkSendPacketType6(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
 
 {
   FUN_18083f850(dataParam,sizeParam,&UNK_180982ca0,*(undefined4 *)(socketParam + 0x10),
@@ -1921,8 +1921,8 @@ void FUN_180842380(longlong socketParam,undefined8 dataParam,undefined4 sizePara
 
 
 
-// 函数: void FUN_1808423b0(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
-void FUN_1808423b0(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
+// 函数: void NetworkSendPacketType7(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
+void NetworkSendPacketType7(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
 
 {
   FUN_18083f850(dataParam,sizeParam,&UNK_1809831a0,*(undefined4 *)(socketParam + 0x10),
@@ -1933,8 +1933,8 @@ void FUN_1808423b0(longlong socketParam,undefined8 dataParam,undefined4 sizePara
 
 
 
-// 函数: void FUN_1808423e0(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
-void FUN_1808423e0(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
+// 函数: void NetworkSendPacketType8(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
+void NetworkSendPacketType8(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
 
 {
   FUN_18083f8f0(dataParam,sizeParam,&UNK_180983220,*(undefined4 *)(socketParam + 0x10),
@@ -1944,7 +1944,7 @@ void FUN_1808423e0(longlong socketParam,undefined8 dataParam,undefined4 sizePara
 
 
 
-int FUN_180842420(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkSendPacketWithType(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -2002,7 +2002,7 @@ int NetworkLogError(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_1808425b0(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkSendPacketWithId(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -2019,7 +2019,7 @@ int FUN_1808425b0(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180842620(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkSendPacketWithSeq(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -2036,7 +2036,7 @@ int FUN_180842620(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180842690(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkSendPacketWithTimestamp(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -2059,7 +2059,7 @@ int FUN_180842690(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180842750(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkSendPacketWithSignature(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -2077,8 +2077,8 @@ int FUN_180842750(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-// 函数: void FUN_1808427c0(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
-void FUN_1808427c0(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
+// 函数: void NetworkSendPacketWithAuth(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
+void NetworkSendPacketWithAuth(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
 
 {
   FUN_18083f9b0(dataParam,sizeParam,&UNK_180984438,*(undefined4 *)(socketParam + 0x10),
@@ -2089,8 +2089,8 @@ void FUN_1808427c0(longlong socketParam,undefined8 dataParam,undefined4 sizePara
 
 
 
-// 函数: void FUN_1808427f0(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
-void FUN_1808427f0(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
+// 函数: void NetworkSendPacketWithCert(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
+void NetworkSendPacketWithCert(longlong socketParam,undefined8 dataParam,undefined4 sizeParam)
 
 {
   FUN_18083f9b0(dataParam,sizeParam,&UNK_1809843c0,*(undefined4 *)(socketParam + 0x10),
@@ -2100,7 +2100,7 @@ void FUN_1808427f0(longlong socketParam,undefined8 dataParam,undefined4 sizePara
 
 
 
-int FUN_180842820(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkSendPacketWithKey(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -2123,7 +2123,7 @@ int FUN_180842820(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_1808428d0(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkSendPacketWithToken(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -2146,7 +2146,7 @@ int FUN_1808428d0(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180842990(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkSendPacketWithSession(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -4158,7 +4158,7 @@ LAB_1808462b2:
     NetworkErrorExit(&uStack_160);
   }
   auStack_168[0] = 0;
-  status = FUN_180840af0(alStack_158[0],dataParam,auStack_168);
+  status = NetworkSendToSocket(alStack_158[0],dataParam,auStack_168);
   if (status != 0) {
                     // WARNING: Subroutine does not return
     NetworkErrorExit(&uStack_160);
@@ -91553,7 +91553,7 @@ undefined8 FUN_180892990(longlong socketParam,longlong dataParam)
       return 0x1e;
     }
     auStackX_8[0] = 0;
-    uVar4 = FUN_180840950(dataParam,lVar5,socketParam + 0x28,auStackX_8);
+    uVar4 = NetworkWriteToSocket(dataParam,lVar5,socketParam + 0x28,auStackX_8);
     if ((int)uVar4 != 0) {
       return uVar4;
     }
@@ -91605,7 +91605,7 @@ undefined8 FUN_180892ac0(longlong socketParam,longlong dataParam)
       return 0x1e;
     }
     aiStackX_8[0] = 0;
-    uVar4 = FUN_180840950(dataParam,lVar6,socketParam + 0x28,aiStackX_8);
+    uVar4 = NetworkWriteToSocket(dataParam,lVar6,socketParam + 0x28,aiStackX_8);
     if ((int)uVar4 != 0) {
       return uVar4;
     }
@@ -92793,7 +92793,7 @@ undefined8 FUN_180893f00(longlong socketParam,longlong dataParam)
     return 0x1d;
   }
   auStackX_18[0] = 0;
-  packetSize = FUN_180840af0(dataParam,socketParam + 0x20,auStackX_18);
+  packetSize = NetworkSendToSocket(dataParam,socketParam + 0x20,auStackX_18);
   if ((int)packetSize == 0) {
     lVar3 = func_0x000180867680(dataParam + 0x60,auStackX_18[0]);
     if ((*(uint *)(lVar3 + 0x34) >> 4 & 1) != 0) {
@@ -92909,7 +92909,7 @@ undefined8 FUN_180894000(longlong socketParam,longlong dataParam)
   undefined4 auStackX_18 [2];
   
   auStackX_18[0] = 0;
-  packetSize = FUN_180840af0(dataParam,socketParam + 0x20,auStackX_18);
+  packetSize = NetworkSendToSocket(dataParam,socketParam + 0x20,auStackX_18);
   if ((int)packetSize == 0) {
     lVar3 = func_0x000180867680(dataParam + 0x60,auStackX_18[0]);
     if ((*(uint *)(lVar3 + 0x34) >> 4 & 1) != 0) {
