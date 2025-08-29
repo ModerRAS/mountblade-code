@@ -25,7 +25,7 @@ data g_bufferAbsoluteMaximumSize;
 // 缓冲区锁定标志
 byte g_bufferIsLocked;
 // 缓冲区状态标志
-data g_bufferStatusFlag;
+data g_bufferStatusFlags;
 // 主缓冲区句柄
 uint64 g_primaryBufferHandle;
 // 辅助缓冲区句柄
@@ -1591,13 +1591,13 @@ data accelerometerOrientation;
 
 // 函数: data FUN_180941da0;
 data FUN_180941da0;
-data unknown_180a19fd8;
-data unknown_180a19eb0;
-data unknown_180302310;
-data unknown_180a19e28;
-data unknown_180a19e38;
-data unknown_1803048b0;
-data unknown_180a19e88;
+data gameEngineCore;
+data gameEngineState;
+data gameEngineConfig;
+data gameEngineTimer;
+data gameEngineStats;
+data gameEngineProfile;
+data entityComponentSystem;
 
 // 函数: data FUN_180941dd0;
 data FUN_180941dd0;
@@ -1616,45 +1616,45 @@ data DAT_180c918d8;
 data DAT_180d48e10;
 data DAT_180d48e18;
 data DAT_180c918c0;
-data unknown_180a1b150;
-data unknown_180a1b118;
-data unknown_18033cd70;
+data entityManager;
+data componentManager;
+data systemManager;
 
 // 函数: data FUN_180942830;
 data FUN_180942830;
-data unknown_180a02fc8;
-data unknown_180a02fa0;
+data entityPool;
+data componentPool;
 data DAT_180d49d08;
 data DAT_180d49bf0;
 data DAT_180d49bf8;
 data DAT_180d49c00;
 data DAT_180d49c08;
-data unknown_18045f200;
-data unknown_18045f210;
+data physicsEngineCore;
+data physicsWorldData;
 
 // 函数: data FUN_180942850;
 data FUN_180942850;
 data DAT_180c91038;
-data unknown_180a3e440;
-data unknown_180a2a8a0;
-data unknown_18045f1a0;
-data unknown_18045f1c0;
-data unknown_18045f140;
-data unknown_18045f160;
-data unknown_180a2c548;
-data unknown_180a2a8c0;
-data unknown_180a2a8e0;
-data unknown_180a2a900;
-data unknown_180a2a920;
-data unknown_180a2a948;
-data unknown_180a2a968;
+data physicsSceneData;
+data physicsBodyData;
+data physicsColliderData;
+data physicsJointData;
+data collisionDetectionData;
+data collisionResponseData;
+data collisionBroadphase;
+data collisionNarrowphase;
+data collisionContactData;
+data collisionResolver;
+data constraintSolverData;
+data constraintIterationData;
+data constraintVelocityData;
 data unknown_180462fc0;
 data unknown_180462ff0;
 data unknown_180463030;
 data unknown_180463060;
-data unknown_180a2aa08;
-data unknown_180a2a9a0;
-data unknown_180a2aa68;
+data constraintPositionData;
+data constraintForceData;
+data constraintImpulseData;
 data unknown_180a2abb0;
 data fileSystemState;
 data unknown_180a2aac8;
@@ -6740,8 +6740,8 @@ uint64 get_socket_status(void)
 
 
 
-// 函数: void FUN_1808938c0(longlong resourceHandle,longlong memorySize)
-void FUN_1808938c0(longlong resourceHandle,longlong memorySize)
+// 函数: void listen_network_socket(longlong resourceHandle,longlong memorySize)
+void listen_network_socket(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
