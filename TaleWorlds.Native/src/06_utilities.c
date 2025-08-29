@@ -3607,8 +3607,8 @@ uint32 unlock_mutex(void)
 
 
 
-// 函数: void FUN_180890c66(void)
-void FUN_180890c66(void)
+// 函数: void destroy_mutex(void)
+void destroy_mutex(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -3618,8 +3618,8 @@ void FUN_180890c66(void)
 
 
 
-// 函数: void FUN_180890d39(void)
-void FUN_180890d39(void)
+// 函数: void initialize_semaphore(void)
+void initialize_semaphore(void)
 
 {
   return;
@@ -3627,7 +3627,7 @@ void FUN_180890d39(void)
 
 
 
-uint64 FUN_180890d60(longlong resourceHandle)
+uint64 wait_for_semaphore(longlong resourceHandle)
 
 {
   uint64 localUInt1;
@@ -3652,7 +3652,7 @@ uint64 FUN_180890d60(longlong resourceHandle)
 
 
 
-uint32 FUN_180890d83(void)
+uint32 release_semaphore(void)
 
 {
   longlong inputRegister;
@@ -3674,8 +3674,8 @@ uint32 FUN_180890d83(void)
 
 
 
-// 函数: void FUN_180890dac(void)
-void FUN_180890dac(void)
+// 函数: void destroy_semaphore(void)
+void destroy_semaphore(void)
 
 {
                     // WARNING: Subroutine does not return
