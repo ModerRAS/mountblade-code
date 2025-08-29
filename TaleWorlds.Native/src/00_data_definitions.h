@@ -230,8 +230,8 @@ int initialize_animation_resource_manager(void)
   long long initialization_result;
   size_t string_length_parameter;
   void* resource_data_buffer_pointer = &g_resource_data_buffer;
-  void* system_data_pointer = &data_180bf6698;
-  data_180bf6698 = 0;
+  void* system_data_pointer = &g_system_name_data;
+  g_system_name_data = 0;
   int resource_type = 5;
   strcpy_s(&g_system_name_buffer, RESOURCE_BUFFER_SIZE, &g_system_name_string, string_length_parameter, 0xfffffffffffffffe);
   initialization_result = execute_function(animation_resource_manager_init_function);
@@ -243,8 +243,8 @@ int initialize_particle_resource_manager(void)
   long long initialization_result;
   size_t string_length_parameter;
   void* resource_data_pointer = &g_resource_data_buffer;
-  void* buffer_pointer = &data_180bf66c8;
-  data_180bf66c8 = 0;
+  void* buffer_pointer = &g_system_version_data;
+  g_system_version_data = 0;
   int resource_type = 5;
   strcpy_s(&g_system_version_buffer, RESOURCE_BUFFER_SIZE, &g_system_version_string, string_length_parameter, 0xfffffffffffffffe);
   initialization_result = execute_function(particle_resource_manager_init_function);
@@ -255,10 +255,10 @@ int initialize_config_string_buffer(void)
 {
   long long initialization_result;
   size_t string_length_parameter;
-  _data_180bf52e8 = &g_empty_data_buffer;
-  _data_180bf52f0 = &data_180bf5300;
-  data_180bf5300 = 0;
-  _data_180bf52f8 = RESOURCE_TYPE_TEXTURE;
+  g_config_string_buffer_ptr = &g_empty_data_buffer;
+  g_config_data_ptr = &g_config_data_value;
+  g_config_data_value = 0;
+  g_config_resource_type = RESOURCE_TYPE_TEXTURE;
   strcpy_s(&g_config_file_path, 0x20, &g_config_path_string, string_length_parameter, 0xfffffffffffffffe);
   initialization_result = execute_function(callback_function_020);
   return (initialization_result != 0) - 1;
@@ -268,10 +268,10 @@ int initialize_savegame_string_buffer(void)
 {
   long long initialization_result;
   size_t string_length_parameter;
-  _data_180bf5738 = &g_empty_data_buffer;
-  _data_180bf5740 = &data_180bf5750;
-  data_180bf5750 = 0;
-  _data_180bf5748 = 9;
+  g_savegame_string_buffer_ptr = &g_empty_data_buffer;
+  g_savegame_data_ptr = &g_savegame_data_value;
+  g_savegame_data_value = 0;
+  g_savegame_resource_type = 9;
   strcpy_s(&g_save_file_path, 0x20, &g_save_path_string, string_length_parameter, 0xfffffffffffffffe);
   initialization_result = execute_function(callback_function_021);
   return (initialization_result != 0) - 1;
@@ -289,16 +289,16 @@ int initialize_data_buffer_system(void)
 {
   longlong init_result;
   undefined8 str_len_param;
-  data_180bf6768 = 0;
-  _data_180bf6760 = 0x13;
-  strcpy_s(&data_180bf6768,0x40,&g_systemConfigString,str_len_param,0xfffffffffffffffe);
-  _data_180bf67a8 = &g_defaultDataTemplate;
-  _data_180bf67b0 = &resource_data_1;
+  g_system_config_buffer = 0;
+  g_system_config_flags = 0x13;
+  strcpy_s(&g_system_config_buffer,0x40,&g_systemConfigString,str_len_param,0xfffffffffffffffe);
+  g_resource_template_ptr_1 = &g_defaultDataTemplate;
+  g_resource_data_ptr_1 = &resource_data_1;
   resource_data_1 = 0;
-  _data_180bf67b8 = 0xd;
+  g_resource_type_1 = 0xd;
   strcpy_s(&resource_data_1,0x40,&g_resourceString1);
-  _data_180bf6800 = &g_defaultDataTemplate;
-  _data_180bf6808 = &resource_data_2;
+  g_resource_template_ptr_2 = &g_defaultDataTemplate;
+  g_resource_data_ptr_2 = &resource_data_2;
   resource_data_2 = 0;
   _data_180bf6810 = 0x17;
   strcpy_s(&resource_data_2,0x40,&g_resourceString2);
