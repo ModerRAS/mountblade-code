@@ -52,9 +52,9 @@ int initialize_rendering_context_system(void)
 int initialize_module_system(void)
 {
   long long initialization_result;
-  void* module_primary_pointer = &g_module_unknown_data;
-  void* module_secondary_pointer = &g_module_data_value;
-  void* module_tertiary_pointer = 0;
+  void* module_data_pointer = &g_module_unknown_data;
+  void* module_value_pointer = &g_module_data_value;
+  void* module_null_pointer = 0;
   g_module_data_value = 0;
   initialization_result = execute_function(module_init_callback_function);
   return (initialization_result != 0) - 1;
@@ -63,8 +63,8 @@ int initialize_module_system(void)
 int initialize_input_system(void)
 {
   long long initialization_result;
-  void* input_data_pointer = &g_shared_data_buffer;
-  void* input_buffer_pointer = &input_buffer_current_value;
+  void* input_shared_data_pointer = &g_shared_data_buffer;
+  void* input_buffer_value_pointer = &input_buffer_current_value;
   int input_buffer_offset = 0;
   input_buffer_current_value = 0;
   initialization_result = execute_function(input_system_callback_function);
@@ -74,8 +74,8 @@ int initialize_input_system(void)
 int initialize_physics_system(void)
 {
   long long initialization_result;
-  void* physics_data_pointer = &g_shared_data_buffer;
-  void* physics_buffer_pointer = &physics_buffer_current_value;
+  void* physics_shared_data_pointer = &g_shared_data_buffer;
+  void* physics_buffer_value_pointer = &physics_buffer_current_value;
   int physics_offset = 0;
   physics_buffer_current_value = 0;
   initialization_result = execute_function(callback_function_007);
@@ -221,7 +221,7 @@ int initialize_resource_manager_7(void)
   void* data_pointer = &data_180bf6698;
   data_180bf6698 = 0;
   int resource_type = 5;
-  strcpy_s(&data_180bf6698,0x10,&unknown_180a00540,str_len_param,0xfffffffffffffffe);
+  strcpy_s(&g_system_name_buffer,0x10,&g_system_name_string,str_len_param,0xfffffffffffffffe);
   init_result = execute_function(callback_function_018);
   return (init_result != 0) - 1;
 }
@@ -234,7 +234,7 @@ int initialize_resource_manager_8(void)
   void* buffer_pointer = &data_180bf66c8;
   data_180bf66c8 = 0;
   int resource_type = 5;
-  strcpy_s(&data_180bf66c8,0x10,&unknown_180a00548,str_len_param,0xfffffffffffffffe);
+  strcpy_s(&g_system_version_buffer,0x10,&g_system_version_string,str_len_param,0xfffffffffffffffe);
   init_result = execute_function(callback_function_019);
   return (init_result != 0) - 1;
 }
@@ -243,11 +243,11 @@ int initialize_string_buffer_1(void)
 {
   longlong init_result;
   undefined8 str_len_param;
-  _data_180bf52e8 = &unknown_data_002;
+  _data_180bf52e8 = &g_empty_data_buffer;
   _data_180bf52f0 = &data_180bf5300;
   data_180bf5300 = 0;
   _data_180bf52f8 = 0xd;
-  strcpy_s(&data_180bf5300,0x20,&unknown_180a01300,str_len_param,0xfffffffffffffffe);
+  strcpy_s(&g_config_file_path,0x20,&g_config_path_string,str_len_param,0xfffffffffffffffe);
   init_result = execute_function(callback_function_020);
   return (init_result != 0) - 1;
 }
@@ -256,11 +256,11 @@ int initialize_string_buffer_2(void)
 {
   longlong init_result;
   undefined8 str_len_param;
-  _data_180bf5738 = &unknown_data_002;
+  _data_180bf5738 = &g_empty_data_buffer;
   _data_180bf5740 = &data_180bf5750;
   data_180bf5750 = 0;
   _data_180bf5748 = 9;
-  strcpy_s(&data_180bf5750,0x20,&unknown_180a01330,str_len_param,0xfffffffffffffffe);
+  strcpy_s(&g_save_file_path,0x20,&g_save_path_string,str_len_param,0xfffffffffffffffe);
   init_result = execute_function(callback_function_021);
   return (init_result != 0) - 1;
 }
