@@ -2414,20 +2414,22 @@ data unknown_180a3db60;
 data DAT_180bfbd80;
 
 // 函数: void ProcessMemoryAllocation(longlong resourceHandle,longlong memorySize)
+// 处理内存分配函数
+// 参数: resourceHandle - 资源句柄, memorySize - 内存大小
 void ProcessMemoryAllocation(longlong resourceHandle,longlong memorySize)
 
 {
-  uint64 localUInt1;
-  int localInt2;
-  longlong localLong3;
-  int localInt4;
-  byte localBuffer [32];
-  longlong localArray [2];
-  byte *localPtr;
-  int localInt;
-  uint32 localUInt;
-  byte localBuffer [512];
-  ulonglong localUInt;
+  uint64 memoryBlockHandle;    // 内存块句柄
+  int operationResult;        // 操作结果
+  longlong iterationCounter;  // 迭代计数器
+  int processedCount;         // 已处理计数
+  byte tempBuffer [32];       // 临时缓冲区
+  longlong resourceInfo [2];  // 资源信息数组
+  byte *allocatedMemory;      // 分配的内存指针
+  int allocationCount;        // 分配计数
+  uint32 tempUInt;            // 临时无符号整数
+  byte workingBuffer [512];   // 工作缓冲区
+  ulonglong securityToken;    // 安全令牌
   
   localUInt = _DAT_180bf00a8 ^ (ulonglong)localBuffer;
   localInt2 = SystemMemoryFunction(*(uint32 *)(resourceHandle + 0x10),localArray);

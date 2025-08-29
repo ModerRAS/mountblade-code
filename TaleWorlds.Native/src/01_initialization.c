@@ -1,8 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 01_initialization.c - 901 个函数
-
 // void InitializeGameDataStructure(void)
+
 void InitializeGameDataStructure(void)
 undefined g_game_data_structure_1809fc768;
 
@@ -33,7 +33,6 @@ undefined g_game_network_data_18098c9e0;
 undefined g_unknown_game_data_18098c870;
 
 undefined g_game_input_data_18098c8f0;
-
 // undefined InitializeGameEngine_180073930;
 
 undefined InitializeGameEngine_180073930;
@@ -51,23 +50,23 @@ undefined g_engine_memory_data_180bf5270;
 undefined g_engine_render_data_180bf5280;
 
 undefined g_engine_audio_data_180bf5288;
-
 // undefined InitializeGraphicsSystem_18005ab20;
+
 undefined InitializeGraphicsSystem_18005ab20;
 
 undefined g_graphics_config_data_180941760;
-
 // undefined InitializeAudioSystem_1800637c0;
+
 undefined InitializeAudioSystem_1800637c0;
 
 undefined g_audio_config_data_180941780;
-
 // undefined InitializeInputSystem_1800637f0;
+
 undefined InitializeInputSystem_1800637f0;
 
 undefined g_input_system_data_180c91900;
-
 // undefined InitializeNetworkSystem_180045af0;
+
 undefined InitializeNetworkSystem_180045af0;
 
 undefined g_network_socket_data_180c96330;
@@ -100,15 +99,14 @@ undefined g_system_config_data_180bf6500;
 undefined g_system_error_data_180bf6508;
 
 undefined g_system_debug_data_180bf6510;
-
 // undefined FUN_180059ba0;
+
 undefined FUN_180059ba0;
 
 undefined UNK_180a092c4;
-
 // undefined FUN_180059620;
-undefined FUN_180059620;
 
+undefined FUN_180059620;
 // undefined FUN_180044a30;
 
 undefined FUN_180044a30;
@@ -124,11 +122,9 @@ undefined UNK_180a02968;
 undefined UNK_1809fde10;
 
 undefined _guard_check_icall;
-
 // undefined FUN_180046860;
 
 undefined FUN_180046860;
-
 // undefined FUN_18005c060;
 
 undefined FUN_18005c060;
@@ -194,7 +190,6 @@ undefined UNK_1809fe62c;
 int UNK_180c912e0;
 longlong UNK_180c912e8;
 undefined UNK_1809fe650;
-
 // undefined FUN_180066dd0;
 
 undefined FUN_180066dd0;
@@ -436,7 +431,6 @@ undefined UNK_180a00208;
 undefined UNK_180a00270;
 
 undefined UNK_180277350;
-
 // undefined FUN_18007bb70;
 
 undefined FUN_18007bb70;
@@ -452,20 +446,17 @@ undefined DAT_180c8aa00;
 undefined UNK_1809ffae0;
 
 undefined DAT_180d49158;
-
 // undefined FUN_18004c030;
 
 undefined FUN_18004c030;
 
 undefined UNK_180a02b98;
-
 // undefined FUN_180056e10;
-undefined FUN_180056e10;
 
+undefined FUN_180056e10;
 // undefined FUN_180051cc0;
 
 undefined FUN_180051cc0;
-
 // undefined FUN_180051d00;
 
 undefined FUN_180051d00;
@@ -481,7 +472,6 @@ undefined UNK_1800e7fe0;
 undefined UNK_1800e8020;
 
 undefined UNK_1801b9b60;
-
 // undefined FUN_1800596a0;
 
 undefined FUN_1800596a0;
@@ -555,10 +545,9 @@ undefined DAT_180a069a0;
 undefined DAT_180a069a8;
 
 undefined UNK_18014f7f0;
-
 // undefined FUN_180049b30;
-undefined FUN_180049b30;
 
+undefined FUN_180049b30;
 // undefined FUN_18004ca00;
 
 undefined FUN_18004ca00;
@@ -624,8 +613,8 @@ undefined UNK_1800830b0;
 undefined UNK_1800830c0;
 
 undefined UNK_180083130;
-
 // undefined FUN_18004a130;
+
 undefined FUN_18004a130;
 
 undefined UNK_180a0c9a0;
@@ -641,18 +630,15 @@ undefined UNK_180a0c7d8;
 undefined UNK_180a0c7f0;
 
 undefined UNK_180a0c508;
-
 // undefined FUN_180049cd0;
-undefined FUN_180049cd0;
 
+undefined FUN_180049cd0;
 // undefined FUN_180049970;
 
 undefined FUN_180049970;
-
 // undefined FUN_1800586e0;
 
 undefined FUN_1800586e0;
-
 // undefined FUN_180046480;
 
 undefined FUN_180046480;
@@ -700,7 +686,6 @@ undefined UNK_180a13ca0;
 undefined UNK_180a13cac;
 
 undefined UNK_180239520;
-
 // undefined FUN_180056de0;
 
 undefined FUN_180056de0;
@@ -929,7 +914,6 @@ undefined DAT_180d48dc0;
 undefined DAT_180d48dc8;
 
 undefined DAT_180d48dd0;
-
 // undefined FUN_1800670d0;
 
 undefined FUN_1800670d0;
@@ -1091,10 +1075,9 @@ undefined UNK_180a25900;
 undefined UNK_180a25ad0;
 
 undefined UNK_180a25a6c;
-
 // undefined FUN_18006b8f0;
-undefined FUN_18006b8f0;
 
+undefined FUN_18006b8f0;
 // void FUN_18002c340(void)
 
 void InitializeDataStructure(void)
@@ -1142,8 +1125,8 @@ void InitializeDataStructure(void)
   previousNode[10] = initializationFunction;
   return;
 }
-
 // void InitializeSystemDataStructure(void)
+
 void InitializeSystemDataStructure(void)
 
 {
@@ -1189,8 +1172,8 @@ void InitializeSystemDataStructure(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18002c540(void)
+
 void FUN_18002c540(void)
 
 {
@@ -1236,8 +1219,8 @@ void FUN_18002c540(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18002c640(void)
+
 void FUN_18002c640(void)
 
 {
@@ -1283,8 +1266,8 @@ void FUN_18002c640(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18002c740(void)
+
 void FUN_18002c740(void)
 
 {
@@ -1330,8 +1313,8 @@ void FUN_18002c740(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18002c840(void)
+
 void FUN_18002c840(void)
 
 {
@@ -1377,8 +1360,8 @@ void FUN_18002c840(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18002c940(void)
+
 void FUN_18002c940(void)
 
 {
@@ -1424,8 +1407,8 @@ void FUN_18002c940(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18002ca40(void)
+
 void FUN_18002ca40(void)
 
 {
@@ -1471,8 +1454,8 @@ void FUN_18002ca40(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18002cb40(void)
+
 void FUN_18002cb40(void)
 
 {
@@ -1518,8 +1501,8 @@ void FUN_18002cb40(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18002cc40(void)
+
 void FUN_18002cc40(void)
 
 {
@@ -1565,7 +1548,6 @@ void FUN_18002cc40(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int FUN_18002cd40(void)
@@ -1585,8 +1567,8 @@ int FUN_18002cd40(void)
   _DAT_180bf52d8 = 0;
   _DAT_180bf52c8 = 0;
   _DAT_180bf52d0 = 0;
-
 // void FUN_18002d150(void)
+
 void FUN_18002d150(void)
 
 {
@@ -1652,7 +1634,6 @@ int FUN_18002d2a0(void)
   lVar1 = FUN_1808fc7d0(&UNK_180941780);
   return (lVar1 != 0) - 1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int FUN_18002d2e0(void)
@@ -1664,8 +1645,8 @@ int FUN_18002d2e0(void)
   lVar1 = FUN_1808fc7d0(FUN_1809417a0);
   return (lVar1 != 0) - 1;
 }
-
 // void FUN_18002d320(void)
+
 void FUN_18002d320(void)
 
 {
@@ -1711,8 +1692,8 @@ void FUN_18002d320(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18002d420(void)
+
 void FUN_18002d420(void)
 
 {
@@ -1768,9 +1749,7 @@ int FUN_18002d520(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   lVar1 = FUN_1808fc7d0(FUN_1809417c0);
   return (lVar1 != 0) - 1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18002d550(void)
 void FUN_18002d550(void)
 
@@ -1789,8 +1768,8 @@ void FUN_18002d550(void)
   _DAT_180c9190c = FUN_180623800(&puStack_a0);
   return;
 }
-
 // void FUN_18002d5e0(void)
+
 void FUN_18002d5e0(void)
 
 {
@@ -1836,8 +1815,8 @@ void FUN_18002d5e0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18002d6e0(void)
+
 void FUN_18002d6e0(void)
 
 {
@@ -1883,8 +1862,8 @@ void FUN_18002d6e0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18002d7e0(void)
+
 void FUN_18002d7e0(void)
 
 {
@@ -1930,8 +1909,8 @@ void FUN_18002d7e0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18002d8e0(void)
+
 void FUN_18002d8e0(void)
 
 {
@@ -1977,8 +1956,8 @@ void FUN_18002d8e0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18002d9e0(void)
+
 void FUN_18002d9e0(void)
 
 {
@@ -2024,8 +2003,8 @@ void FUN_18002d9e0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18002dae0(void)
+
 void FUN_18002dae0(void)
 
 {
@@ -2071,8 +2050,8 @@ void FUN_18002dae0(void)
   puVar7[10] = puStackX_18;
   return;
 }
-
 // void FUN_18002dbe0(void)
+
 void FUN_18002dbe0(void)
 
 {
@@ -2118,8 +2097,8 @@ void FUN_18002dbe0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18002dce0(void)
+
 void FUN_18002dce0(void)
 
 {
@@ -2165,8 +2144,8 @@ void FUN_18002dce0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18002dde0(void)
+
 void FUN_18002dde0(void)
 
 {
@@ -2212,8 +2191,8 @@ void FUN_18002dde0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18002dee0(void)
+
 void FUN_18002dee0(void)
 
 {
@@ -2259,8 +2238,8 @@ void FUN_18002dee0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18002dfe0(void)
+
 void FUN_18002dfe0(void)
 
 {
@@ -2306,8 +2285,8 @@ void FUN_18002dfe0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18002e0e0(void)
+
 void FUN_18002e0e0(void)
 
 {
@@ -2353,8 +2332,8 @@ void FUN_18002e0e0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18002e1e0(void)
+
 void FUN_18002e1e0(void)
 
 {
@@ -2400,8 +2379,8 @@ void FUN_18002e1e0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18002e2e0(void)
+
 void FUN_18002e2e0(void)
 
 {
@@ -2447,7 +2426,6 @@ void FUN_18002e2e0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int FUN_18002e3e0(void)
@@ -2458,8 +2436,8 @@ int FUN_18002e3e0(void)
 
   _DAT_180bf64d0 = &UNK_1809fdc18;
   _DAT_180bf64d8 = &DAT_180bf64e8;
-
 // void FUN_18002e8e0(void)
+
 void FUN_18002e8e0(void)
 
 {
@@ -2477,8 +2455,8 @@ void FUN_18002e8e0(void)
   _DAT_180c9196c = FUN_180623800(&puStack_a0);
   return;
 }
-
 // void FUN_18002e970(void)
+
 void FUN_18002e970(void)
 
 {
@@ -2524,8 +2502,8 @@ void FUN_18002e970(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18002ea70(void)
+
 void FUN_18002ea70(void)
 
 {
@@ -2571,8 +2549,8 @@ void FUN_18002ea70(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18002eb70(void)
+
 void FUN_18002eb70(void)
 
 {
@@ -2618,8 +2596,8 @@ void FUN_18002eb70(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18002ec70(void)
+
 void FUN_18002ec70(void)
 
 {
@@ -2665,8 +2643,8 @@ void FUN_18002ec70(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18002ed70(void)
+
 void FUN_18002ed70(void)
 
 {
@@ -2712,8 +2690,8 @@ void FUN_18002ed70(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18002ee70(void)
+
 void FUN_18002ee70(void)
 
 {
@@ -2759,8 +2737,8 @@ void FUN_18002ee70(void)
   puVar7[10] = puStackX_18;
   return;
 }
-
 // void FUN_18002ef70(void)
+
 void FUN_18002ef70(void)
 
 {
@@ -2806,8 +2784,8 @@ void FUN_18002ef70(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18002f070(void)
+
 void FUN_18002f070(void)
 
 {
@@ -2853,8 +2831,8 @@ void FUN_18002f070(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18002f170(void)
+
 void FUN_18002f170(void)
 
 {
@@ -2900,8 +2878,8 @@ void FUN_18002f170(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18002f270(void)
+
 void FUN_18002f270(void)
 
 {
@@ -2947,8 +2925,8 @@ void FUN_18002f270(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18002f370(void)
+
 void FUN_18002f370(void)
 
 {
@@ -2994,8 +2972,8 @@ void FUN_18002f370(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18002f470(void)
+
 void FUN_18002f470(void)
 
 {
@@ -3041,8 +3019,8 @@ void FUN_18002f470(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18002f570(void)
+
 void FUN_18002f570(void)
 
 {
@@ -3088,8 +3066,8 @@ void FUN_18002f570(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18002f670(void)
+
 void FUN_18002f670(void)
 
 {
@@ -3135,8 +3113,8 @@ void FUN_18002f670(void)
   puVar7[10] = puStackX_18;
   return;
 }
-
 // void FUN_18002f770(void)
+
 void FUN_18002f770(void)
 
 {
@@ -3182,8 +3160,8 @@ void FUN_18002f770(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18002f870(void)
+
 void FUN_18002f870(void)
 
 {
@@ -3229,8 +3207,8 @@ void FUN_18002f870(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18002f970(void)
+
 void FUN_18002f970(void)
 
 {
@@ -3276,8 +3254,8 @@ void FUN_18002f970(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18002fa70(void)
+
 void FUN_18002fa70(void)
 
 {
@@ -3323,8 +3301,8 @@ void FUN_18002fa70(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18002fb70(void)
+
 void FUN_18002fb70(void)
 
 {
@@ -3370,8 +3348,8 @@ void FUN_18002fb70(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18002fc70(void)
+
 void FUN_18002fc70(void)
 
 {
@@ -3417,8 +3395,8 @@ void FUN_18002fc70(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18002fd70(void)
+
 void FUN_18002fd70(void)
 
 {
@@ -3464,8 +3442,8 @@ void FUN_18002fd70(void)
   puVar7[10] = puStackX_18;
   return;
 }
-
 // void FUN_18002fe70(void)
+
 void FUN_18002fe70(void)
 
 {
@@ -3511,8 +3489,8 @@ void FUN_18002fe70(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18002ff70(void)
+
 void FUN_18002ff70(void)
 
 {
@@ -3558,8 +3536,8 @@ void FUN_18002ff70(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180030070(void)
+
 void FUN_180030070(void)
 
 {
@@ -3605,8 +3583,8 @@ void FUN_180030070(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180030170(void)
+
 void FUN_180030170(void)
 
 {
@@ -3652,8 +3630,8 @@ void FUN_180030170(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180030270(void)
+
 void FUN_180030270(void)
 
 {
@@ -3699,8 +3677,8 @@ void FUN_180030270(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180030370(void)
+
 void FUN_180030370(void)
 
 {
@@ -3746,8 +3724,8 @@ void FUN_180030370(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180030470(void)
+
 void FUN_180030470(void)
 
 {
@@ -3793,8 +3771,8 @@ void FUN_180030470(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180030570(void)
+
 void FUN_180030570(void)
 
 {
@@ -3840,8 +3818,8 @@ void FUN_180030570(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180030670(void)
+
 void FUN_180030670(void)
 
 {
@@ -3887,8 +3865,8 @@ void FUN_180030670(void)
   puVar7[10] = puStackX_18;
   return;
 }
-
 // void FUN_180030770(void)
+
 void FUN_180030770(void)
 
 {
@@ -3934,9 +3912,7 @@ void FUN_180030770(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180030870(void)
 void FUN_180030870(void)
 
@@ -3955,7 +3931,6 @@ void FUN_180030870(void)
   _DAT_180c919e0 = FUN_180623800(&puStack_a0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int FUN_180030900(void)
@@ -3966,8 +3941,8 @@ int FUN_180030900(void)
 
   _DAT_180bf6750 = &UNK_1809fcc58;
   _DAT_180bf6758 = &DAT_180bf6768;
-
 // void FUN_180031a10(void)
+
 void FUN_180031a10(void)
 
 {
@@ -4013,8 +3988,8 @@ void FUN_180031a10(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180031b10(void)
+
 void FUN_180031b10(void)
 
 {
@@ -4060,8 +4035,8 @@ void FUN_180031b10(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180031c10(void)
+
 void FUN_180031c10(void)
 
 {
@@ -4107,8 +4082,8 @@ void FUN_180031c10(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180031d10(void)
+
 void FUN_180031d10(void)
 
 {
@@ -4154,8 +4129,8 @@ void FUN_180031d10(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180031e10(void)
+
 void FUN_180031e10(void)
 
 {
@@ -4201,8 +4176,8 @@ void FUN_180031e10(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180031f10(void)
+
 void FUN_180031f10(void)
 
 {
@@ -4248,8 +4223,8 @@ void FUN_180031f10(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180032010(void)
+
 void FUN_180032010(void)
 
 {
@@ -4295,8 +4270,8 @@ void FUN_180032010(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180032110(void)
+
 void FUN_180032110(void)
 
 {
@@ -4342,8 +4317,8 @@ void FUN_180032110(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180032210(void)
+
 void FUN_180032210(void)
 
 {
@@ -4389,8 +4364,8 @@ void FUN_180032210(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180032310(void)
+
 void FUN_180032310(void)
 
 {
@@ -4436,8 +4411,8 @@ void FUN_180032310(void)
   puVar7[10] = puStackX_18;
   return;
 }
-
 // void FUN_180032410(void)
+
 void FUN_180032410(void)
 
 {
@@ -4483,9 +4458,7 @@ void FUN_180032410(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180032510(void)
 void FUN_180032510(void)
 
@@ -4504,8 +4477,8 @@ void FUN_180032510(void)
   _DAT_180c91d54 = FUN_180623800(&puStack_a0);
   return;
 }
-
 // void FUN_1800325a0(void)
+
 void FUN_1800325a0(void)
 
 {
@@ -4551,8 +4524,8 @@ void FUN_1800325a0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_1800326a0(void)
+
 void FUN_1800326a0(void)
 
 {
@@ -4598,8 +4571,8 @@ void FUN_1800326a0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_1800327a0(void)
+
 void FUN_1800327a0(void)
 
 {
@@ -4645,8 +4618,8 @@ void FUN_1800327a0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800328a0(void)
+
 void FUN_1800328a0(void)
 
 {
@@ -4692,8 +4665,8 @@ void FUN_1800328a0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_1800329a0(void)
+
 void FUN_1800329a0(void)
 
 {
@@ -4739,8 +4712,8 @@ void FUN_1800329a0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180032aa0(void)
+
 void FUN_180032aa0(void)
 
 {
@@ -4786,8 +4759,8 @@ void FUN_180032aa0(void)
   puVar7[10] = puStackX_18;
   return;
 }
-
 // void FUN_180032ba0(void)
+
 void FUN_180032ba0(void)
 
 {
@@ -4833,9 +4806,7 @@ void FUN_180032ba0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180032ca0(void)
 void FUN_180032ca0(void)
 
@@ -4854,7 +4825,6 @@ void FUN_180032ca0(void)
   _DAT_180c91d5c = FUN_180623800(&puStack_a0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int FUN_180032d30(void)
@@ -4865,8 +4835,8 @@ int FUN_180032d30(void)
 
   _DAT_180bf7e90 = &UNK_1809fcc58;
   _DAT_180bf7e98 = &DAT_180bf7ea8;
-
 // void FUN_180033780(void)
+
 void FUN_180033780(void)
 
 {
@@ -4884,9 +4854,7 @@ void FUN_180033780(void)
   _DAT_180c91d60 = FUN_180623800(&puStack_a0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180033810(void)
 void FUN_180033810(void)
 
@@ -4905,9 +4873,7 @@ void FUN_180033810(void)
   _DAT_180c91d64 = FUN_180623800(&puStack_a0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800338a0(void)
 void FUN_1800338a0(void)
 
@@ -4926,9 +4892,7 @@ void FUN_1800338a0(void)
   _DAT_180c91d68 = FUN_180623800(&puStack_a0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180033930(void)
 void FUN_180033930(void)
 
@@ -4947,9 +4911,7 @@ void FUN_180033930(void)
   _DAT_180c91d6c = FUN_180623800(&puStack_a0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800339c0(void)
 void FUN_1800339c0(void)
 
@@ -4968,8 +4930,8 @@ void FUN_1800339c0(void)
   _DAT_180c91d70 = FUN_180623800(&puStack_a0);
   return;
 }
-
 // void FUN_180033a50(void)
+
 void FUN_180033a50(void)
 
 {
@@ -5015,8 +4977,8 @@ void FUN_180033a50(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180033b50(void)
+
 void FUN_180033b50(void)
 
 {
@@ -5062,8 +5024,8 @@ void FUN_180033b50(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180033c50(void)
+
 void FUN_180033c50(void)
 
 {
@@ -5109,8 +5071,8 @@ void FUN_180033c50(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180033d50(void)
+
 void FUN_180033d50(void)
 
 {
@@ -5156,8 +5118,8 @@ void FUN_180033d50(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180033e50(void)
+
 void FUN_180033e50(void)
 
 {
@@ -5203,8 +5165,8 @@ void FUN_180033e50(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180033f50(void)
+
 void FUN_180033f50(void)
 
 {
@@ -5250,8 +5212,8 @@ void FUN_180033f50(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180034050(void)
+
 void FUN_180034050(void)
 
 {
@@ -5297,8 +5259,8 @@ void FUN_180034050(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180034150(void)
+
 void FUN_180034150(void)
 
 {
@@ -5344,8 +5306,8 @@ void FUN_180034150(void)
   puVar7[10] = puStackX_18;
   return;
 }
-
 // void FUN_180034250(void)
+
 void FUN_180034250(void)
 
 {
@@ -5391,8 +5353,8 @@ void FUN_180034250(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180034350(void)
+
 void FUN_180034350(void)
 
 {
@@ -5438,8 +5400,8 @@ void FUN_180034350(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180034450(void)
+
 void FUN_180034450(void)
 
 {
@@ -5485,8 +5447,8 @@ void FUN_180034450(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180034550(void)
+
 void FUN_180034550(void)
 
 {
@@ -5532,8 +5494,8 @@ void FUN_180034550(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180034650(void)
+
 void FUN_180034650(void)
 
 {
@@ -5579,8 +5541,8 @@ void FUN_180034650(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180034750(void)
+
 void FUN_180034750(void)
 
 {
@@ -5626,8 +5588,8 @@ void FUN_180034750(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180034850(void)
+
 void FUN_180034850(void)
 
 {
@@ -5673,8 +5635,8 @@ void FUN_180034850(void)
   puVar7[10] = puStackX_18;
   return;
 }
-
 // void FUN_180034950(void)
+
 void FUN_180034950(void)
 
 {
@@ -5720,8 +5682,8 @@ void FUN_180034950(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180034a50(void)
+
 void FUN_180034a50(void)
 
 {
@@ -5774,8 +5736,8 @@ void FUN_180034a50(void)
   } while (uVar5 < 0x40);
   return;
 }
-
 // void FUN_180034b40(void)
+
 void FUN_180034b40(void)
 
 {
@@ -5821,8 +5783,8 @@ void FUN_180034b40(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180034c40(void)
+
 void FUN_180034c40(void)
 
 {
@@ -5868,8 +5830,8 @@ void FUN_180034c40(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180034d40(void)
+
 void FUN_180034d40(void)
 
 {
@@ -5915,8 +5877,8 @@ void FUN_180034d40(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180034e40(void)
+
 void FUN_180034e40(void)
 
 {
@@ -5962,8 +5924,8 @@ void FUN_180034e40(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180034f40(void)
+
 void FUN_180034f40(void)
 
 {
@@ -6009,8 +5971,8 @@ void FUN_180034f40(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180035040(void)
+
 void FUN_180035040(void)
 
 {
@@ -6056,8 +6018,8 @@ void FUN_180035040(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180035140(void)
+
 void FUN_180035140(void)
 
 {
@@ -6103,8 +6065,8 @@ void FUN_180035140(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180035240(void)
+
 void FUN_180035240(void)
 
 {
@@ -6150,8 +6112,8 @@ void FUN_180035240(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180035340(void)
+
 void FUN_180035340(void)
 
 {
@@ -6197,8 +6159,8 @@ void FUN_180035340(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180035440(void)
+
 void FUN_180035440(void)
 
 {
@@ -6244,8 +6206,8 @@ void FUN_180035440(void)
   puVar7[10] = puStackX_18;
   return;
 }
-
 // void FUN_180035540(void)
+
 void FUN_180035540(void)
 
 {
@@ -6291,8 +6253,8 @@ void FUN_180035540(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180035640(void)
+
 void FUN_180035640(void)
 
 {
@@ -6338,8 +6300,8 @@ void FUN_180035640(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180035740(void)
+
 void FUN_180035740(void)
 
 {
@@ -6385,8 +6347,8 @@ void FUN_180035740(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180035840(void)
+
 void FUN_180035840(void)
 
 {
@@ -6432,8 +6394,8 @@ void FUN_180035840(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180035940(void)
+
 void FUN_180035940(void)
 
 {
@@ -6479,8 +6441,8 @@ void FUN_180035940(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180035a40(void)
+
 void FUN_180035a40(void)
 
 {
@@ -6526,8 +6488,8 @@ void FUN_180035a40(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180035b40(void)
+
 void FUN_180035b40(void)
 
 {
@@ -6573,8 +6535,8 @@ void FUN_180035b40(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180035c40(void)
+
 void FUN_180035c40(void)
 
 {
@@ -6620,8 +6582,8 @@ void FUN_180035c40(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180035d40(void)
+
 void FUN_180035d40(void)
 
 {
@@ -6667,8 +6629,8 @@ void FUN_180035d40(void)
   puVar7[10] = puStackX_18;
   return;
 }
-
 // void FUN_180035e40(void)
+
 void FUN_180035e40(void)
 
 {
@@ -6714,8 +6676,8 @@ void FUN_180035e40(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180035f50(void)
+
 void FUN_180035f50(void)
 
 {
@@ -6761,8 +6723,8 @@ void FUN_180035f50(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180036050(void)
+
 void FUN_180036050(void)
 
 {
@@ -6808,8 +6770,8 @@ void FUN_180036050(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180036150(void)
+
 void FUN_180036150(void)
 
 {
@@ -6855,8 +6817,8 @@ void FUN_180036150(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180036250(void)
+
 void FUN_180036250(void)
 
 {
@@ -6902,8 +6864,8 @@ void FUN_180036250(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180036350(void)
+
 void FUN_180036350(void)
 
 {
@@ -6949,8 +6911,8 @@ void FUN_180036350(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180036450(void)
+
 void FUN_180036450(void)
 
 {
@@ -6996,8 +6958,8 @@ void FUN_180036450(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180036550(void)
+
 void FUN_180036550(void)
 
 {
@@ -7043,8 +7005,8 @@ void FUN_180036550(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180036650(void)
+
 void FUN_180036650(void)
 
 {
@@ -7090,8 +7052,8 @@ void FUN_180036650(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180036750(void)
+
 void FUN_180036750(void)
 
 {
@@ -7137,8 +7099,8 @@ void FUN_180036750(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180036850(void)
+
 void FUN_180036850(void)
 
 {
@@ -7184,8 +7146,8 @@ void FUN_180036850(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180036950(void)
+
 void FUN_180036950(void)
 
 {
@@ -7231,8 +7193,8 @@ void FUN_180036950(void)
   puVar7[10] = puStackX_18;
   return;
 }
-
 // void FUN_180036a50(void)
+
 void FUN_180036a50(void)
 
 {
@@ -7278,9 +7240,7 @@ void FUN_180036a50(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180036b50(void)
 void FUN_180036b50(void)
 
@@ -7299,7 +7259,6 @@ void FUN_180036b50(void)
   _DAT_180c91da4 = FUN_180623800(&puStack_a0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int FUN_180036be0(void)
@@ -7310,8 +7269,8 @@ int FUN_180036be0(void)
 
   _DAT_180bf90b0 = &UNK_18098bc80;
   _DAT_180bf90b8 = &DAT_180bf90c8;
-
 // void FUN_180036cc0(void)
+
 void FUN_180036cc0(void)
 
 {
@@ -7329,9 +7288,7 @@ void FUN_180036cc0(void)
   _DAT_180c91da8 = FUN_180623800(&puStack_a0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180036d50(void)
 void FUN_180036d50(void)
 
@@ -7350,8 +7307,8 @@ void FUN_180036d50(void)
   _DAT_180c91dac = FUN_180623800(&puStack_a0);
   return;
 }
-
 // void FUN_180036df0(void)
+
 void FUN_180036df0(void)
 
 {
@@ -7397,8 +7354,8 @@ void FUN_180036df0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180036ef0(void)
+
 void FUN_180036ef0(void)
 
 {
@@ -7444,8 +7401,8 @@ void FUN_180036ef0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180036ff0(void)
+
 void FUN_180036ff0(void)
 
 {
@@ -7491,8 +7448,8 @@ void FUN_180036ff0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800370f0(void)
+
 void FUN_1800370f0(void)
 
 {
@@ -7538,8 +7495,8 @@ void FUN_1800370f0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_1800371f0(void)
+
 void FUN_1800371f0(void)
 
 {
@@ -7585,8 +7542,8 @@ void FUN_1800371f0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800372f0(void)
+
 void FUN_1800372f0(void)
 
 {
@@ -7632,8 +7589,8 @@ void FUN_1800372f0(void)
   puVar7[10] = puStackX_18;
   return;
 }
-
 // void FUN_1800373f0(void)
+
 void FUN_1800373f0(void)
 
 {
@@ -7679,8 +7636,8 @@ void FUN_1800373f0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800374f0(void)
+
 void FUN_1800374f0(void)
 
 {
@@ -7726,9 +7683,7 @@ void FUN_1800374f0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800375f0(void)
 void FUN_1800375f0(void)
 
@@ -7747,8 +7702,8 @@ void FUN_1800375f0(void)
   _DAT_180c91ee8 = FUN_180623800(&puStack_a0);
   return;
 }
-
 // void FUN_180037680(void)
+
 void FUN_180037680(void)
 
 {
@@ -7794,8 +7749,8 @@ void FUN_180037680(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180037780(void)
+
 void FUN_180037780(void)
 
 {
@@ -7841,8 +7796,8 @@ void FUN_180037780(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180037880(void)
+
 void FUN_180037880(void)
 
 {
@@ -7888,8 +7843,8 @@ void FUN_180037880(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180037980(void)
+
 void FUN_180037980(void)
 
 {
@@ -7935,8 +7890,8 @@ void FUN_180037980(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180037a80(void)
+
 void FUN_180037a80(void)
 
 {
@@ -7982,8 +7937,8 @@ void FUN_180037a80(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180037b80(void)
+
 void FUN_180037b80(void)
 
 {
@@ -8029,8 +7984,8 @@ void FUN_180037b80(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180037c80(void)
+
 void FUN_180037c80(void)
 
 {
@@ -8076,8 +8031,8 @@ void FUN_180037c80(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180037d80(void)
+
 void FUN_180037d80(void)
 
 {
@@ -8123,8 +8078,8 @@ void FUN_180037d80(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180037e80(void)
+
 void FUN_180037e80(void)
 
 {
@@ -8170,8 +8125,8 @@ void FUN_180037e80(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180037f80(void)
+
 void FUN_180037f80(void)
 
 {
@@ -8217,8 +8172,8 @@ void FUN_180037f80(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180038080(void)
+
 void FUN_180038080(void)
 
 {
@@ -8264,9 +8219,7 @@ void FUN_180038080(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180038180(void)
 void FUN_180038180(void)
 
@@ -8285,9 +8238,7 @@ void FUN_180038180(void)
   _DAT_180c91ef8 = FUN_180623800(&puStack_a0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180038210(void)
 void FUN_180038210(void)
 
@@ -8306,9 +8257,7 @@ void FUN_180038210(void)
   _DAT_180c91efc = FUN_180623800(&puStack_a0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800382a0(void)
 void FUN_1800382a0(void)
 
@@ -8327,9 +8276,7 @@ void FUN_1800382a0(void)
   _DAT_180c91f00 = FUN_180623800(&puStack_a0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180038330(void)
 void FUN_180038330(void)
 
@@ -8348,9 +8295,7 @@ void FUN_180038330(void)
   _DAT_180c91f04 = FUN_180623800(&puStack_a0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800383c0(void)
 void FUN_1800383c0(void)
 
@@ -8369,9 +8314,7 @@ void FUN_1800383c0(void)
   _DAT_180c91f08 = FUN_180623800(&puStack_a0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180038450(void)
 void FUN_180038450(void)
 
@@ -8390,9 +8333,7 @@ void FUN_180038450(void)
   _DAT_180c91f0c = FUN_180623800(&puStack_a0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800384e0(void)
 void FUN_1800384e0(void)
 
@@ -8411,9 +8352,7 @@ void FUN_1800384e0(void)
   _DAT_180c91f10 = FUN_180623800(&puStack_a0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180038570(void)
 void FUN_180038570(void)
 
@@ -8432,9 +8371,7 @@ void FUN_180038570(void)
   _DAT_180c91f14 = FUN_180623800(&puStack_a0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180038610(void)
 void FUN_180038610(void)
 
@@ -8453,8 +8390,8 @@ void FUN_180038610(void)
   _DAT_180c91f30 = FUN_180623800(&puStack_a0);
   return;
 }
-
 // void FUN_1800386a0(void)
+
 void FUN_1800386a0(void)
 
 {
@@ -8500,8 +8437,8 @@ void FUN_1800386a0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_1800387a0(void)
+
 void FUN_1800387a0(void)
 
 {
@@ -8547,8 +8484,8 @@ void FUN_1800387a0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_1800388a0(void)
+
 void FUN_1800388a0(void)
 
 {
@@ -8594,8 +8531,8 @@ void FUN_1800388a0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800389a0(void)
+
 void FUN_1800389a0(void)
 
 {
@@ -8641,8 +8578,8 @@ void FUN_1800389a0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180038aa0(void)
+
 void FUN_180038aa0(void)
 
 {
@@ -8688,8 +8625,8 @@ void FUN_180038aa0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180038ba0(void)
+
 void FUN_180038ba0(void)
 
 {
@@ -8735,8 +8672,8 @@ void FUN_180038ba0(void)
   puVar7[10] = puStackX_18;
   return;
 }
-
 // void FUN_180038ca0(void)
+
 void FUN_180038ca0(void)
 
 {
@@ -8782,8 +8719,8 @@ void FUN_180038ca0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180038da0(void)
+
 void FUN_180038da0(void)
 
 {
@@ -8829,8 +8766,8 @@ void FUN_180038da0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180038ea0(void)
+
 void FUN_180038ea0(void)
 
 {
@@ -8876,8 +8813,8 @@ void FUN_180038ea0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180038fa0(void)
+
 void FUN_180038fa0(void)
 
 {
@@ -8923,8 +8860,8 @@ void FUN_180038fa0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800390a0(void)
+
 void FUN_1800390a0(void)
 
 {
@@ -8970,8 +8907,8 @@ void FUN_1800390a0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_1800391a0(void)
+
 void FUN_1800391a0(void)
 
 {
@@ -9017,8 +8954,8 @@ void FUN_1800391a0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800392a0(void)
+
 void FUN_1800392a0(void)
 
 {
@@ -9064,8 +9001,8 @@ void FUN_1800392a0(void)
   puVar7[10] = puStackX_18;
   return;
 }
-
 // void FUN_1800393a0(void)
+
 void FUN_1800393a0(void)
 
 {
@@ -9111,8 +9048,8 @@ void FUN_1800393a0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800394a0(void)
+
 void FUN_1800394a0(void)
 
 {
@@ -9158,8 +9095,8 @@ void FUN_1800394a0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_1800395a0(void)
+
 void FUN_1800395a0(void)
 
 {
@@ -9205,8 +9142,8 @@ void FUN_1800395a0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_1800396a0(void)
+
 void FUN_1800396a0(void)
 
 {
@@ -9252,8 +9189,8 @@ void FUN_1800396a0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800397a0(void)
+
 void FUN_1800397a0(void)
 
 {
@@ -9299,8 +9236,8 @@ void FUN_1800397a0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_1800398a0(void)
+
 void FUN_1800398a0(void)
 
 {
@@ -9346,8 +9283,8 @@ void FUN_1800398a0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800399a0(void)
+
 void FUN_1800399a0(void)
 
 {
@@ -9393,8 +9330,8 @@ void FUN_1800399a0(void)
   puVar7[10] = puStackX_18;
   return;
 }
-
 // void FUN_180039aa0(void)
+
 void FUN_180039aa0(void)
 
 {
@@ -9440,8 +9377,8 @@ void FUN_180039aa0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180039bb0(void)
+
 void FUN_180039bb0(void)
 
 {
@@ -9487,8 +9424,8 @@ void FUN_180039bb0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180039cb0(void)
+
 void FUN_180039cb0(void)
 
 {
@@ -9534,8 +9471,8 @@ void FUN_180039cb0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180039db0(void)
+
 void FUN_180039db0(void)
 
 {
@@ -9581,8 +9518,8 @@ void FUN_180039db0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180039eb0(void)
+
 void FUN_180039eb0(void)
 
 {
@@ -9628,8 +9565,8 @@ void FUN_180039eb0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180039fb0(void)
+
 void FUN_180039fb0(void)
 
 {
@@ -9675,8 +9612,8 @@ void FUN_180039fb0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003a0b0(void)
+
 void FUN_18003a0b0(void)
 
 {
@@ -9722,8 +9659,8 @@ void FUN_18003a0b0(void)
   puVar7[10] = puStackX_18;
   return;
 }
-
 // void FUN_18003a1b0(void)
+
 void FUN_18003a1b0(void)
 
 {
@@ -9769,8 +9706,8 @@ void FUN_18003a1b0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003a2b0(void)
+
 void FUN_18003a2b0(void)
 
 {
@@ -9816,8 +9753,8 @@ void FUN_18003a2b0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18003a3b0(void)
+
 void FUN_18003a3b0(void)
 
 {
@@ -9863,8 +9800,8 @@ void FUN_18003a3b0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003a4b0(void)
+
 void FUN_18003a4b0(void)
 
 {
@@ -9910,8 +9847,8 @@ void FUN_18003a4b0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003a5b0(void)
+
 void FUN_18003a5b0(void)
 
 {
@@ -9957,8 +9894,8 @@ void FUN_18003a5b0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003a6b0(void)
+
 void FUN_18003a6b0(void)
 
 {
@@ -10004,8 +9941,8 @@ void FUN_18003a6b0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003a7b0(void)
+
 void FUN_18003a7b0(void)
 
 {
@@ -10051,8 +9988,8 @@ void FUN_18003a7b0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003a8b0(void)
+
 void FUN_18003a8b0(void)
 
 {
@@ -10098,8 +10035,8 @@ void FUN_18003a8b0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003a9b0(void)
+
 void FUN_18003a9b0(void)
 
 {
@@ -10145,8 +10082,8 @@ void FUN_18003a9b0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003aab0(void)
+
 void FUN_18003aab0(void)
 
 {
@@ -10192,8 +10129,8 @@ void FUN_18003aab0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18003abb0(void)
+
 void FUN_18003abb0(void)
 
 {
@@ -10239,9 +10176,7 @@ void FUN_18003abb0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18003acb0(void)
 void FUN_18003acb0(void)
 
@@ -10260,7 +10195,6 @@ void FUN_18003acb0(void)
   _DAT_180c91f68 = FUN_180623800(&puStack_a0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int FUN_18003ad40(void)
@@ -10271,8 +10205,8 @@ int FUN_18003ad40(void)
 
   _DAT_180bf91b0 = &UNK_1809fcc58;
   _DAT_180bf91b8 = &DAT_180bf91c8;
-
 // void FUN_18003c1f0(void)
+
 void FUN_18003c1f0(void)
 
 {
@@ -10318,8 +10252,8 @@ void FUN_18003c1f0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18003c2f0(void)
+
 void FUN_18003c2f0(void)
 
 {
@@ -10365,8 +10299,8 @@ void FUN_18003c2f0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003c3f0(void)
+
 void FUN_18003c3f0(void)
 
 {
@@ -10412,8 +10346,8 @@ void FUN_18003c3f0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003c4f0(void)
+
 void FUN_18003c4f0(void)
 
 {
@@ -10459,8 +10393,8 @@ void FUN_18003c4f0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003c5f0(void)
+
 void FUN_18003c5f0(void)
 
 {
@@ -10506,8 +10440,8 @@ void FUN_18003c5f0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003c6f0(void)
+
 void FUN_18003c6f0(void)
 
 {
@@ -10553,8 +10487,8 @@ void FUN_18003c6f0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003c7f0(void)
+
 void FUN_18003c7f0(void)
 
 {
@@ -10600,8 +10534,8 @@ void FUN_18003c7f0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003c8f0(void)
+
 void FUN_18003c8f0(void)
 
 {
@@ -10647,8 +10581,8 @@ void FUN_18003c8f0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003c9f0(void)
+
 void FUN_18003c9f0(void)
 
 {
@@ -10694,8 +10628,8 @@ void FUN_18003c9f0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18003caf0(void)
+
 void FUN_18003caf0(void)
 
 {
@@ -10741,9 +10675,7 @@ void FUN_18003caf0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18003cbf0(void)
 void FUN_18003cbf0(void)
 
@@ -10762,9 +10694,7 @@ void FUN_18003cbf0(void)
   _DAT_180c91f6c = FUN_180623800(&puStack_a0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18003cc80(void)
 void FUN_18003cc80(void)
 
@@ -10783,8 +10713,8 @@ void FUN_18003cc80(void)
   _DAT_180c91fcc = FUN_180623800(&puStack_a0);
   return;
 }
-
 // void FUN_18003cd10(void)
+
 void FUN_18003cd10(void)
 
 {
@@ -10830,8 +10760,8 @@ void FUN_18003cd10(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18003ce10(void)
+
 void FUN_18003ce10(void)
 
 {
@@ -10877,8 +10807,8 @@ void FUN_18003ce10(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18003cf10(void)
+
 void FUN_18003cf10(void)
 
 {
@@ -10924,8 +10854,8 @@ void FUN_18003cf10(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003d010(void)
+
 void FUN_18003d010(void)
 
 {
@@ -10971,8 +10901,8 @@ void FUN_18003d010(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18003d110(void)
+
 void FUN_18003d110(void)
 
 {
@@ -11018,8 +10948,8 @@ void FUN_18003d110(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003d210(void)
+
 void FUN_18003d210(void)
 
 {
@@ -11065,8 +10995,8 @@ void FUN_18003d210(void)
   puVar7[10] = puStackX_18;
   return;
 }
-
 // void FUN_18003d310(void)
+
 void FUN_18003d310(void)
 
 {
@@ -11112,7 +11042,6 @@ void FUN_18003d310(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int FUN_18003d410(void)
@@ -11123,8 +11052,8 @@ int FUN_18003d410(void)
 
   _DAT_180bfa350 = &UNK_1809fcc28;
   _DAT_180bfa358 = &DAT_180bfa368;
-
 // void FUN_18003de10(void)
+
 void FUN_18003de10(void)
 
 {
@@ -11170,8 +11099,8 @@ void FUN_18003de10(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18003df10(void)
+
 void FUN_18003df10(void)
 
 {
@@ -11217,8 +11146,8 @@ void FUN_18003df10(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18003e010(void)
+
 void FUN_18003e010(void)
 
 {
@@ -11264,8 +11193,8 @@ void FUN_18003e010(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18003e110(void)
+
 void FUN_18003e110(void)
 
 {
@@ -11311,8 +11240,8 @@ void FUN_18003e110(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003e210(void)
+
 void FUN_18003e210(void)
 
 {
@@ -11358,8 +11287,8 @@ void FUN_18003e210(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18003e310(void)
+
 void FUN_18003e310(void)
 
 {
@@ -11405,8 +11334,8 @@ void FUN_18003e310(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003e410(void)
+
 void FUN_18003e410(void)
 
 {
@@ -11452,8 +11381,8 @@ void FUN_18003e410(void)
   puVar7[10] = puStackX_18;
   return;
 }
-
 // void FUN_18003e510(void)
+
 void FUN_18003e510(void)
 
 {
@@ -11499,8 +11428,8 @@ void FUN_18003e510(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003e610(void)
+
 void FUN_18003e610(void)
 
 {
@@ -11546,8 +11475,8 @@ void FUN_18003e610(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18003e710(void)
+
 void FUN_18003e710(void)
 
 {
@@ -11593,8 +11522,8 @@ void FUN_18003e710(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18003e810(void)
+
 void FUN_18003e810(void)
 
 {
@@ -11640,8 +11569,8 @@ void FUN_18003e810(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003e910(void)
+
 void FUN_18003e910(void)
 
 {
@@ -11687,8 +11616,8 @@ void FUN_18003e910(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18003ea10(void)
+
 void FUN_18003ea10(void)
 
 {
@@ -11734,8 +11663,8 @@ void FUN_18003ea10(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003eb10(void)
+
 void FUN_18003eb10(void)
 
 {
@@ -11781,8 +11710,8 @@ void FUN_18003eb10(void)
   puVar7[10] = puStackX_18;
   return;
 }
-
 // void FUN_18003ec10(void)
+
 void FUN_18003ec10(void)
 
 {
@@ -11828,9 +11757,7 @@ void FUN_18003ec10(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18003ed10(void)
 void FUN_18003ed10(void)
 
@@ -11902,8 +11829,8 @@ int FUN_18003ee40(void)
   lVar1 = FUN_1808fc7d0(FUN_1809429f0);
   return (lVar1 != 0) - 1;
 }
-
 // void FUN_18003ee90(void)
+
 void FUN_18003ee90(void)
 
 {
@@ -11949,8 +11876,8 @@ void FUN_18003ee90(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18003ef90(void)
+
 void FUN_18003ef90(void)
 
 {
@@ -11996,8 +11923,8 @@ void FUN_18003ef90(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003f090(void)
+
 void FUN_18003f090(void)
 
 {
@@ -12043,8 +11970,8 @@ void FUN_18003f090(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003f190(void)
+
 void FUN_18003f190(void)
 
 {
@@ -12090,8 +12017,8 @@ void FUN_18003f190(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003f290(void)
+
 void FUN_18003f290(void)
 
 {
@@ -12137,8 +12064,8 @@ void FUN_18003f290(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003f390(void)
+
 void FUN_18003f390(void)
 
 {
@@ -12184,8 +12111,8 @@ void FUN_18003f390(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003f490(void)
+
 void FUN_18003f490(void)
 
 {
@@ -12231,8 +12158,8 @@ void FUN_18003f490(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003f590(void)
+
 void FUN_18003f590(void)
 
 {
@@ -12278,8 +12205,8 @@ void FUN_18003f590(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003f690(void)
+
 void FUN_18003f690(void)
 
 {
@@ -12325,8 +12252,8 @@ void FUN_18003f690(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18003f790(void)
+
 void FUN_18003f790(void)
 
 {
@@ -12372,9 +12299,7 @@ void FUN_18003f790(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18003f890(void)
 void FUN_18003f890(void)
 
@@ -12393,9 +12318,7 @@ void FUN_18003f890(void)
   _DAT_180c924ac = FUN_180623800(&puStack_a0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18003f920(void)
 void FUN_18003f920(void)
 
@@ -12414,9 +12337,7 @@ void FUN_18003f920(void)
   _DAT_180c924b0 = FUN_180623800(&puStack_a0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18003f9b0(void)
 void FUN_18003f9b0(void)
 
@@ -12435,9 +12356,7 @@ void FUN_18003f9b0(void)
   _DAT_180c924b4 = FUN_180623800(&puStack_a0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18003fa40(void)
 void FUN_18003fa40(void)
 
@@ -12456,7 +12375,6 @@ void FUN_18003fa40(void)
   _DAT_180c924b8 = FUN_180623800(&puStack_a0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int FUN_18003fad0(void)
@@ -12467,8 +12385,8 @@ int FUN_18003fad0(void)
 
   _DAT_180bf6048 = &UNK_18098bc80;
   _DAT_180bf6050 = &DAT_180bf6060;
-
 // void FUN_18003fbb0(void)
+
 void FUN_18003fbb0(void)
 
 {
@@ -12514,8 +12432,8 @@ void FUN_18003fbb0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003fcb0(void)
+
 void FUN_18003fcb0(void)
 
 {
@@ -12561,8 +12479,8 @@ void FUN_18003fcb0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003fdb0(void)
+
 void FUN_18003fdb0(void)
 
 {
@@ -12608,8 +12526,8 @@ void FUN_18003fdb0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_18003feb0(void)
+
 void FUN_18003feb0(void)
 
 {
@@ -12655,8 +12573,8 @@ void FUN_18003feb0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_18003ffb0(void)
+
 void FUN_18003ffb0(void)
 
 {
@@ -12702,8 +12620,8 @@ void FUN_18003ffb0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800400b0(void)
+
 void FUN_1800400b0(void)
 
 {
@@ -12749,8 +12667,8 @@ void FUN_1800400b0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800401b0(void)
+
 void FUN_1800401b0(void)
 
 {
@@ -12796,8 +12714,8 @@ void FUN_1800401b0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800402b0(void)
+
 void FUN_1800402b0(void)
 
 {
@@ -12843,8 +12761,8 @@ void FUN_1800402b0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800403b0(void)
+
 void FUN_1800403b0(void)
 
 {
@@ -12890,8 +12808,8 @@ void FUN_1800403b0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800404b0(void)
+
 void FUN_1800404b0(void)
 
 {
@@ -12937,8 +12855,8 @@ void FUN_1800404b0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800405b0(void)
+
 void FUN_1800405b0(void)
 
 {
@@ -12984,8 +12902,8 @@ void FUN_1800405b0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_1800406b0(void)
+
 void FUN_1800406b0(void)
 
 {
@@ -13031,8 +12949,8 @@ void FUN_1800406b0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800408d0(void)
+
 void FUN_1800408d0(void)
 
 {
@@ -13078,8 +12996,8 @@ void FUN_1800408d0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800409d0(void)
+
 void FUN_1800409d0(void)
 
 {
@@ -13125,8 +13043,8 @@ void FUN_1800409d0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180040ae0(void)
+
 void FUN_180040ae0(void)
 
 {
@@ -13172,8 +13090,8 @@ void FUN_180040ae0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180040be0(void)
+
 void FUN_180040be0(void)
 
 {
@@ -13219,8 +13137,8 @@ void FUN_180040be0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180040ce0(void)
+
 void FUN_180040ce0(void)
 
 {
@@ -13266,8 +13184,8 @@ void FUN_180040ce0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180040de0(void)
+
 void FUN_180040de0(void)
 
 {
@@ -13313,8 +13231,8 @@ void FUN_180040de0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180040ee0(void)
+
 void FUN_180040ee0(void)
 
 {
@@ -13360,8 +13278,8 @@ void FUN_180040ee0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180040fe0(void)
+
 void FUN_180040fe0(void)
 
 {
@@ -13407,8 +13325,8 @@ void FUN_180040fe0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_1800410e0(void)
+
 void FUN_1800410e0(void)
 
 {
@@ -13454,8 +13372,8 @@ void FUN_1800410e0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800411e0(void)
+
 void FUN_1800411e0(void)
 
 {
@@ -13501,8 +13419,8 @@ void FUN_1800411e0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_1800412e0(void)
+
 void FUN_1800412e0(void)
 
 {
@@ -13548,8 +13466,8 @@ void FUN_1800412e0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800413e0(void)
+
 void FUN_1800413e0(void)
 
 {
@@ -13595,8 +13513,8 @@ void FUN_1800413e0(void)
   puVar7[10] = puStackX_18;
   return;
 }
-
 // void FUN_1800414e0(void)
+
 void FUN_1800414e0(void)
 
 {
@@ -13642,8 +13560,8 @@ void FUN_1800414e0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800415e0(void)
+
 void FUN_1800415e0(void)
 
 {
@@ -13689,8 +13607,8 @@ void FUN_1800415e0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800416e0(void)
+
 void FUN_1800416e0(void)
 
 {
@@ -13736,8 +13654,8 @@ void FUN_1800416e0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800417e0(void)
+
 void FUN_1800417e0(void)
 
 {
@@ -13783,7 +13701,6 @@ void FUN_1800417e0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int FUN_1800418e0(void)
@@ -13811,7 +13728,6 @@ int FUN_1800418e0(void)
   lVar1 = FUN_1808fc7d0(&UNK_180942f90);
   return (lVar1 != 0) - 1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int FUN_180041a10(void)
@@ -13822,8 +13738,8 @@ int FUN_180041a10(void)
 
   _DAT_180bf64f8 = &UNK_18098bc80;
   _DAT_180bf6500 = &DAT_180bf6510;
-
 // void FUN_180041af0(void)
+
 void FUN_180041af0(void)
 
 {
@@ -13869,8 +13785,8 @@ void FUN_180041af0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180041bf0(void)
+
 void FUN_180041bf0(void)
 
 {
@@ -13916,8 +13832,8 @@ void FUN_180041bf0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180041d10(void)
+
 void FUN_180041d10(void)
 
 {
@@ -13963,8 +13879,8 @@ void FUN_180041d10(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180041e10(void)
+
 void FUN_180041e10(void)
 
 {
@@ -14010,9 +13926,7 @@ void FUN_180041e10(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180041f10(void)
 void FUN_180041f10(void)
 
@@ -14041,8 +13955,8 @@ int FUN_180041fa0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   lVar1 = FUN_1808fc7d0(FUN_180943070);
   return (lVar1 != 0) - 1;
 }
-
 // void FUN_180041fd0(void)
+
 void FUN_180041fd0(void)
 
 {
@@ -14088,8 +14002,8 @@ void FUN_180041fd0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800420d0(void)
+
 void FUN_1800420d0(void)
 
 {
@@ -14135,8 +14049,8 @@ void FUN_1800420d0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800421d0(void)
+
 void FUN_1800421d0(void)
 
 {
@@ -14182,8 +14096,8 @@ void FUN_1800421d0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_1800422d0(void)
+
 void FUN_1800422d0(void)
 
 {
@@ -14229,8 +14143,8 @@ void FUN_1800422d0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_1800423d0(void)
+
 void FUN_1800423d0(void)
 
 {
@@ -14276,8 +14190,8 @@ void FUN_1800423d0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_1800424d0(void)
+
 void FUN_1800424d0(void)
 
 {
@@ -14323,8 +14237,8 @@ void FUN_1800424d0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_1800425d0(void)
+
 void FUN_1800425d0(void)
 
 {
@@ -14370,8 +14284,8 @@ void FUN_1800425d0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800426d0(void)
+
 void FUN_1800426d0(void)
 
 {
@@ -14417,8 +14331,8 @@ void FUN_1800426d0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_1800427d0(void)
+
 void FUN_1800427d0(void)
 
 {
@@ -14464,8 +14378,8 @@ void FUN_1800427d0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800428d0(void)
+
 void FUN_1800428d0(void)
 
 {
@@ -14511,8 +14425,8 @@ void FUN_1800428d0(void)
   puVar7[10] = puStackX_18;
   return;
 }
-
 // void FUN_1800429d0(void)
+
 void FUN_1800429d0(void)
 
 {
@@ -14558,8 +14472,8 @@ void FUN_1800429d0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180042ad0(void)
+
 void FUN_180042ad0(void)
 
 {
@@ -14605,8 +14519,8 @@ void FUN_180042ad0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_180042bd0(void)
+
 void FUN_180042bd0(void)
 
 {
@@ -14652,8 +14566,8 @@ void FUN_180042bd0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180042cd0(void)
+
 void FUN_180042cd0(void)
 
 {
@@ -14699,8 +14613,8 @@ void FUN_180042cd0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180042dd0(void)
+
 void FUN_180042dd0(void)
 
 {
@@ -14746,8 +14660,8 @@ void FUN_180042dd0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180042ed0(void)
+
 void FUN_180042ed0(void)
 
 {
@@ -14793,8 +14707,8 @@ void FUN_180042ed0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_180042fd0(void)
+
 void FUN_180042fd0(void)
 
 {
@@ -14840,8 +14754,8 @@ void FUN_180042fd0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800430d0(void)
+
 void FUN_1800430d0(void)
 
 {
@@ -14887,8 +14801,8 @@ void FUN_1800430d0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800431d0(void)
+
 void FUN_1800431d0(void)
 
 {
@@ -14934,8 +14848,8 @@ void FUN_1800431d0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // void FUN_1800432d0(void)
+
 void FUN_1800432d0(void)
 
 {
@@ -14981,8 +14895,8 @@ void FUN_1800432d0(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-
 // void FUN_1800433d0(void)
+
 void FUN_1800433d0(void)
 
 {
@@ -15028,9 +14942,7 @@ void FUN_1800433d0(void)
   puVar7[10] = uStackX_18;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800434d0(void)
 void FUN_1800434d0(void)
 
@@ -15049,9 +14961,7 @@ void FUN_1800434d0(void)
   _DAT_180c9606c = FUN_180623800(&puStack_a0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180043560(void)
 void FUN_180043560(void)
 
@@ -15089,7 +14999,6 @@ int FUN_1800435e0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   lVar1 = FUN_1808fc7d0(FUN_180943160);
   return (lVar1 != 0) - 1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int FUN_180043610(void)
@@ -15106,9 +15015,7 @@ int FUN_180043610(void)
   lVar1 = FUN_1808fc7d0(FUN_180943180);
   return (lVar1 != 0) - 1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180043690(void)
 void FUN_180043690(void)
 
@@ -15127,7 +15034,6 @@ void FUN_180043690(void)
   _DAT_180c967d0 = FUN_180623800(&puStack_a0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 FUN_180043720(void)
@@ -15165,9 +15071,7 @@ LAB_1808fd14a:
   *piVar2 = *piVar2 + 1;
   return 0;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180043790(void)
 void FUN_180043790(void)
 
@@ -15186,9 +15090,7 @@ void FUN_180043790(void)
   _DAT_180c967d4 = FUN_180623800(&puStack_a0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180043820(void)
 void FUN_180043820(void)
 
@@ -15207,7 +15109,6 @@ void FUN_180043820(void)
   _DAT_180c967d8 = FUN_180623800(&puStack_a0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int FUN_1800438b0(void)
@@ -15224,7 +15125,6 @@ int FUN_1800438b0(void)
   lVar1 = FUN_1808fc7d0(FUN_180943200);
   return (lVar1 != 0) - 1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int FUN_180043960(void)
@@ -15254,9 +15154,7 @@ int FUN_1800439c0(void)
   lVar1 = FUN_1808fc7d0(&UNK_180943260);
   return (lVar1 != 0) - 1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800439e0(void)
 void FUN_1800439e0(void)
 
@@ -15270,9 +15168,7 @@ void FUN_1800439e0(void)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180043a10(void)
 void FUN_180043a10(void)
 
@@ -15291,9 +15187,7 @@ void FUN_180043a10(void)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180043a90(void)
 void FUN_180043a90(void)
 
@@ -15307,9 +15201,7 @@ void FUN_180043a90(void)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180043ac0(void)
 void FUN_180043ac0(void)
 
@@ -15323,9 +15215,7 @@ void FUN_180043ac0(void)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180043af0(void)
 void FUN_180043af0(void)
 
@@ -15339,9 +15229,7 @@ void FUN_180043af0(void)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180043b20(void)
 void FUN_180043b20(void)
 
@@ -15355,9 +15243,7 @@ void FUN_180043b20(void)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180043b50(void)
 void FUN_180043b50(void)
 
@@ -15394,9 +15280,7 @@ int FUN_180043ba0(void)
   lVar2 = FUN_1808fc7d0(&UNK_180943270);
   return (lVar2 != 0) - 1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180043c00(void)
 void FUN_180043c00(void)
 
@@ -15410,9 +15294,7 @@ void FUN_180043c00(void)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180043c30(void)
 void FUN_180043c30(void)
 
@@ -15463,8 +15345,8 @@ void WotsMainSDLL(undefined8 param_1)
   undefined8 auStackX_18 [2];
 
                     // 0x43d20  31  WotsMainSDLL
-
 // void FUN_180043d40(longlong param_1)
+
 void FUN_180043d40(longlong param_1)
 
 {
@@ -15558,25 +15440,23 @@ FUN_180043f30(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
   }
   return param_1;
 }
-
 // void FUN_180043f90(void)
+
 void FUN_180043f90(void)
 
 {
                     // WARNING: Subroutine does not return
   FUN_1808fd200();
 }
-
 // void FUN_180044a30(undefined8 *param_1)
+
 void FUN_180044a30(undefined8 *param_1)
 
 {
   *param_1 = &UNK_18098bcb0;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180044a50(void)
 void FUN_180044a50(void)
 
@@ -15726,9 +15606,7 @@ LAB_180044db8:
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_248);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180044dc0(undefined8 param_1,longlong param_2)
 void FUN_180044dc0(undefined8 param_1,longlong param_2)
 
@@ -15875,8 +15753,8 @@ LAB_180044faf:
   }
   _DAT_180c8ed58 = 0;
   _DAT_180c8ed40 = lStackX_20;
-
 // void FUN_180045380(void)
+
 void FUN_180045380(void)
 
 {
@@ -15906,7 +15784,6 @@ void FUN_180045380(void)
                     // WARNING: Subroutine does not return
   FUN_18064e900(puVar3);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined4 FUN_180045580(void)
@@ -16074,8 +15951,8 @@ void WotsMain(undefined8 param_1)
   undefined8 auStackX_18 [2];
 
                     // 0x45a00  27  WotsMain
-
 // void FUN_180045af0(longlong *param_1)
+
 void FUN_180045af0(longlong *param_1)
 
 {
@@ -16084,8 +15961,8 @@ void FUN_180045af0(longlong *param_1)
   }
   return;
 }
-
 // void FUN_180045b20(longlong param_1,longlong param_2)
+
 void FUN_180045b20(longlong param_1,longlong param_2)
 
 {
@@ -16112,8 +15989,8 @@ void FUN_180045b20(longlong param_1,longlong param_2)
   **(undefined1 **)(param_1 + 8) = 0;
   return;
 }
-
 // void FUN_180045ba0(longlong param_1,undefined8 param_2,int param_3)
+
 void FUN_180045ba0(longlong param_1,undefined8 param_2,int param_3)
 
 {
@@ -16125,16 +16002,16 @@ void FUN_180045ba0(longlong param_1,undefined8 param_2,int param_3)
   *(undefined4 *)(param_1 + 0x10) = 0;
   return;
 }
-
 // void FUN_180045bc1(void)
+
 void FUN_180045bc1(void)
 
 {
                     // WARNING: Subroutine does not return
   memcpy();
 }
-
 // void FUN_180045be6(undefined1 *param_1)
+
 void FUN_180045be6(undefined1 *param_1)
 
 {
@@ -16144,8 +16021,8 @@ void FUN_180045be6(undefined1 *param_1)
   *(undefined4 *)(unaff_RDI + 0x10) = 0;
   return;
 }
-
 // void FUN_180045c00(void)
+
 void FUN_180045c00(void)
 
 {
@@ -16199,8 +16076,8 @@ FUN_180045ea0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
   }
   return param_1;
 }
-
 // void FUN_180045ee0(longlong param_1,longlong param_2)
+
 void FUN_180045ee0(longlong param_1,longlong param_2)
 
 {
@@ -16227,8 +16104,8 @@ void FUN_180045ee0(longlong param_1,longlong param_2)
   **(undefined1 **)(param_1 + 8) = 0;
   return;
 }
-
 // void FUN_180045f60(longlong param_1,undefined8 param_2,int param_3)
+
 void FUN_180045f60(longlong param_1,undefined8 param_2,int param_3)
 
 {
@@ -16240,16 +16117,16 @@ void FUN_180045f60(longlong param_1,undefined8 param_2,int param_3)
   *(undefined4 *)(param_1 + 0x10) = 0;
   return;
 }
-
 // void FUN_180045f81(void)
+
 void FUN_180045f81(void)
 
 {
                     // WARNING: Subroutine does not return
   memcpy();
 }
-
 // void FUN_180045fa6(undefined1 *param_1)
+
 void FUN_180045fa6(undefined1 *param_1)
 
 {
@@ -16259,9 +16136,7 @@ void FUN_180045fa6(undefined1 *param_1)
   *(undefined4 *)(unaff_RDI + 0x10) = 0;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180045fc0(longlong param_1,longlong param_2,longlong param_3)
 void FUN_180045fc0(longlong param_1,longlong param_2,longlong param_3)
 
@@ -16300,8 +16175,8 @@ void FUN_180045fc0(longlong param_1,longlong param_2,longlong param_3)
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_498);
 }
-
 // void FUN_180046130(undefined8 *param_1,undefined4 param_2)
+
 void FUN_180046130(undefined8 *param_1,undefined4 param_2)
 
 {
@@ -16312,8 +16187,8 @@ void FUN_180046130(undefined8 *param_1,undefined4 param_2)
   } while (iVar1 == 0);
   return;
 }
-
 // void FUN_180046160(undefined8 *param_1)
+
 void FUN_180046160(undefined8 *param_1)
 
 {
@@ -16387,9 +16262,7 @@ longlong FUN_180046240(undefined4 *param_1,undefined4 *param_2)
   *param_1 = uVar1;
   return CONCAT71((uint7)(uint3)((uint)uVar1 >> 8),1);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800462c0(undefined8 param_1,undefined4 param_2)
 void FUN_1800462c0(undefined8 param_1,undefined4 param_2)
 
@@ -16427,8 +16300,8 @@ FUN_180046340(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
   }
   return param_1;
 }
-
 // void FUN_180046380(longlong param_1,longlong param_2)
+
 void FUN_180046380(longlong param_1,longlong param_2)
 
 {
@@ -16455,8 +16328,8 @@ void FUN_180046380(longlong param_1,longlong param_2)
   **(undefined1 **)(param_1 + 8) = 0;
   return;
 }
-
 // void FUN_180046400(longlong param_1,undefined8 param_2,int param_3)
+
 void FUN_180046400(longlong param_1,undefined8 param_2,int param_3)
 
 {
@@ -16468,16 +16341,16 @@ void FUN_180046400(longlong param_1,undefined8 param_2,int param_3)
   *(undefined4 *)(param_1 + 0x10) = 0;
   return;
 }
-
 // void FUN_18004641f(void)
+
 void FUN_18004641f(void)
 
 {
                     // WARNING: Subroutine does not return
   memcpy();
 }
-
 // void FUN_180046444(undefined1 *param_1)
+
 void FUN_180046444(undefined1 *param_1)
 
 {
@@ -16500,9 +16373,7 @@ undefined8 * FUN_180046480(undefined8 *param_1)
   *(undefined1 *)(param_1 + 3) = 0;
   return param_1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800464f0(longlong param_1,longlong param_2,longlong param_3)
 void FUN_1800464f0(longlong param_1,longlong param_2,longlong param_3)
 
@@ -16551,8 +16422,8 @@ undefined8 * FUN_180046650(undefined8 *param_1,ulonglong param_2)
   }
   return param_1;
 }
-
 // void FUN_1800466a0(undefined8 *param_1)
+
 void FUN_1800466a0(undefined8 *param_1)
 
 {
@@ -16564,8 +16435,8 @@ void FUN_1800466a0(undefined8 *param_1)
   }
   return;
 }
-
 // void FUN_1800466d0(longlong param_1)
+
 void FUN_1800466d0(longlong param_1)
 
 {
@@ -16586,8 +16457,8 @@ void FUN_1800466d0(longlong param_1)
   }
   return;
 }
-
 // void FUN_180046750(undefined8 *param_1)
+
 void FUN_180046750(undefined8 *param_1)
 
 {
@@ -16609,8 +16480,8 @@ FUN_180046790(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
   }
   return param_1;
 }
-
 // void FUN_180046820(longlong *param_1)
+
 void FUN_180046820(longlong *param_1)
 
 {
@@ -16627,8 +16498,8 @@ void FUN_180046820(longlong *param_1)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_180046840(longlong *param_1)
+
 void FUN_180046840(longlong *param_1)
 
 {
@@ -16652,8 +16523,8 @@ void FUN_180046840(longlong *param_1)
   }
   return;
 }
-
 // void FUN_180046860(ulonglong *param_1)
+
 void FUN_180046860(ulonglong *param_1)
 
 {
@@ -16687,7 +16558,6 @@ void FUN_180046860(ulonglong *param_1)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int FUN_180046890(longlong param_1,longlong param_2)
@@ -16830,8 +16700,8 @@ LAB_180046a90:
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_180046b10(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180046b10(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -16919,9 +16789,7 @@ LAB_180046c5e:
   }
   return 0xffffffff;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180046ca0(longlong *param_1,undefined8 *param_2)
 void FUN_180046ca0(longlong *param_1,undefined8 *param_2)
 
@@ -16964,10 +16832,9 @@ void FUN_180046ca0(longlong *param_1,undefined8 *param_2)
   *param_2 = &UNK_18098bcb0;
   return;
 }
-
 // WARNING: Removing unreachable block (ram,0x0001800472a0)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 // void FUN_180046e20(void)
 void FUN_180046e20(void)
 
@@ -17242,25 +17109,23 @@ FUN_180047d40(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefin
   *(undefined1 *)((longlong)param_1 + 0xcc) = *(undefined1 *)((longlong)param_2 + 0xcc);
   return param_1;
 }
-
 // void FUN_180047e10(longlong param_1)
+
 void FUN_180047e10(longlong param_1)
 
 {
   *(undefined **)(param_1 + 0x10) = &UNK_18098bcb0;
   return;
 }
-
 // void FUN_180047e40(undefined8 *param_1)
+
 void FUN_180047e40(undefined8 *param_1)
 
 {
   *param_1 = &UNK_18098bcb0;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180047e70(undefined8 param_1,undefined8 param_2,longlong param_3,undefined8 param_4)
 void FUN_180047e70(undefined8 param_1,undefined8 param_2,longlong param_3,undefined8 param_4)
 
@@ -17341,9 +17206,7 @@ LAB_180047f93:
   puVar4[0xc] = param_4;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180047fc0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 void FUN_180047fc0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
@@ -17658,8 +17521,8 @@ void FUN_180047fc0(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
                     // WARNING: Subroutine does not return
   FUN_18064e900(puVar5);
 }
-
 // void FUN_180048910(longlong *param_1)
+
 void FUN_180048910(longlong *param_1)
 
 {
@@ -17676,8 +17539,8 @@ void FUN_180048910(longlong *param_1)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_180048980(longlong *param_1)
+
 void FUN_180048980(longlong *param_1)
 
 {
@@ -17701,8 +17564,8 @@ void FUN_180048980(longlong *param_1)
   }
   return;
 }
-
 // void FUN_180048a20(ulonglong *param_1)
+
 void FUN_180048a20(ulonglong *param_1)
 
 {
@@ -17736,9 +17599,7 @@ void FUN_180048a20(ulonglong *param_1)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180048a50(longlong param_1)
 void FUN_180048a50(longlong param_1)
 
@@ -17982,9 +17843,7 @@ LAB_180048e74:
   *param_2 = plVar4;
   return param_2;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180048ee0(longlong param_1,undefined8 param_2,longlong param_3,undefined8 param_4,
 void FUN_180048ee0(longlong param_1,undefined8 param_2,longlong param_3,undefined8 param_4,
                   longlong param_5)
@@ -18032,7 +17891,6 @@ LAB_180048f62:
                     // WARNING: Subroutine does not return
   FUN_18066bdc0(lVar5,param_3,param_1,uVar6,uVar7,puVar4);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 * FUN_180049010(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
@@ -18069,7 +17927,6 @@ undefined8 * FUN_180049010(longlong param_1,longlong *param_2,undefined8 param_3
   }
   return puVar3;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 * FUN_180049110(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
@@ -18209,8 +18066,8 @@ FUN_1800491b0(undefined8 *param_1,longlong *param_2,longlong *param_3,undefined8
   }
   return param_1;
 }
-
 // void FUN_180049470(undefined8 *param_1)
+
 void FUN_180049470(undefined8 *param_1)
 
 {
@@ -18232,8 +18089,8 @@ undefined8 FUN_1800494f0(undefined8 param_1,ulonglong param_2)
   }
   return param_1;
 }
-
 // void FUN_180049550(longlong param_1,undefined1 param_2)
+
 void FUN_180049550(longlong param_1,undefined1 param_2)
 
 {
@@ -18250,9 +18107,7 @@ void FUN_180049550(longlong param_1,undefined1 param_2)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800495d0(undefined8 param_1,undefined8 *param_2,longlong *param_3)
 void FUN_1800495d0(undefined8 param_1,undefined8 *param_2,longlong *param_3)
 
@@ -18323,40 +18178,40 @@ undefined1 FUN_1800496b0(longlong param_1,undefined8 param_2,undefined8 param_3,
   }
   return uVar1;
 }
-
 // void FUN_180049770(void)
+
 void FUN_180049770(void)
 
 {
   _Cnd_destroy_in_situ();
   return;
 }
-
 // void FUN_180049790(void)
+
 void FUN_180049790(void)
 
 {
   _Cnd_destroy_in_situ();
   return;
 }
-
 // void FUN_1800497b0(void)
+
 void FUN_1800497b0(void)
 
 {
   _Mtx_destroy_in_situ();
   return;
 }
-
 // void FUN_1800497d0(void)
+
 void FUN_1800497d0(void)
 
 {
   _Mtx_destroy_in_situ();
   return;
 }
-
 // void FUN_1800497f0(undefined8 param_1)
+
 void FUN_1800497f0(undefined8 param_1)
 
 {
@@ -18397,8 +18252,8 @@ FUN_1800498d0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
   }
   return param_1;
 }
-
 // void FUN_180049910(longlong param_1,undefined8 param_2,int param_3)
+
 void FUN_180049910(longlong param_1,undefined8 param_2,int param_3)
 
 {
@@ -18410,16 +18265,16 @@ void FUN_180049910(longlong param_1,undefined8 param_2,int param_3)
   *(undefined4 *)(param_1 + 0x10) = 0;
   return;
 }
-
 // void FUN_180049931(void)
+
 void FUN_180049931(void)
 
 {
                     // WARNING: Subroutine does not return
   memcpy();
 }
-
 // void FUN_180049956(undefined1 *param_1)
+
 void FUN_180049956(undefined1 *param_1)
 
 {
@@ -18442,9 +18297,7 @@ undefined8 * FUN_180049970(undefined8 *param_1)
   *(undefined1 *)(param_1 + 3) = 0;
   return param_1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800499c0(longlong param_1,longlong param_2,longlong param_3)
 void FUN_1800499c0(longlong param_1,longlong param_2,longlong param_3)
 
@@ -18516,8 +18369,8 @@ FUN_180049bb0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
   }
   return param_1;
 }
-
 // void FUN_180049bf0(longlong param_1,longlong param_2)
+
 void FUN_180049bf0(longlong param_1,longlong param_2)
 
 {
@@ -18544,8 +18397,8 @@ void FUN_180049bf0(longlong param_1,longlong param_2)
   **(undefined1 **)(param_1 + 8) = 0;
   return;
 }
-
 // void FUN_180049c70(longlong param_1,undefined8 param_2,int param_3)
+
 void FUN_180049c70(longlong param_1,undefined8 param_2,int param_3)
 
 {
@@ -18557,16 +18410,16 @@ void FUN_180049c70(longlong param_1,undefined8 param_2,int param_3)
   *(undefined4 *)(param_1 + 0x10) = 0;
   return;
 }
-
 // void FUN_180049c8f(void)
+
 void FUN_180049c8f(void)
 
 {
                     // WARNING: Subroutine does not return
   memcpy();
 }
-
 // void FUN_180049cb4(undefined1 *param_1)
+
 void FUN_180049cb4(undefined1 *param_1)
 
 {
@@ -18589,9 +18442,7 @@ undefined8 * FUN_180049cd0(undefined8 *param_1)
   *(undefined1 *)(param_1 + 3) = 0;
   return param_1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180049d20(longlong param_1,longlong param_2,longlong param_3)
 void FUN_180049d20(longlong param_1,longlong param_2,longlong param_3)
 
@@ -18654,8 +18505,8 @@ FUN_180049eb0(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8
   }
   return param_1;
 }
-
 // void FUN_180049f30(undefined8 *param_1)
+
 void FUN_180049f30(undefined8 *param_1)
 
 {
@@ -18677,8 +18528,8 @@ void FUN_180049f30(undefined8 *param_1)
   *param_1 = &UNK_18098bcb0;
   return;
 }
-
 // void FUN_180049fd0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180049fd0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -18705,32 +18556,32 @@ void FUN_180049fd0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,und
                     // WARNING: Subroutine does not return
   FUN_18064e900(param_2);
 }
-
 // void FUN_18004a0b0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18004a0b0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180049fd0(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
-
 // void FUN_18004a0d0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18004a0d0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180049fd0(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
-
 // void FUN_18004a100(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18004a100(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180049fd0(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
-
 // void FUN_18004a130(undefined8 *param_1)
+
 void FUN_18004a130(undefined8 *param_1)
 
 {
@@ -18744,8 +18595,8 @@ void FUN_18004a130(undefined8 *param_1)
   *param_1 = &UNK_18098bcb0;
   return;
 }
-
 // void FUN_18004a180(longlong param_1,longlong param_2)
+
 void FUN_18004a180(longlong param_1,longlong param_2)
 
 {
@@ -18772,15 +18623,14 @@ void FUN_18004a180(longlong param_1,longlong param_2)
   **(undefined1 **)(param_1 + 8) = 0;
   return;
 }
-
 // void FUN_18004a200(void)
+
 void FUN_18004a200(void)
 
 {
   _Mtx_destroy_in_situ();
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 FUN_18004a220(longlong param_1,undefined4 param_2,undefined8 param_3,undefined8 param_4)
@@ -18840,8 +18690,8 @@ LAB_18004a322:
   }
   return uVar2;
 }
-
 // void FUN_18004a360(undefined8 *param_1)
+
 void FUN_18004a360(undefined8 *param_1)
 
 {
@@ -18864,8 +18714,8 @@ undefined8 FUN_18004a3c0(undefined8 param_1,ulonglong param_2)
   }
   return param_1;
 }
-
 // void FUN_18004a400(undefined8 *param_1)
+
 void FUN_18004a400(undefined8 *param_1)
 
 {
@@ -18873,7 +18723,6 @@ void FUN_18004a400(undefined8 *param_1)
   *param_1 = &UNK_1809fcce0;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 FUN_18004a430(longlong param_1,undefined8 param_2)
@@ -18887,8 +18736,8 @@ undefined8 FUN_18004a430(longlong param_1,undefined8 param_2)
   *(longlong *)(param_1 + 8) = *(longlong *)(param_1 + 8) + lVar2;
   return uVar1;
 }
-
 // void FUN_18004a470(longlong param_1,longlong param_2)
+
 void FUN_18004a470(longlong param_1,longlong param_2)
 
 {
@@ -18914,7 +18763,6 @@ FUN_18004a4b0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
   }
   return param_1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 bool FUN_18004a500(void)
@@ -18976,9 +18824,7 @@ bool FUN_18004a500(void)
   }
   return bVar5;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18004a640(void)
 void FUN_18004a640(void)
 
@@ -19049,9 +18895,7 @@ void FUN_18004a640(void)
                     // WARNING: Subroutine does not return
   FUN_18064e900(puVar3);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18004a850(void)
 void FUN_18004a850(void)
 
@@ -19066,9 +18910,7 @@ void FUN_18004a850(void)
                     // WARNING: Subroutine does not return
   memset(uVar1,0,0x50);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18004adc0(void)
 void FUN_18004adc0(void)
 
@@ -19138,8 +18980,8 @@ void FUN_18004adc0(void)
     uVar4 = CreateMutexA(0,0,puVar7);
     *puVar2 = uVar4;
     iVar8 = GetLastError();
-
 // void FUN_18004afa0(void)
+
 void FUN_18004afa0(void)
 
 {
@@ -19236,7 +19078,6 @@ FUN_18004b100(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefine
   *(int *)(param_1 + 2) = iVar4;
   return param_1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 FUN_18004b1f0(char param_1)
@@ -19320,7 +19161,6 @@ undefined8 FUN_18004b1f0(char param_1)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 bool FUN_18004b390(void)
@@ -19338,9 +19178,7 @@ bool FUN_18004b390(void)
   }
   return true;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18004b3f0(undefined8 *param_1)
 void FUN_18004b3f0(undefined8 *param_1)
 
@@ -19405,7 +19243,6 @@ void FUN_18004b3f0(undefined8 *param_1)
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_88);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 longlong * FUN_18004b560(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
@@ -19425,9 +19262,7 @@ longlong * FUN_18004b560(longlong *param_1,undefined8 param_2,undefined8 param_3
   (**(code **)(*param_1 + 0x10))(param_1,&UNK_1809fd0a8,param_3,param_4,1,0xfffffffffffffffe);
   return param_1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18004b5f0(undefined4 *param_1)
 void FUN_18004b5f0(undefined4 *param_1)
 
@@ -19464,24 +19299,24 @@ FUN_18004b640(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8
   strcpy_s(param_1[1],0x20,puVar1,param_4,0xfffffffffffffffe);
   return param_1;
 }
-
 // void FUN_18004b6b0(undefined8 *param_1)
+
 void FUN_18004b6b0(undefined8 *param_1)
 
 {
   *param_1 = &UNK_1809fcca0;
   return;
 }
-
 // void FUN_18004b6d0(undefined8 *param_1)
+
 void FUN_18004b6d0(undefined8 *param_1)
 
 {
   *param_1 = &UNK_1809fcc88;
   return;
 }
-
 // void FUN_18004b6f0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18004b6f0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -19495,8 +19330,8 @@ void FUN_18004b6f0(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
   }
   return;
 }
-
 // void FUN_18004b710(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18004b710(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -19510,8 +19345,8 @@ void FUN_18004b710(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
   }
   return;
 }
-
 // void FUN_18004b730(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18004b730(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -19525,8 +19360,8 @@ void FUN_18004b730(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
   }
   return;
 }
-
 // void FUN_18004b790(undefined8 param_1,undefined8 *param_2)
+
 void FUN_18004b790(undefined8 param_1,undefined8 *param_2)
 
 {
@@ -19537,8 +19372,8 @@ void FUN_18004b790(undefined8 param_1,undefined8 *param_2)
   }
   return;
 }
-
 // void FUN_18004b7a2(undefined8 param_1)
+
 void FUN_18004b7a2(undefined8 param_1)
 
 {
@@ -19548,8 +19383,8 @@ void FUN_18004b7a2(undefined8 param_1)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_18004b7de(void)
+
 void FUN_18004b7de(void)
 
 {
@@ -19575,9 +19410,7 @@ undefined8 * FUN_18004b820(undefined8 *param_1,ulonglong param_2)
   }
   return param_1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18004b860(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 void FUN_18004b860(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
@@ -19649,25 +19482,23 @@ int FUN_18004b9b0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   }
   return iVar1;
 }
-
 // void FUN_18004ba30(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18004ba30(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_1800582b0(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
-
 // void FUN_18004ba60(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18004ba60(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_1800582b0(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18004ba90(undefined8 *param_1)
 void FUN_18004ba90(undefined8 *param_1)
 
@@ -19681,41 +19512,39 @@ void FUN_18004ba90(undefined8 *param_1)
   }
   return;
 }
-
 // void FUN_18004bad0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18004bad0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180058370(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
-
 // void FUN_18004bb00(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18004bb00(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180058370(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
-
 // void FUN_18004bb30(longlong param_1)
+
 void FUN_18004bb30(longlong param_1)
 
 {
   FUN_180057010(param_1 + 0x60);
   return;
 }
-
 // void FUN_18004bb60(longlong param_1)
+
 void FUN_18004bb60(longlong param_1)
 
 {
   FUN_180057010(param_1 + 0x60);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18004bb90(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 void FUN_18004bb90(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
@@ -19765,16 +19594,16 @@ void FUN_18004bb90(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
   *(undefined8 *)(lVar2 + 0x70) = 0;
   return;
 }
-
 // void FUN_18004bcb0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18004bcb0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180058420(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
-
 // void FUN_18004bce0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18004bce0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -19823,8 +19652,8 @@ undefined8 * FUN_18004bd10(undefined8 *param_1)
   *(undefined4 *)(param_1 + 0x8f) = 3;
   return param_1;
 }
-
 // void FUN_18004be50(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18004be50(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -19843,8 +19672,8 @@ void FUN_18004be50(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_18004be70(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18004be70(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -19863,8 +19692,8 @@ void FUN_18004be70(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_18004be90(longlong param_1)
+
 void FUN_18004be90(longlong param_1)
 
 {
@@ -19902,8 +19731,8 @@ void FUN_18004be90(longlong param_1)
   }
   return;
 }
-
 // void FUN_18004bf50(longlong *param_1)
+
 void FUN_18004bf50(longlong *param_1)
 
 {
@@ -19928,8 +19757,8 @@ void FUN_18004bf50(longlong *param_1)
                     // WARNING: Subroutine does not return
   FUN_18064e900(lVar1);
 }
-
 // void FUN_18004bff0(longlong param_1)
+
 void FUN_18004bff0(longlong param_1)
 
 {
@@ -19980,8 +19809,8 @@ void FUN_18004bff0(longlong param_1)
   }
   return;
 }
-
 // void FUN_18004c010(longlong *param_1)
+
 void FUN_18004c010(longlong *param_1)
 
 {
@@ -19998,8 +19827,8 @@ void FUN_18004c010(longlong *param_1)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_18004c030(longlong *param_1)
+
 void FUN_18004c030(longlong *param_1)
 
 {
@@ -20028,8 +19857,8 @@ undefined8 * FUN_18004c050(undefined8 *param_1)
   *(undefined4 *)(param_1 + 3) = 3;
   return param_1;
 }
-
 // void FUN_18004c090(longlong *param_1)
+
 void FUN_18004c090(longlong *param_1)
 
 {
@@ -20046,8 +19875,8 @@ void FUN_18004c090(longlong *param_1)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_18004c0b0(longlong param_1)
+
 void FUN_18004c0b0(longlong param_1)
 
 {
@@ -20098,8 +19927,8 @@ void FUN_18004c0b0(longlong param_1)
   }
   return;
 }
-
 // void FUN_18004c0d0(longlong param_1)
+
 void FUN_18004c0d0(longlong param_1)
 
 {
@@ -20122,8 +19951,8 @@ void FUN_18004c0d0(longlong param_1)
 
   uStack_28 = 0xfffffffffffffffe;
   if (param_1 == 0) {
-
 // void FUN_18004c260(ulonglong *param_1)
+
 void FUN_18004c260(ulonglong *param_1)
 
 {
@@ -20157,8 +19986,8 @@ void FUN_18004c260(ulonglong *param_1)
   }
   return;
 }
-
 // void FUN_18004c290(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18004c290(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -20177,8 +20006,8 @@ void FUN_18004c290(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_18004c2b0(longlong param_1)
+
 void FUN_18004c2b0(longlong param_1)
 
 {
@@ -20186,8 +20015,8 @@ void FUN_18004c2b0(longlong param_1)
   longlong lVar2;
 
   if (param_1 == 0) {
-
 // void FUN_18004c2c4(longlong param_1)
+
 void FUN_18004c2c4(longlong param_1)
 
 {
@@ -20205,8 +20034,8 @@ void FUN_18004c2c4(longlong param_1)
                     // WARNING: Subroutine does not return
   memcpy(&DAT_180c84870,param_1,(longlong)(int)uVar1);
 }
-
 // void FUN_18004c31f(void)
+
 void FUN_18004c31f(void)
 
 {
@@ -20278,7 +20107,6 @@ FUN_18004c330(undefined1 *param_1,undefined8 param_2,undefined8 param_3,undefine
   *(undefined8 *)(param_1 + 0xd0) = 0;
   return param_1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 * FUN_18004c480(undefined8 *param_1)
@@ -20516,8 +20344,8 @@ LAB_18004c7ef:
     }
   } while( true );
 }
-
 // void FUN_18004ca00(longlong *param_1)
+
 void FUN_18004ca00(longlong *param_1)
 
 {
@@ -20542,8 +20370,8 @@ FUN_18004ca30(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
   }
   return param_1;
 }
-
 // void FUN_18004caa0(undefined8 *param_1)
+
 void FUN_18004caa0(undefined8 *param_1)
 
 {
@@ -20555,9 +20383,7 @@ void FUN_18004caa0(undefined8 *param_1)
   *param_1 = &UNK_180a21690;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18004caf0(longlong param_1)
 void FUN_18004caf0(longlong param_1)
 
@@ -20598,9 +20424,7 @@ void FUN_18004caf0(longlong param_1)
   *(uint *)(param_1 + 0x3ac) = (uint)(*(int *)(lVar1 + 0xd90) == 0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18004cc20(longlong *param_1)
 void FUN_18004cc20(longlong *param_1)
 
@@ -20775,20 +20599,29 @@ void FUN_18004cc20(longlong *param_1)
   }
   return;
 }
-
 // WARNING: Removing unreachable block (ram,0x00018004d2c7)
-// WARNING: Removing unreachable block (ram,0x00018004d2d0)
-// WARNING: Removing unreachable block (ram,0x00018004d2da)
-// WARNING: Removing unreachable block (ram,0x00018004d2df)
-// WARNING: Removing unreachable block (ram,0x00018004d2f2)
-// WARNING: Removing unreachable block (ram,0x00018004d30d)
-// WARNING: Removing unreachable block (ram,0x00018004d328)
-// WARNING: Removing unreachable block (ram,0x00018004d343)
-// WARNING: Removing unreachable block (ram,0x00018004d35e)
-// WARNING: Removing unreachable block (ram,0x00018004d379)
-// WARNING: Removing unreachable block (ram,0x00018004d4a0)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+// WARNING: Removing unreachable block (ram,0x00018004d2d0)
+
+// WARNING: Removing unreachable block (ram,0x00018004d2da)
+
+// WARNING: Removing unreachable block (ram,0x00018004d2df)
+
+// WARNING: Removing unreachable block (ram,0x00018004d2f2)
+
+// WARNING: Removing unreachable block (ram,0x00018004d30d)
+
+// WARNING: Removing unreachable block (ram,0x00018004d328)
+
+// WARNING: Removing unreachable block (ram,0x00018004d343)
+
+// WARNING: Removing unreachable block (ram,0x00018004d35e)
+
+// WARNING: Removing unreachable block (ram,0x00018004d379)
+
+// WARNING: Removing unreachable block (ram,0x00018004d4a0)
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 // void FUN_18004d020(undefined8 param_1,longlong param_2)
 void FUN_18004d020(undefined8 param_1,longlong param_2)
 
@@ -20970,8 +20803,8 @@ void FUN_18004d020(undefined8 param_1,longlong param_2)
           bVar31 = false;
         }
         if (bVar31) {
-
 // void FUN_18004e5f0(longlong param_1)
+
 void FUN_18004e5f0(longlong param_1)
 
 {
@@ -21031,7 +20864,6 @@ LAB_18004e721:
                     // WARNING: Subroutine does not return
   FUN_180062300(_DAT_180c86928,&UNK_1809fd4d8,*(undefined4 *)(param_1 + 0x3cc),*piVar1);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined4 FUN_18004e7a0(void)
@@ -21141,51 +20973,91 @@ undefined4 FUN_18004e7a0(void)
   }
   return *(undefined4 *)(*(longlong *)(lVar3 + 8) + 0x13c);
 }
-
 // WARNING: Removing unreachable block (ram,0x00018004ed08)
-// WARNING: Removing unreachable block (ram,0x00018004ed22)
-// WARNING: Removing unreachable block (ram,0x00018004ed36)
-// WARNING: Removing unreachable block (ram,0x00018004ed44)
-// WARNING: Removing unreachable block (ram,0x00018004ed48)
-// WARNING: Removing unreachable block (ram,0x00018004ed5b)
-// WARNING: Removing unreachable block (ram,0x00018004ed5f)
-// WARNING: Removing unreachable block (ram,0x00018004ed72)
-// WARNING: Removing unreachable block (ram,0x00018004ed76)
-// WARNING: Removing unreachable block (ram,0x00018004ed89)
-// WARNING: Removing unreachable block (ram,0x00018004ed8d)
-// WARNING: Removing unreachable block (ram,0x00018004edbc)
-// WARNING: Removing unreachable block (ram,0x00018004edc0)
-// WARNING: Removing unreachable block (ram,0x00018004edd3)
-// WARNING: Removing unreachable block (ram,0x00018004ee38)
-// WARNING: Removing unreachable block (ram,0x00018004ee52)
-// WARNING: Removing unreachable block (ram,0x00018004ee66)
-// WARNING: Removing unreachable block (ram,0x00018004ee74)
-// WARNING: Removing unreachable block (ram,0x00018004ee78)
-// WARNING: Removing unreachable block (ram,0x00018004ee8b)
-// WARNING: Removing unreachable block (ram,0x00018004ee8f)
-// WARNING: Removing unreachable block (ram,0x00018004eea2)
-// WARNING: Removing unreachable block (ram,0x00018004eea6)
-// WARNING: Removing unreachable block (ram,0x00018004eeb6)
-// WARNING: Removing unreachable block (ram,0x00018004eeba)
-// WARNING: Removing unreachable block (ram,0x00018004eeec)
-// WARNING: Removing unreachable block (ram,0x00018004eef0)
-// WARNING: Removing unreachable block (ram,0x00018004ef03)
-// WARNING: Removing unreachable block (ram,0x00018004ebd5)
-// WARNING: Removing unreachable block (ram,0x00018004ebef)
-// WARNING: Removing unreachable block (ram,0x00018004ec03)
-// WARNING: Removing unreachable block (ram,0x00018004ec11)
-// WARNING: Removing unreachable block (ram,0x00018004ec15)
-// WARNING: Removing unreachable block (ram,0x00018004ec28)
-// WARNING: Removing unreachable block (ram,0x00018004ec2c)
-// WARNING: Removing unreachable block (ram,0x00018004ec3f)
-// WARNING: Removing unreachable block (ram,0x00018004ec43)
-// WARNING: Removing unreachable block (ram,0x00018004ec56)
-// WARNING: Removing unreachable block (ram,0x00018004ec5a)
-// WARNING: Removing unreachable block (ram,0x00018004ec88)
-// WARNING: Removing unreachable block (ram,0x00018004ec90)
-// WARNING: Removing unreachable block (ram,0x00018004eca3)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+// WARNING: Removing unreachable block (ram,0x00018004ed22)
+
+// WARNING: Removing unreachable block (ram,0x00018004ed36)
+
+// WARNING: Removing unreachable block (ram,0x00018004ed44)
+
+// WARNING: Removing unreachable block (ram,0x00018004ed48)
+
+// WARNING: Removing unreachable block (ram,0x00018004ed5b)
+
+// WARNING: Removing unreachable block (ram,0x00018004ed5f)
+
+// WARNING: Removing unreachable block (ram,0x00018004ed72)
+
+// WARNING: Removing unreachable block (ram,0x00018004ed76)
+
+// WARNING: Removing unreachable block (ram,0x00018004ed89)
+
+// WARNING: Removing unreachable block (ram,0x00018004ed8d)
+
+// WARNING: Removing unreachable block (ram,0x00018004edbc)
+
+// WARNING: Removing unreachable block (ram,0x00018004edc0)
+
+// WARNING: Removing unreachable block (ram,0x00018004edd3)
+
+// WARNING: Removing unreachable block (ram,0x00018004ee38)
+
+// WARNING: Removing unreachable block (ram,0x00018004ee52)
+
+// WARNING: Removing unreachable block (ram,0x00018004ee66)
+
+// WARNING: Removing unreachable block (ram,0x00018004ee74)
+
+// WARNING: Removing unreachable block (ram,0x00018004ee78)
+
+// WARNING: Removing unreachable block (ram,0x00018004ee8b)
+
+// WARNING: Removing unreachable block (ram,0x00018004ee8f)
+
+// WARNING: Removing unreachable block (ram,0x00018004eea2)
+
+// WARNING: Removing unreachable block (ram,0x00018004eea6)
+
+// WARNING: Removing unreachable block (ram,0x00018004eeb6)
+
+// WARNING: Removing unreachable block (ram,0x00018004eeba)
+
+// WARNING: Removing unreachable block (ram,0x00018004eeec)
+
+// WARNING: Removing unreachable block (ram,0x00018004eef0)
+
+// WARNING: Removing unreachable block (ram,0x00018004ef03)
+
+// WARNING: Removing unreachable block (ram,0x00018004ebd5)
+
+// WARNING: Removing unreachable block (ram,0x00018004ebef)
+
+// WARNING: Removing unreachable block (ram,0x00018004ec03)
+
+// WARNING: Removing unreachable block (ram,0x00018004ec11)
+
+// WARNING: Removing unreachable block (ram,0x00018004ec15)
+
+// WARNING: Removing unreachable block (ram,0x00018004ec28)
+
+// WARNING: Removing unreachable block (ram,0x00018004ec2c)
+
+// WARNING: Removing unreachable block (ram,0x00018004ec3f)
+
+// WARNING: Removing unreachable block (ram,0x00018004ec43)
+
+// WARNING: Removing unreachable block (ram,0x00018004ec56)
+
+// WARNING: Removing unreachable block (ram,0x00018004ec5a)
+
+// WARNING: Removing unreachable block (ram,0x00018004ec88)
+
+// WARNING: Removing unreachable block (ram,0x00018004ec90)
+
+// WARNING: Removing unreachable block (ram,0x00018004eca3)
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 // void FUN_18004eb00(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 void FUN_18004eb00(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
@@ -21258,9 +21130,7 @@ void FUN_18004eb00(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18004ef60(void)
 void FUN_18004ef60(void)
 
@@ -21414,8 +21284,8 @@ void FUN_18004ef60(void)
                     // WARNING: Subroutine does not return
   memset(lStack_1d0,0,0x3878);
 }
-
 // void FUN_18004f8e0(longlong param_1)
+
 void FUN_18004f8e0(longlong param_1)
 
 {
@@ -21466,8 +21336,8 @@ void FUN_18004f8e0(longlong param_1)
   }
   return;
 }
-
 // void FUN_18004f900(longlong param_1)
+
 void FUN_18004f900(longlong param_1)
 
 {
@@ -21518,9 +21388,7 @@ void FUN_18004f900(longlong param_1)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18004f920(void)
 void FUN_18004f920(void)
 
@@ -21671,9 +21539,7 @@ void FUN_18004f920(void)
                     // WARNING: Subroutine does not return
   FUN_180062300(_DAT_180c86928,&UNK_1809fd550);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180050b00(void)
 void FUN_180050b00(void)
 
@@ -21798,8 +21664,8 @@ void FUN_180050b00(void)
     if (iVar7 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar7);
     }
-
 // void FUN_180050b30(longlong param_1)
+
 void FUN_180050b30(longlong param_1)
 
 {
@@ -21917,8 +21783,8 @@ void FUN_180050b30(longlong param_1)
     if (iVar6 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar6);
     }
-
 // void FUN_180051150(longlong param_1,undefined8 param_2)
+
 void FUN_180051150(longlong param_1,undefined8 param_2)
 
 {
@@ -21975,8 +21841,8 @@ void FUN_180051150(longlong param_1,undefined8 param_2)
     if (cVar2 == '\0') goto LAB_18005122d;
   }
   else {
-
 // void FUN_180051d00(longlong param_1)
+
 void FUN_180051d00(longlong param_1)
 
 {
@@ -22010,7 +21876,6 @@ void FUN_180051d00(longlong param_1)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 * FUN_180051d40(undefined8 *param_1,undefined8 *param_2)
@@ -22095,9 +21960,7 @@ undefined8 * FUN_180051d40(undefined8 *param_1,undefined8 *param_2)
   }
   return param_1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180051de4(longlong param_1)
 void FUN_180051de4(longlong param_1)
 
@@ -22161,9 +22024,7 @@ void FUN_180051de4(longlong param_1)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180051e13(void)
 void FUN_180051e13(void)
 
@@ -22195,8 +22056,8 @@ void FUN_180051e13(void)
   unaff_RDI[2] = lVar1;
   return;
 }
-
 // void FUN_180051e74(longlong param_1)
+
 void FUN_180051e74(longlong param_1)
 
 {
@@ -22231,8 +22092,8 @@ void FUN_180051e74(longlong param_1)
   }
   return;
 }
-
 // void FUN_180051eef(void)
+
 void FUN_180051eef(void)
 
 {
@@ -22319,7 +22180,6 @@ LAB_180051fc9:
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8
@@ -22329,9 +22189,7 @@ FUN_180052020(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined
   FUN_180627ae0(param_2,_DAT_180c86870 + 0x2c0,param_3,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180052070(longlong param_1)
 void FUN_180052070(longlong param_1)
 
@@ -22360,9 +22218,7 @@ void FUN_180052070(longlong param_1)
                     // WARNING: Subroutine does not return
   memset(auStack_a8,0,0x80);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180052200(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 void FUN_180052200(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
@@ -22442,7 +22298,6 @@ void FUN_180052200(longlong param_1,longlong param_2,undefined8 param_3,undefine
                     // WARNING: Subroutine does not return
   FUN_18064e900(puVar4);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 FUN_1800524c0(undefined8 param_1,undefined8 param_2)
@@ -22503,9 +22358,7 @@ undefined8 FUN_1800524c0(undefined8 param_1,undefined8 param_2)
                     // WARNING: Subroutine does not return
   FUN_18064e900(puVar4);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180052940(longlong param_1,float param_2,undefined8 param_3,undefined8 param_4)
 void FUN_180052940(longlong param_1,float param_2,undefined8 param_3,undefined8 param_4)
 
@@ -22689,9 +22542,7 @@ LAB_180052de5:
   *(ulonglong *)(param_1 + 0x25c) = CONCAT44(fStackX_c,fStackX_8);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180052ef0(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined1 param_4)
 void FUN_180052ef0(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined1 param_4)
 
@@ -22817,9 +22668,7 @@ void FUN_180052ef0(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180053200(undefined8 param_1,longlong param_2)
 void FUN_180053200(undefined8 param_1,longlong param_2)
 
@@ -22887,153 +22736,295 @@ void FUN_180053200(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_1c8);
 }
-
 // WARNING: Removing unreachable block (ram,0x000180053668)
-// WARNING: Removing unreachable block (ram,0x0001800536a5)
-// WARNING: Removing unreachable block (ram,0x0001800536a9)
-// WARNING: Removing unreachable block (ram,0x0001800536b4)
-// WARNING: Removing unreachable block (ram,0x0001800536b7)
-// WARNING: Removing unreachable block (ram,0x0001800536e1)
-// WARNING: Removing unreachable block (ram,0x0001800536e5)
-// WARNING: Removing unreachable block (ram,0x0001800536f3)
-// WARNING: Removing unreachable block (ram,0x0001800536fb)
-// WARNING: Removing unreachable block (ram,0x000180053702)
-// WARNING: Removing unreachable block (ram,0x00018005370c)
-// WARNING: Removing unreachable block (ram,0x00018005373c)
-// WARNING: Removing unreachable block (ram,0x000180053744)
-// WARNING: Removing unreachable block (ram,0x000180053747)
-// WARNING: Removing unreachable block (ram,0x000180053714)
-// WARNING: Removing unreachable block (ram,0x000180053719)
-// WARNING: Removing unreachable block (ram,0x000180053760)
-// WARNING: Removing unreachable block (ram,0x00018005376e)
-// WARNING: Removing unreachable block (ram,0x0001800537b1)
-// WARNING: Removing unreachable block (ram,0x0001800537b5)
-// WARNING: Removing unreachable block (ram,0x0001800537c0)
-// WARNING: Removing unreachable block (ram,0x0001800537c3)
-// WARNING: Removing unreachable block (ram,0x0001800537ed)
-// WARNING: Removing unreachable block (ram,0x0001800537f1)
-// WARNING: Removing unreachable block (ram,0x0001800537ff)
-// WARNING: Removing unreachable block (ram,0x000180053807)
-// WARNING: Removing unreachable block (ram,0x00018005380c)
-// WARNING: Removing unreachable block (ram,0x00018005381c)
-// WARNING: Removing unreachable block (ram,0x00018005384b)
-// WARNING: Removing unreachable block (ram,0x000180053853)
-// WARNING: Removing unreachable block (ram,0x000180053856)
-// WARNING: Removing unreachable block (ram,0x000180053824)
-// WARNING: Removing unreachable block (ram,0x000180053828)
-// WARNING: Removing unreachable block (ram,0x00018005386f)
-// WARNING: Removing unreachable block (ram,0x00018005387d)
-// WARNING: Removing unreachable block (ram,0x0001800538c8)
-// WARNING: Removing unreachable block (ram,0x0001800538cc)
-// WARNING: Removing unreachable block (ram,0x0001800538d7)
-// WARNING: Removing unreachable block (ram,0x0001800538da)
-// WARNING: Removing unreachable block (ram,0x000180053906)
-// WARNING: Removing unreachable block (ram,0x00018005390a)
-// WARNING: Removing unreachable block (ram,0x000180053918)
-// WARNING: Removing unreachable block (ram,0x000180053921)
-// WARNING: Removing unreachable block (ram,0x000180053925)
-// WARNING: Removing unreachable block (ram,0x000180053931)
-// WARNING: Removing unreachable block (ram,0x000180053962)
-// WARNING: Removing unreachable block (ram,0x00018005396a)
-// WARNING: Removing unreachable block (ram,0x00018005396d)
-// WARNING: Removing unreachable block (ram,0x000180053939)
-// WARNING: Removing unreachable block (ram,0x00018005393e)
-// WARNING: Removing unreachable block (ram,0x000180053987)
-// WARNING: Removing unreachable block (ram,0x000180053996)
-// WARNING: Removing unreachable block (ram,0x0001800539f8)
-// WARNING: Removing unreachable block (ram,0x0001800539fc)
-// WARNING: Removing unreachable block (ram,0x000180053a07)
-// WARNING: Removing unreachable block (ram,0x000180053a0a)
-// WARNING: Removing unreachable block (ram,0x000180053a34)
-// WARNING: Removing unreachable block (ram,0x000180053a38)
-// WARNING: Removing unreachable block (ram,0x000180053a46)
-// WARNING: Removing unreachable block (ram,0x000180053a4e)
-// WARNING: Removing unreachable block (ram,0x000180053a53)
-// WARNING: Removing unreachable block (ram,0x000180053ad8)
-// WARNING: Removing unreachable block (ram,0x000180053a61)
-// WARNING: Removing unreachable block (ram,0x000180053aa2)
-// WARNING: Removing unreachable block (ram,0x000180053aab)
-// WARNING: Removing unreachable block (ram,0x000180053aaf)
-// WARNING: Removing unreachable block (ram,0x000180053a69)
-// WARNING: Removing unreachable block (ram,0x000180053a74)
-// WARNING: Removing unreachable block (ram,0x000180053ade)
-// WARNING: Removing unreachable block (ram,0x000180053b28)
-// WARNING: Removing unreachable block (ram,0x000180053b2c)
-// WARNING: Removing unreachable block (ram,0x000180053b32)
-// WARNING: Removing unreachable block (ram,0x000180053b36)
-// WARNING: Removing unreachable block (ram,0x000180053b60)
-// WARNING: Removing unreachable block (ram,0x000180053b64)
-// WARNING: Removing unreachable block (ram,0x000180053b72)
-// WARNING: Removing unreachable block (ram,0x000180053b7a)
-// WARNING: Removing unreachable block (ram,0x000180053b7e)
-// WARNING: Removing unreachable block (ram,0x000180053b8e)
-// WARNING: Removing unreachable block (ram,0x000180053bbe)
-// WARNING: Removing unreachable block (ram,0x000180053bc6)
-// WARNING: Removing unreachable block (ram,0x000180053bc9)
-// WARNING: Removing unreachable block (ram,0x000180053b97)
-// WARNING: Removing unreachable block (ram,0x000180053b9b)
-// WARNING: Removing unreachable block (ram,0x000180053be2)
-// WARNING: Removing unreachable block (ram,0x000180053bf0)
-// WARNING: Removing unreachable block (ram,0x000180053c4c)
-// WARNING: Removing unreachable block (ram,0x000180053c51)
-// WARNING: Removing unreachable block (ram,0x000180053c5d)
-// WARNING: Removing unreachable block (ram,0x000180053c60)
-// WARNING: Removing unreachable block (ram,0x000180053c8e)
-// WARNING: Removing unreachable block (ram,0x000180053c93)
-// WARNING: Removing unreachable block (ram,0x000180053ca1)
-// WARNING: Removing unreachable block (ram,0x000180053caa)
-// WARNING: Removing unreachable block (ram,0x000180053caf)
-// WARNING: Removing unreachable block (ram,0x000180053cbe)
-// WARNING: Removing unreachable block (ram,0x000180053cf1)
-// WARNING: Removing unreachable block (ram,0x000180053cf9)
-// WARNING: Removing unreachable block (ram,0x000180053cfc)
-// WARNING: Removing unreachable block (ram,0x000180053cc6)
-// WARNING: Removing unreachable block (ram,0x000180053cce)
-// WARNING: Removing unreachable block (ram,0x000180053d15)
-// WARNING: Removing unreachable block (ram,0x000180053d23)
-// WARNING: Removing unreachable block (ram,0x000180053d8b)
-// WARNING: Removing unreachable block (ram,0x000180053d8f)
-// WARNING: Removing unreachable block (ram,0x000180053d9a)
-// WARNING: Removing unreachable block (ram,0x000180053d9d)
-// WARNING: Removing unreachable block (ram,0x000180053dcd)
-// WARNING: Removing unreachable block (ram,0x000180053dd1)
-// WARNING: Removing unreachable block (ram,0x000180053ddf)
-// WARNING: Removing unreachable block (ram,0x000180053de8)
-// WARNING: Removing unreachable block (ram,0x000180053ded)
-// WARNING: Removing unreachable block (ram,0x000180053dfc)
-// WARNING: Removing unreachable block (ram,0x000180053e2f)
-// WARNING: Removing unreachable block (ram,0x000180053e37)
-// WARNING: Removing unreachable block (ram,0x000180053e3a)
-// WARNING: Removing unreachable block (ram,0x000180053e03)
-// WARNING: Removing unreachable block (ram,0x000180053e0b)
-// WARNING: Removing unreachable block (ram,0x000180053e54)
-// WARNING: Removing unreachable block (ram,0x000180053e63)
-// WARNING: Removing unreachable block (ram,0x000180053ead)
-// WARNING: Removing unreachable block (ram,0x000180053eb5)
-// WARNING: Removing unreachable block (ram,0x000180053ee6)
-// WARNING: Removing unreachable block (ram,0x000180053ef5)
-// WARNING: Removing unreachable block (ram,0x000180053f18)
-// WARNING: Removing unreachable block (ram,0x000180053f20)
-// WARNING: Removing unreachable block (ram,0x000180053f43)
-// WARNING: Removing unreachable block (ram,0x000180053f4b)
-// WARNING: Removing unreachable block (ram,0x000180053f74)
-// WARNING: Removing unreachable block (ram,0x000180053f79)
-// WARNING: Removing unreachable block (ram,0x000180053f98)
-// WARNING: Removing unreachable block (ram,0x000180053fa0)
-// WARNING: Removing unreachable block (ram,0x000180053fbc)
-// WARNING: Removing unreachable block (ram,0x000180053fc4)
-// WARNING: Removing unreachable block (ram,0x000180053fe5)
-// WARNING: Removing unreachable block (ram,0x000180053fea)
-// WARNING: Removing unreachable block (ram,0x000180054035)
-// WARNING: Removing unreachable block (ram,0x000180054062)
-// WARNING: Removing unreachable block (ram,0x000180054075)
-// WARNING: Removing unreachable block (ram,0x00018005407a)
-// WARNING: Removing unreachable block (ram,0x0001800540b2)
-// WARNING: Removing unreachable block (ram,0x0001800540b7)
-// WARNING: Removing unreachable block (ram,0x0001800540d9)
-// WARNING: Removing unreachable block (ram,0x0001800540e1)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+// WARNING: Removing unreachable block (ram,0x0001800536a5)
+
+// WARNING: Removing unreachable block (ram,0x0001800536a9)
+
+// WARNING: Removing unreachable block (ram,0x0001800536b4)
+
+// WARNING: Removing unreachable block (ram,0x0001800536b7)
+
+// WARNING: Removing unreachable block (ram,0x0001800536e1)
+
+// WARNING: Removing unreachable block (ram,0x0001800536e5)
+
+// WARNING: Removing unreachable block (ram,0x0001800536f3)
+
+// WARNING: Removing unreachable block (ram,0x0001800536fb)
+
+// WARNING: Removing unreachable block (ram,0x000180053702)
+
+// WARNING: Removing unreachable block (ram,0x00018005370c)
+
+// WARNING: Removing unreachable block (ram,0x00018005373c)
+
+// WARNING: Removing unreachable block (ram,0x000180053744)
+
+// WARNING: Removing unreachable block (ram,0x000180053747)
+
+// WARNING: Removing unreachable block (ram,0x000180053714)
+
+// WARNING: Removing unreachable block (ram,0x000180053719)
+
+// WARNING: Removing unreachable block (ram,0x000180053760)
+
+// WARNING: Removing unreachable block (ram,0x00018005376e)
+
+// WARNING: Removing unreachable block (ram,0x0001800537b1)
+
+// WARNING: Removing unreachable block (ram,0x0001800537b5)
+
+// WARNING: Removing unreachable block (ram,0x0001800537c0)
+
+// WARNING: Removing unreachable block (ram,0x0001800537c3)
+
+// WARNING: Removing unreachable block (ram,0x0001800537ed)
+
+// WARNING: Removing unreachable block (ram,0x0001800537f1)
+
+// WARNING: Removing unreachable block (ram,0x0001800537ff)
+
+// WARNING: Removing unreachable block (ram,0x000180053807)
+
+// WARNING: Removing unreachable block (ram,0x00018005380c)
+
+// WARNING: Removing unreachable block (ram,0x00018005381c)
+
+// WARNING: Removing unreachable block (ram,0x00018005384b)
+
+// WARNING: Removing unreachable block (ram,0x000180053853)
+
+// WARNING: Removing unreachable block (ram,0x000180053856)
+
+// WARNING: Removing unreachable block (ram,0x000180053824)
+
+// WARNING: Removing unreachable block (ram,0x000180053828)
+
+// WARNING: Removing unreachable block (ram,0x00018005386f)
+
+// WARNING: Removing unreachable block (ram,0x00018005387d)
+
+// WARNING: Removing unreachable block (ram,0x0001800538c8)
+
+// WARNING: Removing unreachable block (ram,0x0001800538cc)
+
+// WARNING: Removing unreachable block (ram,0x0001800538d7)
+
+// WARNING: Removing unreachable block (ram,0x0001800538da)
+
+// WARNING: Removing unreachable block (ram,0x000180053906)
+
+// WARNING: Removing unreachable block (ram,0x00018005390a)
+
+// WARNING: Removing unreachable block (ram,0x000180053918)
+
+// WARNING: Removing unreachable block (ram,0x000180053921)
+
+// WARNING: Removing unreachable block (ram,0x000180053925)
+
+// WARNING: Removing unreachable block (ram,0x000180053931)
+
+// WARNING: Removing unreachable block (ram,0x000180053962)
+
+// WARNING: Removing unreachable block (ram,0x00018005396a)
+
+// WARNING: Removing unreachable block (ram,0x00018005396d)
+
+// WARNING: Removing unreachable block (ram,0x000180053939)
+
+// WARNING: Removing unreachable block (ram,0x00018005393e)
+
+// WARNING: Removing unreachable block (ram,0x000180053987)
+
+// WARNING: Removing unreachable block (ram,0x000180053996)
+
+// WARNING: Removing unreachable block (ram,0x0001800539f8)
+
+// WARNING: Removing unreachable block (ram,0x0001800539fc)
+
+// WARNING: Removing unreachable block (ram,0x000180053a07)
+
+// WARNING: Removing unreachable block (ram,0x000180053a0a)
+
+// WARNING: Removing unreachable block (ram,0x000180053a34)
+
+// WARNING: Removing unreachable block (ram,0x000180053a38)
+
+// WARNING: Removing unreachable block (ram,0x000180053a46)
+
+// WARNING: Removing unreachable block (ram,0x000180053a4e)
+
+// WARNING: Removing unreachable block (ram,0x000180053a53)
+
+// WARNING: Removing unreachable block (ram,0x000180053ad8)
+
+// WARNING: Removing unreachable block (ram,0x000180053a61)
+
+// WARNING: Removing unreachable block (ram,0x000180053aa2)
+
+// WARNING: Removing unreachable block (ram,0x000180053aab)
+
+// WARNING: Removing unreachable block (ram,0x000180053aaf)
+
+// WARNING: Removing unreachable block (ram,0x000180053a69)
+
+// WARNING: Removing unreachable block (ram,0x000180053a74)
+
+// WARNING: Removing unreachable block (ram,0x000180053ade)
+
+// WARNING: Removing unreachable block (ram,0x000180053b28)
+
+// WARNING: Removing unreachable block (ram,0x000180053b2c)
+
+// WARNING: Removing unreachable block (ram,0x000180053b32)
+
+// WARNING: Removing unreachable block (ram,0x000180053b36)
+
+// WARNING: Removing unreachable block (ram,0x000180053b60)
+
+// WARNING: Removing unreachable block (ram,0x000180053b64)
+
+// WARNING: Removing unreachable block (ram,0x000180053b72)
+
+// WARNING: Removing unreachable block (ram,0x000180053b7a)
+
+// WARNING: Removing unreachable block (ram,0x000180053b7e)
+
+// WARNING: Removing unreachable block (ram,0x000180053b8e)
+
+// WARNING: Removing unreachable block (ram,0x000180053bbe)
+
+// WARNING: Removing unreachable block (ram,0x000180053bc6)
+
+// WARNING: Removing unreachable block (ram,0x000180053bc9)
+
+// WARNING: Removing unreachable block (ram,0x000180053b97)
+
+// WARNING: Removing unreachable block (ram,0x000180053b9b)
+
+// WARNING: Removing unreachable block (ram,0x000180053be2)
+
+// WARNING: Removing unreachable block (ram,0x000180053bf0)
+
+// WARNING: Removing unreachable block (ram,0x000180053c4c)
+
+// WARNING: Removing unreachable block (ram,0x000180053c51)
+
+// WARNING: Removing unreachable block (ram,0x000180053c5d)
+
+// WARNING: Removing unreachable block (ram,0x000180053c60)
+
+// WARNING: Removing unreachable block (ram,0x000180053c8e)
+
+// WARNING: Removing unreachable block (ram,0x000180053c93)
+
+// WARNING: Removing unreachable block (ram,0x000180053ca1)
+
+// WARNING: Removing unreachable block (ram,0x000180053caa)
+
+// WARNING: Removing unreachable block (ram,0x000180053caf)
+
+// WARNING: Removing unreachable block (ram,0x000180053cbe)
+
+// WARNING: Removing unreachable block (ram,0x000180053cf1)
+
+// WARNING: Removing unreachable block (ram,0x000180053cf9)
+
+// WARNING: Removing unreachable block (ram,0x000180053cfc)
+
+// WARNING: Removing unreachable block (ram,0x000180053cc6)
+
+// WARNING: Removing unreachable block (ram,0x000180053cce)
+
+// WARNING: Removing unreachable block (ram,0x000180053d15)
+
+// WARNING: Removing unreachable block (ram,0x000180053d23)
+
+// WARNING: Removing unreachable block (ram,0x000180053d8b)
+
+// WARNING: Removing unreachable block (ram,0x000180053d8f)
+
+// WARNING: Removing unreachable block (ram,0x000180053d9a)
+
+// WARNING: Removing unreachable block (ram,0x000180053d9d)
+
+// WARNING: Removing unreachable block (ram,0x000180053dcd)
+
+// WARNING: Removing unreachable block (ram,0x000180053dd1)
+
+// WARNING: Removing unreachable block (ram,0x000180053ddf)
+
+// WARNING: Removing unreachable block (ram,0x000180053de8)
+
+// WARNING: Removing unreachable block (ram,0x000180053ded)
+
+// WARNING: Removing unreachable block (ram,0x000180053dfc)
+
+// WARNING: Removing unreachable block (ram,0x000180053e2f)
+
+// WARNING: Removing unreachable block (ram,0x000180053e37)
+
+// WARNING: Removing unreachable block (ram,0x000180053e3a)
+
+// WARNING: Removing unreachable block (ram,0x000180053e03)
+
+// WARNING: Removing unreachable block (ram,0x000180053e0b)
+
+// WARNING: Removing unreachable block (ram,0x000180053e54)
+
+// WARNING: Removing unreachable block (ram,0x000180053e63)
+
+// WARNING: Removing unreachable block (ram,0x000180053ead)
+
+// WARNING: Removing unreachable block (ram,0x000180053eb5)
+
+// WARNING: Removing unreachable block (ram,0x000180053ee6)
+
+// WARNING: Removing unreachable block (ram,0x000180053ef5)
+
+// WARNING: Removing unreachable block (ram,0x000180053f18)
+
+// WARNING: Removing unreachable block (ram,0x000180053f20)
+
+// WARNING: Removing unreachable block (ram,0x000180053f43)
+
+// WARNING: Removing unreachable block (ram,0x000180053f4b)
+
+// WARNING: Removing unreachable block (ram,0x000180053f74)
+
+// WARNING: Removing unreachable block (ram,0x000180053f79)
+
+// WARNING: Removing unreachable block (ram,0x000180053f98)
+
+// WARNING: Removing unreachable block (ram,0x000180053fa0)
+
+// WARNING: Removing unreachable block (ram,0x000180053fbc)
+
+// WARNING: Removing unreachable block (ram,0x000180053fc4)
+
+// WARNING: Removing unreachable block (ram,0x000180053fe5)
+
+// WARNING: Removing unreachable block (ram,0x000180053fea)
+
+// WARNING: Removing unreachable block (ram,0x000180054035)
+
+// WARNING: Removing unreachable block (ram,0x000180054062)
+
+// WARNING: Removing unreachable block (ram,0x000180054075)
+
+// WARNING: Removing unreachable block (ram,0x00018005407a)
+
+// WARNING: Removing unreachable block (ram,0x0001800540b2)
+
+// WARNING: Removing unreachable block (ram,0x0001800540b7)
+
+// WARNING: Removing unreachable block (ram,0x0001800540d9)
+
+// WARNING: Removing unreachable block (ram,0x0001800540e1)
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 // void FUN_1800533d0(undefined8 param_1,undefined8 param_2,longlong param_3)
 void FUN_1800533d0(undefined8 param_1,undefined8 param_2,longlong param_3)
 
@@ -23167,7 +23158,6 @@ LAB_18005364c:
                     // WARNING: Subroutine does not return
   memcpy(puVar7 + uVar8,lVar1,7);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8
@@ -23294,9 +23284,7 @@ LAB_18005419d:
   if (uVar11 <= (ulonglong)(longlong)(int)uVar8) goto LAB_180054302;
   goto LAB_18005419d;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180054360(longlong *param_1,longlong param_2)
 void FUN_180054360(longlong *param_1,longlong param_2)
 
@@ -23511,9 +23499,7 @@ void FUN_180054360(longlong *param_1,longlong param_2)
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_238);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800547b0(void)
 void FUN_1800547b0(void)
 
@@ -23906,9 +23892,7 @@ LAB_180054ec9:
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_178);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180055050(void)
 void FUN_180055050(void)
 
@@ -23973,8 +23957,8 @@ void FUN_180055050(void)
                     // WARNING: Subroutine does not return
   memset(uVar3,0,0x70);
 }
-
 // void FUN_180055e10(longlong *param_1)
+
 void FUN_180055e10(longlong *param_1)
 
 {
@@ -23991,16 +23975,16 @@ void FUN_180055e10(longlong *param_1)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_180055e30(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180055e30(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180058210(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
-
 // void FUN_180055e60(longlong param_1)
+
 void FUN_180055e60(longlong param_1)
 
 {
@@ -24047,8 +24031,8 @@ longlong FUN_180055e80(longlong param_1)
   *(undefined4 *)(param_1 + 0x18) = 0;
   return param_1;
 }
-
 // void FUN_180055ed0(longlong param_1)
+
 void FUN_180055ed0(longlong param_1)
 
 {
@@ -24062,16 +24046,16 @@ void FUN_180055ed0(longlong param_1)
   *(undefined8 *)(param_1 + 8) = &UNK_18098bcb0;
   return;
 }
-
 // void FUN_180055f20(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180055f20(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180058210(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
-
 // void FUN_180055f50(longlong param_1)
+
 void FUN_180055f50(longlong param_1)
 
 {
@@ -24105,9 +24089,7 @@ void FUN_180055f50(longlong param_1)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180055f70(undefined8 param_1,undefined4 param_2)
 void FUN_180055f70(undefined8 param_1,undefined4 param_2)
 
@@ -24123,9 +24105,7 @@ void FUN_180055f70(undefined8 param_1,undefined4 param_2)
   (*pcVar1)();
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180055fa0(void)
 void FUN_180055fa0(void)
 
@@ -24175,8 +24155,8 @@ void FUN_180055fa0(void)
   }
   return;
 }
-
 // void FUN_180056150(longlong param_1)
+
 void FUN_180056150(longlong param_1)
 
 {
@@ -24322,9 +24302,7 @@ LAB_180056228:
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180056410(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 void FUN_180056410(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
@@ -24407,9 +24385,7 @@ void FUN_180056410(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
                     // WARNING: Subroutine does not return
   memmove(uVar3,uVar5,lVar9,param_4,uVar10,uVar3,lVar6,lVar6);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800565f0(longlong *param_1)
 void FUN_1800565f0(longlong *param_1)
 
@@ -24484,9 +24460,7 @@ undefined8 FUN_1800567c0(undefined8 param_1,ulonglong param_2,undefined8 param_3
   }
   return param_1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180056810(longlong param_1)
 void FUN_180056810(longlong param_1)
 
@@ -24620,9 +24594,7 @@ void FUN_180056810(longlong param_1)
                     // WARNING: Subroutine does not return
   memcpy(puStack_90 + uStack_88,acStack_60,(longlong)((int)lVar8 + 2));
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180056b30(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 void FUN_180056b30(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
@@ -24662,9 +24634,7 @@ void FUN_180056b30(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
   *(undefined1 *)(lVar1 + 0x1506) = 0;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180056c50(undefined8 param_1,undefined8 *param_2,undefined4 param_3)
 void FUN_180056c50(undefined8 param_1,undefined8 *param_2,undefined4 param_3)
 
@@ -24747,8 +24717,8 @@ undefined8 * FUN_180056e10(undefined8 *param_1)
   *(undefined4 *)(param_1 + 3) = 3;
   return param_1;
 }
-
 // void FUN_180056e40(void)
+
 void FUN_180056e40(void)
 
 {
@@ -24803,8 +24773,8 @@ longlong * FUN_180056f10(longlong *param_1,longlong *param_2)
   }
   return param_1;
 }
-
 // void FUN_180056f70(longlong param_1,longlong param_2)
+
 void FUN_180056f70(longlong param_1,longlong param_2)
 
 {
@@ -24836,8 +24806,8 @@ void FUN_180056f70(longlong param_1,longlong param_2)
   **(undefined1 **)(param_1 + 8) = 0;
   return;
 }
-
 // void FUN_180057010(longlong *param_1)
+
 void FUN_180057010(longlong *param_1)
 
 {
@@ -24861,8 +24831,8 @@ void FUN_180057010(longlong *param_1)
   param_1[2] = (longlong)(param_1 + 0x603);
   return;
 }
-
 // void FUN_180057029(longlong param_1)
+
 void FUN_180057029(longlong param_1)
 
 {
@@ -24884,8 +24854,8 @@ void FUN_180057029(longlong param_1)
   unaff_RDI[2] = (longlong)(unaff_RDI + 0x603);
   return;
 }
-
 // void FUN_180057062(void)
+
 void FUN_180057062(void)
 
 {
@@ -24921,8 +24891,8 @@ FUN_180057090(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8
   }
   return param_1;
 }
-
 // void FUN_180057110(longlong *param_1)
+
 void FUN_180057110(longlong *param_1)
 
 {
@@ -24942,8 +24912,8 @@ void FUN_180057110(longlong *param_1)
   param_1[1] = (longlong)puVar2;
   return;
 }
-
 // void FUN_180057170(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180057170(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -24962,9 +24932,7 @@ void FUN_180057170(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800571e0(longlong *param_1,undefined4 *param_2)
 void FUN_1800571e0(longlong *param_1,undefined4 *param_2)
 
@@ -25010,8 +24978,8 @@ LAB_18005726e:
   param_1[2] = (longlong)(puVar2 + lVar1);
   return;
 }
-
 // void FUN_1800572d0(longlong param_1)
+
 void FUN_1800572d0(longlong param_1)
 
 {
@@ -25030,8 +24998,8 @@ void FUN_1800572d0(longlong param_1)
   *(longlong *)(param_1 + 8) = param_1;
   return;
 }
-
 // void FUN_1800572e6(void)
+
 void FUN_1800572e6(void)
 
 {
@@ -25039,8 +25007,8 @@ void FUN_1800572e6(void)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_180057314(void)
+
 void FUN_180057314(void)
 
 {
@@ -25053,9 +25021,7 @@ void FUN_180057314(void)
   *(longlong *)(unaff_RBX + 8) = unaff_RBX;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180057340(longlong *param_1,ulonglong param_2)
 void FUN_180057340(longlong *param_1,ulonglong param_2)
 
@@ -25115,9 +25081,7 @@ void FUN_180057340(longlong *param_1,ulonglong param_2)
   param_1[1] = lVar1;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18005736b(longlong param_1,ulonglong param_2,undefined8 param_3,longlong param_4)
 void FUN_18005736b(longlong param_1,ulonglong param_2,undefined8 param_3,longlong param_4)
 
@@ -25170,8 +25134,8 @@ void FUN_18005736b(longlong param_1,ulonglong param_2,undefined8 param_3,longlon
   unaff_RBX[1] = lVar1;
   return;
 }
-
 // void FUN_180057446(void)
+
 void FUN_180057446(void)
 
 {
@@ -25186,8 +25150,8 @@ void FUN_180057446(void)
   *(undefined8 *)(unaff_RBX + 8) = unaff_RDI;
   return;
 }
-
 // void FUN_180057479(undefined8 param_1,longlong param_2,undefined8 param_3,longlong param_4)
+
 void FUN_180057479(undefined8 param_1,longlong param_2,undefined8 param_3,longlong param_4)
 
 {
@@ -25196,16 +25160,16 @@ void FUN_180057479(undefined8 param_1,longlong param_2,undefined8 param_3,longlo
   *(longlong *)(unaff_RBX + 8) = param_4 + param_2 * 8;
   return;
 }
-
 // void FUN_180057490(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180057490(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180058210(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
-
 // void FUN_1800574b0(longlong *param_1)
+
 void FUN_1800574b0(longlong *param_1)
 
 {
@@ -25222,24 +25186,24 @@ void FUN_1800574b0(longlong *param_1)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_180057510(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180057510(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_1800582b0(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
-
 // void FUN_180057530(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180057530(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180058370(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
-
 // void FUN_180057550(longlong param_1)
+
 void FUN_180057550(longlong param_1)
 
 {
@@ -25290,8 +25254,8 @@ void FUN_180057550(longlong param_1)
   }
   return;
 }
-
 // void FUN_180057556(longlong param_1)
+
 void FUN_180057556(longlong param_1)
 
 {
@@ -25342,8 +25306,8 @@ void FUN_180057556(longlong param_1)
   }
   return;
 }
-
 // void FUN_180057580(void)
+
 void FUN_180057580(void)
 
 {
@@ -25392,8 +25356,8 @@ void FUN_180057580(void)
   }
   return;
 }
-
 // void FUN_1800575b6(void)
+
 void FUN_1800575b6(void)
 
 {
@@ -25430,8 +25394,8 @@ void FUN_1800575b6(void)
   }
   return;
 }
-
 // void FUN_1800575d4(void)
+
 void FUN_1800575d4(void)
 
 {
@@ -25466,16 +25430,16 @@ void FUN_1800575d4(void)
   }
   return;
 }
-
 // void FUN_1800575f0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_1800575f0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180058420(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
-
 // void FUN_180057610(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180057610(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -25494,8 +25458,8 @@ void FUN_180057610(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_180057680(longlong param_1)
+
 void FUN_180057680(longlong param_1)
 
 {
@@ -25529,8 +25493,8 @@ void FUN_180057680(longlong param_1)
   }
   return;
 }
-
 // void FUN_180057730(longlong *param_1)
+
 void FUN_180057730(longlong *param_1)
 
 {
@@ -25547,8 +25511,8 @@ void FUN_180057730(longlong *param_1)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_180057790(longlong param_1)
+
 void FUN_180057790(longlong param_1)
 
 {
@@ -25599,8 +25563,8 @@ void FUN_180057790(longlong param_1)
   }
   return;
 }
-
 // void FUN_180057796(longlong param_1)
+
 void FUN_180057796(longlong param_1)
 
 {
@@ -25651,8 +25615,8 @@ void FUN_180057796(longlong param_1)
   }
   return;
 }
-
 // void FUN_1800577c0(void)
+
 void FUN_1800577c0(void)
 
 {
@@ -25701,8 +25665,8 @@ void FUN_1800577c0(void)
   }
   return;
 }
-
 // void FUN_1800577f6(void)
+
 void FUN_1800577f6(void)
 
 {
@@ -25739,8 +25703,8 @@ void FUN_1800577f6(void)
   }
   return;
 }
-
 // void FUN_180057814(void)
+
 void FUN_180057814(void)
 
 {
@@ -25775,8 +25739,8 @@ void FUN_180057814(void)
   }
   return;
 }
-
 // void FUN_180057830(longlong *param_1)
+
 void FUN_180057830(longlong *param_1)
 
 {
@@ -25795,9 +25759,7 @@ void FUN_180057830(longlong *param_1)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800578a0(void)
 void FUN_1800578a0(void)
 
@@ -25852,8 +25814,8 @@ void FUN_1800578a0(void)
   }
   return;
 }
-
 // void FUN_180057980(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180057980(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -25922,7 +25884,6 @@ void FUN_180057980(longlong param_1,longlong param_2,undefined8 param_3,undefine
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 longlong * FUN_180057b00(longlong param_1,longlong *param_2,undefined8 param_3)
@@ -25969,8 +25930,8 @@ LAB_180057ba2:
                     // WARNING: Subroutine does not return
   FUN_18066bdc0(lVar3,lVar4,param_1,uVar7);
 }
-
 // void FUN_180057bf0(undefined8 *param_1)
+
 void FUN_180057bf0(undefined8 *param_1)
 
 {
@@ -26000,7 +25961,6 @@ void FUN_180057bf0(undefined8 *param_1)
                     // WARNING: Subroutine does not return
   FUN_18064e900(param_1);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 * FUN_180057cb0(undefined8 *param_1,uint param_2,undefined8 param_3,undefined8 param_4)
@@ -26023,8 +25983,8 @@ undefined8 * FUN_180057cb0(undefined8 *param_1,uint param_2,undefined8 param_3,u
   }
   return param_1;
 }
-
 // void FUN_180057d70(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180057d70(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -26064,16 +26024,16 @@ void FUN_180057d70(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_180057e90(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180057e90(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180058710(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
-
 // void FUN_180057ec0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180057ec0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -26088,16 +26048,16 @@ void FUN_180057ec0(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
   }
   return;
 }
-
 // void FUN_180057ee0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180057ee0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180058710(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
-
 // void FUN_180057f10(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180057f10(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -26112,8 +26072,8 @@ void FUN_180057f10(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
   }
   return;
 }
-
 // void FUN_180057f30(longlong *param_1)
+
 void FUN_180057f30(longlong *param_1)
 
 {
@@ -26149,16 +26109,16 @@ void FUN_180057f30(longlong *param_1)
   }
   return;
 }
-
 // void FUN_180058000(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180058000(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180058710(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
-
 // void FUN_180058020(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180058020(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -26247,8 +26207,8 @@ LAB_180058138:
   *param_2 = param_1;
   return param_2;
 }
-
 // void FUN_180058160(ulonglong *param_1)
+
 void FUN_180058160(ulonglong *param_1)
 
 {
@@ -26298,8 +26258,8 @@ void FUN_180058160(ulonglong *param_1)
   }
   return;
 }
-
 // void FUN_180058210(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180058210(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -26314,8 +26274,8 @@ void FUN_180058210(undefined8 param_1,undefined8 *param_2,undefined8 param_3,und
   }
   return;
 }
-
 // void FUN_1800582b0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_1800582b0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -26335,8 +26295,8 @@ void FUN_1800582b0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,und
                     // WARNING: Subroutine does not return
   FUN_18064e900(param_2);
 }
-
 // void FUN_180058370(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180058370(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -26355,8 +26315,8 @@ void FUN_180058370(undefined8 param_1,undefined8 *param_2,undefined8 param_3,und
                     // WARNING: Subroutine does not return
   FUN_18064e900(param_2);
 }
-
 // void FUN_180058420(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180058420(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -26379,9 +26339,7 @@ void FUN_180058420(undefined8 param_1,undefined8 *param_2,undefined8 param_3,und
                     // WARNING: Subroutine does not return
   FUN_18064e900(param_2);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800584e0(undefined8 *param_1,longlong param_2)
 void FUN_1800584e0(undefined8 *param_1,longlong param_2)
 
@@ -26476,8 +26434,8 @@ LAB_18005856a:
                     // WARNING: Subroutine does not return
   FUN_18064e900(puVar4);
 }
-
 // void FUN_1800586e0(longlong param_1)
+
 void FUN_1800586e0(longlong param_1)
 
 {
@@ -26486,8 +26444,8 @@ void FUN_1800586e0(longlong param_1)
   }
   return;
 }
-
 // void FUN_180058710(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180058710(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -26510,8 +26468,8 @@ void FUN_180058710(undefined8 param_1,undefined8 *param_2,undefined8 param_3,und
                     // WARNING: Subroutine does not return
   FUN_18064e900(param_2);
 }
-
 // void FUN_1800587d0(undefined8 param_1,undefined8 *param_2)
+
 void FUN_1800587d0(undefined8 param_1,undefined8 *param_2)
 
 {
@@ -26523,8 +26481,8 @@ void FUN_1800587d0(undefined8 param_1,undefined8 *param_2)
   }
   return;
 }
-
 // void FUN_1800587e2(undefined8 param_1)
+
 void FUN_1800587e2(undefined8 param_1)
 
 {
@@ -26535,15 +26493,15 @@ void FUN_1800587e2(undefined8 param_1)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_180058826(void)
+
 void FUN_180058826(void)
 
 {
   return;
 }
-
 // void FUN_180058830(undefined8 param_1,longlong param_2)
+
 void FUN_180058830(undefined8 param_1,longlong param_2)
 
 {
@@ -26565,9 +26523,7 @@ void FUN_180058830(undefined8 param_1,longlong param_2)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800588c0(longlong *param_1,longlong param_2,longlong param_3)
 void FUN_1800588c0(longlong *param_1,longlong param_2,longlong param_3)
 
@@ -26632,9 +26588,7 @@ void FUN_1800588c0(longlong *param_1,longlong param_2,longlong param_3)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800588fc(longlong param_1)
 void FUN_1800588fc(longlong param_1)
 
@@ -26680,8 +26634,8 @@ void FUN_1800588fc(longlong param_1)
                     // WARNING: Subroutine does not return
   FUN_18064e900(puVar3);
 }
-
 // void FUN_18005892b(void)
+
 void FUN_18005892b(void)
 
 {
@@ -26718,8 +26672,8 @@ void FUN_18005892b(void)
   unaff_RDI[1] = lVar3;
   return;
 }
-
 // void FUN_18005895a(void)
+
 void FUN_18005895a(void)
 
 {
@@ -26749,8 +26703,8 @@ void FUN_18005895a(void)
   unaff_RDI[1] = lVar1;
   return;
 }
-
 // void FUN_1800589a3(longlong param_1,undefined8 param_2,longlong param_3)
+
 void FUN_1800589a3(longlong param_1,undefined8 param_2,longlong param_3)
 
 {
@@ -26779,9 +26733,7 @@ void FUN_1800589a3(longlong param_1,undefined8 param_2,longlong param_3)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180058a20(longlong *param_1,longlong param_2,longlong param_3,longlong param_4)
 void FUN_180058a20(longlong *param_1,longlong param_2,longlong param_3,longlong param_4)
 
@@ -26843,9 +26795,7 @@ void FUN_180058a20(longlong *param_1,longlong param_2,longlong param_3,longlong 
                     // WARNING: Subroutine does not return
   memmove(param_2 + (uVar4 - (lVar3 - param_3 >> 3)) * 8,param_3,lVar3 - param_3);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180058a31(longlong *param_1,longlong param_2,longlong param_3,longlong param_4)
 void FUN_180058a31(longlong *param_1,longlong param_2,longlong param_3,longlong param_4)
 
@@ -26904,9 +26854,7 @@ void FUN_180058a31(longlong *param_1,longlong param_2,longlong param_3,longlong 
                     // WARNING: Subroutine does not return
   memmove(param_2 + (uVar4 - (lVar3 - param_3 >> 3)) * 8,param_3,lVar3 - param_3);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180058b3e(longlong param_1,longlong param_2)
 void FUN_180058b3e(longlong param_1,longlong param_2)
 
@@ -26939,22 +26887,22 @@ void FUN_180058b3e(longlong param_1,longlong param_2)
                     // WARNING: Subroutine does not return
   memmove(uVar1);
 }
-
 // void FUN_180058bfa(void)
+
 void FUN_180058bfa(void)
 
 {
   return;
 }
-
 // void FUN_180058c16(void)
+
 void FUN_180058c16(void)
 
 {
   return;
 }
-
 // void FUN_180058c20(longlong param_1)
+
 void FUN_180058c20(longlong param_1)
 
 {
@@ -26969,8 +26917,8 @@ void FUN_180058c20(longlong param_1)
   *(undefined8 *)(param_1 + 8) = &UNK_18098bcb0;
   return;
 }
-
 // void FUN_180058c80(undefined8 *param_1)
+
 void FUN_180058c80(undefined8 *param_1)
 
 {
@@ -26980,8 +26928,8 @@ void FUN_180058c80(undefined8 *param_1)
   *param_1 = &UNK_18098bcb0;
   return;
 }
-
 // void FUN_180058cc0(undefined8 *param_1)
+
 void FUN_180058cc0(undefined8 *param_1)
 
 {
@@ -26996,8 +26944,8 @@ void FUN_180058cc0(undefined8 *param_1)
   *param_1 = &UNK_18098bcb0;
   return;
 }
-
 // void FUN_180058d20(undefined8 *param_1)
+
 void FUN_180058d20(undefined8 *param_1)
 
 {
@@ -27015,8 +26963,8 @@ void FUN_180058d20(undefined8 *param_1)
   *param_1 = &UNK_18098bcb0;
   return;
 }
-
 // void FUN_180058d90(longlong *param_1)
+
 void FUN_180058d90(longlong *param_1)
 
 {
@@ -27033,8 +26981,8 @@ void FUN_180058d90(longlong *param_1)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_180058db0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180058db0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -27050,103 +26998,171 @@ void FUN_180058db0(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
   FUN_1800593f0(param_1,*(undefined8 *)(param_1 + 0x10));
   return;
 }
-
 // void FUN_180058e60(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180058e60(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_1800593f0(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
-
 // void FUN_180058e90(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180058e90(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_1800593f0(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
-
 // void FUN_180058f00(undefined8 param_1,undefined8 *param_2)
+
 void FUN_180058f00(undefined8 param_1,undefined8 *param_2)
 
 {
   (*(code *)*param_2)();
   return;
 }
-
 // WARNING: Removing unreachable block (ram,0x00018017747d)
-// WARNING: Removing unreachable block (ram,0x000180177a18)
-// WARNING: Removing unreachable block (ram,0x000180177a22)
-// WARNING: Removing unreachable block (ram,0x000180177a2e)
-// WARNING: Removing unreachable block (ram,0x000180177a35)
-// WARNING: Removing unreachable block (ram,0x000180177581)
-// WARNING: Removing unreachable block (ram,0x000180177590)
-// WARNING: Removing unreachable block (ram,0x00018017759c)
-// WARNING: Removing unreachable block (ram,0x0001801775a3)
-// WARNING: Removing unreachable block (ram,0x0001801775b3)
-// WARNING: Removing unreachable block (ram,0x0001801775c0)
-// WARNING: Removing unreachable block (ram,0x0001801775cc)
-// WARNING: Removing unreachable block (ram,0x0001801775d3)
-// WARNING: Removing unreachable block (ram,0x000180177263)
-// WARNING: Removing unreachable block (ram,0x000180177296)
-// WARNING: Removing unreachable block (ram,0x00018017726a)
-// WARNING: Removing unreachable block (ram,0x000180177274)
-// WARNING: Removing unreachable block (ram,0x000180177280)
-// WARNING: Removing unreachable block (ram,0x000180177287)
-// WARNING: Removing unreachable block (ram,0x000180177290)
-// WARNING: Removing unreachable block (ram,0x000180177298)
-// WARNING: Removing unreachable block (ram,0x00018017753a)
-// WARNING: Removing unreachable block (ram,0x000180177540)
-// WARNING: Removing unreachable block (ram,0x000180177550)
-// WARNING: Removing unreachable block (ram,0x00018017755c)
-// WARNING: Removing unreachable block (ram,0x000180177563)
-// WARNING: Removing unreachable block (ram,0x0001801772c2)
-// WARNING: Removing unreachable block (ram,0x0001801772d0)
-// WARNING: Removing unreachable block (ram,0x0001801772dc)
-// WARNING: Removing unreachable block (ram,0x0001801772e3)
-// WARNING: Removing unreachable block (ram,0x00018017764c)
-// WARNING: Removing unreachable block (ram,0x00018017749a)
-// WARNING: Removing unreachable block (ram,0x0001801774a8)
-// WARNING: Removing unreachable block (ram,0x0001801774aa)
-// WARNING: Removing unreachable block (ram,0x000180176fc3)
-// WARNING: Removing unreachable block (ram,0x000180177722)
-// WARNING: Removing unreachable block (ram,0x00018017729d)
-// WARNING: Removing unreachable block (ram,0x00018017766b)
-// WARNING: Removing unreachable block (ram,0x000180177677)
-// WARNING: Removing unreachable block (ram,0x000180177679)
-// WARNING: Removing unreachable block (ram,0x00018017739f)
-// WARNING: Removing unreachable block (ram,0x0001801773a6)
-// WARNING: Removing unreachable block (ram,0x0001801773b0)
-// WARNING: Removing unreachable block (ram,0x0001801773bc)
-// WARNING: Removing unreachable block (ram,0x0001801773c3)
-// WARNING: Removing unreachable block (ram,0x00018017731b)
-// WARNING: Removing unreachable block (ram,0x000180177321)
-// WARNING: Removing unreachable block (ram,0x000180177330)
-// WARNING: Removing unreachable block (ram,0x00018017733c)
-// WARNING: Removing unreachable block (ram,0x000180177343)
-// WARNING: Removing unreachable block (ram,0x00018017734b)
-// WARNING: Removing unreachable block (ram,0x000180177356)
-// WARNING: Removing unreachable block (ram,0x000180177360)
-// WARNING: Removing unreachable block (ram,0x00018017736c)
-// WARNING: Removing unreachable block (ram,0x000180177373)
-// WARNING: Removing unreachable block (ram,0x00018017737b)
-// WARNING: Removing unreachable block (ram,0x000180177385)
-// WARNING: Removing unreachable block (ram,0x0001801773cb)
-// WARNING: Removing unreachable block (ram,0x000180177381)
-// WARNING: Removing unreachable block (ram,0x0001801773cd)
-// WARNING: Removing unreachable block (ram,0x0001801773d6)
-// WARNING: Removing unreachable block (ram,0x0001801773da)
-// WARNING: Removing unreachable block (ram,0x0001801773e4)
-// WARNING: Removing unreachable block (ram,0x0001801773eb)
-// WARNING: Removing unreachable block (ram,0x000180177400)
-// WARNING: Removing unreachable block (ram,0x00018017740c)
-// WARNING: Removing unreachable block (ram,0x000180177413)
-// WARNING: Removing unreachable block (ram,0x00018017741e)
-// WARNING: Removing unreachable block (ram,0x000180177417)
-// WARNING: Removing unreachable block (ram,0x000180177420)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+// WARNING: Removing unreachable block (ram,0x000180177a18)
+
+// WARNING: Removing unreachable block (ram,0x000180177a22)
+
+// WARNING: Removing unreachable block (ram,0x000180177a2e)
+
+// WARNING: Removing unreachable block (ram,0x000180177a35)
+
+// WARNING: Removing unreachable block (ram,0x000180177581)
+
+// WARNING: Removing unreachable block (ram,0x000180177590)
+
+// WARNING: Removing unreachable block (ram,0x00018017759c)
+
+// WARNING: Removing unreachable block (ram,0x0001801775a3)
+
+// WARNING: Removing unreachable block (ram,0x0001801775b3)
+
+// WARNING: Removing unreachable block (ram,0x0001801775c0)
+
+// WARNING: Removing unreachable block (ram,0x0001801775cc)
+
+// WARNING: Removing unreachable block (ram,0x0001801775d3)
+
+// WARNING: Removing unreachable block (ram,0x000180177263)
+
+// WARNING: Removing unreachable block (ram,0x000180177296)
+
+// WARNING: Removing unreachable block (ram,0x00018017726a)
+
+// WARNING: Removing unreachable block (ram,0x000180177274)
+
+// WARNING: Removing unreachable block (ram,0x000180177280)
+
+// WARNING: Removing unreachable block (ram,0x000180177287)
+
+// WARNING: Removing unreachable block (ram,0x000180177290)
+
+// WARNING: Removing unreachable block (ram,0x000180177298)
+
+// WARNING: Removing unreachable block (ram,0x00018017753a)
+
+// WARNING: Removing unreachable block (ram,0x000180177540)
+
+// WARNING: Removing unreachable block (ram,0x000180177550)
+
+// WARNING: Removing unreachable block (ram,0x00018017755c)
+
+// WARNING: Removing unreachable block (ram,0x000180177563)
+
+// WARNING: Removing unreachable block (ram,0x0001801772c2)
+
+// WARNING: Removing unreachable block (ram,0x0001801772d0)
+
+// WARNING: Removing unreachable block (ram,0x0001801772dc)
+
+// WARNING: Removing unreachable block (ram,0x0001801772e3)
+
+// WARNING: Removing unreachable block (ram,0x00018017764c)
+
+// WARNING: Removing unreachable block (ram,0x00018017749a)
+
+// WARNING: Removing unreachable block (ram,0x0001801774a8)
+
+// WARNING: Removing unreachable block (ram,0x0001801774aa)
+
+// WARNING: Removing unreachable block (ram,0x000180176fc3)
+
+// WARNING: Removing unreachable block (ram,0x000180177722)
+
+// WARNING: Removing unreachable block (ram,0x00018017729d)
+
+// WARNING: Removing unreachable block (ram,0x00018017766b)
+
+// WARNING: Removing unreachable block (ram,0x000180177677)
+
+// WARNING: Removing unreachable block (ram,0x000180177679)
+
+// WARNING: Removing unreachable block (ram,0x00018017739f)
+
+// WARNING: Removing unreachable block (ram,0x0001801773a6)
+
+// WARNING: Removing unreachable block (ram,0x0001801773b0)
+
+// WARNING: Removing unreachable block (ram,0x0001801773bc)
+
+// WARNING: Removing unreachable block (ram,0x0001801773c3)
+
+// WARNING: Removing unreachable block (ram,0x00018017731b)
+
+// WARNING: Removing unreachable block (ram,0x000180177321)
+
+// WARNING: Removing unreachable block (ram,0x000180177330)
+
+// WARNING: Removing unreachable block (ram,0x00018017733c)
+
+// WARNING: Removing unreachable block (ram,0x000180177343)
+
+// WARNING: Removing unreachable block (ram,0x00018017734b)
+
+// WARNING: Removing unreachable block (ram,0x000180177356)
+
+// WARNING: Removing unreachable block (ram,0x000180177360)
+
+// WARNING: Removing unreachable block (ram,0x00018017736c)
+
+// WARNING: Removing unreachable block (ram,0x000180177373)
+
+// WARNING: Removing unreachable block (ram,0x00018017737b)
+
+// WARNING: Removing unreachable block (ram,0x000180177385)
+
+// WARNING: Removing unreachable block (ram,0x0001801773cb)
+
+// WARNING: Removing unreachable block (ram,0x000180177381)
+
+// WARNING: Removing unreachable block (ram,0x0001801773cd)
+
+// WARNING: Removing unreachable block (ram,0x0001801773d6)
+
+// WARNING: Removing unreachable block (ram,0x0001801773da)
+
+// WARNING: Removing unreachable block (ram,0x0001801773e4)
+
+// WARNING: Removing unreachable block (ram,0x0001801773eb)
+
+// WARNING: Removing unreachable block (ram,0x000180177400)
+
+// WARNING: Removing unreachable block (ram,0x00018017740c)
+
+// WARNING: Removing unreachable block (ram,0x000180177413)
+
+// WARNING: Removing unreachable block (ram,0x00018017741e)
+
+// WARNING: Removing unreachable block (ram,0x000180177417)
+
+// WARNING: Removing unreachable block (ram,0x000180177420)
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 // void FUN_180059000(longlong *param_1)
 void FUN_180059000(longlong *param_1)
 
@@ -27715,8 +27731,8 @@ LAB_1800591a6:
   *param_2 = 0;
   return puVar4;
 }
-
 // void FUN_1800591c0(longlong *param_1)
+
 void FUN_1800591c0(longlong *param_1)
 
 {
@@ -27733,8 +27749,8 @@ void FUN_1800591c0(longlong *param_1)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_180059230(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180059230(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -27809,8 +27825,8 @@ longlong FUN_18005926c(longlong param_1,undefined8 param_2,longlong param_3)
   } while (0 < unaff_RBP);
   return unaff_RSI;
 }
-
 // void FUN_1800592e4(void)
+
 void FUN_1800592e4(void)
 
 {
@@ -27829,8 +27845,8 @@ longlong FUN_180059300(longlong param_1,longlong param_2,longlong param_3)
   }
   return param_3;
 }
-
 // void FUN_180059350(longlong param_1,longlong param_2,undefined8 param_3)
+
 void FUN_180059350(longlong param_1,longlong param_2,undefined8 param_3)
 
 {
@@ -27840,8 +27856,8 @@ void FUN_180059350(longlong param_1,longlong param_2,undefined8 param_3)
   }
   return;
 }
-
 // void FUN_180059380(undefined8 *param_1)
+
 void FUN_180059380(undefined8 *param_1)
 
 {
@@ -27859,8 +27875,8 @@ void FUN_180059380(undefined8 *param_1)
   *param_1 = &UNK_18098bcb0;
   return;
 }
-
 // void FUN_1800593f0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_1800593f0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -27880,8 +27896,8 @@ void FUN_1800593f0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,und
                     // WARNING: Subroutine does not return
   FUN_18064e900(param_2);
 }
-
 // void FUN_1800594b0(undefined8 *param_1)
+
 void FUN_1800594b0(undefined8 *param_1)
 
 {
@@ -27914,8 +27930,8 @@ void FUN_1800594b0(undefined8 *param_1)
   *param_1 = &UNK_18098bcb0;
   return;
 }
-
 // void FUN_1800595c0(undefined8 *param_1)
+
 void FUN_1800595c0(undefined8 *param_1)
 
 {
@@ -27930,8 +27946,8 @@ void FUN_1800595c0(undefined8 *param_1)
   *param_1 = &UNK_18098bcb0;
   return;
 }
-
 // void FUN_180059620(longlong *param_1)
+
 void FUN_180059620(longlong *param_1)
 
 {
@@ -27948,8 +27964,8 @@ void FUN_180059620(longlong *param_1)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_180059640(longlong *param_1)
+
 void FUN_180059640(longlong *param_1)
 
 {
@@ -27966,8 +27982,8 @@ void FUN_180059640(longlong *param_1)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_1800596a0(undefined8 *param_1)
+
 void FUN_1800596a0(undefined8 *param_1)
 
 {
@@ -27989,8 +28005,8 @@ void FUN_1800596a0(undefined8 *param_1)
   *param_1 = &UNK_18098bcb0;
   return;
 }
-
 // void FUN_180059730(longlong param_1)
+
 void FUN_180059730(longlong param_1)
 
 {
@@ -28034,9 +28050,7 @@ undefined8 * FUN_180059780(undefined8 *param_1,undefined8 *param_2,undefined8 *p
   }
   return param_3;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180059820(longlong *param_1,undefined8 param_2)
 void FUN_180059820(longlong *param_1,undefined8 param_2)
 
@@ -28096,8 +28110,8 @@ FUN_180059900(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
   }
   return param_1;
 }
-
 // void FUN_180059940(longlong param_1,longlong param_2)
+
 void FUN_180059940(longlong param_1,longlong param_2)
 
 {
@@ -28124,8 +28138,8 @@ void FUN_180059940(longlong param_1,longlong param_2)
   **(undefined1 **)(param_1 + 8) = 0;
   return;
 }
-
 // void FUN_1800599c0(longlong param_1,undefined8 param_2,int param_3)
+
 void FUN_1800599c0(longlong param_1,undefined8 param_2,int param_3)
 
 {
@@ -28137,16 +28151,16 @@ void FUN_1800599c0(longlong param_1,undefined8 param_2,int param_3)
   *(undefined4 *)(param_1 + 0x10) = 0;
   return;
 }
-
 // void FUN_1800599df(void)
+
 void FUN_1800599df(void)
 
 {
                     // WARNING: Subroutine does not return
   memcpy();
 }
-
 // void FUN_180059a04(undefined1 *param_1)
+
 void FUN_180059a04(undefined1 *param_1)
 
 {
@@ -28156,9 +28170,7 @@ void FUN_180059a04(undefined1 *param_1)
   *(undefined4 *)(unaff_RDI + 0x10) = 0;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180059a20(longlong param_1,longlong param_2,longlong param_3)
 void FUN_180059a20(longlong param_1,longlong param_2,longlong param_3)
 
@@ -28197,8 +28209,8 @@ void FUN_180059a20(longlong param_1,longlong param_2,longlong param_3)
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
 }
-
 // void FUN_180059ba0(undefined8 *param_1)
+
 void FUN_180059ba0(undefined8 *param_1)
 
 {
@@ -28230,9 +28242,7 @@ void FUN_180059ba0(undefined8 *param_1)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180059bc0(void)
 void FUN_180059bc0(void)
 
@@ -28350,8 +28360,8 @@ void FUN_180059bc0(void)
   *(undefined2 *)(lVar1 + 0x1ae0) = 0x100;
   return;
 }
-
 // void FUN_180059ee0(longlong *param_1)
+
 void FUN_180059ee0(longlong *param_1)
 
 {
@@ -28408,8 +28418,8 @@ void FUN_180059ee0(longlong *param_1)
   }
   return;
 }
-
 // void FUN_180059ee4(longlong *param_1)
+
 void FUN_180059ee4(longlong *param_1)
 
 {
@@ -28466,8 +28476,8 @@ void FUN_180059ee4(longlong *param_1)
   }
   return;
 }
-
 // void FUN_180059ef9(void)
+
 void FUN_180059ef9(void)
 
 {
@@ -28480,8 +28490,8 @@ void FUN_180059ef9(void)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_180059f4f(void)
+
 void FUN_180059f4f(void)
 
 {
@@ -28531,8 +28541,8 @@ void FUN_180059f4f(void)
   }
   return;
 }
-
 // void FUN_180059fb0(undefined8 *param_1)
+
 void FUN_180059fb0(undefined8 *param_1)
 
 {
@@ -28561,8 +28571,8 @@ void FUN_180059fb0(undefined8 *param_1)
   }
   return;
 }
-
 // void FUN_180059fc0(longlong *param_1)
+
 void FUN_180059fc0(longlong *param_1)
 
 {
@@ -28621,8 +28631,8 @@ void FUN_180059fc0(longlong *param_1)
   }
   return;
 }
-
 // void FUN_18005a010(longlong param_1)
+
 void FUN_18005a010(longlong param_1)
 
 {
@@ -28656,8 +28666,8 @@ void FUN_18005a010(longlong param_1)
   }
   return;
 }
-
 // void FUN_18005a050(longlong param_1)
+
 void FUN_18005a050(longlong param_1)
 
 {
@@ -28690,8 +28700,8 @@ void FUN_18005a050(longlong param_1)
   }
   return;
 }
-
 // void FUN_18005a100(longlong param_1)
+
 void FUN_18005a100(longlong param_1)
 
 {
@@ -28726,8 +28736,8 @@ void FUN_18005a100(longlong param_1)
   }
   return;
 }
-
 // void FUN_18005a130(longlong param_1)
+
 void FUN_18005a130(longlong param_1)
 
 {
@@ -28762,8 +28772,8 @@ void FUN_18005a130(longlong param_1)
   }
   return;
 }
-
 // void FUN_18005a170(longlong param_1)
+
 void FUN_18005a170(longlong param_1)
 
 {
@@ -28811,9 +28821,7 @@ undefined8 FUN_18005a1b0(undefined8 param_1,ulonglong param_2,undefined8 param_3
   }
   return param_1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18005a200(undefined8 *param_1)
 void FUN_18005a200(undefined8 *param_1)
 
@@ -28910,9 +28918,7 @@ undefined8 * FUN_18005a420(undefined8 *param_1,ulonglong param_2)
   }
   return param_1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18005a500(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 void FUN_18005a500(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
@@ -28952,8 +28958,8 @@ undefined8 FUN_18005a960(undefined8 param_1,ulonglong param_2)
   }
   return param_1;
 }
-
 // void FUN_18005a9a0(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18005a9a0(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -29008,8 +29014,8 @@ void FUN_18005a9a0(undefined8 *param_1,undefined8 param_2,undefined8 param_3,und
   }
   return;
 }
-
 // void FUN_18005aaf0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18005aaf0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -29018,8 +29024,8 @@ void FUN_18005aaf0(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
   }
   return;
 }
-
 // void FUN_18005ab20(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18005ab20(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -29028,8 +29034,8 @@ void FUN_18005ab20(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
   }
   return;
 }
-
 // void FUN_18005ab50(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18005ab50(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -29054,9 +29060,7 @@ void FUN_18005ab50(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
   *(undefined8 *)(param_1 + 0x10) = &UNK_18098bcb0;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18005ac00(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 void FUN_18005ac00(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
@@ -29099,8 +29103,8 @@ undefined8 FUN_18005b520(undefined8 param_1,ulonglong param_2)
   }
   return param_1;
 }
-
 // void FUN_18005b560(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18005b560(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -29186,8 +29190,8 @@ longlong FUN_18005b730(longlong param_1)
   *(code **)(param_1 + 0x68) = _guard_check_icall;
   return param_1;
 }
-
 // void FUN_18005b7c0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18005b7c0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -29255,8 +29259,8 @@ undefined8 * FUN_18005b870(undefined8 *param_1)
   param_1[0x17] = _guard_check_icall;
   return param_1;
 }
-
 // void FUN_18005b960(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18005b960(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -29305,9 +29309,7 @@ void FUN_18005b960(undefined8 *param_1,undefined8 param_2,undefined8 param_3,und
   *param_1 = &UNK_18098bcb0;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18005ba80(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 void FUN_18005ba80(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
@@ -29383,7 +29385,6 @@ longlong FUN_18005c090(longlong param_1)
   } while (lVar2 != 0);
   return param_1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8
@@ -29445,8 +29446,8 @@ FUN_18005c2a0(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefin
   }
   return param_1;
 }
-
 // void FUN_18005c380(longlong param_1)
+
 void FUN_18005c380(longlong param_1)
 
 {
@@ -29460,8 +29461,8 @@ void FUN_18005c380(longlong param_1)
   *(undefined8 *)(param_1 + 0x18) = &UNK_18098bcb0;
   return;
 }
-
 // void FUN_18005c3d0(longlong *param_1)
+
 void FUN_18005c3d0(longlong *param_1)
 
 {
@@ -29502,8 +29503,8 @@ longlong FUN_18005c4f0(longlong param_1,uint param_2,undefined8 param_3,undefine
   }
   return param_1;
 }
-
 // void FUN_18005c560(longlong param_1)
+
 void FUN_18005c560(longlong param_1)
 
 {
@@ -29560,9 +29561,7 @@ FUN_18005c590(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefin
   }
   return param_1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18005c650(longlong *param_1)
 void FUN_18005c650(longlong *param_1)
 
@@ -29641,9 +29640,7 @@ void FUN_18005c650(longlong *param_1)
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_128);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18005c830(uint *param_1)
 void FUN_18005c830(uint *param_1)
 
@@ -29689,9 +29686,7 @@ undefined8 FUN_18005c8a0(longlong param_1,undefined8 param_2)
   FUN_180627be0(param_1,param_2);
   return 1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18005c930(undefined8 *param_1,undefined8 param_2,int *param_3)
 void FUN_18005c930(undefined8 *param_1,undefined8 param_2,int *param_3)
 
@@ -29738,8 +29733,8 @@ LAB_18005c9be:
                     // WARNING: Subroutine does not return
   FUN_18066bdc0(lVar4,puVar3,param_1,uVar6);
 }
-
 // void FUN_18005ca20(longlong param_1,undefined4 param_2)
+
 void FUN_18005ca20(longlong param_1,undefined4 param_2)
 
 {
@@ -29819,9 +29814,7 @@ longlong FUN_18005cb60(longlong param_1)
   *(undefined8 *)(param_1 + 0x20) = &UNK_18098bcb0;
   return param_1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18005cc00(undefined **param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 void FUN_18005cc00(undefined **param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
@@ -30001,7 +29994,6 @@ undefined4 FUN_18005cf50(longlong param_1)
   }
   return uVar2;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int FUN_18005cfc0(void)
@@ -30047,9 +30039,7 @@ int FUN_18005cfc0(void)
   }
   return iVar6 + iVar4 + iVar3 + iVar5;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18005d0e0(ulonglong param_1,longlong param_2)
 void FUN_18005d0e0(ulonglong param_1,longlong param_2)
 
@@ -30157,8 +30147,8 @@ longlong FUN_18005d190(longlong param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x18) = 0;
   return param_1;
 }
-
 // void FUN_18005d1f0(undefined8 param_1,longlong param_2)
+
 void FUN_18005d1f0(undefined8 param_1,longlong param_2)
 
 {
@@ -30176,8 +30166,8 @@ void FUN_18005d1f0(undefined8 param_1,longlong param_2)
   }
   return;
 }
-
 // void FUN_18005d260(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18005d260(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -30196,32 +30186,32 @@ void FUN_18005d260(undefined8 param_1,undefined8 *param_2,undefined8 param_3,und
                     // WARNING: Subroutine does not return
   FUN_18064e900(param_2);
 }
-
 // void FUN_18005d310(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18005d310(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_18005d260(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
-
 // void FUN_18005d330(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18005d330(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_18005d260(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
-
 // void FUN_18005d360(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18005d360(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_18005d260(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
-
 // void FUN_18005d3a0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18005d3a0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -30501,8 +30491,8 @@ undefined8 FUN_18005d548(longlong param_1)
 {
   return *(undefined8 *)(param_1 + 0x30);
 }
-
 // void FUN_18005d560(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18005d560(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -30521,8 +30511,8 @@ void FUN_18005d560(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_18005d580(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18005d580(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -30586,17 +30576,15 @@ undefined1 * FUN_18005d660(undefined1 *param_1)
   *param_1 = 0;
   return param_1;
 }
-
 // void FUN_18005d760(undefined8 *param_1)
+
 void FUN_18005d760(undefined8 *param_1)
 
 {
   CloseHandle(*param_1);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18005d790(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 void FUN_18005d790(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
@@ -30727,8 +30715,8 @@ void FUN_18005d790(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
   }
   return;
 }
-
 // void FUN_18005dab0(longlong param_1)
+
 void FUN_18005dab0(longlong param_1)
 
 {
@@ -30751,8 +30739,8 @@ void FUN_18005dab0(longlong param_1)
   }
   return;
 }
-
 // void FUN_18005dade(void)
+
 void FUN_18005dade(void)
 
 {
@@ -30772,15 +30760,15 @@ void FUN_18005dade(void)
   } while (lVar2 < unaff_RDI);
   return;
 }
-
 // void FUN_18005db19(void)
+
 void FUN_18005db19(void)
 
 {
   return;
 }
-
 // void FUN_18005db30(longlong param_1)
+
 void FUN_18005db30(longlong param_1)
 
 {
@@ -30803,8 +30791,8 @@ void FUN_18005db30(longlong param_1)
   }
   return;
 }
-
 // void FUN_18005db5e(void)
+
 void FUN_18005db5e(void)
 
 {
@@ -30824,16 +30812,14 @@ void FUN_18005db5e(void)
   } while (lVar2 < unaff_RDI);
   return;
 }
-
 // void FUN_18005db99(void)
+
 void FUN_18005db99(void)
 
 {
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18005dbb0(void)
 void FUN_18005dbb0(void)
 
@@ -31018,9 +31004,7 @@ void FUN_18005dbb0(void)
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_1b8);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18005e110(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
 void FUN_18005e110(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
 
@@ -31057,8 +31041,8 @@ void FUN_18005e110(longlong param_1,longlong *param_2,undefined8 param_3,undefin
   }
   return;
 }
-
 // void FUN_18005e1d0(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18005e1d0(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -31080,9 +31064,7 @@ void FUN_18005e1d0(longlong param_1,longlong *param_2,undefined8 param_3,undefin
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18005e250(longlong param_1,undefined8 param_2,int param_3)
 void FUN_18005e250(longlong param_1,undefined8 param_2,int param_3)
 
@@ -31113,8 +31095,8 @@ void FUN_18005e250(longlong param_1,undefined8 param_2,int param_3)
   } while (iVar2 == 0);
   return;
 }
-
 // void FUN_18005e300(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18005e300(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -31140,8 +31122,8 @@ void FUN_18005e300(longlong param_1,longlong *param_2,undefined8 param_3,undefin
   }
   return;
 }
-
 // void FUN_18005e370(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18005e370(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -31167,8 +31149,8 @@ void FUN_18005e370(longlong param_1,longlong *param_2,undefined8 param_3,undefin
   }
   return;
 }
-
 // void FUN_18005e3e0(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18005e3e0(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -31194,8 +31176,8 @@ void FUN_18005e3e0(longlong param_1,longlong *param_2,undefined8 param_3,undefin
   }
   return;
 }
-
 // void FUN_18005e450(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18005e450(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -31217,7 +31199,6 @@ void FUN_18005e450(longlong param_1,longlong *param_2,undefined8 param_3,undefin
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 * FUN_18005e4d0(longlong param_1,undefined8 param_2)
@@ -31235,8 +31216,8 @@ undefined8 * FUN_18005e4d0(longlong param_1,undefined8 param_2)
   FUN_18005ea90(param_1 + 0x48,&puStackX_8);
   return puVar1;
 }
-
 // void FUN_18005e570(longlong param_1,longlong *param_2)
+
 void FUN_18005e570(longlong param_1,longlong *param_2)
 
 {
@@ -31279,8 +31260,8 @@ void FUN_18005e570(longlong param_1,longlong *param_2)
   }
   return;
 }
-
 // void FUN_18005e57a(longlong param_1,longlong *param_2)
+
 void FUN_18005e57a(longlong param_1,longlong *param_2)
 
 {
@@ -31323,8 +31304,8 @@ void FUN_18005e57a(longlong param_1,longlong *param_2)
   }
   return;
 }
-
 // void FUN_18005e5ff(void)
+
 void FUN_18005e5ff(void)
 
 {
@@ -31339,9 +31320,7 @@ void FUN_18005e5ff(void)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18005e630(longlong param_1)
 void FUN_18005e630(longlong param_1)
 
@@ -31364,8 +31343,8 @@ void FUN_18005e630(longlong param_1)
   }
   return;
 }
-
 // void FUN_18005e6a0(undefined8 param_1,longlong *param_2,undefined1 param_3,undefined8 param_4)
+
 void FUN_18005e6a0(undefined8 param_1,longlong *param_2,undefined1 param_3,undefined8 param_4)
 
 {
@@ -31401,8 +31380,8 @@ void FUN_18005e6a0(undefined8 param_1,longlong *param_2,undefined1 param_3,undef
   }
   return;
 }
-
 // void FUN_18005e770(undefined8 param_1,longlong *param_2,char param_3)
+
 void FUN_18005e770(undefined8 param_1,longlong *param_2,char param_3)
 
 {
@@ -31492,7 +31471,6 @@ longlong FUN_18005e890(longlong param_1)
   }
   return 0;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 * FUN_18005e950(undefined8 *param_1)
@@ -31569,9 +31547,7 @@ undefined8 * FUN_18005e950(undefined8 *param_1)
   }
   return param_1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18005ea90(ulonglong *param_1,undefined8 *param_2)
 void FUN_18005ea90(ulonglong *param_1,undefined8 *param_2)
 
@@ -31617,7 +31593,6 @@ LAB_18005eb20:
   param_1[2] = (ulonglong)(puVar2 + lVar1);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 longlong FUN_18005eb80(longlong param_1)
@@ -31752,7 +31727,6 @@ longlong FUN_18005eb80(longlong param_1)
     puVar7 = *(ulonglong **)(param_1 + 0x30);
   } while( true );
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 longlong FUN_18005ec11(void)
@@ -31886,7 +31860,6 @@ undefined8 FUN_18005ecfc(undefined8 param_1,undefined8 param_2,longlong *param_3
     unaff_RSI = uVar3 + 1;
   } while( true );
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 longlong FUN_18005ed54(void)
@@ -31981,7 +31954,6 @@ longlong FUN_18005ed54(void)
   *(undefined4 *)(unaff_R14 + 600) = uVar8;
   return 0;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 * FUN_18005ee30(longlong *param_1,char param_2,undefined1 *param_3)
@@ -32229,7 +32201,6 @@ LAB_18005f30a:
   }
   return 0;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 FUN_18005f340(longlong param_1,longlong param_2)
@@ -32279,7 +32250,6 @@ undefined8 FUN_18005f340(longlong param_1,longlong param_2)
   *(undefined8 **)(param_1 + 0x58) = puVar4;
   return CONCAT71((int7)((ulonglong)uVar3 >> 8),1);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 * FUN_18005f430(longlong param_1)
@@ -32396,14 +32366,13 @@ undefined8 FUN_18005f490(void)
   *(longlong *)(unaff_RSI + 0x58) = *(longlong *)(unaff_RSI + 0x58) << 1;
   return CONCAT71((int7)(unaff_RBP - 1U >> 8),1);
 }
-
 // void FUN_18005f54c(void)
+
 void FUN_18005f54c(void)
 
 {
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulonglong FUN_18005f570(longlong param_1,longlong *param_2,longlong param_3)
@@ -32698,7 +32667,6 @@ LAB_18005f92b:
   uVar20 = uVar15;
   goto joined_r0x00018005f6ef;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulonglong FUN_18005fb30(longlong param_1,longlong *param_2,longlong param_3)
@@ -32900,7 +32868,6 @@ joined_r0x00018005fdcd:
   *(ulonglong *)(param_1 + 0x40) = uVar17;
   return uVar13 & 0xffffffffffffff00;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 longlong FUN_18005ff50(longlong param_1)
@@ -33049,8 +33016,8 @@ undefined8 FUN_1800601c0(undefined8 param_1,ulonglong param_2)
   }
   return param_1;
 }
-
 // void FUN_180060200(undefined8 *param_1)
+
 void FUN_180060200(undefined8 *param_1)
 
 {
@@ -33178,8 +33145,8 @@ undefined8 FUN_1800603e0(undefined8 param_1,ulonglong param_2)
   }
   return param_1;
 }
-
 // void FUN_180060420(undefined8 *param_1)
+
 void FUN_180060420(undefined8 *param_1)
 
 {
@@ -33295,8 +33262,8 @@ undefined8 * FUN_1800605d0(undefined8 *param_1,ulonglong param_2)
   }
   return param_1;
 }
-
 // void FUN_180060610(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180060610(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -33360,9 +33327,7 @@ int FUN_180060680(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   }
   return iVar1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800606e0(longlong *param_1)
 void FUN_1800606e0(longlong *param_1)
 
@@ -33849,9 +33814,7 @@ bool FUN_180060f50(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
   }
   return cVar2 != '\0';
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180060fc0(longlong *param_1,longlong *param_2)
 void FUN_180060fc0(longlong *param_1,longlong *param_2)
 
@@ -33932,9 +33895,7 @@ void FUN_180060fc0(longlong *param_1,longlong *param_2)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800611a0(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
 void FUN_1800611a0(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
 
@@ -33974,16 +33935,16 @@ void FUN_1800611a0(longlong param_1,longlong *param_2,undefined8 param_3,undefin
   }
   return;
 }
-
 // void FUN_180061290(undefined8 *param_1)
+
 void FUN_180061290(undefined8 *param_1)
 
 {
   CloseHandle(*param_1);
   return;
 }
-
 // void FUN_1800612b0(undefined8 *param_1)
+
 void FUN_1800612b0(undefined8 *param_1)
 
 {
@@ -34030,9 +33991,7 @@ FUN_180061300(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
   }
   return param_1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180061380(undefined8 param_1,longlong param_2)
 void FUN_180061380(undefined8 param_1,longlong param_2)
 
@@ -34088,9 +34047,7 @@ void FUN_180061380(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
   memset(auStack_138,0,0x100);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180061be0(longlong *param_1)
 void FUN_180061be0(longlong *param_1)
 
@@ -34165,9 +34122,7 @@ void FUN_180061be0(longlong *param_1)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180061db0(longlong *param_1)
 void FUN_180061db0(longlong *param_1)
 
@@ -34242,24 +34197,24 @@ void FUN_180061db0(longlong *param_1)
   }
   return;
 }
-
 // void FUN_180061f80(void)
+
 void FUN_180061f80(void)
 
 {
                     // WARNING: Subroutine does not return
   FUN_1808fd200();
 }
-
 // void FUN_1800622d0(undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4)
+
 void FUN_1800622d0(undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4)
 
 {
   FUN_180061f80(param_1,param_2,0xffffffff00000000,param_3,param_4,&stack0x00000028);
   return;
 }
-
 // void FUN_180062300(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180062300(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -34271,8 +34226,8 @@ void FUN_180062300(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
   FUN_180061f80(param_1,0,0xffffffff00000000,0xd,param_2,&uStackX_18);
   return;
 }
-
 // void FUN_180062340(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180062340(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -34282,25 +34237,23 @@ void FUN_180062340(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
   FUN_180061f80(param_1,param_2,0xffffffff00000000,0xd,param_3,&uStackX_20);
   return;
 }
-
 // void FUN_180062380(void)
+
 void FUN_180062380(void)
 
 {
   FUN_180061f80();
   return;
 }
-
 // void FUN_1800623b0(void)
+
 void FUN_1800623b0(void)
 
 {
   FUN_180061f80();
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800623e0(longlong *param_1)
 void FUN_1800623e0(longlong *param_1)
 
@@ -34338,9 +34291,7 @@ void FUN_1800623e0(longlong *param_1)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800624c0(void)
 void FUN_1800624c0(void)
 
@@ -34363,9 +34314,7 @@ void FUN_1800624c0(void)
                     // WARNING: Subroutine does not return
   memset(auStack_138,0,0xff);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180062920(int *param_1)
 void FUN_180062920(int *param_1)
 
@@ -34463,7 +34412,6 @@ void FUN_180062920(int *param_1)
                     // WARNING: Subroutine does not return
   FUN_18064e900(puVar5);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 FUN_180062ee0(undefined8 param_1,undefined4 param_2)
@@ -34522,9 +34470,7 @@ undefined8 FUN_180062ee0(undefined8 param_1,undefined4 param_2)
   }
   return 1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180062fd0(longlong param_1)
 void FUN_180062fd0(longlong param_1)
 
@@ -34747,8 +34693,8 @@ LAB_18006357e:
   }
   return in_RAX & 0xffffffffffffff00;
 }
-
 // void FUN_1800635c0(void)
+
 void FUN_1800635c0(void)
 
 {
@@ -34839,9 +34785,7 @@ longlong FUN_1800637f0(longlong param_1)
   *(code **)(param_1 + 0x18) = _guard_check_icall;
   return param_1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180063820(undefined8 param_1)
 void FUN_180063820(undefined8 param_1)
 
@@ -34860,9 +34804,7 @@ void FUN_180063820(undefined8 param_1)
                     // WARNING: Subroutine does not return
   memset(auStack_238,0,0x200);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180063b30(undefined8 param_1,longlong param_2)
 void FUN_180063b30(undefined8 param_1,longlong param_2)
 
@@ -34907,8 +34849,8 @@ void FUN_180063b30(undefined8 param_1,longlong param_2)
   if (lVar3 != 0) {
     fwrite(&DAT_1809fe810,0x30,1,lVar6);
     fwrite(&DAT_180c84870,lVar3,1,lVar6);
-
 // void FUN_180063cf0(void)
+
 void FUN_180063cf0(void)
 
 {
@@ -35040,9 +34982,7 @@ LAB_180063de9:
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180064010(undefined8 param_1)
 void FUN_180064010(undefined8 param_1)
 
@@ -35185,15 +35125,14 @@ void FUN_180064010(undefined8 param_1)
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_358);
 }
-
 // void FUN_180064400(void)
+
 void FUN_180064400(void)
 
 {
                     // WARNING: Subroutine does not return
   FUN_1808fd200();
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulonglong FUN_1800649d0(undefined8 param_1)
@@ -35311,9 +35250,7 @@ ulonglong FUN_1800649d0(undefined8 param_1)
   }
   return uVar2;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180064c00(longlong *param_1,longlong param_2,longlong param_3)
 void FUN_180064c00(longlong *param_1,longlong param_2,longlong param_3)
 
@@ -35596,11 +35533,11 @@ LAB_180065009:
                     // WARNING: Subroutine does not return
   memmove(puVar5,puVar5 + (longlong)puVar4,(longlong)puStack_b8 + 1);
 }
-
 // WARNING: Removing unreachable block (ram,0x0001800654e7)
-// WARNING: Removing unreachable block (ram,0x0001800654f0)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+// WARNING: Removing unreachable block (ram,0x0001800654f0)
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 // void FUN_180065160(undefined8 param_1)
 void FUN_180065160(undefined8 param_1)
 
@@ -36134,9 +36071,7 @@ LAB_180065a3e:
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180065d50(void)
 void FUN_180065d50(void)
 
@@ -36173,9 +36108,7 @@ void FUN_180065d50(void)
                     // WARNING: Subroutine does not return
   memset(auStack_228,0,0x80);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180065f00(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 void FUN_180065f00(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
@@ -36259,9 +36192,7 @@ void FUN_180065f00(undefined8 param_1,longlong param_2,undefined8 param_3,undefi
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180066140(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 void FUN_180066140(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
@@ -36343,11 +36274,11 @@ void FUN_180066140(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
   }
   return;
 }
-
 // WARNING: Removing unreachable block (ram,0x0001800665ec)
-// WARNING: Removing unreachable block (ram,0x0001800665f5)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+// WARNING: Removing unreachable block (ram,0x0001800665f5)
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 // void FUN_180066320(undefined8 param_1,undefined8 param_2,char param_3,char param_4,
 void FUN_180066320(undefined8 param_1,undefined8 param_2,char param_3,char param_4,
                   undefined8 param_5)
@@ -36596,9 +36527,7 @@ LAB_180066971:
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_1f8);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800669c0(undefined8 param_1,undefined8 param_2,char param_3,undefined8 param_4,
 void FUN_1800669c0(undefined8 param_1,undefined8 param_2,char param_3,undefined8 param_4,
                   undefined8 param_5)
@@ -36707,16 +36636,14 @@ LAB_180066bf4:
   }
   return;
 }
-
 // void FUN_180066dd0(void)
+
 void FUN_180066dd0(void)
 
 {
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180066df0(longlong *param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 void FUN_180066df0(longlong *param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
@@ -36820,8 +36747,8 @@ longlong FUN_180066f90(longlong param_1,ulonglong param_2,undefined8 param_3,cha
   }
   return -1;
 }
-
 // void FUN_180067050(void)
+
 void FUN_180067050(void)
 
 {
@@ -36832,8 +36759,8 @@ void FUN_180067050(void)
   (*pcVar1)();
   return;
 }
-
 // void FUN_180067070(longlong *param_1)
+
 void FUN_180067070(longlong *param_1)
 
 {
@@ -36859,16 +36786,16 @@ void FUN_180067070(longlong *param_1)
   *(undefined1 *)param_1 = 0;
   return;
 }
-
 // void FUN_1800670d0(void)
+
 void FUN_1800670d0(void)
 
 {
   FUN_180067070();
   return;
 }
-
 // void FUN_1800670f0(void)
+
 void FUN_1800670f0(void)
 
 {
@@ -36879,8 +36806,8 @@ void FUN_1800670f0(void)
   (*pcVar1)();
   return;
 }
-
 // void FUN_180067110(ulonglong param_1)
+
 void FUN_180067110(ulonglong param_1)
 
 {
@@ -36923,8 +36850,8 @@ void FUN_180067110(ulonglong param_1)
   (*pcVar1)();
   return;
 }
-
 // void FUN_180067170(longlong param_1,ulonglong param_2)
+
 void FUN_180067170(longlong param_1,ulonglong param_2)
 
 {
@@ -36943,8 +36870,8 @@ void FUN_180067170(longlong param_1,ulonglong param_2)
   free(lVar1);
   return;
 }
-
 // void FUN_1800671b0(undefined8 *param_1,undefined8 param_2,ulonglong param_3)
+
 void FUN_1800671b0(undefined8 *param_1,undefined8 param_2,ulonglong param_3)
 
 {
@@ -36983,8 +36910,8 @@ void FUN_1800671b0(undefined8 *param_1,undefined8 param_2,ulonglong param_3)
   (*pcVar2)();
   return;
 }
-
 // void FUN_18006720b(ulonglong param_1)
+
 void FUN_18006720b(ulonglong param_1)
 
 {
@@ -37006,23 +36933,23 @@ void FUN_18006720b(ulonglong param_1)
                     // WARNING: Subroutine does not return
   memcpy(uVar2);
 }
-
 // void FUN_18006729a(void)
+
 void FUN_18006729a(void)
 
 {
   return;
 }
-
 // void FUN_1800672b0(void)
+
 void FUN_1800672b0(void)
 
 {
                     // WARNING: Subroutine does not return
   _invalid_parameter_noinfo_noreturn();
 }
-
 // void FUN_1800672b7(void)
+
 void FUN_1800672b7(void)
 
 {
@@ -37033,9 +36960,7 @@ void FUN_1800672b7(void)
   (*pcVar1)();
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800672c0(longlong param_1)
 void FUN_1800672c0(longlong param_1)
 
@@ -37125,9 +37050,7 @@ void FUN_1800672c0(longlong param_1)
                     // WARNING: Subroutine does not return
   FUN_180062300(_DAT_180c86928,&UNK_1809fec50,iVar3);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180067480(undefined8 param_1,longlong param_2)
 void FUN_180067480(undefined8 param_1,longlong param_2)
 
@@ -37143,8 +37066,8 @@ void FUN_180067480(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
   FUN_180062300(_DAT_180c86928,&UNK_1809fec70,puVar2);
 }
-
 // void FUN_180067810(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180067810(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -37153,9 +37076,7 @@ void FUN_180067810(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180067840(longlong *param_1)
 void FUN_180067840(longlong *param_1)
 
@@ -37280,9 +37201,7 @@ void FUN_180067840(longlong *param_1)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180067bc0(undefined8 *param_1)
 void FUN_180067bc0(undefined8 *param_1)
 
@@ -37302,25 +37221,23 @@ void FUN_180067bc0(undefined8 *param_1)
                     // WARNING: Subroutine does not return
   memset(puStack_88,0,0x200000);
 }
-
 // void FUN_180067f00(void)
+
 void FUN_180067f00(void)
 
 {
   _Mtx_destroy_in_situ();
   return;
 }
-
 // void FUN_180067f30(void)
+
 void FUN_180067f30(void)
 
 {
   _Mtx_destroy_in_situ();
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180067f60(longlong param_1,longlong param_2)
 void FUN_180067f60(longlong param_1,longlong param_2)
 
@@ -37418,7 +37335,6 @@ void FUN_180067f60(longlong param_1,longlong param_2)
                     // WARNING: Subroutine does not return
   memset(puVar5 + 1,0,0x128);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 FUN_180068250(longlong param_1,longlong param_2,longlong param_3)
@@ -37546,8 +37462,8 @@ longlong FUN_180068490(longlong param_1,longlong param_2)
   *(undefined8 *)(param_1 + 0x1a0) = *(undefined8 *)(param_2 + 0x1a0);
   return param_1;
 }
-
 // void FUN_180068620(longlong param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180068620(longlong param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -37569,8 +37485,8 @@ void FUN_180068620(longlong param_1,undefined8 *param_2,undefined8 param_3,undef
   }
   return;
 }
-
 // void FUN_1800686b0(longlong param_1)
+
 void FUN_1800686b0(longlong param_1)
 
 {
@@ -37630,8 +37546,8 @@ void FUN_1800686b0(longlong param_1)
     cVar4 = FUN_180068a90(param_1 + 0x10,&plStackX_8);
   } while( true );
 }
-
 // void FUN_1800687d0(longlong param_1,undefined8 *param_2)
+
 void FUN_1800687d0(longlong param_1,undefined8 *param_2)
 
 {
@@ -37650,7 +37566,6 @@ void FUN_1800687d0(longlong param_1,undefined8 *param_2)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 longlong *
@@ -37911,7 +37826,6 @@ undefined8 FUN_180068ce0(longlong param_1,undefined8 *param_2)
   UNLOCK();
   return 0;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 longlong FUN_180068ec0(longlong *param_1,longlong *param_2,int param_3,undefined8 param_4)
@@ -38011,8 +37925,8 @@ undefined8 * FUN_180069070(undefined8 *param_1)
   *(undefined1 *)(param_1 + 0x28) = 0;
   return param_1;
 }
-
 // void FUN_180069130(longlong param_1,longlong param_2)
+
 void FUN_180069130(longlong param_1,longlong param_2)
 
 {
@@ -38050,8 +37964,8 @@ FUN_1800691e0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
   }
   return param_1;
 }
-
 // void FUN_180069220(longlong param_1,undefined8 param_2,int param_3)
+
 void FUN_180069220(longlong param_1,undefined8 param_2,int param_3)
 
 {
@@ -38063,16 +37977,16 @@ void FUN_180069220(longlong param_1,undefined8 param_2,int param_3)
   *(undefined4 *)(param_1 + 0x10) = 0;
   return;
 }
-
 // void FUN_180069241(void)
+
 void FUN_180069241(void)
 
 {
                     // WARNING: Subroutine does not return
   memcpy();
 }
-
 // void FUN_180069266(undefined1 *param_1)
+
 void FUN_180069266(undefined1 *param_1)
 
 {
@@ -38082,9 +37996,7 @@ void FUN_180069266(undefined1 *param_1)
   *(undefined4 *)(unaff_RDI + 0x10) = 0;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180069280(longlong param_1,longlong param_2,longlong param_3)
 void FUN_180069280(longlong param_1,longlong param_2,longlong param_3)
 
@@ -38123,8 +38035,8 @@ void FUN_180069280(longlong param_1,longlong param_2,longlong param_3)
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_198);
 }
-
 // void FUN_1800693f0(longlong param_1,longlong param_2)
+
 void FUN_1800693f0(longlong param_1,longlong param_2)
 
 {
@@ -38161,8 +38073,8 @@ longlong FUN_180069470(longlong param_1,ulonglong param_2,undefined8 param_3,und
   }
   return param_1;
 }
-
 // void FUN_180069530(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180069530(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -38175,8 +38087,8 @@ void FUN_180069530(undefined8 *param_1,undefined8 param_2,undefined8 param_3,und
   *param_1 = &UNK_18098bcb0;
   return;
 }
-
 // void FUN_1800695a0(longlong param_1)
+
 void FUN_1800695a0(longlong param_1)
 
 {
@@ -38216,8 +38128,8 @@ undefined8 FUN_180069760(undefined8 param_1,ulonglong param_2)
   }
   return param_1;
 }
-
 // void FUN_1800697a0(undefined8 *param_1)
+
 void FUN_1800697a0(undefined8 *param_1)
 
 {
@@ -38320,7 +38232,6 @@ LAB_180069842:
   *param_1 = &UNK_1809feeb8;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 * FUN_180069920(longlong *param_1)
@@ -38654,7 +38565,6 @@ undefined8 FUN_180069fe0(undefined8 param_1,ulonglong param_2,undefined8 param_3
   }
   return param_1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 FUN_18006a050(int param_1)
@@ -38685,9 +38595,7 @@ undefined8 * FUN_18006a090(undefined8 *param_1,ulonglong param_2)
   }
   return param_1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18006a130(longlong param_1)
 void FUN_18006a130(longlong param_1)
 
@@ -38776,8 +38684,8 @@ void FUN_18006a130(longlong param_1)
                     // WARNING: Subroutine does not return
   memset((longlong)puVar4 + 0x74,0,0x400);
 }
-
 // void FUN_18006b220(longlong param_1)
+
 void FUN_18006b220(longlong param_1)
 
 {
@@ -38823,7 +38731,6 @@ void FUN_18006b220(longlong param_1)
   *(undefined8 *)(param_1 + 8) = &UNK_18098bcb0;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 longlong FUN_18006b350(longlong *param_1,longlong *param_2,int param_3)
@@ -38863,8 +38770,8 @@ longlong FUN_18006b350(longlong *param_1,longlong *param_2,int param_3)
   }
   return 0;
 }
-
 // void FUN_18006b440(longlong param_1,undefined4 param_2)
+
 void FUN_18006b440(longlong param_1,undefined4 param_2)
 
 {
@@ -38888,8 +38795,8 @@ void FUN_18006b440(longlong param_1,undefined4 param_2)
   *(undefined4 *)(param_1 + 0x1dc0) = param_2;
   return;
 }
-
 // void FUN_18006b4c0(longlong param_1,undefined4 param_2)
+
 void FUN_18006b4c0(longlong param_1,undefined4 param_2)
 
 {
@@ -38913,9 +38820,7 @@ void FUN_18006b4c0(longlong param_1,undefined4 param_2)
   *(undefined4 *)(param_1 + 0x1d50) = param_2;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18006b540(undefined8 param_1,undefined4 param_2)
 void FUN_18006b540(undefined8 param_1,undefined4 param_2)
 
@@ -38982,8 +38887,8 @@ FUN_18006b640(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefin
   }
   return param_1;
 }
-
 // void FUN_18006b6f0(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18006b6f0(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -39002,8 +38907,8 @@ void FUN_18006b6f0(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_18006b760(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18006b760(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -39022,9 +38927,7 @@ void FUN_18006b760(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18006b780(void)
 void FUN_18006b780(void)
 
@@ -39036,8 +38939,8 @@ void FUN_18006b780(void)
   if (_DAT_180c8f008 != 0) {
     (**(code **)(_DAT_180c8f008 + 0x88))(1);
   }
-
 // void FUN_18006b8f0(longlong param_1)
+
 void FUN_18006b8f0(longlong param_1)
 
 {
@@ -39051,9 +38954,7 @@ void FUN_18006b8f0(longlong param_1)
   *(undefined8 *)(param_1 + 0x20) = &UNK_18098bcb0;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18006b940(undefined8 *param_1)
 void FUN_18006b940(undefined8 *param_1)
 
@@ -39151,8 +39052,8 @@ undefined8 FUN_18006bd20(undefined8 param_1,ulonglong param_2)
   }
   return param_1;
 }
-
 // void FUN_18006bd60(longlong param_1)
+
 void FUN_18006bd60(longlong param_1)
 
 {
@@ -39184,8 +39085,8 @@ void FUN_18006bd60(longlong param_1)
   }
   return;
 }
-
 // void FUN_18006bd80(longlong param_1)
+
 void FUN_18006bd80(longlong param_1)
 
 {
@@ -39217,7 +39118,6 @@ void FUN_18006bd80(longlong param_1)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8
@@ -39312,8 +39212,8 @@ LAB_18006bf7f:
   }
   return 1;
 }
-
 // void FUN_18006bfe0(undefined8 *param_1)
+
 void FUN_18006bfe0(undefined8 *param_1)
 
 {
@@ -39327,9 +39227,7 @@ void FUN_18006bfe0(undefined8 *param_1)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18006c070(longlong param_1)
 void FUN_18006c070(longlong param_1)
 
@@ -39788,8 +39686,8 @@ LAB_18006ca95:
     cVar9 = *(char *)(*(longlong *)(param_1 + 1000) + 0x58);
   } while( true );
 }
-
 // void FUN_18006cb90(longlong param_1)
+
 void FUN_18006cb90(longlong param_1)
 
 {
@@ -39821,7 +39719,6 @@ void FUN_18006cb90(longlong param_1)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulonglong FUN_18006cc50(longlong *param_1,longlong param_2)
@@ -39911,9 +39808,7 @@ LAB_18006ccef:
   param_1[2] = uVar2;
   return uVar2;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18006cc8d(undefined8 param_1,undefined8 param_2,longlong param_3)
 void FUN_18006cc8d(undefined8 param_1,undefined8 param_2,longlong param_3)
 
@@ -39965,8 +39860,8 @@ LAB_18006ccef:
   unaff_RDI[2] = lVar4 * 0x1a8 + lVar3;
   return;
 }
-
 // void FUN_18006cd43(void)
+
 void FUN_18006cd43(void)
 
 {
@@ -40016,8 +39911,8 @@ longlong FUN_18006cd80(longlong param_1,longlong param_2,undefined8 param_3,unde
   *(undefined8 *)(param_1 + 0x1a0) = *(undefined8 *)(param_2 + 0x1a0);
   return param_1;
 }
-
 // void FUN_18006cf00(undefined8 *param_1)
+
 void FUN_18006cf00(undefined8 *param_1)
 
 {
@@ -40120,7 +40015,6 @@ LAB_18006cfb1:
   *param_1 = &UNK_1809ff488;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 * FUN_18006d0b0(longlong *param_1)
@@ -40539,7 +40433,6 @@ undefined8 FUN_18006d810(longlong param_1,undefined8 param_2)
   }
   return uVar7;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 longlong FUN_18006d920(longlong param_1)
@@ -40642,8 +40535,8 @@ LAB_18006d9d7:
     }
   } while( true );
 }
-
 // void FUN_18006da50(longlong *param_1)
+
 void FUN_18006da50(longlong *param_1)
 
 {
@@ -40738,8 +40631,8 @@ ulonglong FUN_18006da90(longlong param_1,undefined8 param_2)
   }
   return uVar8 & 0xffffffffffffff00;
 }
-
 // void FUN_18006dc10(longlong *param_1)
+
 void FUN_18006dc10(longlong *param_1)
 
 {
@@ -40964,9 +40857,7 @@ longlong FUN_18006e0b0(longlong param_1,ulonglong param_2)
   }
   return param_1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18006e140(void)
 void FUN_18006e140(void)
 
@@ -41094,8 +40985,8 @@ undefined8 * FUN_18006e460(undefined8 *param_1,ulonglong param_2)
   }
   return param_1;
 }
-
 // void FUN_18006e4a0(longlong *param_1)
+
 void FUN_18006e4a0(longlong *param_1)
 
 {
@@ -41152,8 +41043,8 @@ void FUN_18006e4a0(longlong *param_1)
   }
   return;
 }
-
 // void FUN_18006e4a4(longlong *param_1)
+
 void FUN_18006e4a4(longlong *param_1)
 
 {
@@ -41210,8 +41101,8 @@ void FUN_18006e4a4(longlong *param_1)
   }
   return;
 }
-
 // void FUN_18006e4b9(void)
+
 void FUN_18006e4b9(void)
 
 {
@@ -41224,8 +41115,8 @@ void FUN_18006e4b9(void)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_18006e50f(void)
+
 void FUN_18006e50f(void)
 
 {
@@ -41275,8 +41166,8 @@ void FUN_18006e50f(void)
   }
   return;
 }
-
 // void FUN_18006e570(undefined8 *param_1)
+
 void FUN_18006e570(undefined8 *param_1)
 
 {
@@ -41305,8 +41196,8 @@ void FUN_18006e570(undefined8 *param_1)
   }
   return;
 }
-
 // void FUN_18006e580(longlong *param_1)
+
 void FUN_18006e580(longlong *param_1)
 
 {
@@ -41365,8 +41256,8 @@ void FUN_18006e580(longlong *param_1)
   }
   return;
 }
-
 // void FUN_18006e5d0(longlong *param_1)
+
 void FUN_18006e5d0(longlong *param_1)
 
 {
@@ -41383,8 +41274,8 @@ void FUN_18006e5d0(longlong *param_1)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_18006e640(longlong *param_1)
+
 void FUN_18006e640(longlong *param_1)
 
 {
@@ -41515,9 +41406,7 @@ FUN_18006e870(undefined4 *param_1,undefined8 param_2,undefined8 param_3,undefine
   param_1[0x5a] = 0;
   return param_1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18006e990(void)
 void FUN_18006e990(void)
 
@@ -41575,9 +41464,7 @@ LAB_18006f48d:
     plVar4 = (longlong *)*plVar4;
   } while( true );
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18006eb30(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 void FUN_18006eb30(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
@@ -41621,9 +41508,7 @@ void FUN_18006eb30(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18006edf0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 void FUN_18006edf0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
@@ -41690,8 +41575,8 @@ undefined8 FUN_18006eec0(longlong param_1)
   }
   return uVar1;
 }
-
 // void FUN_18006ef20(longlong *param_1)
+
 void FUN_18006ef20(longlong *param_1)
 
 {
@@ -41702,8 +41587,8 @@ void FUN_18006ef20(longlong *param_1)
   }
   return;
 }
-
 // void FUN_18006ef80(longlong *param_1)
+
 void FUN_18006ef80(longlong *param_1)
 
 {
@@ -41713,8 +41598,8 @@ void FUN_18006ef80(longlong *param_1)
   }
   return;
 }
-
 // void FUN_18006efc0(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18006efc0(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -41738,8 +41623,8 @@ void FUN_18006efc0(undefined8 *param_1,undefined8 param_2,undefined8 param_3,und
   }
   return;
 }
-
 // void FUN_18006f160(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18006f160(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -41765,8 +41650,8 @@ void FUN_18006f160(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
   }
   return;
 }
-
 // void FUN_18006f310(longlong *param_1)
+
 void FUN_18006f310(longlong *param_1)
 
 {
@@ -41776,8 +41661,8 @@ void FUN_18006f310(longlong *param_1)
   }
   return;
 }
-
 // void FUN_18006f340(longlong *param_1)
+
 void FUN_18006f340(longlong *param_1)
 
 {
@@ -41814,8 +41699,8 @@ LAB_18006f48d:
     plVar3 = (longlong *)*plVar3;
   } while( true );
 }
-
 // void FUN_18006f4c0(undefined8 *param_1)
+
 void FUN_18006f4c0(undefined8 *param_1)
 
 {
@@ -41831,8 +41716,8 @@ void FUN_18006f4c0(undefined8 *param_1)
   }
   return;
 }
-
 // void FUN_18006f4cd(void)
+
 void FUN_18006f4cd(void)
 
 {
@@ -41847,15 +41732,15 @@ void FUN_18006f4cd(void)
   }
   return;
 }
-
 // void FUN_18006f4fc(void)
+
 void FUN_18006f4fc(void)
 
 {
   return;
 }
-
 // void FUN_18006f500(longlong param_1)
+
 void FUN_18006f500(longlong param_1)
 
 {
@@ -41864,8 +41749,8 @@ void FUN_18006f500(longlong param_1)
   }
   return;
 }
-
 // void FUN_18006f530(longlong param_1)
+
 void FUN_18006f530(longlong param_1)
 
 {
@@ -41902,7 +41787,6 @@ FUN_18006f590(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefine
   }
   return param_1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulonglong FUN_18006f620(undefined8 param_1,undefined8 param_2)
@@ -42007,11 +41891,14 @@ ulonglong FUN_18006f620(undefined8 param_1,undefined8 param_2)
   uVar7 = (*pcVar1)();
   return uVar7;
 }
-
 // WARNING: Removing unreachable block (ram,0x00018006fc4b)
+
 // WARNING: Removing unreachable block (ram,0x00018006fc66)
+
 // WARNING: Removing unreachable block (ram,0x00018006fc6b)
+
 // WARNING: Removing unreachable block (ram,0x00018006fe26)
+
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulonglong FUN_18006f940(undefined8 param_1,undefined8 param_2,char param_3)
@@ -42243,7 +42130,6 @@ ulonglong FUN_18006f940(undefined8 param_1,undefined8 param_2,char param_3)
   }
   return uVar12;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulonglong FUN_18006ff80(undefined8 param_1,undefined8 param_2,char param_3)
@@ -42518,9 +42404,7 @@ LAB_180070230:
   }
   return uVar11;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180070680(undefined8 param_1,undefined8 param_2)
 void FUN_180070680(undefined8 param_1,undefined8 param_2)
 
@@ -42614,11 +42498,11 @@ void FUN_180070680(undefined8 param_1,undefined8 param_2)
   _Exit(5);
   return;
 }
-
 // WARNING: Removing unreachable block (ram,0x000180070cdc)
-// WARNING: Removing unreachable block (ram,0x000180070ce2)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+// WARNING: Removing unreachable block (ram,0x000180070ce2)
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 // void FUN_180070930(undefined8 param_1,longlong param_2,undefined4 param_3,longlong param_4,
 void FUN_180070930(undefined8 param_1,longlong param_2,undefined4 param_3,longlong param_4,
                   char param_5,char param_6)
@@ -43224,13 +43108,15 @@ LAB_1800715eb:
                     // WARNING: Subroutine does not return
   FUN_180062300(_DAT_180c86928,&UNK_1809ff6e0,bVar13 ^ 1,uVar7);
 }
-
 // WARNING: Removing unreachable block (ram,0x000180071b49)
-// WARNING: Removing unreachable block (ram,0x000180071ad3)
-// WARNING: Removing unreachable block (ram,0x000180071a52)
-// WARNING: Removing unreachable block (ram,0x000180071c73)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+// WARNING: Removing unreachable block (ram,0x000180071ad3)
+
+// WARNING: Removing unreachable block (ram,0x000180071a52)
+
+// WARNING: Removing unreachable block (ram,0x000180071c73)
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 // void FUN_180071940(undefined8 param_1,longlong param_2,undefined4 param_3,longlong param_4)
 void FUN_180071940(undefined8 param_1,longlong param_2,undefined4 param_3,longlong param_4)
 
@@ -43511,13 +43397,15 @@ LAB_180071eb0:
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // WARNING: Removing unreachable block (ram,0x00018007258a)
-// WARNING: Removing unreachable block (ram,0x0001800724fe)
-// WARNING: Removing unreachable block (ram,0x00018007246a)
-// WARNING: Removing unreachable block (ram,0x0001800726c4)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+// WARNING: Removing unreachable block (ram,0x0001800724fe)
+
+// WARNING: Removing unreachable block (ram,0x00018007246a)
+
+// WARNING: Removing unreachable block (ram,0x0001800726c4)
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 // void FUN_180072000(undefined8 param_1,longlong param_2,undefined4 param_3,longlong param_4,
 void FUN_180072000(undefined8 param_1,longlong param_2,undefined4 param_3,longlong param_4,
                   undefined1 param_5,char param_6)
@@ -44083,8 +43971,8 @@ LAB_1800729bd:
           FUN_180092940(_DAT_180c86950,*(undefined1 *)(_DAT_180c86950 + 0x160a));
         }
       }
-
 // void FUN_180072e80(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180072e80(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -44105,7 +43993,6 @@ void FUN_180072e80(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 bool FUN_180072f00(undefined8 param_1,undefined8 *param_2)
@@ -44394,9 +44281,7 @@ bool FUN_180072f00(undefined8 param_1,undefined8 *param_2)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180073630(undefined8 param_1,undefined8 param_2)
 void FUN_180073630(undefined8 param_1,undefined8 param_2)
 
@@ -44430,9 +44315,7 @@ void FUN_180073630(undefined8 param_1,undefined8 param_2)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180073730(undefined8 param_1,undefined8 param_2)
 void FUN_180073730(undefined8 param_1,undefined8 param_2)
 
@@ -44466,9 +44349,7 @@ void FUN_180073730(undefined8 param_1,undefined8 param_2)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180073830(undefined8 param_1,undefined4 param_2,undefined8 param_3)
 void FUN_180073830(undefined8 param_1,undefined4 param_2,undefined8 param_3)
 
@@ -44502,8 +44383,8 @@ void FUN_180073830(undefined8 param_1,undefined4 param_2,undefined8 param_3)
   }
   return;
 }
-
 // void FUN_180073930(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180073930(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -44543,8 +44424,8 @@ void FUN_180073930(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
   FUN_1800739f0(&puStack_88);
   return;
 }
-
 // void FUN_1800739f0(undefined8 *param_1)
+
 void FUN_1800739f0(undefined8 *param_1)
 
 {
@@ -44579,8 +44460,8 @@ void FUN_1800739f0(undefined8 *param_1)
   *param_1 = &UNK_18098bcb0;
   return;
 }
-
 // void FUN_180073ab0(longlong *param_1)
+
 void FUN_180073ab0(longlong *param_1)
 
 {
@@ -44619,8 +44500,8 @@ void FUN_180073ab0(longlong *param_1)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_180073ad0(longlong param_1,longlong *param_2)
+
 void FUN_180073ad0(longlong param_1,longlong *param_2)
 
 {
@@ -44787,8 +44668,8 @@ void FUN_180073ad0(longlong param_1,longlong *param_2)
                     // WARNING: Subroutine does not return
   memcpy(lVar6,uVar2,uVar9);
 }
-
 // void FUN_180073adc(longlong param_1)
+
 void FUN_180073adc(longlong param_1)
 
 {
@@ -44956,8 +44837,8 @@ void FUN_180073adc(longlong param_1)
                     // WARNING: Subroutine does not return
   memcpy(lVar6,uVar2,uVar9);
 }
-
 // void FUN_180073b64(uint *param_1)
+
 void FUN_180073b64(uint *param_1)
 
 {
@@ -45109,8 +44990,8 @@ void FUN_180073b64(uint *param_1)
   }
   return;
 }
-
 // void FUN_180073e0b(undefined4 *param_1)
+
 void FUN_180073e0b(undefined4 *param_1)
 
 {
@@ -45190,8 +45071,8 @@ void FUN_180073e0b(undefined4 *param_1)
   }
   return;
 }
-
 // void FUN_180073e23(void)
+
 void FUN_180073e23(void)
 
 {
@@ -45268,8 +45149,8 @@ void FUN_180073e23(void)
   }
   return;
 }
-
 // void FUN_180073f90(void)
+
 void FUN_180073f90(void)
 
 {
@@ -45305,9 +45186,7 @@ void FUN_180073f90(void)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180074090(longlong *param_1,longlong param_2)
 void FUN_180074090(longlong *param_1,longlong param_2)
 
@@ -45480,9 +45359,7 @@ void FUN_180074090(longlong *param_1,longlong param_2)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800740a2(longlong *param_1)
 void FUN_1800740a2(longlong *param_1)
 
@@ -45658,9 +45535,7 @@ void FUN_1800740a2(longlong *param_1)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800740f5(longlong param_1)
 void FUN_1800740f5(longlong param_1)
 
@@ -45815,9 +45690,7 @@ void FUN_1800740f5(longlong param_1)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800742ea(longlong param_1)
 void FUN_1800742ea(longlong param_1)
 
@@ -45894,9 +45767,7 @@ void FUN_1800742ea(longlong param_1)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180074309(void)
 void FUN_180074309(void)
 
@@ -45937,9 +45808,7 @@ void FUN_180074309(void)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800744b0(longlong param_1,longlong param_2)
 void FUN_1800744b0(longlong param_1,longlong param_2)
 
@@ -46019,7 +45888,6 @@ void FUN_1800744b0(longlong param_1,longlong param_2)
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_f8);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 * FUN_1800745f0(undefined8 param_1,longlong param_2)
@@ -46052,9 +45920,7 @@ undefined8 * FUN_1800745f0(undefined8 param_1,longlong param_2)
   }
   return puVar2;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800746c0(longlong param_1)
 void FUN_1800746c0(longlong param_1)
 
@@ -46107,8 +45973,8 @@ void FUN_1800746c0(longlong param_1)
   }
   return;
 }
-
 // void FUN_180074840(longlong param_1)
+
 void FUN_180074840(longlong param_1)
 
 {
@@ -46134,8 +46000,8 @@ void FUN_180074840(longlong param_1)
   }
   return;
 }
-
 // void FUN_1800748d0(longlong param_1,longlong *param_2)
+
 void FUN_1800748d0(longlong param_1,longlong *param_2)
 
 {
@@ -46215,8 +46081,8 @@ void FUN_1800748d0(longlong param_1,longlong *param_2)
   param_2[1] = param_2[1] + 4;
   return;
 }
-
 // void FUN_180074a80(longlong *param_1)
+
 void FUN_180074a80(longlong *param_1)
 
 {
@@ -46255,8 +46121,8 @@ void FUN_180074a80(longlong *param_1)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_180074b30(longlong *param_1,ulonglong param_2)
+
 void FUN_180074b30(longlong *param_1,ulonglong param_2)
 
 {
@@ -46305,9 +46171,7 @@ void FUN_180074b30(longlong *param_1,ulonglong param_2)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180074c20(undefined8 *param_1,ulonglong param_2)
 void FUN_180074c20(undefined8 *param_1,ulonglong param_2)
 
@@ -46461,8 +46325,8 @@ void FUN_180074c20(undefined8 *param_1,ulonglong param_2)
   }
   return;
 }
-
 // void FUN_180074ed0(longlong *param_1)
+
 void FUN_180074ed0(longlong *param_1)
 
 {
@@ -46514,7 +46378,6 @@ FUN_180074fb0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefine
   strcpy_s(param_2[1],0x80,&UNK_1809ffa30,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 * FUN_180075030(undefined8 *param_1,char param_2,char param_3)
@@ -46747,9 +46610,7 @@ undefined1 FUN_1800755c0(longlong param_1,undefined8 param_2,undefined8 param_3,
   }
   return uVar1;
 }
-
 // WARNING: Removing unreachable block (ram,0x000180276fbd)
-
 // void FUN_180075630(longlong param_1,undefined8 *param_2)
 void FUN_180075630(longlong param_1,undefined8 *param_2)
 
@@ -46921,8 +46782,8 @@ void FUN_180075630(longlong param_1,undefined8 *param_2)
   }
   return;
 }
-
 // void FUN_1800756e0(undefined8 *param_1)
+
 void FUN_1800756e0(undefined8 *param_1)
 
 {
@@ -47036,8 +46897,8 @@ void FUN_1800756e0(undefined8 *param_1)
   *param_1 = &UNK_180a21690;
   return;
 }
-
 // void FUN_180075990(longlong param_1,longlong *param_2)
+
 void FUN_180075990(longlong param_1,longlong *param_2)
 
 {
@@ -47332,8 +47193,8 @@ LAB_180075f4f:
   }
   return pfVar6;
 }
-
 // void FUN_180075ff0(longlong *param_1)
+
 void FUN_180075ff0(longlong *param_1)
 
 {
@@ -47501,7 +47362,6 @@ void FUN_180075ff0(longlong *param_1)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 longlong * FUN_1800763c0(longlong *param_1,longlong *param_2)
@@ -47690,8 +47550,8 @@ longlong * FUN_1800763c0(longlong *param_1,longlong *param_2)
   FUN_180076910(*param_2,param_1 + 0x37);
   return param_2;
 }
-
 // void FUN_180076760(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_180076760(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -47767,8 +47627,8 @@ void FUN_180076760(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
   }
   return;
 }
-
 // void FUN_180076910(longlong param_1,longlong *param_2)
+
 void FUN_180076910(longlong param_1,longlong *param_2)
 
 {
@@ -47820,8 +47680,8 @@ void FUN_180076910(longlong param_1,longlong *param_2)
   }
   return;
 }
-
 // void FUN_180076a20(longlong param_1)
+
 void FUN_180076a20(longlong param_1)
 
 {
@@ -47838,8 +47698,8 @@ void FUN_180076a20(longlong param_1)
   }
   return;
 }
-
 // void FUN_180076a80(longlong param_1)
+
 void FUN_180076a80(longlong param_1)
 
 {
@@ -47921,7 +47781,6 @@ undefined8 FUN_180076b90(longlong param_1)
   }
   return 1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int FUN_180076c50(longlong param_1,longlong *param_2)
@@ -48081,8 +47940,8 @@ LAB_180076feb:
   FUN_180080df0(&uStack_60);
   return iVar5;
 }
-
 // void FUN_180077020(longlong *param_1)
+
 void FUN_180077020(longlong *param_1)
 
 {
@@ -48106,7 +47965,6 @@ void FUN_180077020(longlong *param_1)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulonglong FUN_180077040(longlong param_1)
@@ -48162,9 +48020,7 @@ ulonglong FUN_180077040(longlong param_1)
   }
   return uVar4;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180077150(longlong *param_1)
 void FUN_180077150(longlong *param_1)
 
@@ -48265,7 +48121,6 @@ LAB_18007738d:
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_20 ^ (ulonglong)auStack_88);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 FUN_180077420(longlong param_1,longlong param_2)
@@ -48410,8 +48265,8 @@ undefined8 FUN_180077420(longlong param_1,longlong param_2)
   }
   return 0;
 }
-
 // void FUN_180077710(longlong param_1)
+
 void FUN_180077710(longlong param_1)
 
 {
@@ -48445,7 +48300,6 @@ void FUN_180077710(longlong param_1)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulonglong FUN_180077750(longlong param_1,uint *param_2,float *param_3,longlong param_4,
@@ -48839,9 +48693,7 @@ LAB_180077879:
   }
   return uVar25;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18007799c(void)
 void FUN_18007799c(void)
 
@@ -49167,9 +49019,7 @@ void FUN_18007799c(void)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180077ad8(void)
 void FUN_180077ad8(void)
 
@@ -49429,9 +49279,7 @@ void FUN_180077ad8(void)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180077c96(void)
 void FUN_180077c96(void)
 
@@ -49580,9 +49428,7 @@ void FUN_180077c96(void)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180077dc6(void)
 void FUN_180077dc6(void)
 
@@ -49749,9 +49595,7 @@ void FUN_180077dc6(void)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180077dec(void)
 void FUN_180077dec(void)
 
@@ -49957,8 +49801,8 @@ LAB_180077fcf:
   }
   return in_RAX & 0xffffffffffffff00;
 }
-
 // void FUN_180078051(undefined8 param_1,undefined8 param_2,float param_3,float param_4)
+
 void FUN_180078051(undefined8 param_1,undefined8 param_2,float param_3,float param_4)
 
 {
@@ -50035,8 +49879,8 @@ void FUN_180078051(undefined8 param_1,undefined8 param_2,float param_3,float par
   FUN_180252ca0(0x3f800000,fVar1 * fVar7,unaff_R14D,&stack0x00000030,in_stack_000000e0);
   return;
 }
-
 // void FUN_180078143(void)
+
 void FUN_180078143(void)
 
 {
@@ -50070,9 +49914,7 @@ void FUN_180078143(void)
   FUN_180252ca0(0x3f800000,uStack0000000000000060,unaff_R14D,&stack0x00000030,in_stack_000000e0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800781e0(longlong param_1)
 void FUN_1800781e0(longlong param_1)
 
@@ -50170,9 +50012,7 @@ LAB_1800782e0:
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800781f4(longlong param_1)
 void FUN_1800781f4(longlong param_1)
 
@@ -50269,9 +50109,7 @@ LAB_1800782e0:
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180078239(float param_1,float param_2,float param_3,float param_4)
 void FUN_180078239(float param_1,float param_2,float param_3,float param_4)
 
@@ -50369,9 +50207,7 @@ LAB_1800782e0:
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800782a8(longlong param_1)
 void FUN_1800782a8(longlong param_1)
 
@@ -50459,9 +50295,7 @@ LAB_1800782e0:
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800783b0(void)
 void FUN_1800783b0(void)
 
@@ -50503,9 +50337,7 @@ undefined8 * FUN_1800784e0(undefined8 *param_1,ulonglong param_2)
   }
   return param_1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180078550(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 void FUN_180078550(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
@@ -50582,9 +50414,7 @@ void FUN_180078550(undefined8 *param_1,undefined8 param_2,undefined8 param_3,und
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800786e0(undefined8 *param_1,longlong param_2)
 void FUN_1800786e0(undefined8 *param_1,longlong param_2)
 
@@ -50901,8 +50731,8 @@ void FUN_1800786e0(undefined8 *param_1,longlong param_2)
   (**(code **)((undefined *)*param_1 + 0x10))(param_1);
   return;
 }
-
 // void FUN_180078c10(longlong param_1)
+
 void FUN_180078c10(longlong param_1)
 
 {
@@ -51012,8 +50842,8 @@ void FUN_180078c10(longlong param_1)
   }
   return;
 }
-
 // void FUN_180078c70(undefined4 *param_1,longlong *param_2)
+
 void FUN_180078c70(undefined4 *param_1,longlong *param_2)
 
 {
@@ -51204,8 +51034,8 @@ void FUN_180078c70(undefined4 *param_1,longlong *param_2)
   param_2[1] = param_2[1] + 4;
   return;
 }
-
 // void FUN_1800791a0(longlong param_1)
+
 void FUN_1800791a0(longlong param_1)
 
 {
@@ -51229,9 +51059,7 @@ void FUN_1800791a0(longlong param_1)
   *(uint *)(param_1 + 0x208) = (uint)*(ushort *)(lVar2 + 0xc0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180079270(longlong param_1,longlong param_2)
 void FUN_180079270(longlong param_1,longlong param_2)
 
@@ -51536,9 +51364,7 @@ void FUN_180079270(longlong param_1,longlong param_2)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180079284(longlong param_1)
 void FUN_180079284(longlong param_1)
 
@@ -51845,9 +51671,7 @@ void FUN_180079284(longlong param_1)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_1800792ea(void)
 void FUN_1800792ea(void)
 
@@ -52135,9 +51959,7 @@ void FUN_1800792ea(void)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_180079309(longlong param_1,uint param_2,undefined8 param_3,float *param_4)
 void FUN_180079309(longlong param_1,uint param_2,undefined8 param_3,float *param_4)
 
@@ -52421,9 +52243,7 @@ void FUN_180079309(longlong param_1,uint param_2,undefined8 param_3,float *param
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18007940e(void)
 void FUN_18007940e(void)
 
@@ -52629,7 +52449,6 @@ void FUN_18007940e(void)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined * FUN_180079430(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
@@ -52647,8 +52466,8 @@ undefined * FUN_180079430(longlong param_1,undefined8 param_2,undefined8 param_3
     if (_DAT_180d49158 == -1) {
       _DAT_180d49160 = &UNK_1809fcc28;
       _DAT_180d49168 = &DAT_180d49178;
-
 // void FUN_180079520(longlong param_1)
+
 void FUN_180079520(longlong param_1)
 
 {
@@ -52703,8 +52522,8 @@ undefined1 FUN_18007953e(void)
   } while (iVar4 < 0x10);
   return uVar2;
 }
-
 // void FUN_18007959e(void)
+
 void FUN_18007959e(void)
 
 {
@@ -52739,8 +52558,8 @@ undefined1 FUN_1800795a4(void)
     }
   } while( true );
 }
-
 // WARNING: Removing unreachable block (ram,0x000180079699)
+
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 float * FUN_1800795b0(float *param_1)
@@ -52992,13 +52811,15 @@ LAB_180075f4f:
   }
   return pfVar7;
 }
-
 // WARNING: Removing unreachable block (ram,0x0001800797c0)
-// WARNING: Removing unreachable block (ram,0x0001800797c8)
-// WARNING: Removing unreachable block (ram,0x0001800797cd)
-// WARNING: Removing unreachable block (ram,0x0001800797dd)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+// WARNING: Removing unreachable block (ram,0x0001800797c8)
+
+// WARNING: Removing unreachable block (ram,0x0001800797cd)
+
+// WARNING: Removing unreachable block (ram,0x0001800797dd)
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 // void FUN_1800796b0(longlong param_1)
 void FUN_1800796b0(longlong param_1)
 
@@ -54174,8 +53995,8 @@ LAB_18007a58b:
   if (*piVar1 <= (int)uVar19) goto LAB_18007a5ac;
   goto LAB_180079e40;
 }
-
 // void FUN_18007b1a0(longlong *param_1)
+
 void FUN_18007b1a0(longlong *param_1)
 
 {
@@ -54193,8 +54014,8 @@ void FUN_18007b1a0(longlong *param_1)
                     // WARNING: Subroutine does not return
   FUN_18064e900();
 }
-
 // void FUN_18007b1c0(longlong *param_1)
+
 void FUN_18007b1c0(longlong *param_1)
 
 {
@@ -54232,10 +54053,12 @@ undefined1 FUN_18007b1e0(longlong param_1)
   }
   return 1;
 }
-
 // WARNING: Removing unreachable block (ram,0x00018007b857)
+
 // WARNING: Removing unreachable block (ram,0x00018007b868)
+
 // WARNING: Removing unreachable block (ram,0x00018007b879)
+
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulonglong FUN_18007b240(longlong param_1,longlong *param_2,byte param_3,char param_4)
@@ -54497,8 +54320,8 @@ LAB_18007b8dc:
 LAB_18007b8fd:
   return (ulonglong)((byte)(*(char *)((longlong)plVar14 + 0x15) - 2U) < 2);
 }
-
 // void FUN_18007b930(longlong *param_1)
+
 void FUN_18007b930(longlong *param_1)
 
 {
@@ -54559,8 +54382,8 @@ void FUN_18007b930(longlong *param_1)
   }
   return;
 }
-
 // void FUN_18007ba60(longlong param_1)
+
 void FUN_18007ba60(longlong param_1)
 
 {
@@ -54572,9 +54395,7 @@ void FUN_18007ba60(longlong param_1)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18007baa0(longlong param_1)
 void FUN_18007baa0(longlong param_1)
 
@@ -54588,8 +54409,8 @@ void FUN_18007baa0(longlong param_1)
   }
   return;
 }
-
 // void FUN_18007bb70(longlong *param_1)
+
 void FUN_18007bb70(longlong *param_1)
 
 {
@@ -54601,11 +54422,11 @@ void FUN_18007bb70(longlong *param_1)
   }
   return;
 }
-
 // WARNING: Removing unreachable block (ram,0x00018007c17d)
-// WARNING: Removing unreachable block (ram,0x00018007c188)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+// WARNING: Removing unreachable block (ram,0x00018007c188)
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 // void FUN_18007bbb0(longlong param_1,longlong param_2,longlong param_3)
 void FUN_18007bbb0(longlong param_1,longlong param_2,longlong param_3)
 
@@ -54986,8 +54807,8 @@ void FUN_18007bbb0(longlong param_1,longlong param_2,longlong param_3)
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_20 ^ (ulonglong)auStack_68);
 }
-
 // void FUN_18007c490(longlong *param_1,byte param_2,longlong *param_3,longlong *param_4,char param_5)
+
 void FUN_18007c490(longlong *param_1,byte param_2,longlong *param_3,longlong *param_4,char param_5)
 
 {
@@ -55117,8 +54938,8 @@ void FUN_18007c490(longlong *param_1,byte param_2,longlong *param_3,longlong *pa
   }
   return;
 }
-
 // void FUN_18007c790(longlong *param_1)
+
 void FUN_18007c790(longlong *param_1)
 
 {
@@ -55162,8 +54983,8 @@ undefined8 * FUN_18007c7f0(undefined8 *param_1,undefined8 *param_2)
   }
   return param_1;
 }
-
 // void FUN_18007c860(longlong param_1,undefined1 param_2)
+
 void FUN_18007c860(longlong param_1,undefined1 param_2)
 
 {
@@ -55188,10 +55009,9 @@ void FUN_18007c860(longlong param_1,undefined1 param_2)
   }
   return;
 }
-
 // WARNING: Removing unreachable block (ram,0x00018007cad0)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 // void FUN_18007c8e0(longlong param_1,byte param_2,longlong *param_3,longlong *param_4)
 void FUN_18007c8e0(longlong param_1,byte param_2,longlong *param_3,longlong *param_4)
 
@@ -55313,9 +55133,7 @@ void FUN_18007c8e0(longlong param_1,byte param_2,longlong *param_3,longlong *par
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18007cbb0(uint param_1,longlong param_2,longlong *param_3,undefined8 param_4)
 void FUN_18007cbb0(uint param_1,longlong param_2,longlong *param_3,undefined8 param_4)
 
@@ -56057,8 +55875,8 @@ code_r0x00018007db1b:
   }
   return;
 }
-
 // void FUN_18007df50(longlong param_1,longlong *param_2,char param_3,undefined8 param_4)
+
 void FUN_18007df50(longlong param_1,longlong *param_2,char param_3,undefined8 param_4)
 
 {
@@ -56107,9 +55925,7 @@ void FUN_18007df50(longlong param_1,longlong *param_2,char param_3,undefined8 pa
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18007e080(longlong param_1,ulonglong param_2,longlong *param_3,longlong *param_4)
 void FUN_18007e080(longlong param_1,ulonglong param_2,longlong *param_3,longlong *param_4)
 
@@ -56196,8 +56012,8 @@ void FUN_18007e080(longlong param_1,ulonglong param_2,longlong *param_3,longlong
   }
   return;
 }
-
 // void FUN_18007e2b0(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18007e2b0(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -56232,8 +56048,8 @@ void FUN_18007e2b0(longlong param_1,longlong param_2,undefined8 param_3,undefine
   memcpy(*(undefined8 *)(param_1 + 0x68),*(undefined8 *)(param_2 + 8),(longlong)(iVar1 * 0x5c),
          param_4,uVar3);
 }
-
 // void FUN_18007e5b0(longlong param_1,longlong *param_2)
+
 void FUN_18007e5b0(longlong param_1,longlong *param_2)
 
 {
@@ -56334,9 +56150,7 @@ void FUN_18007e5b0(longlong param_1,longlong *param_2)
   FUN_18063a180(param_2,0,0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18007e880(longlong param_1,char param_2,undefined8 param_3)
 void FUN_18007e880(longlong param_1,char param_2,undefined8 param_3)
 
@@ -56366,9 +56180,7 @@ void FUN_18007e880(longlong param_1,char param_2,undefined8 param_3)
   memcpy(*(undefined8 *)(*(longlong *)(param_1 + 600) + 0x10),param_3,lVar3);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18007e930(longlong param_1)
 void FUN_18007e930(longlong param_1)
 
@@ -56383,8 +56195,8 @@ void FUN_18007e930(longlong param_1)
   }
   return;
 }
-
 // void FUN_18007e95f(void)
+
 void FUN_18007e95f(void)
 
 {
@@ -56394,16 +56206,14 @@ void FUN_18007e95f(void)
                     // WARNING: Subroutine does not return
   memset(uVar1,0,0xd0);
 }
-
 // void FUN_18007e988(void)
+
 void FUN_18007e988(void)
 
 {
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18007e990(longlong param_1,int param_2)
 void FUN_18007e990(longlong param_1,int param_2)
 
@@ -56427,8 +56237,8 @@ void FUN_18007e990(longlong param_1,int param_2)
   }
   return;
 }
-
 // void FUN_18007ea10(longlong param_1,char param_2)
+
 void FUN_18007ea10(longlong param_1,char param_2)
 
 {
@@ -56483,7 +56293,6 @@ LAB_18007eb55:
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 code * FUN_18007eb80(longlong param_1,char param_2)
@@ -56555,8 +56364,8 @@ code * FUN_18007eb80(longlong param_1,char param_2)
   }
   return in_RAX;
 }
-
 // void FUN_18007edd0(longlong param_1,char param_2)
+
 void FUN_18007edd0(longlong param_1,char param_2)
 
 {
@@ -56583,9 +56392,7 @@ void FUN_18007edd0(longlong param_1,char param_2)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18007ee70(longlong param_1)
 void FUN_18007ee70(longlong param_1)
 
@@ -56691,9 +56498,7 @@ void FUN_18007ee70(longlong param_1)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18007eea1(longlong param_1,int param_2,int param_3)
 void FUN_18007eea1(longlong param_1,int param_2,int param_3)
 
@@ -56795,8 +56600,8 @@ void FUN_18007eea1(longlong param_1,int param_2,int param_3)
   }
   return;
 }
-
 // void FUN_18007ef9a(longlong param_1,longlong param_2)
+
 void FUN_18007ef9a(longlong param_1,longlong param_2)
 
 {
@@ -56858,31 +56663,29 @@ void FUN_18007ef9a(longlong param_1,longlong param_2)
   }
   return;
 }
-
 // void FUN_18007f0b5(void)
+
 void FUN_18007f0b5(void)
 
 {
   return;
 }
-
 // void FUN_18007f0bf(void)
+
 void FUN_18007f0bf(void)
 
 {
   return;
 }
-
 // void FUN_18007f0ca(longlong param_1)
+
 void FUN_18007f0ca(longlong param_1)
 
 {
   *(undefined4 *)(param_1 + 0x14) = 0;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18007f0e0(longlong param_1,longlong param_2,int param_3)
 void FUN_18007f0e0(longlong param_1,longlong param_2,int param_3)
 
@@ -56954,9 +56757,7 @@ void FUN_18007f0e0(longlong param_1,longlong param_2,int param_3)
   *(int *)(*(longlong *)(param_1 + 0x2d0) + 8) = param_3;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18007f11f(void)
 void FUN_18007f11f(void)
 
@@ -57021,8 +56822,8 @@ void FUN_18007f11f(void)
   *(int *)(*(longlong *)(unaff_RDI + 0x2d0) + 8) = (int)unaff_R14;
   return;
 }
-
 // void FUN_18007f176(void)
+
 void FUN_18007f176(void)
 
 {
@@ -57063,8 +56864,8 @@ void FUN_18007f176(void)
   *(int *)(*(longlong *)(unaff_RDI + 0x2d0) + 8) = (int)unaff_R14;
   return;
 }
-
 // void FUN_18007f27a(void)
+
 void FUN_18007f27a(void)
 
 {
@@ -57085,8 +56886,8 @@ void FUN_18007f27a(void)
   *(int *)(*(longlong *)(unaff_RDI + 0x2d0) + 8) = (int)unaff_R14;
   return;
 }
-
 // void FUN_18007f2cf(void)
+
 void FUN_18007f2cf(void)
 
 {
@@ -57168,9 +56969,7 @@ undefined8 * FUN_18007f3b0(undefined8 *param_1,ulonglong param_2)
   }
   return param_1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18007f4c0(undefined1 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 void FUN_18007f4c0(undefined1 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
@@ -57253,8 +57052,8 @@ LAB_18007f5cb:
   }
   return;
 }
-
 // void FUN_18007f660(longlong param_1)
+
 void FUN_18007f660(longlong param_1)
 
 {
@@ -57264,8 +57063,8 @@ void FUN_18007f660(longlong param_1)
   }
   return;
 }
-
 // void FUN_18007f6a0(char *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18007f6a0(char *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -57324,8 +57123,8 @@ void FUN_18007f6a0(char *param_1,undefined8 param_2,undefined8 param_3,undefined
   }
   return;
 }
-
 // void FUN_18007f770(longlong *param_1)
+
 void FUN_18007f770(longlong *param_1)
 
 {
@@ -57365,16 +57164,16 @@ LAB_18007f7cf:
   param_1[2] = *(longlong *)(*param_1 + 0x210);
   return;
 }
-
 // void FUN_18007f820(void)
+
 void FUN_18007f820(void)
 
 {
   FUN_18007f840();
   return;
 }
-
 // void FUN_18007f840(longlong *param_1)
+
 void FUN_18007f840(longlong *param_1)
 
 {
@@ -57486,9 +57285,7 @@ undefined1 FUN_18007f8bb(void)
   *unaff_RSI = 0;
   return uVar1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18007f8f0(longlong param_1)
 void FUN_18007f8f0(longlong param_1)
 
@@ -57688,9 +57485,7 @@ void FUN_18007f8f0(longlong param_1)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18007f90f(undefined4 param_1)
 void FUN_18007f90f(undefined4 param_1)
 
@@ -57890,9 +57685,7 @@ void FUN_18007f90f(undefined4 param_1)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18007f933(undefined8 param_1,longlong param_2)
 void FUN_18007f933(undefined8 param_1,longlong param_2)
 
@@ -58087,9 +57880,7 @@ void FUN_18007f933(undefined8 param_1,longlong param_2)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18007f976(void)
 void FUN_18007f976(void)
 
@@ -58267,9 +58058,7 @@ void FUN_18007f976(void)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18007f983(void)
 void FUN_18007f983(void)
 
@@ -58448,9 +58237,7 @@ void FUN_18007f983(void)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18007fb5f(void)
 void FUN_18007fb5f(void)
 
@@ -58539,8 +58326,8 @@ void FUN_18007fb5f(void)
   memcpy(*(longlong *)(unaff_RBP + (ulonglong)uVar3 * 2 + 2) +
          (ulonglong)(uVar5 + uVar3 * -0x800) * 4,puVar6,(ulonglong)unaff_R12D << 2);
 }
-
 // void FUN_18007fc19(void)
+
 void FUN_18007fc19(void)
 
 {
@@ -58576,8 +58363,8 @@ void FUN_18007fc19(void)
   memcpy(*(longlong *)(unaff_RBP + 8 + (ulonglong)uVar2 * 8) +
          (ulonglong)(unaff_ESI + uVar2 * -0x800) * 4,puVar3,(ulonglong)unaff_R12D << 2);
 }
-
 // void FUN_18007fc35(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 void FUN_18007fc35(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -58590,29 +58377,29 @@ void FUN_18007fc35(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
          (ulonglong)(uint)(unaff_ESI + (int)param_1 * -0x800) * 4,param_4,(ulonglong)unaff_R12D << 2
         );
 }
-
 // void FUN_18007fc63(void)
+
 void FUN_18007fc63(void)
 
 {
   return;
 }
-
 // void FUN_18007fc68(void)
+
 void FUN_18007fc68(void)
 
 {
   return;
 }
-
 // void FUN_18007fc6d(void)
+
 void FUN_18007fc6d(void)
 
 {
   return;
 }
-
 // void FUN_18007fc73(void)
+
 void FUN_18007fc73(void)
 
 {
@@ -58637,8 +58424,8 @@ void FUN_18007fc73(void)
   }
   return;
 }
-
 // void FUN_18007fca8(void)
+
 void FUN_18007fca8(void)
 
 {
@@ -58650,9 +58437,7 @@ void FUN_18007fca8(void)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18007fcd0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 void FUN_18007fcd0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
@@ -58672,9 +58457,7 @@ void FUN_18007fcd0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // void FUN_18007fd60(undefined8 param_1,longlong param_2,undefined8 param_3,longlong param_4)
 void FUN_18007fd60(undefined8 param_1,longlong param_2,undefined8 param_3,longlong param_4)
 
@@ -58709,20 +58492,15 @@ void FUN_18007fd60(undefined8 param_1,longlong param_2,undefined8 param_3,longlo
   memcpy(*(undefined8 *)(*(longlong *)(param_2 + 0x20) + 0x10),*(undefined8 *)(param_4 + 8),
          (longlong)iVar2);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // undefined FUN_18004b6f0;
 undefined FUN_18004b6f0;
-
 // undefined FUN_18006f4c0;
 
 undefined FUN_18006f4c0;
-
 // undefined FUN_18004c090;
 
 undefined FUN_18004c090;
-
 // undefined FUN_180055ed0;
 
 undefined FUN_180055ed0;
@@ -59801,10 +59579,9 @@ undefined8 FUN_180779d6c(void)
 {
   return 0;
 }
-
 // undefined FUN_180058c20;
-undefined FUN_180058c20;
 
+undefined FUN_180058c20;
 // undefined FUN_18004bb30;
 
 undefined FUN_18004bb30;

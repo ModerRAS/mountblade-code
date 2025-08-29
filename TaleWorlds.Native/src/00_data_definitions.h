@@ -25,9 +25,9 @@ int initialize_network_buffer_system(void)
 {
   longlong net_init_result;
   g_network_buffer_primary_ptr = &g_net_data_18098bb30;
-  g_network_buffer_secondary_ptr = &g_net_buffer_180bf5788;
+  g_network_buffer_secondary_ptr = &g_network_buffer_value;
   g_network_buffer_offset = 0;
-  g_net_buffer_180bf5788 = 0;
+  g_network_buffer_value = 0;
   net_init_result = initialize_system(network_init_func_1809415b0);
   return (net_init_result != 0) - 1;
 }
