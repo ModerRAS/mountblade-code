@@ -2519,7 +2519,7 @@ void HandleResourceCleanup(void)
 
 
 // 函数: void FUN_18089022b(void)
-void FUN_18089022b(void)
+void FUN_18089022b(void)          // 系统初始化辅助函数
 
 {
   ulonglong stackParameter4;
@@ -2532,7 +2532,7 @@ void FUN_18089022b(void)
 
 
 // 函数: void FUN_180890246(void)
-void FUN_180890246(void)
+void FUN_180890246(void)          // 内存池初始化函数
 
 {
   longlong baseRegister;
@@ -2549,7 +2549,7 @@ void FUN_180890246(void)
 
 
 
-uint64 FUN_180890270(longlong resourceHandle)
+uint64 FUN_180890270(longlong resourceHandle)    // 资源句柄验证函数
 
 {
   longlong localLong1;
@@ -2642,7 +2642,7 @@ uint64 FUN_180890270(longlong resourceHandle)
 
 
 
-ulonglong FUN_1808902b0(longlong resourceHandle,longlong memorySize)
+ulonglong FUN_1808902b0(longlong resourceHandle,longlong memorySize)    // 内存分配计算函数
 
 {
   longlong *plocalLong1;
