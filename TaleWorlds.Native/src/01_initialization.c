@@ -142,13 +142,13 @@ void *g_file_system_1809fe198;
 
 void *g_config_manager_1809fe1a0;
 
-undefined g_global_data_1809fe258;
+undefined g_graphics_driver_1809fe258;
 
-undefined g_global_data_1809fe290;
+undefined g_audio_driver_1809fe290;
 
-undefined g_global_data_1800467f0;
+undefined g_input_driver_1800467f0;
 
-undefined g_global_data_180049760;
+undefined g_network_driver_180049760;
 
 undefined g_global_data_1809fe1f0;
 
@@ -182,12 +182,12 @@ undefined g_global_data_1809fe608;
 
 undefined g_global_data_1809fe62c;
 
-int UNK_180c912e0;
-longlong UNK_180c912e8;
+int g_initialization_status_180c912e0;
+longlong g_system_memory_size_180c912e8;
 undefined g_global_data_1809fe650;
 // undefined g_function_180066dd0;
 
-undefined g_function_180066dd0;
+void InitializeGameFramework_180066dd0;
 
 undefined g_global_data_1809fe800;
 
@@ -1073,7 +1073,7 @@ undefined g_global_data_180a25a6c;
 // undefined g_function_18006b8f0;
 
 undefined g_function_18006b8f0;
-// void FUN_18002c340(void)
+// 数据结构初始化函数 - 原名：FUN_18002c340
 
 void InitializeDataStructure(void)
 
@@ -1167,9 +1167,9 @@ void InitializeSystemDataStructure(void)
   puVar7[10] = uStackX_18;
   return;
 }
-// void FUN_18002c540(void)
+// void InitializeListNode(void)
 
-void FUN_18002c540(void)
+void InitializeListNode(void)
 
 {
   char cVar1;

@@ -80034,8 +80034,8 @@ void reset_game_state_if_needed(uint64 resourceHandle,longlong memorySize)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941383(uint64 resourceHandle,longlong memorySize)
-void FUN_180941383(uint64 resourceHandle,longlong memorySize)
+// 函数: void checkResourceState(uint64 resourceHandle,longlong memorySize)
+void checkResourceState(uint64 resourceHandle,longlong memorySize)
 
 {
   char cVar1;
