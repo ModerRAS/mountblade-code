@@ -45,14 +45,14 @@ undefined g_engine_reserved_data_2;
 
 undefined g_engine_state_data;
 
-undefined g_engine_memory_pool_memory_base;
+undefined g_engine_memory_pool;
 
-undefined g_engine_render_context_render_context;
+undefined g_engine_render_context;
 
-undefined g_engine_audio_context_audio_context;
-// undefined InitializeGraphicsEngine_graphics_init;
+undefined g_engine_audio_context;
+// undefined InitializeGraphicsEngine;
 
-undefined InitializeGraphicsEngine_graphics_init;
+undefined InitializeGraphicsEngine;
 
 undefined g_graphics_config_graphics_config;
 // undefined InitializeAudioEngine_audio_init;

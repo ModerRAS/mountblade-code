@@ -2,10 +2,10 @@
 
 // 05_networking.c - 908 个函数
 
-// 函数: undefined FUN_1808632b0;
-undefined FUN_1808632b0;
-undefined UNK_1808633a0;
-undefined UNK_180863400;
+// 函数: undefined NetworkInitializeSystem;
+undefined NetworkInitializeSystem;
+undefined g_networkSessionId;
+undefined g_networkClientId;
 undefined g_networkBuffer;
 undefined g_connectionTimeout;
 undefined g_socketTimeout;
@@ -15,22 +15,22 @@ undefined g_packetQueue;
 undefined g_networkStatus;
 undefined g_threadManager;
 undefined g_networkConfig;
-undefined UNK_180985010;
-undefined UNK_180985080;
-undefined UNK_180984ff8;
-undefined UNK_180985140;
-undefined UNK_180985170;
-undefined UNK_180985b90;
-undefined UNK_180873e8c;
-undefined UNK_180873e94;
-undefined UNK_1809855f8;
-undefined UNK_180985678;
-undefined UNK_1809856a0;
-undefined UNK_180985708;
-undefined UNK_1809851e8;
+undefined g_serverPort;
+undefined g_clientPort;
+undefined g_networkState;
+undefined g_connectionHandle;
+undefined g_networkEndpoint;
+undefined g_networkEventQueue;
+undefined g_networkReceiveBuffer;
+undefined g_networkSendBuffer;
+undefined g_networkSocket;
+undefined g_networkAddress;
+undefined g_networkProtocol;
+undefined g_networkSecurity;
+undefined g_networkTimeout;
 undefined g_packetSize;
-undefined UNK_180985738;
-undefined UNK_180985c10;
+undefined g_maxPacketSize;
+undefined g_networkCompression;
 
 // 函数: undefined FUN_180873f80;
 undefined FUN_180873f80;
