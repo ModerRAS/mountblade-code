@@ -30161,7 +30161,7 @@ void FUN_18085c230(longlong socketParam,ulonglong dataParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined4
+uint32_t
 FUN_18085c4b0(longlong socketParam,longlong dataParam,uint32_t sizeParam,uint timeoutParam,longlong *param_5)
 
 {
@@ -97892,8 +97892,8 @@ FUN_180898a50(longlong socketParam,uint *dataParam,undefined8 sizeParam,uint32_t
 
 
 
-undefined4
-FUN_180898b40(longlong *socketParam,int dataParam,uint32_t *sizeParam,undefined1 *timeoutParam,int param_5,
+uint32_t
+FUN_180898b40(longlong *socketParam,int dataParam,uint32_t *sizeParam,uint8_t *timeoutParam,int param_5,
              int *param_6)
 
 {

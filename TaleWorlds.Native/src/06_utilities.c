@@ -327,15 +327,15 @@ data configSystemUpdateSettings;
 data configSystemModSettings;
 data configSystemCloudSettings;
 data configSystemSocialSettings;
-data DAT_180bf7160;
-data DAT_180bf71a0;
-data DAT_180bf71a8;
-data DAT_180bf71b0;
-data DAT_180bf71b8;
-data DAT_180bf71f8;
-data DAT_180bf7200;
-data DAT_180bf7208;
-data DAT_180bf7210;
+data systemDataTable1;
+data systemDataTable2;
+data systemDataTable3;
+data systemDataTable4;
+data systemDataTable5;
+data systemDataTable6;
+data systemDataTable7;
+data systemDataTable8;
+data systemDataTable9;
 data bufferManagementControl;
 data DAT_18098bc73;
 data bufferAllocationPointer;
@@ -369,7 +369,7 @@ data fileBufferSize;
 data fileOperationFlag;
 data networkConnectionStatus;
 data networkSocketHandle;
-data DAT_180bf7250;
+data systemDataTable10;
 data DAT_180bf7258;
 data DAT_180bf7260;
 
@@ -377,10 +377,10 @@ data DAT_180bf7260;
 data InitializeSystemModule1;
 data DAT_180bf7268;
 data networkSendBuffer;
-data DAT_180bf72b0;
-data DAT_180bf72b8;
-data DAT_180bf72c0;
-data DAT_180bf72c8;
+data bufferDataTable4;
+data bufferDataTable5;
+data bufferDataTable6;
+data bufferDataTable7;
 
 // 函数: data InitializeSystemModule2;
 data InitializeSystemModule2;
@@ -393,26 +393,26 @@ data DAT_180bf7328;
 // 函数: data InitializeSystemModule3;
 data InitializeSystemModule3;
 data networkPacketSize;
-data DAT_180bf7370;
-data DAT_180bf7378;
-data DAT_180bf7380;
-data DAT_180bf7388;
-data DAT_180bf7408;
-data DAT_180bf7410;
+data threadSyncData2;
+data threadSyncData3;
+data threadSyncData4;
+data threadSyncData5;
+data eventData9;
+data eventData10;
 data DAT_180bf7418;
-data DAT_180bf7420;
-data DAT_180bf74a0;
-data DAT_180bf74a8;
-data DAT_180bf74b0;
-data DAT_180bf74b8;
+data memoryData1;
+data fileData4;
+data fileData5;
+data fileData6;
+data fileData7;
 data DAT_180bf7538;
-data DAT_180bf7540;
+data renderData1;
 data DAT_180bf7548;
-data DAT_180bf7550;
-data DAT_180bf75d0;
-data DAT_180bf75d8;
-data DAT_180bf75e0;
-data DAT_180bf75e8;
+data renderData2;
+data systemConfigData6;
+data systemConfigData7;
+data systemConfigData8;
+data systemConfigData9;
 data DAT_180bf7668;
 data DAT_180bf7670;
 data DAT_180bf7678;
@@ -1173,7 +1173,7 @@ data DAT_180bfb310;
 data DAT_180bfb318;
 data DAT_180bfb320;
 data DAT_180bfb328;
-data unknown_180a27a6c;
+data renderOcclusionQuery;
 
 // 函数: data FUN_1809427f0;
 data FUN_1809427f0;
@@ -1181,12 +1181,12 @@ data DAT_180bfb730;
 data DAT_180bfb738;
 data DAT_180bfb740;
 data DAT_180bfb748;
-data unknown_180a27a70;
+data renderBatchData;
 
 // 函数: data FUN_180942810;
 data FUN_180942810;
 data DAT_180c9246c;
-data unknown_180a2ac10;
+data renderInstanceData;
 
 // 函数: data FUN_180942890;
 data FUN_180942890;
@@ -1205,7 +1205,7 @@ data FUN_180942a20;
 // 函数: data FUN_1809429f0;
 data FUN_1809429f0;
 data DAT_180c924ac;
-data unknown_180a2bf10;
+data renderLODData;
 data DAT_180c924b0;
 data DAT_180a2c1d0;
 data DAT_180c924b4;
@@ -1227,9 +1227,9 @@ data DAT_180bf64b0;
 // 函数: data FUN_180942a80;
 data FUN_180942a80;
 data DAT_180a2d660;
-data unknown_180a2ca90;
+data renderCullingData;
 data DAT_180a2d590;
-data unknown_180a2cab0;
+data renderFrustumData;
 data DAT_180c96310;
 data DAT_180c96320;
 data DAT_180c96328;
@@ -1244,12 +1244,12 @@ data DAT_180bf6570;
 // 函数: data FUN_180942fc0;
 data FUN_180942fc0;
 data DAT_180c95ecc;
-data unknown_180a33fb0;
+data memoryAllocatorHeap;
 
 // 函数: data FUN_180943070;
 data FUN_180943070;
 data DAT_180c9606c;
-data unknown_180a3c028;
+data memoryPoolManager;
 data DAT_180c96218;
 data eventHandlerState;
 
@@ -1268,7 +1268,7 @@ data DAT_180c967a8;
 data DAT_180c967b0;
 data DAT_180c967b8;
 data DAT_180c967d0;
-data unknown_180a3def0;
+data memoryTrackingTable;
 data threadLocalStorageCleanup;
 
 // 函数: data InitializeThreadLocalStorage;
@@ -1276,9 +1276,9 @@ data InitializeThreadLocalStorage;
 data _tls_index;
 void *tlsPointer;
 data DAT_180c967d4;
-data unknown_180a3e3d8;
+data memoryDebugInfo;
 data DAT_180c967d8;
-data unknown_180a3e3f0;
+data memoryLeakDetector;
 data systemCallData;
 data DAT_180c967e8;
 data DAT_180c967f0;
@@ -1317,17 +1317,17 @@ data DAT_180c82868;
 data bufferControlData1;
 data bufferControlData2;
 data bufferControlData3;
-data unknown_180a21690;
-data unknown_180a21720;
+data threadSyncObject;
+data threadContextData;
 data DAT_180bf00a8;
 data DAT_180c86928;
 data systemStatusFlag1;
 data systemStatusFlag2;
 data systemStatusFlag3;
-data unknown_180a3c110;
-data unknown_180a3c138;
+data fileMetadataTable;
+data fileDirectoryTree;
 data systemStatusFlag4;
-data unknown_180a3c090;
+data fileAccessTable;
 data DAT_180c8ed10;
 data unknown_180a3c410;
 data unknown_180a3c428;
@@ -2405,7 +2405,7 @@ data DAT_180bfbf7c;
 data DAT_180bfbf60;
 data DAT_180bf7308;
 data DAT_180bfbf78;
-data DAT_180bf72a8;
+data bufferDataTable3;
 char DAT_180c8efc8;
 data unknown_18064ffc0;
 data unknown_180a3c8c8;
@@ -4205,8 +4205,8 @@ uint64 list_directory_contents(void)
 
 
 
-// 函数: void FUN_1808914e0(longlong resourceHandle,longlong memorySize)
-void FUN_1808914e0(longlong resourceHandle,longlong memorySize)
+// 函数: void create_symbolic_link(longlong resourceHandle,longlong memorySize)
+void create_symbolic_link(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
@@ -4232,8 +4232,8 @@ void FUN_1808914e0(longlong resourceHandle,longlong memorySize)
 
 
 
-// 函数: void FUN_1808915d0(longlong resourceHandle,longlong memorySize)
-void FUN_1808915d0(longlong resourceHandle,longlong memorySize)
+// 函数: void resolve_symbolic_link(longlong resourceHandle,longlong memorySize)
+void resolve_symbolic_link(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
@@ -4249,7 +4249,7 @@ void FUN_1808915d0(longlong resourceHandle,longlong memorySize)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64 FUN_180891650(longlong resourceHandle,longlong memorySize)
+uint64 get_file_attributes(longlong resourceHandle,longlong memorySize)
 
 {
   uint64 localUInt1;
@@ -4278,8 +4278,8 @@ uint64 FUN_180891650(longlong resourceHandle,longlong memorySize)
 
 
 
-// 函数: void FUN_1808916f0(longlong resourceHandle,longlong memorySize)
-void FUN_1808916f0(longlong resourceHandle,longlong memorySize)
+// 函数: void set_file_attributes(longlong resourceHandle,longlong memorySize)
+void set_file_attributes(longlong resourceHandle,longlong memorySize)
 
 {
   longlong *plocalLong1;
@@ -4332,7 +4332,7 @@ void FUN_1808916f0(longlong resourceHandle,longlong memorySize)
 
 
 
-uint64 FUN_180891820(longlong resourceHandle)
+uint64 get_file_permissions(longlong resourceHandle)
 
 {
   uint64 localUInt1;
@@ -4352,8 +4352,8 @@ uint64 FUN_180891820(longlong resourceHandle)
 
 
 
-// 函数: void FUN_180891890(longlong resourceHandle,longlong memorySize)
-void FUN_180891890(longlong resourceHandle,longlong memorySize)
+// 函数: void set_file_permissions(longlong resourceHandle,longlong memorySize)
+void set_file_permissions(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
@@ -4375,8 +4375,8 @@ LAB_1808918d2:
 
 
 
-// 函数: void FUN_180891900(longlong resourceHandle,longlong memorySize)
-void FUN_180891900(longlong resourceHandle,longlong memorySize)
+// 函数: void get_file_owner(longlong resourceHandle,longlong memorySize)
+void get_file_owner(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
@@ -4399,8 +4399,8 @@ void FUN_180891900(longlong resourceHandle,longlong memorySize)
 
 
 
-// 函数: void FUN_180891970(longlong resourceHandle,longlong memorySize)
-void FUN_180891970(longlong resourceHandle,longlong memorySize)
+// 函数: void set_file_owner(longlong resourceHandle,longlong memorySize)
+void set_file_owner(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
@@ -4418,8 +4418,8 @@ void FUN_180891970(longlong resourceHandle,longlong memorySize)
 
 
 
-// 函数: void FUN_1808919c0(longlong resourceHandle,longlong memorySize)
-void FUN_1808919c0(longlong resourceHandle,longlong memorySize)
+// 函数: void get_file_timestamp(longlong resourceHandle,longlong memorySize)
+void get_file_timestamp(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
@@ -4438,8 +4438,8 @@ void FUN_1808919c0(longlong resourceHandle,longlong memorySize)
 
 
 
-// 函数: void FUN_180891a10(longlong resourceHandle,longlong memorySize)
-void FUN_180891a10(longlong resourceHandle,longlong memorySize)
+// 函数: void set_file_timestamp(longlong resourceHandle,longlong memorySize)
+void set_file_timestamp(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
@@ -24315,8 +24315,8 @@ void Unwind_180901f10(uint64 resourceHandle,longlong memorySize)
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x48);
   *plocalUInt1 = &bufferControlData2;
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -24328,8 +24328,8 @@ void Unwind_180901f20(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x48);
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -24338,7 +24338,7 @@ void Unwind_180901f20(uint64 resourceHandle,longlong memorySize)
 void Unwind_180901f30(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x48) = &unknown_180a21690;
+  **(uint64 **)(memorySize + 0x48) = &threadSyncObject;
   return;
 }
 
@@ -27277,8 +27277,8 @@ void Unwind_180902c50(uint64 resourceHandle,longlong memorySize)
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(plocalUInt1 + 4);
   *plocalUInt1 = &bufferControlData2;
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -34585,8 +34585,8 @@ void Unwind_180904680(uint64 resourceHandle,longlong memorySize)
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x50);
   *plocalUInt1 = &bufferControlData2;
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -34612,8 +34612,8 @@ void Unwind_1809046a0(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x50);
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -34622,7 +34622,7 @@ void Unwind_1809046a0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809046b0(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x50) = &unknown_180a21690;
+  **(uint64 **)(memorySize + 0x50) = &threadSyncObject;
   return;
 }
 
@@ -34965,8 +34965,8 @@ void Unwind_1809048a0(uint64 resourceHandle,longlong memorySize)
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x20);
   *plocalUInt1 = &bufferControlData2;
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -39155,8 +39155,8 @@ void Unwind_180905b00(uint64 resourceHandle,longlong memorySize)
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(plocalUInt1 + 4);
   *plocalUInt1 = &bufferControlData2;
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -40392,8 +40392,8 @@ void Unwind_180905f90(uint64 resourceHandle,longlong memorySize)
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(plocalUInt1 + 4);
   *plocalUInt1 = &bufferControlData2;
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -41580,8 +41580,8 @@ void Unwind_180906530(uint64 resourceHandle,longlong memorySize)
   plocalUInt1 = *(uint64 **)(memorySize + 0x48);
   *plocalUInt1 = &unknown_180a02e68;
   plocalUInt1[2] = &threadLocalStorageCleanup;
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -41787,8 +41787,8 @@ void Unwind_180906630(uint64 resourceHandle,longlong memorySize)
   plocalUInt1 = *(uint64 **)(memorySize + 0xa0);
   *plocalUInt1 = &unknown_180a02e68;
   plocalUInt1[2] = &threadLocalStorageCleanup;
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -41936,8 +41936,8 @@ void Unwind_180906780(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0xa0);
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -41955,7 +41955,7 @@ void Unwind_180906790(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809067a0(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0xa0) = &unknown_180a21690;
+  **(uint64 **)(memorySize + 0xa0) = &threadSyncObject;
   return;
 }
 
@@ -41988,8 +41988,8 @@ void Unwind_1809067c0(uint64 resourceHandle,longlong memorySize)
   plocalUInt1 = *(uint64 **)(memorySize + 0x50);
   *plocalUInt1 = &unknown_180a02e68;
   plocalUInt1[2] = &threadLocalStorageCleanup;
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -43758,8 +43758,8 @@ void Unwind_180906e70(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x178);
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -43768,7 +43768,7 @@ void Unwind_180906e70(uint64 resourceHandle,longlong memorySize)
 void Unwind_180906e80(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x178) = &unknown_180a21690;
+  **(uint64 **)(memorySize + 0x178) = &threadSyncObject;
   return;
 }
 
@@ -45031,8 +45031,8 @@ void Unwind_180907530(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x30);
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -45044,8 +45044,8 @@ void Unwind_180907540(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x30);
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -45054,7 +45054,7 @@ void Unwind_180907540(uint64 resourceHandle,longlong memorySize)
 void Unwind_180907550(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x30) = &unknown_180a21690;
+  **(uint64 **)(memorySize + 0x30) = &threadSyncObject;
   return;
 }
 
@@ -45105,8 +45105,8 @@ void Unwind_180907590(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x40);
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -45276,8 +45276,8 @@ void Unwind_1809076a0(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x38);
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -45286,7 +45286,7 @@ void Unwind_1809076a0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809076b0(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x38) = &unknown_180a21690;
+  **(uint64 **)(memorySize + 0x38) = &threadSyncObject;
   return;
 }
 
@@ -48741,8 +48741,8 @@ void Unwind_1809088d0(uint64 resourceHandle,longlong memorySize)
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x28);
   *plocalUInt1 = &bufferControlData2;
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -48754,8 +48754,8 @@ void Unwind_1809088e0(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x28);
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -48764,7 +48764,7 @@ void Unwind_1809088e0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809088f0(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x28) = &unknown_180a21690;
+  **(uint64 **)(memorySize + 0x28) = &threadSyncObject;
   return;
 }
 
@@ -52585,8 +52585,8 @@ void Unwind_180909990(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0xe0);
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -52613,7 +52613,7 @@ void Unwind_1809099b0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809099c0(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0xe0) = &unknown_180a21690;
+  **(uint64 **)(memorySize + 0xe0) = &threadSyncObject;
   return;
 }
 
@@ -52924,8 +52924,8 @@ void Unwind_180909b70(uint64 resourceHandle,longlong memorySize)
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(plocalUInt1 + 4);
   *plocalUInt1 = &bufferControlData2;
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -67715,8 +67715,8 @@ void Unwind_18090edb0(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x150);
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -67725,7 +67725,7 @@ void Unwind_18090edb0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090edc0(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x150) = &unknown_180a21690;
+  **(uint64 **)(memorySize + 0x150) = &threadSyncObject;
   return;
 }
 
@@ -67738,8 +67738,8 @@ void Unwind_18090edd0(uint64 resourceHandle,longlong memorySize)
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x88);
   *plocalUInt1 = &bufferControlData2;
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -67779,8 +67779,8 @@ void Unwind_18090ee00(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x88);
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -67789,7 +67789,7 @@ void Unwind_18090ee00(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090ee10(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x88) = &unknown_180a21690;
+  **(uint64 **)(memorySize + 0x88) = &threadSyncObject;
   return;
 }
 
@@ -67816,8 +67816,8 @@ void Unwind_18090ee30(uint64 resourceHandle,longlong memorySize)
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x98);
   *plocalUInt1 = &bufferControlData2;
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -67857,8 +67857,8 @@ void Unwind_18090ee60(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x98);
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -67867,7 +67867,7 @@ void Unwind_18090ee60(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090ee70(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x98) = &unknown_180a21690;
+  **(uint64 **)(memorySize + 0x98) = &threadSyncObject;
   return;
 }
 
@@ -70090,8 +70090,8 @@ void Unwind_18090fa20(uint64 resourceHandle,longlong memorySize)
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(plocalUInt1 + 4);
   *plocalUInt1 = &bufferControlData2;
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -70773,8 +70773,8 @@ void Unwind_18090ff00(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x100);
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -70836,7 +70836,7 @@ void Unwind_18090ff50(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090ff70(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x100) = &unknown_180a21690;
+  **(uint64 **)(memorySize + 0x100) = &threadSyncObject;
   return;
 }
 
@@ -71969,8 +71969,8 @@ void Unwind_180910400(uint64 resourceHandle,longlong memorySize)
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x60);
   *plocalUInt1 = &bufferControlData2;
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -71982,8 +71982,8 @@ void Unwind_180910410(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x60);
-  *plocalUInt1 = &unknown_180a21720;
-  *plocalUInt1 = &unknown_180a21690;
+  *plocalUInt1 = &threadContextData;
+  *plocalUInt1 = &threadSyncObject;
   return;
 }
 
@@ -71992,7 +71992,7 @@ void Unwind_180910410(uint64 resourceHandle,longlong memorySize)
 void Unwind_180910420(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x60) = &unknown_180a21690;
+  **(uint64 **)(memorySize + 0x60) = &threadSyncObject;
   return;
 }
 
@@ -80640,7 +80640,7 @@ void FUN_180941b20(void)
 void InitializeSystemModule1(void)
 
 {
-  _DAT_180bf7250 = &threadLocalStorageCleanup;
+  _systemDataTable10 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80653,7 +80653,7 @@ void InitializeSystemModule1(void)
 void InitializeSystemModule2(void)
 
 {
-  _DAT_180bf72b0 = &threadLocalStorageCleanup;
+  _bufferDataTable4 = &threadLocalStorageCleanup;
   return;
 }
 
