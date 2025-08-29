@@ -105,8 +105,8 @@ int initialize_main_thread_pool(void* handle, void* flags, void* mutex_attr, int
   initialization_result = execute_function(callback_function_008);
   return (initialization_result != 0) - 1;
 }
-// 初始化线程池2
-int initialize_thread_pool_2(undefined8 handle, undefined8 flags, undefined8 mutex_attr, undefined8 mutex_type)
+// 初始化渲染线程池
+int initialize_rendering_thread_pool(undefined8 handle, undefined8 flags, undefined8 mutex_attr, undefined8 mutex_type)
 {
   long long initialization_result;
   undefined8 thread_pool_flags = THREAD_POOL_DEFAULT_FLAGS;
@@ -117,8 +117,8 @@ int initialize_thread_pool_2(undefined8 handle, undefined8 flags, undefined8 mut
   initialization_result = execute_function(callback_function_009);
   return (initialization_result != 0) - 1;
 }
-// 初始化线程池3
-int initialize_thread_pool_3(undefined8 handle, undefined8 flags, undefined8 mutex_attr, undefined8 mutex_type)
+// 初始化网络线程池
+int initialize_network_thread_pool(undefined8 handle, undefined8 flags, undefined8 mutex_attr, undefined8 mutex_type)
 {
   long long initialization_result;
   undefined8 thread_pool_flags = 0xfffffffffffffffe;
@@ -129,8 +129,8 @@ int initialize_thread_pool_3(undefined8 handle, undefined8 flags, undefined8 mut
   initialization_result = execute_function(callback_function_010);
   return (initialization_result != 0) - 1;
 }
-// 初始化线程池4
-int initialize_thread_pool_4(undefined8 handle, undefined8 flags, undefined8 mutex_attr, undefined8 mutex_type)
+// 初始化IO线程池
+int initialize_io_thread_pool(undefined8 handle, undefined8 flags, undefined8 mutex_attr, undefined8 mutex_type)
 {
   long long initialization_result;
   undefined8 thread_pool_flags = 0xfffffffffffffffe;
@@ -141,8 +141,8 @@ int initialize_thread_pool_4(undefined8 handle, undefined8 flags, undefined8 mut
   initialization_result = execute_function(callback_function_011);
   return (initialization_result != 0) - 1;
 }
-// 初始化资源管理器0
-int initialize_resource_manager_0(void)
+// 初始化基础资源管理器
+int initialize_base_resource_manager(void)
 {
   longlong initialization_result;
   undefined8 string_length_parameter;
@@ -152,8 +152,8 @@ int initialize_resource_manager_0(void)
   initialization_result = execute_function(callback_function_012);
   return (initialization_result != 0) - 1;
 }
-// 初始化资源管理器1
-int initialize_resource_manager_1(void)
+// 初始化纹理资源管理器
+int initialize_texture_resource_manager(void)
 {
   longlong initialization_result;
   undefined8 string_length_parameter;
@@ -165,7 +165,7 @@ int initialize_resource_manager_1(void)
   initialization_result = execute_function(callback_function_013);
   return (initialization_result != 0) - 1;
 }
-int initialize_resource_manager_2(void)
+int initialize_shader_resource_manager_1(void)
 {
   long long initialization_result;
   undefined8 string_length_parameter;
@@ -177,7 +177,7 @@ int initialize_resource_manager_2(void)
   initialization_result = execute_function(callback_function_014);
   return (initialization_result != 0) - 1;
 }
-int initialize_resource_manager_3(void)
+int initialize_shader_resource_manager_2(void)
 {
   long long initialization_result;
   undefined8 string_length_parameter;
@@ -189,7 +189,7 @@ int initialize_resource_manager_3(void)
   initialization_result = execute_function(callback_function_015);
   return (initialization_result != 0) - 1;
 }
-int initialize_resource_manager_4(void)
+int initialize_audio_resource_manager(void)
 {
   long long initialization_result;
   undefined8 string_length_parameter;
@@ -201,7 +201,7 @@ int initialize_resource_manager_4(void)
   initialization_result = execute_function(callback_function_016);
   return (initialization_result != 0) - 1;
 }
-int initialize_resource_manager_5(void)
+int initialize_font_resource_manager(void)
 {
   long long initialization_result;
   size_t string_length_parameter;
@@ -213,7 +213,7 @@ int initialize_resource_manager_5(void)
   initialization_result = execute_function(callback_function_017);
   return (initialization_result != 0) - 1;
 }
-int initialize_resource_manager_6(void)
+int initialize_model_resource_manager(void)
 {
   long long initialization_result;
   size_t string_length_parameter;
@@ -225,7 +225,7 @@ int initialize_resource_manager_6(void)
   initialization_result = execute_function(callback_function_018);
   return (initialization_result != 0) - 1;
 }
-int initialize_resource_manager_7(void)
+int initialize_animation_resource_manager(void)
 {
   long long initialization_result;
   size_t string_length_parameter;

@@ -337,7 +337,7 @@ data systemDataTable7;
 data systemDataTable8;
 data systemDataTable9;
 data bufferManagementControl;
-data DAT_18098bc73;
+data g_miscTempData3;
 data bufferAllocationPointer;
 data systemIsInitialized;
 data systemRuntimeStatus;
@@ -433,26 +433,26 @@ data physicsData1;
 data physicsData2;
 data physicsData3;
 data physicsData4;
-data resourceManagerConfig1;  /* 原: DAT_180bf7960 */;
-data resourceManagerConfig2;  /* 原: DAT_180bf7968 */;
-data resourceManagerConfig3;  /* 原: DAT_180bf7970 */;
-data resourceManagerConfig4;  /* 原: DAT_180bf7978 */;
-data sceneManagerConfig1;  /* 原: DAT_180bf79f8 */;
-data sceneManagerConfig2;  /* 原: DAT_180bf7a00 */;
-data sceneManagerConfig3;  /* 原: DAT_180bf7a08 */;
-data sceneManagerConfig4;  /* 原: DAT_180bf7a10 */;
-data materialSystemConfig1;  /* 原: DAT_180bf7a90 */;
-data materialSystemConfig2;  /* 原: DAT_180bf7a98 */;
-data materialSystemConfig3;  /* 原: DAT_180bf7aa0 */;
-data materialSystemConfig4;  /* 原: DAT_180bf7aa8 */;
-data textureSystemConfig1;  /* 原: DAT_180bf7b28 */;
-data textureSystemConfig2;  /* 原: DAT_180bf7b30 */;
-data textureSystemConfig3;  /* 原: DAT_180bf7b38 */;
-data textureSystemConfig4;  /* 原: DAT_180bf7b40 */;
-data meshSystemConfig1;  /* 原: DAT_180bf7bc0 */;
-data meshSystemConfig2;  /* 原: DAT_180bf7bc8 */;
-data meshSystemConfig3;  /* 原: DAT_180bf7bd0 */;
-data meshSystemConfig4;  /* 原: DAT_180bf7bd8 */;
+data resourceManagerConfig1;  /* 原: g_meshTempData1 */;
+data resourceManagerConfig2;  /* 原: g_meshTempData2 */;
+data resourceManagerConfig3;  /* 原: g_meshTempData3 */;
+data resourceManagerConfig4;  /* 原: g_meshTempData4 */;
+data sceneManagerConfig1;  /* 原: g_shaderTempData1 */;
+data sceneManagerConfig2;  /* 原: g_shaderTempData2 */;
+data sceneManagerConfig3;  /* 原: g_shaderTempData3 */;
+data sceneManagerConfig4;  /* 原: g_shaderTempData4 */;
+data materialSystemConfig1;  /* 原: g_shaderTempData5 */;
+data materialSystemConfig2;  /* 原: g_shaderTempData6 */;
+data materialSystemConfig3;  /* 原: g_shaderTempData7 */;
+data materialSystemConfig4;  /* 原: g_shaderTempData8 */;
+data textureSystemConfig1;  /* 原: g_shaderTempData9 */;
+data textureSystemConfig2;  /* 原: g_shaderTempData10 */;
+data textureSystemConfig3;  /* 原: g_shaderTempData11 */;
+data textureSystemConfig4;  /* 原: g_shaderTempData12 */;
+data meshSystemConfig1;  /* 原: g_computeShaderTempData1 */;
+data meshSystemConfig2;  /* 原: g_computeShaderTempData2 */;
+data meshSystemConfig3;  /* 原: g_computeShaderTempData3 */;
+data meshSystemConfig4;  /* 原: g_computeShaderTempData4 */;
 data animationData1;
 data animationData2;
 data animationData3;
@@ -474,9 +474,9 @@ data inputButtonState;
 data inputScrollDelta;
 data physicsWorldHandle;
 data physicsGravityVector;
-data DAT_180c91d54;
+data g_physicsTempData1;
 data physicsCollisionMatrix;
-data DAT_180c91d5c;
+data g_physicsTempData2;
 data physicsRaycastResult;
 data gameData1;
 data gameData2;
@@ -484,193 +484,193 @@ data gameData3;
 data gameData4;
 data gameData5;
 data gameData6;
-data DAT_180bf7ef8;
-data DAT_180bf7f00;
-data DAT_180bf7f40;
-data DAT_180bf7f48;
-data DAT_180bf7f50;
-data DAT_180bf7f58;
-data DAT_180bf7f98;
-data DAT_180bf7fa0;
-data DAT_180bf7fa8;
-data DAT_180bf7fb0;
-data DAT_180bf7ff0;
-data DAT_180bf7ff8;
-data DAT_180bf8000;
-data DAT_180bf8008;
-data DAT_180bf8048;
-data DAT_180bf8050;
-data DAT_180bf8058;
-data DAT_180bf8060;
-data DAT_180bf80a0;
-data DAT_180bf80a8;
-data DAT_180bf80b0;
-data DAT_180bf80b8;
-data DAT_180bf80f8;
-data DAT_180bf8100;
-data DAT_180bf8108;
-data DAT_180bf8110;
-data DAT_180bf8150;
-data DAT_180bf8158;
-data DAT_180bf8160;
-data DAT_180bf8168;
-data DAT_180bf81a8;
-data DAT_180bf81b0;
-data DAT_180bf81b8;
-data DAT_180bf81c0;
-data DAT_180bf8200;
-data DAT_180bf8208;
-data DAT_180bf8210;
-data DAT_180bf8218;
-data DAT_180bf8258;
-data DAT_180bf8260;
-data DAT_180bf8268;
-data DAT_180bf8270;
-data DAT_180bf82b0;
-data DAT_180bf82b8;
-data DAT_180bf82c0;
-data DAT_180bf82c8;
-data DAT_180bf8308;
-data DAT_180bf8310;
-data DAT_180bf8318;
-data DAT_180bf8320;
-data DAT_180bf8360;
-data DAT_180bf8368;
-data DAT_180bf8370;
-data DAT_180bf8378;
-data DAT_180bf83b8;
-data DAT_180bf83c0;
-data DAT_180bf83c8;
-data DAT_180bf83d0;
-data DAT_180bf8410;
-data DAT_180bf8418;
-data DAT_180bf8420;
-data DAT_180bf8428;
-data DAT_180bf8468;
-data DAT_180bf8470;
-data DAT_180bf8478;
-data DAT_180bf8480;
-data DAT_180bf84c0;
-data DAT_180bf84c8;
-data DAT_180bf84d0;
-data DAT_180bf84d8;
-data DAT_180bf8518;
-data DAT_180bf8520;
-data DAT_180bf8528;
-data DAT_180bf8530;
-data DAT_180bf8570;
-data DAT_180bf8578;
-data DAT_180bf8580;
-data DAT_180bf8588;
-data DAT_180bf85c8;
-data DAT_180bf85d0;
-data DAT_180bf85d8;
-data DAT_180bf85e0;
-data DAT_180bf8620;
-data DAT_180bf8628;
-data DAT_180bf8630;
-data DAT_180bf8638;
-data DAT_180bf8678;
-data DAT_180bf8680;
-data DAT_180bf8688;
-data DAT_180bf8690;
-data DAT_180bf86d0;
-data DAT_180bf86d8;
-data DAT_180bf86e0;
-data DAT_180bf86e8;
-data DAT_180bf8728;
-data DAT_180bf8730;
-data DAT_180bf8738;
-data DAT_180bf8740;
-data DAT_180bf8780;
-data DAT_180bf8788;
-data DAT_180bf8790;
-data DAT_180bf8798;
-data DAT_180bf87d8;
-data DAT_180bf87e0;
-data DAT_180bf87e8;
-data DAT_180bf87f0;
-data DAT_180bf8830;
-data DAT_180bf8838;
-data DAT_180bf8840;
-data DAT_180bf8848;
-data DAT_180bf8888;
-data DAT_180bf8890;
-data DAT_180bf8898;
-data DAT_180bf88a0;
-data DAT_180bf88e0;
-data DAT_180bf88e8;
-data DAT_180bf88f0;
-data DAT_180bf88f8;
-data DAT_180bf8938;
-data DAT_180bf8940;
-data DAT_180bf8948;
-data DAT_180bf8950;
+data g_frameBufferTempData7;
+data g_frameBufferTempData8;
+data g_renderPipelineTempData1;
+data g_renderPipelineTempData2;
+data g_renderPipelineTempData3;
+data g_renderPipelineTempData4;
+data g_renderPipelineTempData5;
+data g_renderPipelineTempData6;
+data g_renderPipelineTempData7;
+data g_renderPipelineTempData8;
+data g_materialRenderStateTempData1;
+data g_materialRenderStateTempData2;
+data g_materialRenderStateTempData3;
+data g_materialRenderStateTempData4;
+data g_textureUploadTempData1;
+data g_textureUploadTempData2;
+data g_textureUploadTempData3;
+data g_textureUploadTempData4;
+data g_textureCompressionTempData1;
+data g_textureCompressionTempData2;
+data g_textureCompressionTempData3;
+data g_textureCompressionTempData4;
+data g_textureFilterTempData1;
+data g_textureFilterTempData2;
+data g_textureFilterTempData3;
+data g_textureFilterTempData4;
+data g_textureWrapTempData1;
+data g_textureWrapTempData2;
+data g_textureWrapTempData3;
+data g_textureWrapTempData4;
+data g_meshVertexTempData1;
+data g_meshVertexTempData2;
+data g_meshVertexTempData3;
+data g_meshVertexTempData4;
+data g_meshIndexTempData1;
+data g_meshIndexTempData2;
+data g_meshIndexTempData3;
+data g_meshIndexTempData4;
+data g_meshLayoutTempData1;
+data g_meshLayoutTempData2;
+data g_meshLayoutTempData3;
+data g_meshLayoutTempData4;
+data g_meshBoundingBoxTempData1;
+data g_meshBoundingBoxTempData2;
+data g_meshBoundingBoxTempData3;
+data g_meshBoundingBoxTempData4;
+data g_meshCollisionTempData1;
+data g_meshCollisionTempData2;
+data g_meshCollisionTempData3;
+data g_meshCollisionTempData4;
+data g_shaderCompileTempData1;
+data g_shaderCompileTempData2;
+data g_shaderCompileTempData3;
+data g_shaderCompileTempData4;
+data g_shaderProgramTempData1;
+data g_shaderProgramTempData2;
+data g_shaderProgramTempData3;
+data g_shaderProgramTempData4;
+data g_shaderUniformTempData1;
+data g_shaderUniformTempData2;
+data g_shaderUniformTempData3;
+data g_shaderUniformTempData4;
+data g_shaderAttributeTempData1;
+data g_shaderAttributeTempData2;
+data g_shaderAttributeTempData3;
+data g_shaderAttributeTempData4;
+data g_shaderConstantTempData1;
+data g_shaderConstantTempData2;
+data g_shaderConstantTempData3;
+data g_shaderConstantTempData4;
+data g_renderPassTempData1;
+data g_renderPassTempData2;
+data g_renderPassTempData3;
+data g_renderPassTempData4;
+data g_renderTargetTempData1;
+data g_renderTargetTempData2;
+data g_renderTargetTempData3;
+data g_renderTargetTempData4;
+data g_renderDescriptorTempData1;
+data g_renderDescriptorTempData2;
+data g_renderDescriptorTempData3;
+data g_renderDescriptorTempData4;
+data g_renderCommandTempData1;
+data g_renderCommandTempData2;
+data g_renderCommandTempData3;
+data g_renderCommandTempData4;
+data g_renderStateTempData1;
+data g_renderStateTempData2;
+data g_renderStateTempData3;
+data g_renderStateTempData4;
+data g_renderQueueTempData1;
+data g_renderQueueTempData2;
+data g_renderQueueTempData3;
+data g_renderQueueTempData4;
+data g_renderBufferTempData1;
+data g_renderBufferTempData2;
+data g_renderBufferTempData3;
+data g_renderBufferTempData4;
+data g_renderSyncTempData1;
+data g_renderSyncTempData2;
+data g_renderSyncTempData3;
+data g_renderSyncTempData4;
+data g_renderMemoryTempData1;
+data g_renderMemoryTempData2;
+data g_renderMemoryTempData3;
+data g_renderMemoryTempData4;
+data g_renderResourceTempData1;
+data g_renderResourceTempData2;
+data g_renderResourceTempData3;
+data g_renderResourceTempData4;
+data g_renderTextureTempData1;
+data g_renderTextureTempData2;
+data g_renderTextureTempData3;
+data g_renderTextureTempData4;
+data g_renderSamplerTempData1;
+data g_renderSamplerTempData2;
+data g_renderSamplerTempData3;
+data g_renderSamplerTempData4;
+data g_renderBlendTempData1;
+data g_renderBlendTempData2;
+data g_renderBlendTempData3;
+data g_renderBlendTempData4;
 data animationSystemState;
-data DAT_180c91d60;
+data g_aiTempData1;
 data animationClipData;
-data DAT_180c91d64;
+data g_aiTempData2;
 data animationBlendTree;
-data DAT_180c91d68;
+data g_aiTempData3;
 data animationStateMachine;
-data DAT_180c91d6c;
-data DAT_180a14640;
-data DAT_180c91d70;
+data g_aiTempData4;
+data g_aiTempData5;
+data g_aiTempData6;
 data animationPlaybackTime;
-data DAT_180c91da4;
+data g_aiTempData7;
 data aiNavigationMesh;
-data DAT_180bf90b0;
-data DAT_180bf90b8;
-data DAT_180bf90c0;
-data DAT_180bf90c8;
+data g_aiNavigationTempData1;
+data g_aiNavigationTempData2;
+data g_aiNavigationTempData3;
+data g_aiNavigationTempData4;
 
 // 函数: data InitializeDatabaseConnection;
 data InitializeDatabaseConnection;
-data DAT_180bf5b88;
-data DAT_180bf5b90;
-data DAT_180bf5b98;
-data DAT_180bf5ba0;
+data g_databaseTempData1;
+data g_databaseTempData2;
+data g_databaseTempData3;
+data g_databaseTempData4;
 
 // 函数: data SetupDatabaseTables;
 data SetupDatabaseTables;
-data DAT_180c91da8;
-data DAT_180a16c50;
-data DAT_180c91dac;
-data DAT_180a16c38;
-data DAT_180c91ee8;
+data g_aiBehaviorTempData1;
+data g_aiBehaviorTempData2;
+data g_aiBehaviorTempData3;
+data g_aiBehaviorTempData4;
+data g_aiBehaviorTempData5;
 data aiBehaviorTree;
-data DAT_180c91ef8;
+data g_aiDecisionTempData1;
 data aiPathfindingData;
-data DAT_180c91efc;
+data g_aiDecisionTempData2;
 data aiDecisionMaking;
-data DAT_180c91f00;
+data g_aiDecisionTempData3;
 data aiStateVariables;
-data DAT_180c91f04;
+data g_aiDecisionTempData4;
 data resourceLoadingQueue;
-data DAT_180c91f08;
+data g_resourceTempData1;
 data resourceCacheManager;
-data DAT_180c91f0c;
+data g_resourceTempData2;
 data resourceMemoryPool;
-data DAT_180c91f10;
+data g_resourceTempData3;
 data referenceCountTable;
-data DAT_180c91f14;
+data g_resourceTempData4;
 data resourceGarbageCollector;
-data DAT_180c91f30;
+data g_resourceTempData5;
 data sceneObjectDatabase;
-data DAT_180c91f68;
+data g_resourceTempData6;
 data sceneTransformData;
-data DAT_180bf91b0;
-data DAT_180bf91b8;
-data DAT_180bf91c0;
-data DAT_180bf91c8;
+data g_sceneTempData1;
+data g_sceneTempData2;
+data g_sceneTempData3;
+data g_sceneTempData4;
 data sceneLightingSystem;
 
 // 函数: data CreateFileSystemHandler;
 data CreateFileSystemHandler;
-data DAT_180bf9210;
-data DAT_180bf9218;
-data DAT_180bf9220;
-data DAT_180bf9228;
+data g_fileSystemTempData1;
+data g_fileSystemTempData2;
+data g_fileSystemTempData3;
+data g_fileSystemTempData4;
 data sceneCameraController;
 
 // 函数: data InitializeFileCache;
@@ -678,96 +678,96 @@ data InitializeFileCache;
 
 // 函数: data SetupFileWatcher;
 data SetupFileWatcher;
-data DAT_180bf9270;
-data DAT_180bf9278;
-data DAT_180bf9280;
-data DAT_180bf9288;
+data g_fileCacheTempData1;
+data g_fileCacheTempData2;
+data g_fileCacheTempData3;
+data g_fileCacheTempData4;
 data sceneRenderQueue;
-data DAT_180bf92d0;
+data g_sceneRenderTempData1;
 
 // 函数: data FUN_180941f60;
 data FUN_180941f60;
-data DAT_180bf92d8;
-data DAT_180bf92e0;
-data DAT_180bf92e8;
+data g_materialShaderTempData1;
+data g_materialShaderTempData2;
+data g_materialShaderTempData3;
 data materialShaderProgram;
-data DAT_180bf9330;
-data DAT_180bf9338;
+data g_materialTextureTempData1;
+data g_materialTextureTempData2;
 
 // 函数: data FUN_180941f80;
 data FUN_180941f80;
 data DAT_180bf9340;
 data DAT_180bf9348;
 data materialTextureSampler;
-data DAT_180bf9390;
-data DAT_180bf9398;
-data DAT_180bf93a0;
+data g_materialTextureTempData3;
+data g_materialTextureTempData4;
+data g_materialTextureTempData5;
 
 // 函数: data FUN_180941fa0;
 data FUN_180941fa0;
-data DAT_180bf93a8;
+data g_materialPropertyTempData1;
 data materialPropertyBuffer;
-data DAT_180bf93f0;
-data DAT_180bf93f8;
-data DAT_180bf9400;
-data DAT_180bf9408;
+data g_materialPropertyTempData2;
+data g_materialPropertyTempData3;
+data g_materialPropertyTempData4;
+data g_materialPropertyTempData5;
 
 // 函数: data FUN_180941fc0;
 data FUN_180941fc0;
 data materialRenderState;
-data DAT_180bf9450;
-data DAT_180bf9458;
-data DAT_180bf9460;
-data DAT_180bf9468;
+data g_materialRenderStateTempData5;
+data g_materialRenderStateTempData6;
+data g_materialRenderStateTempData7;
+data g_materialRenderStateTempData8;
 
 // 函数: data FUN_180941fe0;
 data FUN_180941fe0;
 data materialUniformData;
-data DAT_180bf94b0;
-data DAT_180bf94b8;
-data DAT_180bf94c0;
-data DAT_180bf94c8;
+data g_materialUniformTempData5;
+data g_materialUniformTempData6;
+data g_materialUniformTempData7;
+data g_materialUniformTempData8;
 
 // 函数: data FUN_180942000;
 data FUN_180942000;
 data textureUploadBuffer;
-data DAT_180bf9510;
-data DAT_180bf9518;
-data DAT_180bf9520;
-data DAT_180bf9528;
+data g_textureUploadTempData5;
+data g_textureUploadTempData6;
+data g_textureUploadTempData7;
+data g_textureUploadTempData8;
 data textureMipChainData;
 
 // 函数: data FUN_180942020;
 data FUN_180942020;
-data DAT_180bf9570;
-data DAT_180bf9578;
-data DAT_180bf9580;
-data DAT_180bf9588;
+data g_textureMipTempData1;
+data g_textureMipTempData2;
+data g_textureMipTempData3;
+data g_textureMipTempData4;
 data textureCompressionFlag;
 
 // 函数: data FUN_180942040;
 data FUN_180942040;
-data DAT_180bf95d0;
-data DAT_180bf95d8;
-data DAT_180bf95e0;
-data DAT_180bf95e8;
+data g_textureCompressionTempData5;
+data g_textureCompressionTempData6;
+data g_textureCompressionTempData7;
+data g_textureCompressionTempData8;
 data textureFilteringMode;
 
 // 函数: data FUN_180942060;
 data FUN_180942060;
-data DAT_180bf9630;
-data DAT_180bf9638;
-data DAT_180bf9640;
-data DAT_180bf9648;
+data g_textureFilterTempData5;
+data g_textureFilterTempData6;
+data g_textureFilterTempData7;
+data g_textureFilterTempData8;
 data textureWrappingMode;
 
 // 函数: data FUN_180942080;
 data FUN_180942080;
-data DAT_180bf9690;
-data DAT_180bf9698;
-data DAT_180bf96a0;
-data DAT_180bf96a8;
-data DAT_180a22cb0;
+data g_textureWrapTempData5;
+data g_textureWrapTempData6;
+data g_textureWrapTempData7;
+data g_textureWrapTempData8;
+data g_miscTempData1;
 
 // 函数: data FUN_1809420a0;
 data FUN_1809420a0;
@@ -858,7 +858,7 @@ data DAT_180bf9ac8;
 
 // 函数: data FUN_180942200;
 data FUN_180942200;
-data DAT_180a22d48;
+data g_miscTempData2;
 data DAT_180bf9b10;
 data DAT_180bf9b18;
 data DAT_180bf9b20;
@@ -5162,7 +5162,7 @@ uint64 utilityGetResourceInformation(longlong resourceHandle,longlong memorySize
           return 0x1e;
         }
         if (*(int *)(localLong1 + 0x58) < 1) {
-          puVar4 = &DAT_18098bc73;
+          puVar4 = &g_miscTempData3;
         }
         else {
           puVar4 = *(data **)(localLong1 + 0x50);
@@ -5218,7 +5218,7 @@ uint64 utilityRetrieveResourceData(void)
         return 0x1e;
       }
       if (*(int *)(localLong1 + 0x58) < 1) {
-        puVar4 = &DAT_18098bc73;
+        puVar4 = &g_miscTempData3;
       }
       else {
         puVar4 = *(data **)(localLong1 + 0x50);
@@ -10526,7 +10526,7 @@ void FUN_1808975e0(longlong resourceHandle,longlong memorySize)
               localUInt = *(uint64 *)(*(longlong *)(lVar9 + 0x90) + lVar8 * 8);
               localUInt = 0;
               if (*(int *)(localLong3 + 0x58) < 1) {
-                plocalUInt12 = &DAT_18098bc73;
+                plocalUInt12 = &g_miscTempData3;
               }
               else {
                 plocalUInt12 = *(data **)(localLong3 + 0x50);
@@ -10767,7 +10767,7 @@ void FUN_180897644(void)
             *unaff_RBP = *(uint64 *)(*(longlong *)(localLong15 + 0x90) + localUInt23 * 8);
             *(byte *)((longlong)unaff_RBP + -4) = 0;
             if (*(int *)(localLong2 + 0x58) < 1) {
-              plocalUInt18 = &DAT_18098bc73;
+              plocalUInt18 = &g_miscTempData3;
             }
             else {
               plocalUInt18 = *(data **)(localLong2 + 0x50);
@@ -11013,7 +11013,7 @@ void FUN_1808976b0(void)
         *unaff_RBP = *(uint64 *)(*(longlong *)(localLong15 + 0x90) + localUInt22 * 8);
         *(byte *)((longlong)unaff_RBP + -4) = 0;
         if (*(int *)(localLong2 + 0x58) < 1) {
-          plocalUInt18 = &DAT_18098bc73;
+          plocalUInt18 = &g_miscTempData3;
         }
         else {
           plocalUInt18 = *(data **)(localLong2 + 0x50);
@@ -11765,7 +11765,7 @@ void FUN_180898040(longlong *resourceHandle)
             localPtr = &unknown_180982260;
             localUInt = localUInt & 0xffffff00;
             if (*(int *)(localLong11 + 0x58) < 1) {
-              plocalUInt12 = &DAT_18098bc73;
+              plocalUInt12 = &g_miscTempData3;
             }
             else {
               plocalUInt12 = *(data **)(localLong11 + 0x50);
@@ -80700,7 +80700,7 @@ void FUN_180941bf0(void)
 void InitializeDatabaseConnection(void)
 
 {
-  _DAT_180bf90b0 = &threadLocalStorageCleanup;
+  _g_aiNavigationTempData1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80713,7 +80713,7 @@ void InitializeDatabaseConnection(void)
 void SetupDatabaseTables(void)
 
 {
-  _DAT_180bf5b88 = &threadLocalStorageCleanup;
+  _g_databaseTempData1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80826,7 +80826,7 @@ void FUN_180941e90(void)
 void CreateFileSystemHandler(void)
 
 {
-  _DAT_180bf91b0 = &threadLocalStorageCleanup;
+  _g_sceneTempData1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80839,7 +80839,7 @@ void CreateFileSystemHandler(void)
 void InitializeFileCache(void)
 
 {
-  _DAT_180bf9210 = &threadLocalStorageCleanup;
+  _g_fileSystemTempData1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80852,7 +80852,7 @@ void InitializeFileCache(void)
 void SetupFileWatcher(void)
 
 {
-  _DAT_180bf9270 = &threadLocalStorageCleanup;
+  _g_fileCacheTempData1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80865,7 +80865,7 @@ void SetupFileWatcher(void)
 void FUN_180941f60(void)
 
 {
-  _DAT_180bf92d0 = &threadLocalStorageCleanup;
+  _g_sceneRenderTempData1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80878,7 +80878,7 @@ void FUN_180941f60(void)
 void FUN_180941f80(void)
 
 {
-  _DAT_180bf9330 = &threadLocalStorageCleanup;
+  _g_materialTextureTempData1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80891,7 +80891,7 @@ void FUN_180941f80(void)
 void FUN_180941fa0(void)
 
 {
-  _DAT_180bf9390 = &threadLocalStorageCleanup;
+  _g_materialTextureTempData3 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80904,7 +80904,7 @@ void FUN_180941fa0(void)
 void FUN_180941fc0(void)
 
 {
-  _DAT_180bf93f0 = &threadLocalStorageCleanup;
+  _g_materialPropertyTempData2 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80917,7 +80917,7 @@ void FUN_180941fc0(void)
 void FUN_180941fe0(void)
 
 {
-  _DAT_180bf9450 = &threadLocalStorageCleanup;
+  _g_materialRenderStateTempData5 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80930,7 +80930,7 @@ void FUN_180941fe0(void)
 void FUN_180942000(void)
 
 {
-  _DAT_180bf94b0 = &threadLocalStorageCleanup;
+  _g_materialUniformTempData5 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80943,7 +80943,7 @@ void FUN_180942000(void)
 void FUN_180942020(void)
 
 {
-  _DAT_180bf9510 = &threadLocalStorageCleanup;
+  _g_textureUploadTempData5 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80956,7 +80956,7 @@ void FUN_180942020(void)
 void FUN_180942040(void)
 
 {
-  _DAT_180bf9570 = &threadLocalStorageCleanup;
+  _g_textureMipTempData1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80969,7 +80969,7 @@ void FUN_180942040(void)
 void FUN_180942060(void)
 
 {
-  _DAT_180bf95d0 = &threadLocalStorageCleanup;
+  _g_textureCompressionTempData5 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80982,7 +80982,7 @@ void FUN_180942060(void)
 void FUN_180942080(void)
 
 {
-  _DAT_180bf9630 = &threadLocalStorageCleanup;
+  _g_textureFilterTempData5 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80995,7 +80995,7 @@ void FUN_180942080(void)
 void FUN_1809420a0(void)
 
 {
-  _DAT_180bf9690 = &threadLocalStorageCleanup;
+  _g_textureWrapTempData5 = &threadLocalStorageCleanup;
   return;
 }
 
