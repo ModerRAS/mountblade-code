@@ -115,8 +115,8 @@ data unknown_1809ffa30;
 data DAT_180a010a0;
 data unknown_180a00370;
 
-// 函数: data FUN_180941800;          # 数据结构初始化函数
-data FUN_180941800;          # 数据结构初始化函数
+// 函数: data initializeDataStructure1;          # 数据结构初始化函数
+data initializeDataStructure1;          # 数据结构初始化函数
 data DAT_180bf64e0;
 data DAT_180bf64e8;
 data unknown_1809fdc18;
@@ -125,8 +125,8 @@ data DAT_180bf6530;
 data DAT_180bf6538;
 data DAT_180bf6540;
 
-// 函数: data FUN_180941820;
-data FUN_180941820;
+// 函数: data initializeDataStructure2;
+data initializeDataStructure2;
 data DAT_180bf6548;
 data unknown_180a004e8;
 data DAT_180bf6590;
