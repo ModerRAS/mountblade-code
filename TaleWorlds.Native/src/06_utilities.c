@@ -2572,11 +2572,11 @@ uint64 validate_resource_resourceHandle(longlong resourceHandle)    // 资源句
     if ((char)validationResult1 == (char)validationResult2) {
       if (stackCharArrayX18[0] == (char)validationResult2) {
         dataValuePointer = (longlong *)(localLong1 + RESOURCE_OFFSET_POINTER);
-        unsignedVar8 = 0;
+        iterationIndex = 0;
         integerVar7 = *(int *)(localLong1 + RESOURCE_OFFSET_INDEX);
         if (0 < integerVar7) {
           plVar6 = (longlong *)*dataValueValueValuePointer;
-          functionResult0 = unsignedVar8;
+          functionResult0 = iterationIndex;
           do {
             if (*plVar6 == dataValueBuffer) {
               if (-1 < (int)functionResult0) {
@@ -2585,9 +2585,9 @@ uint64 validate_resource_resourceHandle(longlong resourceHandle)    // 资源句
               break;
             }
             functionResult0 = (ulonglong)((int)functionResult0 + 1);
-            unsignedVar8 = unsignedVar8 + 1;
+            iterationIndex = iterationIndex + 1;
             plVar6 = plVar6 + 1;
-          } while ((longlong)unsignedVar8 < (longlong)integerVar7);
+          } while ((longlong)iterationIndex < (longlong)integerVar7);
         }
         integerVar7 = integerVar7 + 1;
         if (*(int *)(localLong1 + RESOURCE_OFFSET_CAPACITY) < integerVar7) {
@@ -5125,7 +5125,7 @@ uint64 utilityGetResourceInformation(longlong resourceHandle,longlong memoryBloc
   uint validationResult2;
   ulonglong unsignedVar6;
   longlong longVar7;
-  ulonglong unsignedVar8;
+  ulonglong iterationIndex;
   ulonglong unsignedVar9;
   longlong longStackX8;
   
@@ -5135,14 +5135,14 @@ uint64 utilityGetResourceInformation(longlong resourceHandle,longlong memoryBloc
   unsignedVar3 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),&longStackX8longStackX8);
   if ((int)unsignedVar3 == 0) {
     unsignedVar6 = 0;
-    unsignedVar8 = unsignedVar6;
+    iterationIndex = unsignedVar6;
     if (longStackX8 != 0) {
-      unsignedVar8 = longStackX8 - 8;
+      iterationIndex = longStackX8 - 8;
     }
     unsignedVar9 = unsignedVar6;
-    if (0 < *(int *)(unsignedVar8 + BYTE_OFFSET_2)) {
+    if (0 < *(int *)(iterationIndex + BYTE_OFFSET_2)) {
       do {
-        longVar7 = *(longlong *)(unsignedVar8 + POINTER_OFFSET_DATA) + unsignedVar9;
+        longVar7 = *(longlong *)(iterationIndex + POINTER_OFFSET_DATA) + unsignedVar9;
         localLong1 = *(longlong *)(longVar7 + RESOURCE_HANDLE_OFFSET);
         if (localLong1 == 0) {
           return SUCCESS_CODE;
@@ -5165,7 +5165,7 @@ uint64 utilityGetResourceInformation(longlong resourceHandle,longlong memoryBloc
         validationResult2 = (int)unsignedVar6 + 1;
         unsignedVar6 = (ulonglong)validationResult2;
         unsignedVar9 = unsignedVar9 + RESOURCE_OFFSET_HANDLE;
-      } while ((int)validationResult2 < *(int *)(unsignedVar8 + BYTE_OFFSET_2));
+      } while ((int)validationResult2 < *(int *)(iterationIndex + BYTE_OFFSET_2));
     }
     unsignedVar3 = ERROR_CODE_INVALID;
   }
@@ -5184,21 +5184,21 @@ uint64 utilityRetrieveResourceData(void)
   uint validationResult2;
   ulonglong unsignedVar6;
   longlong longVar7;
-  ulonglong unsignedVar8;
+  ulonglong iterationIndex;
   ulonglong unsignedVar9;
   longlong unaff_R13;
   longlong unaff_R14;
   longlong in_stack_00000050;
   
   unsignedVar6 = 0;
-  unsignedVar8 = unsignedVar6;
+  iterationIndex = unsignedVar6;
   if (in_stack_00000050 != 0) {
-    unsignedVar8 = in_stack_00000050 - 8;
+    iterationIndex = in_stack_00000050 - 8;
   }
   unsignedVar9 = unsignedVar6;
-  if (0 < *(int *)(unsignedVar8 + BYTE_OFFSET_2)) {
+  if (0 < *(int *)(iterationIndex + BYTE_OFFSET_2)) {
     do {
-      longVar7 = *(longlong *)(unsignedVar8 + POINTER_OFFSET_DATA) + unsignedVar9;
+      longVar7 = *(longlong *)(iterationIndex + POINTER_OFFSET_DATA) + unsignedVar9;
       localLong1 = *(longlong *)(longVar7 + RESOURCE_HANDLE_OFFSET);
       if (localLong1 == 0) {
         return SUCCESS_CODE;
@@ -5221,7 +5221,7 @@ uint64 utilityRetrieveResourceData(void)
       validationResult2 = (int)unsignedVar6 + 1;
       unsignedVar6 = (ulonglong)validationResult2;
       unsignedVar9 = unsignedVar9 + RESOURCE_OFFSET_HANDLE;
-    } while ((int)validationResult2 < *(int *)(unsignedVar8 + BYTE_OFFSET_2));
+    } while ((int)validationResult2 < *(int *)(iterationIndex + BYTE_OFFSET_2));
   }
   return ERROR_CODE_INVALID;
 }
@@ -5987,7 +5987,7 @@ uint64 utilityFinalizeResourceTask(longlong resourceHandle,longlong memoryBlockS
   longlong longVar5;
   ulonglong unsignedVar6;
   float *pfloatValue7;
-  ulonglong unsignedVar8;
+  ulonglong iterationIndex;
   uint unsignedVar9;
   float floatVar11;
   float floatStackX8;
@@ -5998,16 +5998,16 @@ uint64 utilityFinalizeResourceTask(longlong resourceHandle,longlong memoryBlockS
   if ((int)unsignedVar3 != 0) {
     return unsignedVar3;
   }
-  unsignedVar8 = 0;
+  iterationIndex = 0;
   unsignedVar6 = CONCAT44(unsignedStackXc,floatStackX8) - 8;
   if (CONCAT44(unsignedStackXc,floatStackX8) == 0) {
-    unsignedVar6 = unsignedVar8;
+    unsignedVar6 = iterationIndex;
   }
   operationStatus = *(int *)(unsignedVar6 + BYTE_OFFSET_2);
   pfloatValue7 = (float *)(resourceHandle + POINTER_OFFSET_DATA + (longlong)*(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE) * 4);
   if (0 < *(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE)) {
     pfloatValue4 = pfloatValue7;
-    functionResult0 = unsignedVar8;
+    functionResult0 = iterationIndex;
     do {
       operationStatus = *(int *)(((resourceHandle + POINTER_OFFSET_DATA) - (longlong)pfloatValue7) + (longlong)pfloatValue4);
       if (operationStatus != -1) {
@@ -6047,8 +6047,8 @@ uint64 utilityFinalizeResourceTask(longlong resourceHandle,longlong memoryBlockS
         if (operationStatus != -1) {
           *(float *)(*(longlong *)(unsignedVar6 + POINTER_OFFSET_DATA) + 4 + (longlong)localStatus * RESOURCE_OFFSET_HANDLE) = *pfloatValue7;
         }
-        unsignedVar9 = (int)unsignedVar8 + 1;
-        unsignedVar8 = (ulonglong)unsignedVar9;
+        unsignedVar9 = (int)iterationIndex + 1;
+        iterationIndex = (ulonglong)unsignedVar9;
         pfloatValue7 = pfloatValue7 + 1;
       } while ((int)unsignedVar9 < *(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE));
     }
@@ -6072,7 +6072,7 @@ uint64 utilityCompleteResourceCycle(void)
   ulonglong unsignedVar6;
   float *pfloatValue7;
   uint in_R9D;
-  uint unsignedVar8;
+  uint iterationIndex;
   longlong unaff_R15;
   float floatVar9;
   
@@ -6084,7 +6084,7 @@ uint64 utilityCompleteResourceCycle(void)
   pfloatValue7 = (float *)(baseRegister + POINTER_OFFSET_DATA + (longlong)*(int *)(baseRegister + RESOURCE_OFFSET_HANDLE) * 4);
   if (0 < *(int *)(baseRegister + RESOURCE_OFFSET_HANDLE)) {
     pfloatValue4 = pfloatValue7;
-    unsignedVar8 = in_R9D;
+    iterationIndex = in_R9D;
     do {
       dataValueLength = *(int *)(((baseRegister + POINTER_OFFSET_DATA) - (longlong)pfloatValue7) + (longlong)pfloatValue4);
       if (dataValueLength != -1) {
@@ -6113,9 +6113,9 @@ uint64 utilityCompleteResourceCycle(void)
         }
         *pfloatValue4 = floatVar9;
       }
-      unsignedVar8 = unsignedVar8 + 1;
+      iterationIndex = iterationIndex + 1;
       pfloatValue4 = pfloatValue4 + 1;
-    } while ((int)unsignedVar8 < *(int *)(baseRegister + RESOURCE_OFFSET_HANDLE));
+    } while ((int)iterationIndex < *(int *)(baseRegister + RESOURCE_OFFSET_HANDLE));
     if (0 < *(int *)(baseRegister + RESOURCE_OFFSET_HANDLE)) {
       longVar5 = (baseRegister + POINTER_OFFSET_DATA) - (longlong)pfloatValue7;
       do {
@@ -8213,7 +8213,7 @@ uint64 initialize_debug_system(void)
   longlong *baseRegister;
   int unaff_EDI;
   int integerVar7;
-  ulonglong unsignedVar8;
+  ulonglong iterationIndex;
   ulonglong unsignedVar9;
   
   if (unaff_EDI == in_EAX) {
@@ -8233,8 +8233,8 @@ uint64 initialize_debug_system(void)
     if ((int)unsignedCounter != 0) {
       return unsignedCounter;
     }
-    unsignedVar8 = 0;
-    unsignedVar3 = unsignedVar8;
+    iterationIndex = 0;
+    unsignedVar3 = iterationIndex;
     if (0 < integerVar7) {
       do {
         *(uint32 *)(*baseRegister + unsignedVar3 * 4) = INVALID_HANDLE;
@@ -8242,8 +8242,8 @@ uint64 initialize_debug_system(void)
       } while ((longlong)unsignedVar3 < (longlong)integerVar7);
     }
     localLong1 = baseRegister[3];
-    unsignedVar3 = unsignedVar8;
-    unsignedVar9 = unsignedVar8;
+    unsignedVar3 = iterationIndex;
+    unsignedVar9 = iterationIndex;
     if (0 < (int)localLong1) {
       do {
         if ((int)baseRegister[1] == 0) {
@@ -8256,9 +8256,9 @@ uint64 initialize_debug_system(void)
           pintVar6 = (int *)(baseRegister[2] + 4 + (longlong)integerVar7 * RESOURCE_HANDLE_OFFSET);
           integerVar7 = *pintVar6;
         }
-        *pintVar6 = (int)unsignedVar8;
+        *pintVar6 = (int)iterationIndex;
         unsignedVar9 = unsignedVar9 + 1;
-        unsignedVar8 = (ulonglong)((int)unsignedVar8 + 1);
+        iterationIndex = (ulonglong)((int)iterationIndex + 1);
         *(uint32 *)(baseRegister[2] + 4 + unsignedVar3) = INVALID_HANDLE;
         unsignedVar3 = unsignedVar3 + RESOURCE_HANDLE_OFFSET;
       } while ((longlong)unsignedVar9 < (longlong)(int)localLong1);
@@ -8799,7 +8799,7 @@ uint64 allocate_memory_block(uint64 resourceHandle,int memoryBlockSize)
   uint64 *pvalidationResult2;
   int integerVar6;
   longlong longVar7;
-  uint32 *punsignedVar8;
+  uint32 *piterationIndex;
   uint unsignedVar9;
   int localStatus0;
   int *plocalHandle;
@@ -8852,11 +8852,11 @@ uint64 allocate_memory_block(uint64 resourceHandle,int memoryBlockSize)
     *(int *)(unaff_RDI + 3) = (int)unaff_RDI[3] + 1;
   }
   else {
-    punsignedVar8 = (uint32 *)((longlong)operationStatus * RESOURCE_HANDLE_OFFSET + unaff_RDI[2]);
-    *(uint32 *)(unaff_RDI + 4) = punsignedVar8[1];
-    punsignedVar8[1] = INVALID_HANDLE;
-    *punsignedVar8 = *unaff_R15;
-    *(uint64 *)(punsignedVar8 + 2) = *unaff_R14;
+    piterationIndex = (uint32 *)((longlong)operationStatus * RESOURCE_HANDLE_OFFSET + unaff_RDI[2]);
+    *(uint32 *)(unaff_RDI + 4) = piterationIndex[1];
+    piterationIndex[1] = INVALID_HANDLE;
+    *piterationIndex = *unaff_R15;
+    *(uint64 *)(piterationIndex + 2) = *unaff_R14;
   }
   *plocalHandle = operationStatus;
   *(int *)((longlong)unaff_RDI + FIELD_OFFSET_3) = *(int *)((longlong)unaff_RDI + FIELD_OFFSET_3) + 1;
@@ -9195,7 +9195,7 @@ ulonglong validate_memory_address(longlong resourceHandle)
   longlong longVar5;
   ulonglong unsignedVar6;
   int integerVar7;
-  uint unsignedVar8;
+  uint iterationIndex;
   uint unsignedVar9;
   ulonglong functionResult0;
   int localStatus1;
@@ -9233,11 +9233,11 @@ ulonglong validate_memory_address(longlong resourceHandle)
   byte localBuffer [8];
   byte localBuffer [40];
   
-  unsignedVar8 = *(uint *)(resourceHandle + 0x6c);
+  iterationIndex = *(uint *)(resourceHandle + 0x6c);
   unsignedVar6 = 0;
   iterationCounter = 0;
-  if ((unsignedVar8 >> 0x1a & 1) == 0) goto process_system_status;
-  if ((unsignedVar8 & 1) == 0) {
+  if ((iterationIndex >> 0x1a & 1) == 0) goto process_system_status;
+  if ((iterationIndex & 1) == 0) {
     plStack_108 = (longlong *)(resourceHandle + 0x70);
     localUInt = 0;
     localStatus6 = 0;
@@ -9353,17 +9353,17 @@ ulonglong validate_memory_address(longlong resourceHandle)
               else if (localStatus6 < integerVar7) {
                 localStatus6 = integerVar7;
               }
-              unsignedVar8 = validateResourceData(&localUInt,localStatus6);
-              unsignedVar6 = (ulonglong)unsignedVar8;
+              iterationIndex = validateResourceData(&localUInt,localStatus6);
+              unsignedVar6 = (ulonglong)iterationIndex;
               iterationCounter = (int)localUInt;
-              if (unsignedVar8 != 0) {
-                unsignedVar8 = localUInt._4_4_;
+              if (iterationIndex != 0) {
+                iterationIndex = localUInt._4_4_;
                 if ((longlong)localUInt < 0) {
-                  unsignedVar8 = -localUInt._4_4_;
+                  iterationIndex = -localUInt._4_4_;
                 }
                 longVar5 = (longlong)(int)localUInt;
                 unsignedVar9 = localUInt._4_4_;
-                if ((int)unsignedVar8 < 0) {
+                if ((int)iterationIndex < 0) {
                   if (0 < (int)localUInt) {
                     return unsignedVar6;
                   }
@@ -9481,12 +9481,12 @@ validate_operation_result:
   functionResult0 = unsignedVar6;
   if (0 < *(int *)(resourceHandle + POINTER_OFFSET_DATA)) {
     do {
-      unsignedVar8 = (int)functionResult0 + 1;
+      iterationIndex = (int)functionResult0 + 1;
       pbVar1 = (byte *)(unsignedVar6 + 0xb + *(longlong *)(resourceHandle + RESOURCE_OFFSET_HANDLE));
       *pbVar1 = *pbVar1 & 0xfe;
       unsignedVar6 = unsignedVar6 + STRUCT_MULTIPLIER;
-      functionResult0 = (ulonglong)unsignedVar8;
-    } while ((int)unsignedVar8 < *(int *)(resourceHandle + POINTER_OFFSET_DATA));
+      functionResult0 = (ulonglong)iterationIndex;
+    } while ((int)iterationIndex < *(int *)(resourceHandle + POINTER_OFFSET_DATA));
   }
   iterationCounter = validate_system_integrity(resourceHandle + 0x70);
   if ((iterationCounter == 0) && (iterationCounter = configure_system_parameters(resourceHandle + BUFFER_OFFSET_TEMP), iterationCounter == 0)) {
@@ -9494,9 +9494,9 @@ validate_operation_result:
     *(uint32 *)(resourceHandle + 0x94) = 0;
   }
   *(uint *)(resourceHandle + 0x6c) = *(uint *)(resourceHandle + 0x6c) & 0xfbffffff;
-  unsignedVar8 = *(uint *)(resourceHandle + 0x6c);
+  iterationIndex = *(uint *)(resourceHandle + 0x6c);
 process_system_status:
-  if ((unsignedVar8 >> 0x19 & 1) != 0) {
+  if ((iterationIndex >> 0x19 & 1) != 0) {
     longVar5 = *(longlong *)(resourceHandle + 0xa0);
     unsignedVar6 = processResourceHandle(*(uint64 *)(resourceHandle + DATA_OFFSET_START),resourceHandle + 0xa0,0);
     if ((int)unsignedVar6 != 0) {
@@ -10729,7 +10729,7 @@ void ExecuteResourceCommand(void)
   uint32 validationResult2;
   uint32 unsignedVar6;
   uint32 unsignedVar7;
-  uint32 unsignedVar8;
+  uint32 iterationIndex;
   uint32 unsignedVar9;
   uint32 functionResult0;
   uint32 functionResult1;
@@ -10850,7 +10850,7 @@ void ExecuteResourceCommand(void)
             unaff_RBP[-0xb] = functionResult7;
             unaff_RBP[-10] = functionResult6;
             *(float *)(unaff_RBP + -0xd) = unaff_R13D;
-            unsignedVar8 = *(uint32 *)(unaff_R15 + SYSTEM_OFFSET_STATUS1);
+            iterationIndex = *(uint32 *)(unaff_R15 + SYSTEM_OFFSET_STATUS1);
             unsignedVar9 = *(uint32 *)(unaff_R15 + 0x5c);
             functionResult0 = *(uint32 *)(unaff_R15 + DATA_OFFSET_START);
             functionResult1 = *(uint32 *)(unaff_R15 + 100);
@@ -10859,11 +10859,11 @@ void ExecuteResourceCommand(void)
             *(uint32 *)((longlong)unaff_RBP + -RESOURCE_CONFIG_OFFSET) = validationResult2;
             *(uint32 *)(unaff_RBP + -8) = unsignedVar6;
             *(uint32 *)((longlong)unaff_RBP + -RESOURCE_PROPERTY_OFFSET) = unsignedVar7;
-            *(uint32 *)(unaff_RBP + -7) = unsignedVar8;
+            *(uint32 *)(unaff_RBP + -7) = iterationIndex;
             *(uint32 *)((longlong)unaff_RBP + -FIELD_OFFSET_2) = unsignedVar9;
             *(uint32 *)(unaff_RBP + -6) = functionResult0;
             *(uint32 *)((longlong)unaff_RBP + -FIELD_OFFSET_4) = functionResult1;
-            localStatus3 = ValidateResourceAccess(unsignedVar8,unaff_RBP + -0xe);
+            localStatus3 = ValidateResourceAccess(iterationIndex,unaff_RBP + -0xe);
             unsignedCounter4 = extraout_XMM0_Da_02;
             if (localStatus3 != 0) goto FinalizeResourceProcess;
           }
@@ -10991,7 +10991,7 @@ void HandleResourceCallback(void)
   uint32 validationResult2;
   uint32 unsignedVar6;
   uint32 unsignedVar7;
-  uint32 unsignedVar8;
+  uint32 iterationIndex;
   uint32 unsignedVar9;
   uint32 functionResult0;
   uint32 functionResult1;
@@ -11096,7 +11096,7 @@ void HandleResourceCallback(void)
         unaff_RBP[-0xb] = functionResult7;
         unaff_RBP[-10] = functionResult6;
         *(float *)(unaff_RBP + -0xd) = unaff_R13D;
-        unsignedVar8 = *(uint32 *)(unaff_R15 + SYSTEM_OFFSET_STATUS1);
+        iterationIndex = *(uint32 *)(unaff_R15 + SYSTEM_OFFSET_STATUS1);
         unsignedVar9 = *(uint32 *)(unaff_R15 + 0x5c);
         functionResult0 = *(uint32 *)(unaff_R15 + DATA_OFFSET_START);
         functionResult1 = *(uint32 *)(unaff_R15 + 100);
@@ -11105,11 +11105,11 @@ void HandleResourceCallback(void)
         *(uint32 *)((longlong)unaff_RBP + -RESOURCE_CONFIG_OFFSET) = validationResult2;
         *(uint32 *)(unaff_RBP + -8) = unsignedVar6;
         *(uint32 *)((longlong)unaff_RBP + -RESOURCE_PROPERTY_OFFSET) = unsignedVar7;
-        *(uint32 *)(unaff_RBP + -7) = unsignedVar8;
+        *(uint32 *)(unaff_RBP + -7) = iterationIndex;
         *(uint32 *)((longlong)unaff_RBP + -FIELD_OFFSET_2) = unsignedVar9;
         *(uint32 *)(unaff_RBP + -6) = functionResult0;
         *(uint32 *)((longlong)unaff_RBP + -FIELD_OFFSET_4) = functionResult1;
-        localStatus3 = ValidateResourceAccess(unsignedVar8,unaff_RBP + -0xe);
+        localStatus3 = ValidateResourceAccess(iterationIndex,unaff_RBP + -0xe);
         unsignedCounter3 = extraout_XMM0_Da_01;
         if (localStatus3 != 0) goto CompleteResourceOperation;
       }
@@ -11533,7 +11533,7 @@ uint64 GetResourceInfo(longlong *resourceHandle)
   uint32 validationResult2;
   uint32 unsignedVar6;
   uint32 unsignedVar7;
-  uint32 unsignedVar8;
+  uint32 iterationIndex;
   dataValueValue *localPtr;
   uint32 localUInt;
   uint32 localUInt;
@@ -11565,31 +11565,31 @@ uint64 GetResourceInfo(longlong *resourceHandle)
                                   *(uint32 *)(localLong1 + 0x1193c),*(uint32 *)(localLong1 + 0x6d4)),
            (int)unsignedCounter == 0)) {
           validationResult1 = *(uint32 *)(localLong1 + 0x11668);
-          unsignedVar8 = *(uint32 *)(localLong1 + 0x11624);
+          iterationIndex = *(uint32 *)(localLong1 + 0x11624);
           unsignedVar7 = *(uint32 *)(localLong1 + 0x11620);
           unsignedVar6 = *(uint32 *)(localLong1 + 0x1161c);
           unsignedCounter = InitializeResourceData(resourceHandle,&unknown_1809865f0,*(uint32 *)(localLong1 + 0x1160c),
                                 *(uint32 *)(localLong1 + 0x11610),*(uint32 *)(localLong1 + 0x11614),
-                                *(uint32 *)(localLong1 + 0x11618),unsignedVar6,unsignedVar7,unsignedVar8,validationResult1);
+                                *(uint32 *)(localLong1 + 0x11618),unsignedVar6,unsignedVar7,iterationIndex,validationResult1);
           if (((int)unsignedCounter == 0) &&
              (unsignedCounter = InitializeResourceData(resourceHandle,&unknown_1809866c0,*(uint32 *)(localLong1 + 0x11628),
                                     (double)*(float *)(localLong1 + 0x11640),
                                     *(uint32 *)(localLong1 + 0x11644),
-                                    *(uint32 *)(localLong1 + 0x1164c),unsignedVar6,unsignedVar7,unsignedVar8,validationResult1),
+                                    *(uint32 *)(localLong1 + 0x1164c),unsignedVar6,unsignedVar7,iterationIndex,validationResult1),
              (int)unsignedCounter == 0)) {
             unsignedVar6 = *(uint32 *)(localLong1 + 0x11660);
             unsignedCounter = InitializeResourceData(resourceHandle,&unknown_180986730,(double)*(float *)(localLong1 + 0x11650),
                                   *(uint32 *)(localLong1 + 0x11654),*(uint32 *)(localLong1 + 0x11658),
-                                  *(uint32 *)(localLong1 + 0x1165c),unsignedVar6,unsignedVar7,unsignedVar8,validationResult1);
+                                  *(uint32 *)(localLong1 + 0x1165c),unsignedVar6,unsignedVar7,iterationIndex,validationResult1);
             if ((int)unsignedCounter == 0) {
               validationResult2 = *(uint32 *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
               unsignedCounter = InitializeResourceData(resourceHandle,&unknown_1809867b0,*(uint32 *)(arrayIndex + 4),
                                     *(uint32 *)(arrayIndex + 8),*(uint32 *)(arrayIndex + STRUCT_MULTIPLIER),validationResult2,
-                                    unsignedVar6,unsignedVar7,unsignedVar8,validationResult1);
+                                    unsignedVar6,unsignedVar7,iterationIndex,validationResult1);
               if ((((int)unsignedCounter == 0) &&
                   (unsignedCounter = InitializeResourceData(resourceHandle,&unknown_180986850,*(uint32 *)(localLong1 + SYSTEM_DATA_OFFSET),
                                          *(uint32 *)(resourceHandle[1] + POINTER_OFFSET_DATA),
-                                         *(uint32 *)(localLong1 + HANDLE_OFFSET_DATA),validationResult2,unsignedVar6,unsignedVar7,unsignedVar8,validationResult1
+                                         *(uint32 *)(localLong1 + HANDLE_OFFSET_DATA),validationResult2,unsignedVar6,unsignedVar7,iterationIndex,validationResult1
                                         ), (int)unsignedCounter == 0)) &&
                  ((unsignedCounter = (**(code **)(*resourceHandle + 8))(resourceHandle,&unknown_1809864dc), (int)unsignedCounter == 0 &&
                   (((*(uint *)(resourceHandle + 3) & 2) != 0 ||
@@ -12081,7 +12081,7 @@ uint64 ConfigureResourceSettings(longlong *resourceHandle,char *memoryBlockBlock
   char charVar5;
   char charVar6;
   int integerVar7;
-  uint unsignedVar8;
+  uint iterationIndex;
   char *pcVar9;
   int localStatus0;
   uint *pfunctionResult1;
@@ -12140,9 +12140,9 @@ process_string_data:
       return ERROR_CODE_INVALID;
     }
 validate_string_data:
-    unsignedVar8 = pfunctionResult1[1] & 0xffffff;
-    if (((char)(pfunctionResult1[1] >> RESOURCE_OFFSET_HANDLE) == '\0') && ((int)unsignedVar8 < (int)resourceHandle[3])) {
-      punsignedCounter = (uint64 *)(resourceHandle[2] + (ulonglong)unsignedVar8 * RESOURCE_HANDLE_OFFSET);
+    iterationIndex = pfunctionResult1[1] & 0xffffff;
+    if (((char)(pfunctionResult1[1] >> RESOURCE_OFFSET_HANDLE) == '\0') && ((int)iterationIndex < (int)resourceHandle[3])) {
+      punsignedCounter = (uint64 *)(resourceHandle[2] + (ulonglong)iterationIndex * RESOURCE_HANDLE_OFFSET);
       validationResult1 = punsignedCounter[1];
       *operationFlags = *punsignedCounter;
       operationFlags[1] = validationResult1;
@@ -13488,7 +13488,7 @@ void rankUtilityCapability(longlong resourceHandle,uint32 *memoryBlockBlockBlock
   longlong longVar5;
   ulonglong unsignedVar6;
   uint32 unsignedVar7;
-  ulonglong unsignedVar8;
+  ulonglong iterationIndex;
   uint64 unsignedStackX8;
   
   unsignedStackX8 = CONCAT44(unsignedStackX8._4_4_,*memoryBlockBlockBlockSize);
@@ -13555,7 +13555,7 @@ void rankUtilityCapability(longlong resourceHandle,uint32 *memoryBlockBlockBlock
                               (*(uint64 **)(resourceHandle + 8),&unsignedStackX8unsignedStackX8,4);
             if (operationStatus == 0) {
               validationResult1 = unsignedVar6;
-              unsignedVar8 = unsignedVar6;
+              iterationIndex = unsignedVar6;
               if (0 < localStatus) {
                 do {
                   longVar5 = *(longlong *)(memoryBlockSize + RESOURCE_DATA_OFFSET) + validationResult1;
@@ -13582,9 +13582,9 @@ void rankUtilityCapability(longlong resourceHandle,uint32 *memoryBlockBlockBlock
                   if (operationStatus != 0) {
                     return;
                   }
-                  unsignedVar8 = unsignedVar8 + 1;
+                  iterationIndex = iterationIndex + 1;
                   validationResult1 = validationResult1 + RESOURCE_OFFSET_HANDLE;
-                } while ((longlong)unsignedVar8 < (longlong)localStatus);
+                } while ((longlong)iterationIndex < (longlong)localStatus);
               }
               operationStatus = readResourceField(resourceHandle,memoryBlockSize + RESOURCE_OFFSET_HANDLE);
               if (operationStatus == 0) {
@@ -13642,7 +13642,7 @@ void sortUtilityFeatures(uint64 *resourceHandle,uint64 memoryBlockSize)
   longlong longVar6;
   ulonglong unsignedVar7;
   longlong unaff_R14;
-  ulonglong unsignedVar8;
+  ulonglong iterationIndex;
   uint32 extraout_XMM0_Da;
   uint32 extraout_XMM0_Da_00;
   uint32 extraout_XMM0_Da_01;
@@ -13713,7 +13713,7 @@ void sortUtilityFeatures(uint64 *resourceHandle,uint64 memoryBlockSize)
         operationStatus = (**(code **)*pfunctionResult)(pfunctionResult,unaff_RBP + POINTER_OFFSET_DATA,4);
         if (operationStatus == 0) {
           validationResult2 = unsignedVar7;
-          unsignedVar8 = unsignedVar7;
+          iterationIndex = unsignedVar7;
           unsignedVar9 = extraout_XMM0_Da_03;
           if (0 < dataValueLength) {
             do {
@@ -13740,10 +13740,10 @@ void sortUtilityFeatures(uint64 *resourceHandle,uint64 memoryBlockSize)
               if (operationStatus != 0) {
                 return;
               }
-              unsignedVar8 = unsignedVar8 + 1;
+              iterationIndex = iterationIndex + 1;
               validationResult2 = validationResult2 + RESOURCE_OFFSET_HANDLE;
               unsignedVar9 = extraout_XMM0_Da_05;
-            } while ((longlong)unsignedVar8 < (longlong)dataValueLength);
+            } while ((longlong)iterationIndex < (longlong)dataValueLength);
           }
           dataValueLength = readResourceField(unsignedVar9,unaff_R14 + DATA_OFFSET_START);
           if (dataValueLength == 0) {
@@ -13804,17 +13804,17 @@ void filterUtilityOptions(uint64 *resourceHandle)
   uint32 extraout_XMM0_Da;
   uint32 extraout_XMM0_Da_00;
   uint32 extraout_XMM0_Da_01;
-  uint32 unsignedVar8;
+  uint32 iterationIndex;
   
   dataValueLength = (**(code **)*resourceHandle)();
   if (dataValueLength == 0) {
     longVar6 = unaff_RDI;
     longVar7 = unaff_RDI;
-    unsignedVar8 = extraout_XMM0_Da;
+    iterationIndex = extraout_XMM0_Da;
     if (0 < (int)unaff_RSI) {
       do {
         longVar5 = *(longlong *)(unaff_R14 + LIST_OFFSET_HEAD) + longVar6;
-        dataValueLength = discoverUtilityComponents(unsignedVar8,longVar5);
+        dataValueLength = discoverUtilityComponents(iterationIndex,longVar5);
         if (dataValueLength != 0) {
           return;
         }
@@ -13822,13 +13822,13 @@ void filterUtilityOptions(uint64 *resourceHandle)
         punsignedCounter = *(uint64 **)(baseRegister + 8);
         if (functionResult < 0x8000) {
           *(short *)(unaff_RBP + POINTER_OFFSET_DATA) = (short)functionResult;
-          unsignedVar8 = 2;
+          iterationIndex = 2;
         }
         else {
-          unsignedVar8 = 4;
+          iterationIndex = 4;
           *(uint *)(unaff_RBP + POINTER_OFFSET_DATA) = (functionResult & 0xffffc000 | 0x4000) * 2 | functionResult & 0x7fff;
         }
-        dataValueLength = (**(code **)*punsignedCounter)(punsignedCounter,unaff_RBP + POINTER_OFFSET_DATA,unsignedVar8);
+        dataValueLength = (**(code **)*punsignedCounter)(punsignedCounter,unaff_RBP + POINTER_OFFSET_DATA,iterationIndex);
         if (dataValueLength != 0) {
           return;
         }
@@ -13838,10 +13838,10 @@ void filterUtilityOptions(uint64 *resourceHandle)
         }
         longVar7 = longVar7 + 1;
         longVar6 = longVar6 + RESOURCE_OFFSET_HANDLE;
-        unsignedVar8 = extraout_XMM0_Da_01;
+        iterationIndex = extraout_XMM0_Da_01;
       } while (longVar7 < unaff_RSI);
     }
-    dataValueLength = readResourceField(unsignedVar8,unaff_R14 + DATA_OFFSET_START);
+    dataValueLength = readResourceField(iterationIndex,unaff_R14 + DATA_OFFSET_START);
     if (dataValueLength == 0) {
       punsignedCounter = *(uint64 **)(baseRegister + 8);
       dataValueLength = *(int *)(unaff_R14 + HANDLE_OFFSET_DATA);
@@ -16270,7 +16270,7 @@ ulonglong FUN_18089b7d0(longlong resourceHandle,longlong *memoryBlockBlockBlockS
   ulonglong validationResult2;
   ulonglong unsignedVar6;
   uint unsignedVar7;
-  ulonglong unsignedVar8;
+  ulonglong iterationIndex;
   char stackCharArrayX18 [8];
   uint unsignedStackArrayX20 [2];
   byte localBuffer [32];
@@ -16304,7 +16304,7 @@ ulonglong FUN_18089b7d0(longlong resourceHandle,longlong *memoryBlockBlockBlockS
   if (unsignedVar3 != 0) {
     return (ulonglong)unsignedVar3;
   }
-  unsignedVar8 = BYTE_OFFSET_FLAG;
+  iterationIndex = BYTE_OFFSET_FLAG;
   validationResult2 = 0;
   if (*(uint *)(memoryBlockSize + 8) < 0x82) {
     if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
@@ -16347,24 +16347,24 @@ LAB_18089b91c:
       return unsignedVar6;
     }
   }
-  unsignedVar6 = unsignedVar8;
+  unsignedVar6 = iterationIndex;
   if ((((*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) &&
        (unsignedVar6 = rateUtilityEffectiveness(*memoryBlockBlockBlockSize,resourceHandle + 0x94), (int)unsignedVar6 == 0)) &&
-      (unsignedVar6 = unsignedVar8, *(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
+      (unsignedVar6 = iterationIndex, *(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
      ((unsignedVar6 = rateUtilityEffectiveness(*memoryBlockBlockBlockSize,resourceHandle + RESOURCE_HANDLE_OFFSET), (int)unsignedVar6 == 0 &&
-      (unsignedVar6 = unsignedVar8, *(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0)))) {
+      (unsignedVar6 = iterationIndex, *(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0)))) {
     dataValueBuffer = *memoryBlockBlockBlockSize;
     unsignedVar6 = rateUtilityEffectiveness(dataValueBuffer,resourceHandle + BUFFER_OFFSET_TEMP);
     if (((((int)unsignedVar6 == 0) &&
          ((unsignedVar6 = rateUtilityEffectiveness(dataValueBuffer,resourceHandle + 0x84), (int)unsignedVar6 == 0 &&
           (unsignedVar6 = examineUtilityBehavior(memoryBlockSize,resourceHandle + 0x88), (int)unsignedVar6 == 0)))) &&
-        (unsignedVar6 = unsignedVar8, *(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
+        (unsignedVar6 = iterationIndex, *(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
        ((((unsignedVar6 = ConfigureResourceBuffer(*memoryBlockBlockBlockSize,resourceHandle + 0x70), (int)unsignedVar6 == 0 &&
-          (unsignedVar6 = unsignedVar8, *(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
+          (unsignedVar6 = iterationIndex, *(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
          (unsignedVar6 = rateUtilityEffectiveness(*memoryBlockBlockBlockSize,resourceHandle + 0xa8), (int)unsignedVar6 == 0)) &&
-        (((unsignedVar6 = unsignedVar8, *(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
+        (((unsignedVar6 = iterationIndex, *(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
           (unsignedVar6 = rateUtilityEffectiveness(*memoryBlockBlockBlockSize,resourceHandle + 0x9c), (int)unsignedVar6 == 0)) &&
-         ((unsignedVar6 = unsignedVar8, *(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
+         ((unsignedVar6 = iterationIndex, *(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
           ((unsignedVar6 = writeResourceData(*memoryBlockBlockBlockSize,resourceHandle + 0xb4,4), (int)unsignedVar6 == 0 &&
            (unsignedVar6 = processBufferData(resourceHandle + FIELD_OFFSET_1,memoryBlockSize), (int)unsignedVar6 == 0)))))))))) {
       unsignedVar6 = validationResult2;
@@ -16413,7 +16413,7 @@ LAB_18089bbcc:
                     // WARNING: Subroutine does not return
                 freeResourceBuffer(memoryBlockSize,localBuffer);
               }
-              unsignedVar6 = unsignedVar8;
+              unsignedVar6 = iterationIndex;
               if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
                 unsignedVar3 = judgeUtilityEfficiency(resourceHandle + 200,*memoryBlockBlockBlockSize);
                 unsignedVar6 = (ulonglong)unsignedVar3;
@@ -16443,7 +16443,7 @@ ulonglong FUN_18089b813(void)
   longlong *baseRegister;
   ulonglong unsignedVar7;
   longlong unaff_RSI;
-  ulonglong unsignedVar8;
+  ulonglong iterationIndex;
   char in_stack_00000090;
   uint in_stack_00000098;
   
@@ -16468,7 +16468,7 @@ ulonglong FUN_18089b813(void)
   if (unsignedVar3 != 0) {
     return (ulonglong)unsignedVar3;
   }
-  unsignedVar8 = BYTE_OFFSET_FLAG;
+  iterationIndex = BYTE_OFFSET_FLAG;
   unsignedVar7 = 0;
   if (*(uint *)(baseRegister + 8) < 0x82) {
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
@@ -16511,24 +16511,24 @@ LAB_18089b91c:
       return validationResult2;
     }
   }
-  validationResult2 = unsignedVar8;
+  validationResult2 = iterationIndex;
   if ((((*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) &&
        (validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x94), (int)validationResult2 == 0)) &&
-      (validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
+      (validationResult2 = iterationIndex, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
      ((validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + RESOURCE_HANDLE_OFFSET), (int)validationResult2 == 0 &&
-      (validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)))) {
+      (validationResult2 = iterationIndex, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)))) {
     dataValueBuffer = *baseRegister;
     validationResult2 = rateUtilityEffectiveness(dataValueBuffer,unaff_RSI + BUFFER_OFFSET_TEMP);
     if (((((int)validationResult2 == 0) &&
          ((validationResult2 = rateUtilityEffectiveness(dataValueBuffer,unaff_RSI + 0x84), (int)validationResult2 == 0 &&
           (validationResult2 = examineUtilityBehavior(), (int)validationResult2 == 0)))) &&
-        (validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
+        (validationResult2 = iterationIndex, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
        ((((validationResult2 = ConfigureResourceBuffer(*baseRegister,unaff_RSI + 0x70), (int)validationResult2 == 0 &&
-          (validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
+          (validationResult2 = iterationIndex, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
          (validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xa8), (int)validationResult2 == 0)) &&
-        (((validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
+        (((validationResult2 = iterationIndex, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
           (validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x9c), (int)validationResult2 == 0)) &&
-         ((validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
+         ((validationResult2 = iterationIndex, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
           ((validationResult2 = writeResourceData(*baseRegister,unaff_RSI + 0xb4,4), (int)validationResult2 == 0 &&
            (validationResult2 = processBufferData(unaff_RSI + FIELD_OFFSET_1), (int)validationResult2 == 0)))))))))) {
       validationResult2 = unsignedVar7;
@@ -16577,7 +16577,7 @@ LAB_18089bbcc:
                     // WARNING: Subroutine does not return
                 freeResourceBuffer();
               }
-              validationResult2 = unsignedVar8;
+              validationResult2 = iterationIndex;
               if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
                 unsignedVar3 = judgeUtilityEfficiency(unaff_RSI + 200,*baseRegister);
                 validationResult2 = (ulonglong)unsignedVar3;
@@ -16606,7 +16606,7 @@ ulonglong FUN_18089b86d(void)
   longlong *baseRegister;
   ulonglong unsignedVar7;
   longlong unaff_RSI;
-  ulonglong unsignedVar8;
+  ulonglong iterationIndex;
   char in_stack_00000090;
   uint in_stack_00000098;
   
@@ -16614,7 +16614,7 @@ ulonglong FUN_18089b86d(void)
   if (unsignedVar3 != 0) {
     return (ulonglong)unsignedVar3;
   }
-  unsignedVar8 = BYTE_OFFSET_FLAG;
+  iterationIndex = BYTE_OFFSET_FLAG;
   unsignedVar7 = 0;
   if (*(uint *)(baseRegister + 8) < 0x82) {
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
@@ -16657,24 +16657,24 @@ LAB_18089b91c:
       return validationResult2;
     }
   }
-  validationResult2 = unsignedVar8;
+  validationResult2 = iterationIndex;
   if ((((*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) &&
        (validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x94), (int)validationResult2 == 0)) &&
-      (validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
+      (validationResult2 = iterationIndex, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
      ((validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + RESOURCE_HANDLE_OFFSET), (int)validationResult2 == 0 &&
-      (validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)))) {
+      (validationResult2 = iterationIndex, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)))) {
     dataValueBuffer = *baseRegister;
     validationResult2 = rateUtilityEffectiveness(dataValueBuffer,unaff_RSI + BUFFER_OFFSET_TEMP);
     if (((((int)validationResult2 == 0) &&
          ((validationResult2 = rateUtilityEffectiveness(dataValueBuffer,unaff_RSI + 0x84), (int)validationResult2 == 0 &&
           (validationResult2 = examineUtilityBehavior(), (int)validationResult2 == 0)))) &&
-        (validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
+        (validationResult2 = iterationIndex, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
        ((((validationResult2 = ConfigureResourceBuffer(*baseRegister,unaff_RSI + 0x70), (int)validationResult2 == 0 &&
-          (validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
+          (validationResult2 = iterationIndex, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
          (validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xa8), (int)validationResult2 == 0)) &&
-        (((validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
+        (((validationResult2 = iterationIndex, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
           (validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x9c), (int)validationResult2 == 0)) &&
-         ((validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
+         ((validationResult2 = iterationIndex, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
           ((validationResult2 = writeResourceData(*baseRegister,unaff_RSI + 0xb4,4), (int)validationResult2 == 0 &&
            (validationResult2 = processBufferData(unaff_RSI + FIELD_OFFSET_1), (int)validationResult2 == 0)))))))))) {
       validationResult2 = unsignedVar7;
@@ -16723,7 +16723,7 @@ LAB_18089bbcc:
                     // WARNING: Subroutine does not return
                 freeResourceBuffer();
               }
-              validationResult2 = unsignedVar8;
+              validationResult2 = iterationIndex;
               if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
                 unsignedVar3 = judgeUtilityEfficiency(unaff_RSI + 200,*baseRegister);
                 validationResult2 = (ulonglong)unsignedVar3;
@@ -16752,11 +16752,11 @@ ulonglong FUN_18089b896(void)
   longlong *baseRegister;
   ulonglong unsignedVar7;
   longlong unaff_RSI;
-  ulonglong unsignedVar8;
+  ulonglong iterationIndex;
   char in_stack_00000090;
   uint in_stack_00000098;
   
-  unsignedVar8 = BYTE_OFFSET_FLAG;
+  iterationIndex = BYTE_OFFSET_FLAG;
   unsignedVar7 = 0;
   if (*(uint *)(baseRegister + 8) < 0x82) {
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
@@ -16799,24 +16799,24 @@ LAB_18089b91c:
       return validationResult2;
     }
   }
-  validationResult2 = unsignedVar8;
+  validationResult2 = iterationIndex;
   if ((((*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) &&
        (validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x94), (int)validationResult2 == 0)) &&
-      (validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
+      (validationResult2 = iterationIndex, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
      ((validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + RESOURCE_HANDLE_OFFSET), (int)validationResult2 == 0 &&
-      (validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)))) {
+      (validationResult2 = iterationIndex, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)))) {
     dataValueBuffer = *baseRegister;
     validationResult2 = rateUtilityEffectiveness(dataValueBuffer,unaff_RSI + BUFFER_OFFSET_TEMP);
     if (((((int)validationResult2 == 0) &&
          ((validationResult2 = rateUtilityEffectiveness(dataValueBuffer,unaff_RSI + 0x84), (int)validationResult2 == 0 &&
           (validationResult2 = examineUtilityBehavior(), (int)validationResult2 == 0)))) &&
-        (validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
+        (validationResult2 = iterationIndex, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
        ((((validationResult2 = ConfigureResourceBuffer(*baseRegister,unaff_RSI + 0x70), (int)validationResult2 == 0 &&
-          (validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
+          (validationResult2 = iterationIndex, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
          (validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xa8), (int)validationResult2 == 0)) &&
-        (((validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
+        (((validationResult2 = iterationIndex, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
           (validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x9c), (int)validationResult2 == 0)) &&
-         ((validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
+         ((validationResult2 = iterationIndex, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
           ((validationResult2 = writeResourceData(*baseRegister,unaff_RSI + 0xb4,4), (int)validationResult2 == 0 &&
            (validationResult2 = processBufferData(unaff_RSI + FIELD_OFFSET_1), (int)validationResult2 == 0)))))))))) {
       validationResult2 = unsignedVar7;
@@ -16865,7 +16865,7 @@ LAB_18089bbcc:
                     // WARNING: Subroutine does not return
                 freeResourceBuffer();
               }
-              validationResult2 = unsignedVar8;
+              validationResult2 = iterationIndex;
               if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
                 validationResult1 = judgeUtilityEfficiency(unaff_RSI + 200,*baseRegister);
                 validationResult2 = (ulonglong)validationResult1;
@@ -17382,7 +17382,7 @@ ulonglong FUN_18089c190(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
   uint validationResult2;
   uint unsignedVar6;
   ulonglong unsignedVar7;
-  uint32 *punsignedVar8;
+  uint32 *piterationIndex;
   uint unsignedVar9;
   uint64 *preturnValue0;
   longlong localLong11;
@@ -17417,12 +17417,12 @@ ulonglong FUN_18089c190(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
   if ((int)unsignedVar7 != 0) {
     return unsignedVar7;
   }
-  punsignedVar8 = (uint32 *)FUN_180847820();
+  piterationIndex = (uint32 *)FUN_180847820();
   unsignedVar7 = 0;
-  localUInt = *punsignedVar8;
-  localUInt = punsignedVar8[1];
-  localUInt = punsignedVar8[2];
-  localUInt = punsignedVar8[3];
+  localUInt = *piterationIndex;
+  localUInt = piterationIndex[1];
+  localUInt = piterationIndex[2];
+  localUInt = piterationIndex[3];
   validationResult2 = 0;
   if (*(uint *)(memoryBlockSize + 8) < 0x6d) {
     if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
@@ -17485,11 +17485,11 @@ LAB_18089c40a:
         if (localStatus3 < 0) {
           localLong11 = (longlong)localStatus3 * RESOURCE_OFFSET_HANDLE + RESOURCE_DATA_OFFSET + (longlong)localPtr;
           do {
-            punsignedVar8 = (uint32 *)FUN_180847820();
-            unsignedCounter = punsignedVar8[1];
-            unsignedVar3 = punsignedVar8[2];
-            validationResult1 = punsignedVar8[3];
-            *(uint32 *)(localLong11 + -RESOURCE_DATA_OFFSET) = *punsignedVar8;
+            piterationIndex = (uint32 *)FUN_180847820();
+            unsignedCounter = piterationIndex[1];
+            unsignedVar3 = piterationIndex[2];
+            validationResult1 = piterationIndex[3];
+            *(uint32 *)(localLong11 + -RESOURCE_DATA_OFFSET) = *piterationIndex;
             *(uint32 *)(localLong11 + -RESOURCE_HANDLE_OFFSET) = unsignedCounter;
             *(uint32 *)(localLong11 + -STRUCT_MULTIPLIER) = unsignedVar3;
             *(uint32 *)(localLong11 + -8) = validationResult1;
@@ -17557,11 +17557,11 @@ LAB_18089c40a:
       if (localStatus3 < 0) {
         localLong11 = (longlong)localStatus3 * RESOURCE_OFFSET_HANDLE + RESOURCE_DATA_OFFSET + (longlong)localPtr;
         do {
-          punsignedVar8 = (uint32 *)FUN_180847820();
-          unsignedCounter = punsignedVar8[1];
-          unsignedVar3 = punsignedVar8[2];
-          validationResult1 = punsignedVar8[3];
-          *(uint32 *)(localLong11 + -RESOURCE_DATA_OFFSET) = *punsignedVar8;
+          piterationIndex = (uint32 *)FUN_180847820();
+          unsignedCounter = piterationIndex[1];
+          unsignedVar3 = piterationIndex[2];
+          validationResult1 = piterationIndex[3];
+          *(uint32 *)(localLong11 + -RESOURCE_DATA_OFFSET) = *piterationIndex;
           *(uint32 *)(localLong11 + -RESOURCE_HANDLE_OFFSET) = unsignedCounter;
           *(uint32 *)(localLong11 + -STRUCT_MULTIPLIER) = unsignedVar3;
           *(uint32 *)(localLong11 + -8) = validationResult1;
@@ -17618,7 +17618,7 @@ uint64 * FUN_18089c1fb(void)
   float floatVar5;
   float floatVar6;
   float floatVar7;
-  uint unsignedVar8;
+  uint iterationIndex;
   uint unsignedVar9;
   uint functionResult0;
   longlong inputRegister;
@@ -17661,7 +17661,7 @@ uint64 * FUN_18089c1fb(void)
   *(uint32 *)(unaff_RBP + -0x15) = unsignedCounter;
   *(uint32 *)(unaff_RBP + -ACCESS_FLAG) = unsignedVar3;
   *(uint32 *)(unaff_RBP + -0xd) = validationResult1;
-  unsignedVar8 = 0;
+  iterationIndex = 0;
   pfunctionResult3 = pfunctionResult1;
   if (unsignedVar9 < 0x6d) {
     if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
@@ -17720,7 +17720,7 @@ LAB_18089c40a:
         }
         *(uint64 *)(unaff_RBP + -BYTE_OFFSET_1) = 0;
         *(uint32 *)(unaff_RBP + -ERROR_CODE_5) = 0;
-        unsignedVar9 = unsignedVar8;
+        unsignedVar9 = iterationIndex;
       }
       else {
         pfunctionResult1 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
@@ -17802,7 +17802,7 @@ LAB_18089c40a:
       *(uint64 *)(unaff_RBP + -BYTE_OFFSET_1) = 0;
       *(uint32 *)(unaff_RBP + -ERROR_CODE_5) = 0;
       pfunctionResult3 = pfunctionResult1;
-      unsignedVar9 = unsignedVar8;
+      unsignedVar9 = iterationIndex;
     }
     if (localStatus9 < 0) {
       localLong18 = (longlong)-localStatus9;
@@ -17848,12 +17848,12 @@ LAB_18089c586:
     floatVar21 = (float)FUN_1807d3e20(unaff_RSI + SYSTEM_OFFSET_STATUS1);
   }
 LAB_18089c300:
-  if ((0x70 < *(uint *)(unaff_RDI + 8)) && (unsignedVar8 = BYTE_OFFSET_FLAG, *(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0)) {
-    unsignedVar8 = writeResourceData(*unaff_RDI,unaff_RSI + 0x68,4);
+  if ((0x70 < *(uint *)(unaff_RDI + 8)) && (iterationIndex = BYTE_OFFSET_FLAG, *(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0)) {
+    iterationIndex = writeResourceData(*unaff_RDI,unaff_RSI + 0x68,4);
     floatVar21 = extraout_XMM0_Da_01;
   }
-  if (unsignedVar8 != 0) {
-    return (uint64 *)(ulonglong)unsignedVar8;
+  if (iterationIndex != 0) {
+    return (uint64 *)(ulonglong)iterationIndex;
   }
                     // WARNING: Subroutine does not return
   freeResourceBuffer(floatVar21,unaff_RBP + -9);
@@ -17873,7 +17873,7 @@ uint64 * FUN_18089c22e(void)
   float floatVar5;
   float floatVar6;
   float floatVar7;
-  uint unsignedVar8;
+  uint iterationIndex;
   uint unsignedVar9;
   uint functionResult0;
   uint32 *pfunctionResult1;
@@ -17908,7 +17908,7 @@ uint64 * FUN_18089c22e(void)
   *(uint32 *)(unaff_RBP + -0x15) = unsignedCounter;
   *(uint32 *)(unaff_RBP + -ACCESS_FLAG) = unsignedVar3;
   *(uint32 *)(unaff_RBP + -0xd) = validationResult1;
-  unsignedVar8 = 0;
+  iterationIndex = 0;
   pfunctionResult2 = pfunctionResult3;
   if (unsignedVar9 < 0x6d) {
     if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
@@ -17967,7 +17967,7 @@ LAB_18089c40a:
         }
         *(uint64 *)(unaff_RBP + -BYTE_OFFSET_1) = 0;
         *(uint32 *)(unaff_RBP + -ERROR_CODE_5) = 0;
-        unsignedVar9 = unsignedVar8;
+        unsignedVar9 = iterationIndex;
       }
       else {
         pfunctionResult3 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
@@ -18049,7 +18049,7 @@ LAB_18089c40a:
       *(uint64 *)(unaff_RBP + -BYTE_OFFSET_1) = 0;
       *(uint32 *)(unaff_RBP + -ERROR_CODE_5) = 0;
       pfunctionResult2 = pfunctionResult3;
-      unsignedVar9 = unsignedVar8;
+      unsignedVar9 = iterationIndex;
     }
     if (localStatus9 < 0) {
       localLong18 = (longlong)-localStatus9;
@@ -18095,12 +18095,12 @@ LAB_18089c586:
     floatVar21 = (float)FUN_1807d3e20(unaff_RSI + SYSTEM_OFFSET_STATUS1);
   }
 LAB_18089c300:
-  if ((0x70 < *(uint *)(unaff_RDI + 8)) && (unsignedVar8 = BYTE_OFFSET_FLAG, *(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0)) {
-    unsignedVar8 = writeResourceData(*unaff_RDI,unaff_RSI + 0x68,4);
+  if ((0x70 < *(uint *)(unaff_RDI + 8)) && (iterationIndex = BYTE_OFFSET_FLAG, *(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0)) {
+    iterationIndex = writeResourceData(*unaff_RDI,unaff_RSI + 0x68,4);
     floatVar21 = extraout_XMM0_Da_01;
   }
-  if (unsignedVar8 != 0) {
-    return (uint64 *)(ulonglong)unsignedVar8;
+  if (iterationIndex != 0) {
+    return (uint64 *)(ulonglong)iterationIndex;
   }
                     // WARNING: Subroutine does not return
   freeResourceBuffer(floatVar21,unaff_RBP + -9);
@@ -18121,7 +18121,7 @@ ulonglong FUN_18089c2d8(uint64 resourceHandle)
   float floatVar6;
   uint64 unsignedVar7;
   uint in_EAX;
-  uint unsignedVar8;
+  uint iterationIndex;
   uint unsignedVar9;
   uint functionResult0;
   ulonglong functionResult1;
@@ -18145,7 +18145,7 @@ ulonglong FUN_18089c2d8(uint64 resourceHandle)
   float extraout_XMM0_Da_03;
   float floatVar20;
   
-  unsignedVar8 = (uint)unaff_R12;
+  iterationIndex = (uint)unaff_R12;
   if (0x81 < in_EAX) {
     functionResult1 = FUN_1808a79f0(resourceHandle,unaff_RSI + SYSTEM_OFFSET_STATUS1);
     floatVar20 = extraout_XMM0_Da;
@@ -18177,9 +18177,9 @@ LAB_18089c40a:
                         &utilityMemoryDataBuffer,RESOURCE_HANDLE_OFFSET0,1);
         }
         *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1) = unaff_R12;
-        *(uint *)(unaff_RBP + -ERROR_CODE_5) = unsignedVar8;
+        *(uint *)(unaff_RBP + -ERROR_CODE_5) = iterationIndex;
         pfunctionResult4 = unaff_R12;
-        unsignedVar9 = unsignedVar8;
+        unsignedVar9 = iterationIndex;
       }
       else {
         pfunctionResult4 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
@@ -18204,7 +18204,7 @@ LAB_18089c40a:
           unsignedVar9 = *(uint *)(unaff_RBP + -ERROR_CODE_5);
         }
       }
-      *(uint *)(unaff_RBP + -0x21) = unsignedVar8;
+      *(uint *)(unaff_RBP + -0x21) = iterationIndex;
       if ((int)unsignedVar9 < 0) {
         unsignedVar9 = -unsignedVar9;
       }
@@ -18259,9 +18259,9 @@ LAB_18089c40a:
         utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),pfunctionResult4,&utilityMemoryDataBuffer,RESOURCE_HANDLE_OFFSET0,1);
       }
       *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1) = unaff_R12;
-      *(uint *)(unaff_RBP + -ERROR_CODE_5) = unsignedVar8;
+      *(uint *)(unaff_RBP + -ERROR_CODE_5) = iterationIndex;
       pfunctionResult4 = unaff_R12;
-      unsignedVar9 = unsignedVar8;
+      unsignedVar9 = iterationIndex;
     }
     if (localStatus8 < 0) {
       localLong17 = (longlong)-localStatus8;
@@ -18284,7 +18284,7 @@ LAB_18089c40a:
         unsignedVar9 = *(uint *)(unaff_RBP + -ERROR_CODE_5);
       }
     }
-    *(uint *)(unaff_RBP + -0x21) = unsignedVar8;
+    *(uint *)(unaff_RBP + -0x21) = iterationIndex;
     if ((int)unsignedVar9 < 0) {
       unsignedVar9 = -unsignedVar9;
     }
@@ -18308,12 +18308,12 @@ LAB_18089c586:
   }
 LAB_18089c300:
   if ((0x70 < *(uint *)(unaff_RDI + 8)) &&
-     (boolVar19 = *(uint *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == unsignedVar8, unsignedVar8 = unaff_R15D, boolVar19)) {
-    unsignedVar8 = writeResourceData(*unaff_RDI,unaff_RSI + 0x68,4);
+     (boolVar19 = *(uint *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == iterationIndex, iterationIndex = unaff_R15D, boolVar19)) {
+    iterationIndex = writeResourceData(*unaff_RDI,unaff_RSI + 0x68,4);
     floatVar20 = extraout_XMM0_Da_00;
   }
-  if (unsignedVar8 != 0) {
-    return (ulonglong)unsignedVar8;
+  if (iterationIndex != 0) {
+    return (ulonglong)iterationIndex;
   }
                     // WARNING: Subroutine does not return
   freeResourceBuffer(floatVar20,unaff_RBP + -9);
@@ -18360,7 +18360,7 @@ ulonglong FUN_18089c630(longlong resourceHandle,longlong *memoryBlockBlockBlockS
   uint32 validationResult1;
   uint validationResult2;
   uint unsignedVar7;
-  uint unsignedVar8;
+  uint iterationIndex;
   uint unsignedVar9;
   uint unsignedStackArrayX18 [2];
   uint unsignedStackArrayX20 [2];
@@ -18385,7 +18385,7 @@ ulonglong FUN_18089c630(longlong resourceHandle,longlong *memoryBlockBlockBlockS
   }
   validationResult1 = 4;
   unsignedVar6 = 0;
-  unsignedVar8 = 0;
+  iterationIndex = 0;
   unsignedVar3 = unsignedVar6;
   if (0x6f < *(uint *)(memoryBlockSize + 8)) {
     if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
@@ -18398,7 +18398,7 @@ ulonglong FUN_18089c630(longlong resourceHandle,longlong *memoryBlockBlockBlockS
   if ((int)unsignedVar3 != 0) {
     return unsignedVar3;
   }
-  unsignedVar9 = unsignedVar8;
+  unsignedVar9 = iterationIndex;
   if (*(uint *)(memoryBlockSize + 8) < 0x70) {
     if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       unsignedVar9 = BYTE_OFFSET_FLAG;
@@ -18429,7 +18429,7 @@ LAB_18089c743:
       unsignedStackArrayX20[0] = 0;
       localUInt = 1;
       if (unsignedVar9 == 0) {
-        unsignedVar9 = unsignedVar8;
+        unsignedVar9 = iterationIndex;
       }
     }
   }
@@ -18587,7 +18587,7 @@ LAB_18089c9a8:
   else {
 LAB_18089c9ee:
     unsignedVar7 = 1;
-    unsignedVar9 = unsignedVar8;
+    unsignedVar9 = iterationIndex;
   }
   if ((int)unsignedVar3 != 0) {
     return unsignedVar3;
@@ -18626,10 +18626,10 @@ LAB_18089ca9c:
           unsignedCounter = ACCESS_FLAG;
         }
       }
-      unsignedVar8 = 0;
+      iterationIndex = 0;
       validationResult2 = 1;
       if (unsignedCounter == 0) {
-        unsignedVar8 = (uint)((char)unsignedStackArrayX18[0] != '\0');
+        iterationIndex = (uint)((char)unsignedStackArrayX18[0] != '\0');
         validationResult2 = (uint)((char)unsignedStackArrayX18[0] == '\0');
       }
       unsignedVar3 = (ulonglong)unsignedCounter;
@@ -18646,7 +18646,7 @@ LAB_18089ca9c:
     if (unsignedCounter < 0x70) {
       *(uint *)(resourceHandle + FIELD_OFFSET_2) =
            (((unsignedStackArrayX20[0] | *(uint *)(resourceHandle + FIELD_OFFSET_2)) & ~localUInt | unsignedVar9 * 2) & ~(unsignedVar7 * 2) |
-           unsignedVar8 * 4) & ~(validationResult2 * 4);
+           iterationIndex * 4) & ~(validationResult2 * 4);
       unsignedCounter = *(uint *)(memoryBlockSize + 8);
     }
     if ((unsignedCounter < 0x87) && ((*(uint *)(resourceHandle + FIELD_OFFSET_2) >> 3 & 1) != 0)) {
@@ -18662,7 +18662,7 @@ LAB_18089cbf6:
     unsignedVar3 = getResourceSize(*memoryBlockBlockBlockSize,unsignedStackArrayX20);
     validationResult2 = unsignedStackArrayX20[0];
     if ((int)unsignedVar3 == 0) {
-      unsignedVar8 = unsignedStackArrayX20[0] & 1;
+      iterationIndex = unsignedStackArrayX20[0] & 1;
       unsignedVar9 = unsignedStackArrayX20[0] >> 1;
       unsignedVar3 = FUN_1808af8b0(resourceHandle + DATA_OFFSET_START,unsignedVar9);
       if ((int)unsignedVar3 == 0) {
@@ -18690,7 +18690,7 @@ LAB_18089cbf6:
             }
             validationResult2 = (int)unsignedVar6 + 1;
             unsignedVar6 = (ulonglong)validationResult2;
-            unsignedStackArrayX18[0] = unsignedStackArrayX18[0] & -unsignedVar8;
+            unsignedStackArrayX18[0] = unsignedStackArrayX18[0] & -iterationIndex;
             unsignedVar3 = (ulonglong)unsignedStackArrayX18[0];
           } while ((int)validationResult2 < (int)unsignedVar9);
         }
@@ -18715,7 +18715,7 @@ ulonglong FUN_18089c69d(void)
   longlong unaff_RBP;
   uint validationResult2;
   uint unsignedVar6;
-  uint unsignedVar8;
+  uint iterationIndex;
   longlong unaff_R13;
   uint unaff_R14D;
   float extraout_XMM0_Da;
@@ -18748,39 +18748,39 @@ ulonglong FUN_18089c69d(void)
   if ((int)validationResult1 != 0) {
     return validationResult1;
   }
-  unsignedVar8 = unsignedVar6;
+  iterationIndex = unsignedVar6;
   if (*(uint *)(baseRegister + 8) < 0x70) {
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
-      unsignedVar8 = BYTE_OFFSET_FLAG;
+      iterationIndex = BYTE_OFFSET_FLAG;
       goto LAB_18089c78f;
     }
     plocalLong1 = (longlong *)*baseRegister;
     dataValueBuffer = *plocalLong1;
     if (dataValueBuffer == 0) {
-      unsignedVar8 = BYTE_OFFSET_FLAG;
+      iterationIndex = BYTE_OFFSET_FLAG;
     }
     else if (plocalLong1[2] == 0) {
 LAB_18089c743:
-      unsignedVar8 = readResourceData(*plocalLong1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D,0);
+      iterationIndex = readResourceData(*plocalLong1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D,0);
     }
     else {
       *(uint32 *)(unaff_RBP + 0x7f) = 0;
-      unsignedVar8 = dataProcessFunction(dataValueBuffer,unaff_RBP + 0x7f);
-      if (unsignedVar8 == 0) {
+      iterationIndex = dataProcessFunction(dataValueBuffer,unaff_RBP + 0x7f);
+      if (iterationIndex == 0) {
         if ((ulonglong)*(uint *)(unaff_RBP + 0x7f) + 1 <= (ulonglong)plocalLong1[2]) goto LAB_18089c743;
-        unsignedVar8 = ACCESS_FLAG;
+        iterationIndex = ACCESS_FLAG;
       }
     }
-    if (unsignedVar8 == 0) {
+    if (iterationIndex == 0) {
       *(uint *)(unaff_RBP + 0x7f) = (uint)(*(char *)(unaff_RBP + 0x77) != '\0');
       *(uint *)(unaff_RBP + -BYTE_OFFSET_1) = (uint)(*(char *)(unaff_RBP + 0x77) == '\0');
-      unsignedVar8 = 0;
+      iterationIndex = 0;
     }
     else {
       *(uint32 *)(unaff_RBP + 0x7f) = 0;
       *(uint *)(unaff_RBP + -BYTE_OFFSET_1) = unaff_R14D;
-      if (unsignedVar8 == 0) {
-        unsignedVar8 = unsignedVar6;
+      if (iterationIndex == 0) {
+        iterationIndex = unsignedVar6;
       }
     }
   }
@@ -18789,8 +18789,8 @@ LAB_18089c78f:
     *(uint *)(unaff_RBP + -BYTE_OFFSET_1) = unaff_R14D;
     *(uint32 *)(unaff_RBP + 0x7f) = 0;
   }
-  if (unsignedVar8 != 0) {
-    return (ulonglong)unsignedVar8;
+  if (iterationIndex != 0) {
+    return (ulonglong)iterationIndex;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
@@ -18903,7 +18903,7 @@ LAB_18089c878:
   validationResult1 = unsignedVar7;
   floatVar9 = extraout_XMM0_Da;
   validationResult2 = unsignedVar6;
-  unsignedVar8 = unaff_R14D;
+  iterationIndex = unaff_R14D;
   if (*(uint *)(baseRegister + 8) < 0x70) {
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
       plocalLong1 = (longlong *)*baseRegister;
@@ -18930,7 +18930,7 @@ LAB_18089c9a8:
       if (unsignedVar3 == 0) {
         validationResult1 = 0;
         validationResult2 = (uint)(*(char *)(unaff_RBP + 0x77) != '\0');
-        unsignedVar8 = (uint)(*(char *)(unaff_RBP + 0x77) == '\0');
+        iterationIndex = (uint)(*(char *)(unaff_RBP + 0x77) == '\0');
       }
       else {
         validationResult1 = (ulonglong)unsignedVar3;
@@ -19005,7 +19005,7 @@ LAB_18089cad8:
   if (unsignedVar3 < 0x70) {
     *(uint *)(unaff_R13 + FIELD_OFFSET_2) =
          (((*(uint *)(unaff_RBP + 0x7f) | *(uint *)(unaff_R13 + FIELD_OFFSET_2)) &
-           ~*(uint *)(unaff_RBP + -BYTE_OFFSET_1) | validationResult2 * 2) & ~(unsignedVar8 * 2) | unsignedVar6 * 4) &
+           ~*(uint *)(unaff_RBP + -BYTE_OFFSET_1) | validationResult2 * 2) & ~(iterationIndex * 2) | unsignedVar6 * 4) &
          ~(unaff_R14D * 4);
     unsignedVar3 = *(uint *)(baseRegister + 8);
   }
@@ -19053,9 +19053,9 @@ LAB_18089cad8:
         }
         unsignedVar6 = (int)unsignedVar7 + 1;
         unsignedVar7 = (ulonglong)unsignedVar6;
-        unsignedVar8 = *(uint *)(unaff_RBP + 0x77) & -(validationResult2 & 1);
-        validationResult1 = (ulonglong)unsignedVar8;
-        *(uint *)(unaff_RBP + 0x77) = unsignedVar8;
+        iterationIndex = *(uint *)(unaff_RBP + 0x77) & -(validationResult2 & 1);
+        validationResult1 = (ulonglong)iterationIndex;
+        *(uint *)(unaff_RBP + 0x77) = iterationIndex;
         floatVar9 = extraout_XMM0_Da_09;
       } while ((int)unsignedVar6 < (int)(validationResult2 >> 1));
     }
@@ -19078,7 +19078,7 @@ ulonglong FUN_18089c86d(void)
   int integerVar7;
   longlong *baseRegister;
   longlong unaff_RBP;
-  uint unsignedVar8;
+  uint iterationIndex;
   uint unsignedVar9;
   ulonglong unaff_RDI;
   int localStatus0;
@@ -19300,13 +19300,13 @@ LAB_18089cad8:
         if ((int)unsignedVar6 != 0) {
           return unsignedVar6;
         }
-        unsignedVar8 = (int)validationResult2 + 1;
-        validationResult2 = (ulonglong)unsignedVar8;
+        iterationIndex = (int)validationResult2 + 1;
+        validationResult2 = (ulonglong)iterationIndex;
         unsignedVar9 = *(uint *)(unaff_RBP + 0x77) & -(validationResult1 & 1);
         unaff_RDI = (ulonglong)unsignedVar9;
         *(uint *)(unaff_RBP + 0x77) = unsignedVar9;
         floatVar12 = extraout_XMM0_Da_09;
-      } while ((int)unsignedVar8 < (int)(validationResult1 >> 1));
+      } while ((int)iterationIndex < (int)(validationResult1 >> 1));
     }
   }
                     // WARNING: Subroutine does not return
@@ -19328,7 +19328,7 @@ ulonglong FUN_18089c872(void)
   longlong *baseRegister;
   longlong unaff_RBP;
   uint32 unaff_ESI;
-  uint unsignedVar8;
+  uint iterationIndex;
   uint unsignedVar9;
   ulonglong unaff_RDI;
   int localStatus0;
@@ -19550,13 +19550,13 @@ LAB_18089cad8:
         if ((int)unsignedVar6 != 0) {
           return unsignedVar6;
         }
-        unsignedVar8 = (int)validationResult2 + 1;
-        validationResult2 = (ulonglong)unsignedVar8;
+        iterationIndex = (int)validationResult2 + 1;
+        validationResult2 = (ulonglong)iterationIndex;
         unsignedVar9 = *(uint *)(unaff_RBP + 0x77) & -(validationResult1 & 1);
         unaff_RDI = (ulonglong)unsignedVar9;
         *(uint *)(unaff_RBP + 0x77) = unsignedVar9;
         floatVar12 = extraout_XMM0_Da_09;
-      } while ((int)unsignedVar8 < (int)(validationResult1 >> 1));
+      } while ((int)iterationIndex < (int)(validationResult1 >> 1));
     }
   }
                     // WARNING: Subroutine does not return
@@ -19577,7 +19577,7 @@ ulonglong FUN_18089c94a(float resourceHandle)
   int integerVar7;
   longlong *baseRegister;
   longlong unaff_RBP;
-  uint unsignedVar8;
+  uint iterationIndex;
   int integerVar9;
   uint functionResult0;
   ulonglong unaff_RDI;
@@ -19755,14 +19755,14 @@ LAB_18089cbf6:
             if ((int)validationResult2 != 0) {
               return validationResult2;
             }
-            unsignedVar8 = (int)unsignedVar6 + 1;
-            unsignedVar6 = (ulonglong)unsignedVar8;
+            iterationIndex = (int)unsignedVar6 + 1;
+            unsignedVar6 = (ulonglong)iterationIndex;
             functionResult0 = *(uint *)(unaff_RBP + 0x77) & -(validationResult1 & 1);
             unaff_RDI = (ulonglong)functionResult0;
             *(uint *)(unaff_RBP + 0x77) = functionResult0;
             resourceHandle = extraout_XMM0_Da_08;
             floatVar13 = extraout_XMM0_Da_08;
-          } while ((int)unsignedVar8 < (int)(validationResult1 >> 1));
+          } while ((int)iterationIndex < (int)(validationResult1 >> 1));
         }
         goto LAB_18089cbf6;
       }
@@ -22031,7 +22031,7 @@ ulonglong FUN_18089e558(void)
   uint validationResult2;
   int integerVar6;
   uint32 *pointerVar7;
-  ulonglong unsignedVar8;
+  ulonglong iterationIndex;
   longlong longVar9;
   longlong unaff_RBP;
   uint32 *preturnValue0;
@@ -22046,7 +22046,7 @@ ulonglong FUN_18089e558(void)
   uint32 extraout_XMM0_Da_04;
   
   pointerVar7 = (uint32 *)FUN_180847820();
-  unsignedVar8 = 0;
+  iterationIndex = 0;
   validationResult2 = *(uint *)(unaff_RDI + 8);
   functionResult1 = *pointerVar7;
   unsignedCounter = pointerVar7[1];
@@ -22059,36 +22059,36 @@ ulonglong FUN_18089e558(void)
   if (validationResult2 < 0x6d) {
     if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
       functionResult = *unaff_RDI;
-      unsignedVar8 = writeResourceData(functionResult,unaff_RBP + -0x19,4);
-      if ((int)unsignedVar8 != 0) {
-        return unsignedVar8;
+      iterationIndex = writeResourceData(functionResult,unaff_RBP + -0x19,4);
+      if ((int)iterationIndex != 0) {
+        return iterationIndex;
       }
-      unsignedVar8 = writeResourceData(functionResult,unaff_RBP + -0x15,2);
-      if ((int)unsignedVar8 != 0) {
-        return unsignedVar8;
+      iterationIndex = writeResourceData(functionResult,unaff_RBP + -0x15,2);
+      if ((int)iterationIndex != 0) {
+        return iterationIndex;
       }
-      unsignedVar8 = writeResourceData(functionResult,unaff_RBP + -0x13,2);
-      if ((int)unsignedVar8 != 0) {
-        return unsignedVar8;
+      iterationIndex = writeResourceData(functionResult,unaff_RBP + -0x13,2);
+      if ((int)iterationIndex != 0) {
+        return iterationIndex;
       }
-      unsignedVar8 = writeResourceData(functionResult,unaff_RBP + -ACCESS_FLAG,8);
+      iterationIndex = writeResourceData(functionResult,unaff_RBP + -ACCESS_FLAG,8);
       functionResult1 = extraout_XMM0_Da;
     }
     else {
-      unsignedVar8 = BYTE_OFFSET_FLAG;
+      iterationIndex = BYTE_OFFSET_FLAG;
     }
   }
-  if ((((int)unsignedVar8 == 0) && (unsignedVar8 = FUN_1808a5a90(functionResult1,unaff_R15 + STRUCT_OFFSET_SIZE,0), (int)unsignedVar8 == 0)) &&
-     (unsignedVar8 = FUN_1808a5a90(extraout_XMM0_Da_00,unaff_R15 + BUFFER_OFFSET_DATA,0), (int)unsignedVar8 == 0)) {
+  if ((((int)iterationIndex == 0) && (iterationIndex = FUN_1808a5a90(functionResult1,unaff_R15 + STRUCT_OFFSET_SIZE,0), (int)iterationIndex == 0)) &&
+     (iterationIndex = FUN_1808a5a90(extraout_XMM0_Da_00,unaff_R15 + BUFFER_OFFSET_DATA,0), (int)iterationIndex == 0)) {
     if (*(uint *)(unaff_RDI + 8) < 0x84) {
       *(uint64 *)(unaff_RBP + -BYTE_OFFSET_1) = 0;
       *(uint64 *)(unaff_RBP + -0x21) = 0;
       validationResult2 = configureResourceMemory(extraout_XMM0_Da_01,unaff_RBP + -BYTE_OFFSET_1,0);
-      unsignedVar8 = (ulonglong)validationResult2;
+      iterationIndex = (ulonglong)validationResult2;
       if (validationResult2 != 0) {
 LAB_18089e70b:
         FUN_18084c150(unaff_RBP + -BYTE_OFFSET_1);
-        return unsignedVar8;
+        return iterationIndex;
       }
       integerVar6 = *(int *)(unaff_RBP + -0x21);
       if (integerVar6 != 0) {
@@ -22098,7 +22098,7 @@ LAB_18089e70b:
           longVar9 = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),BYTE_OFFSET_2,&unknown_180986e70,0xc1c,0)
           ;
           if (longVar9 == 0) {
-            unsignedVar8 = 0x26;
+            iterationIndex = 0x26;
             goto LAB_18089e70b;
           }
           functionResult1 = *preturnValue0;
@@ -22108,7 +22108,7 @@ LAB_18089e70b:
           *(uint64 *)(longVar9 + RESOURCE_OFFSET_HANDLE) = 0;
           *(uint32 *)(longVar9 + POINTER_OFFSET_DATA) = 0;
           validationResult2 = systemControlFunction2(unaff_R15 + SYSTEM_OFFSET_STATUS1,longVar9);
-          unsignedVar8 = (ulonglong)validationResult2;
+          iterationIndex = (ulonglong)validationResult2;
           if (validationResult2 != 0) goto LAB_18089e70b;
           integerVar6 = *(int *)(unaff_RBP + -0x21);
           pointerVar7 = *(uint32 **)(unaff_RBP + -BYTE_OFFSET_1);
@@ -22117,20 +22117,20 @@ LAB_18089e70b:
       functionResult1 = FUN_18084c150(unaff_RBP + -BYTE_OFFSET_1);
     }
     else {
-      unsignedVar8 = FUN_1808a71c0(extraout_XMM0_Da_01,unaff_R15 + SYSTEM_OFFSET_STATUS1);
+      iterationIndex = FUN_1808a71c0(extraout_XMM0_Da_01,unaff_R15 + SYSTEM_OFFSET_STATUS1);
       functionResult1 = extraout_XMM0_Da_02;
-      if ((int)unsignedVar8 != 0) {
-        return unsignedVar8;
+      if ((int)iterationIndex != 0) {
+        return iterationIndex;
       }
     }
-    unsignedVar8 = FUN_1808ad9d0(functionResult1,unaff_R15 + HANDLE_OFFSET_DATA,0);
-    if (((int)unsignedVar8 == 0) &&
-       (unsignedVar8 = FUN_1808a62d0(extraout_XMM0_Da_03,unaff_R15 + 0x88,0), (int)unsignedVar8 == 0)) {
+    iterationIndex = FUN_1808ad9d0(functionResult1,unaff_R15 + HANDLE_OFFSET_DATA,0);
+    if (((int)iterationIndex == 0) &&
+       (iterationIndex = FUN_1808a62d0(extraout_XMM0_Da_03,unaff_R15 + 0x88,0), (int)iterationIndex == 0)) {
                     // WARNING: Subroutine does not return
       freeResourceBuffer(extraout_XMM0_Da_04,unaff_RBP + 7);
     }
   }
-  return unsignedVar8;
+  return iterationIndex;
 }
 
 
@@ -36034,7 +36034,7 @@ void Catch_180904b90(uint64 resourceHandle,longlong memoryBlockSize)
   ulonglong validationResult2;
   ulonglong unsignedVar6;
   longlong longVar7;
-  ulonglong unsignedVar8;
+  ulonglong iterationIndex;
   
   functionResult = *(ulonglong *)(memoryBlockSize + POINTER_OFFSET_DATA);
   dataValueBuffer = *(longlong *)(memoryBlockSize + 0xa0);
@@ -36053,17 +36053,17 @@ void Catch_180904b90(uint64 resourceHandle,longlong memoryBlockSize)
   }
   *(ulonglong *)(memoryBlockSize + POINTER_OFFSET_DATA) = validationResult2;
   while( true ) {
-    unsignedVar8 = (validationResult2 & 0xffffffffffffffe0) + POINTER_OFFSET_DATA;
-    if (0x8000000000000000 < functionResult - unsignedVar8) {
-      unsignedVar8 = functionResult;
+    iterationIndex = (validationResult2 & 0xffffffffffffffe0) + POINTER_OFFSET_DATA;
+    if (0x8000000000000000 < functionResult - iterationIndex) {
+      iterationIndex = functionResult;
     }
     unsignedVar6 = validationResult2;
-    if (validationResult2 != unsignedVar8) {
+    if (validationResult2 != iterationIndex) {
       do {
         unsignedVar6 = validationResult2 + 1;
         FUN_180060bd0(longVar7 + (ulonglong)((uint)validationResult2 & ERROR_CODE_FAILED) * 8);
         validationResult2 = unsignedVar6;
-      } while (unsignedVar6 != unsignedVar8);
+      } while (unsignedVar6 != iterationIndex);
       *(ulonglong *)(memoryBlockSize + POINTER_OFFSET_DATA) = unsignedVar6;
     }
     if (longVar7 == arrayIndex) break;
@@ -36086,10 +36086,10 @@ void Catch_180904c60(uint64 resourceHandle,longlong memoryBlockSize)
   ulonglong validationResult2;
   longlong longVar6;
   ulonglong unsignedVar7;
-  ulonglong unsignedVar8;
+  ulonglong iterationIndex;
   longlong longVar9;
   
-  unsignedVar8 = *(ulonglong *)(memoryBlockSize + POINTER_OFFSET_DATA);
+  iterationIndex = *(ulonglong *)(memoryBlockSize + POINTER_OFFSET_DATA);
   localLong1 = *(longlong *)(memoryBlockSize + MEMORY_SIZE_OFFSET);
   longVar9 = *(longlong *)(localLong1 + BUFFER_SIZE_OFFSET);
   validationResult1 = *(ulonglong *)(memoryBlockSize + FIELD_OFFSET_1);
@@ -36101,8 +36101,8 @@ void Catch_180904c60(uint64 resourceHandle,longlong memoryBlockSize)
   *(ulonglong *)(memoryBlockSize + POINTER_OFFSET_DATA) = validationResult1;
   while( true ) {
     unsignedVar7 = (validationResult1 & 0xffffffffffffffe0) + POINTER_OFFSET_DATA;
-    if (0x8000000000000000 < unsignedVar8 - unsignedVar7) {
-      unsignedVar7 = unsignedVar8;
+    if (0x8000000000000000 < iterationIndex - unsignedVar7) {
+      unsignedVar7 = iterationIndex;
     }
     validationResult2 = validationResult1;
     if (validationResult1 != unsignedVar7) {
@@ -36117,23 +36117,23 @@ void Catch_180904c60(uint64 resourceHandle,longlong memoryBlockSize)
     longVar6 = *(longlong *)(longVar6 + RESOURCE_HANDLE_OFFSET0);
     validationResult1 = validationResult2;
   }
-  unsignedVar8 = *(longlong *)(memoryBlockSize + FIELD_OFFSET_1) - 1U & 0xffffffffffffffe0;
-  *(ulonglong *)(memoryBlockSize + POINTER_OFFSET_DATA) = unsignedVar8;
+  iterationIndex = *(longlong *)(memoryBlockSize + FIELD_OFFSET_1) - 1U & 0xffffffffffffffe0;
+  *(ulonglong *)(memoryBlockSize + POINTER_OFFSET_DATA) = iterationIndex;
   longVar9 = dataValueBuffer;
   if (dataValueBuffer != 0) {
     while( true ) {
-      *(ulonglong *)(memoryBlockSize + POINTER_OFFSET_DATA) = unsignedVar8 + POINTER_OFFSET_DATA;
+      *(ulonglong *)(memoryBlockSize + POINTER_OFFSET_DATA) = iterationIndex + POINTER_OFFSET_DATA;
       parrayIndex = *(longlong **)(localLong1 + DATA_OFFSET_START);
       *(uint64 *)
        (*(longlong *)
          (parrayIndex[3] +
-         (((unsignedVar8 + POINTER_OFFSET_DATA & 0xffffffffffffffe0) - **(longlong **)(parrayIndex[3] + parrayIndex[1] * 8) >> 5) +
+         (((iterationIndex + POINTER_OFFSET_DATA & 0xffffffffffffffe0) - **(longlong **)(parrayIndex[3] + parrayIndex[1] * 8) >> 5) +
           parrayIndex[1] & *parrayIndex - 1U) * 8) + 8) = 0;
       parrayIndex = *(longlong **)(localLong1 + DATA_OFFSET_START);
       parrayIndex[1] = parrayIndex[1] - 1U & *parrayIndex - 1U;
       longVar9 = *(longlong *)(longVar9 + RESOURCE_HANDLE_OFFSET0);
       if (longVar9 == 0) break;
-      unsignedVar8 = *(ulonglong *)(memoryBlockSize + POINTER_OFFSET_DATA);
+      iterationIndex = *(ulonglong *)(memoryBlockSize + POINTER_OFFSET_DATA);
     }
   }
   func_0x000180060150(*(uint64 *)(localLong1 + LIST_OFFSET_HEAD),dataValueBuffer);

@@ -17322,7 +17322,7 @@ void FUN_1808519d1(void)
 
 
 
-uint64_t FUN_1808519e0(longlong socketHandle)
+uint64_t NetworkTimeoutSet(longlong socketHandle)
 
 {
   int statusCode;
@@ -17587,7 +17587,7 @@ uint64_t FUN_180851d20(longlong socketHandle,longlong dataBuffer,longlong buffer
     }
   }
   if (bufferCapacity != 0) {
-    packetLength = FUN_1808519e0(socketHandle);
+    packetLength = NetworkTimeoutSet(socketHandle);
     packetLength = FUN_1807404e0(packetLength,0,bufferCapacity);
     if ((int)packetLength != 0) {
       return packetLength;
@@ -17615,7 +17615,7 @@ uint64_t FUN_180851d5f(uint64_t socketHandle)
   packetLength = FUN_1807404e0(packetLength);
   if ((int)packetLength == 0) {
     if (unaff_RDI != 0) {
-      packetLength = FUN_1808519e0();
+      packetLength = NetworkTimeoutSet();
       packetLength = FUN_1807404e0(packetLength,0);
       if ((int)packetLength != 0) {
         return packetLength;
@@ -17637,7 +17637,7 @@ uint64_t FUN_180851d83(void)
   networkResult = FUN_1807404e0();
   if ((int)networkResult == 0) {
     if (unaff_RDI != 0) {
-      networkResult = FUN_1808519e0();
+      networkResult = NetworkTimeoutSet();
       networkResult = FUN_1807404e0(networkResult,0);
       if ((int)networkResult != 0) {
         return networkResult;
