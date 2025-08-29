@@ -20,12 +20,12 @@ void* g_system_configuration_data;
 // 初始化系统配置
 int initialize_system_configuration(void)
 {
-  int system_configuration_enabled = 1;
-  int operation_counter = 0;
-  long long maximum_allowed_system_value = MAX_SYSTEM_VALUE;
-  int system_status_code = SYSTEM_STATUS_SUCCESS;
-  int initialization_result = initialize_system(system_configuration_init_function);
-  return (initialization_result != 0) - 1;
+  int is_system_enabled = 1;
+  int operation_count = 0;
+  long long max_allowed_value = MAX_SYSTEM_VALUE;
+  int system_status = SYSTEM_STATUS_SUCCESS;
+  int init_result = initialize_system(system_configuration_init_function);
+  return (init_result != 0) - 1;
 }
 // 初始化核心数据结构
 int initialize_core_data_structure(void)
@@ -260,7 +260,7 @@ int initialize_config_string_buffer(void)
   g_config_data_value = 0;
   g_config_resource_type = RESOURCE_TYPE_TEXTURE;
   strcpy_s(&g_config_file_path, 0x20, &g_config_path_string, string_length_parameter, 0xfffffffffffffffe);
-  initialization_result = execute_function(callback_function_020);
+  initialization_result = execute_function(config_string_buffer_init_callback);
   return (initialization_result != 0) - 1;
 }
 // 初始化字符串缓冲区2
@@ -273,7 +273,7 @@ int initialize_savegame_string_buffer(void)
   g_savegame_data_value = 0;
   g_savegame_resource_type = 9;
   strcpy_s(&g_save_file_path, 0x20, &g_save_path_string, string_length_parameter, 0xfffffffffffffffe);
-  initialization_result = execute_function(callback_function_021);
+  initialization_result = execute_function(savegame_string_buffer_init_callback);
   return (initialization_result != 0) - 1;
 }
 // 初始化互斥锁1
@@ -281,7 +281,7 @@ int initialize_main_mutex(void* handle, void* flags, void* mutex_attr, int mutex
 {
   long long initialization_result;
   _Mtx_init_in_situ(0x180c91970, 0x102, mutex_attr, mutex_type, 0xfffffffffffffffe);
-  initialization_result = execute_function(callback_function_022);
+  initialization_result = execute_function(main_mutex_init_callback);
   return (initialization_result != 0) - 1;
 }
 // 初始化数据缓冲区系统
@@ -459,7 +459,7 @@ int initialize_audio_module(void)
   data_180bf7268 = 0;
   _data_180bf7260 = 0xb;
   strcpy_s(&data_180bf7268,0x40,&g_systemString1,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_023);
+  init_result = execute_function(data_buffer_system_init_callback);
   return (init_result != 0) - 1;
 }
 int initialize_video_module(void)
@@ -471,7 +471,7 @@ int initialize_video_module(void)
   data_180bf72c8 = 0;
   _data_180bf72c0 = 9;
   strcpy_s(&data_180bf72c8,0x40,&g_systemString2,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_024);
+  init_result = execute_function(memory_manager_init_callback);
   return (init_result != 0) - 1;
 }
 int initialize_input_module(void)
@@ -483,7 +483,7 @@ int initialize_input_module(void)
   data_180bf7328 = 0;
   _data_180bf7320 = 9;
   strcpy_s(&data_180bf7328,0x40,&g_systemString3,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_025);
+  init_result = execute_function(thread_manager_init_callback);
   return (init_result != 0) - 1;
 }
 int initialize_network_module(void)
@@ -737,7 +737,7 @@ int initialize_network_module(void)
   data_180bf90c8 = 0;
   _data_180bf90c0 = 0xd;
   strcpy_s(&data_180bf90c8,0x20,&g_configString1,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_026);
+  init_result = execute_function(event_system_init_callback);
   return (init_result != 0) - 1;
 }
 int initialize_physics_module(void)
@@ -749,13 +749,13 @@ int initialize_physics_module(void)
   data_180bf5ba0 = 0;
   _data_180bf5b98 = 9;
   strcpy_s(&data_180bf5ba0,0x20,&g_configString2,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_027);
+  init_result = execute_function(time_system_init_callback);
   return (init_result != 0) - 1;
 }
   data_180bf91c8 = 0;
   _data_180bf91c0 = 0x10;
   strcpy_s(&data_180bf91c8,0x40,&g_moduleString1,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_028);
+  init_result = execute_function(file_system_init_callback);
   return (init_result != 0) - 1;
 }
 int initialize_ai_module(void)
@@ -767,7 +767,7 @@ int initialize_ai_module(void)
   data_180bf9228 = 0;
   _data_180bf9220 = 0x13;
   strcpy_s(&data_180bf9228,0x40,&g_moduleString2,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_029);
+  init_result = execute_function(debug_system_init_callback);
   return (init_result != 0) - 1;
 }
 int initialize_ui_module(void)

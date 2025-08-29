@@ -923,10 +923,10 @@ data framebufferStencilAttachment;
 
 // 函数: data renderSyncInitialize;
 data renderSyncInitialize;
-data DAT_180bf9e10;
-data DAT_180bf9e18;
-data DAT_180bf9e20;
-data DAT_180bf9e28;
+data renderSyncFence1;
+data renderSyncFence2;
+data renderSyncSemaphore1;
+data renderSyncSemaphore2;
 data framebufferResolveTarget;
 
 // 函数: data renderMemoryInitialize;
@@ -81396,7 +81396,7 @@ void renderSyncInitialize(void)
 void renderMemoryInitialize(void)
 
 {
-  _DAT_180bf9e10 = &threadLocalStorageCleanup;
+  _renderSyncFence1 = &threadLocalStorageCleanup;
   return;
 }
 
