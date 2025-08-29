@@ -1,45 +1,45 @@
 #ifndef DATA_DEFINITIONS_H
 #define DATA_DEFINITIONS_H
 
-// 数据定义 - 从原始文件中提取
-undefined DAT_1809fc740;
-undefined UNK_18098c790;
-  DAT_180bf5240 = 1;
-  _DAT_180bf52a8 = 0;
-  _DAT_180bf52b0 = 0x7fffffffffffffff;
-  DAT_180bf52e0 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_1809414f0);
-  return (lVar1 != 0) - 1;
+// 全局数据定义 - 从原始文件中提取
+undefined g_global_data_1809fc740;
+undefined g_unknown_18098c790;
+  g_config_flag_180bf5240 = 1;
+  g_counter_180bf52a8 = 0;
+  g_max_value_180bf52b0 = 0x7fffffffffffffff;
+  g_status_180bf52e0 = 0;
+  result = initialize_system(system_init_func_1809414f0);
+  return (result != 0) - 1;
 }
-int FUN_18002ce30(void)
+int initialize_data_structure_18002ce30(void)
 {
-  longlong lVar1;
-  _DAT_180bf5320 = &UNK_18098bb30;
-  _DAT_180bf5328 = &DAT_180bf5338;
-  _DAT_180bf5330 = 0;
-  DAT_180bf5338 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_180941590);
-  return (lVar1 != 0) - 1;
+  longlong init_result;
+  g_data_ptr_180bf5320 = &g_unknown_18098bb30;
+  g_data_ptr_180bf5328 = &g_data_180bf5338;
+  g_data_offset_180bf5330 = 0;
+  g_data_180bf5338 = 0;
+  init_result = initialize_system(system_init_func_180941590);
+  return (init_result != 0) - 1;
 }
-int FUN_18002ce80(void)
+int initialize_network_buffers_18002ce80(void)
 {
-  longlong lVar1;
-  _DAT_180bf5770 = &UNK_18098bb30;
-  _DAT_180bf5778 = &DAT_180bf5788;
-  _DAT_180bf5780 = 0;
-  DAT_180bf5788 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_1809415b0);
-  return (lVar1 != 0) - 1;
+  longlong net_init_result;
+  g_net_buffer_ptr_180bf5770 = &g_net_data_18098bb30;
+  g_net_buffer_ptr_180bf5778 = &g_net_buffer_180bf5788;
+  g_net_buffer_offset_180bf5780 = 0;
+  g_net_buffer_180bf5788 = 0;
+  net_init_result = initialize_system(network_init_func_1809415b0);
+  return (net_init_result != 0) - 1;
 }
-int FUN_18002ced0(void)
+int initialize_rendering_context_18002ced0(void)
 {
-  longlong lVar1;
-  _DAT_180bf5208 = &UNK_18098bc80;
-  _DAT_180bf5210 = &DAT_180bf5220;
-  _DAT_180bf5218 = 0;
-  DAT_180bf5220 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_1809415d0);
-  return (lVar1 != 0) - 1;
+  longlong render_init_result;
+  g_render_context_ptr_180bf5208 = &g_render_data_18098bc80;
+  g_render_context_ptr_180bf5210 = &g_render_buffer_180bf5220;
+  g_render_context_offset_180bf5218 = 0;
+  g_render_buffer_180bf5220 = 0;
+  render_init_result = initialize_system(rendering_init_func_1809415d0);
+  return (render_init_result != 0) - 1;
 }
 int FUN_18002cf20(void)
 {
