@@ -6807,7 +6807,7 @@ int accept_network_connection(longlong resourceHandle,longlong memorySize)
 // WARNING: Removing unreachable block (ram,0x000180893a22)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180893964(uint64 resourceHandle,uint64 memorySize)
+int send_network_data(uint64 resourceHandle,uint64 memorySize)
 
 {
   int in_EAX;
@@ -6842,7 +6842,7 @@ int FUN_180893964(uint64 resourceHandle,uint64 memorySize)
 
 
 
-uint64 FUN_180893a63(void)
+uint64 receive_network_data(void)
 
 {
   return 0x1f;
