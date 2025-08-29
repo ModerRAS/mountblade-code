@@ -7,15 +7,15 @@ undefined g_unknown_system_data;
   g_system_config_enabled = 1;
   g_operation_counter = 0;
   g_maximum_allowed_value = 0x7fffffffffffffff;
-  g_status_180bf52e0 = 0;
+  g_system_status = 0;
   result = initialize_system(system_init_func_1809414f0);
   return (result != 0) - 1;
 }
-int initialize_data_structure_18002ce30(void)
+int initialize_core_data_structure(void)
 {
   longlong init_result;
-  g_data_ptr_180bf5320 = &g_unknown_18098bb30;
-  g_data_ptr_180bf5328 = &g_data_180bf5338;
+  g_primary_data_pointer = &g_unknown_18098bb30;
+  g_secondary_data_pointer = &g_data_180bf5338;
   g_data_offset_180bf5330 = 0;
   g_data_180bf5338 = 0;
   init_result = initialize_system(system_init_func_180941590);
