@@ -677,8 +677,8 @@ void NetworkSendDataBuffer(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bu
 void NetworkCleanupConnection(void)
 
 {
-  uint64_t *unaff_RBX;
-  ulonglong stack_param;
+  uint64_t *connectionData;
+  ulonglong encryptionKey;
   
   *unaff_RBX = 0;
   unaff_RBX[1] = 0;
