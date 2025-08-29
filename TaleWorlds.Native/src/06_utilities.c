@@ -327,9 +327,9 @@ data configSystemUpdateSettings;
 data configSystemModSettings;
 data configSystemCloudSettings;
 data configSystemSocialSettings;
-data g_systemModuleData1;
-data g_systemModuleData2;
-data g_systemModuleData3;
+data g_systemModuleConfig1;
+data g_systemModuleConfig2;
+data g_systemModuleConfig3;
 data g_systemModuleData4;
 data g_systemModuleData5;
 data g_systemModuleData6;
@@ -1007,7 +1007,7 @@ data renderClearBuffer1;  /* 原: DAT_180bfa1d0 */
 data renderClearBuffer2;  /* 原: DAT_180bfa1d8 */
 data renderClearBuffer3;  /* 原: DAT_180bfa1e0 */
 data renderClearBuffer4;  /* 原: DAT_180bfa1e8 */
-data renderDrawFlushCommand;  /* 原: DAT_180a22fd0 */
+data renderDrawFlushCommand;  /* 原: renderDepthBuffer1; */
 
 // 函数: data renderDrawInitialize;
 data renderDrawInitialize;
@@ -1015,7 +1015,7 @@ data renderDrawBuffer1;
 data renderDrawBuffer2;
 data renderDrawBuffer3;
 data renderDrawBuffer4;
-data renderDrawStateCommand;  /* 原: DAT_180a22fa8 */
+data renderDrawStateCommand;  /* 原: renderDepthBuffer2; */
 
 // 函数: data renderDispatchInitialize;
 data renderDispatchInitialize;
@@ -1039,9 +1039,9 @@ data resourceAllocateMemory;
 
 // 函数: data resourceDeallocateMemory;
 data resourceDeallocateMemory;
-data resourceMemoryAlignment;  /* 原: DAT_180c91f6c */
+data resourceMemoryAlignment;  /* 原: renderDepthBuffer3; */
 data geometryIndexCount;
-data resourceMemoryProtection;  /* 原: DAT_180c91fcc */
+data resourceMemoryProtection;  /* 原: renderDepthBuffer4; */
 data particleEmitterData;
 data particleBuffer1;
 data particleBuffer2;
@@ -1154,10 +1154,10 @@ data resourceReflectionBuffer4;
 data resourceDecompressData;
 data resourceDecompressBuffer1;
 data resourceDecompressBuffer2;
-data resourceDecompressAlgorithm;  /* 原: DAT_180c92050 */
-data resourceDecompressLevel;  /* 原: DAT_180c92058 */
-data resourceDecompressChecksum;  /* 原: DAT_180c92060 */
-data resourceDecompressMetadata;  /* 原: DAT_180c92068 */
+data resourceDecompressAlgorithm;  /* 原: textureBufferSlot1; */
+data resourceDecompressLevel;  /* 原: textureBufferSlot2; */
+data resourceDecompressChecksum;  /* 原: textureBufferSlot3; */
+data resourceDecompressMetadata;  /* 原: textureBufferSlot4; */
 
 // 函数: data resourceEncryptData;
 data resourceEncryptData;
@@ -1185,16 +1185,16 @@ data renderBatchData;
 
 // 函数: data resourceVerifySignature;
 data resourceVerifySignature;
-data resourceVerifyAlgorithm;  /* 原: DAT_180c9246c */
+data resourceVerifyAlgorithm;  /* 原: systemCallVar1; */
 data renderInstanceData;
 
 // 函数: data resourceCreateBackup;
 data resourceCreateBackup;
-data resourceBackupTimestamp;  /* 原: DAT_180c92490 */
+data resourceBackupTimestamp;  /* 原: systemCallVar2; */
 
 // 函数: data resourceOptimizeStorage;
 data resourceOptimizeStorage;
-data resourceOptimizationFlags;  /* 原: DAT_180c92480 */
+data resourceOptimizationFlags;  /* 原: systemCallVar3; */
 
 // 函数: data resourceUpdateReferences;
 data resourceUpdateReferences;
@@ -1204,14 +1204,14 @@ data resourceCacheEvict;
 
 // 函数: data resourceCachePrefetch;
 data resourceCachePrefetch;
-data resourceCachePriority;  /* 原: DAT_180c924ac */
+data resourceCachePriority;  /* 原: systemCallVar4; */
 data renderLODData;
-data resourceCacheStrategy;  /* 原: DAT_180c924b0 */
-data renderVertexShaderData;  /* 原: DAT_180a2c1d0 */
-data DAT_180c924b4;
-data DAT_180a2c338;
-data DAT_180c924b8;
-data DAT_180a2c510;
+data resourceCacheStrategy;  /* 原: systemCallVar5; */
+data renderVertexShaderData;  /* 原: aiSystemVar1; */
+data resourceCacheCompression;  /* 原: aiSystemVar2; */
+data aiSystemVar3;;
+data aiSystemVar4;;
+data sceneManagerVar1;;
 data resourceCacheBuffer1;
 data resourceCacheBuffer2;
 data resourceCacheBuffer3;
@@ -1226,13 +1226,13 @@ data resourceCacheInvalidateBuffer4;
 
 // 函数: data resourceCacheUpdate;
 data resourceCacheUpdate;
-data DAT_180a2d660;
+data physicsSystemVar1;;
 data renderCullingData;
-data DAT_180a2d590;
+data physicsSystemVar2;;
 data renderFrustumData;
-data DAT_180c96310;
-data DAT_180c96320;
-data DAT_180c96328;
+data audioSystemVar1;;
+data audioSystemVar2;;
+data audioSystemVar3;;
 
 // 函数: data resourceMonitorActivity;
 data resourceMonitorActivity;
@@ -1243,7 +1243,7 @@ data resourceMonitorBuffer4;
 
 // 函数: data resourceManageLifecycle;
 data resourceManageLifecycle;
-data DAT_180c95ecc;
+data performanceMonitorVar1;;
 data memoryAllocatorHeap;
 
 // 函数: data resourceOptimizePerformance;
@@ -1319,7 +1319,7 @@ data bufferControlData2;
 data bufferControlData3;
 data threadSyncObject;
 data threadContextData;
-data DAT_180bf00a8;
+data threadSystemData;
 data DAT_180c86928;
 data g_systemStatusFlag1;
 data g_systemStatusFlag2;
@@ -1355,9 +1355,9 @@ void *ExceptionList;
 data databaseSchemaData;
 data allocatorMemoryPool;
 data DAT_180c86960;
-data DAT_180bf52b8;
-data DAT_180bf52bc;
-data DAT_180bf5248;
+data allocatorChunk1;
+data allocatorChunk2;
+data allocatorChunk3;
 data DAT_180c8ed60;
 data encryptionKeyData;
 data encryptionAlgorithm;
@@ -1365,7 +1365,7 @@ data allocatorHeapBase;
 data allocatorHeapSize;
 data allocatorHeapFlags;
 data DAT_1809fc7ec;
-data DAT_180bf5240;
+data allocatorChunk4;
 
 // 函数: data systemInitializeCore;
 data systemInitializeCore;
@@ -80305,10 +80305,10 @@ void InitializeResourcePool(void)
   if (_DAT_180bf5288 == 0) {
     FUN_180048980();
     localLong1 = _DAT_180bf5250;
-    for (buffer = _DAT_180bf5248; buffer != localLong1; buffer = buffer + RESOURCE_HANDLE_OFFSET0) {
+    for (buffer = _allocatorChunk3; buffer != localLong1; buffer = buffer + RESOURCE_HANDLE_OFFSET0) {
       FUN_180046b10(buffer);
     }
-    if (_DAT_180bf5248 == 0) {
+    if (_allocatorChunk3 == 0) {
       return;
     }
                     // WARNING: Subroutine does not return
@@ -81805,7 +81805,7 @@ void resourceDecompressData(uint64 resourceHandle,uint64 memorySize,uint64 opera
 void resourceEncryptData(void)
 
 {
-  _DAT_180c92050 = &threadLocalStorageCleanup;
+  _textureBufferSlot1; = &threadLocalStorageCleanup;
                     // WARNING: Could not recover jumptable at 0x0001809427c7. Too many branches
                     // WARNING: Treating indirect jump as call
   _Mtx_destroy_in_situ();
