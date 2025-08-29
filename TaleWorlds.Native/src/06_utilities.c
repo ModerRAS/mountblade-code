@@ -1098,7 +1098,7 @@ data postProcessGamma;  /* 原: DAT_180bfa960 */
 data renderTargetWidth;  /* 原: DAT_180bfa9e0 */
 data renderTargetHeight;  /* 原: DAT_180bfa9e8 */
 data renderTargetFormat;  /* 原: DAT_180bfa9f0 */
-data DAT_180bfa9f8;
+data renderTargetSamples;  /* 原: DAT_180bfa9f8 */
 data DAT_180bfaa78;
 data DAT_180bfaa80;
 data DAT_180bfaa88;
