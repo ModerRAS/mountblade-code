@@ -1258,16 +1258,16 @@ data resourceReportStatus;
 
 // 函数: data resourceGenerateReport;
 data resourceGenerateReport;
-data resourceReportFormat;  /* 原: DAT_180c96790 */
-data eventHandlerDataVar798;  /* 原: DAT_180c96798 */
+data resourceReportFormat;  /* 原: eventSystemVar6790 */
+data eventHandlerDataVar798;  /* 原: eventSystemVar6798 */
 
 // 函数: data resourceBatchOperation;
 data resourceBatchOperation;
-data eventHandlerDataVar7a0;  /* 原: DAT_180c967a0 */
+data eventHandlerDataVar7a0;  /* 原: eventSystemVar67a0 */
 data eventHandlerDataVar7a8;;
-data DAT_180c967b0;
-data DAT_180c967b8;
-data DAT_180c967d0;
+data eventSystemVar67b0;
+data eventSystemVar67b8;
+data eventSystemVar67d0;
 data memoryTrackingTable;
 data threadLocalStorageCleanup;
 
@@ -1275,25 +1275,25 @@ data threadLocalStorageCleanup;
 data InitializeThreadLocalStorage;
 data _tls_index;
 void *tlsPointer;
-data DAT_180c967d4;
+data eventSystemVar67d4;
 data memoryDebugInfo;
-data DAT_180c967d8;
+data eventSystemVar67d8;
 data memoryLeakDetector;
 data systemCallData;
-data DAT_180c967e8;
-data DAT_180c967f0;
-data DAT_180c967f8;
+data eventSystemVar67e8;
+data eventSystemVar67f0;
+data eventSystemVar67f8;
 
 // 函数: data CleanupThreadResources;
 data CleanupThreadResources;
-data DAT_180c96800;
-data DAT_180c96808;
-data DAT_180c0c6c0;
+data eventSystemVar6800;
+data eventSystemVar6808;
+data semaphoreWaitTimeout;  /* 原: DAT_180c0c6c0 */
 data bufferSystemVar14a0;
 data bufferSystemVar1324;
 data semaphoreInitState;
 data semaphoreControlFlag;
-data DAT_180c0c6d0;
+data semaphoreRecursionCount;  /* 原: DAT_180c0c6d0 */
 data DAT_180c0c6d8;
 data DAT_180c0d100;
 data DAT_180c0e170;
@@ -1369,10 +1369,10 @@ data allocatorChunk4;
 
 // 函数: data systemInitializeCore;
 data systemInitializeCore;
-data DAT_180d49160;
-data DAT_180d49168;
-data DAT_180d49170;
-data DAT_180d49178;
+data systemVar9160;
+data systemVar9168;
+data systemVar9170;
+data systemVar9178;
 data eventQueueState;
 data systemVar01d0;
 data compressionBuffer;
@@ -1393,12 +1393,12 @@ data serializationReferenceTable;
 data uiLayoutData;
 data uiStyleData;
 data systemVar1440;
-data DAT_180d48d38;
+data systemVar8d38;
 data uiWidgetTree;
 data eventHandlerTable;
 data uiAnimationData;
 data uiThemeData;
-data DAT_180d48d30;
+data systemVar8d30;
 data *PTR_?id@?$codecvt@DDU_Mbstatet@@@std@@2V0locale@2@A_180944718;
 data inputDeviceManager;
 data inputMappingTable;
@@ -1416,12 +1416,12 @@ data videoDecoderData;
 
 // 函数: data systemInitializePlugins;
 data systemInitializePlugins;
-data DAT_180d49238;
-data DAT_180d49250;
-data DAT_180d49248;
-data DAT_180d49240;
-data DAT_180d49258;
-data DAT_180d4925c;
+data systemVar9238;
+data systemVar9250;
+data systemVar9248;
+data systemVar9240;
+data systemVar9258;
+data systemVar925c;
 data videoStreamBuffer;
 
 // 函数: data systemInitializeExtensions;
@@ -1515,11 +1515,11 @@ data unknown_18015c090;
 
 // 函数: data systemInitializeComponents;
 data systemInitializeComponents;
-data DAT_180d49648;
-data DAT_180d49640;
-data DAT_180d49650;
+data systemVar9648;
+data systemVar9640;
+data systemVar9650;
 data unknown_180a0b650;
-data DAT_180d49638;
+data systemVar9638;
 data unknown_180a0c258;
 data unknown_1801bc7a0;
 data unknown_1801bc7e0;
@@ -1556,7 +1556,7 @@ data unknown_180a18980;
 data unknown_180a18998;
 data unknown_180a18968;
 data unknown_180a189b8;
-data DAT_180c96830;
+data eventSystemVar6830;
 data unknown_180a189f8;
 data unknown_180a18a98;
 data unknown_180a18aa8;
@@ -1601,20 +1601,20 @@ data entityComponentSystem;
 
 // 函数: data systemInitializePools;
 data systemInitializePools;
-data DAT_180d497d0;
+data systemVar97d0;
 
 // 函数: data systemInitializeQueues;
 data systemInitializeQueues;
-data DAT_180d49990;
-data DAT_180d48de0;
-data DAT_180d48de8;
-data DAT_180d48df0;
-data DAT_180d48df8;
-data DAT_180d48e00;
-data DAT_180d48e08;
+data systemVar9990;
+data systemVar8de0;
+data systemVar8de8;
+data systemVar8df0;
+data systemVar8df8;
+data systemVar8e00;
+data systemVar8e08;
 data eventSystemVar18d8;
-data DAT_180d48e10;
-data DAT_180d48e18;
+data systemVar8e10;
+data systemVar8e18;
 data eventSystemVar18c0;
 data entityManager;
 data componentManager;
@@ -1624,11 +1624,11 @@ data systemManager;
 data resourceHashData;
 data entityPool;
 data componentPool;
-data DAT_180d49d08;
-data DAT_180d49bf0;
-data DAT_180d49bf8;
-data DAT_180d49c00;
-data DAT_180d49c08;
+data systemVar9d08;
+data systemVar9bf0;
+data systemVar9bf8;
+data systemVar9c00;
+data systemVar9c08;
 data physicsEngineCore;
 data physicsWorldData;
 
@@ -1667,15 +1667,15 @@ data rigidBodyMassData;
 data rigidBodyInertia;
 data rigidBodyForceData;
 data rigidBodyTorqueData;
-data DAT_180d49d0c;
-data DAT_180d49d10;
-data DAT_180d49d18;
-data DAT_180d49d20;
-data DAT_180d49d28;
-data DAT_180d49d30;
-data DAT_180d49d38;
-data DAT_180d49d40;
-data DAT_180d49d48;
+data systemVar9d0c;
+data systemVar9d10;
+data systemVar9d18;
+data systemVar9d20;
+data systemVar9d28;
+data systemVar9d30;
+data systemVar9d38;
+data systemVar9d40;
+data systemVar9d48;
 data fileCacheState;
 uint32 softBodyVertices;
 uint32 softBodyIndices;
@@ -1694,7 +1694,7 @@ data resourceCacheFlush;
 // 函数: data resourceBatchProcess;
 data resourceBatchProcess;
 data aiSystemVarde40;
-byte DAT_180d49e30;
+byte systemVar9e30;
 data fluidSimulationData;
 data fluidParticleData;
 data fluidGridData;
@@ -1705,22 +1705,22 @@ data fluidForceData;
 data resourceControlAccess;
 data fluidViscosityData;
 data clothSimulationData;
-data DAT_180c96128;
+data eventSystemVar6128;
 data clothMeshData;
-data DAT_180c9612c;
-data DAT_180c96410;
+data eventSystemVar612c;
+data eventSystemVar6410;
 data clothConstraints;
 data clothCollisionData;
-data DAT_180d49ec0;
-data DAT_180d49ec4;
-data DAT_180c9642c;
-data DAT_180c96430;
+data systemVar9ec0;
+data systemVar9ec4;
+data eventSystemVar642c;
+data eventSystemVar6430;
 
 // 函数: data resourceTrackUsage;
 data resourceTrackUsage;
-data DAT_180c963e8;
-data DAT_180d49f60;
-data DAT_180d49f64;
+data eventSystemVar63e8;
+data systemVar9f60;
+data systemVar9f64;
 data clothWindData;
 data clothGravityData;
 data audioProcessingData;
@@ -1739,17 +1739,17 @@ data renderingStateFlag9;
 data renderingStateFlag10;
 data renderingStateFlag11;
 data renderingStateFlag12;
-data DAT_180c963d4;
-data DAT_180c963dc;
-data DAT_180c963d8;
-data DAT_180c9644c;
-data DAT_180c96450;
+data eventSystemVar63d4;
+data eventSystemVar63dc;
+data eventSystemVar63d8;
+data eventSystemVar644c;
+data eventSystemVar6450;
 data audioListenerData;
 data audioSourceData;
 data audioStreamData;
 data audioBufferQueue;
 data audioSampleData;
-data DAT_180d49128;
+data systemVar9128;
 data systemInitializationFlag;
 data resourceManagerState;
 data audioBitrateData;
@@ -1993,7 +1993,7 @@ data unknown_18053efd0;
 
 // 函数: data resourceBalanceLoad;
 data resourceBalanceLoad;
-data DAT_180d49ff8;
+data systemVar9ff8;
 
 // 函数: data resourceScheduleMaintenance;
 data resourceScheduleMaintenance;
@@ -2399,7 +2399,7 @@ data unknown_180a3e5e8;
 // 函数: data resourceExecuteMaintenance;
 data resourceExecuteMaintenance;
 byte renderSystemVar66d8;
-data DAT_180c96858;
+data eventSystemVar6858;
 data resourceMaintenanceBuffer1;
 data resourceMaintenanceBuffer2;
 data resourceMaintenanceBuffer3;
@@ -47601,7 +47601,7 @@ void Unwind_180908040(void)
   byte bVar1;
   
   EnterCriticalSection(0x180c82210);
-  _DAT_180d491f8 = 0;
+  _systemVar91f8 = 0;
   LeaveCriticalSection(0x180c82210);
   if (g_systemEventHandle != 0) {
     SetEvent();
@@ -47627,15 +47627,15 @@ void Unwind_180908050(uint64 resourceHandle,uint64 memorySize,uint64 operationFl
 {
   longlong *plocalLong1;
   
-  plocalLong1 = _DAT_180d49200;
-  FUN_18008d1f0(&DAT_180d49200,_DAT_180d49200[1],operationFlags,callbackFunction,0xfffffffffffffffe);
-  _DAT_180d49200[1] = (longlong)plocalLong1;
-  *_DAT_180d49200 = (longlong)plocalLong1;
-  _DAT_180d49200[2] = (longlong)plocalLong1;
-  _DAT_180d49208 = 0;
+  plocalLong1 = _systemVar9200;
+  FUN_18008d1f0(&systemVar9200,_systemVar9200[1],operationFlags,callbackFunction,0xfffffffffffffffe);
+  _systemVar9200[1] = (longlong)plocalLong1;
+  *_systemVar9200 = (longlong)plocalLong1;
+  _systemVar9200[2] = (longlong)plocalLong1;
+  _systemVar9208 = 0;
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-  free(_DAT_180d49200,SYSTEM_OFFSET_STATUS1);
+  free(_systemVar9200,SYSTEM_OFFSET_STATUS1);
   return;
 }
 
@@ -47648,7 +47648,7 @@ void Unwind_180908060(void)
 {
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-  free(_DAT_180d49200,SYSTEM_OFFSET_STATUS1);
+  free(_systemVar9200,SYSTEM_OFFSET_STATUS1);
   return;
 }
 
@@ -47661,7 +47661,7 @@ void Unwind_180908070(void)
 {
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-  free(_DAT_180d49200,SYSTEM_OFFSET_STATUS1);
+  free(_systemVar9200,SYSTEM_OFFSET_STATUS1);
   return;
 }
 
@@ -49949,7 +49949,7 @@ void Unwind_180908d30(void)
   byte bVar1;
   
   EnterCriticalSection(0x180c82210);
-  _DAT_180d49210 = 0;
+  _systemVar9210 = 0;
   LeaveCriticalSection(0x180c82210);
   if (g_systemEventHandle != 0) {
     SetEvent();
@@ -49973,7 +49973,7 @@ void Unwind_180908d30(void)
 void Unwind_180908d40(void)
 
 {
-  _DAT_180d49218 = &threadLocalStorageCleanup;
+  _systemVar9218 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -54478,7 +54478,7 @@ void Unwind_18090a6a0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090a6d0(void)
 
 {
-  _DAT_180d49240 = &threadLocalStorageCleanup;
+  _systemVar9240 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -54492,7 +54492,7 @@ void Unwind_18090a6e0(void)
   byte bVar1;
   
   EnterCriticalSection(0x180c82210);
-  _DAT_180d49238 = 0;
+  _systemVar9238 = 0;
   LeaveCriticalSection(0x180c82210);
   if (g_systemEventHandle != 0) {
     SetEvent();
@@ -79889,7 +79889,7 @@ void Unwind_1809127d0(void)
   byte bVar1;
   
   EnterCriticalSection(0x180c82210);
-  _DAT_180d49270 = 0;
+  _systemVar9270 = 0;
   LeaveCriticalSection(0x180c82210);
   if (g_systemEventHandle != 0) {
     SetEvent();
@@ -80621,15 +80621,15 @@ void systemInitializeModules(uint64 resourceHandle,uint64 memorySize,uint64 oper
 {
   longlong *plocalLong1;
   
-  plocalLong1 = _DAT_180d49200;
-  FUN_18008d1f0(resourceHandle,_DAT_180d49200[1],operationFlags,callbackFunction,0xfffffffffffffffe);
-  _DAT_180d49200[1] = (longlong)plocalLong1;
-  *_DAT_180d49200 = (longlong)plocalLong1;
-  _DAT_180d49200[2] = (longlong)plocalLong1;
-  _DAT_180d49208 = 0;
+  plocalLong1 = _systemVar9200;
+  FUN_18008d1f0(resourceHandle,_systemVar9200[1],operationFlags,callbackFunction,0xfffffffffffffffe);
+  _systemVar9200[1] = (longlong)plocalLong1;
+  *_systemVar9200 = (longlong)plocalLong1;
+  _systemVar9200[2] = (longlong)plocalLong1;
+  _systemVar9208 = 0;
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-  free(_DAT_180d49200,SYSTEM_OFFSET_STATUS1);
+  free(_systemVar9200,SYSTEM_OFFSET_STATUS1);
   return;
 }
 
@@ -80681,14 +80681,14 @@ void InitializeConfigurationSystem(void)
 void systemInitializeServices(void)
 
 {
-  _DAT_180d49218 = &threadLocalStorageData;
-  if (_DAT_180d49220 != 0) {
+  _systemVar9218 = &threadLocalStorageData;
+  if (_systemVar9220 != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  _DAT_180d49220 = 0;
-  _DAT_180d49230 = 0;
-  _DAT_180d49218 = &threadLocalStorageCleanup;
+  _systemVar9220 = 0;
+  _systemVar9230 = 0;
+  _systemVar9218 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80701,14 +80701,14 @@ void systemInitializeServices(void)
 void systemInitializePlugins(void)
 
 {
-  _DAT_180d49240 = &threadLocalStorageData;
-  if (_DAT_180d49248 != 0) {
+  _systemVar9240 = &threadLocalStorageData;
+  if (_systemVar9248 != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  _DAT_180d49248 = 0;
-  _DAT_180d49258 = 0;
-  _DAT_180d49240 = &threadLocalStorageCleanup;
+  _systemVar9248 = 0;
+  _systemVar9258 = 0;
+  _systemVar9240 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80726,16 +80726,16 @@ void systemInitializeExtensions(void)
   longlong index;
   ulonglong uVar4;
   
-  plocalUInt2 = _DAT_180d493f8;
-  if (_DAT_180d493f8 == (uint64 *)0x0) {
+  plocalUInt2 = _systemVar93f8;
+  if (_systemVar93f8 == (uint64 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)_DAT_180d493f8 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)_systemVar93f8 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    index = uVar4 + BUFFER_OFFSET_TEMP + ((longlong)_DAT_180d493f8 - uVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    index = uVar4 + BUFFER_OFFSET_TEMP + ((longlong)_systemVar93f8 - uVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     index = index - (ulonglong)*(uint *)(index + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *_DAT_180d493f8 = *(uint64 *)(index + POINTER_OFFSET_DATA);
+      *_systemVar93f8 = *(uint64 *)(index + POINTER_OFFSET_DATA);
       *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
       pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
@@ -80746,7 +80746,7 @@ void systemInitializeExtensions(void)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          _DAT_180d493f8,uVar4,0xfffffffffffffffe);
+                          _systemVar93f8,uVar4,0xfffffffffffffffe);
     }
   }
   return;
@@ -80761,14 +80761,14 @@ void systemInitializeExtensions(void)
 void systemInitializeComponents(void)
 
 {
-  _DAT_180d49638 = &threadLocalStorageData;
-  if (_DAT_180d49640 != 0) {
+  _systemVar9638 = &threadLocalStorageData;
+  if (_systemVar9640 != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  _DAT_180d49640 = 0;
-  _DAT_180d49650 = 0;
-  _DAT_180d49638 = &threadLocalStorageCleanup;
+  _systemVar9640 = 0;
+  _systemVar9650 = 0;
+  _systemVar9638 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80867,14 +80867,14 @@ void SetupDatabaseTables(void)
 void systemInitializeSubsystems(void)
 
 {
-  _DAT_180d48db8 = &threadLocalStorageData;
-  if (_DAT_180d48dc0 != 0) {
+  _systemVar8db8 = &threadLocalStorageData;
+  if (_systemVar8dc0 != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  _DAT_180d48dc0 = 0;
-  _DAT_180d48dd0 = 0;
-  _DAT_180d48db8 = &threadLocalStorageCleanup;
+  _systemVar8dc0 = 0;
+  _systemVar8dd0 = 0;
+  _systemVar8db8 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80900,7 +80900,7 @@ void systemInitializeWorkers(void)
 void systemInitializePools(void)
 
 {
-  _DAT_180d49730 = &threadLocalStorageCleanup;
+  _systemVar9730 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80914,16 +80914,16 @@ void systemInitializeQueues(void)
 
 {
   FUN_180320e20(0x180d497e0);
-  if (_DAT_180d49970 != 0) {
+  if (_systemVar9970 != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  if (_DAT_180d49950 != 0) {
+  if (_systemVar9950 != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   FUN_180320b20(0x180d498a0);
-  _DAT_180d49830 = &threadLocalStorageCleanup;
+  _systemVar9830 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81860,7 +81860,7 @@ void resourceVerifySignature(void)
 void resourceHashData(void)
 
 {
-  _DAT_180d499d0 = &threadLocalStorageCleanup;
+  _systemVar99d0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81873,7 +81873,7 @@ void resourceHashData(void)
 void resourceVerifyHash(void)
 
 {
-  _DAT_180d49bf0 = &threadLocalStorageCleanup;
+  _systemVar9bf0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -82251,9 +82251,9 @@ void resourceBatchProcess(uint64 resourceHandle,uint64 memorySize,uint64 operati
 {
   uint64 *preturnValue;
   
-  preturnValue = _DAT_180d49e18;
-  if (_DAT_180d49e18 != (uint64 *)0x0) {
-    FUN_1804a9b80(resourceHandle,*_DAT_180d49e18,operationFlags,callbackFunction,0xfffffffffffffffe);
+  preturnValue = _systemVar9e18;
+  if (_systemVar9e18 != (uint64 *)0x0) {
+    FUN_1804a9b80(resourceHandle,*_systemVar9e18,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(preturnValue);
   }
@@ -82274,62 +82274,62 @@ void resourceScheduleTask(void)
 void resourceCancelTask(void)
 
 {
-  if (DAT_180c96008 != '\0') {
-    FUN_180552e70(_DAT_180c95ff0);
-    _DAT_180c95ff0 = 0;
+  if (eventSystemVar6008 != '\0') {
+    FUN_180552e70(_eventSystemVar5ff0);
+    _eventSystemVar5ff0 = 0;
 
 // 函数: void resourcePauseTask(void)
 void resourcePauseTask(void)
 
 {
-  if (DAT_180c96028 != '\0') {
-    if (_DAT_180c96010 != 0) {
+  if (eventSystemVar6028 != '\0') {
+    if (_eventSystemVar6010 != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    _DAT_180c96010 = 0;
+    _eventSystemVar6010 = 0;
 
 // 函数: void resourceResumeTask(void)
 void resourceResumeTask(void)
 
 {
-  if (DAT_180c96048 != '\0') {
-    FUN_180555430(_DAT_180c96030);
-    _DAT_180c96030 = 0;
+  if (eventSystemVar6048 != '\0') {
+    FUN_180555430(_eventSystemVar6030);
+    _eventSystemVar6030 = 0;
 
 // 函数: void resourceQueryProgress(void)
 void resourceQueryProgress(void)
 
 {
-  if (DAT_180c96068 != '\0') {
-    FUN_180555430(_DAT_180c96050);
-    _DAT_180c96050 = 0;
+  if (eventSystemVar6068 != '\0') {
+    FUN_180555430(_eventSystemVar6050);
+    _eventSystemVar6050 = 0;
 
 // 函数: void resourceQueryStatus(void)
 void resourceQueryStatus(void)
 
 {
-  if (DAT_180c96098 != '\0') {
+  if (eventSystemVar6098 != '\0') {
     FUN_180057830();
-    if (_DAT_180c96070 != (longlong *)0x0) {
-      (**(code **)(*_DAT_180c96070 + STRUCT_OFFSET_SIZE))();
+    if (_eventSystemVar6070 != (longlong *)0x0) {
+      (**(code **)(*_eventSystemVar6070 + STRUCT_OFFSET_SIZE))();
     }
 
 // 函数: void resourceQueryMetrics(void)
 void resourceQueryMetrics(void)
 
 {
-  if (DAT_180c960b8 != '\0') {
-    FUN_18055a350(_DAT_180c960a0);
-    _DAT_180c960a0 = 0;
+  if (eventSystemVar60b8 != '\0') {
+    FUN_18055a350(_eventSystemVar60a0);
+    _eventSystemVar60a0 = 0;
 
 // 函数: void resourceQueryStatistics(void)
 void resourceQueryStatistics(void)
 
 {
-  if (DAT_180c96100 != '\0') {
+  if (eventSystemVar6100 != '\0') {
     FUN_1804a5b60();
-    FUN_1804a5b00(&DAT_180c960c0);
+    FUN_1804a5b00(&eventSystemVar60c0);
 
 // 函数: void resourceSetPriority(void)
 void resourceSetPriority(void)
@@ -82337,15 +82337,15 @@ void resourceSetPriority(void)
 {
   longlong localLong1;
   
-  localLong1 = _DAT_180c96138;
-  if (DAT_180c96140 != '\0') {
-    if (_DAT_180c96120 != 0) {
+  localLong1 = _eventSystemVar6138;
+  if (eventSystemVar6140 != '\0') {
+    if (_eventSystemVar6120 != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    _DAT_180c96120 = 0;
-    if (_DAT_180c96138 != 0) {
-      FUN_1808fc8a8(_DAT_180c96138 + 0x360,0xcc8,8,FUN_1804aa030,0xfffffffffffffffe);
+    _eventSystemVar6120 = 0;
+    if (_eventSystemVar6138 != 0) {
+      FUN_1808fc8a8(_eventSystemVar6138 + 0x360,0xcc8,8,FUN_1804aa030,0xfffffffffffffffe);
       _Mtx_destroy_in_situ();
       _Cnd_destroy_in_situ();
       FUN_1804a9f00(localLong1 + DATA_OFFSET_START);
@@ -82353,15 +82353,15 @@ void resourceSetPriority(void)
                     // WARNING: Subroutine does not return
       HandleCriticalError(localLong1);
     }
-    _DAT_180c96138 = 0;
+    _eventSystemVar6138 = 0;
 
 // 函数: void resourceGetPriority(void)
 void resourceGetPriority(void)
 
 {
-  if (DAT_180c961d8 != '\0') {
-    FUN_1804c3730(&DAT_180c961b0);
-    FUN_1804c42a0(&DAT_180c961b0);
+  if (eventSystemVar61d8 != '\0') {
+    FUN_1804c3730(&eventSystemVar61b0);
+    FUN_1804c42a0(&eventSystemVar61b0);
 
 // 函数: void resourceSetLimit(void)
 void resourceSetLimit(void)
@@ -82388,8 +82388,8 @@ void resourceSetLimit(void)
 void resourceGetLimit(void)
 
 {
-  if (DAT_180c95fe8 != '\0') {
-    if (_DAT_180c95fc8 != 0) {
+  if (eventSystemVar5fe8 != '\0') {
+    if (_eventSystemVar5fc8 != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
@@ -82398,7 +82398,7 @@ void resourceGetLimit(void)
 void resourceResetLimit(void)
 
 {
-  if (DAT_180c96210 != '\0') {
+  if (eventSystemVar6210 != '\0') {
     FUN_1804a5bc0();
 
 // 函数: void resourceMonitorActivity(void)
@@ -82470,7 +82470,7 @@ void resourceOptimizePerformance(void)
 void resourceBalanceLoad(void)
 
 {
-  _DAT_180d49f80 = &threadLocalStorageCleanup;
+  _systemVar9f80 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -82483,7 +82483,7 @@ void resourceBalanceLoad(void)
 void resourceScheduleMaintenance(void)
 
 {
-  _DAT_180d49fe0 = &threadLocalStorageCleanup;
+  _systemVar9fe0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -82496,14 +82496,14 @@ void resourceScheduleMaintenance(void)
 void resourceExecuteMaintenance(void)
 
 {
-  _DAT_180d4a068 = &threadLocalStorageData;
-  if (_DAT_180d4a070 != 0) {
+  _systemVara068 = &threadLocalStorageData;
+  if (_systemVara070 != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  _DAT_180d4a070 = 0;
-  _DAT_180d4a080 = 0;
-  _DAT_180d4a068 = &threadLocalStorageCleanup;
+  _systemVara070 = 0;
+  _systemVara080 = 0;
+  _systemVara068 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -82546,7 +82546,7 @@ void resourceBatchOperation(uint64 resourceHandle,uint64 memorySize,uint64 opera
   
   preturnValue = _eventHandlerDataVar7a0;;
   if (_eventHandlerDataVar7a0; != (uint64 *)0x0) {
-    FUN_180651560(&DAT_180c96790,*_eventHandlerDataVar7a0;,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180651560(&eventSystemVar6790,*_eventHandlerDataVar7a0;,operationFlags,callbackFunction,0xfffffffffffffffe);
     FUN_18063cfe0(preturnValue + 5);
                     // WARNING: Subroutine does not return
     HandleCriticalError(preturnValue);
