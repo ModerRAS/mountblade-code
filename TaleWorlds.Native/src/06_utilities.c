@@ -369,8 +369,8 @@ data fileBufferSize;
 data fileOperationFlag;
 data networkConnectionStatus;
 data networkSocketHandle;
-data g_systemModuleData10;
-data g_systemModuleData11;
+data g_systemModuleNetworkFlags10;
+data g_systemModuleNetworkFlags11;
 data g_systemModuleData12;
 
 // 函数: data g_initializeSystemModule1;

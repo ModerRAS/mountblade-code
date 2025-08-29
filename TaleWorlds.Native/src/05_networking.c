@@ -83863,7 +83863,7 @@ uint64_t FUN_18088c7c0(longlong socketHandle,longlong dataBuffer,uint64_t *buffe
     return 0x1c;
   }
   connectionBuffer = (uint32_t *)
-           FUN_180741e10(*(uint64_t *)(g_networkModule + 0x1a0),0x38,&UNK_180986010,0x24,0,0,1);
+           FUN_180741e10(*(uint64_t *)(g_networkModule + 0x1a0),0x38,&g_network_log_buffer_010,0x24,0,0,1);
   if (connectionBuffer == (uint32_t *)0x0) {
     packetLength = 0x26;
   }
@@ -83915,7 +83915,7 @@ uint32_t FUN_18088c8a0(int *socketHandle)
       *(uint64_t *)(*(longlong *)(socketHandle + 4) + 0x68) = 0;
     }
                     // WARNING: Subroutine does not return
-    NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),socketHandle,&UNK_180986010,0x4d,1);
+    NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),socketHandle,&g_network_log_buffer_010,0x4d,1);
   }
 LAB_18088c94a:
                     // WARNING: Subroutine does not return
@@ -83982,7 +83982,7 @@ uint64_t FUN_18088ca20(longlong socketHandle,longlong dataBuffer,uint64_t *buffe
     return 0x1c;
   }
   connectionBuffer = (uint32_t *)
-           FUN_180741e10(*(uint64_t *)(g_networkModule + 0x1a0),SOCKET_RESPONSE_OFFSET,&UNK_180986090,0x1d,0,0,1);
+           FUN_180741e10(*(uint64_t *)(g_networkModule + 0x1a0),SOCKET_RESPONSE_OFFSET,&g_network_log_buffer_090,0x1d,0,0,1);
   if (connectionBuffer == (uint32_t *)0x0) {
     packetLength = 0x26;
   }
@@ -84030,7 +84030,7 @@ uint32_t FUN_18088cae0(int *socketHandle)
       *(uint64_t *)(*(longlong *)(socketHandle + 4) + 0x48) = 0;
     }
                     // WARNING: Subroutine does not return
-    NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),socketHandle,&UNK_180986090,0x44,1);
+    NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),socketHandle,&g_network_log_buffer_090,0x44,1);
   }
 LAB_18088cb8a:
                     // WARNING: Subroutine does not return
@@ -84480,7 +84480,7 @@ void FUN_18088d2be(void)
            (longlong)*(int *)(in_stack_00000060 + (longlong)(iStack0000000000000068 + -1) * 4) * 8);
   FUN_180894fb0(networkResult);
                     // WARNING: Subroutine does not return
-  NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),networkResult,&UNK_180986190,0x2ca,1);
+  NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),networkResult,&g_network_log_buffer_190,0x2ca,1);
 }
 
 
@@ -84510,7 +84510,7 @@ void FUN_18088d388(void)
              (longlong)*(int *)(in_stack_00000060 + (longlong)(in_stack_00000068 + -1) * 4) * 8);
     FUN_180894fb0(networkResult);
                     // WARNING: Subroutine does not return
-    NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),networkResult,&UNK_180986190,0x2ca,1);
+    NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),networkResult,&g_network_log_buffer_190,0x2ca,1);
   }
   FUN_18088ccd0(&stack0x00000060);
                     // WARNING: Subroutine does not return
@@ -84575,7 +84575,7 @@ void FUN_18088d510(longlong socketHandle)
         networkStack_128[0] = 0;
         networkPtrStack_138 = networkStack_128;
                     // WARNING: Subroutine does not return
-        networkSendControlPacket(connectionCount,0xb,0,&UNK_180986208);
+        networkSendControlPacket(connectionCount,0xb,0,&g_network_log_buffer_208);
       }
     }
     cVar2 = *(char *)(socketHandle + 0x189);
@@ -84628,7 +84628,7 @@ void FUN_18088d575(void)
       if ((resultCode != 0) && ((*(byte *)(g_networkModule + 0x10) & 0x80) != 0)) {
         in_stack_00000030 = 0;
                     // WARNING: Subroutine does not return
-        networkSendControlPacket(resultCode,0xb,0,&UNK_180986208,&stack0x00000030);
+        networkSendControlPacket(resultCode,0xb,0,&g_network_log_buffer_208,&stack0x00000030);
       }
     }
     if (*(char *)(unaff_RDI + 0x189) != '\0') {
@@ -84746,7 +84746,7 @@ void FUN_18088d850(longlong socketHandle)
         *(uint64_t *)(socketHandle + 0x158) = 0;
         FUN_1808e6410(networkResult);
                     // WARNING: Subroutine does not return
-        NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),networkResult,&UNK_180986190,0x83,1);
+        NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),networkResult,&g_network_log_buffer_190,0x83,1);
       }
     }
   }
@@ -84791,7 +84791,7 @@ void FUN_18088d880(void)
       *(uint64_t *)(unaff_RDI + 0x158) = 0;
       FUN_1808e6410(networkResult);
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),networkResult,&UNK_180986190,0x83,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),networkResult,&g_network_log_buffer_190,0x83,1);
     }
   }
   return;
@@ -84815,7 +84815,7 @@ void FUN_18088d902(void)
   *(uint64_t *)(unaff_RDI + 0x158) = unaff_RSI;
   FUN_1808e6410(networkResult);
                     // WARNING: Subroutine does not return
-  NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),networkResult,&UNK_180986190,0x83,1);
+  NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),networkResult,&g_network_log_buffer_190,0x83,1);
 }
 
 
@@ -84854,7 +84854,7 @@ void FUN_18088d9d0(void)
     networkResult = *(uint64_t *)(unaff_RSI + *(longlong *)(unaff_RDI + 0x1e8));
     FUN_180894fb0(networkResult);
                     // WARNING: Subroutine does not return
-    NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),networkResult,&UNK_180986190,0x1e7,1);
+    NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),networkResult,&g_network_log_buffer_190,0x1e7,1);
   }
   FUN_180744d60(unaff_RDI + 0x1e8);
   return;
@@ -84896,7 +84896,7 @@ uint64_t FUN_18088da50(longlong socketHandle)
     bufferCapacity = **(uint64_t **)(socketHandle + 0x1e8);
     FUN_180894fb0(bufferCapacity);
                     // WARNING: Subroutine does not return
-    NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),bufferCapacity,&UNK_180986190,0x1e7,1);
+    NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),bufferCapacity,&g_network_log_buffer_190,0x1e7,1);
   }
   pnetworkTimeout = (longlong *)(socketHandle + 0x1e8);
   dataPointer = *(uint *)(socketHandle + 500);
@@ -84941,7 +84941,7 @@ void FUN_18088da6d(void)
   networkResult = *(uint64_t *)((ulonglong)unaff_EDI + *(longlong *)(unaff_RBP + 0x1e8));
   FUN_180894fb0(networkResult);
                     // WARNING: Subroutine does not return
-  NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),networkResult,&UNK_180986190,0x1e7,1);
+  NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),networkResult,&g_network_log_buffer_190,0x1e7,1);
 }
 
 
@@ -85020,7 +85020,7 @@ uint64_t FUN_18088daf0(longlong socketHandle)
           }
           (**(code **)*ppacketLength)(ppacketLength,0);
                     // WARNING: Subroutine does not return
-          NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),ppacketLength,&UNK_180986190,0x1d2,1);
+          NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),ppacketLength,&g_network_log_buffer_190,0x1d2,1);
         }
         return 0x1c;
       }
@@ -85270,7 +85270,7 @@ uint64_t networkCreateSession(longlong socketHandle,longlong *dataBuffer,int buf
   if ((int)networkResult != 0x41) {
     if ((int)networkResult == 0) {
       if (0 < aiStackX_20[0]) {
-        *anetworkPtrStack_60[0] = &UNK_180986108;
+        *anetworkPtrStack_60[0] = &g_network_log_buffer_108;
         *(int *)(anetworkPtrStack_60[0] + 1) = aiStackX_20[0];
       }
       return 0;
@@ -85461,7 +85461,7 @@ uint64_t FUN_18088e480(longlong socketHandle,longlong dataBuffer,uint8_t bufferC
     if ((int)bufferCapacity != 0) {
       return bufferCapacity;
     }
-    bufferCapacity = FUN_180767c00(socketHandle,&UNK_180986170,&UNK_18088d500,socketHandle,8,(char)bufferCapacity,1,dataBuffer,
+    bufferCapacity = FUN_180767c00(socketHandle,&g_network_log_buffer_170,&UNK_18088d500,socketHandle,8,(char)bufferCapacity,1,dataBuffer,
                           (char)bufferCapacity);
     if ((int)bufferCapacity != 0) {
       return bufferCapacity;
@@ -85484,7 +85484,7 @@ uint64_t FUN_18088e480(longlong socketHandle,longlong dataBuffer,uint8_t bufferC
   if ((int)bufferCapacity != 0) {
     return bufferCapacity;
   }
-  dataBuffer = FUN_180741e10(*(uint64_t *)(g_networkModule + 0x1a0),0x30,&UNK_180986190,0x59,0,
+  dataBuffer = FUN_180741e10(*(uint64_t *)(g_networkModule + 0x1a0),0x30,&g_network_log_buffer_190,0x59,0,
                         (char)bufferCapacity,1);
   if (dataBuffer == 0) {
     return 0x26;
@@ -85542,7 +85542,7 @@ uint64_t FUN_18088e4e4(void)
     if ((int)bufferCapacity != 0) {
       return bufferCapacity;
     }
-    bufferCapacity = FUN_180767c00(extraout_XMM0_Qa,&UNK_180986170,&UNK_18088d500);
+    bufferCapacity = FUN_180767c00(extraout_XMM0_Qa,&g_network_log_buffer_170,&UNK_18088d500);
     if ((int)bufferCapacity != 0) {
       return bufferCapacity;
     }
@@ -85564,7 +85564,7 @@ uint64_t FUN_18088e4e4(void)
   if ((int)bufferCapacity != 0) {
     return bufferCapacity;
   }
-  dataBuffer = FUN_180741e10(*(uint64_t *)(g_networkModule + 0x1a0),0x30,&UNK_180986190,0x59,0);
+  dataBuffer = FUN_180741e10(*(uint64_t *)(g_networkModule + 0x1a0),0x30,&g_network_log_buffer_190,0x59,0);
   if (dataBuffer == 0) {
     return 0x26;
   }

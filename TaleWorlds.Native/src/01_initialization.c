@@ -353,16 +353,16 @@ void* g_global_data_1809ff498;
 
 void* g_global_data_1809ff390;
 
-void* g_global_data_1809ff3e8;
+void* g_global_navigation_manager;
 
 void* g_global_data_1809ff488;
 
 char DAT_180c8aa69;
-void* g_global_data_1809ff538;
+void* g_global_task_manager;
 
-void* g_global_data_1809ff550;
+void* g_global_schedule_manager;
 
-void* g_global_data_1809ff5b0;
+void* g_global_equipment_manager;
 
 void* g_global_data_1809ff5b8;
 
@@ -370,9 +370,9 @@ void* g_global_data_1809ff5c0;
 
 void* g_global_data_1809ff5d0;
 
-void* g_global_data_1809ff5f8;
+void* g_global_level_manager;
 
-void* g_global_data_1809ff610;
+void* g_global_quest_manager;
 
 void* g_global_data_1809ff630;
 
@@ -384,7 +384,7 @@ void* g_global_data_1809ff648;
 
 void* g_static_data_1809ff660;
 
-void* g_global_data_1809ff688;
+void* g_global_player_manager;
 
 void* g_global_data_1809ff6b0;
 
@@ -394,7 +394,7 @@ void* g_global_data_1809ff6c8;
 
 void* g_global_data_1809ff6e0;
 
-void* g_global_data_1809ff7c0;
+void* g_global_price_manager;
 
 void* g_global_data_1809ff800;
 
