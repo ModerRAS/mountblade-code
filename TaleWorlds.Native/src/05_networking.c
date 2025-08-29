@@ -2163,7 +2163,7 @@ int NetworkSendPacketWithSession(longlong socketParam,longlong dataParam,int siz
 
 
 
-int FUN_180842a00(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithFlags1(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -2186,7 +2186,7 @@ int FUN_180842a00(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180842ac0(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithFlags2(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -2209,7 +2209,7 @@ int FUN_180842ac0(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180842b80(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithFlags3(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -2238,7 +2238,7 @@ int FUN_180842b80(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180842c60(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithFlags4(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -2267,7 +2267,7 @@ int FUN_180842c60(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180842d40(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithFlags5(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -2290,7 +2290,7 @@ int FUN_180842d40(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180842e00(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithFlags6(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -2307,7 +2307,7 @@ int FUN_180842e00(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180842e70(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithFlags7(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -2324,7 +2324,7 @@ int FUN_180842e70(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180842ee0(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithFlags8(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -2341,7 +2341,7 @@ int FUN_180842ee0(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180842f50(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithFlags9(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -2364,7 +2364,7 @@ int FUN_180842f50(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180843010(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithFlags10(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -2387,7 +2387,7 @@ int FUN_180843010(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_1808430d0(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithFlags11(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -2404,7 +2404,7 @@ int FUN_1808430d0(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180843140(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithFlags12(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -2421,7 +2421,7 @@ int FUN_180843140(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_1808431b0(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithFlags13(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -2462,7 +2462,7 @@ int FUN_1808431b0(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180843270(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithFlags14(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -2485,7 +2485,7 @@ int FUN_180843270(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180843330(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithFlags15(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -2520,7 +2520,7 @@ int FUN_180843330(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180843450(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithFlags16(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined1 uVar1;
@@ -2553,7 +2553,7 @@ int FUN_180843450(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180843570(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithFlags17(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined4 uVar1;
@@ -2586,7 +2586,7 @@ int FUN_180843570(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_180843690(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithFlags18(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined1 uVar1;
@@ -2617,7 +2617,7 @@ int FUN_180843690(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-int FUN_1808437b0(longlong socketParam,longlong dataParam,int sizeParam)
+int NetworkReceiveDataWithFlags19(longlong socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined1 uVar1;
