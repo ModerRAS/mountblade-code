@@ -38,9 +38,9 @@ int initialize_rendering_context_system(void)
 {
   longlong render_init_result;
   g_render_context_primary_ptr = &g_render_data_18098bc80;
-  g_render_context_secondary_ptr = &g_render_buffer_180bf5220;
+  g_render_context_secondary_ptr = &g_render_buffer_value;
   g_render_context_offset = 0;
-  g_render_buffer_180bf5220 = 0;
+  g_render_buffer_value = 0;
   render_init_result = initialize_system(rendering_init_func_1809415d0);
   return (render_init_result != 0) - 1;
 }
