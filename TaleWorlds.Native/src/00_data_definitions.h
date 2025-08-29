@@ -105,6 +105,7 @@ int initialize_thread_pool_2(undefined8 handle_parameter,undefined8 flags_parame
   function_result_variable = execute_function(callback_function_009);
   return (function_result_variable != 0) - 1;
 }
+// 初始化线程池3
 int initialize_thread_pool_3(undefined8 handle_parameter,undefined8 flags_parameter,undefined8 mutex_attribute_parameter,undefined8 mutex_type_parameter)
 {
   longlong function_result_variable;
@@ -116,6 +117,7 @@ int initialize_thread_pool_3(undefined8 handle_parameter,undefined8 flags_parame
   function_result_variable = execute_function(callback_function_010);
   return (function_result_variable != 0) - 1;
 }
+// 初始化线程池4
 int initialize_thread_pool_4(undefined8 handle_parameter,undefined8 flags_parameter,undefined8 mutex_attribute_parameter,undefined8 mutex_type_parameter)
 {
   longlong function_result_variable;
@@ -127,6 +129,11 @@ int initialize_thread_pool_4(undefined8 handle_parameter,undefined8 flags_parame
   function_result_variable = execute_function(callback_function_011);
   return (function_result_variable != 0) - 1;
 }
+// 初始化资源管理器0
+int initialize_resource_manager_0(void)
+{
+  longlong function_result_variable;
+  undefined8 string_length_parameter;
   g_resource_string_1 = 0;
   g_resource_id_1 = 6;
   strcpy_s(&g_resource_string_1,0x10,&string_source_001,string_length_parameter,0xfffffffffffffffe);
