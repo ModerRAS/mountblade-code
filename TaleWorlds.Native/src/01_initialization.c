@@ -24,26 +24,26 @@ undefined g_game_render_data;
 
 undefined g_unknown_game_data_5;
 
-undefined g_game_audio_data_18098c990;
+undefined g_game_audio_data;
 
-undefined g_unknown_game_data_18098c810;
+undefined g_unknown_game_data_6;
 
-undefined g_game_network_data_18098c9e0;
+undefined g_game_network_data;
 
-undefined g_unknown_game_data_18098c870;
+undefined g_unknown_game_data_7;
 
-undefined g_game_input_data_18098c8f0;
-// undefined InitializeGameEngine_180073930;
+undefined g_game_input_data;
+// undefined InitializeGameEngine;
 
-undefined InitializeGameEngine_180073930;
+undefined InitializeGameEngine;
 
-undefined g_unknown_engine_data_18098c880;
+undefined g_unknown_engine_data_1;
 
-undefined g_engine_config_data_18098c8c8;
+undefined g_engine_config_data;
 
-undefined g_unknown_engine_data_18098c898;
+undefined g_unknown_engine_data_2;
 
-undefined g_engine_state_data_180bf5268;
+undefined g_engine_state_data;
 
 undefined g_engine_memory_data_180bf5270;
 
