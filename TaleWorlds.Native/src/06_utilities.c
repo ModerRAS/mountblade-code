@@ -165,7 +165,7 @@ data sceneManagerHandle;
 data sceneObjectPool;
 data sceneLightingData;
 data sceneCameraData;
-data unknown_180a00538;
+data sceneRenderingState;
 
 // 函数: data initializeResourceManager;
 data initializeResourceManager;
@@ -3819,8 +3819,8 @@ void stop_timer(void)
 
 
 
-// 函数: void FUN_180890f7f(void)
-void FUN_180890f7f(void)
+// 函数: void destroy_timer(void)
+void destroy_timer(void)
 
 {
   return;
@@ -3828,7 +3828,7 @@ void FUN_180890f7f(void)
 
 
 
-uint64 FUN_180890f90(longlong resourceHandle)
+uint64 get_timer_elapsed(longlong resourceHandle)
 
 {
   uint64 localUInt1;
@@ -3850,7 +3850,7 @@ uint64 FUN_180890f90(longlong resourceHandle)
 
 
 
-uint32 FUN_180890fae(void)
+uint32 get_system_time(void)
 
 {
   longlong in_stack_00000040;

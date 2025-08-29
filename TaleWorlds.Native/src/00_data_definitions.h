@@ -109,10 +109,10 @@ int initialize_thread_pool_2(undefined8 handle, undefined8 flags, undefined8 mut
 int initialize_thread_pool_3(undefined8 handle, undefined8 flags, undefined8 mutex_attr, undefined8 mutex_type)
 {
   long long initialization_result;
-  undefined8 local_flags = 0xfffffffffffffffe;
+  undefined8 thread_pool_flags = 0xfffffffffffffffe;
   
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(0x180c911e8, 2, mutex_attr, mutex_type, local_flags);
+  _Mtx_init_in_situ(0x180c911e8, 2, mutex_attr, mutex_type, thread_pool_flags);
   thread_pool_3_status_code = 0;
   initialization_result = execute_function(callback_function_010);
   return (initialization_result != 0) - 1;
@@ -121,10 +121,10 @@ int initialize_thread_pool_3(undefined8 handle, undefined8 flags, undefined8 mut
 int initialize_thread_pool_4(undefined8 handle, undefined8 flags, undefined8 mutex_attr, undefined8 mutex_type)
 {
   long long initialization_result;
-  undefined8 local_flags = 0xfffffffffffffffe;
+  undefined8 thread_pool_flags = 0xfffffffffffffffe;
   
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(0x180c91288, 2, mutex_attr, mutex_type, local_flags);
+  _Mtx_init_in_situ(0x180c91288, 2, mutex_attr, mutex_type, thread_pool_flags);
   thread_pool_4_status_code = 0;
   initialization_result = execute_function(callback_function_011);
   return (initialization_result != 0) - 1;
