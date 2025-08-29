@@ -41,24 +41,24 @@ int initialize_core_data_structure(void)
 // 初始化网络缓冲区系统
 int initialize_network_buffer_system(void)
 {
-  long long initialization_result;
-  void* network_data_buffer_pointer = &g_network_data_buffer;
-  void* network_buffer_value_pointer = &network_buffer_current_value;
-  int network_buffer_offset = 0;
+  long long init_result;
+  void* network_buffer_ptr = &g_network_data_buffer;
+  void* network_value_ptr = &network_buffer_current_value;
+  int buffer_offset = 0;
   network_buffer_current_value = 0;
-  initialization_result = initialize_system(network_buffer_init_function);
-  return (initialization_result != 0) - 1;
+  init_result = initialize_system(network_buffer_init_function);
+  return (init_result != 0) - 1;
 }
 // 初始化渲染上下文系统
 int initialize_rendering_context_system(void)
 {
-  long long initialization_result;
-  void* render_data_buffer_pointer = &g_render_data_buffer;
-  void* render_buffer_value_pointer = &g_render_buffer_value;
-  int render_context_offset = 0;
+  long long init_result;
+  void* render_buffer_ptr = &g_render_data_buffer;
+  void* render_value_ptr = &g_render_buffer_value;
+  int context_offset = 0;
   g_render_buffer_value = 0;
-  initialization_result = initialize_system(rendering_context_init_function);
-  return (initialization_result != 0) - 1;
+  init_result = initialize_system(rendering_context_init_function);
+  return (init_result != 0) - 1;
 }
 // 初始化模块系统
 int initialize_module_system(void)
