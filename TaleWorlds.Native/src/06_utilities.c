@@ -877,7 +877,7 @@ data renderCommandBuffer;
 data renderTargetInitialize;
 data gameStateData1;
 data gameStateData2;
-data DAT_180bf9be0;
+data gameStateData3;
 data DAT_180bf9be8;
 data renderDrawCallData;
 
@@ -1436,7 +1436,7 @@ data cameraSettingsData;
 data cameraCaptureTimestamp;
 data cameraStreamData;
 data cameraFormatData;
-longlong unknown_180c961a8;
+longlong cameraFrameCounter;
 uint unknown_180d48d44;
 double unknown_180d48d48;
 double unknown_180d48d50;
