@@ -330,9 +330,9 @@ data configSystemSocialSettings;
 data g_systemModuleConfig1;
 data g_systemModuleConfig2;
 data g_systemModuleConfig3;
-data g_systemModuleData4;
-data g_systemModuleData5;
-data g_systemModuleData6;
+data g_systemModuleStatus4;
+data g_systemModuleStatus5;
+data g_systemModuleStatus6;
 data g_systemModuleData7;
 data g_systemModuleData8;
 data g_systemModuleData9;
@@ -1209,7 +1209,7 @@ data renderLODData;
 data resourceCacheStrategy;  /* 原: systemCallVar5; */
 data renderVertexShaderData;  /* 原: aiSystemVar1; */
 data resourceCacheCompression;  /* 原: aiSystemVar2; */
-data aiSystemVar3;;
+data aiSystemVar3;  /* 原: DAT_180a2c338 */
 data aiSystemVar4;;
 data sceneManagerVar1;;
 data resourceCacheBuffer1;
@@ -1683,10 +1683,10 @@ data softBodyConstraints;
 data DAT_180c8ecd4;
 data networkManagerState;
 data softBodyDamping;
-data DAT_180bfbb50;
-data DAT_180bfbb60;
-data DAT_180bfbb70;
-data DAT_180bfbb80;
+data softBodyBuffer1;
+data softBodyBuffer2;
+data softBodyBuffer3;
+data softBodyBuffer4;
 
 // 函数: data resourceCacheFlush;
 data resourceCacheFlush;

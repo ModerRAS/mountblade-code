@@ -337,7 +337,7 @@ void* g_global_data_1809feeb8;
 
 void* g_global_data_1809feec8;
 
-void* g_global_data_1809feed8;
+void* g_global_font_manager;
 
 char DAT_180c82840;
 void* g_global_data_18006a030;
@@ -346,7 +346,7 @@ void* g_global_data_180a0e170;
 
 void* g_global_data_180a0e368;
 
-void* g_global_data_1809fefb0;
+void* g_global_touch_manager;
 
 undefined1 DAT_180c8ecee;
 void* g_global_data_1809ff498;
