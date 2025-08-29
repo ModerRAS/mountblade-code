@@ -371,11 +371,11 @@ data networkConnectionStatus;
 data networkSocketHandle;
 data g_systemModuleNetworkFlags10;
 data g_systemModuleNetworkFlags11;
-data g_systemModuleData12;
+data g_systemModuleNetworkFlags12;
 
 // 函数: data g_initializeSystemModule1;
 data g_initializeSystemModule1;
-data g_systemModuleData13;
+data g_systemModuleNetworkPointer13;
 data networkSendBuffer;
 data g_bufferModuleData4;
 data g_bufferModuleData5;
@@ -1248,7 +1248,7 @@ data memoryAllocatorHeap;
 
 // 函数: data resourceOptimizePerformance;
 data resourceOptimizePerformance;
-data resourceOptimizationVar1;;
+data resourceOptimizationVar1;
 data memoryPoolManager;
 data resourceOptimizationVar2;;
 data eventHandlerState;
@@ -1258,7 +1258,7 @@ data resourceReportStatus;
 
 // 函数: data resourceGenerateReport;
 data resourceGenerateReport;
-data DAT_180c96790;
+data resourceReportFormat;  /* 原: DAT_180c96790 */
 data DAT_180c96798;
 
 // 函数: data resourceBatchOperation;

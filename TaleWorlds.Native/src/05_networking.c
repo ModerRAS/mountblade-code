@@ -85990,13 +85990,13 @@ int networkFormatPacket(longlong socketHandle,int dataBuffer,longlong bufferCapa
     resultCode = func_0x00018074b7b0(statusCode + socketHandle,dataBuffer - statusCode,0x7d);
     return resultCode + statusCode;
   }
-  statusCode = func_0x00018076b690(&UNK_180986218);
+  statusCode = func_0x00018076b690(&g_network_address_buffer_218);
   if (dataBuffer < statusCode + 1) {
                     // WARNING: Subroutine does not return
-    FUN_18076b390(socketHandle,dataBuffer,&UNK_1809fe7f8,&UNK_180986218,unaff_RDI);
+    FUN_18076b390(socketHandle,dataBuffer,&UNK_1809fe7f8,&g_network_address_buffer_218,unaff_RDI);
   }
                     // WARNING: Subroutine does not return
-  memcpy(socketHandle,&UNK_180986218,(longlong)(statusCode + 1));
+  memcpy(socketHandle,&g_network_address_buffer_218,(longlong)(statusCode + 1));
 }
 
 
@@ -86129,15 +86129,15 @@ uint64_t FUN_18088eea0(uint64_t socketHandle,float *dataBuffer)
     }
     else if (*pcStackX_20 != '\0') {
       cVar1 = *pcVar3;
-      networkAddress = FUN_18076b7c0(pcVar3,&UNK_180986240);
+      networkAddress = FUN_18076b7c0(pcVar3,&g_network_address_buffer_240);
       if (networkAddress == 0) {
-        networkAddress = FUN_18076b7c0(pcVar3,&UNK_180986244);
+        networkAddress = FUN_18076b7c0(pcVar3,&g_network_address_buffer_244);
         if (networkAddress == 0) {
-          networkAddress = FUN_18076b7c0(pcVar3,&UNK_180986248);
+          networkAddress = FUN_18076b7c0(pcVar3,&g_network_address_buffer_248);
           if (networkAddress == 0) {
-            networkAddress = FUN_18076b7c0(pcVar3,&UNK_18098624c);
+            networkAddress = FUN_18076b7c0(pcVar3,&g_network_address_buffer_24c);
             if (networkAddress == 0) {
-              networkAddress = FUN_18076b7c0(pcVar3,&UNK_180986250);
+              networkAddress = FUN_18076b7c0(pcVar3,&g_network_address_buffer_250);
               if (networkAddress == 0) {
                 return 0x13;
               }
@@ -86188,15 +86188,15 @@ uint64_t FUN_18088eebb(void)
   }
   else if (*in_stack_00000048 != '\0') {
     cVar1 = *in_stack_00000040;
-    dataBuffer = FUN_18076b7c0(in_stack_00000040,&UNK_180986240);
+    dataBuffer = FUN_18076b7c0(in_stack_00000040,&g_network_address_buffer_240);
     if (dataBuffer == 0) {
-      dataBuffer = FUN_18076b7c0(in_stack_00000040,&UNK_180986244);
+      dataBuffer = FUN_18076b7c0(in_stack_00000040,&g_network_address_buffer_244);
       if (dataBuffer == 0) {
-        dataBuffer = FUN_18076b7c0(in_stack_00000040,&UNK_180986248);
+        dataBuffer = FUN_18076b7c0(in_stack_00000040,&g_network_address_buffer_248);
         if (dataBuffer == 0) {
-          dataBuffer = FUN_18076b7c0(in_stack_00000040,&UNK_18098624c);
+          dataBuffer = FUN_18076b7c0(in_stack_00000040,&g_network_address_buffer_24c);
           if (dataBuffer == 0) {
-            dataBuffer = FUN_18076b7c0(in_stack_00000040,&UNK_180986250);
+            dataBuffer = FUN_18076b7c0(in_stack_00000040,&g_network_address_buffer_250);
             if (dataBuffer == 0) {
               return 0x13;
             }
@@ -86241,15 +86241,15 @@ uint64_t FUN_18088ef0e(uint32_t socketHandle)
   
   if (in_CL != '\0') {
     cVar1 = *unaff_RBX;
-    connectionInfo = FUN_18076b7c0(socketHandle,&UNK_180986240);
+    connectionInfo = FUN_18076b7c0(socketHandle,&g_network_address_buffer_240);
     if (connectionInfo == 0) {
-      connectionInfo = FUN_18076b7c0(extraout_XMM0_Da,&UNK_180986244);
+      connectionInfo = FUN_18076b7c0(extraout_XMM0_Da,&g_network_address_buffer_244);
       if (connectionInfo == 0) {
-        connectionInfo = FUN_18076b7c0(extraout_XMM0_Da_00,&UNK_180986248);
+        connectionInfo = FUN_18076b7c0(extraout_XMM0_Da_00,&g_network_address_buffer_248);
         if (connectionInfo == 0) {
-          connectionInfo = FUN_18076b7c0(extraout_XMM0_Da_01,&UNK_18098624c);
+          connectionInfo = FUN_18076b7c0(extraout_XMM0_Da_01,&g_network_address_buffer_24c);
           if (connectionInfo == 0) {
-            connectionInfo = FUN_18076b7c0(extraout_XMM0_Da_02,&UNK_180986250);
+            connectionInfo = FUN_18076b7c0(extraout_XMM0_Da_02,&g_network_address_buffer_250);
             if (connectionInfo == 0) {
               return 0x13;
             }
@@ -86504,7 +86504,7 @@ void FUN_18088f1a0(uint64_t socketHandle,longlong dataBuffer)
     networkPtrStack_60 = networkStack_1c;
     networkPtrStack_68 = networkStack_1e;
     networkPtrStack_70 = networkStack_20;
-    FUN_18010cbc0(networkUintStack_28,&UNK_180986268,dataBuffer,dataBuffer + 4);
+    FUN_18010cbc0(networkUintStack_28,&g_network_address_buffer_268,dataBuffer,dataBuffer + 4);
     *(uint8_t *)(dataBuffer + 8) = networkStack_20[0];
     *(uint8_t *)(dataBuffer + 9) = networkStack_1e[0];
     *(uint8_t *)(dataBuffer + 10) = networkStack_1c[0];
@@ -92459,7 +92459,7 @@ int FUN_180893760(longlong socketHandle,longlong dataBuffer)
     }
     else {
       socketDescriptor = FUN_180741e10(*(uint64_t *)(g_networkModule + 0x1a0),*(int *)(socketHandle + SOCKET_RESPONSE_OFFSET),
-                            &UNK_1809862d0,0x315,0,0,1);
+                            &g_network_address_buffer_2d0,0x315,0,0,1);
       if (socketDescriptor != 0) {
                     // WARNING: Subroutine does not return
         memcpy(socketDescriptor,*(uint64_t *)(socketHandle + 0x18),(longlong)*(int *)(socketHandle + SOCKET_RESPONSE_OFFSET));
@@ -92501,7 +92501,7 @@ int FUN_18089379d(longlong socketHandle,uint64_t dataBuffer)
     statusCode = 0x1f;
   }
   else {
-    socketDescriptor = FUN_180741e10(*(uint64_t *)(g_networkModule + 0x1a0),dataBuffer,&UNK_1809862d0,0x315,0);
+    socketDescriptor = FUN_180741e10(*(uint64_t *)(g_networkModule + 0x1a0),dataBuffer,&g_network_address_buffer_2d0,0x315,0);
     if (socketDescriptor != 0) {
                     // WARNING: Subroutine does not return
       memcpy(socketDescriptor,*(uint64_t *)(unaff_RDI + 0x18),(longlong)*(int *)(unaff_RDI + SOCKET_RESPONSE_OFFSET));
