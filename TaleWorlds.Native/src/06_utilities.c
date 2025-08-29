@@ -979,24 +979,24 @@ data renderDepthBuffer4;
 // 函数: data renderStencilInitialize;
 data renderStencilInitialize;
 data computeBarrierFlag;
-data DAT_180bfa0b0;
-data DAT_180bfa0b8;
-data DAT_180bfa0c0;
-data DAT_180bfa0c8;
+data renderStencilBuffer1;  /* 原: DAT_180bfa0b0 */
+data renderStencilBuffer2;  /* 原: DAT_180bfa0b8 */
+data renderStencilBuffer3;  /* 原: DAT_180bfa0c0 */
+data renderStencilBuffer4;  /* 原: DAT_180bfa0c8 */
 
 // 函数: data renderViewportInitialize;
 data renderViewportInitialize;
 data geometryInputAssembler;
-data DAT_180bfa110;
-data DAT_180bfa118;
-data DAT_180bfa120;
-data DAT_180bfa128;
+data renderViewportBuffer1;  /* 原: DAT_180bfa110 */
+data renderViewportBuffer2;  /* 原: DAT_180bfa118 */
+data renderViewportBuffer3;  /* 原: DAT_180bfa120 */
+data renderViewportBuffer4;  /* 原: DAT_180bfa128 */
 data geometryTessellator;
 
 // 函数: data renderScissorInitialize;
 data renderScissorInitialize;
-data DAT_180bfa170;
-data DAT_180bfa178;
+data renderScissorBuffer1;  /* 原: DAT_180bfa170 */
+data renderScissorBuffer2;  /* 原: DAT_180bfa178 */
 data DAT_180bfa180;
 data DAT_180bfa188;
 data geometryPrimitiveType;
