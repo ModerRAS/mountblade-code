@@ -2,7 +2,7 @@
 
 // 05_networking.c - 908 个函数
 
-// 函数: undefined NetworkInitializeSystem;
+// 函数: void* NetworkInitializeSystem;
 void* NetworkInitializeSystem;
 void* g_networkSessionId;
 void* g_networkClientId;
@@ -49,25 +49,25 @@ void* NetworkRejectConnection;
 // 函数: undefined NetworkAuthenticateClient;
 void* NetworkAuthenticateClient;
 
-// 函数: undefined NetworkValidateClient;
+// 网络客户端验证函数 - 验证客户端权限和状态
 void* NetworkValidateClient;
 
-// 函数: undefined NetworkStartServer;
+// 网络服务器启动函数 - 启动网络服务器
 void* NetworkStartServer;
 
-// 函数: undefined NetworkStopServer;
+// 网络服务器停止函数 - 停止网络服务器
 void* NetworkStopServer;
 
-// 函数: undefined NetworkSendData;
+// 网络数据发送函数 - 发送网络数据包
 void* NetworkSendData;
 
-// 函数: undefined NetworkReceiveData;
+// 网络数据接收函数 - 接收网络数据包
 void* NetworkReceiveData;
 
-// 函数: undefined NetworkProcessPacket;
+// 网络数据包处理函数 - 处理接收到的数据包
 void* NetworkProcessPacket;
 
-// 函数: undefined NetworkHandleDisconnect;
+// 网络断开处理函数 - 处理连接断开事件
 void* NetworkHandleDisconnect;
 void* g_networkDisconnectReason;
 void* g_networkError;
