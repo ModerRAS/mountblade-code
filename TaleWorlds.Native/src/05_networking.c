@@ -106,7 +106,7 @@ void* g_networkSyncData;
 void* g_networkLobbyData;
 void* g_networkMatchData;
 
-// 函数: undefined NetworkBroadcastMessage;
+// 函数: void* NetworkBroadcastMessage;
 void* NetworkBroadcastMessage;
 void* g_networkBroadcastBuffer;
 void* g_networkMulticastGroup;
