@@ -413,26 +413,26 @@ data systemConfigData6;
 data systemConfigData7;
 data systemConfigData8;
 data systemConfigData9;
-data DAT_180bf7668;
-data DAT_180bf7670;
-data DAT_180bf7678;
-data DAT_180bf7680;
-data DAT_180bf7700;
-data DAT_180bf7708;
-data DAT_180bf7710;
-data DAT_180bf7718;
-data DAT_180bf7798;
-data DAT_180bf77a0;
-data DAT_180bf77a8;
-data DAT_180bf77b0;
-data DAT_180bf7830;
-data DAT_180bf7838;
-data DAT_180bf7840;
-data DAT_180bf7848;
-data DAT_180bf78c8;
-data DAT_180bf78d0;
-data DAT_180bf78d8;
-data DAT_180bf78e0;
+data renderData14;
+data renderData15;
+data renderData16;
+data renderData17;
+data deviceConfigData1;
+data deviceConfigData2;
+data deviceConfigData3;
+data deviceConfigData4;
+data inputData1;
+data inputData2;
+data inputData3;
+data inputData4;
+data audioData1;
+data audioData2;
+data audioData3;
+data audioData4;
+data physicsData1;
+data physicsData2;
+data physicsData3;
+data physicsData4;
 data DAT_180bf7960;
 data DAT_180bf7968;
 data DAT_180bf7970;
@@ -1655,18 +1655,18 @@ data unknown_180463060;
 data constraintPositionData;
 data constraintForceData;
 data constraintImpulseData;
-data unknown_180a2abb0;
+data physicsMaterialData;
 data fileSystemState;
-data unknown_180a2aac8;
-data unknown_180a2aad0;
-data unknown_180a2aa78;
-data unknown_180a2aa90;
-data unknown_180a2aaa8;
-data unknown_180a2aab8;
-data unknown_180a2aae0;
-data unknown_180a2aaf0;
-data unknown_180a2ab48;
-data unknown_180a2ab58;
+data physicsFrictionData;
+data physicsRestitutionData;
+data physicsDensityData;
+data physicsSurfaceData;
+data rigidBodyData;
+data rigidBodyState;
+data rigidBodyMassData;
+data rigidBodyInertia;
+data rigidBodyForceData;
+data rigidBodyTorqueData;
 data DAT_180d49d0c;
 data DAT_180d49d10;
 data DAT_180d49d18;
@@ -1677,12 +1677,12 @@ data DAT_180d49d38;
 data DAT_180d49d40;
 data DAT_180d49d48;
 data fileCacheState;
-uint32 unknown_180d49d2c;
-uint32 unknown_180d49d4c;
-data unknown_180a2ae38;
+uint32 softBodyVertices;
+uint32 softBodyIndices;
+data softBodyConstraints;
 data DAT_180c8ecd4;
 data networkManagerState;
-data unknown_18046df70;
+data softBodyDamping;
 data DAT_180bfbb50;
 data DAT_180bfbb60;
 data DAT_180bfbb70;
@@ -1695,22 +1695,22 @@ data FUN_180942a40;
 data FUN_180942aa0;
 data DAT_180a2de40;
 byte DAT_180d49e30;
-data unknown_180a2dfd0;
-data unknown_180a2e018;
-data unknown_180a2e040;
-data unknown_180a2e070;
-data unknown_180a2e088;
+data fluidSimulationData;
+data fluidParticleData;
+data fluidGridData;
+data fluidBoundaryData;
+data fluidForceData;
 
 // 函数: data FUN_180943020;
 data FUN_180943020;
-data unknown_180a30ce8;
-data unknown_180a30d28;
+data fluidViscosityData;
+data clothSimulationData;
 data DAT_180c96128;
-data unknown_180a30d40;
+data clothMeshData;
 data DAT_180c9612c;
 data DAT_180c96410;
-data unknown_180a30c98;
-data unknown_180a30cb0;
+data clothConstraints;
+data clothCollisionData;
 data DAT_180d49ec0;
 data DAT_180d49ec4;
 data DAT_180c9642c;
@@ -1721,8 +1721,8 @@ data FUN_180943040;
 data DAT_180c963e8;
 data DAT_180d49f60;
 data DAT_180d49f64;
-data unknown_180a30dc0;
-data unknown_180a30e10;
+data clothWindData;
+data clothGravityData;
 data unknown_180a30e38;
 data unknown_180a30e60;
 data unknown_180a2fca0;
@@ -6850,7 +6850,7 @@ uint64 receive_network_data(void)
 
 
 
-uint64 FUN_180893d50(longlong resourceHandle,longlong memorySize)
+uint64 close_network_socket(longlong resourceHandle,longlong memorySize)
 
 {
   float fVar1;
@@ -6887,7 +6887,7 @@ uint64 FUN_180893d50(longlong resourceHandle,longlong memorySize)
 
 
 
-uint64 FUN_180893d8f(uint64 resourceHandle,uint64 memorySize)
+uint64 shutdown_network_socket(uint64 resourceHandle,uint64 memorySize)
 
 {
   float fVar1;
@@ -6924,8 +6924,8 @@ uint64 FUN_180893d8f(uint64 resourceHandle,uint64 memorySize)
 
 
 
-// 函数: void FUN_180893ddb(void)
-void FUN_180893ddb(void)
+// 函数: void initialize_network_stack(void)
+void initialize_network_stack(void)
 
 {
   float fVar1;
@@ -6954,7 +6954,7 @@ void FUN_180893ddb(void)
 
 
 
-uint64 FUN_180893e30(longlong resourceHandle,longlong memorySize)
+uint64 get_network_address(longlong resourceHandle,longlong memorySize)
 
 {
   float fVar1;
@@ -6990,7 +6990,7 @@ uint64 FUN_180893e30(longlong resourceHandle,longlong memorySize)
 
 
 
-uint64 FUN_180893e69(void)
+uint64 resolve_hostname(void)
 
 {
   float fVar1;
