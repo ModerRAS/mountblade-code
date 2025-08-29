@@ -2431,37 +2431,37 @@ void ProcessMemoryAllocation(longlong resourceHandle,longlong memorySize)
   byte workingBuffer [512];   // 工作缓冲区
   ulonglong securityToken;    // 安全令牌
   
-  localUInt = _DAT_180bf00a8 ^ (ulonglong)localBuffer;
-  localInt2 = SystemMemoryFunction(*(uint32 *)(resourceHandle + 0x10),localArray);
-  if ((localInt2 == 0) && (*(longlong *)(localArray[0] + 8) != 0)) {
-    localPtr = localBuffer;
-    localInt4 = 0;
-    localInt = 0;
-    localUInt = 0xffffffc0;
-    localInt2 = AllocateSystemMemory(*(uint64 *)(memorySize + 0x90),*(longlong *)(localArray[0] + 8),
-                          &localPtr);
-    if (localInt2 == 0) {
-      if (0 < localInt) {
-        localLong3 = 0;
+  securityToken = _DAT_180bf00a8 ^ (ulonglong)tempBuffer;
+  operationResult = SystemMemoryFunction(*(uint32 *)(resourceHandle + 0x10),resourceInfo);
+  if ((operationResult == 0) && (*(longlong *)(resourceInfo[0] + 8) != 0)) {
+    allocatedMemory = tempBuffer;
+    processedCount = 0;
+    allocationCount = 0;
+    securityToken = 0xffffffc0;
+    operationResult = AllocateSystemMemory(*(uint64 *)(memorySize + 0x90),*(longlong *)(resourceInfo[0] + 8),
+                          &allocatedMemory);
+    if (operationResult == 0) {
+      if (0 < allocationCount) {
+        iterationCounter = 0;
         do {
-          localUInt1 = *(uint64 *)(localPtr + localLong3);
-          localInt2 = FUN_1808605e0(localUInt1);
-          if (localInt2 != 2) {
+          memoryBlockHandle = *(uint64 *)(allocatedMemory + iterationCounter);
+          operationResult = FUN_1808605e0(memoryBlockHandle);
+          if (operationResult != 2) {
                     // WARNING: Subroutine does not return
-            FUN_180862e00(localUInt1,1);
+            FUN_180862e00(memoryBlockHandle,1);
           }
-          localInt4 = localInt4 + 1;
-          localLong3 = localLong3 + 8;
-        } while (localInt4 < localInt);
+          processedCount = processedCount + 1;
+          iterationCounter = iterationCounter + 8;
+        } while (processedCount < allocationCount);
       }
-      FreeMemoryBuffer(&localPtr);
+      FreeMemoryBuffer(&allocatedMemory);
     }
     else {
-      FreeMemoryBuffer(&localPtr);
+      FreeMemoryBuffer(&allocatedMemory);
     }
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(localUInt ^ (ulonglong)localBuffer);
+  ExecuteSecurityCheck(securityToken ^ (ulonglong)tempBuffer);
 }
 
 

@@ -16,13 +16,13 @@ int initialize_system_configuration(void)
 }
 int initialize_core_data_structure(void)
 {
-  longlong init_result;
-  g_primary_data_pointer = &g_unknown_18098bb30;
-  g_secondary_data_pointer = &g_data_structure_value;
+  longlong initialization_result;
+  g_primary_data_pointer = &g_unknown_data_buffer_18098bb30;
+  g_secondary_data_pointer = &g_core_data_value;
   g_data_structure_offset = 0;
-  g_data_structure_value = 0;
-  init_result = initialize_system(system_init_func_180941590);
-  return (init_result != 0) - 1;
+  g_core_data_value = 0;
+  initialization_result = initialize_system(core_system_init_func_180941590);
+  return (initialization_result != 0) - 1;
 }
 int initialize_network_buffer_system(void)
 {
@@ -37,8 +37,8 @@ int initialize_network_buffer_system(void)
 int initialize_rendering_context_system(void)
 {
   longlong render_init_result;
-  g_render_context_ptr_180bf5208 = &g_render_data_18098bc80;
-  g_render_context_ptr_180bf5210 = &g_render_buffer_180bf5220;
+  g_render_context_primary_ptr = &g_render_data_18098bc80;
+  g_render_context_secondary_ptr = &g_render_buffer_180bf5220;
   g_render_context_offset_180bf5218 = 0;
   g_render_buffer_180bf5220 = 0;
   render_init_result = initialize_system(rendering_init_func_1809415d0);
