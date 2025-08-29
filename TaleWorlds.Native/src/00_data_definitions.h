@@ -528,7 +528,7 @@ int initialize_data_buffer_system(void)
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6b88;
   data_180bf6b88 = 0;
-  global_data_ = 0x1b;
+  global_data_ = FLAG_SAVEGAME_RESOURCE;
   strcpy_s(&data_180bf6b88,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string1);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6be0;
@@ -538,12 +538,12 @@ int initialize_data_buffer_system(void)
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6c38;
   data_180bf6c38 = 0;
-  global_data_ = 0x19;
+  global_data_ = FLAG_STRING_MANAGER_RESOURCE;
   strcpy_s(&data_180bf6c38,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string3);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6c90;
   data_180bf6c90 = 0;
-  global_data_ = 0x12;
+  global_data_ = FLAG_PHYSICS_RESOURCE;
   strcpy_s(&data_180bf6c90,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string4);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6ce8;
