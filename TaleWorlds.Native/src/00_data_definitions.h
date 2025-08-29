@@ -185,9 +185,9 @@ int initialize_resource_manager_4(void)
   void* resource_buffer_value_pointer = &resource_buffer_4;
   resource_buffer_4 = 0;
   resource_type_4 = 0xd;
-  strcpy_s(&resource_buffer_4,0x10,&string_source_005,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_016);
-  return (init_result != 0) - 1;
+  strcpy_s(&resource_buffer_4,0x10,&string_source_005,string_length_parameter,0xfffffffffffffffe);
+  initialization_result = execute_function(callback_function_016);
+  return (initialization_result != 0) - 1;
 }
 int initialize_resource_manager_5(void)
 {

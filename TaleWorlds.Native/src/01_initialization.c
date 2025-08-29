@@ -2041,9 +2041,9 @@ void initialize_system_phase5(void)
   previous_node[10] = pinit_flag;
   return;
 }
-// void FUN_18002dbe0(void)
+// void initialize_system_phase6(void)
 
-void FUN_18002dbe0(void)
+void initialize_system_phase6(void)
 
 {
   char is_initialized;
