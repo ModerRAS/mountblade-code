@@ -100,7 +100,7 @@ undefined g_system_error_system_error;
 
 undefined g_system_debug_system_debug;
 // 系统资源初始化函数
-undefined InitializeSystemResources_180059ba0;
+undefined InitializeSystemResources;
 
 undefined g_global_data_180a092c4;
 // 核心组件初始化函数
@@ -1304,7 +1304,7 @@ void InitializeBufferNode_18002c740(void)
   puVar7[10] = uStackX_18;
   return;
 }
-// 初始化资源节点函数
+// 初始化资源节点
 void InitializeResourceNode_18002c840(void)
 
 {
@@ -1350,8 +1350,7 @@ void InitializeResourceNode_18002c840(void)
   puVar7[10] = uStackX_18;
   return;
 }
-// void InitializeResourceNode(void)
-
+// 初始化资源节点（简化版）
 void InitializeResourceNode(void)
 
 {
@@ -1732,14 +1731,15 @@ void InitializeAudioSystem_18002d420(void)
   return;
 }
 
-int FUN_18002d520(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 初始化互斥锁
+int InitializeMutex(undefined8 mutex_address,undefined8 mutex_type,undefined8 param_3,undefined8 param_4)
 
 {
-  longlong lVar1;
+  longlong mutex_result;
 
   _Mtx_init_in_situ(0x180c91910,2,param_3,param_4,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_1809417c0);
-  return (lVar1 != 0) - 1;
+  mutex_result = FUN_1808fc7d0(FUN_1809417c0);
+  return (mutex_result != 0) - 1;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 // void InitializeConfigData(void)

@@ -44,55 +44,55 @@ data g_bufferMemoryPointer;
 // 函数: data InitializeMemoryPool;
 // 系统初始化函数180941590
 data InitializeMemoryPool;
-data DAT_180bf5770;
-data DAT_180bf5778;
-data DAT_180bf5780;
-data DAT_180bf5788;
+data memoryPoolBaseAddress;
+data memoryPoolSize;
+data memoryPoolAlignment;
+data memoryPoolFlags;
 
 // 函数: data SetupMemoryManager;
 data SetupMemoryManager;
-data DAT_180bf5208;
-data DAT_180bf5210;
-data DAT_180bf5218;
-data DAT_180bf5220;
+data bufferManagerControl1;
+data bufferManagerControl2;
+data bufferManagerControl3;
+data bufferManagerControl4;
 data unknown_18098bc80;
 
 // 函数: data CreateMemoryAllocator;
 data CreateMemoryAllocator;
-data DAT_180bf5bc0;
-data DAT_180bf5bc8;
-data DAT_180bf5bd0;
-data DAT_180bf5bd8;
+data dataStructurePointer1;
+data dataStructurePointer2;
+data dataStructurePointer3;
+data dataStructurePointer4;
 data unknown_1809fcc58;
 
 // 函数: data RegisterMemoryHandler;
 data RegisterMemoryHandler;
-data DAT_180bf5c30;
-data DAT_180bf5c38;
-data DAT_180bf5c40;
-data DAT_180bf5c48;
+data systemStatusFlag1;
+data systemStatusFlag2;
+data systemStatusFlag3;
+data systemStatusFlag4;
 
 // 函数: data ConfigureMemorySettings;
 data ConfigureMemorySettings;
-data DAT_180bf6080;
-data DAT_180bf6088;
-data DAT_180bf6090;
-data DAT_180bf6098;
+data errorHandlerState1;
+data errorHandlerState2;
+data errorHandlerState3;
+data errorHandlerState4;
 
 // 函数: data ValidateMemoryConfiguration;
 // 内存配置验证函数180941630
 data ValidateMemoryConfiguration;
-byte DAT_180c910f8;
+byte threadSyncFlag1;
 
 // 函数: data InitializeThreadSynchronization;
 // 线程同步初始化函数180941650
 data InitializeThreadSynchronization;
-byte DAT_180c91198;
+byte threadSyncFlag2;
 
 // 函数: data InitializeEventHandler;
 // 事件处理初始化函数180941690
 data InitializeEventHandler;
-byte DAT_180c91238;
+byte threadSyncFlag3;
 
 // 函数: data InitializeSemaphore;
 // 信号量初始化函数1809416d0
@@ -153,50 +153,50 @@ data g_chunkSizeData4;
 // 函数: data initializeDataStructure5;
 data initializeDataStructure5;
 data unknown_180a00518;
-data DAT_180bf6620;
-data DAT_180bf6628;
-data DAT_180bf6630;
-data DAT_180bf6638;
+data aiSystemHandle;
+data aiBehaviorTree;
+data aiNavigationMesh;
+data aiPathfindingData;
 data unknown_180a00528;
 
-// 函数: data FUN_1809418a0;
-data FUN_1809418a0;
-data DAT_180bf6650;
-data DAT_180bf6658;
-data DAT_180bf6660;
-data DAT_180bf6668;
+// 函数: data initializeDataStructure6;
+data initializeDataStructure6;
+data sceneManagerHandle;
+data sceneObjectPool;
+data sceneLightingData;
+data sceneCameraData;
 data unknown_180a00538;
 
-// 函数: data FUN_1809418c0;
-data FUN_1809418c0;
-data DAT_180bf6680;
-data DAT_180bf6688;
-data DAT_180bf6690;
-data DAT_180bf6698;
+// 函数: data initializeResourceManager;
+data initializeResourceManager;
+data resourceManagerHandle;
+data resourceTextureCache;
+data resourceMeshBuffer;
+data resourceShaderCache;
 data unknown_180a00540;
 
 // 函数: data FUN_1809418e0;
 data FUN_1809418e0;
-data DAT_180bf66b0;
-data DAT_180bf66b8;
-data DAT_180bf66c0;
-data DAT_180bf66c8;
+data scriptSystemHandle;
+data scriptVirtualMachine;
+data scriptFunctionTable;
+data scriptGlobalData;
 data unknown_180a00548;
 
 // 函数: data FUN_180941900;
 data FUN_180941900;
-data DAT_180bf52e8;
-data DAT_180bf52f0;
-data DAT_180bf52f8;
-data DAT_180bf5300;
+data debugSystemHandle;
+data debugLoggerBuffer;
+data debugProfilerData;
+data debugBreakpoints;
 data unknown_180a01300;
 
 // 函数: data FUN_180941980;
 data FUN_180941980;
-data DAT_180bf5738;
-data DAT_180bf5740;
-data DAT_180bf5748;
-data DAT_180bf5750;
+data performanceMonitorHandle;
+data performanceFrameData;
+data performanceMemoryStats;
+data performanceCPUMetrics;
 data unknown_180a01330;
 
 // 函数: data FUN_1809419a0;
@@ -204,9 +204,9 @@ data FUN_1809419a0;
 
 // 函数: data FUN_1809419c0;
 data FUN_1809419c0;
-data DAT_180c9196c;
+data configSystemHandle;
 data unknown_180a02998;
-data DAT_180c919e0;
+data configSettingsData;
 data unknown_180a0b1c8;
 data DAT_180bf6750;
 data DAT_180bf6758;
@@ -2930,7 +2930,7 @@ void initializeEmptyFunction(void)
 
 
 
-uint64 FUN_180890650(longlong resourceHandle)
+uint64 process_resource_data(longlong resourceHandle)
 
 {
   uint64 localUInt1;
@@ -2955,7 +2955,7 @@ uint64 FUN_180890650(longlong resourceHandle)
 
 
 
-uint32 FUN_180890673(void)
+uint32 get_memory_usage(void)
 
 {
   longlong inputRegister;
@@ -2997,7 +2997,7 @@ void cleanupResourceFunction(void)
 
 
 
-uint64 FUN_180890700(longlong resourceHandle)
+uint64 validate_resource_access(longlong resourceHandle)
 
 {
   uint64 localUInt1;
@@ -3022,7 +3022,7 @@ uint64 FUN_180890700(longlong resourceHandle)
 
 
 
-uint32 FUN_180890723(void)
+uint32 get_system_info(void)
 
 {
   longlong inputRegister;
@@ -3064,7 +3064,7 @@ void emptyReturnFunction(void)
 
 
 
-uint64 FUN_1808907b0(longlong resourceHandle)
+uint64 handle_resource_operation(longlong resourceHandle)
 
 {
   uint64 localUInt1;
@@ -3100,7 +3100,7 @@ uint64 FUN_1808907b0(longlong resourceHandle)
 
 
 
-uint64 FUN_180890830(longlong resourceHandle)
+uint64 manage_resource_handle(longlong resourceHandle)
 
 {
   uint64 localUInt1;
@@ -3140,7 +3140,7 @@ uint64 FUN_180890830(longlong resourceHandle)
 // WARNING: Removing unreachable block (ram,0x0001808d74a4)
 // WARNING: Removing unreachable block (ram,0x0001808d74b1)
 
-uint64 FUN_1808908b0(longlong resourceHandle)
+uint64 execute_resource_command(longlong resourceHandle)
 
 {
   longlong localLong1;
@@ -3198,7 +3198,7 @@ uint64 FUN_1808908b0(longlong resourceHandle)
 
 
 
-uint64 FUN_180890900(longlong resourceHandle)
+uint64 validate_resource_operation(longlong resourceHandle)
 
 {
   longlong localLong1;
@@ -45523,7 +45523,7 @@ void Unwind_1809077b0(void)
 void Unwind_1809077c0(void)
 
 {
-  _DAT_180bf6620 = &unknown_18098bcb0;
+  _aiSystemHandle = &unknown_18098bcb0;
   return;
 }
 
@@ -45534,7 +45534,7 @@ void Unwind_1809077c0(void)
 void Unwind_1809077d0(void)
 
 {
-  _DAT_180bf6650 = &unknown_18098bcb0;
+  _sceneManagerHandle = &unknown_18098bcb0;
   return;
 }
 
@@ -45545,7 +45545,7 @@ void Unwind_1809077d0(void)
 void Unwind_1809077e0(void)
 
 {
-  _DAT_180bf6680 = &unknown_18098bcb0;
+  _resourceManagerHandle = &unknown_18098bcb0;
   return;
 }
 
@@ -45556,7 +45556,7 @@ void Unwind_1809077e0(void)
 void Unwind_1809077f0(void)
 
 {
-  _DAT_180bf66b0 = &unknown_18098bcb0;
+  _scriptSystemHandle = &unknown_18098bcb0;
   return;
 }
 
@@ -48126,7 +48126,7 @@ void Unwind_180908570(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809085a0(void)
 
 {
-  _DAT_180bf52e8 = &unknown_18098bcb0;
+  _debugSystemHandle = &unknown_18098bcb0;
   return;
 }
 
@@ -48137,7 +48137,7 @@ void Unwind_1809085a0(void)
 void Unwind_1809085b0(void)
 
 {
-  _DAT_180bf5738 = &unknown_18098bcb0;
+  _performanceMonitorHandle = &unknown_18098bcb0;
   return;
 }
 
@@ -80146,8 +80146,8 @@ void FUN_1809414b5(uint64 *resourceHandle)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809414f0(void)
-void FUN_1809414f0(void)
+// 函数: void InitializeResourcePool(void)
+void InitializeResourcePool(void)
 
 {
   longlong localLong1;
@@ -80199,7 +80199,7 @@ void InitializeMemoryPool(void)
 void SetupMemoryManager(void)
 
 {
-  _DAT_180bf5770 = &unknown_18098bcb0;
+  _memoryPoolBaseAddress = &unknown_18098bcb0;
   return;
 }
 
@@ -80212,7 +80212,7 @@ void SetupMemoryManager(void)
 void CreateMemoryAllocator(void)
 
 {
-  _DAT_180bf5208 = &unknown_18098bcb0;
+  _bufferManagerControl1 = &unknown_18098bcb0;
   return;
 }
 
@@ -80225,7 +80225,7 @@ void CreateMemoryAllocator(void)
 void RegisterMemoryHandler(void)
 
 {
-  _DAT_180bf5bc0 = &unknown_18098bcb0;
+  _dataStructurePointer1 = &unknown_18098bcb0;
   return;
 }
 
@@ -80238,7 +80238,7 @@ void RegisterMemoryHandler(void)
 void ConfigureMemorySettings(void)
 
 {
-  _DAT_180bf5c30 = &unknown_18098bcb0;
+  _systemStatusFlag1 = &unknown_18098bcb0;
   return;
 }
 
@@ -80251,7 +80251,7 @@ void ConfigureMemorySettings(void)
 void FUN_180941630(void) # 内存验证函数
 
 {
-  _DAT_180bf6080 = &unknown_18098bcb0;
+  _errorHandlerState1 = &unknown_18098bcb0;
   return;
 }
 
@@ -80344,8 +80344,8 @@ void FUN_1809417c0(void) # 系统配置初始化函数
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809417e0(void)
-void FUN_1809417e0(void)
+// 函数: void InitializeGlobalDataPointer1(void)
+void InitializeGlobalDataPointer1(void)
 
 {
   _DAT_180d49160 = &unknown_18098bcb0;
@@ -80409,8 +80409,8 @@ void GetMemoryChunkSize(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941880(void)
-void FUN_180941880(void)
+// 函数: void InitializeGlobalDataPointer2(void)
+void InitializeGlobalDataPointer2(void)
 
 {
   _g_chunkSizeData1 = &unknown_18098bcb0;
@@ -80422,11 +80422,11 @@ void FUN_180941880(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809418a0(void)
-void FUN_1809418a0(void)
+// 函数: void InitializeGlobalDataPointer3(void)
+void InitializeGlobalDataPointer3(void)
 
 {
-  _DAT_180bf6620 = &unknown_18098bcb0;
+  _aiSystemHandle = &unknown_18098bcb0;
   return;
 }
 
@@ -80435,11 +80435,11 @@ void FUN_1809418a0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809418c0(void)
-void FUN_1809418c0(void)
+// 函数: void InitializeGlobalDataPointer4(void)
+void InitializeGlobalDataPointer4(void)
 
 {
-  _DAT_180bf6650 = &unknown_18098bcb0;
+  _sceneManagerHandle = &unknown_18098bcb0;
   return;
 }
 
@@ -80448,11 +80448,11 @@ void FUN_1809418c0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809418e0(void)
-void FUN_1809418e0(void)
+// 函数: void InitializeResourceManager(void)
+void InitializeResourceManager(void)
 
 {
-  _DAT_180bf6680 = &unknown_18098bcb0;
+  _resourceManagerHandle = &unknown_18098bcb0;
   return;
 }
 
@@ -80461,11 +80461,11 @@ void FUN_1809418e0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941900(void)
-void FUN_180941900(void)
+// 函数: void InitializeScriptSystem(void)
+void InitializeScriptSystem(void)
 
 {
-  _DAT_180bf66b0 = &unknown_18098bcb0;
+  _scriptSystemHandle = &unknown_18098bcb0;
   return;
 }
 
@@ -80501,7 +80501,7 @@ void FUN_180941920(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags
 void FUN_180941980(void)
 
 {
-  _DAT_180bf52e8 = &unknown_18098bcb0;
+  _debugSystemHandle = &unknown_18098bcb0;
   return;
 }
 
@@ -80514,7 +80514,7 @@ void FUN_180941980(void)
 void FUN_1809419a0(void)
 
 {
-  _DAT_180bf5738 = &unknown_18098bcb0;
+  _performanceMonitorHandle = &unknown_18098bcb0;
   return;
 }
 
