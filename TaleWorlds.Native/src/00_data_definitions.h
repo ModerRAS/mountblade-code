@@ -1918,28 +1918,28 @@ LAB_18004d876:
                     lVar24 = strchr(lVar24 + 1,0x2e);
                   } while (lVar24 != 0);
                   if ((iVar19 == 3) && (iVar6 - 7U < 9)) {
-                    puVar18 = &data_18098bc73;
-                    if (puStack_190 != (undefined *)0x0) {
-                      puVar18 = puStack_190;
+                    thread_name_ptr = &data_18098bc73;
+                    if (thread_stack_ptr_190 != (undefined *)0x0) {
+                      thread_name_ptr = thread_stack_ptr_190;
                     }
-                    (**(code **)(module_pointer_010 + STRING_BUFFER_SIZE))(&data_180bf5bc0,puVar18);
+                    (**(code **)(module_pointer_010 + STRING_BUFFER_SIZE))(&data_180bf5bc0,thread_name_ptr);
                   }
                 }
-                puStack_198 = &g_threadString2;
-                if (puStack_190 != (undefined *)0x0) {
+                thread_stack_ptr_198 = &g_threadString2;
+                if (thread_stack_ptr_190 != (undefined *)0x0) {
                   handle_system_error();
                 }
-                puStack_190 = (undefined *)0x0;
-                uStack_180 = 0;
-                puStack_198 = &g_threadString4;
+                thread_stack_ptr_190 = (undefined *)0x0;
+                thread_stack_var_180 = 0;
+                thread_stack_ptr_198 = &g_threadString4;
               }
-              puStack_218 = &g_threadString2;
-              if (lStack_210 != 0) {
+              thread_stack_ptr_218 = &g_threadString2;
+              if (thread_stack_var_210 != 0) {
                 handle_system_error();
               }
-              lStack_210 = 0;
-              uStack_200 = 0;
-              puStack_218 = &g_threadString4;
+              thread_stack_var_210 = 0;
+              thread_stack_var_200 = 0;
+              thread_stack_ptr_218 = &g_threadString4;
             }
             else {
               if (uVar8 == 0xe) {
