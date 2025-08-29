@@ -11,7 +11,7 @@ data g_bufferWriteOffset;
 // 缓冲区当前大小
 data g_bufferCurrentSize;
 // 缓冲区最大允许大小
-data g_bufferMaxAllowedSize;
+data g_bufferMaximumAllowedSize;
 // 缓冲区操作标志
 data g_bufferOperationFlags;
 // 缓冲区数据校验和
@@ -4196,7 +4196,7 @@ uint64 remove_directory(void)
 
 
 
-uint64 FUN_1808914ac(void)
+uint64 list_directory_contents(void)
 
 {
   return 0x1f;

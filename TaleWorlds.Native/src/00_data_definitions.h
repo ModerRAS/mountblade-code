@@ -1,6 +1,18 @@
 #ifndef DATA_DEFINITIONS_H
 #define DATA_DEFINITIONS_H
 
+// 系统常量定义
+#define MAX_SYSTEM_VALUE 0x7fffffffffffffff
+#define THREAD_POOL_DEFAULT_FLAGS 0xfffffffffffffffe
+#define RESOURCE_BUFFER_SIZE 0x10
+#define RESOURCE_TYPE_TEXTURE 0x0d
+#define RESOURCE_TYPE_SHADER 0x0f
+#define RESOURCE_TYPE_AUDIO 0x0c
+
+// 系统状态码
+#define SYSTEM_STATUS_SUCCESS 0
+#define SYSTEM_STATUS_FAILURE -1
+
 // 全局数据定义 - 从原始文件中提取
 undefined g_global_system_data;
 undefined g_system_configuration_data;
@@ -10,8 +22,8 @@ int initialize_system_configuration(void)
 {
   system_configuration_enabled = 1;
   operation_counter = 0;
-  maximum_allowed_system_value = 0x7fffffffffffffff;
-  system_status_code = 0;
+  maximum_allowed_system_value = MAX_SYSTEM_VALUE;
+  system_status_code = SYSTEM_STATUS_SUCCESS;
   int initialization_result = initialize_system(system_init_func_1809414f0);
   return (initialization_result != 0) - 1;
 }
@@ -85,11 +97,11 @@ int initialize_physics_system(void)
 int initialize_thread_pool_1(undefined8 handle, undefined8 flags, undefined8 mutex_attr, undefined8 mutex_type)
 {
   long long initialization_result;
-  undefined8 thread_pool_flags = 0xfffffffffffffffe;
+  undefined8 thread_pool_flags = THREAD_POOL_DEFAULT_FLAGS;
   
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(0x180c910a8, 2, mutex_attr, mutex_type, thread_pool_flags);
-  thread_pool_1_status_code = 0;
+  thread_pool_1_status_code = SYSTEM_STATUS_SUCCESS;
   initialization_result = execute_function(callback_function_008);
   return (initialization_result != 0) - 1;
 }
@@ -97,11 +109,11 @@ int initialize_thread_pool_1(undefined8 handle, undefined8 flags, undefined8 mut
 int initialize_thread_pool_2(undefined8 handle, undefined8 flags, undefined8 mutex_attr, undefined8 mutex_type)
 {
   long long initialization_result;
-  undefined8 thread_pool_flags = 0xfffffffffffffffe;
+  undefined8 thread_pool_flags = THREAD_POOL_DEFAULT_FLAGS;
   
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(0x180c91148, 2, mutex_attr, mutex_type, thread_pool_flags);
-  thread_pool_2_status_code = 0;
+  thread_pool_2_status_code = SYSTEM_STATUS_SUCCESS;
   initialization_result = execute_function(callback_function_009);
   return (initialization_result != 0) - 1;
 }
@@ -148,8 +160,8 @@ int initialize_resource_manager_1(void)
   resource_data_buffer_pointer = &g_resource_data_buffer;
   resource_buffer_value_pointer = &resource_buffer_1;
   resource_buffer_1 = 0;
-  resource_type_1 = 0xd;
-  strcpy_s(&resource_buffer_1,0x10,&string_source_002,string_length_parameter,0xfffffffffffffffe);
+  resource_type_1 = RESOURCE_TYPE_TEXTURE;
+  strcpy_s(&resource_buffer_1, RESOURCE_BUFFER_SIZE, &string_source_002, string_length_parameter, 0xfffffffffffffffe);
   initialization_result = execute_function(callback_function_013);
   return (initialization_result != 0) - 1;
 }
@@ -160,8 +172,8 @@ int initialize_resource_manager_2(void)
   void* resource_data_buffer_pointer = &g_resource_data_buffer;
   void* resource_buffer_value_pointer = &resource_buffer_2;
   resource_buffer_2 = 0;
-  resource_type_2 = 0xf;
-  strcpy_s(&resource_buffer_2,0x10,&string_source_003,string_length_parameter,0xfffffffffffffffe);
+  resource_type_2 = RESOURCE_TYPE_SHADER;
+  strcpy_s(&resource_buffer_2, RESOURCE_BUFFER_SIZE, &string_source_003, string_length_parameter, 0xfffffffffffffffe);
   initialization_result = execute_function(callback_function_014);
   return (initialization_result != 0) - 1;
 }
@@ -172,8 +184,8 @@ int initialize_resource_manager_3(void)
   void* resource_data_buffer_pointer = &g_resource_data_buffer;
   void* resource_buffer_value_pointer = &resource_buffer_3;
   resource_buffer_3 = 0;
-  resource_type_3 = 0xf;
-  strcpy_s(&resource_buffer_3,0x10,&string_source_004,string_length_parameter,0xfffffffffffffffe);
+  resource_type_3 = RESOURCE_TYPE_SHADER;
+  strcpy_s(&resource_buffer_3, RESOURCE_BUFFER_SIZE, &string_source_004, string_length_parameter, 0xfffffffffffffffe);
   initialization_result = execute_function(callback_function_015);
   return (initialization_result != 0) - 1;
 }
