@@ -3412,8 +3412,8 @@ uint64 release_system_resources(void)
 
 
 
-// 函数: void FUN_180890ac1(void)
-void FUN_180890ac1(void)
+// 函数: void cleanup_temporary_data(void)
+void cleanup_temporary_data(void)
 
 {
   return;
@@ -3421,7 +3421,7 @@ void FUN_180890ac1(void)
 
 
 
-uint64 FUN_180890ac7(void)
+uint64 get_process_status(void)
 
 {
   return 0x1c;
@@ -3429,7 +3429,7 @@ uint64 FUN_180890ac7(void)
 
 
 
-uint64 FUN_180890ad0(longlong resourceHandle)
+uint64 terminate_process(longlong resourceHandle)
 
 {
   uint64 localUInt1;
@@ -3454,7 +3454,7 @@ uint64 FUN_180890ad0(longlong resourceHandle)
 
 
 
-uint32 FUN_180890aef(void)
+uint32 get_cpu_usage(void)
 
 {
   longlong inputRegister;
@@ -3476,8 +3476,8 @@ uint32 FUN_180890aef(void)
 
 
 
-// 函数: void FUN_180890b18(void)
-void FUN_180890b18(void)
+// 函数: void free_system_memory(void)
+void free_system_memory(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -3487,8 +3487,8 @@ void FUN_180890b18(void)
 
 
 
-// 函数: void FUN_180890b65(void)
-void FUN_180890b65(void)
+// 函数: void initialize_thread_pool(void)
+void initialize_thread_pool(void)
 
 {
   return;
@@ -3496,7 +3496,7 @@ void FUN_180890b65(void)
 
 
 
-uint64 FUN_180890b70(longlong resourceHandle)
+uint64 manage_thread_pool(longlong resourceHandle)
 
 {
   uint64 localUInt1;

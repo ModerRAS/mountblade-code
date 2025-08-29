@@ -54,24 +54,24 @@ undefined g_engine_audio_context;
 
 undefined InitializeGraphicsEngine;
 
-undefined g_graphics_config_graphics_config;
-// undefined InitializeAudioEngine_audio_init;
+undefined g_graphics_config;
+// undefined InitializeAudioEngine;
 
-undefined InitializeAudioEngine_audio_init;
+undefined InitializeAudioEngine;
 
-undefined g_audio_config_audio_config;
-// undefined InitializeInputEngine_input_init;
+undefined g_audio_config;
+// undefined InitializeInputEngine;
 
-undefined InitializeInputEngine_input_init;
+undefined InitializeInputEngine;
 
-undefined g_input_system_input_system;
-// undefined InitializeNetworkEngine_network_init;
+undefined g_input_system;
+// undefined InitializeNetworkEngine;
 
-undefined InitializeNetworkEngine_network_init;
+undefined InitializeNetworkEngine;
 
-undefined g_network_socket_network_socket;
+undefined g_network_socket;
 
-undefined g_network_buffer_network_buffer;
+undefined g_network_buffer;
 
 undefined g_network_config_network_config;
 
