@@ -568,7 +568,7 @@ int initialize_data_buffer_system(void)
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6e48;
   data_180bf6e48 = 0;
-  global_data_ = 0x13;
+  global_data_ = FLAG_NETWORK_RESOURCE;
   strcpy_s(&data_180bf6e48,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string9);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6ea0;
