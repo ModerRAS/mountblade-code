@@ -5,6 +5,7 @@
 undefined g_global_system_data;
 undefined g_system_configuration_data;
 
+// 初始化系统配置
 int initialize_system_configuration(void)
 {
   system_configuration_enabled = 1;
@@ -14,6 +15,7 @@ int initialize_system_configuration(void)
   int result = initialize_system(system_init_func_1809414f0);
   return (result != 0) - 1;
 }
+// 初始化核心数据结构
 int initialize_core_data_structure(void)
 {
   longlong initialization_result;

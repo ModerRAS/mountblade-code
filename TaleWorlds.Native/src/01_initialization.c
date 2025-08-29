@@ -105,45 +105,42 @@ undefined InitializeSystemResources_180059ba0;
 undefined UNK_180a092c4;
 // 核心组件初始化函数
 void InitializeCoreComponents_180059620(void);
-// undefined FUN_180044a30;
+// 内存管理器设置函数
+void SetupMemoryManager_180044a30(void);
 
-undefined FUN_180044a30;
+undefined *g_system_startup_data_180be0000;
 
-undefined DAT_180be0000;
+void *g_engine_context_1809fdd78;
 
-undefined UNK_1809fdd78;
+void *g_resource_manager_1809fddc8;
 
-undefined UNK_1809fddc8;
+void *g_memory_pool_180a02968;
 
-undefined UNK_180a02968;
-
-undefined UNK_1809fde10;
+void *g_graphics_context_1809fde10;
 
 undefined _guard_check_icall;
-// undefined FUN_180046860;
+// 系统安全检查函数
+undefined SystemSecurityCheck_180046860;
+// 引擎初始化完成函数
+void CompleteEngineInitialization_18005c060(void);
 
-undefined FUN_180046860;
-// undefined FUN_18005c060;
+void *g_system_heap_1809fdea8;
 
-undefined FUN_18005c060;
+void *g_module_registry_1809fdf38;
 
-undefined UNK_1809fdea8;
+void *g_service_manager_1809fdfd0;
 
-undefined UNK_1809fdf38;
+void *g_event_system_1809fe050;
 
-undefined UNK_1809fdfd0;
+void *g_message_queue_1809fe058;
 
-undefined UNK_1809fe050;
+void *g_thread_pool_1809fe188;
 
-undefined UNK_1809fe058;
+void *g_task_scheduler_1809fe190;
 
-undefined UNK_1809fe188;
+void *g_file_system_1809fe198;
 
-undefined UNK_1809fe190;
-
-undefined UNK_1809fe198;
-
-undefined UNK_1809fe1a0;
+void *g_config_manager_1809fe1a0;
 
 undefined UNK_1809fe258;
 
