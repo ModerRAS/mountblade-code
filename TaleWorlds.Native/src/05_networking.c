@@ -2202,25 +2202,41 @@ int NetworkFormatPacketHeader(longlong socket_context,void* data_buffer,int buff
 
 
 
-int NetworkReceiveDataWithFlags2(longlong socketParam,longlong dataParam,int sizeParam)
+// 函数: int NetworkFormatPacketHeaderVariant2(longlong socket_context,void* data_buffer,int buffer_size)
+// 格式化网络数据包头变体2，使用不同的协议标识符
+int NetworkFormatPacketHeaderVariant2(longlong socket_context,void* data_buffer,int buffer_size)
 
 {
-  undefined4 uVar1;
-  undefined4 packetSize;
-  int status;
-  int length;
+  uint32_t protocol_header;
+  uint32_t packet_size_field;
+  int header_length;
+  int total_length;
+  int data_offset;
+  int terminator_length;
+  int field_length;
   
-  uVar1 = *(undefined4 *)(socketParam + 0x18);
-  packetSize = *(undefined4 *)(socketParam + 0x10);
-  iVar3 = FUN_18074b880(dataParam,sizeParam,&UNK_1809833b0);
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,packetSize);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b7d0(iVar3 + dataParam,sizeParam - iVar3,uVar1);
-  return iVar4 + iVar3;
+  protocol_header = *(uint32_t *)(socket_context + 0x18);
+  packet_size_field = *(uint32_t *)(socket_context + 0x10);
+  
+  // 写入协议标识符变体2
+  header_length = NetworkWriteString(data_buffer,buffer_size,&g_networkProtocolHeaderVariant2);
+  data_offset = header_length;
+  
+  // 写入空终止符
+  terminator_length = NetworkWriteString(data_buffer + data_offset,buffer_size - data_offset,&g_networkNullTerminator);
+  data_offset += terminator_length;
+  
+  // 写入数据包大小字段
+  field_length = NetworkWriteInt32(data_buffer + data_offset,buffer_size - data_offset,packet_size_field);
+  data_offset += field_length;
+  
+  // 写入第二个空终止符
+  terminator_length = NetworkWriteString(data_buffer + data_offset,buffer_size - data_offset,&g_networkNullTerminator);
+  data_offset += terminator_length;
+  
+  // 写入协议尾部字段变体2
+  field_length = NetworkWriteInt32Variant2(data_buffer + data_offset,buffer_size - data_offset,protocol_header);
+  return field_length + data_offset;
 }
 
 
