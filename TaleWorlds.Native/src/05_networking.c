@@ -3640,10 +3640,10 @@ void NetworkCleanupConnectionResources(uint64_t socketHandle,longlong dataBuffer
       NetworkErrorExit(&networkUintStack_138);
     }
     resultCode = networkInitializeConnection(&networkUintStack_138);
-    if (resultCode != 0) goto LAB_18084510c;
+    if (resultCode != 0) goto handle_connection_error;
   }
   resultCode = statusCode;
-LAB_18084510c:
+handle_connection_error:
   if (resultCode != 0) {
                     // WARNING: Subroutine does not return
     NetworkErrorExit(&networkUintStack_138);
@@ -3739,7 +3739,7 @@ void NetworkConfigureConnectionSettings(uint64_t socketHandle,uint32_t *dataBuff
     statusCode = 0x4b;
   }
   else if ((statusCode == 0) && (statusCode = NetworkSendData(networkArrayStack_148[0],dataBuffer,bufferCapacity), statusCode == 0))
-  goto LAB_1808453a2;
+  goto cleanup_connection;
   if (dataBuffer != (uint32_t *)ZERO_OFFSET) {
     *dataBuffer = 0;
   }
@@ -3751,7 +3751,7 @@ void NetworkConfigureConnectionSettings(uint64_t socketHandle,uint32_t *dataBuff
                     // WARNING: Subroutine does not return
     networkSendControlPacket(statusCode,0xb,socketHandle,&g_network_error_data);
   }
-LAB_1808453a2:
+cleanup_connection:
                     // WARNING: Subroutine does not return
   networkEncryptData(networkUintStack_38 ^ (ulonglong)networkStack_178);
 }
