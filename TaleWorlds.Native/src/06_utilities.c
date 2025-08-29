@@ -4,41 +4,42 @@
 
 // 函数: int processBufferData(longlong bufferHandle)
 // 缓冲区数据处理函数
-// 全局缓冲区数据偏移量1
-data g_bufferDataOffset1;
-// 全局缓冲区数据偏移量2
-data g_bufferDataOffset2;
-// 全局缓冲区数据大小1
-data g_bufferDataSize1;
-// 全局缓冲区数据大小2
-data g_bufferDataSize2;
-// 全局缓冲区数据标志
-data g_bufferDataFlags;
-// 全局缓冲区数据校验和
+// 缓冲区读取偏移量
+data g_bufferReadOffset;
+// 缓冲区写入偏移量
+data g_bufferWriteOffset;
+// 缓冲区当前大小
+data g_bufferCurrentSize;
+// 缓冲区最大允许大小
+data g_bufferMaxAllowedSize;
+// 缓冲区操作标志
+data g_bufferOperationFlags;
+// 缓冲区数据校验和
 data g_bufferDataChecksum;
 // 缓冲区初始化状态标志
 byte g_isBufferInitialized;
-// 缓冲区容量
+// 缓冲区总容量
 data g_bufferCapacity;
-// 缓冲区最大尺寸
-data g_bufferMaxSize;
+// 缓冲区绝对最大尺寸
+data g_bufferAbsoluteMaxSize;
 // 缓冲区锁定标志
 byte g_bufferLockFlag;
-// 未知数据结构180a3c3e0
-data unknown_180a3c3e0;
-// 全局缓冲区句柄1
-uint64 g_bufferHandle1;
-// 全局缓冲区句柄2
-uint64 g_bufferHandle2;
-// 数据结构180bf5320
-data DAT_180bf5320;
-// 数据结构180bf5328
-data DAT_180bf5328;
-// 数据结构180bf5330
-data DAT_180bf5330;
-// 数据结构180bf5338
-data DAT_180bf5338;
-data unknown_18098bb30;
+// 缓冲区状态标志
+data g_bufferStatusFlag;
+// 主缓冲区句柄
+uint64 g_primaryBufferHandle;
+// 辅助缓冲区句柄
+uint64 g_secondaryBufferHandle;
+// 缓冲区控制数据1
+data g_bufferControlData1;
+// 缓冲区控制数据2
+data g_bufferControlData2;
+// 缓冲区控制数据3
+data g_bufferControlData3;
+// 缓冲区控制数据4
+data g_bufferControlData4;
+// 缓冲区内存指针
+data g_bufferMemoryPointer;
 
 // 函数: data InitializeMemoryPool;
 // 系统初始化函数180941590
@@ -98,8 +99,8 @@ byte DAT_180c91238;
 data InitializeSemaphore;
 byte DAT_180c912d8;
 
-// 函数: data FUN_180941710;
-data FUN_180941710;
+// 函数: data CleanupThreadSynchronization;
+data CleanupThreadSynchronization;
 data DAT_1809fe0d0;
 data unknown_1809fd0d8;
 
