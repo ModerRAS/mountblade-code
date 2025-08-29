@@ -494,22 +494,22 @@ data renderPipelineStateData1;
 data renderPipelineStateData2;
 data renderPipelineStateData3;
 data renderPipelineStateData4;
-data g_materialRenderStateTempData1;
-data g_materialRenderStateTempData2;
-data g_materialRenderStateTempData3;
-data g_materialRenderStateTempData4;
-data g_textureUploadTempData1;
-data g_textureUploadTempData2;
-data g_textureUploadTempData3;
-data g_textureUploadTempData4;
-data g_textureCompressionTempData1;
-data g_textureCompressionTempData2;
-data g_textureCompressionTempData3;
-data g_textureCompressionTempData4;
-data g_textureFilterTempData1;
-data g_textureFilterTempData2;
-data g_textureFilterTempData3;
-data g_textureFilterTempData4;
+data materialRenderStateConfig1;
+data materialRenderStateConfig2;
+data materialRenderStateConfig3;
+data materialRenderStateConfig4;
+data textureUploadConfig1;
+data textureUploadConfig2;
+data textureUploadConfig3;
+data textureUploadConfig4;
+data textureCompressionConfig1;
+data textureCompressionConfig2;
+data textureCompressionConfig3;
+data textureCompressionConfig4;
+data textureFilterConfig1;
+data textureFilterConfig2;
+data textureFilterConfig3;
+data textureFilterConfig4;
 data g_textureWrapTempData1;
 data g_textureWrapTempData2;
 data g_textureWrapTempData3;
@@ -715,10 +715,10 @@ data g_materialPropertyTempData5;
 // 函数: data materialRenderStateInitialize;
 data materialRenderStateInitialize;
 data materialRenderState;
-data g_materialRenderStateTempData5;
-data g_materialRenderStateTempData6;
-data g_materialRenderStateTempData7;
-data g_materialRenderStateTempData8;
+data materialRenderStateConfig5;
+data materialRenderStateConfig6;
+data materialRenderStateConfig7;
+data materialRenderStateConfig8;
 
 // 函数: data materialUniformDataInitialize;
 data materialUniformDataInitialize;
@@ -1099,7 +1099,7 @@ data renderTargetWidth;  /* 原: DAT_180bfa9e0 */
 data renderTargetHeight;  /* 原: DAT_180bfa9e8 */
 data renderTargetFormat;  /* 原: DAT_180bfa9f0 */
 data renderTargetSamples;  /* 原: DAT_180bfa9f8 */
-data DAT_180bfaa78;
+data renderTargetDepthBuffer;  /* 原: DAT_180bfaa78 */
 data DAT_180bfaa80;
 data DAT_180bfaa88;
 data DAT_180bfaa90;
@@ -80917,7 +80917,7 @@ void materialRenderStateInitialize(void)
 void materialUniformDataInitialize(void)
 
 {
-  _g_materialRenderStateTempData5 = &threadLocalStorageCleanup;
+  _materialRenderStateConfig5 = &threadLocalStorageCleanup;
   return;
 }
 
