@@ -3,197 +3,197 @@
 // 05_networking.c - 908 个函数
 
 // 函数: undefined NetworkInitializeSystem;
-undefined NetworkInitializeSystem;
-undefined g_networkSessionId;
-undefined g_networkClientId;
-undefined g_networkBuffer;
-undefined g_connectionTimeout;
-undefined g_socketTimeout;
-undefined g_connectionPool;
-undefined g_socketTable;
-undefined g_packetQueue;
-undefined g_networkStatus;
-undefined g_threadManager;
-undefined g_networkConfig;
-undefined g_serverPort;
-undefined g_clientPort;
-undefined g_networkState;
-undefined g_connectionHandle;
-undefined g_networkEndpoint;
-undefined g_networkEventQueue;
-undefined g_networkReceiveBuffer;
-undefined g_networkSendBuffer;
-undefined g_networkSocket;
-undefined g_networkAddress;
-undefined g_networkProtocol;
-undefined g_networkSecurity;
-undefined g_networkTimeout;
-undefined g_packetSize;
-undefined g_maxPacketSize;
-undefined g_networkCompression;
+void* NetworkInitializeSystem;
+void* g_networkSessionId;
+void* g_networkClientId;
+void* g_networkBuffer;
+void* g_connectionTimeout;
+void* g_socketTimeout;
+void* g_connectionPool;
+void* g_socketTable;
+void* g_packetQueue;
+void* g_networkStatus;
+void* g_threadManager;
+void* g_networkConfig;
+void* g_serverPort;
+void* g_clientPort;
+void* g_networkState;
+void* g_connectionHandle;
+void* g_networkEndpoint;
+void* g_networkEventQueue;
+void* g_networkReceiveBuffer;
+void* g_networkSendBuffer;
+void* g_networkSocket;
+void* g_networkAddress;
+void* g_networkProtocol;
+void* g_networkSecurity;
+void* g_networkTimeout;
+void* g_packetSize;
+void* g_maxPacketSize;
+void* g_networkCompression;
 
 // 函数: undefined NetworkInitializeConnection;
-undefined NetworkInitializeConnection;
-undefined g_networkSessionData;
+void* NetworkInitializeConnection;
+void* g_networkSessionData;
 
 // 函数: undefined NetworkCreateListener;
-undefined NetworkCreateListener;
+void* NetworkCreateListener;
 
 // 函数: undefined NetworkAcceptConnection;
-undefined NetworkAcceptConnection;
-undefined g_networkListener;
+void* NetworkAcceptConnection;
+void* g_networkListener;
 
 // 函数: undefined NetworkRejectConnection;
-undefined NetworkRejectConnection;
+void* NetworkRejectConnection;
 
 // 函数: undefined NetworkAuthenticateClient;
-undefined NetworkAuthenticateClient;
+void* NetworkAuthenticateClient;
 
 // 函数: undefined NetworkValidateClient;
-undefined NetworkValidateClient;
+void* NetworkValidateClient;
 
 // 函数: undefined NetworkStartServer;
-undefined NetworkStartServer;
+void* NetworkStartServer;
 
 // 函数: undefined NetworkStopServer;
-undefined NetworkStopServer;
+void* NetworkStopServer;
 
 // 函数: undefined NetworkSendData;
-undefined NetworkSendData;
+void* NetworkSendData;
 
 // 函数: undefined NetworkReceiveData;
-undefined NetworkReceiveData;
+void* NetworkReceiveData;
 
 // 函数: undefined NetworkProcessPacket;
-undefined NetworkProcessPacket;
+void* NetworkProcessPacket;
 
 // 函数: undefined NetworkHandleDisconnect;
-undefined NetworkHandleDisconnect;
-undefined g_networkDisconnectReason;
-undefined g_networkError;
-undefined g_networkReceiveQueue;
-undefined g_networkSendQueue;
-undefined g_networkPendingData;
-undefined g_networkActiveConnections;
-undefined g_networkConnectionPool;
-undefined g_networkBandwidth;
-undefined g_networkLatency;
-undefined g_networkPacketLoss;
-undefined g_networkStatistics;
-undefined g_networkPerformance;
-undefined g_networkMetrics;
-undefined g_networkDiagnostics;
-undefined g_networkSendBufferPtr;
-undefined g_networkReceiveBufferPtr;
-undefined g_networkBufferPool;
-undefined g_networkMemoryManager;
-undefined g_networkThreadLock;
-undefined g_networkCriticalSection;
-undefined g_networkSemaphore;
-undefined g_networkEventSignal;
-undefined g_networkThreadPool;
-undefined g_networkBufferSize;
-undefined g_networkBufferAlignment;
+void* NetworkHandleDisconnect;
+void* g_networkDisconnectReason;
+void* g_networkError;
+void* g_networkReceiveQueue;
+void* g_networkSendQueue;
+void* g_networkPendingData;
+void* g_networkActiveConnections;
+void* g_networkConnectionPool;
+void* g_networkBandwidth;
+void* g_networkLatency;
+void* g_networkPacketLoss;
+void* g_networkStatistics;
+void* g_networkPerformance;
+void* g_networkMetrics;
+void* g_networkDiagnostics;
+void* g_networkSendBufferPtr;
+void* g_networkReceiveBufferPtr;
+void* g_networkBufferPool;
+void* g_networkMemoryManager;
+void* g_networkThreadLock;
+void* g_networkCriticalSection;
+void* g_networkSemaphore;
+void* g_networkEventSignal;
+void* g_networkThreadPool;
+void* g_networkBufferSize;
+void* g_networkBufferAlignment;
 undefined4 g_networkConnectionFlags;
 undefined4 g_networkConnectionMode;
 undefined4 g_networkProtocolVersion;
-undefined g_networkServerInfo;
-undefined g_networkClientInfo;
-undefined g_networkGameSession;
-undefined g_networkPlayerData;
-undefined g_networkGameState;
-undefined g_networkSyncData;
-undefined g_networkLobbyData;
-undefined g_networkMatchData;
+void* g_networkServerInfo;
+void* g_networkClientInfo;
+void* g_networkGameSession;
+void* g_networkPlayerData;
+void* g_networkGameState;
+void* g_networkSyncData;
+void* g_networkLobbyData;
+void* g_networkMatchData;
 
 // 函数: undefined NetworkBroadcastMessage;
-undefined NetworkBroadcastMessage;
-undefined g_networkBroadcastBuffer;
-undefined g_networkMulticastGroup;
-undefined g_networkMulticastAddress;
-undefined g_networkMulticastPort;
-undefined g_networkMulticastTTL;
-undefined g_networkMulticastInterface;
-undefined g_networkMulticastSocket;
-undefined g_networkMaxConnections;
-undefined g_networkCurrentConnections;
-undefined g_networkConnectionLimit;
-undefined g_networkConnectionTimeout;
-undefined g_networkHeartbeatInterval;
-undefined g_networkPingInterval;
-undefined g_networkKeepAlive;
-undefined g_networkDisconnectTimeout;
-undefined g_networkReconnectDelay;
-undefined g_networkRetryCount;
-undefined g_networkConnectionQuality;
-undefined g_networkConnectionStability;
-undefined g_networkConnectionHistory;
-undefined g_networkConnectionStats;
-undefined g_networkConnectionMetrics;
-undefined g_networkBandwidthMonitor;
-undefined g_networkLatencyMonitor;
-undefined g_networkPacketLossMonitor;
-undefined g_networkJitterMonitor;
-undefined g_networkThroughputMonitor;
-undefined g_networkErrorMonitor;
-undefined g_networkSecurityMonitor;
-undefined g_networkPerformanceMonitor;
-undefined g_networkDiagnosticData;
-undefined g_networkDebugInfo;
-undefined g_networkLogLevel;
-undefined g_networkLogBuffer;
-undefined g_networkLogFile;
-undefined g_networkLogSize;
-undefined g_networkLogRotation;
-undefined g_networkLogCompression;
-undefined g_networkLogArchive;
-undefined g_networkConnectionPoolData;
-undefined g_networkConnectionPoolSize;
-undefined g_networkConnectionPoolIndex;
-undefined g_networkConnectionPoolLock;
-undefined g_networkConnectionPoolStatus;
-undefined g_networkConnectionPoolConfig;
-undefined g_networkConnectionPoolManager;
-undefined g_networkConnectionPoolAllocator;
-undefined g_networkConnectionPoolDeallocator;
-undefined g_networkConnectionPoolInitializer;
-undefined g_networkConnectionPoolFinalizer;
-undefined g_networkConnectionPoolValidator;
-undefined g_networkConnectionPoolCleaner;
-undefined g_networkConnectionPoolResizer;
-undefined g_networkConnectionPoolIterator;
-undefined g_networkConnectionPoolAccessor;
-undefined g_networkConnectionPoolModifier;
-undefined g_networkConnectionPoolSearcher;
-undefined g_networkConnectionPoolFinder;
-undefined g_networkConnectionPoolLocator;
-undefined g_networkConnectionPoolIdentifier;
-undefined g_networkConnectionPoolTracker;
-undefined g_networkConnectionPoolMonitor;
-undefined g_networkConnectionPoolObserver;
-undefined g_networkConnectionPoolNotifier;
-undefined g_networkConnectionPoolHandler;
-undefined g_networkConnectionPoolProcessor;
-undefined g_networkConnectionPoolExecutor;
-undefined g_networkConnectionPoolScheduler;
-undefined g_networkConnectionPoolDispatcher;
-undefined g_networkConnectionPoolWorker;
-undefined g_networkConnectionPoolTask;
-undefined g_networkConnectionPoolJob;
-undefined g_networkConnectionPoolOperation;
-undefined g_networkConnectionPoolAction;
-undefined g_networkConnectionPoolCommand;
-undefined g_networkConnectionPoolRequest;
-undefined g_networkConnectionPoolResponse;
-undefined g_networkConnectionPoolMessage;
-undefined g_networkConnectionPoolEvent;
-undefined g_networkConnectionPoolNotification;
-undefined g_networkConnectionPoolAlert;
-undefined g_networkConnectionPoolWarning;
-undefined g_networkConnectionPoolError;
-undefined g_networkConnectionPoolException;
-undefined g_networkConnectionPoolFault;
-undefined g_networkConnectionPoolCritical;
+void* NetworkBroadcastMessage;
+void* g_networkBroadcastBuffer;
+void* g_networkMulticastGroup;
+void* g_networkMulticastAddress;
+void* g_networkMulticastPort;
+void* g_networkMulticastTTL;
+void* g_networkMulticastInterface;
+void* g_networkMulticastSocket;
+void* g_networkMaxConnections;
+void* g_networkCurrentConnections;
+void* g_networkConnectionLimit;
+void* g_networkConnectionTimeout;
+void* g_networkHeartbeatInterval;
+void* g_networkPingInterval;
+void* g_networkKeepAlive;
+void* g_networkDisconnectTimeout;
+void* g_networkReconnectDelay;
+void* g_networkRetryCount;
+void* g_networkConnectionQuality;
+void* g_networkConnectionStability;
+void* g_networkConnectionHistory;
+void* g_networkConnectionStats;
+void* g_networkConnectionMetrics;
+void* g_networkBandwidthMonitor;
+void* g_networkLatencyMonitor;
+void* g_networkPacketLossMonitor;
+void* g_networkJitterMonitor;
+void* g_networkThroughputMonitor;
+void* g_networkErrorMonitor;
+void* g_networkSecurityMonitor;
+void* g_networkPerformanceMonitor;
+void* g_networkDiagnosticData;
+void* g_networkDebugInfo;
+void* g_networkLogLevel;
+void* g_networkLogBuffer;
+void* g_networkLogFile;
+void* g_networkLogSize;
+void* g_networkLogRotation;
+void* g_networkLogCompression;
+void* g_networkLogArchive;
+void* g_networkConnectionPoolData;
+void* g_networkConnectionPoolSize;
+void* g_networkConnectionPoolIndex;
+void* g_networkConnectionPoolLock;
+void* g_networkConnectionPoolStatus;
+void* g_networkConnectionPoolConfig;
+void* g_networkConnectionPoolManager;
+void* g_networkConnectionPoolAllocator;
+void* g_networkConnectionPoolDeallocator;
+void* g_networkConnectionPoolInitializer;
+void* g_networkConnectionPoolFinalizer;
+void* g_networkConnectionPoolValidator;
+void* g_networkConnectionPoolCleaner;
+void* g_networkConnectionPoolResizer;
+void* g_networkConnectionPoolIterator;
+void* g_networkConnectionPoolAccessor;
+void* g_networkConnectionPoolModifier;
+void* g_networkConnectionPoolSearcher;
+void* g_networkConnectionPoolFinder;
+void* g_networkConnectionPoolLocator;
+void* g_networkConnectionPoolIdentifier;
+void* g_networkConnectionPoolTracker;
+void* g_networkConnectionPoolMonitor;
+void* g_networkConnectionPoolObserver;
+void* g_networkConnectionPoolNotifier;
+void* g_networkConnectionPoolHandler;
+void* g_networkConnectionPoolProcessor;
+void* g_networkConnectionPoolExecutor;
+void* g_networkConnectionPoolScheduler;
+void* g_networkConnectionPoolDispatcher;
+void* g_networkConnectionPoolWorker;
+void* g_networkConnectionPoolTask;
+void* g_networkConnectionPoolJob;
+void* g_networkConnectionPoolOperation;
+void* g_networkConnectionPoolAction;
+void* g_networkConnectionPoolCommand;
+void* g_networkConnectionPoolRequest;
+void* g_networkConnectionPoolResponse;
+void* g_networkConnectionPoolMessage;
+void* g_networkConnectionPoolEvent;
+void* g_networkConnectionPoolNotification;
+void* g_networkConnectionPoolAlert;
+void* g_networkConnectionPoolWarning;
+void* g_networkConnectionPoolError;
+void* g_networkConnectionPoolException;
+void* g_networkConnectionPoolFault;
+void* g_networkConnectionPoolCritical;
 
 // 函数: void NetworkInitializeConnection(void)
 void NetworkInitializeConnection(void)
@@ -305,8 +305,8 @@ void NetworkCreateSocket(undefined8 socketParam)
 {
   int status;
   int result;
-  longlong alStackX_10 [2];
-  undefined8 *puStackX_20;
+  longlong socketContext [2];
+  undefined8 *socketDataPtr;
   
   alStackX_10[1] = 0;
   status = func_0x00018088c590(socketParam,alStackX_10);
@@ -328,7 +328,7 @@ void NetworkCreateSocket(undefined8 socketParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 NetworkProcessSocketData(longlong *socketParam)
+uint64_t NetworkProcessSocketData(longlong *socketParam)
 
 {
   int status;
@@ -381,8 +381,8 @@ void NetworkBindSocket(ulonglong *socketParam,int dataParam)
   undefined1 auStack_128 [256];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
-  func_0x000180741c10(&DAT_180be12f0);
+  uStack_28 = _g_networkXorKey ^ (ulonglong)auStack_178;
+  func_0x000180741c10(&g_networkInitData);
   if (socketParam == (ulonglong *)0x0) {
     iVar3 = 0x1f;
   }
@@ -397,31 +397,31 @@ void NetworkBindSocket(ulonglong *socketParam,int dataParam)
         if (iVar3 == 0) {
           if (aiStack_148[0] != 0x20214) {
             FUN_180883a30();
-            goto LAB_1808403d0;
+            goto LAB_NETWORK_SEND_CHUNK_START;
           }
           iVar3 = func_0x00018088c570(lStack_140,auStack_138);
           if (iVar3 == 0) {
             *socketParam = (ulonglong)auStack_138[0];
-            goto LAB_180840449;
+            goto LAB_NETWORK_SEND_CHUNK_END;
           }
         }
       }
-      if (iVar3 == 0) goto LAB_180840449;
+      if (iVar3 == 0) goto LAB_NETWORK_SEND_CHUNK_END;
     }
     else {
-LAB_1808403d0:
+LAB_NETWORK_SEND_CHUNK_START:
       iVar3 = 0x14;
     }
   }
   if ((*(byte *)(g_networkModule + 0x10) & 0x80) != 0) {
     status = func_0x00018074bda0(auStack_128,0x100,socketParam);
-    result = FUN_18074b880(auStack_128 + status,0x100 - status,&DAT_180a06434);
+    result = FUN_18074b880(auStack_128 + status,0x100 - status,&g_networkNullTerminator);
     func_0x00018074b800(auStack_128 + (status + result),0x100 - (status + result),dataParam);
     puStack_158 = auStack_128;
                     // WARNING: Subroutine does not return
     FUN_180749ef0(iVar3,0,0,&UNK_180984660);
   }
-LAB_180840449:
+LAB_NETWORK_SEND_CHUNK_END:
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
 }
@@ -445,7 +445,7 @@ void NetworkConnectSocket(undefined8 socketParam,ulonglong *dataParam)
   undefined1 auStack_128 [256];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = _g_networkXorKey ^ (ulonglong)auStack_178;
   if (dataParam == (ulonglong *)0x0) {
     if ((*(byte *)(g_networkModule + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
@@ -460,12 +460,12 @@ void NetworkConnectSocket(undefined8 socketParam,ulonglong *dataParam)
   alStack_148[1] = 0;
   status = func_0x00018088c590(socketParam,alStack_148);
   if (status == 0) {
-    if ((*(uint *)(alStack_148[0] + 0x24) >> 1 & 1) == 0) goto LAB_1808404f2;
+    if ((*(uint *)(alStack_148[0] + 0x24) >> 1 & 1) == 0) goto LAB_NETWORK_SEND_BUFFER_START;
     result = FUN_18088c740(alStack_148 + 1);
-    if (result == 0) goto LAB_18084055a;
+    if (result == 0) goto LAB_NETWORK_SEND_BUFFER_END;
   }
   else {
-LAB_18084055a:
+LAB_NETWORK_SEND_BUFFER_END:
     result = status;
   }
   if ((result == 0) &&
@@ -482,7 +482,7 @@ LAB_18084055a:
       NetworkErrorExit(alStack_148 + 1);
     }
   }
-LAB_1808404f2:
+LAB_NETWORK_SEND_BUFFER_START:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(alStack_148 + 1);
 }
@@ -508,7 +508,7 @@ void NetworkSendData(undefined4 socketParam,int dataParam,longlong sizeParam)
   undefined1 auStack_48 [40];
   ulonglong uStack_20;
   
-  uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
+  uStack_20 = _g_networkXorKey ^ (ulonglong)auStack_88;
   if (sizeParam == 0) {
                     // WARNING: Subroutine does not return
     FUN_1808fc050(uStack_20 ^ (ulonglong)auStack_88);
@@ -687,12 +687,12 @@ undefined4 NetworkGetConnectionData(undefined4 socketParam,longlong dataParam,un
      (iVar3 = func_0x00018088c530(socketParam,alStackX_18), iVar3 == 0)) {
     lStack_28 = *(longlong *)(alStackX_18[0] + 8);
   }
-  else if (iVar3 != 0) goto LAB_1808408dd;
+  else if (iVar3 != 0) goto LAB_NETWORK_TIMEOUT_HANDLER;
   connectionData = (undefined8 *)(lStack_28 + 0xb0);
-  puVar5 = &DAT_18098bc73;
+  puVar5 = &g_networkEmptyString;
   for (ppacketSize = (undefined8 *)*connectionData; ppacketSize != connectionData; ppacketSize = (undefined8 *)*ppacketSize) {
     if (*(int *)(ppacketSize + 3) < 1) {
-      puVar4 = &DAT_18098bc73;
+      puVar4 = &g_networkEmptyString;
     }
     else {
       puVar4 = (undefined *)ppacketSize[2];
@@ -705,14 +705,14 @@ undefined4 NetworkGetConnectionData(undefined4 socketParam,longlong dataParam,un
       *sizeParam = puVar5;
       *(undefined4 *)(sizeParam + 1) = 2;
       *(undefined4 *)(sizeParam + 2) = *(undefined4 *)(ppacketSize + 4);
-      goto LAB_1808408dd;
+      goto LAB_NETWORK_TIMEOUT_HANDLER;
     }
-    if (ppacketSize == connectionData) goto LAB_1808408dd;
+    if (ppacketSize == connectionData) goto LAB_NETWORK_TIMEOUT_HANDLER;
   }
   connectionData = (undefined8 *)(lStack_28 + 0xc0);
   for (ppacketSize = (undefined8 *)*connectionData; ppacketSize != connectionData; ppacketSize = (undefined8 *)*ppacketSize) {
     if (*(int *)(ppacketSize + 3) < 1) {
-      puVar4 = &DAT_18098bc73;
+      puVar4 = &g_networkEmptyString;
     }
     else {
       puVar4 = (undefined *)ppacketSize[2];
@@ -720,7 +720,7 @@ undefined4 NetworkGetConnectionData(undefined4 socketParam,longlong dataParam,un
     iVar3 = func_0x00018076b420(puVar4,dataParam);
     if (iVar3 == 0) {
       if (*(int *)(ppacketSize + 3) < 1) {
-        puVar4 = &DAT_18098bc73;
+        puVar4 = &g_networkEmptyString;
       }
       else {
         puVar4 = (undefined *)ppacketSize[2];
@@ -735,7 +735,7 @@ undefined4 NetworkGetConnectionData(undefined4 socketParam,longlong dataParam,un
     }
     if (ppacketSize == connectionData) break;
   }
-LAB_1808408dd:
+LAB_NETWORK_TIMEOUT_HANDLER:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(&uStack_38);
 }
@@ -767,12 +767,12 @@ void NetworkSendDataWithTimeout(undefined8 socketParam,undefined8 dataParam,unde
      && (iVar3 = func_0x00018088c530(connectionStatus,&stack0x00000070), iVar3 == 0)) {
     lStack0000000000000030 = *(longlong *)(stackParam + 8);
   }
-  else if (iVar3 != 0) goto LAB_1808408dd;
+  else if (iVar3 != 0) goto LAB_NETWORK_TIMEOUT_HANDLER;
   connectionData = (undefined8 *)(lStack0000000000000030 + 0xb0);
-  puVar5 = &DAT_18098bc73;
+  puVar5 = &g_networkEmptyString;
   for (ppacketSize = (undefined8 *)*connectionData; ppacketSize != connectionData; ppacketSize = (undefined8 *)*ppacketSize) {
     if (*(int *)(ppacketSize + 3) < 1) {
-      puVar4 = &DAT_18098bc73;
+      puVar4 = &g_networkEmptyString;
     }
     else {
       puVar4 = (undefined *)ppacketSize[2];
@@ -785,14 +785,14 @@ void NetworkSendDataWithTimeout(undefined8 socketParam,undefined8 dataParam,unde
       *unaff_RBX = puVar5;
       *(undefined4 *)(unaff_RBX + 1) = 2;
       *(undefined4 *)(unaff_RBX + 2) = *(undefined4 *)(ppacketSize + 4);
-      goto LAB_1808408dd;
+      goto LAB_NETWORK_TIMEOUT_HANDLER;
     }
-    if (ppacketSize == connectionData) goto LAB_1808408dd;
+    if (ppacketSize == connectionData) goto LAB_NETWORK_TIMEOUT_HANDLER;
   }
   connectionData = (undefined8 *)(lStack0000000000000030 + 0xc0);
   for (ppacketSize = (undefined8 *)*connectionData; ppacketSize != connectionData; ppacketSize = (undefined8 *)*ppacketSize) {
     if (*(int *)(ppacketSize + 3) < 1) {
-      puVar4 = &DAT_18098bc73;
+      puVar4 = &g_networkEmptyString;
     }
     else {
       puVar4 = (undefined *)ppacketSize[2];
@@ -800,7 +800,7 @@ void NetworkSendDataWithTimeout(undefined8 socketParam,undefined8 dataParam,unde
     iVar3 = func_0x00018076b420(puVar4);
     if (iVar3 == 0) {
       if (*(int *)(ppacketSize + 3) < 1) {
-        puVar4 = &DAT_18098bc73;
+        puVar4 = &g_networkEmptyString;
       }
       else {
         puVar4 = (undefined *)ppacketSize[2];
@@ -815,7 +815,7 @@ void NetworkSendDataWithTimeout(undefined8 socketParam,undefined8 dataParam,unde
     }
     if (ppacketSize == connectionData) break;
   }
-LAB_1808408dd:
+LAB_NETWORK_TIMEOUT_HANDLER:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(&stack0x00000020);
 }
@@ -872,7 +872,7 @@ void NetworkSendPacketWithTimeout(undefined8 socketParam,longlong dataParam,long
   undefined1 auStack_40 [16];
   ulonglong uStack_30;
   
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
+  uStack_30 = _g_networkXorKey ^ (ulonglong)auStack_68;
   if (sizeParam != 0) {
     result = FUN_18076b6f0(sizeParam,&UNK_180984620,10);
     if (result == 0) {
@@ -888,14 +888,14 @@ void NetworkSendPacketWithTimeout(undefined8 socketParam,longlong dataParam,long
           uVar8 = uVar7;
           do {
             iVar3 = (int)uVar8;
-            if ((*piVar5 == (int)uVar4) && (piVar5[1] == uStack_48._4_4_)) goto LAB_180840a03;
+            if ((*piVar5 == (int)uVar4) && (piVar5[1] == uStack_48._4_4_)) goto LAB_NETWORK_SOCKET_CHECK;
             uVar8 = (ulonglong)(iVar3 + 1);
             uVar7 = uVar7 + 1;
             piVar5 = piVar5 + 2;
           } while ((longlong)uVar7 < (longlong)result);
         }
         iVar3 = -1;
-LAB_180840a03:
+LAB_NETWORK_SOCKET_CHECK:
         *timeoutParam = iVar3;
         uStack_48 = uVar4;
       }
@@ -908,7 +908,7 @@ LAB_180840a03:
           lVar1 = *(longlong *)(lVar9 + 0x10 + *(longlong *)(dataParam + 0x20));
           if (lVar1 == 0) break;
           if (*(int *)(lVar1 + 0x58) < 1) {
-            puVar6 = &DAT_18098bc73;
+            puVar6 = &g_networkEmptyString;
           }
           else {
             puVar6 = *(undefined **)(lVar1 + 0x50);
@@ -930,7 +930,7 @@ LAB_180840a03:
 
 
 
-undefined8 NetworkCheckSocketData(undefined8 *socketParam,int *dataParam,int *sizeParam)
+uint64_t NetworkCheckSocketData(undefined8 *socketParam,int *dataParam,int *sizeParam)
 
 {
   undefined8 uVar1;
@@ -943,14 +943,14 @@ undefined8 NetworkCheckSocketData(undefined8 *socketParam,int *dataParam,int *si
     presult = (int *)*socketParam;
     lVar4 = 0;
     do {
-      if ((*presult == *dataParam) && (presult[1] == dataParam[1])) goto LAB_180840ad5;
+      if ((*presult == *dataParam) && (presult[1] == dataParam[1])) goto LAB_NETWORK_DATA_COMPARE;
       iVar3 = iVar3 + 1;
       lVar4 = lVar4 + 1;
       presult = presult + 2;
     } while (lVar4 < *(int *)(socketParam + 1));
   }
   iVar3 = -1;
-LAB_180840ad5:
+LAB_NETWORK_DATA_COMPARE:
   *sizeParam = iVar3;
   uVar1 = 0x4a;
   if (-1 < iVar3) {
@@ -978,13 +978,13 @@ void NetworkSendToSocket(longlong socketParam,longlong dataParam,int *sizeParam)
   longlong lStack_30;
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
+  uStack_28 = _g_networkXorKey ^ (ulonglong)auStack_58;
   if (dataParam != 0) {
     bVar1 = false;
     result = FUN_18076b6f0(dataParam,&UNK_180984620,10);
     if (result == 0) {
       result = FUN_180881fa0(socketParam,dataParam,&lStack_38);
-      if (result != 0) goto LAB_180840b99;
+      if (result != 0) goto LAB_NETWORK_SOCKET_CLOSE_START;
       bVar1 = true;
     }
     socketParam = socketParam + 0x60;
@@ -995,7 +995,7 @@ void NetworkSendToSocket(longlong socketParam,longlong dataParam,int *sizeParam)
         do {
           lVar3 = func_0x000180867680(socketParam,iVar5);
           if ((*(longlong *)(lVar3 + 0x10) == lStack_38) &&
-             (*(longlong *)(lVar3 + 0x18) == lStack_30)) goto LAB_180840bf9;
+             (*(longlong *)(lVar3 + 0x18) == lStack_30)) goto LAB_NETWORK_SOCKET_CLOSE_END;
           iVar5 = iVar5 + 1;
           result = func_0x0001808675f0(socketParam);
         } while (iVar5 < result);
@@ -1008,23 +1008,23 @@ void NetworkSendToSocket(longlong socketParam,longlong dataParam,int *sizeParam)
         do {
           lVar3 = func_0x000180867680(socketParam,iVar5);
           if (*(int *)(lVar3 + 0x58) < 1) {
-            puVar4 = &DAT_18098bc73;
+            puVar4 = &g_networkEmptyString;
           }
           else {
             puVar4 = *(undefined **)(lVar3 + 0x50);
           }
           result = func_0x00018076b630(puVar4,dataParam);
-          if (result == 0) goto LAB_180840bf9;
+          if (result == 0) goto LAB_NETWORK_SOCKET_CLOSE_END;
           iVar5 = iVar5 + 1;
           result = func_0x0001808675f0(socketParam);
         } while (iVar5 < result);
       }
     }
   }
-  goto LAB_180840b99;
-LAB_180840bf9:
+  goto LAB_NETWORK_SOCKET_CLOSE_START;
+LAB_NETWORK_SOCKET_CLOSE_END:
   *sizeParam = iVar5;
-LAB_180840b99:
+LAB_NETWORK_SOCKET_CLOSE_START:
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_58);
 }
@@ -1047,12 +1047,12 @@ void NetworkCloseSocket(undefined8 socketParam)
   undefined1 auStack_118 [256];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_18 = _g_networkXorKey ^ (ulonglong)auStack_168;
   status = func_0x00018088c590(socketParam,alStack_138);
   if ((status == 0) && ((*(uint *)(alStack_138[0] + 0x24) >> 1 & 1) == 0)) {
     status = 0x4b;
-LAB_180840d1b:
-    if (status == 0) goto LAB_180840cf0;
+LAB_NETWORK_SOCKET_CLOSE_LOOP:
+    if (status == 0) goto LAB_NETWORK_SOCKET_CLEANUP;
   }
   else if (status == 0) {
     status = FUN_18088e0f0(*(undefined8 *)(alStack_138[0] + 0x98),1);
@@ -1072,9 +1072,9 @@ LAB_180840d1b:
                     // WARNING: Subroutine does not return
         NetworkErrorExit(alStack_138 + 1);
       }
-      goto LAB_180840cf0;
+      goto LAB_NETWORK_SOCKET_CLEANUP;
     }
-    goto LAB_180840d1b;
+    goto LAB_NETWORK_SOCKET_CLOSE_LOOP;
   }
   if ((*(byte *)(g_networkModule + 0x10) & 0x80) != 0) {
     puStack_148 = auStack_118;
@@ -1082,7 +1082,7 @@ LAB_180840d1b:
                     // WARNING: Subroutine does not return
     FUN_180749ef0(status,0xb,socketParam,&UNK_180982b98);
   }
-LAB_180840cf0:
+LAB_NETWORK_SOCKET_CLEANUP:
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_168);
 }
@@ -1098,7 +1098,7 @@ int NetworkSendDataImmediate(longlong socketParam,longlong dataParam,int sizePar
   
   uVar1 = *(undefined4 *)(socketParam + 0x18);
   result = func_0x00018074b800(dataParam,sizeParam,*(undefined4 *)(socketParam + 0x10));
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b7d0(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -1137,15 +1137,15 @@ int NetworkReceiveDataChunk(longlong socketParam,longlong dataParam,int sizePara
   uVar1 = *(undefined4 *)(socketParam + 0x2c);
   packetSize = *(undefined4 *)(socketParam + 0x18);
   iVar3 = func_0x00018074b800(dataParam,sizeParam,*(undefined4 *)(socketParam + 0x10));
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b7d0(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18074b650(iVar3 + dataParam,sizeParam - iVar3,&uStack_18);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -1162,7 +1162,7 @@ int NetworkReceiveDataBuffer(longlong socketParam,longlong dataParam,int sizePar
   
   uVar1 = *(undefined8 *)(socketParam + 0x18);
   result = func_0x00018074b800(dataParam,sizeParam,*(undefined4 *)(socketParam + 0x10));
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074bda0(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -1179,7 +1179,7 @@ int NetworkReceiveDataWithFlags(longlong socketParam,longlong dataParam,int size
   
   uVar1 = *(undefined1 *)(socketParam + 0x18);
   result = func_0x00018074b800(dataParam,sizeParam,*(undefined4 *)(socketParam + 0x10));
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18074be90(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -1196,7 +1196,7 @@ int NetworkReceiveDataWithTimeout(longlong socketParam,longlong dataParam,int si
   
   uVar1 = *(undefined4 *)(socketParam + 0x18);
   result = func_0x00018074b800(dataParam,sizeParam,*(undefined4 *)(socketParam + 0x10));
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b830(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -1213,7 +1213,7 @@ int NetworkReceiveDataNonBlocking(longlong socketParam,longlong dataParam,int si
   
   uVar1 = *(undefined4 *)(socketParam + 0x18);
   result = func_0x00018074b800(dataParam,sizeParam,*(undefined4 *)(socketParam + 0x10));
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b800(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -1232,11 +1232,11 @@ int NetworkReceiveDataWithPeek(longlong socketParam,longlong dataParam,int sizeP
   uVar1 = *(undefined4 *)(socketParam + 0x1c);
   packetSize = *(undefined4 *)(socketParam + 0x18);
   iVar3 = func_0x00018074b800(dataParam,sizeParam,*(undefined4 *)(socketParam + 0x10));
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b7d0(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b7d0(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -1255,11 +1255,11 @@ int NetworkReceiveDataWithUrgent(longlong socketParam,longlong dataParam,int siz
   uVar1 = *(undefined4 *)(socketParam + 0x1c);
   packetSize = *(undefined4 *)(socketParam + 0x18);
   iVar3 = func_0x00018074b800(dataParam,sizeParam,*(undefined4 *)(socketParam + 0x10));
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b7d0(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -1294,7 +1294,7 @@ int NetworkReceiveDataWithTruncation(longlong socketParam,longlong dataParam,int
   uStack_10 = *(undefined4 *)(socketParam + 0x40);
   uStack_c = *(undefined4 *)(socketParam + 0x44);
   status = func_0x00018074b800(dataParam,sizeParam,*(undefined4 *)(socketParam + 0x10));
-  result = FUN_18074b880(dataParam + status,sizeParam - status,&DAT_180a06434);
+  result = FUN_18074b880(dataParam + status,sizeParam - status,&g_networkNullTerminator);
   status = status + result;
   result = FUN_18088ebb0(status + dataParam,sizeParam - status,&uStack_38);
   return result + status;
@@ -1311,7 +1311,7 @@ int NetworkReceiveDataSimple(longlong socketParam,longlong dataParam,int sizePar
   
   uVar1 = *(undefined4 *)(socketParam + 0x18);
   result = func_0x00018074b800(dataParam,sizeParam,*(undefined4 *)(socketParam + 0x10));
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b800(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -1332,15 +1332,15 @@ int NetworkReceiveDataWithControl(longlong socketParam,longlong dataParam,int si
   packetSize = *(undefined1 *)(socketParam + 0x24);
   uVar1 = *(undefined4 *)(socketParam + 0x20);
   iVar3 = func_0x00018074b800(dataParam,sizeParam,*(undefined4 *)(socketParam + 0x10));
-  iVar4 = FUN_18074b880(dataParam + iVar3,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(dataParam + iVar3,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18088ece0(iVar3 + dataParam,sizeParam - iVar3,&uStackX_8);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b830(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18074be90(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   return iVar4 + iVar3;
@@ -1359,15 +1359,15 @@ int NetworkReceiveDataWithOptions(longlong socketParam,longlong dataParam,int si
   uStackX_8 = *(undefined8 *)(socketParam + 0x18);
   uVar1 = *(undefined1 *)(socketParam + 0x24);
   result = func_0x00018074b800(dataParam,sizeParam,*(undefined4 *)(socketParam + 0x10));
-  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18088ece0(result + dataParam,sizeParam - result,&uStackX_8);
   result = result + iVar3;
-  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,socketParam + 0x25);
   result = result + iVar3;
-  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18074be90(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -1386,15 +1386,15 @@ int NetworkReceiveDataWithEncryption(longlong socketParam,longlong dataParam,int
   packetSize = *(undefined1 *)(socketParam + 0x1c);
   uVar1 = *(undefined4 *)(socketParam + 0x18);
   iVar3 = func_0x00018074b800(dataParam,sizeParam,*(undefined4 *)(socketParam + 0x10));
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,socketParam + 0x28);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b830(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18074be90(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   return iVar4 + iVar3;
@@ -1411,15 +1411,15 @@ int NetworkReceiveDataWithCompression(longlong socketParam,longlong dataParam,in
   
   uVar1 = *(undefined1 *)(socketParam + 0x1c);
   result = func_0x00018074b800(dataParam,sizeParam,*(undefined4 *)(socketParam + 0x10));
-  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,socketParam + 0x28);
   result = result + iVar3;
-  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,socketParam + 0xa8);
   result = result + iVar3;
-  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18074be90(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -1438,11 +1438,11 @@ int NetworkReceiveDataWithChecksum(longlong socketParam,longlong dataParam,int s
   packetSize = *(undefined4 *)(socketParam + 0x18);
   uVar1 = *(undefined4 *)(socketParam + 0x1c);
   iVar3 = func_0x00018074b800(dataParam,sizeParam,*(undefined4 *)(socketParam + 0x10));
-  iVar4 = FUN_18074b880(dataParam + iVar3,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(dataParam + iVar3,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b7d0(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b830(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -1467,7 +1467,7 @@ int NetworkReceiveDataWithPriority(longlong socketParam,longlong dataParam,int s
   uStack_c = *(undefined4 *)(socketParam + 0x1c);
   uVar1 = *(undefined4 *)(socketParam + 0x20);
   result = FUN_18074b650(dataParam,sizeParam,&uStack_18);
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b800(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -1484,7 +1484,7 @@ int NetworkReceiveDataWithRetry(longlong socketParam,longlong dataParam,int size
   
   uVar1 = *(undefined4 *)(socketParam + 0x14);
   result = func_0x00018074b7d0(dataParam,sizeParam,*(undefined4 *)(socketParam + 0x10));
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b7d0(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -1501,7 +1501,7 @@ int NetworkReceiveDataWithAck(longlong socketParam,longlong dataParam,int sizePa
   
   uVar1 = *(undefined4 *)(socketParam + 0x14);
   result = func_0x00018074b7d0(dataParam,sizeParam,*(undefined4 *)(socketParam + 0x10));
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b800(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -1538,11 +1538,11 @@ int NetworkReceiveDataWithQueue(longlong socketParam,longlong dataParam,int size
   uStack_1c = *(undefined4 *)(socketParam + 0x3c);
   uStack_18 = *(undefined8 *)(socketParam + 0x40);
   iVar3 = func_0x00018088ecd0(dataParam,sizeParam,&uStack_48);
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -1561,11 +1561,11 @@ int NetworkReceiveDataWithBuffer(longlong socketParam,longlong dataParam,int siz
   uVar1 = *(undefined4 *)(socketParam + 0x10);
   packetSize = *(undefined4 *)(socketParam + 0x14);
   iVar3 = FUN_18074b880(dataParam,sizeParam,socketParam + 0x18);
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -1588,19 +1588,19 @@ int NetworkReceiveDataWithStreaming(longlong socketParam,longlong dataParam,int 
   bufferSize = *(undefined4 *)(socketParam + 0x1c);
   uVar4 = *(undefined4 *)(socketParam + 0x18);
   iVar5 = func_0x00018074bda0(dataParam,sizeParam,*(undefined8 *)(socketParam + 0x10));
-  iVar6 = FUN_18074b880(dataParam + iVar5,sizeParam - iVar5,&DAT_180a06434);
+  iVar6 = FUN_18074b880(dataParam + iVar5,sizeParam - iVar5,&g_networkNullTerminator);
   iVar5 = iVar5 + iVar6;
   iVar6 = func_0x00018074b7d0(iVar5 + dataParam,sizeParam - iVar5,uVar4);
   iVar5 = iVar5 + iVar6;
-  iVar6 = FUN_18074b880(iVar5 + dataParam,sizeParam - iVar5,&DAT_180a06434);
+  iVar6 = FUN_18074b880(iVar5 + dataParam,sizeParam - iVar5,&g_networkNullTerminator);
   iVar5 = iVar5 + iVar6;
   iVar6 = func_0x00018074b7d0(iVar5 + dataParam,sizeParam - iVar5,bufferSize);
   iVar5 = iVar5 + iVar6;
-  iVar6 = FUN_18074b880(iVar5 + dataParam,sizeParam - iVar5,&DAT_180a06434);
+  iVar6 = FUN_18074b880(iVar5 + dataParam,sizeParam - iVar5,&g_networkNullTerminator);
   iVar5 = iVar5 + iVar6;
   iVar6 = func_0x00018074b800(iVar5 + dataParam,sizeParam - iVar5,packetSize);
   iVar5 = iVar5 + iVar6;
-  iVar6 = FUN_18074b880(iVar5 + dataParam,sizeParam - iVar5,&DAT_180a06434);
+  iVar6 = FUN_18074b880(iVar5 + dataParam,sizeParam - iVar5,&g_networkNullTerminator);
   iVar5 = iVar5 + iVar6;
   iVar6 = func_0x00018074b800(iVar5 + dataParam,sizeParam - iVar5,uVar1);
   return iVar6 + iVar5;
@@ -1641,15 +1641,15 @@ int NetworkReceiveDataWithValidation(longlong socketParam,longlong dataParam,int
   uStack_10 = *(undefined4 *)(socketParam + 0x3c);
   uStack_c = *(undefined4 *)(socketParam + 0x40);
   result = func_0x00018074b7d0(dataParam,sizeParam,*(undefined4 *)(socketParam + 0x10));
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18088ebb0(result + dataParam,sizeParam - result,&uStack_38);
   result = result + iVar3;
-  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18074b6f0(result + dataParam,sizeParam - result,&uStack_48);
   result = result + iVar3;
-  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18074be90(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -1666,7 +1666,7 @@ int NetworkReceiveDataWithLogging(longlong socketParam,longlong dataParam,int si
   
   uVar1 = *(undefined4 *)(socketParam + 0x14);
   result = func_0x00018074b7d0(dataParam,sizeParam,*(undefined4 *)(socketParam + 0x10));
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b830(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -1687,11 +1687,11 @@ int NetworkReceiveDataWithStats(longlong socketParam,longlong dataParam,int size
   packetSize = *(undefined1 *)(socketParam + 0x1c);
   uVar1 = *(undefined4 *)(socketParam + 0x18);
   iVar3 = FUN_18088ece0(dataParam,sizeParam,&uStackX_8);
-  iVar4 = FUN_18074b880(dataParam + iVar3,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(dataParam + iVar3,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b830(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18074be90(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   return iVar4 + iVar3;
@@ -1710,11 +1710,11 @@ int NetworkReceiveDataWithMetrics(longlong socketParam,longlong dataParam,int si
   uStackX_8 = *(undefined8 *)(socketParam + 0x10);
   uVar1 = *(undefined1 *)(socketParam + 0x1c);
   result = FUN_18088ece0(dataParam,sizeParam,&uStackX_8);
-  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,socketParam + 0x1d);
   result = result + iVar3;
-  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18074be90(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -1733,11 +1733,11 @@ int NetworkReceiveDataWithMonitoring(longlong socketParam,longlong dataParam,int
   packetSize = *(undefined1 *)(socketParam + 0x14);
   uVar1 = *(undefined4 *)(socketParam + 0x10);
   iVar3 = FUN_18074b880(dataParam,sizeParam,socketParam + 0x20);
-  iVar4 = FUN_18074b880(dataParam + iVar3,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(dataParam + iVar3,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b830(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18074be90(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   return iVar4 + iVar3;
@@ -1754,11 +1754,11 @@ int NetworkReceiveDataWithDiagnostics(longlong socketParam,longlong dataParam,in
   
   uVar1 = *(undefined1 *)(socketParam + 0x14);
   result = FUN_18074b880(dataParam,sizeParam,socketParam + 0x20);
-  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,socketParam + 0xa0);
   result = result + iVar3;
-  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18074be90(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -1811,19 +1811,19 @@ int NetworkSendPacketWithHeader(longlong socketParam,longlong dataParam,int size
   packetSize = *(undefined4 *)(socketParam + 0x18);
   bufferSize = *(undefined4 *)(socketParam + 0x10);
   iVar4 = FUN_18074b880(dataParam,sizeParam,&UNK_180983120);
-  iVar5 = FUN_18074b880(dataParam + iVar4,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(dataParam + iVar4,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b800(iVar4 + dataParam,sizeParam - iVar4,bufferSize);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b7d0(iVar4 + dataParam,sizeParam - iVar4,packetSize);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = FUN_18074b650(iVar4 + dataParam,sizeParam - iVar4,&uStack_28);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b800(iVar4 + dataParam,sizeParam - iVar4,uVar1);
   return iVar5 + iVar4;
@@ -1876,19 +1876,19 @@ int NetworkSendPacketWithFooter(longlong socketParam,longlong dataParam,int size
   packetSize = *(undefined4 *)(socketParam + 0x18);
   bufferSize = *(undefined4 *)(socketParam + 0x10);
   iVar4 = FUN_18074b880(dataParam,sizeParam,&UNK_180982fa0);
-  iVar5 = FUN_18074b880(dataParam + iVar4,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(dataParam + iVar4,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b800(iVar4 + dataParam,sizeParam - iVar4,bufferSize);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b7d0(iVar4 + dataParam,sizeParam - iVar4,packetSize);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = FUN_18074b650(iVar4 + dataParam,sizeParam - iVar4,&uStack_28);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b800(iVar4 + dataParam,sizeParam - iVar4,uVar1);
   return iVar5 + iVar4;
@@ -1965,19 +1965,19 @@ int NetworkSendPacketWithType(longlong socketParam,longlong dataParam,int sizePa
   packetSize = *(undefined4 *)(socketParam + 0x18);
   bufferSize = *(undefined4 *)(socketParam + 0x10);
   iVar4 = FUN_18074b880(dataParam,sizeParam,&UNK_1809832a0);
-  iVar5 = FUN_18074b880(dataParam + iVar4,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(dataParam + iVar4,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b800(iVar4 + dataParam,sizeParam - iVar4,bufferSize);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b7d0(iVar4 + dataParam,sizeParam - iVar4,packetSize);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = FUN_18074b650(iVar4 + dataParam,sizeParam - iVar4,&uStack_28);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b800(iVar4 + dataParam,sizeParam - iVar4,uVar1);
   return iVar5 + iVar4;
@@ -1994,7 +1994,7 @@ int NetworkLogError(longlong socketParam,longlong dataParam,int sizeParam)
   
   uVar1 = *(undefined4 *)(socketParam + 0x10);
   result = FUN_18074b880(dataParam,sizeParam,&UNK_180982d28);
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b800(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -2011,7 +2011,7 @@ int NetworkSendPacketWithId(longlong socketParam,longlong dataParam,int sizePara
   
   uVar1 = *(undefined4 *)(socketParam + 0x10);
   result = FUN_18074b880(dataParam,sizeParam,&UNK_180982e28);
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b800(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -2028,7 +2028,7 @@ int NetworkSendPacketWithSeq(longlong socketParam,longlong dataParam,int sizePar
   
   uVar1 = *(undefined4 *)(socketParam + 0x10);
   result = FUN_18074b880(dataParam,sizeParam,&UNK_180982da8);
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b800(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -2047,11 +2047,11 @@ int NetworkSendPacketWithTimestamp(longlong socketParam,longlong dataParam,int s
   packetSize = *(undefined8 *)(socketParam + 0x18);
   uVar1 = *(undefined4 *)(socketParam + 0x10);
   iVar3 = FUN_18074b880(dataParam,sizeParam,&UNK_1809842c8);
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074bda0(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   return iVar4 + iVar3;
@@ -2068,7 +2068,7 @@ int NetworkSendPacketWithSignature(longlong socketParam,longlong dataParam,int s
   
   uVar1 = *(undefined4 *)(socketParam + 0x10);
   result = FUN_18074b880(dataParam,sizeParam,&UNK_1809841c8);
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b800(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -2111,11 +2111,11 @@ int NetworkSendPacketWithKey(longlong socketParam,longlong dataParam,int sizePar
   packetSize = *(undefined4 *)(socketParam + 0x10);
   uVar1 = *(undefined4 *)(socketParam + 0x18);
   iVar3 = FUN_18074b880(dataParam,sizeParam,&UNK_180984348);
-  iVar4 = FUN_18074b880(dataParam + iVar3,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(dataParam + iVar3,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b830(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -2134,11 +2134,11 @@ int NetworkSendPacketWithToken(longlong socketParam,longlong dataParam,int sizeP
   uVar1 = *(undefined4 *)(socketParam + 0x18);
   packetSize = *(undefined4 *)(socketParam + 0x10);
   iVar3 = FUN_18074b880(dataParam,sizeParam,&UNK_1809844b0);
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b7d0(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -2155,7 +2155,7 @@ int NetworkSendPacketWithSession(longlong socketParam,longlong dataParam,int siz
   
   uVar1 = *(undefined4 *)(socketParam + 0x10);
   result = FUN_18074b880(dataParam,sizeParam,&UNK_180984248);
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b800(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -2174,11 +2174,11 @@ int FUN_180842a00(longlong socketParam,longlong dataParam,int sizeParam)
   uVar1 = *(undefined4 *)(socketParam + 0x18);
   packetSize = *(undefined4 *)(socketParam + 0x10);
   iVar3 = FUN_18074b880(dataParam,sizeParam,&UNK_180983320);
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -2197,11 +2197,11 @@ int FUN_180842ac0(longlong socketParam,longlong dataParam,int sizeParam)
   uVar1 = *(undefined4 *)(socketParam + 0x18);
   packetSize = *(undefined4 *)(socketParam + 0x10);
   iVar3 = FUN_18074b880(dataParam,sizeParam,&UNK_1809833b0);
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b7d0(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -2222,15 +2222,15 @@ int FUN_180842b80(longlong socketParam,longlong dataParam,int sizeParam)
   packetSize = *(undefined4 *)(socketParam + 0x18);
   bufferSize = *(undefined4 *)(socketParam + 0x10);
   iVar4 = FUN_18074b880(dataParam,sizeParam,&UNK_180983440);
-  iVar5 = FUN_18074b880(dataParam + iVar4,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(dataParam + iVar4,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b800(iVar4 + dataParam,sizeParam - iVar4,bufferSize);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b7d0(iVar4 + dataParam,sizeParam - iVar4,packetSize);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b7d0(iVar4 + dataParam,sizeParam - iVar4,uVar1);
   return iVar5 + iVar4;
@@ -2251,15 +2251,15 @@ int FUN_180842c60(longlong socketParam,longlong dataParam,int sizeParam)
   packetSize = *(undefined4 *)(socketParam + 0x18);
   bufferSize = *(undefined4 *)(socketParam + 0x10);
   iVar4 = FUN_18074b880(dataParam,sizeParam,&UNK_1809834d0);
-  iVar5 = FUN_18074b880(dataParam + iVar4,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(dataParam + iVar4,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b800(iVar4 + dataParam,sizeParam - iVar4,bufferSize);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b7d0(iVar4 + dataParam,sizeParam - iVar4,packetSize);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b800(iVar4 + dataParam,sizeParam - iVar4,uVar1);
   return iVar5 + iVar4;
@@ -2278,11 +2278,11 @@ int FUN_180842d40(longlong socketParam,longlong dataParam,int sizeParam)
   uVar1 = *(undefined4 *)(socketParam + 0x18);
   packetSize = *(undefined4 *)(socketParam + 0x10);
   iVar3 = FUN_18074b880(dataParam,sizeParam,&UNK_180983680);
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b7d0(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -2299,7 +2299,7 @@ int FUN_180842e00(longlong socketParam,longlong dataParam,int sizeParam)
   
   uVar1 = *(undefined4 *)(socketParam + 0x10);
   result = FUN_18074b880(dataParam,sizeParam,&UNK_180983560);
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b800(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -2316,7 +2316,7 @@ int FUN_180842e70(longlong socketParam,longlong dataParam,int sizeParam)
   
   uVar1 = *(undefined4 *)(socketParam + 0x10);
   result = FUN_18074b880(dataParam,sizeParam,&UNK_180983710);
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b800(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -2333,7 +2333,7 @@ int FUN_180842ee0(longlong socketParam,longlong dataParam,int sizeParam)
   
   uVar1 = *(undefined4 *)(socketParam + 0x10);
   result = FUN_18074b880(dataParam,sizeParam,&UNK_1809835f0);
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b800(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -2352,11 +2352,11 @@ int FUN_180842f50(longlong socketParam,longlong dataParam,int sizeParam)
   packetSize = *(undefined8 *)(socketParam + 0x18);
   uVar1 = *(undefined4 *)(socketParam + 0x10);
   iVar3 = FUN_18074b880(dataParam,sizeParam,&UNK_180983e68);
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074bda0(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   return iVar4 + iVar3;
@@ -2375,11 +2375,11 @@ int FUN_180843010(longlong socketParam,longlong dataParam,int sizeParam)
   uVar1 = *(undefined4 *)(socketParam + 0x18);
   packetSize = *(undefined4 *)(socketParam + 0x10);
   iVar3 = FUN_18074b880(dataParam,sizeParam,&UNK_180983de0);
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -2396,7 +2396,7 @@ int FUN_1808430d0(longlong socketParam,longlong dataParam,int sizeParam)
   
   uVar1 = *(undefined4 *)(socketParam + 0x10);
   result = FUN_18074b880(dataParam,sizeParam,&UNK_180983ce0);
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b800(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -2413,7 +2413,7 @@ int FUN_180843140(longlong socketParam,longlong dataParam,int sizeParam)
   
   uVar1 = *(undefined4 *)(socketParam + 0x10);
   result = FUN_18074b880(dataParam,sizeParam,&UNK_180983d60);
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b800(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -2450,11 +2450,11 @@ int FUN_1808431b0(longlong socketParam,longlong dataParam,int sizeParam)
   uStack_10 = *(undefined4 *)(socketParam + 0x40);
   uStack_c = *(undefined4 *)(socketParam + 0x44);
   result = FUN_18074b880(dataParam,sizeParam,&UNK_1809838a8);
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b800(result + dataParam,sizeParam - result,uVar1);
   result = result + iVar3;
-  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18088ebb0(result + dataParam,sizeParam - result,&uStack_38);
   return iVar3 + result;
@@ -2473,11 +2473,11 @@ int FUN_180843270(longlong socketParam,longlong dataParam,int sizeParam)
   uVar1 = *(undefined4 *)(socketParam + 0x18);
   packetSize = *(undefined4 *)(socketParam + 0x10);
   iVar3 = FUN_18074b880(dataParam,sizeParam,&UNK_180983930);
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -2500,19 +2500,19 @@ int FUN_180843330(longlong socketParam,longlong dataParam,int sizeParam)
   bufferSize = *(undefined4 *)(socketParam + 0x10);
   uVar1 = *(undefined4 *)(socketParam + 0x20);
   iVar4 = FUN_18074b880(dataParam,sizeParam,&UNK_180983ef0);
-  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b800(iVar4 + dataParam,sizeParam - iVar4,bufferSize);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = FUN_18088ece0(iVar4 + dataParam,sizeParam - iVar4,&uStackX_8);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b830(iVar4 + dataParam,sizeParam - iVar4,uVar1);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = FUN_18074be90(iVar4 + dataParam,sizeParam - iVar4,packetSize);
   return iVar5 + iVar4;
@@ -2533,19 +2533,19 @@ int FUN_180843450(longlong socketParam,longlong dataParam,int sizeParam)
   uVar1 = *(undefined1 *)(socketParam + 0x24);
   packetSize = *(undefined4 *)(socketParam + 0x10);
   iVar3 = FUN_18074b880(dataParam,sizeParam,&UNK_180983f78);
-  iVar4 = FUN_18074b880(dataParam + iVar3,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(dataParam + iVar3,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18088ece0(iVar3 + dataParam,sizeParam - iVar3,&uStackX_8);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,socketParam + 0x25);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18074be90(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -2566,19 +2566,19 @@ int FUN_180843570(longlong socketParam,longlong dataParam,int sizeParam)
   bufferSize = *(undefined4 *)(socketParam + 0x10);
   uVar1 = *(undefined4 *)(socketParam + 0x18);
   iVar4 = FUN_18074b880(dataParam,sizeParam,&UNK_1809840a0);
-  iVar5 = FUN_18074b880(dataParam + iVar4,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(dataParam + iVar4,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b800(iVar4 + dataParam,sizeParam - iVar4,bufferSize);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,socketParam + 0x28);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b830(iVar4 + dataParam,sizeParam - iVar4,uVar1);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = FUN_18074be90(iVar4 + dataParam,sizeParam - iVar4,packetSize);
   return iVar5 + iVar4;
@@ -2597,19 +2597,19 @@ int FUN_180843690(longlong socketParam,longlong dataParam,int sizeParam)
   uVar1 = *(undefined1 *)(socketParam + 0x1c);
   packetSize = *(undefined4 *)(socketParam + 0x10);
   iVar3 = FUN_18074b880(dataParam,sizeParam,&UNK_180984130);
-  iVar4 = FUN_18074b880(dataParam + iVar3,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(dataParam + iVar3,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,socketParam + 0x28);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,socketParam + 0xa8);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18074be90(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -2628,11 +2628,11 @@ int FUN_1808437b0(longlong socketParam,longlong dataParam,int sizeParam)
   uVar1 = *(undefined1 *)(socketParam + 0x18);
   packetSize = *(undefined4 *)(socketParam + 0x10);
   iVar3 = FUN_18074b880(dataParam,sizeParam,&UNK_180983ac8);
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18074be90(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -2665,15 +2665,15 @@ int FUN_1808438a0(longlong socketParam,longlong dataParam,int sizeParam)
   bufferSize = *(undefined4 *)(socketParam + 0x10);
   uVar1 = *(undefined4 *)(socketParam + 0x1c);
   iVar4 = FUN_18074b880(dataParam,sizeParam,&UNK_1809839b8);
-  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b800(iVar4 + dataParam,sizeParam - iVar4,bufferSize);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b7d0(iVar4 + dataParam,sizeParam - iVar4,packetSize);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b830(iVar4 + dataParam,sizeParam - iVar4,uVar1);
   return iVar5 + iVar4;
@@ -2694,15 +2694,15 @@ int FUN_180843990(longlong socketParam,longlong dataParam,int sizeParam)
   bufferSize = *(undefined4 *)(socketParam + 0x10);
   uVar1 = *(undefined4 *)(socketParam + 0x1c);
   iVar4 = FUN_18074b880(dataParam,sizeParam,&UNK_180983a40);
-  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b800(iVar4 + dataParam,sizeParam - iVar4,bufferSize);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b7d0(iVar4 + dataParam,sizeParam - iVar4,packetSize);
   iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&DAT_180a06434);
+  iVar5 = FUN_18074b880(iVar4 + dataParam,sizeParam - iVar4,&g_networkNullTerminator);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b830(iVar4 + dataParam,sizeParam - iVar4,uVar1);
   return iVar5 + iVar4;
@@ -2721,11 +2721,11 @@ int FUN_180843a80(longlong socketParam,longlong dataParam,int sizeParam)
   uVar1 = *(undefined4 *)(socketParam + 0x18);
   packetSize = *(undefined4 *)(socketParam + 0x10);
   iVar3 = FUN_18074b880(dataParam,sizeParam,&UNK_180983c50);
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b7d0(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -2754,7 +2754,7 @@ int FUN_180843b70(longlong socketParam,longlong dataParam,int sizeParam)
   
   uVar1 = *(undefined4 *)(socketParam + 0x10);
   result = FUN_18074b880(dataParam,sizeParam,&UNK_180983b50);
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b800(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -2773,11 +2773,11 @@ int FUN_180843be0(longlong socketParam,longlong dataParam,int sizeParam)
   uVar1 = *(undefined4 *)(socketParam + 0x18);
   packetSize = *(undefined4 *)(socketParam + 0x10);
   iVar3 = FUN_18074b880(dataParam,sizeParam,&UNK_180983bd0);
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b7d0(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -2802,11 +2802,11 @@ int FUN_180843ce0(longlong socketParam,longlong dataParam,int sizeParam)
   uStack_c = *(undefined4 *)(socketParam + 0x1c);
   uVar1 = *(undefined4 *)(socketParam + 0x20);
   result = FUN_18074b880(dataParam,sizeParam,&UNK_1809820b0);
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18074b650(result + dataParam,sizeParam - result,&uStack_18);
   result = result + iVar3;
-  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b800(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -2831,11 +2831,11 @@ int FUN_180843d90(longlong socketParam,longlong dataParam,int sizeParam)
   uStack_c = *(undefined4 *)(socketParam + 0x1c);
   uVar1 = *(undefined4 *)(socketParam + 0x20);
   result = FUN_18074b880(dataParam,sizeParam,&UNK_180981ec0);
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18074b650(result + dataParam,sizeParam - result,&uStack_18);
   result = result + iVar3;
-  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b800(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -2852,7 +2852,7 @@ int FUN_180843e40(longlong socketParam,longlong dataParam,int sizeParam)
   
   uVar1 = *(undefined4 *)(socketParam + 0x10);
   result = FUN_18074b880(dataParam,sizeParam,&UNK_180982878);
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b7d0(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -2883,11 +2883,11 @@ int FUN_180843ee0(longlong socketParam,longlong dataParam,int sizeParam)
   uVar1 = *(undefined4 *)(socketParam + 0x14);
   packetSize = *(undefined4 *)(socketParam + 0x10);
   iVar3 = FUN_18074b880(dataParam,sizeParam,&UNK_180982a98);
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b7d0(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -2912,11 +2912,11 @@ int FUN_180843fa0(longlong socketParam,longlong dataParam,int sizeParam)
   uStack_c = *(undefined4 *)(socketParam + 0x1c);
   uVar1 = *(undefined4 *)(socketParam + 0x20);
   result = FUN_18074b880(dataParam,sizeParam,&UNK_180981fc0);
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18074b650(result + dataParam,sizeParam - result,&uStack_18);
   result = result + iVar3;
-  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b800(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -2941,11 +2941,11 @@ int FUN_180844050(longlong socketParam,longlong dataParam,int sizeParam)
   uStack_c = *(undefined4 *)(socketParam + 0x1c);
   uVar1 = *(undefined4 *)(socketParam + 0x20);
   result = FUN_18074b880(dataParam,sizeParam,&UNK_180981dc0);
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18074b650(result + dataParam,sizeParam - result,&uStack_18);
   result = result + iVar3;
-  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b800(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -2970,11 +2970,11 @@ int FUN_180844100(longlong socketParam,longlong dataParam,int sizeParam)
   uStack_c = *(undefined4 *)(socketParam + 0x1c);
   uVar1 = *(undefined4 *)(socketParam + 0x20);
   result = FUN_18074b880(dataParam,sizeParam,&UNK_180981f40);
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18074b650(result + dataParam,sizeParam - result,&uStack_18);
   result = result + iVar3;
-  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b800(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -2999,11 +2999,11 @@ int FUN_1808441b0(longlong socketParam,longlong dataParam,int sizeParam)
   uStack_c = *(undefined4 *)(socketParam + 0x1c);
   uVar1 = *(undefined4 *)(socketParam + 0x20);
   result = FUN_18074b880(dataParam,sizeParam,&UNK_180981d40);
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18074b650(result + dataParam,sizeParam - result,&uStack_18);
   result = result + iVar3;
-  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b800(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -3020,7 +3020,7 @@ int FUN_180844260(longlong socketParam,longlong dataParam,int sizeParam)
   
   uVar1 = *(undefined4 *)(socketParam + 0x10);
   result = FUN_18074b880(dataParam,sizeParam,&UNK_180982978);
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b7d0(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -3057,11 +3057,11 @@ int FUN_180844300(longlong socketParam,longlong dataParam,int sizeParam)
   uStack_c = *(undefined4 *)(socketParam + 0x1c);
   uVar1 = *(undefined4 *)(socketParam + 0x20);
   result = FUN_18074b880(dataParam,sizeParam,&UNK_180982038);
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18074b650(result + dataParam,sizeParam - result,&uStack_18);
   result = result + iVar3;
-  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b800(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -3086,11 +3086,11 @@ int FUN_1808443b0(longlong socketParam,longlong dataParam,int sizeParam)
   uStack_c = *(undefined4 *)(socketParam + 0x1c);
   uVar1 = *(undefined4 *)(socketParam + 0x20);
   result = FUN_18074b880(dataParam,sizeParam,&UNK_180981e40);
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18074b650(result + dataParam,sizeParam - result,&uStack_18);
   result = result + iVar3;
-  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b800(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -3127,15 +3127,15 @@ int FUN_180844460(longlong socketParam,longlong dataParam,int sizeParam)
   uStack_1c = *(undefined4 *)(socketParam + 0x3c);
   uStack_18 = *(undefined8 *)(socketParam + 0x40);
   iVar3 = FUN_18074b880(dataParam,sizeParam,&UNK_180982670);
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018088ecd0(iVar3 + dataParam,sizeParam - iVar3,&uStack_48);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -3154,15 +3154,15 @@ int FUN_180844570(longlong socketParam,longlong dataParam,int sizeParam)
   uVar1 = *(undefined4 *)(socketParam + 0x10);
   packetSize = *(undefined4 *)(socketParam + 0x14);
   iVar3 = FUN_18074b880(dataParam,sizeParam,&UNK_180982570);
-  iVar4 = FUN_18074b880(dataParam + iVar3,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(dataParam + iVar3,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,socketParam + 0x18);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -3187,23 +3187,23 @@ int FUN_180844650(longlong socketParam,longlong dataParam,int sizeParam)
   uVar4 = *(undefined4 *)(socketParam + 0x18);
   uVar5 = *(undefined8 *)(socketParam + 0x10);
   iVar6 = FUN_18074b880(dataParam,sizeParam,&UNK_1809825f0);
-  iVar7 = FUN_18074b880(dataParam + iVar6,sizeParam - iVar6,&DAT_180a06434);
+  iVar7 = FUN_18074b880(dataParam + iVar6,sizeParam - iVar6,&g_networkNullTerminator);
   iVar6 = iVar6 + iVar7;
   iVar7 = func_0x00018074bda0(iVar6 + dataParam,sizeParam - iVar6,uVar5);
   iVar6 = iVar6 + iVar7;
-  iVar7 = FUN_18074b880(iVar6 + dataParam,sizeParam - iVar6,&DAT_180a06434);
+  iVar7 = FUN_18074b880(iVar6 + dataParam,sizeParam - iVar6,&g_networkNullTerminator);
   iVar6 = iVar6 + iVar7;
   iVar7 = func_0x00018074b7d0(iVar6 + dataParam,sizeParam - iVar6,uVar4);
   iVar6 = iVar6 + iVar7;
-  iVar7 = FUN_18074b880(iVar6 + dataParam,sizeParam - iVar6,&DAT_180a06434);
+  iVar7 = FUN_18074b880(iVar6 + dataParam,sizeParam - iVar6,&g_networkNullTerminator);
   iVar6 = iVar6 + iVar7;
   iVar7 = func_0x00018074b7d0(iVar6 + dataParam,sizeParam - iVar6,bufferSize);
   iVar6 = iVar6 + iVar7;
-  iVar7 = FUN_18074b880(iVar6 + dataParam,sizeParam - iVar6,&DAT_180a06434);
+  iVar7 = FUN_18074b880(iVar6 + dataParam,sizeParam - iVar6,&g_networkNullTerminator);
   iVar6 = iVar6 + iVar7;
   iVar7 = func_0x00018074b800(iVar6 + dataParam,sizeParam - iVar6,packetSize);
   iVar6 = iVar6 + iVar7;
-  iVar7 = FUN_18074b880(iVar6 + dataParam,sizeParam - iVar6,&DAT_180a06434);
+  iVar7 = FUN_18074b880(iVar6 + dataParam,sizeParam - iVar6,&g_networkNullTerminator);
   iVar6 = iVar6 + iVar7;
   iVar7 = func_0x00018074b800(iVar6 + dataParam,sizeParam - iVar6,uVar1);
   return iVar7 + iVar6;
@@ -3246,19 +3246,19 @@ int FUN_1808447d0(longlong socketParam,longlong dataParam,int sizeParam)
   uStack_10 = *(undefined4 *)(socketParam + 0x3c);
   uStack_c = *(undefined4 *)(socketParam + 0x40);
   iVar3 = FUN_18074b880(dataParam,sizeParam,&UNK_180982460);
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b7d0(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18088ebb0(iVar3 + dataParam,sizeParam - iVar3,&uStack_38);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18074b6f0(iVar3 + dataParam,sizeParam - iVar3,&uStack_48);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18074be90(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -3277,11 +3277,11 @@ int FUN_180844910(longlong socketParam,longlong dataParam,int sizeParam)
   packetSize = *(undefined4 *)(socketParam + 0x10);
   uVar1 = *(undefined4 *)(socketParam + 0x14);
   iVar3 = FUN_18074b880(dataParam,sizeParam,&UNK_1809824e8);
-  iVar4 = FUN_18074b880(dataParam + iVar3,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(dataParam + iVar3,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b7d0(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b830(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -3298,7 +3298,7 @@ int FUN_1808449c0(longlong socketParam,longlong dataParam,int sizeParam)
   
   uVar1 = *(undefined4 *)(socketParam + 0x10);
   result = FUN_18074b880(dataParam,sizeParam,&UNK_1809823e0);
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b7d0(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -3319,15 +3319,15 @@ int FUN_180844a30(longlong socketParam,longlong dataParam,int sizeParam)
   packetSize = *(undefined1 *)(socketParam + 0x1c);
   uVar1 = *(undefined4 *)(socketParam + 0x18);
   iVar3 = FUN_18074b880(dataParam,sizeParam,&UNK_180982128);
-  iVar4 = FUN_18074b880(dataParam + iVar3,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(dataParam + iVar3,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18088ece0(iVar3 + dataParam,sizeParam - iVar3,&uStackX_8);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b830(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18074be90(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   return iVar4 + iVar3;
@@ -3346,15 +3346,15 @@ int FUN_180844b20(longlong socketParam,longlong dataParam,int sizeParam)
   uStackX_8 = *(undefined8 *)(socketParam + 0x10);
   uVar1 = *(undefined1 *)(socketParam + 0x1c);
   result = FUN_18074b880(dataParam,sizeParam,&UNK_1809821b0);
-  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18088ece0(result + dataParam,sizeParam - result,&uStackX_8);
   result = result + iVar3;
-  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,socketParam + 0x1d);
   result = result + iVar3;
-  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18074be90(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -3373,15 +3373,15 @@ int FUN_180844c00(longlong socketParam,longlong dataParam,int sizeParam)
   packetSize = *(undefined1 *)(socketParam + 0x14);
   uVar1 = *(undefined4 *)(socketParam + 0x10);
   iVar3 = FUN_18074b880(dataParam,sizeParam,&UNK_1809822c8);
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,socketParam + 0x20);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b830(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18074be90(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   return iVar4 + iVar3;
@@ -3398,15 +3398,15 @@ int FUN_180844d00(longlong socketParam,longlong dataParam,int sizeParam)
   
   uVar1 = *(undefined1 *)(socketParam + 0x14);
   result = FUN_18074b880(dataParam,sizeParam,&UNK_180982350);
-  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,socketParam + 0x20);
   result = result + iVar3;
-  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,socketParam + 0xa0);
   result = result + iVar3;
-  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(result + dataParam,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = FUN_18074be90(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -3421,7 +3421,7 @@ int FUN_180844e10(longlong socketParam,longlong dataParam,int sizeParam)
   int result;
   
   status = FUN_18074b880(dataParam,sizeParam,&UNK_180982770);
-  result = FUN_18074b880(dataParam + status,sizeParam - status,&DAT_180a06434);
+  result = FUN_18074b880(dataParam + status,sizeParam - status,&g_networkNullTerminator);
   status = status + result;
   result = FUN_18074b880(status + dataParam,sizeParam - status,socketParam + 0x10);
   return result + status;
@@ -3440,11 +3440,11 @@ int FUN_180844e90(longlong socketParam,longlong dataParam,int sizeParam)
   packetSize = *(undefined4 *)(socketParam + 0x10);
   uVar1 = *(undefined4 *)(socketParam + 0x18);
   iVar3 = FUN_18074b880(dataParam,sizeParam,&UNK_180984530);
-  iVar4 = FUN_18074b880(dataParam + iVar3,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(dataParam + iVar3,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b830(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -3473,7 +3473,7 @@ void FUN_180844f40(ulonglong socketParam,undefined8 *dataParam)
   undefined1 auStack_128 [256];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = _g_networkXorKey ^ (ulonglong)auStack_178;
   if (dataParam == (undefined8 *)0x0) {
     if ((*(byte *)(g_networkModule + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
@@ -3538,7 +3538,7 @@ void FUN_180845090(undefined8 socketParam,longlong dataParam)
   undefined1 auStack_128 [256];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_28 = _g_networkXorKey ^ (ulonglong)auStack_168;
   if (dataParam == 0) {
     if ((*(byte *)(g_networkModule + 0x10) & 0x80) != 0) {
       func_0x00018074bda0(auStack_128,0x100,0);
@@ -3587,11 +3587,11 @@ void FUN_1808451c0(undefined8 socketParam,undefined8 dataParam,undefined8 sizePa
   undefined1 auStack_138 [256];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_168;
   status = FUN_18083fc50();
   if ((status != 0) && ((*(byte *)(g_networkModule + 0x10) & 0x80) != 0)) {
     result = FUN_18074b880(auStack_138,0x100,dataParam);
-    iVar3 = FUN_18074b880(auStack_138 + result,0x100 - result,&DAT_180a06434);
+    iVar3 = FUN_18074b880(auStack_138 + result,0x100 - result,&g_networkNullTerminator);
     func_0x00018074bda0(auStack_138 + (result + iVar3),0x100 - (result + iVar3),sizeParam);
     puStack_148 = auStack_138;
                     // WARNING: Subroutine does not return
@@ -3613,7 +3613,7 @@ void FUN_180845204(void)
   undefined4 connectionStatus;
   
   status = FUN_18074b880(&stack0x00000030,0x100);
-  result = FUN_18074b880(&stack0x00000030 + status,0x100 - status,&DAT_180a06434);
+  result = FUN_18074b880(&stack0x00000030 + status,0x100 - status,&g_networkNullTerminator);
   func_0x00018074bda0(&stack0x00000030 + (status + result),0x100 - (status + result));
                     // WARNING: Subroutine does not return
   FUN_180749ef0(connectionStatus,0xb);
@@ -3650,7 +3650,7 @@ void FUN_1808452a0(undefined8 socketParam,undefined4 *dataParam,undefined8 sizeP
   undefined1 auStack_138 [256];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_178;
   status = func_0x00018088c590(socketParam,alStack_148);
   if ((status == 0) && ((*(uint *)(alStack_148[0] + 0x24) >> 1 & 1) == 0)) {
     status = 0x4b;
@@ -3662,7 +3662,7 @@ void FUN_1808452a0(undefined8 socketParam,undefined4 *dataParam,undefined8 sizeP
   }
   if ((status != 0) && ((*(byte *)(g_networkModule + 0x10) & 0x80) != 0)) {
     result = func_0x00018074bda0(auStack_138,0x100,dataParam);
-    iVar3 = FUN_18074b880(auStack_138 + result,0x100 - result,&DAT_180a06434);
+    iVar3 = FUN_18074b880(auStack_138 + result,0x100 - result,&g_networkNullTerminator);
     func_0x00018074bda0(auStack_138 + (result + iVar3),0x100 - (result + iVar3),sizeParam);
     puStack_158 = auStack_138;
                     // WARNING: Subroutine does not return
@@ -3685,7 +3685,7 @@ void FUN_180845324(void)
   undefined4 connectionStatus;
   
   status = func_0x00018074bda0(&stack0x00000040,0x100);
-  result = FUN_18074b880(&stack0x00000040 + status,0x100 - status,&DAT_180a06434);
+  result = FUN_18074b880(&stack0x00000040 + status,0x100 - status,&g_networkNullTerminator);
   func_0x00018074bda0(&stack0x00000040 + (status + result),0x100 - (status + result));
                     // WARNING: Subroutine does not return
   FUN_180749ef0(connectionStatus,0xb);
@@ -3723,7 +3723,7 @@ void FUN_1808453c0(undefined8 socketParam,undefined8 *dataParam)
   undefined1 auStack_128 [256];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = _g_networkXorKey ^ (ulonglong)auStack_178;
   if (dataParam == (undefined8 *)0x0) {
     if ((*(byte *)(g_networkModule + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
@@ -3780,7 +3780,7 @@ void FUN_180845520(undefined8 socketParam,undefined8 *dataParam)
   undefined1 auStack_118 [256];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_158;
+  uStack_18 = _g_networkXorKey ^ (ulonglong)auStack_158;
   if (dataParam == (undefined8 *)0x0) {
     status = 0x1f;
   }
@@ -3822,7 +3822,7 @@ void FUN_1808455f0(undefined8 socketParam,ulonglong *dataParam)
   undefined1 auStack_128 [256];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = _g_networkXorKey ^ (ulonglong)auStack_178;
   if (dataParam == (ulonglong *)0x0) {
     if ((*(byte *)(g_networkModule + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
@@ -3881,11 +3881,11 @@ void FUN_180845c40(undefined8 socketParam,undefined8 dataParam,undefined8 sizePa
   undefined1 auStack_138 [256];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_168;
   status = FUN_18083fde0();
   if ((status != 0) && ((*(byte *)(g_networkModule + 0x10) & 0x80) != 0)) {
     result = FUN_18074b880(auStack_138,0x100,dataParam);
-    iVar3 = FUN_18074b880(auStack_138 + result,0x100 - result,&DAT_180a06434);
+    iVar3 = FUN_18074b880(auStack_138 + result,0x100 - result,&g_networkNullTerminator);
     func_0x00018074bda0(auStack_138 + (result + iVar3),0x100 - (result + iVar3),sizeParam);
     puStack_148 = auStack_138;
                     // WARNING: Subroutine does not return
@@ -3907,7 +3907,7 @@ void FUN_180845c84(void)
   undefined4 connectionStatus;
   
   status = FUN_18074b880(&stack0x00000030,0x100);
-  result = FUN_18074b880(&stack0x00000030 + status,0x100 - status,&DAT_180a06434);
+  result = FUN_18074b880(&stack0x00000030 + status,0x100 - status,&g_networkNullTerminator);
   func_0x00018074bda0(&stack0x00000030 + (status + result),0x100 - (status + result));
                     // WARNING: Subroutine does not return
   FUN_180749ef0(connectionStatus,0xb);
@@ -3948,14 +3948,14 @@ void FUN_180845d20(undefined8 socketParam,undefined4 *dataParam,ulonglong *sizeP
   undefined1 auStack_138 [256];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_188;
   if ((sizeParam == (ulonglong *)0x0) || (*sizeParam = 0, dataParam == (undefined4 *)0x0)) {
     if ((*(byte *)(g_networkModule + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_188);
     }
     iVar4 = FUN_18074bc50(auStack_138,0x100,dataParam);
-    iVar5 = FUN_18074b880(auStack_138 + iVar4,0x100 - iVar4,&DAT_180a06434);
+    iVar5 = FUN_18074b880(auStack_138 + iVar4,0x100 - iVar4,&g_networkNullTerminator);
     func_0x00018074bda0(auStack_138 + (iVar4 + iVar5),0x100 - (iVar4 + iVar5),sizeParam);
     puStack_168 = auStack_138;
                     // WARNING: Subroutine does not return
@@ -4018,7 +4018,7 @@ void FUN_180845ef0(ulonglong socketParam,uint *dataParam)
   undefined1 auStack_118 [256];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_18 = _g_networkXorKey ^ (ulonglong)auStack_168;
   if (dataParam == (uint *)0x0) {
     if ((*(byte *)(g_networkModule + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
@@ -4070,7 +4070,7 @@ void FUN_180846050(undefined4 socketParam,undefined4 *dataParam,undefined4 *size
   longlong alStack_140 [33];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_188;
   if (dataParam != (undefined4 *)0x0) {
     *dataParam = 0;
   }
@@ -4118,7 +4118,7 @@ void FUN_180846210(undefined8 socketParam,longlong dataParam,undefined4 *sizePar
   undefined1 auStack_148 [256];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_198;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_198;
   if (sizeParam != (undefined4 *)0x0) {
     *sizeParam = 0;
   }
@@ -4128,11 +4128,11 @@ void FUN_180846210(undefined8 socketParam,longlong dataParam,undefined4 *sizePar
   if (dataParam == 0) {
     if ((*(byte *)(g_networkModule + 0x10) & 0x80) != 0) {
       status = FUN_18074b880(auStack_148,0x100,0);
-      result = FUN_18074b880(auStack_148 + status,0x100 - status,&DAT_180a06434);
+      result = FUN_18074b880(auStack_148 + status,0x100 - status,&g_networkNullTerminator);
       status = status + result;
       result = FUN_18074bac0(auStack_148 + status,0x100 - status,sizeParam);
       status = status + result;
-      result = FUN_18074b880(auStack_148 + status,0x100 - status,&DAT_180a06434);
+      result = FUN_18074b880(auStack_148 + status,0x100 - status,&g_networkNullTerminator);
       FUN_18074bac0(auStack_148 + (status + result),0x100 - (status + result),timeoutParam);
       puStack_178 = auStack_148;
                     // WARNING: Subroutine does not return
@@ -4185,11 +4185,11 @@ void FUN_180846410(undefined8 socketParam,undefined4 dataParam,undefined8 sizePa
   undefined1 auStack_138 [256];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_168;
   status = NetworkSendData();
   if ((status != 0) && ((*(byte *)(g_networkModule + 0x10) & 0x80) != 0)) {
     result = func_0x00018074b7d0(auStack_138,0x100,dataParam);
-    iVar3 = FUN_18074b880(auStack_138 + result,0x100 - result,&DAT_180a06434);
+    iVar3 = FUN_18074b880(auStack_138 + result,0x100 - result,&g_networkNullTerminator);
     func_0x00018074bda0(auStack_138 + (result + iVar3),0x100 - (result + iVar3),sizeParam);
     puStack_148 = auStack_138;
                     // WARNING: Subroutine does not return
@@ -4212,7 +4212,7 @@ void FUN_180846453(void)
   undefined4 connectionStatus;
   
   status = func_0x00018074b7d0(&stack0x00000030,0x100,socketId);
-  result = FUN_18074b880(&stack0x00000030 + status,0x100 - status,&DAT_180a06434);
+  result = FUN_18074b880(&stack0x00000030 + status,0x100 - status,&g_networkNullTerminator);
   func_0x00018074bda0(&stack0x00000030 + (status + result),0x100 - (status + result));
                     // WARNING: Subroutine does not return
   FUN_180749ef0(connectionStatus,0xc);
@@ -4250,7 +4250,7 @@ void FUN_1808464f0(ulonglong socketParam,undefined4 *dataParam)
   undefined1 auStack_118 [256];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_18 = _g_networkXorKey ^ (ulonglong)auStack_168;
   if (dataParam == (undefined4 *)0x0) {
     if ((*(byte *)(g_networkModule + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
@@ -4303,7 +4303,7 @@ void FUN_180846610(ulonglong socketParam,undefined1 *dataParam,int sizeParam,und
   undefined1 auStack_148 [256];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_1a8;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_1a8;
   if (dataParam != (undefined1 *)0x0) {
     *dataParam = 0;
   }
@@ -4337,11 +4337,11 @@ void FUN_180846610(ulonglong socketParam,undefined1 *dataParam,int sizeParam,und
     FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_1a8);
   }
   status = FUN_18074b880(auStack_148,0x100,dataParam);
-  result = FUN_18074b880(auStack_148 + status,0x100 - status,&DAT_180a06434);
+  result = FUN_18074b880(auStack_148 + status,0x100 - status,&g_networkNullTerminator);
   status = status + result;
   result = func_0x00018074b7d0(auStack_148 + status,0x100 - status,sizeParam);
   status = status + result;
-  result = FUN_18074b880(auStack_148 + status,0x100 - status,&DAT_180a06434);
+  result = FUN_18074b880(auStack_148 + status,0x100 - status,&g_networkNullTerminator);
   FUN_18074b930(auStack_148 + (status + result),0x100 - (status + result),timeoutParam);
   puStack_188 = (undefined4 *)auStack_148;
                     // WARNING: Subroutine does not return
@@ -4361,11 +4361,11 @@ void FUN_180846730(void)
   undefined4 connectionStatus;
   
   status = FUN_18074b880(&stack0x00000060,0x100);
-  result = FUN_18074b880(&stack0x00000060 + status,0x100 - status,&DAT_180a06434);
+  result = FUN_18074b880(&stack0x00000060 + status,0x100 - status,&g_networkNullTerminator);
   status = status + result;
   result = func_0x00018074b7d0(&stack0x00000060 + status,0x100 - status,unaff_EBP);
   status = status + result;
-  result = FUN_18074b880(&stack0x00000060 + status,0x100 - status,&DAT_180a06434);
+  result = FUN_18074b880(&stack0x00000060 + status,0x100 - status,&g_networkNullTerminator);
   FUN_18074b930(&stack0x00000060 + (status + result),0x100 - (status + result));
                     // WARNING: Subroutine does not return
   FUN_180749ef0(connectionStatus,0xc);
@@ -4403,7 +4403,7 @@ void FUN_180846810(ulonglong socketParam,undefined1 *dataParam)
   undefined1 auStack_128 [256];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = _g_networkXorKey ^ (ulonglong)auStack_178;
   if (dataParam == (undefined1 *)0x0) {
     if ((*(byte *)(g_networkModule + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
@@ -4452,7 +4452,7 @@ void FUN_180846930(undefined4 socketParam,undefined4 *dataParam,undefined4 *size
   longlong alStack_140 [33];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_188;
   if (dataParam != (undefined4 *)0x0) {
     *dataParam = 0;
   }
@@ -4497,7 +4497,7 @@ void FUN_180846a90(ulonglong socketParam,undefined4 *dataParam)
   undefined1 auStack_128 [256];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = _g_networkXorKey ^ (ulonglong)auStack_178;
   if (dataParam == (undefined4 *)0x0) {
     if ((*(byte *)(g_networkModule + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
@@ -4550,7 +4550,7 @@ void FUN_180846bc0(ulonglong socketParam,uint dataParam,undefined4 *sizeParam)
   undefined1 auStack_138 [256];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_188;
   if (sizeParam != (undefined4 *)0x0) {
     *sizeParam = 0;
     if (dataParam < 6) {
@@ -4579,7 +4579,7 @@ void FUN_180846bc0(ulonglong socketParam,uint dataParam,undefined4 *sizeParam)
     FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_188);
   }
   status = func_0x00018074b7d0(auStack_138,0x100,dataParam);
-  result = FUN_18074b880(auStack_138 + status,0x100 - status,&DAT_180a06434);
+  result = FUN_18074b880(auStack_138 + status,0x100 - status,&g_networkNullTerminator);
   FUN_18074bac0(auStack_138 + (status + result),0x100 - (status + result),sizeParam);
   puStack_168 = auStack_138;
                     // WARNING: Subroutine does not return
@@ -4605,7 +4605,7 @@ void FUN_180846d30(undefined8 socketParam,undefined4 *dataParam)
   undefined1 auStack_128 [256];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = _g_networkXorKey ^ (ulonglong)auStack_178;
   if (dataParam == (undefined4 *)0x0) {
     if ((*(byte *)(g_networkModule + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
@@ -4666,7 +4666,7 @@ void FUN_180846e90(ulonglong socketParam,uint *dataParam)
   undefined1 auStack_128 [256];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = _g_networkXorKey ^ (ulonglong)auStack_178;
   if (dataParam == (uint *)0x0) {
     if ((*(byte *)(g_networkModule + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
@@ -4724,7 +4724,7 @@ void FUN_180846fe0(ulonglong socketParam,undefined8 *dataParam)
   undefined1 auStack_118 [256];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_18 = _g_networkXorKey ^ (ulonglong)auStack_168;
   if (dataParam == (undefined8 *)0x0) {
     if ((*(byte *)(g_networkModule + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
@@ -4772,7 +4772,7 @@ void FUN_180847110(ulonglong socketParam,undefined8 *dataParam)
   undefined1 auStack_128 [256];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = _g_networkXorKey ^ (ulonglong)auStack_178;
   if (dataParam == (undefined8 *)0x0) {
     if ((*(byte *)(g_networkModule + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
@@ -4821,11 +4821,11 @@ void FUN_180847230(undefined8 socketParam,undefined8 dataParam,undefined8 sizePa
   undefined1 auStack_138 [256];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_168;
   status = FUN_180840790();
   if ((status != 0) && ((*(byte *)(g_networkModule + 0x10) & 0x80) != 0)) {
     result = FUN_18074b880(auStack_138,0x100,dataParam);
-    iVar3 = FUN_18074b880(auStack_138 + result,0x100 - result,&DAT_180a06434);
+    iVar3 = FUN_18074b880(auStack_138 + result,0x100 - result,&g_networkNullTerminator);
     func_0x00018074bda0(auStack_138 + (result + iVar3),0x100 - (result + iVar3),sizeParam);
     puStack_148 = auStack_138;
                     // WARNING: Subroutine does not return
@@ -4847,7 +4847,7 @@ void FUN_180847274(void)
   undefined4 connectionStatus;
   
   status = FUN_18074b880(&stack0x00000030,0x100);
-  result = FUN_18074b880(&stack0x00000030 + status,0x100 - status,&DAT_180a06434);
+  result = FUN_18074b880(&stack0x00000030 + status,0x100 - status,&g_networkNullTerminator);
   func_0x00018074bda0(&stack0x00000030 + (status + result),0x100 - (status + result));
                     // WARNING: Subroutine does not return
   FUN_180749ef0(connectionStatus,0xc);
@@ -4883,11 +4883,11 @@ void FUN_180847310(undefined8 socketParam,undefined8 dataParam,undefined8 sizePa
   undefined1 auStack_138 [256];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_168;
   status = FUN_18083ff70();
   if ((status != 0) && ((*(byte *)(g_networkModule + 0x10) & 0x80) != 0)) {
     result = FUN_18074b880(auStack_138,0x100,dataParam);
-    iVar3 = FUN_18074b880(auStack_138 + result,0x100 - result,&DAT_180a06434);
+    iVar3 = FUN_18074b880(auStack_138 + result,0x100 - result,&g_networkNullTerminator);
     func_0x00018074bda0(auStack_138 + (result + iVar3),0x100 - (result + iVar3),sizeParam);
     puStack_148 = auStack_138;
                     // WARNING: Subroutine does not return
@@ -4909,7 +4909,7 @@ void FUN_180847354(void)
   undefined4 connectionStatus;
   
   status = FUN_18074b880(&stack0x00000030,0x100);
-  result = FUN_18074b880(&stack0x00000030 + status,0x100 - status,&DAT_180a06434);
+  result = FUN_18074b880(&stack0x00000030 + status,0x100 - status,&g_networkNullTerminator);
   func_0x00018074bda0(&stack0x00000030 + (status + result),0x100 - (status + result));
                     // WARNING: Subroutine does not return
   FUN_180749ef0(connectionStatus,0xb);
@@ -4945,7 +4945,7 @@ void FUN_1808473f0(undefined4 socketParam,undefined4 *dataParam,undefined4 *size
   longlong alStack_140 [33];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_188;
   if (dataParam != (undefined4 *)0x0) {
     *dataParam = 0;
   }
@@ -4995,9 +4995,9 @@ void FUN_180847550(longlong socketParam,undefined8 *dataParam,undefined1 sizePar
   undefined4 uStack_2c;
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
+  uStack_28 = _g_networkXorKey ^ (ulonglong)auStack_58;
   if (*(int *)(socketParam + 0x58) < 1) {
-    puVar6 = &DAT_18098bc73;
+    puVar6 = &g_networkEmptyString;
   }
   else {
     puVar6 = *(undefined **)(socketParam + 0x50);
@@ -5061,7 +5061,7 @@ void FUN_180847690(undefined8 socketParam,undefined4 dataParam,undefined4 sizePa
   undefined1 auStack_148 [256];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_188;
   status = func_0x00018088c590(socketParam,auStack_158);
   if (status == 0) {
     puStack_168 = (undefined1 *)param_5;
@@ -5070,15 +5070,15 @@ void FUN_180847690(undefined8 socketParam,undefined4 dataParam,undefined4 sizePa
   }
   if ((status != 0) && ((*(byte *)(g_networkModule + 0x10) & 0x80) != 0)) {
     result = func_0x00018074b7d0(auStack_148,0x100,dataParam);
-    iVar3 = FUN_18074b880(auStack_148 + result,0x100 - result,&DAT_180a06434);
+    iVar3 = FUN_18074b880(auStack_148 + result,0x100 - result,&g_networkNullTerminator);
     result = result + iVar3;
     iVar3 = func_0x00018074b800(auStack_148 + result,0x100 - result,sizeParam);
     result = result + iVar3;
-    iVar3 = FUN_18074b880(auStack_148 + result,0x100 - result,&DAT_180a06434);
+    iVar3 = FUN_18074b880(auStack_148 + result,0x100 - result,&g_networkNullTerminator);
     result = result + iVar3;
     iVar3 = func_0x00018074b800(auStack_148 + result,0x100 - result,timeoutParam);
     result = result + iVar3;
-    iVar3 = FUN_18074b880(auStack_148 + result,0x100 - result,&DAT_180a06434);
+    iVar3 = FUN_18074b880(auStack_148 + result,0x100 - result,&g_networkNullTerminator);
     func_0x00018074bda0(auStack_148 + (result + iVar3),0x100 - (result + iVar3),param_5);
     puStack_168 = auStack_148;
                     // WARNING: Subroutine does not return
@@ -5104,15 +5104,15 @@ void FUN_180847710(void)
   undefined4 responseDataD;
   
   status = func_0x00018074b7d0(&stack0x00000040,0x100,socketId);
-  result = FUN_18074b880(&stack0x00000040 + status,0x100 - status,&DAT_180a06434);
+  result = FUN_18074b880(&stack0x00000040 + status,0x100 - status,&g_networkNullTerminator);
   status = status + result;
   result = func_0x00018074b800(&stack0x00000040 + status,0x100 - status,unaff_EBP);
   status = status + result;
-  result = FUN_18074b880(&stack0x00000040 + status,0x100 - status,&DAT_180a06434);
+  result = FUN_18074b880(&stack0x00000040 + status,0x100 - status,&g_networkNullTerminator);
   status = status + result;
   result = func_0x00018074b800(&stack0x00000040 + status,0x100 - status,responseDataD);
   status = status + result;
-  result = FUN_18074b880(&stack0x00000040 + status,0x100 - status,&DAT_180a06434);
+  result = FUN_18074b880(&stack0x00000040 + status,0x100 - status,&g_networkNullTerminator);
   func_0x00018074bda0(&stack0x00000040 + (status + result),0x100 - (status + result));
                     // WARNING: Subroutine does not return
   FUN_180749ef0(connectionStatus,0xb);
@@ -5135,7 +5135,7 @@ void FUN_1808477f4(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined * FUN_180847820(void)
+void* * FUN_180847820(void)
 
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
@@ -5171,7 +5171,7 @@ void FUN_180847890(ulonglong socketParam,undefined1 *dataParam)
   undefined1 auStack_118 [256];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_18 = _g_networkXorKey ^ (ulonglong)auStack_168;
   if (dataParam == (undefined1 *)0x0) {
     if ((*(byte *)(g_networkModule + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
@@ -5223,7 +5223,7 @@ void FUN_1808479d0(longlong socketParam,longlong *dataParam,byte *sizeParam)
   longlong *plStack_48;
   ulonglong uStack_30;
   
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
+  uStack_30 = _g_networkXorKey ^ (ulonglong)auStack_88;
   lVar4 = *(longlong *)(socketParam + 0xd0);
   if ((*(uint *)(lVar4 + 4) >> 3 & 1) == 0) {
     bVar6 = 0;
@@ -5314,7 +5314,7 @@ void FUN_180847c60(longlong socketParam,longlong *dataParam,byte *sizeParam)
   undefined1 auStack_60 [40];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_98;
   lVar4 = *(longlong *)(socketParam + 0xd0);
   if ((*(uint *)(lVar4 + 4) >> 7 & 1) == 0) {
     bVar7 = ~(byte)(*(uint *)(socketParam + 0xf8) >> 1) & 1;
@@ -5385,7 +5385,7 @@ void FUN_180847df0(ulonglong socketParam,undefined1 *dataParam)
   undefined1 auStack_118 [256];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_18 = _g_networkXorKey ^ (ulonglong)auStack_168;
   if (dataParam == (undefined1 *)0x0) {
     if ((*(byte *)(g_networkModule + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
@@ -5443,7 +5443,7 @@ void FUN_180847f60(undefined8 socketParam)
   undefined8 *apuStack_128 [34];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_18 = _g_networkXorKey ^ (ulonglong)auStack_168;
   alStack_138[1] = 0;
   status = func_0x00018088c590(socketParam,alStack_138);
   if (status == 0) {
@@ -5490,7 +5490,7 @@ void FUN_180848090(ulonglong socketParam,longlong dataParam,undefined4 sizeParam
   undefined1 auStack_158 [256];
   ulonglong uStack_58;
   
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_1a8;
+  uStack_58 = _g_networkXorKey ^ (ulonglong)auStack_1a8;
   uStack_178 = sizeParam;
   if (((timeoutParam == (undefined8 *)0x0) || (*timeoutParam = 0, dataParam == 0)) ||
      (result = func_0x00018076b690(dataParam), 0x1ff < result)) {
@@ -5500,11 +5500,11 @@ void FUN_180848090(ulonglong socketParam,longlong dataParam,undefined4 sizeParam
       FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_1a8);
     }
     result = FUN_18074b880(auStack_158,0x100,dataParam);
-    iVar3 = FUN_18074b880(auStack_158 + result,0x100 - result,&DAT_180a06434);
+    iVar3 = FUN_18074b880(auStack_158 + result,0x100 - result,&g_networkNullTerminator);
     result = result + iVar3;
     iVar3 = func_0x00018074b800(auStack_158 + result,0x100 - result,uVar1);
     result = result + iVar3;
-    iVar3 = FUN_18074b880(auStack_158 + result,0x100 - result,&DAT_180a06434);
+    iVar3 = FUN_18074b880(auStack_158 + result,0x100 - result,&g_networkNullTerminator);
     func_0x00018074bda0(auStack_158 + (result + iVar3),0x100 - (result + iVar3),timeoutParam);
     puStack_188 = auStack_158;
                     // WARNING: Subroutine does not return
@@ -5552,7 +5552,7 @@ void FUN_1808482f0(undefined8 socketParam)
   undefined8 *apuStack_128 [34];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_18 = _g_networkXorKey ^ (ulonglong)auStack_168;
   alStack_138[1] = 0;
   status = func_0x00018088c590(socketParam,alStack_138);
   if (status == 0) {
@@ -5636,7 +5636,7 @@ void FUN_1808484d0(longlong socketParam,undefined8 dataParam)
 
 
 
-undefined8 FUN_180848530(longlong socketParam,undefined8 dataParam)
+uint64_t FUN_180848530(longlong socketParam,undefined8 dataParam)
 
 {
   undefined8 uVar1;
@@ -6222,7 +6222,7 @@ void FUN_180848e50(char *socketParam,undefined8 *dataParam)
   undefined1 auStack_3d [5];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_b8;
   if (dataParam != (undefined8 *)0x0) {
     if ((((socketParam == (char *)0x0) || (iVar5 = func_0x00018076b690(), iVar5 != 0x26)) ||
         (*socketParam != '{')) || (socketParam[0x25] != '}')) {
@@ -6459,7 +6459,7 @@ void FUN_18084900b(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180849030(longlong *socketParam,undefined8 dataParam)
+uint64_t FUN_180849030(longlong *socketParam,undefined8 dataParam)
 
 {
   longlong lVar1;
@@ -6498,7 +6498,7 @@ LAB_1808490b9:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180849054(undefined8 socketParam,undefined8 dataParam)
+uint64_t FUN_180849054(undefined8 socketParam,undefined8 dataParam)
 
 {
   longlong lVar1;
@@ -6531,7 +6531,7 @@ LAB_1808490b9:
 
 
 
-undefined8 FUN_180849104(void)
+uint64_t FUN_180849104(void)
 
 {
   return 0x26;
@@ -6541,7 +6541,7 @@ undefined8 FUN_180849104(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180849120(longlong *socketParam,int dataParam)
+uint64_t FUN_180849120(longlong *socketParam,int dataParam)
 
 {
   undefined4 *connectionData;
@@ -6601,7 +6601,7 @@ LAB_1808491ce:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180849144(undefined8 socketParam,int dataParam)
+uint64_t FUN_180849144(undefined8 socketParam,int dataParam)
 
 {
   undefined4 *connectionData;
@@ -6658,7 +6658,7 @@ LAB_1808491ce:
 
 
 
-undefined8 FUN_180849219(void)
+uint64_t FUN_180849219(void)
 
 {
   return 0x26;
@@ -6681,7 +6681,7 @@ void FUN_180849230(undefined8 socketParam)
   undefined8 *apuStack_128 [34];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_18 = _g_networkXorKey ^ (ulonglong)auStack_168;
   alStack_138[1] = 0;
   status = func_0x00018088c590(socketParam,alStack_138);
   if (status == 0) {
@@ -6724,7 +6724,7 @@ void FUN_180849360(ulonglong socketParam)
   undefined1 auStack_118 [256];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_18 = _g_networkXorKey ^ (ulonglong)auStack_168;
   status = func_0x00018088c590(socketParam,alStack_138 + 2);
   if (status == 0) {
     if ((*(uint *)(alStack_138[2] + 0x24) >> 1 & 1) != 0) {
@@ -6776,7 +6776,7 @@ void FUN_180849490(undefined8 socketParam,undefined8 *dataParam)
   undefined1 auStack_128 [256];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = _g_networkXorKey ^ (ulonglong)auStack_178;
   if (dataParam == (undefined8 *)0x0) {
     if ((*(byte *)(g_networkModule + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
@@ -6845,7 +6845,7 @@ void FUN_180849600(undefined8 socketParam,undefined8 dataParam)
   undefined1 auStack_118 [256];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_158;
+  uStack_18 = _g_networkXorKey ^ (ulonglong)auStack_158;
   status = func_0x00018088c590(socketParam,auStack_128);
   if ((((status != 0) || (status = FUN_180889f10(auStack_128[0],dataParam), status != 0)) && (status != 0)
       ) && ((*(byte *)(g_networkModule + 0x10) & 0x80) != 0)) {
@@ -6877,7 +6877,7 @@ void FUN_1808496c0(undefined4 socketParam,longlong dataParam,undefined4 sizePara
   longlong alStack_140 [33];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_188;
   lStack_148 = 0;
   uStack_158 = 0;
   uStack_150 = 0;
@@ -6912,7 +6912,7 @@ void FUN_180849782(void)
   undefined4 responseDataD;
   
   status = func_0x00018074bda0(&stack0x00000050,0x100);
-  result = FUN_18074b880(&stack0x00000050 + status,0x100 - status,&DAT_180a06434);
+  result = FUN_18074b880(&stack0x00000050 + status,0x100 - status,&g_networkNullTerminator);
   func_0x00018074b800(&stack0x00000050 + (status + result),0x100 - (status + result),responseDataD);
                     // WARNING: Subroutine does not return
   FUN_180749ef0(connectionStatus,0xc);
@@ -6949,7 +6949,7 @@ void FUN_180849820(undefined4 socketParam,longlong dataParam,undefined4 sizePara
   longlong alStack_140 [33];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_188;
   lStack_148 = 0;
   uStack_158 = 0;
   uStack_150 = 0;
@@ -6988,7 +6988,7 @@ void FUN_1808498e7(void)
   undefined4 responseDataD;
   
   status = func_0x00018074bda0(&stack0x00000050,0x100);
-  result = FUN_18074b880(&stack0x00000050 + status,0x100 - status,&DAT_180a06434);
+  result = FUN_18074b880(&stack0x00000050 + status,0x100 - status,&g_networkNullTerminator);
   func_0x00018074b800(&stack0x00000050 + (status + result),0x100 - (status + result),responseDataD);
                     // WARNING: Subroutine does not return
   FUN_180749ef0(connectionStatus,0xd);
@@ -7030,18 +7030,18 @@ void FUN_180849990(undefined8 socketParam,undefined4 dataParam,undefined8 *sizeP
   undefined1 auStack_148 [256];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_198;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_198;
   if (sizeParam == (undefined8 *)0x0) {
     if ((*(byte *)(g_networkModule + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_198);
     }
     iVar5 = func_0x00018074b7d0(auStack_148,0x100,dataParam);
-    iVar6 = FUN_18074b880(auStack_148 + iVar5,0x100 - iVar5,&DAT_180a06434);
+    iVar6 = FUN_18074b880(auStack_148 + iVar5,0x100 - iVar5,&g_networkNullTerminator);
     iVar5 = iVar5 + iVar6;
     iVar6 = func_0x00018074bda0(auStack_148 + iVar5,0x100 - iVar5,0);
     iVar5 = iVar5 + iVar6;
-    iVar6 = FUN_18074b880(auStack_148 + iVar5,0x100 - iVar5,&DAT_180a06434);
+    iVar6 = FUN_18074b880(auStack_148 + iVar5,0x100 - iVar5,&g_networkNullTerminator);
     FUN_18074bd40(auStack_148 + (iVar5 + iVar6),0x100 - (iVar5 + iVar6),timeoutParam);
     puStack_178 = auStack_148;
                     // WARNING: Subroutine does not return
@@ -7115,7 +7115,7 @@ void FUN_180849bb0(undefined8 socketParam,undefined8 dataParam,undefined4 sizePa
   undefined8 auStack_158 [34];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_198;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_198;
   auStack_158[0] = 0;
   status = func_0x00018088c590(socketParam,&lStack_168);
   if (status == 0) {
@@ -7162,14 +7162,14 @@ void FUN_180849d40(ulonglong socketParam,longlong dataParam,undefined4 sizeParam
   undefined1 auStack_158 [256];
   ulonglong uStack_58;
   
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_1a8;
+  uStack_58 = _g_networkXorKey ^ (ulonglong)auStack_1a8;
   if ((dataParam == 0) || (status = func_0x00018076b690(dataParam), 0x7f < status)) {
     if ((*(byte *)(g_networkModule + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_1a8);
     }
     status = FUN_18074b880(auStack_158,0x100,dataParam);
-    result = FUN_18074b880(auStack_158 + status,0x100 - status,&DAT_180a06434);
+    result = FUN_18074b880(auStack_158 + status,0x100 - status,&g_networkNullTerminator);
     func_0x00018074b830(auStack_158 + (status + result),0x100 - (status + result),sizeParam);
     puStack_188 = auStack_158;
                     // WARNING: Subroutine does not return
@@ -7219,14 +7219,14 @@ void FUN_180849f40(ulonglong socketParam,longlong dataParam,undefined4 sizeParam
   undefined1 auStack_158 [256];
   ulonglong uStack_58;
   
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_1a8;
+  uStack_58 = _g_networkXorKey ^ (ulonglong)auStack_1a8;
   if ((dataParam == 0) || (status = func_0x00018076b690(dataParam), 0x7f < status)) {
     if ((*(byte *)(g_networkModule + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_1a8);
     }
     status = FUN_18074b880(auStack_158,0x100,dataParam);
-    result = FUN_18074b880(auStack_158 + status,0x100 - status,&DAT_180a06434);
+    result = FUN_18074b880(auStack_158 + status,0x100 - status,&g_networkNullTerminator);
     func_0x00018074b830(auStack_158 + (status + result),0x100 - (status + result),sizeParam);
     puStack_188 = auStack_158;
                     // WARNING: Subroutine does not return
@@ -7272,7 +7272,7 @@ void FUN_18084a140(undefined8 socketParam,undefined1 dataParam)
   undefined8 *apuStack_138 [34];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = _g_networkXorKey ^ (ulonglong)auStack_178;
   alStack_148[1] = 0;
   status = func_0x00018088c590(socketParam,alStack_148);
   if (status == 0) {
@@ -7315,7 +7315,7 @@ void FUN_18084a280(undefined8 socketParam,undefined4 dataParam)
   undefined8 *apuStack_138 [34];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = _g_networkXorKey ^ (ulonglong)auStack_178;
   alStack_148[1] = 0;
   status = func_0x00018088c590(socketParam,alStack_148);
   if (status == 0) {
@@ -7358,7 +7358,7 @@ void FUN_18084a3d0(undefined8 socketParam,undefined4 dataParam,undefined4 sizePa
   undefined8 *apuStack_148 [34];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_188;
   alStack_158[1] = 0;
   status = func_0x00018088c590(socketParam,alStack_158);
   if (status == 0) {
@@ -7402,7 +7402,7 @@ void FUN_18084a550(undefined8 socketParam,undefined4 dataParam)
   undefined8 *apuStack_138 [34];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = _g_networkXorKey ^ (ulonglong)auStack_178;
   alStack_148[1] = 0;
   status = func_0x00018088c590(socketParam,alStack_148);
   if (status == 0) {
@@ -7445,7 +7445,7 @@ void FUN_18084a680(undefined4 socketParam,undefined8 dataParam)
   longlong alStack_120 [33];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_18 = _g_networkXorKey ^ (ulonglong)auStack_168;
   lStack_128 = 0;
   uStack_138 = 0;
   uStack_130 = 0;
@@ -7478,7 +7478,7 @@ void FUN_18084a7a0(undefined4 socketParam,undefined8 dataParam)
   longlong alStack_120 [33];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_18 = _g_networkXorKey ^ (ulonglong)auStack_168;
   lStack_128 = 0;
   uStack_138 = 0;
   uStack_130 = 0;
@@ -7516,7 +7516,7 @@ void FUN_18084a8c0(undefined8 socketParam,undefined4 dataParam)
   undefined8 *apuStack_138 [34];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = _g_networkXorKey ^ (ulonglong)auStack_178;
   alStack_148[1] = 0;
   status = func_0x00018088c590(socketParam,alStack_148);
   if (status == 0) {
@@ -7559,7 +7559,7 @@ void FUN_18084aa10(undefined8 socketParam,undefined4 dataParam)
   undefined8 *apuStack_138 [34];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = _g_networkXorKey ^ (ulonglong)auStack_178;
   alStack_148[1] = 0;
   status = func_0x00018088c590(socketParam,alStack_148);
   if (status == 0) {
@@ -7602,7 +7602,7 @@ void FUN_18084ab60(undefined8 socketParam,undefined4 dataParam)
   undefined8 *apuStack_138 [34];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = _g_networkXorKey ^ (ulonglong)auStack_178;
   alStack_148[1] = 0;
   status = func_0x00018088c590(socketParam,alStack_148);
   if (status == 0) {
@@ -7645,7 +7645,7 @@ void FUN_18084acb0(undefined8 socketParam)
   undefined8 *apuStack_128 [34];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_18 = _g_networkXorKey ^ (ulonglong)auStack_168;
   alStack_138[1] = 0;
   status = func_0x00018088c590(socketParam,alStack_138);
   if (status == 0) {
@@ -7687,7 +7687,7 @@ void FUN_18084ade0(undefined8 socketParam,undefined4 dataParam)
   undefined8 *apuStack_138 [34];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_28 = _g_networkXorKey ^ (ulonglong)auStack_178;
   alStack_148[1] = 0;
   status = func_0x00018088c590(socketParam,alStack_148);
   if (status == 0) {
@@ -7795,7 +7795,7 @@ ulonglong FUN_18084afc0(undefined8 socketParam)
 
 
 
-undefined8 FUN_18084b015(undefined8 socketParam,longlong dataParam)
+uint64_t FUN_18084b015(undefined8 socketParam,longlong dataParam)
 
 {
   int status;
@@ -8027,7 +8027,7 @@ void FUN_18084b2f0(undefined8 socketParam)
   undefined1 auStack_118 [256];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_148;
+  uStack_18 = _g_networkXorKey ^ (ulonglong)auStack_148;
   status = NetworkCreateSocket();
   if ((status != 0) && ((*(byte *)(g_networkModule + 0x10) & 0x80) != 0)) {
     puStack_128 = auStack_118;
@@ -8054,7 +8054,7 @@ void FUN_18084b380(undefined8 socketParam)
   undefined1 auStack_118 [256];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_148;
+  uStack_18 = _g_networkXorKey ^ (ulonglong)auStack_148;
   status = FUN_18084b180(socketParam,0);
   if ((status != 0) && ((*(byte *)(g_networkModule + 0x10) & 0x80) != 0)) {
     puStack_128 = auStack_118;
@@ -8082,7 +8082,7 @@ void FUN_18084b410(undefined8 socketParam)
   undefined1 auStack_118 [256];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_158;
+  uStack_18 = _g_networkXorKey ^ (ulonglong)auStack_158;
   status = func_0x00018088c590(socketParam,alStack_128);
   if ((status == 0) && ((*(uint *)(alStack_128[0] + 0x24) >> 1 & 1) == 0)) {
     status = 0x4b;
@@ -8131,7 +8131,7 @@ void FUN_18084b5a0(undefined8 socketParam,undefined8 *dataParam,longlong *sizePa
   undefined1 auStack_48 [40];
   ulonglong uStack_20;
   
-  uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
+  uStack_20 = _g_networkXorKey ^ (ulonglong)auStack_b8;
   for (pbufferSize = (undefined4 *)*dataParam;
       ((undefined4 *)*dataParam <= pbufferSize &&
       (pbufferSize < (undefined4 *)*dataParam + (longlong)*(int *)(dataParam + 1) * 4)); pbufferSize = pbufferSize + 4)
@@ -8173,7 +8173,7 @@ void FUN_18084b6c0(longlong socketParam,longlong dataParam)
   undefined1 auStack_38 [40];
   ulonglong uStack_10;
   
-  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
+  uStack_10 = _g_networkXorKey ^ (ulonglong)auStack_58;
   bVar2 = *(int *)(dataParam + 0xb0) != -1;
   *(bool *)(socketParam + 8) = bVar2;
   if (bVar2) {
@@ -8205,7 +8205,7 @@ void FUN_18084b760(longlong socketParam,longlong dataParam)
   undefined1 auStack_40 [40];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
+  uStack_18 = _g_networkXorKey ^ (ulonglong)auStack_68;
   if (1.1920929e-07 < *(float *)(dataParam + 0x94)) {
     *(undefined1 *)(socketParam + 8) = 1;
                     // WARNING: Subroutine does not return
@@ -8252,7 +8252,7 @@ void FUN_18084b830(longlong socketParam,longlong dataParam)
   undefined1 auStack_38 [40];
   ulonglong uStack_10;
   
-  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_a8;
+  uStack_10 = _g_networkXorKey ^ (ulonglong)auStack_a8;
   *(bool *)(socketParam + 8) = *(int *)(dataParam + 0xb0) != -1;
   pbufferSize = *(undefined4 **)(dataParam + 0xd8);
   while (((connectionData = *(undefined4 **)(dataParam + 0xd8), connectionData <= pbufferSize &&
@@ -8348,7 +8348,7 @@ void FUN_18084b990(longlong *socketParam,longlong dataParam,longlong *sizeParam)
   undefined1 auStack_58 [40];
   ulonglong uStack_30;
   
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
+  uStack_30 = _g_networkXorKey ^ (ulonglong)auStack_c8;
   (**(code **)(*socketParam + 0x48))();
   cVar12 = (**(code **)(*socketParam + 0x50))(socketParam);
   if (cVar12 != '\0') {
@@ -8444,7 +8444,7 @@ void FUN_18084bbd0(longlong socketParam,longlong dataParam)
   undefined1 auStack_48 [40];
   ulonglong uStack_20;
   
-  uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
+  uStack_20 = _g_networkXorKey ^ (ulonglong)auStack_b8;
   if (*(float *)(dataParam + 0x94) <= 1.1920929e-07) {
     for (pbufferSize = *(undefined4 **)(dataParam + 0xd8);
         (*(undefined4 **)(dataParam + 0xd8) <= pbufferSize &&
@@ -8580,7 +8580,7 @@ void FUN_18084be00(longlong *socketParam,longlong dataParam,longlong *sizeParam)
   undefined1 auStack_58 [40];
   ulonglong uStack_30;
   
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
+  uStack_30 = _g_networkXorKey ^ (ulonglong)auStack_c8;
   (**(code **)(*socketParam + 0x40))();
   cVar1 = (**(code **)(*socketParam + 0x50))(socketParam);
   if (cVar1 != '\0') {
@@ -8693,7 +8693,7 @@ void thunk_FUN_180848e50(char *socketParam,undefined8 *dataParam)
   undefined1 auStack_3d [5];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_b8;
   if (dataParam != (undefined8 *)0x0) {
     if ((((socketParam == (char *)0x0) || (iVar5 = func_0x00018076b690(), iVar5 != 0x26)) ||
         (*socketParam != '{')) || (socketParam[0x25] != '}')) {
@@ -8758,7 +8758,7 @@ FUN_180848ff1:
 
 
 
-undefined8 * FUN_18084c050(undefined8 *socketParam,undefined8 dataParam,byte sizeParam)
+uint64_t * FUN_18084c050(undefined8 *socketParam,undefined8 dataParam,byte sizeParam)
 
 {
   undefined8 uVar1;
@@ -8969,7 +8969,7 @@ void FUN_18084c2d0(undefined8 *socketParam)
 
 
 
-undefined8 FUN_18084c350(undefined8 socketParam,ulonglong dataParam)
+uint64_t FUN_18084c350(undefined8 socketParam,ulonglong dataParam)
 
 {
   FUN_18084c2d0();
@@ -8996,7 +8996,7 @@ longlong FUN_18084c390(longlong socketParam,ulonglong dataParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18084c470(longlong *socketParam,int dataParam)
+uint64_t FUN_18084c470(longlong *socketParam,int dataParam)
 
 {
   int status;
@@ -9044,7 +9044,7 @@ LAB_18084c510:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18084c494(undefined8 socketParam,int dataParam)
+uint64_t FUN_18084c494(undefined8 socketParam,int dataParam)
 
 {
   int status;
@@ -9089,7 +9089,7 @@ LAB_18084c510:
 
 
 
-undefined8 FUN_18084c55b(void)
+uint64_t FUN_18084c55b(void)
 
 {
   return 0x26;
@@ -10180,7 +10180,7 @@ void FUN_18084cae7(undefined8 socketParam,undefined8 dataParam,longlong *sizePar
 
 
 
-undefined8 * FUN_18084cb70(undefined8 *socketParam,ulonglong dataParam)
+uint64_t * FUN_18084cb70(undefined8 *socketParam,ulonglong dataParam)
 
 {
   *(undefined4 *)(socketParam + 1) = 0xdeadf00d;
@@ -10193,7 +10193,7 @@ undefined8 * FUN_18084cb70(undefined8 *socketParam,ulonglong dataParam)
 
 
 
-undefined8 FUN_18084cbb0(undefined8 socketParam,ulonglong dataParam)
+uint64_t FUN_18084cbb0(undefined8 socketParam,ulonglong dataParam)
 
 {
   FUN_18084c730();
@@ -10283,7 +10283,7 @@ undefined4 FUN_18084cbf0(longlong socketParam,uint dataParam,double sizeParam,in
 
 
 
-undefined8 FUN_18084cc23(void)
+uint64_t FUN_18084cc23(void)
 
 {
   byte *connectionData;
@@ -10361,7 +10361,7 @@ undefined8 FUN_18084cc23(void)
 
 
 
-undefined8 FUN_18084ccf0(undefined8 socketParam,int dataParam)
+uint64_t FUN_18084ccf0(undefined8 socketParam,int dataParam)
 
 {
   uint uVar1;
@@ -10966,7 +10966,7 @@ LAB_18084cfd9:
 
 
 
-undefined8 FUN_18084d140(longlong socketParam,uint dataParam,int *sizeParam,uint *timeoutParam)
+uint64_t FUN_18084d140(longlong socketParam,uint dataParam,int *sizeParam,uint *timeoutParam)
 
 {
   float fVar1;
@@ -11072,7 +11072,7 @@ LAB_18084d22e:
 
 
 
-undefined8 FUN_18084d169(void)
+uint64_t FUN_18084d169(void)
 
 {
   float fVar1;
@@ -11181,7 +11181,7 @@ LAB_18084d22e:
 
 
 
-undefined8 FUN_18084d1d0(undefined1 *socketParam,undefined8 dataParam,undefined1 *sizeParam)
+uint64_t FUN_18084d1d0(undefined1 *socketParam,undefined8 dataParam,undefined1 *sizeParam)
 
 {
   float fVar1;
@@ -11280,7 +11280,7 @@ LAB_18084d22e:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18084d3f0(longlong *socketParam,int dataParam)
+uint64_t FUN_18084d3f0(longlong *socketParam,int dataParam)
 
 {
   undefined4 *connectionData;
@@ -11343,7 +11343,7 @@ LAB_18084d4b4:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18084d414(undefined8 socketParam,int dataParam)
+uint64_t FUN_18084d414(undefined8 socketParam,int dataParam)
 
 {
   undefined4 *connectionData;
@@ -11403,7 +11403,7 @@ LAB_18084d4b4:
 
 
 
-undefined8 FUN_18084d4ff(void)
+uint64_t FUN_18084d4ff(void)
 
 {
   return 0x26;
@@ -11413,7 +11413,7 @@ undefined8 FUN_18084d4ff(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18084d520(longlong *socketParam,int dataParam)
+uint64_t FUN_18084d520(longlong *socketParam,int dataParam)
 
 {
   longlong lVar1;
@@ -11450,7 +11450,7 @@ LAB_18084d5b4:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18084d544(undefined8 socketParam,int dataParam)
+uint64_t FUN_18084d544(undefined8 socketParam,int dataParam)
 
 {
   longlong lVar1;
@@ -11484,7 +11484,7 @@ LAB_18084d5b4:
 
 
 
-undefined8 FUN_18084d5ff(void)
+uint64_t FUN_18084d5ff(void)
 
 {
   return 0x26;
@@ -11494,7 +11494,7 @@ undefined8 FUN_18084d5ff(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18084d620(longlong *socketParam,int dataParam)
+uint64_t FUN_18084d620(longlong *socketParam,int dataParam)
 
 {
   undefined8 *connectionData;
@@ -11617,7 +11617,7 @@ LAB_18084d7db:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18084d644(undefined8 socketParam,int dataParam)
+uint64_t FUN_18084d644(undefined8 socketParam,int dataParam)
 
 {
   undefined8 *connectionData;
@@ -11737,7 +11737,7 @@ LAB_18084d7db:
 
 
 
-undefined8 FUN_18084d82b(void)
+uint64_t FUN_18084d82b(void)
 
 {
   return 0x26;
@@ -11822,7 +11822,7 @@ undefined4 FUN_18084d840(longlong socketParam,uint dataParam,uint sizeParam,doub
 
 
 
-undefined8 FUN_18084d86d(void)
+uint64_t FUN_18084d86d(void)
 
 {
   byte *connectionData;
@@ -11901,7 +11901,7 @@ undefined8 FUN_18084d86d(void)
 
 
 
-undefined8 FUN_18084d93b(undefined8 socketParam,int dataParam)
+uint64_t FUN_18084d93b(undefined8 socketParam,int dataParam)
 
 {
   uint uVar1;
@@ -11962,7 +11962,7 @@ undefined8 FUN_18084d93b(undefined8 socketParam,int dataParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined * FUN_18084da10(void)
+void* * FUN_18084da10(void)
 
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
@@ -11978,7 +11978,7 @@ undefined * FUN_18084da10(void)
 
 
 
-undefined8 * FUN_18084da70(undefined8 *socketParam)
+uint64_t * FUN_18084da70(undefined8 *socketParam)
 
 {
   FUN_1808b0200(socketParam,0x16);
@@ -12129,7 +12129,7 @@ void FUN_18084dc20(undefined4 *socketParam)
   undefined4 uStack_14;
   ulonglong uStack_10;
   
-  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_48;
+  uStack_10 = _g_networkXorKey ^ (ulonglong)auStack_48;
   uStack_20 = *socketParam;
   uStack_1c = socketParam[1];
   uStack_18 = socketParam[2];
@@ -12145,7 +12145,7 @@ void FUN_18084dc20(undefined4 *socketParam)
 
 
 
-undefined8 FUN_18084de40(longlong socketParam,longlong dataParam,float *sizeParam)
+uint64_t FUN_18084de40(longlong socketParam,longlong dataParam,float *sizeParam)
 
 {
   int status;
@@ -12162,7 +12162,7 @@ undefined8 FUN_18084de40(longlong socketParam,longlong dataParam,float *sizePara
     }
     if (dataParam != 0) {
       if (*(int *)(pbufferSize + 1) < 1) {
-        ppacketSize = &DAT_18098bc73;
+        ppacketSize = &g_networkEmptyString;
       }
       else {
         ppacketSize = (undefined *)*pbufferSize;
@@ -12182,7 +12182,7 @@ undefined8 FUN_18084de40(longlong socketParam,longlong dataParam,float *sizePara
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18084def0(longlong *socketParam,int dataParam)
+uint64_t FUN_18084def0(longlong *socketParam,int dataParam)
 
 {
   int status;
@@ -12240,7 +12240,7 @@ undefined8 FUN_18084def0(longlong *socketParam,int dataParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18084df0d(undefined8 socketParam,int dataParam)
+uint64_t FUN_18084df0d(undefined8 socketParam,int dataParam)
 
 {
   int status;
@@ -12297,7 +12297,7 @@ undefined8 FUN_18084df0d(undefined8 socketParam,int dataParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18084df73(void)
+uint64_t FUN_18084df73(void)
 
 {
   longlong lVar1;
@@ -12341,7 +12341,7 @@ undefined8 FUN_18084df73(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18084df94(undefined8 socketParam)
+uint64_t FUN_18084df94(undefined8 socketParam)
 
 {
   undefined4 *connectionData;
@@ -12382,7 +12382,7 @@ undefined8 FUN_18084df94(undefined8 socketParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18084e00c(void)
+uint64_t FUN_18084e00c(void)
 
 {
   longlong unaff_RBP;
@@ -12402,7 +12402,7 @@ undefined8 FUN_18084e00c(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18084e01e(void)
+uint64_t FUN_18084e01e(void)
 
 {
   longlong unaff_RBP;
@@ -12420,7 +12420,7 @@ undefined8 FUN_18084e01e(void)
 
 
 
-undefined8 FUN_18084e065(void)
+uint64_t FUN_18084e065(void)
 
 {
   return 0x26;
@@ -12428,7 +12428,7 @@ undefined8 FUN_18084e065(void)
 
 
 
-undefined8 FUN_18084e110(longlong *socketParam,char *dataParam)
+uint64_t FUN_18084e110(longlong *socketParam,char *dataParam)
 
 {
   int status;
@@ -12497,7 +12497,7 @@ longlong FUN_18084e3b0(longlong socketParam,ulonglong dataParam)
 
 
 
-undefined8 FUN_18084e470(undefined8 socketParam,ulonglong dataParam)
+uint64_t FUN_18084e470(undefined8 socketParam,ulonglong dataParam)
 
 {
   FUN_1808b1a30();
@@ -12597,7 +12597,7 @@ LAB_18084e5ba:
 
 
 
-undefined8 FUN_18084e710(undefined8 *socketParam,undefined8 dataParam,char sizeParam)
+uint64_t FUN_18084e710(undefined8 *socketParam,undefined8 dataParam,char sizeParam)
 
 {
   int status;
@@ -12692,7 +12692,7 @@ LAB_18084e8ab:
 
 
 
-undefined8 FUN_18084e8f0(longlong socketParam,undefined8 *dataParam,undefined8 *sizeParam,int *timeoutParam)
+uint64_t FUN_18084e8f0(longlong socketParam,undefined8 *dataParam,undefined8 *sizeParam,int *timeoutParam)
 
 {
   undefined8 uVar1;
@@ -12752,7 +12752,7 @@ undefined8 FUN_18084e8f0(longlong socketParam,undefined8 *dataParam,undefined8 *
 
 
 
-undefined8 FUN_18084e9e0(longlong socketParam)
+uint64_t FUN_18084e9e0(longlong socketParam)
 
 {
   undefined4 uVar1;
@@ -12805,7 +12805,7 @@ undefined8 FUN_18084e9e0(longlong socketParam)
 
 
 
-undefined8 FUN_18084ea8c(void)
+uint64_t FUN_18084ea8c(void)
 
 {
   undefined8 uVar1;
@@ -12820,7 +12820,7 @@ undefined8 FUN_18084ea8c(void)
 
 
 
-undefined8 FUN_18084eab7(void)
+uint64_t FUN_18084eab7(void)
 
 {
   return 0;
@@ -12828,7 +12828,7 @@ undefined8 FUN_18084eab7(void)
 
 
 
-undefined8 FUN_18084ead0(longlong socketParam,char dataParam)
+uint64_t FUN_18084ead0(longlong socketParam,char dataParam)
 
 {
   char cVar1;
@@ -12898,7 +12898,7 @@ joined_r0x00018084ebb8:
 
 
 
-undefined8 FUN_18084ec10(longlong socketParam)
+uint64_t FUN_18084ec10(longlong socketParam)
 
 {
   longlong lVar1;
@@ -12977,7 +12977,7 @@ LAB_180853ee2:
 
 
 
-undefined8 FUN_18084ec60(longlong socketParam)
+uint64_t FUN_18084ec60(longlong socketParam)
 
 {
   undefined8 *connectionData;
@@ -13015,7 +13015,7 @@ undefined8 FUN_18084ec60(longlong socketParam)
 
 
 
-undefined8 FUN_18084ed10(longlong socketParam)
+uint64_t FUN_18084ed10(longlong socketParam)
 
 {
   undefined8 *connectionData;
@@ -13092,7 +13092,7 @@ void FUN_18084edf0(longlong socketParam)
   undefined1 uStack_2a;
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
+  uStack_28 = _g_networkXorKey ^ (ulonglong)auStack_c8;
   sVar2 = func_0x00018084c3d0(*(undefined8 *)(socketParam + 0x40));
   if ((sVar2 == 4) &&
      (iVar3 = FUN_18073cb70(*(undefined8 *)(socketParam + 0x78),&uStack_58), iVar3 == 0)) {
@@ -13182,7 +13182,7 @@ void FUN_18084efc1(void)
 
 
 
-undefined8 FUN_18084efe0(longlong socketParam,undefined8 dataParam)
+uint64_t FUN_18084efe0(longlong socketParam,undefined8 dataParam)
 
 {
   undefined8 *connectionData;
@@ -13206,7 +13206,7 @@ undefined8 FUN_18084efe0(longlong socketParam,undefined8 dataParam)
 
 
 
-undefined8 FUN_18084f001(void)
+uint64_t FUN_18084f001(void)
 
 {
   undefined8 *connectionData;
@@ -16059,7 +16059,7 @@ void FUN_180850b70(undefined8 *socketParam,undefined8 dataParam,longlong sizePar
   undefined1 auStack_78 [40];
   ulonglong uStack_50;
   
-  uStack_50 = _DAT_180bf00a8 ^ (ulonglong)auStack_148;
+  uStack_50 = _g_networkXorKey ^ (ulonglong)auStack_148;
   lStack_c0 = sizeParam;
   puStack_a8 = socketParam;
   puStack_80 = timeoutParam;
@@ -16849,7 +16849,7 @@ void FUN_180851432(void)
 
 
 
-undefined8 FUN_180851490(longlong socketParam,longlong dataParam)
+uint64_t FUN_180851490(longlong socketParam,longlong dataParam)
 
 {
   longlong *plVar1;
@@ -16967,7 +16967,7 @@ undefined8 FUN_180851490(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180851740(longlong socketParam)
+uint64_t FUN_180851740(longlong socketParam)
 
 {
   int status;
@@ -17021,7 +17021,7 @@ undefined8 FUN_180851740(longlong socketParam)
 
 
 
-undefined8 FUN_180851840(longlong socketParam)
+uint64_t FUN_180851840(longlong socketParam)
 
 {
   longlong lVar1;
@@ -17095,7 +17095,7 @@ LAB_180851913:
 
 
 
-undefined8 FUN_18085186c(longlong socketParam,undefined8 dataParam,undefined1 sizeParam,undefined8 timeoutParam)
+uint64_t FUN_18085186c(longlong socketParam,undefined8 dataParam,undefined1 sizeParam,undefined8 timeoutParam)
 
 {
   undefined8 *connectionData;
@@ -17165,7 +17165,7 @@ LAB_180851913:
 
 
 
-undefined8 FUN_180851917(void)
+uint64_t FUN_180851917(void)
 
 {
   undefined8 *connectionData;
@@ -17206,7 +17206,7 @@ undefined8 FUN_180851917(void)
 
 
 
-undefined8 FUN_18085198d(void)
+uint64_t FUN_18085198d(void)
 
 {
   undefined8 uVar1;
@@ -17239,7 +17239,7 @@ void FUN_1808519d1(void)
 
 
 
-undefined8 FUN_1808519e0(longlong socketParam)
+uint64_t FUN_1808519e0(longlong socketParam)
 
 {
   int status;
@@ -17260,7 +17260,7 @@ undefined8 FUN_1808519e0(longlong socketParam)
 
 
 
-undefined8 FUN_180851a40(longlong *socketParam)
+uint64_t FUN_180851a40(longlong *socketParam)
 
 {
   int status;
@@ -17337,7 +17337,7 @@ undefined8 FUN_180851a40(longlong *socketParam)
 
 
 
-undefined8 FUN_180851a66(void)
+uint64_t FUN_180851a66(void)
 
 {
   longlong lVar1;
@@ -17411,7 +17411,7 @@ undefined8 FUN_180851a66(void)
 
 
 
-undefined8 FUN_180851b86(void)
+uint64_t FUN_180851b86(void)
 
 {
   return 0x1c;
@@ -17435,7 +17435,7 @@ void FUN_180851ba0(longlong socketParam,undefined1 dataParam)
 
 
 
-undefined8 FUN_180851c50(longlong socketParam,undefined8 dataParam,uint sizeParam)
+uint64_t FUN_180851c50(longlong socketParam,undefined8 dataParam,uint sizeParam)
 
 {
   longlong lVar1;
@@ -17479,7 +17479,7 @@ LAB_180851ce6:
 
 
 
-undefined8 FUN_180851d20(longlong socketParam,longlong dataParam,longlong sizeParam)
+uint64_t FUN_180851d20(longlong socketParam,longlong dataParam,longlong sizeParam)
 
 {
   int status;
@@ -17515,7 +17515,7 @@ undefined8 FUN_180851d20(longlong socketParam,longlong dataParam,longlong sizePa
 
 
 
-undefined8 FUN_180851d5f(undefined8 socketParam)
+uint64_t FUN_180851d5f(undefined8 socketParam)
 
 {
   int status;
@@ -17545,7 +17545,7 @@ undefined8 FUN_180851d5f(undefined8 socketParam)
 
 
 
-undefined8 FUN_180851d83(void)
+uint64_t FUN_180851d83(void)
 
 {
   undefined8 uVar1;
@@ -17727,7 +17727,7 @@ void FUN_180852090(undefined8 *socketParam,undefined8 *dataParam)
   undefined1 auStack_78 [40];
   ulonglong uStack_50;
   
-  uStack_50 = _DAT_180bf00a8 ^ (ulonglong)auStack_338;
+  uStack_50 = _g_networkXorKey ^ (ulonglong)auStack_338;
   lVar6 = socketParam[8];
   puStack_2b0 = dataParam;
   if (lVar6 != 0) {
@@ -18563,7 +18563,7 @@ void FUN_180852aaa(void)
 
 
 
-undefined8 FUN_180852b00(longlong *socketParam,uint *dataParam,undefined8 *sizeParam)
+uint64_t FUN_180852b00(longlong *socketParam,uint *dataParam,undefined8 *sizeParam)
 
 {
   undefined8 uVar1;
@@ -18647,7 +18647,7 @@ undefined8 FUN_180852b00(longlong *socketParam,uint *dataParam,undefined8 *sizeP
 
 
 
-undefined8 FUN_180852bb0(longlong *socketParam,uint *dataParam,undefined8 *sizeParam)
+uint64_t FUN_180852bb0(longlong *socketParam,uint *dataParam,undefined8 *sizeParam)
 
 {
   undefined8 uVar1;
@@ -18737,7 +18737,7 @@ undefined8 FUN_180852bb0(longlong *socketParam,uint *dataParam,undefined8 *sizeP
 
 
 
-undefined8 FUN_180852bd2(void)
+uint64_t FUN_180852bd2(void)
 
 {
   undefined8 uVar1;
@@ -18836,7 +18836,7 @@ void FUN_180852d1a(void)
 
 
 
-undefined8 FUN_180852d23(void)
+uint64_t FUN_180852d23(void)
 
 {
   return 0x1c;
@@ -19168,7 +19168,7 @@ void FUN_180853000(longlong socketParam,undefined8 dataParam)
 
 
 
-undefined8 FUN_180853040(longlong *socketParam,longlong *dataParam)
+uint64_t FUN_180853040(longlong *socketParam,longlong *dataParam)
 
 {
   longlong *plVar1;
@@ -19203,7 +19203,7 @@ LAB_1808530ba:
 
 
 
-undefined8 FUN_1808530e0(longlong socketParam)
+uint64_t FUN_1808530e0(longlong socketParam)
 
 {
   char cVar1;
@@ -19220,7 +19220,7 @@ undefined8 FUN_1808530e0(longlong socketParam)
 
 
 
-undefined8 FUN_180853120(longlong socketParam)
+uint64_t FUN_180853120(longlong socketParam)
 
 {
   char cVar1;
@@ -19236,7 +19236,7 @@ undefined8 FUN_180853120(longlong socketParam)
 
 
 
-undefined8 FUN_180853180(longlong socketParam,int dataParam,undefined4 sizeParam)
+uint64_t FUN_180853180(longlong socketParam,int dataParam,undefined4 sizeParam)
 
 {
   undefined8 uVar1;
@@ -19298,7 +19298,7 @@ void FUN_180853230(longlong socketParam)
     return;
   }
   uVar1 = *(undefined8 *)(socketParam + 0x78);
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_158;
+  uStack_18 = _g_networkXorKey ^ (ulonglong)auStack_158;
   lStack_128 = 0;
   result = func_0x00018074fb10(uVar1,&plStack_120,&lStack_128);
   if (result == 0) {
@@ -19321,7 +19321,7 @@ LAB_18073d93d:
 
 
 
-undefined8 FUN_180853260(longlong *socketParam,undefined8 *dataParam)
+uint64_t FUN_180853260(longlong *socketParam,undefined8 *dataParam)
 
 {
   int status;
@@ -19354,7 +19354,7 @@ undefined8 FUN_180853260(longlong *socketParam,undefined8 *dataParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808532e0(longlong *socketParam,int dataParam)
+uint64_t FUN_1808532e0(longlong *socketParam,int dataParam)
 
 {
   longlong lVar1;
@@ -19391,7 +19391,7 @@ LAB_180853370:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180853304(undefined8 socketParam,int dataParam)
+uint64_t FUN_180853304(undefined8 socketParam,int dataParam)
 
 {
   longlong lVar1;
@@ -19425,7 +19425,7 @@ LAB_180853370:
 
 
 
-undefined8 FUN_1808533bb(void)
+uint64_t FUN_1808533bb(void)
 
 {
   return 0x26;
@@ -19433,7 +19433,7 @@ undefined8 FUN_1808533bb(void)
 
 
 
-undefined8 FUN_1808533d0(longlong socketParam,int *dataParam)
+uint64_t FUN_1808533d0(longlong socketParam,int *dataParam)
 
 {
   undefined8 *connectionData;
@@ -19458,7 +19458,7 @@ undefined8 FUN_1808533d0(longlong socketParam,int *dataParam)
 
 
 
-undefined8 FUN_180853470(longlong socketParam)
+uint64_t FUN_180853470(longlong socketParam)
 
 {
   longlong lVar1;
@@ -19601,7 +19601,7 @@ LAB_180853768:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180853790(longlong *socketParam)
+uint64_t FUN_180853790(longlong *socketParam)
 
 {
   longlong *plVar1;
@@ -19646,7 +19646,7 @@ void FUN_180853840(longlong socketParam,undefined8 dataParam)
 
 
 
-undefined8 FUN_1808538a0(undefined8 *socketParam,longlong dataParam)
+uint64_t FUN_1808538a0(undefined8 *socketParam,longlong dataParam)
 
 {
   int status;
@@ -19691,7 +19691,7 @@ undefined8 FUN_1808538a0(undefined8 *socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180853980(longlong socketParam)
+uint64_t FUN_180853980(longlong socketParam)
 
 {
   undefined8 *connectionData;
@@ -19775,7 +19775,7 @@ undefined8 FUN_180853980(longlong socketParam)
 
 
 
-undefined8 FUN_180853ba0(longlong socketParam,byte dataParam)
+uint64_t FUN_180853ba0(longlong socketParam,byte dataParam)
 
 {
   undefined8 uVar1;
@@ -19820,7 +19820,7 @@ void FUN_180853bf0(undefined8 socketParam,int dataParam)
 
 
 
-undefined8 FUN_180853c50(longlong socketParam,uint dataParam)
+uint64_t FUN_180853c50(longlong socketParam,uint dataParam)
 
 {
   longlong lVar1;
@@ -19901,7 +19901,7 @@ LAB_180853ee2:
 
 
 
-undefined8 FUN_180853d20(undefined8 *socketParam,undefined8 dataParam)
+uint64_t FUN_180853d20(undefined8 *socketParam,undefined8 dataParam)
 
 {
   longlong lVar1;
@@ -19978,7 +19978,7 @@ byte FUN_180853e60(undefined8 *socketParam)
 
 
 
-undefined8 FUN_180853e80(longlong socketParam,char dataParam)
+uint64_t FUN_180853e80(longlong socketParam,char dataParam)
 
 {
   longlong lVar1;
@@ -20077,7 +20077,7 @@ void FUN_180853fc0(longlong socketParam,char dataParam)
 
 
 
-undefined8 *
+uint64_t *
 FUN_180854040(undefined8 *socketParam,undefined8 dataParam,undefined8 sizeParam,undefined8 timeoutParam,
              undefined8 param_5,undefined8 param_6)
 
@@ -20154,7 +20154,7 @@ FUN_180854040(undefined8 *socketParam,undefined8 dataParam,undefined8 sizeParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180854200(longlong socketParam)
+uint64_t FUN_180854200(longlong socketParam)
 
 {
   longlong *plVar1;
@@ -20927,7 +20927,7 @@ undefined4 FUN_18085497c(void)
 
 
 
-undefined8 FUN_1808549c0(longlong *socketParam,int *dataParam,int *sizeParam)
+uint64_t FUN_1808549c0(longlong *socketParam,int *dataParam,int *sizeParam)
 
 {
   longlong lVar1;
@@ -21182,7 +21182,7 @@ LAB_180854d65:
 
 
 
-undefined8 FUN_180854d7d(void)
+uint64_t FUN_180854d7d(void)
 
 {
   undefined1 auVar1 [16];
@@ -21283,7 +21283,7 @@ undefined8 FUN_180854d7d(void)
 
 
 
-undefined8 FUN_180854df5(undefined8 socketParam,undefined8 dataParam,int sizeParam)
+uint64_t FUN_180854df5(undefined8 socketParam,undefined8 dataParam,int sizeParam)
 
 {
   int status;
@@ -21353,7 +21353,7 @@ undefined8 FUN_180854df5(undefined8 socketParam,undefined8 dataParam,int sizePar
 
 
 
-undefined8 FUN_180854f3f(void)
+uint64_t FUN_180854f3f(void)
 
 {
   int status;
@@ -21408,7 +21408,7 @@ void FUN_180854f70(longlong socketParam,undefined8 *dataParam,longlong sizeParam
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_108;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_108;
   puStack_90 = dataParam;
   lStack_80 = sizeParam;
   lStack_78 = socketParam;
@@ -21713,7 +21713,7 @@ undefined4 FUN_180855370(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808553b0(longlong *socketParam)
+uint64_t FUN_1808553b0(longlong *socketParam)
 
 {
   int status;
@@ -21772,7 +21772,7 @@ undefined8 FUN_1808553b0(longlong *socketParam)
 
 
 
-undefined8 FUN_180855415(uint socketParam,longlong dataParam)
+uint64_t FUN_180855415(uint socketParam,longlong dataParam)
 
 {
   undefined4 uVar1;
@@ -21817,7 +21817,7 @@ undefined8 FUN_180855415(uint socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180855467(uint socketParam)
+uint64_t FUN_180855467(uint socketParam)
 
 {
   undefined8 uVar1;
@@ -21836,7 +21836,7 @@ undefined8 FUN_180855467(uint socketParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808554a0(longlong *socketParam)
+uint64_t FUN_1808554a0(longlong *socketParam)
 
 {
   int status;
@@ -21894,7 +21894,7 @@ undefined8 FUN_1808554a0(longlong *socketParam)
 
 
 
-undefined8 FUN_180855512(undefined4 socketParam,int dataParam,uint sizeParam)
+uint64_t FUN_180855512(undefined4 socketParam,int dataParam,uint sizeParam)
 
 {
   undefined4 uVar1;
@@ -21939,7 +21939,7 @@ undefined8 FUN_180855512(undefined4 socketParam,int dataParam,uint sizeParam)
 
 
 
-undefined8 FUN_18085551e(longlong socketParam)
+uint64_t FUN_18085551e(longlong socketParam)
 
 {
   undefined4 uVar1;
@@ -21982,7 +21982,7 @@ undefined8 FUN_18085551e(longlong socketParam)
 
 
 
-undefined8 FUN_180855559(undefined8 socketParam,undefined8 dataParam,uint sizeParam)
+uint64_t FUN_180855559(undefined8 socketParam,undefined8 dataParam,uint sizeParam)
 
 {
   undefined8 uVar1;
@@ -21999,7 +21999,7 @@ undefined8 FUN_180855559(undefined8 socketParam,undefined8 dataParam,uint sizePa
 
 
 
-undefined8 FUN_18085555e(undefined8 socketParam,undefined8 dataParam,uint sizeParam)
+uint64_t FUN_18085555e(undefined8 socketParam,undefined8 dataParam,uint sizeParam)
 
 {
   undefined8 uVar1;
@@ -22018,7 +22018,7 @@ undefined8 FUN_18085555e(undefined8 socketParam,undefined8 dataParam,uint sizePa
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808555a0(longlong *socketParam)
+uint64_t FUN_1808555a0(longlong *socketParam)
 
 {
   int status;
@@ -22076,7 +22076,7 @@ undefined8 FUN_1808555a0(longlong *socketParam)
 
 
 
-undefined8 FUN_180855615(undefined4 socketParam,int dataParam,uint sizeParam)
+uint64_t FUN_180855615(undefined4 socketParam,int dataParam,uint sizeParam)
 
 {
   undefined4 uVar1;
@@ -22120,7 +22120,7 @@ undefined8 FUN_180855615(undefined4 socketParam,int dataParam,uint sizeParam)
 
 
 
-undefined8 FUN_180855621(longlong socketParam)
+uint64_t FUN_180855621(longlong socketParam)
 
 {
   undefined4 uVar1;
@@ -22162,7 +22162,7 @@ undefined8 FUN_180855621(longlong socketParam)
 
 
 
-undefined8 FUN_18085565a(undefined8 socketParam,undefined8 dataParam,uint sizeParam)
+uint64_t FUN_18085565a(undefined8 socketParam,undefined8 dataParam,uint sizeParam)
 
 {
   undefined8 uVar1;
@@ -22178,7 +22178,7 @@ undefined8 FUN_18085565a(undefined8 socketParam,undefined8 dataParam,uint sizePa
 
 
 
-undefined8 FUN_18085565f(undefined8 socketParam,undefined8 dataParam,uint sizeParam)
+uint64_t FUN_18085565f(undefined8 socketParam,undefined8 dataParam,uint sizeParam)
 
 {
   undefined8 uVar1;
@@ -22343,7 +22343,7 @@ void FUN_180855810(longlong socketParam,undefined8 dataParam)
 
 
 
-undefined8 FUN_1808558e0(undefined8 socketParam,longlong dataParam,longlong sizeParam)
+uint64_t FUN_1808558e0(undefined8 socketParam,longlong dataParam,longlong sizeParam)
 
 {
   longlong *plVar1;
@@ -22400,7 +22400,7 @@ undefined8 FUN_1808558e0(undefined8 socketParam,longlong dataParam,longlong size
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808559c0(undefined8 *socketParam)
+uint64_t FUN_1808559c0(undefined8 *socketParam)
 
 {
   int *pstatus;
@@ -22488,7 +22488,7 @@ undefined8 FUN_1808559c0(undefined8 *socketParam)
 
 
 
-undefined8 FUN_180855b80(longlong *socketParam)
+uint64_t FUN_180855b80(longlong *socketParam)
 
 {
   int *pstatus;
@@ -22566,7 +22566,7 @@ undefined8 FUN_180855b80(longlong *socketParam)
 
 
 
-undefined8 FUN_180855ba6(void)
+uint64_t FUN_180855ba6(void)
 
 {
   int *pstatus;
@@ -22641,7 +22641,7 @@ undefined8 FUN_180855ba6(void)
 
 
 
-undefined8 FUN_180855cc9(void)
+uint64_t FUN_180855cc9(void)
 
 {
   return 0x1c;
@@ -22649,7 +22649,7 @@ undefined8 FUN_180855cc9(void)
 
 
 
-undefined8 FUN_180855ce0(longlong *socketParam)
+uint64_t FUN_180855ce0(longlong *socketParam)
 
 {
   int *pstatus;
@@ -22727,7 +22727,7 @@ undefined8 FUN_180855ce0(longlong *socketParam)
 
 
 
-undefined8 FUN_180855d06(void)
+uint64_t FUN_180855d06(void)
 
 {
   int *pstatus;
@@ -22802,7 +22802,7 @@ undefined8 FUN_180855d06(void)
 
 
 
-undefined8 FUN_180855e29(void)
+uint64_t FUN_180855e29(void)
 
 {
   return 0x1c;
@@ -22810,7 +22810,7 @@ undefined8 FUN_180855e29(void)
 
 
 
-undefined8 FUN_180855e40(longlong socketParam,longlong dataParam)
+uint64_t FUN_180855e40(longlong socketParam,longlong dataParam)
 
 {
   longlong *plVar1;
@@ -22876,7 +22876,7 @@ undefined8 FUN_180855e40(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180855e6b(longlong socketParam)
+uint64_t FUN_180855e6b(longlong socketParam)
 
 {
   longlong *plVar1;
@@ -22940,7 +22940,7 @@ undefined8 FUN_180855e6b(longlong socketParam)
 
 
 
-undefined8 FUN_180855f53(void)
+uint64_t FUN_180855f53(void)
 
 {
   return 0x1c;
@@ -22962,7 +22962,7 @@ bool FUN_180855f70(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-undefined8 * FUN_180855fc0(longlong *socketParam,undefined8 *dataParam,uint *sizeParam)
+uint64_t * FUN_180855fc0(longlong *socketParam,undefined8 *dataParam,uint *sizeParam)
 
 {
   longlong lVar1;
@@ -23014,7 +23014,7 @@ LAB_18085604d:
 
 
 
-undefined8 * FUN_180855fdf(undefined8 socketParam,undefined8 *dataParam,uint *sizeParam,longlong *timeoutParam)
+uint64_t * FUN_180855fdf(undefined8 socketParam,undefined8 *dataParam,uint *sizeParam,longlong *timeoutParam)
 
 {
   longlong lVar1;
@@ -23062,7 +23062,7 @@ LAB_18085604d:
 
 
 
-undefined8 *
+uint64_t *
 FUN_180855ffc(undefined8 socketParam,undefined8 *dataParam,undefined8 sizeParam,longlong *timeoutParam)
 
 {
@@ -23128,7 +23128,7 @@ void FUN_18085605b(undefined8 socketParam,longlong dataParam)
 
 // WARNING: Removing unreachable block (ram,0x00018085607b)
 
-undefined8 * FUN_180856074(undefined8 socketParam,undefined8 *dataParam,undefined4 sizeParam)
+uint64_t * FUN_180856074(undefined8 socketParam,undefined8 *dataParam,undefined4 sizeParam)
 
 {
   undefined4 socketId;
@@ -23156,7 +23156,7 @@ void FUN_18085607b(undefined8 socketParam,longlong dataParam)
 
 
 
-undefined8 * FUN_180856099(undefined8 socketParam,undefined8 *dataParam)
+uint64_t * FUN_180856099(undefined8 socketParam,undefined8 *dataParam)
 
 {
   undefined8 in_R10;
@@ -23171,7 +23171,7 @@ undefined8 * FUN_180856099(undefined8 socketParam,undefined8 *dataParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808560c0(longlong socketParam)
+uint64_t FUN_1808560c0(longlong socketParam)
 
 {
   longlong *plVar1;
@@ -23257,7 +23257,7 @@ LAB_180856179:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808561bc(void)
+uint64_t FUN_1808561bc(void)
 
 {
   longlong *plVar1;
@@ -23298,7 +23298,7 @@ undefined8 FUN_1808561bc(void)
 
 
 
-undefined8 FUN_18085622e(void)
+uint64_t FUN_18085622e(void)
 
 {
   undefined4 in_EAX;
@@ -23977,7 +23977,7 @@ LAB_180856a59:
 
 
 
-undefined8 FUN_180856c80(longlong socketParam,uint *dataParam,undefined8 *sizeParam)
+uint64_t FUN_180856c80(longlong socketParam,uint *dataParam,undefined8 *sizeParam)
 
 {
   longlong lVar1;
@@ -24010,7 +24010,7 @@ undefined8 FUN_180856c80(longlong socketParam,uint *dataParam,undefined8 *sizePa
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180856d20(longlong socketParam,undefined8 *dataParam,undefined8 sizeParam)
+uint64_t FUN_180856d20(longlong socketParam,undefined8 *dataParam,undefined8 sizeParam)
 
 {
   longlong *plVar1;
@@ -24148,7 +24148,7 @@ void FUN_180856ec0(longlong socketParam,undefined8 *dataParam)
   int aiStack_68 [8];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_d8;
   lVar11 = *(longlong *)(socketParam + 0x110);
   lVar7 = lVar11;
   puStack_80 = dataParam;
@@ -24551,7 +24551,7 @@ LAB_180857774:
 
 
 
-undefined8 FUN_1808577c0(longlong *socketParam,uint *dataParam,undefined4 *sizeParam)
+uint64_t FUN_1808577c0(longlong *socketParam,uint *dataParam,undefined4 *sizeParam)
 
 {
   undefined8 *connectionData;
@@ -24644,7 +24644,7 @@ undefined8 FUN_1808577c0(longlong *socketParam,uint *dataParam,undefined4 *sizeP
 
 
 
-undefined8 FUN_1808577e2(void)
+uint64_t FUN_1808577e2(void)
 
 {
   undefined8 *connectionData;
@@ -24746,7 +24746,7 @@ void FUN_18085791f(void)
 
 
 
-undefined8 FUN_180857928(void)
+uint64_t FUN_180857928(void)
 
 {
   return 0x1c;
@@ -24754,7 +24754,7 @@ undefined8 FUN_180857928(void)
 
 
 
-undefined8 FUN_180857940(longlong *socketParam,uint *dataParam,undefined1 *sizeParam)
+uint64_t FUN_180857940(longlong *socketParam,uint *dataParam,undefined1 *sizeParam)
 
 {
   undefined8 *connectionData;
@@ -24847,7 +24847,7 @@ undefined8 FUN_180857940(longlong *socketParam,uint *dataParam,undefined1 *sizeP
 
 
 
-undefined8 FUN_180857962(void)
+uint64_t FUN_180857962(void)
 
 {
   undefined8 *connectionData;
@@ -24949,7 +24949,7 @@ void FUN_180857aa1(void)
 
 
 
-undefined8 FUN_180857aaa(void)
+uint64_t FUN_180857aaa(void)
 
 {
   return 0x1c;
@@ -24957,7 +24957,7 @@ undefined8 FUN_180857aaa(void)
 
 
 
-undefined8 FUN_180857ac0(longlong socketParam)
+uint64_t FUN_180857ac0(longlong socketParam)
 
 {
   int *pstatus;
@@ -24973,7 +24973,7 @@ undefined8 FUN_180857ac0(longlong socketParam)
 
 
 
-undefined8 FUN_180857b40(longlong socketParam)
+uint64_t FUN_180857b40(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -25009,7 +25009,7 @@ void FUN_180857b70(longlong socketParam,longlong dataParam)
   undefined1 auStack_68 [40];
   ulonglong uStack_40;
   
-  uStack_40 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
+  uStack_40 = _g_networkXorKey ^ (ulonglong)auStack_88;
   if ((*(int *)(dataParam + 0xc) - 4U < 2) && (*(longlong *)(dataParam + 0x10) != 0)) {
     plVar10 = (longlong *)0x0;
     plVar2 = (longlong *)(socketParam + 0x118);
@@ -25328,7 +25328,7 @@ void FUN_180857de5(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined * FUN_180857df0(void)
+void* * FUN_180857df0(void)
 
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
@@ -26226,7 +26226,7 @@ LAB_180858e04:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180859210(longlong socketParam,longlong *dataParam)
+uint64_t FUN_180859210(longlong socketParam,longlong *dataParam)
 
 {
   longlong lVar1;
@@ -26258,7 +26258,7 @@ undefined8 FUN_180859210(longlong socketParam,longlong *dataParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808592c0(longlong socketParam,longlong dataParam,undefined8 sizeParam,longlong *timeoutParam)
+uint64_t FUN_1808592c0(longlong socketParam,longlong dataParam,undefined8 sizeParam,longlong *timeoutParam)
 
 {
   longlong *plVar1;
@@ -26347,7 +26347,7 @@ undefined8 FUN_1808592c0(longlong socketParam,longlong dataParam,undefined8 size
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808592ca(longlong socketParam,longlong dataParam,undefined8 sizeParam,longlong *timeoutParam)
+uint64_t FUN_1808592ca(longlong socketParam,longlong dataParam,undefined8 sizeParam,longlong *timeoutParam)
 
 {
   longlong *plVar1;
@@ -26434,7 +26434,7 @@ undefined8 FUN_1808592ca(longlong socketParam,longlong dataParam,undefined8 size
 
 
 
-undefined8 FUN_180859384(undefined8 socketParam,ulonglong dataParam)
+uint64_t FUN_180859384(undefined8 socketParam,ulonglong dataParam)
 
 {
   uint uVar1;
@@ -26481,7 +26481,7 @@ undefined8 FUN_180859384(undefined8 socketParam,ulonglong dataParam)
 
 
 
-undefined8 FUN_1808593e4(void)
+uint64_t FUN_1808593e4(void)
 
 {
   uint uVar1;
@@ -26513,7 +26513,7 @@ undefined8 FUN_1808593e4(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180859470(longlong *socketParam,int dataParam)
+uint64_t FUN_180859470(longlong *socketParam,int dataParam)
 
 {
   undefined4 *connectionData;
@@ -26576,7 +26576,7 @@ LAB_180859535:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180859494(void)
+uint64_t FUN_180859494(void)
 
 {
   undefined4 *connectionData;
@@ -26636,7 +26636,7 @@ LAB_180859535:
 
 
 
-undefined8 FUN_180859580(void)
+uint64_t FUN_180859580(void)
 
 {
   return 0x26;
@@ -26646,7 +26646,7 @@ undefined8 FUN_180859580(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808595a0(longlong *socketParam,int dataParam)
+uint64_t FUN_1808595a0(longlong *socketParam,int dataParam)
 
 {
   undefined4 *connectionData;
@@ -26709,7 +26709,7 @@ LAB_180859665:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808595c4(undefined8 socketParam,int dataParam)
+uint64_t FUN_1808595c4(undefined8 socketParam,int dataParam)
 
 {
   undefined4 *connectionData;
@@ -26769,7 +26769,7 @@ LAB_180859665:
 
 
 
-undefined8 FUN_1808596b0(void)
+uint64_t FUN_1808596b0(void)
 
 {
   return 0x26;
@@ -26812,7 +26812,7 @@ void FUN_1808596d0(longlong socketParam,longlong dataParam)
   undefined1 auStack_68 [40];
   ulonglong uStack_40;
   
-  uStack_40 = _DAT_180bf00a8 ^ (ulonglong)auStack_e8;
+  uStack_40 = _g_networkXorKey ^ (ulonglong)auStack_e8;
   lVar6 = **(longlong **)(socketParam + 0x38);
   plVar8 = (longlong *)(lVar6 + 0x60);
   plVar7 = (longlong *)*plVar8;
@@ -26919,7 +26919,7 @@ LAB_1808597c2:
 
 
 
-undefined8 FUN_180859a50(longlong socketParam)
+uint64_t FUN_180859a50(longlong socketParam)
 
 {
   undefined4 uVar1;
@@ -27023,7 +27023,7 @@ void FUN_180859ba0(longlong socketParam,longlong *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)&lStack_78;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)&lStack_78;
   if ((dataParam != (longlong *)0x0) && (lVar3 = *dataParam, lVar3 != 0)) {
     pstatus = (int *)(lVar3 + 0xd0);
     iVar5 = 0;
@@ -27052,12 +27052,12 @@ void FUN_180859ba0(longlong socketParam,longlong *dataParam)
     FUN_1808fd200(uVar6 & 0xfffffffffffffff0,ppacketSize,lStack_78);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(_DAT_180bf00a8);
+  FUN_1808fc050(_g_networkXorKey);
 }
 
 
 
-undefined8 FUN_180859e40(longlong socketParam,longlong *dataParam,longlong *sizeParam,undefined1 timeoutParam)
+uint64_t FUN_180859e40(longlong socketParam,longlong *dataParam,longlong *sizeParam,undefined1 timeoutParam)
 
 {
   int status;
@@ -27798,7 +27798,7 @@ undefined4 FUN_18085a934(undefined8 socketParam,longlong dataParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18085a980(longlong socketParam)
+uint64_t FUN_18085a980(longlong socketParam)
 
 {
   int *pstatus;
@@ -29075,7 +29075,7 @@ FUN_18085b050(longlong socketParam,undefined8 dataParam,uint *sizeParam,uint *ti
 
 
 
-undefined8 FUN_18085b200(longlong socketParam,uint *dataParam,longlong *sizeParam)
+uint64_t FUN_18085b200(longlong socketParam,uint *dataParam,longlong *sizeParam)
 
 {
   uint uVar1;
@@ -30214,7 +30214,7 @@ void FUN_18085c620(longlong socketParam,longlong dataParam,uint *sizeParam)
 
 
 
-undefined8 FUN_18085c6f0(longlong socketParam,undefined8 dataParam,uint *sizeParam,undefined1 timeoutParam)
+uint64_t FUN_18085c6f0(longlong socketParam,undefined8 dataParam,uint *sizeParam,undefined1 timeoutParam)
 
 {
   uint uVar1;
@@ -30384,7 +30384,7 @@ void FUN_18085ca30(longlong socketParam,ulonglong dataParam)
   undefined4 uStack_3c;
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_b8;
   if (*(int *)(*(longlong *)(socketParam + 0x160) + 0x2e4) < 3) goto LAB_18085d424;
   FUN_18084da10();
   if ((*(byte *)(socketParam + 0x128) & 8) != 0) {
@@ -30535,7 +30535,7 @@ void FUN_18085ca30(longlong socketParam,ulonglong dataParam)
         uVar16 = *(uint *)(lVar17 + 0x20 + lVar14 * 0x28);
         if (uVar16 == *(uint *)(plVar15 + 3)) {
           if (*(int *)(lVar17 + 0x18 + lVar14 * 0x28) < 1) {
-            pppuStack_88 = (undefined8 ***)&DAT_18098bc73;
+            pppuStack_88 = (undefined8 ***)&g_networkEmptyString;
           }
           else {
             pppuStack_88 = *(undefined8 ****)(lVar17 + 0x10 + lVar14 * 0x28);
@@ -30801,7 +30801,7 @@ LAB_18085d424:
 
 
 
-undefined8 FUN_18085d460(undefined8 socketParam,longlong *dataParam,longlong *sizeParam,char timeoutParam)
+uint64_t FUN_18085d460(undefined8 socketParam,longlong *dataParam,longlong *sizeParam,char timeoutParam)
 
 {
   longlong *plVar1;
@@ -30848,7 +30848,7 @@ LAB_18085d4e7:
 
 
 
-undefined8 FUN_18085d570(longlong socketParam,longlong *dataParam,longlong *sizeParam,undefined1 timeoutParam)
+uint64_t FUN_18085d570(longlong socketParam,longlong *dataParam,longlong *sizeParam,undefined1 timeoutParam)
 
 {
   longlong *plVar1;
@@ -30885,7 +30885,7 @@ LAB_18085d61f:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18085d650(longlong socketParam,undefined1 *dataParam)
+uint64_t FUN_18085d650(longlong socketParam,undefined1 *dataParam)
 
 {
   longlong *plVar1;
@@ -30977,7 +30977,7 @@ void FUN_18085d7f0(longlong *socketParam,undefined8 dataParam,undefined4 sizePar
 
 
 
-undefined8 *
+uint64_t *
 FUN_18085d860(undefined8 *socketParam,undefined8 dataParam,undefined8 sizeParam,undefined8 timeoutParam,
              longlong param_5,undefined8 param_6,undefined4 param_7,undefined8 param_8,
              undefined8 param_9)
@@ -31866,7 +31866,7 @@ void FUN_18085e4a0(longlong socketParam)
 
 
 
-undefined8 FUN_18085e820(undefined8 socketParam,ulonglong dataParam)
+uint64_t FUN_18085e820(undefined8 socketParam,ulonglong dataParam)
 
 {
   FUN_18085dff0();
@@ -31878,7 +31878,7 @@ undefined8 FUN_18085e820(undefined8 socketParam,ulonglong dataParam)
 
 
 
-undefined8 FUN_18085e860(ulonglong *socketParam,undefined8 dataParam)
+uint64_t FUN_18085e860(ulonglong *socketParam,undefined8 dataParam)
 
 {
   undefined8 uVar1;
@@ -31935,7 +31935,7 @@ FUN_18085e8d0(undefined8 socketParam,undefined8 dataParam,undefined8 sizeParam,b
 
 
 
-undefined8 FUN_18085e990(longlong socketParam,longlong dataParam)
+uint64_t FUN_18085e990(longlong socketParam,longlong dataParam)
 
 {
   longlong lVar1;
@@ -31987,7 +31987,7 @@ LAB_18085ea6d:
 
 
 
-undefined8 FUN_18085ea80(longlong socketParam,uint dataParam,undefined8 sizeParam)
+uint64_t FUN_18085ea80(longlong socketParam,uint dataParam,undefined8 sizeParam)
 
 {
   longlong lVar1;
@@ -32117,7 +32117,7 @@ LAB_18085ebc2:
 
 
 
-undefined8 FUN_18085eabf(void)
+uint64_t FUN_18085eabf(void)
 
 {
   longlong lVar1;
@@ -32254,7 +32254,7 @@ void FUN_18085ec78(void)
 
 
 
-undefined8 FUN_18085ec90(longlong socketParam,undefined8 dataParam)
+uint64_t FUN_18085ec90(longlong socketParam,undefined8 dataParam)
 
 {
   int status;
@@ -32325,7 +32325,7 @@ FUN_18085ed00(undefined8 socketParam,undefined8 dataParam,undefined8 sizeParam,b
 
 
 
-undefined8 FUN_18085ee30(longlong socketParam,float dataParam,int *sizeParam,float *timeoutParam)
+uint64_t FUN_18085ee30(longlong socketParam,float dataParam,int *sizeParam,float *timeoutParam)
 
 {
   int status;
@@ -32350,7 +32350,7 @@ undefined8 FUN_18085ee30(longlong socketParam,float dataParam,int *sizeParam,flo
 
 
 
-undefined8 FUN_18085ee5e(longlong socketParam)
+uint64_t FUN_18085ee5e(longlong socketParam)
 
 {
   int status;
@@ -32372,7 +32372,7 @@ undefined8 FUN_18085ee5e(longlong socketParam)
 
 
 
-undefined8 FUN_18085eec6(void)
+uint64_t FUN_18085eec6(void)
 
 {
   longlong unaff_RDI;
@@ -32385,7 +32385,7 @@ undefined8 FUN_18085eec6(void)
 
 
 
-undefined8 FUN_18085ef10(longlong socketParam)
+uint64_t FUN_18085ef10(longlong socketParam)
 
 {
   longlong *plVar1;
@@ -32488,7 +32488,7 @@ ulonglong FUN_18085f080(longlong socketParam)
 
 
 
-undefined8 FUN_18085f0e0(longlong socketParam,char dataParam)
+uint64_t FUN_18085f0e0(longlong socketParam,char dataParam)
 
 {
   undefined8 *connectionData;
@@ -32552,7 +32552,7 @@ undefined8 FUN_18085f0e0(longlong socketParam,char dataParam)
 
 
 
-undefined8 FUN_18085f11f(undefined8 *socketParam)
+uint64_t FUN_18085f11f(undefined8 *socketParam)
 
 {
   longlong lVar1;
@@ -32612,7 +32612,7 @@ undefined8 FUN_18085f11f(undefined8 *socketParam)
 
 
 
-undefined8 FUN_18085f163(undefined8 *socketParam)
+uint64_t FUN_18085f163(undefined8 *socketParam)
 
 {
   longlong lVar1;
@@ -32690,7 +32690,7 @@ void FUN_18085f299(void)
 
 
 
-undefined8 FUN_18085f2b0(longlong socketParam)
+uint64_t FUN_18085f2b0(longlong socketParam)
 
 {
   undefined4 uVar1;
@@ -32717,7 +32717,7 @@ undefined8 FUN_18085f2b0(longlong socketParam)
 
 
 
-undefined8 FUN_18085f2d3(void)
+uint64_t FUN_18085f2d3(void)
 
 {
   longlong lVar1;
@@ -32751,7 +32751,7 @@ void FUN_18085f336(void)
 
 
 
-undefined8 FUN_18085f340(longlong socketParam)
+uint64_t FUN_18085f340(longlong socketParam)
 
 {
   longlong lVar1;
@@ -32776,7 +32776,7 @@ undefined8 FUN_18085f340(longlong socketParam)
 
 
 
-undefined8 FUN_18085f36d(void)
+uint64_t FUN_18085f36d(void)
 
 {
   longlong lVar1;
@@ -32804,7 +32804,7 @@ void FUN_18085f39d(void)
 
 
 
-undefined8 FUN_18085f440(longlong socketParam)
+uint64_t FUN_18085f440(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -33018,7 +33018,7 @@ LAB_18085f8b2:
 
 
 
-undefined8 FUN_18085f812(void)
+uint64_t FUN_18085f812(void)
 
 {
   uint in_EAX;
@@ -33062,7 +33062,7 @@ void FUN_18085f879(void)
 
 
 
-undefined8 FUN_18085f893(void)
+uint64_t FUN_18085f893(void)
 
 {
   undefined8 uVar1;
@@ -33081,7 +33081,7 @@ undefined8 FUN_18085f893(void)
 
 
 
-undefined8 FUN_18085f8bb(void)
+uint64_t FUN_18085f8bb(void)
 
 {
   return 0x1c;
@@ -33110,7 +33110,7 @@ FUN_18085f8d0(undefined8 socketParam,undefined8 dataParam,ulonglong *sizeParam,u
 
 
 
-undefined8 FUN_18085f960(longlong socketParam,undefined8 dataParam)
+uint64_t FUN_18085f960(longlong socketParam,undefined8 dataParam)
 
 {
   undefined8 *connectionData;
@@ -33163,7 +33163,7 @@ undefined8 FUN_18085f960(longlong socketParam,undefined8 dataParam)
 
 
 
-undefined8 * FUN_18085fa90(longlong *socketParam,undefined8 *dataParam)
+uint64_t * FUN_18085fa90(longlong *socketParam,undefined8 *dataParam)
 
 {
   undefined8 *connectionData;
@@ -33196,7 +33196,7 @@ undefined8 * FUN_18085fa90(longlong *socketParam,undefined8 *dataParam)
 
 
 
-undefined8 FUN_18085fb30(longlong socketParam)
+uint64_t FUN_18085fb30(longlong socketParam)
 
 {
   uint uVar1;
@@ -33278,7 +33278,7 @@ thunk_FUN_18085fbb0(longlong socketParam,undefined8 *dataParam,undefined8 *sizeP
       *(undefined8 *)(lVar3 + lVar11) = *dataParam;
       ((undefined8 *)(lVar3 + lVar11))[1] = uVar6;
       if (*(int *)(sizeParam + 1) < 1) {
-        connectionData0 = &DAT_18098bc73;
+        connectionData0 = &g_networkEmptyString;
       }
       else {
         connectionData0 = (undefined *)*sizeParam;
@@ -33371,7 +33371,7 @@ FUN_18085fbb0(longlong socketParam,undefined8 *dataParam,undefined8 *sizeParam,u
       *(undefined8 *)(lVar3 + lVar11) = *dataParam;
       ((undefined8 *)(lVar3 + lVar11))[1] = uVar6;
       if (*(int *)(sizeParam + 1) < 1) {
-        connectionData0 = &DAT_18098bc73;
+        connectionData0 = &g_networkEmptyString;
       }
       else {
         connectionData0 = (undefined *)*sizeParam;
@@ -33399,7 +33399,7 @@ FUN_18085fbb0(longlong socketParam,undefined8 *dataParam,undefined8 *sizeParam,u
 
 
 
-undefined8 FUN_18085fc0e(void)
+uint64_t FUN_18085fc0e(void)
 
 {
   longlong *plVar1;
@@ -33462,7 +33462,7 @@ undefined8 FUN_18085fc0e(void)
     *(undefined8 *)(lVar4 + lVar12) = *unaff_R12;
     ((undefined8 *)(lVar4 + lVar12))[1] = uVar7;
     if (*(int *)(unaff_R15 + 1) < 1) {
-      connectionData1 = &DAT_18098bc73;
+      connectionData1 = &g_networkEmptyString;
     }
     else {
       connectionData1 = (undefined *)*unaff_R15;
@@ -33541,7 +33541,7 @@ longlong FUN_18085fdf0(longlong socketParam,longlong *dataParam)
 
 
 
-undefined8 * FUN_18085fea0(longlong socketParam,longlong *dataParam)
+uint64_t * FUN_18085fea0(longlong socketParam,longlong *dataParam)
 
 {
   undefined8 *connectionData;
@@ -33569,7 +33569,7 @@ undefined8 * FUN_18085fea0(longlong socketParam,longlong *dataParam)
 
 
 
-undefined8 FUN_18085ff30(longlong socketParam)
+uint64_t FUN_18085ff30(longlong socketParam)
 
 {
   undefined8 *connectionData;
@@ -33591,7 +33591,7 @@ undefined8 FUN_18085ff30(longlong socketParam)
 
 
 
-undefined8 FUN_18085ff70(longlong socketParam)
+uint64_t FUN_18085ff70(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -33612,7 +33612,7 @@ undefined8 FUN_18085ff70(longlong socketParam)
 
 
 
-undefined8 FUN_18085ffc0(longlong socketParam,undefined4 dataParam,undefined8 sizeParam)
+uint64_t FUN_18085ffc0(longlong socketParam,undefined4 dataParam,undefined8 sizeParam)
 
 {
   undefined8 *connectionData;
@@ -33628,7 +33628,7 @@ undefined8 FUN_18085ffc0(longlong socketParam,undefined4 dataParam,undefined8 si
 
 
 
-undefined8 FUN_18085fff0(longlong socketParam)
+uint64_t FUN_18085fff0(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -33669,7 +33669,7 @@ undefined8 FUN_18085fff0(longlong socketParam)
 
 
 
-undefined8 FUN_1808600b0(longlong socketParam)
+uint64_t FUN_1808600b0(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -33710,7 +33710,7 @@ undefined8 FUN_1808600b0(longlong socketParam)
 
 
 
-undefined8 FUN_180860170(longlong socketParam,undefined8 dataParam)
+uint64_t FUN_180860170(longlong socketParam,undefined8 dataParam)
 
 {
   undefined8 *connectionData;
@@ -33729,7 +33729,7 @@ undefined8 FUN_180860170(longlong socketParam,undefined8 dataParam)
 // WARNING: Removing unreachable block (ram,0x000180865620)
 // WARNING: Removing unreachable block (ram,0x000180865638)
 
-undefined8 thunk_FUN_180865550(longlong socketParam)
+uint64_t thunk_FUN_180865550(longlong socketParam)
 
 {
   undefined4 *connectionData;
@@ -33793,7 +33793,7 @@ undefined8 thunk_FUN_180865550(longlong socketParam)
             *(undefined4 *)(lVar13 + -0x14) = uVar6;
             *(undefined4 *)(lVar13 + -0x10) = uVar7;
             if (*(int *)(lVar9 + -4 + lVar13) < 1) {
-              connectionData2 = &DAT_18098bc73;
+              connectionData2 = &g_networkEmptyString;
             }
             else {
               connectionData2 = *(undefined **)(lVar9 + -0xc + lVar13);
@@ -33818,7 +33818,7 @@ undefined8 thunk_FUN_180865550(longlong socketParam)
 
 
 
-undefined8 FUN_180860210(longlong socketParam,int *dataParam,ulonglong *sizeParam)
+uint64_t FUN_180860210(longlong socketParam,int *dataParam,ulonglong *sizeParam)
 
 {
   longlong *plVar1;
@@ -33859,7 +33859,7 @@ undefined8 FUN_180860210(longlong socketParam,int *dataParam,ulonglong *sizePara
 
 
 
-undefined8 FUN_180860390(longlong socketParam,longlong dataParam,undefined8 *sizeParam)
+uint64_t FUN_180860390(longlong socketParam,longlong dataParam,undefined8 *sizeParam)
 
 {
   ulonglong *connectionData;
@@ -33914,7 +33914,7 @@ undefined8 FUN_180860390(longlong socketParam,longlong dataParam,undefined8 *siz
 
 
 
-undefined8 FUN_1808603ae(longlong socketParam)
+uint64_t FUN_1808603ae(longlong socketParam)
 
 {
   ulonglong *connectionData;
@@ -33968,7 +33968,7 @@ undefined8 FUN_1808603ae(longlong socketParam)
 
 
 
-undefined8 FUN_1808603f6(void)
+uint64_t FUN_1808603f6(void)
 
 {
   int status;
@@ -34031,7 +34031,7 @@ void FUN_180860480(longlong socketParam,undefined8 dataParam,undefined8 *sizePar
   undefined1 auStack_58 [40];
   ulonglong uStack_30;
   
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_30 = _g_networkXorKey ^ (ulonglong)auStack_98;
   plVar2 = (longlong *)FUN_18085fea0();
   if (plVar2 == (longlong *)0x0) {
     lVar3 = (**(code **)(**(longlong **)(socketParam + 0x458) + 0x128))
@@ -34082,7 +34082,7 @@ LAB_1808605b0:
 
 
 
-undefined8 FUN_1808605e0(longlong socketParam)
+uint64_t FUN_1808605e0(longlong socketParam)
 
 {
   int status;
@@ -34111,7 +34111,7 @@ undefined8 FUN_1808605e0(longlong socketParam)
 
 
 
-undefined8 FUN_180860650(longlong socketParam,undefined8 dataParam,longlong *sizeParam)
+uint64_t FUN_180860650(longlong socketParam,undefined8 dataParam,longlong *sizeParam)
 
 {
   longlong lVar1;
@@ -34189,7 +34189,7 @@ void FUN_180860690(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_a0 [40];
   ulonglong uStack_78;
   
-  uStack_78 = _DAT_180bf00a8 ^ (ulonglong)auStack_1a8;
+  uStack_78 = _g_networkXorKey ^ (ulonglong)auStack_1a8;
   lVar13 = *(longlong *)(socketParam + 0x88);
   lStack_138 = socketParam;
   puStack_120 = dataParam;
@@ -35661,7 +35661,7 @@ LAB_180861693:
 
 
 
-undefined8 FUN_1808616f0(longlong socketParam,undefined8 dataParam)
+uint64_t FUN_1808616f0(longlong socketParam,undefined8 dataParam)
 
 {
   *(undefined8 *)(socketParam + 0x2b0) = dataParam;
@@ -35671,7 +35671,7 @@ undefined8 FUN_1808616f0(longlong socketParam,undefined8 dataParam)
 
 
 
-undefined8 FUN_180861720(longlong socketParam,undefined8 dataParam)
+uint64_t FUN_180861720(longlong socketParam,undefined8 dataParam)
 
 {
   undefined8 *connectionData;
@@ -35775,7 +35775,7 @@ uint FUN_1808617d0(void)
 
 
 
-undefined8 FUN_180861820(longlong socketParam,undefined8 *dataParam)
+uint64_t FUN_180861820(longlong socketParam,undefined8 *dataParam)
 
 {
   undefined8 *connectionData;
@@ -35815,7 +35815,7 @@ undefined8 FUN_180861820(longlong socketParam,undefined8 *dataParam)
 
 
 
-undefined8 FUN_1808618d0(longlong socketParam,undefined8 dataParam,uint sizeParam)
+uint64_t FUN_1808618d0(longlong socketParam,undefined8 dataParam,uint sizeParam)
 
 {
   undefined8 *connectionData;
@@ -35831,7 +35831,7 @@ undefined8 FUN_1808618d0(longlong socketParam,undefined8 dataParam,uint sizePara
 
 
 
-undefined8 FUN_180861900(longlong socketParam,int dataParam,float sizeParam)
+uint64_t FUN_180861900(longlong socketParam,int dataParam,float sizeParam)
 
 {
   undefined8 uVar1;
@@ -35863,7 +35863,7 @@ undefined8 FUN_180861900(longlong socketParam,int dataParam,float sizeParam)
 
 
 
-undefined8 FUN_180861970(longlong socketParam)
+uint64_t FUN_180861970(longlong socketParam)
 
 {
   longlong *plVar1;
@@ -35879,7 +35879,7 @@ undefined8 FUN_180861970(longlong socketParam)
 
 
 
-undefined8 FUN_1808619a0(longlong socketParam,undefined8 dataParam,undefined8 sizeParam)
+uint64_t FUN_1808619a0(longlong socketParam,undefined8 dataParam,undefined8 sizeParam)
 
 {
   longlong *plVar1;
@@ -35895,7 +35895,7 @@ undefined8 FUN_1808619a0(longlong socketParam,undefined8 dataParam,undefined8 si
 
 
 
-undefined8 FUN_1808619d0(longlong socketParam)
+uint64_t FUN_1808619d0(longlong socketParam)
 
 {
   longlong *plVar1;
@@ -35911,7 +35911,7 @@ undefined8 FUN_1808619d0(longlong socketParam)
 
 
 
-undefined8 FUN_180861a00(longlong socketParam,undefined8 dataParam,undefined8 sizeParam)
+uint64_t FUN_180861a00(longlong socketParam,undefined8 dataParam,undefined8 sizeParam)
 
 {
   longlong *plVar1;
@@ -35927,7 +35927,7 @@ undefined8 FUN_180861a00(longlong socketParam,undefined8 dataParam,undefined8 si
 
 
 
-undefined8 FUN_180861a70(longlong socketParam,undefined8 dataParam)
+uint64_t FUN_180861a70(longlong socketParam,undefined8 dataParam)
 
 {
   longlong *plVar1;
@@ -36046,7 +36046,7 @@ undefined8 FUN_180861a70(longlong socketParam,undefined8 dataParam)
 
 
 
-undefined8 FUN_180861aa8(void)
+uint64_t FUN_180861aa8(void)
 
 {
   longlong *plVar1;
@@ -36162,7 +36162,7 @@ undefined8 FUN_180861aa8(void)
 
 
 
-undefined8 FUN_180861b0c(longlong socketParam)
+uint64_t FUN_180861b0c(longlong socketParam)
 
 {
   longlong *plVar1;
@@ -36273,7 +36273,7 @@ undefined8 FUN_180861b0c(longlong socketParam)
 
 
 
-undefined8 FUN_180861b29(void)
+uint64_t FUN_180861b29(void)
 
 {
   longlong *plVar1;
@@ -36410,7 +36410,7 @@ void FUN_180861cd0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180861ce0(longlong *socketParam,int dataParam)
+uint64_t FUN_180861ce0(longlong *socketParam,int dataParam)
 
 {
   undefined4 *connectionData;
@@ -36457,7 +36457,7 @@ undefined8 FUN_180861ce0(longlong *socketParam,int dataParam)
           *(undefined4 *)(lVar11 + -0x14) = uVar5;
           *(undefined4 *)(lVar11 + -0x10) = uVar6;
           if (*(int *)(lVar8 + -4 + lVar11) < 1) {
-            connectionData0 = &DAT_18098bc73;
+            connectionData0 = &g_networkEmptyString;
           }
           else {
             connectionData0 = *(undefined **)(lVar8 + -0xc + lVar11);
@@ -36486,7 +36486,7 @@ undefined8 FUN_180861ce0(longlong *socketParam,int dataParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180861d0b(void)
+uint64_t FUN_180861d0b(void)
 
 {
   undefined4 *connectionData;
@@ -36534,7 +36534,7 @@ undefined8 FUN_180861d0b(void)
           *(undefined4 *)(lVar11 + -0x14) = uVar5;
           *(undefined4 *)(lVar11 + -0x10) = uVar6;
           if (*(int *)(lVar8 + -4 + lVar11) < 1) {
-            connectionData0 = &DAT_18098bc73;
+            connectionData0 = &g_networkEmptyString;
           }
           else {
             connectionData0 = *(undefined **)(lVar8 + -0xc + lVar11);
@@ -36565,7 +36565,7 @@ undefined8 FUN_180861d0b(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180861d76(longlong socketParam)
+uint64_t FUN_180861d76(longlong socketParam)
 
 {
   undefined4 *connectionData;
@@ -36603,7 +36603,7 @@ undefined8 FUN_180861d76(longlong socketParam)
       *(undefined4 *)(lVar8 + -0x14) = uVar4;
       *(undefined4 *)(lVar8 + -0x10) = uVar5;
       if (*(int *)(lVar6 + -4 + lVar8) < 1) {
-        puVar7 = &DAT_18098bc73;
+        puVar7 = &g_networkEmptyString;
       }
       else {
         puVar7 = *(undefined **)(lVar6 + -0xc + lVar8);
@@ -36633,7 +36633,7 @@ undefined8 FUN_180861d76(longlong socketParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180861d98(undefined8 socketParam,undefined8 dataParam)
+uint64_t FUN_180861d98(undefined8 socketParam,undefined8 dataParam)
 
 {
   undefined4 *connectionData;
@@ -36671,7 +36671,7 @@ undefined8 FUN_180861d98(undefined8 socketParam,undefined8 dataParam)
     *(undefined4 *)(lVar7 + -0x14) = bufferSize;
     *(undefined4 *)(lVar7 + -0x10) = uVar4;
     if (*(int *)(lVar5 + -4 + lVar7) < 1) {
-      puVar6 = &DAT_18098bc73;
+      puVar6 = &g_networkEmptyString;
     }
     else {
       puVar6 = *(undefined **)(lVar5 + -0xc + lVar7);
@@ -36699,7 +36699,7 @@ undefined8 FUN_180861d98(undefined8 socketParam,undefined8 dataParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180861e7c(void)
+uint64_t FUN_180861e7c(void)
 
 {
   longlong unaff_RBP;
@@ -36719,7 +36719,7 @@ undefined8 FUN_180861e7c(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180861e8b(void)
+uint64_t FUN_180861e8b(void)
 
 {
   longlong unaff_RBP;
@@ -36737,7 +36737,7 @@ undefined8 FUN_180861e8b(void)
 
 
 
-undefined8 FUN_180861ed5(void)
+uint64_t FUN_180861ed5(void)
 
 {
   return 0x26;
@@ -36747,7 +36747,7 @@ undefined8 FUN_180861ed5(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180861ef0(longlong *socketParam,int dataParam)
+uint64_t FUN_180861ef0(longlong *socketParam,int dataParam)
 
 {
   int status;
@@ -36795,7 +36795,7 @@ LAB_180861f94:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180861f14(undefined8 socketParam,int dataParam)
+uint64_t FUN_180861f14(undefined8 socketParam,int dataParam)
 
 {
   int status;
@@ -36840,7 +36840,7 @@ LAB_180861f94:
 
 
 
-undefined8 FUN_180861fdf(void)
+uint64_t FUN_180861fdf(void)
 
 {
   return 0x26;
@@ -36860,7 +36860,7 @@ void FUN_180862000(longlong socketParam,undefined8 dataParam,undefined8 sizePara
   undefined1 auStack_48 [40];
   ulonglong uStack_20;
   
-  uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
+  uStack_20 = _g_networkXorKey ^ (ulonglong)auStack_68;
   lVar1 = (**(code **)(**(longlong **)(socketParam + 0x458) + 0x128))
                     (*(longlong **)(socketParam + 0x458),dataParam,1);
   if (lVar1 == 0) {
@@ -36926,7 +36926,7 @@ void FUN_180862080(longlong socketParam,longlong *dataParam,undefined8 sizeParam
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_168;
   lStack_e8 = socketParam;
   plStack_d8 = dataParam;
   (**(code **)(*dataParam + 0x30))(dataParam,&uStack_f8);
@@ -37263,7 +37263,7 @@ void FUN_1808624a0(longlong socketParam)
 
 
 
-undefined8 FUN_180862670(longlong socketParam)
+uint64_t FUN_180862670(longlong socketParam)
 
 {
   uint uVar1;
@@ -37289,7 +37289,7 @@ undefined8 FUN_180862670(longlong socketParam)
 
 
 
-undefined8 FUN_1808626e0(longlong socketParam,longlong *dataParam)
+uint64_t FUN_1808626e0(longlong socketParam,longlong *dataParam)
 
 {
   int status;
@@ -37420,7 +37420,7 @@ LAB_180862804:
 
 
 
-undefined8 FUN_180862910(longlong socketParam,longlong dataParam)
+uint64_t FUN_180862910(longlong socketParam,longlong dataParam)
 
 {
   int status;
@@ -37491,7 +37491,7 @@ void FUN_1808629a0(longlong socketParam,undefined8 dataParam,char sizeParam)
   undefined1 auStack_68 [40];
   ulonglong uStack_40;
   
-  uStack_40 = _DAT_180bf00a8 ^ (ulonglong)auStack_e8;
+  uStack_40 = _g_networkXorKey ^ (ulonglong)auStack_e8;
   plVar3 = (longlong *)FUN_18085fea0();
   if (plVar3 != (longlong *)0x0) {
     *(uint *)((longlong)plVar3 + 0x1c) = *(uint *)((longlong)plVar3 + 0x1c) & 0xfffffffa;
@@ -37753,7 +37753,7 @@ void FUN_180862b96(void)
 
 
 
-undefined8 FUN_180862bc0(longlong socketParam,float dataParam)
+uint64_t FUN_180862bc0(longlong socketParam,float dataParam)
 
 {
   undefined8 uVar1;
@@ -37778,7 +37778,7 @@ undefined8 FUN_180862bc0(longlong socketParam,float dataParam)
 
 
 
-undefined8 FUN_180862c50(undefined8 socketParam,undefined4 dataParam)
+uint64_t FUN_180862c50(undefined8 socketParam,undefined4 dataParam)
 
 {
   undefined8 uVar1;
@@ -37835,7 +37835,7 @@ undefined8 FUN_180862c50(undefined8 socketParam,undefined4 dataParam)
 // WARNING: Removing unreachable block (ram,0x000180862cf8)
 // WARNING: Removing unreachable block (ram,0x000180862d08)
 
-undefined8 FUN_180862c75(void)
+uint64_t FUN_180862c75(void)
 
 {
   undefined8 uVar1;
@@ -37879,7 +37879,7 @@ void FUN_180862d17(void)
 
 
 
-undefined8 FUN_180862d20(longlong socketParam,ulonglong dataParam)
+uint64_t FUN_180862d20(longlong socketParam,ulonglong dataParam)
 
 {
   undefined8 uVar1;
@@ -38019,7 +38019,7 @@ ulonglong FUN_180862e00(longlong socketParam,byte dataParam)
 
 
 
-undefined8 FUN_180862e90(longlong socketParam,byte dataParam)
+uint64_t FUN_180862e90(longlong socketParam,byte dataParam)
 
 {
   char cVar1;
@@ -38127,7 +38127,7 @@ undefined8 FUN_180862e90(longlong socketParam,byte dataParam)
 
 
 
-undefined8 FUN_180863140(longlong socketParam,int dataParam,undefined4 sizeParam)
+uint64_t FUN_180863140(longlong socketParam,int dataParam,undefined4 sizeParam)
 
 {
   undefined8 uVar1;
@@ -38143,7 +38143,7 @@ undefined8 FUN_180863140(longlong socketParam,int dataParam,undefined4 sizeParam
 
 
 
-undefined8 FUN_180863180(longlong socketParam,byte dataParam)
+uint64_t FUN_180863180(longlong socketParam,byte dataParam)
 
 {
   undefined8 *connectionData;
@@ -38610,7 +38610,7 @@ undefined4 FUN_1808637ae(void)
 
 
 
-undefined8 FUN_180863820(longlong socketParam,int dataParam,undefined1 sizeParam)
+uint64_t FUN_180863820(longlong socketParam,int dataParam,undefined1 sizeParam)
 
 {
   int status;
@@ -38682,7 +38682,7 @@ void FUN_180863930(longlong socketParam,longlong dataParam,undefined8 sizeParam,
 
 
 
-undefined8 FUN_1808639c0(longlong socketParam,undefined8 dataParam)
+uint64_t FUN_1808639c0(longlong socketParam,undefined8 dataParam)
 
 {
   undefined8 *connectionData;
@@ -38716,7 +38716,7 @@ undefined8 FUN_1808639c0(longlong socketParam,undefined8 dataParam)
 
 
 
-undefined8 FUN_1808639e2(void)
+uint64_t FUN_1808639e2(void)
 
 {
   uint uVar1;
@@ -38749,7 +38749,7 @@ undefined8 FUN_1808639e2(void)
 
 
 
-undefined8 FUN_180863a57(void)
+uint64_t FUN_180863a57(void)
 
 {
   longlong unaff_RBP;
@@ -38760,7 +38760,7 @@ undefined8 FUN_180863a57(void)
 
 
 
-undefined8 FUN_180863a80(longlong socketParam,undefined8 dataParam)
+uint64_t FUN_180863a80(longlong socketParam,undefined8 dataParam)
 
 {
   undefined8 *connectionData;
@@ -38791,7 +38791,7 @@ undefined8 FUN_180863a80(longlong socketParam,undefined8 dataParam)
 
 
 
-undefined8 FUN_180863aa3(uint socketParam)
+uint64_t FUN_180863aa3(uint socketParam)
 
 {
   undefined8 *connectionData;
@@ -38820,7 +38820,7 @@ undefined8 FUN_180863aa3(uint socketParam)
 
 
 
-undefined8 FUN_180863b09(void)
+uint64_t FUN_180863b09(void)
 
 {
   longlong lVar1;
@@ -38837,7 +38837,7 @@ undefined8 FUN_180863b09(void)
 
 
 
-undefined8 FUN_180863b30(longlong socketParam)
+uint64_t FUN_180863b30(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -38854,7 +38854,7 @@ undefined8 FUN_180863b30(longlong socketParam)
 
 
 
-undefined8 FUN_180863b80(longlong socketParam)
+uint64_t FUN_180863b80(longlong socketParam)
 
 {
   char cVar1;
@@ -38885,7 +38885,7 @@ void FUN_180863bd0(void)
   undefined1 auStack_2a8 [624];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_2e8;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_2e8;
                     // WARNING: Subroutine does not return
   memset(auStack_2a8,0,0x60);
 }
@@ -39894,7 +39894,7 @@ undefined4 FUN_18086463a(void)
 
 
 
-undefined8 FUN_1808646a0(longlong socketParam)
+uint64_t FUN_1808646a0(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -40009,7 +40009,7 @@ void FUN_180864850(longlong socketParam)
   float afStack_e8 [8];
   ulonglong uStack_c8;
   
-  uStack_c8 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_c8 = _g_networkXorKey ^ (ulonglong)auStack_168;
   fStack_f0 = *(float *)(socketParam + 0x2fc);
   if (*(float *)(socketParam + 0x300) == 0.0) {
     fVar19 = 1.0;
@@ -40840,7 +40840,7 @@ void FUN_180865027(float socketParam)
 
 
 
-undefined8 FUN_1808650a0(longlong socketParam,byte dataParam)
+uint64_t FUN_1808650a0(longlong socketParam,byte dataParam)
 
 {
   longlong *plVar1;
@@ -41028,7 +41028,7 @@ undefined8 FUN_1808650a0(longlong socketParam,byte dataParam)
 
 
 
-undefined8 FUN_180865286(void)
+uint64_t FUN_180865286(void)
 
 {
   undefined8 *connectionData;
@@ -41113,7 +41113,7 @@ undefined8 FUN_180865286(void)
 
 
 
-undefined8 FUN_1808652fd(void)
+uint64_t FUN_1808652fd(void)
 
 {
   longlong lVar1;
@@ -41174,7 +41174,7 @@ undefined8 FUN_1808652fd(void)
 
 
 
-undefined8 FUN_180865470(longlong socketParam)
+uint64_t FUN_180865470(longlong socketParam)
 
 {
   longlong *plVar1;
@@ -41224,7 +41224,7 @@ undefined8 FUN_180865470(longlong socketParam)
 
 
 
-undefined8 FUN_18086547c(longlong socketParam)
+uint64_t FUN_18086547c(longlong socketParam)
 
 {
   longlong *plVar1;
@@ -41273,7 +41273,7 @@ undefined8 FUN_18086547c(longlong socketParam)
 
 
 
-undefined8 FUN_1808654be(void)
+uint64_t FUN_1808654be(void)
 
 {
   longlong *plVar1;
@@ -41309,7 +41309,7 @@ undefined8 FUN_1808654be(void)
 
 
 
-undefined8 FUN_18086551b(void)
+uint64_t FUN_18086551b(void)
 
 {
   longlong unaff_RBP;
@@ -41324,7 +41324,7 @@ undefined8 FUN_18086551b(void)
 
 
 
-undefined8 FUN_180865541(undefined8 socketParam)
+uint64_t FUN_180865541(undefined8 socketParam)
 
 {
   undefined4 connectionStatus;
@@ -41335,7 +41335,7 @@ undefined8 FUN_180865541(undefined8 socketParam)
 
 
 
-undefined8 FUN_180865550(longlong socketParam,char dataParam)
+uint64_t FUN_180865550(longlong socketParam,char dataParam)
 
 {
   undefined8 *connectionData;
@@ -41409,7 +41409,7 @@ undefined8 FUN_180865550(longlong socketParam,char dataParam)
               *(undefined4 *)(lVar14 + -0x14) = uVar6;
               *(undefined4 *)(lVar14 + -0x10) = uVar7;
               if (*(int *)(lVar10 + -4 + lVar14) < 1) {
-                connectionData3 = &DAT_18098bc73;
+                connectionData3 = &g_networkEmptyString;
               }
               else {
                 connectionData3 = *(undefined **)(lVar10 + -0xc + lVar14);
@@ -41435,7 +41435,7 @@ undefined8 FUN_180865550(longlong socketParam,char dataParam)
 
 
 
-undefined8 FUN_1808655bb(void)
+uint64_t FUN_1808655bb(void)
 
 {
   undefined8 *connectionData;
@@ -41511,7 +41511,7 @@ undefined8 FUN_1808655bb(void)
           *(undefined4 *)(lVar14 + -0x14) = uVar6;
           *(undefined4 *)(lVar14 + -0x10) = uVar7;
           if (*(int *)(lVar10 + -4 + lVar14) < 1) {
-            connectionData3 = &DAT_18098bc73;
+            connectionData3 = &g_networkEmptyString;
           }
           else {
             connectionData3 = *(undefined **)(lVar10 + -0xc + lVar14);
@@ -41546,7 +41546,7 @@ void FUN_1808657eb(void)
 
 
 
-undefined8 FUN_180865800(longlong socketParam,undefined1 *dataParam)
+uint64_t FUN_180865800(longlong socketParam,undefined1 *dataParam)
 
 {
   longlong *plVar1;
@@ -41659,7 +41659,7 @@ LAB_1808659de:
 
 
 
-undefined8 FUN_18086582c(void)
+uint64_t FUN_18086582c(void)
 
 {
   longlong *plVar1;
@@ -41780,7 +41780,7 @@ void FUN_180865a0f(void)
 
 
 
-undefined8 * FUN_180865a20(undefined8 *socketParam)
+uint64_t * FUN_180865a20(undefined8 *socketParam)
 
 {
   undefined4 uVar1;
@@ -41837,7 +41837,7 @@ undefined8 * FUN_180865a20(undefined8 *socketParam)
 
 
 
-undefined8 * FUN_180865b00(undefined8 *socketParam)
+uint64_t * FUN_180865b00(undefined8 *socketParam)
 
 {
   undefined4 uVar1;
@@ -41891,7 +41891,7 @@ undefined8 * FUN_180865b00(undefined8 *socketParam)
 
 
 
-undefined8 * FUN_180865bc0(undefined8 *socketParam,ulonglong dataParam)
+uint64_t * FUN_180865bc0(undefined8 *socketParam,ulonglong dataParam)
 
 {
   FUN_180840270(socketParam + 0x11);
@@ -41908,7 +41908,7 @@ undefined8 * FUN_180865bc0(undefined8 *socketParam,ulonglong dataParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180865c20(longlong socketParam,longlong dataParam,undefined8 sizeParam)
+uint64_t FUN_180865c20(longlong socketParam,longlong dataParam,undefined8 sizeParam)
 
 {
   undefined4 uVar1;
@@ -42020,7 +42020,7 @@ undefined8 FUN_180865c20(longlong socketParam,longlong dataParam,undefined8 size
 
 
 
-undefined8 FUN_180865e20(longlong socketParam)
+uint64_t FUN_180865e20(longlong socketParam)
 
 {
   longlong *plVar1;
@@ -42066,7 +42066,7 @@ undefined8 FUN_180865e20(longlong socketParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180865ec0(longlong *socketParam)
+uint64_t FUN_180865ec0(longlong *socketParam)
 
 {
   int status;
@@ -42112,7 +42112,7 @@ undefined8 FUN_180865ec0(longlong *socketParam)
 
 
 
-undefined8 FUN_180865f90(longlong socketParam,longlong dataParam)
+uint64_t FUN_180865f90(longlong socketParam,longlong dataParam)
 
 {
   undefined8 uVar1;
@@ -42128,7 +42128,7 @@ undefined8 FUN_180865f90(longlong socketParam,longlong dataParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180865fc0(longlong socketParam,undefined2 dataParam,undefined8 sizeParam,char timeoutParam)
+uint64_t FUN_180865fc0(longlong socketParam,undefined2 dataParam,undefined8 sizeParam,char timeoutParam)
 
 {
   char cVar1;
@@ -42236,7 +42236,7 @@ LAB_180866197:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808661e0(longlong *socketParam,longlong dataParam,int sizeParam)
+uint64_t FUN_1808661e0(longlong *socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined8 *connectionData;
@@ -42312,7 +42312,7 @@ undefined8 FUN_1808661e0(longlong *socketParam,longlong dataParam,int sizeParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180866340(longlong socketParam,undefined8 *dataParam)
+uint64_t FUN_180866340(longlong socketParam,undefined8 *dataParam)
 
 {
   undefined8 uVar1;
@@ -42353,7 +42353,7 @@ void FUN_180866550(undefined8 socketParam,longlong dataParam)
   undefined1 auStack_268 [560];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_268;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_268;
   plVar1 = (longlong *)func_0x00018084c030(*(undefined4 *)(dataParam + 0xc));
   if (plVar1 != (longlong *)0x0) {
     packetSize = (**(code **)(*plVar1 + 8))(plVar1);
@@ -42370,7 +42370,7 @@ void FUN_180866550(undefined8 socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180866820(longlong *socketParam,undefined8 *dataParam)
+uint64_t FUN_180866820(longlong *socketParam,undefined8 *dataParam)
 
 {
   int status;
@@ -42410,7 +42410,7 @@ undefined8 FUN_180866820(longlong *socketParam,undefined8 *dataParam)
 
 
 
-undefined8 FUN_1808668a0(longlong socketParam,longlong dataParam,undefined8 sizeParam)
+uint64_t FUN_1808668a0(longlong socketParam,longlong dataParam,undefined8 sizeParam)
 
 {
   undefined4 uVar1;
@@ -42487,7 +42487,7 @@ LAB_1808668d6:
 
 
 
-undefined8 FUN_1808669b0(longlong socketParam,longlong *dataParam,undefined8 sizeParam)
+uint64_t FUN_1808669b0(longlong socketParam,longlong *dataParam,undefined8 sizeParam)
 
 {
   longlong *plVar1;
@@ -42539,7 +42539,7 @@ undefined8 FUN_1808669b0(longlong socketParam,longlong *dataParam,undefined8 siz
 
 
 
-undefined8 FUN_180866a90(longlong socketParam,undefined8 dataParam)
+uint64_t FUN_180866a90(longlong socketParam,undefined8 dataParam)
 
 {
   longlong *plVar1;
@@ -42586,7 +42586,7 @@ undefined8 FUN_180866a90(longlong socketParam,undefined8 dataParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180866ba0(longlong socketParam,undefined8 dataParam)
+uint64_t FUN_180866ba0(longlong socketParam,undefined8 dataParam)
 
 {
   int status;
@@ -42665,7 +42665,7 @@ void FUN_180866c90(longlong socketParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180866d00(longlong socketParam,int dataParam,char sizeParam,char timeoutParam)
+uint64_t FUN_180866d00(longlong socketParam,int dataParam,char sizeParam,char timeoutParam)
 
 {
   longlong lVar1;
@@ -42780,7 +42780,7 @@ undefined8 FUN_180866d00(longlong socketParam,int dataParam,char sizeParam,char 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180866e25(void)
+uint64_t FUN_180866e25(void)
 
 {
   char cVar1;
@@ -42834,7 +42834,7 @@ undefined8 FUN_180866e25(void)
 
 
 
-undefined8 FUN_180866e97(void)
+uint64_t FUN_180866e97(void)
 
 {
   char cVar1;
@@ -42898,7 +42898,7 @@ int FUN_180866f50(undefined8 socketParam,undefined4 *dataParam,undefined8 *sizeP
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180866fe0(undefined8 *socketParam,longlong *dataParam,char sizeParam)
+uint64_t FUN_180866fe0(undefined8 *socketParam,longlong *dataParam,char sizeParam)
 
 {
   longlong lVar1;
@@ -42963,7 +42963,7 @@ undefined8 FUN_180866fe0(undefined8 *socketParam,longlong *dataParam,char sizePa
 
 
 
-undefined8 FUN_180867092(void)
+uint64_t FUN_180867092(void)
 
 {
   longlong lVar1;
@@ -43004,7 +43004,7 @@ undefined8 FUN_180867092(void)
 
 
 
-undefined8 FUN_180867111(void)
+uint64_t FUN_180867111(void)
 
 {
   undefined8 uVar1;
@@ -43028,7 +43028,7 @@ undefined8 FUN_180867111(void)
 
 
 
-undefined8 FUN_180867170(longlong socketParam,longlong *dataParam)
+uint64_t FUN_180867170(longlong socketParam,longlong *dataParam)
 
 {
   int status;
@@ -43064,7 +43064,7 @@ undefined8 FUN_180867170(longlong socketParam,longlong *dataParam)
 
 
 
-undefined8 FUN_180867280(longlong socketParam,undefined8 dataParam)
+uint64_t FUN_180867280(longlong socketParam,undefined8 dataParam)
 
 {
   longlong *plVar1;
@@ -43116,7 +43116,7 @@ undefined8 FUN_180867280(longlong socketParam,undefined8 dataParam)
 
 
 
-undefined8 FUN_1808672e4(void)
+uint64_t FUN_1808672e4(void)
 
 {
   longlong *plVar1;
@@ -43171,7 +43171,7 @@ void FUN_18086735a(void)
 
 
 
-undefined8 FUN_1808673a0(longlong socketParam)
+uint64_t FUN_1808673a0(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -43203,7 +43203,7 @@ undefined8 FUN_1808673a0(longlong socketParam)
     }
     if (999 < aiStackX_8[0] - *(int *)(socketParam + 0x78)) {
       if (*(int *)(socketParam + 0x90) < 1) {
-        ppacketSize = &DAT_18098bc73;
+        ppacketSize = &g_networkEmptyString;
       }
       else {
         ppacketSize = *(undefined **)(socketParam + 0x88);
@@ -43217,7 +43217,7 @@ undefined8 FUN_1808673a0(longlong socketParam)
 
 
 
-undefined8 FUN_180867470(longlong socketParam,undefined8 dataParam,ulonglong sizeParam)
+uint64_t FUN_180867470(longlong socketParam,undefined8 dataParam,ulonglong sizeParam)
 
 {
   if ((ulonglong)(*(longlong *)(socketParam + 0x10) - *(longlong *)(socketParam + 0x18)) < sizeParam) {
@@ -43250,7 +43250,7 @@ void FUN_1808674e0(longlong *socketParam,longlong dataParam)
   undefined8 uStack_28;
   ulonglong uStack_20;
   
-  uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
+  uStack_20 = _g_networkXorKey ^ (ulonglong)auStack_58;
   uStack_38 = 0;
   iVar3 = FUN_18088c740(&uStack_38,socketParam[2]);
   if (iVar3 == 0) {
@@ -43294,7 +43294,7 @@ LAB_1808675ba:
 
 
 
-undefined8 FUN_180867600(undefined8 *socketParam,int *dataParam,int *sizeParam)
+uint64_t FUN_180867600(undefined8 *socketParam,int *dataParam,int *sizeParam)
 
 {
   undefined8 uVar1;
@@ -43327,7 +43327,7 @@ LAB_180867645:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808676f0(longlong *socketParam,int dataParam)
+uint64_t FUN_1808676f0(longlong *socketParam,int dataParam)
 
 {
   undefined4 *connectionData;
@@ -43388,7 +43388,7 @@ LAB_1808677af:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180867714(undefined8 socketParam,int dataParam)
+uint64_t FUN_180867714(undefined8 socketParam,int dataParam)
 
 {
   undefined4 *connectionData;
@@ -43446,7 +43446,7 @@ LAB_1808677af:
 
 
 
-undefined8 FUN_1808677fa(void)
+uint64_t FUN_1808677fa(void)
 
 {
   return 0x26;
@@ -43512,7 +43512,7 @@ void FUN_180867810(longlong *socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_1808678e0(undefined8 *socketParam,int *dataParam,undefined4 sizeParam,undefined1 timeoutParam)
+uint64_t FUN_1808678e0(undefined8 *socketParam,int *dataParam,undefined4 sizeParam,undefined1 timeoutParam)
 
 {
   undefined8 uVar1;
@@ -43641,7 +43641,7 @@ FUN_180867b40(longlong socketParam,longlong dataParam,undefined8 sizeParam,undef
     uStack_20 = 0;
     uStack_14 = 0;
     if (*(int *)(timeoutParam + 1) < 1) {
-      puStack_28 = &DAT_18098bc73;
+      puStack_28 = &g_networkEmptyString;
     }
     else {
       puStack_28 = (undefined *)*timeoutParam;
@@ -43661,7 +43661,7 @@ FUN_180867b40(longlong socketParam,longlong dataParam,undefined8 sizeParam,undef
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180867bc0(undefined8 *socketParam)
+uint64_t FUN_180867bc0(undefined8 *socketParam)
 
 {
   undefined8 *connectionData;
@@ -43724,7 +43724,7 @@ FUN_180867cf0(longlong socketParam,longlong dataParam,undefined8 sizeParam,undef
   if ((*(uint *)(socketParam + 0x74) & 0x100) != 0) {
     uStack_14 = 0;
     if (*(int *)(timeoutParam + 1) < 1) {
-      puStack_28 = &DAT_18098bc73;
+      puStack_28 = &g_networkEmptyString;
     }
     else {
       puStack_28 = (undefined *)*timeoutParam;
@@ -43856,7 +43856,7 @@ void FUN_180867f80(longlong socketParam,uint dataParam,undefined8 *sizeParam)
   undefined4 uStack_2c;
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
+  uStack_28 = _g_networkXorKey ^ (ulonglong)auStack_88;
   if ((((*(longlong *)(socketParam + 0x78) != 0) && ((*(uint *)(socketParam + 0x74) & dataParam) != 0)) &&
       (*(int *)(socketParam + 8) != 0)) &&
      ((status = func_0x00018088c590(*(int *)(socketParam + 8),alStack_68), status == 0 &&
@@ -43922,7 +43922,7 @@ void FUN_180867f80(longlong socketParam,uint dataParam,undefined8 *sizeParam)
 
 
 
-undefined8 FUN_180868160(longlong socketParam,uint dataParam,undefined8 sizeParam)
+uint64_t FUN_180868160(longlong socketParam,uint dataParam,undefined8 sizeParam)
 
 {
   undefined8 uVar1;
@@ -43982,7 +43982,7 @@ undefined4 FUN_1808681d0(longlong socketParam,int *dataParam,ulonglong *sizePara
 
 
 
-undefined8 FUN_180868210(int *socketParam,longlong dataParam,int sizeParam,longlong timeoutParam)
+uint64_t FUN_180868210(int *socketParam,longlong dataParam,int sizeParam,longlong timeoutParam)
 
 {
   longlong networkContext;
@@ -44009,7 +44009,7 @@ undefined8 FUN_180868210(int *socketParam,longlong dataParam,int sizeParam,longl
 
 
 
-undefined8 FUN_180868246(undefined8 socketParam,undefined8 dataParam,int sizeParam,longlong timeoutParam)
+uint64_t FUN_180868246(undefined8 socketParam,undefined8 dataParam,int sizeParam,longlong timeoutParam)
 
 {
   longlong *unaff_RSI;
@@ -44024,7 +44024,7 @@ undefined8 FUN_180868246(undefined8 socketParam,undefined8 dataParam,int sizePar
 
 
 
-undefined8 FUN_18086825f(void)
+uint64_t FUN_18086825f(void)
 
 {
   undefined8 *unaff_RSI;
@@ -44036,7 +44036,7 @@ undefined8 FUN_18086825f(void)
 
 
 
-undefined8 FUN_180868270(longlong socketParam,undefined4 *dataParam,undefined4 *sizeParam)
+uint64_t FUN_180868270(longlong socketParam,undefined4 *dataParam,undefined4 *sizeParam)
 
 {
   undefined4 uVar1;
@@ -44057,7 +44057,7 @@ undefined8 FUN_180868270(longlong socketParam,undefined4 *dataParam,undefined4 *
 
 
 
-undefined8 FUN_1808682e0(longlong socketParam,undefined4 *dataParam,undefined4 *sizeParam)
+uint64_t FUN_1808682e0(longlong socketParam,undefined4 *dataParam,undefined4 *sizeParam)
 
 {
   undefined4 uVar1;
@@ -44098,7 +44098,7 @@ void FUN_180868330(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_58 [40];
   ulonglong uStack_30;
   
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_78;
+  uStack_30 = _g_networkXorKey ^ (ulonglong)auStack_78;
   plVar7 = (longlong *)0x0;
   plVar6 = plVar7;
   plVar9 = plVar7;
@@ -44253,7 +44253,7 @@ void FUN_180868490(longlong socketParam,longlong dataParam,longlong sizeParam)
   undefined1 auStack_68 [40];
   ulonglong uStack_40;
   
-  uStack_40 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
+  uStack_40 = _g_networkXorKey ^ (ulonglong)auStack_88;
   if ((dataParam != 0) && (sizeParam != 0)) {
     *(longlong *)(socketParam + 0x18) = sizeParam;
     *(undefined8 *)(socketParam + 0x78) = *(undefined8 *)(*(longlong *)(sizeParam + 0xd0) + 0x40);
@@ -44297,7 +44297,7 @@ LAB_1808685dc:
 
 
 
-undefined8 FUN_180868640(longlong socketParam,longlong dataParam,undefined8 *sizeParam,undefined8 timeoutParam)
+uint64_t FUN_180868640(longlong socketParam,longlong dataParam,undefined8 *sizeParam,undefined8 timeoutParam)
 
 {
   undefined8 uVar1;
@@ -44309,7 +44309,7 @@ undefined8 FUN_180868640(longlong socketParam,longlong dataParam,undefined8 *siz
   }
   if ((*(uint *)(socketParam + 0x74) & 0x200) != 0) {
     if (*(int *)(sizeParam + 1) < 1) {
-      puStack_18 = &DAT_18098bc73;
+      puStack_18 = &g_networkEmptyString;
     }
     else {
       puStack_18 = (undefined *)*sizeParam;
@@ -44325,7 +44325,7 @@ undefined8 FUN_180868640(longlong socketParam,longlong dataParam,undefined8 *siz
 
 
 
-undefined8 FUN_1808686a0(longlong socketParam,longlong dataParam,undefined8 *sizeParam,undefined8 timeoutParam)
+uint64_t FUN_1808686a0(longlong socketParam,longlong dataParam,undefined8 *sizeParam,undefined8 timeoutParam)
 
 {
   undefined8 uVar1;
@@ -44337,7 +44337,7 @@ undefined8 FUN_1808686a0(longlong socketParam,longlong dataParam,undefined8 *siz
   }
   if ((*(uint *)(socketParam + 0x74) & 0x400) != 0) {
     if (*(int *)(sizeParam + 1) < 1) {
-      puStack_18 = &DAT_18098bc73;
+      puStack_18 = &g_networkEmptyString;
     }
     else {
       puStack_18 = (undefined *)*sizeParam;
@@ -44355,7 +44355,7 @@ undefined8 FUN_1808686a0(longlong socketParam,longlong dataParam,undefined8 *siz
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180868700(longlong *socketParam,int dataParam)
+uint64_t FUN_180868700(longlong *socketParam,int dataParam)
 
 {
   longlong lVar1;
@@ -44392,7 +44392,7 @@ LAB_180868794:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180868724(undefined8 socketParam,int dataParam)
+uint64_t FUN_180868724(undefined8 socketParam,int dataParam)
 
 {
   longlong lVar1;
@@ -44426,7 +44426,7 @@ LAB_180868794:
 
 
 
-undefined8 FUN_1808687df(void)
+uint64_t FUN_1808687df(void)
 
 {
   return 0x26;
@@ -44500,7 +44500,7 @@ void FUN_180868800(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180868970(longlong socketParam,int dataParam,undefined8 sizeParam)
+uint64_t FUN_180868970(longlong socketParam,int dataParam,undefined8 sizeParam)
 
 {
   int status;
@@ -44553,7 +44553,7 @@ void FUN_1808689a5(void)
 
 
 
-undefined8 FUN_1808689f2(void)
+uint64_t FUN_1808689f2(void)
 
 {
   return 0x1e;
@@ -44561,7 +44561,7 @@ undefined8 FUN_1808689f2(void)
 
 
 
-undefined8 FUN_180868a00(longlong *socketParam,int dataParam)
+uint64_t FUN_180868a00(longlong *socketParam,int dataParam)
 
 {
   int status;
@@ -44593,7 +44593,7 @@ undefined8 FUN_180868a00(longlong *socketParam,int dataParam)
 
 
 
-undefined8 FUN_180868a33(longlong socketParam)
+uint64_t FUN_180868a33(longlong socketParam)
 
 {
   int in_EAX;
@@ -44617,7 +44617,7 @@ undefined8 FUN_180868a33(longlong socketParam)
 
 
 
-undefined8 FUN_180868a47(undefined8 socketParam,uint dataParam)
+uint64_t FUN_180868a47(undefined8 socketParam,uint dataParam)
 
 {
   longlong socketContext;
@@ -44637,7 +44637,7 @@ undefined8 FUN_180868a47(undefined8 socketParam,uint dataParam)
 
 
 
-undefined8 FUN_180868a67(void)
+uint64_t FUN_180868a67(void)
 
 {
   undefined4 connectionStatus;
@@ -44649,7 +44649,7 @@ undefined8 FUN_180868a67(void)
 
 
 
-undefined8 FUN_180868a6c(void)
+uint64_t FUN_180868a6c(void)
 
 {
   undefined4 connectionStatus;
@@ -44691,7 +44691,7 @@ void FUN_180868a80(char socketParam,undefined8 dataParam,longlong *sizeParam,lon
   undefined1 auStack_78 [40];
   ulonglong uStack_50;
   
-  uStack_50 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
+  uStack_50 = _g_networkXorKey ^ (ulonglong)auStack_b8;
   status0 = 0;
   cStack_96 = socketParam;
   uStack_88 = dataParam;
@@ -44775,7 +44775,7 @@ LAB_180868c96:
 
 
 
-undefined8 FUN_180868d20(code *socketParam,longlong dataParam,undefined8 sizeParam)
+uint64_t FUN_180868d20(code *socketParam,longlong dataParam,undefined8 sizeParam)
 
 {
   undefined8 uVar1;
@@ -44793,7 +44793,7 @@ undefined8 FUN_180868d20(code *socketParam,longlong dataParam,undefined8 sizePar
 
 
 
-undefined8 FUN_180868d80(code *socketParam,longlong dataParam,undefined8 sizeParam)
+uint64_t FUN_180868d80(code *socketParam,longlong dataParam,undefined8 sizeParam)
 
 {
   undefined8 uVar1;
@@ -44811,7 +44811,7 @@ undefined8 FUN_180868d80(code *socketParam,longlong dataParam,undefined8 sizePar
 
 
 
-undefined8 FUN_180868de0(code *socketParam,longlong dataParam,undefined8 sizeParam)
+uint64_t FUN_180868de0(code *socketParam,longlong dataParam,undefined8 sizeParam)
 
 {
   undefined8 uVar1;
@@ -44829,7 +44829,7 @@ undefined8 FUN_180868de0(code *socketParam,longlong dataParam,undefined8 sizePar
 
 
 
-undefined8 FUN_180868e40(code *socketParam,longlong dataParam,undefined8 sizeParam)
+uint64_t FUN_180868e40(code *socketParam,longlong dataParam,undefined8 sizeParam)
 
 {
   undefined8 uVar1;
@@ -44847,7 +44847,7 @@ undefined8 FUN_180868e40(code *socketParam,longlong dataParam,undefined8 sizePar
 
 
 
-undefined8 FUN_180868ea0(code *socketParam,longlong dataParam,undefined8 sizeParam)
+uint64_t FUN_180868ea0(code *socketParam,longlong dataParam,undefined8 sizeParam)
 
 {
   undefined8 uVar1;
@@ -44865,7 +44865,7 @@ undefined8 FUN_180868ea0(code *socketParam,longlong dataParam,undefined8 sizePar
 
 
 
-undefined8 FUN_180868f00(code *socketParam,longlong dataParam,undefined8 sizeParam)
+uint64_t FUN_180868f00(code *socketParam,longlong dataParam,undefined8 sizeParam)
 
 {
   undefined8 uVar1;
@@ -44882,7 +44882,7 @@ undefined8 FUN_180868f00(code *socketParam,longlong dataParam,undefined8 sizePar
 
 
 
-undefined8 FUN_180868f60(code *socketParam,longlong dataParam,undefined8 sizeParam)
+uint64_t FUN_180868f60(code *socketParam,longlong dataParam,undefined8 sizeParam)
 
 {
   undefined8 uVar1;
@@ -44900,7 +44900,7 @@ undefined8 FUN_180868f60(code *socketParam,longlong dataParam,undefined8 sizePar
 
 
 
-undefined8 FUN_180868fc0(code *socketParam,longlong dataParam,undefined8 sizeParam)
+uint64_t FUN_180868fc0(code *socketParam,longlong dataParam,undefined8 sizeParam)
 
 {
   undefined8 uVar1;
@@ -44918,7 +44918,7 @@ undefined8 FUN_180868fc0(code *socketParam,longlong dataParam,undefined8 sizePar
 
 
 
-undefined8 FUN_180869020(code *socketParam,longlong dataParam,undefined8 sizeParam)
+uint64_t FUN_180869020(code *socketParam,longlong dataParam,undefined8 sizeParam)
 
 {
   undefined8 uVar1;
@@ -44936,7 +44936,7 @@ undefined8 FUN_180869020(code *socketParam,longlong dataParam,undefined8 sizePar
 
 
 
-undefined8 FUN_180869080(code *socketParam,longlong dataParam,undefined8 sizeParam)
+uint64_t FUN_180869080(code *socketParam,longlong dataParam,undefined8 sizeParam)
 
 {
   undefined8 uVar1;
@@ -45374,7 +45374,7 @@ void FUN_180869a50(longlong *socketParam,undefined8 dataParam)
   undefined1 auStack_38 [40];
   ulonglong uStack_10;
   
-  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
+  uStack_10 = _g_networkXorKey ^ (ulonglong)auStack_58;
   lVar1 = (**(code **)(*socketParam + 0x268))(socketParam,dataParam,1);
   if (lVar1 == 0) {
                     // WARNING: Subroutine does not return
@@ -45398,7 +45398,7 @@ void FUN_180869ab0(longlong *socketParam,undefined8 dataParam)
   undefined1 auStack_38 [40];
   ulonglong uStack_10;
   
-  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
+  uStack_10 = _g_networkXorKey ^ (ulonglong)auStack_58;
   lVar1 = (**(code **)(*socketParam + 0x260))(socketParam,dataParam,1);
   if (lVar1 == 0) {
                     // WARNING: Subroutine does not return
@@ -45428,7 +45428,7 @@ void FUN_180869b10(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0x70))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -45683,7 +45683,7 @@ void FUN_180869d10(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0xe0))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -45938,7 +45938,7 @@ void FUN_180869f10(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0xa0))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -46193,7 +46193,7 @@ void FUN_18086a110(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0x68))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -46448,7 +46448,7 @@ void FUN_18086a310(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0x38))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -46703,7 +46703,7 @@ void FUN_18086a510(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0xa8))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -46958,7 +46958,7 @@ void FUN_18086a710(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0xb0))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -47213,7 +47213,7 @@ void FUN_18086a910(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0x60))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -47468,7 +47468,7 @@ void FUN_18086ab10(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0x100))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -47723,7 +47723,7 @@ void FUN_18086acf0(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0x108))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -47978,7 +47978,7 @@ void FUN_18086aed0(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0x90))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -48233,7 +48233,7 @@ void FUN_18086b0d0(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0x30))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -48488,7 +48488,7 @@ void FUN_18086b2d0(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0xf8))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -48743,7 +48743,7 @@ void FUN_18086b4b0(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0x28))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -48998,7 +48998,7 @@ void FUN_18086b6b0(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0x88))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -49253,7 +49253,7 @@ void FUN_18086b8b0(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0xf0))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -49508,7 +49508,7 @@ void FUN_18086ba90(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0x40))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -49763,7 +49763,7 @@ void FUN_18086bc90(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0x48))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -50018,7 +50018,7 @@ void FUN_18086be90(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0xd8))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -50273,7 +50273,7 @@ void FUN_18086c090(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0xb8))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -50528,7 +50528,7 @@ void FUN_18086c290(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0xe8))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -50783,7 +50783,7 @@ void FUN_18086c470(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0x80))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -51038,7 +51038,7 @@ void FUN_18086c670(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0xd0))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -51293,7 +51293,7 @@ void FUN_18086c870(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 200))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -51548,7 +51548,7 @@ void FUN_18086ca70(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0x98))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -51803,7 +51803,7 @@ void FUN_18086cc70(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0x58))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -52058,7 +52058,7 @@ void FUN_18086ce70(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0x50))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -52313,7 +52313,7 @@ void FUN_18086d070(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0xc0))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -52568,7 +52568,7 @@ void FUN_18086d270(longlong socketParam,undefined8 *dataParam)
   undefined1 auStack_70 [40];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = dataParam;
   lVar3 = (**(code **)(*(longlong *)*dataParam + 0x78))((longlong *)*dataParam,0);
   if (lVar3 != 0) {
@@ -52941,7 +52941,7 @@ FUN_18086d620(longlong socketParam,longlong dataParam,longlong sizeParam,longlon
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18086d7d0(longlong socketParam,longlong *dataParam)
+uint64_t FUN_18086d7d0(longlong socketParam,longlong *dataParam)
 
 {
   int status;
@@ -53005,7 +53005,7 @@ LAB_18086d8a4:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18086d930(longlong socketParam,longlong *dataParam)
+uint64_t FUN_18086d930(longlong socketParam,longlong *dataParam)
 
 {
   int status;
@@ -53067,7 +53067,7 @@ LAB_18086da04:
 
 
 
-undefined8 FUN_18086da90(longlong *socketParam,undefined8 *dataParam)
+uint64_t FUN_18086da90(longlong *socketParam,undefined8 *dataParam)
 
 {
   int status;
@@ -53154,7 +53154,7 @@ undefined8 FUN_18086da90(longlong *socketParam,undefined8 *dataParam)
 
 
 
-undefined8 FUN_18086daa2(longlong *socketParam)
+uint64_t FUN_18086daa2(longlong *socketParam)
 
 {
   int status;
@@ -53242,7 +53242,7 @@ undefined8 FUN_18086daa2(longlong *socketParam)
 
 
 
-undefined8 FUN_18086db77(void)
+uint64_t FUN_18086db77(void)
 
 {
   int status;
@@ -53298,7 +53298,7 @@ undefined8 FUN_18086db77(void)
 
 
 
-undefined8 FUN_18086dbb7(void)
+uint64_t FUN_18086dbb7(void)
 
 {
   int status;
@@ -53356,7 +53356,7 @@ undefined8 FUN_18086dbb7(void)
 
 
 
-undefined8 FUN_18086dbbd(undefined4 socketParam,int dataParam)
+uint64_t FUN_18086dbbd(undefined4 socketParam,int dataParam)
 
 {
   undefined8 uVar1;
@@ -53391,7 +53391,7 @@ undefined8 FUN_18086dbbd(undefined4 socketParam,int dataParam)
 
 
 
-undefined8 FUN_18086dc50(longlong socketParam,longlong *dataParam,undefined8 *sizeParam)
+uint64_t FUN_18086dc50(longlong socketParam,longlong *dataParam,undefined8 *sizeParam)
 
 {
   longlong lVar1;
@@ -53466,7 +53466,7 @@ LAB_18086dd0b:
 // WARNING: Removing unreachable block (ram,0x00018086df1b)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18086ddc0(longlong socketParam,longlong *dataParam)
+uint64_t FUN_18086ddc0(longlong socketParam,longlong *dataParam)
 
 {
   longlong lVar1;
@@ -53522,7 +53522,7 @@ LAB_18086de7b:
 // WARNING: Removing unreachable block (ram,0x00018086df1b)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18086ddc8(longlong socketParam,longlong *dataParam)
+uint64_t FUN_18086ddc8(longlong socketParam,longlong *dataParam)
 
 {
   longlong lVar1;
@@ -53575,7 +53575,7 @@ LAB_18086de7b:
 
 
 
-undefined8 FUN_18086df1b(void)
+uint64_t FUN_18086df1b(void)
 
 {
   longlong unaff_RBP;
@@ -53587,7 +53587,7 @@ undefined8 FUN_18086df1b(void)
 
 
 
-undefined8 FUN_18086df30(longlong socketParam,longlong dataParam,undefined8 *sizeParam)
+uint64_t FUN_18086df30(longlong socketParam,longlong dataParam,undefined8 *sizeParam)
 
 {
   longlong lVar1;
@@ -53657,7 +53657,7 @@ LAB_18086dffb:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18086e090(longlong socketParam,longlong dataParam)
+uint64_t FUN_18086e090(longlong socketParam,longlong dataParam)
 
 {
   longlong lVar1;
@@ -53720,7 +53720,7 @@ LAB_18086e15b:
 
 
 
-undefined8 FUN_18086e1f0(longlong socketParam,longlong dataParam,undefined8 *sizeParam)
+uint64_t FUN_18086e1f0(longlong socketParam,longlong dataParam,undefined8 *sizeParam)
 
 {
   longlong lVar1;
@@ -53790,7 +53790,7 @@ LAB_18086e2ac:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18086e330(longlong socketParam,longlong dataParam)
+uint64_t FUN_18086e330(longlong socketParam,longlong dataParam)
 
 {
   longlong lVar1;
@@ -53853,7 +53853,7 @@ LAB_18086e3eb:
 
 
 
-undefined8 FUN_18086e480(longlong socketParam,longlong dataParam,undefined8 *sizeParam)
+uint64_t FUN_18086e480(longlong socketParam,longlong dataParam,undefined8 *sizeParam)
 
 {
   longlong lVar1;
@@ -53923,7 +53923,7 @@ LAB_18086e53b:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18086e5c0(longlong socketParam,longlong dataParam)
+uint64_t FUN_18086e5c0(longlong socketParam,longlong dataParam)
 
 {
   longlong lVar1;
@@ -53986,7 +53986,7 @@ LAB_18086e67b:
 
 
 
-undefined8 FUN_18086e710(longlong socketParam,undefined8 dataParam,undefined8 *sizeParam)
+uint64_t FUN_18086e710(longlong socketParam,undefined8 dataParam,undefined8 *sizeParam)
 
 {
   longlong lVar1;
@@ -54053,7 +54053,7 @@ LAB_18086e7cb:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18086e860(longlong socketParam,undefined8 dataParam)
+uint64_t FUN_18086e860(longlong socketParam,undefined8 dataParam)
 
 {
   undefined8 *connectionData;
@@ -54110,7 +54110,7 @@ LAB_18086e91b:
 
 
 
-undefined8 FUN_18086e9b0(longlong socketParam,longlong dataParam,undefined8 *sizeParam)
+uint64_t FUN_18086e9b0(longlong socketParam,longlong dataParam,undefined8 *sizeParam)
 
 {
   longlong lVar1;
@@ -54180,7 +54180,7 @@ LAB_18086ea7b:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18086eb00(longlong socketParam,longlong dataParam)
+uint64_t FUN_18086eb00(longlong socketParam,longlong dataParam)
 
 {
   longlong lVar1;
@@ -54243,7 +54243,7 @@ LAB_18086ebcb:
 
 
 
-undefined8 FUN_18086ec60(longlong socketParam,longlong dataParam,undefined8 *sizeParam)
+uint64_t FUN_18086ec60(longlong socketParam,longlong dataParam,undefined8 *sizeParam)
 
 {
   longlong lVar1;
@@ -54313,7 +54313,7 @@ LAB_18086ed1c:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18086eda0(longlong socketParam,longlong dataParam)
+uint64_t FUN_18086eda0(longlong socketParam,longlong dataParam)
 
 {
   longlong lVar1;
@@ -54376,7 +54376,7 @@ LAB_18086ee5b:
 
 
 
-undefined8 FUN_18086eef0(longlong socketParam,longlong dataParam,undefined8 *sizeParam)
+uint64_t FUN_18086eef0(longlong socketParam,longlong dataParam,undefined8 *sizeParam)
 
 {
   longlong lVar1;
@@ -54446,7 +54446,7 @@ LAB_18086efbb:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18086f040(longlong socketParam,longlong dataParam)
+uint64_t FUN_18086f040(longlong socketParam,longlong dataParam)
 
 {
   longlong lVar1;
@@ -54509,7 +54509,7 @@ LAB_18086f10b:
 
 
 
-undefined8 FUN_18086f1a0(longlong socketParam,longlong dataParam,undefined8 *sizeParam)
+uint64_t FUN_18086f1a0(longlong socketParam,longlong dataParam,undefined8 *sizeParam)
 
 {
   longlong lVar1;
@@ -54579,7 +54579,7 @@ LAB_18086f26b:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18086f300(longlong socketParam,longlong dataParam)
+uint64_t FUN_18086f300(longlong socketParam,longlong dataParam)
 
 {
   longlong lVar1;
@@ -54642,7 +54642,7 @@ LAB_18086f3cb:
 
 
 
-undefined8 FUN_18086f460(longlong socketParam,longlong dataParam,undefined8 *sizeParam)
+uint64_t FUN_18086f460(longlong socketParam,longlong dataParam,undefined8 *sizeParam)
 
 {
   longlong lVar1;
@@ -54704,7 +54704,7 @@ undefined8 FUN_18086f460(longlong socketParam,longlong dataParam,undefined8 *siz
 
 
 
-undefined8 FUN_18086f4ed(void)
+uint64_t FUN_18086f4ed(void)
 
 {
   longlong lVar1;
@@ -55220,7 +55220,7 @@ void FUN_180871130(undefined8 socketParam,undefined8 dataParam,undefined8 *sizeP
 
 
 
-undefined8 FUN_180871220(longlong socketParam,longlong *dataParam)
+uint64_t FUN_180871220(longlong socketParam,longlong *dataParam)
 
 {
   longlong *plVar1;
@@ -55241,7 +55241,7 @@ undefined8 FUN_180871220(longlong socketParam,longlong *dataParam)
 
 
 
-undefined8 FUN_1808712a0(longlong socketParam,longlong *dataParam)
+uint64_t FUN_1808712a0(longlong socketParam,longlong *dataParam)
 
 {
   longlong *plVar1;
@@ -55262,7 +55262,7 @@ undefined8 FUN_1808712a0(longlong socketParam,longlong *dataParam)
 
 
 
-undefined8 FUN_180871320(longlong socketParam,longlong *dataParam)
+uint64_t FUN_180871320(longlong socketParam,longlong *dataParam)
 
 {
   longlong *plVar1;
@@ -55283,7 +55283,7 @@ undefined8 FUN_180871320(longlong socketParam,longlong *dataParam)
 
 
 
-undefined8 *
+uint64_t *
 FUN_1808719a0(undefined8 *socketParam,undefined8 dataParam,undefined8 sizeParam,undefined8 timeoutParam,
              undefined8 param_5)
 
@@ -55852,7 +55852,7 @@ LAB_18087257d:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180872630(longlong *socketParam)
+uint64_t FUN_180872630(longlong *socketParam)
 
 {
   uint uVar1;
@@ -56083,7 +56083,7 @@ undefined8 FUN_180872630(longlong *socketParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180872cc0(longlong *socketParam)
+uint64_t FUN_180872cc0(longlong *socketParam)
 
 {
   uint uVar1;
@@ -57807,7 +57807,7 @@ void FUN_180873460(longlong socketParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180873cd0(longlong *socketParam)
+uint64_t FUN_180873cd0(longlong *socketParam)
 
 {
   uint uVar1;
@@ -57882,7 +57882,7 @@ undefined8 FUN_180873cd0(longlong *socketParam)
 
 
 
-undefined8 * FUN_180873ec0(undefined8 *socketParam,ulonglong dataParam)
+uint64_t * FUN_180873ec0(undefined8 *socketParam,ulonglong dataParam)
 
 {
   *socketParam = &UNK_1809851e8;
@@ -57894,7 +57894,7 @@ undefined8 * FUN_180873ec0(undefined8 *socketParam,ulonglong dataParam)
 
 
 
-undefined8 * FUN_180873ef0(undefined8 *socketParam,ulonglong dataParam)
+uint64_t * FUN_180873ef0(undefined8 *socketParam,ulonglong dataParam)
 
 {
   *socketParam = &UNK_1809851e8;
@@ -57906,7 +57906,7 @@ undefined8 * FUN_180873ef0(undefined8 *socketParam,ulonglong dataParam)
 
 
 
-undefined8 * FUN_180873f20(undefined8 *socketParam,ulonglong dataParam)
+uint64_t * FUN_180873f20(undefined8 *socketParam,ulonglong dataParam)
 
 {
   *socketParam = &UNK_1809851e8;
@@ -57918,7 +57918,7 @@ undefined8 * FUN_180873f20(undefined8 *socketParam,ulonglong dataParam)
 
 
 
-undefined8 FUN_180873f80(longlong socketParam,undefined8 dataParam,longlong sizeParam)
+uint64_t FUN_180873f80(longlong socketParam,undefined8 dataParam,longlong sizeParam)
 
 {
   char cVar1;
@@ -57990,7 +57990,7 @@ undefined8 FUN_180873f80(longlong socketParam,undefined8 dataParam,longlong size
 
 
 
-undefined8 FUN_1808740c0(longlong socketParam,longlong dataParam)
+uint64_t FUN_1808740c0(longlong socketParam,longlong dataParam)
 
 {
   longlong lVar1;
@@ -58060,7 +58060,7 @@ LAB_180874129:
 
 
 
-undefined8 FUN_1808741f0(longlong *socketParam,int *dataParam,int *sizeParam)
+uint64_t FUN_1808741f0(longlong *socketParam,int *dataParam,int *sizeParam)
 
 {
   longlong lVar1;
@@ -58098,7 +58098,7 @@ undefined8 FUN_1808741f0(longlong *socketParam,int *dataParam,int *sizeParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180874340(longlong *socketParam)
+uint64_t FUN_180874340(longlong *socketParam)
 
 {
   undefined8 uVar1;
@@ -58156,7 +58156,7 @@ undefined8 FUN_180874340(longlong *socketParam)
 
 
 
-undefined8 FUN_18087439e(longlong socketParam)
+uint64_t FUN_18087439e(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -58203,7 +58203,7 @@ undefined8 FUN_18087439e(longlong socketParam)
 
 
 
-undefined8 FUN_18087446c(void)
+uint64_t FUN_18087446c(void)
 
 {
   return 0x1c;
@@ -58211,7 +58211,7 @@ undefined8 FUN_18087446c(void)
 
 
 
-undefined8 FUN_18087447c(longlong socketParam)
+uint64_t FUN_18087447c(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -58243,7 +58243,7 @@ undefined8 FUN_18087447c(longlong socketParam)
 
 
 
-undefined8 FUN_1808744c7(void)
+uint64_t FUN_1808744c7(void)
 
 {
   undefined8 uVar1;
@@ -58259,7 +58259,7 @@ undefined8 FUN_1808744c7(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808744f0(longlong *socketParam)
+uint64_t FUN_1808744f0(longlong *socketParam)
 
 {
   int status;
@@ -58296,7 +58296,7 @@ undefined8 FUN_1808744f0(longlong *socketParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808745b0(longlong *socketParam)
+uint64_t FUN_1808745b0(longlong *socketParam)
 
 {
   int status;
@@ -58333,7 +58333,7 @@ undefined8 FUN_1808745b0(longlong *socketParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180874670(longlong *socketParam)
+uint64_t FUN_180874670(longlong *socketParam)
 
 {
   int status;
@@ -58391,7 +58391,7 @@ undefined8 FUN_180874670(longlong *socketParam)
 
 
 
-undefined8 FUN_1808746d5(undefined4 socketParam,longlong dataParam)
+uint64_t FUN_1808746d5(undefined4 socketParam,longlong dataParam)
 
 {
   undefined4 uVar1;
@@ -58435,7 +58435,7 @@ undefined8 FUN_1808746d5(undefined4 socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_18087471e(uint socketParam)
+uint64_t FUN_18087471e(uint socketParam)
 
 {
   undefined8 uVar1;
@@ -58543,7 +58543,7 @@ LAB_1808747d2:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180874940(longlong *socketParam)
+uint64_t FUN_180874940(longlong *socketParam)
 
 {
   uint *connectionData;
@@ -58624,7 +58624,7 @@ undefined8 FUN_180874940(longlong *socketParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18087494c(longlong *socketParam)
+uint64_t FUN_18087494c(longlong *socketParam)
 
 {
   uint *connectionData;
@@ -58768,7 +58768,7 @@ void FUN_180874980(undefined4 socketParam)
 
 
 
-undefined8 FUN_180874aba(void)
+uint64_t FUN_180874aba(void)
 
 {
   longlong lVar1;
@@ -58835,7 +58835,7 @@ undefined4 FUN_180874b18(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180874b30(longlong socketParam)
+uint64_t FUN_180874b30(longlong socketParam)
 
 {
   uint uVar1;
@@ -59088,7 +59088,7 @@ undefined8 FUN_180874b30(longlong socketParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180874ce3(void)
+uint64_t FUN_180874ce3(void)
 
 {
   uint uVar1;
@@ -59303,7 +59303,7 @@ void FUN_1808753b5(void)
 
 
 
-undefined8 FUN_1808753c6(void)
+uint64_t FUN_1808753c6(void)
 
 {
   return 0x1c;
@@ -59348,7 +59348,7 @@ void FUN_1808753d0(longlong socketParam,undefined8 dataParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180875520(longlong *socketParam)
+uint64_t FUN_180875520(longlong *socketParam)
 
 {
   uint uVar1;
@@ -59440,7 +59440,7 @@ undefined8 FUN_180875520(longlong *socketParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180875538(void)
+uint64_t FUN_180875538(void)
 
 {
   uint uVar1;
@@ -59651,7 +59651,7 @@ undefined4 FUN_1808757cc(undefined8 socketParam,longlong dataParam,longlong size
 
 
 
-undefined8 FUN_180875800(longlong socketParam,longlong *dataParam)
+uint64_t FUN_180875800(longlong socketParam,longlong *dataParam)
 
 {
   longlong lVar1;
@@ -60055,7 +60055,7 @@ void FUN_180875fc0(longlong socketParam,undefined8 dataParam)
 
 
 
-undefined8 FUN_180876000(longlong *socketParam)
+uint64_t FUN_180876000(longlong *socketParam)
 
 {
   int *pstatus;
@@ -60133,7 +60133,7 @@ undefined8 FUN_180876000(longlong *socketParam)
 
 
 
-undefined8 FUN_180876026(void)
+uint64_t FUN_180876026(void)
 
 {
   int *pstatus;
@@ -60208,7 +60208,7 @@ undefined8 FUN_180876026(void)
 
 
 
-undefined8 FUN_18087615c(void)
+uint64_t FUN_18087615c(void)
 
 {
   return 0x1c;
@@ -60216,7 +60216,7 @@ undefined8 FUN_18087615c(void)
 
 
 
-undefined8 FUN_180876180(longlong socketParam,uint dataParam,undefined8 sizeParam)
+uint64_t FUN_180876180(longlong socketParam,uint dataParam,undefined8 sizeParam)
 
 {
   code *pcVar1;
@@ -60368,7 +60368,7 @@ void FUN_1808762b0(longlong socketParam,longlong *dataParam)
   undefined1 auStack_c8 [128];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_9c8;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_9c8;
   plStack_d8 = dataParam;
   FUN_1808dbcd0(auStack_3e8);
   ppacketSize = (undefined8 *)*dataParam;
@@ -61131,7 +61131,7 @@ void FUN_180876d54(void)
 
 
 
-undefined8 FUN_180876d70(longlong socketParam)
+uint64_t FUN_180876d70(longlong socketParam)
 
 {
   if (*(int *)(socketParam + 0x48) == 0) {
@@ -61160,7 +61160,7 @@ void FUN_180876d90(longlong socketParam,longlong *dataParam)
   undefined1 auStack_38 [40];
   ulonglong uStack_10;
   
-  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
+  uStack_10 = _g_networkXorKey ^ (ulonglong)auStack_58;
   if (*(int *)(socketParam + 0x48) == 0) {
     lVar3 = (**(code **)(*dataParam + 0x110))(dataParam,socketParam + 0x30,1);
     if (lVar3 == 0) {
@@ -61219,7 +61219,7 @@ void FUN_180876eb0(longlong socketParam,longlong *dataParam)
   undefined1 auStack_60 [40];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_98;
   puStack_78 = &UNK_180985f58;
   uStack_70 = 0x7f7fffff;
   uStack_6c = 0;
@@ -61247,7 +61247,7 @@ void FUN_180876eb0(longlong socketParam,longlong *dataParam)
 
 
 
-undefined8 FUN_180876fb0(longlong socketParam,longlong *dataParam)
+uint64_t FUN_180876fb0(longlong socketParam,longlong *dataParam)
 
 {
   longlong lVar1;
@@ -61298,7 +61298,7 @@ void FUN_180877030(longlong socketParam,longlong *dataParam,longlong sizeParam)
   undefined1 auStack_c8 [128];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_158;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_158;
   lStack_e8 = sizeParam;
   if (*(uint *)(socketParam + 0x218) < 0x49) {
     for (iVar8 = 0; (-1 < iVar8 && (iVar8 < *(int *)(socketParam + 0x1a8))); iVar8 = iVar8 + 1) {
@@ -61460,7 +61460,7 @@ void FUN_180877560(longlong *socketParam,longlong *dataParam,longlong *sizeParam
   undefined1 auStack_80 [40];
   ulonglong uStack_58;
   
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_118;
+  uStack_58 = _g_networkXorKey ^ (ulonglong)auStack_118;
   iVar3 = (int)socketParam[1];
   lVar7 = (longlong)iVar3;
   uVar5 = (int)*(uint *)((longlong)dataParam + 0xc) >> 0x1f;
@@ -61632,7 +61632,7 @@ void NetworkRejectConnection(longlong socketParam,longlong *dataParam)
   undefined1 auStack_68 [40];
   ulonglong uStack_40;
   
-  uStack_40 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_40 = _g_networkXorKey ^ (ulonglong)auStack_98;
   if (*(int *)(socketParam + 0x98) == 0) {
     plVar1 = (longlong *)(socketParam + 0x90);
     uVar6 = (int)*(uint *)(socketParam + 0x9c) >> 0x1f;
@@ -61728,7 +61728,7 @@ void FUN_180877970(longlong socketParam,longlong *dataParam)
   int aiStack_70 [6];
   ulonglong uStack_58;
   
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_158;
+  uStack_58 = _g_networkXorKey ^ (ulonglong)auStack_158;
   lStack_e0 = 0;
   uStack_d8 = 0;
   lStack_d0 = 0;
@@ -61912,7 +61912,7 @@ void NetworkAuthenticateClient(longlong socketParam,longlong *dataParam)
   undefined1 auStack_58 [40];
   ulonglong uStack_30;
   
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
+  uStack_30 = _g_networkXorKey ^ (ulonglong)auStack_c8;
   puVar5 = *(undefined4 **)(socketParam + 0x80);
   while ((*(undefined4 **)(socketParam + 0x80) <= puVar5 &&
          (puVar5 < *(undefined4 **)(socketParam + 0x80) + (longlong)*(int *)(socketParam + 0x88) * 4))) {
@@ -61971,7 +61971,7 @@ void NetworkValidateClient(longlong socketParam,longlong *dataParam)
   undefined1 auStack_38 [40];
   ulonglong uStack_10;
   
-  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
+  uStack_10 = _g_networkXorKey ^ (ulonglong)auStack_58;
   lVar4 = (**(code **)(*dataParam + 0x110))(dataParam,socketParam + 0x30,1);
   if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
@@ -62094,7 +62094,7 @@ void FUN_1808782a0(longlong socketParam,longlong *dataParam,longlong *sizeParam)
   int aiStack_58 [6];
   ulonglong uStack_40;
   
-  uStack_40 = _DAT_180bf00a8 ^ (ulonglong)auStack_118;
+  uStack_40 = _g_networkXorKey ^ (ulonglong)auStack_118;
   lStack_a0 = 0;
   uStack_98 = 0;
   alStack_90[0] = 0;
@@ -62733,7 +62733,7 @@ void FUN_1808787d0(longlong socketParam,longlong *dataParam,undefined8 *sizePara
   undefined1 auStack_80 [40];
   ulonglong uStack_58;
   
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_138;
+  uStack_58 = _g_networkXorKey ^ (ulonglong)auStack_138;
   lStack_98 = param_7;
   puStack_a0 = sizeParam;
   lStack_90 = timeoutParam;
@@ -63632,7 +63632,7 @@ void FUN_180879270(longlong socketParam,longlong *dataParam)
   undefined1 auStack_68 [40];
   ulonglong uStack_40;
   
-  uStack_40 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
+  uStack_40 = _g_networkXorKey ^ (ulonglong)auStack_d8;
   pbufferSize = *(undefined4 **)(socketParam + 0xd8);
   while( true ) {
     connectionData = *(undefined4 **)(socketParam + 0xd8);
@@ -63665,7 +63665,7 @@ LAB_180879390:
 
 
 
-undefined8 NetworkCreateListener(longlong socketParam,longlong *dataParam)
+uint64_t NetworkCreateListener(longlong socketParam,longlong *dataParam)
 
 {
   longlong lVar1;
@@ -63713,7 +63713,7 @@ undefined8 NetworkCreateListener(longlong socketParam,longlong *dataParam)
 
 
 
-undefined8 NetworkStartServer(undefined8 socketParam)
+uint64_t NetworkStartServer(undefined8 socketParam)
 
 {
   FUN_1808b0660(socketParam,5);
@@ -63724,7 +63724,7 @@ undefined8 NetworkStartServer(undefined8 socketParam)
 
 
 
-undefined8 NetworkStopServer(longlong socketParam,longlong *dataParam,longlong sizeParam)
+uint64_t NetworkStopServer(longlong socketParam,longlong *dataParam,longlong sizeParam)
 
 {
   longlong lVar1;
@@ -63774,7 +63774,7 @@ LAB_1808795e2:
 
 
 
-undefined8 FUN_180879610(longlong *socketParam,uint *dataParam,undefined1 *sizeParam)
+uint64_t FUN_180879610(longlong *socketParam,uint *dataParam,undefined1 *sizeParam)
 
 {
   undefined8 *connectionData;
@@ -63868,7 +63868,7 @@ undefined8 FUN_180879610(longlong *socketParam,uint *dataParam,undefined1 *sizeP
 
 
 
-undefined8 FUN_180879647(uint socketParam)
+uint64_t FUN_180879647(uint socketParam)
 
 {
   longlong *plVar1;
@@ -63957,7 +63957,7 @@ undefined8 FUN_180879647(uint socketParam)
 
 
 
-undefined8 FUN_18087969a(void)
+uint64_t FUN_18087969a(void)
 
 {
   undefined8 *connectionData;
@@ -64030,7 +64030,7 @@ undefined8 FUN_18087969a(void)
 
 
 
-undefined8 FUN_1808796f6(longlong socketParam,longlong dataParam)
+uint64_t FUN_1808796f6(longlong socketParam,longlong dataParam)
 
 {
   undefined1 *unaff_R15;
@@ -64041,7 +64041,7 @@ undefined8 FUN_1808796f6(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_18087970e(int socketParam,int dataParam)
+uint64_t FUN_18087970e(int socketParam,int dataParam)
 
 {
   undefined4 *connectionData;
@@ -64110,11 +64110,11 @@ int FUN_1808797a0(longlong socketParam,longlong dataParam,int sizeParam)
   uVar1 = *(undefined4 *)(socketParam + 0x24);
   packetSize = *(undefined4 *)(socketParam + 0x20);
   iVar3 = FUN_18074b650(dataParam,sizeParam,&uStack_18);
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b7d0(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -64141,15 +64141,15 @@ int FUN_180879880(longlong socketParam,longlong dataParam,int sizeParam)
   uVar1 = *(undefined4 *)(socketParam + 0x24);
   packetSize = *(undefined4 *)(socketParam + 0x20);
   iVar3 = FUN_18074b880(dataParam,sizeParam,&UNK_180985ae8);
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18074b650(iVar3 + dataParam,sizeParam - iVar3,&uStack_18);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b7d0(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -64199,7 +64199,7 @@ LAB_180879a06:
 
 
 
-undefined8 FUN_180879a60(longlong socketParam,longlong dataParam,undefined8 sizeParam)
+uint64_t FUN_180879a60(longlong socketParam,longlong dataParam,undefined8 sizeParam)
 
 {
   undefined8 uVar1;
@@ -65100,7 +65100,7 @@ void FUN_18087a790(longlong socketParam,undefined8 dataParam)
   undefined1 auStack_38 [40];
   ulonglong uStack_10;
   
-  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
+  uStack_10 = _g_networkXorKey ^ (ulonglong)auStack_58;
   lVar1 = (**(code **)(**(longlong **)(socketParam + 8) + 600))(*(longlong **)(socketParam + 8),dataParam,1);
   if (lVar1 == 0) {
                     // WARNING: Subroutine does not return
@@ -65349,7 +65349,7 @@ void FUN_18087ab50(void)
 
 
 
-undefined8 FUN_18087ab6b(void)
+uint64_t FUN_18087ab6b(void)
 
 {
   longlong networkContext;
@@ -65484,7 +65484,7 @@ void FUN_18087ac69(void)
 
 
 
-undefined8 FUN_18087ac7f(void)
+uint64_t FUN_18087ac7f(void)
 
 {
   longlong networkContext;
@@ -65600,7 +65600,7 @@ void FUN_18087ad70(void)
 
 
 
-undefined8 FUN_18087ad8b(void)
+uint64_t FUN_18087ad8b(void)
 
 {
   longlong networkContext;
@@ -65716,7 +65716,7 @@ void FUN_18087ae80(void)
 
 
 
-undefined8 FUN_18087ae9b(void)
+uint64_t FUN_18087ae9b(void)
 
 {
   longlong networkContext;
@@ -65832,7 +65832,7 @@ void FUN_18087af90(void)
 
 
 
-undefined8 FUN_18087afab(void)
+uint64_t FUN_18087afab(void)
 
 {
   longlong networkContext;
@@ -65948,7 +65948,7 @@ void FUN_18087b0a0(void)
 
 
 
-undefined8 FUN_18087b0bb(void)
+uint64_t FUN_18087b0bb(void)
 
 {
   longlong networkContext;
@@ -66064,7 +66064,7 @@ void FUN_18087b1d0(void)
 
 
 
-undefined8 FUN_18087b1eb(void)
+uint64_t FUN_18087b1eb(void)
 
 {
   longlong networkContext;
@@ -66180,7 +66180,7 @@ void FUN_18087b2c0(void)
 
 
 
-undefined8 FUN_18087b2db(void)
+uint64_t FUN_18087b2db(void)
 
 {
   longlong networkContext;
@@ -66315,7 +66315,7 @@ void FUN_18087b3d9(void)
 
 
 
-undefined8 FUN_18087b3ef(void)
+uint64_t FUN_18087b3ef(void)
 
 {
   longlong networkContext;
@@ -66450,7 +66450,7 @@ void FUN_18087b4e9(void)
 
 
 
-undefined8 FUN_18087b4ff(void)
+uint64_t FUN_18087b4ff(void)
 
 {
   longlong networkContext;
@@ -66566,7 +66566,7 @@ void FUN_18087b5f0(void)
 
 
 
-undefined8 FUN_18087b60b(void)
+uint64_t FUN_18087b60b(void)
 
 {
   longlong networkContext;
@@ -66682,7 +66682,7 @@ void FUN_18087b700(void)
 
 
 
-undefined8 FUN_18087b71b(void)
+uint64_t FUN_18087b71b(void)
 
 {
   longlong networkContext;
@@ -66817,7 +66817,7 @@ void FUN_18087b819(void)
 
 
 
-undefined8 FUN_18087b82f(void)
+uint64_t FUN_18087b82f(void)
 
 {
   longlong networkContext;
@@ -66933,7 +66933,7 @@ void FUN_18087b920(void)
 
 
 
-undefined8 FUN_18087b93b(void)
+uint64_t FUN_18087b93b(void)
 
 {
   longlong networkContext;
@@ -67049,7 +67049,7 @@ void FUN_18087ba30(void)
 
 
 
-undefined8 FUN_18087ba4b(void)
+uint64_t FUN_18087ba4b(void)
 
 {
   longlong networkContext;
@@ -67184,7 +67184,7 @@ void FUN_18087bb49(void)
 
 
 
-undefined8 FUN_18087bb5f(void)
+uint64_t FUN_18087bb5f(void)
 
 {
   longlong networkContext;
@@ -67300,7 +67300,7 @@ void FUN_18087bc70(void)
 
 
 
-undefined8 FUN_18087bc8b(void)
+uint64_t FUN_18087bc8b(void)
 
 {
   longlong networkContext;
@@ -67416,7 +67416,7 @@ void FUN_18087bd60(void)
 
 
 
-undefined8 FUN_18087bd7b(void)
+uint64_t FUN_18087bd7b(void)
 
 {
   longlong networkContext;
@@ -67551,7 +67551,7 @@ void FUN_18087be99(void)
 
 
 
-undefined8 FUN_18087beaf(void)
+uint64_t FUN_18087beaf(void)
 
 {
   longlong networkContext;
@@ -67667,7 +67667,7 @@ void FUN_18087bfa0(void)
 
 
 
-undefined8 FUN_18087bfbb(void)
+uint64_t FUN_18087bfbb(void)
 
 {
   longlong networkContext;
@@ -67802,7 +67802,7 @@ void FUN_18087c0b9(void)
 
 
 
-undefined8 FUN_18087c0cf(void)
+uint64_t FUN_18087c0cf(void)
 
 {
   longlong networkContext;
@@ -67918,7 +67918,7 @@ void FUN_18087c200(void)
 
 
 
-undefined8 FUN_18087c21b(void)
+uint64_t FUN_18087c21b(void)
 
 {
   longlong networkContext;
@@ -68053,7 +68053,7 @@ void FUN_18087c319(void)
 
 
 
-undefined8 FUN_18087c32f(void)
+uint64_t FUN_18087c32f(void)
 
 {
   longlong networkContext;
@@ -68188,7 +68188,7 @@ void FUN_18087c429(void)
 
 
 
-undefined8 FUN_18087c43f(void)
+uint64_t FUN_18087c43f(void)
 
 {
   longlong networkContext;
@@ -68304,7 +68304,7 @@ void FUN_18087c530(void)
 
 
 
-undefined8 FUN_18087c54b(void)
+uint64_t FUN_18087c54b(void)
 
 {
   longlong networkContext;
@@ -68420,7 +68420,7 @@ void FUN_18087c640(void)
 
 
 
-undefined8 FUN_18087c65b(void)
+uint64_t FUN_18087c65b(void)
 
 {
   longlong networkContext;
@@ -68536,7 +68536,7 @@ void FUN_18087c750(void)
 
 
 
-undefined8 FUN_18087c76b(void)
+uint64_t FUN_18087c76b(void)
 
 {
   longlong networkContext;
@@ -68652,7 +68652,7 @@ void FUN_18087c860(void)
 
 
 
-undefined8 FUN_18087c87b(void)
+uint64_t FUN_18087c87b(void)
 
 {
   longlong networkContext;
@@ -68768,7 +68768,7 @@ void FUN_18087c970(void)
 
 
 
-undefined8 FUN_18087c98b(void)
+uint64_t FUN_18087c98b(void)
 
 {
   longlong networkContext;
@@ -69426,7 +69426,7 @@ LAB_18087dbb3:
 
 
 
-undefined8 FUN_18087dbf0(longlong socketParam,undefined8 dataParam,undefined8 sizeParam)
+uint64_t FUN_18087dbf0(longlong socketParam,undefined8 dataParam,undefined8 sizeParam)
 
 {
   undefined8 uVar1;
@@ -69447,7 +69447,7 @@ undefined8 FUN_18087dbf0(longlong socketParam,undefined8 dataParam,undefined8 si
 
 
 
-undefined8 FUN_18087dc70(longlong *socketParam,longlong *dataParam)
+uint64_t FUN_18087dc70(longlong *socketParam,longlong *dataParam)
 
 {
   longlong lVar1;
@@ -69500,7 +69500,7 @@ undefined8 FUN_18087dc70(longlong *socketParam,longlong *dataParam)
 
 
 
-undefined8 FUN_18087dd70(longlong *socketParam,uint *dataParam,undefined8 *sizeParam)
+uint64_t FUN_18087dd70(longlong *socketParam,uint *dataParam,undefined8 *sizeParam)
 
 {
   undefined8 *connectionData;
@@ -69604,7 +69604,7 @@ undefined8 FUN_18087dd70(longlong *socketParam,uint *dataParam,undefined8 *sizeP
 
 
 
-undefined8 FUN_18087dd92(void)
+uint64_t FUN_18087dd92(void)
 
 {
   undefined8 *connectionData;
@@ -69719,7 +69719,7 @@ void FUN_18087def8(void)
 
 
 
-undefined8 FUN_18087df01(void)
+uint64_t FUN_18087df01(void)
 
 {
   return 0x1c;
@@ -69729,7 +69729,7 @@ undefined8 FUN_18087df01(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18087df20(longlong *socketParam,int dataParam,undefined8 *sizeParam)
+uint64_t FUN_18087df20(longlong *socketParam,int dataParam,undefined8 *sizeParam)
 
 {
   int status;
@@ -69789,7 +69789,7 @@ undefined8 FUN_18087df20(longlong *socketParam,int dataParam,undefined8 *sizePar
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18087df50(int socketParam,uint dataParam)
+uint64_t FUN_18087df50(int socketParam,uint dataParam)
 
 {
   uint in_EAX;
@@ -69847,7 +69847,7 @@ undefined8 FUN_18087df50(int socketParam,uint dataParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18087dfaf(void)
+uint64_t FUN_18087dfaf(void)
 
 {
   longlong lVar1;
@@ -69896,7 +69896,7 @@ LAB_18087e01e:
 
 
 
-undefined8 FUN_18087e098(void)
+uint64_t FUN_18087e098(void)
 
 {
   return 0x1c;
@@ -71286,7 +71286,7 @@ LAB_180880327:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180880350(longlong socketParam,longlong *dataParam)
+uint64_t FUN_180880350(longlong socketParam,longlong *dataParam)
 
 {
   int status;
@@ -72578,7 +72578,7 @@ LAB_180881e13:
 
 
 
-undefined8 FUN_180881eb0(longlong socketParam,longlong dataParam)
+uint64_t FUN_180881eb0(longlong socketParam,longlong dataParam)
 
 {
   longlong lVar1;
@@ -72636,7 +72636,7 @@ void FUN_180881fa0(longlong socketParam,undefined8 dataParam,undefined4 *sizePar
   int aiStack_48 [2];
   ulonglong uStack_40;
   
-  uStack_40 = _DAT_180bf00a8 ^ (ulonglong)auStack_78;
+  uStack_40 = _g_networkXorKey ^ (ulonglong)auStack_78;
   lVar1 = *(longlong *)(socketParam + 0xa0);
   if (lVar1 != 0) {
     FUN_180768360(lVar1);
@@ -73108,7 +73108,7 @@ LAB_18088229d:
 
 
 
-undefined8 FUN_180882330(longlong socketParam,undefined8 dataParam)
+uint64_t FUN_180882330(longlong socketParam,undefined8 dataParam)
 
 {
   undefined8 uVar1;
@@ -73130,7 +73130,7 @@ undefined8 FUN_180882330(longlong socketParam,undefined8 dataParam)
 
 
 
-undefined8 FUN_180882390(longlong socketParam)
+uint64_t FUN_180882390(longlong socketParam)
 
 {
   code *pcVar1;
@@ -73151,7 +73151,7 @@ undefined8 FUN_180882390(longlong socketParam)
 
 
 
-undefined8 FUN_1808823b0(void)
+uint64_t FUN_1808823b0(void)
 
 {
   code *pcVar1;
@@ -73211,7 +73211,7 @@ void FUN_180882400(longlong socketParam)
   int iStack_3c;
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_98;
   iVar3 = FUN_1808e0650(*(undefined8 *)(socketParam + 0xac8));
   if (iVar3 == 0) {
     uStack_70 = 0;
@@ -73391,7 +73391,7 @@ void FUN_1808825ef(void)
 
 
 
-undefined8 FUN_180882610(longlong socketParam,ulonglong *dataParam)
+uint64_t FUN_180882610(longlong socketParam,ulonglong *dataParam)
 
 {
   short sVar1;
@@ -73611,7 +73611,7 @@ LAB_180882a0d:
 
 
 
-undefined8 FUN_180882a50(ulonglong *socketParam,longlong dataParam)
+uint64_t FUN_180882a50(ulonglong *socketParam,longlong dataParam)
 
 {
   ushort uVar1;
@@ -73736,7 +73736,7 @@ LAB_180882bf3:
 
 
 
-undefined8 FUN_180882c20(longlong socketParam,longlong dataParam)
+uint64_t FUN_180882c20(longlong socketParam,longlong dataParam)
 
 {
   uint *connectionData;
@@ -73761,7 +73761,7 @@ undefined8 FUN_180882c20(longlong socketParam,longlong dataParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180882c70(longlong *socketParam,int dataParam)
+uint64_t FUN_180882c70(longlong *socketParam,int dataParam)
 
 {
   undefined8 *connectionData;
@@ -73838,7 +73838,7 @@ LAB_180882d69:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180882c94(void)
+uint64_t FUN_180882c94(void)
 
 {
   undefined8 *connectionData;
@@ -73912,7 +73912,7 @@ LAB_180882d69:
 
 
 
-undefined8 FUN_180882db4(void)
+uint64_t FUN_180882db4(void)
 
 {
   return 0x26;
@@ -73922,7 +73922,7 @@ undefined8 FUN_180882db4(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180882dd0(longlong *socketParam,int dataParam)
+uint64_t FUN_180882dd0(longlong *socketParam,int dataParam)
 
 {
   undefined8 *connectionData;
@@ -73982,7 +73982,7 @@ LAB_180882e99:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180882df4(undefined8 socketParam,int dataParam)
+uint64_t FUN_180882df4(undefined8 socketParam,int dataParam)
 
 {
   undefined8 *connectionData;
@@ -74039,7 +74039,7 @@ LAB_180882e99:
 
 
 
-undefined8 FUN_180882ee4(void)
+uint64_t FUN_180882ee4(void)
 
 {
   return 0x26;
@@ -74049,7 +74049,7 @@ undefined8 FUN_180882ee4(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180882f00(longlong *socketParam,int dataParam)
+uint64_t FUN_180882f00(longlong *socketParam,int dataParam)
 
 {
   int status;
@@ -74097,7 +74097,7 @@ LAB_180882fa1:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180882f24(undefined8 socketParam,int dataParam)
+uint64_t FUN_180882f24(undefined8 socketParam,int dataParam)
 
 {
   int status;
@@ -74142,7 +74142,7 @@ LAB_180882fa1:
 
 
 
-undefined8 FUN_180882fec(void)
+uint64_t FUN_180882fec(void)
 
 {
   return 0x26;
@@ -74152,7 +74152,7 @@ undefined8 FUN_180882fec(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180883010(longlong *socketParam,int dataParam)
+uint64_t FUN_180883010(longlong *socketParam,int dataParam)
 
 {
   longlong lVar1;
@@ -74189,7 +74189,7 @@ LAB_1808830a3:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180883034(void)
+uint64_t FUN_180883034(void)
 
 {
   longlong lVar1;
@@ -74223,7 +74223,7 @@ LAB_1808830a3:
 
 
 
-undefined8 FUN_1808830ee(void)
+uint64_t FUN_1808830ee(void)
 
 {
   return 0x26;
@@ -74233,7 +74233,7 @@ undefined8 FUN_1808830ee(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180883110(longlong *socketParam,int dataParam)
+uint64_t FUN_180883110(longlong *socketParam,int dataParam)
 
 {
   int status;
@@ -74331,7 +74331,7 @@ LAB_18088322e:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180883134(void)
+uint64_t FUN_180883134(void)
 
 {
   int status;
@@ -74426,7 +74426,7 @@ LAB_18088322e:
 
 
 
-undefined8 FUN_180883279(void)
+uint64_t FUN_180883279(void)
 
 {
   return 0x26;
@@ -74436,7 +74436,7 @@ undefined8 FUN_180883279(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180883290(longlong *socketParam,int dataParam)
+uint64_t FUN_180883290(longlong *socketParam,int dataParam)
 
 {
   int status;
@@ -74537,7 +74537,7 @@ LAB_1808833ba:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808832b4(void)
+uint64_t FUN_1808832b4(void)
 
 {
   int status;
@@ -74635,7 +74635,7 @@ LAB_1808833ba:
 
 
 
-undefined8 FUN_180883405(void)
+uint64_t FUN_180883405(void)
 
 {
   return 0x26;
@@ -74645,7 +74645,7 @@ undefined8 FUN_180883405(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180883420(longlong *socketParam,int dataParam)
+uint64_t FUN_180883420(longlong *socketParam,int dataParam)
 
 {
   longlong lVar1;
@@ -74682,7 +74682,7 @@ LAB_1808834b4:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180883444(undefined8 socketParam,int dataParam)
+uint64_t FUN_180883444(undefined8 socketParam,int dataParam)
 
 {
   longlong lVar1;
@@ -74716,7 +74716,7 @@ LAB_1808834b4:
 
 
 
-undefined8 FUN_1808834ff(void)
+uint64_t FUN_1808834ff(void)
 
 {
   return 0x26;
@@ -74726,7 +74726,7 @@ undefined8 FUN_1808834ff(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180883520(longlong *socketParam,int dataParam)
+uint64_t FUN_180883520(longlong *socketParam,int dataParam)
 
 {
   longlong lVar1;
@@ -74763,7 +74763,7 @@ LAB_1808835b4:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180883544(undefined8 socketParam,int dataParam)
+uint64_t FUN_180883544(undefined8 socketParam,int dataParam)
 
 {
   longlong lVar1;
@@ -74797,7 +74797,7 @@ LAB_1808835b4:
 
 
 
-undefined8 FUN_1808835ff(void)
+uint64_t FUN_1808835ff(void)
 
 {
   return 0x26;
@@ -74807,7 +74807,7 @@ undefined8 FUN_1808835ff(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180883620(longlong *socketParam,int dataParam)
+uint64_t FUN_180883620(longlong *socketParam,int dataParam)
 
 {
   undefined4 *connectionData;
@@ -74871,7 +74871,7 @@ LAB_1808836e7:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180883644(void)
+uint64_t FUN_180883644(void)
 
 {
   undefined4 *connectionData;
@@ -74932,7 +74932,7 @@ LAB_1808836e7:
 
 
 
-undefined8 FUN_180883732(void)
+uint64_t FUN_180883732(void)
 
 {
   return 0x26;
@@ -74942,7 +74942,7 @@ undefined8 FUN_180883732(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180883750(longlong *socketParam,int dataParam)
+uint64_t FUN_180883750(longlong *socketParam,int dataParam)
 
 {
   undefined4 *connectionData;
@@ -75060,7 +75060,7 @@ LAB_1808838fe:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180883774(void)
+uint64_t FUN_180883774(void)
 
 {
   undefined4 *connectionData;
@@ -75175,7 +75175,7 @@ LAB_1808838fe:
 
 
 
-undefined8 FUN_18088394e(void)
+uint64_t FUN_18088394e(void)
 
 {
   return 0x26;
@@ -75183,7 +75183,7 @@ undefined8 FUN_18088394e(void)
 
 
 
-undefined8 FUN_180883960(longlong socketParam,undefined8 dataParam)
+uint64_t FUN_180883960(longlong socketParam,undefined8 dataParam)
 
 {
   uint *connectionData;
@@ -81695,7 +81695,7 @@ LAB_180889e09:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180889f10(longlong socketParam,uint *dataParam)
+uint64_t FUN_180889f10(longlong socketParam,uint *dataParam)
 
 {
   uint uVar1;
@@ -81736,7 +81736,7 @@ void FUN_180889f60(undefined8 socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180889fd6(void)
+uint64_t FUN_180889fd6(void)
 
 {
   return 0x1f;
@@ -81744,7 +81744,7 @@ undefined8 FUN_180889fd6(void)
 
 
 
-undefined8 FUN_180889ff0(longlong *socketParam,int dataParam,longlong *sizeParam)
+uint64_t FUN_180889ff0(longlong *socketParam,int dataParam,longlong *sizeParam)
 
 {
   longlong lVar1;
@@ -82397,7 +82397,7 @@ LAB_18088a2ee:
 
 
 
-undefined8 FUN_18088ac50(longlong socketParam)
+uint64_t FUN_18088ac50(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -82411,7 +82411,7 @@ undefined8 FUN_18088ac50(longlong socketParam)
 
 
 
-undefined8 FUN_18088aca0(longlong socketParam,longlong dataParam)
+uint64_t FUN_18088aca0(longlong socketParam,longlong dataParam)
 
 {
   uint uVar1;
@@ -82454,7 +82454,7 @@ undefined8 FUN_18088aca0(longlong socketParam,longlong dataParam)
 // WARNING: Removing unreachable block (ram,0x00018088ae90)
 // WARNING: Removing unreachable block (ram,0x00018088aea4)
 
-undefined8 FUN_18088ad30(longlong socketParam,longlong dataParam)
+uint64_t FUN_18088ad30(longlong socketParam,longlong dataParam)
 
 {
   longlong lVar1;
@@ -82500,7 +82500,7 @@ undefined8 FUN_18088ad30(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_18088aee0(longlong socketParam,longlong dataParam)
+uint64_t FUN_18088aee0(longlong socketParam,longlong dataParam)
 
 {
   undefined8 uVar1;
@@ -82569,7 +82569,7 @@ void FUN_18088af30(longlong socketParam,undefined8 dataParam,undefined1 sizePara
   undefined4 uStack_48;
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_2b8;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_2b8;
   if (((((*(uint *)(socketParam + 0x24) >> 1 & 1) == 0) ||
        (result = FUN_1808673a0(*(undefined8 *)(socketParam + 0x80)), result != 0)) ||
       (result = FUN_180882400(socketParam), result != 0)) ||
@@ -82900,7 +82900,7 @@ void FUN_18088b503(void)
 
 
 
-undefined8 FUN_18088b520(longlong socketParam,longlong dataParam)
+uint64_t FUN_18088b520(longlong socketParam,longlong dataParam)
 
 {
   int status;
@@ -83382,7 +83382,7 @@ void FUN_18088c02e(void)
 
 
 
-undefined8 FUN_18088c060(uint socketParam,uint *dataParam)
+uint64_t FUN_18088c060(uint socketParam,uint *dataParam)
 
 {
   longlong lVar1;
@@ -83434,7 +83434,7 @@ undefined8 FUN_18088c060(uint socketParam,uint *dataParam)
 
 
 
-undefined8 FUN_18088c1b0(longlong socketParam,ulonglong *dataParam,uint sizeParam,int timeoutParam,int param_5)
+uint64_t FUN_18088c1b0(longlong socketParam,ulonglong *dataParam,uint sizeParam,int timeoutParam,int param_5)
 
 {
   ulonglong uVar1;
@@ -83471,7 +83471,7 @@ undefined8 FUN_18088c1b0(longlong socketParam,ulonglong *dataParam,uint sizePara
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18088c290(longlong socketParam)
+uint64_t FUN_18088c290(longlong socketParam)
 
 {
   longlong lVar1;
@@ -83508,7 +83508,7 @@ undefined8 FUN_18088c290(longlong socketParam)
 
 
 
-undefined8 FUN_18088c380(uint socketParam,int dataParam)
+uint64_t FUN_18088c380(uint socketParam,int dataParam)
 
 {
   longlong lVar1;
@@ -83542,7 +83542,7 @@ undefined8 FUN_18088c380(uint socketParam,int dataParam)
 
 
 
-undefined8 FUN_18088c390(undefined4 socketParam)
+uint64_t FUN_18088c390(undefined4 socketParam)
 
 {
   longlong lVar1;
@@ -83602,7 +83602,7 @@ void FUN_18088c3bc(undefined4 socketParam)
 
 
 
-undefined8 FUN_18088c401(void)
+uint64_t FUN_18088c401(void)
 
 {
   return 0x26;
@@ -83612,7 +83612,7 @@ undefined8 FUN_18088c401(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18088c410(uint socketParam)
+uint64_t FUN_18088c410(uint socketParam)
 
 {
   longlong lVar1;
@@ -83638,7 +83638,7 @@ undefined8 FUN_18088c410(uint socketParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18088c449(void)
+uint64_t FUN_18088c449(void)
 
 {
   longlong unaff_RSI;
@@ -83678,7 +83678,7 @@ void FUN_18088c46a(void)
 
 
 
-undefined8 FUN_18088c4ba(void)
+uint64_t FUN_18088c4ba(void)
 
 {
   undefined8 unaff_RBP;
@@ -83693,7 +83693,7 @@ undefined8 FUN_18088c4ba(void)
 
 
 
-undefined8 FUN_18088c4ea(void)
+uint64_t FUN_18088c4ea(void)
 
 {
   return 0x1c;
@@ -83701,7 +83701,7 @@ undefined8 FUN_18088c4ea(void)
 
 
 
-undefined8 FUN_18088c620(uint *socketParam)
+uint64_t FUN_18088c620(uint *socketParam)
 
 {
   int *pstatus;
@@ -83745,7 +83745,7 @@ undefined8 FUN_18088c620(uint *socketParam)
 
 
 
-undefined8 FUN_18088c740(longlong *socketParam,longlong dataParam)
+uint64_t FUN_18088c740(longlong *socketParam,longlong dataParam)
 
 {
   undefined8 uVar1;
@@ -83765,7 +83765,7 @@ undefined8 FUN_18088c740(longlong *socketParam,longlong dataParam)
 
 
 
-undefined8 NetworkErrorExit(longlong *socketParam)
+uint64_t NetworkErrorExit(longlong *socketParam)
 
 {
   undefined8 uVar1;
@@ -83784,7 +83784,7 @@ undefined8 NetworkErrorExit(longlong *socketParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18088c7c0(longlong socketParam,longlong dataParam,undefined8 *sizeParam)
+uint64_t FUN_18088c7c0(longlong socketParam,longlong dataParam,undefined8 *sizeParam)
 
 {
   undefined4 *connectionData;
@@ -83855,7 +83855,7 @@ LAB_18088c94a:
 
 
 
-undefined8 FUN_18088c970(longlong socketParam,undefined4 *dataParam,undefined4 *sizeParam)
+uint64_t FUN_18088c970(longlong socketParam,undefined4 *dataParam,undefined4 *sizeParam)
 
 {
   undefined4 uVar1;
@@ -83903,7 +83903,7 @@ void FUN_18088c9b0(int *socketParam,longlong dataParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18088ca20(longlong socketParam,longlong dataParam,undefined8 *sizeParam)
+uint64_t FUN_18088ca20(longlong socketParam,longlong dataParam,undefined8 *sizeParam)
 
 {
   undefined4 *connectionData;
@@ -83970,7 +83970,7 @@ LAB_18088cb8a:
 
 
 
-undefined8 FUN_18088cbb0(longlong socketParam,undefined4 *dataParam,undefined4 *sizeParam)
+uint64_t FUN_18088cbb0(longlong socketParam,undefined4 *dataParam,undefined4 *sizeParam)
 
 {
   undefined4 uVar1;
@@ -84174,7 +84174,7 @@ LAB_18088ce9f:
 
 
 
-undefined8 FUN_18088cee0(longlong socketParam,undefined8 dataParam,char sizeParam)
+uint64_t FUN_18088cee0(longlong socketParam,undefined8 dataParam,char sizeParam)
 
 {
   int status;
@@ -84216,7 +84216,7 @@ undefined8 FUN_18088cee0(longlong socketParam,undefined8 dataParam,char sizePara
 
 
 
-undefined8 FUN_18088cf2e(void)
+uint64_t FUN_18088cf2e(void)
 
 {
   int status;
@@ -84315,7 +84315,7 @@ void FUN_18088d0c0(longlong socketParam)
   undefined8 uStack_e0;
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_138;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_138;
   FUN_180768360(**(undefined8 **)(socketParam + 0x1e0));
   uStack_f8 = 0;
   uStack_f0 = 0;
@@ -84466,7 +84466,7 @@ void FUN_18088d510(longlong socketParam)
   undefined1 auStack_128 [256];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_158;
+  uStack_28 = _g_networkXorKey ^ (ulonglong)auStack_158;
   bufferSize = *(uint *)(*(longlong *)(socketParam + 0x158) + 0x24);
   while (((bufferSize >> 1 & 1) == 0 && (*(char *)(socketParam + 0x189) == '\0'))) {
     FUN_180768bf0(5);
@@ -84584,7 +84584,7 @@ void FUN_18088d6fc(void)
 
 
 
-undefined8 FUN_18088d720(longlong socketParam,longlong dataParam)
+uint64_t FUN_18088d720(longlong socketParam,longlong dataParam)
 
 {
   undefined8 uVar1;
@@ -84611,7 +84611,7 @@ undefined8 FUN_18088d720(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_18088d7c0(longlong socketParam,longlong dataParam)
+uint64_t FUN_18088d7c0(longlong socketParam,longlong dataParam)
 
 {
   undefined8 uVar1;
@@ -84815,7 +84815,7 @@ void FUN_18088da49(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18088da50(longlong socketParam)
+uint64_t FUN_18088da50(longlong socketParam)
 
 {
   longlong *plVar1;
@@ -84879,7 +84879,7 @@ void FUN_18088da6d(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18088dad3(void)
+uint64_t FUN_18088dad3(void)
 
 {
   longlong *plVar1;
@@ -84919,7 +84919,7 @@ undefined8 FUN_18088dad3(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18088daf0(longlong socketParam)
+uint64_t FUN_18088daf0(longlong socketParam)
 
 {
   int status;
@@ -85026,7 +85026,7 @@ void FUN_18088dbf0(longlong socketParam,undefined8 *dataParam)
 
 
 
-undefined8 FUN_18088dcf0(longlong socketParam)
+uint64_t FUN_18088dcf0(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -85072,7 +85072,7 @@ void FUN_18088dd60(longlong socketParam,longlong *dataParam)
   undefined1 auStack_138 [256];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_178;
   uVar11 = 0;
   if (((*(int *)(socketParam + 0x200) != 0) &&
       (cVar1 = (**(code **)(*dataParam + 0x60))(dataParam), cVar1 != '\0')) &&
@@ -85179,7 +85179,7 @@ void FUN_18088de97(void)
 
 
 
-undefined8 FUN_18088dec0(longlong socketParam,longlong *dataParam,int sizeParam)
+uint64_t FUN_18088dec0(longlong socketParam,longlong *dataParam,int sizeParam)
 
 {
   undefined8 uVar1;
@@ -85349,7 +85349,7 @@ void FUN_18088e220(longlong socketParam)
   undefined8 auStack_98 [15];
   ulonglong uStack_20;
   
-  uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
+  uStack_20 = _g_networkXorKey ^ (ulonglong)auStack_b8;
   FUN_180768360(*(undefined8 *)(socketParam + 0x168));
   auStack_98[0] = 0;
   status = FUN_18088c740(auStack_98,*(undefined8 *)(socketParam + 0x158));
@@ -85366,7 +85366,7 @@ void FUN_18088e220(longlong socketParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18088e480(longlong socketParam,longlong dataParam,undefined1 sizeParam,float timeoutParam)
+uint64_t FUN_18088e480(longlong socketParam,longlong dataParam,undefined1 sizeParam,float timeoutParam)
 
 {
   uint uVar1;
@@ -85454,7 +85454,7 @@ undefined8 FUN_18088e480(longlong socketParam,longlong dataParam,undefined1 size
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18088e4e4(void)
+uint64_t FUN_18088e4e4(void)
 
 {
   uint uVar1;
@@ -85552,7 +85552,7 @@ void FUN_18088e6d0(longlong socketParam)
 
 
 
-undefined8 FUN_18088e700(longlong socketParam,longlong *dataParam)
+uint64_t FUN_18088e700(longlong socketParam,longlong *dataParam)
 
 {
   char cVar1;
@@ -85580,7 +85580,7 @@ undefined8 FUN_18088e700(longlong socketParam,longlong *dataParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18088e780(longlong *socketParam,int dataParam)
+uint64_t FUN_18088e780(longlong *socketParam,int dataParam)
 
 {
   undefined8 *connectionData;
@@ -85651,7 +85651,7 @@ LAB_18088e847:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18088e7a4(undefined8 socketParam,int dataParam)
+uint64_t FUN_18088e7a4(undefined8 socketParam,int dataParam)
 
 {
   undefined8 *connectionData;
@@ -85719,7 +85719,7 @@ LAB_18088e847:
 
 
 
-undefined8 FUN_18088e892(void)
+uint64_t FUN_18088e892(void)
 
 {
   return 0x26;
@@ -85727,7 +85727,7 @@ undefined8 FUN_18088e892(void)
 
 
 
-undefined8 FUN_18088e8b0(longlong socketParam,longlong dataParam)
+uint64_t FUN_18088e8b0(longlong socketParam,longlong dataParam)
 
 {
   int status;
@@ -85785,7 +85785,7 @@ void FUN_18088e970(longlong socketParam,longlong *dataParam,undefined4 sizeParam
   undefined1 auStack_138 [256];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_178;
   (**(code **)(*dataParam + 8))(dataParam,auStack_138,0x100);
   packetSize = (**(code **)*dataParam)(dataParam);
   status = (**(code **)(*dataParam + 0x38))(dataParam);
@@ -85869,7 +85869,7 @@ FUN_18088ea60(undefined8 socketParam,int dataParam,undefined8 sizeParam,longlong
 
 
 
-undefined8 FUN_18088eb60(longlong socketParam)
+uint64_t FUN_18088eb60(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -85994,7 +85994,7 @@ uint FUN_18088ed70(undefined1 *socketParam,int dataParam,longlong sizeParam,int 
 
 
 
-undefined8 FUN_18088ee20(undefined8 socketParam,undefined8 dataParam)
+uint64_t FUN_18088ee20(undefined8 socketParam,undefined8 dataParam)
 
 {
   int status;
@@ -86014,7 +86014,7 @@ undefined8 FUN_18088ee20(undefined8 socketParam,undefined8 dataParam)
 
 
 
-undefined8 FUN_18088ee60(undefined8 socketParam,undefined8 dataParam)
+uint64_t FUN_18088ee60(undefined8 socketParam,undefined8 dataParam)
 
 {
   int status;
@@ -86034,7 +86034,7 @@ undefined8 FUN_18088ee60(undefined8 socketParam,undefined8 dataParam)
 
 
 
-undefined8 FUN_18088eea0(undefined8 socketParam,float *dataParam)
+uint64_t FUN_18088eea0(undefined8 socketParam,float *dataParam)
 
 {
   char cVar1;
@@ -86098,7 +86098,7 @@ undefined8 FUN_18088eea0(undefined8 socketParam,float *dataParam)
 
 
 
-undefined8 FUN_18088eebb(void)
+uint64_t FUN_18088eebb(void)
 
 {
   char cVar1;
@@ -86155,7 +86155,7 @@ undefined8 FUN_18088eebb(void)
 
 
 
-undefined8 FUN_18088ef0e(undefined4 socketParam)
+uint64_t FUN_18088ef0e(undefined4 socketParam)
 
 {
   char cVar1;
@@ -86208,7 +86208,7 @@ undefined8 FUN_18088ef0e(undefined4 socketParam)
 
 
 
-undefined8 FUN_18088efaa(void)
+uint64_t FUN_18088efaa(void)
 
 {
   undefined4 uVar1;
@@ -86235,7 +86235,7 @@ void FUN_18088efd5(void)
 
 
 
-undefined8 FUN_18088efe0(undefined8 socketParam,undefined8 *dataParam)
+uint64_t FUN_18088efe0(undefined8 socketParam,undefined8 *dataParam)
 
 {
   undefined8 uVar1;
@@ -86251,7 +86251,7 @@ undefined8 FUN_18088efe0(undefined8 socketParam,undefined8 *dataParam)
 
 
 
-undefined8 FUN_18088f010(undefined8 socketParam,undefined8 dataParam)
+uint64_t FUN_18088f010(undefined8 socketParam,undefined8 dataParam)
 
 {
   int status;
@@ -86423,7 +86423,7 @@ void FUN_18088f1a0(undefined8 socketParam,longlong dataParam)
   undefined1 auStack_12 [2];
   ulonglong uStack_10;
   
-  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
+  uStack_10 = _g_networkXorKey ^ (ulonglong)auStack_98;
   status = FUN_18088f710(socketParam,&uStack_28);
   if (status == 0) {
     puStack_38 = auStack_12;
@@ -86474,7 +86474,7 @@ void FUN_18088f2d0(undefined8 socketParam,undefined8 *dataParam)
 
 
 
-undefined8 FUN_18088f310(undefined8 socketParam,undefined8 *dataParam)
+uint64_t FUN_18088f310(undefined8 socketParam,undefined8 *dataParam)
 
 {
   int status;
@@ -86506,7 +86506,7 @@ undefined8 FUN_18088f310(undefined8 socketParam,undefined8 *dataParam)
 
 
 
-undefined8 FUN_18088f3a0(undefined8 socketParam,longlong dataParam)
+uint64_t FUN_18088f3a0(undefined8 socketParam,longlong dataParam)
 
 {
   int status;
@@ -86528,7 +86528,7 @@ undefined8 FUN_18088f3a0(undefined8 socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_18088f3c0(undefined8 socketParam)
+uint64_t FUN_18088f3c0(undefined8 socketParam)
 
 {
   int status;
@@ -86565,7 +86565,7 @@ void FUN_18088f427(void)
 
 
 
-undefined8 FUN_18088f430(undefined8 socketParam,undefined8 dataParam)
+uint64_t FUN_18088f430(undefined8 socketParam,undefined8 dataParam)
 
 {
   int status;
@@ -86585,7 +86585,7 @@ undefined8 FUN_18088f430(undefined8 socketParam,undefined8 dataParam)
 
 
 
-undefined8 FUN_18088f470(undefined8 socketParam,undefined1 *dataParam)
+uint64_t FUN_18088f470(undefined8 socketParam,undefined1 *dataParam)
 
 {
   undefined8 uVar1;
@@ -86610,7 +86610,7 @@ undefined8 FUN_18088f470(undefined8 socketParam,undefined1 *dataParam)
 
 
 
-undefined8 FUN_18088f4d0(undefined8 socketParam,undefined8 dataParam,int sizeParam)
+uint64_t FUN_18088f4d0(undefined8 socketParam,undefined8 dataParam,int sizeParam)
 
 {
   int status;
@@ -86631,7 +86631,7 @@ undefined8 FUN_18088f4d0(undefined8 socketParam,undefined8 dataParam,int sizePar
 
 
 
-undefined8 FUN_18088f530(undefined8 socketParam,longlong dataParam,int sizeParam)
+uint64_t FUN_18088f530(undefined8 socketParam,longlong dataParam,int sizeParam)
 
 {
   int status;
@@ -86663,7 +86663,7 @@ undefined8 FUN_18088f530(undefined8 socketParam,longlong dataParam,int sizeParam
 
 
 
-undefined8 FUN_18088f54e(void)
+uint64_t FUN_18088f54e(void)
 
 {
   int status;
@@ -86702,7 +86702,7 @@ void FUN_18088f59d(void)
 
 
 
-undefined8 FUN_18088f5a8(void)
+uint64_t FUN_18088f5a8(void)
 
 {
   return 0x13;
@@ -86710,7 +86710,7 @@ undefined8 FUN_18088f5a8(void)
 
 
 
-undefined8 FUN_18088f5c0(undefined8 socketParam,longlong dataParam,int sizeParam)
+uint64_t FUN_18088f5c0(undefined8 socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined8 uVar1;
@@ -86736,7 +86736,7 @@ undefined8 FUN_18088f5c0(undefined8 socketParam,longlong dataParam,int sizeParam
 
 
 
-undefined8 FUN_18088f5de(void)
+uint64_t FUN_18088f5de(void)
 
 {
   undefined8 uVar1;
@@ -86769,7 +86769,7 @@ void FUN_18088f612(void)
 
 
 
-undefined8 FUN_18088f620(undefined8 socketParam,longlong dataParam,int sizeParam)
+uint64_t FUN_18088f620(undefined8 socketParam,longlong dataParam,int sizeParam)
 
 {
   undefined8 *connectionData;
@@ -86818,7 +86818,7 @@ undefined8 FUN_18088f620(undefined8 socketParam,longlong dataParam,int sizeParam
 
 
 
-undefined8 FUN_18088f643(void)
+uint64_t FUN_18088f643(void)
 
 {
   undefined8 *connectionData;
@@ -86874,7 +86874,7 @@ void FUN_18088f6f7(void)
 
 
 
-undefined8 FUN_18088f710(undefined8 *socketParam,undefined8 *dataParam)
+uint64_t FUN_18088f710(undefined8 *socketParam,undefined8 *dataParam)
 
 {
   byte bVar1;
@@ -87732,7 +87732,7 @@ undefined4 FUN_18088fd75(void)
 
 
 
-undefined8 FUN_18088fdb0(longlong socketParam,undefined8 dataParam)
+uint64_t FUN_18088fdb0(longlong socketParam,undefined8 dataParam)
 
 {
   longlong lVar1;
@@ -87763,7 +87763,7 @@ undefined8 FUN_18088fdb0(longlong socketParam,undefined8 dataParam)
 
 
 
-undefined8 FUN_18088fdce(void)
+uint64_t FUN_18088fdce(void)
 
 {
   longlong lVar1;
@@ -87834,7 +87834,7 @@ void FUN_18088fe51(void)
 
 
 
-undefined8 FUN_18088fe60(longlong socketParam,longlong dataParam)
+uint64_t FUN_18088fe60(longlong socketParam,longlong dataParam)
 
 {
   uint uVar1;
@@ -87879,7 +87879,7 @@ undefined8 FUN_18088fe60(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_18088fea0(longlong socketParam,undefined8 dataParam)
+uint64_t FUN_18088fea0(longlong socketParam,undefined8 dataParam)
 
 {
   longlong lVar1;
@@ -87913,7 +87913,7 @@ undefined8 FUN_18088fea0(longlong socketParam,undefined8 dataParam)
 
 
 
-undefined8 FUN_18088febe(void)
+uint64_t FUN_18088febe(void)
 
 {
   longlong lVar1;
@@ -87990,7 +87990,7 @@ void FUN_18088ff4c(void)
 
 
 
-undefined8 FUN_18088ff60(longlong socketParam,longlong dataParam)
+uint64_t FUN_18088ff60(longlong socketParam,longlong dataParam)
 
 {
   longlong lVar1;
@@ -88052,7 +88052,7 @@ FUN_18088ff94(undefined8 socketParam,undefined8 dataParam,undefined8 sizeParam,u
 
 
 
-undefined8 FUN_18088ffd5(void)
+uint64_t FUN_18088ffd5(void)
 
 {
   return 0x1c;
@@ -88070,7 +88070,7 @@ void FUN_18088ffdf(void)
 
 
 
-undefined8 FUN_18088fff0(longlong socketParam)
+uint64_t FUN_18088fff0(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -88089,7 +88089,7 @@ undefined8 FUN_18088fff0(longlong socketParam)
 
 
 
-undefined8 FUN_180890040(longlong socketParam)
+uint64_t FUN_180890040(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -88108,7 +88108,7 @@ undefined8 FUN_180890040(longlong socketParam)
 
 
 
-undefined8 FUN_180890090(longlong socketParam)
+uint64_t FUN_180890090(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -88146,7 +88146,7 @@ void FUN_1808900e0(longlong socketParam,longlong dataParam)
   undefined1 auStack_238 [512];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_278;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_278;
   result = func_0x00018088c530(*(undefined4 *)(socketParam + 0x10),alStack_258);
   if ((result == 0) && (*(longlong *)(alStack_258[0] + 8) != 0)) {
     puStack_248 = auStack_238;
@@ -88262,7 +88262,7 @@ void FUN_180890246(void)
 
 
 
-undefined8 FUN_180890270(longlong socketParam)
+uint64_t FUN_180890270(longlong socketParam)
 
 {
   longlong lVar1;
@@ -88446,7 +88446,7 @@ ulonglong FUN_1808902b0(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180890450(longlong socketParam,longlong dataParam)
+uint64_t FUN_180890450(longlong socketParam,longlong dataParam)
 
 {
   longlong lVar1;
@@ -88480,7 +88480,7 @@ undefined8 FUN_180890450(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180890490(longlong socketParam)
+uint64_t FUN_180890490(longlong socketParam)
 
 {
   uint *connectionData;
@@ -88509,7 +88509,7 @@ undefined8 FUN_180890490(longlong socketParam)
 
 
 
-undefined8 FUN_180890500(longlong socketParam,undefined8 dataParam)
+uint64_t FUN_180890500(longlong socketParam,undefined8 dataParam)
 
 {
   longlong lVar1;
@@ -88548,7 +88548,7 @@ undefined8 FUN_180890500(longlong socketParam,undefined8 dataParam)
 
 
 
-undefined8 FUN_180890540(longlong socketParam)
+uint64_t FUN_180890540(longlong socketParam)
 
 {
   longlong lVar1;
@@ -88575,7 +88575,7 @@ undefined8 FUN_180890540(longlong socketParam)
 
 
 
-undefined8 FUN_180890590(longlong socketParam)
+uint64_t FUN_180890590(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -88600,7 +88600,7 @@ undefined8 FUN_180890590(longlong socketParam)
 
 
 
-undefined8 FUN_1808905ae(void)
+uint64_t FUN_1808905ae(void)
 
 {
   longlong networkContext;
@@ -88621,7 +88621,7 @@ undefined8 FUN_1808905ae(void)
 
 
 
-undefined8 FUN_18089062a(char socketParam)
+uint64_t FUN_18089062a(char socketParam)
 
 {
   if (socketParam != '\0') {
@@ -88643,7 +88643,7 @@ void FUN_18089064b(void)
 
 
 
-undefined8 FUN_180890650(longlong socketParam)
+uint64_t FUN_180890650(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -88710,7 +88710,7 @@ void FUN_1808906f0(void)
 
 
 
-undefined8 FUN_180890700(longlong socketParam)
+uint64_t FUN_180890700(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -88777,7 +88777,7 @@ void FUN_18089079f(void)
 
 
 
-undefined8 FUN_1808907b0(longlong socketParam)
+uint64_t FUN_1808907b0(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -88813,7 +88813,7 @@ undefined8 FUN_1808907b0(longlong socketParam)
 
 
 
-undefined8 FUN_180890830(longlong socketParam)
+uint64_t FUN_180890830(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -88853,7 +88853,7 @@ undefined8 FUN_180890830(longlong socketParam)
 // WARNING: Removing unreachable block (ram,0x0001808d74a4)
 // WARNING: Removing unreachable block (ram,0x0001808d74b1)
 
-undefined8 FUN_1808908b0(longlong socketParam)
+uint64_t FUN_1808908b0(longlong socketParam)
 
 {
   longlong lVar1;
@@ -88911,7 +88911,7 @@ undefined8 FUN_1808908b0(longlong socketParam)
 
 
 
-undefined8 FUN_180890900(longlong socketParam)
+uint64_t FUN_180890900(longlong socketParam)
 
 {
   longlong lVar1;
@@ -88958,7 +88958,7 @@ undefined8 FUN_180890900(longlong socketParam)
 
 
 
-undefined8 FUN_180890923(void)
+uint64_t FUN_180890923(void)
 
 {
   longlong lVar1;
@@ -89012,7 +89012,7 @@ void FUN_1808909b4(void)
 
 
 
-undefined8 FUN_1808909ba(void)
+uint64_t FUN_1808909ba(void)
 
 {
   return 0x1c;
@@ -89022,7 +89022,7 @@ undefined8 FUN_1808909ba(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808909d0(longlong socketParam)
+uint64_t FUN_1808909d0(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -89075,7 +89075,7 @@ undefined8 FUN_1808909d0(longlong socketParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808909f3(void)
+uint64_t FUN_1808909f3(void)
 
 {
   longlong networkContext;
@@ -89134,7 +89134,7 @@ void FUN_180890ac1(void)
 
 
 
-undefined8 FUN_180890ac7(void)
+uint64_t FUN_180890ac7(void)
 
 {
   return 0x1c;
@@ -89142,7 +89142,7 @@ undefined8 FUN_180890ac7(void)
 
 
 
-undefined8 FUN_180890ad0(longlong socketParam)
+uint64_t FUN_180890ad0(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -89209,7 +89209,7 @@ void FUN_180890b65(void)
 
 
 
-undefined8 FUN_180890b70(longlong socketParam)
+uint64_t FUN_180890b70(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -89276,7 +89276,7 @@ void FUN_180890c06(void)
 
 
 
-undefined8 FUN_180890c10(longlong socketParam)
+uint64_t FUN_180890c10(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -89340,7 +89340,7 @@ void FUN_180890d39(void)
 
 
 
-undefined8 FUN_180890d60(longlong socketParam)
+uint64_t FUN_180890d60(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -89407,7 +89407,7 @@ void FUN_180890e03(void)
 
 
 
-undefined8 FUN_180890e10(longlong socketParam)
+uint64_t FUN_180890e10(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -89474,7 +89474,7 @@ void FUN_180890ed2(void)
 
 
 
-undefined8 FUN_180890ee0(longlong socketParam)
+uint64_t FUN_180890ee0(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -89541,7 +89541,7 @@ void FUN_180890f7f(void)
 
 
 
-undefined8 FUN_180890f90(longlong socketParam)
+uint64_t FUN_180890f90(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -89612,7 +89612,7 @@ void FUN_18089107f(void)
 
 
 
-undefined8 FUN_180891090(longlong socketParam)
+uint64_t FUN_180891090(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -89710,7 +89710,7 @@ void FUN_1808911b0(longlong socketParam,undefined8 dataParam)
 // WARNING: Removing unreachable block (ram,0x0001808d74a4)
 // WARNING: Removing unreachable block (ram,0x0001808d74b1)
 
-undefined8 FUN_180891210(longlong socketParam)
+uint64_t FUN_180891210(longlong socketParam)
 
 {
   longlong lVar1;
@@ -89901,7 +89901,7 @@ int FUN_1808913ff(undefined4 socketParam)
 
 
 
-undefined8 FUN_180891492(void)
+uint64_t FUN_180891492(void)
 
 {
   return 0;
@@ -89909,7 +89909,7 @@ undefined8 FUN_180891492(void)
 
 
 
-undefined8 FUN_1808914ac(void)
+uint64_t FUN_1808914ac(void)
 
 {
   return 0x1f;
@@ -89962,7 +89962,7 @@ void FUN_1808915d0(longlong socketParam,longlong dataParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180891650(longlong socketParam,longlong dataParam)
+uint64_t FUN_180891650(longlong socketParam,longlong dataParam)
 
 {
   undefined8 uVar1;
@@ -90045,7 +90045,7 @@ void FUN_1808916f0(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180891820(longlong socketParam)
+uint64_t FUN_180891820(longlong socketParam)
 
 {
   undefined8 uVar1;
@@ -90173,7 +90173,7 @@ LAB_180891a52:
 
 
 
-undefined8 FUN_180891a80(longlong socketParam,longlong dataParam)
+uint64_t FUN_180891a80(longlong socketParam,longlong dataParam)
 
 {
   int status;
@@ -90217,7 +90217,7 @@ void FUN_180891af0(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180891b40(longlong socketParam,longlong dataParam)
+uint64_t FUN_180891b40(longlong socketParam,longlong dataParam)
 
 {
   int status;
@@ -90248,7 +90248,7 @@ undefined8 FUN_180891b40(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180891bd0(longlong socketParam,longlong dataParam)
+uint64_t FUN_180891bd0(longlong socketParam,longlong dataParam)
 
 {
   undefined8 uVar1;
@@ -90267,7 +90267,7 @@ undefined8 FUN_180891bd0(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180891c40(longlong socketParam,longlong dataParam)
+uint64_t FUN_180891c40(longlong socketParam,longlong dataParam)
 
 {
   undefined8 uVar1;
@@ -90325,7 +90325,7 @@ void FUN_180891cf0(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180891d40(longlong socketParam,longlong dataParam)
+uint64_t FUN_180891d40(longlong socketParam,longlong dataParam)
 
 {
   undefined8 uVar1;
@@ -90347,7 +90347,7 @@ undefined8 FUN_180891d40(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180891de0(longlong socketParam,longlong dataParam)
+uint64_t FUN_180891de0(longlong socketParam,longlong dataParam)
 
 {
   undefined8 uVar1;
@@ -90794,7 +90794,7 @@ void FUN_180892120(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180892170(longlong socketParam,longlong dataParam)
+uint64_t FUN_180892170(longlong socketParam,longlong dataParam)
 
 {
   undefined8 uVar1;
@@ -90817,7 +90817,7 @@ undefined8 FUN_180892170(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_1808921f0(longlong socketParam,longlong dataParam)
+uint64_t FUN_1808921f0(longlong socketParam,longlong dataParam)
 
 {
   undefined8 uVar1;
@@ -90842,7 +90842,7 @@ undefined8 FUN_1808921f0(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180892270(longlong socketParam,longlong dataParam)
+uint64_t FUN_180892270(longlong socketParam,longlong dataParam)
 
 {
   longlong lVar1;
@@ -90875,7 +90875,7 @@ undefined8 FUN_180892270(longlong socketParam,longlong dataParam)
           return 0x1e;
         }
         if (*(int *)(lVar1 + 0x58) < 1) {
-          puVar4 = &DAT_18098bc73;
+          puVar4 = &g_networkEmptyString;
         }
         else {
           puVar4 = *(undefined **)(lVar1 + 0x50);
@@ -90901,7 +90901,7 @@ undefined8 FUN_180892270(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_1808922ad(void)
+uint64_t FUN_1808922ad(void)
 
 {
   longlong lVar1;
@@ -90931,7 +90931,7 @@ undefined8 FUN_1808922ad(void)
         return 0x1e;
       }
       if (*(int *)(lVar1 + 0x58) < 1) {
-        puVar4 = &DAT_18098bc73;
+        puVar4 = &g_networkEmptyString;
       }
       else {
         puVar4 = *(undefined **)(lVar1 + 0x50);
@@ -90982,7 +90982,7 @@ void FUN_18089233e(void)
 
 
 
-undefined8 FUN_180892370(longlong socketParam,longlong dataParam)
+uint64_t FUN_180892370(longlong socketParam,longlong dataParam)
 
 {
   int status;
@@ -91048,7 +91048,7 @@ void FUN_180892410(longlong socketParam,longlong dataParam)
   undefined1 auStack_40 [40];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
+  uStack_18 = _g_networkXorKey ^ (ulonglong)auStack_68;
   result = func_0x00018088c530(*(undefined4 *)(socketParam + 0x10),&lStack_48);
   if (result == 0) {
     if (lStack_48 != 0) {
@@ -91114,7 +91114,7 @@ void FUN_1808924c8(void)
 
 
 
-undefined8 FUN_1808924f0(longlong socketParam,longlong dataParam)
+uint64_t FUN_1808924f0(longlong socketParam,longlong dataParam)
 
 {
   float fVar1;
@@ -91275,7 +91275,7 @@ void FUN_180892720(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180892780(longlong socketParam,longlong dataParam)
+uint64_t FUN_180892780(longlong socketParam,longlong dataParam)
 
 {
   float fVar1;
@@ -91327,7 +91327,7 @@ undefined8 FUN_180892780(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180892880(longlong socketParam,longlong dataParam)
+uint64_t FUN_180892880(longlong socketParam,longlong dataParam)
 
 {
   float fVar1;
@@ -91376,7 +91376,7 @@ undefined8 FUN_180892880(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_1808928d3(void)
+uint64_t FUN_1808928d3(void)
 
 {
   float fVar1;
@@ -91413,7 +91413,7 @@ undefined8 FUN_1808928d3(void)
 
 
 
-undefined8 FUN_1808928f1(void)
+uint64_t FUN_1808928f1(void)
 
 {
   float fVar1;
@@ -91448,7 +91448,7 @@ undefined8 FUN_1808928f1(void)
 
 
 
-undefined8 FUN_180892909(undefined4 socketParam)
+uint64_t FUN_180892909(undefined4 socketParam)
 
 {
   float fVar1;
@@ -91478,7 +91478,7 @@ undefined8 FUN_180892909(undefined4 socketParam)
 
 
 
-undefined8 FUN_180892920(undefined4 socketParam)
+uint64_t FUN_180892920(undefined4 socketParam)
 
 {
   float fVar1;
@@ -91505,7 +91505,7 @@ undefined8 FUN_180892920(undefined4 socketParam)
 
 
 
-undefined8 FUN_180892974(void)
+uint64_t FUN_180892974(void)
 
 {
   return 0x1c;
@@ -91523,7 +91523,7 @@ void FUN_180892983(void)
 
 
 
-undefined8 FUN_180892990(longlong socketParam,longlong dataParam)
+uint64_t FUN_180892990(longlong socketParam,longlong dataParam)
 
 {
   float fVar1;
@@ -91579,7 +91579,7 @@ undefined8 FUN_180892990(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180892ac0(longlong socketParam,longlong dataParam)
+uint64_t FUN_180892ac0(longlong socketParam,longlong dataParam)
 
 {
   float fVar1;
@@ -91634,7 +91634,7 @@ undefined8 FUN_180892ac0(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180892bd0(longlong socketParam,longlong dataParam,undefined8 sizeParam,undefined8 timeoutParam)
+uint64_t FUN_180892bd0(longlong socketParam,longlong dataParam,undefined8 sizeParam,undefined8 timeoutParam)
 
 {
   float fVar1;
@@ -91704,7 +91704,7 @@ undefined8 FUN_180892bd0(longlong socketParam,longlong dataParam,undefined8 size
 
 
 
-undefined8 FUN_180892cc0(longlong socketParam,longlong dataParam)
+uint64_t FUN_180892cc0(longlong socketParam,longlong dataParam)
 
 {
   int status;
@@ -91786,7 +91786,7 @@ undefined8 FUN_180892cc0(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180892ceb(void)
+uint64_t FUN_180892ceb(void)
 
 {
   float fVar1;
@@ -91871,7 +91871,7 @@ void FUN_180892e2d(void)
 
 
 
-undefined8 FUN_180892e35(void)
+uint64_t FUN_180892e35(void)
 
 {
   return 0x1e;
@@ -91895,7 +91895,7 @@ void FUN_180892e50(longlong socketParam,undefined8 dataParam)
   undefined8 uStack_38;
   ulonglong uStack_30;
   
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)alStack_58;
+  uStack_30 = _g_networkXorKey ^ (ulonglong)alStack_58;
   uStack_38 = dataParam;
   status = func_0x00018088c530(*(undefined4 *)(socketParam + 0x10),alStack_58);
   if (status == 0) {
@@ -91945,7 +91945,7 @@ void FUN_180893080(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_1808930e0(longlong socketParam,longlong dataParam,undefined8 sizeParam,undefined8 timeoutParam)
+uint64_t FUN_1808930e0(longlong socketParam,longlong dataParam,undefined8 sizeParam,undefined8 timeoutParam)
 
 {
   float fVar1;
@@ -91995,7 +91995,7 @@ undefined8 FUN_1808930e0(longlong socketParam,longlong dataParam,undefined8 size
 
 
 
-undefined8 FUN_180893190(longlong socketParam,longlong dataParam)
+uint64_t FUN_180893190(longlong socketParam,longlong dataParam)
 
 {
   float fVar1;
@@ -92064,7 +92064,7 @@ code_r0x00018089322c:
 
 
 
-undefined8 FUN_180893290(longlong socketParam,longlong dataParam)
+uint64_t FUN_180893290(longlong socketParam,longlong dataParam)
 
 {
   undefined8 uVar1;
@@ -92112,7 +92112,7 @@ undefined8 FUN_180893290(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180893330(longlong socketParam,longlong dataParam)
+uint64_t FUN_180893330(longlong socketParam,longlong dataParam)
 
 {
   undefined8 uVar1;
@@ -92187,7 +92187,7 @@ void FUN_180893420(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180893480(longlong socketParam,longlong dataParam)
+uint64_t FUN_180893480(longlong socketParam,longlong dataParam)
 
 {
   float fVar1;
@@ -92226,7 +92226,7 @@ undefined8 FUN_180893480(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180893540(longlong socketParam,longlong dataParam)
+uint64_t FUN_180893540(longlong socketParam,longlong dataParam)
 
 {
   longlong lVar1;
@@ -92257,7 +92257,7 @@ undefined8 FUN_180893540(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_1808935c0(longlong socketParam,longlong dataParam)
+uint64_t FUN_1808935c0(longlong socketParam,longlong dataParam)
 
 {
   longlong lVar1;
@@ -92444,7 +92444,7 @@ int FUN_18089379d(longlong socketParam,undefined8 dataParam)
 
 
 
-undefined8 FUN_1808938ab(void)
+uint64_t FUN_1808938ab(void)
 
 {
   return 0x1f;
@@ -92555,7 +92555,7 @@ int FUN_180893964(undefined8 socketParam,undefined8 dataParam)
 
 
 
-undefined8 FUN_180893a63(void)
+uint64_t FUN_180893a63(void)
 
 {
   return 0x1f;
@@ -92563,7 +92563,7 @@ undefined8 FUN_180893a63(void)
 
 
 
-undefined8 FUN_180893d50(longlong socketParam,longlong dataParam)
+uint64_t FUN_180893d50(longlong socketParam,longlong dataParam)
 
 {
   float fVar1;
@@ -92600,7 +92600,7 @@ undefined8 FUN_180893d50(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180893d8f(undefined8 socketParam,undefined8 dataParam)
+uint64_t FUN_180893d8f(undefined8 socketParam,undefined8 dataParam)
 
 {
   float fVar1;
@@ -92667,7 +92667,7 @@ void FUN_180893ddb(void)
 
 
 
-undefined8 FUN_180893e30(longlong socketParam,longlong dataParam)
+uint64_t FUN_180893e30(longlong socketParam,longlong dataParam)
 
 {
   float fVar1;
@@ -92703,7 +92703,7 @@ undefined8 FUN_180893e30(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180893e69(void)
+uint64_t FUN_180893e69(void)
 
 {
   float fVar1;
@@ -92737,7 +92737,7 @@ undefined8 FUN_180893e69(void)
 
 
 
-undefined8 FUN_180893e94(void)
+uint64_t FUN_180893e94(void)
 
 {
   float fVar1;
@@ -92777,7 +92777,7 @@ void FUN_180893eef(void)
 
 
 
-undefined8 FUN_180893f00(longlong socketParam,longlong dataParam)
+uint64_t FUN_180893f00(longlong socketParam,longlong dataParam)
 
 {
   float fVar1;
@@ -92819,7 +92819,7 @@ undefined8 FUN_180893f00(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180893f64(void)
+uint64_t FUN_180893f64(void)
 
 {
   float fVar1;
@@ -92898,7 +92898,7 @@ void FUN_180893fed(void)
 
 
 
-undefined8 FUN_180894000(longlong socketParam,longlong dataParam)
+uint64_t FUN_180894000(longlong socketParam,longlong dataParam)
 
 {
   float fVar1;
@@ -92938,7 +92938,7 @@ undefined8 FUN_180894000(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180894037(void)
+uint64_t FUN_180894037(void)
 
 {
   float fVar1;
@@ -92976,7 +92976,7 @@ undefined8 FUN_180894037(void)
 
 
 
-undefined8 FUN_18089406b(void)
+uint64_t FUN_18089406b(void)
 
 {
   float fVar1;
@@ -93033,7 +93033,7 @@ void FUN_1808940f0(longlong socketParam,longlong dataParam)
   longlong lStack_40;
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_68;
   lStack_60 = dataParam + 0x60;
   lStack_50 = socketParam + 0x18 + (longlong)*(int *)(socketParam + 0x10) * 8;
   lStack_40 = dataParam;
@@ -93043,7 +93043,7 @@ void FUN_1808940f0(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180894300(longlong socketParam,longlong dataParam)
+uint64_t FUN_180894300(longlong socketParam,longlong dataParam)
 
 {
   undefined8 uVar1;
@@ -93072,16 +93072,16 @@ int FUN_180894380(longlong socketParam,longlong dataParam,int sizeParam)
   int result;
   
   status = func_0x00018074b800(dataParam,sizeParam,*(undefined4 *)(socketParam + 0x10));
-  result = FUN_18074b880(dataParam + status,sizeParam - status,&DAT_180a06434);
+  result = FUN_18074b880(dataParam + status,sizeParam - status,&g_networkNullTerminator);
   status = status + result;
   result = func_0x00018074b7d0(status + dataParam,sizeParam - status,*(undefined4 *)(socketParam + 0x18));
   status = status + result;
-  result = FUN_18074b880(status + dataParam,sizeParam - status,&DAT_180a06434);
+  result = FUN_18074b880(status + dataParam,sizeParam - status,&g_networkNullTerminator);
   status = status + result;
   result = FUN_18074b970(status + dataParam,sizeParam - status,socketParam + 0x20,
                         *(undefined4 *)(socketParam + 0x18));
   status = status + result;
-  result = FUN_18074b880(status + dataParam,sizeParam - status,&DAT_180a06434);
+  result = FUN_18074b880(status + dataParam,sizeParam - status,&g_networkNullTerminator);
   status = status + result;
   result = FUN_18074bb00(status + dataParam,sizeParam - status,
                         socketParam + 0x20 + (longlong)*(int *)(socketParam + 0x18) * 4);
@@ -93097,21 +93097,21 @@ int FUN_180894460(longlong socketParam,longlong dataParam,int sizeParam)
   int result;
   
   status = func_0x00018074b800(dataParam,sizeParam,*(undefined4 *)(socketParam + 0x10));
-  result = FUN_18074b880(dataParam + status,sizeParam - status,&DAT_180a06434);
+  result = FUN_18074b880(dataParam + status,sizeParam - status,&g_networkNullTerminator);
   status = status + result;
   result = func_0x00018074b7d0(status + dataParam,sizeParam - status,*(undefined4 *)(socketParam + 0x18));
   status = status + result;
-  result = FUN_18074b880(status + dataParam,sizeParam - status,&DAT_180a06434);
+  result = FUN_18074b880(status + dataParam,sizeParam - status,&g_networkNullTerminator);
   status = status + result;
   result = FUN_18088ed70(status + dataParam,sizeParam - status,socketParam + 0x20,
                         *(undefined4 *)(socketParam + 0x18));
   status = status + result;
-  result = FUN_18074b880(status + dataParam,sizeParam - status,&DAT_180a06434);
+  result = FUN_18074b880(status + dataParam,sizeParam - status,&g_networkNullTerminator);
   status = status + result;
   result = FUN_18074bb00(status + dataParam,sizeParam - status,
                         socketParam + 0x20 + (longlong)*(int *)(socketParam + 0x18) * 8);
   status = status + result;
-  result = FUN_18074b880(status + dataParam,sizeParam - status,&DAT_180a06434);
+  result = FUN_18074b880(status + dataParam,sizeParam - status,&g_networkNullTerminator);
   status = status + result;
   result = FUN_18074be90(status + dataParam,sizeParam - status,*(undefined1 *)(socketParam + 0x1c));
   return result + status;
@@ -93126,17 +93126,17 @@ int FUN_180894570(longlong socketParam,longlong dataParam,int sizeParam)
   int result;
   
   status = func_0x00018074b7d0(dataParam,sizeParam,*(undefined4 *)(socketParam + 0x10));
-  result = FUN_18074b880(dataParam + status,sizeParam - status,&DAT_180a06434);
+  result = FUN_18074b880(dataParam + status,sizeParam - status,&g_networkNullTerminator);
   status = status + result;
   result = FUN_18088ed70(status + dataParam,sizeParam - status,socketParam + 0x18,
                         *(undefined4 *)(socketParam + 0x10));
   status = status + result;
-  result = FUN_18074b880(status + dataParam,sizeParam - status,&DAT_180a06434);
+  result = FUN_18074b880(status + dataParam,sizeParam - status,&g_networkNullTerminator);
   status = status + result;
   result = FUN_18074bb00(status + dataParam,sizeParam - status,
                         socketParam + 0x18 + (longlong)*(int *)(socketParam + 0x10) * 8);
   status = status + result;
-  result = FUN_18074b880(status + dataParam,sizeParam - status,&DAT_180a06434);
+  result = FUN_18074b880(status + dataParam,sizeParam - status,&g_networkNullTerminator);
   status = status + result;
   result = FUN_18074be90(status + dataParam,sizeParam - status,*(undefined1 *)(socketParam + 0x14));
   return result + status;
@@ -93151,11 +93151,11 @@ int FUN_180894650(longlong *socketParam,longlong dataParam,int sizeParam)
   int result;
   
   status = FUN_18074b880(dataParam,sizeParam,&UNK_180986298);
-  result = FUN_18074b880(dataParam + status,sizeParam - status,&DAT_180a06434);
+  result = FUN_18074b880(dataParam + status,sizeParam - status,&g_networkNullTerminator);
   status = status + result;
   result = func_0x00018074b7d0(status + dataParam,sizeParam - status,(int)socketParam[3] * 8 + 0x20);
   status = status + result;
-  result = FUN_18074b880(status + dataParam,sizeParam - status,&DAT_180a06434);
+  result = FUN_18074b880(status + dataParam,sizeParam - status,&g_networkNullTerminator);
   status = status + result;
   result = (**(code **)(*socketParam + 8))(socketParam,status + dataParam,sizeParam - status);
   return result + status;
@@ -93170,11 +93170,11 @@ int FUN_180894700(longlong *socketParam,longlong dataParam,int sizeParam)
   int result;
   
   status = FUN_18074b880(dataParam,sizeParam,&UNK_180984010);
-  result = FUN_18074b880(dataParam + status,sizeParam - status,&DAT_180a06434);
+  result = FUN_18074b880(dataParam + status,sizeParam - status,&g_networkNullTerminator);
   status = status + result;
   result = func_0x00018074b7d0(status + dataParam,sizeParam - status,(int)socketParam[3] * 0xc + 0x20);
   status = status + result;
-  result = FUN_18074b880(status + dataParam,sizeParam - status,&DAT_180a06434);
+  result = FUN_18074b880(status + dataParam,sizeParam - status,&g_networkNullTerminator);
   status = status + result;
   result = (**(code **)(*socketParam + 8))(socketParam,status + dataParam,sizeParam - status);
   return result + status;
@@ -93189,11 +93189,11 @@ int FUN_1808947b0(longlong *socketParam,longlong dataParam,int sizeParam)
   int result;
   
   status = FUN_18074b880(dataParam,sizeParam,&UNK_180982240);
-  result = FUN_18074b880(dataParam + status,sizeParam - status,&DAT_180a06434);
+  result = FUN_18074b880(dataParam + status,sizeParam - status,&g_networkNullTerminator);
   status = status + result;
   result = func_0x00018074b7d0(status + dataParam,sizeParam - status,((int)socketParam[2] + 2) * 0xc);
   status = status + result;
-  result = FUN_18074b880(status + dataParam,sizeParam - status,&DAT_180a06434);
+  result = FUN_18074b880(status + dataParam,sizeParam - status,&g_networkNullTerminator);
   status = status + result;
   result = (**(code **)(*socketParam + 8))(socketParam,status + dataParam,sizeParam - status);
   return result + status;
@@ -93230,7 +93230,7 @@ void FUN_180894860(longlong socketParam,undefined4 *dataParam,longlong *sizePara
   undefined1 auStack_40 [40];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
+  uStack_18 = _g_networkXorKey ^ (ulonglong)auStack_c8;
   plVar1 = *(longlong **)(socketParam + 800);
   if (plVar1 != (longlong *)0x0) {
     uStack_58 = *dataParam;
@@ -93316,7 +93316,7 @@ void FUN_1808949c0(longlong socketParam,undefined4 *dataParam,longlong *sizePara
   undefined1 auStack_38 [40];
   ulonglong uStack_10;
   
-  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
+  uStack_10 = _g_networkXorKey ^ (ulonglong)auStack_b8;
   plVar1 = *(longlong **)(socketParam + 800);
   if (plVar1 != (longlong *)0x0) {
     uStack_48 = *dataParam;
@@ -93423,7 +93423,7 @@ void FUN_180894b00(longlong socketParam,undefined4 *dataParam,longlong *sizePara
   undefined1 auStack_40 [40];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
+  uStack_18 = _g_networkXorKey ^ (ulonglong)auStack_c8;
   plVar1 = *(longlong **)(socketParam + 800);
   if (plVar1 != (longlong *)0x0) {
     uStack_58 = *dataParam;
@@ -93715,7 +93715,7 @@ uint FUN_180894ef0(longlong *socketParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180894fb0(longlong socketParam)
+uint64_t FUN_180894fb0(longlong socketParam)
 
 {
   longlong *plVar1;
@@ -93771,7 +93771,7 @@ undefined8 FUN_180894fb0(longlong socketParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180895070(longlong *socketParam)
+uint64_t FUN_180895070(longlong *socketParam)
 
 {
   int status;
@@ -93808,7 +93808,7 @@ undefined8 FUN_180895070(longlong *socketParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180895130(longlong *socketParam)
+uint64_t FUN_180895130(longlong *socketParam)
 
 {
   int status;
@@ -93855,7 +93855,7 @@ undefined8 FUN_180895130(longlong *socketParam)
 
 
 
-undefined8 FUN_180895210(longlong *socketParam)
+uint64_t FUN_180895210(longlong *socketParam)
 
 {
   int status;
@@ -93927,7 +93927,7 @@ undefined8 FUN_180895210(longlong *socketParam)
 
 
 
-undefined8 FUN_180895236(void)
+uint64_t FUN_180895236(void)
 
 {
   longlong lVar1;
@@ -93996,7 +93996,7 @@ undefined8 FUN_180895236(void)
 
 
 
-undefined8 FUN_180895345(void)
+uint64_t FUN_180895345(void)
 
 {
   return 0x1c;
@@ -94031,7 +94031,7 @@ void FUN_180895360(longlong socketParam,undefined1 *dataParam,int *sizeParam)
   undefined1 auStack_648 [1536];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_738;
+  uStack_48 = _g_networkXorKey ^ (ulonglong)auStack_738;
   iVar4 = *(int *)(socketParam + 0xac);
   lVar7 = (longlong)iVar4;
   piStack_6f0 = sizeParam;
@@ -94303,7 +94303,7 @@ void FUN_180895bb0(longlong socketParam,int dataParam,undefined8 *sizeParam)
 
 
 
-undefined8 FUN_180895c60(longlong socketParam,int dataParam,uint *sizeParam)
+uint64_t FUN_180895c60(longlong socketParam,int dataParam,uint *sizeParam)
 
 {
   uint uVar1;
@@ -94351,7 +94351,7 @@ LAB_180895ccb:
 
 
 
-undefined8 FUN_180895c8b(longlong socketParam,undefined8 dataParam,longlong sizeParam,uint timeoutParam)
+uint64_t FUN_180895c8b(longlong socketParam,undefined8 dataParam,longlong sizeParam,uint timeoutParam)
 
 {
   longlong lVar1;
@@ -94395,7 +94395,7 @@ LAB_180895ccb:
 
 
 
-undefined8 FUN_180895cf1(longlong socketParam,undefined8 dataParam,longlong sizeParam)
+uint64_t FUN_180895cf1(longlong socketParam,undefined8 dataParam,longlong sizeParam)
 
 {
   undefined8 uVar1;
@@ -94424,7 +94424,7 @@ undefined8 FUN_180895cf1(longlong socketParam,undefined8 dataParam,longlong size
 
 
 
-undefined8 FUN_180895d16(void)
+uint64_t FUN_180895d16(void)
 
 {
   return 0x1e;
@@ -94432,7 +94432,7 @@ undefined8 FUN_180895d16(void)
 
 
 
-undefined8 FUN_180895d30(longlong *socketParam,uint *dataParam,undefined8 *sizeParam)
+uint64_t FUN_180895d30(longlong *socketParam,uint *dataParam,undefined8 *sizeParam)
 
 {
   uint uVar1;
@@ -94515,7 +94515,7 @@ undefined8 FUN_180895d30(longlong *socketParam,uint *dataParam,undefined8 *sizeP
 
 
 
-undefined8 FUN_180895d62(undefined8 socketParam,int dataParam)
+uint64_t FUN_180895d62(undefined8 socketParam,int dataParam)
 
 {
   longlong lVar1;
@@ -94592,7 +94592,7 @@ undefined8 FUN_180895d62(undefined8 socketParam,int dataParam)
 
 
 
-undefined8 FUN_180895d9c(undefined8 socketParam,undefined4 dataParam)
+uint64_t FUN_180895d9c(undefined8 socketParam,undefined4 dataParam)
 
 {
   int status;
@@ -94653,7 +94653,7 @@ undefined8 FUN_180895d9c(undefined8 socketParam,undefined4 dataParam)
 
 
 
-undefined8 FUN_180895e00(longlong socketParam,undefined8 dataParam,longlong sizeParam)
+uint64_t FUN_180895e00(longlong socketParam,undefined8 dataParam,longlong sizeParam)
 
 {
   undefined8 *responseData;
@@ -94722,7 +94722,7 @@ undefined4 FUN_180895ef0(undefined8 socketParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180895f20(longlong *socketParam,int dataParam)
+uint64_t FUN_180895f20(longlong *socketParam,int dataParam)
 
 {
   int status;
@@ -94772,7 +94772,7 @@ LAB_180895fdc:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180895f44(undefined8 socketParam,int dataParam)
+uint64_t FUN_180895f44(undefined8 socketParam,int dataParam)
 
 {
   int status;
@@ -94819,7 +94819,7 @@ LAB_180895fdc:
 
 
 
-undefined8 FUN_180896027(void)
+uint64_t FUN_180896027(void)
 
 {
   return 0x26;
@@ -94829,7 +94829,7 @@ undefined8 FUN_180896027(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180896040(longlong *socketParam,int dataParam)
+uint64_t FUN_180896040(longlong *socketParam,int dataParam)
 
 {
   longlong lVar1;
@@ -94866,7 +94866,7 @@ LAB_1808960d4:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180896064(undefined8 socketParam,int dataParam)
+uint64_t FUN_180896064(undefined8 socketParam,int dataParam)
 
 {
   longlong lVar1;
@@ -94900,7 +94900,7 @@ LAB_1808960d4:
 
 
 
-undefined8 FUN_18089611f(void)
+uint64_t FUN_18089611f(void)
 
 {
   return 0x26;
@@ -95256,7 +95256,7 @@ LAB_1808963ec:
 
 
 
-undefined8 * FUN_180896800(undefined8 *socketParam,ulonglong dataParam)
+uint64_t * FUN_180896800(undefined8 *socketParam,ulonglong dataParam)
 
 {
   *socketParam = &UNK_180986350;
@@ -95268,7 +95268,7 @@ undefined8 * FUN_180896800(undefined8 *socketParam,ulonglong dataParam)
 
 
 
-undefined8 * FUN_180896830(undefined8 *socketParam,ulonglong dataParam)
+uint64_t * FUN_180896830(undefined8 *socketParam,ulonglong dataParam)
 
 {
   *socketParam = &UNK_180986370;
@@ -95300,7 +95300,7 @@ void FUN_180896880(longlong *socketParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808968a0(longlong socketParam)
+uint64_t FUN_1808968a0(longlong socketParam)
 
 {
   longlong lVar1;
@@ -95349,7 +95349,7 @@ int FUN_180896a30(longlong socketParam,longlong dataParam,int sizeParam)
   
   uVar1 = *(undefined4 *)(socketParam + 0x14);
   result = func_0x00018074b7d0(dataParam,sizeParam,*(undefined4 *)(socketParam + 0x10));
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074b800(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -95366,7 +95366,7 @@ int FUN_180896aa0(longlong socketParam,longlong dataParam,int sizeParam)
   
   uVar1 = *(undefined8 *)(socketParam + 0x10);
   result = FUN_18074b880(dataParam,sizeParam,&UNK_1809863f8);
-  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&DAT_180a06434);
+  iVar3 = FUN_18074b880(dataParam + result,sizeParam - result,&g_networkNullTerminator);
   result = result + iVar3;
   iVar3 = func_0x00018074be80(result + dataParam,sizeParam - result,uVar1);
   return iVar3 + result;
@@ -95385,11 +95385,11 @@ int FUN_180896b20(longlong socketParam,longlong dataParam,int sizeParam)
   uVar1 = *(undefined4 *)(socketParam + 0x14);
   packetSize = *(undefined4 *)(socketParam + 0x10);
   iVar3 = FUN_18074b880(dataParam,sizeParam,&UNK_180986470);
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b7d0(iVar3 + dataParam,sizeParam - iVar3,packetSize);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&DAT_180a06434);
+  iVar4 = FUN_18074b880(iVar3 + dataParam,sizeParam - iVar3,&g_networkNullTerminator);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + dataParam,sizeParam - iVar3,uVar1);
   return iVar4 + iVar3;
@@ -95397,7 +95397,7 @@ int FUN_180896b20(longlong socketParam,longlong dataParam,int sizeParam)
 
 
 
-undefined8 FUN_180896c10(longlong socketParam,undefined8 dataParam,undefined8 sizeParam)
+uint64_t FUN_180896c10(longlong socketParam,undefined8 dataParam,undefined8 sizeParam)
 
 {
   undefined8 uVar1;
@@ -95460,7 +95460,7 @@ void FUN_180896c60(undefined8 socketParam,longlong dataParam,uint sizeParam,char
   undefined1 auStack_260 [520];
   ulonglong uStack_58;
   
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_328;
+  uStack_58 = _g_networkXorKey ^ (ulonglong)auStack_328;
   iVar5 = 0;
   if (sizeParam != 0) {
     iVar3 = *(int *)(dataParam + 0x220);
@@ -96072,7 +96072,7 @@ void FUN_180897520(longlong *socketParam,longlong *dataParam)
   undefined1 auStack_228 [512];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_248;
+  uStack_28 = _g_networkXorKey ^ (ulonglong)auStack_248;
   lVar1 = socketParam[4];
   if (((char)lVar1 != '\0') || (result = FUN_1808987e0(socketParam,1), result == 0)) {
     result = (**(code **)(*dataParam + 0x10))(dataParam,auStack_228,0x200);
@@ -96196,7 +96196,7 @@ void FUN_1808975e0(longlong socketParam,longlong dataParam)
   undefined1 auStack_e0 [136];
   ulonglong uStack_58;
   
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_1e8;
+  uStack_58 = _g_networkXorKey ^ (ulonglong)auStack_1e8;
   lVar2 = *(longlong *)(dataParam + 0x80);
   lVar14 = 0;
   uStack_1c8 = 0;
@@ -96237,7 +96237,7 @@ void FUN_1808975e0(longlong socketParam,longlong dataParam)
               uStack_e8 = *(undefined8 *)(*(longlong *)(lVar9 + 0x90) + lVar8 * 8);
               uStack_ec = 0;
               if (*(int *)(lVar3 + 0x58) < 1) {
-                connectionData2 = &DAT_18098bc73;
+                connectionData2 = &g_networkEmptyString;
               }
               else {
                 connectionData2 = *(undefined **)(lVar3 + 0x50);
@@ -96478,7 +96478,7 @@ void FUN_180897644(void)
             *unaff_RBP = *(undefined8 *)(*(longlong *)(lVar15 + 0x90) + packetSize3 * 8);
             *(undefined1 *)((longlong)unaff_RBP + -4) = 0;
             if (*(int *)(lVar2 + 0x58) < 1) {
-              connectionData8 = &DAT_18098bc73;
+              connectionData8 = &g_networkEmptyString;
             }
             else {
               connectionData8 = *(undefined **)(lVar2 + 0x50);
@@ -96724,7 +96724,7 @@ void FUN_1808976b0(void)
         *unaff_RBP = *(undefined8 *)(*(longlong *)(lVar15 + 0x90) + packetSize2 * 8);
         *(undefined1 *)((longlong)unaff_RBP + -4) = 0;
         if (*(int *)(lVar2 + 0x58) < 1) {
-          connectionData8 = &DAT_18098bc73;
+          connectionData8 = &g_networkEmptyString;
         }
         else {
           connectionData8 = *(undefined **)(lVar2 + 0x50);
@@ -97088,7 +97088,7 @@ void FUN_180897b40(longlong *socketParam,longlong dataParam,undefined4 sizeParam
   undefined8 auStack_238 [64];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_2a8;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_2a8;
   iVar4 = 0;
   iVar7 = 0;
   do {
@@ -97158,7 +97158,7 @@ void FUN_180897d20(longlong *socketParam,undefined8 dataParam,undefined8 sizePar
   undefined1 auStack_418 [1024];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_438;
+  uStack_18 = _g_networkXorKey ^ (ulonglong)auStack_438;
   uStackX_18 = sizeParam;
   uStackX_20 = timeoutParam;
   FUN_18076b930(auStack_418,0x400,dataParam,&uStackX_18);
@@ -97169,7 +97169,7 @@ void FUN_180897d20(longlong *socketParam,undefined8 dataParam,undefined8 sizePar
 
 
 
-undefined8 FUN_180897d90(longlong *socketParam)
+uint64_t FUN_180897d90(longlong *socketParam)
 
 {
   longlong lVar1;
@@ -97253,7 +97253,7 @@ undefined8 FUN_180897d90(longlong *socketParam)
 
 
 
-undefined8 FUN_180897dd3(void)
+uint64_t FUN_180897dd3(void)
 
 {
   longlong lVar1;
@@ -97355,7 +97355,7 @@ void FUN_180898040(longlong *socketParam)
   undefined1 auStack_238 [512];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_368;
+  uStack_38 = _g_networkXorKey ^ (ulonglong)auStack_368;
   plVar16 = (longlong *)0x0;
   alStack_300[1] = 0;
   iVar6 = FUN_18088c740(alStack_300 + 1,socketParam[1]);
@@ -97476,7 +97476,7 @@ void FUN_180898040(longlong *socketParam)
             puStack_2d8 = &UNK_180982260;
             uStack_2c4 = uStack_2c4 & 0xffffff00;
             if (*(int *)(lVar11 + 0x58) < 1) {
-              connectionData2 = &DAT_18098bc73;
+              connectionData2 = &g_networkEmptyString;
             }
             else {
               connectionData2 = *(undefined **)(lVar11 + 0x50);
@@ -97654,7 +97654,7 @@ void FUN_1808986b0(longlong socketParam,undefined8 dataParam)
 
 
 
-undefined8 FUN_180898790(longlong *socketParam,int dataParam)
+uint64_t FUN_180898790(longlong *socketParam,int dataParam)
 
 {
   int status;
@@ -97677,7 +97677,7 @@ undefined8 FUN_180898790(longlong *socketParam,int dataParam)
 
 
 
-undefined8 FUN_1808987e0(longlong *socketParam,char dataParam)
+uint64_t FUN_1808987e0(longlong *socketParam,char dataParam)
 
 {
   longlong lVar1;
@@ -97717,7 +97717,7 @@ undefined8 FUN_1808987e0(longlong *socketParam,char dataParam)
 
 
 
-undefined8 FUN_1808988b0(longlong *socketParam,char *dataParam,undefined8 *sizeParam)
+uint64_t FUN_1808988b0(longlong *socketParam,char *dataParam,undefined8 *sizeParam)
 
 {
   char *pcVar1;
@@ -98289,7 +98289,7 @@ undefined4 FUN_180898d31(undefined8 socketParam,int *dataParam)
 
 
 
-undefined8 FUN_180898d4d(void)
+uint64_t FUN_180898d4d(void)
 
 {
   return 0x1f;
@@ -98299,7 +98299,7 @@ undefined8 FUN_180898d4d(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180898d60(longlong *socketParam,int dataParam)
+uint64_t FUN_180898d60(longlong *socketParam,int dataParam)
 
 {
   int status;
@@ -98349,7 +98349,7 @@ LAB_180898e0b:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180898d84(undefined8 socketParam,int dataParam)
+uint64_t FUN_180898d84(undefined8 socketParam,int dataParam)
 
 {
   int status;
@@ -98396,7 +98396,7 @@ LAB_180898e0b:
 
 
 
-undefined8 FUN_180898e56(void)
+uint64_t FUN_180898e56(void)
 
 {
   return 0x26;
@@ -98404,7 +98404,7 @@ undefined8 FUN_180898e56(void)
 
 
 
-undefined8 FUN_180898e70(longlong *socketParam,undefined4 *dataParam)
+uint64_t FUN_180898e70(longlong *socketParam,undefined4 *dataParam)
 
 {
   undefined8 uVar1;
@@ -98420,7 +98420,7 @@ undefined8 FUN_180898e70(longlong *socketParam,undefined4 *dataParam)
 
 
 
-undefined8 FUN_180898eb0(longlong *socketParam,undefined4 *dataParam)
+uint64_t FUN_180898eb0(longlong *socketParam,undefined4 *dataParam)
 
 {
   undefined8 uVar1;
@@ -98436,7 +98436,7 @@ undefined8 FUN_180898eb0(longlong *socketParam,undefined4 *dataParam)
 
 
 
-undefined8 FUN_180898ef0(undefined8 *socketParam,longlong dataParam)
+uint64_t FUN_180898ef0(undefined8 *socketParam,longlong dataParam)
 
 {
   undefined8 uVar1;
@@ -98455,7 +98455,7 @@ undefined8 FUN_180898ef0(undefined8 *socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180898f40(longlong *socketParam,undefined4 *dataParam)
+uint64_t FUN_180898f40(longlong *socketParam,undefined4 *dataParam)
 
 {
   longlong lVar1;
@@ -98576,7 +98576,7 @@ void FUN_180899100(longlong socketParam,undefined4 *dataParam)
 
 
 
-undefined8 FUN_180899180(undefined8 *socketParam,longlong dataParam)
+uint64_t FUN_180899180(undefined8 *socketParam,longlong dataParam)
 
 {
   undefined8 uVar1;
@@ -98607,7 +98607,7 @@ undefined8 FUN_180899180(undefined8 *socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180899220(longlong *socketParam,uint *dataParam)
+uint64_t FUN_180899220(longlong *socketParam,uint *dataParam)
 
 {
   undefined8 uVar1;
@@ -98648,7 +98648,7 @@ LAB_1808992a5:
 
 
 
-undefined8 FUN_18089923e(longlong *socketParam)
+uint64_t FUN_18089923e(longlong *socketParam)
 
 {
   undefined8 uVar1;
@@ -98698,7 +98698,7 @@ void FUN_1808992c4(void)
 
 
 
-undefined8 FUN_1808992f0(longlong *socketParam,undefined4 *dataParam)
+uint64_t FUN_1808992f0(longlong *socketParam,undefined4 *dataParam)
 
 {
   longlong lVar1;
@@ -98724,7 +98724,7 @@ undefined8 FUN_1808992f0(longlong *socketParam,undefined4 *dataParam)
 
 
 
-undefined8 FUN_180899360(undefined8 *socketParam,longlong dataParam)
+uint64_t FUN_180899360(undefined8 *socketParam,longlong dataParam)
 
 {
   undefined8 uVar1;
@@ -98749,7 +98749,7 @@ undefined8 FUN_180899360(undefined8 *socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_1808993e0(undefined8 *socketParam,longlong *dataParam)
+uint64_t FUN_1808993e0(undefined8 *socketParam,longlong *dataParam)
 
 {
   undefined8 uVar1;
@@ -98873,7 +98873,7 @@ LAB_18089962f:
 
 
 
-undefined8 FUN_180899650(longlong *socketParam,longlong *dataParam)
+uint64_t FUN_180899650(longlong *socketParam,longlong *dataParam)
 
 {
   undefined8 uVar1;
@@ -98924,7 +98924,7 @@ LAB_1808996c5:
 
 
 
-undefined8 FUN_180899740(undefined8 socketParam,undefined4 *dataParam)
+uint64_t FUN_180899740(undefined8 socketParam,undefined4 *dataParam)
 
 {
   undefined8 uVar1;
@@ -98939,7 +98939,7 @@ undefined8 FUN_180899740(undefined8 socketParam,undefined4 *dataParam)
 
 
 
-undefined8 FUN_180899763(void)
+uint64_t FUN_180899763(void)
 
 {
   undefined8 uVar1;
@@ -98991,7 +98991,7 @@ void FUN_1808997b0(undefined8 socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_1808997f0(undefined8 socketParam,longlong *dataParam)
+uint64_t FUN_1808997f0(undefined8 socketParam,longlong *dataParam)
 
 {
   int status;
@@ -99034,7 +99034,7 @@ undefined8 FUN_1808997f0(undefined8 socketParam,longlong *dataParam)
 
 
 
-undefined8 FUN_180899816(void)
+uint64_t FUN_180899816(void)
 
 {
   int status;
@@ -99081,7 +99081,7 @@ void FUN_180899891(void)
 
 
 
-undefined8 FUN_1808998a0(longlong socketParam,longlong *dataParam)
+uint64_t FUN_1808998a0(longlong socketParam,longlong *dataParam)
 
 {
   int status;
@@ -99640,7 +99640,7 @@ void FUN_180899d7f(void)
 
 
 
-undefined8 FUN_180899d90(longlong socketParam,longlong dataParam)
+uint64_t FUN_180899d90(longlong socketParam,longlong dataParam)
 
 {
   undefined8 uVar1;
@@ -99697,7 +99697,7 @@ undefined8 FUN_180899d90(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_180899dc7(void)
+uint64_t FUN_180899dc7(void)
 
 {
   undefined8 uVar1;
@@ -100083,7 +100083,7 @@ void FUN_18089a365(void)
 
 
 
-undefined8 FUN_18089a370(longlong socketParam,longlong dataParam)
+uint64_t FUN_18089a370(longlong socketParam,longlong dataParam)
 
 {
   short sVar1;
@@ -100203,7 +100203,7 @@ undefined8 FUN_18089a370(longlong socketParam,longlong dataParam)
 
 
 
-undefined8 FUN_18089a51d(void)
+uint64_t FUN_18089a51d(void)
 
 {
   short sVar1;
@@ -100268,7 +100268,7 @@ void FUN_18089a685(void)
 
 
 
-undefined8 FUN_18089a690(longlong socketParam,undefined4 *dataParam)
+uint64_t FUN_18089a690(longlong socketParam,undefined4 *dataParam)
 
 {
   int status;
@@ -100306,7 +100306,7 @@ undefined8 FUN_18089a690(longlong socketParam,undefined4 *dataParam)
 
 
 
-undefined8 FUN_18089a6e8(undefined8 *socketParam,undefined8 dataParam)
+uint64_t FUN_18089a6e8(undefined8 *socketParam,undefined8 dataParam)
 
 {
   int status;
@@ -100375,7 +100375,7 @@ void FUN_18089a750(longlong socketParam,uint *dataParam)
 
 
 
-undefined8 FUN_18089a7e0(longlong socketParam,undefined8 *dataParam)
+uint64_t FUN_18089a7e0(longlong socketParam,undefined8 *dataParam)
 
 {
   undefined8 uVar1;
@@ -100578,7 +100578,7 @@ void FUN_18089a9d5(void)
 
 
 
-undefined8 FUN_18089a9dd(void)
+uint64_t FUN_18089a9dd(void)
 
 {
   return 0x1c;
@@ -100626,7 +100626,7 @@ void FUN_18089a9f0(longlong socketParam,int *dataParam)
 
 
 
-undefined8 FUN_18089aa40(longlong socketParam,undefined8 *dataParam)
+uint64_t FUN_18089aa40(longlong socketParam,undefined8 *dataParam)
 
 {
   undefined8 uVar1;
@@ -100709,7 +100709,7 @@ undefined8 FUN_18089aa40(longlong socketParam,undefined8 *dataParam)
 
 
 
-undefined8 FUN_18089abe0(longlong socketParam,undefined8 *dataParam)
+uint64_t FUN_18089abe0(longlong socketParam,undefined8 *dataParam)
 
 {
   undefined8 uVar1;
@@ -100749,7 +100749,7 @@ undefined8 FUN_18089abe0(longlong socketParam,undefined8 *dataParam)
 
 
 
-undefined8 FUN_18089ac64(void)
+uint64_t FUN_18089ac64(void)
 
 {
   longlong networkContext;
@@ -100812,7 +100812,7 @@ void FUN_18089ac96(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18089ace4(void)
+uint64_t FUN_18089ace4(void)
 
 {
   float fVar1;
@@ -101375,7 +101375,7 @@ void FUN_18089b400(longlong socketParam,undefined8 dataParam)
 
 
 
-undefined8 FUN_18089b460(longlong socketParam,longlong *dataParam)
+uint64_t FUN_18089b460(longlong socketParam,longlong *dataParam)
 
 {
   longlong lVar1;
@@ -101485,7 +101485,7 @@ LAB_1808a2e6d:
 
 
 
-undefined8 FUN_18089b52a(void)
+uint64_t FUN_18089b52a(void)
 
 {
   longlong lVar1;
@@ -101563,7 +101563,7 @@ LAB_1808a2e6d:
 
 
 
-undefined8 FUN_18089b540(void)
+uint64_t FUN_18089b540(void)
 
 {
   longlong lVar1;
@@ -101626,7 +101626,7 @@ void FUN_18089b599(void)
 
 
 
-undefined8 FUN_18089b5a9(int socketParam)
+uint64_t FUN_18089b5a9(int socketParam)
 
 {
   longlong *plVar1;
@@ -101727,7 +101727,7 @@ LAB_1808a2e6d:
 
 
 
-undefined8 FUN_18089b617(void)
+uint64_t FUN_18089b617(void)
 
 {
   return 0;
@@ -101745,7 +101745,7 @@ void FUN_18089b61e(void)
 
 
 
-undefined8 FUN_18089b630(longlong socketParam,undefined8 *dataParam)
+uint64_t FUN_18089b630(longlong socketParam,undefined8 *dataParam)
 
 {
   undefined8 uVar1;
@@ -102621,7 +102621,7 @@ void FUN_18089bd61(void)
 
 
 
-undefined8 FUN_18089bd70(longlong socketParam,undefined8 *dataParam)
+uint64_t FUN_18089bd70(longlong socketParam,undefined8 *dataParam)
 
 {
   undefined8 uVar1;
@@ -103200,7 +103200,7 @@ LAB_18089c300:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_18089c1fb(void)
+uint64_t * FUN_18089c1fb(void)
 
 {
   undefined8 uVar1;
@@ -103455,7 +103455,7 @@ LAB_18089c300:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_18089c22e(void)
+uint64_t * FUN_18089c22e(void)
 
 {
   undefined8 uVar1;
@@ -105548,7 +105548,7 @@ LAB_18089cd76:
 
 
 
-undefined8 FUN_18089ce03(void)
+uint64_t FUN_18089ce03(void)
 
 {
   return 0;
@@ -105556,7 +105556,7 @@ undefined8 FUN_18089ce03(void)
 
 
 
-undefined8 FUN_18089ce16(void)
+uint64_t FUN_18089ce16(void)
 
 {
   return 0xd;
@@ -106063,7 +106063,7 @@ void FUN_18089d23a(void)
 
 
 
-undefined8 FUN_18089d250(undefined8 socketParam,longlong *dataParam)
+uint64_t FUN_18089d250(undefined8 socketParam,longlong *dataParam)
 
 {
   longlong *plVar1;
@@ -106167,7 +106167,7 @@ LAB_18089d435:
 
 
 
-undefined8 FUN_18089d281(void)
+uint64_t FUN_18089d281(void)
 
 {
   longlong *plVar1;
@@ -106276,7 +106276,7 @@ void FUN_18089d47a(void)
 
 
 
-undefined8 FUN_18089d484(void)
+uint64_t FUN_18089d484(void)
 
 {
   return 0x1c;
@@ -106284,7 +106284,7 @@ undefined8 FUN_18089d484(void)
 
 
 
-undefined8 FUN_18089d490(longlong socketParam,undefined8 *dataParam)
+uint64_t FUN_18089d490(longlong socketParam,undefined8 *dataParam)
 
 {
   undefined8 uVar1;
@@ -106854,7 +106854,7 @@ void FUN_18089df30(void)
 
 
 
-undefined8 FUN_18089df40(longlong socketParam,undefined8 *dataParam)
+uint64_t FUN_18089df40(longlong socketParam,undefined8 *dataParam)
 
 {
   undefined8 uVar1;
@@ -106904,7 +106904,7 @@ undefined8 FUN_18089df40(longlong socketParam,undefined8 *dataParam)
 
 
 
-undefined8 FUN_18089dfc1(void)
+uint64_t FUN_18089dfc1(void)
 
 {
   undefined8 uVar1;
@@ -106948,7 +106948,7 @@ undefined8 FUN_18089dfc1(void)
 
 
 
-undefined8 FUN_18089dfe4(void)
+uint64_t FUN_18089dfe4(void)
 
 {
   undefined8 uVar1;
@@ -106993,7 +106993,7 @@ undefined8 FUN_18089dfe4(void)
 
 
 
-undefined8 FUN_18089e043(void)
+uint64_t FUN_18089e043(void)
 
 {
   undefined8 uVar1;
@@ -107034,7 +107034,7 @@ void FUN_18089e0be(void)
 
 
 
-undefined8 FUN_18089e0d0(longlong socketParam,undefined8 *dataParam)
+uint64_t FUN_18089e0d0(longlong socketParam,undefined8 *dataParam)
 
 {
   undefined8 uVar1;
@@ -108742,7 +108742,7 @@ void FUN_18089edc7(void)
 
 
 
-undefined8 FUN_18089ede0(longlong socketParam,undefined8 *dataParam)
+uint64_t FUN_18089ede0(longlong socketParam,undefined8 *dataParam)
 
 {
   undefined8 uVar1;
@@ -108775,7 +108775,7 @@ undefined8 FUN_18089ede0(longlong socketParam,undefined8 *dataParam)
 
 
 
-undefined8 FUN_18089ee64(void)
+uint64_t FUN_18089ee64(void)
 
 {
   undefined8 uVar1;
@@ -108858,7 +108858,7 @@ void FUN_18089ef24(void)
 
 
 
-undefined8 FUN_18089ef40(longlong socketParam,longlong *dataParam)
+uint64_t FUN_18089ef40(longlong socketParam,longlong *dataParam)
 
 {
   undefined8 uVar1;
@@ -108907,7 +108907,7 @@ undefined8 FUN_18089ef40(longlong socketParam,longlong *dataParam)
 
 
 
-undefined8 FUN_18089f0b0(longlong socketParam,longlong *dataParam)
+uint64_t FUN_18089f0b0(longlong socketParam,longlong *dataParam)
 
 {
   undefined8 uVar1;
@@ -109058,7 +109058,7 @@ undefined8 FUN_18089f0b0(longlong socketParam,longlong *dataParam)
 
 
 
-undefined8 FUN_18089f112(void)
+uint64_t FUN_18089f112(void)
 
 {
   longlong networkContext;
@@ -109363,7 +109363,7 @@ void FUN_18089f7fd(void)
 
 
 
-undefined8 FUN_18089f830(longlong socketParam,longlong *dataParam)
+uint64_t FUN_18089f830(longlong socketParam,longlong *dataParam)
 
 {
   undefined8 uVar1;
@@ -109774,7 +109774,7 @@ void FUN_18089fb40(longlong socketParam,undefined8 dataParam)
 
 
 
-undefined8 FUN_18089fba0(longlong socketParam,undefined8 *dataParam)
+uint64_t FUN_18089fba0(longlong socketParam,undefined8 *dataParam)
 
 {
   undefined8 uVar1;
@@ -109803,7 +109803,7 @@ undefined8 FUN_18089fba0(longlong socketParam,undefined8 *dataParam)
 
 
 
-undefined8 FUN_18089fc50(longlong socketParam,undefined8 *dataParam)
+uint64_t FUN_18089fc50(longlong socketParam,undefined8 *dataParam)
 
 {
   undefined8 uVar1;
@@ -109833,7 +109833,7 @@ undefined8 FUN_18089fc50(longlong socketParam,undefined8 *dataParam)
 
 
 
-undefined8 FUN_18089fd30(longlong socketParam,longlong *dataParam)
+uint64_t FUN_18089fd30(longlong socketParam,longlong *dataParam)
 
 {
   undefined8 uVar1;
@@ -109913,7 +109913,7 @@ undefined8 FUN_18089fd30(longlong socketParam,longlong *dataParam)
 
 
 
-undefined8 FUN_18089fed0(longlong socketParam,undefined8 *dataParam)
+uint64_t FUN_18089fed0(longlong socketParam,undefined8 *dataParam)
 
 {
   undefined8 uVar1;
@@ -109944,7 +109944,7 @@ undefined8 FUN_18089fed0(longlong socketParam,undefined8 *dataParam)
 
 
 
-undefined8 FUN_18089ffe0(undefined8 socketParam,longlong dataParam)
+uint64_t FUN_18089ffe0(undefined8 socketParam,longlong dataParam)
 
 {
   undefined8 uVar1;

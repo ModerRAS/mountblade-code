@@ -138,13 +138,13 @@ int initialize_resource_manager_0(void)
   g_resource_id_1 = 6;
   strcpy_s(&g_resource_string_1,0x10,&string_source_001,string_length_parameter,0xfffffffffffffffe);
   initialization_result = execute_function(callback_function_012);
-  return (init_result != 0) - 1;
+  return (initialization_result != 0) - 1;
 }
 // 初始化资源管理器1
 int initialize_resource_manager_1(void)
 {
-  longlong init_result;
-  undefined8 str_len_param;
+  longlong initialization_result;
+  undefined8 string_length_parameter;
   resource_pointer_1 = &g_resource_data_buffer;
   resource_buffer_pointer_1 = &resource_buffer_1;
   resource_buffer_1 = 0;
