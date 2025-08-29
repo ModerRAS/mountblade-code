@@ -81,6 +81,7 @@ int initialize_physics_system(void)
   function_result_variable = execute_function(callback_function_007);
   return (function_result_variable != 0) - 1;
 }
+// 初始化线程池1
 int initialize_thread_pool_1(undefined8 handle_parameter,undefined8 flags_parameter,undefined8 mutex_attribute_parameter,undefined8 mutex_type_parameter)
 {
   longlong function_result_variable;
@@ -92,6 +93,7 @@ int initialize_thread_pool_1(undefined8 handle_parameter,undefined8 flags_parame
   function_result_variable = execute_function(callback_function_008);
   return (function_result_variable != 0) - 1;
 }
+// 初始化线程池2
 int initialize_thread_pool_2(undefined8 handle_parameter,undefined8 flags_parameter,undefined8 mutex_attribute_parameter,undefined8 mutex_type_parameter)
 {
   longlong function_result_variable;
