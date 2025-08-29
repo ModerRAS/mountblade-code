@@ -16,7 +16,7 @@ int initialize_core_data_structure(void)
   longlong init_result;
   g_primary_data_pointer = &g_unknown_18098bb30;
   g_secondary_data_pointer = &g_data_180bf5338;
-  g_data_offset_180bf5330 = 0;
+  g_data_structure_offset = 0;
   g_data_180bf5338 = 0;
   init_result = initialize_system(system_init_func_180941590);
   return (init_result != 0) - 1;
