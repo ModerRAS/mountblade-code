@@ -37,7 +37,7 @@ dataValue g_memoryManagerControlFlags;        // 内存管理器控制标志
 dataValue g_memoryManagerStatus;              // 内存管理器状态
 dataValue g_memoryManagerConfiguration;       // 内存管理器配置
 dataValue g_memoryManagerHandle;              // 内存管理器句柄
-dataValue g_memoryPoolInitialized;            // 内存池初始化标志
+dataValue g_isMemoryPoolInitialized;          // 内存池初始化标志
 
 // 函数: dataValueValue 创建内存分配器;
 dataValue 创建内存分配器;
@@ -49,9 +49,9 @@ dataValue g_memoryAllocatorStatusFlag;        // 内存分配器状态标志
 
 // 函数: dataValueValue 注册内存处理器;
 dataValue 注册内存处理器;
-dataValue g_systemCpuStatus;                  // 系统CPU状态
+dataValue g_systemCPUStatus;                  // 系统CPU状态
 dataValue g_systemMemoryStatus;               // 系统内存状态
-dataValue g_systemIoStatus;                   // 系统IO状态
+dataValue g_systemIOStatus;                   // 系统IO状态
 dataValue g_systemNetworkStatus;              // 系统网络状态
 
 // 函数: dataValueValue 配置内存设置;
