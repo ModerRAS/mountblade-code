@@ -192,7 +192,7 @@ int initialize_shader_resource_manager_2(void)
 int initialize_audio_resource_manager(void)
 {
   long long initialization_result;
-  undefined8 string_length_parameter;
+  unsigned long long string_length_parameter;
   void* resource_data_buffer_pointer = &g_resource_data_buffer;
   void* resource_buffer_value_pointer = &resource_buffer_4;
   resource_buffer_4 = 0;
