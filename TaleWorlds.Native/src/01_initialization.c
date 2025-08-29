@@ -91,10 +91,10 @@ void* g_system_reserved_data;
 
 void* g_system_memory_pool;
 
-uint64_t g_system_flags_system_flags;
-void* g_system_state_system_state;
+uint64_t g_system_flags;
+void* g_system_state;
 
-void* g_system_config_system_config;
+void* g_system_config;
 
 void* g_system_error_system_error;
 

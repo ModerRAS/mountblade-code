@@ -30,8 +30,8 @@ int initialize_core_data_structure(void)
 int initialize_network_buffer_system(void)
 {
   long long initialization_result;
-  void* network_buffer_primary = &g_network_data_buffer;
-  void* network_buffer_secondary = &network_buffer_current_value;
+  void* network_data_buffer_pointer = &g_network_data_buffer;
+  void* network_buffer_value_pointer = &network_buffer_current_value;
   int network_buffer_offset = 0;
   network_buffer_current_value = 0;
   initialization_result = initialize_system(network_init_func_1809415b0);
@@ -41,8 +41,8 @@ int initialize_network_buffer_system(void)
 int initialize_rendering_context_system(void)
 {
   long long initialization_result;
-  void* render_context_primary = &g_render_data_buffer;
-  void* render_context_secondary = &g_render_buffer_value;
+  void* render_data_buffer_pointer = &g_render_data_buffer;
+  void* render_buffer_value_pointer = &g_render_buffer_value;
   int render_context_offset = 0;
   g_render_buffer_value = 0;
   initialization_result = initialize_system(rendering_init_func_1809415d0);
