@@ -1595,7 +1595,7 @@ LAB_1800451ca:
       puVar13 = puStack_70;
     }
     uVar4 = atoi(puVar13);
-    *(undefined4 *)(_data_180c82868 + 0x7b4) = uVar4;
+    *(unsigned int *)(_data_180c82868 + 0x7b4) = uVar4;
     puStack_78 = &g_threadString2;
     if (puStack_70 != (undefined *)0x0) {
       handle_system_error();
@@ -1614,11 +1614,11 @@ LAB_1800451ca:
   pplStackX_18 = (long long **)(plVar6 + 0x18);
   *pplStackX_18 = (long long *)&g_threadString4;
   plVar6[0x19] = 0;
-  *(undefined4 *)(plVar6 + 0x1a) = 0;
+  *(unsigned int *)(plVar6 + 0x1a) = 0;
   *pplStackX_18 = (long long *)&g_threadString2;
   plVar6[0x1b] = 0;
   plVar6[0x19] = 0;
-  *(undefined4 *)(plVar6 + 0x1a) = 0;
+  *(unsigned int *)(plVar6 + 0x1a) = 0;
   (*(code *)(*pplStackX_18)[2])(pplStackX_18,handle);
   plVar6[0x1c] = flags;
   plStack_48 = plVar6;
@@ -1728,10 +1728,10 @@ void WotsMainNativeCoreCLR(unsigned long long handle)
 }
           data_180c82860 = 1;
           data_180c82853 = 0;
-          *(undefined1 *)(_data_180c86870 + 0x1f0) = 0;
+          *(unsigned char *)(_data_180c86870 + 0x1f0) = 0;
           puStack_2c8 = &g_threadString2;
           uStack_2b0 = 0;
-          puStack_2c0 = (undefined1 *)0x0;
+          puStack_2c0 = (unsigned char *)0x0;
           uStack_2b8 = 0;
           if (puVar17 != (undefined *)0x0) {
             lVar20 = -1;
@@ -1745,7 +1745,7 @@ void WotsMainNativeCoreCLR(unsigned long long handle)
               if (iVar19 < STRING_BUFFER_SIZE) {
                 iVar6 = STRING_BUFFER_SIZE;
               }
-              puVar11 = (undefined1 *)FUN_18062b420(_data_180c8ed18,(long long)iVar6,0x13);
+              puVar11 = (unsigned char *)FUN_18062b420(_data_180c8ed18,(long long)iVar6,0x13);
               *puVar11 = 0;
               puStack_2c0 = puVar11;
               uVar7 = allocate_helper_buffer(puVar11);
@@ -1773,17 +1773,17 @@ void WotsMainNativeCoreCLR(unsigned long long handle)
                  ((lVar20 = strstr(puVar17,&g_systemDataString15), lVar20 == 0 &&
                   (lVar20 = strstr(puVar17,&g_systemDataString16), lVar20 == 0)))))) &&
                (lVar20 = strstr(puVar17,&g_systemDataString17), lVar20 == 0)) {
-              *(undefined2 *)(lVar24 + 0x24) = STRING_BUFFER_SIZE1;
-              *(undefined1 *)(lVar24 + 0x28) = 1;
+              *(unsigned short *)(lVar24 + 0x24) = STRING_BUFFER_SIZE1;
+              *(unsigned char *)(lVar24 + 0x28) = 1;
             }
             else {
               data_180c82851 = 1;
             }
           }
           else {
-            *(undefined2 *)(lVar24 + 0x24) = 0;
+            *(unsigned short *)(lVar24 + 0x24) = 0;
           }
-          puStack_2c0 = (undefined1 *)0x0;
+          puStack_2c0 = (unsigned char *)0x0;
           uStack_2b0 = uStack_2b0 & 0xffffffff00000000;
           puStack_2c8 = &g_threadString4;
         }
@@ -2019,11 +2019,11 @@ LAB_18004da0a:
                   if (uVar8 != 0) {
                     memcpy(*(unsigned long long *)(lVar24 + 0x178),puStack_2a0,flags1);
                   }
-                  *(undefined4 *)(lVar24 + 0x180) = 0;
+                  *(unsigned int *)(lVar24 + 0x180) = 0;
                   if (*(long long *)(lVar24 + 0x178) != 0) {
-                    *(undefined1 *)(flags1 + *(long long *)(lVar24 + 0x178)) = 0;
+                    *(unsigned char *)(flags1 + *(long long *)(lVar24 + 0x178)) = 0;
                   }
-                  *(undefined4 *)(lVar24 + 0x18c) = uStack_28c;
+                  *(unsigned int *)(lVar24 + 0x18c) = uStack_28c;
                   puStack_2a8 = &g_threadString2;
                   if (puStack_2a0 != (undefined *)0x0) {
                     handle_system_error(puStack_2a0,puStack_2a0);
@@ -2096,12 +2096,12 @@ LAB_18004dc6a:
                     if (uVar8 != 0) {
                       memcpy(*(unsigned long long *)(lVar24 + 0x178),lStack_250,flags1);
                     }
-                    *(undefined4 *)(lVar24 + 0x180) = 0;
+                    *(unsigned int *)(lVar24 + 0x180) = 0;
                     if (*(long long *)(lVar24 + 0x178) != 0) {
-                      *(undefined1 *)(flags1 + *(long long *)(lVar24 + 0x178)) = 0;
+                      *(unsigned char *)(flags1 + *(long long *)(lVar24 + 0x178)) = 0;
                     }
-                    *(undefined4 *)(lVar24 + 0x18c) = uStack_23c;
-                    *(undefined1 *)(lVar24 + 0x168) = 1;
+                    *(unsigned int *)(lVar24 + 0x18c) = uStack_23c;
+                    *(unsigned char *)(lVar24 + 0x168) = 1;
                     puStack_258 = &g_threadString2;
                     if (lStack_250 != 0) {
                       handle_system_error(lStack_250,lStack_250);
@@ -2150,7 +2150,7 @@ LAB_18004dda1:
                   }
                   else {
                     puVar16 = &data_18098bc73;
-                    if (puVar11 != (undefined1 *)0x0) {
+                    if (puVar11 != (unsigned char *)0x0) {
                       puVar16 = puVar11;
                     }
                     lVar24 = strstr(puVar16);
@@ -2158,10 +2158,10 @@ LAB_18004dda1:
                       flags9 = 0;
                       puStack_288 = &g_threadString2;
                       uStack_270 = 0;
-                      puStack_280 = (undefined4 *)0x0;
+                      puStack_280 = (unsigned int *)0x0;
                       uStack_278 = 0;
-                      puVar13 = (undefined4 *)FUN_18062b420(_data_180c8ed18,STRING_BUFFER_SIZE,0x13);
-                      *(undefined1 *)puVar13 = 0;
+                      puVar13 = (unsigned int *)FUN_18062b420(_data_180c8ed18,STRING_BUFFER_SIZE,0x13);
+                      *(unsigned char *)puVar13 = 0;
                       puStack_280 = puVar13;
                       uVar7 = allocate_helper_buffer(puVar13);
                       uStack_270 = CONCAT44(uStack_270._4_4_,uVar7);
@@ -2179,7 +2179,7 @@ LAB_18004dda1:
                       iVar6 = strcmp(puVar11);
                       if (iVar6 == 0) {
                         cStack_338 = '\x01';
-                        *(undefined1 *)(_data_180c8a9a0 + 0x22) = 1;
+                        *(unsigned char *)(_data_180c8a9a0 + 0x22) = 1;
                         goto LAB_18004d527;
                       }
 LAB_18004e25f:
@@ -2198,7 +2198,7 @@ LAB_18004d511:
                       if (uVar8 == 0x1a) {
                         iVar6 = strcmp(puVar11);
                         if (iVar6 == 0) {
-                          *(undefined1 *)(_data_180c8a9a0 + 0x21) = 1;
+                          *(unsigned char *)(_data_180c8a9a0 + 0x21) = 1;
                           goto LAB_18004d527;
                         }
                         goto LAB_18004e25f;
@@ -2246,7 +2246,7 @@ LAB_18004e2b6:
                         uStack_320 = *(uint *)(lVar24 + STRING_BUFFER_SIZE);
                         pcStack_328 = *(char **)(lVar24 + 8);
                         uStack_318 = *(long long *)(lVar24 + 0x18);
-                        *(undefined4 *)(lVar24 + STRING_BUFFER_SIZE) = 0;
+                        *(unsigned int *)(lVar24 + STRING_BUFFER_SIZE) = 0;
                         *(unsigned long long *)(lVar24 + 8) = 0;
                         *(unsigned long long *)(lVar24 + 0x18) = 0;
                         puStack_c8 = &g_threadString2;
@@ -2260,7 +2260,7 @@ LAB_18004e2b6:
                       system_thread_manager_006(&puStack_330);
                       uVar8 = uStack_320;
                       lVar24 = _data_180c8a9a0;
-                      *(undefined1 *)(_data_180c8a9a0 + 0x48) = 1;
+                      *(unsigned char *)(_data_180c8a9a0 + 0x48) = 1;
                       flags1 = (ulong long)uStack_320;
                       if (pcStack_328 != (char *)0x0) {
                         system_thread_manager_001(lVar24 + 0x50,flags1);
@@ -2268,9 +2268,9 @@ LAB_18004e2b6:
                       if (uVar8 != 0) {
                         memcpy(*(unsigned long long *)(lVar24 + 0x58),pcStack_328,flags1);
                       }
-                      *(undefined4 *)(lVar24 + 0x60) = 0;
+                      *(unsigned int *)(lVar24 + 0x60) = 0;
                       if (*(long long *)(lVar24 + 0x58) != 0) {
-                        *(undefined1 *)(flags1 + *(long long *)(lVar24 + 0x58)) = 0;
+                        *(unsigned char *)(flags1 + *(long long *)(lVar24 + 0x58)) = 0;
                       }
                       *(uint *)(lVar24 + 0x6c) = uStack_318._4_4_;
                       puStack_330 = &g_threadString2;
@@ -2283,10 +2283,10 @@ LAB_18004e2b6:
                     }
                     else if (cStack_338 == '\0') {
                       flags7 = system_thread_manager_007();
-                      puVar16 = (undefined1 *)0x0;
+                      puVar16 = (unsigned char *)0x0;
                       puStack_2e8 = &g_threadString2;
                       uStack_2d0 = 0;
-                      puStack_2e0 = (undefined1 *)0x0;
+                      puStack_2e0 = (unsigned char *)0x0;
                       uStack_2d8 = 0;
                       flags6 = uStack_334 | 1;
                       puVar11 = puVar16;
@@ -2298,10 +2298,10 @@ LAB_18004e2b6:
                         if (iVar6 < STRING_BUFFER_SIZE) {
                           iVar6 = STRING_BUFFER_SIZE;
                         }
-                        puVar14 = (undefined1 *)FUN_18062b420(_data_180c8ed18,(long long)iVar6,0x13);
+                        puVar14 = (unsigned char *)FUN_18062b420(_data_180c8ed18,(long long)iVar6,0x13);
                         *puVar14 = 0;
                         puStack_2e0 = puVar14;
-                        puVar11 = (undefined1 *)allocate_helper_buffer(puVar14);
+                        puVar11 = (unsigned char *)allocate_helper_buffer(puVar14);
                         uStack_2d0 = CONCAT44(uStack_2d0._4_4_,(int)puVar11);
                       }
                       lVar24 = 1;
@@ -2318,29 +2318,29 @@ LAB_18004e2b6:
                           flags1 = (ulong long)flags3;
                           if (flags3 != 0) {
                             flags6 = iVar6 + 2;
-                            if (puVar14 == (undefined1 *)0x0) {
+                            if (puVar14 == (unsigned char *)0x0) {
                               if ((int)flags6 < STRING_BUFFER_SIZE) {
                                 flags6 = STRING_BUFFER_SIZE;
                               }
-                              puVar14 = (undefined1 *)
+                              puVar14 = (unsigned char *)
                                         FUN_18062b420(_data_180c8ed18,(long long)(int)flags6,0x13);
                               *puVar14 = 0;
                             }
                             else {
                               if (flags6 <= (uint)puVar11) goto LAB_18004e56d;
                               uStack_348 = 0x13;
-                              puVar14 = (undefined1 *)
+                              puVar14 = (unsigned char *)
                                         FUN_18062b8b0(_data_180c8ed18,puVar14,flags6,STRING_BUFFER_SIZE);
                             }
                             puStack_2e0 = puVar14;
                             flags6 = allocate_helper_buffer(puVar14);
                             uStack_2d0 = CONCAT44(uStack_2d0._4_4_,flags6);
-                            puVar11 = (undefined1 *)(ulong long)flags6;
+                            puVar11 = (unsigned char *)(ulong long)flags6;
                           }
 LAB_18004e56d:
                           puVar16[(long long)puVar14] = flags;
                           puVar14[flags1] = 0;
-                          puVar16 = (undefined1 *)(ulong long)flags3;
+                          puVar16 = (unsigned char *)(ulong long)flags3;
                           uVar30 = uVar30 + 1;
                           lVar24 = lVar24 + 1;
                           flags7 = uStack_158;
@@ -2351,10 +2351,10 @@ LAB_18004e56d:
                       system_event_handler_007(puVar11,&puStack_2e8,flags7);
                       uStack_334 = flags6 & 0xfffffffe;
                       puStack_2e8 = &g_threadString2;
-                      if (puVar14 != (undefined1 *)0x0) {
+                      if (puVar14 != (unsigned char *)0x0) {
                         handle_system_error(puVar14);
                       }
-                      puStack_2e0 = (undefined1 *)0x0;
+                      puStack_2e0 = (unsigned char *)0x0;
                       uStack_2d0 = uStack_2d0 & 0xffffffff00000000;
                       puStack_2e8 = &g_threadString4;
                       puVar11 = puStack_308;
@@ -2362,17 +2362,17 @@ LAB_18004e56d:
                     }
                     else {
                       cStack_338 = '\0';
-                      if (puVar11 != (undefined1 *)0x0) {
+                      if (puVar11 != (unsigned char *)0x0) {
                         system_thread_manager_001(_data_180c8a9a0 + 0x28,puVar14);
                       }
                       if (uVar8 != 0) {
                         memcpy(*(unsigned long long *)(lVar24 + 0x30),puVar11,puVar14);
                       }
-                      *(undefined4 *)(lVar24 + 0x38) = 0;
+                      *(unsigned int *)(lVar24 + 0x38) = 0;
                       if (*(long long *)(lVar24 + 0x30) != 0) {
                         puVar14[*(long long *)(lVar24 + 0x30)] = 0;
                       }
-                      *(undefined4 *)(lVar24 + 0x44) = uStack_2f8._4_4_;
+                      *(unsigned int *)(lVar24 + 0x44) = uStack_2f8._4_4_;
                     }
                   }
                 }
@@ -2381,10 +2381,10 @@ LAB_18004e56d:
           }
         }
 LAB_18004d527:
-        puVar14 = (undefined1 *)0x0;
+        puVar14 = (unsigned char *)0x0;
         uStack_300 = 0;
         lVar24 = lStack_260;
-        if (puVar11 != (undefined1 *)0x0) {
+        if (puVar11 != (unsigned char *)0x0) {
           *puVar11 = 0;
         }
       }
@@ -2392,7 +2392,7 @@ LAB_18004d527:
         system_thread_manager_001(&puStack_310,uVar8 + 1);
         puStack_308[uStack_300] = bVar1;
         uStack_300 = uStack_300 + 1;
-        puVar14 = (undefined1 *)(ulong long)uStack_300;
+        puVar14 = (unsigned char *)(ulong long)uStack_300;
         puVar14[(long long)puStack_308] = 0;
         puVar11 = puStack_308;
       }
@@ -2407,15 +2407,15 @@ LAB_18004d527:
   cVar5 = system_handle_manager_003(lVar24,&puStack_98);
   puStack_98 = &g_threadString4;
   if (cVar5 != '\0') {
-    *(undefined4 *)(lVar24 + CONFIG_PATH_BUFFER_SIZE) = 1;
+    *(unsigned int *)(lVar24 + CONFIG_PATH_BUFFER_SIZE) = 1;
   }
   (**(code **)(**(long long **)(_data_180c8ed08 + 0x18) + 0x30))
             (*(long long **)(_data_180c8ed08 + 0x18),data_180c8ecec);
   puStack_310 = &g_threadString2;
-  if (puVar11 != (undefined1 *)0x0) {
+  if (puVar11 != (unsigned char *)0x0) {
     handle_system_error(puVar11);
   }
-  puStack_308 = (undefined1 *)0x0;
+  puStack_308 = (unsigned char *)0x0;
   uStack_2f8 = uStack_2f8 & 0xffffffff00000000;
   puStack_310 = &g_threadString4;
   system_crypto_001(uStack_38 ^ (ulong long)auStack_368);
@@ -2500,7 +2500,7 @@ LAB_18004e088:
   }
   system_ui_002(_data_180c86920,&puStack_148,&puStack_108);
   lVar9 = _data_180c86920 + 0x90;
-  lVar24 = FUN_18062b420(_data_180c8ed18,SYSTEM_CONFIG_BUFFER_SIZE,*(undefined1 *)(_data_180c86920 + 0xb8));
+  lVar24 = FUN_18062b420(_data_180c8ed18,SYSTEM_CONFIG_BUFFER_SIZE,*(unsigned char *)(_data_180c86920 + 0xb8));
   system_thread_manager_003(lVar24 + CONFIG_PATH_BUFFER_SIZE,&puStack_148);
   lVar20 = system_event_handler_005(lVar9,acStack_336,lVar24 + CONFIG_PATH_BUFFER_SIZE);
   if (acStack_336[0] == '\0') {
@@ -2540,7 +2540,7 @@ LAB_18004e062:
     }
     system_cleanup_001(0x180c911a0);
   }
-  *(undefined4 *)(_data_180c86910 + 4) = 0;
+  *(unsigned int *)(_data_180c86910 + 4) = 0;
   if (*(char *)(lVar6 + 0x1ee) == '\0') {
     (**(code **)(**(long long **)(lVar6 + 0x2b0) + 0xe0))();
     *(int *)(lVar6 + 0x224) = *(int *)(lVar6 + 0x224) + 1;
@@ -2561,7 +2561,7 @@ LAB_18004e062:
       *(float *)(lVar6 + 0x220) = fVar14;
     }
     else {
-      *(undefined4 *)(lVar6 + 0x220) = 0x3d088889;
+      *(unsigned int *)(lVar6 + 0x220) = 0x3d088889;
       fVar14 = 0.033333335;
     }
     system_handle_manager_004(lVar6,fVar14);
@@ -2589,13 +2589,13 @@ LAB_18004e062:
       }
       func_0x00018005c480(_data_180c8ed68);
       pinit_result = _data_180c8ed00;
-      if (*(code **)(*_data_180c8ed00 + 8) == (code *)&unknown_180639070) {
-        *(undefined4 *)(_data_180c8ed00 + 9) = 0;
-        puVar4 = (undefined1 *)pinit_result[8];
-        if (puVar4 != (undefined1 *)0x0) {
+      if (*(code **)(*_data_180c8ed00 + 8) == (code *)&systemInitializationCheckFunction) {
+        *(unsigned int *)(_data_180c8ed00 + 9) = 0;
+        puVar4 = (unsigned char *)pinit_result[8];
+        if (puVar4 != (unsigned char *)0x0) {
           *puVar4 = 0;
         }
-        *(undefined4 *)((long long)pinit_result + 0x54) = 0;
+        *(unsigned int *)((long long)pinit_result + 0x54) = 0;
       }
       else {
         (**(code **)(*_data_180c8ed00 + 8))();
@@ -2605,7 +2605,7 @@ LAB_18004e062:
       if (*(char *)(lVar6 + 0x22c) != '\0') {
         system_event_handler_001();
       }
-      *(undefined4 *)(lVar6 + 0x228) = *(undefined4 *)(lVar6 + 0x224);
+      *(unsigned int *)(lVar6 + 0x228) = *(unsigned int *)(lVar6 + 0x224);
       system_graphics_001();
       system_graphics_002();
     }
@@ -2649,7 +2649,7 @@ LAB_18004e062:
     }
     system_cleanup_001(0x180c911a0);
   }
-  *(undefined4 *)(_data_180c86910 + 4) = 0;
+  *(unsigned int *)(_data_180c86910 + 4) = 0;
   if (*(char *)(handle + 0x1ee) == '\0') {
     (**(code **)(**(long long **)(handle + 0x2b0) + 0xe0))();
     *(int *)(handle + 0x224) = *(int *)(handle + 0x224) + 1;
@@ -2670,7 +2670,7 @@ LAB_18004e062:
       *(float *)(handle + 0x220) = fVar13;
     }
     else {
-      *(undefined4 *)(handle + 0x220) = 0x3d088889;
+      *(unsigned int *)(handle + 0x220) = 0x3d088889;
       fVar13 = 0.033333335;
     }
     system_handle_manager_004(handle,fVar13);
@@ -2698,13 +2698,13 @@ LAB_18004e062:
       }
       func_0x00018005c480(_data_180c8ed68);
       pinit_result = _data_180c8ed00;
-      if (*(code **)(*_data_180c8ed00 + 8) == (code *)&unknown_180639070) {
-        *(undefined4 *)(_data_180c8ed00 + 9) = 0;
-        puVar4 = (undefined1 *)pinit_result[8];
-        if (puVar4 != (undefined1 *)0x0) {
+      if (*(code **)(*_data_180c8ed00 + 8) == (code *)&systemInitializationCheckFunction) {
+        *(unsigned int *)(_data_180c8ed00 + 9) = 0;
+        puVar4 = (unsigned char *)pinit_result[8];
+        if (puVar4 != (unsigned char *)0x0) {
           *puVar4 = 0;
         }
-        *(undefined4 *)((long long)pinit_result + 0x54) = 0;
+        *(unsigned int *)((long long)pinit_result + 0x54) = 0;
       }
       else {
         (**(code **)(*_data_180c8ed00 + 8))();
@@ -2714,7 +2714,7 @@ LAB_18004e062:
       if (*(char *)(handle + 0x22c) != '\0') {
         system_event_handler_001();
       }
-      *(undefined4 *)(handle + 0x228) = *(undefined4 *)(handle + 0x224);
+      *(unsigned int *)(handle + 0x228) = *(unsigned int *)(handle + 0x224);
       system_graphics_001();
       system_graphics_002();
     }
@@ -2842,7 +2842,7 @@ LAB_18005122d:
     pinit_result4 = _data_180c8a9b0;
     plStack_2c0 = _data_180c8a9b0;
     _data_180c8a9b0 = (long long *)*puVar7;
-    system_initializer_003(&unknown_1809fd8c0,0,0);
+    system_initializer_003(&systemConfigData1,0,0);
     system_config_001(&unknown_1809fd8d8);
     uStack_2f0 = SYSTEM_CONFIG_BUFFER_SIZE000000;
     auStack_2c8[0] = 0x3f800000;
@@ -2903,7 +2903,7 @@ LAB_18005122d:
     pplStack_328 = (long long **)&uStack_308;
     system_config_002(&unknown_1809fd970,4,_data_180c86950 + 0x168c,&plStack_2f8);
     if (*(float *)(_data_180c86950 + 0x168c) == 0.0) {
-      *(undefined4 *)(_data_180c86950 + 0x168c) = 0x3f800000;
+      *(unsigned int *)(_data_180c86950 + 0x168c) = 0x3f800000;
     }
     system_initializer_004();
     _data_180c8a9b0 = pinit_result4;
@@ -2937,14 +2937,14 @@ LAB_18005122d:
       puStack_2e0 = (unsigned long long *)0x0;
       uStack_2d8 = 0;
       puVar7 = (unsigned long long *)FUN_18062b420(_data_180c8ed18,0x1c,0x13);
-      *(undefined1 *)puVar7 = 0;
+      *(unsigned char *)puVar7 = 0;
       puStack_2e0 = puVar7;
       uVar5 = allocate_helper_buffer(puVar7);
       uStack_2d0 = CONCAT44(uStack_2d0._4_4_,uVar5);
       *puVar7 = 0x6f6d654d20555047;
       puVar7[1] = 0x6567617375207972;
       puVar7[2] = 0x6163697469726320;
-      *(undefined4 *)(puVar7 + 3) = 0x2e2e6c;
+      *(unsigned int *)(puVar7 + 3) = 0x2e2e6c;
       uStack_2d8 = 0x1b;
       puStack_2e8 = &g_threadString2;
       handle_system_error(puVar7);
@@ -2952,20 +2952,20 @@ LAB_18005122d:
   }
   pinit_result4 = _data_180c86878;
   if ((char)_data_180c86878[0x42] == '\0') {
-    (**(code **)(*_data_180c86878 + 0xb0))(_data_180c86878,*(undefined4 *)(_data_180c86920 + 0x1340));
-    (**(code **)(*pinit_result4 + 0xb8))(pinit_result4,*(undefined4 *)(_data_180c86920 + 0x1500));
-    (**(code **)(*pinit_result4 + 0xc0))(pinit_result4,*(undefined4 *)(_data_180c86920 + 0x13b0));
-    (**(code **)(*pinit_result4 + 200))(pinit_result4,*(undefined4 *)(_data_180c86920 + 0x1490));
+    (**(code **)(*_data_180c86878 + 0xb0))(_data_180c86878,*(unsigned int *)(_data_180c86920 + 0x1340));
+    (**(code **)(*pinit_result4 + 0xb8))(pinit_result4,*(unsigned int *)(_data_180c86920 + 0x1500));
+    (**(code **)(*pinit_result4 + 0xc0))(pinit_result4,*(unsigned int *)(_data_180c86920 + 0x13b0));
+    (**(code **)(*pinit_result4 + 200))(pinit_result4,*(unsigned int *)(_data_180c86920 + 0x1490));
     (**(code **)(*pinit_result4 + 0x50))(pinit_result4);
   }
   puVar7 = _data_180c86880;
   pinit_result4 = *(long long **)(_data_180c86950 + 0x17ec);
   *_data_180c86880 = 0;
   uStack_308._0_4_ = SUB84(pinit_result4,0);
-  *(undefined4 *)(puVar7 + 1) = (undefined4)uStack_308;
-  uStack_308._4_4_ = (undefined4)((ulong long)pinit_result4 >> CONFIG_PATH_BUFFER_SIZE);
-  *(undefined4 *)((long long)puVar7 + 0xc) = uStack_308._4_4_;
-  *(undefined4 *)(puVar7 + 8) = 0;
+  *(unsigned int *)(puVar7 + 1) = (unsigned int)uStack_308;
+  uStack_308._4_4_ = (unsigned int)((ulong long)pinit_result4 >> CONFIG_PATH_BUFFER_SIZE);
+  *(unsigned int *)((long long)puVar7 + 0xc) = uStack_308._4_4_;
+  *(unsigned int *)(puVar7 + 8) = 0;
   uStack_308 = pinit_result4;
   system_finalizer_001();
   system_finalizer_002();
@@ -2986,7 +2986,7 @@ LAB_18005122d:
     uVar13 = uVar11;
     if (*(long long *)(_data_180c868d0 + CONFIG_PATH_BUFFER_SIZE38) - *pinit_result4 >> 2 != 0) {
       do {
-        uStack_2f0 = *(undefined4 *)(uVar13 + *pinit_result4);
+        uStack_2f0 = *(unsigned int *)(uVar13 + *pinit_result4);
         init_result2 = *(long long *)(handle + 0x3c0) + STRING_BUFFER_SIZE;
         FUN_180194a50(init_result2,&uStack_2f0);
         FUN_180194a50(init_result2,(long long)&uStack_2f0 + 1);
@@ -3010,14 +3010,14 @@ LAB_18005122d:
     puStack_2e0 = (unsigned long long *)0x0;
     uStack_2d8 = 0;
     puVar8 = (unsigned long long *)FUN_18062b420(_data_180c8ed18,0x19,0x13);
-    *(undefined1 *)puVar8 = 0;
+    *(unsigned char *)puVar8 = 0;
     puStack_2e0 = puVar8;
     uVar5 = allocate_helper_buffer(puVar8);
     uStack_2d0 = CONCAT44(uStack_2d0._4_4_,uVar5);
     *puVar8 = 0x6d6d6f43204c4752;
     puVar8[1] = 0x656e696c20646e61;
     puVar8[2] = 0x656c6f736e6f6320;
-    *(undefined1 *)(puVar8 + 3) = 0;
+    *(unsigned char *)(puVar8 + 3) = 0;
     init_result2 = _data_180c868c8;
     uStack_2d8 = 0x18;
     puVar7 = (unsigned long long *)*_data_180c86960;
@@ -3036,7 +3036,7 @@ LAB_18005122d:
       system_processor_003(init_result2,&plStack_2f8,&uStack_308,acStack_2ff);
     }
     if ((cStack_300 == '\0') && (acStack_2ff[0] == '\0')) {
-      *(undefined1 *)(init_result2 + 0x60) = 0;
+      *(unsigned char *)(init_result2 + 0x60) = 0;
     }
     _data_180c8a9b0 = pinit_result4;
     iVar4 = _Mtx_unlock(0x180c91970);
@@ -3054,7 +3054,7 @@ unsigned long long * system_handle_manager_001(unsigned long long *handle)
   handle[0x43] = 0;
   handle[0x44] = 0;
   handle[0x45] = 0;
-  *(undefined4 *)(handle + 0x46) = 3;
+  *(unsigned int *)(handle + 0x46) = 3;
   return handle;
 }
     data_180c84870 = 0;
@@ -3098,7 +3098,7 @@ unsigned long long * system_handle_manager_001(unsigned long long *handle)
   system_cleanup_008(0);
   if (data_180c82853 != '\0') {
     LOCK();
-    *(undefined4 *)(*(long long *)(_data_180c86870 + 0x48) + 0xcc) = 0;
+    *(unsigned int *)(*(long long *)(_data_180c86870 + 0x48) + 0xcc) = 0;
     UNLOCK();
   }
   FUN_18004f920();
@@ -3143,17 +3143,17 @@ FUN_18006b8a0(unsigned long long *handle,ulong long flags,unsigned long long mut
         iVar3 = ReleaseSemaphore(_data_180c91900,1);
       } while (iVar3 == 0);
       puStack_138 = &g_threadString2;
-      if (puStack_130 != (undefined1 *)0x0) {
+      if (puStack_130 != (unsigned char *)0x0) {
         handle_system_error();
       }
-      puStack_130 = (undefined1 *)0x0;
+      puStack_130 = (unsigned char *)0x0;
       uStack_120 = uStack_120 & 0xffffffff00000000;
       puStack_138 = &g_threadString4;
       puStack_110 = &g_threadString2;
       if (puVar10 != (undefined *)0x0) {
         handle_system_error(puVar10);
       }
-      puStack_108 = (undefined1 *)0x0;
+      puStack_108 = (unsigned char *)0x0;
       uStack_f8 = uStack_f8 & 0xffffffff00000000;
       puStack_110 = &g_threadString4;
     }
@@ -3206,7 +3206,7 @@ uint validate_system_mutex_lock(void)
       __Throw_C_error_std__YAXH_Z(iVar13);
     }
     if (cVar23 != '\0') goto LAB_1800d37d8;
-    *(undefined1 *)(*(long long *)(*(long long *)(_data_180c86870 + 8) + 0x140) + CONFIG_PATH_BUFFER_SIZE8) = 1;
+    *(unsigned char *)(*(long long *)(*(long long *)(_data_180c86870 + 8) + 0x140) + CONFIG_PATH_BUFFER_SIZE8) = 1;
   }
   thread_pool_2_status_code = '\0';
   iVar13 = _Mtx_unlock(RENDER_THREAD_POOL_MUTEX_ADDR);
@@ -3297,7 +3297,7 @@ LAB_1800d37d8:
   system_ui_004(flags4,1,0);
   if (*(char *)(init_result6 + 0xf18) != '\0') {
     system_ui_009(init_result6);
-    *(undefined1 *)(init_result6 + 0xf18) = 0;
+    *(unsigned char *)(init_result6 + 0xf18) = 0;
   }
   lVar3 = _data_180c86950;
   init_result8 = _data_180c86890;
@@ -3319,22 +3319,22 @@ LAB_1800d37d8:
   uVar14 = *(unsigned long long *)(lVar3 + 0x166c);
   *(unsigned long long *)(init_result8 + 0x1320) = *(unsigned long long *)(lVar3 + 0x1664);
   *(unsigned long long *)(init_result8 + 0x1328) = uVar14;
-  flags4 = *(undefined4 *)(lVar3 + 0x1678);
-  uVar10 = *(undefined4 *)(lVar3 + 0x167c);
-  uVar11 = *(undefined4 *)(lVar3 + 0x1680);
-  *(undefined4 *)(init_result8 + 0x1330) = *(undefined4 *)(lVar3 + 0x1674);
-  *(undefined4 *)(init_result8 + 0x1334) = flags4;
-  *(undefined4 *)(init_result8 + 0x1338) = uVar10;
-  *(undefined4 *)(init_result8 + 0x133c) = uVar11;
-  flags4 = *(undefined4 *)(lVar3 + 0x1688);
-  uVar10 = *(undefined4 *)(lVar3 + 0x168c);
-  uVar11 = *(undefined4 *)(lVar3 + 0x1690);
-  *(undefined4 *)(init_result8 + 0x1340) = *(undefined4 *)(lVar3 + 0x1684);
-  *(undefined4 *)(init_result8 + 0x1344) = flags4;
-  *(undefined4 *)(init_result8 + 0x1348) = uVar10;
-  *(undefined4 *)(init_result8 + 0x134c) = uVar11;
-  *(undefined2 *)(lVar3 + 0x1637) = 0;
-  *(undefined1 *)(lVar3 + 0x162c) = 0;
+  flags4 = *(unsigned int *)(lVar3 + 0x1678);
+  uVar10 = *(unsigned int *)(lVar3 + 0x167c);
+  uVar11 = *(unsigned int *)(lVar3 + 0x1680);
+  *(unsigned int *)(init_result8 + 0x1330) = *(unsigned int *)(lVar3 + 0x1674);
+  *(unsigned int *)(init_result8 + 0x1334) = flags4;
+  *(unsigned int *)(init_result8 + 0x1338) = uVar10;
+  *(unsigned int *)(init_result8 + 0x133c) = uVar11;
+  flags4 = *(unsigned int *)(lVar3 + 0x1688);
+  uVar10 = *(unsigned int *)(lVar3 + 0x168c);
+  uVar11 = *(unsigned int *)(lVar3 + 0x1690);
+  *(unsigned int *)(init_result8 + 0x1340) = *(unsigned int *)(lVar3 + 0x1684);
+  *(unsigned int *)(init_result8 + 0x1344) = flags4;
+  *(unsigned int *)(init_result8 + 0x1348) = uVar10;
+  *(unsigned int *)(init_result8 + 0x134c) = uVar11;
+  *(unsigned short *)(lVar3 + 0x1637) = 0;
+  *(unsigned char *)(lVar3 + 0x162c) = 0;
   system_finalizer_001();
   system_finalizer_002();
   *(uint *)(_data_180c86890 + 0x1590) = _data_180c86958;
@@ -3372,12 +3372,12 @@ LAB_1800d37d8:
       handle_system_error();
     }
     *(unsigned long long *)(init_result8 + 8) = 0;
-    puVar4 = *(undefined1 **)(_data_180c86890 + 0x1a08 + (long long)(int)_data_180c86958 * 8);
-    if (puVar4 != (undefined1 *)0x0) {
+    puVar4 = *(unsigned char **)(_data_180c86890 + 0x1a08 + (long long)(int)_data_180c86958 * 8);
+    if (puVar4 != (unsigned char *)0x0) {
       *puVar4 = 0;
       *(unsigned long long *)(puVar4 + 8) = 0;
       *(unsigned long long *)(puVar4 + 0x14) = 0;
-      *(undefined4 *)(puVar4 + STRING_BUFFER_SIZE) = 0;
+      *(unsigned int *)(puVar4 + STRING_BUFFER_SIZE) = 0;
       *(unsigned long long *)(puVar4 + 0x24) = 0;
       *(unsigned long long *)(puVar4 + 0x1c) = 0;
       handle_system_error();
@@ -3392,7 +3392,7 @@ LAB_1800d37d8:
     __Throw_C_error_std__YAXH_Z(iVar13);
   }
   if (*(int *)(init_result6 + 8) == 2) {
-    *(undefined1 *)(*(long long *)(init_result6 + STRING_BUFFER_SIZE) + 0xc0) = 0;
+    *(unsigned char *)(*(long long *)(init_result6 + STRING_BUFFER_SIZE) + 0xc0) = 0;
     while( true ) {
       puVar5 = (undefined *)**(unsigned long long **)(init_result6 + STRING_BUFFER_SIZE);
       if (puVar5 == &unknown_180a04910) {
@@ -3415,7 +3415,7 @@ LAB_1800d37d8:
     if (plStack_1c0 != (long long *)0x0) {
       (**(code **)(*plStack_1c0 + 0x38))();
     }
-    *(undefined4 *)(init_result6 + 8) = 0;
+    *(unsigned int *)(init_result6 + 8) = 0;
     if (_data_00000010 != (long long *)0x0) {
       (**(code **)(*_data_00000010 + STRING_BUFFER_SIZE))();
     }
@@ -3436,39 +3436,39 @@ LAB_1800d3d65:
   pplStack_220 = (long long **)FUN_18062b1e0(_data_180c8ed18,CONFIG_PATH_BUFFER_SIZE,8,3);
   *pplStack_220 = (long long *)&g_threadString4;
   pplStack_220[1] = (long long *)0x0;
-  *(undefined4 *)(pplStack_220 + 2) = 0;
+  *(unsigned int *)(pplStack_220 + 2) = 0;
   *pplStack_220 = (long long *)&g_threadString2;
   pplStack_220[3] = (long long *)0x0;
   pplStack_220[1] = (long long *)0x0;
-  *(undefined4 *)(pplStack_220 + 2) = 0;
+  *(unsigned int *)(pplStack_220 + 2) = 0;
   pinit_result7 = _data_180c8ed00;
   uStack_e0 = 0;
-  flags4 = *(undefined4 *)(pplStack_220 + 3);
+  flags4 = *(unsigned int *)(pplStack_220 + 3);
   *(int *)(pplStack_220 + 3) = (int)_data_180c8ed00[10];
-  *(undefined4 *)(pinit_result7 + 10) = flags4;
+  *(unsigned int *)(pinit_result7 + 10) = flags4;
   init_result6 = (long long)pplStack_220[1];
   pplStack_220[1] = (long long *)pinit_result7[8];
   pinit_result7[8] = init_result6;
-  flags4 = *(undefined4 *)(pplStack_220 + 2);
+  flags4 = *(unsigned int *)(pplStack_220 + 2);
   *(int *)(pplStack_220 + 2) = (int)pinit_result7[9];
-  *(undefined4 *)(pinit_result7 + 9) = flags4;
-  flags4 = *(undefined4 *)((long long)pplStack_220 + 0x1c);
-  *(undefined4 *)((long long)pplStack_220 + 0x1c) = *(undefined4 *)((long long)pinit_result7 + 0x54);
-  *(undefined4 *)((long long)pinit_result7 + 0x54) = flags4;
+  *(unsigned int *)(pinit_result7 + 9) = flags4;
+  flags4 = *(unsigned int *)((long long)pplStack_220 + 0x1c);
+  *(unsigned int *)((long long)pplStack_220 + 0x1c) = *(unsigned int *)((long long)pinit_result7 + 0x54);
+  *(unsigned int *)((long long)pinit_result7 + 0x54) = flags4;
   puStack_f0 = pplStack_220;
   if (*(code **)(*pinit_result7 + 8) == (code *)&unknown_180639070) {
-    *(undefined4 *)(pinit_result7 + 9) = 0;
-    if ((undefined1 *)pinit_result7[8] != (undefined1 *)0x0) {
-      *(undefined1 *)pinit_result7[8] = 0;
+    *(unsigned int *)(pinit_result7 + 9) = 0;
+    if ((unsigned char *)pinit_result7[8] != (unsigned char *)0x0) {
+      *(unsigned char *)pinit_result7[8] = 0;
     }
-    *(undefined4 *)((long long)pinit_result7 + 0x54) = 0;
+    *(unsigned int *)((long long)pinit_result7 + 0x54) = 0;
   }
   else {
     (**(code **)(*pinit_result7 + 8))(pinit_result7);
   }
   if (0x960 < *(int *)(puStack_f0 + 2)) {
-    *(undefined4 *)(puStack_f0 + 2) = 0x960;
-    *(undefined1 *)(puStack_f0[1] + 0x960) = 0;
+    *(unsigned int *)(puStack_f0 + 2) = 0x960;
+    *(unsigned char *)(puStack_f0[1] + 0x960) = 0;
   }
   uStack_e8 = 0;
   lStack_200 = 0;
@@ -3576,14 +3576,14 @@ LAB_1800d3d65:
   data_180c82862 = data_180c82862 == '\0';
   *handle = &g_threadString4;
   handle[1] = 0;
-  *(undefined4 *)(handle + 2) = 0;
+  *(unsigned int *)(handle + 2) = 0;
   *handle = &g_threadString2;
   handle[3] = 0;
   handle[1] = 0;
-  *(undefined4 *)(handle + 2) = 0;
+  *(unsigned int *)(handle + 2) = 0;
   system_thread_manager_001(handle,3,mutex_attr,mutex_type,0,THREAD_POOL_DEFAULT_FLAGS);
-  *(undefined4 *)handle[1] = 0x2e6b4f;
-  *(undefined4 *)(handle + 2) = 3;
+  *(unsigned int *)handle[1] = 0x2e6b4f;
+  *(unsigned int *)(handle + 2) = 3;
   return handle;
 }
 long long process_memory_block(long long handle,long long flags,long long mutex_attr)
@@ -3605,12 +3605,12 @@ long long process_memory_block(long long handle,long long flags,long long mutex_
       *(unsigned long long *)(lVar3 + STRING_BUFFER_SIZE + (long long)puVar1) = 0;
       lVar4 = lVar4 + -1;
       *(unsigned long long *)(lVar3 + (long long)puVar1) = 0;
-      *(undefined4 *)(lVar3 + 8 + (long long)puVar1) = 0;
-      *(undefined4 *)(lVar3 + 8 + (long long)puVar1) = *(undefined4 *)(pflags + -3);
+      *(unsigned int *)(lVar3 + 8 + (long long)puVar1) = 0;
+      *(unsigned int *)(lVar3 + 8 + (long long)puVar1) = *(unsigned int *)(pflags + -3);
       *(unsigned long long *)(lVar3 + (long long)puVar1) = *puVar1;
-      *(undefined4 *)(lVar3 + 0x14 + (long long)puVar1) = *(undefined4 *)((long long)pflags + -0xc);
-      *(undefined4 *)(lVar3 + STRING_BUFFER_SIZE + (long long)puVar1) = *(undefined4 *)(pflags + -2);
-      *(undefined4 *)(pflags + -3) = 0;
+      *(unsigned int *)(lVar3 + 0x14 + (long long)puVar1) = *(unsigned int *)((long long)pflags + -0xc);
+      *(unsigned int *)(lVar3 + STRING_BUFFER_SIZE + (long long)puVar1) = *(unsigned int *)(pflags + -2);
+      *(unsigned int *)(pflags + -3) = 0;
       *puVar1 = 0;
       pflags[-2] = 0;
       pflags = puVar1;
@@ -3636,12 +3636,12 @@ long long process_memory_with_flags(unsigned long long handle,long long flags,lo
     *(unsigned long long *)(mutex_attr + STRING_BUFFER_SIZE + (long long)puVar1) = 0;
     unaff_RDI = unaff_RDI + -1;
     *(unsigned long long *)(mutex_attr + (long long)puVar1) = 0;
-    *(undefined4 *)(mutex_attr + 8 + (long long)puVar1) = 0;
-    *(undefined4 *)(mutex_attr + 8 + (long long)puVar1) = *(undefined4 *)(puVar3 + -3);
+    *(unsigned int *)(mutex_attr + 8 + (long long)puVar1) = 0;
+    *(unsigned int *)(mutex_attr + 8 + (long long)puVar1) = *(unsigned int *)(puVar3 + -3);
     *(unsigned long long *)(mutex_attr + (long long)puVar1) = *puVar1;
-    *(undefined4 *)(mutex_attr + 0x14 + (long long)puVar1) = *(undefined4 *)((long long)puVar3 + -0xc);
-    *(undefined4 *)(mutex_attr + STRING_BUFFER_SIZE + (long long)puVar1) = *(undefined4 *)(puVar3 + -2);
-    *(undefined4 *)(puVar3 + -3) = 0;
+    *(unsigned int *)(mutex_attr + 0x14 + (long long)puVar1) = *(unsigned int *)((long long)puVar3 + -0xc);
+    *(unsigned int *)(mutex_attr + STRING_BUFFER_SIZE + (long long)puVar1) = *(unsigned int *)(puVar3 + -2);
+    *(unsigned int *)(puVar3 + -3) = 0;
     *puVar1 = 0;
     puVar3[-2] = 0;
     puVar3 = puVar1;
@@ -3668,13 +3668,13 @@ long long process_memory_with_flags(unsigned long long handle,long long flags,lo
              (ulong long)((long long)in_RCX[0x1d] - (long long)in_RCX[0x1c] >> 3));
   }
   ppplStack_b8 = (long long ***)0x0;
-  uStack_58 = (long long *)CONCAT44(uStack_58._4_4_,(undefined4)uStack_58);
+  uStack_58 = (long long *)CONCAT44(uStack_58._4_4_,(unsigned int)uStack_58);
   if (*(int *)(*(long long *)(alStackX_10[0] + 0x3580) + 0x110) != 0) {
-    uStack_58 = (long long *)CONCAT44(uStack_58._4_4_,(undefined4)uStack_58);
+    uStack_58 = (long long *)CONCAT44(uStack_58._4_4_,(unsigned int)uStack_58);
     if ((((*(byte *)(alStackX_10[0] + 0x1bd8) & CONFIG_PATH_BUFFER_SIZE) != 0) &&
-        (uStack_58 = (long long *)CONCAT44(uStack_58._4_4_,(undefined4)uStack_58),
+        (uStack_58 = (long long *)CONCAT44(uStack_58._4_4_,(unsigned int)uStack_58),
         *(char *)(_data_180c86870 + 0xf8) != '\0')) &&
-       (uStack_58 = (long long *)CONCAT44(uStack_58._4_4_,(undefined4)uStack_58),
+       (uStack_58 = (long long *)CONCAT44(uStack_58._4_4_,(unsigned int)uStack_58),
        6 < *(int *)(in_RCX + 0x4f8))) {
       uVar9 = FUN_18062b1e0(_data_180c8ed18,0xe0,8,3);
       ppplStackX_8 = (long long ***)&uStack_60;
@@ -3682,8 +3682,8 @@ long long process_memory_with_flags(unsigned long long handle,long long flags,lo
       puStack_50 = &unknown_1801bc840;
       puStack_48 = &unknown_1801bc820;
       uStack_70._0_4_ = SUB84(in_RCX,0);
-      uStack_70._4_4_ = (undefined4)((ulong long)in_RCX >> CONFIG_PATH_BUFFER_SIZE);
-      uStack_60._0_4_ = (undefined4)uStack_70;
+      uStack_70._4_4_ = (unsigned int)((ulong long)in_RCX >> CONFIG_PATH_BUFFER_SIZE);
+      uStack_60._0_4_ = (unsigned int)uStack_70;
       uStack_60._4_4_ = uStack_70._4_4_;
       uStack_70 = in_RCX;
       uStack_58 = plStack_68;
@@ -3706,7 +3706,7 @@ long long process_memory_with_flags(unsigned long long handle,long long flags,lo
         (*(code *)(*ppplStack_b8)[0xc])(ppplStack_b8);
         if ((*ppplStack_b8)[0xe] == (long long *)&unknown_180049530) {
           LOCK();
-          *(undefined1 *)(ppplStack_b8 + 2) = 1;
+          *(unsigned char *)(ppplStack_b8 + 2) = 1;
           UNLOCK();
           system_cleanup_003(ppplStack_b8 + 4);
         }
@@ -3767,13 +3767,13 @@ long long process_memory_with_flags(unsigned long long handle,long long flags,lo
     }
     if ((*(char *)(in_RCX + 0xb74) != '\0') &&
        (init_result0 = *(long long *)(*(long long *)(alStackX_10[0] + 0x3580) + 0x530), init_result0 != 0)) {
-      *(undefined4 *)(init_result0 + SYSTEM_CONFIG_BUFFER_SIZE) = 0x41200000;
+      *(unsigned int *)(init_result0 + SYSTEM_CONFIG_BUFFER_SIZE) = 0x41200000;
     }
     if (*(int *)(in_RCX + 0xa3a) != 0) {
-      uVar1 = *(undefined4 *)(in_RCX + 0xa3a);
+      uVar1 = *(unsigned int *)(in_RCX + 0xa3a);
       pppppinit_result7 = in_RCX + (long long)*(int *)(in_RCX + 0xa39) * 0x121 + 0x7f7;
       LOCK();
-      *(undefined4 *)pppppinit_result7 = 0;
+      *(unsigned int *)pppppinit_result7 = 0;
       UNLOCK();
       system_processor_008(pppppinit_result7,uVar1);
       if (*(int *)(in_RCX + 0xa3a) == 0) {
@@ -3806,7 +3806,7 @@ long long process_memory_with_flags(unsigned long long handle,long long flags,lo
   }
   uVar12 = (ulong long)*(uint *)(in_RCX + 0xb5b);
   LOCK();
-  *(undefined4 *)(in_RCX + 0xb5b) = 0;
+  *(unsigned int *)(in_RCX + 0xb5b) = 0;
   uVar9 = _data_180c82868;
   UNLOCK();
   if (ppplStack_b8 != (long long ***)0x0) {
@@ -3823,20 +3823,20 @@ system_processor_006(unsigned long long *handle,long long flags,unsigned long lo
 {
   int iVar1;
   unsigned long long *pflags;
-  undefined4 *puVar3;
-  undefined4 uVar4;
+  unsigned int *puVar3;
+  unsigned int uVar4;
   *handle = &g_threadString4;
   handle[1] = 0;
-  *(undefined4 *)(handle + 2) = 0;
+  *(unsigned int *)(handle + 2) = 0;
   *handle = &g_threadString2;
   handle[3] = 0;
   handle[1] = 0;
-  *(undefined4 *)(handle + 2) = 0;
+  *(unsigned int *)(handle + 2) = 0;
   system_thread_manager_001(handle,9,mutex_attr,mutex_type,0,THREAD_POOL_DEFAULT_FLAGS);
   pflags = (unsigned long long *)handle[1];
   *pflags = 0x6a624f656e656353;
-  *(undefined2 *)(pflags + 1) = 0x2f;
-  *(undefined4 *)(handle + 2) = 9;
+  *(unsigned short *)(pflags + 1) = 0x2f;
+  *(unsigned int *)(handle + 2) = 9;
   uVar4 = 1;
   iVar1 = *(int *)(handle + 2);
   if (0 < *(int *)(flags + STRING_BUFFER_SIZE)) {
@@ -3845,10 +3845,10 @@ system_processor_006(unsigned long long *handle,long long flags,unsigned long lo
            (long long)(*(int *)(flags + STRING_BUFFER_SIZE) + 1),mutex_type,uVar4);
   }
   system_thread_manager_001(handle,iVar1 + 6);
-  puVar3 = (undefined4 *)((ulong long)*(uint *)(handle + 2) + handle[1]);
+  puVar3 = (unsigned int *)((ulong long)*(uint *)(handle + 2) + handle[1]);
   *puVar3 = 0x6563732f;
-  *(undefined2 *)(puVar3 + 1) = 0x656e;
-  *(undefined1 *)((long long)puVar3 + 6) = 0;
+  *(unsigned short *)(puVar3 + 1) = 0x656e;
+  *(unsigned char *)((long long)puVar3 + 6) = 0;
   *(int *)(handle + 2) = iVar1 + 6;
   system_thread_manager_001(handle,iVar1 + 0xd);
   *(unsigned long long *)((ulong long)*(uint *)(handle + 2) + handle[1]) = 0x656e656373782e;
@@ -3883,15 +3883,15 @@ LAB_1801d58d5:
       }
       puStack_1a8 = &g_threadString2;
       uStack_190 = 0;
-      puStack_1a0 = (undefined1 *)0x0;
+      puStack_1a0 = (unsigned char *)0x0;
       uStack_198 = 0;
-      system_thread_manager_001(&puStack_1a8,*(undefined4 *)(init_result9 + STRING_BUFFER_SIZE));
+      system_thread_manager_001(&puStack_1a8,*(unsigned int *)(init_result9 + STRING_BUFFER_SIZE));
       if (*(int *)(init_result9 + STRING_BUFFER_SIZE) != 0) {
         memcpy(puStack_1a0,*(unsigned long long *)(init_result9 + 8),*(int *)(init_result9 + STRING_BUFFER_SIZE) + 1);
       }
       if (*(long long *)(init_result9 + 8) != 0) {
         uStack_198 = 0;
-        if (puStack_1a0 != (undefined1 *)0x0) {
+        if (puStack_1a0 != (unsigned char *)0x0) {
           *puStack_1a0 = 0;
         }
         uStack_190 = uStack_190 & 0xffffffff;
@@ -3899,12 +3899,12 @@ LAB_1801d58d5:
       iVar17 = uStack_198 + 8;
       system_thread_manager_001(&puStack_1a8,iVar17);
       *(unsigned long long *)(puStack_1a0 + uStack_198) = 0x6a624f656e656353;
-      *(undefined1 *)((long long)(puStack_1a0 + uStack_198) + 8) = 0;
+      *(unsigned char *)((long long)(puStack_1a0 + uStack_198) + 8) = 0;
       uStack_198 = iVar17;
       cVar5 = system_thread_001(&puStack_1a8);
       if (cVar5 == '\0') {
         puStack_1a8 = &g_threadString2;
-        if (puStack_1a0 != (undefined1 *)0x0) {
+        if (puStack_1a0 != (unsigned char *)0x0) {
           handle_system_error();
         }
       }
@@ -3922,7 +3922,7 @@ LAB_1801d58d5:
         *ppppppuVar12 = (unsigned long long *****)0x0;
         ppppppuVar12[1] = (unsigned long long *****)0x0;
         ppppppuVar12[2] = (unsigned long long *****)0x0;
-        *(undefined4 *)(ppppppuVar12 + 3) = 3;
+        *(unsigned int *)(ppppppuVar12 + 3) = 3;
         pppppppuVar6 = &pppppppuStack_188;
         pppppppuVar9 = pppppppuStack_178;
         while (pppppppuVar9 != (unsigned long long *******)0x0) {
@@ -3949,15 +3949,15 @@ LAB_1801d58d5:
             puStack_1c8 = &g_threadString2;
             uStack_1b0._0_4_ = 0;
             uStack_1b0._4_4_ = 0;
-            puStack_1c0 = (undefined1 *)0x0;
+            puStack_1c0 = (unsigned char *)0x0;
             uStack_1b8 = 0;
-            system_thread_manager_001(&puStack_1c8,*(undefined4 *)(pppppflags2 + 1));
+            system_thread_manager_001(&puStack_1c8,*(unsigned int *)(pppppflags2 + 1));
             if (*(int *)(pppppflags2 + 1) != 0) {
               memcpy(puStack_1c0,*pppppflags2,*(int *)(pppppflags2 + 1) + 1);
             }
             if (*pppppflags2 != (unsigned long long ****)0x0) {
               uStack_1b8 = 0;
-              if (puStack_1c0 != (undefined1 *)0x0) {
+              if (puStack_1c0 != (unsigned char *)0x0) {
                 *puStack_1c0 = 0;
               }
               uStack_1b0._4_4_ = 0;
@@ -3966,13 +3966,13 @@ LAB_1801d58d5:
             system_thread_manager_001(&puStack_1c8,iVar17);
             puVar7 = (unsigned long long *)(puStack_1c0 + uStack_1b8);
             *puVar7 = 0x782e656e6563732f;
-            *(undefined4 *)(puVar7 + 1) = 0x6e656373;
-            *(undefined2 *)((long long)puVar7 + 0xc) = 0x65;
+            *(unsigned int *)(puVar7 + 1) = 0x6e656373;
+            *(unsigned short *)((long long)puVar7 + 0xc) = 0x65;
             uStack_1b8 = iVar17;
             cVar5 = system_thread_002(&puStack_1c8);
             if (cVar5 == '\0') {
               uStack_1b8 = 0;
-              if (puStack_1c0 != (undefined1 *)0x0) {
+              if (puStack_1c0 != (unsigned char *)0x0) {
                 *puStack_1c0 = 0;
               }
               uVar1 = *(uint *)(pppppflags2 + 1);
@@ -3983,24 +3983,24 @@ LAB_1801d58d5:
               if (uVar1 != 0) {
                 memcpy(puStack_1c0,*pppppflags2,flags0);
               }
-              if (puStack_1c0 != (undefined1 *)0x0) {
+              if (puStack_1c0 != (unsigned char *)0x0) {
                 puStack_1c0[flags0] = 0;
               }
               uStack_1b0._4_4_ = *(uint *)((long long)pppppflags2 + 0x14);
               uStack_1b8 = uVar1;
               system_thread_manager_001(&puStack_1c8,0x12);
-              puVar14 = (undefined4 *)(puStack_1c0 + uStack_1b8);
+              puVar14 = (unsigned int *)(puStack_1c0 + uStack_1b8);
               *puVar14 = 0x6563732f;
               puVar14[1] = 0x782e656e;
               puVar14[2] = 0x2e6f6373;
               puVar14[3] = 0x65637378;
-              *(undefined2 *)(puVar14 + 4) = 0x656e;
-              *(undefined1 *)((long long)puVar14 + 0x12) = 0;
+              *(unsigned short *)(puVar14 + 4) = 0x656e;
+              *(unsigned char *)((long long)puVar14 + 0x12) = 0;
               uStack_1b8 = 0x12;
               cVar5 = system_thread_002(&puStack_1c8);
               if (cVar5 != '\0') goto LAB_1801d5c43;
               puStack_1c8 = &g_threadString2;
-              if (puStack_1c0 != (undefined1 *)0x0) {
+              if (puStack_1c0 != (unsigned char *)0x0) {
                 handle_system_error();
               }
             }
@@ -4028,34 +4028,34 @@ LAB_1801d5c43:
                 ppppppuVar12[1] = ppppppflags + 4;
                 *ppppppflags = (unsigned long long *****)&g_threadString4;
                 ppppppflags[1] = (unsigned long long *****)0x0;
-                *(undefined4 *)(ppppppflags + 2) = 0;
+                *(unsigned int *)(ppppppflags + 2) = 0;
                 *ppppppflags = (unsigned long long *****)&g_threadString2;
                 ppppppflags[3] = (unsigned long long *****)0x0;
                 ppppppflags[1] = (unsigned long long *****)0x0;
-                *(undefined4 *)(ppppppflags + 2) = 0;
+                *(unsigned int *)(ppppppflags + 2) = 0;
                 ppppppuStack_d8 = ppppppflags;
                 system_thread_manager_001(ppppppflags,uStack_1b8);
                 if (uStack_1b8 != 0) {
                   memcpy(ppppppflags[1],puStack_1c0,uStack_1b8 + 1);
                 }
-                if (puStack_1c0 != (undefined1 *)0x0) {
-                  *(undefined4 *)(ppppppflags + 2) = 0;
+                if (puStack_1c0 != (unsigned char *)0x0) {
+                  *(unsigned int *)(ppppppflags + 2) = 0;
                   if (ppppppflags[1] != (unsigned long long *****)0x0) {
-                    *(undefined1 *)ppppppflags[1] = 0;
+                    *(unsigned char *)ppppppflags[1] = 0;
                   }
-                  *(undefined4 *)((long long)ppppppflags + 0x1c) = 0;
+                  *(unsigned int *)((long long)ppppppflags + 0x1c) = 0;
                 }
               }
               else {
                 system_event_handler_006(ppppppuVar12,&puStack_1c8);
               }
               puStack_1c8 = &g_threadString2;
-              if (puStack_1c0 != (undefined1 *)0x0) {
+              if (puStack_1c0 != (unsigned char *)0x0) {
                 handle_system_error();
               }
             }
             uStack_1b0 = (ulong long)uStack_1b0._4_4_ << CONFIG_PATH_BUFFER_SIZE;
-            puStack_1c0 = (undefined1 *)0x0;
+            puStack_1c0 = (unsigned char *)0x0;
             puStack_1c8 = &g_threadString4;
             pppppflags2 = pppppflags2 + 4;
             init_result9 = init_result9 + -1;
@@ -4072,12 +4072,12 @@ LAB_1801d5c43:
           handle_system_error(pppppflags5);
         }
         puStack_1a8 = &g_threadString2;
-        if (puStack_1a0 != (undefined1 *)0x0) {
+        if (puStack_1a0 != (unsigned char *)0x0) {
           handle_system_error();
         }
       }
       uStack_190 = uStack_190 & 0xffffffff00000000;
-      puStack_1a0 = (undefined1 *)0x0;
+      puStack_1a0 = (unsigned char *)0x0;
       puStack_1a8 = &g_threadString4;
       iVar21 = iVar21 + 1;
       ppppppplStackX_8 = (long long *******)CONCAT44(ppppppplStackX_8._4_4_,iVar21);
@@ -4267,14 +4267,14 @@ LAB_1801d5c43:
           }
           UNLOCK();
           if (uVar1 == 0) {
-            *(undefined1 *)(lVar8 + 0xdc) = 0;
+            *(unsigned char *)(lVar8 + 0xdc) = 0;
             system_hardware_001(lVar8 + 0xe8);
             uVar5 = *(unsigned long long *)(lVar8 + 0x88);
             iVar4 = *(int *)(lVar8 + 0x80);
             *(unsigned long long *)(lVar8 + 0x88) = 0;
-            *(undefined4 *)(lVar8 + 0x80) = 0;
-            *(undefined4 *)(lVar8 + 0xe0) = 0;
-            *(undefined4 *)(lVar8 + 0xd8) = 0;
+            *(unsigned int *)(lVar8 + 0x80) = 0;
+            *(unsigned int *)(lVar8 + 0xe0) = 0;
+            *(unsigned int *)(lVar8 + 0xd8) = 0;
             system_hardware_002(uVar5);
             LOCK();
             uVar1 = _data_180c91d10 - iVar4;
@@ -4299,8 +4299,8 @@ LAB_1801d5c43:
       data_180c91d14 = 0;
       return plVar7;
     }
-    flags = *(undefined4 *)(init_result0 + 0x84);
-    uVar3 = *(undefined4 *)(init_result0 + 0x80);
+    flags = *(unsigned int *)(init_result0 + 0x84);
+    uVar3 = *(unsigned int *)(init_result0 + 0x80);
     if (plVar7 < _data_180c91d00) {
       _data_180c91cf8 = plVar7 + 2;
       *plVar7 = init_result0;
@@ -4347,15 +4347,15 @@ LAB_180203fb6:
       }
       UNLOCK();
       if (bVar8) {
-        *(undefined1 *)(lVar4 + 0xdc) = uVar6;
+        *(unsigned char *)(lVar4 + 0xdc) = uVar6;
         system_hardware_001(lVar4 + 0xe8);
         uVar3 = *(unsigned long long *)(lVar4 + 0x88);
         iVar2 = *(int *)(lVar4 + 0x80);
         *(unsigned long long *)(lVar4 + 0x88) = unaff_R12;
-        uVar7 = (undefined4)unaff_R12;
-        *(undefined4 *)(lVar4 + 0x80) = uVar7;
-        *(undefined4 *)(lVar4 + 0xe0) = uVar7;
-        *(undefined4 *)(lVar4 + 0xd8) = uVar7;
+        uVar7 = (unsigned int)unaff_R12;
+        *(unsigned int *)(lVar4 + 0x80) = uVar7;
+        *(unsigned int *)(lVar4 + 0xe0) = uVar7;
+        *(unsigned int *)(lVar4 + 0xd8) = uVar7;
         system_hardware_002(uVar3);
         LOCK();
         _data_180c91d10 = _data_180c91d10 - iVar2;
@@ -4426,7 +4426,7 @@ code_r0x0001802a1528:
     break;
   case 0x1e:
     iStack_2c8 = mutex_type;
-    puVar8 = (undefined2 *)system_handler_008(init_result0,&uStack_2b0,handle,&uStackX_18);
+    puVar8 = (unsigned short *)system_handler_008(init_result0,&uStack_2b0,handle,&uStackX_18);
     fVar16 = (float)func_0x0001800adf40(puVar8[2]);
     fVar17 = (float)func_0x0001800adf40(puVar8[1]);
     fVar14 = (float)func_0x0001800adf40(*puVar8);
@@ -4610,8 +4610,8 @@ system_handler_001:
     uStack_250 = 0;
     puStack_268 = &g_threadString4;
     lVar6 = *flags;
-    uVar1 = *(undefined2 *)((long long)flags + 0x5e);
-    flags = *(undefined2 *)((long long)flags + 0x5c);
+    uVar1 = *(unsigned short *)((long long)flags + 0x5e);
+    flags = *(unsigned short *)((long long)flags + 0x5c);
     puVar7 = &data_18098bc73;
     if (*(undefined **)(handle + 8) != (undefined *)0x0) {
       puVar7 = *(undefined **)(handle + 8);
@@ -4663,7 +4663,7 @@ LAB_1802a83bc:
     *(unsigned long long *)(mutex_attr + 0x3c) = 0;
     *(unsigned long long *)(mutex_attr + 0x44) = 0;
     *(unsigned long long *)(mutex_attr + 0x4c) = 0;
-    uVar4 = func_0x000180220c90(*(undefined4 *)(mutex_attr + 0x54));
+    uVar4 = func_0x000180220c90(*(unsigned int *)(mutex_attr + 0x54));
     strcpy_s(mutex_attr + 0x14,SYSTEM_CONFIG_BUFFER_SIZE,uVar4);
   }
 LAB_1802a912b:
@@ -4710,7 +4710,7 @@ bool handle_system_event(unsigned long long *handle)
       }
       memcpy(flags,*handle,uVar3);
     }
-    iVar1 = func_0x0001800ab000(*(undefined4 *)((long long)handle + 0x54));
+    iVar1 = func_0x0001800ab000(*(unsigned int *)((long long)handle + 0x54));
     return iVar1 != 0;
   }
   if (handle[1] == 0) {
@@ -4725,7 +4725,7 @@ bool handle_system_event(unsigned long long *handle)
 }
 unsigned long long process_system_request(unsigned long long *handle)
 {
-  undefined1 auVar1 [16];
+  unsigned char auVar1 [16];
   int iVar2;
   uint uVar3;
   float *pfVar4;
@@ -4736,7 +4736,7 @@ unsigned long long process_system_request(unsigned long long *handle)
   byte *pbVar9;
   float fVar10;
   float fVar11;
-  undefined1 auVar12 [16];
+  unsigned char auVar12 [16];
   float fVar13;
   float fVar14;
   float fVar15;
@@ -5088,7 +5088,7 @@ unsigned long long handle_system_callback(unsigned long long *handle)
   return 1;
 }
   data_180c8aa6a = 0;
-  *(undefined4 *)(init_result + 0x4c) = 0;
+  *(unsigned int *)(init_result + 0x4c) = 0;
   system_network_001(*(unsigned long long *)(init_result + STRING_BUFFER_SIZE8));
   puStack_50 = &g_alternateDataTemplate;
   puStack_48 = auStack_38;
@@ -5166,7 +5166,7 @@ code_r0x000180329ed1:
   bVar8 = (byte)auStackX_20[0];
   goto LAB_180329ed5;
 }
-unsigned long long allocate_system_memory(long long handle,long long *flags,undefined4 *mutex_attr,uint mutex_type)
+unsigned long long allocate_system_memory(long long handle,long long *flags,unsigned int *mutex_attr,uint mutex_type)
 {
   long long *pinit_result;
   byte bVar2;
@@ -5176,13 +5176,13 @@ unsigned long long allocate_system_memory(long long handle,long long *flags,unde
   long long *plVar6;
   long long lVar7;
   long long *plStackX_18;
-  undefined4 auStackX_20 [2];
+  unsigned int auStackX_20 [2];
   long long *plStack_80;
   long long *plStack_78;
   unsigned long long uStack_70;
   long long **pplStack_68;
   long long *plStack_60;
-  undefined1 auStack_58 [32];
+  unsigned char auStack_58 [32];
   uStack_70 = THREAD_POOL_DEFAULT_FLAGS;
   uVar5 = 0;
   bVar2 = *(byte *)(mutex_attr + 2);
@@ -5255,7 +5255,7 @@ unsigned long long allocate_system_memory(long long handle,long long *flags,unde
         __Throw_C_error_std__YAXH_Z(iVar3);
       }
       *flags = lVar7;
-      *(undefined1 *)(lVar7 + 0x39) = 1;
+      *(unsigned char *)(lVar7 + 0x39) = 1;
       uVar5 = 1;
     }
   }
@@ -5388,8 +5388,8 @@ long long allocate_system_buffer(unsigned long long handle,long long *flags,long
   return *(long long *)(&data_180d48de0 + (ulong long)*(uint *)(mutex_attr + 0x8c) * 8);
 }
 unsigned long long
-system_allocator_008(unsigned long long handle,long long *flags,unsigned long long *mutex_attr,undefined4 mutex_type,
-             undefined4 param_5,undefined1 param_6)
+system_allocator_008(unsigned long long handle,long long *flags,unsigned long long *mutex_attr,unsigned int mutex_type,
+             unsigned int param_5,unsigned char param_6)
 {
   long long init_result;
   ulong long flags;
@@ -5418,7 +5418,7 @@ system_allocator_008(unsigned long long handle,long long *flags,unsigned long lo
         } while (0 < lVar5);
       }
       if ((puVar7 == (uint *)mutex_attr[1]) || (*(uint *)(init_result + lVar6) < *puVar7)) {
-        uVar4 = allocate_with_flags(handle,*(undefined4 *)(init_result + lVar6),mutex_type);
+        uVar4 = allocate_with_flags(handle,*(unsigned int *)(init_result + lVar6),mutex_type);
         system_allocator_002(handle,uVar4,param_5,mutex_type,param_6);
         uVar4 = 1;
       }
@@ -5428,13 +5428,13 @@ system_allocator_008(unsigned long long handle,long long *flags,unsigned long lo
   }
   return uVar4;
 }
-undefined1 check_memory_status(void)
+unsigned char check_memory_status(void)
 {
   uint in_EAX;
   long long init_result;
   long long lVar2;
   long long lVar3;
-  undefined1 unaff_SIL;
+  unsigned char unaff_SIL;
   ulong long uVar4;
   uint *puVar5;
   unsigned long long *unaff_R14;
@@ -5464,9 +5464,9 @@ undefined1 check_memory_status(void)
   } while (uVar4 != 0);
   return unaff_SIL;
 }
-undefined1 validate_memory_allocation(void)
+unsigned char validate_memory_allocation(void)
 {
-  undefined1 unaff_SIL;
+  unsigned char unaff_SIL;
   return unaff_SIL;
 }
 unsigned long long
@@ -5522,7 +5522,7 @@ LAB_18032bf87:
   }
   return uVar8;
 }
-undefined1 allocate_with_mutex(unsigned long long handle,unsigned long long flags,long long *mutex_attr)
+unsigned char allocate_with_mutex(unsigned long long handle,unsigned long long flags,long long *mutex_attr)
 {
   long long init_result;
   uint flags;
@@ -5530,7 +5530,7 @@ undefined1 allocate_with_mutex(unsigned long long handle,unsigned long long flag
   ulong long uVar3;
   long long lVar4;
   uint unaff_EDI;
-  undefined1 in_R10B;
+  unsigned char in_R10B;
   long long *unaff_R13;
   uint unaff_R14D;
   ulong long uVar5;
@@ -5568,13 +5568,13 @@ LAB_18032bf87:
     }
   } while( true );
 }
-undefined1 check_allocation_complete(void)
+unsigned char check_allocation_complete(void)
 {
-  undefined1 in_R10B;
+  unsigned char in_R10B;
   return in_R10B;
 }
 unsigned long long
-system_allocator_014(unsigned long long handle,long long *flags,unsigned long long *mutex_attr,undefined4 mutex_type,
+system_allocator_014(unsigned long long handle,long long *flags,unsigned long long *mutex_attr,unsigned int mutex_type,
              uint param_5)
 {
   ulong long uVar1;
@@ -5604,7 +5604,7 @@ system_allocator_014(unsigned long long handle,long long *flags,unsigned long lo
         } while (0 < lVar4);
       }
       if ((puVar7 == (uint *)mutex_attr[1]) || (*(uint *)(lVar3 + lVar5) < *puVar7)) {
-        lVar3 = system_allocator_006(handle,*(undefined4 *)(lVar3 + lVar5),mutex_type);
+        lVar3 = system_allocator_006(handle,*(unsigned int *)(lVar3 + lVar5),mutex_type);
         uVar6 = 1;
         *(uint *)(lVar3 + 8) = *(uint *)(lVar3 + 8) | param_5;
       }
@@ -5614,13 +5614,13 @@ system_allocator_014(unsigned long long handle,long long *flags,unsigned long lo
   }
   return uVar6;
 }
-undefined1 validate_buffer_allocation(void)
+unsigned char validate_buffer_allocation(void)
 {
   uint in_EAX;
   long long init_result;
   long long lVar2;
   long long lVar3;
-  undefined1 unaff_SIL;
+  unsigned char unaff_SIL;
   ulong long uVar4;
   uint *puVar5;
   unsigned long long *unaff_R14;
@@ -5651,9 +5651,9 @@ undefined1 validate_buffer_allocation(void)
   } while (uVar4 != 0);
   return unaff_SIL;
 }
-undefined1 check_memory_bounds(void)
+unsigned char check_memory_bounds(void)
 {
-  undefined1 unaff_SIL;
+  unsigned char unaff_SIL;
   return unaff_SIL;
 }
   data_1dc4331ba = data_1dc4331ba + unaff_BL;
@@ -5677,11 +5677,11 @@ undefined1 check_memory_bounds(void)
   (**(code **)(*_data_180c8f008 + 0x70))(_data_180c8f008,&data_180d499d0);
   return;
 }
-undefined4
+unsigned int
 system_finalizer_005(unsigned long long handle,unsigned long long flags,unsigned long long mutex_attr,unsigned long long mutex_type)
 {
   code *pcVar1;
-  undefined4 flags;
+  unsigned int flags;
   unsigned long long uVar3;
   undefined *puStack_28;
   long long lStack_20;
@@ -5694,11 +5694,11 @@ system_finalizer_005(unsigned long long handle,unsigned long long flags,unsigned
   }
   return flags;
 }
-undefined4
+unsigned int
 system_finalizer_006(unsigned long long handle,unsigned long long flags,unsigned long long mutex_attr,unsigned long long mutex_type)
 {
   code *pcVar1;
-  undefined4 flags;
+  unsigned int flags;
   unsigned long long uVar3;
   undefined *puStack_28;
   long long lStack_20;
@@ -5711,11 +5711,11 @@ system_finalizer_006(unsigned long long handle,unsigned long long flags,unsigned
   }
   return flags;
 }
-undefined4
+unsigned int
 system_finalizer_007(unsigned long long handle,unsigned long long flags,unsigned long long mutex_attr,unsigned long long mutex_type)
 {
   code *pcVar1;
-  undefined4 flags;
+  unsigned int flags;
   unsigned long long uVar3;
   unsigned long long uVar4;
   undefined *puStack_30;
@@ -5736,7 +5736,7 @@ system_finalizer_007(unsigned long long handle,unsigned long long flags,unsigned
       do {
         lVar2 = lVar2 + 1;
       } while (*(char *)(handle + lVar2) != '\0');
-      _data_180d49c00 = (undefined4)lVar2;
+      _data_180d49c00 = (unsigned int)lVar2;
       strcpy_s(&data_180d49c08,STRING_BUFFER_SIZE0,handle);
     }
     system_crypto_002(FUN_180942850);
@@ -5889,7 +5889,7 @@ system_finalizer_007(unsigned long long handle,unsigned long long flags,unsigned
     if (*(undefined **)(lVar4 + 8) != (undefined *)0x0) {
       puVar5 = *(undefined **)(lVar4 + 8);
     }
-    (**(code **)(init_result + 0x330))(*(undefined4 *)(_data_180c8ece0 + STRING_BUFFER_SIZE),puVar5);
+    (**(code **)(init_result + 0x330))(*(unsigned int *)(_data_180c8ece0 + STRING_BUFFER_SIZE),puVar5);
     puStack_48 = &g_threadString2;
     if (lStack_40 != 0) {
       handle_system_error();
@@ -5900,7 +5900,7 @@ system_finalizer_007(unsigned long long handle,unsigned long long flags,unsigned
   }
   plVar2 = (long long *)*handle;
   if (plVar2 != (long long *)0x0) {
-    *(undefined1 *)((long long)plVar2 + 0xdd) = 0;
+    *(unsigned char *)((long long)plVar2 + 0xdd) = 0;
     (**(code **)(*plVar2 + 0xc0))();
     plStackX_8 = (long long *)*handle;
     *handle = 0;
@@ -5937,7 +5937,7 @@ unsigned long long * FUN_1804ca350(unsigned long long *handle,int flags)
   handle[1] = 0;
   handle[2] = 0;
   handle[3] = 0;
-  *(undefined4 *)(handle + 4) = 3;
+  *(unsigned int *)(handle + 4) = 3;
   *handle = &unknown_180a2fc20;
   handle[0xd] = 0;
   handle[0xe] = 0;
@@ -5978,7 +5978,7 @@ unsigned long long * FUN_1804ca350(unsigned long long *handle,int flags)
   *pinit_result = 0;
   handle[0x32] = 0;
   handle[0x33] = 0;
-  *(undefined4 *)(handle + 0x34) = 3;
+  *(unsigned int *)(handle + 0x34) = 3;
   puVar6 = handle + 0x35;
   lVar8 = 8;
   FUN_1808fc838(puVar6,0x28,8,&unknown_1804ce1a0,FUN_1804ce100);
@@ -6048,7 +6048,7 @@ unsigned long long * FUN_1804ca350(unsigned long long *handle,int flags)
       lVar8 = *pinit_result;
       if ((ulong long)(handle[0x33] - lVar8 >> 3) < uVar7) {
         if (uVar7 != 0) {
-          lVar4 = FUN_18062b420(_data_180c8ed18,uVar7 * 8,*(undefined1 *)(handle + 0x34));
+          lVar4 = FUN_18062b420(_data_180c8ed18,uVar7 * 8,*(unsigned char *)(handle + 0x34));
           lVar8 = *pinit_result;
         }
         if (lVar8 != handle[0x32]) {
@@ -6083,9 +6083,9 @@ unsigned long long * FUN_1804ca350(unsigned long long *handle,int flags)
       *(float *)(handle + 0x6a) = fVar13 * fVar13;
       *(float *)((long long)handle + 0x354) = fVar10 * fVar10;
       *(float *)(handle + 0x6b) = fVar15 * fVar15;
-      *(undefined4 *)((long long)handle + 0x35c) = 0x7f7fffff;
-      *(undefined4 *)((long long)handle + 0x33c) = 0;
-      *(undefined4 *)(handle + 0x30) = 0;
+      *(unsigned int *)((long long)handle + 0x35c) = 0x7f7fffff;
+      *(unsigned int *)((long long)handle + 0x33c) = 0;
+      *(unsigned int *)(handle + 0x30) = 0;
       return handle;
     }
     handle_system_error();
@@ -6121,7 +6121,7 @@ unsigned long long initialize_graphics_context(unsigned long long handle,ulong l
     system_crypto_003(&data_180d49f68);
   }
   flags = *(unsigned long long *)(*(long long *)(*(long long *)(handle + 0x8a8) + 0x260) + CONFIG_PATH_BUFFER_SIZE8);
-  puVar8 = (undefined4 *)FUN_18022a890(flags,0,flags);
+  puVar8 = (unsigned int *)FUN_18022a890(flags,0,flags);
   uStack_118 = *puVar8;
   uStack_114 = puVar8[1];
   uStack_110 = puVar8[2];
@@ -6129,7 +6129,7 @@ unsigned long long initialize_graphics_context(unsigned long long handle,ulong l
   fVar4 = *(float *)(flags + SYSTEM_CONFIG_BUFFER_SIZE0);
   fVar5 = *(float *)(flags + SYSTEM_CONFIG_BUFFER_SIZE4);
   fVar6 = *(float *)(flags + SYSTEM_CONFIG_BUFFER_SIZE8);
-  uStack_fc = *(undefined4 *)(flags + SYSTEM_CONFIG_BUFFER_SIZEc);
+  uStack_fc = *(unsigned int *)(flags + SYSTEM_CONFIG_BUFFER_SIZEc);
   fVar18 = 1e+08;
   fVar13 = 1e+08;
   fStack_180 = 1e+08;
@@ -6158,7 +6158,7 @@ unsigned long long initialize_graphics_context(unsigned long long handle,ulong l
     do {
       init_result0 = *(long long *)(handle + 0x850) + init_result2;
       cVar1 = *(char *)(init_result0 + 0x2c);
-      puVar8 = (undefined4 *)FUN_18022a890(flags,cVar1,flags);
+      puVar8 = (unsigned int *)FUN_18022a890(flags,cVar1,flags);
       uStack_e8 = *puVar8;
       uStack_e4 = puVar8[1];
       uStack_e0 = puVar8[2];
@@ -6246,7 +6246,7 @@ unsigned long long initialize_graphics_context(unsigned long long handle,ulong l
   *(unsigned long long *)(handle + 0x880) = 0xccbebc20ccbebc20;
   *(unsigned long long *)(handle + 0x888) = 0x7f7fffffccbebc20;
   init_result1 = 0;
-  *(undefined4 *)(handle + 0x8a0) = 0;
+  *(unsigned int *)(handle + 0x8a0) = 0;
   *(unsigned long long *)(handle + 0x890) = 0;
   *(unsigned long long *)(handle + 0x898) = 0x7f7fffff00000000;
   fStack_198 = fVar18;
@@ -6311,11 +6311,11 @@ unsigned long long initialize_graphics_context(unsigned long long handle,ulong l
   *(float *)(init_result1 + 0x218) = fVar18;
   *(float *)(init_result1 + 0x21c) = fVar13;
   *(float *)(init_result1 + 0x220) = fStack_180;
-  *(undefined4 *)(init_result1 + 0x224) = uVar19;
+  *(unsigned int *)(init_result1 + 0x224) = uVar19;
   *(float *)(init_result1 + 0x228) = fVar14;
   *(float *)(init_result1 + 0x22c) = fVar15;
   *(float *)(init_result1 + 0x230) = fVar16;
-  *(undefined4 *)(init_result1 + 0x234) = uVar17;
+  *(unsigned int *)(init_result1 + 0x234) = uVar17;
   pfVar9 = *(float **)(handle + 0x860);
   if ((pfVar9 != (float *)0x0) && (*(long long *)(handle + 0x868) != 0)) {
     if ((pfVar9[4] <= fVar14 && fVar14 != pfVar9[4]) ||
@@ -6894,13 +6894,13 @@ LAB_180609070:
   handle_system_error();
 }
 unsigned long long
-FUN_1806090b0(unsigned long long handle,unsigned long long flags,undefined1 mutex_attr,unsigned long long mutex_type)
+FUN_1806090b0(unsigned long long handle,unsigned long long flags,unsigned char mutex_attr,unsigned long long mutex_type)
 {
   char cVar1;
   undefined *pflags;
   unsigned long long uVar3;
-  undefined1 auStack_50 [32];
-  undefined1 auStack_30 [40];
+  unsigned char auStack_50 [32];
+  unsigned char auStack_30 [40];
   create_thread_context(auStack_30,handle,mutex_attr,mutex_type,THREAD_POOL_DEFAULT_FLAGS);
   create_thread_context(auStack_50,flags);
   cVar1 = validate_handle_parameters(auStack_30,&unknown_180a389d8,1);
@@ -8495,7 +8495,7 @@ LAB_18060bbae:
   FUN_180650050(&unknown_18064ffc0);
   lVar4 = 0;
   _data_180c96858 = FUN_1806500b0;
-  pflags = (undefined4 *)&data_180bfbd80;
+  pflags = (unsigned int *)&data_180bfbd80;
   lVar3 = 0x16;
   do {
     if (pflags[1] == 0) {
@@ -8644,7 +8644,7 @@ int process_handle_parameters(long long handle,long long flags)
 }
 unsigned long long * setup_thread_parameters(long long handle,unsigned long long *flags,int mutex_attr,int mutex_type)
 {
-  undefined1 uVar1;
+  unsigned char uVar1;
   int iVar2;
   int iVar3;
   ulong long uVar4;
@@ -8656,11 +8656,11 @@ unsigned long long * setup_thread_parameters(long long handle,unsigned long long
   }
   *flags = &g_threadString4;
   flags[1] = 0;
-  *(undefined4 *)(flags + 2) = 0;
+  *(unsigned int *)(flags + 2) = 0;
   *flags = &g_threadString2;
   flags[3] = 0;
   flags[1] = 0;
-  *(undefined4 *)(flags + 2) = 0;
+  *(unsigned int *)(flags + 2) = 0;
   iVar2 = *(int *)(handle + STRING_BUFFER_SIZE) - mutex_attr;
   if (iVar3 - mutex_attr < iVar2) {
     iVar2 = iVar3 - mutex_attr;
@@ -8669,10 +8669,10 @@ unsigned long long * setup_thread_parameters(long long handle,unsigned long long
   for (uVar5 = uVar4;
       ((long long)uVar4 < (long long)iVar3 && ((uint)uVar5 < *(uint *)(handle + STRING_BUFFER_SIZE)));
       uVar5 = (ulong long)((uint)uVar5 + 1)) {
-    uVar1 = *(undefined1 *)(uVar4 + *(long long *)(handle + 8));
+    uVar1 = *(unsigned char *)(uVar4 + *(long long *)(handle + 8));
     system_thread_manager_001(flags,*(int *)(flags + 2) + 1);
-    *(undefined1 *)((ulong long)*(uint *)(flags + 2) + flags[1]) = uVar1;
-    *(undefined1 *)((ulong long)(*(int *)(flags + 2) + 1) + flags[1]) = 0;
+    *(unsigned char *)((ulong long)*(uint *)(flags + 2) + flags[1]) = uVar1;
+    *(unsigned char *)((ulong long)(*(int *)(flags + 2) + 1) + flags[1]) = 0;
     *(int *)(flags + 2) = *(int *)(flags + 2) + 1;
     uVar4 = uVar4 + 1;
   }
@@ -8685,13 +8685,13 @@ unsigned long long * setup_thread_parameters(long long handle,unsigned long long
   uStack_58 = 0;
   puVar5 = (unsigned long long *)
            FUN_18062b420(_data_180c8ed18,STRING_BUFFER_SIZE,CONCAT71((int7)((ulong long)pcVar1 >> 8),0x13));
-  *(undefined1 *)puVar5 = 0;
+  *(unsigned char *)puVar5 = 0;
   puStack_60 = puVar5;
   uVar3 = allocate_helper_buffer(puVar5);
   *puVar5 = 0x7265206573726150;
-  *(undefined4 *)(puVar5 + 1) = 0x3a726f72;
-  *(undefined2 *)((long long)puVar5 + 0xc) = 0x2720;
-  *(undefined1 *)((long long)puVar5 + 0xe) = 0;
+  *(unsigned int *)(puVar5 + 1) = 0x3a726f72;
+  *(unsigned short *)((long long)puVar5 + 0xc) = 0x2720;
+  *(unsigned char *)((long long)puVar5 + 0xe) = 0;
   uStack_58 = 0xe;
   init_result0 = -1;
   uStack_50._0_4_ = uVar3;
@@ -8708,12 +8708,12 @@ unsigned long long * setup_thread_parameters(long long handle,unsigned long long
         puStack_60 = puVar5;
         uStack_50._0_4_ = allocate_helper_buffer(puVar5);
       }
-      memcpy((undefined1 *)((long long)puVar5 + 0xe),handle,(long long)(iVar8 + 2));
+      memcpy((unsigned char *)((long long)puVar5 + 0xe),handle,(long long)(iVar8 + 2));
     }
   }
   if (puVar5 == (unsigned long long *)0x0) {
     puVar5 = (unsigned long long *)FUN_18062b420(_data_180c8ed18,0x19,0x13);
-    *(undefined1 *)puVar5 = 0;
+    *(unsigned char *)puVar5 = 0;
 LAB_18062e327:
     puStack_60 = puVar5;
     uVar3 = allocate_helper_buffer(puVar5);
@@ -8724,8 +8724,8 @@ LAB_18062e327:
     goto LAB_18062e327;
   }
   *(unsigned long long *)((long long)puVar5 + 0xe) = 0x6e696c2074612027;
-  *(undefined2 *)((long long)puVar5 + 0x16) = CONFIG_PATH_BUFFER_SIZE65;
-  *(undefined1 *)(puVar5 + 3) = 0;
+  *(unsigned short *)((long long)puVar5 + 0x16) = CONFIG_PATH_BUFFER_SIZE65;
+  *(unsigned char *)(puVar5 + 3) = 0;
   uStack_58 = 0x18;
   uStack_50._0_4_ = uVar3;
   FUN_180060680(acStack_40,&unknown_1809fd0a0,iVar8);
@@ -8755,7 +8755,7 @@ LAB_18062e327:
         uVar4 = STRING_BUFFER_SIZE;
       }
       puVar5 = (unsigned long long *)FUN_18062b420(_data_180c8ed18,(long long)(int)uVar4,0x13);
-      *(undefined1 *)puVar5 = 0;
+      *(unsigned char *)puVar5 = 0;
     }
     else {
       if (uVar4 <= uVar3) goto LAB_18062e3f0;
@@ -8768,22 +8768,22 @@ LAB_18062e327:
 LAB_18062e3f0:
   memcpy(puVar5 + 3,acStack_40,(long long)((int)lVar9 + 2));
 }
-char * FUN_18062e480(undefined4 handle,unsigned long long flags,char *mutex_attr,unsigned long long mutex_type,
+char * FUN_18062e480(unsigned int handle,unsigned long long flags,char *mutex_attr,unsigned long long mutex_type,
                     long long *param_5,long long param_6,ulong long param_7,unsigned long long *param_8,
                     int *param_9,unsigned long long *handle0)
 {
   char cVar1;
-  undefined4 flags;
-  undefined4 uVar3;
+  unsigned int flags;
+  unsigned int uVar3;
   undefined *puVar4;
   int iVar5;
-  undefined4 uVar6;
+  unsigned int uVar6;
   uint uVar7;
   long long lVar8;
   char *pcVar9;
-  undefined4 *puVar10;
-  undefined4 *puVar11;
-  undefined1 *puVar12;
+  unsigned int *puVar10;
+  unsigned int *puVar11;
+  unsigned char *puVar12;
   undefined *puVar13;
   char *pcVar14;
   char *pcVar15;
@@ -8800,23 +8800,23 @@ char * FUN_18062e480(undefined4 handle,unsigned long long flags,char *mutex_attr
   long long *plStack_120;
   undefined *puStack_118;
   undefined *puStack_110;
-  undefined4 uStack_108;
+  unsigned int uStack_108;
   ulong long uStack_100;
   undefined *puStack_f8;
-  undefined4 *puStack_f0;
-  undefined4 uStack_e8;
+  unsigned int *puStack_f0;
+  unsigned int uStack_e8;
   unsigned long long uStack_e0;
   ulong long uStack_d8;
   long long lStack_d0;
   unsigned long long *puStack_c8;
   undefined *puStack_c0;
-  undefined4 *puStack_b8;
-  undefined4 uStack_b0;
+  unsigned int *puStack_b8;
+  unsigned int uStack_b0;
   ulong long uStack_a8;
   unsigned long long *puStack_a0;
   undefined *puStack_98;
-  undefined4 *puStack_90;
-  undefined4 uStack_88;
+  unsigned int *puStack_90;
+  unsigned int uStack_88;
   unsigned long long uStack_80;
   int *piStack_78;
   char *pcStack_70;
@@ -8840,18 +8840,18 @@ char * FUN_18062e480(undefined4 handle,unsigned long long flags,char *mutex_attr
   pcStack_70 = mutex_attr;
   uStack_68 = flags;
   lVar8 = process_system_configuration(&puStack_f8,mutex_type,handle,param_5);
-  uStack_108 = *(undefined4 *)(lVar8 + STRING_BUFFER_SIZE);
+  uStack_108 = *(unsigned int *)(lVar8 + STRING_BUFFER_SIZE);
   puStack_110 = *(undefined **)(lVar8 + 8);
   uStack_100 = *(ulong long *)(lVar8 + 0x18);
-  *(undefined4 *)(lVar8 + STRING_BUFFER_SIZE) = 0;
+  *(unsigned int *)(lVar8 + STRING_BUFFER_SIZE) = 0;
   *(unsigned long long *)(lVar8 + 8) = 0;
   *(unsigned long long *)(lVar8 + 0x18) = 0;
   puStack_f8 = &g_threadString2;
   puStack_60 = puStack_110;
-  if (puStack_f0 != (undefined4 *)0x0) {
+  if (puStack_f0 != (unsigned int *)0x0) {
     handle_system_error();
   }
-  puStack_f0 = (undefined4 *)0x0;
+  puStack_f0 = (unsigned int *)0x0;
   uStack_e0 = (char *)((ulong long)uStack_e0._4_4_ << CONFIG_PATH_BUFFER_SIZE);
   puStack_f8 = &g_threadString4;
   puVar13 = &data_18098bc73;
@@ -9000,11 +9000,11 @@ LAB_18062e8bc:
         *puStack_a0 = pcVar19;
         if (pcVar19 == (char *)0x0) {
           puStack_f8 = &g_threadString2;
-          puStack_f0 = (undefined4 *)0x0;
+          puStack_f0 = (unsigned int *)0x0;
           uStack_e8 = 0;
           uStack_e0 = pcVar19;
-          puVar10 = (undefined4 *)FUN_18062b420(_data_180c8ed18,0x15,0x13);
-          *(undefined1 *)puVar10 = 0;
+          puVar10 = (unsigned int *)FUN_18062b420(_data_180c8ed18,0x15,0x13);
+          *(unsigned char *)puVar10 = 0;
           puStack_f0 = puVar10;
           uVar6 = allocate_helper_buffer(puVar10);
           uStack_e0 = (char *)CONCAT44(uStack_e0._4_4_,uVar6);
@@ -9013,14 +9013,14 @@ LAB_18062e8bc:
           puVar10[2] = 0x74697720;
           puVar10[3] = 0x616e2068;
           puVar10[4] = 0x2220656d;
-          *(undefined1 *)(puVar10 + 5) = 0;
+          *(unsigned char *)(puVar10 + 5) = 0;
           uStack_e8 = 0x14;
           puStack_c0 = &g_threadString2;
           uStack_a8 = 0;
-          puStack_b8 = (undefined4 *)0x0;
+          puStack_b8 = (unsigned int *)0x0;
           uStack_b0 = 0;
-          puVar11 = (undefined4 *)FUN_18062b420(_data_180c8ed18,0x15,0x13);
-          *(undefined1 *)puVar11 = 0;
+          puVar11 = (unsigned int *)FUN_18062b420(_data_180c8ed18,0x15,0x13);
+          *(unsigned char *)puVar11 = 0;
           puStack_b8 = puVar11;
           uVar7 = allocate_helper_buffer(puVar11);
           uVar6 = puVar10[1];
@@ -9032,7 +9032,7 @@ LAB_18062e8bc:
           puVar11[3] = uVar3;
           puVar11[4] = puVar10[4];
           uStack_b0 = 0x14;
-          *(undefined1 *)(puVar11 + 5) = 0;
+          *(unsigned char *)(puVar11 + 5) = 0;
           uStack_a8 = (ulong long)uVar7;
           if (mutex_attr != (char *)0x0) {
             lVar8 = -1;
@@ -9043,7 +9043,7 @@ LAB_18062e8bc:
             if (0 < (int)lVar8) {
               iVar5 = (int)lVar21;
               if ((iVar5 != -0x15) && (uVar7 < iVar5 + 0x16U)) {
-                puVar11 = (undefined4 *)
+                puVar11 = (unsigned int *)
                           FUN_18062b8b0(_data_180c8ed18,puVar11,iVar5 + 0x16U,STRING_BUFFER_SIZE,0x13);
                 puStack_b8 = puVar11;
                 uVar6 = allocate_helper_buffer(puVar11);
@@ -9052,13 +9052,13 @@ LAB_18062e8bc:
               memcpy(puVar11 + 5,mutex_attr,(long long)(iVar5 + 2));
             }
           }
-          puVar12 = (undefined1 *)0x0;
+          puVar12 = (unsigned char *)0x0;
           puStack_98 = &g_threadString2;
           uStack_80 = 0;
-          puStack_90 = (undefined4 *)0x0;
+          puStack_90 = (unsigned int *)0x0;
           uStack_88 = 0;
-          puVar10 = (undefined4 *)FUN_18062b420(_data_180c8ed18,0x16,0x13);
-          *(undefined1 *)puVar10 = 0;
+          puVar10 = (unsigned int *)FUN_18062b420(_data_180c8ed18,0x16,0x13);
+          *(unsigned char *)puVar10 = 0;
           puStack_90 = puVar10;
           uVar6 = allocate_helper_buffer(puVar10);
           uStack_80 = CONCAT44(uStack_80._4_4_,uVar6);
@@ -9067,14 +9067,14 @@ LAB_18062e8bc:
           puVar10[2] = CONFIG_PATH_BUFFER_SIZE746f6e;
           puVar10[3] = 0x66206562;
           puVar10[4] = 0x646e756f;
-          *(undefined2 *)(puVar10 + 5) = 0x21;
+          *(unsigned short *)(puVar10 + 5) = 0x21;
           uStack_88 = 0x15;
           puStack_140 = &g_threadString2;
           uStack_128 = 0;
-          puStack_138 = (undefined1 *)0x0;
+          puStack_138 = (unsigned char *)0x0;
           uStack_130 = 0;
-          if (puVar11 != (undefined4 *)0x0) {
-            puVar12 = (undefined1 *)FUN_18062b420(_data_180c8ed18,0x15,0x13);
+          if (puVar11 != (unsigned int *)0x0) {
+            puVar12 = (unsigned char *)FUN_18062b420(_data_180c8ed18,0x15,0x13);
             *puVar12 = 0;
             puStack_138 = puVar12;
             uVar6 = allocate_helper_buffer(puVar12);
@@ -9106,21 +9106,21 @@ LAB_18062e8bc:
     handle_system_error();
   }
   puStack_c8[1] = 0;
-  *(undefined4 *)(puStack_c8 + 3) = 0;
+  *(unsigned int *)(puStack_c8 + 3) = 0;
   *puStack_c8 = &g_threadString4;
   return pcVar15;
 }
 char * FUN_18062ed40(unsigned long long handle,unsigned long long flags,unsigned long long *mutex_attr,long long mutex_type,
                     unsigned long long param_5,unsigned long long *param_6,unsigned long long *param_7)
 {
-  undefined4 uVar1;
-  undefined4 flags;
-  undefined4 uVar3;
+  unsigned int uVar1;
+  unsigned int flags;
+  unsigned int uVar3;
   uint uVar4;
   long long lVar5;
   char *pcVar6;
-  undefined4 *puVar7;
-  undefined4 *puVar8;
+  unsigned int *puVar7;
+  unsigned int *puVar8;
   char *pcVar9;
   undefined *puVar10;
   char *pcVar11;
@@ -9128,20 +9128,20 @@ char * FUN_18062ed40(unsigned long long handle,unsigned long long flags,unsigned
   char *pcVar13;
   char *pcVar14;
   undefined *puStack_d0;
-  undefined4 *puStack_c8;
-  undefined4 uStack_c0;
+  unsigned int *puStack_c8;
+  unsigned int uStack_c0;
   unsigned long long uStack_b8;
   undefined *puStack_b0;
-  undefined4 *puStack_a8;
-  undefined4 uStack_a0;
+  unsigned int *puStack_a8;
+  unsigned int uStack_a0;
   ulong long uStack_98;
   undefined *puStack_90;
-  undefined4 *puStack_88;
-  undefined4 uStack_80;
+  unsigned int *puStack_88;
+  unsigned int uStack_80;
   unsigned long long uStack_78;
   undefined *puStack_70;
   long long lStack_68;
-  undefined4 uStack_58;
+  unsigned int uStack_58;
   unsigned long long uStack_50;
   unsigned long long *puStack_48;
   unsigned long long *puStack_40;
@@ -9156,10 +9156,10 @@ char * FUN_18062ed40(unsigned long long handle,unsigned long long flags,unsigned
   }
   FUN_180631420(puVar10,mutex_type,param_5);
   puStack_d0 = &g_threadString2;
-  if (puStack_c8 != (undefined4 *)0x0) {
+  if (puStack_c8 != (unsigned int *)0x0) {
     handle_system_error();
   }
-  puStack_c8 = (undefined4 *)0x0;
+  puStack_c8 = (unsigned int *)0x0;
   uStack_b8 = (ulong long)uStack_b8._4_4_ << CONFIG_PATH_BUFFER_SIZE;
   puStack_d0 = &g_threadString4;
   pcVar12 = "base";
@@ -9222,10 +9222,10 @@ LAB_18062eece:
     if (pcVar11 == (char *)0x0) {
       puStack_90 = &g_threadString2;
       uStack_78 = 0;
-      puStack_88 = (undefined4 *)0x0;
+      puStack_88 = (unsigned int *)0x0;
       uStack_80 = 0;
-      puVar7 = (undefined4 *)FUN_18062b420(_data_180c8ed18,0x15,0x13);
-      *(undefined1 *)puVar7 = 0;
+      puVar7 = (unsigned int *)FUN_18062b420(_data_180c8ed18,0x15,0x13);
+      *(unsigned char *)puVar7 = 0;
       puStack_88 = puVar7;
       uVar3 = allocate_helper_buffer(puVar7);
       uStack_78 = CONCAT44(uStack_78._4_4_,uVar3);
@@ -9234,14 +9234,14 @@ LAB_18062eece:
       puVar7[2] = 0x74697720;
       puVar7[3] = 0x616e2068;
       puVar7[4] = 0x2220656d;
-      *(undefined1 *)(puVar7 + 5) = 0;
+      *(unsigned char *)(puVar7 + 5) = 0;
       uStack_80 = 0x14;
       puStack_b0 = &g_threadString2;
       uStack_98 = 0;
-      puStack_a8 = (undefined4 *)0x0;
+      puStack_a8 = (unsigned int *)0x0;
       uStack_a0 = 0;
-      puVar8 = (undefined4 *)FUN_18062b420(_data_180c8ed18,0x15,0x13);
-      *(undefined1 *)puVar8 = 0;
+      puVar8 = (unsigned int *)FUN_18062b420(_data_180c8ed18,0x15,0x13);
+      *(unsigned char *)puVar8 = 0;
       puStack_a8 = puVar8;
       uVar4 = allocate_helper_buffer(puVar8);
       uVar3 = puVar7[1];
@@ -9253,25 +9253,25 @@ LAB_18062eece:
       puVar8[3] = flags;
       puVar8[4] = puVar7[4];
       uStack_a0 = 0x14;
-      *(undefined1 *)(puVar8 + 5) = 0;
+      *(unsigned char *)(puVar8 + 5) = 0;
       uStack_98 = (ulong long)uVar4;
       if (uVar4 < 0x23) {
-        puVar8 = (undefined4 *)FUN_18062b8b0(_data_180c8ed18,puVar8,0x23,STRING_BUFFER_SIZE,0x13);
+        puVar8 = (unsigned int *)FUN_18062b8b0(_data_180c8ed18,puVar8,0x23,STRING_BUFFER_SIZE,0x13);
         puStack_a8 = puVar8;
         uVar3 = allocate_helper_buffer(puVar8);
         uStack_98 = CONCAT44(uStack_98._4_4_,uVar3);
       }
       *(unsigned long long *)(puVar8 + 5) = 0x65745f6c61636564;
       puVar8[7] = 0x72757478;
-      *(undefined2 *)(puVar8 + 8) = 0x7365;
-      *(undefined1 *)((long long)puVar8 + 0x22) = 0;
+      *(unsigned short *)(puVar8 + 8) = 0x7365;
+      *(unsigned char *)((long long)puVar8 + 0x22) = 0;
       uStack_a0 = 0x22;
       puStack_d0 = &g_threadString2;
       uStack_b8 = 0;
-      puStack_c8 = (undefined4 *)0x0;
+      puStack_c8 = (unsigned int *)0x0;
       uStack_c0 = 0;
-      puVar7 = (undefined4 *)FUN_18062b420(_data_180c8ed18,0x16,0x13);
-      *(undefined1 *)puVar7 = 0;
+      puVar7 = (unsigned int *)FUN_18062b420(_data_180c8ed18,0x16,0x13);
+      *(unsigned char *)puVar7 = 0;
       puStack_c8 = puVar7;
       uVar3 = allocate_helper_buffer(puVar7);
       uStack_b8 = CONCAT44(uStack_b8._4_4_,uVar3);
@@ -9280,7 +9280,7 @@ LAB_18062eece:
       puVar7[2] = CONFIG_PATH_BUFFER_SIZE746f6e;
       puVar7[3] = 0x66206562;
       puVar7[4] = 0x646e756f;
-      *(undefined2 *)(puVar7 + 5) = 0x21;
+      *(unsigned short *)(puVar7 + 5) = 0x21;
       uStack_c0 = 0x15;
       lVar5 = FUN_180627ce0(&puStack_b0,&puStack_70,&puStack_d0);
       puVar10 = &data_18098bc73;
@@ -9306,18 +9306,18 @@ LAB_18062eece:
     handle_system_error();
   }
   mutex_attr[1] = 0;
-  *(undefined4 *)(mutex_attr + 3) = 0;
+  *(unsigned int *)(mutex_attr + 3) = 0;
   *mutex_attr = &g_threadString4;
   *param_7 = &g_threadString2;
   if (param_7[1] != 0) {
     handle_system_error();
   }
   param_7[1] = 0;
-  *(undefined4 *)(param_7 + 3) = 0;
+  *(unsigned int *)(param_7 + 3) = 0;
   *param_7 = &g_threadString4;
   return pcVar14;
 }
-long long process_system_configuration(long long handle,long long flags,undefined4 mutex_attr,long long mutex_type)
+long long process_system_configuration(long long handle,long long flags,unsigned int mutex_attr,long long mutex_type)
 {
   char cVar1;
   char cVar2;
@@ -9331,7 +9331,7 @@ long long process_system_configuration(long long handle,long long flags,undefine
   char *pcVar10;
   char *pcVar11;
   bool bVar12;
-  undefined4 uVar13;
+  unsigned int uVar13;
   unsigned long long uVar14;
   undefined *puStack_70;
   long long lStack_68;
@@ -9505,21 +9505,21 @@ LAB_18062f4a5:
       *(unsigned long long **)(mutex_type + 8) = puVar9 + 4;
       *puVar9 = &g_threadString4;
       puVar9[1] = 0;
-      *(undefined4 *)(puVar9 + 2) = 0;
+      *(unsigned int *)(puVar9 + 2) = 0;
       *puVar9 = &g_threadString2;
       puVar9[3] = 0;
       puVar9[1] = 0;
-      *(undefined4 *)(puVar9 + 2) = 0;
+      *(unsigned int *)(puVar9 + 2) = 0;
       system_thread_manager_001(puVar9,iStack_60);
       if (iStack_60 != 0) {
         memcpy(puVar9[1],lStack_68,iStack_60 + 1);
       }
       if (lStack_68 != 0) {
-        *(undefined4 *)(puVar9 + 2) = 0;
-        if ((undefined1 *)puVar9[1] != (undefined1 *)0x0) {
-          *(undefined1 *)puVar9[1] = 0;
+        *(unsigned int *)(puVar9 + 2) = 0;
+        if ((unsigned char *)puVar9[1] != (unsigned char *)0x0) {
+          *(unsigned char *)puVar9[1] = 0;
         }
-        *(undefined4 *)((long long)puVar9 + 0x1c) = 0;
+        *(unsigned int *)((long long)puVar9 + 0x1c) = 0;
       }
     }
     else {
@@ -9720,9 +9720,9 @@ LAB_18063182e:
     }
   } while( true );
 }
-undefined4 get_system_status_code(void)
+unsigned int get_system_status_code(void)
 {
-  undefined4 in_R11D;
+  unsigned int in_R11D;
   return in_R11D;
 }
 long long initialize_system_resources(unsigned long long handle,unsigned long long flags,long long mutex_attr)
@@ -9876,9 +9876,9 @@ long long validate_thread_configuration(unsigned long long handle,unsigned long 
     pcVar4 = pcStack_28;
   }
   iVar1 = FUN_18010cbc0(pcVar4,&unknown_180a3c9f8,mutex_attr,mutex_attr + 4,mutex_attr + 8,
-                        (undefined4 *)(mutex_attr + 0xc),uVar6);
+                        (unsigned int *)(mutex_attr + 0xc),uVar6);
   if (iVar1 == 3) {
-    *(undefined4 *)(mutex_attr + 0xc) = 0x3f800000;
+    *(unsigned int *)(mutex_attr + 0xc) = 0x3f800000;
   }
   puStack_30 = &g_threadString2;
   if (pcStack_28 != (char *)0x0) {
@@ -10016,7 +10016,7 @@ long long create_thread_with_attributes(unsigned long long handle,unsigned long 
   long long lVar2;
   unsigned long long *puVar3;
   long long lVar4;
-  undefined1 auStack_18 [16];
+  unsigned char auStack_18 [16];
   lVar2 = FUN_1800a02a0();
   if (lVar2 != 0) {
     lVar4 = 0x180d48d24;
@@ -10038,7 +10038,7 @@ unsigned long long get_thread_handle(unsigned long long handle)
   unsigned long long uVar3;
   unsigned long long *unaff_RDI;
   bool in_ZF;
-  undefined1 auStackX_20 [8];
+  unsigned char auStackX_20 [8];
   uVar3 = 0x180d48d24;
   if (!in_ZF) {
     uVar3 = handle;
@@ -10054,7 +10054,7 @@ unsigned long long get_thread_handle(unsigned long long handle)
   FUN_180650050(&unknown_18064ffc0);
   lVar3 = 0;
   _data_180c96858 = FUN_1806500b0;
-  puVar1 = (undefined4 *)&data_180bfbd80;
+  puVar1 = (unsigned int *)&data_180bfbd80;
   lVar2 = 0x16;
   do {
     if (puVar1[1] == 0) {
@@ -10134,12 +10134,12 @@ LAB_18064ff6c:
   data_180bf66d8 = 1;
   return;
 }
-undefined4 validate_resource_handle(int handle)
+unsigned int validate_resource_handle(int handle)
 {
   if (*(int *)(&data_180bfbd84 + (long long)handle * 0x18) == 0) {
     FUN_180650490(&data_180bfbd80 + (long long)handle * 0x18);
   }
-  return *(undefined4 *)(&data_180bfbd80 + (long long)handle * 0x18);
+  return *(unsigned int *)(&data_180bfbd80 + (long long)handle * 0x18);
 }
     data_180c8f020 = 0;
     return;
@@ -10397,10 +10397,10 @@ LAB_180768028_1:
     }
   }
   mutex_type = 0x266;
-  *(undefined1 *)((long long)register0x00000020 + CONFIG_PATH_BUFFER_SIZE) = 1;
+  *(unsigned char *)((long long)register0x00000020 + CONFIG_PATH_BUFFER_SIZE) = 1;
 LAB_18076802d:
   uVar7 = *(unsigned long long *)(pcVar13 + 0x1a0);
-  *(undefined1 **)((long long)register0x00000020 + -8) = &LAB_180768039;
+  *(unsigned char **)((long long)register0x00000020 + -8) = &LAB_180768039;
   FUN_180742250(uVar7,pcVar15,mutex_attr,mutex_type);
 }
     data_180c2e030 = '\x01';
@@ -10408,7 +10408,7 @@ LAB_18076802d:
   if (mutex_attr != (int *)0x0) {
     *mutex_attr = ((flags + 1) / 2) * 0x48d0;
   }
-  if (mutex_type != (undefined4 *)0x0) {
+  if (mutex_type != (unsigned int *)0x0) {
     *mutex_type = 0x480;
   }
   return 0;
@@ -10436,12 +10436,12 @@ unsigned long long allocate_resource_memory(int handle)
   unsigned long long flags0;
   unsigned long long extraout_XMM0_Qb;
   float fVar22;
-  undefined1 in_XMM2 [16];
-  undefined1 aflags1 [16];
+  unsigned char in_XMM2 [16];
+  unsigned char aflags1 [16];
   float fVar23;
   float fVar24;
-  undefined1 unaff_XMM6 [16];
-  undefined1 aflags5 [16];
+  unsigned char unaff_XMM6 [16];
+  unsigned char aflags5 [16];
   ulong long uVar9;
   pinit_result4 = (long long *)&data_180be5740;
   iVar18 = 0;
@@ -10487,7 +10487,7 @@ unsigned long long allocate_resource_memory(int handle)
         in_XMM2._4_4_ = (fVar19 + fVar19) - fVar19 * fVar19 * aflags5._4_4_;
         in_XMM2._8_4_ = (fVar22 + fVar22) - fVar22 * fVar22 * aflags5._8_4_;
         in_XMM2._12_4_ = (fVar23 + fVar23) - fVar23 * fVar23 * aflags5._12_4_;
-        *(undefined1 (*) [16])(init_result5 + uVar11 * 4) = in_XMM2;
+        *(unsigned char (*) [16])(init_result5 + uVar11 * 4) = in_XMM2;
         uVar11 = uVar11 + 4;
         uVar10 = uVar9;
       } while ((int)uVar8 < (int)(uVar16 - uVar3));
@@ -10793,7 +10793,7 @@ unsigned long long allocate_resource_memory(int handle)
 }
       data_180c2e030 = '\x01';
     }
-    iVar4 = FUN_18076a440(*(unsigned long long *)(unaff_RBX + 0x170),*(undefined4 *)(unaff_RBX + 0x110),0);
+    iVar4 = FUN_18076a440(*(unsigned long long *)(unaff_RBX + 0x170),*(unsigned int *)(unaff_RBX + 0x110),0);
     if ((iVar4 != 0) ||
        (iVar4 = FUN_180769ed0(*(unsigned long long *)(unaff_RBX + 0x170),0x180c2ea70,1,
                               iStack0000000000000030 + 4), iVar4 != 0)) goto LAB_1807c2a3c;
@@ -10804,21 +10804,21 @@ unsigned long long allocate_resource_memory(int handle)
       iVar4 = FUN_180769ed0(*(unsigned long long *)(unaff_RBX + 0x170),0x180c2ea70,1);
       if (iVar4 != 0) goto LAB_1807c2a3c;
     }
-    uVar3 = *(undefined4 *)(*(long long *)(unaff_RBX + 8) + 8);
-    *(undefined4 *)(*(long long *)(unaff_RBX + 8) + 8) = 2;
+    uVar3 = *(unsigned int *)(*(long long *)(unaff_RBX + 8) + 8);
+    *(unsigned int *)(*(long long *)(unaff_RBX + 8) + 8) = 2;
     FUN_180815080();
-    *(undefined4 *)(*(long long *)(unaff_RBX + 8) + 8) = uVar3;
-    iVar4 = FUN_18076a440(*(unsigned long long *)(unaff_RBX + 0x170),*(undefined4 *)(unaff_RBX + 0x110),0);
+    *(unsigned int *)(*(long long *)(unaff_RBX + 8) + 8) = uVar3;
+    iVar4 = FUN_18076a440(*(unsigned long long *)(unaff_RBX + 0x170),*(unsigned int *)(unaff_RBX + 0x110),0);
     if (iVar4 == 0) {
       if (*(int *)(unaff_RBX + 0x1c4) == iVar5) {
-        *(undefined4 *)(unaff_RBX + 0x1c4) = 0x480;
+        *(unsigned int *)(unaff_RBX + 0x1c4) = 0x480;
       }
       uVar7 = iStack0000000000000030 + 5U & 0xfffffffe;
       if (((unaff_R12D & SYSTEM_CONFIG_BUFFER_SIZE00) == 0) ||
          ((*(uint *)(*(long long *)(unaff_RBX + 0x170) + 0x194) & 1) == 0)) {
         lVar6 = *(long long *)(unaff_RBX + 8);
         if (*(int *)(lVar6 + 0x14) == -1) {
-          *(undefined4 *)(lVar6 + 0x18) = 0xffffffff;
+          *(unsigned int *)(lVar6 + 0x18) = 0xffffffff;
         }
         else if (*(char *)(unaff_RBX + 0x23c) == (char)unaff_R15) {
           *(uint *)(lVar6 + 0x18) =
@@ -10830,13 +10830,13 @@ unsigned long long allocate_resource_memory(int handle)
         }
         goto LAB_1807c2ec7;
       }
-      FUN_18076a440(*(unsigned long long *)(unaff_RBX + 0x170),*(undefined4 *)(unaff_RBX + 0x110),0);
+      FUN_18076a440(*(unsigned long long *)(unaff_RBX + 0x170),*(unsigned int *)(unaff_RBX + 0x110),0);
       iVar4 = *(int *)(unaff_RBX + 0x1c4);
       uVar7 = 0;
       iVar5 = func_0x00018076a7d0(*(unsigned long long *)(unaff_RBX + 0x170),&stack0x00000050);
       if (iVar5 == 0) {
         *pflags = 0;
-        *(undefined4 *)(*(long long *)(unaff_RBX + 8) + 0x18) = 0;
+        *(unsigned int *)(*(long long *)(unaff_RBX + 8) + 0x18) = 0;
         if (*(int *)(*(long long *)(unaff_RBX + 8) + 0x14) != 0) goto LAB_1807c2d40;
         goto LAB_1807c2e2d;
       }
@@ -10892,8 +10892,8 @@ LAB_1807c2ec7:
                     &unknown_18097c490,0x282,1);
     }
     *(ulong long *)(unaff_RBX + 0x178) = unaff_R15;
-    *(undefined4 *)(*(long long *)(unaff_RBX + 8) + 8) = 2;
-    *(undefined4 *)(*(long long *)(unaff_RBX + 8) + 0x1c) = 0x480;
+    *(unsigned int *)(*(long long *)(unaff_RBX + 8) + 8) = 2;
+    *(unsigned int *)(*(long long *)(unaff_RBX + 8) + 0x1c) = 0x480;
     FUN_180815ba0();
   }
 LAB_1807c2a43:
@@ -10905,7 +10905,7 @@ LAB_1807c2a43:
         (iVar4 = (**(code **)(**(long long **)(unaff_RDI + 0x170) + STRING_BUFFER_SIZE))
                            (*(long long **)(unaff_RDI + 0x170),(long long)&stack0x00000040 + 4),
         iVar4 == 0)) &&
-       (iVar4 = FUN_18076a440(*(unsigned long long *)(unaff_RDI + 0x170),*(undefined4 *)(unaff_RDI + 0x110),
+       (iVar4 = FUN_18076a440(*(unsigned long long *)(unaff_RDI + 0x170),*(unsigned int *)(unaff_RDI + 0x110),
                               0), iVar4 == 0)) {
       memset(unaff_RDI + 0x178,0,0x330);
     }
@@ -10926,7 +10926,7 @@ unsigned long long initialize_system_mutex(unsigned long long *handle,long long 
   uint flags;
   uint *puVar3;
   unsigned long long uVar4;
-  undefined1 uVar5;
+  unsigned char uVar5;
   ulong long uStackX_10;
   uint auStack_28 [2];
   ulong long uStack_20;
@@ -11006,16 +11006,16 @@ FUN_1808c7400(long long handle,long long flags,long long *mutex_attr,long long *
   uint uVar1;
   long long lVar2;
   byte bVar3;
-  undefined4 *puVar4;
+  unsigned int *puVar4;
   unsigned long long uVar5;
   unsigned long long uVar6;
   long long lVar7;
   long long lVar8;
-  undefined4 uVar9;
+  unsigned int uVar9;
   long long lStackX_8;
-  undefined1 auStack_28 [16];
+  unsigned char auStack_28 [16];
   uVar6 = *(unsigned long long *)(handle + 0x28);
-  puVar4 = (undefined4 *)FUN_18084da10();
+  puVar4 = (unsigned int *)FUN_18084da10();
   lVar2 = *mutex_type;
   uVar9 = *puVar4;
   lVar8 = lVar2;
@@ -11036,7 +11036,7 @@ FUN_1808c7400(long long handle,long long flags,long long *mutex_attr,long long *
         if (0xffffffff < lVar7) {
           lVar7 = 0xffffffff;
         }
-        uVar9 = (undefined4)lVar7;
+        uVar9 = (unsigned int)lVar7;
         lVar8 = lVar2;
       }
     }
@@ -11045,7 +11045,7 @@ FUN_1808c7400(long long handle,long long flags,long long *mutex_attr,long long *
     (**(code **)(**(long long **)(flags + STRING_BUFFER_SIZE) + 0x30))(*(long long **)(flags + STRING_BUFFER_SIZE),auStack_28)
     ;
     uVar5 = FUN_1808d0850(uVar6,auStack_28,lVar8,
-                          *(undefined4 *)(*(long long *)(flags + STRING_BUFFER_SIZE) + 0xb4));
+                          *(unsigned int *)(*(long long *)(flags + STRING_BUFFER_SIZE) + 0xb4));
     if ((int)uVar5 != 0) {
       return uVar5;
     }
@@ -11094,11 +11094,11 @@ unsigned long long get_system_configuration(void)
 {
   return 0x809200ff;
 }
-undefined4 validate_system_parameters(int handle,int flags,int mutex_attr)
+unsigned int validate_system_parameters(int handle,int flags,int mutex_attr)
 {
   int iVar1;
-  undefined4 flags;
-  undefined4 auStack_18 [4];
+  unsigned int flags;
+  unsigned int auStack_18 [4];
   if (data_180c4f818 == '\0') {
     return 0x80920005;
   }
@@ -11121,7 +11121,7 @@ undefined4 validate_system_parameters(int handle,int flags,int mutex_attr)
   func_0x0001808f6ce0();
   return auStack_18[0];
 }
-unsigned long long initialize_parameter_block(undefined4 handle,uint *flags)
+unsigned long long initialize_parameter_block(unsigned int handle,uint *flags)
 {
   long long init_result;
   uint flags;
@@ -11130,8 +11130,8 @@ unsigned long long initialize_parameter_block(undefined4 handle,uint *flags)
   byte bVar5;
   int iVar6;
   uint uVar7;
-  undefined2 *puVar8;
-  undefined2 *puVar9;
+  unsigned short *puVar8;
+  unsigned short *puVar9;
   byte abStackX_18 [8];
   long long lStackX_20;
   if (data_180c4f818 == '\0') {
@@ -11160,16 +11160,16 @@ unsigned long long initialize_parameter_block(undefined4 handle,uint *flags)
         uVar7 = uVar7 & 0xffdefffe;
       }
       *flags = uVar7;
-      *(undefined1 *)(flags + 1) = *(undefined1 *)(*(long long *)(lStackX_20 + 0x160) + STRING_BUFFER_SIZE);
-      *(undefined1 *)((long long)flags + 5) =
-           *(undefined1 *)(*(long long *)(lStackX_20 + 0x160) + 0x11);
-      *(undefined1 *)((long long)flags + 6) =
-           *(undefined1 *)(*(long long *)(lStackX_20 + 0x160) + 0x12);
-      *(undefined1 *)((long long)flags + 7) =
-           *(undefined1 *)(*(long long *)(lStackX_20 + 0x160) + 0x13);
-      *(undefined1 *)((long long)flags + 9) =
-           *(undefined1 *)(*(long long *)(lStackX_20 + 0x160) + 0x15);
-      *(undefined1 *)(flags + 2) = *(undefined1 *)(*(long long *)(lStackX_20 + 0x160) + 0x14);
+      *(unsigned char *)(flags + 1) = *(unsigned char *)(*(long long *)(lStackX_20 + 0x160) + STRING_BUFFER_SIZE);
+      *(unsigned char *)((long long)flags + 5) =
+           *(unsigned char *)(*(long long *)(lStackX_20 + 0x160) + 0x11);
+      *(unsigned char *)((long long)flags + 6) =
+           *(unsigned char *)(*(long long *)(lStackX_20 + 0x160) + 0x12);
+      *(unsigned char *)((long long)flags + 7) =
+           *(unsigned char *)(*(long long *)(lStackX_20 + 0x160) + 0x13);
+      *(unsigned char *)((long long)flags + 9) =
+           *(unsigned char *)(*(long long *)(lStackX_20 + 0x160) + 0x15);
+      *(unsigned char *)(flags + 2) = *(unsigned char *)(*(long long *)(lStackX_20 + 0x160) + 0x14);
       if ((*(char *)(lStackX_20 + 0x68) == '\x01') && ((abStackX_18[0] & 8) != 0)) {
         init_result = *(long long *)(lStackX_20 + 0x160);
         uVar7 = *(uint *)(init_result + 0x74);
@@ -11191,8 +11191,8 @@ unsigned long long initialize_parameter_block(undefined4 handle,uint *flags)
         func_0x0001808f6f70(flags + 7);
         func_0x0001808f6f80(flags + 10);
       }
-      *(undefined1 *)(flags + 0x13) = 1;
-      *(undefined1 *)(flags + 0x1a) = *(undefined1 *)(lStackX_20 + 1);
+      *(unsigned char *)(flags + 0x13) = 1;
+      *(unsigned char *)(flags + 0x1a) = *(unsigned char *)(lStackX_20 + 1);
       *(unsigned long long *)(flags + 0x14) = **(unsigned long long **)(lStackX_20 + 0x160);
       init_result = *(long long *)(lStackX_20 + 0x160);
       bVar5 = *(byte *)(init_result + 0x19);
@@ -11202,13 +11202,13 @@ unsigned long long initialize_parameter_block(undefined4 handle,uint *flags)
       iVar6 = 0;
       *(byte *)(flags + 0xd) = bVar5;
       if (*(char *)(init_result + 0x19) != '\0') {
-        puVar8 = (undefined2 *)((long long)flags + 0x3e);
-        puVar9 = (undefined2 *)(init_result + 0x1e);
+        puVar8 = (unsigned short *)((long long)flags + 0x3e);
+        puVar9 = (unsigned short *)(init_result + 0x1e);
         do {
           iVar6 = iVar6 + 1;
           puVar8[-1] = puVar9[-1];
           *puVar8 = *puVar9;
-          *(undefined1 *)(puVar8 + 1) = *(undefined1 *)(puVar9 + -2);
+          *(unsigned char *)(puVar8 + 1) = *(unsigned char *)(puVar9 + -2);
           puVar8 = puVar8 + 4;
           puVar9 = puVar9 + 3;
         } while (iVar6 < (int)(uint)*(byte *)(init_result + 0x19));
@@ -11218,7 +11218,7 @@ unsigned long long initialize_parameter_block(undefined4 handle,uint *flags)
   func_0x0001808f6ce0();
   return 0;
 }
-int process_parameter_validation(undefined4 handle,byte *flags)
+int process_parameter_validation(unsigned int handle,byte *flags)
 {
   char cVar1;
   int iVar2;
@@ -11240,7 +11240,7 @@ int process_parameter_validation(undefined4 handle,byte *flags)
   }
   lVar3 = func_0x0001808f0dd0(handle,0);
   if (lVar3 != 0) {
-    cVar1 = func_0x0001808f0e30(*(undefined2 *)(lVar3 + 2),*(undefined2 *)(lVar3 + 4));
+    cVar1 = func_0x0001808f0e30(*(unsigned short *)(lVar3 + 2),*(unsigned short *)(lVar3 + 4));
     if ((((cVar1 == '\0') && (*flags < 0xd)) && (flags[1] < 0xd)) && (flags[2] < 0xd)) {
       func_0x0001808f6ce0();
       return -0x7f6dfffa;
@@ -11266,10 +11266,10 @@ int check_system_readiness(void)
   int iVar2;
   long long lVar3;
   byte *unaff_RBX;
-  undefined4 unaff_ESI;
+  unsigned int unaff_ESI;
   lVar3 = func_0x0001808f0dd0(unaff_ESI);
   if (lVar3 != 0) {
-    cVar1 = func_0x0001808f0e30(*(undefined2 *)(lVar3 + 2),*(undefined2 *)(lVar3 + 4));
+    cVar1 = func_0x0001808f0e30(*(unsigned short *)(lVar3 + 2),*(unsigned short *)(lVar3 + 4));
     if ((((cVar1 == '\0') && (*unaff_RBX < 0xd)) && (unaff_RBX[1] < 0xd)) && (unaff_RBX[2] < 0xd)) {
       func_0x0001808f6ce0();
       return -0x7f6dfffa;
@@ -11292,17 +11292,17 @@ int check_system_readiness(void)
 int validate_system_state(void)
 {
   int iVar1;
-  undefined1 *unaff_RBX;
-  undefined4 unaff_ESI;
+  unsigned char *unaff_RBX;
+  unsigned int unaff_ESI;
   long long unaff_RDI;
   iVar1 = FUN_1808ef250(unaff_ESI);
   if (-1 < iVar1) {
-    *(undefined1 *)(unaff_RDI + 0x23e8) = *unaff_RBX;
-    *(undefined1 *)(unaff_RDI + 0x23e9) = unaff_RBX[1];
-    *(undefined1 *)(unaff_RDI + 0x23ea) = unaff_RBX[2];
-    *(undefined1 *)(unaff_RDI + 0x23ec) = *unaff_RBX;
-    *(undefined1 *)(unaff_RDI + 0x23ed) = unaff_RBX[1];
-    *(undefined1 *)(unaff_RDI + 0x23ee) = unaff_RBX[2];
+    *(unsigned char *)(unaff_RDI + 0x23e8) = *unaff_RBX;
+    *(unsigned char *)(unaff_RDI + 0x23e9) = unaff_RBX[1];
+    *(unsigned char *)(unaff_RDI + 0x23ea) = unaff_RBX[2];
+    *(unsigned char *)(unaff_RDI + 0x23ec) = *unaff_RBX;
+    *(unsigned char *)(unaff_RDI + 0x23ed) = unaff_RBX[1];
+    *(unsigned char *)(unaff_RDI + 0x23ee) = unaff_RBX[2];
     func_0x0001808f6ce0();
     return iVar1;
   }
@@ -11397,7 +11397,7 @@ uint setup_timer_with_attributes(long long handle,int flags,int mutex_attr,char 
   data_180c69e20 = 1;
   return;
 }
-undefined4 validate_timer_parameters(byte handle,byte *flags,int mutex_attr)
+unsigned int validate_timer_parameters(byte handle,byte *flags,int mutex_attr)
 {
   uint *puVar1;
   byte bVar2;
@@ -11436,12 +11436,12 @@ float * FUN_1808f6e00(float *handle,float *flags,float *mutex_attr)
   flags[2] = (fVar6 * fVar8 + fVar7 * fVar2 + fVar5 * fVar4) - fVar3 * fVar1;
   return flags;
 }
-unsigned long long initialize_timer_context(unsigned long long handle,undefined4 *flags)
+unsigned long long initialize_timer_context(unsigned long long handle,unsigned int *flags)
 {
   long long init_result;
   init_result = func_0x0001808f0dd0(handle,0);
   if (init_result != 0) {
-    *flags = *(undefined4 *)(init_result + 100);
+    *flags = *(unsigned int *)(init_result + 100);
     return 0;
   }
   return 0x8001002d;
@@ -11536,7 +11536,7 @@ LAB_1808fa963:
               if (sVar1 == 0x2e) break;
               lVar4 = lVar4 + -1;
             }
-            *(undefined2 *)(lVar6 + lVar4 * 2) = 0;
+            *(unsigned short *)(lVar6 + lVar4 * 2) = 0;
             lVar9 = lVar6 + 2 + lVar4 * 2;
 LAB_1808fbdeb:
             lVar7 = lVar7 + 9;
