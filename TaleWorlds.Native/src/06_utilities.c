@@ -867,10 +867,10 @@ data renderPassDescriptor;
 
 // 函数: data renderPipelineInitialize;
 data renderPipelineInitialize;
-data g_renderDescriptorTempData5;
-data g_renderDescriptorTempData6;
-data g_renderDescriptorTempData7;
-data g_renderDescriptorTempData8;
+data renderDescriptorConfig5;
+data renderDescriptorConfig6;
+data renderDescriptorConfig7;
+data renderDescriptorConfig8;
 data renderCommandBuffer;
 
 // 函数: data renderTargetInitialize;
@@ -81305,7 +81305,7 @@ void renderPipelineInitialize(void)
 void renderTargetInitialize(void)
 
 {
-  _g_renderDescriptorTempData5 = &threadLocalStorageCleanup;
+  _renderDescriptorConfig5 = &threadLocalStorageCleanup;
   return;
 }
 
