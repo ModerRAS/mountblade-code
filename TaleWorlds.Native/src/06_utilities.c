@@ -101,57 +101,57 @@ byte g_semaphoreInitFlag;
 
 // 函数: data CleanupThreadSynchronization;
 data CleanupThreadSynchronization;
-data DAT_1809fe0d0;
-data unknown_1809fd0d8;
+data g_threadCleanupData;
+data g_threadCleanupPointer;
 
 // 函数: data CloseSystemHandle;
 data CloseSystemHandle;
 
 // 函数: data DestroyMutex;
 data DestroyMutex;
-data DAT_180c9190c;
-data unknown_1809fcc28;
-data unknown_1809ffa30;
-data DAT_180a010a0;
-data unknown_180a00370;
+data g_mutexDestroyData;
+data g_mutexDestroyPointer1;
+data g_mutexDestroyPointer2;
+data g_mutexDestroyTempData;
+data g_mutexDestroyWorkPointer;
 
 // 函数: data initializeDataStructure1;          # 数据结构初始化函数
 data initializeDataStructure1;          # 数据结构初始化函数
-data DAT_180bf64e0;
-data DAT_180bf64e8;
-data unknown_1809fdc18;
-data unknown_180a004dc;
-data DAT_180bf6530;
-data DAT_180bf6538;
-data DAT_180bf6540;
+data g_memoryFreeData1;
+data g_memoryFreeData2;
+data g_memoryFreePointer1;
+data g_memoryFreePointer2;
+data g_memoryFreeConfig1;
+data g_memoryFreeConfig2;
+data g_memoryFreeConfig3;
 
 // 函数: data initializeDataStructure2;
 data initializeDataStructure2;
-data DAT_180bf6548;
-data unknown_180a004e8;
-data DAT_180bf6590;
-data DAT_180bf6598;
-data DAT_180bf65a0;
-data DAT_180bf65a8;
+data g_chunkAllocHeader;
+data g_chunkAllocPointer;
+data g_chunkAllocData1;
+data g_chunkAllocData2;
+data g_chunkAllocData3;
+data g_chunkAllocData4;
 
-// 函数: data FUN_180941840;
-data FUN_180941840;
-data unknown_180a004f8;
-data DAT_180bf65c0;
-data DAT_180bf65c8;
-data DAT_180bf65d0;
-data DAT_180bf65d8;
+// 函数: data FreeMemoryChunk;
+data FreeMemoryChunk;
+data g_chunkFreePointer;
+data g_chunkFreeData1;
+data g_chunkFreeData2;
+data g_chunkFreeData3;
+data g_chunkFreeData4;
 
-// 函数: data FUN_180941860;
-data FUN_180941860;
-data unknown_180a00508;
-data DAT_180bf65f0;
-data DAT_180bf65f8;
-data DAT_180bf6600;
-data DAT_180bf6608;
+// 函数: data GetMemoryChunkSize;
+data GetMemoryChunkSize;
+data g_chunkSizePointer;
+data g_chunkSizeData1;
+data g_chunkSizeData2;
+data g_chunkSizeData3;
+data g_chunkSizeData4;
 
-// 函数: data FUN_180941880;
-data FUN_180941880;
+// 函数: data initializeDataStructure5;
+data initializeDataStructure5;
 data unknown_180a00518;
 data DAT_180bf6620;
 data DAT_180bf6628;
@@ -2835,7 +2835,7 @@ uint64 validate_memory_size(longlong resourceHandle,uint64 memorySize) # 内存�
 
 
 
-uint64 FUN_180890540(longlong resourceHandle) # 资源句柄查询函数
+uint64 query_resource_handle(longlong resourceHandle) # 资源句柄查询函数
 
 {
   longlong localLong1;
@@ -45479,7 +45479,7 @@ void Unwind_180907770(void)
 void Unwind_180907780(void)
 
 {
-  _DAT_180bf6530 = &unknown_18098bcb0;
+  _g_memoryFreeConfig1 = &unknown_18098bcb0;
   return;
 }
 
@@ -45490,7 +45490,7 @@ void Unwind_180907780(void)
 void Unwind_180907790(void)
 
 {
-  _DAT_180bf6590 = &unknown_18098bcb0;
+  _g_chunkAllocData1 = &unknown_18098bcb0;
   return;
 }
 
@@ -45501,7 +45501,7 @@ void Unwind_180907790(void)
 void Unwind_1809077a0(void)
 
 {
-  _DAT_180bf65c0 = &unknown_18098bcb0;
+  _g_chunkFreeData1 = &unknown_18098bcb0;
   return;
 }
 
@@ -45512,7 +45512,7 @@ void Unwind_1809077a0(void)
 void Unwind_1809077b0(void)
 
 {
-  _DAT_180bf65f0 = &unknown_18098bcb0;
+  _g_chunkSizeData1 = &unknown_18098bcb0;
   return;
 }
 
@@ -80357,8 +80357,8 @@ void FUN_1809417e0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941800(void) # 数据结构初始化函数
-void FUN_180941800(void) # 数据结构初始化函数
+// 函数: void FreeMemoryPool(void) # 数据结构初始化函数
+void FreeMemoryPool(void) # 数据结构初始化函数
 
 {
   _DAT_180bf64d0 = &unknown_18098bcb0;
@@ -80370,11 +80370,11 @@ void FUN_180941800(void) # 数据结构初始化函数
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941820(void)
-void FUN_180941820(void)
+// 函数: void AllocateMemoryChunk(void)
+void AllocateMemoryChunk(void)
 
 {
-  _DAT_180bf6530 = &unknown_18098bcb0;
+  _g_memoryFreeConfig1 = &unknown_18098bcb0;
   return;
 }
 
@@ -80383,11 +80383,11 @@ void FUN_180941820(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941840(void)
-void FUN_180941840(void)
+// 函数: void FreeMemoryChunk(void)
+void FreeMemoryChunk(void)
 
 {
-  _DAT_180bf6590 = &unknown_18098bcb0;
+  _g_chunkAllocData1 = &unknown_18098bcb0;
   return;
 }
 
@@ -80396,11 +80396,11 @@ void FUN_180941840(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941860(void)
-void FUN_180941860(void)
+// 函数: void GetMemoryChunkSize(void)
+void GetMemoryChunkSize(void)
 
 {
-  _DAT_180bf65c0 = &unknown_18098bcb0;
+  _g_chunkFreeData1 = &unknown_18098bcb0;
   return;
 }
 
@@ -80413,7 +80413,7 @@ void FUN_180941860(void)
 void FUN_180941880(void)
 
 {
-  _DAT_180bf65f0 = &unknown_18098bcb0;
+  _g_chunkSizeData1 = &unknown_18098bcb0;
   return;
 }
 
