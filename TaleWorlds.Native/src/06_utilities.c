@@ -26,26 +26,26 @@ dataValue g_bufferMemoryPointer;           // 缓冲区内存指针
 // 函数: dataValueValue InitializeMemoryPool;
 // 系统初始化函数180941590
 dataValue InitializeMemoryPool;
-dataValue memoryBlockPoolBaseAddr;
-dataValue memoryBlockPoolSize;
-dataValue memoryBlockPoolAlignment;
-dataValue memoryBlockPoolFlags;
+dataValue g_memoryPoolBaseAddress;            // 内存池基地址
+dataValue g_memoryPoolSize;                   // 内存池大小
+dataValue g_memoryPoolAlignment;              // 内存池对齐
+dataValue g_memoryPoolFlags;                  // 内存池标志
 
 // 函数: dataValueValue SetupMemoryManager;
 dataValue SetupMemoryManager;
-dataValue g_bufferManagerControlFlags;
-dataValue g_bufferManagerStatus;
-dataValue g_bufferManagerConfig;
-dataValue g_bufferManagerHandle;
-dataValue memoryBlockPoolInitFlag;
+dataValue g_memoryManagerControlFlags;        // 内存管理器控制标志
+dataValue g_memoryManagerStatus;              // 内存管理器状态
+dataValue g_memoryManagerConfig;              // 内存管理器配置
+dataValue g_memoryManagerHandle;              // 内存管理器句柄
+dataValue g_memoryPoolInitialized;            // 内存池初始化标志
 
 // 函数: dataValueValue CreateMemoryAllocator;
 dataValue CreateMemoryAllocator;
-dataValue g_dataStructureRoot;
-dataValue g_dataStructureNext;
-dataValue g_dataStructurePrev;
-dataValue g_dataStructureParent;
-dataValue memoryBlockAllocatorStatusFlag;
+dataValue g_dataStructureRootNode;            // 数据结构根节点
+dataValue g_dataStructureNextNode;            // 数据结构下一节点
+dataValue g_dataStructurePreviousNode;        // 数据结构前一节点
+dataValue g_dataStructureParentNode;          // 数据结构父节点
+dataValue g_memoryAllocatorStatusFlag;        // 内存分配器状态标志
 
 // 函数: dataValueValue RegisterMemoryHandler;
 dataValue RegisterMemoryHandler;
