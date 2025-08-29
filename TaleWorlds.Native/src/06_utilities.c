@@ -386,7 +386,7 @@ data g_bufferModuleConfig7;
 data g_initializeSystemModule2;
 data networkReceiveBuffer;
 data g_systemModuleNetworkContext14;
-data g_systemModuleData15;
+data g_systemModuleNetworkContext15;
 data g_systemModuleNetworkContext16;
 data g_systemModuleNetworkContext17;
 
@@ -407,7 +407,7 @@ data g_fileModuleConfig6;
 data g_fileModuleConfig7;
 data g_systemModuleMemoryPointer19;
 data g_renderModuleConfig1;
-data g_systemModuleData20;
+data g_systemModuleRenderPointer20;
 data g_renderModuleConfig2;
 data g_systemConfigModuleConfig6;
 data g_systemConfigModuleConfig7;
@@ -1288,13 +1288,13 @@ data eventSystemVar67f8;
 data CleanupThreadResources;
 data eventSystemVar6800;
 data eventSystemVar6808;
-data semaphoreWaitTimeout;  /* 原: DAT_180c0c6c0 */
+data semaphoreWaitTimeout;  /* 原: memorySystemVar6c0; */
 data bufferSystemVar14a0;
 data bufferSystemVar1324;
 data semaphoreInitState;
 data semaphoreControlFlag;
-data semaphoreRecursionCount;  /* 原: DAT_180c0c6d0 */
-data DAT_180c0c6d8;
+data semaphoreRecursionCount;  /* 原: memorySystemVar6d0; */
+data memorySystemVar6d8;;
 data DAT_180c0d100;
 data DAT_180c0e170;
 data DAT_180c108d0;
