@@ -19,9 +19,9 @@ data g_bufferDataChecksum;
 // 缓冲区初始化状态标志
 byte g_isBufferInitialized;
 // 缓冲区总容量
-data g_bufferCapacity;
+data g_bufferTotalCapacity;
 // 缓冲区绝对最大尺寸
-data g_bufferAbsoluteMaxSize;
+data g_bufferAbsoluteMaximumSize;
 // 缓冲区锁定标志
 byte g_bufferLockFlag;
 // 缓冲区状态标志
@@ -4575,8 +4575,8 @@ uint64 get_file_lock_info(longlong resourceHandle,longlong memorySize)
 
 
 
-// 函数: void FUN_180891ca0(longlong resourceHandle,longlong memorySize)
-void FUN_180891ca0(longlong resourceHandle,longlong memorySize)
+// 函数: void compress_file(longlong resourceHandle,longlong memorySize)
+void compress_file(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
@@ -4594,8 +4594,8 @@ void FUN_180891ca0(longlong resourceHandle,longlong memorySize)
 
 
 
-// 函数: void FUN_180891cf0(longlong resourceHandle,longlong memorySize)
-void FUN_180891cf0(longlong resourceHandle,longlong memorySize)
+// 函数: void decompress_file(longlong resourceHandle,longlong memorySize)
+void decompress_file(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
@@ -9317,12 +9317,12 @@ ulonglong FUN_180896140(longlong resourceHandle)
               localUInt = *(uint32 *)(lVar5 + 0xc + localLong15 * 0x10);
               localUInt = 0;
               localUInt = 0;
-              FUN_180891cf0(&localPtr,*(uint64 *)(resourceHandle + 0x58));
+              decompress_file(&localPtr,*(uint64 *)(resourceHandle + 0x58));
               localPtr = &unknown_1809843d0;
               localUInt = *(uint32 *)(lVar5 + 0xc + localLong15 * 0x10);
               localUInt = 0;
               localUInt = localUInt & 0xffffff00;
-              FUN_180891ca0(&localPtr,*(uint64 *)(resourceHandle + 0x58));
+              compress_file(&localPtr,*(uint64 *)(resourceHandle + 0x58));
               localPtr = &unknown_1809841e0;
               localUInt = *(uint32 *)(lVar5 + 0xc + localLong15 * 0x10);
               localUInt = 0;
