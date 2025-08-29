@@ -130,10 +130,10 @@ int initialize_network_thread_pool(void* handle, void* flags, void* mutex_attr, 
   return (initialization_result != 0) - 1;
 }
 // 初始化IO线程池
-int initialize_io_thread_pool(undefined8 handle, undefined8 flags, undefined8 mutex_attr, undefined8 mutex_type)
+int initialize_io_thread_pool(void* handle, void* flags, void* mutex_attr, int mutex_type)
 {
   long long initialization_result;
-  undefined8 thread_pool_flags = 0xfffffffffffffffe;
+  unsigned long long thread_pool_flags = THREAD_POOL_DEFAULT_FLAGS;
   
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(0x180c91288, 2, mutex_attr, mutex_type, thread_pool_flags);
