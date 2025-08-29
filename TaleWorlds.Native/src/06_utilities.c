@@ -510,26 +510,26 @@ data textureFilterConfig1;
 data textureFilterConfig2;
 data textureFilterConfig3;
 data textureFilterConfig4;
-data g_textureWrapTempData1;
-data g_textureWrapTempData2;
-data g_textureWrapTempData3;
-data g_textureWrapTempData4;
-data g_meshVertexTempData1;
-data g_meshVertexTempData2;
-data g_meshVertexTempData3;
-data g_meshVertexTempData4;
-data g_meshIndexTempData1;
-data g_meshIndexTempData2;
-data g_meshIndexTempData3;
-data g_meshIndexTempData4;
-data g_meshLayoutTempData1;
-data g_meshLayoutTempData2;
-data g_meshLayoutTempData3;
-data g_meshLayoutTempData4;
-data g_meshBoundingBoxTempData1;
-data g_meshBoundingBoxTempData2;
-data g_meshBoundingBoxTempData3;
-data g_meshBoundingBoxTempData4;
+data textureWrapConfig1;
+data textureWrapConfig2;
+data textureWrapConfig3;
+data textureWrapConfig4;
+data meshVertexConfig1;
+data meshVertexConfig2;
+data meshVertexConfig3;
+data meshVertexConfig4;
+data meshIndexConfig1;
+data meshIndexConfig2;
+data meshIndexConfig3;
+data meshIndexConfig4;
+data meshLayoutConfig1;
+data meshLayoutConfig2;
+data meshLayoutConfig3;
+data meshLayoutConfig4;
+data meshBoundingBoxConfig1;
+data meshBoundingBoxConfig2;
+data meshBoundingBoxConfig3;
+data meshBoundingBoxConfig4;
 data g_meshCollisionTempData1;
 data g_meshCollisionTempData2;
 data g_meshCollisionTempData3;
@@ -2478,7 +2478,7 @@ void HandleResourceCleanup(void)
   longlong inputRegister;
   longlong baseRegister;
   longlong index;
-  int localInt4;
+  int counter;
   byte *stackParameter1;
   int stackParameter2;
   uint32 stackParameter3;
@@ -2486,7 +2486,7 @@ void HandleResourceCleanup(void)
   
   if (*(longlong *)(inputRegister + 8) != 0) {
     stackParameter1 = &stackLocalBuffer;
-    localInt4 = 0;
+    counter = 0;
     stackParameter2 = 0;
     stackParameter3 = 0xffffffc0;
     status = AllocateSystemMemory(*(uint64 *)(baseRegister + 0x90),*(longlong *)(inputRegister + 8),
@@ -2501,9 +2501,9 @@ void HandleResourceCleanup(void)
                     // WARNING: Subroutine does not return
             utilityFreeMemoryBlock(returnValue,1); # 内存块释放函数
           }
-          localInt4 = localInt4 + 1;
+          counter = counter + 1;
           index = index + 8;
-        } while (localInt4 < stackParameter2);
+        } while (counter < stackParameter2);
       }
       FreeMemoryBuffer(&stack0x00000030);
     }
@@ -2648,7 +2648,7 @@ ulonglong calculate_memory_allocation(longlong resourceHandle,longlong memorySiz
   longlong *plocalLong1;
   longlong *plocalLong2;
   longlong *pindex;
-  int localInt4;
+  int counter;
   uint uVar5;
   ulonglong uVar6;
   longlong *plVar7;
@@ -2659,16 +2659,16 @@ ulonglong calculate_memory_allocation(longlong resourceHandle,longlong memorySiz
   longlong lStackX_18;
   
   uVar6 = SystemMemoryFunction(*(uint32 *)(resourceHandle + 0x18),&lStackX_18);
-  localInt4 = (int)uVar6;
-  if (localInt4 == 0) {
+  counter = (int)uVar6;
+  if (counter == 0) {
     plocalLong10 = (longlong *)0x0;
     plVar9 = plocalLong10;
     if (lStackX_18 != 0) {
       plVar9 = (longlong *)(lStackX_18 + -8);
     }
     uVar6 = SystemMemoryFunction(*(uint32 *)(resourceHandle + 0x10),&lStackX_18);
-    localInt4 = (int)uVar6;
-    if (localInt4 == 0) {
+    counter = (int)uVar6;
+    if (counter == 0) {
       lStackX_8 = 0;
       uVar5 = utilityEncryptMemoryData(*(uint64 *)(memorySize + 0x90),*(longlong *)(lStackX_18 + 8) + 0x10,
                             &lStackX_8);
@@ -2725,7 +2725,7 @@ ulonglong calculate_memory_allocation(longlong resourceHandle,longlong memorySiz
       return 0x1c;
     }
   }
-  if (localInt4 == 0x1e) {
+  if (counter == 0x1e) {
     return 0;
   }
   return uVar6;
@@ -4255,22 +4255,22 @@ uint64 get_file_attributes(longlong resourceHandle,longlong memorySize)
   uint64 returnValue;
   int *pstatus;
   uint32 *puVar3;
-  int localInt4;
+  int counter;
   
-  localInt4 = 0;
+  counter = 0;
   puVar3 = (uint32 *)(resourceHandle + 0x18 + (longlong)*(int *)(resourceHandle + 0x10) * 8);
   pstatus = (int *)(resourceHandle + 0x18);
   if (0 < *(int *)(resourceHandle + 0x10)) {
     do {
       if (((*pstatus != g_securityTokenValue1) || (pstatus[1] != g_securityTokenValue2)) &&
-         (returnValue = utilityParseDataStructure(memorySize + 0x60,(int *)(resourceHandle + 0x18) + (longlong)localInt4 * 2,*puVar3
+         (returnValue = utilityParseDataStructure(memorySize + 0x60,(int *)(resourceHandle + 0x18) + (longlong)counter * 2,*puVar3
                                 ,*(byte *)(resourceHandle + 0x14)), (int)returnValue != 0)) {
         return returnValue;
       }
-      localInt4 = localInt4 + 1;
+      counter = counter + 1;
       puVar3 = puVar3 + 1;
       pstatus = pstatus + 2;
-    } while (localInt4 < *(int *)(resourceHandle + 0x10));
+    } while (counter < *(int *)(resourceHandle + 0x10));
   }
   return 0;
 }
@@ -8214,7 +8214,7 @@ uint64 set_allocator_flags(longlong *resourceHandle)
 
 
 
-uint64 FUN_180895236(void)
+uint64 initialize_debug_system(void)
 
 {
   longlong localLong1;
@@ -8283,7 +8283,7 @@ uint64 FUN_180895236(void)
 
 
 
-uint64 FUN_180895345(void)
+uint64 enable_debug_logging(void)
 
 {
   return 0x1c;
@@ -8301,7 +8301,7 @@ void FUN_180895360(longlong resourceHandle,byte *memorySize,int *operationFlags)
   byte bVar1;
   longlong localLong2;
   char cVar3;
-  int localInt4;
+  int counter;
   uint64 uVar5;
   longlong lVar6;
   longlong lVar7;
@@ -8319,18 +8319,18 @@ void FUN_180895360(longlong resourceHandle,byte *memorySize,int *operationFlags)
   ulonglong localUInt;
   
   localUInt = g_securityTokenMask ^ (ulonglong)localBuffer;
-  localInt4 = *(int *)(resourceHandle + 0xac);
-  lVar7 = (longlong)localInt4;
+  counter = *(int *)(resourceHandle + 0xac);
+  lVar7 = (longlong)counter;
   plocalInt = operationFlags;
-  if (localInt4 < *(int *)(resourceHandle + 0x20)) {
+  if (counter < *(int *)(resourceHandle + 0x20)) {
     lStack_6e0 = *(longlong *)(resourceHandle + 0x18);
     lStack_6b8 = lVar7 * 3;
     lVar9 = (longlong)*(int *)(lStack_6e0 + lVar7 * 0xc) + *(longlong *)(resourceHandle + 8);
     cVar3 = *(char *)(lStack_6e0 + 8 + lVar7 * 0xc);
     if (cVar3 == '\x01') {
       iVar8 = *(int *)(resourceHandle + 0xb0);
-      if (localInt4 < iVar8) {
-        *(int *)(resourceHandle + 0xac) = localInt4 + 1;
+      if (counter < iVar8) {
+        *(int *)(resourceHandle + 0xac) = counter + 1;
         goto FUN_180895b89;
       }
       fVar10 = *(float *)(lVar9 + 0x18);
@@ -8361,13 +8361,13 @@ void FUN_180895360(longlong resourceHandle,byte *memorySize,int *operationFlags)
       bVar1 = *(byte *)(resourceHandle + 0x6c);
       if (*(longlong *)(resourceHandle + 0xc0) != 0) {
         uVar5 = FUN_180895ef0(resourceHandle);
-        localInt4 = (**(code **)(resourceHandle + 0xc0))
-                          (uVar5,localInt4,*(uint32 *)(lVar9 + 0x18),*(uint64 *)(resourceHandle + 0xb8)
+        counter = (**(code **)(resourceHandle + 0xc0))
+                          (uVar5,counter,*(uint32 *)(lVar9 + 0x18),*(uint64 *)(resourceHandle + 0xb8)
                           );
-        if (localInt4 != 0) goto FUN_180895b89;
+        if (counter != 0) goto FUN_180895b89;
       }
       if (((((bVar1 & 2) != 0 || (longlong)fVar10 + lVar7 < localLong2 - lVar6) &&
-           (localInt4 = *plocalInt, *plocalInt = localInt4 + 1, localInt4 < 10)) &&
+           (counter = *plocalInt, *plocalInt = counter + 1, counter < 10)) &&
           ((*(uint *)(resourceHandle + 0x6c) >> 0x18 & 1) == 0)) &&
          (((*(uint *)(resourceHandle + 0x6c) >> 0x19 & 1) != 0 && (iVar8 == *(int *)(resourceHandle + 0xb0))))) {
 LAB_18089555d:
@@ -8396,10 +8396,10 @@ LAB_18089555d:
       else {
         if ((cVar3 != '\x02') || ((*(byte *)(resourceHandle + 0x6c) & 4) != 0)) goto LAB_18089555d;
         localUInt = *(uint32 *)(lVar9 + 0x20);
-        localInt4 = FUN_180895c60(resourceHandle,localInt4,&localUInt);
-        if (localInt4 != 0) goto FUN_180895b89;
-        localInt4 = SystemMemoryFunction(localUInt,localArray);
-        if ((localInt4 != 0) || (*(int *)(localArray[0] + 0x30) != 2)) goto LAB_18089555d;
+        counter = FUN_180895c60(resourceHandle,counter,&localUInt);
+        if (counter != 0) goto FUN_180895b89;
+        counter = SystemMemoryFunction(localUInt,localArray);
+        if ((counter != 0) || (*(int *)(localArray[0] + 0x30) != 2)) goto LAB_18089555d;
       }
     }
     *memorySize = 0;
@@ -8424,7 +8424,7 @@ void FUN_1808953bf(longlong resourceHandle,uint64 memorySize,int *operationFlags
   longlong localLong1;
   char cVar2;
   int localInt3;
-  int localInt4;
+  int counter;
   longlong inputRegister;
   longlong lVar5;
   uint64 uVar6;
@@ -8446,16 +8446,16 @@ void FUN_1808953bf(longlong resourceHandle,uint64 memorySize,int *operationFlags
   cVar2 = *(char *)(inputRegister + 8 + lVar5 * 4);
   *(longlong *)(unaff_RBP + -0x80) = lVar5;
   if (cVar2 == in_R11B) {
-    localInt4 = *(int *)(resourceHandle + 0xb0);
-    if (unaff_EBX < localInt4) {
+    counter = *(int *)(resourceHandle + 0xb0);
+    if (unaff_EBX < counter) {
       *(int *)(resourceHandle + 0xac) = unaff_EBX + 1;
       goto LAB_180895b69;
     }
     fVar9 = *(float *)(lVar8 + 0x18);
     fVar10 = fVar9;
-    if (localInt4 != -1) {
+    if (counter != -1) {
       fVar10 = *(float *)(resourceHandle + 0xb4);
-      localInt4 = -1;
+      counter = -1;
       *(uint32 *)(resourceHandle + 0xb0) = 0xffffffff;
       *(uint32 *)(resourceHandle + 0xb4) = 0xbf800000;
     }
@@ -8490,7 +8490,7 @@ void FUN_1808953bf(longlong resourceHandle,uint64 memorySize,int *operationFlags
     }
     if ((((cVar2 != '\0') && (localInt3 = *operationFlags, *operationFlags = localInt3 + 1, localInt3 < 10)) &&
         ((*(uint *)(unaff_RDI + 0x6c) >> 0x18 & 1) == 0)) &&
-       (((*(uint *)(unaff_RDI + 0x6c) >> 0x19 & 1) != 0 && (localInt4 == *(int *)(unaff_RDI + 0xb0)))))
+       (((*(uint *)(unaff_RDI + 0x6c) >> 0x19 & 1) != 0 && (counter == *(int *)(unaff_RDI + 0xb0)))))
     {
 LAB_18089555d:
                     // WARNING: Subroutine does not return
@@ -8518,10 +8518,10 @@ LAB_18089555d:
     else {
       if ((cVar2 != '\x02') || ((*(byte *)(resourceHandle + 0x6c) & 4) != 0)) goto LAB_18089555d;
       in_stack_00000040._4_4_ = *(uint32 *)(lVar8 + 0x20);
-      localInt4 = FUN_180895c60(resourceHandle,unaff_EBX,(longlong)&stackLocalBuffer + 4);
-      if (localInt4 != 0) goto LAB_180895b69;
-      localInt4 = SystemMemoryFunction(in_stack_00000040._4_4_,unaff_RBP + -0x78);
-      if ((localInt4 != 0) || (*(int *)(*(longlong *)(unaff_RBP + -0x78) + 0x30) != 2))
+      counter = FUN_180895c60(resourceHandle,unaff_EBX,(longlong)&stackLocalBuffer + 4);
+      if (counter != 0) goto LAB_180895b69;
+      counter = SystemMemoryFunction(in_stack_00000040._4_4_,unaff_RBP + -0x78);
+      if ((counter != 0) || (*(int *)(*(longlong *)(unaff_RBP + -0x78) + 0x30) != 2))
       goto LAB_18089555d;
     }
   }
@@ -8644,18 +8644,18 @@ uint64 FUN_180895c8b(longlong resourceHandle,uint64 memorySize,longlong operatio
   longlong localLong1;
   longlong localLong2;
   uint64 *puVar3;
-  int localInt4;
+  int counter;
   int *unaff_RDI;
   longlong in_R10;
   bool in_ZF;
   int iStack0000000000000044;
   
   if (((!in_ZF) && (*(int *)(resourceHandle + 0x78) != 0)) &&
-     (localInt4 = *(int *)(*(longlong *)(in_R10 + 0x70) +
-                      (longlong)(int)(*(int *)(resourceHandle + 0x78) - 1U & callbackFunction) * 4), localInt4 != -1)) {
+     (counter = *(int *)(*(longlong *)(in_R10 + 0x70) +
+                      (longlong)(int)(*(int *)(resourceHandle + 0x78) - 1U & callbackFunction) * 4), counter != -1)) {
     localLong1 = *(longlong *)(in_R10 + 0x80);
     do {
-      localLong2 = (longlong)localInt4;
+      localLong2 = (longlong)counter;
       if (*(uint *)(localLong1 + localLong2 * 0x10) == callbackFunction) {
         iStack0000000000000044 = (int)((ulonglong)*(uint64 *)(localLong1 + 8 + localLong2 * 0x10) >> 0x20)
         ;
@@ -8665,8 +8665,8 @@ uint64 FUN_180895c8b(longlong resourceHandle,uint64 memorySize,longlong operatio
         }
         goto LAB_180895ccb;
       }
-      localInt4 = *(int *)(localLong1 + 4 + localLong2 * 0x10);
-    } while (localInt4 != -1);
+      counter = *(int *)(localLong1 + 4 + localLong2 * 0x10);
+    } while (counter != -1);
   }
   iStack0000000000000044 = 0;
 LAB_180895ccb:
@@ -8885,7 +8885,7 @@ uint64 FUN_180895d9c(uint64 resourceHandle,uint32 memorySize)
   int localInt1;
   uint64 localUInt2;
   uint64 *puVar3;
-  int localInt4;
+  int counter;
   uint32 *puVar5;
   uint uVar6;
   int iVar7;
@@ -8900,20 +8900,20 @@ uint64 FUN_180895d9c(uint64 resourceHandle,uint32 memorySize)
   if (iVar8 == -1) {
     uStack0000000000000028 = *unaff_R14;
     iVar8 = *(int *)(unaff_RDI + 0x18);
-    localInt4 = iVar8 + 1;
+    counter = iVar8 + 1;
     uVar6 = (int)*(uint *)(unaff_RDI + 0x1c) >> 0x1f;
     localInt1 = (*(uint *)(unaff_RDI + 0x1c) ^ uVar6) - uVar6;
-    if (localInt1 < localInt4) {
+    if (localInt1 < counter) {
       iVar7 = (int)((float)localInt1 * 1.5);
-      localInt1 = localInt4;
-      if (localInt4 <= iVar7) {
+      localInt1 = counter;
+      if (counter <= iVar7) {
         localInt1 = iVar7;
       }
       if (localInt1 < 4) {
         iVar7 = 4;
       }
-      else if (iVar7 < localInt4) {
-        iVar7 = localInt4;
+      else if (iVar7 < counter) {
+        iVar7 = counter;
       }
       localUInt2 = FUN_1807d3f50(unaff_RDI + 0x10,iVar7);
       if ((int)localUInt2 != 0) {
@@ -9205,7 +9205,7 @@ ulonglong FUN_180896140(longlong resourceHandle)
   byte *pbVar1;
   uint32 localUInt2;
   uint64 uVar3;
-  int localInt4;
+  int counter;
   longlong lVar5;
   ulonglong uVar6;
   int iVar7;
@@ -9249,7 +9249,7 @@ ulonglong FUN_180896140(longlong resourceHandle)
   
   uVar8 = *(uint *)(resourceHandle + 0x6c);
   uVar6 = 0;
-  localInt4 = 0;
+  counter = 0;
   if ((uVar8 >> 0x1a & 1) == 0) goto LAB_1808963ec;
   if ((uVar8 & 1) == 0) {
     plStack_108 = (longlong *)(resourceHandle + 0x70);
@@ -9270,28 +9270,28 @@ ulonglong FUN_180896140(longlong resourceHandle)
           localInt16 = (int)returnValue0;
           lVar5 = plocalLong13[2];
           localLong15 = (longlong)aiStackX_8[0];
-          localInt4 = *(int *)(lVar5 + 8 + localLong15 * 0x10);
-          if (localInt4 == 2) {
-            localInt4 = SystemMemoryFunction(*(uint32 *)(lVar5 + 0xc + localLong15 * 0x10),&uStackX_18);
+          counter = *(int *)(lVar5 + 8 + localLong15 * 0x10);
+          if (counter == 2) {
+            counter = SystemMemoryFunction(*(uint32 *)(lVar5 + 0xc + localLong15 * 0x10),&uStackX_18);
             uVar3 = uStackX_18;
             plocalLong13 = plStack_108;
-            if ((localInt4 == 0) &&
-               (localInt4 = func_0x0001808c7ed0(uStackX_18), plocalLong13 = plStack_108, 0 < localInt4)) {
+            if ((counter == 0) &&
+               (counter = func_0x0001808c7ed0(uStackX_18), plocalLong13 = plStack_108, 0 < counter)) {
               do {
                 localUInt = *(uint32 *)(lVar5 + 0xc + localLong15 * 0x10);
                 localUInt = 0;
                 localPtr = &unknown_180983588;
                 utilityOptimizeResourceUsage(&localPtr,*(uint64 *)(resourceHandle + 0x58));
-                localInt4 = func_0x0001808c7ed0(uVar3);
-              } while (0 < localInt4);
+                counter = func_0x0001808c7ed0(uVar3);
+              } while (0 < counter);
               uVar6 = (ulonglong)auStackX_10[0];
               plocalLong13 = plStack_108;
             }
           }
-          else if (localInt4 == 3) {
-            localInt4 = SystemMemoryFunction(*(uint32 *)(lVar5 + 0xc + localLong15 * 0x10),auStackX_20);
+          else if (counter == 3) {
+            counter = SystemMemoryFunction(*(uint32 *)(lVar5 + 0xc + localLong15 * 0x10),auStackX_20);
             plocalLong13 = plStack_108;
-            if (localInt4 == 0) {
+            if (counter == 0) {
               localPtr = &unknown_180983b68;
               localUInt = *(uint32 *)(lVar5 + 0xc + localLong15 * 0x10);
               localUInt = 0;
@@ -9304,10 +9304,10 @@ ulonglong FUN_180896140(longlong resourceHandle)
               plocalLong13 = plStack_108;
             }
           }
-          else if (localInt4 == 5) {
-            localInt4 = SystemMemoryFunction(*(uint32 *)(lVar5 + 0xc + localLong15 * 0x10),localBuffer);
+          else if (counter == 5) {
+            counter = SystemMemoryFunction(*(uint32 *)(lVar5 + 0xc + localLong15 * 0x10),localBuffer);
             plocalLong13 = plStack_108;
-            if (localInt4 == 0) {
+            if (counter == 0) {
               localPtr = &unknown_1809842e0;
               localUInt = *(uint32 *)(lVar5 + 0xc + localLong15 * 0x10);
               localUInt = 0;
@@ -9330,10 +9330,10 @@ ulonglong FUN_180896140(longlong resourceHandle)
               plocalLong13 = plStack_108;
             }
           }
-          else if (localInt4 == 6) {
-            localInt4 = SystemMemoryFunction(*(uint32 *)(lVar5 + 0xc + localLong15 * 0x10),localBuffer);
+          else if (counter == 6) {
+            counter = SystemMemoryFunction(*(uint32 *)(lVar5 + 0xc + localLong15 * 0x10),localBuffer);
             plocalLong13 = plStack_108;
-            if (localInt4 == 0) {
+            if (counter == 0) {
               localPtr = &unknown_1809844c8;
               localUInt = *(uint32 *)(lVar5 + 0xc + localLong15 * 0x10);
               localUInt = 0;
@@ -9342,26 +9342,26 @@ ulonglong FUN_180896140(longlong resourceHandle)
               plocalLong13 = plStack_108;
             }
           }
-          else if ((localInt4 == 7) &&
-                  (localInt4 = SystemMemoryFunction(*(uint32 *)(lVar5 + 0xc + localLong15 * 0x10),
-                                               localBuffer), plocalLong13 = plStack_108, localInt4 == 0)) {
+          else if ((counter == 7) &&
+                  (counter = SystemMemoryFunction(*(uint32 *)(lVar5 + 0xc + localLong15 * 0x10),
+                                               localBuffer), plocalLong13 = plStack_108, counter == 0)) {
             localUInt2 = *(uint32 *)(lVar5 + 0xc + localLong15 * 0x10);
             iVar7 = (int)uVar6 + 1;
-            localInt4 = localInt16;
+            counter = localInt16;
             if (localInt16 < 0) {
-              localInt4 = -localInt16;
+              counter = -localInt16;
             }
             localInt14 = (int)uVar6;
-            if (localInt4 < iVar7) {
+            if (counter < iVar7) {
               if (localInt16 < 0) {
                 localInt16 = -localInt16;
               }
               localInt16 = (int)((float)localInt16 * 1.5);
-              localInt4 = iVar7;
+              counter = iVar7;
               if (iVar7 <= localInt16) {
-                localInt4 = localInt16;
+                counter = localInt16;
               }
-              if (localInt4 < 0x10) {
+              if (counter < 0x10) {
                 localInt16 = 0x10;
               }
               else if (localInt16 < iVar7) {
@@ -9369,7 +9369,7 @@ ulonglong FUN_180896140(longlong resourceHandle)
               }
               uVar8 = FUN_18084c470(&localUInt,localInt16);
               uVar6 = (ulonglong)uVar8;
-              localInt4 = (int)localUInt;
+              counter = (int)localUInt;
               if (uVar8 != 0) {
                 uVar8 = localUInt._4_4_;
                 if ((longlong)localUInt < 0) {
@@ -9390,10 +9390,10 @@ ulonglong FUN_180896140(longlong resourceHandle)
                   localUInt = 0;
                   uVar9 = 0;
                 }
-                if (localInt4 < 0) {
+                if (counter < 0) {
                   preturnValue2 = (uint32 *)(localUInt + lVar5 * 4);
-                  lVar5 = (longlong)-localInt4;
-                  if (localInt4 < 0) {
+                  lVar5 = (longlong)-counter;
+                  if (counter < 0) {
                     for (; lVar5 != 0; lVar5 = lVar5 + -1) {
                       *preturnValue2 = 0;
                       preturnValue2 = preturnValue2 + 1;
@@ -9419,7 +9419,7 @@ ulonglong FUN_180896140(longlong resourceHandle)
             *(uint32 *)(localUInt + (longlong)localInt14 * 4) = localUInt2;
             plocalLong13 = plStack_108;
           }
-          localInt4 = (int)returnValue0;
+          counter = (int)returnValue0;
           localInt16 = (int)uVar6;
         } while ((aiStackX_8[0] != -1) &&
                 (aiStackX_8[0] = *(int *)(plocalLong13[2] + 4 + localLong15 * 0x10), aiStackX_8[0] != -1));
@@ -9457,20 +9457,20 @@ LAB_1808962af:
         lVar5 = lVar5 + -1;
       } while (-1 < lVar5);
     }
-    localInt11 = localInt4;
-    if (localInt4 < 0) {
-      localInt11 = -localInt4;
+    localInt11 = counter;
+    if (counter < 0) {
+      localInt11 = -counter;
     }
     if (localInt11 < 0) {
       if (0 < localInt16) goto LAB_18089638e;
-      if ((0 < localInt4) && (uVar6 != 0)) {
+      if ((0 < counter) && (uVar6 != 0)) {
                     // WARNING: Subroutine does not return
         utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),uVar6,&utilityMemoryDataBuffer,0x100,1);
       }
       localUInt = 0;
       localUInt = 0;
       uVar6 = 0;
-      localInt4 = 0;
+      counter = 0;
     }
     if (localInt16 < 0) {
       lVar5 = (longlong)-localInt16;
@@ -9483,10 +9483,10 @@ LAB_1808962af:
       }
     }
     localUInt = localUInt & 0xffffffff00000000;
-    if (localInt4 < 0) {
-      localInt4 = -localInt4;
+    if (counter < 0) {
+      counter = -counter;
     }
-    if (localInt4 != 0) {
+    if (counter != 0) {
       FUN_18084c470(&localUInt,0);
     }
   }
@@ -9502,8 +9502,8 @@ LAB_18089638e:
       returnValue0 = (ulonglong)uVar8;
     } while ((int)uVar8 < *(int *)(resourceHandle + 0x20));
   }
-  localInt4 = FUN_180744cc0(resourceHandle + 0x70);
-  if ((localInt4 == 0) && (localInt4 = FUN_180895130(resourceHandle + 0x80), localInt4 == 0)) {
+  counter = FUN_180744cc0(resourceHandle + 0x70);
+  if ((counter == 0) && (counter = FUN_180895130(resourceHandle + 0x80), counter == 0)) {
     *(uint32 *)(resourceHandle + 0x90) = 0xffffffff;
     *(uint32 *)(resourceHandle + 0x94) = 0;
   }
@@ -9669,19 +9669,19 @@ int FUN_180896b20(longlong resourceHandle,longlong memorySize,int operationFlags
   uint32 returnValue;
   uint32 localUInt2;
   int localInt3;
-  int localInt4;
+  int counter;
   
   returnValue = *(uint32 *)(resourceHandle + 0x14);
   localUInt2 = *(uint32 *)(resourceHandle + 0x10);
   localInt3 = executeSystemCommand(memorySize,operationFlags,&unknown_180986470);
-  localInt4 = executeSystemCommand(localInt3 + memorySize,operationFlags - localInt3,&g_securityTokenBuffer);
-  localInt3 = localInt3 + localInt4;
-  localInt4 = func_0x00018074b7d0(localInt3 + memorySize,operationFlags - localInt3,localUInt2);
-  localInt3 = localInt3 + localInt4;
-  localInt4 = executeSystemCommand(localInt3 + memorySize,operationFlags - localInt3,&g_securityTokenBuffer);
-  localInt3 = localInt3 + localInt4;
-  localInt4 = func_0x00018074b800(localInt3 + memorySize,operationFlags - localInt3,returnValue);
-  return localInt4 + localInt3;
+  counter = executeSystemCommand(localInt3 + memorySize,operationFlags - localInt3,&g_securityTokenBuffer);
+  localInt3 = localInt3 + counter;
+  counter = func_0x00018074b7d0(localInt3 + memorySize,operationFlags - localInt3,localUInt2);
+  localInt3 = localInt3 + counter;
+  counter = executeSystemCommand(localInt3 + memorySize,operationFlags - localInt3,&g_securityTokenBuffer);
+  localInt3 = localInt3 + counter;
+  counter = func_0x00018074b800(localInt3 + memorySize,operationFlags - localInt3,returnValue);
+  return counter + localInt3;
 }
 
 
@@ -9714,7 +9714,7 @@ void FUN_180896c60(uint64 resourceHandle,longlong memorySize,uint operationFlags
   longlong localLong1;
   longlong localLong2;
   int localInt3;
-  int localInt4;
+  int counter;
   int iVar5;
   data **ppuVar6;
   int iVar7;
@@ -9803,8 +9803,8 @@ LAB_180896ce3:
         localInt = 0;
         localPtr = &unknown_180982cc0;
         localUInt = CONCAT44(localUInt._4_4_,operationFlags);
-        localInt4 = FUN_180897520(resourceHandle,&localPtr);
-        if (localInt4 != 0) goto FUN_1808974f4;
+        counter = FUN_180897520(resourceHandle,&localPtr);
+        if (counter != 0) goto FUN_1808974f4;
         iVar7 = iVar7 + 1;
       } while (iVar7 < localInt3);
     }
@@ -9823,7 +9823,7 @@ LAB_180896ce3:
         localUInt = *(uint32 *)(localLong1 + 0x18);
         localUInt = *(uint32 *)(localLong1 + 0x1c);
         localPtr = &unknown_1809830b8;
-        localInt4 = iVar5 + 1;
+        counter = iVar5 + 1;
         localUInt = localUInt;
         localInt = iVar7;
         localUInt = operationFlags;
@@ -9847,7 +9847,7 @@ LAB_180896ce3:
           iVar5 = FUN_180897520(resourceHandle,&localPtr);
           if (iVar5 != 0) goto FUN_1808974f4;
         }
-        iVar5 = localInt4;
+        iVar5 = counter;
         if (*(char *)(localLong2 + 0x29) != '\0') {
           localInt = 0;
           localPtr = &unknown_1809843d0;
@@ -9870,7 +9870,7 @@ LAB_180896ce3:
         localUInt = *(uint32 *)(localLong1 + 0x18);
         localUInt = *(uint32 *)(localLong1 + 0x1c);
         localPtr = &unknown_1809830b8;
-        localInt4 = iVar5 + 1;
+        counter = iVar5 + 1;
         localUInt = localUInt;
         localInt = iVar7;
         localUInt = operationFlags;
@@ -9894,7 +9894,7 @@ LAB_180896ce3:
           iVar5 = FUN_180897520(resourceHandle,&localPtr);
           if (iVar5 != 0) goto FUN_1808974f4;
         }
-        iVar5 = localInt4;
+        iVar5 = counter;
         if (*(char *)(localLong2 + 0x29) != '\0') {
           localInt = 0;
           localPtr = &unknown_1809843d0;
@@ -9917,7 +9917,7 @@ LAB_180896ce3:
         localUInt = *(uint32 *)(localLong1 + 0x18);
         localUInt = *(uint32 *)(localLong1 + 0x1c);
         localPtr = &unknown_1809830b8;
-        localInt4 = iVar5 + 1;
+        counter = iVar5 + 1;
         localUInt = localUInt;
         localInt = iVar7;
         localUInt = operationFlags;
@@ -9941,7 +9941,7 @@ LAB_180896ce3:
           iVar5 = FUN_180897520(resourceHandle,&localPtr);
           if (iVar5 != 0) goto FUN_1808974f4;
         }
-        iVar5 = localInt4;
+        iVar5 = counter;
         if (*(char *)(localLong2 + 0x29) != '\0') {
           localInt = 0;
           localPtr = &unknown_1809843d0;
@@ -9964,7 +9964,7 @@ LAB_180896ce3:
         localUInt = *(uint32 *)(localLong1 + 0x18);
         localUInt = *(uint32 *)(localLong1 + 0x1c);
         localPtr = &unknown_1809830b8;
-        localInt4 = iVar5 + 1;
+        counter = iVar5 + 1;
         localUInt = localUInt;
         localInt = iVar7;
         localUInt = operationFlags;
@@ -9988,7 +9988,7 @@ LAB_180896ce3:
           iVar5 = FUN_180897520(resourceHandle,&localPtr);
           if (iVar5 != 0) goto FUN_1808974f4;
         }
-        iVar5 = localInt4;
+        iVar5 = counter;
         if (*(char *)(localLong2 + 0x29) != '\0') {
           localInt = 0;
           localPtr = &unknown_1809843d0;
@@ -10014,14 +10014,14 @@ LAB_180896ce3:
         localUInt = *(uint32 *)(localLong1 + 0x18);
         localUInt = *(uint32 *)(localLong1 + 0x1c);
         localPtr = &unknown_180983238;
-        localInt4 = iVar5 + 1;
+        counter = iVar5 + 1;
         localUInt = localUInt;
         localInt = iVar7;
         localUInt = operationFlags;
         localInt = iVar5;
         iVar5 = FUN_180897520(resourceHandle,&localPtr);
         if ((iVar5 != 0) || (iVar7 = FUN_18088cbb0(localLong2,afStack_304,0), iVar7 != 0)) break;
-        iVar5 = localInt4;
+        iVar5 = counter;
         if (afStack_304[0] != 1.0) {
           localUInt = CONCAT44(localUInt._4_4_,afStack_304[0]);
           localPtr = &unknown_1809844c8;
@@ -11356,7 +11356,7 @@ void FUN_180897b40(longlong *resourceHandle,longlong memorySize,uint32 operation
   longlong localLong1;
   longlong localLong2;
   int localInt3;
-  int localInt4;
+  int counter;
   int iVar5;
   int iVar6;
   int iVar7;
@@ -11378,7 +11378,7 @@ void FUN_180897b40(longlong *resourceHandle,longlong memorySize,uint32 operation
   ulonglong localUInt;
   
   localUInt = g_securityTokenMask ^ (ulonglong)localBuffer;
-  localInt4 = 0;
+  counter = 0;
   iVar7 = 0;
   do {
     if ((iVar7 < 0) || (*(int *)(memorySize + 0x1a8) <= iVar7)) goto LAB_180897ce8;
@@ -11396,16 +11396,16 @@ LAB_180897ce8:
       localUInt = *(uint32 *)(localLong1 + 0x18);
       localUInt = *(uint32 *)(localLong1 + 0x1c);
       localUInt = 0;
-      localInt3 = localInt4 + 1;
+      localInt3 = counter + 1;
       localPtr = &unknown_180982f38;
       localUInt = localBuffer[0];
       localUInt = operationFlags;
-      localInt = localInt4;
-      localInt4 = FUN_180897520(resourceHandle,&localPtr);
-      if (localInt4 != 0) goto LAB_180897ce8;
+      localInt = counter;
+      counter = FUN_180897520(resourceHandle,&localPtr);
+      if (counter != 0) goto LAB_180897ce8;
       iVar6 = 0;
       iVar5 = func_0x0001808c7ed0(*(uint64 *)(localLong1 + 0xd0));
-      localInt4 = localInt3;
+      counter = localInt3;
       if (0 < iVar5) {
         do {
           localUInt = 0;
@@ -11903,7 +11903,7 @@ void FUN_1808986b0(longlong resourceHandle,uint64 memorySize)
   int localInt1;
   int status;
   int localInt3;
-  int localInt4;
+  int counter;
   uint uVar5;
   int iVar6;
   
@@ -11913,10 +11913,10 @@ void FUN_1808986b0(longlong resourceHandle,uint64 memorySize)
   localInt3 = (*(uint *)(resourceHandle + 0x34) ^ uVar5) - uVar5;
   iVar6 = localInt1 + status;
   if (localInt3 < iVar6) {
-    localInt4 = (int)((float)localInt3 * 1.5);
+    counter = (int)((float)localInt3 * 1.5);
     localInt3 = iVar6;
-    if (iVar6 <= localInt4) {
-      localInt3 = localInt4;
+    if (iVar6 <= counter) {
+      localInt3 = counter;
     }
     if (localInt3 < 0x40) {
       localInt3 = 0x40;
@@ -12508,7 +12508,7 @@ uint32 FUN_180898c86(void)
   byte *plocalUInt2;
   byte *puVar3;
   int unaff_EBX;
-  int localInt4;
+  int counter;
   longlong unaff_RBP;
   byte *unaff_RSI;
   byte *puVar5;
@@ -12516,9 +12516,9 @@ uint32 FUN_180898c86(void)
   int unaff_R15D;
   int *in_stack_00000078;
   
-  localInt4 = (int)unaff_RBP;
-  if (localInt4 != 0) {
-    if (unaff_R15D < localInt4) {
+  counter = (int)unaff_RBP;
+  if (counter != 0) {
+    if (unaff_R15D < counter) {
       puVar5 = unaff_RSI + unaff_R15D;
       plocalUInt2 = puVar5 + -1;
       if (unaff_RSI < plocalUInt2) {
@@ -12545,7 +12545,7 @@ uint32 FUN_180898c86(void)
           plocalUInt2 = plocalUInt2 + -1;
         } while (puVar5 < plocalUInt2);
       }
-      plocalUInt2 = puVar3 + (longlong)(localInt4 - unaff_EBX) + -1;
+      plocalUInt2 = puVar3 + (longlong)(counter - unaff_EBX) + -1;
       if (puVar3 < plocalUInt2) {
         do {
           returnValue = *puVar3;
@@ -13331,25 +13331,25 @@ uint64 FUN_180899816(void)
   uint64 localUInt2;
   uint uVar3;
   longlong *baseRegister;
-  int localInt4;
+  int counter;
   int in_stack_00000040;
   
   if (in_stack_00000040 == 0) {
     FUN_180840270();
   }
   else {
-    localInt4 = in_stack_00000040 + 1;
+    counter = in_stack_00000040 + 1;
     uVar3 = (int)*(uint *)((longlong)baseRegister + 0xc) >> 0x1f;
-    if (((int)((*(uint *)((longlong)baseRegister + 0xc) ^ uVar3) - uVar3) < localInt4) &&
+    if (((int)((*(uint *)((longlong)baseRegister + 0xc) ^ uVar3) - uVar3) < counter) &&
        (localUInt2 = FUN_180849030(), (int)localUInt2 != 0)) {
       return localUInt2;
     }
     localInt1 = (int)baseRegister[1];
-    if (localInt1 < localInt4) {
+    if (localInt1 < counter) {
                     // WARNING: Subroutine does not return
-      memset((longlong)localInt1 + *baseRegister,0,(longlong)(localInt4 - localInt1));
+      memset((longlong)localInt1 + *baseRegister,0,(longlong)(counter - localInt1));
     }
-    *(int *)(baseRegister + 1) = localInt4;
+    *(int *)(baseRegister + 1) = counter;
     localUInt2 = FUN_1808aed00();
     if ((int)localUInt2 != 0) {
       return localUInt2;
@@ -13727,7 +13727,7 @@ void FUN_180899ae6(uint64 *resourceHandle)
   uint returnValue;
   uint64 *plocalUInt2;
   int localInt3;
-  int localInt4;
+  int counter;
   longlong baseRegister;
   longlong unaff_RBP;
   longlong unaff_RSI;
@@ -13781,21 +13781,21 @@ void FUN_180899ae6(uint64 *resourceHandle)
       plocalUInt2 = *(uint64 **)(baseRegister + 8);
       localInt3 = *(int *)(unaff_R14 + 0x78);
       *(int *)(unaff_RBP + 0x20) = localInt3;
-      localInt4 = (**(code **)*plocalUInt2)(plocalUInt2,unaff_RBP + 0x20,4);
-      if (localInt4 == 0) {
+      counter = (**(code **)*plocalUInt2)(plocalUInt2,unaff_RBP + 0x20,4);
+      if (counter == 0) {
         if (0 < localInt3) {
           do {
             lVar6 = *(longlong *)(unaff_R14 + 0x70);
             plocalUInt2 = *(uint64 **)(baseRegister + 8);
             *(uint32 *)(unaff_RBP + 0x20) = *(uint32 *)(lVar6 + unaff_RDI * 8);
-            localInt4 = (**(code **)*plocalUInt2)(plocalUInt2,unaff_RBP + 0x20,4);
-            if (localInt4 != 0) {
+            counter = (**(code **)*plocalUInt2)(plocalUInt2,unaff_RBP + 0x20,4);
+            if (counter != 0) {
               return;
             }
             plocalUInt2 = *(uint64 **)(baseRegister + 8);
             *(uint32 *)(unaff_RBP + 0x20) = *(uint32 *)(lVar6 + 4 + unaff_RDI * 8);
-            localInt4 = (**(code **)*plocalUInt2)(plocalUInt2,unaff_RBP + 0x20,4);
-            if (localInt4 != 0) {
+            counter = (**(code **)*plocalUInt2)(plocalUInt2,unaff_RBP + 0x20,4);
+            if (counter != 0) {
               return;
             }
             unaff_RDI = unaff_RDI + 1;
@@ -14706,7 +14706,7 @@ ulonglong FUN_18089a880(longlong resourceHandle,uint64 *memorySize)
   ulonglong returnValue;
   longlong localLong2;
   int localInt3;
-  int localInt4;
+  int counter;
   uint *puVar5;
   int aiStackX_8 [2];
   uint auStackX_10 [2];
@@ -14714,12 +14714,12 @@ ulonglong FUN_18089a880(longlong resourceHandle,uint64 *memorySize)
   uint auStackX_20 [2];
   uint localBuffer [6];
   
-  localInt4 = *(int *)(memorySize + 1);
-  aiStackX_8[0] = localInt4;
+  counter = *(int *)(memorySize + 1);
+  aiStackX_8[0] = counter;
   returnValue = (**(code **)**(uint64 **)(resourceHandle + 8))(*(uint64 **)(resourceHandle + 8),aiStackX_8,4);
   if ((int)returnValue == 0) {
     puVar5 = (uint *)*memorySize;
-    for (; 0 < localInt4; localInt4 = localInt4 + localInt3) {
+    for (; 0 < counter; counter = counter + localInt3) {
       auStackX_10[0] = *puVar5;
       returnValue = (**(code **)**(uint64 **)(resourceHandle + 8))
                         (*(uint64 **)(resourceHandle + 8),auStackX_10,4);
@@ -14774,7 +14774,7 @@ ulonglong FUN_18089a880(longlong resourceHandle,uint64 *memorySize)
       }
       puVar5 = (uint *)((longlong)puVar5 + localLong2);
     }
-    returnValue = (ulonglong)(-(uint)(localInt4 != 0) & 0x1c);
+    returnValue = (ulonglong)(-(uint)(counter != 0) & 0x1c);
   }
   return returnValue;
 }
@@ -16782,7 +16782,7 @@ void FUN_18089bc10(longlong resourceHandle,uint64 *memorySize)
   longlong localLong1;
   uint64 localUInt2;
   uint uVar3;
-  int localInt4;
+  int counter;
   int iVar5;
   uint uVar6;
   uint uVar7;
@@ -16790,18 +16790,18 @@ void FUN_18089bc10(longlong resourceHandle,uint64 *memorySize)
   uint auStackX_20 [2];
   byte localBuffer [32];
   
-  localInt4 = FUN_1808ddc20(memorySize,localBuffer,0,0x2050414d);
-  if ((localInt4 == 0) && (localInt4 = FUN_180899360(memorySize,resourceHandle + 0x10), localInt4 == 0)) {
+  counter = FUN_1808ddc20(memorySize,localBuffer,0,0x2050414d);
+  if ((counter == 0) && (counter = FUN_180899360(memorySize,resourceHandle + 0x10), counter == 0)) {
     auStackX_20[0] = 0;
-    localInt4 = FUN_1808afe30(*memorySize,auStackX_20);
+    counter = FUN_1808afe30(*memorySize,auStackX_20);
     uVar3 = auStackX_20[0];
-    if (localInt4 == 0) {
+    if (counter == 0) {
       uVar6 = auStackX_20[0] & 1;
       uVar7 = auStackX_20[0] >> 1;
-      localInt4 = FUN_1808af700((longlong *)(resourceHandle + 0x20),uVar7);
-      if (localInt4 == 0) {
+      counter = FUN_1808af700((longlong *)(resourceHandle + 0x20),uVar7);
+      if (counter == 0) {
         auStackX_18[0] = 0;
-        localInt4 = 0;
+        counter = 0;
         if (uVar3 >> 1 != 0) {
           do {
             iVar5 = FUN_1808dde10(memorySize,auStackX_18[0]);
@@ -16810,7 +16810,7 @@ void FUN_18089bc10(longlong resourceHandle,uint64 *memorySize)
             }
             if (*(int *)(memorySize[1] + 0x18) == 0) {
               localUInt2 = *memorySize;
-              localLong1 = *(longlong *)(resourceHandle + 0x20) + (longlong)localInt4 * 8;
+              localLong1 = *(longlong *)(resourceHandle + 0x20) + (longlong)counter * 8;
               iVar5 = FUN_1808995c0(localUInt2,localLong1);
               if (iVar5 != 0) {
                 return;
@@ -16827,9 +16827,9 @@ void FUN_18089bc10(longlong resourceHandle,uint64 *memorySize)
             if (iVar5 != 0) {
               return;
             }
-            localInt4 = localInt4 + 1;
+            counter = counter + 1;
             auStackX_18[0] = auStackX_18[0] & -uVar6;
-          } while (localInt4 < (int)uVar7);
+          } while (counter < (int)uVar7);
         }
                     // WARNING: Subroutine does not return
         FUN_1808ddf80(memorySize,localBuffer);
@@ -16849,7 +16849,7 @@ void FUN_18089bc5a(void)
   longlong localLong1;
   uint64 localUInt2;
   uint uVar3;
-  int localInt4;
+  int counter;
   int iVar5;
   longlong baseRegister;
   uint64 *unaff_RDI;
@@ -16857,13 +16857,13 @@ void FUN_18089bc5a(void)
   uint uStack0000000000000088;
   
   uStack0000000000000088 = 0;
-  localInt4 = FUN_1808afe30();
+  counter = FUN_1808afe30();
   uVar3 = uStack0000000000000088;
-  if (localInt4 == 0) {
+  if (counter == 0) {
     uVar6 = uStack0000000000000088 >> 1;
-    localInt4 = FUN_1808af700((longlong *)(baseRegister + 0x20),uVar6);
-    if (localInt4 == 0) {
-      localInt4 = 0;
+    counter = FUN_1808af700((longlong *)(baseRegister + 0x20),uVar6);
+    if (counter == 0) {
+      counter = 0;
       if (uVar3 >> 1 != 0) {
         do {
           iVar5 = FUN_1808dde10();
@@ -16872,7 +16872,7 @@ void FUN_18089bc5a(void)
           }
           if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
             localUInt2 = *unaff_RDI;
-            localLong1 = *(longlong *)(baseRegister + 0x20) + (longlong)localInt4 * 8;
+            localLong1 = *(longlong *)(baseRegister + 0x20) + (longlong)counter * 8;
             iVar5 = FUN_1808995c0(localUInt2,localLong1);
             if (iVar5 != 0) {
               return;
@@ -16889,8 +16889,8 @@ void FUN_18089bc5a(void)
           if (iVar5 != 0) {
             return;
           }
-          localInt4 = localInt4 + 1;
-        } while (localInt4 < (int)uVar6);
+          counter = counter + 1;
+        } while (counter < (int)uVar6);
       }
                     // WARNING: Subroutine does not return
       FUN_1808ddf80();
@@ -19691,7 +19691,7 @@ ulonglong FUN_18089cc80(longlong resourceHandle,longlong *memorySize)
   longlong *plocalLong1;
   uint localUInt2;
   ulonglong uVar3;
-  int localInt4;
+  int counter;
   uint auStackX_18 [2];
   uint auStackX_20 [2];
   byte localBuffer [32];
@@ -19738,15 +19738,15 @@ LAB_18089cd46:
     return uVar3;
   }
 LAB_18089cd76:
-  localInt4 = 0;
+  counter = 0;
   if (0 < (int)auStackX_18[0]) {
     do {
-      uVar3 = FUN_1808acb90(resourceHandle,memorySize,localInt4);
+      uVar3 = FUN_1808acb90(resourceHandle,memorySize,counter);
       if ((int)uVar3 != 0) {
         return uVar3;
       }
-      localInt4 = localInt4 + 1;
-    } while (localInt4 < (int)auStackX_18[0]);
+      counter = counter + 1;
+    } while (counter < (int)auStackX_18[0]);
   }
   if (*(uint *)(memorySize + 8) < 0x6e) {
     localUInt2 = 0;
@@ -19770,7 +19770,7 @@ ulonglong FUN_18089ccb9(void)
   uint localUInt2;
   longlong inputRegister;
   ulonglong uVar3;
-  int localInt4;
+  int counter;
   longlong unaff_RBP;
   longlong *unaff_RSI;
   uint in_stack_00000080;
@@ -19813,15 +19813,15 @@ LAB_18089cd46:
     return uVar3;
   }
 LAB_18089cd76:
-  localInt4 = 0;
+  counter = 0;
   if (0 < (int)in_stack_00000080) {
     do {
       uVar3 = FUN_1808acb90();
       if ((int)uVar3 != 0) {
         return uVar3;
       }
-      localInt4 = localInt4 + 1;
-    } while (localInt4 < (int)in_stack_00000080);
+      counter = counter + 1;
+    } while (counter < (int)in_stack_00000080);
   }
   if (*(uint *)(unaff_RSI + 8) < 0x6e) {
     localUInt2 = 0;
@@ -39992,7 +39992,7 @@ void Unwind_180905e40(uint64 resourceHandle,longlong memorySize)
   longlong *plocalLong1;
   int *pstatus;
   longlong *pindex;
-  int localInt4;
+  int counter;
   longlong lVar5;
   longlong lVar6;
   longlong lVar7;
@@ -40012,10 +40012,10 @@ void Unwind_180905e40(uint64 resourceHandle,longlong memorySize)
     lVar6 = *(longlong *)(memorySize + 0x40);
     LOCK();
     pstatus = (int *)(lVar5 + 0x3530);
-    localInt4 = *pstatus;
+    counter = *pstatus;
     *pstatus = *pstatus + -0x80000000;
     UNLOCK();
-    if (localInt4 == 0) {
+    if (counter == 0) {
       lVar8 = *(longlong *)(lVar6 + 0x28);
       do {
         *(longlong *)(lVar5 + 0x3538) = lVar8;
@@ -40034,11 +40034,11 @@ void Unwind_180905e40(uint64 resourceHandle,longlong memorySize)
         }
         LOCK();
         pstatus = (int *)(lVar5 + 0x3530);
-        localInt4 = *pstatus;
+        counter = *pstatus;
         *pstatus = *pstatus + 0x7fffffff;
         UNLOCK();
         lVar8 = lVar7;
-      } while (localInt4 == 1);
+      } while (counter == 1);
     }
   }
   return;
