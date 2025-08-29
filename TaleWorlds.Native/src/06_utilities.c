@@ -8949,39 +8949,40 @@ uint64 FUN_180895e00(longlong resourceHandle,uint64 memorySize,longlong operatio
 
 
 
+// 资源分配函数 - 分配并初始化资源
 uint64
-FUN_180895e19(int resourceHandle,int memorySize,uint64 operationFlags,uint64 callbackFunction,uint64 param_5)
+allocateResource(int resourceHandle, int memorySize, uint64 operationFlags, uint64 callbackFunction, uint64 param_5)
 
 {
-  uint64 localUInt1;
-  uint64 *plocalUInt2;
+  uint64 allocationResult;
+  uint64 *resourceDataPtr;
   uint32 *baseRegister;
-  uint32 unaff_EBP;
-  longlong unaff_RDI;
-  uint64 uStackX_20;
+  uint32 registerValue;
+  longlong resourceManagerPtr;
+  uint64 stackValue;
   
   if (memorySize < resourceHandle) {
     memorySize = resourceHandle;
   }
-  localUInt1 = FUN_1807d3f50(unaff_RDI + 0x10,memorySize);
-  if ((int)localUInt1 == 0) {
-    plocalUInt2 = (uint64 *)
-             ((longlong)*(int *)(unaff_RDI + 0x18) * 0x10 + *(longlong *)(unaff_RDI + 0x10));
-    *plocalUInt2 = uStackX_20;
-    plocalUInt2[1] = param_5;
-    *(int *)(unaff_RDI + 0x18) = *(int *)(unaff_RDI + 0x18) + 1;
-    *baseRegister = unaff_EBP;
-    *(int *)(unaff_RDI + 0x24) = *(int *)(unaff_RDI + 0x24) + 1;
-    localUInt1 = 0;
+  allocationResult = allocateMemory(resourceManagerPtr + 0x10, memorySize);
+  if ((int)allocationResult == 0) {
+    resourceDataPtr = (uint64 *)
+             ((longlong)*(int *)(resourceManagerPtr + 0x18) * 0x10 + *(longlong *)(resourceManagerPtr + 0x10));
+    *resourceDataPtr = stackValue;
+    resourceDataPtr[1] = param_5;
+    *(int *)(resourceManagerPtr + 0x18) = *(int *)(resourceManagerPtr + 0x18) + 1;
+    *baseRegister = registerValue;
+    *(int *)(resourceManagerPtr + 0x24) = *(int *)(resourceManagerPtr + 0x24) + 1;
+    allocationResult = 0;
   }
-  return localUInt1;
+  return allocationResult;
 }
 
 
 
 
-// 函数: void FUN_180895e7e(void)
-void FUN_180895e7e(void)
+// 空函数 - 占位符函数
+void emptyFunction(void)
 
 {
   return;
@@ -8989,16 +8990,17 @@ void FUN_180895e7e(void)
 
 
 
-uint32 FUN_180895ef0(uint64 resourceHandle)
+// 获取资源状态函数 - 获取指定资源的状态信息
+uint32 getResourceStatus(uint64 resourceHandle)
 
 {
-  int localInt1;
-  uint32 auStackX_10 [6];
+  int operationResult;
+  uint32 statusBuffer [6];
   
-  auStackX_10[0] = 0;
-  localInt1 = func_0x00018088c500(resourceHandle,auStackX_10);
-  if (localInt1 == 0) {
-    return auStackX_10[0];
+  statusBuffer[0] = 0;
+  operationResult = queryResourceStatus(resourceHandle, statusBuffer);
+  if (operationResult == 0) {
+    return statusBuffer[0];
   }
   return 0;
 }
