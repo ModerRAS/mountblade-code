@@ -222,7 +222,7 @@ int initialize_model_resource_manager(void)
   resource_buffer_6 = 0;
   resource_type_6 = 4;
   strcpy_s(&resource_buffer_6, RESOURCE_BUFFER_SIZE, &string_source_007, string_length_parameter, 0xfffffffffffffffe);
-  initialization_result = execute_function(callback_function_018);
+  initialization_result = execute_function(model_resource_manager_init_function);
   return (initialization_result != 0) - 1;
 }
 int initialize_animation_resource_manager(void)
@@ -234,7 +234,7 @@ int initialize_animation_resource_manager(void)
   data_180bf6698 = 0;
   int resource_type = 5;
   strcpy_s(&g_system_name_buffer, RESOURCE_BUFFER_SIZE, &g_system_name_string, string_length_parameter, 0xfffffffffffffffe);
-  initialization_result = execute_function(callback_function_018);
+  initialization_result = execute_function(animation_resource_manager_init_function);
   return (initialization_result != 0) - 1;
 }
 // 初始化资源管理器8
@@ -247,7 +247,7 @@ int initialize_particle_resource_manager(void)
   data_180bf66c8 = 0;
   int resource_type = 5;
   strcpy_s(&g_system_version_buffer, RESOURCE_BUFFER_SIZE, &g_system_version_string, string_length_parameter, 0xfffffffffffffffe);
-  initialization_result = execute_function(callback_function_019);
+  initialization_result = execute_function(particle_resource_manager_init_function);
   return (initialization_result != 0) - 1;
 }
 // 初始化字符串缓冲区1
