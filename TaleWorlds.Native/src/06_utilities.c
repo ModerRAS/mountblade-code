@@ -1390,29 +1390,29 @@ data serializationTypeData;
 data FUN_1809419e0;
 data serializationObjectPool;
 data serializationReferenceTable;
-data unknown_180a01604;
-data unknown_180a01610;
+data uiLayoutData;
+data uiStyleData;
 data DAT_180a01440;
 data DAT_180d48d38;
-data unknown_180a01668;
+data uiWidgetTree;
 data eventHandlerTable;
-data unknown_180a01638;
-data unknown_180a01650;
+data uiAnimationData;
+data uiThemeData;
 data DAT_180d48d30;
 data *PTR_?id@?$codecvt@DDU_Mbstatet@@@std@@2V0locale@2@A_180944718;
-data unknown_180bd8990;
-data unknown_180a01630;
-data unknown_18009ee10;
-data unknown_18009edf0;
-data unknown_1800a1660;
-data unknown_180a01620;
-data unknown_180a016e0;
-data unknown_180a02740;
-data unknown_180a01748;
-data unknown_180a02710;
-data unknown_180a02718;
-data unknown_180a02728;
-data unknown_180a028c8;
+data inputDeviceManager;
+data inputMappingTable;
+data inputStateBuffer;
+data inputEventQueue;
+data inputBindingData;
+data inputConfigData;
+data audioDeviceManager;
+data audioStreamData;
+data audioBufferPool;
+data audioCodecData;
+data audioEffectChain;
+data audioMixerData;
+data videoDecoderData;
 
 // 函数: data FUN_180941a30;
 data FUN_180941a30;
@@ -1422,20 +1422,20 @@ data DAT_180d49248;
 data DAT_180d49240;
 data DAT_180d49258;
 data DAT_180d4925c;
-data unknown_180a02c10;
+data videoStreamBuffer;
 
 // 函数: data FUN_180941ad0;
 data FUN_180941ad0;
-data unknown_180a07328;
-data unknown_180a07370;
-data unknown_180a18a00;
-data unknown_180a18a20;
-data unknown_180a18a40;
-data unknown_180a18a58;
-data unknown_180a18a78;
+data videoFrameData;
+data videoCodecContext;
+data videoPlaybackData;
+data videoSyncData;
+data cameraDeviceData;
+data cameraFrameBuffer;
+data cameraSettingsData;
 data unknown_1801527b4;
-data unknown_180a07340;
-data unknown_180a07378;
+data cameraStreamData;
+data cameraFormatData;
 longlong unknown_180c961a8;
 uint unknown_180d48d44;
 double unknown_180d48d48;
@@ -4612,7 +4612,7 @@ void decompress_file(longlong resourceHandle,longlong memorySize)
 
 
 
-uint64 FUN_180891d40(longlong resourceHandle,longlong memorySize)
+uint64 calculate_file_hash(longlong resourceHandle,longlong memorySize)
 
 {
   uint64 localUInt1;
@@ -9312,7 +9312,7 @@ ulonglong FUN_180896140(longlong resourceHandle)
               localUInt = *(uint32 *)(lVar5 + 0xc + localLong15 * 0x10);
               localUInt = 0;
               localUInt = 0x3f800000;
-              FUN_180891d40(&localPtr,*(uint64 *)(resourceHandle + 0x58));
+              calculate_file_hash(&localPtr,*(uint64 *)(resourceHandle + 0x58));
               localPtr = &unknown_180984358;
               localUInt = *(uint32 *)(lVar5 + 0xc + localLong15 * 0x10);
               localUInt = 0;
@@ -50321,7 +50321,7 @@ void Unwind_180908f30(uint64 resourceHandle,longlong memorySize)
   
   localLong3 = *(longlong *)(memorySize + 0x40);
   puVar4 = (uint64 *)(localLong3 + -0xa0);
-  *puVar4 = &unknown_180a01668;
+  *puVar4 = &uiWidgetTree;
   if ((*(longlong *)(localLong3 + -0x20) != 0) && (**(longlong **)(localLong3 + -0x88) == localLong3 + -0x30)) {
     localUInt1 = *(uint64 *)(localLong3 + -0x10);
     localLong2 = *(longlong *)(localLong3 + -0x18);
@@ -50364,7 +50364,7 @@ void Unwind_180908f90(uint64 resourceHandle,longlong memorySize)
   plocalLong1 = *(longlong **)(memorySize + 0x38);
   plocalLong1 = *(longlong **)((longlong)*(int *)(*plocalLong1 + 4) + 0x48 + (longlong)plocalLong1);
   if (plocalLong1 != (longlong *)0x0) {
-    if (*(code **)(*plocalLong1 + 0x10) != (code *)&unknown_18009ee10) {
+    if (*(code **)(*plocalLong1 + 0x10) != (code *)&inputStateBuffer) {
       (**(code **)(*plocalLong1 + 0x10))();
       return;
     }
@@ -50387,7 +50387,7 @@ void Unwind_180908fa0(uint64 resourceHandle,longlong memorySize)
             ((longlong)*(int *)(**(longlong **)(memorySize + 0x38) + 4) + 0x48 +
             (longlong)*(longlong **)(memorySize + 0x38));
   if (plocalLong1 != (longlong *)0x0) {
-    if (*(code **)(*plocalLong1 + 0x10) != (code *)&unknown_18009ee10) {
+    if (*(code **)(*plocalLong1 + 0x10) != (code *)&inputStateBuffer) {
       (**(code **)(*plocalLong1 + 0x10))();
       return;
     }
@@ -50410,7 +50410,7 @@ void Unwind_180908fb0(uint64 resourceHandle,longlong memorySize)
             ((longlong)*(int *)(*(longlong *)**(longlong **)(memorySize + 0x40) + 4) + 0x48 +
             **(longlong **)(memorySize + 0x40));
   if (plocalLong1 != (longlong *)0x0) {
-    if (*(code **)(*plocalLong1 + 0x10) != (code *)&unknown_18009ee10) {
+    if (*(code **)(*plocalLong1 + 0x10) != (code *)&inputStateBuffer) {
       (**(code **)(*plocalLong1 + 0x10))();
       return;
     }
@@ -50452,7 +50452,7 @@ void Unwind_180909010(uint64 resourceHandle,longlong memorySize)
   
   localLong1 = memorySize + 0x128;
   *(data **)((longlong)*(int *)(*(longlong *)(memorySize + 0x80) + 4) + -0xa8 + localLong1) =
-       &unknown_180a01630;
+       &inputMappingTable;
   localInt2 = *(int *)(*(longlong *)(memorySize + 0x80) + 4);
   *(int *)((longlong)localInt2 + -0xac + localLong1) = localInt2 + -0xa8;
   FUN_18009fb60(memorySize + 0x88);
@@ -50496,7 +50496,7 @@ void Unwind_180909080(uint64 resourceHandle,longlong memorySize)
   uint64 *puVar3;
   
   puVar3 = (uint64 *)(memorySize + 0x88);
-  *puVar3 = &unknown_180a01668;
+  *puVar3 = &uiWidgetTree;
   if ((*(longlong *)(memorySize + 0x108) != 0) && (**(longlong **)(memorySize + 0xa0) == memorySize + 0xf8))
   {
     localUInt1 = *(uint64 *)(memorySize + 0x118);
@@ -58303,7 +58303,7 @@ void Unwind_18090c200(uint64 resourceHandle,longlong memorySize)
   
   localLong3 = *(longlong *)(memorySize + 0x70);
   puVar4 = (uint64 *)(localLong3 + -0xa0);
-  *puVar4 = &unknown_180a01668;
+  *puVar4 = &uiWidgetTree;
   if ((*(longlong *)(localLong3 + -0x20) != 0) && (**(longlong **)(localLong3 + -0x88) == localLong3 + -0x30)) {
     localUInt1 = *(uint64 *)(localLong3 + -0x10);
     localLong2 = *(longlong *)(localLong3 + -0x18);
@@ -58343,7 +58343,7 @@ void Unwind_18090c240(uint64 resourceHandle,longlong memorySize)
   
   localLong3 = *(longlong *)(memorySize + 0x40);
   puVar4 = (uint64 *)(localLong3 + -0xa0);
-  *puVar4 = &unknown_180a01668;
+  *puVar4 = &uiWidgetTree;
   if ((*(longlong *)(localLong3 + -0x20) != 0) && (**(longlong **)(localLong3 + -0x88) == localLong3 + -0x30)) {
     localUInt1 = *(uint64 *)(localLong3 + -0x10);
     localLong2 = *(longlong *)(localLong3 + -0x18);
@@ -58603,7 +58603,7 @@ void Unwind_18090c380(uint64 resourceHandle,longlong memorySize)
   
   localLong3 = *(longlong *)(memorySize + 0x40);
   puVar4 = (uint64 *)(localLong3 + 0x18);
-  *puVar4 = &unknown_180a01668;
+  *puVar4 = &uiWidgetTree;
   if ((*(longlong *)(localLong3 + 0x98) != 0) && (**(longlong **)(localLong3 + 0x30) == localLong3 + 0x88)) {
     localUInt1 = *(uint64 *)(localLong3 + 0xa8);
     localLong2 = *(longlong *)(localLong3 + 0xa0);
@@ -72209,7 +72209,7 @@ void Unwind_180910580(uint64 resourceHandle,longlong memorySize)
   
   localLong3 = *(longlong *)(memorySize + 0x68);
   puVar4 = (uint64 *)(localLong3 + 0x10);
-  *puVar4 = &unknown_180a01668;
+  *puVar4 = &uiWidgetTree;
   if ((*(longlong *)(localLong3 + 0x90) != 0) && (**(longlong **)(localLong3 + 0x28) == localLong3 + 0x80)) {
     localUInt1 = *(uint64 *)(localLong3 + 0xa0);
     localLong2 = *(longlong *)(localLong3 + 0x98);
@@ -72418,7 +72418,7 @@ void Unwind_1809106a0(uint64 resourceHandle,longlong memorySize)
   
   localLong3 = *(longlong *)(memorySize + 0x40);
   puVar4 = (uint64 *)(localLong3 + -0xa0);
-  *puVar4 = &unknown_180a01668;
+  *puVar4 = &uiWidgetTree;
   if ((*(longlong *)(localLong3 + -0x20) != 0) && (**(longlong **)(localLong3 + -0x88) == localLong3 + -0x30)) {
     localUInt1 = *(uint64 *)(localLong3 + -0x10);
     localLong2 = *(longlong *)(localLong3 + -0x18);
