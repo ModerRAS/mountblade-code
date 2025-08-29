@@ -205,7 +205,8 @@ int initialize_resource_manager_7(void)
   result_var = execute_function(FUN_1809418e0);
   return (result_var != 0) - 1;
 }
-int FUN_18002e760(void)
+// 初始化资源管理器8
+int initialize_resource_manager_8(void)
 {
   longlong result_var;
   undefined8 str_length_param;
@@ -217,7 +218,8 @@ int FUN_18002e760(void)
   result_var = execute_function(FUN_180941900);
   return (result_var != 0) - 1;
 }
-int FUN_18002e7d0(void)
+// 初始化字符串缓冲区1
+int initialize_string_buffer_1(void)
 {
   longlong result_var;
   undefined8 str_length_param;
@@ -229,7 +231,8 @@ int FUN_18002e7d0(void)
   result_var = execute_function(FUN_180941980);
   return (result_var != 0) - 1;
 }
-int FUN_18002e840(void)
+// 初始化字符串缓冲区2
+int initialize_string_buffer_2(void)
 {
   longlong result_var;
   undefined8 str_length_param;
@@ -241,7 +244,8 @@ int FUN_18002e840(void)
   result_var = execute_function(FUN_1809419a0);
   return (result_var != 0) - 1;
 }
-int FUN_18002e8b0(undefined8 handle_param,undefined8 flags_param,undefined8 mutex_attr_param,undefined8 mutex_type_param)
+// 初始化互斥锁1
+int initialize_mutex_1(undefined8 handle_param,undefined8 flags_param,undefined8 mutex_attr_param,undefined8 mutex_type_param)
 {
   longlong result_var;
   _Mtx_init_in_situ(0x180c91970,0x102,mutex_attr_param,mutex_type_param,0xfffffffffffffffe);

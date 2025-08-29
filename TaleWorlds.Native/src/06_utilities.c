@@ -4,26 +4,44 @@
 
 // 函数: int processBufferData(longlong bufferHandle)
 // 缓冲区数据处理函数
+// 全局缓冲区数据偏移量1
 undefined g_bufferDataOffset1;
+// 全局缓冲区数据偏移量2
 undefined g_bufferDataOffset2;
+// 全局缓冲区数据大小1
 undefined g_bufferDataSize1;
+// 全局缓冲区数据大小2
 undefined g_bufferDataSize2;
+// 全局缓冲区数据标志
 undefined g_bufferDataFlags;
+// 全局缓冲区数据校验和
 undefined g_bufferDataChecksum;
+// 缓冲区初始化状态标志
 undefined1 g_isBufferInitialized;
+// 缓冲区容量
 undefined g_bufferCapacity;
+// 缓冲区最大尺寸
 undefined g_bufferMaxSize;
+// 缓冲区锁定标志
 undefined1 g_bufferLockFlag;
+// 未知数据结构180a3c3e0
 undefined UNK_180a3c3e0;
+// 全局缓冲区句柄1
 undefined8 g_bufferHandle1;
+// 全局缓冲区句柄2
 undefined8 g_bufferHandle2;
+// 数据结构180bf5320
 undefined DAT_180bf5320;
+// 数据结构180bf5328
 undefined DAT_180bf5328;
+// 数据结构180bf5330
 undefined DAT_180bf5330;
+// 数据结构180bf5338
 undefined DAT_180bf5338;
 undefined UNK_18098bb30;
 
 // 函数: undefined FUN_180941590;
+// 系统初始化函数180941590
 undefined FUN_180941590;
 undefined DAT_180bf5770;
 undefined DAT_180bf5778;
