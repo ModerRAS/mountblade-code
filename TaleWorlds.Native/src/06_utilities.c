@@ -3879,8 +3879,8 @@ void initialize_file_system(void)
 
 
 
-// 函数: void FUN_180891062(void)
-void FUN_180891062(void)
+// 函数: void mount_file_system(void)
+void mount_file_system(void)
 
 {
                     // WARNING: Subroutine does not return

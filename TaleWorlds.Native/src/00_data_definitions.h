@@ -179,10 +179,10 @@ int initialize_resource_manager_3(void)
 }
 int initialize_resource_manager_4(void)
 {
-  long long init_result;
-  undefined8 str_len_param;
-  void* resource_pointer = &g_resource_data_buffer;
-  void* resource_buffer_pointer = &resource_buffer_4;
+  long long initialization_result;
+  undefined8 string_length_parameter;
+  void* resource_data_buffer_pointer = &g_resource_data_buffer;
+  void* resource_buffer_value_pointer = &resource_buffer_4;
   resource_buffer_4 = 0;
   resource_type_4 = 0xd;
   strcpy_s(&resource_buffer_4,0x10,&string_source_005,str_len_param,0xfffffffffffffffe);

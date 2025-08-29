@@ -1947,9 +1947,9 @@ void initialize_system_phase3(void)
   previous_node[10] = pcStackX_18;
   return;
 }
-// void FUN_18002d9e0(void)
+// void initialize_system_phase4(void)
 
-void FUN_18002d9e0(void)
+void initialize_system_phase4(void)
 
 {
   char is_initialized;
@@ -1994,9 +1994,9 @@ void FUN_18002d9e0(void)
   previous_node[10] = init_flag;
   return;
 }
-// void FUN_18002dae0(void)
+// void initialize_system_phase5(void)
 
-void FUN_18002dae0(void)
+void initialize_system_phase5(void)
 
 {
   char is_initialized;
