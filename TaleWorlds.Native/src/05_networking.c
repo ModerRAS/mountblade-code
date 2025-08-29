@@ -3920,12 +3920,12 @@ void NetworkTrackConnectionActivity(uint64_t socketHandle,ulonglong *dataBuffer)
   networkArrayStack_148[1] = 0;
   statusCode = networkInitializeSocket(socketHandle,networkArrayStack_148);
   if (statusCode == 0) {
-    if ((*(uint *)(networkArrayStack_148[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto LAB_180845652;
+    if ((*(uint *)(networkArrayStack_148[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto handle_socket_failure;
     resultCode = networkInitializeConnection(networkArrayStack_148 + 1);
-    if (resultCode == 0) goto LAB_1808456ba;
+    if (resultCode == 0) goto setup_connection;
   }
   else {
-LAB_1808456ba:
+setup_connection:
     resultCode = statusCode;
   }
   if ((resultCode == 0) &&
@@ -3942,7 +3942,7 @@ LAB_1808456ba:
       NetworkErrorExit(networkArrayStack_148 + 1);
     }
   }
-LAB_180845652:
+handle_socket_failure:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(networkArrayStack_148 + 1);
 }
