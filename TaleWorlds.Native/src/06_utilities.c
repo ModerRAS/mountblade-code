@@ -272,16 +272,16 @@ data configSettingsArray;
 data configValuesArray;
 data configKeysArray;
 data configDataArray;
-data DAT_180bf6cd0;
-data DAT_180bf6cd8;
-data DAT_180bf6ce0;
-data DAT_180bf6ce8;
-data DAT_180bf6d28;
-data DAT_180bf6d30;
-data DAT_180bf6d38;
-data DAT_180bf6d40;
-data DAT_180bf6d80;
-data DAT_180bf6d88;
+data configCacheData;
+data configBufferPointer;
+data configMemoryBlock;
+data configStorageArea;
+data configAllocationSize;
+data configFreeSpace;
+data configUsedSpace;
+data configTotalSize;
+data configAlignment;
+data configPadding;
 data DAT_180bf6d90;
 data DAT_180bf6d98;
 data DAT_180bf6dd8;
@@ -462,22 +462,22 @@ data renderFrameBuffer;
 data renderDepthBuffer;
 data renderStencilBuffer;
 data renderTextureAtlas;
-data unknown_180a0fd88;
-data unknown_180a0fd98;
-data unknown_180a0fda8;
-data unknown_180a0fdb8;
-data unknown_180a0fdd0;
-data unknown_180a0fdf0;
-data unknown_180a0fe10;
-data unknown_180a0fe28;
-data unknown_180a0fe40;
-data unknown_180a0fe58;
-data unknown_180a0fe70;
-data unknown_180a0fe90;
+data audioDeviceHandle;
+data audioStreamBuffer;
+data audioSampleRate;
+data audioChannelCount;
+data audioVolumeLevel;
+data inputDeviceState;
+data inputKeyMapping;
+data inputMousePosition;
+data inputButtonState;
+data inputScrollDelta;
+data physicsWorldHandle;
+data physicsGravityVector;
 data DAT_180c91d54;
-data unknown_180a13a98;
+data physicsCollisionMatrix;
 data DAT_180c91d5c;
-data unknown_180a13e48;
+data physicsRaycastResult;
 data DAT_180bf7e90;
 data DAT_180bf7e98;
 data DAT_180bf7ea0;
@@ -606,19 +606,19 @@ data DAT_180bf8938;
 data DAT_180bf8940;
 data DAT_180bf8948;
 data DAT_180bf8950;
-data unknown_180941ce0;
+data animationSystemState;
 data DAT_180c91d60;
-data unknown_180a140f8;
+data animationClipData;
 data DAT_180c91d64;
-data unknown_180a14290;
+data animationBlendTree;
 data DAT_180c91d68;
-data unknown_180a14668;
+data animationStateMachine;
 data DAT_180c91d6c;
 data DAT_180a14640;
 data DAT_180c91d70;
-data unknown_180a14840;
+data animationPlaybackTime;
 data DAT_180c91da4;
-data unknown_180a167d0;
+data aiNavigationMesh;
 data DAT_180bf90b0;
 data DAT_180bf90b8;
 data DAT_180bf90c0;
@@ -638,32 +638,32 @@ data DAT_180a16c50;
 data DAT_180c91dac;
 data DAT_180a16c38;
 data DAT_180c91ee8;
-data unknown_180a17e48;
+data aiBehaviorTree;
 data DAT_180c91ef8;
-data unknown_180a194f0;
+data aiPathfindingData;
 data DAT_180c91efc;
-data unknown_180a19588;
+data aiDecisionMaking;
 data DAT_180c91f00;
-data unknown_180a19bf0;
+data aiStateVariables;
 data DAT_180c91f04;
-data unknown_180a19df0;
+data resourceLoadingQueue;
 data DAT_180c91f08;
-data unknown_180a1a450;
+data resourceCacheManager;
 data DAT_180c91f0c;
-data unknown_180a1a6c8;
+data resourceMemoryPool;
 data DAT_180c91f10;
-data unknown_180a1afd8;
+data referenceCountTable;
 data DAT_180c91f14;
-data unknown_180a1cc28;
+data resourceGarbageCollector;
 data DAT_180c91f30;
-data unknown_180a1eb30;
+data sceneObjectDatabase;
 data DAT_180c91f68;
-data unknown_180a22538;
+data sceneTransformData;
 data DAT_180bf91b0;
 data DAT_180bf91b8;
 data DAT_180bf91c0;
 data DAT_180bf91c8;
-data unknown_180a22b38;
+data sceneLightingSystem;
 
 // 函数: data CreateFileSystemHandler;
 data CreateFileSystemHandler;
@@ -671,7 +671,7 @@ data DAT_180bf9210;
 data DAT_180bf9218;
 data DAT_180bf9220;
 data DAT_180bf9228;
-data unknown_180a22b90;
+data sceneCameraController;
 
 // 函数: data InitializeFileCache;
 data InitializeFileCache;
@@ -682,7 +682,7 @@ data DAT_180bf9270;
 data DAT_180bf9278;
 data DAT_180bf9280;
 data DAT_180bf9288;
-data unknown_180a22b78;
+data sceneRenderQueue;
 data DAT_180bf92d0;
 
 // 函数: data FUN_180941f60;
@@ -690,7 +690,7 @@ data FUN_180941f60;
 data DAT_180bf92d8;
 data DAT_180bf92e0;
 data DAT_180bf92e8;
-data unknown_180a22b60;
+data materialShaderProgram;
 data DAT_180bf9330;
 data DAT_180bf9338;
 
@@ -698,7 +698,7 @@ data DAT_180bf9338;
 data FUN_180941f80;
 data DAT_180bf9340;
 data DAT_180bf9348;
-data unknown_180a22b50;
+data materialTextureSampler;
 data DAT_180bf9390;
 data DAT_180bf9398;
 data DAT_180bf93a0;
@@ -706,7 +706,7 @@ data DAT_180bf93a0;
 // 函数: data FUN_180941fa0;
 data FUN_180941fa0;
 data DAT_180bf93a8;
-data unknown_180a22be8;
+data materialPropertyBuffer;
 data DAT_180bf93f0;
 data DAT_180bf93f8;
 data DAT_180bf9400;
@@ -714,7 +714,7 @@ data DAT_180bf9408;
 
 // 函数: data FUN_180941fc0;
 data FUN_180941fc0;
-data unknown_180a22bd0;
+data materialRenderState;
 data DAT_180bf9450;
 data DAT_180bf9458;
 data DAT_180bf9460;
@@ -722,7 +722,7 @@ data DAT_180bf9468;
 
 // 函数: data FUN_180941fe0;
 data FUN_180941fe0;
-data unknown_180a22bb8;
+data materialUniformData;
 data DAT_180bf94b0;
 data DAT_180bf94b8;
 data DAT_180bf94c0;
@@ -730,12 +730,12 @@ data DAT_180bf94c8;
 
 // 函数: data FUN_180942000;
 data FUN_180942000;
-data unknown_180a22ba8;
+data textureUploadBuffer;
 data DAT_180bf9510;
 data DAT_180bf9518;
 data DAT_180bf9520;
 data DAT_180bf9528;
-data unknown_180a22c48;
+data textureMipChainData;
 
 // 函数: data FUN_180942020;
 data FUN_180942020;
@@ -743,7 +743,7 @@ data DAT_180bf9570;
 data DAT_180bf9578;
 data DAT_180bf9580;
 data DAT_180bf9588;
-data unknown_180a22c30;
+data textureCompressionFlag;
 
 // 函数: data FUN_180942040;
 data FUN_180942040;
@@ -751,7 +751,7 @@ data DAT_180bf95d0;
 data DAT_180bf95d8;
 data DAT_180bf95e0;
 data DAT_180bf95e8;
-data unknown_180a22c18;
+data textureFilteringMode;
 
 // 函数: data FUN_180942060;
 data FUN_180942060;
@@ -759,7 +759,7 @@ data DAT_180bf9630;
 data DAT_180bf9638;
 data DAT_180bf9640;
 data DAT_180bf9648;
-data unknown_180a22c00;
+data textureWrappingMode;
 
 // 函数: data FUN_180942080;
 data FUN_180942080;
@@ -775,7 +775,7 @@ data DAT_180bf96f0;
 data DAT_180bf96f8;
 data DAT_180bf9700;
 data DAT_180bf9708;
-data unknown_180a22c98;
+data meshVertexBuffer;
 
 // 函数: data FUN_1809420c0;
 data FUN_1809420c0;
@@ -783,7 +783,7 @@ data DAT_180bf9750;
 data DAT_180bf9758;
 data DAT_180bf9760;
 data DAT_180bf9768;
-data unknown_180a22c70;
+data meshIndexBuffer;
 
 // 函数: data FUN_1809420e0;
 data FUN_1809420e0;
@@ -791,7 +791,7 @@ data DAT_180bf97b0;
 data DAT_180bf97b8;
 data DAT_180bf97c0;
 data DAT_180bf97c8;
-data unknown_180a22c58;
+data meshVertexLayout;
 
 // 函数: data FUN_180942100;
 data FUN_180942100;
@@ -799,7 +799,7 @@ data DAT_180bf9810;
 data DAT_180bf9818;
 data DAT_180bf9820;
 data DAT_180bf9828;
-data unknown_180a22d28;
+data meshBoundingBox;
 
 // 函数: data FUN_180942120;
 data FUN_180942120;
@@ -810,7 +810,7 @@ data DAT_180bf9870;
 data DAT_180bf9878;
 data DAT_180bf9880;
 data DAT_180bf9888;
-data unknown_180a22d08;
+data meshCollisionData;
 data DAT_180bf98d0;
 
 // 函数: data FUN_180942160;
@@ -818,7 +818,7 @@ data FUN_180942160;
 data DAT_180bf98d8;
 data DAT_180bf98e0;
 data DAT_180bf98e8;
-data unknown_180a22ce8;
+data shaderCompileStatus;
 data DAT_180bf9930;
 data DAT_180bf9938;
 
@@ -826,7 +826,7 @@ data DAT_180bf9938;
 data FUN_180942180;
 data DAT_180bf9940;
 data DAT_180bf9948;
-data unknown_180a22cc8;
+data shaderProgramHandle;
 data DAT_180bf9990;
 data DAT_180bf9998;
 data DAT_180bf99a0;
@@ -834,7 +834,7 @@ data DAT_180bf99a0;
 // 函数: data FUN_1809421a0;
 data FUN_1809421a0;
 data DAT_180bf99a8;
-data unknown_180a22db0;
+data shaderUniformBuffer;
 data DAT_180bf99f0;
 data DAT_180bf99f8;
 data DAT_180bf9a00;
@@ -842,7 +842,7 @@ data DAT_180bf9a08;
 
 // 函数: data FUN_1809421c0;
 data FUN_1809421c0;
-data unknown_180a22d88;
+data shaderAttributeTable;
 data DAT_180bf9a50;
 data DAT_180bf9a58;
 data DAT_180bf9a60;
@@ -850,7 +850,7 @@ data DAT_180bf9a68;
 
 // 函数: data FUN_1809421e0;
 data FUN_1809421e0;
-data unknown_180a22d68;
+data shaderConstantData;
 data DAT_180bf9ab0;
 data DAT_180bf9ab8;
 data DAT_180bf9ac0;
@@ -863,7 +863,7 @@ data DAT_180bf9b10;
 data DAT_180bf9b18;
 data DAT_180bf9b20;
 data DAT_180bf9b28;
-data unknown_180a22e40;
+data renderPassDescriptor;
 
 // 函数: data FUN_180942220;
 data FUN_180942220;
@@ -871,7 +871,7 @@ data DAT_180bf9b70;
 data DAT_180bf9b78;
 data DAT_180bf9b80;
 data DAT_180bf9b88;
-data unknown_180a22e20;
+data renderCommandBuffer;
 
 // 函数: data FUN_180942240;
 data FUN_180942240;
@@ -879,7 +879,7 @@ data DAT_180bf9bd0;
 data DAT_180bf9bd8;
 data DAT_180bf9be0;
 data DAT_180bf9be8;
-data unknown_180a22df8;
+data renderDrawCallData;
 
 // 函数: data FUN_180942260;
 data FUN_180942260;
@@ -887,7 +887,7 @@ data DAT_180bf9c30;
 data DAT_180bf9c38;
 data DAT_180bf9c40;
 data DAT_180bf9c48;
-data unknown_180a22dd0;
+data renderViewportState;
 
 // 函数: data FUN_180942280;
 data FUN_180942280;
@@ -895,7 +895,7 @@ data DAT_180bf9c90;
 data DAT_180bf9c98;
 data DAT_180bf9ca0;
 data DAT_180bf9ca8;
-data unknown_180a22eb0;
+data renderScissorRect;
 
 // 函数: data FUN_1809422a0;
 data FUN_1809422a0;
@@ -903,7 +903,7 @@ data DAT_180bf9cf0;
 data DAT_180bf9cf8;
 data DAT_180bf9d00;
 data DAT_180bf9d08;
-data unknown_180a22e90;
+data framebufferColorAttachment;
 
 // 函数: data FUN_1809422c0;
 data FUN_1809422c0;
@@ -911,7 +911,7 @@ data DAT_180bf9d50;
 data DAT_180bf9d58;
 data DAT_180bf9d60;
 data DAT_180bf9d68;
-data unknown_180a22e70;
+data framebufferDepthAttachment;
 
 // 函数: data FUN_1809422e0;
 data FUN_1809422e0;
@@ -919,7 +919,7 @@ data DAT_180bf9db0;
 data DAT_180bf9db8;
 data DAT_180bf9dc0;
 data DAT_180bf9dc8;
-data unknown_180a22e58;
+data framebufferStencilAttachment;
 
 // 函数: data FUN_180942300;
 data FUN_180942300;
@@ -927,7 +927,7 @@ data DAT_180bf9e10;
 data DAT_180bf9e18;
 data DAT_180bf9e20;
 data DAT_180bf9e28;
-data unknown_180a22f28;
+data framebufferResolveTarget;
 
 // 函数: data FUN_180942320;
 data FUN_180942320;
@@ -938,7 +938,7 @@ data DAT_180bf9e70;
 data DAT_180bf9e78;
 data DAT_180bf9e80;
 data DAT_180bf9e88;
-data unknown_180a22f10;
+data framebufferClearColor;
 data DAT_180bf9ed0;
 
 // 函数: data FUN_180942360;
@@ -946,7 +946,7 @@ data FUN_180942360;
 data DAT_180bf9ed8;
 data DAT_180bf9ee0;
 data DAT_180bf9ee8;
-data unknown_180a22ef8;
+data computeShaderKernel;
 data DAT_180bf9f30;
 data DAT_180bf9f38;
 
@@ -954,7 +954,7 @@ data DAT_180bf9f38;
 data FUN_180942380;
 data DAT_180bf9f40;
 data DAT_180bf9f48;
-data unknown_180a22ed8;
+data computeWorkGroupSize;
 data DAT_180bf9f90;
 data DAT_180bf9f98;
 data DAT_180bf9fa0;
@@ -962,7 +962,7 @@ data DAT_180bf9fa0;
 // 函数: data FUN_1809423a0;
 data FUN_1809423a0;
 data DAT_180bf9fa8;
-data unknown_180a22f90;
+data computeDispatchCount;
 data DAT_180bf9ff0;
 data DAT_180bf9ff8;
 data DAT_180bfa000;
@@ -970,7 +970,7 @@ data DAT_180bfa008;
 
 // 函数: data FUN_1809423c0;
 data FUN_1809423c0;
-data unknown_180a22f78;
+data computeSharedMemory;
 data DAT_180bfa050;
 data DAT_180bfa058;
 data DAT_180bfa060;
@@ -978,7 +978,7 @@ data DAT_180bfa068;
 
 // 函数: data FUN_1809423e0;
 data FUN_1809423e0;
-data unknown_180a22f60;
+data computeBarrierFlag;
 data DAT_180bfa0b0;
 data DAT_180bfa0b8;
 data DAT_180bfa0c0;
@@ -986,12 +986,12 @@ data DAT_180bfa0c8;
 
 // 函数: data FUN_180942400;
 data FUN_180942400;
-data unknown_180a22f40;
+data geometryInputAssembler;
 data DAT_180bfa110;
 data DAT_180bfa118;
 data DAT_180bfa120;
 data DAT_180bfa128;
-data unknown_180a23018;
+data geometryTessellator;
 
 // 函数: data FUN_180942420;
 data FUN_180942420;
@@ -999,7 +999,7 @@ data DAT_180bfa170;
 data DAT_180bfa178;
 data DAT_180bfa180;
 data DAT_180bfa188;
-data unknown_180a23000;
+data geometryPrimitiveType;
 
 // 函数: data FUN_180942440;
 data FUN_180942440;
@@ -1023,7 +1023,7 @@ data DAT_180bfa290;
 data DAT_180bfa298;
 data DAT_180bfa2a0;
 data DAT_180bfa2a8;
-data unknown_180a23068;
+data geometryVertexCount;
 
 // 函数: data FUN_1809424a0;
 data FUN_1809424a0;
@@ -1040,9 +1040,9 @@ data FUN_180942580;
 // 函数: data FUN_1809425e0;
 data FUN_1809425e0;
 data DAT_180c91f6c;
-data unknown_180a24340;
+data geometryIndexCount;
 data DAT_180c91fcc;
-data unknown_180a24828;
+data particleEmitterData;
 data DAT_180bfa350;
 data DAT_180bfa358;
 data DAT_180bfa360;
@@ -1071,10 +1071,10 @@ data DAT_180bfa6e0;
 data DAT_180bfa6e8;
 data DAT_180bfa6f0;
 data DAT_180bfa6f8;
-data unknown_180942600;
-data unknown_180a0f168;
-data unknown_180a0f178;
-data unknown_180a0f188;
+data particleSimulationData;
+data particleRenderData;
+data particleLifetimeData;
+data particleVelocityData;
 data unknown_180a0f190;
 data unknown_180a0f5b8;
 data unknown_180a24c50;
@@ -1103,7 +1103,7 @@ data DAT_180bfaa78;
 data DAT_180bfaa80;
 data DAT_180bfaa88;
 data DAT_180bfaa90;
-data unknown_180942620;
+data memoryAllocatorStatusFlag;
 data unknown_180a24bd0;
 data unknown_180a24bf0;
 data unknown_180a24c10;
@@ -1134,7 +1134,7 @@ data DAT_180bfae08;
 data DAT_180bfae10;
 data DAT_180bfae18;
 data DAT_180bfae20;
-data unknown_180942640;
+data threadSynchronizationFlag;
 data unknown_180a24da8;
 data unknown_180a24dc0;
 
@@ -1251,7 +1251,7 @@ data FUN_180943070;
 data DAT_180c9606c;
 data unknown_180a3c028;
 data DAT_180c96218;
-data unknown_180943130;
+data eventHandlerState;
 
 // 函数: data FUN_180943140;
 data FUN_180943140;
@@ -1291,8 +1291,8 @@ data DAT_180c96808;
 data DAT_180c0c6c0;
 data DAT_180be14a0;
 data DAT_180be1324;
-data unknown_180943250;
-data unknown_180943260;
+data semaphoreInitState;
+data semaphoreControlFlag;
 data DAT_180c0c6d0;
 data DAT_180c0c6d8;
 data DAT_180c0d100;
@@ -1300,12 +1300,12 @@ data DAT_180c0e170;
 data DAT_180c108d0;
 data DAT_180c2bca0;
 data DAT_180c31148;
-data unknown_180943270;
-data unknown_18097e888;
+data mutexInitializationFlag;
+data bufferManagerState;
 data DAT_180c4ea58;
 data DAT_180c4ea60;
-data unknown_180943310;
-data unknown_180943320;
+data bufferPoolAddress;
+data bufferPoolSize;
 byte DAT_180c82841;
 byte DAT_180c82840;
 data DAT_180c82864;
@@ -1314,19 +1314,19 @@ data DAT_180c8ed18;
 data DAT_180c86948;
 data DAT_180c86870;
 data DAT_180c82868;
-data unknown_18098bd40;
-data unknown_18098bdc8;
-data unknown_1809fe100;
+data bufferControlData1;
+data bufferControlData2;
+data bufferControlData3;
 data unknown_180a21690;
 data unknown_180a21720;
 data DAT_180bf00a8;
 data DAT_180c86928;
-data unknown_18098bab0;
-data unknown_18098bac8;
-data unknown_1809fd0a0;
+data systemStatusFlag1;
+data systemStatusFlag2;
+data systemStatusFlag3;
 data unknown_180a3c110;
 data unknown_180a3c138;
-data unknown_1809ff040;
+data systemStatusFlag4;
 data unknown_180a3c090;
 data DAT_180c8ed10;
 data unknown_180a3c410;
@@ -1340,20 +1340,20 @@ data DAT_180c8ed58;
 data DAT_180c8ed48;
 data DAT_180c8ed40;
 data DAT_180c86940;
-data unknown_18098bae0;
-data unknown_18098bb60;
-data unknown_18098bb88;
-data unknown_1809fee70;
-data unknown_1809ff2f8;
-data unknown_1809ff3f8;
+data threadManagerState;
+data threadControlFlag1;
+data threadControlFlag2;
+data threadControlFlag3;
+data threadControlFlag4;
+data threadControlFlag5;
 data DAT_180c82854;
-data unknown_18098bc48;
+data allocatorState;
 char DAT_180c82860;
-data unknown_18098bc00;
+data allocatorControlFlag;
 data DAT_180c86920;
 void *ExceptionList;
 data unknown_180046dd0;
-data unknown_1809fcb00;
+data allocatorMemoryPool;
 data DAT_180c86960;
 data DAT_180bf52b8;
 data DAT_180bf52bc;
@@ -1361,9 +1361,9 @@ data DAT_180bf5248;
 data DAT_180c8ed60;
 data unknown_180047d20;
 data unknown_1800adc10;
-data unknown_1809fc790;
-data unknown_1809fc7a0;
-data unknown_1809fc7b8;
+data allocatorHeapBase;
+data allocatorHeapSize;
+data allocatorHeapFlags;
 data DAT_1809fc7ec;
 data DAT_180bf5240;
 
@@ -1373,7 +1373,7 @@ data DAT_180d49160;
 data DAT_180d49168;
 data DAT_180d49170;
 data DAT_180d49178;
-data unknown_1809ffb30;
+data eventQueueState;
 data DAT_180a001d0;
 data unknown_180083380;
 data unknown_180a00030;
@@ -1395,7 +1395,7 @@ data unknown_180a01610;
 data DAT_180a01440;
 data DAT_180d48d38;
 data unknown_180a01668;
-data unknown_18098b928;
+data eventHandlerTable;
 data unknown_180a01638;
 data unknown_180a01650;
 data DAT_180d48d30;
@@ -1507,10 +1507,10 @@ data unknown_180a1afb8;
 data unknown_180a079c0;
 data unknown_180a07b48;
 data unknown_180a3c313;
-data unknown_18098d6d0;
+data eventCallbackTable;
 data unknown_180a078fc;
 data unknown_180a07804;
-data unknown_18098d6b0;
+data eventDispatchTable;
 data unknown_18015c090;
 
 // 函数: data FUN_180941b20;
@@ -1656,7 +1656,7 @@ data unknown_180a2aa08;
 data unknown_180a2a9a0;
 data unknown_180a2aa68;
 data unknown_180a2abb0;
-data unknown_18098be5c;
+data fileSystemState;
 data unknown_180a2aac8;
 data unknown_180a2aad0;
 data unknown_180a2aa78;
@@ -1676,12 +1676,12 @@ data DAT_180d49d30;
 data DAT_180d49d38;
 data DAT_180d49d40;
 data DAT_180d49d48;
-data unknown_180942870;
+data fileCacheState;
 uint32 unknown_180d49d2c;
 uint32 unknown_180d49d4c;
 data unknown_180a2ae38;
 data DAT_180c8ecd4;
-data unknown_1809f7770;
+data networkManagerState;
 data unknown_18046df70;
 data DAT_180bfbb50;
 data DAT_180bfbb60;
@@ -1727,18 +1727,18 @@ data unknown_180a30e38;
 data unknown_180a30e60;
 data unknown_180a2fca0;
 data unknown_180a2fcd8;
-data unknown_1809f89f8;
-data unknown_1809f8a08;
-data unknown_1809f8a18;
-data unknown_1809f8a28;
-data unknown_1809f8a38;
-data unknown_1809f8a48;
-data unknown_1809f8a58;
-data unknown_1809f8a68;
-data unknown_1809f8a78;
-data unknown_1809f8a88;
-data unknown_1809f8a98;
-data unknown_1809f8aa8;
+data renderingStateFlag1;
+data renderingStateFlag2;
+data renderingStateFlag3;
+data renderingStateFlag4;
+data renderingStateFlag5;
+data renderingStateFlag6;
+data renderingStateFlag7;
+data renderingStateFlag8;
+data renderingStateFlag9;
+data renderingStateFlag10;
+data renderingStateFlag11;
+data renderingStateFlag12;
 data DAT_180c963d4;
 data DAT_180c963dc;
 data DAT_180c963d8;
@@ -1750,8 +1750,8 @@ data unknown_180a30ec8;
 data unknown_180a30ed8;
 data unknown_180a30f00;
 data DAT_180d49128;
-data unknown_180943060;
-data unknown_1809fa490;
+data systemInitializationFlag;
+data resourceManagerState;
 data unknown_180a30280;
 data unknown_180a302c0;
 data unknown_180a301c8;
@@ -1762,19 +1762,19 @@ data unknown_180a303f8;
 data unknown_180a303c8;
 data unknown_180a30330;
 data unknown_180a30368;
-data unknown_1809fa470;
-data unknown_1809fa480;
+data resourceCacheState;
+data resourcePoolState;
 data DAT_180bfbcc0;
-data unknown_1809fa360;
-data unknown_1809fa370;
+data resourceControlFlag1;
+data resourceControlFlag2;
 data unknown_180a30568;
 data unknown_180a305a0;
-data unknown_1809fa350;
+data resourceControlFlag3;
 data unknown_180a305f8;
 data unknown_180a30638;
 data unknown_180a30660;
 data unknown_180a306a8;
-data unknown_1809fa550;
+data resourceControlFlag4;
 data unknown_180a31018;
 data unknown_180a31040;
 data unknown_180a31058;
@@ -3950,8 +3950,8 @@ void read_file_data(void)
 
 
 
-// 函数: void FUN_180891185(void)
-void FUN_180891185(void)
+// 函数: void write_file_data(void)
+void write_file_data(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -3961,8 +3961,8 @@ void FUN_180891185(void)
 
 
 
-// 函数: void FUN_1808911a2(void)
-void FUN_1808911a2(void)
+// 函数: void flush_file_buffers(void)
+void flush_file_buffers(void)
 
 {
   return;
@@ -3971,8 +3971,8 @@ void FUN_1808911a2(void)
 
 
 
-// 函数: void FUN_1808911b0(longlong resourceHandle,uint64 memorySize)
-void FUN_1808911b0(longlong resourceHandle,uint64 memorySize)
+// 函数: void seek_file_position(longlong resourceHandle,uint64 memorySize)
+void seek_file_position(longlong resourceHandle,uint64 memorySize)
 
 {
   int localInt1;
@@ -3997,7 +3997,7 @@ void FUN_1808911b0(longlong resourceHandle,uint64 memorySize)
 // WARNING: Removing unreachable block (ram,0x0001808d74a4)
 // WARNING: Removing unreachable block (ram,0x0001808d74b1)
 
-uint64 FUN_180891210(longlong resourceHandle)
+uint64 get_file_position(longlong resourceHandle)
 
 {
   longlong localLong1;
@@ -4057,7 +4057,7 @@ uint64 FUN_180891210(longlong resourceHandle)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180891280(longlong resourceHandle)
+int get_file_size(longlong resourceHandle)
 
 {
   int localInt1;
@@ -4088,8 +4088,8 @@ int FUN_180891280(longlong resourceHandle)
 
 
 
-// 函数: void FUN_180891360(longlong resourceHandle,uint64 memorySize)
-void FUN_180891360(longlong resourceHandle,uint64 memorySize)
+// 函数: void truncate_file(longlong resourceHandle,uint64 memorySize)
+void truncate_file(longlong resourceHandle,uint64 memorySize)
 
 {
   uint64 uStackX_8;
@@ -4108,7 +4108,7 @@ void FUN_180891360(longlong resourceHandle,uint64 memorySize)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_1808913c0(longlong resourceHandle,uint64 memorySize)
+ulonglong create_directory(longlong resourceHandle,uint64 memorySize)
 
 {
   uint localUInt1;
@@ -4153,7 +4153,7 @@ ulonglong FUN_1808913c0(longlong resourceHandle,uint64 memorySize)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_1808913ff(uint32 resourceHandle)
+int delete_file(uint32 resourceHandle)
 
 {
   int in_EAX;
@@ -4188,7 +4188,7 @@ int FUN_1808913ff(uint32 resourceHandle)
 
 
 
-uint64 FUN_180891492(void)
+uint64 remove_directory(void)
 
 {
   return 0;
@@ -24314,7 +24314,7 @@ void Unwind_180901f10(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x48);
-  *plocalUInt1 = &unknown_18098bdc8;
+  *plocalUInt1 = &bufferControlData2;
   *plocalUInt1 = &unknown_180a21720;
   *plocalUInt1 = &unknown_180a21690;
   return;
@@ -27276,7 +27276,7 @@ void Unwind_180902c50(uint64 resourceHandle,longlong memorySize)
   *plocalUInt1 = &unknown_1809fcb90;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(plocalUInt1 + 4);
-  *plocalUInt1 = &unknown_18098bdc8;
+  *plocalUInt1 = &bufferControlData2;
   *plocalUInt1 = &unknown_180a21720;
   *plocalUInt1 = &unknown_180a21690;
   return;
@@ -34584,7 +34584,7 @@ void Unwind_180904680(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x50);
-  *plocalUInt1 = &unknown_18098bdc8;
+  *plocalUInt1 = &bufferControlData2;
   *plocalUInt1 = &unknown_180a21720;
   *plocalUInt1 = &unknown_180a21690;
   return;
@@ -34964,7 +34964,7 @@ void Unwind_1809048a0(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x20);
-  *plocalUInt1 = &unknown_18098bdc8;
+  *plocalUInt1 = &bufferControlData2;
   *plocalUInt1 = &unknown_180a21720;
   *plocalUInt1 = &unknown_180a21690;
   return;
@@ -39154,7 +39154,7 @@ void Unwind_180905b00(uint64 resourceHandle,longlong memorySize)
   *plocalUInt1 = &unknown_1809fcb90;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(plocalUInt1 + 4);
-  *plocalUInt1 = &unknown_18098bdc8;
+  *plocalUInt1 = &bufferControlData2;
   *plocalUInt1 = &unknown_180a21720;
   *plocalUInt1 = &unknown_180a21690;
   return;
@@ -40391,7 +40391,7 @@ void Unwind_180905f90(uint64 resourceHandle,longlong memorySize)
   *plocalUInt1 = &unknown_1809fcb90;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(plocalUInt1 + 4);
-  *plocalUInt1 = &unknown_18098bdc8;
+  *plocalUInt1 = &bufferControlData2;
   *plocalUInt1 = &unknown_180a21720;
   *plocalUInt1 = &unknown_180a21690;
   return;
@@ -48740,7 +48740,7 @@ void Unwind_1809088d0(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x28);
-  *plocalUInt1 = &unknown_18098bdc8;
+  *plocalUInt1 = &bufferControlData2;
   *plocalUInt1 = &unknown_180a21720;
   *plocalUInt1 = &unknown_180a21690;
   return;
@@ -50252,7 +50252,7 @@ void Unwind_180908ed0(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x20);
-  *plocalUInt1 = &unknown_18098b928;
+  *plocalUInt1 = &eventHandlerTable;
   __std_exception_destroy(plocalUInt1 + 1);
   return;
 }
@@ -50265,7 +50265,7 @@ void Unwind_180908ee0(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x40);
-  *plocalUInt1 = &unknown_18098b928;
+  *plocalUInt1 = &eventHandlerTable;
   __std_exception_destroy(plocalUInt1 + 1);
   return;
 }
@@ -52923,7 +52923,7 @@ void Unwind_180909b70(uint64 resourceHandle,longlong memorySize)
   *plocalUInt1 = &unknown_1809fcb90;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(plocalUInt1 + 4);
-  *plocalUInt1 = &unknown_18098bdc8;
+  *plocalUInt1 = &bufferControlData2;
   *plocalUInt1 = &unknown_180a21720;
   *plocalUInt1 = &unknown_180a21690;
   return;
@@ -67737,7 +67737,7 @@ void Unwind_18090edd0(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x88);
-  *plocalUInt1 = &unknown_18098bdc8;
+  *plocalUInt1 = &bufferControlData2;
   *plocalUInt1 = &unknown_180a21720;
   *plocalUInt1 = &unknown_180a21690;
   return;
@@ -67815,7 +67815,7 @@ void Unwind_18090ee30(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x98);
-  *plocalUInt1 = &unknown_18098bdc8;
+  *plocalUInt1 = &bufferControlData2;
   *plocalUInt1 = &unknown_180a21720;
   *plocalUInt1 = &unknown_180a21690;
   return;
@@ -70089,7 +70089,7 @@ void Unwind_18090fa20(uint64 resourceHandle,longlong memorySize)
   *plocalUInt1 = &unknown_1809fcb90;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(plocalUInt1 + 4);
-  *plocalUInt1 = &unknown_18098bdc8;
+  *plocalUInt1 = &bufferControlData2;
   *plocalUInt1 = &unknown_180a21720;
   *plocalUInt1 = &unknown_180a21690;
   return;
@@ -71968,7 +71968,7 @@ void Unwind_180910400(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x60);
-  *plocalUInt1 = &unknown_18098bdc8;
+  *plocalUInt1 = &bufferControlData2;
   *plocalUInt1 = &unknown_180a21720;
   *plocalUInt1 = &unknown_180a21690;
   return;
