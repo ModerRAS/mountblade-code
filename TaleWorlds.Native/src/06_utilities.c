@@ -1028,8 +1028,8 @@ data geometryVertexCount;
 // 函数: data resourceAcquireHandle;
 data resourceAcquireHandle;
 
-// 函数: data FUN_1809424c0;
-data FUN_1809424c0;
+// 函数: data updateRenderState;
+data updateRenderState;
 
 // 函数: data resourceReleaseHandle;
 data resourceReleaseHandle;
@@ -4292,7 +4292,7 @@ void set_file_attributes(longlong resourceHandle,longlong memorySize)
   plVar5 = (longlong *)0x0;
   auStackX_18[0] = 0;
   localInt2 = utilityInitializeResource(auStackX_18);
-  if ((localInt2 == 0) && (localInt2 = FUN_1808bdd90(*(uint64 *)(memorySize + 0x90)), localInt2 == 0)) {
+  if ((localInt2 == 0) && (localInt2 = validateMemoryAccess(*(uint64 *)(memorySize + 0x90)), localInt2 == 0)) {
     plVar4 = (longlong *)(*(longlong *)(memorySize + 0x50) + -8);
     if (*(longlong *)(memorySize + 0x50) == 0) {
       plVar4 = plVar5;
@@ -5347,7 +5347,7 @@ void utilityExecuteResourceCommand(longlong resourceHandle,longlong memorySize)
                         (*(longlong **)(memorySize + 800),localLong1,1);
       if (localLong3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(localLong1,localBuffer);
+        copyMemoryData(localLong1,localBuffer);
       }
       plVar4 = (longlong *)(localLong3 + 0x58);
       if (((longlong *)*plVar4 != plVar4) || (*(longlong **)(localLong3 + 0x60) != plVar4)) {
@@ -5375,7 +5375,7 @@ void utilityHandleResourceAllocation(longlong *resourceHandle,longlong memorySiz
   localLong1 = (**(code **)(*resourceHandle + 0x2f0))(resourceHandle,memorySize + 0x30);
   if (localLong1 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18084b240(memorySize + 0x30,&stack0x00000028);
+    copyMemoryData(memorySize + 0x30,&stack0x00000028);
   }
   plocalLong2 = (longlong *)(localLong1 + 0x58);
   if (((longlong *)*plocalLong2 == plocalLong2) && (*(longlong **)(localLong1 + 0x60) == plocalLong2)) {
@@ -6662,7 +6662,7 @@ int bind_network_socket(longlong resourceHandle,longlong memorySize)
   if ((((*(longlong *)(resourceHandle + 0x28) != 0) && (*(longlong *)(resourceHandle + 0x30) != 0)) &&
       (*(longlong *)(resourceHandle + 0x38) != 0)) && (*(longlong *)(resourceHandle + 0x40) != 0)) {
     if (*(int *)(resourceHandle + 0x20) < 1) {
-      localInt1 = FUN_1808de900(memorySize,resourceHandle + 0x4c);
+      localInt1 = allocateSystemMemory(memorySize,resourceHandle + 0x4c);
       if ((localInt1 == 0) &&
          (localInt1 = SystemMemoryFunction(*(uint32 *)(resourceHandle + 0x4c),&lStackX_8), localInt1 == 0)) {
         if (*(int *)(lStackX_8 + 0x30) == 1) {
@@ -6704,7 +6704,7 @@ int connect_network_socket(longlong resourceHandle,uint64 memorySize)
   longlong in_stack_00000060;
   
   if ((int)memorySize < 1) {
-    localInt1 = FUN_1808de900();
+    localInt1 = allocateSystemMemory();
     if ((localInt1 == 0) &&
        (localInt1 = SystemMemoryFunction(*(uint32 *)(unaff_RDI + 0x4c),&stack0x00000060), localInt1 == 0)
        ) {
@@ -6747,7 +6747,7 @@ void listen_network_socket(longlong resourceHandle,longlong memorySize)
   int localInt1;
   longlong lStackX_8;
   
-  localInt1 = FUN_1808de900(memorySize,resourceHandle + 0x10);
+  localInt1 = allocateSystemMemory(memorySize,resourceHandle + 0x10);
   if (localInt1 == 0) {
     localInt1 = SystemMemoryFunction(*(uint32 *)(resourceHandle + 0x10),&lStackX_8);
     if (localInt1 == 0) {
@@ -6778,7 +6778,7 @@ int accept_network_connection(longlong resourceHandle,longlong memorySize)
   if ((((localUInt1 != 1) || ((*(byte *)(resourceHandle + 0x10) & 0x1f) == 0)) && (0 < *(int *)(resourceHandle + 0x18))
       ) && (localUInt1 < 2)) {
     if (localUInt1 == 0) {
-      localLong3 = FUN_180741d10(*(uint64 *)(utilitySystemDataTable + 0x1a0),*(int *)(resourceHandle + 0x18),0x20,
+      localLong3 = readSystemData(*(uint64 *)(utilitySystemDataTable + 0x1a0),*(int *)(resourceHandle + 0x18),0x20,
                             &utilityMemoryDataBuffer,0xdd,0,0);
       if (localLong3 != 0) {
                     // WARNING: Subroutine does not return
@@ -6787,7 +6787,7 @@ int accept_network_connection(longlong resourceHandle,longlong memorySize)
       localInt2 = 0x26;
     }
     else {
-      localInt2 = FUN_1808de900(memorySize,resourceHandle + 0x24);
+      localInt2 = allocateSystemMemory(memorySize,resourceHandle + 0x24);
       if ((localInt2 == 0) &&
          (localInt2 = SystemMemoryFunction(*(uint32 *)(resourceHandle + 0x24),&lStackX_8), localInt2 == 0)) {
         if (*(int *)(lStackX_8 + 0x30) == 1) {
@@ -6818,7 +6818,7 @@ int send_network_data(uint64 resourceHandle,uint64 memorySize)
   longlong in_stack_00000060;
   
   if (in_EAX == 0) {
-    localLong2 = FUN_180741d10(*(uint64 *)(utilitySystemDataTable + 0x1a0),memorySize,0x20,&utilityMemoryDataBuffer,0xdd);
+    localLong2 = readSystemData(*(uint64 *)(utilitySystemDataTable + 0x1a0),memorySize,0x20,&utilityMemoryDataBuffer,0xdd);
     if (localLong2 != 0) {
                     // WARNING: Subroutine does not return
       memcpy(localLong2,*(uint64 *)(unaff_RDI + 0x10),(longlong)*(int *)(unaff_RDI + 0x18));
@@ -6826,7 +6826,7 @@ int send_network_data(uint64 resourceHandle,uint64 memorySize)
     localInt1 = 0x26;
   }
   else {
-    localInt1 = FUN_1808de900();
+    localInt1 = allocateSystemMemory();
     if ((localInt1 == 0) &&
        (localInt1 = SystemMemoryFunction(*(uint32 *)(unaff_RDI + 0x24),&stack0x00000060), localInt1 == 0)
        ) {
@@ -6863,7 +6863,7 @@ uint64 close_network_socket(longlong resourceHandle,longlong memorySize)
     return 0x1d;
   }
   auStackX_18[0] = 0;
-  localUInt2 = FUN_180867600(memorySize + 0x60,resourceHandle + 0x10,auStackX_18);
+  localUInt2 = processResourceData(memorySize + 0x60,resourceHandle + 0x10,auStackX_18);
   if ((int)localUInt2 == 0) {
     localLong3 = func_0x000180867680(memorySize + 0x60,auStackX_18[0]);
     if ((*(uint *)(localLong3 + 0x34) >> 4 & 1) != 0) {
@@ -6899,7 +6899,7 @@ uint64 shutdown_network_socket(uint64 resourceHandle,uint64 memorySize)
   uint32 uStack0000000000000040;
   
   uStack0000000000000040 = 0;
-  localUInt2 = FUN_180867600(unaff_RSI + 0x60,memorySize,&stackLocalBuffer);
+  localUInt2 = processResourceData(unaff_RSI + 0x60,memorySize,&stackLocalBuffer);
   if ((int)localUInt2 == 0) {
     localLong3 = func_0x000180867680(unaff_RSI + 0x60,uStack0000000000000040);
     if ((*(uint *)(localLong3 + 0x34) >> 4 & 1) != 0) {
@@ -6963,7 +6963,7 @@ uint64 get_network_address(longlong resourceHandle,longlong memorySize)
   uint32 auStackX_10 [2];
   
   auStackX_10[0] = 0;
-  localUInt2 = FUN_180867600(memorySize + 0x60,resourceHandle + 0x10,auStackX_10);
+  localUInt2 = processResourceData(memorySize + 0x60,resourceHandle + 0x10,auStackX_10);
   if ((int)localUInt2 == 0) {
     localLong3 = func_0x000180867680(memorySize + 0x60,auStackX_10[0]);
     if ((*(uint *)(localLong3 + 0x34) >> 4 & 1) != 0) {
@@ -7080,7 +7080,7 @@ uint64 create_network_connection(longlong resourceHandle,longlong memorySize)
     return 0x1d;
   }
   auStackX_18[0] = 0;
-  localUInt2 = FUN_180840af0(memorySize,resourceHandle + 0x20,auStackX_18);
+  localUInt2 = handleFileOperation(memorySize,resourceHandle + 0x20,auStackX_18);
   if ((int)localUInt2 == 0) {
     localLong3 = func_0x000180867680(memorySize + 0x60,auStackX_18[0]);
     if ((*(uint *)(localLong3 + 0x34) >> 4 & 1) != 0) {
@@ -7196,7 +7196,7 @@ uint64 create_ssl_connection(longlong resourceHandle,longlong memorySize)
   uint32 auStackX_18 [2];
   
   auStackX_18[0] = 0;
-  localUInt2 = FUN_180840af0(memorySize,resourceHandle + 0x20,auStackX_18);
+  localUInt2 = handleFileOperation(memorySize,resourceHandle + 0x20,auStackX_18);
   if ((int)localUInt2 == 0) {
     localLong3 = func_0x000180867680(memorySize + 0x60,auStackX_18[0]);
     if ((*(uint *)(localLong3 + 0x34) >> 4 & 1) != 0) {
@@ -7359,16 +7359,16 @@ int insert_database_record(longlong resourceHandle,longlong memorySize,int opera
   int localInt2;
   
   localInt1 = func_0x00018074b800(memorySize,operationFlags,*(uint32 *)(resourceHandle + 0x10));
-  localInt2 = FUN_18074b880(memorySize + localInt1,operationFlags - localInt1,&DAT_180a06434);
+  localInt2 = executeSystemCommand(memorySize + localInt1,operationFlags - localInt1,&DAT_180a06434);
   localInt1 = localInt1 + localInt2;
   localInt2 = func_0x00018074b7d0(localInt1 + memorySize,operationFlags - localInt1,*(uint32 *)(resourceHandle + 0x18));
   localInt1 = localInt1 + localInt2;
-  localInt2 = FUN_18074b880(localInt1 + memorySize,operationFlags - localInt1,&DAT_180a06434);
+  localInt2 = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&DAT_180a06434);
   localInt1 = localInt1 + localInt2;
-  localInt2 = FUN_18074b970(localInt1 + memorySize,operationFlags - localInt1,resourceHandle + 0x20,
+  localInt2 = performSystemOperation(localInt1 + memorySize,operationFlags - localInt1,resourceHandle + 0x20,
                         *(uint32 *)(resourceHandle + 0x18));
   localInt1 = localInt1 + localInt2;
-  localInt2 = FUN_18074b880(localInt1 + memorySize,operationFlags - localInt1,&DAT_180a06434);
+  localInt2 = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&DAT_180a06434);
   localInt1 = localInt1 + localInt2;
   localInt2 = FUN_18074bb00(localInt1 + memorySize,operationFlags - localInt1,
                         resourceHandle + 0x20 + (longlong)*(int *)(resourceHandle + 0x18) * 4);
@@ -7384,21 +7384,21 @@ int update_database_record(longlong resourceHandle,longlong memorySize,int opera
   int localInt2;
   
   localInt1 = func_0x00018074b800(memorySize,operationFlags,*(uint32 *)(resourceHandle + 0x10));
-  localInt2 = FUN_18074b880(memorySize + localInt1,operationFlags - localInt1,&DAT_180a06434);
+  localInt2 = executeSystemCommand(memorySize + localInt1,operationFlags - localInt1,&DAT_180a06434);
   localInt1 = localInt1 + localInt2;
   localInt2 = func_0x00018074b7d0(localInt1 + memorySize,operationFlags - localInt1,*(uint32 *)(resourceHandle + 0x18));
   localInt1 = localInt1 + localInt2;
-  localInt2 = FUN_18074b880(localInt1 + memorySize,operationFlags - localInt1,&DAT_180a06434);
+  localInt2 = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&DAT_180a06434);
   localInt1 = localInt1 + localInt2;
   localInt2 = FUN_18088ed70(localInt1 + memorySize,operationFlags - localInt1,resourceHandle + 0x20,
                         *(uint32 *)(resourceHandle + 0x18));
   localInt1 = localInt1 + localInt2;
-  localInt2 = FUN_18074b880(localInt1 + memorySize,operationFlags - localInt1,&DAT_180a06434);
+  localInt2 = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&DAT_180a06434);
   localInt1 = localInt1 + localInt2;
   localInt2 = FUN_18074bb00(localInt1 + memorySize,operationFlags - localInt1,
                         resourceHandle + 0x20 + (longlong)*(int *)(resourceHandle + 0x18) * 8);
   localInt1 = localInt1 + localInt2;
-  localInt2 = FUN_18074b880(localInt1 + memorySize,operationFlags - localInt1,&DAT_180a06434);
+  localInt2 = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&DAT_180a06434);
   localInt1 = localInt1 + localInt2;
   localInt2 = FUN_18074be90(localInt1 + memorySize,operationFlags - localInt1,*(byte *)(resourceHandle + 0x1c));
   return localInt2 + localInt1;
@@ -7413,17 +7413,17 @@ int delete_database_record(longlong resourceHandle,longlong memorySize,int opera
   int localInt2;
   
   localInt1 = func_0x00018074b7d0(memorySize,operationFlags,*(uint32 *)(resourceHandle + 0x10));
-  localInt2 = FUN_18074b880(memorySize + localInt1,operationFlags - localInt1,&DAT_180a06434);
+  localInt2 = executeSystemCommand(memorySize + localInt1,operationFlags - localInt1,&DAT_180a06434);
   localInt1 = localInt1 + localInt2;
   localInt2 = FUN_18088ed70(localInt1 + memorySize,operationFlags - localInt1,resourceHandle + 0x18,
                         *(uint32 *)(resourceHandle + 0x10));
   localInt1 = localInt1 + localInt2;
-  localInt2 = FUN_18074b880(localInt1 + memorySize,operationFlags - localInt1,&DAT_180a06434);
+  localInt2 = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&DAT_180a06434);
   localInt1 = localInt1 + localInt2;
   localInt2 = FUN_18074bb00(localInt1 + memorySize,operationFlags - localInt1,
                         resourceHandle + 0x18 + (longlong)*(int *)(resourceHandle + 0x10) * 8);
   localInt1 = localInt1 + localInt2;
-  localInt2 = FUN_18074b880(localInt1 + memorySize,operationFlags - localInt1,&DAT_180a06434);
+  localInt2 = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&DAT_180a06434);
   localInt1 = localInt1 + localInt2;
   localInt2 = FUN_18074be90(localInt1 + memorySize,operationFlags - localInt1,*(byte *)(resourceHandle + 0x14));
   return localInt2 + localInt1;
@@ -7437,12 +7437,12 @@ int begin_database_transaction(longlong *resourceHandle,longlong memorySize,int 
   int localInt1;
   int localInt2;
   
-  localInt1 = FUN_18074b880(memorySize,operationFlags,&unknown_180986298);
-  localInt2 = FUN_18074b880(memorySize + localInt1,operationFlags - localInt1,&DAT_180a06434);
+  localInt1 = executeSystemCommand(memorySize,operationFlags,&unknown_180986298);
+  localInt2 = executeSystemCommand(memorySize + localInt1,operationFlags - localInt1,&DAT_180a06434);
   localInt1 = localInt1 + localInt2;
   localInt2 = func_0x00018074b7d0(localInt1 + memorySize,operationFlags - localInt1,(int)resourceHandle[3] * 8 + 0x20);
   localInt1 = localInt1 + localInt2;
-  localInt2 = FUN_18074b880(localInt1 + memorySize,operationFlags - localInt1,&DAT_180a06434);
+  localInt2 = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&DAT_180a06434);
   localInt1 = localInt1 + localInt2;
   localInt2 = (**(code **)(*resourceHandle + 8))(resourceHandle,localInt1 + memorySize,operationFlags - localInt1);
   return localInt2 + localInt1;
@@ -7456,12 +7456,12 @@ int commit_database_transaction(longlong *resourceHandle,longlong memorySize,int
   int localInt1;
   int localInt2;
   
-  localInt1 = FUN_18074b880(memorySize,operationFlags,&unknown_180984010);
-  localInt2 = FUN_18074b880(memorySize + localInt1,operationFlags - localInt1,&DAT_180a06434);
+  localInt1 = executeSystemCommand(memorySize,operationFlags,&unknown_180984010);
+  localInt2 = executeSystemCommand(memorySize + localInt1,operationFlags - localInt1,&DAT_180a06434);
   localInt1 = localInt1 + localInt2;
   localInt2 = func_0x00018074b7d0(localInt1 + memorySize,operationFlags - localInt1,(int)resourceHandle[3] * 0xc + 0x20);
   localInt1 = localInt1 + localInt2;
-  localInt2 = FUN_18074b880(localInt1 + memorySize,operationFlags - localInt1,&DAT_180a06434);
+  localInt2 = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&DAT_180a06434);
   localInt1 = localInt1 + localInt2;
   localInt2 = (**(code **)(*resourceHandle + 8))(resourceHandle,localInt1 + memorySize,operationFlags - localInt1);
   return localInt2 + localInt1;
@@ -7475,12 +7475,12 @@ int rollback_database_transaction(longlong *resourceHandle,longlong memorySize,i
   int localInt1;
   int localInt2;
   
-  localInt1 = FUN_18074b880(memorySize,operationFlags,&unknown_180982240);
-  localInt2 = FUN_18074b880(memorySize + localInt1,operationFlags - localInt1,&DAT_180a06434);
+  localInt1 = executeSystemCommand(memorySize,operationFlags,&unknown_180982240);
+  localInt2 = executeSystemCommand(memorySize + localInt1,operationFlags - localInt1,&DAT_180a06434);
   localInt1 = localInt1 + localInt2;
   localInt2 = func_0x00018074b7d0(localInt1 + memorySize,operationFlags - localInt1,((int)resourceHandle[2] + 2) * 0xc);
   localInt1 = localInt1 + localInt2;
-  localInt2 = FUN_18074b880(localInt1 + memorySize,operationFlags - localInt1,&DAT_180a06434);
+  localInt2 = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&DAT_180a06434);
   localInt1 = localInt1 + localInt2;
   localInt2 = (**(code **)(*resourceHandle + 8))(resourceHandle,localInt1 + memorySize,operationFlags - localInt1);
   return localInt2 + localInt1;
@@ -9638,7 +9638,7 @@ int FUN_180896a30(longlong resourceHandle,longlong memorySize,int operationFlags
   
   localUInt1 = *(uint32 *)(resourceHandle + 0x14);
   localInt2 = func_0x00018074b7d0(memorySize,operationFlags,*(uint32 *)(resourceHandle + 0x10));
-  localInt3 = FUN_18074b880(memorySize + localInt2,operationFlags - localInt2,&DAT_180a06434);
+  localInt3 = executeSystemCommand(memorySize + localInt2,operationFlags - localInt2,&DAT_180a06434);
   localInt2 = localInt2 + localInt3;
   localInt3 = func_0x00018074b800(localInt2 + memorySize,operationFlags - localInt2,localUInt1);
   return localInt3 + localInt2;
@@ -9654,8 +9654,8 @@ int FUN_180896aa0(longlong resourceHandle,longlong memorySize,int operationFlags
   int localInt3;
   
   localUInt1 = *(uint64 *)(resourceHandle + 0x10);
-  localInt2 = FUN_18074b880(memorySize,operationFlags,&unknown_1809863f8);
-  localInt3 = FUN_18074b880(memorySize + localInt2,operationFlags - localInt2,&DAT_180a06434);
+  localInt2 = executeSystemCommand(memorySize,operationFlags,&unknown_1809863f8);
+  localInt3 = executeSystemCommand(memorySize + localInt2,operationFlags - localInt2,&DAT_180a06434);
   localInt2 = localInt2 + localInt3;
   localInt3 = func_0x00018074be80(localInt2 + memorySize,operationFlags - localInt2,localUInt1);
   return localInt3 + localInt2;
@@ -9673,12 +9673,12 @@ int FUN_180896b20(longlong resourceHandle,longlong memorySize,int operationFlags
   
   localUInt1 = *(uint32 *)(resourceHandle + 0x14);
   localUInt2 = *(uint32 *)(resourceHandle + 0x10);
-  localInt3 = FUN_18074b880(memorySize,operationFlags,&unknown_180986470);
-  localInt4 = FUN_18074b880(localInt3 + memorySize,operationFlags - localInt3,&DAT_180a06434);
+  localInt3 = executeSystemCommand(memorySize,operationFlags,&unknown_180986470);
+  localInt4 = executeSystemCommand(localInt3 + memorySize,operationFlags - localInt3,&DAT_180a06434);
   localInt3 = localInt3 + localInt4;
   localInt4 = func_0x00018074b7d0(localInt3 + memorySize,operationFlags - localInt3,localUInt2);
   localInt3 = localInt3 + localInt4;
-  localInt4 = FUN_18074b880(localInt3 + memorySize,operationFlags - localInt3,&DAT_180a06434);
+  localInt4 = executeSystemCommand(localInt3 + memorySize,operationFlags - localInt3,&DAT_180a06434);
   localInt3 = localInt3 + localInt4;
   localInt4 = func_0x00018074b800(localInt3 + memorySize,operationFlags - localInt3,localUInt1);
   return localInt4 + localInt3;
@@ -81420,8 +81420,8 @@ void resourceAcquireHandle(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809424c0(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
-void FUN_1809424c0(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
+// 函数: void updateRenderState(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
+void updateRenderState(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
 
 {
   uint64 *plocalUInt1;
