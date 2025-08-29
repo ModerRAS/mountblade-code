@@ -564,20 +564,20 @@ void NetworkSendData(uint32_t socketHandle,int dataBuffer,longlong bufferCapacit
                     // WARNING: Subroutine does not return
     networkEncryptData(encryptionKey ^ (ulonglong)encryptionBuffer);
   }
-  networkLongStack_58 = 0;
-  networkUintStack_68 = 0;
-  networkLongStack_60 = 0;
-  resultCode = networkInitializeSocket(0,&networkLongStack_60);
-  if ((((resultCode == 0) && (resultCode = networkInitializeConnection(&networkUintStack_68,networkLongStack_60), resultCode == 0)) &&
-      (resultCode = networkValidateSocket(socketHandle,&networkLongStack_50), resultCode == 0)) &&
-     ((networkLongStack_58 = *(longlong *)(networkLongStack_50 + 8), -1 < dataBuffer &&
-      (dataBuffer < *(int *)(networkLongStack_58 + 0x88))))) {
-    dataBuffer = (longlong)dataBuffer * 0x10 + *(longlong *)(networkLongStack_58 + 0x80);
-    pnetworkTimeout = *(longlong **)(networkLongStack_60 + 800);
+  dataOffset = 0;
+  connectionHandle = 0;
+  socketContext = 0;
+  resultCode = networkInitializeSocket(0,&socketContext);
+  if ((((resultCode == 0) && (resultCode = networkInitializeConnection(&connectionHandle,socketContext), resultCode == 0)) &&
+      (resultCode = networkValidateSocket(socketHandle,&connectionInfo), resultCode == 0)) &&
+     ((dataOffset = *(longlong *)(connectionInfo + 8), -1 < dataBuffer &&
+      (dataBuffer < *(int *)(dataOffset + 0x88))))) {
+    dataBuffer = (longlong)dataBuffer * 0x10 + *(longlong *)(dataOffset + 0x80);
+    pnetworkTimeout = *(longlong **)(socketContext + 800);
     connectionInfo = (**(code **)(*pnetworkTimeout + 0x270))(pnetworkTimeout,dataBuffer,1);
     if (connectionInfo == 0) {
                     // WARNING: Subroutine does not return
-      networkSendRawData(dataBuffer,networkStack_48);
+      networkSendRawData(dataBuffer,sendDataBuffer);
     }
     if ((((*(int *)(connectionInfo + 0x38) != 0) || (*(int *)(connectionInfo + 0x3c) != 0)) ||
         ((*(int *)(connectionInfo + 0x40) != 0 || (*(int *)(connectionInfo + 0x44) != 0)))) &&
@@ -586,7 +586,7 @@ void NetworkSendData(uint32_t socketHandle,int dataBuffer,longlong bufferCapacit
     }
   }
                     // WARNING: Subroutine does not return
-  NetworkErrorExit(&networkUintStack_68);
+  NetworkErrorExit(&connectionHandle);
 }
 
 
@@ -594,29 +594,29 @@ void NetworkSendData(uint32_t socketHandle,int dataBuffer,longlong bufferCapacit
 
 // 函数: void NetworkSendDataChunk(uint64_t socketHandle,uint64_t dataBuffer,uint8_t bufferCapacity,uint64_t timeoutValue,
 void NetworkSendDataChunk(uint64_t socketHandle,uint64_t dataBuffer,uint8_t bufferCapacity,uint64_t timeoutValue,
-                  uint64_t networkParam,uint64_t networkParam,longlong networkParam)
+                  uint64_t socketContext,uint64_t connectionHandle,longlong timeoutParam)
 
 {
   longlong *pnetworkTimeout;
   int resultCode;
   longlong connectionInfo;
-  uint32_t unaff_EBP;
-  longlong unaff_RSI;
-  longlong dataBuffer;
+  uint32_t socketId;
+  longlong dataIndex;
+  longlong sendData;
   
-  networkParam = 0;
-  networkParam = 0;
-  resultCode = networkInitializeSocket(0,&networkParam,bufferCapacity,timeoutValue,0);
-  if (((resultCode == 0) && (resultCode = networkInitializeConnection(&stack_buffer,networkParam), resultCode == 0)) &&
-     (resultCode = networkValidateSocket(unaff_EBP,&networkParam), resultCode == 0)) {
-    networkParam = *(longlong *)(networkParam + 8);
-    if ((-1 < (int)unaff_RSI) && ((int)unaff_RSI < *(int *)(networkParam + 0x88))) {
-      dataBuffer = unaff_RSI * 0x10 + *(longlong *)(networkParam + 0x80);
-      pnetworkTimeout = *(longlong **)(networkParam + 800);
-      connectionInfo = (**(code **)(*pnetworkTimeout + 0x270))(pnetworkTimeout,dataBuffer,1);
+  socketContext = 0;
+  connectionHandle = 0;
+  resultCode = networkInitializeSocket(0,&socketContext,bufferCapacity,timeoutValue,0);
+  if (((resultCode == 0) && (resultCode = networkInitializeConnection(&stack_buffer,socketContext), resultCode == 0)) &&
+     (resultCode = networkValidateSocket(socketId,&connectionHandle), resultCode == 0)) {
+    connectionHandle = *(longlong *)(connectionHandle + 8);
+    if ((-1 < (int)dataIndex) && ((int)dataIndex < *(int *)(connectionHandle + 0x88))) {
+      sendData = dataIndex * 0x10 + *(longlong *)(connectionHandle + 0x80);
+      pnetworkTimeout = *(longlong **)(connectionHandle + 800);
+      connectionInfo = (**(code **)(*pnetworkTimeout + 0x270))(pnetworkTimeout,sendData,1);
       if (connectionInfo == 0) {
                     // WARNING: Subroutine does not return
-        networkSendRawData(dataBuffer,&networkStackBuffer);
+        networkSendRawData(sendData,&networkStackBuffer);
       }
       if ((((*(int *)(connectionInfo + 0x38) != 0) || (*(int *)(connectionInfo + 0x3c) != 0)) ||
           ((*(int *)(connectionInfo + 0x40) != 0 || (*(int *)(connectionInfo + 0x44) != 0)))) &&
