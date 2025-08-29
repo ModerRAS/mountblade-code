@@ -24,7 +24,7 @@ int initialize_core_data_structure(void)
 int initialize_network_buffer_system(void)
 {
   longlong net_init_result;
-  g_net_buffer_ptr_180bf5770 = &g_net_data_18098bb30;
+  g_network_buffer_primary_ptr = &g_net_data_18098bb30;
   g_net_buffer_ptr_180bf5778 = &g_net_buffer_180bf5788;
   g_net_buffer_offset_180bf5780 = 0;
   g_net_buffer_180bf5788 = 0;
