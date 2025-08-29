@@ -4232,10 +4232,10 @@ void NetworkHandleDataTimeout(uint64_t socketHandle,longlong dataBuffer,uint32_t
       NetworkErrorExit(&networkUintStack_160);
     }
     resultCode = networkInitializeConnection(&networkUintStack_160);
-    if (resultCode != 0) goto LAB_1808462b2;
+    if (resultCode != 0) goto process_error_handling;
   }
   resultCode = statusCode;
-LAB_1808462b2:
+process_error_handling:
   if (resultCode != 0) {
                     // WARNING: Subroutine does not return
     NetworkErrorExit(&networkUintStack_160);
@@ -4553,9 +4553,9 @@ void NetworkHandleNetworkEvents(uint32_t socketHandle,uint32_t *dataBuffer,uint3
       networkLongStack_148 = networkArrayStack_140[0] + -8;
     }
   }
-  else if (statusCode != 0) goto LAB_1808469dd;
+  else if (statusCode != 0) goto validate_network_operation;
   ReceiveNetworkData(networkLongStack_148,dataBuffer,bufferCapacity);
-LAB_1808469dd:
+validate_network_operation:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(&networkUintStack_158);
 }
@@ -4703,12 +4703,12 @@ void NetworkControlDataFlow(uint64_t socketHandle,uint32_t *dataBuffer)
   networkArrayStack_148[1] = 0;
   statusCode = networkInitializeSocket(socketHandle,networkArrayStack_148);
   if (statusCode == 0) {
-    if ((*(uint *)(networkArrayStack_148[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto LAB_180846d91;
+    if ((*(uint *)(networkArrayStack_148[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto check_network_status;
     resultCode = networkInitializeConnection(networkArrayStack_148 + 1);
-    if (resultCode == 0) goto LAB_180846df9;
+    if (resultCode == 0) goto process_status_check;
   }
   else {
-LAB_180846df9:
+process_status_check:
     resultCode = statusCode;
   }
   if ((resultCode == 0) &&
@@ -4724,7 +4724,7 @@ LAB_180846df9:
       NetworkErrorExit(networkArrayStack_148 + 1);
     }
   }
-LAB_180846d91:
+check_network_status:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(networkArrayStack_148 + 1);
 }
@@ -5046,9 +5046,9 @@ void NetworkHandleErrorRecovery(uint32_t socketHandle,uint32_t *dataBuffer,uint3
       networkLongStack_148 = networkArrayStack_140[0] + -8;
     }
   }
-  else if (statusCode != 0) goto LAB_18084749d;
+  else if (statusCode != 0) goto handle_network_operation;
   NetworkBroadcastPacket(networkLongStack_148,dataBuffer,bufferCapacity);
-LAB_18084749d:
+handle_network_operation:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(&networkUintStack_158);
 }
@@ -5149,7 +5149,7 @@ void NetworkProcessErrorRecovery(uint64_t socketHandle,uint32_t dataBuffer,uint3
   if (statusCode == 0) {
     networkPtrStack_168 = (uint8_t *)networkParam;
     statusCode = HandleNetworkClient(networkStack_158[0],dataBuffer,bufferCapacity,timeoutValue);
-    if (statusCode == 0) goto LAB_1808477fa;
+    if (statusCode == 0) goto process_network_operation;
   }
   if ((statusCode != 0) && ((*(byte *)(g_networkModule + 0x10) & 0x80) != 0)) {
     resultCode = func_0x00018074b7d0(networkStack_148,ERROR_BUFFER_SIZE,dataBuffer);
@@ -5167,7 +5167,7 @@ void NetworkProcessErrorRecovery(uint64_t socketHandle,uint32_t dataBuffer,uint3
                     // WARNING: Subroutine does not return
     networkSendControlPacket(statusCode,0xb,socketHandle,&g_network_control_data_16);
   }
-LAB_1808477fa:
+process_network_operation:
                     // WARNING: Subroutine does not return
   networkEncryptData(networkUintStack_48 ^ (ulonglong)networkStack_188);
 }
@@ -5319,7 +5319,7 @@ void NetworkProcessSecurity(longlong socketHandle,longlong *dataBuffer,byte *buf
     networkPtrStack_68 = &g_network_stack_ptr_5;
     networkOperationResult = NetworkProcessSocketData(&networkPtrStack_68,dataBuffer + 0x80,dataBuffer);
     if ((networkOperationResult != 0) || (networkOperationResult = NetworkProcessSocketData(&networkPtrStack_68,dataBuffer + 0x90,dataBuffer), networkOperationResult != 0))
-    goto LAB_180847c35;
+    goto validate_data_processing;
     if (cStack_60 == '\0') {
       for (connectionIndex = *(ulonglong *)(socketHandle + 0x70);
           (*(ulonglong *)(socketHandle + 0x70) <= connectionIndex &&
@@ -5332,8 +5332,8 @@ void NetworkProcessSecurity(longlong socketHandle,longlong *dataBuffer,byte *buf
         }
         networkOperationResult = NetworkProcessSocketData(&networkPtrStack_68,dataBuffer + 0x80,dataBuffer);
         if ((networkOperationResult != 0) || (networkOperationResult = NetworkProcessSocketData(&networkPtrStack_68,dataBuffer + 0x90,dataBuffer), networkOperationResult != 0))
-        goto LAB_180847c35;
-        if (cStack_60 != '\0') goto LAB_180847bfb;
+        goto validate_data_processing;
+        if (cStack_60 != '\0') goto handle_data_processing;
       }
       for (connectionIndex = *(ulonglong *)(socketHandle + 0x80);
           (*(ulonglong *)(socketHandle + 0x80) <= connectionIndex &&
@@ -5345,21 +5345,21 @@ void NetworkProcessSecurity(longlong socketHandle,longlong *dataBuffer,byte *buf
           networkSendRawData(connectionIndex,&networkPtrStack_58);
         }
         dataBuffer = networkGetTimeoutInfo(dataBuffer,dataBuffer + 0x38);
-        if (dataBuffer == 0) goto LAB_180847c35;
+        if (dataBuffer == 0) goto validate_data_processing;
         cVar1 = func_0x00018084dda0(dataBuffer);
-        if (cVar1 != '\0') goto LAB_180847bfb;
+        if (cVar1 != '\0') goto handle_data_processing;
       }
       cStack_50 = '\0';
       networkPtrStack_58 = &g_network_stack_ptr_6;
       pnetworkLongStack_48 = dataBuffer;
       networkOperationResult = NetworkCleanupSocketData(&networkPtrStack_58,socketHandle,dataBuffer);
       if ((networkOperationResult != 0) || (networkOperationResult = NetworkValidateSocketData(&networkPtrStack_58,socketHandle,dataBuffer), networkOperationResult != 0))
-      goto LAB_180847c35;
+      goto validate_data_processing;
       isAvailable = 1;
-      if (cStack_50 != '\0') goto LAB_180847bfb;
+      if (cStack_50 != '\0') goto handle_data_processing;
     }
     else {
-LAB_180847bfb:
+handle_data_processing:
       isAvailable = 0;
       isSecure = 1;
     }
@@ -5369,7 +5369,7 @@ LAB_180847bfb:
     dataBuffer = *(longlong *)(socketHandle + 0xd0);
   }
   *bufferCapacity = (byte)(*(uint *)(dataBuffer + 4) >> 2) & 1;
-LAB_180847c35:
+validate_data_processing:
                     // WARNING: Subroutine does not return
   networkEncryptData(networkUintStack_30 ^ (ulonglong)networkStack_88);
 }
@@ -5406,7 +5406,7 @@ void NetworkManageSecurity(longlong socketHandle,longlong *dataBuffer,byte *buff
       networkPtrStack_78 = &g_network_stack_ptr_7;
       pnetworkLongStack_68 = dataBuffer;
       resultCode = NetworkCleanupSocketData(&networkPtrStack_78,socketHandle,dataBuffer);
-      if (resultCode != 0) goto LAB_180847dc9;
+      if (resultCode != 0) goto process_data_validation;
       isEncrypted = (byte)networkUintStack_70;
       if ((byte)networkUintStack_70 != 0) {
         dataBuffer = (**(code **)(*dataBuffer + 0x2f0))(dataBuffer,socketHandle + 0x30);
@@ -5421,15 +5421,15 @@ void NetworkManageSecurity(longlong socketHandle,longlong *dataBuffer,byte *buff
             if ((((*(int *)(connectionBuffer + 4) != 0) || (*(int *)((longlong)connectionBuffer + SOCKET_FLAG_OFFSET) != 0)) ||
                 (*(int *)(connectionBuffer + 5) != 0)) || (*(int *)((longlong)connectionBuffer + 0x2c) != 0)) {
               networkAddress = func_0x00018084d0b0(dataBuffer);
-              if (networkAddress == 0) goto LAB_180847dc9;
-              if (*(uint *)(networkAddress + SOCKET_RESPONSE_OFFSET) < *(uint *)((longlong)connectionBuffer + 0x34)) goto LAB_180847d83;
+              if (networkAddress == 0) goto process_data_validation;
+              if (*(uint *)(networkAddress + SOCKET_RESPONSE_OFFSET) < *(uint *)((longlong)connectionBuffer + 0x34)) goto check_data_validation;
             }
             if (connectionBuffer == (uint64_t *)(dataBuffer + 0x68)) break;
           }
           isEncrypted = 1;
         }
         else {
-LAB_180847d83:
+check_data_validation:
           isEncrypted = 0;
         }
       }
@@ -5444,7 +5444,7 @@ LAB_180847d83:
     dataBuffer = *(longlong *)(socketHandle + 0xd0);
   }
   *bufferCapacity = (byte)(*(uint *)(dataBuffer + 4) >> 6) & 1;
-LAB_180847dc9:
+process_data_validation:
                     // WARNING: Subroutine does not return
   networkEncryptData(networkUintStack_38 ^ (ulonglong)networkStack_98);
 }
@@ -5530,12 +5530,12 @@ void NetworkMonitorSecurity(uint64_t socketHandle)
   networkArrayStack_138[1] = 0;
   statusCode = networkInitializeSocket(socketHandle,networkArrayStack_138);
   if (statusCode == 0) {
-    if ((*(uint *)(networkArrayStack_138[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto LAB_180848016;
+    if ((*(uint *)(networkArrayStack_138[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto check_socket_readiness;
     resultCode = networkInitializeConnection(networkArrayStack_138 + 1);
-    if (resultCode == 0) goto LAB_180847fc4;
+    if (resultCode == 0) goto process_readiness_check;
   }
   else {
-LAB_180847fc4:
+process_readiness_check:
     resultCode = statusCode;
   }
   if ((resultCode == 0) &&
@@ -5546,7 +5546,7 @@ LAB_180847fc4:
     *(int *)(network_ptr_stack_128[0] + 2) = (int)socketHandle;
     NetworkValidateSocket(*(uint64_t *)(networkArrayStack_138[0] + NETWORK_CONTEXT_OFFSET));
   }
-LAB_180848016:
+check_socket_readiness:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(networkArrayStack_138 + 1);
 }
@@ -5596,12 +5596,12 @@ void NetworkRespondToSecurity(ulonglong socketHandle,longlong dataBuffer,uint32_
   networkUintStack_170 = 0;
   networkOperationResult = networkInitializeSocket(socketHandle & 0xffffffff,&networkLongStack_168);
   if (networkOperationResult == 0) {
-    if ((*(uint *)(networkLongStack_168 + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto LAB_180848132;
+    if ((*(uint *)(networkLongStack_168 + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto validate_socket_connection;
     connectionCount = networkInitializeConnection(&networkUintStack_170);
-    if (connectionCount == 0) goto LAB_18084820e;
+    if (connectionCount == 0) goto process_connection_validation;
   }
   else {
-LAB_18084820e:
+process_connection_validation:
     connectionCount = networkOperationResult;
   }
   if ((connectionCount == 0) &&
@@ -5613,7 +5613,7 @@ LAB_18084820e:
                     // WARNING: Subroutine does not return
     memcpy(networkPtrStack_160 + 3,dataBuffer,(longlong)(resultCode + 1));
   }
-LAB_180848132:
+validate_socket_connection:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(&networkUintStack_170);
 }
@@ -5639,12 +5639,12 @@ void NetworkLogSecurity(uint64_t socketHandle)
   networkArrayStack_138[1] = 0;
   statusCode = networkInitializeSocket(socketHandle,networkArrayStack_138);
   if (statusCode == 0) {
-    if ((*(uint *)(networkArrayStack_138[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto LAB_1808483a6;
+    if ((*(uint *)(networkArrayStack_138[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto handle_socket_operation;
     resultCode = networkInitializeConnection(networkArrayStack_138 + 1);
-    if (resultCode == 0) goto LAB_180848354;
+    if (resultCode == 0) goto process_operation_handling;
   }
   else {
-LAB_180848354:
+process_operation_handling:
     resultCode = statusCode;
   }
   if ((resultCode == 0) &&
@@ -5655,7 +5655,7 @@ LAB_180848354:
     *(int *)(network_ptr_stack_128[0] + 2) = (int)socketHandle;
     NetworkValidateSocket(*(uint64_t *)(networkArrayStack_138[0] + NETWORK_CONTEXT_OFFSET));
   }
-LAB_1808483a6:
+handle_socket_operation:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(networkArrayStack_138 + 1);
 }
@@ -6562,12 +6562,12 @@ uint64_t NetworkAllocateSocketBuffer(longlong *socketHandle,uint64_t dataBuffer)
                     // WARNING: Subroutine does not return
           memcpy(networkTimeout,*socketHandle,(longlong)(int)socketHandle[1]);
         }
-        goto LAB_1808490b9;
+        goto process_network_timeout;
       }
     }
     return 0x26;
   }
-LAB_1808490b9:
+process_network_timeout:
   if ((0 < *(int *)((longlong)socketHandle + SOCKET_BUFFER_OFFSET)) && (*socketHandle != 0)) {
                     // WARNING: Subroutine does not return
     NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),*socketHandle,&g_errorBuffer,ERROR_BUFFER_SIZE,1);
@@ -6590,7 +6590,7 @@ uint64_t NetworkGetSocketData(uint64_t socketHandle,uint64_t dataBuffer)
   
   networkTimeout = 0;
   if (unaff_EDI == 0) {
-LAB_1808490b9:
+process_network_timeout:
     if ((0 < *(int *)((longlong)unaff_RBX + SOCKET_BUFFER_OFFSET)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
       NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),*unaff_RBX,&g_errorBuffer,ERROR_BUFFER_SIZE,1);
@@ -6606,7 +6606,7 @@ LAB_1808490b9:
                     // WARNING: Subroutine does not return
         memcpy(networkTimeout,*unaff_RBX,(longlong)(int)unaff_RBX[1]);
       }
-      goto LAB_1808490b9;
+      goto process_network_timeout;
     }
   }
   return 0x26;
@@ -6665,12 +6665,12 @@ uint64_t NetworkGetSocketInfo(longlong *socketHandle,int dataBuffer)
             ptr_var_9 = ptr_var_9 + 5;
           } while (clientPort != 0);
         }
-        goto LAB_1808491ce;
+        goto handle_timeout_processing;
       }
     }
     return 0x26;
   }
-LAB_1808491ce:
+handle_timeout_processing:
   if ((0 < *(int *)((longlong)socketHandle + SOCKET_BUFFER_OFFSET)) && (*socketHandle != 0)) {
                     // WARNING: Subroutine does not return
     NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),*socketHandle,&g_errorBuffer,ERROR_BUFFER_SIZE,1);
@@ -6701,7 +6701,7 @@ uint64_t NetworkGetPacketInfo(uint64_t socketHandle,int dataBuffer)
   
   pbufferSize = (uint32_t *)ZERO_OFFSET;
   if (unaff_EDI == 0) {
-LAB_1808491ce:
+handle_timeout_processing:
     if ((0 < *(int *)((longlong)unaff_RBX + SOCKET_BUFFER_OFFSET)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
       NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),*unaff_RBX,&g_errorBuffer,ERROR_BUFFER_SIZE,1);
@@ -6733,7 +6733,7 @@ LAB_1808491ce:
           ptr_var_9 = ptr_var_9 + 5;
         } while (clientPort != 0);
       }
-      goto LAB_1808491ce;
+      goto handle_timeout_processing;
     }
   }
   return 0x26;
@@ -6768,12 +6768,12 @@ void NetworkCloseConnection(uint64_t socketHandle)
   networkArrayStack_138[1] = 0;
   statusCode = networkInitializeSocket(socketHandle,networkArrayStack_138);
   if (statusCode == 0) {
-    if ((*(uint *)(networkArrayStack_138[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto LAB_1808492e6;
+    if ((*(uint *)(networkArrayStack_138[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto check_network_timeout;
     resultCode = networkInitializeConnection(networkArrayStack_138 + 1);
-    if (resultCode == 0) goto LAB_180849294;
+    if (resultCode == 0) goto process_timeout_check;
   }
   else {
-LAB_180849294:
+process_timeout_check:
     resultCode = statusCode;
   }
   if ((resultCode == 0) &&
@@ -6784,7 +6784,7 @@ LAB_180849294:
     *(int *)(network_ptr_stack_128[0] + 2) = (int)socketHandle;
     NetworkValidateSocket(*(uint64_t *)(networkArrayStack_138[0] + NETWORK_CONTEXT_OFFSET));
   }
-LAB_1808492e6:
+check_network_timeout:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(networkArrayStack_138 + 1);
 }
@@ -6823,7 +6823,7 @@ void NetworkShutdownSocket(ulonglong socketHandle)
       NetworkErrorExit(networkArrayStack_138 + 1);
     }
     statusCode = networkFlushBuffer();
-    if (statusCode == 0) goto LAB_180849462;
+    if (statusCode == 0) goto validate_network_connection;
   }
   if ((statusCode != 0) && ((*(byte *)(g_networkModule + 0x10) & 0x80) != 0)) {
     networkPtrStack_148 = networkStack_118;
@@ -6831,7 +6831,7 @@ void NetworkShutdownSocket(ulonglong socketHandle)
                     // WARNING: Subroutine does not return
     networkSendControlPacket(statusCode,0xb,socketHandle,&g_network_data_buffer_0e8);
   }
-LAB_180849462:
+validate_network_connection:
                     // WARNING: Subroutine does not return
   networkEncryptData(networkUintStack_18 ^ (ulonglong)networkStack_168);
 }
@@ -6873,12 +6873,12 @@ void NetworkProcessPacketData(uint64_t socketHandle,uint64_t *dataBuffer)
   networkUintStack_148 = 0;
   processResult = networkInitializeSocket(socketHandle,&networkLongStack_140);
   if (processResult == 0) {
-    if ((*(uint *)(networkLongStack_140 + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto LAB_1808494eb;
+    if ((*(uint *)(networkLongStack_140 + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto check_connection_status;
     socketIndex = networkInitializeConnection(&networkUintStack_148);
-    if (socketIndex == 0) goto LAB_180849553;
+    if (socketIndex == 0) goto process_connection_check;
   }
   else {
-LAB_180849553:
+process_connection_check:
     socketIndex = processResult;
   }
   if ((socketIndex == 0) &&
@@ -6907,7 +6907,7 @@ LAB_180849553:
                     // WARNING: Subroutine does not return
     NetworkErrorExit(&networkUintStack_148);
   }
-LAB_1808494eb:
+check_connection_status:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(&networkUintStack_148);
 }
@@ -6969,7 +6969,7 @@ void NetworkProcessPacketWithCapacity(uint32_t socketHandle,longlong dataBuffer,
      (resultCode = networkValidateSocket(socketHandle,networkArrayStack_140), resultCode == 0)) {
     networkLongStack_148 = *(longlong *)(networkArrayStack_140[0] + 8);
   }
-  else if (resultCode != 0) goto LAB_180849763;
+  else if (resultCode != 0) goto handle_connection_error;
   networkTimeout = *(longlong *)(networkLongStack_148 + 0xd0);
   bufferCapacity = 0;
   if (dataBuffer != 0) {
@@ -6977,7 +6977,7 @@ void NetworkProcessPacketWithCapacity(uint32_t socketHandle,longlong dataBuffer,
   }
   *(uint32_t *)(networkTimeout + 0x48) = bufferCapacity;
   *(longlong *)(networkTimeout + 0x40) = dataBuffer;
-LAB_180849763:
+handle_connection_error:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(&networkUintStack_158);
 }
@@ -7046,14 +7046,14 @@ void NetworkProcessBufferedData(uint32_t socketHandle,longlong dataBuffer,uint32
       networkLongStack_148 = networkArrayStack_140[0] + -8;
     }
   }
-  else if (statusCode != 0) goto LAB_1808498c8;
+  else if (statusCode != 0) goto process_error_handling;
   *(longlong *)(networkLongStack_148 + 0x78) = dataBuffer;
   packetLength = 0;
   if (dataBuffer != 0) {
     packetLength = bufferCapacity;
   }
   *(uint32_t *)(networkLongStack_148 + 0x74) = packetLength;
-LAB_1808498c8:
+process_error_handling:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(&networkUintStack_158);
 }
@@ -7133,12 +7133,12 @@ void NetworkProcessWithTimeout(uint64_t socketHandle,uint32_t dataBuffer,uint64_
   networkUintStack_168 = 0;
   processResult = networkInitializeSocket(socketHandle,&networkLongStack_160);
   if (processResult == 0) {
-    if ((*(uint *)(networkLongStack_160 + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto LAB_1808499fb;
+    if ((*(uint *)(networkLongStack_160 + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto validate_socket_operation;
     socketIndex = networkInitializeConnection(&networkUintStack_168);
-    if (socketIndex == 0) goto LAB_180849ad3;
+    if (socketIndex == 0) goto process_operation_validation;
   }
   else {
-LAB_180849ad3:
+process_operation_validation:
     socketIndex = processResult;
   }
   if ((socketIndex == 0) &&
@@ -7176,7 +7176,7 @@ LAB_180849ad3:
                     // WARNING: Subroutine does not return
     NetworkErrorExit(&networkUintStack_168);
   }
-LAB_1808499fb:
+validate_socket_operation:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(&networkUintStack_168);
 }
@@ -7202,12 +7202,12 @@ void NetworkHandleTimeout(uint64_t socketHandle,uint64_t dataBuffer,uint32_t buf
   networkStack_158[0] = 0;
   statusCode = networkInitializeSocket(socketHandle,&networkLongStack_168);
   if (statusCode == 0) {
-    if ((*(uint *)(networkLongStack_168 + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto LAB_180849c81;
+    if ((*(uint *)(networkLongStack_168 + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto check_socket_status;
     resultCode = networkInitializeConnection(networkStack_158);
-    if (resultCode == 0) goto LAB_180849c22;
+    if (resultCode == 0) goto process_status_validation;
   }
   else {
-LAB_180849c22:
+process_status_validation:
     resultCode = statusCode;
   }
   if ((resultCode == 0) &&
@@ -7220,7 +7220,7 @@ LAB_180849c22:
     *(uint8_t *)((longlong)networkPtrStack_160 + SOCKET_FLAG_OFFSET) = timeoutValue;
     NetworkValidateSocket(*(uint64_t *)(networkLongStack_168 + NETWORK_CONTEXT_OFFSET));
   }
-LAB_180849c81:
+check_socket_status:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(networkStack_158);
 }
@@ -7261,12 +7261,12 @@ void NetworkSetSocketTimeout(ulonglong socketHandle,longlong dataBuffer,uint32_t
   networkUintStack_178 = 0;
   resultCode = networkInitializeSocket(socketHandle & 0xffffffff,&networkLongStack_170);
   if (resultCode == 0) {
-    if ((*(uint *)(networkLongStack_170 + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto LAB_180849dd1;
+    if ((*(uint *)(networkLongStack_170 + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto handle_socket_status;
     networkOperationResult = networkInitializeConnection(&networkUintStack_178);
-    if (networkOperationResult == 0) goto LAB_180849e6f;
+    if (networkOperationResult == 0) goto process_status_handling;
   }
   else {
-LAB_180849e6f:
+process_status_handling:
     networkOperationResult = resultCode;
   }
   if ((networkOperationResult == 0) &&
@@ -7277,7 +7277,7 @@ LAB_180849e6f:
                     // WARNING: Subroutine does not return
     memcpy(network_ptr_stack_168[0] + 5,dataBuffer,(longlong)(statusCode + 1));
   }
-LAB_180849dd1:
+handle_socket_status:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(&networkUintStack_178);
 }
@@ -7318,12 +7318,12 @@ void NetworkGetSocketTimeout(ulonglong socketHandle,longlong dataBuffer,uint32_t
   networkUintStack_178 = 0;
   resultCode = networkInitializeSocket(socketHandle & 0xffffffff,&networkLongStack_170);
   if (resultCode == 0) {
-    if ((*(uint *)(networkLongStack_170 + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto LAB_180849fd1;
+    if ((*(uint *)(networkLongStack_170 + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto validate_network_transfer;
     networkOperationResult = networkInitializeConnection(&networkUintStack_178);
-    if (networkOperationResult == 0) goto LAB_18084a06f;
+    if (networkOperationResult == 0) goto process_transfer_validation;
   }
   else {
-LAB_18084a06f:
+process_transfer_validation:
     networkOperationResult = resultCode;
   }
   if ((networkOperationResult == 0) &&
@@ -7333,7 +7333,7 @@ LAB_18084a06f:
                     // WARNING: Subroutine does not return
     memcpy(network_ptr_stack_168[0] + 4,dataBuffer,(longlong)(statusCode + 1));
   }
-LAB_180849fd1:
+validate_network_transfer:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(&networkUintStack_178);
 }
@@ -7359,12 +7359,12 @@ void NetworkSendByteData(uint64_t socketHandle,uint8_t dataBuffer)
   networkArrayStack_148[1] = 0;
   statusCode = networkInitializeSocket(socketHandle,networkArrayStack_148);
   if (statusCode == 0) {
-    if ((*(uint *)(networkArrayStack_148[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto LAB_18084a1fa;
+    if ((*(uint *)(networkArrayStack_148[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto check_transfer_status;
     resultCode = networkInitializeConnection(networkArrayStack_148 + 1);
-    if (resultCode == 0) goto LAB_18084a1a4;
+    if (resultCode == 0) goto process_transfer_check;
   }
   else {
-LAB_18084a1a4:
+process_transfer_check:
     resultCode = statusCode;
   }
   if ((resultCode == 0) &&
@@ -7376,7 +7376,7 @@ LAB_18084a1a4:
     *(uint8_t *)(network_ptr_stack_138[0] + 3) = dataBuffer;
     NetworkValidateSocket(*(uint64_t *)(networkArrayStack_148[0] + NETWORK_CONTEXT_OFFSET));
   }
-LAB_18084a1fa:
+check_transfer_status:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(networkArrayStack_148 + 1);
 }
@@ -7402,12 +7402,12 @@ void NetworkSendUint32Data(uint64_t socketHandle,uint32_t dataBuffer)
   networkArrayStack_148[1] = 0;
   statusCode = networkInitializeSocket(socketHandle,networkArrayStack_148);
   if (statusCode == 0) {
-    if ((*(uint *)(networkArrayStack_148[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto LAB_18084a346;
+    if ((*(uint *)(networkArrayStack_148[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto validate_data_transfer;
     resultCode = networkInitializeConnection(networkArrayStack_148 + 1);
-    if (resultCode == 0) goto LAB_18084a2ef;
+    if (resultCode == 0) goto process_transfer_operation;
   }
   else {
-LAB_18084a2ef:
+process_transfer_operation:
     resultCode = statusCode;
   }
   if ((resultCode == 0) &&
@@ -7419,7 +7419,7 @@ LAB_18084a2ef:
     *(int *)(network_ptr_stack_138[0] + 2) = (int)socketHandle;
     NetworkValidateSocket(*(uint64_t *)(networkArrayStack_148[0] + NETWORK_CONTEXT_OFFSET));
   }
-LAB_18084a346:
+validate_data_transfer:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(networkArrayStack_148 + 1);
 }
@@ -7445,12 +7445,12 @@ void NetworkSendDataWithCapacity(uint64_t socketHandle,uint32_t dataBuffer,uint3
   networkArrayStack_158[1] = 0;
   statusCode = networkInitializeSocket(socketHandle,networkArrayStack_158);
   if (statusCode == 0) {
-    if ((*(uint *)(networkArrayStack_158[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto LAB_18084a498;
+    if ((*(uint *)(networkArrayStack_158[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto handle_data_transfer;
     resultCode = networkInitializeConnection(networkArrayStack_158 + 1);
-    if (resultCode == 0) goto LAB_18084a43e;
+    if (resultCode == 0) goto process_transfer_handling;
   }
   else {
-LAB_18084a43e:
+process_transfer_handling:
     resultCode = statusCode;
   }
   if ((resultCode == 0) &&
@@ -7463,7 +7463,7 @@ LAB_18084a43e:
     *(uint32_t *)(network_ptr_stack_148[0] + 3) = dataBuffer;
     NetworkValidateSocket(*(uint64_t *)(networkArrayStack_158[0] + NETWORK_CONTEXT_OFFSET));
   }
-LAB_18084a498:
+handle_data_transfer:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(networkArrayStack_158 + 1);
 }
@@ -7489,12 +7489,12 @@ void NetworkSendPacketData(uint64_t socketHandle,uint32_t dataBuffer)
   networkArrayStack_148[1] = 0;
   statusCode = networkInitializeSocket(socketHandle,networkArrayStack_148);
   if (statusCode == 0) {
-    if ((*(uint *)(networkArrayStack_148[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto LAB_18084a608;
+    if ((*(uint *)(networkArrayStack_148[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto check_network_packet;
     resultCode = networkInitializeConnection(networkArrayStack_148 + 1);
-    if (resultCode == 0) goto LAB_18084a5b3;
+    if (resultCode == 0) goto process_packet_validation;
   }
   else {
-LAB_18084a5b3:
+process_packet_validation:
     resultCode = statusCode;
   }
   if ((resultCode == 0) &&
@@ -7506,7 +7506,7 @@ LAB_18084a5b3:
     *(uint32_t *)(network_ptr_stack_138[0] + 3) = dataBuffer;
     NetworkValidateSocket(*(uint64_t *)(networkArrayStack_148[0] + NETWORK_CONTEXT_OFFSET));
   }
-LAB_18084a608:
+check_network_packet:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(networkArrayStack_148 + 1);
 }
@@ -7537,9 +7537,9 @@ void NetworkSendSocketUint64(uint32_t socketHandle,uint64_t dataBuffer)
      (statusCode = networkValidateSocket(socketHandle,networkArrayStack_120), statusCode == 0)) {
     networkLongStack_128 = *(longlong *)(networkArrayStack_120[0] + 8);
   }
-  else if (statusCode != 0) goto LAB_18084a719;
+  else if (statusCode != 0) goto validate_packet_transfer;
   *(uint64_t *)(*(longlong *)(networkLongStack_128 + 0xd0) + 0x38) = dataBuffer;
-LAB_18084a719:
+validate_packet_transfer:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(&networkUintStack_138);
 }
@@ -7575,9 +7575,9 @@ void NetworkSendSocketPacket(uint32_t socketHandle,uint64_t dataBuffer)
       networkLongStack_128 = networkArrayStack_120[0] + -8;
     }
   }
-  else if (statusCode != 0) goto LAB_18084a83e;
+  else if (statusCode != 0) goto process_packet_operation;
   *(uint64_t *)(networkLongStack_128 + 0x30) = dataBuffer;
-LAB_18084a83e:
+process_packet_operation:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(&networkUintStack_138);
 }
@@ -7603,12 +7603,12 @@ void NetworkSendConnectionData(uint64_t socketHandle,uint32_t dataBuffer)
   networkArrayStack_148[1] = 0;
   statusCode = networkInitializeSocket(socketHandle,networkArrayStack_148);
   if (statusCode == 0) {
-    if ((*(uint *)(networkArrayStack_148[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto LAB_18084a986;
+    if ((*(uint *)(networkArrayStack_148[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto check_packet_status;
     resultCode = networkInitializeConnection(networkArrayStack_148 + 1);
-    if (resultCode == 0) goto LAB_18084a92f;
+    if (resultCode == 0) goto process_status_check;
   }
   else {
-LAB_18084a92f:
+process_status_check:
     resultCode = statusCode;
   }
   if ((resultCode == 0) &&
@@ -7620,7 +7620,7 @@ LAB_18084a92f:
     *(int *)(network_ptr_stack_138[0] + 2) = (int)socketHandle;
     NetworkValidateSocket(*(uint64_t *)(networkArrayStack_148[0] + NETWORK_CONTEXT_OFFSET));
   }
-LAB_18084a986:
+check_packet_status:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(networkArrayStack_148 + 1);
 }
@@ -7646,12 +7646,12 @@ void NetworkSendStreamData(uint64_t socketHandle,uint32_t dataBuffer)
   networkArrayStack_148[1] = 0;
   statusCode = networkInitializeSocket(socketHandle,networkArrayStack_148);
   if (statusCode == 0) {
-    if ((*(uint *)(networkArrayStack_148[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto LAB_18084aad6;
+    if ((*(uint *)(networkArrayStack_148[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto validate_packet_data;
     resultCode = networkInitializeConnection(networkArrayStack_148 + 1);
-    if (resultCode == 0) goto LAB_18084aa7f;
+    if (resultCode == 0) goto process_data_validation;
   }
   else {
-LAB_18084aa7f:
+process_data_validation:
     resultCode = statusCode;
   }
   if ((resultCode == 0) &&
@@ -7663,7 +7663,7 @@ LAB_18084aa7f:
     *(int *)(network_ptr_stack_138[0] + 2) = (int)socketHandle;
     NetworkValidateSocket(*(uint64_t *)(networkArrayStack_148[0] + NETWORK_CONTEXT_OFFSET));
   }
-LAB_18084aad6:
+validate_packet_data:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(networkArrayStack_148 + 1);
 }
@@ -7689,12 +7689,12 @@ void NetworkSendBufferData(uint64_t socketHandle,uint32_t dataBuffer)
   networkArrayStack_148[1] = 0;
   statusCode = networkInitializeSocket(socketHandle,networkArrayStack_148);
   if (statusCode == 0) {
-    if ((*(uint *)(networkArrayStack_148[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto LAB_18084ac26;
+    if ((*(uint *)(networkArrayStack_148[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto handle_packet_data;
     resultCode = networkInitializeConnection(networkArrayStack_148 + 1);
-    if (resultCode == 0) goto LAB_18084abcf;
+    if (resultCode == 0) goto process_data_handling;
   }
   else {
-LAB_18084abcf:
+process_data_handling:
     resultCode = statusCode;
   }
   if ((resultCode == 0) &&
@@ -7706,7 +7706,7 @@ LAB_18084abcf:
     *(int *)(network_ptr_stack_138[0] + 2) = (int)socketHandle;
     NetworkValidateSocket(*(uint64_t *)(networkArrayStack_148[0] + NETWORK_CONTEXT_OFFSET));
   }
-LAB_18084ac26:
+handle_packet_data:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(networkArrayStack_148 + 1);
 }
@@ -7732,12 +7732,12 @@ void NetworkCloseSocketHandle(uint64_t socketHandle)
   networkArrayStack_138[1] = 0;
   statusCode = networkInitializeSocket(socketHandle,networkArrayStack_138);
   if (statusCode == 0) {
-    if ((*(uint *)(networkArrayStack_138[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto LAB_18084ad66;
+    if ((*(uint *)(networkArrayStack_138[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto check_network_socket;
     resultCode = networkInitializeConnection(networkArrayStack_138 + 1);
-    if (resultCode == 0) goto LAB_18084ad14;
+    if (resultCode == 0) goto process_socket_validation;
   }
   else {
-LAB_18084ad14:
+process_socket_validation:
     resultCode = statusCode;
   }
   if ((resultCode == 0) &&
@@ -7748,7 +7748,7 @@ LAB_18084ad14:
     *(int *)(network_ptr_stack_128[0] + 2) = (int)socketHandle;
     NetworkValidateSocket(*(uint64_t *)(networkArrayStack_138[0] + NETWORK_CONTEXT_OFFSET));
   }
-LAB_18084ad66:
+check_network_socket:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(networkArrayStack_138 + 1);
 }
@@ -7774,12 +7774,12 @@ void NetworkDisconnectSocket(uint64_t socketHandle,uint32_t dataBuffer)
   networkArrayStack_148[1] = 0;
   statusCode = networkInitializeSocket(socketHandle,networkArrayStack_148);
   if (statusCode == 0) {
-    if ((*(uint *)(networkArrayStack_148[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto LAB_18084ae98;
+    if ((*(uint *)(networkArrayStack_148[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto validate_socket_operation;
     resultCode = networkInitializeConnection(networkArrayStack_148 + 1);
-    if (resultCode == 0) goto LAB_18084ae43;
+    if (resultCode == 0) goto process_operation_check;
   }
   else {
-LAB_18084ae43:
+process_operation_check:
     resultCode = statusCode;
   }
   if ((resultCode == 0) &&
@@ -7791,7 +7791,7 @@ LAB_18084ae43:
     *(uint32_t *)(network_ptr_stack_138[0] + 3) = dataBuffer;
     NetworkValidateSocket(*(uint64_t *)(networkArrayStack_148[0] + NETWORK_CONTEXT_OFFSET));
   }
-LAB_18084ae98:
+validate_socket_operation:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(networkArrayStack_148 + 1);
 }
@@ -7815,18 +7815,18 @@ void NetworkCloseSocketConnection(uint32_t socketHandle,uint32_t *dataBuffer)
   uStackX_10 = 0;
   resultCode = networkInitializeSocket(socketHandle,&lStackX_18);
   if (resultCode == 0) {
-    if ((*(uint *)(lStackX_18 + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto LAB_18084af88;
+    if ((*(uint *)(lStackX_18 + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto handle_socket_operation;
     networkOperationResult = networkInitializeConnection(&uStackX_10);
-    if (networkOperationResult == 0) goto LAB_18084af68;
+    if (networkOperationResult == 0) goto process_operation_handling;
   }
   else {
-LAB_18084af68:
+process_operation_handling:
     networkOperationResult = resultCode;
   }
   if (networkOperationResult == 0) {
     networkValidateSocket(networkResult,auStackX_20);
   }
-LAB_18084af88:
+handle_socket_operation:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(&uStackX_10);
 }
@@ -7952,10 +7952,10 @@ void NetworkInitializeSocket(uint32_t socketHandle)
       NetworkErrorExit(&uStackX_10);
     }
     resultCode = networkInitializeConnection(&uStackX_10);
-    if (resultCode != 0) goto LAB_18084b131;
+    if (resultCode != 0) goto validate_network_operation;
   }
   resultCode = statusCode;
-LAB_18084b131:
+validate_network_operation:
   if (resultCode == 0) {
     statusCode = ValidateNetworkConnection(*(uint64_t *)(alStackX_18[0] + NETWORK_CONTEXT_OFFSET));
     if (statusCode == 0) {
@@ -7988,10 +7988,10 @@ void NetworkInitializeListener(void)
       NetworkErrorExit(&stack_buffer);
     }
     resultCode = networkInitializeConnection(&stack_buffer);
-    if (resultCode != 0) goto LAB_18084b131;
+    if (resultCode != 0) goto validate_network_operation;
   }
   resultCode = statusCode;
-LAB_18084b131:
+validate_network_operation:
   if (resultCode == 0) {
     statusCode = ValidateNetworkConnection(*(uint64_t *)(stack_param + NETWORK_CONTEXT_OFFSET));
     if (statusCode == 0) {
@@ -8087,7 +8087,7 @@ void networkSendRawData(uint32_t *socketHandle,uint64_t dataBuffer)
 
 {
                     // WARNING: Subroutine does not return
-  SendNetworkPacket(dataBuffer,0x27,&UNK_180958180,*socketHandle,*(uint16_t *)(socketHandle + 1),
+  SendNetworkPacket(dataBuffer,0x27,&networkPacketHeader,*socketHandle,*(uint16_t *)(socketHandle + 1),
                 *(uint16_t *)((longlong)socketHandle + 6),*(uint8_t *)(socketHandle + 2),
                 *(uint8_t *)((longlong)socketHandle + 9),*(uint8_t *)((longlong)socketHandle + 10),
                 *(uint8_t *)((longlong)socketHandle + 0xb),*(uint8_t *)(socketHandle + 3),
@@ -8169,21 +8169,21 @@ void NetworkResetSocketBuffer(uint64_t socketHandle)
   statusCode = networkInitializeSocket(socketHandle,networkArrayStack_128);
   if ((statusCode == 0) && ((*(uint *)(networkArrayStack_128[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0)) {
     statusCode = 0x4b;
-LAB_18084b46d:
-    if (statusCode == 0) goto LAB_18084b4a9;
+process_network_operation:
+    if (statusCode == 0) goto check_operation_status;
   }
   else if (statusCode == 0) {
     statusCode = CheckNetworkStatus(*(uint64_t *)(networkArrayStack_128[0] + NETWORK_CONTEXT_OFFSET));
-    if (statusCode == 0) goto LAB_18084b4a9;
-    goto LAB_18084b46d;
+    if (statusCode == 0) goto check_operation_status;
+    goto process_network_operation;
   }
   if ((*(byte *)(g_networkModule + 0x10) & 0x80) != 0) {
     networkPtrStack_138 = networkStack_118;
     networkStack_118[0] = 0;
                     // WARNING: Subroutine does not return
-    networkSendControlPacket(statusCode,0xb,socketHandle,&UNK_180957310);
+    networkSendControlPacket(statusCode,0xb,socketHandle,&networkControlPacket);
   }
-LAB_18084b4a9:
+check_operation_status:
                     // WARNING: Subroutine does not return
   networkEncryptData(networkUintStack_18 ^ (ulonglong)networkStack_158);
 }
@@ -8232,7 +8232,7 @@ void NetworkProcessSocketData(uint64_t socketHandle,uint64_t *dataBuffer,longlon
       networkUintStack_90 = (uint)*(ushort *)((longlong)pbufferCapacity + 6);
       networkUintStack_98 = (uint)*(ushort *)(pbufferCapacity + 1);
                     // WARNING: Subroutine does not return
-      SendNetworkPacket(networkStack_48,0x27,&UNK_180958180,*pbufferCapacity);
+      SendNetworkPacket(networkStack_48,0x27,&networkPacketHeader,*pbufferCapacity);
     }
     statusCode = (**(code **)(*psocketDescriptor + CONNECTION_BUFFER_OFFSET))(psocketDescriptor,socketHandle);
     if (statusCode != 0) break;
@@ -8357,7 +8357,7 @@ void NetworkHandleSocketBuffer(longlong socketHandle,longlong dataBuffer)
       networkUintStack_80 = (uint)*(ushort *)((longlong)pbufferCapacity + 6);
       networkUintStack_88 = (uint)*(ushort *)(pbufferCapacity + 1);
                     // WARNING: Subroutine does not return
-      SendNetworkPacket(networkStack_38,0x27,&UNK_180958180,*pbufferCapacity);
+      SendNetworkPacket(networkStack_38,0x27,&networkPacketHeader,*pbufferCapacity);
     }
     (**(code **)(*psocketDescriptor + CONNECTION_BUFFER_OFFSET))(psocketDescriptor,socketHandle);
     pbufferCapacity = pbufferCapacity + 5;
@@ -8452,7 +8452,7 @@ void NetworkCleanupSocketData(longlong *socketHandle,longlong dataBuffer,longlon
         uint_var_9 = *(ushort *)((longlong)connectionBuffer8 + 6);
         networkResult0 = *(ushort *)(connectionBuffer8 + 1);
         networkResult1 = *connectionBuffer8;
-LAB_18084bb6f:
+handle_packet_sending:
         networkUintStack_60 = (uint)isAvailable;
         networkUintStack_68 = (uint)isReady;
         networkUintStack_70 = (uint)isValid;
@@ -8464,7 +8464,7 @@ LAB_18084bb6f:
         networkUintStack_a0 = (uint)uint_var_9;
         networkUintStack_98 = (uint)isAuthenticated;
                     // WARNING: Subroutine does not return
-        SendNetworkPacket(networkStack_58,0x27,&UNK_180958180,networkResult1);
+        SendNetworkPacket(networkStack_58,0x27,&networkPacketHeader,networkResult1);
       }
       networkTimeout5 = (**(code **)(*bufferCapacity + 0x278))(bufferCapacity,networkTimeout4 + 0x38,1);
       if (networkTimeout5 == 0) {
@@ -8488,15 +8488,15 @@ LAB_18084bb6f:
           uint_var_9 = *(ushort *)((longlong)connectionBuffer7 + 6);
           networkResult0 = *(ushort *)(connectionBuffer7 + 1);
           networkResult1 = *connectionBuffer7;
-          goto LAB_18084bb6f;
+          goto handle_packet_sending;
         }
         statusCode3 = (**(code **)(*pnetworkTimeout6 + CONNECTION_BUFFER_OFFSET))(pnetworkTimeout6,socketHandle);
         if ((statusCode3 != 0) || (cVar12 = (**(code **)(*socketHandle + 0x50))(socketHandle), cVar12 == '\0'))
-        goto LAB_18084bb9a;
+        goto process_sending_operation;
       }
     }
   }
-LAB_18084bb9a:
+process_sending_operation:
                     // WARNING: Subroutine does not return
   networkEncryptData(networkUintStack_30 ^ (ulonglong)networkStack_c8);
 }
@@ -8548,7 +8548,7 @@ void NetworkHandleSocketError(longlong socketHandle,longlong dataBuffer)
         networkUintStack_90 = (uint)*(ushort *)((longlong)pbufferCapacity + 6);
         networkUintStack_98 = (uint)*(ushort *)(pbufferCapacity + 1);
                     // WARNING: Subroutine does not return
-        SendNetworkPacket(networkStack_48,0x27,&UNK_180958180,*pbufferCapacity);
+        SendNetworkPacket(networkStack_48,0x27,&networkPacketHeader,*pbufferCapacity);
       }
       statusCode = (**(code **)(*psocketDescriptor + CONNECTION_BUFFER_OFFSET))(psocketDescriptor,socketHandle);
       if (statusCode != 0) break;
@@ -8584,7 +8584,7 @@ void NetworkProcessSocketError(uint64_t socketHandle,longlong dataBuffer)
                        (*(longlong **)(unaff_RDI + 0x10),pbufferCapacity,1);
     if (psocketDescriptor == (longlong *)ZERO_OFFSET) {
                     // WARNING: Subroutine does not return
-      SendNetworkPacket(&stack_buffer,0x27,&UNK_180958180,*pbufferCapacity,*(uint16_t *)(pbufferCapacity + 1));
+      SendNetworkPacket(&stack_buffer,0x27,&networkPacketHeader,*pbufferCapacity,*(uint16_t *)(pbufferCapacity + 1));
     }
     statusCode = (**(code **)(*psocketDescriptor + CONNECTION_BUFFER_OFFSET))(psocketDescriptor);
     if (statusCode != 0) break;
@@ -8683,7 +8683,7 @@ void NetworkValidateSocketData(longlong *socketHandle,longlong dataBuffer,longlo
       }
       resultCode = (**(code **)(*pdataBuffer + CONNECTION_BUFFER_OFFSET))(pdataBuffer,socketHandle);
       if ((resultCode != 0) || (cVar1 = (**(code **)(*socketHandle + 0x50))(socketHandle), cVar1 == '\0'))
-      goto LAB_18084bff4;
+      goto validate_packet_sending;
     }
     cVar1 = (**(code **)(*socketHandle + 0x58))(socketHandle);
     if (cVar1 != '\0') {
@@ -8704,14 +8704,14 @@ void NetworkValidateSocketData(longlong *socketHandle,longlong dataBuffer,longlo
           networkUintStack_a0 = (uint)*(ushort *)((longlong)socketStatusPointer + 6);
           networkUintStack_a8 = (uint)*(ushort *)(socketStatusPointer + 1);
                     // WARNING: Subroutine does not return
-          SendNetworkPacket(networkStack_58,0x27,&UNK_180958180,*socketStatusPointer);
+          SendNetworkPacket(networkStack_58,0x27,&networkPacketHeader,*socketStatusPointer);
         }
         resultCode = (**(code **)(*pdataBuffer + CONNECTION_BUFFER_OFFSET))(pdataBuffer,socketHandle);
         if ((resultCode != 0) || (cVar1 = (**(code **)(*socketHandle + 0x50))(socketHandle), cVar1 == '\0')) break;
       }
     }
   }
-LAB_18084bff4:
+validate_packet_sending:
                     // WARNING: Subroutine does not return
   networkEncryptData(networkUintStack_30 ^ (ulonglong)networkStack_c8);
 }
@@ -9108,12 +9108,12 @@ uint64_t ListenForConnections(longlong *socketHandle,int dataBuffer)
             dataBuffer = dataBuffer + -1;
           } while (dataBuffer != 0);
         }
-        goto LAB_18084c510;
+        goto process_sending_validation;
       }
     }
     return 0x26;
   }
-LAB_18084c510:
+process_sending_validation:
   if ((0 < *(int *)((longlong)socketHandle + SOCKET_BUFFER_OFFSET)) && (*socketHandle != 0)) {
                     // WARNING: Subroutine does not return
     NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),*socketHandle,&g_errorBuffer,ERROR_BUFFER_SIZE,1);
@@ -9140,7 +9140,7 @@ uint64_t ConnectToRemoteHost(uint64_t socketHandle,int dataBuffer)
   
   pbufferCapacity = (uint32_t *)ZERO_OFFSET;
   if (unaff_EDI == 0) {
-LAB_18084c510:
+process_sending_validation:
     if ((0 < *(int *)((longlong)unaff_RBX + SOCKET_BUFFER_OFFSET)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
       NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),*unaff_RBX,&g_errorBuffer,ERROR_BUFFER_SIZE,1);
@@ -9164,7 +9164,7 @@ LAB_18084c510:
           dataBuffer = dataBuffer + -1;
         } while (dataBuffer != 0);
       }
-      goto LAB_18084c510;
+      goto process_sending_validation;
     }
   }
   return 0x26;
@@ -9473,11 +9473,11 @@ void SetupNetworkParameters(uint64_t *socketHandle)
       *pconnectionInfo = 0;
       *(uint32_t *)((longlong)socketHandle + 0x94) = 0;
       long_ptr_9 = pnetworkTimeout1;
-      goto LAB_18084c923;
+      goto check_socket_capacity;
     }
   }
   else {
-LAB_18084c923:
+check_socket_capacity:
     networkResult0 = (uint)long_ptr_9;
     statusCode = *(int *)(socketHandle + 0x12);
     if (statusCode < 0) {
@@ -9511,7 +9511,7 @@ LAB_18084c923:
   }
   networkResult0 = *(uint *)((longlong)socketHandle + 0x84);
   if ((int)((networkResult0 ^ (int)networkResult0 >> BIT_SHIFT_MASK) - ((int)networkResult0 >> BIT_SHIFT_MASK)) < 0) {
-    if (0 < *(int *)(socketHandle + 0x10)) goto LAB_18084ca76;
+    if (0 < *(int *)(socketHandle + 0x10)) goto process_capacity_check;
     if ((0 < (int)networkResult0) && (socketHandle[0xf] != 0)) {
                     // WARNING: Subroutine does not return
       NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),socketHandle[0xf],&g_errorBuffer,ERROR_BUFFER_SIZE,1);
@@ -9555,7 +9555,7 @@ LAB_18084c923:
   if (0 < (int)((*(uint *)((longlong)socketHandle + 0x84) ^ networkResult0) - networkResult0)) {
     SetErrorState(socketHandle + 0xf,0);
   }
-LAB_18084ca76:
+process_capacity_check:
   pnetworkTimeout1 = (longlong *)*pnetworkTimeout5;
   if (pnetworkTimeout1 != pnetworkTimeout5) {
     do {
@@ -9680,11 +9680,11 @@ void ConfigureConnectionSecurity(uint64_t *socketHandle)
       *pconnectionInfo = 0;
       *(uint32_t *)((longlong)socketHandle + 0x94) = 0;
       long_ptr_9 = pnetworkTimeout1;
-      goto LAB_18084c923;
+      goto check_socket_capacity;
     }
   }
   else {
-LAB_18084c923:
+check_socket_capacity:
     networkResult0 = (uint)long_ptr_9;
     statusCode = *(int *)(socketHandle + 0x12);
     if (statusCode < 0) {
@@ -9718,7 +9718,7 @@ LAB_18084c923:
   }
   networkResult0 = *(uint *)((longlong)socketHandle + 0x84);
   if ((int)((networkResult0 ^ (int)networkResult0 >> BIT_SHIFT_MASK) - ((int)networkResult0 >> BIT_SHIFT_MASK)) < 0) {
-    if (0 < *(int *)(socketHandle + 0x10)) goto LAB_18084ca76;
+    if (0 < *(int *)(socketHandle + 0x10)) goto process_capacity_check;
     if ((0 < (int)networkResult0) && (socketHandle[0xf] != 0)) {
                     // WARNING: Subroutine does not return
       NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),socketHandle[0xf],&g_errorBuffer,ERROR_BUFFER_SIZE,1);
@@ -9762,7 +9762,7 @@ LAB_18084c923:
   if (0 < (int)((*(uint *)((longlong)socketHandle + 0x84) ^ networkResult0) - networkResult0)) {
     SetErrorState(socketHandle + 0xf,0);
   }
-LAB_18084ca76:
+process_capacity_check:
   pnetworkTimeout1 = (longlong *)*pnetworkTimeout5;
   if (pnetworkTimeout1 != pnetworkTimeout5) {
     do {
@@ -9888,11 +9888,11 @@ void SetupNetworkCompression(uint64_t *socketHandle)
       *pconnectionInfo = 0;
       *(uint32_t *)((longlong)socketHandle + 0x94) = 0;
       long_ptr_9 = pnetworkTimeout1;
-      goto LAB_18084c923;
+      goto check_socket_capacity;
     }
   }
   else {
-LAB_18084c923:
+check_socket_capacity:
     networkResult0 = (uint)long_ptr_9;
     statusCode = *(int *)(socketHandle + 0x12);
     if (statusCode < 0) {
@@ -9926,7 +9926,7 @@ LAB_18084c923:
   }
   networkResult0 = *(uint *)((longlong)socketHandle + 0x84);
   if ((int)((networkResult0 ^ (int)networkResult0 >> BIT_SHIFT_MASK) - ((int)networkResult0 >> BIT_SHIFT_MASK)) < 0) {
-    if (0 < *(int *)(socketHandle + 0x10)) goto LAB_18084ca76;
+    if (0 < *(int *)(socketHandle + 0x10)) goto process_capacity_check;
     if ((0 < (int)networkResult0) && (socketHandle[0xf] != 0)) {
                     // WARNING: Subroutine does not return
       NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),socketHandle[0xf],&g_errorBuffer,ERROR_BUFFER_SIZE,1);
@@ -9970,7 +9970,7 @@ LAB_18084c923:
   if (0 < (int)((*(uint *)((longlong)socketHandle + 0x84) ^ networkResult0) - networkResult0)) {
     SetErrorState(socketHandle + 0xf,0);
   }
-LAB_18084ca76:
+process_capacity_check:
   pnetworkTimeout1 = (longlong *)*pnetworkTimeout5;
   if (pnetworkTimeout1 != pnetworkTimeout5) {
     do {
@@ -10053,11 +10053,11 @@ void SendNetworkData(uint32_t socketHandle)
       *responseBuffer = unaff_R12;
       *(uint *)((longlong)responseBuffer + SOCKET_BUFFER_OFFSET) = networkResult3;
       timeoutValue = networkResult3;
-      goto LAB_18084c923;
+      goto check_socket_capacity;
     }
   }
   else {
-LAB_18084c923:
+check_socket_capacity:
     statusCode = (int)responseBuffer[1];
     if (statusCode < 0) {
       networkTimeout0 = (longlong)-statusCode;
@@ -10091,7 +10091,7 @@ LAB_18084c923:
   }
   timeoutValue = *(uint *)((longlong)unaff_R15 + 0x84);
   if ((int)((timeoutValue ^ (int)timeoutValue >> BIT_SHIFT_MASK) - ((int)timeoutValue >> BIT_SHIFT_MASK)) < 0) {
-    if ((int)networkResult3 < *(int *)(unaff_R15 + 0x10)) goto LAB_18084ca76;
+    if ((int)networkResult3 < *(int *)(unaff_R15 + 0x10)) goto process_capacity_check;
     if ((0 < (int)timeoutValue) && (unaff_R15[0xf] != 0)) {
                     // WARNING: Subroutine does not return
       NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),unaff_R15[0xf],&g_errorBuffer,ERROR_BUFFER_SIZE,1);
@@ -10135,7 +10135,7 @@ LAB_18084c923:
   if (0 < (int)((*(uint *)((longlong)unaff_R15 + 0x84) ^ timeoutValue) - timeoutValue)) {
     SetErrorState(unaff_R15 + 0xf,0);
   }
-LAB_18084ca76:
+process_capacity_check:
   pnetworkTimeout2 = (longlong *)*unaff_RSI;
   if (pnetworkTimeout2 != unaff_RSI) {
     do {
@@ -10601,7 +10601,7 @@ uint * ConfigureSocketOptions(longlong socketHandle,uint *dataBuffer)
         pnetworkTimeout1 = pdataBuffer;
         while( true ) {
           if ((pnetworkTimeout1 < pdataBuffer) || (pdataBuffer + (longlong)*(int *)(socketHandle + 0x80) * 5 <= pnetworkTimeout1))
-          goto LAB_18084cfd9;
+          goto handle_capacity_validation;
           if ((*pnetworkTimeout1 == ptimeoutValue[4]) && (pnetworkTimeout1[1] == ptimeoutValue[5])) break;
           pnetworkTimeout1 = pnetworkTimeout1 + 5;
         }
@@ -10620,7 +10620,7 @@ uint * ConfigureSocketOptions(longlong socketHandle,uint *dataBuffer)
           *dataBuffer = *pbufferSize;
         }
       }
-LAB_18084cfd9:
+handle_capacity_validation:
       if (ptimeoutValue != ppacketLength) {
         ptimeoutValue = (uint64_t *)*ptimeoutValue;
       }
@@ -10745,7 +10745,7 @@ uint * HandleNetworkEvent(longlong socketHandle,uint *dataBuffer)
         pnetworkTimeout1 = pdataBuffer;
         while( true ) {
           if ((pnetworkTimeout1 < pdataBuffer) || (pdataBuffer + (longlong)*(int *)(socketHandle + 0x80) * 5 <= pnetworkTimeout1))
-          goto LAB_18084cfd9;
+          goto handle_capacity_validation;
           if ((*pnetworkTimeout1 == ptimeoutValue[4]) && (pnetworkTimeout1[1] == ptimeoutValue[5])) break;
           pnetworkTimeout1 = pnetworkTimeout1 + 5;
         }
@@ -10764,7 +10764,7 @@ uint * HandleNetworkEvent(longlong socketHandle,uint *dataBuffer)
           *dataBuffer = *pbufferSize;
         }
       }
-LAB_18084cfd9:
+handle_capacity_validation:
       if (ptimeoutValue != ppacketLength) {
         ptimeoutValue = (uint64_t *)*ptimeoutValue;
       }
@@ -10840,7 +10840,7 @@ void ProcessNetworkMessage(longlong socketHandle,uint64_t *dataBuffer,uint64_t *
       pnetworkTimeout0 = pconnectionInfo;
       while( true ) {
         if ((pnetworkTimeout0 < pconnectionInfo) || (pconnectionInfo + (longlong)*(int *)(unaff_RSI + 0x80) * 5 <= pnetworkTimeout0))
-        goto LAB_18084cfd9;
+        goto handle_capacity_validation;
         if ((*pnetworkTimeout0 == unaff_RBX[4]) && (pnetworkTimeout0[1] == unaff_RBX[5])) break;
         pnetworkTimeout0 = pnetworkTimeout0 + 5;
       }
@@ -10857,7 +10857,7 @@ void ProcessNetworkMessage(longlong socketHandle,uint64_t *dataBuffer,uint64_t *
         *unaff_RDI = *socketStatusPointer;
       }
     }
-LAB_18084cfd9:
+handle_capacity_validation:
     dataBuffer = unaff_RBX;
     if (unaff_RBX != responseBuffer) {
       dataBuffer = (uint64_t *)*unaff_RBX;
@@ -10994,7 +10994,7 @@ void ProcessEventQueue(void)
         long_ptr_9 = psocketDescriptor;
         while( true ) {
           if ((long_ptr_9 < psocketDescriptor) || (psocketDescriptor + (longlong)*(int *)(unaff_RSI + 0x80) * 5 <= long_ptr_9))
-          goto LAB_18084cfd9;
+          goto handle_capacity_validation;
           if ((*long_ptr_9 == unaff_RBX[4]) && (long_ptr_9[1] == unaff_RBX[5])) break;
           long_ptr_9 = long_ptr_9 + 5;
         }
@@ -11011,7 +11011,7 @@ void ProcessEventQueue(void)
           *unaff_RDI = *pconnectionIndex;
         }
       }
-LAB_18084cfd9:
+handle_capacity_validation:
       if (unaff_RBX != responseBuffer) {
         unaff_RBX = (uint64_t *)*unaff_RBX;
       }
@@ -11091,15 +11091,15 @@ uint64_t HandleNetworkError(longlong socketHandle,uint dataBuffer,int *bufferCap
   if (connectionBuffer1 == (uint8_t *)ZERO_OFFSET) {
     isValid = false;
     connectionBuffer1 = ptr_var_9;
-    if (*(int *)(socketHandle + 0x90) != 0) goto LAB_18084d224;
+    if (*(int *)(socketHandle + 0x90) != 0) goto validate_connection_buffer;
   }
   else {
     isValid = true;
-LAB_18084d224:
-    if (connectionBuffer1 != (uint8_t *)ZERO_OFFSET) goto LAB_18084d22e;
+validate_connection_buffer:
+    if (connectionBuffer1 != (uint8_t *)ZERO_OFFSET) goto process_buffer_validation;
   }
   connectionBuffer1 = networkStack_48;
-LAB_18084d22e:
+process_buffer_validation:
   fVar1 = *(float *)(connectionBuffer1 + ERROR_CODE_INVALID);
   if (fVar1 == 0.0) {
     if ((dataBuffer != *(uint *)(connectionBuffer1 + SESSION_CONFIG_SIZE)) && (ptr_var_9 != (uint8_t *)ZERO_OFFSET)) {
@@ -11200,15 +11200,15 @@ uint64_t GetLastError(void)
   if (connectionBuffer2 == (uint8_t *)ZERO_OFFSET) {
     isValid = false;
     ptr_var_9 = ptimeoutValue;
-    if (*(int *)(responseBuffer + 0x90) != 0) goto LAB_18084d224;
+    if (*(int *)(responseBuffer + 0x90) != 0) goto validate_connection_buffer;
   }
   else {
     isValid = true;
-LAB_18084d224:
-    if (ptr_var_9 != (uint8_t *)ZERO_OFFSET) goto LAB_18084d22e;
+validate_connection_buffer:
+    if (ptr_var_9 != (uint8_t *)ZERO_OFFSET) goto process_buffer_validation;
   }
   ptr_var_9 = auStackX_20;
-LAB_18084d22e:
+process_buffer_validation:
   fVar1 = *(float *)(ptr_var_9 + ERROR_CODE_INVALID);
   if (fVar1 == 0.0) {
     if ((socketIdentifier != *(uint *)(ptr_var_9 + SESSION_CONFIG_SIZE)) && (ptimeoutValue != (uint8_t *)ZERO_OFFSET)) {
@@ -11297,15 +11297,15 @@ uint64_t ResetNetworkError(uint8_t *socketHandle,uint64_t dataBuffer,uint8_t *bu
   if (in_R11 == (uint8_t *)ZERO_OFFSET) {
     isReady = false;
     unaff_RSI = pbufferSize;
-    if (*(int *)(responseBuffer + 0x90) != 0) goto LAB_18084d224;
+    if (*(int *)(responseBuffer + 0x90) != 0) goto validate_connection_buffer;
   }
   else {
     isReady = true;
-LAB_18084d224:
-    if (unaff_RSI != (uint8_t *)ZERO_OFFSET) goto LAB_18084d22e;
+validate_connection_buffer:
+    if (unaff_RSI != (uint8_t *)ZERO_OFFSET) goto process_buffer_validation;
   }
   unaff_RSI = auStackX_20;
-LAB_18084d22e:
+process_buffer_validation:
   fVar1 = *(float *)(unaff_RSI + ERROR_CODE_INVALID);
   if (fVar1 == 0.0) {
     if ((socketIdentifier != *(uint *)(unaff_RSI + SESSION_CONFIG_SIZE)) && (pbufferSize != (uint8_t *)ZERO_OFFSET)) {
@@ -11407,12 +11407,12 @@ uint64_t ClearErrorState(longlong *socketHandle,int dataBuffer)
             ptr_var_9 = connectionBuffer;
           } while (clientPort != 0);
         }
-        goto LAB_18084d4b4;
+        goto handle_buffer_operation;
       }
     }
     return 0x26;
   }
-LAB_18084d4b4:
+handle_buffer_operation:
   if ((0 < *(int *)((longlong)socketHandle + SOCKET_BUFFER_OFFSET)) && (*socketHandle != 0)) {
                     // WARNING: Subroutine does not return
     NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),*socketHandle,&g_errorBuffer,ERROR_BUFFER_SIZE,1);
@@ -11444,7 +11444,7 @@ uint64_t LogNetworkError(uint64_t socketHandle,int dataBuffer)
   
   serverPort = 0;
   if (unaff_EDI == 0) {
-LAB_18084d4b4:
+handle_buffer_operation:
     if ((0 < *(int *)((longlong)unaff_RBX + SOCKET_BUFFER_OFFSET)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
       NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),*unaff_RBX,&g_errorBuffer,ERROR_BUFFER_SIZE,1);
@@ -11478,7 +11478,7 @@ LAB_18084d4b4:
           ptr_var_9 = connectionBuffer;
         } while (clientPort != 0);
       }
-      goto LAB_18084d4b4;
+      goto handle_buffer_operation;
     }
   }
   return 0x26;
@@ -11514,12 +11514,12 @@ uint64_t SetErrorState(longlong *socketHandle,int dataBuffer)
                     // WARNING: Subroutine does not return
           memcpy(networkTimeout,*socketHandle,(longlong)(int)socketHandle[1] * CONNECTION_BUFFER_OFFSET);
         }
-        goto LAB_18084d5b4;
+        goto process_buffer_handling;
       }
     }
     return 0x26;
   }
-LAB_18084d5b4:
+process_buffer_handling:
   if ((0 < *(int *)((longlong)socketHandle + SOCKET_BUFFER_OFFSET)) && (*socketHandle != 0)) {
                     // WARNING: Subroutine does not return
     NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),*socketHandle,&g_errorBuffer,ERROR_BUFFER_SIZE,1);
@@ -11542,7 +11542,7 @@ uint64_t GetErrorDescription(uint64_t socketHandle,int dataBuffer)
   
   networkTimeout = 0;
   if (unaff_EDI == 0) {
-LAB_18084d5b4:
+process_buffer_handling:
     if ((0 < *(int *)((longlong)unaff_RBX + SOCKET_BUFFER_OFFSET)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
       NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),*unaff_RBX,&g_errorBuffer,ERROR_BUFFER_SIZE,1);
@@ -11559,7 +11559,7 @@ LAB_18084d5b4:
                     // WARNING: Subroutine does not return
         memcpy(networkTimeout,*unaff_RBX,(longlong)(int)unaff_RBX[1] * CONNECTION_BUFFER_OFFSET);
       }
-      goto LAB_18084d5b4;
+      goto process_buffer_handling;
     }
   }
   return 0x26;
@@ -11601,7 +11601,7 @@ uint64_t ReportNetworkError(longlong *socketHandle,int dataBuffer)
   networkTimeout2 = 0;
   serverPort = networkTimeout2;
   if (dataBuffer == 0) {
-LAB_18084d7db:
+check_buffer_status:
     if ((0 < *(int *)((longlong)socketHandle + SOCKET_BUFFER_OFFSET)) && (*socketHandle != 0)) {
                     // WARNING: Subroutine does not return
       NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),*socketHandle,&g_errorBuffer,ERROR_BUFFER_SIZE,1);
@@ -11688,7 +11688,7 @@ LAB_18084d7db:
             } while (clientPort != 0);
           }
         }
-        goto LAB_18084d7db;
+        goto check_buffer_status;
       }
     }
     uint_var_9 = 0x26;
@@ -11723,7 +11723,7 @@ uint64_t GetConnectionState(uint64_t socketHandle,int dataBuffer)
   networkTimeout2 = 0;
   serverPort = networkTimeout2;
   if (unaff_EBP == 0) {
-LAB_18084d7db:
+check_buffer_status:
     if ((0 < *(int *)((longlong)unaff_RBX + SOCKET_BUFFER_OFFSET)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
       NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),*unaff_RBX,&g_errorBuffer,ERROR_BUFFER_SIZE,1);
@@ -11810,7 +11810,7 @@ LAB_18084d7db:
             } while (clientPort != 0);
           }
         }
-        goto LAB_18084d7db;
+        goto check_buffer_status;
       }
     }
     uint_var_9 = 0x26;
@@ -12073,7 +12073,7 @@ uint64_t * InitializeSendBuffer(uint64_t *socketHandle)
   *(uint32_t *)(socketHandle + 9) = 0;
   socketHandle[10] = 0;
   socketHandle[0xb] = 0;
-  SetConfigParameter(socketHandle + 10,&UNK_180a0b198);
+  SetConfigParameter(socketHandle + 10,&networkConfigParameter);
   socketHandle[SOCKET_BUFFER_OFFSET] = 0;
   socketHandle[0xd] = 0;
   return socketHandle;
@@ -12635,14 +12635,14 @@ ulonglong GetResourceStatus(longlong socketHandle)
     pnetworkTimeout = (longlong *)(lStackX_8 + 0x50);
     pserverPort = *(longlong **)(lStackX_8 + 0x50);
     if (pserverPort == pnetworkTimeout) {
-LAB_18084e5ba:
+validate_server_port:
       if (pserverPort != pnetworkTimeout) {
         return ERROR_CODE_INVALID;
       }
     }
     else {
       do {
-        if (pserverPort[2] == socketHandle) goto LAB_18084e5ba;
+        if (pserverPort[2] == socketHandle) goto validate_server_port;
       } while ((pserverPort != pnetworkTimeout) && (pserverPort = (longlong *)*pserverPort, pserverPort != pnetworkTimeout));
     }
     pserverPort = (longlong *)
@@ -12693,7 +12693,7 @@ uint64_t ManageNetworkResources(uint64_t *socketHandle,uint64_t dataBuffer,char 
   int errorCode;
   
   socketDescriptor = (**(code **)*socketHandle)();
-  if (*(int *)(socketDescriptor + 0xcc) == 0x7fffffff) goto LAB_18084e8ab;
+  if (*(int *)(socketDescriptor + 0xcc) == 0x7fffffff) goto handle_port_operation;
   if (*(int *)(socketDescriptor + 0xcc) <= *(int *)(socketHandle + SOCKET_RESPONSE_OFFSET)) {
     socketDescriptor = (**(code **)*socketHandle)(socketHandle);
     statusCode = *(int *)(socketDescriptor + 0xd0);
@@ -12720,7 +12720,7 @@ uint64_t ManageNetworkResources(uint64_t *socketHandle,uint64_t dataBuffer,char 
         }
       }
       else {
-        if (statusCode != 4) goto LAB_18084e841;
+        if (statusCode != 4) goto process_port_validation;
         statusCode = 0;
         dataLength = 1;
         if (1 < *(int *)(socketHandle + SOCKET_RESPONSE_OFFSET)) {
@@ -12744,7 +12744,7 @@ uint64_t ManageNetworkResources(uint64_t *socketHandle,uint64_t dataBuffer,char 
       return bufferCapacity;
     }
   }
-LAB_18084e841:
+process_port_validation:
   connectionIndex = (int)*(uint *)((longlong)socketHandle + 0x104) >> BIT_SHIFT_MASK;
   dataLength = *(int *)(socketHandle + SOCKET_RESPONSE_OFFSET) + 1;
   statusCode = (*(uint *)((longlong)socketHandle + 0x104) ^ connectionIndex) - connectionIndex;
@@ -12765,7 +12765,7 @@ LAB_18084e841:
   }
   *(uint64_t *)(socketHandle[BIT_SHIFT_MASK] + (longlong)*(int *)(socketHandle + SOCKET_RESPONSE_OFFSET) * 8) = dataBuffer;
   *(int *)(socketHandle + SOCKET_RESPONSE_OFFSET) = *(int *)(socketHandle + SOCKET_RESPONSE_OFFSET) + 1;
-LAB_18084e8ab:
+handle_port_operation:
   if (((bufferCapacity == '\0') || (socketHandle[SOCKET_BUFFER_OFFSET] == 0)) ||
      (bufferCapacity = ManageNetworkResources(socketHandle[SOCKET_BUFFER_OFFSET],dataBuffer,bufferCapacity), (int)bufferCapacity == 0)) {
     bufferCapacity = 0;
@@ -13016,14 +13016,14 @@ uint64_t AllocateNetworkMemory(longlong socketHandle)
     cVar2 = func_0x0001808c0d90(*(uint64_t *)(socketHandle + 0x38),&networkUintStack_18);
     if (cVar2 == '\0') {
       dataPointer = 0;
-      goto LAB_180853ee2;
+      goto process_network_initialization;
     }
   }
   else {
     socketStatus = 1;
   }
   dataPointer = 1;
-LAB_180853ee2:
+process_network_initialization:
   for (pconnectionIndex = *(uint64_t **)(socketHandle + 0x80);
       (*(uint64_t **)(socketHandle + 0x80) <= pconnectionIndex &&
       (pconnectionIndex < *(uint64_t **)(socketHandle + 0x80) + *(int *)(socketHandle + 0x88))); pconnectionIndex = pconnectionIndex + 1)
@@ -13181,7 +13181,7 @@ void InitializeConnectionPool(longlong socketHandle)
      (networkOperationResult = GetNetworkStatistics(*(uint64_t *)(socketHandle + 0x78),&networkUintStack_58), networkOperationResult == 0)) {
     if ((*(uint *)(socketHandle + 0xc0) >> 3 & 1) != 0) {
       networkOperationResult = CalculateNetworkMetrics(networkUintStack_58,*(uint64_t *)(socketHandle + 0x78));
-      if (networkOperationResult != 0) goto LAB_18084efc3;
+      if (networkOperationResult != 0) goto handle_initialization_error;
       *(uint *)(socketHandle + 0xc0) = *(uint *)(socketHandle + 0xc0) & 0xfffffff7;
     }
     networkUintStack_a8 = networkUintStack_a8 & 0xffffff00;
@@ -13208,11 +13208,11 @@ void InitializeConnectionPool(longlong socketHandle)
       networkUintStack_a0 = (uint)anetworkResult._6_2_;
       networkUintStack_a8 = anetworkResult._4_4_ & 0xffff;
                     // WARNING: Subroutine does not return
-      SendNetworkPacket(&networkUintStack_50,0x27,&UNK_180958180);
+      SendNetworkPacket(&networkUintStack_50,0x27,&networkPacketHeader);
     }
     *(uint *)(socketHandle + 0xc0) = *(uint *)(socketHandle + 0xc0) | 8;
   }
-LAB_18084efc3:
+handle_initialization_error:
                     // WARNING: Subroutine does not return
   networkEncryptData(networkUintStack_28 ^ (ulonglong)networkStack_c8);
 }
@@ -13247,7 +13247,7 @@ void ManageConnectionPool(void)
   uStack0000000000000030 = (uint)anetworkResult[8];
   uStack0000000000000028 = (uint)anetworkResult._6_2_;
                     // WARNING: Subroutine does not return
-  SendNetworkPacket(&stackContext,0x27,&UNK_180958180,anetworkResult._0_8_,anetworkResult._4_4_ & 0xffff);
+  SendNetworkPacket(&stackContext,0x27,&networkPacketHeader,anetworkResult._0_8_,anetworkResult._4_4_ & 0xffff);
 }
 
 
@@ -13353,7 +13353,7 @@ ulonglong CreatePacketHeader(longlong *socketHandle)
       do {
         if (*pstatusCode1 != -1) {
           dataLength = ((int *)*socketHandle)[(int)networkResult0];
-          goto LAB_18084f0bc;
+          goto validate_socket_handle;
         }
         networkResult0 = (ulonglong)((int)networkResult0 + 1);
         timeoutValue = timeoutValue + 1;
@@ -13361,7 +13361,7 @@ ulonglong CreatePacketHeader(longlong *socketHandle)
       } while (timeoutValue != (longlong)resultCode);
     }
     dataLength = -1;
-LAB_18084f0bc:
+validate_socket_handle:
     connectionInfo = socketHandle[2];
     dataPointer = *(uint64_t *)((longlong)dataLength * SOCKET_RESPONSE_OFFSET + SESSION_CONFIG_SIZE + connectionInfo);
     connectionBuffer = (uint *)((longlong)dataLength * SOCKET_RESPONSE_OFFSET + connectionInfo);
@@ -13400,7 +13400,7 @@ LAB_18084f0bc:
     connectionIndex = socketStatus ^ (int)socketStatus >> BIT_SHIFT_MASK;
     timeoutValue = (ulonglong)connectionIndex;
     if ((int)(connectionIndex - ((int)socketStatus >> BIT_SHIFT_MASK)) < 0) {
-      if (0 < (int)socketHandle[3]) goto LAB_18084f283;
+      if (0 < (int)socketHandle[3]) goto process_handle_validation;
       if ((0 < (int)socketStatus) && (socketHandle[2] != 0)) {
                     // WARNING: Subroutine does not return
         NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),socketHandle[2],&g_errorBuffer,ERROR_BUFFER_SIZE,1);
@@ -13422,7 +13422,7 @@ LAB_18084f0bc:
       *(uint32_t *)((longlong)socketHandle + SOCKET_FLAG_OFFSET) = 0;
     }
   }
-LAB_18084f283:
+process_handle_validation:
   if (long_var_9 != 0) {
                     // WARNING: Subroutine does not return
     CleanupNetworkContext(long_var_9);
@@ -13471,7 +13471,7 @@ ulonglong ParsePacketHeader(longlong *socketHandle)
       do {
         if (*pstatusCode1 != -1) {
           dataLength = ((int *)*socketHandle)[(int)networkResult0];
-          goto LAB_18084f0bc;
+          goto validate_socket_handle;
         }
         networkResult0 = (ulonglong)((int)networkResult0 + 1);
         timeoutValue = timeoutValue + 1;
@@ -13479,7 +13479,7 @@ ulonglong ParsePacketHeader(longlong *socketHandle)
       } while (timeoutValue != (longlong)resultCode);
     }
     dataLength = -1;
-LAB_18084f0bc:
+validate_socket_handle:
     connectionInfo = socketHandle[2];
     dataPointer = *(uint64_t *)((longlong)dataLength * SOCKET_RESPONSE_OFFSET + SESSION_CONFIG_SIZE + connectionInfo);
     connectionBuffer = (uint *)((longlong)dataLength * SOCKET_RESPONSE_OFFSET + connectionInfo);
@@ -13522,7 +13522,7 @@ LAB_18084f0bc:
     connectionIndex = socketStatus ^ (int)socketStatus >> BIT_SHIFT_MASK;
     timeoutValue = (ulonglong)connectionIndex;
     if ((int)(connectionIndex - ((int)socketStatus >> BIT_SHIFT_MASK)) < 0) {
-      if (0 < (int)socketHandle[3]) goto LAB_18084f283;
+      if (0 < (int)socketHandle[3]) goto process_handle_validation;
       if ((0 < (int)socketStatus) && (socketHandle[2] != 0)) {
                     // WARNING: Subroutine does not return
         NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),socketHandle[2],&g_errorBuffer,ERROR_BUFFER_SIZE,1);
@@ -13544,7 +13544,7 @@ LAB_18084f0bc:
       *(uint32_t *)((longlong)socketHandle + SOCKET_FLAG_OFFSET) = 0;
     }
   }
-LAB_18084f283:
+process_handle_validation:
   if (connectionInfo != 0) {
                     // WARNING: Subroutine does not return
     CleanupNetworkContext(connectionInfo);
@@ -13618,7 +13618,7 @@ ulonglong SerializePacket(longlong *socketHandle)
       do {
         if (*pstatusCode1 != -1) {
           dataLength = ((int *)*socketHandle)[(int)networkResult0];
-          goto LAB_18084f34c;
+          goto check_handle_status;
         }
         networkResult0 = (ulonglong)((int)networkResult0 + 1);
         timeoutValue = timeoutValue + 1;
@@ -13626,7 +13626,7 @@ ulonglong SerializePacket(longlong *socketHandle)
       } while (timeoutValue != (longlong)resultCode);
     }
     dataLength = -1;
-LAB_18084f34c:
+check_handle_status:
     connectionInfo = socketHandle[2];
     dataPointer = *(uint64_t *)((longlong)dataLength * SOCKET_RESPONSE_OFFSET + SESSION_CONFIG_SIZE + connectionInfo);
     connectionBuffer = (uint *)((longlong)dataLength * SOCKET_RESPONSE_OFFSET + connectionInfo);
@@ -13665,7 +13665,7 @@ LAB_18084f34c:
     connectionIndex = socketStatus ^ (int)socketStatus >> BIT_SHIFT_MASK;
     timeoutValue = (ulonglong)connectionIndex;
     if ((int)(connectionIndex - ((int)socketStatus >> BIT_SHIFT_MASK)) < 0) {
-      if (0 < (int)socketHandle[3]) goto LAB_18084f513;
+      if (0 < (int)socketHandle[3]) goto process_status_check;
       if ((0 < (int)socketStatus) && (socketHandle[2] != 0)) {
                     // WARNING: Subroutine does not return
         NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),socketHandle[2],&g_errorBuffer,ERROR_BUFFER_SIZE,1);
@@ -13687,7 +13687,7 @@ LAB_18084f34c:
       *(uint32_t *)((longlong)socketHandle + SOCKET_FLAG_OFFSET) = 0;
     }
   }
-LAB_18084f513:
+process_status_check:
   if (long_var_9 != 0) {
                     // WARNING: Subroutine does not return
     CleanupNetworkContext(long_var_9);
@@ -13736,7 +13736,7 @@ ulonglong DeserializePacket(longlong *socketHandle)
       do {
         if (*pstatusCode1 != -1) {
           dataLength = ((int *)*socketHandle)[(int)networkResult0];
-          goto LAB_18084f34c;
+          goto check_handle_status;
         }
         networkResult0 = (ulonglong)((int)networkResult0 + 1);
         timeoutValue = timeoutValue + 1;
@@ -13744,7 +13744,7 @@ ulonglong DeserializePacket(longlong *socketHandle)
       } while (timeoutValue != (longlong)resultCode);
     }
     dataLength = -1;
-LAB_18084f34c:
+check_handle_status:
     connectionInfo = socketHandle[2];
     dataPointer = *(uint64_t *)((longlong)dataLength * SOCKET_RESPONSE_OFFSET + SESSION_CONFIG_SIZE + connectionInfo);
     connectionBuffer = (uint *)((longlong)dataLength * SOCKET_RESPONSE_OFFSET + connectionInfo);
@@ -13787,7 +13787,7 @@ LAB_18084f34c:
     connectionIndex = socketStatus ^ (int)socketStatus >> BIT_SHIFT_MASK;
     timeoutValue = (ulonglong)connectionIndex;
     if ((int)(connectionIndex - ((int)socketStatus >> BIT_SHIFT_MASK)) < 0) {
-      if (0 < (int)socketHandle[3]) goto LAB_18084f513;
+      if (0 < (int)socketHandle[3]) goto process_status_check;
       if ((0 < (int)socketStatus) && (socketHandle[2] != 0)) {
                     // WARNING: Subroutine does not return
         NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),socketHandle[2],&g_errorBuffer,ERROR_BUFFER_SIZE,1);
@@ -13809,7 +13809,7 @@ LAB_18084f34c:
       *(uint32_t *)((longlong)socketHandle + SOCKET_FLAG_OFFSET) = 0;
     }
   }
-LAB_18084f513:
+process_status_check:
   if (connectionInfo != 0) {
                     // WARNING: Subroutine does not return
     CleanupNetworkContext(connectionInfo);
@@ -13883,7 +13883,7 @@ ulonglong EncryptPacket(longlong *socketHandle)
       do {
         if (*pstatusCode1 != -1) {
           dataLength = ((int *)*socketHandle)[(int)networkResult0];
-          goto LAB_18084f5dc;
+          goto handle_status_operation;
         }
         networkResult0 = (ulonglong)((int)networkResult0 + 1);
         timeoutValue = timeoutValue + 1;
@@ -13891,7 +13891,7 @@ ulonglong EncryptPacket(longlong *socketHandle)
       } while (timeoutValue != (longlong)resultCode);
     }
     dataLength = -1;
-LAB_18084f5dc:
+handle_status_operation:
     connectionInfo = socketHandle[2];
     dataPointer = *(uint64_t *)((longlong)dataLength * SOCKET_RESPONSE_OFFSET + SESSION_CONFIG_SIZE + connectionInfo);
     connectionBuffer = (uint *)((longlong)dataLength * SOCKET_RESPONSE_OFFSET + connectionInfo);
@@ -13930,7 +13930,7 @@ LAB_18084f5dc:
     connectionIndex = socketStatus ^ (int)socketStatus >> BIT_SHIFT_MASK;
     timeoutValue = (ulonglong)connectionIndex;
     if ((int)(connectionIndex - ((int)socketStatus >> BIT_SHIFT_MASK)) < 0) {
-      if (0 < (int)socketHandle[3]) goto LAB_18084f7a3;
+      if (0 < (int)socketHandle[3]) goto process_operation_handling;
       if ((0 < (int)socketStatus) && (socketHandle[2] != 0)) {
                     // WARNING: Subroutine does not return
         NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),socketHandle[2],&g_errorBuffer,ERROR_BUFFER_SIZE,1);
@@ -13952,7 +13952,7 @@ LAB_18084f5dc:
       *(uint32_t *)((longlong)socketHandle + SOCKET_FLAG_OFFSET) = 0;
     }
   }
-LAB_18084f7a3:
+process_operation_handling:
   if (long_var_9 != 0) {
                     // WARNING: Subroutine does not return
     CleanupNetworkContext(long_var_9);
@@ -14001,7 +14001,7 @@ ulonglong DecryptPacket(longlong *socketHandle)
       do {
         if (*pstatusCode1 != -1) {
           dataLength = ((int *)*socketHandle)[(int)networkResult0];
-          goto LAB_18084f5dc;
+          goto handle_status_operation;
         }
         networkResult0 = (ulonglong)((int)networkResult0 + 1);
         timeoutValue = timeoutValue + 1;
@@ -14009,7 +14009,7 @@ ulonglong DecryptPacket(longlong *socketHandle)
       } while (timeoutValue != (longlong)resultCode);
     }
     dataLength = -1;
-LAB_18084f5dc:
+handle_status_operation:
     connectionInfo = socketHandle[2];
     dataPointer = *(uint64_t *)((longlong)dataLength * SOCKET_RESPONSE_OFFSET + SESSION_CONFIG_SIZE + connectionInfo);
     connectionBuffer = (uint *)((longlong)dataLength * SOCKET_RESPONSE_OFFSET + connectionInfo);
@@ -14052,7 +14052,7 @@ LAB_18084f5dc:
     connectionIndex = socketStatus ^ (int)socketStatus >> BIT_SHIFT_MASK;
     timeoutValue = (ulonglong)connectionIndex;
     if ((int)(connectionIndex - ((int)socketStatus >> BIT_SHIFT_MASK)) < 0) {
-      if (0 < (int)socketHandle[3]) goto LAB_18084f7a3;
+      if (0 < (int)socketHandle[3]) goto process_operation_handling;
       if ((0 < (int)socketStatus) && (socketHandle[2] != 0)) {
                     // WARNING: Subroutine does not return
         NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),socketHandle[2],&g_errorBuffer,ERROR_BUFFER_SIZE,1);
@@ -14074,7 +14074,7 @@ LAB_18084f5dc:
       *(uint32_t *)((longlong)socketHandle + SOCKET_FLAG_OFFSET) = 0;
     }
   }
-LAB_18084f7a3:
+process_operation_handling:
   if (connectionInfo != 0) {
                     // WARNING: Subroutine does not return
     CleanupNetworkContext(connectionInfo);
@@ -14179,7 +14179,7 @@ int ValidatePacketFormat(longlong *socketHandle)
       do {
         if (*pdataLength != -1) {
           statusCode1 = ((int *)socketHandle[6])[statusCode1];
-          goto LAB_18084f88c;
+          goto validate_network_address;
         }
         statusCode1 = statusCode1 + 1;
         clientPort = clientPort + 1;
@@ -14187,7 +14187,7 @@ int ValidatePacketFormat(longlong *socketHandle)
       } while (clientPort != (int)socketHandle[7]);
     }
     statusCode1 = -1;
-LAB_18084f88c:
+validate_network_address:
     clientPort = socketHandle[5];
     connectionBuffer3 = (uint *)((longlong)statusCode1 * SOCKET_RESPONSE_OFFSET + socketHandle[8]);
     networkUintStack_68 = *connectionBuffer3;
@@ -14215,24 +14215,24 @@ LAB_18084f88c:
         pnetworkAddress = (longlong *)((longlong)statusCode2 * SOCKET_RESPONSE_OFFSET + socketHandle[2]);
         if ((*pnetworkAddress == connectionInfo) && (pnetworkAddress[1] == networkTimeout0)) {
           long_var_9 = pnetworkAddress[3];
-          goto LAB_18084f933;
+          goto process_address_validation;
         }
         statusCode2 = (int)pnetworkAddress[2];
       } while (statusCode2 != -1);
     }
     long_var_9 = 0;
-LAB_18084f933:
+process_address_validation:
     if (!isConnected7) {
                     // WARNING: Subroutine does not return
       CleanupNetworkContext(clientPort);
     }
     if (long_var_9 != 0) {
       pnetworkAddress = *(longlong **)((longlong)statusCode1 * SOCKET_RESPONSE_OFFSET + SESSION_CONFIG_SIZE + socketHandle[8]);
-      if ((int)pnetworkAddress[1] == 0) goto LAB_18084f987;
+      if ((int)pnetworkAddress[1] == 0) goto check_address_status;
       statusCode1 = 0;
       clientPort = 0;
       pdataLength = (int *)*pnetworkAddress;
-      goto LAB_18084f970;
+      goto process_status_handling;
     }
     clientPort = socketHandle[0xb];
     if (clientPort != 0) {
@@ -14270,7 +14270,7 @@ LAB_18084fc27:
       CleanupNetworkContext(clientPort);
     }
   } while (statusCode1 == 0);
-LAB_18084fc83:
+validate_connection_index:
   if (socketDescriptor != 0) {
                     // WARNING: Subroutine does not return
     CleanupNetworkContext(socketDescriptor);
@@ -14278,25 +14278,25 @@ LAB_18084fc83:
   return statusCode1;
 joined_r0x00018084fa4e:
   networkUintStack_58 = pnetworkTimeout6;
-  if (statusCode1 == -1) goto LAB_18084f987;
+  if (statusCode1 == -1) goto check_address_status;
   connectionBuffer3 = (uint *)((longlong)statusCode1 * 0x10 + pnetworkAddress[2]);
   if ((int)pnetworkAddress[1] == 0) {
-LAB_18084faac:
+handle_address_operation:
     statusCode1 = ERROR_CODE_INVALID;
-    goto LAB_18084fc83;
+    goto validate_connection_index;
   }
   networkResult = *connectionBuffer3;
   clientPort = (longlong)(int)((int)pnetworkAddress[1] - 1U & networkResult);
   connectionBuffer4 = (uint *)(*pnetworkAddress + clientPort * 4);
   connectionIndex = *(uint *)(*pnetworkAddress + clientPort * 4);
-  if (connectionIndex == 0xffffffff) goto LAB_18084faac;
+  if (connectionIndex == 0xffffffff) goto handle_address_operation;
   while (connectionBuffer5 = (uint *)((longlong)(int)connectionIndex * 0x10 + pnetworkAddress[2]), *connectionBuffer5 != networkResult) {
     connectionIndex = connectionBuffer5[1];
     connectionBuffer4 = connectionBuffer5 + 1;
-    if (connectionIndex == 0xffffffff) goto LAB_18084faac;
+    if (connectionIndex == 0xffffffff) goto handle_address_operation;
   }
   statusCode1 = networkAcceptConnection(long_var_9,connectionBuffer3,connectionBuffer5 + 2);
-  if (statusCode1 != 0) goto LAB_18084fc83;
+  if (statusCode1 != 0) goto validate_connection_index;
   networkResult = *connectionBuffer4;
   clientPort = (longlong)(int)networkResult * 0x10 + pnetworkAddress[2];
   networkUintStack_4c = 0xffffffff;
@@ -14312,7 +14312,7 @@ LAB_18084faac:
     do {
       if (*pdataLength != -1) {
         statusCode1 = ((int *)*pnetworkAddress)[networkIntStack_50];
-        goto LAB_18084fb35;
+        goto process_index_validation;
       }
       networkIntStack_50 = networkIntStack_50 + 1;
       clientPort = clientPort + 1;
@@ -14321,7 +14321,7 @@ LAB_18084faac:
   }
   networkIntStack_50 = -1;
   statusCode1 = -1;
-LAB_18084fb35:
+process_index_validation:
   networkUintStack_30 = CONCAT44(networkUintStack_44,statusCode1);
   networkUintStack_58._0_4_ = SUB84(pnetworkAddress,0);
   networkUintStack_58._4_4_ = uint32_t)((ulonglong)pnetworkAddress >> SOCKET_RESPONSE_OFFSET);
@@ -14337,14 +14337,14 @@ LAB_18084fb35:
     clientPort = clientPort + 1;
     pdataLength = pdataLength + 1;
     if (clientPort == (int)pnetworkAddress[1]) break;
-LAB_18084f970:
+process_status_handling:
     if (*pdataLength != -1) {
       statusCode1 = ((int *)*pnetworkAddress)[statusCode1];
       pnetworkTimeout6 = networkUintStack_58;
       goto joined_r0x00018084fa4e;
     }
   }
-LAB_18084f987:
+check_address_status:
   ProcessNetworkContext(pnetworkAddress);
                     // WARNING: Subroutine does not return
   NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),pnetworkAddress,&g_network_connection_buffer_cd0,0x193,1);
@@ -14424,7 +14424,7 @@ int networkStartClient(longlong *socketHandle)
       do {
         if (*psocketIndex != -1) {
           statusCode0 = ((int *)socketHandle[6])[statusCode0];
-          goto LAB_18084f88c;
+          goto validate_network_address;
         }
         statusCode0 = statusCode0 + 1;
         serverPort = serverPort + 1;
@@ -14432,7 +14432,7 @@ int networkStartClient(longlong *socketHandle)
       } while (serverPort != (int)socketHandle[7]);
     }
     statusCode0 = -1;
-LAB_18084f88c:
+validate_network_address:
     serverPort = socketHandle[5];
     connectionBuffer2 = (uint *)((longlong)statusCode0 * SOCKET_RESPONSE_OFFSET + socketHandle[8]);
     uStack0000000000000030 = *connectionBuffer2;
@@ -14461,24 +14461,24 @@ LAB_18084f88c:
         psocketHandle = (longlong *)((longlong)statusCode1 * SOCKET_RESPONSE_OFFSET + socketHandle[2]);
         if ((*psocketHandle == socketDescriptor) && (psocketHandle[1] == long_var_9)) {
           clientPort = psocketHandle[3];
-          goto LAB_18084f933;
+          goto process_address_validation;
         }
         statusCode1 = (int)psocketHandle[2];
       } while (statusCode1 != -1);
     }
     clientPort = 0;
-LAB_18084f933:
+process_address_validation:
     if (!isConnected6) {
                     // WARNING: Subroutine does not return
       CleanupNetworkContext(serverPort);
     }
     if (clientPort != 0) {
       psocketHandle = *(longlong **)((longlong)statusCode0 * SOCKET_RESPONSE_OFFSET + SESSION_CONFIG_SIZE + socketHandle[8]);
-      if ((int)psocketHandle[1] == 0) goto LAB_18084f987;
+      if ((int)psocketHandle[1] == 0) goto check_address_status;
       statusCode0 = 0;
       serverPort = 0;
       psocketIndex = (int *)*psocketHandle;
-      goto LAB_18084f970;
+      goto process_status_handling;
     }
     serverPort = socketHandle[0xb];
     if (serverPort != 0) {
@@ -14517,7 +14517,7 @@ LAB_18084fc27:
       CleanupNetworkContext(serverPort);
     }
   } while (statusCode0 == 0);
-LAB_18084fc83:
+validate_connection_index:
   if (unaff_RSI != 0) {
                     // WARNING: Subroutine does not return
     CleanupNetworkContext(unaff_RSI);
@@ -14525,25 +14525,25 @@ LAB_18084fc83:
   return statusCode0;
 joined_r0x00018084fa4e:
   _uStack0000000000000040 = pnetworkTimeout5;
-  if (statusCode0 == -1) goto LAB_18084f987;
+  if (statusCode0 == -1) goto check_address_status;
   connectionBuffer2 = (uint *)((longlong)statusCode0 * 0x10 + psocketHandle[2]);
   if ((int)psocketHandle[1] == 0) {
-LAB_18084faac:
+handle_address_operation:
     statusCode0 = ERROR_CODE_INVALID;
-    goto LAB_18084fc83;
+    goto validate_connection_index;
   }
   networkResult = *connectionBuffer2;
   serverPort = (longlong)(int)((int)psocketHandle[1] - 1U & networkResult);
   connectionBuffer3 = (uint *)(*psocketHandle + serverPort * 4);
   dataPointer = *(uint *)(*psocketHandle + serverPort * 4);
-  if (dataPointer == 0xffffffff) goto LAB_18084faac;
+  if (dataPointer == 0xffffffff) goto handle_address_operation;
   while (connectionBuffer4 = (uint *)((longlong)(int)dataPointer * 0x10 + psocketHandle[2]), *connectionBuffer4 != networkResult) {
     dataPointer = connectionBuffer4[1];
     connectionBuffer3 = connectionBuffer4 + 1;
-    if (dataPointer == 0xffffffff) goto LAB_18084faac;
+    if (dataPointer == 0xffffffff) goto handle_address_operation;
   }
   statusCode0 = networkAcceptConnection(clientPort,connectionBuffer2,connectionBuffer4 + 2);
-  if (statusCode0 != 0) goto LAB_18084fc83;
+  if (statusCode0 != 0) goto validate_connection_index;
   networkResult = *connectionBuffer3;
   serverPort = (longlong)(int)networkResult * 0x10 + psocketHandle[2];
   uStack000000000000004c = 0xffffffff;
@@ -14559,7 +14559,7 @@ LAB_18084faac:
     do {
       if (*psocketIndex != -1) {
         statusCode0 = ((int *)*psocketHandle)[iStack0000000000000048];
-        goto LAB_18084fb35;
+        goto process_index_validation;
       }
       iStack0000000000000048 = iStack0000000000000048 + 1;
       serverPort = serverPort + 1;
@@ -14568,7 +14568,7 @@ LAB_18084faac:
   }
   iStack0000000000000048 = -1;
   statusCode0 = -1;
-LAB_18084fb35:
+process_index_validation:
   stack_param = CONCAT44(uStack0000000000000054,statusCode0);
   uStack0000000000000040 = SUB84(psocketHandle,0);
   uStack0000000000000044 = uint32_t)((ulonglong)psocketHandle >> SOCKET_RESPONSE_OFFSET);
@@ -14584,14 +14584,14 @@ LAB_18084fb35:
     serverPort = serverPort + 1;
     psocketIndex = psocketIndex + 1;
     if (serverPort == (int)psocketHandle[1]) break;
-LAB_18084f970:
+process_status_handling:
     if (*psocketIndex != -1) {
       statusCode0 = ((int *)*psocketHandle)[statusCode0];
       pnetworkTimeout5 = _uStack0000000000000040;
       goto joined_r0x00018084fa4e;
     }
   }
-LAB_18084f987:
+check_address_status:
   ProcessNetworkContext(psocketHandle);
                     // WARNING: Subroutine does not return
   NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketHandle,&g_network_connection_buffer_cd0,0x193,1);
@@ -14671,7 +14671,7 @@ int networkConnectClientSecure(longlong *socketHandle)
       do {
         if (*pdataLength != -1) {
           statusCode1 = ((int *)socketHandle[6])[statusCode1];
-          goto LAB_18084fd6c;
+          goto check_connection_status;
         }
         statusCode1 = statusCode1 + 1;
         clientPort = clientPort + 1;
@@ -14679,7 +14679,7 @@ int networkConnectClientSecure(longlong *socketHandle)
       } while (clientPort != (int)socketHandle[7]);
     }
     statusCode1 = -1;
-LAB_18084fd6c:
+check_connection_status:
     clientPort = socketHandle[5];
     connectionBuffer3 = (uint *)((longlong)statusCode1 * SOCKET_RESPONSE_OFFSET + socketHandle[8]);
     networkUintStack_68 = *connectionBuffer3;
@@ -14707,24 +14707,24 @@ LAB_18084fd6c:
         pnetworkAddress = (longlong *)((longlong)statusCode2 * SOCKET_RESPONSE_OFFSET + socketHandle[2]);
         if ((*pnetworkAddress == connectionInfo) && (pnetworkAddress[1] == networkTimeout0)) {
           long_var_9 = pnetworkAddress[3];
-          goto LAB_18084fe13;
+          goto process_status_validation;
         }
         statusCode2 = (int)pnetworkAddress[2];
       } while (statusCode2 != -1);
     }
     long_var_9 = 0;
-LAB_18084fe13:
+process_status_validation:
     if (!isConnected7) {
                     // WARNING: Subroutine does not return
       CleanupNetworkContext(clientPort);
     }
     if (long_var_9 != 0) {
       pnetworkAddress = *(longlong **)((longlong)statusCode1 * SOCKET_RESPONSE_OFFSET + SESSION_CONFIG_SIZE + socketHandle[8]);
-      if ((int)pnetworkAddress[1] == 0) goto LAB_18084fe67;
+      if ((int)pnetworkAddress[1] == 0) goto handle_status_operation;
       statusCode1 = 0;
       clientPort = 0;
       pdataLength = (int *)*pnetworkAddress;
-      goto LAB_18084fe50;
+      goto process_operation_handling;
     }
     clientPort = socketHandle[0xb];
     if (clientPort != 0) {
@@ -14748,7 +14748,7 @@ LAB_18084fe13:
               *(int *)((longlong)socketHandle + 0x54) = *(int *)((longlong)socketHandle + 0x54) + -1;
               *(int *)(socketHandle + 10) = (int)connectionInfo;
             }
-            goto LAB_180850107;
+            goto validate_data_pointer;
           }
           statusCode1 = (int)pnetworkTimeout6[2];
           pnetworkAddress = pnetworkTimeout6 + 2;
@@ -14756,7 +14756,7 @@ LAB_18084fe13:
       }
     }
     statusCode1 = ERROR_CODE_INVALID;
-LAB_180850107:
+validate_data_pointer:
     if (clientPort != 0) {
                     // WARNING: Subroutine does not return
       CleanupNetworkContext(clientPort);
@@ -14770,7 +14770,7 @@ LAB_180850163:
   return statusCode1;
 joined_r0x00018084ff2e:
   networkUintStack_58 = pnetworkTimeout6;
-  if (statusCode1 == -1) goto LAB_18084fe67;
+  if (statusCode1 == -1) goto handle_status_operation;
   connectionBuffer3 = (uint *)((longlong)statusCode1 * 0x10 + pnetworkAddress[2]);
   if ((int)pnetworkAddress[1] == 0) {
 LAB_18084ff8c:
@@ -14804,7 +14804,7 @@ LAB_18084ff8c:
     do {
       if (*pdataLength != -1) {
         statusCode1 = ((int *)*pnetworkAddress)[networkIntStack_50];
-        goto LAB_180850015;
+        goto process_pointer_validation;
       }
       networkIntStack_50 = networkIntStack_50 + 1;
       clientPort = clientPort + 1;
@@ -14813,7 +14813,7 @@ LAB_18084ff8c:
   }
   networkIntStack_50 = -1;
   statusCode1 = -1;
-LAB_180850015:
+process_pointer_validation:
   networkUintStack_30 = CONCAT44(networkUintStack_44,statusCode1);
   networkUintStack_58._0_4_ = SUB84(pnetworkAddress,0);
   networkUintStack_58._4_4_ = uint32_t)((ulonglong)pnetworkAddress >> SOCKET_RESPONSE_OFFSET);
@@ -14829,14 +14829,14 @@ LAB_180850015:
     clientPort = clientPort + 1;
     pdataLength = pdataLength + 1;
     if (clientPort == (int)pnetworkAddress[1]) break;
-LAB_18084fe50:
+process_operation_handling:
     if (*pdataLength != -1) {
       statusCode1 = ((int *)*pnetworkAddress)[statusCode1];
       pnetworkTimeout6 = networkUintStack_58;
       goto joined_r0x00018084ff2e;
     }
   }
-LAB_18084fe67:
+handle_status_operation:
   ProcessNetworkContext(pnetworkAddress);
                     // WARNING: Subroutine does not return
   NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),pnetworkAddress,&g_network_connection_buffer_cd0,0x193,1);
@@ -14916,7 +14916,7 @@ int networkStartServerSecure(longlong *socketHandle)
       do {
         if (*psocketIndex != -1) {
           statusCode0 = ((int *)socketHandle[6])[statusCode0];
-          goto LAB_18084fd6c;
+          goto check_connection_status;
         }
         statusCode0 = statusCode0 + 1;
         serverPort = serverPort + 1;
@@ -14924,7 +14924,7 @@ int networkStartServerSecure(longlong *socketHandle)
       } while (serverPort != (int)socketHandle[7]);
     }
     statusCode0 = -1;
-LAB_18084fd6c:
+check_connection_status:
     serverPort = socketHandle[5];
     connectionBuffer2 = (uint *)((longlong)statusCode0 * SOCKET_RESPONSE_OFFSET + socketHandle[8]);
     uStack0000000000000030 = *connectionBuffer2;
@@ -14953,24 +14953,24 @@ LAB_18084fd6c:
         psocketHandle = (longlong *)((longlong)statusCode1 * SOCKET_RESPONSE_OFFSET + socketHandle[2]);
         if ((*psocketHandle == socketDescriptor) && (psocketHandle[1] == long_var_9)) {
           clientPort = psocketHandle[3];
-          goto LAB_18084fe13;
+          goto process_status_validation;
         }
         statusCode1 = (int)psocketHandle[2];
       } while (statusCode1 != -1);
     }
     clientPort = 0;
-LAB_18084fe13:
+process_status_validation:
     if (!isConnected6) {
                     // WARNING: Subroutine does not return
       CleanupNetworkContext(serverPort);
     }
     if (clientPort != 0) {
       psocketHandle = *(longlong **)((longlong)statusCode0 * SOCKET_RESPONSE_OFFSET + SESSION_CONFIG_SIZE + socketHandle[8]);
-      if ((int)psocketHandle[1] == 0) goto LAB_18084fe67;
+      if ((int)psocketHandle[1] == 0) goto handle_status_operation;
       statusCode0 = 0;
       serverPort = 0;
       psocketIndex = (int *)*psocketHandle;
-      goto LAB_18084fe50;
+      goto process_operation_handling;
     }
     serverPort = socketHandle[0xb];
     if (serverPort != 0) {
@@ -14995,7 +14995,7 @@ LAB_18084fe13:
               *(int *)((longlong)socketHandle + 0x54) = *(int *)((longlong)socketHandle + 0x54) + -1;
               *(int *)(socketHandle + 10) = (int)socketDescriptor;
             }
-            goto LAB_180850107;
+            goto validate_data_pointer;
           }
           statusCode0 = (int)pnetworkTimeout5[2];
           psocketHandle = pnetworkTimeout5 + 2;
@@ -15003,7 +15003,7 @@ LAB_18084fe13:
       }
     }
     statusCode0 = ERROR_CODE_INVALID;
-LAB_180850107:
+validate_data_pointer:
     if (serverPort != 0) {
                     // WARNING: Subroutine does not return
       CleanupNetworkContext(serverPort);
@@ -15017,7 +15017,7 @@ LAB_180850163:
   return statusCode0;
 joined_r0x00018084ff2e:
   _uStack0000000000000040 = pnetworkTimeout5;
-  if (statusCode0 == -1) goto LAB_18084fe67;
+  if (statusCode0 == -1) goto handle_status_operation;
   connectionBuffer2 = (uint *)((longlong)statusCode0 * 0x10 + psocketHandle[2]);
   if ((int)psocketHandle[1] == 0) {
 LAB_18084ff8c:
@@ -15051,7 +15051,7 @@ LAB_18084ff8c:
     do {
       if (*psocketIndex != -1) {
         statusCode0 = ((int *)*psocketHandle)[iStack0000000000000048];
-        goto LAB_180850015;
+        goto process_pointer_validation;
       }
       iStack0000000000000048 = iStack0000000000000048 + 1;
       serverPort = serverPort + 1;
@@ -15060,7 +15060,7 @@ LAB_18084ff8c:
   }
   iStack0000000000000048 = -1;
   statusCode0 = -1;
-LAB_180850015:
+process_pointer_validation:
   stack_param = CONCAT44(uStack0000000000000054,statusCode0);
   uStack0000000000000040 = SUB84(psocketHandle,0);
   uStack0000000000000044 = uint32_t)((ulonglong)psocketHandle >> SOCKET_RESPONSE_OFFSET);
@@ -15076,14 +15076,14 @@ LAB_180850015:
     serverPort = serverPort + 1;
     psocketIndex = psocketIndex + 1;
     if (serverPort == (int)psocketHandle[1]) break;
-LAB_18084fe50:
+process_operation_handling:
     if (*psocketIndex != -1) {
       statusCode0 = ((int *)*psocketHandle)[statusCode0];
       pnetworkTimeout5 = _uStack0000000000000040;
       goto joined_r0x00018084ff2e;
     }
   }
-LAB_18084fe67:
+handle_status_operation:
   ProcessNetworkContext(psocketHandle);
                     // WARNING: Subroutine does not return
   NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketHandle,&g_network_connection_buffer_cd0,0x193,1);
@@ -15163,7 +15163,7 @@ int networkConnectClientCompressed(longlong *socketHandle)
       do {
         if (*pdataLength != -1) {
           statusCode1 = ((int *)socketHandle[6])[statusCode1];
-          goto LAB_18085024c;
+          goto check_pointer_status;
         }
         statusCode1 = statusCode1 + 1;
         clientPort = clientPort + 1;
@@ -15171,7 +15171,7 @@ int networkConnectClientCompressed(longlong *socketHandle)
       } while (clientPort != (int)socketHandle[7]);
     }
     statusCode1 = -1;
-LAB_18085024c:
+check_pointer_status:
     clientPort = socketHandle[5];
     connectionBuffer3 = (uint *)((longlong)statusCode1 * SOCKET_RESPONSE_OFFSET + socketHandle[8]);
     networkUintStack_68 = *connectionBuffer3;
@@ -15199,24 +15199,24 @@ LAB_18085024c:
         pnetworkAddress = (longlong *)((longlong)statusCode2 * SOCKET_RESPONSE_OFFSET + socketHandle[2]);
         if ((*pnetworkAddress == connectionInfo) && (pnetworkAddress[1] == networkTimeout0)) {
           long_var_9 = pnetworkAddress[3];
-          goto LAB_1808502f3;
+          goto process_status_check;
         }
         statusCode2 = (int)pnetworkAddress[2];
       } while (statusCode2 != -1);
     }
     long_var_9 = 0;
-LAB_1808502f3:
+process_status_check:
     if (!isConnected7) {
                     // WARNING: Subroutine does not return
       CleanupNetworkContext(clientPort);
     }
     if (long_var_9 != 0) {
       pnetworkAddress = *(longlong **)((longlong)statusCode1 * SOCKET_RESPONSE_OFFSET + SESSION_CONFIG_SIZE + socketHandle[8]);
-      if ((int)pnetworkAddress[1] == 0) goto LAB_180850347;
+      if ((int)pnetworkAddress[1] == 0) goto handle_status_operation;
       statusCode1 = 0;
       clientPort = 0;
       pdataLength = (int *)*pnetworkAddress;
-      goto LAB_180850330;
+      goto process_operation_handling;
     }
     clientPort = socketHandle[0xb];
     if (clientPort != 0) {
@@ -15240,7 +15240,7 @@ LAB_1808502f3:
               *(int *)((longlong)socketHandle + 0x54) = *(int *)((longlong)socketHandle + 0x54) + -1;
               *(int *)(socketHandle + 10) = (int)connectionInfo;
             }
-            goto LAB_1808505e7;
+            goto validate_timeout_value;
           }
           statusCode1 = (int)pnetworkTimeout6[2];
           pnetworkAddress = pnetworkTimeout6 + 2;
@@ -15248,7 +15248,7 @@ LAB_1808502f3:
       }
     }
     statusCode1 = ERROR_CODE_INVALID;
-LAB_1808505e7:
+validate_timeout_value:
     if (clientPort != 0) {
                     // WARNING: Subroutine does not return
       CleanupNetworkContext(clientPort);
@@ -15262,7 +15262,7 @@ LAB_180850643:
   return statusCode1;
 joined_r0x00018085040e:
   networkUintStack_58 = pnetworkTimeout6;
-  if (statusCode1 == -1) goto LAB_180850347;
+  if (statusCode1 == -1) goto handle_status_operation;
   connectionBuffer3 = (uint *)((longlong)statusCode1 * 0x10 + pnetworkAddress[2]);
   if ((int)pnetworkAddress[1] == 0) {
 LAB_18085046c:
@@ -15296,7 +15296,7 @@ LAB_18085046c:
     do {
       if (*pdataLength != -1) {
         statusCode1 = ((int *)*pnetworkAddress)[networkIntStack_50];
-        goto LAB_1808504f5;
+        goto process_timeout_validation;
       }
       networkIntStack_50 = networkIntStack_50 + 1;
       clientPort = clientPort + 1;
@@ -15305,7 +15305,7 @@ LAB_18085046c:
   }
   networkIntStack_50 = -1;
   statusCode1 = -1;
-LAB_1808504f5:
+process_timeout_validation:
   networkUintStack_30 = CONCAT44(networkUintStack_44,statusCode1);
   networkUintStack_58._0_4_ = SUB84(pnetworkAddress,0);
   networkUintStack_58._4_4_ = uint32_t)((ulonglong)pnetworkAddress >> SOCKET_RESPONSE_OFFSET);
@@ -15321,14 +15321,14 @@ LAB_1808504f5:
     clientPort = clientPort + 1;
     pdataLength = pdataLength + 1;
     if (clientPort == (int)pnetworkAddress[1]) break;
-LAB_180850330:
+process_operation_handling:
     if (*pdataLength != -1) {
       statusCode1 = ((int *)*pnetworkAddress)[statusCode1];
       pnetworkTimeout6 = networkUintStack_58;
       goto joined_r0x00018085040e;
     }
   }
-LAB_180850347:
+handle_status_operation:
   EncryptNetworkData(pnetworkAddress);
                     // WARNING: Subroutine does not return
   NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),pnetworkAddress,&g_network_connection_buffer_cd0,0x193,1);
@@ -15408,7 +15408,7 @@ int networkStartServerCompressed(longlong *socketHandle)
       do {
         if (*psocketIndex != -1) {
           statusCode0 = ((int *)socketHandle[6])[statusCode0];
-          goto LAB_18085024c;
+          goto check_pointer_status;
         }
         statusCode0 = statusCode0 + 1;
         serverPort = serverPort + 1;
@@ -15416,7 +15416,7 @@ int networkStartServerCompressed(longlong *socketHandle)
       } while (serverPort != (int)socketHandle[7]);
     }
     statusCode0 = -1;
-LAB_18085024c:
+check_pointer_status:
     serverPort = socketHandle[5];
     connectionBuffer2 = (uint *)((longlong)statusCode0 * SOCKET_RESPONSE_OFFSET + socketHandle[8]);
     uStack0000000000000030 = *connectionBuffer2;
@@ -15445,24 +15445,24 @@ LAB_18085024c:
         psocketHandle = (longlong *)((longlong)statusCode1 * SOCKET_RESPONSE_OFFSET + socketHandle[2]);
         if ((*psocketHandle == socketDescriptor) && (psocketHandle[1] == long_var_9)) {
           clientPort = psocketHandle[3];
-          goto LAB_1808502f3;
+          goto process_status_check;
         }
         statusCode1 = (int)psocketHandle[2];
       } while (statusCode1 != -1);
     }
     clientPort = 0;
-LAB_1808502f3:
+process_status_check:
     if (!isConnected6) {
                     // WARNING: Subroutine does not return
       CleanupNetworkContext(serverPort);
     }
     if (clientPort != 0) {
       psocketHandle = *(longlong **)((longlong)statusCode0 * SOCKET_RESPONSE_OFFSET + SESSION_CONFIG_SIZE + socketHandle[8]);
-      if ((int)psocketHandle[1] == 0) goto LAB_180850347;
+      if ((int)psocketHandle[1] == 0) goto handle_status_operation;
       statusCode0 = 0;
       serverPort = 0;
       psocketIndex = (int *)*psocketHandle;
-      goto LAB_180850330;
+      goto process_operation_handling;
     }
     serverPort = socketHandle[0xb];
     if (serverPort != 0) {
@@ -15487,7 +15487,7 @@ LAB_1808502f3:
               *(int *)((longlong)socketHandle + 0x54) = *(int *)((longlong)socketHandle + 0x54) + -1;
               *(int *)(socketHandle + 10) = (int)socketDescriptor;
             }
-            goto LAB_1808505e7;
+            goto validate_timeout_value;
           }
           statusCode0 = (int)pnetworkTimeout5[2];
           psocketHandle = pnetworkTimeout5 + 2;
@@ -15495,7 +15495,7 @@ LAB_1808502f3:
       }
     }
     statusCode0 = ERROR_CODE_INVALID;
-LAB_1808505e7:
+validate_timeout_value:
     if (serverPort != 0) {
                     // WARNING: Subroutine does not return
       CleanupNetworkContext(serverPort);
@@ -15509,7 +15509,7 @@ LAB_180850643:
   return statusCode0;
 joined_r0x00018085040e:
   _uStack0000000000000040 = pnetworkTimeout5;
-  if (statusCode0 == -1) goto LAB_180850347;
+  if (statusCode0 == -1) goto handle_status_operation;
   connectionBuffer2 = (uint *)((longlong)statusCode0 * 0x10 + psocketHandle[2]);
   if ((int)psocketHandle[1] == 0) {
 LAB_18085046c:
@@ -15543,7 +15543,7 @@ LAB_18085046c:
     do {
       if (*psocketIndex != -1) {
         statusCode0 = ((int *)*psocketHandle)[iStack0000000000000048];
-        goto LAB_1808504f5;
+        goto process_timeout_validation;
       }
       iStack0000000000000048 = iStack0000000000000048 + 1;
       serverPort = serverPort + 1;
@@ -15552,7 +15552,7 @@ LAB_18085046c:
   }
   iStack0000000000000048 = -1;
   statusCode0 = -1;
-LAB_1808504f5:
+process_timeout_validation:
   stack_param = CONCAT44(uStack0000000000000054,statusCode0);
   uStack0000000000000040 = SUB84(psocketHandle,0);
   uStack0000000000000044 = uint32_t)((ulonglong)psocketHandle >> SOCKET_RESPONSE_OFFSET);
@@ -15568,14 +15568,14 @@ LAB_1808504f5:
     serverPort = serverPort + 1;
     psocketIndex = psocketIndex + 1;
     if (serverPort == (int)psocketHandle[1]) break;
-LAB_180850330:
+process_operation_handling:
     if (*psocketIndex != -1) {
       statusCode0 = ((int *)*psocketHandle)[statusCode0];
       pnetworkTimeout5 = _uStack0000000000000040;
       goto joined_r0x00018085040e;
     }
   }
-LAB_180850347:
+handle_status_operation:
   EncryptNetworkData(psocketHandle);
                     // WARNING: Subroutine does not return
   NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketHandle,&g_network_connection_buffer_cd0,0x193,1);
@@ -15655,7 +15655,7 @@ int networkConnectClientEncrypted(longlong *socketHandle)
       do {
         if (*pdataLength != -1) {
           statusCode1 = ((int *)socketHandle[6])[statusCode1];
-          goto LAB_18085072c;
+          goto check_timeout_status;
         }
         statusCode1 = statusCode1 + 1;
         clientPort = clientPort + 1;
@@ -15663,7 +15663,7 @@ int networkConnectClientEncrypted(longlong *socketHandle)
       } while (clientPort != (int)socketHandle[7]);
     }
     statusCode1 = -1;
-LAB_18085072c:
+check_timeout_status:
     clientPort = socketHandle[5];
     connectionBuffer3 = (uint *)((longlong)statusCode1 * SOCKET_RESPONSE_OFFSET + socketHandle[8]);
     networkUintStack_68 = *connectionBuffer3;
@@ -15691,24 +15691,24 @@ LAB_18085072c:
         pnetworkAddress = (longlong *)((longlong)statusCode2 * SOCKET_RESPONSE_OFFSET + socketHandle[2]);
         if ((*pnetworkAddress == connectionInfo) && (pnetworkAddress[1] == networkTimeout0)) {
           long_var_9 = pnetworkAddress[3];
-          goto LAB_1808507d3;
+          goto process_timeout_check;
         }
         statusCode2 = (int)pnetworkAddress[2];
       } while (statusCode2 != -1);
     }
     long_var_9 = 0;
-LAB_1808507d3:
+process_timeout_check:
     if (!isConnected7) {
                     // WARNING: Subroutine does not return
       CleanupNetworkContext(clientPort);
     }
     if (long_var_9 != 0) {
       pnetworkAddress = *(longlong **)((longlong)statusCode1 * SOCKET_RESPONSE_OFFSET + SESSION_CONFIG_SIZE + socketHandle[8]);
-      if ((int)pnetworkAddress[1] == 0) goto LAB_180850827;
+      if ((int)pnetworkAddress[1] == 0) goto handle_timeout_operation;
       statusCode1 = 0;
       clientPort = 0;
       pdataLength = (int *)*pnetworkAddress;
-      goto LAB_180850810;
+      goto process_operation_handling;
     }
     clientPort = socketHandle[0xb];
     if (clientPort != 0) {
@@ -15732,7 +15732,7 @@ LAB_1808507d3:
               *(int *)((longlong)socketHandle + 0x54) = *(int *)((longlong)socketHandle + 0x54) + -1;
               *(int *)(socketHandle + 10) = (int)connectionInfo;
             }
-            goto LAB_180850ac7;
+            goto validate_buffer_capacity;
           }
           statusCode1 = (int)pnetworkTimeout6[2];
           pnetworkAddress = pnetworkTimeout6 + 2;
@@ -15740,7 +15740,7 @@ LAB_1808507d3:
       }
     }
     statusCode1 = ERROR_CODE_INVALID;
-LAB_180850ac7:
+validate_buffer_capacity:
     if (clientPort != 0) {
                     // WARNING: Subroutine does not return
       CleanupNetworkContext(clientPort);
@@ -15754,7 +15754,7 @@ LAB_180850b23:
   return statusCode1;
 joined_r0x0001808508ee:
   networkUintStack_58 = pnetworkTimeout6;
-  if (statusCode1 == -1) goto LAB_180850827;
+  if (statusCode1 == -1) goto handle_timeout_operation;
   connectionBuffer3 = (uint *)((longlong)statusCode1 * 0x10 + pnetworkAddress[2]);
   if ((int)pnetworkAddress[1] == 0) {
 LAB_18085094c:
@@ -15788,7 +15788,7 @@ LAB_18085094c:
     do {
       if (*pdataLength != -1) {
         statusCode1 = ((int *)*pnetworkAddress)[networkIntStack_50];
-        goto LAB_1808509d5;
+        goto process_capacity_validation;
       }
       networkIntStack_50 = networkIntStack_50 + 1;
       clientPort = clientPort + 1;
@@ -15797,7 +15797,7 @@ LAB_18085094c:
   }
   networkIntStack_50 = -1;
   statusCode1 = -1;
-LAB_1808509d5:
+process_capacity_validation:
   networkUintStack_30 = CONCAT44(networkUintStack_44,statusCode1);
   networkUintStack_58._0_4_ = SUB84(pnetworkAddress,0);
   networkUintStack_58._4_4_ = uint32_t)((ulonglong)pnetworkAddress >> SOCKET_RESPONSE_OFFSET);
@@ -15813,14 +15813,14 @@ LAB_1808509d5:
     clientPort = clientPort + 1;
     pdataLength = pdataLength + 1;
     if (clientPort == (int)pnetworkAddress[1]) break;
-LAB_180850810:
+process_operation_handling:
     if (*pdataLength != -1) {
       statusCode1 = ((int *)*pnetworkAddress)[statusCode1];
       pnetworkTimeout6 = networkUintStack_58;
       goto joined_r0x0001808508ee;
     }
   }
-LAB_180850827:
+handle_timeout_operation:
   DecryptNetworkData(pnetworkAddress);
                     // WARNING: Subroutine does not return
   NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),pnetworkAddress,&g_network_connection_buffer_cd0,0x193,1);
@@ -15900,7 +15900,7 @@ int networkStartServerEncrypted(longlong *socketHandle)
       do {
         if (*psocketIndex != -1) {
           statusCode0 = ((int *)socketHandle[6])[statusCode0];
-          goto LAB_18085072c;
+          goto check_timeout_status;
         }
         statusCode0 = statusCode0 + 1;
         serverPort = serverPort + 1;
@@ -15908,7 +15908,7 @@ int networkStartServerEncrypted(longlong *socketHandle)
       } while (serverPort != (int)socketHandle[7]);
     }
     statusCode0 = -1;
-LAB_18085072c:
+check_timeout_status:
     serverPort = socketHandle[5];
     connectionBuffer2 = (uint *)((longlong)statusCode0 * SOCKET_RESPONSE_OFFSET + socketHandle[8]);
     uStack0000000000000030 = *connectionBuffer2;
@@ -15937,24 +15937,24 @@ LAB_18085072c:
         psocketHandle = (longlong *)((longlong)statusCode1 * SOCKET_RESPONSE_OFFSET + socketHandle[2]);
         if ((*psocketHandle == socketDescriptor) && (psocketHandle[1] == long_var_9)) {
           clientPort = psocketHandle[3];
-          goto LAB_1808507d3;
+          goto process_timeout_check;
         }
         statusCode1 = (int)psocketHandle[2];
       } while (statusCode1 != -1);
     }
     clientPort = 0;
-LAB_1808507d3:
+process_timeout_check:
     if (!isConnected6) {
                     // WARNING: Subroutine does not return
       CleanupNetworkContext(serverPort);
     }
     if (clientPort != 0) {
       psocketHandle = *(longlong **)((longlong)statusCode0 * SOCKET_RESPONSE_OFFSET + SESSION_CONFIG_SIZE + socketHandle[8]);
-      if ((int)psocketHandle[1] == 0) goto LAB_180850827;
+      if ((int)psocketHandle[1] == 0) goto handle_timeout_operation;
       statusCode0 = 0;
       serverPort = 0;
       psocketIndex = (int *)*psocketHandle;
-      goto LAB_180850810;
+      goto process_operation_handling;
     }
     serverPort = socketHandle[0xb];
     if (serverPort != 0) {
@@ -15979,7 +15979,7 @@ LAB_1808507d3:
               *(int *)((longlong)socketHandle + 0x54) = *(int *)((longlong)socketHandle + 0x54) + -1;
               *(int *)(socketHandle + 10) = (int)socketDescriptor;
             }
-            goto LAB_180850ac7;
+            goto validate_buffer_capacity;
           }
           statusCode0 = (int)pnetworkTimeout5[2];
           psocketHandle = pnetworkTimeout5 + 2;
@@ -15987,7 +15987,7 @@ LAB_1808507d3:
       }
     }
     statusCode0 = ERROR_CODE_INVALID;
-LAB_180850ac7:
+validate_buffer_capacity:
     if (serverPort != 0) {
                     // WARNING: Subroutine does not return
       CleanupNetworkContext(serverPort);
@@ -16001,7 +16001,7 @@ LAB_180850b23:
   return statusCode0;
 joined_r0x0001808508ee:
   _uStack0000000000000040 = pnetworkTimeout5;
-  if (statusCode0 == -1) goto LAB_180850827;
+  if (statusCode0 == -1) goto handle_timeout_operation;
   connectionBuffer2 = (uint *)((longlong)statusCode0 * 0x10 + psocketHandle[2]);
   if ((int)psocketHandle[1] == 0) {
 LAB_18085094c:
@@ -16035,7 +16035,7 @@ LAB_18085094c:
     do {
       if (*psocketIndex != -1) {
         statusCode0 = ((int *)*psocketHandle)[iStack0000000000000048];
-        goto LAB_1808509d5;
+        goto process_capacity_validation;
       }
       iStack0000000000000048 = iStack0000000000000048 + 1;
       serverPort = serverPort + 1;
@@ -16044,7 +16044,7 @@ LAB_18085094c:
   }
   iStack0000000000000048 = -1;
   statusCode0 = -1;
-LAB_1808509d5:
+process_capacity_validation:
   stack_param = CONCAT44(uStack0000000000000054,statusCode0);
   uStack0000000000000040 = SUB84(psocketHandle,0);
   uStack0000000000000044 = uint32_t)((ulonglong)psocketHandle >> SOCKET_RESPONSE_OFFSET);
@@ -16060,14 +16060,14 @@ LAB_1808509d5:
     serverPort = serverPort + 1;
     psocketIndex = psocketIndex + 1;
     if (serverPort == (int)psocketHandle[1]) break;
-LAB_180850810:
+process_operation_handling:
     if (*psocketIndex != -1) {
       statusCode0 = ((int *)*psocketHandle)[statusCode0];
       pnetworkTimeout5 = _uStack0000000000000040;
       goto joined_r0x0001808508ee;
     }
   }
-LAB_180850827:
+handle_timeout_operation:
   DecryptNetworkData(psocketHandle);
                     // WARNING: Subroutine does not return
   NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketHandle,&g_network_connection_buffer_cd0,0x193,1);
@@ -16146,7 +16146,7 @@ void networkTransferData(uint64_t *socketHandle,uint64_t dataBuffer,longlong buf
   networkLongStack_c0 = bufferCapacity;
   networkPtrStack_a8 = socketHandle;
   networkPtrStack_80 = timeoutValue;
-  if (timeoutValue == (uint64_t *)ZERO_OFFSET) goto LAB_180851437;
+  if (timeoutValue == (uint64_t *)ZERO_OFFSET) goto handle_validation_operation;
   *timeoutValue = 0;
   clientPort = (**(code **)(*(longlong *)*socketHandle + 0x150))((longlong *)*socketHandle,dataBuffer,1);
   networkLongStack_e8 = clientPort;
@@ -16155,7 +16155,7 @@ void networkTransferData(uint64_t *socketHandle,uint64_t dataBuffer,longlong buf
     networkSendRawData(dataBuffer,networkStack_78);
   }
   if ((*(byte *)(clientPort + 0xc4) & 1) == 0) {
-    if (bufferCapacity == 0) goto LAB_180851437;
+    if (bufferCapacity == 0) goto handle_validation_operation;
     networkResult4 = *(uint32_t *)(bufferCapacity + 0x2dc);
   }
   else {
@@ -16164,11 +16164,11 @@ void networkTransferData(uint64_t *socketHandle,uint64_t dataBuffer,longlong buf
     bufferCapacity = 0;
   }
   long_var_9 = networkPrepareTransfer(socketHandle[1],dataBuffer,networkResult4);
-  if (long_var_9 != 0) goto LAB_180851437;
+  if (long_var_9 != 0) goto handle_validation_operation;
   pnetworkLongStack_118 = (longlong *)ZERO_OFFSET;
   networkLongStack_128 = bufferCapacity;
   processResult = networkProcessTransfer(socketHandle[2],&pnetworkLongStack_118,clientPort,networkResult4);
-  if (processResult != 0) goto LAB_180851437;
+  if (processResult != 0) goto handle_validation_operation;
   networkLongStack_e0 = socketHandle[2];
   pnetworkLongStack_88 = pnetworkLongStack_118;
   networkLongStack_b0 = networkLongStack_e0 + 0x108;
@@ -16197,9 +16197,9 @@ void networkTransferData(uint64_t *socketHandle,uint64_t dataBuffer,longlong buf
   if (sVar4 == 0) {
     if ((*(byte *)(clientPort + 0xc4) & 1) != 0) {
       connectionBuffer2 = &g_network_connection_buffer_c90;
-      goto LAB_180850d88;
+      goto check_buffer_status;
     }
-LAB_1808513ac:
+process_buffer_handling:
     if (psocketDescriptor0 != (longlong *)ZERO_OFFSET) {
       func_0x0001808bde90(networkTimeout8,psocketDescriptor0);
     }
@@ -16207,10 +16207,10 @@ LAB_1808513ac:
   else {
     if (sVar4 == 1) {
       connectionBuffer2 = &g_network_connection_buffer_ca0;
-LAB_180850d88:
+check_buffer_status:
       processResult = networkCreateTransferContext(networkResult,connectionBuffer2,&networkLongStack_108);
-LAB_180850d95:
-      if (processResult != 0) goto LAB_180850d9b;
+process_buffer_check:
+      if (processResult != 0) goto handle_buffer_operation;
     }
     else {
       if (sVar4 != 2) {
@@ -16218,25 +16218,25 @@ LAB_180850d95:
           connectionBuffer2 = &g_network_connection_buffer_cb0;
         }
         else {
-          if (sVar4 != 4) goto LAB_1808513ac;
+          if (sVar4 != 4) goto process_buffer_handling;
           connectionBuffer2 = &g_network_connection_buffer_cc0;
         }
-        goto LAB_180850d88;
+        goto check_buffer_status;
       }
-      processResult = networkCreateTransferContext(networkResult,&UNK_18095af38,&networkLongStack_108);
+      processResult = networkCreateTransferContext(networkResult,&networkTransferContext,&networkLongStack_108);
       if (processResult == 0) {
         processResult = networkValidateTransfer(networkResult,0x19,&networkLongStack_d0);
-        if ((processResult != 0) || (processResult = networkCheckTransfer(networkLongStack_d0,1), processResult != 0)) goto LAB_180850d9b;
+        if ((processResult != 0) || (processResult = networkCheckTransfer(networkLongStack_d0,1), processResult != 0)) goto handle_buffer_operation;
         processResult = networkAddTransferData(networkLongStack_108,0xfffffffd,networkLongStack_d0);
-        goto LAB_180850d95;
+        goto process_buffer_check;
       }
-LAB_180850d9b:
+handle_buffer_operation:
       networkTimeout3 = networkLongStack_b0;
       networkTimeout5 = networkLongStack_d8;
       networkTimeout7 = networkLongStack_b8;
       networkTimeout8 = networkLongStack_e0;
       psocketDescriptor0 = pnetworkLongStack_88;
-      if (processResult != 0) goto LAB_1808513ac;
+      if (processResult != 0) goto process_buffer_handling;
     }
     pnetworkLongStack_118[0xd] = networkLongStack_d0;
     pnetworkLongStack_118[0xf] = networkLongStack_108;
@@ -16246,10 +16246,10 @@ LAB_180850d9b:
     networkTimeout7 = networkLongStack_b8;
     networkTimeout8 = networkLongStack_e0;
     psocketDescriptor0 = pnetworkLongStack_88;
-    if (processResult != 0) goto LAB_1808513ac;
+    if (processResult != 0) goto process_buffer_handling;
     clientPort = *(longlong *)(clientPort + 0x68);
     if (clientPort != 0) {
-      if (*(longlong *)(clientPort + 8) != 0) goto LAB_1808513ac;
+      if (*(longlong *)(clientPort + 8) != 0) goto process_buffer_handling;
       networkSignalTransfer(clientPort,pnetworkLongStack_118);
       pnetworkLongStack_118[9] = clientPort;
     }
@@ -16266,13 +16266,13 @@ LAB_180850d9b:
     networkTimeout7 = networkLongStack_b8;
     networkTimeout8 = networkLongStack_e0;
     psocketDescriptor0 = pnetworkLongStack_88;
-    if (processResult != 0) goto LAB_1808513ac;
+    if (processResult != 0) goto process_buffer_handling;
     clientPort = (**(code **)*pnetworkLongStack_118)(pnetworkLongStack_118);
     networkResult9 = *(ulonglong *)(clientPort + 0x38);
     while( true ) {
       if ((networkResult9 < *(ulonglong *)(clientPort + 0x38)) ||
          ((longlong)*(int *)(clientPort + 0x40) * 0x10 + *(ulonglong *)(clientPort + 0x38) <= networkResult9))
-      goto LAB_180850eb0;
+      goto check_length_status;
       networkLongStack_110 = 0;
       processResult = networkAcceptTransfer(socketHandle[2],networkResult9,0xffffffff,&networkLongStack_110);
       if ((processResult != 0) ||
@@ -16284,8 +16284,8 @@ LAB_180850d9b:
     networkTimeout7 = networkLongStack_b8;
     networkTimeout8 = networkLongStack_e0;
     psocketDescriptor0 = pnetworkLongStack_88;
-    if (processResult != 0) goto LAB_1808513ac;
-LAB_180850eb0:
+    if (processResult != 0) goto process_buffer_handling;
+check_length_status:
     clientPort = (**(code **)*pnetworkLongStack_118)();
     networkUintStack_98 = *(uint64_t *)(clientPort + 0x10);
     networkUintStack_90 = *(uint32_t *)(clientPort + SESSION_CONFIG_SIZE);
@@ -16303,7 +16303,7 @@ LAB_180850eb0:
         networkTimeout7 = networkLongStack_b8, networkTimeout8 = networkLongStack_e0, psocketDescriptor0 = pnetworkLongStack_88, processResult != 0)) ||
        (processResult = RequestNetworkResource(pnetworkLongStack_118,0), clientPort = networkLongStack_e8, networkTimeout3 = networkLongStack_b0,
        networkTimeout5 = networkLongStack_d8, networkTimeout7 = networkLongStack_b8, networkTimeout8 = networkLongStack_e0, psocketDescriptor0 = pnetworkLongStack_88, processResult != 0)
-       ) goto LAB_1808513ac;
+       ) goto process_buffer_handling;
     processResult = *(int *)(networkLongStack_e8 + 0x88);
     dataLength = *(int *)(networkLongStack_e8 + NETWORK_CONTEXT_OFFSET);
     networkIntStack_c8 = dataLength;
@@ -16342,7 +16342,7 @@ LAB_180850eb0:
             networkTimeout7 = networkLongStack_b8;
             networkTimeout8 = networkLongStack_e0;
             psocketDescriptor0 = pnetworkLongStack_88;
-            if (dataLength != 0) goto LAB_1808513ac;
+            if (dataLength != 0) goto process_buffer_handling;
             networkPrepareTransferPacket(pnetworkLongStack_118 + 0x10,&networkLongStack_110);
             dataLength = networkAddTransferData(pnetworkLongStack_118[0xf],networkIntStack_100 + 1,*(uint64_t *)(networkLongStack_110 + 0x30)
                                  );
@@ -16351,7 +16351,7 @@ LAB_180850eb0:
             networkTimeout7 = networkLongStack_b8;
             networkTimeout8 = networkLongStack_e0;
             psocketDescriptor0 = pnetworkLongStack_88;
-            if (dataLength != 0) goto LAB_1808513ac;
+            if (dataLength != 0) goto process_buffer_handling;
             networkResult0 = (ulonglong)((int)networkResult0 + 1);
             networkResult9 = networkResult9 + 1;
             clientPort = networkLongStack_e8;
@@ -16382,7 +16382,7 @@ LAB_180850eb0:
               networkTimeout7 = networkLongStack_b8;
               networkTimeout8 = networkLongStack_e0;
               psocketDescriptor0 = pnetworkLongStack_88;
-              if (processResult != 0) goto LAB_1808513ac;
+              if (processResult != 0) goto process_buffer_handling;
               networkPrepareTransferPacket(pnetworkLongStack_118 + 0x12,&networkLongStack_110);
               processResult = networkAddTransferData(pnetworkLongStack_118[0xf],networkIntStack_100,*(uint64_t *)(networkLongStack_110 + 0x30));
               networkTimeout3 = networkLongStack_b0;
@@ -16390,7 +16390,7 @@ LAB_180850eb0:
               networkTimeout7 = networkLongStack_b8;
               networkTimeout8 = networkLongStack_e0;
               psocketDescriptor0 = pnetworkLongStack_88;
-              if (processResult != 0) goto LAB_1808513ac;
+              if (processResult != 0) goto process_buffer_handling;
               networkResult0 = (ulonglong)((int)networkResult0 + 1);
               networkResult9 = networkResult9 + 1;
               clientPort = networkLongStack_e8;
@@ -16398,12 +16398,12 @@ LAB_180850eb0:
               long_var_9 = networkLongStack_b8;
             } while ((longlong)networkResult9 < (longlong)dataLength);
           }
-          goto LAB_1808511a4;
+          goto process_length_validation;
         }
       }
-      goto LAB_1808513ac;
+      goto process_buffer_handling;
     }
-LAB_1808511a4:
+process_length_validation:
     psocketDescriptor0 = pnetworkLongStack_118;
     processResult = CleanupNetworkResources(pnetworkLongStack_118);
     if ((((processResult != 0) ||
@@ -16420,7 +16420,7 @@ LAB_1808511a4:
          networkTimeout7 = networkLongStack_b8, networkTimeout8 = networkLongStack_e0, psocketDescriptor0 = pnetworkLongStack_88, processResult != 0 ||
          (processResult = networkFinalizeTransfer(pnetworkLongStack_118[0xf],1), networkTimeout3 = networkLongStack_b0, networkTimeout5 = networkLongStack_d8,
          networkTimeout7 = networkLongStack_b8, networkTimeout8 = networkLongStack_e0, psocketDescriptor0 = pnetworkLongStack_88, processResult != 0))))))
-    goto LAB_1808513ac;
+    goto process_buffer_handling;
     processResult = ERROR_CODE_INVALID;
     *(int *)(pnetworkLongStack_118 + 0x1d) = (int)pnetworkLongStack_118[0x1d] + 1;
     if (*(int *)(long_var_9 + 0x60) < 1) {
@@ -16463,7 +16463,7 @@ LAB_1808511a4:
       }
       networkTimeout5 = networkLongStack_d8;
       networkTimeout8 = networkLongStack_e0;
-      if (dataLength != 0) goto LAB_1808513a8;
+      if (dataLength != 0) goto check_buffer_validation;
       if (*(int *)(networkTimeout6 + 0x60) < 1) {
         dataLength = ERROR_CODE_INVALID;
       }
@@ -16482,7 +16482,7 @@ LAB_1808511a4:
         dataLength = 0;
       }
       networkTimeout8 = networkLongStack_e0;
-      if (dataLength != 0) goto LAB_1808513a8;
+      if (dataLength != 0) goto check_buffer_validation;
       if (0 < *(int *)(networkLongStack_d8 + 0x60)) {
         if ((*(int *)(networkLongStack_d8 + 0x60) != 1) || (processResult = networkConnectClientEncrypted(networkLongStack_d8), processResult == 0)) {
           *(int *)(networkTimeout5 + 0x60) = *(int *)(networkTimeout5 + 0x60) + -1;
@@ -16497,13 +16497,13 @@ LAB_1808511a4:
       if (processResult == 0) {
         processResult = 0;
       }
-      if (processResult != 0) goto LAB_1808513ac;
+      if (processResult != 0) goto process_buffer_handling;
       dataLength = NetworkDataLengthCalculate(networkLongStack_e0);
-      if (dataLength != 0) goto LAB_1808513a8;
+      if (dataLength != 0) goto check_buffer_validation;
     }
     else {
-LAB_1808513a8:
-      if (dataLength != 0) goto LAB_1808513ac;
+check_buffer_validation:
+      if (dataLength != 0) goto process_buffer_handling;
     }
     *networkPtrStack_80 = pnetworkLongStack_118;
   }
@@ -16523,7 +16523,7 @@ LAB_1808513a8:
     *(uint32_t *)(networkTimeout7 + 0x60) = 0;
     SerializePacket(networkTimeout7 + 0x30);
   }
-LAB_180851437:
+handle_validation_operation:
                     // WARNING: Subroutine does not return
   networkEncryptData(networkUintStack_50 ^ (ulonglong)networkStack_148);
 }
@@ -16596,9 +16596,9 @@ void networkExecuteTransfer(longlong socketHandle)
   if (sVar6 == 0) {
     if ((*(byte *)(unaff_RSI + 0xc4) & 1) != 0) {
       connectionBuffer3 = &g_network_connection_buffer_c90;
-      goto LAB_180850d88;
+      goto check_buffer_status;
     }
-LAB_180851223:
+validate_data_length:
     networkTimeout6 = *(longlong *)(unaff_RBP + -0x70);
     networkTimeout0 = *(longlong *)(unaff_RBP + -0x68);
     networkTimeout9 = *(longlong *)(unaff_RBP + -0x40);
@@ -16608,10 +16608,10 @@ LAB_180851223:
   else {
     if (sVar6 == 1) {
       connectionBuffer3 = &g_network_connection_buffer_ca0;
-LAB_180850d88:
+check_buffer_status:
       dataLength = networkCreateTransferContext(networkResult,connectionBuffer3,&networkStackBuffer);
-LAB_180850d95:
-      if (dataLength != 0) goto LAB_180850d9b;
+process_buffer_check:
+      if (dataLength != 0) goto handle_buffer_operation;
     }
     else {
       if (sVar6 != 2) {
@@ -16619,29 +16619,29 @@ LAB_180850d95:
           connectionBuffer3 = &g_network_connection_buffer_cb0;
         }
         else {
-          if (sVar6 != 4) goto LAB_180851223;
+          if (sVar6 != 4) goto validate_data_length;
           connectionBuffer3 = &g_network_connection_buffer_cc0;
         }
-        goto LAB_180850d88;
+        goto check_buffer_status;
       }
-      dataLength = networkCreateTransferContext(networkResult,&UNK_18095af38,&networkStackBuffer);
+      dataLength = networkCreateTransferContext(networkResult,&networkTransferContext,&networkStackBuffer);
       if (dataLength == 0) {
         dataLength = networkValidateTransfer(networkResult,0x19,&stackContext);
         if ((dataLength != 0) || (dataLength = networkCheckTransfer(lStack0000000000000078,1), dataLength != 0))
-        goto LAB_180850d9b;
+        goto handle_buffer_operation;
         dataLength = networkAddTransferData(lStack0000000000000040,0xfffffffd,lStack0000000000000078);
-        goto LAB_180850d95;
+        goto process_buffer_check;
       }
-LAB_180850d9b:
-      if (dataLength != 0) goto LAB_180851223;
+handle_buffer_operation:
+      if (dataLength != 0) goto validate_data_length;
     }
     stack_param[0xd] = lStack0000000000000078;
     stack_param[0xf] = lStack0000000000000040;
     dataLength = networkFinalizeTransfer(lStack0000000000000040,0);
-    if (dataLength != 0) goto LAB_180851223;
+    if (dataLength != 0) goto validate_data_length;
     networkTimeout0 = *(longlong *)(unaff_RSI + 0x68);
     if (networkTimeout0 != 0) {
-      if (*(longlong *)(networkTimeout0 + 8) != 0) goto LAB_180851223;
+      if (*(longlong *)(networkTimeout0 + 8) != 0) goto validate_data_length;
       networkSignalTransfer(networkTimeout0,stack_param);
       stack_param[9] = networkTimeout0;
     }
@@ -16652,13 +16652,13 @@ LAB_180850d9b:
       networkTimeout0 = (**(code **)(*(longlong *)(responseBuffer + 8) + 0x30))(responseBuffer + 8);
     }
     dataLength = networkWaitForTransfer(networkTimeout0,stack_param);
-    if (dataLength != 0) goto LAB_180851223;
+    if (dataLength != 0) goto validate_data_length;
     networkTimeout0 = (**(code **)*stack_param)(stack_param);
     networkResult8 = *(ulonglong *)(networkTimeout0 + 0x38);
     while( true ) {
       if ((networkResult8 < *(ulonglong *)(networkTimeout0 + 0x38)) ||
          ((longlong)*(int *)(networkTimeout0 + 0x40) * 0x10 + *(ulonglong *)(networkTimeout0 + 0x38) <= networkResult8))
-      goto LAB_180850eb0;
+      goto check_length_status;
       stack_param = 0;
       dataLength = networkAcceptTransfer(*(uint64_t *)(unaff_R15 + 0x10),networkResult8,0xffffffff,&stack_buffer);
       if ((dataLength != 0) ||
@@ -16666,8 +16666,8 @@ LAB_180850d9b:
           (dataLength = networkValidateTransferConnection(stack_param,stack_param,1), dataLength != 0)))) break;
       networkResult8 = networkResult8 + 0x10;
     }
-    if (dataLength != 0) goto LAB_180851223;
-LAB_180850eb0:
+    if (dataLength != 0) goto validate_data_length;
+check_length_status:
     networkTimeout0 = (**(code **)*stack_param)();
     networkResult = *(uint64_t *)(unaff_R15 + 8);
     packetLength = *(uint32_t *)(networkTimeout0 + SESSION_STRUCT_SIZE);
@@ -16682,7 +16682,7 @@ LAB_180850eb0:
          (dataLength = networkWriteTransferData(*(uint64_t *)(unaff_R15 + 0x10),stack_param), dataLength != 0))
         || (dataLength = GetResourceStatus(stack_param), dataLength != 0)) ||
        (dataLength = RequestNetworkResource(stack_param,0), networkTimeout0 = stack_param, dataLength != 0))
-    goto LAB_180851223;
+    goto validate_data_length;
     dataLength = *(int *)(stack_param + 0x88);
     int_var_9 = *(int *)(stack_param + NETWORK_CONTEXT_OFFSET);
     *(int *)(unaff_RBP + -0x80) = int_var_9;
@@ -16708,11 +16708,11 @@ LAB_180850eb0:
             int_var_9 = networkTransferPacket(networkTimeout0 + 0x388,(longlong)(int)networkResult1 * 0x10 + networkTimeout5,
                                   *(uint64_t *)(unaff_RBP + -0x78),connectionIndex,
                                   *(uint32_t *)(networkTimeout6 + networkResult8 * 4));
-            if (int_var_9 != 0) goto LAB_180851223;
+            if (int_var_9 != 0) goto validate_data_length;
             networkPrepareTransferPacket(stack_param + 0x10,&stack_buffer);
             int_var_9 = networkAddTransferData(stack_param[0xf],iStack0000000000000048 + 1,
                                   *(uint64_t *)(stack_param + 0x30));
-            if (int_var_9 != 0) goto LAB_180851223;
+            if (int_var_9 != 0) goto validate_data_length;
             networkResult1 = (ulonglong)((int)networkResult1 + 1);
             networkResult8 = networkResult8 + 1;
             networkTimeout0 = stack_param;
@@ -16734,11 +16734,11 @@ LAB_180850eb0:
               dataLength = networkTransferPacket(networkTimeout0 + 0x388,(longlong)(int)networkResult1 * 0x10 + networkTimeout5,
                                     *(uint64_t *)(unaff_RBP + -0x78),connectionIndex,
                                     *(uint32_t *)(networkTimeout6 + networkResult8 * 4));
-              if (dataLength != 0) goto LAB_180851223;
+              if (dataLength != 0) goto validate_data_length;
               networkPrepareTransferPacket(stack_param + 0x12,&stack_buffer);
               dataLength = networkAddTransferData(stack_param[0xf],iStack0000000000000048,
                                     *(uint64_t *)(stack_param + 0x30));
-              if (dataLength != 0) goto LAB_180851223;
+              if (dataLength != 0) goto validate_data_length;
               networkResult1 = (ulonglong)((int)networkResult1 + 1);
               networkResult8 = networkResult8 + 1;
               networkTimeout0 = stack_param;
@@ -16746,12 +16746,12 @@ LAB_180850eb0:
           }
           networkTimeout5 = *(longlong *)(unaff_RBP + -0x58);
           networkTimeout6 = *(longlong *)(unaff_RBP + -0x70);
-          goto LAB_1808511a4;
+          goto process_length_validation;
         }
       }
-      goto LAB_180851223;
+      goto validate_data_length;
     }
-LAB_1808511a4:
+process_length_validation:
     dataLength = CleanupNetworkResources(stack_param);
     if ((((dataLength != 0) ||
          (dataLength = RequestNetworkResource(stack_param,
@@ -16761,7 +16761,7 @@ LAB_1808511a4:
        (((dataLength = networkReleaseTransferResource(stack_param,1), dataLength != 0 ||
          (dataLength = networkReleaseTransferResource(stack_param,0), dataLength != 0)) ||
         ((dataLength = AllocateNetworkMemory(stack_param), dataLength != 0 ||
-         (dataLength = networkFinalizeTransfer(stack_param[0xf],1), dataLength != 0)))))) goto LAB_180851223;
+         (dataLength = networkFinalizeTransfer(stack_param[0xf],1), dataLength != 0)))))) goto validate_data_length;
     networkTimeout9 = 0;
     dataLength = ERROR_CODE_INVALID;
     *(int *)(stack_param + 0x1d) = (int)stack_param[0x1d] + 1;
@@ -16803,7 +16803,7 @@ LAB_1808511a4:
       }
       networkTimeout4 = lStack0000000000000070;
       networkTimeout7 = stack_param;
-      if (int_var_9 != 0) goto LAB_1808513a8;
+      if (int_var_9 != 0) goto check_buffer_validation;
       if (*(int *)(networkTimeout5 + 0x60) < 1) {
         int_var_9 = ERROR_CODE_INVALID;
       }
@@ -16822,7 +16822,7 @@ LAB_1808511a4:
         int_var_9 = 0;
       }
       networkTimeout7 = stack_param;
-      if (int_var_9 != 0) goto LAB_1808513a8;
+      if (int_var_9 != 0) goto check_buffer_validation;
       if (0 < *(int *)(lStack0000000000000070 + 0x60)) {
         if ((*(int *)(lStack0000000000000070 + 0x60) != 1) ||
            (dataLength = networkConnectClientEncrypted(lStack0000000000000070), dataLength == 0)) {
@@ -16840,23 +16840,23 @@ LAB_1808511a4:
       }
       if (dataLength == 0) {
         int_var_9 = NetworkDataLengthCalculate(stack_param);
-        if (int_var_9 != 0) goto LAB_1808513a8;
+        if (int_var_9 != 0) goto check_buffer_validation;
         goto NetworkResponseHandler;
       }
     }
     else {
-LAB_1808513a8:
+check_buffer_validation:
       if (int_var_9 == 0) {
 NetworkResponseHandler:
         **(uint64_t **)(unaff_RBP + -0x38) = stack_param;
-        goto LAB_1808513bf;
+        goto process_validation_handling;
       }
     }
   }
   if (networkTimeout9 != 0) {
     func_0x0001808bde90(networkTimeout7,networkTimeout9);
   }
-LAB_1808513bf:
+process_validation_handling:
   if (cStack000000000000004c == '\0') {
     *(uint32_t *)(networkTimeout4 + 0x60) = 0;
     EncryptPacket(networkTimeout4 + 0x30);
@@ -17010,23 +17010,23 @@ uint64_t NetworkBufferInitialize(longlong socketHandle,longlong dataBuffer)
       bufferCapacity = NetworkBufferFlush(dataBuffer);
       if ((((int)bufferCapacity == 0) &&
           (((socketDescriptor == 0 ||
-            (bufferCapacity = FUN_1808c19d0(*(uint64_t *)(dataBuffer + 0x38),socketDescriptor), (int)bufferCapacity == 0)) &&
+            (bufferCapacity = validateNetworkConnection(*(uint64_t *)(dataBuffer + 0x38),socketDescriptor), (int)bufferCapacity == 0)) &&
            (bufferCapacity = func_0x0001808c1de0(*(uint64_t *)(socketHandle + 0x10),dataBuffer), (int)bufferCapacity == 0)))
           ) && ((bufferCapacity = func_0x000180853810(*(uint64_t *)(socketHandle + 0x10),dataBuffer),
                 (int)bufferCapacity == 0 &&
-                (bufferCapacity = FUN_180853560(*(uint64_t *)(socketHandle + 8),dataBuffer), (int)bufferCapacity == 0)))) {
+                (bufferCapacity = processNetworkData(*(uint64_t *)(socketHandle + 8),dataBuffer), (int)bufferCapacity == 0)))) {
         pnetworkTimeout = (longlong *)(dataBuffer + 0xb0);
         while (((longlong *)*pnetworkTimeout != pnetworkTimeout || (*(longlong **)(dataBuffer + 0xb8) != pnetworkTimeout))) {
-          bufferCapacity = FUN_1808c4370(((longlong *)*pnetworkTimeout)[2],dataBuffer,0);
+          bufferCapacity = sendNetworkPacket(((longlong *)*pnetworkTimeout)[2],dataBuffer,0);
           if ((int)bufferCapacity != 0) {
             return bufferCapacity;
           }
-          bufferCapacity = FUN_1808c1c20(*(uint64_t *)(socketHandle + 0x10));
+          bufferCapacity = receiveNetworkPacket(*(uint64_t *)(socketHandle + 0x10));
           if ((int)bufferCapacity != 0) {
             return bufferCapacity;
           }
         }
-        bufferCapacity = FUN_1808b1f70(dataBuffer);
+        bufferCapacity = initializeNetworkSocket(dataBuffer);
         if ((int)bufferCapacity == 0) {
           socketDescriptor = *(longlong *)(dataBuffer + 0x48);
           if (socketDescriptor != 0) {
@@ -17036,8 +17036,8 @@ uint64_t NetworkBufferInitialize(longlong socketHandle,longlong dataBuffer)
             networkSignalTransfer(socketDescriptor,0);
           }
           if (((*(short *)(*(longlong *)(dataBuffer + 0x40) + SOCKET_BUFFER_OFFSET) != 2) ||
-              (bufferCapacity = FUN_180740d90(*(uint64_t *)(dataBuffer + 0x68)), (int)bufferCapacity == 0)) &&
-             (bufferCapacity = FUN_18073f710(*(uint64_t *)(dataBuffer + 0x78)), (int)bufferCapacity == 0)) {
+              (bufferCapacity = validateNetworkPacket(*(uint64_t *)(dataBuffer + 0x68)), (int)bufferCapacity == 0)) &&
+             (bufferCapacity = processNetworkPacket(*(uint64_t *)(dataBuffer + 0x78)), (int)bufferCapacity == 0)) {
             func_0x0001808bef10(*(uint64_t *)(socketHandle + 0x10),dataBuffer);
             bufferCapacity = 0;
           }
@@ -17125,7 +17125,7 @@ uint64_t NetworkBufferFlush(longlong socketHandle)
       if (pnetworkLongStack_20 != pnetworkLongStack_28) {
         while (pnetworkLongStack_20[2] != socketHandle) {
           if ((pnetworkLongStack_20 == pnetworkLongStack_28) ||
-             (pnetworkLongStack_20 = (longlong *)*pnetworkLongStack_20, pnetworkLongStack_20 == pnetworkLongStack_28)) goto LAB_180851913;
+             (pnetworkLongStack_20 = (longlong *)*pnetworkLongStack_20, pnetworkLongStack_20 == pnetworkLongStack_28)) goto handle_length_operation;
         }
         uStackX_8 = 0;
         bufferCapacity = GetNetworkStatistics(*(uint64_t *)(socketHandle + 0x78),&uStackX_8);
@@ -17133,7 +17133,7 @@ uint64_t NetworkBufferFlush(longlong socketHandle)
           return bufferCapacity;
         }
         uStackX_10 = 0;
-        bufferCapacity = FUN_18073a200(uStackX_8,&uStackX_10);
+        bufferCapacity = allocateNetworkBuffer(uStackX_8,&uStackX_10);
         if ((int)bufferCapacity != 0) {
           return bufferCapacity;
         }
@@ -17141,12 +17141,12 @@ uint64_t NetworkBufferFlush(longlong socketHandle)
         if ((int)bufferCapacity != 0) {
           return bufferCapacity;
         }
-        bufferCapacity = FUN_180853790(&pnetworkLongStack_28);
+        bufferCapacity = freeNetworkBuffer(&pnetworkLongStack_28);
         if ((int)bufferCapacity != 0) {
           return bufferCapacity;
         }
       }
-LAB_180851913:
+handle_length_operation:
       if (*(longlong *)(socketHandle + 0x48) != 0) {
         *(uint8_t *)(*(longlong *)(socketHandle + 0x48) + 0x2a) = 0;
       }
@@ -17196,7 +17196,7 @@ uint64_t FUN_18085186c(longlong socketHandle,uint64_t dataBuffer,uint8_t bufferC
     if (psocketDescriptor != pdataBuffer) {
       while (psocketDescriptor[2] != unaff_RDI) {
         if ((psocketDescriptor == pdataBuffer) || (psocketDescriptor = (longlong *)*psocketDescriptor, psocketDescriptor == pdataBuffer))
-        goto LAB_180851913;
+        goto handle_length_operation;
       }
       stack_param = 0;
       bufferCapacity = GetNetworkStatistics(*(uint64_t *)(unaff_RDI + 0x78),&stack_buffer,bufferCapacity,timeoutValue,
@@ -17205,7 +17205,7 @@ uint64_t FUN_18085186c(longlong socketHandle,uint64_t dataBuffer,uint8_t bufferC
         return bufferCapacity;
       }
       stack_param = 0;
-      bufferCapacity = FUN_18073a200(stack_param,&stack_buffer);
+      bufferCapacity = allocateNetworkBuffer(stack_param,&stack_buffer);
       if ((int)bufferCapacity != 0) {
         return bufferCapacity;
       }
@@ -17213,12 +17213,12 @@ uint64_t FUN_18085186c(longlong socketHandle,uint64_t dataBuffer,uint8_t bufferC
       if ((int)bufferCapacity != 0) {
         return bufferCapacity;
       }
-      bufferCapacity = FUN_180853790(&stack_buffer);
+      bufferCapacity = freeNetworkBuffer(&stack_buffer);
       if ((int)bufferCapacity != 0) {
         return bufferCapacity;
       }
     }
-LAB_180851913:
+handle_length_operation:
     if (*(longlong *)(unaff_RDI + 0x48) != 0) {
       *(uint8_t *)(*(longlong *)(unaff_RDI + 0x48) + 0x2a) = 0;
     }
@@ -17376,7 +17376,7 @@ uint64_t FUN_180851a40(longlong *socketHandle)
        (dataPointer = ProcessNetworkData(socketHandle + 2,int_var_9), (int)dataPointer != 0)) {
       return dataPointer;
     }
-    dataPointer = FUN_1807703c0(socketHandle,int_var_9);
+    dataPointer = createNetworkSocket(socketHandle,int_var_9);
     if ((int)dataPointer != 0) {
       return dataPointer;
     }
@@ -17450,7 +17450,7 @@ uint64_t FUN_180851a66(void)
        (bufferCapacity = ProcessNetworkData(unaff_RBX + 2,errorCode), (int)bufferCapacity != 0)) {
       return bufferCapacity;
     }
-    bufferCapacity = FUN_1807703c0();
+    bufferCapacity = createNetworkSocket();
     if ((int)bufferCapacity != 0) {
       return bufferCapacity;
     }
@@ -17509,7 +17509,7 @@ void FUN_180851ba0(longlong socketHandle,uint8_t dataBuffer)
 {
   int statusCode;
   
-  statusCode = FUN_180853980();
+  statusCode = closeNetworkSocket();
   if (statusCode == 0) {
     CleanupNetworkConnection(*(uint64_t *)(socketHandle + 0x78),dataBuffer);
   }
@@ -17545,14 +17545,14 @@ uint64_t networkPrepareTransfer(longlong socketHandle,uint64_t dataBuffer,uint b
         dataBuffer = (longlong)processResult;
         if (*(uint *)(socketDescriptor + dataBuffer * 0x10) == bufferCapacity) {
           socketStatus = *(uint64_t *)(socketDescriptor + 8 + dataBuffer * 0x10);
-          goto LAB_180851ce6;
+          goto process_operation_handling;
         }
         processResult = *(int *)(socketDescriptor + 4 + dataBuffer * 0x10);
       } while (processResult != -1);
     }
   }
   socketStatus = 0;
-LAB_180851ce6:
+process_operation_handling:
   if (networkTimeout != 0) {
                     // WARNING: Subroutine does not return
     CleanupNetworkContext(networkTimeout);
@@ -17581,14 +17581,14 @@ uint64_t FUN_180851d20(longlong socketHandle,longlong dataBuffer,longlong buffer
     else {
       packetLength = *(uint64_t *)(**(longlong **)(socketHandle + 0x80) + 0x30);
     }
-    packetLength = FUN_1807404e0(packetLength,dataBuffer,0);
+    packetLength = readNetworkData(packetLength,dataBuffer,0);
     if ((int)packetLength != 0) {
       return packetLength;
     }
   }
   if (bufferCapacity != 0) {
     packetLength = NetworkTimeoutSet(socketHandle);
-    packetLength = FUN_1807404e0(packetLength,0,bufferCapacity);
+    packetLength = readNetworkData(packetLength,0,bufferCapacity);
     if ((int)packetLength != 0) {
       return packetLength;
     }
@@ -17612,11 +17612,11 @@ uint64_t FUN_180851d5f(uint64_t socketHandle)
   if (statusCode != 0) {
     packetLength = 0;
   }
-  packetLength = FUN_1807404e0(packetLength);
+  packetLength = readNetworkData(packetLength);
   if ((int)packetLength == 0) {
     if (unaff_RDI != 0) {
       packetLength = NetworkTimeoutSet();
-      packetLength = FUN_1807404e0(packetLength,0);
+      packetLength = readNetworkData(packetLength,0);
       if ((int)packetLength != 0) {
         return packetLength;
       }
@@ -17634,11 +17634,11 @@ uint64_t FUN_180851d83(void)
   uint64_t networkResult;
   longlong unaff_RDI;
   
-  networkResult = FUN_1807404e0();
+  networkResult = readNetworkData();
   if ((int)networkResult == 0) {
     if (unaff_RDI != 0) {
       networkResult = NetworkTimeoutSet();
-      networkResult = FUN_1807404e0(networkResult,0);
+      networkResult = readNetworkData(networkResult,0);
       if ((int)networkResult != 0) {
         return networkResult;
       }
@@ -17829,7 +17829,7 @@ void FUN_180852090(uint64_t *socketHandle,uint64_t *dataBuffer)
       networkPtrStack_310 = (uint64_t *)CONCAT44(networkPtrStack_310._4_4_,(uint)networkUintStack_2c8._6_2_);
       pnetworkLongStack_318 = (longlong *)CONCAT44(pnetworkLongStack_318._4_4_,(uint)networkUintStack_2c8._4_2_);
                     // WARNING: Subroutine does not return
-      SendNetworkPacket(networkStack_78,0x27,&UNK_180958180,(ulonglong)networkUintStack_2c8 & 0xffffffff);
+      SendNetworkPacket(networkStack_78,0x27,&networkPacketHeader,(ulonglong)networkUintStack_2c8 & 0xffffffff);
     }
     socketHandle[8] = networkAddress;
   }
@@ -17943,8 +17943,8 @@ joined_r0x0001808523af:
             ppacketLength0 = (uint64_t *)(ulonglong)(statusCode8 + 1U);
           } while ((int)(statusCode8 + 1U) < processResult);
         }
-        processResult = FUN_1808c4370(ptr_var_9,socketHandle);
-      } while ((processResult == 0) && (processResult = FUN_1808c1c20(socketHandle[7],ptr_var_9), processResult == 0));
+        processResult = sendNetworkPacket(ptr_var_9,socketHandle);
+      } while ((processResult == 0) && (processResult = receiveNetworkPacket(socketHandle[7],ptr_var_9), processResult == 0));
     }
     goto FUN_180852aaa;
   }
@@ -18365,8 +18365,8 @@ joined_r0x0001808523af:
             connectionBuffer9 = (uint64_t *)(ulonglong)(statusCode7 + 1U);
           } while ((int)(statusCode7 + 1U) < networkOperationResult);
         }
-        networkOperationResult = FUN_1808c4370(pbufferSize);
-      } while ((networkOperationResult == 0) && (networkOperationResult = FUN_1808c1c20(unaff_R15[7],pbufferSize), networkOperationResult == 0));
+        networkOperationResult = sendNetworkPacket(pbufferSize);
+      } while ((networkOperationResult == 0) && (networkOperationResult = receiveNetworkPacket(unaff_R15[7],pbufferSize), networkOperationResult == 0));
     }
     goto LAB_180852a9a;
   }
@@ -19551,7 +19551,7 @@ uint64_t FUN_180853470(longlong socketHandle)
   packetLength = NetworkBufferFlush();
   if ((int)packetLength == 0) {
     if ((networkTimeout != 0) &&
-       (packetLength = FUN_1808c19d0(*(uint64_t *)(socketHandle + 0x38),networkTimeout), (int)packetLength != 0)) {
+       (packetLength = validateNetworkConnection(*(uint64_t *)(socketHandle + 0x38),networkTimeout), (int)packetLength != 0)) {
       return packetLength;
     }
     packetLength = 0;
@@ -19563,7 +19563,7 @@ uint64_t FUN_180853470(longlong socketHandle)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong * FUN_180853560(longlong *socketHandle,uint64_t *dataBuffer)
+longlong * processNetworkData(longlong *socketHandle,uint64_t *dataBuffer)
 
 {
   longlong networkTimeout;
@@ -19684,7 +19684,7 @@ LAB_180853768:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_180853790(longlong *socketHandle)
+uint64_t freeNetworkBuffer(longlong *socketHandle)
 
 {
   longlong *pnetworkTimeout;
@@ -19774,7 +19774,7 @@ uint64_t FUN_1808538a0(uint64_t *socketHandle,longlong dataBuffer)
 
 
 
-uint64_t FUN_180853980(longlong socketHandle)
+uint64_t closeNetworkSocket(longlong socketHandle)
 
 {
   uint64_t *connectionBuffer;
@@ -19843,7 +19843,7 @@ uint64_t FUN_180853980(longlong socketHandle)
         }
         for (connectionBuffer = *(uint64_t **)(socketHandle + 0x50); connectionBuffer != (uint64_t *)(socketHandle + 0x50);
             connectionBuffer = (uint64_t *)*connectionBuffer) {
-          bufferCapacity = FUN_180853980(connectionBuffer[2]);
+          bufferCapacity = closeNetworkSocket(connectionBuffer[2]);
           if ((int)bufferCapacity != 0) {
             return bufferCapacity;
           }
@@ -19940,14 +19940,14 @@ uint64_t FUN_180853c50(longlong socketHandle,uint dataBuffer)
     cVar2 = func_0x0001808c0d90(*(uint64_t *)(socketHandle + 0x38),&networkUintStack_18);
     if (cVar2 == '\0') {
       dataPointer = 0;
-      goto LAB_180853ee2;
+      goto process_network_initialization;
     }
   }
   else {
     socketStatus = 1;
   }
   dataPointer = 1;
-LAB_180853ee2:
+process_network_initialization:
   for (pconnectionIndex = *(uint64_t **)(socketHandle + 0x80);
       (*(uint64_t **)(socketHandle + 0x80) <= pconnectionIndex &&
       (pconnectionIndex < *(uint64_t **)(socketHandle + 0x80) + *(int *)(socketHandle + 0x88))); pconnectionIndex = pconnectionIndex + 1)
@@ -20088,14 +20088,14 @@ uint64_t GetConnectionInfo(longlong socketHandle,char dataBuffer)
     cVar2 = func_0x0001808c0d90(*(uint64_t *)(socketHandle + 0x38),&networkUintStack_18);
     if (cVar2 == '\0') {
       dataPointer = 0;
-      goto LAB_180853ee2;
+      goto process_network_initialization;
     }
   }
   else {
     socketStatus = 1;
   }
   dataPointer = 1;
-LAB_180853ee2:
+process_network_initialization:
   for (pconnectionIndex = *(uint64_t **)(socketHandle + 0x80);
       (*(uint64_t **)(socketHandle + 0x80) <= pconnectionIndex &&
       (pconnectionIndex < *(uint64_t **)(socketHandle + 0x80) + *(int *)(socketHandle + 0x88))); pconnectionIndex = pconnectionIndex + 1)
@@ -21511,7 +21511,7 @@ void FUN_180854f70(longlong socketHandle,uint64_t *dataBuffer,longlong bufferCap
       networkUintStack_e0 = (uint)*(ushort *)((longlong)connectionBuffer + 0x26);
       networkUintStack_e8 = (uint)*(ushort *)((longlong)connectionBuffer + SOCKET_FLAG_OFFSET);
                     // WARNING: Subroutine does not return
-      SendNetworkPacket(networkStack_70,0x27,&UNK_180958180,*(uint32_t *)(connectionBuffer + 4));
+      SendNetworkPacket(networkStack_70,0x27,&networkPacketHeader,*(uint32_t *)(connectionBuffer + 4));
     }
     packetLength = FUN_1808c6120(networkLongStack_88,networkParam);
     if (bufferCapacity != 0) {
@@ -21559,7 +21559,7 @@ void FUN_180854fc3(void)
                       (*(longlong **)(networkContextPtr + 0x170),unaff_R12 + 4,1);
     if (socketDescriptor == 0) {
                     // WARNING: Subroutine does not return
-      SendNetworkPacket(&stack_buffer,0x27,&UNK_180958180,(int)unaff_R12[4],
+      SendNetworkPacket(&stack_buffer,0x27,&networkPacketHeader,(int)unaff_R12[4],
                     *(uint16_t *)((longlong)unaff_R12 + SOCKET_FLAG_OFFSET));
     }
     bufferCapacity = FUN_1808c6120(socketDescriptor,networkResult);
@@ -22604,7 +22604,7 @@ uint64_t FUN_180855b80(longlong *socketHandle)
        (connectionIndex = ClearErrorState(socketHandle + 2,int_var_9), (int)connectionIndex != 0)) {
       return connectionIndex;
     }
-    connectionIndex = FUN_1807703c0(socketHandle,int_var_9);
+    connectionIndex = createNetworkSocket(socketHandle,int_var_9);
     if ((int)connectionIndex != 0) {
       return connectionIndex;
     }
@@ -22679,7 +22679,7 @@ uint64_t FUN_180855ba6(void)
        (dataPointer = ClearErrorState(unaff_RBX + 2,errorCode), (int)dataPointer != 0)) {
       return dataPointer;
     }
-    dataPointer = FUN_1807703c0();
+    dataPointer = createNetworkSocket();
     if ((int)dataPointer != 0) {
       return dataPointer;
     }
@@ -22765,7 +22765,7 @@ uint64_t FUN_180855ce0(longlong *socketHandle)
        (connectionIndex = FUN_1808595a0(socketHandle + 2,int_var_9), (int)connectionIndex != 0)) {
       return connectionIndex;
     }
-    connectionIndex = FUN_1807703c0(socketHandle,int_var_9);
+    connectionIndex = createNetworkSocket(socketHandle,int_var_9);
     if ((int)connectionIndex != 0) {
       return connectionIndex;
     }
@@ -22840,7 +22840,7 @@ uint64_t FUN_180855d06(void)
        (dataPointer = FUN_1808595a0(unaff_RBX + 2,errorCode), (int)dataPointer != 0)) {
       return dataPointer;
     }
-    dataPointer = FUN_1807703c0();
+    dataPointer = createNetworkSocket();
     if ((int)dataPointer != 0) {
       return dataPointer;
     }
@@ -26921,7 +26921,7 @@ void FUN_1808596d0(longlong socketHandle,longlong dataBuffer)
           networkUintStack_c0 = (uint)*(ushort *)((longlong)pserverPort + 0x26);
           networkUintStack_c8 = (uint)*(ushort *)((longlong)pserverPort + SOCKET_FLAG_OFFSET);
                     // WARNING: Subroutine does not return
-          SendNetworkPacket(networkStack_68,0x27,&UNK_180958180,(int)pserverPort[4]);
+          SendNetworkPacket(networkStack_68,0x27,&networkPacketHeader,(int)pserverPort[4]);
         }
         connectionDataPointer = *(uint **)(networkAddress + 0x30);
         packetLength = *(uint *)(socketHandle + SOCKET_FLAG_OFFSET);
@@ -26978,7 +26978,7 @@ void FUN_1808596d0(longlong socketHandle,longlong dataBuffer)
           networkUintStack_c0 = (uint)*(ushort *)((longlong)pserverPort + 0x26);
           networkUintStack_c8 = (uint)*(ushort *)((longlong)pserverPort + SOCKET_FLAG_OFFSET);
                     // WARNING: Subroutine does not return
-          SendNetworkPacket(networkStack_68,0x27,&UNK_180958180,(int)pserverPort[4]);
+          SendNetworkPacket(networkStack_68,0x27,&networkPacketHeader,(int)pserverPort[4]);
         }
         uint_var_9 = 4;
 LAB_180859953:
@@ -32598,7 +32598,7 @@ uint64_t FUN_18085f0e0(longlong socketHandle,char dataBuffer)
           pconnectionIndex = pconnectionIndex + 1) {
         func_0x0001808cded0(*pconnectionIndex);
       }
-      dataPointer = FUN_180853980(*(uint64_t *)(socketHandle + 0x2b0));
+      dataPointer = closeNetworkSocket(*(uint64_t *)(socketHandle + 0x2b0));
       if ((((int)dataPointer == 0) &&
           ((*(longlong *)(socketHandle + 0x478) == 0 ||
            (dataPointer = FUN_1808d9380(*(longlong *)(socketHandle + 0x478),0), (int)dataPointer == 0)))) &&
@@ -32660,7 +32660,7 @@ uint64_t FUN_18085f11f(uint64_t *socketHandle)
         connectionDataPointer = connectionDataPointer + 1) {
       func_0x0001808cded0(*connectionDataPointer);
     }
-    bufferCapacity = FUN_180853980(*(uint64_t *)(unaff_RBX + 0x2b0));
+    bufferCapacity = closeNetworkSocket(*(uint64_t *)(unaff_RBX + 0x2b0));
     if ((((int)bufferCapacity == 0) &&
         ((*(longlong *)(unaff_RBX + 0x478) == 0 ||
          (bufferCapacity = FUN_1808d9380(*(longlong *)(unaff_RBX + 0x478),0), (int)bufferCapacity == 0)))) &&
@@ -32710,7 +32710,7 @@ uint64_t FUN_18085f163(uint64_t *socketHandle)
       socketHandle = socketHandle + 1) {
     func_0x0001808cded0(*socketHandle);
   }
-  bufferCapacity = FUN_180853980(*(uint64_t *)(unaff_RBX + 0x2b0));
+  bufferCapacity = closeNetworkSocket(*(uint64_t *)(unaff_RBX + 0x2b0));
   if ((int)bufferCapacity == 0) {
     if ((*(longlong *)(unaff_RBX + 0x478) != 0) &&
        (bufferCapacity = FUN_1808d9380(*(longlong *)(unaff_RBX + 0x478),0), (int)bufferCapacity != 0)) {
@@ -33318,7 +33318,7 @@ thunk_FUN_18085fbb0(longlong socketHandle,uint64_t *dataBuffer,uint64_t *bufferC
   
   networkArrayStack_38[0] = 0;
   uStackX_8 = 0;
-  socketStatus = FUN_18073a200(*(uint64_t *)(*(longlong *)(socketHandle + 0x2c8) + 0x4c0),&uStackX_8);
+  socketStatus = allocateNetworkBuffer(*(uint64_t *)(*(longlong *)(socketHandle + 0x2c8) + 0x4c0),&uStackX_8);
   if (((int)socketStatus == 0) && (socketStatus = CreateNetworkPacket(uStackX_8,networkArrayStack_38,0), (int)socketStatus == 0)) {
     cVar4 = FUN_180863210(timeoutValue,0,0);
     if (cVar4 == '\0') {
@@ -33411,7 +33411,7 @@ FUN_18085fbb0(longlong socketHandle,uint64_t *dataBuffer,uint64_t *bufferCapacit
   
   networkArrayStack_38[0] = 0;
   uStackX_8 = 0;
-  socketStatus = FUN_18073a200(*(uint64_t *)(*(longlong *)(socketHandle + 0x2c8) + 0x4c0),&uStackX_8);
+  socketStatus = allocateNetworkBuffer(*(uint64_t *)(*(longlong *)(socketHandle + 0x2c8) + 0x4c0),&uStackX_8);
   if (((int)socketStatus == 0) && (socketStatus = CreateNetworkPacket(uStackX_8,networkArrayStack_38,0), (int)socketStatus == 0)) {
     cVar4 = FUN_180863210(timeoutValue,0,0);
     if (cVar4 == '\0') {
@@ -33837,7 +33837,7 @@ uint64_t thunk_FUN_180865550(longlong socketHandle)
   packetLength = *(ulonglong *)(socketHandle + 0x4e0);
   uStackX_20 = 0;
   uStackX_18 = 0;
-  timeoutValue = FUN_18073a200(*(uint64_t *)(*(longlong *)(socketHandle + 0x2c8) + 0x4c0),&uStackX_18);
+  timeoutValue = allocateNetworkBuffer(*(uint64_t *)(*(longlong *)(socketHandle + 0x2c8) + 0x4c0),&uStackX_18);
   if (((int)timeoutValue == 0) && (timeoutValue = CreateNetworkPacket(uStackX_18,&uStackX_20,0), (int)timeoutValue == 0)) {
     while ((*(ulonglong *)(socketHandle + 0x4e0) <= packetLength &&
            (packetLength < (longlong)*(int *)(socketHandle + 0x4e8) * 0x38 + *(ulonglong *)(socketHandle + 0x4e0))))
@@ -34379,7 +34379,7 @@ LAB_180860998:
               CleanupNetworkContext(networkTimeout4);
             }
             if ((serverPort == 0) ||
-               (socketIndex = FUN_1808c19d0(*(uint64_t *)(socketHandle + 0x2c8)), socketIndex != 0))
+               (socketIndex = validateNetworkConnection(*(uint64_t *)(socketHandle + 0x2c8)), socketIndex != 0))
             goto FUN_1808616bc;
 LAB_1808609c2:
           }
@@ -34770,7 +34770,7 @@ LAB_180860f7b:
                     networkUintStack_180 = (uint)networkUintStack_130._6_2_;
                     networkUintStack_188 = (uint)networkUintStack_130._4_2_;
                     // WARNING: Subroutine does not return
-                    SendNetworkPacket(networkStack_a0,0x27,&UNK_180958180,(ulonglong)networkUintStack_130 & 0xffffffff)
+                    SendNetworkPacket(networkStack_a0,0x27,&networkPacketHeader,(ulonglong)networkUintStack_130 & 0xffffffff)
                     ;
                   }
                   long_ptr_9[2] = networkTimeout3;
@@ -35073,7 +35073,7 @@ LAB_180860998:
             CleanupNetworkContext(networkAddress);
           }
           if ((networkTimeout4 == 0) ||
-             (processResult = FUN_1808c19d0(*(uint64_t *)(unaff_R12 + 0x2c8)), uint_var_9 = extraout_XMM0_Qa_02
+             (processResult = validateNetworkConnection(*(uint64_t *)(unaff_R12 + 0x2c8)), uint_var_9 = extraout_XMM0_Qa_02
              , processResult != 0)) goto LAB_180861693;
 LAB_1808609c2:
         }
@@ -35455,7 +35455,7 @@ LAB_180860f7b:
                                    ((longlong *)*connectionBuffer3,&stackContext,1);
                 if (networkTimeout4 == 0) {
                     // WARNING: Subroutine does not return
-                  SendNetworkPacket(unaff_RBP + 8,0x27,&UNK_180958180,
+                  SendNetworkPacket(unaff_RBP + 8,0x27,&networkPacketHeader,
                                 (ulonglong)stack_param & 0xffffffff,stack_param._4_2_);
                 }
                 pserverPort[2] = networkTimeout4;
@@ -37051,7 +37051,7 @@ void FUN_180862080(longlong socketHandle,longlong *dataBuffer,uint64_t bufferCap
     networkUintStack_140 = (uint)networkUintStack_f2;
     networkUintStack_148 = (uint)networkUintStack_f4;
                     // WARNING: Subroutine does not return
-    SendNetworkPacket(networkStack_70,0x27,&UNK_180958180,networkUintStack_f8);
+    SendNetworkPacket(networkStack_70,0x27,&networkPacketHeader,networkUintStack_f8);
   }
   statusCode2 = 0;
   networkUintStack_138 = CONCAT31(networkUintStack_138._1_3_,1);
@@ -37593,7 +37593,7 @@ void FUN_1808629a0(longlong socketHandle,uint64_t dataBuffer,char bufferCapacity
       networkUintStack_c0 = (uint)networkUintStack_72;
       networkUintStack_c8 = (uint)networkUintStack_74;
                     // WARNING: Subroutine does not return
-      SendNetworkPacket(networkStack_68,0x27,&UNK_180958180,networkUintStack_78);
+      SendNetworkPacket(networkStack_68,0x27,&networkPacketHeader,networkUintStack_78);
     }
     if (*(int *)(dataBuffer + 0xd0) == 0) {
       networkResult = *(uint *)((longlong)pconnectionInfo + ERROR_CODE_INVALID);
@@ -37646,7 +37646,7 @@ void FUN_1808629e9(longlong *socketHandle)
                     (*(longlong **)(unaff_R15 + 0x458),&stack_buffer,1);
   if (connectionInfo == 0) {
                     // WARNING: Subroutine does not return
-    SendNetworkPacket(&stackBuffer,0x27,&UNK_180958180,uStack0000000000000070,uStack0000000000000074
+    SendNetworkPacket(&stackBuffer,0x27,&networkPacketHeader,uStack0000000000000070,uStack0000000000000074
                  );
   }
   if (*(int *)(connectionInfo + 0xd0) == 0) {
@@ -37699,7 +37699,7 @@ void FUN_1808629f1(longlong *socketHandle)
                     (*(longlong **)(unaff_R15 + 0x458),&stack_buffer,1);
   if (connectionInfo == 0) {
                     // WARNING: Subroutine does not return
-    SendNetworkPacket(&stackBuffer,0x27,&UNK_180958180,uStack0000000000000070,uStack0000000000000074
+    SendNetworkPacket(&stackBuffer,0x27,&networkPacketHeader,uStack0000000000000070,uStack0000000000000074
                  );
   }
   if (*(int *)(connectionInfo + 0xd0) == 0) {
@@ -38076,7 +38076,7 @@ ulonglong FUN_180862e00(longlong socketHandle,byte dataBuffer)
               *(uint *)(socketHandle + 0x2d8) = *(uint *)(socketHandle + 0x2d8) & 0xffffffbf;
               dataBuffer = *(longlong *)(socketHandle + 0x2b8);
             }
-            bufferCapacity = FUN_1808c19d0(*(uint64_t *)(networkTimeout + 0x3d8),dataBuffer);
+            bufferCapacity = validateNetworkConnection(*(uint64_t *)(networkTimeout + 0x3d8),dataBuffer);
             if ((int)bufferCapacity != 0) {
               return bufferCapacity;
             }
@@ -41445,7 +41445,7 @@ uint64_t FUN_180865550(longlong socketHandle,char dataBuffer)
   networkTimeout7 = *(longlong *)(socketHandle + 0x4e0);
   uStackX_20 = 0;
   uStackX_18 = 0;
-  uint_var_9 = FUN_18073a200(*(uint64_t *)(*(longlong *)(socketHandle + 0x2c8) + 0x4c0),&uStackX_18);
+  uint_var_9 = allocateNetworkBuffer(*(uint64_t *)(*(longlong *)(socketHandle + 0x2c8) + 0x4c0),&uStackX_18);
   if (((int)uint_var_9 == 0) && (uint_var_9 = CreateNetworkPacket(uStackX_18,&uStackX_20,0), (int)uint_var_9 == 0)) {
     connectionBuffer6 = (uint64_t *)(networkTimeout7 + SOCKET_RESPONSE_OFFSET);
     while( true ) {
@@ -60171,7 +60171,7 @@ uint64_t FUN_180876000(longlong *socketHandle)
        (connectionIndex = FUN_180883420(socketHandle + 2,int_var_9), (int)connectionIndex != 0)) {
       return connectionIndex;
     }
-    connectionIndex = FUN_1807703c0(socketHandle,int_var_9);
+    connectionIndex = createNetworkSocket(socketHandle,int_var_9);
     if ((int)connectionIndex != 0) {
       return connectionIndex;
     }
@@ -60246,7 +60246,7 @@ uint64_t FUN_180876026(void)
        (dataPointer = FUN_180883420(unaff_RBX + 2,errorCode), (int)dataPointer != 0)) {
       return dataPointer;
     }
-    dataPointer = FUN_1807703c0();
+    dataPointer = createNetworkSocket();
     if ((int)dataPointer != 0) {
       return dataPointer;
     }
@@ -61419,7 +61419,7 @@ LAB_1808770de:
         networkUintStack_130 = (uint)*(ushort *)(networkTimeout + 0xde);
         networkUintStack_138 = (uint)*(ushort *)(networkTimeout + 0xdc);
                     // WARNING: Subroutine does not return
-        SendNetworkPacket(networkStack_c8,0x27,&UNK_180958180,*(uint32_t *)(networkTimeout + 0xd8));
+        SendNetworkPacket(networkStack_c8,0x27,&networkPacketHeader,*(uint32_t *)(networkTimeout + 0xd8));
       }
       socketHandle = (**(code **)(*dataBuffer + 0x340))(dataBuffer,(uint32_t *)(dataBuffer + 0x40),1);
       if (socketHandle == 0) {
@@ -61434,7 +61434,7 @@ LAB_1808770de:
         networkUintStack_130 = (uint)*(ushort *)(dataBuffer + 0x46);
         networkUintStack_138 = (uint)*(ushort *)(dataBuffer + 0x44);
                     // WARNING: Subroutine does not return
-        SendNetworkPacket(networkStack_c8,0x27,&UNK_180958180,*(uint32_t *)(dataBuffer + 0x40));
+        SendNetworkPacket(networkStack_c8,0x27,&networkPacketHeader,*(uint32_t *)(dataBuffer + 0x40));
       }
       *(uint32_t *)(networkTimeout + 0x38) = *(uint32_t *)(socketHandle + 0x50);
       *(uint32_t *)(networkTimeout + 0x3c) = *(uint32_t *)(socketHandle + 0x54);
@@ -61570,7 +61570,7 @@ void FUN_180877560(longlong *socketHandle,longlong *dataBuffer,longlong *bufferC
         networkUintStack_f0 = (uint)*(ushort *)((longlong)ptimeoutValue + 6);
         networkUintStack_f8 = (uint)*(ushort *)(ptimeoutValue + 1);
                     // WARNING: Subroutine does not return
-        SendNetworkPacket(networkStack_80,0x27,&UNK_180958180,*ptimeoutValue);
+        SendNetworkPacket(networkStack_80,0x27,&networkPacketHeader,*ptimeoutValue);
       }
       connectionIndex = (int)*(uint *)((longlong)dataBuffer + SOCKET_BUFFER_OFFSET) >> BIT_SHIFT_MASK;
       resultCode = (int)dataBuffer[1] + 1;
@@ -61630,7 +61630,7 @@ void FUN_1808775bf(longlong *socketHandle,uint64_t dataBuffer,uint64_t bufferCap
       socketDescriptor = (**(code **)(*timeoutValue + 0x140))(timeoutValue,pbufferSize,1);
       if (socketDescriptor == 0) {
                     // WARNING: Subroutine does not return
-        SendNetworkPacket(&stack_buffer,0x27,&UNK_180958180,*pbufferSize,*(uint16_t *)(pbufferSize + 1));
+        SendNetworkPacket(&stack_buffer,0x27,&networkPacketHeader,*pbufferSize,*(uint16_t *)(pbufferSize + 1));
       }
       dataPointer = (int)*(uint *)((longlong)unaff_R15 + SOCKET_BUFFER_OFFSET) >> BIT_SHIFT_MASK;
       networkOperationResult = (int)unaff_R15[1] + 1;
@@ -61848,7 +61848,7 @@ void FUN_180877970(longlong socketHandle,longlong *dataBuffer)
             networkUintStack_130 = (uint)*(ushort *)((longlong)pconnectionInfo + 0x26);
             networkUintStack_138 = (uint)*(ushort *)((longlong)pconnectionInfo + SOCKET_FLAG_OFFSET);
                     // WARNING: Subroutine does not return
-            SendNetworkPacket(&pnetworkLongStack_80,0x27,&UNK_180958180,(int)pconnectionInfo[4]);
+            SendNetworkPacket(&pnetworkLongStack_80,0x27,&networkPacketHeader,(int)pconnectionInfo[4]);
           }
           if ((networkIntStack_bc != 0) && ((int)networkUintStack_d8 != 0)) {
             connectionCount = *(int *)(networkLongStack_e0 +
@@ -62012,7 +62012,7 @@ void NetworkAuthenticateClient(longlong socketHandle,longlong *dataBuffer)
       networkUintStack_a0 = (uint)*(ushort *)((longlong)pconnectionIndex + 6);
       networkUintStack_a8 = (uint)*(ushort *)(pconnectionIndex + 1);
                     // WARNING: Subroutine does not return
-      SendNetworkPacket(networkStack_58,0x27,&UNK_180958180,*pconnectionIndex);
+      SendNetworkPacket(networkStack_58,0x27,&networkPacketHeader,*pconnectionIndex);
     }
     connectionInfo = (**(code **)(*dataBuffer + 0x278))(dataBuffer,connectionInfo + 0x38,1);
     if (connectionInfo == 0) {
@@ -62201,7 +62201,7 @@ void FUN_1808782a0(longlong socketHandle,longlong *dataBuffer,longlong *bufferCa
         networkUintStack_f0 = (uint)*(ushort *)(socketDescriptor + 0x66);
         networkUintStack_f8 = (uint)*(ushort *)(socketDescriptor + 100);
                     // WARNING: Subroutine does not return
-        SendNetworkPacket(&pnetworkLongStack_68,0x27,&UNK_180958180,*(uint32_t *)connectionBuffer);
+        SendNetworkPacket(&pnetworkLongStack_68,0x27,&networkPacketHeader,*(uint32_t *)connectionBuffer);
       }
       if (*(int *)(serverPort + 0x60) != BIT_SHIFT_MASK) goto LAB_180878734;
       anetworkIntStack_a8[0] = 0;
@@ -62425,7 +62425,7 @@ void FUN_1808782c0(longlong socketHandle,uint64_t dataBuffer,longlong *bufferCap
       serverPort = (**(code **)(*bufferCapacity + 0x318))(bufferCapacity,connectionBuffer,1);
       if (serverPort == 0) {
                     // WARNING: Subroutine does not return
-        SendNetworkPacket(unaff_RBP + -9,0x27,&UNK_180958180,*(uint32_t *)connectionBuffer,
+        SendNetworkPacket(unaff_RBP + -9,0x27,&networkPacketHeader,*(uint32_t *)connectionBuffer,
                       *(uint16_t *)(socketDescriptor + 100));
       }
       if (*(int *)(serverPort + 0x60) != BIT_SHIFT_MASK) goto LAB_180878734;
@@ -63100,7 +63100,7 @@ LAB_1808788de:
                       networkUintStack_110 = (uint)networkUintStack_c0._6_2_;
                       networkLongStack_118 = CONCAT44(networkLongStack_118._4_4_,(uint)networkUintStack_c0._4_2_);
                     // WARNING: Subroutine does not return
-                      SendNetworkPacket(networkStack_80,0x27,&UNK_180958180,(ulonglong)networkUintStack_c0 & 0xffffffff
+                      SendNetworkPacket(networkStack_80,0x27,&networkPacketHeader,(ulonglong)networkUintStack_c0 & 0xffffffff
                                    );
                     }
                     networkLongStack_118 = CONCAT71(networkLongStack_118._1_7_,*(uint8_t *)(connectionBuffer9 + 3));
@@ -63392,7 +63392,7 @@ void FUN_1808789b7(float socketHandle)
                     *(longlong *)(unaff_RBP + -0x49) = networkTimeout2;
                     if (networkTimeout2 == 0) {
                     // WARNING: Subroutine does not return
-                      SendNetworkPacket(unaff_RBP + -0x39,0x27,&UNK_180958180,
+                      SendNetworkPacket(unaff_RBP + -0x39,0x27,&networkPacketHeader,
                                     *(uint32_t *)(unaff_RBP + -0x79),
                                     *(uint16_t *)(unaff_RBP + -0x75));
                     }
@@ -63655,7 +63655,7 @@ LAB_180878d26:
                 *(longlong *)(unaff_RBP + -0x49) = networkTimeout2;
                 if (networkTimeout2 == 0) {
                     // WARNING: Subroutine does not return
-                  SendNetworkPacket(unaff_RBP + -0x39,0x27,&UNK_180958180,
+                  SendNetworkPacket(unaff_RBP + -0x39,0x27,&networkPacketHeader,
                                 *(uint32_t *)(unaff_RBP + -0x79),
                                 *(uint16_t *)(unaff_RBP + -0x75));
                 }
@@ -63735,7 +63735,7 @@ void FUN_180879270(longlong socketHandle,longlong *dataBuffer)
       networkUintStack_b0 = (uint)*(ushort *)((longlong)pbufferCapacity + 6);
       networkUintStack_b8 = (uint)*(ushort *)(pbufferCapacity + 1);
                     // WARNING: Subroutine does not return
-      SendNetworkPacket(networkStack_68,0x27,&UNK_180958180,*pbufferCapacity);
+      SendNetworkPacket(networkStack_68,0x27,&networkPacketHeader,*pbufferCapacity);
     }
     if (*(int *)(socketDescriptor + 0xb0) == -1) break;
     pbufferCapacity = pbufferCapacity + 5;
@@ -82764,7 +82764,7 @@ void FUN_18088af30(longlong socketHandle,uint64_t dataBuffer,uint8_t bufferCapac
     networkLongStack_278 = 0;
     networkUintStack_250 = 0;
     networkUintStack_248 = 0;
-    resultCode = FUN_18073a200(*(uint64_t *)(socketHandle + 0x78),&networkLongStack_278);
+    resultCode = allocateNetworkBuffer(*(uint64_t *)(socketHandle + 0x78),&networkLongStack_278);
     if ((resultCode != 0) ||
        (pnetworkLongStack_298 = (longlong *)(socketHandle + 0xb8),
        resultCode = FUN_1808e5d30(*(uint64_t *)(socketHandle + 0xa8),&networkUintStack_250,
@@ -82939,7 +82939,7 @@ void FUN_18088afd0(void)
       stack_param = 0;
       stack_param = 0;
       stackContext = 0;
-      socketIndex = FUN_18073a200(*(uint64_t *)(unaff_RDI + 0x78),&networkStackBuffer);
+      socketIndex = allocateNetworkBuffer(*(uint64_t *)(unaff_RDI + 0x78),&networkStackBuffer);
       if ((socketIndex != 0) ||
          (socketIndex = FUN_1808e5d30(*(uint64_t *)(unaff_RDI + 0xa8),&stack_buffer,
                                 *(uint64_t *)(unaff_RDI + 0x78),stack_param,pserverPort),
@@ -93333,7 +93333,7 @@ void FUN_180894860(longlong socketHandle,uint32_t *dataBuffer,longlong *bufferCa
       networkUintStack_98 = networkUintStack_50 & 0xff;
       networkUintStack_a8 = networkUintStack_54 & 0xffff;
                     // WARNING: Subroutine does not return
-      SendNetworkPacket(networkStack_40,0x27,&UNK_180958180,networkUintStack_58);
+      SendNetworkPacket(networkStack_40,0x27,&networkPacketHeader,networkUintStack_58);
     }
     if (((*(byte *)(connectionInfo + 0xc4) & 1) != 0) &&
        ((networkLongStack_48 = *(longlong *)(connectionInfo + 0x68), networkLongStack_48 != 0 ||
@@ -93419,7 +93419,7 @@ void FUN_1808949c0(longlong socketHandle,uint32_t *dataBuffer,longlong *bufferCa
       networkUintStack_88 = networkUintStack_40 & 0xff;
       networkUintStack_98 = networkUintStack_44 & 0xffff;
                     // WARNING: Subroutine does not return
-      SendNetworkPacket(networkStack_38,0x27,&UNK_180958180,networkUintStack_48);
+      SendNetworkPacket(networkStack_38,0x27,&networkPacketHeader,networkUintStack_48);
     }
     if ((**(int **)(connectionInfo + 0xd0) != 0) ||
        (resultCode = FUN_18088c060(*(uint32_t *)(socketHandle + SESSION_CONFIG_SIZE)), resultCode == 0)) {
@@ -93449,7 +93449,7 @@ void FUN_180894a07(ulonglong socketHandle)
   socketDescriptor = (**(code **)(networkContextPtr + CONNECTION_BUFFER_OFFSET8))();
   if (socketDescriptor == 0) {
                     // WARNING: Subroutine does not return
-    SendNetworkPacket(&stackBuffer,0x27,&UNK_180958180,uStack0000000000000070 & 0xffffffff,
+    SendNetworkPacket(&stackBuffer,0x27,&networkPacketHeader,uStack0000000000000070 & 0xffffffff,
                   uStack0000000000000070._4_2_);
   }
   if (**(int **)(socketDescriptor + 0xd0) == 0) {
@@ -93526,7 +93526,7 @@ void FUN_180894b00(longlong socketHandle,uint32_t *dataBuffer,longlong *bufferCa
       networkUintStack_98 = networkUintStack_50 & 0xff;
       networkUintStack_a8 = networkUintStack_54 & 0xffff;
                     // WARNING: Subroutine does not return
-      SendNetworkPacket(networkStack_40,0x27,&UNK_180958180,networkUintStack_58);
+      SendNetworkPacket(networkStack_40,0x27,&networkPacketHeader,networkUintStack_58);
     }
     networkLongStack_48 = *(longlong *)(connectionInfo + 0x48);
     if ((networkLongStack_48 != 0) || (resultCode = FUN_18088ca20(socketHandle,connectionInfo,&networkLongStack_48), resultCode == 0)) {
@@ -93970,7 +93970,7 @@ uint64_t FUN_180895210(longlong *socketHandle)
        (bufferCapacity = FUN_1807d3f50(socketHandle + 2,errorCode), (int)bufferCapacity != 0)) {
       return bufferCapacity;
     }
-    bufferCapacity = FUN_1807703c0(socketHandle,errorCode);
+    bufferCapacity = createNetworkSocket(socketHandle,errorCode);
     if ((int)bufferCapacity != 0) {
       return bufferCapacity;
     }
@@ -94039,7 +94039,7 @@ uint64_t FUN_180895236(void)
        (packetLength = FUN_1807d3f50(unaff_RBX + 2,dataLength), (int)packetLength != 0)) {
       return packetLength;
     }
-    packetLength = FUN_1807703c0();
+    packetLength = createNetworkSocket();
     if ((int)packetLength != 0) {
       return packetLength;
     }
@@ -97568,7 +97568,7 @@ void FUN_180898040(longlong *socketHandle)
             networkTimeout1 = socketHandle[4];
             if ((char)networkTimeout1 == '\0') {
               *(uint8_t *)(socketHandle + 4) = 1;
-              dataLength = FUN_18073a200(*(uint64_t *)(socketHandle[1] + 0x78),networkStack_2e8);
+              dataLength = allocateNetworkBuffer(*(uint64_t *)(socketHandle[1] + 0x78),networkStack_2e8);
               if (((dataLength != 0) || (dataLength = CreateNetworkPacket(networkStack_2e8[0],&networkLongStack_320,0), dataLength != 0)
                   ) || (dataLength = (**(code **)(*socketHandle + 0x10))(socketHandle), dataLength != 0))
               goto LAB_18089866f;
@@ -97774,7 +97774,7 @@ uint64_t FUN_1808987e0(longlong *socketHandle,char dataBuffer)
   ulonglong networkUintStack_18;
   
   *(uint8_t *)(socketHandle + 4) = 1;
-  packetLength = FUN_18073a200(*(uint64_t *)(socketHandle[1] + 0x78),&uStackX_8);
+  packetLength = allocateNetworkBuffer(*(uint64_t *)(socketHandle[1] + 0x78),&uStackX_8);
   if ((((int)packetLength == 0) && (packetLength = CreateNetworkPacket(uStackX_8,alStackX_18,0), (int)packetLength == 0)) &&
      (packetLength = (**(code **)(*socketHandle + 0x10))(socketHandle), (int)packetLength == 0)) {
     bufferCapacity = (ulonglong)(alStackX_18[0] * 48000) / (ulonglong)*(uint *)((longlong)socketHandle + ERROR_CODE_INVALID);
