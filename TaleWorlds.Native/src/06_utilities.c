@@ -1128,11 +1128,11 @@ dataValue lightingMetalness;  /* 原: renderSystemVarace8 */
 dataValue lightingAO;  /* 原: renderSystemVaracf0 */
 dataValue lightingNormalMap;  /* 原: renderSystemVarad70 */
 dataValue lightingHeightMap;  /* 原: renderSystemVarad78 */
-dataValue lightingRoughnessMap;  /* 原: DAT_180bfad80 */
-dataValue lightingMetalnessMap;  /* 原: DAT_180bfad88 */
-dataValue lightingAOMap;  /* 原: DAT_180bfae08 */
-dataValue lightingEmissiveMap;  /* 原: DAT_180bfae10 */
-dataValue lightingEnvironmentMap;  /* 原: DAT_180bfae18 */
+dataValue lightingRoughnessMap;  /* 原: g_global_datag_system_data__DAT_180bfad80 */
+dataValue lightingMetalnessMap;  /* 原: g_global_datag_system_data__DAT_180bfad88 */
+dataValue lightingAOMap;  /* 原: g_global_datag_system_data__DAT_180bfae08 */
+dataValue lightingEmissiveMap;  /* 原: g_global_datag_system_data__DAT_180bfae10 */
+dataValue lightingEnvironmentMap;  /* 原: g_global_datag_system_data__DAT_180bfae18 */
 dataValue lightingIrradianceMap;  /* 原: renderSystemVarae20 */
 dataValue threadSynchronizationFlag;
 dataValue shadowBiasData;
@@ -1140,10 +1140,10 @@ dataValue shadowProjectionMatrix;
 
 // 函数: dataValueValue resourceLoadFromDisk;
 dataValue resourceLoadFromDisk;
-dataValue resourceTextureCache;  /* 原: DAT_180bfc150 */
+dataValue resourceTextureCache;  /* 原: g_global_datag_system_data__DAT_180bfc150 */
 byte g_resourceInitFlag;
-dataValue resourceRefCount;  /* 原: DAT_180bfc160 */
-dataValue resourceMemoryUsage;  /* 原: DAT_180bfc168 */
+dataValue resourceRefCount;  /* 原: g_global_datag_system_data__DAT_180bfc160 */
+dataValue resourceMemoryUsage;  /* 原: g_global_datag_system_data__DAT_180bfc168 */
 uint64 reflectionCubeMap;
 dataValue resourceReflectionBuffer1;
 dataValue resourceReflectionBuffer2;
@@ -80164,7 +80164,7 @@ void reset_game_state_if_needed(uint64 resourceHandle,longlong memoryBlockSize)
   check_operationResult = func_0x0001808fd8d4();
   if ((check_operationResult != 0) && (operationStatus_flag == '\0')) {
     LOCK();
-    _DAT_180c821d0 = 0;
+    systemInitializationFlag = 0;
     UNLOCK();
   }
   return;
@@ -80187,7 +80187,7 @@ void checkResourceState(uint64 resourceHandle,longlong memoryBlockSize)
   operationStatus = func_0x0001808fd8d4();
   if ((operationStatus != 0) && (charVar1 == '\0')) {
     LOCK();
-    _DAT_180c821d0 = 0;
+    systemInitializationFlag = 0;
     UNLOCK();
   }
   return;
@@ -81778,8 +81778,8 @@ void resourceDecompressData(uint64 resourceHandle,uint64 memoryBlockSize,uint64 
   uint64 *punsignedCounter;
   
   FUN_18005d260(&resourceReflectionBuffer1,_resourceReflectionBuffer3,operationFlags,callbackFunction,0xfffffffffffffffe);
-  pfunctionResult = _DAT_180bfaea8;
-  for (punsignedCounter = _DAT_180bfaea0; punsignedCounter != pfunctionResult; punsignedCounter = punsignedCounter + 7) {
+  pfunctionResult = resourceListEnd;
+  for (punsignedCounter = resourceListStart; punsignedCounter != pfunctionResult; punsignedCounter = punsignedCounter + 7) {
     *punsignedCounter = &threadLocalStorageData;
     if (punsignedCounter[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -81789,7 +81789,7 @@ void resourceDecompressData(uint64 resourceHandle,uint64 memoryBlockSize,uint64 
     *(uint32 *)(punsignedCounter + 3) = 0;
     *punsignedCounter = &threadLocalStorageCleanup;
   }
-  if (_DAT_180bfaea0 != (uint64 *)0x0) {
+  if (resourceListStart != (uint64 *)0x0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -82127,7 +82127,7 @@ void resourceMigrateFormat(void)
   longlong dataValueBuffer;
   
   if (ALIGNMENT_MASK < _renderSystemVarc188) {
-    localLong1 = CONCAT71(uRam0000000180bfc171,DAT_180bfc170);
+    localLong1 = CONCAT71(uRam0000000180bfc171,resourceBufferEnd);
     dataValueBuffer = localLong1;
     if (0xfff < _renderSystemVarc188 + 1) {
       dataValueBuffer = *(longlong *)(localLong1 + -8);
