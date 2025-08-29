@@ -10471,7 +10471,7 @@ unsigned long long allocate_resource_memory(int handle)
       unaff_XMM6._8_4_ = (fVar22 + fVar22) - fVar22 * fVar22 * aflags1._0_4_;
       unaff_XMM6._12_4_ = (fVar23 + fVar23) - fVar23 * fVar23 * aflags1._0_4_;
       do {
-        flags0 = thunk_FUN_1808fe1a0();
+        flags0 = GetSystemFlags();
         aflags5._0_4_ = (float)flags0 * 2.0;
         aflags5._4_4_ = (float)((ulong long)flags0 >> CONFIG_PATH_BUFFER_SIZE) * 2.0;
         aflags5._8_4_ = (float)extraout_XMM0_Qb * 2.0;
