@@ -1001,11 +1001,11 @@ int initialize_module_033(void)
 {
   longlong result_var;
   undefined8 str_length_param;
-  _DAT_180bf9ab0 = &unknown_data_003;
-  _DAT_180bf9ab8 = &DAT_180bf9ac8;
-  DAT_180bf9ac8 = 0;
-  _DAT_180bf9ac0 = 0x1c;
-  strcpy_s(&DAT_180bf9ac8,0x40,&DAT_180a22d48,str_length_param,0xfffffffffffffffe);
+  g_string_manager_ptr_180bf9ab0 = &unknown_data_003;
+  g_string_manager_ptr_180bf9ab8 = &g_string_buffer_180bf9ac8;
+  g_string_buffer_180bf9ac8 = 0;
+  g_string_manager_type_180bf9ac0 = 0x1c;
+  strcpy_s(&g_string_buffer_180bf9ac8,0x40,&DAT_180a22d48,str_length_param,0xfffffffffffffffe);
   result_var = execute_function(FUN_180942200);
   return (result_var != 0) - 1;
 }
