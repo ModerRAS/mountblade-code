@@ -327,15 +327,15 @@ data configSystemUpdateSettings;
 data configSystemModSettings;
 data configSystemCloudSettings;
 data configSystemSocialSettings;
-data systemDataTable1;
-data systemDataTable2;
-data systemDataTable3;
-data systemDataTable4;
-data systemDataTable5;
-data systemDataTable6;
-data systemDataTable7;
-data systemDataTable8;
-data systemDataTable9;
+data g_systemModuleData1;
+data g_systemModuleData2;
+data g_systemModuleData3;
+data g_systemModuleData4;
+data g_systemModuleData5;
+data g_systemModuleData6;
+data g_systemModuleData7;
+data g_systemModuleData8;
+data g_systemModuleData9;
 data bufferManagementControl;
 data g_textureUploadBuffer;
 data bufferAllocationPointer;
@@ -369,56 +369,56 @@ data fileBufferSize;
 data fileOperationFlag;
 data networkConnectionStatus;
 data networkSocketHandle;
-data systemDataTable10;
-data systemDataTable11;
-data systemDataTable12;
+data g_systemModuleData10;
+data g_systemModuleData11;
+data g_systemModuleData12;
 
-// 函数: data InitializeSystemModule1;
-data InitializeSystemModule1;
-data systemDataTable13;
+// 函数: data g_initializeSystemModule1;
+data g_initializeSystemModule1;
+data g_systemModuleData13;
 data networkSendBuffer;
-data bufferDataTable4;
-data bufferDataTable5;
-data bufferDataTable6;
-data bufferDataTable7;
+data g_bufferModuleData4;
+data g_bufferModuleData5;
+data g_bufferModuleData6;
+data g_bufferModuleData7;
 
-// 函数: data InitializeSystemModule2;
-data InitializeSystemModule2;
+// 函数: data g_initializeSystemModule2;
+data g_initializeSystemModule2;
 data networkReceiveBuffer;
-data systemDataTable14;
-data systemDataTable15;
-data systemDataTable16;
-data systemDataTable17;
+data g_systemModuleData14;
+data g_systemModuleData15;
+data g_systemModuleData16;
+data g_systemModuleData17;
 
-// 函数: data InitializeSystemModule3;
-data InitializeSystemModule3;
+// 函数: data g_initializeSystemModule3;
+data g_initializeSystemModule3;
 data networkPacketSize;
-data threadSyncData2;
-data threadSyncData3;
-data threadSyncData4;
-data threadSyncData5;
-data eventData9;
-data eventData10;
-data systemDataTable18;
-data memoryData1;
-data fileData4;
-data fileData5;
-data fileData6;
-data fileData7;
-data systemDataTable19;
-data renderData1;
-data systemDataTable20;
-data renderData2;
-data systemConfigData6;
-data systemConfigData7;
-data systemConfigData8;
-data systemConfigData9;
-data renderData14;
-data renderData15;
-data renderData16;
-data renderData17;
-data deviceConfigData1;
-data deviceConfigData2;
+data g_threadSyncModuleData2;
+data g_threadSyncModuleData3;
+data g_threadSyncModuleData4;
+data g_threadSyncModuleData5;
+data g_eventModuleData9;
+data g_eventModuleData10;
+data g_systemModuleData18;
+data g_memoryModuleData1;
+data g_fileModuleData4;
+data g_fileModuleData5;
+data g_fileModuleData6;
+data g_fileModuleData7;
+data g_systemModuleData19;
+data g_renderModuleData1;
+data g_systemModuleData20;
+data g_renderModuleData2;
+data g_systemConfigModuleData6;
+data g_systemConfigModuleData7;
+data g_systemConfigModuleData8;
+data g_systemConfigModuleData9;
+data g_renderModuleData14;
+data g_renderModuleData15;
+data g_renderModuleData16;
+data g_renderModuleData17;
+data g_deviceConfigModuleData1;
+data g_deviceConfigModuleData2;
 data deviceConfigData3;
 data deviceConfigData4;
 data inputData1;
@@ -997,32 +997,32 @@ data geometryTessellator;
 data renderScissorInitialize;
 data renderScissorBuffer1;  /* 原: DAT_180bfa170 */
 data renderScissorBuffer2;  /* 原: DAT_180bfa178 */
-data DAT_180bfa180;
-data DAT_180bfa188;
+data renderScissorBuffer3;  /* 原: DAT_180bfa180 */
+data renderScissorBuffer4;  /* 原: DAT_180bfa188 */
 data geometryPrimitiveType;
 
 // 函数: data renderClearInitialize;
 data renderClearInitialize;
-data DAT_180bfa1d0;
-data DAT_180bfa1d8;
-data DAT_180bfa1e0;
-data DAT_180bfa1e8;
+data renderClearBuffer1;  /* 原: DAT_180bfa1d0 */
+data renderClearBuffer2;  /* 原: DAT_180bfa1d8 */
+data renderClearBuffer3;  /* 原: DAT_180bfa1e0 */
+data renderClearBuffer4;  /* 原: DAT_180bfa1e8 */
 data DAT_180a22fd0;
 
 // 函数: data renderDrawInitialize;
 data renderDrawInitialize;
-data DAT_180bfa230;
-data DAT_180bfa238;
-data DAT_180bfa240;
-data DAT_180bfa248;
+data renderDrawBuffer1;
+data renderDrawBuffer2;
+data renderDrawBuffer3;
+data renderDrawBuffer4;
 data DAT_180a22fa8;
 
 // 函数: data renderDispatchInitialize;
 data renderDispatchInitialize;
-data DAT_180bfa290;
-data DAT_180bfa298;
-data DAT_180bfa2a0;
-data DAT_180bfa2a8;
+data renderDispatchBuffer1;
+data renderDispatchBuffer2;
+data renderDispatchBuffer3;
+data renderDispatchBuffer4;
 data geometryVertexCount;
 
 // 函数: data resourceAcquireHandle;
@@ -7635,7 +7635,7 @@ void utilityAnalyzeResourceData(longlong resourceHandle,uint32 *memorySize,longl
       initializeBufferStructure(localBuffer,0x27,&unknown_180958180,localUInt);
     }
     if ((**(int **)(index + 0xd0) != 0) ||
-       (status = FUN_18088c060(*(uint32 *)(resourceHandle + 0x18)), status == 0)) {
+       (status = validate_resource_handle(*(uint32 *)(resourceHandle + 0x18)), status == 0)) {
       *operationFlags = index;
     }
   }
@@ -7666,7 +7666,7 @@ void set_thread_local_data(ulonglong resourceHandle)
                   uStack0000000000000070._4_2_);
   }
   if (**(int **)(buffer + 0xd0) == 0) {
-    status = FUN_18088c060(*(uint32 *)(unaff_RDI + 0x18));
+    status = validate_resource_handle(*(uint32 *)(unaff_RDI + 0x18));
     if (status != 0) goto LAB_180894aca;
   }
   *unaff_RSI = buffer;
@@ -7742,7 +7742,7 @@ void utilityGenerateResourceReport(longlong resourceHandle,uint32 *memorySize,lo
       initializeBufferStructure(localBuffer,0x27,&unknown_180958180,localUInt);
     }
     lStack_48 = *(longlong *)(index + 0x48);
-    if ((lStack_48 != 0) || (status = FUN_18088ca20(resourceHandle,index,&lStack_48), status == 0)) {
+    if ((lStack_48 != 0) || (status = allocate_resource_memory(resourceHandle,index,&lStack_48), status == 0)) {
       *operationFlags = lStack_48;
     }
   }
@@ -7775,7 +7775,7 @@ void allocate_from_pool(void)
   ulonglong in_stack_000000b0;
   
   lStack0000000000000080 = *(longlong *)(inputRegister + 0x48);
-  if ((lStack0000000000000080 != 0) || (status = FUN_18088ca20(), localInt1 == 0)) {
+  if ((lStack0000000000000080 != 0) || (status = allocate_resource_memory(), localInt1 == 0)) {
     *unaff_RDI = lStack0000000000000080;
   }
                     // WARNING: Subroutine does not return
@@ -7791,10 +7791,10 @@ void free_to_pool(longlong resourceHandle,uint64 memorySize)
 {
   int status;
   
-  status = FUN_18088ee60(memorySize,resourceHandle + 0x10);
-  if (((localInt1 == 0) && (status = FUN_18088ee20(memorySize,resourceHandle + 0x18), localInt1 == 0)) &&
-     (status = FUN_18088f530(memorySize,resourceHandle + 0x20,*(uint32 *)(resourceHandle + 0x18)), localInt1 == 0)) {
-    FUN_18088f5c0(memorySize,resourceHandle + 0x20 + (longlong)*(int *)(resourceHandle + 0x18) * 4);
+  status = initialize_resource_buffer(memorySize,resourceHandle + 0x10);
+  if (((localInt1 == 0) && (status = setup_resource_configuration(memorySize,resourceHandle + 0x18), localInt1 == 0)) &&
+     (status = configure_resource_attributes(memorySize,resourceHandle + 0x20,*(uint32 *)(resourceHandle + 0x18)), localInt1 == 0)) {
+    activate_resource_context(memorySize,resourceHandle + 0x20 + (longlong)*(int *)(resourceHandle + 0x18) * 4);
   }
   return;
 }
@@ -7808,11 +7808,11 @@ void cleanup_memory_pool(void)
 {
   int status;
   
-  status = FUN_18088ee20();
+  status = setup_resource_configuration();
   if (status == 0) {
-    status = FUN_18088f530();
+    status = configure_resource_attributes();
     if (status == 0) {
-      FUN_18088f5c0();
+      activate_resource_context();
     }
   }
   return;
@@ -7821,8 +7821,8 @@ void cleanup_memory_pool(void)
 
 
 
-// 函数: void FUN_180894cd2(void)
-void FUN_180894cd2(void)
+// 函数: void cleanup_resource_handles(void)
+void cleanup_resource_handles(void)
 
 {
   return;
@@ -7837,12 +7837,12 @@ void resize_memory_pool(longlong resourceHandle,uint64 memorySize)
 {
   int status;
   
-  status = FUN_18088ee60(memorySize,resourceHandle + 0x10);
-  if ((((localInt1 == 0) && (status = FUN_18088ee20(memorySize,resourceHandle + 0x18), localInt1 == 0)) &&
-      (status = FUN_18088f620(memorySize,resourceHandle + 0x20,*(uint32 *)(resourceHandle + 0x18)), localInt1 == 0))
-     && (status = FUN_18088f5c0(memorySize,resourceHandle + 0x20 + (longlong)*(int *)(resourceHandle + 0x18) * 8),
+  status = initialize_resource_buffer(memorySize,resourceHandle + 0x10);
+  if ((((localInt1 == 0) && (status = setup_resource_configuration(memorySize,resourceHandle + 0x18), localInt1 == 0)) &&
+      (status = validate_resource_structure(memorySize,resourceHandle + 0x20,*(uint32 *)(resourceHandle + 0x18)), localInt1 == 0))
+     && (status = activate_resource_context(memorySize,resourceHandle + 0x20 + (longlong)*(int *)(resourceHandle + 0x18) * 8),
         localInt1 == 0)) {
-    FUN_18088f470(memorySize,resourceHandle + 0x1c);
+    finalize_resource_setup(memorySize,resourceHandle + 0x1c);
   }
   return;
 }
@@ -7856,13 +7856,13 @@ void validate_memory_pool(void)
 {
   int status;
   
-  status = FUN_18088ee20();
+  status = setup_resource_configuration();
   if (status == 0) {
-    status = FUN_18088f620();
+    status = validate_resource_structure();
     if (status == 0) {
-      status = FUN_18088f5c0();
+      status = activate_resource_context();
       if (status == 0) {
-        FUN_18088f470();
+        finalize_resource_setup();
       }
     }
   }
@@ -7888,13 +7888,13 @@ void set_pool_allocator(longlong resourceHandle,uint64 memorySize)
 {
   int status;
   
-  status = FUN_18088ee20(memorySize,resourceHandle + 0x10);
+  status = setup_resource_configuration(memorySize,resourceHandle + 0x10);
   if (status == 0) {
-    status = FUN_18088f620(memorySize,resourceHandle + 0x18,*(uint32 *)(resourceHandle + 0x10));
+    status = validate_resource_structure(memorySize,resourceHandle + 0x18,*(uint32 *)(resourceHandle + 0x10));
     if (status == 0) {
-      status = FUN_18088f5c0(memorySize,resourceHandle + 0x18 + (longlong)*(int *)(resourceHandle + 0x10) * 8);
+      status = activate_resource_context(memorySize,resourceHandle + 0x18 + (longlong)*(int *)(resourceHandle + 0x10) * 8);
       if (status == 0) {
-        FUN_18088f470(memorySize,resourceHandle + 0x14);
+        finalize_resource_setup(memorySize,resourceHandle + 0x14);
       }
     }
   }
@@ -7943,7 +7943,7 @@ uint32 utilityReadMemoryData(longlong resourceHandle,uint64 memorySize,uint oper
       *(longlong **)(resourceHandle + 0x58) = plocalLong1;
       **(longlong **)(callbackFunction + 0x10) = (longlong)plocalLong1;
       func_0x0001808ded80(callbackFunction,uStackX_20);
-      FUN_180882c20(resourceHandle,uStackX_20);
+      process_resource_operations(resourceHandle,uStackX_20);
     }
   }
 LAB_180894ebf:
@@ -8019,22 +8019,22 @@ uint64 allocate_from_allocator(longlong resourceHandle)
   uint64 uVar3;
   uint uVar4;
   
-  FUN_18088c620();
-  FUN_180840270(resourceHandle + 0xd8);
-  status = FUN_180744cc0(resourceHandle + 0x70);
-  if ((status == 0) && (status = FUN_180895130(resourceHandle + 0x80), status == 0)) {
+  initialize_system_components();
+  activate_system_module(resourceHandle + 0xd8);
+  status = validate_system_integrity(resourceHandle + 0x70);
+  if ((status == 0) && (status = configure_system_parameters(resourceHandle + 0x80), status == 0)) {
     *(uint32 *)(resourceHandle + 0x90) = 0xffffffff;
     *(uint32 *)(resourceHandle + 0x94) = 0;
   }
-  FUN_180895130(resourceHandle + 0x80);
-  FUN_180744cc0(resourceHandle + 0x70);
-  status = FUN_180744cc0(resourceHandle + 0x28);
+  configure_system_parameters(resourceHandle + 0x80);
+  validate_system_integrity(resourceHandle + 0x70);
+  status = validate_system_integrity(resourceHandle + 0x28);
   if ((status == 0) && (status = free_from_allocator(resourceHandle + 0x38), status == 0)) {
     *(uint32 *)(resourceHandle + 0x48) = 0xffffffff;
     *(uint32 *)(resourceHandle + 0x4c) = 0;
   }
   free_from_allocator(resourceHandle + 0x38);
-  FUN_180744cc0(resourceHandle + 0x28);
+  validate_system_integrity(resourceHandle + 0x28);
   get_pool_allocator(resourceHandle + 0x18);
   plocalLong1 = (longlong *)(resourceHandle + 8);
   uVar4 = *(uint *)(resourceHandle + 0x14);
@@ -8057,7 +8057,7 @@ uint64 allocate_from_allocator(longlong resourceHandle)
   }
   *(uint32 *)(resourceHandle + 0x10) = 0;
   if ((0 < (int)((uVar4 ^ (int)uVar4 >> 0x1f) - ((int)uVar4 >> 0x1f))) &&
-     (uVar3 = FUN_180849030(plocalLong1,0), (int)uVar3 != 0)) {
+     (uVar3 = process_system_request(plocalLong1,0), (int)uVar3 != 0)) {
     return uVar3;
   }
   return 0;
@@ -8094,7 +8094,7 @@ uint64 free_from_allocator(longlong *resourceHandle)
   }
   *(uint32 *)(resourceHandle + 1) = 0;
   if ((0 < (int)((uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f))) &&
-     (localUInt2 = FUN_180896040(resourceHandle,0), (int)localUInt2 != 0)) {
+     (localUInt2 = execute_system_command(resourceHandle,0), (int)localUInt2 != 0)) {
     return localUInt2;
   }
   return 0;
@@ -8104,7 +8104,7 @@ uint64 free_from_allocator(longlong *resourceHandle)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64 FUN_180895130(longlong *resourceHandle)
+uint64 configure_system_parameters(longlong *resourceHandle)
 
 {
   int status;
@@ -8143,7 +8143,7 @@ uint64 FUN_180895130(longlong *resourceHandle)
   }
   *(uint32 *)(resourceHandle + 1) = 0;
   if ((0 < (int)((uVar5 ^ (int)uVar5 >> 0x1f) - ((int)uVar5 >> 0x1f))) &&
-     (uVar3 = FUN_1807d3f50(resourceHandle,0), (int)uVar3 != 0)) {
+     (uVar3 = handle_system_event(resourceHandle,0), (int)uVar3 != 0)) {
     return uVar3;
   }
   return 0;
@@ -8180,10 +8180,10 @@ uint64 set_allocator_flags(longlong *resourceHandle)
     }
     uVar6 = (int)*(uint *)((longlong)resourceHandle + 0x1c) >> 0x1f;
     if (((int)((*(uint *)((longlong)resourceHandle + 0x1c) ^ uVar6) - uVar6) < iVar8) &&
-       (uVar3 = FUN_1807d3f50(resourceHandle + 2,iVar8), (int)uVar3 != 0)) {
+       (uVar3 = handle_system_event(resourceHandle + 2,iVar8), (int)uVar3 != 0)) {
       return uVar3;
     }
-    uVar3 = FUN_1807703c0(resourceHandle,iVar8);
+    uVar3 = process_system_callback(resourceHandle,iVar8);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
@@ -8249,10 +8249,10 @@ uint64 initialize_debug_system(void)
     }
     uVar5 = (int)*(uint *)((longlong)baseRegister + 0x1c) >> 0x1f;
     if (((int)((*(uint *)((longlong)baseRegister + 0x1c) ^ uVar5) - uVar5) < iVar7) &&
-       (localUInt2 = FUN_1807d3f50(baseRegister + 2,iVar7), (int)localUInt2 != 0)) {
+       (localUInt2 = handle_system_event(baseRegister + 2,iVar7), (int)localUInt2 != 0)) {
       return localUInt2;
     }
-    localUInt2 = FUN_1807703c0();
+    localUInt2 = process_system_callback();
     if ((int)localUInt2 != 0) {
       return localUInt2;
     }
@@ -8369,7 +8369,7 @@ void log_debug_message(longlong resourceHandle,byte *memorySize,int *operationFl
       }
       bVar1 = *(byte *)(resourceHandle + 0x6c);
       if (*(longlong *)(resourceHandle + 0xc0) != 0) {
-        uVar5 = FUN_180895ef0(resourceHandle);
+        uVar5 = evaluate_system_state(resourceHandle);
         counter = (**(code **)(resourceHandle + 0xc0))
                           (uVar5,counter,*(uint32 *)(lVar9 + 0x18),*(uint64 *)(resourceHandle + 0xb8)
                           );
@@ -8405,7 +8405,7 @@ LAB_18089555d:
       else {
         if ((cVar3 != '\x02') || ((*(byte *)(resourceHandle + 0x6c) & 4) != 0)) goto LAB_18089555d;
         localUInt = *(uint32 *)(lVar9 + 0x20);
-        counter = FUN_180895c60(resourceHandle,counter,&localUInt);
+        counter = perform_system_operation(resourceHandle,counter,&localUInt);
         if (counter != 0) goto FUN_180895b89;
         counter = SystemMemoryFunction(localUInt,localArray);
         if ((counter != 0) || (*(int *)(localArray[0] + 0x30) != 2)) goto LAB_18089555d;
@@ -8426,8 +8426,8 @@ FUN_180895b89:
 
 
 
-// 函数: void FUN_1808953bf(longlong resourceHandle,uint64 memorySize,int *operationFlags)
-void FUN_1808953bf(longlong resourceHandle,uint64 memorySize,int *operationFlags)
+// 函数: void initialize_memory_manager(longlong resourceHandle,uint64 memorySize,int *operationFlags)
+void initialize_memory_manager(longlong resourceHandle,uint64 memorySize,int *operationFlags)
 
 {
   longlong localLong1;
@@ -8490,7 +8490,7 @@ void FUN_1808953bf(longlong resourceHandle,uint64 memorySize,int *operationFlags
       cVar2 = in_R11B;
     }
     if (*(longlong *)(unaff_RDI + 0xc0) != 0) {
-      uVar6 = FUN_180895ef0();
+      uVar6 = evaluate_system_state();
       length = (**(code **)(unaff_RDI + 0xc0))
                         (uVar6,unaff_EBX,*(uint32 *)(lVar8 + 0x18),
                          *(uint64 *)(unaff_RDI + 0xb8));
@@ -8527,7 +8527,7 @@ LAB_18089555d:
     else {
       if ((cVar2 != '\x02') || ((*(byte *)(resourceHandle + 0x6c) & 4) != 0)) goto LAB_18089555d;
       in_stack_00000040._4_4_ = *(uint32 *)(lVar8 + 0x20);
-      counter = FUN_180895c60(resourceHandle,unaff_EBX,(longlong)&stackLocalBuffer + 4);
+      counter = perform_system_operation(resourceHandle,unaff_EBX,(longlong)&stackLocalBuffer + 4);
       if (counter != 0) goto LAB_180895b69;
       counter = SystemMemoryFunction(in_stack_00000040._4_4_,unaff_RBP + -0x78);
       if ((counter != 0) || (*(int *)(*(longlong *)(unaff_RBP + -0x78) + 0x30) != 2))
@@ -8556,8 +8556,8 @@ void FUN_180895b89(void)
 
 
 
-// 函数: void FUN_180895bb0(longlong resourceHandle,int memorySize,uint64 *operationFlags)
-void FUN_180895bb0(longlong resourceHandle,int memorySize,uint64 *operationFlags)
+// 函数: void setup_memory_allocator(longlong resourceHandle,int memorySize,uint64 *operationFlags)
+void setup_memory_allocator(longlong resourceHandle,int memorySize,uint64 *operationFlags)
 
 {
   uint64 returnValue;
@@ -8599,7 +8599,7 @@ void FUN_180895bb0(longlong resourceHandle,int memorySize,uint64 *operationFlags
 
 
 
-uint64 FUN_180895c60(longlong resourceHandle,int memorySize,uint *operationFlags)
+uint64 perform_system_operation(longlong resourceHandle,int memorySize,uint *operationFlags)
 
 {
   uint returnValue;
@@ -8785,7 +8785,7 @@ uint64 FUN_180895d30(longlong *resourceHandle,uint *memorySize,uint64 *operation
         else if (localInt12 < iVar7) {
           localInt12 = iVar7;
         }
-        uVar5 = FUN_1807d3f50(resourceHandle + 2,localInt12);
+        uVar5 = handle_system_event(resourceHandle + 2,localInt12);
         if ((int)uVar5 != 0) {
           return uVar5;
         }
@@ -8811,7 +8811,7 @@ uint64 FUN_180895d30(longlong *resourceHandle,uint *memorySize,uint64 *operation
 
 
 
-uint64 FUN_180895d62(uint64 resourceHandle,int memorySize)
+uint64 allocate_memory_block(uint64 resourceHandle,int memorySize)
 
 {
   longlong localLong1;
@@ -8864,7 +8864,7 @@ uint64 FUN_180895d62(uint64 resourceHandle,int memorySize)
       else if (localInt10 < iVar6) {
         localInt10 = iVar6;
       }
-      uVar4 = FUN_1807d3f50(unaff_RDI + 2,localInt10);
+      uVar4 = handle_system_event(unaff_RDI + 2,localInt10);
       if ((int)uVar4 != 0) {
         return uVar4;
       }
@@ -8888,7 +8888,7 @@ uint64 FUN_180895d62(uint64 resourceHandle,int memorySize)
 
 
 
-uint64 FUN_180895d9c(uint64 resourceHandle,uint32 memorySize)
+uint64 allocate_memory_chunk(uint64 resourceHandle,uint32 memorySize)
 
 {
   int status;
@@ -8924,7 +8924,7 @@ uint64 FUN_180895d9c(uint64 resourceHandle,uint32 memorySize)
       else if (iVar7 < counter) {
         iVar7 = counter;
       }
-      localUInt2 = FUN_1807d3f50(unaff_RDI + 0x10,iVar7);
+      localUInt2 = handle_system_event(unaff_RDI + 0x10,iVar7);
       if ((int)localUInt2 != 0) {
         return localUInt2;
       }
@@ -8949,7 +8949,7 @@ uint64 FUN_180895d9c(uint64 resourceHandle,uint32 memorySize)
 
 
 
-uint64 FUN_180895e00(longlong resourceHandle,uint64 memorySize,longlong operationFlags)
+uint64 allocate_memory_region(longlong resourceHandle,uint64 memorySize,longlong operationFlags)
 
 {
   uint64 *unaff_R14;
@@ -9020,7 +9020,7 @@ uint32 getResourceStatus(uint64 resourceHandle)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64 FUN_180895f20(longlong *resourceHandle,int memorySize)
+uint64 allocate_buffer_memory(longlong *resourceHandle,int memorySize)
 
 {
   int status;
@@ -9070,7 +9070,7 @@ LAB_180895fdc:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64 FUN_180895f44(uint64 resourceHandle,int memorySize)
+uint64 allocate_buffer_chunk(uint64 resourceHandle,int memorySize)
 
 {
   int status;
@@ -9127,7 +9127,7 @@ uint64 FUN_180896027(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64 FUN_180896040(longlong *resourceHandle,int memorySize)
+uint64 execute_system_command(longlong *resourceHandle,int memorySize)
 
 {
   longlong localLong1;
@@ -9208,7 +9208,7 @@ uint64 FUN_18089611f(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_180896140(longlong resourceHandle)
+ulonglong validate_memory_address(longlong resourceHandle)
 
 {
   byte *pbVar1;
@@ -9511,8 +9511,8 @@ LAB_18089638e:
       returnValue0 = (ulonglong)uVar8;
     } while ((int)uVar8 < *(int *)(resourceHandle + 0x20));
   }
-  counter = FUN_180744cc0(resourceHandle + 0x70);
-  if ((counter == 0) && (counter = FUN_180895130(resourceHandle + 0x80), counter == 0)) {
+  counter = validate_system_integrity(resourceHandle + 0x70);
+  if ((counter == 0) && (counter = configure_system_parameters(resourceHandle + 0x80), counter == 0)) {
     *(uint32 *)(resourceHandle + 0x90) = 0xffffffff;
     *(uint32 *)(resourceHandle + 0x94) = 0;
   }
@@ -9554,7 +9554,7 @@ LAB_1808963ec:
 
 
 
-uint64 * FUN_180896800(uint64 *resourceHandle,ulonglong memorySize)
+uint64 * allocate_memory_array(uint64 *resourceHandle,ulonglong memorySize)
 
 {
   *resourceHandle = &unknown_180986350;
@@ -9570,7 +9570,7 @@ uint64 * FUN_180896830(uint64 *resourceHandle,ulonglong memorySize)
 
 {
   *resourceHandle = &unknown_180986370;
-  FUN_180840270(resourceHandle + 5);
+  activate_system_module(resourceHandle + 5);
   *resourceHandle = &unknown_180986350;
   if ((memorySize & 1) != 0) {
     free(resourceHandle,0x38);
@@ -9721,10 +9721,10 @@ uint64 FUN_180896c10(longlong resourceHandle,uint64 memorySize,uint64 operationF
 {
   uint64 returnValue;
   
-  returnValue = FUN_18088ee20(operationFlags,resourceHandle + 0x10);
+  returnValue = setup_resource_configuration(operationFlags,resourceHandle + 0x10);
   if ((int)returnValue == 0) {
     *(uint32 *)(resourceHandle + 0x14) = 0;
-    if ((1 < *(int *)(resourceHandle + 0x10)) && (returnValue = FUN_18088ee60(operationFlags), (int)returnValue != 0)) {
+    if ((1 < *(int *)(resourceHandle + 0x10)) && (returnValue = initialize_resource_buffer(operationFlags), (int)returnValue != 0)) {
       return returnValue;
     }
     returnValue = 0;
@@ -12009,14 +12009,14 @@ void FUN_1808986b0(longlong resourceHandle,uint64 memorySize)
     if (length < 0x40) {
       length = 0x40;
     }
-    length = FUN_180849030(resourceHandle + 0x28,length);
+    length = process_system_request(resourceHandle + 0x28,length);
     if (length != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)(resourceHandle + 0x34) >> 0x1f;
   if (((int)((*(uint *)(resourceHandle + 0x34) ^ uVar5) - uVar5) < iVar6) &&
-     (length = FUN_180849030(resourceHandle + 0x28,iVar6), length != 0)) {
+     (length = process_system_request(resourceHandle + 0x28,iVar6), length != 0)) {
     return;
   }
   length = *(int *)(resourceHandle + 0x30);
@@ -12040,7 +12040,7 @@ uint64 FUN_180898790(longlong *resourceHandle,int memorySize)
   
   uVar3 = (int)*(uint *)((longlong)resourceHandle + 0xc) >> 0x1f;
   if (((int)((*(uint *)((longlong)resourceHandle + 0xc) ^ uVar3) - uVar3) < memorySize) &&
-     (localUInt2 = FUN_180849030(resourceHandle,memorySize), (int)localUInt2 != 0)) {
+     (localUInt2 = process_system_request(resourceHandle,memorySize), (int)localUInt2 != 0)) {
     return localUInt2;
   }
   status = (int)resourceHandle[1];
@@ -13386,13 +13386,13 @@ uint64 FUN_1808997f0(uint64 resourceHandle,longlong *memorySize)
   }
   lVar4 = (longlong)aiStackX_18[0];
   if (aiStackX_18[0] == 0) {
-    FUN_180840270(memorySize);
+    activate_system_module(memorySize);
   }
   else {
     iVar5 = aiStackX_18[0] + 1;
     uVar3 = (int)*(uint *)((longlong)memorySize + 0xc) >> 0x1f;
     if (((int)((*(uint *)((longlong)memorySize + 0xc) ^ uVar3) - uVar3) < iVar5) &&
-       (localUInt2 = FUN_180849030(memorySize,iVar5), (int)localUInt2 != 0)) {
+       (localUInt2 = process_system_request(memorySize,iVar5), (int)localUInt2 != 0)) {
       return localUInt2;
     }
     status = (int)memorySize[1];
@@ -13423,13 +13423,13 @@ uint64 FUN_180899816(void)
   int in_stack_00000040;
   
   if (in_stack_00000040 == 0) {
-    FUN_180840270();
+    activate_system_module();
   }
   else {
     counter = in_stack_00000040 + 1;
     uVar3 = (int)*(uint *)((longlong)baseRegister + 0xc) >> 0x1f;
     if (((int)((*(uint *)((longlong)baseRegister + 0xc) ^ uVar3) - uVar3) < counter) &&
-       (localUInt2 = FUN_180849030(), (int)localUInt2 != 0)) {
+       (localUInt2 = process_system_request(), (int)localUInt2 != 0)) {
       return localUInt2;
     }
     status = (int)baseRegister[1];
@@ -17154,7 +17154,7 @@ void FUN_18089be10(longlong resourceHandle,uint64 *memorySize,int operationFlags
   lVar6 = (longlong)(int)auStackX_8[0];
   uVar4 = (int)*(uint *)(resourceHandle + 0x2c) >> 0x1f;
   if (((int)((*(uint *)(resourceHandle + 0x2c) ^ uVar4) - uVar4) < (int)auStackX_8[0]) &&
-     (status = FUN_180849030(resourceHandle + 0x20,auStackX_8[0]), status != 0)) {
+     (status = process_system_request(resourceHandle + 0x20,auStackX_8[0]), status != 0)) {
     return;
   }
   status = *(int *)(resourceHandle + 0x28);
@@ -17263,7 +17263,7 @@ void FUN_18089be41(void)
   lVar5 = (longlong)(int)in_stack_00000050;
   uVar3 = (int)*(uint *)(unaff_R15 + 0x2c) >> 0x1f;
   if (((int)((*(uint *)(unaff_R15 + 0x2c) ^ uVar3) - uVar3) < (int)in_stack_00000050) &&
-     (status = FUN_180849030(unaff_R15 + 0x20,in_stack_00000050), status != 0)) {
+     (status = process_system_request(unaff_R15 + 0x20,in_stack_00000050), status != 0)) {
     return;
   }
   status = *(int *)(unaff_R15 + 0x28);
@@ -80777,11 +80777,11 @@ void systemInitializeComponents(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemModule1(void)
-void InitializeSystemModule1(void)
+// 函数: void g_initializeSystemModule1(void)
+void g_initializeSystemModule1(void)
 
 {
-  _systemDataTable10 = &threadLocalStorageCleanup;
+  _g_systemModuleData10 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80790,11 +80790,11 @@ void InitializeSystemModule1(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemModule2(void)
-void InitializeSystemModule2(void)
+// 函数: void g_initializeSystemModule2(void)
+void g_initializeSystemModule2(void)
 
 {
-  _bufferDataTable4 = &threadLocalStorageCleanup;
+  _g_bufferModuleData4 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80803,11 +80803,11 @@ void InitializeSystemModule2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemModule3(void)
-void InitializeSystemModule3(void)
+// 函数: void g_initializeSystemModule3(void)
+void g_initializeSystemModule3(void)
 
 {
-  _systemDataTable14 = &threadLocalStorageCleanup;
+  _g_systemModuleData14 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81539,7 +81539,7 @@ void renderDrawInitialize(void)
 void renderDispatchInitialize(void)
 
 {
-  _DAT_180bfa230 = &threadLocalStorageCleanup;
+  _renderDrawBuffer1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81552,7 +81552,7 @@ void renderDispatchInitialize(void)
 void resourceAcquireHandle(void)
 
 {
-  _DAT_180bfa290 = &threadLocalStorageCleanup;
+  _renderDispatchBuffer1 = &threadLocalStorageCleanup;
   return;
 }
 

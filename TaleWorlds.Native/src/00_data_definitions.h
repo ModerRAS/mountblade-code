@@ -144,13 +144,13 @@ int initialize_io_thread_pool(void* handle, void* flags, void* mutex_attr, int m
 // 初始化基础资源管理器
 int initialize_base_resource_manager(void)
 {
-  long long initialization_result;
-  unsigned long long string_length_parameter;
+  long long init_result;
+  unsigned long long str_length;
   g_resource_string_1 = 0;
   g_resource_id_1 = 6;
-  strcpy_s(&g_resource_string_1,STRING_BUFFER_SIZE,&string_source_001,string_length_parameter,THREAD_POOL_DEFAULT_FLAGS);
-  initialization_result = execute_function(base_resource_manager_init_function);
-  return (initialization_result != 0) - 1;
+  strcpy_s(&g_resource_string_1,STRING_BUFFER_SIZE,&string_source_001,str_length,THREAD_POOL_DEFAULT_FLAGS);
+  init_result = execute_function(base_resource_manager_init_function);
+  return (init_result != 0) - 1;
 }
 // 初始化纹理资源管理器
 int initialize_texture_resource_manager(void)
