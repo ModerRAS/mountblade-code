@@ -1097,7 +1097,7 @@ data postProcessNoise;  /* 原: DAT_180bfa958 */
 data postProcessGamma;  /* 原: DAT_180bfa960 */
 data renderTargetWidth;  /* 原: DAT_180bfa9e0 */
 data renderTargetHeight;  /* 原: DAT_180bfa9e8 */
-data DAT_180bfa9f0;
+data renderTargetFormat;  /* 原: DAT_180bfa9f0 */
 data DAT_180bfa9f8;
 data DAT_180bfaa78;
 data DAT_180bfaa80;
@@ -7822,8 +7822,8 @@ void FUN_180894cd2(void)
 
 
 
-// 函数: void FUN_180894ce0(longlong resourceHandle,uint64 memorySize)
-void FUN_180894ce0(longlong resourceHandle,uint64 memorySize)
+// 函数: void resize_memory_pool(longlong resourceHandle,uint64 memorySize)
+void resize_memory_pool(longlong resourceHandle,uint64 memorySize)
 
 {
   int localInt1;
