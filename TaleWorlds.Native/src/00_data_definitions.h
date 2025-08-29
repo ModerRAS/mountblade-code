@@ -4971,7 +4971,7 @@ unsigned long long process_system_request(unsigned long long *handle)
   case 0x1f:
     pfVar4 = (float *)*handle;
     if (0 < (int)((ulong long)handle[1] / 0xc)) {
-      uint_var_ = (ulong long)handle[1] / 0xc & 0xffffffff;
+      uint_var_ = (ulong long)handle[1] / 0xc & UINT32_MAX;
       do {
         fVar13 = (*pfVar4 + *pfVar4) - 1.0;
         fVar14 = (pfVar4[1] + pfVar4[1]) - 1.0;
@@ -5019,7 +5019,7 @@ unsigned long long process_system_request(unsigned long long *handle)
     pfVar4 = SUB168(ZEXT816(0xaaaaaaaaaaaaaaab) * auVar1,0);
     uint_var_ = (ulong long)handle[1] / 6;
     if (0 < (int)uint_var_) {
-      uint_var_ = uint_var_ & 0xffffffff;
+      uint_var_ = uint_var_ & UINT32_MAX;
       do {
         fVar14 = (float)ptr_var_[1] * 0.007843138 - 1.0;
         fVar13 = (float)*ptr_var_ * 0.007843138 - 1.0;
@@ -5046,7 +5046,7 @@ unsigned long long process_system_request(unsigned long long *handle)
     pfVar4 = SUB168(ZEXT816(0xaaaaaaaaaaaaaaab) * auVar12,0);
     uint_var_ = (ulong long)handle[1] / 3;
     if (0 < (int)uint_var_) {
-      uint_var_ = uint_var_ & 0xffffffff;
+      uint_var_ = uint_var_ & UINT32_MAX;
       do {
         fVar14 = (float)byte_ptr_var_[1] * 0.007843138 - 1.0;
         fVar13 = (float)*byte_ptr_var_ * 0.007843138 - 1.0;
@@ -5666,7 +5666,7 @@ system_allocator_011(unsigned long long handle,long long *flags,long long *mutex
   uint_var_ = flags[1] - *flags >> 3;
   if ((int)uint_var_ != 0) {
     long_var_ = 0;
-    uint_var_ = uint_var_ & 0xffffffff;
+    uint_var_ = uint_var_ & UINT32_MAX;
     do {
       uint_var_ = 0;
       uint_var_ = (uint)(init_result - long_var_ >> 3);
@@ -5684,7 +5684,7 @@ system_allocator_011(unsigned long long handle,long long *flags,long long *mutex
          (uint_var_ = *(long long *)(long_var_ + 0xc0) - *(long long *)(long_var_ + 0xb8) >> 3, (int)uint_var_ != 0))
       {
         init_result0 = 0;
-        uint_var_ = uint_var_ & 0xffffffff;
+        uint_var_ = uint_var_ & UINT32_MAX;
         do {
           system_allocator_003(handle,*(unsigned long long *)(*(long long *)(long_var_ + 0xb8) + init_result0),mutex_type,
                         param_5);
@@ -5730,7 +5730,7 @@ unsigned char allocate_with_mutex(unsigned long long handle,unsigned long long f
     *(uint *)(init_result + STRING_BUFFER_SIZE) = *(uint *)(init_result + STRING_BUFFER_SIZE) | unaff_R14D;
     if (((in_stack_00000070 != '\0') && (*(int *)(init_result + 0x8c) == 2)) &&
        (uint_var_ = *(long long *)(init_result + 0xc0) - *(long long *)(init_result + 0xb8) >> 3, (int)uint_var_ != 0)) {
-      uint_var_ = uint_var_ & 0xffffffff;
+      uint_var_ = uint_var_ & UINT32_MAX;
       do {
         system_allocator_003();
         uint_var_ = uint_var_ - 1;
@@ -5766,7 +5766,7 @@ system_allocator_014(unsigned long long handle,long long *flags,unsigned long lo
   uint_var_ = flags[1] - *flags >> 2;
   if ((int)uint_var_ != 0) {
     long_var_ = 0;
-    uint_var_ = uint_var_ & 0xffffffff;
+    uint_var_ = uint_var_ & UINT32_MAX;
     do {
       ptr_var_ = (uint *)*mutex_attr;
       long_var_ = *flags;
