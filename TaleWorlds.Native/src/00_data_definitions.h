@@ -63,13 +63,13 @@ int initialize_rendering_context_system(void)
 // 初始化模块系统
 int initialize_module_system(void)
 {
-  long long initialization_result;
-  void* module_data_pointer = &g_moduleDataBuffer;
-  void* module_value_pointer = &g_module_data_value;
-  void* module_null_pointer = 0;
+  long long init_result;
+  void* module_buffer_ptr = &g_moduleDataBuffer;
+  void* module_value_ptr = &g_module_data_value;
+  void* null_ptr = 0;
   g_module_data_value = 0;
-  initialization_result = execute_function(module_system_init_function);
-  return (initialization_result != 0) - 1;
+  init_result = execute_function(module_system_init_function);
+  return (init_result != 0) - 1;
 }
 // 初始化输入系统
 int initialize_input_system(void)
@@ -2843,17 +2843,17 @@ LAB_18005122d:
     plStack_2c0 = _data_180c8a9b0;
     _data_180c8a9b0 = (long long *)*puVar7;
     system_initializer_003(&systemConfigData1,0,0);
-    system_config_001(&unknown_1809fd8d8);
+    system_config_001(&systemConfigData2);
     uStack_2f0 = SYSTEM_CONFIG_BUFFER_SIZE000000;
     auStack_2c8[0] = 0x3f800000;
     uStack_318 = CONFIG_PATH_BUFFER_SIZE000;
-    puStack_320 = &unknown_1809fdfc0;
+    puStack_320 = &systemConfigBufferPtr;
     pplStack_328 = (long long **)&uStack_2f0;
     system_config_002(&unknown_1809fd910,4,_data_180c86950 + 0x167c,auStack_2c8);
     plStack_2f8 = (long long *)CONCAT44(plStack_2f8._4_4_,SYSTEM_CONFIG_BUFFER_SIZE000000);
     uStack_308 = (long long *)CONCAT44(uStack_308._4_4_,0x3f800000);
     uStack_318 = CONFIG_PATH_BUFFER_SIZE000;
-    puStack_320 = &unknown_1809fdfc0;
+    puStack_320 = &systemConfigBufferPtr;
     pplStack_328 = &plStack_2f8;
     system_config_002(&unknown_1809fd930,4,_data_180c86950 + 0x1680,&uStack_308);
     system_initializer_004();
@@ -2876,7 +2876,7 @@ LAB_18005122d:
     uStack_308 = (long long *)CONCAT44(uStack_308._4_4_,SYSTEM_CONFIG_BUFFER_SIZE000000);
     plStack_2f8 = (long long *)CONCAT44(plStack_2f8._4_4_,0x3f800000);
     uStack_318 = CONFIG_PATH_BUFFER_SIZE000;
-    puStack_320 = &unknown_1809fdfc0;
+    puStack_320 = &systemConfigBufferPtr;
     pplStack_328 = (long long **)&uStack_308;
     system_config_002(&unknown_1809fd970,4,_data_180c86950 + 0x1688,&plStack_2f8);
     system_initializer_004();
@@ -2899,7 +2899,7 @@ LAB_18005122d:
     uStack_308 = (long long *)CONCAT44(uStack_308._4_4_,SYSTEM_CONFIG_BUFFER_SIZE000000);
     plStack_2f8 = (long long *)CONCAT44(plStack_2f8._4_4_,0x3f800000);
     uStack_318 = CONFIG_PATH_BUFFER_SIZE000;
-    puStack_320 = &unknown_1809fdfc0;
+    puStack_320 = &systemConfigBufferPtr;
     pplStack_328 = (long long **)&uStack_308;
     system_config_002(&unknown_1809fd970,4,_data_180c86950 + 0x168c,&plStack_2f8);
     if (*(float *)(_data_180c86950 + 0x168c) == 0.0) {

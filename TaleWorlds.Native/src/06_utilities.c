@@ -963,18 +963,18 @@ data computeKernelBuffer3;
 data renderBlendInitialize;
 data renderBlendStateBuffer;
 data computeDispatchCount;
-data DAT_180bf9ff0;
-data DAT_180bf9ff8;
-data DAT_180bfa000;
-data DAT_180bfa008;
+data computeDispatchBuffer1;
+data computeDispatchBuffer2;
+data computeDispatchBuffer3;
+data computeDispatchBuffer4;
 
 // 函数: data renderDepthInitialize;
 data renderDepthInitialize;
 data computeSharedMemory;
-data DAT_180bfa050;
-data DAT_180bfa058;
-data DAT_180bfa060;
-data DAT_180bfa068;
+data renderDepthBuffer1;
+data renderDepthBuffer2;
+data renderDepthBuffer3;
+data renderDepthBuffer4;
 
 // 函数: data renderStencilInitialize;
 data renderStencilInitialize;
@@ -81461,7 +81461,7 @@ void renderBlendInitialize(void)
 void renderDepthInitialize(void)
 
 {
-  _DAT_180bf9ff0 = &threadLocalStorageCleanup;
+  _computeDispatchBuffer1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81474,7 +81474,7 @@ void renderDepthInitialize(void)
 void renderStencilInitialize(void)
 
 {
-  _DAT_180bfa050 = &threadLocalStorageCleanup;
+  _renderDepthBuffer1 = &threadLocalStorageCleanup;
   return;
 }
 
