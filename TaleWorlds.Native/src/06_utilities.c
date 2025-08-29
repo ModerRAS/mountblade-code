@@ -2571,7 +2571,7 @@ uint64 validate_resource_resourceHandle(longlong resourceHandle)    // 资源句
   longlong in_stack_00000008;
   char stackCharArrayX18 [16];
   
-  unsignedVar4 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),&stack0x00000008);
+  unsignedVar4 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),&stackBuffer8stackBuffer8);
   if ((int)unsignedVar4 != 0) {
     return unsignedVar4;
   }
@@ -2805,7 +2805,7 @@ uint64 check_resource_status(longlong resourceHandle) # 资源状态检查函数
 
 
 
-uint64 validate_memory_size(longlong resourceHandle,uint64 memoryBlockSize) # 内存大小验证函数
+uint64 validate_memory_dataSize(longlong resourceHandle,uint64 memoryBlockSize) # 内存大小验证函数
 
 {
   longlong localLong1;
@@ -3190,7 +3190,7 @@ uint64 execute_resource_command(longlong resourceHandle)
           unsignedVar3 = movmskps(unsignedCounter,arrayVar8);
           floatVar7 = (float)(int)(integerVar6 - (unsignedVar3 & 1));
         }
-        floatVar7 = (float)calculate_resource_size(*(longlong *)(localLong1 + RESOURCE_OFFSET_HANDLE),floatVar7);
+        floatVar7 = (float)calculate_resource_dataSize(*(longlong *)(localLong1 + RESOURCE_OFFSET_HANDLE),floatVar7);
         if (((*(char *)(localLong1 + FIELD_OFFSET_2) == '\0') ||
             ((*(uint *)(*(longlong *)(localLong1 + RESOURCE_OFFSET_HANDLE) + FIELD_OFFSET_2) >> 1 & 1) == 0)) &&
            (floatVar7 != *(float *)(localLong1 + POINTER_OFFSET_DATA))) {
@@ -4047,7 +4047,7 @@ uint64 get_file_position(longlong resourceHandle)
           unsignedVar3 = movmskps(unsignedCounter,arrayVar8);
           floatVar7 = (float)(int)(integerVar6 - (unsignedVar3 & 1));
         }
-        floatVar7 = (float)calculate_resource_size(*(longlong *)(localLong1 + RESOURCE_OFFSET_HANDLE),floatVar7);
+        floatVar7 = (float)calculate_resource_dataSize(*(longlong *)(localLong1 + RESOURCE_OFFSET_HANDLE),floatVar7);
         if (((*(char *)(localLong1 + FIELD_OFFSET_2) == '\0') ||
             ((*(uint *)(*(longlong *)(localLong1 + RESOURCE_OFFSET_HANDLE) + FIELD_OFFSET_2) >> 1 & 1) == 0)) &&
            (floatVar7 != *(float *)(localLong1 + POINTER_OFFSET_DATA))) {
@@ -4066,7 +4066,7 @@ uint64 get_file_position(longlong resourceHandle)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int get_file_size(longlong resourceHandle)
+int get_file_dataSize(longlong resourceHandle)
 
 {
   int status;
@@ -6579,7 +6579,7 @@ uint64 utilityReportResourceCycle(longlong resourceHandle,longlong memoryBlockSi
   localLong1 = *(longlong *)(memoryBlockSize + 0x98);
   if (*(int *)(localLong1 + 0x200) != 0) {
     if (((*(int *)(localLong1 + 0x180) == 0) && (*(int *)(localLong1 + 0x184) == 0)) ||
-       (utilityPrepareResourceOperation(&stack0x00000008),
+       (utilityPrepareResourceOperation(&stackBuffer8stackBuffer8),
        *(longlong *)((longlong)*(int *)(localLong1 + 0x17c) * 8 + 0x180c4f450) != 0)) {
       *(uint *)(resourceHandle + 8) = *(int *)(resourceHandle + 8) + 0xfU & 0xfffffff0;
       unsignedCounter = func_0x0001808e64d0(*(uint64 *)(localLong1 + 0x1e0));
@@ -15905,7 +15905,7 @@ uint64 FUN_18089b460(longlong resourceHandle,longlong *memoryBlockBlockBlockSize
         goto LAB_1808a2e6d;
       }
     }
-    unsignedCounter = FUN_180769ed0(*memoryBlockBlockBlockSize,&stack0x00000008,1,1,0);
+    unsignedCounter = FUN_180769ed0(*memoryBlockBlockBlockSize,&stackBuffer8stackBuffer8,1,1,0);
   }
 LAB_1808a2e6d:
   if ((int)unsignedCounter == 0) {
