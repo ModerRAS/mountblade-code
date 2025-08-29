@@ -1204,9 +1204,9 @@ data resourceCacheEvict;
 
 // 函数: data resourceCachePrefetch;
 data resourceCachePrefetch;
-data DAT_180c924ac;
+data resourceCachePriority;  /* 原: DAT_180c924ac */
 data renderLODData;
-data DAT_180c924b0;
+data resourceCacheStrategy;  /* 原: DAT_180c924b0 */
 data DAT_180a2c1d0;
 data DAT_180c924b4;
 data DAT_180a2c338;
