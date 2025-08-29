@@ -339,12 +339,12 @@ data systemDataTable9;
 data bufferManagementControl;
 data DAT_18098bc73;
 data bufferAllocationPointer;
-data systemInitializationFlag;
+data systemIsInitialized;
 data systemRuntimeStatus;
-data systemErrorHandlingFlag;
+data systemHasError;
 data systemMemoryUsage;
 data systemProcessorLoad;
-data threadSynchronizationFlag;
+data threadIsSynchronized;
 data threadManagementControl;
 data threadExecutionState;
 data threadPriorityLevel;
@@ -7310,8 +7310,8 @@ void initialize_database_connection(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1808940f0(longlong resourceHandle,longlong memorySize)
-void FUN_1808940f0(longlong resourceHandle,longlong memorySize)
+// 函数: void execute_database_query(longlong resourceHandle,longlong memorySize)
+void execute_database_query(longlong resourceHandle,longlong memorySize)
 
 {
   byte localBuffer [8];
