@@ -3309,7 +3309,7 @@ uint64 initialize_resource_manager(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64 FUN_1808909d0(longlong resourceHandle)
+uint64 allocate_system_resources(longlong resourceHandle)
 
 {
   uint64 localUInt1;
@@ -3362,7 +3362,7 @@ uint64 FUN_1808909d0(longlong resourceHandle)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64 FUN_1808909f3(void)
+uint64 release_system_resources(void)
 
 {
   longlong inputRegister;
