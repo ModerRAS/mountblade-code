@@ -474,7 +474,7 @@ int initialize_video_module(void)
   init_result = execute_function(callback_function_024);
   return (init_result != 0) - 1;
 }
-int initialize_module_007(void)
+int initialize_input_module(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -486,7 +486,7 @@ int initialize_module_007(void)
   init_result = execute_function(callback_function_025);
   return (init_result != 0) - 1;
 }
-int initialize_module_008(void)
+int initialize_network_module(void)
 {
   longlong init_result;
   undefined8 str_len_param;
