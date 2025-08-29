@@ -30,13 +30,13 @@ int initialize_system_configuration(void)
 // 初始化核心数据结构
 int initialize_core_data_structure(void)
 {
-  long long initialization_result;
-  void* system_data_buffer_pointer = &g_systemDataBuffer;
-  void* core_data_value_pointer = &g_core_data_value;
-  int data_structure_offset = 0;
+  long long init_result;
+  void* system_buffer_ptr = &g_systemDataBuffer;
+  void* core_data_ptr = &g_core_data_value;
+  int data_offset = 0;
   g_core_data_value = 0;
-  initialization_result = initialize_system(core_data_structure_init_function);
-  return (initialization_result != 0) - 1;
+  init_result = initialize_system(core_data_structure_init_function);
+  return (init_result != 0) - 1;
 }
 // 初始化网络缓冲区系统
 int initialize_network_buffer_system(void)
@@ -180,7 +180,7 @@ int initialize_shader_resource_manager_1(void)
 int initialize_shader_resource_manager_2(void)
 {
   long long initialization_result;
-  undefined8 string_length_parameter;
+  unsigned long long string_length_parameter;
   void* resource_data_buffer_pointer = &g_resource_data_buffer;
   void* resource_buffer_value_pointer = &resource_buffer_3;
   resource_buffer_3 = 0;
