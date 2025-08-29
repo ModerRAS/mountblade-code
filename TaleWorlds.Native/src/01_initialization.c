@@ -6,103 +6,103 @@
 void InitializeGameDataStructure(void)
 undefined g_game_data_structure;
 
-undefined g_unknown_game_data_1;
+undefined g_game_reserved_data_1;
 
 undefined g_game_config_data;
 
-undefined g_unknown_game_data_2;
+undefined g_game_reserved_data_2;
 
 undefined g_game_state_data;
 
-undefined g_unknown_game_data_3;
+undefined g_game_reserved_data_3;
 
 undefined g_game_memory_data;
 
-undefined g_unknown_game_data_4;
+undefined g_game_reserved_data_4;
 
 undefined g_game_render_data;
 
-undefined g_unknown_game_data_5;
+undefined g_game_reserved_data_5;
 
 undefined g_game_audio_data;
 
-undefined g_unknown_game_data_6;
+undefined g_game_reserved_data_6;
 
 undefined g_game_network_data;
 
-undefined g_unknown_game_data_7;
+undefined g_game_reserved_data_7;
 
 undefined g_game_input_data;
 // undefined InitializeGameEngine;
 
 undefined InitializeGameEngine;
 
-undefined g_unknown_engine_data_1;
+undefined g_engine_reserved_data_1;
 
 undefined g_engine_config_data;
 
-undefined g_unknown_engine_data_2;
+undefined g_engine_reserved_data_2;
 
 undefined g_engine_state_data;
 
-undefined g_engine_memory_data_180bf5270;
+undefined g_engine_memory_pool_180bf5270;
 
-undefined g_engine_render_data_180bf5280;
+undefined g_engine_render_context_180bf5280;
 
-undefined g_engine_audio_data_180bf5288;
-// undefined InitializeGraphicsSystem_18005ab20;
+undefined g_engine_audio_context_180bf5288;
+// undefined InitializeGraphicsEngine_18005ab20;
 
-undefined InitializeGraphicsSystem_18005ab20;
+undefined InitializeGraphicsEngine_18005ab20;
 
-undefined g_graphics_config_data_180941760;
-// undefined InitializeAudioSystem_1800637c0;
+undefined g_graphics_config_180941760;
+// undefined InitializeAudioEngine_1800637c0;
 
-undefined InitializeAudioSystem_1800637c0;
+undefined InitializeAudioEngine_1800637c0;
 
-undefined g_audio_config_data_180941780;
-// undefined InitializeInputSystem_1800637f0;
+undefined g_audio_config_180941780;
+// undefined InitializeInputEngine_1800637f0;
 
-undefined InitializeInputSystem_1800637f0;
+undefined InitializeInputEngine_1800637f0;
 
-undefined g_input_system_data_180c91900;
-// undefined InitializeNetworkSystem_180045af0;
+undefined g_input_system_180c91900;
+// undefined InitializeNetworkEngine_180045af0;
 
-undefined InitializeNetworkSystem_180045af0;
+undefined InitializeNetworkEngine_180045af0;
 
-undefined g_network_socket_data_180c96330;
+undefined g_network_socket_180c96330;
 
-undefined g_network_buffer_data_180c96340;
+undefined g_network_buffer_180c96340;
 
-undefined g_network_config_data_180c96348;
+undefined g_network_config_180c96348;
 
-undefined g_network_state_data_180c96350;
+undefined g_network_state_180c96350;
 
-undefined g_network_timeout_data_180c96360;
+undefined g_network_timeout_180c96360;
 
-undefined g_network_connection_data_180c96368;
+undefined g_network_connection_180c96368;
 
 undefined g_network_buffer_size_180c96318;
 
-undefined g_network_packet_data_180c96338;
+undefined g_network_packet_180c96338;
 
-undefined InitializeSubSystem_18005d5f0;
+undefined InitializeSubSystemEngine_18005d5f0;
 
-undefined g_unknown_system_data_180942f90;
+undefined g_system_reserved_data_180942f90;
 
-undefined g_system_memory_data_180c96220;
+undefined g_system_memory_pool_180c96220;
 
 undefined8 g_system_flags_180c96358;
-undefined g_system_state_data_180bf64f8;
+undefined g_system_state_180bf64f8;
 
-undefined g_system_config_data_180bf6500;
+undefined g_system_config_180bf6500;
 
-undefined g_system_error_data_180bf6508;
+undefined g_system_error_180bf6508;
 
-undefined g_system_debug_data_180bf6510;
+undefined g_system_debug_180bf6510;
 // 系统资源初始化函数
 undefined InitializeSystemResources_180059ba0;
 
-undefined UNK_180a092c4;
+undefined g_global_data_180a092c4;
 // 核心组件初始化函数
 void InitializeCoreComponents_180059620(void);
 // 内存管理器设置函数
@@ -142,184 +142,184 @@ void *g_file_system_1809fe198;
 
 void *g_config_manager_1809fe1a0;
 
-undefined UNK_1809fe258;
+undefined g_global_data_1809fe258;
 
-undefined UNK_1809fe290;
+undefined g_global_data_1809fe290;
 
-undefined UNK_1800467f0;
+undefined g_global_data_1800467f0;
 
-undefined UNK_180049760;
+undefined g_global_data_180049760;
 
-undefined UNK_1809fe1f0;
+undefined g_global_data_1809fe1f0;
 
-undefined UNK_1809fe200;
+undefined g_global_data_1809fe200;
 
-undefined UNK_1809fe210;
+undefined g_global_data_1809fe210;
 
-undefined UNK_180a10098;
+undefined g_global_data_180a10098;
 
-undefined DAT_00000008;
+undefined g_static_data_00000008;
 
-undefined UNK_180a30778;
+undefined g_global_data_180a30778;
 
-undefined DAT_1809fc8c8;
+undefined g_static_data_1809fc8c8;
 
-undefined UNK_1809fe2c0;
+undefined g_global_data_1809fe2c0;
 
-undefined DAT_180c912f0;
+undefined g_static_data_180c912f0;
 
-undefined UNK_1809fe5a0;
+undefined g_global_data_1809fe5a0;
 
-undefined DAT_180d48d28;
+undefined g_static_data_180d48d28;
 
-undefined DAT_180063480;
+undefined g_static_data_180063480;
 
-undefined UNK_1809fe5c0;
+undefined g_global_data_1809fe5c0;
 
-undefined UNK_1809fe5f0;
+undefined g_global_data_1809fe5f0;
 
-undefined UNK_1809fe608;
+undefined g_global_data_1809fe608;
 
-undefined UNK_1809fe62c;
+undefined g_global_data_1809fe62c;
 
 int UNK_180c912e0;
 longlong UNK_180c912e8;
-undefined UNK_1809fe650;
-// undefined FUN_180066dd0;
+undefined g_global_data_1809fe650;
+// undefined g_function_180066dd0;
 
-undefined FUN_180066dd0;
+undefined g_function_180066dd0;
 
-undefined UNK_1809fe800;
+undefined g_global_data_1809fe800;
 
-undefined UNK_1809fe80c;
+undefined g_global_data_1809fe80c;
 
-undefined DAT_1809fe810;
+undefined g_static_data_1809fe810;
 
-undefined UNK_1809fe85c;
+undefined g_global_data_1809fe85c;
 
-undefined UNK_1809fe868;
+undefined g_global_data_1809fe868;
 
-undefined UNK_1809fe880;
+undefined g_global_data_1809fe880;
 
-undefined UNK_1809fe898;
+undefined g_global_data_1809fe898;
 
-undefined UNK_1809fe8b0;
+undefined g_global_data_1809fe8b0;
 
-undefined UNK_18098ba10;
+undefined g_global_data_18098ba10;
 
-undefined DAT_18098ba28;
+undefined g_static_data_18098ba28;
 
-undefined UNK_18098ba40;
+undefined g_global_data_18098ba40;
 
-undefined UNK_18098ba50;
+undefined g_global_data_18098ba50;
 
-undefined UNK_18098ba60;
+undefined g_global_data_18098ba60;
 
-undefined UNK_18098ba70;
+undefined g_global_data_18098ba70;
 
-undefined UNK_18098ba80;
+undefined g_global_data_18098ba80;
 
-undefined UNK_18098ba98;
+undefined g_global_data_18098ba98;
 
-undefined UNK_18098baa0;
+undefined g_global_data_18098baa0;
 
-undefined DAT_1809fdf28;
+undefined g_static_data_1809fdf28;
 
-undefined UNK_1809fe7f8;
+undefined g_global_data_1809fe7f8;
 
-undefined UNK_1809fe8f8;
+undefined g_global_data_1809fe8f8;
 
-undefined UNK_1809fe900;
+undefined g_global_data_1809fe900;
 
-undefined UNK_1809fe910;
+undefined g_global_data_1809fe910;
 
-undefined UNK_1809fe928;
+undefined g_global_data_1809fe928;
 
-undefined UNK_1809fe940;
+undefined g_global_data_1809fe940;
 
-undefined UNK_1809fe950;
+undefined g_global_data_1809fe950;
 
-undefined UNK_1809fe968;
+undefined g_global_data_1809fe968;
 
-undefined UNK_1809fe978;
+undefined g_global_data_1809fe978;
 
-undefined UNK_1809fe988;
+undefined g_global_data_1809fe988;
 
-undefined UNK_1809fe998;
+undefined g_global_data_1809fe998;
 
-undefined UNK_1809fe9a8;
+undefined g_global_data_1809fe9a8;
 
-undefined UNK_1809fe9b8;
+undefined g_global_data_1809fe9b8;
 
-undefined UNK_1809fe9c8;
+undefined g_global_data_1809fe9c8;
 
-undefined DAT_1809fc7d8;
+undefined g_static_data_1809fc7d8;
 
-undefined DAT_1809fcfc0;
+undefined g_static_data_1809fcfc0;
 
 char DAT_180c82843;
 
 char DAT_180c82850;
 char DAT_180c82842;
 char DAT_180c82844;
-undefined UNK_1809fe848;
+undefined g_global_data_1809fe848;
 
-undefined UNK_1809fea68;
+undefined g_global_data_1809fea68;
 
-undefined UNK_1809feaa0;
+undefined g_global_data_1809feaa0;
 
-undefined UNK_1809feb24;
+undefined g_global_data_1809feb24;
 
-undefined UNK_1809feb28;
+undefined g_global_data_1809feb28;
 
-undefined DAT_1809feb50;
+undefined g_static_data_1809feb50;
 
-undefined UNK_1809feb58;
+undefined g_global_data_1809feb58;
 
-undefined UNK_1809feb70;
+undefined g_global_data_1809feb70;
 
-undefined UNK_1809feb88;
+undefined g_global_data_1809feb88;
 
-undefined UNK_1809feba8;
+undefined g_global_data_1809feba8;
 
-undefined UNK_1809febc0;
+undefined g_global_data_1809febc0;
 
-undefined UNK_1809febc8;
+undefined g_global_data_1809febc8;
 
-undefined UNK_1809febd8;
+undefined g_global_data_1809febd8;
 
-undefined UNK_1809febf0;
+undefined g_global_data_1809febf0;
 
-undefined UNK_180a04f08;
+undefined g_global_data_180a04f08;
 
-undefined UNK_1809fec28;
+undefined g_global_data_1809fec28;
 
-undefined UNK_1809fec40;
+undefined g_global_data_1809fec40;
 
-undefined UNK_180068e60;
+undefined g_global_data_180068e60;
 
-undefined UNK_180068e70;
+undefined g_global_data_180068e70;
 
-undefined UNK_1809fec50;
+undefined g_global_data_1809fec50;
 
-undefined UNK_1809fec70;
+undefined g_global_data_1809fec70;
 
-undefined UNK_1809ff4e0;
+undefined g_global_data_1809ff4e0;
 
-undefined DAT_00000018;
+undefined g_static_data_00000018;
 
-undefined DAT_00000010;
+undefined g_static_data_00000010;
 
-undefined UNK_1809fecd8;
+undefined g_global_data_1809fecd8;
 
-undefined UNK_1809fed10;
+undefined g_global_data_1809fed10;
 
 longlong UNK_00000128;
-undefined DAT_00000000;
+undefined g_static_data_00000000;
 
-undefined UNK_1809fed40;
+undefined g_global_data_1809fed40;
 
-undefined UNK_1809fed78;
+undefined g_global_data_1809fed78;
 
 ulonglong UNK_000001c8;
 
@@ -330,749 +330,749 @@ undefined8 UNK_000001e8;
 undefined8 UNK_000001f0;
 longlong UNK_000001f8;
 undefined1 DAT_180bf65bc;
-undefined UNK_1809feda8;
+undefined g_global_data_1809feda8;
 
-undefined UNK_1809feeb8;
+undefined g_global_data_1809feeb8;
 
-undefined UNK_1809feec8;
+undefined g_global_data_1809feec8;
 
-undefined UNK_1809feed8;
+undefined g_global_data_1809feed8;
 
 char DAT_180c82840;
-undefined UNK_18006a030;
+undefined g_global_data_18006a030;
 
-undefined UNK_180a0e170;
+undefined g_global_data_180a0e170;
 
-undefined UNK_180a0e368;
+undefined g_global_data_180a0e368;
 
-undefined UNK_1809fefb0;
+undefined g_global_data_1809fefb0;
 
 undefined1 DAT_180c8ecee;
-undefined UNK_1809ff498;
+undefined g_global_data_1809ff498;
 
-undefined UNK_1809ff390;
+undefined g_global_data_1809ff390;
 
-undefined UNK_1809ff3e8;
+undefined g_global_data_1809ff3e8;
 
-undefined UNK_1809ff488;
+undefined g_global_data_1809ff488;
 
 char DAT_180c8aa69;
-undefined UNK_1809ff538;
+undefined g_global_data_1809ff538;
 
-undefined UNK_1809ff550;
+undefined g_global_data_1809ff550;
 
-undefined UNK_1809ff5b0;
+undefined g_global_data_1809ff5b0;
 
-undefined UNK_1809ff5b8;
+undefined g_global_data_1809ff5b8;
 
-undefined UNK_1809ff5c0;
+undefined g_global_data_1809ff5c0;
 
-undefined UNK_1809ff5d0;
+undefined g_global_data_1809ff5d0;
 
-undefined UNK_1809ff5f8;
+undefined g_global_data_1809ff5f8;
 
-undefined UNK_1809ff610;
+undefined g_global_data_1809ff610;
 
-undefined UNK_1809ff630;
+undefined g_global_data_1809ff630;
 
 char DAT_180bf0100;
 
-undefined DAT_180c86908;
+undefined g_static_data_180c86908;
 
-undefined UNK_1809ff648;
+undefined g_global_data_1809ff648;
 
-undefined DAT_1809ff660;
+undefined g_static_data_1809ff660;
 
-undefined UNK_1809ff688;
+undefined g_global_data_1809ff688;
 
-undefined UNK_1809ff6b0;
+undefined g_global_data_1809ff6b0;
 
-undefined UNK_1809ff6bc;
+undefined g_global_data_1809ff6bc;
 
-undefined UNK_1809ff6c8;
+undefined g_global_data_1809ff6c8;
 
-undefined UNK_1809ff6e0;
+undefined g_global_data_1809ff6e0;
 
-undefined UNK_1809ff7c0;
+undefined g_global_data_1809ff7c0;
 
-undefined UNK_1809ff800;
+undefined g_global_data_1809ff800;
 
-undefined UNK_1809ff840;
+undefined g_global_data_1809ff840;
 
-undefined UNK_1809ff848;
+undefined g_global_data_1809ff848;
 
-undefined UNK_1809ff888;
+undefined g_global_data_1809ff888;
 
-undefined UNK_1809ff8a8;
+undefined g_global_data_1809ff8a8;
 
-undefined UNK_1809ff8d8;
+undefined g_global_data_1809ff8d8;
 
-undefined UNK_1809ff918;
+undefined g_global_data_1809ff918;
 
-undefined UNK_1809ff938;
+undefined g_global_data_1809ff938;
 
-undefined UNK_1809ff958;
+undefined g_global_data_1809ff958;
 
-undefined UNK_1809ff9a8;
+undefined g_global_data_1809ff9a8;
 
-undefined UNK_1809ffa18;
+undefined g_global_data_1809ffa18;
 
-undefined UNK_180a02e68;
+undefined g_global_data_180a02e68;
 
-undefined UNK_180a13a28;
+undefined g_global_data_180a13a28;
 
-undefined UNK_180a00208;
+undefined g_global_data_180a00208;
 
-undefined UNK_180a00270;
+undefined g_global_data_180a00270;
 
-undefined UNK_180277350;
-// undefined FUN_18007bb70;
+undefined g_global_data_180277350;
+// undefined g_function_18007bb70;
 
-undefined FUN_18007bb70;
+undefined g_function_18007bb70;
 
-undefined UNK_1809ffa98;
+undefined g_global_data_1809ffa98;
 
-undefined UNK_1802426a0;
+undefined g_global_data_1802426a0;
 
-undefined UNK_180a001e8;
+undefined g_global_data_180a001e8;
 
-undefined DAT_180c8aa00;
+undefined g_static_data_180c8aa00;
 
-undefined UNK_1809ffae0;
+undefined g_global_data_1809ffae0;
 
-undefined DAT_180d49158;
-// undefined FUN_18004c030;
+undefined g_static_data_180d49158;
+// undefined g_function_18004c030;
 
-undefined FUN_18004c030;
+undefined g_function_18004c030;
 
-undefined UNK_180a02b98;
-// undefined FUN_180056e10;
+undefined g_global_data_180a02b98;
+// undefined g_function_180056e10;
 
-undefined FUN_180056e10;
-// undefined FUN_180051cc0;
+undefined g_function_180056e10;
+// undefined g_function_180051cc0;
 
-undefined FUN_180051cc0;
-// undefined FUN_180051d00;
+undefined g_function_180051cc0;
+// undefined g_function_180051d00;
 
-undefined FUN_180051d00;
+undefined g_function_180051d00;
 
-undefined UNK_1800e7f50;
+undefined g_global_data_1800e7f50;
 
-undefined UNK_1800e7f80;
+undefined g_global_data_1800e7f80;
 
-undefined UNK_1800e7fb0;
+undefined g_global_data_1800e7fb0;
 
-undefined UNK_1800e7fe0;
+undefined g_global_data_1800e7fe0;
 
-undefined UNK_1800e8020;
+undefined g_global_data_1800e8020;
 
-undefined UNK_1801b9b60;
-// undefined FUN_1800596a0;
+undefined g_global_data_1801b9b60;
+// undefined g_function_1800596a0;
 
-undefined FUN_1800596a0;
+undefined g_function_1800596a0;
 
-undefined UNK_180a06950;
+undefined g_global_data_180a06950;
 
-undefined UNK_180a069b0;
+undefined g_global_data_180a069b0;
 
-undefined UNK_180a069c0;
+undefined g_global_data_180a069c0;
 
-undefined UNK_180a071f8;
+undefined g_global_data_180a071f8;
 
 char DAT_180c8ecee;
 
-undefined UNK_180a069e8;
+undefined g_global_data_180a069e8;
 
-undefined UNK_180a06be0;
+undefined g_global_data_180a06be0;
 
-undefined DAT_18098c090;
+undefined g_static_data_18098c090;
 
-undefined UNK_180a06dc8;
+undefined g_global_data_180a06dc8;
 
-undefined UNK_180a071e8;
+undefined g_global_data_180a071e8;
 
-undefined UNK_180a071c8;
+undefined g_global_data_180a071c8;
 
-undefined UNK_180a071d8;
+undefined g_global_data_180a071d8;
 
-undefined DAT_180d49288;
+undefined g_static_data_180d49288;
 
-undefined DAT_180d49290;
+undefined g_static_data_180d49290;
 
-undefined DAT_180d49298;
+undefined g_static_data_180d49298;
 
-undefined DAT_180d492a0;
+undefined g_static_data_180d492a0;
 
-undefined DAT_180d492a8;
+undefined g_static_data_180d492a8;
 
-undefined DAT_180d492e8;
+undefined g_static_data_180d492e8;
 
-undefined DAT_180d492f0;
+undefined g_static_data_180d492f0;
 
-undefined DAT_180d492f8;
+undefined g_static_data_180d492f8;
 
-undefined DAT_180d49300;
+undefined g_static_data_180d49300;
 
-undefined DAT_180d49340;
+undefined g_static_data_180d49340;
 
-undefined DAT_180d49348;
+undefined g_static_data_180d49348;
 
-undefined DAT_180d49350;
+undefined g_static_data_180d49350;
 
-undefined DAT_180d49358;
+undefined g_static_data_180d49358;
 
-undefined DAT_180d49398;
+undefined g_static_data_180d49398;
 
-undefined DAT_180d493a0;
+undefined g_static_data_180d493a0;
 
-undefined DAT_180d493a8;
+undefined g_static_data_180d493a8;
 
-undefined DAT_180d493b0;
+undefined g_static_data_180d493b0;
 
-undefined UNK_180941ab0;
+undefined g_global_data_180941ab0;
 
-undefined DAT_180a06990;
+undefined g_static_data_180a06990;
 
-undefined DAT_180a06998;
+undefined g_static_data_180a06998;
 
-undefined DAT_180a069a0;
+undefined g_static_data_180a069a0;
 
-undefined DAT_180a069a8;
+undefined g_static_data_180a069a8;
 
-undefined UNK_18014f7f0;
-// undefined FUN_180049b30;
+undefined g_global_data_18014f7f0;
+// undefined g_function_180049b30;
 
-undefined FUN_180049b30;
-// undefined FUN_18004ca00;
+undefined g_function_180049b30;
+// undefined g_function_18004ca00;
 
-undefined FUN_18004ca00;
+undefined g_function_18004ca00;
 
-undefined UNK_180a08fd0;
+undefined g_global_data_180a08fd0;
 
-undefined UNK_180a09008;
+undefined g_global_data_180a09008;
 
-undefined UNK_180a09048;
+undefined g_global_data_180a09048;
 
-undefined UNK_180a09078;
+undefined g_global_data_180a09078;
 
-undefined UNK_180a090c0;
+undefined g_global_data_180a090c0;
 
-undefined UNK_180a090e8;
+undefined g_global_data_180a090e8;
 
-undefined UNK_180a09118;
+undefined g_global_data_180a09118;
 
-undefined UNK_180a09140;
+undefined g_global_data_180a09140;
 
-undefined UNK_180a094b0;
+undefined g_global_data_180a094b0;
 
-undefined UNK_180a094e8;
+undefined g_global_data_180a094e8;
 
-undefined UNK_180a09520;
+undefined g_global_data_180a09520;
 
-undefined UNK_180a09548;
+undefined g_global_data_180a09548;
 
-undefined UNK_180a09578;
+undefined g_global_data_180a09578;
 
-undefined UNK_180a095b0;
+undefined g_global_data_180a095b0;
 
-undefined UNK_180a095d0;
+undefined g_global_data_180a095d0;
 
-undefined UNK_180a095f0;
+undefined g_global_data_180a095f0;
 
-undefined UNK_180a09198;
+undefined g_global_data_180a09198;
 
-undefined UNK_180a09220;
+undefined g_global_data_180a09220;
 
-undefined UNK_180a09158;
+undefined g_global_data_180a09158;
 
-undefined UNK_180a091c8;
+undefined g_global_data_180a091c8;
 
-undefined UNK_180a091f0;
+undefined g_global_data_180a091f0;
 
-undefined UNK_180a09280;
+undefined g_global_data_180a09280;
 
-undefined UNK_180a09248;
+undefined g_global_data_180a09248;
 
-undefined UNK_180a193d8;
+undefined g_global_data_180a193d8;
 
-undefined UNK_180a19458;
+undefined g_global_data_180a19458;
 
-undefined UNK_180a09420;
+undefined g_global_data_180a09420;
 
-undefined UNK_180946958;
+undefined g_global_data_180946958;
 
-undefined DAT_180a089b0;
+undefined g_static_data_180a089b0;
 
-undefined UNK_1800830b0;
+undefined g_global_data_1800830b0;
 
-undefined UNK_1800830c0;
+undefined g_global_data_1800830c0;
 
-undefined UNK_180083130;
-// undefined FUN_18004a130;
+undefined g_global_data_180083130;
+// undefined g_function_18004a130;
 
-undefined FUN_18004a130;
+undefined g_function_18004a130;
 
-undefined UNK_180a0c9a0;
+undefined g_global_data_180a0c9a0;
 
-undefined UNK_180a0cb40;
+undefined g_global_data_180a0cb40;
 
-undefined UNK_180a0c808;
+undefined g_global_data_180a0c808;
 
-undefined UNK_180a0c9b0;
+undefined g_global_data_180a0c9b0;
 
-undefined UNK_180a0c7d8;
+undefined g_global_data_180a0c7d8;
 
-undefined UNK_180a0c7f0;
+undefined g_global_data_180a0c7f0;
 
-undefined UNK_180a0c508;
-// undefined FUN_180049cd0;
+undefined g_global_data_180a0c508;
+// undefined g_function_180049cd0;
 
-undefined FUN_180049cd0;
-// undefined FUN_180049970;
+undefined g_function_180049cd0;
+// undefined g_function_180049970;
 
-undefined FUN_180049970;
-// undefined FUN_1800586e0;
+undefined g_function_180049970;
+// undefined g_function_1800586e0;
 
-undefined FUN_1800586e0;
-// undefined FUN_180046480;
+undefined g_function_1800586e0;
+// undefined g_function_180046480;
 
-undefined FUN_180046480;
+undefined g_function_180046480;
 
-undefined UNK_180a13ad0;
+undefined g_global_data_180a13ad0;
 
-undefined DAT_180a0ba58;
+undefined g_static_data_180a0ba58;
 
-undefined DAT_180a0d580;
+undefined g_static_data_180a0d580;
 
-undefined UNK_180a13aa8;
+undefined g_global_data_180a13aa8;
 
-undefined UNK_180a13ab8;
+undefined g_global_data_180a13ab8;
 
-undefined UNK_180a13ae8;
+undefined g_global_data_180a13ae8;
 
-undefined UNK_180a13bb8;
+undefined g_global_data_180a13bb8;
 
-undefined UNK_180a13b30;
+undefined g_global_data_180a13b30;
 
-undefined UNK_180a13b70;
+undefined g_global_data_180a13b70;
 
-undefined DAT_180a13c30;
+undefined g_static_data_180a13c30;
 
-undefined UNK_180a03108;
+undefined g_global_data_180a03108;
 
-undefined UNK_180a13c08;
+undefined g_global_data_180a13c08;
 
-undefined UNK_180a13c48;
+undefined g_global_data_180a13c48;
 
-undefined UNK_180a12ea0;
+undefined g_global_data_180a12ea0;
 
-undefined DAT_180a1388c;
+undefined g_static_data_180a1388c;
 
-undefined UNK_180a13c2c;
+undefined g_global_data_180a13c2c;
 
-undefined UNK_180a13c70;
+undefined g_global_data_180a13c70;
 
-undefined UNK_180a13c88;
+undefined g_global_data_180a13c88;
 
-undefined UNK_180a13c94;
+undefined g_global_data_180a13c94;
 
-undefined UNK_180a13ca0;
+undefined g_global_data_180a13ca0;
 
-undefined UNK_180a13cac;
+undefined g_global_data_180a13cac;
 
-undefined UNK_180239520;
-// undefined FUN_180056de0;
+undefined g_global_data_180239520;
+// undefined g_function_180056de0;
 
-undefined FUN_180056de0;
+undefined g_function_180056de0;
 
-undefined UNK_180a172e0;
+undefined g_global_data_180a172e0;
 
-undefined UNK_180a17308;
+undefined g_global_data_180a17308;
 
-undefined UNK_180a17398;
+undefined g_global_data_180a17398;
 
-undefined UNK_180a173f0;
+undefined g_global_data_180a173f0;
 
-undefined UNK_180a17400;
+undefined g_global_data_180a17400;
 
-undefined UNK_1802a11b8;
+undefined g_global_data_1802a11b8;
 
 char UNK_180d48da9;
 
 char DAT_180d48da8;
-undefined UNK_1802a1b10;
+undefined g_global_data_1802a1b10;
 
-undefined UNK_180a17770;
+undefined g_global_data_180a17770;
 
-undefined UNK_180a17798;
+undefined g_global_data_180a17798;
 
-undefined UNK_180a177c8;
+undefined g_global_data_180a177c8;
 
-undefined UNK_180a177f0;
+undefined g_global_data_180a177f0;
 
 undefined1 DAT_180d48da8;
 
-undefined UNK_1802a1d4c;
+undefined g_global_data_1802a1d4c;
 
-undefined DAT_180bf5c18;
+undefined g_static_data_180bf5c18;
 
-undefined DAT_180bf5c28;
+undefined g_static_data_180bf5c28;
 
-undefined UNK_180a02b03;
+undefined g_global_data_180a02b03;
 
-undefined UNK_180a17818;
+undefined g_global_data_180a17818;
 
-undefined UNK_180a27cb0;
+undefined g_global_data_180a27cb0;
 
 undefined4 UNK_180bf5c1c;
 undefined4 UNK_180bf5c20;
 undefined4 UNK_180bf5c24;
-undefined DAT_180c8ecd0;
+undefined g_static_data_180c8ecd0;
 
 char DAT_180d48dac;
 
-undefined UNK_18042d5d0;
+undefined g_global_data_18042d5d0;
 
-undefined UNK_180a17830;
+undefined g_global_data_180a17830;
 
-undefined UNK_180a17880;
+undefined g_global_data_180a17880;
 
-undefined DAT_180c8ecb0;
+undefined g_static_data_180c8ecb0;
 
-undefined DAT_180c8eca8;
+undefined g_static_data_180c8eca8;
 
-undefined UNK_180a178bc;
+undefined g_global_data_180a178bc;
 
-undefined UNK_180a178f8;
+undefined g_global_data_180a178f8;
 
-undefined UNK_180a17900;
+undefined g_global_data_180a17900;
 
-undefined UNK_180a17a18;
+undefined g_global_data_180a17a18;
 
-undefined UNK_180a17a68;
+undefined g_global_data_180a17a68;
 
 char DAT_180d48daa;
-undefined UNK_180a178c8;
+undefined g_global_data_180a178c8;
 
-undefined UNK_180a178f0;
+undefined g_global_data_180a178f0;
 
-undefined UNK_180a17910;
+undefined g_global_data_180a17910;
 
-undefined UNK_180a17940;
+undefined g_global_data_180a17940;
 
-undefined UNK_180a17960;
+undefined g_global_data_180a17960;
 
-undefined UNK_180a17980;
+undefined g_global_data_180a17980;
 
-undefined UNK_180a179a8;
+undefined g_global_data_180a179a8;
 
 char DAT_180d48dab;
 
-undefined UNK_180a179d0;
+undefined g_global_data_180a179d0;
 
-undefined UNK_180a17a38;
+undefined g_global_data_180a17a38;
 
-undefined UNK_180a17ab0;
+undefined g_global_data_180a17ab0;
 
-undefined UNK_180a17b38;
+undefined g_global_data_180a17b38;
 
-undefined UNK_180a06428;
+undefined g_global_data_180a06428;
 
-undefined UNK_180a06438;
+undefined g_global_data_180a06438;
 
-undefined UNK_180a17b78;
+undefined g_global_data_180a17b78;
 
-undefined UNK_180a17b88;
+undefined g_global_data_180a17b88;
 
-undefined UNK_180a17b98;
+undefined g_global_data_180a17b98;
 
-undefined UNK_180a17ba0;
+undefined g_global_data_180a17ba0;
 
-undefined UNK_180a17bb0;
+undefined g_global_data_180a17bb0;
 
-undefined UNK_180a17bc0;
+undefined g_global_data_180a17bc0;
 
-undefined UNK_180a17bd8;
+undefined g_global_data_180a17bd8;
 
-undefined UNK_180a17be8;
+undefined g_global_data_180a17be8;
 
-undefined UNK_180a17bf8;
+undefined g_global_data_180a17bf8;
 
-undefined UNK_180a17d90;
+undefined g_global_data_180a17d90;
 
-undefined UNK_180a17c48;
+undefined g_global_data_180a17c48;
 
-undefined UNK_180a17c60;
+undefined g_global_data_180a17c60;
 
-undefined UNK_180a17c80;
+undefined g_global_data_180a17c80;
 
-undefined UNK_180a17c90;
+undefined g_global_data_180a17c90;
 
-undefined UNK_180a17cb8;
+undefined g_global_data_180a17cb8;
 
-undefined UNK_180a17cc8;
+undefined g_global_data_180a17cc8;
 
-undefined UNK_180a17cd8;
+undefined g_global_data_180a17cd8;
 
-undefined UNK_180a17d00;
+undefined g_global_data_180a17d00;
 
-undefined UNK_180a17d28;
+undefined g_global_data_180a17d28;
 
-undefined UNK_180a17d50;
+undefined g_global_data_180a17d50;
 
-undefined UNK_180a17da8;
+undefined g_global_data_180a17da8;
 
-undefined UNK_180a17e18;
+undefined g_global_data_180a17e18;
 
-undefined UNK_180a18648;
+undefined g_global_data_180a18648;
 
-undefined UNK_180a17e68;
+undefined g_global_data_180a17e68;
 
-undefined UNK_180a17e78;
+undefined g_global_data_180a17e78;
 
-undefined UNK_180a17ea8;
+undefined g_global_data_180a17ea8;
 
-undefined UNK_180a17eb0;
+undefined g_global_data_180a17eb0;
 
-undefined UNK_180a17ec0;
+undefined g_global_data_180a17ec0;
 
-undefined UNK_180a17f00;
+undefined g_global_data_180a17f00;
 
-undefined UNK_180a17f58;
+undefined g_global_data_180a17f58;
 
-undefined UNK_180a17f90;
+undefined g_global_data_180a17f90;
 
-undefined DAT_180a09dc0;
+undefined g_static_data_180a09dc0;
 
-undefined UNK_180a17fe0;
+undefined g_global_data_180a17fe0;
 
-undefined UNK_180a15728;
+undefined g_global_data_180a15728;
 
-undefined UNK_180a15748;
+undefined g_global_data_180a15748;
 
-undefined UNK_180a17fe8;
+undefined g_global_data_180a17fe8;
 
-undefined UNK_180a157f0;
+undefined g_global_data_180a157f0;
 
-undefined UNK_180a15828;
+undefined g_global_data_180a15828;
 
-undefined UNK_180a15830;
+undefined g_global_data_180a15830;
 
-undefined UNK_180a18010;
+undefined g_global_data_180a18010;
 
-undefined UNK_180a157a8;
+undefined g_global_data_180a157a8;
 
-undefined UNK_180a157c8;
+undefined g_global_data_180a157c8;
 
-undefined UNK_180a04c44;
+undefined g_global_data_180a04c44;
 
-undefined UNK_180a06420;
+undefined g_global_data_180a06420;
 
-undefined UNK_180a15750;
+undefined g_global_data_180a15750;
 
-undefined DAT_180a157e0;
+undefined g_static_data_180a157e0;
 
-undefined DAT_180a157e4;
+undefined g_static_data_180a157e4;
 
-undefined UNK_180a157e8;
+undefined g_global_data_180a157e8;
 
-undefined UNK_180a157f4;
+undefined g_global_data_180a157f4;
 
-undefined UNK_180a157fc;
+undefined g_global_data_180a157fc;
 
-undefined UNK_180a18048;
+undefined g_global_data_180a18048;
 
-undefined UNK_180a18590;
+undefined g_global_data_180a18590;
 
-undefined UNK_180a18050;
+undefined g_global_data_180a18050;
 
-undefined UNK_180a18060;
+undefined g_global_data_180a18060;
 
-undefined UNK_180a18088;
+undefined g_global_data_180a18088;
 
-undefined UNK_180a18098;
+undefined g_global_data_180a18098;
 
-undefined UNK_180a180d0;
+undefined g_global_data_180a180d0;
 
-undefined UNK_180a18038;
+undefined g_global_data_180a18038;
 
-undefined UNK_180a18528;
+undefined g_global_data_180a18528;
 
-undefined UNK_180a18120;
+undefined g_global_data_180a18120;
 
-undefined DAT_180d48db0;
+undefined g_static_data_180d48db0;
 
-undefined DAT_180d48db8;
+undefined g_static_data_180d48db8;
 
-undefined DAT_180d48dc0;
+undefined g_static_data_180d48dc0;
 
-undefined DAT_180d48dc8;
+undefined g_static_data_180d48dc8;
 
-undefined DAT_180d48dd0;
-// undefined FUN_1800670d0;
+undefined g_static_data_180d48dd0;
+// undefined g_function_1800670d0;
 
-undefined FUN_1800670d0;
+undefined g_function_1800670d0;
 
-undefined UNK_180a25980;
+undefined g_global_data_180a25980;
 
-undefined DAT_180bfc170;
+undefined g_static_data_180bfc170;
 
-undefined UNK_180a258e0;
+undefined g_global_data_180a258e0;
 
-undefined UNK_180a258ec;
+undefined g_global_data_180a258ec;
 
-undefined UNK_180a258f8;
+undefined g_global_data_180a258f8;
 
-undefined UNK_180a259c0;
+undefined g_global_data_180a259c0;
 
-undefined UNK_180a259c8;
+undefined g_global_data_180a259c8;
 
-undefined UNK_180a259e0;
+undefined g_global_data_180a259e0;
 
-undefined UNK_180a25a10;
+undefined g_global_data_180a25a10;
 
-undefined DAT_180a0af70;
+undefined g_static_data_180a0af70;
 
-undefined UNK_180a25998;
+undefined g_global_data_180a25998;
 
-undefined UNK_180a259a8;
+undefined g_global_data_180a259a8;
 
-undefined UNK_180a25a74;
+undefined g_global_data_180a25a74;
 
-undefined UNK_180a25a28;
+undefined g_global_data_180a25a28;
 
-undefined UNK_180a25a80;
+undefined g_global_data_180a25a80;
 
-undefined UNK_180a25a98;
+undefined g_global_data_180a25a98;
 
-undefined DAT_180c92498;
+undefined g_static_data_180c92498;
 
-undefined UNK_180a25a50;
+undefined g_global_data_180a25a50;
 
-undefined UNK_180a25a60;
+undefined g_global_data_180a25a60;
 
-undefined UNK_180a25aa0;
+undefined g_global_data_180a25aa0;
 
-undefined UNK_180a25ab0;
+undefined g_global_data_180a25ab0;
 
-undefined UNK_180a25ae8;
+undefined g_global_data_180a25ae8;
 
-undefined UNK_180a25af0;
+undefined g_global_data_180a25af0;
 
-undefined UNK_180a25b00;
+undefined g_global_data_180a25b00;
 
-undefined UNK_180a25ab8;
+undefined g_global_data_180a25ab8;
 
-undefined UNK_180a25ac8;
+undefined g_global_data_180a25ac8;
 
-undefined UNK_180a25b10;
+undefined g_global_data_180a25b10;
 
-undefined UNK_180a25b20;
+undefined g_global_data_180a25b20;
 
-undefined UNK_180a25b30;
+undefined g_global_data_180a25b30;
 
-undefined UNK_180a25b40;
+undefined g_global_data_180a25b40;
 
-undefined UNK_180a25b48;
+undefined g_global_data_180a25b48;
 
-undefined UNK_180a25b60;
+undefined g_global_data_180a25b60;
 
-undefined UNK_180a25b6c;
+undefined g_global_data_180a25b6c;
 
-undefined UNK_180a25b80;
+undefined g_global_data_180a25b80;
 
-undefined UNK_180a25b88;
+undefined g_global_data_180a25b88;
 
-undefined UNK_180a25bc8;
+undefined g_global_data_180a25bc8;
 
-undefined UNK_180a25bd4;
+undefined g_global_data_180a25bd4;
 
-undefined UNK_180a25be0;
+undefined g_global_data_180a25be0;
 
-undefined UNK_180a25c58;
+undefined g_global_data_180a25c58;
 
-undefined UNK_180a25c84;
+undefined g_global_data_180a25c84;
 
-undefined UNK_180a25c90;
+undefined g_global_data_180a25c90;
 
-undefined UNK_180a2b468;
+undefined g_global_data_180a2b468;
 
-undefined UNK_180a25c04;
+undefined g_global_data_180a25c04;
 
-undefined UNK_180a25c10;
+undefined g_global_data_180a25c10;
 
-undefined UNK_180a25c20;
+undefined g_global_data_180a25c20;
 
-undefined UNK_180a25ca0;
+undefined g_global_data_180a25ca0;
 
-undefined UNK_180a25cdc;
+undefined g_global_data_180a25cdc;
 
-undefined UNK_180a0dcf8;
+undefined g_global_data_180a0dcf8;
 
-undefined UNK_180a25bfc;
+undefined g_global_data_180a25bfc;
 
-undefined UNK_180a25ce8;
+undefined g_global_data_180a25ce8;
 
-undefined UNK_180a25cf8;
+undefined g_global_data_180a25cf8;
 
-undefined DAT_180a25d28;
+undefined g_static_data_180a25d28;
 
-undefined DAT_180a0209c;
+undefined g_static_data_180a0209c;
 
-undefined DAT_180a022f0;
+undefined g_static_data_180a022f0;
 
-undefined DAT_180a02320;
+undefined g_static_data_180a02320;
 
-undefined UNK_180a25ca8;
+undefined g_global_data_180a25ca8;
 
-undefined DAT_180a25cb4;
+undefined g_static_data_180a25cb4;
 
-undefined UNK_180a25cc0;
+undefined g_global_data_180a25cc0;
 
-undefined UNK_180a25cd0;
+undefined g_global_data_180a25cd0;
 
-undefined UNK_180a25d78;
+undefined g_global_data_180a25d78;
 
-undefined UNK_180a25d90;
+undefined g_global_data_180a25d90;
 
-undefined UNK_180a25d98;
+undefined g_global_data_180a25d98;
 
-undefined UNK_180a25da8;
+undefined g_global_data_180a25da8;
 
-undefined DAT_180a02030;
+undefined g_static_data_180a02030;
 
-undefined DAT_180a0206c;
+undefined g_static_data_180a0206c;
 
-undefined DAT_180a02080;
+undefined g_static_data_180a02080;
 
-undefined UNK_180a25e58;
+undefined g_global_data_180a25e58;
 
-undefined UNK_180a25e70;
+undefined g_global_data_180a25e70;
 
-undefined UNK_180a25e80;
+undefined g_global_data_180a25e80;
 
-undefined UNK_180a25e90;
+undefined g_global_data_180a25e90;
 
-undefined UNK_180a25ebc;
+undefined g_global_data_180a25ebc;
 
-undefined UNK_180a25ec4;
+undefined g_global_data_180a25ec4;
 
-undefined UNK_180a25ed0;
+undefined g_global_data_180a25ed0;
 
-undefined UNK_180a25ee0;
+undefined g_global_data_180a25ee0;
 
-undefined UNK_180a25ef0;
+undefined g_global_data_180a25ef0;
 
-undefined UNK_180a25ef8;
+undefined g_global_data_180a25ef8;
 
-undefined UNK_180a25900;
+undefined g_global_data_180a25900;
 
-undefined UNK_180a25ad0;
+undefined g_global_data_180a25ad0;
 
-undefined UNK_180a25a6c;
-// undefined FUN_18006b8f0;
+undefined g_global_data_180a25a6c;
+// undefined g_function_18006b8f0;
 
-undefined FUN_18006b8f0;
+undefined g_function_18006b8f0;
 // void FUN_18002c340(void)
 
 void InitializeDataStructure(void)
@@ -58491,23 +58491,23 @@ void FUN_18007fd60(undefined8 param_1,longlong param_2,undefined8 param_3,longlo
          (longlong)iVar2);
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// undefined FUN_18004b6f0;
-undefined FUN_18004b6f0;
-// undefined FUN_18006f4c0;
+// undefined g_function_18004b6f0;
+undefined g_function_18004b6f0;
+// undefined g_function_18006f4c0;
 
-undefined FUN_18006f4c0;
-// undefined FUN_18004c090;
+undefined g_function_18006f4c0;
+// undefined g_function_18004c090;
 
-undefined FUN_18004c090;
-// undefined FUN_180055ed0;
+undefined g_function_18004c090;
+// undefined g_function_180055ed0;
 
-undefined FUN_180055ed0;
+undefined g_function_180055ed0;
 
 undefined4 UNK_180d49150;
 
-undefined UNK_1800a0f67;
+undefined g_global_data_1800a0f67;
 
-undefined UNK_1800a127e;
+undefined g_global_data_1800a127e;
 
 undefined8 FUN_180779434(void)
 
@@ -59577,14 +59577,14 @@ undefined8 FUN_180779d6c(void)
 {
   return 0;
 }
-// undefined FUN_180058c20;
+// undefined g_function_180058c20;
 
-undefined FUN_180058c20;
-// undefined FUN_18004bb30;
+undefined g_function_180058c20;
+// undefined g_function_18004bb30;
 
-undefined FUN_18004bb30;
+undefined g_function_18004bb30;
 
-undefined DAT_180d49830;
+undefined g_static_data_180d49830;
 
 undefined8 UNK_180d498a0;
 undefined4 UNK_180d498a8;
@@ -59597,15 +59597,15 @@ longlong UNK_180d49928;
 longlong UNK_180d49930;
 undefined4 UNK_180d49948;
 undefined4 UNK_180d4994c;
-undefined DAT_180d49950;
+undefined g_static_data_180d49950;
 
-undefined DAT_180d49970;
+undefined g_static_data_180d49970;
 
-undefined DAT_180bfc140;
+undefined g_static_data_180bfc140;
 
-undefined DAT_1803f48b2;
+undefined g_static_data_1803f48b2;
 
-undefined UNK_180d49d58;
+undefined g_global_data_180d49d58;
 
 longlong UNK_180d49d68;
 
