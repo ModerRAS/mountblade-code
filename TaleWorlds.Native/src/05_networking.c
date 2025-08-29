@@ -239,18 +239,18 @@ void NetworkInitializeConnection(void)
   int operationResult;
   longlong networkContextPtr;
   int socketId;
-  uint32_t registerVar;
+  uint32_t networkRegisterValue;
   int connectionState;
   ulonglong *responseBuffer;
   longlong stackContext;
   
-  connectionBuffer = (uint8_t *)(CONCAT44(unaff_0000001c,socketId) + 0x28);
+  connectionBuffer = (uint8_t *)(CONCAT44(networkRegisterValue,socketId) + 0x28);
   if (*(int *)(*(longlong *)(networkContextPtr + 0x98) + 0x200) == connectionState) {
     *connectionBuffer = 0;
-    *(uint *)(CONCAT44(unaff_0000001c,socketId) + 8) = ((int)connectionBuffer - socketId) + 4U & 0xfffffffc;
+    *(uint *)(CONCAT44(networkRegisterValue,socketId) + 8) = ((int)connectionBuffer - socketId) + 4U & 0xfffffffc;
     operationResult = NetworkValidateSocket(*(uint64_t *)(stackContext + 0x98));
     if (operationResult == 0) {
-      *responseBuffer = (ulonglong)*(uint *)(CONCAT44(unaff_0000001c,socketId) + 0x20);
+      *responseBuffer = (ulonglong)*(uint *)(CONCAT44(networkRegisterValue,socketId) + 0x20);
     }
                     // WARNING: Subroutine does not return
     NetworkErrorExit(&stackContext);
@@ -269,7 +269,7 @@ void NetworkCleanupConnection(void)
   longlong socketContextPtr;
   ulonglong *responseBuffer;
   
-  *responseBuffer = (ulonglong)*(uint *)(unaff_RBX + 0x20);
+  *responseBuffer = (ulonglong)*(uint *)(socketBaseRegister + 0x20);
                     // WARNING: Subroutine does not return
   NetworkErrorExit(&stackContext);
 }
