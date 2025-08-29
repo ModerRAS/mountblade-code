@@ -1259,12 +1259,12 @@ data resourceReportStatus;
 // 函数: data resourceGenerateReport;
 data resourceGenerateReport;
 data resourceReportFormat;  /* 原: DAT_180c96790 */
-data eventHandlerDataVar798;;
+data eventHandlerDataVar798;  /* 原: DAT_180c96798 */
 
 // 函数: data resourceBatchOperation;
 data resourceBatchOperation;
 data eventHandlerDataVar7a0;;
-data DAT_180c967a8;
+data eventHandlerDataVar7a8;;
 data DAT_180c967b0;
 data DAT_180c967b8;
 data DAT_180c967d0;
@@ -8340,7 +8340,7 @@ void log_debug_message(longlong resourceHandle,byte *memorySize,int *operationFl
       iVar8 = *(int *)(resourceHandle + 0xb0);
       if (counter < iVar8) {
         *(int *)(resourceHandle + 0xac) = counter + 1;
-        goto FUN_180895b89;
+        goto ExecuteSecurityValidation;
       }
       fVar10 = *(float *)(lVar9 + RESOURCE_OFFSET_HANDLE);
       fVar11 = fVar10;
@@ -8373,7 +8373,7 @@ void log_debug_message(longlong resourceHandle,byte *memorySize,int *operationFl
         counter = (**(code **)(resourceHandle + 0xc0))
                           (uVar5,counter,*(uint32 *)(lVar9 + RESOURCE_OFFSET_HANDLE),*(uint64 *)(resourceHandle + BUFFER_SIZE_STANDARD)
                           );
-        if (counter != 0) goto FUN_180895b89;
+        if (counter != 0) goto ExecuteSecurityValidation;
       }
       if (((((bVar1 & 2) != 0 || (longlong)fVar10 + lVar7 < buffer - lVar6) &&
            (counter = *plocalInt, *plocalInt = counter + 1, counter < 10)) &&
@@ -8389,7 +8389,7 @@ LAB_18089555d:
         cVar3 = func_0x000180881f80(*(uint64 *)(resourceHandle + SYSTEM_OFFSET_STATUS1));
         if (cVar3 == '\0') goto LAB_18089555d;
         *memorySize = 0;
-        goto FUN_180895b89;
+        goto ExecuteSecurityValidation;
       }
       if (cVar3 == '\a') {
         cVar3 = func_0x000180881f80(*(uint64 *)(resourceHandle + SYSTEM_OFFSET_STATUS1));
@@ -8397,7 +8397,7 @@ LAB_18089555d:
           if (*(int *)(*(longlong *)(*(longlong *)(*(longlong *)(resourceHandle + SYSTEM_OFFSET_STATUS1) + MEMORY_SIZE_OFFSET) + 0x790) +
                       0x1c8) != 0) {
             *memorySize = 0;
-            goto FUN_180895b89;
+            goto ExecuteSecurityValidation;
           }
           goto LAB_18089555d;
         }
@@ -8406,7 +8406,7 @@ LAB_18089555d:
         if ((cVar3 != '\x02') || ((*(byte *)(resourceHandle + 0x6c) & 4) != 0)) goto LAB_18089555d;
         localUInt = *(uint32 *)(lVar9 + POINTER_OFFSET_DATA);
         counter = perform_system_operation(resourceHandle,counter,&localUInt);
-        if (counter != 0) goto FUN_180895b89;
+        if (counter != 0) goto ExecuteSecurityValidation;
         counter = SystemMemoryFunction(localUInt,localArray);
         if ((counter != 0) || (*(int *)(localArray[0] + FIELD_OFFSET_1) != 2)) goto LAB_18089555d;
       }
@@ -8418,7 +8418,7 @@ LAB_18089555d:
     *(uint *)(resourceHandle + 0x6c) = *(uint *)(resourceHandle + 0x6c) | 0x4000000;
     *memorySize = 0;
   }
-FUN_180895b89:
+ExecuteSecurityValidation:
                     // WARNING: Subroutine does not return
   ExecuteSecurityCheck(localUInt ^ (ulonglong)localBuffer);
 }
@@ -8543,8 +8543,8 @@ LAB_180895b69:
 
 
 
-// 函数: void FUN_180895b89(void)
-void FUN_180895b89(void)
+// 函数: void ExecuteSecurityValidation(void)
+void ExecuteSecurityValidation(void)
 
 {
   longlong unaff_RBP;
@@ -8647,7 +8647,7 @@ LAB_180895ccb:
 
 
 
-uint64 FUN_180895c8b(longlong resourceHandle,uint64 memorySize,longlong operationFlags,uint callbackFunction)
+uint64 FindCallbackFunction(longlong resourceHandle,uint64 memorySize,longlong operationFlags,uint callbackFunction)
 
 {
   longlong localLong1;
@@ -8691,7 +8691,7 @@ LAB_180895ccb:
 
 
 
-uint64 FUN_180895cf1(longlong resourceHandle,uint64 memorySize,longlong operationFlags)
+uint64 ValidateResourceHandle(longlong resourceHandle,uint64 memorySize,longlong operationFlags)
 
 {
   uint64 returnValue;
@@ -8720,7 +8720,7 @@ uint64 FUN_180895cf1(longlong resourceHandle,uint64 memorySize,longlong operatio
 
 
 
-uint64 FUN_180895d16(void)
+uint64 InitializeResourceSystem(void)
 
 {
   return 0x1e;
@@ -8728,7 +8728,7 @@ uint64 FUN_180895d16(void)
 
 
 
-uint64 FUN_180895d30(longlong *resourceHandle,uint *memorySize,uint64 *operationFlags)
+uint64 SetupResourceParameters(longlong *resourceHandle,uint *memorySize,uint64 *operationFlags)
 
 {
   uint returnValue;
@@ -9164,7 +9164,7 @@ LAB_1808960d4:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64 FUN_180896064(uint64 resourceHandle,int memorySize)
+uint64 AllocateMemoryResource(uint64 resourceHandle,int memorySize)
 
 {
   longlong localLong1;
@@ -9198,7 +9198,7 @@ LAB_1808960d4:
 
 
 
-uint64 FUN_18089611f(void)
+uint64 FreeMemoryResource(void)
 
 {
   return 0x26;
@@ -9796,7 +9796,7 @@ void setup_memory_configuration(uint64 resourceHandle,longlong memorySize,uint o
       func_0x00018076b450(localBuffer,*(uint64 *)(memorySize + 0x228),0x200);
       ppuVar6 = &localPtr;
 LAB_180896ce3:
-      length = FUN_180897520(resourceHandle,ppuVar6);
+      length = ValidateResourceAccess(resourceHandle,ppuVar6);
     }
     else {
       localInt = 0;
@@ -9818,9 +9818,9 @@ LAB_180896ce3:
       lStack_2d8 = (ulonglong)operationFlags << POINTER_OFFSET_DATA;
       localUInt = *(uint64 *)(memorySize + 0x228);
       localUInt = (ulonglong)CONCAT14(length != 1,*(uint32 *)(memorySize + 0x230));
-      length = FUN_180897520(resourceHandle,&localPtr);
+      length = ValidateResourceAccess(resourceHandle,&localPtr);
     }
-    if (length != 0) goto FUN_1808974f4;
+    if (length != 0) goto HandleResourceError;
     localUInt = *(uint *)(memorySize + RESOURCE_HANDLE_OFFSET);
     localUInt = *(uint32 *)(memorySize + 0x14);
     localInt = *(int *)(memorySize + RESOURCE_OFFSET_HANDLE);
@@ -9829,8 +9829,8 @@ LAB_180896ce3:
     localPtr = &unknown_180985a80;
     localUInt = 0;
     localUInt = operationFlags;
-    length = FUN_180897520(resourceHandle,&localPtr);
-    if (length != 0) goto FUN_1808974f4;
+    length = ValidateResourceAccess(resourceHandle,&localPtr);
+    if (length != 0) goto HandleResourceError;
     iVar7 = 0;
     length = *(int *)(*(longlong *)(memorySize + 0x2e8) + FIELD_OFFSET_4);
     if (0 < length) {
@@ -9838,21 +9838,21 @@ LAB_180896ce3:
         localInt = 0;
         localPtr = &unknown_180982cc0;
         localUInt = CONCAT44(localUInt._4_4_,operationFlags);
-        counter = FUN_180897520(resourceHandle,&localPtr);
-        if (counter != 0) goto FUN_1808974f4;
+        counter = ValidateResourceAccess(resourceHandle,&localPtr);
+        if (counter != 0) goto HandleResourceError;
         iVar7 = iVar7 + 1;
       } while (iVar7 < length);
     }
   }
   if (((callbackFunction != '\0') || (*(int *)(*(longlong *)(memorySize + 0x2e8) + FIELD_OFFSET_2) == 0)) &&
 <<<<<<< Updated upstream
-     (length = FUN_180897b40(resourceHandle,memorySize,operationFlags), length == 0)) {
+     (length = CreateResourceInstance(resourceHandle,memorySize,operationFlags), length == 0)) {
     for (length = 0; (-1 < length && (length < *(int *)(memorySize + BUFFER_OFFSET_DATA))); length = length + 1) {
       localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x40) + (longlong)length * 8);
       localLong2 = *(longlong *)(localLong1 + 0x68);
       if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (localLong2 != 0)) {
 =======
-     (length = FUN_180897b40(resourceHandle,memorySize,operationFlags), localInt3 == 0)) {
+     (length = CreateResourceInstance(resourceHandle,memorySize,operationFlags), localInt3 == 0)) {
     for (length = 0; (-1 < localInt3 && (localInt3 < *(int *)(memorySize + BUFFER_OFFSET_DATA))); length = localInt3 + 1) {
       localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x40) + (longlong)localInt3 * 8);
       buffer = *(longlong *)(localLong1 + 0x68);
@@ -9860,7 +9860,7 @@ LAB_180896ce3:
 >>>>>>> Stashed changes
         localUInt = 0;
         iVar7 = validate_resource_handle(buffer,&localUInt);
-        if (iVar7 != 0) goto FUN_1808974f4;
+        if (iVar7 != 0) goto HandleResourceError;
         localUInt = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
         localUInt = *(uint *)(localLong1 + 0x14);
         localUInt = *(uint32 *)(localLong1 + RESOURCE_OFFSET_HANDLE);
@@ -9871,24 +9871,24 @@ LAB_180896ce3:
         localInt = iVar7;
         localUInt = operationFlags;
         localInt = iVar5;
-        iVar5 = FUN_180897520(resourceHandle,&localPtr);
+        iVar5 = ValidateResourceAccess(resourceHandle,&localPtr);
         if ((iVar5 != 0) || (iVar5 = FUN_18088c970(buffer,afStack_304), iVar5 != 0))
-        goto FUN_1808974f4;
+        goto HandleResourceError;
         if (afStack_304[0] != 1.0) {
           localUInt = CONCAT44(localUInt._4_4_,afStack_304[0]);
           localPtr = &unknown_1809842e0;
           localUInt = CONCAT44(localUInt._4_4_,localUInt);
           localInt = iVar5;
-          iVar5 = FUN_180897520(resourceHandle,&localPtr);
-          if (iVar5 != 0) goto FUN_1808974f4;
+          iVar5 = ValidateResourceAccess(resourceHandle,&localPtr);
+          if (iVar5 != 0) goto HandleResourceError;
         }
         if (*(char *)(buffer + BYTE_OFFSET_2) != '\0') {
           localInt = 0;
           localPtr = &unknown_180984358;
           localUInt = CONCAT44(localUInt._4_4_,localUInt);
           localUInt = CONCAT71(localUInt._1_7_,1);
-          iVar5 = FUN_180897520(resourceHandle,&localPtr);
-          if (iVar5 != 0) goto FUN_1808974f4;
+          iVar5 = ValidateResourceAccess(resourceHandle,&localPtr);
+          if (iVar5 != 0) goto HandleResourceError;
         }
         iVar5 = counter;
         if (*(char *)(buffer + BYTE_OFFSET_1) != '\0') {
@@ -9896,8 +9896,8 @@ LAB_180896ce3:
           localPtr = &unknown_1809843d0;
           localUInt = CONCAT44(localUInt._4_4_,localUInt);
           localUInt = CONCAT71(localUInt._1_7_,1);
-          iVar7 = FUN_180897520(resourceHandle,&localPtr);
-          if (iVar7 != 0) goto FUN_1808974f4;
+          iVar7 = ValidateResourceAccess(resourceHandle,&localPtr);
+          if (iVar7 != 0) goto HandleResourceError;
         }
       }
     }
@@ -9914,7 +9914,7 @@ LAB_180896ce3:
 >>>>>>> Stashed changes
         localUInt = 0;
         iVar7 = validate_resource_handle(buffer,&localUInt);
-        if (iVar7 != 0) goto FUN_1808974f4;
+        if (iVar7 != 0) goto HandleResourceError;
         localUInt = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
         localUInt = *(uint *)(localLong1 + 0x14);
         localUInt = *(uint32 *)(localLong1 + RESOURCE_OFFSET_HANDLE);
@@ -9925,24 +9925,24 @@ LAB_180896ce3:
         localInt = iVar7;
         localUInt = operationFlags;
         localInt = iVar5;
-        iVar5 = FUN_180897520(resourceHandle,&localPtr);
+        iVar5 = ValidateResourceAccess(resourceHandle,&localPtr);
         if ((iVar5 != 0) || (iVar5 = FUN_18088c970(buffer,afStack_304), iVar5 != 0))
-        goto FUN_1808974f4;
+        goto HandleResourceError;
         if (afStack_304[0] != 1.0) {
           localUInt = CONCAT44(localUInt._4_4_,afStack_304[0]);
           localPtr = &unknown_1809842e0;
           localUInt = CONCAT44(localUInt._4_4_,localUInt);
           localInt = iVar5;
-          iVar5 = FUN_180897520(resourceHandle,&localPtr);
-          if (iVar5 != 0) goto FUN_1808974f4;
+          iVar5 = ValidateResourceAccess(resourceHandle,&localPtr);
+          if (iVar5 != 0) goto HandleResourceError;
         }
         if (*(char *)(buffer + BYTE_OFFSET_2) != '\0') {
           localInt = 0;
           localPtr = &unknown_180984358;
           localUInt = CONCAT44(localUInt._4_4_,localUInt);
           localUInt = CONCAT71(localUInt._1_7_,1);
-          iVar5 = FUN_180897520(resourceHandle,&localPtr);
-          if (iVar5 != 0) goto FUN_1808974f4;
+          iVar5 = ValidateResourceAccess(resourceHandle,&localPtr);
+          if (iVar5 != 0) goto HandleResourceError;
         }
         iVar5 = counter;
         if (*(char *)(buffer + BYTE_OFFSET_1) != '\0') {
@@ -9950,8 +9950,8 @@ LAB_180896ce3:
           localPtr = &unknown_1809843d0;
           localUInt = CONCAT44(localUInt._4_4_,localUInt);
           localUInt = CONCAT71(localUInt._1_7_,1);
-          iVar7 = FUN_180897520(resourceHandle,&localPtr);
-          if (iVar7 != 0) goto FUN_1808974f4;
+          iVar7 = ValidateResourceAccess(resourceHandle,&localPtr);
+          if (iVar7 != 0) goto HandleResourceError;
         }
       }
     }
@@ -9968,7 +9968,7 @@ LAB_180896ce3:
 >>>>>>> Stashed changes
         localUInt = 0;
         iVar7 = validate_resource_handle(buffer,&localUInt);
-        if (iVar7 != 0) goto FUN_1808974f4;
+        if (iVar7 != 0) goto HandleResourceError;
         localUInt = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
         localUInt = *(uint *)(localLong1 + 0x14);
         localUInt = *(uint32 *)(localLong1 + RESOURCE_OFFSET_HANDLE);
@@ -9979,24 +9979,24 @@ LAB_180896ce3:
         localInt = iVar7;
         localUInt = operationFlags;
         localInt = iVar5;
-        iVar5 = FUN_180897520(resourceHandle,&localPtr);
+        iVar5 = ValidateResourceAccess(resourceHandle,&localPtr);
         if ((iVar5 != 0) || (iVar5 = FUN_18088c970(buffer,afStack_304), iVar5 != 0))
-        goto FUN_1808974f4;
+        goto HandleResourceError;
         if (afStack_304[0] != 1.0) {
           localUInt = CONCAT44(localUInt._4_4_,afStack_304[0]);
           localPtr = &unknown_1809842e0;
           localUInt = CONCAT44(localUInt._4_4_,localUInt);
           localInt = iVar5;
-          iVar5 = FUN_180897520(resourceHandle,&localPtr);
-          if (iVar5 != 0) goto FUN_1808974f4;
+          iVar5 = ValidateResourceAccess(resourceHandle,&localPtr);
+          if (iVar5 != 0) goto HandleResourceError;
         }
         if (*(char *)(buffer + BYTE_OFFSET_2) != '\0') {
           localInt = 0;
           localPtr = &unknown_180984358;
           localUInt = CONCAT44(localUInt._4_4_,localUInt);
           localUInt = CONCAT71(localUInt._1_7_,1);
-          iVar5 = FUN_180897520(resourceHandle,&localPtr);
-          if (iVar5 != 0) goto FUN_1808974f4;
+          iVar5 = ValidateResourceAccess(resourceHandle,&localPtr);
+          if (iVar5 != 0) goto HandleResourceError;
         }
         iVar5 = counter;
         if (*(char *)(buffer + BYTE_OFFSET_1) != '\0') {
@@ -10004,8 +10004,8 @@ LAB_180896ce3:
           localPtr = &unknown_1809843d0;
           localUInt = CONCAT44(localUInt._4_4_,localUInt);
           localUInt = CONCAT71(localUInt._1_7_,1);
-          iVar7 = FUN_180897520(resourceHandle,&localPtr);
-          if (iVar7 != 0) goto FUN_1808974f4;
+          iVar7 = ValidateResourceAccess(resourceHandle,&localPtr);
+          if (iVar7 != 0) goto HandleResourceError;
         }
       }
     }
@@ -10022,7 +10022,7 @@ LAB_180896ce3:
 >>>>>>> Stashed changes
         localUInt = 0;
         iVar7 = validate_resource_handle(buffer,&localUInt);
-        if (iVar7 != 0) goto FUN_1808974f4;
+        if (iVar7 != 0) goto HandleResourceError;
         localUInt = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
         localUInt = *(uint *)(localLong1 + 0x14);
         localUInt = *(uint32 *)(localLong1 + RESOURCE_OFFSET_HANDLE);
@@ -10033,24 +10033,24 @@ LAB_180896ce3:
         localInt = iVar7;
         localUInt = operationFlags;
         localInt = iVar5;
-        iVar5 = FUN_180897520(resourceHandle,&localPtr);
+        iVar5 = ValidateResourceAccess(resourceHandle,&localPtr);
         if ((iVar5 != 0) || (iVar5 = FUN_18088c970(buffer,afStack_304), iVar5 != 0))
-        goto FUN_1808974f4;
+        goto HandleResourceError;
         if (afStack_304[0] != 1.0) {
           localUInt = CONCAT44(localUInt._4_4_,afStack_304[0]);
           localPtr = &unknown_1809842e0;
           localUInt = CONCAT44(localUInt._4_4_,localUInt);
           localInt = iVar5;
-          iVar5 = FUN_180897520(resourceHandle,&localPtr);
-          if (iVar5 != 0) goto FUN_1808974f4;
+          iVar5 = ValidateResourceAccess(resourceHandle,&localPtr);
+          if (iVar5 != 0) goto HandleResourceError;
         }
         if (*(char *)(buffer + BYTE_OFFSET_2) != '\0') {
           localInt = 0;
           localPtr = &unknown_180984358;
           localUInt = CONCAT44(localUInt._4_4_,localUInt);
           localUInt = CONCAT71(localUInt._1_7_,1);
-          iVar5 = FUN_180897520(resourceHandle,&localPtr);
-          if (iVar5 != 0) goto FUN_1808974f4;
+          iVar5 = ValidateResourceAccess(resourceHandle,&localPtr);
+          if (iVar5 != 0) goto HandleResourceError;
         }
         iVar5 = counter;
         if (*(char *)(buffer + BYTE_OFFSET_1) != '\0') {
@@ -10058,8 +10058,8 @@ LAB_180896ce3:
           localPtr = &unknown_1809843d0;
           localUInt = CONCAT44(localUInt._4_4_,localUInt);
           localUInt = CONCAT71(localUInt._1_7_,1);
-          iVar7 = FUN_180897520(resourceHandle,&localPtr);
-          if (iVar7 != 0) goto FUN_1808974f4;
+          iVar7 = ValidateResourceAccess(resourceHandle,&localPtr);
+          if (iVar7 != 0) goto HandleResourceError;
         }
       }
     }
@@ -10090,7 +10090,7 @@ LAB_180896ce3:
         localInt = iVar7;
         localUInt = operationFlags;
         localInt = iVar5;
-        iVar5 = FUN_180897520(resourceHandle,&localPtr);
+        iVar5 = ValidateResourceAccess(resourceHandle,&localPtr);
         if ((iVar5 != 0) || (iVar7 = FUN_18088cbb0(buffer,afStack_304,0), iVar7 != 0)) break;
         iVar5 = counter;
         if (afStack_304[0] != 1.0) {
@@ -10098,14 +10098,14 @@ LAB_180896ce3:
           localPtr = &unknown_1809844c8;
           localUInt = CONCAT44(localUInt._4_4_,localUInt);
           localInt = iVar7;
-          iVar7 = FUN_180897520(resourceHandle,&localPtr);
+          iVar7 = ValidateResourceAccess(resourceHandle,&localPtr);
           if (iVar7 != 0) break;
         }
       }
       length = length + 1;
     } while( true );
   }
-FUN_1808974f4:
+HandleResourceError:
                     // WARNING: Subroutine does not return
   ExecuteSecurityCheck(localUInt ^ (ulonglong)localBuffer);
 }
@@ -10113,8 +10113,8 @@ FUN_1808974f4:
 
 
 
-// 函数: void FUN_180896e11(void)
-void FUN_180896e11(void)
+// 函数: void ProcessResourceQueue(void)
+void ProcessResourceQueue(void)
 
 {
   longlong localLong1;
@@ -10148,7 +10148,7 @@ void FUN_180896e11(void)
   float in_stack_00000048;
   
   if (((unaff_R15B != '\0') || (*(int *)(*(longlong *)(unaff_R13 + 0x2e8) + FIELD_OFFSET_2) == unaff_R12D)) &&
-     (iVar7 = FUN_180897b40(), iVar7 == 0)) {
+     (iVar7 = CreateResourceInstance(), iVar7 == 0)) {
     for (iVar7 = 0; (-1 < iVar7 && (iVar7 < *(int *)(unaff_R13 + BUFFER_OFFSET_DATA))); iVar7 = iVar7 + 1) {
       localLong1 = *(longlong *)(*(longlong *)(unaff_R13 + 0x40) + (longlong)iVar7 * 8);
       buffer = *(longlong *)(localLong1 + 0x68);
@@ -10170,7 +10170,7 @@ void FUN_180896e11(void)
         *(uint32 *)(unaff_RBP + -DATA_OFFSET_START) = uVar4;
         *(uint32 *)(unaff_RBP + -0x5c) = uVar5;
         *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS1) = uVar6;
-        iVar8 = FUN_180897520(uVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
+        iVar8 = ValidateResourceAccess(uVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
         if ((iVar8 != 0) || (iVar8 = FUN_18088c970(buffer,&fStackX_24), iVar8 != 0))
         goto LAB_1808974ec;
         fVar10 = fStackX_24;
@@ -10179,7 +10179,7 @@ void FUN_180896e11(void)
           stackParameter1 = &unknown_1809842e0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000038 = iVar8;
-          iVar8 = FUN_180897520(fStackX_24,&stack0x00000030);
+          iVar8 = ValidateResourceAccess(fStackX_24,&stack0x00000030);
           fVar10 = extraout_XMM0_Da;
           if (iVar8 != 0) goto LAB_1808974ec;
         }
@@ -10188,7 +10188,7 @@ void FUN_180896e11(void)
           stackParameter1 = &unknown_180984358;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
+          iVar8 = ValidateResourceAccess(fVar10,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_00;
           if (iVar8 != 0) goto LAB_1808974ec;
         }
@@ -10197,7 +10197,7 @@ void FUN_180896e11(void)
           stackParameter1 = &unknown_1809843d0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
+          iVar8 = ValidateResourceAccess(fVar10,&stack0x00000030);
           if (iVar8 != 0) goto LAB_1808974ec;
         }
       }
@@ -10223,7 +10223,7 @@ void FUN_180896e11(void)
         *(uint32 *)(unaff_RBP + -DATA_OFFSET_START) = uVar4;
         *(uint32 *)(unaff_RBP + -0x5c) = uVar5;
         *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS1) = uVar6;
-        iVar8 = FUN_180897520(uVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
+        iVar8 = ValidateResourceAccess(uVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
         if ((iVar8 != 0) || (iVar8 = FUN_18088c970(buffer,&fStackX_24), iVar8 != 0))
         goto LAB_1808974ec;
         fVar10 = fStackX_24;
@@ -10232,7 +10232,7 @@ void FUN_180896e11(void)
           stackParameter1 = &unknown_1809842e0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000038 = iVar8;
-          iVar8 = FUN_180897520(fStackX_24,&stack0x00000030);
+          iVar8 = ValidateResourceAccess(fStackX_24,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_01;
           if (iVar8 != 0) goto LAB_1808974ec;
         }
@@ -10241,7 +10241,7 @@ void FUN_180896e11(void)
           stackParameter1 = &unknown_180984358;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
+          iVar8 = ValidateResourceAccess(fVar10,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_02;
           if (iVar8 != 0) goto LAB_1808974ec;
         }
@@ -10250,7 +10250,7 @@ void FUN_180896e11(void)
           stackParameter1 = &unknown_1809843d0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
+          iVar8 = ValidateResourceAccess(fVar10,&stack0x00000030);
           if (iVar8 != 0) goto LAB_1808974ec;
         }
       }
@@ -10276,7 +10276,7 @@ void FUN_180896e11(void)
         *(uint32 *)(unaff_RBP + -DATA_OFFSET_START) = uVar4;
         *(uint32 *)(unaff_RBP + -0x5c) = uVar5;
         *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS1) = uVar6;
-        iVar8 = FUN_180897520(uVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
+        iVar8 = ValidateResourceAccess(uVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
         if ((iVar8 != 0) || (iVar8 = FUN_18088c970(buffer,&fStackX_24), iVar8 != 0))
         goto LAB_1808974ec;
         fVar10 = fStackX_24;
@@ -10285,7 +10285,7 @@ void FUN_180896e11(void)
           stackParameter1 = &unknown_1809842e0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000038 = iVar8;
-          iVar8 = FUN_180897520(fStackX_24,&stack0x00000030);
+          iVar8 = ValidateResourceAccess(fStackX_24,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_03;
           if (iVar8 != 0) goto LAB_1808974ec;
         }
@@ -10294,7 +10294,7 @@ void FUN_180896e11(void)
           stackParameter1 = &unknown_180984358;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
+          iVar8 = ValidateResourceAccess(fVar10,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_04;
           if (iVar8 != 0) goto LAB_1808974ec;
         }
@@ -10303,7 +10303,7 @@ void FUN_180896e11(void)
           stackParameter1 = &unknown_1809843d0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
+          iVar8 = ValidateResourceAccess(fVar10,&stack0x00000030);
           if (iVar8 != 0) goto LAB_1808974ec;
         }
       }
@@ -10329,7 +10329,7 @@ void FUN_180896e11(void)
         *(uint32 *)(unaff_RBP + -DATA_OFFSET_START) = uVar4;
         *(uint32 *)(unaff_RBP + -0x5c) = uVar5;
         *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS1) = uVar6;
-        iVar8 = FUN_180897520(uVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
+        iVar8 = ValidateResourceAccess(uVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
         if ((iVar8 != 0) || (iVar8 = FUN_18088c970(buffer,&fStackX_24), iVar8 != 0))
         goto LAB_1808974ec;
         fVar10 = fStackX_24;
@@ -10338,7 +10338,7 @@ void FUN_180896e11(void)
           stackParameter1 = &unknown_1809842e0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000038 = iVar8;
-          iVar8 = FUN_180897520(fStackX_24,&stack0x00000030);
+          iVar8 = ValidateResourceAccess(fStackX_24,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_05;
           if (iVar8 != 0) goto LAB_1808974ec;
         }
@@ -10347,7 +10347,7 @@ void FUN_180896e11(void)
           stackParameter1 = &unknown_180984358;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
+          iVar8 = ValidateResourceAccess(fVar10,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_06;
           if (iVar8 != 0) goto LAB_1808974ec;
         }
@@ -10356,7 +10356,7 @@ void FUN_180896e11(void)
           stackParameter1 = &unknown_1809843d0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
+          iVar8 = ValidateResourceAccess(fVar10,&stack0x00000030);
           if (iVar8 != 0) goto LAB_1808974ec;
         }
       }
@@ -10385,14 +10385,14 @@ void FUN_180896e11(void)
         *(uint32 *)(unaff_RBP + -DATA_OFFSET_START) = uVar4;
         *(uint32 *)(unaff_RBP + -0x5c) = uVar5;
         *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS1) = uVar6;
-        iVar9 = FUN_180897520(uVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
+        iVar9 = ValidateResourceAccess(uVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
         if ((iVar9 != 0) || (iVar9 = FUN_18088cbb0(buffer,&fStackX_24,0), iVar9 != 0)) break;
         if (fStackX_24 != 1.0) {
           in_stack_00000048 = fStackX_24;
           stackParameter1 = &unknown_1809844c8;
           in_stack_00000040 = uStackX_20;
           in_stack_00000038 = iVar9;
-          iVar9 = FUN_180897520(fStackX_24,&stack0x00000030);
+          iVar9 = ValidateResourceAccess(fStackX_24,&stack0x00000030);
           if (iVar9 != 0) break;
         }
       }
@@ -10407,8 +10407,8 @@ LAB_1808974ec:
 
 
 
-// 函数: void FUN_1808974f4(void)
-void FUN_1808974f4(void)
+// 函数: void HandleResourceError(void)
+void HandleResourceError(void)
 
 {
   longlong unaff_RBP;
@@ -10422,8 +10422,8 @@ void FUN_1808974f4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180897520(longlong *resourceHandle,longlong *memorySize)
-void FUN_180897520(longlong *resourceHandle,longlong *memorySize)
+// 函数: void ValidateResourceAccess(longlong *resourceHandle,longlong *memorySize)
+void ValidateResourceAccess(longlong *resourceHandle,longlong *memorySize)
 
 {
   longlong localLong1;
@@ -10434,7 +10434,7 @@ void FUN_180897520(longlong *resourceHandle,longlong *memorySize)
   
   localUInt = g_securityTokenMask ^ (ulonglong)localBuffer;
   localLong1 = resourceHandle[4];
-  if (((char)localLong1 != '\0') || (status = FUN_1808987e0(resourceHandle,1), status == 0)) {
+  if (((char)localLong1 != '\0') || (status = ValidateResourceBuffer(resourceHandle,1), status == 0)) {
     status = (**(code **)(*memorySize + RESOURCE_HANDLE_OFFSET))(memorySize,localBuffer,0x200);
     func_0x00018074b7b0(localBuffer + status,0x200 - status,10);
     status = (**(code **)(*resourceHandle + 8))(resourceHandle,localBuffer);
@@ -10450,8 +10450,8 @@ void FUN_180897520(longlong *resourceHandle,longlong *memorySize)
 
 
 
-// 函数: void FUN_180897560(void)
-void FUN_180897560(void)
+// 函数: void CleanupResourceHandle(void)
+void CleanupResourceHandle(void)
 
 {
   int status;
@@ -10475,8 +10475,8 @@ void FUN_180897560(void)
 
 
 
-// 函数: void FUN_1808975a6(void)
-void FUN_1808975a6(void)
+// 函数: void ResetResourceState(void)
+void ResetResourceState(void)
 
 {
   int status;
@@ -10496,8 +10496,8 @@ void FUN_1808975a6(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1808975e0(longlong resourceHandle,longlong memorySize)
-void FUN_1808975e0(longlong resourceHandle,longlong memorySize)
+// 函数: void ProcessResourceOperation(longlong resourceHandle,longlong memorySize)
+void ProcessResourceOperation(longlong resourceHandle,longlong memorySize)
 
 {
   float fVar1;
@@ -10577,7 +10577,7 @@ void FUN_1808975e0(longlong resourceHandle,longlong memorySize)
       localPtr = &unknown_1809832b8;
       localUInt = localUInt;
       localUInt = localUInt;
-      iVar6 = FUN_180897520(resourceHandle,&localPtr);
+      iVar6 = ValidateResourceAccess(resourceHandle,&localPtr);
       if (iVar6 == 0) {
         lStack_188 = (longlong)*(int *)(buffer + BYTE_OFFSET_2);
         lVar8 = localLong14;
@@ -10603,8 +10603,8 @@ void FUN_1808975e0(longlong resourceHandle,longlong memorySize)
                 preturnValue2 = *(data **)(index + LIST_OFFSET_HEAD);
               }
               func_0x00018076b450(localBuffer,preturnValue2,BUFFER_OFFSET_TEMP);
-              iVar6 = FUN_180897520(resourceHandle,&localPtr);
-              if (iVar6 != 0) goto FUN_180897b16;
+              iVar6 = ValidateResourceAccess(resourceHandle,&localPtr);
+              if (iVar6 != 0) goto TerminateResourceOperation;
             }
             lVar8 = lVar8 + 1;
             localLong14 = localLong14 + RESOURCE_OFFSET_HANDLE;
@@ -10632,8 +10632,8 @@ void FUN_1808975e0(longlong resourceHandle,longlong memorySize)
               localUInt = *(uint32 *)(buffer + DATA_OFFSET_START);
               localUInt = *(uint32 *)(buffer + 100);
               localUInt = localUInt;
-              iVar6 = FUN_180897520(resourceHandle,&localPtr);
-              if (iVar6 != 0) goto FUN_180897b16;
+              iVar6 = ValidateResourceAccess(resourceHandle,&localPtr);
+              if (iVar6 != 0) goto TerminateResourceOperation;
             }
           }
           iVar6 = FUN_1808682e0(buffer,&fStack_19c,0);
@@ -10643,8 +10643,8 @@ void FUN_1808975e0(longlong resourceHandle,longlong memorySize)
               localPtr = &unknown_180983738;
               localUInt = localUInt;
               localUInt = 0;
-              iVar6 = FUN_180897520(resourceHandle,&localPtr);
-              if (iVar6 != 0) goto FUN_180897b16;
+              iVar6 = ValidateResourceAccess(resourceHandle,&localPtr);
+              if (iVar6 != 0) goto TerminateResourceOperation;
             }
             iVar6 = FUN_180868270(buffer,afStack_198,0);
             if (iVar6 == 0) {
@@ -10653,8 +10653,8 @@ void FUN_1808975e0(longlong resourceHandle,longlong memorySize)
                 localPtr = &unknown_1809837c0;
                 localUInt = localUInt;
                 localUInt = 0;
-                iVar6 = FUN_180897520(resourceHandle,&localPtr);
-                if (iVar6 != 0) goto FUN_180897b16;
+                iVar6 = ValidateResourceAccess(resourceHandle,&localPtr);
+                if (iVar6 != 0) goto TerminateResourceOperation;
               }
               fVar13 = 0.0;
               pfVar15 = (float *)(buffer + 0x94);
@@ -10665,8 +10665,8 @@ void FUN_1808975e0(longlong resourceHandle,longlong memorySize)
                   localPtr = &unknown_1809839d8;
                   fStack_1a8 = fVar13;
                   fStack_1a4 = *pfVar15;
-                  iVar6 = FUN_180897520(resourceHandle,&localPtr);
-                  if (iVar6 != 0) goto FUN_180897b16;
+                  iVar6 = ValidateResourceAccess(resourceHandle,&localPtr);
+                  if (iVar6 != 0) goto TerminateResourceOperation;
                 }
                 fVar13 = (float)((int)fVar13 + 1);
                 pfVar15 = pfVar15 + 1;
@@ -10681,8 +10681,8 @@ void FUN_1808975e0(longlong resourceHandle,longlong memorySize)
                   localPtr = &unknown_180983950;
                   fStack_1a8 = fVar13;
                   fStack_1a4 = fVar1;
-                  iVar6 = FUN_180897520(resourceHandle,&localPtr);
-                  if (iVar6 != 0) goto FUN_180897b16;
+                  iVar6 = ValidateResourceAccess(resourceHandle,&localPtr);
+                  if (iVar6 != 0) goto TerminateResourceOperation;
                 }
                 fVar13 = (float)((int)fVar13 + 1);
                 pfVar15 = pfVar15 + 1;
@@ -10693,24 +10693,24 @@ void FUN_1808975e0(longlong resourceHandle,longlong memorySize)
                 localUInt = localUInt;
                 localUInt = 0;
                 fStack_1a8 = (float)(uVar7 / FIELD_OFFSET_1);
-                iVar6 = FUN_180897520(resourceHandle,&localPtr);
-                if (iVar6 != 0) goto FUN_180897b16;
+                iVar6 = ValidateResourceAccess(resourceHandle,&localPtr);
+                if (iVar6 != 0) goto TerminateResourceOperation;
               }
               if ((*(uint *)(memorySize + POINTER_OFFSET_CHECKSUM) >> 1 & 1) != 0) {
                 localUInt = 0;
                 localPtr = &unknown_180983a60;
                 localUInt = localUInt;
                 fStack_1a8 = (float)CONCAT31(fStack_1a8._1_3_,1);
-                iVar6 = FUN_180897520(resourceHandle,&localPtr);
-                if (iVar6 != 0) goto FUN_180897b16;
+                iVar6 = ValidateResourceAccess(resourceHandle,&localPtr);
+                if (iVar6 != 0) goto TerminateResourceOperation;
               }
               iVar6 = utilityAllocateMemoryBlock(memorySize);
               if (iVar6 != 2) {
                 localUInt = 0;
                 localPtr = &unknown_180983ae8;
                 localUInt = localUInt;
-                iVar6 = FUN_180897520(resourceHandle,&localPtr);
-                if (iVar6 != 0) goto FUN_180897b16;
+                iVar6 = ValidateResourceAccess(resourceHandle,&localPtr);
+                if (iVar6 != 0) goto TerminateResourceOperation;
               }
               iVar6 = utilityAllocateMemoryBlock(memorySize);
               if (iVar6 == 4) {
@@ -10718,14 +10718,14 @@ void FUN_1808975e0(longlong resourceHandle,longlong memorySize)
                 localPtr = &unknown_180983b68;
                 localUInt = localUInt;
                 fStack_1a8 = 0.0;
-                iVar6 = FUN_180897520(resourceHandle,&localPtr);
-                if (iVar6 != 0) goto FUN_180897b16;
+                iVar6 = ValidateResourceAccess(resourceHandle,&localPtr);
+                if (iVar6 != 0) goto TerminateResourceOperation;
               }
               if ((*(uint *)(memorySize + POINTER_OFFSET_CHECKSUM) >> 3 & 1) != 0) {
                 localUInt = 0;
                 localPtr = &unknown_180983cf8;
                 localUInt = localUInt;
-                FUN_180897520(resourceHandle,&localPtr);
+                ValidateResourceAccess(resourceHandle,&localPtr);
               }
             }
           }
@@ -10733,7 +10733,7 @@ void FUN_1808975e0(longlong resourceHandle,longlong memorySize)
       }
     }
   }
-FUN_180897b16:
+TerminateResourceOperation:
                     // WARNING: Subroutine does not return
   ExecuteSecurityCheck(localUInt ^ (ulonglong)localBuffer);
 }
@@ -10741,8 +10741,8 @@ FUN_180897b16:
 
 
 
-// 函数: void FUN_180897644(void)
-void FUN_180897644(void)
+// 函数: void ExecuteResourceCommand(void)
+void ExecuteResourceCommand(void)
 
 {
   float fVar1;
@@ -10815,7 +10815,7 @@ void FUN_180897644(void)
     *(uint32 *)(unaff_RBP + -0xf) = uStackX_20;
     *(float *)(unaff_RBP + -RESOURCE_HANDLE_OFFSET) = fStack0000000000000048;
     in_stack_00000078 = unaff_R13D;
-    localInt13 = FUN_180897520(extraout_XMM0_Da,&stack0x00000070);
+    localInt13 = ValidateResourceAccess(extraout_XMM0_Da,&stack0x00000070);
     if (localInt13 == 0) {
       in_stack_00000060 = (longlong)*(int *)(unaff_R15 + BYTE_OFFSET_2);
       if (0 < in_stack_00000060) {
@@ -10844,8 +10844,8 @@ void FUN_180897644(void)
               preturnValue8 = *(data **)(buffer + LIST_OFFSET_HEAD);
             }
             localUInt24 = func_0x00018076b450(unaff_RBP + 1,preturnValue8,BUFFER_OFFSET_TEMP);
-            localInt13 = FUN_180897520(localUInt24,unaff_RBP + -4);
-            if (localInt13 != 0) goto FUN_180897b0e;
+            localInt13 = ValidateResourceAccess(localUInt24,unaff_RBP + -4);
+            if (localInt13 != 0) goto FinalizeResourceProcess;
           }
           unaff_R13D = 0.0;
           localUInt23 = localUInt23 + 1;
@@ -10886,9 +10886,9 @@ void FUN_180897644(void)
             *(uint32 *)((longlong)unaff_RBP + -FIELD_OFFSET_2) = uVar9;
             *(uint32 *)(unaff_RBP + -6) = returnValue0;
             *(uint32 *)((longlong)unaff_RBP + -FIELD_OFFSET_4) = returnValue1;
-            localInt13 = FUN_180897520(uVar8,unaff_RBP + -0xe);
+            localInt13 = ValidateResourceAccess(uVar8,unaff_RBP + -0xe);
             localUInt24 = extraout_XMM0_Da_02;
-            if (localInt13 != 0) goto FUN_180897b0e;
+            if (localInt13 != 0) goto FinalizeResourceProcess;
           }
         }
         localInt13 = FUN_1808682e0(localUInt24,(longlong)&stack0x00000048 + 4,0);
@@ -10900,9 +10900,9 @@ void FUN_180897644(void)
             in_stack_00000028 = &unknown_180983738;
             in_stack_00000038 = uStackX_20;
             stackParameter1 = unaff_R13D;
-            localInt13 = FUN_180897520(fStack000000000000004c,&stack0x00000028);
+            localInt13 = ValidateResourceAccess(fStack000000000000004c,&stack0x00000028);
             fStack000000000000004c = extraout_XMM0_Da_03;
-            if (localInt13 != 0) goto FUN_180897b0e;
+            if (localInt13 != 0) goto FinalizeResourceProcess;
           }
           localInt13 = FUN_180868270(fStack000000000000004c,&stack0x00000050,0);
           if (localInt13 == 0) {
@@ -10911,8 +10911,8 @@ void FUN_180897644(void)
               in_stack_00000028 = &unknown_1809837c0;
               in_stack_00000038 = uStackX_20;
               stackParameter1 = unaff_R13D;
-              localInt13 = FUN_180897520(in_stack_00000050,&stack0x00000028);
-              if (localInt13 != 0) goto FUN_180897b0e;
+              localInt13 = ValidateResourceAccess(in_stack_00000050,&stack0x00000028);
+              if (localInt13 != 0) goto FinalizeResourceProcess;
             }
             pfVar21 = (float *)(unaff_R15 + 0x94);
             fVar19 = unaff_R13D;
@@ -10924,8 +10924,8 @@ void FUN_180897644(void)
                 stackParameter1 = unaff_R13D;
                 fStack0000000000000040 = fVar19;
                 fStack0000000000000044 = fVar1;
-                localInt13 = FUN_180897520(fVar1,&stack0x00000028);
-                if (localInt13 != 0) goto FUN_180897b0e;
+                localInt13 = ValidateResourceAccess(fVar1,&stack0x00000028);
+                if (localInt13 != 0) goto FinalizeResourceProcess;
               }
               fVar19 = (float)((int)fVar19 + 1);
               pfVar21 = pfVar21 + 1;
@@ -10940,8 +10940,8 @@ void FUN_180897644(void)
                 stackParameter1 = unaff_R13D;
                 fStack0000000000000040 = fVar19;
                 fStack0000000000000044 = fVar1;
-                localInt13 = FUN_180897520(fVar1,&stack0x00000028);
-                if (localInt13 != 0) goto FUN_180897b0e;
+                localInt13 = ValidateResourceAccess(fVar1,&stack0x00000028);
+                if (localInt13 != 0) goto FinalizeResourceProcess;
               }
               fVar19 = (float)((int)fVar19 + 1);
               pfVar21 = pfVar21 + 1;
@@ -10953,25 +10953,25 @@ void FUN_180897644(void)
               in_stack_00000038 = uStackX_20;
               stackParameter1 = unaff_R13D;
               fStack0000000000000040 = (float)(returnValue4 / FIELD_OFFSET_1);
-              localInt13 = FUN_180897520(extraout_XMM0_Da_04,&stack0x00000028);
+              localInt13 = ValidateResourceAccess(extraout_XMM0_Da_04,&stack0x00000028);
               localUInt24 = extraout_XMM0_Da_05;
-              if (localInt13 != 0) goto FUN_180897b0e;
+              if (localInt13 != 0) goto FinalizeResourceProcess;
             }
             if ((*(uint *)(unaff_R14 + POINTER_OFFSET_CHECKSUM) >> 1 & 1) != 0) {
               in_stack_00000028 = &unknown_180983a60;
               in_stack_00000038 = uStackX_20;
               fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
               stackParameter1 = unaff_R13D;
-              localInt13 = FUN_180897520(localUInt24,&stack0x00000028);
-              if (localInt13 != 0) goto FUN_180897b0e;
+              localInt13 = ValidateResourceAccess(localUInt24,&stack0x00000028);
+              if (localInt13 != 0) goto FinalizeResourceProcess;
             }
             localInt13 = utilityAllocateMemoryBlock(unaff_R14);
             if (localInt13 != 2) {
               in_stack_00000028 = &unknown_180983ae8;
               in_stack_00000038 = uStackX_20;
               stackParameter1 = unaff_R13D;
-              localInt13 = FUN_180897520(extraout_XMM0_Da_06,&stack0x00000028);
-              if (localInt13 != 0) goto FUN_180897b0e;
+              localInt13 = ValidateResourceAccess(extraout_XMM0_Da_06,&stack0x00000028);
+              if (localInt13 != 0) goto FinalizeResourceProcess;
             }
             localInt13 = utilityAllocateMemoryBlock(unaff_R14);
             localUInt24 = extraout_XMM0_Da_07;
@@ -10980,22 +10980,22 @@ void FUN_180897644(void)
               in_stack_00000038 = uStackX_20;
               stackParameter1 = unaff_R13D;
               fStack0000000000000040 = unaff_R13D;
-              localInt13 = FUN_180897520(extraout_XMM0_Da_07,&stack0x00000028);
+              localInt13 = ValidateResourceAccess(extraout_XMM0_Da_07,&stack0x00000028);
               localUInt24 = extraout_XMM0_Da_08;
-              if (localInt13 != 0) goto FUN_180897b0e;
+              if (localInt13 != 0) goto FinalizeResourceProcess;
             }
             if ((*(uint *)(unaff_R14 + POINTER_OFFSET_CHECKSUM) >> 3 & 1) != 0) {
               in_stack_00000028 = &unknown_180983cf8;
               in_stack_00000038 = uStackX_20;
               stackParameter1 = unaff_R13D;
-              FUN_180897520(localUInt24,&stack0x00000028);
+              ValidateResourceAccess(localUInt24,&stack0x00000028);
             }
           }
         }
       }
     }
   }
-FUN_180897b0e:
+FinalizeResourceProcess:
                     // WARNING: Subroutine does not return
   ExecuteSecurityCheck(unaff_RBP[0x12] ^ (ulonglong)&stack0x00000000);
 }
@@ -11003,8 +11003,8 @@ FUN_180897b0e:
 
 
 
-// 函数: void FUN_1808976b0(void)
-void FUN_1808976b0(void)
+// 函数: void HandleResourceCallback(void)
+void HandleResourceCallback(void)
 
 {
   float fVar1;
@@ -11090,8 +11090,8 @@ void FUN_1808976b0(void)
           preturnValue8 = *(data **)(buffer + LIST_OFFSET_HEAD);
         }
         localUInt23 = func_0x00018076b450(unaff_RBP + 1,preturnValue8,BUFFER_OFFSET_TEMP);
-        localInt13 = FUN_180897520(localUInt23,unaff_RBP + -4);
-        if (localInt13 != 0) goto FUN_180897afe;
+        localInt13 = ValidateResourceAccess(localUInt23,unaff_RBP + -4);
+        if (localInt13 != 0) goto CompleteResourceOperation;
       }
       unaff_R13D = 0.0;
       localUInt22 = localUInt22 + 1;
@@ -11132,9 +11132,9 @@ void FUN_1808976b0(void)
         *(uint32 *)((longlong)unaff_RBP + -FIELD_OFFSET_2) = uVar9;
         *(uint32 *)(unaff_RBP + -6) = returnValue0;
         *(uint32 *)((longlong)unaff_RBP + -FIELD_OFFSET_4) = returnValue1;
-        localInt13 = FUN_180897520(uVar8,unaff_RBP + -0xe);
+        localInt13 = ValidateResourceAccess(uVar8,unaff_RBP + -0xe);
         localUInt23 = extraout_XMM0_Da_01;
-        if (localInt13 != 0) goto FUN_180897afe;
+        if (localInt13 != 0) goto CompleteResourceOperation;
       }
     }
     localInt13 = FUN_1808682e0(localUInt23,(longlong)&stack0x00000048 + 4,0);
@@ -11146,9 +11146,9 @@ void FUN_1808976b0(void)
         in_stack_00000028 = &unknown_180983738;
         in_stack_00000038 = uStackX_20;
         stackParameter1 = unaff_R13D;
-        localInt13 = FUN_180897520(in_stack_00000048._4_4_,&stack0x00000028);
+        localInt13 = ValidateResourceAccess(in_stack_00000048._4_4_,&stack0x00000028);
         in_stack_00000048._4_4_ = extraout_XMM0_Da_02;
-        if (localInt13 != 0) goto FUN_180897afe;
+        if (localInt13 != 0) goto CompleteResourceOperation;
       }
       localInt13 = FUN_180868270(in_stack_00000048._4_4_,&stack0x00000050,0);
       if (localInt13 == 0) {
@@ -11157,8 +11157,8 @@ void FUN_1808976b0(void)
           in_stack_00000028 = &unknown_1809837c0;
           in_stack_00000038 = uStackX_20;
           stackParameter1 = unaff_R13D;
-          localInt13 = FUN_180897520(in_stack_00000050,&stack0x00000028);
-          if (localInt13 != 0) goto FUN_180897afe;
+          localInt13 = ValidateResourceAccess(in_stack_00000050,&stack0x00000028);
+          if (localInt13 != 0) goto CompleteResourceOperation;
         }
         pfVar21 = (float *)(unaff_R15 + 0x94);
         fVar19 = unaff_R13D;
@@ -11170,8 +11170,8 @@ void FUN_1808976b0(void)
             stackParameter1 = unaff_R13D;
             fStack0000000000000040 = fVar19;
             fStack0000000000000044 = fVar1;
-            localInt13 = FUN_180897520(fVar1,&stack0x00000028);
-            if (localInt13 != 0) goto FUN_180897afe;
+            localInt13 = ValidateResourceAccess(fVar1,&stack0x00000028);
+            if (localInt13 != 0) goto CompleteResourceOperation;
           }
           fVar19 = (float)((int)fVar19 + 1);
           pfVar21 = pfVar21 + 1;
@@ -11186,8 +11186,8 @@ void FUN_1808976b0(void)
             stackParameter1 = unaff_R13D;
             fStack0000000000000040 = fVar19;
             fStack0000000000000044 = fVar1;
-            localInt13 = FUN_180897520(fVar1,&stack0x00000028);
-            if (localInt13 != 0) goto FUN_180897afe;
+            localInt13 = ValidateResourceAccess(fVar1,&stack0x00000028);
+            if (localInt13 != 0) goto CompleteResourceOperation;
           }
           fVar19 = (float)((int)fVar19 + 1);
           pfVar21 = pfVar21 + 1;
@@ -11199,25 +11199,25 @@ void FUN_1808976b0(void)
           in_stack_00000038 = uStackX_20;
           stackParameter1 = unaff_R13D;
           fStack0000000000000040 = (float)(returnValue4 / FIELD_OFFSET_1);
-          localInt13 = FUN_180897520(extraout_XMM0_Da_03,&stack0x00000028);
+          localInt13 = ValidateResourceAccess(extraout_XMM0_Da_03,&stack0x00000028);
           localUInt23 = extraout_XMM0_Da_04;
-          if (localInt13 != 0) goto FUN_180897afe;
+          if (localInt13 != 0) goto CompleteResourceOperation;
         }
         if ((*(uint *)(unaff_R14 + POINTER_OFFSET_CHECKSUM) >> 1 & 1) != 0) {
           in_stack_00000028 = &unknown_180983a60;
           in_stack_00000038 = uStackX_20;
           fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
           stackParameter1 = unaff_R13D;
-          localInt13 = FUN_180897520(localUInt23,&stack0x00000028);
-          if (localInt13 != 0) goto FUN_180897afe;
+          localInt13 = ValidateResourceAccess(localUInt23,&stack0x00000028);
+          if (localInt13 != 0) goto CompleteResourceOperation;
         }
         localInt13 = utilityAllocateMemoryBlock(unaff_R14);
         if (localInt13 != 2) {
           in_stack_00000028 = &unknown_180983ae8;
           in_stack_00000038 = uStackX_20;
           stackParameter1 = unaff_R13D;
-          localInt13 = FUN_180897520(extraout_XMM0_Da_05,&stack0x00000028);
-          if (localInt13 != 0) goto FUN_180897afe;
+          localInt13 = ValidateResourceAccess(extraout_XMM0_Da_05,&stack0x00000028);
+          if (localInt13 != 0) goto CompleteResourceOperation;
         }
         localInt13 = utilityAllocateMemoryBlock(unaff_R14);
         localUInt23 = extraout_XMM0_Da_06;
@@ -11226,20 +11226,20 @@ void FUN_1808976b0(void)
           in_stack_00000038 = uStackX_20;
           stackParameter1 = unaff_R13D;
           fStack0000000000000040 = unaff_R13D;
-          localInt13 = FUN_180897520(extraout_XMM0_Da_06,&stack0x00000028);
+          localInt13 = ValidateResourceAccess(extraout_XMM0_Da_06,&stack0x00000028);
           localUInt23 = extraout_XMM0_Da_07;
-          if (localInt13 != 0) goto FUN_180897afe;
+          if (localInt13 != 0) goto CompleteResourceOperation;
         }
         if ((*(uint *)(unaff_R14 + POINTER_OFFSET_CHECKSUM) >> 3 & 1) != 0) {
           in_stack_00000028 = &unknown_180983cf8;
           in_stack_00000038 = uStackX_20;
           stackParameter1 = unaff_R13D;
-          FUN_180897520(localUInt23,&stack0x00000028);
+          ValidateResourceAccess(localUInt23,&stack0x00000028);
         }
       }
     }
   }
-FUN_180897afe:
+CompleteResourceOperation:
                     // WARNING: Subroutine does not return
   ExecuteSecurityCheck(unaff_RBP[0x12] ^ (ulonglong)&stack0x00000000);
 }
@@ -11247,8 +11247,8 @@ FUN_180897afe:
 
 
 
-// 函数: void FUN_180897859(float resourceHandle)
-void FUN_180897859(float resourceHandle)
+// 函数: void ValidateResourceFloat(float resourceHandle)
+void ValidateResourceFloat(float resourceHandle)
 
 {
   float fVar1;
@@ -11280,7 +11280,7 @@ void FUN_180897859(float resourceHandle)
     in_stack_00000038 = uStackX_20;
     stackParameter1 = unaff_R13D;
     fStack0000000000000040 = resourceHandle;
-    status = FUN_180897520(resourceHandle,&stack0x00000028);
+    status = ValidateResourceAccess(resourceHandle,&stack0x00000028);
     resourceHandle = extraout_XMM0_Da;
     if (status != 0) goto LAB_180897af6;
   }
@@ -11291,7 +11291,7 @@ void FUN_180897859(float resourceHandle)
       in_stack_00000028 = &unknown_1809837c0;
       in_stack_00000038 = uStackX_20;
       stackParameter1 = unaff_R13D;
-      status = FUN_180897520(in_stack_00000050,&stack0x00000028);
+      status = ValidateResourceAccess(in_stack_00000050,&stack0x00000028);
       if (status != 0) goto LAB_180897af6;
     }
     pfVar5 = (float *)(unaff_R15 + 0x94);
@@ -11304,7 +11304,7 @@ void FUN_180897859(float resourceHandle)
         stackParameter1 = unaff_R13D;
         fStack0000000000000040 = fVar4;
         fStack0000000000000044 = fVar1;
-        status = FUN_180897520(fVar1,&stack0x00000028);
+        status = ValidateResourceAccess(fVar1,&stack0x00000028);
         if (status != 0) goto LAB_180897af6;
       }
       fVar4 = (float)((int)fVar4 + 1);
@@ -11320,7 +11320,7 @@ void FUN_180897859(float resourceHandle)
         stackParameter1 = unaff_R13D;
         fStack0000000000000040 = fVar4;
         fStack0000000000000044 = fVar1;
-        status = FUN_180897520(fVar1,&stack0x00000028);
+        status = ValidateResourceAccess(fVar1,&stack0x00000028);
         if (status != 0) goto LAB_180897af6;
       }
       fVar4 = (float)((int)fVar4 + 1);
@@ -11333,7 +11333,7 @@ void FUN_180897859(float resourceHandle)
       in_stack_00000038 = uStackX_20;
       stackParameter1 = unaff_R13D;
       fStack0000000000000040 = (float)(uVar3 / FIELD_OFFSET_1);
-      status = FUN_180897520(extraout_XMM0_Da_00,&stack0x00000028);
+      status = ValidateResourceAccess(extraout_XMM0_Da_00,&stack0x00000028);
       uVar6 = extraout_XMM0_Da_01;
       if (status != 0) goto LAB_180897af6;
     }
@@ -11342,7 +11342,7 @@ void FUN_180897859(float resourceHandle)
       in_stack_00000038 = uStackX_20;
       fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
       stackParameter1 = unaff_R13D;
-      status = FUN_180897520(uVar6,&stack0x00000028);
+      status = ValidateResourceAccess(uVar6,&stack0x00000028);
       if (status != 0) goto LAB_180897af6;
     }
     status = utilityAllocateMemoryBlock();
@@ -11350,7 +11350,7 @@ void FUN_180897859(float resourceHandle)
       in_stack_00000028 = &unknown_180983ae8;
       in_stack_00000038 = uStackX_20;
       stackParameter1 = unaff_R13D;
-      status = FUN_180897520(extraout_XMM0_Da_02,&stack0x00000028);
+      status = ValidateResourceAccess(extraout_XMM0_Da_02,&stack0x00000028);
       if (status != 0) goto LAB_180897af6;
     }
     status = utilityAllocateMemoryBlock();
@@ -11360,7 +11360,7 @@ void FUN_180897859(float resourceHandle)
       in_stack_00000038 = uStackX_20;
       stackParameter1 = unaff_R13D;
       fStack0000000000000040 = unaff_R13D;
-      status = FUN_180897520(extraout_XMM0_Da_03,&stack0x00000028);
+      status = ValidateResourceAccess(extraout_XMM0_Da_03,&stack0x00000028);
       uVar6 = extraout_XMM0_Da_04;
       if (status != 0) goto LAB_180897af6;
     }
@@ -11368,7 +11368,7 @@ void FUN_180897859(float resourceHandle)
       in_stack_00000028 = &unknown_180983cf8;
       in_stack_00000038 = uStackX_20;
       stackParameter1 = unaff_R13D;
-      FUN_180897520(uVar6,&stack0x00000028);
+      ValidateResourceAccess(uVar6,&stack0x00000028);
     }
   }
 LAB_180897af6:
@@ -11379,8 +11379,8 @@ LAB_180897af6:
 
 
 
-// 函数: void FUN_180897afe(void)
-void FUN_180897afe(void)
+// 函数: void CompleteResourceOperation(void)
+void CompleteResourceOperation(void)
 
 {
   longlong unaff_RBP;
@@ -11392,8 +11392,8 @@ void FUN_180897afe(void)
 
 
 
-// 函数: void FUN_180897b0e(void)
-void FUN_180897b0e(void)
+// 函数: void FinalizeResourceProcess(void)
+void FinalizeResourceProcess(void)
 
 {
   longlong unaff_RBP;
@@ -11405,8 +11405,8 @@ void FUN_180897b0e(void)
 
 
 
-// 函数: void FUN_180897b16(void)
-void FUN_180897b16(void)
+// 函数: void TerminateResourceOperation(void)
+void TerminateResourceOperation(void)
 
 {
   longlong unaff_RBP;
@@ -11420,8 +11420,8 @@ void FUN_180897b16(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180897b40(longlong *resourceHandle,longlong memorySize,uint32 operationFlags)
-void FUN_180897b40(longlong *resourceHandle,longlong memorySize,uint32 operationFlags)
+// 函数: void CreateResourceInstance(longlong *resourceHandle,longlong memorySize,uint32 operationFlags)
+void CreateResourceInstance(longlong *resourceHandle,longlong memorySize,uint32 operationFlags)
 
 {
   longlong localLong1;
@@ -11477,7 +11477,7 @@ LAB_180897ce8:
       localUInt = localBuffer[0];
       localUInt = operationFlags;
       localInt = counter;
-      counter = FUN_180897520(resourceHandle,&localPtr);
+      counter = ValidateResourceAccess(resourceHandle,&localPtr);
       if (counter != 0) goto LAB_180897ce8;
       iVar6 = 0;
       iVar5 = func_0x0001808c7ed0(*(uint64 *)(localLong1 + STRUCT_OFFSET_1));
@@ -11489,7 +11489,7 @@ LAB_180897ce8:
           localPtr = &unknown_1809834f8;
           localUInt = localBuffer[0];
 <<<<<<< Updated upstream
-          if (((char)localLong2 == '\0') && (length = FUN_1808987e0(resourceHandle,1), length != 0))
+          if (((char)localLong2 == '\0') && (length = ValidateResourceBuffer(resourceHandle,1), length != 0))
           goto LAB_180897ce8;
           length = (**(code **)(localPtr + RESOURCE_HANDLE_OFFSET))(&localPtr,localBuffer,0x200);
           func_0x00018074b7b0((longlong)localBuffer + (longlong)length,0x200 - length,10);
@@ -11499,7 +11499,7 @@ LAB_180897ce8:
             length = (**(code **)(*resourceHandle + RESOURCE_OFFSET_HANDLE))(resourceHandle);
             if (length != 0) goto LAB_180897ce8;
 =======
-          if (((char)buffer == '\0') && (length = FUN_1808987e0(resourceHandle,1), localInt3 != 0))
+          if (((char)buffer == '\0') && (length = ValidateResourceBuffer(resourceHandle,1), localInt3 != 0))
           goto LAB_180897ce8;
           length = (**(code **)(localPtr + RESOURCE_HANDLE_OFFSET))(&localPtr,localBuffer,0x200);
           func_0x00018074b7b0((longlong)localBuffer + (longlong)localInt3,0x200 - localInt3,10);
@@ -11525,8 +11525,8 @@ LAB_180897ce8:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180897d20(longlong *resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
-void FUN_180897d20(longlong *resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
+// 函数: void InitializeResourceData(longlong *resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
+void InitializeResourceData(longlong *resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
 
 {
   uint64 uStackX_18;
@@ -11546,7 +11546,7 @@ void FUN_180897d20(longlong *resourceHandle,uint64 memorySize,uint64 operationFl
 
 
 
-uint64 FUN_180897d90(longlong *resourceHandle)
+uint64 GetResourceInfo(longlong *resourceHandle)
 
 {
   longlong localLong1;
@@ -11566,7 +11566,7 @@ uint64 FUN_180897d90(longlong *resourceHandle)
   localPtr = &unknown_180986408;
   localUInt = 2;
   localUInt = 0x20214;
-  localUInt2 = FUN_180897520(resourceHandle,&localPtr);
+  localUInt2 = ValidateResourceAccess(resourceHandle,&localPtr);
   if ((int)localUInt2 == 0) {
     localLong1 = *(longlong *)(resourceHandle[1] + HANDLE_OFFSET_DATA);
     index = func_0x000180879a40();
@@ -11577,46 +11577,46 @@ uint64 FUN_180897d90(longlong *resourceHandle)
       localUInt2 = (**(code **)(*resourceHandle + 8))(resourceHandle,&unknown_1809864dc);
       if ((int)localUInt2 == 0) {
         uVar4 = 0x14;
-        localUInt2 = FUN_180897d20(resourceHandle,&unknown_1809864e0,2,2,0x14);
+        localUInt2 = InitializeResourceData(resourceHandle,&unknown_1809864e0,2,2,0x14);
         if (((((int)localUInt2 == 0) &&
-             (localUInt2 = FUN_180897d20(resourceHandle,&unknown_180986508,*(uint32 *)(localLong1 + 0x116bc)),
+             (localUInt2 = InitializeResourceData(resourceHandle,&unknown_180986508,*(uint32 *)(localLong1 + 0x116bc)),
              (int)localUInt2 == 0)) &&
-            (localUInt2 = FUN_180897d20(resourceHandle,&unknown_180986550,(ulonglong)*(uint *)(localLong1 + 0x6d8),
+            (localUInt2 = InitializeResourceData(resourceHandle,&unknown_180986550,(ulonglong)*(uint *)(localLong1 + 0x6d8),
                                    (ulonglong)*(uint *)(localLong1 + 0x6dc) /
                                    (ulonglong)*(uint *)(localLong1 + 0x6d8),uVar4), (int)localUInt2 == 0)) &&
-           (localUInt2 = FUN_180897d20(resourceHandle,&unknown_180986590,*(uint32 *)(localLong1 + 0x6d0),
+           (localUInt2 = InitializeResourceData(resourceHandle,&unknown_180986590,*(uint32 *)(localLong1 + 0x6d0),
                                   *(uint32 *)(localLong1 + 0x1193c),*(uint32 *)(localLong1 + 0x6d4)),
            (int)localUInt2 == 0)) {
           uVar4 = *(uint32 *)(localLong1 + 0x11668);
           uVar8 = *(uint32 *)(localLong1 + 0x11624);
           uVar7 = *(uint32 *)(localLong1 + 0x11620);
           uVar6 = *(uint32 *)(localLong1 + 0x1161c);
-          localUInt2 = FUN_180897d20(resourceHandle,&unknown_1809865f0,*(uint32 *)(localLong1 + 0x1160c),
+          localUInt2 = InitializeResourceData(resourceHandle,&unknown_1809865f0,*(uint32 *)(localLong1 + 0x1160c),
                                 *(uint32 *)(localLong1 + 0x11610),*(uint32 *)(localLong1 + 0x11614),
                                 *(uint32 *)(localLong1 + 0x11618),uVar6,uVar7,uVar8,uVar4);
           if (((int)localUInt2 == 0) &&
-             (localUInt2 = FUN_180897d20(resourceHandle,&unknown_1809866c0,*(uint32 *)(localLong1 + 0x11628),
+             (localUInt2 = InitializeResourceData(resourceHandle,&unknown_1809866c0,*(uint32 *)(localLong1 + 0x11628),
                                     (double)*(float *)(localLong1 + 0x11640),
                                     *(uint32 *)(localLong1 + 0x11644),
                                     *(uint32 *)(localLong1 + 0x1164c),uVar6,uVar7,uVar8,uVar4),
              (int)localUInt2 == 0)) {
             uVar6 = *(uint32 *)(localLong1 + 0x11660);
-            localUInt2 = FUN_180897d20(resourceHandle,&unknown_180986730,(double)*(float *)(localLong1 + 0x11650),
+            localUInt2 = InitializeResourceData(resourceHandle,&unknown_180986730,(double)*(float *)(localLong1 + 0x11650),
                                   *(uint32 *)(localLong1 + 0x11654),*(uint32 *)(localLong1 + 0x11658),
                                   *(uint32 *)(localLong1 + 0x1165c),uVar6,uVar7,uVar8,uVar4);
             if ((int)localUInt2 == 0) {
               uVar5 = *(uint32 *)(index + RESOURCE_HANDLE_OFFSET);
-              localUInt2 = FUN_180897d20(resourceHandle,&unknown_1809867b0,*(uint32 *)(index + 4),
+              localUInt2 = InitializeResourceData(resourceHandle,&unknown_1809867b0,*(uint32 *)(index + 4),
                                     *(uint32 *)(index + 8),*(uint32 *)(index + 0xc),uVar5,
                                     uVar6,uVar7,uVar8,uVar4);
               if ((((int)localUInt2 == 0) &&
-                  (localUInt2 = FUN_180897d20(resourceHandle,&unknown_180986850,*(uint32 *)(localLong1 + 0x1e0),
+                  (localUInt2 = InitializeResourceData(resourceHandle,&unknown_180986850,*(uint32 *)(localLong1 + 0x1e0),
                                          *(uint32 *)(resourceHandle[1] + POINTER_OFFSET_DATA),
                                          *(uint32 *)(localLong1 + HANDLE_OFFSET_DATA),uVar5,uVar6,uVar7,uVar8,uVar4
                                         ), (int)localUInt2 == 0)) &&
                  ((localUInt2 = (**(code **)(*resourceHandle + 8))(resourceHandle,&unknown_1809864dc), (int)localUInt2 == 0 &&
                   (((*(uint *)(resourceHandle + 3) & 2) != 0 ||
-                   (localUInt2 = FUN_180898040(resourceHandle), (int)localUInt2 == 0)))))) {
+                   (localUInt2 = ProcessResourceRequest(resourceHandle), (int)localUInt2 == 0)))))) {
                 localUInt2 = 0;
               }
             }
@@ -11630,7 +11630,7 @@ uint64 FUN_180897d90(longlong *resourceHandle)
 
 
 
-uint64 FUN_180897dd3(void)
+uint64 CheckResourceStatus(void)
 
 {
   longlong localLong1;
@@ -11643,16 +11643,16 @@ uint64 FUN_180897dd3(void)
   }
   else {
     localUInt2 = (**(code **)(*baseRegister + 8))();
-    if ((((((((int)localUInt2 == 0) && (localUInt2 = FUN_180897d20(), (int)localUInt2 == 0)) &&
-           (localUInt2 = FUN_180897d20(), (int)localUInt2 == 0)) &&
-          ((localUInt2 = FUN_180897d20(), (int)localUInt2 == 0 && (localUInt2 = FUN_180897d20(), (int)localUInt2 == 0)))
-          ) && ((localUInt2 = FUN_180897d20(), (int)localUInt2 == 0 &&
-                ((localUInt2 = FUN_180897d20(), (int)localUInt2 == 0 &&
-                 (localUInt2 = FUN_180897d20(), (int)localUInt2 == 0)))))) &&
-        (localUInt2 = FUN_180897d20(), (int)localUInt2 == 0)) &&
-       ((localUInt2 = FUN_180897d20(), (int)localUInt2 == 0 &&
+    if ((((((((int)localUInt2 == 0) && (localUInt2 = InitializeResourceData(), (int)localUInt2 == 0)) &&
+           (localUInt2 = InitializeResourceData(), (int)localUInt2 == 0)) &&
+          ((localUInt2 = InitializeResourceData(), (int)localUInt2 == 0 && (localUInt2 = InitializeResourceData(), (int)localUInt2 == 0)))
+          ) && ((localUInt2 = InitializeResourceData(), (int)localUInt2 == 0 &&
+                ((localUInt2 = InitializeResourceData(), (int)localUInt2 == 0 &&
+                 (localUInt2 = InitializeResourceData(), (int)localUInt2 == 0)))))) &&
+        (localUInt2 = InitializeResourceData(), (int)localUInt2 == 0)) &&
+       ((localUInt2 = InitializeResourceData(), (int)localUInt2 == 0 &&
         (localUInt2 = (**(code **)(*baseRegister + 8))(), (int)localUInt2 == 0)))) {
-      if (((*(uint *)(baseRegister + 3) & 2) == 0) && (localUInt2 = FUN_180898040(), (int)localUInt2 != 0)) {
+      if (((*(uint *)(baseRegister + 3) & 2) == 0) && (localUInt2 = ProcessResourceRequest(), (int)localUInt2 != 0)) {
         return localUInt2;
       }
       localUInt2 = 0;
@@ -11664,8 +11664,8 @@ uint64 FUN_180897dd3(void)
 
 
 
-// 函数: void FUN_18089802e(void)
-void FUN_18089802e(void)
+// 函数: void UpdateResourceState(void)
+void UpdateResourceState(void)
 
 {
   return;
@@ -11677,8 +11677,8 @@ void FUN_18089802e(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180898040(longlong *resourceHandle)
-void FUN_180898040(longlong *resourceHandle)
+// 函数: void ProcessResourceRequest(longlong *resourceHandle)
+void ProcessResourceRequest(longlong *resourceHandle)
 
 {
   float fVar1;
@@ -11736,7 +11736,7 @@ void FUN_180898040(longlong *resourceHandle)
   plocalLong16 = (longlong *)0x0;
   localArray[1] = 0;
   iVar6 = utilityInitializeResource(localArray + 1,resourceHandle[1]);
-  if ((iVar6 == 0) && (iVar6 = FUN_1808987e0(resourceHandle,1), iVar6 == 0)) {
+  if ((iVar6 == 0) && (iVar6 = ValidateResourceBuffer(resourceHandle,1), iVar6 == 0)) {
     (**(code **)(*resourceHandle + 8))(resourceHandle,&unknown_180986488);
     if (((*(uint *)(resourceHandle + 3) & RESOURCE_HANDLE_OFFSET00000) == 0) ||
        (iVar6 = setup_memory_configuration(resourceHandle,*(uint64 *)(resourceHandle[1] + 0xc0),0,1), iVar6 == 0)) {
@@ -11780,7 +11780,7 @@ void FUN_180898040(longlong *resourceHandle)
         localUInt = localUInt & 0xffffffff00000000;
         plStack_340 = (longlong *)&unknown_180982378;
         aplStack_330[0] = (longlong *)CONCAT44(aplStack_330[0]._4_4_,iVar6);
-        iVar7 = FUN_180897520(resourceHandle,&plStack_340);
+        iVar7 = ValidateResourceAccess(resourceHandle,&plStack_340);
         if (iVar7 != 0) goto LAB_18089866f;
       }
       plocalLong14 = plocalLong16;
@@ -11819,7 +11819,7 @@ void FUN_180898040(longlong *resourceHandle)
           localUInt = localLong11 == 0;
           fStack_2c8 = fVar18;
           if (((char)localLong15 == '\0') &&
-             (iVar6 = FUN_1808987e0(resourceHandle,CONCAT71((uint7)(uint3)(localUInt >> 8),1)), iVar6 != 0
+             (iVar6 = ValidateResourceBuffer(resourceHandle,CONCAT71((uint7)(uint3)(localUInt >> 8),1)), iVar6 != 0
              )) goto LAB_18089866f;
           iVar6 = (**(code **)(localPtr + RESOURCE_HANDLE_OFFSET))(&localPtr,localBuffer,0x200);
           func_0x00018074b7b0(localBuffer + iVar6,0x200 - iVar6,10);
@@ -11876,7 +11876,7 @@ void FUN_180898040(longlong *resourceHandle)
               if (lVar4 != 0) {
                 aplStack_330[0] = (longlong *)(uVar9 - lVar4);
               }
-              iVar7 = FUN_180897520(resourceHandle,&plStack_340);
+              iVar7 = ValidateResourceAccess(resourceHandle,&plStack_340);
               if (iVar7 != 0) goto LAB_18089866f;
             }
             iVar7 = (**(code **)(localPtr + RESOURCE_HANDLE_OFFSET))(&localPtr,localBuffer,0x200);
@@ -11917,7 +11917,7 @@ void FUN_180898040(longlong *resourceHandle)
                 do {
                   localLong15 = *(longlong *)(plocalLong14[2] + 8 + (longlong)iVar6 * RESOURCE_HANDLE_OFFSET);
                   if (((*(longlong *)(localLong15 + BUFFER_OFFSET_TEMP) != 0) && (*(longlong *)(localLong15 + 0x350) == 0))
-                     && (iVar8 = FUN_1808975e0(resourceHandle), iVar8 != 0)) goto LAB_18089866f;
+                     && (iVar8 = ProcessResourceOperation(resourceHandle), iVar8 != 0)) goto LAB_18089866f;
                 } while ((iVar6 != -1) &&
                         (iVar6 = *(int *)(plocalLong14[2] + 4 + (longlong)iVar6 * RESOURCE_HANDLE_OFFSET), iVar6 != -1));
                 iVar6 = iVar7 + 1;
@@ -11984,8 +11984,8 @@ LAB_18089866f:
 
 
 
-// 函数: void FUN_1808986b0(longlong resourceHandle,uint64 memorySize)
-void FUN_1808986b0(longlong resourceHandle,uint64 memorySize)
+// 函数: void SetupResourceMemory(longlong resourceHandle,uint64 memorySize)
+void SetupResourceMemory(longlong resourceHandle,uint64 memorySize)
 
 {
   int status;
@@ -12031,7 +12031,7 @@ void FUN_1808986b0(longlong resourceHandle,uint64 memorySize)
 
 
 
-uint64 FUN_180898790(longlong *resourceHandle,int memorySize)
+uint64 AllocateResourceBuffer(longlong *resourceHandle,int memorySize)
 
 {
   int status;
@@ -12054,7 +12054,7 @@ uint64 FUN_180898790(longlong *resourceHandle,int memorySize)
 
 
 
-uint64 FUN_1808987e0(longlong *resourceHandle,char memorySize)
+uint64 ValidateResourceBuffer(longlong *resourceHandle,char memorySize)
 
 {
   longlong localLong1;
@@ -12082,7 +12082,7 @@ uint64 FUN_1808987e0(longlong *resourceHandle,char memorySize)
         localUInt = uVar4;
       }
       localPtr = &unknown_180986390;
-      localUInt2 = FUN_180897520(resourceHandle,&localPtr);
+      localUInt2 = ValidateResourceAccess(resourceHandle,&localPtr);
       if ((int)localUInt2 != 0) {
         return localUInt2;
       }
@@ -12094,7 +12094,7 @@ uint64 FUN_1808987e0(longlong *resourceHandle,char memorySize)
 
 
 
-uint64 FUN_1808988b0(longlong *resourceHandle,char *memorySize,uint64 *operationFlags)
+uint64 ConfigureResourceSettings(longlong *resourceHandle,char *memorySize,uint64 *operationFlags)
 
 {
   char *pcVar1;
@@ -12238,7 +12238,7 @@ binarySearchInArray(longlong arrayHandle, uint *searchKey, uint64 param3, uint32
 
 
 uint32
-FUN_180898b40(longlong *resourceHandle,int memorySize,uint32 *operationFlags,byte *callbackFunction,int param_5,
+ProcessResourceBatch(longlong *resourceHandle,int memorySize,uint32 *operationFlags,byte *callbackFunction,int param_5,
              int *param_6)
 
 {
@@ -12360,7 +12360,7 @@ FUN_180898b40(longlong *resourceHandle,int memorySize,uint32 *operationFlags,byt
 
 
 
-uint32 FUN_180898b65(uint64 resourceHandle,int memorySize,uint32 *operationFlags)
+uint32 ExecuteResourceTask(uint64 resourceHandle,int memorySize,uint32 *operationFlags)
 
 {
   uint32 *preturnValue;
@@ -12484,7 +12484,7 @@ uint32 FUN_180898b65(uint64 resourceHandle,int memorySize,uint32 *operationFlags
 
 
 
-uint32 FUN_180898bc0(uint64 resourceHandle,ulonglong memorySize)
+uint32 CompleteResourceTask(uint64 resourceHandle,ulonglong memorySize)
 
 {
   byte returnValue;
@@ -12589,7 +12589,7 @@ uint32 FUN_180898bc0(uint64 resourceHandle,ulonglong memorySize)
 
 
 
-uint32 FUN_180898c86(void)
+uint32 CheckResourceAvailability(void)
 
 {
   byte returnValue;
@@ -12655,7 +12655,7 @@ uint32 FUN_180898c86(void)
 
 
 
-uint32 FUN_180898d31(uint64 resourceHandle,int *memorySize)
+uint32 ValidateResourceSize(uint64 resourceHandle,int *memorySize)
 
 {
   uint32 unaff_R13D;
@@ -12667,7 +12667,7 @@ uint32 FUN_180898d31(uint64 resourceHandle,int *memorySize)
 
 
 
-uint64 FUN_180898d4d(void)
+uint64 GetResourceCount(void)
 
 {
   return ERROR_CODE_FAILED;
@@ -12677,7 +12677,7 @@ uint64 FUN_180898d4d(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64 FUN_180898d60(longlong *resourceHandle,int memorySize)
+uint64 AllocateResourceSpace(longlong *resourceHandle,int memorySize)
 
 {
   int status;
@@ -12727,7 +12727,7 @@ LAB_180898e0b:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64 FUN_180898d84(uint64 resourceHandle,int memorySize)
+uint64 ValidateResourceSpace(uint64 resourceHandle,int memorySize)
 
 {
   int status;
@@ -12774,7 +12774,7 @@ LAB_180898e0b:
 
 
 
-uint64 FUN_180898e56(void)
+uint64 FreeResourceSpace(void)
 
 {
   return 0x26;
@@ -12782,7 +12782,7 @@ uint64 FUN_180898e56(void)
 
 
 
-uint64 FUN_180898e70(longlong *resourceHandle,uint32 *memorySize)
+uint64 GetResourceCapacity(longlong *resourceHandle,uint32 *memorySize)
 
 {
   uint64 returnValue;
@@ -12798,7 +12798,7 @@ uint64 FUN_180898e70(longlong *resourceHandle,uint32 *memorySize)
 
 
 
-uint64 FUN_180898eb0(longlong *resourceHandle,uint32 *memorySize)
+uint64 CheckResourceCapacity(longlong *resourceHandle,uint32 *memorySize)
 
 {
   uint64 returnValue;
@@ -12814,7 +12814,7 @@ uint64 FUN_180898eb0(longlong *resourceHandle,uint32 *memorySize)
 
 
 
-uint64 FUN_180898ef0(uint64 *resourceHandle,longlong memorySize)
+uint64 ResizeResourceBuffer(uint64 *resourceHandle,longlong memorySize)
 
 {
   uint64 returnValue;
@@ -12833,7 +12833,7 @@ uint64 FUN_180898ef0(uint64 *resourceHandle,longlong memorySize)
 
 
 
-uint64 FUN_180898f40(longlong *resourceHandle,uint32 *memorySize)
+uint64 OptimizeResourceBuffer(longlong *resourceHandle,uint32 *memorySize)
 
 {
   longlong localLong1;
@@ -12860,8 +12860,8 @@ uint64 FUN_180898f40(longlong *resourceHandle,uint32 *memorySize)
 
 
 
-// 函数: void FUN_180898fc0(uint64 resourceHandle,longlong memorySize)
-void FUN_180898fc0(uint64 resourceHandle,longlong memorySize)
+// 函数: void InitializeResourceBuffer(uint64 resourceHandle,longlong memorySize)
+void InitializeResourceBuffer(uint64 resourceHandle,longlong memorySize)
 
 {
   int status;
@@ -12885,19 +12885,19 @@ void FUN_180898fc0(uint64 resourceHandle,longlong memorySize)
 
 
 
-// 函数: void FUN_180899040(uint64 resourceHandle,longlong memorySize)
-void FUN_180899040(uint64 resourceHandle,longlong memorySize)
+// 函数: void SetupResourceBuffer(uint64 resourceHandle,longlong memorySize)
+void SetupResourceBuffer(uint64 resourceHandle,longlong memorySize)
 
 {
   int status;
   
-  status = FUN_180899100();
+  status = FinalizeResourceBuffer();
   if (status == 0) {
-    status = FUN_180899100(resourceHandle,memorySize + 0xc);
+    status = FinalizeResourceBuffer(resourceHandle,memorySize + 0xc);
     if (status == 0) {
-      status = FUN_180899100(resourceHandle,memorySize + RESOURCE_OFFSET_HANDLE);
+      status = FinalizeResourceBuffer(resourceHandle,memorySize + RESOURCE_OFFSET_HANDLE);
       if (status == 0) {
-        FUN_180899100(resourceHandle,memorySize + FIELD_OFFSET_3);
+        FinalizeResourceBuffer(resourceHandle,memorySize + FIELD_OFFSET_3);
       }
     }
   }
@@ -12907,8 +12907,8 @@ void FUN_180899040(uint64 resourceHandle,longlong memorySize)
 
 
 
-// 函数: void FUN_180899090(uint64 resourceHandle,longlong memorySize)
-void FUN_180899090(uint64 resourceHandle,longlong memorySize)
+// 函数: void ConfigureResourceBuffer(uint64 resourceHandle,longlong memorySize)
+void ConfigureResourceBuffer(uint64 resourceHandle,longlong memorySize)
 
 {
   int status;
@@ -12929,8 +12929,8 @@ void FUN_180899090(uint64 resourceHandle,longlong memorySize)
 
 
 
-// 函数: void FUN_180899100(longlong resourceHandle,uint32 *memorySize)
-void FUN_180899100(longlong resourceHandle,uint32 *memorySize)
+// 函数: void FinalizeResourceBuffer(longlong resourceHandle,uint32 *memorySize)
+void FinalizeResourceBuffer(longlong resourceHandle,uint32 *memorySize)
 
 {
   int status;
@@ -12954,7 +12954,7 @@ void FUN_180899100(longlong resourceHandle,uint32 *memorySize)
 
 
 
-uint64 FUN_180899180(uint64 *resourceHandle,longlong memorySize)
+uint64 ValidateResourceBufferConfig(uint64 *resourceHandle,longlong memorySize)
 
 {
   uint64 returnValue;
@@ -13184,7 +13184,7 @@ LAB_180899456:
         aiStackX_8[0] = aiStackX_8[0] + -8;
         break;
       case 0x11:
-        returnValue = FUN_180899090(memorySize,puVar3 + 1);
+        returnValue = ConfigureResourceBuffer(memorySize,puVar3 + 1);
         if ((int)returnValue != 0) {
           return returnValue;
         }
@@ -13287,7 +13287,7 @@ LAB_1808996c5:
     if ((int)returnValue == 0) {
       if (0 < aiStackX_8[0]) {
         do {
-          returnValue = FUN_180898fc0(resourceHandle,*memorySize + (longlong)status * 0x14);
+          returnValue = InitializeResourceBuffer(resourceHandle,*memorySize + (longlong)status * 0x14);
           if ((int)returnValue != 0) {
             return returnValue;
           }
@@ -13932,7 +13932,7 @@ void FUN_180899c60(longlong resourceHandle,uint32 *memorySize)
   status = (**(code **)**(uint64 **)(resourceHandle + 8))(*(uint64 **)(resourceHandle + 8),auStackX_8,4);
   if (((((localInt1 == 0) && (status = FUN_1808affb0(resourceHandle,memorySize + 1), localInt1 == 0)) &&
        (((*(byte *)(memorySize + 1) & POINTER_OFFSET_DATA) == 0 ||
-        (status = FUN_180899040(resourceHandle,memorySize + 2), localInt1 == 0)))) &&
+        (status = SetupResourceBuffer(resourceHandle,memorySize + 2), localInt1 == 0)))) &&
       (((status = FUN_1808b0010(resourceHandle,memorySize + 0xe), localInt1 == 0 &&
         (status = FUN_1808b0010(resourceHandle,memorySize + 0xf), localInt1 == 0)) &&
        (status = FUN_1808b0010(resourceHandle,memorySize + RESOURCE_HANDLE_OFFSET), localInt1 == 0)))) &&
@@ -13972,7 +13972,7 @@ void FUN_180899c96(void)
   
   status = FUN_1808affb0();
   if (status == 0) {
-    if (((*(byte *)(baseRegister + 4) & POINTER_OFFSET_DATA) != 0) && (status = FUN_180899040(), localInt1 != 0)) {
+    if (((*(byte *)(baseRegister + 4) & POINTER_OFFSET_DATA) != 0) && (status = SetupResourceBuffer(), localInt1 != 0)) {
       return;
     }
     status = FUN_1808b0010();
@@ -14209,19 +14209,19 @@ void FUN_180899fe0(longlong resourceHandle,uint32 *memorySize)
         status = 0;
         if (0 < (int)memorySize[0x68]) {
           do {
-            length = FUN_180899100(resourceHandle,memorySize + (longlong)status * 0xc + 4);
+            length = FinalizeResourceBuffer(resourceHandle,memorySize + (longlong)status * 0xc + 4);
             if (length != 0) {
               return;
             }
-            length = FUN_180899100(resourceHandle,memorySize + (longlong)status * 0xc + 7);
+            length = FinalizeResourceBuffer(resourceHandle,memorySize + (longlong)status * 0xc + 7);
             if (length != 0) {
               return;
             }
-            length = FUN_180899100(resourceHandle,memorySize + (longlong)status * 0xc + 10);
+            length = FinalizeResourceBuffer(resourceHandle,memorySize + (longlong)status * 0xc + 10);
             if (length != 0) {
               return;
             }
-            length = FUN_180899100(resourceHandle,memorySize + (longlong)status * 0xc + 0xd);
+            length = FinalizeResourceBuffer(resourceHandle,memorySize + (longlong)status * 0xc + 0xd);
             if (length != 0) {
               return;
             }
@@ -14343,19 +14343,19 @@ void FUN_18089a059(uint32 resourceHandle)
   if (0 < *(int *)(unaff_RDI + SYSTEM_TABLE_OFFSET)) {
     do {
       lVar4 = (longlong)iVar6 * FIELD_OFFSET_1 + unaff_RDI;
-      length = FUN_180899100(resourceHandle,lVar4 + RESOURCE_HANDLE_OFFSET);
+      length = FinalizeResourceBuffer(resourceHandle,lVar4 + RESOURCE_HANDLE_OFFSET);
       if (length != 0) {
         return;
       }
-      length = FUN_180899100(extraout_XMM0_Da,lVar4 + BYTE_OFFSET_FLAG);
+      length = FinalizeResourceBuffer(extraout_XMM0_Da,lVar4 + BYTE_OFFSET_FLAG);
       if (length != 0) {
         return;
       }
-      length = FUN_180899100(extraout_XMM0_Da_00,lVar4 + BYTE_OFFSET_2);
+      length = FinalizeResourceBuffer(extraout_XMM0_Da_00,lVar4 + BYTE_OFFSET_2);
       if (length != 0) {
         return;
       }
-      length = FUN_180899100(extraout_XMM0_Da_01,lVar4 + FIELD_OFFSET_2);
+      length = FinalizeResourceBuffer(extraout_XMM0_Da_01,lVar4 + FIELD_OFFSET_2);
       if (length != 0) {
         return;
       }
@@ -15627,7 +15627,7 @@ ulonglong FUN_18089b2a0(longlong resourceHandle,uint64 *memorySize)
     }
     if ((int)uVar3 == 0) {
       if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-        uVar3 = FUN_180899090(*memorySize,resourceHandle + FIELD_OFFSET_1);
+        uVar3 = ConfigureResourceBuffer(*memorySize,resourceHandle + FIELD_OFFSET_1);
         if ((int)uVar3 != 0) {
           return uVar3;
         }
@@ -15680,7 +15680,7 @@ ulonglong FUN_18089b307(void)
     return localUInt2;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-    localUInt2 = FUN_180899090(*baseRegister,unaff_RBP + FIELD_OFFSET_1);
+    localUInt2 = ConfigureResourceBuffer(*baseRegister,unaff_RBP + FIELD_OFFSET_1);
     if ((int)localUInt2 != 0) {
       return localUInt2;
     }
@@ -15718,7 +15718,7 @@ ulonglong FUN_18089b31f(void)
     return uVar3;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-    uVar3 = FUN_180899090(*baseRegister,unaff_RBP + FIELD_OFFSET_1);
+    uVar3 = ConfigureResourceBuffer(*baseRegister,unaff_RBP + FIELD_OFFSET_1);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
@@ -15746,7 +15746,7 @@ ulonglong FUN_18089b380(void)
   ulonglong unaff_RDI;
   
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-    localUInt2 = FUN_180899090(*baseRegister,unaff_RBP + FIELD_OFFSET_1);
+    localUInt2 = ConfigureResourceBuffer(*baseRegister,unaff_RBP + FIELD_OFFSET_1);
     if ((int)localUInt2 != 0) {
       return localUInt2;
     }
@@ -16382,7 +16382,7 @@ LAB_18089b91c:
          ((uVar6 = FUN_1808995c0(buffer,resourceHandle + 0x84), (int)uVar6 == 0 &&
           (uVar6 = FUN_180899220(memorySize,resourceHandle + 0x88), (int)uVar6 == 0)))) &&
         (uVar6 = uVar8, *(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
-       ((((uVar6 = FUN_180899090(*memorySize,resourceHandle + 0x70), (int)uVar6 == 0 &&
+       ((((uVar6 = ConfigureResourceBuffer(*memorySize,resourceHandle + 0x70), (int)uVar6 == 0 &&
           (uVar6 = uVar8, *(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
          (uVar6 = FUN_1808995c0(*memorySize,resourceHandle + 0xa8), (int)uVar6 == 0)) &&
         (((uVar6 = uVar8, *(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
@@ -16546,7 +16546,7 @@ LAB_18089b91c:
          ((uVar5 = FUN_1808995c0(buffer,unaff_RSI + 0x84), (int)uVar5 == 0 &&
           (uVar5 = FUN_180899220(), (int)uVar5 == 0)))) &&
         (uVar5 = uVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
-       ((((uVar5 = FUN_180899090(*baseRegister,unaff_RSI + 0x70), (int)uVar5 == 0 &&
+       ((((uVar5 = ConfigureResourceBuffer(*baseRegister,unaff_RSI + 0x70), (int)uVar5 == 0 &&
           (uVar5 = uVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
          (uVar5 = FUN_1808995c0(*baseRegister,unaff_RSI + 0xa8), (int)uVar5 == 0)) &&
         (((uVar5 = uVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
@@ -16692,7 +16692,7 @@ LAB_18089b91c:
          ((uVar5 = FUN_1808995c0(buffer,unaff_RSI + 0x84), (int)uVar5 == 0 &&
           (uVar5 = FUN_180899220(), (int)uVar5 == 0)))) &&
         (uVar5 = uVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
-       ((((uVar5 = FUN_180899090(*baseRegister,unaff_RSI + 0x70), (int)uVar5 == 0 &&
+       ((((uVar5 = ConfigureResourceBuffer(*baseRegister,unaff_RSI + 0x70), (int)uVar5 == 0 &&
           (uVar5 = uVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
          (uVar5 = FUN_1808995c0(*baseRegister,unaff_RSI + 0xa8), (int)uVar5 == 0)) &&
         (((uVar5 = uVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
@@ -16834,7 +16834,7 @@ LAB_18089b91c:
          ((uVar5 = FUN_1808995c0(buffer,unaff_RSI + 0x84), (int)uVar5 == 0 &&
           (uVar5 = FUN_180899220(), (int)uVar5 == 0)))) &&
         (uVar5 = uVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
-       ((((uVar5 = FUN_180899090(*baseRegister,unaff_RSI + 0x70), (int)uVar5 == 0 &&
+       ((((uVar5 = ConfigureResourceBuffer(*baseRegister,unaff_RSI + 0x70), (int)uVar5 == 0 &&
           (uVar5 = uVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
          (uVar5 = FUN_1808995c0(*baseRegister,unaff_RSI + 0xa8), (int)uVar5 == 0)) &&
         (((uVar5 = uVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
@@ -17129,7 +17129,7 @@ void FUN_18089be10(longlong resourceHandle,uint64 *memorySize,int operationFlags
         return;
       }
       if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-        length = FUN_180899090(*memorySize,(longlong)status * RESOURCE_HANDLE_OFFSET + *(longlong *)(resourceHandle + RESOURCE_HANDLE_OFFSET));
+        length = ConfigureResourceBuffer(*memorySize,(longlong)status * RESOURCE_HANDLE_OFFSET + *(longlong *)(resourceHandle + RESOURCE_HANDLE_OFFSET));
       }
       else {
         length = BYTE_OFFSET_FLAG;
@@ -17238,7 +17238,7 @@ void FUN_18089be41(void)
         return;
       }
       if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-        status = FUN_180899090(*baseRegister,(longlong)localInt1 * RESOURCE_HANDLE_OFFSET + *(longlong *)(unaff_R15 + RESOURCE_HANDLE_OFFSET));
+        status = ConfigureResourceBuffer(*baseRegister,(longlong)localInt1 * RESOURCE_HANDLE_OFFSET + *(longlong *)(unaff_R15 + RESOURCE_HANDLE_OFFSET));
       }
       else {
         status = BYTE_OFFSET_FLAG;
@@ -17436,7 +17436,7 @@ ulonglong FUN_18089c190(longlong resourceHandle,uint64 *memorySize)
   if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  uVar7 = FUN_180899090(*memorySize,resourceHandle + STRUCT_OFFSET_SIZE);
+  uVar7 = ConfigureResourceBuffer(*memorySize,resourceHandle + STRUCT_OFFSET_SIZE);
   if ((int)uVar7 != 0) {
     return uVar7;
   }
@@ -17669,7 +17669,7 @@ uint64 * FUN_18089c1fb(void)
   if (*(int *)(inputRegister + RESOURCE_OFFSET_HANDLE) != 0) {
     return (uint64 *)BYTE_OFFSET_FLAG;
   }
-  preturnValue1 = (uint64 *)FUN_180899090(*unaff_RDI,unaff_RSI + STRUCT_OFFSET_SIZE);
+  preturnValue1 = (uint64 *)ConfigureResourceBuffer(*unaff_RDI,unaff_RSI + STRUCT_OFFSET_SIZE);
   if ((int)preturnValue1 != 0) {
     return preturnValue1;
   }
@@ -20725,7 +20725,7 @@ uint64 FUN_18089d490(longlong resourceHandle,uint64 *memorySize)
     if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
     }
-    returnValue = FUN_180899090(*memorySize,resourceHandle + RESOURCE_HANDLE_OFFSET);
+    returnValue = ConfigureResourceBuffer(*memorySize,resourceHandle + RESOURCE_HANDLE_OFFSET);
     if (((int)returnValue == 0) && (returnValue = FUN_1808afc70(memorySize,resourceHandle + 8), (int)returnValue == 0)) {
       if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
         return BYTE_OFFSET_FLAG;
@@ -20901,7 +20901,7 @@ ulonglong FUN_18089dcf0(longlong resourceHandle,uint64 *memorySize)
            ((*(uint *)(memorySize + 8) < 0x8e && (*(int *)(resourceHandle + SYSTEM_OFFSET_FLAGS) == 0x7fffffff)))) {
           *(uint32 *)(resourceHandle + SYSTEM_OFFSET_FLAGS) = 0x21;
         }
-        uVar3 = FUN_180898ef0(memorySize,resourceHandle + RESOURCE_HANDLE_OFFSET0);
+        uVar3 = ResizeResourceBuffer(memorySize,resourceHandle + RESOURCE_HANDLE_OFFSET0);
         if ((int)uVar3 == 0) {
           uVar4 = BYTE_OFFSET_FLAG;
           if (*(uint *)(memorySize + 8) < 0x68) {
@@ -20982,7 +20982,7 @@ ulonglong FUN_18089dd54(void)
            ((*(uint *)(baseRegister + 8) < 0x8e && (*(int *)(unaff_RSI + SYSTEM_OFFSET_FLAGS) == 0x7fffffff)))) {
           *(uint32 *)(unaff_RSI + SYSTEM_OFFSET_FLAGS) = 0x21;
         }
-        uVar3 = FUN_180898ef0();
+        uVar3 = ResizeResourceBuffer();
         if ((int)uVar3 == 0) {
           uVar4 = BYTE_OFFSET_FLAG;
           if (*(uint *)(baseRegister + 8) < 0x68) {
@@ -21062,7 +21062,7 @@ ulonglong FUN_18089dd78(void)
          ((*(uint *)(baseRegister + 8) < 0x8e && (*(int *)(unaff_RSI + SYSTEM_OFFSET_FLAGS) == 0x7fffffff)))) {
         *(uint32 *)(unaff_RSI + SYSTEM_OFFSET_FLAGS) = 0x21;
       }
-      uVar3 = FUN_180898ef0();
+      uVar3 = ResizeResourceBuffer();
       if ((int)uVar3 == 0) {
         uVar4 = BYTE_OFFSET_FLAG;
         if (*(uint *)(baseRegister + 8) < 0x68) {
@@ -21135,7 +21135,7 @@ ulonglong FUN_18089dda2(void)
          ((*(uint *)(baseRegister + 8) < 0x8e && (*(int *)(unaff_RSI + SYSTEM_OFFSET_FLAGS) == 0x7fffffff)))) {
         *(uint32 *)(unaff_RSI + SYSTEM_OFFSET_FLAGS) = 0x21;
       }
-      uVar3 = FUN_180898ef0();
+      uVar3 = ResizeResourceBuffer();
       if ((int)uVar3 == 0) {
         uVar4 = BYTE_OFFSET_FLAG;
         if (*(uint *)(baseRegister + 8) < 0x68) {
@@ -23322,12 +23322,12 @@ uint64 FUN_18089ef40(longlong resourceHandle,longlong *memorySize)
         auStackX_10[0] = *(uint32 *)(resourceHandle + DATA_OFFSET_START);
         returnValue = (**(code **)**(uint64 **)(*memorySize + 8))
                           (*(uint64 **)(*memorySize + 8),auStackX_10,4);
-        if (((((int)returnValue == 0) && (returnValue = FUN_180898eb0(memorySize,resourceHandle + 100), (int)returnValue == 0))
-            && (returnValue = FUN_180898eb0(memorySize,resourceHandle + 0x68), (int)returnValue == 0)) &&
-           (((returnValue = FUN_180898eb0(memorySize,resourceHandle + 0x6c), (int)returnValue == 0 &&
-             (returnValue = FUN_180898eb0(memorySize,resourceHandle + 0x70), (int)returnValue == 0)) &&
-            ((returnValue = FUN_180898eb0(memorySize,resourceHandle + 0x74), (int)returnValue == 0 &&
-             (returnValue = FUN_180898eb0(memorySize,resourceHandle + HANDLE_OFFSET_DATA), (int)returnValue == 0)))))) {
+        if (((((int)returnValue == 0) && (returnValue = CheckResourceCapacity(memorySize,resourceHandle + 100), (int)returnValue == 0))
+            && (returnValue = CheckResourceCapacity(memorySize,resourceHandle + 0x68), (int)returnValue == 0)) &&
+           (((returnValue = CheckResourceCapacity(memorySize,resourceHandle + 0x6c), (int)returnValue == 0 &&
+             (returnValue = CheckResourceCapacity(memorySize,resourceHandle + 0x70), (int)returnValue == 0)) &&
+            ((returnValue = CheckResourceCapacity(memorySize,resourceHandle + 0x74), (int)returnValue == 0 &&
+             (returnValue = CheckResourceCapacity(memorySize,resourceHandle + HANDLE_OFFSET_DATA), (int)returnValue == 0)))))) {
           returnValue = FUN_1808a7c40(memorySize,resourceHandle + 0x5c,0x74);
         }
       }
@@ -23898,7 +23898,7 @@ ulonglong FUN_18089f970(longlong resourceHandle,longlong *memorySize)
           localUInt2 = FUN_180899ef0(*memorySize,resourceHandle + FIELD_OFFSET_1);
           uVar4 = (ulonglong)localUInt2;
           if (localUInt2 == 0) {
-            uVar4 = FUN_180898e70(memorySize,resourceHandle + 0x40);
+            uVar4 = GetResourceCapacity(memorySize,resourceHandle + 0x40);
             if ((int)uVar4 != 0) {
               return uVar4;
             }
@@ -23974,7 +23974,7 @@ ulonglong FUN_18089f9b3(void)
         localUInt2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + FIELD_OFFSET_1);
         uVar3 = (ulonglong)localUInt2;
         if (localUInt2 == 0) {
-          uVar3 = FUN_180898e70();
+          uVar3 = GetResourceCapacity();
           if ((int)uVar3 == 0) {
                     // WARNING: Subroutine does not return
             FUN_1808de000();
@@ -24038,7 +24038,7 @@ ulonglong FUN_18089f9f6(void)
       localUInt2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + FIELD_OFFSET_1);
       uVar3 = (ulonglong)localUInt2;
       if (localUInt2 == 0) {
-        uVar3 = FUN_180898e70();
+        uVar3 = GetResourceCapacity();
         if ((int)uVar3 != 0) {
           return uVar3;
         }
@@ -24088,7 +24088,7 @@ ulonglong FUN_18089fa3c(void)
     localUInt2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + FIELD_OFFSET_1);
     baseRegister = (ulonglong)localUInt2;
     if (localUInt2 == 0) {
-      uVar3 = FUN_180898e70();
+      uVar3 = GetResourceCapacity();
       if ((int)uVar3 == 0) {
                     // WARNING: Subroutine does not return
         FUN_1808de000();
@@ -24118,7 +24118,7 @@ ulonglong FUN_18089fac2(void)
     returnValue = FUN_180899ef0(*unaff_RDI,unaff_RBP + FIELD_OFFSET_1);
     baseRegister = (ulonglong)returnValue;
     if (returnValue == 0) {
-      localUInt2 = FUN_180898e70();
+      localUInt2 = GetResourceCapacity();
       if ((int)localUInt2 == 0) {
                     // WARNING: Subroutine does not return
         FUN_1808de000();
@@ -24144,7 +24144,7 @@ ulonglong FUN_18089fad8(void)
     returnValue = FUN_180899ef0(*unaff_RDI,unaff_RBP + FIELD_OFFSET_1);
     baseRegister = (ulonglong)returnValue;
     if (returnValue == 0) {
-      localUInt2 = FUN_180898e70();
+      localUInt2 = GetResourceCapacity();
       if ((int)localUInt2 == 0) {
                     // WARNING: Subroutine does not return
         FUN_1808de000();
@@ -24164,7 +24164,7 @@ void FUN_18089fb06(void)
 {
   int status;
   
-  status = FUN_180898e70();
+  status = GetResourceCapacity();
   if (status == 0) {
                     // WARNING: Subroutine does not return
     FUN_1808de000();
@@ -24327,11 +24327,11 @@ uint64 FUN_18089fd30(longlong resourceHandle,longlong *memorySize)
       }
     }
     else {
-      returnValue = FUN_180898eb0(memorySize,resourceHandle + 0x70);
+      returnValue = CheckResourceCapacity(memorySize,resourceHandle + 0x70);
       if ((int)returnValue != 0) {
         return returnValue;
       }
-      returnValue = FUN_180898eb0(memorySize,resourceHandle + 0x74);
+      returnValue = CheckResourceCapacity(memorySize,resourceHandle + 0x74);
       if ((int)returnValue != 0) {
         return returnValue;
       }
@@ -24363,7 +24363,7 @@ uint64 FUN_18089fed0(longlong resourceHandle,uint64 *memorySize)
         return BYTE_OFFSET_FLAG;
       }
       returnValue = FUN_180899ef0(*memorySize,resourceHandle + 0xd8);
-      if ((((int)returnValue == 0) && (returnValue = FUN_180898eb0(memorySize,resourceHandle + SYSTEM_OFFSET_FLAGS), (int)returnValue == 0)) &&
+      if ((((int)returnValue == 0) && (returnValue = CheckResourceCapacity(memorySize,resourceHandle + SYSTEM_OFFSET_FLAGS), (int)returnValue == 0)) &&
          (returnValue = FUN_1808a6e50(memorySize,resourceHandle + 0xe8,1,resourceHandle), (int)returnValue == 0)) {
                     // WARNING: Subroutine does not return
         FUN_1808de000(memorySize,localBuffer);
