@@ -2446,10 +2446,10 @@ void ProcessMemoryAllocation(longlong resourceHandle,longlong memorySize)
         iterationCounter = 0;
         do {
           memoryBlockHandle = *(uint64 *)(allocatedMemory + iterationCounter);
-          operationResult = FUN_1808605e0(memoryBlockHandle);
+          operationResult = utilityAllocateMemoryBlock(memoryBlockHandle);
           if (operationResult != 2) {
                     // WARNING: Subroutine does not return
-            FUN_180862e00(memoryBlockHandle,1); # 内存块释放函数
+            utilityFreeMemoryBlock(memoryBlockHandle,1); # 内存块释放函数
           }
           processedCount = processedCount + 1;
           iterationCounter = iterationCounter + 8;
@@ -2496,10 +2496,10 @@ void HandleResourceCleanup(void)
         localLong3 = 0;
         do {
           localUInt1 = *(uint64 *)(stackParameter1 + localLong3);
-          localInt2 = FUN_1808605e0(localUInt1);
+          localInt2 = utilityAllocateMemoryBlock(localUInt1);
           if (localInt2 != 2) {
                     // WARNING: Subroutine does not return
-            FUN_180862e00(localUInt1,1); # 内存块释放函数
+            utilityFreeMemoryBlock(localUInt1,1); # 内存块释放函数
           }
           localInt4 = localInt4 + 1;
           localLong3 = localLong3 + 8;
@@ -2540,7 +2540,7 @@ void memory_pool_initializer(void)          // 内存池初始化函数
   
   if ((*(uint *)(baseRegister + 0x2d8) >> 7 & 1) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180862e00(); # 内存块释放函数
+    utilityFreeMemoryBlock(); # 内存块释放函数
   }
   FreeMemoryBuffer(&stack0x00000030);
                     // WARNING: Subroutine does not return
@@ -2579,7 +2579,7 @@ uint64 validate_resource_handle(longlong resourceHandle)    // 资源句柄验�
     return 0x1f;
   }
   if (*(int *)(localLong2 + 0xe4) == -1) {
-    uVar4 = FUN_180853000(localLong2,acStackX_18);
+    uVar4 = utilityProcessMemoryData(localLong2,acStackX_18);
     if ((int)uVar4 != 0) {
       return uVar4;
     }
@@ -2620,7 +2620,7 @@ uint64 validate_resource_handle(longlong resourceHandle)    // 资源句柄验�
           else if (iVar9 < iVar7) {
             iVar9 = iVar7;
           }
-          iVar7 = FUN_1808c17c0(plocalLong11,iVar9);
+          iVar7 = utilityHandleMemoryOperation(plocalLong11,iVar9);
           if (iVar7 != 0) {
             return 0;
           }
@@ -2630,7 +2630,7 @@ uint64 validate_resource_handle(longlong resourceHandle)    // 资源句柄验�
         *(int *)(localLong1 + 0x4e0) = *(int *)(localLong1 + 0x4e0) + 1;
       }
       else {
-        uVar4 = FUN_180851490(localLong1 + 0x368,localLong2);
+        uVar4 = utilityAccessMemoryRegion(localLong1 + 0x368,localLong2);
         if ((int)uVar4 != 0) {
           return uVar4;
         }
@@ -2670,10 +2670,10 @@ ulonglong calculate_memory_allocation(longlong resourceHandle,longlong memorySiz
     localInt4 = (int)uVar6;
     if (localInt4 == 0) {
       lStackX_8 = 0;
-      uVar5 = FUN_18088fb40(*(uint64 *)(memorySize + 0x90),*(longlong *)(lStackX_18 + 8) + 0x10,
+      uVar5 = utilityEncryptMemoryData(*(uint64 *)(memorySize + 0x90),*(longlong *)(lStackX_18 + 8) + 0x10,
                             &lStackX_8);
       if (uVar5 != 0) {
-        FUN_180867d60(plVar9);
+        utilityValidateMemoryAccess(plVar9);
         return (ulonglong)uVar5;
       }
       if (((*(uint *)(*(longlong *)(lStackX_18 + 8) + 0xf8) >> 2 & 1) == 0) &&
@@ -2696,7 +2696,7 @@ ulonglong calculate_memory_allocation(longlong resourceHandle,longlong memorySiz
           *(longlong **)(lStackX_8 + 0x80) = plVar9;
           cleanup_system_resources(lStackX_8,plVar9);
           plVar9[2] = lStackX_8;
-          uVar6 = FUN_18085ff30(lStackX_8);
+          uVar6 = utilityGetMemoryStatus(lStackX_8);
           if ((int)uVar6 == 0) {
             return 0;
           }
@@ -2750,17 +2750,17 @@ uint64 manage_resource_memory(longlong resourceHandle,longlong memorySize) # 资
   if (*(int *)(alStackX_8[0] + 0x58) + *(int *)(alStackX_8[0] + 0x54) +
       *(int *)(alStackX_8[0] + 0x4c) == 1) {
     alStackX_8[0] = 0;
-    localInt2 = FUN_18088c740(alStackX_8);
+    localInt2 = utilityInitializeResource(alStackX_8);
     if (localInt2 == 0) {
-      localInt2 = FUN_1808c7b30(localLong1,*(uint64 *)(localLong1 + 8),*(uint64 *)(memorySize + 0x90),
+      localInt2 = utilityCreateResourceHandle(localLong1,*(uint64 *)(localLong1 + 8),*(uint64 *)(memorySize + 0x90),
                             *(uint64 *)(memorySize + 800));
       if (localInt2 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18088c790(alStackX_8);
+        utilityCleanupResource(alStackX_8);
       }
     }
                     // WARNING: Subroutine does not return
-    FUN_18088c790(alStackX_8);
+    utilityCleanupResource(alStackX_8);
   }
   return 0;
 }
@@ -2818,19 +2818,19 @@ uint64 validate_memory_size(longlong resourceHandle,uint64 memorySize) # 内存�
     return 0;
   }
   alStackX_8[0] = 0;
-  localInt3 = FUN_18088c740(alStackX_8);
+  localInt3 = utilityInitializeResource(alStackX_8);
   if (localInt3 == 0) {
-    localInt3 = FUN_1808c7dc0(localLong1,0);
+    localInt3 = utilityReleaseResourceHandle(localLong1,0);
     if (localInt3 == 0) {
-      localInt3 = FUN_18088ac50(memorySize);
+      localInt3 = utilityCheckResourceState(memorySize);
       if (localInt3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18088c790(alStackX_8);
+        utilityCleanupResource(alStackX_8);
       }
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_18088c790(alStackX_8);
+  utilityCleanupResource(alStackX_8);
 }
 
 
@@ -2852,7 +2852,7 @@ uint64 query_resource_handle(longlong resourceHandle) # 资源句柄查询函数
   localLong1 = *(longlong *)(alStackX_8[0] + 0x10);
   if (localLong1 != 0) {
     *(int *)(localLong1 + 500) = *(int *)(localLong1 + 500) + 1;
-    if ((*(char *)(localLong1 + 0x204) != '\0') && (localUInt2 = FUN_1808552c0(), (int)localUInt2 != 0)) {
+    if ((*(char *)(localLong1 + 0x204) != '\0') && (localUInt2 = utilityGetSystemStatus(), (int)localUInt2 != 0)) {
       return localUInt2;
     }
     return 0;
@@ -2878,7 +2878,7 @@ uint64 allocate_resource_memory(longlong resourceHandle)
     }
     if (*(longlong *)(lStackX_8 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
+      utilityFreeMemoryBlock(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
     }
     localUInt1 = 0;
   }
@@ -2901,7 +2901,7 @@ uint64 get_system_status(void)
   }
   if (*(longlong *)(localLong1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180862e00(*(longlong *)(localLong1 + 0x10),1); # 内存块释放函数
+    utilityFreeMemoryBlock(*(longlong *)(localLong1 + 0x10),1); # 内存块释放函数
   }
   return 0;
 }
@@ -2913,7 +2913,7 @@ uint64 validate_character_resource(char resourceHandle)
 {
   if (resourceHandle != '\0') {
                     // WARNING: Subroutine does not return
-    FUN_180862e00(); # 内存块释放函数
+    utilityFreeMemoryBlock(); # 内存块释放函数
   }
   return 0;
 }
@@ -2950,7 +2950,7 @@ uint64 process_resource_data(longlong resourceHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -2971,7 +2971,7 @@ uint32 get_memory_usage(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(localLong1 + 0x10),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(localLong1 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -2982,7 +2982,7 @@ void releaseMemoryAndExit(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00(); # 内存块释放函数
+  utilityFreeMemoryBlock(); # 内存块释放函数
 }
 
 
@@ -3017,7 +3017,7 @@ uint64 validate_resource_access(longlong resourceHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3038,7 +3038,7 @@ uint32 get_system_info(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(localLong1 + 0x10),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(localLong1 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3049,7 +3049,7 @@ void emergencyMemoryRelease(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00(); # 内存块释放函数
+  utilityFreeMemoryBlock(); # 内存块释放函数
 }
 
 
@@ -3080,13 +3080,13 @@ uint64 handle_resource_operation(longlong resourceHandle)
       alStackX_18[0] = alStackX_18[0] + -8;
     }
     alStackX_8[0] = 0;
-    localUInt1 = FUN_1808681d0(alStackX_18[0],resourceHandle + 0x18,alStackX_8);
+    localUInt1 = utilityProcessResourceData(alStackX_18[0],resourceHandle + 0x18,alStackX_8);
     if ((int)localUInt1 == 0) {
       if (alStackX_8[0] != 0) {
         if (*(longlong *)(alStackX_8[0] + 8) == 0) {
           return 0x1c;
         }
-        localUInt1 = FUN_1808d73b0(*(longlong *)(alStackX_8[0] + 8),*(uint32 *)(resourceHandle + 0x20),
+        localUInt1 = utilityHandleResourceOperation(*(longlong *)(alStackX_8[0] + 8),*(uint32 *)(resourceHandle + 0x20),
                               *(byte *)(resourceHandle + 0x24));
         if ((int)localUInt1 != 0) {
           return localUInt1;
@@ -3116,13 +3116,13 @@ uint64 manage_resource_handle(longlong resourceHandle)
       alStackX_18[0] = alStackX_18[0] + -8;
     }
     alStackX_8[0] = 0;
-    localUInt1 = FUN_1808681d0(alStackX_18[0],resourceHandle + 0x20,alStackX_8);
+    localUInt1 = utilityProcessResourceData(alStackX_18[0],resourceHandle + 0x20,alStackX_8);
     if ((int)localUInt1 == 0) {
       if (alStackX_8[0] != 0) {
         if (*(longlong *)(alStackX_8[0] + 8) == 0) {
           return 0x1c;
         }
-        localUInt1 = FUN_1808d73b0(*(longlong *)(alStackX_8[0] + 8),*(uint32 *)(resourceHandle + 0x18),
+        localUInt1 = utilityHandleResourceOperation(*(longlong *)(alStackX_8[0] + 8),*(uint32 *)(resourceHandle + 0x18),
                               *(byte *)(resourceHandle + 0x1c));
         if ((int)localUInt1 != 0) {
           return localUInt1;
@@ -3163,7 +3163,7 @@ uint64 execute_resource_command(longlong resourceHandle)
     for (puVar5 = *(uint64 **)(localLong1 + 0x48);
         (*(uint64 **)(localLong1 + 0x48) <= puVar5 &&
         (puVar5 < *(uint64 **)(localLong1 + 0x48) + *(int *)(localLong1 + 0x50))); puVar5 = puVar5 + 1) {
-      uVar4 = FUN_1808d73b0(*puVar5,fVar7,0);
+      uVar4 = utilityHandleResourceOperation(*puVar5,fVar7,0);
       if ((int)uVar4 != 0) {
         return uVar4;
       }
@@ -3186,7 +3186,7 @@ uint64 execute_resource_command(longlong resourceHandle)
             ((*(uint *)(*(longlong *)(localLong1 + 0x18) + 0x34) >> 1 & 1) == 0)) &&
            (fVar7 != *(float *)(localLong1 + 0x20))) {
           *(float *)(localLong1 + 0x20) = fVar7;
-          FUN_1808d7020(localLong1);
+          utilityPrepareResourceAccess(localLong1);
           *(byte *)(localLong1 + 0x35) = 0;
         }
       }
@@ -3228,7 +3228,7 @@ uint64 validate_resource_operation(longlong resourceHandle)
           if ((localLong1 == 0) || (localLong1 = *(longlong *)(localLong1 + 8), localLong1 == 0)) {
             return 0x1c;
           }
-          uVar3 = FUN_1808d73b0(localLong1,*puVar4,0);
+          uVar3 = utilityHandleResourceOperation(localLong1,*puVar4,0);
           if ((int)uVar3 != 0) {
             return uVar3;
           }
@@ -3274,7 +3274,7 @@ uint64 get_resource_status(void)
         if ((localLong1 == 0) || (localLong1 = *(longlong *)(localLong1 + 8), localLong1 == 0)) {
           return 0x1c;
         }
-        uVar3 = FUN_1808d73b0(localLong1,*puVar4,0);
+        uVar3 = utilityHandleResourceOperation(localLong1,*puVar4,0);
         if ((int)uVar3 != 0) {
           return uVar3;
         }
@@ -3333,7 +3333,7 @@ uint64 allocate_system_resources(longlong resourceHandle)
       do {
         if ((*plocalInt2 != _DAT_180c4eaa0) || (plocalInt2[1] != _DAT_180c4eaa4)) {
           lStackX_8 = 0;
-          localUInt1 = FUN_1808681d0(uVar6,(int *)(resourceHandle + 0x20) + (longlong)(int)uVar5 * 2,&lStackX_8)
+          localUInt1 = utilityProcessResourceData(uVar6,(int *)(resourceHandle + 0x20) + (longlong)(int)uVar5 * 2,&lStackX_8)
           ;
           if ((int)localUInt1 != 0) {
             return localUInt1;
@@ -3341,7 +3341,7 @@ uint64 allocate_system_resources(longlong resourceHandle)
           if (*(longlong *)(lStackX_8 + 8) == 0) {
             return 0x1c;
           }
-          localUInt1 = FUN_1808d73b0(*(longlong *)(lStackX_8 + 8),*puVar3,*(byte *)(resourceHandle + 0x1c)
+          localUInt1 = utilityHandleResourceOperation(*(longlong *)(lStackX_8 + 8),*puVar3,*(byte *)(resourceHandle + 0x1c)
                                );
           if ((int)localUInt1 != 0) {
             return localUInt1;
@@ -3386,7 +3386,7 @@ uint64 release_system_resources(void)
     do {
       if ((*plocalInt2 != _DAT_180c4eaa0) || (plocalInt2[1] != _DAT_180c4eaa4)) {
         lStack0000000000000050 = 0;
-        localUInt1 = FUN_1808681d0(uVar6,(int *)(unaff_RBP + 0x20) + (longlong)(int)uVar5 * 2,
+        localUInt1 = utilityProcessResourceData(uVar6,(int *)(unaff_RBP + 0x20) + (longlong)(int)uVar5 * 2,
                               &stack0x00000050);
         if ((int)localUInt1 != 0) {
           return localUInt1;
@@ -3394,7 +3394,7 @@ uint64 release_system_resources(void)
         if (*(longlong *)(lStack0000000000000050 + 8) == 0) {
           return 0x1c;
         }
-        localUInt1 = FUN_1808d73b0(*(longlong *)(lStack0000000000000050 + 8),*puVar3,
+        localUInt1 = utilityHandleResourceOperation(*(longlong *)(lStack0000000000000050 + 8),*puVar3,
                               *(byte *)(unaff_RBP + 0x1c));
         if ((int)localUInt1 != 0) {
           return localUInt1;
@@ -3449,7 +3449,7 @@ uint64 terminate_process(longlong resourceHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3470,7 +3470,7 @@ uint32 get_cpu_usage(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(localLong1 + 0x10),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(localLong1 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3481,7 +3481,7 @@ void free_system_memory(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00(); # 内存块释放函数
+  utilityFreeMemoryBlock(); # 内存块释放函数
 }
 
 
@@ -3516,7 +3516,7 @@ uint64 manage_thread_pool(longlong resourceHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3537,7 +3537,7 @@ uint32 get_thread_count(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(localLong1 + 0x10),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(localLong1 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3548,7 +3548,7 @@ void destroy_thread_pool(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00(); # 内存块释放函数
+  utilityFreeMemoryBlock(); # 内存块释放函数
 }
 
 
@@ -3582,7 +3582,7 @@ uint64 lock_mutex(longlong resourceHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(localLong2 + 0x10),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(localLong2 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3601,7 +3601,7 @@ uint32 unlock_mutex(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(localLong1 + 0x10),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(localLong1 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3612,7 +3612,7 @@ void destroy_mutex(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00(); # 内存块释放函数
+  utilityFreeMemoryBlock(); # 内存块释放函数
 }
 
 
@@ -3647,7 +3647,7 @@ uint64 wait_for_semaphore(longlong resourceHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3668,7 +3668,7 @@ uint32 release_semaphore(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(localLong1 + 0x10),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(localLong1 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3679,7 +3679,7 @@ void destroy_semaphore(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00(); # 内存块释放函数
+  utilityFreeMemoryBlock(); # 内存块释放函数
 }
 
 
@@ -3714,7 +3714,7 @@ uint64 wait_for_event(longlong resourceHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3735,7 +3735,7 @@ uint32 set_event(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(localLong1 + 0x10),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(localLong1 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3746,7 +3746,7 @@ void reset_event(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00(); # 内存块释放函数
+  utilityFreeMemoryBlock(); # 内存块释放函数
 }
 
 
@@ -3781,7 +3781,7 @@ uint64 create_timer(longlong resourceHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3802,7 +3802,7 @@ uint32 start_timer(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(localLong1 + 0x10),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(localLong1 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3813,7 +3813,7 @@ void stop_timer(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00(); # 内存块释放函数
+  utilityFreeMemoryBlock(); # 内存块释放函数
 }
 
 
@@ -3845,7 +3845,7 @@ uint64 get_timer_elapsed(longlong resourceHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3862,7 +3862,7 @@ uint32 get_system_time(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(in_stack_00000040 + 0x10),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(in_stack_00000040 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3873,7 +3873,7 @@ void initialize_file_system(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00(); # 内存块释放函数
+  utilityFreeMemoryBlock(); # 内存块释放函数
 }
 
 
@@ -3884,7 +3884,7 @@ void mount_file_system(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00(); # 内存块释放函数
+  utilityFreeMemoryBlock(); # 内存块释放函数
 }
 
 
@@ -3916,7 +3916,7 @@ uint64 open_file_handle(longlong resourceHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3933,7 +3933,7 @@ uint32 close_file_handle(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(in_stack_00000040 + 0x10),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(in_stack_00000040 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3944,7 +3944,7 @@ void read_file_data(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00(); # 内存块释放函数
+  utilityFreeMemoryBlock(); # 内存块释放函数
 }
 
 
@@ -3955,7 +3955,7 @@ void write_file_data(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00(); # 内存块释放函数
+  utilityFreeMemoryBlock(); # 内存块释放函数
 }
 
 
@@ -3986,7 +3986,7 @@ void seek_file_position(longlong resourceHandle,uint64 memorySize)
   localBuffer[0] = 2;
   localInt1 = allocate_memory_resource(memorySize,localBuffer,*(uint32 *)(resourceHandle + 0x1c),auStackX_8);
   if (localInt1 == 0) {
-    FUN_180875fc0(memorySize,auStackX_8[0]);
+    utilityExecuteMemoryOperation(memorySize,auStackX_8[0]);
   }
   return;
 }
@@ -4020,7 +4020,7 @@ uint64 get_file_position(longlong resourceHandle)
     for (puVar5 = *(uint64 **)(localLong1 + 0x48);
         (*(uint64 **)(localLong1 + 0x48) <= puVar5 &&
         (puVar5 < *(uint64 **)(localLong1 + 0x48) + *(int *)(localLong1 + 0x50))); puVar5 = puVar5 + 1) {
-      uVar4 = FUN_1808d73b0(*puVar5,fVar7,0);
+      uVar4 = utilityHandleResourceOperation(*puVar5,fVar7,0);
       if ((int)uVar4 != 0) {
         return uVar4;
       }
@@ -4043,7 +4043,7 @@ uint64 get_file_position(longlong resourceHandle)
             ((*(uint *)(*(longlong *)(localLong1 + 0x18) + 0x34) >> 1 & 1) == 0)) &&
            (fVar7 != *(float *)(localLong1 + 0x20))) {
           *(float *)(localLong1 + 0x20) = fVar7;
-          FUN_1808d7020(localLong1);
+          utilityPrepareResourceAccess(localLong1);
           *(byte *)(localLong1 + 0x35) = 0;
         }
       }
@@ -4080,7 +4080,7 @@ int get_file_size(longlong resourceHandle)
   }
   if (localLong2 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0),localLong2,&unknown_18095b500,0xb8,1);
+    utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),localLong2,&utilitySystemDataBuffer,0xb8,1);
   }
   return localInt1;
 }
@@ -4099,7 +4099,7 @@ void truncate_file(longlong resourceHandle,uint64 memorySize)
   alocalInt[0] = SystemMemoryFunction(*(uint32 *)(resourceHandle + 0x10),&uStackX_8);
   if (alocalInt[0] == 0) {
     lStack_50 = resourceHandle + 0x18;
-    FUN_180894dd0(memorySize,alocalInt,*(uint32 *)(resourceHandle + 0x14),uStackX_8);
+    utilityReadMemoryData(memorySize,alocalInt,*(uint32 *)(resourceHandle + 0x14),uStackX_8);
   }
   return;
 }
@@ -4133,13 +4133,13 @@ ulonglong create_directory(longlong resourceHandle,uint64 memorySize)
         lStack_50 = *(longlong *)(resourceHandle + 0x10);
         localBuffer[0] = 2;
       }
-      localUInt1 = FUN_180894dd0(memorySize,localBuffer,*(uint32 *)(resourceHandle + 0x20),uStackX_8);
+      localUInt1 = utilityReadMemoryData(memorySize,localBuffer,*(uint32 *)(resourceHandle + 0x20),uStackX_8);
       localUInt2 = (ulonglong)localUInt1;
       if (localUInt1 == 0) {
         localUInt2 = 0;
       }
       else if (localLong3 != 0) {
-        FUN_180741df0(*(uint64 *)(_DAT_180be12f0 + 0x1a0),localLong3,&unknown_180957f70,0xe9);
+        utilityAccessSystemMemory(*(uint64 *)(utilitySystemDataTable + 0x1a0),localLong3,&utilityMemoryDataBuffer,0xe9);
         return localUInt2;
       }
       return localUInt2;
@@ -4175,12 +4175,12 @@ int delete_file(uint32 resourceHandle)
     uVar3 = 2;
   }
   uStack0000000000000030 = resourceHandle;
-  localInt1 = FUN_180894dd0();
+  localInt1 = utilityReadMemoryData();
   if (localInt1 == 0) {
     localInt1 = 0;
   }
   else if (localLong2 != 0) {
-    FUN_180741df0(*(uint64 *)(_DAT_180be12f0 + 0x1a0),localLong2,&unknown_180957f70,0xe9,uVar3);
+    utilityAccessSystemMemory(*(uint64 *)(utilitySystemDataTable + 0x1a0),localLong2,&utilityMemoryDataBuffer,0xe9,uVar3);
     return localInt1;
   }
   return localInt1;
@@ -4211,7 +4211,7 @@ void create_symbolic_link(longlong resourceHandle,longlong memorySize)
 {
   int localInt1;
   
-  localInt1 = FUN_18073b5f0(*(uint64 *)(memorySize + 0x78),*(uint32 *)(resourceHandle + 0x10),
+  localInt1 = utilityProcessDataBuffer(*(uint64 *)(memorySize + 0x78),*(uint32 *)(resourceHandle + 0x10),
                         resourceHandle + 0x14,resourceHandle + 0x20,resourceHandle + 0x2c,resourceHandle + 0x38);
   if ((localInt1 == 0) &&
      (localInt1 = initialize_resource_table((longlong)*(int *)(resourceHandle + 0x10) * 0x44 +
@@ -4238,7 +4238,7 @@ void resolve_symbolic_link(longlong resourceHandle,longlong memorySize)
 {
   int localInt1;
   
-  localInt1 = FUN_18073b810(*(uint64 *)(memorySize + 0x78),*(uint32 *)(resourceHandle + 0x10));
+  localInt1 = utilityValidateDataBuffer(*(uint64 *)(memorySize + 0x78),*(uint32 *)(resourceHandle + 0x10));
   if (localInt1 == 0) {
     register_resource_callbacks(*(uint64 *)(memorySize + 0x90),*(uint32 *)(resourceHandle + 0x10));
   }
@@ -4263,7 +4263,7 @@ uint64 get_file_attributes(longlong resourceHandle,longlong memorySize)
   if (0 < *(int *)(resourceHandle + 0x10)) {
     do {
       if (((*plocalInt2 != _DAT_180c4eaa0) || (plocalInt2[1] != _DAT_180c4eaa4)) &&
-         (localUInt1 = FUN_1808678e0(memorySize + 0x60,(int *)(resourceHandle + 0x18) + (longlong)localInt4 * 2,*puVar3
+         (localUInt1 = utilityParseDataStructure(memorySize + 0x60,(int *)(resourceHandle + 0x18) + (longlong)localInt4 * 2,*puVar3
                                 ,*(byte *)(resourceHandle + 0x14)), (int)localUInt1 != 0)) {
         return localUInt1;
       }
@@ -4291,7 +4291,7 @@ void set_file_attributes(longlong resourceHandle,longlong memorySize)
   
   plVar5 = (longlong *)0x0;
   auStackX_18[0] = 0;
-  localInt2 = FUN_18088c740(auStackX_18);
+  localInt2 = utilityInitializeResource(auStackX_18);
   if ((localInt2 == 0) && (localInt2 = FUN_1808bdd90(*(uint64 *)(memorySize + 0x90)), localInt2 == 0)) {
     plVar4 = (longlong *)(*(longlong *)(memorySize + 0x50) + -8);
     if (*(longlong *)(memorySize + 0x50) == 0) {
@@ -4324,10 +4324,10 @@ void set_file_attributes(longlong resourceHandle,longlong memorySize)
         plocalLong3 = (longlong *)&DAT_00000018;
       }
       plocalLong1 = plVar4;
-    } while ((*plocalLong3 == 0) || (localInt2 = FUN_18088aca0(memorySize), localInt2 == 0));
+    } while ((*plocalLong3 == 0) || (localInt2 = utilityCheckResourceAvailability(memorySize), localInt2 == 0));
   }
                     // WARNING: Subroutine does not return
-  FUN_18088c790(auStackX_18);
+  utilityCleanupResource(auStackX_18);
 }
 
 
@@ -4341,7 +4341,7 @@ uint64 get_file_permissions(longlong resourceHandle)
   localUInt1 = SystemMemoryFunction(*(uint32 *)(resourceHandle + 0x10),alStackX_8);
   if ((int)localUInt1 == 0) {
     *(uint32 *)(*(longlong *)(alStackX_8[0] + 0x10) + 0x50) = *(uint32 *)(resourceHandle + 0x18);
-    if ((*(longlong *)(alStackX_8[0] + 8) != 0) && (localUInt1 = FUN_1808c44f0(), (int)localUInt1 != 0)) {
+    if ((*(longlong *)(alStackX_8[0] + 8) != 0) && (localUInt1 = utilityGetResourceCapability(), (int)localUInt1 != 0)) {
       return localUInt1;
     }
     localUInt1 = 0;
@@ -4360,7 +4360,7 @@ void set_file_permissions(longlong resourceHandle,longlong memorySize)
   uint64 uStackX_8;
   
   if (*(int *)(resourceHandle + 0x2c) == 0) {
-    localInt1 = FUN_180894860(memorySize,resourceHandle + 0x1c,&uStackX_8);
+    localInt1 = utilityExtractResourceInfo(memorySize,resourceHandle + 0x1c,&uStackX_8);
     if (localInt1 == 0) {
       localInt1 = validate_resource_handle(uStackX_8,resourceHandle + 0x2c);
       if (localInt1 == 0) goto LAB_1808918d2;
@@ -4369,7 +4369,7 @@ void set_file_permissions(longlong resourceHandle,longlong memorySize)
   }
 LAB_1808918d2:
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+  utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
 }
 
 
@@ -4383,7 +4383,7 @@ void get_file_owner(longlong resourceHandle,longlong memorySize)
   longlong lStackX_8;
   
   if (*(int *)(resourceHandle + 0x2c) == 0) {
-    localInt1 = FUN_1808949c0(memorySize,resourceHandle + 0x1c,&lStackX_8);
+    localInt1 = utilityAnalyzeResourceData(memorySize,resourceHandle + 0x1c,&lStackX_8);
     if (localInt1 != 0) {
       return;
     }
@@ -4392,7 +4392,7 @@ void get_file_owner(longlong resourceHandle,longlong memorySize)
       return;
     }
   }
-  FUN_18088d7c0(*(uint64 *)(memorySize + 0x98),resourceHandle);
+  utilityAcquireResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
   return;
 }
 
@@ -4410,7 +4410,7 @@ void set_file_owner(longlong resourceHandle,longlong memorySize)
   if (localInt1 == 0) {
     *(uint32 *)(resourceHandle + 0x18) = *(uint32 *)(lStackX_8 + 0x30);
     *(uint32 *)(resourceHandle + 0x1c) = *(uint32 *)(lStackX_8 + 0x34);
-    FUN_18088d7c0(*(uint64 *)(memorySize + 0x98),resourceHandle);
+    utilityAcquireResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
   }
   return;
 }
@@ -4427,9 +4427,9 @@ void get_file_timestamp(longlong resourceHandle,longlong memorySize)
   
   localInt1 = SystemMemoryFunction(*(uint32 *)(resourceHandle + 0x10),&uStackX_8);
   if (localInt1 == 0) {
-    localInt1 = FUN_1808deb90(uStackX_8,resourceHandle + 0x18);
+    localInt1 = utilityProcessResourceAttribute(uStackX_8,resourceHandle + 0x18);
     if (localInt1 == 0) {
-      FUN_18088d7c0(*(uint64 *)(memorySize + 0x98),resourceHandle);
+      utilityAcquireResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
     }
   }
   return;
@@ -4446,7 +4446,7 @@ void set_file_timestamp(longlong resourceHandle,longlong memorySize)
   uint64 uStackX_8;
   
   if (*(int *)(resourceHandle + 0x2c) == 0) {
-    localInt1 = FUN_180894b00(memorySize,resourceHandle + 0x1c,&uStackX_8);
+    localInt1 = utilityGenerateResourceReport(memorySize,resourceHandle + 0x1c,&uStackX_8);
     if (localInt1 == 0) {
       localInt1 = validate_resource_handle(uStackX_8,resourceHandle + 0x2c);
       if (localInt1 == 0) goto LAB_180891a52;
@@ -4455,7 +4455,7 @@ void set_file_timestamp(longlong resourceHandle,longlong memorySize)
   }
 LAB_180891a52:
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+  utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
 }
 
 
@@ -4476,7 +4476,7 @@ uint64 check_file_access(longlong resourceHandle,longlong memorySize)
     *(int *)(lStackX_8 + 0x28) = localInt1 + 1;
     if (localInt1 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+      utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
     }
     localUInt2 = 0;
   }
@@ -4497,7 +4497,7 @@ void lock_file(longlong resourceHandle,longlong memorySize)
   if (localInt1 == 0) {
     *(uint32 *)(lStackX_8 + 0x30) = 0;
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+    utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
   }
   return;
 }
@@ -4526,7 +4526,7 @@ uint64 unlock_file(longlong resourceHandle,longlong memorySize)
     *(int *)(lStackX_8 + 0x28) = localInt1 + -1;
     if (localInt1 == 1) {
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+      utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
     }
     localUInt2 = 0;
   }
@@ -4547,7 +4547,7 @@ uint64 check_file_lock(longlong resourceHandle,longlong memorySize)
       return 0x4c;
     }
     *(uint64 *)(resourceHandle + 0x18) = *(uint64 *)(*(longlong *)(lStackX_8 + 8) + 0x78);
-    localUInt1 = FUN_18088d7c0(*(uint64 *)(memorySize + 0x98),resourceHandle);
+    localUInt1 = utilityAcquireResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
   }
   return localUInt1;
 }
@@ -4569,7 +4569,7 @@ uint64 get_file_lock_info(longlong resourceHandle,longlong memorySize)
   }
   *(byte *)(lStackX_8 + 0x2c) = 1;
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+  utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
 }
 
 
@@ -4586,7 +4586,7 @@ void compress_file(longlong resourceHandle,longlong memorySize)
   if (localInt1 == 0) {
     *(byte *)(lStackX_8 + 0x29) = *(byte *)(resourceHandle + 0x18);
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+    utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
   }
   return;
 }
@@ -4605,7 +4605,7 @@ void decompress_file(longlong resourceHandle,longlong memorySize)
   if (localInt1 == 0) {
     *(byte *)(lStackX_8 + 0x28) = *(byte *)(resourceHandle + 0x18);
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+    utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
   }
   return;
 }
@@ -4627,7 +4627,7 @@ uint64 calculate_file_hash(longlong resourceHandle,longlong memorySize)
   if ((int)localUInt1 == 0) {
     *(uint32 *)(CONCAT44(uStackX_c,uStackX_8) + 0x24) = *(uint32 *)(resourceHandle + 0x18);
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+    utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
   }
   return localUInt1;
 }
@@ -4649,7 +4649,7 @@ uint64 verify_file_integrity(longlong resourceHandle,longlong memorySize)
   }
   *(byte *)(lStackX_8 + 0x2c) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+  utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
 }
 
 
@@ -4670,8 +4670,8 @@ void encrypt_file(longlong resourceHandle,longlong memorySize)
   longlong lStackX_18;
   
   localInt1 = SystemMemoryFunction(*(uint32 *)(resourceHandle + 0x10),&lStackX_18);
-  if (((localInt1 != 0) || (localInt1 = FUN_180867bc0(&lStackX_8), localInt1 != 0)) ||
-     (localInt1 = FUN_180868490(lStackX_8,memorySize,*(uint64 *)(lStackX_18 + 8)), localInt1 != 0)) {
+  if (((localInt1 != 0) || (localInt1 = utilityInitializeResourceEnvironment(&lStackX_8), localInt1 != 0)) ||
+     (localInt1 = utilityConfigureResourceSettings(lStackX_8,memorySize,*(uint64 *)(lStackX_18 + 8)), localInt1 != 0)) {
     return;
   }
   localLong3 = 0;
@@ -4697,7 +4697,7 @@ void encrypt_file(longlong resourceHandle,longlong memorySize)
     if (localInt1 < *(int *)(lStackX_18 + 0x28)) goto LAB_180891fc0;
     if (localInt1 != 0) {
       if ((0x3ffffffe < localInt1 * 8 - 1U) ||
-         (localLong3 = FUN_180741e10(*(uint64 *)(_DAT_180be12f0 + 0x1a0),localInt1 * 8,&unknown_180957f70,
+         (localLong3 = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + 0x1a0),localInt1 * 8,&utilityMemoryDataBuffer,
                                 0xf4,0,0,1), localLong3 == 0)) goto LAB_180891fc0;
       if (*(int *)(lStackX_18 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -4706,8 +4706,8 @@ void encrypt_file(longlong resourceHandle,longlong memorySize)
     }
     if ((0 < *(int *)(lStackX_18 + 0x2c)) && (*(longlong *)(lStackX_18 + 0x20) != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(lStackX_18 + 0x20),
-                    &unknown_180957f70,0x100,1);
+      utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),*(longlong *)(lStackX_18 + 0x20),
+                    &utilityMemoryDataBuffer,0x100,1);
     }
     *(longlong *)(lStackX_18 + 0x20) = localLong3;
     *(int *)(lStackX_18 + 0x2c) = localInt1;
@@ -4717,7 +4717,7 @@ void encrypt_file(longlong resourceHandle,longlong memorySize)
   *(int *)(lStackX_18 + 0x28) = *(int *)(lStackX_18 + 0x28) + 1;
 LAB_180891fc0:
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+  utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
 }
 
 
@@ -4739,7 +4739,7 @@ void decrypt_file(uint64 resourceHandle,uint64 memorySize)
   longlong in_stack_00000060;
   longlong in_stack_00000070;
   
-  localInt1 = FUN_180868490(resourceHandle,memorySize,*(uint64 *)(in_stack_00000070 + 8));
+  localInt1 = utilityConfigureResourceSettings(resourceHandle,memorySize,*(uint64 *)(in_stack_00000070 + 8));
   if (localInt1 != 0) {
     return;
   }
@@ -4766,7 +4766,7 @@ void decrypt_file(uint64 resourceHandle,uint64 memorySize)
     if (localInt1 < *(int *)(in_stack_00000070 + 0x28)) goto LAB_180891fc0;
     if (localInt1 != 0) {
       if ((0x3ffffffe < localInt1 * 8 - 1U) ||
-         (localLong3 = FUN_180741e10(*(uint64 *)(_DAT_180be12f0 + 0x1a0),localInt1 * 8,&unknown_180957f70,
+         (localLong3 = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + 0x1a0),localInt1 * 8,&utilityMemoryDataBuffer,
                                 0xf4,0), localLong3 == 0)) goto LAB_180891fc0;
       if (*(int *)(in_stack_00000070 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -4777,8 +4777,8 @@ void decrypt_file(uint64 resourceHandle,uint64 memorySize)
     if ((0 < *(int *)(in_stack_00000070 + 0x2c)) && (*(longlong *)(in_stack_00000070 + 0x20) != 0))
     {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(in_stack_00000070 + 0x20),
-                    &unknown_180957f70,0x100,1);
+      utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),*(longlong *)(in_stack_00000070 + 0x20),
+                    &utilityMemoryDataBuffer,0x100,1);
     }
     *(longlong *)(in_stack_00000070 + 0x20) = localLong3;
     *(int *)(in_stack_00000070 + 0x2c) = localInt1;
@@ -4789,7 +4789,7 @@ void decrypt_file(uint64 resourceHandle,uint64 memorySize)
   *(int *)(in_stack_00000070 + 0x28) = *(int *)(in_stack_00000070 + 0x28) + 1;
 LAB_180891fc0:
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(uint64 *)(unaff_R14 + 0x98));
+  utilityReleaseResourceHandle(*(uint64 *)(unaff_R14 + 0x98));
 }
 
 
@@ -4797,8 +4797,8 @@ LAB_180891fc0:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180891ea1(void)
-void FUN_180891ea1(void)
+// 函数: void utilityStartResourceService(void)
+void utilityStartResourceService(void)
 
 {
   int localInt1;
@@ -4834,7 +4834,7 @@ void FUN_180891ea1(void)
     if (localInt1 < *(int *)(baseRegister + 0x28)) goto LAB_180891fc0;
     if (localInt1 != 0) {
       if (0x3ffffffe < localInt1 * 8 - 1U) goto LAB_180891fc0;
-      localLong3 = FUN_180741e10(*(uint64 *)(_DAT_180be12f0 + 0x1a0),localInt1 * 8,&unknown_180957f70,0xf4,0)
+      localLong3 = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + 0x1a0),localInt1 * 8,&utilityMemoryDataBuffer,0xf4,0)
       ;
       if (localLong3 == 0) goto LAB_180891fc0;
       if (*(int *)(baseRegister + 0x28) != 0) {
@@ -4844,8 +4844,8 @@ void FUN_180891ea1(void)
     }
     if ((0 < *(int *)(baseRegister + 0x2c)) && (*(longlong *)(baseRegister + 0x20) != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(baseRegister + 0x20),
-                    &unknown_180957f70,0x100,1);
+      utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),*(longlong *)(baseRegister + 0x20),
+                    &utilityMemoryDataBuffer,0x100,1);
     }
     *(longlong *)(baseRegister + 0x20) = localLong3;
     *(int *)(baseRegister + 0x2c) = localInt1;
@@ -4855,7 +4855,7 @@ void FUN_180891ea1(void)
   *(int *)(baseRegister + 0x28) = *(int *)(baseRegister + 0x28) + 1;
 LAB_180891fc0:
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(uint64 *)(unaff_R14 + 0x98));
+  utilityReleaseResourceHandle(*(uint64 *)(unaff_R14 + 0x98));
 }
 
 
@@ -4863,8 +4863,8 @@ LAB_180891fc0:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180891ec9(int resourceHandle,int memorySize)
-void FUN_180891ec9(int resourceHandle,int memorySize)
+// 函数: void utilityInitializeResourceComponent(int resourceHandle,int memorySize)
+void utilityInitializeResourceComponent(int resourceHandle,int memorySize)
 
 {
   int in_EAX;
@@ -4887,7 +4887,7 @@ void FUN_180891ec9(int resourceHandle,int memorySize)
     if (localInt2 < resourceHandle) goto LAB_180891fc0;
     if (localInt2 != 0) {
       if (0x3ffffffe < localInt2 * 8 - 1U) goto LAB_180891fc0;
-      unaff_RSI = FUN_180741e10(*(uint64 *)(_DAT_180be12f0 + 0x1a0),localInt2 * 8,&unknown_180957f70,
+      unaff_RSI = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + 0x1a0),localInt2 * 8,&utilityMemoryDataBuffer,
                                 0xf4);
       if (unaff_RSI == 0) goto LAB_180891fc0;
       if (*(int *)(baseRegister + 0x28) != 0) {
@@ -4898,8 +4898,8 @@ void FUN_180891ec9(int resourceHandle,int memorySize)
     }
     if ((0 < *(int *)(baseRegister + 0x2c)) && (*(longlong *)(baseRegister + 0x20) != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(baseRegister + 0x20),
-                    &unknown_180957f70,0x100,1);
+      utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),*(longlong *)(baseRegister + 0x20),
+                    &utilityMemoryDataBuffer,0x100,1);
     }
     *(longlong *)(baseRegister + 0x20) = unaff_RSI;
     *(int *)(baseRegister + 0x2c) = localInt2;
@@ -4909,14 +4909,14 @@ void FUN_180891ec9(int resourceHandle,int memorySize)
   *(int *)(baseRegister + 0x28) = *(int *)(baseRegister + 0x28) + 1;
 LAB_180891fc0:
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(uint64 *)(unaff_R14 + 0x98));
+  utilityReleaseResourceHandle(*(uint64 *)(unaff_R14 + 0x98));
 }
 
 
 
 
-// 函数: void FUN_180891fd4(void)
-void FUN_180891fd4(void)
+// 函数: void utilityResetResourceSystem(void)
+void utilityResetResourceSystem(void)
 
 {
   return;
@@ -4925,8 +4925,8 @@ void FUN_180891fd4(void)
 
 
 
-// 函数: void FUN_180891fd9(void)
-void FUN_180891fd9(void)
+// 函数: void utilityClearResourceCache(void)
+void utilityClearResourceCache(void)
 
 {
   return;
@@ -4935,8 +4935,8 @@ void FUN_180891fd9(void)
 
 
 
-// 函数: void FUN_180891fde(void)
-void FUN_180891fde(void)
+// 函数: void utilityFlushResourceBuffers(void)
+void utilityFlushResourceBuffers(void)
 
 {
   return;
@@ -4945,8 +4945,8 @@ void FUN_180891fde(void)
 
 
 
-// 函数: void FUN_180891ff0(longlong resourceHandle,longlong memorySize)
-void FUN_180891ff0(longlong resourceHandle,longlong memorySize)
+// 函数: void utilityProcessResourceRequest(longlong resourceHandle,longlong memorySize)
+void utilityProcessResourceRequest(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
@@ -4965,13 +4965,13 @@ void FUN_180891ff0(longlong resourceHandle,longlong memorySize)
         *(uint32 *)(resourceHandle + 0x18) = 2;
       }
       else {
-        localInt1 = FUN_1808c7f30(uStackX_8,resourceHandle + 0x18);
+        localInt1 = utilityProcessResourceAttribute(uStackX_8,resourceHandle + 0x18);
         if (localInt1 != 0) {
           return;
         }
       }
     }
-    FUN_18088d7c0(*(uint64 *)(memorySize + 0x98),resourceHandle);
+    utilityAcquireResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
   }
   return;
 }
@@ -4979,8 +4979,8 @@ void FUN_180891ff0(longlong resourceHandle,longlong memorySize)
 
 
 
-// 函数: void FUN_180892011(void)
-void FUN_180892011(void)
+// 函数: void utilityHandleResourceCallback(void)
+void utilityHandleResourceCallback(void)
 
 {
   int localInt1;
@@ -4999,21 +4999,21 @@ void FUN_180892011(void)
       *(uint32 *)(unaff_RSI + 0x18) = 2;
     }
     else {
-      localInt1 = FUN_1808c7f30(stackParameter1,unaff_RSI + 0x18);
+      localInt1 = utilityProcessResourceAttribute(stackParameter1,unaff_RSI + 0x18);
       if (localInt1 != 0) {
         return;
       }
     }
   }
-  FUN_18088d7c0(*(uint64 *)(unaff_RBP + 0x98));
+  utilityAcquireResourceHandle(*(uint64 *)(unaff_RBP + 0x98));
   return;
 }
 
 
 
 
-// 函数: void FUN_18089207b(void)
-void FUN_18089207b(void)
+// 函数: void utilityMonitorResourceActivity(void)
+void utilityMonitorResourceActivity(void)
 
 {
   return;
@@ -5022,8 +5022,8 @@ void FUN_18089207b(void)
 
 
 
-// 函数: void FUN_180892090(longlong resourceHandle,longlong memorySize)
-void FUN_180892090(longlong resourceHandle,longlong memorySize)
+// 函数: void utilityManageResourceLifecycle(longlong resourceHandle,longlong memorySize)
+void utilityManageResourceLifecycle(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
@@ -5034,7 +5034,7 @@ void FUN_180892090(longlong resourceHandle,longlong memorySize)
     localInt1 = func_0x0001808c8470(uStackX_8);
     if (localInt1 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+      utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
     }
   }
   return;
@@ -5043,8 +5043,8 @@ void FUN_180892090(longlong resourceHandle,longlong memorySize)
 
 
 
-// 函数: void FUN_1808920e0(longlong resourceHandle,longlong memorySize)
-void FUN_1808920e0(longlong resourceHandle,longlong memorySize)
+// 函数: void utilityControlResourceAccess(longlong resourceHandle,longlong memorySize)
+void utilityControlResourceAccess(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
@@ -5053,7 +5053,7 @@ void FUN_1808920e0(longlong resourceHandle,longlong memorySize)
   localInt1 = SystemMemoryFunction(*(uint32 *)(resourceHandle + 0x10),auStackX_8);
   if (localInt1 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+    utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
   }
   return;
 }
@@ -5061,8 +5061,8 @@ void FUN_1808920e0(longlong resourceHandle,longlong memorySize)
 
 
 
-// 函数: void FUN_180892120(longlong resourceHandle,longlong memorySize)
-void FUN_180892120(longlong resourceHandle,longlong memorySize)
+// 函数: void utilityOptimizeResourceUsage(longlong resourceHandle,longlong memorySize)
+void utilityOptimizeResourceUsage(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
@@ -5073,7 +5073,7 @@ void FUN_180892120(longlong resourceHandle,longlong memorySize)
     localInt1 = func_0x0001808c7d30(uStackX_8);
     if (localInt1 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+      utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
     }
   }
   return;
@@ -5081,7 +5081,7 @@ void FUN_180892120(longlong resourceHandle,longlong memorySize)
 
 
 
-uint64 FUN_180892170(longlong resourceHandle,longlong memorySize)
+uint64 utilityQueryResourceStatus(longlong resourceHandle,longlong memorySize)
 
 {
   uint64 localUInt1;
@@ -5097,14 +5097,14 @@ uint64 FUN_180892170(longlong resourceHandle,longlong memorySize)
     }
     *(uint64 *)(resourceHandle + 0x18) =
          *(uint64 *)(*(longlong *)(*(longlong *)(lStackX_8 + 0x10) + 0x2b0) + 0x78);
-    localUInt1 = FUN_18088d7c0(*(uint64 *)(memorySize + 0x98),resourceHandle);
+    localUInt1 = utilityAcquireResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
   }
   return localUInt1;
 }
 
 
 
-uint64 FUN_1808921f0(longlong resourceHandle,longlong memorySize)
+uint64 utilityCheckResourceAvailability(longlong resourceHandle,longlong memorySize)
 
 {
   uint64 localUInt1;
@@ -5121,7 +5121,7 @@ uint64 FUN_1808921f0(longlong resourceHandle,longlong memorySize)
     localUInt1 = validate_resource_handle(*(uint64 *)(*(longlong *)(lStackX_8 + 0x18) + 0xd0),
                                 resourceHandle + 0x18);
     if ((int)localUInt1 == 0) {
-      localUInt1 = FUN_18088d7c0(*(uint64 *)(memorySize + 0x98),resourceHandle);
+      localUInt1 = utilityAcquireResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
     }
   }
   return localUInt1;
@@ -5129,7 +5129,7 @@ uint64 FUN_1808921f0(longlong resourceHandle,longlong memorySize)
 
 
 
-uint64 FUN_180892270(longlong resourceHandle,longlong memorySize)
+uint64 utilityGetResourceInformation(longlong resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
@@ -5173,7 +5173,7 @@ uint64 FUN_180892270(longlong resourceHandle,longlong memorySize)
           if ((int)uVar3 != 0) {
             return uVar3;
           }
-          uVar3 = FUN_18088d7c0(*(uint64 *)(memorySize + 0x98),resourceHandle);
+          uVar3 = utilityAcquireResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
           return uVar3;
         }
         uVar5 = (int)uVar6 + 1;
@@ -5188,7 +5188,7 @@ uint64 FUN_180892270(longlong resourceHandle,longlong memorySize)
 
 
 
-uint64 FUN_1808922ad(void)
+uint64 utilityRetrieveResourceData(void)
 
 {
   longlong localLong1;
@@ -5229,7 +5229,7 @@ uint64 FUN_1808922ad(void)
         if ((int)uVar3 != 0) {
           return uVar3;
         }
-        uVar3 = FUN_18088d7c0(*(uint64 *)(unaff_R13 + 0x98));
+        uVar3 = utilityAcquireResourceHandle(*(uint64 *)(unaff_R13 + 0x98));
         return uVar3;
       }
       uVar5 = (int)uVar6 + 1;
@@ -5243,8 +5243,8 @@ uint64 FUN_1808922ad(void)
 
 
 
-// 函数: void FUN_180892333(void)
-void FUN_180892333(void)
+// 函数: void utilityRefreshResourceCache(void)
+void utilityRefreshResourceCache(void)
 
 {
   return;
@@ -5253,8 +5253,8 @@ void FUN_180892333(void)
 
 
 
-// 函数: void FUN_18089233e(void)
-void FUN_18089233e(void)
+// 函数: void utilityUpdateResourceState(void)
+void utilityUpdateResourceState(void)
 
 {
   int localInt1;
@@ -5262,14 +5262,14 @@ void FUN_18089233e(void)
   
   localInt1 = validate_resource_handle();
   if (localInt1 == 0) {
-    FUN_18088d7c0(*(uint64 *)(unaff_R13 + 0x98));
+    utilityAcquireResourceHandle(*(uint64 *)(unaff_R13 + 0x98));
   }
   return;
 }
 
 
 
-uint64 FUN_180892370(longlong resourceHandle,longlong memorySize)
+uint64 utilityProcessResourceTransaction(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
@@ -5302,9 +5302,9 @@ uint64 FUN_180892370(longlong resourceHandle,longlong memorySize)
   }
   if ((*(int *)(localLong3 + 0x180) != 0) || (*(int *)(localLong3 + 0x184) != 0)) {
     lStackX_8 = 0;
-    FUN_180768b50(&lStackX_8);
+    utilityPrepareResourceOperation(&lStackX_8);
     if (lStackX_8 == *(longlong *)((longlong)*(int *)(localLong3 + 0x17c) * 8 + 0x180c4f450)) {
-      localUInt2 = FUN_18088dd60(localLong3,resourceHandle);
+      localUInt2 = utilityExecuteResourceOperation(localLong3,resourceHandle);
       goto LAB_18088d83c;
     }
   }
@@ -5322,8 +5322,8 @@ LAB_18088d83c:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180892410(longlong resourceHandle,longlong memorySize)
-void FUN_180892410(longlong resourceHandle,longlong memorySize)
+// 函数: void utilityExecuteResourceCommand(longlong resourceHandle,longlong memorySize)
+void utilityExecuteResourceCommand(longlong resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
@@ -5352,7 +5352,7 @@ void FUN_180892410(longlong resourceHandle,longlong memorySize)
       plVar4 = (longlong *)(localLong3 + 0x58);
       if (((longlong *)*plVar4 != plVar4) || (*(longlong **)(localLong3 + 0x60) != plVar4)) {
                     // WARNING: Subroutine does not return
-        FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+        utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
       }
     }
   }
@@ -5363,8 +5363,8 @@ void FUN_180892410(longlong resourceHandle,longlong memorySize)
 
 
 
-// 函数: void FUN_18089246a(longlong *resourceHandle,longlong memorySize)
-void FUN_18089246a(longlong *resourceHandle,longlong memorySize)
+// 函数: void utilityHandleResourceAllocation(longlong *resourceHandle,longlong memorySize)
+void utilityHandleResourceAllocation(longlong *resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
@@ -5383,14 +5383,14 @@ void FUN_18089246a(longlong *resourceHandle,longlong memorySize)
     ExecuteSecurityCheck(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
   }
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(uint64 *)(unaff_RDI + 0x98));
+  utilityReleaseResourceHandle(*(uint64 *)(unaff_RDI + 0x98));
 }
 
 
 
 
-// 函数: void FUN_1808924c8(void)
-void FUN_1808924c8(void)
+// 函数: void utilityFinalizeResourceOperation(void)
+void utilityFinalizeResourceOperation(void)
 
 {
   ulonglong in_stack_00000050;
@@ -5401,7 +5401,7 @@ void FUN_1808924c8(void)
 
 
 
-uint64 FUN_1808924f0(longlong resourceHandle,longlong memorySize)
+uint64 utilityValidateResourceTransaction(longlong resourceHandle,longlong memorySize)
 
 {
   float fVar1;
@@ -5515,9 +5515,9 @@ uint64 FUN_1808924f0(longlong resourceHandle,longlong memorySize)
     localLong10 = *(longlong *)(memorySize + 0x98);
     if ((*(int *)(localLong10 + 0x180) != 0) || (*(int *)(localLong10 + 0x184) != 0)) {
       alStackX_8[0] = 0;
-      FUN_180768b50(alStackX_8);
+      utilityPrepareResourceOperation(alStackX_8);
       if (alStackX_8[0] == *(longlong *)((longlong)*(int *)(localLong10 + 0x17c) * 8 + 0x180c4f450)) {
-        uVar5 = FUN_18088dd60(localLong10,resourceHandle);
+        uVar5 = utilityExecuteResourceOperation(localLong10,resourceHandle);
         if ((int)uVar5 == 0) {
           return 0;
         }
@@ -5537,8 +5537,8 @@ uint64 FUN_1808924f0(longlong resourceHandle,longlong memorySize)
 
 
 
-// 函数: void FUN_180892720(longlong resourceHandle,longlong memorySize)
-void FUN_180892720(longlong resourceHandle,longlong memorySize)
+// 函数: void utilityCompleteResourceProcess(longlong resourceHandle,longlong memorySize)
+void utilityCompleteResourceProcess(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
@@ -5555,14 +5555,14 @@ void FUN_180892720(longlong resourceHandle,longlong memorySize)
     }
     *(uint32 *)(localLong2 + 0x88) = *(uint32 *)(resourceHandle + 0x18);
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+    utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
   }
   return;
 }
 
 
 
-uint64 FUN_180892780(longlong resourceHandle,longlong memorySize)
+uint64 utilityHandleResourceResponse(longlong resourceHandle,longlong memorySize)
 
 {
   float fVar1;
@@ -5585,7 +5585,7 @@ uint64 FUN_180892780(longlong resourceHandle,longlong memorySize)
       alStackX_18[0] = alStackX_18[0] + -8;
     }
     lStackX_8 = 0;
-    uVar3 = FUN_1808681d0(alStackX_18[0],resourceHandle + 0x18,&lStackX_8);
+    uVar3 = utilityProcessResourceData(alStackX_18[0],resourceHandle + 0x18,&lStackX_8);
     if ((int)uVar3 == 0) {
       if (lStackX_8 == 0) {
         return 0x4a;
@@ -5606,7 +5606,7 @@ uint64 FUN_180892780(longlong resourceHandle,longlong memorySize)
       *(float *)(resourceHandle + 0x20) = fVar4;
       *(float *)(lStackX_8 + 4) = fVar4;
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+      utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
     }
   }
   return uVar3;
@@ -5614,7 +5614,7 @@ uint64 FUN_180892780(longlong resourceHandle,longlong memorySize)
 
 
 
-uint64 FUN_180892880(longlong resourceHandle,longlong memorySize)
+uint64 utilityProcessResourceResult(longlong resourceHandle,longlong memorySize)
 
 {
   float fVar1;
@@ -5632,7 +5632,7 @@ uint64 FUN_180892880(longlong resourceHandle,longlong memorySize)
       alStackX_18[0] = alStackX_18[0] + -8;
     }
     lStackX_8 = 0;
-    uVar3 = FUN_1808681d0(alStackX_18[0],resourceHandle + 0x18,&lStackX_8);
+    uVar3 = utilityProcessResourceData(alStackX_18[0],resourceHandle + 0x18,&lStackX_8);
     if ((int)uVar3 == 0) {
       if (lStackX_8 == 0) {
         return 0x4a;
@@ -5644,7 +5644,7 @@ uint64 FUN_180892880(longlong resourceHandle,longlong memorySize)
       if ((*(byte *)(localLong2 + 0x34) & 0x11) != 0) {
         return 0x1f;
       }
-      uVar3 = FUN_18084de40(localLong2,resourceHandle + 0x25,resourceHandle + 0x20);
+      uVar3 = utilityAccessResourceAttribute(localLong2,resourceHandle + 0x25,resourceHandle + 0x20);
       if ((int)uVar3 == 0) {
         fVar1 = *(float *)(resourceHandle + 0x20);
         if ((*(float *)(localLong2 + 0x38) <= fVar1) &&
@@ -5652,7 +5652,7 @@ uint64 FUN_180892880(longlong resourceHandle,longlong memorySize)
           uVar3 = *(uint64 *)(memorySize + 0x98);
           *(float *)(lStackX_8 + 4) = fVar1;
                     // WARNING: Subroutine does not return
-          FUN_18088d720(uVar3,resourceHandle);
+          utilityReleaseResourceHandle(uVar3,resourceHandle);
         }
         uVar3 = 0x1c;
       }
@@ -5663,7 +5663,7 @@ uint64 FUN_180892880(longlong resourceHandle,longlong memorySize)
 
 
 
-uint64 FUN_1808928d3(void)
+uint64 utilityExtractResourceOutput(void)
 
 {
   float fVar1;
@@ -5683,7 +5683,7 @@ uint64 FUN_1808928d3(void)
   if ((*(byte *)(localLong2 + 0x34) & 0x11) != 0) {
     return 0x1f;
   }
-  uVar3 = FUN_18084de40(localLong2,unaff_RDI + 0x25,unaff_RDI + 0x20);
+  uVar3 = utilityAccessResourceAttribute(localLong2,unaff_RDI + 0x25,unaff_RDI + 0x20);
   if ((int)uVar3 == 0) {
     fVar1 = *(float *)(unaff_RDI + 0x20);
     if ((*(float *)(localLong2 + 0x38) <= fVar1) &&
@@ -5691,7 +5691,7 @@ uint64 FUN_1808928d3(void)
       uVar3 = *(uint64 *)(unaff_RBP + 0x98);
       *(float *)(in_stack_00000040 + 4) = fVar1;
                     // WARNING: Subroutine does not return
-      FUN_18088d720(uVar3);
+      utilityReleaseResourceHandle(uVar3);
     }
     uVar3 = 0x1c;
   }
@@ -5700,7 +5700,7 @@ uint64 FUN_1808928d3(void)
 
 
 
-uint64 FUN_1808928f1(void)
+uint64 utilityFormatResourceData(void)
 
 {
   float fVar1;
@@ -5718,7 +5718,7 @@ uint64 FUN_1808928f1(void)
   if ((*(byte *)(localLong2 + 0x34) & 0x11) != 0) {
     return 0x1f;
   }
-  uVar3 = FUN_18084de40(localLong2,unaff_RDI + 0x25,unaff_RDI + 0x20);
+  uVar3 = utilityAccessResourceAttribute(localLong2,unaff_RDI + 0x25,unaff_RDI + 0x20);
   if ((int)uVar3 == 0) {
     fVar1 = *(float *)(unaff_RDI + 0x20);
     if ((*(float *)(localLong2 + 0x38) <= fVar1) &&
@@ -5726,7 +5726,7 @@ uint64 FUN_1808928f1(void)
       uVar3 = *(uint64 *)(unaff_RBP + 0x98);
       *(float *)(in_stack_00000040 + 4) = fVar1;
                     // WARNING: Subroutine does not return
-      FUN_18088d720(uVar3);
+      utilityReleaseResourceHandle(uVar3);
     }
     uVar3 = 0x1c;
   }
@@ -5735,7 +5735,7 @@ uint64 FUN_1808928f1(void)
 
 
 
-uint64 FUN_180892909(uint32 resourceHandle)
+uint64 utilityValidateResourceOutput(uint32 resourceHandle)
 
 {
   float fVar1;
@@ -5748,7 +5748,7 @@ uint64 FUN_180892909(uint32 resourceHandle)
   if ((*(byte *)(baseRegister + 0x34) & 0x11) != 0) {
     return 0x1f;
   }
-  localUInt2 = FUN_18084de40(resourceHandle,unaff_RDI + 0x25,unaff_RDI + 0x20);
+  localUInt2 = utilityAccessResourceAttribute(resourceHandle,unaff_RDI + 0x25,unaff_RDI + 0x20);
   if ((int)localUInt2 == 0) {
     fVar1 = *(float *)(unaff_RDI + 0x20);
     if ((*(float *)(baseRegister + 0x38) <= fVar1) &&
@@ -5756,7 +5756,7 @@ uint64 FUN_180892909(uint32 resourceHandle)
       localUInt2 = *(uint64 *)(unaff_RBP + 0x98);
       *(float *)(in_stack_00000040 + 4) = fVar1;
                     // WARNING: Subroutine does not return
-      FUN_18088d720(localUInt2);
+      utilityReleaseResourceHandle(localUInt2);
     }
     localUInt2 = 0x1c;
   }
@@ -5765,7 +5765,7 @@ uint64 FUN_180892909(uint32 resourceHandle)
 
 
 
-uint64 FUN_180892920(uint32 resourceHandle)
+uint64 utilityConfirmResourceOperation(uint32 resourceHandle)
 
 {
   float fVar1;
@@ -5775,7 +5775,7 @@ uint64 FUN_180892920(uint32 resourceHandle)
   longlong unaff_RDI;
   longlong in_stack_00000040;
   
-  localUInt2 = FUN_18084de40(resourceHandle,unaff_RDI + 0x25,unaff_RDI + 0x20);
+  localUInt2 = utilityAccessResourceAttribute(resourceHandle,unaff_RDI + 0x25,unaff_RDI + 0x20);
   if ((int)localUInt2 == 0) {
     fVar1 = *(float *)(unaff_RDI + 0x20);
     if ((*(float *)(baseRegister + 0x38) <= fVar1) &&
@@ -5783,7 +5783,7 @@ uint64 FUN_180892920(uint32 resourceHandle)
       localUInt2 = *(uint64 *)(unaff_RBP + 0x98);
       *(float *)(in_stack_00000040 + 4) = fVar1;
                     // WARNING: Subroutine does not return
-      FUN_18088d720(localUInt2);
+      utilityReleaseResourceHandle(localUInt2);
     }
     localUInt2 = 0x1c;
   }
@@ -5792,7 +5792,7 @@ uint64 FUN_180892920(uint32 resourceHandle)
 
 
 
-uint64 FUN_180892974(void)
+uint64 utilityCleanupResourceOperation(void)
 
 {
   return 0x1c;
@@ -5801,8 +5801,8 @@ uint64 FUN_180892974(void)
 
 
 
-// 函数: void FUN_180892983(void)
-void FUN_180892983(void)
+// 函数: void utilityResetResourceProcessor(void)
+void utilityResetResourceProcessor(void)
 
 {
   return;
@@ -5810,7 +5810,7 @@ void FUN_180892983(void)
 
 
 
-uint64 FUN_180892990(longlong resourceHandle,longlong memorySize)
+uint64 utilityAnalyzeResourcePerformance(longlong resourceHandle,longlong memorySize)
 
 {
   float fVar1;
@@ -5840,7 +5840,7 @@ uint64 FUN_180892990(longlong resourceHandle,longlong memorySize)
       return 0x1e;
     }
     auStackX_8[0] = 0;
-    uVar4 = FUN_180840950(memorySize,lVar5,resourceHandle + 0x28,auStackX_8);
+    uVar4 = utilityCalculateResourceMetrics(memorySize,lVar5,resourceHandle + 0x28,auStackX_8);
     if ((int)uVar4 != 0) {
       return uVar4;
     }
@@ -5858,7 +5858,7 @@ uint64 FUN_180892990(longlong resourceHandle,longlong memorySize)
       *(float *)(lVar5 + 4 + (longlong)(int)auStackX_8[0] * 0x18) = fVar6;
       *(uint64 *)(resourceHandle + 0x20) = *(uint64 *)(localLong2 + (longlong)(int)auStackX_8[0] * 8);
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+      utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
     }
   }
   return 0x1f;
@@ -5866,7 +5866,7 @@ uint64 FUN_180892990(longlong resourceHandle,longlong memorySize)
 
 
 
-uint64 FUN_180892ac0(longlong resourceHandle,longlong memorySize)
+uint64 utilityOptimizeResourcePerformance(longlong resourceHandle,longlong memorySize)
 
 {
   float fVar1;
@@ -5892,7 +5892,7 @@ uint64 FUN_180892ac0(longlong resourceHandle,longlong memorySize)
       return 0x1e;
     }
     aiStackX_8[0] = 0;
-    uVar4 = FUN_180840950(memorySize,lVar6,resourceHandle + 0x28,aiStackX_8);
+    uVar4 = utilityCalculateResourceMetrics(memorySize,lVar6,resourceHandle + 0x28,aiStackX_8);
     if ((int)uVar4 != 0) {
       return uVar4;
     }
@@ -5900,7 +5900,7 @@ uint64 FUN_180892ac0(longlong resourceHandle,longlong memorySize)
     lVar6 = *(longlong *)(lVar6 + 0x20);
     localLong3 = *(longlong *)(lVar6 + 0x10 + lVar5 * 0x18);
     if ((*(byte *)(localLong3 + 0x34) & 0x11) == 0) {
-      uVar4 = FUN_18084de40(localLong3,resourceHandle + 0xa8,resourceHandle + 0x18);
+      uVar4 = utilityAccessResourceAttribute(localLong3,resourceHandle + 0xa8,resourceHandle + 0x18);
       if ((int)uVar4 != 0) {
         return uVar4;
       }
@@ -5911,7 +5911,7 @@ uint64 FUN_180892ac0(longlong resourceHandle,longlong memorySize)
         *(float *)(lVar6 + 4 + lVar5 * 0x18) = fVar1;
         *(uint64 *)(resourceHandle + 0x20) = *(uint64 *)(localLong2 + (longlong)aiStackX_8[0] * 8);
                     // WARNING: Subroutine does not return
-        FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+        utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
       }
       return 0x1c;
     }
@@ -5921,7 +5921,7 @@ uint64 FUN_180892ac0(longlong resourceHandle,longlong memorySize)
 
 
 
-uint64 FUN_180892bd0(longlong resourceHandle,longlong memorySize,uint64 operationFlags,uint64 callbackFunction)
+uint64 utilityExecuteResourceTask(longlong resourceHandle,longlong memorySize,uint64 operationFlags,uint64 callbackFunction)
 
 {
   float fVar1;
@@ -5970,9 +5970,9 @@ uint64 FUN_180892bd0(longlong resourceHandle,longlong memorySize,uint64 operatio
     lVar5 = *(longlong *)(memorySize + 0x98);
     if ((*(int *)(lVar5 + 0x180) != 0) || (*(int *)(lVar5 + 0x184) != 0)) {
       lStackX_8 = 0;
-      FUN_180768b50(&lStackX_8,resourceHandle,operationFlags,callbackFunction,unaff_RDI);
+      utilityPrepareResourceOperation(&lStackX_8,resourceHandle,operationFlags,callbackFunction,unaff_RDI);
       if (lStackX_8 == *(longlong *)((longlong)*(int *)(lVar5 + 0x17c) * 8 + 0x180c4f450)) {
-        uVar4 = FUN_18088dd60(lVar5,resourceHandle);
+        uVar4 = utilityExecuteResourceOperation(lVar5,resourceHandle);
         if ((int)uVar4 == 0) {
           return 0;
         }
@@ -5991,7 +5991,7 @@ uint64 FUN_180892bd0(longlong resourceHandle,longlong memorySize,uint64 operatio
 
 
 
-uint64 FUN_180892cc0(longlong resourceHandle,longlong memorySize)
+uint64 utilityFinalizeResourceTask(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
@@ -6068,12 +6068,12 @@ uint64 FUN_180892cc0(longlong resourceHandle,longlong memorySize)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+  utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
 }
 
 
 
-uint64 FUN_180892ceb(void)
+uint64 utilityCompleteResourceCycle(void)
 
 {
   float fVar1;
@@ -6143,14 +6143,14 @@ uint64 FUN_180892ceb(void)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(uint64 *)(unaff_R15 + 0x98));
+  utilityReleaseResourceHandle(*(uint64 *)(unaff_R15 + 0x98));
 }
 
 
 
 
-// 函数: void FUN_180892e2d(void)
-void FUN_180892e2d(void)
+// 函数: void utilityInitializeResourceCycle(void)
+void utilityInitializeResourceCycle(void)
 
 {
   return;
@@ -6158,7 +6158,7 @@ void FUN_180892e2d(void)
 
 
 
-uint64 FUN_180892e35(void)
+uint64 utilityStartResourceCycle(void)
 
 {
   return 0x1e;
@@ -6169,8 +6169,8 @@ uint64 FUN_180892e35(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180892e50(longlong resourceHandle,uint64 memorySize)
-void FUN_180892e50(longlong resourceHandle,uint64 memorySize)
+// 函数: void utilityProcessResourceCycle(longlong resourceHandle,uint64 memorySize)
+void utilityProcessResourceCycle(longlong resourceHandle,uint64 memorySize)
 
 {
   int localInt1;
@@ -6198,7 +6198,7 @@ void FUN_180892e50(longlong resourceHandle,uint64 memorySize)
       uVar3 = 0xffffffffffffff0;
     }
                     // WARNING: Subroutine does not return
-    FUN_1808fd200(localLong2,uVar3 & 0xfffffffffffffff0);
+    utilityProcessResourceData(localLong2,uVar3 & 0xfffffffffffffff0);
   }
                     // WARNING: Subroutine does not return
   ExecuteSecurityCheck(localUInt ^ (ulonglong)localArray);
@@ -6207,8 +6207,8 @@ void FUN_180892e50(longlong resourceHandle,uint64 memorySize)
 
 
 
-// 函数: void FUN_180893080(longlong resourceHandle,longlong memorySize)
-void FUN_180893080(longlong resourceHandle,longlong memorySize)
+// 函数: void utilityManageResourceCycle(longlong resourceHandle,longlong memorySize)
+void utilityManageResourceCycle(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
@@ -6225,14 +6225,14 @@ void FUN_180893080(longlong resourceHandle,longlong memorySize)
     }
     *(byte *)(localLong2 + 0xbc) = *(byte *)(resourceHandle + 0x18);
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+    utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
   }
   return;
 }
 
 
 
-uint64 FUN_1808930e0(longlong resourceHandle,longlong memorySize,uint64 operationFlags,uint64 callbackFunction)
+uint64 utilityExecuteResourceCycleTask(longlong resourceHandle,longlong memorySize,uint64 operationFlags,uint64 callbackFunction)
 
 {
   float fVar1;
@@ -6263,9 +6263,9 @@ uint64 FUN_1808930e0(longlong resourceHandle,longlong memorySize,uint64 operatio
   localLong3 = *(longlong *)(memorySize + 0x98);
   if ((*(int *)(localLong3 + 0x180) != 0) || (*(int *)(localLong3 + 0x184) != 0)) {
     lStackX_8 = 0;
-    FUN_180768b50(&lStackX_8,resourceHandle,operationFlags,callbackFunction,unaff_RDI);
+    utilityPrepareResourceOperation(&lStackX_8,resourceHandle,operationFlags,callbackFunction,unaff_RDI);
     if (lStackX_8 == *(longlong *)((longlong)*(int *)(localLong3 + 0x17c) * 8 + 0x180c4f450)) {
-      localUInt2 = FUN_18088dd60(localLong3,resourceHandle);
+      localUInt2 = utilityExecuteResourceOperation(localLong3,resourceHandle);
       if ((int)localUInt2 == 0) {
         return 0;
       }
@@ -6282,7 +6282,7 @@ uint64 FUN_1808930e0(longlong resourceHandle,longlong memorySize,uint64 operatio
 
 
 
-uint64 FUN_180893190(longlong resourceHandle,longlong memorySize)
+uint64 utilityHandleResourceCycleResponse(longlong resourceHandle,longlong memorySize)
 
 {
   float fVar1;
@@ -6332,9 +6332,9 @@ code_r0x00018089322c:
   localLong3 = *(longlong *)(memorySize + 0x98);
   if ((*(int *)(localLong3 + 0x180) != 0) || (*(int *)(localLong3 + 0x184) != 0)) {
     lStackX_8 = 0;
-    FUN_180768b50(&lStackX_8);
+    utilityPrepareResourceOperation(&lStackX_8);
     if (lStackX_8 == *(longlong *)((longlong)*(int *)(localLong3 + 0x17c) * 8 + 0x180c4f450)) {
-      localUInt2 = FUN_18088dd60(localLong3,resourceHandle);
+      localUInt2 = utilityExecuteResourceOperation(localLong3,resourceHandle);
       if ((int)localUInt2 == 0) {
         return 0;
       }
@@ -6351,7 +6351,7 @@ code_r0x00018089322c:
 
 
 
-uint64 FUN_180893290(longlong resourceHandle,longlong memorySize)
+uint64 utilityProcessResourceCycleResult(longlong resourceHandle,longlong memorySize)
 
 {
   uint64 localUInt1;
@@ -6380,9 +6380,9 @@ uint64 FUN_180893290(longlong resourceHandle,longlong memorySize)
   localLong2 = *(longlong *)(memorySize + 0x98);
   if ((*(int *)(localLong2 + 0x180) != 0) || (*(int *)(localLong2 + 0x184) != 0)) {
     lStackX_8 = 0;
-    FUN_180768b50(&lStackX_8);
+    utilityPrepareResourceOperation(&lStackX_8);
     if (lStackX_8 == *(longlong *)((longlong)*(int *)(localLong2 + 0x17c) * 8 + 0x180c4f450)) {
-      localUInt1 = FUN_18088dd60(localLong2,resourceHandle);
+      localUInt1 = utilityExecuteResourceOperation(localLong2,resourceHandle);
       if ((int)localUInt1 == 0) {
         return 0;
       }
@@ -6399,7 +6399,7 @@ uint64 FUN_180893290(longlong resourceHandle,longlong memorySize)
 
 
 
-uint64 FUN_180893330(longlong resourceHandle,longlong memorySize)
+uint64 utilityValidateResourceCycle(longlong resourceHandle,longlong memorySize)
 
 {
   uint64 localUInt1;
@@ -6421,7 +6421,7 @@ uint64 FUN_180893330(longlong resourceHandle,longlong memorySize)
     }
     *(uint32 *)(localLong2 + 0x8c) = *(uint32 *)(resourceHandle + 0x18);
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+    utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
   }
   return localUInt1;
 }
@@ -6429,8 +6429,8 @@ uint64 FUN_180893330(longlong resourceHandle,longlong memorySize)
 
 
 
-// 函数: void FUN_1808933c0(longlong resourceHandle,longlong memorySize)
-void FUN_1808933c0(longlong resourceHandle,longlong memorySize)
+// 函数: void utilityOptimizeResourceCycle(longlong resourceHandle,longlong memorySize)
+void utilityOptimizeResourceCycle(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
@@ -6444,7 +6444,7 @@ void FUN_1808933c0(longlong resourceHandle,longlong memorySize)
     *(int *)(lStackX_8 + 0x84) = *(int *)(lStackX_8 + 0x84) + 1;
     *(byte *)(lStackX_8 + 0xbd) = 1;
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+    utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
   }
   return;
 }
@@ -6452,8 +6452,8 @@ void FUN_1808933c0(longlong resourceHandle,longlong memorySize)
 
 
 
-// 函数: void FUN_180893420(longlong resourceHandle,longlong memorySize)
-void FUN_180893420(longlong resourceHandle,longlong memorySize)
+// 函数: void utilityCompleteResourceCycle(longlong resourceHandle,longlong memorySize)
+void utilityCompleteResourceCycle(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
@@ -6467,14 +6467,14 @@ void FUN_180893420(longlong resourceHandle,longlong memorySize)
     *(int *)(lStackX_8 + 0x84) = *(int *)(lStackX_8 + 0x84) + 1;
     *(byte *)(lStackX_8 + 0xbd) = 0;
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+    utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
   }
   return;
 }
 
 
 
-uint64 FUN_180893480(longlong resourceHandle,longlong memorySize)
+uint64 utilityAnalyzeResourceCycle(longlong resourceHandle,longlong memorySize)
 
 {
   float fVar1;
@@ -6508,12 +6508,12 @@ uint64 FUN_180893480(longlong resourceHandle,longlong memorySize)
   *(float *)(resourceHandle + 0x14) = fVar4;
   *(float *)(CONCAT44(uStackX_c,uStackX_8) + 4) = fVar4;
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+  utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
 }
 
 
 
-uint64 FUN_180893540(longlong resourceHandle,longlong memorySize)
+uint64 utilityMonitorResourceCycle(longlong resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
@@ -6535,7 +6535,7 @@ uint64 FUN_180893540(longlong resourceHandle,longlong memorySize)
   else {
     localUInt2 = validate_resource_handle(*(longlong *)(localLong1 + 0x2e8),resourceHandle + 0x20);
     if ((int)localUInt2 == 0) {
-      localUInt2 = FUN_18088d7c0(*(uint64 *)(memorySize + 0x98),resourceHandle);
+      localUInt2 = utilityAcquireResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
       return localUInt2;
     }
   }
@@ -6544,7 +6544,7 @@ uint64 FUN_180893540(longlong resourceHandle,longlong memorySize)
 
 
 
-uint64 FUN_1808935c0(longlong resourceHandle,longlong memorySize)
+uint64 utilityReportResourceCycle(longlong resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
@@ -6570,13 +6570,13 @@ uint64 FUN_1808935c0(longlong resourceHandle,longlong memorySize)
   localLong1 = *(longlong *)(memorySize + 0x98);
   if (*(int *)(localLong1 + 0x200) != 0) {
     if (((*(int *)(localLong1 + 0x180) == 0) && (*(int *)(localLong1 + 0x184) == 0)) ||
-       (FUN_180768b50(&stack0x00000008),
+       (utilityPrepareResourceOperation(&stack0x00000008),
        *(longlong *)((longlong)*(int *)(localLong1 + 0x17c) * 8 + 0x180c4f450) != 0)) {
       *(uint *)(resourceHandle + 8) = *(int *)(resourceHandle + 8) + 0xfU & 0xfffffff0;
       localUInt2 = func_0x0001808e64d0(*(uint64 *)(localLong1 + 0x1e0));
     }
     else {
-      localUInt2 = FUN_18088dd60(localLong1,resourceHandle);
+      localUInt2 = utilityExecuteResourceOperation(localLong1,resourceHandle);
     }
     if ((int)localUInt2 != 0) {
       return localUInt2;
@@ -6588,19 +6588,19 @@ uint64 FUN_1808935c0(longlong resourceHandle,longlong memorySize)
 
 
 
-// 函数: void FUN_180893640(longlong resourceHandle,longlong memorySize)
-void FUN_180893640(longlong resourceHandle,longlong memorySize)
+// 函数: void utilityLogResourceCycle(longlong resourceHandle,longlong memorySize)
+void utilityLogResourceCycle(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
   uint64 uStackX_8;
   
-  localInt1 = FUN_180894860(memorySize,resourceHandle + 0x10,&uStackX_8);
+  localInt1 = utilityExtractResourceInfo(memorySize,resourceHandle + 0x10,&uStackX_8);
   if (localInt1 == 0) {
     localInt1 = validate_resource_handle(uStackX_8,resourceHandle + 0x20);
     if (localInt1 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+      utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
     }
   }
   return;
@@ -6609,18 +6609,18 @@ void FUN_180893640(longlong resourceHandle,longlong memorySize)
 
 
 
-// 函数: void FUN_1808936a0(longlong resourceHandle,longlong memorySize)
-void FUN_1808936a0(longlong resourceHandle,longlong memorySize)
+// 函数: void utilityTrackResourceCycle(longlong resourceHandle,longlong memorySize)
+void utilityTrackResourceCycle(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
   longlong lStackX_8;
   
-  localInt1 = FUN_1808949c0(memorySize,resourceHandle + 0x10,&lStackX_8);
+  localInt1 = utilityAnalyzeResourceData(memorySize,resourceHandle + 0x10,&lStackX_8);
   if (localInt1 == 0) {
     localInt1 = validate_resource_handle(*(uint64 *)(lStackX_8 + 0xd0),resourceHandle + 0x20);
     if (localInt1 == 0) {
-      FUN_18088d7c0(*(uint64 *)(memorySize + 0x98),resourceHandle);
+      utilityAcquireResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
     }
   }
   return;
@@ -6636,12 +6636,12 @@ void FUN_180893700(longlong resourceHandle,longlong memorySize)
   int localInt1;
   uint64 uStackX_8;
   
-  localInt1 = FUN_180894b00(memorySize,resourceHandle + 0x10,&uStackX_8);
+  localInt1 = utilityGenerateResourceReport(memorySize,resourceHandle + 0x10,&uStackX_8);
   if (localInt1 == 0) {
     localInt1 = validate_resource_handle(uStackX_8,resourceHandle + 0x20);
     if (localInt1 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+      utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
     }
   }
   return;
@@ -6669,14 +6669,14 @@ int FUN_180893760(longlong resourceHandle,longlong memorySize)
           *(uint32 *)(lStackX_8 + 0x30) = 2;
         }
                     // WARNING: Subroutine does not return
-        FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+        utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
       }
     }
     else if (*(longlong *)(resourceHandle + 0x18) == 0) {
       localInt1 = 0x1f;
     }
     else {
-      localLong2 = FUN_180741e10(*(uint64 *)(_DAT_180be12f0 + 0x1a0),*(int *)(resourceHandle + 0x20),
+      localLong2 = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + 0x1a0),*(int *)(resourceHandle + 0x20),
                             &unknown_1809862d0,0x315,0,0,1);
       if (localLong2 != 0) {
                     // WARNING: Subroutine does not return
@@ -6712,14 +6712,14 @@ int FUN_18089379d(longlong resourceHandle,uint64 memorySize)
         *(uint32 *)(in_stack_00000060 + 0x30) = 2;
       }
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(uint64 *)(unaff_R15 + 0x98));
+      utilityReleaseResourceHandle(*(uint64 *)(unaff_R15 + 0x98));
     }
   }
   else if (*(longlong *)(resourceHandle + 0x18) == 0) {
     localInt1 = 0x1f;
   }
   else {
-    localLong2 = FUN_180741e10(*(uint64 *)(_DAT_180be12f0 + 0x1a0),memorySize,&unknown_1809862d0,0x315,0);
+    localLong2 = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + 0x1a0),memorySize,&unknown_1809862d0,0x315,0);
     if (localLong2 != 0) {
                     // WARNING: Subroutine does not return
       memcpy(localLong2,*(uint64 *)(unaff_RDI + 0x18),(longlong)*(int *)(unaff_RDI + 0x20));
@@ -6755,7 +6755,7 @@ void FUN_1808938c0(longlong resourceHandle,longlong memorySize)
         *(uint32 *)(lStackX_8 + 0x30) = 2;
       }
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+      utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
     }
   }
   return;
@@ -6778,8 +6778,8 @@ int FUN_180893930(longlong resourceHandle,longlong memorySize)
   if ((((localUInt1 != 1) || ((*(byte *)(resourceHandle + 0x10) & 0x1f) == 0)) && (0 < *(int *)(resourceHandle + 0x18))
       ) && (localUInt1 < 2)) {
     if (localUInt1 == 0) {
-      localLong3 = FUN_180741d10(*(uint64 *)(_DAT_180be12f0 + 0x1a0),*(int *)(resourceHandle + 0x18),0x20,
-                            &unknown_180957f70,0xdd,0,0);
+      localLong3 = FUN_180741d10(*(uint64 *)(utilitySystemDataTable + 0x1a0),*(int *)(resourceHandle + 0x18),0x20,
+                            &utilityMemoryDataBuffer,0xdd,0,0);
       if (localLong3 != 0) {
                     // WARNING: Subroutine does not return
         memcpy(localLong3,*(uint64 *)(resourceHandle + 0x10),(longlong)*(int *)(resourceHandle + 0x18));
@@ -6794,7 +6794,7 @@ int FUN_180893930(longlong resourceHandle,longlong memorySize)
           *(uint32 *)(lStackX_8 + 0x30) = 2;
         }
                     // WARNING: Subroutine does not return
-        FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+        utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
       }
     }
     return localInt2;
@@ -6818,7 +6818,7 @@ int FUN_180893964(uint64 resourceHandle,uint64 memorySize)
   longlong in_stack_00000060;
   
   if (in_EAX == 0) {
-    localLong2 = FUN_180741d10(*(uint64 *)(_DAT_180be12f0 + 0x1a0),memorySize,0x20,&unknown_180957f70,0xdd);
+    localLong2 = FUN_180741d10(*(uint64 *)(utilitySystemDataTable + 0x1a0),memorySize,0x20,&utilityMemoryDataBuffer,0xdd);
     if (localLong2 != 0) {
                     // WARNING: Subroutine does not return
       memcpy(localLong2,*(uint64 *)(unaff_RDI + 0x10),(longlong)*(int *)(unaff_RDI + 0x18));
@@ -6834,7 +6834,7 @@ int FUN_180893964(uint64 resourceHandle,uint64 memorySize)
         *(uint32 *)(in_stack_00000060 + 0x30) = 2;
       }
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(uint64 *)(unaff_R15 + 0x98));
+      utilityReleaseResourceHandle(*(uint64 *)(unaff_R15 + 0x98));
     }
   }
   return localInt1;
@@ -6879,7 +6879,7 @@ uint64 FUN_180893d50(longlong resourceHandle,longlong memorySize)
     localUInt2 = func_0x000180867960(memorySize + 0x60,auStackX_18[0],fVar4);
     if ((int)localUInt2 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+      utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
     }
   }
   return localUInt2;
@@ -6915,7 +6915,7 @@ uint64 FUN_180893d8f(uint64 resourceHandle,uint64 memorySize)
     localUInt2 = func_0x000180867960(unaff_RSI + 0x60,uStack0000000000000040,fVar4);
     if ((int)localUInt2 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(uint64 *)(unaff_RSI + 0x98));
+      utilityReleaseResourceHandle(*(uint64 *)(unaff_RSI + 0x98));
     }
   }
   return localUInt2;
@@ -6947,7 +6947,7 @@ void FUN_180893ddb(void)
   localInt2 = func_0x000180867960(unaff_RSI + 0x60,in_stack_00000040,fVar3);
   if (localInt2 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(uint64 *)(unaff_RSI + 0x98));
+    utilityReleaseResourceHandle(*(uint64 *)(unaff_RSI + 0x98));
   }
   return;
 }
@@ -6969,7 +6969,7 @@ uint64 FUN_180893e30(longlong resourceHandle,longlong memorySize)
     if ((*(uint *)(localLong3 + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
-    localUInt2 = FUN_18084de40(localLong3,resourceHandle + 0x1d,resourceHandle + 0x18);
+    localUInt2 = utilityAccessResourceAttribute(localLong3,resourceHandle + 0x1d,resourceHandle + 0x18);
     if ((int)localUInt2 == 0) {
       fVar1 = *(float *)(resourceHandle + 0x18);
       if ((fVar1 < *(float *)(localLong3 + 0x38)) ||
@@ -6980,7 +6980,7 @@ uint64 FUN_180893e30(longlong resourceHandle,longlong memorySize)
         localUInt2 = func_0x000180867960(memorySize + 0x60,auStackX_10[0]);
         if ((int)localUInt2 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+          utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
         }
       }
     }
@@ -7004,7 +7004,7 @@ uint64 FUN_180893e69(void)
   if ((*(uint *)(localLong2 + 0x34) >> 4 & 1) != 0) {
     return 0x1f;
   }
-  uVar3 = FUN_18084de40(localLong2,unaff_RDI + 0x1d,unaff_RDI + 0x18);
+  uVar3 = utilityAccessResourceAttribute(localLong2,unaff_RDI + 0x1d,unaff_RDI + 0x18);
   if ((int)uVar3 == 0) {
     fVar1 = *(float *)(unaff_RDI + 0x18);
     if ((fVar1 < *(float *)(localLong2 + 0x38)) ||
@@ -7015,7 +7015,7 @@ uint64 FUN_180893e69(void)
       uVar3 = func_0x000180867960(unaff_R14 + 0x60,in_stack_00000048);
       if ((int)uVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18088d720(*(uint64 *)(unaff_R14 + 0x98));
+        utilityReleaseResourceHandle(*(uint64 *)(unaff_R14 + 0x98));
       }
     }
   }
@@ -7034,7 +7034,7 @@ uint64 FUN_180893e94(void)
   longlong unaff_R14;
   uint32 in_stack_00000048;
   
-  localUInt2 = FUN_18084de40();
+  localUInt2 = utilityAccessResourceAttribute();
   if ((int)localUInt2 == 0) {
     fVar1 = *(float *)(unaff_RDI + 0x18);
     if ((fVar1 < *(float *)(baseRegister + 0x38)) ||
@@ -7045,7 +7045,7 @@ uint64 FUN_180893e94(void)
       localUInt2 = func_0x000180867960(unaff_R14 + 0x60,in_stack_00000048);
       if ((int)localUInt2 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18088d720(*(uint64 *)(unaff_R14 + 0x98));
+        utilityReleaseResourceHandle(*(uint64 *)(unaff_R14 + 0x98));
       }
     }
   }
@@ -7098,7 +7098,7 @@ uint64 FUN_180893f00(longlong resourceHandle,longlong memorySize)
       puVar4 = (uint64 *)func_0x000180867660(memorySize + 0x60,auStackX_8,auStackX_18[0]);
       *(uint64 *)(resourceHandle + 0x18) = *puVar4;
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+      utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
     }
   }
   return localUInt2;
@@ -7134,7 +7134,7 @@ uint64 FUN_180893f64(void)
     puVar4 = (uint64 *)func_0x000180867660(unaff_RDI + 0x60,&stack0x00000030,in_stack_00000040);
     *(uint64 *)(baseRegister + 0x18) = *puVar4;
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(uint64 *)(unaff_RDI + 0x98));
+    utilityReleaseResourceHandle(*(uint64 *)(unaff_RDI + 0x98));
   }
   return uVar3;
 }
@@ -7168,7 +7168,7 @@ void FUN_180893f8e(void)
     plocalUInt2 = (uint64 *)func_0x000180867660(unaff_RDI + 0x60,&stack0x00000030,in_stack_00000040);
     *(uint64 *)(baseRegister + 0x18) = *plocalUInt2;
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(uint64 *)(unaff_RDI + 0x98));
+    utilityReleaseResourceHandle(*(uint64 *)(unaff_RDI + 0x98));
   }
   return;
 }
@@ -7202,7 +7202,7 @@ uint64 FUN_180894000(longlong resourceHandle,longlong memorySize)
     if ((*(uint *)(localLong3 + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
-    localUInt2 = FUN_18084de40(localLong3,resourceHandle + 0xa0,resourceHandle + 0x10);
+    localUInt2 = utilityAccessResourceAttribute(localLong3,resourceHandle + 0xa0,resourceHandle + 0x10);
     if ((int)localUInt2 == 0) {
       fVar1 = *(float *)(resourceHandle + 0x10);
       if ((fVar1 < *(float *)(localLong3 + 0x38)) ||
@@ -7215,7 +7215,7 @@ uint64 FUN_180894000(longlong resourceHandle,longlong memorySize)
           puVar4 = (uint64 *)func_0x000180867660(memorySize + 0x60,auStackX_8,auStackX_18[0]);
           *(uint64 *)(resourceHandle + 0x18) = *puVar4;
                     // WARNING: Subroutine does not return
-          FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+          utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
         }
       }
     }
@@ -7240,7 +7240,7 @@ uint64 FUN_180894037(void)
   if ((*(uint *)(localLong2 + 0x34) >> 4 & 1) != 0) {
     return 0x1f;
   }
-  uVar3 = FUN_18084de40(localLong2,unaff_RDI + 0xa0,unaff_RDI + 0x10);
+  uVar3 = utilityAccessResourceAttribute(localLong2,unaff_RDI + 0xa0,unaff_RDI + 0x10);
   if ((int)uVar3 == 0) {
     fVar1 = *(float *)(unaff_RDI + 0x10);
     if ((fVar1 < *(float *)(localLong2 + 0x38)) ||
@@ -7254,7 +7254,7 @@ uint64 FUN_180894037(void)
                  func_0x000180867660(unaff_R14 + 0x60,&stackLocalBuffer,in_stack_00000050);
         *(uint64 *)(unaff_RDI + 0x18) = *puVar4;
                     // WARNING: Subroutine does not return
-        FUN_18088d720(*(uint64 *)(unaff_R14 + 0x98));
+        utilityReleaseResourceHandle(*(uint64 *)(unaff_R14 + 0x98));
       }
     }
   }
@@ -7274,7 +7274,7 @@ uint64 FUN_18089406b(void)
   longlong unaff_R14;
   uint32 in_stack_00000050;
   
-  localUInt2 = FUN_18084de40();
+  localUInt2 = utilityAccessResourceAttribute();
   if ((int)localUInt2 == 0) {
     fVar1 = *(float *)(unaff_RDI + 0x10);
     if ((fVar1 < *(float *)(baseRegister + 0x38)) ||
@@ -7288,7 +7288,7 @@ uint64 FUN_18089406b(void)
                  func_0x000180867660(unaff_R14 + 0x60,&stackLocalBuffer,in_stack_00000050);
         *(uint64 *)(unaff_RDI + 0x18) = *puVar3;
                     // WARNING: Subroutine does not return
-        FUN_18088d720(*(uint64 *)(unaff_R14 + 0x98));
+        utilityReleaseResourceHandle(*(uint64 *)(unaff_R14 + 0x98));
       }
     }
   }
@@ -7325,7 +7325,7 @@ void FUN_1808940f0(longlong resourceHandle,longlong memorySize)
   lStack_50 = resourceHandle + 0x18 + (longlong)*(int *)(resourceHandle + 0x10) * 8;
   lStack_40 = memorySize;
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  utilityProcessResourceData();
 }
 
 
@@ -7345,7 +7345,7 @@ uint64 FUN_180894300(longlong resourceHandle,longlong memorySize)
   if ((int)localUInt1 == 0) {
     *(uint32 *)(CONCAT44(uStackX_c,uStackX_8) + 0x18) = *(uint32 *)(resourceHandle + 0x18);
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
+    utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
   }
   return localUInt1;
 }
@@ -7491,8 +7491,8 @@ int FUN_1808947b0(longlong *resourceHandle,longlong memorySize,int operationFlag
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180894860(longlong resourceHandle,uint32 *memorySize,longlong *operationFlags)
-void FUN_180894860(longlong resourceHandle,uint32 *memorySize,longlong *operationFlags)
+// 函数: void utilityExtractResourceInfo(longlong resourceHandle,uint32 *memorySize,longlong *operationFlags)
+void utilityExtractResourceInfo(longlong resourceHandle,uint32 *memorySize,longlong *operationFlags)
 
 {
   longlong *plocalLong1;
@@ -7578,8 +7578,8 @@ void FUN_18089494e(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1808949c0(longlong resourceHandle,uint32 *memorySize,longlong *operationFlags)
-void FUN_1808949c0(longlong resourceHandle,uint32 *memorySize,longlong *operationFlags)
+// 函数: void utilityAnalyzeResourceData(longlong resourceHandle,uint32 *memorySize,longlong *operationFlags)
+void utilityAnalyzeResourceData(longlong resourceHandle,uint32 *memorySize,longlong *operationFlags)
 
 {
   longlong *plocalLong1;
@@ -7684,8 +7684,8 @@ void FUN_180894ad2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180894b00(longlong resourceHandle,uint32 *memorySize,longlong *operationFlags)
-void FUN_180894b00(longlong resourceHandle,uint32 *memorySize,longlong *operationFlags)
+// 函数: void utilityGenerateResourceReport(longlong resourceHandle,uint32 *memorySize,longlong *operationFlags)
+void utilityGenerateResourceReport(longlong resourceHandle,uint32 *memorySize,longlong *operationFlags)
 
 {
   longlong *plocalLong1;
@@ -7894,7 +7894,7 @@ void FUN_180894d60(longlong resourceHandle,uint64 memorySize)
 
 
 
-uint32 FUN_180894dd0(longlong resourceHandle,uint64 memorySize,uint operationFlags,longlong callbackFunction)
+uint32 utilityReadMemoryData(longlong resourceHandle,uint64 memorySize,uint operationFlags,longlong callbackFunction)
 
 {
   longlong *plocalLong1;
@@ -7912,7 +7912,7 @@ uint32 FUN_180894dd0(longlong resourceHandle,uint64 memorySize,uint operationFla
   iVar5 = 0;
   localUInt2 = *(uint *)(resourceHandle + 0x20);
   localBuffer[0] = 0;
-  localInt3 = FUN_18088c740(localBuffer,resourceHandle);
+  localInt3 = utilityInitializeResource(localBuffer,resourceHandle);
   if (localInt3 == 0) {
     uStackX_20 = 0;
     uVar6 = operationFlags | 0x10000000;
@@ -7939,7 +7939,7 @@ uint32 FUN_180894dd0(longlong resourceHandle,uint64 memorySize,uint operationFla
   }
 LAB_180894ebf:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(localBuffer);
+  utilityCleanupResource(localBuffer);
 }
 
 
@@ -7968,7 +7968,7 @@ uint FUN_180894ef0(longlong *resourceHandle)
     }
     if ((0 < (int)uVar3) && (*resourceHandle != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0),*resourceHandle,&unknown_180957f70,0x100,1);
+      utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),*resourceHandle,&utilityMemoryDataBuffer,0x100,1);
     }
     *resourceHandle = 0;
     uVar3 = 0;
@@ -7991,7 +7991,7 @@ uint FUN_180894ef0(longlong *resourceHandle)
   }
   if ((0 < *(int *)((longlong)resourceHandle + 0xc)) && (*resourceHandle != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0),*resourceHandle,&unknown_180957f70,0x100,1);
+    utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),*resourceHandle,&utilityMemoryDataBuffer,0x100,1);
   }
   *resourceHandle = 0;
   *(uint32 *)((longlong)resourceHandle + 0xc) = 0;
@@ -8035,7 +8035,7 @@ uint64 FUN_180894fb0(longlong resourceHandle)
     }
     if ((0 < (int)uVar4) && (*plocalLong1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0),*plocalLong1,&unknown_180957f70,0x100,1);
+      utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),*plocalLong1,&utilityMemoryDataBuffer,0x100,1);
     }
     *plocalLong1 = 0;
     uVar4 = 0;
@@ -8072,7 +8072,7 @@ uint64 FUN_180895070(longlong *resourceHandle)
     }
     if ((0 < (int)uVar3) && (*resourceHandle != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0),*resourceHandle,&unknown_180957f70,0x100,1);
+      utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),*resourceHandle,&utilityMemoryDataBuffer,0x100,1);
     }
     *resourceHandle = 0;
     uVar3 = 0;
@@ -8111,7 +8111,7 @@ uint64 FUN_180895130(longlong *resourceHandle)
     }
     if ((0 < (int)uVar5) && (*resourceHandle != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0),*resourceHandle,&unknown_180957f70,0x100,1);
+      utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),*resourceHandle,&utilityMemoryDataBuffer,0x100,1);
     }
     *resourceHandle = 0;
     *(uint32 *)((longlong)resourceHandle + 0xc) = 0;
@@ -9027,7 +9027,7 @@ uint64 FUN_180895f20(longlong *resourceHandle,int memorySize)
   if (memorySize != 0) {
     if (memorySize * 0xc - 1U < 0x3fffffff) {
       puVar3 = (uint64 *)
-               FUN_180741e10(*(uint64 *)(_DAT_180be12f0 + 0x1a0),memorySize * 0xc,&unknown_180957f70,
+               utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + 0x1a0),memorySize * 0xc,&utilityMemoryDataBuffer,
                              0xf4,0,0,1);
       if (puVar3 != (uint64 *)0x0) {
         localInt1 = (int)resourceHandle[1];
@@ -9050,7 +9050,7 @@ uint64 FUN_180895f20(longlong *resourceHandle,int memorySize)
 LAB_180895fdc:
   if ((0 < *(int *)((longlong)resourceHandle + 0xc)) && (*resourceHandle != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0),*resourceHandle,&unknown_180957f70,0x100,1);
+    utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),*resourceHandle,&utilityMemoryDataBuffer,0x100,1);
   }
   *resourceHandle = (longlong)puVar3;
   *(int *)((longlong)resourceHandle + 0xc) = memorySize;
@@ -9077,7 +9077,7 @@ uint64 FUN_180895f44(uint64 resourceHandle,int memorySize)
 LAB_180895fdc:
     if ((0 < *(int *)((longlong)baseRegister + 0xc)) && (*baseRegister != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0),*baseRegister,&unknown_180957f70,0x100,1);
+      utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),*baseRegister,&utilityMemoryDataBuffer,0x100,1);
     }
     *baseRegister = (longlong)puVar3;
     *(int *)((longlong)baseRegister + 0xc) = unaff_EDI;
@@ -9085,7 +9085,7 @@ LAB_180895fdc:
   }
   if (memorySize * 0xc - 1U < 0x3fffffff) {
     puVar3 = (uint64 *)
-             FUN_180741e10(*(uint64 *)(_DAT_180be12f0 + 0x1a0),memorySize * 0xc,&unknown_180957f70,0xf4
+             utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + 0x1a0),memorySize * 0xc,&utilityMemoryDataBuffer,0xf4
                            ,0);
     if (puVar3 != (uint64 *)0x0) {
       localInt1 = (int)baseRegister[1];
@@ -9129,7 +9129,7 @@ uint64 FUN_180896040(longlong *resourceHandle,int memorySize)
   localLong1 = 0;
   if (memorySize != 0) {
     if (memorySize * 0xc - 1U < 0x3fffffff) {
-      localLong1 = FUN_180741e10(*(uint64 *)(_DAT_180be12f0 + 0x1a0),memorySize * 0xc,&unknown_180957f70,
+      localLong1 = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + 0x1a0),memorySize * 0xc,&utilityMemoryDataBuffer,
                             0xf4,0,0,1);
       if (localLong1 != 0) {
         if ((int)resourceHandle[1] != 0) {
@@ -9144,7 +9144,7 @@ uint64 FUN_180896040(longlong *resourceHandle,int memorySize)
 LAB_1808960d4:
   if ((0 < *(int *)((longlong)resourceHandle + 0xc)) && (*resourceHandle != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0),*resourceHandle,&unknown_180957f70,0x100,1);
+    utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),*resourceHandle,&utilityMemoryDataBuffer,0x100,1);
   }
   *resourceHandle = localLong1;
   *(int *)((longlong)resourceHandle + 0xc) = memorySize;
@@ -9167,14 +9167,14 @@ uint64 FUN_180896064(uint64 resourceHandle,int memorySize)
 LAB_1808960d4:
     if ((0 < *(int *)((longlong)baseRegister + 0xc)) && (*baseRegister != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0),*baseRegister,&unknown_180957f70,0x100,1);
+      utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),*baseRegister,&utilityMemoryDataBuffer,0x100,1);
     }
     *baseRegister = localLong1;
     *(int *)((longlong)baseRegister + 0xc) = unaff_EDI;
     return 0;
   }
   if (memorySize * 0xc - 1U < 0x3fffffff) {
-    localLong1 = FUN_180741e10(*(uint64 *)(_DAT_180be12f0 + 0x1a0),memorySize * 0xc,&unknown_180957f70,0xf4,
+    localLong1 = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + 0x1a0),memorySize * 0xc,&utilityMemoryDataBuffer,0xf4,
                           0);
     if (localLong1 != 0) {
       if ((int)baseRegister[1] != 0) {
@@ -9281,7 +9281,7 @@ ulonglong FUN_180896140(longlong resourceHandle)
                 localUInt = *(uint32 *)(lVar5 + 0xc + localLong15 * 0x10);
                 localUInt = 0;
                 localPtr = &unknown_180983588;
-                FUN_180892120(&localPtr,*(uint64 *)(resourceHandle + 0x58));
+                utilityOptimizeResourceUsage(&localPtr,*(uint64 *)(resourceHandle + 0x58));
                 localInt4 = func_0x0001808c7ed0(uVar3);
               } while (0 < localInt4);
               uVar6 = (ulonglong)auStackX_10[0];
@@ -9296,11 +9296,11 @@ ulonglong FUN_180896140(longlong resourceHandle)
               localUInt = *(uint32 *)(lVar5 + 0xc + localLong15 * 0x10);
               localUInt = 0;
               localUInt = 1;
-              FUN_180893420(&localPtr,*(uint64 *)(resourceHandle + 0x58));
+              utilityCompleteResourceCycle(&localPtr,*(uint64 *)(resourceHandle + 0x58));
               localPtr = &unknown_180983cf8;
               localUInt = *(uint32 *)(lVar5 + 0xc + localLong15 * 0x10);
               localUInt = 0;
-              FUN_1808920e0(&localPtr,*(uint64 *)(resourceHandle + 0x58));
+              utilityControlResourceAccess(&localPtr,*(uint64 *)(resourceHandle + 0x58));
               plocalLong13 = plStack_108;
             }
           }
@@ -9383,7 +9383,7 @@ ulonglong FUN_180896140(longlong resourceHandle)
                   }
                   if ((0 < (int)localUInt._4_4_) && (localUInt != 0)) {
                     // WARNING: Subroutine does not return
-                    FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0),localUInt,&unknown_180957f70,
+                    utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),localUInt,&utilityMemoryDataBuffer,
                                   0x100,1);
                   }
                   localUInt = 0;
@@ -9465,7 +9465,7 @@ LAB_1808962af:
       if (0 < localInt16) goto LAB_18089638e;
       if ((0 < localInt4) && (uVar6 != 0)) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0),uVar6,&unknown_180957f70,0x100,1);
+        utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),uVar6,&utilityMemoryDataBuffer,0x100,1);
       }
       localUInt = 0;
       localUInt = 0;
@@ -9606,7 +9606,7 @@ uint64 FUN_1808968a0(longlong resourceHandle)
         iVar5 = ((int)localLong2 - (int)localLong1) + 1;
       }
     }
-    plocalInt3 = (int *)FUN_180741e10(*(uint64 *)(_DAT_180be12f0 + 0x1a0),iVar5 + 0x19,
+    plocalInt3 = (int *)utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + 0x1a0),iVar5 + 0x19,
                                   &unknown_1809868b0,0x278,0,0,1);
     plocalInt3[0] = 0;
     plocalInt3[1] = 0;
@@ -10633,7 +10633,7 @@ void FUN_1808975e0(longlong resourceHandle,longlong memorySize)
                 iVar6 = FUN_180897520(resourceHandle,&localPtr);
                 if (iVar6 != 0) goto FUN_180897b16;
               }
-              iVar6 = FUN_1808605e0(memorySize);
+              iVar6 = utilityAllocateMemoryBlock(memorySize);
               if (iVar6 != 2) {
                 localUInt = 0;
                 localPtr = &unknown_180983ae8;
@@ -10641,7 +10641,7 @@ void FUN_1808975e0(longlong resourceHandle,longlong memorySize)
                 iVar6 = FUN_180897520(resourceHandle,&localPtr);
                 if (iVar6 != 0) goto FUN_180897b16;
               }
-              iVar6 = FUN_1808605e0(memorySize);
+              iVar6 = utilityAllocateMemoryBlock(memorySize);
               if (iVar6 == 4) {
                 localUInt = 0;
                 localPtr = &unknown_180983b68;
@@ -10894,7 +10894,7 @@ void FUN_180897644(void)
               localInt13 = FUN_180897520(localUInt24,&stack0x00000028);
               if (localInt13 != 0) goto FUN_180897b0e;
             }
-            localInt13 = FUN_1808605e0(unaff_R14);
+            localInt13 = utilityAllocateMemoryBlock(unaff_R14);
             if (localInt13 != 2) {
               in_stack_00000028 = &unknown_180983ae8;
               in_stack_00000038 = uStackX_20;
@@ -10902,7 +10902,7 @@ void FUN_180897644(void)
               localInt13 = FUN_180897520(extraout_XMM0_Da_06,&stack0x00000028);
               if (localInt13 != 0) goto FUN_180897b0e;
             }
-            localInt13 = FUN_1808605e0(unaff_R14);
+            localInt13 = utilityAllocateMemoryBlock(unaff_R14);
             localUInt24 = extraout_XMM0_Da_07;
             if (localInt13 == 4) {
               in_stack_00000028 = &unknown_180983b68;
@@ -11140,7 +11140,7 @@ void FUN_1808976b0(void)
           localInt13 = FUN_180897520(localUInt23,&stack0x00000028);
           if (localInt13 != 0) goto FUN_180897afe;
         }
-        localInt13 = FUN_1808605e0(unaff_R14);
+        localInt13 = utilityAllocateMemoryBlock(unaff_R14);
         if (localInt13 != 2) {
           in_stack_00000028 = &unknown_180983ae8;
           in_stack_00000038 = uStackX_20;
@@ -11148,7 +11148,7 @@ void FUN_1808976b0(void)
           localInt13 = FUN_180897520(extraout_XMM0_Da_05,&stack0x00000028);
           if (localInt13 != 0) goto FUN_180897afe;
         }
-        localInt13 = FUN_1808605e0(unaff_R14);
+        localInt13 = utilityAllocateMemoryBlock(unaff_R14);
         localUInt23 = extraout_XMM0_Da_06;
         if (localInt13 == 4) {
           in_stack_00000028 = &unknown_180983b68;
@@ -11274,7 +11274,7 @@ void FUN_180897859(float resourceHandle)
       localInt2 = FUN_180897520(uVar6,&stack0x00000028);
       if (localInt2 != 0) goto LAB_180897af6;
     }
-    localInt2 = FUN_1808605e0();
+    localInt2 = utilityAllocateMemoryBlock();
     if (localInt2 != 2) {
       in_stack_00000028 = &unknown_180983ae8;
       in_stack_00000038 = uStackX_20;
@@ -11282,7 +11282,7 @@ void FUN_180897859(float resourceHandle)
       localInt2 = FUN_180897520(extraout_XMM0_Da_02,&stack0x00000028);
       if (localInt2 != 0) goto LAB_180897af6;
     }
-    localInt2 = FUN_1808605e0();
+    localInt2 = utilityAllocateMemoryBlock();
     uVar6 = extraout_XMM0_Da_03;
     if (localInt2 == 4) {
       in_stack_00000028 = &unknown_180983b68;
@@ -11647,7 +11647,7 @@ void FUN_180898040(longlong *resourceHandle)
   localUInt = _DAT_180bf00a8 ^ (ulonglong)localBuffer;
   plocalLong16 = (longlong *)0x0;
   localArray[1] = 0;
-  iVar6 = FUN_18088c740(localArray + 1,resourceHandle[1]);
+  iVar6 = utilityInitializeResource(localArray + 1,resourceHandle[1]);
   if ((iVar6 == 0) && (iVar6 = FUN_1808987e0(resourceHandle,1), iVar6 == 0)) {
     (**(code **)(*resourceHandle + 8))(resourceHandle,&unknown_180986488);
     if (((*(uint *)(resourceHandle + 3) & 0x1000000) == 0) ||
@@ -11890,7 +11890,7 @@ LAB_180898629:
   }
 LAB_18089866f:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(localArray + 1);
+  utilityCleanupResource(localArray + 1);
 }
 
 
@@ -12605,7 +12605,7 @@ uint64 FUN_180898d60(longlong *resourceHandle,int memorySize)
   if (memorySize != 0) {
     if (memorySize * 3 - 1U < 0x3fffffff) {
       puVar3 = (data2 *)
-               FUN_180741e10(*(uint64 *)(_DAT_180be12f0 + 0x1a0),memorySize * 3,&unknown_180957f70,0xf4
+               utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + 0x1a0),memorySize * 3,&utilityMemoryDataBuffer,0xf4
                              ,0,0,1);
       if (puVar3 != (data2 *)0x0) {
         localInt1 = (int)resourceHandle[1];
@@ -12628,7 +12628,7 @@ uint64 FUN_180898d60(longlong *resourceHandle,int memorySize)
 LAB_180898e0b:
   if ((0 < *(int *)((longlong)resourceHandle + 0xc)) && (*resourceHandle != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0),*resourceHandle,&unknown_180957f70,0x100,1);
+    utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),*resourceHandle,&utilityMemoryDataBuffer,0x100,1);
   }
   *resourceHandle = (longlong)puVar3;
   *(int *)((longlong)resourceHandle + 0xc) = memorySize;
@@ -12655,7 +12655,7 @@ uint64 FUN_180898d84(uint64 resourceHandle,int memorySize)
 LAB_180898e0b:
     if ((0 < *(int *)((longlong)baseRegister + 0xc)) && (*baseRegister != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0),*baseRegister,&unknown_180957f70,0x100,1);
+      utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),*baseRegister,&utilityMemoryDataBuffer,0x100,1);
     }
     *baseRegister = (longlong)puVar3;
     *(int *)((longlong)baseRegister + 0xc) = unaff_EDI;
@@ -12663,7 +12663,7 @@ LAB_180898e0b:
   }
   if (memorySize * 3 - 1U < 0x3fffffff) {
     puVar3 = (data2 *)
-             FUN_180741e10(*(uint64 *)(_DAT_180be12f0 + 0x1a0),memorySize * 3,&unknown_180957f70,0xf4,0
+             utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + 0x1a0),memorySize * 3,&utilityMemoryDataBuffer,0xf4,0
                           );
     if (puVar3 != (data2 *)0x0) {
       localInt1 = (int)baseRegister[1];
@@ -15126,10 +15126,10 @@ uint64 FUN_18089ace4(void)
           if (puVar3 != (uint64 *)0x0) {
             (**(code **)*puVar3)(puVar3,0);
                     // WARNING: Subroutine does not return
-            FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0),puVar3,&unknown_1809869a0,0x130,1);
+            utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),puVar3,&unknown_1809869a0,0x130,1);
           }
           puVar3 = (uint64 *)
-                   FUN_180741e10(*(uint64 *)(_DAT_180be12f0 + 0x1a0),0x20,&unknown_1809869a0,0x119);
+                   utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + 0x1a0),0x20,&unknown_1809869a0,0x119);
           if (puVar3 == (uint64 *)0x0) {
             return 0x26;
           }
@@ -17356,7 +17356,7 @@ LAB_18089c40a:
         }
         if ((0 < (int)localUInt._4_4_) && (localPtr != (uint64 *)0x0)) {
                     // WARNING: Subroutine does not return
-          FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0),localPtr,&unknown_180957f70,0x100,1);
+          utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),localPtr,&utilityMemoryDataBuffer,0x100,1);
         }
         localPtr = (uint64 *)0x0;
         localUInt = localUInt & 0xffffffff;
@@ -17428,7 +17428,7 @@ LAB_18089c40a:
       if (0 < localInt13) goto LAB_18089c586;
       if ((0 < (int)localUInt._4_4_) && (localPtr != (uint64 *)0x0)) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0),localPtr,&unknown_180957f70,0x100,1);
+        utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),localPtr,&utilityMemoryDataBuffer,0x100,1);
       }
       localPtr = (uint64 *)0x0;
       localUInt = localUInt & 0xffffffff;
@@ -17597,8 +17597,8 @@ LAB_18089c40a:
         }
         if ((0 < (int)uVar9) && (*(longlong *)(unaff_RBP + -0x29) != 0)) {
                     // WARNING: Subroutine does not return
-          FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(unaff_RBP + -0x29),
-                        &unknown_180957f70,0x100,1);
+          utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),*(longlong *)(unaff_RBP + -0x29),
+                        &utilityMemoryDataBuffer,0x100,1);
         }
         *(uint64 *)(unaff_RBP + -0x29) = 0;
         *(uint32 *)(unaff_RBP + -0x1d) = 0;
@@ -17679,7 +17679,7 @@ LAB_18089c40a:
       if (0 < localInt19) goto LAB_18089c586;
       if ((0 < (int)uVar9) && (plocalUInt13 != (uint64 *)0x0)) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0),plocalUInt13,&unknown_180957f70,0x100,1);
+        utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),plocalUInt13,&utilityMemoryDataBuffer,0x100,1);
       }
       *(uint64 *)(unaff_RBP + -0x29) = 0;
       *(uint32 *)(unaff_RBP + -0x1d) = 0;
@@ -17844,8 +17844,8 @@ LAB_18089c40a:
         }
         if ((0 < (int)uVar9) && (*(longlong *)(unaff_RBP + -0x29) != 0)) {
                     // WARNING: Subroutine does not return
-          FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(unaff_RBP + -0x29),
-                        &unknown_180957f70,0x100,1);
+          utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),*(longlong *)(unaff_RBP + -0x29),
+                        &utilityMemoryDataBuffer,0x100,1);
         }
         *(uint64 *)(unaff_RBP + -0x29) = 0;
         *(uint32 *)(unaff_RBP + -0x1d) = 0;
@@ -17926,7 +17926,7 @@ LAB_18089c40a:
       if (0 < localInt19) goto LAB_18089c586;
       if ((0 < (int)uVar9) && (plocalUInt12 != (uint64 *)0x0)) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0),plocalUInt12,&unknown_180957f70,0x100,1);
+        utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),plocalUInt12,&utilityMemoryDataBuffer,0x100,1);
       }
       *(uint64 *)(unaff_RBP + -0x29) = 0;
       *(uint32 *)(unaff_RBP + -0x1d) = 0;
@@ -18055,8 +18055,8 @@ LAB_18089c40a:
         }
         if ((0 < (int)uVar9) && (*(longlong *)(unaff_RBP + -0x29) != 0)) {
                     // WARNING: Subroutine does not return
-          FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(unaff_RBP + -0x29),
-                        &unknown_180957f70,0x100,1);
+          utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),*(longlong *)(unaff_RBP + -0x29),
+                        &utilityMemoryDataBuffer,0x100,1);
         }
         *(uint64 **)(unaff_RBP + -0x29) = unaff_R12;
         *(uint *)(unaff_RBP + -0x1d) = uVar8;
@@ -18138,7 +18138,7 @@ LAB_18089c40a:
       if (0 < localInt18) goto LAB_18089c586;
       if ((0 < (int)uVar9) && (plocalUInt14 != (uint64 *)0x0)) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(uint64 *)(_DAT_180be12f0 + 0x1a0),plocalUInt14,&unknown_180957f70,0x100,1);
+        utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),plocalUInt14,&utilityMemoryDataBuffer,0x100,1);
       }
       *(uint64 **)(unaff_RBP + -0x29) = unaff_R12;
       *(uint *)(unaff_RBP + -0x1d) = uVar8;
@@ -21864,7 +21864,7 @@ LAB_18089e70b:
         if ((int)localUInt != 0) {
           for (; (localPtr <= puVar5 && (puVar5 < localPtr + (int)localUInt));
               puVar5 = puVar5 + 1) {
-            lVar6 = FUN_180741e10(*(uint64 *)(_DAT_180be12f0 + 0x1a0),0x28,&unknown_180986e70,0xc1c,
+            lVar6 = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + 0x1a0),0x28,&unknown_180986e70,0xc1c,
                                   0,0,1);
             if (lVar6 == 0) {
               uVar4 = 0x26;
@@ -21977,7 +21977,7 @@ LAB_18089e70b:
         puVar7 = *(uint32 **)(unaff_RBP + -0x29);
         for (plocalUInt10 = puVar7; (puVar7 <= plocalUInt10 && (plocalUInt10 < puVar7 + iVar6));
             plocalUInt10 = plocalUInt10 + 1) {
-          lVar9 = FUN_180741e10(*(uint64 *)(_DAT_180be12f0 + 0x1a0),0x28,&unknown_180986e70,0xc1c,0)
+          lVar9 = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + 0x1a0),0x28,&unknown_180986e70,0xc1c,0)
           ;
           if (lVar9 == 0) {
             uVar8 = 0x26;
@@ -22048,7 +22048,7 @@ LAB_18089e70b:
     if (localInt3 != 0) {
       puVar6 = *(uint32 **)(unaff_RBP + -0x29);
       for (puVar7 = puVar6; (puVar6 <= puVar7 && (puVar7 < puVar6 + localInt3)); puVar7 = puVar7 + 1) {
-        lVar5 = FUN_180741e10(*(uint64 *)(_DAT_180be12f0 + 0x1a0),0x28,&unknown_180986e70,0xc1c);
+        lVar5 = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + 0x1a0),0x28,&unknown_180986e70,0xc1c);
         if (lVar5 == 0) {
           uVar4 = 0x26;
           goto LAB_18089e70b;
