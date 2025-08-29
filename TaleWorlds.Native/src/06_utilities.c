@@ -7352,7 +7352,7 @@ uint64 fetch_database_results(longlong resourceHandle,longlong memorySize)
 
 
 
-int FUN_180894380(longlong resourceHandle,longlong memorySize,int operationFlags)
+int insert_database_record(longlong resourceHandle,longlong memorySize,int operationFlags)
 
 {
   int localInt1;
