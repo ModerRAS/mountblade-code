@@ -15757,7 +15757,7 @@ joined_r0x0001808508ee:
   if (statusCode1 == -1) goto handle_timeout_operation;
   connectionBuffer3 = (uint *)((longlong)statusCode1 * 0x10 + pnetworkAddress[2]);
   if ((int)pnetworkAddress[1] == 0) {
-LAB_18085094c:
+handle_session_initialization:
     statusCode1 = ERROR_CODE_INVALID;
     goto finalize_connection_session;
   }
@@ -15765,11 +15765,11 @@ LAB_18085094c:
   clientPort = (longlong)(int)((int)pnetworkAddress[1] - 1U & networkResult);
   connectionBuffer4 = (uint *)(*pnetworkAddress + clientPort * 4);
   connectionIndex = *(uint *)(*pnetworkAddress + clientPort * 4);
-  if (connectionIndex == 0xffffffff) goto LAB_18085094c;
+  if (connectionIndex == 0xffffffff) goto handle_session_initialization;
   while (connectionBuffer5 = (uint *)((longlong)(int)connectionIndex * 0x10 + pnetworkAddress[2]), *connectionBuffer5 != networkResult) {
     connectionIndex = connectionBuffer5[1];
     connectionBuffer4 = connectionBuffer5 + 1;
-    if (connectionIndex == 0xffffffff) goto LAB_18085094c;
+    if (connectionIndex == 0xffffffff) goto handle_session_initialization;
   }
   statusCode1 = networkAcceptConnection(long_var_9,connectionBuffer3,connectionBuffer5 + 2);
   if (statusCode1 != 0) goto finalize_connection_session;
@@ -16004,7 +16004,7 @@ joined_r0x0001808508ee:
   if (statusCode0 == -1) goto handle_timeout_operation;
   connectionBuffer2 = (uint *)((longlong)statusCode0 * 0x10 + psocketHandle[2]);
   if ((int)psocketHandle[1] == 0) {
-LAB_18085094c:
+handle_session_initialization:
     statusCode0 = ERROR_CODE_INVALID;
     goto finalize_connection_session;
   }
@@ -16012,11 +16012,11 @@ LAB_18085094c:
   serverPort = (longlong)(int)((int)psocketHandle[1] - 1U & networkResult);
   connectionBuffer3 = (uint *)(*psocketHandle + serverPort * 4);
   dataPointer = *(uint *)(*psocketHandle + serverPort * 4);
-  if (dataPointer == 0xffffffff) goto LAB_18085094c;
+  if (dataPointer == 0xffffffff) goto handle_session_initialization;
   while (connectionBuffer4 = (uint *)((longlong)(int)dataPointer * 0x10 + psocketHandle[2]), *connectionBuffer4 != networkResult) {
     dataPointer = connectionBuffer4[1];
     connectionBuffer3 = connectionBuffer4 + 1;
-    if (dataPointer == 0xffffffff) goto LAB_18085094c;
+    if (dataPointer == 0xffffffff) goto handle_session_initialization;
   }
   statusCode0 = networkAcceptConnection(clientPort,connectionBuffer2,connectionBuffer4 + 2);
   if (statusCode0 != 0) goto finalize_connection_session;
