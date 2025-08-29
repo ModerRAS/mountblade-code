@@ -1112,38 +1112,38 @@ data shadowMapAtlas;
 data shadowCascadeData;
 data shadowMapResolution;  /* 原: DAT_180bfab10 */
 data shadowMapFilter;  /* 原: DAT_180bfab18 */
-data DAT_180bfab20;
-data DAT_180bfab28;
-data DAT_180bfaba8;
-data DAT_180bfabb0;
-data DAT_180bfabb8;
-data DAT_180bfabc0;
-data DAT_180bfac40;
-data DAT_180bfac48;
-data DAT_180bfac50;
-data DAT_180bfac58;
-data DAT_180bfacd8;
-data DAT_180bface0;
-data DAT_180bface8;
-data DAT_180bfacf0;
-data DAT_180bfad70;
-data DAT_180bfad78;
-data DAT_180bfad80;
-data DAT_180bfad88;
-data DAT_180bfae08;
-data DAT_180bfae10;
-data DAT_180bfae18;
-data DAT_180bfae20;
+data shadowMapBias;  /* 原: DAT_180bfab20 */
+data shadowMapSlopeBias;  /* 原: DAT_180bfab28 */
+data shadowMapDepthBounds;  /* 原: DAT_180bfaba8 */
+data shadowMapCascadeCount;  /* 原: DAT_180bfabb0 */
+data shadowMapCascadeSplit;  /* 原: DAT_180bfabb8 */
+data shadowMapCascadeMatrix;  /* 原: DAT_180bfabc0 */
+data lightingAmbientColor;  /* 原: DAT_180bfac40 */
+data lightingDiffuseColor;  /* 原: DAT_180bfac48 */
+data lightingSpecularColor;  /* 原: DAT_180bfac50 */
+data lightingEmissiveColor;  /* 原: DAT_180bfac58 */
+data lightingShininess;  /* 原: DAT_180bfacd8 */
+data lightingRoughness;  /* 原: DAT_180bface0 */
+data lightingMetalness;  /* 原: DAT_180bface8 */
+data lightingAO;  /* 原: DAT_180bfacf0 */
+data lightingNormalMap;  /* 原: DAT_180bfad70 */
+data lightingHeightMap;  /* 原: DAT_180bfad78 */
+data lightingRoughnessMap;  /* 原: DAT_180bfad80 */
+data lightingMetalnessMap;  /* 原: DAT_180bfad88 */
+data lightingAOMap;  /* 原: DAT_180bfae08 */
+data lightingEmissiveMap;  /* 原: DAT_180bfae10 */
+data lightingEnvironmentMap;  /* 原: DAT_180bfae18 */
+data lightingIrradianceMap;  /* 原: DAT_180bfae20 */
 data threadSynchronizationFlag;
 data shadowBiasData;
 data shadowProjectionMatrix;
 
 // 函数: data resourceLoadFromDisk;
 data resourceLoadFromDisk;
-data DAT_180bfc150;
+data resourceTextureCache;  /* 原: DAT_180bfc150 */
 byte DAT_180bfc140;
-data DAT_180bfc160;
-data DAT_180bfc168;
+data resourceRefCount;  /* 原: DAT_180bfc160 */
+data resourceMemoryUsage;  /* 原: DAT_180bfc168 */
 uint64 reflectionCubeMap;
 data DAT_180bfaec0;
 data DAT_180bfaec8;
