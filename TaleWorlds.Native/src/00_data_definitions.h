@@ -107,6 +107,51 @@
 #define FLAG_LOAD_BALANCER_RESOURCE 0xd
 #define FLAG_SCALING_RESOURCE 0x13
 
+// 系统模块类型常量
+#define MODULE_TYPE_AUDIO 0xb
+#define MODULE_TYPE_VIDEO 0xc
+#define MODULE_TYPE_INPUT 0xd
+#define MODULE_TYPE_NETWORK 0xe
+#define MODULE_TYPE_PHYSICS 0x11
+#define MODULE_TYPE_AI 0x13
+#define MODULE_TYPE_UI 0x14
+#define MODULE_TYPE_SCRIPTING 0x15
+#define MODULE_TYPE_CONFIG 0x16
+#define MODULE_TYPE_RESOURCE_CACHE 0x17
+#define MODULE_TYPE_ASSET_LOADER 0x18
+#define MODULE_TYPE_SHADER 0x19
+#define MODULE_TYPE_TEXTURE 0x1a
+#define MODULE_TYPE_MESH 0x1b
+#define MODULE_TYPE_ANIMATION 0x1c
+#define MODULE_TYPE_PARTICLE 0x1d
+#define MODULE_TYPE_PHYSICS_ENGINE 0x1e
+#define MODULE_TYPE_COLLISION 0x1f
+#define MODULE_TYPE_AI_SYSTEM 0x21
+#define MODULE_TYPE_NAVIGATION 0x23
+#define MODULE_TYPE_UI_FRAMEWORK 0x25
+#define MODULE_TYPE_SCRIPTING_ENGINE 0x27
+#define MODULE_TYPE_DATABASE 0x28
+#define MODULE_TYPE_NETWORK_MANAGER 0x2a
+#define MODULE_TYPE_SECURITY 0x2c
+#define MODULE_TYPE_ENCRYPTION 0x2d
+#define MODULE_TYPE_AUTHENTICATION 0x2e
+#define MODULE_TYPE_PERMISSION 0x2f
+#define MODULE_TYPE_SESSION 0x30
+#define MODULE_TYPE_USER_PROFILE 0x31
+#define MODULE_TYPE_SAVE 0x32
+#define MODULE_TYPE_ACHIEVEMENT 0x33
+#define MODULE_TYPE_STATISTICS 0x34
+#define MODULE_TYPE_ANALYTICS 0x35
+#define MODULE_TYPE_DEBUG 0x36
+#define MODULE_TYPE_PROFILING 0x37
+#define MODULE_TYPE_CRASH_HANDLER 0x38
+#define MODULE_TYPE_ERROR_REPORTING 0x39
+#define MODULE_TYPE_UPDATE 0x3a
+#define MODULE_TYPE_PATCH 0x3b
+#define MODULE_TYPE_DIAGNOSTICS 0x3c
+#define MODULE_TYPE_MONITORING 0x3d
+#define MODULE_TYPE_HEALTH_CHECKER 0x3e
+
 // 全局数据定义 - 从原始文件中提取
 void* g_global_system_data;
 void* g_system_configuration_data;
@@ -374,7 +419,7 @@ int initialize_savegame_string_buffer(void)
 int initialize_main_mutex(void* handle, void* flags, void* mutex_attr, int mutex_type)
 {
   long long initialization_result;
-  _Mtx_init_in_situ(0x180c91970, STRING_BUFFER_SIZE2, mutex_attr, mutex_type, THREAD_POOL_DEFAULT_FLAGS);
+  _Mtx_init_in_situ(MAIN_THREAD_POOL_MUTEX_ADDR, STRING_BUFFER_SIZE2, mutex_attr, mutex_type, THREAD_POOL_DEFAULT_FLAGS);
   initialization_result = execute_function(main_mutex_init_callback);
   return (initialization_result != 0) - 1;
 }
@@ -384,12 +429,12 @@ int initialize_data_buffer_system(void)
   long long init_result;
   unsigned long long str_len_param;
   g_system_config_buffer = 0;
-  g_system_config_flags = 0x13;
+  g_system_config_flags = FLAG_INITIALIZED;
   strcpy_s(&g_system_config_buffer,SYSTEM_CONFIG_BUFFER_SIZE,&g_systemConfigString,str_len_param,THREAD_POOL_DEFAULT_FLAGS);
   g_resource_template_ptr_1 = &g_defaultDataTemplate;
   g_texture_resource_ptr = &texture_resource_data;
   texture_resource_data = 0;
-  g_resource_type_1 = 0xd;
+  g_resource_type_1 = FLAG_TEXTURE_RESOURCE;
   strcpy_s(&texture_resource_data,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string);
   g_resource_template_ptr_2 = &g_defaultDataTemplate;
   g_shader_resource_ptr = &shader_resource_data;

@@ -4047,12 +4047,12 @@ void NetworkHandleOutgoingData(uint64_t socketHandle,uint32_t *dataBuffer,ulongl
   networkArrayStack_158[1] = 0;
   connectionCount = networkInitializeSocket(socketHandle,networkArrayStack_158);
   if (connectionCount == 0) {
-    if ((*(uint *)(networkArrayStack_158[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto LAB_180845d97;
+    if ((*(uint *)(networkArrayStack_158[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto handle_socket_validation_error;
     processResult = networkInitializeConnection(networkArrayStack_158 + 1);
-    if (processResult == 0) goto LAB_180845e35;
+    if (processResult == 0) goto initialize_data_connection;
   }
   else {
-LAB_180845e35:
+initialize_data_connection:
     processResult = connectionCount;
   }
   if ((processResult == 0) &&
@@ -4075,7 +4075,7 @@ LAB_180845e35:
       NetworkErrorExit(networkArrayStack_158 + 1);
     }
   }
-LAB_180845d97:
+handle_socket_validation_error:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(networkArrayStack_158 + 1);
 }
@@ -4168,7 +4168,7 @@ void NetworkProcessDataQueue(uint32_t socketHandle,uint32_t *dataBuffer,uint32_t
      (statusCode = networkValidateSocket(socketHandle,networkArrayStack_140), statusCode == 0)) {
     networkLongStack_148 = *(longlong *)(networkArrayStack_140[0] + 8);
   }
-  else if (statusCode != 0) goto LAB_18084610f;
+  else if (statusCode != 0) goto handle_timeout_error;
   if (networkLongStack_148 != 0) {
     if (dataBuffer != (uint32_t *)ZERO_OFFSET) {
       *dataBuffer = *(uint32_t *)(networkLongStack_148 + 0xf0);
@@ -4177,7 +4177,7 @@ void NetworkProcessDataQueue(uint32_t socketHandle,uint32_t *dataBuffer,uint32_t
       *bufferCapacity = *(uint32_t *)(networkLongStack_148 + 0xf4);
     }
   }
-LAB_18084610f:
+handle_timeout_error:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(&networkUintStack_158);
 }

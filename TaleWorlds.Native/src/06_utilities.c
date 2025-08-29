@@ -13228,7 +13228,7 @@ process_data_validation:
 
 
 
-uint64 FUN_180899650(longlong *resourceHandle,longlong *memoryBlockBlockBlockSize)
+uint64 ValidateResourceHandleData(longlong *resourceHandle,longlong *memoryBlockBlockBlockSize)
 
 {
   uint64 functionResult;
@@ -13279,7 +13279,7 @@ validate_resource_operation:
 
 
 
-uint64 FUN_180899740(uint64 resourceHandle,uint32 *memoryBlockBlockBlockSize)
+uint64 WriteResourceBlockData(uint64 resourceHandle,uint32 *memoryBlockSize)
 
 {
   uint64 functionResult;
@@ -13294,7 +13294,7 @@ uint64 FUN_180899740(uint64 resourceHandle,uint32 *memoryBlockBlockBlockSize)
 
 
 
-uint64 FUN_180899763(void)
+uint64 WriteResourceDataToBase(void)
 
 {
   uint64 functionResult;
