@@ -2548,9 +2548,9 @@ uint64 validate_resource_resourceHandle(longlong resourceHandle)    // 资源句
   longlong stackParameter;
   char tempBuffer [16];
   
-  unsignedVar4 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),&stackBuffer8stackBuffer8);
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  validationResult1 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),&stackBuffer8stackBuffer8);
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   dataValueBuffer = *(longlong *)(in_stack_00000008 + 8);
   if ((dataValueBuffer == 0) || (*(longlong *)(dataValueBuffer + BUFFER_OFFSET_DATA) != in_stack_00000008)) {
@@ -2561,16 +2561,16 @@ uint64 validate_resource_resourceHandle(longlong resourceHandle)    // 资源句
     return ERROR_CODE_FAILED;
   }
   if (*(int *)(dataValueBuffer + BUFFER_OFFSET_STATUS) == -1) {
-    unsignedVar4 = utilityProcessMemoryData(dataValueBuffer,stackCharArrayX18);
-    if ((int)unsignedVar4 != 0) {
-      return unsignedVar4;
+    validationResult1 = utilityProcessMemoryData(dataValueBuffer,stackCharArrayX18);
+    if ((int)validationResult1 != 0) {
+      return validationResult1;
     }
-    unsignedVar5 = process_system_dataValue(dataValueBuffer);
-    if ((int)unsignedVar5 != 0) {
-      return unsignedVar5;
+    validationResult2 = process_system_dataValue(dataValueBuffer);
+    if ((int)validationResult2 != 0) {
+      return validationResult2;
     }
-    if ((char)unsignedVar4 == (char)unsignedVar5) {
-      if (stackCharArrayX18[0] == (char)unsignedVar5) {
+    if ((char)validationResult1 == (char)validationResult2) {
+      if (stackCharArrayX18[0] == (char)validationResult2) {
         dataValuePointer = (longlong *)(localLong1 + RESOURCE_OFFSET_POINTER);
         unsignedVar8 = 0;
         integerVar7 = *(int *)(localLong1 + RESOURCE_OFFSET_INDEX);
@@ -2616,9 +2616,9 @@ uint64 validate_resource_resourceHandle(longlong resourceHandle)    // 资源句
         *(int *)(localLong1 + 0x4e0) = *(int *)(localLong1 + 0x4e0) + 1;
       }
       else {
-        unsignedVar4 = utilityAccessMemoryRegion(localLong1 + MEMORY_OFFSET_ACCESS,dataValueBuffer);
-        if ((int)unsignedVar4 != 0) {
-          return unsignedVar4;
+        validationResult1 = utilityAccessMemoryRegion(localLong1 + MEMORY_OFFSET_ACCESS,dataValueBuffer);
+        if ((int)validationResult1 != 0) {
+          return validationResult1;
         }
       }
     }
@@ -2635,7 +2635,7 @@ ulonglong calculate_memory_allocation(longlong resourceHandle,longlong memoryBlo
   longlong *pdataBuffer;
   longlong *parrayIndex;
   int iterationCounter;
-  uint unsignedVar5;
+  uint validationResult2;
   ulonglong unsignedVar6;
   longlong *plVar7;
   longlong *plongVar8;
@@ -2656,11 +2656,11 @@ ulonglong calculate_memory_allocation(longlong resourceHandle,longlong memoryBlo
     iterationCounter = (int)unsignedVar6;
     if (iterationCounter == 0) {
       longStackX8 = 0;
-      unsignedVar5 = utilityEncryptMemoryData(*(uint64 *)(memoryBlockSize + MEMORY_SIZE_OFFSET),*(longlong *)(lStackX_18 + 8) + RESOURCE_HANDLE_OFFSET,
+      validationResult2 = utilityEncryptMemoryData(*(uint64 *)(memoryBlockSize + MEMORY_SIZE_OFFSET),*(longlong *)(lStackX_18 + 8) + RESOURCE_HANDLE_OFFSET,
                             &longStackX8longStackX8);
-      if (unsignedVar5 != 0) {
+      if (validationResult2 != 0) {
         utilityValidateMemoryAccess(plVar9);
-        return (ulonglong)unsignedVar5;
+        return (ulonglong)validationResult2;
       }
       if (((*(uint *)(*(longlong *)(lStackX_18 + 8) + SYSTEM_OFFSET_FLAGS) >> 2 & 1) == 0) &&
          (unsignedVar6 = validate_system_integrity(longStackX8), (int)unsignedVar6 != 0)) {
@@ -3132,26 +3132,26 @@ uint64 execute_resource_command(longlong resourceHandle)
   longlong localLong1;
   uint unsignedCounter;
   uint unsignedVar3;
-  uint64 unsignedVar4;
-  uint64 *punsignedVar5;
+  uint64 validationResult1;
+  uint64 *pvalidationResult2;
   int integerVar6;
   float floatVar7;
   byte arrayVar8 [16];
   longlong longStackX8;
   
-  unsignedVar4 = SystemMemoryFunction(*(uint32 *)(resourceHandle + BYTE_OFFSET_FLAG),&longStackX8longStackX8);
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  validationResult1 = SystemMemoryFunction(*(uint32 *)(resourceHandle + BYTE_OFFSET_FLAG),&longStackX8longStackX8);
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   localLong1 = *(longlong *)(longStackX8 + 8);
   if (localLong1 != 0) {
     floatVar7 = *(float *)(resourceHandle + POINTER_OFFSET_DATA);
-    for (punsignedVar5 = *(uint64 **)(localLong1 + BUFFER_OFFSET_DATA);
-        (*(uint64 **)(localLong1 + BUFFER_OFFSET_DATA) <= punsignedVar5 &&
-        (punsignedVar5 < *(uint64 **)(localLong1 + BUFFER_OFFSET_DATA) + *(int *)(localLong1 + LIST_OFFSET_HEAD))); punsignedVar5 = punsignedVar5 + 1) {
-      unsignedVar4 = utilityHandleResourceOperation(*punsignedVar5,floatVar7,0);
-      if ((int)unsignedVar4 != 0) {
-        return unsignedVar4;
+    for (pvalidationResult2 = *(uint64 **)(localLong1 + BUFFER_OFFSET_DATA);
+        (*(uint64 **)(localLong1 + BUFFER_OFFSET_DATA) <= pvalidationResult2 &&
+        (pvalidationResult2 < *(uint64 **)(localLong1 + BUFFER_OFFSET_DATA) + *(int *)(localLong1 + LIST_OFFSET_HEAD))); pvalidationResult2 = pvalidationResult2 + 1) {
+      validationResult1 = utilityHandleResourceOperation(*pvalidationResult2,floatVar7,0);
+      if ((int)validationResult1 != 0) {
+        return validationResult1;
       }
     }
     if ((*(char *)(localLong1 + FIELD_OFFSET_2) == '\0') ||
@@ -3191,7 +3191,7 @@ uint64 validate_resource_operation(longlong resourceHandle)
   int operationStatus;
   uint64 unsignedVar3;
   uint32 *puVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult2;
   uint unsignedVar6;
   ulonglong unsignedVar7;
   longlong longVar8;
@@ -3200,9 +3200,9 @@ uint64 validate_resource_operation(longlong resourceHandle)
   unsignedVar3 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),&longStackX8longStackX8);
   if ((int)unsignedVar3 == 0) {
     unsignedVar7 = 0;
-    unsignedVar5 = longStackX8 - 8;
+    validationResult2 = longStackX8 - 8;
     if (longStackX8 == 0) {
-      unsignedVar5 = unsignedVar7;
+      validationResult2 = unsignedVar7;
     }
     puVar4 = (uint32 *)(resourceHandle + POINTER_OFFSET_DATA + (longlong)*(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE) * 4);
     if (0 < *(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE)) {
@@ -3210,7 +3210,7 @@ uint64 validate_resource_operation(longlong resourceHandle)
       do {
         operationStatus = *(int *)(longVar8 + (longlong)puVar4);
         if (operationStatus != -1) {
-          localLong1 = *(longlong *)(unsignedVar5 + POINTER_OFFSET_DATA) + (longlong)operationStatus * RESOURCE_OFFSET_HANDLE;
+          localLong1 = *(longlong *)(validationResult2 + POINTER_OFFSET_DATA) + (longlong)operationStatus * RESOURCE_OFFSET_HANDLE;
           if ((localLong1 == 0) || (localLong1 = *(longlong *)(localLong1 + 8), localLong1 == 0)) {
             return BYTE_OFFSET_FLAG;
           }
@@ -3239,16 +3239,16 @@ uint64 get_resource_operationStatus(void)
   longlong inputRegister;
   uint64 unsignedVar3;
   uint32 *puVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult2;
   longlong unaff_RSI;
   uint unsignedVar6;
   ulonglong unsignedVar7;
   longlong longVar8;
   
   unsignedVar7 = 0;
-  unsignedVar5 = inputRegister - 8;
+  validationResult2 = inputRegister - 8;
   if (inputRegister == 0) {
-    unsignedVar5 = unsignedVar7;
+    validationResult2 = unsignedVar7;
   }
   puVar4 = (uint32 *)(unaff_RSI + POINTER_OFFSET_DATA + (longlong)*(int *)(unaff_RSI + RESOURCE_OFFSET_HANDLE) * 4);
   if (0 < *(int *)(unaff_RSI + RESOURCE_OFFSET_HANDLE)) {
@@ -3256,7 +3256,7 @@ uint64 get_resource_operationStatus(void)
     do {
       operationStatus = *(int *)(longVar8 + (longlong)puVar4);
       if (operationStatus != -1) {
-        localLong1 = *(longlong *)(unsignedVar5 + POINTER_OFFSET_DATA) + (longlong)operationStatus * RESOURCE_OFFSET_HANDLE;
+        localLong1 = *(longlong *)(validationResult2 + POINTER_OFFSET_DATA) + (longlong)operationStatus * RESOURCE_OFFSET_HANDLE;
         if ((localLong1 == 0) || (localLong1 = *(longlong *)(localLong1 + 8), localLong1 == 0)) {
           return BYTE_OFFSET_FLAG;
         }
@@ -3301,17 +3301,17 @@ uint64 allocate_system_resources(longlong resourceHandle)
   uint64 functionResult;
   int *poperationStatus;
   uint32 *pointerVar3;
-  uint unsignedVar4;
+  uint validationResult1;
   ulonglong unsignedVar6;
   longlong longStackX8;
-  ulonglong unsignedVar5;
+  ulonglong validationResult2;
   
   functionResult = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),&longStackX8longStackX8);
   if ((int)functionResult == 0) {
-    unsignedVar5 = 0;
+    validationResult2 = 0;
     unsignedVar6 = longStackX8 - 8;
     if (longStackX8 == 0) {
-      unsignedVar6 = unsignedVar5;
+      unsignedVar6 = validationResult2;
     }
     pointerVar3 = (uint32 *)(resourceHandle + POINTER_OFFSET_DATA + (longlong)*(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE) * 8);
     poperationStatus = (int *)(resourceHandle + POINTER_OFFSET_DATA);
@@ -3319,7 +3319,7 @@ uint64 allocate_system_resources(longlong resourceHandle)
       do {
         if ((*poperationStatus != g_securityTokenValue1) || (poperationStatus[1] != g_securityTokenValue2)) {
           longStackX8 = 0;
-          functionResult = utilityProcessResourceData(unsignedVar6,(int *)(resourceHandle + POINTER_OFFSET_DATA) + (longlong)(int)unsignedVar5 * 2,&longStackX8longStackX8)
+          functionResult = utilityProcessResourceData(unsignedVar6,(int *)(resourceHandle + POINTER_OFFSET_DATA) + (longlong)(int)validationResult2 * 2,&longStackX8longStackX8)
           ;
           if ((int)functionResult != 0) {
             return functionResult;
@@ -3333,11 +3333,11 @@ uint64 allocate_system_resources(longlong resourceHandle)
             return functionResult;
           }
         }
-        unsignedVar4 = (int)unsignedVar5 + 1;
-        unsignedVar5 = (ulonglong)unsignedVar4;
+        validationResult1 = (int)validationResult2 + 1;
+        validationResult2 = (ulonglong)validationResult1;
         pointerVar3 = pointerVar3 + 1;
         poperationStatus = poperationStatus + 2;
-      } while ((int)unsignedVar4 < *(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE));
+      } while ((int)validationResult1 < *(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE));
     }
     functionResult = 0;
   }
@@ -3356,15 +3356,15 @@ uint64 release_system_resources(void)
   int *poperationStatus;
   longlong unaff_RBP;
   uint32 *pointerVar3;
-  uint unsignedVar4;
+  uint validationResult1;
   ulonglong unsignedVar6;
   longlong longStack50;
-  ulonglong unsignedVar5;
+  ulonglong validationResult2;
   
-  unsignedVar5 = 0;
+  validationResult2 = 0;
   unsignedVar6 = inputRegister - 8;
   if (inputRegister == 0) {
-    unsignedVar6 = unsignedVar5;
+    unsignedVar6 = validationResult2;
   }
   pointerVar3 = (uint32 *)(unaff_RBP + POINTER_OFFSET_DATA + (longlong)*(int *)(unaff_RBP + RESOURCE_OFFSET_HANDLE) * 8);
   poperationStatus = (int *)(unaff_RBP + POINTER_OFFSET_DATA);
@@ -3372,7 +3372,7 @@ uint64 release_system_resources(void)
     do {
       if ((*poperationStatus != g_securityTokenValue1) || (poperationStatus[1] != g_securityTokenValue2)) {
         longStack50 = 0;
-        functionResult = utilityProcessResourceData(unsignedVar6,(int *)(unaff_RBP + POINTER_OFFSET_DATA) + (longlong)(int)unsignedVar5 * 2,
+        functionResult = utilityProcessResourceData(unsignedVar6,(int *)(unaff_RBP + POINTER_OFFSET_DATA) + (longlong)(int)validationResult2 * 2,
                               &stackBuffer50stackBuffer50);
         if ((int)functionResult != 0) {
           return functionResult;
@@ -3386,11 +3386,11 @@ uint64 release_system_resources(void)
           return functionResult;
         }
       }
-      unsignedVar4 = (int)unsignedVar5 + 1;
-      unsignedVar5 = (ulonglong)unsignedVar4;
+      validationResult1 = (int)validationResult2 + 1;
+      validationResult2 = (ulonglong)validationResult1;
       pointerVar3 = pointerVar3 + 1;
       poperationStatus = poperationStatus + 2;
-    } while ((int)unsignedVar4 < *(int *)(unaff_RBP + RESOURCE_OFFSET_HANDLE));
+    } while ((int)validationResult1 < *(int *)(unaff_RBP + RESOURCE_OFFSET_HANDLE));
   }
   return 0;
 }
@@ -3989,26 +3989,26 @@ uint64 get_file_position(longlong resourceHandle)
   longlong localLong1;
   uint unsignedCounter;
   uint unsignedVar3;
-  uint64 unsignedVar4;
-  uint64 *punsignedVar5;
+  uint64 validationResult1;
+  uint64 *pvalidationResult2;
   int integerVar6;
   float floatVar7;
   byte arrayVar8 [16];
   longlong longStackX8;
   
-  unsignedVar4 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),&longStackX8longStackX8);
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  validationResult1 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),&longStackX8longStackX8);
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   localLong1 = *(longlong *)(longStackX8 + 8);
   if (localLong1 != 0) {
     floatVar7 = *(float *)(resourceHandle + RESOURCE_DATA_OFFSET);
-    for (punsignedVar5 = *(uint64 **)(localLong1 + BUFFER_OFFSET_DATA);
-        (*(uint64 **)(localLong1 + BUFFER_OFFSET_DATA) <= punsignedVar5 &&
-        (punsignedVar5 < *(uint64 **)(localLong1 + BUFFER_OFFSET_DATA) + *(int *)(localLong1 + LIST_OFFSET_HEAD))); punsignedVar5 = punsignedVar5 + 1) {
-      unsignedVar4 = utilityHandleResourceOperation(*punsignedVar5,floatVar7,0);
-      if ((int)unsignedVar4 != 0) {
-        return unsignedVar4;
+    for (pvalidationResult2 = *(uint64 **)(localLong1 + BUFFER_OFFSET_DATA);
+        (*(uint64 **)(localLong1 + BUFFER_OFFSET_DATA) <= pvalidationResult2 &&
+        (pvalidationResult2 < *(uint64 **)(localLong1 + BUFFER_OFFSET_DATA) + *(int *)(localLong1 + LIST_OFFSET_HEAD))); pvalidationResult2 = pvalidationResult2 + 1) {
+      validationResult1 = utilityHandleResourceOperation(*pvalidationResult2,floatVar7,0);
+      if ((int)validationResult1 != 0) {
+        return validationResult1;
       }
     }
     if ((*(char *)(localLong1 + FIELD_OFFSET_2) == '\0') ||
@@ -4651,7 +4651,7 @@ void encrypt_file(longlong resourceHandle,longlong memoryBlockSize)
   int operationStatus;
   longlong arrayIndex;
   longlong longVar4;
-  uint unsignedVar5;
+  uint validationResult2;
   longlong longStackX8;
   longlong lStackX_18;
   
@@ -4669,8 +4669,8 @@ void encrypt_file(longlong resourceHandle,longlong memoryBlockSize)
   if (operationStatus != 0) {
     return;
   }
-  unsignedVar5 = (int)*(uint *)(lStackX_18 + FIELD_OFFSET_4) >> ERROR_CODE_FAILED;
-  operationStatus = (*(uint *)(lStackX_18 + FIELD_OFFSET_4) ^ unsignedVar5) - unsignedVar5;
+  validationResult2 = (int)*(uint *)(lStackX_18 + FIELD_OFFSET_4) >> ERROR_CODE_FAILED;
+  operationStatus = (*(uint *)(lStackX_18 + FIELD_OFFSET_4) ^ validationResult2) - validationResult2;
   operationStatus = *(int *)(lStackX_18 + BYTE_OFFSET_2) + 1;
   if (operationStatus < localStatus) {
     operationStatus = (int)((float)operationStatus * 1.5);
@@ -4719,7 +4719,7 @@ void decrypt_file(uint64 resourceHandle,uint64 memoryBlockSize)
   int operationStatus;
   longlong arrayIndex;
   longlong longVar4;
-  uint unsignedVar5;
+  uint validationResult2;
   longlong unaff_RBP;
   longlong unaff_R14;
   longlong in_stack_00000060;
@@ -4738,8 +4738,8 @@ void decrypt_file(uint64 resourceHandle,uint64 memoryBlockSize)
   if (operationStatus != 0) {
     return;
   }
-  unsignedVar5 = (int)*(uint *)(in_stack_00000070 + FIELD_OFFSET_4) >> ERROR_CODE_FAILED;
-  operationStatus = (*(uint *)(in_stack_00000070 + FIELD_OFFSET_4) ^ unsignedVar5) - unsignedVar5;
+  validationResult2 = (int)*(uint *)(in_stack_00000070 + FIELD_OFFSET_4) >> ERROR_CODE_FAILED;
+  operationStatus = (*(uint *)(in_stack_00000070 + FIELD_OFFSET_4) ^ validationResult2) - validationResult2;
   operationStatus = *(int *)(in_stack_00000070 + BYTE_OFFSET_2) + 1;
   if (operationStatus < localStatus) {
     operationStatus = (int)((float)operationStatus * 1.5);
@@ -4792,7 +4792,7 @@ void utilityStartResourceService(void)
   longlong inputRegister;
   longlong arrayIndex;
   longlong longVar4;
-  uint unsignedVar5;
+  uint validationResult2;
   longlong baseRegister;
   longlong unaff_R14;
   uint64 in_stack_00000060;
@@ -4806,8 +4806,8 @@ void utilityStartResourceService(void)
   if (operationStatus != 0) {
     return;
   }
-  unsignedVar5 = (int)*(uint *)(baseRegister + FIELD_OFFSET_4) >> ERROR_CODE_FAILED;
-  operationStatus = (*(uint *)(baseRegister + FIELD_OFFSET_4) ^ unsignedVar5) - unsignedVar5;
+  validationResult2 = (int)*(uint *)(baseRegister + FIELD_OFFSET_4) >> ERROR_CODE_FAILED;
+  operationStatus = (*(uint *)(baseRegister + FIELD_OFFSET_4) ^ validationResult2) - validationResult2;
   operationStatus = *(int *)(baseRegister + BYTE_OFFSET_2) + 1;
   if (operationStatus < localStatus) {
     operationStatus = (int)((float)operationStatus * 1.5);
@@ -5122,7 +5122,7 @@ uint64 utilityGetResourceInformation(longlong resourceHandle,longlong memoryBloc
   int operationStatus;
   uint64 unsignedVar3;
   dataValueValue *puVar4;
-  uint unsignedVar5;
+  uint validationResult2;
   ulonglong unsignedVar6;
   longlong longVar7;
   ulonglong unsignedVar8;
@@ -5162,10 +5162,10 @@ uint64 utilityGetResourceInformation(longlong resourceHandle,longlong memoryBloc
           unsignedVar3 = utilityAcquireResourceHandle(*(uint64 *)(memoryBlockSize + RESOURCE_HANDLE_OFFSET),resourceHandle);
           return unsignedVar3;
         }
-        unsignedVar5 = (int)unsignedVar6 + 1;
-        unsignedVar6 = (ulonglong)unsignedVar5;
+        validationResult2 = (int)unsignedVar6 + 1;
+        unsignedVar6 = (ulonglong)validationResult2;
         unsignedVar9 = unsignedVar9 + RESOURCE_OFFSET_HANDLE;
-      } while ((int)unsignedVar5 < *(int *)(unsignedVar8 + BYTE_OFFSET_2));
+      } while ((int)validationResult2 < *(int *)(unsignedVar8 + BYTE_OFFSET_2));
     }
     unsignedVar3 = ERROR_CODE_INVALID;
   }
@@ -5181,7 +5181,7 @@ uint64 utilityRetrieveResourceData(void)
   int operationStatus;
   uint64 unsignedVar3;
   dataValueValue *puVar4;
-  uint unsignedVar5;
+  uint validationResult2;
   ulonglong unsignedVar6;
   longlong longVar7;
   ulonglong unsignedVar8;
@@ -5218,10 +5218,10 @@ uint64 utilityRetrieveResourceData(void)
         unsignedVar3 = utilityAcquireResourceHandle(*(uint64 *)(unaff_R13 + RESOURCE_HANDLE_OFFSET));
         return unsignedVar3;
       }
-      unsignedVar5 = (int)unsignedVar6 + 1;
-      unsignedVar6 = (ulonglong)unsignedVar5;
+      validationResult2 = (int)unsignedVar6 + 1;
+      unsignedVar6 = (ulonglong)validationResult2;
       unsignedVar9 = unsignedVar9 + RESOURCE_OFFSET_HANDLE;
-    } while ((int)unsignedVar5 < *(int *)(unsignedVar8 + BYTE_OFFSET_2));
+    } while ((int)validationResult2 < *(int *)(unsignedVar8 + BYTE_OFFSET_2));
   }
   return ERROR_CODE_INVALID;
 }
@@ -5393,8 +5393,8 @@ uint64 utilityValidateResourceTransaction(longlong resourceHandle,longlong memor
   float floatVar1;
   uint32 unsignedCounter;
   uint32 unsignedVar3;
-  uint32 unsignedVar4;
-  uint64 unsignedVar5;
+  uint32 validationResult1;
+  uint64 validationResult2;
   int integerVar6;
   int integerVar7;
   int integerVar8;
@@ -5474,48 +5474,48 @@ uint64 utilityValidateResourceTransaction(longlong resourceHandle,longlong memor
     if (((floatStackX20 == 0.0) && (*(float *)(resourceHandle + BUFFER_SIZE_OFFSET) == 0.0)) && (floatVar1 == 0.0)) {
       return ERROR_CODE_FAILED;
     }
-    unsignedVar5 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),arrayStackX8);
-    if ((int)unsignedVar5 != 0) {
-      return unsignedVar5;
+    validationResult2 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),arrayStackX8);
+    if ((int)validationResult2 != 0) {
+      return validationResult2;
     }
     if (arrayStackX8[0] != 0) {
       localLong10 = arrayStackX8[0] + -8;
     }
-    unsignedVar5 = *(uint64 *)(resourceHandle + POINTER_OFFSET_DATA);
+    validationResult2 = *(uint64 *)(resourceHandle + POINTER_OFFSET_DATA);
     *(uint64 *)(localLong10 + STRUCT_OFFSET_SIZE) = *(uint64 *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
-    *(uint64 *)(localLong10 + BUFFER_SIZE_OFFSET) = unsignedVar5;
+    *(uint64 *)(localLong10 + BUFFER_SIZE_OFFSET) = validationResult2;
     unsignedCounter = *(uint32 *)(resourceHandle + FIELD_OFFSET_4);
     unsignedVar3 = *(uint32 *)(resourceHandle + FIELD_OFFSET_1);
-    unsignedVar4 = *(uint32 *)(resourceHandle + FIELD_OFFSET_2);
+    validationResult1 = *(uint32 *)(resourceHandle + FIELD_OFFSET_2);
     *(uint32 *)(localLong10 + BUFFER_OFFSET_DATA) = *(uint32 *)(resourceHandle + BYTE_OFFSET_2);
     *(uint32 *)(localLong10 + ERROR_CODE_2) = unsignedCounter;
     *(uint32 *)(localLong10 + LIST_OFFSET_HEAD) = unsignedVar3;
-    *(uint32 *)(localLong10 + SYSTEM_OFFSET_STATUS2) = unsignedVar4;
+    *(uint32 *)(localLong10 + SYSTEM_OFFSET_STATUS2) = validationResult1;
     unsignedCounter = *(uint32 *)(resourceHandle + RESOURCE_PROPERTY_OFFSET);
     unsignedVar3 = *(uint32 *)(resourceHandle + BUFFER_SIZE_OFFSET);
-    unsignedVar4 = *(uint32 *)(resourceHandle + RESOURCE_CONFIG_OFFSET);
+    validationResult1 = *(uint32 *)(resourceHandle + RESOURCE_CONFIG_OFFSET);
     *(uint32 *)(localLong10 + SYSTEM_OFFSET_STATUS1) = *(uint32 *)(resourceHandle + STRUCT_OFFSET_SIZE);
     *(uint32 *)(localLong10 + 0x5c) = unsignedCounter;
     *(uint32 *)(localLong10 + DATA_OFFSET_START) = unsignedVar3;
-    *(uint32 *)(localLong10 + 100) = unsignedVar4;
+    *(uint32 *)(localLong10 + 100) = validationResult1;
     localLong10 = *(longlong *)(memoryBlockSize + RESOURCE_HANDLE_OFFSET);
     if ((*(int *)(localLong10 + SYSTEM_STATUS_OFFSET1) != 0) || (*(int *)(localLong10 + SYSTEM_STATUS_OFFSET2) != 0)) {
       arrayStackX8[0] = 0;
       utilityPrepareResourceOperation(arrayStackX8);
       if (arrayStackX8[0] == *(longlong *)((longlong)*(int *)(localLong10 + SYSTEM_INDEX_OFFSET) * 8 + 0x180c4f450)) {
-        unsignedVar5 = utilityExecuteResourceOperation(localLong10,resourceHandle);
-        if ((int)unsignedVar5 == 0) {
+        validationResult2 = utilityExecuteResourceOperation(localLong10,resourceHandle);
+        if ((int)validationResult2 == 0) {
           return 0;
         }
-        return unsignedVar5;
+        return validationResult2;
       }
     }
     *(uint *)(resourceHandle + 8) = *(int *)(resourceHandle + 8) + 0xfU & ALIGNMENT_VALUE;
-    unsignedVar5 = resourceExecuteFunction(*(uint64 *)(localLong10 + SYSTEM_DATA_OFFSET));
-    if ((int)unsignedVar5 == 0) {
+    validationResult2 = resourceExecuteFunction(*(uint64 *)(localLong10 + SYSTEM_DATA_OFFSET));
+    if ((int)validationResult2 == 0) {
       return 0;
     }
-    return unsignedVar5;
+    return validationResult2;
   }
   return ERROR_CODE_FAILED;
 }
@@ -5802,7 +5802,7 @@ uint64 utilityAnalyzeResourcePerformance(longlong resourceHandle,longlong memory
   float floatVar1;
   longlong dataValueBuffer;
   longlong arrayIndex;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   longlong longVar5;
   float floatVar6;
   uint arrayUnsignedStackX8 [2];
@@ -5813,9 +5813,9 @@ uint64 utilityAnalyzeResourcePerformance(longlong resourceHandle,longlong memory
     return ERROR_CODE_5;
   }
   if (resourceHandle + BYTE_OFFSET_2 != 0) {
-    unsignedVar4 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),&lStackX_18);
-    if ((int)unsignedVar4 != 0) {
-      return unsignedVar4;
+    validationResult1 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),&lStackX_18);
+    if ((int)validationResult1 != 0) {
+      return validationResult1;
     }
     longVar5 = lStackX_18;
     if (lStackX_18 != 0) {
@@ -5826,9 +5826,9 @@ uint64 utilityAnalyzeResourcePerformance(longlong resourceHandle,longlong memory
       return SUCCESS_CODE;
     }
     arrayUnsignedStackX8[0] = 0;
-    unsignedVar4 = utilityCalculateResourceMetrics(memoryBlockSize,longVar5,resourceHandle + BYTE_OFFSET_2,arrayUnsignedStackX8);
-    if ((int)unsignedVar4 != 0) {
-      return unsignedVar4;
+    validationResult1 = utilityCalculateResourceMetrics(memoryBlockSize,longVar5,resourceHandle + BYTE_OFFSET_2,arrayUnsignedStackX8);
+    if ((int)validationResult1 != 0) {
+      return validationResult1;
     }
     longVar5 = *(longlong *)(longVar5 + POINTER_OFFSET_DATA);
     arrayIndex = *(longlong *)(longVar5 + RESOURCE_HANDLE_OFFSET + (longlong)(int)arrayUnsignedStackX8[0] * RESOURCE_OFFSET_HANDLE);
@@ -5858,16 +5858,16 @@ uint64 utilityOptimizeResourcePerformance(longlong resourceHandle,longlong memor
   float floatVar1;
   longlong dataValueBuffer;
   longlong arrayIndex;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   longlong longVar5;
   longlong longVar6;
   int aiStackX_8 [2];
   longlong lStackX_18;
   
   if (resourceHandle + BYTE_OFFSET_2 != 0) {
-    unsignedVar4 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),&lStackX_18);
-    if ((int)unsignedVar4 != 0) {
-      return unsignedVar4;
+    validationResult1 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),&lStackX_18);
+    if ((int)validationResult1 != 0) {
+      return validationResult1;
     }
     longVar6 = lStackX_18;
     if (lStackX_18 != 0) {
@@ -5878,17 +5878,17 @@ uint64 utilityOptimizeResourcePerformance(longlong resourceHandle,longlong memor
       return SUCCESS_CODE;
     }
     aiStackX_8[0] = 0;
-    unsignedVar4 = utilityCalculateResourceMetrics(memoryBlockSize,longVar6,resourceHandle + BYTE_OFFSET_2,aiStackX_8);
-    if ((int)unsignedVar4 != 0) {
-      return unsignedVar4;
+    validationResult1 = utilityCalculateResourceMetrics(memoryBlockSize,longVar6,resourceHandle + BYTE_OFFSET_2,aiStackX_8);
+    if ((int)validationResult1 != 0) {
+      return validationResult1;
     }
     longVar5 = (longlong)aiStackX_8[0];
     longVar6 = *(longlong *)(longVar6 + POINTER_OFFSET_DATA);
     arrayIndex = *(longlong *)(longVar6 + RESOURCE_HANDLE_OFFSET + longVar5 * RESOURCE_OFFSET_HANDLE);
     if ((*(byte *)(arrayIndex + FIELD_OFFSET_2) & ACCESS_FLAG) == 0) {
-      unsignedVar4 = utilityAccessResourceAttribute(arrayIndex,resourceHandle + 0xa8,resourceHandle + RESOURCE_OFFSET_HANDLE);
-      if ((int)unsignedVar4 != 0) {
-        return unsignedVar4;
+      validationResult1 = utilityAccessResourceAttribute(arrayIndex,resourceHandle + 0xa8,resourceHandle + RESOURCE_OFFSET_HANDLE);
+      if ((int)validationResult1 != 0) {
+        return validationResult1;
       }
       floatVar1 = *(float *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
       if ((*(float *)(arrayIndex + STRUCT_OFFSET_SIZE) <= floatVar1) &&
@@ -5913,7 +5913,7 @@ uint64 utilityExecuteResourceTask(longlong resourceHandle,longlong memoryBlockSi
   float floatVar1;
   int operationStatus;
   longlong arrayIndex;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   longlong longVar5;
   uint64 unaff_RDI;
   float floatVar6;
@@ -5923,9 +5923,9 @@ uint64 utilityExecuteResourceTask(longlong resourceHandle,longlong memoryBlockSi
   if ((*(uint *)(resourceHandle + POINTER_OFFSET_DATA) & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
     return ERROR_CODE_5;
   }
-  unsignedVar4 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),&longStackX8longStackX8);
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  validationResult1 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),&longStackX8longStackX8);
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   longVar5 = longStackX8;
   if (longStackX8 != 0) {
@@ -5949,28 +5949,28 @@ uint64 utilityExecuteResourceTask(longlong resourceHandle,longlong memoryBlockSi
     }
     *(float *)(resourceHandle + POINTER_OFFSET_DATA) = floatVar6;
     *(float *)(longVar5 + 4) = floatVar6;
-    unsignedVar4 = validate_resource_resourceHandle(longVar5,resourceHandle + BYTE_OFFSET_FLAG);
-    if ((int)unsignedVar4 != 0) {
-      return unsignedVar4;
+    validationResult1 = validate_resource_resourceHandle(longVar5,resourceHandle + BYTE_OFFSET_FLAG);
+    if ((int)validationResult1 != 0) {
+      return validationResult1;
     }
     longVar5 = *(longlong *)(memoryBlockSize + RESOURCE_HANDLE_OFFSET);
     if ((*(int *)(longVar5 + SYSTEM_STATUS_OFFSET1) != 0) || (*(int *)(longVar5 + SYSTEM_STATUS_OFFSET2) != 0)) {
       longStackX8 = 0;
       utilityPrepareResourceOperation(&longStackX8longStackX8,resourceHandle,operationFlags,callbackFunction,unaff_RDI);
       if (longStackX8 == *(longlong *)((longlong)*(int *)(longVar5 + SYSTEM_INDEX_OFFSET) * 8 + 0x180c4f450)) {
-        unsignedVar4 = utilityExecuteResourceOperation(longVar5,resourceHandle);
-        if ((int)unsignedVar4 == 0) {
+        validationResult1 = utilityExecuteResourceOperation(longVar5,resourceHandle);
+        if ((int)validationResult1 == 0) {
           return 0;
         }
-        return unsignedVar4;
+        return validationResult1;
       }
     }
     *(uint *)(resourceHandle + 8) = *(int *)(resourceHandle + 8) + 0xfU & ALIGNMENT_VALUE;
-    unsignedVar4 = resourceExecuteFunction(*(uint64 *)(longVar5 + SYSTEM_DATA_OFFSET));
-    if ((int)unsignedVar4 == 0) {
+    validationResult1 = resourceExecuteFunction(*(uint64 *)(longVar5 + SYSTEM_DATA_OFFSET));
+    if ((int)validationResult1 == 0) {
       return 0;
     }
-    return unsignedVar4;
+    return validationResult1;
   }
   return ERROR_CODE_FAILED;
 }
@@ -7994,7 +7994,7 @@ uint64 allocate_from_allocator(longlong resourceHandle)
   longlong *plocalLong1;
   int operationStatus;
   uint64 unsignedVar3;
-  uint unsignedVar4;
+  uint validationResult1;
   
   initialize_system_components();
   activate_system_module(resourceHandle + 0xd8);
@@ -8014,17 +8014,17 @@ uint64 allocate_from_allocator(longlong resourceHandle)
   validate_system_integrity(resourceHandle + BYTE_OFFSET_2);
   get_pool_allocator(resourceHandle + RESOURCE_OFFSET_HANDLE);
   plocalLong1 = (longlong *)(resourceHandle + 8);
-  unsignedVar4 = *(uint *)(resourceHandle + RESOURCE_DATA_OFFSET);
-  if ((int)((unsignedVar4 ^ (int)unsignedVar4 >> ERROR_CODE_FAILED) - ((int)unsignedVar4 >> ERROR_CODE_FAILED)) < 0) {
+  validationResult1 = *(uint *)(resourceHandle + RESOURCE_DATA_OFFSET);
+  if ((int)((validationResult1 ^ (int)validationResult1 >> ERROR_CODE_FAILED) - ((int)validationResult1 >> ERROR_CODE_FAILED)) < 0) {
     if (0 < *(int *)(resourceHandle + RESOURCE_HANDLE_OFFSET)) {
       return BYTE_OFFSET_FLAG;
     }
-    if ((0 < (int)unsignedVar4) && (*plocalLong1 != 0)) {
+    if ((0 < (int)validationResult1) && (*plocalLong1 != 0)) {
                     // WARNING: Subroutine does not return
       utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),*plocalLong1,&utilityMemoryDataBuffer,RESOURCE_HANDLE_OFFSET0,1);
     }
     *plocalLong1 = 0;
-    unsignedVar4 = 0;
+    validationResult1 = 0;
     *(uint32 *)(resourceHandle + RESOURCE_DATA_OFFSET) = 0;
   }
   operationStatus = *(int *)(resourceHandle + RESOURCE_HANDLE_OFFSET);
@@ -8033,7 +8033,7 @@ uint64 allocate_from_allocator(longlong resourceHandle)
     memset((longlong)operationStatus + *plocalLong1,0,(longlong)-operationStatus);
   }
   *(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET) = 0;
-  if ((0 < (int)((unsignedVar4 ^ (int)unsignedVar4 >> ERROR_CODE_FAILED) - ((int)unsignedVar4 >> ERROR_CODE_FAILED))) &&
+  if ((0 < (int)((validationResult1 ^ (int)validationResult1 >> ERROR_CODE_FAILED) - ((int)validationResult1 >> ERROR_CODE_FAILED))) &&
      (unsignedVar3 = process_system_request(plocalLong1,0), (int)unsignedVar3 != 0)) {
     return unsignedVar3;
   }
@@ -8088,20 +8088,20 @@ uint64 configure_system_parameters(longlong *resourceHandle)
   uint32 *punsignedCounter;
   uint64 unsignedVar3;
   longlong longVar4;
-  uint unsignedVar5;
+  uint validationResult2;
   
-  unsignedVar5 = *(uint *)((longlong)resourceHandle + STRUCT_MULTIPLIER);
-  if ((int)((unsignedVar5 ^ (int)unsignedVar5 >> ERROR_CODE_FAILED) - ((int)unsignedVar5 >> ERROR_CODE_FAILED)) < 0) {
+  validationResult2 = *(uint *)((longlong)resourceHandle + STRUCT_MULTIPLIER);
+  if ((int)((validationResult2 ^ (int)validationResult2 >> ERROR_CODE_FAILED) - ((int)validationResult2 >> ERROR_CODE_FAILED)) < 0) {
     if (0 < (int)resourceHandle[1]) {
       return BYTE_OFFSET_FLAG;
     }
-    if ((0 < (int)unsignedVar5) && (*resourceHandle != 0)) {
+    if ((0 < (int)validationResult2) && (*resourceHandle != 0)) {
                     // WARNING: Subroutine does not return
       utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),*resourceHandle,&utilityMemoryDataBuffer,RESOURCE_HANDLE_OFFSET0,1);
     }
     *resourceHandle = 0;
     *(uint32 *)((longlong)resourceHandle + STRUCT_MULTIPLIER) = 0;
-    unsignedVar5 = 0;
+    validationResult2 = 0;
   }
   operationStatus = (int)resourceHandle[1];
   if (localStatus < 0) {
@@ -8115,11 +8115,11 @@ uint64 configure_system_parameters(longlong *resourceHandle)
         punsignedCounter = punsignedCounter + 4;
         longVar4 = longVar4 + -1;
       } while (longVar4 != 0);
-      unsignedVar5 = *(uint *)((longlong)resourceHandle + STRUCT_MULTIPLIER);
+      validationResult2 = *(uint *)((longlong)resourceHandle + STRUCT_MULTIPLIER);
     }
   }
   *(uint32 *)(resourceHandle + 1) = 0;
-  if ((0 < (int)((unsignedVar5 ^ (int)unsignedVar5 >> ERROR_CODE_FAILED) - ((int)unsignedVar5 >> ERROR_CODE_FAILED))) &&
+  if ((0 < (int)((validationResult2 ^ (int)validationResult2 >> ERROR_CODE_FAILED) - ((int)validationResult2 >> ERROR_CODE_FAILED))) &&
      (unsignedVar3 = resourceHandle_system_event(resourceHandle,0), (int)unsignedVar3 != 0)) {
     return unsignedVar3;
   }
@@ -8134,7 +8134,7 @@ uint64 set_allocator_statusFlags(longlong *resourceHandle)
   int operationStatus;
   longlong dataValueBuffer;
   uint64 unsignedVar3;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   longlong longVar5;
   uint unsignedVar6;
   int *pintVar7;
@@ -8165,22 +8165,22 @@ uint64 set_allocator_statusFlags(longlong *resourceHandle)
       return unsignedVar3;
     }
     unsignedVar9 = 0;
-    unsignedVar4 = unsignedVar9;
+    validationResult1 = unsignedVar9;
     if (0 < integerVar8) {
       do {
-        *(uint32 *)(*resourceHandle + unsignedVar4 * 4) = INVALID_HANDLE;
-        unsignedVar4 = unsignedVar4 + 1;
-      } while ((longlong)unsignedVar4 < (longlong)integerVar8);
+        *(uint32 *)(*resourceHandle + validationResult1 * 4) = INVALID_HANDLE;
+        validationResult1 = validationResult1 + 1;
+      } while ((longlong)validationResult1 < (longlong)integerVar8);
     }
     dataValueBuffer = resourceHandle[3];
-    unsignedVar4 = unsignedVar9;
+    validationResult1 = unsignedVar9;
     functionResult0 = unsignedVar9;
     if (0 < (int)dataValueBuffer) {
       do {
         if ((int)resourceHandle[1] == 0) {
           return BYTE_OFFSET_FLAG;
         }
-        longVar5 = (longlong)(int)(*(uint *)(unsignedVar4 + resourceHandle[2]) & (int)resourceHandle[1] - 1U);
+        longVar5 = (longlong)(int)(*(uint *)(validationResult1 + resourceHandle[2]) & (int)resourceHandle[1] - 1U);
         pintVar7 = (int *)(*resourceHandle + longVar5 * 4);
         integerVar8 = *(int *)(*resourceHandle + longVar5 * 4);
         while (integerVar8 != -1) {
@@ -8190,8 +8190,8 @@ uint64 set_allocator_statusFlags(longlong *resourceHandle)
         *pintVar7 = (int)unsignedVar9;
         functionResult0 = functionResult0 + 1;
         unsignedVar9 = (ulonglong)((int)unsignedVar9 + 1);
-        *(uint32 *)(resourceHandle[2] + 4 + unsignedVar4) = INVALID_HANDLE;
-        unsignedVar4 = unsignedVar4 + RESOURCE_HANDLE_OFFSET;
+        *(uint32 *)(resourceHandle[2] + 4 + validationResult1) = INVALID_HANDLE;
+        validationResult1 = validationResult1 + RESOURCE_HANDLE_OFFSET;
       } while ((longlong)functionResult0 < (longlong)(int)dataValueBuffer);
     }
   }
@@ -8208,7 +8208,7 @@ uint64 initialize_debug_system(void)
   uint64 unsignedCounter;
   ulonglong unsignedVar3;
   longlong longVar4;
-  uint unsignedVar5;
+  uint validationResult2;
   int *pintVar6;
   longlong *baseRegister;
   int unaff_EDI;
@@ -8224,8 +8224,8 @@ uint64 initialize_debug_system(void)
     if (((integerVar7 <= in_EAX) || ((int)baseRegister[3] != in_EAX)) || ((int)baseRegister[4] != -1)) {
       return BYTE_OFFSET_FLAG;
     }
-    unsignedVar5 = (int)*(uint *)((longlong)baseRegister + BYTE_OFFSET_FLAG) >> ERROR_CODE_FAILED;
-    if (((int)((*(uint *)((longlong)baseRegister + BYTE_OFFSET_FLAG) ^ unsignedVar5) - unsignedVar5) < integerVar7) &&
+    validationResult2 = (int)*(uint *)((longlong)baseRegister + BYTE_OFFSET_FLAG) >> ERROR_CODE_FAILED;
+    if (((int)((*(uint *)((longlong)baseRegister + BYTE_OFFSET_FLAG) ^ validationResult2) - validationResult2) < integerVar7) &&
        (unsignedCounter = resourceHandle_system_event(baseRegister + 2,integerVar7), (int)unsignedCounter != 0)) {
       return unsignedCounter;
     }
@@ -8288,7 +8288,7 @@ void log_debug_message(longlong resourceHandle,byte *memoryBlockBlockBlockSize,i
   longlong dataValueBuffer;
   char charVar3;
   int iterationCounter;
-  uint64 unsignedVar5;
+  uint64 validationResult2;
   longlong longVar6;
   longlong longVar7;
   int integerVar8;
@@ -8346,9 +8346,9 @@ void log_debug_message(longlong resourceHandle,byte *memoryBlockBlockBlockSize,i
       }
       boolVar1 = *(byte *)(resourceHandle + 0x6c);
       if (*(longlong *)(resourceHandle + 0xc0) != 0) {
-        unsignedVar5 = evaluate_system_state(resourceHandle);
+        validationResult2 = evaluate_system_state(resourceHandle);
         iterationCounter = (**(code **)(resourceHandle + 0xc0))
-                          (unsignedVar5,iterationCounter,*(uint32 *)(longVar9 + RESOURCE_OFFSET_HANDLE),*(uint64 *)(resourceHandle + BUFFER_SIZE_STANDARD)
+                          (validationResult2,iterationCounter,*(uint32 *)(longVar9 + RESOURCE_OFFSET_HANDLE),*(uint64 *)(resourceHandle + BUFFER_SIZE_STANDARD)
                           );
         if (iterationCounter != 0) goto ExecuteSecurityValidation;
       }
@@ -8711,8 +8711,8 @@ uint64 SetupResourceParameters(longlong *resourceHandle,uint *memoryBlockBlockBl
   uint functionResult;
   int operationStatus;
   int dataValueLength;
-  uint64 unsignedVar4;
-  uint64 unsignedVar5;
+  uint64 validationResult1;
+  uint64 validationResult2;
   uint64 *punsignedVar6;
   int integerVar7;
   longlong longVar8;
@@ -8722,8 +8722,8 @@ uint64 SetupResourceParameters(longlong *resourceHandle,uint *memoryBlockBlockBl
   int localStatus2;
   int *plocalBuffer;
   
-  unsignedVar4 = set_allocator_statusFlags();
-  if ((int)unsignedVar4 == 0) {
+  validationResult1 = set_allocator_statusFlags();
+  if ((int)validationResult1 == 0) {
     if ((int)resourceHandle[1] == 0) {
       return BYTE_OFFSET_FLAG;
     }
@@ -8745,7 +8745,7 @@ uint64 SetupResourceParameters(longlong *resourceHandle,uint *memoryBlockBlockBl
     }
     operationStatus = (int)resourceHandle[4];
     if (operationStatus == -1) {
-      unsignedVar4 = *operationFlags;
+      validationResult1 = *operationFlags;
       operationStatus = (int)resourceHandle[3];
       integerVar7 = operationStatus + 1;
       functionResult1 = (int)*(uint *)((longlong)resourceHandle + BYTE_OFFSET_FLAG) >> ERROR_CODE_FAILED;
@@ -8762,14 +8762,14 @@ uint64 SetupResourceParameters(longlong *resourceHandle,uint *memoryBlockBlockBl
         else if (localStatus2 < integerVar7) {
           localStatus2 = integerVar7;
         }
-        unsignedVar5 = resourceHandle_system_event(resourceHandle + 2,localStatus2);
-        if ((int)unsignedVar5 != 0) {
-          return unsignedVar5;
+        validationResult2 = resourceHandle_system_event(resourceHandle + 2,localStatus2);
+        if ((int)validationResult2 != 0) {
+          return validationResult2;
         }
       }
       punsignedVar6 = (uint64 *)((longlong)(int)resourceHandle[3] * RESOURCE_HANDLE_OFFSET + resourceHandle[2]);
       *punsignedVar6 = CONCAT44(INVALID_HANDLE,functionResult);
-      punsignedVar6[1] = unsignedVar4;
+      punsignedVar6[1] = validationResult1;
       *(int *)(resourceHandle + 3) = (int)resourceHandle[3] + 1;
     }
     else {
@@ -8781,9 +8781,9 @@ uint64 SetupResourceParameters(longlong *resourceHandle,uint *memoryBlockBlockBl
     }
     *plocalBuffer = operationStatus;
     *(int *)((longlong)resourceHandle + FIELD_OFFSET_3) = *(int *)((longlong)resourceHandle + FIELD_OFFSET_3) + 1;
-    unsignedVar4 = 0;
+    validationResult1 = 0;
   }
-  return unsignedVar4;
+  return validationResult1;
 }
 
 
@@ -8795,8 +8795,8 @@ uint64 allocate_memory_block(uint64 resourceHandle,int memoryBlockSize)
   int in_EAX;
   int operationStatus;
   int dataValueLength;
-  uint64 unsignedVar4;
-  uint64 *punsignedVar5;
+  uint64 validationResult1;
+  uint64 *pvalidationResult2;
   int integerVar6;
   longlong longVar7;
   uint32 *punsignedVar8;
@@ -8841,14 +8841,14 @@ uint64 allocate_memory_block(uint64 resourceHandle,int memoryBlockSize)
       else if (localStatus0 < integerVar6) {
         localStatus0 = integerVar6;
       }
-      unsignedVar4 = resourceHandle_system_event(unaff_RDI + 2,localStatus0);
-      if ((int)unsignedVar4 != 0) {
-        return unsignedVar4;
+      validationResult1 = resourceHandle_system_event(unaff_RDI + 2,localStatus0);
+      if ((int)validationResult1 != 0) {
+        return validationResult1;
       }
     }
-    punsignedVar5 = (uint64 *)((longlong)(int)unaff_RDI[3] * RESOURCE_HANDLE_OFFSET + unaff_RDI[2]);
-    *punsignedVar5 = CONCAT44(INVALID_HANDLE,memoryBlockSize);
-    punsignedVar5[1] = uStack0000000000000028;
+    pvalidationResult2 = (uint64 *)((longlong)(int)unaff_RDI[3] * RESOURCE_HANDLE_OFFSET + unaff_RDI[2]);
+    *pvalidationResult2 = CONCAT44(INVALID_HANDLE,memoryBlockSize);
+    pvalidationResult2[1] = uStack0000000000000028;
     *(int *)(unaff_RDI + 3) = (int)unaff_RDI[3] + 1;
   }
   else {
@@ -8872,7 +8872,7 @@ uint64 allocate_memory_chunk(uint64 resourceHandle,uint32 memoryBlockSize)
   uint64 unsignedCounter;
   uint64 *pointerVar3;
   int iterationCounter;
-  uint32 *punsignedVar5;
+  uint32 *pvalidationResult2;
   uint unsignedVar6;
   int integerVar7;
   int *baseRegister;
@@ -8913,11 +8913,11 @@ uint64 allocate_memory_chunk(uint64 resourceHandle,uint32 memoryBlockSize)
     *(int *)(unaff_RDI + RESOURCE_OFFSET_HANDLE) = *(int *)(unaff_RDI + RESOURCE_OFFSET_HANDLE) + 1;
   }
   else {
-    punsignedVar5 = (uint32 *)((longlong)integerVar8 * RESOURCE_HANDLE_OFFSET + *(longlong *)(unaff_RDI + RESOURCE_HANDLE_OFFSET));
-    *(uint32 *)(unaff_RDI + POINTER_OFFSET_DATA) = punsignedVar5[1];
-    punsignedVar5[1] = INVALID_HANDLE;
-    *punsignedVar5 = *unaff_R15;
-    *(uint64 *)(punsignedVar5 + 2) = *unaff_R14;
+    pvalidationResult2 = (uint32 *)((longlong)integerVar8 * RESOURCE_HANDLE_OFFSET + *(longlong *)(unaff_RDI + RESOURCE_HANDLE_OFFSET));
+    *(uint32 *)(unaff_RDI + POINTER_OFFSET_DATA) = pvalidationResult2[1];
+    pvalidationResult2[1] = INVALID_HANDLE;
+    *pvalidationResult2 = *unaff_R15;
+    *(uint64 *)(pvalidationResult2 + 2) = *unaff_R14;
   }
   *baseRegister = integerVar8;
   *(int *)(unaff_RDI + FIELD_OFFSET_3) = *(int *)(unaff_RDI + FIELD_OFFSET_3) + 1;
@@ -9004,7 +9004,7 @@ uint64 allocate_buffer_memoryBlock(longlong *resourceHandle,int memoryBlockSize)
   longlong dataValueBuffer;
   uint64 *pointerVar3;
   longlong longVar4;
-  uint64 *punsignedVar5;
+  uint64 *pvalidationResult2;
   
   if (memoryBlockSize < (int)resourceHandle[1]) {
     return BYTE_OFFSET_FLAG;
@@ -9019,12 +9019,12 @@ uint64 allocate_buffer_memoryBlock(longlong *resourceHandle,int memoryBlockSize)
         operationStatus = (int)resourceHandle[1];
         longVar4 = (longlong)localStatus;
         if ((localStatus != 0) && (dataValueBuffer = *resourceHandle, 0 < localStatus)) {
-          punsignedVar5 = puVar3;
+          pvalidationResult2 = puVar3;
           do {
-            *punsignedVar5 = *(uint64 *)((dataValueBuffer - (longlong)puVar3) + (longlong)punsignedVar5);
-            *(uint32 *)(punsignedVar5 + 1) =
-                 *(uint32 *)((dataValueBuffer - (longlong)puVar3) + 8 + (longlong)punsignedVar5);
-            punsignedVar5 = (uint64 *)((longlong)punsignedVar5 + STRUCT_MULTIPLIER);
+            *pvalidationResult2 = *(uint64 *)((dataValueBuffer - (longlong)puVar3) + (longlong)pvalidationResult2);
+            *(uint32 *)(pvalidationResult2 + 1) =
+                 *(uint32 *)((dataValueBuffer - (longlong)puVar3) + 8 + (longlong)pvalidationResult2);
+            pvalidationResult2 = (uint64 *)((longlong)pvalidationResult2 + STRUCT_MULTIPLIER);
             longVar4 = longVar4 + -1;
           } while (longVar4 != 0);
         }
@@ -9054,7 +9054,7 @@ uint64 allocate_buffer_chunk(uint64 resourceHandle,int memoryBlockSize)
   longlong dataValueBuffer;
   uint64 *pointerVar3;
   longlong longVar4;
-  uint64 *punsignedVar5;
+  uint64 *pvalidationResult2;
   longlong *baseRegister;
   int unaff_EDI;
   
@@ -9077,12 +9077,12 @@ handle_character_processing:
       operationStatus = (int)baseRegister[1];
       longVar4 = (longlong)localStatus;
       if ((localStatus != 0) && (dataValueBuffer = *baseRegister, 0 < localStatus)) {
-        punsignedVar5 = puVar3;
+        pvalidationResult2 = puVar3;
         do {
-          *punsignedVar5 = *(uint64 *)((dataValueBuffer - (longlong)puVar3) + (longlong)punsignedVar5);
-          *(uint32 *)(punsignedVar5 + 1) =
-               *(uint32 *)((dataValueBuffer - (longlong)puVar3) + 8 + (longlong)punsignedVar5);
-          punsignedVar5 = (uint64 *)((longlong)punsignedVar5 + STRUCT_MULTIPLIER);
+          *pvalidationResult2 = *(uint64 *)((dataValueBuffer - (longlong)puVar3) + (longlong)pvalidationResult2);
+          *(uint32 *)(pvalidationResult2 + 1) =
+               *(uint32 *)((dataValueBuffer - (longlong)puVar3) + 8 + (longlong)pvalidationResult2);
+          pvalidationResult2 = (uint64 *)((longlong)pvalidationResult2 + STRUCT_MULTIPLIER);
           longVar4 = longVar4 + -1;
         } while (longVar4 != 0);
       }
@@ -9586,7 +9586,7 @@ uint64 validate_memory_system(longlong resourceHandle)
   longlong dataValueBuffer;
   int *plocalIndex;
 >>>>>>> Stashed changes
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   int integerVar5;
   
   if ((*(longlong *)(resourceHandle + 8) != 0) && (integerVar5 = *(int *)(resourceHandle + FIELD_OFFSET_1), 0 < integerVar5)) {
@@ -9611,8 +9611,8 @@ uint64 validate_memory_system(longlong resourceHandle)
     *(byte *)((longlong)pdataLength + 10) = 3;
     pdataLength[3] = 1;
     localLong2 = *(longlong *)(*(longlong *)(resourceHandle + 8) + MEMORY_SIZE_OFFSET);
-    unsignedVar4 = dataAccessFunction(*(uint64 *)(localLong2 + 0x4d0),*(uint32 *)(localLong2 + 0x774));
-    *(uint64 *)(pdataLength + 4) = unsignedVar4;
+    validationResult1 = dataAccessFunction(*(uint64 *)(localLong2 + 0x4d0),*(uint32 *)(localLong2 + 0x774));
+    *(uint64 *)(pdataLength + 4) = validationResult1;
 =======
     plocalIndex[0] = 0;
     plocalIndex[1] = 0;
@@ -9625,8 +9625,8 @@ uint64 validate_memory_system(longlong resourceHandle)
     *(byte *)((longlong)plocalIndex + 10) = 3;
     plocalIndex[3] = 1;
     dataValueBuffer = *(longlong *)(*(longlong *)(resourceHandle + 8) + MEMORY_SIZE_OFFSET);
-    unsignedVar4 = dataAccessFunction(*(uint64 *)(dataValueBuffer + 0x4d0),*(uint32 *)(dataValueBuffer + 0x774));
-    *(uint64 *)(plocalIndex + 4) = unsignedVar4;
+    validationResult1 = dataAccessFunction(*(uint64 *)(dataValueBuffer + 0x4d0),*(uint32 *)(dataValueBuffer + 0x774));
+    *(uint64 *)(plocalIndex + 4) = validationResult1;
 >>>>>>> Stashed changes
                     // WARNING: Subroutine does not return
     memcpy(pdataLength + 6,localLong1,(longlong)integerVar5);
@@ -10097,8 +10097,8 @@ void ProcessResourceQueue(void)
   longlong localLong1;
   longlong dataValueBuffer;
   uint32 unsignedVar3;
-  uint32 unsignedVar4;
-  uint32 unsignedVar5;
+  uint32 validationResult1;
+  uint32 validationResult2;
   uint32 unsignedVar6;
   int integerVar7;
   int integerVar8;
@@ -10134,8 +10134,8 @@ void ProcessResourceQueue(void)
         integerVar8 = validate_resource_resourceHandle(dataValueBuffer,&uStackX_20);
         if (integerVar8 != 0) goto handle_resource_iteration;
         unsignedVar3 = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
-        unsignedVar4 = *(uint32 *)(localLong1 + RESOURCE_DATA_OFFSET);
-        unsignedVar5 = *(uint32 *)(localLong1 + RESOURCE_OFFSET_HANDLE);
+        validationResult1 = *(uint32 *)(localLong1 + RESOURCE_DATA_OFFSET);
+        validationResult2 = *(uint32 *)(localLong1 + RESOURCE_OFFSET_HANDLE);
         unsignedVar6 = *(uint32 *)(localLong1 + BYTE_OFFSET_FLAG);
         *(uint32 *)(unaff_RBP + -HANDLE_OFFSET_DATA) = 0;
         *(int *)(unaff_RBP + -0x68) = unaff_R12D;
@@ -10144,8 +10144,8 @@ void ProcessResourceQueue(void)
         *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS2) = uStackX_20;
         *(uint32 *)(unaff_RBP + -0x70) = unaff_EBX;
         *(uint32 *)(unaff_RBP + -100) = unsignedVar3;
-        *(uint32 *)(unaff_RBP + -DATA_OFFSET_START) = unsignedVar4;
-        *(uint32 *)(unaff_RBP + -0x5c) = unsignedVar5;
+        *(uint32 *)(unaff_RBP + -DATA_OFFSET_START) = validationResult1;
+        *(uint32 *)(unaff_RBP + -0x5c) = validationResult2;
         *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS1) = unsignedVar6;
         integerVar8 = ValidateResourceAccess(unsignedVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
         if ((integerVar8 != 0) || (integerVar8 = checkResourceAvailability(dataValueBuffer,&fStackX_24), integerVar8 != 0))
@@ -10187,8 +10187,8 @@ void ProcessResourceQueue(void)
         integerVar8 = validate_resource_resourceHandle(dataValueBuffer,&uStackX_20);
         if (integerVar8 != 0) goto handle_resource_iteration;
         unsignedVar3 = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
-        unsignedVar4 = *(uint32 *)(localLong1 + RESOURCE_DATA_OFFSET);
-        unsignedVar5 = *(uint32 *)(localLong1 + RESOURCE_OFFSET_HANDLE);
+        validationResult1 = *(uint32 *)(localLong1 + RESOURCE_DATA_OFFSET);
+        validationResult2 = *(uint32 *)(localLong1 + RESOURCE_OFFSET_HANDLE);
         unsignedVar6 = *(uint32 *)(localLong1 + BYTE_OFFSET_FLAG);
         *(uint32 *)(unaff_RBP + -HANDLE_OFFSET_DATA) = 0;
         *(int *)(unaff_RBP + -0x68) = unaff_R12D;
@@ -10197,8 +10197,8 @@ void ProcessResourceQueue(void)
         *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS2) = uStackX_20;
         *(uint32 *)(unaff_RBP + -0x70) = unaff_EBX;
         *(uint32 *)(unaff_RBP + -100) = unsignedVar3;
-        *(uint32 *)(unaff_RBP + -DATA_OFFSET_START) = unsignedVar4;
-        *(uint32 *)(unaff_RBP + -0x5c) = unsignedVar5;
+        *(uint32 *)(unaff_RBP + -DATA_OFFSET_START) = validationResult1;
+        *(uint32 *)(unaff_RBP + -0x5c) = validationResult2;
         *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS1) = unsignedVar6;
         integerVar8 = ValidateResourceAccess(unsignedVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
         if ((integerVar8 != 0) || (integerVar8 = checkResourceAvailability(dataValueBuffer,&fStackX_24), integerVar8 != 0))
@@ -10240,8 +10240,8 @@ void ProcessResourceQueue(void)
         integerVar8 = validate_resource_resourceHandle(dataValueBuffer,&uStackX_20);
         if (integerVar8 != 0) goto handle_resource_iteration;
         unsignedVar3 = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
-        unsignedVar4 = *(uint32 *)(localLong1 + RESOURCE_DATA_OFFSET);
-        unsignedVar5 = *(uint32 *)(localLong1 + RESOURCE_OFFSET_HANDLE);
+        validationResult1 = *(uint32 *)(localLong1 + RESOURCE_DATA_OFFSET);
+        validationResult2 = *(uint32 *)(localLong1 + RESOURCE_OFFSET_HANDLE);
         unsignedVar6 = *(uint32 *)(localLong1 + BYTE_OFFSET_FLAG);
         *(uint32 *)(unaff_RBP + -HANDLE_OFFSET_DATA) = 0;
         *(int *)(unaff_RBP + -0x68) = unaff_R12D;
@@ -10250,8 +10250,8 @@ void ProcessResourceQueue(void)
         *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS2) = uStackX_20;
         *(uint32 *)(unaff_RBP + -0x70) = unaff_EBX;
         *(uint32 *)(unaff_RBP + -100) = unsignedVar3;
-        *(uint32 *)(unaff_RBP + -DATA_OFFSET_START) = unsignedVar4;
-        *(uint32 *)(unaff_RBP + -0x5c) = unsignedVar5;
+        *(uint32 *)(unaff_RBP + -DATA_OFFSET_START) = validationResult1;
+        *(uint32 *)(unaff_RBP + -0x5c) = validationResult2;
         *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS1) = unsignedVar6;
         integerVar8 = ValidateResourceAccess(unsignedVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
         if ((integerVar8 != 0) || (integerVar8 = checkResourceAvailability(dataValueBuffer,&fStackX_24), integerVar8 != 0))
@@ -10293,8 +10293,8 @@ void ProcessResourceQueue(void)
         integerVar8 = validate_resource_resourceHandle(dataValueBuffer,&uStackX_20);
         if (integerVar8 != 0) goto handle_resource_iteration;
         unsignedVar3 = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
-        unsignedVar4 = *(uint32 *)(localLong1 + RESOURCE_DATA_OFFSET);
-        unsignedVar5 = *(uint32 *)(localLong1 + RESOURCE_OFFSET_HANDLE);
+        validationResult1 = *(uint32 *)(localLong1 + RESOURCE_DATA_OFFSET);
+        validationResult2 = *(uint32 *)(localLong1 + RESOURCE_OFFSET_HANDLE);
         unsignedVar6 = *(uint32 *)(localLong1 + BYTE_OFFSET_FLAG);
         *(uint32 *)(unaff_RBP + -HANDLE_OFFSET_DATA) = 0;
         *(int *)(unaff_RBP + -0x68) = unaff_R12D;
@@ -10303,8 +10303,8 @@ void ProcessResourceQueue(void)
         *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS2) = uStackX_20;
         *(uint32 *)(unaff_RBP + -0x70) = unaff_EBX;
         *(uint32 *)(unaff_RBP + -100) = unsignedVar3;
-        *(uint32 *)(unaff_RBP + -DATA_OFFSET_START) = unsignedVar4;
-        *(uint32 *)(unaff_RBP + -0x5c) = unsignedVar5;
+        *(uint32 *)(unaff_RBP + -DATA_OFFSET_START) = validationResult1;
+        *(uint32 *)(unaff_RBP + -0x5c) = validationResult2;
         *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS1) = unsignedVar6;
         integerVar8 = ValidateResourceAccess(unsignedVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
         if ((integerVar8 != 0) || (integerVar8 = checkResourceAvailability(dataValueBuffer,&fStackX_24), integerVar8 != 0))
@@ -10349,8 +10349,8 @@ void ProcessResourceQueue(void)
         integerVar9 = validate_resource_resourceHandle(dataValueBuffer,&uStackX_20);
         if (integerVar9 != 0) break;
         unsignedVar3 = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
-        unsignedVar4 = *(uint32 *)(localLong1 + RESOURCE_DATA_OFFSET);
-        unsignedVar5 = *(uint32 *)(localLong1 + RESOURCE_OFFSET_HANDLE);
+        validationResult1 = *(uint32 *)(localLong1 + RESOURCE_DATA_OFFSET);
+        validationResult2 = *(uint32 *)(localLong1 + RESOURCE_OFFSET_HANDLE);
         unsignedVar6 = *(uint32 *)(localLong1 + BYTE_OFFSET_FLAG);
         *(uint32 *)(unaff_RBP + -HANDLE_OFFSET_DATA) = 0;
         *(int *)(unaff_RBP + -0x68) = integerVar8;
@@ -10359,8 +10359,8 @@ void ProcessResourceQueue(void)
         *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS2) = uStackX_20;
         *(uint32 *)(unaff_RBP + -0x70) = unaff_EBX;
         *(uint32 *)(unaff_RBP + -100) = unsignedVar3;
-        *(uint32 *)(unaff_RBP + -DATA_OFFSET_START) = unsignedVar4;
-        *(uint32 *)(unaff_RBP + -0x5c) = unsignedVar5;
+        *(uint32 *)(unaff_RBP + -DATA_OFFSET_START) = validationResult1;
+        *(uint32 *)(unaff_RBP + -0x5c) = validationResult2;
         *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS1) = unsignedVar6;
         integerVar9 = ValidateResourceAccess(unsignedVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
         if ((integerVar9 != 0) || (integerVar9 = validateResourceAccess(dataValueBuffer,&fStackX_24,0), integerVar9 != 0)) break;
@@ -10726,7 +10726,7 @@ void ExecuteResourceCommand(void)
   longlong dataValueBuffer;
   longlong arrayIndex;
   uint64 *puVar4;
-  uint32 unsignedVar5;
+  uint32 validationResult2;
   uint32 unsignedVar6;
   uint32 unsignedVar7;
   uint32 unsignedVar8;
@@ -10843,7 +10843,7 @@ void ExecuteResourceCommand(void)
             functionResult7 = *(uint64 *)(unaff_R15 + STRUCT_OFFSET_SIZE);
             functionResult6 = *(uint64 *)(unaff_R15 + BUFFER_SIZE_OFFSET);
             unsignedCounter4 = *(uint32 *)(unaff_R15 + BUFFER_OFFSET_DATA);
-            unsignedVar5 = *(uint32 *)(unaff_R15 + ERROR_CODE_2);
+            validationResult2 = *(uint32 *)(unaff_R15 + ERROR_CODE_2);
             unsignedVar6 = *(uint32 *)(unaff_R15 + LIST_OFFSET_HEAD);
             unsignedVar7 = *(uint32 *)(unaff_R15 + SYSTEM_OFFSET_STATUS2);
             unaff_RBP[-0xe] = &unknown_180983840;
@@ -10856,7 +10856,7 @@ void ExecuteResourceCommand(void)
             functionResult1 = *(uint32 *)(unaff_R15 + 100);
             *(uint32 *)(unaff_RBP + -STRUCT_MULTIPLIER) = uStackX_20;
             *(uint32 *)(unaff_RBP + -9) = unsignedCounter4;
-            *(uint32 *)((longlong)unaff_RBP + -RESOURCE_CONFIG_OFFSET) = unsignedVar5;
+            *(uint32 *)((longlong)unaff_RBP + -RESOURCE_CONFIG_OFFSET) = validationResult2;
             *(uint32 *)(unaff_RBP + -8) = unsignedVar6;
             *(uint32 *)((longlong)unaff_RBP + -RESOURCE_PROPERTY_OFFSET) = unsignedVar7;
             *(uint32 *)(unaff_RBP + -7) = unsignedVar8;
@@ -10988,7 +10988,7 @@ void HandleResourceCallback(void)
   longlong dataValueBuffer;
   longlong arrayIndex;
   uint64 *puVar4;
-  uint32 unsignedVar5;
+  uint32 validationResult2;
   uint32 unsignedVar6;
   uint32 unsignedVar7;
   uint32 unsignedVar8;
@@ -11089,7 +11089,7 @@ void HandleResourceCallback(void)
         functionResult7 = *(uint64 *)(unaff_R15 + STRUCT_OFFSET_SIZE);
         functionResult6 = *(uint64 *)(unaff_R15 + BUFFER_SIZE_OFFSET);
         unsignedCounter3 = *(uint32 *)(unaff_R15 + BUFFER_OFFSET_DATA);
-        unsignedVar5 = *(uint32 *)(unaff_R15 + ERROR_CODE_2);
+        validationResult2 = *(uint32 *)(unaff_R15 + ERROR_CODE_2);
         unsignedVar6 = *(uint32 *)(unaff_R15 + LIST_OFFSET_HEAD);
         unsignedVar7 = *(uint32 *)(unaff_R15 + SYSTEM_OFFSET_STATUS2);
         unaff_RBP[-0xe] = &unknown_180983840;
@@ -11102,7 +11102,7 @@ void HandleResourceCallback(void)
         functionResult1 = *(uint32 *)(unaff_R15 + 100);
         *(uint32 *)(unaff_RBP + -STRUCT_MULTIPLIER) = uStackX_20;
         *(uint32 *)(unaff_RBP + -9) = unsignedCounter3;
-        *(uint32 *)((longlong)unaff_RBP + -RESOURCE_CONFIG_OFFSET) = unsignedVar5;
+        *(uint32 *)((longlong)unaff_RBP + -RESOURCE_CONFIG_OFFSET) = validationResult2;
         *(uint32 *)(unaff_RBP + -8) = unsignedVar6;
         *(uint32 *)((longlong)unaff_RBP + -RESOURCE_PROPERTY_OFFSET) = unsignedVar7;
         *(uint32 *)(unaff_RBP + -7) = unsignedVar8;
@@ -11529,8 +11529,8 @@ uint64 GetResourceInfo(longlong *resourceHandle)
   longlong localLong1;
   uint64 unsignedCounter;
   longlong arrayIndex;
-  uint32 unsignedVar4;
-  uint32 unsignedVar5;
+  uint32 validationResult1;
+  uint32 validationResult2;
   uint32 unsignedVar6;
   uint32 unsignedVar7;
   uint32 unsignedVar8;
@@ -11553,43 +11553,43 @@ uint64 GetResourceInfo(longlong *resourceHandle)
     else {
       unsignedCounter = (**(code **)(*resourceHandle + 8))(resourceHandle,&unknown_1809864dc);
       if ((int)unsignedCounter == 0) {
-        unsignedVar4 = RESOURCE_DATA_OFFSET;
+        validationResult1 = RESOURCE_DATA_OFFSET;
         unsignedCounter = InitializeResourceData(resourceHandle,&unknown_1809864e0,2,2,RESOURCE_DATA_OFFSET);
         if (((((int)unsignedCounter == 0) &&
              (unsignedCounter = InitializeResourceData(resourceHandle,&unknown_180986508,*(uint32 *)(localLong1 + 0x116bc)),
              (int)unsignedCounter == 0)) &&
             (unsignedCounter = InitializeResourceData(resourceHandle,&unknown_180986550,(ulonglong)*(uint *)(localLong1 + 0x6d8),
                                    (ulonglong)*(uint *)(localLong1 + 0x6dc) /
-                                   (ulonglong)*(uint *)(localLong1 + 0x6d8),unsignedVar4), (int)unsignedCounter == 0)) &&
+                                   (ulonglong)*(uint *)(localLong1 + 0x6d8),validationResult1), (int)unsignedCounter == 0)) &&
            (unsignedCounter = InitializeResourceData(resourceHandle,&unknown_180986590,*(uint32 *)(localLong1 + 0x6d0),
                                   *(uint32 *)(localLong1 + 0x1193c),*(uint32 *)(localLong1 + 0x6d4)),
            (int)unsignedCounter == 0)) {
-          unsignedVar4 = *(uint32 *)(localLong1 + 0x11668);
+          validationResult1 = *(uint32 *)(localLong1 + 0x11668);
           unsignedVar8 = *(uint32 *)(localLong1 + 0x11624);
           unsignedVar7 = *(uint32 *)(localLong1 + 0x11620);
           unsignedVar6 = *(uint32 *)(localLong1 + 0x1161c);
           unsignedCounter = InitializeResourceData(resourceHandle,&unknown_1809865f0,*(uint32 *)(localLong1 + 0x1160c),
                                 *(uint32 *)(localLong1 + 0x11610),*(uint32 *)(localLong1 + 0x11614),
-                                *(uint32 *)(localLong1 + 0x11618),unsignedVar6,unsignedVar7,unsignedVar8,unsignedVar4);
+                                *(uint32 *)(localLong1 + 0x11618),unsignedVar6,unsignedVar7,unsignedVar8,validationResult1);
           if (((int)unsignedCounter == 0) &&
              (unsignedCounter = InitializeResourceData(resourceHandle,&unknown_1809866c0,*(uint32 *)(localLong1 + 0x11628),
                                     (double)*(float *)(localLong1 + 0x11640),
                                     *(uint32 *)(localLong1 + 0x11644),
-                                    *(uint32 *)(localLong1 + 0x1164c),unsignedVar6,unsignedVar7,unsignedVar8,unsignedVar4),
+                                    *(uint32 *)(localLong1 + 0x1164c),unsignedVar6,unsignedVar7,unsignedVar8,validationResult1),
              (int)unsignedCounter == 0)) {
             unsignedVar6 = *(uint32 *)(localLong1 + 0x11660);
             unsignedCounter = InitializeResourceData(resourceHandle,&unknown_180986730,(double)*(float *)(localLong1 + 0x11650),
                                   *(uint32 *)(localLong1 + 0x11654),*(uint32 *)(localLong1 + 0x11658),
-                                  *(uint32 *)(localLong1 + 0x1165c),unsignedVar6,unsignedVar7,unsignedVar8,unsignedVar4);
+                                  *(uint32 *)(localLong1 + 0x1165c),unsignedVar6,unsignedVar7,unsignedVar8,validationResult1);
             if ((int)unsignedCounter == 0) {
-              unsignedVar5 = *(uint32 *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+              validationResult2 = *(uint32 *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
               unsignedCounter = InitializeResourceData(resourceHandle,&unknown_1809867b0,*(uint32 *)(arrayIndex + 4),
-                                    *(uint32 *)(arrayIndex + 8),*(uint32 *)(arrayIndex + STRUCT_MULTIPLIER),unsignedVar5,
-                                    unsignedVar6,unsignedVar7,unsignedVar8,unsignedVar4);
+                                    *(uint32 *)(arrayIndex + 8),*(uint32 *)(arrayIndex + STRUCT_MULTIPLIER),validationResult2,
+                                    unsignedVar6,unsignedVar7,unsignedVar8,validationResult1);
               if ((((int)unsignedCounter == 0) &&
                   (unsignedCounter = InitializeResourceData(resourceHandle,&unknown_180986850,*(uint32 *)(localLong1 + SYSTEM_DATA_OFFSET),
                                          *(uint32 *)(resourceHandle[1] + POINTER_OFFSET_DATA),
-                                         *(uint32 *)(localLong1 + HANDLE_OFFSET_DATA),unsignedVar5,unsignedVar6,unsignedVar7,unsignedVar8,unsignedVar4
+                                         *(uint32 *)(localLong1 + HANDLE_OFFSET_DATA),validationResult2,unsignedVar6,unsignedVar7,unsignedVar8,validationResult1
                                         ), (int)unsignedCounter == 0)) &&
                  ((unsignedCounter = (**(code **)(*resourceHandle + 8))(resourceHandle,&unknown_1809864dc), (int)unsignedCounter == 0 &&
                   (((*(uint *)(resourceHandle + 3) & 2) != 0 ||
@@ -11969,13 +11969,13 @@ void SetupResourceMemory(longlong resourceHandle,uint64 memoryBlockSize)
   int operationStatus;
   int dataValueLength;
   int iterationCounter;
-  uint unsignedVar5;
+  uint validationResult2;
   int integerVar6;
   
   operationStatus = resourceCheckFunction(memoryBlockSize);
   operationStatus = *(int *)(resourceHandle + FIELD_OFFSET_1);
-  unsignedVar5 = (int)*(uint *)(resourceHandle + FIELD_OFFSET_2) >> ERROR_CODE_FAILED;
-  dataValueLength = (*(uint *)(resourceHandle + FIELD_OFFSET_2) ^ unsignedVar5) - unsignedVar5;
+  validationResult2 = (int)*(uint *)(resourceHandle + FIELD_OFFSET_2) >> ERROR_CODE_FAILED;
+  dataValueLength = (*(uint *)(resourceHandle + FIELD_OFFSET_2) ^ validationResult2) - validationResult2;
   integerVar6 = localStatus + operationStatus;
   if (dataValueLength < integerVar6) {
     iterationCounter = (int)((float)dataValueLength * 1.5);
@@ -11991,8 +11991,8 @@ void SetupResourceMemory(longlong resourceHandle,uint64 memoryBlockSize)
       return;
     }
   }
-  unsignedVar5 = (int)*(uint *)(resourceHandle + FIELD_OFFSET_2) >> ERROR_CODE_FAILED;
-  if (((int)((*(uint *)(resourceHandle + FIELD_OFFSET_2) ^ unsignedVar5) - unsignedVar5) < integerVar6) &&
+  validationResult2 = (int)*(uint *)(resourceHandle + FIELD_OFFSET_2) >> ERROR_CODE_FAILED;
+  if (((int)((*(uint *)(resourceHandle + FIELD_OFFSET_2) ^ validationResult2) - validationResult2) < integerVar6) &&
      (dataValueLength = process_system_request(resourceHandle + BYTE_OFFSET_2,integerVar6), dataValueLength != 0)) {
     return;
   }
@@ -12037,7 +12037,7 @@ uint64 ValidateResourceBuffer(longlong *resourceHandle,char memoryBlockSize)
   longlong localLong1;
   uint64 unsignedCounter;
   ulonglong unsignedVar3;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   uint64 unsignedStackX8;
   longlong alStackX_18 [2];
   dataValueValue *localPtr;
@@ -12050,13 +12050,13 @@ uint64 ValidateResourceBuffer(longlong *resourceHandle,char memoryBlockSize)
      (unsignedCounter = (**(code **)(*resourceHandle + RESOURCE_HANDLE_OFFSET))(resourceHandle), (int)unsignedCounter == 0)) {
     unsignedVar3 = (ulonglong)(alStackX_18[0] * 48000) / (ulonglong)*(uint *)((longlong)resourceHandle + BYTE_OFFSET_FLAG);
     localLong1 = resourceHandle[2];
-    unsignedVar4 = unsignedVar3 - localLong1;
-    if (((memoryBlockSize != '\0') || (localLong1 == 0)) || (47999 < unsignedVar4)) {
+    validationResult1 = unsignedVar3 - localLong1;
+    if (((memoryBlockSize != '\0') || (localLong1 == 0)) || (47999 < validationResult1)) {
       resourceHandle[2] = unsignedVar3;
       localUInt = 0;
       localUInt = 0;
       if (localLong1 != 0) {
-        localUInt = unsignedVar4;
+        localUInt = validationResult1;
       }
       localPtr = &unknown_180986390;
       unsignedCounter = ValidateResourceAccess(resourceHandle,&localPtr);
@@ -12077,7 +12077,7 @@ uint64 ConfigureResourceSettings(longlong *resourceHandle,char *memoryBlockBlock
   char *pcVar1;
   uint64 *punsignedCounter;
   byte boolVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   char charVar5;
   char charVar6;
   int integerVar7;
@@ -12143,9 +12143,9 @@ validate_string_data:
     unsignedVar8 = pfunctionResult1[1] & 0xffffff;
     if (((char)(pfunctionResult1[1] >> RESOURCE_OFFSET_HANDLE) == '\0') && ((int)unsignedVar8 < (int)resourceHandle[3])) {
       punsignedCounter = (uint64 *)(resourceHandle[2] + (ulonglong)unsignedVar8 * RESOURCE_HANDLE_OFFSET);
-      unsignedVar4 = punsignedCounter[1];
+      validationResult1 = punsignedCounter[1];
       *operationFlags = *punsignedCounter;
-      operationFlags[1] = unsignedVar4;
+      operationFlags[1] = validationResult1;
       return 0;
     }
   }
@@ -12222,8 +12222,8 @@ ProcessResourceBatch(longlong *resourceHandle,int memoryBlockSize,uint32 *operat
   uint32 *pfunctionResult;
   byte unsignedCounter;
   uint unsignedVar3;
-  uint3 unsignedVar4;
-  uint32 unsignedVar5;
+  uint3 validationResult1;
+  uint32 validationResult2;
   uint32 unsignedVar6;
   uint unsignedVar7;
   int integerVar8;
@@ -12241,17 +12241,17 @@ ProcessResourceBatch(longlong *resourceHandle,int memoryBlockSize,uint32 *operat
     if (operationFlags != (uint32 *)0x0) {
       pfunctionResult = (uint32 *)(resourceHandle[2] + (longlong)memoryBlockSize * RESOURCE_HANDLE_OFFSET);
       functionResult6 = pfunctionResult[1];
-      unsignedVar5 = pfunctionResult[2];
+      validationResult2 = pfunctionResult[2];
       unsignedVar6 = pfunctionResult[3];
       *operationFlags = *pfunctionResult;
       operationFlags[1] = functionResult6;
-      operationFlags[2] = unsignedVar5;
+      operationFlags[2] = validationResult2;
       operationFlags[3] = unsignedVar6;
     }
     localStatus7 = 0;
     functionResult2 = 0;
-    unsignedVar4 = *(uint3 *)((longlong)memoryBlockSize * 3 + resourceHandle[6]);
-    while (unsignedVar7 = (uint)unsignedVar4, unsignedVar7 != 0xffffff) {
+    validationResult1 = *(uint3 *)((longlong)memoryBlockSize * 3 + resourceHandle[6]);
+    while (unsignedVar7 = (uint)validationResult1, unsignedVar7 != 0xffffff) {
       unsignedVar3 = *(uint *)(*resourceHandle + (ulonglong)unsignedVar7 * 8);
       if ((unsignedVar3 & 0xffffff) != 0xffffff) {
         localLong13 = (ulonglong)(unsignedVar3 & 0xffffff) + resourceHandle[4];
@@ -12281,7 +12281,7 @@ ProcessResourceBatch(longlong *resourceHandle,int memoryBlockSize,uint32 *operat
         }
         localStatus7 = localStatus7 + integerVar8;
       }
-      unsignedVar4 = *(uint3 *)((ulonglong)unsignedVar7 * 3 + resourceHandle[8]);
+      validationResult1 = *(uint3 *)((ulonglong)unsignedVar7 * 3 + resourceHandle[8]);
     }
     functionResult6 = 0;
     if (param_5 != 0) {
@@ -12343,8 +12343,8 @@ uint32 ExecuteResourceTask(uint64 resourceHandle,int memoryBlockSize,uint32 *ope
   uint32 *pfunctionResult;
   byte unsignedCounter;
   uint unsignedVar3;
-  uint3 unsignedVar4;
-  uint32 unsignedVar5;
+  uint3 validationResult1;
+  uint32 validationResult2;
   uint32 unsignedVar6;
   uint unsignedVar7;
   int integerVar8;
@@ -12366,18 +12366,18 @@ uint32 ExecuteResourceTask(uint64 resourceHandle,int memoryBlockSize,uint32 *ope
   if (operationFlags != (uint32 *)0x0) {
     pfunctionResult = (uint32 *)(unaff_R14[2] + (longlong)memoryBlockSize * RESOURCE_HANDLE_OFFSET);
     functionResult7 = pfunctionResult[1];
-    unsignedVar5 = pfunctionResult[2];
+    validationResult2 = pfunctionResult[2];
     unsignedVar6 = pfunctionResult[3];
     *operationFlags = *pfunctionResult;
     operationFlags[1] = functionResult7;
-    operationFlags[2] = unsignedVar5;
+    operationFlags[2] = validationResult2;
     operationFlags[3] = unsignedVar6;
   }
   localStatus8 = 0;
   functionResult2 = 0;
   localStatus3 = (int)unaff_RBP;
-  unsignedVar4 = *(uint3 *)((longlong)memoryBlockSize * 3 + unaff_R14[6]);
-  while (unsignedVar7 = (uint)unsignedVar4, unsignedVar7 != 0xffffff) {
+  validationResult1 = *(uint3 *)((longlong)memoryBlockSize * 3 + unaff_R14[6]);
+  while (unsignedVar7 = (uint)validationResult1, unsignedVar7 != 0xffffff) {
     unsignedVar3 = *(uint *)(*unaff_R14 + (ulonglong)unsignedVar7 * 8);
     if ((unsignedVar3 & 0xffffff) != 0xffffff) {
       localLong14 = (ulonglong)(unsignedVar3 & 0xffffff) + unaff_R14[4];
@@ -12407,7 +12407,7 @@ uint32 ExecuteResourceTask(uint64 resourceHandle,int memoryBlockSize,uint32 *ope
       }
       localStatus8 = localStatus8 + integerVar8;
     }
-    unsignedVar4 = *(uint3 *)((ulonglong)unsignedVar7 * 3 + unaff_R14[8]);
+    validationResult1 = *(uint3 *)((ulonglong)unsignedVar7 * 3 + unaff_R14[8]);
   }
   functionResult7 = 0;
   if (localStatus3 != 0) {
@@ -12467,8 +12467,8 @@ uint32 CompleteResourceTask(uint64 resourceHandle,ulonglong memoryBlockSize)
   byte functionResult;
   int operationStatus;
   int dataValueLength;
-  uint unsignedVar4;
-  byte *punsignedVar5;
+  uint validationResult1;
+  byte *pvalidationResult2;
   byte *punsignedVar6;
   uint unaff_EBX;
   int integerVar7;
@@ -12483,10 +12483,10 @@ uint32 CompleteResourceTask(uint64 resourceHandle,ulonglong memoryBlockSize)
   int *in_stack_00000078;
   
   do {
-    unsignedVar4 = *(uint *)(*unaff_R14 + memoryBlockSize * 8);
+    validationResult1 = *(uint *)(*unaff_R14 + memoryBlockSize * 8);
     integerVar7 = (int)unaff_RBP;
-    if ((unsignedVar4 & 0xffffff) != 0xffffff) {
-      longVar8 = (ulonglong)(unsignedVar4 & 0xffffff) + unaff_R14[4];
+    if ((validationResult1 & 0xffffff) != 0xffffff) {
+      longVar8 = (ulonglong)(validationResult1 & 0xffffff) + unaff_R14[4];
       operationStatus = resourceCheckFunction(longVar8);
       if (integerVar7 != 0) {
         pointerVar9 = (byte *)((operationStatus + -1) + longVar8);
@@ -12498,13 +12498,13 @@ uint32 CompleteResourceTask(uint64 resourceHandle,ulonglong memoryBlockSize)
           }
           localStatus0 = localStatus0 - dataValueLength;
           if (dataValueLength != 0) {
-            punsignedVar5 = unaff_RSI + (int)unaff_EBX;
+            pvalidationResult2 = unaff_RSI + (int)unaff_EBX;
             unaff_EBX = unaff_EBX + dataValueLength;
             do {
               functionResult = *pointerVar9;
               pointerVar9 = pointerVar9 + -1;
-              *punsignedVar5 = functionResult;
-              punsignedVar5 = punsignedVar5 + 1;
+              *pvalidationResult2 = functionResult;
+              pvalidationResult2 = pvalidationResult2 + 1;
               dataValueLength = dataValueLength + -1;
             } while (dataValueLength != 0);
           }
@@ -12513,13 +12513,13 @@ uint32 CompleteResourceTask(uint64 resourceHandle,ulonglong memoryBlockSize)
       }
       unaff_R15D = unaff_R15D + operationStatus;
     }
-    unsignedVar4 = (uint)*(uint3 *)((memoryBlockSize & INVALID_HANDLE) * 3 + unaff_R14[8]);
-    memoryBlockSize = (ulonglong)unsignedVar4;
-  } while (unsignedVar4 != 0xffffff);
+    validationResult1 = (uint)*(uint3 *)((memoryBlockSize & INVALID_HANDLE) * 3 + unaff_R14[8]);
+    memoryBlockSize = (ulonglong)validationResult1;
+  } while (validationResult1 != 0xffffff);
   if (integerVar7 != 0) {
     if (unaff_R15D < integerVar7) {
-      punsignedVar5 = unaff_RSI + unaff_R15D;
-      pointerVar9 = punsignedVar5 + -1;
+      pvalidationResult2 = unaff_RSI + unaff_R15D;
+      pointerVar9 = pvalidationResult2 + -1;
       if (unaff_RSI < pointerVar9) {
         do {
           functionResult = *unaff_RSI;
@@ -12529,20 +12529,20 @@ uint32 CompleteResourceTask(uint64 resourceHandle,ulonglong memoryBlockSize)
           pointerVar9 = pointerVar9 + -1;
         } while (unaff_RSI < pointerVar9);
       }
-      *punsignedVar5 = (char)unaff_R13D;
+      *pvalidationResult2 = (char)unaff_R13D;
     }
     else {
       punsignedVar6 = unaff_RSI + (int)unaff_EBX;
       pointerVar9 = punsignedVar6 + -1;
-      punsignedVar5 = unaff_RSI;
+      pvalidationResult2 = unaff_RSI;
       if (unaff_RSI < pointerVar9) {
         do {
-          functionResult = *punsignedVar5;
-          *punsignedVar5 = *pointerVar9;
-          punsignedVar5 = punsignedVar5 + 1;
+          functionResult = *pvalidationResult2;
+          *pvalidationResult2 = *pointerVar9;
+          pvalidationResult2 = pvalidationResult2 + 1;
           *pointerVar9 = functionResult;
           pointerVar9 = pointerVar9 + -1;
-        } while (punsignedVar5 < pointerVar9);
+        } while (pvalidationResult2 < pointerVar9);
       }
       pointerVar9 = punsignedVar6 + (longlong)(int)(integerVar7 - unaff_EBX) + -1;
       if (punsignedVar6 < pointerVar9) {
@@ -12576,7 +12576,7 @@ uint32 CheckResourceAvailability(void)
   int iterationCounter;
   longlong unaff_RBP;
   byte *unaff_RSI;
-  byte *punsignedVar5;
+  byte *pvalidationResult2;
   uint32 unaff_R13D;
   int unaff_R15D;
   int *in_stack_00000078;
@@ -12584,8 +12584,8 @@ uint32 CheckResourceAvailability(void)
   iterationCounter = (int)unaff_RBP;
   if (iterationCounter != 0) {
     if (unaff_R15D < iterationCounter) {
-      punsignedVar5 = unaff_RSI + unaff_R15D;
-      punsignedCounter = punsignedVar5 + -1;
+      pvalidationResult2 = unaff_RSI + unaff_R15D;
+      punsignedCounter = pvalidationResult2 + -1;
       if (unaff_RSI < punsignedCounter) {
         do {
           functionResult = *unaff_RSI;
@@ -12595,20 +12595,20 @@ uint32 CheckResourceAvailability(void)
           punsignedCounter = punsignedCounter + -1;
         } while (unaff_RSI < punsignedCounter);
       }
-      *punsignedVar5 = (char)unaff_R13D;
+      *pvalidationResult2 = (char)unaff_R13D;
     }
     else {
       pointerVar3 = unaff_RSI + unaff_EBX;
       punsignedCounter = pointerVar3 + -1;
-      punsignedVar5 = unaff_RSI;
+      pvalidationResult2 = unaff_RSI;
       if (unaff_RSI < punsignedCounter) {
         do {
-          functionResult = *punsignedVar5;
-          *punsignedVar5 = *punsignedCounter;
-          punsignedVar5 = punsignedVar5 + 1;
+          functionResult = *pvalidationResult2;
+          *pvalidationResult2 = *punsignedCounter;
+          pvalidationResult2 = pvalidationResult2 + 1;
           *punsignedCounter = functionResult;
           punsignedCounter = punsignedCounter + -1;
-        } while (punsignedVar5 < punsignedCounter);
+        } while (pvalidationResult2 < punsignedCounter);
       }
       punsignedCounter = pointerVar3 + (longlong)(iterationCounter - unaff_EBX) + -1;
       if (puVar3 < punsignedCounter) {
@@ -12661,7 +12661,7 @@ uint64 AllocateResourceSpace(longlong *resourceHandle,int memoryBlockSize)
   longlong dataValueBuffer;
   uint16_t *pointerVar3;
   longlong longVar4;
-  uint16_t *punsignedVar5;
+  uint16_t *pvalidationResult2;
   
   if (memoryBlockSize < (int)resourceHandle[1]) {
     return BYTE_OFFSET_FLAG;
@@ -12676,12 +12676,12 @@ uint64 AllocateResourceSpace(longlong *resourceHandle,int memoryBlockSize)
         operationStatus = (int)resourceHandle[1];
         longVar4 = (longlong)localStatus;
         if ((localStatus != 0) && (dataValueBuffer = *resourceHandle, 0 < localStatus)) {
-          punsignedVar5 = puVar3;
+          pvalidationResult2 = puVar3;
           do {
-            *punsignedVar5 = *(uint16_t *)((dataValueBuffer - (longlong)puVar3) + (longlong)punsignedVar5);
-            *(byte *)(punsignedVar5 + 1) =
-                 *(byte *)((dataValueBuffer - (longlong)puVar3) + 2 + (longlong)punsignedVar5);
-            punsignedVar5 = (uint16_t *)((longlong)punsignedVar5 + 3);
+            *pvalidationResult2 = *(uint16_t *)((dataValueBuffer - (longlong)puVar3) + (longlong)pvalidationResult2);
+            *(byte *)(pvalidationResult2 + 1) =
+                 *(byte *)((dataValueBuffer - (longlong)puVar3) + 2 + (longlong)pvalidationResult2);
+            pvalidationResult2 = (uint16_t *)((longlong)pvalidationResult2 + 3);
             longVar4 = longVar4 + -1;
           } while (longVar4 != 0);
         }
@@ -12711,7 +12711,7 @@ uint64 ValidateResourceSpace(uint64 resourceHandle,int memoryBlockSize)
   longlong dataValueBuffer;
   uint16_t *pointerVar3;
   longlong longVar4;
-  uint16_t *punsignedVar5;
+  uint16_t *pvalidationResult2;
   longlong *baseRegister;
   int unaff_EDI;
   
@@ -12734,12 +12734,12 @@ handle_string_processing:
       operationStatus = (int)baseRegister[1];
       longVar4 = (longlong)localStatus;
       if ((localStatus != 0) && (dataValueBuffer = *baseRegister, 0 < localStatus)) {
-        punsignedVar5 = puVar3;
+        pvalidationResult2 = puVar3;
         do {
-          *punsignedVar5 = *(uint16_t *)((dataValueBuffer - (longlong)puVar3) + (longlong)punsignedVar5);
-          *(byte *)(punsignedVar5 + 1) =
-               *(byte *)((dataValueBuffer - (longlong)puVar3) + 2 + (longlong)punsignedVar5);
-          punsignedVar5 = (uint16_t *)((longlong)punsignedVar5 + 3);
+          *pvalidationResult2 = *(uint16_t *)((dataValueBuffer - (longlong)puVar3) + (longlong)pvalidationResult2);
+          *(byte *)(pvalidationResult2 + 1) =
+               *(byte *)((dataValueBuffer - (longlong)puVar3) + 2 + (longlong)pvalidationResult2);
+          pvalidationResult2 = (uint16_t *)((longlong)pvalidationResult2 + 3);
           longVar4 = longVar4 + -1;
         } while (longVar4 != 0);
       }
@@ -13279,7 +13279,7 @@ validate_resource_operation:
 
 
 
-uint64 WriteResourceBlockData(uint64 resourceHandle,uint32 *memoryBlockSize)
+uint64 FUN_180899740(uint64 resourceHandle,uint32 *memoryBlockBlockBlockSize)
 
 {
   uint64 functionResult;
@@ -13294,7 +13294,7 @@ uint64 WriteResourceBlockData(uint64 resourceHandle,uint32 *memoryBlockSize)
 
 
 
-uint64 WriteResourceDataToBase(void)
+uint64 FUN_180899763(void)
 
 {
   uint64 functionResult;
@@ -13484,7 +13484,7 @@ void rankUtilityCapability(longlong resourceHandle,uint32 *memoryBlockBlockBlock
   int operationStatus;
   int operationStatus;
   uint unsignedVar3;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   longlong longVar5;
   ulonglong unsignedVar6;
   uint32 unsignedVar7;
@@ -13503,15 +13503,15 @@ void rankUtilityCapability(longlong resourceHandle,uint32 *memoryBlockBlockBlock
                         (*(uint64 **)(resourceHandle + 8),&unsignedStackX8unsignedStackX8,4);
       unsignedVar6 = 0;
       if (operationStatus == 0) {
-        unsignedVar4 = unsignedVar6;
+        validationResult1 = unsignedVar6;
         if (0 < localStatus) {
           do {
-            operationStatus = searchUtilityItems(resourceHandle,(longlong)(int)unsignedVar4 * 0x6c + *(longlong *)(memoryBlockSize + 8));
+            operationStatus = searchUtilityItems(resourceHandle,(longlong)(int)validationResult1 * 0x6c + *(longlong *)(memoryBlockSize + 8));
             if (operationStatus != 0) {
               return;
             }
-            unsignedVar3 = (int)unsignedVar4 + 1;
-            unsignedVar4 = (ulonglong)unsignedVar3;
+            unsignedVar3 = (int)validationResult1 + 1;
+            validationResult1 = (ulonglong)unsignedVar3;
           } while ((int)unsignedVar3 < localStatus);
         }
         operationStatus = memoryBlockSize[0xe];
@@ -13519,16 +13519,16 @@ void rankUtilityCapability(longlong resourceHandle,uint32 *memoryBlockBlockBlock
         operationStatus = (**(code **)**(uint64 **)(resourceHandle + 8))
                           (*(uint64 **)(resourceHandle + 8),&unsignedStackX8unsignedStackX8,4);
         if (operationStatus == 0) {
-          unsignedVar4 = unsignedVar6;
+          validationResult1 = unsignedVar6;
           if (0 < localStatus) {
             do {
-              operationStatus = discoverUtilityComponents(resourceHandle,(longlong)(int)unsignedVar4 * RESOURCE_HANDLE_OFFSET +
+              operationStatus = discoverUtilityComponents(resourceHandle,(longlong)(int)validationResult1 * RESOURCE_HANDLE_OFFSET +
                                             *(longlong *)(memoryBlockSize + STRUCT_MULTIPLIER));
               if (operationStatus != 0) {
                 return;
               }
-              unsignedVar3 = (int)unsignedVar4 + 1;
-              unsignedVar4 = (ulonglong)unsignedVar3;
+              unsignedVar3 = (int)validationResult1 + 1;
+              validationResult1 = (ulonglong)unsignedVar3;
             } while ((int)unsignedVar3 < localStatus);
           }
           operationStatus = memoryBlockSize[0x12];
@@ -13536,29 +13536,29 @@ void rankUtilityCapability(longlong resourceHandle,uint32 *memoryBlockBlockBlock
           operationStatus = (**(code **)**(uint64 **)(resourceHandle + 8))
                             (*(uint64 **)(resourceHandle + 8),&unsignedStackX8unsignedStackX8,4);
           if (operationStatus == 0) {
-            unsignedVar4 = unsignedVar6;
+            validationResult1 = unsignedVar6;
             if (0 < localStatus) {
               do {
                 unsignedStackX8 = CONCAT44(unsignedStackX8._4_4_,
-                                     *(uint32 *)(*(longlong *)(memoryBlockSize + RESOURCE_HANDLE_OFFSET) + unsignedVar4 * 4));
+                                     *(uint32 *)(*(longlong *)(memoryBlockSize + RESOURCE_HANDLE_OFFSET) + validationResult1 * 4));
                 operationStatus = (**(code **)**(uint64 **)(resourceHandle + 8))
                                   (*(uint64 **)(resourceHandle + 8),&unsignedStackX8unsignedStackX8,4);
                 if (operationStatus != 0) {
                   return;
                 }
-                unsignedVar4 = unsignedVar4 + 1;
-              } while ((longlong)unsignedVar4 < (longlong)localStatus);
+                validationResult1 = validationResult1 + 1;
+              } while ((longlong)validationResult1 < (longlong)localStatus);
             }
             operationStatus = memoryBlockSize[0x16];
             unsignedStackX8 = CONCAT44(unsignedStackX8._4_4_,localStatus);
             operationStatus = (**(code **)**(uint64 **)(resourceHandle + 8))
                               (*(uint64 **)(resourceHandle + 8),&unsignedStackX8unsignedStackX8,4);
             if (operationStatus == 0) {
-              unsignedVar4 = unsignedVar6;
+              validationResult1 = unsignedVar6;
               unsignedVar8 = unsignedVar6;
               if (0 < localStatus) {
                 do {
-                  longVar5 = *(longlong *)(memoryBlockSize + RESOURCE_DATA_OFFSET) + unsignedVar4;
+                  longVar5 = *(longlong *)(memoryBlockSize + RESOURCE_DATA_OFFSET) + validationResult1;
                   operationStatus = discoverUtilityComponents(resourceHandle,longVar5);
                   if (operationStatus != 0) {
                     return;
@@ -13583,7 +13583,7 @@ void rankUtilityCapability(longlong resourceHandle,uint32 *memoryBlockBlockBlock
                     return;
                   }
                   unsignedVar8 = unsignedVar8 + 1;
-                  unsignedVar4 = unsignedVar4 + RESOURCE_OFFSET_HANDLE;
+                  validationResult1 = validationResult1 + RESOURCE_OFFSET_HANDLE;
                 } while ((longlong)unsignedVar8 < (longlong)localStatus);
               }
               operationStatus = readResourceField(resourceHandle,memoryBlockSize + RESOURCE_OFFSET_HANDLE);
@@ -13637,8 +13637,8 @@ void sortUtilityFeatures(uint64 *resourceHandle,uint64 memoryBlockSize)
   int dataValueLength;
   longlong baseRegister;
   longlong unaff_RBP;
-  uint unsignedVar4;
-  ulonglong unsignedVar5;
+  uint validationResult1;
+  ulonglong validationResult2;
   longlong longVar6;
   ulonglong unsignedVar7;
   longlong unaff_R14;
@@ -13657,80 +13657,80 @@ void sortUtilityFeatures(uint64 *resourceHandle,uint64 memoryBlockSize)
   operationStatus = (**(code **)*resourceHandle)(resourceHandle,memoryBlockSize,4);
   unsignedVar7 = 0;
   if (operationStatus == 0) {
-    unsignedVar5 = unsignedVar7;
+    validationResult2 = unsignedVar7;
     unsignedVar9 = extraout_XMM0_Da;
     if (0 < dataValueLength) {
       do {
-        operationStatus = searchUtilityItems(unsignedVar9,(longlong)(int)unsignedVar5 * 0x6c + *(longlong *)(unaff_R14 + POINTER_OFFSET_DATA));
+        operationStatus = searchUtilityItems(unsignedVar9,(longlong)(int)validationResult2 * 0x6c + *(longlong *)(unaff_R14 + POINTER_OFFSET_DATA));
         if (operationStatus != 0) {
           return;
         }
-        unsignedVar4 = (int)unsignedVar5 + 1;
-        unsignedVar5 = (ulonglong)unsignedVar4;
+        validationResult1 = (int)validationResult2 + 1;
+        validationResult2 = (ulonglong)validationResult1;
         unsignedVar9 = extraout_XMM0_Da_00;
-      } while ((int)unsignedVar4 < dataValueLength);
+      } while ((int)validationResult1 < dataValueLength);
     }
     pfunctionResult = *(uint64 **)(baseRegister + 8);
     dataValueLength = *(int *)(unaff_R14 + STRUCT_OFFSET_SIZE);
     *(int *)(unaff_RBP + POINTER_OFFSET_DATA) = dataValueLength;
     operationStatus = (**(code **)*pfunctionResult)(pfunctionResult,unaff_RBP + POINTER_OFFSET_DATA,4);
     if (operationStatus == 0) {
-      unsignedVar5 = unsignedVar7;
+      validationResult2 = unsignedVar7;
       unsignedVar9 = extraout_XMM0_Da_01;
       if (0 < dataValueLength) {
         do {
-          operationStatus = discoverUtilityComponents(unsignedVar9,(longlong)(int)unsignedVar5 * RESOURCE_HANDLE_OFFSET + *(longlong *)(unaff_R14 + FIELD_OFFSET_1))
+          operationStatus = discoverUtilityComponents(unsignedVar9,(longlong)(int)validationResult2 * RESOURCE_HANDLE_OFFSET + *(longlong *)(unaff_R14 + FIELD_OFFSET_1))
           ;
           if (operationStatus != 0) {
             return;
           }
-          unsignedVar4 = (int)unsignedVar5 + 1;
-          unsignedVar5 = (ulonglong)unsignedVar4;
+          validationResult1 = (int)validationResult2 + 1;
+          validationResult2 = (ulonglong)validationResult1;
           unsignedVar9 = extraout_XMM0_Da_02;
-        } while ((int)unsignedVar4 < dataValueLength);
+        } while ((int)validationResult1 < dataValueLength);
       }
       pfunctionResult = *(uint64 **)(baseRegister + 8);
       dataValueLength = *(int *)(unaff_R14 + BUFFER_OFFSET_DATA);
       *(int *)(unaff_RBP + POINTER_OFFSET_DATA) = dataValueLength;
       operationStatus = (**(code **)*pfunctionResult)(pfunctionResult,unaff_RBP + POINTER_OFFSET_DATA,4);
       if (operationStatus == 0) {
-        unsignedVar5 = unsignedVar7;
+        validationResult2 = unsignedVar7;
         if (0 < dataValueLength) {
           do {
             pfunctionResult = *(uint64 **)(baseRegister + 8);
             *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) =
-                 *(uint32 *)(*(longlong *)(unaff_R14 + BUFFER_SIZE_OFFSET) + unsignedVar5 * 4);
+                 *(uint32 *)(*(longlong *)(unaff_R14 + BUFFER_SIZE_OFFSET) + validationResult2 * 4);
             operationStatus = (**(code **)*pfunctionResult)(pfunctionResult,unaff_RBP + POINTER_OFFSET_DATA,4);
             if (operationStatus != 0) {
               return;
             }
-            unsignedVar5 = unsignedVar5 + 1;
-          } while ((longlong)unsignedVar5 < (longlong)dataValueLength);
+            validationResult2 = validationResult2 + 1;
+          } while ((longlong)validationResult2 < (longlong)dataValueLength);
         }
         pfunctionResult = *(uint64 **)(baseRegister + 8);
         dataValueLength = *(int *)(unaff_R14 + SYSTEM_OFFSET_STATUS1);
         *(int *)(unaff_RBP + POINTER_OFFSET_DATA) = dataValueLength;
         operationStatus = (**(code **)*pfunctionResult)(pfunctionResult,unaff_RBP + POINTER_OFFSET_DATA,4);
         if (operationStatus == 0) {
-          unsignedVar5 = unsignedVar7;
+          validationResult2 = unsignedVar7;
           unsignedVar8 = unsignedVar7;
           unsignedVar9 = extraout_XMM0_Da_03;
           if (0 < dataValueLength) {
             do {
-              longVar6 = *(longlong *)(unaff_R14 + LIST_OFFSET_HEAD) + unsignedVar5;
+              longVar6 = *(longlong *)(unaff_R14 + LIST_OFFSET_HEAD) + validationResult2;
               operationStatus = discoverUtilityComponents(unsignedVar9,longVar6);
               if (operationStatus != 0) {
                 return;
               }
-              unsignedVar4 = *(uint *)(longVar6 + RESOURCE_HANDLE_OFFSET);
+              validationResult1 = *(uint *)(longVar6 + RESOURCE_HANDLE_OFFSET);
               pfunctionResult = *(uint64 **)(baseRegister + 8);
-              if (unsignedVar4 < 0x8000) {
-                *(short *)(unaff_RBP + POINTER_OFFSET_DATA) = (short)unsignedVar4;
+              if (validationResult1 < 0x8000) {
+                *(short *)(unaff_RBP + POINTER_OFFSET_DATA) = (short)validationResult1;
                 unsignedVar9 = 2;
               }
               else {
                 unsignedVar9 = 4;
-                *(uint *)(unaff_RBP + POINTER_OFFSET_DATA) = (unsignedVar4 & 0xffffc000 | 0x4000) * 2 | unsignedVar4 & 0x7fff;
+                *(uint *)(unaff_RBP + POINTER_OFFSET_DATA) = (validationResult1 & 0xffffc000 | 0x4000) * 2 | validationResult1 & 0x7fff;
               }
               operationStatus = (**(code **)*pfunctionResult)(pfunctionResult,unaff_RBP + POINTER_OFFSET_DATA,unsignedVar9);
               if (operationStatus != 0) {
@@ -13741,7 +13741,7 @@ void sortUtilityFeatures(uint64 *resourceHandle,uint64 memoryBlockSize)
                 return;
               }
               unsignedVar8 = unsignedVar8 + 1;
-              unsignedVar5 = unsignedVar5 + RESOURCE_OFFSET_HANDLE;
+              validationResult2 = validationResult2 + RESOURCE_OFFSET_HANDLE;
               unsignedVar9 = extraout_XMM0_Da_05;
             } while ((longlong)unsignedVar8 < (longlong)dataValueLength);
           }
@@ -14170,7 +14170,7 @@ void recognizeUtilityPieces(longlong resourceHandle,uint32 *memoryBlockBlockBloc
   uint functionResult;
   int operationStatus;
   int dataValueLength;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   uint64 unsignedStackX8;
   
   unsignedStackX8 = CONCAT44(unsignedStackX8._4_4_,*memoryBlockBlockBlockSize);
@@ -14208,14 +14208,14 @@ void recognizeUtilityPieces(longlong resourceHandle,uint32 *memoryBlockBlockBloc
         functionResult = memoryBlockSize[100];
         if (functionResult < 0x8000) {
           unsignedStackX8 = CONCAT62(unsignedStackX8._2_6_,(short)functionResult);
-          unsignedVar4 = 2;
+          validationResult1 = 2;
         }
         else {
-          unsignedVar4 = 4;
+          validationResult1 = 4;
           unsignedStackX8 = CONCAT44(unsignedStackX8._4_4_,(functionResult & 0xffffc000 | 0x4000) * 2 | functionResult & 0x7fff);
         }
         operationStatus = (**(code **)**(uint64 **)(resourceHandle + 8))
-                          (*(uint64 **)(resourceHandle + 8),&unsignedStackX8unsignedStackX8,unsignedVar4);
+                          (*(uint64 **)(resourceHandle + 8),&unsignedStackX8unsignedStackX8,validationResult1);
         if (operationStatus == 0) {
           unsignedStackX8._0_4_ = memoryBlockSize[0x65];
           operationStatus = (**(code **)**(uint64 **)(resourceHandle + 8))
@@ -14307,7 +14307,7 @@ void classifyUtilityTypes(uint32 resourceHandle)
   longlong unaff_RBP;
   longlong longVar4;
   longlong unaff_RDI;
-  uint64 unsignedVar5;
+  uint64 validationResult2;
   int integerVar6;
   uint32 extraout_XMM0_Da;
   uint32 extraout_XMM0_Da_00;
@@ -14344,13 +14344,13 @@ void classifyUtilityTypes(uint32 resourceHandle)
   punsignedCounter = *(uint64 **)(baseRegister + 8);
   if (functionResult < 0x8000) {
     *(short *)(unaff_RBP + POINTER_OFFSET_DATA) = (short)functionResult;
-    unsignedVar5 = 2;
+    validationResult2 = 2;
   }
   else {
-    unsignedVar5 = 4;
+    validationResult2 = 4;
     *(uint *)(unaff_RBP + POINTER_OFFSET_DATA) = (functionResult & 0xffffc000 | 0x4000) * 2 | functionResult & 0x7fff;
   }
-  integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,unaff_RBP + POINTER_OFFSET_DATA,unsignedVar5);
+  integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,unaff_RBP + POINTER_OFFSET_DATA,validationResult2);
   if (integerVar6 == 0) {
     punsignedCounter = *(uint64 **)(baseRegister + 8);
     *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint32 *)(unaff_RDI + 0x194);
@@ -14444,116 +14444,116 @@ uint64 FUN_18089a370(longlong resourceHandle,longlong memoryBlockSize)
   short shortVar1;
   int operationStatus;
   ushort unsignedVar3;
-  uint64 unsignedVar4;
-  ushort unsignedVar5;
+  uint64 validationResult1;
+  ushort validationResult2;
   longlong longVar6;
   longlong longVar7;
   longlong longVar8;
   int alocalInt [4];
   
   longVar7 = 0;
-  unsignedVar5 = (ushort)(*(int *)(memoryBlockSize + BYTE_OFFSET_2) != 0);
+  validationResult2 = (ushort)(*(int *)(memoryBlockSize + BYTE_OFFSET_2) != 0);
   if ((*(int *)(memoryBlockSize + FIELD_OFFSET_4) != 0) || (*(int *)(memoryBlockSize + FIELD_OFFSET_1) != 0)) {
-    unsignedVar5 = unsignedVar5 | 2;
+    validationResult2 = validationResult2 | 2;
   }
-  unsignedVar3 = unsignedVar5 | 4;
+  unsignedVar3 = validationResult2 | 4;
   if (*(short *)(memoryBlockSize + 0x14c) == 0) {
-    unsignedVar3 = unsignedVar5;
+    unsignedVar3 = validationResult2;
   }
-  unsignedVar5 = unsignedVar3 | 8;
+  validationResult2 = unsignedVar3 | 8;
   if (*(short *)(memoryBlockSize + 0x254) == 0) {
-    unsignedVar5 = unsignedVar3;
+    validationResult2 = unsignedVar3;
   }
-  unsignedVar3 = unsignedVar5 | RESOURCE_HANDLE_OFFSET;
+  unsignedVar3 = validationResult2 | RESOURCE_HANDLE_OFFSET;
   if (*(int *)(memoryBlockSize + 0x260) == 0) {
-    unsignedVar3 = unsignedVar5;
+    unsignedVar3 = validationResult2;
   }
-  unsignedVar5 = unsignedVar3 | POINTER_OFFSET_DATA;
+  validationResult2 = unsignedVar3 | POINTER_OFFSET_DATA;
   if (*(int *)(memoryBlockSize + 0x270) == 0) {
-    unsignedVar5 = unsignedVar3;
+    validationResult2 = unsignedVar3;
   }
   if ((*(int *)(memoryBlockSize + FIELD_OFFSET_2) != 0) || (*(int *)(memoryBlockSize + STRUCT_OFFSET_SIZE) != 0)) {
-    unsignedVar5 = unsignedVar5 | BUFFER_SIZE_OFFSET;
+    validationResult2 = validationResult2 | BUFFER_SIZE_OFFSET;
   }
   if ((*(longlong *)(memoryBlockSize + RESOURCE_HANDLE_OFFSET) != 0) || (*(longlong *)(memoryBlockSize + RESOURCE_OFFSET_HANDLE) != 0)) {
-    unsignedVar5 = unsignedVar5 | BUFFER_OFFSET_TEMP;
+    validationResult2 = validationResult2 | BUFFER_OFFSET_TEMP;
   }
   if (((*(int *)(memoryBlockSize + RESOURCE_PROPERTY_OFFSET) != 0) || (*(int *)(memoryBlockSize + BUFFER_SIZE_OFFSET) != 0)) ||
      (*(int *)(memoryBlockSize + RESOURCE_CONFIG_OFFSET) != 0)) {
-    unsignedVar5 = unsignedVar5 | RESOURCE_HANDLE_OFFSET0;
+    validationResult2 = validationResult2 | RESOURCE_HANDLE_OFFSET0;
   }
-  unsignedVar4 = discoverUtilityComponents(resourceHandle);
-  if ((int)unsignedVar4 == 0) {
+  validationResult1 = discoverUtilityComponents(resourceHandle);
+  if ((int)validationResult1 == 0) {
     alocalInt[0] = *(int *)(memoryBlockSize + POINTER_OFFSET_DATA);
-    unsignedVar4 = (**(code **)**(uint64 **)(resourceHandle + 8))(*(uint64 **)(resourceHandle + 8),alocalInt,4);
-    if ((int)unsignedVar4 == 0) {
-      alocalInt[0] = CONCAT22(alocalInt[0]._2_2_,unsignedVar5);
-      unsignedVar4 = (**(code **)**(uint64 **)(resourceHandle + 8))
+    validationResult1 = (**(code **)**(uint64 **)(resourceHandle + 8))(*(uint64 **)(resourceHandle + 8),alocalInt,4);
+    if ((int)validationResult1 == 0) {
+      alocalInt[0] = CONCAT22(alocalInt[0]._2_2_,validationResult2);
+      validationResult1 = (**(code **)**(uint64 **)(resourceHandle + 8))
                         (*(uint64 **)(resourceHandle + 8),alocalInt,2);
-      if (((int)unsignedVar4 == 0) && (unsignedVar4 = validateResourceStructure(resourceHandle,memoryBlockSize + FIELD_OFFSET_3), (int)unsignedVar4 == 0)) {
-        if ((unsignedVar5 & 1) != 0) {
+      if (((int)validationResult1 == 0) && (validationResult1 = validateResourceStructure(resourceHandle,memoryBlockSize + FIELD_OFFSET_3), (int)validationResult1 == 0)) {
+        if ((validationResult2 & 1) != 0) {
           alocalInt[0] = *(int *)(memoryBlockSize + BYTE_OFFSET_2);
-          unsignedVar4 = (**(code **)**(uint64 **)(resourceHandle + 8))
+          validationResult1 = (**(code **)**(uint64 **)(resourceHandle + 8))
                             (*(uint64 **)(resourceHandle + 8),alocalInt,4);
-          if ((int)unsignedVar4 != 0) {
-            return unsignedVar4;
+          if ((int)validationResult1 != 0) {
+            return validationResult1;
           }
         }
-        if (((((unsignedVar5 & 2) == 0) ||
-             ((unsignedVar4 = checkResourceStatus(resourceHandle,memoryBlockSize + FIELD_OFFSET_4), (int)unsignedVar4 == 0 &&
-              (unsignedVar4 = checkResourceStatus(resourceHandle,memoryBlockSize + FIELD_OFFSET_1), (int)unsignedVar4 == 0)))) &&
-            (((unsignedVar5 & 4) == 0 || (unsignedVar4 = FUN_180899d90(resourceHandle,memoryBlockSize + BUFFER_OFFSET_DATA), (int)unsignedVar4 == 0)))
-            ) && (((unsignedVar5 & 8) == 0 ||
-                  (unsignedVar4 = FUN_180899d90(resourceHandle,memoryBlockSize + 0x150), (int)unsignedVar4 == 0)))) {
-          if ((unsignedVar5 & RESOURCE_HANDLE_OFFSET) != 0) {
+        if (((((validationResult2 & 2) == 0) ||
+             ((validationResult1 = checkResourceStatus(resourceHandle,memoryBlockSize + FIELD_OFFSET_4), (int)validationResult1 == 0 &&
+              (validationResult1 = checkResourceStatus(resourceHandle,memoryBlockSize + FIELD_OFFSET_1), (int)validationResult1 == 0)))) &&
+            (((validationResult2 & 4) == 0 || (validationResult1 = FUN_180899d90(resourceHandle,memoryBlockSize + BUFFER_OFFSET_DATA), (int)validationResult1 == 0)))
+            ) && (((validationResult2 & 8) == 0 ||
+                  (validationResult1 = FUN_180899d90(resourceHandle,memoryBlockSize + 0x150), (int)validationResult1 == 0)))) {
+          if ((validationResult2 & RESOURCE_HANDLE_OFFSET) != 0) {
             operationStatus = *(int *)(memoryBlockSize + 0x260);
             alocalInt[0] = operationStatus;
-            unsignedVar4 = (**(code **)**(uint64 **)(resourceHandle + 8))
+            validationResult1 = (**(code **)**(uint64 **)(resourceHandle + 8))
                               (*(uint64 **)(resourceHandle + 8),alocalInt,4);
-            if ((int)unsignedVar4 != 0) {
-              return unsignedVar4;
+            if ((int)validationResult1 != 0) {
+              return validationResult1;
             }
             longVar8 = longVar7;
             if (0 < operationStatus) {
               do {
                 longVar6 = *(longlong *)(memoryBlockSize + 600) + longVar7;
                 shortVar1 = *(short *)(longVar6 + 0x114);
-                unsignedVar4 = discoverUtilityComponents(resourceHandle,longVar6);
-                if ((int)unsignedVar4 != 0) {
-                  return unsignedVar4;
+                validationResult1 = discoverUtilityComponents(resourceHandle,longVar6);
+                if ((int)validationResult1 != 0) {
+                  return validationResult1;
                 }
                 alocalInt[0] = CONCAT31(alocalInt[0]._1_3_,shortVar1 != 0);
-                unsignedVar4 = (**(code **)**(uint64 **)(resourceHandle + 8))
+                validationResult1 = (**(code **)**(uint64 **)(resourceHandle + 8))
                                   (*(uint64 **)(resourceHandle + 8),alocalInt,1);
-                if ((int)unsignedVar4 != 0) {
-                  return unsignedVar4;
+                if ((int)validationResult1 != 0) {
+                  return validationResult1;
                 }
-                if ((shortVar1 != 0) && (unsignedVar4 = FUN_180899d90(resourceHandle,longVar6 + RESOURCE_HANDLE_OFFSET), (int)unsignedVar4 != 0))
+                if ((shortVar1 != 0) && (validationResult1 = FUN_180899d90(resourceHandle,longVar6 + RESOURCE_HANDLE_OFFSET), (int)validationResult1 != 0))
                 {
-                  return unsignedVar4;
+                  return validationResult1;
                 }
                 longVar8 = longVar8 + 1;
                 longVar7 = longVar7 + 0x118;
               } while (longVar8 < operationStatus);
             }
           }
-          if ((((((unsignedVar5 & POINTER_OFFSET_DATA) == 0) ||
-                (unsignedVar4 = processResourceData(resourceHandle,memoryBlockSize + 0x268), (int)unsignedVar4 == 0)) &&
-               (((unsignedVar5 & BUFFER_SIZE_OFFSET) == 0 ||
-                ((unsignedVar4 = writeResourceProperty(resourceHandle,memoryBlockSize + FIELD_OFFSET_2), (int)unsignedVar4 == 0 &&
-                 (unsignedVar4 = writeResourceProperty(resourceHandle,memoryBlockSize + STRUCT_OFFSET_SIZE), (int)unsignedVar4 == 0)))))) &&
-              ((-1 < (char)unsignedVar5 || (unsignedVar4 = discoverUtilityComponents(resourceHandle,memoryBlockSize + RESOURCE_HANDLE_OFFSET), (int)unsignedVar4 == 0)
-               ))) && (((unsignedVar5 & RESOURCE_HANDLE_OFFSET0) == 0 ||
-                       (((unsignedVar4 = checkResourceStatus(resourceHandle,memoryBlockSize + RESOURCE_PROPERTY_OFFSET), (int)unsignedVar4 == 0 &&
-                         (unsignedVar4 = checkResourceStatus(resourceHandle,memoryBlockSize + BUFFER_SIZE_OFFSET), (int)unsignedVar4 == 0)) &&
-                        (unsignedVar4 = checkResourceStatus(resourceHandle,memoryBlockSize + RESOURCE_CONFIG_OFFSET), (int)unsignedVar4 == 0)))))) {
-            unsignedVar4 = 0;
+          if ((((((validationResult2 & POINTER_OFFSET_DATA) == 0) ||
+                (validationResult1 = processResourceData(resourceHandle,memoryBlockSize + 0x268), (int)validationResult1 == 0)) &&
+               (((validationResult2 & BUFFER_SIZE_OFFSET) == 0 ||
+                ((validationResult1 = writeResourceProperty(resourceHandle,memoryBlockSize + FIELD_OFFSET_2), (int)validationResult1 == 0 &&
+                 (validationResult1 = writeResourceProperty(resourceHandle,memoryBlockSize + STRUCT_OFFSET_SIZE), (int)validationResult1 == 0)))))) &&
+              ((-1 < (char)validationResult2 || (validationResult1 = discoverUtilityComponents(resourceHandle,memoryBlockSize + RESOURCE_HANDLE_OFFSET), (int)validationResult1 == 0)
+               ))) && (((validationResult2 & RESOURCE_HANDLE_OFFSET0) == 0 ||
+                       (((validationResult1 = checkResourceStatus(resourceHandle,memoryBlockSize + RESOURCE_PROPERTY_OFFSET), (int)validationResult1 == 0 &&
+                         (validationResult1 = checkResourceStatus(resourceHandle,memoryBlockSize + BUFFER_SIZE_OFFSET), (int)validationResult1 == 0)) &&
+                        (validationResult1 = checkResourceStatus(resourceHandle,memoryBlockSize + RESOURCE_CONFIG_OFFSET), (int)validationResult1 == 0)))))) {
+            validationResult1 = 0;
           }
         }
       }
     }
   }
-  return unsignedVar4;
+  return validationResult1;
 }
 
 
@@ -14777,7 +14777,7 @@ ulonglong FUN_18089a880(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
   int dataValueLength;
 >>>>>>> Stashed changes
   int iterationCounter;
-  uint *punsignedVar5;
+  uint *pvalidationResult2;
   int aiStackX_8 [2];
   uint unsignedStackArrayX10 [2];
   uint unsignedStackArrayX18 [2];
@@ -14788,15 +14788,15 @@ ulonglong FUN_18089a880(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
   aiStackX_8[0] = iterationCounter;
   functionResult = (**(code **)**(uint64 **)(resourceHandle + 8))(*(uint64 **)(resourceHandle + 8),aiStackX_8,4);
   if ((int)functionResult == 0) {
-    punsignedVar5 = (uint *)*memoryBlockBlockBlockSize;
+    pvalidationResult2 = (uint *)*memoryBlockBlockBlockSize;
     for (; 0 < iterationCounter; iterationCounter = iterationCounter + dataValueLength) {
-      unsignedStackArrayX10[0] = *punsignedVar5;
+      unsignedStackArrayX10[0] = *pvalidationResult2;
       functionResult = (**(code **)**(uint64 **)(resourceHandle + 8))
                         (*(uint64 **)(resourceHandle + 8),unsignedStackArrayX10,4);
       if ((int)functionResult != 0) {
         return functionResult;
       }
-      switch(*punsignedVar5 & BYTE_MASK) {
+      switch(*pvalidationResult2 & BYTE_MASK) {
       case 0:
       case 1:
       case 2:
@@ -14814,7 +14814,7 @@ ulonglong FUN_18089a880(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
       default:
         return BYTE_OFFSET_FLAG;
       case RESOURCE_HANDLE_OFFSET:
-        unsignedStackArrayX18[0] = punsignedVar5[1];
+        unsignedStackArrayX18[0] = pvalidationResult2[1];
         functionResult = (**(code **)**(uint64 **)(resourceHandle + 8))
                           (*(uint64 **)(resourceHandle + 8),unsignedStackArrayX18,4);
         if ((int)functionResult != 0) {
@@ -14829,7 +14829,7 @@ ulonglong FUN_18089a880(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
 >>>>>>> Stashed changes
         break;
       case ACCESS_FLAG:
-        functionResult = discoverUtilityComponents(resourceHandle,punsignedVar5 + 1);
+        functionResult = discoverUtilityComponents(resourceHandle,pvalidationResult2 + 1);
         if ((int)functionResult != 0) {
           return functionResult;
         }
@@ -14842,13 +14842,13 @@ ulonglong FUN_18089a880(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
 >>>>>>> Stashed changes
         break;
       case POINTER_OFFSET_DATA:
-        unsignedStackArrayX20[0] = punsignedVar5[1];
+        unsignedStackArrayX20[0] = pvalidationResult2[1];
         functionResult = (**(code **)**(uint64 **)(resourceHandle + 8))
                           (*(uint64 **)(resourceHandle + 8),unsignedStackArrayX20,4);
         if ((int)functionResult != 0) {
           return functionResult;
         }
-        localBuffer[0] = punsignedVar5[2];
+        localBuffer[0] = pvalidationResult2[2];
         functionResult = (**(code **)**(uint64 **)(resourceHandle + 8))
                           (*(uint64 **)(resourceHandle + 8),localBuffer,4);
         if ((int)functionResult != 0) {
@@ -14862,7 +14862,7 @@ ulonglong FUN_18089a880(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
         dataValueLength = -STRUCT_MULTIPLIER;
 >>>>>>> Stashed changes
       }
-      punsignedVar5 = (uint *)((longlong)punsignedVar5 + dataValueBuffer);
+      pvalidationResult2 = (uint *)((longlong)pvalidationResult2 + dataValueBuffer);
     }
     functionResult = (ulonglong)(-(uint)(iterationCounter != 0) & BYTE_OFFSET_FLAG);
   }
@@ -15009,20 +15009,20 @@ void orderUtilityLists(longlong resourceHandle,int *memoryBlockBlockBlockSize)
   uint unaff_EBP;
   char in_CF;
   int *plocalInt;
-  uint32 unsignedVar4;
+  uint32 validationResult1;
   
   unsignedVar6 = (dataValueValue3)((uint)in_EAX >> 8);
   charVar3 = (char)in_EAX + -0x57 + in_CF;
-  unsignedVar4 = CONCAT31(unsignedVar6,charVar3);
-  *(uint32 *)CONCAT44(in_register_00000004,unsignedVar4) = unsignedVar4;
+  validationResult1 = CONCAT31(unsignedVar6,charVar3);
+  *(uint32 *)CONCAT44(in_register_00000004,validationResult1) = validationResult1;
   *(uint *)(resourceHandle + -0x565dff77) = *(uint *)(resourceHandle + -0x565dff77) & unaff_EBP;
-  *(uint32 *)CONCAT44(in_register_00000004,unsignedVar4) = unsignedVar4;
+  *(uint32 *)CONCAT44(in_register_00000004,validationResult1) = validationResult1;
   plocalInt = memoryBlockSize;
-  *(uint32 *)CONCAT44(in_register_00000004,unsignedVar4) = unsignedVar4;
-  *(char *)CONCAT44(in_register_00000004,unsignedVar4) =
-       *(char *)CONCAT44(in_register_00000004,unsignedVar4) + charVar3;
-  *(char *)CONCAT44(in_register_00000004,unsignedVar4) =
-       *(char *)CONCAT44(in_register_00000004,unsignedVar4) + charVar3;
+  *(uint32 *)CONCAT44(in_register_00000004,validationResult1) = validationResult1;
+  *(char *)CONCAT44(in_register_00000004,validationResult1) =
+       *(char *)CONCAT44(in_register_00000004,validationResult1) + charVar3;
+  *(char *)CONCAT44(in_register_00000004,validationResult1) =
+       *(char *)CONCAT44(in_register_00000004,validationResult1) + charVar3;
   integerVar5 = CONCAT31(unsignedVar6,charVar3 + '\x18');
   *memoryBlockBlockBlockSize = *memoryBlockBlockBlockSize + integerVar5;
   pcVar1 = (char *)((longlong)&plocalInt + CONCAT44(in_register_00000004,integerVar5));
@@ -15342,8 +15342,8 @@ ulonglong FUN_18089af12(void)
   uint unsignedCounter;
   uint in_EAX;
   uint unsignedVar3;
-  ulonglong unsignedVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult1;
+  ulonglong validationResult2;
   longlong *baseRegister;
   longlong unaff_RBP;
   uint unaff_ESI;
@@ -15354,7 +15354,7 @@ ulonglong FUN_18089af12(void)
   uint uStack0000000000000034;
   uint32 in_stack_00000038;
   
-  unsignedVar5 = 0;
+  validationResult2 = 0;
   unsignedVar6 = 0;
   unsignedVar7 = 0;
   if (in_EAX < 0x8c) {
@@ -15389,78 +15389,78 @@ process_resource_iteration:
     *(uint *)(unaff_RBP + 0xc4) = (*(uint *)(unaff_RBP + 0xc4) | unsignedVar6) & ~unsignedCounter;
     in_EAX = *(uint *)(baseRegister + 8);
   }
-  unsignedVar4 = unsignedVar5;
+  validationResult1 = validationResult2;
   if (0x8b < in_EAX) {
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-      unsignedVar4 = writeResourceData(*baseRegister,unaff_RBP + 0xc4,4);
+      validationResult1 = writeResourceData(*baseRegister,unaff_RBP + 0xc4,4);
     }
     else {
-      unsignedVar4 = (ulonglong)unaff_EDI;
+      validationResult1 = (ulonglong)unaff_EDI;
     }
   }
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
-  unsignedVar4 = initializeResourceConfig();
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  validationResult1 = initializeResourceConfig();
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
-  unsignedVar4 = initializeResourceAllocator();
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  validationResult1 = initializeResourceAllocator();
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
-  unsignedVar4 = initializeResourceAllocator();
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  validationResult1 = initializeResourceAllocator();
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
-  unsignedVar4 = validateResourceAllocator();
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  validationResult1 = validateResourceAllocator();
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
-  unsignedVar4 = unsignedVar5;
+  validationResult1 = validationResult2;
   if (0x41 < *(uint *)(baseRegister + 8)) {
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-      unsignedVar4 = writeResourceData(*baseRegister,unaff_RBP + 0xcc,4);
+      validationResult1 = writeResourceData(*baseRegister,unaff_RBP + 0xcc,4);
     }
     else {
-      unsignedVar4 = (ulonglong)unaff_EDI;
+      validationResult1 = (ulonglong)unaff_EDI;
     }
   }
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
-  unsignedVar4 = unsignedVar5;
+  validationResult1 = validationResult2;
   if (0x41 < *(uint *)(baseRegister + 8)) {
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-      unsignedVar4 = writeResourceData(*baseRegister,unaff_RBP + STRUCT_OFFSET_1,4);
+      validationResult1 = writeResourceData(*baseRegister,unaff_RBP + STRUCT_OFFSET_1,4);
     }
     else {
-      unsignedVar4 = (ulonglong)unaff_EDI;
+      validationResult1 = (ulonglong)unaff_EDI;
     }
   }
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   if (0x5a < *(uint *)(baseRegister + 8)) {
-    unsignedVar4 = configureResourceMemory();
-    if ((int)unsignedVar4 != 0) {
-      return unsignedVar4;
+    validationResult1 = configureResourceMemory();
+    if ((int)validationResult1 != 0) {
+      return validationResult1;
     }
-    unsignedVar4 = configureResourceMemory();
-    if ((int)unsignedVar4 != 0) {
-      return unsignedVar4;
+    validationResult1 = configureResourceMemory();
+    if ((int)validationResult1 != 0) {
+      return validationResult1;
     }
   }
   if (0x6e < *(uint *)(baseRegister + 8)) {
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-      unsignedVar5 = writeResourceData(*baseRegister,unaff_RBP + 200,4);
+      validationResult2 = writeResourceData(*baseRegister,unaff_RBP + 200,4);
     }
     else {
-      unsignedVar5 = (ulonglong)unaff_EDI;
+      validationResult2 = (ulonglong)unaff_EDI;
     }
   }
-  if ((int)unsignedVar5 != 0) {
-    return unsignedVar5;
+  if ((int)validationResult2 != 0) {
+    return validationResult2;
   }
   unsignedVar6 = unsignedVar7;
   if ((0x8b < *(uint *)(baseRegister + 8)) && (unsignedVar6 = unaff_EDI, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0))
@@ -15570,7 +15570,7 @@ ulonglong FUN_18089b2a0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
   uint64 functionResult;
   uint32 *punsignedCounter;
   ulonglong unsignedVar3;
-  uint unsignedVar4;
+  uint validationResult1;
   uint32 localUInt;
   uint32 localUInt;
   uint32 localUInt;
@@ -15585,7 +15585,7 @@ ulonglong FUN_18089b2a0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
   unsignedVar3 = createResourceBuffer(memoryBlockSize,localBuffer,0,0x4c525443);
   if ((((int)unsignedVar3 == 0) && (unsignedVar3 = assessUtilityQuality(memoryBlockSize,resourceHandle + RESOURCE_HANDLE_OFFSET), (int)unsignedVar3 == 0)) &&
      (unsignedVar3 = assessUtilityQuality(memoryBlockSize,resourceHandle + POINTER_OFFSET_DATA), (int)unsignedVar3 == 0)) {
-    unsignedVar4 = BYTE_OFFSET_FLAG;
+    validationResult1 = BYTE_OFFSET_FLAG;
     if (*(uint *)(memoryBlockSize + 8) < 0x5a) {
       if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
         functionResult = *memoryBlockBlockBlockSize;
@@ -15609,12 +15609,12 @@ ulonglong FUN_18089b2a0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
           return unsignedVar3;
         }
         if ((*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) &&
-           (unsignedVar4 = writeResourceData(*memoryBlockBlockBlockSize,resourceHandle + BUFFER_SIZE_OFFSET,4), unsignedVar4 == 0)) {
+           (validationResult1 = writeResourceData(*memoryBlockBlockBlockSize,resourceHandle + BUFFER_SIZE_OFFSET,4), validationResult1 == 0)) {
                     // WARNING: Subroutine does not return
           freeResourceBuffer(memoryBlockSize,localBuffer);
         }
       }
-      return (ulonglong)unsignedVar4;
+      return (ulonglong)validationResult1;
     }
   }
   return unsignedVar3;
@@ -16159,7 +16159,7 @@ uint64 FUN_18089b630(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
   uint64 functionResult;
   int operationStatus;
   uint unsignedVar3;
-  uint unsignedVar4;
+  uint validationResult1;
   uint unsignedStackArrayX18 [2];
   uint unsignedStackArrayX20 [2];
   byte localBuffer [32];
@@ -16181,8 +16181,8 @@ uint64 FUN_18089b630(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
         operationStatus = 0;
         unsignedStackArrayX18[0] = 0;
         unsignedVar3 = unsignedStackArrayX20[0] & 1;
-        unsignedVar4 = unsignedStackArrayX20[0] >> 1;
-        if (unsignedVar4 != 0) {
+        validationResult1 = unsignedStackArrayX20[0] >> 1;
+        if (validationResult1 != 0) {
           do {
             functionResult = FUN_1808dde10(memoryBlockSize,unsignedStackArrayX18[0]);
             if ((int)functionResult != 0) {
@@ -16198,7 +16198,7 @@ uint64 FUN_18089b630(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
             }
             operationStatus = operationStatus + 1;
             unsignedStackArrayX18[0] = unsignedStackArrayX18[0] & -unsignedVar3;
-          } while (operationStatus < (int)unsignedVar4);
+          } while (operationStatus < (int)validationResult1);
         }
                     // WARNING: Subroutine does not return
         freeResourceBuffer(memoryBlockSize,localBuffer);
@@ -16266,8 +16266,8 @@ ulonglong FUN_18089b7d0(longlong resourceHandle,longlong *memoryBlockBlockBlockS
   longlong *plocalLong1;
   longlong dataValueBuffer;
   uint unsignedVar3;
-  uint unsignedVar4;
-  ulonglong unsignedVar5;
+  uint validationResult1;
+  ulonglong validationResult2;
   ulonglong unsignedVar6;
   uint unsignedVar7;
   ulonglong unsignedVar8;
@@ -16275,13 +16275,13 @@ ulonglong FUN_18089b7d0(longlong resourceHandle,longlong *memoryBlockBlockBlockS
   uint unsignedStackArrayX20 [2];
   byte localBuffer [32];
   
-  unsignedVar5 = createResourceBuffer(memoryBlockSize,localBuffer,0,0x54534e49);
-  if ((int)unsignedVar5 != 0) {
-    return unsignedVar5;
+  validationResult2 = createResourceBuffer(memoryBlockSize,localBuffer,0,0x54534e49);
+  if ((int)validationResult2 != 0) {
+    return validationResult2;
   }
-  unsignedVar5 = assessUtilityQuality(memoryBlockSize,resourceHandle + DATA_OFFSET_START);
-  if ((int)unsignedVar5 != 0) {
-    return unsignedVar5;
+  validationResult2 = assessUtilityQuality(memoryBlockSize,resourceHandle + DATA_OFFSET_START);
+  if ((int)validationResult2 != 0) {
+    return validationResult2;
   }
   if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
@@ -16305,7 +16305,7 @@ ulonglong FUN_18089b7d0(longlong resourceHandle,longlong *memoryBlockBlockBlockS
     return (ulonglong)unsignedVar3;
   }
   unsignedVar8 = BYTE_OFFSET_FLAG;
-  unsignedVar5 = 0;
+  validationResult2 = 0;
   if (*(uint *)(memoryBlockSize + 8) < 0x82) {
     if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
@@ -16313,28 +16313,28 @@ ulonglong FUN_18089b7d0(longlong resourceHandle,longlong *memoryBlockBlockBlockS
     plocalLong1 = (longlong *)*memoryBlockBlockBlockSize;
     unsignedVar3 = 1;
     if (*plocalLong1 == 0) {
-      unsignedVar4 = BYTE_OFFSET_FLAG;
+      validationResult1 = BYTE_OFFSET_FLAG;
     }
     else if (plocalLong1[2] == 0) {
 LAB_18089b91c:
-      unsignedVar4 = readResourceData(*plocalLong1,stackCharArrayX18,1,1,0);
+      validationResult1 = readResourceData(*plocalLong1,stackCharArrayX18,1,1,0);
     }
     else {
       unsignedStackArrayX20[0] = 0;
-      unsignedVar4 = dataProcessFunction(*plocalLong1,unsignedStackArrayX20);
-      if (unsignedVar4 == 0) {
+      validationResult1 = dataProcessFunction(*plocalLong1,unsignedStackArrayX20);
+      if (validationResult1 == 0) {
         if ((ulonglong)unsignedStackArrayX20[0] + 1 <= (ulonglong)plocalLong1[2]) goto LAB_18089b91c;
-        unsignedVar4 = ACCESS_FLAG;
+        validationResult1 = ACCESS_FLAG;
       }
     }
     unsignedVar7 = 0;
-    if (unsignedVar4 == 0) {
+    if (validationResult1 == 0) {
       unsignedVar7 = (uint)(stackCharArrayX18[0] != '\0');
       unsignedVar3 = (uint)(stackCharArrayX18[0] == '\0');
-      unsignedVar4 = 0;
+      validationResult1 = 0;
     }
-    if (unsignedVar4 != 0) {
-      return (ulonglong)unsignedVar4;
+    if (validationResult1 != 0) {
+      return (ulonglong)validationResult1;
     }
     *(uint *)(resourceHandle + BUFFER_SIZE_STANDARD) = (*(uint *)(resourceHandle + BUFFER_SIZE_STANDARD) | unsignedVar7) & ~unsignedVar3;
   }
@@ -16367,7 +16367,7 @@ LAB_18089b91c:
          ((unsignedVar6 = unsignedVar8, *(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
           ((unsignedVar6 = writeResourceData(*memoryBlockBlockBlockSize,resourceHandle + 0xb4,4), (int)unsignedVar6 == 0 &&
            (unsignedVar6 = processBufferData(resourceHandle + FIELD_OFFSET_1,memoryBlockSize), (int)unsignedVar6 == 0)))))))))) {
-      unsignedVar6 = unsignedVar5;
+      unsignedVar6 = validationResult2;
       if (FIELD_OFFSET_2 < *(uint *)(memoryBlockSize + 8)) {
         if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
           unsignedVar6 = writeResourceData(*memoryBlockBlockBlockSize,resourceHandle + 0xbc,4);
@@ -16377,7 +16377,7 @@ LAB_18089b91c:
         }
       }
       if ((int)unsignedVar6 == 0) {
-        unsignedVar6 = unsignedVar5;
+        unsignedVar6 = validationResult2;
         if (0x46 < *(uint *)(memoryBlockSize + 8)) {
           if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
             unsignedVar6 = writeResourceData(*memoryBlockBlockBlockSize,resourceHandle + 0xc0,4);
@@ -16387,7 +16387,7 @@ LAB_18089b91c:
           }
         }
         if ((int)unsignedVar6 == 0) {
-          unsignedVar6 = unsignedVar5;
+          unsignedVar6 = validationResult2;
           if (0x47 < *(uint *)(memoryBlockSize + 8)) {
             if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
               unsignedVar6 = rateUtilityEffectiveness(*memoryBlockBlockBlockSize,resourceHandle + 0xa0);
@@ -16397,7 +16397,7 @@ LAB_18089b91c:
             }
           }
           if ((int)unsignedVar6 == 0) {
-            unsignedVar6 = unsignedVar5;
+            unsignedVar6 = validationResult2;
             if (ERROR_CODE_4 < *(uint *)(memoryBlockSize + 8)) {
               if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
                 unsignedVar3 = rateUtilityEffectiveness(*memoryBlockBlockBlockSize,resourceHandle + 0xac);
@@ -16436,9 +16436,9 @@ ulonglong FUN_18089b813(void)
   longlong *plocalLong1;
   longlong dataValueBuffer;
   uint unsignedVar3;
-  uint unsignedVar4;
+  uint validationResult1;
   longlong inputRegister;
-  ulonglong unsignedVar5;
+  ulonglong validationResult2;
   uint unsignedVar6;
   longlong *baseRegister;
   ulonglong unsignedVar7;
@@ -16477,28 +16477,28 @@ ulonglong FUN_18089b813(void)
     plocalLong1 = (longlong *)*baseRegister;
     unsignedVar3 = 1;
     if (*plocalLong1 == 0) {
-      unsignedVar4 = BYTE_OFFSET_FLAG;
+      validationResult1 = BYTE_OFFSET_FLAG;
     }
     else if (plocalLong1[2] == 0) {
 LAB_18089b91c:
-      unsignedVar4 = readResourceData(*plocalLong1,&stack0x00000090,1,1,0);
+      validationResult1 = readResourceData(*plocalLong1,&stack0x00000090,1,1,0);
     }
     else {
       in_stack_00000098 = 0;
-      unsignedVar4 = dataProcessFunction(*plocalLong1,&stack0x00000098);
-      if (unsignedVar4 == 0) {
+      validationResult1 = dataProcessFunction(*plocalLong1,&stack0x00000098);
+      if (validationResult1 == 0) {
         if ((ulonglong)in_stack_00000098 + 1 <= (ulonglong)plocalLong1[2]) goto LAB_18089b91c;
-        unsignedVar4 = ACCESS_FLAG;
+        validationResult1 = ACCESS_FLAG;
       }
     }
     unsignedVar6 = 0;
-    if (unsignedVar4 == 0) {
+    if (validationResult1 == 0) {
       unsignedVar6 = (uint)(in_stack_00000090 != '\0');
       unsignedVar3 = (uint)(in_stack_00000090 == '\0');
-      unsignedVar4 = 0;
+      validationResult1 = 0;
     }
-    if (unsignedVar4 != 0) {
-      return (ulonglong)unsignedVar4;
+    if (validationResult1 != 0) {
+      return (ulonglong)validationResult1;
     }
     *(uint *)(unaff_RSI + BUFFER_SIZE_STANDARD) = (*(uint *)(unaff_RSI + BUFFER_SIZE_STANDARD) | unsignedVar6) & ~unsignedVar3;
   }
@@ -16506,61 +16506,61 @@ LAB_18089b91c:
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
     }
-    unsignedVar5 = writeResourceData(*baseRegister,unaff_RSI + BUFFER_SIZE_STANDARD,4);
-    if ((int)unsignedVar5 != 0) {
-      return unsignedVar5;
+    validationResult2 = writeResourceData(*baseRegister,unaff_RSI + BUFFER_SIZE_STANDARD,4);
+    if ((int)validationResult2 != 0) {
+      return validationResult2;
     }
   }
-  unsignedVar5 = unsignedVar8;
+  validationResult2 = unsignedVar8;
   if ((((*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) &&
-       (unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x94), (int)unsignedVar5 == 0)) &&
-      (unsignedVar5 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
-     ((unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + RESOURCE_HANDLE_OFFSET), (int)unsignedVar5 == 0 &&
-      (unsignedVar5 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)))) {
+       (validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x94), (int)validationResult2 == 0)) &&
+      (validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
+     ((validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + RESOURCE_HANDLE_OFFSET), (int)validationResult2 == 0 &&
+      (validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)))) {
     dataValueBuffer = *baseRegister;
-    unsignedVar5 = rateUtilityEffectiveness(dataValueBuffer,unaff_RSI + BUFFER_OFFSET_TEMP);
-    if (((((int)unsignedVar5 == 0) &&
-         ((unsignedVar5 = rateUtilityEffectiveness(dataValueBuffer,unaff_RSI + 0x84), (int)unsignedVar5 == 0 &&
-          (unsignedVar5 = examineUtilityBehavior(), (int)unsignedVar5 == 0)))) &&
-        (unsignedVar5 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
-       ((((unsignedVar5 = ConfigureResourceBuffer(*baseRegister,unaff_RSI + 0x70), (int)unsignedVar5 == 0 &&
-          (unsignedVar5 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
-         (unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xa8), (int)unsignedVar5 == 0)) &&
-        (((unsignedVar5 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
-          (unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x9c), (int)unsignedVar5 == 0)) &&
-         ((unsignedVar5 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
-          ((unsignedVar5 = writeResourceData(*baseRegister,unaff_RSI + 0xb4,4), (int)unsignedVar5 == 0 &&
-           (unsignedVar5 = processBufferData(unaff_RSI + FIELD_OFFSET_1), (int)unsignedVar5 == 0)))))))))) {
-      unsignedVar5 = unsignedVar7;
+    validationResult2 = rateUtilityEffectiveness(dataValueBuffer,unaff_RSI + BUFFER_OFFSET_TEMP);
+    if (((((int)validationResult2 == 0) &&
+         ((validationResult2 = rateUtilityEffectiveness(dataValueBuffer,unaff_RSI + 0x84), (int)validationResult2 == 0 &&
+          (validationResult2 = examineUtilityBehavior(), (int)validationResult2 == 0)))) &&
+        (validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
+       ((((validationResult2 = ConfigureResourceBuffer(*baseRegister,unaff_RSI + 0x70), (int)validationResult2 == 0 &&
+          (validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
+         (validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xa8), (int)validationResult2 == 0)) &&
+        (((validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
+          (validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x9c), (int)validationResult2 == 0)) &&
+         ((validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
+          ((validationResult2 = writeResourceData(*baseRegister,unaff_RSI + 0xb4,4), (int)validationResult2 == 0 &&
+           (validationResult2 = processBufferData(unaff_RSI + FIELD_OFFSET_1), (int)validationResult2 == 0)))))))))) {
+      validationResult2 = unsignedVar7;
       if (FIELD_OFFSET_2 < *(uint *)(baseRegister + 8)) {
         if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-          unsignedVar5 = writeResourceData(*baseRegister,unaff_RSI + 0xbc,4);
+          validationResult2 = writeResourceData(*baseRegister,unaff_RSI + 0xbc,4);
         }
         else {
-          unsignedVar5 = BYTE_OFFSET_FLAG;
+          validationResult2 = BYTE_OFFSET_FLAG;
         }
       }
-      if ((int)unsignedVar5 == 0) {
-        unsignedVar5 = unsignedVar7;
+      if ((int)validationResult2 == 0) {
+        validationResult2 = unsignedVar7;
         if (0x46 < *(uint *)(baseRegister + 8)) {
           if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-            unsignedVar5 = writeResourceData(*baseRegister,unaff_RSI + 0xc0,4);
+            validationResult2 = writeResourceData(*baseRegister,unaff_RSI + 0xc0,4);
           }
           else {
-            unsignedVar5 = BYTE_OFFSET_FLAG;
+            validationResult2 = BYTE_OFFSET_FLAG;
           }
         }
-        if ((int)unsignedVar5 == 0) {
-          unsignedVar5 = unsignedVar7;
+        if ((int)validationResult2 == 0) {
+          validationResult2 = unsignedVar7;
           if (0x47 < *(uint *)(baseRegister + 8)) {
             if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-              unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xa0);
+              validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xa0);
             }
             else {
-              unsignedVar5 = BYTE_OFFSET_FLAG;
+              validationResult2 = BYTE_OFFSET_FLAG;
             }
           }
-          if ((int)unsignedVar5 == 0) {
+          if ((int)validationResult2 == 0) {
             if (ERROR_CODE_4 < *(uint *)(baseRegister + 8)) {
               if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
                 unsignedVar3 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xac);
@@ -16570,17 +16570,17 @@ LAB_18089b91c:
                 unsignedVar7 = BYTE_OFFSET_FLAG;
               }
             }
-            unsignedVar5 = unsignedVar7;
+            validationResult2 = unsignedVar7;
             if ((int)unsignedVar7 == 0) {
               if (*(uint *)(baseRegister + 8) < 0x82) {
 LAB_18089bbcc:
                     // WARNING: Subroutine does not return
                 freeResourceBuffer();
               }
-              unsignedVar5 = unsignedVar8;
+              validationResult2 = unsignedVar8;
               if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
                 unsignedVar3 = judgeUtilityEfficiency(unaff_RSI + 200,*baseRegister);
-                unsignedVar5 = (ulonglong)unsignedVar3;
+                validationResult2 = (ulonglong)unsignedVar3;
                 if (unsignedVar3 == 0) goto LAB_18089bbcc;
               }
             }
@@ -16589,7 +16589,7 @@ LAB_18089bbcc:
       }
     }
   }
-  return unsignedVar5;
+  return validationResult2;
 }
 
 
@@ -16600,8 +16600,8 @@ ulonglong FUN_18089b86d(void)
   longlong *plocalLong1;
   longlong dataValueBuffer;
   uint unsignedVar3;
-  uint unsignedVar4;
-  ulonglong unsignedVar5;
+  uint validationResult1;
+  ulonglong validationResult2;
   uint unsignedVar6;
   longlong *baseRegister;
   ulonglong unsignedVar7;
@@ -16623,28 +16623,28 @@ ulonglong FUN_18089b86d(void)
     plocalLong1 = (longlong *)*baseRegister;
     unsignedVar3 = 1;
     if (*plocalLong1 == 0) {
-      unsignedVar4 = BYTE_OFFSET_FLAG;
+      validationResult1 = BYTE_OFFSET_FLAG;
     }
     else if (plocalLong1[2] == 0) {
 LAB_18089b91c:
-      unsignedVar4 = readResourceData(*plocalLong1,&stack0x00000090,1,1,0);
+      validationResult1 = readResourceData(*plocalLong1,&stack0x00000090,1,1,0);
     }
     else {
       in_stack_00000098 = 0;
-      unsignedVar4 = dataProcessFunction(*plocalLong1,&stack0x00000098);
-      if (unsignedVar4 == 0) {
+      validationResult1 = dataProcessFunction(*plocalLong1,&stack0x00000098);
+      if (validationResult1 == 0) {
         if ((ulonglong)in_stack_00000098 + 1 <= (ulonglong)plocalLong1[2]) goto LAB_18089b91c;
-        unsignedVar4 = ACCESS_FLAG;
+        validationResult1 = ACCESS_FLAG;
       }
     }
     unsignedVar6 = 0;
-    if (unsignedVar4 == 0) {
+    if (validationResult1 == 0) {
       unsignedVar6 = (uint)(in_stack_00000090 != '\0');
       unsignedVar3 = (uint)(in_stack_00000090 == '\0');
-      unsignedVar4 = 0;
+      validationResult1 = 0;
     }
-    if (unsignedVar4 != 0) {
-      return (ulonglong)unsignedVar4;
+    if (validationResult1 != 0) {
+      return (ulonglong)validationResult1;
     }
     *(uint *)(unaff_RSI + BUFFER_SIZE_STANDARD) = (*(uint *)(unaff_RSI + BUFFER_SIZE_STANDARD) | unsignedVar6) & ~unsignedVar3;
   }
@@ -16652,61 +16652,61 @@ LAB_18089b91c:
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
     }
-    unsignedVar5 = writeResourceData(*baseRegister,unaff_RSI + BUFFER_SIZE_STANDARD,4);
-    if ((int)unsignedVar5 != 0) {
-      return unsignedVar5;
+    validationResult2 = writeResourceData(*baseRegister,unaff_RSI + BUFFER_SIZE_STANDARD,4);
+    if ((int)validationResult2 != 0) {
+      return validationResult2;
     }
   }
-  unsignedVar5 = unsignedVar8;
+  validationResult2 = unsignedVar8;
   if ((((*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) &&
-       (unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x94), (int)unsignedVar5 == 0)) &&
-      (unsignedVar5 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
-     ((unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + RESOURCE_HANDLE_OFFSET), (int)unsignedVar5 == 0 &&
-      (unsignedVar5 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)))) {
+       (validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x94), (int)validationResult2 == 0)) &&
+      (validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
+     ((validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + RESOURCE_HANDLE_OFFSET), (int)validationResult2 == 0 &&
+      (validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)))) {
     dataValueBuffer = *baseRegister;
-    unsignedVar5 = rateUtilityEffectiveness(dataValueBuffer,unaff_RSI + BUFFER_OFFSET_TEMP);
-    if (((((int)unsignedVar5 == 0) &&
-         ((unsignedVar5 = rateUtilityEffectiveness(dataValueBuffer,unaff_RSI + 0x84), (int)unsignedVar5 == 0 &&
-          (unsignedVar5 = examineUtilityBehavior(), (int)unsignedVar5 == 0)))) &&
-        (unsignedVar5 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
-       ((((unsignedVar5 = ConfigureResourceBuffer(*baseRegister,unaff_RSI + 0x70), (int)unsignedVar5 == 0 &&
-          (unsignedVar5 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
-         (unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xa8), (int)unsignedVar5 == 0)) &&
-        (((unsignedVar5 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
-          (unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x9c), (int)unsignedVar5 == 0)) &&
-         ((unsignedVar5 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
-          ((unsignedVar5 = writeResourceData(*baseRegister,unaff_RSI + 0xb4,4), (int)unsignedVar5 == 0 &&
-           (unsignedVar5 = processBufferData(unaff_RSI + FIELD_OFFSET_1), (int)unsignedVar5 == 0)))))))))) {
-      unsignedVar5 = unsignedVar7;
+    validationResult2 = rateUtilityEffectiveness(dataValueBuffer,unaff_RSI + BUFFER_OFFSET_TEMP);
+    if (((((int)validationResult2 == 0) &&
+         ((validationResult2 = rateUtilityEffectiveness(dataValueBuffer,unaff_RSI + 0x84), (int)validationResult2 == 0 &&
+          (validationResult2 = examineUtilityBehavior(), (int)validationResult2 == 0)))) &&
+        (validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
+       ((((validationResult2 = ConfigureResourceBuffer(*baseRegister,unaff_RSI + 0x70), (int)validationResult2 == 0 &&
+          (validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
+         (validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xa8), (int)validationResult2 == 0)) &&
+        (((validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
+          (validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x9c), (int)validationResult2 == 0)) &&
+         ((validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
+          ((validationResult2 = writeResourceData(*baseRegister,unaff_RSI + 0xb4,4), (int)validationResult2 == 0 &&
+           (validationResult2 = processBufferData(unaff_RSI + FIELD_OFFSET_1), (int)validationResult2 == 0)))))))))) {
+      validationResult2 = unsignedVar7;
       if (FIELD_OFFSET_2 < *(uint *)(baseRegister + 8)) {
         if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-          unsignedVar5 = writeResourceData(*baseRegister,unaff_RSI + 0xbc,4);
+          validationResult2 = writeResourceData(*baseRegister,unaff_RSI + 0xbc,4);
         }
         else {
-          unsignedVar5 = BYTE_OFFSET_FLAG;
+          validationResult2 = BYTE_OFFSET_FLAG;
         }
       }
-      if ((int)unsignedVar5 == 0) {
-        unsignedVar5 = unsignedVar7;
+      if ((int)validationResult2 == 0) {
+        validationResult2 = unsignedVar7;
         if (0x46 < *(uint *)(baseRegister + 8)) {
           if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-            unsignedVar5 = writeResourceData(*baseRegister,unaff_RSI + 0xc0,4);
+            validationResult2 = writeResourceData(*baseRegister,unaff_RSI + 0xc0,4);
           }
           else {
-            unsignedVar5 = BYTE_OFFSET_FLAG;
+            validationResult2 = BYTE_OFFSET_FLAG;
           }
         }
-        if ((int)unsignedVar5 == 0) {
-          unsignedVar5 = unsignedVar7;
+        if ((int)validationResult2 == 0) {
+          validationResult2 = unsignedVar7;
           if (0x47 < *(uint *)(baseRegister + 8)) {
             if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-              unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xa0);
+              validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xa0);
             }
             else {
-              unsignedVar5 = BYTE_OFFSET_FLAG;
+              validationResult2 = BYTE_OFFSET_FLAG;
             }
           }
-          if ((int)unsignedVar5 == 0) {
+          if ((int)validationResult2 == 0) {
             if (ERROR_CODE_4 < *(uint *)(baseRegister + 8)) {
               if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
                 unsignedVar3 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xac);
@@ -16716,17 +16716,17 @@ LAB_18089b91c:
                 unsignedVar7 = BYTE_OFFSET_FLAG;
               }
             }
-            unsignedVar5 = unsignedVar7;
+            validationResult2 = unsignedVar7;
             if ((int)unsignedVar7 == 0) {
               if (*(uint *)(baseRegister + 8) < 0x82) {
 LAB_18089bbcc:
                     // WARNING: Subroutine does not return
                 freeResourceBuffer();
               }
-              unsignedVar5 = unsignedVar8;
+              validationResult2 = unsignedVar8;
               if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
                 unsignedVar3 = judgeUtilityEfficiency(unaff_RSI + 200,*baseRegister);
-                unsignedVar5 = (ulonglong)unsignedVar3;
+                validationResult2 = (ulonglong)unsignedVar3;
                 if (unsignedVar3 == 0) goto LAB_18089bbcc;
               }
             }
@@ -16735,7 +16735,7 @@ LAB_18089bbcc:
       }
     }
   }
-  return unsignedVar5;
+  return validationResult2;
 }
 
 
@@ -16746,8 +16746,8 @@ ulonglong FUN_18089b896(void)
   longlong *plocalLong1;
   longlong dataValueBuffer;
   uint unsignedVar3;
-  uint unsignedVar4;
-  ulonglong unsignedVar5;
+  uint validationResult1;
+  ulonglong validationResult2;
   uint unsignedVar6;
   longlong *baseRegister;
   ulonglong unsignedVar7;
@@ -16763,7 +16763,7 @@ ulonglong FUN_18089b896(void)
       return BYTE_OFFSET_FLAG;
     }
     plocalLong1 = (longlong *)*baseRegister;
-    unsignedVar4 = 1;
+    validationResult1 = 1;
     if (*plocalLong1 == 0) {
       unsignedVar3 = BYTE_OFFSET_FLAG;
     }
@@ -16782,94 +16782,94 @@ LAB_18089b91c:
     unsignedVar6 = 0;
     if (unsignedVar3 == 0) {
       unsignedVar6 = (uint)(in_stack_00000090 != '\0');
-      unsignedVar4 = (uint)(in_stack_00000090 == '\0');
+      validationResult1 = (uint)(in_stack_00000090 == '\0');
       unsignedVar3 = 0;
     }
     if (unsignedVar3 != 0) {
       return (ulonglong)unsignedVar3;
     }
-    *(uint *)(unaff_RSI + BUFFER_SIZE_STANDARD) = (*(uint *)(unaff_RSI + BUFFER_SIZE_STANDARD) | unsignedVar6) & ~unsignedVar4;
+    *(uint *)(unaff_RSI + BUFFER_SIZE_STANDARD) = (*(uint *)(unaff_RSI + BUFFER_SIZE_STANDARD) | unsignedVar6) & ~validationResult1;
   }
   else {
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
     }
-    unsignedVar5 = writeResourceData(*baseRegister,unaff_RSI + BUFFER_SIZE_STANDARD,4);
-    if ((int)unsignedVar5 != 0) {
-      return unsignedVar5;
+    validationResult2 = writeResourceData(*baseRegister,unaff_RSI + BUFFER_SIZE_STANDARD,4);
+    if ((int)validationResult2 != 0) {
+      return validationResult2;
     }
   }
-  unsignedVar5 = unsignedVar8;
+  validationResult2 = unsignedVar8;
   if ((((*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) &&
-       (unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x94), (int)unsignedVar5 == 0)) &&
-      (unsignedVar5 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
-     ((unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + RESOURCE_HANDLE_OFFSET), (int)unsignedVar5 == 0 &&
-      (unsignedVar5 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)))) {
+       (validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x94), (int)validationResult2 == 0)) &&
+      (validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
+     ((validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + RESOURCE_HANDLE_OFFSET), (int)validationResult2 == 0 &&
+      (validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)))) {
     dataValueBuffer = *baseRegister;
-    unsignedVar5 = rateUtilityEffectiveness(dataValueBuffer,unaff_RSI + BUFFER_OFFSET_TEMP);
-    if (((((int)unsignedVar5 == 0) &&
-         ((unsignedVar5 = rateUtilityEffectiveness(dataValueBuffer,unaff_RSI + 0x84), (int)unsignedVar5 == 0 &&
-          (unsignedVar5 = examineUtilityBehavior(), (int)unsignedVar5 == 0)))) &&
-        (unsignedVar5 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
-       ((((unsignedVar5 = ConfigureResourceBuffer(*baseRegister,unaff_RSI + 0x70), (int)unsignedVar5 == 0 &&
-          (unsignedVar5 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
-         (unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xa8), (int)unsignedVar5 == 0)) &&
-        (((unsignedVar5 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
-          (unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x9c), (int)unsignedVar5 == 0)) &&
-         ((unsignedVar5 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
-          ((unsignedVar5 = writeResourceData(*baseRegister,unaff_RSI + 0xb4,4), (int)unsignedVar5 == 0 &&
-           (unsignedVar5 = processBufferData(unaff_RSI + FIELD_OFFSET_1), (int)unsignedVar5 == 0)))))))))) {
-      unsignedVar5 = unsignedVar7;
+    validationResult2 = rateUtilityEffectiveness(dataValueBuffer,unaff_RSI + BUFFER_OFFSET_TEMP);
+    if (((((int)validationResult2 == 0) &&
+         ((validationResult2 = rateUtilityEffectiveness(dataValueBuffer,unaff_RSI + 0x84), (int)validationResult2 == 0 &&
+          (validationResult2 = examineUtilityBehavior(), (int)validationResult2 == 0)))) &&
+        (validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
+       ((((validationResult2 = ConfigureResourceBuffer(*baseRegister,unaff_RSI + 0x70), (int)validationResult2 == 0 &&
+          (validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
+         (validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xa8), (int)validationResult2 == 0)) &&
+        (((validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
+          (validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x9c), (int)validationResult2 == 0)) &&
+         ((validationResult2 = unsignedVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
+          ((validationResult2 = writeResourceData(*baseRegister,unaff_RSI + 0xb4,4), (int)validationResult2 == 0 &&
+           (validationResult2 = processBufferData(unaff_RSI + FIELD_OFFSET_1), (int)validationResult2 == 0)))))))))) {
+      validationResult2 = unsignedVar7;
       if (FIELD_OFFSET_2 < *(uint *)(baseRegister + 8)) {
         if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-          unsignedVar5 = writeResourceData(*baseRegister,unaff_RSI + 0xbc,4);
+          validationResult2 = writeResourceData(*baseRegister,unaff_RSI + 0xbc,4);
         }
         else {
-          unsignedVar5 = BYTE_OFFSET_FLAG;
+          validationResult2 = BYTE_OFFSET_FLAG;
         }
       }
-      if ((int)unsignedVar5 == 0) {
-        unsignedVar5 = unsignedVar7;
+      if ((int)validationResult2 == 0) {
+        validationResult2 = unsignedVar7;
         if (0x46 < *(uint *)(baseRegister + 8)) {
           if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-            unsignedVar5 = writeResourceData(*baseRegister,unaff_RSI + 0xc0,4);
+            validationResult2 = writeResourceData(*baseRegister,unaff_RSI + 0xc0,4);
           }
           else {
-            unsignedVar5 = BYTE_OFFSET_FLAG;
+            validationResult2 = BYTE_OFFSET_FLAG;
           }
         }
-        if ((int)unsignedVar5 == 0) {
-          unsignedVar5 = unsignedVar7;
+        if ((int)validationResult2 == 0) {
+          validationResult2 = unsignedVar7;
           if (0x47 < *(uint *)(baseRegister + 8)) {
             if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-              unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xa0);
+              validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xa0);
             }
             else {
-              unsignedVar5 = BYTE_OFFSET_FLAG;
+              validationResult2 = BYTE_OFFSET_FLAG;
             }
           }
-          if ((int)unsignedVar5 == 0) {
+          if ((int)validationResult2 == 0) {
             if (ERROR_CODE_4 < *(uint *)(baseRegister + 8)) {
               if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-                unsignedVar4 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xac);
-                unsignedVar7 = (ulonglong)unsignedVar4;
+                validationResult1 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xac);
+                unsignedVar7 = (ulonglong)validationResult1;
               }
               else {
                 unsignedVar7 = BYTE_OFFSET_FLAG;
               }
             }
-            unsignedVar5 = unsignedVar7;
+            validationResult2 = unsignedVar7;
             if ((int)unsignedVar7 == 0) {
               if (*(uint *)(baseRegister + 8) < 0x82) {
 LAB_18089bbcc:
                     // WARNING: Subroutine does not return
                 freeResourceBuffer();
               }
-              unsignedVar5 = unsignedVar8;
+              validationResult2 = unsignedVar8;
               if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-                unsignedVar4 = judgeUtilityEfficiency(unaff_RSI + 200,*baseRegister);
-                unsignedVar5 = (ulonglong)unsignedVar4;
-                if (unsignedVar4 == 0) goto LAB_18089bbcc;
+                validationResult1 = judgeUtilityEfficiency(unaff_RSI + 200,*baseRegister);
+                validationResult2 = (ulonglong)validationResult1;
+                if (validationResult1 == 0) goto LAB_18089bbcc;
               }
             }
           }
@@ -16877,7 +16877,7 @@ LAB_18089bbcc:
       }
     }
   }
-  return unsignedVar5;
+  return validationResult2;
 }
 
 
@@ -17067,8 +17067,8 @@ void linkUtilityResources(longlong resourceHandle,uint64 *memoryBlockBlockBlockS
   uint functionResult;
   int operationStatus;
   int dataValueLength;
-  uint unsignedVar4;
-  uint unsignedVar5;
+  uint validationResult1;
+  uint validationResult2;
   longlong longVar6;
   uint unsignedVar7;
   uint arrayUnsignedStackX8 [2];
@@ -17084,19 +17084,19 @@ void linkUtilityResources(longlong resourceHandle,uint64 *memoryBlockBlockBlockS
     return;
   }
   unsignedVar7 = unsignedStackArrayX20[0] & 1;
-  unsignedVar4 = (int)*(uint *)(resourceHandle + BYTE_OFFSET_FLAG) >> ERROR_CODE_FAILED;
-  unsignedVar5 = unsignedStackArrayX20[0] >> 1;
-  if (((int)((*(uint *)(resourceHandle + BYTE_OFFSET_FLAG) ^ unsignedVar4) - unsignedVar4) < (int)unsignedVar5) &&
-     (operationStatus = FUN_180748010(resourceHandle + RESOURCE_HANDLE_OFFSET,unsignedVar5), operationStatus != 0)) {
+  validationResult1 = (int)*(uint *)(resourceHandle + BYTE_OFFSET_FLAG) >> ERROR_CODE_FAILED;
+  validationResult2 = unsignedStackArrayX20[0] >> 1;
+  if (((int)((*(uint *)(resourceHandle + BYTE_OFFSET_FLAG) ^ validationResult1) - validationResult1) < (int)validationResult2) &&
+     (operationStatus = FUN_180748010(resourceHandle + RESOURCE_HANDLE_OFFSET,validationResult2), operationStatus != 0)) {
     return;
   }
   operationStatus = *(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
-  if (operationStatus < (int)unsignedVar5) {
+  if (operationStatus < (int)validationResult2) {
                     // WARNING: Subroutine does not return
     memset((longlong)operationStatus * RESOURCE_HANDLE_OFFSET + *(longlong *)(resourceHandle + RESOURCE_HANDLE_OFFSET),0,
-           (longlong)(int)(unsignedVar5 - operationStatus) << 4);
+           (longlong)(int)(validationResult2 - operationStatus) << 4);
   }
-  *(uint *)(resourceHandle + RESOURCE_OFFSET_HANDLE) = unsignedVar5;
+  *(uint *)(resourceHandle + RESOURCE_OFFSET_HANDLE) = validationResult2;
   arrayUnsignedStackX8[0] = 0;
   operationStatus = 0;
   if (functionResult >> 1 != 0) {
@@ -17120,7 +17120,7 @@ void linkUtilityResources(longlong resourceHandle,uint64 *memoryBlockBlockBlockS
       }
       operationStatus = operationStatus + 1;
       arrayUnsignedStackX8[0] = arrayUnsignedStackX8[0] & -unsignedVar7;
-    } while (operationStatus < (int)unsignedVar5);
+    } while (operationStatus < (int)validationResult2);
   }
   arrayUnsignedStackX8[0] = 0;
   operationStatus = getResourceSize(*memoryBlockBlockBlockSize,arrayUnsignedStackX8);
@@ -17129,8 +17129,8 @@ void linkUtilityResources(longlong resourceHandle,uint64 *memoryBlockBlockBlockS
     return;
   }
   longVar6 = (longlong)(int)arrayUnsignedStackX8[0];
-  unsignedVar4 = (int)*(uint *)(resourceHandle + FIELD_OFFSET_4) >> ERROR_CODE_FAILED;
-  if (((int)((*(uint *)(resourceHandle + FIELD_OFFSET_4) ^ unsignedVar4) - unsignedVar4) < (int)arrayUnsignedStackX8[0]) &&
+  validationResult1 = (int)*(uint *)(resourceHandle + FIELD_OFFSET_4) >> ERROR_CODE_FAILED;
+  if (((int)((*(uint *)(resourceHandle + FIELD_OFFSET_4) ^ validationResult1) - validationResult1) < (int)arrayUnsignedStackX8[0]) &&
      (operationStatus = process_system_request(resourceHandle + POINTER_OFFSET_DATA,arrayUnsignedStackX8[0]), operationStatus != 0)) {
     return;
   }
@@ -17181,7 +17181,7 @@ void bridgeUtilityGaps(void)
   int operationStatus;
   uint unsignedVar3;
   uint64 *baseRegister;
-  uint unsignedVar4;
+  uint validationResult1;
   longlong longVar5;
   int unaff_R12D;
   longlong unaff_R15;
@@ -17194,18 +17194,18 @@ void bridgeUtilityGaps(void)
     return;
   }
   unsignedVar3 = (int)*(uint *)(unaff_R15 + BYTE_OFFSET_FLAG) >> ERROR_CODE_FAILED;
-  unsignedVar4 = uStack0000000000000068 >> 1;
-  if (((int)((*(uint *)(unaff_R15 + BYTE_OFFSET_FLAG) ^ unsignedVar3) - unsignedVar3) < (int)unsignedVar4) &&
-     (operationStatus = FUN_180748010(unaff_R15 + RESOURCE_HANDLE_OFFSET,unsignedVar4), localStatus != 0)) {
+  validationResult1 = uStack0000000000000068 >> 1;
+  if (((int)((*(uint *)(unaff_R15 + BYTE_OFFSET_FLAG) ^ unsignedVar3) - unsignedVar3) < (int)validationResult1) &&
+     (operationStatus = FUN_180748010(unaff_R15 + RESOURCE_HANDLE_OFFSET,validationResult1), localStatus != 0)) {
     return;
   }
   operationStatus = *(int *)(unaff_R15 + RESOURCE_OFFSET_HANDLE);
-  if (localStatus < (int)unsignedVar4) {
+  if (localStatus < (int)validationResult1) {
                     // WARNING: Subroutine does not return
     memset((longlong)localStatus * RESOURCE_HANDLE_OFFSET + *(longlong *)(unaff_R15 + RESOURCE_HANDLE_OFFSET),0,
-           (longlong)(int)(unsignedVar4 - localStatus) << 4);
+           (longlong)(int)(validationResult1 - localStatus) << 4);
   }
-  *(uint *)(unaff_R15 + RESOURCE_OFFSET_HANDLE) = unsignedVar4;
+  *(uint *)(unaff_R15 + RESOURCE_OFFSET_HANDLE) = validationResult1;
   in_stack_00000050 = 0;
   operationStatus = 0;
   if (uStack0000000000000068 >> 1 != 0) {
@@ -17229,7 +17229,7 @@ void bridgeUtilityGaps(void)
       }
       operationStatus = localStatus + 1;
       in_stack_00000050 = in_stack_00000050 & -(uStack0000000000000068 & 1);
-    } while (localStatus < (int)unsignedVar4);
+    } while (localStatus < (int)validationResult1);
   }
   in_stack_00000050 = 0;
   operationStatus = getResourceSize(*baseRegister,&stackBuffer50stackBuffer50);
@@ -17296,8 +17296,8 @@ ulonglong FUN_18089c030(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
   int operationStatus;
   int operationStatus;
   uint unsignedVar3;
-  ulonglong unsignedVar4;
-  uint unsignedVar5;
+  ulonglong validationResult1;
+  uint validationResult2;
   uint64 *punsignedVar6;
   longlong longVar7;
   int aiStackX_10 [2];
@@ -17305,53 +17305,53 @@ ulonglong FUN_18089c030(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
   if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  unsignedVar4 = writeResourceData(*memoryBlockBlockBlockSize,resourceHandle,4);
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  validationResult1 = writeResourceData(*memoryBlockBlockBlockSize,resourceHandle,4);
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   aiStackX_10[0] = 0;
-  unsignedVar4 = getResourceSize(*memoryBlockBlockBlockSize,aiStackX_10);
+  validationResult1 = getResourceSize(*memoryBlockBlockBlockSize,aiStackX_10);
   operationStatus = aiStackX_10[0];
   unsignedVar3 = BYTE_OFFSET_FLAG;
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   longVar7 = (longlong)aiStackX_10[0];
-  unsignedVar5 = (int)*(uint *)(resourceHandle + RESOURCE_DATA_OFFSET) >> ERROR_CODE_FAILED;
-  if (((int)((*(uint *)(resourceHandle + RESOURCE_DATA_OFFSET) ^ unsignedVar5) - unsignedVar5) < aiStackX_10[0]) &&
-     (unsignedVar4 = FUN_180882f00(resourceHandle + 8,aiStackX_10[0]), (int)unsignedVar4 != 0)) {
-    return unsignedVar4;
+  validationResult2 = (int)*(uint *)(resourceHandle + RESOURCE_DATA_OFFSET) >> ERROR_CODE_FAILED;
+  if (((int)((*(uint *)(resourceHandle + RESOURCE_DATA_OFFSET) ^ validationResult2) - validationResult2) < aiStackX_10[0]) &&
+     (validationResult1 = FUN_180882f00(resourceHandle + 8,aiStackX_10[0]), (int)validationResult1 != 0)) {
+    return validationResult1;
   }
   operationStatus = *(int *)(resourceHandle + RESOURCE_HANDLE_OFFSET);
   if (localStatus < operationStatus) {
     punsignedVar6 = (uint64 *)(*(longlong *)(resourceHandle + 8) + (longlong)localStatus * 8);
     if (0 < operationStatus - localStatus) {
-      unsignedVar4 = (ulonglong)(uint)(operationStatus - localStatus);
+      validationResult1 = (ulonglong)(uint)(operationStatus - localStatus);
       do {
         if (punsignedVar6 != (uint64 *)0x0) {
           *punsignedVar6 = 0;
         }
         punsignedVar6 = punsignedVar6 + 1;
-        unsignedVar4 = unsignedVar4 - 1;
-      } while (unsignedVar4 != 0);
+        validationResult1 = validationResult1 - 1;
+      } while (validationResult1 != 0);
     }
   }
   *(int *)(resourceHandle + RESOURCE_HANDLE_OFFSET) = operationStatus;
   if (operationStatus != 0) {
     if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-      unsignedVar4 = writeResourceData(*memoryBlockBlockBlockSize,*(uint64 *)(resourceHandle + 8),longVar7 << 3);
-      if ((int)unsignedVar4 == 0) goto LAB_18089c131;
+      validationResult1 = writeResourceData(*memoryBlockBlockBlockSize,*(uint64 *)(resourceHandle + 8),longVar7 << 3);
+      if ((int)validationResult1 == 0) goto LAB_18089c131;
     }
     else {
-      unsignedVar4 = BYTE_OFFSET_FLAG;
+      validationResult1 = BYTE_OFFSET_FLAG;
     }
-    if ((int)unsignedVar4 != 0) {
-      return unsignedVar4;
+    if ((int)validationResult1 != 0) {
+      return validationResult1;
     }
   }
 LAB_18089c131:
-  unsignedVar4 = FUN_1808ad600(memoryBlockSize,resourceHandle + RESOURCE_OFFSET_HANDLE);
-  if ((int)unsignedVar4 == 0) {
+  validationResult1 = FUN_1808ad600(memoryBlockSize,resourceHandle + RESOURCE_OFFSET_HANDLE);
+  if ((int)validationResult1 == 0) {
     if (*(uint *)(memoryBlockSize + 8) < 0x7c) {
       unsignedVar3 = 0;
     }
@@ -17359,13 +17359,13 @@ LAB_18089c131:
       unsignedVar3 = writeResourceData(*memoryBlockBlockBlockSize,resourceHandle + 4,4);
     }
     if (unsignedVar3 == 0) {
-      unsignedVar4 = cleanupFunction(resourceHandle);
+      validationResult1 = cleanupFunction(resourceHandle);
     }
     else {
-      unsignedVar4 = (ulonglong)unsignedVar3;
+      validationResult1 = (ulonglong)unsignedVar3;
     }
   }
-  return unsignedVar4;
+  return validationResult1;
 }
 
 
@@ -17378,8 +17378,8 @@ ulonglong FUN_18089c190(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
   uint64 functionResult;
   uint32 unsignedCounter;
   uint32 unsignedVar3;
-  uint32 unsignedVar4;
-  uint unsignedVar5;
+  uint32 validationResult1;
+  uint validationResult2;
   uint unsignedVar6;
   ulonglong unsignedVar7;
   uint32 *punsignedVar8;
@@ -17423,7 +17423,7 @@ ulonglong FUN_18089c190(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
   localUInt = punsignedVar8[1];
   localUInt = punsignedVar8[2];
   localUInt = punsignedVar8[3];
-  unsignedVar5 = 0;
+  validationResult2 = 0;
   if (*(uint *)(memoryBlockSize + 8) < 0x6d) {
     if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
       functionResult = *memoryBlockBlockBlockSize;
@@ -17478,7 +17478,7 @@ LAB_18089c40a:
         }
         localPtr = (uint64 *)0x0;
         localUInt = localUInt & INVALID_HANDLE;
-        unsignedVar9 = unsignedVar5;
+        unsignedVar9 = validationResult2;
       }
       if (localStatus3 < 0) {
         localLong12 = (longlong)-localStatus3;
@@ -17488,11 +17488,11 @@ LAB_18089c40a:
             punsignedVar8 = (uint32 *)FUN_180847820();
             unsignedCounter = punsignedVar8[1];
             unsignedVar3 = punsignedVar8[2];
-            unsignedVar4 = punsignedVar8[3];
+            validationResult1 = punsignedVar8[3];
             *(uint32 *)(localLong11 + -RESOURCE_DATA_OFFSET) = *punsignedVar8;
             *(uint32 *)(localLong11 + -RESOURCE_HANDLE_OFFSET) = unsignedCounter;
             *(uint32 *)(localLong11 + -STRUCT_MULTIPLIER) = unsignedVar3;
-            *(uint32 *)(localLong11 + -8) = unsignedVar4;
+            *(uint32 *)(localLong11 + -8) = validationResult1;
             *(uint64 *)(localLong11 + -4) = 0;
             localLong12 = localLong12 + -1;
             localLong11 = localLong11 + RESOURCE_OFFSET_HANDLE;
@@ -17550,7 +17550,7 @@ LAB_18089c40a:
       }
       localPtr = (uint64 *)0x0;
       localUInt = localUInt & INVALID_HANDLE;
-      unsignedVar9 = unsignedVar5;
+      unsignedVar9 = validationResult2;
     }
     if (localStatus3 < 0) {
       localLong12 = (longlong)-localStatus3;
@@ -17560,11 +17560,11 @@ LAB_18089c40a:
           punsignedVar8 = (uint32 *)FUN_180847820();
           unsignedCounter = punsignedVar8[1];
           unsignedVar3 = punsignedVar8[2];
-          unsignedVar4 = punsignedVar8[3];
+          validationResult1 = punsignedVar8[3];
           *(uint32 *)(localLong11 + -RESOURCE_DATA_OFFSET) = *punsignedVar8;
           *(uint32 *)(localLong11 + -RESOURCE_HANDLE_OFFSET) = unsignedCounter;
           *(uint32 *)(localLong11 + -STRUCT_MULTIPLIER) = unsignedVar3;
-          *(uint32 *)(localLong11 + -8) = unsignedVar4;
+          *(uint32 *)(localLong11 + -8) = validationResult1;
           *(uint64 *)(localLong11 + -4) = 0;
           localLong12 = localLong12 + -1;
           localLong11 = localLong11 + RESOURCE_OFFSET_HANDLE;
@@ -17594,11 +17594,11 @@ LAB_18089c586:
     FUN_1807d3e20(resourceHandle + SYSTEM_OFFSET_STATUS1);
   }
 LAB_18089c300:
-  if ((0x70 < *(uint *)(memoryBlockSize + 8)) && (unsignedVar5 = BYTE_OFFSET_FLAG, *(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0)) {
-    unsignedVar5 = writeResourceData(*memoryBlockBlockBlockSize,resourceHandle + 0x68,4);
+  if ((0x70 < *(uint *)(memoryBlockSize + 8)) && (validationResult2 = BYTE_OFFSET_FLAG, *(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0)) {
+    validationResult2 = writeResourceData(*memoryBlockBlockBlockSize,resourceHandle + 0x68,4);
   }
-  if (unsignedVar5 != 0) {
-    return (ulonglong)unsignedVar5;
+  if (validationResult2 != 0) {
+    return (ulonglong)validationResult2;
   }
                     // WARNING: Subroutine does not return
   freeResourceBuffer(memoryBlockSize,localBuffer);
@@ -17614,7 +17614,7 @@ uint64 * FUN_18089c1fb(void)
   uint64 functionResult;
   uint32 unsignedCounter;
   uint32 unsignedVar3;
-  uint32 unsignedVar4;
+  uint32 validationResult1;
   float floatVar5;
   float floatVar6;
   float floatVar7;
@@ -17656,11 +17656,11 @@ uint64 * FUN_18089c1fb(void)
   currentUnsignedSize = *pfunctionResult2;
   unsignedCounter = pfunctionResult2[1];
   unsignedVar3 = pfunctionResult2[2];
-  unsignedVar4 = pfunctionResult2[3];
+  validationResult1 = pfunctionResult2[3];
   *(uint32 *)(unaff_RBP + -0x19) = currentUnsignedSize;
   *(uint32 *)(unaff_RBP + -0x15) = unsignedCounter;
   *(uint32 *)(unaff_RBP + -ACCESS_FLAG) = unsignedVar3;
-  *(uint32 *)(unaff_RBP + -0xd) = unsignedVar4;
+  *(uint32 *)(unaff_RBP + -0xd) = validationResult1;
   unsignedVar8 = 0;
   pfunctionResult3 = pfunctionResult1;
   if (unsignedVar9 < 0x6d) {
@@ -17869,7 +17869,7 @@ uint64 * FUN_18089c22e(void)
   uint64 functionResult;
   uint32 unsignedCounter;
   uint32 unsignedVar3;
-  uint32 unsignedVar4;
+  uint32 validationResult1;
   float floatVar5;
   float floatVar6;
   float floatVar7;
@@ -17903,11 +17903,11 @@ uint64 * FUN_18089c22e(void)
   currentUnsignedSize = *pfunctionResult1;
   unsignedCounter = pfunctionResult1[1];
   unsignedVar3 = pfunctionResult1[2];
-  unsignedVar4 = pfunctionResult1[3];
+  validationResult1 = pfunctionResult1[3];
   *(uint32 *)(unaff_RBP + -0x19) = currentUnsignedSize;
   *(uint32 *)(unaff_RBP + -0x15) = unsignedCounter;
   *(uint32 *)(unaff_RBP + -ACCESS_FLAG) = unsignedVar3;
-  *(uint32 *)(unaff_RBP + -0xd) = unsignedVar4;
+  *(uint32 *)(unaff_RBP + -0xd) = validationResult1;
   unsignedVar8 = 0;
   pfunctionResult2 = pfunctionResult3;
   if (unsignedVar9 < 0x6d) {
@@ -18357,8 +18357,8 @@ ulonglong FUN_18089c630(longlong resourceHandle,longlong *memoryBlockBlockBlockS
   longlong *plocalLong1;
   uint unsignedCounter;
   ulonglong unsignedVar3;
-  uint32 unsignedVar4;
-  uint unsignedVar5;
+  uint32 validationResult1;
+  uint validationResult2;
   uint unsignedVar7;
   uint unsignedVar8;
   uint unsignedVar9;
@@ -18370,7 +18370,7 @@ ulonglong FUN_18089c630(longlong resourceHandle,longlong *memoryBlockBlockBlockS
   byte localBuffer [40];
   ulonglong unsignedVar6;
   
-  unsignedVar5 = 1;
+  validationResult2 = 1;
   unsignedVar3 = createResourceBuffer(memoryBlockSize,localBuffer,1,0x4d524150);
   if ((int)unsignedVar3 != 0) {
     return unsignedVar3;
@@ -18383,7 +18383,7 @@ ulonglong FUN_18089c630(longlong resourceHandle,longlong *memoryBlockBlockBlockS
   if ((int)unsignedVar3 != 0) {
     return unsignedVar3;
   }
-  unsignedVar4 = 4;
+  validationResult1 = 4;
   unsignedVar6 = 0;
   unsignedVar8 = 0;
   unsignedVar3 = unsignedVar6;
@@ -18468,39 +18468,39 @@ LAB_18089c808:
   }
   switch(localUInt) {
   case 0:
-    unsignedVar4 = 0;
+    validationResult1 = 0;
     break;
   case 1:
-    unsignedVar4 = 1;
+    validationResult1 = 1;
     break;
   case 2:
-    unsignedVar4 = 2;
+    validationResult1 = 2;
     break;
   case 3:
-    unsignedVar4 = 3;
+    validationResult1 = 3;
     break;
   case 4:
     break;
   case 5:
-    unsignedVar4 = 5;
+    validationResult1 = 5;
     break;
   case 6:
-    unsignedVar4 = 6;
+    validationResult1 = 6;
     break;
   case 7:
-    unsignedVar4 = 7;
+    validationResult1 = 7;
     break;
   case 8:
-    unsignedVar4 = 8;
+    validationResult1 = 8;
     break;
   case 9:
-    unsignedVar4 = 9;
+    validationResult1 = 9;
     break;
   default:
     unsignedVar3 = 0xd;
     goto LAB_18089c878;
   }
-  *(uint32 *)(resourceHandle + FIELD_OFFSET_1) = unsignedVar4;
+  *(uint32 *)(resourceHandle + FIELD_OFFSET_1) = validationResult1;
   unsignedVar3 = unsignedVar6;
 LAB_18089c878:
   if ((int)unsignedVar3 != 0) {
@@ -18627,10 +18627,10 @@ LAB_18089ca9c:
         }
       }
       unsignedVar8 = 0;
-      unsignedVar5 = 1;
+      validationResult2 = 1;
       if (unsignedCounter == 0) {
         unsignedVar8 = (uint)((char)unsignedStackArrayX18[0] != '\0');
-        unsignedVar5 = (uint)((char)unsignedStackArrayX18[0] == '\0');
+        validationResult2 = (uint)((char)unsignedStackArrayX18[0] == '\0');
       }
       unsignedVar3 = (ulonglong)unsignedCounter;
       if (unsignedCounter == 0) {
@@ -18646,7 +18646,7 @@ LAB_18089ca9c:
     if (unsignedCounter < 0x70) {
       *(uint *)(resourceHandle + FIELD_OFFSET_2) =
            (((unsignedStackArrayX20[0] | *(uint *)(resourceHandle + FIELD_OFFSET_2)) & ~localUInt | unsignedVar9 * 2) & ~(unsignedVar7 * 2) |
-           unsignedVar8 * 4) & ~(unsignedVar5 * 4);
+           unsignedVar8 * 4) & ~(validationResult2 * 4);
       unsignedCounter = *(uint *)(memoryBlockSize + 8);
     }
     if ((unsignedCounter < 0x87) && ((*(uint *)(resourceHandle + FIELD_OFFSET_2) >> 3 & 1) != 0)) {
@@ -18660,7 +18660,7 @@ LAB_18089cbf6:
     }
     unsignedStackArrayX20[0] = 0;
     unsignedVar3 = getResourceSize(*memoryBlockBlockBlockSize,unsignedStackArrayX20);
-    unsignedVar5 = unsignedStackArrayX20[0];
+    validationResult2 = unsignedStackArrayX20[0];
     if ((int)unsignedVar3 == 0) {
       unsignedVar8 = unsignedStackArrayX20[0] & 1;
       unsignedVar9 = unsignedStackArrayX20[0] >> 1;
@@ -18668,7 +18668,7 @@ LAB_18089cbf6:
       if ((int)unsignedVar3 == 0) {
         unsignedStackArrayX18[0] = 0;
         unsignedVar3 = unsignedVar6;
-        if (unsignedVar5 >> 1 != 0) {
+        if (validationResult2 >> 1 != 0) {
           do {
             unsignedVar3 = FUN_1808dde10(memoryBlockSize,unsignedVar3);
             if ((int)unsignedVar3 != 0) {
@@ -18688,11 +18688,11 @@ LAB_18089cbf6:
             if ((int)unsignedVar3 != 0) {
               return unsignedVar3;
             }
-            unsignedVar5 = (int)unsignedVar6 + 1;
-            unsignedVar6 = (ulonglong)unsignedVar5;
+            validationResult2 = (int)unsignedVar6 + 1;
+            unsignedVar6 = (ulonglong)validationResult2;
             unsignedStackArrayX18[0] = unsignedStackArrayX18[0] & -unsignedVar8;
             unsignedVar3 = (ulonglong)unsignedStackArrayX18[0];
-          } while ((int)unsignedVar5 < (int)unsignedVar9);
+          } while ((int)validationResult2 < (int)unsignedVar9);
         }
         goto LAB_18089cbf6;
       }
@@ -18710,10 +18710,10 @@ ulonglong FUN_18089c69d(void)
   longlong dataValueBuffer;
   int in_EAX;
   uint unsignedVar3;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   longlong *baseRegister;
   longlong unaff_RBP;
-  uint unsignedVar5;
+  uint validationResult2;
   uint unsignedVar6;
   uint unsignedVar8;
   longlong unaff_R13;
@@ -18733,20 +18733,20 @@ ulonglong FUN_18089c69d(void)
   float extraout_XMM0_Da_09;
   ulonglong unsignedVar7;
   
-  unsignedVar5 = in_EAX + 4;
+  validationResult2 = in_EAX + 4;
   unsignedVar7 = 0;
   unsignedVar6 = 0;
-  unsignedVar4 = unsignedVar7;
+  validationResult1 = unsignedVar7;
   if (0x6f < *(uint *)(baseRegister + 8)) {
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-      unsignedVar4 = writeResourceData(*baseRegister,unaff_R13 + FIELD_OFFSET_2,(ulonglong)unsignedVar5);
+      validationResult1 = writeResourceData(*baseRegister,unaff_R13 + FIELD_OFFSET_2,(ulonglong)validationResult2);
     }
     else {
-      unsignedVar4 = BYTE_OFFSET_FLAG;
+      validationResult1 = BYTE_OFFSET_FLAG;
     }
   }
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   unsignedVar8 = unsignedVar6;
   if (*(uint *)(baseRegister + 8) < 0x70) {
@@ -18798,111 +18798,111 @@ LAB_18089c78f:
   plocalLong1 = (longlong *)*baseRegister;
   dataValueBuffer = *plocalLong1;
   if (dataValueBuffer == 0) {
-    unsignedVar4 = BYTE_OFFSET_FLAG;
+    validationResult1 = BYTE_OFFSET_FLAG;
   }
   else {
     if (plocalLong1[2] != 0) {
       *(uint32 *)(unaff_RBP + 0x77) = 0;
-      unsignedVar4 = dataProcessFunction(dataValueBuffer,unaff_RBP + 0x77);
-      if ((int)unsignedVar4 != 0) {
-        return unsignedVar4;
+      validationResult1 = dataProcessFunction(dataValueBuffer,unaff_RBP + 0x77);
+      if ((int)validationResult1 != 0) {
+        return validationResult1;
       }
-      if ((ulonglong)plocalLong1[2] < (ulonglong)*(uint *)(unaff_RBP + 0x77) + (ulonglong)unsignedVar5) {
-        unsignedVar4 = ACCESS_FLAG;
+      if ((ulonglong)plocalLong1[2] < (ulonglong)*(uint *)(unaff_RBP + 0x77) + (ulonglong)validationResult2) {
+        validationResult1 = ACCESS_FLAG;
         goto LAB_18089c808;
       }
     }
-    unsignedVar4 = readResourceData(*plocalLong1,unaff_RBP + -0x25,unaff_R14D,unsignedVar5,0);
+    validationResult1 = readResourceData(*plocalLong1,unaff_RBP + -0x25,unaff_R14D,validationResult2,0);
   }
 LAB_18089c808:
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   switch(*(uint32 *)(unaff_RBP + -0x25)) {
   case 0:
-    unsignedVar5 = 0;
+    validationResult2 = 0;
     break;
   case 1:
-    unsignedVar5 = unaff_R14D;
+    validationResult2 = unaff_R14D;
     break;
   case 2:
-    unsignedVar5 = 2;
+    validationResult2 = 2;
     break;
   case 3:
-    unsignedVar5 = 3;
+    validationResult2 = 3;
     break;
   case 4:
     break;
   case 5:
-    unsignedVar5 = 5;
+    validationResult2 = 5;
     break;
   case 6:
-    unsignedVar5 = 6;
+    validationResult2 = 6;
     break;
   case 7:
-    unsignedVar5 = 7;
+    validationResult2 = 7;
     break;
   case 8:
-    unsignedVar5 = 8;
+    validationResult2 = 8;
     break;
   case 9:
-    unsignedVar5 = 9;
+    validationResult2 = 9;
     break;
   default:
-    unsignedVar4 = 0xd;
+    validationResult1 = 0xd;
     goto LAB_18089c878;
   }
-  *(uint *)(unaff_R13 + FIELD_OFFSET_1) = unsignedVar5;
-  unsignedVar4 = unsignedVar7;
+  *(uint *)(unaff_R13 + FIELD_OFFSET_1) = validationResult2;
+  validationResult1 = unsignedVar7;
 LAB_18089c878:
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  unsignedVar4 = FUN_1808a2740(*baseRegister,unaff_R13 + LIST_OFFSET_HEAD);
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  validationResult1 = FUN_1808a2740(*baseRegister,unaff_R13 + LIST_OFFSET_HEAD);
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  unsignedVar4 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + STRUCT_OFFSET_SIZE);
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  validationResult1 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + STRUCT_OFFSET_SIZE);
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  unsignedVar4 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + RESOURCE_PROPERTY_OFFSET);
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  validationResult1 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + RESOURCE_PROPERTY_OFFSET);
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  unsignedVar4 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + ERROR_CODE_2);
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  validationResult1 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + ERROR_CODE_2);
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  unsignedVar4 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + BUFFER_SIZE_OFFSET);
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  validationResult1 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + BUFFER_SIZE_OFFSET);
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  unsignedVar4 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + RESOURCE_CONFIG_OFFSET);
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  validationResult1 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + RESOURCE_CONFIG_OFFSET);
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
-  unsignedVar4 = unsignedVar7;
+  validationResult1 = unsignedVar7;
   floatVar9 = extraout_XMM0_Da;
-  unsignedVar5 = unsignedVar6;
+  validationResult2 = unsignedVar6;
   unsignedVar8 = unaff_R14D;
   if (*(uint *)(baseRegister + 8) < 0x70) {
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
@@ -18926,47 +18926,47 @@ LAB_18089c9a8:
           unsignedVar3 = ACCESS_FLAG;
         }
       }
-      unsignedVar5 = 0;
+      validationResult2 = 0;
       if (unsignedVar3 == 0) {
-        unsignedVar4 = 0;
-        unsignedVar5 = (uint)(*(char *)(unaff_RBP + 0x77) != '\0');
+        validationResult1 = 0;
+        validationResult2 = (uint)(*(char *)(unaff_RBP + 0x77) != '\0');
         unsignedVar8 = (uint)(*(char *)(unaff_RBP + 0x77) == '\0');
       }
       else {
-        unsignedVar4 = (ulonglong)unsignedVar3;
+        validationResult1 = (ulonglong)unsignedVar3;
         if (unsignedVar3 == 0) {
-          unsignedVar4 = unsignedVar7;
+          validationResult1 = unsignedVar7;
         }
       }
     }
     else {
-      unsignedVar4 = BYTE_OFFSET_FLAG;
+      validationResult1 = BYTE_OFFSET_FLAG;
     }
   }
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   if ((*(uint *)(baseRegister + 8) < DATA_OFFSET_START) &&
-     (unsignedVar4 = systemTestFunction(), floatVar9 = extraout_XMM0_Da_02, (int)unsignedVar4 != 0)) {
-    return unsignedVar4;
+     (validationResult1 = systemTestFunction(), floatVar9 = extraout_XMM0_Da_02, (int)validationResult1 != 0)) {
+    return validationResult1;
   }
-  unsignedVar4 = unsignedVar7;
+  validationResult1 = unsignedVar7;
   if (0x51 < *(uint *)(baseRegister + 8)) {
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-      unsignedVar4 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + BUFFER_OFFSET_DATA);
+      validationResult1 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + BUFFER_OFFSET_DATA);
       floatVar9 = extraout_XMM0_Da_03;
     }
     else {
-      unsignedVar4 = BYTE_OFFSET_FLAG;
+      validationResult1 = BYTE_OFFSET_FLAG;
     }
   }
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
-  unsignedVar4 = unsignedVar7;
+  validationResult1 = unsignedVar7;
   if (ERROR_CODE_5 < (int)baseRegister[8] - 0x52U) goto LAB_18089cad8;
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
-    unsignedVar4 = BYTE_OFFSET_FLAG;
+    validationResult1 = BYTE_OFFSET_FLAG;
     goto LAB_18089cad8;
   }
   plocalLong1 = (longlong *)*baseRegister;
@@ -18993,19 +18993,19 @@ LAB_18089ca9c:
     unsignedVar6 = (uint)(*(char *)(unaff_RBP + 0x77) != '\0');
     unaff_R14D = (uint)(*(char *)(unaff_RBP + 0x77) == '\0');
   }
-  unsignedVar4 = (ulonglong)unsignedVar3;
+  validationResult1 = (ulonglong)unsignedVar3;
   if (unsignedVar3 == 0) {
-    unsignedVar4 = unsignedVar7;
+    validationResult1 = unsignedVar7;
   }
 LAB_18089cad8:
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   unsignedVar3 = *(uint *)(baseRegister + 8);
   if (unsignedVar3 < 0x70) {
     *(uint *)(unaff_R13 + FIELD_OFFSET_2) =
          (((*(uint *)(unaff_RBP + 0x7f) | *(uint *)(unaff_R13 + FIELD_OFFSET_2)) &
-           ~*(uint *)(unaff_RBP + -BYTE_OFFSET_1) | unsignedVar5 * 2) & ~(unsignedVar8 * 2) | unsignedVar6 * 4) &
+           ~*(uint *)(unaff_RBP + -BYTE_OFFSET_1) | validationResult2 * 2) & ~(unsignedVar8 * 2) | unsignedVar6 * 4) &
          ~(unaff_R14D * 4);
     unsignedVar3 = *(uint *)(baseRegister + 8);
   }
@@ -19017,47 +19017,47 @@ LAB_18089cad8:
   if (0x8a < unsignedVar3) {
     dataValueBuffer = *baseRegister;
     *(uint32 *)(unaff_RBP + 0x7f) = 0;
-    unsignedVar4 = getResourceSize(dataValueBuffer,unaff_RBP + 0x7f);
-    if ((int)unsignedVar4 != 0) {
-      return unsignedVar4;
+    validationResult1 = getResourceSize(dataValueBuffer,unaff_RBP + 0x7f);
+    if ((int)validationResult1 != 0) {
+      return validationResult1;
     }
-    unsignedVar5 = *(uint *)(unaff_RBP + 0x7f);
-    unsignedVar4 = FUN_1808af8b0(unaff_R13 + DATA_OFFSET_START,unsignedVar5 >> 1);
-    if ((int)unsignedVar4 != 0) {
-      return unsignedVar4;
+    validationResult2 = *(uint *)(unaff_RBP + 0x7f);
+    validationResult1 = FUN_1808af8b0(unaff_R13 + DATA_OFFSET_START,validationResult2 >> 1);
+    if ((int)validationResult1 != 0) {
+      return validationResult1;
     }
     *(uint32 *)(unaff_RBP + 0x77) = 0;
-    unsignedVar4 = unsignedVar7;
+    validationResult1 = unsignedVar7;
     floatVar9 = extraout_XMM0_Da_06;
-    if (unsignedVar5 >> 1 != 0) {
+    if (validationResult2 >> 1 != 0) {
       do {
-        unsignedVar4 = FUN_1808dde10(floatVar9,unsignedVar4);
-        if ((int)unsignedVar4 != 0) {
-          return unsignedVar4;
+        validationResult1 = FUN_1808dde10(floatVar9,validationResult1);
+        if ((int)validationResult1 != 0) {
+          return validationResult1;
         }
         if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-          unsignedVar4 = FUN_1808a2740(*baseRegister,
+          validationResult1 = FUN_1808a2740(*baseRegister,
                                 (longlong)(int)unsignedVar7 * RESOURCE_HANDLE_OFFSET + *(longlong *)(unaff_R13 + DATA_OFFSET_START));
           functionResult0 = extraout_XMM0_Da_08;
         }
         else {
-          unsignedVar4 = BYTE_OFFSET_FLAG;
+          validationResult1 = BYTE_OFFSET_FLAG;
           functionResult0 = extraout_XMM0_Da_07;
         }
-        if ((int)unsignedVar4 != 0) {
-          return unsignedVar4;
+        if ((int)validationResult1 != 0) {
+          return validationResult1;
         }
-        unsignedVar4 = FUN_1808de0e0(functionResult0,unaff_RBP + 0x77);
-        if ((int)unsignedVar4 != 0) {
-          return unsignedVar4;
+        validationResult1 = FUN_1808de0e0(functionResult0,unaff_RBP + 0x77);
+        if ((int)validationResult1 != 0) {
+          return validationResult1;
         }
         unsignedVar6 = (int)unsignedVar7 + 1;
         unsignedVar7 = (ulonglong)unsignedVar6;
-        unsignedVar8 = *(uint *)(unaff_RBP + 0x77) & -(unsignedVar5 & 1);
-        unsignedVar4 = (ulonglong)unsignedVar8;
+        unsignedVar8 = *(uint *)(unaff_RBP + 0x77) & -(validationResult2 & 1);
+        validationResult1 = (ulonglong)unsignedVar8;
         *(uint *)(unaff_RBP + 0x77) = unsignedVar8;
         floatVar9 = extraout_XMM0_Da_09;
-      } while ((int)unsignedVar6 < (int)(unsignedVar5 >> 1));
+      } while ((int)unsignedVar6 < (int)(validationResult2 >> 1));
     }
   }
                     // WARNING: Subroutine does not return
@@ -19072,8 +19072,8 @@ ulonglong FUN_18089c86d(void)
   longlong *plocalLong1;
   longlong dataValueBuffer;
   uint64_t unsignedVar3;
-  uint unsignedVar4;
-  ulonglong unsignedVar5;
+  uint validationResult1;
+  ulonglong validationResult2;
   ulonglong unsignedVar6;
   int integerVar7;
   longlong *baseRegister;
@@ -19106,44 +19106,44 @@ ulonglong FUN_18089c86d(void)
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  unsignedVar5 = FUN_1808a2740(*baseRegister,unaff_R13 + LIST_OFFSET_HEAD);
-  if ((int)unsignedVar5 != 0) {
-    return unsignedVar5;
+  validationResult2 = FUN_1808a2740(*baseRegister,unaff_R13 + LIST_OFFSET_HEAD);
+  if ((int)validationResult2 != 0) {
+    return validationResult2;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + STRUCT_OFFSET_SIZE);
-  if ((int)unsignedVar5 != 0) {
-    return unsignedVar5;
+  validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + STRUCT_OFFSET_SIZE);
+  if ((int)validationResult2 != 0) {
+    return validationResult2;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + RESOURCE_PROPERTY_OFFSET);
-  if ((int)unsignedVar5 != 0) {
-    return unsignedVar5;
+  validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + RESOURCE_PROPERTY_OFFSET);
+  if ((int)validationResult2 != 0) {
+    return validationResult2;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + ERROR_CODE_2);
-  if ((int)unsignedVar5 != 0) {
-    return unsignedVar5;
+  validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + ERROR_CODE_2);
+  if ((int)validationResult2 != 0) {
+    return validationResult2;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + BUFFER_SIZE_OFFSET);
-  if ((int)unsignedVar5 != 0) {
-    return unsignedVar5;
+  validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + BUFFER_SIZE_OFFSET);
+  if ((int)validationResult2 != 0) {
+    return validationResult2;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + RESOURCE_CONFIG_OFFSET);
-  if ((int)unsignedVar5 != 0) {
-    return unsignedVar5;
+  validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + RESOURCE_CONFIG_OFFSET);
+  if ((int)validationResult2 != 0) {
+    return validationResult2;
   }
   unsignedVar3 = (dataValue7)(unaff_RDI >> 8);
   integerVar7 = 0;
@@ -19155,130 +19155,130 @@ ulonglong FUN_18089c86d(void)
       plocalLong1 = (longlong *)*baseRegister;
       dataValueBuffer = *plocalLong1;
       if (dataValueBuffer == 0) {
-        unsignedVar4 = BYTE_OFFSET_FLAG;
+        validationResult1 = BYTE_OFFSET_FLAG;
       }
       else if (plocalLong1[2] == unaff_RDI) {
 LAB_18089c9a8:
-        unsignedVar4 = readResourceData(*plocalLong1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
+        validationResult1 = readResourceData(*plocalLong1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
         floatVar12 = extraout_XMM0_Da_01;
       }
       else {
         *(uint32 *)(unaff_RBP + -0x25) = 0;
-        unsignedVar4 = dataProcessFunction(dataValueBuffer,unaff_RBP + -0x25);
+        validationResult1 = dataProcessFunction(dataValueBuffer,unaff_RBP + -0x25);
         floatVar12 = extraout_XMM0_Da_00;
-        if (unsignedVar4 == 0) {
+        if (validationResult1 == 0) {
           if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)plocalLong1[2])
           goto LAB_18089c9a8;
-          unsignedVar4 = ACCESS_FLAG;
+          validationResult1 = ACCESS_FLAG;
         }
       }
-      if (unsignedVar4 == 0) {
-        unsignedVar5 = unaff_RDI & INVALID_HANDLE;
+      if (validationResult1 == 0) {
+        validationResult2 = unaff_RDI & INVALID_HANDLE;
         localStatus1 = (int)CONCAT71(unsignedVar3,*(char *)(unaff_RBP + 0x77) != '\0');
         localStatus0 = (int)CONCAT71(unsignedVar3,*(char *)(unaff_RBP + 0x77) == '\0');
       }
       else {
-        unsignedVar5 = (ulonglong)unsignedVar4;
-        if (unsignedVar4 == 0) {
-          unsignedVar5 = unaff_RDI & INVALID_HANDLE;
+        validationResult2 = (ulonglong)validationResult1;
+        if (validationResult1 == 0) {
+          validationResult2 = unaff_RDI & INVALID_HANDLE;
         }
       }
     }
     else {
-      unsignedVar5 = BYTE_OFFSET_FLAG;
+      validationResult2 = BYTE_OFFSET_FLAG;
     }
   }
   else {
-    unsignedVar5 = unaff_RDI & INVALID_HANDLE;
+    validationResult2 = unaff_RDI & INVALID_HANDLE;
   }
-  if ((int)unsignedVar5 != 0) {
-    return unsignedVar5;
+  if ((int)validationResult2 != 0) {
+    return validationResult2;
   }
   if ((*(uint *)(baseRegister + 8) < DATA_OFFSET_START) &&
-     (unsignedVar5 = systemTestFunction(), floatVar12 = extraout_XMM0_Da_02, (int)unsignedVar5 != 0)) {
-    return unsignedVar5;
+     (validationResult2 = systemTestFunction(), floatVar12 = extraout_XMM0_Da_02, (int)validationResult2 != 0)) {
+    return validationResult2;
   }
   if (*(uint *)(baseRegister + 8) < 0x52) {
-    unsignedVar5 = unaff_RDI & INVALID_HANDLE;
+    validationResult2 = unaff_RDI & INVALID_HANDLE;
   }
   else if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-    unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + BUFFER_OFFSET_DATA);
+    validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + BUFFER_OFFSET_DATA);
     floatVar12 = extraout_XMM0_Da_03;
   }
   else {
-    unsignedVar5 = BYTE_OFFSET_FLAG;
+    validationResult2 = BYTE_OFFSET_FLAG;
   }
-  if ((int)unsignedVar5 != 0) {
-    return unsignedVar5;
+  if ((int)validationResult2 != 0) {
+    return validationResult2;
   }
   if (ERROR_CODE_5 < (int)baseRegister[8] - 0x52U) {
-    unsignedVar5 = unaff_RDI & INVALID_HANDLE;
+    validationResult2 = unaff_RDI & INVALID_HANDLE;
     goto LAB_18089cad8;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
-    unsignedVar5 = BYTE_OFFSET_FLAG;
+    validationResult2 = BYTE_OFFSET_FLAG;
     goto LAB_18089cad8;
   }
   plocalLong1 = (longlong *)*baseRegister;
   dataValueBuffer = *plocalLong1;
   if (dataValueBuffer == 0) {
-    unsignedVar4 = BYTE_OFFSET_FLAG;
+    validationResult1 = BYTE_OFFSET_FLAG;
   }
   else if (plocalLong1[2] == unaff_RDI) {
 LAB_18089ca9c:
-    unsignedVar4 = readResourceData(*plocalLong1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
+    validationResult1 = readResourceData(*plocalLong1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
     floatVar12 = extraout_XMM0_Da_05;
   }
   else {
     *(uint32 *)(unaff_RBP + -0x25) = 0;
-    unsignedVar4 = dataProcessFunction(dataValueBuffer,unaff_RBP + -0x25);
+    validationResult1 = dataProcessFunction(dataValueBuffer,unaff_RBP + -0x25);
     floatVar12 = extraout_XMM0_Da_04;
-    if (unsignedVar4 == 0) {
+    if (validationResult1 == 0) {
       if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)plocalLong1[2]) goto LAB_18089ca9c;
-      unsignedVar4 = ACCESS_FLAG;
+      validationResult1 = ACCESS_FLAG;
     }
   }
-  if (unsignedVar4 == 0) {
+  if (validationResult1 == 0) {
     integerVar7 = (int)CONCAT71(unsignedVar3,*(char *)(unaff_RBP + 0x77) != '\0');
     unaff_R14D = (int)CONCAT71(unsignedVar3,*(char *)(unaff_RBP + 0x77) == '\0');
   }
-  unsignedVar5 = (ulonglong)unsignedVar4;
-  if (unsignedVar4 == 0) {
-    unsignedVar5 = unaff_RDI & INVALID_HANDLE;
+  validationResult2 = (ulonglong)validationResult1;
+  if (validationResult1 == 0) {
+    validationResult2 = unaff_RDI & INVALID_HANDLE;
   }
 LAB_18089cad8:
-  if ((int)unsignedVar5 != 0) {
-    return unsignedVar5;
+  if ((int)validationResult2 != 0) {
+    return validationResult2;
   }
-  unsignedVar4 = *(uint *)(baseRegister + 8);
-  if (unsignedVar4 < 0x70) {
+  validationResult1 = *(uint *)(baseRegister + 8);
+  if (validationResult1 < 0x70) {
     *(uint *)(unaff_R13 + FIELD_OFFSET_2) =
          (((*(uint *)(unaff_RBP + 0x7f) | *(uint *)(unaff_R13 + FIELD_OFFSET_2)) &
            ~*(uint *)(unaff_RBP + -BYTE_OFFSET_1) | localStatus1 * 2) & ~(localStatus0 * 2) | integerVar7 * 4) &
          ~(unaff_R14D * 4);
-    unsignedVar4 = *(uint *)(baseRegister + 8);
+    validationResult1 = *(uint *)(baseRegister + 8);
   }
-  if ((unsignedVar4 < 0x87) && ((*(uint *)(unaff_R13 + FIELD_OFFSET_2) >> 3 & 1) != 0)) {
+  if ((validationResult1 < 0x87) && ((*(uint *)(unaff_R13 + FIELD_OFFSET_2) >> 3 & 1) != 0)) {
     floatVar12 = *(float *)(unaff_R13 + RESOURCE_PROPERTY_OFFSET) - 1.0;
     *(float *)(unaff_R13 + RESOURCE_PROPERTY_OFFSET) = floatVar12;
-    unsignedVar4 = *(uint *)(baseRegister + 8);
+    validationResult1 = *(uint *)(baseRegister + 8);
   }
-  if (0x8a < unsignedVar4) {
+  if (0x8a < validationResult1) {
     dataValueBuffer = *baseRegister;
     *(uint32 *)(unaff_RBP + 0x7f) = 0;
-    unsignedVar5 = getResourceSize(dataValueBuffer,unaff_RBP + 0x7f);
-    if ((int)unsignedVar5 != 0) {
-      return unsignedVar5;
+    validationResult2 = getResourceSize(dataValueBuffer,unaff_RBP + 0x7f);
+    if ((int)validationResult2 != 0) {
+      return validationResult2;
     }
-    unsignedVar4 = *(uint *)(unaff_RBP + 0x7f);
-    unsignedVar5 = FUN_1808af8b0(unaff_R13 + DATA_OFFSET_START,unsignedVar4 >> 1);
-    if ((int)unsignedVar5 != 0) {
-      return unsignedVar5;
+    validationResult1 = *(uint *)(unaff_RBP + 0x7f);
+    validationResult2 = FUN_1808af8b0(unaff_R13 + DATA_OFFSET_START,validationResult1 >> 1);
+    if ((int)validationResult2 != 0) {
+      return validationResult2;
     }
     *(uint32 *)(unaff_RBP + 0x77) = 0;
-    unsignedVar5 = unaff_RDI & INVALID_HANDLE;
+    validationResult2 = unaff_RDI & INVALID_HANDLE;
     floatVar12 = extraout_XMM0_Da_06;
-    if (unsignedVar4 >> 1 != 0) {
+    if (validationResult1 >> 1 != 0) {
       do {
         unsignedVar6 = FUN_1808dde10(floatVar12,unaff_RDI & INVALID_HANDLE);
         if ((int)unsignedVar6 != 0) {
@@ -19286,7 +19286,7 @@ LAB_18089cad8:
         }
         if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
           unsignedVar6 = FUN_1808a2740(*baseRegister,
-                                (longlong)(int)unsignedVar5 * RESOURCE_HANDLE_OFFSET + *(longlong *)(unaff_R13 + DATA_OFFSET_START));
+                                (longlong)(int)validationResult2 * RESOURCE_HANDLE_OFFSET + *(longlong *)(unaff_R13 + DATA_OFFSET_START));
           functionResult3 = extraout_XMM0_Da_08;
         }
         else {
@@ -19300,13 +19300,13 @@ LAB_18089cad8:
         if ((int)unsignedVar6 != 0) {
           return unsignedVar6;
         }
-        unsignedVar8 = (int)unsignedVar5 + 1;
-        unsignedVar5 = (ulonglong)unsignedVar8;
-        unsignedVar9 = *(uint *)(unaff_RBP + 0x77) & -(unsignedVar4 & 1);
+        unsignedVar8 = (int)validationResult2 + 1;
+        validationResult2 = (ulonglong)unsignedVar8;
+        unsignedVar9 = *(uint *)(unaff_RBP + 0x77) & -(validationResult1 & 1);
         unaff_RDI = (ulonglong)unsignedVar9;
         *(uint *)(unaff_RBP + 0x77) = unsignedVar9;
         floatVar12 = extraout_XMM0_Da_09;
-      } while ((int)unsignedVar8 < (int)(unsignedVar4 >> 1));
+      } while ((int)unsignedVar8 < (int)(validationResult1 >> 1));
     }
   }
                     // WARNING: Subroutine does not return
@@ -19321,8 +19321,8 @@ ulonglong FUN_18089c872(void)
   longlong *plocalLong1;
   longlong dataValueBuffer;
   uint64_t unsignedVar3;
-  uint unsignedVar4;
-  ulonglong unsignedVar5;
+  uint validationResult1;
+  ulonglong validationResult2;
   ulonglong unsignedVar6;
   int integerVar7;
   longlong *baseRegister;
@@ -19356,44 +19356,44 @@ ulonglong FUN_18089c872(void)
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  unsignedVar5 = FUN_1808a2740(*baseRegister,unaff_R13 + LIST_OFFSET_HEAD);
-  if ((int)unsignedVar5 != 0) {
-    return unsignedVar5;
+  validationResult2 = FUN_1808a2740(*baseRegister,unaff_R13 + LIST_OFFSET_HEAD);
+  if ((int)validationResult2 != 0) {
+    return validationResult2;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + STRUCT_OFFSET_SIZE);
-  if ((int)unsignedVar5 != 0) {
-    return unsignedVar5;
+  validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + STRUCT_OFFSET_SIZE);
+  if ((int)validationResult2 != 0) {
+    return validationResult2;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + RESOURCE_PROPERTY_OFFSET);
-  if ((int)unsignedVar5 != 0) {
-    return unsignedVar5;
+  validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + RESOURCE_PROPERTY_OFFSET);
+  if ((int)validationResult2 != 0) {
+    return validationResult2;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + ERROR_CODE_2);
-  if ((int)unsignedVar5 != 0) {
-    return unsignedVar5;
+  validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + ERROR_CODE_2);
+  if ((int)validationResult2 != 0) {
+    return validationResult2;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + BUFFER_SIZE_OFFSET);
-  if ((int)unsignedVar5 != 0) {
-    return unsignedVar5;
+  validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + BUFFER_SIZE_OFFSET);
+  if ((int)validationResult2 != 0) {
+    return validationResult2;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + RESOURCE_CONFIG_OFFSET);
-  if ((int)unsignedVar5 != 0) {
-    return unsignedVar5;
+  validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + RESOURCE_CONFIG_OFFSET);
+  if ((int)validationResult2 != 0) {
+    return validationResult2;
   }
   unsignedVar3 = (dataValue7)(unaff_RDI >> 8);
   integerVar7 = 0;
@@ -19405,130 +19405,130 @@ ulonglong FUN_18089c872(void)
       plocalLong1 = (longlong *)*baseRegister;
       dataValueBuffer = *plocalLong1;
       if (dataValueBuffer == 0) {
-        unsignedVar4 = BYTE_OFFSET_FLAG;
+        validationResult1 = BYTE_OFFSET_FLAG;
       }
       else if (plocalLong1[2] == unaff_RDI) {
 LAB_18089c9a8:
-        unsignedVar4 = readResourceData(*plocalLong1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
+        validationResult1 = readResourceData(*plocalLong1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
         floatVar12 = extraout_XMM0_Da_01;
       }
       else {
         *(uint32 *)(unaff_RBP + -0x25) = 0;
-        unsignedVar4 = dataProcessFunction(dataValueBuffer,unaff_RBP + -0x25);
+        validationResult1 = dataProcessFunction(dataValueBuffer,unaff_RBP + -0x25);
         floatVar12 = extraout_XMM0_Da_00;
-        if (unsignedVar4 == 0) {
+        if (validationResult1 == 0) {
           if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)plocalLong1[2])
           goto LAB_18089c9a8;
-          unsignedVar4 = ACCESS_FLAG;
+          validationResult1 = ACCESS_FLAG;
         }
       }
-      if (unsignedVar4 == 0) {
-        unsignedVar5 = unaff_RDI & INVALID_HANDLE;
+      if (validationResult1 == 0) {
+        validationResult2 = unaff_RDI & INVALID_HANDLE;
         localStatus1 = (int)CONCAT71(unsignedVar3,*(char *)(unaff_RBP + 0x77) != '\0');
         localStatus0 = (int)CONCAT71(unsignedVar3,*(char *)(unaff_RBP + 0x77) == '\0');
       }
       else {
-        unsignedVar5 = (ulonglong)unsignedVar4;
-        if (unsignedVar4 == 0) {
-          unsignedVar5 = unaff_RDI & INVALID_HANDLE;
+        validationResult2 = (ulonglong)validationResult1;
+        if (validationResult1 == 0) {
+          validationResult2 = unaff_RDI & INVALID_HANDLE;
         }
       }
     }
     else {
-      unsignedVar5 = BYTE_OFFSET_FLAG;
+      validationResult2 = BYTE_OFFSET_FLAG;
     }
   }
   else {
-    unsignedVar5 = unaff_RDI & INVALID_HANDLE;
+    validationResult2 = unaff_RDI & INVALID_HANDLE;
   }
-  if ((int)unsignedVar5 != 0) {
-    return unsignedVar5;
+  if ((int)validationResult2 != 0) {
+    return validationResult2;
   }
   if ((*(uint *)(baseRegister + 8) < DATA_OFFSET_START) &&
-     (unsignedVar5 = systemTestFunction(), floatVar12 = extraout_XMM0_Da_02, (int)unsignedVar5 != 0)) {
-    return unsignedVar5;
+     (validationResult2 = systemTestFunction(), floatVar12 = extraout_XMM0_Da_02, (int)validationResult2 != 0)) {
+    return validationResult2;
   }
   if (*(uint *)(baseRegister + 8) < 0x52) {
-    unsignedVar5 = unaff_RDI & INVALID_HANDLE;
+    validationResult2 = unaff_RDI & INVALID_HANDLE;
   }
   else if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-    unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + BUFFER_OFFSET_DATA);
+    validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + BUFFER_OFFSET_DATA);
     floatVar12 = extraout_XMM0_Da_03;
   }
   else {
-    unsignedVar5 = BYTE_OFFSET_FLAG;
+    validationResult2 = BYTE_OFFSET_FLAG;
   }
-  if ((int)unsignedVar5 != 0) {
-    return unsignedVar5;
+  if ((int)validationResult2 != 0) {
+    return validationResult2;
   }
   if (ERROR_CODE_5 < (int)baseRegister[8] - 0x52U) {
-    unsignedVar5 = unaff_RDI & INVALID_HANDLE;
+    validationResult2 = unaff_RDI & INVALID_HANDLE;
     goto LAB_18089cad8;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
-    unsignedVar5 = BYTE_OFFSET_FLAG;
+    validationResult2 = BYTE_OFFSET_FLAG;
     goto LAB_18089cad8;
   }
   plocalLong1 = (longlong *)*baseRegister;
   dataValueBuffer = *plocalLong1;
   if (dataValueBuffer == 0) {
-    unsignedVar4 = BYTE_OFFSET_FLAG;
+    validationResult1 = BYTE_OFFSET_FLAG;
   }
   else if (plocalLong1[2] == unaff_RDI) {
 LAB_18089ca9c:
-    unsignedVar4 = readResourceData(*plocalLong1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
+    validationResult1 = readResourceData(*plocalLong1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
     floatVar12 = extraout_XMM0_Da_05;
   }
   else {
     *(uint32 *)(unaff_RBP + -0x25) = 0;
-    unsignedVar4 = dataProcessFunction(dataValueBuffer,unaff_RBP + -0x25);
+    validationResult1 = dataProcessFunction(dataValueBuffer,unaff_RBP + -0x25);
     floatVar12 = extraout_XMM0_Da_04;
-    if (unsignedVar4 == 0) {
+    if (validationResult1 == 0) {
       if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)plocalLong1[2]) goto LAB_18089ca9c;
-      unsignedVar4 = ACCESS_FLAG;
+      validationResult1 = ACCESS_FLAG;
     }
   }
-  if (unsignedVar4 == 0) {
+  if (validationResult1 == 0) {
     integerVar7 = (int)CONCAT71(unsignedVar3,*(char *)(unaff_RBP + 0x77) != '\0');
     unaff_R14D = (int)CONCAT71(unsignedVar3,*(char *)(unaff_RBP + 0x77) == '\0');
   }
-  unsignedVar5 = (ulonglong)unsignedVar4;
-  if (unsignedVar4 == 0) {
-    unsignedVar5 = unaff_RDI & INVALID_HANDLE;
+  validationResult2 = (ulonglong)validationResult1;
+  if (validationResult1 == 0) {
+    validationResult2 = unaff_RDI & INVALID_HANDLE;
   }
 LAB_18089cad8:
-  if ((int)unsignedVar5 != 0) {
-    return unsignedVar5;
+  if ((int)validationResult2 != 0) {
+    return validationResult2;
   }
-  unsignedVar4 = *(uint *)(baseRegister + 8);
-  if (unsignedVar4 < 0x70) {
+  validationResult1 = *(uint *)(baseRegister + 8);
+  if (validationResult1 < 0x70) {
     *(uint *)(unaff_R13 + FIELD_OFFSET_2) =
          (((*(uint *)(unaff_RBP + 0x7f) | *(uint *)(unaff_R13 + FIELD_OFFSET_2)) &
            ~*(uint *)(unaff_RBP + -BYTE_OFFSET_1) | localStatus1 * 2) & ~(localStatus0 * 2) | integerVar7 * 4) &
          ~(unaff_R14D * 4);
-    unsignedVar4 = *(uint *)(baseRegister + 8);
+    validationResult1 = *(uint *)(baseRegister + 8);
   }
-  if ((unsignedVar4 < 0x87) && ((*(uint *)(unaff_R13 + FIELD_OFFSET_2) >> 3 & 1) != 0)) {
+  if ((validationResult1 < 0x87) && ((*(uint *)(unaff_R13 + FIELD_OFFSET_2) >> 3 & 1) != 0)) {
     floatVar12 = *(float *)(unaff_R13 + RESOURCE_PROPERTY_OFFSET) - 1.0;
     *(float *)(unaff_R13 + RESOURCE_PROPERTY_OFFSET) = floatVar12;
-    unsignedVar4 = *(uint *)(baseRegister + 8);
+    validationResult1 = *(uint *)(baseRegister + 8);
   }
-  if (0x8a < unsignedVar4) {
+  if (0x8a < validationResult1) {
     dataValueBuffer = *baseRegister;
     *(uint32 *)(unaff_RBP + 0x7f) = 0;
-    unsignedVar5 = getResourceSize(dataValueBuffer,unaff_RBP + 0x7f);
-    if ((int)unsignedVar5 != 0) {
-      return unsignedVar5;
+    validationResult2 = getResourceSize(dataValueBuffer,unaff_RBP + 0x7f);
+    if ((int)validationResult2 != 0) {
+      return validationResult2;
     }
-    unsignedVar4 = *(uint *)(unaff_RBP + 0x7f);
-    unsignedVar5 = FUN_1808af8b0(unaff_R13 + DATA_OFFSET_START,unsignedVar4 >> 1);
-    if ((int)unsignedVar5 != 0) {
-      return unsignedVar5;
+    validationResult1 = *(uint *)(unaff_RBP + 0x7f);
+    validationResult2 = FUN_1808af8b0(unaff_R13 + DATA_OFFSET_START,validationResult1 >> 1);
+    if ((int)validationResult2 != 0) {
+      return validationResult2;
     }
     *(uint32 *)(unaff_RBP + 0x77) = 0;
-    unsignedVar5 = unaff_RDI & INVALID_HANDLE;
+    validationResult2 = unaff_RDI & INVALID_HANDLE;
     floatVar12 = extraout_XMM0_Da_06;
-    if (unsignedVar4 >> 1 != 0) {
+    if (validationResult1 >> 1 != 0) {
       do {
         unsignedVar6 = FUN_1808dde10(floatVar12,unaff_RDI & INVALID_HANDLE);
         if ((int)unsignedVar6 != 0) {
@@ -19536,7 +19536,7 @@ LAB_18089cad8:
         }
         if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
           unsignedVar6 = FUN_1808a2740(*baseRegister,
-                                (longlong)(int)unsignedVar5 * RESOURCE_HANDLE_OFFSET + *(longlong *)(unaff_R13 + DATA_OFFSET_START));
+                                (longlong)(int)validationResult2 * RESOURCE_HANDLE_OFFSET + *(longlong *)(unaff_R13 + DATA_OFFSET_START));
           functionResult3 = extraout_XMM0_Da_08;
         }
         else {
@@ -19550,13 +19550,13 @@ LAB_18089cad8:
         if ((int)unsignedVar6 != 0) {
           return unsignedVar6;
         }
-        unsignedVar8 = (int)unsignedVar5 + 1;
-        unsignedVar5 = (ulonglong)unsignedVar8;
-        unsignedVar9 = *(uint *)(unaff_RBP + 0x77) & -(unsignedVar4 & 1);
+        unsignedVar8 = (int)validationResult2 + 1;
+        validationResult2 = (ulonglong)unsignedVar8;
+        unsignedVar9 = *(uint *)(unaff_RBP + 0x77) & -(validationResult1 & 1);
         unaff_RDI = (ulonglong)unsignedVar9;
         *(uint *)(unaff_RBP + 0x77) = unsignedVar9;
         floatVar12 = extraout_XMM0_Da_09;
-      } while ((int)unsignedVar8 < (int)(unsignedVar4 >> 1));
+      } while ((int)unsignedVar8 < (int)(validationResult1 >> 1));
     }
   }
                     // WARNING: Subroutine does not return
@@ -19571,8 +19571,8 @@ ulonglong FUN_18089c94a(float resourceHandle)
   longlong *plocalLong1;
   longlong dataValueBuffer;
   uint64_t unsignedVar3;
-  uint unsignedVar4;
-  ulonglong unsignedVar5;
+  uint validationResult1;
+  ulonglong validationResult2;
   ulonglong unsignedVar6;
   int integerVar7;
   longlong *baseRegister;
@@ -19608,31 +19608,31 @@ ulonglong FUN_18089c94a(float resourceHandle)
       plocalLong1 = (longlong *)*baseRegister;
       dataValueBuffer = *plocalLong1;
       if (dataValueBuffer == 0) {
-        unsignedVar4 = BYTE_OFFSET_FLAG;
+        validationResult1 = BYTE_OFFSET_FLAG;
       }
       else if (plocalLong1[2] == unaff_RDI) {
 LAB_18089c9a8:
-        unsignedVar4 = readResourceData(*plocalLong1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
+        validationResult1 = readResourceData(*plocalLong1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
         resourceHandle = extraout_XMM0_Da_00;
       }
       else {
         *(int *)(unaff_RBP + -0x25) = integerVar9;
-        unsignedVar4 = dataProcessFunction(dataValueBuffer,unaff_RBP + -0x25);
+        validationResult1 = dataProcessFunction(dataValueBuffer,unaff_RBP + -0x25);
         resourceHandle = extraout_XMM0_Da;
-        if (unsignedVar4 == 0) {
+        if (validationResult1 == 0) {
           if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)plocalLong1[2])
           goto LAB_18089c9a8;
-          unsignedVar4 = ACCESS_FLAG;
+          validationResult1 = ACCESS_FLAG;
         }
       }
-      if (unsignedVar4 == 0) {
+      if (validationResult1 == 0) {
         unsignedVar6 = unaff_RDI & INVALID_HANDLE;
         localStatus2 = (int)CONCAT71(unsignedVar3,*(char *)(unaff_RBP + 0x77) != '\0');
         localStatus1 = (int)CONCAT71(unsignedVar3,*(char *)(unaff_RBP + 0x77) == '\0');
       }
       else {
-        unsignedVar6 = (ulonglong)unsignedVar4;
-        if (unsignedVar4 == 0) {
+        unsignedVar6 = (ulonglong)validationResult1;
+        if (validationResult1 == 0) {
           unsignedVar6 = unaff_RDI & INVALID_HANDLE;
         }
       }
@@ -19670,29 +19670,29 @@ LAB_18089c9a8:
       plocalLong1 = (longlong *)*baseRegister;
       dataValueBuffer = *plocalLong1;
       if (dataValueBuffer == 0) {
-        unsignedVar4 = BYTE_OFFSET_FLAG;
+        validationResult1 = BYTE_OFFSET_FLAG;
       }
       else if (plocalLong1[2] == unaff_RDI) {
 LAB_18089ca9c:
-        unsignedVar4 = readResourceData(*plocalLong1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
+        validationResult1 = readResourceData(*plocalLong1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
         resourceHandle = extraout_XMM0_Da_04;
       }
       else {
         *(int *)(unaff_RBP + -0x25) = integerVar9;
-        unsignedVar4 = dataProcessFunction(dataValueBuffer,unaff_RBP + -0x25);
+        validationResult1 = dataProcessFunction(dataValueBuffer,unaff_RBP + -0x25);
         resourceHandle = extraout_XMM0_Da_03;
-        if (unsignedVar4 == 0) {
+        if (validationResult1 == 0) {
           if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)plocalLong1[2])
           goto LAB_18089ca9c;
-          unsignedVar4 = ACCESS_FLAG;
+          validationResult1 = ACCESS_FLAG;
         }
       }
-      if (unsignedVar4 == 0) {
+      if (validationResult1 == 0) {
         integerVar7 = (int)CONCAT71(unsignedVar3,*(char *)(unaff_RBP + 0x77) != '\0');
         unaff_R14D = (int)CONCAT71(unsignedVar3,*(char *)(unaff_RBP + 0x77) == '\0');
       }
-      unsignedVar6 = (ulonglong)unsignedVar4;
-      if (unsignedVar4 == 0) {
+      unsignedVar6 = (ulonglong)validationResult1;
+      if (validationResult1 == 0) {
         unsignedVar6 = unaff_RDI & INVALID_HANDLE;
       }
     }
@@ -19704,20 +19704,20 @@ LAB_18089ca9c:
     unsignedVar6 = unaff_RDI & INVALID_HANDLE;
   }
   if ((int)unsignedVar6 == 0) {
-    unsignedVar4 = *(uint *)(baseRegister + 8);
-    if (unsignedVar4 < 0x70) {
+    validationResult1 = *(uint *)(baseRegister + 8);
+    if (validationResult1 < 0x70) {
       *(uint *)(unaff_R13 + FIELD_OFFSET_2) =
            (((*(uint *)(unaff_RBP + 0x7f) | *(uint *)(unaff_R13 + FIELD_OFFSET_2)) &
              ~*(uint *)(unaff_RBP + -BYTE_OFFSET_1) | localStatus2 * 2) & ~(localStatus1 * 2) | integerVar7 * 4) &
            ~(unaff_R14D * 4);
-      unsignedVar4 = *(uint *)(baseRegister + 8);
+      validationResult1 = *(uint *)(baseRegister + 8);
     }
-    if ((unsignedVar4 < 0x87) && ((*(uint *)(unaff_R13 + FIELD_OFFSET_2) >> 3 & 1) != 0)) {
+    if ((validationResult1 < 0x87) && ((*(uint *)(unaff_R13 + FIELD_OFFSET_2) >> 3 & 1) != 0)) {
       resourceHandle = *(float *)(unaff_R13 + RESOURCE_PROPERTY_OFFSET) - 1.0;
       *(float *)(unaff_R13 + RESOURCE_PROPERTY_OFFSET) = resourceHandle;
-      unsignedVar4 = *(uint *)(baseRegister + 8);
+      validationResult1 = *(uint *)(baseRegister + 8);
     }
-    if (unsignedVar4 < 0x8b) {
+    if (validationResult1 < 0x8b) {
 LAB_18089cbf6:
                     // WARNING: Subroutine does not return
       freeResourceBuffer(resourceHandle,unaff_RBP + -0x21);
@@ -19726,43 +19726,43 @@ LAB_18089cbf6:
     *(int *)(unaff_RBP + 0x7f) = integerVar9;
     unsignedVar6 = getResourceSize(dataValueBuffer,unaff_RBP + 0x7f);
     if ((int)unsignedVar6 == 0) {
-      unsignedVar4 = *(uint *)(unaff_RBP + 0x7f);
-      unsignedVar6 = FUN_1808af8b0(unaff_R13 + DATA_OFFSET_START,unsignedVar4 >> 1);
+      validationResult1 = *(uint *)(unaff_RBP + 0x7f);
+      unsignedVar6 = FUN_1808af8b0(unaff_R13 + DATA_OFFSET_START,validationResult1 >> 1);
       if ((int)unsignedVar6 == 0) {
         *(int *)(unaff_RBP + 0x77) = integerVar9;
         unsignedVar6 = unaff_RDI & INVALID_HANDLE;
         resourceHandle = extraout_XMM0_Da_05;
         floatVar13 = extraout_XMM0_Da_05;
-        if (unsignedVar4 >> 1 != 0) {
+        if (validationResult1 >> 1 != 0) {
           do {
-            unsignedVar5 = FUN_1808dde10(floatVar13,unaff_RDI & INVALID_HANDLE);
-            if ((int)unsignedVar5 != 0) {
-              return unsignedVar5;
+            validationResult2 = FUN_1808dde10(floatVar13,unaff_RDI & INVALID_HANDLE);
+            if ((int)validationResult2 != 0) {
+              return validationResult2;
             }
             if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-              unsignedVar5 = FUN_1808a2740(*baseRegister,
+              validationResult2 = FUN_1808a2740(*baseRegister,
                                     (longlong)(int)unsignedVar6 * RESOURCE_HANDLE_OFFSET + *(longlong *)(unaff_R13 + DATA_OFFSET_START));
               functionResult4 = extraout_XMM0_Da_07;
             }
             else {
-              unsignedVar5 = BYTE_OFFSET_FLAG;
+              validationResult2 = BYTE_OFFSET_FLAG;
               functionResult4 = extraout_XMM0_Da_06;
             }
-            if ((int)unsignedVar5 != 0) {
-              return unsignedVar5;
+            if ((int)validationResult2 != 0) {
+              return validationResult2;
             }
-            unsignedVar5 = FUN_1808de0e0(functionResult4,unaff_RBP + 0x77);
-            if ((int)unsignedVar5 != 0) {
-              return unsignedVar5;
+            validationResult2 = FUN_1808de0e0(functionResult4,unaff_RBP + 0x77);
+            if ((int)validationResult2 != 0) {
+              return validationResult2;
             }
             unsignedVar8 = (int)unsignedVar6 + 1;
             unsignedVar6 = (ulonglong)unsignedVar8;
-            functionResult0 = *(uint *)(unaff_RBP + 0x77) & -(unsignedVar4 & 1);
+            functionResult0 = *(uint *)(unaff_RBP + 0x77) & -(validationResult1 & 1);
             unaff_RDI = (ulonglong)functionResult0;
             *(uint *)(unaff_RBP + 0x77) = functionResult0;
             resourceHandle = extraout_XMM0_Da_08;
             floatVar13 = extraout_XMM0_Da_08;
-          } while ((int)unsignedVar8 < (int)(unsignedVar4 >> 1));
+          } while ((int)unsignedVar8 < (int)(validationResult1 >> 1));
         }
         goto LAB_18089cbf6;
       }
@@ -20853,7 +20853,7 @@ ulonglong FUN_18089dcf0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
   uint64 functionResult;
   uint unsignedCounter;
   ulonglong unsignedVar3;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   byte unsignedStackArrayX18 [4];
   byte unsignedStackArrayX1c [12];
   byte localBuffer [32];
@@ -20880,9 +20880,9 @@ ulonglong FUN_18089dcf0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
         }
         unsignedVar3 = ResizeResourceBuffer(memoryBlockSize,resourceHandle + RESOURCE_HANDLE_OFFSET0);
         if ((int)unsignedVar3 == 0) {
-          unsignedVar4 = BYTE_OFFSET_FLAG;
+          validationResult1 = BYTE_OFFSET_FLAG;
           if (*(uint *)(memoryBlockSize + 8) < 0x68) {
-            unsignedVar3 = unsignedVar4;
+            unsignedVar3 = validationResult1;
             if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
               functionResult = *memoryBlockBlockBlockSize;
               unsignedVar3 = rateUtilityEffectiveness(functionResult,unsignedStackArrayX18);
@@ -20899,7 +20899,7 @@ ulonglong FUN_18089dcf0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
               unsignedVar3 = 0;
             }
             else {
-              unsignedVar3 = unsignedVar4;
+              unsignedVar3 = validationResult1;
               if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
                 unsignedVar3 = writeResourceData(*memoryBlockBlockBlockSize,resourceHandle + MEMORY_ACCESS_FLAG_2,4);
               }
@@ -20909,7 +20909,7 @@ ulonglong FUN_18089dcf0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
                 unsignedVar3 = 0;
               }
               else {
-                unsignedVar3 = unsignedVar4;
+                unsignedVar3 = validationResult1;
                 if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
                   unsignedCounter = rateUtilityEffectiveness(*memoryBlockBlockBlockSize,resourceHandle + 0xfc);
                   unsignedVar3 = (ulonglong)unsignedCounter;
@@ -20944,7 +20944,7 @@ ulonglong FUN_18089dd54(void)
   ulonglong unsignedVar3;
   uint64 *baseRegister;
   longlong unaff_RSI;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   if (*(int *)(inputRegister + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
@@ -20961,9 +20961,9 @@ ulonglong FUN_18089dd54(void)
         }
         unsignedVar3 = ResizeResourceBuffer();
         if ((int)unsignedVar3 == 0) {
-          unsignedVar4 = BYTE_OFFSET_FLAG;
+          validationResult1 = BYTE_OFFSET_FLAG;
           if (*(uint *)(baseRegister + 8) < 0x68) {
-            unsignedVar3 = unsignedVar4;
+            unsignedVar3 = validationResult1;
             if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
               functionResult = *baseRegister;
               unsignedVar3 = rateUtilityEffectiveness(functionResult,&stack0x00000090);
@@ -20980,7 +20980,7 @@ ulonglong FUN_18089dd54(void)
               unsignedVar3 = 0;
             }
             else {
-              unsignedVar3 = unsignedVar4;
+              unsignedVar3 = validationResult1;
               if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
                 unsignedVar3 = writeResourceData(*baseRegister,unaff_RSI + MEMORY_ACCESS_FLAG_2,4);
               }
@@ -20990,7 +20990,7 @@ ulonglong FUN_18089dd54(void)
                 unsignedVar3 = 0;
               }
               else {
-                unsignedVar3 = unsignedVar4;
+                unsignedVar3 = validationResult1;
                 if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
                   unsignedCounter = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xfc);
                   unsignedVar3 = (ulonglong)unsignedCounter;
@@ -21025,7 +21025,7 @@ ulonglong FUN_18089dd78(void)
   ulonglong unsignedVar3;
   uint64 *baseRegister;
   longlong unaff_RSI;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   unsignedVar3 = writeResourceData(*baseRegister,unaff_RSI + 0xf0,4);
   if ((int)unsignedVar3 != 0) {
@@ -21041,9 +21041,9 @@ ulonglong FUN_18089dd78(void)
       }
       unsignedVar3 = ResizeResourceBuffer();
       if ((int)unsignedVar3 == 0) {
-        unsignedVar4 = BYTE_OFFSET_FLAG;
+        validationResult1 = BYTE_OFFSET_FLAG;
         if (*(uint *)(baseRegister + 8) < 0x68) {
-          unsignedVar3 = unsignedVar4;
+          unsignedVar3 = validationResult1;
           if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
             functionResult = *baseRegister;
             unsignedVar3 = rateUtilityEffectiveness(functionResult,&stack0x00000090);
@@ -21060,7 +21060,7 @@ ulonglong FUN_18089dd78(void)
             unsignedVar3 = 0;
           }
           else {
-            unsignedVar3 = unsignedVar4;
+            unsignedVar3 = validationResult1;
             if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
               unsignedVar3 = writeResourceData(*baseRegister,unaff_RSI + MEMORY_ACCESS_FLAG_2,4);
             }
@@ -21070,7 +21070,7 @@ ulonglong FUN_18089dd78(void)
               unsignedVar3 = 0;
             }
             else {
-              unsignedVar3 = unsignedVar4;
+              unsignedVar3 = validationResult1;
               if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
                 unsignedCounter = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xfc);
                 unsignedVar3 = (ulonglong)unsignedCounter;
@@ -21102,7 +21102,7 @@ ulonglong FUN_18089dda2(void)
   ulonglong unsignedVar3;
   uint64 *baseRegister;
   longlong unaff_RSI;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
     unsignedCounter = writeResourceData(*baseRegister,unaff_RSI + SYSTEM_OFFSET_FLAGS,4);
@@ -21114,9 +21114,9 @@ ulonglong FUN_18089dda2(void)
       }
       unsignedVar3 = ResizeResourceBuffer();
       if ((int)unsignedVar3 == 0) {
-        unsignedVar4 = BYTE_OFFSET_FLAG;
+        validationResult1 = BYTE_OFFSET_FLAG;
         if (*(uint *)(baseRegister + 8) < 0x68) {
-          unsignedVar3 = unsignedVar4;
+          unsignedVar3 = validationResult1;
           if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
             functionResult = *baseRegister;
             unsignedVar3 = rateUtilityEffectiveness(functionResult,&stack0x00000090);
@@ -21133,7 +21133,7 @@ ulonglong FUN_18089dda2(void)
             unsignedVar3 = 0;
           }
           else {
-            unsignedVar3 = unsignedVar4;
+            unsignedVar3 = validationResult1;
             if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
               unsignedVar3 = writeResourceData(*baseRegister,unaff_RSI + MEMORY_ACCESS_FLAG_2,4);
             }
@@ -21143,7 +21143,7 @@ ulonglong FUN_18089dda2(void)
               unsignedVar3 = 0;
             }
             else {
-              unsignedVar3 = unsignedVar4;
+              unsignedVar3 = validationResult1;
               if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
                 unsignedCounter = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xfc);
                 unsignedVar3 = (ulonglong)unsignedCounter;
@@ -21494,14 +21494,14 @@ ulonglong FUN_18089e230(longlong resourceHandle,longlong *memoryBlockBlockBlockS
   longlong *plocalLong1;
   ulonglong unsignedCounter;
   uint unsignedVar3;
-  uint unsignedVar4;
+  uint validationResult1;
   uint unsignedVar6;
   ulonglong unsignedVar7;
   uint unsignedStackArrayX18 [2];
   uint unsignedStackArrayX20 [2];
   byte localBuffer [32];
   byte localBuffer [32];
-  ulonglong unsignedVar5;
+  ulonglong validationResult2;
   
   unsignedCounter = createResourceBuffer(memoryBlockSize,localBuffer,1,0x50414e53);
   if ((int)unsignedCounter != 0) {
@@ -21532,14 +21532,14 @@ ulonglong FUN_18089e230(longlong resourceHandle,longlong *memoryBlockBlockBlockS
   unsignedVar3 = unsignedStackArrayX20[0] & 1;
   unsignedVar6 = unsignedStackArrayX20[0] >> 1;
   unsignedCounter = unsignedVar7;
-  unsignedVar5 = unsignedVar7;
+  validationResult2 = unsignedVar7;
   if (unsignedVar6 != 0) {
     do {
       unsignedCounter = FUN_1808dde10(memoryBlockSize,unsignedCounter);
       if ((int)unsignedCounter != 0) {
         return unsignedCounter;
       }
-      unsignedCounter = FUN_1808a8120(memoryBlockSize,resourceHandle + FIELD_OFFSET_1,unsignedVar5,resourceHandle);
+      unsignedCounter = FUN_1808a8120(memoryBlockSize,resourceHandle + FIELD_OFFSET_1,validationResult2,resourceHandle);
       if ((int)unsignedCounter != 0) {
         return unsignedCounter;
       }
@@ -21547,11 +21547,11 @@ ulonglong FUN_18089e230(longlong resourceHandle,longlong *memoryBlockBlockBlockS
       if ((int)unsignedCounter != 0) {
         return unsignedCounter;
       }
-      unsignedVar4 = (int)unsignedVar5 + 1;
-      unsignedVar5 = (ulonglong)unsignedVar4;
+      validationResult1 = (int)validationResult2 + 1;
+      validationResult2 = (ulonglong)validationResult1;
       unsignedStackArrayX18[0] = unsignedStackArrayX18[0] & -unsignedVar3;
       unsignedCounter = (ulonglong)unsignedStackArrayX18[0];
-    } while ((int)unsignedVar4 < (int)unsignedVar6);
+    } while ((int)validationResult1 < (int)unsignedVar6);
   }
   if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
@@ -21613,9 +21613,9 @@ ulonglong FUN_18089e297(void)
   ulonglong unsignedCounter;
   ulonglong unsignedVar3;
   longlong *baseRegister;
-  uint unsignedVar4;
+  uint validationResult1;
   longlong unaff_RSI;
-  uint unsignedVar5;
+  uint validationResult2;
   uint unsignedVar6;
   ulonglong unsignedVar7;
   uint in_stack_000000b0;
@@ -21635,7 +21635,7 @@ ulonglong FUN_18089e297(void)
     return unsignedCounter;
   }
   in_stack_000000b0 = 0;
-  unsignedVar4 = in_stack_000000b8 & 1;
+  validationResult1 = in_stack_000000b8 & 1;
   unsignedVar6 = in_stack_000000b8 >> 1;
   unsignedCounter = unsignedVar7;
   if (unsignedVar6 != 0) {
@@ -21652,17 +21652,17 @@ ulonglong FUN_18089e297(void)
       if ((int)unsignedVar3 != 0) {
         return unsignedVar3;
       }
-      unsignedVar5 = (int)unsignedCounter + 1;
-      unsignedCounter = (ulonglong)unsignedVar5;
-      in_stack_000000b0 = in_stack_000000b0 & -unsignedVar4;
-    } while ((int)unsignedVar5 < (int)unsignedVar6);
+      validationResult2 = (int)unsignedCounter + 1;
+      unsignedCounter = (ulonglong)validationResult2;
+      in_stack_000000b0 = in_stack_000000b0 & -validationResult1;
+    } while ((int)validationResult2 < (int)unsignedVar6);
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  unsignedVar4 = parseResourceData(*baseRegister,unaff_RSI + BUFFER_OFFSET_DATA);
-  if (unsignedVar4 != 0) {
-    return (ulonglong)unsignedVar4;
+  validationResult1 = parseResourceData(*baseRegister,unaff_RSI + BUFFER_OFFSET_DATA);
+  if (validationResult1 != 0) {
+    return (ulonglong)validationResult1;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
@@ -21695,8 +21695,8 @@ LAB_18089e447:
     if ((int)unsignedCounter == 0) {
       unsignedCounter = unsignedVar7;
       if ((0x32 < *(uint *)(baseRegister + 8)) && (unsignedCounter = BYTE_OFFSET_FLAG, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) {
-        unsignedVar4 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + BUFFER_SIZE_OFFSET);
-        unsignedCounter = (ulonglong)unsignedVar4;
+        validationResult1 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + BUFFER_SIZE_OFFSET);
+        unsignedCounter = (ulonglong)validationResult1;
       }
       if ((int)unsignedCounter == 0) {
                     // WARNING: Subroutine does not return
@@ -21716,9 +21716,9 @@ ulonglong FUN_18089e2be(void)
   ulonglong unsignedCounter;
   ulonglong unsignedVar3;
   longlong *baseRegister;
-  uint unsignedVar4;
+  uint validationResult1;
   longlong unaff_RSI;
-  uint unsignedVar5;
+  uint validationResult2;
   uint unsignedVar6;
   ulonglong unsignedVar7;
   uint in_stack_000000b0;
@@ -21735,7 +21735,7 @@ ulonglong FUN_18089e2be(void)
     return unsignedCounter;
   }
   in_stack_000000b0 = 0;
-  unsignedVar4 = in_stack_000000b8 & 1;
+  validationResult1 = in_stack_000000b8 & 1;
   unsignedVar6 = in_stack_000000b8 >> 1;
   unsignedCounter = unsignedVar7;
   if (unsignedVar6 != 0) {
@@ -21752,17 +21752,17 @@ ulonglong FUN_18089e2be(void)
       if ((int)unsignedVar3 != 0) {
         return unsignedVar3;
       }
-      unsignedVar5 = (int)unsignedCounter + 1;
-      unsignedCounter = (ulonglong)unsignedVar5;
-      in_stack_000000b0 = in_stack_000000b0 & -unsignedVar4;
-    } while ((int)unsignedVar5 < (int)unsignedVar6);
+      validationResult2 = (int)unsignedCounter + 1;
+      unsignedCounter = (ulonglong)validationResult2;
+      in_stack_000000b0 = in_stack_000000b0 & -validationResult1;
+    } while ((int)validationResult2 < (int)unsignedVar6);
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  unsignedVar4 = parseResourceData(*baseRegister,unaff_RSI + BUFFER_OFFSET_DATA);
-  if (unsignedVar4 != 0) {
-    return (ulonglong)unsignedVar4;
+  validationResult1 = parseResourceData(*baseRegister,unaff_RSI + BUFFER_OFFSET_DATA);
+  if (validationResult1 != 0) {
+    return (ulonglong)validationResult1;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
@@ -21795,8 +21795,8 @@ LAB_18089e447:
     if ((int)unsignedCounter == 0) {
       unsignedCounter = unsignedVar7;
       if ((0x32 < *(uint *)(baseRegister + 8)) && (unsignedCounter = BYTE_OFFSET_FLAG, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) {
-        unsignedVar4 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + BUFFER_SIZE_OFFSET);
-        unsignedCounter = (ulonglong)unsignedVar4;
+        validationResult1 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + BUFFER_SIZE_OFFSET);
+        unsignedCounter = (ulonglong)validationResult1;
       }
       if ((int)unsignedCounter == 0) {
                     // WARNING: Subroutine does not return
@@ -21816,9 +21816,9 @@ ulonglong FUN_18089e2e8(void)
   ulonglong unsignedCounter;
   ulonglong unsignedVar3;
   longlong *baseRegister;
-  uint unsignedVar4;
+  uint validationResult1;
   longlong unaff_RSI;
-  uint unsignedVar5;
+  uint validationResult2;
   uint unsignedVar6;
   ulonglong unsignedVar7;
   uint in_stack_000000b0;
@@ -21831,7 +21831,7 @@ ulonglong FUN_18089e2e8(void)
     return unsignedCounter;
   }
   in_stack_000000b0 = 0;
-  unsignedVar4 = uStack00000000000000b8 & 1;
+  validationResult1 = uStack00000000000000b8 & 1;
   unsignedVar6 = uStack00000000000000b8 >> 1;
   unsignedCounter = unsignedVar7;
   if (unsignedVar6 != 0) {
@@ -21848,17 +21848,17 @@ ulonglong FUN_18089e2e8(void)
       if ((int)unsignedVar3 != 0) {
         return unsignedVar3;
       }
-      unsignedVar5 = (int)unsignedCounter + 1;
-      unsignedCounter = (ulonglong)unsignedVar5;
-      in_stack_000000b0 = in_stack_000000b0 & -unsignedVar4;
-    } while ((int)unsignedVar5 < (int)unsignedVar6);
+      validationResult2 = (int)unsignedCounter + 1;
+      unsignedCounter = (ulonglong)validationResult2;
+      in_stack_000000b0 = in_stack_000000b0 & -validationResult1;
+    } while ((int)validationResult2 < (int)unsignedVar6);
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  unsignedVar4 = parseResourceData(*baseRegister,unaff_RSI + BUFFER_OFFSET_DATA);
-  if (unsignedVar4 != 0) {
-    return (ulonglong)unsignedVar4;
+  validationResult1 = parseResourceData(*baseRegister,unaff_RSI + BUFFER_OFFSET_DATA);
+  if (validationResult1 != 0) {
+    return (ulonglong)validationResult1;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
@@ -21891,8 +21891,8 @@ LAB_18089e447:
     if ((int)unsignedCounter == 0) {
       unsignedCounter = unsignedVar7;
       if ((0x32 < *(uint *)(baseRegister + 8)) && (unsignedCounter = BYTE_OFFSET_FLAG, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) {
-        unsignedVar4 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + BUFFER_SIZE_OFFSET);
-        unsignedCounter = (ulonglong)unsignedVar4;
+        validationResult1 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + BUFFER_SIZE_OFFSET);
+        unsignedCounter = (ulonglong)validationResult1;
       }
       if ((int)unsignedCounter == 0) {
                     // WARNING: Subroutine does not return
@@ -21923,8 +21923,8 @@ ulonglong FUN_18089e4f0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
   uint32 functionResult;
   uint64 unsignedCounter;
   uint unsignedVar3;
-  ulonglong unsignedVar4;
-  uint32 *punsignedVar5;
+  ulonglong validationResult1;
+  uint32 *pvalidationResult2;
   longlong longVar6;
   uint32 *localPtr;
   uint64 localUInt;
@@ -21935,86 +21935,86 @@ ulonglong FUN_18089e4f0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
   byte localBuffer [32];
   byte localBuffer [32];
   
-  unsignedVar4 = createResourceBuffer(memoryBlockSize,localBuffer,1,0x4e4c4d54);
-  if ((((int)unsignedVar4 == 0) &&
-      (unsignedVar4 = createResourceBuffer(memoryBlockSize,localBuffer,0,0x424e4c54), (int)unsignedVar4 == 0)) &&
-     (unsignedVar4 = assessUtilityQuality(memoryBlockSize,resourceHandle + RESOURCE_HANDLE_OFFSET), (int)unsignedVar4 == 0)) {
-    punsignedVar5 = (uint32 *)FUN_180847820();
-    unsignedVar4 = 0;
-    localUInt = *punsignedVar5;
-    localUInt = punsignedVar5[1];
-    localUInt = punsignedVar5[2];
-    localUInt = punsignedVar5[3];
+  validationResult1 = createResourceBuffer(memoryBlockSize,localBuffer,1,0x4e4c4d54);
+  if ((((int)validationResult1 == 0) &&
+      (validationResult1 = createResourceBuffer(memoryBlockSize,localBuffer,0,0x424e4c54), (int)validationResult1 == 0)) &&
+     (validationResult1 = assessUtilityQuality(memoryBlockSize,resourceHandle + RESOURCE_HANDLE_OFFSET), (int)validationResult1 == 0)) {
+    pvalidationResult2 = (uint32 *)FUN_180847820();
+    validationResult1 = 0;
+    localUInt = *pvalidationResult2;
+    localUInt = pvalidationResult2[1];
+    localUInt = pvalidationResult2[2];
+    localUInt = pvalidationResult2[3];
     if (*(uint *)(memoryBlockSize + 8) < 0x6d) {
       if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
         unsignedCounter = *memoryBlockBlockBlockSize;
-        unsignedVar4 = writeResourceData(unsignedCounter,&localUInt,4);
-        if ((int)unsignedVar4 != 0) {
-          return unsignedVar4;
+        validationResult1 = writeResourceData(unsignedCounter,&localUInt,4);
+        if ((int)validationResult1 != 0) {
+          return validationResult1;
         }
-        unsignedVar4 = writeResourceData(unsignedCounter,&localUInt,2);
-        if ((int)unsignedVar4 != 0) {
-          return unsignedVar4;
+        validationResult1 = writeResourceData(unsignedCounter,&localUInt,2);
+        if ((int)validationResult1 != 0) {
+          return validationResult1;
         }
-        unsignedVar4 = writeResourceData(unsignedCounter,(longlong)&localUInt + 2,2);
-        if ((int)unsignedVar4 != 0) {
-          return unsignedVar4;
+        validationResult1 = writeResourceData(unsignedCounter,(longlong)&localUInt + 2,2);
+        if ((int)validationResult1 != 0) {
+          return validationResult1;
         }
-        unsignedVar4 = writeResourceData(unsignedCounter,&localUInt,8);
+        validationResult1 = writeResourceData(unsignedCounter,&localUInt,8);
       }
       else {
-        unsignedVar4 = BYTE_OFFSET_FLAG;
+        validationResult1 = BYTE_OFFSET_FLAG;
       }
     }
-    if ((((int)unsignedVar4 == 0) && (unsignedVar4 = FUN_1808a5a90(memoryBlockSize,resourceHandle + STRUCT_OFFSET_SIZE,0), (int)unsignedVar4 == 0)) &&
-       (unsignedVar4 = FUN_1808a5a90(memoryBlockSize,resourceHandle + BUFFER_OFFSET_DATA,0), (int)unsignedVar4 == 0)) {
+    if ((((int)validationResult1 == 0) && (validationResult1 = FUN_1808a5a90(memoryBlockSize,resourceHandle + STRUCT_OFFSET_SIZE,0), (int)validationResult1 == 0)) &&
+       (validationResult1 = FUN_1808a5a90(memoryBlockSize,resourceHandle + BUFFER_OFFSET_DATA,0), (int)validationResult1 == 0)) {
       if (*(uint *)(memoryBlockSize + 8) < 0x84) {
         localPtr = (uint32 *)0x0;
         localUInt = 0;
         unsignedVar3 = configureResourceMemory(memoryBlockSize,&localPtr,0);
-        unsignedVar4 = (ulonglong)unsignedVar3;
+        validationResult1 = (ulonglong)unsignedVar3;
         if (unsignedVar3 != 0) {
 LAB_18089e70b:
           FUN_18084c150(&localPtr);
-          return unsignedVar4;
+          return validationResult1;
         }
-        punsignedVar5 = localPtr;
+        pvalidationResult2 = localPtr;
         if ((int)localUInt != 0) {
-          for (; (localPtr <= punsignedVar5 && (punsignedVar5 < localPtr + (int)localUInt));
-              punsignedVar5 = punsignedVar5 + 1) {
+          for (; (localPtr <= pvalidationResult2 && (pvalidationResult2 < localPtr + (int)localUInt));
+              pvalidationResult2 = pvalidationResult2 + 1) {
             longVar6 = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),BYTE_OFFSET_2,&unknown_180986e70,0xc1c,
                                   0,0,1);
             if (longVar6 == 0) {
-              unsignedVar4 = 0x26;
+              validationResult1 = 0x26;
               goto LAB_18089e70b;
             }
-            functionResult = *punsignedVar5;
+            functionResult = *pvalidationResult2;
             *(longlong *)longVar6 = longVar6;
             *(longlong *)(longVar6 + 8) = longVar6;
             *(uint32 *)(longVar6 + RESOURCE_HANDLE_OFFSET) = functionResult;
             *(uint64 *)(longVar6 + RESOURCE_OFFSET_HANDLE) = 0;
             *(uint32 *)(longVar6 + POINTER_OFFSET_DATA) = 0;
             unsignedVar3 = systemControlFunction2(resourceHandle + SYSTEM_OFFSET_STATUS1,longVar6);
-            unsignedVar4 = (ulonglong)unsignedVar3;
+            validationResult1 = (ulonglong)unsignedVar3;
             if (unsignedVar3 != 0) goto LAB_18089e70b;
           }
         }
         FUN_18084c150(&localPtr);
       }
       else {
-        unsignedVar4 = FUN_1808a71c0(memoryBlockSize,resourceHandle + SYSTEM_OFFSET_STATUS1);
-        if ((int)unsignedVar4 != 0) {
-          return unsignedVar4;
+        validationResult1 = FUN_1808a71c0(memoryBlockSize,resourceHandle + SYSTEM_OFFSET_STATUS1);
+        if ((int)validationResult1 != 0) {
+          return validationResult1;
         }
       }
-      unsignedVar4 = FUN_1808ad9d0(memoryBlockSize,resourceHandle + HANDLE_OFFSET_DATA,0);
-      if (((int)unsignedVar4 == 0) && (unsignedVar4 = FUN_1808a62d0(memoryBlockSize,resourceHandle + 0x88,0), (int)unsignedVar4 == 0)) {
+      validationResult1 = FUN_1808ad9d0(memoryBlockSize,resourceHandle + HANDLE_OFFSET_DATA,0);
+      if (((int)validationResult1 == 0) && (validationResult1 = FUN_1808a62d0(memoryBlockSize,resourceHandle + 0x88,0), (int)validationResult1 == 0)) {
                     // WARNING: Subroutine does not return
         freeResourceBuffer(memoryBlockSize,localBuffer);
       }
     }
   }
-  return unsignedVar4;
+  return validationResult1;
 }
 
 
@@ -22027,8 +22027,8 @@ ulonglong FUN_18089e558(void)
   uint64 functionResult;
   uint32 unsignedCounter;
   uint32 unsignedVar3;
-  uint32 unsignedVar4;
-  uint unsignedVar5;
+  uint32 validationResult1;
+  uint validationResult2;
   int integerVar6;
   uint32 *pointerVar7;
   ulonglong unsignedVar8;
@@ -22047,16 +22047,16 @@ ulonglong FUN_18089e558(void)
   
   pointerVar7 = (uint32 *)FUN_180847820();
   unsignedVar8 = 0;
-  unsignedVar5 = *(uint *)(unaff_RDI + 8);
+  validationResult2 = *(uint *)(unaff_RDI + 8);
   functionResult1 = *pointerVar7;
   unsignedCounter = pointerVar7[1];
   unsignedVar3 = pointerVar7[2];
-  unsignedVar4 = pointerVar7[3];
+  validationResult1 = pointerVar7[3];
   *(uint32 *)(unaff_RBP + -0x19) = functionResult1;
   *(uint32 *)(unaff_RBP + -0x15) = unsignedCounter;
   *(uint32 *)(unaff_RBP + -ACCESS_FLAG) = unsignedVar3;
-  *(uint32 *)(unaff_RBP + -0xd) = unsignedVar4;
-  if (unsignedVar5 < 0x6d) {
+  *(uint32 *)(unaff_RBP + -0xd) = validationResult1;
+  if (validationResult2 < 0x6d) {
     if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
       functionResult = *unaff_RDI;
       unsignedVar8 = writeResourceData(functionResult,unaff_RBP + -0x19,4);
@@ -22083,9 +22083,9 @@ ulonglong FUN_18089e558(void)
     if (*(uint *)(unaff_RDI + 8) < 0x84) {
       *(uint64 *)(unaff_RBP + -BYTE_OFFSET_1) = 0;
       *(uint64 *)(unaff_RBP + -0x21) = 0;
-      unsignedVar5 = configureResourceMemory(extraout_XMM0_Da_01,unaff_RBP + -BYTE_OFFSET_1,0);
-      unsignedVar8 = (ulonglong)unsignedVar5;
-      if (unsignedVar5 != 0) {
+      validationResult2 = configureResourceMemory(extraout_XMM0_Da_01,unaff_RBP + -BYTE_OFFSET_1,0);
+      unsignedVar8 = (ulonglong)validationResult2;
+      if (validationResult2 != 0) {
 LAB_18089e70b:
         FUN_18084c150(unaff_RBP + -BYTE_OFFSET_1);
         return unsignedVar8;
@@ -22107,9 +22107,9 @@ LAB_18089e70b:
           *(uint32 *)(longVar9 + RESOURCE_HANDLE_OFFSET) = functionResult1;
           *(uint64 *)(longVar9 + RESOURCE_OFFSET_HANDLE) = 0;
           *(uint32 *)(longVar9 + POINTER_OFFSET_DATA) = 0;
-          unsignedVar5 = systemControlFunction2(unaff_R15 + SYSTEM_OFFSET_STATUS1,longVar9);
-          unsignedVar8 = (ulonglong)unsignedVar5;
-          if (unsignedVar5 != 0) goto LAB_18089e70b;
+          validationResult2 = systemControlFunction2(unaff_R15 + SYSTEM_OFFSET_STATUS1,longVar9);
+          unsignedVar8 = (ulonglong)validationResult2;
+          if (validationResult2 != 0) goto LAB_18089e70b;
           integerVar6 = *(int *)(unaff_RBP + -0x21);
           pointerVar7 = *(uint32 **)(unaff_RBP + -BYTE_OFFSET_1);
         }
@@ -22143,7 +22143,7 @@ ulonglong FUN_18089e624(void)
   uint32 functionResult;
   uint unsignedCounter;
   int dataValueLength;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   longlong longVar5;
   uint32 *punsignedVar6;
   uint64 baseRegister;
@@ -22156,11 +22156,11 @@ ulonglong FUN_18089e624(void)
     *(uint64 *)(unaff_RBP + -BYTE_OFFSET_1) = baseRegister;
     *(uint64 *)(unaff_RBP + -0x21) = baseRegister;
     unsignedCounter = configureResourceMemory();
-    unsignedVar4 = (ulonglong)unsignedCounter;
+    validationResult1 = (ulonglong)unsignedCounter;
     if (unsignedCounter != 0) {
 LAB_18089e70b:
       FUN_18084c150(unaff_RBP + -BYTE_OFFSET_1);
-      return unsignedVar4;
+      return validationResult1;
     }
     dataValueLength = *(int *)(unaff_RBP + -0x21);
     if (dataValueLength != 0) {
@@ -22168,7 +22168,7 @@ LAB_18089e70b:
       for (pointerVar7 = punsignedVar6; (punsignedVar6 <= pointerVar7 && (pointerVar7 < punsignedVar6 + dataValueLength)); pointerVar7 = pointerVar7 + 1) {
         longVar5 = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),BYTE_OFFSET_2,&unknown_180986e70,0xc1c);
         if (longVar5 == 0) {
-          unsignedVar4 = 0x26;
+          validationResult1 = 0x26;
           goto LAB_18089e70b;
         }
         functionResult = *pointerVar7;
@@ -22178,7 +22178,7 @@ LAB_18089e70b:
         *(uint64 *)(longVar5 + RESOURCE_OFFSET_HANDLE) = baseRegister;
         *(int *)(longVar5 + POINTER_OFFSET_DATA) = (int)baseRegister;
         unsignedCounter = systemControlFunction2(unaff_R15 + SYSTEM_OFFSET_STATUS1,longVar5);
-        unsignedVar4 = (ulonglong)unsignedCounter;
+        validationResult1 = (ulonglong)unsignedCounter;
         if (unsignedCounter != 0) goto LAB_18089e70b;
         dataValueLength = *(int *)(unaff_RBP + -0x21);
         punsignedVar6 = *(uint32 **)(unaff_RBP + -BYTE_OFFSET_1);
@@ -22187,17 +22187,17 @@ LAB_18089e70b:
     FUN_18084c150(unaff_RBP + -BYTE_OFFSET_1);
   }
   else {
-    unsignedVar4 = FUN_1808a71c0();
-    if ((int)unsignedVar4 != 0) {
-      return unsignedVar4;
+    validationResult1 = FUN_1808a71c0();
+    if ((int)validationResult1 != 0) {
+      return validationResult1;
     }
   }
-  unsignedVar4 = FUN_1808ad9d0();
-  if (((int)unsignedVar4 == 0) && (unsignedVar4 = FUN_1808a62d0(), (int)unsignedVar4 == 0)) {
+  validationResult1 = FUN_1808ad9d0();
+  if (((int)validationResult1 == 0) && (validationResult1 = FUN_1808a62d0(), (int)validationResult1 == 0)) {
                     // WARNING: Subroutine does not return
     freeResourceBuffer();
   }
-  return unsignedVar4;
+  return validationResult1;
 }
 
 
@@ -22228,8 +22228,8 @@ ulonglong FUN_18089e820(longlong resourceHandle,longlong *memoryBlockBlockBlockS
   longlong localLong1;
   longlong *pdataBuffer;
   uint unsignedVar3;
-  ulonglong unsignedVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult1;
+  ulonglong validationResult2;
   uint32 unsignedVar6;
   bool boolVar7;
   bool boolongVar8;
@@ -22243,38 +22243,38 @@ ulonglong FUN_18089e820(longlong resourceHandle,longlong *memoryBlockBlockBlockS
   byte localBuffer [32];
   
   unsignedVar6 = 1;
-  unsignedVar4 = createResourceBuffer(memoryBlockSize,localBuffer,1,0x4e415254);
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  validationResult1 = createResourceBuffer(memoryBlockSize,localBuffer,1,0x4e415254);
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
-  unsignedVar4 = createResourceBuffer(memoryBlockSize,localBuffer,0,0x424e5254);
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  validationResult1 = createResourceBuffer(memoryBlockSize,localBuffer,0,0x424e5254);
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
   localLong1 = *memoryBlockBlockBlockSize;
   unsignedVar3 = writeResourceData(localLong1,resourceHandle + RESOURCE_HANDLE_OFFSET,4);
-  unsignedVar4 = (ulonglong)unsignedVar3;
+  validationResult1 = (ulonglong)unsignedVar3;
   if (unsignedVar3 == 0) {
     unsignedVar3 = writeResourceData(localLong1,resourceHandle + RESOURCE_DATA_OFFSET,2);
-    unsignedVar4 = (ulonglong)unsignedVar3;
+    validationResult1 = (ulonglong)unsignedVar3;
     if (unsignedVar3 == 0) {
       unsignedVar3 = writeResourceData(localLong1,resourceHandle + 0x16,2);
-      unsignedVar4 = (ulonglong)unsignedVar3;
+      validationResult1 = (ulonglong)unsignedVar3;
       if (unsignedVar3 == 0) {
         unsignedVar3 = writeResourceData(localLong1,resourceHandle + RESOURCE_OFFSET_HANDLE,8);
-        unsignedVar4 = (ulonglong)unsignedVar3;
+        validationResult1 = (ulonglong)unsignedVar3;
       }
     }
   }
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
-  unsignedVar4 = assessUtilityQuality(memoryBlockSize,resourceHandle + POINTER_OFFSET_DATA);
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  validationResult1 = assessUtilityQuality(memoryBlockSize,resourceHandle + POINTER_OFFSET_DATA);
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
@@ -22290,13 +22290,13 @@ ulonglong FUN_18089e820(longlong resourceHandle,longlong *memoryBlockBlockBlockS
   if (unsignedVar3 != 0) {
     return (ulonglong)unsignedVar3;
   }
-  unsignedVar4 = FUN_1808ad130(resourceHandle,memoryBlockSize);
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  validationResult1 = FUN_1808ad130(resourceHandle,memoryBlockSize);
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
-  unsignedVar4 = examineUtilityBehavior(memoryBlockSize,resourceHandle + LIST_OFFSET_HEAD);
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  validationResult1 = examineUtilityBehavior(memoryBlockSize,resourceHandle + LIST_OFFSET_HEAD);
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
@@ -22312,26 +22312,26 @@ ulonglong FUN_18089e820(longlong resourceHandle,longlong *memoryBlockBlockBlockS
   }
   pdataBuffer = (longlong *)*memoryBlockBlockBlockSize;
   if (*pdataBuffer == 0) {
-    unsignedVar4 = BYTE_OFFSET_FLAG;
+    validationResult1 = BYTE_OFFSET_FLAG;
   }
   else if (pdataBuffer[2] == 0) {
 LAB_18089ea0f:
-    unsignedVar4 = readResourceData(*pdataBuffer,localBuffer,1,4,0);
+    validationResult1 = readResourceData(*pdataBuffer,localBuffer,1,4,0);
   }
   else {
     unsignedStackArrayX18[0] = 0;
-    unsignedVar4 = dataProcessFunction(*pdataBuffer,unsignedStackArrayX18);
-    if ((int)unsignedVar4 == 0) {
+    validationResult1 = dataProcessFunction(*pdataBuffer,unsignedStackArrayX18);
+    if ((int)validationResult1 == 0) {
       if ((ulonglong)unsignedStackArrayX18[0] + 4 <= (ulonglong)pdataBuffer[2]) goto LAB_18089ea0f;
-      unsignedVar4 = ACCESS_FLAG;
+      validationResult1 = ACCESS_FLAG;
     }
   }
-  unsignedVar5 = 0;
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  validationResult2 = 0;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   boolVar7 = *(uint *)(memoryBlockSize + 8) < FIELD_OFFSET_2;
-  charStackX20 = (char)unsignedVar4;
+  charStackX20 = (char)validationResult1;
   unsignedStackArrayX18[0] = CONCAT31(unsignedStackArrayX18[0]._1_3_,charStackX20);
   boolVar9 = false;
   if (0x37 < *(uint *)(memoryBlockSize + 8)) {
@@ -22363,19 +22363,19 @@ LAB_18089ea93:
           goto LAB_18089ea93;
         }
       }
-      unsignedVar5 = (ulonglong)unsignedVar3;
+      validationResult2 = (ulonglong)unsignedVar3;
       if (boolongVar8) {
-        unsignedVar5 = 0;
+        validationResult2 = 0;
       }
     }
     else {
-      unsignedVar5 = BYTE_OFFSET_FLAG;
+      validationResult2 = BYTE_OFFSET_FLAG;
     }
   }
-  if ((int)unsignedVar5 != 0) {
-    return unsignedVar5;
+  if ((int)validationResult2 != 0) {
+    return validationResult2;
   }
-  unsignedVar4 = 0;
+  validationResult1 = 0;
   if (0x66 < *(uint *)(memoryBlockSize + 8)) {
     if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
       pdataBuffer = (longlong *)*memoryBlockBlockBlockSize;
@@ -22397,19 +22397,19 @@ LAB_18089eb22:
       if (unsignedVar3 == 0) {
         unsignedStackArrayX18[0] = CONCAT31(unsignedStackArrayX18[0]._1_3_,stackCharArrayA8[0] != '\0');
       }
-      unsignedVar4 = (ulonglong)unsignedVar3;
+      validationResult1 = (ulonglong)unsignedVar3;
       if (unsignedVar3 == 0) {
-        unsignedVar4 = 0;
+        validationResult1 = 0;
       }
     }
     else {
-      unsignedVar4 = BYTE_OFFSET_FLAG;
+      validationResult1 = BYTE_OFFSET_FLAG;
     }
   }
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
-  unsignedVar4 = 0;
+  validationResult1 = 0;
   if (HANDLE_OFFSET_DATA < *(uint *)(memoryBlockSize + 8)) {
     if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
       pdataBuffer = (longlong *)*memoryBlockBlockBlockSize;
@@ -22431,19 +22431,19 @@ LAB_18089ebaa:
       if (unsignedVar3 == 0) {
         charStackX20 = stackCharArrayA8[0] != '\0';
       }
-      unsignedVar4 = (ulonglong)unsignedVar3;
+      validationResult1 = (ulonglong)unsignedVar3;
       if (unsignedVar3 == 0) {
-        unsignedVar4 = 0;
+        validationResult1 = 0;
       }
     }
     else {
-      unsignedVar4 = BYTE_OFFSET_FLAG;
+      validationResult1 = BYTE_OFFSET_FLAG;
     }
   }
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
-  unsignedVar4 = 0;
+  validationResult1 = 0;
   if (0x79 < *(uint *)(memoryBlockSize + 8)) {
     if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
       pdataBuffer = (longlong *)*memoryBlockBlockBlockSize;
@@ -22463,19 +22463,19 @@ LAB_18089ec32:
         }
       }
       boolVar9 = unsignedVar3 == 0 && stackCharArrayA8[0] != '\0';
-      unsignedVar4 = (ulonglong)unsignedVar3;
+      validationResult1 = (ulonglong)unsignedVar3;
       if (unsignedVar3 == 0) {
-        unsignedVar4 = 0;
+        validationResult1 = 0;
       }
     }
     else {
-      unsignedVar4 = BYTE_OFFSET_FLAG;
+      validationResult1 = BYTE_OFFSET_FLAG;
     }
   }
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
-  unsignedVar4 = 0;
+  validationResult1 = 0;
   if (0x7a < *(uint *)(memoryBlockSize + 8)) {
     if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
       pdataBuffer = (longlong *)*memoryBlockBlockBlockSize;
@@ -22497,17 +22497,17 @@ LAB_18089ecba:
       if (unsignedVar3 == 0) {
         boolVar9 = stackCharArrayA8[0] != '\0';
       }
-      unsignedVar4 = (ulonglong)unsignedVar3;
+      validationResult1 = (ulonglong)unsignedVar3;
       if (unsignedVar3 == 0) {
-        unsignedVar4 = 0;
+        validationResult1 = 0;
       }
     }
     else {
-      unsignedVar4 = BYTE_OFFSET_FLAG;
+      validationResult1 = BYTE_OFFSET_FLAG;
     }
   }
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   if ((((!boolVar7) && ((char)unsignedStackArrayX18[0] == '\0')) && (charStackX20 == '\0')) && (!boolVar9)) {
     unsignedVar6 = 0;
@@ -22515,16 +22515,16 @@ LAB_18089ecba:
   *(uint32 *)(resourceHandle + STRUCT_OFFSET_SIZE) = unsignedVar6;
   unsignedVar3 = *(uint *)(memoryBlockSize + 8);
 LAB_18089ed1b:
-  unsignedVar4 = 0;
-  if ((0x7e < unsignedVar3) && (unsignedVar4 = BYTE_OFFSET_FLAG, *(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0)) {
+  validationResult1 = 0;
+  if ((0x7e < unsignedVar3) && (validationResult1 = BYTE_OFFSET_FLAG, *(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0)) {
     unsignedVar3 = writeResourceData(*memoryBlockBlockBlockSize,resourceHandle + STRUCT_OFFSET_SIZE,4);
-    unsignedVar4 = (ulonglong)unsignedVar3;
+    validationResult1 = (ulonglong)unsignedVar3;
   }
-  if ((int)unsignedVar4 == 0) {
+  if ((int)validationResult1 == 0) {
                     // WARNING: Subroutine does not return
     freeResourceBuffer(memoryBlockSize,localBuffer);
   }
-  return unsignedVar4;
+  return validationResult1;
 }
 
 
@@ -22536,8 +22536,8 @@ ulonglong FUN_18089e87d(void)
   longlong *pdataBuffer;
   uint unsignedVar3;
   longlong inputRegister;
-  ulonglong unsignedVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult1;
+  ulonglong validationResult2;
   longlong unaff_RBP;
   longlong *unaff_RDI;
   int unaff_R12D;
@@ -22551,25 +22551,25 @@ ulonglong FUN_18089e87d(void)
   }
   localLong1 = *unaff_RDI;
   unsignedVar3 = writeResourceData(localLong1,unaff_R15 + RESOURCE_HANDLE_OFFSET,unaff_R12D + 3);
-  unsignedVar4 = (ulonglong)unsignedVar3;
+  validationResult1 = (ulonglong)unsignedVar3;
   if (unsignedVar3 == 0) {
     unsignedVar3 = writeResourceData(localLong1,unaff_R15 + RESOURCE_DATA_OFFSET,unaff_R12D + 1);
-    unsignedVar4 = (ulonglong)unsignedVar3;
+    validationResult1 = (ulonglong)unsignedVar3;
     if (unsignedVar3 == 0) {
       unsignedVar3 = writeResourceData(localLong1,unaff_R15 + 0x16,unaff_R12D + 1);
-      unsignedVar4 = (ulonglong)unsignedVar3;
+      validationResult1 = (ulonglong)unsignedVar3;
       if (unsignedVar3 == 0) {
         unsignedVar3 = writeResourceData(localLong1,unaff_R15 + RESOURCE_OFFSET_HANDLE,unaff_R12D + 7);
-        unsignedVar4 = (ulonglong)unsignedVar3;
+        validationResult1 = (ulonglong)unsignedVar3;
       }
     }
   }
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
-  unsignedVar4 = assessUtilityQuality();
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  validationResult1 = assessUtilityQuality();
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
@@ -22585,13 +22585,13 @@ ulonglong FUN_18089e87d(void)
   if (unsignedVar3 != 0) {
     return (ulonglong)unsignedVar3;
   }
-  unsignedVar4 = FUN_1808ad130();
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  validationResult1 = FUN_1808ad130();
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
-  unsignedVar4 = examineUtilityBehavior();
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  validationResult1 = examineUtilityBehavior();
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
@@ -22608,27 +22608,27 @@ ulonglong FUN_18089e87d(void)
   pdataBuffer = (longlong *)*unaff_RDI;
   localLong1 = *pdataBuffer;
   if (localLong1 == 0) {
-    unsignedVar4 = BYTE_OFFSET_FLAG;
+    validationResult1 = BYTE_OFFSET_FLAG;
   }
   else if (pdataBuffer[2] == 0) {
 LAB_18089ea0f:
-    unsignedVar4 = readResourceData(*pdataBuffer,unaff_RBP + -0x41,unaff_R12D,4,0);
+    validationResult1 = readResourceData(*pdataBuffer,unaff_RBP + -0x41,unaff_R12D,4,0);
   }
   else {
     *(uint32 *)(unaff_RBP + 0x77) = 0;
-    unsignedVar4 = dataProcessFunction(localLong1,unaff_RBP + 0x77);
-    if ((int)unsignedVar4 == 0) {
+    validationResult1 = dataProcessFunction(localLong1,unaff_RBP + 0x77);
+    if ((int)validationResult1 == 0) {
       if ((ulonglong)*(uint *)(unaff_RBP + 0x77) + 4 <= (ulonglong)pdataBuffer[2]) goto LAB_18089ea0f;
-      unsignedVar4 = ACCESS_FLAG;
+      validationResult1 = ACCESS_FLAG;
     }
   }
-  unsignedVar5 = 0;
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  validationResult2 = 0;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   boolVar6 = *(uint *)(unaff_RDI + 8) < FIELD_OFFSET_2;
-  *(char *)(unaff_RBP + 0x77) = (char)unsignedVar4;
-  *(char *)(unaff_RBP + 0x7f) = (char)unsignedVar4;
+  *(char *)(unaff_RBP + 0x77) = (char)validationResult1;
+  *(char *)(unaff_RBP + 0x7f) = (char)validationResult1;
   boolongVar8 = false;
   if (0x37 < *(uint *)(unaff_RDI + 8)) {
     if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
@@ -22660,19 +22660,19 @@ LAB_18089ea93:
           goto LAB_18089ea93;
         }
       }
-      unsignedVar5 = (ulonglong)unsignedVar3;
+      validationResult2 = (ulonglong)unsignedVar3;
       if (boolVar7) {
-        unsignedVar5 = 0;
+        validationResult2 = 0;
       }
     }
     else {
-      unsignedVar5 = BYTE_OFFSET_FLAG;
+      validationResult2 = BYTE_OFFSET_FLAG;
     }
   }
-  if ((int)unsignedVar5 != 0) {
-    return unsignedVar5;
+  if ((int)validationResult2 != 0) {
+    return validationResult2;
   }
-  unsignedVar4 = 0;
+  validationResult1 = 0;
   if (0x66 < *(uint *)(unaff_RDI + 8)) {
     if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
       pdataBuffer = (longlong *)*unaff_RDI;
@@ -22696,19 +22696,19 @@ LAB_18089eb22:
       if (unsignedVar3 == 0) {
         *(bool *)(unaff_RBP + 0x77) = *(char *)(unaff_RBP + -0x49) != '\0';
       }
-      unsignedVar4 = (ulonglong)unsignedVar3;
+      validationResult1 = (ulonglong)unsignedVar3;
       if (unsignedVar3 == 0) {
-        unsignedVar4 = 0;
+        validationResult1 = 0;
       }
     }
     else {
-      unsignedVar4 = BYTE_OFFSET_FLAG;
+      validationResult1 = BYTE_OFFSET_FLAG;
     }
   }
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
-  unsignedVar4 = 0;
+  validationResult1 = 0;
   if (HANDLE_OFFSET_DATA < *(uint *)(unaff_RDI + 8)) {
     if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
       pdataBuffer = (longlong *)*unaff_RDI;
@@ -22732,19 +22732,19 @@ LAB_18089ebaa:
       if (unsignedVar3 == 0) {
         *(bool *)(unaff_RBP + 0x7f) = *(char *)(unaff_RBP + -0x49) != '\0';
       }
-      unsignedVar4 = (ulonglong)unsignedVar3;
+      validationResult1 = (ulonglong)unsignedVar3;
       if (unsignedVar3 == 0) {
-        unsignedVar4 = 0;
+        validationResult1 = 0;
       }
     }
     else {
-      unsignedVar4 = BYTE_OFFSET_FLAG;
+      validationResult1 = BYTE_OFFSET_FLAG;
     }
   }
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
-  unsignedVar4 = 0;
+  validationResult1 = 0;
   if (0x79 < *(uint *)(unaff_RDI + 8)) {
     if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
       pdataBuffer = (longlong *)*unaff_RDI;
@@ -22768,19 +22768,19 @@ LAB_18089ec32:
       if (unsignedVar3 == 0) {
         boolongVar8 = *(char *)(unaff_RBP + -0x49) != '\0';
       }
-      unsignedVar4 = (ulonglong)unsignedVar3;
+      validationResult1 = (ulonglong)unsignedVar3;
       if (unsignedVar3 == 0) {
-        unsignedVar4 = 0;
+        validationResult1 = 0;
       }
     }
     else {
-      unsignedVar4 = BYTE_OFFSET_FLAG;
+      validationResult1 = BYTE_OFFSET_FLAG;
     }
   }
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
-  unsignedVar4 = 0;
+  validationResult1 = 0;
   if (0x7a < *(uint *)(unaff_RDI + 8)) {
     if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
       pdataBuffer = (longlong *)*unaff_RDI;
@@ -22804,17 +22804,17 @@ LAB_18089ecba:
       if (unsignedVar3 == 0) {
         boolongVar8 = *(char *)(unaff_RBP + -0x49) != '\0';
       }
-      unsignedVar4 = (ulonglong)unsignedVar3;
+      validationResult1 = (ulonglong)unsignedVar3;
       if (unsignedVar3 == 0) {
-        unsignedVar4 = 0;
+        validationResult1 = 0;
       }
     }
     else {
-      unsignedVar4 = BYTE_OFFSET_FLAG;
+      validationResult1 = BYTE_OFFSET_FLAG;
     }
   }
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   if ((((!boolVar6) && (*(char *)(unaff_RBP + 0x77) == '\0')) && (*(char *)(unaff_RBP + 0x7f) == '\0'))
      && (!boolongVar8)) {
@@ -22823,16 +22823,16 @@ LAB_18089ecba:
   *(int *)(unaff_R15 + STRUCT_OFFSET_SIZE) = unaff_R12D;
   unsignedVar3 = *(uint *)(unaff_RDI + 8);
 LAB_18089ed1b:
-  unsignedVar4 = 0;
-  if ((0x7e < unsignedVar3) && (unsignedVar4 = BYTE_OFFSET_FLAG, *(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0)) {
+  validationResult1 = 0;
+  if ((0x7e < unsignedVar3) && (validationResult1 = BYTE_OFFSET_FLAG, *(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0)) {
     unsignedVar3 = writeResourceData(*unaff_RDI,unaff_R15 + STRUCT_OFFSET_SIZE,4);
-    unsignedVar4 = (ulonglong)unsignedVar3;
+    validationResult1 = (ulonglong)unsignedVar3;
   }
-  if ((int)unsignedVar4 == 0) {
+  if ((int)validationResult1 == 0) {
                     // WARNING: Subroutine does not return
     freeResourceBuffer();
   }
-  return unsignedVar4;
+  return validationResult1;
 }
 
 
@@ -22844,8 +22844,8 @@ ulonglong FUN_18089e9af(uint64 resourceHandle,uint64 memoryBlockSize,ulonglong o
   longlong dataValueBuffer;
   uint in_EAX;
   uint unsignedVar3;
-  ulonglong unsignedVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult1;
+  ulonglong validationResult2;
   longlong unaff_RBP;
   longlong *unaff_RDI;
   uint32 unaff_R12D;
@@ -22854,7 +22854,7 @@ ulonglong FUN_18089e9af(uint64 resourceHandle,uint64 memoryBlockSize,ulonglong o
   bool boolVar7;
   bool boolongVar8;
   
-  unsignedVar5 = BYTE_OFFSET_FLAG;
+  validationResult2 = BYTE_OFFSET_FLAG;
   if (0x7e < in_EAX) goto LAB_18089ed1b;
   if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) != (int)operationFlags) {
     return BYTE_OFFSET_FLAG;
@@ -22862,20 +22862,20 @@ ulonglong FUN_18089e9af(uint64 resourceHandle,uint64 memoryBlockSize,ulonglong o
   plocalLong1 = (longlong *)*unaff_RDI;
   dataValueBuffer = *plocalLong1;
   if (dataValueBuffer == 0) {
-    unsignedVar4 = BYTE_OFFSET_FLAG;
+    validationResult1 = BYTE_OFFSET_FLAG;
   }
   else {
     if (plocalLong1[2] == operationFlags) {
 LAB_18089ea0f:
-      unsignedVar4 = readResourceData(*plocalLong1,unaff_RBP + -0x41,unaff_R12D,4,operationFlags);
+      validationResult1 = readResourceData(*plocalLong1,unaff_RBP + -0x41,unaff_R12D,4,operationFlags);
     }
     else {
       *(int *)(unaff_RBP + 0x77) = (int)operationFlags;
-      unsignedVar4 = dataProcessFunction(dataValueBuffer,unaff_RBP + 0x77);
-      if ((int)unsignedVar4 == 0) {
+      validationResult1 = dataProcessFunction(dataValueBuffer,unaff_RBP + 0x77);
+      if ((int)validationResult1 == 0) {
         operationFlags = 0;
         if ((ulonglong)plocalLong1[2] < (ulonglong)*(uint *)(unaff_RBP + 0x77) + 4) {
-          unsignedVar4 = ACCESS_FLAG;
+          validationResult1 = ACCESS_FLAG;
           goto LAB_18089ea2c;
         }
         goto LAB_18089ea0f;
@@ -22884,15 +22884,15 @@ LAB_18089ea0f:
     operationFlags = 0;
   }
 LAB_18089ea2c:
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   boolVar6 = *(uint *)(unaff_RDI + 8) < FIELD_OFFSET_2;
-  *(char *)(unaff_RBP + 0x77) = (char)unsignedVar4;
-  *(char *)(unaff_RBP + 0x7f) = (char)unsignedVar4;
+  *(char *)(unaff_RBP + 0x77) = (char)validationResult1;
+  *(char *)(unaff_RBP + 0x7f) = (char)validationResult1;
   boolongVar8 = false;
   if (*(uint *)(unaff_RDI + 8) < STRUCT_OFFSET_SIZE) {
-    unsignedVar4 = operationFlags & INVALID_HANDLE;
+    validationResult1 = operationFlags & INVALID_HANDLE;
   }
   else if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
     plocalLong1 = (longlong *)*unaff_RDI;
@@ -22924,19 +22924,19 @@ LAB_18089ea93:
       }
     }
     operationFlags = 0;
-    unsignedVar4 = (ulonglong)unsignedVar3;
+    validationResult1 = (ulonglong)unsignedVar3;
     if (boolVar7) {
-      unsignedVar4 = 0;
+      validationResult1 = 0;
     }
   }
   else {
-    unsignedVar4 = BYTE_OFFSET_FLAG;
+    validationResult1 = BYTE_OFFSET_FLAG;
   }
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   if (*(uint *)(unaff_RDI + 8) < 0x67) {
-    unsignedVar4 = operationFlags & INVALID_HANDLE;
+    validationResult1 = operationFlags & INVALID_HANDLE;
   }
   else if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
     plocalLong1 = (longlong *)*unaff_RDI;
@@ -22967,19 +22967,19 @@ LAB_18089eb3c:
     if (unsignedVar3 == 0) {
       *(bool *)(unaff_RBP + 0x77) = *(char *)(unaff_RBP + -0x49) != '\0';
     }
-    unsignedVar4 = (ulonglong)unsignedVar3;
+    validationResult1 = (ulonglong)unsignedVar3;
     if (unsignedVar3 == 0) {
-      unsignedVar4 = operationFlags & INVALID_HANDLE;
+      validationResult1 = operationFlags & INVALID_HANDLE;
     }
   }
   else {
-    unsignedVar4 = BYTE_OFFSET_FLAG;
+    validationResult1 = BYTE_OFFSET_FLAG;
   }
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   if (*(uint *)(unaff_RDI + 8) < 0x79) {
-    unsignedVar4 = operationFlags & INVALID_HANDLE;
+    validationResult1 = operationFlags & INVALID_HANDLE;
   }
   else if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
     plocalLong1 = (longlong *)*unaff_RDI;
@@ -23010,19 +23010,19 @@ LAB_18089ebc4:
     if (unsignedVar3 == 0) {
       *(bool *)(unaff_RBP + 0x7f) = *(char *)(unaff_RBP + -0x49) != '\0';
     }
-    unsignedVar4 = (ulonglong)unsignedVar3;
+    validationResult1 = (ulonglong)unsignedVar3;
     if (unsignedVar3 == 0) {
-      unsignedVar4 = operationFlags & INVALID_HANDLE;
+      validationResult1 = operationFlags & INVALID_HANDLE;
     }
   }
   else {
-    unsignedVar4 = BYTE_OFFSET_FLAG;
+    validationResult1 = BYTE_OFFSET_FLAG;
   }
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   if (*(uint *)(unaff_RDI + 8) < 0x7a) {
-    unsignedVar4 = operationFlags & INVALID_HANDLE;
+    validationResult1 = operationFlags & INVALID_HANDLE;
   }
   else if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
     plocalLong1 = (longlong *)*unaff_RDI;
@@ -23053,19 +23053,19 @@ LAB_18089ec4c:
     if (unsignedVar3 == 0) {
       boolongVar8 = *(char *)(unaff_RBP + -0x49) != '\0';
     }
-    unsignedVar4 = (ulonglong)unsignedVar3;
+    validationResult1 = (ulonglong)unsignedVar3;
     if (unsignedVar3 == 0) {
-      unsignedVar4 = operationFlags & INVALID_HANDLE;
+      validationResult1 = operationFlags & INVALID_HANDLE;
     }
   }
   else {
-    unsignedVar4 = BYTE_OFFSET_FLAG;
+    validationResult1 = BYTE_OFFSET_FLAG;
   }
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   if (*(uint *)(unaff_RDI + 8) < 0x7b) {
-    unsignedVar4 = operationFlags & INVALID_HANDLE;
+    validationResult1 = operationFlags & INVALID_HANDLE;
   }
   else if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
     plocalLong1 = (longlong *)*unaff_RDI;
@@ -23096,16 +23096,16 @@ LAB_18089ecd4:
     if (unsignedVar3 == 0) {
       boolongVar8 = *(char *)(unaff_RBP + -0x49) != '\0';
     }
-    unsignedVar4 = (ulonglong)unsignedVar3;
+    validationResult1 = (ulonglong)unsignedVar3;
     if (unsignedVar3 == 0) {
-      unsignedVar4 = operationFlags & INVALID_HANDLE;
+      validationResult1 = operationFlags & INVALID_HANDLE;
     }
   }
   else {
-    unsignedVar4 = BYTE_OFFSET_FLAG;
+    validationResult1 = BYTE_OFFSET_FLAG;
   }
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   if ((((!boolVar6) && (*(char *)(unaff_RBP + 0x77) == '\0')) && (*(char *)(unaff_RBP + 0x7f) == '\0'))
      && (!boolongVar8)) {
@@ -23115,14 +23115,14 @@ LAB_18089ecd4:
   in_EAX = *(uint *)(unaff_RDI + 8);
 LAB_18089ed1b:
   if (in_EAX < 0x7f) {
-    unsignedVar5 = operationFlags & INVALID_HANDLE;
+    validationResult2 = operationFlags & INVALID_HANDLE;
   }
   else if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
     unsignedVar3 = writeResourceData(*unaff_RDI,unaff_R15 + STRUCT_OFFSET_SIZE,4);
-    unsignedVar5 = (ulonglong)unsignedVar3;
+    validationResult2 = (ulonglong)unsignedVar3;
   }
-  if ((int)unsignedVar5 != 0) {
-    return unsignedVar5;
+  if ((int)validationResult2 != 0) {
+    return validationResult2;
   }
                     // WARNING: Subroutine does not return
   freeResourceBuffer();
@@ -23817,7 +23817,7 @@ ulonglong FUN_18089f970(longlong resourceHandle,longlong *memoryBlockBlockBlockS
   longlong localLong1;
   uint unsignedCounter;
   uint32 *pointerVar3;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   uint16_t unsignedStackArrayX18 [4];
   uint16_t unsignedStackArrayX20 [4];
   uint32 localBuffer [2];
@@ -23832,21 +23832,21 @@ ulonglong FUN_18089f970(longlong resourceHandle,longlong *memoryBlockBlockBlockS
   localUInt = pointerVar3[1];
   localUInt = pointerVar3[2];
   localUInt = pointerVar3[3];
-  unsignedVar4 = FUN_1808ddd30(memoryBlockSize,localBuffer,0,0x4c525443,0);
-  if ((int)unsignedVar4 != 0) {
-    return unsignedVar4;
+  validationResult1 = FUN_1808ddd30(memoryBlockSize,localBuffer,0,0x4c525443,0);
+  if ((int)validationResult1 != 0) {
+    return validationResult1;
   }
   if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
     unsignedCounter = discoverUtilityComponents(*memoryBlockBlockBlockSize,resourceHandle + RESOURCE_HANDLE_OFFSET);
-    unsignedVar4 = (ulonglong)unsignedCounter;
+    validationResult1 = (ulonglong)unsignedCounter;
     if (unsignedCounter == 0) {
       if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
         return BYTE_OFFSET_FLAG;
       }
       unsignedCounter = discoverUtilityComponents(*memoryBlockBlockBlockSize,resourceHandle + POINTER_OFFSET_DATA);
-      unsignedVar4 = (ulonglong)unsignedCounter;
+      validationResult1 = (ulonglong)unsignedCounter;
       if (unsignedCounter == 0) {
-        unsignedVar4 = BYTE_OFFSET_FLAG;
+        validationResult1 = BYTE_OFFSET_FLAG;
         unsignedCounter = 0;
         if ((*(uint *)(memoryBlockSize + 8) < 0x5a) && (unsignedCounter = BYTE_OFFSET_FLAG, *(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0)) {
           localBuffer[0] = localUInt;
@@ -23873,11 +23873,11 @@ ulonglong FUN_18089f970(longlong resourceHandle,longlong *memoryBlockBlockBlockS
         }
         if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
           unsignedCounter = discoverUtilityComponents(*memoryBlockBlockBlockSize,resourceHandle + FIELD_OFFSET_1);
-          unsignedVar4 = (ulonglong)unsignedCounter;
+          validationResult1 = (ulonglong)unsignedCounter;
           if (unsignedCounter == 0) {
-            unsignedVar4 = GetResourceCapacity(memoryBlockSize,resourceHandle + BUFFER_SIZE_OFFSET);
-            if ((int)unsignedVar4 != 0) {
-              return unsignedVar4;
+            validationResult1 = GetResourceCapacity(memoryBlockSize,resourceHandle + BUFFER_SIZE_OFFSET);
+            if ((int)validationResult1 != 0) {
+              return validationResult1;
             }
                     // WARNING: Subroutine does not return
             FUN_1808de000(memoryBlockSize,localBuffer);
@@ -23885,7 +23885,7 @@ ulonglong FUN_18089f970(longlong resourceHandle,longlong *memoryBlockBlockBlockS
         }
       }
     }
-    return unsignedVar4;
+    return validationResult1;
   }
   return BYTE_OFFSET_FLAG;
 }
@@ -24499,17 +24499,17 @@ void Unwind_180901f60(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x2b8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -24520,8 +24520,8 @@ void Unwind_180901f60(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -24535,17 +24535,17 @@ void Unwind_180901f70(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x2b8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -24556,8 +24556,8 @@ void Unwind_180901f70(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -24588,17 +24588,17 @@ void Unwind_180901fa0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA) + 0x218);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -24609,8 +24609,8 @@ void Unwind_180901fa0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -24624,17 +24624,17 @@ void Unwind_180901fc0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x218);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -24645,8 +24645,8 @@ void Unwind_180901fc0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -25135,17 +25135,17 @@ void Unwind_1809023f0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + BUFFER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -25156,8 +25156,8 @@ void Unwind_1809023f0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -25377,17 +25377,17 @@ void Unwind_180902510(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x120);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -25398,8 +25398,8 @@ void Unwind_180902510(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -25630,17 +25630,17 @@ void Unwind_180902600(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + 0x70) + 0xc0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -25651,8 +25651,8 @@ void Unwind_180902600(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -25911,13 +25911,13 @@ void Unwind_180902720(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = *(longlong **)(memoryBlockSize + 0x70);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = (uint64 *)pdataBuffer[1];
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 4) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -26217,17 +26217,17 @@ void Unwind_180902880(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + 0x70) + RESOURCE_OFFSET_HANDLE);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -26238,8 +26238,8 @@ void Unwind_180902880(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -26264,17 +26264,17 @@ void Unwind_1809028a0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + 0x70) + RESOURCE_HANDLE_OFFSET);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -26285,8 +26285,8 @@ void Unwind_1809028a0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -26339,17 +26339,17 @@ void Unwind_1809028f0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + 0x70) + 0x68);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -26360,8 +26360,8 @@ void Unwind_1809028f0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -26375,17 +26375,17 @@ void Unwind_180902900(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + 0x70) + 0x88);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -26396,8 +26396,8 @@ void Unwind_180902900(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -26731,16 +26731,16 @@ void Unwind_180902a70(uint64 resourceHandle,longlong memoryBlockSize)
   longlong localLong1;
   longlong dataValueBuffer;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult1;
+  ulonglong validationResult2;
   
   arrayIndex = *(longlong *)(memoryBlockSize + 0x70);
-  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   localLong1 = *(longlong *)(arrayIndex + 8);
-  unsignedVar5 = 0;
-  if (unsignedVar4 != 0) {
+  validationResult2 = 0;
+  if (validationResult1 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(localLong1 + unsignedVar5 * 8);
+      dataValueBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
       if (dataValueBuffer != 0) {
         if (*(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET) != (longlong *)0x0) {
           (**(code **)(**(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET) + STRUCT_OFFSET_SIZE))();
@@ -26748,13 +26748,13 @@ void Unwind_180902a70(uint64 resourceHandle,longlong memoryBlockSize)
                     // WARNING: Subroutine does not return
         HandleCriticalError(dataValueBuffer);
       }
-      *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
-      unsignedVar5 = unsignedVar5 + 1;
-    } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+      *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
+      validationResult2 = validationResult2 + 1;
+    } while (validationResult2 < validationResult1);
+    validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
   *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
+  if ((1 < validationResult1) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -26769,16 +26769,16 @@ void Unwind_180902a80(uint64 resourceHandle,longlong memoryBlockSize)
   longlong localLong1;
   longlong dataValueBuffer;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult1;
+  ulonglong validationResult2;
   
   arrayIndex = *(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA);
-  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   localLong1 = *(longlong *)(arrayIndex + 8);
-  unsignedVar5 = 0;
-  if (unsignedVar4 != 0) {
+  validationResult2 = 0;
+  if (validationResult1 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(localLong1 + unsignedVar5 * 8);
+      dataValueBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
       if (dataValueBuffer != 0) {
         if (*(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET) != (longlong *)0x0) {
           (**(code **)(**(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET) + STRUCT_OFFSET_SIZE))();
@@ -26786,13 +26786,13 @@ void Unwind_180902a80(uint64 resourceHandle,longlong memoryBlockSize)
                     // WARNING: Subroutine does not return
         HandleCriticalError(dataValueBuffer);
       }
-      *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
-      unsignedVar5 = unsignedVar5 + 1;
-    } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+      *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
+      validationResult2 = validationResult2 + 1;
+    } while (validationResult2 < validationResult1);
+    validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
   *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
+  if ((1 < validationResult1) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -26807,16 +26807,16 @@ void Unwind_180902a90(uint64 resourceHandle,longlong memoryBlockSize)
   longlong localLong1;
   longlong dataValueBuffer;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult1;
+  ulonglong validationResult2;
   
   arrayIndex = *(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA);
-  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   localLong1 = *(longlong *)(arrayIndex + 8);
-  unsignedVar5 = 0;
-  if (unsignedVar4 != 0) {
+  validationResult2 = 0;
+  if (validationResult1 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(localLong1 + unsignedVar5 * 8);
+      dataValueBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
       if (dataValueBuffer != 0) {
         if (*(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET) != (longlong *)0x0) {
           (**(code **)(**(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET) + STRUCT_OFFSET_SIZE))();
@@ -26824,13 +26824,13 @@ void Unwind_180902a90(uint64 resourceHandle,longlong memoryBlockSize)
                     // WARNING: Subroutine does not return
         HandleCriticalError(dataValueBuffer);
       }
-      *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
-      unsignedVar5 = unsignedVar5 + 1;
-    } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+      *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
+      validationResult2 = validationResult2 + 1;
+    } while (validationResult2 < validationResult1);
+    validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
   *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
+  if ((1 < validationResult1) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -26855,17 +26855,17 @@ void Unwind_180902ab0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + 0x70) + FIELD_OFFSET_1);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -26876,8 +26876,8 @@ void Unwind_180902ab0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -26986,16 +26986,16 @@ void Unwind_180902b60(uint64 resourceHandle,longlong memoryBlockSize)
   longlong localLong1;
   longlong dataValueBuffer;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult1;
+  ulonglong validationResult2;
   
   arrayIndex = *(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
-  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   localLong1 = *(longlong *)(arrayIndex + 8);
-  unsignedVar5 = 0;
-  if (unsignedVar4 != 0) {
+  validationResult2 = 0;
+  if (validationResult1 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(localLong1 + unsignedVar5 * 8);
+      dataValueBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
       if (dataValueBuffer != 0) {
         if (*(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET) != (longlong *)0x0) {
           (**(code **)(**(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET) + STRUCT_OFFSET_SIZE))();
@@ -27003,13 +27003,13 @@ void Unwind_180902b60(uint64 resourceHandle,longlong memoryBlockSize)
                     // WARNING: Subroutine does not return
         HandleCriticalError(dataValueBuffer);
       }
-      *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
-      unsignedVar5 = unsignedVar5 + 1;
-    } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+      *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
+      validationResult2 = validationResult2 + 1;
+    } while (validationResult2 < validationResult1);
+    validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
   *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
+  if ((1 < validationResult1) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -27024,16 +27024,16 @@ void Unwind_180902b70(uint64 resourceHandle,longlong memoryBlockSize)
   longlong localLong1;
   longlong dataValueBuffer;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult1;
+  ulonglong validationResult2;
   
   arrayIndex = *(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
-  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   localLong1 = *(longlong *)(arrayIndex + 8);
-  unsignedVar5 = 0;
-  if (unsignedVar4 != 0) {
+  validationResult2 = 0;
+  if (validationResult1 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(localLong1 + unsignedVar5 * 8);
+      dataValueBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
       if (dataValueBuffer != 0) {
         if (*(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET) != (longlong *)0x0) {
           (**(code **)(**(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET) + STRUCT_OFFSET_SIZE))();
@@ -27041,13 +27041,13 @@ void Unwind_180902b70(uint64 resourceHandle,longlong memoryBlockSize)
                     // WARNING: Subroutine does not return
         HandleCriticalError(dataValueBuffer);
       }
-      *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
-      unsignedVar5 = unsignedVar5 + 1;
-    } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+      *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
+      validationResult2 = validationResult2 + 1;
+    } while (validationResult2 < validationResult1);
+    validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
   *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
+  if ((1 < validationResult1) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -27119,17 +27119,17 @@ void Unwind_180902bb0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP) + BUFFER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -27140,8 +27140,8 @@ void Unwind_180902bb0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -27202,17 +27202,17 @@ void Unwind_180902bf0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + MEMORY_SIZE_OFFSET) + BUFFER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -27223,8 +27223,8 @@ void Unwind_180902bf0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -27238,17 +27238,17 @@ void Unwind_180902c00(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + RESOURCE_HANDLE_OFFSET);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -27259,8 +27259,8 @@ void Unwind_180902c00(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -27274,17 +27274,17 @@ void Unwind_180902c10(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + RESOURCE_HANDLE_OFFSET);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -27295,8 +27295,8 @@ void Unwind_180902c10(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -27319,17 +27319,17 @@ void Unwind_180902c30(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + BYTE_OFFSET_2);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -27340,8 +27340,8 @@ void Unwind_180902c30(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -27355,17 +27355,17 @@ void Unwind_180902c40(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + BYTE_OFFSET_2);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -27376,8 +27376,8 @@ void Unwind_180902c40(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -27521,17 +27521,17 @@ void Unwind_180902cd0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + POINTER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -27542,8 +27542,8 @@ void Unwind_180902cd0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -27557,17 +27557,17 @@ void Unwind_180902ce0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + POINTER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -27578,8 +27578,8 @@ void Unwind_180902ce0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -27842,17 +27842,17 @@ void Unwind_180902e50(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + LIST_OFFSET_HEAD) + BUFFER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -27863,8 +27863,8 @@ void Unwind_180902e50(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -27878,17 +27878,17 @@ void Unwind_180902e60(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + SYSTEM_OFFSET_STATUS1);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -27899,8 +27899,8 @@ void Unwind_180902e60(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -27914,17 +27914,17 @@ void Unwind_180902e70(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + SYSTEM_OFFSET_STATUS1);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -27935,8 +27935,8 @@ void Unwind_180902e70(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -27951,13 +27951,13 @@ void Unwind_180902e80(uint64 resourceHandle,longlong memoryBlockSize)
   uint64 *punsignedCounter;
   ulonglong *pointerVar3;
   longlong longVar4;
-  uint64 *punsignedVar5;
+  uint64 *pvalidationResult2;
   ulonglong unsignedVar6;
   
   pointerVar3 = (ulonglong *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + RESOURCE_OFFSET_HANDLE);
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + POINTER_OFFSET_DATA);
-  for (punsignedVar5 = (uint64 *)*pointerVar3; punsignedVar5 != punsignedCounter; punsignedVar5 = punsignedVar5 + 0xe) {
-    *punsignedVar5 = &threadLocalStorageCleanup;
+  for (pvalidationResult2 = (uint64 *)*pointerVar3; pvalidationResult2 != punsignedCounter; pvalidationResult2 = pvalidationResult2 + 0xe) {
+    *pvalidationResult2 = &threadLocalStorageCleanup;
   }
   punsignedCounter = (uint64 *)*pointerVar3;
   if (punsignedCounter != (uint64 *)0x0) {
@@ -28013,13 +28013,13 @@ void Unwind_180902eb0(uint64 resourceHandle,longlong memoryBlockSize)
   uint64 *punsignedCounter;
   longlong arrayIndex;
   ulonglong *puVar4;
-  uint64 *punsignedVar5;
+  uint64 *pvalidationResult2;
   ulonglong unsignedVar6;
   
   puVar4 = (ulonglong *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + RESOURCE_OFFSET_HANDLE);
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + POINTER_OFFSET_DATA);
-  for (punsignedVar5 = (uint64 *)*puVar4; punsignedVar5 != punsignedCounter; punsignedVar5 = punsignedVar5 + 0xe) {
-    *punsignedVar5 = &threadLocalStorageCleanup;
+  for (pvalidationResult2 = (uint64 *)*puVar4; pvalidationResult2 != punsignedCounter; pvalidationResult2 = pvalidationResult2 + 0xe) {
+    *pvalidationResult2 = &threadLocalStorageCleanup;
   }
   punsignedCounter = (uint64 *)*puVar4;
   if (punsignedCounter != (uint64 *)0x0) {
@@ -28056,13 +28056,13 @@ void Unwind_180902ec0(uint64 resourceHandle,longlong memoryBlockSize)
   uint64 *punsignedCounter;
   ulonglong *pointerVar3;
   longlong longVar4;
-  uint64 *punsignedVar5;
+  uint64 *pvalidationResult2;
   ulonglong unsignedVar6;
   
   pointerVar3 = *(ulonglong **)(memoryBlockSize + BUFFER_SIZE_OFFSET);
   punsignedCounter = (uint64 *)pointerVar3[1];
-  for (punsignedVar5 = (uint64 *)*pointerVar3; punsignedVar5 != punsignedCounter; punsignedVar5 = punsignedVar5 + 0xe) {
-    *punsignedVar5 = &threadLocalStorageCleanup;
+  for (pvalidationResult2 = (uint64 *)*pointerVar3; pvalidationResult2 != punsignedCounter; pvalidationResult2 = pvalidationResult2 + 0xe) {
+    *pvalidationResult2 = &threadLocalStorageCleanup;
   }
   punsignedCounter = (uint64 *)*pointerVar3;
   if (punsignedCounter != (uint64 *)0x0) {
@@ -28127,13 +28127,13 @@ void Unwind_180902f20(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = (longlong *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x888);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x890);
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 4) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -28150,13 +28150,13 @@ void Unwind_180902f40(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = (longlong *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x8a8);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x8b0);
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 4) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -28173,17 +28173,17 @@ void Unwind_180902f60(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x8c8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -28194,8 +28194,8 @@ void Unwind_180902f60(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -28544,17 +28544,17 @@ void Unwind_180903130(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP) + POINTER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -28565,8 +28565,8 @@ void Unwind_180903130(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -28580,17 +28580,17 @@ void Unwind_180903140(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + 0x88);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -28601,8 +28601,8 @@ void Unwind_180903140(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -28639,17 +28639,17 @@ void Unwind_180903160(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP) + POINTER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -28660,8 +28660,8 @@ void Unwind_180903160(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -28717,17 +28717,17 @@ void Unwind_180903190(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA) + POINTER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -28738,8 +28738,8 @@ void Unwind_180903190(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -28829,17 +28829,17 @@ void Unwind_1809031f0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + POINTER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -28850,8 +28850,8 @@ void Unwind_1809031f0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -28865,17 +28865,17 @@ void Unwind_180903200(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + BUFFER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -28886,8 +28886,8 @@ void Unwind_180903200(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -29036,17 +29036,17 @@ void Unwind_180903310(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + POINTER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -29057,8 +29057,8 @@ void Unwind_180903310(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -29311,17 +29311,17 @@ void Unwind_1809034b0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + RESOURCE_OFFSET_HANDLE);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -29332,8 +29332,8 @@ void Unwind_1809034b0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -29347,17 +29347,17 @@ void Unwind_1809034c0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + RESOURCE_OFFSET_HANDLE);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -29368,8 +29368,8 @@ void Unwind_1809034c0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -29383,17 +29383,17 @@ void Unwind_1809034d0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + RESOURCE_OFFSET_HANDLE);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -29404,8 +29404,8 @@ void Unwind_1809034d0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -29419,17 +29419,17 @@ void Unwind_1809034e0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + DATA_OFFSET_START);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -29440,8 +29440,8 @@ void Unwind_1809034e0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -29455,17 +29455,17 @@ void Unwind_1809034f0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   arrayIndex = *(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
   FUN_18005a050();
   if ((1 < *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET)) &&
      (punsignedCounter = *(uint64 **)(arrayIndex + 8), punsignedCounter != (uint64 *)0x0)) {
-    unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-    if (unsignedVar4 != 0) {
-      arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+    if (validationResult1 != 0) {
+      arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
       arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
         *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
         *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
         poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -29476,8 +29476,8 @@ void Unwind_1809034f0(uint64 resourceHandle,longlong memoryBlockSize)
         }
       }
       else {
-        exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                            punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+        exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                            punsignedCounter,validationResult1,0xfffffffffffffffe);
       }
     }
     return;
@@ -29493,17 +29493,17 @@ void Unwind_180903500(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   arrayIndex = *(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
   FUN_18005a050();
   if ((1 < *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET)) &&
      (punsignedCounter = *(uint64 **)(arrayIndex + 8), punsignedCounter != (uint64 *)0x0)) {
-    unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-    if (unsignedVar4 != 0) {
-      arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+    if (validationResult1 != 0) {
+      arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
       arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
         *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
         *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
         poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -29514,8 +29514,8 @@ void Unwind_180903500(uint64 resourceHandle,longlong memoryBlockSize)
         }
       }
       else {
-        exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                            punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+        exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                            punsignedCounter,validationResult1,0xfffffffffffffffe);
       }
     }
     return;
@@ -29594,17 +29594,17 @@ void Unwind_180903520(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + 0x70) + 0x300);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -29615,8 +29615,8 @@ void Unwind_180903520(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -29644,17 +29644,17 @@ void Unwind_180903560(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   arrayIndex = *(longlong *)(memoryBlockSize + 0x70);
   FUN_18005a050();
   if ((1 < *(ulonglong *)(arrayIndex + 0x340)) &&
      (punsignedCounter = *(uint64 **)(arrayIndex + 0x338), punsignedCounter != (uint64 *)0x0)) {
-    unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-    if (unsignedVar4 != 0) {
-      arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+    if (validationResult1 != 0) {
+      arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
       arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
         *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
         *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
         poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -29665,8 +29665,8 @@ void Unwind_180903560(uint64 resourceHandle,longlong memoryBlockSize)
         }
       }
       else {
-        exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                            punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+        exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                            punsignedCounter,validationResult1,0xfffffffffffffffe);
       }
     }
     return;
@@ -29770,17 +29770,17 @@ void Unwind_1809035e0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   arrayIndex = *(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP);
   FUN_18005a050();
   if ((1 < *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET)) &&
      (punsignedCounter = *(uint64 **)(arrayIndex + 8), punsignedCounter != (uint64 *)0x0)) {
-    unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-    if (unsignedVar4 != 0) {
-      arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+    if (validationResult1 != 0) {
+      arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
       arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
         *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
         *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
         poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -29791,8 +29791,8 @@ void Unwind_1809035e0(uint64 resourceHandle,longlong memoryBlockSize)
         }
       }
       else {
-        exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                            punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+        exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                            punsignedCounter,validationResult1,0xfffffffffffffffe);
       }
     }
     return;
@@ -29808,17 +29808,17 @@ void Unwind_1809035f0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   arrayIndex = *(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP);
   FUN_18005a050();
   if ((1 < *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET)) &&
      (punsignedCounter = *(uint64 **)(arrayIndex + 8), punsignedCounter != (uint64 *)0x0)) {
-    unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-    if (unsignedVar4 != 0) {
-      arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+    if (validationResult1 != 0) {
+      arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
       arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
         *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
         *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
         poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -29829,8 +29829,8 @@ void Unwind_1809035f0(uint64 resourceHandle,longlong memoryBlockSize)
         }
       }
       else {
-        exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                            punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+        exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                            punsignedCounter,validationResult1,0xfffffffffffffffe);
       }
     }
     return;
@@ -32943,13 +32943,13 @@ void Unwind_180904090(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = (longlong *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x1380);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 5000);
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 4) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -32966,13 +32966,13 @@ void Unwind_1809040b0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = (longlong *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x13a0);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x13a8);
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 4) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -34537,13 +34537,13 @@ void Unwind_180904570(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = (longlong *)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP) + 0x1380);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP) + 5000);
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 4) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -34560,13 +34560,13 @@ void Unwind_180904590(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = (longlong *)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP) + 0x13a0);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP) + 0x13a8);
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 4) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -34583,13 +34583,13 @@ void Unwind_1809045b0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = *(longlong **)(memoryBlockSize + 0x88);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = (uint64 *)pdataBuffer[1];
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 4) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -34624,17 +34624,17 @@ void Unwind_180904630(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + LIST_OFFSET_HEAD) + RESOURCE_HANDLE_OFFSET400);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -34645,8 +34645,8 @@ void Unwind_180904630(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -35186,17 +35186,17 @@ void Unwind_180904920(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + BYTE_OFFSET_2);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -35207,8 +35207,8 @@ void Unwind_180904920(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -35222,17 +35222,17 @@ void Unwind_180904930(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + BUFFER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -35243,8 +35243,8 @@ void Unwind_180904930(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -35480,17 +35480,17 @@ void Unwind_1809049d0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + 0x70) + 8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -35501,8 +35501,8 @@ void Unwind_1809049d0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -35516,17 +35516,17 @@ void Unwind_1809049e0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + 0x70) + BYTE_OFFSET_2);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -35537,8 +35537,8 @@ void Unwind_1809049e0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -35552,17 +35552,17 @@ void Unwind_1809049f0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + 0x70) + BUFFER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -35573,8 +35573,8 @@ void Unwind_1809049f0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -35801,17 +35801,17 @@ void Unwind_180904a80(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + 0x70);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -35822,8 +35822,8 @@ void Unwind_180904a80(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -35837,17 +35837,17 @@ void Unwind_180904a90(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + 0x70);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -35858,8 +35858,8 @@ void Unwind_180904a90(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -36031,7 +36031,7 @@ void Catch_180904b90(uint64 resourceHandle,longlong memoryBlockSize)
   longlong dataValueBuffer;
   longlong arrayIndex;
   longlong longVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult2;
   ulonglong unsignedVar6;
   longlong longVar7;
   ulonglong unsignedVar8;
@@ -36047,28 +36047,28 @@ void Catch_180904b90(uint64 resourceHandle,longlong memoryBlockSize)
     longVar4 = *(longlong *)(memoryBlockSize + 0xb0);
   }
   *(longlong *)(dataValueBuffer + BUFFER_SIZE_OFFSET) = longVar4;
-  unsignedVar5 = *(ulonglong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
-  if ((unsignedVar5 & ERROR_CODE_FAILED) == 0) {
+  validationResult2 = *(ulonglong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
+  if ((validationResult2 & ERROR_CODE_FAILED) == 0) {
     longVar7 = *(longlong *)(memoryBlockSize + 0xb0);
   }
-  *(ulonglong *)(memoryBlockSize + POINTER_OFFSET_DATA) = unsignedVar5;
+  *(ulonglong *)(memoryBlockSize + POINTER_OFFSET_DATA) = validationResult2;
   while( true ) {
-    unsignedVar8 = (unsignedVar5 & 0xffffffffffffffe0) + POINTER_OFFSET_DATA;
+    unsignedVar8 = (validationResult2 & 0xffffffffffffffe0) + POINTER_OFFSET_DATA;
     if (0x8000000000000000 < functionResult - unsignedVar8) {
       unsignedVar8 = functionResult;
     }
-    unsignedVar6 = unsignedVar5;
-    if (unsignedVar5 != unsignedVar8) {
+    unsignedVar6 = validationResult2;
+    if (validationResult2 != unsignedVar8) {
       do {
-        unsignedVar6 = unsignedVar5 + 1;
-        FUN_180060bd0(longVar7 + (ulonglong)((uint)unsignedVar5 & ERROR_CODE_FAILED) * 8);
-        unsignedVar5 = unsignedVar6;
+        unsignedVar6 = validationResult2 + 1;
+        FUN_180060bd0(longVar7 + (ulonglong)((uint)validationResult2 & ERROR_CODE_FAILED) * 8);
+        validationResult2 = unsignedVar6;
       } while (unsignedVar6 != unsignedVar8);
       *(ulonglong *)(memoryBlockSize + POINTER_OFFSET_DATA) = unsignedVar6;
     }
     if (longVar7 == arrayIndex) break;
     longVar7 = *(longlong *)(longVar7 + RESOURCE_HANDLE_OFFSET0);
-    unsignedVar5 = unsignedVar6;
+    validationResult2 = unsignedVar6;
   }
                     // WARNING: Subroutine does not return
   _CxxThrowException(0,0);
@@ -36082,8 +36082,8 @@ void Catch_180904c60(uint64 resourceHandle,longlong memoryBlockSize)
   longlong localLong1;
   longlong dataValueBuffer;
   longlong *parrayIndex;
-  ulonglong unsignedVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult1;
+  ulonglong validationResult2;
   longlong longVar6;
   ulonglong unsignedVar7;
   ulonglong unsignedVar8;
@@ -36092,30 +36092,30 @@ void Catch_180904c60(uint64 resourceHandle,longlong memoryBlockSize)
   unsignedVar8 = *(ulonglong *)(memoryBlockSize + POINTER_OFFSET_DATA);
   localLong1 = *(longlong *)(memoryBlockSize + MEMORY_SIZE_OFFSET);
   longVar9 = *(longlong *)(localLong1 + BUFFER_SIZE_OFFSET);
-  unsignedVar4 = *(ulonglong *)(memoryBlockSize + FIELD_OFFSET_1);
+  validationResult1 = *(ulonglong *)(memoryBlockSize + FIELD_OFFSET_1);
   dataValueBuffer = *(longlong *)(memoryBlockSize + 0xa0);
   longVar6 = *(longlong *)(memoryBlockSize + 0xa8);
-  if ((unsignedVar4 & ERROR_CODE_FAILED) == 0) {
+  if ((validationResult1 & ERROR_CODE_FAILED) == 0) {
     longVar6 = dataValueBuffer;
   }
-  *(ulonglong *)(memoryBlockSize + POINTER_OFFSET_DATA) = unsignedVar4;
+  *(ulonglong *)(memoryBlockSize + POINTER_OFFSET_DATA) = validationResult1;
   while( true ) {
-    unsignedVar7 = (unsignedVar4 & 0xffffffffffffffe0) + POINTER_OFFSET_DATA;
+    unsignedVar7 = (validationResult1 & 0xffffffffffffffe0) + POINTER_OFFSET_DATA;
     if (0x8000000000000000 < unsignedVar8 - unsignedVar7) {
       unsignedVar7 = unsignedVar8;
     }
-    unsignedVar5 = unsignedVar4;
-    if (unsignedVar4 != unsignedVar7) {
+    validationResult2 = validationResult1;
+    if (validationResult1 != unsignedVar7) {
       do {
-        unsignedVar5 = unsignedVar4 + 1;
-        FUN_180060bd0(longVar6 + (ulonglong)((uint)unsignedVar4 & ERROR_CODE_FAILED) * 8);
-        unsignedVar4 = unsignedVar5;
-      } while (unsignedVar5 != unsignedVar7);
-      *(ulonglong *)(memoryBlockSize + POINTER_OFFSET_DATA) = unsignedVar5;
+        validationResult2 = validationResult1 + 1;
+        FUN_180060bd0(longVar6 + (ulonglong)((uint)validationResult1 & ERROR_CODE_FAILED) * 8);
+        validationResult1 = validationResult2;
+      } while (validationResult2 != unsignedVar7);
+      *(ulonglong *)(memoryBlockSize + POINTER_OFFSET_DATA) = validationResult2;
     }
     if (longVar6 == longVar9) break;
     longVar6 = *(longlong *)(longVar6 + RESOURCE_HANDLE_OFFSET0);
-    unsignedVar4 = unsignedVar5;
+    validationResult1 = validationResult2;
   }
   unsignedVar8 = *(longlong *)(memoryBlockSize + FIELD_OFFSET_1) - 1U & 0xffffffffffffffe0;
   *(ulonglong *)(memoryBlockSize + POINTER_OFFSET_DATA) = unsignedVar8;
@@ -36377,17 +36377,17 @@ void Unwind_180904e70(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0xc0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -36398,8 +36398,8 @@ void Unwind_180904e70(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -36491,17 +36491,17 @@ void Unwind_180904f30(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + MEMORY_SIZE_OFFSET);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -36512,8 +36512,8 @@ void Unwind_180904f30(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -36619,17 +36619,17 @@ void Unwind_180904fb0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + POINTER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -36640,8 +36640,8 @@ void Unwind_180904fb0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -36779,17 +36779,17 @@ void Unwind_180905030(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + BUFFER_SIZE_OFFSET);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -36800,8 +36800,8 @@ void Unwind_180905030(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -36836,17 +36836,17 @@ void Unwind_180905050(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + RESOURCE_HANDLE_OFFSET);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -36857,8 +36857,8 @@ void Unwind_180905050(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -37193,17 +37193,17 @@ void Unwind_180905200(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x148);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -37214,8 +37214,8 @@ void Unwind_180905200(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -37250,17 +37250,17 @@ void Unwind_180905220(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x208);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -37271,8 +37271,8 @@ void Unwind_180905220(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -37325,17 +37325,17 @@ void Unwind_180905260(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + RESOURCE_HANDLE_OFFSET8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -37346,8 +37346,8 @@ void Unwind_180905260(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -37382,17 +37382,17 @@ void Unwind_180905280(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x228);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -37403,8 +37403,8 @@ void Unwind_180905280(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -37525,17 +37525,17 @@ void Unwind_180905380(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + POINTER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -37546,8 +37546,8 @@ void Unwind_180905380(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -37892,17 +37892,17 @@ void Unwind_180905540(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + LIST_OFFSET_HEAD) + 0x213438);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -37913,8 +37913,8 @@ void Unwind_180905540(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -37955,17 +37955,17 @@ void Unwind_1809055b0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + FIELD_OFFSET_1);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -37976,8 +37976,8 @@ void Unwind_1809055b0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -37991,17 +37991,17 @@ void Unwind_1809055c0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + FIELD_OFFSET_1);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -38012,8 +38012,8 @@ void Unwind_1809055c0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -38240,13 +38240,13 @@ void Unwind_180905770(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = *(longlong **)(memoryBlockSize + BYTE_OFFSET_2);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = (uint64 *)pdataBuffer[1];
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 0x13) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -38278,7 +38278,7 @@ void Unwind_1809057b0(uint64 resourceHandle,longlong memoryBlockSize)
   longlong *pdataBuffer;
   longlong *parrayIndex;
   longlong *plVar4;
-  uint64 *punsignedVar5;
+  uint64 *pvalidationResult2;
   int integerVar6;
   int *pintVar7;
   longlong *plongVar8;
@@ -38290,10 +38290,10 @@ void Unwind_1809057b0(uint64 resourceHandle,longlong memoryBlockSize)
   longlong *plStackX_20;
   ulonglong functionResult0;
   
-  punsignedVar5 = *(uint64 **)(memoryBlockSize + BUFFER_SIZE_OFFSET);
-  *punsignedVar5 = &unknown_180a07cd0;
-  *(byte *)((longlong)punsignedVar5 + 0x162) = 1;
-  pdataBuffer = punsignedVar5 + 0x1a;
+  pvalidationResult2 = *(uint64 **)(memoryBlockSize + BUFFER_SIZE_OFFSET);
+  *pvalidationResult2 = &unknown_180a07cd0;
+  *(byte *)((longlong)pvalidationResult2 + 0x162) = 1;
+  pdataBuffer = pvalidationResult2 + 0x1a;
   plStackX_20 = pdataBuffer;
   integerVar6 = _Mtx_lock(pdataBuffer);
   if (integerVar6 != 0) {
@@ -38301,20 +38301,20 @@ void Unwind_1809057b0(uint64 resourceHandle,longlong memoryBlockSize)
   }
   functionResult0 = 0;
   functionResult1 = functionResult0;
-  if (punsignedVar5[9] != 0) {
+  if (pvalidationResult2[9] != 0) {
     do {
-      functionResult2 = functionResult1 % (ulonglong)*(uint *)(punsignedVar5 + 8);
+      functionResult2 = functionResult1 % (ulonglong)*(uint *)(pvalidationResult2 + 8);
       integerVar6 = (int)functionResult0;
-      for (pintVar7 = *(int **)(punsignedVar5[7] + functionResult2 * 8); pintVar7 != (int *)0x0;
+      for (pintVar7 = *(int **)(pvalidationResult2[7] + functionResult2 * 8); pintVar7 != (int *)0x0;
           pintVar7 = *(int **)(pintVar7 + 4)) {
         if (integerVar6 == *pintVar7) {
           if (pintVar7 != (int *)0x0) goto LAB_1801571ef;
           break;
         }
       }
-      FUN_18066c220(punsignedVar5 + 10,&plStackX_10,(ulonglong)*(uint *)(punsignedVar5 + 8),
-                    *(uint32 *)(punsignedVar5 + 9),1);
-      pintVar7 = (int *)FUN_18062b420(_systemVared18,RESOURCE_OFFSET_HANDLE,*(byte *)((longlong)punsignedVar5 + 0x5c));
+      FUN_18066c220(pvalidationResult2 + 10,&plStackX_10,(ulonglong)*(uint *)(pvalidationResult2 + 8),
+                    *(uint32 *)(pvalidationResult2 + 9),1);
+      pintVar7 = (int *)FUN_18062b420(_systemVared18,RESOURCE_OFFSET_HANDLE,*(byte *)((longlong)pvalidationResult2 + 0x5c));
       *pintVar7 = integerVar6;
       pintVar7[2] = 0;
       pintVar7[3] = 0;
@@ -38322,11 +38322,11 @@ void Unwind_1809057b0(uint64 resourceHandle,longlong memoryBlockSize)
       pintVar7[5] = 0;
       if ((char)plStackX_10 != '\0') {
         functionResult2 = functionResult1 % ((ulonglong)plStackX_10 >> POINTER_OFFSET_DATA);
-        FUN_18015bdc0(punsignedVar5 + 6);
+        FUN_18015bdc0(pvalidationResult2 + 6);
       }
-      *(uint64 *)(pintVar7 + 4) = *(uint64 *)(punsignedVar5[7] + functionResult2 * 8);
-      *(int **)(punsignedVar5[7] + functionResult2 * 8) = pintVar7;
-      punsignedVar5[9] = punsignedVar5[9] + 1;
+      *(uint64 *)(pintVar7 + 4) = *(uint64 *)(pvalidationResult2[7] + functionResult2 * 8);
+      *(int **)(pvalidationResult2[7] + functionResult2 * 8) = pintVar7;
+      pvalidationResult2[9] = pvalidationResult2[9] + 1;
 LAB_1801571ef:
       plStackX_18 = *(longlong **)(pintVar7 + 2);
       pintVar7[2] = 0;
@@ -38337,12 +38337,12 @@ LAB_1801571ef:
       unsignedVar9 = integerVar6 + 1;
       functionResult0 = (ulonglong)unsignedVar9;
       functionResult1 = (longlong)(int)unsignedVar9;
-    } while ((ulonglong)(longlong)(int)unsignedVar9 < (ulonglong)punsignedVar5[9]);
+    } while ((ulonglong)(longlong)(int)unsignedVar9 < (ulonglong)pvalidationResult2[9]);
   }
-  plocalLong1 = punsignedVar5 + 6;
+  plocalLong1 = pvalidationResult2 + 6;
   FUN_18015b450(plocalLong1);
-  parrayIndex = punsignedVar5 + 0x2d;
-  plVar4 = (longlong *)punsignedVar5[ERROR_CODE_1];
+  parrayIndex = pvalidationResult2 + 0x2d;
+  plVar4 = (longlong *)pvalidationResult2[ERROR_CODE_1];
   plongVar8 = (longlong *)*parrayIndex;
   if (plongVar8 != plVar4) {
     do {
@@ -38353,43 +38353,43 @@ LAB_1801571ef:
     } while (plongVar8 != plVar4);
     plongVar8 = (longlong *)*parrayIndex;
   }
-  punsignedVar5[ERROR_CODE_1] = plongVar8;
+  pvalidationResult2[ERROR_CODE_1] = plongVar8;
   integerVar6 = _Mtx_unlock(pdataBuffer);
   if (integerVar6 != 0) {
     __Throw_C_error_std__YAXH_Z(integerVar6);
   }
-  if (punsignedVar5[ERROR_CODE_INVALID] != 0) {
+  if (pvalidationResult2[ERROR_CODE_INVALID] != 0) {
     free();
-    punsignedVar5[ERROR_CODE_INVALID] = 0;
+    pvalidationResult2[ERROR_CODE_INVALID] = 0;
   }
-  plStackX_10 = punsignedVar5 + RESOURCE_CONFIG_OFFSET;
+  plStackX_10 = pvalidationResult2 + RESOURCE_CONFIG_OFFSET;
   FUN_18015b4f0();
-  if ((longlong *)punsignedVar5[0x3d] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)punsignedVar5[0x3d] + STRUCT_OFFSET_SIZE))();
+  if ((longlong *)pvalidationResult2[0x3d] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)pvalidationResult2[0x3d] + STRUCT_OFFSET_SIZE))();
   }
   plStackX_10 = parrayIndex;
   FUN_180057830(parrayIndex);
-  plStackX_10 = punsignedVar5 + BYTE_OFFSET_2;
+  plStackX_10 = pvalidationResult2 + BYTE_OFFSET_2;
   FUN_180048980();
-  plStackX_10 = punsignedVar5 + FIELD_OFFSET_3;
+  plStackX_10 = pvalidationResult2 + FIELD_OFFSET_3;
   FUN_180048980();
   plStackX_10 = pdataBuffer;
   _Mtx_destroy_in_situ(pdataBuffer);
-  plStackX_10 = punsignedVar5 + 0x16;
+  plStackX_10 = pvalidationResult2 + 0x16;
   if (*plStackX_10 != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  plStackX_10 = punsignedVar5 + STRUCT_MULTIPLIER;
+  plStackX_10 = pvalidationResult2 + STRUCT_MULTIPLIER;
   _Mtx_destroy_in_situ();
   plStackX_10 = plocalLong1;
   FUN_18015b450(plocalLong1);
-  if ((1 < (ulonglong)punsignedVar5[8]) && (punsignedVar5[7] != 0)) {
+  if ((1 < (ulonglong)pvalidationResult2[8]) && (pvalidationResult2[7] != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  if ((code *)punsignedVar5[3] != (code *)0x0) {
-    (*(code *)punsignedVar5[3])(punsignedVar5 + 1,0,0);
+  if ((code *)pvalidationResult2[3] != (code *)0x0) {
+    (*(code *)pvalidationResult2[3])(pvalidationResult2 + 1,0,0);
   }
   return;
 }
@@ -38537,13 +38537,13 @@ void Unwind_180905860(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = (longlong *)(*(longlong *)(memoryBlockSize + 0x2e0) + 8);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + 0x2e0) + RESOURCE_HANDLE_OFFSET);
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 4) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -38560,13 +38560,13 @@ void Unwind_180905870(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = *(longlong **)(memoryBlockSize + 0x2e8);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = (uint64 *)pdataBuffer[1];
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 4) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -38583,17 +38583,17 @@ void Unwind_180905880(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + 0x2e8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -38604,8 +38604,8 @@ void Unwind_180905880(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -38647,13 +38647,13 @@ void Unwind_1809058a0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = (longlong *)(*(longlong *)(memoryBlockSize + 0x2e0) + POINTER_OFFSET_DATA);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + 0x2e0) + BYTE_OFFSET_2);
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 4) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -38670,13 +38670,13 @@ void Unwind_1809058b0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = (longlong *)(*(longlong *)(memoryBlockSize + 0x2e0) + BUFFER_SIZE_OFFSET);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + 0x2e0) + BUFFER_OFFSET_DATA);
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 4) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -38772,13 +38772,13 @@ void Unwind_180905910(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = (longlong *)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA) + 8);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET);
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 4) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -38830,13 +38830,13 @@ void Unwind_180905940(uint64 resourceHandle,longlong memoryBlockSize)
   uint64 *punsignedCounter;
   ulonglong *pointerVar3;
   longlong longVar4;
-  uint64 *punsignedVar5;
+  uint64 *pvalidationResult2;
   ulonglong unsignedVar6;
   
   pointerVar3 = *(ulonglong **)(memoryBlockSize + BUFFER_OFFSET_DATA);
   punsignedCounter = (uint64 *)pointerVar3[1];
-  for (punsignedVar5 = (uint64 *)*pointerVar3; punsignedVar5 != punsignedCounter; punsignedVar5 = punsignedVar5 + 0xe) {
-    *punsignedVar5 = &threadLocalStorageCleanup;
+  for (pvalidationResult2 = (uint64 *)*pointerVar3; pvalidationResult2 != punsignedCounter; pvalidationResult2 = pvalidationResult2 + 0xe) {
+    *pvalidationResult2 = &threadLocalStorageCleanup;
   }
   punsignedCounter = (uint64 *)*pointerVar3;
   if (punsignedCounter != (uint64 *)0x0) {
@@ -38875,7 +38875,7 @@ void Unwind_180905950(uint64 resourceHandle,longlong memoryBlockSize)
   longlong *pdataBuffer;
   longlong *parrayIndex;
   longlong *plVar4;
-  uint64 *punsignedVar5;
+  uint64 *pvalidationResult2;
   int integerVar6;
   int *pintVar7;
   longlong *plongVar8;
@@ -38887,10 +38887,10 @@ void Unwind_180905950(uint64 resourceHandle,longlong memoryBlockSize)
   longlong *plStackX_20;
   ulonglong functionResult0;
   
-  punsignedVar5 = *(uint64 **)(memoryBlockSize + 0x2e8);
-  *punsignedVar5 = &unknown_180a07cd0;
-  *(byte *)((longlong)punsignedVar5 + 0x162) = 1;
-  pdataBuffer = punsignedVar5 + 0x1a;
+  pvalidationResult2 = *(uint64 **)(memoryBlockSize + 0x2e8);
+  *pvalidationResult2 = &unknown_180a07cd0;
+  *(byte *)((longlong)pvalidationResult2 + 0x162) = 1;
+  pdataBuffer = pvalidationResult2 + 0x1a;
   plStackX_20 = pdataBuffer;
   integerVar6 = _Mtx_lock(pdataBuffer);
   if (integerVar6 != 0) {
@@ -38898,20 +38898,20 @@ void Unwind_180905950(uint64 resourceHandle,longlong memoryBlockSize)
   }
   functionResult0 = 0;
   functionResult1 = functionResult0;
-  if (punsignedVar5[9] != 0) {
+  if (pvalidationResult2[9] != 0) {
     do {
-      functionResult2 = functionResult1 % (ulonglong)*(uint *)(punsignedVar5 + 8);
+      functionResult2 = functionResult1 % (ulonglong)*(uint *)(pvalidationResult2 + 8);
       integerVar6 = (int)functionResult0;
-      for (pintVar7 = *(int **)(punsignedVar5[7] + functionResult2 * 8); pintVar7 != (int *)0x0;
+      for (pintVar7 = *(int **)(pvalidationResult2[7] + functionResult2 * 8); pintVar7 != (int *)0x0;
           pintVar7 = *(int **)(pintVar7 + 4)) {
         if (integerVar6 == *pintVar7) {
           if (pintVar7 != (int *)0x0) goto LAB_1801571ef;
           break;
         }
       }
-      FUN_18066c220(punsignedVar5 + 10,&plStackX_10,(ulonglong)*(uint *)(punsignedVar5 + 8),
-                    *(uint32 *)(punsignedVar5 + 9),1);
-      pintVar7 = (int *)FUN_18062b420(_systemVared18,RESOURCE_OFFSET_HANDLE,*(byte *)((longlong)punsignedVar5 + 0x5c));
+      FUN_18066c220(pvalidationResult2 + 10,&plStackX_10,(ulonglong)*(uint *)(pvalidationResult2 + 8),
+                    *(uint32 *)(pvalidationResult2 + 9),1);
+      pintVar7 = (int *)FUN_18062b420(_systemVared18,RESOURCE_OFFSET_HANDLE,*(byte *)((longlong)pvalidationResult2 + 0x5c));
       *pintVar7 = integerVar6;
       pintVar7[2] = 0;
       pintVar7[3] = 0;
@@ -38919,11 +38919,11 @@ void Unwind_180905950(uint64 resourceHandle,longlong memoryBlockSize)
       pintVar7[5] = 0;
       if ((char)plStackX_10 != '\0') {
         functionResult2 = functionResult1 % ((ulonglong)plStackX_10 >> POINTER_OFFSET_DATA);
-        FUN_18015bdc0(punsignedVar5 + 6);
+        FUN_18015bdc0(pvalidationResult2 + 6);
       }
-      *(uint64 *)(pintVar7 + 4) = *(uint64 *)(punsignedVar5[7] + functionResult2 * 8);
-      *(int **)(punsignedVar5[7] + functionResult2 * 8) = pintVar7;
-      punsignedVar5[9] = punsignedVar5[9] + 1;
+      *(uint64 *)(pintVar7 + 4) = *(uint64 *)(pvalidationResult2[7] + functionResult2 * 8);
+      *(int **)(pvalidationResult2[7] + functionResult2 * 8) = pintVar7;
+      pvalidationResult2[9] = pvalidationResult2[9] + 1;
 LAB_1801571ef:
       plStackX_18 = *(longlong **)(pintVar7 + 2);
       pintVar7[2] = 0;
@@ -38934,12 +38934,12 @@ LAB_1801571ef:
       unsignedVar9 = integerVar6 + 1;
       functionResult0 = (ulonglong)unsignedVar9;
       functionResult1 = (longlong)(int)unsignedVar9;
-    } while ((ulonglong)(longlong)(int)unsignedVar9 < (ulonglong)punsignedVar5[9]);
+    } while ((ulonglong)(longlong)(int)unsignedVar9 < (ulonglong)pvalidationResult2[9]);
   }
-  plocalLong1 = punsignedVar5 + 6;
+  plocalLong1 = pvalidationResult2 + 6;
   FUN_18015b450(plocalLong1);
-  parrayIndex = punsignedVar5 + 0x2d;
-  plVar4 = (longlong *)punsignedVar5[ERROR_CODE_1];
+  parrayIndex = pvalidationResult2 + 0x2d;
+  plVar4 = (longlong *)pvalidationResult2[ERROR_CODE_1];
   plongVar8 = (longlong *)*parrayIndex;
   if (plongVar8 != plVar4) {
     do {
@@ -38950,43 +38950,43 @@ LAB_1801571ef:
     } while (plongVar8 != plVar4);
     plongVar8 = (longlong *)*parrayIndex;
   }
-  punsignedVar5[ERROR_CODE_1] = plongVar8;
+  pvalidationResult2[ERROR_CODE_1] = plongVar8;
   integerVar6 = _Mtx_unlock(pdataBuffer);
   if (integerVar6 != 0) {
     __Throw_C_error_std__YAXH_Z(integerVar6);
   }
-  if (punsignedVar5[ERROR_CODE_INVALID] != 0) {
+  if (pvalidationResult2[ERROR_CODE_INVALID] != 0) {
     free();
-    punsignedVar5[ERROR_CODE_INVALID] = 0;
+    pvalidationResult2[ERROR_CODE_INVALID] = 0;
   }
-  plStackX_10 = punsignedVar5 + RESOURCE_CONFIG_OFFSET;
+  plStackX_10 = pvalidationResult2 + RESOURCE_CONFIG_OFFSET;
   FUN_18015b4f0();
-  if ((longlong *)punsignedVar5[0x3d] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)punsignedVar5[0x3d] + STRUCT_OFFSET_SIZE))();
+  if ((longlong *)pvalidationResult2[0x3d] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)pvalidationResult2[0x3d] + STRUCT_OFFSET_SIZE))();
   }
   plStackX_10 = parrayIndex;
   FUN_180057830(parrayIndex);
-  plStackX_10 = punsignedVar5 + BYTE_OFFSET_2;
+  plStackX_10 = pvalidationResult2 + BYTE_OFFSET_2;
   FUN_180048980();
-  plStackX_10 = punsignedVar5 + FIELD_OFFSET_3;
+  plStackX_10 = pvalidationResult2 + FIELD_OFFSET_3;
   FUN_180048980();
   plStackX_10 = pdataBuffer;
   _Mtx_destroy_in_situ(pdataBuffer);
-  plStackX_10 = punsignedVar5 + 0x16;
+  plStackX_10 = pvalidationResult2 + 0x16;
   if (*plStackX_10 != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  plStackX_10 = punsignedVar5 + STRUCT_MULTIPLIER;
+  plStackX_10 = pvalidationResult2 + STRUCT_MULTIPLIER;
   _Mtx_destroy_in_situ();
   plStackX_10 = plocalLong1;
   FUN_18015b450(plocalLong1);
-  if ((1 < (ulonglong)punsignedVar5[8]) && (punsignedVar5[7] != 0)) {
+  if ((1 < (ulonglong)pvalidationResult2[8]) && (pvalidationResult2[7] != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  if ((code *)punsignedVar5[3] != (code *)0x0) {
-    (*(code *)punsignedVar5[3])(punsignedVar5 + 1,0,0);
+  if ((code *)pvalidationResult2[3] != (code *)0x0) {
+    (*(code *)pvalidationResult2[3])(pvalidationResult2 + 1,0,0);
   }
   return;
 }
@@ -38999,13 +38999,13 @@ void Unwind_180905960(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = (longlong *)(*(longlong *)(memoryBlockSize + 0x2e8) + 0x260);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + 0x2e8) + 0x268);
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 0x13) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -39050,13 +39050,13 @@ void Unwind_1809059a0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = *(longlong **)(memoryBlockSize + BUFFER_SIZE_OFFSET);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = (uint64 *)pdataBuffer[1];
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 0x13) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -39406,28 +39406,28 @@ void Unwind_180905b70(uint64 resourceHandle,longlong memoryBlockSize)
   longlong localLong1;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult1;
+  ulonglong validationResult2;
   
   arrayIndex = *(longlong *)(memoryBlockSize + SYSTEM_OFFSET_STATUS1);
-  unsignedVar4 = *(ulonglong *)(arrayIndex + 0x340);
+  validationResult1 = *(ulonglong *)(arrayIndex + 0x340);
   localLong1 = *(longlong *)(arrayIndex + 0x338);
-  unsignedVar5 = 0;
-  if (unsignedVar4 != 0) {
+  validationResult2 = 0;
+  if (validationResult1 != 0) {
     do {
-      punsignedCounter = *(uint64 **)(localLong1 + unsignedVar5 * 8);
+      punsignedCounter = *(uint64 **)(localLong1 + validationResult2 * 8);
       if (punsignedCounter != (uint64 *)0x0) {
         *punsignedCounter = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
-      *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
-      unsignedVar5 = unsignedVar5 + 1;
-    } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(arrayIndex + 0x340);
+      *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
+      validationResult2 = validationResult2 + 1;
+    } while (validationResult2 < validationResult1);
+    validationResult1 = *(ulonglong *)(arrayIndex + 0x340);
   }
   *(uint64 *)(arrayIndex + 0x348) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 0x338) != 0)) {
+  if ((1 < validationResult1) && (*(longlong *)(arrayIndex + 0x338) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -39548,28 +39548,28 @@ void Unwind_180905c10(uint64 resourceHandle,longlong memoryBlockSize)
   longlong localLong1;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult1;
+  ulonglong validationResult2;
   
   arrayIndex = *(longlong *)(memoryBlockSize + STRUCT_OFFSET_SIZE);
-  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   localLong1 = *(longlong *)(arrayIndex + 8);
-  unsignedVar5 = 0;
-  if (unsignedVar4 != 0) {
+  validationResult2 = 0;
+  if (validationResult1 != 0) {
     do {
-      punsignedCounter = *(uint64 **)(localLong1 + unsignedVar5 * 8);
+      punsignedCounter = *(uint64 **)(localLong1 + validationResult2 * 8);
       if (punsignedCounter != (uint64 *)0x0) {
         *punsignedCounter = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
-      *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
-      unsignedVar5 = unsignedVar5 + 1;
-    } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+      *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
+      validationResult2 = validationResult2 + 1;
+    } while (validationResult2 < validationResult1);
+    validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
   *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
+  if ((1 < validationResult1) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -39584,28 +39584,28 @@ void Unwind_180905c20(uint64 resourceHandle,longlong memoryBlockSize)
   longlong localLong1;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult1;
+  ulonglong validationResult2;
   
   arrayIndex = *(longlong *)(memoryBlockSize + STRUCT_OFFSET_SIZE);
-  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   localLong1 = *(longlong *)(arrayIndex + 8);
-  unsignedVar5 = 0;
-  if (unsignedVar4 != 0) {
+  validationResult2 = 0;
+  if (validationResult1 != 0) {
     do {
-      punsignedCounter = *(uint64 **)(localLong1 + unsignedVar5 * 8);
+      punsignedCounter = *(uint64 **)(localLong1 + validationResult2 * 8);
       if (punsignedCounter != (uint64 *)0x0) {
         *punsignedCounter = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
-      *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
-      unsignedVar5 = unsignedVar5 + 1;
-    } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+      *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
+      validationResult2 = validationResult2 + 1;
+    } while (validationResult2 < validationResult1);
+    validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
   *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
+  if ((1 < validationResult1) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -39620,28 +39620,28 @@ void Unwind_180905c30(uint64 resourceHandle,longlong memoryBlockSize)
   longlong localLong1;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult1;
+  ulonglong validationResult2;
   
   arrayIndex = *(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
-  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   localLong1 = *(longlong *)(arrayIndex + 8);
-  unsignedVar5 = 0;
-  if (unsignedVar4 != 0) {
+  validationResult2 = 0;
+  if (validationResult1 != 0) {
     do {
-      punsignedCounter = *(uint64 **)(localLong1 + unsignedVar5 * 8);
+      punsignedCounter = *(uint64 **)(localLong1 + validationResult2 * 8);
       if (punsignedCounter != (uint64 *)0x0) {
         *punsignedCounter = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
-      *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
-      unsignedVar5 = unsignedVar5 + 1;
-    } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+      *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
+      validationResult2 = validationResult2 + 1;
+    } while (validationResult2 < validationResult1);
+    validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
   *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
+  if ((1 < validationResult1) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -39656,28 +39656,28 @@ void Unwind_180905c40(uint64 resourceHandle,longlong memoryBlockSize)
   longlong localLong1;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult1;
+  ulonglong validationResult2;
   
   arrayIndex = *(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
-  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   localLong1 = *(longlong *)(arrayIndex + 8);
-  unsignedVar5 = 0;
-  if (unsignedVar4 != 0) {
+  validationResult2 = 0;
+  if (validationResult1 != 0) {
     do {
-      punsignedCounter = *(uint64 **)(localLong1 + unsignedVar5 * 8);
+      punsignedCounter = *(uint64 **)(localLong1 + validationResult2 * 8);
       if (punsignedCounter != (uint64 *)0x0) {
         *punsignedCounter = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
-      *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
-      unsignedVar5 = unsignedVar5 + 1;
-    } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+      *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
+      validationResult2 = validationResult2 + 1;
+    } while (validationResult2 < validationResult1);
+    validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
   *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
+  if ((1 < validationResult1) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -39756,28 +39756,28 @@ void Unwind_180905c60(uint64 resourceHandle,longlong memoryBlockSize)
   longlong localLong1;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult1;
+  ulonglong validationResult2;
   
   arrayIndex = *(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
-  unsignedVar4 = *(ulonglong *)(arrayIndex + 0x340);
+  validationResult1 = *(ulonglong *)(arrayIndex + 0x340);
   localLong1 = *(longlong *)(arrayIndex + 0x338);
-  unsignedVar5 = 0;
-  if (unsignedVar4 != 0) {
+  validationResult2 = 0;
+  if (validationResult1 != 0) {
     do {
-      punsignedCounter = *(uint64 **)(localLong1 + unsignedVar5 * 8);
+      punsignedCounter = *(uint64 **)(localLong1 + validationResult2 * 8);
       if (punsignedCounter != (uint64 *)0x0) {
         *punsignedCounter = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
-      *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
-      unsignedVar5 = unsignedVar5 + 1;
-    } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(arrayIndex + 0x340);
+      *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
+      validationResult2 = validationResult2 + 1;
+    } while (validationResult2 < validationResult1);
+    validationResult1 = *(ulonglong *)(arrayIndex + 0x340);
   }
   *(uint64 *)(arrayIndex + 0x348) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 0x338) != 0)) {
+  if ((1 < validationResult1) && (*(longlong *)(arrayIndex + 0x338) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -39792,28 +39792,28 @@ void Unwind_180905c80(uint64 resourceHandle,longlong memoryBlockSize)
   longlong localLong1;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult1;
+  ulonglong validationResult2;
   
   arrayIndex = *(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA);
-  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   localLong1 = *(longlong *)(arrayIndex + 8);
-  unsignedVar5 = 0;
-  if (unsignedVar4 != 0) {
+  validationResult2 = 0;
+  if (validationResult1 != 0) {
     do {
-      punsignedCounter = *(uint64 **)(localLong1 + unsignedVar5 * 8);
+      punsignedCounter = *(uint64 **)(localLong1 + validationResult2 * 8);
       if (punsignedCounter != (uint64 *)0x0) {
         *punsignedCounter = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
-      *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
-      unsignedVar5 = unsignedVar5 + 1;
-    } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+      *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
+      validationResult2 = validationResult2 + 1;
+    } while (validationResult2 < validationResult1);
+    validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
   *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
+  if ((1 < validationResult1) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -39828,28 +39828,28 @@ void Unwind_180905c90(uint64 resourceHandle,longlong memoryBlockSize)
   longlong localLong1;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult1;
+  ulonglong validationResult2;
   
   arrayIndex = *(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA);
-  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   localLong1 = *(longlong *)(arrayIndex + 8);
-  unsignedVar5 = 0;
-  if (unsignedVar4 != 0) {
+  validationResult2 = 0;
+  if (validationResult1 != 0) {
     do {
-      punsignedCounter = *(uint64 **)(localLong1 + unsignedVar5 * 8);
+      punsignedCounter = *(uint64 **)(localLong1 + validationResult2 * 8);
       if (punsignedCounter != (uint64 *)0x0) {
         *punsignedCounter = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
-      *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
-      unsignedVar5 = unsignedVar5 + 1;
-    } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+      *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
+      validationResult2 = validationResult2 + 1;
+    } while (validationResult2 < validationResult1);
+    validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
   *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
+  if ((1 < validationResult1) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -40913,17 +40913,17 @@ void Unwind_180906160(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + 0xa8) + 0x1d8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -40934,8 +40934,8 @@ void Unwind_180906160(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -40949,17 +40949,17 @@ void Unwind_180906180(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + 0xb0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -40970,8 +40970,8 @@ void Unwind_180906180(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -40985,17 +40985,17 @@ void Unwind_180906190(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + 0xb0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -41006,8 +41006,8 @@ void Unwind_180906190(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -41077,17 +41077,17 @@ void Unwind_1809061f0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x1d8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -41098,8 +41098,8 @@ void Unwind_1809061f0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -41323,17 +41323,17 @@ void Unwind_180906470(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0xe0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -41344,8 +41344,8 @@ void Unwind_180906470(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -41999,13 +41999,13 @@ void Unwind_180906700(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = (longlong *)(*(longlong *)(memoryBlockSize + 0xa0) + 0x218);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + 0xa0) + 0x220);
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 4) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -42200,13 +42200,13 @@ void Unwind_180906890(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = (longlong *)(*(longlong *)(memoryBlockSize + LIST_OFFSET_HEAD) + 0x218);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + LIST_OFFSET_HEAD) + 0x220);
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 4) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -42264,13 +42264,13 @@ void Unwind_180906940(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = *(longlong **)(memoryBlockSize + SYSTEM_OFFSET_STATUS1);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = (uint64 *)pdataBuffer[1];
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 4) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -42690,17 +42690,17 @@ void Unwind_180906b50(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x88);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -42711,8 +42711,8 @@ void Unwind_180906b50(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -42815,17 +42815,17 @@ void Unwind_180906bb0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + SYSTEM_OFFSET_STATUS1);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -42836,8 +42836,8 @@ void Unwind_180906bb0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -42851,17 +42851,17 @@ void Unwind_180906bc0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + SYSTEM_OFFSET_STATUS1);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -42872,8 +42872,8 @@ void Unwind_180906bc0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -42968,17 +42968,17 @@ void Unwind_180906c50(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x118);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -42989,8 +42989,8 @@ void Unwind_180906c50(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -43046,17 +43046,17 @@ void Unwind_180906c80(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0xa8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -43067,8 +43067,8 @@ void Unwind_180906c80(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -43082,17 +43082,17 @@ void Unwind_180906c90(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + FIELD_OFFSET_1);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -43103,8 +43103,8 @@ void Unwind_180906c90(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -43118,17 +43118,17 @@ void Unwind_180906ca0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x88);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -43139,8 +43139,8 @@ void Unwind_180906ca0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -43175,17 +43175,17 @@ void Unwind_180906cc0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x118);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -43196,8 +43196,8 @@ void Unwind_180906cc0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -43211,17 +43211,17 @@ void Unwind_180906cd0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x118);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -43232,8 +43232,8 @@ void Unwind_180906cd0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -43268,17 +43268,17 @@ void Unwind_180906cf0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + SYSTEM_OFFSET_FLAGS);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -43289,8 +43289,8 @@ void Unwind_180906cf0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -43304,17 +43304,17 @@ void Unwind_180906d00(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + 0x260);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -43325,8 +43325,8 @@ void Unwind_180906d00(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -43340,17 +43340,17 @@ void Unwind_180906d10(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + 0x260);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -43361,8 +43361,8 @@ void Unwind_180906d10(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -43397,17 +43397,17 @@ void Unwind_180906d30(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0xd8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -43418,8 +43418,8 @@ void Unwind_180906d30(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -43433,17 +43433,17 @@ void Unwind_180906d40(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0xa8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -43454,8 +43454,8 @@ void Unwind_180906d40(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -43469,17 +43469,17 @@ void Unwind_180906d50(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0xa8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -43490,8 +43490,8 @@ void Unwind_180906d50(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -43505,17 +43505,17 @@ void Unwind_180906d60(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + FIELD_OFFSET_1);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -43526,8 +43526,8 @@ void Unwind_180906d60(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -43541,17 +43541,17 @@ void Unwind_180906d70(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + FIELD_OFFSET_1);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -43562,8 +43562,8 @@ void Unwind_180906d70(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -43577,17 +43577,17 @@ void Unwind_180906d80(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x88);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -43598,8 +43598,8 @@ void Unwind_180906d80(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -43613,17 +43613,17 @@ void Unwind_180906d90(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + 0x268);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -43634,8 +43634,8 @@ void Unwind_180906d90(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -43649,17 +43649,17 @@ void Unwind_180906da0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + 0x268);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -43670,8 +43670,8 @@ void Unwind_180906da0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -43706,17 +43706,17 @@ void Unwind_180906dc0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + FIELD_OFFSET_1);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -43727,8 +43727,8 @@ void Unwind_180906dc0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -44740,17 +44740,17 @@ void Unwind_180907350(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + BUFFER_SIZE_OFFSET);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -44761,8 +44761,8 @@ void Unwind_180907350(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -44776,17 +44776,17 @@ void Unwind_180907360(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + BUFFER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -44797,8 +44797,8 @@ void Unwind_180907360(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -44812,17 +44812,17 @@ void Unwind_180907370(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + BUFFER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -44833,8 +44833,8 @@ void Unwind_180907370(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -45029,17 +45029,17 @@ void Unwind_1809074d0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + LIST_OFFSET_HEAD);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -45050,8 +45050,8 @@ void Unwind_1809074d0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -45065,17 +45065,17 @@ void Unwind_1809074e0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + LIST_OFFSET_HEAD);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -45086,8 +45086,8 @@ void Unwind_1809074e0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -45101,17 +45101,17 @@ void Unwind_1809074f0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + BUFFER_SIZE_OFFSET);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -45122,8 +45122,8 @@ void Unwind_1809074f0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -45707,13 +45707,13 @@ void Unwind_180907810(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = (longlong *)(*(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA) + BYTE_OFFSET_2);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA) + FIELD_OFFSET_1);
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 4) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -45784,17 +45784,17 @@ void Unwind_180907880(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA) + 0x110);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -45805,8 +45805,8 @@ void Unwind_180907880(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -45841,13 +45841,13 @@ void Unwind_1809078b0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = *(longlong **)(memoryBlockSize + BYTE_OFFSET_2);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = (uint64 *)pdataBuffer[1];
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 4) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -46110,7 +46110,7 @@ void Unwind_1809079d0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   arrayIndex = *(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP);
   *(dataValueValue **)(arrayIndex + 0xd8) = &threadLocalStorageCleanup;
@@ -46121,11 +46121,11 @@ void Unwind_1809079d0(uint64 resourceHandle,longlong memoryBlockSize)
   FUN_1800ba100(arrayIndex + HANDLE_OFFSET_DATA);
   if ((1 < *(ulonglong *)(arrayIndex + 0x88)) &&
      (punsignedCounter = *(uint64 **)(arrayIndex + BUFFER_OFFSET_TEMP), punsignedCounter != (uint64 *)0x0)) {
-    unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-    if (unsignedVar4 != 0) {
-      arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+    if (validationResult1 != 0) {
+      arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
       arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
         *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
         *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
         poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -46136,8 +46136,8 @@ void Unwind_1809079d0(uint64 resourceHandle,longlong memoryBlockSize)
         }
       }
       else {
-        exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                            punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+        exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                            punsignedCounter,validationResult1,0xfffffffffffffffe);
       }
     }
     return;
@@ -46153,17 +46153,17 @@ void Unwind_1809079e0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP) + SYSTEM_STATUS_OFFSET1);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -46174,8 +46174,8 @@ void Unwind_1809079e0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -46207,17 +46207,17 @@ void Unwind_180907a10(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x130);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -46228,8 +46228,8 @@ void Unwind_180907a10(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -46286,17 +46286,17 @@ void Unwind_180907a50(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x130);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -46307,8 +46307,8 @@ void Unwind_180907a50(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -46322,17 +46322,17 @@ void Unwind_180907a60(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x130);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -46343,8 +46343,8 @@ void Unwind_180907a60(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -46621,17 +46621,17 @@ void Unwind_180907c20(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x230);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -46642,8 +46642,8 @@ void Unwind_180907c20(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -46701,17 +46701,17 @@ void Unwind_180907c70(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x230);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -46722,8 +46722,8 @@ void Unwind_180907c70(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -46737,17 +46737,17 @@ void Unwind_180907c80(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x230);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -46758,8 +46758,8 @@ void Unwind_180907c80(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -46918,17 +46918,17 @@ void Unwind_180907d30(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x168);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -46939,8 +46939,8 @@ void Unwind_180907d30(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -47101,17 +47101,17 @@ void Unwind_180907e90(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + BYTE_OFFSET_2);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -47122,8 +47122,8 @@ void Unwind_180907e90(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -47137,17 +47137,17 @@ void Unwind_180907ea0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + STRUCT_OFFSET_SIZE);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -47158,8 +47158,8 @@ void Unwind_180907ea0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -47173,17 +47173,17 @@ void Unwind_180907eb0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + DATA_OFFSET_START);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -47194,8 +47194,8 @@ void Unwind_180907eb0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -47209,17 +47209,17 @@ void Unwind_180907ec0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + STRUCT_OFFSET_SIZE);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -47230,8 +47230,8 @@ void Unwind_180907ec0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -47245,17 +47245,17 @@ void Unwind_180907ed0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + STRUCT_OFFSET_SIZE);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -47266,8 +47266,8 @@ void Unwind_180907ed0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -47472,17 +47472,17 @@ void Unwind_180908000(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + BUFFER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -47493,8 +47493,8 @@ void Unwind_180908000(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -47540,17 +47540,17 @@ void Unwind_180908030(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + BUFFER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -47561,8 +47561,8 @@ void Unwind_180908030(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -48072,13 +48072,13 @@ void Unwind_180908340(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = (longlong *)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP) + 0x388);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP) + 0x390);
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 4) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -48154,13 +48154,13 @@ void Unwind_180908460(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = (longlong *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x388);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x390);
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 4) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -48313,17 +48313,17 @@ void Unwind_180908650(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + LIST_OFFSET_HEAD) + RESOURCE_HANDLE_OFFSET);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -48334,8 +48334,8 @@ void Unwind_180908650(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -48568,17 +48568,17 @@ void Unwind_1809087c0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0xa0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -48589,8 +48589,8 @@ void Unwind_1809087c0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -48678,17 +48678,17 @@ void Unwind_180908830(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0xa0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -48699,8 +48699,8 @@ void Unwind_180908830(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -48714,17 +48714,17 @@ void Unwind_180908840(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0xa0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -48735,8 +48735,8 @@ void Unwind_180908840(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -48782,17 +48782,17 @@ void Unwind_180908870(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x160);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -48803,8 +48803,8 @@ void Unwind_180908870(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -49094,17 +49094,17 @@ void Unwind_180908a20(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + SYSTEM_TABLE_OFFSET);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -49115,8 +49115,8 @@ void Unwind_180908a20(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -49130,17 +49130,17 @@ void Unwind_180908a30(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x160);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -49151,8 +49151,8 @@ void Unwind_180908a30(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -49166,17 +49166,17 @@ void Unwind_180908a40(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x120);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -49187,8 +49187,8 @@ void Unwind_180908a40(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -49202,17 +49202,17 @@ void Unwind_180908a50(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + SYSTEM_TABLE_OFFSET);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -49223,8 +49223,8 @@ void Unwind_180908a50(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -49238,17 +49238,17 @@ void Unwind_180908a60(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + SYSTEM_TABLE_OFFSET);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -49259,8 +49259,8 @@ void Unwind_180908a60(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -49274,17 +49274,17 @@ void Unwind_180908a70(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x160);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -49295,8 +49295,8 @@ void Unwind_180908a70(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -49310,17 +49310,17 @@ void Unwind_180908a80(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x120);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -49331,8 +49331,8 @@ void Unwind_180908a80(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -49346,17 +49346,17 @@ void Unwind_180908a90(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x68);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -49367,8 +49367,8 @@ void Unwind_180908a90(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -49391,17 +49391,17 @@ void Unwind_180908ab0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + BUFFER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -49412,8 +49412,8 @@ void Unwind_180908ab0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -49427,17 +49427,17 @@ void Unwind_180908ac0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x68);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -49448,8 +49448,8 @@ void Unwind_180908ac0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -49463,17 +49463,17 @@ void Unwind_180908ad0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x68);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -49484,8 +49484,8 @@ void Unwind_180908ad0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -49536,17 +49536,17 @@ void Unwind_180908b10(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + FIELD_OFFSET_1) + BUFFER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -49557,8 +49557,8 @@ void Unwind_180908b10(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -50039,17 +50039,17 @@ void Unwind_180908dd0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + RESOURCE_HANDLE_OFFSET8) + BUFFER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -50060,8 +50060,8 @@ void Unwind_180908dd0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -50084,17 +50084,17 @@ void Unwind_180908df0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + 0xa0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -50105,8 +50105,8 @@ void Unwind_180908df0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -50120,17 +50120,17 @@ void Unwind_180908e00(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + 0xa0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -50141,8 +50141,8 @@ void Unwind_180908e00(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -50184,17 +50184,17 @@ void Unwind_180908e50(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + POINTER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -50205,8 +50205,8 @@ void Unwind_180908e50(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -50220,17 +50220,17 @@ void Unwind_180908e60(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + 0x68);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -50241,8 +50241,8 @@ void Unwind_180908e60(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -50256,17 +50256,17 @@ void Unwind_180908e70(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + 0x68);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -50277,8 +50277,8 @@ void Unwind_180908e70(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -50640,17 +50640,17 @@ void Unwind_180909090(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA) + BUFFER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -50661,8 +50661,8 @@ void Unwind_180909090(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -50731,17 +50731,17 @@ void Unwind_1809090b0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + 0x121c0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -50752,8 +50752,8 @@ void Unwind_1809090b0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -50964,13 +50964,13 @@ void Unwind_180909290(uint64 resourceHandle,longlong memoryBlockSize)
   uint64 *punsignedCounter;
   longlong arrayIndex;
   ulonglong *puVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult2;
   ulonglong unsignedVar6;
   
   puVar4 = (ulonglong *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x1d20);
   unsignedVar6 = *(ulonglong *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x1d28);
-  for (unsignedVar5 = *puVar4; unsignedVar5 != unsignedVar6; unsignedVar5 = unsignedVar5 + STRUCT_OFFSET_1) {
-    *(dataValueValue **)(unsignedVar5 + RESOURCE_HANDLE_OFFSET) = &threadLocalStorageCleanup;
+  for (validationResult2 = *puVar4; validationResult2 != unsignedVar6; validationResult2 = validationResult2 + STRUCT_OFFSET_1) {
+    *(dataValueValue **)(validationResult2 + RESOURCE_HANDLE_OFFSET) = &threadLocalStorageCleanup;
   }
   punsignedCounter = (uint64 *)*puVar4;
   if (punsignedCounter != (uint64 *)0x0) {
@@ -51021,13 +51021,13 @@ void Unwind_1809092d0(uint64 resourceHandle,longlong memoryBlockSize)
   uint64 *punsignedCounter;
   ulonglong *pointerVar3;
   longlong longVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult2;
   ulonglong unsignedVar6;
   
   pointerVar3 = *(ulonglong **)(memoryBlockSize + BUFFER_OFFSET_DATA);
   unsignedVar6 = pointerVar3[1];
-  for (unsignedVar5 = *pointerVar3; unsignedVar5 != unsignedVar6; unsignedVar5 = unsignedVar5 + STRUCT_OFFSET_1) {
-    *(dataValueValue **)(unsignedVar5 + RESOURCE_HANDLE_OFFSET) = &threadLocalStorageCleanup;
+  for (validationResult2 = *pointerVar3; validationResult2 != unsignedVar6; validationResult2 = validationResult2 + STRUCT_OFFSET_1) {
+    *(dataValueValue **)(validationResult2 + RESOURCE_HANDLE_OFFSET) = &threadLocalStorageCleanup;
   }
   punsignedCounter = (uint64 *)*pointerVar3;
   if (punsignedCounter != (uint64 *)0x0) {
@@ -51064,13 +51064,13 @@ void Unwind_1809092e0(uint64 resourceHandle,longlong memoryBlockSize)
   uint64 *punsignedCounter;
   ulonglong *pointerVar3;
   longlong longVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult2;
   ulonglong unsignedVar6;
   
   pointerVar3 = *(ulonglong **)(memoryBlockSize + BUFFER_SIZE_OFFSET);
   unsignedVar6 = pointerVar3[1];
-  for (unsignedVar5 = *pointerVar3; unsignedVar5 != unsignedVar6; unsignedVar5 = unsignedVar5 + STRUCT_OFFSET_1) {
-    *(dataValueValue **)(unsignedVar5 + RESOURCE_HANDLE_OFFSET) = &threadLocalStorageCleanup;
+  for (validationResult2 = *pointerVar3; validationResult2 != unsignedVar6; validationResult2 = validationResult2 + STRUCT_OFFSET_1) {
+    *(dataValueValue **)(validationResult2 + RESOURCE_HANDLE_OFFSET) = &threadLocalStorageCleanup;
   }
   punsignedCounter = (uint64 *)*pointerVar3;
   if (punsignedCounter != (uint64 *)0x0) {
@@ -51944,17 +51944,17 @@ void Unwind_180909660(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0xd8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -51965,8 +51965,8 @@ void Unwind_180909660(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -51980,17 +51980,17 @@ void Unwind_180909670(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0xd8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -52001,8 +52001,8 @@ void Unwind_180909670(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -52016,17 +52016,17 @@ void Unwind_180909680(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_STANDARD) + 8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -52037,8 +52037,8 @@ void Unwind_180909680(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -52052,17 +52052,17 @@ void Unwind_180909690(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + BUFFER_SIZE_STANDARD);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -52073,8 +52073,8 @@ void Unwind_180909690(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -52088,17 +52088,17 @@ void Unwind_1809096a0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + BUFFER_SIZE_STANDARD);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -52109,8 +52109,8 @@ void Unwind_1809096a0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -52548,17 +52548,17 @@ void Unwind_180909860(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x68);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -52569,8 +52569,8 @@ void Unwind_180909860(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -52755,17 +52755,17 @@ void Unwind_180909a00(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + STRUCT_OFFSET_SIZE);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -52776,8 +52776,8 @@ void Unwind_180909a00(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -52823,17 +52823,17 @@ void Unwind_180909a40(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + STRUCT_OFFSET_SIZE);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -52844,8 +52844,8 @@ void Unwind_180909a40(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -52859,17 +52859,17 @@ void Unwind_180909a50(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + STRUCT_OFFSET_SIZE);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -52880,8 +52880,8 @@ void Unwind_180909a50(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -53121,17 +53121,17 @@ void Unwind_180909c20(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + FIELD_OFFSET_1) + 8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -53142,8 +53142,8 @@ void Unwind_180909c20(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -53515,7 +53515,7 @@ void Unwind_180909f60(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   arrayIndex = *(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
   FUN_1802ab380();
@@ -53526,11 +53526,11 @@ void Unwind_180909f60(uint64 resourceHandle,longlong memoryBlockSize)
   }
   punsignedCounter = *(uint64 **)(arrayIndex + 0xac0);
   if (punsignedCounter != (uint64 *)0x0) {
-    unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-    if (unsignedVar4 != 0) {
-      arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+    if (validationResult1 != 0) {
+      arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
       arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
         *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
         *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
         poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -53541,8 +53541,8 @@ void Unwind_180909f60(uint64 resourceHandle,longlong memoryBlockSize)
         }
       }
       else {
-        exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                            punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+        exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                            punsignedCounter,validationResult1,0xfffffffffffffffe);
       }
     }
     return;
@@ -54080,7 +54080,7 @@ void Unwind_18090a450(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   arrayIndex = *(longlong *)(memoryBlockSize + DATA_OFFSET_START);
   FUN_1802ab380();
@@ -54091,11 +54091,11 @@ void Unwind_18090a450(uint64 resourceHandle,longlong memoryBlockSize)
   }
   punsignedCounter = *(uint64 **)(arrayIndex + 0xac0);
   if (punsignedCounter != (uint64 *)0x0) {
-    unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-    if (unsignedVar4 != 0) {
-      arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+    if (validationResult1 != 0) {
+      arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
       arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
         *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
         *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
         poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -54106,8 +54106,8 @@ void Unwind_18090a450(uint64 resourceHandle,longlong memoryBlockSize)
         }
       }
       else {
-        exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                            punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+        exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                            punsignedCounter,validationResult1,0xfffffffffffffffe);
       }
     }
     return;
@@ -54286,17 +54286,17 @@ void Unwind_18090a5c0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + 0x68);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -54307,8 +54307,8 @@ void Unwind_18090a5c0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -54322,17 +54322,17 @@ void Unwind_18090a5d0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + 0x68) + POINTER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -54343,8 +54343,8 @@ void Unwind_18090a5d0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -54530,17 +54530,17 @@ void Unwind_18090a780(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + BUFFER_SIZE_OFFSET);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -54551,8 +54551,8 @@ void Unwind_18090a780(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -54580,17 +54580,17 @@ void Unwind_18090a7a0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + BUFFER_SIZE_OFFSET);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -54601,8 +54601,8 @@ void Unwind_18090a7a0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -54759,17 +54759,17 @@ void Unwind_18090a880(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + LIST_OFFSET_HEAD) + 8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -54780,8 +54780,8 @@ void Unwind_18090a880(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -54795,17 +54795,17 @@ void Unwind_18090a890(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + 8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -54816,8 +54816,8 @@ void Unwind_18090a890(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -55019,17 +55019,17 @@ void Unwind_18090a930(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   arrayIndex = *(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
   FUN_1800ba100();
   if ((1 < *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET)) &&
      (punsignedCounter = *(uint64 **)(arrayIndex + 8), punsignedCounter != (uint64 *)0x0)) {
-    unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-    if (unsignedVar4 != 0) {
-      arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+    if (validationResult1 != 0) {
+      arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
       arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
         *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
         *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
         poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -55040,8 +55040,8 @@ void Unwind_18090a930(uint64 resourceHandle,longlong memoryBlockSize)
         }
       }
       else {
-        exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                            punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+        exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                            punsignedCounter,validationResult1,0xfffffffffffffffe);
       }
     }
     return;
@@ -55057,17 +55057,17 @@ void Unwind_18090a940(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   arrayIndex = *(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
   FUN_1800ba100();
   if ((1 < *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET)) &&
      (punsignedCounter = *(uint64 **)(arrayIndex + 8), punsignedCounter != (uint64 *)0x0)) {
-    unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-    if (unsignedVar4 != 0) {
-      arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+    if (validationResult1 != 0) {
+      arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
       arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
         *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
         *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
         poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -55078,8 +55078,8 @@ void Unwind_18090a940(uint64 resourceHandle,longlong memoryBlockSize)
         }
       }
       else {
-        exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                            punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+        exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                            punsignedCounter,validationResult1,0xfffffffffffffffe);
       }
     }
     return;
@@ -55095,17 +55095,17 @@ void Unwind_18090a950(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   arrayIndex = *(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
   FUN_1800ba100();
   if ((1 < *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET)) &&
      (punsignedCounter = *(uint64 **)(arrayIndex + 8), punsignedCounter != (uint64 *)0x0)) {
-    unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-    if (unsignedVar4 != 0) {
-      arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+    if (validationResult1 != 0) {
+      arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
       arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
         *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
         *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
         poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -55116,8 +55116,8 @@ void Unwind_18090a950(uint64 resourceHandle,longlong memoryBlockSize)
         }
       }
       else {
-        exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                            punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+        exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                            punsignedCounter,validationResult1,0xfffffffffffffffe);
       }
     }
     return;
@@ -55133,17 +55133,17 @@ void Unwind_18090a960(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   arrayIndex = *(longlong *)(memoryBlockSize + LIST_OFFSET_HEAD);
   FUN_1800ba100();
   if ((1 < *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET)) &&
      (punsignedCounter = *(uint64 **)(arrayIndex + 8), punsignedCounter != (uint64 *)0x0)) {
-    unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-    if (unsignedVar4 != 0) {
-      arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+    if (validationResult1 != 0) {
+      arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
       arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
         *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
         *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
         poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -55154,8 +55154,8 @@ void Unwind_18090a960(uint64 resourceHandle,longlong memoryBlockSize)
         }
       }
       else {
-        exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                            punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+        exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                            punsignedCounter,validationResult1,0xfffffffffffffffe);
       }
     }
     return;
@@ -55171,17 +55171,17 @@ void Unwind_18090a970(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   arrayIndex = *(longlong *)(memoryBlockSize + LIST_OFFSET_HEAD);
   FUN_1800ba100();
   if ((1 < *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET)) &&
      (punsignedCounter = *(uint64 **)(arrayIndex + 8), punsignedCounter != (uint64 *)0x0)) {
-    unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-    if (unsignedVar4 != 0) {
-      arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+    if (validationResult1 != 0) {
+      arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
       arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
         *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
         *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
         poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -55192,8 +55192,8 @@ void Unwind_18090a970(uint64 resourceHandle,longlong memoryBlockSize)
         }
       }
       else {
-        exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                            punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+        exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                            punsignedCounter,validationResult1,0xfffffffffffffffe);
       }
     }
     return;
@@ -55845,16 +55845,16 @@ void Unwind_18090af70(uint64 resourceHandle,longlong memoryBlockSize)
   longlong localLong1;
   longlong dataValueBuffer;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult1;
+  ulonglong validationResult2;
   
   arrayIndex = *(longlong *)(memoryBlockSize + LIST_OFFSET_HEAD);
-  unsignedVar4 = *(ulonglong *)(arrayIndex + 0x2b0);
+  validationResult1 = *(ulonglong *)(arrayIndex + 0x2b0);
   localLong1 = *(longlong *)(arrayIndex + 0x2a8);
-  unsignedVar5 = 0;
-  if (unsignedVar4 != 0) {
+  validationResult2 = 0;
+  if (validationResult1 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(localLong1 + unsignedVar5 * 8);
+      dataValueBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
       if (dataValueBuffer != 0) {
         if (*(longlong **)(dataValueBuffer + 8) != (longlong *)0x0) {
           (**(code **)(**(longlong **)(dataValueBuffer + 8) + STRUCT_OFFSET_SIZE))();
@@ -55862,13 +55862,13 @@ void Unwind_18090af70(uint64 resourceHandle,longlong memoryBlockSize)
                     // WARNING: Subroutine does not return
         HandleCriticalError(dataValueBuffer);
       }
-      *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
-      unsignedVar5 = unsignedVar5 + 1;
-    } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(arrayIndex + 0x2b0);
+      *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
+      validationResult2 = validationResult2 + 1;
+    } while (validationResult2 < validationResult1);
+    validationResult1 = *(ulonglong *)(arrayIndex + 0x2b0);
   }
   *(uint64 *)(arrayIndex + 0x2b8) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 0x2a8) != 0)) {
+  if ((1 < validationResult1) && (*(longlong *)(arrayIndex + 0x2a8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -56452,16 +56452,16 @@ void Unwind_18090b4b0(uint64 resourceHandle,longlong memoryBlockSize)
   longlong localLong1;
   longlong dataValueBuffer;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult1;
+  ulonglong validationResult2;
   
   arrayIndex = *(longlong *)(memoryBlockSize + SYSTEM_OFFSET_STATUS1);
-  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   localLong1 = *(longlong *)(arrayIndex + 8);
-  unsignedVar5 = 0;
-  if (unsignedVar4 != 0) {
+  validationResult2 = 0;
+  if (validationResult1 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(localLong1 + unsignedVar5 * 8);
+      dataValueBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
       if (dataValueBuffer != 0) {
         if (*(longlong **)(dataValueBuffer + 8) != (longlong *)0x0) {
           (**(code **)(**(longlong **)(dataValueBuffer + 8) + STRUCT_OFFSET_SIZE))();
@@ -56469,13 +56469,13 @@ void Unwind_18090b4b0(uint64 resourceHandle,longlong memoryBlockSize)
                     // WARNING: Subroutine does not return
         HandleCriticalError(dataValueBuffer);
       }
-      *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
-      unsignedVar5 = unsignedVar5 + 1;
-    } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+      *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
+      validationResult2 = validationResult2 + 1;
+    } while (validationResult2 < validationResult1);
+    validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
   *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
+  if ((1 < validationResult1) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -56490,16 +56490,16 @@ void Unwind_18090b4c0(uint64 resourceHandle,longlong memoryBlockSize)
   longlong localLong1;
   longlong dataValueBuffer;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult1;
+  ulonglong validationResult2;
   
   arrayIndex = *(longlong *)(memoryBlockSize + SYSTEM_OFFSET_STATUS1);
-  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   localLong1 = *(longlong *)(arrayIndex + 8);
-  unsignedVar5 = 0;
-  if (unsignedVar4 != 0) {
+  validationResult2 = 0;
+  if (validationResult1 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(localLong1 + unsignedVar5 * 8);
+      dataValueBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
       if (dataValueBuffer != 0) {
         if (*(longlong **)(dataValueBuffer + 8) != (longlong *)0x0) {
           (**(code **)(**(longlong **)(dataValueBuffer + 8) + STRUCT_OFFSET_SIZE))();
@@ -56507,13 +56507,13 @@ void Unwind_18090b4c0(uint64 resourceHandle,longlong memoryBlockSize)
                     // WARNING: Subroutine does not return
         HandleCriticalError(dataValueBuffer);
       }
-      *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
-      unsignedVar5 = unsignedVar5 + 1;
-    } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+      *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
+      validationResult2 = validationResult2 + 1;
+    } while (validationResult2 < validationResult1);
+    validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
   *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
+  if ((1 < validationResult1) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -56546,16 +56546,16 @@ void Unwind_18090b4f0(uint64 resourceHandle,longlong memoryBlockSize)
   longlong localLong1;
   longlong dataValueBuffer;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult1;
+  ulonglong validationResult2;
   
   arrayIndex = *(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
-  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   localLong1 = *(longlong *)(arrayIndex + 8);
-  unsignedVar5 = 0;
-  if (unsignedVar4 != 0) {
+  validationResult2 = 0;
+  if (validationResult1 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(localLong1 + unsignedVar5 * 8);
+      dataValueBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
       if (dataValueBuffer != 0) {
         if (*(longlong **)(dataValueBuffer + 8) != (longlong *)0x0) {
           (**(code **)(**(longlong **)(dataValueBuffer + 8) + STRUCT_OFFSET_SIZE))();
@@ -56563,13 +56563,13 @@ void Unwind_18090b4f0(uint64 resourceHandle,longlong memoryBlockSize)
                     // WARNING: Subroutine does not return
         HandleCriticalError(dataValueBuffer);
       }
-      *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
-      unsignedVar5 = unsignedVar5 + 1;
-    } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+      *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
+      validationResult2 = validationResult2 + 1;
+    } while (validationResult2 < validationResult1);
+    validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
   *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
+  if ((1 < validationResult1) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -56584,16 +56584,16 @@ void Unwind_18090b500(uint64 resourceHandle,longlong memoryBlockSize)
   longlong localLong1;
   longlong dataValueBuffer;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult1;
+  ulonglong validationResult2;
   
   arrayIndex = *(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
-  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   localLong1 = *(longlong *)(arrayIndex + 8);
-  unsignedVar5 = 0;
-  if (unsignedVar4 != 0) {
+  validationResult2 = 0;
+  if (validationResult1 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(localLong1 + unsignedVar5 * 8);
+      dataValueBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
       if (dataValueBuffer != 0) {
         if (*(longlong **)(dataValueBuffer + 8) != (longlong *)0x0) {
           (**(code **)(**(longlong **)(dataValueBuffer + 8) + STRUCT_OFFSET_SIZE))();
@@ -56601,13 +56601,13 @@ void Unwind_18090b500(uint64 resourceHandle,longlong memoryBlockSize)
                     // WARNING: Subroutine does not return
         HandleCriticalError(dataValueBuffer);
       }
-      *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
-      unsignedVar5 = unsignedVar5 + 1;
-    } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+      *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
+      validationResult2 = validationResult2 + 1;
+    } while (validationResult2 < validationResult1);
+    validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
   *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
+  if ((1 < validationResult1) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -56887,16 +56887,16 @@ void Unwind_18090b7d0(uint64 resourceHandle,longlong memoryBlockSize)
   longlong localLong1;
   longlong dataValueBuffer;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult1;
+  ulonglong validationResult2;
   
   arrayIndex = *(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
-  unsignedVar4 = *(ulonglong *)(arrayIndex + 0x2b0);
+  validationResult1 = *(ulonglong *)(arrayIndex + 0x2b0);
   localLong1 = *(longlong *)(arrayIndex + 0x2a8);
-  unsignedVar5 = 0;
-  if (unsignedVar4 != 0) {
+  validationResult2 = 0;
+  if (validationResult1 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(localLong1 + unsignedVar5 * 8);
+      dataValueBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
       if (dataValueBuffer != 0) {
         if (*(longlong **)(dataValueBuffer + 8) != (longlong *)0x0) {
           (**(code **)(**(longlong **)(dataValueBuffer + 8) + STRUCT_OFFSET_SIZE))();
@@ -56904,13 +56904,13 @@ void Unwind_18090b7d0(uint64 resourceHandle,longlong memoryBlockSize)
                     // WARNING: Subroutine does not return
         HandleCriticalError(dataValueBuffer);
       }
-      *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
-      unsignedVar5 = unsignedVar5 + 1;
-    } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(arrayIndex + 0x2b0);
+      *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
+      validationResult2 = validationResult2 + 1;
+    } while (validationResult2 < validationResult1);
+    validationResult1 = *(ulonglong *)(arrayIndex + 0x2b0);
   }
   *(uint64 *)(arrayIndex + 0x2b8) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 0x2a8) != 0)) {
+  if ((1 < validationResult1) && (*(longlong *)(arrayIndex + 0x2a8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -57494,16 +57494,16 @@ void Unwind_18090bd10(uint64 resourceHandle,longlong memoryBlockSize)
   longlong localLong1;
   longlong dataValueBuffer;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult1;
+  ulonglong validationResult2;
   
   arrayIndex = *(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA);
-  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   localLong1 = *(longlong *)(arrayIndex + 8);
-  unsignedVar5 = 0;
-  if (unsignedVar4 != 0) {
+  validationResult2 = 0;
+  if (validationResult1 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(localLong1 + unsignedVar5 * 8);
+      dataValueBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
       if (dataValueBuffer != 0) {
         if (*(longlong **)(dataValueBuffer + 8) != (longlong *)0x0) {
           (**(code **)(**(longlong **)(dataValueBuffer + 8) + STRUCT_OFFSET_SIZE))();
@@ -57511,13 +57511,13 @@ void Unwind_18090bd10(uint64 resourceHandle,longlong memoryBlockSize)
                     // WARNING: Subroutine does not return
         HandleCriticalError(dataValueBuffer);
       }
-      *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
-      unsignedVar5 = unsignedVar5 + 1;
-    } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+      *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
+      validationResult2 = validationResult2 + 1;
+    } while (validationResult2 < validationResult1);
+    validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
   *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
+  if ((1 < validationResult1) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -57532,16 +57532,16 @@ void Unwind_18090bd20(uint64 resourceHandle,longlong memoryBlockSize)
   longlong localLong1;
   longlong dataValueBuffer;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult1;
+  ulonglong validationResult2;
   
   arrayIndex = *(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA);
-  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   localLong1 = *(longlong *)(arrayIndex + 8);
-  unsignedVar5 = 0;
-  if (unsignedVar4 != 0) {
+  validationResult2 = 0;
+  if (validationResult1 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(localLong1 + unsignedVar5 * 8);
+      dataValueBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
       if (dataValueBuffer != 0) {
         if (*(longlong **)(dataValueBuffer + 8) != (longlong *)0x0) {
           (**(code **)(**(longlong **)(dataValueBuffer + 8) + STRUCT_OFFSET_SIZE))();
@@ -57549,13 +57549,13 @@ void Unwind_18090bd20(uint64 resourceHandle,longlong memoryBlockSize)
                     // WARNING: Subroutine does not return
         HandleCriticalError(dataValueBuffer);
       }
-      *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
-      unsignedVar5 = unsignedVar5 + 1;
-    } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+      *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
+      validationResult2 = validationResult2 + 1;
+    } while (validationResult2 < validationResult1);
+    validationResult1 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
   *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
+  if ((1 < validationResult1) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -57917,13 +57917,13 @@ void Unwind_18090bfb0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = *(longlong **)(memoryBlockSize + POINTER_OFFSET_DATA);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = (uint64 *)pdataBuffer[1];
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 4) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -58204,17 +58204,17 @@ void Unwind_18090c140(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + LIST_OFFSET_HEAD);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -58225,8 +58225,8 @@ void Unwind_18090c140(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -58349,17 +58349,17 @@ void Unwind_18090c1c0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA) + 8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -58370,8 +58370,8 @@ void Unwind_18090c1c0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -58504,17 +58504,17 @@ void Unwind_18090c280(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0xe8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -58525,8 +58525,8 @@ void Unwind_18090c280(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -58576,17 +58576,17 @@ void Unwind_18090c2d0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0xe8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -58597,8 +58597,8 @@ void Unwind_18090c2d0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -58612,17 +58612,17 @@ void Unwind_18090c2e0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0xe8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -58633,8 +58633,8 @@ void Unwind_18090c2e0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -58760,17 +58760,17 @@ void Unwind_18090c3b0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + 0x70) + 0x1d8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -58781,8 +58781,8 @@ void Unwind_18090c3b0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -58819,17 +58819,17 @@ void Unwind_18090c400(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + 0x70) + 0x2d0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -58840,8 +58840,8 @@ void Unwind_18090c400(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -59117,17 +59117,17 @@ void Unwind_18090c530(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + BUFFER_SIZE_STANDARD);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -59138,8 +59138,8 @@ void Unwind_18090c530(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -59538,17 +59538,17 @@ void Unwind_18090c610(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + BUFFER_SIZE_STANDARD);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -59559,8 +59559,8 @@ void Unwind_18090c610(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -59574,17 +59574,17 @@ void Unwind_18090c620(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + BUFFER_SIZE_STANDARD);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -59595,8 +59595,8 @@ void Unwind_18090c620(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -61699,17 +61699,17 @@ void Unwind_18090d000(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0xb0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -61720,8 +61720,8 @@ void Unwind_18090d000(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -61735,17 +61735,17 @@ void Unwind_18090d010(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + STRUCT_OFFSET_1);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -61756,8 +61756,8 @@ void Unwind_18090d010(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -61771,17 +61771,17 @@ void Unwind_18090d020(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0xf0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -61792,8 +61792,8 @@ void Unwind_18090d020(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -61807,17 +61807,17 @@ void Unwind_18090d030(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x110);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -61828,8 +61828,8 @@ void Unwind_18090d030(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -61843,17 +61843,17 @@ void Unwind_18090d040(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x150);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -61864,8 +61864,8 @@ void Unwind_18090d040(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -61879,17 +61879,17 @@ void Unwind_18090d050(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x170);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -61900,8 +61900,8 @@ void Unwind_18090d050(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -61915,17 +61915,17 @@ void Unwind_18090d060(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 400);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -61936,8 +61936,8 @@ void Unwind_18090d060(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -61951,17 +61951,17 @@ void Unwind_18090d070(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x1b0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -61972,8 +61972,8 @@ void Unwind_18090d070(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -61987,17 +61987,17 @@ void Unwind_18090d080(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x1d0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62008,8 +62008,8 @@ void Unwind_18090d080(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -62023,17 +62023,17 @@ void Unwind_18090d090(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x1f0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62044,8 +62044,8 @@ void Unwind_18090d090(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -62059,17 +62059,17 @@ void Unwind_18090d0a0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x210);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62080,8 +62080,8 @@ void Unwind_18090d0a0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -62095,17 +62095,17 @@ void Unwind_18090d0b0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x250);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62116,8 +62116,8 @@ void Unwind_18090d0b0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -62131,17 +62131,17 @@ void Unwind_18090d0c0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x390);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62152,8 +62152,8 @@ void Unwind_18090d0c0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -62167,17 +62167,17 @@ void Unwind_18090d0d0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x3b0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62188,8 +62188,8 @@ void Unwind_18090d0d0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -62203,17 +62203,17 @@ void Unwind_18090d0e0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x490);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62224,8 +62224,8 @@ void Unwind_18090d0e0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -62239,17 +62239,17 @@ void Unwind_18090d0f0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x2f0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62260,8 +62260,8 @@ void Unwind_18090d0f0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -62275,17 +62275,17 @@ void Unwind_18090d100(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x310);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62296,8 +62296,8 @@ void Unwind_18090d100(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -62311,17 +62311,17 @@ void Unwind_18090d110(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x330);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62332,8 +62332,8 @@ void Unwind_18090d110(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -62347,17 +62347,17 @@ void Unwind_18090d120(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x350);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62368,8 +62368,8 @@ void Unwind_18090d120(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -62383,17 +62383,17 @@ void Unwind_18090d130(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x470);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62404,8 +62404,8 @@ void Unwind_18090d130(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -62419,17 +62419,17 @@ void Unwind_18090d140(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x370);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62440,8 +62440,8 @@ void Unwind_18090d140(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -62455,17 +62455,17 @@ void Unwind_18090d150(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x270);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62476,8 +62476,8 @@ void Unwind_18090d150(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -62491,17 +62491,17 @@ void Unwind_18090d160(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x290);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62512,8 +62512,8 @@ void Unwind_18090d160(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -62527,17 +62527,17 @@ void Unwind_18090d170(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x2b0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62548,8 +62548,8 @@ void Unwind_18090d170(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -62563,17 +62563,17 @@ void Unwind_18090d180(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x2d0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62584,8 +62584,8 @@ void Unwind_18090d180(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -62610,17 +62610,17 @@ void Unwind_18090d1a0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0xb0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62631,8 +62631,8 @@ void Unwind_18090d1a0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -62646,17 +62646,17 @@ void Unwind_18090d1b0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0xb0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62667,8 +62667,8 @@ void Unwind_18090d1b0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -62682,17 +62682,17 @@ void Unwind_18090d1c0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + STRUCT_OFFSET_1);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62703,8 +62703,8 @@ void Unwind_18090d1c0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -62718,17 +62718,17 @@ void Unwind_18090d1d0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + STRUCT_OFFSET_1);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62739,8 +62739,8 @@ void Unwind_18090d1d0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -62754,17 +62754,17 @@ void Unwind_18090d1e0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0xf0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62775,8 +62775,8 @@ void Unwind_18090d1e0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -62790,17 +62790,17 @@ void Unwind_18090d1f0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0xf0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62811,8 +62811,8 @@ void Unwind_18090d1f0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -62826,17 +62826,17 @@ void Unwind_18090d200(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x110);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62847,8 +62847,8 @@ void Unwind_18090d200(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -62862,17 +62862,17 @@ void Unwind_18090d210(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x110);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62883,8 +62883,8 @@ void Unwind_18090d210(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -62898,17 +62898,17 @@ void Unwind_18090d220(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x150);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62919,8 +62919,8 @@ void Unwind_18090d220(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -62934,17 +62934,17 @@ void Unwind_18090d230(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x150);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62955,8 +62955,8 @@ void Unwind_18090d230(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -62970,17 +62970,17 @@ void Unwind_18090d240(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x170);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -62991,8 +62991,8 @@ void Unwind_18090d240(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -63006,17 +63006,17 @@ void Unwind_18090d250(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x170);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -63027,8 +63027,8 @@ void Unwind_18090d250(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -63042,17 +63042,17 @@ void Unwind_18090d260(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 400);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -63063,8 +63063,8 @@ void Unwind_18090d260(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -63078,17 +63078,17 @@ void Unwind_18090d270(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 400);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -63099,8 +63099,8 @@ void Unwind_18090d270(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -63114,17 +63114,17 @@ void Unwind_18090d280(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x1b0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -63135,8 +63135,8 @@ void Unwind_18090d280(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -63150,17 +63150,17 @@ void Unwind_18090d290(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x1b0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -63171,8 +63171,8 @@ void Unwind_18090d290(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -63186,17 +63186,17 @@ void Unwind_18090d2a0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x1d0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -63207,8 +63207,8 @@ void Unwind_18090d2a0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -63222,17 +63222,17 @@ void Unwind_18090d2b0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x1d0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -63243,8 +63243,8 @@ void Unwind_18090d2b0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -63258,17 +63258,17 @@ void Unwind_18090d2c0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x1f0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -63279,8 +63279,8 @@ void Unwind_18090d2c0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -63294,17 +63294,17 @@ void Unwind_18090d2d0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x1f0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -63315,8 +63315,8 @@ void Unwind_18090d2d0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -63330,17 +63330,17 @@ void Unwind_18090d2e0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x210);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -63351,8 +63351,8 @@ void Unwind_18090d2e0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -63366,17 +63366,17 @@ void Unwind_18090d2f0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x210);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -63387,8 +63387,8 @@ void Unwind_18090d2f0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -63402,17 +63402,17 @@ void Unwind_18090d300(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x250);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -63423,8 +63423,8 @@ void Unwind_18090d300(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -63438,17 +63438,17 @@ void Unwind_18090d310(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x250);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -63459,8 +63459,8 @@ void Unwind_18090d310(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -63530,17 +63530,17 @@ void Unwind_18090d360(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x390);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -63551,8 +63551,8 @@ void Unwind_18090d360(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -63566,17 +63566,17 @@ void Unwind_18090d370(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x390);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -63587,8 +63587,8 @@ void Unwind_18090d370(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -63602,17 +63602,17 @@ void Unwind_18090d380(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x3b0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -63623,8 +63623,8 @@ void Unwind_18090d380(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -63638,17 +63638,17 @@ void Unwind_18090d390(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x3b0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -63659,8 +63659,8 @@ void Unwind_18090d390(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -63674,17 +63674,17 @@ void Unwind_18090d3a0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x490);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -63695,8 +63695,8 @@ void Unwind_18090d3a0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -63710,17 +63710,17 @@ void Unwind_18090d3b0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x490);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -63731,8 +63731,8 @@ void Unwind_18090d3b0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -63746,17 +63746,17 @@ void Unwind_18090d3c0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x2f0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -63767,8 +63767,8 @@ void Unwind_18090d3c0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -63782,17 +63782,17 @@ void Unwind_18090d3d0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x2f0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -63803,8 +63803,8 @@ void Unwind_18090d3d0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -63818,17 +63818,17 @@ void Unwind_18090d3e0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x310);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -63839,8 +63839,8 @@ void Unwind_18090d3e0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -63854,17 +63854,17 @@ void Unwind_18090d3f0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x310);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -63875,8 +63875,8 @@ void Unwind_18090d3f0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -63890,17 +63890,17 @@ void Unwind_18090d400(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x330);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -63911,8 +63911,8 @@ void Unwind_18090d400(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -63926,17 +63926,17 @@ void Unwind_18090d410(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x330);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -63947,8 +63947,8 @@ void Unwind_18090d410(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -63962,17 +63962,17 @@ void Unwind_18090d420(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x350);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -63983,8 +63983,8 @@ void Unwind_18090d420(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -63998,17 +63998,17 @@ void Unwind_18090d430(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x350);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -64019,8 +64019,8 @@ void Unwind_18090d430(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -64034,17 +64034,17 @@ void Unwind_18090d440(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x470);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -64055,8 +64055,8 @@ void Unwind_18090d440(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -64070,17 +64070,17 @@ void Unwind_18090d450(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x470);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -64091,8 +64091,8 @@ void Unwind_18090d450(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -64106,17 +64106,17 @@ void Unwind_18090d460(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x370);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -64127,8 +64127,8 @@ void Unwind_18090d460(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -64142,17 +64142,17 @@ void Unwind_18090d470(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x370);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -64163,8 +64163,8 @@ void Unwind_18090d470(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -64178,17 +64178,17 @@ void Unwind_18090d480(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x270);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -64199,8 +64199,8 @@ void Unwind_18090d480(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -64214,17 +64214,17 @@ void Unwind_18090d490(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x270);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -64235,8 +64235,8 @@ void Unwind_18090d490(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -64250,17 +64250,17 @@ void Unwind_18090d4a0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x290);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -64271,8 +64271,8 @@ void Unwind_18090d4a0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -64286,17 +64286,17 @@ void Unwind_18090d4b0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x290);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -64307,8 +64307,8 @@ void Unwind_18090d4b0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -64322,17 +64322,17 @@ void Unwind_18090d4c0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x2b0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -64343,8 +64343,8 @@ void Unwind_18090d4c0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -64358,17 +64358,17 @@ void Unwind_18090d4d0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x2b0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -64379,8 +64379,8 @@ void Unwind_18090d4d0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -64394,17 +64394,17 @@ void Unwind_18090d4e0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x2d0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -64415,8 +64415,8 @@ void Unwind_18090d4e0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -64430,17 +64430,17 @@ void Unwind_18090d4f0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x2d0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -64451,8 +64451,8 @@ void Unwind_18090d4f0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -64909,7 +64909,7 @@ void Unwind_18090d7e0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   arrayIndex = *(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
   if (*(longlong **)(arrayIndex + 0x14d0) != (longlong *)0x0) {
@@ -64930,11 +64930,11 @@ void Unwind_18090d7e0(uint64 resourceHandle,longlong memoryBlockSize)
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -64945,8 +64945,8 @@ void Unwind_18090d7e0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -65447,17 +65447,17 @@ void Unwind_18090de40(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + 0xe0) + POINTER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -65468,8 +65468,8 @@ void Unwind_18090de40(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -65683,7 +65683,7 @@ void Unwind_18090e000(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   arrayIndex = *(longlong *)(memoryBlockSize + 0xe0);
   if (*(longlong **)(arrayIndex + 0x14d0) != (longlong *)0x0) {
@@ -65704,11 +65704,11 @@ void Unwind_18090e000(uint64 resourceHandle,longlong memoryBlockSize)
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -65719,8 +65719,8 @@ void Unwind_18090e000(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -66009,17 +66009,17 @@ void Unwind_18090e3c0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + 0xe8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -66030,8 +66030,8 @@ void Unwind_18090e3c0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -66045,17 +66045,17 @@ void Unwind_18090e3d0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + 0xe8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -66066,8 +66066,8 @@ void Unwind_18090e3d0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -68043,17 +68043,17 @@ void Unwind_18090eeb0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + 0x88) + 8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -68064,8 +68064,8 @@ void Unwind_18090eeb0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -68088,17 +68088,17 @@ void Unwind_18090eee0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + 0x88) + 0x2d0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -68109,8 +68109,8 @@ void Unwind_18090eee0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -68138,17 +68138,17 @@ void Unwind_18090ef20(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA) + 0x1d8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -68159,8 +68159,8 @@ void Unwind_18090ef20(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -68188,17 +68188,17 @@ void Unwind_18090ef50(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + RESOURCE_HANDLE_OFFSET);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -68209,8 +68209,8 @@ void Unwind_18090ef50(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -68224,17 +68224,17 @@ void Unwind_18090ef60(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + RESOURCE_HANDLE_OFFSET);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -68245,8 +68245,8 @@ void Unwind_18090ef60(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -68858,17 +68858,17 @@ void Unwind_18090f1b0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA) + 0x130);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -68879,8 +68879,8 @@ void Unwind_18090f1b0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -68894,17 +68894,17 @@ void Unwind_18090f1d0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA) + 0x150);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -68915,8 +68915,8 @@ void Unwind_18090f1d0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -68952,17 +68952,17 @@ void Unwind_18090f210(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + 0xc0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -68973,8 +68973,8 @@ void Unwind_18090f210(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -68988,17 +68988,17 @@ void Unwind_18090f230(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + 0xe0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -69009,8 +69009,8 @@ void Unwind_18090f230(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -69024,17 +69024,17 @@ void Unwind_18090f250(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + RESOURCE_HANDLE_OFFSET0);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -69045,8 +69045,8 @@ void Unwind_18090f250(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -69060,17 +69060,17 @@ void Unwind_18090f270(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + 0x120);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -69081,8 +69081,8 @@ void Unwind_18090f270(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -69096,17 +69096,17 @@ void Unwind_18090f290(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + 0x140);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -69117,8 +69117,8 @@ void Unwind_18090f290(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -69132,17 +69132,17 @@ void Unwind_18090f2b0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + 0x160);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -69153,8 +69153,8 @@ void Unwind_18090f2b0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -69189,17 +69189,17 @@ void Unwind_18090f2f0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + SYSTEM_TABLE_OFFSET);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -69210,8 +69210,8 @@ void Unwind_18090f2f0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -70987,17 +70987,17 @@ void Unwind_18090ff90(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + 0x158);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -71008,8 +71008,8 @@ void Unwind_18090ff90(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -71832,13 +71832,13 @@ void Unwind_180910310(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = *(longlong **)(memoryBlockSize + 0x150);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = (uint64 *)pdataBuffer[1];
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 4) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -71855,17 +71855,17 @@ void Unwind_180910320(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + 0x150);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -71876,8 +71876,8 @@ void Unwind_180910320(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -71912,17 +71912,17 @@ void Unwind_180910340(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0xa8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -71933,8 +71933,8 @@ void Unwind_180910340(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -71948,17 +71948,17 @@ void Unwind_180910350(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = (uint64 *)**(ulonglong **)(memoryBlockSize + 0x150);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -71969,8 +71969,8 @@ void Unwind_180910350(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -72023,17 +72023,17 @@ void Unwind_1809103c0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA) + 8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -72044,8 +72044,8 @@ void Unwind_1809103c0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -72228,17 +72228,17 @@ void Unwind_1809104f0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + 0x338);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -72249,8 +72249,8 @@ void Unwind_1809104f0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -72264,17 +72264,17 @@ void Unwind_180910510(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + 0x358);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -72285,8 +72285,8 @@ void Unwind_180910510(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -72449,17 +72449,17 @@ void Unwind_180910640(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x338);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -72470,8 +72470,8 @@ void Unwind_180910640(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -72485,17 +72485,17 @@ void Unwind_180910660(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x358);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -72506,8 +72506,8 @@ void Unwind_180910660(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -72583,17 +72583,17 @@ void Unwind_1809106e0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + HANDLE_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -72604,8 +72604,8 @@ void Unwind_1809106e0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -72643,17 +72643,17 @@ void Unwind_180910750(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + HANDLE_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -72664,8 +72664,8 @@ void Unwind_180910750(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -72701,17 +72701,17 @@ void Unwind_180910770(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + FIELD_OFFSET_1);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -72722,8 +72722,8 @@ void Unwind_180910770(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -72737,17 +72737,17 @@ void Unwind_180910780(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + FIELD_OFFSET_1);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -72758,8 +72758,8 @@ void Unwind_180910780(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -72773,17 +72773,17 @@ void Unwind_180910790(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + SYSTEM_OFFSET_STATUS1) + 8);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -72794,8 +72794,8 @@ void Unwind_180910790(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -74759,13 +74759,13 @@ void Unwind_180910fc0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = (longlong *)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP) + 0x2610);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP) + 0x2618);
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 4) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -74782,13 +74782,13 @@ void Unwind_180910fe0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = (longlong *)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP) + 0x2630);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP) + 0x2638);
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 4) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -76755,13 +76755,13 @@ void Unwind_180911820(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = (longlong *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x2610);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x2618);
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 4) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -76778,13 +76778,13 @@ void Unwind_180911840(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   uint64 *pfunctionResult;
   longlong *pdataBuffer;
   uint64 *pointerVar3;
-  uint64 unsignedVar4;
+  uint64 validationResult1;
   
   pdataBuffer = (longlong *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x2630);
-  unsignedVar4 = 0xfffffffffffffffe;
+  validationResult1 = 0xfffffffffffffffe;
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x2638);
   for (puVar3 = (uint64 *)*pdataBuffer; pointerVar3 != pfunctionResult; pointerVar3 = pointerVar3 + 4) {
-    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,unsignedVar4);
+    (**(code **)*pointerVar3)(puVar3,0,operationFlags,callbackFunction,validationResult1);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -76927,17 +76927,17 @@ void Unwind_1809118c0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + POINTER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -76948,8 +76948,8 @@ void Unwind_1809118c0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -76993,17 +76993,17 @@ void Unwind_1809118f0(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + 0x70);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -77014,8 +77014,8 @@ void Unwind_1809118f0(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -77134,17 +77134,17 @@ void Unwind_180911950(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(memoryBlockSize + POINTER_OFFSET_DATA);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -77155,8 +77155,8 @@ void Unwind_180911950(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -77805,17 +77805,17 @@ void Unwind_180911de0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   int operationStatus;
   longlong arrayIndex;
   longlong longVar4;
-  ulonglong unsignedVar5;
+  ulonglong validationResult2;
   uint unsignedVar6;
   ulonglong unsignedVar7;
   
   longVar4 = *(longlong *)(memoryBlockSize + 0x70);
-  unsignedVar5 = 0;
+  validationResult2 = 0;
   poperationStatus = (int *)(longVar4 + 0x1e70);
-  unsignedVar7 = unsignedVar5;
+  unsignedVar7 = validationResult2;
   if (0 < *plocalStatus) {
     do {
-      operationStatus = *(int *)(*(longlong *)(longVar4 + 0x1e78) + 8 + unsignedVar5);
+      operationStatus = *(int *)(*(longlong *)(longVar4 + 0x1e78) + 8 + validationResult2);
       if ((operationStatus != -1) &&
          (arrayIndex = *(longlong *)((longlong)operationStatus * DATA_OFFSET_START + *(longlong *)(longVar4 + 0x1e68) + 8),
          arrayIndex != 0)) {
@@ -77826,7 +77826,7 @@ void Unwind_180911de0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
         FUN_180059ba0(arrayIndex,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
       }
       unsignedVar6 = (int)unsignedVar7 + 1;
-      unsignedVar5 = unsignedVar5 + RESOURCE_HANDLE_OFFSET;
+      validationResult2 = validationResult2 + RESOURCE_HANDLE_OFFSET;
       unsignedVar7 = (ulonglong)unsignedVar6;
     } while ((int)unsignedVar6 < *plocalStatus);
   }
@@ -80061,17 +80061,17 @@ void Unwind_180912930(uint64 resourceHandle,longlong memoryBlockSize)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP) + 0x360);
   if (punsignedCounter == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)punsignedCounter - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *punsignedCounter = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -80082,8 +80082,8 @@ void Unwind_180912930(uint64 resourceHandle,longlong memoryBlockSize)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          punsignedCounter,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          punsignedCounter,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
@@ -80701,17 +80701,17 @@ void systemInitializeExtensions(void)
   int *plocalStatus;
   uint64 *punsignedCounter;
   longlong arrayIndex;
-  ulonglong unsignedVar4;
+  ulonglong validationResult1;
   
   punsignedCounter = _systemVar93f8;
   if (_systemVar93f8 == (uint64 *)0x0) {
     return;
   }
-  unsignedVar4 = (ulonglong)_systemVar93f8 & 0xffffffffffc00000;
-  if (unsignedVar4 != 0) {
-    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)_systemVar93f8 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+  validationResult1 = (ulonglong)_systemVar93f8 & 0xffffffffffc00000;
+  if (validationResult1 != 0) {
+    arrayIndex = validationResult1 + BUFFER_OFFSET_TEMP + ((longlong)_systemVar93f8 - validationResult1 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
     arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+    if ((*(void ***)(validationResult1 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
       *_systemVar93f8 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
       *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = punsignedCounter;
       poperationStatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
@@ -80722,8 +80722,8 @@ void systemInitializeExtensions(void)
       }
     }
     else {
-      exceptionHandleFunction(unsignedVar4,CONCAT71(0xff000000,*(void ***)(unsignedVar4 + 0x70) == &ExceptionList),
-                          _systemVar93f8,unsignedVar4,0xfffffffffffffffe);
+      exceptionHandleFunction(validationResult1,CONCAT71(0xff000000,*(void ***)(validationResult1 + 0x70) == &ExceptionList),
+                          _systemVar93f8,validationResult1,0xfffffffffffffffe);
     }
   }
   return;
