@@ -370,12 +370,12 @@ data fileOperationFlag;
 data networkConnectionStatus;
 data networkSocketHandle;
 data systemDataTable10;
-data DAT_180bf7258;
-data DAT_180bf7260;
+data systemDataTable11;
+data systemDataTable12;
 
 // 函数: data InitializeSystemModule1;
 data InitializeSystemModule1;
-data DAT_180bf7268;
+data systemDataTable13;
 data networkSendBuffer;
 data bufferDataTable4;
 data bufferDataTable5;
@@ -385,10 +385,10 @@ data bufferDataTable7;
 // 函数: data InitializeSystemModule2;
 data InitializeSystemModule2;
 data networkReceiveBuffer;
-data DAT_180bf7310;
-data DAT_180bf7318;
-data DAT_180bf7320;
-data DAT_180bf7328;
+data systemDataTable14;
+data systemDataTable15;
+data systemDataTable16;
+data systemDataTable17;
 
 // 函数: data InitializeSystemModule3;
 data InitializeSystemModule3;
@@ -399,15 +399,15 @@ data threadSyncData4;
 data threadSyncData5;
 data eventData9;
 data eventData10;
-data DAT_180bf7418;
+data systemDataTable18;
 data memoryData1;
 data fileData4;
 data fileData5;
 data fileData6;
 data fileData7;
-data DAT_180bf7538;
+data systemDataTable19;
 data renderData1;
-data DAT_180bf7548;
+data systemDataTable20;
 data renderData2;
 data systemConfigData6;
 data systemConfigData7;
@@ -6694,7 +6694,7 @@ int bind_network_socket(longlong resourceHandle,longlong memorySize)
 // WARNING: Removing unreachable block (ram,0x000180893865)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18089379d(longlong resourceHandle,uint64 memorySize)
+int connect_network_socket(longlong resourceHandle,uint64 memorySize)
 
 {
   int localInt1;
@@ -6731,7 +6731,7 @@ int FUN_18089379d(longlong resourceHandle,uint64 memorySize)
 
 
 
-uint64 FUN_1808938ab(void)
+uint64 get_socket_status(void)
 
 {
   return 0x1f;
@@ -80666,7 +80666,7 @@ void InitializeSystemModule2(void)
 void InitializeSystemModule3(void)
 
 {
-  _DAT_180bf7310 = &threadLocalStorageCleanup;
+  _systemDataTable14 = &threadLocalStorageCleanup;
   return;
 }
 
