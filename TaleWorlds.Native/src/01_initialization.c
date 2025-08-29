@@ -99,14 +99,12 @@ undefined g_system_config_data_180bf6500;
 undefined g_system_error_data_180bf6508;
 
 undefined g_system_debug_data_180bf6510;
-// undefined FUN_180059ba0;
-
-undefined FUN_180059ba0;
+// 系统资源初始化函数
+undefined InitializeSystemResources_180059ba0;
 
 undefined UNK_180a092c4;
-// undefined FUN_180059620;
-
-undefined FUN_180059620;
+// 核心组件初始化函数
+void InitializeCoreComponents_180059620(void);
 // undefined FUN_180044a30;
 
 undefined FUN_180044a30;
@@ -16043,7 +16041,8 @@ FUN_180045d80(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
   return param_1;
 }
 
-undefined8 * FUN_180045dc0(undefined8 *param_1,uint param_2)
+// 初始化IO完成端口
+undefined8 * initialize_io_completion_port(undefined8 *port_handle,uint config_flags)
 
 {
   *param_1 = &UNK_1809fee70;

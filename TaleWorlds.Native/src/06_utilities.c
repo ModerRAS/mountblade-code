@@ -88,14 +88,14 @@ byte DAT_180c910f8;
 data InitializeThreadSynchronization;
 byte DAT_180c91198;
 
-// 函数: data FUN_180941690;
+// 函数: data InitializeEventHandler;
 // 事件处理初始化函数180941690
-data FUN_180941690;
+data InitializeEventHandler;
 byte DAT_180c91238;
 
-// 函数: data FUN_1809416d0;
+// 函数: data InitializeSemaphore;
 // 信号量初始化函数1809416d0
-data FUN_1809416d0;
+data InitializeSemaphore;
 byte DAT_180c912d8;
 
 // 函数: data FUN_180941710;
