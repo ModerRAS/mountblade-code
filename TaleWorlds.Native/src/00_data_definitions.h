@@ -603,7 +603,7 @@ int initialize_data_buffer_system(void)
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf70b0;
   data_180bf70b0 = 0;
-  global_data_ = 0x14;
+  global_data_ = FLAG_CONFIG_RESOURCE;
   strcpy_s(&data_180bf70b0,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string6);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf7108;
@@ -613,12 +613,12 @@ int initialize_data_buffer_system(void)
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf7160;
   data_180bf7160 = 0;
-  global_data_ = 0x13;
+  global_data_ = FLAG_NETWORK_RESOURCE;
   strcpy_s(&data_180bf7160,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string8);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf71b8;
   data_180bf71b8 = 0;
-  global_data_ = 0x16;
+  global_data_ = FLAG_SECURITY_RESOURCE;
   strcpy_s(&data_180bf71b8,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string9);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf7210;
