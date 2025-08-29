@@ -152,12 +152,12 @@ data g_chunkSizeData4;
 
 // 函数: data initializeDataStructure5;
 data initializeDataStructure5;
-data unknown_180a00518;
+data aiSystemPointer;
 data aiSystemHandle;
 data aiBehaviorTree;
 data aiNavigationMesh;
 data aiPathfindingData;
-data unknown_180a00528;
+data sceneManagerPointer;
 
 // 函数: data initializeDataStructure6;
 data initializeDataStructure6;
@@ -173,80 +173,80 @@ data resourceManagerHandle;
 data resourceTextureCache;
 data resourceMeshBuffer;
 data resourceShaderCache;
-data unknown_180a00540;
+data resourceManagerPointer;
 
-// 函数: data FUN_1809418e0;
-data FUN_1809418e0;
+// 函数: data InitializeScriptSystem;
+data InitializeScriptSystem;
 data scriptSystemHandle;
 data scriptVirtualMachine;
 data scriptFunctionTable;
 data scriptGlobalData;
-data unknown_180a00548;
+data scriptSystemPointer;
 
-// 函数: data FUN_180941900;
-data FUN_180941900;
+// 函数: data InitializeDebugSystem;
+data InitializeDebugSystem;
 data debugSystemHandle;
 data debugLoggerBuffer;
 data debugProfilerData;
 data debugBreakpoints;
-data unknown_180a01300;
+data debugSystemPointer;
 
-// 函数: data FUN_180941980;
-data FUN_180941980;
+// 函数: data InitializePerformanceMonitor;
+data InitializePerformanceMonitor;
 data performanceMonitorHandle;
 data performanceFrameData;
 data performanceMemoryStats;
 data performanceCPUMetrics;
-data unknown_180a01330;
+data performanceMonitorPointer;
 
-// 函数: data FUN_1809419a0;
-data FUN_1809419a0;
+// 函数: data LoadConfiguration;
+data LoadConfiguration;
 
-// 函数: data FUN_1809419c0;
-data FUN_1809419c0;
+// 函数: data InitializeConfigurationSystem;
+data InitializeConfigurationSystem;
 data configSystemHandle;
-data unknown_180a02998;
+data configSystemPointer;
 data configSettingsData;
-data unknown_180a0b1c8;
-data DAT_180bf6750;
-data DAT_180bf6758;
-data DAT_180bf6760;
-data DAT_180bf6768;
-data DAT_180bf67a8;
-data DAT_180bf67b0;
-data DAT_180bf67b8;
-data DAT_180bf67c0;
-data DAT_180bf6800;
-data DAT_180bf6808;
-data DAT_180bf6810;
-data DAT_180bf6818;
-data DAT_180bf6858;
-data DAT_180bf6860;
-data DAT_180bf6868;
-data DAT_180bf6870;
-data DAT_180bf68b0;
-data DAT_180bf68b8;
-data DAT_180bf68c0;
-data DAT_180bf68c8;
-data DAT_180bf6908;
-data DAT_180bf6910;
-data DAT_180bf6918;
-data DAT_180bf6920;
-data DAT_180bf6960;
-data DAT_180bf6968;
-data DAT_180bf6970;
-data DAT_180bf6978;
-data DAT_180bf69b8;
-data DAT_180bf69c0;
-data DAT_180bf69c8;
-data DAT_180bf69d0;
-data DAT_180bf6a10;
-data DAT_180bf6a18;
-data DAT_180bf6a20;
-data DAT_180bf6a28;
-data DAT_180bf6a68;
-data DAT_180bf6a70;
-data DAT_180bf6a78;
+data configWorkPointer;
+data configGraphicsSettings;
+data configAudioSettings;
+data configInputSettings;
+data configNetworkSettings;
+data configPhysicsSettings;
+data configAISettings;
+data configRenderingSettings;
+data configGameplaySettings;
+data configQualitySettings;
+data configControlsSettings;
+data configLanguageSettings;
+data configAccessibilitySettings;
+data configVideoSettings;
+data configDisplaySettings;
+data configSoundSettings;
+data configMusicSettings;
+data configMultiplayerSettings;
+data configSocialSettings;
+data configPrivacySettings;
+data configSecuritySettings;
+data configModSettings;
+data configCloudSettings;
+data configBackupSettings;
+data configUpdateSettings;
+data configAdvancedSettings;
+data configDeveloperSettings;
+data configExperimentalSettings;
+data configDebugSettings;
+data configProfileSettings;
+data configSaveSettings;
+data configLoadSettings;
+data configImportSettings;
+data configExportSettings;
+data configSyncSettings;
+data configShareSettings;
+data configPublishSettings;
+data configStreamSettings;
+data configRecordSettings;
+data configBroadcastSettings;
 data DAT_180bf6a80;
 data DAT_180bf6ac0;
 data DAT_180bf6ac8;
@@ -80497,8 +80497,8 @@ void FUN_180941920(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941980(void)
-void FUN_180941980(void)
+// 函数: void InitializePerformanceMonitor(void)
+void InitializePerformanceMonitor(void)
 
 {
   _debugSystemHandle = &unknown_18098bcb0;
@@ -80510,8 +80510,8 @@ void FUN_180941980(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809419a0(void)
-void FUN_1809419a0(void)
+// 函数: void LoadConfiguration(void)
+void LoadConfiguration(void)
 
 {
   _performanceMonitorHandle = &unknown_18098bcb0;
@@ -80521,8 +80521,8 @@ void FUN_1809419a0(void)
 
 
 
-// 函数: void FUN_1809419c0(void)
-void FUN_1809419c0(void)
+// 函数: void InitializeConfigurationSystem(void)
+void InitializeConfigurationSystem(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x0001809419d8. Too many branches
