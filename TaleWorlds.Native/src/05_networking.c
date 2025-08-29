@@ -249,12 +249,13 @@ void NetworkCleanupConnection(void)
 // WARNING: Removing unreachable block (ram,0x000180849219)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+// 网络套接字数据处理函数 - 处理套接字接收的数据
 uint NetworkProcessSocketData(longlong *socketParam)
 
 {
-  int status;
-  uint packetSize;
-  uint bufferSize;
+  int status;                      // 处理状态
+  uint packetSize;                 // 数据包大小
+  uint bufferSize;                 // 缓冲区大小
   
   bufferSize = *(uint *)((longlong)socketParam + 0xc);
   packetSize = bufferSize ^ (int)bufferSize >> 0x1f;

@@ -3,7 +3,8 @@
 // 01_initialization.c - 初始化系统代码（已美化变量名和函数名）
 // void InitializeGameDataStructure(void)
 
-void InitializeGameDataStructure(void)
+void InitializeGameDataStructure(void);
+
 void* g_game_data_structure;
 
 void* g_game_reserved_data_1;
@@ -102,21 +103,21 @@ void* g_system_debug;
 // 系统资源初始化函数
 void* InitializeSystemResources;
 
-void* g_global_data_180a092c4;
+void* g_global_game_data_cache;
 // 核心组件初始化函数
 void InitializeCoreComponents_180059620(void);
 // 内存管理器设置函数
 void SetupMemoryManager_180044a30(void);
 
-void* *g_system_startup_data_180be0000;
+void** g_system_startup_data;
 
-void *g_engine_context_1809fdd78;
+void* g_engine_context;
 
-void *g_resource_manager_1809fddc8;
+void* g_resource_manager_main;
 
-void *g_memory_pool_180a02968;
+void* g_memory_pool_main;
 
-void *g_graphics_context_1809fde10;
+void* g_graphics_context_main;
 
 void* _guard_check_icall;
 // 系统安全检查函数
@@ -124,80 +125,80 @@ void* SystemSecurityCheck_180046860;
 // 引擎初始化完成函数
 void CompleteEngineInitialization_18005c060(void);
 
-void *g_system_heap_1809fdea8;
+void* g_system_heap;
 
-void *g_module_registry_1809fdf38;
+void* g_module_registry;
 
-void *g_service_manager_1809fdfd0;
+void* g_service_manager;
 
-void *g_event_system_1809fe050;
+void* g_event_system;
 
-void *g_message_queue_1809fe058;
+void* g_message_queue;
 
-void *g_thread_pool_1809fe188;
+void* g_thread_pool;
 
-void *g_task_scheduler_1809fe190;
+void* g_task_scheduler;
 
-void *g_file_system_1809fe198;
+void* g_file_system;
 
-void *g_config_manager_1809fe1a0;
+void* g_config_manager;
 
-void* g_graphics_driver_1809fe258;
+void* g_graphics_driver;
 
-void* g_audio_driver_1809fe290;
+void* g_audio_driver;
 
 void* g_input_driver_1800467f0;
 
 void* g_network_driver_180049760;
 
-void* g_resource_manager_1809fe1f0;
+void* g_resource_manager;
 
-void* g_memory_manager_1809fe200;
+void* g_memory_manager;
 
-void* g_global_data_1809fe210;
+void* g_global_scene_data;
 
-void* g_global_data_180a10098;
+void* g_global_texture_data;
 
-void* g_static_data_00000008;
+void* g_static_zero_pointer;
 
-void* g_global_data_180a30778;
+void* g_global_shader_data;
 
-void* g_static_data_1809fc8c8;
+void* g_static_init_data;
 
-void* g_global_data_1809fe2c0;
+void* g_global_render_data;
 
-void* g_static_data_180c912f0;
+void* g_static_render_buffer;
 
-void* g_global_data_1809fe5a0;
+void* g_global_audio_buffer;
 
-void* g_static_data_180d48d28;
+void* g_static_audio_cache;
 
-void* g_static_data_180063480;
+void* g_static_input_buffer;
 
-void* g_global_data_1809fe5c0;
+void* g_global_input_data;
 
-void* g_global_data_1809fe5f0;
+void* g_global_network_data;
 
-void* g_global_data_1809fe608;
+void* g_global_physics_data;
 
-void* g_global_data_1809fe62c;
+void* g_global_animation_data;
 
-int g_initialization_status_global_int;
-longlong g_system_memory_size_global_long;
-void* g_global_data_1809fe650;
+int g_initialization_status;
+longlong g_system_memory_size;
+void* g_global_ui_data;
 // undefined g_function_180066dd0;
 
 void InitializeGameFramework_180066dd0;
 
-void* g_global_data_1809fe800;
+void* g_global_save_data;
 
-void* g_global_data_1809fe80c;
+void* g_global_load_data;
 
-void* g_static_data_1809fe810;
+void* g_static_temp_buffer;
 
-void* g_global_data_1809fe85c;
+void* g_global_debug_data;
 
-void* g_global_data_1809fe868;
+void* g_global_log_data;
 
 void* g_global_data_1809fe880;
 
