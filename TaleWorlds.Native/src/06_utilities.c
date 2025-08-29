@@ -112,7 +112,7 @@ data DestroyMutex;
 data g_mutexDestroyHandle;
 data g_mutexDestroyContext;
 data g_mutexDestroyCallback;
-data g_mutexDestroyTemp;
+data mutexDestroyWorkData;
 data g_mutexDestroyWork;
 
 // 函数: data initializeMemoryFreeSystem;          # 内存释放系统初始化函数
@@ -337,7 +337,7 @@ data systemDataTable7;
 data systemDataTable8;
 data systemDataTable9;
 data bufferManagementControl;
-data g_miscWorkBuffer3;
+data g_textureUploadBuffer;
 data bufferAllocationPointer;
 data systemIsInitialized;
 data systemRuntimeStatus;
@@ -767,7 +767,7 @@ data g_textureWrapWorkBuffer;
 data g_textureWrapTempOffset;
 data g_textureWrapTempSize;
 data g_textureWrapTempFlags;
-data g_miscWorkBuffer1;
+data g_meshVertexStreamBuffer;
 
 // 函数: data meshVertexBufferInitialize;
 data meshVertexBufferInitialize;
@@ -858,7 +858,7 @@ data g_renderPassTempFlags;
 
 // 函数: data renderPassDescriptorInitialize;
 data renderPassDescriptorInitialize;
-data g_miscWorkBuffer2;
+data g_renderPassDescriptorBuffer;
 data g_renderTargetWorkBuffer;
 data g_renderTargetTempOffset;
 data g_renderTargetTempSize;
@@ -899,26 +899,26 @@ data renderScissorRect;
 
 // 函数: data renderStateInitialize;
 data renderStateInitialize;
-data DAT_180bf9cf0;
-data DAT_180bf9cf8;
-data DAT_180bf9d00;
-data DAT_180bf9d08;
+data renderStateBuffer1;
+data renderStateBuffer2;
+data renderStateBuffer3;
+data renderStateBuffer4;
 data framebufferColorAttachment;
 
 // 函数: data renderQueueInitialize;
 data renderQueueInitialize;
-data DAT_180bf9d50;
-data DAT_180bf9d58;
-data DAT_180bf9d60;
-data DAT_180bf9d68;
+data renderQueueBuffer1;
+data renderQueueBuffer2;
+data renderQueueBuffer3;
+data renderQueueBuffer4;
 data framebufferDepthAttachment;
 
 // 函数: data renderBufferInitialize;
 data renderBufferInitialize;
-data DAT_180bf9db0;
-data DAT_180bf9db8;
-data DAT_180bf9dc0;
-data DAT_180bf9dc8;
+data renderBufferMain;
+data renderBufferAux;
+data renderBufferTemp;
+data renderBufferWork;
 data framebufferStencilAttachment;
 
 // 函数: data renderSyncInitialize;
@@ -81357,7 +81357,7 @@ void renderStateInitialize(void)
 void renderQueueInitialize(void)
 
 {
-  _DAT_180bf9cf0 = &threadLocalStorageCleanup;
+  _renderStateBuffer1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81370,7 +81370,7 @@ void renderQueueInitialize(void)
 void renderBufferInitialize(void)
 
 {
-  _DAT_180bf9d50 = &threadLocalStorageCleanup;
+  _renderQueueBuffer1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81383,7 +81383,7 @@ void renderBufferInitialize(void)
 void renderSyncInitialize(void)
 
 {
-  _DAT_180bf9db0 = &threadLocalStorageCleanup;
+  _renderBufferMain = &threadLocalStorageCleanup;
   return;
 }
 
