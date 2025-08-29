@@ -120,26 +120,26 @@ int initialize_rendering_thread_pool(void* handle, void* flags, void* mutex_attr
 // 初始化网络线程池
 int initialize_network_thread_pool(void* handle, void* flags, void* mutex_attr, int mutex_type)
 {
-  long long initialization_result;
-  unsigned long long thread_pool_flags = THREAD_POOL_DEFAULT_FLAGS;
+  long long init_result;
+  unsigned long long pool_flags = THREAD_POOL_DEFAULT_FLAGS;
   
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(NETWORK_THREAD_POOL_MUTEX_ADDR, 2, mutex_attr, mutex_type, thread_pool_flags);
-  thread_pool_3_status_code = SYSTEM_STATUS_SUCCESS;
-  initialization_result = execute_function(network_thread_pool_init_function);
-  return (initialization_result != 0) - 1;
+  _Mtx_init_in_situ(NETWORK_THREAD_POOL_MUTEX_ADDR, 2, mutex_attr, mutex_type, pool_flags);
+  network_thread_pool_status = SYSTEM_STATUS_SUCCESS;
+  init_result = execute_function(network_thread_pool_init_function);
+  return (init_result != 0) - 1;
 }
 // 初始化IO线程池
 int initialize_io_thread_pool(void* handle, void* flags, void* mutex_attr, int mutex_type)
 {
-  long long initialization_result;
-  unsigned long long thread_pool_flags = THREAD_POOL_DEFAULT_FLAGS;
+  long long init_result;
+  unsigned long long pool_flags = THREAD_POOL_DEFAULT_FLAGS;
   
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(IO_THREAD_POOL_MUTEX_ADDR, 2, mutex_attr, mutex_type, thread_pool_flags);
-  thread_pool_4_status_code = SYSTEM_STATUS_SUCCESS;
-  initialization_result = execute_function(io_thread_pool_init_function);
-  return (initialization_result != 0) - 1;
+  _Mtx_init_in_situ(IO_THREAD_POOL_MUTEX_ADDR, 2, mutex_attr, mutex_type, pool_flags);
+  io_thread_pool_status = SYSTEM_STATUS_SUCCESS;
+  init_result = execute_function(io_thread_pool_init_function);
+  return (init_result != 0) - 1;
 }
 // 初始化基础资源管理器
 int initialize_base_resource_manager(void)
