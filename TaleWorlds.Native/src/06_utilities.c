@@ -7024,7 +7024,7 @@ uint64 resolve_hostname(void)
 
 
 
-uint64 FUN_180893e94(void)
+uint64 get_host_by_address(void)
 
 {
   float fVar1;
@@ -7055,8 +7055,8 @@ uint64 FUN_180893e94(void)
 
 
 
-// 函数: void FUN_180893eef(void)
-void FUN_180893eef(void)
+// 函数: void cleanup_network_stack(void)
+void cleanup_network_stack(void)
 
 {
   return;
