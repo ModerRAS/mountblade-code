@@ -6,7 +6,7 @@ undefined g_global_system_data;
 undefined g_unknown_system_data;
   g_system_config_enabled = 1;
   g_operation_counter = 0;
-  g_max_value_180bf52b0 = 0x7fffffffffffffff;
+  g_maximum_allowed_value = 0x7fffffffffffffff;
   g_status_180bf52e0 = 0;
   result = initialize_system(system_init_func_1809414f0);
   return (result != 0) - 1;
