@@ -78,14 +78,14 @@ data DAT_180bf6088;
 data DAT_180bf6090;
 data DAT_180bf6098;
 
-// 函数: data FUN_180941630;
+// 函数: data ValidateMemoryConfiguration;
 // 内存配置验证函数180941630
-data FUN_180941630;
+data ValidateMemoryConfiguration;
 byte DAT_180c910f8;
 
-// 函数: data FUN_180941650;
+// 函数: data InitializeThreadSynchronization;
 // 线程同步初始化函数180941650
-data FUN_180941650;
+data InitializeThreadSynchronization;
 byte DAT_180c91198;
 
 // 函数: data FUN_180941690;
