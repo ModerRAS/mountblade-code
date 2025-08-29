@@ -3158,7 +3158,7 @@ uint64 execute_resource_command(longlong resourceHandle)
   uint64 unsignedVar4;
   uint64 *puVar5;
   int integerVar6;
-  float fVar7;
+  float floatVar7;
   byte auVar8 [16];
   longlong lStackX_8;
   
@@ -3168,11 +3168,11 @@ uint64 execute_resource_command(longlong resourceHandle)
   }
   localLong1 = *(longlong *)(lStackX_8 + 8);
   if (localLong1 != 0) {
-    fVar7 = *(float *)(resourceHandle + POINTER_OFFSET_DATA);
+    floatVar7 = *(float *)(resourceHandle + POINTER_OFFSET_DATA);
     for (puVar5 = *(uint64 **)(localLong1 + BUFFER_OFFSET_DATA);
         (*(uint64 **)(localLong1 + BUFFER_OFFSET_DATA) <= puVar5 &&
         (puVar5 < *(uint64 **)(localLong1 + BUFFER_OFFSET_DATA) + *(int *)(localLong1 + LIST_OFFSET_HEAD))); puVar5 = puVar5 + 1) {
-      unsignedVar4 = utilityHandleResourceOperation(*puVar5,fVar7,0);
+      unsignedVar4 = utilityHandleResourceOperation(*puVar5,floatVar7,0);
       if ((int)unsignedVar4 != 0) {
         return unsignedVar4;
       }
@@ -3182,19 +3182,19 @@ uint64 execute_resource_command(longlong resourceHandle)
       unsignedVar3 = *(uint *)(*(longlong *)(localLong1 + RESOURCE_OFFSET_HANDLE) + FIELD_OFFSET_2);
       localUInt2 = unsignedVar3 >> 4;
       if ((localUInt2 & 1) == 0) {
-        if ((((unsignedVar3 >> 3 & 1) != 0) && (integerVar6 = (int)fVar7, integerVar6 != -0x80000000)) &&
-           ((float)integerVar6 != fVar7)) {
-          auVar8._4_4_ = fVar7;
-          auVar8._0_4_ = fVar7;
+        if ((((unsignedVar3 >> 3 & 1) != 0) && (integerVar6 = (int)floatVar7, integerVar6 != -0x80000000)) &&
+           ((float)integerVar6 != floatVar7)) {
+          auVar8._4_4_ = floatVar7;
+          auVar8._0_4_ = floatVar7;
           auVar8._8_8_ = 0;
           unsignedVar3 = movmskps(localUInt2,auVar8);
-          fVar7 = (float)(int)(integerVar6 - (unsignedVar3 & 1));
+          floatVar7 = (float)(int)(integerVar6 - (unsignedVar3 & 1));
         }
-        fVar7 = (float)calculate_resource_size(*(longlong *)(localLong1 + RESOURCE_OFFSET_HANDLE),fVar7);
+        floatVar7 = (float)calculate_resource_size(*(longlong *)(localLong1 + RESOURCE_OFFSET_HANDLE),floatVar7);
         if (((*(char *)(localLong1 + FIELD_OFFSET_2) == '\0') ||
             ((*(uint *)(*(longlong *)(localLong1 + RESOURCE_OFFSET_HANDLE) + FIELD_OFFSET_2) >> 1 & 1) == 0)) &&
-           (fVar7 != *(float *)(localLong1 + POINTER_OFFSET_DATA))) {
-          *(float *)(localLong1 + POINTER_OFFSET_DATA) = fVar7;
+           (floatVar7 != *(float *)(localLong1 + POINTER_OFFSET_DATA))) {
+          *(float *)(localLong1 + POINTER_OFFSET_DATA) = floatVar7;
           utilityPrepareResourceAccess(localLong1);
           *(byte *)(localLong1 + 0x35) = 0;
         }
@@ -3217,7 +3217,7 @@ uint64 validate_resource_operation(longlong resourceHandle)
   ulonglong unsignedVar5;
   uint unsignedVar6;
   ulonglong unsignedVar7;
-  longlong lVar8;
+  longlong longVar8;
   longlong lStackX_8;
   
   unsignedVar3 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),&lStackX_8);
@@ -3229,9 +3229,9 @@ uint64 validate_resource_operation(longlong resourceHandle)
     }
     puVar4 = (uint32 *)(resourceHandle + POINTER_OFFSET_DATA + (longlong)*(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE) * 4);
     if (0 < *(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE)) {
-      lVar8 = (resourceHandle + POINTER_OFFSET_DATA) - (longlong)puVar4;
+      longVar8 = (resourceHandle + POINTER_OFFSET_DATA) - (longlong)puVar4;
       do {
-        status = *(int *)(lVar8 + (longlong)puVar4);
+        status = *(int *)(longVar8 + (longlong)puVar4);
         if (status != -1) {
           localLong1 = *(longlong *)(unsignedVar5 + POINTER_OFFSET_DATA) + (longlong)status * RESOURCE_OFFSET_HANDLE;
           if ((localLong1 == 0) || (localLong1 = *(longlong *)(localLong1 + 8), localLong1 == 0)) {
@@ -3266,7 +3266,7 @@ uint64 get_resource_status(void)
   longlong unaff_RSI;
   uint unsignedVar6;
   ulonglong unsignedVar7;
-  longlong lVar8;
+  longlong longVar8;
   
   unsignedVar7 = 0;
   unsignedVar5 = inputRegister - 8;
@@ -3275,9 +3275,9 @@ uint64 get_resource_status(void)
   }
   puVar4 = (uint32 *)(unaff_RSI + POINTER_OFFSET_DATA + (longlong)*(int *)(unaff_RSI + RESOURCE_OFFSET_HANDLE) * 4);
   if (0 < *(int *)(unaff_RSI + RESOURCE_OFFSET_HANDLE)) {
-    lVar8 = (unaff_RSI + POINTER_OFFSET_DATA) - (longlong)puVar4;
+    longVar8 = (unaff_RSI + POINTER_OFFSET_DATA) - (longlong)puVar4;
     do {
-      status = *(int *)(lVar8 + (longlong)puVar4);
+      status = *(int *)(longVar8 + (longlong)puVar4);
       if (status != -1) {
         localLong1 = *(longlong *)(unsignedVar5 + POINTER_OFFSET_DATA) + (longlong)status * RESOURCE_OFFSET_HANDLE;
         if ((localLong1 == 0) || (localLong1 = *(longlong *)(localLong1 + 8), localLong1 == 0)) {
@@ -4015,7 +4015,7 @@ uint64 get_file_position(longlong resourceHandle)
   uint64 unsignedVar4;
   uint64 *puVar5;
   int integerVar6;
-  float fVar7;
+  float floatVar7;
   byte auVar8 [16];
   longlong lStackX_8;
   
@@ -4025,11 +4025,11 @@ uint64 get_file_position(longlong resourceHandle)
   }
   localLong1 = *(longlong *)(lStackX_8 + 8);
   if (localLong1 != 0) {
-    fVar7 = *(float *)(resourceHandle + 0x14);
+    floatVar7 = *(float *)(resourceHandle + 0x14);
     for (puVar5 = *(uint64 **)(localLong1 + BUFFER_OFFSET_DATA);
         (*(uint64 **)(localLong1 + BUFFER_OFFSET_DATA) <= puVar5 &&
         (puVar5 < *(uint64 **)(localLong1 + BUFFER_OFFSET_DATA) + *(int *)(localLong1 + LIST_OFFSET_HEAD))); puVar5 = puVar5 + 1) {
-      unsignedVar4 = utilityHandleResourceOperation(*puVar5,fVar7,0);
+      unsignedVar4 = utilityHandleResourceOperation(*puVar5,floatVar7,0);
       if ((int)unsignedVar4 != 0) {
         return unsignedVar4;
       }
@@ -4039,19 +4039,19 @@ uint64 get_file_position(longlong resourceHandle)
       unsignedVar3 = *(uint *)(*(longlong *)(localLong1 + RESOURCE_OFFSET_HANDLE) + FIELD_OFFSET_2);
       localUInt2 = unsignedVar3 >> 4;
       if ((localUInt2 & 1) == 0) {
-        if ((((unsignedVar3 >> 3 & 1) != 0) && (integerVar6 = (int)fVar7, integerVar6 != -0x80000000)) &&
-           ((float)integerVar6 != fVar7)) {
-          auVar8._4_4_ = fVar7;
-          auVar8._0_4_ = fVar7;
+        if ((((unsignedVar3 >> 3 & 1) != 0) && (integerVar6 = (int)floatVar7, integerVar6 != -0x80000000)) &&
+           ((float)integerVar6 != floatVar7)) {
+          auVar8._4_4_ = floatVar7;
+          auVar8._0_4_ = floatVar7;
           auVar8._8_8_ = 0;
           unsignedVar3 = movmskps(localUInt2,auVar8);
-          fVar7 = (float)(int)(integerVar6 - (unsignedVar3 & 1));
+          floatVar7 = (float)(int)(integerVar6 - (unsignedVar3 & 1));
         }
-        fVar7 = (float)calculate_resource_size(*(longlong *)(localLong1 + RESOURCE_OFFSET_HANDLE),fVar7);
+        floatVar7 = (float)calculate_resource_size(*(longlong *)(localLong1 + RESOURCE_OFFSET_HANDLE),floatVar7);
         if (((*(char *)(localLong1 + FIELD_OFFSET_2) == '\0') ||
             ((*(uint *)(*(longlong *)(localLong1 + RESOURCE_OFFSET_HANDLE) + FIELD_OFFSET_2) >> 1 & 1) == 0)) &&
-           (fVar7 != *(float *)(localLong1 + POINTER_OFFSET_DATA))) {
-          *(float *)(localLong1 + POINTER_OFFSET_DATA) = fVar7;
+           (floatVar7 != *(float *)(localLong1 + POINTER_OFFSET_DATA))) {
+          *(float *)(localLong1 + POINTER_OFFSET_DATA) = floatVar7;
           utilityPrepareResourceAccess(localLong1);
           *(byte *)(localLong1 + 0x35) = 0;
         }
@@ -5147,7 +5147,7 @@ uint64 utilityGetResourceInformation(longlong resourceHandle,longlong memorySize
   data *puVar4;
   uint unsignedVar5;
   ulonglong unsignedVar6;
-  longlong lVar7;
+  longlong longVar7;
   ulonglong unsignedVar8;
   ulonglong unsignedVar9;
   longlong lStackX_8;
@@ -5165,8 +5165,8 @@ uint64 utilityGetResourceInformation(longlong resourceHandle,longlong memorySize
     unsignedVar9 = unsignedVar6;
     if (0 < *(int *)(unsignedVar8 + BYTE_OFFSET_2)) {
       do {
-        lVar7 = *(longlong *)(unsignedVar8 + POINTER_OFFSET_DATA) + unsignedVar9;
-        localLong1 = *(longlong *)(lVar7 + RESOURCE_HANDLE_OFFSET);
+        longVar7 = *(longlong *)(unsignedVar8 + POINTER_OFFSET_DATA) + unsignedVar9;
+        localLong1 = *(longlong *)(longVar7 + RESOURCE_HANDLE_OFFSET);
         if (localLong1 == 0) {
           return 0x1e;
         }
@@ -5178,7 +5178,7 @@ uint64 utilityGetResourceInformation(longlong resourceHandle,longlong memorySize
         }
         status = func_0x00018076b630(puVar4,resourceHandle + BYTE_OFFSET_FLAG);
         if (status == 0) {
-          unsignedVar3 = validate_resource_handle(lVar7,resourceHandle + RESOURCE_OFFSET_HANDLE);
+          unsignedVar3 = validate_resource_handle(longVar7,resourceHandle + RESOURCE_OFFSET_HANDLE);
           if ((int)unsignedVar3 != 0) {
             return unsignedVar3;
           }
@@ -5206,7 +5206,7 @@ uint64 utilityRetrieveResourceData(void)
   data *puVar4;
   uint unsignedVar5;
   ulonglong unsignedVar6;
-  longlong lVar7;
+  longlong longVar7;
   ulonglong unsignedVar8;
   ulonglong unsignedVar9;
   longlong unaff_R13;
@@ -5221,8 +5221,8 @@ uint64 utilityRetrieveResourceData(void)
   unsignedVar9 = unsignedVar6;
   if (0 < *(int *)(unsignedVar8 + BYTE_OFFSET_2)) {
     do {
-      lVar7 = *(longlong *)(unsignedVar8 + POINTER_OFFSET_DATA) + unsignedVar9;
-      localLong1 = *(longlong *)(lVar7 + RESOURCE_HANDLE_OFFSET);
+      longVar7 = *(longlong *)(unsignedVar8 + POINTER_OFFSET_DATA) + unsignedVar9;
+      localLong1 = *(longlong *)(longVar7 + RESOURCE_HANDLE_OFFSET);
       if (localLong1 == 0) {
         return 0x1e;
       }
@@ -5234,7 +5234,7 @@ uint64 utilityRetrieveResourceData(void)
       }
       status = func_0x00018076b630(puVar4);
       if (status == 0) {
-        unsignedVar3 = validate_resource_handle(lVar7,unaff_R14 + RESOURCE_OFFSET_HANDLE);
+        unsignedVar3 = validate_resource_handle(longVar7,unaff_R14 + RESOURCE_OFFSET_HANDLE);
         if ((int)unsignedVar3 != 0) {
           return unsignedVar3;
         }
@@ -5413,7 +5413,7 @@ void utilityFinalizeResourceOperation(void)
 uint64 utilityValidateResourceTransaction(longlong resourceHandle,longlong memorySize)
 
 {
-  float fVar1;
+  float floatVar1;
   uint32 localUInt2;
   uint32 unsignedVar3;
   uint32 unsignedVar4;
@@ -5473,13 +5473,13 @@ uint64 utilityValidateResourceTransaction(longlong resourceHandle,longlong memor
   if ((integerVar8 != 0 || integerVar6 != 0) || integerVar9 != 0) {
     return ERROR_CODE_FAILED;
   }
-  fVar1 = *(float *)(resourceHandle + 0x44);
+  floatVar1 = *(float *)(resourceHandle + 0x44);
   integerVar8 = 0;
   uStackX_18 = *(uint *)(resourceHandle + 0x40);
   fStackX_20 = *(float *)(resourceHandle + 0x3c);
-  alStackX_8[0] = CONCAT44(alStackX_8[0]._4_4_,fVar1);
+  alStackX_8[0] = CONCAT44(alStackX_8[0]._4_4_,floatVar1);
   integerVar9 = integerVar8;
-  if (((uint)fVar1 & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
+  if (((uint)floatVar1 & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
     integerVar9 = ERROR_CODE_5;
   }
   integerVar6 = integerVar8;
@@ -5494,7 +5494,7 @@ uint64 utilityValidateResourceTransaction(longlong resourceHandle,longlong memor
        (*(float *)(resourceHandle + STRUCT_OFFSET_SIZE) == 0.0)) {
       return ERROR_CODE_FAILED;
     }
-    if (((fStackX_20 == 0.0) && (*(float *)(resourceHandle + 0x40) == 0.0)) && (fVar1 == 0.0)) {
+    if (((fStackX_20 == 0.0) && (*(float *)(resourceHandle + 0x40) == 0.0)) && (floatVar1 == 0.0)) {
       return ERROR_CODE_FAILED;
     }
     unsignedVar5 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),alStackX_8);
@@ -5574,10 +5574,10 @@ void utilityCompleteResourceProcess(longlong resourceHandle,longlong memorySize)
 uint64 utilityHandleResourceResponse(longlong resourceHandle,longlong memorySize)
 
 {
-  float fVar1;
+  float floatVar1;
   longlong buffer;
   uint64 unsignedVar3;
-  float fVar4;
+  float floatVar4;
   longlong lStackX_8;
   longlong alStackX_18 [2];
   
@@ -5606,14 +5606,14 @@ uint64 utilityHandleResourceResponse(longlong resourceHandle,longlong memorySize
       if ((*(byte *)(buffer + FIELD_OFFSET_2) & 0x11) != 0) {
         return ERROR_CODE_FAILED;
       }
-      fVar1 = *(float *)(resourceHandle + POINTER_OFFSET_DATA);
-      fVar4 = *(float *)(buffer + STRUCT_OFFSET_SIZE);
-      if ((*(float *)(buffer + STRUCT_OFFSET_SIZE) <= fVar1) &&
-         (fVar4 = *(float *)(buffer + 0x3c), fVar1 <= *(float *)(buffer + 0x3c))) {
-        fVar4 = fVar1;
+      floatVar1 = *(float *)(resourceHandle + POINTER_OFFSET_DATA);
+      floatVar4 = *(float *)(buffer + STRUCT_OFFSET_SIZE);
+      if ((*(float *)(buffer + STRUCT_OFFSET_SIZE) <= floatVar1) &&
+         (floatVar4 = *(float *)(buffer + 0x3c), floatVar1 <= *(float *)(buffer + 0x3c))) {
+        floatVar4 = floatVar1;
       }
-      *(float *)(resourceHandle + POINTER_OFFSET_DATA) = fVar4;
-      *(float *)(lStackX_8 + 4) = fVar4;
+      *(float *)(resourceHandle + POINTER_OFFSET_DATA) = floatVar4;
+      *(float *)(lStackX_8 + 4) = floatVar4;
                     // WARNING: Subroutine does not return
       utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
     }
@@ -5626,7 +5626,7 @@ uint64 utilityHandleResourceResponse(longlong resourceHandle,longlong memorySize
 uint64 utilityProcessResourceResult(longlong resourceHandle,longlong memorySize)
 
 {
-  float fVar1;
+  float floatVar1;
   longlong buffer;
   uint64 unsignedVar3;
   longlong lStackX_8;
@@ -5655,11 +5655,11 @@ uint64 utilityProcessResourceResult(longlong resourceHandle,longlong memorySize)
       }
       unsignedVar3 = utilityAccessResourceAttribute(buffer,resourceHandle + 0x25,resourceHandle + POINTER_OFFSET_DATA);
       if ((int)unsignedVar3 == 0) {
-        fVar1 = *(float *)(resourceHandle + POINTER_OFFSET_DATA);
-        if ((*(float *)(buffer + STRUCT_OFFSET_SIZE) <= fVar1) &&
-           (fVar1 < *(float *)(buffer + 0x3c) || fVar1 == *(float *)(buffer + 0x3c))) {
+        floatVar1 = *(float *)(resourceHandle + POINTER_OFFSET_DATA);
+        if ((*(float *)(buffer + STRUCT_OFFSET_SIZE) <= floatVar1) &&
+           (floatVar1 < *(float *)(buffer + 0x3c) || floatVar1 == *(float *)(buffer + 0x3c))) {
           unsignedVar3 = *(uint64 *)(memorySize + 0x98);
-          *(float *)(lStackX_8 + 4) = fVar1;
+          *(float *)(lStackX_8 + 4) = floatVar1;
                     // WARNING: Subroutine does not return
           utilityReleaseResourceHandle(unsignedVar3,resourceHandle);
         }
@@ -5675,7 +5675,7 @@ uint64 utilityProcessResourceResult(longlong resourceHandle,longlong memorySize)
 uint64 utilityExtractResourceOutput(void)
 
 {
-  float fVar1;
+  float floatVar1;
   longlong buffer;
   uint64 unsignedVar3;
   longlong unaff_RBP;
@@ -5694,11 +5694,11 @@ uint64 utilityExtractResourceOutput(void)
   }
   unsignedVar3 = utilityAccessResourceAttribute(buffer,unaff_RDI + 0x25,unaff_RDI + POINTER_OFFSET_DATA);
   if ((int)unsignedVar3 == 0) {
-    fVar1 = *(float *)(unaff_RDI + POINTER_OFFSET_DATA);
-    if ((*(float *)(buffer + STRUCT_OFFSET_SIZE) <= fVar1) &&
-       (fVar1 < *(float *)(buffer + 0x3c) || fVar1 == *(float *)(buffer + 0x3c))) {
+    floatVar1 = *(float *)(unaff_RDI + POINTER_OFFSET_DATA);
+    if ((*(float *)(buffer + STRUCT_OFFSET_SIZE) <= floatVar1) &&
+       (floatVar1 < *(float *)(buffer + 0x3c) || floatVar1 == *(float *)(buffer + 0x3c))) {
       unsignedVar3 = *(uint64 *)(unaff_RBP + 0x98);
-      *(float *)(in_stack_00000040 + 4) = fVar1;
+      *(float *)(in_stack_00000040 + 4) = floatVar1;
                     // WARNING: Subroutine does not return
       utilityReleaseResourceHandle(unsignedVar3);
     }
@@ -5712,7 +5712,7 @@ uint64 utilityExtractResourceOutput(void)
 uint64 utilityFormatResourceData(void)
 
 {
-  float fVar1;
+  float floatVar1;
   longlong buffer;
   uint64 unsignedVar3;
   longlong baseRegister;
@@ -5729,11 +5729,11 @@ uint64 utilityFormatResourceData(void)
   }
   unsignedVar3 = utilityAccessResourceAttribute(buffer,unaff_RDI + 0x25,unaff_RDI + POINTER_OFFSET_DATA);
   if ((int)unsignedVar3 == 0) {
-    fVar1 = *(float *)(unaff_RDI + POINTER_OFFSET_DATA);
-    if ((*(float *)(buffer + STRUCT_OFFSET_SIZE) <= fVar1) &&
-       (fVar1 < *(float *)(buffer + 0x3c) || fVar1 == *(float *)(buffer + 0x3c))) {
+    floatVar1 = *(float *)(unaff_RDI + POINTER_OFFSET_DATA);
+    if ((*(float *)(buffer + STRUCT_OFFSET_SIZE) <= floatVar1) &&
+       (floatVar1 < *(float *)(buffer + 0x3c) || floatVar1 == *(float *)(buffer + 0x3c))) {
       unsignedVar3 = *(uint64 *)(unaff_RBP + 0x98);
-      *(float *)(in_stack_00000040 + 4) = fVar1;
+      *(float *)(in_stack_00000040 + 4) = floatVar1;
                     // WARNING: Subroutine does not return
       utilityReleaseResourceHandle(unsignedVar3);
     }
@@ -5747,7 +5747,7 @@ uint64 utilityFormatResourceData(void)
 uint64 utilityValidateResourceOutput(uint32 resourceHandle)
 
 {
-  float fVar1;
+  float floatVar1;
   uint64 localUInt2;
   longlong baseRegister;
   longlong unaff_RBP;
@@ -5759,11 +5759,11 @@ uint64 utilityValidateResourceOutput(uint32 resourceHandle)
   }
   localUInt2 = utilityAccessResourceAttribute(resourceHandle,unaff_RDI + 0x25,unaff_RDI + POINTER_OFFSET_DATA);
   if ((int)localUInt2 == 0) {
-    fVar1 = *(float *)(unaff_RDI + POINTER_OFFSET_DATA);
-    if ((*(float *)(baseRegister + STRUCT_OFFSET_SIZE) <= fVar1) &&
-       (fVar1 < *(float *)(baseRegister + 0x3c) || fVar1 == *(float *)(baseRegister + 0x3c))) {
+    floatVar1 = *(float *)(unaff_RDI + POINTER_OFFSET_DATA);
+    if ((*(float *)(baseRegister + STRUCT_OFFSET_SIZE) <= floatVar1) &&
+       (floatVar1 < *(float *)(baseRegister + 0x3c) || floatVar1 == *(float *)(baseRegister + 0x3c))) {
       localUInt2 = *(uint64 *)(unaff_RBP + 0x98);
-      *(float *)(in_stack_00000040 + 4) = fVar1;
+      *(float *)(in_stack_00000040 + 4) = floatVar1;
                     // WARNING: Subroutine does not return
       utilityReleaseResourceHandle(localUInt2);
     }
@@ -5777,7 +5777,7 @@ uint64 utilityValidateResourceOutput(uint32 resourceHandle)
 uint64 utilityConfirmResourceOperation(uint32 resourceHandle)
 
 {
-  float fVar1;
+  float floatVar1;
   uint64 localUInt2;
   longlong baseRegister;
   longlong unaff_RBP;
@@ -5786,11 +5786,11 @@ uint64 utilityConfirmResourceOperation(uint32 resourceHandle)
   
   localUInt2 = utilityAccessResourceAttribute(resourceHandle,unaff_RDI + 0x25,unaff_RDI + POINTER_OFFSET_DATA);
   if ((int)localUInt2 == 0) {
-    fVar1 = *(float *)(unaff_RDI + POINTER_OFFSET_DATA);
-    if ((*(float *)(baseRegister + STRUCT_OFFSET_SIZE) <= fVar1) &&
-       (fVar1 < *(float *)(baseRegister + 0x3c) || fVar1 == *(float *)(baseRegister + 0x3c))) {
+    floatVar1 = *(float *)(unaff_RDI + POINTER_OFFSET_DATA);
+    if ((*(float *)(baseRegister + STRUCT_OFFSET_SIZE) <= floatVar1) &&
+       (floatVar1 < *(float *)(baseRegister + 0x3c) || floatVar1 == *(float *)(baseRegister + 0x3c))) {
       localUInt2 = *(uint64 *)(unaff_RBP + 0x98);
-      *(float *)(in_stack_00000040 + 4) = fVar1;
+      *(float *)(in_stack_00000040 + 4) = floatVar1;
                     // WARNING: Subroutine does not return
       utilityReleaseResourceHandle(localUInt2);
     }
@@ -5822,12 +5822,12 @@ void utilityResetResourceProcessor(void)
 uint64 utilityAnalyzeResourcePerformance(longlong resourceHandle,longlong memorySize)
 
 {
-  float fVar1;
+  float floatVar1;
   longlong buffer;
   longlong index;
   uint64 unsignedVar4;
   longlong longVar5;
-  float fVar6;
+  float floatVar6;
   uint auStackX_8 [2];
   longlong lStackX_18;
   
@@ -5856,15 +5856,15 @@ uint64 utilityAnalyzeResourcePerformance(longlong resourceHandle,longlong memory
     longVar5 = *(longlong *)(longVar5 + POINTER_OFFSET_DATA);
     index = *(longlong *)(longVar5 + RESOURCE_HANDLE_OFFSET + (longlong)(int)auStackX_8[0] * RESOURCE_OFFSET_HANDLE);
     if ((*(byte *)(index + FIELD_OFFSET_2) & 0x11) == 0) {
-      fVar1 = *(float *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
-      fVar6 = *(float *)(index + STRUCT_OFFSET_SIZE);
-      if ((*(float *)(index + STRUCT_OFFSET_SIZE) <= fVar1) &&
-         (fVar6 = *(float *)(index + 0x3c), fVar1 <= *(float *)(index + 0x3c))) {
-        fVar6 = fVar1;
+      floatVar1 = *(float *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
+      floatVar6 = *(float *)(index + STRUCT_OFFSET_SIZE);
+      if ((*(float *)(index + STRUCT_OFFSET_SIZE) <= floatVar1) &&
+         (floatVar6 = *(float *)(index + 0x3c), floatVar1 <= *(float *)(index + 0x3c))) {
+        floatVar6 = floatVar1;
       }
-      *(float *)(resourceHandle + RESOURCE_OFFSET_HANDLE) = fVar6;
+      *(float *)(resourceHandle + RESOURCE_OFFSET_HANDLE) = floatVar6;
       buffer = *(longlong *)(buffer + MEMORY_SIZE_OFFSET);
-      *(float *)(longVar5 + 4 + (longlong)(int)auStackX_8[0] * RESOURCE_OFFSET_HANDLE) = fVar6;
+      *(float *)(longVar5 + 4 + (longlong)(int)auStackX_8[0] * RESOURCE_OFFSET_HANDLE) = floatVar6;
       *(uint64 *)(resourceHandle + POINTER_OFFSET_DATA) = *(uint64 *)(buffer + (longlong)(int)auStackX_8[0] * 8);
                     // WARNING: Subroutine does not return
       utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
@@ -5878,12 +5878,12 @@ uint64 utilityAnalyzeResourcePerformance(longlong resourceHandle,longlong memory
 uint64 utilityOptimizeResourcePerformance(longlong resourceHandle,longlong memorySize)
 
 {
-  float fVar1;
+  float floatVar1;
   longlong buffer;
   longlong index;
   uint64 unsignedVar4;
   longlong longVar5;
-  longlong lVar6;
+  longlong longVar6;
   int aiStackX_8 [2];
   longlong lStackX_18;
   
@@ -5892,32 +5892,32 @@ uint64 utilityOptimizeResourcePerformance(longlong resourceHandle,longlong memor
     if ((int)unsignedVar4 != 0) {
       return unsignedVar4;
     }
-    lVar6 = lStackX_18;
+    longVar6 = lStackX_18;
     if (lStackX_18 != 0) {
-      lVar6 = lStackX_18 + -8;
+      longVar6 = lStackX_18 + -8;
     }
-    buffer = *(longlong *)(lVar6 + RESOURCE_OFFSET_HANDLE);
+    buffer = *(longlong *)(longVar6 + RESOURCE_OFFSET_HANDLE);
     if (buffer == 0) {
       return 0x1e;
     }
     aiStackX_8[0] = 0;
-    unsignedVar4 = utilityCalculateResourceMetrics(memorySize,lVar6,resourceHandle + BYTE_OFFSET_2,aiStackX_8);
+    unsignedVar4 = utilityCalculateResourceMetrics(memorySize,longVar6,resourceHandle + BYTE_OFFSET_2,aiStackX_8);
     if ((int)unsignedVar4 != 0) {
       return unsignedVar4;
     }
     longVar5 = (longlong)aiStackX_8[0];
-    lVar6 = *(longlong *)(lVar6 + POINTER_OFFSET_DATA);
-    index = *(longlong *)(lVar6 + RESOURCE_HANDLE_OFFSET + longVar5 * RESOURCE_OFFSET_HANDLE);
+    longVar6 = *(longlong *)(longVar6 + POINTER_OFFSET_DATA);
+    index = *(longlong *)(longVar6 + RESOURCE_HANDLE_OFFSET + longVar5 * RESOURCE_OFFSET_HANDLE);
     if ((*(byte *)(index + FIELD_OFFSET_2) & 0x11) == 0) {
       unsignedVar4 = utilityAccessResourceAttribute(index,resourceHandle + 0xa8,resourceHandle + RESOURCE_OFFSET_HANDLE);
       if ((int)unsignedVar4 != 0) {
         return unsignedVar4;
       }
-      fVar1 = *(float *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
-      if ((*(float *)(index + STRUCT_OFFSET_SIZE) <= fVar1) &&
-         (fVar1 < *(float *)(index + 0x3c) || fVar1 == *(float *)(index + 0x3c))) {
+      floatVar1 = *(float *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
+      if ((*(float *)(index + STRUCT_OFFSET_SIZE) <= floatVar1) &&
+         (floatVar1 < *(float *)(index + 0x3c) || floatVar1 == *(float *)(index + 0x3c))) {
         buffer = *(longlong *)(buffer + MEMORY_SIZE_OFFSET);
-        *(float *)(lVar6 + 4 + longVar5 * RESOURCE_OFFSET_HANDLE) = fVar1;
+        *(float *)(longVar6 + 4 + longVar5 * RESOURCE_OFFSET_HANDLE) = floatVar1;
         *(uint64 *)(resourceHandle + POINTER_OFFSET_DATA) = *(uint64 *)(buffer + (longlong)aiStackX_8[0] * 8);
                     // WARNING: Subroutine does not return
         utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
@@ -5933,13 +5933,13 @@ uint64 utilityOptimizeResourcePerformance(longlong resourceHandle,longlong memor
 uint64 utilityExecuteResourceTask(longlong resourceHandle,longlong memorySize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  float fVar1;
+  float floatVar1;
   int status;
   longlong index;
   uint64 unsignedVar4;
   longlong longVar5;
   uint64 unaff_RDI;
-  float fVar6;
+  float floatVar6;
   longlong lStackX_8;
   
   lStackX_8 = CONCAT44(lStackX_8._4_4_,*(uint *)(resourceHandle + POINTER_OFFSET_DATA));
@@ -5964,14 +5964,14 @@ uint64 utilityExecuteResourceTask(longlong resourceHandle,longlong memorySize,ui
     return 0x1e;
   }
   if ((*(byte *)(index + FIELD_OFFSET_2) & 0x11) == 0) {
-    fVar1 = *(float *)(resourceHandle + POINTER_OFFSET_DATA);
-    fVar6 = *(float *)(index + STRUCT_OFFSET_SIZE);
-    if ((*(float *)(index + STRUCT_OFFSET_SIZE) <= fVar1) &&
-       (fVar6 = *(float *)(index + 0x3c), fVar1 <= *(float *)(index + 0x3c))) {
-      fVar6 = fVar1;
+    floatVar1 = *(float *)(resourceHandle + POINTER_OFFSET_DATA);
+    floatVar6 = *(float *)(index + STRUCT_OFFSET_SIZE);
+    if ((*(float *)(index + STRUCT_OFFSET_SIZE) <= floatVar1) &&
+       (floatVar6 = *(float *)(index + 0x3c), floatVar1 <= *(float *)(index + 0x3c))) {
+      floatVar6 = floatVar1;
     }
-    *(float *)(resourceHandle + POINTER_OFFSET_DATA) = fVar6;
-    *(float *)(longVar5 + 4) = fVar6;
+    *(float *)(resourceHandle + POINTER_OFFSET_DATA) = floatVar6;
+    *(float *)(longVar5 + 4) = floatVar6;
     unsignedVar4 = validate_resource_handle(longVar5,resourceHandle + BYTE_OFFSET_FLAG);
     if ((int)unsignedVar4 != 0) {
       return unsignedVar4;
@@ -6085,7 +6085,7 @@ uint64 utilityFinalizeResourceTask(longlong resourceHandle,longlong memorySize)
 uint64 utilityCompleteResourceCycle(void)
 
 {
-  float fVar1;
+  float floatVar1;
   int status;
   int length;
   longlong inputRegister;
@@ -6097,7 +6097,7 @@ uint64 utilityCompleteResourceCycle(void)
   uint in_R9D;
   uint unsignedVar8;
   longlong unaff_R15;
-  float fVar9;
+  float floatVar9;
   
   unsignedVar6 = inputRegister - 8;
   if (inputRegister == 0) {
@@ -6111,8 +6111,8 @@ uint64 utilityCompleteResourceCycle(void)
     do {
       length = *(int *)(((baseRegister + POINTER_OFFSET_DATA) - (longlong)pfVar7) + (longlong)pfVar4);
       if (length != -1) {
-        fVar1 = *pfVar4;
-        if (((uint)fVar1 & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
+        floatVar1 = *pfVar4;
+        if (((uint)floatVar1 & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
           return ERROR_CODE_5;
         }
         if ((length < 0) || (status <= length)) {
@@ -6129,12 +6129,12 @@ uint64 utilityCompleteResourceCycle(void)
         if (*(uint *)(longVar5 + FIELD_OFFSET_1) != in_R9D) {
           return ERROR_CODE_FAILED;
         }
-        fVar9 = *(float *)(longVar5 + STRUCT_OFFSET_SIZE);
-        if ((*(float *)(longVar5 + STRUCT_OFFSET_SIZE) <= fVar1) &&
-           (fVar9 = *(float *)(longVar5 + 0x3c), fVar1 <= *(float *)(longVar5 + 0x3c))) {
-          fVar9 = fVar1;
+        floatVar9 = *(float *)(longVar5 + STRUCT_OFFSET_SIZE);
+        if ((*(float *)(longVar5 + STRUCT_OFFSET_SIZE) <= floatVar1) &&
+           (floatVar9 = *(float *)(longVar5 + 0x3c), floatVar1 <= *(float *)(longVar5 + 0x3c))) {
+          floatVar9 = floatVar1;
         }
-        *pfVar4 = fVar9;
+        *pfVar4 = floatVar9;
       }
       unsignedVar8 = unsignedVar8 + 1;
       pfVar4 = pfVar4 + 1;
@@ -6185,7 +6185,7 @@ void utilityProcessResourceCycle(longlong resourceHandle,uint64 memorySize)
   int status;
   longlong buffer;
   ulonglong unsignedVar3;
-  bool bVar4;
+  bool boolVar4;
   longlong localArray [3];
   longlong lStack_40;
   uint64 localUInt;
@@ -6195,9 +6195,9 @@ void utilityProcessResourceCycle(longlong resourceHandle,uint64 memorySize)
   localUInt = memorySize;
   status = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),localArray);
   if (status == 0) {
-    bVar4 = localArray[0] == 0;
+    boolVar4 = localArray[0] == 0;
     localArray[0] = localArray[0] + -8;
-    if (bVar4) {
+    if (boolVar4) {
       localArray[0] = 0;
     }
     buffer = (longlong)*(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
@@ -6244,18 +6244,18 @@ void utilityManageResourceCycle(longlong resourceHandle,longlong memorySize)
 uint64 utilityExecuteResourceCycleTask(longlong resourceHandle,longlong memorySize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  float fVar1;
+  float floatVar1;
   uint64 localUInt2;
   longlong index;
   uint64 unaff_RDI;
   longlong lStackX_8;
   
-  fVar1 = *(float *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
-  lStackX_8 = CONCAT44(lStackX_8._4_4_,fVar1);
-  if (((uint)fVar1 & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
+  floatVar1 = *(float *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
+  lStackX_8 = CONCAT44(lStackX_8._4_4_,floatVar1);
+  if (((uint)floatVar1 & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
     return ERROR_CODE_5;
   }
-  if ((fVar1 < 0.0) || (3.4028235e+38 <= fVar1)) {
+  if ((floatVar1 < 0.0) || (3.4028235e+38 <= floatVar1)) {
     return ERROR_CODE_FAILED;
   }
   localUInt2 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),&lStackX_8);
@@ -6294,19 +6294,19 @@ uint64 utilityExecuteResourceCycleTask(longlong resourceHandle,longlong memorySi
 uint64 utilityHandleResourceCycleResponse(longlong resourceHandle,longlong memorySize)
 
 {
-  float fVar1;
+  float floatVar1;
   uint64 localUInt2;
   longlong index;
   longlong lStackX_8;
   
-  fVar1 = *(float *)(resourceHandle + BYTE_OFFSET_FLAG);
-  lStackX_8 = CONCAT44(lStackX_8._4_4_,fVar1);
-  if (((uint)fVar1 & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
+  floatVar1 = *(float *)(resourceHandle + BYTE_OFFSET_FLAG);
+  lStackX_8 = CONCAT44(lStackX_8._4_4_,floatVar1);
+  if (((uint)floatVar1 & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
     return ERROR_CODE_5;
   }
   switch(*(uint32 *)(resourceHandle + RESOURCE_OFFSET_HANDLE)) {
   case 0:
-    if ((0.0 <= fVar1) && (fVar1 <= 256.0)) goto code_r0x00018089322c;
+    if ((0.0 <= floatVar1) && (floatVar1 <= 256.0)) goto code_r0x00018089322c;
     goto joined_r0x00018089322a;
   case 1:
   case 2:
@@ -6318,9 +6318,9 @@ uint64 utilityHandleResourceCycleResponse(longlong resourceHandle,longlong memor
   default:
     goto code_r0x000180893206;
   }
-  if (fVar1 < 0.0) {
+  if (floatVar1 < 0.0) {
 joined_r0x00018089322a:
-    if (fVar1 != -1.0) {
+    if (floatVar1 != -1.0) {
 code_r0x000180893206:
       return ERROR_CODE_FAILED;
     }
@@ -6486,10 +6486,10 @@ void utilityCompleteResourceCycle(longlong resourceHandle,longlong memorySize)
 uint64 utilityAnalyzeResourceCycle(longlong resourceHandle,longlong memorySize)
 
 {
-  float fVar1;
+  float floatVar1;
   longlong buffer;
   uint64 unsignedVar3;
-  float fVar4;
+  float floatVar4;
   uint uStackX_8;
   uint32 uStackX_c;
   
@@ -6508,14 +6508,14 @@ uint64 utilityAnalyzeResourceCycle(longlong resourceHandle,longlong memorySize)
   if ((*(byte *)(buffer + FIELD_OFFSET_2) & 0x11) != 0) {
     return ERROR_CODE_FAILED;
   }
-  fVar1 = *(float *)(resourceHandle + 0x14);
-  fVar4 = *(float *)(buffer + STRUCT_OFFSET_SIZE);
-  if ((*(float *)(buffer + STRUCT_OFFSET_SIZE) <= fVar1) &&
-     (fVar4 = *(float *)(buffer + 0x3c), fVar1 <= *(float *)(buffer + 0x3c))) {
-    fVar4 = fVar1;
+  floatVar1 = *(float *)(resourceHandle + 0x14);
+  floatVar4 = *(float *)(buffer + STRUCT_OFFSET_SIZE);
+  if ((*(float *)(buffer + STRUCT_OFFSET_SIZE) <= floatVar1) &&
+     (floatVar4 = *(float *)(buffer + 0x3c), floatVar1 <= *(float *)(buffer + 0x3c))) {
+    floatVar4 = floatVar1;
   }
-  *(float *)(resourceHandle + 0x14) = fVar4;
-  *(float *)(CONCAT44(uStackX_c,uStackX_8) + 4) = fVar4;
+  *(float *)(resourceHandle + 0x14) = floatVar4;
+  *(float *)(CONCAT44(uStackX_c,uStackX_8) + 4) = floatVar4;
                     // WARNING: Subroutine does not return
   utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
 }
@@ -6862,10 +6862,10 @@ uint64 receive_network_data(void)
 uint64 close_network_socket(longlong resourceHandle,longlong memorySize)
 
 {
-  float fVar1;
+  float floatVar1;
   uint64 localUInt2;
   longlong index;
-  float fVar4;
+  float floatVar4;
   uint32 auStackX_18 [2];
   
   if ((*(uint *)(resourceHandle + RESOURCE_OFFSET_HANDLE) & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
@@ -6878,14 +6878,14 @@ uint64 close_network_socket(longlong resourceHandle,longlong memorySize)
     if ((*(uint *)(index + FIELD_OFFSET_2) >> 4 & 1) != 0) {
       return ERROR_CODE_FAILED;
     }
-    fVar1 = *(float *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
-    fVar4 = *(float *)(index + STRUCT_OFFSET_SIZE);
-    if ((*(float *)(index + STRUCT_OFFSET_SIZE) <= fVar1) &&
-       (fVar4 = *(float *)(index + 0x3c), fVar1 <= *(float *)(index + 0x3c))) {
-      fVar4 = fVar1;
+    floatVar1 = *(float *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
+    floatVar4 = *(float *)(index + STRUCT_OFFSET_SIZE);
+    if ((*(float *)(index + STRUCT_OFFSET_SIZE) <= floatVar1) &&
+       (floatVar4 = *(float *)(index + 0x3c), floatVar1 <= *(float *)(index + 0x3c))) {
+      floatVar4 = floatVar1;
     }
-    *(float *)(resourceHandle + RESOURCE_OFFSET_HANDLE) = fVar4;
-    localUInt2 = func_0x000180867960(memorySize + DATA_OFFSET_START,auStackX_18[0],fVar4);
+    *(float *)(resourceHandle + RESOURCE_OFFSET_HANDLE) = floatVar4;
+    localUInt2 = func_0x000180867960(memorySize + DATA_OFFSET_START,auStackX_18[0],floatVar4);
     if ((int)localUInt2 == 0) {
                     // WARNING: Subroutine does not return
       utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
@@ -6899,12 +6899,12 @@ uint64 close_network_socket(longlong resourceHandle,longlong memorySize)
 uint64 shutdown_network_socket(uint64 resourceHandle,uint64 memorySize)
 
 {
-  float fVar1;
+  float floatVar1;
   uint64 localUInt2;
   longlong index;
   longlong baseRegister;
   longlong unaff_RSI;
-  float fVar4;
+  float floatVar4;
   uint32 uStack0000000000000040;
   
   uStack0000000000000040 = 0;
@@ -6914,14 +6914,14 @@ uint64 shutdown_network_socket(uint64 resourceHandle,uint64 memorySize)
     if ((*(uint *)(index + FIELD_OFFSET_2) >> 4 & 1) != 0) {
       return ERROR_CODE_FAILED;
     }
-    fVar1 = *(float *)(baseRegister + RESOURCE_OFFSET_HANDLE);
-    fVar4 = *(float *)(index + STRUCT_OFFSET_SIZE);
-    if ((*(float *)(index + STRUCT_OFFSET_SIZE) <= fVar1) &&
-       (fVar4 = *(float *)(index + 0x3c), fVar1 <= *(float *)(index + 0x3c))) {
-      fVar4 = fVar1;
+    floatVar1 = *(float *)(baseRegister + RESOURCE_OFFSET_HANDLE);
+    floatVar4 = *(float *)(index + STRUCT_OFFSET_SIZE);
+    if ((*(float *)(index + STRUCT_OFFSET_SIZE) <= floatVar1) &&
+       (floatVar4 = *(float *)(index + 0x3c), floatVar1 <= *(float *)(index + 0x3c))) {
+      floatVar4 = floatVar1;
     }
-    *(float *)(baseRegister + RESOURCE_OFFSET_HANDLE) = fVar4;
-    localUInt2 = func_0x000180867960(unaff_RSI + DATA_OFFSET_START,uStack0000000000000040,fVar4);
+    *(float *)(baseRegister + RESOURCE_OFFSET_HANDLE) = floatVar4;
+    localUInt2 = func_0x000180867960(unaff_RSI + DATA_OFFSET_START,uStack0000000000000040,floatVar4);
     if ((int)localUInt2 == 0) {
                     // WARNING: Subroutine does not return
       utilityReleaseResourceHandle(*(uint64 *)(unaff_RSI + 0x98));
@@ -6937,23 +6937,23 @@ uint64 shutdown_network_socket(uint64 resourceHandle,uint64 memorySize)
 void initialize_network_stack(void)
 
 {
-  float fVar1;
+  float floatVar1;
   uint32 in_EAX;
   int status;
   uint32 in_register_00000004;
   longlong baseRegister;
   longlong unaff_RSI;
-  float fVar3;
+  float floatVar3;
   uint32 in_stack_00000040;
   
-  fVar3 = *(float *)(CONCAT44(in_register_00000004,in_EAX) + STRUCT_OFFSET_SIZE);
-  fVar1 = *(float *)(baseRegister + RESOURCE_OFFSET_HANDLE);
-  if ((fVar3 <= fVar1) &&
-     (fVar3 = *(float *)(CONCAT44(in_register_00000004,in_EAX) + 0x3c), fVar1 <= fVar3)) {
-    fVar3 = fVar1;
+  floatVar3 = *(float *)(CONCAT44(in_register_00000004,in_EAX) + STRUCT_OFFSET_SIZE);
+  floatVar1 = *(float *)(baseRegister + RESOURCE_OFFSET_HANDLE);
+  if ((floatVar3 <= floatVar1) &&
+     (floatVar3 = *(float *)(CONCAT44(in_register_00000004,in_EAX) + 0x3c), floatVar1 <= floatVar3)) {
+    floatVar3 = floatVar1;
   }
-  *(float *)(baseRegister + RESOURCE_OFFSET_HANDLE) = fVar3;
-  status = func_0x000180867960(unaff_RSI + DATA_OFFSET_START,in_stack_00000040,fVar3);
+  *(float *)(baseRegister + RESOURCE_OFFSET_HANDLE) = floatVar3;
+  status = func_0x000180867960(unaff_RSI + DATA_OFFSET_START,in_stack_00000040,floatVar3);
   if (status == 0) {
                     // WARNING: Subroutine does not return
     utilityReleaseResourceHandle(*(uint64 *)(unaff_RSI + 0x98));
@@ -6966,7 +6966,7 @@ void initialize_network_stack(void)
 uint64 get_network_address(longlong resourceHandle,longlong memorySize)
 
 {
-  float fVar1;
+  float floatVar1;
   uint64 localUInt2;
   longlong index;
   uint32 auStackX_10 [2];
@@ -6980,9 +6980,9 @@ uint64 get_network_address(longlong resourceHandle,longlong memorySize)
     }
     localUInt2 = utilityAccessResourceAttribute(index,resourceHandle + ERROR_CODE_5,resourceHandle + RESOURCE_OFFSET_HANDLE);
     if ((int)localUInt2 == 0) {
-      fVar1 = *(float *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
-      if ((fVar1 < *(float *)(index + STRUCT_OFFSET_SIZE)) ||
-         (*(float *)(index + 0x3c) <= fVar1 && fVar1 != *(float *)(index + 0x3c))) {
+      floatVar1 = *(float *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
+      if ((floatVar1 < *(float *)(index + STRUCT_OFFSET_SIZE)) ||
+         (*(float *)(index + 0x3c) <= floatVar1 && floatVar1 != *(float *)(index + 0x3c))) {
         localUInt2 = BYTE_OFFSET_FLAG;
       }
       else {
@@ -7002,7 +7002,7 @@ uint64 get_network_address(longlong resourceHandle,longlong memorySize)
 uint64 resolve_hostname(void)
 
 {
-  float fVar1;
+  float floatVar1;
   longlong buffer;
   uint64 unsignedVar3;
   longlong unaff_RDI;
@@ -7015,9 +7015,9 @@ uint64 resolve_hostname(void)
   }
   unsignedVar3 = utilityAccessResourceAttribute(buffer,unaff_RDI + ERROR_CODE_5,unaff_RDI + RESOURCE_OFFSET_HANDLE);
   if ((int)unsignedVar3 == 0) {
-    fVar1 = *(float *)(unaff_RDI + RESOURCE_OFFSET_HANDLE);
-    if ((fVar1 < *(float *)(buffer + STRUCT_OFFSET_SIZE)) ||
-       (*(float *)(buffer + 0x3c) <= fVar1 && fVar1 != *(float *)(buffer + 0x3c))) {
+    floatVar1 = *(float *)(unaff_RDI + RESOURCE_OFFSET_HANDLE);
+    if ((floatVar1 < *(float *)(buffer + STRUCT_OFFSET_SIZE)) ||
+       (*(float *)(buffer + 0x3c) <= floatVar1 && floatVar1 != *(float *)(buffer + 0x3c))) {
       unsignedVar3 = BYTE_OFFSET_FLAG;
     }
     else {
@@ -7036,7 +7036,7 @@ uint64 resolve_hostname(void)
 uint64 get_host_by_address(void)
 
 {
-  float fVar1;
+  float floatVar1;
   uint64 localUInt2;
   longlong baseRegister;
   longlong unaff_RDI;
@@ -7045,9 +7045,9 @@ uint64 get_host_by_address(void)
   
   localUInt2 = utilityAccessResourceAttribute();
   if ((int)localUInt2 == 0) {
-    fVar1 = *(float *)(unaff_RDI + RESOURCE_OFFSET_HANDLE);
-    if ((fVar1 < *(float *)(baseRegister + STRUCT_OFFSET_SIZE)) ||
-       (*(float *)(baseRegister + 0x3c) <= fVar1 && fVar1 != *(float *)(baseRegister + 0x3c))) {
+    floatVar1 = *(float *)(unaff_RDI + RESOURCE_OFFSET_HANDLE);
+    if ((floatVar1 < *(float *)(baseRegister + STRUCT_OFFSET_SIZE)) ||
+       (*(float *)(baseRegister + 0x3c) <= floatVar1 && floatVar1 != *(float *)(baseRegister + 0x3c))) {
       localUInt2 = BYTE_OFFSET_FLAG;
     }
     else {
@@ -7076,11 +7076,11 @@ void cleanup_network_stack(void)
 uint64 create_network_connection(longlong resourceHandle,longlong memorySize)
 
 {
-  float fVar1;
+  float floatVar1;
   uint64 localUInt2;
   longlong index;
   uint64 *puVar4;
-  float fVar5;
+  float floatVar5;
   uint auStackX_8 [2];
   uint32 auStackX_18 [2];
   
@@ -7095,14 +7095,14 @@ uint64 create_network_connection(longlong resourceHandle,longlong memorySize)
     if ((*(uint *)(index + FIELD_OFFSET_2) >> 4 & 1) != 0) {
       return ERROR_CODE_FAILED;
     }
-    fVar1 = *(float *)(resourceHandle + RESOURCE_HANDLE_OFFSET);
-    fVar5 = *(float *)(index + STRUCT_OFFSET_SIZE);
-    if ((*(float *)(index + STRUCT_OFFSET_SIZE) <= fVar1) &&
-       (fVar5 = *(float *)(index + 0x3c), fVar1 <= *(float *)(index + 0x3c))) {
-      fVar5 = fVar1;
+    floatVar1 = *(float *)(resourceHandle + RESOURCE_HANDLE_OFFSET);
+    floatVar5 = *(float *)(index + STRUCT_OFFSET_SIZE);
+    if ((*(float *)(index + STRUCT_OFFSET_SIZE) <= floatVar1) &&
+       (floatVar5 = *(float *)(index + 0x3c), floatVar1 <= *(float *)(index + 0x3c))) {
+      floatVar5 = floatVar1;
     }
-    *(float *)(resourceHandle + RESOURCE_HANDLE_OFFSET) = fVar5;
-    localUInt2 = func_0x000180867960(memorySize + DATA_OFFSET_START,auStackX_18[0],fVar5);
+    *(float *)(resourceHandle + RESOURCE_HANDLE_OFFSET) = floatVar5;
+    localUInt2 = func_0x000180867960(memorySize + DATA_OFFSET_START,auStackX_18[0],floatVar5);
     if ((int)localUInt2 == 0) {
       puVar4 = (uint64 *)func_0x000180867660(memorySize + DATA_OFFSET_START,auStackX_8,auStackX_18[0]);
       *(uint64 *)(resourceHandle + RESOURCE_OFFSET_HANDLE) = *puVar4;
@@ -7118,27 +7118,27 @@ uint64 create_network_connection(longlong resourceHandle,longlong memorySize)
 uint64 get_network_statistics(void)
 
 {
-  float fVar1;
+  float floatVar1;
   longlong buffer;
   uint64 unsignedVar3;
   uint64 *puVar4;
   longlong baseRegister;
   longlong unaff_RDI;
-  float fVar5;
+  float floatVar5;
   uint32 in_stack_00000040;
   
   buffer = func_0x000180867680();
   if ((*(uint *)(buffer + FIELD_OFFSET_2) >> 4 & 1) != 0) {
     return ERROR_CODE_FAILED;
   }
-  fVar1 = *(float *)(baseRegister + RESOURCE_HANDLE_OFFSET);
-  fVar5 = *(float *)(buffer + STRUCT_OFFSET_SIZE);
-  if ((*(float *)(buffer + STRUCT_OFFSET_SIZE) <= fVar1) &&
-     (fVar5 = *(float *)(buffer + 0x3c), fVar1 <= *(float *)(buffer + 0x3c))) {
-    fVar5 = fVar1;
+  floatVar1 = *(float *)(baseRegister + RESOURCE_HANDLE_OFFSET);
+  floatVar5 = *(float *)(buffer + STRUCT_OFFSET_SIZE);
+  if ((*(float *)(buffer + STRUCT_OFFSET_SIZE) <= floatVar1) &&
+     (floatVar5 = *(float *)(buffer + 0x3c), floatVar1 <= *(float *)(buffer + 0x3c))) {
+    floatVar5 = floatVar1;
   }
-  *(float *)(baseRegister + RESOURCE_HANDLE_OFFSET) = fVar5;
-  unsignedVar3 = func_0x000180867960(unaff_RDI + DATA_OFFSET_START,in_stack_00000040,fVar5);
+  *(float *)(baseRegister + RESOURCE_HANDLE_OFFSET) = floatVar5;
+  unsignedVar3 = func_0x000180867960(unaff_RDI + DATA_OFFSET_START,in_stack_00000040,floatVar5);
   if ((int)unsignedVar3 == 0) {
     puVar4 = (uint64 *)func_0x000180867660(unaff_RDI + DATA_OFFSET_START,&stack0x00000030,in_stack_00000040);
     *(uint64 *)(baseRegister + RESOURCE_OFFSET_HANDLE) = *puVar4;
@@ -7155,24 +7155,24 @@ uint64 get_network_statistics(void)
 void initialize_ssl_context(void)
 
 {
-  float fVar1;
+  float floatVar1;
   uint64 *plocalUInt2;
   uint32 in_EAX;
   int length;
   uint32 in_register_00000004;
   longlong baseRegister;
   longlong unaff_RDI;
-  float fVar4;
+  float floatVar4;
   uint32 in_stack_00000040;
   
-  fVar4 = *(float *)(CONCAT44(in_register_00000004,in_EAX) + STRUCT_OFFSET_SIZE);
-  fVar1 = *(float *)(baseRegister + RESOURCE_HANDLE_OFFSET);
-  if ((fVar4 <= fVar1) &&
-     (fVar4 = *(float *)(CONCAT44(in_register_00000004,in_EAX) + 0x3c), fVar1 <= fVar4)) {
-    fVar4 = fVar1;
+  floatVar4 = *(float *)(CONCAT44(in_register_00000004,in_EAX) + STRUCT_OFFSET_SIZE);
+  floatVar1 = *(float *)(baseRegister + RESOURCE_HANDLE_OFFSET);
+  if ((floatVar4 <= floatVar1) &&
+     (floatVar4 = *(float *)(CONCAT44(in_register_00000004,in_EAX) + 0x3c), floatVar1 <= floatVar4)) {
+    floatVar4 = floatVar1;
   }
-  *(float *)(baseRegister + RESOURCE_HANDLE_OFFSET) = fVar4;
-  length = func_0x000180867960(unaff_RDI + DATA_OFFSET_START,in_stack_00000040,fVar4);
+  *(float *)(baseRegister + RESOURCE_HANDLE_OFFSET) = floatVar4;
+  length = func_0x000180867960(unaff_RDI + DATA_OFFSET_START,in_stack_00000040,floatVar4);
   if (length == 0) {
     plocalUInt2 = (uint64 *)func_0x000180867660(unaff_RDI + DATA_OFFSET_START,&stack0x00000030,in_stack_00000040);
     *(uint64 *)(baseRegister + RESOURCE_OFFSET_HANDLE) = *plocalUInt2;
@@ -7197,7 +7197,7 @@ void cleanup_ssl_context(void)
 uint64 create_ssl_connection(longlong resourceHandle,longlong memorySize)
 
 {
-  float fVar1;
+  float floatVar1;
   uint64 localUInt2;
   longlong index;
   uint64 *puVar4;
@@ -7213,9 +7213,9 @@ uint64 create_ssl_connection(longlong resourceHandle,longlong memorySize)
     }
     localUInt2 = utilityAccessResourceAttribute(index,resourceHandle + 0xa0,resourceHandle + RESOURCE_HANDLE_OFFSET);
     if ((int)localUInt2 == 0) {
-      fVar1 = *(float *)(resourceHandle + RESOURCE_HANDLE_OFFSET);
-      if ((fVar1 < *(float *)(index + STRUCT_OFFSET_SIZE)) ||
-         (*(float *)(index + 0x3c) <= fVar1 && fVar1 != *(float *)(index + 0x3c))) {
+      floatVar1 = *(float *)(resourceHandle + RESOURCE_HANDLE_OFFSET);
+      if ((floatVar1 < *(float *)(index + STRUCT_OFFSET_SIZE)) ||
+         (*(float *)(index + 0x3c) <= floatVar1 && floatVar1 != *(float *)(index + 0x3c))) {
         localUInt2 = BYTE_OFFSET_FLAG;
       }
       else {
@@ -7237,7 +7237,7 @@ uint64 create_ssl_connection(longlong resourceHandle,longlong memorySize)
 uint64 get_ssl_certificate(void)
 
 {
-  float fVar1;
+  float floatVar1;
   longlong buffer;
   uint64 unsignedVar3;
   uint64 *puVar4;
@@ -7251,9 +7251,9 @@ uint64 get_ssl_certificate(void)
   }
   unsignedVar3 = utilityAccessResourceAttribute(buffer,unaff_RDI + 0xa0,unaff_RDI + RESOURCE_HANDLE_OFFSET);
   if ((int)unsignedVar3 == 0) {
-    fVar1 = *(float *)(unaff_RDI + RESOURCE_HANDLE_OFFSET);
-    if ((fVar1 < *(float *)(buffer + STRUCT_OFFSET_SIZE)) ||
-       (*(float *)(buffer + 0x3c) <= fVar1 && fVar1 != *(float *)(buffer + 0x3c))) {
+    floatVar1 = *(float *)(unaff_RDI + RESOURCE_HANDLE_OFFSET);
+    if ((floatVar1 < *(float *)(buffer + STRUCT_OFFSET_SIZE)) ||
+       (*(float *)(buffer + 0x3c) <= floatVar1 && floatVar1 != *(float *)(buffer + 0x3c))) {
       unsignedVar3 = BYTE_OFFSET_FLAG;
     }
     else {
@@ -7275,7 +7275,7 @@ uint64 get_ssl_certificate(void)
 uint64 verify_ssl_certificate(void)
 
 {
-  float fVar1;
+  float floatVar1;
   uint64 localUInt2;
   uint64 *puVar3;
   longlong baseRegister;
@@ -7285,9 +7285,9 @@ uint64 verify_ssl_certificate(void)
   
   localUInt2 = utilityAccessResourceAttribute();
   if ((int)localUInt2 == 0) {
-    fVar1 = *(float *)(unaff_RDI + RESOURCE_HANDLE_OFFSET);
-    if ((fVar1 < *(float *)(baseRegister + STRUCT_OFFSET_SIZE)) ||
-       (*(float *)(baseRegister + 0x3c) <= fVar1 && fVar1 != *(float *)(baseRegister + 0x3c))) {
+    floatVar1 = *(float *)(unaff_RDI + RESOURCE_HANDLE_OFFSET);
+    if ((floatVar1 < *(float *)(baseRegister + STRUCT_OFFSET_SIZE)) ||
+       (*(float *)(baseRegister + 0x3c) <= floatVar1 && floatVar1 != *(float *)(baseRegister + 0x3c))) {
       localUInt2 = BYTE_OFFSET_FLAG;
     }
     else {
@@ -8307,15 +8307,15 @@ uint64 enable_debug_logging(void)
 void log_debug_message(longlong resourceHandle,byte *memorySize,int *operationFlags)
 
 {
-  byte bVar1;
+  byte boolVar1;
   longlong buffer;
-  char cVar3;
+  char charVar3;
   int counter;
   uint64 unsignedVar5;
-  longlong lVar6;
-  longlong lVar7;
+  longlong longVar6;
+  longlong longVar7;
   int integerVar8;
-  longlong lVar9;
+  longlong longVar9;
   float fVar10;
   float fVar11;
   byte localBuffer [68];
@@ -8329,20 +8329,20 @@ void log_debug_message(longlong resourceHandle,byte *memorySize,int *operationFl
   
   localUInt = g_securityTokenMask ^ (ulonglong)localBuffer;
   counter = *(int *)(resourceHandle + 0xac);
-  lVar7 = (longlong)counter;
+  longVar7 = (longlong)counter;
   plocalInt = operationFlags;
   if (counter < *(int *)(resourceHandle + POINTER_OFFSET_DATA)) {
     lStack_6e0 = *(longlong *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
-    lStack_6b8 = lVar7 * 3;
-    lVar9 = (longlong)*(int *)(lStack_6e0 + lVar7 * 0xc) + *(longlong *)(resourceHandle + 8);
-    cVar3 = *(char *)(lStack_6e0 + 8 + lVar7 * 0xc);
-    if (cVar3 == '\x01') {
+    lStack_6b8 = longVar7 * 3;
+    longVar9 = (longlong)*(int *)(lStack_6e0 + longVar7 * 0xc) + *(longlong *)(resourceHandle + 8);
+    charVar3 = *(char *)(lStack_6e0 + 8 + longVar7 * 0xc);
+    if (charVar3 == '\x01') {
       integerVar8 = *(int *)(resourceHandle + 0xb0);
       if (counter < integerVar8) {
         *(int *)(resourceHandle + 0xac) = counter + 1;
         goto ExecuteSecurityValidation;
       }
-      fVar10 = *(float *)(lVar9 + RESOURCE_OFFSET_HANDLE);
+      fVar10 = *(float *)(longVar9 + RESOURCE_OFFSET_HANDLE);
       fVar11 = fVar10;
       if (integerVar8 != -1) {
         fVar11 = *(float *)(resourceHandle + 0xb4);
@@ -8351,49 +8351,49 @@ void log_debug_message(longlong resourceHandle,byte *memorySize,int *operationFl
         *(uint32 *)(resourceHandle + 0xb4) = 0xbf800000;
       }
       *(float *)(resourceHandle + 0xa8) = fVar10;
-      lVar7 = 0;
+      longVar7 = 0;
       fVar10 = (float)*(uint *)(resourceHandle + 0x68) * fVar10;
       if ((9.223372e+18 <= fVar10) && (fVar10 = fVar10 - 9.223372e+18, fVar10 < 9.223372e+18)) {
-        lVar7 = -0x8000000000000000;
+        longVar7 = -0x8000000000000000;
       }
       buffer = *(longlong *)(resourceHandle + 0xa0);
-      lVar6 = *(longlong *)(resourceHandle + 0x98);
-      if (lVar6 == 0) {
+      longVar6 = *(longlong *)(resourceHandle + 0x98);
+      if (longVar6 == 0) {
         fVar11 = (float)*(uint *)(resourceHandle + 0x68) * fVar11;
-        lVar6 = 0;
+        longVar6 = 0;
         if ((9.223372e+18 <= fVar11) && (fVar11 = fVar11 - 9.223372e+18, fVar11 < 9.223372e+18)) {
-          lVar6 = -0x8000000000000000;
+          longVar6 = -0x8000000000000000;
         }
-        lVar6 = buffer - ((longlong)fVar11 + lVar6);
-        *(longlong *)(resourceHandle + 0x98) = lVar6;
+        longVar6 = buffer - ((longlong)fVar11 + longVar6);
+        *(longlong *)(resourceHandle + 0x98) = longVar6;
       }
-      bVar1 = *(byte *)(resourceHandle + 0x6c);
+      boolVar1 = *(byte *)(resourceHandle + 0x6c);
       if (*(longlong *)(resourceHandle + 0xc0) != 0) {
         unsignedVar5 = evaluate_system_state(resourceHandle);
         counter = (**(code **)(resourceHandle + 0xc0))
-                          (unsignedVar5,counter,*(uint32 *)(lVar9 + RESOURCE_OFFSET_HANDLE),*(uint64 *)(resourceHandle + BUFFER_SIZE_STANDARD)
+                          (unsignedVar5,counter,*(uint32 *)(longVar9 + RESOURCE_OFFSET_HANDLE),*(uint64 *)(resourceHandle + BUFFER_SIZE_STANDARD)
                           );
         if (counter != 0) goto ExecuteSecurityValidation;
       }
-      if (((((bVar1 & 2) != 0 || (longlong)fVar10 + lVar7 < buffer - lVar6) &&
+      if (((((boolVar1 & 2) != 0 || (longlong)fVar10 + longVar7 < buffer - longVar6) &&
            (counter = *plocalInt, *plocalInt = counter + 1, counter < 10)) &&
           ((*(uint *)(resourceHandle + 0x6c) >> RESOURCE_OFFSET_HANDLE & 1) == 0)) &&
          (((*(uint *)(resourceHandle + 0x6c) >> 0x19 & 1) != 0 && (integerVar8 == *(int *)(resourceHandle + 0xb0))))) {
 LAB_18089555d:
                     // WARNING: Subroutine does not return
-        memcpy(localBuffer,lVar9,(longlong)*(int *)(lVar9 + 8));
+        memcpy(localBuffer,longVar9,(longlong)*(int *)(longVar9 + 8));
       }
     }
     else {
-      if (cVar3 == '\x06') {
-        cVar3 = func_0x000180881f80(*(uint64 *)(resourceHandle + SYSTEM_OFFSET_STATUS1));
-        if (cVar3 == '\0') goto LAB_18089555d;
+      if (charVar3 == '\x06') {
+        charVar3 = func_0x000180881f80(*(uint64 *)(resourceHandle + SYSTEM_OFFSET_STATUS1));
+        if (charVar3 == '\0') goto LAB_18089555d;
         *memorySize = 0;
         goto ExecuteSecurityValidation;
       }
-      if (cVar3 == '\a') {
-        cVar3 = func_0x000180881f80(*(uint64 *)(resourceHandle + SYSTEM_OFFSET_STATUS1));
-        if (cVar3 == '\0') {
+      if (charVar3 == '\a') {
+        charVar3 = func_0x000180881f80(*(uint64 *)(resourceHandle + SYSTEM_OFFSET_STATUS1));
+        if (charVar3 == '\0') {
           if (*(int *)(*(longlong *)(*(longlong *)(*(longlong *)(resourceHandle + SYSTEM_OFFSET_STATUS1) + MEMORY_SIZE_OFFSET) + 0x790) +
                       0x1c8) != 0) {
             *memorySize = 0;
@@ -8403,8 +8403,8 @@ LAB_18089555d:
         }
       }
       else {
-        if ((cVar3 != '\x02') || ((*(byte *)(resourceHandle + 0x6c) & 4) != 0)) goto LAB_18089555d;
-        localUInt = *(uint32 *)(lVar9 + POINTER_OFFSET_DATA);
+        if ((charVar3 != '\x02') || ((*(byte *)(resourceHandle + 0x6c) & 4) != 0)) goto LAB_18089555d;
+        localUInt = *(uint32 *)(longVar9 + POINTER_OFFSET_DATA);
         counter = perform_system_operation(resourceHandle,counter,&localUInt);
         if (counter != 0) goto ExecuteSecurityValidation;
         counter = SystemMemoryFunction(localUInt,localArray);
@@ -8431,91 +8431,91 @@ void initialize_memory_manager(longlong resourceHandle,uint64 memorySize,int *op
 
 {
   longlong localLong1;
-  char cVar2;
+  char charVar2;
   int length;
   int counter;
   longlong inputRegister;
   longlong longVar5;
   uint64 unsignedVar6;
-  longlong lVar7;
+  longlong longVar7;
   int unaff_EBX;
   uint32 unaff_0000001c;
   longlong unaff_RBP;
   longlong unaff_RDI;
   char in_R11B;
   byte *unaff_R13;
-  longlong lVar8;
-  float fVar9;
+  longlong longVar8;
+  float floatVar9;
   float fVar10;
   uint64 in_stack_00000040;
   int *in_stack_00000048;
   
   longVar5 = CONCAT44(unaff_0000001c,unaff_EBX) + CONCAT44(unaff_0000001c,unaff_EBX) * 2;
-  lVar8 = (longlong)*(int *)(inputRegister + longVar5 * 4) + *(longlong *)(resourceHandle + 8);
-  cVar2 = *(char *)(inputRegister + 8 + longVar5 * 4);
+  longVar8 = (longlong)*(int *)(inputRegister + longVar5 * 4) + *(longlong *)(resourceHandle + 8);
+  charVar2 = *(char *)(inputRegister + 8 + longVar5 * 4);
   *(longlong *)(unaff_RBP + -BUFFER_OFFSET_TEMP) = longVar5;
-  if (cVar2 == in_R11B) {
+  if (charVar2 == in_R11B) {
     counter = *(int *)(resourceHandle + 0xb0);
     if (unaff_EBX < counter) {
       *(int *)(resourceHandle + 0xac) = unaff_EBX + 1;
       goto LAB_180895b69;
     }
-    fVar9 = *(float *)(lVar8 + RESOURCE_OFFSET_HANDLE);
-    fVar10 = fVar9;
+    floatVar9 = *(float *)(longVar8 + RESOURCE_OFFSET_HANDLE);
+    fVar10 = floatVar9;
     if (counter != -1) {
       fVar10 = *(float *)(resourceHandle + 0xb4);
       counter = -1;
       *(uint32 *)(resourceHandle + 0xb0) = 0xffffffff;
       *(uint32 *)(resourceHandle + 0xb4) = 0xbf800000;
     }
-    *(float *)(resourceHandle + 0xa8) = fVar9;
+    *(float *)(resourceHandle + 0xa8) = floatVar9;
     longVar5 = 0;
-    fVar9 = (float)*(uint *)(resourceHandle + 0x68) * fVar9;
-    if ((9.223372e+18 <= fVar9) && (fVar9 = fVar9 - 9.223372e+18, fVar9 < 9.223372e+18)) {
+    floatVar9 = (float)*(uint *)(resourceHandle + 0x68) * floatVar9;
+    if ((9.223372e+18 <= floatVar9) && (floatVar9 = floatVar9 - 9.223372e+18, floatVar9 < 9.223372e+18)) {
       longVar5 = -0x8000000000000000;
     }
     localLong1 = *(longlong *)(resourceHandle + 0xa0);
-    lVar7 = *(longlong *)(resourceHandle + 0x98);
-    if (lVar7 == 0) {
+    longVar7 = *(longlong *)(resourceHandle + 0x98);
+    if (longVar7 == 0) {
       fVar10 = (float)*(uint *)(resourceHandle + 0x68) * fVar10;
-      lVar7 = 0;
+      longVar7 = 0;
       if ((9.223372e+18 <= fVar10) && (fVar10 = fVar10 - 9.223372e+18, fVar10 < 9.223372e+18)) {
-        lVar7 = -0x8000000000000000;
+        longVar7 = -0x8000000000000000;
       }
-      lVar7 = localLong1 - ((longlong)fVar10 + lVar7);
-      *(longlong *)(unaff_RDI + 0x98) = lVar7;
+      longVar7 = localLong1 - ((longlong)fVar10 + longVar7);
+      *(longlong *)(unaff_RDI + 0x98) = longVar7;
     }
-    cVar2 = (longlong)fVar9 + longVar5 < localLong1 - lVar7;
+    charVar2 = (longlong)floatVar9 + longVar5 < localLong1 - longVar7;
     if ((*(byte *)(unaff_RDI + 0x6c) & 2) != 0) {
-      cVar2 = in_R11B;
+      charVar2 = in_R11B;
     }
     if (*(longlong *)(unaff_RDI + 0xc0) != 0) {
       unsignedVar6 = evaluate_system_state();
       length = (**(code **)(unaff_RDI + 0xc0))
-                        (unsignedVar6,unaff_EBX,*(uint32 *)(lVar8 + RESOURCE_OFFSET_HANDLE),
+                        (unsignedVar6,unaff_EBX,*(uint32 *)(longVar8 + RESOURCE_OFFSET_HANDLE),
                          *(uint64 *)(unaff_RDI + BUFFER_SIZE_STANDARD));
       operationFlags = in_stack_00000048;
       if (length != 0) goto LAB_180895b69;
     }
-    if ((((cVar2 != '\0') && (length = *operationFlags, *operationFlags = length + 1, length < 10)) &&
+    if ((((charVar2 != '\0') && (length = *operationFlags, *operationFlags = length + 1, length < 10)) &&
         ((*(uint *)(unaff_RDI + 0x6c) >> RESOURCE_OFFSET_HANDLE & 1) == 0)) &&
        (((*(uint *)(unaff_RDI + 0x6c) >> 0x19 & 1) != 0 && (counter == *(int *)(unaff_RDI + 0xb0)))))
     {
 LAB_18089555d:
                     // WARNING: Subroutine does not return
-      memcpy(unaff_RBP + -RESOURCE_HANDLE_OFFSET,lVar8,(longlong)*(int *)(lVar8 + 8));
+      memcpy(unaff_RBP + -RESOURCE_HANDLE_OFFSET,longVar8,(longlong)*(int *)(longVar8 + 8));
     }
   }
   else {
-    if (cVar2 == '\x06') {
-      cVar2 = func_0x000180881f80(*(uint64 *)(resourceHandle + SYSTEM_OFFSET_STATUS1));
-      if (cVar2 == '\0') goto LAB_18089555d;
+    if (charVar2 == '\x06') {
+      charVar2 = func_0x000180881f80(*(uint64 *)(resourceHandle + SYSTEM_OFFSET_STATUS1));
+      if (charVar2 == '\0') goto LAB_18089555d;
       *unaff_R13 = 0;
       goto LAB_180895b69;
     }
-    if (cVar2 == '\a') {
-      cVar2 = func_0x000180881f80(*(uint64 *)(resourceHandle + SYSTEM_OFFSET_STATUS1));
-      if (cVar2 == '\0') {
+    if (charVar2 == '\a') {
+      charVar2 = func_0x000180881f80(*(uint64 *)(resourceHandle + SYSTEM_OFFSET_STATUS1));
+      if (charVar2 == '\0') {
         if (*(int *)(*(longlong *)(*(longlong *)(*(longlong *)(unaff_RDI + SYSTEM_OFFSET_STATUS1) + MEMORY_SIZE_OFFSET) + 0x790) +
                     0x1c8) != 0) {
           *unaff_R13 = 0;
@@ -8525,8 +8525,8 @@ LAB_18089555d:
       }
     }
     else {
-      if ((cVar2 != '\x02') || ((*(byte *)(resourceHandle + 0x6c) & 4) != 0)) goto LAB_18089555d;
-      in_stack_00000040._4_4_ = *(uint32 *)(lVar8 + POINTER_OFFSET_DATA);
+      if ((charVar2 != '\x02') || ((*(byte *)(resourceHandle + 0x6c) & 4) != 0)) goto LAB_18089555d;
+      in_stack_00000040._4_4_ = *(uint32 *)(longVar8 + POINTER_OFFSET_DATA);
       counter = perform_system_operation(resourceHandle,unaff_EBX,(longlong)&stackLocalBuffer + 4);
       if (counter != 0) goto LAB_180895b69;
       counter = SystemMemoryFunction(in_stack_00000040._4_4_,unaff_RBP + -HANDLE_OFFSET_DATA);
@@ -8738,8 +8738,8 @@ uint64 SetupResourceParameters(longlong *resourceHandle,uint *memorySize,uint64 
   uint64 unsignedVar5;
   uint64 *puVar6;
   int integerVar7;
-  longlong lVar8;
-  longlong lVar9;
+  longlong longVar8;
+  longlong longVar9;
   uint *preturnValue0;
   uint returnValue1;
   int localInt12;
@@ -8751,19 +8751,19 @@ uint64 SetupResourceParameters(longlong *resourceHandle,uint *memorySize,uint64 
       return BYTE_OFFSET_FLAG;
     }
     returnValue = *memorySize;
-    lVar8 = (longlong)(int)((int)resourceHandle[1] - 1U & returnValue);
-    plocalInt13 = (int *)(*resourceHandle + lVar8 * 4);
-    status = *(int *)(*resourceHandle + lVar8 * 4);
+    longVar8 = (longlong)(int)((int)resourceHandle[1] - 1U & returnValue);
+    plocalInt13 = (int *)(*resourceHandle + longVar8 * 4);
+    status = *(int *)(*resourceHandle + longVar8 * 4);
     if (status != -1) {
-      lVar8 = resourceHandle[2];
+      longVar8 = resourceHandle[2];
       do {
-        lVar9 = (longlong)status;
-        if (*(uint *)(lVar8 + lVar9 * RESOURCE_HANDLE_OFFSET) == returnValue) {
-          *(uint64 *)(lVar8 + 8 + lVar9 * RESOURCE_HANDLE_OFFSET) = *operationFlags;
+        longVar9 = (longlong)status;
+        if (*(uint *)(longVar8 + longVar9 * RESOURCE_HANDLE_OFFSET) == returnValue) {
+          *(uint64 *)(longVar8 + 8 + longVar9 * RESOURCE_HANDLE_OFFSET) = *operationFlags;
           return 0;
         }
-        status = *(int *)(lVar8 + 4 + lVar9 * RESOURCE_HANDLE_OFFSET);
-        plocalInt13 = (int *)(lVar8 + 4 + lVar9 * RESOURCE_HANDLE_OFFSET);
+        status = *(int *)(longVar8 + 4 + longVar9 * RESOURCE_HANDLE_OFFSET);
+        plocalInt13 = (int *)(longVar8 + 4 + longVar9 * RESOURCE_HANDLE_OFFSET);
       } while (status != -1);
     }
     status = (int)resourceHandle[4];
@@ -8821,7 +8821,7 @@ uint64 allocate_memory_block(uint64 resourceHandle,int memorySize)
   uint64 unsignedVar4;
   uint64 *puVar5;
   int integerVar6;
-  longlong lVar7;
+  longlong longVar7;
   uint32 *puVar8;
   uint unsignedVar9;
   int localInt10;
@@ -8836,13 +8836,13 @@ uint64 allocate_memory_block(uint64 resourceHandle,int memorySize)
   if (status != -1) {
     localLong1 = unaff_RDI[2];
     do {
-      lVar7 = (longlong)status;
-      if (*(int *)(localLong1 + lVar7 * RESOURCE_HANDLE_OFFSET) == memorySize) {
-        *(uint64 *)(localLong1 + 8 + lVar7 * RESOURCE_HANDLE_OFFSET) = *unaff_R14;
+      longVar7 = (longlong)status;
+      if (*(int *)(localLong1 + longVar7 * RESOURCE_HANDLE_OFFSET) == memorySize) {
+        *(uint64 *)(localLong1 + 8 + longVar7 * RESOURCE_HANDLE_OFFSET) = *unaff_R14;
         return 0;
       }
-      status = *(int *)(localLong1 + 4 + lVar7 * RESOURCE_HANDLE_OFFSET);
-      plocalInt11 = (int *)(localLong1 + 4 + lVar7 * RESOURCE_HANDLE_OFFSET);
+      status = *(int *)(localLong1 + 4 + longVar7 * RESOURCE_HANDLE_OFFSET);
+      plocalInt11 = (int *)(localLong1 + 4 + longVar7 * RESOURCE_HANDLE_OFFSET);
     } while (status != -1);
   }
   status = (int)unaff_RDI[4];
@@ -10500,15 +10500,15 @@ void ResetResourceState(void)
 void ProcessResourceOperation(longlong resourceHandle,longlong memorySize)
 
 {
-  float fVar1;
+  float floatVar1;
   longlong buffer;
   longlong index;
   longlong longVar4;
-  char cVar5;
+  char charVar5;
   int integerVar6;
   uint unsignedVar7;
-  longlong lVar8;
-  longlong lVar9;
+  longlong longVar8;
+  longlong longVar9;
   uint64 returnValue0;
   uint64 returnValue1;
   data *preturnValue2;
@@ -10560,18 +10560,18 @@ void ProcessResourceOperation(longlong resourceHandle,longlong memorySize)
   buffer = *(longlong *)(memorySize + BUFFER_OFFSET_TEMP);
   localLong14 = 0;
   localUInt = 0;
-  lVar8 = buffer + 8;
+  longVar8 = buffer + 8;
   if (buffer == 0) {
-    lVar8 = localLong14;
+    longVar8 = localLong14;
   }
   lStack_180 = memorySize;
-  integerVar6 = validate_resource_handle(lVar8,&localUInt);
+  integerVar6 = validate_resource_handle(longVar8,&localUInt);
   if (integerVar6 == 0) {
     preturnValue6 = (uint64 *)(memorySize + 8);
     localUInt = 0;
     localPtr = preturnValue6;
-    lVar8 = (*(code *)**(uint64 **)(memorySize + 8))(preturnValue6);
-    integerVar6 = validate_resource_handle(*(uint64 *)(lVar8 + STRUCT_OFFSET_1),&localUInt);
+    longVar8 = (*(code *)**(uint64 **)(memorySize + 8))(preturnValue6);
+    integerVar6 = validate_resource_handle(*(uint64 *)(longVar8 + STRUCT_OFFSET_1),&localUInt);
     if (integerVar6 == 0) {
       localUInt = 0;
       localPtr = &unknown_1809832b8;
@@ -10580,21 +10580,21 @@ void ProcessResourceOperation(longlong resourceHandle,longlong memorySize)
       integerVar6 = ValidateResourceAccess(resourceHandle,&localPtr);
       if (integerVar6 == 0) {
         lStack_188 = (longlong)*(int *)(buffer + BYTE_OFFSET_2);
-        lVar8 = localLong14;
+        longVar8 = localLong14;
         if (0 < lStack_188) {
           do {
-            lVar9 = *(longlong *)(buffer + POINTER_OFFSET_DATA);
-            index = *(longlong *)(localLong14 + RESOURCE_HANDLE_OFFSET + lVar9);
-            longVar4 = *(longlong *)(localLong14 + 8 + lVar9);
-            cVar5 = func_0x000180894c50(index,1);
+            longVar9 = *(longlong *)(buffer + POINTER_OFFSET_DATA);
+            index = *(longlong *)(localLong14 + RESOURCE_HANDLE_OFFSET + longVar9);
+            longVar4 = *(longlong *)(localLong14 + 8 + longVar9);
+            charVar5 = func_0x000180894c50(index,1);
             preturnValue6 = localPtr;
-            if ((cVar5 == '\0') && (*(float *)(index + ERROR_CODE_2) != *(float *)(longVar4 + BYTE_OFFSET_2))) {
-              localUInt = *(uint32 *)(localLong14 + 4 + lVar9);
+            if ((charVar5 == '\0') && (*(float *)(index + ERROR_CODE_2) != *(float *)(longVar4 + BYTE_OFFSET_2))) {
+              localUInt = *(uint32 *)(localLong14 + 4 + longVar9);
               localPtr = &unknown_180984038;
               localUInt = localUInt;
               localUInt = 0;
-              lVar9 = (**(code **)*localPtr)(localPtr);
-              localUInt = *(uint64 *)(*(longlong *)(lVar9 + MEMORY_SIZE_OFFSET) + lVar8 * 8);
+              longVar9 = (**(code **)*localPtr)(localPtr);
+              localUInt = *(uint64 *)(*(longlong *)(longVar9 + MEMORY_SIZE_OFFSET) + longVar8 * 8);
               localUInt = 0;
               if (*(int *)(index + SYSTEM_OFFSET_STATUS1) < 1) {
                 preturnValue2 = &g_miscWorkBuffer3;
@@ -10606,10 +10606,10 @@ void ProcessResourceOperation(longlong resourceHandle,longlong memorySize)
               integerVar6 = ValidateResourceAccess(resourceHandle,&localPtr);
               if (integerVar6 != 0) goto TerminateResourceOperation;
             }
-            lVar8 = lVar8 + 1;
+            longVar8 = longVar8 + 1;
             localLong14 = localLong14 + RESOURCE_OFFSET_HANDLE;
             memorySize = lStack_180;
-          } while (lVar8 < lStack_188);
+          } while (longVar8 < lStack_188);
         }
         returnValue1 = *(uint64 *)(*(longlong *)(resourceHandle + 8) + 800);
         returnValue0 = (**(code **)*preturnValue6)(preturnValue6);
@@ -10674,13 +10674,13 @@ void ProcessResourceOperation(longlong resourceHandle,longlong memorySize)
               pfVar15 = (float *)&unknown_1809850f8;
               fVar13 = 0.0;
               do {
-                fVar1 = *(float *)(buffer + -0x180985054 + (longlong)pfVar15);
-                if (fVar1 != *pfVar15) {
+                floatVar1 = *(float *)(buffer + -0x180985054 + (longlong)pfVar15);
+                if (floatVar1 != *pfVar15) {
                   localUInt = localUInt;
                   localUInt = 0;
                   localPtr = &unknown_180983950;
                   fStack_1a8 = fVar13;
-                  fStack_1a4 = fVar1;
+                  fStack_1a4 = floatVar1;
                   integerVar6 = ValidateResourceAccess(resourceHandle,&localPtr);
                   if (integerVar6 != 0) goto TerminateResourceOperation;
                 }
@@ -10745,7 +10745,7 @@ TerminateResourceOperation:
 void ExecuteResourceCommand(void)
 
 {
-  float fVar1;
+  float floatVar1;
   longlong buffer;
   longlong index;
   uint64 *puVar4;
@@ -10917,14 +10917,14 @@ void ExecuteResourceCommand(void)
             pfVar21 = (float *)(unaff_R15 + 0x94);
             fVar19 = unaff_R13D;
             do {
-              fVar1 = *pfVar21;
-              if (fVar1 != 0.0) {
+              floatVar1 = *pfVar21;
+              if (floatVar1 != 0.0) {
                 in_stack_00000038 = uStackX_20;
                 in_stack_00000028 = &unknown_1809839d8;
                 stackParameter1 = unaff_R13D;
                 fStack0000000000000040 = fVar19;
-                fStack0000000000000044 = fVar1;
-                localInt13 = ValidateResourceAccess(fVar1,&stack0x00000028);
+                fStack0000000000000044 = floatVar1;
+                localInt13 = ValidateResourceAccess(floatVar1,&stack0x00000028);
                 if (localInt13 != 0) goto FinalizeResourceProcess;
               }
               fVar19 = (float)((int)fVar19 + 1);
@@ -10933,14 +10933,14 @@ void ExecuteResourceCommand(void)
             pfVar21 = (float *)&unknown_1809850f8;
             fVar19 = unaff_R13D;
             do {
-              fVar1 = *(float *)(unaff_R15 + -0x180985054 + (longlong)pfVar21);
-              if (fVar1 != *pfVar21) {
+              floatVar1 = *(float *)(unaff_R15 + -0x180985054 + (longlong)pfVar21);
+              if (floatVar1 != *pfVar21) {
                 in_stack_00000038 = uStackX_20;
                 in_stack_00000028 = &unknown_180983950;
                 stackParameter1 = unaff_R13D;
                 fStack0000000000000040 = fVar19;
-                fStack0000000000000044 = fVar1;
-                localInt13 = ValidateResourceAccess(fVar1,&stack0x00000028);
+                fStack0000000000000044 = floatVar1;
+                localInt13 = ValidateResourceAccess(floatVar1,&stack0x00000028);
                 if (localInt13 != 0) goto FinalizeResourceProcess;
               }
               fVar19 = (float)((int)fVar19 + 1);
@@ -11007,7 +11007,7 @@ FinalizeResourceProcess:
 void HandleResourceCallback(void)
 
 {
-  float fVar1;
+  float floatVar1;
   longlong buffer;
   longlong index;
   uint64 *puVar4;
@@ -11163,14 +11163,14 @@ void HandleResourceCallback(void)
         pfVar21 = (float *)(unaff_R15 + 0x94);
         fVar19 = unaff_R13D;
         do {
-          fVar1 = *pfVar21;
-          if (fVar1 != 0.0) {
+          floatVar1 = *pfVar21;
+          if (floatVar1 != 0.0) {
             in_stack_00000038 = uStackX_20;
             in_stack_00000028 = &unknown_1809839d8;
             stackParameter1 = unaff_R13D;
             fStack0000000000000040 = fVar19;
-            fStack0000000000000044 = fVar1;
-            localInt13 = ValidateResourceAccess(fVar1,&stack0x00000028);
+            fStack0000000000000044 = floatVar1;
+            localInt13 = ValidateResourceAccess(floatVar1,&stack0x00000028);
             if (localInt13 != 0) goto CompleteResourceOperation;
           }
           fVar19 = (float)((int)fVar19 + 1);
@@ -11179,14 +11179,14 @@ void HandleResourceCallback(void)
         pfVar21 = (float *)&unknown_1809850f8;
         fVar19 = unaff_R13D;
         do {
-          fVar1 = *(float *)(unaff_R15 + -0x180985054 + (longlong)pfVar21);
-          if (fVar1 != *pfVar21) {
+          floatVar1 = *(float *)(unaff_R15 + -0x180985054 + (longlong)pfVar21);
+          if (floatVar1 != *pfVar21) {
             in_stack_00000038 = uStackX_20;
             in_stack_00000028 = &unknown_180983950;
             stackParameter1 = unaff_R13D;
             fStack0000000000000040 = fVar19;
-            fStack0000000000000044 = fVar1;
-            localInt13 = ValidateResourceAccess(fVar1,&stack0x00000028);
+            fStack0000000000000044 = floatVar1;
+            localInt13 = ValidateResourceAccess(floatVar1,&stack0x00000028);
             if (localInt13 != 0) goto CompleteResourceOperation;
           }
           fVar19 = (float)((int)fVar19 + 1);
@@ -11251,10 +11251,10 @@ CompleteResourceOperation:
 void ValidateResourceFloat(float resourceHandle)
 
 {
-  float fVar1;
+  float floatVar1;
   int status;
   uint unsignedVar3;
-  float fVar4;
+  float floatVar4;
   float *pfVar5;
   longlong unaff_RBP;
   float unaff_R13D;
@@ -11295,37 +11295,37 @@ void ValidateResourceFloat(float resourceHandle)
       if (status != 0) goto LAB_180897af6;
     }
     pfVar5 = (float *)(unaff_R15 + 0x94);
-    fVar4 = unaff_R13D;
+    floatVar4 = unaff_R13D;
     do {
-      fVar1 = *pfVar5;
-      if (fVar1 != 0.0) {
+      floatVar1 = *pfVar5;
+      if (floatVar1 != 0.0) {
         in_stack_00000038 = uStackX_20;
         in_stack_00000028 = &unknown_1809839d8;
         stackParameter1 = unaff_R13D;
-        fStack0000000000000040 = fVar4;
-        fStack0000000000000044 = fVar1;
-        status = ValidateResourceAccess(fVar1,&stack0x00000028);
+        fStack0000000000000040 = floatVar4;
+        fStack0000000000000044 = floatVar1;
+        status = ValidateResourceAccess(floatVar1,&stack0x00000028);
         if (status != 0) goto LAB_180897af6;
       }
-      fVar4 = (float)((int)fVar4 + 1);
+      floatVar4 = (float)((int)floatVar4 + 1);
       pfVar5 = pfVar5 + 1;
-    } while ((int)fVar4 < 4);
+    } while ((int)floatVar4 < 4);
     pfVar5 = (float *)&unknown_1809850f8;
-    fVar4 = unaff_R13D;
+    floatVar4 = unaff_R13D;
     do {
-      fVar1 = *(float *)(unaff_R15 + -0x180985054 + (longlong)pfVar5);
-      if (fVar1 != *pfVar5) {
+      floatVar1 = *(float *)(unaff_R15 + -0x180985054 + (longlong)pfVar5);
+      if (floatVar1 != *pfVar5) {
         in_stack_00000038 = uStackX_20;
         in_stack_00000028 = &unknown_180983950;
         stackParameter1 = unaff_R13D;
-        fStack0000000000000040 = fVar4;
-        fStack0000000000000044 = fVar1;
-        status = ValidateResourceAccess(fVar1,&stack0x00000028);
+        fStack0000000000000040 = floatVar4;
+        fStack0000000000000044 = floatVar1;
+        status = ValidateResourceAccess(floatVar1,&stack0x00000028);
         if (status != 0) goto LAB_180897af6;
       }
-      fVar4 = (float)((int)fVar4 + 1);
+      floatVar4 = (float)((int)floatVar4 + 1);
       pfVar5 = pfVar5 + 1;
-    } while ((int)fVar4 < 6);
+    } while ((int)floatVar4 < 6);
     unsignedVar3 = func_0x000180855b70(unaff_R14 + 200);
     unsignedVar6 = extraout_XMM0_Da_00;
     if ((float)(unsignedVar3 / FIELD_OFFSET_1) != 0.0) {
@@ -11681,11 +11681,11 @@ void UpdateResourceState(void)
 void ProcessResourceRequest(longlong *resourceHandle)
 
 {
-  float fVar1;
+  float floatVar1;
   uint64 *plocalUInt2;
   uint32 *puVar3;
   longlong longVar4;
-  char cVar5;
+  char charVar5;
   int integerVar6;
   int integerVar7;
   int integerVar8;
@@ -11844,8 +11844,8 @@ void ProcessResourceRequest(longlong *resourceHandle)
           func_0x000180867660(localLong15,localBuffer,plocalLong14);
           func_0x0001808676a0(localLong15,plocalLong14,afStack_348,localArray);
           localLong11 = func_0x000180867680(localLong15,plocalLong14);
-          cVar5 = func_0x000180894c50(localLong11,0);
-          if ((cVar5 == '\0') && (afStack_348[0] != *(float *)(localLong11 + ERROR_CODE_2))) {
+          charVar5 = func_0x000180894c50(localLong11,0);
+          if ((charVar5 == '\0') && (afStack_348[0] != *(float *)(localLong11 + ERROR_CODE_2))) {
             localUInt = localBuffer._0_4_;
             localUInt = localBuffer._4_4_;
             fStack_2c8 = afStack_348[0];
@@ -11947,11 +11947,11 @@ LAB_1808985be:
           } while ((afStack_348[0] != -NAN) &&
                   (afStack_348[0] = *(float *)(plocalLong16[2] + RESOURCE_HANDLE_OFFSET + localLong15), afStack_348[0] != -NAN))
           ;
-          fVar1 = (float)((int)fVar18 + 1);
+          floatVar1 = (float)((int)fVar18 + 1);
           bVar20 = fVar18 != -NAN;
           fVar18 = 0.0;
           if (bVar20) {
-            fVar18 = fVar1;
+            fVar18 = floatVar1;
           }
           if (fVar18 != *(float *)(plocalLong16 + 1)) {
             localLong15 = (longlong)(int)fVar18;
@@ -12099,10 +12099,10 @@ uint64 ConfigureResourceSettings(longlong *resourceHandle,char *memorySize,uint6
 {
   char *pcVar1;
   uint64 *plocalUInt2;
-  byte bVar3;
+  byte boolVar3;
   uint64 unsignedVar4;
-  char cVar5;
-  char cVar6;
+  char charVar5;
+  char charVar6;
   int integerVar7;
   uint unsignedVar8;
   char *pcVar9;
@@ -12112,53 +12112,53 @@ uint64 ConfigureResourceSettings(longlong *resourceHandle,char *memorySize,uint6
   preturnValue1 = (uint *)*resourceHandle;
   if (((preturnValue1 != (uint *)0x0) && (resourceHandle[4] != 0)) && (resourceHandle[2] != 0)) {
     localInt10 = 0;
-    cVar5 = *memorySize;
-    while (cVar5 != '\0') {
-      bVar3 = *(byte *)((longlong)preturnValue1 + 7);
-      if (bVar3 == 0) {
+    charVar5 = *memorySize;
+    while (charVar5 != '\0') {
+      boolVar3 = *(byte *)((longlong)preturnValue1 + 7);
+      if (boolVar3 == 0) {
         return 0x4a;
       }
-      cVar5 = func_0x00018076b8a0(cVar5);
+      charVar5 = func_0x00018076b8a0(charVar5);
       preturnValue1 = (uint *)(*resourceHandle + (ulonglong)(preturnValue1[1] & 0xffffff) * 8);
       integerVar7 = 0;
-      if (bVar3 == 0) {
+      if (boolVar3 == 0) {
         return 0x4a;
       }
-      while (*(char *)((longlong)preturnValue1 + 3) != cVar5) {
+      while (*(char *)((longlong)preturnValue1 + 3) != charVar5) {
         integerVar7 = integerVar7 + 1;
         preturnValue1 = preturnValue1 + 2;
-        if ((int)(uint)bVar3 <= integerVar7) {
+        if ((int)(uint)boolVar3 <= integerVar7) {
           return 0x4a;
         }
       }
       memorySize = memorySize + 1;
       pcVar9 = (char *)(resourceHandle[4] + 1 + (ulonglong)(*preturnValue1 & 0xffffff));
-      cVar5 = *memorySize;
-      while (cVar5 != '\0') {
+      charVar5 = *memorySize;
+      while (charVar5 != '\0') {
         if (*pcVar9 == '\0') goto LAB_1808989b1;
-        cVar5 = func_0x00018076b8a0(cVar5);
-        cVar6 = func_0x00018076b8a0(*pcVar9);
-        if (cVar5 != cVar6) break;
+        charVar5 = func_0x00018076b8a0(charVar5);
+        charVar6 = func_0x00018076b8a0(*pcVar9);
+        if (charVar5 != charVar6) break;
         pcVar1 = memorySize + 1;
         memorySize = memorySize + 1;
         pcVar9 = pcVar9 + 1;
-        cVar5 = *pcVar1;
+        charVar5 = *pcVar1;
       }
       if (*pcVar9 != '\0') {
         return 0x4a;
       }
 LAB_1808989b1:
-      cVar5 = *memorySize;
+      charVar5 = *memorySize;
     }
-    bVar3 = *(byte *)((longlong)preturnValue1 + 7);
-    if (bVar3 != 0) {
+    boolVar3 = *(byte *)((longlong)preturnValue1 + 7);
+    if (boolVar3 != 0) {
       preturnValue1 = (uint *)(*resourceHandle + (ulonglong)(preturnValue1[1] & 0xffffff) * 8);
-      if (bVar3 != 0) {
+      if (boolVar3 != 0) {
         do {
           if (*(char *)((longlong)preturnValue1 + 3) == '\0') goto LAB_1808989f7;
           localInt10 = localInt10 + 1;
           preturnValue1 = preturnValue1 + 2;
-        } while (localInt10 < (int)(uint)bVar3);
+        } while (localInt10 < (int)(uint)boolVar3);
       }
       return 0x4a;
     }
@@ -12497,7 +12497,7 @@ uint32 CompleteResourceTask(uint64 resourceHandle,ulonglong memorySize)
   int integerVar7;
   longlong unaff_RBP;
   byte *unaff_RSI;
-  longlong lVar8;
+  longlong longVar8;
   byte *puVar9;
   int localInt10;
   uint32 unaff_R13D;
@@ -12509,10 +12509,10 @@ uint32 CompleteResourceTask(uint64 resourceHandle,ulonglong memorySize)
     unsignedVar4 = *(uint *)(*unaff_R14 + memorySize * 8);
     integerVar7 = (int)unaff_RBP;
     if ((unsignedVar4 & 0xffffff) != 0xffffff) {
-      lVar8 = (ulonglong)(unsignedVar4 & 0xffffff) + unaff_R14[4];
-      status = func_0x00018076b690(lVar8);
+      longVar8 = (ulonglong)(unsignedVar4 & 0xffffff) + unaff_R14[4];
+      status = func_0x00018076b690(longVar8);
       if (integerVar7 != 0) {
-        puVar9 = (byte *)((status + -1) + lVar8);
+        puVar9 = (byte *)((status + -1) + longVar8);
         localInt10 = status;
         while (0 < localInt10) {
           length = localInt10;
@@ -13662,7 +13662,7 @@ void sortUtilityFeatures(uint64 *resourceHandle,uint64 memorySize)
   longlong unaff_RBP;
   uint unsignedVar4;
   ulonglong unsignedVar5;
-  longlong lVar6;
+  longlong longVar6;
   ulonglong unsignedVar7;
   longlong unaff_R14;
   ulonglong unsignedVar8;
@@ -13740,12 +13740,12 @@ void sortUtilityFeatures(uint64 *resourceHandle,uint64 memorySize)
           unsignedVar9 = extraout_XMM0_Da_03;
           if (0 < length) {
             do {
-              lVar6 = *(longlong *)(unaff_R14 + LIST_OFFSET_HEAD) + unsignedVar5;
-              status = discoverUtilityComponents(unsignedVar9,lVar6);
+              longVar6 = *(longlong *)(unaff_R14 + LIST_OFFSET_HEAD) + unsignedVar5;
+              status = discoverUtilityComponents(unsignedVar9,longVar6);
               if (status != 0) {
                 return;
               }
-              unsignedVar4 = *(uint *)(lVar6 + RESOURCE_HANDLE_OFFSET);
+              unsignedVar4 = *(uint *)(longVar6 + RESOURCE_HANDLE_OFFSET);
               preturnValue = *(uint64 **)(baseRegister + 8);
               if (unsignedVar4 < 0x8000) {
                 *(short *)(unaff_RBP + POINTER_OFFSET_DATA) = (short)unsignedVar4;
@@ -13759,7 +13759,7 @@ void sortUtilityFeatures(uint64 *resourceHandle,uint64 memorySize)
               if (status != 0) {
                 return;
               }
-              status = FUN_1808affb0(extraout_XMM0_Da_04,lVar6 + 0x14);
+              status = FUN_1808affb0(extraout_XMM0_Da_04,longVar6 + 0x14);
               if (status != 0) {
                 return;
               }
@@ -13777,15 +13777,15 @@ void sortUtilityFeatures(uint64 *resourceHandle,uint64 memorySize)
             if (status == 0) {
               if (0 < length) {
                 do {
-                  lVar6 = *(longlong *)(unaff_R14 + 0x70);
+                  longVar6 = *(longlong *)(unaff_R14 + 0x70);
                   preturnValue = *(uint64 **)(baseRegister + 8);
-                  *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint32 *)(lVar6 + unsignedVar7 * 8);
+                  *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint32 *)(longVar6 + unsignedVar7 * 8);
                   status = (**(code **)*preturnValue)(preturnValue,unaff_RBP + POINTER_OFFSET_DATA,4);
                   if (status != 0) {
                     return;
                   }
                   preturnValue = *(uint64 **)(baseRegister + 8);
-                  *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint32 *)(lVar6 + 4 + unsignedVar7 * 8);
+                  *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint32 *)(longVar6 + 4 + unsignedVar7 * 8);
                   status = (**(code **)*preturnValue)(preturnValue,unaff_RBP + POINTER_OFFSET_DATA,4);
                   if (status != 0) {
                     return;
@@ -13821,9 +13821,9 @@ void filterUtilityOptions(uint64 *resourceHandle)
   longlong unaff_RSI;
   longlong longVar5;
   longlong unaff_RDI;
-  longlong lVar6;
+  longlong longVar6;
   longlong unaff_R14;
-  longlong lVar7;
+  longlong longVar7;
   uint32 extraout_XMM0_Da;
   uint32 extraout_XMM0_Da_00;
   uint32 extraout_XMM0_Da_01;
@@ -13831,12 +13831,12 @@ void filterUtilityOptions(uint64 *resourceHandle)
   
   length = (**(code **)*resourceHandle)();
   if (length == 0) {
-    lVar6 = unaff_RDI;
-    lVar7 = unaff_RDI;
+    longVar6 = unaff_RDI;
+    longVar7 = unaff_RDI;
     unsignedVar8 = extraout_XMM0_Da;
     if (0 < (int)unaff_RSI) {
       do {
-        longVar5 = *(longlong *)(unaff_R14 + LIST_OFFSET_HEAD) + lVar6;
+        longVar5 = *(longlong *)(unaff_R14 + LIST_OFFSET_HEAD) + longVar6;
         length = discoverUtilityComponents(unsignedVar8,longVar5);
         if (length != 0) {
           return;
@@ -13859,10 +13859,10 @@ void filterUtilityOptions(uint64 *resourceHandle)
         if (length != 0) {
           return;
         }
-        lVar7 = lVar7 + 1;
-        lVar6 = lVar6 + RESOURCE_OFFSET_HANDLE;
+        longVar7 = longVar7 + 1;
+        longVar6 = longVar6 + RESOURCE_OFFSET_HANDLE;
         unsignedVar8 = extraout_XMM0_Da_01;
-      } while (lVar7 < unaff_RSI);
+      } while (longVar7 < unaff_RSI);
     }
     length = FUN_1808aca30(unsignedVar8,unaff_R14 + DATA_OFFSET_START);
     if (length == 0) {
@@ -13873,15 +13873,15 @@ void filterUtilityOptions(uint64 *resourceHandle)
       if (counter == 0) {
         if (0 < length) {
           do {
-            lVar6 = *(longlong *)(unaff_R14 + 0x70);
+            longVar6 = *(longlong *)(unaff_R14 + 0x70);
             plocalUInt2 = *(uint64 **)(baseRegister + 8);
-            *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint32 *)(lVar6 + unaff_RDI * 8);
+            *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint32 *)(longVar6 + unaff_RDI * 8);
             counter = (**(code **)*plocalUInt2)(plocalUInt2,unaff_RBP + POINTER_OFFSET_DATA,4);
             if (counter != 0) {
               return;
             }
             plocalUInt2 = *(uint64 **)(baseRegister + 8);
-            *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint32 *)(lVar6 + 4 + unaff_RDI * 8);
+            *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint32 *)(longVar6 + 4 + unaff_RDI * 8);
             counter = (**(code **)*plocalUInt2)(plocalUInt2,unaff_RBP + POINTER_OFFSET_DATA,4);
             if (counter != 0) {
               return;
@@ -14024,7 +14024,7 @@ uint64 FUN_180899d90(longlong resourceHandle,longlong memorySize)
   uint64 returnValue;
   float *pfVar2;
   int length;
-  float fVar4;
+  float floatVar4;
   uint16_t auStackX_8 [4];
   
   auStackX_8[0] = CONCAT11(auStackX_8[0]._1_1_,*(byte *)(memorySize + RESOURCE_HANDLE_OFFSET4));
@@ -14034,31 +14034,31 @@ uint64 FUN_180899d90(longlong resourceHandle,longlong memorySize)
     if (0 < *(short *)(memorySize + RESOURCE_HANDLE_OFFSET4)) {
       pfVar2 = (float *)(memorySize + 0x84);
       do {
-        fVar4 = pfVar2[-POINTER_OFFSET_DATA] * 0.25;
-        if (0.0 <= fVar4) {
-          if (1.0 <= fVar4) {
-            fVar4 = 1.0;
+        floatVar4 = pfVar2[-POINTER_OFFSET_DATA] * 0.25;
+        if (0.0 <= floatVar4) {
+          if (1.0 <= floatVar4) {
+            floatVar4 = 1.0;
           }
         }
         else {
-          fVar4 = 0.0;
+          floatVar4 = 0.0;
         }
-        auStackX_8[0] = (data2)(int)(fVar4 * 65535.0);
+        auStackX_8[0] = (data2)(int)(floatVar4 * 65535.0);
         returnValue = (**(code **)**(uint64 **)(resourceHandle + 8))
                           (*(uint64 **)(resourceHandle + 8),auStackX_8,2);
         if ((int)returnValue != 0) {
           return returnValue;
         }
-        fVar4 = *pfVar2 * 0.25;
-        if (0.0 <= fVar4) {
-          if (1.0 <= fVar4) {
-            fVar4 = 1.0;
+        floatVar4 = *pfVar2 * 0.25;
+        if (0.0 <= floatVar4) {
+          if (1.0 <= floatVar4) {
+            floatVar4 = 1.0;
           }
         }
         else {
-          fVar4 = 0.0;
+          floatVar4 = 0.0;
         }
-        auStackX_8[0] = (data2)(int)(fVar4 * 65535.0);
+        auStackX_8[0] = (data2)(int)(floatVar4 * 65535.0);
         returnValue = (**(code **)**(uint64 **)(resourceHandle + 8))
                           (*(uint64 **)(resourceHandle + 8),auStackX_8,2);
         if ((int)returnValue != 0) {
@@ -14083,38 +14083,38 @@ uint64 FUN_180899dc7(void)
   longlong unaff_RBP;
   longlong unaff_RSI;
   int length;
-  float fVar4;
+  float floatVar4;
   uint16_t uStack0000000000000070;
   
   length = 0;
   if (0 < *(short *)(unaff_RSI + RESOURCE_HANDLE_OFFSET4)) {
     pfVar2 = (float *)(unaff_RSI + 0x84);
     do {
-      fVar4 = pfVar2[-POINTER_OFFSET_DATA] * 0.25;
-      if (0.0 <= fVar4) {
-        if (1.0 <= fVar4) {
-          fVar4 = 1.0;
+      floatVar4 = pfVar2[-POINTER_OFFSET_DATA] * 0.25;
+      if (0.0 <= floatVar4) {
+        if (1.0 <= floatVar4) {
+          floatVar4 = 1.0;
         }
       }
       else {
-        fVar4 = 0.0;
+        floatVar4 = 0.0;
       }
-      uStack0000000000000070 = (data2)(int)(fVar4 * 65535.0);
+      uStack0000000000000070 = (data2)(int)(floatVar4 * 65535.0);
       returnValue = (**(code **)**(uint64 **)(unaff_RBP + 8))
                         (*(uint64 **)(unaff_RBP + 8),&stack0x00000070,2);
       if ((int)returnValue != 0) {
         return returnValue;
       }
-      fVar4 = *pfVar2 * 0.25;
-      if (0.0 <= fVar4) {
-        if (1.0 <= fVar4) {
-          fVar4 = 1.0;
+      floatVar4 = *pfVar2 * 0.25;
+      if (0.0 <= floatVar4) {
+        if (1.0 <= floatVar4) {
+          floatVar4 = 1.0;
         }
       }
       else {
-        fVar4 = 0.0;
+        floatVar4 = 0.0;
       }
-      uStack0000000000000070 = (data2)(int)(fVar4 * 65535.0);
+      uStack0000000000000070 = (data2)(int)(floatVar4 * 65535.0);
       returnValue = (**(code **)**(uint64 **)(unaff_RBP + 8))
                         (*(uint64 **)(unaff_RBP + 8),&stack0x00000070,2);
       if ((int)returnValue != 0) {
@@ -14464,17 +14464,17 @@ void categorizeUtilityKinds(void)
 uint64 FUN_18089a370(longlong resourceHandle,longlong memorySize)
 
 {
-  short sVar1;
+  short shortVar1;
   int status;
   ushort unsignedVar3;
   uint64 unsignedVar4;
   ushort unsignedVar5;
-  longlong lVar6;
-  longlong lVar7;
-  longlong lVar8;
+  longlong longVar6;
+  longlong longVar7;
+  longlong longVar8;
   int alocalInt [4];
   
-  lVar7 = 0;
+  longVar7 = 0;
   unsignedVar5 = (ushort)(*(int *)(memorySize + BYTE_OFFSET_2) != 0);
   if ((*(int *)(memorySize + FIELD_OFFSET_4) != 0) || (*(int *)(memorySize + FIELD_OFFSET_1) != 0)) {
     unsignedVar5 = unsignedVar5 | 2;
@@ -14536,28 +14536,28 @@ uint64 FUN_18089a370(longlong resourceHandle,longlong memorySize)
             if ((int)unsignedVar4 != 0) {
               return unsignedVar4;
             }
-            lVar8 = lVar7;
+            longVar8 = longVar7;
             if (0 < status) {
               do {
-                lVar6 = *(longlong *)(memorySize + 600) + lVar7;
-                sVar1 = *(short *)(lVar6 + 0x114);
-                unsignedVar4 = discoverUtilityComponents(resourceHandle,lVar6);
+                longVar6 = *(longlong *)(memorySize + 600) + longVar7;
+                shortVar1 = *(short *)(longVar6 + 0x114);
+                unsignedVar4 = discoverUtilityComponents(resourceHandle,longVar6);
                 if ((int)unsignedVar4 != 0) {
                   return unsignedVar4;
                 }
-                alocalInt[0] = CONCAT31(alocalInt[0]._1_3_,sVar1 != 0);
+                alocalInt[0] = CONCAT31(alocalInt[0]._1_3_,shortVar1 != 0);
                 unsignedVar4 = (**(code **)**(uint64 **)(resourceHandle + 8))
                                   (*(uint64 **)(resourceHandle + 8),alocalInt,1);
                 if ((int)unsignedVar4 != 0) {
                   return unsignedVar4;
                 }
-                if ((sVar1 != 0) && (unsignedVar4 = FUN_180899d90(resourceHandle,lVar6 + RESOURCE_HANDLE_OFFSET), (int)unsignedVar4 != 0))
+                if ((shortVar1 != 0) && (unsignedVar4 = FUN_180899d90(resourceHandle,longVar6 + RESOURCE_HANDLE_OFFSET), (int)unsignedVar4 != 0))
                 {
                   return unsignedVar4;
                 }
-                lVar8 = lVar8 + 1;
-                lVar7 = lVar7 + 0x118;
-              } while (lVar8 < status);
+                longVar8 = longVar8 + 1;
+                longVar7 = longVar7 + 0x118;
+              } while (longVar8 < status);
             }
           }
           if ((((((unsignedVar5 & POINTER_OFFSET_DATA) == 0) ||
@@ -14584,7 +14584,7 @@ uint64 FUN_18089a370(longlong resourceHandle,longlong memorySize)
 uint64 FUN_18089a51d(void)
 
 {
-  short sVar1;
+  short shortVar1;
   int status;
   uint64 unsignedVar3;
   longlong baseRegister;
@@ -14604,17 +14604,17 @@ uint64 FUN_18089a51d(void)
     longVar4 = unaff_R14;
     if (0 < status) {
       do {
-        sVar1 = *(short *)(*(longlong *)(unaff_RDI + 600) + unaff_R14 + 0x114);
+        shortVar1 = *(short *)(*(longlong *)(unaff_RDI + 600) + unaff_R14 + 0x114);
         unsignedVar3 = discoverUtilityComponents();
         if ((int)unsignedVar3 != 0) {
           return unsignedVar3;
         }
         unsignedVar3 = (**(code **)**(uint64 **)(baseRegister + 8))
-                          (*(uint64 **)(baseRegister + 8),&stack0x00000020,1,in_R9,sVar1 != 0);
+                          (*(uint64 **)(baseRegister + 8),&stack0x00000020,1,in_R9,shortVar1 != 0);
         if ((int)unsignedVar3 != 0) {
           return unsignedVar3;
         }
-        if ((sVar1 != 0) && (unsignedVar3 = FUN_180899d90(), (int)unsignedVar3 != 0)) {
+        if ((shortVar1 != 0) && (unsignedVar3 = FUN_180899d90(), (int)unsignedVar3 != 0)) {
           return unsignedVar3;
         }
         longVar4 = longVar4 + 1;
@@ -15024,7 +15024,7 @@ void orderUtilityLists(longlong resourceHandle,int *memorySize)
 {
   char *pcVar1;
   code *pcVar2;
-  char cVar3;
+  char charVar3;
   uint32 in_EAX;
   uint32_t unsignedVar6;
   int integerVar5;
@@ -15035,21 +15035,21 @@ void orderUtilityLists(longlong resourceHandle,int *memorySize)
   uint32 unsignedVar4;
   
   unsignedVar6 = (data3)((uint)in_EAX >> 8);
-  cVar3 = (char)in_EAX + -0x57 + in_CF;
-  unsignedVar4 = CONCAT31(unsignedVar6,cVar3);
+  charVar3 = (char)in_EAX + -0x57 + in_CF;
+  unsignedVar4 = CONCAT31(unsignedVar6,charVar3);
   *(uint32 *)CONCAT44(in_register_00000004,unsignedVar4) = unsignedVar4;
   *(uint *)(resourceHandle + -0x565dff77) = *(uint *)(resourceHandle + -0x565dff77) & unaff_EBP;
   *(uint32 *)CONCAT44(in_register_00000004,unsignedVar4) = unsignedVar4;
   plocalInt = memorySize;
   *(uint32 *)CONCAT44(in_register_00000004,unsignedVar4) = unsignedVar4;
   *(char *)CONCAT44(in_register_00000004,unsignedVar4) =
-       *(char *)CONCAT44(in_register_00000004,unsignedVar4) + cVar3;
+       *(char *)CONCAT44(in_register_00000004,unsignedVar4) + charVar3;
   *(char *)CONCAT44(in_register_00000004,unsignedVar4) =
-       *(char *)CONCAT44(in_register_00000004,unsignedVar4) + cVar3;
-  integerVar5 = CONCAT31(unsignedVar6,cVar3 + '\x18');
+       *(char *)CONCAT44(in_register_00000004,unsignedVar4) + charVar3;
+  integerVar5 = CONCAT31(unsignedVar6,charVar3 + '\x18');
   *memorySize = *memorySize + integerVar5;
   pcVar1 = (char *)((longlong)&plocalInt + CONCAT44(in_register_00000004,integerVar5));
-  *pcVar1 = *pcVar1 + cVar3 + '\x18';
+  *pcVar1 = *pcVar1 + charVar3 + '\x18';
   pcVar2 = (code *)swi(3);
   (*pcVar2)();
   return;
@@ -15246,7 +15246,7 @@ void sequenceUtilityItems(void)
 uint64 FUN_18089ace4(void)
 
 {
-  float fVar1;
+  float floatVar1;
   int in_EAX;
   uint64 localUInt2;
   uint64 *puVar3;
@@ -15263,7 +15263,7 @@ uint64 FUN_18089ace4(void)
       if (*(int *)(unaff_RDI + LIST_OFFSET_HEAD) == 0x14) {
         puVar3 = (uint64 *)**(longlong **)(unaff_RDI + BUFFER_OFFSET_DATA);
         if (*(int *)(puVar3 + 2) == (int)unaff_RBP) {
-          fVar1 = *(float *)(puVar3 + 3);
+          floatVar1 = *(float *)(puVar3 + 3);
           if (puVar3 != (uint64 *)0x0) {
             (**(code **)*puVar3)(puVar3,0);
                     // WARNING: Subroutine does not return
@@ -15279,7 +15279,7 @@ uint64 FUN_18089ace4(void)
           *(uint32 *)(puVar3 + 2) = 1;
           *(int *)(puVar3 + 3) = (int)unaff_RBP;
           **(uint64 **)(unaff_RDI + BUFFER_OFFSET_DATA) = puVar3;
-          *(int *)(puVar3 + 3) = (int)fVar1;
+          *(int *)(puVar3 + 3) = (int)floatVar1;
           goto LAB_18089ae18;
         }
       }
@@ -17092,7 +17092,7 @@ void linkUtilityResources(longlong resourceHandle,uint64 *memorySize,int operati
   int length;
   uint unsignedVar4;
   uint unsignedVar5;
-  longlong lVar6;
+  longlong longVar6;
   uint unsignedVar7;
   uint auStackX_8 [2];
   uint auStackX_20 [2];
@@ -17151,7 +17151,7 @@ void linkUtilityResources(longlong resourceHandle,uint64 *memorySize,int operati
   if (status != 0) {
     return;
   }
-  lVar6 = (longlong)(int)auStackX_8[0];
+  longVar6 = (longlong)(int)auStackX_8[0];
   unsignedVar4 = (int)*(uint *)(resourceHandle + FIELD_OFFSET_4) >> ERROR_CODE_FAILED;
   if (((int)((*(uint *)(resourceHandle + FIELD_OFFSET_4) ^ unsignedVar4) - unsignedVar4) < (int)auStackX_8[0]) &&
      (status = process_system_request(resourceHandle + POINTER_OFFSET_DATA,auStackX_8[0]), status != 0)) {
@@ -17165,7 +17165,7 @@ void linkUtilityResources(longlong resourceHandle,uint64 *memorySize,int operati
   *(uint *)(resourceHandle + BYTE_OFFSET_2) = returnValue;
   if (returnValue != 0) {
     if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-      status = FUN_1808aed00(*memorySize,*(uint64 *)(resourceHandle + POINTER_OFFSET_DATA),lVar6);
+      status = FUN_1808aed00(*memorySize,*(uint64 *)(resourceHandle + POINTER_OFFSET_DATA),longVar6);
       if (status == 0) goto LAB_18089bfc7;
     }
     else {
@@ -17322,7 +17322,7 @@ ulonglong FUN_18089c030(longlong resourceHandle,uint64 *memorySize)
   ulonglong unsignedVar4;
   uint unsignedVar5;
   uint64 *puVar6;
-  longlong lVar7;
+  longlong longVar7;
   int aiStackX_10 [2];
   
   if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
@@ -17339,7 +17339,7 @@ ulonglong FUN_18089c030(longlong resourceHandle,uint64 *memorySize)
   if ((int)unsignedVar4 != 0) {
     return unsignedVar4;
   }
-  lVar7 = (longlong)aiStackX_10[0];
+  longVar7 = (longlong)aiStackX_10[0];
   unsignedVar5 = (int)*(uint *)(resourceHandle + 0x14) >> ERROR_CODE_FAILED;
   if (((int)((*(uint *)(resourceHandle + 0x14) ^ unsignedVar5) - unsignedVar5) < aiStackX_10[0]) &&
      (unsignedVar4 = FUN_180882f00(resourceHandle + 8,aiStackX_10[0]), (int)unsignedVar4 != 0)) {
@@ -17362,7 +17362,7 @@ ulonglong FUN_18089c030(longlong resourceHandle,uint64 *memorySize)
   *(int *)(resourceHandle + RESOURCE_HANDLE_OFFSET) = status;
   if (status != 0) {
     if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-      unsignedVar4 = FUN_1808aed00(*memorySize,*(uint64 *)(resourceHandle + 8),lVar7 << 3);
+      unsignedVar4 = FUN_1808aed00(*memorySize,*(uint64 *)(resourceHandle + 8),longVar7 << 3);
       if ((int)unsignedVar4 == 0) goto LAB_18089c131;
     }
     else {
@@ -17638,9 +17638,9 @@ uint64 * FUN_18089c1fb(void)
   uint32 localUInt2;
   uint32 unsignedVar3;
   uint32 unsignedVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
+  float floatVar5;
+  float floatVar6;
+  float floatVar7;
   uint unsignedVar8;
   uint unsignedVar9;
   uint returnValue0;
@@ -17834,13 +17834,13 @@ LAB_18089c40a:
         do {
           pfVar14 = (float *)FUN_180847820();
           fVar21 = *pfVar14;
-          fVar5 = pfVar14[1];
-          fVar6 = pfVar14[2];
-          fVar7 = pfVar14[3];
+          floatVar5 = pfVar14[1];
+          floatVar6 = pfVar14[2];
+          floatVar7 = pfVar14[3];
           *(float *)(localLong17 + -0x14) = fVar21;
-          *(float *)(localLong17 + -RESOURCE_HANDLE_OFFSET) = fVar5;
-          *(float *)(localLong17 + -0xc) = fVar6;
-          *(float *)(localLong17 + -8) = fVar7;
+          *(float *)(localLong17 + -RESOURCE_HANDLE_OFFSET) = floatVar5;
+          *(float *)(localLong17 + -0xc) = floatVar6;
+          *(float *)(localLong17 + -8) = floatVar7;
           *(uint64 *)(localLong17 + -4) = 0;
           localLong18 = localLong18 + -1;
           localLong17 = localLong17 + RESOURCE_OFFSET_HANDLE;
@@ -17893,9 +17893,9 @@ uint64 * FUN_18089c22e(void)
   uint32 localUInt2;
   uint32 unsignedVar3;
   uint32 unsignedVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
+  float floatVar5;
+  float floatVar6;
+  float floatVar7;
   uint unsignedVar8;
   uint unsignedVar9;
   uint returnValue0;
@@ -18081,13 +18081,13 @@ LAB_18089c40a:
         do {
           pfVar14 = (float *)FUN_180847820();
           fVar21 = *pfVar14;
-          fVar5 = pfVar14[1];
-          fVar6 = pfVar14[2];
-          fVar7 = pfVar14[3];
+          floatVar5 = pfVar14[1];
+          floatVar6 = pfVar14[2];
+          floatVar7 = pfVar14[3];
           *(float *)(localLong17 + -0x14) = fVar21;
-          *(float *)(localLong17 + -RESOURCE_HANDLE_OFFSET) = fVar5;
-          *(float *)(localLong17 + -0xc) = fVar6;
-          *(float *)(localLong17 + -8) = fVar7;
+          *(float *)(localLong17 + -RESOURCE_HANDLE_OFFSET) = floatVar5;
+          *(float *)(localLong17 + -0xc) = floatVar6;
+          *(float *)(localLong17 + -8) = floatVar7;
           *(uint64 *)(localLong17 + -4) = 0;
           localLong18 = localLong18 + -1;
           localLong17 = localLong17 + RESOURCE_OFFSET_HANDLE;
@@ -18139,9 +18139,9 @@ ulonglong FUN_18089c2d8(uint64 resourceHandle)
   uint32 returnValue;
   uint32 localUInt2;
   uint32 unsignedVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
+  float floatVar4;
+  float floatVar5;
+  float floatVar6;
   uint64 unsignedVar7;
   uint in_EAX;
   uint unsignedVar8;
@@ -18293,13 +18293,13 @@ LAB_18089c40a:
         do {
           pfVar13 = (float *)FUN_180847820();
           fVar20 = *pfVar13;
-          fVar4 = pfVar13[1];
-          fVar5 = pfVar13[2];
-          fVar6 = pfVar13[3];
+          floatVar4 = pfVar13[1];
+          floatVar5 = pfVar13[2];
+          floatVar6 = pfVar13[3];
           *(float *)(localLong16 + -0x14) = fVar20;
-          *(float *)(localLong16 + -RESOURCE_HANDLE_OFFSET) = fVar4;
-          *(float *)(localLong16 + -0xc) = fVar5;
-          *(float *)(localLong16 + -8) = fVar6;
+          *(float *)(localLong16 + -RESOURCE_HANDLE_OFFSET) = floatVar4;
+          *(float *)(localLong16 + -0xc) = floatVar5;
+          *(float *)(localLong16 + -8) = floatVar6;
           *(uint64 **)(localLong16 + -4) = unaff_R12;
           localLong17 = localLong17 + -1;
           localLong16 = localLong16 + RESOURCE_OFFSET_HANDLE;
@@ -18748,7 +18748,7 @@ ulonglong FUN_18089c69d(void)
   float extraout_XMM0_Da_03;
   float extraout_XMM0_Da_04;
   float extraout_XMM0_Da_05;
-  float fVar9;
+  float floatVar9;
   float extraout_XMM0_Da_06;
   uint32 extraout_XMM0_Da_07;
   uint32 extraout_XMM0_Da_08;
@@ -18924,7 +18924,7 @@ LAB_18089c878:
     return unsignedVar4;
   }
   unsignedVar4 = unsignedVar7;
-  fVar9 = extraout_XMM0_Da;
+  floatVar9 = extraout_XMM0_Da;
   unsignedVar5 = unsignedVar6;
   unsignedVar8 = unaff_R14D;
   if (*(uint *)(baseRegister + 8) < 0x70) {
@@ -18937,12 +18937,12 @@ LAB_18089c878:
       else if (plocalLong1[2] == 0) {
 LAB_18089c9a8:
         unsignedVar3 = FUN_180769ed0(*plocalLong1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D,0);
-        fVar9 = extraout_XMM0_Da_01;
+        floatVar9 = extraout_XMM0_Da_01;
       }
       else {
         *(uint32 *)(unaff_RBP + -0x25) = 0;
         unsignedVar3 = func_0x00018076a7d0(buffer,unaff_RBP + -0x25);
-        fVar9 = extraout_XMM0_Da_00;
+        floatVar9 = extraout_XMM0_Da_00;
         if (unsignedVar3 == 0) {
           if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)plocalLong1[2])
           goto LAB_18089c9a8;
@@ -18970,14 +18970,14 @@ LAB_18089c9a8:
     return unsignedVar4;
   }
   if ((*(uint *)(baseRegister + 8) < DATA_OFFSET_START) &&
-     (unsignedVar4 = func_0x0001808de610(), fVar9 = extraout_XMM0_Da_02, (int)unsignedVar4 != 0)) {
+     (unsignedVar4 = func_0x0001808de610(), floatVar9 = extraout_XMM0_Da_02, (int)unsignedVar4 != 0)) {
     return unsignedVar4;
   }
   unsignedVar4 = unsignedVar7;
   if (0x51 < *(uint *)(baseRegister + 8)) {
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
       unsignedVar4 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + BUFFER_OFFSET_DATA);
-      fVar9 = extraout_XMM0_Da_03;
+      floatVar9 = extraout_XMM0_Da_03;
     }
     else {
       unsignedVar4 = BYTE_OFFSET_FLAG;
@@ -19000,12 +19000,12 @@ LAB_18089c9a8:
   else if (plocalLong1[2] == 0) {
 LAB_18089ca9c:
     unsignedVar3 = FUN_180769ed0(*plocalLong1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D,0);
-    fVar9 = extraout_XMM0_Da_05;
+    floatVar9 = extraout_XMM0_Da_05;
   }
   else {
     *(uint32 *)(unaff_RBP + -0x25) = 0;
     unsignedVar3 = func_0x00018076a7d0(buffer,unaff_RBP + -0x25);
-    fVar9 = extraout_XMM0_Da_04;
+    floatVar9 = extraout_XMM0_Da_04;
     if (unsignedVar3 == 0) {
       if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)plocalLong1[2]) goto LAB_18089ca9c;
       unsignedVar3 = 0x11;
@@ -19033,8 +19033,8 @@ LAB_18089cad8:
     unsignedVar3 = *(uint *)(baseRegister + 8);
   }
   if ((unsignedVar3 < 0x87) && ((*(uint *)(unaff_R13 + FIELD_OFFSET_2) >> 3 & 1) != 0)) {
-    fVar9 = *(float *)(unaff_R13 + 0x3c) - 1.0;
-    *(float *)(unaff_R13 + 0x3c) = fVar9;
+    floatVar9 = *(float *)(unaff_R13 + 0x3c) - 1.0;
+    *(float *)(unaff_R13 + 0x3c) = floatVar9;
     unsignedVar3 = *(uint *)(baseRegister + 8);
   }
   if (0x8a < unsignedVar3) {
@@ -19051,10 +19051,10 @@ LAB_18089cad8:
     }
     *(uint32 *)(unaff_RBP + 0x77) = 0;
     unsignedVar4 = unsignedVar7;
-    fVar9 = extraout_XMM0_Da_06;
+    floatVar9 = extraout_XMM0_Da_06;
     if (unsignedVar5 >> 1 != 0) {
       do {
-        unsignedVar4 = FUN_1808dde10(fVar9,unsignedVar4);
+        unsignedVar4 = FUN_1808dde10(floatVar9,unsignedVar4);
         if ((int)unsignedVar4 != 0) {
           return unsignedVar4;
         }
@@ -19079,12 +19079,12 @@ LAB_18089cad8:
         unsignedVar8 = *(uint *)(unaff_RBP + 0x77) & -(unsignedVar5 & 1);
         unsignedVar4 = (ulonglong)unsignedVar8;
         *(uint *)(unaff_RBP + 0x77) = unsignedVar8;
-        fVar9 = extraout_XMM0_Da_09;
+        floatVar9 = extraout_XMM0_Da_09;
       } while ((int)unsignedVar6 < (int)(unsignedVar5 >> 1));
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(fVar9,unaff_RBP + -0x21);
+  FUN_1808ddf80(floatVar9,unaff_RBP + -0x21);
 }
 
 
@@ -20011,7 +20011,7 @@ ulonglong FUN_18089ce30(longlong resourceHandle,longlong *memorySize)
   longlong *plocalLong1;
   ulonglong localUInt2;
   uint unsignedVar3;
-  bool bVar4;
+  bool boolVar4;
   uint auStackX_18 [2];
   uint auStackX_20 [2];
   byte localBuffer [32];
@@ -20092,7 +20092,7 @@ LAB_18089cf93:
     return localUInt2;
   }
   if (2 < (int)memorySize[8] - 0x65U) goto LAB_18089d07f;
-  bVar4 = false;
+  boolVar4 = false;
   if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) goto LAB_18089d06e;
   plocalLong1 = (longlong *)*memorySize;
   if (*plocalLong1 != 0) {
@@ -20110,14 +20110,14 @@ LAB_18089d034:
     }
   }
   if (unsignedVar3 == 0) {
-    bVar4 = (char)auStackX_18[0] != '\0';
+    boolVar4 = (char)auStackX_18[0] != '\0';
     unsignedVar3 = 0;
   }
   if (unsignedVar3 != 0) {
 LAB_18089d06e:
     return (ulonglong)unsignedVar3;
   }
-  if (bVar4) {
+  if (boolVar4) {
     *(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET) = 3;
   }
 LAB_18089d07f:
@@ -20136,7 +20136,7 @@ ulonglong FUN_18089ce60(void)
   uint unsignedVar3;
   longlong *unaff_RDI;
   longlong unaff_R14;
-  bool bVar4;
+  bool boolVar4;
   char cStack0000000000000090;
   uint in_stack_00000098;
   
@@ -20212,7 +20212,7 @@ LAB_18089cf93:
     return localUInt2;
   }
   if (2 < (int)unaff_RDI[8] - 0x65U) goto LAB_18089d07f;
-  bVar4 = false;
+  boolVar4 = false;
   if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) != 0) goto LAB_18089d06e;
   plocalLong1 = (longlong *)*unaff_RDI;
   if (*plocalLong1 != 0) {
@@ -20230,14 +20230,14 @@ LAB_18089d034:
     }
   }
   if (unsignedVar3 == 0) {
-    bVar4 = cStack0000000000000090 != '\0';
+    boolVar4 = cStack0000000000000090 != '\0';
     unsignedVar3 = 0;
   }
   if (unsignedVar3 != 0) {
 LAB_18089d06e:
     return (ulonglong)unsignedVar3;
   }
-  if (bVar4) {
+  if (boolVar4) {
     *(uint32 *)(unaff_R14 + RESOURCE_HANDLE_OFFSET) = 3;
   }
 LAB_18089d07f:
@@ -21948,7 +21948,7 @@ ulonglong FUN_18089e4f0(longlong resourceHandle,uint64 *memorySize)
   uint unsignedVar3;
   ulonglong unsignedVar4;
   uint32 *puVar5;
-  longlong lVar6;
+  longlong longVar6;
   uint32 *localPtr;
   uint64 localUInt;
   uint32 localUInt;
@@ -22005,19 +22005,19 @@ LAB_18089e70b:
         if ((int)localUInt != 0) {
           for (; (localPtr <= puVar5 && (puVar5 < localPtr + (int)localUInt));
               puVar5 = puVar5 + 1) {
-            lVar6 = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),BYTE_OFFSET_2,&unknown_180986e70,0xc1c,
+            longVar6 = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),BYTE_OFFSET_2,&unknown_180986e70,0xc1c,
                                   0,0,1);
-            if (lVar6 == 0) {
+            if (longVar6 == 0) {
               unsignedVar4 = 0x26;
               goto LAB_18089e70b;
             }
             returnValue = *puVar5;
-            *(longlong *)lVar6 = lVar6;
-            *(longlong *)(lVar6 + 8) = lVar6;
-            *(uint32 *)(lVar6 + RESOURCE_HANDLE_OFFSET) = returnValue;
-            *(uint64 *)(lVar6 + RESOURCE_OFFSET_HANDLE) = 0;
-            *(uint32 *)(lVar6 + POINTER_OFFSET_DATA) = 0;
-            unsignedVar3 = func_0x0001808aec10(resourceHandle + SYSTEM_OFFSET_STATUS1,lVar6);
+            *(longlong *)longVar6 = longVar6;
+            *(longlong *)(longVar6 + 8) = longVar6;
+            *(uint32 *)(longVar6 + RESOURCE_HANDLE_OFFSET) = returnValue;
+            *(uint64 *)(longVar6 + RESOURCE_OFFSET_HANDLE) = 0;
+            *(uint32 *)(longVar6 + POINTER_OFFSET_DATA) = 0;
+            unsignedVar3 = func_0x0001808aec10(resourceHandle + SYSTEM_OFFSET_STATUS1,longVar6);
             unsignedVar4 = (ulonglong)unsignedVar3;
             if (unsignedVar3 != 0) goto LAB_18089e70b;
           }
@@ -22055,7 +22055,7 @@ ulonglong FUN_18089e558(void)
   int integerVar6;
   uint32 *puVar7;
   ulonglong unsignedVar8;
-  longlong lVar9;
+  longlong longVar9;
   longlong unaff_RBP;
   uint32 *preturnValue0;
   uint64 *unaff_RDI;
@@ -22118,19 +22118,19 @@ LAB_18089e70b:
         puVar7 = *(uint32 **)(unaff_RBP + -BYTE_OFFSET_1);
         for (preturnValue0 = puVar7; (puVar7 <= preturnValue0 && (preturnValue0 < puVar7 + integerVar6));
             preturnValue0 = preturnValue0 + 1) {
-          lVar9 = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),BYTE_OFFSET_2,&unknown_180986e70,0xc1c,0)
+          longVar9 = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),BYTE_OFFSET_2,&unknown_180986e70,0xc1c,0)
           ;
-          if (lVar9 == 0) {
+          if (longVar9 == 0) {
             unsignedVar8 = 0x26;
             goto LAB_18089e70b;
           }
           returnValue1 = *preturnValue0;
-          *(longlong *)lVar9 = lVar9;
-          *(longlong *)(lVar9 + 8) = lVar9;
-          *(uint32 *)(lVar9 + RESOURCE_HANDLE_OFFSET) = returnValue1;
-          *(uint64 *)(lVar9 + RESOURCE_OFFSET_HANDLE) = 0;
-          *(uint32 *)(lVar9 + POINTER_OFFSET_DATA) = 0;
-          unsignedVar5 = func_0x0001808aec10(unaff_R15 + SYSTEM_OFFSET_STATUS1,lVar9);
+          *(longlong *)longVar9 = longVar9;
+          *(longlong *)(longVar9 + 8) = longVar9;
+          *(uint32 *)(longVar9 + RESOURCE_HANDLE_OFFSET) = returnValue1;
+          *(uint64 *)(longVar9 + RESOURCE_OFFSET_HANDLE) = 0;
+          *(uint32 *)(longVar9 + POINTER_OFFSET_DATA) = 0;
+          unsignedVar5 = func_0x0001808aec10(unaff_R15 + SYSTEM_OFFSET_STATUS1,longVar9);
           unsignedVar8 = (ulonglong)unsignedVar5;
           if (unsignedVar5 != 0) goto LAB_18089e70b;
           integerVar6 = *(int *)(unaff_RBP + -0x21);
@@ -22254,9 +22254,9 @@ ulonglong FUN_18089e820(longlong resourceHandle,longlong *memorySize)
   ulonglong unsignedVar4;
   ulonglong unsignedVar5;
   uint32 unsignedVar6;
-  bool bVar7;
-  bool bVar8;
-  bool bVar9;
+  bool boolVar7;
+  bool boolVar8;
+  bool boolVar9;
   uint auStackX_18 [2];
   char cStackX_20;
   char acStack_a8 [4];
@@ -22353,20 +22353,20 @@ LAB_18089ea0f:
   if ((int)unsignedVar4 != 0) {
     return unsignedVar4;
   }
-  bVar7 = *(uint *)(memorySize + 8) < FIELD_OFFSET_2;
+  boolVar7 = *(uint *)(memorySize + 8) < FIELD_OFFSET_2;
   cStackX_20 = (char)unsignedVar4;
   auStackX_18[0] = CONCAT31(auStackX_18[0]._1_3_,cStackX_20);
-  bVar9 = false;
+  boolVar9 = false;
   if (0x37 < *(uint *)(memorySize + 8)) {
     if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
       pbuffer = (longlong *)*memorySize;
       if (*pbuffer == 0) {
         unsignedVar3 = BYTE_OFFSET_FLAG;
 LAB_18089eaae:
-        bVar8 = unsignedVar3 == 0;
-        if (bVar8) {
-          bVar7 = acStack_a8[0] != '\0';
-          bVar8 = true;
+        boolVar8 = unsignedVar3 == 0;
+        if (boolVar8) {
+          boolVar7 = acStack_a8[0] != '\0';
+          boolVar8 = true;
         }
       }
       else {
@@ -22377,8 +22377,8 @@ LAB_18089ea93:
         }
         localUInt = 0;
         unsignedVar3 = func_0x00018076a7d0(*pbuffer,&localUInt);
-        bVar8 = unsignedVar3 == 0;
-        if (bVar8) {
+        boolVar8 = unsignedVar3 == 0;
+        if (boolVar8) {
           if ((ulonglong)pbuffer[2] < (ulonglong)localUInt + 1) {
             unsignedVar3 = 0x11;
             goto LAB_18089eaae;
@@ -22387,7 +22387,7 @@ LAB_18089ea93:
         }
       }
       unsignedVar5 = (ulonglong)unsignedVar3;
-      if (bVar8) {
+      if (boolVar8) {
         unsignedVar5 = 0;
       }
     }
@@ -22485,7 +22485,7 @@ LAB_18089ec32:
           unsignedVar3 = 0x11;
         }
       }
-      bVar9 = unsignedVar3 == 0 && acStack_a8[0] != '\0';
+      boolVar9 = unsignedVar3 == 0 && acStack_a8[0] != '\0';
       unsignedVar4 = (ulonglong)unsignedVar3;
       if (unsignedVar3 == 0) {
         unsignedVar4 = 0;
@@ -22518,7 +22518,7 @@ LAB_18089ecba:
         }
       }
       if (unsignedVar3 == 0) {
-        bVar9 = acStack_a8[0] != '\0';
+        boolVar9 = acStack_a8[0] != '\0';
       }
       unsignedVar4 = (ulonglong)unsignedVar3;
       if (unsignedVar3 == 0) {
@@ -22532,7 +22532,7 @@ LAB_18089ecba:
   if ((int)unsignedVar4 != 0) {
     return unsignedVar4;
   }
-  if ((((!bVar7) && ((char)auStackX_18[0] == '\0')) && (cStackX_20 == '\0')) && (!bVar9)) {
+  if ((((!boolVar7) && ((char)auStackX_18[0] == '\0')) && (cStackX_20 == '\0')) && (!boolVar9)) {
     unsignedVar6 = 0;
   }
   *(uint32 *)(resourceHandle + STRUCT_OFFSET_SIZE) = unsignedVar6;
@@ -22565,9 +22565,9 @@ ulonglong FUN_18089e87d(void)
   longlong *unaff_RDI;
   int unaff_R12D;
   longlong unaff_R15;
-  bool bVar6;
-  bool bVar7;
-  bool bVar8;
+  bool boolVar6;
+  bool boolVar7;
+  bool boolVar8;
   
   if (*(int *)(inputRegister + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
@@ -22649,10 +22649,10 @@ LAB_18089ea0f:
   if ((int)unsignedVar4 != 0) {
     return unsignedVar4;
   }
-  bVar6 = *(uint *)(unaff_RDI + 8) < FIELD_OFFSET_2;
+  boolVar6 = *(uint *)(unaff_RDI + 8) < FIELD_OFFSET_2;
   *(char *)(unaff_RBP + 0x77) = (char)unsignedVar4;
   *(char *)(unaff_RBP + 0x7f) = (char)unsignedVar4;
-  bVar8 = false;
+  boolVar8 = false;
   if (0x37 < *(uint *)(unaff_RDI + 8)) {
     if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
       pbuffer = (longlong *)*unaff_RDI;
@@ -22660,10 +22660,10 @@ LAB_18089ea0f:
       if (localLong1 == 0) {
         unsignedVar3 = BYTE_OFFSET_FLAG;
 LAB_18089eaae:
-        bVar7 = unsignedVar3 == 0;
-        if (bVar7) {
-          bVar6 = *(char *)(unaff_RBP + -0x49) != '\0';
-          bVar7 = true;
+        boolVar7 = unsignedVar3 == 0;
+        if (boolVar7) {
+          boolVar6 = *(char *)(unaff_RBP + -0x49) != '\0';
+          boolVar7 = true;
         }
       }
       else {
@@ -22674,8 +22674,8 @@ LAB_18089ea93:
         }
         *(uint32 *)(unaff_RBP + -0x45) = 0;
         unsignedVar3 = func_0x00018076a7d0(localLong1,unaff_RBP + -0x45);
-        bVar7 = unsignedVar3 == 0;
-        if (bVar7) {
+        boolVar7 = unsignedVar3 == 0;
+        if (boolVar7) {
           if ((ulonglong)pbuffer[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
             unsignedVar3 = 0x11;
             goto LAB_18089eaae;
@@ -22684,7 +22684,7 @@ LAB_18089ea93:
         }
       }
       unsignedVar5 = (ulonglong)unsignedVar3;
-      if (bVar7) {
+      if (boolVar7) {
         unsignedVar5 = 0;
       }
     }
@@ -22789,7 +22789,7 @@ LAB_18089ec32:
         }
       }
       if (unsignedVar3 == 0) {
-        bVar8 = *(char *)(unaff_RBP + -0x49) != '\0';
+        boolVar8 = *(char *)(unaff_RBP + -0x49) != '\0';
       }
       unsignedVar4 = (ulonglong)unsignedVar3;
       if (unsignedVar3 == 0) {
@@ -22825,7 +22825,7 @@ LAB_18089ecba:
         }
       }
       if (unsignedVar3 == 0) {
-        bVar8 = *(char *)(unaff_RBP + -0x49) != '\0';
+        boolVar8 = *(char *)(unaff_RBP + -0x49) != '\0';
       }
       unsignedVar4 = (ulonglong)unsignedVar3;
       if (unsignedVar3 == 0) {
@@ -22839,8 +22839,8 @@ LAB_18089ecba:
   if ((int)unsignedVar4 != 0) {
     return unsignedVar4;
   }
-  if ((((!bVar6) && (*(char *)(unaff_RBP + 0x77) == '\0')) && (*(char *)(unaff_RBP + 0x7f) == '\0'))
-     && (!bVar8)) {
+  if ((((!boolVar6) && (*(char *)(unaff_RBP + 0x77) == '\0')) && (*(char *)(unaff_RBP + 0x7f) == '\0'))
+     && (!boolVar8)) {
     unaff_R12D = 0;
   }
   *(int *)(unaff_R15 + STRUCT_OFFSET_SIZE) = unaff_R12D;
@@ -22873,9 +22873,9 @@ ulonglong FUN_18089e9af(uint64 resourceHandle,uint64 memorySize,ulonglong operat
   longlong *unaff_RDI;
   uint32 unaff_R12D;
   longlong unaff_R15;
-  bool bVar6;
-  bool bVar7;
-  bool bVar8;
+  bool boolVar6;
+  bool boolVar7;
+  bool boolVar8;
   
   unsignedVar5 = BYTE_OFFSET_FLAG;
   if (0x7e < in_EAX) goto LAB_18089ed1b;
@@ -22910,10 +22910,10 @@ LAB_18089ea2c:
   if ((int)unsignedVar4 != 0) {
     return unsignedVar4;
   }
-  bVar6 = *(uint *)(unaff_RDI + 8) < FIELD_OFFSET_2;
+  boolVar6 = *(uint *)(unaff_RDI + 8) < FIELD_OFFSET_2;
   *(char *)(unaff_RBP + 0x77) = (char)unsignedVar4;
   *(char *)(unaff_RBP + 0x7f) = (char)unsignedVar4;
-  bVar8 = false;
+  boolVar8 = false;
   if (*(uint *)(unaff_RDI + 8) < STRUCT_OFFSET_SIZE) {
     unsignedVar4 = operationFlags & 0xffffffff;
   }
@@ -22923,10 +22923,10 @@ LAB_18089ea2c:
     if (buffer == 0) {
       unsignedVar3 = BYTE_OFFSET_FLAG;
 LAB_18089eaae:
-      bVar7 = unsignedVar3 == 0;
-      if (bVar7) {
-        bVar6 = *(char *)(unaff_RBP + -0x49) != '\0';
-        bVar7 = true;
+      boolVar7 = unsignedVar3 == 0;
+      if (boolVar7) {
+        boolVar6 = *(char *)(unaff_RBP + -0x49) != '\0';
+        boolVar7 = true;
       }
     }
     else {
@@ -22937,8 +22937,8 @@ LAB_18089ea93:
       }
       *(int *)(unaff_RBP + -0x45) = (int)operationFlags;
       unsignedVar3 = func_0x00018076a7d0(buffer,unaff_RBP + -0x45);
-      bVar7 = unsignedVar3 == 0;
-      if (bVar7) {
+      boolVar7 = unsignedVar3 == 0;
+      if (boolVar7) {
         if ((ulonglong)plocalLong1[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
           unsignedVar3 = 0x11;
           goto LAB_18089eaae;
@@ -22948,7 +22948,7 @@ LAB_18089ea93:
     }
     operationFlags = 0;
     unsignedVar4 = (ulonglong)unsignedVar3;
-    if (bVar7) {
+    if (boolVar7) {
       unsignedVar4 = 0;
     }
   }
@@ -23074,7 +23074,7 @@ LAB_18089ec32:
     }
 LAB_18089ec4c:
     if (unsignedVar3 == 0) {
-      bVar8 = *(char *)(unaff_RBP + -0x49) != '\0';
+      boolVar8 = *(char *)(unaff_RBP + -0x49) != '\0';
     }
     unsignedVar4 = (ulonglong)unsignedVar3;
     if (unsignedVar3 == 0) {
@@ -23117,7 +23117,7 @@ LAB_18089ecba:
     }
 LAB_18089ecd4:
     if (unsignedVar3 == 0) {
-      bVar8 = *(char *)(unaff_RBP + -0x49) != '\0';
+      boolVar8 = *(char *)(unaff_RBP + -0x49) != '\0';
     }
     unsignedVar4 = (ulonglong)unsignedVar3;
     if (unsignedVar3 == 0) {
@@ -23130,8 +23130,8 @@ LAB_18089ecd4:
   if ((int)unsignedVar4 != 0) {
     return unsignedVar4;
   }
-  if ((((!bVar6) && (*(char *)(unaff_RBP + 0x77) == '\0')) && (*(char *)(unaff_RBP + 0x7f) == '\0'))
-     && (!bVar8)) {
+  if ((((!boolVar6) && (*(char *)(unaff_RBP + 0x77) == '\0')) && (*(char *)(unaff_RBP + 0x7f) == '\0'))
+     && (!boolVar8)) {
     unaff_R12D = (uint32)operationFlags;
   }
   *(uint32 *)(unaff_R15 + STRUCT_OFFSET_SIZE) = unaff_R12D;
@@ -24767,7 +24767,7 @@ void Unwind_1809020c0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809020f0(void)
 
 {
-  byte bVar1;
+  byte boolVar1;
   
   EnterCriticalSection(0x180c82210);
   g_systemGlobalCounter2 = 0;
@@ -24779,11 +24779,11 @@ void Unwind_1809020f0(void)
     ResetEvent(g_systemEventHandle);
     return;
   }
-  bVar1 = (byte)g_securityTokenMask & 0x3f;
+  boolVar1 = (byte)g_securityTokenMask & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> bVar1 |
-            (g_securityTokenMask ^ g_systemFunctionPointer) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> boolVar1 |
+            (g_securityTokenMask ^ g_systemFunctionPointer) << 0x40 - boolVar1))(0x180c82238);
   return;
 }
 
@@ -24794,7 +24794,7 @@ void Unwind_1809020f0(void)
 void Unwind_180902100(void)
 
 {
-  byte bVar1;
+  byte boolVar1;
   
   EnterCriticalSection(0x180c82210);
   g_systemGlobalCounter3 = 0;
@@ -24806,11 +24806,11 @@ void Unwind_180902100(void)
     ResetEvent(g_systemEventHandle);
     return;
   }
-  bVar1 = (byte)g_securityTokenMask & 0x3f;
+  boolVar1 = (byte)g_securityTokenMask & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> bVar1 |
-            (g_securityTokenMask ^ g_systemFunctionPointer) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> boolVar1 |
+            (g_securityTokenMask ^ g_systemFunctionPointer) << 0x40 - boolVar1))(0x180c82238);
   return;
 }
 
@@ -27429,15 +27429,15 @@ void Unwind_180902c60(uint64 resourceHandle,longlong memorySize,uint64 operation
 
 {
   uint64 *preturnValue;
-  char cVar2;
+  char charVar2;
   uint64 unsignedVar3;
   
   preturnValue = *(uint64 **)(memorySize + STRUCT_OFFSET_SIZE);
   unsignedVar3 = 0xfffffffffffffffe;
   *preturnValue = &unknown_180a10098;
-  cVar2 = FUN_18020eba0(preturnValue,1,operationFlags,callbackFunction,0xfffffffffffffffe);
-  while (cVar2 != '\0') {
-    cVar2 = FUN_18020eba0(preturnValue,1,operationFlags,callbackFunction,unsignedVar3);
+  charVar2 = FUN_18020eba0(preturnValue,1,operationFlags,callbackFunction,0xfffffffffffffffe);
+  while (charVar2 != '\0') {
+    charVar2 = FUN_18020eba0(preturnValue,1,operationFlags,callbackFunction,unsignedVar3);
   }
   if (preturnValue[1] == 0) {
     preturnValue[1] = 0;
@@ -35903,15 +35903,15 @@ void Unwind_180904ab0(uint64 resourceHandle,longlong memorySize,uint64 operation
 
 {
   uint64 *preturnValue;
-  char cVar2;
+  char charVar2;
   uint64 unsignedVar3;
   
   preturnValue = *(uint64 **)(memorySize + 0x160);
   unsignedVar3 = 0xfffffffffffffffe;
   *preturnValue = &unknown_180a10098;
-  cVar2 = FUN_18020eba0(preturnValue,1,operationFlags,callbackFunction,0xfffffffffffffffe);
-  while (cVar2 != '\0') {
-    cVar2 = FUN_18020eba0(preturnValue,1,operationFlags,callbackFunction,unsignedVar3);
+  charVar2 = FUN_18020eba0(preturnValue,1,operationFlags,callbackFunction,0xfffffffffffffffe);
+  while (charVar2 != '\0') {
+    charVar2 = FUN_18020eba0(preturnValue,1,operationFlags,callbackFunction,unsignedVar3);
   }
   if (preturnValue[1] == 0) {
     preturnValue[1] = 0;
@@ -35971,15 +35971,15 @@ void Unwind_180904af0(uint64 resourceHandle,longlong memorySize,uint64 operation
 
 {
   uint64 *preturnValue;
-  char cVar2;
+  char charVar2;
   uint64 unsignedVar3;
   
   preturnValue = *(uint64 **)(memorySize + LIST_OFFSET_HEAD);
   unsignedVar3 = 0xfffffffffffffffe;
   *preturnValue = &unknown_180a10098;
-  cVar2 = FUN_18020eba0(preturnValue,1,operationFlags,callbackFunction,0xfffffffffffffffe);
-  while (cVar2 != '\0') {
-    cVar2 = FUN_18020eba0(preturnValue,1,operationFlags,callbackFunction,unsignedVar3);
+  charVar2 = FUN_18020eba0(preturnValue,1,operationFlags,callbackFunction,0xfffffffffffffffe);
+  while (charVar2 != '\0') {
+    charVar2 = FUN_18020eba0(preturnValue,1,operationFlags,callbackFunction,unsignedVar3);
   }
   if (preturnValue[1] == 0) {
     preturnValue[1] = 0;
@@ -36056,7 +36056,7 @@ void Catch_180904b90(uint64 resourceHandle,longlong memorySize)
   longlong longVar4;
   ulonglong unsignedVar5;
   ulonglong unsignedVar6;
-  longlong lVar7;
+  longlong longVar7;
   ulonglong unsignedVar8;
   
   returnValue = *(ulonglong *)(memorySize + POINTER_OFFSET_DATA);
@@ -36064,15 +36064,15 @@ void Catch_180904b90(uint64 resourceHandle,longlong memorySize)
   index = *(longlong *)(buffer + 0x40);
   *(uint64 *)(buffer + 0x70) = *(uint64 *)(memorySize + FIELD_OFFSET_1);
   *(uint64 *)(buffer + DATA_OFFSET_START) = *(uint64 *)(memorySize + BUFFER_SIZE_STANDARD);
-  lVar7 = *(longlong *)(memorySize + BYTE_OFFSET_2);
-  longVar4 = lVar7;
-  if (lVar7 == 0) {
+  longVar7 = *(longlong *)(memorySize + BYTE_OFFSET_2);
+  longVar4 = longVar7;
+  if (longVar7 == 0) {
     longVar4 = *(longlong *)(memorySize + 0xb0);
   }
   *(longlong *)(buffer + 0x40) = longVar4;
   unsignedVar5 = *(ulonglong *)(memorySize + 0x40);
   if ((unsignedVar5 & ERROR_CODE_FAILED) == 0) {
-    lVar7 = *(longlong *)(memorySize + 0xb0);
+    longVar7 = *(longlong *)(memorySize + 0xb0);
   }
   *(ulonglong *)(memorySize + POINTER_OFFSET_DATA) = unsignedVar5;
   while( true ) {
@@ -36084,13 +36084,13 @@ void Catch_180904b90(uint64 resourceHandle,longlong memorySize)
     if (unsignedVar5 != unsignedVar8) {
       do {
         unsignedVar6 = unsignedVar5 + 1;
-        FUN_180060bd0(lVar7 + (ulonglong)((uint)unsignedVar5 & ERROR_CODE_FAILED) * 8);
+        FUN_180060bd0(longVar7 + (ulonglong)((uint)unsignedVar5 & ERROR_CODE_FAILED) * 8);
         unsignedVar5 = unsignedVar6;
       } while (unsignedVar6 != unsignedVar8);
       *(ulonglong *)(memorySize + POINTER_OFFSET_DATA) = unsignedVar6;
     }
-    if (lVar7 == index) break;
-    lVar7 = *(longlong *)(lVar7 + RESOURCE_HANDLE_OFFSET0);
+    if (longVar7 == index) break;
+    longVar7 = *(longlong *)(longVar7 + RESOURCE_HANDLE_OFFSET0);
     unsignedVar5 = unsignedVar6;
   }
                     // WARNING: Subroutine does not return
@@ -36107,19 +36107,19 @@ void Catch_180904c60(uint64 resourceHandle,longlong memorySize)
   longlong *pindex;
   ulonglong unsignedVar4;
   ulonglong unsignedVar5;
-  longlong lVar6;
+  longlong longVar6;
   ulonglong unsignedVar7;
   ulonglong unsignedVar8;
-  longlong lVar9;
+  longlong longVar9;
   
   unsignedVar8 = *(ulonglong *)(memorySize + POINTER_OFFSET_DATA);
   localLong1 = *(longlong *)(memorySize + MEMORY_SIZE_OFFSET);
-  lVar9 = *(longlong *)(localLong1 + 0x40);
+  longVar9 = *(longlong *)(localLong1 + 0x40);
   unsignedVar4 = *(ulonglong *)(memorySize + FIELD_OFFSET_1);
   buffer = *(longlong *)(memorySize + 0xa0);
-  lVar6 = *(longlong *)(memorySize + 0xa8);
+  longVar6 = *(longlong *)(memorySize + 0xa8);
   if ((unsignedVar4 & ERROR_CODE_FAILED) == 0) {
-    lVar6 = buffer;
+    longVar6 = buffer;
   }
   *(ulonglong *)(memorySize + POINTER_OFFSET_DATA) = unsignedVar4;
   while( true ) {
@@ -36131,18 +36131,18 @@ void Catch_180904c60(uint64 resourceHandle,longlong memorySize)
     if (unsignedVar4 != unsignedVar7) {
       do {
         unsignedVar5 = unsignedVar4 + 1;
-        FUN_180060bd0(lVar6 + (ulonglong)((uint)unsignedVar4 & ERROR_CODE_FAILED) * 8);
+        FUN_180060bd0(longVar6 + (ulonglong)((uint)unsignedVar4 & ERROR_CODE_FAILED) * 8);
         unsignedVar4 = unsignedVar5;
       } while (unsignedVar5 != unsignedVar7);
       *(ulonglong *)(memorySize + POINTER_OFFSET_DATA) = unsignedVar5;
     }
-    if (lVar6 == lVar9) break;
-    lVar6 = *(longlong *)(lVar6 + RESOURCE_HANDLE_OFFSET0);
+    if (longVar6 == longVar9) break;
+    longVar6 = *(longlong *)(longVar6 + RESOURCE_HANDLE_OFFSET0);
     unsignedVar4 = unsignedVar5;
   }
   unsignedVar8 = *(longlong *)(memorySize + FIELD_OFFSET_1) - 1U & 0xffffffffffffffe0;
   *(ulonglong *)(memorySize + POINTER_OFFSET_DATA) = unsignedVar8;
-  lVar9 = buffer;
+  longVar9 = buffer;
   if (buffer != 0) {
     while( true ) {
       *(ulonglong *)(memorySize + POINTER_OFFSET_DATA) = unsignedVar8 + POINTER_OFFSET_DATA;
@@ -36154,8 +36154,8 @@ void Catch_180904c60(uint64 resourceHandle,longlong memorySize)
           pindex[1] & *pindex - 1U) * 8) + 8) = 0;
       pindex = *(longlong **)(localLong1 + DATA_OFFSET_START);
       pindex[1] = pindex[1] - 1U & *pindex - 1U;
-      lVar9 = *(longlong *)(lVar9 + RESOURCE_HANDLE_OFFSET0);
-      if (lVar9 == 0) break;
+      longVar9 = *(longlong *)(longVar9 + RESOURCE_HANDLE_OFFSET0);
+      if (longVar9 == 0) break;
       unsignedVar8 = *(ulonglong *)(memorySize + POINTER_OFFSET_DATA);
     }
   }
@@ -36319,15 +36319,15 @@ void Unwind_180904e40(uint64 resourceHandle,longlong memorySize,uint64 operation
 
 {
   uint64 *preturnValue;
-  char cVar2;
+  char charVar2;
   uint64 unsignedVar3;
   
   preturnValue = *(uint64 **)(memorySize + FIELD_OFFSET_1);
   unsignedVar3 = 0xfffffffffffffffe;
   *preturnValue = &unknown_180a10098;
-  cVar2 = FUN_18020eba0(preturnValue,1,operationFlags,callbackFunction,0xfffffffffffffffe);
-  while (cVar2 != '\0') {
-    cVar2 = FUN_18020eba0(preturnValue,1,operationFlags,callbackFunction,unsignedVar3);
+  charVar2 = FUN_18020eba0(preturnValue,1,operationFlags,callbackFunction,0xfffffffffffffffe);
+  while (charVar2 != '\0') {
+    charVar2 = FUN_18020eba0(preturnValue,1,operationFlags,callbackFunction,unsignedVar3);
   }
   if (preturnValue[1] == 0) {
     preturnValue[1] = 0;
@@ -40135,10 +40135,10 @@ void Unwind_180905e40(uint64 resourceHandle,longlong memorySize)
   longlong *pindex;
   int counter;
   longlong longVar5;
-  longlong lVar6;
-  longlong lVar7;
-  longlong lVar8;
-  bool bVar9;
+  longlong longVar6;
+  longlong longVar7;
+  longlong longVar8;
+  bool boolVar9;
   
   pindex = (longlong *)(memorySize + BYTE_OFFSET_2);
   FUN_180069530((ulonglong)(*(uint *)(memorySize + FIELD_OFFSET_1) & ERROR_CODE_FAILED) * 0x1a8 + *pindex);
@@ -40150,27 +40150,27 @@ void Unwind_180905e40(uint64 resourceHandle,longlong memorySize)
   if (longVar5 == ERROR_CODE_FAILED) {
     *(uint64 *)(*(longlong *)(memorySize + STRUCT_OFFSET_SIZE) + 8) = 0;
     longVar5 = *pindex;
-    lVar6 = *(longlong *)(memorySize + 0x40);
+    longVar6 = *(longlong *)(memorySize + 0x40);
     LOCK();
     pstatus = (int *)(longVar5 + 0x3530);
     counter = *pstatus;
     *pstatus = *pstatus + -0x80000000;
     UNLOCK();
     if (counter == 0) {
-      lVar8 = *(longlong *)(lVar6 + BYTE_OFFSET_2);
+      longVar8 = *(longlong *)(longVar6 + BYTE_OFFSET_2);
       do {
-        *(longlong *)(longVar5 + 0x3538) = lVar8;
+        *(longlong *)(longVar5 + 0x3538) = longVar8;
         *(uint32 *)(longVar5 + 0x3530) = 1;
-        plocalLong1 = (longlong *)(lVar6 + BYTE_OFFSET_2);
+        plocalLong1 = (longlong *)(longVar6 + BYTE_OFFSET_2);
         LOCK();
-        lVar7 = *plocalLong1;
-        bVar9 = lVar8 == lVar7;
-        if (bVar9) {
+        longVar7 = *plocalLong1;
+        boolVar9 = longVar8 == longVar7;
+        if (boolVar9) {
           *plocalLong1 = longVar5;
-          lVar7 = lVar8;
+          longVar7 = longVar8;
         }
         UNLOCK();
-        if (bVar9) {
+        if (boolVar9) {
           return;
         }
         LOCK();
@@ -40178,7 +40178,7 @@ void Unwind_180905e40(uint64 resourceHandle,longlong memorySize)
         counter = *pstatus;
         *pstatus = *pstatus + 0x7fffffff;
         UNLOCK();
-        lVar8 = lVar7;
+        longVar8 = longVar7;
       } while (counter == 1);
     }
   }
@@ -42918,7 +42918,7 @@ void Unwind_180906bd0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180906c00(void)
 
 {
-  byte bVar1;
+  byte boolVar1;
   
   EnterCriticalSection(0x180c82210);
   g_systemGlobalCounter4 = 0;
@@ -42930,11 +42930,11 @@ void Unwind_180906c00(void)
     ResetEvent(g_systemEventHandle);
     return;
   }
-  bVar1 = (byte)g_securityTokenMask & 0x3f;
+  boolVar1 = (byte)g_securityTokenMask & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> bVar1 |
-            (g_securityTokenMask ^ g_systemFunctionPointer) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> boolVar1 |
+            (g_securityTokenMask ^ g_systemFunctionPointer) << 0x40 - boolVar1))(0x180c82238);
   return;
 }
 
@@ -44440,7 +44440,7 @@ void Unwind_180907120(uint64 resourceHandle,longlong memorySize)
 void Unwind_180907130(void)
 
 {
-  byte bVar1;
+  byte boolVar1;
   
   EnterCriticalSection(0x180c82210);
   uRam0000000180d49150 = 0;
@@ -44452,11 +44452,11 @@ void Unwind_180907130(void)
     ResetEvent(g_systemEventHandle);
     return;
   }
-  bVar1 = (byte)g_securityTokenMask & 0x3f;
+  boolVar1 = (byte)g_securityTokenMask & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> bVar1 |
-            (g_securityTokenMask ^ g_systemFunctionPointer) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> boolVar1 |
+            (g_securityTokenMask ^ g_systemFunctionPointer) << 0x40 - boolVar1))(0x180c82238);
   return;
 }
 
@@ -47598,7 +47598,7 @@ void Unwind_180908030(uint64 resourceHandle,longlong memorySize)
 void Unwind_180908040(void)
 
 {
-  byte bVar1;
+  byte boolVar1;
   
   EnterCriticalSection(0x180c82210);
   _systemVar91f8 = 0;
@@ -47610,11 +47610,11 @@ void Unwind_180908040(void)
     ResetEvent(g_systemEventHandle);
     return;
   }
-  bVar1 = (byte)g_securityTokenMask & 0x3f;
+  boolVar1 = (byte)g_securityTokenMask & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> bVar1 |
-            (g_securityTokenMask ^ g_systemFunctionPointer) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> boolVar1 |
+            (g_securityTokenMask ^ g_systemFunctionPointer) << 0x40 - boolVar1))(0x180c82238);
   return;
 }
 
@@ -49946,7 +49946,7 @@ void Unwind_180908d00(uint64 resourceHandle,longlong memorySize)
 void Unwind_180908d30(void)
 
 {
-  byte bVar1;
+  byte boolVar1;
   
   EnterCriticalSection(0x180c82210);
   _systemVar9210 = 0;
@@ -49958,11 +49958,11 @@ void Unwind_180908d30(void)
     ResetEvent(g_systemEventHandle);
     return;
   }
-  bVar1 = (byte)g_securityTokenMask & 0x3f;
+  boolVar1 = (byte)g_securityTokenMask & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> bVar1 |
-            (g_securityTokenMask ^ g_systemFunctionPointer) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> boolVar1 |
+            (g_securityTokenMask ^ g_systemFunctionPointer) << 0x40 - boolVar1))(0x180c82238);
   return;
 }
 
@@ -50496,10 +50496,10 @@ void Unwind_180908f90(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong *plocalLong1;
-  char cVar2;
+  char charVar2;
   
-  cVar2 = _uncaught_exception_std__YA_NXZ();
-  if (cVar2 == '\0') {
+  charVar2 = _uncaught_exception_std__YA_NXZ();
+  if (charVar2 == '\0') {
     __Osfx___basic_ostream_DU__char_traits_D_std___std__QEAAXXZ(*(longlong *)(memorySize + STRUCT_OFFSET_SIZE));
   }
   plocalLong1 = *(longlong **)(memorySize + STRUCT_OFFSET_SIZE);
@@ -54489,7 +54489,7 @@ void Unwind_18090a6d0(void)
 void Unwind_18090a6e0(void)
 
 {
-  byte bVar1;
+  byte boolVar1;
   
   EnterCriticalSection(0x180c82210);
   _systemVar9238 = 0;
@@ -54501,11 +54501,11 @@ void Unwind_18090a6e0(void)
     ResetEvent(g_systemEventHandle);
     return;
   }
-  bVar1 = (byte)g_securityTokenMask & 0x3f;
+  boolVar1 = (byte)g_securityTokenMask & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> bVar1 |
-            (g_securityTokenMask ^ g_systemFunctionPointer) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> boolVar1 |
+            (g_securityTokenMask ^ g_systemFunctionPointer) << 0x40 - boolVar1))(0x180c82238);
   return;
 }
 
@@ -79886,7 +79886,7 @@ void Unwind_1809127c0(uint64 resourceHandle,longlong memorySize,uint64 operation
 void Unwind_1809127d0(void)
 
 {
-  byte bVar1;
+  byte boolVar1;
   
   EnterCriticalSection(0x180c82210);
   _systemVar9270 = 0;
@@ -79898,11 +79898,11 @@ void Unwind_1809127d0(void)
     ResetEvent(g_systemEventHandle);
     return;
   }
-  bVar1 = (byte)g_securityTokenMask & 0x3f;
+  boolVar1 = (byte)g_securityTokenMask & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> bVar1 |
-            (g_securityTokenMask ^ g_systemFunctionPointer) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> boolVar1 |
+            (g_securityTokenMask ^ g_systemFunctionPointer) << 0x40 - boolVar1))(0x180c82238);
   return;
 }
 
@@ -80179,13 +80179,13 @@ void reset_game_state_if_needed(uint64 resourceHandle,longlong memorySize)
 void checkResourceState(uint64 resourceHandle,longlong memorySize)
 
 {
-  char cVar1;
+  char charVar1;
   int status;
   
   FUN_1808fc5ac();
-  cVar1 = *(char *)(memorySize + STRUCT_OFFSET_SIZE);
+  charVar1 = *(char *)(memorySize + STRUCT_OFFSET_SIZE);
   status = func_0x0001808fd8d4();
-  if ((status != 0) && (cVar1 == '\0')) {
+  if ((status != 0) && (charVar1 == '\0')) {
     LOCK();
     _DAT_180c821d0 = 0;
     UNLOCK();

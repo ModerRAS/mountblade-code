@@ -408,13 +408,13 @@ void* g_global_data_1809ff8a8;
 
 void* g_global_data_1809ff8d8;
 
-void* g_global_data_1809ff918;
+void* g_global_reserved_data_25;
 
 void* g_global_data_1809ff938;
 
 void* g_global_storage_system;
 
-void* g_global_data_1809ff9a8;
+void* g_global_reserved_data_7;
 
 void* g_global_weapon_system;
 
@@ -431,7 +431,7 @@ void* g_global_data_180277350;
 
 void* g_function_18007bb70;
 
-void* g_global_data_1809ffa98;
+void* g_global_temp_data_98;
 
 void* g_global_data_1802426a0;
 
@@ -439,7 +439,7 @@ void* g_global_data_180a001e8;
 
 void* g_static_data_180c8aa00;
 
-void* g_global_data_1809ffae0;
+void* g_global_temp_data_140;
 
 void* g_static_data_180d49158;
 // undefined g_function_18004c030;
@@ -472,29 +472,29 @@ void* g_global_data_1801b9b60;
 
 void* g_function_1800596a0;
 
-void* g_global_data_180a06950;
+void* g_global_high_data_550;
 
-void* g_global_data_180a069b0;
+void* g_global_high_data_5b0;
 
-void* g_global_data_180a069c0;
+void* g_global_high_data_5c0;
 
-void* g_global_data_180a071f8;
+void* g_global_high_data_13f8;
 
 char g_system_byte_flag_2;
 
-void* g_global_data_180a069e8;
+void* g_global_high_data_5e8;
 
-void* g_global_data_180a06be0;
+void* g_global_high_data_7e0;
 
 void* g_static_data_18098c090;
 
-void* g_global_data_180a06dc8;
+void* g_global_high_data_9c8;
 
-void* g_global_data_180a071e8;
+void* g_global_high_data_13e8;
 
-void* g_global_data_180a071c8;
+void* g_global_high_data_13c8;
 
-void* g_global_data_180a071d8;
+void* g_global_high_data_13d8;
 
 void* g_static_data_180d49288;
 
