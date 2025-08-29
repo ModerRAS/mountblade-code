@@ -2534,24 +2534,19 @@ void memoryBlock_pool_initializer(void)          // 内存池初始化函数
 uint64 validate_resource_resourceHandle(longlong resourceHandle)    // 资源句柄验证函数
 
 {
-  longlong localLong1;
-<<<<<<< Updated upstream
-  longlong localLong2;
-  int dataValueLength;
-=======
-  longlong dataValueBuffer;
-  int dataValueLength;
->>>>>>> Stashed changes
-  uint64 unsignedVar4;
-  uint64 unsignedVar5;
-  longlong *plVar6;
-  int integerVar7;
-  ulonglong unsignedVar8;
-  int integerVar9;
-  ulonglong functionResult0;
-  longlong *dataValueValueValuePointer;
-  longlong in_stack_00000008;
-  char stackCharArrayX18 [16];
+  longlong resourceDataBuffer;
+  longlong tempDataBuffer;
+  int dataLength;
+  uint64 validationResult1;
+  uint64 validationResult2;
+  longlong *resourcePointer;
+  int resourceCount;
+  ulonglong iterationIndex;
+  int newCapacity;
+  ulonglong functionResult;
+  longlong *resourceArrayPointer;
+  longlong stackParameter;
+  char tempBuffer [16];
   
   unsignedVar4 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),&stackBuffer8stackBuffer8);
   if ((int)unsignedVar4 != 0) {
