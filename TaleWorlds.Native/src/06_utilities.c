@@ -1207,7 +1207,7 @@ data resourceCachePrefetch;
 data resourceCachePriority;  /* 原: DAT_180c924ac */
 data renderLODData;
 data resourceCacheStrategy;  /* 原: DAT_180c924b0 */
-data DAT_180a2c1d0;
+data renderVertexShaderData;  /* 原: DAT_180a2c1d0 */
 data DAT_180c924b4;
 data DAT_180a2c338;
 data DAT_180c924b8;
