@@ -615,9 +615,9 @@ data aiNavigationWorkSize;
 data animationStateMachine;
 data aiNavigationWorkFlags;
 data g_aiBehaviorWorkBuffer;
-data g_aiBehaviorTempOffset;
+data aiBehaviorWorkOffset;
 data animationPlaybackTime;
-data g_aiBehaviorTempSize;
+data aiBehaviorWorkSize;
 data aiNavigationMesh;
 data g_aiNavWorkBuffer;
 data g_aiNavTempOffset;
@@ -634,9 +634,9 @@ data g_databaseTempFlags;
 // 函数: data SetupDatabaseTables;
 data SetupDatabaseTables;
 data g_aiBehaviorWorkBuffer;
-data g_aiBehaviorTempOffset;
-data g_aiBehaviorTempSize;
-data g_aiBehaviorTempFlags;
+data aiBehaviorWorkOffset;
+data aiBehaviorWorkSize;
+data aiBehaviorWorkFlags;
 data g_aiBehaviorReserved;
 data aiBehaviorTree;
 data g_aiDecisionWorkBuffer;
@@ -934,21 +934,21 @@ data renderMemoryInitialize;
 
 // 函数: data renderResourceInitialize;
 data renderResourceInitialize;
-data DAT_180bf9e70;
-data DAT_180bf9e78;
-data DAT_180bf9e80;
-data DAT_180bf9e88;
+data renderResourceBuffer1;
+data renderResourceBuffer2;
+data renderResourceBuffer3;
+data renderResourceBuffer4;
 data framebufferClearColor;
-data DAT_180bf9ed0;
+data renderResourceHandle;
 
 // 函数: data renderTextureInitialize;
 data renderTextureInitialize;
-data DAT_180bf9ed8;
-data DAT_180bf9ee0;
-data DAT_180bf9ee8;
+data renderTextureBuffer1;
+data renderTextureBuffer2;
+data renderTextureBuffer3;
 data computeShaderKernel;
-data DAT_180bf9f30;
-data DAT_180bf9f38;
+data renderSamplerBuffer1;
+data renderSamplerBuffer2;
 
 // 函数: data renderSamplerInitialize;
 data renderSamplerInitialize;
@@ -1492,11 +1492,11 @@ data cameraBufferPool47;
 data cameraBufferPool48;
 data cameraBufferPool49;
 data cameraBufferPool50;
-data unknown_180a07650;
-data unknown_180a07668;
-data unknown_180a07688;
-data unknown_180a076a0;
-data unknown_180a076c0;
+data cameraBufferPool51;
+data cameraBufferPool52;
+data cameraBufferPool53;
+data cameraBufferPool54;
+data cameraBufferPool55;
 data unknown_180a076d8;
 data unknown_180a076f8;
 data unknown_180a07720;
@@ -81409,7 +81409,7 @@ void renderMemoryInitialize(void)
 void renderResourceInitialize(void)
 
 {
-  _DAT_180bf9e70 = &threadLocalStorageCleanup;
+  _renderResourceBuffer1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81422,7 +81422,7 @@ void renderResourceInitialize(void)
 void renderTextureInitialize(void)
 
 {
-  _DAT_180bf9ed0 = &threadLocalStorageCleanup;
+  _renderResourceHandle = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81435,7 +81435,7 @@ void renderTextureInitialize(void)
 void renderSamplerInitialize(void)
 
 {
-  _DAT_180bf9f30 = &threadLocalStorageCleanup;
+  _renderSamplerBuffer1 = &threadLocalStorageCleanup;
   return;
 }
 
