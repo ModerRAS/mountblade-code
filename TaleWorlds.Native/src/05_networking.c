@@ -3,7 +3,8 @@
 // 05_networking.c - 908 个函数
 
 // 网络初始化系统函数指针
-void* NetworkInitializeSystem;
+typedef void (*NetworkInitializeSystemFunc)(void);
+NetworkInitializeSystemFunc NetworkInitializeSystem;
 void* g_networkSessionId;
 void* g_networkClientId;
 void* g_networkBuffer;
@@ -33,42 +34,54 @@ void* g_maxPacketSize;
 void* g_networkCompression;
 
 // 网络连接初始化函数指针
-void* NetworkInitializeConnection;
+typedef void (*NetworkInitializeConnectionFunc)(void);
+NetworkInitializeConnectionFunc NetworkInitializeConnection;
 void* g_networkSessionData;
 
 // 网络监听器创建函数指针
-void* NetworkCreateListener;
+typedef void* (*NetworkCreateListenerFunc)(int port);
+NetworkCreateListenerFunc NetworkCreateListener;
 
 // 网络连接接受函数指针
-void* NetworkAcceptConnection;
+typedef void* (*NetworkAcceptConnectionFunc)(void* listener);
+NetworkAcceptConnectionFunc NetworkAcceptConnection;
 void* g_networkListener;
 
 // 网络连接拒绝函数指针
-void* NetworkRejectConnection;
+typedef void (*NetworkRejectConnectionFunc)(void* connection);
+NetworkRejectConnectionFunc NetworkRejectConnection;
 
 // 网络客户端认证函数指针
-void* NetworkAuthenticateClient;
+typedef int (*NetworkAuthenticateClientFunc)(void* client);
+NetworkAuthenticateClientFunc NetworkAuthenticateClient;
 
 // 网络客户端验证函数指针 - 验证客户端权限和状态
-void* NetworkValidateClient;
+typedef int (*NetworkValidateClientFunc)(void* client);
+NetworkValidateClientFunc NetworkValidateClient;
 
 // 网络服务器启动函数指针 - 启动网络服务器
-void* NetworkStartServer;
+typedef int (*NetworkStartServerFunc)(int port);
+NetworkStartServerFunc NetworkStartServer;
 
 // 网络服务器停止函数指针 - 停止网络服务器
-void* NetworkStopServer;
+typedef void (*NetworkStopServerFunc)(void);
+NetworkStopServerFunc NetworkStopServer;
 
 // 网络数据发送函数指针 - 发送网络数据包
-void* NetworkSendData;
+typedef int (*NetworkSendDataFunc)(void* connection, void* data, size_t size);
+NetworkSendDataFunc NetworkSendData;
 
 // 网络数据接收函数指针 - 接收网络数据包
-void* NetworkReceiveData;
+typedef int (*NetworkReceiveDataFunc)(void* connection, void* buffer, size_t size);
+NetworkReceiveDataFunc NetworkReceiveData;
 
 // 网络数据包处理函数指针 - 处理接收到的数据包
-void* NetworkProcessPacket;
+typedef void (*NetworkProcessPacketFunc)(void* packet);
+NetworkProcessPacketFunc NetworkProcessPacket;
 
 // 网络断开处理函数指针 - 处理连接断开事件
-void* NetworkHandleDisconnect;
+typedef void (*NetworkHandleDisconnectFunc)(void* connection);
+NetworkHandleDisconnectFunc NetworkHandleDisconnect;
 // 网络断开原因
 void* g_networkDisconnectReason;
 // 网络错误信息
@@ -143,7 +156,8 @@ void* g_networkLobbyData;
 void* g_networkMatchData;
 
 // 网络广播消息函数指针
-void* NetworkBroadcastMessage;
+typedef int (*NetworkBroadcastMessageFunc)(void* message, size_t size);
+NetworkBroadcastMessageFunc NetworkBroadcastMessage;
 void* g_networkBroadcastBuffer;
 void* g_networkMulticastGroup;
 void* g_networkMulticastAddress;
