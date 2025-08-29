@@ -59569,44 +59569,44 @@ uint64_t FUN_180779832(undefined8 param_1,undefined8 param_2,uint param_3)
   return 0;
 }
 
-uint64_t FUN_180779d6c(void)
+uint64_t get_system_zero_value(void)
 
 {
   return 0;
 }
-// undefined g_function_180058c20;
+// undefined g_system_callback_handler;
 
-void* g_function_180058c20;
-// undefined g_function_18004bb30;
+void* g_system_callback_handler;
+// undefined g_system_event_processor;
 
-void* g_function_18004bb30;
+void* g_system_event_processor;
 
-void* g_static_data_180d49830;
+void* g_static_system_config;
 
-uint64_t UNK_180d498a0;
-undefined4 UNK_180d498a8;
-void* *UNK_180d498b0;
-undefined1 *UNK_180d498b8;
-undefined4 UNK_180d498c0;
-longlong g_global_long_180d49908;
-longlong g_global_long_180d49910;
-longlong g_global_long_180d49928;
-longlong g_global_long_180d49930;
-undefined4 UNK_180d49948;
-undefined4 UNK_180d4994c;
-void* g_static_data_180d49950;
+uint64_t g_system_status_flag;
+undefined4 g_system_error_code;
+void* *g_system_pointer_array;
+undefined1 *g_system_byte_buffer;
+undefined4 g_system_config_flag;
+longlong g_global_system_counter_1;
+longlong g_global_system_counter_2;
+longlong g_global_memory_address_1;
+longlong g_global_memory_address_2;
+undefined4 g_system_reserved_1;
+undefined4 g_system_reserved_2;
+void* g_static_memory_pool;
 
-void* g_static_data_180d49970;
+void* g_static_resource_cache;
 
-void* g_static_data_180bfc140;
+void* g_static_graphics_buffer;
 
-void* g_static_data_1803f48b2;
+void* g_static_audio_buffer;
 
-void* g_global_data_180d49d58;
+void* g_global_system_data;
 
-longlong g_global_long_180d49d68;
+longlong g_global_system_handle;
 
-uint64_t UNK_180d49d70;
-longlong g_global_long_180d49d78;
-longlong *UNK_system_flags;
+uint64_t g_global_data_flag;
+longlong g_global_memory_pointer;
+longlong *g_global_system_flags;
 

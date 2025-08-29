@@ -952,16 +952,16 @@ data renderSamplerBuffer2;
 
 // 函数: data renderSamplerInitialize;
 data renderSamplerInitialize;
-data DAT_180bf9f40;
-data DAT_180bf9f48;
+data renderSamplerParam1;
+data renderSamplerParam2;
 data computeWorkGroupSize;
-data DAT_180bf9f90;
-data DAT_180bf9f98;
-data DAT_180bf9fa0;
+data computeKernelBuffer1;
+data computeKernelBuffer2;
+data computeKernelBuffer3;
 
 // 函数: data renderBlendInitialize;
 data renderBlendInitialize;
-data DAT_180bf9fa8;
+data renderBlendStateBuffer;
 data computeDispatchCount;
 data DAT_180bf9ff0;
 data DAT_180bf9ff8;
@@ -81448,7 +81448,7 @@ void renderSamplerInitialize(void)
 void renderBlendInitialize(void)
 
 {
-  _DAT_180bf9f90 = &threadLocalStorageCleanup;
+  _computeKernelBuffer1 = &threadLocalStorageCleanup;
   return;
 }
 
