@@ -7377,7 +7377,7 @@ int insert_database_record(longlong resourceHandle,longlong memorySize,int opera
 
 
 
-int FUN_180894460(longlong resourceHandle,longlong memorySize,int operationFlags)
+int update_database_record(longlong resourceHandle,longlong memorySize,int operationFlags)
 
 {
   int localInt1;
@@ -7406,7 +7406,7 @@ int FUN_180894460(longlong resourceHandle,longlong memorySize,int operationFlags
 
 
 
-int FUN_180894570(longlong resourceHandle,longlong memorySize,int operationFlags)
+int delete_database_record(longlong resourceHandle,longlong memorySize,int operationFlags)
 
 {
   int localInt1;
