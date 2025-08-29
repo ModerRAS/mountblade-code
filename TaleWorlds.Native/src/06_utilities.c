@@ -56,9 +56,9 @@ dataValue g_systemNetworkStatus;              // 系统网络状态
 
 // 函数: dataValueValue 配置内存设置;
 dataValue 配置内存设置;
-dataValue g_errorHandlerSeverity;             // 错误处理器严重程度
+dataValue g_errorHandlerSeverityLevel;        // 错误处理器严重程度
 dataValue g_errorHandlerCategory;              // 错误处理器类别
-dataValue g_errorHandlerRecovery;              // 错误处理器恢复
+dataValue g_errorHandlerRecoveryMode;         // 错误处理器恢复
 dataValue g_errorHandlerLogging;               // 错误处理器日志
 
 // 函数: dataValueValue 验证内存配置;

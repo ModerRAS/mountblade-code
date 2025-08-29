@@ -14256,7 +14256,7 @@ process_address_validation:
               *(int *)((longlong)socketHandle + 0x54) = *(int *)((longlong)socketHandle + 0x54) + -1;
               *(int *)(socketHandle + 10) = (int)connectionInfo;
             }
-            goto LAB_18084fc27;
+            goto process_network_cleanup;
           }
           statusCode1 = (int)pnetworkTimeout6[2];
           pnetworkAddress = pnetworkTimeout6 + 2;
@@ -14264,7 +14264,7 @@ process_address_validation:
       }
     }
     statusCode1 = ERROR_CODE_INVALID;
-LAB_18084fc27:
+process_network_cleanup:
     if (clientPort != 0) {
                     // WARNING: Subroutine does not return
       CleanupNetworkContext(clientPort);
@@ -14503,7 +14503,7 @@ process_address_validation:
               *(int *)((longlong)socketHandle + 0x54) = *(int *)((longlong)socketHandle + 0x54) + -1;
               *(int *)(socketHandle + 10) = (int)socketDescriptor;
             }
-            goto LAB_18084fc27;
+            goto process_network_cleanup;
           }
           statusCode0 = (int)pnetworkTimeout5[2];
           psocketHandle = pnetworkTimeout5 + 2;
@@ -14511,7 +14511,7 @@ process_address_validation:
       }
     }
     statusCode0 = ERROR_CODE_INVALID;
-LAB_18084fc27:
+process_network_cleanup:
     if (serverPort != 0) {
                     // WARNING: Subroutine does not return
       CleanupNetworkContext(serverPort);
@@ -14762,7 +14762,7 @@ validate_data_pointer:
       CleanupNetworkContext(clientPort);
     }
   } while (statusCode1 == 0);
-LAB_180850163:
+finalize_network_operation:
   if (socketDescriptor != 0) {
                     // WARNING: Subroutine does not return
     CleanupNetworkContext(socketDescriptor);
@@ -14773,22 +14773,22 @@ joined_r0x00018084ff2e:
   if (statusCode1 == -1) goto handle_status_operation;
   connectionBuffer3 = (uint *)((longlong)statusCode1 * 0x10 + pnetworkAddress[2]);
   if ((int)pnetworkAddress[1] == 0) {
-LAB_18084ff8c:
+handle_address_validation_error:
     statusCode1 = ERROR_CODE_INVALID;
-    goto LAB_180850163;
+    goto finalize_network_operation;
   }
   networkResult = *connectionBuffer3;
   clientPort = (longlong)(int)((int)pnetworkAddress[1] - 1U & networkResult);
   connectionBuffer4 = (uint *)(*pnetworkAddress + clientPort * 4);
   connectionIndex = *(uint *)(*pnetworkAddress + clientPort * 4);
-  if (connectionIndex == 0xffffffff) goto LAB_18084ff8c;
+  if (connectionIndex == 0xffffffff) goto handle_address_validation_error;
   while (connectionBuffer5 = (uint *)((longlong)(int)connectionIndex * 0x10 + pnetworkAddress[2]), *connectionBuffer5 != networkResult) {
     connectionIndex = connectionBuffer5[1];
     connectionBuffer4 = connectionBuffer5 + 1;
-    if (connectionIndex == 0xffffffff) goto LAB_18084ff8c;
+    if (connectionIndex == 0xffffffff) goto handle_address_validation_error;
   }
   statusCode1 = networkAcceptConnection(long_var_9,connectionBuffer3,connectionBuffer5 + 2);
-  if (statusCode1 != 0) goto LAB_180850163;
+  if (statusCode1 != 0) goto finalize_network_operation;
   networkResult = *connectionBuffer4;
   clientPort = (longlong)(int)networkResult * 0x10 + pnetworkAddress[2];
   networkUintStack_4c = 0xffffffff;
@@ -15009,7 +15009,7 @@ validate_data_pointer:
       CleanupNetworkContext(serverPort);
     }
   } while (statusCode0 == 0);
-LAB_180850163:
+finalize_network_operation:
   if (unaff_RSI != 0) {
                     // WARNING: Subroutine does not return
     CleanupNetworkContext(unaff_RSI);
@@ -15020,22 +15020,22 @@ joined_r0x00018084ff2e:
   if (statusCode0 == -1) goto handle_status_operation;
   connectionBuffer2 = (uint *)((longlong)statusCode0 * 0x10 + psocketHandle[2]);
   if ((int)psocketHandle[1] == 0) {
-LAB_18084ff8c:
+handle_address_validation_error:
     statusCode0 = ERROR_CODE_INVALID;
-    goto LAB_180850163;
+    goto finalize_network_operation;
   }
   networkResult = *connectionBuffer2;
   serverPort = (longlong)(int)((int)psocketHandle[1] - 1U & networkResult);
   connectionBuffer3 = (uint *)(*psocketHandle + serverPort * 4);
   dataPointer = *(uint *)(*psocketHandle + serverPort * 4);
-  if (dataPointer == 0xffffffff) goto LAB_18084ff8c;
+  if (dataPointer == 0xffffffff) goto handle_address_validation_error;
   while (connectionBuffer4 = (uint *)((longlong)(int)dataPointer * 0x10 + psocketHandle[2]), *connectionBuffer4 != networkResult) {
     dataPointer = connectionBuffer4[1];
     connectionBuffer3 = connectionBuffer4 + 1;
-    if (dataPointer == 0xffffffff) goto LAB_18084ff8c;
+    if (dataPointer == 0xffffffff) goto handle_address_validation_error;
   }
   statusCode0 = networkAcceptConnection(clientPort,connectionBuffer2,connectionBuffer4 + 2);
-  if (statusCode0 != 0) goto LAB_180850163;
+  if (statusCode0 != 0) goto finalize_network_operation;
   networkResult = *connectionBuffer3;
   serverPort = (longlong)(int)networkResult * 0x10 + psocketHandle[2];
   uStack000000000000004c = 0xffffffff;
