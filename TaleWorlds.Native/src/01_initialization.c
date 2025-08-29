@@ -15787,7 +15787,8 @@ void FUN_180045380(void)
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined4 FUN_180045580(void)
+// 获取游戏初始化状态
+undefined4 get_game_initialization_status(void)
 
 {
   undefined8 *puVar1;
