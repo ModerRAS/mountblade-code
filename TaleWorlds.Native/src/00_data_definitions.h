@@ -740,7 +740,7 @@ int initialize_network_module(void)
   init_result = execute_function(callback_function_026);
   return (init_result != 0) - 1;
 }
-int initialize_module_009(void)
+int initialize_physics_module(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -758,7 +758,7 @@ int initialize_module_009(void)
   init_result = execute_function(callback_function_028);
   return (init_result != 0) - 1;
 }
-int initialize_module_010(void)
+int initialize_ai_module(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -770,7 +770,7 @@ int initialize_module_010(void)
   init_result = execute_function(callback_function_029);
   return (init_result != 0) - 1;
 }
-int initialize_module_011(void)
+int initialize_ui_module(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -782,7 +782,7 @@ int initialize_module_011(void)
   init_result = execute_function(callback_function_030);
   return (init_result != 0) - 1;
 }
-int initialize_module_012(void)
+int initialize_scripting_module(void)
 {
   longlong init_result;
   undefined8 str_len_param;

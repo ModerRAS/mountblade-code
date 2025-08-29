@@ -703,8 +703,8 @@ data g_materialTextureTempData3;
 data g_materialTextureTempData4;
 data g_materialTextureTempData5;
 
-// 函数: data FUN_180941fa0;
-data FUN_180941fa0;
+// 函数: data materialPropertyBufferInitialize;
+data materialPropertyBufferInitialize;
 data g_materialPropertyTempData1;
 data materialPropertyBuffer;
 data g_materialPropertyTempData2;
@@ -712,24 +712,24 @@ data g_materialPropertyTempData3;
 data g_materialPropertyTempData4;
 data g_materialPropertyTempData5;
 
-// 函数: data FUN_180941fc0;
-data FUN_180941fc0;
+// 函数: data materialRenderStateInitialize;
+data materialRenderStateInitialize;
 data materialRenderState;
 data g_materialRenderStateTempData5;
 data g_materialRenderStateTempData6;
 data g_materialRenderStateTempData7;
 data g_materialRenderStateTempData8;
 
-// 函数: data FUN_180941fe0;
-data FUN_180941fe0;
+// 函数: data materialUniformDataInitialize;
+data materialUniformDataInitialize;
 data materialUniformData;
 data g_materialUniformTempData5;
 data g_materialUniformTempData6;
 data g_materialUniformTempData7;
 data g_materialUniformTempData8;
 
-// 函数: data FUN_180942000;
-data FUN_180942000;
+// 函数: data textureUploadBufferInitialize;
+data textureUploadBufferInitialize;
 data textureUploadBuffer;
 data g_textureUploadTempData5;
 data g_textureUploadTempData6;
@@ -737,75 +737,75 @@ data g_textureUploadTempData7;
 data g_textureUploadTempData8;
 data textureMipChainData;
 
-// 函数: data FUN_180942020;
-data FUN_180942020;
+// 函数: data textureMipChainInitialize;
+data textureMipChainInitialize;
 data g_textureMipTempData1;
 data g_textureMipTempData2;
 data g_textureMipTempData3;
 data g_textureMipTempData4;
 data textureCompressionFlag;
 
-// 函数: data FUN_180942040;
-data FUN_180942040;
+// 函数: data textureCompressionInitialize;
+data textureCompressionInitialize;
 data g_textureCompressionTempData5;
 data g_textureCompressionTempData6;
 data g_textureCompressionTempData7;
 data g_textureCompressionTempData8;
 data textureFilteringMode;
 
-// 函数: data FUN_180942060;
-data FUN_180942060;
+// 函数: data textureFilteringInitialize;
+data textureFilteringInitialize;
 data g_textureFilterTempData5;
 data g_textureFilterTempData6;
 data g_textureFilterTempData7;
 data g_textureFilterTempData8;
 data textureWrappingMode;
 
-// 函数: data FUN_180942080;
-data FUN_180942080;
+// 函数: data textureWrappingInitialize;
+data textureWrappingInitialize;
 data g_textureWrapTempData5;
 data g_textureWrapTempData6;
 data g_textureWrapTempData7;
 data g_textureWrapTempData8;
 data g_miscTempData1;
 
-// 函数: data FUN_1809420a0;
-data FUN_1809420a0;
+// 函数: data meshVertexBufferInitialize;
+data meshVertexBufferInitialize;
 data DAT_180bf96f0;
 data DAT_180bf96f8;
 data DAT_180bf9700;
 data DAT_180bf9708;
 data meshVertexBuffer;
 
-// 函数: data FUN_1809420c0;
-data FUN_1809420c0;
+// 函数: data meshIndexBufferInitialize;
+data meshIndexBufferInitialize;
 data DAT_180bf9750;
 data DAT_180bf9758;
 data DAT_180bf9760;
 data DAT_180bf9768;
 data meshIndexBuffer;
 
-// 函数: data FUN_1809420e0;
-data FUN_1809420e0;
+// 函数: data meshVertexLayoutInitialize;
+data meshVertexLayoutInitialize;
 data DAT_180bf97b0;
 data DAT_180bf97b8;
 data DAT_180bf97c0;
 data DAT_180bf97c8;
 data meshVertexLayout;
 
-// 函数: data FUN_180942100;
-data FUN_180942100;
+// 函数: data meshBoundingBoxInitialize;
+data meshBoundingBoxInitialize;
 data DAT_180bf9810;
 data DAT_180bf9818;
 data DAT_180bf9820;
 data DAT_180bf9828;
 data meshBoundingBox;
 
-// 函数: data FUN_180942120;
-data FUN_180942120;
+// 函数: data meshCollisionInitialize;
+data meshCollisionInitialize;
 
-// 函数: data FUN_180942140;
-data FUN_180942140;
+// 函数: data meshDataProcess;
+data meshDataProcess;
 data DAT_180bf9870;
 data DAT_180bf9878;
 data DAT_180bf9880;
@@ -813,8 +813,8 @@ data DAT_180bf9888;
 data meshCollisionData;
 data DAT_180bf98d0;
 
-// 函数: data FUN_180942160;
-data FUN_180942160;
+// 函数: data shaderCompileInitialize;
+data shaderCompileInitialize;
 data DAT_180bf98d8;
 data DAT_180bf98e0;
 data DAT_180bf98e8;
@@ -822,8 +822,8 @@ data shaderCompileStatus;
 data DAT_180bf9930;
 data DAT_180bf9938;
 
-// 函数: data FUN_180942180;
-data FUN_180942180;
+// 函数: data shaderProgramInitialize;
+data shaderProgramInitialize;
 data DAT_180bf9940;
 data DAT_180bf9948;
 data shaderProgramHandle;
@@ -831,8 +831,8 @@ data DAT_180bf9990;
 data DAT_180bf9998;
 data DAT_180bf99a0;
 
-// 函数: data FUN_1809421a0;
-data FUN_1809421a0;
+// 函数: data shaderUniformBufferInitialize;
+data shaderUniformBufferInitialize;
 data DAT_180bf99a8;
 data shaderUniformBuffer;
 data DAT_180bf99f0;
@@ -840,24 +840,24 @@ data DAT_180bf99f8;
 data DAT_180bf9a00;
 data DAT_180bf9a08;
 
-// 函数: data FUN_1809421c0;
-data FUN_1809421c0;
+// 函数: data shaderAttributeTableInitialize;
+data shaderAttributeTableInitialize;
 data shaderAttributeTable;
 data DAT_180bf9a50;
 data DAT_180bf9a58;
 data DAT_180bf9a60;
 data DAT_180bf9a68;
 
-// 函数: data FUN_1809421e0;
-data FUN_1809421e0;
+// 函数: data shaderConstantDataInitialize;
+data shaderConstantDataInitialize;
 data shaderConstantData;
 data DAT_180bf9ab0;
 data DAT_180bf9ab8;
 data DAT_180bf9ac0;
 data DAT_180bf9ac8;
 
-// 函数: data FUN_180942200;
-data FUN_180942200;
+// 函数: data renderPassDescriptorInitialize;
+data renderPassDescriptorInitialize;
 data g_miscTempData2;
 data DAT_180bf9b10;
 data DAT_180bf9b18;
@@ -865,75 +865,75 @@ data DAT_180bf9b20;
 data DAT_180bf9b28;
 data renderPassDescriptor;
 
-// 函数: data FUN_180942220;
-data FUN_180942220;
+// 函数: data renderPipelineInitialize;
+data renderPipelineInitialize;
 data DAT_180bf9b70;
 data DAT_180bf9b78;
 data DAT_180bf9b80;
 data DAT_180bf9b88;
 data renderCommandBuffer;
 
-// 函数: data FUN_180942240;
-data FUN_180942240;
+// 函数: data renderTargetInitialize;
+data renderTargetInitialize;
 data DAT_180bf9bd0;
 data DAT_180bf9bd8;
 data DAT_180bf9be0;
 data DAT_180bf9be8;
 data renderDrawCallData;
 
-// 函数: data FUN_180942260;
-data FUN_180942260;
+// 函数: data renderDescriptorInitialize;
+data renderDescriptorInitialize;
 data DAT_180bf9c30;
 data DAT_180bf9c38;
 data DAT_180bf9c40;
 data DAT_180bf9c48;
 data renderViewportState;
 
-// 函数: data FUN_180942280;
-data FUN_180942280;
+// 函数: data renderCommandInitialize;
+data renderCommandInitialize;
 data DAT_180bf9c90;
 data DAT_180bf9c98;
 data DAT_180bf9ca0;
 data DAT_180bf9ca8;
 data renderScissorRect;
 
-// 函数: data FUN_1809422a0;
-data FUN_1809422a0;
+// 函数: data renderStateInitialize;
+data renderStateInitialize;
 data DAT_180bf9cf0;
 data DAT_180bf9cf8;
 data DAT_180bf9d00;
 data DAT_180bf9d08;
 data framebufferColorAttachment;
 
-// 函数: data FUN_1809422c0;
-data FUN_1809422c0;
+// 函数: data renderQueueInitialize;
+data renderQueueInitialize;
 data DAT_180bf9d50;
 data DAT_180bf9d58;
 data DAT_180bf9d60;
 data DAT_180bf9d68;
 data framebufferDepthAttachment;
 
-// 函数: data FUN_1809422e0;
-data FUN_1809422e0;
+// 函数: data renderBufferInitialize;
+data renderBufferInitialize;
 data DAT_180bf9db0;
 data DAT_180bf9db8;
 data DAT_180bf9dc0;
 data DAT_180bf9dc8;
 data framebufferStencilAttachment;
 
-// 函数: data FUN_180942300;
-data FUN_180942300;
+// 函数: data renderSyncInitialize;
+data renderSyncInitialize;
 data DAT_180bf9e10;
 data DAT_180bf9e18;
 data DAT_180bf9e20;
 data DAT_180bf9e28;
 data framebufferResolveTarget;
 
-// 函数: data FUN_180942320;
-data FUN_180942320;
+// 函数: data renderMemoryInitialize;
+data renderMemoryInitialize;
 
-// 函数: data FUN_180942340;
-data FUN_180942340;
+// 函数: data renderResourceInitialize;
+data renderResourceInitialize;
 data DAT_180bf9e70;
 data DAT_180bf9e78;
 data DAT_180bf9e80;
@@ -941,8 +941,8 @@ data DAT_180bf9e88;
 data framebufferClearColor;
 data DAT_180bf9ed0;
 
-// 函数: data FUN_180942360;
-data FUN_180942360;
+// 函数: data renderTextureInitialize;
+data renderTextureInitialize;
 data DAT_180bf9ed8;
 data DAT_180bf9ee0;
 data DAT_180bf9ee8;
@@ -950,8 +950,8 @@ data computeShaderKernel;
 data DAT_180bf9f30;
 data DAT_180bf9f38;
 
-// 函数: data FUN_180942380;
-data FUN_180942380;
+// 函数: data renderSamplerInitialize;
+data renderSamplerInitialize;
 data DAT_180bf9f40;
 data DAT_180bf9f48;
 data computeWorkGroupSize;
@@ -959,8 +959,8 @@ data DAT_180bf9f90;
 data DAT_180bf9f98;
 data DAT_180bf9fa0;
 
-// 函数: data FUN_1809423a0;
-data FUN_1809423a0;
+// 函数: data renderBlendInitialize;
+data renderBlendInitialize;
 data DAT_180bf9fa8;
 data computeDispatchCount;
 data DAT_180bf9ff0;
@@ -968,24 +968,24 @@ data DAT_180bf9ff8;
 data DAT_180bfa000;
 data DAT_180bfa008;
 
-// 函数: data FUN_1809423c0;
-data FUN_1809423c0;
+// 函数: data renderDepthInitialize;
+data renderDepthInitialize;
 data computeSharedMemory;
 data DAT_180bfa050;
 data DAT_180bfa058;
 data DAT_180bfa060;
 data DAT_180bfa068;
 
-// 函数: data FUN_1809423e0;
-data FUN_1809423e0;
+// 函数: data renderStencilInitialize;
+data renderStencilInitialize;
 data computeBarrierFlag;
 data DAT_180bfa0b0;
 data DAT_180bfa0b8;
 data DAT_180bfa0c0;
 data DAT_180bfa0c8;
 
-// 函数: data FUN_180942400;
-data FUN_180942400;
+// 函数: data renderViewportInitialize;
+data renderViewportInitialize;
 data geometryInputAssembler;
 data DAT_180bfa110;
 data DAT_180bfa118;
@@ -993,52 +993,52 @@ data DAT_180bfa120;
 data DAT_180bfa128;
 data geometryTessellator;
 
-// 函数: data FUN_180942420;
-data FUN_180942420;
+// 函数: data renderScissorInitialize;
+data renderScissorInitialize;
 data DAT_180bfa170;
 data DAT_180bfa178;
 data DAT_180bfa180;
 data DAT_180bfa188;
 data geometryPrimitiveType;
 
-// 函数: data FUN_180942440;
-data FUN_180942440;
+// 函数: data renderClearInitialize;
+data renderClearInitialize;
 data DAT_180bfa1d0;
 data DAT_180bfa1d8;
 data DAT_180bfa1e0;
 data DAT_180bfa1e8;
 data DAT_180a22fd0;
 
-// 函数: data FUN_180942460;
-data FUN_180942460;
+// 函数: data renderDrawInitialize;
+data renderDrawInitialize;
 data DAT_180bfa230;
 data DAT_180bfa238;
 data DAT_180bfa240;
 data DAT_180bfa248;
 data DAT_180a22fa8;
 
-// 函数: data FUN_180942480;
-data FUN_180942480;
+// 函数: data renderDispatchInitialize;
+data renderDispatchInitialize;
 data DAT_180bfa290;
 data DAT_180bfa298;
 data DAT_180bfa2a0;
 data DAT_180bfa2a8;
 data geometryVertexCount;
 
-// 函数: data FUN_1809424a0;
-data FUN_1809424a0;
+// 函数: data resourceAcquireHandle;
+data resourceAcquireHandle;
 
 // 函数: data FUN_1809424c0;
 data FUN_1809424c0;
 
-// 函数: data FUN_180942520;
-data FUN_180942520;
+// 函数: data resourceReleaseHandle;
+data resourceReleaseHandle;
 
-// 函数: data FUN_180942580;
-data FUN_180942580;
+// 函数: data resourceAllocateMemory;
+data resourceAllocateMemory;
 
-// 函数: data FUN_1809425e0;
-data FUN_1809425e0;
+// 函数: data resourceDeallocateMemory;
+data resourceDeallocateMemory;
 data DAT_180c91f6c;
 data geometryIndexCount;
 data DAT_180c91fcc;
@@ -1138,8 +1138,8 @@ data threadSynchronizationFlag;
 data shadowBiasData;
 data shadowProjectionMatrix;
 
-// 函数: data FUN_180942660;
-data FUN_180942660;
+// 函数: data resourceLoadFromDisk;
+data resourceLoadFromDisk;
 data DAT_180bfc150;
 byte DAT_180bfc140;
 data DAT_180bfc160;
@@ -1150,8 +1150,8 @@ data DAT_180bfaec8;
 data DAT_180bfaed0;
 data DAT_180bfaed8;
 
-// 函数: data FUN_180942750;
-data FUN_180942750;
+// 函数: data resourceDecompressData;
+data resourceDecompressData;
 data DAT_180bfaee0;
 data DAT_180bfaee8;
 data DAT_180c92050;
@@ -1159,15 +1159,15 @@ data DAT_180c92058;
 data DAT_180c92060;
 data DAT_180c92068;
 
-// 函数: data FUN_180942790;
-data FUN_180942790;
+// 函数: data resourceEncryptData;
+data resourceEncryptData;
 data DAT_180bfaef0;
 data DAT_180bfaef8;
 data DAT_180bfaf00;
 data DAT_180bfaf08;
 
-// 函数: data FUN_1809427d0;
-data FUN_1809427d0;
+// 函数: data resourceDecryptData;
+data resourceDecryptData;
 data reflectionMipChain;
 data DAT_180bfb310;
 data DAT_180bfb318;
@@ -1175,35 +1175,35 @@ data DAT_180bfb320;
 data DAT_180bfb328;
 data renderOcclusionQuery;
 
-// 函数: data FUN_1809427f0;
-data FUN_1809427f0;
+// 函数: data resourceSignData;
+data resourceSignData;
 data DAT_180bfb730;
 data DAT_180bfb738;
 data DAT_180bfb740;
 data DAT_180bfb748;
 data renderBatchData;
 
-// 函数: data FUN_180942810;
-data FUN_180942810;
+// 函数: data resourceVerifySignature;
+data resourceVerifySignature;
 data DAT_180c9246c;
 data renderInstanceData;
 
-// 函数: data FUN_180942890;
-data FUN_180942890;
+// 函数: data resourceCreateBackup;
+data resourceCreateBackup;
 data DAT_180c92490;
 
-// 函数: data FUN_1809428e0;
-data FUN_1809428e0;
+// 函数: data resourceOptimizeStorage;
+data resourceOptimizeStorage;
 data DAT_180c92480;
 
-// 函数: data FUN_180942930;
-data FUN_180942930;
+// 函数: data resourceUpdateReferences;
+data resourceUpdateReferences;
 
-// 函数: data FUN_180942a20;
-data FUN_180942a20;
+// 函数: data resourceCacheEvict;
+data resourceCacheEvict;
 
-// 函数: data FUN_1809429f0;
-data FUN_1809429f0;
+// 函数: data resourceCachePrefetch;
+data resourceCachePrefetch;
 data DAT_180c924ac;
 data renderLODData;
 data DAT_180c924b0;
@@ -1217,15 +1217,15 @@ data DAT_180bf6050;
 data DAT_180bf6058;
 data DAT_180bf6060;
 
-// 函数: data FUN_180942a60;
-data FUN_180942a60;
+// 函数: data resourceCacheInvalidate;
+data resourceCacheInvalidate;
 data DAT_180bf6498;
 data DAT_180bf64a0;
 data DAT_180bf64a8;
 data DAT_180bf64b0;
 
-// 函数: data FUN_180942a80;
-data FUN_180942a80;
+// 函数: data resourceCacheUpdate;
+data resourceCacheUpdate;
 data DAT_180a2d660;
 data renderCullingData;
 data DAT_180a2d590;
@@ -1234,35 +1234,35 @@ data DAT_180c96310;
 data DAT_180c96320;
 data DAT_180c96328;
 
-// 函数: data FUN_180942fa0;
-data FUN_180942fa0;
+// 函数: data resourceMonitorActivity;
+data resourceMonitorActivity;
 data DAT_180bf6558;
 data DAT_180bf6560;
 data DAT_180bf6568;
 data DAT_180bf6570;
 
-// 函数: data FUN_180942fc0;
-data FUN_180942fc0;
+// 函数: data resourceManageLifecycle;
+data resourceManageLifecycle;
 data DAT_180c95ecc;
 data memoryAllocatorHeap;
 
-// 函数: data FUN_180943070;
-data FUN_180943070;
+// 函数: data resourceOptimizePerformance;
+data resourceOptimizePerformance;
 data DAT_180c9606c;
 data memoryPoolManager;
 data DAT_180c96218;
 data eventHandlerState;
 
-// 函数: data FUN_180943140;
-data FUN_180943140;
+// 函数: data resourceReportStatus;
+data resourceReportStatus;
 
-// 函数: data FUN_180943160;
-data FUN_180943160;
+// 函数: data resourceGenerateReport;
+data resourceGenerateReport;
 data DAT_180c96790;
 data DAT_180c96798;
 
-// 函数: data FUN_180943180;
-data FUN_180943180;
+// 函数: data resourceBatchOperation;
+data resourceBatchOperation;
 data DAT_180c967a0;
 data DAT_180c967a8;
 data DAT_180c967b0;
@@ -1367,8 +1367,8 @@ data allocatorHeapFlags;
 data DAT_1809fc7ec;
 data DAT_180bf5240;
 
-// 函数: data FUN_1809417e0;
-data FUN_1809417e0;
+// 函数: data systemInitializeCore;
+data systemInitializeCore;
 data DAT_180d49160;
 data DAT_180d49168;
 data DAT_180d49170;
@@ -1380,14 +1380,14 @@ data compressionLevel;
 data compressionAlgorithm;
 data compressionStream;
 
-// 函数: data FUN_180941920;
-data FUN_180941920;
+// 函数: data systemInitializeModules;
+data systemInitializeModules;
 data serializationBuffer;
 data serializationContext;
 data serializationTypeData;
 
-// 函数: data FUN_1809419e0;
-data FUN_1809419e0;
+// 函数: data systemInitializeServices;
+data systemInitializeServices;
 data serializationObjectPool;
 data serializationReferenceTable;
 data uiLayoutData;
@@ -1414,8 +1414,8 @@ data audioEffectChain;
 data audioMixerData;
 data videoDecoderData;
 
-// 函数: data FUN_180941a30;
-data FUN_180941a30;
+// 函数: data systemInitializePlugins;
+data systemInitializePlugins;
 data DAT_180d49238;
 data DAT_180d49250;
 data DAT_180d49248;
@@ -1424,8 +1424,8 @@ data DAT_180d49258;
 data DAT_180d4925c;
 data videoStreamBuffer;
 
-// 函数: data FUN_180941ad0;
-data FUN_180941ad0;
+// 函数: data systemInitializeExtensions;
+data systemInitializeExtensions;
 data videoFrameData;
 data videoCodecContext;
 data videoPlaybackData;
@@ -1513,8 +1513,8 @@ data unknown_180a07804;
 data eventDispatchTable;
 data unknown_18015c090;
 
-// 函数: data FUN_180941b20;
-data FUN_180941b20;
+// 函数: data systemInitializeComponents;
+data systemInitializeComponents;
 data DAT_180d49648;
 data DAT_180d49640;
 data DAT_180d49650;
@@ -1530,8 +1530,8 @@ data unknown_1801bc6b0;
 data unknown_180a0b680;
 data unknown_180a0b690;
 
-// 函数: data FUN_180941d50;
-data FUN_180941d50;
+// 函数: data systemInitializeSubsystems;
+data systemInitializeSubsystems;
 data unknown_180bd8a60;
 data unknown_180a185f0;
 data unknown_180a18618;
@@ -1589,8 +1589,8 @@ data accelerometerGravity;
 data accelerometerMotion;
 data accelerometerOrientation;
 
-// 函数: data FUN_180941da0;
-data FUN_180941da0;
+// 函数: data systemInitializeWorkers;
+data systemInitializeWorkers;
 data gameEngineCore;
 data gameEngineState;
 data gameEngineConfig;
@@ -1599,12 +1599,12 @@ data gameEngineStats;
 data gameEngineProfile;
 data entityComponentSystem;
 
-// 函数: data FUN_180941dd0;
-data FUN_180941dd0;
+// 函数: data systemInitializePools;
+data systemInitializePools;
 data DAT_180d497d0;
 
-// 函数: data FUN_180941e00;
-data FUN_180941e00;
+// 函数: data systemInitializeQueues;
+data systemInitializeQueues;
 data DAT_180d49990;
 data DAT_180d48de0;
 data DAT_180d48de8;
@@ -1620,8 +1620,8 @@ data entityManager;
 data componentManager;
 data systemManager;
 
-// 函数: data FUN_180942830;
-data FUN_180942830;
+// 函数: data resourceHashData;
+data resourceHashData;
 data entityPool;
 data componentPool;
 data DAT_180d49d08;
@@ -1632,8 +1632,8 @@ data DAT_180d49c08;
 data physicsEngineCore;
 data physicsWorldData;
 
-// 函数: data FUN_180942850;
-data FUN_180942850;
+// 函数: data resourceVerifyHash;
+data resourceVerifyHash;
 data DAT_180c91038;
 data physicsSceneData;
 data physicsBodyData;
@@ -1688,11 +1688,11 @@ data DAT_180bfbb60;
 data DAT_180bfbb70;
 data DAT_180bfbb80;
 
-// 函数: data FUN_180942a40;
-data FUN_180942a40;
+// 函数: data resourceCacheFlush;
+data resourceCacheFlush;
 
-// 函数: data FUN_180942aa0;
-data FUN_180942aa0;
+// 函数: data resourceBatchProcess;
+data resourceBatchProcess;
 data DAT_180a2de40;
 byte DAT_180d49e30;
 data fluidSimulationData;
@@ -1701,8 +1701,8 @@ data fluidGridData;
 data fluidBoundaryData;
 data fluidForceData;
 
-// 函数: data FUN_180943020;
-data FUN_180943020;
+// 函数: data resourceControlAccess;
+data resourceControlAccess;
 data fluidViscosityData;
 data clothSimulationData;
 data DAT_180c96128;
@@ -1716,8 +1716,8 @@ data DAT_180d49ec4;
 data DAT_180c9642c;
 data DAT_180c96430;
 
-// 函数: data FUN_180943040;
-data FUN_180943040;
+// 函数: data resourceTrackUsage;
+data resourceTrackUsage;
 data DAT_180c963e8;
 data DAT_180d49f60;
 data DAT_180d49f64;
@@ -1991,12 +1991,12 @@ data unknown_180a33ca8;
 data unknown_18053eee0;
 data unknown_18053efd0;
 
-// 函数: data FUN_180943090;
-data FUN_180943090;
+// 函数: data resourceBalanceLoad;
+data resourceBalanceLoad;
 data DAT_180d49ff8;
 
-// 函数: data FUN_1809430b0;
-data FUN_1809430b0;
+// 函数: data resourceScheduleMaintenance;
+data resourceScheduleMaintenance;
 data networkConnectionData1;
 data networkConnectionData2;
 data networkConnectionData3;
@@ -2396,8 +2396,8 @@ data DAT_180c92510;
 char DAT_180c8aa68;
 data unknown_180a3e5e8;
 
-// 函数: data FUN_1809430e0;
-data FUN_1809430e0;
+// 函数: data resourceExecuteMaintenance;
+data resourceExecuteMaintenance;
 byte DAT_180bf66d8;
 data DAT_180c96858;
 data DAT_180bfbf64;
@@ -7450,7 +7450,7 @@ int begin_database_transaction(longlong *resourceHandle,longlong memorySize,int 
 
 
 
-int FUN_180894700(longlong *resourceHandle,longlong memorySize,int operationFlags)
+int commit_database_transaction(longlong *resourceHandle,longlong memorySize,int operationFlags)
 
 {
   int localInt1;
@@ -7469,7 +7469,7 @@ int FUN_180894700(longlong *resourceHandle,longlong memorySize,int operationFlag
 
 
 
-int FUN_1808947b0(longlong *resourceHandle,longlong memorySize,int operationFlags)
+int rollback_database_transaction(longlong *resourceHandle,longlong memorySize,int operationFlags)
 
 {
   int localInt1;
@@ -7552,8 +7552,8 @@ void utilityExtractResourceInfo(longlong resourceHandle,uint32 *memorySize,longl
 
 
 
-// 函数: void FUN_18089492c(void)
-void FUN_18089492c(void)
+// 函数: void initialize_thread_local_storage(void)
+void initialize_thread_local_storage(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -24265,8 +24265,8 @@ uint64 FUN_18089ffe0(uint64 resourceHandle,longlong memorySize)
 
 
 
-// 函数: void FUN_180901ec0(uint64 *resourceHandle)
-void FUN_180901ec0(uint64 *resourceHandle)
+// 函数: void memoryAllocateBlock(uint64 *resourceHandle)
+void memoryAllocateBlock(uint64 *resourceHandle)
 
 {
   FUN_18006a050(*(uint32 *)*resourceHandle,resourceHandle);
@@ -80075,8 +80075,8 @@ bool is_game_object_invalid(uint64 *resourceHandle)
 
 
 
-// 函数: void FUN_1809413ed(uint64 resourceHandle,longlong memorySize)
-void FUN_1809413ed(uint64 resourceHandle,longlong memorySize)
+// 函数: void memoryFreeBlock(uint64 resourceHandle,longlong memorySize)
+void memoryFreeBlock(uint64 resourceHandle,longlong memorySize)
 
 {
   if (*(char *)(memorySize + 0x20) == '\0') {
@@ -80089,8 +80089,8 @@ void FUN_1809413ed(uint64 resourceHandle,longlong memorySize)
 
 
 
-// 函数: void FUN_180941419(uint64 resourceHandle,longlong memorySize)
-void FUN_180941419(uint64 resourceHandle,longlong memorySize)
+// 函数: void memoryReallocateBlock(uint64 resourceHandle,longlong memorySize)
+void memoryReallocateBlock(uint64 resourceHandle,longlong memorySize)
 
 {
   if (*(char *)(memorySize + 0x20) == '\0') {
@@ -80102,7 +80102,7 @@ void FUN_180941419(uint64 resourceHandle,longlong memorySize)
 
 
 
-uint32 FUN_180941445(uint64 resourceHandle,longlong memorySize)
+uint32 memoryGetBlockSize(uint64 resourceHandle,longlong memorySize)
 
 {
   *(uint64 *)(memorySize + 0x40) = resourceHandle;
@@ -80119,8 +80119,8 @@ uint32 FUN_180941445(uint64 resourceHandle,longlong memorySize)
 
 
 
-// 函数: void FUN_180941486(uint64 resourceHandle,longlong memorySize)
-void FUN_180941486(uint64 resourceHandle,longlong memorySize)
+// 函数: void memoryValidateBlock(uint64 resourceHandle,longlong memorySize)
+void memoryValidateBlock(uint64 resourceHandle,longlong memorySize)
 
 {
   if (*(char *)(memorySize + 0x20) == '\0') {
@@ -80133,8 +80133,8 @@ void FUN_180941486(uint64 resourceHandle,longlong memorySize)
 
 
 
-// 函数: void FUN_1809414b5(uint64 *resourceHandle)
-void FUN_1809414b5(uint64 *resourceHandle)
+// 函数: void memoryDefragmentBlock(uint64 *resourceHandle)
+void memoryDefragmentBlock(uint64 *resourceHandle)
 
 {
   func_0x0001808fd024(*(uint32 *)*resourceHandle);
@@ -80258,8 +80258,8 @@ void ValidateMemoryConfiguration(void) # 内存验证函数
 
 
 
-// 函数: void FUN_180941650(void) # 线程同步初始化函数
-void FUN_180941650(void) # 线程同步初始化函数
+// 函数: void threadSyncInitialize(void) # 线程同步初始化函数
+void threadSyncInitialize(void) # 线程同步初始化函数
 
 {
   _Mtx_destroy_in_situ();
@@ -80272,8 +80272,8 @@ void FUN_180941650(void) # 线程同步初始化函数
 
 
 
-// 函数: void FUN_180941690(void) # 事件处理初始化函数
-void FUN_180941690(void) # 事件处理初始化函数
+// 函数: void eventHandlerInitialize(void) # 事件处理初始化函数
+void eventHandlerInitialize(void) # 事件处理初始化函数
 
 {
   _Mtx_destroy_in_situ();
@@ -80286,8 +80286,8 @@ void FUN_180941690(void) # 事件处理初始化函数
 
 
 
-// 函数: void FUN_1809416d0(void) # 信号量初始化函数
-void FUN_1809416d0(void) # 信号量初始化函数
+// 函数: void semaphoreInitialize(void) # 信号量初始化函数
+void semaphoreInitialize(void) # 信号量初始化函数
 
 {
   _Mtx_destroy_in_situ();
@@ -80300,8 +80300,8 @@ void FUN_1809416d0(void) # 信号量初始化函数
 
 
 
-// 函数: void FUN_180941710(void) # 内存区域初始化函数
-void FUN_180941710(void) # 内存区域初始化函数
+// 函数: void memoryRegionInitialize(void) # 内存区域初始化函数
+void memoryRegionInitialize(void) # 内存区域初始化函数
 
 {
   _Mtx_destroy_in_situ();
@@ -80316,8 +80316,8 @@ void FUN_180941710(void) # 内存区域初始化函数
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809417a0(void) # 缓冲区初始化函数
-void FUN_1809417a0(void) # 缓冲区初始化函数
+// 函数: void bufferInitialize(void) # 缓冲区初始化函数
+void bufferInitialize(void) # 缓冲区初始化函数
 
 {
                     // WARNING: Could not recover jumptable at 0x0001809417b8. Too many branches
@@ -80329,8 +80329,8 @@ void FUN_1809417a0(void) # 缓冲区初始化函数
 
 
 
-// 函数: void FUN_1809417c0(void) # 系统配置初始化函数
-void FUN_1809417c0(void) # 系统配置初始化函数
+// 函数: void systemConfigInitialize(void) # 系统配置初始化函数
+void systemConfigInitialize(void) # 系统配置初始化函数
 
 {
                     // WARNING: Could not recover jumptable at 0x0001809417d8. Too many branches
@@ -80474,8 +80474,8 @@ void InitializeScriptSystem(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941920(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
-void FUN_180941920(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
+// 函数: void systemInitializeModules(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
+void systemInitializeModules(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
 
 {
   longlong *plocalLong1;
@@ -80536,8 +80536,8 @@ void InitializeConfigurationSystem(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809419e0(void)
-void FUN_1809419e0(void)
+// 函数: void systemInitializeServices(void)
+void systemInitializeServices(void)
 
 {
   _DAT_180d49218 = &threadLocalStorageData;
@@ -80556,8 +80556,8 @@ void FUN_1809419e0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941a30(void)
-void FUN_180941a30(void)
+// 函数: void systemInitializePlugins(void)
+void systemInitializePlugins(void)
 
 {
   _DAT_180d49240 = &threadLocalStorageData;
@@ -80576,8 +80576,8 @@ void FUN_180941a30(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941ad0(void)
-void FUN_180941ad0(void)
+// 函数: void systemInitializeExtensions(void)
+void systemInitializeExtensions(void)
 
 {
   int *plocalInt1;
@@ -80616,8 +80616,8 @@ void FUN_180941ad0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941b20(void)
-void FUN_180941b20(void)
+// 函数: void systemInitializeComponents(void)
+void systemInitializeComponents(void)
 
 {
   _DAT_180d49638 = &threadLocalStorageData;
@@ -80675,8 +80675,8 @@ void InitializeSystemModule3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941bf0(void)
-void FUN_180941bf0(void)
+// 函数: void resourceManagerReset(void)
+void resourceManagerReset(void)
 
 {
   if (DAT_180c91d50 != '\0') {
@@ -80722,8 +80722,8 @@ void SetupDatabaseTables(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941d50(void)
-void FUN_180941d50(void)
+// 函数: void systemInitializeSubsystems(void)
+void systemInitializeSubsystems(void)
 
 {
   _DAT_180d48db8 = &threadLocalStorageData;
@@ -80740,8 +80740,8 @@ void FUN_180941d50(void)
 
 
 
-// 函数: void FUN_180941da0(void)
-void FUN_180941da0(void)
+// 函数: void systemInitializeWorkers(void)
+void systemInitializeWorkers(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x000180941db8. Too many branches
@@ -80755,8 +80755,8 @@ void FUN_180941da0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941dd0(void)
-void FUN_180941dd0(void)
+// 函数: void systemInitializePools(void)
+void systemInitializePools(void)
 
 {
   _DAT_180d49730 = &threadLocalStorageCleanup;
@@ -80768,8 +80768,8 @@ void FUN_180941dd0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941e00(void)
-void FUN_180941e00(void)
+// 函数: void systemInitializeQueues(void)
+void systemInitializeQueues(void)
 
 {
   FUN_180320e20(0x180d497e0);
@@ -80791,8 +80791,8 @@ void FUN_180941e00(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941e90(void)
-void FUN_180941e90(void)
+// 函数: void resourceManagerMonitor(void)
+void resourceManagerMonitor(void)
 
 {
   longlong localLong1;
@@ -80887,8 +80887,8 @@ void materialTextureSamplerInitialize(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941fa0(void)
-void FUN_180941fa0(void)
+// 函数: void materialPropertyBufferInitialize(void)
+void materialPropertyBufferInitialize(void)
 
 {
   _g_materialTextureTempData3 = &threadLocalStorageCleanup;
@@ -80900,8 +80900,8 @@ void FUN_180941fa0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941fc0(void)
-void FUN_180941fc0(void)
+// 函数: void materialRenderStateInitialize(void)
+void materialRenderStateInitialize(void)
 
 {
   _g_materialPropertyTempData2 = &threadLocalStorageCleanup;
@@ -80913,8 +80913,8 @@ void FUN_180941fc0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941fe0(void)
-void FUN_180941fe0(void)
+// 函数: void materialUniformDataInitialize(void)
+void materialUniformDataInitialize(void)
 
 {
   _g_materialRenderStateTempData5 = &threadLocalStorageCleanup;
@@ -80926,8 +80926,8 @@ void FUN_180941fe0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942000(void)
-void FUN_180942000(void)
+// 函数: void textureUploadBufferInitialize(void)
+void textureUploadBufferInitialize(void)
 
 {
   _g_materialUniformTempData5 = &threadLocalStorageCleanup;
@@ -80939,8 +80939,8 @@ void FUN_180942000(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942020(void)
-void FUN_180942020(void)
+// 函数: void textureMipChainInitialize(void)
+void textureMipChainInitialize(void)
 
 {
   _g_textureUploadTempData5 = &threadLocalStorageCleanup;
@@ -80952,8 +80952,8 @@ void FUN_180942020(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942040(void)
-void FUN_180942040(void)
+// 函数: void textureCompressionInitialize(void)
+void textureCompressionInitialize(void)
 
 {
   _g_textureMipTempData1 = &threadLocalStorageCleanup;
@@ -80965,8 +80965,8 @@ void FUN_180942040(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942060(void)
-void FUN_180942060(void)
+// 函数: void textureFilteringInitialize(void)
+void textureFilteringInitialize(void)
 
 {
   _g_textureCompressionTempData5 = &threadLocalStorageCleanup;
@@ -80978,8 +80978,8 @@ void FUN_180942060(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942080(void)
-void FUN_180942080(void)
+// 函数: void textureWrappingInitialize(void)
+void textureWrappingInitialize(void)
 
 {
   _g_textureFilterTempData5 = &threadLocalStorageCleanup;
@@ -80991,8 +80991,8 @@ void FUN_180942080(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809420a0(void)
-void FUN_1809420a0(void)
+// 函数: void meshVertexBufferInitialize(void)
+void meshVertexBufferInitialize(void)
 
 {
   _g_textureWrapTempData5 = &threadLocalStorageCleanup;
@@ -81004,8 +81004,8 @@ void FUN_1809420a0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809420c0(void)
-void FUN_1809420c0(void)
+// 函数: void meshIndexBufferInitialize(void)
+void meshIndexBufferInitialize(void)
 
 {
   _DAT_180bf96f0 = &threadLocalStorageCleanup;
@@ -81017,8 +81017,8 @@ void FUN_1809420c0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809420e0(void)
-void FUN_1809420e0(void)
+// 函数: void meshVertexLayoutInitialize(void)
+void meshVertexLayoutInitialize(void)
 
 {
   _DAT_180bf9750 = &threadLocalStorageCleanup;
@@ -81030,8 +81030,8 @@ void FUN_1809420e0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942100(void)
-void FUN_180942100(void)
+// 函数: void meshBoundingBoxInitialize(void)
+void meshBoundingBoxInitialize(void)
 
 {
   _DAT_180bf97b0 = &threadLocalStorageCleanup;
@@ -81043,8 +81043,8 @@ void FUN_180942100(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942120(void)
-void FUN_180942120(void)
+// 函数: void meshCollisionInitialize(void)
+void meshCollisionInitialize(void)
 
 {
   _DAT_180bf9810 = &threadLocalStorageCleanup;
@@ -81056,8 +81056,8 @@ void FUN_180942120(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942140(void)
-void FUN_180942140(void)
+// 函数: void meshDataProcess(void)
+void meshDataProcess(void)
 
 {
   _DAT_180bf9870 = &threadLocalStorageCleanup;
@@ -81069,8 +81069,8 @@ void FUN_180942140(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942160(void)
-void FUN_180942160(void)
+// 函数: void shaderCompileInitialize(void)
+void shaderCompileInitialize(void)
 
 {
   _DAT_180bf98d0 = &threadLocalStorageCleanup;
@@ -81082,8 +81082,8 @@ void FUN_180942160(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942180(void)
-void FUN_180942180(void)
+// 函数: void shaderProgramInitialize(void)
+void shaderProgramInitialize(void)
 
 {
   _DAT_180bf9930 = &threadLocalStorageCleanup;
@@ -81095,8 +81095,8 @@ void FUN_180942180(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809421a0(void)
-void FUN_1809421a0(void)
+// 函数: void shaderUniformBufferInitialize(void)
+void shaderUniformBufferInitialize(void)
 
 {
   _DAT_180bf9990 = &threadLocalStorageCleanup;
@@ -81108,8 +81108,8 @@ void FUN_1809421a0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809421c0(void)
-void FUN_1809421c0(void)
+// 函数: void shaderAttributeTableInitialize(void)
+void shaderAttributeTableInitialize(void)
 
 {
   _DAT_180bf99f0 = &threadLocalStorageCleanup;
@@ -81121,8 +81121,8 @@ void FUN_1809421c0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809421e0(void)
-void FUN_1809421e0(void)
+// 函数: void shaderConstantDataInitialize(void)
+void shaderConstantDataInitialize(void)
 
 {
   _DAT_180bf9a50 = &threadLocalStorageCleanup;
@@ -81134,8 +81134,8 @@ void FUN_1809421e0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942200(void)
-void FUN_180942200(void)
+// 函数: void renderPassDescriptorInitialize(void)
+void renderPassDescriptorInitialize(void)
 
 {
   _DAT_180bf9ab0 = &threadLocalStorageCleanup;
@@ -81147,8 +81147,8 @@ void FUN_180942200(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942220(void)
-void FUN_180942220(void)
+// 函数: void renderPipelineInitialize(void)
+void renderPipelineInitialize(void)
 
 {
   _DAT_180bf9b10 = &threadLocalStorageCleanup;
@@ -81160,8 +81160,8 @@ void FUN_180942220(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942240(void)
-void FUN_180942240(void)
+// 函数: void renderTargetInitialize(void)
+void renderTargetInitialize(void)
 
 {
   _DAT_180bf9b70 = &threadLocalStorageCleanup;
@@ -81173,8 +81173,8 @@ void FUN_180942240(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942260(void)
-void FUN_180942260(void)
+// 函数: void renderDescriptorInitialize(void)
+void renderDescriptorInitialize(void)
 
 {
   _DAT_180bf9bd0 = &threadLocalStorageCleanup;
@@ -81186,8 +81186,8 @@ void FUN_180942260(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942280(void)
-void FUN_180942280(void)
+// 函数: void renderCommandInitialize(void)
+void renderCommandInitialize(void)
 
 {
   _DAT_180bf9c30 = &threadLocalStorageCleanup;
@@ -81199,8 +81199,8 @@ void FUN_180942280(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809422a0(void)
-void FUN_1809422a0(void)
+// 函数: void renderStateInitialize(void)
+void renderStateInitialize(void)
 
 {
   _DAT_180bf9c90 = &threadLocalStorageCleanup;
@@ -81212,8 +81212,8 @@ void FUN_1809422a0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809422c0(void)
-void FUN_1809422c0(void)
+// 函数: void renderQueueInitialize(void)
+void renderQueueInitialize(void)
 
 {
   _DAT_180bf9cf0 = &threadLocalStorageCleanup;
@@ -81225,8 +81225,8 @@ void FUN_1809422c0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809422e0(void)
-void FUN_1809422e0(void)
+// 函数: void renderBufferInitialize(void)
+void renderBufferInitialize(void)
 
 {
   _DAT_180bf9d50 = &threadLocalStorageCleanup;
@@ -81238,8 +81238,8 @@ void FUN_1809422e0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942300(void)
-void FUN_180942300(void)
+// 函数: void renderSyncInitialize(void)
+void renderSyncInitialize(void)
 
 {
   _DAT_180bf9db0 = &threadLocalStorageCleanup;
@@ -81251,8 +81251,8 @@ void FUN_180942300(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942320(void)
-void FUN_180942320(void)
+// 函数: void renderMemoryInitialize(void)
+void renderMemoryInitialize(void)
 
 {
   _DAT_180bf9e10 = &threadLocalStorageCleanup;
@@ -81264,8 +81264,8 @@ void FUN_180942320(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942340(void)
-void FUN_180942340(void)
+// 函数: void renderResourceInitialize(void)
+void renderResourceInitialize(void)
 
 {
   _DAT_180bf9e70 = &threadLocalStorageCleanup;
@@ -81277,8 +81277,8 @@ void FUN_180942340(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942360(void)
-void FUN_180942360(void)
+// 函数: void renderTextureInitialize(void)
+void renderTextureInitialize(void)
 
 {
   _DAT_180bf9ed0 = &threadLocalStorageCleanup;
@@ -81290,8 +81290,8 @@ void FUN_180942360(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942380(void)
-void FUN_180942380(void)
+// 函数: void renderSamplerInitialize(void)
+void renderSamplerInitialize(void)
 
 {
   _DAT_180bf9f30 = &threadLocalStorageCleanup;
@@ -81303,8 +81303,8 @@ void FUN_180942380(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809423a0(void)
-void FUN_1809423a0(void)
+// 函数: void renderBlendInitialize(void)
+void renderBlendInitialize(void)
 
 {
   _DAT_180bf9f90 = &threadLocalStorageCleanup;
@@ -81316,8 +81316,8 @@ void FUN_1809423a0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809423c0(void)
-void FUN_1809423c0(void)
+// 函数: void renderDepthInitialize(void)
+void renderDepthInitialize(void)
 
 {
   _DAT_180bf9ff0 = &threadLocalStorageCleanup;
@@ -81329,8 +81329,8 @@ void FUN_1809423c0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809423e0(void)
-void FUN_1809423e0(void)
+// 函数: void renderStencilInitialize(void)
+void renderStencilInitialize(void)
 
 {
   _DAT_180bfa050 = &threadLocalStorageCleanup;
@@ -81342,8 +81342,8 @@ void FUN_1809423e0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942400(void)
-void FUN_180942400(void)
+// 函数: void renderViewportInitialize(void)
+void renderViewportInitialize(void)
 
 {
   _DAT_180bfa0b0 = &threadLocalStorageCleanup;
@@ -81355,8 +81355,8 @@ void FUN_180942400(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942420(void)
-void FUN_180942420(void)
+// 函数: void renderScissorInitialize(void)
+void renderScissorInitialize(void)
 
 {
   _DAT_180bfa110 = &threadLocalStorageCleanup;
@@ -81368,8 +81368,8 @@ void FUN_180942420(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942440(void)
-void FUN_180942440(void)
+// 函数: void renderClearInitialize(void)
+void renderClearInitialize(void)
 
 {
   _DAT_180bfa170 = &threadLocalStorageCleanup;
@@ -81381,8 +81381,8 @@ void FUN_180942440(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942460(void)
-void FUN_180942460(void)
+// 函数: void renderDrawInitialize(void)
+void renderDrawInitialize(void)
 
 {
   _DAT_180bfa1d0 = &threadLocalStorageCleanup;
@@ -81394,8 +81394,8 @@ void FUN_180942460(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942480(void)
-void FUN_180942480(void)
+// 函数: void renderDispatchInitialize(void)
+void renderDispatchInitialize(void)
 
 {
   _DAT_180bfa230 = &threadLocalStorageCleanup;
@@ -81407,8 +81407,8 @@ void FUN_180942480(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809424a0(void)
-void FUN_1809424a0(void)
+// 函数: void resourceAcquireHandle(void)
+void resourceAcquireHandle(void)
 
 {
   _DAT_180bfa290 = &threadLocalStorageCleanup;
@@ -81449,8 +81449,8 @@ void FUN_1809424c0(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942520(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
-void FUN_180942520(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
+// 函数: void resourceReleaseHandle(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
+void resourceReleaseHandle(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
 
 {
   uint64 *plocalUInt1;
@@ -81478,8 +81478,8 @@ void FUN_180942520(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942580(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
-void FUN_180942580(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
+// 函数: void resourceAllocateMemory(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
+void resourceAllocateMemory(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
 
 {
   uint64 *plocalUInt1;
@@ -81505,8 +81505,8 @@ void FUN_180942580(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags
 
 
 
-// 函数: void FUN_1809425e0(void)
-void FUN_1809425e0(void)
+// 函数: void resourceDeallocateMemory(void)
+void resourceDeallocateMemory(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x0001809425f8. Too many branches
@@ -81518,8 +81518,8 @@ void FUN_1809425e0(void)
 
 
 
-// 函数: void FUN_180942660(void)
-void FUN_180942660(void)
+// 函数: void resourceLoadFromDisk(void)
+void resourceLoadFromDisk(void)
 
 {
   longlong localLong1;
@@ -81549,8 +81549,8 @@ void FUN_180942660(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942690(void)
-void FUN_180942690(void)
+// 函数: void resourceSaveToDisk(void)
+void resourceSaveToDisk(void)
 
 {
   longlong localLong1;
@@ -81571,8 +81571,8 @@ void FUN_180942690(void)
   _DAT_180bfc110 = 0;
   _DAT_180bfc118 = 0xf;
 
-// 函数: void FUN_180942700(void)
-void FUN_180942700(void)
+// 函数: void resourceValidateChecksum(void)
+void resourceValidateChecksum(void)
 
 {
   longlong localLong1;
@@ -81599,8 +81599,8 @@ void FUN_180942700(void)
 
 
 
-// 函数: void FUN_180942720(void)
-void FUN_180942720(void)
+// 函数: void resourceCompressData(void)
+void resourceCompressData(void)
 
 {
   longlong localLong1;
@@ -81629,8 +81629,8 @@ void FUN_180942720(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942750(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
-void FUN_180942750(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
+// 函数: void resourceDecompressData(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
+void resourceDecompressData(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
 
 {
   uint64 *plocalUInt1;
@@ -81660,8 +81660,8 @@ void FUN_180942750(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942790(void)
-void FUN_180942790(void)
+// 函数: void resourceEncryptData(void)
+void resourceEncryptData(void)
 
 {
   _DAT_180c92050 = &threadLocalStorageCleanup;
@@ -81676,8 +81676,8 @@ void FUN_180942790(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809427d0(void)
-void FUN_1809427d0(void)
+// 函数: void resourceDecryptData(void)
+void resourceDecryptData(void)
 
 {
   _DAT_180bfaef0 = &threadLocalStorageCleanup;
@@ -81689,8 +81689,8 @@ void FUN_1809427d0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809427f0(void)
-void FUN_1809427f0(void)
+// 函数: void resourceSignData(void)
+void resourceSignData(void)
 
 {
   _DAT_180bfb310 = &threadLocalStorageCleanup;
@@ -81702,8 +81702,8 @@ void FUN_1809427f0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942810(void)
-void FUN_180942810(void)
+// 函数: void resourceVerifySignature(void)
+void resourceVerifySignature(void)
 
 {
   _DAT_180bfb730 = &threadLocalStorageCleanup;
@@ -81715,8 +81715,8 @@ void FUN_180942810(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942830(void)
-void FUN_180942830(void)
+// 函数: void resourceHashData(void)
+void resourceHashData(void)
 
 {
   _DAT_180d499d0 = &threadLocalStorageCleanup;
@@ -81728,8 +81728,8 @@ void FUN_180942830(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942850(void)
-void FUN_180942850(void)
+// 函数: void resourceVerifyHash(void)
+void resourceVerifyHash(void)
 
 {
   _DAT_180d49bf0 = &threadLocalStorageCleanup;
@@ -81741,8 +81741,8 @@ void FUN_180942850(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942890(void)
-void FUN_180942890(void)
+// 函数: void resourceCreateBackup(void)
+void resourceCreateBackup(void)
 
 {
   longlong *plocalLong1;
@@ -81776,8 +81776,8 @@ void FUN_180942890(void)
 
 
 
-// 函数: void FUN_1809428a2(void)
-void FUN_1809428a2(void)
+// 函数: void resourceRestoreBackup(void)
+void resourceRestoreBackup(void)
 
 {
   longlong *plocalLong1;
@@ -81808,8 +81808,8 @@ void FUN_1809428a2(void)
 
 
 
-// 函数: void FUN_1809428d8(void)
-void FUN_1809428d8(void)
+// 函数: void resourceSyncWithCloud(void)
+void resourceSyncWithCloud(void)
 
 {
   return;
@@ -81820,8 +81820,8 @@ void FUN_1809428d8(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809428e0(void)
-void FUN_1809428e0(void)
+// 函数: void resourceOptimizeStorage(void)
+void resourceOptimizeStorage(void)
 
 {
   longlong *plocalLong1;
@@ -81855,8 +81855,8 @@ void FUN_1809428e0(void)
 
 
 
-// 函数: void FUN_1809428f2(void)
-void FUN_1809428f2(void)
+// 函数: void resourceDefragmentMemory(void)
+void resourceDefragmentMemory(void)
 
 {
   longlong *plocalLong1;
@@ -81887,8 +81887,8 @@ void FUN_1809428f2(void)
 
 
 
-// 函数: void FUN_180942928(void)
-void FUN_180942928(void)
+// 函数: void resourceCollectGarbage(void)
+void resourceCollectGarbage(void)
 
 {
   return;
@@ -81899,8 +81899,8 @@ void FUN_180942928(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942930(void)
-void FUN_180942930(void)
+// 函数: void resourceUpdateReferences(void)
+void resourceUpdateReferences(void)
 
 {
   longlong *plocalLong1;
@@ -81934,8 +81934,8 @@ void FUN_180942930(void)
 
 
 
-// 函数: void FUN_180942942(void)
-void FUN_180942942(void)
+// 函数: void resourceValidateIntegrity(void)
+void resourceValidateIntegrity(void)
 
 {
   longlong *plocalLong1;
@@ -81966,8 +81966,8 @@ void FUN_180942942(void)
 
 
 
-// 函数: void FUN_180942978(void)
-void FUN_180942978(void)
+// 函数: void resourceRepairCorruption(void)
+void resourceRepairCorruption(void)
 
 {
   return;
@@ -81978,8 +81978,8 @@ void FUN_180942978(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942980(void)
-void FUN_180942980(void)
+// 函数: void resourceMigrateFormat(void)
+void resourceMigrateFormat(void)
 
 {
   longlong localLong1;
@@ -82000,8 +82000,8 @@ void FUN_180942980(void)
   _DAT_180bfc180 = 0;
   _DAT_180bfc188 = 0xf;
 
-// 函数: void FUN_1809429f0(void)
-void FUN_1809429f0(void)
+// 函数: void resourceCachePrefetch(void)
+void resourceCachePrefetch(void)
 
 {
   ulonglong localUInt1;
@@ -82034,8 +82034,8 @@ void FUN_1809429f0(void)
 
 
 
-// 函数: void FUN_180942a20(void)
-void FUN_180942a20(void)
+// 函数: void resourceCacheEvict(void)
+void resourceCacheEvict(void)
 
 {
   longlong localLong1;
@@ -82063,8 +82063,8 @@ void FUN_180942a20(void)
 
 
 
-// 函数: void FUN_180942a40(void)
-void FUN_180942a40(void)
+// 函数: void resourceCacheFlush(void)
+void resourceCacheFlush(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x000180942a58. Too many branches
@@ -82078,8 +82078,8 @@ void FUN_180942a40(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942a60(void)
-void FUN_180942a60(void)
+// 函数: void resourceCacheInvalidate(void)
+void resourceCacheInvalidate(void)
 
 {
   _DAT_180bf6048 = &threadLocalStorageCleanup;
@@ -82091,8 +82091,8 @@ void FUN_180942a60(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942a80(void)
-void FUN_180942a80(void)
+// 函数: void resourceCacheUpdate(void)
+void resourceCacheUpdate(void)
 
 {
   _DAT_180bf6498 = &threadLocalStorageCleanup;
@@ -82104,8 +82104,8 @@ void FUN_180942a80(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942aa0(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
-void FUN_180942aa0(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
+// 函数: void resourceBatchProcess(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
+void resourceBatchProcess(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
 
 {
   uint64 *plocalUInt1;
@@ -82122,23 +82122,23 @@ void FUN_180942aa0(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags
 
 
 
-// 函数: void FUN_180942b30(void)
-void FUN_180942b30(void)
+// 函数: void resourceScheduleTask(void)
+void resourceScheduleTask(void)
 
 {
   if (DAT_180c95ef0 != '\0') {
     FUN_1804a6ec0();
 
-// 函数: void FUN_180942b80(void)
-void FUN_180942b80(void)
+// 函数: void resourceCancelTask(void)
+void resourceCancelTask(void)
 
 {
   if (DAT_180c96008 != '\0') {
     FUN_180552e70(_DAT_180c95ff0);
     _DAT_180c95ff0 = 0;
 
-// 函数: void FUN_180942bb0(void)
-void FUN_180942bb0(void)
+// 函数: void resourcePauseTask(void)
+void resourcePauseTask(void)
 
 {
   if (DAT_180c96028 != '\0') {
@@ -82148,24 +82148,24 @@ void FUN_180942bb0(void)
     }
     _DAT_180c96010 = 0;
 
-// 函数: void FUN_180942bf0(void)
-void FUN_180942bf0(void)
+// 函数: void resourceResumeTask(void)
+void resourceResumeTask(void)
 
 {
   if (DAT_180c96048 != '\0') {
     FUN_180555430(_DAT_180c96030);
     _DAT_180c96030 = 0;
 
-// 函数: void FUN_180942c20(void)
-void FUN_180942c20(void)
+// 函数: void resourceQueryProgress(void)
+void resourceQueryProgress(void)
 
 {
   if (DAT_180c96068 != '\0') {
     FUN_180555430(_DAT_180c96050);
     _DAT_180c96050 = 0;
 
-// 函数: void FUN_180942c50(void)
-void FUN_180942c50(void)
+// 函数: void resourceQueryStatus(void)
+void resourceQueryStatus(void)
 
 {
   if (DAT_180c96098 != '\0') {
@@ -82174,24 +82174,24 @@ void FUN_180942c50(void)
       (**(code **)(*_DAT_180c96070 + 0x38))();
     }
 
-// 函数: void FUN_180942cb0(void)
-void FUN_180942cb0(void)
+// 函数: void resourceQueryMetrics(void)
+void resourceQueryMetrics(void)
 
 {
   if (DAT_180c960b8 != '\0') {
     FUN_18055a350(_DAT_180c960a0);
     _DAT_180c960a0 = 0;
 
-// 函数: void FUN_180942ce0(void)
-void FUN_180942ce0(void)
+// 函数: void resourceQueryStatistics(void)
+void resourceQueryStatistics(void)
 
 {
   if (DAT_180c96100 != '\0') {
     FUN_1804a5b60();
     FUN_1804a5b00(&DAT_180c960c0);
 
-// 函数: void FUN_180942d30(void)
-void FUN_180942d30(void)
+// 函数: void resourceSetPriority(void)
+void resourceSetPriority(void)
 
 {
   longlong localLong1;
@@ -82214,16 +82214,16 @@ void FUN_180942d30(void)
     }
     _DAT_180c96138 = 0;
 
-// 函数: void FUN_180942e20(void)
-void FUN_180942e20(void)
+// 函数: void resourceGetPriority(void)
+void resourceGetPriority(void)
 
 {
   if (DAT_180c961d8 != '\0') {
     FUN_1804c3730(&DAT_180c961b0);
     FUN_1804c42a0(&DAT_180c961b0);
 
-// 函数: void FUN_180942e70(void)
-void FUN_180942e70(void)
+// 函数: void resourceSetLimit(void)
+void resourceSetLimit(void)
 
 {
   longlong *plocalLong1;
@@ -82243,8 +82243,8 @@ void FUN_180942e70(void)
       HandleCriticalError();
     }
 
-// 函数: void FUN_180942f00(void)
-void FUN_180942f00(void)
+// 函数: void resourceGetLimit(void)
+void resourceGetLimit(void)
 
 {
   if (DAT_180c95fe8 != '\0') {
@@ -82253,15 +82253,15 @@ void FUN_180942f00(void)
       HandleCriticalError();
     }
 
-// 函数: void FUN_180942f50(void)
-void FUN_180942f50(void)
+// 函数: void resourceResetLimit(void)
+void resourceResetLimit(void)
 
 {
   if (DAT_180c96210 != '\0') {
     FUN_1804a5bc0();
 
-// 函数: void FUN_180942fa0(void)
-void FUN_180942fa0(void)
+// 函数: void resourceMonitorActivity(void)
+void resourceMonitorActivity(void)
 
 {
   _DAT_180bf64f8 = &threadLocalStorageCleanup;
@@ -82273,8 +82273,8 @@ void FUN_180942fa0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942fc0(void)
-void FUN_180942fc0(void)
+// 函数: void resourceManageLifecycle(void)
+void resourceManageLifecycle(void)
 
 {
   _DAT_180bf6558 = &threadLocalStorageCleanup;
@@ -82284,8 +82284,8 @@ void FUN_180942fc0(void)
 
 
 
-// 函数: void FUN_180943020(void)
-void FUN_180943020(void)
+// 函数: void resourceControlAccess(void)
+void resourceControlAccess(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x000180943038. Too many branches
@@ -82297,8 +82297,8 @@ void FUN_180943020(void)
 
 
 
-// 函数: void FUN_180943040(void)
-void FUN_180943040(void)
+// 函数: void resourceTrackUsage(void)
+void resourceTrackUsage(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x000180943058. Too many branches
@@ -82310,8 +82310,8 @@ void FUN_180943040(void)
 
 
 
-// 函数: void FUN_180943070(void)
-void FUN_180943070(void)
+// 函数: void resourceOptimizePerformance(void)
+void resourceOptimizePerformance(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x000180943088. Too many branches
@@ -82325,8 +82325,8 @@ void FUN_180943070(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180943090(void)
-void FUN_180943090(void)
+// 函数: void resourceBalanceLoad(void)
+void resourceBalanceLoad(void)
 
 {
   _DAT_180d49f80 = &threadLocalStorageCleanup;
@@ -82338,8 +82338,8 @@ void FUN_180943090(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809430b0(void)
-void FUN_1809430b0(void)
+// 函数: void resourceScheduleMaintenance(void)
+void resourceScheduleMaintenance(void)
 
 {
   _DAT_180d49fe0 = &threadLocalStorageCleanup;
@@ -82351,8 +82351,8 @@ void FUN_1809430b0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809430e0(void)
-void FUN_1809430e0(void)
+// 函数: void resourceExecuteMaintenance(void)
+void resourceExecuteMaintenance(void)
 
 {
   _DAT_180d4a068 = &threadLocalStorageData;
@@ -82369,8 +82369,8 @@ void FUN_1809430e0(void)
 
 
 
-// 函数: void FUN_180943140(void)
-void FUN_180943140(void)
+// 函数: void resourceReportStatus(void)
+void resourceReportStatus(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x000180943158. Too many branches
@@ -82382,8 +82382,8 @@ void FUN_180943140(void)
 
 
 
-// 函数: void FUN_180943160(void)
-void FUN_180943160(void)
+// 函数: void resourceGenerateReport(void)
+void resourceGenerateReport(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x000180943178. Too many branches
@@ -82397,8 +82397,8 @@ void FUN_180943160(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180943180(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
-void FUN_180943180(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
+// 函数: void resourceBatchOperation(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
+void resourceBatchOperation(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags,uint64 callbackFunction)
 
 {
   uint64 *plocalUInt1;
