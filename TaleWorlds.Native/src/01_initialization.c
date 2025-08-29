@@ -79,13 +79,13 @@ undefined g_network_state;
 
 undefined g_network_timeout;
 
-undefined g_network_connection_network_connection;
+undefined g_network_connection;
 
-undefined g_network_buffer_size_network_buffer_size;
+undefined g_network_buffer_size;
 
-undefined g_network_packet_network_packet;
+undefined g_network_packet;
 
-undefined InitializeSubSystemEngine_subsystem_init;
+undefined InitializeSubSystemEngine;
 
 undefined g_system_reserved_data_system_reserved;
 
