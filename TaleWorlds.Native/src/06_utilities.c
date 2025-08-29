@@ -1269,7 +1269,7 @@ data DAT_180c967b0;
 data DAT_180c967b8;
 data DAT_180c967d0;
 data unknown_180a3def0;
-data unknown_18098bcb0;
+data threadLocalStorageCleanup;
 
 // 函数: data InitializeThreadLocalStorage;
 data InitializeThreadLocalStorage;
@@ -1279,7 +1279,7 @@ data DAT_180c967d4;
 data unknown_180a3e3d8;
 data DAT_180c967d8;
 data unknown_180a3e3f0;
-data DAT_180c967e0;
+data systemCallData;
 data DAT_180c967e8;
 data DAT_180c967f0;
 data DAT_180c967f8;
@@ -3245,7 +3245,7 @@ uint64 validate_resource_operation(longlong resourceHandle)
 
 
 
-uint64 FUN_180890923(void)
+uint64 get_resource_status(void)
 
 {
   longlong localLong1;
@@ -3299,7 +3299,7 @@ void initializeSystemResources(void)
 
 
 
-uint64 FUN_1808909ba(void)
+uint64 initialize_resource_manager(void)
 
 {
   return 0x1c;
@@ -24575,14 +24575,14 @@ void Unwind_180902040(uint64 resourceHandle,longlong memorySize)
 void Unwind_180902070(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x68) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x68) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x70) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x70) = 0;
   *(uint32 *)(memorySize + 0x80) = 0;
-  *(uint64 *)(memorySize + 0x68) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x68) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -24591,7 +24591,7 @@ void Unwind_180902070(uint64 resourceHandle,longlong memorySize)
 void Unwind_180902080(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x68) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x68) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -24717,7 +24717,7 @@ void Unwind_180902130(uint64 resourceHandle,longlong memorySize,uint64 operation
 void Unwind_180902140(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0xf0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0xf0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -24726,7 +24726,7 @@ void Unwind_180902140(uint64 resourceHandle,longlong memorySize)
 void Unwind_180902150(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x30) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x30) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -24735,7 +24735,7 @@ void Unwind_180902150(uint64 resourceHandle,longlong memorySize)
 void Unwind_180902160(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0xf0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0xf0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -24744,14 +24744,14 @@ void Unwind_180902160(uint64 resourceHandle,longlong memorySize)
 void Unwind_180902170(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x138) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x138) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x140) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x140) = 0;
   *(uint32 *)(memorySize + 0x150) = 0;
-  *(uint64 *)(memorySize + 0x138) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x138) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -24760,14 +24760,14 @@ void Unwind_180902170(uint64 resourceHandle,longlong memorySize)
 void Unwind_180902180(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x1a0) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x1a0) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x1a8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x1a8) = 0;
   *(uint32 *)(memorySize + 0x1b8) = 0;
-  *(uint64 *)(memorySize + 0x1a0) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x1a0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -24788,14 +24788,14 @@ void Unwind_180902190(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809021c0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x180) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x180) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x188) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x188) = 0;
   *(uint32 *)(memorySize + 0x198) = 0;
-  *(uint64 *)(memorySize + 0x180) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x180) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -24804,7 +24804,7 @@ void Unwind_1809021c0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809021d0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x138) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x138) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -24825,7 +24825,7 @@ void Unwind_1809021e0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180902210(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x78) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x78) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -24846,7 +24846,7 @@ void Unwind_180902220(uint64 resourceHandle,longlong memorySize)
 void Unwind_180902250(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x118) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x118) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -24867,7 +24867,7 @@ void Unwind_180902260(uint64 resourceHandle,longlong memorySize)
 void Unwind_180902290(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0xf8) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0xf8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -24900,7 +24900,7 @@ void Unwind_1809022d0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180902300(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0xd8) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0xd8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -24933,7 +24933,7 @@ void Unwind_180902340(uint64 resourceHandle,longlong memorySize)
 void Unwind_180902370(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x98) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x98) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -24954,7 +24954,7 @@ void Unwind_180902380(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809023b0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x180) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x180) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -24963,7 +24963,7 @@ void Unwind_1809023b0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809023c0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x1a0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x1a0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -25050,14 +25050,14 @@ void Unwind_1809023f0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180902400(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x78) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x78) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x80) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x80) = 0;
   *(uint32 *)(memorySize + 0x90) = 0;
-  *(uint64 *)(memorySize + 0x78) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x78) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -25077,7 +25077,7 @@ void Unwind_180902410(uint64 resourceHandle,longlong memorySize)
 void Unwind_180902420(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x150) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x150) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -25086,14 +25086,14 @@ void Unwind_180902420(uint64 resourceHandle,longlong memorySize)
 void Unwind_180902430(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0xa8) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0xa8) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0xb0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0xb0) = 0;
   *(uint32 *)(memorySize + 0xc0) = 0;
-  *(uint64 *)(memorySize + 0xa8) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0xa8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -25102,14 +25102,14 @@ void Unwind_180902430(uint64 resourceHandle,longlong memorySize)
 void Unwind_180902440(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0xd0) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0xd0) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0xd8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0xd8) = 0;
   *(uint32 *)(memorySize + 0xe8) = 0;
-  *(uint64 *)(memorySize + 0xd0) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0xd0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -25118,14 +25118,14 @@ void Unwind_180902440(uint64 resourceHandle,longlong memorySize)
 void Unwind_180902450(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x78) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x78) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x80) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x80) = 0;
   *(uint32 *)(memorySize + 0x90) = 0;
-  *(uint64 *)(memorySize + 0x78) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x78) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -25134,7 +25134,7 @@ void Unwind_180902450(uint64 resourceHandle,longlong memorySize)
 void Unwind_180902460(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x148) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x148) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -25143,7 +25143,7 @@ void Unwind_180902460(uint64 resourceHandle,longlong memorySize)
 void Unwind_180902470(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0xd0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0xd0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -25164,7 +25164,7 @@ void Unwind_180902480(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809024b0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0xa8) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0xa8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -25173,7 +25173,7 @@ void Unwind_1809024b0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809024c0(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 200) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 200) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -25203,14 +25203,14 @@ void Unwind_1809024d0(uint64 resourceHandle,longlong memorySize,uint64 operation
 void Unwind_1809024e0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x100) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x100) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x108) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x108) = 0;
   *(uint32 *)(memorySize + 0x118) = 0;
-  *(uint64 *)(memorySize + 0x100) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x100) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -25219,14 +25219,14 @@ void Unwind_1809024e0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809024f0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x88) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x88) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x90) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x90) = 0;
   *(uint32 *)(memorySize + 0xa0) = 0;
-  *(uint64 *)(memorySize + 0x88) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x88) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -25292,7 +25292,7 @@ void Unwind_180902510(uint64 resourceHandle,longlong memorySize)
 void Unwind_180902520(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x88) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x88) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -25301,7 +25301,7 @@ void Unwind_180902520(uint64 resourceHandle,longlong memorySize)
 void Unwind_180902530(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x100) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x100) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -25319,22 +25319,22 @@ void Unwind_180902540(uint64 resourceHandle,longlong memorySize)
   }
   _Mtx_destroy_in_situ();
   *(uint64 *)(localLong1 + 0x20) = &unknown_180a30778;
-  *(uint64 *)(localLong1 + 0x58) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x58) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x60) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x60) = 0;
   *(uint32 *)(localLong1 + 0x70) = 0;
-  *(uint64 *)(localLong1 + 0x58) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x58) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -25352,22 +25352,22 @@ void Unwind_180902550(uint64 resourceHandle,longlong memorySize)
   }
   _Mtx_destroy_in_situ();
   *(uint64 *)(localLong1 + 0xd8) = &unknown_180a30778;
-  *(uint64 *)(localLong1 + 0x110) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x110) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x118) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x118) = 0;
   *(uint32 *)(localLong1 + 0x128) = 0;
-  *(uint64 *)(localLong1 + 0x110) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xe0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x110) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xe0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xe8) = 0;
   *(uint32 *)(localLong1 + 0xf8) = 0;
-  *(uint64 *)(localLong1 + 0xe0) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xe0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -25385,22 +25385,22 @@ void Unwind_180902570(uint64 resourceHandle,longlong memorySize)
   }
   _Mtx_destroy_in_situ();
   *plocalUInt1 = &unknown_180a30778;
-  plocalUInt1[7] = &unknown_180a3c3e0;
+  plocalUInt1[7] = &threadLocalStorageData;
   if (plocalUInt1[8] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt1[8] = 0;
   *(uint32 *)(plocalUInt1 + 10) = 0;
-  plocalUInt1[7] = &unknown_18098bcb0;
-  plocalUInt1[1] = &unknown_180a3c3e0;
+  plocalUInt1[7] = &threadLocalStorageCleanup;
+  plocalUInt1[1] = &threadLocalStorageData;
   if (plocalUInt1[2] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt1[2] = 0;
   *(uint32 *)(plocalUInt1 + 4) = 0;
-  plocalUInt1[1] = &unknown_18098bcb0;
+  plocalUInt1[1] = &threadLocalStorageCleanup;
   return;
 }
 
@@ -25414,22 +25414,22 @@ void Unwind_180902580(uint64 resourceHandle,longlong memorySize)
   plocalUInt1 = *(uint64 **)(memorySize + 0x78);
   _Mtx_destroy_in_situ();
   *plocalUInt1 = &unknown_180a30778;
-  plocalUInt1[7] = &unknown_180a3c3e0;
+  plocalUInt1[7] = &threadLocalStorageData;
   if (plocalUInt1[8] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt1[8] = 0;
   *(uint32 *)(plocalUInt1 + 10) = 0;
-  plocalUInt1[7] = &unknown_18098bcb0;
-  plocalUInt1[1] = &unknown_180a3c3e0;
+  plocalUInt1[7] = &threadLocalStorageCleanup;
+  plocalUInt1[1] = &threadLocalStorageData;
   if (plocalUInt1[2] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt1[2] = 0;
   *(uint32 *)(plocalUInt1 + 4) = 0;
-  plocalUInt1[1] = &unknown_18098bcb0;
+  plocalUInt1[1] = &threadLocalStorageCleanup;
   return;
 }
 
@@ -25741,7 +25741,7 @@ void Unwind_1809026a0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809026b0(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x70) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x70) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -25935,14 +25935,14 @@ void Unwind_1809027c0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x70);
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -25954,14 +25954,14 @@ void Unwind_1809027d0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x70);
-  *(uint64 *)(localLong1 + 0x50) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x50) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x58) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x58) = 0;
   *(uint32 *)(localLong1 + 0x68) = 0;
-  *(uint64 *)(localLong1 + 0x50) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x50) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -26202,14 +26202,14 @@ void Unwind_1809028e0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x70);
-  *(uint64 *)(localLong1 + 0x40) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x40) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x48) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x48) = 0;
   *(uint32 *)(localLong1 + 0x58) = 0;
-  *(uint64 *)(localLong1 + 0x40) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x40) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -26944,14 +26944,14 @@ void Unwind_180902b80(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x20);
-  *(uint64 *)(localLong1 + 8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x10) = 0;
   *(uint32 *)(localLong1 + 0x20) = 0;
-  *(uint64 *)(localLong1 + 8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -26963,14 +26963,14 @@ void Unwind_180902b90(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x40);
-  *(uint64 *)(localLong1 + 8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x10) = 0;
   *(uint32 *)(localLong1 + 0x20) = 0;
-  *(uint64 *)(localLong1 + 8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -26982,14 +26982,14 @@ void Unwind_180902ba0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x80);
-  *(uint64 *)(localLong1 + 0x20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x28) = 0;
   *(uint32 *)(localLong1 + 0x38) = 0;
-  *(uint64 *)(localLong1 + 0x20) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -27034,7 +27034,7 @@ void Unwind_180902bb0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180902bc0(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x90) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x90) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -27046,14 +27046,14 @@ void Unwind_180902bd0(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x90);
-  *plocalUInt1 = &unknown_180a3c3e0;
+  *plocalUInt1 = &threadLocalStorageData;
   if (plocalUInt1[1] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt1[1] = 0;
   *(uint32 *)(plocalUInt1 + 3) = 0;
-  *plocalUInt1 = &unknown_18098bcb0;
+  *plocalUInt1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -27065,14 +27065,14 @@ void Unwind_180902be0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x90);
-  *(uint64 *)(localLong1 + 0x20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x28) = 0;
   *(uint32 *)(localLong1 + 0x38) = 0;
-  *(uint64 *)(localLong1 + 0x20) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -27189,7 +27189,7 @@ void Unwind_180902c10(uint64 resourceHandle,longlong memorySize)
 void Unwind_180902c20(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0xa0) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0xa0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -27308,7 +27308,7 @@ void Unwind_180902c60(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(uint64 *)(plocalUInt1[0xe] + 0x10) = 0;
       *(byte *)(plocalUInt1[0xe] + 8) = 1;
     }
-    plocalUInt1[2] = &unknown_18098bcb0;
+    plocalUInt1[2] = &threadLocalStorageCleanup;
     return;
   }
   if (*(int *)(plocalUInt1[1] + 8) == 0) {
@@ -27355,14 +27355,14 @@ void Unwind_180902c90(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x38);
-  *plocalUInt1 = &unknown_180a3c3e0;
+  *plocalUInt1 = &threadLocalStorageData;
   if (plocalUInt1[1] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt1[1] = 0;
   *(uint32 *)(plocalUInt1 + 3) = 0;
-  *plocalUInt1 = &unknown_18098bcb0;
+  *plocalUInt1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -27371,7 +27371,7 @@ void Unwind_180902c90(uint64 resourceHandle,longlong memorySize)
 void Unwind_180902ca0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x50) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x50) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -27391,7 +27391,7 @@ void Unwind_180902cb0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180902cc0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x50) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x50) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -27705,14 +27705,14 @@ void Unwind_180902e40(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x50);
-  *(uint64 *)(localLong1 + 0x20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x28) = 0;
   *(uint32 *)(localLong1 + 0x38) = 0;
-  *(uint64 *)(localLong1 + 0x20) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -27839,7 +27839,7 @@ void Unwind_180902e80(uint64 resourceHandle,longlong memorySize)
   puVar3 = (ulonglong *)(*(longlong *)(memorySize + 0x40) + 0x18);
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x40) + 0x20);
   for (puVar5 = (uint64 *)*puVar3; puVar5 != plocalUInt2; puVar5 = puVar5 + 0xe) {
-    *puVar5 = &unknown_18098bcb0;
+    *puVar5 = &threadLocalStorageCleanup;
   }
   plocalUInt2 = (uint64 *)*puVar3;
   if (plocalUInt2 != (uint64 *)0x0) {
@@ -27875,14 +27875,14 @@ void Unwind_180902e90(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x40);
-  *(uint64 *)(localLong1 + 0x148) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x148) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x150) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x150) = 0;
   *(uint32 *)(localLong1 + 0x160) = 0;
-  *(uint64 *)(localLong1 + 0x148) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x148) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -27901,7 +27901,7 @@ void Unwind_180902eb0(uint64 resourceHandle,longlong memorySize)
   puVar4 = (ulonglong *)(*(longlong *)(memorySize + 0x40) + 0x18);
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x40) + 0x20);
   for (puVar5 = (uint64 *)*puVar4; puVar5 != plocalUInt2; puVar5 = puVar5 + 0xe) {
-    *puVar5 = &unknown_18098bcb0;
+    *puVar5 = &threadLocalStorageCleanup;
   }
   plocalUInt2 = (uint64 *)*puVar4;
   if (plocalUInt2 != (uint64 *)0x0) {
@@ -27944,7 +27944,7 @@ void Unwind_180902ec0(uint64 resourceHandle,longlong memorySize)
   puVar3 = *(ulonglong **)(memorySize + 0x40);
   plocalUInt2 = (uint64 *)puVar3[1];
   for (puVar5 = (uint64 *)*puVar3; puVar5 != plocalUInt2; puVar5 = puVar5 + 0xe) {
-    *puVar5 = &unknown_18098bcb0;
+    *puVar5 = &threadLocalStorageCleanup;
   }
   plocalUInt2 = (uint64 *)*puVar3;
   if (plocalUInt2 != (uint64 *)0x0) {
@@ -27977,7 +27977,7 @@ void Unwind_180902ec0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180902ed0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(*(longlong *)(memorySize + 0x40) + 0x20) = &unknown_18098bcb0;
+  *(data **)(*(longlong *)(memorySize + 0x40) + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -27986,7 +27986,7 @@ void Unwind_180902ed0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180902ee0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(*(longlong *)(memorySize + 0x40) + 0x438) = &unknown_18098bcb0;
+  *(data **)(*(longlong *)(memorySize + 0x40) + 0x438) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -28102,14 +28102,14 @@ void Unwind_180902fa0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x40);
-  *(uint64 *)(localLong1 + 0x918) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x918) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x920) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x920) = 0;
   *(uint32 *)(localLong1 + 0x930) = 0;
-  *(uint64 *)(localLong1 + 0x918) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x918) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -28309,7 +28309,7 @@ void Unwind_1809030b0(uint64 resourceHandle,longlong memorySize)
   if (plocalLong1 != (longlong *)0x0) {
     (**(code **)(*plocalLong1 + 0x38))();
   }
-  *(data **)(localLong2 + 0x20) = &unknown_18098bcb0;
+  *(data **)(localLong2 + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -28318,7 +28318,7 @@ void Unwind_1809030b0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809030c0(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x60) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x60) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -28345,14 +28345,14 @@ void Unwind_1809030f0(uint64 resourceHandle,longlong memorySize)
   
   localLong1 = *(longlong *)(memorySize + 0x68);
   FUN_180058db0(localLong1 + 0x40);
-  *(uint64 *)(localLong1 + 0x20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x28) = 0;
   *(uint32 *)(localLong1 + 0x38) = 0;
-  *(uint64 *)(localLong1 + 0x20) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -28384,14 +28384,14 @@ void Unwind_180903110(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x68);
-  *(uint64 *)(localLong1 + 0x20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x28) = 0;
   *(uint32 *)(localLong1 + 0x38) = 0;
-  *(uint64 *)(localLong1 + 0x20) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -28407,14 +28407,14 @@ void Unwind_180903120(uint64 resourceHandle,longlong memorySize)
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  *(uint64 *)(localLong1 + 0x20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x28) = 0;
   *(uint32 *)(localLong1 + 0x38) = 0;
-  *(uint64 *)(localLong1 + 0x20) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -28502,14 +28502,14 @@ void Unwind_180903150(uint64 resourceHandle,longlong memorySize)
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  *(uint64 *)(localLong1 + 0x20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x28) = 0;
   *(uint32 *)(localLong1 + 0x38) = 0;
-  *(uint64 *)(localLong1 + 0x20) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -28561,14 +28561,14 @@ void Unwind_180903170(uint64 resourceHandle,longlong memorySize)
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  *(uint64 *)(localLong1 + 0x20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x28) = 0;
   *(uint32 *)(localLong1 + 0x38) = 0;
-  *(uint64 *)(localLong1 + 0x20) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -28580,14 +28580,14 @@ void Unwind_180903180(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x48);
-  *plocalUInt1 = &unknown_180a3c3e0;
+  *plocalUInt1 = &threadLocalStorageData;
   if (plocalUInt1[1] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt1[1] = 0;
   *(uint32 *)(plocalUInt1 + 3) = 0;
-  *plocalUInt1 = &unknown_18098bcb0;
+  *plocalUInt1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -28955,14 +28955,14 @@ void Unwind_180903320(uint64 resourceHandle,longlong memorySize)
   
   localLong1 = *(longlong *)(memorySize + 0x78);
   FUN_18004b730();
-  *(uint64 *)(localLong1 + 0x20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x28) = 0;
   *(uint32 *)(localLong1 + 0x38) = 0;
-  *(uint64 *)(localLong1 + 0x20) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -29022,14 +29022,14 @@ void Unwind_180903360(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x50);
-  *(uint64 *)(localLong1 + 0x40) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x40) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x48) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x48) = 0;
   *(uint32 *)(localLong1 + 0x58) = 0;
-  *(uint64 *)(localLong1 + 0x40) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x40) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -29740,14 +29740,14 @@ void Unwind_180903610(uint64 resourceHandle,longlong memorySize,uint64 operation
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x40);
   *plocalUInt1 = &unknown_180a02968;
-  plocalUInt1[0x18] = &unknown_180a3c3e0;
+  plocalUInt1[0x18] = &threadLocalStorageData;
   if (plocalUInt1[0x19] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt1[0x19] = 0;
   *(uint32 *)(plocalUInt1 + 0x1b) = 0;
-  plocalUInt1[0x18] = &unknown_18098bcb0;
+  plocalUInt1[0x18] = &threadLocalStorageCleanup;
   FUN_18005d260(plocalUInt1 + 0x12,plocalUInt1[0x14],operationFlags,callbackFunction,0xfffffffffffffffe);
   if (plocalUInt1[0xd] != 0) {
                     // WARNING: Subroutine does not return
@@ -29779,22 +29779,22 @@ void Unwind_180903620(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x140) != (code *)0x0) {
     (**(code **)(localLong1 + 0x140))(localLong1 + 0x130,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x108) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x108) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x110) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x110) = 0;
   *(uint32 *)(localLong1 + 0x120) = 0;
-  *(uint64 *)(localLong1 + 0x108) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xe8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x108) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xe8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xf0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xf0) = 0;
   *(uint32 *)(localLong1 + 0x100) = 0;
-  *(uint64 *)(localLong1 + 0xe8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xe8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -29809,22 +29809,22 @@ void Unwind_180903640(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1b0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1b0))(localLong1 + 0x1a0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x178) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x178) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x180) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x180) = 0;
   *(uint32 *)(localLong1 + 400) = 0;
-  *(uint64 *)(localLong1 + 0x178) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x158) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x178) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x158) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x160) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x160) = 0;
   *(uint32 *)(localLong1 + 0x170) = 0;
-  *(uint64 *)(localLong1 + 0x158) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x158) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -29839,22 +29839,22 @@ void Unwind_180903660(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x220) != (code *)0x0) {
     (**(code **)(localLong1 + 0x220))(localLong1 + 0x210,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1e8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1e8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1f0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1f0) = 0;
   *(uint32 *)(localLong1 + 0x200) = 0;
-  *(uint64 *)(localLong1 + 0x1e8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1c8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1e8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1c8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1d0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1d0) = 0;
   *(uint32 *)(localLong1 + 0x1e0) = 0;
-  *(uint64 *)(localLong1 + 0x1c8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1c8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -29869,22 +29869,22 @@ void Unwind_180903680(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x290) != (code *)0x0) {
     (**(code **)(localLong1 + 0x290))(localLong1 + 0x280,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 600) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 600) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x260) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x260) = 0;
   *(uint32 *)(localLong1 + 0x270) = 0;
-  *(uint64 *)(localLong1 + 600) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x238) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 600) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x238) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x240) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x240) = 0;
   *(uint32 *)(localLong1 + 0x250) = 0;
-  *(uint64 *)(localLong1 + 0x238) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x238) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -29899,22 +29899,22 @@ void Unwind_1809036a0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x300) != (code *)0x0) {
     (**(code **)(localLong1 + 0x300))(localLong1 + 0x2f0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x2c8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2c8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2d0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2d0) = 0;
   *(uint32 *)(localLong1 + 0x2e0) = 0;
-  *(uint64 *)(localLong1 + 0x2c8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x2a8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2c8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x2a8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2b0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2b0) = 0;
   *(uint32 *)(localLong1 + 0x2c0) = 0;
-  *(uint64 *)(localLong1 + 0x2a8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x2a8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -29929,22 +29929,22 @@ void Unwind_1809036c0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x370) != (code *)0x0) {
     (**(code **)(localLong1 + 0x370))(localLong1 + 0x360,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x338) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x338) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x340) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x340) = 0;
   *(uint32 *)(localLong1 + 0x350) = 0;
-  *(uint64 *)(localLong1 + 0x338) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x318) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x338) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x318) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 800) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 800) = 0;
   *(uint32 *)(localLong1 + 0x330) = 0;
-  *(uint64 *)(localLong1 + 0x318) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x318) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -29959,22 +29959,22 @@ void Unwind_1809036e0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x3e0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x3e0))(localLong1 + 0x3d0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x3a8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x3a8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x3b0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x3b0) = 0;
   *(uint32 *)(localLong1 + 0x3c0) = 0;
-  *(uint64 *)(localLong1 + 0x3a8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x388) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x3a8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x388) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x390) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x390) = 0;
   *(uint32 *)(localLong1 + 0x3a0) = 0;
-  *(uint64 *)(localLong1 + 0x388) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x388) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -29989,22 +29989,22 @@ void Unwind_180903700(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x450) != (code *)0x0) {
     (**(code **)(localLong1 + 0x450))(localLong1 + 0x440,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x418) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x418) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x420) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x420) = 0;
   *(uint32 *)(localLong1 + 0x430) = 0;
-  *(uint64 *)(localLong1 + 0x418) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x3f8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x418) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x3f8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x400) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x400) = 0;
   *(uint32 *)(localLong1 + 0x410) = 0;
-  *(uint64 *)(localLong1 + 0x3f8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x3f8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30019,46 +30019,46 @@ void Unwind_180903720(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x510) != (code *)0x0) {
     (**(code **)(localLong1 + 0x510))(localLong1 + 0x500,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x4e0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x4e0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x4e8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x4e8) = 0;
   *(uint32 *)(localLong1 + 0x4f8) = 0;
-  *(uint64 *)(localLong1 + 0x4e0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x4c0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x4e0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x4c0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x4c8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x4c8) = 0;
   *(uint32 *)(localLong1 + 0x4d8) = 0;
-  *(uint64 *)(localLong1 + 0x4c0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x4a0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x4c0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x4a0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x4a8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x4a8) = 0;
   *(uint32 *)(localLong1 + 0x4b8) = 0;
-  *(uint64 *)(localLong1 + 0x4a0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x480) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x4a0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x480) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x488) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x488) = 0;
   *(uint32 *)(localLong1 + 0x498) = 0;
-  *(uint64 *)(localLong1 + 0x480) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x460) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x480) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x460) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x468) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x468) = 0;
   *(uint32 *)(localLong1 + 0x478) = 0;
-  *(uint64 *)(localLong1 + 0x460) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x460) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30073,22 +30073,22 @@ void Unwind_180903740(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x580) != (code *)0x0) {
     (**(code **)(localLong1 + 0x580))(localLong1 + 0x570,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x548) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x548) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x550) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x550) = 0;
   *(uint32 *)(localLong1 + 0x560) = 0;
-  *(uint64 *)(localLong1 + 0x548) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x528) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x548) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x528) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x530) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x530) = 0;
   *(uint32 *)(localLong1 + 0x540) = 0;
-  *(uint64 *)(localLong1 + 0x528) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x528) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30101,14 +30101,14 @@ void Unwind_180903760(uint64 resourceHandle,longlong memorySize,uint64 operation
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x80);
   *plocalUInt1 = &unknown_180a02968;
-  plocalUInt1[0x18] = &unknown_180a3c3e0;
+  plocalUInt1[0x18] = &threadLocalStorageData;
   if (plocalUInt1[0x19] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt1[0x19] = 0;
   *(uint32 *)(plocalUInt1 + 0x1b) = 0;
-  plocalUInt1[0x18] = &unknown_18098bcb0;
+  plocalUInt1[0x18] = &threadLocalStorageCleanup;
   FUN_18005d260(plocalUInt1 + 0x12,plocalUInt1[0x14],operationFlags,callbackFunction,0xfffffffffffffffe);
   if (plocalUInt1[0xd] != 0) {
                     // WARNING: Subroutine does not return
@@ -30140,22 +30140,22 @@ void Unwind_180903770(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x140) != (code *)0x0) {
     (**(code **)(localLong1 + 0x140))(localLong1 + 0x130,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x108) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x108) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x110) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x110) = 0;
   *(uint32 *)(localLong1 + 0x120) = 0;
-  *(uint64 *)(localLong1 + 0x108) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xe8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x108) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xe8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xf0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xf0) = 0;
   *(uint32 *)(localLong1 + 0x100) = 0;
-  *(uint64 *)(localLong1 + 0xe8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xe8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30170,22 +30170,22 @@ void Unwind_180903790(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1b0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1b0))(localLong1 + 0x1a0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x178) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x178) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x180) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x180) = 0;
   *(uint32 *)(localLong1 + 400) = 0;
-  *(uint64 *)(localLong1 + 0x178) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x158) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x178) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x158) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x160) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x160) = 0;
   *(uint32 *)(localLong1 + 0x170) = 0;
-  *(uint64 *)(localLong1 + 0x158) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x158) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30200,22 +30200,22 @@ void Unwind_1809037b0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x220) != (code *)0x0) {
     (**(code **)(localLong1 + 0x220))(localLong1 + 0x210,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1e8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1e8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1f0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1f0) = 0;
   *(uint32 *)(localLong1 + 0x200) = 0;
-  *(uint64 *)(localLong1 + 0x1e8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1c8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1e8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1c8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1d0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1d0) = 0;
   *(uint32 *)(localLong1 + 0x1e0) = 0;
-  *(uint64 *)(localLong1 + 0x1c8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1c8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30230,22 +30230,22 @@ void Unwind_1809037d0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x290) != (code *)0x0) {
     (**(code **)(localLong1 + 0x290))(localLong1 + 0x280,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 600) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 600) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x260) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x260) = 0;
   *(uint32 *)(localLong1 + 0x270) = 0;
-  *(uint64 *)(localLong1 + 600) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x238) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 600) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x238) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x240) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x240) = 0;
   *(uint32 *)(localLong1 + 0x250) = 0;
-  *(uint64 *)(localLong1 + 0x238) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x238) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30260,22 +30260,22 @@ void Unwind_1809037f0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x300) != (code *)0x0) {
     (**(code **)(localLong1 + 0x300))(localLong1 + 0x2f0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x2c8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2c8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2d0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2d0) = 0;
   *(uint32 *)(localLong1 + 0x2e0) = 0;
-  *(uint64 *)(localLong1 + 0x2c8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x2a8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2c8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x2a8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2b0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2b0) = 0;
   *(uint32 *)(localLong1 + 0x2c0) = 0;
-  *(uint64 *)(localLong1 + 0x2a8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x2a8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30290,22 +30290,22 @@ void Unwind_180903810(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x370) != (code *)0x0) {
     (**(code **)(localLong1 + 0x370))(localLong1 + 0x360,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x338) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x338) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x340) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x340) = 0;
   *(uint32 *)(localLong1 + 0x350) = 0;
-  *(uint64 *)(localLong1 + 0x338) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x318) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x338) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x318) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 800) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 800) = 0;
   *(uint32 *)(localLong1 + 0x330) = 0;
-  *(uint64 *)(localLong1 + 0x318) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x318) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30320,22 +30320,22 @@ void Unwind_180903830(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x3e0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x3e0))(localLong1 + 0x3d0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x3a8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x3a8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x3b0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x3b0) = 0;
   *(uint32 *)(localLong1 + 0x3c0) = 0;
-  *(uint64 *)(localLong1 + 0x3a8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x388) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x3a8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x388) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x390) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x390) = 0;
   *(uint32 *)(localLong1 + 0x3a0) = 0;
-  *(uint64 *)(localLong1 + 0x388) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x388) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30350,22 +30350,22 @@ void Unwind_180903850(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x450) != (code *)0x0) {
     (**(code **)(localLong1 + 0x450))(localLong1 + 0x440,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x418) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x418) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x420) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x420) = 0;
   *(uint32 *)(localLong1 + 0x430) = 0;
-  *(uint64 *)(localLong1 + 0x418) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x3f8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x418) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x3f8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x400) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x400) = 0;
   *(uint32 *)(localLong1 + 0x410) = 0;
-  *(uint64 *)(localLong1 + 0x3f8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x3f8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30380,46 +30380,46 @@ void Unwind_180903870(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x510) != (code *)0x0) {
     (**(code **)(localLong1 + 0x510))(localLong1 + 0x500,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x4e0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x4e0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x4e8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x4e8) = 0;
   *(uint32 *)(localLong1 + 0x4f8) = 0;
-  *(uint64 *)(localLong1 + 0x4e0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x4c0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x4e0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x4c0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x4c8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x4c8) = 0;
   *(uint32 *)(localLong1 + 0x4d8) = 0;
-  *(uint64 *)(localLong1 + 0x4c0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x4a0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x4c0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x4a0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x4a8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x4a8) = 0;
   *(uint32 *)(localLong1 + 0x4b8) = 0;
-  *(uint64 *)(localLong1 + 0x4a0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x480) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x4a0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x480) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x488) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x488) = 0;
   *(uint32 *)(localLong1 + 0x498) = 0;
-  *(uint64 *)(localLong1 + 0x480) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x460) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x480) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x460) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x468) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x468) = 0;
   *(uint32 *)(localLong1 + 0x478) = 0;
-  *(uint64 *)(localLong1 + 0x460) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x460) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30434,22 +30434,22 @@ void Unwind_180903890(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x580) != (code *)0x0) {
     (**(code **)(localLong1 + 0x580))(localLong1 + 0x570,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x548) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x548) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x550) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x550) = 0;
   *(uint32 *)(localLong1 + 0x560) = 0;
-  *(uint64 *)(localLong1 + 0x548) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x528) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x548) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x528) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x530) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x530) = 0;
   *(uint32 *)(localLong1 + 0x540) = 0;
-  *(uint64 *)(localLong1 + 0x528) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x528) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30461,14 +30461,14 @@ void Unwind_1809038b0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x88);
-  *(uint64 *)(localLong1 + 8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x10) = 0;
   *(uint32 *)(localLong1 + 0x20) = 0;
-  *(uint64 *)(localLong1 + 8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30480,14 +30480,14 @@ void Unwind_1809038c0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x88);
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30530,22 +30530,22 @@ void Unwind_1809038f0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x4c0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x4c0))(localLong1 + 0x4b0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x488) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x488) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x490) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x490) = 0;
   *(uint32 *)(localLong1 + 0x4a0) = 0;
-  *(uint64 *)(localLong1 + 0x488) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x468) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x488) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x468) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x470) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x470) = 0;
   *(uint32 *)(localLong1 + 0x480) = 0;
-  *(uint64 *)(localLong1 + 0x468) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x468) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30560,22 +30560,22 @@ void Unwind_180903910(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x530) != (code *)0x0) {
     (**(code **)(localLong1 + 0x530))(localLong1 + 0x520,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x4f8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x4f8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x500) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x500) = 0;
   *(uint32 *)(localLong1 + 0x510) = 0;
-  *(uint64 *)(localLong1 + 0x4f8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x4d8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x4f8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x4d8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x4e0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x4e0) = 0;
   *(uint32 *)(localLong1 + 0x4f0) = 0;
-  *(uint64 *)(localLong1 + 0x4d8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x4d8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30590,22 +30590,22 @@ void Unwind_180903930(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x5a0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x5a0))(localLong1 + 0x590,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x568) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x568) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x570) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x570) = 0;
   *(uint32 *)(localLong1 + 0x580) = 0;
-  *(uint64 *)(localLong1 + 0x568) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x548) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x568) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x548) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x550) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x550) = 0;
   *(uint32 *)(localLong1 + 0x560) = 0;
-  *(uint64 *)(localLong1 + 0x548) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x548) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30620,22 +30620,22 @@ void Unwind_180903950(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x610) != (code *)0x0) {
     (**(code **)(localLong1 + 0x610))(localLong1 + 0x600,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x5d8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x5d8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x5e0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x5e0) = 0;
   *(uint32 *)(localLong1 + 0x5f0) = 0;
-  *(uint64 *)(localLong1 + 0x5d8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x5b8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x5d8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x5b8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x5c0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x5c0) = 0;
   *(uint32 *)(localLong1 + 0x5d0) = 0;
-  *(uint64 *)(localLong1 + 0x5b8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x5b8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30650,22 +30650,22 @@ void Unwind_180903970(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x680) != (code *)0x0) {
     (**(code **)(localLong1 + 0x680))(localLong1 + 0x670,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x648) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x648) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x650) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x650) = 0;
   *(uint32 *)(localLong1 + 0x660) = 0;
-  *(uint64 *)(localLong1 + 0x648) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x628) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x648) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x628) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x630) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x630) = 0;
   *(uint32 *)(localLong1 + 0x640) = 0;
-  *(uint64 *)(localLong1 + 0x628) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x628) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30680,22 +30680,22 @@ void Unwind_180903990(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x6f0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x6f0))(localLong1 + 0x6e0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x6b8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x6b8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x6c0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x6c0) = 0;
   *(uint32 *)(localLong1 + 0x6d0) = 0;
-  *(uint64 *)(localLong1 + 0x6b8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x698) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x6b8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x698) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x6a0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x6a0) = 0;
   *(uint32 *)(localLong1 + 0x6b0) = 0;
-  *(uint64 *)(localLong1 + 0x698) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x698) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30710,22 +30710,22 @@ void Unwind_1809039b0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x760) != (code *)0x0) {
     (**(code **)(localLong1 + 0x760))(localLong1 + 0x750,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x728) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x728) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x730) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x730) = 0;
   *(uint32 *)(localLong1 + 0x740) = 0;
-  *(uint64 *)(localLong1 + 0x728) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x708) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x728) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x708) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x710) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x710) = 0;
   *(uint32 *)(localLong1 + 0x720) = 0;
-  *(uint64 *)(localLong1 + 0x708) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x708) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30740,22 +30740,22 @@ void Unwind_1809039d0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 2000) != (code *)0x0) {
     (**(code **)(localLong1 + 2000))(localLong1 + 0x7c0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x798) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x798) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x7a0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x7a0) = 0;
   *(uint32 *)(localLong1 + 0x7b0) = 0;
-  *(uint64 *)(localLong1 + 0x798) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x778) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x798) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x778) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x780) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x780) = 0;
   *(uint32 *)(localLong1 + 0x790) = 0;
-  *(uint64 *)(localLong1 + 0x778) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x778) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30770,22 +30770,22 @@ void Unwind_1809039f0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x840) != (code *)0x0) {
     (**(code **)(localLong1 + 0x840))(localLong1 + 0x830,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x808) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x808) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x810) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x810) = 0;
   *(uint32 *)(localLong1 + 0x820) = 0;
-  *(uint64 *)(localLong1 + 0x808) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x7e8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x808) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x7e8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x7f0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x7f0) = 0;
   *(uint32 *)(localLong1 + 0x800) = 0;
-  *(uint64 *)(localLong1 + 0x7e8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x7e8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30800,22 +30800,22 @@ void Unwind_180903a10(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x8b0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x8b0))(localLong1 + 0x8a0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x878) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x878) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x880) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x880) = 0;
   *(uint32 *)(localLong1 + 0x890) = 0;
-  *(uint64 *)(localLong1 + 0x878) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x858) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x878) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x858) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x860) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x860) = 0;
   *(uint32 *)(localLong1 + 0x870) = 0;
-  *(uint64 *)(localLong1 + 0x858) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x858) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30830,22 +30830,22 @@ void Unwind_180903a30(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x920) != (code *)0x0) {
     (**(code **)(localLong1 + 0x920))(localLong1 + 0x910,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x8e8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x8e8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x8f0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x8f0) = 0;
   *(uint32 *)(localLong1 + 0x900) = 0;
-  *(uint64 *)(localLong1 + 0x8e8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x8c8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x8e8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x8c8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x8d0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x8d0) = 0;
   *(uint32 *)(localLong1 + 0x8e0) = 0;
-  *(uint64 *)(localLong1 + 0x8c8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x8c8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30860,22 +30860,22 @@ void Unwind_180903a50(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x990) != (code *)0x0) {
     (**(code **)(localLong1 + 0x990))(localLong1 + 0x980,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x958) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x958) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x960) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x960) = 0;
   *(uint32 *)(localLong1 + 0x970) = 0;
-  *(uint64 *)(localLong1 + 0x958) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x938) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x958) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x938) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x940) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x940) = 0;
   *(uint32 *)(localLong1 + 0x950) = 0;
-  *(uint64 *)(localLong1 + 0x938) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x938) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30890,22 +30890,22 @@ void Unwind_180903a70(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xa08) != (code *)0x0) {
     (**(code **)(localLong1 + 0xa08))(localLong1 + 0x9f8,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x9d0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x9d0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x9d8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x9d8) = 0;
   *(uint32 *)(localLong1 + 0x9e8) = 0;
-  *(uint64 *)(localLong1 + 0x9d0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x9b0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x9d0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x9b0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x9b8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x9b8) = 0;
   *(uint32 *)(localLong1 + 0x9c8) = 0;
-  *(uint64 *)(localLong1 + 0x9b0) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x9b0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30920,22 +30920,22 @@ void Unwind_180903a90(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xa80) != (code *)0x0) {
     (**(code **)(localLong1 + 0xa80))(localLong1 + 0xa70,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xa48) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xa48) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xa50) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xa50) = 0;
   *(uint32 *)(localLong1 + 0xa60) = 0;
-  *(uint64 *)(localLong1 + 0xa48) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xa28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xa48) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xa28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xa30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xa30) = 0;
   *(uint32 *)(localLong1 + 0xa40) = 0;
-  *(uint64 *)(localLong1 + 0xa28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xa28) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30961,14 +30961,14 @@ void Unwind_180903ac0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x50);
-  *(uint64 *)(localLong1 + 0x10) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x10) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x18) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x18) = 0;
   *(uint32 *)(localLong1 + 0x28) = 0;
-  *(uint64 *)(localLong1 + 0x10) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x10) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -30980,14 +30980,14 @@ void Unwind_180903ad0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x50);
-  *(uint64 *)(localLong1 + 0x30) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x30) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x38) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x38) = 0;
   *(uint32 *)(localLong1 + 0x48) = 0;
-  *(uint64 *)(localLong1 + 0x30) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x30) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -31030,22 +31030,22 @@ void Unwind_180903b00(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x4c0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x4c0))(localLong1 + 0x4b0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x488) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x488) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x490) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x490) = 0;
   *(uint32 *)(localLong1 + 0x4a0) = 0;
-  *(uint64 *)(localLong1 + 0x488) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x468) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x488) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x468) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x470) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x470) = 0;
   *(uint32 *)(localLong1 + 0x480) = 0;
-  *(uint64 *)(localLong1 + 0x468) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x468) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -31060,22 +31060,22 @@ void Unwind_180903b20(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x530) != (code *)0x0) {
     (**(code **)(localLong1 + 0x530))(localLong1 + 0x520,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x4f8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x4f8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x500) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x500) = 0;
   *(uint32 *)(localLong1 + 0x510) = 0;
-  *(uint64 *)(localLong1 + 0x4f8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x4d8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x4f8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x4d8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x4e0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x4e0) = 0;
   *(uint32 *)(localLong1 + 0x4f0) = 0;
-  *(uint64 *)(localLong1 + 0x4d8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x4d8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -31090,22 +31090,22 @@ void Unwind_180903b40(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x5a0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x5a0))(localLong1 + 0x590,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x568) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x568) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x570) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x570) = 0;
   *(uint32 *)(localLong1 + 0x580) = 0;
-  *(uint64 *)(localLong1 + 0x568) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x548) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x568) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x548) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x550) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x550) = 0;
   *(uint32 *)(localLong1 + 0x560) = 0;
-  *(uint64 *)(localLong1 + 0x548) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x548) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -31120,22 +31120,22 @@ void Unwind_180903b60(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x610) != (code *)0x0) {
     (**(code **)(localLong1 + 0x610))(localLong1 + 0x600,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x5d8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x5d8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x5e0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x5e0) = 0;
   *(uint32 *)(localLong1 + 0x5f0) = 0;
-  *(uint64 *)(localLong1 + 0x5d8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x5b8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x5d8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x5b8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x5c0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x5c0) = 0;
   *(uint32 *)(localLong1 + 0x5d0) = 0;
-  *(uint64 *)(localLong1 + 0x5b8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x5b8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -31150,22 +31150,22 @@ void Unwind_180903b80(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x680) != (code *)0x0) {
     (**(code **)(localLong1 + 0x680))(localLong1 + 0x670,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x648) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x648) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x650) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x650) = 0;
   *(uint32 *)(localLong1 + 0x660) = 0;
-  *(uint64 *)(localLong1 + 0x648) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x628) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x648) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x628) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x630) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x630) = 0;
   *(uint32 *)(localLong1 + 0x640) = 0;
-  *(uint64 *)(localLong1 + 0x628) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x628) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -31180,22 +31180,22 @@ void Unwind_180903ba0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x6f0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x6f0))(localLong1 + 0x6e0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x6b8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x6b8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x6c0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x6c0) = 0;
   *(uint32 *)(localLong1 + 0x6d0) = 0;
-  *(uint64 *)(localLong1 + 0x6b8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x698) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x6b8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x698) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x6a0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x6a0) = 0;
   *(uint32 *)(localLong1 + 0x6b0) = 0;
-  *(uint64 *)(localLong1 + 0x698) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x698) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -31210,22 +31210,22 @@ void Unwind_180903bc0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x760) != (code *)0x0) {
     (**(code **)(localLong1 + 0x760))(localLong1 + 0x750,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x728) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x728) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x730) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x730) = 0;
   *(uint32 *)(localLong1 + 0x740) = 0;
-  *(uint64 *)(localLong1 + 0x728) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x708) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x728) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x708) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x710) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x710) = 0;
   *(uint32 *)(localLong1 + 0x720) = 0;
-  *(uint64 *)(localLong1 + 0x708) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x708) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -31240,22 +31240,22 @@ void Unwind_180903be0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 2000) != (code *)0x0) {
     (**(code **)(localLong1 + 2000))(localLong1 + 0x7c0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x798) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x798) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x7a0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x7a0) = 0;
   *(uint32 *)(localLong1 + 0x7b0) = 0;
-  *(uint64 *)(localLong1 + 0x798) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x778) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x798) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x778) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x780) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x780) = 0;
   *(uint32 *)(localLong1 + 0x790) = 0;
-  *(uint64 *)(localLong1 + 0x778) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x778) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -31270,22 +31270,22 @@ void Unwind_180903c00(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x840) != (code *)0x0) {
     (**(code **)(localLong1 + 0x840))(localLong1 + 0x830,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x808) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x808) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x810) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x810) = 0;
   *(uint32 *)(localLong1 + 0x820) = 0;
-  *(uint64 *)(localLong1 + 0x808) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x7e8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x808) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x7e8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x7f0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x7f0) = 0;
   *(uint32 *)(localLong1 + 0x800) = 0;
-  *(uint64 *)(localLong1 + 0x7e8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x7e8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -31300,22 +31300,22 @@ void Unwind_180903c20(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x8b0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x8b0))(localLong1 + 0x8a0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x878) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x878) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x880) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x880) = 0;
   *(uint32 *)(localLong1 + 0x890) = 0;
-  *(uint64 *)(localLong1 + 0x878) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x858) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x878) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x858) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x860) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x860) = 0;
   *(uint32 *)(localLong1 + 0x870) = 0;
-  *(uint64 *)(localLong1 + 0x858) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x858) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -31330,22 +31330,22 @@ void Unwind_180903c40(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x920) != (code *)0x0) {
     (**(code **)(localLong1 + 0x920))(localLong1 + 0x910,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x8e8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x8e8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x8f0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x8f0) = 0;
   *(uint32 *)(localLong1 + 0x900) = 0;
-  *(uint64 *)(localLong1 + 0x8e8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x8c8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x8e8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x8c8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x8d0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x8d0) = 0;
   *(uint32 *)(localLong1 + 0x8e0) = 0;
-  *(uint64 *)(localLong1 + 0x8c8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x8c8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -31360,22 +31360,22 @@ void Unwind_180903c60(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x990) != (code *)0x0) {
     (**(code **)(localLong1 + 0x990))(localLong1 + 0x980,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x958) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x958) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x960) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x960) = 0;
   *(uint32 *)(localLong1 + 0x970) = 0;
-  *(uint64 *)(localLong1 + 0x958) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x938) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x958) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x938) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x940) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x940) = 0;
   *(uint32 *)(localLong1 + 0x950) = 0;
-  *(uint64 *)(localLong1 + 0x938) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x938) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -31390,22 +31390,22 @@ void Unwind_180903c80(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xa08) != (code *)0x0) {
     (**(code **)(localLong1 + 0xa08))(localLong1 + 0x9f8,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x9d0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x9d0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x9d8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x9d8) = 0;
   *(uint32 *)(localLong1 + 0x9e8) = 0;
-  *(uint64 *)(localLong1 + 0x9d0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x9b0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x9d0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x9b0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x9b8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x9b8) = 0;
   *(uint32 *)(localLong1 + 0x9c8) = 0;
-  *(uint64 *)(localLong1 + 0x9b0) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x9b0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -31420,22 +31420,22 @@ void Unwind_180903ca0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xa80) != (code *)0x0) {
     (**(code **)(localLong1 + 0xa80))(localLong1 + 0xa70,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xa48) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xa48) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xa50) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xa50) = 0;
   *(uint32 *)(localLong1 + 0xa60) = 0;
-  *(uint64 *)(localLong1 + 0xa48) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xa28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xa48) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xa28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xa30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xa30) = 0;
   *(uint32 *)(localLong1 + 0xa40) = 0;
-  *(uint64 *)(localLong1 + 0xa28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xa28) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -31447,14 +31447,14 @@ void Unwind_180903cc0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x88);
-  *(uint64 *)(localLong1 + 0x10) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x10) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x18) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x18) = 0;
   *(uint32 *)(localLong1 + 0x28) = 0;
-  *(uint64 *)(localLong1 + 0x10) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x10) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -31466,14 +31466,14 @@ void Unwind_180903cd0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x88);
-  *(uint64 *)(localLong1 + 0x30) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x30) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x38) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x38) = 0;
   *(uint32 *)(localLong1 + 0x48) = 0;
-  *(uint64 *)(localLong1 + 0x30) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x30) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -31502,46 +31502,46 @@ void Unwind_180903cf0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 400) != (code *)0x0) {
     (**(code **)(localLong1 + 400))(localLong1 + 0x180,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x160) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x160) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x168) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x168) = 0;
   *(uint32 *)(localLong1 + 0x178) = 0;
-  *(uint64 *)(localLong1 + 0x160) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x140) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x160) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x140) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x148) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x148) = 0;
   *(uint32 *)(localLong1 + 0x158) = 0;
-  *(uint64 *)(localLong1 + 0x140) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x120) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x140) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x120) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x128) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x128) = 0;
   *(uint32 *)(localLong1 + 0x138) = 0;
-  *(uint64 *)(localLong1 + 0x120) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x100) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x120) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x100) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x108) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x108) = 0;
   *(uint32 *)(localLong1 + 0x118) = 0;
-  *(uint64 *)(localLong1 + 0x100) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xe0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x100) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xe0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xe8) = 0;
   *(uint32 *)(localLong1 + 0xf8) = 0;
-  *(uint64 *)(localLong1 + 0xe0) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xe0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -31556,46 +31556,46 @@ void Unwind_180903d10(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x250) != (code *)0x0) {
     (**(code **)(localLong1 + 0x250))(localLong1 + 0x240,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x220) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x220) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x228) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x228) = 0;
   *(uint32 *)(localLong1 + 0x238) = 0;
-  *(uint64 *)(localLong1 + 0x220) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x200) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x220) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x200) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x208) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x208) = 0;
   *(uint32 *)(localLong1 + 0x218) = 0;
-  *(uint64 *)(localLong1 + 0x200) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1e0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x200) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1e0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1e8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1e8) = 0;
   *(uint32 *)(localLong1 + 0x1f8) = 0;
-  *(uint64 *)(localLong1 + 0x1e0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1c0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1e0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1c0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1c8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1c8) = 0;
   *(uint32 *)(localLong1 + 0x1d8) = 0;
-  *(uint64 *)(localLong1 + 0x1c0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1a0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1c0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1a0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1a8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1a8) = 0;
   *(uint32 *)(localLong1 + 0x1b8) = 0;
-  *(uint64 *)(localLong1 + 0x1a0) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1a0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -31610,46 +31610,46 @@ void Unwind_180903d30(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x310) != (code *)0x0) {
     (**(code **)(localLong1 + 0x310))(localLong1 + 0x300,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x2e0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2e0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2e8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2e8) = 0;
   *(uint32 *)(localLong1 + 0x2f8) = 0;
-  *(uint64 *)(localLong1 + 0x2e0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x2c0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2e0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x2c0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2c8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2c8) = 0;
   *(uint32 *)(localLong1 + 0x2d8) = 0;
-  *(uint64 *)(localLong1 + 0x2c0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x2a0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2c0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x2a0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2a8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2a8) = 0;
   *(uint32 *)(localLong1 + 0x2b8) = 0;
-  *(uint64 *)(localLong1 + 0x2a0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x280) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2a0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x280) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x288) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x288) = 0;
   *(uint32 *)(localLong1 + 0x298) = 0;
-  *(uint64 *)(localLong1 + 0x280) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x260) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x280) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x260) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x268) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x268) = 0;
   *(uint32 *)(localLong1 + 0x278) = 0;
-  *(uint64 *)(localLong1 + 0x260) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x260) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -31664,46 +31664,46 @@ void Unwind_180903d50(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x3d0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x3d0))(localLong1 + 0x3c0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x3a0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x3a0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x3a8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x3a8) = 0;
   *(uint32 *)(localLong1 + 0x3b8) = 0;
-  *(uint64 *)(localLong1 + 0x3a0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x380) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x3a0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x380) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x388) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x388) = 0;
   *(uint32 *)(localLong1 + 0x398) = 0;
-  *(uint64 *)(localLong1 + 0x380) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x360) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x380) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x360) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x368) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x368) = 0;
   *(uint32 *)(localLong1 + 0x378) = 0;
-  *(uint64 *)(localLong1 + 0x360) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x340) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x360) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x340) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x348) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x348) = 0;
   *(uint32 *)(localLong1 + 0x358) = 0;
-  *(uint64 *)(localLong1 + 0x340) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 800) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x340) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 800) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x328) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x328) = 0;
   *(uint32 *)(localLong1 + 0x338) = 0;
-  *(uint64 *)(localLong1 + 800) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 800) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -31718,46 +31718,46 @@ void Unwind_180903d70(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x490) != (code *)0x0) {
     (**(code **)(localLong1 + 0x490))(localLong1 + 0x480,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x460) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x460) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x468) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x468) = 0;
   *(uint32 *)(localLong1 + 0x478) = 0;
-  *(uint64 *)(localLong1 + 0x460) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x440) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x460) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x440) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x448) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x448) = 0;
   *(uint32 *)(localLong1 + 0x458) = 0;
-  *(uint64 *)(localLong1 + 0x440) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x420) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x440) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x420) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x428) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x428) = 0;
   *(uint32 *)(localLong1 + 0x438) = 0;
-  *(uint64 *)(localLong1 + 0x420) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x400) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x420) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x400) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x408) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x408) = 0;
   *(uint32 *)(localLong1 + 0x418) = 0;
-  *(uint64 *)(localLong1 + 0x400) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x3e0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x400) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x3e0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 1000) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 1000) = 0;
   *(uint32 *)(localLong1 + 0x3f8) = 0;
-  *(uint64 *)(localLong1 + 0x3e0) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x3e0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -31772,46 +31772,46 @@ void Unwind_180903d90(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x550) != (code *)0x0) {
     (**(code **)(localLong1 + 0x550))(localLong1 + 0x540,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x520) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x520) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x528) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x528) = 0;
   *(uint32 *)(localLong1 + 0x538) = 0;
-  *(uint64 *)(localLong1 + 0x520) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x500) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x520) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x500) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x508) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x508) = 0;
   *(uint32 *)(localLong1 + 0x518) = 0;
-  *(uint64 *)(localLong1 + 0x500) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x4e0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x500) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x4e0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x4e8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x4e8) = 0;
   *(uint32 *)(localLong1 + 0x4f8) = 0;
-  *(uint64 *)(localLong1 + 0x4e0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x4c0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x4e0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x4c0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x4c8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x4c8) = 0;
   *(uint32 *)(localLong1 + 0x4d8) = 0;
-  *(uint64 *)(localLong1 + 0x4c0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x4a0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x4c0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x4a0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x4a8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x4a8) = 0;
   *(uint32 *)(localLong1 + 0x4b8) = 0;
-  *(uint64 *)(localLong1 + 0x4a0) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x4a0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -31826,46 +31826,46 @@ void Unwind_180903db0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x610) != (code *)0x0) {
     (**(code **)(localLong1 + 0x610))(localLong1 + 0x600,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x5e0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x5e0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x5e8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x5e8) = 0;
   *(uint32 *)(localLong1 + 0x5f8) = 0;
-  *(uint64 *)(localLong1 + 0x5e0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x5c0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x5e0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x5c0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x5c8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x5c8) = 0;
   *(uint32 *)(localLong1 + 0x5d8) = 0;
-  *(uint64 *)(localLong1 + 0x5c0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x5a0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x5c0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x5a0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x5a8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x5a8) = 0;
   *(uint32 *)(localLong1 + 0x5b8) = 0;
-  *(uint64 *)(localLong1 + 0x5a0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x580) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x5a0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x580) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x588) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x588) = 0;
   *(uint32 *)(localLong1 + 0x598) = 0;
-  *(uint64 *)(localLong1 + 0x580) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x560) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x580) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x560) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x568) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x568) = 0;
   *(uint32 *)(localLong1 + 0x578) = 0;
-  *(uint64 *)(localLong1 + 0x560) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x560) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -31880,46 +31880,46 @@ void Unwind_180903dd0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x6d0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x6d0))(localLong1 + 0x6c0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x6a0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x6a0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x6a8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x6a8) = 0;
   *(uint32 *)(localLong1 + 0x6b8) = 0;
-  *(uint64 *)(localLong1 + 0x6a0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x680) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x6a0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x680) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x688) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x688) = 0;
   *(uint32 *)(localLong1 + 0x698) = 0;
-  *(uint64 *)(localLong1 + 0x680) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x660) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x680) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x660) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x668) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x668) = 0;
   *(uint32 *)(localLong1 + 0x678) = 0;
-  *(uint64 *)(localLong1 + 0x660) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x640) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x660) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x640) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x648) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x648) = 0;
   *(uint32 *)(localLong1 + 0x658) = 0;
-  *(uint64 *)(localLong1 + 0x640) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x620) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x640) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x620) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x628) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x628) = 0;
   *(uint32 *)(localLong1 + 0x638) = 0;
-  *(uint64 *)(localLong1 + 0x620) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x620) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -31934,46 +31934,46 @@ void Unwind_180903df0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x790) != (code *)0x0) {
     (**(code **)(localLong1 + 0x790))(localLong1 + 0x780,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x760) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x760) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x768) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x768) = 0;
   *(uint32 *)(localLong1 + 0x778) = 0;
-  *(uint64 *)(localLong1 + 0x760) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x740) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x760) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x740) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x748) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x748) = 0;
   *(uint32 *)(localLong1 + 0x758) = 0;
-  *(uint64 *)(localLong1 + 0x740) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x720) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x740) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x720) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x728) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x728) = 0;
   *(uint32 *)(localLong1 + 0x738) = 0;
-  *(uint64 *)(localLong1 + 0x720) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x700) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x720) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x700) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x708) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x708) = 0;
   *(uint32 *)(localLong1 + 0x718) = 0;
-  *(uint64 *)(localLong1 + 0x700) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x6e0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x700) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x6e0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x6e8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x6e8) = 0;
   *(uint32 *)(localLong1 + 0x6f8) = 0;
-  *(uint64 *)(localLong1 + 0x6e0) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x6e0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -31988,46 +31988,46 @@ void Unwind_180903e10(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x850) != (code *)0x0) {
     (**(code **)(localLong1 + 0x850))(localLong1 + 0x840,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x820) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x820) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x828) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x828) = 0;
   *(uint32 *)(localLong1 + 0x838) = 0;
-  *(uint64 *)(localLong1 + 0x820) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x800) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x820) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x800) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x808) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x808) = 0;
   *(uint32 *)(localLong1 + 0x818) = 0;
-  *(uint64 *)(localLong1 + 0x800) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x7e0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x800) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x7e0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x7e8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x7e8) = 0;
   *(uint32 *)(localLong1 + 0x7f8) = 0;
-  *(uint64 *)(localLong1 + 0x7e0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x7c0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x7e0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x7c0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x7c8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x7c8) = 0;
   *(uint32 *)(localLong1 + 0x7d8) = 0;
-  *(uint64 *)(localLong1 + 0x7c0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x7a0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x7c0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x7a0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x7a8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x7a8) = 0;
   *(uint32 *)(localLong1 + 0x7b8) = 0;
-  *(uint64 *)(localLong1 + 0x7a0) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x7a0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -32042,46 +32042,46 @@ void Unwind_180903e30(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x910) != (code *)0x0) {
     (**(code **)(localLong1 + 0x910))(localLong1 + 0x900,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x8e0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x8e0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x8e8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x8e8) = 0;
   *(uint32 *)(localLong1 + 0x8f8) = 0;
-  *(uint64 *)(localLong1 + 0x8e0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x8c0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x8e0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x8c0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x8c8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x8c8) = 0;
   *(uint32 *)(localLong1 + 0x8d8) = 0;
-  *(uint64 *)(localLong1 + 0x8c0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x8a0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x8c0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x8a0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x8a8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x8a8) = 0;
   *(uint32 *)(localLong1 + 0x8b8) = 0;
-  *(uint64 *)(localLong1 + 0x8a0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x880) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x8a0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x880) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x888) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x888) = 0;
   *(uint32 *)(localLong1 + 0x898) = 0;
-  *(uint64 *)(localLong1 + 0x880) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x860) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x880) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x860) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x868) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x868) = 0;
   *(uint32 *)(localLong1 + 0x878) = 0;
-  *(uint64 *)(localLong1 + 0x860) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x860) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -32096,46 +32096,46 @@ void Unwind_180903e50(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x9d0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x9d0))(localLong1 + 0x9c0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x9a0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x9a0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x9a8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x9a8) = 0;
   *(uint32 *)(localLong1 + 0x9b8) = 0;
-  *(uint64 *)(localLong1 + 0x9a0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x980) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x9a0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x980) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x988) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x988) = 0;
   *(uint32 *)(localLong1 + 0x998) = 0;
-  *(uint64 *)(localLong1 + 0x980) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x960) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x980) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x960) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x968) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x968) = 0;
   *(uint32 *)(localLong1 + 0x978) = 0;
-  *(uint64 *)(localLong1 + 0x960) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x940) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x960) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x940) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x948) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x948) = 0;
   *(uint32 *)(localLong1 + 0x958) = 0;
-  *(uint64 *)(localLong1 + 0x940) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x920) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x940) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x920) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x928) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x928) = 0;
   *(uint32 *)(localLong1 + 0x938) = 0;
-  *(uint64 *)(localLong1 + 0x920) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x920) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -32150,46 +32150,46 @@ void Unwind_180903e70(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xa90) != (code *)0x0) {
     (**(code **)(localLong1 + 0xa90))(localLong1 + 0xa80,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xa60) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xa60) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xa68) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xa68) = 0;
   *(uint32 *)(localLong1 + 0xa78) = 0;
-  *(uint64 *)(localLong1 + 0xa60) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xa40) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xa60) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xa40) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xa48) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xa48) = 0;
   *(uint32 *)(localLong1 + 0xa58) = 0;
-  *(uint64 *)(localLong1 + 0xa40) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xa20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xa40) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xa20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xa28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xa28) = 0;
   *(uint32 *)(localLong1 + 0xa38) = 0;
-  *(uint64 *)(localLong1 + 0xa20) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xa00) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xa20) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xa00) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xa08) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xa08) = 0;
   *(uint32 *)(localLong1 + 0xa18) = 0;
-  *(uint64 *)(localLong1 + 0xa00) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x9e0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xa00) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x9e0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x9e8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x9e8) = 0;
   *(uint32 *)(localLong1 + 0x9f8) = 0;
-  *(uint64 *)(localLong1 + 0x9e0) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x9e0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -32204,46 +32204,46 @@ void Unwind_180903e90(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xb50) != (code *)0x0) {
     (**(code **)(localLong1 + 0xb50))(localLong1 + 0xb40,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xb20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xb20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xb28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xb28) = 0;
   *(uint32 *)(localLong1 + 0xb38) = 0;
-  *(uint64 *)(localLong1 + 0xb20) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xb00) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xb20) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xb00) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xb08) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xb08) = 0;
   *(uint32 *)(localLong1 + 0xb18) = 0;
-  *(uint64 *)(localLong1 + 0xb00) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xae0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xb00) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xae0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xae8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xae8) = 0;
   *(uint32 *)(localLong1 + 0xaf8) = 0;
-  *(uint64 *)(localLong1 + 0xae0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xac0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xae0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xac0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xac8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xac8) = 0;
   *(uint32 *)(localLong1 + 0xad8) = 0;
-  *(uint64 *)(localLong1 + 0xac0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xaa0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xac0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xaa0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xaa8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xaa8) = 0;
   *(uint32 *)(localLong1 + 0xab8) = 0;
-  *(uint64 *)(localLong1 + 0xaa0) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xaa0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -32258,46 +32258,46 @@ void Unwind_180903eb0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xc10) != (code *)0x0) {
     (**(code **)(localLong1 + 0xc10))(localLong1 + 0xc00,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xbe0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xbe0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xbe8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xbe8) = 0;
   *(uint32 *)(localLong1 + 0xbf8) = 0;
-  *(uint64 *)(localLong1 + 0xbe0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xbc0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xbe0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xbc0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xbc8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xbc8) = 0;
   *(uint32 *)(localLong1 + 0xbd8) = 0;
-  *(uint64 *)(localLong1 + 0xbc0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xba0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xbc0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xba0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xba8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xba8) = 0;
   *(uint32 *)(localLong1 + 3000) = 0;
-  *(uint64 *)(localLong1 + 0xba0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xb80) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xba0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xb80) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xb88) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xb88) = 0;
   *(uint32 *)(localLong1 + 0xb98) = 0;
-  *(uint64 *)(localLong1 + 0xb80) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xb60) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xb80) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xb60) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xb68) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xb68) = 0;
   *(uint32 *)(localLong1 + 0xb78) = 0;
-  *(uint64 *)(localLong1 + 0xb60) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xb60) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -32312,46 +32312,46 @@ void Unwind_180903ed0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xcd0) != (code *)0x0) {
     (**(code **)(localLong1 + 0xcd0))(localLong1 + 0xcc0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xca0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xca0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xca8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xca8) = 0;
   *(uint32 *)(localLong1 + 0xcb8) = 0;
-  *(uint64 *)(localLong1 + 0xca0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xc80) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xca0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xc80) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xc88) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xc88) = 0;
   *(uint32 *)(localLong1 + 0xc98) = 0;
-  *(uint64 *)(localLong1 + 0xc80) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xc60) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xc80) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xc60) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xc68) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xc68) = 0;
   *(uint32 *)(localLong1 + 0xc78) = 0;
-  *(uint64 *)(localLong1 + 0xc60) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xc40) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xc60) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xc40) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xc48) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xc48) = 0;
   *(uint32 *)(localLong1 + 0xc58) = 0;
-  *(uint64 *)(localLong1 + 0xc40) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xc20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xc40) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xc20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xc28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xc28) = 0;
   *(uint32 *)(localLong1 + 0xc38) = 0;
-  *(uint64 *)(localLong1 + 0xc20) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xc20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -32366,22 +32366,22 @@ void Unwind_180903ef0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xd40) != (code *)0x0) {
     (**(code **)(localLong1 + 0xd40))(localLong1 + 0xd30,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xd08) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xd08) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xd10) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xd10) = 0;
   *(uint32 *)(localLong1 + 0xd20) = 0;
-  *(uint64 *)(localLong1 + 0xd08) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xce8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xd08) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xce8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xcf0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xcf0) = 0;
   *(uint32 *)(localLong1 + 0xd00) = 0;
-  *(uint64 *)(localLong1 + 0xce8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xce8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -32396,22 +32396,22 @@ void Unwind_180903f10(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xdb0) != (code *)0x0) {
     (**(code **)(localLong1 + 0xdb0))(localLong1 + 0xda0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xd78) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xd78) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xd80) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xd80) = 0;
   *(uint32 *)(localLong1 + 0xd90) = 0;
-  *(uint64 *)(localLong1 + 0xd78) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xd58) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xd78) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xd58) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xd60) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xd60) = 0;
   *(uint32 *)(localLong1 + 0xd70) = 0;
-  *(uint64 *)(localLong1 + 0xd58) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xd58) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -32426,22 +32426,22 @@ void Unwind_180903f30(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xe20) != (code *)0x0) {
     (**(code **)(localLong1 + 0xe20))(localLong1 + 0xe10,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xde8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xde8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xdf0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xdf0) = 0;
   *(uint32 *)(localLong1 + 0xe00) = 0;
-  *(uint64 *)(localLong1 + 0xde8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xdc8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xde8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xdc8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xdd0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xdd0) = 0;
   *(uint32 *)(localLong1 + 0xde0) = 0;
-  *(uint64 *)(localLong1 + 0xdc8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xdc8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -32456,46 +32456,46 @@ void Unwind_180903f50(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xee0) != (code *)0x0) {
     (**(code **)(localLong1 + 0xee0))(localLong1 + 0xed0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xeb0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xeb0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xeb8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xeb8) = 0;
   *(uint32 *)(localLong1 + 0xec8) = 0;
-  *(uint64 *)(localLong1 + 0xeb0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xe90) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xeb0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xe90) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xe98) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xe98) = 0;
   *(uint32 *)(localLong1 + 0xea8) = 0;
-  *(uint64 *)(localLong1 + 0xe90) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xe70) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xe90) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xe70) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xe78) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xe78) = 0;
   *(uint32 *)(localLong1 + 0xe88) = 0;
-  *(uint64 *)(localLong1 + 0xe70) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xe50) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xe70) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xe50) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xe58) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xe58) = 0;
   *(uint32 *)(localLong1 + 0xe68) = 0;
-  *(uint64 *)(localLong1 + 0xe50) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xe30) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xe50) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xe30) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xe38) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xe38) = 0;
   *(uint32 *)(localLong1 + 0xe48) = 0;
-  *(uint64 *)(localLong1 + 0xe30) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xe30) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -32510,46 +32510,46 @@ void Unwind_180903f70(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 4000) != (code *)0x0) {
     (**(code **)(localLong1 + 4000))(localLong1 + 0xf90,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xf70) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xf70) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xf78) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xf78) = 0;
   *(uint32 *)(localLong1 + 0xf88) = 0;
-  *(uint64 *)(localLong1 + 0xf70) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xf50) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xf70) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xf50) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xf58) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xf58) = 0;
   *(uint32 *)(localLong1 + 0xf68) = 0;
-  *(uint64 *)(localLong1 + 0xf50) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xf30) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xf50) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xf30) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xf38) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xf38) = 0;
   *(uint32 *)(localLong1 + 0xf48) = 0;
-  *(uint64 *)(localLong1 + 0xf30) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xf10) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xf30) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xf10) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xf18) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xf18) = 0;
   *(uint32 *)(localLong1 + 0xf28) = 0;
-  *(uint64 *)(localLong1 + 0xf10) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xef0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xf10) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xef0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xef8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xef8) = 0;
   *(uint32 *)(localLong1 + 0xf08) = 0;
-  *(uint64 *)(localLong1 + 0xef0) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xef0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -32564,46 +32564,46 @@ void Unwind_180903f90(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1060) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1060))(localLong1 + 0x1050,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1030) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1030) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1038) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1038) = 0;
   *(uint32 *)(localLong1 + 0x1048) = 0;
-  *(uint64 *)(localLong1 + 0x1030) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1010) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1030) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1010) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1018) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1018) = 0;
   *(uint32 *)(localLong1 + 0x1028) = 0;
-  *(uint64 *)(localLong1 + 0x1010) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xff0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1010) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xff0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xff8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xff8) = 0;
   *(uint32 *)(localLong1 + 0x1008) = 0;
-  *(uint64 *)(localLong1 + 0xff0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xfd0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xff0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xfd0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xfd8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xfd8) = 0;
   *(uint32 *)(localLong1 + 0xfe8) = 0;
-  *(uint64 *)(localLong1 + 0xfd0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xfb0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xfd0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xfb0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xfb8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xfb8) = 0;
   *(uint32 *)(localLong1 + 0xfc8) = 0;
-  *(uint64 *)(localLong1 + 0xfb0) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xfb0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -32618,22 +32618,22 @@ void Unwind_180903fb0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x10d0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x10d0))(localLong1 + 0x10c0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1098) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1098) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x10a0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x10a0) = 0;
   *(uint32 *)(localLong1 + 0x10b0) = 0;
-  *(uint64 *)(localLong1 + 0x1098) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1078) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1098) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1078) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1080) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1080) = 0;
   *(uint32 *)(localLong1 + 0x1090) = 0;
-  *(uint64 *)(localLong1 + 0x1078) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1078) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -32648,22 +32648,22 @@ void Unwind_180903fd0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1140) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1140))(localLong1 + 0x1130,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1108) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1108) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1110) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1110) = 0;
   *(uint32 *)(localLong1 + 0x1120) = 0;
-  *(uint64 *)(localLong1 + 0x1108) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x10e8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1108) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x10e8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x10f0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x10f0) = 0;
   *(uint32 *)(localLong1 + 0x1100) = 0;
-  *(uint64 *)(localLong1 + 0x10e8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x10e8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -32678,22 +32678,22 @@ void Unwind_180903ff0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x11b0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x11b0))(localLong1 + 0x11a0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1178) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1178) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1180) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1180) = 0;
   *(uint32 *)(localLong1 + 0x1190) = 0;
-  *(uint64 *)(localLong1 + 0x1178) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1158) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1178) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1158) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1160) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1160) = 0;
   *(uint32 *)(localLong1 + 0x1170) = 0;
-  *(uint64 *)(localLong1 + 0x1158) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1158) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -32708,22 +32708,22 @@ void Unwind_180904010(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1220) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1220))(localLong1 + 0x1210,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x11e8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x11e8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x11f0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x11f0) = 0;
   *(uint32 *)(localLong1 + 0x1200) = 0;
-  *(uint64 *)(localLong1 + 0x11e8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x11c8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x11e8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x11c8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x11d0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x11d0) = 0;
   *(uint32 *)(localLong1 + 0x11e0) = 0;
-  *(uint64 *)(localLong1 + 0x11c8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x11c8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -32738,22 +32738,22 @@ void Unwind_180904030(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1290) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1290))(localLong1 + 0x1280,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1258) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1258) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1260) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1260) = 0;
   *(uint32 *)(localLong1 + 0x1270) = 0;
-  *(uint64 *)(localLong1 + 0x1258) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1238) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1258) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1238) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1240) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1240) = 0;
   *(uint32 *)(localLong1 + 0x1250) = 0;
-  *(uint64 *)(localLong1 + 0x1238) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1238) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -32768,22 +32768,22 @@ void Unwind_180904050(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1300) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1300))(localLong1 + 0x12f0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x12c8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x12c8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x12d0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x12d0) = 0;
   *(uint32 *)(localLong1 + 0x12e0) = 0;
-  *(uint64 *)(localLong1 + 0x12c8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x12a8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x12c8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x12a8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x12b0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x12b0) = 0;
   *(uint32 *)(localLong1 + 0x12c0) = 0;
-  *(uint64 *)(localLong1 + 0x12a8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x12a8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -32798,22 +32798,22 @@ void Unwind_180904070(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1370) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1370))(localLong1 + 0x1360,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1338) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1338) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1340) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1340) = 0;
   *(uint32 *)(localLong1 + 0x1350) = 0;
-  *(uint64 *)(localLong1 + 0x1338) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1318) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1338) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1318) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1320) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1320) = 0;
   *(uint32 *)(localLong1 + 0x1330) = 0;
-  *(uint64 *)(localLong1 + 0x1318) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1318) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -32871,14 +32871,14 @@ void Unwind_1809040d0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x20);
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -32918,14 +32918,14 @@ void Unwind_180904100(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x50);
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -32951,14 +32951,14 @@ void Unwind_180904120(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x20);
-  *plocalUInt1 = &unknown_180a3c3e0;
+  *plocalUInt1 = &threadLocalStorageData;
   if (plocalUInt1[1] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt1[1] = 0;
   *(uint32 *)(plocalUInt1 + 3) = 0;
-  *plocalUInt1 = &unknown_18098bcb0;
+  *plocalUInt1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -32970,14 +32970,14 @@ void Unwind_180904130(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x20);
-  *(uint64 *)(localLong1 + 0x20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x28) = 0;
   *(uint32 *)(localLong1 + 0x38) = 0;
-  *(uint64 *)(localLong1 + 0x20) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -32989,14 +32989,14 @@ void Unwind_180904140(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x20);
-  *(uint64 *)(localLong1 + 0x40) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x40) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x48) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x48) = 0;
   *(uint32 *)(localLong1 + 0x58) = 0;
-  *(uint64 *)(localLong1 + 0x40) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x40) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -33008,14 +33008,14 @@ void Unwind_180904150(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x20);
-  *(uint64 *)(localLong1 + 0x60) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x60) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x68) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x68) = 0;
   *(uint32 *)(localLong1 + 0x78) = 0;
-  *(uint64 *)(localLong1 + 0x60) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x60) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -33027,14 +33027,14 @@ void Unwind_180904160(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x20);
-  *(uint64 *)(localLong1 + 0x80) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x80) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x88) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x88) = 0;
   *(uint32 *)(localLong1 + 0x98) = 0;
-  *(uint64 *)(localLong1 + 0x80) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x80) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -33060,14 +33060,14 @@ void Unwind_1809041a0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x50);
-  *(uint64 *)(localLong1 + 0x60) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x60) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x68) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x68) = 0;
   *(uint32 *)(localLong1 + 0x78) = 0;
-  *(uint64 *)(localLong1 + 0x60) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x60) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -33096,46 +33096,46 @@ void Unwind_1809041d0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 400) != (code *)0x0) {
     (**(code **)(localLong1 + 400))(localLong1 + 0x180,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x160) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x160) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x168) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x168) = 0;
   *(uint32 *)(localLong1 + 0x178) = 0;
-  *(uint64 *)(localLong1 + 0x160) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x140) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x160) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x140) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x148) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x148) = 0;
   *(uint32 *)(localLong1 + 0x158) = 0;
-  *(uint64 *)(localLong1 + 0x140) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x120) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x140) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x120) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x128) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x128) = 0;
   *(uint32 *)(localLong1 + 0x138) = 0;
-  *(uint64 *)(localLong1 + 0x120) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x100) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x120) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x100) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x108) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x108) = 0;
   *(uint32 *)(localLong1 + 0x118) = 0;
-  *(uint64 *)(localLong1 + 0x100) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xe0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x100) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xe0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xe8) = 0;
   *(uint32 *)(localLong1 + 0xf8) = 0;
-  *(uint64 *)(localLong1 + 0xe0) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xe0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -33150,46 +33150,46 @@ void Unwind_1809041f0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x250) != (code *)0x0) {
     (**(code **)(localLong1 + 0x250))(localLong1 + 0x240,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x220) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x220) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x228) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x228) = 0;
   *(uint32 *)(localLong1 + 0x238) = 0;
-  *(uint64 *)(localLong1 + 0x220) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x200) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x220) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x200) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x208) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x208) = 0;
   *(uint32 *)(localLong1 + 0x218) = 0;
-  *(uint64 *)(localLong1 + 0x200) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1e0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x200) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1e0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1e8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1e8) = 0;
   *(uint32 *)(localLong1 + 0x1f8) = 0;
-  *(uint64 *)(localLong1 + 0x1e0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1c0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1e0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1c0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1c8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1c8) = 0;
   *(uint32 *)(localLong1 + 0x1d8) = 0;
-  *(uint64 *)(localLong1 + 0x1c0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1a0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1c0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1a0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1a8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1a8) = 0;
   *(uint32 *)(localLong1 + 0x1b8) = 0;
-  *(uint64 *)(localLong1 + 0x1a0) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1a0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -33204,46 +33204,46 @@ void Unwind_180904210(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x310) != (code *)0x0) {
     (**(code **)(localLong1 + 0x310))(localLong1 + 0x300,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x2e0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2e0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2e8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2e8) = 0;
   *(uint32 *)(localLong1 + 0x2f8) = 0;
-  *(uint64 *)(localLong1 + 0x2e0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x2c0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2e0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x2c0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2c8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2c8) = 0;
   *(uint32 *)(localLong1 + 0x2d8) = 0;
-  *(uint64 *)(localLong1 + 0x2c0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x2a0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2c0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x2a0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2a8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2a8) = 0;
   *(uint32 *)(localLong1 + 0x2b8) = 0;
-  *(uint64 *)(localLong1 + 0x2a0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x280) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2a0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x280) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x288) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x288) = 0;
   *(uint32 *)(localLong1 + 0x298) = 0;
-  *(uint64 *)(localLong1 + 0x280) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x260) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x280) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x260) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x268) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x268) = 0;
   *(uint32 *)(localLong1 + 0x278) = 0;
-  *(uint64 *)(localLong1 + 0x260) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x260) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -33258,46 +33258,46 @@ void Unwind_180904230(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x3d0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x3d0))(localLong1 + 0x3c0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x3a0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x3a0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x3a8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x3a8) = 0;
   *(uint32 *)(localLong1 + 0x3b8) = 0;
-  *(uint64 *)(localLong1 + 0x3a0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x380) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x3a0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x380) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x388) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x388) = 0;
   *(uint32 *)(localLong1 + 0x398) = 0;
-  *(uint64 *)(localLong1 + 0x380) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x360) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x380) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x360) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x368) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x368) = 0;
   *(uint32 *)(localLong1 + 0x378) = 0;
-  *(uint64 *)(localLong1 + 0x360) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x340) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x360) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x340) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x348) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x348) = 0;
   *(uint32 *)(localLong1 + 0x358) = 0;
-  *(uint64 *)(localLong1 + 0x340) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 800) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x340) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 800) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x328) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x328) = 0;
   *(uint32 *)(localLong1 + 0x338) = 0;
-  *(uint64 *)(localLong1 + 800) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 800) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -33312,46 +33312,46 @@ void Unwind_180904250(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x490) != (code *)0x0) {
     (**(code **)(localLong1 + 0x490))(localLong1 + 0x480,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x460) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x460) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x468) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x468) = 0;
   *(uint32 *)(localLong1 + 0x478) = 0;
-  *(uint64 *)(localLong1 + 0x460) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x440) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x460) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x440) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x448) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x448) = 0;
   *(uint32 *)(localLong1 + 0x458) = 0;
-  *(uint64 *)(localLong1 + 0x440) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x420) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x440) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x420) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x428) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x428) = 0;
   *(uint32 *)(localLong1 + 0x438) = 0;
-  *(uint64 *)(localLong1 + 0x420) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x400) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x420) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x400) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x408) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x408) = 0;
   *(uint32 *)(localLong1 + 0x418) = 0;
-  *(uint64 *)(localLong1 + 0x400) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x3e0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x400) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x3e0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 1000) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 1000) = 0;
   *(uint32 *)(localLong1 + 0x3f8) = 0;
-  *(uint64 *)(localLong1 + 0x3e0) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x3e0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -33366,46 +33366,46 @@ void Unwind_180904270(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x550) != (code *)0x0) {
     (**(code **)(localLong1 + 0x550))(localLong1 + 0x540,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x520) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x520) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x528) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x528) = 0;
   *(uint32 *)(localLong1 + 0x538) = 0;
-  *(uint64 *)(localLong1 + 0x520) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x500) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x520) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x500) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x508) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x508) = 0;
   *(uint32 *)(localLong1 + 0x518) = 0;
-  *(uint64 *)(localLong1 + 0x500) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x4e0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x500) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x4e0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x4e8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x4e8) = 0;
   *(uint32 *)(localLong1 + 0x4f8) = 0;
-  *(uint64 *)(localLong1 + 0x4e0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x4c0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x4e0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x4c0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x4c8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x4c8) = 0;
   *(uint32 *)(localLong1 + 0x4d8) = 0;
-  *(uint64 *)(localLong1 + 0x4c0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x4a0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x4c0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x4a0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x4a8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x4a8) = 0;
   *(uint32 *)(localLong1 + 0x4b8) = 0;
-  *(uint64 *)(localLong1 + 0x4a0) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x4a0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -33420,46 +33420,46 @@ void Unwind_180904290(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x610) != (code *)0x0) {
     (**(code **)(localLong1 + 0x610))(localLong1 + 0x600,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x5e0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x5e0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x5e8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x5e8) = 0;
   *(uint32 *)(localLong1 + 0x5f8) = 0;
-  *(uint64 *)(localLong1 + 0x5e0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x5c0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x5e0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x5c0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x5c8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x5c8) = 0;
   *(uint32 *)(localLong1 + 0x5d8) = 0;
-  *(uint64 *)(localLong1 + 0x5c0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x5a0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x5c0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x5a0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x5a8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x5a8) = 0;
   *(uint32 *)(localLong1 + 0x5b8) = 0;
-  *(uint64 *)(localLong1 + 0x5a0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x580) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x5a0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x580) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x588) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x588) = 0;
   *(uint32 *)(localLong1 + 0x598) = 0;
-  *(uint64 *)(localLong1 + 0x580) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x560) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x580) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x560) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x568) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x568) = 0;
   *(uint32 *)(localLong1 + 0x578) = 0;
-  *(uint64 *)(localLong1 + 0x560) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x560) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -33474,46 +33474,46 @@ void Unwind_1809042b0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x6d0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x6d0))(localLong1 + 0x6c0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x6a0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x6a0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x6a8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x6a8) = 0;
   *(uint32 *)(localLong1 + 0x6b8) = 0;
-  *(uint64 *)(localLong1 + 0x6a0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x680) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x6a0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x680) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x688) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x688) = 0;
   *(uint32 *)(localLong1 + 0x698) = 0;
-  *(uint64 *)(localLong1 + 0x680) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x660) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x680) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x660) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x668) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x668) = 0;
   *(uint32 *)(localLong1 + 0x678) = 0;
-  *(uint64 *)(localLong1 + 0x660) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x640) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x660) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x640) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x648) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x648) = 0;
   *(uint32 *)(localLong1 + 0x658) = 0;
-  *(uint64 *)(localLong1 + 0x640) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x620) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x640) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x620) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x628) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x628) = 0;
   *(uint32 *)(localLong1 + 0x638) = 0;
-  *(uint64 *)(localLong1 + 0x620) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x620) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -33528,46 +33528,46 @@ void Unwind_1809042d0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x790) != (code *)0x0) {
     (**(code **)(localLong1 + 0x790))(localLong1 + 0x780,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x760) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x760) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x768) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x768) = 0;
   *(uint32 *)(localLong1 + 0x778) = 0;
-  *(uint64 *)(localLong1 + 0x760) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x740) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x760) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x740) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x748) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x748) = 0;
   *(uint32 *)(localLong1 + 0x758) = 0;
-  *(uint64 *)(localLong1 + 0x740) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x720) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x740) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x720) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x728) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x728) = 0;
   *(uint32 *)(localLong1 + 0x738) = 0;
-  *(uint64 *)(localLong1 + 0x720) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x700) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x720) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x700) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x708) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x708) = 0;
   *(uint32 *)(localLong1 + 0x718) = 0;
-  *(uint64 *)(localLong1 + 0x700) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x6e0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x700) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x6e0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x6e8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x6e8) = 0;
   *(uint32 *)(localLong1 + 0x6f8) = 0;
-  *(uint64 *)(localLong1 + 0x6e0) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x6e0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -33582,46 +33582,46 @@ void Unwind_1809042f0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x850) != (code *)0x0) {
     (**(code **)(localLong1 + 0x850))(localLong1 + 0x840,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x820) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x820) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x828) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x828) = 0;
   *(uint32 *)(localLong1 + 0x838) = 0;
-  *(uint64 *)(localLong1 + 0x820) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x800) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x820) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x800) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x808) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x808) = 0;
   *(uint32 *)(localLong1 + 0x818) = 0;
-  *(uint64 *)(localLong1 + 0x800) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x7e0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x800) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x7e0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x7e8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x7e8) = 0;
   *(uint32 *)(localLong1 + 0x7f8) = 0;
-  *(uint64 *)(localLong1 + 0x7e0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x7c0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x7e0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x7c0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x7c8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x7c8) = 0;
   *(uint32 *)(localLong1 + 0x7d8) = 0;
-  *(uint64 *)(localLong1 + 0x7c0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x7a0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x7c0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x7a0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x7a8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x7a8) = 0;
   *(uint32 *)(localLong1 + 0x7b8) = 0;
-  *(uint64 *)(localLong1 + 0x7a0) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x7a0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -33636,46 +33636,46 @@ void Unwind_180904310(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x910) != (code *)0x0) {
     (**(code **)(localLong1 + 0x910))(localLong1 + 0x900,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x8e0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x8e0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x8e8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x8e8) = 0;
   *(uint32 *)(localLong1 + 0x8f8) = 0;
-  *(uint64 *)(localLong1 + 0x8e0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x8c0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x8e0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x8c0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x8c8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x8c8) = 0;
   *(uint32 *)(localLong1 + 0x8d8) = 0;
-  *(uint64 *)(localLong1 + 0x8c0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x8a0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x8c0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x8a0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x8a8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x8a8) = 0;
   *(uint32 *)(localLong1 + 0x8b8) = 0;
-  *(uint64 *)(localLong1 + 0x8a0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x880) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x8a0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x880) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x888) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x888) = 0;
   *(uint32 *)(localLong1 + 0x898) = 0;
-  *(uint64 *)(localLong1 + 0x880) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x860) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x880) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x860) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x868) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x868) = 0;
   *(uint32 *)(localLong1 + 0x878) = 0;
-  *(uint64 *)(localLong1 + 0x860) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x860) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -33690,46 +33690,46 @@ void Unwind_180904330(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x9d0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x9d0))(localLong1 + 0x9c0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x9a0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x9a0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x9a8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x9a8) = 0;
   *(uint32 *)(localLong1 + 0x9b8) = 0;
-  *(uint64 *)(localLong1 + 0x9a0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x980) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x9a0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x980) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x988) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x988) = 0;
   *(uint32 *)(localLong1 + 0x998) = 0;
-  *(uint64 *)(localLong1 + 0x980) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x960) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x980) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x960) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x968) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x968) = 0;
   *(uint32 *)(localLong1 + 0x978) = 0;
-  *(uint64 *)(localLong1 + 0x960) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x940) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x960) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x940) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x948) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x948) = 0;
   *(uint32 *)(localLong1 + 0x958) = 0;
-  *(uint64 *)(localLong1 + 0x940) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x920) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x940) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x920) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x928) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x928) = 0;
   *(uint32 *)(localLong1 + 0x938) = 0;
-  *(uint64 *)(localLong1 + 0x920) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x920) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -33744,46 +33744,46 @@ void Unwind_180904350(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xa90) != (code *)0x0) {
     (**(code **)(localLong1 + 0xa90))(localLong1 + 0xa80,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xa60) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xa60) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xa68) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xa68) = 0;
   *(uint32 *)(localLong1 + 0xa78) = 0;
-  *(uint64 *)(localLong1 + 0xa60) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xa40) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xa60) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xa40) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xa48) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xa48) = 0;
   *(uint32 *)(localLong1 + 0xa58) = 0;
-  *(uint64 *)(localLong1 + 0xa40) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xa20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xa40) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xa20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xa28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xa28) = 0;
   *(uint32 *)(localLong1 + 0xa38) = 0;
-  *(uint64 *)(localLong1 + 0xa20) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xa00) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xa20) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xa00) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xa08) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xa08) = 0;
   *(uint32 *)(localLong1 + 0xa18) = 0;
-  *(uint64 *)(localLong1 + 0xa00) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x9e0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xa00) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x9e0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x9e8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x9e8) = 0;
   *(uint32 *)(localLong1 + 0x9f8) = 0;
-  *(uint64 *)(localLong1 + 0x9e0) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x9e0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -33798,46 +33798,46 @@ void Unwind_180904370(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xb50) != (code *)0x0) {
     (**(code **)(localLong1 + 0xb50))(localLong1 + 0xb40,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xb20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xb20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xb28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xb28) = 0;
   *(uint32 *)(localLong1 + 0xb38) = 0;
-  *(uint64 *)(localLong1 + 0xb20) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xb00) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xb20) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xb00) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xb08) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xb08) = 0;
   *(uint32 *)(localLong1 + 0xb18) = 0;
-  *(uint64 *)(localLong1 + 0xb00) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xae0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xb00) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xae0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xae8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xae8) = 0;
   *(uint32 *)(localLong1 + 0xaf8) = 0;
-  *(uint64 *)(localLong1 + 0xae0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xac0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xae0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xac0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xac8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xac8) = 0;
   *(uint32 *)(localLong1 + 0xad8) = 0;
-  *(uint64 *)(localLong1 + 0xac0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xaa0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xac0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xaa0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xaa8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xaa8) = 0;
   *(uint32 *)(localLong1 + 0xab8) = 0;
-  *(uint64 *)(localLong1 + 0xaa0) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xaa0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -33852,46 +33852,46 @@ void Unwind_180904390(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xc10) != (code *)0x0) {
     (**(code **)(localLong1 + 0xc10))(localLong1 + 0xc00,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xbe0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xbe0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xbe8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xbe8) = 0;
   *(uint32 *)(localLong1 + 0xbf8) = 0;
-  *(uint64 *)(localLong1 + 0xbe0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xbc0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xbe0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xbc0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xbc8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xbc8) = 0;
   *(uint32 *)(localLong1 + 0xbd8) = 0;
-  *(uint64 *)(localLong1 + 0xbc0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xba0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xbc0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xba0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xba8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xba8) = 0;
   *(uint32 *)(localLong1 + 3000) = 0;
-  *(uint64 *)(localLong1 + 0xba0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xb80) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xba0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xb80) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xb88) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xb88) = 0;
   *(uint32 *)(localLong1 + 0xb98) = 0;
-  *(uint64 *)(localLong1 + 0xb80) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xb60) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xb80) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xb60) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xb68) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xb68) = 0;
   *(uint32 *)(localLong1 + 0xb78) = 0;
-  *(uint64 *)(localLong1 + 0xb60) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xb60) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -33906,46 +33906,46 @@ void Unwind_1809043b0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xcd0) != (code *)0x0) {
     (**(code **)(localLong1 + 0xcd0))(localLong1 + 0xcc0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xca0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xca0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xca8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xca8) = 0;
   *(uint32 *)(localLong1 + 0xcb8) = 0;
-  *(uint64 *)(localLong1 + 0xca0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xc80) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xca0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xc80) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xc88) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xc88) = 0;
   *(uint32 *)(localLong1 + 0xc98) = 0;
-  *(uint64 *)(localLong1 + 0xc80) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xc60) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xc80) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xc60) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xc68) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xc68) = 0;
   *(uint32 *)(localLong1 + 0xc78) = 0;
-  *(uint64 *)(localLong1 + 0xc60) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xc40) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xc60) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xc40) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xc48) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xc48) = 0;
   *(uint32 *)(localLong1 + 0xc58) = 0;
-  *(uint64 *)(localLong1 + 0xc40) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xc20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xc40) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xc20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xc28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xc28) = 0;
   *(uint32 *)(localLong1 + 0xc38) = 0;
-  *(uint64 *)(localLong1 + 0xc20) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xc20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -33960,22 +33960,22 @@ void Unwind_1809043d0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xd40) != (code *)0x0) {
     (**(code **)(localLong1 + 0xd40))(localLong1 + 0xd30,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xd08) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xd08) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xd10) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xd10) = 0;
   *(uint32 *)(localLong1 + 0xd20) = 0;
-  *(uint64 *)(localLong1 + 0xd08) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xce8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xd08) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xce8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xcf0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xcf0) = 0;
   *(uint32 *)(localLong1 + 0xd00) = 0;
-  *(uint64 *)(localLong1 + 0xce8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xce8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -33990,22 +33990,22 @@ void Unwind_1809043f0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xdb0) != (code *)0x0) {
     (**(code **)(localLong1 + 0xdb0))(localLong1 + 0xda0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xd78) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xd78) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xd80) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xd80) = 0;
   *(uint32 *)(localLong1 + 0xd90) = 0;
-  *(uint64 *)(localLong1 + 0xd78) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xd58) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xd78) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xd58) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xd60) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xd60) = 0;
   *(uint32 *)(localLong1 + 0xd70) = 0;
-  *(uint64 *)(localLong1 + 0xd58) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xd58) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -34020,22 +34020,22 @@ void Unwind_180904410(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xe20) != (code *)0x0) {
     (**(code **)(localLong1 + 0xe20))(localLong1 + 0xe10,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xde8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xde8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xdf0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xdf0) = 0;
   *(uint32 *)(localLong1 + 0xe00) = 0;
-  *(uint64 *)(localLong1 + 0xde8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xdc8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xde8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xdc8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xdd0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xdd0) = 0;
   *(uint32 *)(localLong1 + 0xde0) = 0;
-  *(uint64 *)(localLong1 + 0xdc8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xdc8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -34050,46 +34050,46 @@ void Unwind_180904430(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xee0) != (code *)0x0) {
     (**(code **)(localLong1 + 0xee0))(localLong1 + 0xed0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xeb0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xeb0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xeb8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xeb8) = 0;
   *(uint32 *)(localLong1 + 0xec8) = 0;
-  *(uint64 *)(localLong1 + 0xeb0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xe90) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xeb0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xe90) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xe98) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xe98) = 0;
   *(uint32 *)(localLong1 + 0xea8) = 0;
-  *(uint64 *)(localLong1 + 0xe90) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xe70) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xe90) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xe70) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xe78) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xe78) = 0;
   *(uint32 *)(localLong1 + 0xe88) = 0;
-  *(uint64 *)(localLong1 + 0xe70) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xe50) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xe70) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xe50) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xe58) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xe58) = 0;
   *(uint32 *)(localLong1 + 0xe68) = 0;
-  *(uint64 *)(localLong1 + 0xe50) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xe30) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xe50) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xe30) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xe38) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xe38) = 0;
   *(uint32 *)(localLong1 + 0xe48) = 0;
-  *(uint64 *)(localLong1 + 0xe30) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xe30) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -34104,46 +34104,46 @@ void Unwind_180904450(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 4000) != (code *)0x0) {
     (**(code **)(localLong1 + 4000))(localLong1 + 0xf90,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xf70) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xf70) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xf78) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xf78) = 0;
   *(uint32 *)(localLong1 + 0xf88) = 0;
-  *(uint64 *)(localLong1 + 0xf70) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xf50) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xf70) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xf50) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xf58) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xf58) = 0;
   *(uint32 *)(localLong1 + 0xf68) = 0;
-  *(uint64 *)(localLong1 + 0xf50) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xf30) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xf50) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xf30) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xf38) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xf38) = 0;
   *(uint32 *)(localLong1 + 0xf48) = 0;
-  *(uint64 *)(localLong1 + 0xf30) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xf10) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xf30) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xf10) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xf18) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xf18) = 0;
   *(uint32 *)(localLong1 + 0xf28) = 0;
-  *(uint64 *)(localLong1 + 0xf10) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xef0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xf10) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xef0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xef8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xef8) = 0;
   *(uint32 *)(localLong1 + 0xf08) = 0;
-  *(uint64 *)(localLong1 + 0xef0) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xef0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -34158,46 +34158,46 @@ void Unwind_180904470(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1060) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1060))(localLong1 + 0x1050,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1030) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1030) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1038) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1038) = 0;
   *(uint32 *)(localLong1 + 0x1048) = 0;
-  *(uint64 *)(localLong1 + 0x1030) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1010) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1030) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1010) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1018) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1018) = 0;
   *(uint32 *)(localLong1 + 0x1028) = 0;
-  *(uint64 *)(localLong1 + 0x1010) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xff0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1010) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xff0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xff8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xff8) = 0;
   *(uint32 *)(localLong1 + 0x1008) = 0;
-  *(uint64 *)(localLong1 + 0xff0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xfd0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xff0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xfd0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xfd8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xfd8) = 0;
   *(uint32 *)(localLong1 + 0xfe8) = 0;
-  *(uint64 *)(localLong1 + 0xfd0) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xfb0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xfd0) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xfb0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xfb8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xfb8) = 0;
   *(uint32 *)(localLong1 + 0xfc8) = 0;
-  *(uint64 *)(localLong1 + 0xfb0) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xfb0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -34212,22 +34212,22 @@ void Unwind_180904490(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x10d0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x10d0))(localLong1 + 0x10c0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1098) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1098) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x10a0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x10a0) = 0;
   *(uint32 *)(localLong1 + 0x10b0) = 0;
-  *(uint64 *)(localLong1 + 0x1098) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1078) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1098) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1078) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1080) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1080) = 0;
   *(uint32 *)(localLong1 + 0x1090) = 0;
-  *(uint64 *)(localLong1 + 0x1078) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1078) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -34242,22 +34242,22 @@ void Unwind_1809044b0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1140) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1140))(localLong1 + 0x1130,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1108) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1108) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1110) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1110) = 0;
   *(uint32 *)(localLong1 + 0x1120) = 0;
-  *(uint64 *)(localLong1 + 0x1108) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x10e8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1108) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x10e8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x10f0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x10f0) = 0;
   *(uint32 *)(localLong1 + 0x1100) = 0;
-  *(uint64 *)(localLong1 + 0x10e8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x10e8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -34272,22 +34272,22 @@ void Unwind_1809044d0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x11b0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x11b0))(localLong1 + 0x11a0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1178) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1178) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1180) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1180) = 0;
   *(uint32 *)(localLong1 + 0x1190) = 0;
-  *(uint64 *)(localLong1 + 0x1178) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1158) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1178) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1158) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1160) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1160) = 0;
   *(uint32 *)(localLong1 + 0x1170) = 0;
-  *(uint64 *)(localLong1 + 0x1158) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1158) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -34302,22 +34302,22 @@ void Unwind_1809044f0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1220) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1220))(localLong1 + 0x1210,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x11e8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x11e8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x11f0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x11f0) = 0;
   *(uint32 *)(localLong1 + 0x1200) = 0;
-  *(uint64 *)(localLong1 + 0x11e8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x11c8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x11e8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x11c8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x11d0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x11d0) = 0;
   *(uint32 *)(localLong1 + 0x11e0) = 0;
-  *(uint64 *)(localLong1 + 0x11c8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x11c8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -34332,22 +34332,22 @@ void Unwind_180904510(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1290) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1290))(localLong1 + 0x1280,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1258) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1258) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1260) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1260) = 0;
   *(uint32 *)(localLong1 + 0x1270) = 0;
-  *(uint64 *)(localLong1 + 0x1258) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1238) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1258) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1238) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1240) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1240) = 0;
   *(uint32 *)(localLong1 + 0x1250) = 0;
-  *(uint64 *)(localLong1 + 0x1238) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1238) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -34362,22 +34362,22 @@ void Unwind_180904530(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1300) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1300))(localLong1 + 0x12f0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x12c8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x12c8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x12d0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x12d0) = 0;
   *(uint32 *)(localLong1 + 0x12e0) = 0;
-  *(uint64 *)(localLong1 + 0x12c8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x12a8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x12c8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x12a8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x12b0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x12b0) = 0;
   *(uint32 *)(localLong1 + 0x12c0) = 0;
-  *(uint64 *)(localLong1 + 0x12a8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x12a8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -34392,22 +34392,22 @@ void Unwind_180904550(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1370) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1370))(localLong1 + 0x1360,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1338) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1338) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1340) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1340) = 0;
   *(uint32 *)(localLong1 + 0x1350) = 0;
-  *(uint64 *)(localLong1 + 0x1338) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1318) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1338) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1318) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1320) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1320) = 0;
   *(uint32 *)(localLong1 + 0x1330) = 0;
-  *(uint64 *)(localLong1 + 0x1318) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1318) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -34634,14 +34634,14 @@ void Unwind_1809046c0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x40);
-  *(uint64 *)(localLong1 + 0x18) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x18) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x20) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x20) = 0;
   *(uint32 *)(localLong1 + 0x30) = 0;
-  *(uint64 *)(localLong1 + 0x18) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x18) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -34653,14 +34653,14 @@ void Unwind_1809046d0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x60);
-  *(uint64 *)(localLong1 + 0x18) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x18) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x20) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x20) = 0;
   *(uint32 *)(localLong1 + 0x30) = 0;
-  *(uint64 *)(localLong1 + 0x18) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x18) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -34863,22 +34863,22 @@ void Unwind_180904810(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x60);
-  *(uint64 *)(localLong1 + 0x40) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x40) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x48) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x48) = 0;
   *(uint32 *)(localLong1 + 0x58) = 0;
-  *(uint64 *)(localLong1 + 0x40) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x40) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x28) = 0;
   *(uint32 *)(localLong1 + 0x38) = 0;
-  *(uint64 *)(localLong1 + 0x20) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -34890,14 +34890,14 @@ void Unwind_180904820(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x60);
-  *(uint64 *)(localLong1 + 0x20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x28) = 0;
   *(uint32 *)(localLong1 + 0x38) = 0;
-  *(uint64 *)(localLong1 + 0x20) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -34906,7 +34906,7 @@ void Unwind_180904820(uint64 resourceHandle,longlong memorySize)
 void Unwind_180904830(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x60) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x60) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -34927,14 +34927,14 @@ void Unwind_180904840(uint64 resourceHandle,longlong memorySize)
 void Unwind_180904870(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x50) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x50) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x58) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x58) = 0;
   *(uint32 *)(memorySize + 0x68) = 0;
-  *(uint64 *)(memorySize + 0x50) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x50) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -34943,7 +34943,7 @@ void Unwind_180904870(uint64 resourceHandle,longlong memorySize)
 void Unwind_180904880(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(*(longlong *)(memorySize + 0x40) + 0x20) = &unknown_18098bcb0;
+  *(data **)(*(longlong *)(memorySize + 0x40) + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -34952,7 +34952,7 @@ void Unwind_180904880(uint64 resourceHandle,longlong memorySize)
 void Unwind_180904890(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x50) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x50) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -34975,7 +34975,7 @@ void Unwind_1809048a0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809048b0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(*(longlong *)(memorySize + 0x20) + 0x20) = &unknown_18098bcb0;
+  *(data **)(*(longlong *)(memorySize + 0x20) + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -34984,7 +34984,7 @@ void Unwind_1809048b0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809048c0(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x28) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x28) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -35010,14 +35010,14 @@ void Unwind_1809048e0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x48);
-  *(uint64 *)(localLong1 + 0x20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x28) = 0;
   *(uint32 *)(localLong1 + 0x38) = 0;
-  *(uint64 *)(localLong1 + 0x20) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -35029,14 +35029,14 @@ void Unwind_1809048f0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x68);
-  *(uint64 *)(localLong1 + 0x20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x28) = 0;
   *(uint32 *)(localLong1 + 0x38) = 0;
-  *(uint64 *)(localLong1 + 0x20) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -35752,7 +35752,7 @@ void Unwind_180904a90(uint64 resourceHandle,longlong memorySize)
 void Unwind_180904aa0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0xb0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0xb0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -35782,7 +35782,7 @@ void Unwind_180904ab0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(uint64 *)(plocalUInt1[0xe] + 0x10) = 0;
       *(byte *)(plocalUInt1[0xe] + 8) = 1;
     }
-    plocalUInt1[2] = &unknown_18098bcb0;
+    plocalUInt1[2] = &threadLocalStorageCleanup;
     return;
   }
   if (*(int *)(plocalUInt1[1] + 8) == 0) {
@@ -35798,7 +35798,7 @@ void Unwind_180904ab0(uint64 resourceHandle,longlong memorySize,uint64 operation
 void Unwind_180904ac0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0xb0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0xb0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -35850,7 +35850,7 @@ void Unwind_180904af0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(uint64 *)(plocalUInt1[0xe] + 0x10) = 0;
       *(byte *)(plocalUInt1[0xe] + 8) = 1;
     }
-    plocalUInt1[2] = &unknown_18098bcb0;
+    plocalUInt1[2] = &threadLocalStorageCleanup;
     return;
   }
   if (*(int *)(plocalUInt1[1] + 8) == 0) {
@@ -36058,22 +36058,22 @@ void Unwind_180904dd0(uint64 resourceHandle,longlong memorySize)
   }
   _Mtx_destroy_in_situ();
   *plocalUInt1 = &unknown_180a30778;
-  plocalUInt1[7] = &unknown_180a3c3e0;
+  plocalUInt1[7] = &threadLocalStorageData;
   if (plocalUInt1[8] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt1[8] = 0;
   *(uint32 *)(plocalUInt1 + 10) = 0;
-  plocalUInt1[7] = &unknown_18098bcb0;
-  plocalUInt1[1] = &unknown_180a3c3e0;
+  plocalUInt1[7] = &threadLocalStorageCleanup;
+  plocalUInt1[1] = &threadLocalStorageData;
   if (plocalUInt1[2] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt1[2] = 0;
   *(uint32 *)(plocalUInt1 + 4) = 0;
-  plocalUInt1[1] = &unknown_18098bcb0;
+  plocalUInt1[1] = &threadLocalStorageCleanup;
   return;
 }
 
@@ -36087,22 +36087,22 @@ void Unwind_180904de0(uint64 resourceHandle,longlong memorySize)
   plocalUInt1 = *(uint64 **)(memorySize + 0x40);
   _Mtx_destroy_in_situ();
   *plocalUInt1 = &unknown_180a30778;
-  plocalUInt1[7] = &unknown_180a3c3e0;
+  plocalUInt1[7] = &threadLocalStorageData;
   if (plocalUInt1[8] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt1[8] = 0;
   *(uint32 *)(plocalUInt1 + 10) = 0;
-  plocalUInt1[7] = &unknown_18098bcb0;
-  plocalUInt1[1] = &unknown_180a3c3e0;
+  plocalUInt1[7] = &threadLocalStorageCleanup;
+  plocalUInt1[1] = &threadLocalStorageData;
   if (plocalUInt1[2] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt1[2] = 0;
   *(uint32 *)(plocalUInt1 + 4) = 0;
-  plocalUInt1[1] = &unknown_18098bcb0;
+  plocalUInt1[1] = &threadLocalStorageCleanup;
   return;
 }
 
@@ -36115,22 +36115,22 @@ void Unwind_180904df0(uint64 resourceHandle,longlong memorySize)
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x40);
   *plocalUInt1 = &unknown_180a30778;
-  plocalUInt1[7] = &unknown_180a3c3e0;
+  plocalUInt1[7] = &threadLocalStorageData;
   if (plocalUInt1[8] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt1[8] = 0;
   *(uint32 *)(plocalUInt1 + 10) = 0;
-  plocalUInt1[7] = &unknown_18098bcb0;
-  plocalUInt1[1] = &unknown_180a3c3e0;
+  plocalUInt1[7] = &threadLocalStorageCleanup;
+  plocalUInt1[1] = &threadLocalStorageData;
   if (plocalUInt1[2] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt1[2] = 0;
   *(uint32 *)(plocalUInt1 + 4) = 0;
-  plocalUInt1[1] = &unknown_18098bcb0;
+  plocalUInt1[1] = &threadLocalStorageCleanup;
   return;
 }
 
@@ -36148,7 +36148,7 @@ void Unwind_180904e00(void)
 void Unwind_180904e10(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0xc0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0xc0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -36157,7 +36157,7 @@ void Unwind_180904e10(uint64 resourceHandle,longlong memorySize)
 void Unwind_180904e20(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0xe8) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0xe8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -36198,7 +36198,7 @@ void Unwind_180904e40(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(uint64 *)(plocalUInt1[0xe] + 0x10) = 0;
       *(byte *)(plocalUInt1[0xe] + 8) = 1;
     }
-    plocalUInt1[2] = &unknown_18098bcb0;
+    plocalUInt1[2] = &threadLocalStorageCleanup;
     return;
   }
   if (*(int *)(plocalUInt1[1] + 8) == 0) {
@@ -36421,14 +36421,14 @@ void Unwind_180904f70(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x40);
-  *(uint64 *)(localLong1 + 0x30) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x30) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x38) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x38) = 0;
   *(uint32 *)(localLong1 + 0x48) = 0;
-  *(uint64 *)(localLong1 + 0x30) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x30) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -36440,14 +36440,14 @@ void Unwind_180904f80(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0xa8);
-  *plocalUInt1 = &unknown_180a3c3e0;
+  *plocalUInt1 = &threadLocalStorageData;
   if (plocalUInt1[1] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt1[1] = 0;
   *(uint32 *)(plocalUInt1 + 3) = 0;
-  *plocalUInt1 = &unknown_18098bcb0;
+  *plocalUInt1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -36534,14 +36534,14 @@ void Unwind_180904fb0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180904fc0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0xb8) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0xb8) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0xc0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0xc0) = 0;
   *(uint32 *)(memorySize + 0xd0) = 0;
-  *(uint64 *)(memorySize + 0xb8) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0xb8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -36588,14 +36588,14 @@ void Unwind_180904fe0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180904ff0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0xd8) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0xd8) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0xe0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0xe0) = 0;
   *(uint32 *)(memorySize + 0xf0) = 0;
-  *(uint64 *)(memorySize + 0xd8) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0xd8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -36621,14 +36621,14 @@ void Unwind_180905000(uint64 resourceHandle,longlong memorySize)
 void Unwind_180905010(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0xf8) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0xf8) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x100) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x100) = 0;
   *(uint32 *)(memorySize + 0x110) = 0;
-  *(uint64 *)(memorySize + 0xf8) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0xf8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -36790,14 +36790,14 @@ void Unwind_180905090(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809050c0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x1e8) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x1e8) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x1f0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x1f0) = 0;
   *(uint32 *)(memorySize + 0x200) = 0;
-  *(uint64 *)(memorySize + 0x1e8) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x1e8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -36823,14 +36823,14 @@ void Unwind_1809050d0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809050e0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x168) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x168) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x170) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x170) = 0;
   *(uint32 *)(memorySize + 0x180) = 0;
-  *(uint64 *)(memorySize + 0x168) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x168) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -36839,14 +36839,14 @@ void Unwind_1809050e0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809050f0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x1a8) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x1a8) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x1b0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x1b0) = 0;
   *(uint32 *)(memorySize + 0x1c0) = 0;
-  *(uint64 *)(memorySize + 0x1a8) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x1a8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -36855,14 +36855,14 @@ void Unwind_1809050f0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180905100(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x188) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x188) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 400) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 400) = 0;
   *(uint32 *)(memorySize + 0x1a0) = 0;
-  *(uint64 *)(memorySize + 0x188) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x188) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -36913,7 +36913,7 @@ void Unwind_180905120(uint64 resourceHandle,longlong memorySize,uint64 operation
 void Unwind_180905130(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x278) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x278) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -36922,7 +36922,7 @@ void Unwind_180905130(uint64 resourceHandle,longlong memorySize)
 void Unwind_180905140(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x250) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x250) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -36931,14 +36931,14 @@ void Unwind_180905140(uint64 resourceHandle,longlong memorySize)
 void Unwind_180905150(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x128) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x128) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x130) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x130) = 0;
   *(uint32 *)(memorySize + 0x140) = 0;
-  *(uint64 *)(memorySize + 0x128) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x128) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -36989,14 +36989,14 @@ void Unwind_180905170(uint64 resourceHandle,longlong memorySize,uint64 operation
 void Unwind_180905180(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 200) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 200) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0xd0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0xd0) = 0;
   *(uint32 *)(memorySize + 0xe0) = 0;
-  *(uint64 *)(memorySize + 200) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 200) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -37005,14 +37005,14 @@ void Unwind_180905180(uint64 resourceHandle,longlong memorySize)
 void Unwind_180905190(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x1c8) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x1c8) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x1d0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x1d0) = 0;
   *(uint32 *)(memorySize + 0x1e0) = 0;
-  *(uint64 *)(memorySize + 0x1c8) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x1c8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -37033,7 +37033,7 @@ void Unwind_1809051a0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809051d0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x188) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x188) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -37042,7 +37042,7 @@ void Unwind_1809051d0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809051e0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x1a8) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x1a8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -37165,7 +37165,7 @@ void Unwind_180905220(uint64 resourceHandle,longlong memorySize)
 void Unwind_180905230(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x278) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x278) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -37174,7 +37174,7 @@ void Unwind_180905230(uint64 resourceHandle,longlong memorySize)
 void Unwind_180905240(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x250) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x250) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -37297,7 +37297,7 @@ void Unwind_180905280(uint64 resourceHandle,longlong memorySize)
 void Unwind_180905290(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x1c8) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x1c8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -37306,7 +37306,7 @@ void Unwind_180905290(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809052a0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x168) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x168) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -37315,7 +37315,7 @@ void Unwind_1809052a0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809052b0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x1e8) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x1e8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -37363,14 +37363,14 @@ void Unwind_180905350(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x150);
-  *plocalUInt1 = &unknown_180a3c3e0;
+  *plocalUInt1 = &threadLocalStorageData;
   if (plocalUInt1[1] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt1[1] = 0;
   *(uint32 *)(plocalUInt1 + 3) = 0;
-  *plocalUInt1 = &unknown_18098bcb0;
+  *plocalUInt1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -37379,14 +37379,14 @@ void Unwind_180905350(uint64 resourceHandle,longlong memorySize)
 void Unwind_180905360(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x108) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x108) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x110) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x110) = 0;
   *(uint32 *)(memorySize + 0x120) = 0;
-  *(uint64 *)(memorySize + 0x108) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x108) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -37395,7 +37395,7 @@ void Unwind_180905360(uint64 resourceHandle,longlong memorySize)
 void Unwind_180905370(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x108) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x108) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -37693,14 +37693,14 @@ void Unwind_1809054b0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809054c0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x90) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x90) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x98) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x98) = 0;
   *(uint32 *)(memorySize + 0xa8) = 0;
-  *(uint64 *)(memorySize + 0x90) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x90) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -37709,14 +37709,14 @@ void Unwind_1809054c0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809054d0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x90) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x90) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x98) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x98) = 0;
   *(uint32 *)(memorySize + 0xa8) = 0;
-  *(uint64 *)(memorySize + 0x90) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x90) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -37725,7 +37725,7 @@ void Unwind_1809054d0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809054e0(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x100) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x100) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -37807,7 +37807,7 @@ void Unwind_180905540(uint64 resourceHandle,longlong memorySize)
 void Unwind_180905560(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x60) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x60) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -37924,7 +37924,7 @@ void Unwind_1809055f0(void)
 void Unwind_180905610(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(*(longlong *)(memorySize + 0x50) + 8) = &unknown_18098bcb0;
+  *(data **)(*(longlong *)(memorySize + 0x50) + 8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -37933,7 +37933,7 @@ void Unwind_180905610(uint64 resourceHandle,longlong memorySize)
 void Unwind_180905620(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(*(longlong *)(memorySize + 0x50) + 8) = &unknown_18098bcb0;
+  *(data **)(*(longlong *)(memorySize + 0x50) + 8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -37965,7 +37965,7 @@ void Unwind_180905640(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x178) != (code *)0x0) {
     (**(code **)(localLong1 + 0x178))(localLong1 + 0x168,0,0);
   }
-  *(data **)(localLong1 + 0x20) = &unknown_18098bcb0;
+  *(data **)(localLong1 + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -37983,7 +37983,7 @@ void Unwind_180905650(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x178) != (code *)0x0) {
     (**(code **)(localLong1 + 0x178))(localLong1 + 0x168,0,0);
   }
-  *(data **)(localLong1 + 0x20) = &unknown_18098bcb0;
+  *(data **)(localLong1 + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -38020,7 +38020,7 @@ void Unwind_180905680(uint64 resourceHandle,longlong memorySize,uint64 operation
 void Unwind_1809056a0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(*(longlong *)(memorySize + 0x40) + 8) = &unknown_18098bcb0;
+  *(data **)(*(longlong *)(memorySize + 0x40) + 8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -38029,7 +38029,7 @@ void Unwind_1809056a0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809056b0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(*(longlong *)(memorySize + 0x40) + 8) = &unknown_18098bcb0;
+  *(data **)(*(longlong *)(memorySize + 0x40) + 8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -38080,7 +38080,7 @@ void Unwind_180905700(uint64 resourceHandle,longlong memorySize,uint64 operation
 void Unwind_180905710(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(*(longlong *)(memorySize + 0x20) + 8) = &unknown_18098bcb0;
+  *(data **)(*(longlong *)(memorySize + 0x20) + 8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -38284,14 +38284,14 @@ void Unwind_1809057c0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x40);
-  *(uint64 *)(localLong1 + 0xc0) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xc0) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 200) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 200) = 0;
   *(uint32 *)(localLong1 + 0xd8) = 0;
-  *(uint64 *)(localLong1 + 0xc0) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xc0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -38300,46 +38300,46 @@ void Unwind_1809057c0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809057e0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x100) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x100) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x108) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x108) = 0;
   *(uint32 *)(memorySize + 0x118) = 0;
-  *(uint64 *)(memorySize + 0x100) = &unknown_18098bcb0;
-  *(uint64 *)(memorySize + 0xe0) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x100) = &threadLocalStorageCleanup;
+  *(uint64 *)(memorySize + 0xe0) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0xe8) = 0;
   *(uint32 *)(memorySize + 0xf8) = 0;
-  *(uint64 *)(memorySize + 0xe0) = &unknown_18098bcb0;
-  *(uint64 *)(memorySize + 0xb8) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0xe0) = &threadLocalStorageCleanup;
+  *(uint64 *)(memorySize + 0xb8) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0xc0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0xc0) = 0;
   *(uint32 *)(memorySize + 0xd0) = 0;
-  *(uint64 *)(memorySize + 0xb8) = &unknown_18098bcb0;
-  *(uint64 *)(memorySize + 0x98) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0xb8) = &threadLocalStorageCleanup;
+  *(uint64 *)(memorySize + 0x98) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0xa0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0xa0) = 0;
   *(uint32 *)(memorySize + 0xb0) = 0;
-  *(uint64 *)(memorySize + 0x98) = &unknown_18098bcb0;
-  *(uint64 *)(memorySize + 0x68) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x98) = &threadLocalStorageCleanup;
+  *(uint64 *)(memorySize + 0x68) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x70) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x70) = 0;
   *(uint32 *)(memorySize + 0x80) = 0;
-  *(uint64 *)(memorySize + 0x68) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x68) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -38505,14 +38505,14 @@ void Unwind_180905890(uint64 resourceHandle,longlong memorySize)
   plocalLong2 = *(longlong **)(memorySize + 0x2e0);
   localLong1 = plocalLong2[1];
   for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x28) {
-    *(uint64 *)(localLong3 + 8) = &unknown_180a3c3e0;
+    *(uint64 *)(localLong3 + 8) = &threadLocalStorageData;
     if (*(longlong *)(localLong3 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
     *(uint64 *)(localLong3 + 0x10) = 0;
     *(uint32 *)(localLong3 + 0x20) = 0;
-    *(uint64 *)(localLong3 + 8) = &unknown_18098bcb0;
+    *(uint64 *)(localLong3 + 8) = &threadLocalStorageCleanup;
   }
   if (*plocalLong2 != 0) {
                     // WARNING: Subroutine does not return
@@ -38579,14 +38579,14 @@ void Unwind_1809058c0(uint64 resourceHandle,longlong memorySize)
   plocalLong2 = *(longlong **)(memorySize + 0x2e8);
   localLong1 = plocalLong2[1];
   for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x28) {
-    *(uint64 *)(localLong3 + 8) = &unknown_180a3c3e0;
+    *(uint64 *)(localLong3 + 8) = &threadLocalStorageData;
     if (*(longlong *)(localLong3 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
     *(uint64 *)(localLong3 + 0x10) = 0;
     *(uint32 *)(localLong3 + 0x20) = 0;
-    *(uint64 *)(localLong3 + 8) = &unknown_18098bcb0;
+    *(uint64 *)(localLong3 + 8) = &threadLocalStorageCleanup;
   }
   if (*plocalLong2 != 0) {
                     // WARNING: Subroutine does not return
@@ -38600,14 +38600,14 @@ void Unwind_1809058c0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809058d0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x200) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x200) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x208) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x208) = 0;
   *(uint32 *)(memorySize + 0x218) = 0;
-  *(uint64 *)(memorySize + 0x200) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x200) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -38616,7 +38616,7 @@ void Unwind_1809058d0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809058e0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x200) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x200) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -38718,7 +38718,7 @@ void Unwind_180905940(uint64 resourceHandle,longlong memorySize)
   puVar3 = *(ulonglong **)(memorySize + 0x48);
   plocalUInt2 = (uint64 *)puVar3[1];
   for (puVar5 = (uint64 *)*puVar3; puVar5 != plocalUInt2; puVar5 = puVar5 + 0xe) {
-    *puVar5 = &unknown_18098bcb0;
+    *puVar5 = &threadLocalStorageCleanup;
   }
   plocalUInt2 = (uint64 *)*puVar3;
   if (plocalUInt2 != (uint64 *)0x0) {
@@ -38908,14 +38908,14 @@ void Unwind_180905980(uint64 resourceHandle,longlong memorySize)
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x2e8) + 0x280);
   plocalUInt1 = *(uint64 **)(*(longlong *)(memorySize + 0x2e8) + 0x288);
   for (puVar3 = (uint64 *)*plocalLong2; puVar3 != plocalUInt1; puVar3 = puVar3 + 5) {
-    *puVar3 = &unknown_180a3c3e0;
+    *puVar3 = &threadLocalStorageData;
     if (puVar3[1] != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
     puVar3[1] = 0;
     *(uint32 *)(puVar3 + 3) = 0;
-    *puVar3 = &unknown_18098bcb0;
+    *puVar3 = &threadLocalStorageCleanup;
   }
   if (*plocalLong2 != 0) {
                     // WARNING: Subroutine does not return
@@ -39059,14 +39059,14 @@ void Unwind_180905a70(uint64 resourceHandle,longlong memorySize)
 void Unwind_180905a80(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x68) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x68) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x70) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x70) = 0;
   *(uint32 *)(memorySize + 0x80) = 0;
-  *(uint64 *)(memorySize + 0x68) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x68) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -39075,14 +39075,14 @@ void Unwind_180905a80(uint64 resourceHandle,longlong memorySize)
 void Unwind_180905a90(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x98) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x98) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0xa0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0xa0) = 0;
   *(uint32 *)(memorySize + 0xb0) = 0;
-  *(uint64 *)(memorySize + 0x98) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x98) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -39091,14 +39091,14 @@ void Unwind_180905a90(uint64 resourceHandle,longlong memorySize)
 void Unwind_180905aa0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0xb8) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0xb8) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0xc0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0xc0) = 0;
   *(uint32 *)(memorySize + 0xd0) = 0;
-  *(uint64 *)(memorySize + 0xb8) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0xb8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -39107,14 +39107,14 @@ void Unwind_180905aa0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180905ab0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0xe0) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0xe0) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0xe8) = 0;
   *(uint32 *)(memorySize + 0xf8) = 0;
-  *(uint64 *)(memorySize + 0xe0) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0xe0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -39123,14 +39123,14 @@ void Unwind_180905ab0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180905ad0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x100) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x100) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x108) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x108) = 0;
   *(uint32 *)(memorySize + 0x118) = 0;
-  *(uint64 *)(memorySize + 0x100) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x100) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -39139,7 +39139,7 @@ void Unwind_180905ad0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180905af0(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x2e0) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x2e0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -39191,14 +39191,14 @@ void Unwind_180905b40(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x40);
-  *(uint64 *)(localLong1 + 0x20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x28) = 0;
   *(uint32 *)(localLong1 + 0x38) = 0;
-  *(uint64 *)(localLong1 + 0x20) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -39299,7 +39299,7 @@ void Unwind_180905b70(uint64 resourceHandle,longlong memorySize)
     do {
       plocalUInt2 = *(uint64 **)(localLong1 + uVar5 * 8);
       if (plocalUInt2 != (uint64 *)0x0) {
-        *plocalUInt2 = &unknown_18098bcb0;
+        *plocalUInt2 = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
@@ -39441,7 +39441,7 @@ void Unwind_180905c10(uint64 resourceHandle,longlong memorySize)
     do {
       plocalUInt2 = *(uint64 **)(localLong1 + uVar5 * 8);
       if (plocalUInt2 != (uint64 *)0x0) {
-        *plocalUInt2 = &unknown_18098bcb0;
+        *plocalUInt2 = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
@@ -39477,7 +39477,7 @@ void Unwind_180905c20(uint64 resourceHandle,longlong memorySize)
     do {
       plocalUInt2 = *(uint64 **)(localLong1 + uVar5 * 8);
       if (plocalUInt2 != (uint64 *)0x0) {
-        *plocalUInt2 = &unknown_18098bcb0;
+        *plocalUInt2 = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
@@ -39513,7 +39513,7 @@ void Unwind_180905c30(uint64 resourceHandle,longlong memorySize)
     do {
       plocalUInt2 = *(uint64 **)(localLong1 + uVar5 * 8);
       if (plocalUInt2 != (uint64 *)0x0) {
-        *plocalUInt2 = &unknown_18098bcb0;
+        *plocalUInt2 = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
@@ -39549,7 +39549,7 @@ void Unwind_180905c40(uint64 resourceHandle,longlong memorySize)
     do {
       plocalUInt2 = *(uint64 **)(localLong1 + uVar5 * 8);
       if (plocalUInt2 != (uint64 *)0x0) {
-        *plocalUInt2 = &unknown_18098bcb0;
+        *plocalUInt2 = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
@@ -39649,7 +39649,7 @@ void Unwind_180905c60(uint64 resourceHandle,longlong memorySize)
     do {
       plocalUInt2 = *(uint64 **)(localLong1 + uVar5 * 8);
       if (plocalUInt2 != (uint64 *)0x0) {
-        *plocalUInt2 = &unknown_18098bcb0;
+        *plocalUInt2 = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
@@ -39685,7 +39685,7 @@ void Unwind_180905c80(uint64 resourceHandle,longlong memorySize)
     do {
       plocalUInt2 = *(uint64 **)(localLong1 + uVar5 * 8);
       if (plocalUInt2 != (uint64 *)0x0) {
-        *plocalUInt2 = &unknown_18098bcb0;
+        *plocalUInt2 = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
@@ -39721,7 +39721,7 @@ void Unwind_180905c90(uint64 resourceHandle,longlong memorySize)
     do {
       plocalUInt2 = *(uint64 **)(localLong1 + uVar5 * 8);
       if (plocalUInt2 != (uint64 *)0x0) {
-        *plocalUInt2 = &unknown_18098bcb0;
+        *plocalUInt2 = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
@@ -39828,7 +39828,7 @@ void Unwind_180905cf0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(memorySize + 0x1d8) != (code *)0x0) {
     (**(code **)(memorySize + 0x1d8))(memorySize + 0x1c8,0,0);
   }
-  *(data **)(memorySize + 0x80) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x80) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -39889,7 +39889,7 @@ void Unwind_180905d50(uint64 resourceHandle,longlong memorySize)
 void Unwind_180905d60(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x30) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x30) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -39898,7 +39898,7 @@ void Unwind_180905d60(uint64 resourceHandle,longlong memorySize)
 void Unwind_180905d70(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x30) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x30) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -39907,7 +39907,7 @@ void Unwind_180905d70(uint64 resourceHandle,longlong memorySize)
 void Unwind_180905d80(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x60) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x60) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -41039,14 +41039,14 @@ void Unwind_180906280(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809062b0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0xb0) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0xb0) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0xb8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0xb8) = 0;
   *(uint32 *)(memorySize + 200) = 0;
-  *(uint64 *)(memorySize + 0xb0) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0xb0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -41091,7 +41091,7 @@ void Unwind_180906320(uint64 resourceHandle,longlong memorySize)
 void Unwind_180906350(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0xb0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0xb0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -41259,14 +41259,14 @@ void Unwind_180906480(uint64 resourceHandle,longlong memorySize)
   }
   *(uint64 *)(memorySize + 0x78) = 0;
   FUN_180074a80();
-  *(uint64 *)(memorySize + 0x30) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x30) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x38) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x38) = 0;
   *(uint32 *)(memorySize + 0x48) = 0;
-  *(uint64 *)(memorySize + 0x30) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x30) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -41579,7 +41579,7 @@ void Unwind_180906530(uint64 resourceHandle,longlong memorySize)
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x48);
   *plocalUInt1 = &unknown_180a02e68;
-  plocalUInt1[2] = &unknown_18098bcb0;
+  plocalUInt1[2] = &threadLocalStorageCleanup;
   *plocalUInt1 = &unknown_180a21720;
   *plocalUInt1 = &unknown_180a21690;
   return;
@@ -41590,7 +41590,7 @@ void Unwind_180906530(uint64 resourceHandle,longlong memorySize)
 void Unwind_180906540(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(*(longlong *)(memorySize + 0x48) + 0x10) = &unknown_18098bcb0;
+  *(data **)(*(longlong *)(memorySize + 0x48) + 0x10) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -41752,7 +41752,7 @@ void Unwind_1809065d0(void)
 void Unwind_1809065e0(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0xd0) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0xd0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -41761,7 +41761,7 @@ void Unwind_1809065e0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809065f0(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0xd0) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0xd0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -41786,7 +41786,7 @@ void Unwind_180906630(uint64 resourceHandle,longlong memorySize)
   
   plocalUInt1 = *(uint64 **)(memorySize + 0xa0);
   *plocalUInt1 = &unknown_180a02e68;
-  plocalUInt1[2] = &unknown_18098bcb0;
+  plocalUInt1[2] = &threadLocalStorageCleanup;
   *plocalUInt1 = &unknown_180a21720;
   *plocalUInt1 = &unknown_180a21690;
   return;
@@ -41946,7 +41946,7 @@ void Unwind_180906780(uint64 resourceHandle,longlong memorySize)
 void Unwind_180906790(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(*(longlong *)(memorySize + 0xa0) + 0x10) = &unknown_18098bcb0;
+  *(data **)(*(longlong *)(memorySize + 0xa0) + 0x10) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -41967,14 +41967,14 @@ void Unwind_1809067b0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x48);
-  *(uint64 *)(localLong1 + 0x20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x28) = 0;
   *(uint32 *)(localLong1 + 0x38) = 0;
-  *(uint64 *)(localLong1 + 0x20) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -41987,7 +41987,7 @@ void Unwind_1809067c0(uint64 resourceHandle,longlong memorySize)
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x50);
   *plocalUInt1 = &unknown_180a02e68;
-  plocalUInt1[2] = &unknown_18098bcb0;
+  plocalUInt1[2] = &threadLocalStorageCleanup;
   *plocalUInt1 = &unknown_180a21720;
   *plocalUInt1 = &unknown_180a21690;
   return;
@@ -42166,7 +42166,7 @@ void Unwind_180906940(uint64 resourceHandle,longlong memorySize,uint64 operation
 void Unwind_180906950(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(*(longlong *)(memorySize + 0x50) + 0x10) = &unknown_18098bcb0;
+  *(data **)(*(longlong *)(memorySize + 0x50) + 0x10) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -42500,14 +42500,14 @@ void Unwind_180906b10(uint64 resourceHandle,longlong memorySize)
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x90);
   for (plocalUInt2 = *(uint64 **)(memorySize + 0x88); plocalUInt2 != plocalUInt1; plocalUInt2 = plocalUInt2 + 6) {
-    *plocalUInt2 = &unknown_180a3c3e0;
+    *plocalUInt2 = &threadLocalStorageData;
     if (plocalUInt2[1] != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
     plocalUInt2[1] = 0;
     *(uint32 *)(plocalUInt2 + 3) = 0;
-    *plocalUInt2 = &unknown_18098bcb0;
+    *plocalUInt2 = &threadLocalStorageCleanup;
   }
   if (*(longlong *)(memorySize + 0x88) != 0) {
                     // WARNING: Subroutine does not return
@@ -42548,14 +42548,14 @@ void Unwind_180906b40(uint64 resourceHandle,longlong memorySize)
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x90);
   for (plocalUInt2 = *(uint64 **)(memorySize + 0x88); plocalUInt2 != plocalUInt1; plocalUInt2 = plocalUInt2 + 6) {
-    *plocalUInt2 = &unknown_180a3c3e0;
+    *plocalUInt2 = &threadLocalStorageData;
     if (plocalUInt2[1] != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
     plocalUInt2[1] = 0;
     *(uint32 *)(plocalUInt2 + 3) = 0;
-    *plocalUInt2 = &unknown_18098bcb0;
+    *plocalUInt2 = &threadLocalStorageCleanup;
   }
   if (*(longlong *)(memorySize + 0x88) != 0) {
                     // WARNING: Subroutine does not return
@@ -42612,14 +42612,14 @@ void Unwind_180906b60(uint64 resourceHandle,longlong memorySize)
   plocalLong2 = *(longlong **)(memorySize + 0x40);
   plocalUInt1 = (uint64 *)plocalLong2[1];
   for (puVar3 = (uint64 *)*plocalLong2; puVar3 != plocalUInt1; puVar3 = puVar3 + 6) {
-    *puVar3 = &unknown_180a3c3e0;
+    *puVar3 = &threadLocalStorageData;
     if (puVar3[1] != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
     puVar3[1] = 0;
     *(uint32 *)(puVar3 + 3) = 0;
-    *puVar3 = &unknown_18098bcb0;
+    *puVar3 = &threadLocalStorageCleanup;
   }
   if (*plocalLong2 != 0) {
                     // WARNING: Subroutine does not return
@@ -42804,7 +42804,7 @@ void Unwind_180906c00(void)
 void Unwind_180906c10(void)
 
 {
-  _DAT_180d49160 = &unknown_18098bcb0;
+  _DAT_180d49160 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -44579,7 +44579,7 @@ void Unwind_180907300(uint64 resourceHandle,longlong memorySize)
 void Unwind_180907310(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x130) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x130) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -44588,7 +44588,7 @@ void Unwind_180907310(uint64 resourceHandle,longlong memorySize)
 void Unwind_180907320(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x130) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x130) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -44863,7 +44863,7 @@ void Unwind_180907400(uint64 resourceHandle,longlong memorySize)
 void Unwind_180907430(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x40) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x40) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45346,14 +45346,14 @@ void Unwind_180907700(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x40);
-  *(uint64 *)(localLong1 + 0x20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x28) = 0;
   *(uint32 *)(localLong1 + 0x38) = 0;
-  *(uint64 *)(localLong1 + 0x20) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45382,14 +45382,14 @@ void Unwind_180907710(uint64 resourceHandle,longlong memorySize)
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  plocalUInt2[0xd] = &unknown_180a3c3e0;
+  plocalUInt2[0xd] = &threadLocalStorageData;
   if (plocalUInt2[0xe] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt2[0xe] = 0;
   *(uint32 *)(plocalUInt2 + 0x10) = 0;
-  plocalUInt2[0xd] = &unknown_18098bcb0;
+  plocalUInt2[0xd] = &threadLocalStorageCleanup;
   FUN_180179f00(plocalUInt2 + 7,plocalUInt2[9]);
   *plocalUInt2 = &unknown_180a14c60;
   return;
@@ -45434,14 +45434,14 @@ void Unwind_180907740(uint64 resourceHandle,longlong memorySize)
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  plocalUInt2[0xd] = &unknown_180a3c3e0;
+  plocalUInt2[0xd] = &threadLocalStorageData;
   if (plocalUInt2[0xe] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt2[0xe] = 0;
   *(uint32 *)(plocalUInt2 + 0x10) = 0;
-  plocalUInt2[0xd] = &unknown_18098bcb0;
+  plocalUInt2[0xd] = &threadLocalStorageCleanup;
   FUN_180179f00(plocalUInt2 + 7,plocalUInt2[9]);
   *plocalUInt2 = &unknown_180a14c60;
   return;
@@ -45468,7 +45468,7 @@ void Unwind_180907750(uint64 resourceHandle,longlong memorySize)
 void Unwind_180907770(void)
 
 {
-  _DAT_180bf64d0 = &unknown_18098bcb0;
+  _DAT_180bf64d0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45479,7 +45479,7 @@ void Unwind_180907770(void)
 void Unwind_180907780(void)
 
 {
-  _g_memoryFreeConfig1 = &unknown_18098bcb0;
+  _g_memoryFreeConfig1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45490,7 +45490,7 @@ void Unwind_180907780(void)
 void Unwind_180907790(void)
 
 {
-  _g_chunkAllocData1 = &unknown_18098bcb0;
+  _g_chunkAllocData1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45501,7 +45501,7 @@ void Unwind_180907790(void)
 void Unwind_1809077a0(void)
 
 {
-  _g_chunkFreeData1 = &unknown_18098bcb0;
+  _g_chunkFreeData1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45512,7 +45512,7 @@ void Unwind_1809077a0(void)
 void Unwind_1809077b0(void)
 
 {
-  _g_chunkSizeData1 = &unknown_18098bcb0;
+  _g_chunkSizeData1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45523,7 +45523,7 @@ void Unwind_1809077b0(void)
 void Unwind_1809077c0(void)
 
 {
-  _aiSystemHandle = &unknown_18098bcb0;
+  _aiSystemHandle = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45534,7 +45534,7 @@ void Unwind_1809077c0(void)
 void Unwind_1809077d0(void)
 
 {
-  _sceneManagerHandle = &unknown_18098bcb0;
+  _sceneManagerHandle = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45545,7 +45545,7 @@ void Unwind_1809077d0(void)
 void Unwind_1809077e0(void)
 
 {
-  _resourceManagerHandle = &unknown_18098bcb0;
+  _resourceManagerHandle = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45556,7 +45556,7 @@ void Unwind_1809077e0(void)
 void Unwind_1809077f0(void)
 
 {
-  _scriptSystemHandle = &unknown_18098bcb0;
+  _scriptSystemHandle = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45859,14 +45859,14 @@ void Unwind_180907950(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0xb8);
-  *plocalUInt1 = &unknown_180a3c3e0;
+  *plocalUInt1 = &threadLocalStorageData;
   if (plocalUInt1[1] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt1[1] = 0;
   *(uint32 *)(plocalUInt1 + 3) = 0;
-  *plocalUInt1 = &unknown_18098bcb0;
+  *plocalUInt1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45878,14 +45878,14 @@ void Unwind_180907960(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0xb0);
-  *plocalUInt1 = &unknown_180a3c3e0;
+  *plocalUInt1 = &threadLocalStorageData;
   if (plocalUInt1[1] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt1[1] = 0;
   *(uint32 *)(plocalUInt1 + 3) = 0;
-  *plocalUInt1 = &unknown_18098bcb0;
+  *plocalUInt1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45914,7 +45914,7 @@ void Unwind_180907970(uint64 resourceHandle,longlong memorySize)
 void Unwind_180907980(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0xb0) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0xb0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45923,7 +45923,7 @@ void Unwind_180907980(uint64 resourceHandle,longlong memorySize)
 void Unwind_180907990(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0xb8) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0xb8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45935,14 +45935,14 @@ void Unwind_1809079a0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x80);
-  *(uint64 *)(localLong1 + 0x18) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x18) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x20) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x20) = 0;
   *(uint32 *)(localLong1 + 0x30) = 0;
-  *(uint64 *)(localLong1 + 0x18) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x18) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45954,14 +45954,14 @@ void Unwind_1809079b0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x80);
-  *(uint64 *)(localLong1 + 0x38) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x38) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x40) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x40) = 0;
   *(uint32 *)(localLong1 + 0x50) = 0;
-  *(uint64 *)(localLong1 + 0x38) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x38) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45973,14 +45973,14 @@ void Unwind_1809079c0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x80);
-  *(uint64 *)(localLong1 + 0x58) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x58) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x60) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x60) = 0;
   *(uint32 *)(localLong1 + 0x70) = 0;
-  *(uint64 *)(localLong1 + 0x58) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x58) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45995,7 +45995,7 @@ void Unwind_1809079d0(uint64 resourceHandle,longlong memorySize)
   ulonglong uVar4;
   
   localLong3 = *(longlong *)(memorySize + 0x80);
-  *(data **)(localLong3 + 0xd8) = &unknown_18098bcb0;
+  *(data **)(localLong3 + 0xd8) = &threadLocalStorageCleanup;
   if (*(longlong *)(localLong3 + 0xa8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
@@ -46258,14 +46258,14 @@ void Unwind_180907a90(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x28);
-  *(uint64 *)(localLong1 + 0x20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x28) = 0;
   *(uint32 *)(localLong1 + 0x38) = 0;
-  *(uint64 *)(localLong1 + 0x20) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -46274,7 +46274,7 @@ void Unwind_180907a90(uint64 resourceHandle,longlong memorySize)
 void Unwind_180907aa0(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x178) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x178) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -46316,7 +46316,7 @@ void Unwind_180907ad0(uint64 resourceHandle,longlong memorySize,uint64 operation
 void Unwind_180907ae0(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x180) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x180) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -46358,7 +46358,7 @@ void Unwind_180907b10(uint64 resourceHandle,longlong memorySize,uint64 operation
 void Unwind_180907b20(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x230) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x230) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -46367,7 +46367,7 @@ void Unwind_180907b20(uint64 resourceHandle,longlong memorySize)
 void Unwind_180907b30(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 400) = &unknown_18098bcb0;
+  *(data **)(memorySize + 400) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -46376,7 +46376,7 @@ void Unwind_180907b30(uint64 resourceHandle,longlong memorySize)
 void Unwind_180907b40(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x230) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x230) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -46413,15 +46413,15 @@ void Unwind_180907b60(uint64 resourceHandle,longlong memorySize,uint64 operation
 void Unwind_180907b70(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x50) = &unknown_18098bcb0;
-  *(uint64 *)(memorySize + 0x30) = &unknown_180a3c3e0;
+  *(data **)(memorySize + 0x50) = &threadLocalStorageCleanup;
+  *(uint64 *)(memorySize + 0x30) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x38) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x38) = 0;
   *(uint32 *)(memorySize + 0x48) = 0;
-  *(uint64 *)(memorySize + 0x30) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x30) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -46430,7 +46430,7 @@ void Unwind_180907b70(uint64 resourceHandle,longlong memorySize)
 void Unwind_180907b80(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x50) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x50) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -46439,7 +46439,7 @@ void Unwind_180907b80(uint64 resourceHandle,longlong memorySize)
 void Unwind_180907b90(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(*(longlong *)(memorySize + 0x20) + 0x20) = &unknown_18098bcb0;
+  *(data **)(*(longlong *)(memorySize + 0x20) + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -46472,7 +46472,7 @@ void Unwind_180907bd0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180907c00(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x2c0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x2c0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -46484,14 +46484,14 @@ void Unwind_180907c10(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 600);
-  *plocalUInt1 = &unknown_180a3c3e0;
+  *plocalUInt1 = &threadLocalStorageData;
   if (plocalUInt1[1] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt1[1] = 0;
   *(uint32 *)(plocalUInt1 + 3) = 0;
-  *plocalUInt1 = &unknown_18098bcb0;
+  *plocalUInt1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -46553,7 +46553,7 @@ void Unwind_180907c30(uint64 resourceHandle,longlong memorySize,uint64 operation
 void Unwind_180907c40(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x298) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x298) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -46562,7 +46562,7 @@ void Unwind_180907c40(uint64 resourceHandle,longlong memorySize)
 void Unwind_180907c50(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 600) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 600) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -46571,7 +46571,7 @@ void Unwind_180907c50(uint64 resourceHandle,longlong memorySize)
 void Unwind_180907c60(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x2c0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x2c0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -46706,7 +46706,7 @@ void Unwind_180907cc0(uint64 resourceHandle,longlong memorySize,uint64 operation
 void Unwind_180907cd0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x360) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x360) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -46715,7 +46715,7 @@ void Unwind_180907cd0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180907ce0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x240) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x240) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -46724,14 +46724,14 @@ void Unwind_180907ce0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180907cf0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x1c0) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x1c0) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x1c8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x1c8) = 0;
   *(uint32 *)(memorySize + 0x1d8) = 0;
-  *(uint64 *)(memorySize + 0x1c0) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x1c0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -46743,14 +46743,14 @@ void Unwind_180907d00(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x1e8);
-  *plocalUInt1 = &unknown_180a3c3e0;
+  *plocalUInt1 = &threadLocalStorageData;
   if (plocalUInt1[1] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt1[1] = 0;
   *(uint32 *)(plocalUInt1 + 3) = 0;
-  *plocalUInt1 = &unknown_18098bcb0;
+  *plocalUInt1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -46833,7 +46833,7 @@ void Unwind_180907d30(uint64 resourceHandle,longlong memorySize)
 void Unwind_180907d40(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x360) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x360) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -46866,7 +46866,7 @@ void Unwind_180907d80(uint64 resourceHandle,longlong memorySize)
 void Unwind_180907db0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x218) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x218) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -46875,7 +46875,7 @@ void Unwind_180907db0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180907dc0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x1c0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x1c0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -46908,7 +46908,7 @@ void Unwind_180907e00(uint64 resourceHandle,longlong memorySize)
 void Unwind_180907e30(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x480) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x480) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -46917,7 +46917,7 @@ void Unwind_180907e30(uint64 resourceHandle,longlong memorySize)
 void Unwind_180907e40(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x1e8) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x1e8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -47177,7 +47177,7 @@ void Unwind_180907ef0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(memorySize + 0x1e8) != (code *)0x0) {
     (**(code **)(memorySize + 0x1e8))(memorySize + 0x1d8,0,0);
   }
-  *(data **)(memorySize + 0x90) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x90) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -47197,7 +47197,7 @@ void Unwind_180907f00(uint64 resourceHandle,longlong memorySize,uint64 operation
 void Unwind_180907f10(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x90) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x90) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -47282,14 +47282,14 @@ void Unwind_180907f80(uint64 resourceHandle,longlong memorySize)
 void Unwind_180907f90(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0xa0) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0xa0) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0xa8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0xa8) = 0;
   *(uint32 *)(memorySize + 0xb8) = 0;
-  *(uint64 *)(memorySize + 0xa0) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0xa0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -47298,14 +47298,14 @@ void Unwind_180907f90(uint64 resourceHandle,longlong memorySize)
 void Unwind_180907fa0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0xa0) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0xa0) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0xa8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0xa8) = 0;
   *(uint32 *)(memorySize + 0xb8) = 0;
-  *(uint64 *)(memorySize + 0xa0) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0xa0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -47326,7 +47326,7 @@ void Unwind_180907fb0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180907fe0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x480) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x480) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -47681,14 +47681,14 @@ void Unwind_180908130(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x98);
-  *plocalUInt1 = &unknown_180a3c3e0;
+  *plocalUInt1 = &threadLocalStorageData;
   if (plocalUInt1[1] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt1[1] = 0;
   *(uint32 *)(plocalUInt1 + 3) = 0;
-  *plocalUInt1 = &unknown_18098bcb0;
+  *plocalUInt1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -47697,7 +47697,7 @@ void Unwind_180908130(uint64 resourceHandle,longlong memorySize)
 void Unwind_180908140(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(*(longlong *)(memorySize + 0x98) + 0x20) = &unknown_18098bcb0;
+  *(data **)(*(longlong *)(memorySize + 0x98) + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -47706,7 +47706,7 @@ void Unwind_180908140(uint64 resourceHandle,longlong memorySize)
 void Unwind_180908150(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(*(longlong *)(memorySize + 0x80) + 0x20) = &unknown_18098bcb0;
+  *(data **)(*(longlong *)(memorySize + 0x80) + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -48126,7 +48126,7 @@ void Unwind_180908570(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809085a0(void)
 
 {
-  _debugSystemHandle = &unknown_18098bcb0;
+  _debugSystemHandle = &threadLocalStorageCleanup;
   return;
 }
 
@@ -48137,7 +48137,7 @@ void Unwind_1809085a0(void)
 void Unwind_1809085b0(void)
 
 {
-  _performanceMonitorHandle = &unknown_18098bcb0;
+  _performanceMonitorHandle = &threadLocalStorageCleanup;
   return;
 }
 
@@ -48418,7 +48418,7 @@ void Unwind_180908780(uint64 resourceHandle,longlong memorySize)
 void Unwind_180908790(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x180) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x180) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -48427,7 +48427,7 @@ void Unwind_180908790(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809087a0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x1e0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x1e0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -48537,7 +48537,7 @@ void Unwind_180908800(uint64 resourceHandle,longlong memorySize)
 void Unwind_180908810(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x1e0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x1e0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -48776,14 +48776,14 @@ void Unwind_180908900(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x70);
-  *(uint64 *)(localLong1 + 0x18) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x18) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x20) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x20) = 0;
   *(uint32 *)(localLong1 + 0x30) = 0;
-  *(uint64 *)(localLong1 + 0x18) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x18) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -48795,14 +48795,14 @@ void Unwind_180908910(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x20);
-  *(uint64 *)(localLong1 + 0x18) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x18) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x20) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x20) = 0;
   *(uint32 *)(localLong1 + 0x30) = 0;
-  *(uint64 *)(localLong1 + 0x18) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x18) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -49399,14 +49399,14 @@ void Unwind_180908b00(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x30);
-  *(uint64 *)(localLong1 + 0x20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x28) = 0;
   *(uint32 *)(localLong1 + 0x38) = 0;
-  *(uint64 *)(localLong1 + 0x20) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -49451,7 +49451,7 @@ void Unwind_180908b10(uint64 resourceHandle,longlong memorySize)
 void Unwind_180908b20(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x118) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x118) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -49549,14 +49549,14 @@ void Unwind_180908ba0(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(memorySize + 0xd8) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 0xd8) + 0x38))();
   }
-  *(uint64 *)(memorySize + 0xa8) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0xa8) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0xb0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0xb0) = 0;
   *(uint32 *)(memorySize + 0xc0) = 0;
-  *(uint64 *)(memorySize + 0xa8) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0xa8) = &threadLocalStorageCleanup;
   if (*(longlong **)(memorySize + 0xa0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 0xa0) + 0x38))();
   }
@@ -49582,14 +49582,14 @@ void Unwind_180908bc0(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(memorySize + 0x78) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 0x78) + 0x38))();
   }
-  *(uint64 *)(memorySize + 0x48) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x48) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x50) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x50) = 0;
   *(uint32 *)(memorySize + 0x60) = 0;
-  *(uint64 *)(memorySize + 0x48) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x48) = &threadLocalStorageCleanup;
   if (*(longlong **)(memorySize + 0x40) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 0x40) + 0x38))();
   }
@@ -49607,14 +49607,14 @@ void Unwind_180908bd0(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(localLong1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(localLong1 + 0x58) + 0x38))();
   }
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   if (*(longlong **)(localLong1 + 0x20) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(localLong1 + 0x20) + 0x38))();
   }
@@ -49637,14 +49637,14 @@ void Unwind_180908be0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180908bf0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0xa8) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0xa8) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0xb0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0xb0) = 0;
   *(uint32 *)(memorySize + 0xc0) = 0;
-  *(uint64 *)(memorySize + 0xa8) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0xa8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -49664,7 +49664,7 @@ void Unwind_180908c00(uint64 resourceHandle,longlong memorySize)
 void Unwind_180908c10(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x1b8) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x1b8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -49684,14 +49684,14 @@ void Unwind_180908c20(uint64 resourceHandle,longlong memorySize)
 void Unwind_180908c30(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x48) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x48) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x50) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x50) = 0;
   *(uint32 *)(memorySize + 0x60) = 0;
-  *(uint64 *)(memorySize + 0x48) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x48) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -49728,14 +49728,14 @@ void Unwind_180908c60(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x1b8);
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -49758,7 +49758,7 @@ void Unwind_180908c70(uint64 resourceHandle,longlong memorySize)
 void Unwind_180908c80(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x1a0) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x1a0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -49832,7 +49832,7 @@ void Unwind_180908d30(void)
 void Unwind_180908d40(void)
 
 {
-  _DAT_180d49218 = &unknown_18098bcb0;
+  _DAT_180d49218 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -49883,14 +49883,14 @@ void Unwind_180908db0(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0x108);
-  *plocalUInt1 = &unknown_180a3c3e0;
+  *plocalUInt1 = &threadLocalStorageData;
   if (plocalUInt1[1] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt1[1] = 0;
   *(uint32 *)(plocalUInt1 + 3) = 0;
-  *plocalUInt1 = &unknown_18098bcb0;
+  *plocalUInt1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -49902,14 +49902,14 @@ void Unwind_180908dc0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x108);
-  *(uint64 *)(localLong1 + 0x20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x28) = 0;
   *(uint32 *)(localLong1 + 0x38) = 0;
-  *(uint64 *)(localLong1 + 0x20) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -49954,7 +49954,7 @@ void Unwind_180908dd0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180908de0(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x110) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x110) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -50194,14 +50194,14 @@ void Unwind_180908e90(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x40);
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -50438,7 +50438,7 @@ data * Catch_180908fc0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909000(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x1a0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x1a0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -50852,7 +50852,7 @@ void Unwind_180909290(uint64 resourceHandle,longlong memorySize)
   puVar4 = (ulonglong *)(*(longlong *)(memorySize + 0x40) + 0x1d20);
   uVar6 = *(ulonglong *)(*(longlong *)(memorySize + 0x40) + 0x1d28);
   for (uVar5 = *puVar4; uVar5 != uVar6; uVar5 = uVar5 + 0xd0) {
-    *(data **)(uVar5 + 0x10) = &unknown_18098bcb0;
+    *(data **)(uVar5 + 0x10) = &threadLocalStorageCleanup;
   }
   plocalUInt2 = (uint64 *)*puVar4;
   if (plocalUInt2 != (uint64 *)0x0) {
@@ -50909,7 +50909,7 @@ void Unwind_1809092d0(uint64 resourceHandle,longlong memorySize)
   puVar3 = *(ulonglong **)(memorySize + 0x48);
   uVar6 = puVar3[1];
   for (uVar5 = *puVar3; uVar5 != uVar6; uVar5 = uVar5 + 0xd0) {
-    *(data **)(uVar5 + 0x10) = &unknown_18098bcb0;
+    *(data **)(uVar5 + 0x10) = &threadLocalStorageCleanup;
   }
   plocalUInt2 = (uint64 *)*puVar3;
   if (plocalUInt2 != (uint64 *)0x0) {
@@ -50952,7 +50952,7 @@ void Unwind_1809092e0(uint64 resourceHandle,longlong memorySize)
   puVar3 = *(ulonglong **)(memorySize + 0x40);
   uVar6 = puVar3[1];
   for (uVar5 = *puVar3; uVar5 != uVar6; uVar5 = uVar5 + 0xd0) {
-    *(data **)(uVar5 + 0x10) = &unknown_18098bcb0;
+    *(data **)(uVar5 + 0x10) = &threadLocalStorageCleanup;
   }
   plocalUInt2 = (uint64 *)*puVar3;
   if (plocalUInt2 != (uint64 *)0x0) {
@@ -50985,7 +50985,7 @@ void Unwind_1809092e0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809092f0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x90) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x90) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -50994,7 +50994,7 @@ void Unwind_1809092f0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909300(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(*(longlong *)(memorySize + 0x58) + 0x10) = &unknown_18098bcb0;
+  *(data **)(*(longlong *)(memorySize + 0x58) + 0x10) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -51003,7 +51003,7 @@ void Unwind_180909300(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909310(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x90) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x90) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -51051,7 +51051,7 @@ void Unwind_180909320(uint64 resourceHandle,longlong memorySize)
           (**(code **)(*(longlong *)plocalUInt2[0x11] + 0x10))();
           plocalUInt2[0x11] = 0;
         }
-        *plocalUInt2 = &unknown_18098bcb0;
+        *plocalUInt2 = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
         HandleCriticalError(plocalUInt2);
       }
@@ -51064,7 +51064,7 @@ void Unwind_180909320(uint64 resourceHandle,longlong memorySize)
   plocalUInt2 = (uint64 *)puVar3[0x1043];
   if (plocalUInt2 != (uint64 *)0x0) {
     FUN_1800f74f0(puVar3 + 0x1041,*plocalUInt2);
-    plocalUInt2[4] = &unknown_18098bcb0;
+    plocalUInt2[4] = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
     HandleCriticalError(plocalUInt2);
   }
@@ -51199,7 +51199,7 @@ void Unwind_1809093b0(uint64 resourceHandle,longlong memorySize)
           (**(code **)(*(longlong *)plocalUInt2[0x11] + 0x10))();
           plocalUInt2[0x11] = 0;
         }
-        *plocalUInt2 = &unknown_18098bcb0;
+        *plocalUInt2 = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
         HandleCriticalError(plocalUInt2);
       }
@@ -51212,7 +51212,7 @@ void Unwind_1809093b0(uint64 resourceHandle,longlong memorySize)
   plocalUInt2 = (uint64 *)puVar3[0x1043];
   if (plocalUInt2 != (uint64 *)0x0) {
     FUN_1800f74f0(puVar3 + 0x1041,*plocalUInt2);
-    plocalUInt2[4] = &unknown_18098bcb0;
+    plocalUInt2[4] = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
     HandleCriticalError(plocalUInt2);
   }
@@ -51276,7 +51276,7 @@ void Unwind_1809093c0(uint64 resourceHandle,longlong memorySize,uint64 operation
           (**(code **)(*(longlong *)plocalUInt2[0x11] + 0x10))();
           plocalUInt2[0x11] = 0;
         }
-        *plocalUInt2 = &unknown_18098bcb0;
+        *plocalUInt2 = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
         HandleCriticalError(plocalUInt2);
       }
@@ -51289,7 +51289,7 @@ void Unwind_1809093c0(uint64 resourceHandle,longlong memorySize,uint64 operation
   plocalUInt2 = *(uint64 **)(localLong3 + 0x8218);
   if (plocalUInt2 != (uint64 *)0x0) {
     FUN_1800f74f0(localLong3 + 0x8208,*plocalUInt2);
-    plocalUInt2[4] = &unknown_18098bcb0;
+    plocalUInt2[4] = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
     HandleCriticalError(plocalUInt2);
   }
@@ -51346,7 +51346,7 @@ void Unwind_180909400(uint64 resourceHandle,longlong memorySize,uint64 operation
 void Unwind_180909410(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x68) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x68) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -51355,7 +51355,7 @@ void Unwind_180909410(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909420(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x90) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x90) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -51364,7 +51364,7 @@ void Unwind_180909420(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909430(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x38) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x38) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -51451,7 +51451,7 @@ void Unwind_180909480(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909490(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x6a0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x6a0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -51460,7 +51460,7 @@ void Unwind_180909490(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809094a0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x6a0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x6a0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -51528,7 +51528,7 @@ void Unwind_1809094d0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809094e0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x6f0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x6f0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -51537,14 +51537,14 @@ void Unwind_1809094e0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809094f0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x218) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x218) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x220) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x220) = 0;
   *(uint32 *)(memorySize + 0x230) = 0;
-  *(uint64 *)(memorySize + 0x218) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x218) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -51553,14 +51553,14 @@ void Unwind_1809094f0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909500(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x298) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x298) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x2a0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x2a0) = 0;
   *(uint32 *)(memorySize + 0x2b0) = 0;
-  *(uint64 *)(memorySize + 0x298) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x298) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -51569,7 +51569,7 @@ void Unwind_180909500(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909510(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x4b0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x4b0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -51578,14 +51578,14 @@ void Unwind_180909510(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909520(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x278) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x278) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x280) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x280) = 0;
   *(uint32 *)(memorySize + 0x290) = 0;
-  *(uint64 *)(memorySize + 0x278) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x278) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -51594,7 +51594,7 @@ void Unwind_180909520(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909530(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x5d0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x5d0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -51640,14 +51640,14 @@ void Unwind_180909550(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909560(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x1f8) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x1f8) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x200) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x200) = 0;
   *(uint32 *)(memorySize + 0x210) = 0;
-  *(uint64 *)(memorySize + 0x1f8) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x1f8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -51673,14 +51673,14 @@ void Unwind_180909570(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909580(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0xf0) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0xf0) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0xf8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0xf8) = 0;
   *(uint32 *)(memorySize + 0x108) = 0;
-  *(uint64 *)(memorySize + 0xf0) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0xf0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -51706,14 +51706,14 @@ void Unwind_180909590(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809095a0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x198) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x198) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x1a0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x1a0) = 0;
   *(uint32 *)(memorySize + 0x1b0) = 0;
-  *(uint64 *)(memorySize + 0x198) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x198) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -51722,7 +51722,7 @@ void Unwind_1809095a0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809095b0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x6f0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x6f0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -51731,7 +51731,7 @@ void Unwind_1809095b0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809095c0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x4b0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x4b0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -51752,7 +51752,7 @@ void Unwind_1809095d0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909600(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x5d0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x5d0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -51761,14 +51761,14 @@ void Unwind_180909600(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909610(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x2f0) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x2f0) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x2f8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x2f8) = 0;
   *(uint32 *)(memorySize + 0x308) = 0;
-  *(uint64 *)(memorySize + 0x2f0) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x2f0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -51777,7 +51777,7 @@ void Unwind_180909610(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909620(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x2f0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x2f0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -51786,7 +51786,7 @@ void Unwind_180909620(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909630(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x1f8) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x1f8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -51795,7 +51795,7 @@ void Unwind_180909630(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909640(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x198) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x198) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -52042,7 +52042,7 @@ void Unwind_1809096b0(uint64 resourceHandle,longlong memorySize)
           (**(code **)(*(longlong *)plocalUInt2[0x11] + 0x10))();
           plocalUInt2[0x11] = 0;
         }
-        *plocalUInt2 = &unknown_18098bcb0;
+        *plocalUInt2 = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
         HandleCriticalError(plocalUInt2);
       }
@@ -52055,7 +52055,7 @@ void Unwind_1809096b0(uint64 resourceHandle,longlong memorySize)
   plocalUInt2 = (uint64 *)puVar3[0x1043];
   if (plocalUInt2 != (uint64 *)0x0) {
     FUN_1800f74f0(puVar3 + 0x1041,*plocalUInt2);
-    plocalUInt2[4] = &unknown_18098bcb0;
+    plocalUInt2[4] = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
     HandleCriticalError(plocalUInt2);
   }
@@ -52119,7 +52119,7 @@ void Unwind_1809096c0(uint64 resourceHandle,longlong memorySize,uint64 operation
           (**(code **)(*(longlong *)plocalUInt2[0x11] + 0x10))();
           plocalUInt2[0x11] = 0;
         }
-        *plocalUInt2 = &unknown_18098bcb0;
+        *plocalUInt2 = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
         HandleCriticalError(plocalUInt2);
       }
@@ -52132,7 +52132,7 @@ void Unwind_1809096c0(uint64 resourceHandle,longlong memorySize,uint64 operation
   plocalUInt2 = *(uint64 **)(localLong3 + 0x8218);
   if (plocalUInt2 != (uint64 *)0x0) {
     FUN_1800f74f0(localLong3 + 0x8208,*plocalUInt2);
-    plocalUInt2[4] = &unknown_18098bcb0;
+    plocalUInt2[4] = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
     HandleCriticalError(plocalUInt2);
   }
@@ -52175,7 +52175,7 @@ void Unwind_1809096e0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909700(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(*(longlong *)(memorySize + 0x90) + 0x10) = &unknown_18098bcb0;
+  *(data **)(*(longlong *)(memorySize + 0x90) + 0x10) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -52184,7 +52184,7 @@ void Unwind_180909700(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909710(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x98) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x98) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -52193,7 +52193,7 @@ void Unwind_180909710(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909720(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(*(longlong *)(memorySize + 0x80) + 0x10) = &unknown_18098bcb0;
+  *(data **)(*(longlong *)(memorySize + 0x80) + 0x10) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -52202,7 +52202,7 @@ void Unwind_180909720(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909730(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x88) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x88) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -52214,14 +52214,14 @@ void Unwind_180909740(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x40);
-  *(uint64 *)(localLong1 + 0x58) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x58) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x60) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x60) = 0;
   *(uint32 *)(localLong1 + 0x70) = 0;
-  *(uint64 *)(localLong1 + 0x58) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x58) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -52230,14 +52230,14 @@ void Unwind_180909740(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909750(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 8) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 8) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x10) = 0;
   *(uint32 *)(memorySize + 0x20) = 0;
-  *(uint64 *)(memorySize + 8) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -52246,7 +52246,7 @@ void Unwind_180909750(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909760(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 8) = &unknown_18098bcb0;
+  *(data **)(memorySize + 8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -52258,14 +52258,14 @@ void Unwind_180909770(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x78);
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -52277,14 +52277,14 @@ void Unwind_180909780(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x80);
-  *(uint64 *)(localLong1 + 8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x10) = 0;
   *(uint32 *)(localLong1 + 0x20) = 0;
-  *(uint64 *)(localLong1 + 8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -52550,7 +52550,7 @@ void Unwind_180909930(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909960(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0xf0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0xf0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -52573,7 +52573,7 @@ void Unwind_180909970(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909980(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x1d0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x1d0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -52604,7 +52604,7 @@ void Unwind_1809099a0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809099b0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(*(longlong *)(memorySize + 0xe0) + 0x50) = &unknown_18098bcb0;
+  *(data **)(*(longlong *)(memorySize + 0xe0) + 0x50) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -52670,7 +52670,7 @@ void Unwind_180909a00(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909a10(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x330) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x330) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -52679,7 +52679,7 @@ void Unwind_180909a10(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909a20(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x410) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x410) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -52774,7 +52774,7 @@ void Unwind_180909a50(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909a60(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x410) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x410) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -52795,7 +52795,7 @@ void Unwind_180909a70(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909aa0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x200) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x200) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -52804,7 +52804,7 @@ void Unwind_180909aa0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909ab0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x2e0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x2e0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -52813,7 +52813,7 @@ void Unwind_180909ab0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909ac0(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x58) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x58) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -52822,7 +52822,7 @@ void Unwind_180909ac0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909ad0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x200) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x200) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -52831,7 +52831,7 @@ void Unwind_180909ad0(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909ae0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x2e0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x2e0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -52894,7 +52894,7 @@ void Unwind_180909b40(uint64 resourceHandle,longlong memorySize)
 void Unwind_180909b50(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x180) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x180) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -53136,14 +53136,14 @@ void Unwind_180909ce0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x40);
-  *(uint64 *)(localLong1 + 0x560) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x560) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x568) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x568) = 0;
   *(uint32 *)(localLong1 + 0x578) = 0;
-  *(uint64 *)(localLong1 + 0x560) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x560) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -53701,14 +53701,14 @@ void Unwind_18090a1d0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x60);
-  *(uint64 *)(localLong1 + 0x560) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x560) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x568) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x568) = 0;
   *(uint32 *)(localLong1 + 0x578) = 0;
-  *(uint64 *)(localLong1 + 0x560) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x560) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -54337,7 +54337,7 @@ void Unwind_18090a6a0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090a6d0(void)
 
 {
-  _DAT_180d49240 = &unknown_18098bcb0;
+  _DAT_180d49240 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -54498,14 +54498,14 @@ void Unwind_18090a7b0(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(memorySize + 0x48) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 0x48) + 0x38))();
   }
-  *(uint64 *)(memorySize + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x30) = 0;
   *(uint32 *)(memorySize + 0x40) = 0;
-  *(uint64 *)(memorySize + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x28) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -54528,14 +54528,14 @@ void Unwind_18090a7d0(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0xa0);
-  *plocalUInt1 = &unknown_180a3c3e0;
+  *plocalUInt1 = &threadLocalStorageData;
   if (plocalUInt1[1] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt1[1] = 0;
   *(uint32 *)(plocalUInt1 + 3) = 0;
-  *plocalUInt1 = &unknown_18098bcb0;
+  *plocalUInt1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -54859,14 +54859,14 @@ void Unwind_18090a910(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(localLong1 + 0x40) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(localLong1 + 0x40) + 0x38))();
   }
-  *(uint64 *)(localLong1 + 0x20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x28) = 0;
   *(uint32 *)(localLong1 + 0x38) = 0;
-  *(uint64 *)(localLong1 + 0x20) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -55140,7 +55140,7 @@ void Unwind_18090a9e0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090aa10(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0xe0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0xe0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -55197,14 +55197,14 @@ void Unwind_18090aab0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090aae0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x98) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x98) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0xa0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0xa0) = 0;
   *(uint32 *)(memorySize + 0xb0) = 0;
-  *(uint64 *)(memorySize + 0x98) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x98) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -57471,7 +57471,7 @@ void Unwind_18090bd40(uint64 resourceHandle,longlong memorySize,uint64 operation
 void Unwind_18090bd50(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x260) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x260) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -57480,7 +57480,7 @@ void Unwind_18090bd50(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090bd60(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0xa0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0xa0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -57698,7 +57698,7 @@ void Unwind_18090bf10(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090bf40(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x98) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x98) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -57978,7 +57978,7 @@ void Unwind_18090c0a0(uint64 resourceHandle,longlong memorySize,uint64 operation
 void Unwind_18090c0b0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x88) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x88) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -57987,7 +57987,7 @@ void Unwind_18090c0b0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c0c0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x120) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x120) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -57996,7 +57996,7 @@ void Unwind_18090c0c0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c0d0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x2a0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x2a0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -58005,7 +58005,7 @@ void Unwind_18090c0d0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c0e0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x300) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x300) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -58014,7 +58014,7 @@ void Unwind_18090c0e0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c0f0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x3c0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x3c0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -58044,7 +58044,7 @@ void Unwind_18090c100(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c110(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x300) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x300) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -58053,7 +58053,7 @@ void Unwind_18090c110(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c120(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x3c0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x3c0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -58125,14 +58125,14 @@ void Unwind_18090c150(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(localLong1 + 0x40) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(localLong1 + 0x40) + 0x38))();
   }
-  *(uint64 *)(localLong1 + 0x20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x28) = 0;
   *(uint32 *)(localLong1 + 0x38) = 0;
-  *(uint64 *)(localLong1 + 0x20) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -58161,14 +58161,14 @@ void Unwind_18090c170(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(localLong1 + 0x40) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(localLong1 + 0x40) + 0x38))();
   }
-  *(uint64 *)(localLong1 + 0x20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x28) = 0;
   *(uint32 *)(localLong1 + 0x38) = 0;
-  *(uint64 *)(localLong1 + 0x20) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -58536,7 +58536,7 @@ void Unwind_18090c2f0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c300(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(*(longlong *)(memorySize + 0x78) + 8) = &unknown_18098bcb0;
+  *(data **)(*(longlong *)(memorySize + 0x78) + 8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -58548,14 +58548,14 @@ void Unwind_18090c310(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x78);
-  *(uint64 *)(localLong1 + 0x20) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x28) = 0;
   *(uint32 *)(localLong1 + 0x38) = 0;
-  *(uint64 *)(localLong1 + 0x20) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -58564,7 +58564,7 @@ void Unwind_18090c310(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c320(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0xc0) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0xc0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -58752,7 +58752,7 @@ void Unwind_18090c420(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c430(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x168) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x168) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -58761,7 +58761,7 @@ void Unwind_18090c430(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c440(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x1d8) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x1d8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -58770,7 +58770,7 @@ void Unwind_18090c440(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c450(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x248) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x248) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -58779,7 +58779,7 @@ void Unwind_18090c450(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c460(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x1d8) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x1d8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -58788,7 +58788,7 @@ void Unwind_18090c460(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c470(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x248) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x248) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -58846,7 +58846,7 @@ void Unwind_18090c490(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x140) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x140) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -58858,14 +58858,14 @@ void Unwind_18090c4a0(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(memorySize + 0x108) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 0x108) + 0x38))();
   }
-  *(uint64 *)(memorySize + 0xd8) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0xd8) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0xe0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0xe0) = 0;
   *(uint32 *)(memorySize + 0xf0) = 0;
-  *(uint64 *)(memorySize + 0xd8) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0xd8) = &threadLocalStorageCleanup;
   if (*(longlong **)(memorySize + 0xd0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 0xd0) + 0x38))();
   }
@@ -58883,14 +58883,14 @@ void Unwind_18090c4b0(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(localLong1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(localLong1 + 0x58) + 0x38))();
   }
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   if (*(longlong **)(localLong1 + 0x20) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(localLong1 + 0x20) + 0x38))();
   }
@@ -58902,7 +58902,7 @@ void Unwind_18090c4b0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c4c0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x140) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x140) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -58922,14 +58922,14 @@ void Unwind_18090c4d0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c4e0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0xd8) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0xd8) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0xe0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0xe0) = 0;
   *(uint32 *)(memorySize + 0xf0) = 0;
-  *(uint64 *)(memorySize + 0xd8) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0xd8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -58966,14 +58966,14 @@ void Unwind_18090c510(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x118);
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59069,7 +59069,7 @@ void Unwind_18090c540(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x170) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x170) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59115,7 +59115,7 @@ void Unwind_18090c550(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x230) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x230) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59124,7 +59124,7 @@ void Unwind_18090c550(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c560(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x470) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x470) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59145,7 +59145,7 @@ void Unwind_18090c570(void)
 void Unwind_18090c580(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x4d0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x4d0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59191,7 +59191,7 @@ void Unwind_18090c590(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x1d0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x1d0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59200,7 +59200,7 @@ void Unwind_18090c590(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c5a0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x3b0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x3b0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59258,7 +59258,7 @@ void Unwind_18090c5c0(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x110) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x110) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59304,7 +59304,7 @@ void Unwind_18090c5d0(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x290) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x290) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59362,7 +59362,7 @@ void Unwind_18090c5f0(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x2f0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x2f0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59408,7 +59408,7 @@ void Unwind_18090c600(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x350) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x350) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59489,7 +59489,7 @@ void Unwind_18090c620(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c630(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x170) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x170) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59498,7 +59498,7 @@ void Unwind_18090c630(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c640(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x4d0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x4d0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59507,7 +59507,7 @@ void Unwind_18090c640(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c650(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x3b0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x3b0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59516,7 +59516,7 @@ void Unwind_18090c650(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c660(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x470) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x470) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59525,7 +59525,7 @@ void Unwind_18090c660(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c670(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x110) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x110) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59534,7 +59534,7 @@ void Unwind_18090c670(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c680(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x410) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x410) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59543,7 +59543,7 @@ void Unwind_18090c680(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c690(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x290) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x290) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59552,7 +59552,7 @@ void Unwind_18090c690(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c6a0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x2f0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x2f0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59561,7 +59561,7 @@ void Unwind_18090c6a0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c6b0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x350) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x350) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59570,7 +59570,7 @@ void Unwind_18090c6b0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c6c0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x188) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x188) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59690,14 +59690,14 @@ void Unwind_18090c780(uint64 resourceHandle,longlong memorySize,uint64 operation
 void Unwind_18090c790(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x148) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x148) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x150) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x150) = 0;
   *(uint32 *)(memorySize + 0x160) = 0;
-  *(uint64 *)(memorySize + 0x148) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x148) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59706,7 +59706,7 @@ void Unwind_18090c790(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c7a0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x430) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x430) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59715,7 +59715,7 @@ void Unwind_18090c7a0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c7b0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x570) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x570) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59724,7 +59724,7 @@ void Unwind_18090c7b0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c7c0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x610) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x610) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59733,7 +59733,7 @@ void Unwind_18090c7c0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c7d0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x6b0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x6b0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59742,7 +59742,7 @@ void Unwind_18090c7d0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c7e0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x750) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x750) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59762,7 +59762,7 @@ void Unwind_18090c7f0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c800(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x7f0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x7f0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59782,7 +59782,7 @@ void Unwind_18090c810(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c820(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x2a8) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x2a8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59791,7 +59791,7 @@ void Unwind_18090c820(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c830(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x890) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x890) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59800,7 +59800,7 @@ void Unwind_18090c830(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c840(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x930) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x930) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59809,7 +59809,7 @@ void Unwind_18090c840(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c850(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x318) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x318) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59862,7 +59862,7 @@ void Unwind_18090c890(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c8a0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x148) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x148) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59871,7 +59871,7 @@ void Unwind_18090c8a0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c8b0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x430) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x430) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59880,7 +59880,7 @@ void Unwind_18090c8b0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c8c0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x570) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x570) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59889,7 +59889,7 @@ void Unwind_18090c8c0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c8d0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x610) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x610) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59898,7 +59898,7 @@ void Unwind_18090c8d0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c8e0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x6b0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x6b0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59907,7 +59907,7 @@ void Unwind_18090c8e0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c8f0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x750) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x750) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59927,7 +59927,7 @@ void Unwind_18090c900(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c910(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x7f0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x7f0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59947,7 +59947,7 @@ void Unwind_18090c920(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c930(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x2a8) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x2a8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59956,7 +59956,7 @@ void Unwind_18090c930(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c940(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x890) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x890) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59965,7 +59965,7 @@ void Unwind_18090c940(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c950(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x2e0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x2e0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59974,7 +59974,7 @@ void Unwind_18090c950(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c960(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x930) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x930) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59983,7 +59983,7 @@ void Unwind_18090c960(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c970(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x318) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x318) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -59992,7 +59992,7 @@ void Unwind_18090c970(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c980(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x350) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x350) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60097,7 +60097,7 @@ void Unwind_18090ca20(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0xc0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0xc0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60155,7 +60155,7 @@ void Unwind_18090ca40(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x120) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x120) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60225,7 +60225,7 @@ void Unwind_18090ca70(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x180) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x180) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60234,7 +60234,7 @@ void Unwind_18090ca70(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090ca80(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x540) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x540) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60292,7 +60292,7 @@ void Unwind_18090caa0(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x1e0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x1e0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60301,7 +60301,7 @@ void Unwind_18090caa0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090cab0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x5a0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x5a0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60359,7 +60359,7 @@ void Unwind_18090cad0(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x240) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x240) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60368,7 +60368,7 @@ void Unwind_18090cad0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090cae0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x600) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x600) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60426,7 +60426,7 @@ void Unwind_18090cb00(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x2a0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x2a0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60435,7 +60435,7 @@ void Unwind_18090cb00(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090cb10(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x660) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x660) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60481,7 +60481,7 @@ void Unwind_18090cb20(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x300) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x300) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60490,7 +60490,7 @@ void Unwind_18090cb20(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090cb30(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x6c0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x6c0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60536,7 +60536,7 @@ void Unwind_18090cb40(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x4e0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x4e0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60594,7 +60594,7 @@ void Unwind_18090cb60(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x360) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x360) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60603,7 +60603,7 @@ void Unwind_18090cb60(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090cb70(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x720) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x720) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60649,7 +60649,7 @@ void Unwind_18090cb80(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x3c0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x3c0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60670,7 +60670,7 @@ void Unwind_18090cb90(void)
 void Unwind_18090cba0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x780) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x780) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60740,7 +60740,7 @@ void Unwind_18090cbd0(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x420) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x420) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60749,7 +60749,7 @@ void Unwind_18090cbd0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090cbe0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x7e0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x7e0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60807,7 +60807,7 @@ void Unwind_18090cc00(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x480) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x480) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60816,7 +60816,7 @@ void Unwind_18090cc00(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090cc10(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x840) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x840) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60825,7 +60825,7 @@ void Unwind_18090cc10(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090cc20(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x540) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x540) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60834,7 +60834,7 @@ void Unwind_18090cc20(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090cc30(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x5a0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x5a0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60843,7 +60843,7 @@ void Unwind_18090cc30(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090cc40(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x600) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x600) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60852,7 +60852,7 @@ void Unwind_18090cc40(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090cc50(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x660) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x660) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60861,7 +60861,7 @@ void Unwind_18090cc50(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090cc60(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x6c0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x6c0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60870,7 +60870,7 @@ void Unwind_18090cc60(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090cc70(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x4e0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x4e0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60879,7 +60879,7 @@ void Unwind_18090cc70(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090cc80(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x720) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x720) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60888,7 +60888,7 @@ void Unwind_18090cc80(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090cc90(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x780) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x780) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60897,7 +60897,7 @@ void Unwind_18090cc90(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090cca0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x420) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x420) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60906,7 +60906,7 @@ void Unwind_18090cca0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090ccb0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x7e0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x7e0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60915,7 +60915,7 @@ void Unwind_18090ccb0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090ccc0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x840) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x840) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60973,7 +60973,7 @@ void Unwind_18090cce0(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x40) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x40) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -60982,7 +60982,7 @@ void Unwind_18090cce0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090ccf0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0xf8) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0xf8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -61054,14 +61054,14 @@ void Unwind_18090cdf0(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(memorySize + 0x178) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 0x178) + 0x38))();
   }
-  *(uint64 *)(memorySize + 0x148) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x148) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x150) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x150) = 0;
   *(uint32 *)(memorySize + 0x160) = 0;
-  *(uint64 *)(memorySize + 0x148) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x148) = &threadLocalStorageCleanup;
   if (*(longlong **)(memorySize + 0x140) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 0x140) + 0x38))();
   }
@@ -61079,14 +61079,14 @@ void Unwind_18090ce00(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(localLong1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(localLong1 + 0x58) + 0x38))();
   }
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   if (*(longlong **)(localLong1 + 0x20) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(localLong1 + 0x20) + 0x38))();
   }
@@ -61101,14 +61101,14 @@ void Unwind_18090ce10(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(memorySize + 0x388) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 0x388) + 0x38))();
   }
-  *(uint64 *)(memorySize + 0x358) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x358) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x360) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x360) = 0;
   *(uint32 *)(memorySize + 0x370) = 0;
-  *(uint64 *)(memorySize + 0x358) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x358) = &threadLocalStorageCleanup;
   if (*(longlong **)(memorySize + 0x350) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 0x350) + 0x38))();
   }
@@ -61126,14 +61126,14 @@ void Unwind_18090ce20(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(localLong1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(localLong1 + 0x58) + 0x38))();
   }
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   if (*(longlong **)(localLong1 + 0x20) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(localLong1 + 0x20) + 0x38))();
   }
@@ -61148,14 +61148,14 @@ void Unwind_18090ce30(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(memorySize + 0x228) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 0x228) + 0x38))();
   }
-  *(uint64 *)(memorySize + 0x1f8) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x1f8) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x200) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x200) = 0;
   *(uint32 *)(memorySize + 0x210) = 0;
-  *(uint64 *)(memorySize + 0x1f8) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x1f8) = &threadLocalStorageCleanup;
   if (*(longlong **)(memorySize + 0x1f0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 0x1f0) + 0x38))();
   }
@@ -61170,14 +61170,14 @@ void Unwind_18090ce40(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(memorySize + 0x288) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 0x288) + 0x38))();
   }
-  *(uint64 *)(memorySize + 600) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 600) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x260) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x260) = 0;
   *(uint32 *)(memorySize + 0x270) = 0;
-  *(uint64 *)(memorySize + 600) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 600) = &threadLocalStorageCleanup;
   if (*(longlong **)(memorySize + 0x250) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 0x250) + 0x38))();
   }
@@ -61192,14 +61192,14 @@ void Unwind_18090ce50(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(memorySize + 0x2e8) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 0x2e8) + 0x38))();
   }
-  *(uint64 *)(memorySize + 0x2b8) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x2b8) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x2c0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x2c0) = 0;
   *(uint32 *)(memorySize + 0x2d0) = 0;
-  *(uint64 *)(memorySize + 0x2b8) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x2b8) = &threadLocalStorageCleanup;
   if (*(longlong **)(memorySize + 0x2b0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 0x2b0) + 0x38))();
   }
@@ -61214,14 +61214,14 @@ void Unwind_18090ce60(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(memorySize + 1000) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 1000) + 0x38))();
   }
-  *(uint64 *)(memorySize + 0x3b8) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x3b8) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x3c0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x3c0) = 0;
   *(uint32 *)(memorySize + 0x3d0) = 0;
-  *(uint64 *)(memorySize + 0x3b8) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x3b8) = &threadLocalStorageCleanup;
   if (*(longlong **)(memorySize + 0x3b0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 0x3b0) + 0x38))();
   }
@@ -61239,14 +61239,14 @@ void Unwind_18090ce70(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(localLong1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(localLong1 + 0x58) + 0x38))();
   }
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   if (*(longlong **)(localLong1 + 0x20) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(localLong1 + 0x20) + 0x38))();
   }
@@ -61269,14 +61269,14 @@ void Unwind_18090ce80(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090ce90(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x148) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x148) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x150) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x150) = 0;
   *(uint32 *)(memorySize + 0x160) = 0;
-  *(uint64 *)(memorySize + 0x148) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x148) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -61313,14 +61313,14 @@ void Unwind_18090cec0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x38);
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -61354,14 +61354,14 @@ void Unwind_18090cee0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090cef0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x358) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x358) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x360) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x360) = 0;
   *(uint32 *)(memorySize + 0x370) = 0;
-  *(uint64 *)(memorySize + 0x358) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x358) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -61392,14 +61392,14 @@ void Unwind_18090cf10(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090cf20(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x1f8) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x1f8) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x200) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x200) = 0;
   *(uint32 *)(memorySize + 0x210) = 0;
-  *(uint64 *)(memorySize + 0x1f8) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x1f8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -61430,14 +61430,14 @@ void Unwind_18090cf40(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090cf50(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 600) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 600) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x260) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x260) = 0;
   *(uint32 *)(memorySize + 0x270) = 0;
-  *(uint64 *)(memorySize + 600) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 600) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -61468,14 +61468,14 @@ void Unwind_18090cf70(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090cf80(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x2b8) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x2b8) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x2c0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x2c0) = 0;
   *(uint32 *)(memorySize + 0x2d0) = 0;
-  *(uint64 *)(memorySize + 0x2b8) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x2b8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -61506,14 +61506,14 @@ void Unwind_18090cfa0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090cfb0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x3b8) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x3b8) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x3c0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x3c0) = 0;
   *(uint32 *)(memorySize + 0x3d0) = 0;
-  *(uint64 *)(memorySize + 0x3b8) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x3b8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -64379,14 +64379,14 @@ void Unwind_18090d530(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(localLong1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(localLong1 + 0x58) + 0x38))();
   }
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   if (*(longlong **)(localLong1 + 0x20) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(localLong1 + 0x20) + 0x38))();
   }
@@ -64398,7 +64398,7 @@ void Unwind_18090d530(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090d540(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x140) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x140) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -64424,14 +64424,14 @@ void Unwind_18090d560(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x130);
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -64457,14 +64457,14 @@ void Unwind_18090d580(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(memorySize + 0xb8) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 0xb8) + 0x38))();
   }
-  *(uint64 *)(memorySize + 0x88) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x88) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x90) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x90) = 0;
   *(uint32 *)(memorySize + 0xa0) = 0;
-  *(uint64 *)(memorySize + 0x88) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x88) = &threadLocalStorageCleanup;
   if (*(longlong **)(memorySize + 0x80) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 0x80) + 0x38))();
   }
@@ -64482,14 +64482,14 @@ void Unwind_18090d590(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(localLong1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(localLong1 + 0x58) + 0x38))();
   }
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   if (*(longlong **)(localLong1 + 0x20) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(localLong1 + 0x20) + 0x38))();
   }
@@ -64512,14 +64512,14 @@ void Unwind_18090d5a0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090d5b0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x88) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x88) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x90) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x90) = 0;
   *(uint32 *)(memorySize + 0xa0) = 0;
-  *(uint64 *)(memorySize + 0x88) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x88) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -64539,7 +64539,7 @@ void Unwind_18090d5c0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090d5d0(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x160) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x160) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -64548,7 +64548,7 @@ void Unwind_18090d5d0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090d5e0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0xd8) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0xd8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -64557,7 +64557,7 @@ void Unwind_18090d5e0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090d5f0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x148) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x148) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -64566,7 +64566,7 @@ void Unwind_18090d5f0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090d600(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x1b8) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x1b8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -64575,7 +64575,7 @@ void Unwind_18090d600(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090d610(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x1f0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x1f0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -64584,7 +64584,7 @@ void Unwind_18090d610(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090d620(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x228) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x228) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -64593,7 +64593,7 @@ void Unwind_18090d620(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090d630(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x1b8) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x1b8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -64602,7 +64602,7 @@ void Unwind_18090d630(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090d640(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x228) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x228) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -65198,14 +65198,14 @@ void Unwind_18090dd00(uint64 resourceHandle,longlong memorySize)
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x40) + 0x48);
   plocalUInt1 = *(uint64 **)(*(longlong *)(memorySize + 0x40) + 0x50);
   for (puVar3 = (uint64 *)*plocalLong2; puVar3 != plocalUInt1; puVar3 = puVar3 + 6) {
-    *puVar3 = &unknown_180a3c3e0;
+    *puVar3 = &threadLocalStorageData;
     if (puVar3[1] != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
     puVar3[1] = 0;
     *(uint32 *)(puVar3 + 3) = 0;
-    *puVar3 = &unknown_18098bcb0;
+    *puVar3 = &threadLocalStorageCleanup;
   }
   if (*plocalLong2 != 0) {
                     // WARNING: Subroutine does not return
@@ -65226,14 +65226,14 @@ void Unwind_18090dd10(uint64 resourceHandle,longlong memorySize)
   plocalLong2 = *(longlong **)(memorySize + 0x48);
   plocalUInt1 = (uint64 *)plocalLong2[1];
   for (puVar3 = (uint64 *)*plocalLong2; puVar3 != plocalUInt1; puVar3 = puVar3 + 6) {
-    *puVar3 = &unknown_180a3c3e0;
+    *puVar3 = &threadLocalStorageData;
     if (puVar3[1] != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
     puVar3[1] = 0;
     *(uint32 *)(puVar3 + 3) = 0;
-    *puVar3 = &unknown_18098bcb0;
+    *puVar3 = &threadLocalStorageCleanup;
   }
   if (*plocalLong2 != 0) {
                     // WARNING: Subroutine does not return
@@ -66246,7 +66246,7 @@ void Unwind_18090e760(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x60) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x60) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -66304,7 +66304,7 @@ void Unwind_18090e7a0(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 400) = &unknown_18098bcb0;
+  *(data **)(memorySize + 400) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -66350,7 +66350,7 @@ void Unwind_18090e7b0(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x90) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x90) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -66396,7 +66396,7 @@ void Unwind_18090e7c0(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0xf0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0xf0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -66442,7 +66442,7 @@ void Unwind_18090e7d0(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x50) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x50) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -66488,7 +66488,7 @@ void Unwind_18090e7e0(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x80) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x80) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -66534,7 +66534,7 @@ void Unwind_18090e7f0(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0xe0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0xe0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -66580,7 +66580,7 @@ void Unwind_18090e800(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x1a0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x1a0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -66638,7 +66638,7 @@ void Unwind_18090e820(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x200) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x200) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -66696,7 +66696,7 @@ void Unwind_18090e840(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x260) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x260) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -66754,7 +66754,7 @@ void Unwind_18090e860(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x2c0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x2c0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -66775,7 +66775,7 @@ void Unwind_18090e870(void)
 void Unwind_18090e880(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 800) = &unknown_18098bcb0;
+  *(data **)(memorySize + 800) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -66784,7 +66784,7 @@ void Unwind_18090e880(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090e890(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x1a8) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x1a8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -66793,7 +66793,7 @@ void Unwind_18090e890(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090e8a0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x218) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x218) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -66802,7 +66802,7 @@ void Unwind_18090e8a0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090e8b0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x288) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x288) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -66811,7 +66811,7 @@ void Unwind_18090e8b0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090e8c0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0xd0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0xd0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -66823,14 +66823,14 @@ void Unwind_18090e8d0(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(memorySize + 0x98) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 0x98) + 0x38))();
   }
-  *(uint64 *)(memorySize + 0x68) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x68) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x70) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x70) = 0;
   *(uint32 *)(memorySize + 0x80) = 0;
-  *(uint64 *)(memorySize + 0x68) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x68) = &threadLocalStorageCleanup;
   if (*(longlong **)(memorySize + 0x60) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 0x60) + 0x38))();
   }
@@ -66848,14 +66848,14 @@ void Unwind_18090e8e0(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(localLong1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(localLong1 + 0x58) + 0x38))();
   }
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   if (*(longlong **)(localLong1 + 0x20) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(localLong1 + 0x20) + 0x38))();
   }
@@ -66870,14 +66870,14 @@ void Unwind_18090e8f0(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(memorySize + 0x128) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 0x128) + 0x38))();
   }
-  *(uint64 *)(memorySize + 0xf8) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0xf8) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x100) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x100) = 0;
   *(uint32 *)(memorySize + 0x110) = 0;
-  *(uint64 *)(memorySize + 0xf8) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0xf8) = &threadLocalStorageCleanup;
   if (*(longlong **)(memorySize + 0xf0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 0xf0) + 0x38))();
   }
@@ -66889,7 +66889,7 @@ void Unwind_18090e8f0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090e900(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x288) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x288) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -66909,14 +66909,14 @@ void Unwind_18090e910(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090e920(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x68) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x68) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x70) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x70) = 0;
   *(uint32 *)(memorySize + 0x80) = 0;
-  *(uint64 *)(memorySize + 0x68) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x68) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -66953,14 +66953,14 @@ void Unwind_18090e950(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x28);
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -66994,14 +66994,14 @@ void Unwind_18090e970(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090e980(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0xf8) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0xf8) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0x100) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0x100) = 0;
   *(uint32 *)(memorySize + 0x110) = 0;
-  *(uint64 *)(memorySize + 0xf8) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0xf8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -67021,7 +67021,7 @@ void Unwind_18090e990(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090e9a0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 800) = &unknown_18098bcb0;
+  *(data **)(memorySize + 800) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -67193,7 +67193,7 @@ void Unwind_18090eb00(uint64 resourceHandle,longlong memorySize)
       }
     }
   }
-  *(data **)(memorySize + 0x130) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x130) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -67202,7 +67202,7 @@ void Unwind_18090eb00(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090eb10(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x128) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x128) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -67217,14 +67217,14 @@ void Unwind_18090eb20(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(localLong1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(localLong1 + 0x58) + 0x38))();
   }
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   if (*(longlong **)(localLong1 + 0x20) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(localLong1 + 0x20) + 0x38))();
   }
@@ -67236,7 +67236,7 @@ void Unwind_18090eb20(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090eb30(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x108) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x108) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -67262,14 +67262,14 @@ void Unwind_18090eb50(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x108);
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -67301,7 +67301,7 @@ void Unwind_18090eb70(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090eb80(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x78) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x78) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -67331,14 +67331,14 @@ void Unwind_18090ebf0(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(memorySize + 200) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 200) + 0x38))();
   }
-  *(uint64 *)(memorySize + 0x98) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x98) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0xa0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0xa0) = 0;
   *(uint32 *)(memorySize + 0xb0) = 0;
-  *(uint64 *)(memorySize + 0x98) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x98) = &threadLocalStorageCleanup;
   if (*(longlong **)(memorySize + 0x90) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 0x90) + 0x38))();
   }
@@ -67356,14 +67356,14 @@ void Unwind_18090ec00(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(localLong1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(localLong1 + 0x58) + 0x38))();
   }
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   if (*(longlong **)(localLong1 + 0x20) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(localLong1 + 0x20) + 0x38))();
   }
@@ -67386,14 +67386,14 @@ void Unwind_18090ec10(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090ec20(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 0x98) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 0x98) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0xa0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0xa0) = 0;
   *(uint32 *)(memorySize + 0xb0) = 0;
-  *(uint64 *)(memorySize + 0x98) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 0x98) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -67416,14 +67416,14 @@ void Unwind_18090ec40(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x30);
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -67569,14 +67569,14 @@ void Unwind_18090ed20(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(memorySize + 0xf8) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 0xf8) + 0x38))();
   }
-  *(uint64 *)(memorySize + 200) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 200) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0xd0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0xd0) = 0;
   *(uint32 *)(memorySize + 0xe0) = 0;
-  *(uint64 *)(memorySize + 200) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 200) = &threadLocalStorageCleanup;
   if (*(longlong **)(memorySize + 0xc0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(memorySize + 0xc0) + 0x38))();
   }
@@ -67594,14 +67594,14 @@ void Unwind_18090ed30(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(localLong1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(localLong1 + 0x58) + 0x38))();
   }
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   if (*(longlong **)(localLong1 + 0x20) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(localLong1 + 0x20) + 0x38))();
   }
@@ -67624,14 +67624,14 @@ void Unwind_18090ed40(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090ed50(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(uint64 *)(memorySize + 200) = &unknown_180a3c3e0;
+  *(uint64 *)(memorySize + 200) = &threadLocalStorageData;
   if (*(longlong *)(memorySize + 0xd0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(memorySize + 0xd0) = 0;
   *(uint32 *)(memorySize + 0xe0) = 0;
-  *(uint64 *)(memorySize + 200) = &unknown_18098bcb0;
+  *(uint64 *)(memorySize + 200) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -67654,14 +67654,14 @@ void Unwind_18090ed70(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x60);
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -68622,14 +68622,14 @@ void Unwind_18090f140(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x78);
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -68641,14 +68641,14 @@ void Unwind_18090f150(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x80);
-  *(uint64 *)(localLong1 + 8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x10) = 0;
   *(uint32 *)(localLong1 + 0x20) = 0;
-  *(uint64 *)(localLong1 + 8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -68660,14 +68660,14 @@ void Unwind_18090f160(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x78);
-  *(uint64 *)(localLong1 + 8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x10) = 0;
   *(uint32 *)(localLong1 + 0x20) = 0;
-  *(uint64 *)(localLong1 + 8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -68707,14 +68707,14 @@ void Unwind_18090f190(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x40);
-  *(uint64 *)(localLong1 + 8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x10) = 0;
   *(uint32 *)(localLong1 + 0x20) = 0;
-  *(uint64 *)(localLong1 + 8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -69481,14 +69481,14 @@ void Unwind_18090f650(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x60);
-  *(uint64 *)(localLong1 + 0x4140) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x4140) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x4148) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x4148) = 0;
   *(uint32 *)(localLong1 + 0x4158) = 0;
-  *(uint64 *)(localLong1 + 0x4140) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x4140) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -69500,14 +69500,14 @@ void Unwind_18090f670(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x60);
-  *(uint64 *)(localLong1 + 0x4190) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x4190) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x4198) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x4198) = 0;
   *(uint32 *)(localLong1 + 0x41a8) = 0;
-  *(uint64 *)(localLong1 + 0x4190) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x4190) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -70169,7 +70169,7 @@ void Unwind_18090fa90(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090faa0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x158) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x158) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -70178,7 +70178,7 @@ void Unwind_18090faa0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090fab0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x158) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x158) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -70193,14 +70193,14 @@ void Unwind_18090fac0(uint64 resourceHandle,longlong memorySize)
   if (*(longlong **)(localLong1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(localLong1 + 0x58) + 0x38))();
   }
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   if (*(longlong **)(localLong1 + 0x20) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(localLong1 + 0x20) + 0x38))();
   }
@@ -70212,7 +70212,7 @@ void Unwind_18090fac0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090fad0(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x120) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x120) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -70238,14 +70238,14 @@ void Unwind_18090faf0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x120);
-  *(uint64 *)(localLong1 + 0x28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x30) = 0;
   *(uint32 *)(localLong1 + 0x40) = 0;
-  *(uint64 *)(localLong1 + 0x28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x28) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -70325,14 +70325,14 @@ void Unwind_18090fb70(uint64 resourceHandle,longlong memorySize)
   uint64 *plocalUInt1;
   
   plocalUInt1 = *(uint64 **)(memorySize + 0xd0);
-  *plocalUInt1 = &unknown_180a3c3e0;
+  *plocalUInt1 = &threadLocalStorageData;
   if (plocalUInt1[1] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt1[1] = 0;
   *(uint32 *)(plocalUInt1 + 3) = 0;
-  *plocalUInt1 = &unknown_18098bcb0;
+  *plocalUInt1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -70341,7 +70341,7 @@ void Unwind_18090fb70(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090fb80(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(*(longlong *)(memorySize + 0x88) + 0x20) = &unknown_18098bcb0;
+  *(data **)(*(longlong *)(memorySize + 0x88) + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -70350,7 +70350,7 @@ void Unwind_18090fb80(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090fb90(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0xa0) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0xa0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -70404,7 +70404,7 @@ void Unwind_18090fbf0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090fc00(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x100) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x100) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -70481,7 +70481,7 @@ void Unwind_18090fca0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090fcb0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x1c0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x1c0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -70490,7 +70490,7 @@ void Unwind_18090fcb0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090fcc0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x1f8) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x1f8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -70499,7 +70499,7 @@ void Unwind_18090fcc0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090fcd0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0xe0) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0xe0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -70804,7 +70804,7 @@ void Unwind_18090ff10(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090ff20(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(*(longlong *)(memorySize + 0x100) + 0x38) = &unknown_18098bcb0;
+  *(data **)(*(longlong *)(memorySize + 0x100) + 0x38) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -70813,7 +70813,7 @@ void Unwind_18090ff20(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090ff30(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(*(longlong *)(memorySize + 0x100) + 0xe0) = &unknown_18098bcb0;
+  *(data **)(*(longlong *)(memorySize + 0x100) + 0xe0) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -70902,7 +70902,7 @@ void Unwind_18090ff90(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090ffa0(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x168) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x168) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -71204,7 +71204,7 @@ void Unwind_180910080(uint64 resourceHandle,longlong memorySize)
 void Unwind_180910090(uint64 resourceHandle,longlong memorySize)
 
 {
-  **(uint64 **)(memorySize + 0x88) = &unknown_18098bcb0;
+  **(uint64 **)(memorySize + 0x88) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -71213,7 +71213,7 @@ void Unwind_180910090(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809100a0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(*(longlong *)(memorySize + 0x58) + 0x20) = &unknown_18098bcb0;
+  *(data **)(*(longlong *)(memorySize + 0x58) + 0x20) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -71358,14 +71358,14 @@ void Unwind_180910110(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x60);
-  *(uint64 *)(localLong1 + 0x108) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x108) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x110) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x110) = 0;
   *(uint32 *)(localLong1 + 0x120) = 0;
-  *(uint64 *)(localLong1 + 0x108) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x108) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -71377,14 +71377,14 @@ void Unwind_180910130(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x50);
-  *(uint64 *)(localLong1 + 0x108) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x108) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x110) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x110) = 0;
   *(uint32 *)(localLong1 + 0x120) = 0;
-  *(uint64 *)(localLong1 + 0x108) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x108) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -71435,14 +71435,14 @@ void Unwind_1809101c0(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x40);
-  *(uint64 *)(localLong1 + 0x108) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x108) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x110) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x110) = 0;
   *(uint32 *)(localLong1 + 0x120) = 0;
-  *(uint64 *)(localLong1 + 0x108) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x108) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -72010,7 +72010,7 @@ void Unwind_180910430(uint64 resourceHandle,longlong memorySize)
 void Unwind_180910440(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(*(longlong *)(memorySize + 0x60) + 8) = &unknown_18098bcb0;
+  *(data **)(*(longlong *)(memorySize + 0x60) + 8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -72694,22 +72694,22 @@ void Unwind_1809107a0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xa00) != (code *)0x0) {
     (**(code **)(localLong1 + 0xa00))(localLong1 + 0x9f0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x9c8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x9c8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x9d0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x9d0) = 0;
   *(uint32 *)(localLong1 + 0x9e0) = 0;
-  *(uint64 *)(localLong1 + 0x9c8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x9a8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x9c8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x9a8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x9b0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x9b0) = 0;
   *(uint32 *)(localLong1 + 0x9c0) = 0;
-  *(uint64 *)(localLong1 + 0x9a8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x9a8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -72724,22 +72724,22 @@ void Unwind_1809107c0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xa70) != (code *)0x0) {
     (**(code **)(localLong1 + 0xa70))(localLong1 + 0xa60,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xa38) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xa38) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xa40) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xa40) = 0;
   *(uint32 *)(localLong1 + 0xa50) = 0;
-  *(uint64 *)(localLong1 + 0xa38) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xa18) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xa38) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xa18) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xa20) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xa20) = 0;
   *(uint32 *)(localLong1 + 0xa30) = 0;
-  *(uint64 *)(localLong1 + 0xa18) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xa18) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -72754,22 +72754,22 @@ void Unwind_1809107e0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xae0) != (code *)0x0) {
     (**(code **)(localLong1 + 0xae0))(localLong1 + 0xad0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xaa8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xaa8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xab0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xab0) = 0;
   *(uint32 *)(localLong1 + 0xac0) = 0;
-  *(uint64 *)(localLong1 + 0xaa8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xa88) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xaa8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xa88) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xa90) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xa90) = 0;
   *(uint32 *)(localLong1 + 0xaa0) = 0;
-  *(uint64 *)(localLong1 + 0xa88) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xa88) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -72784,22 +72784,22 @@ void Unwind_180910800(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xb50) != (code *)0x0) {
     (**(code **)(localLong1 + 0xb50))(localLong1 + 0xb40,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xb18) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xb18) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xb20) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xb20) = 0;
   *(uint32 *)(localLong1 + 0xb30) = 0;
-  *(uint64 *)(localLong1 + 0xb18) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xaf8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xb18) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xaf8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xb00) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xb00) = 0;
   *(uint32 *)(localLong1 + 0xb10) = 0;
-  *(uint64 *)(localLong1 + 0xaf8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xaf8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -72814,22 +72814,22 @@ void Unwind_180910820(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xbc0) != (code *)0x0) {
     (**(code **)(localLong1 + 0xbc0))(localLong1 + 0xbb0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xb88) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xb88) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xb90) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xb90) = 0;
   *(uint32 *)(localLong1 + 0xba0) = 0;
-  *(uint64 *)(localLong1 + 0xb88) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xb68) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xb88) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xb68) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xb70) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xb70) = 0;
   *(uint32 *)(localLong1 + 0xb80) = 0;
-  *(uint64 *)(localLong1 + 0xb68) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xb68) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -72844,22 +72844,22 @@ void Unwind_180910840(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xc30) != (code *)0x0) {
     (**(code **)(localLong1 + 0xc30))(localLong1 + 0xc20,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xbf8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xbf8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xc00) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xc00) = 0;
   *(uint32 *)(localLong1 + 0xc10) = 0;
-  *(uint64 *)(localLong1 + 0xbf8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xbd8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xbf8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xbd8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xbe0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xbe0) = 0;
   *(uint32 *)(localLong1 + 0xbf0) = 0;
-  *(uint64 *)(localLong1 + 0xbd8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xbd8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -72874,22 +72874,22 @@ void Unwind_180910860(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xca0) != (code *)0x0) {
     (**(code **)(localLong1 + 0xca0))(localLong1 + 0xc90,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xc68) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xc68) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xc70) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xc70) = 0;
   *(uint32 *)(localLong1 + 0xc80) = 0;
-  *(uint64 *)(localLong1 + 0xc68) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xc48) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xc68) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xc48) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xc50) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xc50) = 0;
   *(uint32 *)(localLong1 + 0xc60) = 0;
-  *(uint64 *)(localLong1 + 0xc48) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xc48) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -72904,22 +72904,22 @@ void Unwind_180910880(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xd10) != (code *)0x0) {
     (**(code **)(localLong1 + 0xd10))(localLong1 + 0xd00,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xcd8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xcd8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xce0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xce0) = 0;
   *(uint32 *)(localLong1 + 0xcf0) = 0;
-  *(uint64 *)(localLong1 + 0xcd8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xcb8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xcd8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xcb8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xcc0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xcc0) = 0;
   *(uint32 *)(localLong1 + 0xcd0) = 0;
-  *(uint64 *)(localLong1 + 0xcb8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xcb8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -72934,22 +72934,22 @@ void Unwind_1809108a0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xd80) != (code *)0x0) {
     (**(code **)(localLong1 + 0xd80))(localLong1 + 0xd70,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xd48) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xd48) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xd50) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xd50) = 0;
   *(uint32 *)(localLong1 + 0xd60) = 0;
-  *(uint64 *)(localLong1 + 0xd48) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xd28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xd48) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xd28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xd30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xd30) = 0;
   *(uint32 *)(localLong1 + 0xd40) = 0;
-  *(uint64 *)(localLong1 + 0xd28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xd28) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -72964,22 +72964,22 @@ void Unwind_1809108c0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xdf0) != (code *)0x0) {
     (**(code **)(localLong1 + 0xdf0))(localLong1 + 0xde0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xdb8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xdb8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xdc0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xdc0) = 0;
   *(uint32 *)(localLong1 + 0xdd0) = 0;
-  *(uint64 *)(localLong1 + 0xdb8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xd98) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xdb8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xd98) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xda0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xda0) = 0;
   *(uint32 *)(localLong1 + 0xdb0) = 0;
-  *(uint64 *)(localLong1 + 0xd98) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xd98) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -72994,22 +72994,22 @@ void Unwind_1809108e0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xe60) != (code *)0x0) {
     (**(code **)(localLong1 + 0xe60))(localLong1 + 0xe50,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xe28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xe28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xe30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xe30) = 0;
   *(uint32 *)(localLong1 + 0xe40) = 0;
-  *(uint64 *)(localLong1 + 0xe28) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xe08) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xe28) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xe08) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xe10) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xe10) = 0;
   *(uint32 *)(localLong1 + 0xe20) = 0;
-  *(uint64 *)(localLong1 + 0xe08) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xe08) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73024,22 +73024,22 @@ void Unwind_180910900(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xed0) != (code *)0x0) {
     (**(code **)(localLong1 + 0xed0))(localLong1 + 0xec0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xe98) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xe98) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xea0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xea0) = 0;
   *(uint32 *)(localLong1 + 0xeb0) = 0;
-  *(uint64 *)(localLong1 + 0xe98) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xe78) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xe98) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xe78) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xe80) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xe80) = 0;
   *(uint32 *)(localLong1 + 0xe90) = 0;
-  *(uint64 *)(localLong1 + 0xe78) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xe78) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73054,22 +73054,22 @@ void Unwind_180910920(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xf40) != (code *)0x0) {
     (**(code **)(localLong1 + 0xf40))(localLong1 + 0xf30,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xf08) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xf08) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xf10) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xf10) = 0;
   *(uint32 *)(localLong1 + 0xf20) = 0;
-  *(uint64 *)(localLong1 + 0xf08) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xee8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xf08) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xee8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xef0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xef0) = 0;
   *(uint32 *)(localLong1 + 0xf00) = 0;
-  *(uint64 *)(localLong1 + 0xee8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xee8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73084,22 +73084,22 @@ void Unwind_180910940(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xfb0) != (code *)0x0) {
     (**(code **)(localLong1 + 0xfb0))(localLong1 + 4000,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xf78) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xf78) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xf80) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xf80) = 0;
   *(uint32 *)(localLong1 + 0xf90) = 0;
-  *(uint64 *)(localLong1 + 0xf78) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xf58) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xf78) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xf58) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xf60) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xf60) = 0;
   *(uint32 *)(localLong1 + 0xf70) = 0;
-  *(uint64 *)(localLong1 + 0xf58) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xf58) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73114,22 +73114,22 @@ void Unwind_180910960(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1020) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1020))(localLong1 + 0x1010,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xfe8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xfe8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xff0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xff0) = 0;
   *(uint32 *)(localLong1 + 0x1000) = 0;
-  *(uint64 *)(localLong1 + 0xfe8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xfc8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xfe8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xfc8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xfd0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xfd0) = 0;
   *(uint32 *)(localLong1 + 0xfe0) = 0;
-  *(uint64 *)(localLong1 + 0xfc8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xfc8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73144,22 +73144,22 @@ void Unwind_180910980(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1090) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1090))(localLong1 + 0x1080,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1058) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1058) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1060) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1060) = 0;
   *(uint32 *)(localLong1 + 0x1070) = 0;
-  *(uint64 *)(localLong1 + 0x1058) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1038) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1058) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1038) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1040) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1040) = 0;
   *(uint32 *)(localLong1 + 0x1050) = 0;
-  *(uint64 *)(localLong1 + 0x1038) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1038) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73174,22 +73174,22 @@ void Unwind_1809109a0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1100) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1100))(localLong1 + 0x10f0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x10c8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x10c8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x10d0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x10d0) = 0;
   *(uint32 *)(localLong1 + 0x10e0) = 0;
-  *(uint64 *)(localLong1 + 0x10c8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x10a8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x10c8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x10a8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x10b0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x10b0) = 0;
   *(uint32 *)(localLong1 + 0x10c0) = 0;
-  *(uint64 *)(localLong1 + 0x10a8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x10a8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73204,22 +73204,22 @@ void Unwind_1809109c0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1170) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1170))(localLong1 + 0x1160,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1138) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1138) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1140) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1140) = 0;
   *(uint32 *)(localLong1 + 0x1150) = 0;
-  *(uint64 *)(localLong1 + 0x1138) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1118) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1138) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1118) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1120) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1120) = 0;
   *(uint32 *)(localLong1 + 0x1130) = 0;
-  *(uint64 *)(localLong1 + 0x1118) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1118) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73234,22 +73234,22 @@ void Unwind_1809109e0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x11e0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x11e0))(localLong1 + 0x11d0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x11a8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x11a8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x11b0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x11b0) = 0;
   *(uint32 *)(localLong1 + 0x11c0) = 0;
-  *(uint64 *)(localLong1 + 0x11a8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1188) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x11a8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1188) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1190) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1190) = 0;
   *(uint32 *)(localLong1 + 0x11a0) = 0;
-  *(uint64 *)(localLong1 + 0x1188) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1188) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73264,22 +73264,22 @@ void Unwind_180910a00(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1250) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1250))(localLong1 + 0x1240,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1218) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1218) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1220) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1220) = 0;
   *(uint32 *)(localLong1 + 0x1230) = 0;
-  *(uint64 *)(localLong1 + 0x1218) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x11f8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1218) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x11f8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1200) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1200) = 0;
   *(uint32 *)(localLong1 + 0x1210) = 0;
-  *(uint64 *)(localLong1 + 0x11f8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x11f8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73294,22 +73294,22 @@ void Unwind_180910a20(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x12c0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x12c0))(localLong1 + 0x12b0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1288) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1288) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1290) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1290) = 0;
   *(uint32 *)(localLong1 + 0x12a0) = 0;
-  *(uint64 *)(localLong1 + 0x1288) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1268) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1288) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1268) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1270) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1270) = 0;
   *(uint32 *)(localLong1 + 0x1280) = 0;
-  *(uint64 *)(localLong1 + 0x1268) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1268) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73324,22 +73324,22 @@ void Unwind_180910a40(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1330) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1330))(localLong1 + 0x1320,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x12f8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x12f8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1300) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1300) = 0;
   *(uint32 *)(localLong1 + 0x1310) = 0;
-  *(uint64 *)(localLong1 + 0x12f8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x12d8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x12f8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x12d8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x12e0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x12e0) = 0;
   *(uint32 *)(localLong1 + 0x12f0) = 0;
-  *(uint64 *)(localLong1 + 0x12d8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x12d8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73354,22 +73354,22 @@ void Unwind_180910a60(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x13a0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x13a0))(localLong1 + 0x1390,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1368) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1368) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1370) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1370) = 0;
   *(uint32 *)(localLong1 + 0x1380) = 0;
-  *(uint64 *)(localLong1 + 0x1368) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1348) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1368) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1348) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1350) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1350) = 0;
   *(uint32 *)(localLong1 + 0x1360) = 0;
-  *(uint64 *)(localLong1 + 0x1348) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1348) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73384,22 +73384,22 @@ void Unwind_180910a80(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1410) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1410))(localLong1 + 0x1400,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x13d8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x13d8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x13e0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x13e0) = 0;
   *(uint32 *)(localLong1 + 0x13f0) = 0;
-  *(uint64 *)(localLong1 + 0x13d8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x13b8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x13d8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x13b8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x13c0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x13c0) = 0;
   *(uint32 *)(localLong1 + 0x13d0) = 0;
-  *(uint64 *)(localLong1 + 0x13b8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x13b8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73414,22 +73414,22 @@ void Unwind_180910aa0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1480) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1480))(localLong1 + 0x1470,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1448) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1448) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1450) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1450) = 0;
   *(uint32 *)(localLong1 + 0x1460) = 0;
-  *(uint64 *)(localLong1 + 0x1448) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1428) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1448) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1428) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1430) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1430) = 0;
   *(uint32 *)(localLong1 + 0x1440) = 0;
-  *(uint64 *)(localLong1 + 0x1428) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1428) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73444,22 +73444,22 @@ void Unwind_180910ac0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x14f0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x14f0))(localLong1 + 0x14e0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x14b8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x14b8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x14c0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x14c0) = 0;
   *(uint32 *)(localLong1 + 0x14d0) = 0;
-  *(uint64 *)(localLong1 + 0x14b8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1498) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x14b8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1498) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x14a0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x14a0) = 0;
   *(uint32 *)(localLong1 + 0x14b0) = 0;
-  *(uint64 *)(localLong1 + 0x1498) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1498) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73474,22 +73474,22 @@ void Unwind_180910ae0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1560) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1560))(localLong1 + 0x1550,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1528) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1528) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1530) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1530) = 0;
   *(uint32 *)(localLong1 + 0x1540) = 0;
-  *(uint64 *)(localLong1 + 0x1528) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1508) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1528) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1508) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1510) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1510) = 0;
   *(uint32 *)(localLong1 + 0x1520) = 0;
-  *(uint64 *)(localLong1 + 0x1508) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1508) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73504,22 +73504,22 @@ void Unwind_180910b00(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x15d0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x15d0))(localLong1 + 0x15c0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1598) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1598) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x15a0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x15a0) = 0;
   *(uint32 *)(localLong1 + 0x15b0) = 0;
-  *(uint64 *)(localLong1 + 0x1598) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1578) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1598) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1578) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1580) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1580) = 0;
   *(uint32 *)(localLong1 + 0x1590) = 0;
-  *(uint64 *)(localLong1 + 0x1578) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1578) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73534,22 +73534,22 @@ void Unwind_180910b20(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1640) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1640))(localLong1 + 0x1630,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1608) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1608) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1610) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1610) = 0;
   *(uint32 *)(localLong1 + 0x1620) = 0;
-  *(uint64 *)(localLong1 + 0x1608) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x15e8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1608) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x15e8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x15f0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x15f0) = 0;
   *(uint32 *)(localLong1 + 0x1600) = 0;
-  *(uint64 *)(localLong1 + 0x15e8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x15e8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73564,22 +73564,22 @@ void Unwind_180910b40(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x16b0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x16b0))(localLong1 + 0x16a0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1678) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1678) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1680) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1680) = 0;
   *(uint32 *)(localLong1 + 0x1690) = 0;
-  *(uint64 *)(localLong1 + 0x1678) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1658) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1678) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1658) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1660) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1660) = 0;
   *(uint32 *)(localLong1 + 0x1670) = 0;
-  *(uint64 *)(localLong1 + 0x1658) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1658) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73594,22 +73594,22 @@ void Unwind_180910b60(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1720) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1720))(localLong1 + 0x1710,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x16e8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x16e8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x16f0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x16f0) = 0;
   *(uint32 *)(localLong1 + 0x1700) = 0;
-  *(uint64 *)(localLong1 + 0x16e8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x16c8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x16e8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x16c8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x16d0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x16d0) = 0;
   *(uint32 *)(localLong1 + 0x16e0) = 0;
-  *(uint64 *)(localLong1 + 0x16c8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x16c8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73624,22 +73624,22 @@ void Unwind_180910b80(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1790) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1790))(localLong1 + 0x1780,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1758) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1758) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1760) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1760) = 0;
   *(uint32 *)(localLong1 + 6000) = 0;
-  *(uint64 *)(localLong1 + 0x1758) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1738) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1758) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1738) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1740) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1740) = 0;
   *(uint32 *)(localLong1 + 0x1750) = 0;
-  *(uint64 *)(localLong1 + 0x1738) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1738) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73654,22 +73654,22 @@ void Unwind_180910ba0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1800) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1800))(localLong1 + 0x17f0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x17c8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x17c8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x17d0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x17d0) = 0;
   *(uint32 *)(localLong1 + 0x17e0) = 0;
-  *(uint64 *)(localLong1 + 0x17c8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x17a8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x17c8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x17a8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x17b0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x17b0) = 0;
   *(uint32 *)(localLong1 + 0x17c0) = 0;
-  *(uint64 *)(localLong1 + 0x17a8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x17a8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73684,22 +73684,22 @@ void Unwind_180910bc0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1870) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1870))(localLong1 + 0x1860,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1838) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1838) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1840) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1840) = 0;
   *(uint32 *)(localLong1 + 0x1850) = 0;
-  *(uint64 *)(localLong1 + 0x1838) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1818) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1838) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1818) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1820) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1820) = 0;
   *(uint32 *)(localLong1 + 0x1830) = 0;
-  *(uint64 *)(localLong1 + 0x1818) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1818) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73714,22 +73714,22 @@ void Unwind_180910be0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x18e0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x18e0))(localLong1 + 0x18d0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x18a8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x18a8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x18b0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x18b0) = 0;
   *(uint32 *)(localLong1 + 0x18c0) = 0;
-  *(uint64 *)(localLong1 + 0x18a8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1888) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x18a8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1888) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1890) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1890) = 0;
   *(uint32 *)(localLong1 + 0x18a0) = 0;
-  *(uint64 *)(localLong1 + 0x1888) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1888) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73744,22 +73744,22 @@ void Unwind_180910c00(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1950) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1950))(localLong1 + 0x1940,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1918) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1918) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1920) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1920) = 0;
   *(uint32 *)(localLong1 + 0x1930) = 0;
-  *(uint64 *)(localLong1 + 0x1918) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x18f8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1918) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x18f8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1900) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1900) = 0;
   *(uint32 *)(localLong1 + 0x1910) = 0;
-  *(uint64 *)(localLong1 + 0x18f8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x18f8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73774,22 +73774,22 @@ void Unwind_180910c20(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x19c0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x19c0))(localLong1 + 0x19b0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1988) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1988) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1990) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1990) = 0;
   *(uint32 *)(localLong1 + 0x19a0) = 0;
-  *(uint64 *)(localLong1 + 0x1988) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1968) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1988) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1968) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1970) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1970) = 0;
   *(uint32 *)(localLong1 + 0x1980) = 0;
-  *(uint64 *)(localLong1 + 0x1968) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1968) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73804,22 +73804,22 @@ void Unwind_180910c40(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1a30) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1a30))(localLong1 + 0x1a20,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x19f8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x19f8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1a00) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1a00) = 0;
   *(uint32 *)(localLong1 + 0x1a10) = 0;
-  *(uint64 *)(localLong1 + 0x19f8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x19d8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x19f8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x19d8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x19e0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x19e0) = 0;
   *(uint32 *)(localLong1 + 0x19f0) = 0;
-  *(uint64 *)(localLong1 + 0x19d8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x19d8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73834,22 +73834,22 @@ void Unwind_180910c60(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1aa0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1aa0))(localLong1 + 0x1a90,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1a68) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1a68) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1a70) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1a70) = 0;
   *(uint32 *)(localLong1 + 0x1a80) = 0;
-  *(uint64 *)(localLong1 + 0x1a68) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1a48) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1a68) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1a48) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1a50) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1a50) = 0;
   *(uint32 *)(localLong1 + 0x1a60) = 0;
-  *(uint64 *)(localLong1 + 0x1a48) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1a48) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73864,22 +73864,22 @@ void Unwind_180910c80(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1b10) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1b10))(localLong1 + 0x1b00,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1ad8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1ad8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1ae0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1ae0) = 0;
   *(uint32 *)(localLong1 + 0x1af0) = 0;
-  *(uint64 *)(localLong1 + 0x1ad8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1ab8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1ad8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1ab8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1ac0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1ac0) = 0;
   *(uint32 *)(localLong1 + 0x1ad0) = 0;
-  *(uint64 *)(localLong1 + 0x1ab8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1ab8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73894,22 +73894,22 @@ void Unwind_180910ca0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1b80) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1b80))(localLong1 + 0x1b70,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1b48) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1b48) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1b50) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1b50) = 0;
   *(uint32 *)(localLong1 + 0x1b60) = 0;
-  *(uint64 *)(localLong1 + 0x1b48) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1b28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1b48) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1b28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1b30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1b30) = 0;
   *(uint32 *)(localLong1 + 0x1b40) = 0;
-  *(uint64 *)(localLong1 + 0x1b28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1b28) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73924,22 +73924,22 @@ void Unwind_180910cc0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1bf0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1bf0))(localLong1 + 0x1be0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1bb8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1bb8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1bc0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1bc0) = 0;
   *(uint32 *)(localLong1 + 0x1bd0) = 0;
-  *(uint64 *)(localLong1 + 0x1bb8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1b98) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1bb8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1b98) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1ba0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1ba0) = 0;
   *(uint32 *)(localLong1 + 0x1bb0) = 0;
-  *(uint64 *)(localLong1 + 0x1b98) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1b98) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73954,22 +73954,22 @@ void Unwind_180910ce0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1c60) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1c60))(localLong1 + 0x1c50,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1c28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1c28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1c30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1c30) = 0;
   *(uint32 *)(localLong1 + 0x1c40) = 0;
-  *(uint64 *)(localLong1 + 0x1c28) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1c08) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1c28) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1c08) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1c10) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1c10) = 0;
   *(uint32 *)(localLong1 + 0x1c20) = 0;
-  *(uint64 *)(localLong1 + 0x1c08) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1c08) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -73984,22 +73984,22 @@ void Unwind_180910d00(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1cd0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1cd0))(localLong1 + 0x1cc0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1c98) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1c98) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1ca0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1ca0) = 0;
   *(uint32 *)(localLong1 + 0x1cb0) = 0;
-  *(uint64 *)(localLong1 + 0x1c98) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1c78) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1c98) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1c78) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1c80) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1c80) = 0;
   *(uint32 *)(localLong1 + 0x1c90) = 0;
-  *(uint64 *)(localLong1 + 0x1c78) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1c78) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74014,22 +74014,22 @@ void Unwind_180910d20(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1d40) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1d40))(localLong1 + 0x1d30,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1d08) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1d08) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1d10) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1d10) = 0;
   *(uint32 *)(localLong1 + 0x1d20) = 0;
-  *(uint64 *)(localLong1 + 0x1d08) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1ce8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1d08) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1ce8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1cf0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1cf0) = 0;
   *(uint32 *)(localLong1 + 0x1d00) = 0;
-  *(uint64 *)(localLong1 + 0x1ce8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1ce8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74044,22 +74044,22 @@ void Unwind_180910d40(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1db0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1db0))(localLong1 + 0x1da0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1d78) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1d78) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1d80) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1d80) = 0;
   *(uint32 *)(localLong1 + 0x1d90) = 0;
-  *(uint64 *)(localLong1 + 0x1d78) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1d58) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1d78) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1d58) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1d60) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1d60) = 0;
   *(uint32 *)(localLong1 + 0x1d70) = 0;
-  *(uint64 *)(localLong1 + 0x1d58) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1d58) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74074,22 +74074,22 @@ void Unwind_180910d60(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1e20) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1e20))(localLong1 + 0x1e10,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1de8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1de8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1df0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1df0) = 0;
   *(uint32 *)(localLong1 + 0x1e00) = 0;
-  *(uint64 *)(localLong1 + 0x1de8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1dc8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1de8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1dc8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1dd0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1dd0) = 0;
   *(uint32 *)(localLong1 + 0x1de0) = 0;
-  *(uint64 *)(localLong1 + 0x1dc8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1dc8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74104,22 +74104,22 @@ void Unwind_180910d80(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1e90) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1e90))(localLong1 + 0x1e80,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1e58) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1e58) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1e60) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1e60) = 0;
   *(uint32 *)(localLong1 + 0x1e70) = 0;
-  *(uint64 *)(localLong1 + 0x1e58) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1e38) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1e58) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1e38) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1e40) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1e40) = 0;
   *(uint32 *)(localLong1 + 0x1e50) = 0;
-  *(uint64 *)(localLong1 + 0x1e38) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1e38) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74134,22 +74134,22 @@ void Unwind_180910da0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1f00) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1f00))(localLong1 + 0x1ef0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1ec8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1ec8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1ed0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1ed0) = 0;
   *(uint32 *)(localLong1 + 0x1ee0) = 0;
-  *(uint64 *)(localLong1 + 0x1ec8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1ea8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1ec8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1ea8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1eb0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1eb0) = 0;
   *(uint32 *)(localLong1 + 0x1ec0) = 0;
-  *(uint64 *)(localLong1 + 0x1ea8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1ea8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74164,22 +74164,22 @@ void Unwind_180910dc0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1f70) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1f70))(localLong1 + 0x1f60,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1f38) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1f38) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 8000) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 8000) = 0;
   *(uint32 *)(localLong1 + 0x1f50) = 0;
-  *(uint64 *)(localLong1 + 0x1f38) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1f18) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1f38) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1f18) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1f20) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1f20) = 0;
   *(uint32 *)(localLong1 + 0x1f30) = 0;
-  *(uint64 *)(localLong1 + 0x1f18) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1f18) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74194,22 +74194,22 @@ void Unwind_180910de0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1fe0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1fe0))(localLong1 + 0x1fd0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1fa8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1fa8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1fb0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1fb0) = 0;
   *(uint32 *)(localLong1 + 0x1fc0) = 0;
-  *(uint64 *)(localLong1 + 0x1fa8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1f88) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1fa8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1f88) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1f90) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1f90) = 0;
   *(uint32 *)(localLong1 + 0x1fa0) = 0;
-  *(uint64 *)(localLong1 + 0x1f88) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1f88) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74224,22 +74224,22 @@ void Unwind_180910e00(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x2050) != (code *)0x0) {
     (**(code **)(localLong1 + 0x2050))(localLong1 + 0x2040,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x2018) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2018) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2020) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2020) = 0;
   *(uint32 *)(localLong1 + 0x2030) = 0;
-  *(uint64 *)(localLong1 + 0x2018) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1ff8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2018) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1ff8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2000) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2000) = 0;
   *(uint32 *)(localLong1 + 0x2010) = 0;
-  *(uint64 *)(localLong1 + 0x1ff8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1ff8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74254,22 +74254,22 @@ void Unwind_180910e20(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x20c0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x20c0))(localLong1 + 0x20b0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x2088) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2088) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2090) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2090) = 0;
   *(uint32 *)(localLong1 + 0x20a0) = 0;
-  *(uint64 *)(localLong1 + 0x2088) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x2068) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2088) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x2068) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2070) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2070) = 0;
   *(uint32 *)(localLong1 + 0x2080) = 0;
-  *(uint64 *)(localLong1 + 0x2068) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x2068) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74284,22 +74284,22 @@ void Unwind_180910e40(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x2130) != (code *)0x0) {
     (**(code **)(localLong1 + 0x2130))(localLong1 + 0x2120,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x20f8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x20f8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2100) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2100) = 0;
   *(uint32 *)(localLong1 + 0x2110) = 0;
-  *(uint64 *)(localLong1 + 0x20f8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x20d8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x20f8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x20d8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x20e0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x20e0) = 0;
   *(uint32 *)(localLong1 + 0x20f0) = 0;
-  *(uint64 *)(localLong1 + 0x20d8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x20d8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74314,22 +74314,22 @@ void Unwind_180910e60(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x21a0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x21a0))(localLong1 + 0x2190,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x2168) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2168) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2170) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2170) = 0;
   *(uint32 *)(localLong1 + 0x2180) = 0;
-  *(uint64 *)(localLong1 + 0x2168) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x2148) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2168) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x2148) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2150) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2150) = 0;
   *(uint32 *)(localLong1 + 0x2160) = 0;
-  *(uint64 *)(localLong1 + 0x2148) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x2148) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74344,22 +74344,22 @@ void Unwind_180910e80(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x2210) != (code *)0x0) {
     (**(code **)(localLong1 + 0x2210))(localLong1 + 0x2200,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x21d8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x21d8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x21e0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x21e0) = 0;
   *(uint32 *)(localLong1 + 0x21f0) = 0;
-  *(uint64 *)(localLong1 + 0x21d8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x21b8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x21d8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x21b8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x21c0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x21c0) = 0;
   *(uint32 *)(localLong1 + 0x21d0) = 0;
-  *(uint64 *)(localLong1 + 0x21b8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x21b8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74374,22 +74374,22 @@ void Unwind_180910ea0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x2280) != (code *)0x0) {
     (**(code **)(localLong1 + 0x2280))(localLong1 + 0x2270,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x2248) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2248) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2250) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2250) = 0;
   *(uint32 *)(localLong1 + 0x2260) = 0;
-  *(uint64 *)(localLong1 + 0x2248) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x2228) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2248) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x2228) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2230) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2230) = 0;
   *(uint32 *)(localLong1 + 0x2240) = 0;
-  *(uint64 *)(localLong1 + 0x2228) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x2228) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74404,22 +74404,22 @@ void Unwind_180910ec0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x22f0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x22f0))(localLong1 + 0x22e0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x22b8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x22b8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x22c0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x22c0) = 0;
   *(uint32 *)(localLong1 + 0x22d0) = 0;
-  *(uint64 *)(localLong1 + 0x22b8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x2298) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x22b8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x2298) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x22a0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x22a0) = 0;
   *(uint32 *)(localLong1 + 0x22b0) = 0;
-  *(uint64 *)(localLong1 + 0x2298) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x2298) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74434,22 +74434,22 @@ void Unwind_180910ee0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x2360) != (code *)0x0) {
     (**(code **)(localLong1 + 0x2360))(localLong1 + 0x2350,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 9000) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 9000) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2330) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2330) = 0;
   *(uint32 *)(localLong1 + 0x2340) = 0;
-  *(uint64 *)(localLong1 + 9000) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x2308) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 9000) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x2308) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2310) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2310) = 0;
   *(uint32 *)(localLong1 + 0x2320) = 0;
-  *(uint64 *)(localLong1 + 0x2308) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x2308) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74464,22 +74464,22 @@ void Unwind_180910f00(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x23d0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x23d0))(localLong1 + 0x23c0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x2398) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2398) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x23a0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x23a0) = 0;
   *(uint32 *)(localLong1 + 0x23b0) = 0;
-  *(uint64 *)(localLong1 + 0x2398) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x2378) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2398) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x2378) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2380) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2380) = 0;
   *(uint32 *)(localLong1 + 0x2390) = 0;
-  *(uint64 *)(localLong1 + 0x2378) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x2378) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74494,22 +74494,22 @@ void Unwind_180910f20(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x2440) != (code *)0x0) {
     (**(code **)(localLong1 + 0x2440))(localLong1 + 0x2430,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x2408) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2408) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2410) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2410) = 0;
   *(uint32 *)(localLong1 + 0x2420) = 0;
-  *(uint64 *)(localLong1 + 0x2408) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x23e8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2408) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x23e8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x23f0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x23f0) = 0;
   *(uint32 *)(localLong1 + 0x2400) = 0;
-  *(uint64 *)(localLong1 + 0x23e8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x23e8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74524,22 +74524,22 @@ void Unwind_180910f40(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x24b0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x24b0))(localLong1 + 0x24a0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x2478) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2478) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2480) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2480) = 0;
   *(uint32 *)(localLong1 + 0x2490) = 0;
-  *(uint64 *)(localLong1 + 0x2478) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x2458) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2478) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x2458) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2460) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2460) = 0;
   *(uint32 *)(localLong1 + 0x2470) = 0;
-  *(uint64 *)(localLong1 + 0x2458) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x2458) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74554,22 +74554,22 @@ void Unwind_180910f60(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x2520) != (code *)0x0) {
     (**(code **)(localLong1 + 0x2520))(localLong1 + 0x2510,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x24e8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x24e8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x24f0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x24f0) = 0;
   *(uint32 *)(localLong1 + 0x2500) = 0;
-  *(uint64 *)(localLong1 + 0x24e8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x24c8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x24e8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x24c8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x24d0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x24d0) = 0;
   *(uint32 *)(localLong1 + 0x24e0) = 0;
-  *(uint64 *)(localLong1 + 0x24c8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x24c8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74584,22 +74584,22 @@ void Unwind_180910f80(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x2590) != (code *)0x0) {
     (**(code **)(localLong1 + 0x2590))(localLong1 + 0x2580,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x2558) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2558) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2560) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2560) = 0;
   *(uint32 *)(localLong1 + 0x2570) = 0;
-  *(uint64 *)(localLong1 + 0x2558) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x2538) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2558) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x2538) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2540) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2540) = 0;
   *(uint32 *)(localLong1 + 0x2550) = 0;
-  *(uint64 *)(localLong1 + 0x2538) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x2538) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74614,22 +74614,22 @@ void Unwind_180910fa0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x2600) != (code *)0x0) {
     (**(code **)(localLong1 + 0x2600))(localLong1 + 0x25f0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x25c8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x25c8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x25d0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x25d0) = 0;
   *(uint32 *)(localLong1 + 0x25e0) = 0;
-  *(uint64 *)(localLong1 + 0x25c8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x25a8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x25c8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x25a8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x25b0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x25b0) = 0;
   *(uint32 *)(localLong1 + 0x25c0) = 0;
-  *(uint64 *)(localLong1 + 0x25a8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x25a8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74690,22 +74690,22 @@ void Unwind_180911000(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xa00) != (code *)0x0) {
     (**(code **)(localLong1 + 0xa00))(localLong1 + 0x9f0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x9c8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x9c8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x9d0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x9d0) = 0;
   *(uint32 *)(localLong1 + 0x9e0) = 0;
-  *(uint64 *)(localLong1 + 0x9c8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x9a8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x9c8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x9a8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x9b0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x9b0) = 0;
   *(uint32 *)(localLong1 + 0x9c0) = 0;
-  *(uint64 *)(localLong1 + 0x9a8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x9a8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74720,22 +74720,22 @@ void Unwind_180911020(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xa70) != (code *)0x0) {
     (**(code **)(localLong1 + 0xa70))(localLong1 + 0xa60,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xa38) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xa38) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xa40) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xa40) = 0;
   *(uint32 *)(localLong1 + 0xa50) = 0;
-  *(uint64 *)(localLong1 + 0xa38) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xa18) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xa38) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xa18) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xa20) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xa20) = 0;
   *(uint32 *)(localLong1 + 0xa30) = 0;
-  *(uint64 *)(localLong1 + 0xa18) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xa18) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74750,22 +74750,22 @@ void Unwind_180911040(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xae0) != (code *)0x0) {
     (**(code **)(localLong1 + 0xae0))(localLong1 + 0xad0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xaa8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xaa8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xab0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xab0) = 0;
   *(uint32 *)(localLong1 + 0xac0) = 0;
-  *(uint64 *)(localLong1 + 0xaa8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xa88) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xaa8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xa88) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xa90) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xa90) = 0;
   *(uint32 *)(localLong1 + 0xaa0) = 0;
-  *(uint64 *)(localLong1 + 0xa88) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xa88) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74780,22 +74780,22 @@ void Unwind_180911060(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xb50) != (code *)0x0) {
     (**(code **)(localLong1 + 0xb50))(localLong1 + 0xb40,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xb18) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xb18) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xb20) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xb20) = 0;
   *(uint32 *)(localLong1 + 0xb30) = 0;
-  *(uint64 *)(localLong1 + 0xb18) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xaf8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xb18) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xaf8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xb00) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xb00) = 0;
   *(uint32 *)(localLong1 + 0xb10) = 0;
-  *(uint64 *)(localLong1 + 0xaf8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xaf8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74810,22 +74810,22 @@ void Unwind_180911080(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xbc0) != (code *)0x0) {
     (**(code **)(localLong1 + 0xbc0))(localLong1 + 0xbb0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xb88) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xb88) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xb90) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xb90) = 0;
   *(uint32 *)(localLong1 + 0xba0) = 0;
-  *(uint64 *)(localLong1 + 0xb88) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xb68) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xb88) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xb68) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xb70) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xb70) = 0;
   *(uint32 *)(localLong1 + 0xb80) = 0;
-  *(uint64 *)(localLong1 + 0xb68) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xb68) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74840,22 +74840,22 @@ void Unwind_1809110a0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xc30) != (code *)0x0) {
     (**(code **)(localLong1 + 0xc30))(localLong1 + 0xc20,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xbf8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xbf8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xc00) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xc00) = 0;
   *(uint32 *)(localLong1 + 0xc10) = 0;
-  *(uint64 *)(localLong1 + 0xbf8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xbd8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xbf8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xbd8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xbe0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xbe0) = 0;
   *(uint32 *)(localLong1 + 0xbf0) = 0;
-  *(uint64 *)(localLong1 + 0xbd8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xbd8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74870,22 +74870,22 @@ void Unwind_1809110c0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xca0) != (code *)0x0) {
     (**(code **)(localLong1 + 0xca0))(localLong1 + 0xc90,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xc68) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xc68) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xc70) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xc70) = 0;
   *(uint32 *)(localLong1 + 0xc80) = 0;
-  *(uint64 *)(localLong1 + 0xc68) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xc48) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xc68) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xc48) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xc50) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xc50) = 0;
   *(uint32 *)(localLong1 + 0xc60) = 0;
-  *(uint64 *)(localLong1 + 0xc48) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xc48) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74900,22 +74900,22 @@ void Unwind_1809110e0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xd10) != (code *)0x0) {
     (**(code **)(localLong1 + 0xd10))(localLong1 + 0xd00,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xcd8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xcd8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xce0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xce0) = 0;
   *(uint32 *)(localLong1 + 0xcf0) = 0;
-  *(uint64 *)(localLong1 + 0xcd8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xcb8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xcd8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xcb8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xcc0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xcc0) = 0;
   *(uint32 *)(localLong1 + 0xcd0) = 0;
-  *(uint64 *)(localLong1 + 0xcb8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xcb8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74930,22 +74930,22 @@ void Unwind_180911100(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xd80) != (code *)0x0) {
     (**(code **)(localLong1 + 0xd80))(localLong1 + 0xd70,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xd48) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xd48) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xd50) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xd50) = 0;
   *(uint32 *)(localLong1 + 0xd60) = 0;
-  *(uint64 *)(localLong1 + 0xd48) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xd28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xd48) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xd28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xd30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xd30) = 0;
   *(uint32 *)(localLong1 + 0xd40) = 0;
-  *(uint64 *)(localLong1 + 0xd28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xd28) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74960,22 +74960,22 @@ void Unwind_180911120(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xdf0) != (code *)0x0) {
     (**(code **)(localLong1 + 0xdf0))(localLong1 + 0xde0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xdb8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xdb8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xdc0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xdc0) = 0;
   *(uint32 *)(localLong1 + 0xdd0) = 0;
-  *(uint64 *)(localLong1 + 0xdb8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xd98) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xdb8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xd98) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xda0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xda0) = 0;
   *(uint32 *)(localLong1 + 0xdb0) = 0;
-  *(uint64 *)(localLong1 + 0xd98) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xd98) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -74990,22 +74990,22 @@ void Unwind_180911140(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xe60) != (code *)0x0) {
     (**(code **)(localLong1 + 0xe60))(localLong1 + 0xe50,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xe28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xe28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xe30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xe30) = 0;
   *(uint32 *)(localLong1 + 0xe40) = 0;
-  *(uint64 *)(localLong1 + 0xe28) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xe08) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xe28) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xe08) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xe10) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xe10) = 0;
   *(uint32 *)(localLong1 + 0xe20) = 0;
-  *(uint64 *)(localLong1 + 0xe08) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xe08) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75020,22 +75020,22 @@ void Unwind_180911160(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xed0) != (code *)0x0) {
     (**(code **)(localLong1 + 0xed0))(localLong1 + 0xec0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xe98) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xe98) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xea0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xea0) = 0;
   *(uint32 *)(localLong1 + 0xeb0) = 0;
-  *(uint64 *)(localLong1 + 0xe98) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xe78) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xe98) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xe78) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xe80) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xe80) = 0;
   *(uint32 *)(localLong1 + 0xe90) = 0;
-  *(uint64 *)(localLong1 + 0xe78) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xe78) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75050,22 +75050,22 @@ void Unwind_180911180(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xf40) != (code *)0x0) {
     (**(code **)(localLong1 + 0xf40))(localLong1 + 0xf30,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xf08) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xf08) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xf10) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xf10) = 0;
   *(uint32 *)(localLong1 + 0xf20) = 0;
-  *(uint64 *)(localLong1 + 0xf08) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xee8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xf08) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xee8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xef0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xef0) = 0;
   *(uint32 *)(localLong1 + 0xf00) = 0;
-  *(uint64 *)(localLong1 + 0xee8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xee8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75080,22 +75080,22 @@ void Unwind_1809111a0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0xfb0) != (code *)0x0) {
     (**(code **)(localLong1 + 0xfb0))(localLong1 + 4000,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xf78) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xf78) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xf80) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xf80) = 0;
   *(uint32 *)(localLong1 + 0xf90) = 0;
-  *(uint64 *)(localLong1 + 0xf78) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xf58) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xf78) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xf58) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xf60) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xf60) = 0;
   *(uint32 *)(localLong1 + 0xf70) = 0;
-  *(uint64 *)(localLong1 + 0xf58) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xf58) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75110,22 +75110,22 @@ void Unwind_1809111c0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1020) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1020))(localLong1 + 0x1010,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0xfe8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xfe8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xff0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xff0) = 0;
   *(uint32 *)(localLong1 + 0x1000) = 0;
-  *(uint64 *)(localLong1 + 0xfe8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0xfc8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0xfe8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0xfc8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0xfd0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0xfd0) = 0;
   *(uint32 *)(localLong1 + 0xfe0) = 0;
-  *(uint64 *)(localLong1 + 0xfc8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0xfc8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75140,22 +75140,22 @@ void Unwind_1809111e0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1090) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1090))(localLong1 + 0x1080,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1058) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1058) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1060) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1060) = 0;
   *(uint32 *)(localLong1 + 0x1070) = 0;
-  *(uint64 *)(localLong1 + 0x1058) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1038) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1058) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1038) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1040) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1040) = 0;
   *(uint32 *)(localLong1 + 0x1050) = 0;
-  *(uint64 *)(localLong1 + 0x1038) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1038) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75170,22 +75170,22 @@ void Unwind_180911200(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1100) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1100))(localLong1 + 0x10f0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x10c8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x10c8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x10d0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x10d0) = 0;
   *(uint32 *)(localLong1 + 0x10e0) = 0;
-  *(uint64 *)(localLong1 + 0x10c8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x10a8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x10c8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x10a8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x10b0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x10b0) = 0;
   *(uint32 *)(localLong1 + 0x10c0) = 0;
-  *(uint64 *)(localLong1 + 0x10a8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x10a8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75200,22 +75200,22 @@ void Unwind_180911220(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1170) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1170))(localLong1 + 0x1160,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1138) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1138) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1140) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1140) = 0;
   *(uint32 *)(localLong1 + 0x1150) = 0;
-  *(uint64 *)(localLong1 + 0x1138) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1118) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1138) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1118) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1120) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1120) = 0;
   *(uint32 *)(localLong1 + 0x1130) = 0;
-  *(uint64 *)(localLong1 + 0x1118) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1118) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75230,22 +75230,22 @@ void Unwind_180911240(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x11e0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x11e0))(localLong1 + 0x11d0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x11a8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x11a8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x11b0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x11b0) = 0;
   *(uint32 *)(localLong1 + 0x11c0) = 0;
-  *(uint64 *)(localLong1 + 0x11a8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1188) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x11a8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1188) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1190) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1190) = 0;
   *(uint32 *)(localLong1 + 0x11a0) = 0;
-  *(uint64 *)(localLong1 + 0x1188) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1188) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75260,22 +75260,22 @@ void Unwind_180911260(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1250) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1250))(localLong1 + 0x1240,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1218) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1218) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1220) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1220) = 0;
   *(uint32 *)(localLong1 + 0x1230) = 0;
-  *(uint64 *)(localLong1 + 0x1218) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x11f8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1218) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x11f8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1200) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1200) = 0;
   *(uint32 *)(localLong1 + 0x1210) = 0;
-  *(uint64 *)(localLong1 + 0x11f8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x11f8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75290,22 +75290,22 @@ void Unwind_180911280(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x12c0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x12c0))(localLong1 + 0x12b0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1288) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1288) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1290) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1290) = 0;
   *(uint32 *)(localLong1 + 0x12a0) = 0;
-  *(uint64 *)(localLong1 + 0x1288) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1268) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1288) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1268) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1270) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1270) = 0;
   *(uint32 *)(localLong1 + 0x1280) = 0;
-  *(uint64 *)(localLong1 + 0x1268) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1268) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75320,22 +75320,22 @@ void Unwind_1809112a0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1330) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1330))(localLong1 + 0x1320,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x12f8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x12f8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1300) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1300) = 0;
   *(uint32 *)(localLong1 + 0x1310) = 0;
-  *(uint64 *)(localLong1 + 0x12f8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x12d8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x12f8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x12d8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x12e0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x12e0) = 0;
   *(uint32 *)(localLong1 + 0x12f0) = 0;
-  *(uint64 *)(localLong1 + 0x12d8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x12d8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75350,22 +75350,22 @@ void Unwind_1809112c0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x13a0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x13a0))(localLong1 + 0x1390,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1368) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1368) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1370) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1370) = 0;
   *(uint32 *)(localLong1 + 0x1380) = 0;
-  *(uint64 *)(localLong1 + 0x1368) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1348) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1368) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1348) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1350) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1350) = 0;
   *(uint32 *)(localLong1 + 0x1360) = 0;
-  *(uint64 *)(localLong1 + 0x1348) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1348) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75380,22 +75380,22 @@ void Unwind_1809112e0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1410) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1410))(localLong1 + 0x1400,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x13d8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x13d8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x13e0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x13e0) = 0;
   *(uint32 *)(localLong1 + 0x13f0) = 0;
-  *(uint64 *)(localLong1 + 0x13d8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x13b8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x13d8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x13b8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x13c0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x13c0) = 0;
   *(uint32 *)(localLong1 + 0x13d0) = 0;
-  *(uint64 *)(localLong1 + 0x13b8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x13b8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75410,22 +75410,22 @@ void Unwind_180911300(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1480) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1480))(localLong1 + 0x1470,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1448) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1448) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1450) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1450) = 0;
   *(uint32 *)(localLong1 + 0x1460) = 0;
-  *(uint64 *)(localLong1 + 0x1448) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1428) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1448) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1428) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1430) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1430) = 0;
   *(uint32 *)(localLong1 + 0x1440) = 0;
-  *(uint64 *)(localLong1 + 0x1428) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1428) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75440,22 +75440,22 @@ void Unwind_180911320(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x14f0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x14f0))(localLong1 + 0x14e0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x14b8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x14b8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x14c0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x14c0) = 0;
   *(uint32 *)(localLong1 + 0x14d0) = 0;
-  *(uint64 *)(localLong1 + 0x14b8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1498) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x14b8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1498) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x14a0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x14a0) = 0;
   *(uint32 *)(localLong1 + 0x14b0) = 0;
-  *(uint64 *)(localLong1 + 0x1498) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1498) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75470,22 +75470,22 @@ void Unwind_180911340(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1560) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1560))(localLong1 + 0x1550,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1528) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1528) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1530) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1530) = 0;
   *(uint32 *)(localLong1 + 0x1540) = 0;
-  *(uint64 *)(localLong1 + 0x1528) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1508) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1528) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1508) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1510) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1510) = 0;
   *(uint32 *)(localLong1 + 0x1520) = 0;
-  *(uint64 *)(localLong1 + 0x1508) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1508) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75500,22 +75500,22 @@ void Unwind_180911360(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x15d0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x15d0))(localLong1 + 0x15c0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1598) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1598) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x15a0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x15a0) = 0;
   *(uint32 *)(localLong1 + 0x15b0) = 0;
-  *(uint64 *)(localLong1 + 0x1598) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1578) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1598) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1578) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1580) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1580) = 0;
   *(uint32 *)(localLong1 + 0x1590) = 0;
-  *(uint64 *)(localLong1 + 0x1578) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1578) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75530,22 +75530,22 @@ void Unwind_180911380(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1640) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1640))(localLong1 + 0x1630,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1608) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1608) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1610) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1610) = 0;
   *(uint32 *)(localLong1 + 0x1620) = 0;
-  *(uint64 *)(localLong1 + 0x1608) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x15e8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1608) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x15e8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x15f0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x15f0) = 0;
   *(uint32 *)(localLong1 + 0x1600) = 0;
-  *(uint64 *)(localLong1 + 0x15e8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x15e8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75560,22 +75560,22 @@ void Unwind_1809113a0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x16b0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x16b0))(localLong1 + 0x16a0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1678) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1678) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1680) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1680) = 0;
   *(uint32 *)(localLong1 + 0x1690) = 0;
-  *(uint64 *)(localLong1 + 0x1678) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1658) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1678) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1658) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1660) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1660) = 0;
   *(uint32 *)(localLong1 + 0x1670) = 0;
-  *(uint64 *)(localLong1 + 0x1658) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1658) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75590,22 +75590,22 @@ void Unwind_1809113c0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1720) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1720))(localLong1 + 0x1710,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x16e8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x16e8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x16f0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x16f0) = 0;
   *(uint32 *)(localLong1 + 0x1700) = 0;
-  *(uint64 *)(localLong1 + 0x16e8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x16c8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x16e8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x16c8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x16d0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x16d0) = 0;
   *(uint32 *)(localLong1 + 0x16e0) = 0;
-  *(uint64 *)(localLong1 + 0x16c8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x16c8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75620,22 +75620,22 @@ void Unwind_1809113e0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1790) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1790))(localLong1 + 0x1780,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1758) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1758) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1760) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1760) = 0;
   *(uint32 *)(localLong1 + 6000) = 0;
-  *(uint64 *)(localLong1 + 0x1758) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1738) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1758) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1738) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1740) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1740) = 0;
   *(uint32 *)(localLong1 + 0x1750) = 0;
-  *(uint64 *)(localLong1 + 0x1738) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1738) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75650,22 +75650,22 @@ void Unwind_180911400(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1800) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1800))(localLong1 + 0x17f0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x17c8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x17c8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x17d0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x17d0) = 0;
   *(uint32 *)(localLong1 + 0x17e0) = 0;
-  *(uint64 *)(localLong1 + 0x17c8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x17a8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x17c8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x17a8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x17b0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x17b0) = 0;
   *(uint32 *)(localLong1 + 0x17c0) = 0;
-  *(uint64 *)(localLong1 + 0x17a8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x17a8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75680,22 +75680,22 @@ void Unwind_180911420(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1870) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1870))(localLong1 + 0x1860,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1838) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1838) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1840) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1840) = 0;
   *(uint32 *)(localLong1 + 0x1850) = 0;
-  *(uint64 *)(localLong1 + 0x1838) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1818) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1838) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1818) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1820) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1820) = 0;
   *(uint32 *)(localLong1 + 0x1830) = 0;
-  *(uint64 *)(localLong1 + 0x1818) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1818) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75710,22 +75710,22 @@ void Unwind_180911440(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x18e0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x18e0))(localLong1 + 0x18d0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x18a8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x18a8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x18b0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x18b0) = 0;
   *(uint32 *)(localLong1 + 0x18c0) = 0;
-  *(uint64 *)(localLong1 + 0x18a8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1888) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x18a8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1888) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1890) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1890) = 0;
   *(uint32 *)(localLong1 + 0x18a0) = 0;
-  *(uint64 *)(localLong1 + 0x1888) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1888) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75740,22 +75740,22 @@ void Unwind_180911460(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1950) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1950))(localLong1 + 0x1940,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1918) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1918) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1920) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1920) = 0;
   *(uint32 *)(localLong1 + 0x1930) = 0;
-  *(uint64 *)(localLong1 + 0x1918) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x18f8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1918) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x18f8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1900) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1900) = 0;
   *(uint32 *)(localLong1 + 0x1910) = 0;
-  *(uint64 *)(localLong1 + 0x18f8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x18f8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75770,22 +75770,22 @@ void Unwind_180911480(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x19c0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x19c0))(localLong1 + 0x19b0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1988) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1988) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1990) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1990) = 0;
   *(uint32 *)(localLong1 + 0x19a0) = 0;
-  *(uint64 *)(localLong1 + 0x1988) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1968) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1988) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1968) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1970) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1970) = 0;
   *(uint32 *)(localLong1 + 0x1980) = 0;
-  *(uint64 *)(localLong1 + 0x1968) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1968) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75800,22 +75800,22 @@ void Unwind_1809114a0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1a30) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1a30))(localLong1 + 0x1a20,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x19f8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x19f8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1a00) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1a00) = 0;
   *(uint32 *)(localLong1 + 0x1a10) = 0;
-  *(uint64 *)(localLong1 + 0x19f8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x19d8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x19f8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x19d8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x19e0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x19e0) = 0;
   *(uint32 *)(localLong1 + 0x19f0) = 0;
-  *(uint64 *)(localLong1 + 0x19d8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x19d8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75830,22 +75830,22 @@ void Unwind_1809114c0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1aa0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1aa0))(localLong1 + 0x1a90,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1a68) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1a68) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1a70) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1a70) = 0;
   *(uint32 *)(localLong1 + 0x1a80) = 0;
-  *(uint64 *)(localLong1 + 0x1a68) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1a48) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1a68) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1a48) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1a50) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1a50) = 0;
   *(uint32 *)(localLong1 + 0x1a60) = 0;
-  *(uint64 *)(localLong1 + 0x1a48) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1a48) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75860,22 +75860,22 @@ void Unwind_1809114e0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1b10) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1b10))(localLong1 + 0x1b00,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1ad8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1ad8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1ae0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1ae0) = 0;
   *(uint32 *)(localLong1 + 0x1af0) = 0;
-  *(uint64 *)(localLong1 + 0x1ad8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1ab8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1ad8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1ab8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1ac0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1ac0) = 0;
   *(uint32 *)(localLong1 + 0x1ad0) = 0;
-  *(uint64 *)(localLong1 + 0x1ab8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1ab8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75890,22 +75890,22 @@ void Unwind_180911500(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1b80) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1b80))(localLong1 + 0x1b70,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1b48) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1b48) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1b50) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1b50) = 0;
   *(uint32 *)(localLong1 + 0x1b60) = 0;
-  *(uint64 *)(localLong1 + 0x1b48) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1b28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1b48) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1b28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1b30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1b30) = 0;
   *(uint32 *)(localLong1 + 0x1b40) = 0;
-  *(uint64 *)(localLong1 + 0x1b28) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1b28) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75920,22 +75920,22 @@ void Unwind_180911520(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1bf0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1bf0))(localLong1 + 0x1be0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1bb8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1bb8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1bc0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1bc0) = 0;
   *(uint32 *)(localLong1 + 0x1bd0) = 0;
-  *(uint64 *)(localLong1 + 0x1bb8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1b98) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1bb8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1b98) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1ba0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1ba0) = 0;
   *(uint32 *)(localLong1 + 0x1bb0) = 0;
-  *(uint64 *)(localLong1 + 0x1b98) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1b98) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75950,22 +75950,22 @@ void Unwind_180911540(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1c60) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1c60))(localLong1 + 0x1c50,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1c28) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1c28) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1c30) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1c30) = 0;
   *(uint32 *)(localLong1 + 0x1c40) = 0;
-  *(uint64 *)(localLong1 + 0x1c28) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1c08) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1c28) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1c08) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1c10) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1c10) = 0;
   *(uint32 *)(localLong1 + 0x1c20) = 0;
-  *(uint64 *)(localLong1 + 0x1c08) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1c08) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -75980,22 +75980,22 @@ void Unwind_180911560(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1cd0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1cd0))(localLong1 + 0x1cc0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1c98) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1c98) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1ca0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1ca0) = 0;
   *(uint32 *)(localLong1 + 0x1cb0) = 0;
-  *(uint64 *)(localLong1 + 0x1c98) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1c78) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1c98) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1c78) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1c80) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1c80) = 0;
   *(uint32 *)(localLong1 + 0x1c90) = 0;
-  *(uint64 *)(localLong1 + 0x1c78) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1c78) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -76010,22 +76010,22 @@ void Unwind_180911580(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1d40) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1d40))(localLong1 + 0x1d30,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1d08) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1d08) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1d10) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1d10) = 0;
   *(uint32 *)(localLong1 + 0x1d20) = 0;
-  *(uint64 *)(localLong1 + 0x1d08) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1ce8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1d08) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1ce8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1cf0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1cf0) = 0;
   *(uint32 *)(localLong1 + 0x1d00) = 0;
-  *(uint64 *)(localLong1 + 0x1ce8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1ce8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -76040,22 +76040,22 @@ void Unwind_1809115a0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1db0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1db0))(localLong1 + 0x1da0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1d78) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1d78) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1d80) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1d80) = 0;
   *(uint32 *)(localLong1 + 0x1d90) = 0;
-  *(uint64 *)(localLong1 + 0x1d78) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1d58) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1d78) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1d58) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1d60) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1d60) = 0;
   *(uint32 *)(localLong1 + 0x1d70) = 0;
-  *(uint64 *)(localLong1 + 0x1d58) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1d58) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -76070,22 +76070,22 @@ void Unwind_1809115c0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1e20) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1e20))(localLong1 + 0x1e10,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1de8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1de8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1df0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1df0) = 0;
   *(uint32 *)(localLong1 + 0x1e00) = 0;
-  *(uint64 *)(localLong1 + 0x1de8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1dc8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1de8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1dc8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1dd0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1dd0) = 0;
   *(uint32 *)(localLong1 + 0x1de0) = 0;
-  *(uint64 *)(localLong1 + 0x1dc8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1dc8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -76100,22 +76100,22 @@ void Unwind_1809115e0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1e90) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1e90))(localLong1 + 0x1e80,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1e58) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1e58) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1e60) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1e60) = 0;
   *(uint32 *)(localLong1 + 0x1e70) = 0;
-  *(uint64 *)(localLong1 + 0x1e58) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1e38) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1e58) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1e38) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1e40) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1e40) = 0;
   *(uint32 *)(localLong1 + 0x1e50) = 0;
-  *(uint64 *)(localLong1 + 0x1e38) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1e38) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -76130,22 +76130,22 @@ void Unwind_180911600(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1f00) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1f00))(localLong1 + 0x1ef0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1ec8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1ec8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1ed0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1ed0) = 0;
   *(uint32 *)(localLong1 + 0x1ee0) = 0;
-  *(uint64 *)(localLong1 + 0x1ec8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1ea8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1ec8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1ea8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1eb0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1eb0) = 0;
   *(uint32 *)(localLong1 + 0x1ec0) = 0;
-  *(uint64 *)(localLong1 + 0x1ea8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1ea8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -76160,22 +76160,22 @@ void Unwind_180911620(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1f70) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1f70))(localLong1 + 0x1f60,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1f38) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1f38) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 8000) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 8000) = 0;
   *(uint32 *)(localLong1 + 0x1f50) = 0;
-  *(uint64 *)(localLong1 + 0x1f38) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1f18) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1f38) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1f18) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1f20) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1f20) = 0;
   *(uint32 *)(localLong1 + 0x1f30) = 0;
-  *(uint64 *)(localLong1 + 0x1f18) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1f18) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -76190,22 +76190,22 @@ void Unwind_180911640(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x1fe0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x1fe0))(localLong1 + 0x1fd0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x1fa8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1fa8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1fb0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1fb0) = 0;
   *(uint32 *)(localLong1 + 0x1fc0) = 0;
-  *(uint64 *)(localLong1 + 0x1fa8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1f88) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x1fa8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1f88) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x1f90) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x1f90) = 0;
   *(uint32 *)(localLong1 + 0x1fa0) = 0;
-  *(uint64 *)(localLong1 + 0x1f88) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1f88) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -76220,22 +76220,22 @@ void Unwind_180911660(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x2050) != (code *)0x0) {
     (**(code **)(localLong1 + 0x2050))(localLong1 + 0x2040,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x2018) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2018) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2020) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2020) = 0;
   *(uint32 *)(localLong1 + 0x2030) = 0;
-  *(uint64 *)(localLong1 + 0x2018) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1ff8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2018) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1ff8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2000) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2000) = 0;
   *(uint32 *)(localLong1 + 0x2010) = 0;
-  *(uint64 *)(localLong1 + 0x1ff8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1ff8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -76250,22 +76250,22 @@ void Unwind_180911680(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x20c0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x20c0))(localLong1 + 0x20b0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x2088) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2088) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2090) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2090) = 0;
   *(uint32 *)(localLong1 + 0x20a0) = 0;
-  *(uint64 *)(localLong1 + 0x2088) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x2068) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2088) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x2068) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2070) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2070) = 0;
   *(uint32 *)(localLong1 + 0x2080) = 0;
-  *(uint64 *)(localLong1 + 0x2068) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x2068) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -76280,22 +76280,22 @@ void Unwind_1809116a0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x2130) != (code *)0x0) {
     (**(code **)(localLong1 + 0x2130))(localLong1 + 0x2120,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x20f8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x20f8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2100) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2100) = 0;
   *(uint32 *)(localLong1 + 0x2110) = 0;
-  *(uint64 *)(localLong1 + 0x20f8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x20d8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x20f8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x20d8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x20e0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x20e0) = 0;
   *(uint32 *)(localLong1 + 0x20f0) = 0;
-  *(uint64 *)(localLong1 + 0x20d8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x20d8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -76310,22 +76310,22 @@ void Unwind_1809116c0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x21a0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x21a0))(localLong1 + 0x2190,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x2168) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2168) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2170) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2170) = 0;
   *(uint32 *)(localLong1 + 0x2180) = 0;
-  *(uint64 *)(localLong1 + 0x2168) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x2148) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2168) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x2148) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2150) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2150) = 0;
   *(uint32 *)(localLong1 + 0x2160) = 0;
-  *(uint64 *)(localLong1 + 0x2148) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x2148) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -76340,22 +76340,22 @@ void Unwind_1809116e0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x2210) != (code *)0x0) {
     (**(code **)(localLong1 + 0x2210))(localLong1 + 0x2200,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x21d8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x21d8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x21e0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x21e0) = 0;
   *(uint32 *)(localLong1 + 0x21f0) = 0;
-  *(uint64 *)(localLong1 + 0x21d8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x21b8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x21d8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x21b8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x21c0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x21c0) = 0;
   *(uint32 *)(localLong1 + 0x21d0) = 0;
-  *(uint64 *)(localLong1 + 0x21b8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x21b8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -76370,22 +76370,22 @@ void Unwind_180911700(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x2280) != (code *)0x0) {
     (**(code **)(localLong1 + 0x2280))(localLong1 + 0x2270,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x2248) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2248) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2250) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2250) = 0;
   *(uint32 *)(localLong1 + 0x2260) = 0;
-  *(uint64 *)(localLong1 + 0x2248) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x2228) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2248) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x2228) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2230) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2230) = 0;
   *(uint32 *)(localLong1 + 0x2240) = 0;
-  *(uint64 *)(localLong1 + 0x2228) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x2228) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -76400,22 +76400,22 @@ void Unwind_180911720(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x22f0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x22f0))(localLong1 + 0x22e0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x22b8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x22b8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x22c0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x22c0) = 0;
   *(uint32 *)(localLong1 + 0x22d0) = 0;
-  *(uint64 *)(localLong1 + 0x22b8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x2298) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x22b8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x2298) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x22a0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x22a0) = 0;
   *(uint32 *)(localLong1 + 0x22b0) = 0;
-  *(uint64 *)(localLong1 + 0x2298) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x2298) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -76430,22 +76430,22 @@ void Unwind_180911740(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x2360) != (code *)0x0) {
     (**(code **)(localLong1 + 0x2360))(localLong1 + 0x2350,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 9000) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 9000) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2330) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2330) = 0;
   *(uint32 *)(localLong1 + 0x2340) = 0;
-  *(uint64 *)(localLong1 + 9000) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x2308) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 9000) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x2308) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2310) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2310) = 0;
   *(uint32 *)(localLong1 + 0x2320) = 0;
-  *(uint64 *)(localLong1 + 0x2308) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x2308) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -76460,22 +76460,22 @@ void Unwind_180911760(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x23d0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x23d0))(localLong1 + 0x23c0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x2398) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2398) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x23a0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x23a0) = 0;
   *(uint32 *)(localLong1 + 0x23b0) = 0;
-  *(uint64 *)(localLong1 + 0x2398) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x2378) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2398) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x2378) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2380) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2380) = 0;
   *(uint32 *)(localLong1 + 0x2390) = 0;
-  *(uint64 *)(localLong1 + 0x2378) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x2378) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -76490,22 +76490,22 @@ void Unwind_180911780(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x2440) != (code *)0x0) {
     (**(code **)(localLong1 + 0x2440))(localLong1 + 0x2430,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x2408) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2408) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2410) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2410) = 0;
   *(uint32 *)(localLong1 + 0x2420) = 0;
-  *(uint64 *)(localLong1 + 0x2408) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x23e8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2408) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x23e8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x23f0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x23f0) = 0;
   *(uint32 *)(localLong1 + 0x2400) = 0;
-  *(uint64 *)(localLong1 + 0x23e8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x23e8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -76520,22 +76520,22 @@ void Unwind_1809117a0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x24b0) != (code *)0x0) {
     (**(code **)(localLong1 + 0x24b0))(localLong1 + 0x24a0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x2478) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2478) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2480) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2480) = 0;
   *(uint32 *)(localLong1 + 0x2490) = 0;
-  *(uint64 *)(localLong1 + 0x2478) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x2458) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2478) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x2458) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2460) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2460) = 0;
   *(uint32 *)(localLong1 + 0x2470) = 0;
-  *(uint64 *)(localLong1 + 0x2458) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x2458) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -76550,22 +76550,22 @@ void Unwind_1809117c0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x2520) != (code *)0x0) {
     (**(code **)(localLong1 + 0x2520))(localLong1 + 0x2510,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x24e8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x24e8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x24f0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x24f0) = 0;
   *(uint32 *)(localLong1 + 0x2500) = 0;
-  *(uint64 *)(localLong1 + 0x24e8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x24c8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x24e8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x24c8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x24d0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x24d0) = 0;
   *(uint32 *)(localLong1 + 0x24e0) = 0;
-  *(uint64 *)(localLong1 + 0x24c8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x24c8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -76580,22 +76580,22 @@ void Unwind_1809117e0(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x2590) != (code *)0x0) {
     (**(code **)(localLong1 + 0x2590))(localLong1 + 0x2580,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x2558) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2558) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2560) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2560) = 0;
   *(uint32 *)(localLong1 + 0x2570) = 0;
-  *(uint64 *)(localLong1 + 0x2558) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x2538) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x2558) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x2538) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x2540) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x2540) = 0;
   *(uint32 *)(localLong1 + 0x2550) = 0;
-  *(uint64 *)(localLong1 + 0x2538) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x2538) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -76610,22 +76610,22 @@ void Unwind_180911800(uint64 resourceHandle,longlong memorySize,uint64 operation
   if (*(code **)(localLong1 + 0x2600) != (code *)0x0) {
     (**(code **)(localLong1 + 0x2600))(localLong1 + 0x25f0,0,0,callbackFunction,0xfffffffffffffffe);
   }
-  *(uint64 *)(localLong1 + 0x25c8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x25c8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x25d0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x25d0) = 0;
   *(uint32 *)(localLong1 + 0x25e0) = 0;
-  *(uint64 *)(localLong1 + 0x25c8) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x25a8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x25c8) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x25a8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x25b0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x25b0) = 0;
   *(uint32 *)(localLong1 + 0x25c0) = 0;
-  *(uint64 *)(localLong1 + 0x25a8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x25a8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -76842,7 +76842,7 @@ void Unwind_1809118c0(uint64 resourceHandle,longlong memorySize)
 void Unwind_1809118d0(uint64 resourceHandle,longlong memorySize)
 
 {
-  *(data **)(memorySize + 0x160) = &unknown_18098bcb0;
+  *(data **)(memorySize + 0x160) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -79916,22 +79916,22 @@ void Unwind_180912910(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x80);
-  *(uint64 *)(localLong1 + 0x218) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x218) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x220) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x220) = 0;
   *(uint32 *)(localLong1 + 0x230) = 0;
-  *(uint64 *)(localLong1 + 0x218) = &unknown_18098bcb0;
-  *(uint64 *)(localLong1 + 0x1f8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x218) = &threadLocalStorageCleanup;
+  *(uint64 *)(localLong1 + 0x1f8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x200) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x200) = 0;
   *(uint32 *)(localLong1 + 0x210) = 0;
-  *(uint64 *)(localLong1 + 0x1f8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x1f8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -79979,14 +79979,14 @@ void Unwind_180912950(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x80);
-  *(uint64 *)(localLong1 + 0x388) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x388) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x390) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x390) = 0;
   *(uint32 *)(localLong1 + 0x3a0) = 0;
-  *(uint64 *)(localLong1 + 0x388) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x388) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -79998,14 +79998,14 @@ void Unwind_180912970(uint64 resourceHandle,longlong memorySize)
   longlong localLong1;
   
   localLong1 = *(longlong *)(memorySize + 0x80);
-  *(uint64 *)(localLong1 + 0x3a8) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x3a8) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x3b0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x3b0) = 0;
   *(uint32 *)(localLong1 + 0x3c0) = 0;
-  *(uint64 *)(localLong1 + 0x3a8) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x3a8) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80153,14 +80153,14 @@ void InitializeResourcePool(void)
   longlong localLong1;
   longlong localLong2;
   
-  _DAT_180bf52c0 = &unknown_180a3c3e0;
+  _DAT_180bf52c0 = &threadLocalStorageData;
   if (_DAT_180bf52c8 != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   _DAT_180bf52c8 = 0;
   _DAT_180bf52d8 = 0;
-  _DAT_180bf52c0 = &unknown_18098bcb0;
+  _DAT_180bf52c0 = &threadLocalStorageCleanup;
   if (_DAT_180bf5288 == 0) {
     FUN_180048980();
     localLong1 = _DAT_180bf5250;
@@ -80186,7 +80186,7 @@ void InitializeResourcePool(void)
 void InitializeMemoryPool(void)
 
 {
-  _DAT_180bf5320 = &unknown_18098bcb0;
+  _DAT_180bf5320 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80199,7 +80199,7 @@ void InitializeMemoryPool(void)
 void SetupMemoryManager(void)
 
 {
-  _memoryPoolBaseAddress = &unknown_18098bcb0;
+  _memoryPoolBaseAddress = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80212,7 +80212,7 @@ void SetupMemoryManager(void)
 void CreateMemoryAllocator(void)
 
 {
-  _bufferManagerControl1 = &unknown_18098bcb0;
+  _bufferManagerControl1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80225,7 +80225,7 @@ void CreateMemoryAllocator(void)
 void RegisterMemoryHandler(void)
 
 {
-  _dataStructurePointer1 = &unknown_18098bcb0;
+  _dataStructurePointer1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80238,7 +80238,7 @@ void RegisterMemoryHandler(void)
 void ConfigureMemorySettings(void)
 
 {
-  _systemStatusFlag1 = &unknown_18098bcb0;
+  _systemStatusFlag1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80251,7 +80251,7 @@ void ConfigureMemorySettings(void)
 void FUN_180941630(void) # 内存验证函数
 
 {
-  _errorHandlerState1 = &unknown_18098bcb0;
+  _errorHandlerState1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80348,7 +80348,7 @@ void FUN_1809417c0(void) # 系统配置初始化函数
 void InitializeGlobalDataPointer1(void)
 
 {
-  _DAT_180d49160 = &unknown_18098bcb0;
+  _DAT_180d49160 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80361,7 +80361,7 @@ void InitializeGlobalDataPointer1(void)
 void FreeMemoryPool(void) # 数据结构初始化函数
 
 {
-  _DAT_180bf64d0 = &unknown_18098bcb0;
+  _DAT_180bf64d0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80374,7 +80374,7 @@ void FreeMemoryPool(void) # 数据结构初始化函数
 void AllocateMemoryChunk(void)
 
 {
-  _g_memoryFreeConfig1 = &unknown_18098bcb0;
+  _g_memoryFreeConfig1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80387,7 +80387,7 @@ void AllocateMemoryChunk(void)
 void FreeMemoryChunk(void)
 
 {
-  _g_chunkAllocData1 = &unknown_18098bcb0;
+  _g_chunkAllocData1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80400,7 +80400,7 @@ void FreeMemoryChunk(void)
 void GetMemoryChunkSize(void)
 
 {
-  _g_chunkFreeData1 = &unknown_18098bcb0;
+  _g_chunkFreeData1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80413,7 +80413,7 @@ void GetMemoryChunkSize(void)
 void InitializeGlobalDataPointer2(void)
 
 {
-  _g_chunkSizeData1 = &unknown_18098bcb0;
+  _g_chunkSizeData1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80426,7 +80426,7 @@ void InitializeGlobalDataPointer2(void)
 void InitializeGlobalDataPointer3(void)
 
 {
-  _aiSystemHandle = &unknown_18098bcb0;
+  _aiSystemHandle = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80439,7 +80439,7 @@ void InitializeGlobalDataPointer3(void)
 void InitializeGlobalDataPointer4(void)
 
 {
-  _sceneManagerHandle = &unknown_18098bcb0;
+  _sceneManagerHandle = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80452,7 +80452,7 @@ void InitializeGlobalDataPointer4(void)
 void InitializeResourceManager(void)
 
 {
-  _resourceManagerHandle = &unknown_18098bcb0;
+  _resourceManagerHandle = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80465,7 +80465,7 @@ void InitializeResourceManager(void)
 void InitializeScriptSystem(void)
 
 {
-  _scriptSystemHandle = &unknown_18098bcb0;
+  _scriptSystemHandle = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80501,7 +80501,7 @@ void FUN_180941920(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags
 void InitializePerformanceMonitor(void)
 
 {
-  _debugSystemHandle = &unknown_18098bcb0;
+  _debugSystemHandle = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80514,7 +80514,7 @@ void InitializePerformanceMonitor(void)
 void LoadConfiguration(void)
 
 {
-  _performanceMonitorHandle = &unknown_18098bcb0;
+  _performanceMonitorHandle = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80540,14 +80540,14 @@ void InitializeConfigurationSystem(void)
 void FUN_1809419e0(void)
 
 {
-  _DAT_180d49218 = &unknown_180a3c3e0;
+  _DAT_180d49218 = &threadLocalStorageData;
   if (_DAT_180d49220 != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   _DAT_180d49220 = 0;
   _DAT_180d49230 = 0;
-  _DAT_180d49218 = &unknown_18098bcb0;
+  _DAT_180d49218 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80560,14 +80560,14 @@ void FUN_1809419e0(void)
 void FUN_180941a30(void)
 
 {
-  _DAT_180d49240 = &unknown_180a3c3e0;
+  _DAT_180d49240 = &threadLocalStorageData;
   if (_DAT_180d49248 != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   _DAT_180d49248 = 0;
   _DAT_180d49258 = 0;
-  _DAT_180d49240 = &unknown_18098bcb0;
+  _DAT_180d49240 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80620,14 +80620,14 @@ void FUN_180941ad0(void)
 void FUN_180941b20(void)
 
 {
-  _DAT_180d49638 = &unknown_180a3c3e0;
+  _DAT_180d49638 = &threadLocalStorageData;
   if (_DAT_180d49640 != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   _DAT_180d49640 = 0;
   _DAT_180d49650 = 0;
-  _DAT_180d49638 = &unknown_18098bcb0;
+  _DAT_180d49638 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80640,7 +80640,7 @@ void FUN_180941b20(void)
 void FUN_180941b90(void)
 
 {
-  _DAT_180bf7250 = &unknown_18098bcb0;
+  _DAT_180bf7250 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80653,7 +80653,7 @@ void FUN_180941b90(void)
 void FUN_180941bb0(void)
 
 {
-  _DAT_180bf72b0 = &unknown_18098bcb0;
+  _DAT_180bf72b0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80666,7 +80666,7 @@ void FUN_180941bb0(void)
 void FUN_180941bd0(void)
 
 {
-  _DAT_180bf7310 = &unknown_18098bcb0;
+  _DAT_180bf7310 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80700,7 +80700,7 @@ void FUN_180941bf0(void)
 void FUN_180941d00(void)
 
 {
-  _DAT_180bf90b0 = &unknown_18098bcb0;
+  _DAT_180bf90b0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80713,7 +80713,7 @@ void FUN_180941d00(void)
 void FUN_180941d20(void)
 
 {
-  _DAT_180bf5b88 = &unknown_18098bcb0;
+  _DAT_180bf5b88 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80726,14 +80726,14 @@ void FUN_180941d20(void)
 void FUN_180941d50(void)
 
 {
-  _DAT_180d48db8 = &unknown_180a3c3e0;
+  _DAT_180d48db8 = &threadLocalStorageData;
   if (_DAT_180d48dc0 != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   _DAT_180d48dc0 = 0;
   _DAT_180d48dd0 = 0;
-  _DAT_180d48db8 = &unknown_18098bcb0;
+  _DAT_180d48db8 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80759,7 +80759,7 @@ void FUN_180941da0(void)
 void FUN_180941dd0(void)
 
 {
-  _DAT_180d49730 = &unknown_18098bcb0;
+  _DAT_180d49730 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80782,7 +80782,7 @@ void FUN_180941e00(void)
     HandleCriticalError();
   }
   FUN_180320b20(0x180d498a0);
-  _DAT_180d49830 = &unknown_18098bcb0;
+  _DAT_180d49830 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80826,7 +80826,7 @@ void FUN_180941e90(void)
 void FUN_180941f00(void)
 
 {
-  _DAT_180bf91b0 = &unknown_18098bcb0;
+  _DAT_180bf91b0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80839,7 +80839,7 @@ void FUN_180941f00(void)
 void FUN_180941f20(void)
 
 {
-  _DAT_180bf9210 = &unknown_18098bcb0;
+  _DAT_180bf9210 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80852,7 +80852,7 @@ void FUN_180941f20(void)
 void FUN_180941f40(void)
 
 {
-  _DAT_180bf9270 = &unknown_18098bcb0;
+  _DAT_180bf9270 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80865,7 +80865,7 @@ void FUN_180941f40(void)
 void FUN_180941f60(void)
 
 {
-  _DAT_180bf92d0 = &unknown_18098bcb0;
+  _DAT_180bf92d0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80878,7 +80878,7 @@ void FUN_180941f60(void)
 void FUN_180941f80(void)
 
 {
-  _DAT_180bf9330 = &unknown_18098bcb0;
+  _DAT_180bf9330 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80891,7 +80891,7 @@ void FUN_180941f80(void)
 void FUN_180941fa0(void)
 
 {
-  _DAT_180bf9390 = &unknown_18098bcb0;
+  _DAT_180bf9390 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80904,7 +80904,7 @@ void FUN_180941fa0(void)
 void FUN_180941fc0(void)
 
 {
-  _DAT_180bf93f0 = &unknown_18098bcb0;
+  _DAT_180bf93f0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80917,7 +80917,7 @@ void FUN_180941fc0(void)
 void FUN_180941fe0(void)
 
 {
-  _DAT_180bf9450 = &unknown_18098bcb0;
+  _DAT_180bf9450 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80930,7 +80930,7 @@ void FUN_180941fe0(void)
 void FUN_180942000(void)
 
 {
-  _DAT_180bf94b0 = &unknown_18098bcb0;
+  _DAT_180bf94b0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80943,7 +80943,7 @@ void FUN_180942000(void)
 void FUN_180942020(void)
 
 {
-  _DAT_180bf9510 = &unknown_18098bcb0;
+  _DAT_180bf9510 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80956,7 +80956,7 @@ void FUN_180942020(void)
 void FUN_180942040(void)
 
 {
-  _DAT_180bf9570 = &unknown_18098bcb0;
+  _DAT_180bf9570 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80969,7 +80969,7 @@ void FUN_180942040(void)
 void FUN_180942060(void)
 
 {
-  _DAT_180bf95d0 = &unknown_18098bcb0;
+  _DAT_180bf95d0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80982,7 +80982,7 @@ void FUN_180942060(void)
 void FUN_180942080(void)
 
 {
-  _DAT_180bf9630 = &unknown_18098bcb0;
+  _DAT_180bf9630 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80995,7 +80995,7 @@ void FUN_180942080(void)
 void FUN_1809420a0(void)
 
 {
-  _DAT_180bf9690 = &unknown_18098bcb0;
+  _DAT_180bf9690 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81008,7 +81008,7 @@ void FUN_1809420a0(void)
 void FUN_1809420c0(void)
 
 {
-  _DAT_180bf96f0 = &unknown_18098bcb0;
+  _DAT_180bf96f0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81021,7 +81021,7 @@ void FUN_1809420c0(void)
 void FUN_1809420e0(void)
 
 {
-  _DAT_180bf9750 = &unknown_18098bcb0;
+  _DAT_180bf9750 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81034,7 +81034,7 @@ void FUN_1809420e0(void)
 void FUN_180942100(void)
 
 {
-  _DAT_180bf97b0 = &unknown_18098bcb0;
+  _DAT_180bf97b0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81047,7 +81047,7 @@ void FUN_180942100(void)
 void FUN_180942120(void)
 
 {
-  _DAT_180bf9810 = &unknown_18098bcb0;
+  _DAT_180bf9810 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81060,7 +81060,7 @@ void FUN_180942120(void)
 void FUN_180942140(void)
 
 {
-  _DAT_180bf9870 = &unknown_18098bcb0;
+  _DAT_180bf9870 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81073,7 +81073,7 @@ void FUN_180942140(void)
 void FUN_180942160(void)
 
 {
-  _DAT_180bf98d0 = &unknown_18098bcb0;
+  _DAT_180bf98d0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81086,7 +81086,7 @@ void FUN_180942160(void)
 void FUN_180942180(void)
 
 {
-  _DAT_180bf9930 = &unknown_18098bcb0;
+  _DAT_180bf9930 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81099,7 +81099,7 @@ void FUN_180942180(void)
 void FUN_1809421a0(void)
 
 {
-  _DAT_180bf9990 = &unknown_18098bcb0;
+  _DAT_180bf9990 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81112,7 +81112,7 @@ void FUN_1809421a0(void)
 void FUN_1809421c0(void)
 
 {
-  _DAT_180bf99f0 = &unknown_18098bcb0;
+  _DAT_180bf99f0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81125,7 +81125,7 @@ void FUN_1809421c0(void)
 void FUN_1809421e0(void)
 
 {
-  _DAT_180bf9a50 = &unknown_18098bcb0;
+  _DAT_180bf9a50 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81138,7 +81138,7 @@ void FUN_1809421e0(void)
 void FUN_180942200(void)
 
 {
-  _DAT_180bf9ab0 = &unknown_18098bcb0;
+  _DAT_180bf9ab0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81151,7 +81151,7 @@ void FUN_180942200(void)
 void FUN_180942220(void)
 
 {
-  _DAT_180bf9b10 = &unknown_18098bcb0;
+  _DAT_180bf9b10 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81164,7 +81164,7 @@ void FUN_180942220(void)
 void FUN_180942240(void)
 
 {
-  _DAT_180bf9b70 = &unknown_18098bcb0;
+  _DAT_180bf9b70 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81177,7 +81177,7 @@ void FUN_180942240(void)
 void FUN_180942260(void)
 
 {
-  _DAT_180bf9bd0 = &unknown_18098bcb0;
+  _DAT_180bf9bd0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81190,7 +81190,7 @@ void FUN_180942260(void)
 void FUN_180942280(void)
 
 {
-  _DAT_180bf9c30 = &unknown_18098bcb0;
+  _DAT_180bf9c30 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81203,7 +81203,7 @@ void FUN_180942280(void)
 void FUN_1809422a0(void)
 
 {
-  _DAT_180bf9c90 = &unknown_18098bcb0;
+  _DAT_180bf9c90 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81216,7 +81216,7 @@ void FUN_1809422a0(void)
 void FUN_1809422c0(void)
 
 {
-  _DAT_180bf9cf0 = &unknown_18098bcb0;
+  _DAT_180bf9cf0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81229,7 +81229,7 @@ void FUN_1809422c0(void)
 void FUN_1809422e0(void)
 
 {
-  _DAT_180bf9d50 = &unknown_18098bcb0;
+  _DAT_180bf9d50 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81242,7 +81242,7 @@ void FUN_1809422e0(void)
 void FUN_180942300(void)
 
 {
-  _DAT_180bf9db0 = &unknown_18098bcb0;
+  _DAT_180bf9db0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81255,7 +81255,7 @@ void FUN_180942300(void)
 void FUN_180942320(void)
 
 {
-  _DAT_180bf9e10 = &unknown_18098bcb0;
+  _DAT_180bf9e10 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81268,7 +81268,7 @@ void FUN_180942320(void)
 void FUN_180942340(void)
 
 {
-  _DAT_180bf9e70 = &unknown_18098bcb0;
+  _DAT_180bf9e70 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81281,7 +81281,7 @@ void FUN_180942340(void)
 void FUN_180942360(void)
 
 {
-  _DAT_180bf9ed0 = &unknown_18098bcb0;
+  _DAT_180bf9ed0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81294,7 +81294,7 @@ void FUN_180942360(void)
 void FUN_180942380(void)
 
 {
-  _DAT_180bf9f30 = &unknown_18098bcb0;
+  _DAT_180bf9f30 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81307,7 +81307,7 @@ void FUN_180942380(void)
 void FUN_1809423a0(void)
 
 {
-  _DAT_180bf9f90 = &unknown_18098bcb0;
+  _DAT_180bf9f90 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81320,7 +81320,7 @@ void FUN_1809423a0(void)
 void FUN_1809423c0(void)
 
 {
-  _DAT_180bf9ff0 = &unknown_18098bcb0;
+  _DAT_180bf9ff0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81333,7 +81333,7 @@ void FUN_1809423c0(void)
 void FUN_1809423e0(void)
 
 {
-  _DAT_180bfa050 = &unknown_18098bcb0;
+  _DAT_180bfa050 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81346,7 +81346,7 @@ void FUN_1809423e0(void)
 void FUN_180942400(void)
 
 {
-  _DAT_180bfa0b0 = &unknown_18098bcb0;
+  _DAT_180bfa0b0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81359,7 +81359,7 @@ void FUN_180942400(void)
 void FUN_180942420(void)
 
 {
-  _DAT_180bfa110 = &unknown_18098bcb0;
+  _DAT_180bfa110 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81372,7 +81372,7 @@ void FUN_180942420(void)
 void FUN_180942440(void)
 
 {
-  _DAT_180bfa170 = &unknown_18098bcb0;
+  _DAT_180bfa170 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81385,7 +81385,7 @@ void FUN_180942440(void)
 void FUN_180942460(void)
 
 {
-  _DAT_180bfa1d0 = &unknown_18098bcb0;
+  _DAT_180bfa1d0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81398,7 +81398,7 @@ void FUN_180942460(void)
 void FUN_180942480(void)
 
 {
-  _DAT_180bfa230 = &unknown_18098bcb0;
+  _DAT_180bfa230 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81411,7 +81411,7 @@ void FUN_180942480(void)
 void FUN_1809424a0(void)
 
 {
-  _DAT_180bfa290 = &unknown_18098bcb0;
+  _DAT_180bfa290 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81639,14 +81639,14 @@ void FUN_180942750(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags
   FUN_18005d260(&DAT_180bfaec0,_DAT_180bfaed0,operationFlags,callbackFunction,0xfffffffffffffffe);
   plocalUInt1 = _DAT_180bfaea8;
   for (plocalUInt2 = _DAT_180bfaea0; plocalUInt2 != plocalUInt1; plocalUInt2 = plocalUInt2 + 7) {
-    *plocalUInt2 = &unknown_180a3c3e0;
+    *plocalUInt2 = &threadLocalStorageData;
     if (plocalUInt2[1] != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
     plocalUInt2[1] = 0;
     *(uint32 *)(plocalUInt2 + 3) = 0;
-    *plocalUInt2 = &unknown_18098bcb0;
+    *plocalUInt2 = &threadLocalStorageCleanup;
   }
   if (_DAT_180bfaea0 != (uint64 *)0x0) {
                     // WARNING: Subroutine does not return
@@ -81664,7 +81664,7 @@ void FUN_180942750(uint64 resourceHandle,uint64 memorySize,uint64 operationFlags
 void FUN_180942790(void)
 
 {
-  _DAT_180c92050 = &unknown_18098bcb0;
+  _DAT_180c92050 = &threadLocalStorageCleanup;
                     // WARNING: Could not recover jumptable at 0x0001809427c7. Too many branches
                     // WARNING: Treating indirect jump as call
   _Mtx_destroy_in_situ();
@@ -81680,7 +81680,7 @@ void FUN_180942790(void)
 void FUN_1809427d0(void)
 
 {
-  _DAT_180bfaef0 = &unknown_18098bcb0;
+  _DAT_180bfaef0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81693,7 +81693,7 @@ void FUN_1809427d0(void)
 void FUN_1809427f0(void)
 
 {
-  _DAT_180bfb310 = &unknown_18098bcb0;
+  _DAT_180bfb310 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81706,7 +81706,7 @@ void FUN_1809427f0(void)
 void FUN_180942810(void)
 
 {
-  _DAT_180bfb730 = &unknown_18098bcb0;
+  _DAT_180bfb730 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81719,7 +81719,7 @@ void FUN_180942810(void)
 void FUN_180942830(void)
 
 {
-  _DAT_180d499d0 = &unknown_18098bcb0;
+  _DAT_180d499d0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81732,7 +81732,7 @@ void FUN_180942830(void)
 void FUN_180942850(void)
 
 {
-  _DAT_180d49bf0 = &unknown_18098bcb0;
+  _DAT_180d49bf0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -82082,7 +82082,7 @@ void FUN_180942a40(void)
 void FUN_180942a60(void)
 
 {
-  _DAT_180bf6048 = &unknown_18098bcb0;
+  _DAT_180bf6048 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -82095,7 +82095,7 @@ void FUN_180942a60(void)
 void FUN_180942a80(void)
 
 {
-  _DAT_180bf6498 = &unknown_18098bcb0;
+  _DAT_180bf6498 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -82264,7 +82264,7 @@ void FUN_180942f50(void)
 void FUN_180942fa0(void)
 
 {
-  _DAT_180bf64f8 = &unknown_18098bcb0;
+  _DAT_180bf64f8 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -82277,7 +82277,7 @@ void FUN_180942fa0(void)
 void FUN_180942fc0(void)
 
 {
-  _DAT_180bf6558 = &unknown_18098bcb0;
+  _DAT_180bf6558 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -82329,7 +82329,7 @@ void FUN_180943070(void)
 void FUN_180943090(void)
 
 {
-  _DAT_180d49f80 = &unknown_18098bcb0;
+  _DAT_180d49f80 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -82342,7 +82342,7 @@ void FUN_180943090(void)
 void FUN_1809430b0(void)
 
 {
-  _DAT_180d49fe0 = &unknown_18098bcb0;
+  _DAT_180d49fe0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -82355,14 +82355,14 @@ void FUN_1809430b0(void)
 void FUN_1809430e0(void)
 
 {
-  _DAT_180d4a068 = &unknown_180a3c3e0;
+  _DAT_180d4a068 = &threadLocalStorageData;
   if (_DAT_180d4a070 != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   _DAT_180d4a070 = 0;
   _DAT_180d4a080 = 0;
-  _DAT_180d4a068 = &unknown_18098bcb0;
+  _DAT_180d4a068 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -82425,14 +82425,14 @@ void InitializeThreadLocalStorage(void)
   longlong localLong1;
   
   localLong1 = *(longlong *)((longlong)tlsPointer + (ulonglong)tlsIndex * 8);
-  *(uint64 *)(localLong1 + 0x18) = &unknown_180a3c3e0;
+  *(uint64 *)(localLong1 + 0x18) = &threadLocalStorageData;
   if (*(longlong *)(localLong1 + 0x20) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(localLong1 + 0x20) = 0;
   *(uint32 *)(localLong1 + 0x30) = 0;
-  *(uint64 *)(localLong1 + 0x18) = &unknown_18098bcb0;
+  *(uint64 *)(localLong1 + 0x18) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -82447,19 +82447,19 @@ void CleanupThreadResources(uint64 resourceHandle,uint64 memorySize,uint64 opera
 {
   uint64 *plocalUInt1;
   
-  plocalUInt1 = _DAT_180c967f0;
-  if (_DAT_180c967f0 == (uint64 *)0x0) {
+  plocalUInt1 = globalResourcePointer;
+  if (globalResourcePointer == (uint64 *)0x0) {
     return;
   }
-  ProcessSystemCall(&DAT_180c967e0,*_DAT_180c967f0,operationFlags,callbackFunction,0xfffffffffffffffe);
-  plocalUInt1[4] = &unknown_180a3c3e0;
+  ProcessSystemCall(&systemCallData,*globalResourcePointer,operationFlags,callbackFunction,0xfffffffffffffffe);
+  plocalUInt1[4] = &threadLocalStorageData;
   if (plocalUInt1[5] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   plocalUInt1[5] = 0;
   *(uint32 *)(plocalUInt1 + 7) = 0;
-  plocalUInt1[4] = &unknown_18098bcb0;
+  plocalUInt1[4] = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
   HandleCriticalError(plocalUInt1);
 }
