@@ -333,8 +333,8 @@ data g_systemModuleConfig3;
 data g_systemModuleStatus4;
 data g_systemModuleStatus5;
 data g_systemModuleStatus6;
-data g_systemModuleData7;
-data g_systemModuleData8;
+data g_systemModuleHandle7;
+data g_systemModuleHandle8;
 data g_systemModuleData9;
 data bufferManagementControl;
 data g_textureUploadBuffer;
@@ -1211,7 +1211,7 @@ data renderVertexShaderData;  /* 原: aiSystemVar1; */
 data resourceCacheCompression;  /* 原: aiSystemVar2; */
 data aiSystemVar3;  /* 原: DAT_180a2c338 */
 data aiSystemVar4;  /* 原: DAT_180a2c510 */
-data sceneManagerVar1;;
+data sceneManagerVar1;  /* 原: DAT_180a2c510 */
 data resourceCacheBuffer1;
 data resourceCacheBuffer2;
 data resourceCacheBuffer3;
@@ -1248,9 +1248,9 @@ data memoryAllocatorHeap;
 
 // 函数: data resourceOptimizePerformance;
 data resourceOptimizePerformance;
-data DAT_180c9606c;
+data resourceOptimizationVar1;;
 data memoryPoolManager;
-data DAT_180c96218;
+data resourceOptimizationVar2;;
 data eventHandlerState;
 
 // 函数: data resourceReportStatus;
@@ -2400,11 +2400,11 @@ data unknown_180a3e5e8;
 data resourceExecuteMaintenance;
 byte DAT_180bf66d8;
 data DAT_180c96858;
-data DAT_180bfbf64;
-data DAT_180bfbf7c;
-data DAT_180bfbf60;
-data DAT_180bf7308;
-data DAT_180bfbf78;
+data resourceMaintenanceBuffer1;
+data resourceMaintenanceBuffer2;
+data resourceMaintenanceBuffer3;
+data resourceMaintenanceBuffer4;
+data resourceMaintenanceBuffer5;
 data bufferDataTable3;
 char DAT_180c8efc8;
 data unknown_18064ffc0;

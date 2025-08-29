@@ -1729,9 +1729,9 @@ void WotsMainNativeCoreCLR(unsigned long long handle)
           data_180c82860 = 1;
           data_180c82853 = 0;
           *(unsigned char *)(_data_180c86870 + 0x1f0) = 0;
-          puStack_2c8 = &g_threadString2;
-          uStack_2b0 = 0;
-          puStack_2c0 = (unsigned char *)0x0;
+          stack_ptr_2c8 = &g_threadString2;
+          stack_var_2b0 = 0;
+          stack_ptr_2c0 = (unsigned char *)0x0;
           stack_var_2b8 = 0;
           if (string_ptr_17 != (undefined *)0x0) {
             string_length = -1;
@@ -1753,7 +1753,7 @@ void WotsMainNativeCoreCLR(unsigned long long handle)
               memcpy(buffer_ptr,string_ptr_17,buffer_size);
             }
           }
-          uStack_2b8 = 0;
+          stack_var_2b8 = 0;
           strstr(&data_18098bc73,&g_systemDataString2);
           strstr(&data_18098bc73,&g_systemDataString3);
           strstr(&data_18098bc73,&g_systemDataString4);
