@@ -157,8 +157,8 @@ int initialize_texture_resource_manager(void)
 {
   long long initialization_result;
   unsigned long long string_length_parameter;
-  resource_data_buffer_pointer = &g_resource_data_buffer;
-  resource_buffer_value_pointer = &resource_buffer_1;
+  void* resource_data_buffer_pointer = &g_resource_data_buffer;
+  void* resource_buffer_value_pointer = &resource_buffer_1;
   resource_buffer_1 = 0;
   resource_type_1 = RESOURCE_TYPE_TEXTURE;
   strcpy_s(&resource_buffer_1, RESOURCE_BUFFER_SIZE, &string_source_002, string_length_parameter, 0xfffffffffffffffe);

@@ -884,9 +884,9 @@ data renderDrawCallData;
 // 函数: data renderDescriptorInitialize;
 data renderDescriptorInitialize;
 data renderDescriptorParam1;
-data DAT_180bf9c38;
-data DAT_180bf9c40;
-data DAT_180bf9c48;
+data renderDescriptorParam2;
+data renderDescriptorParam3;
+data renderDescriptorParam4;
 data renderViewportState;
 
 // 函数: data renderCommandInitialize;
