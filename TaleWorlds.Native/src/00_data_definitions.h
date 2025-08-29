@@ -558,12 +558,12 @@ int initialize_data_buffer_system(void)
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6d98;
   data_180bf6d98 = 0;
-  global_data_ = 0x11;
+  global_data_ = FLAG_UI_RESOURCE;
   strcpy_s(&data_180bf6d98,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string7);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6df0;
   data_180bf6df0 = 0;
-  global_data_ = 0x18;
+  global_data_ = FLAG_SCRIPTING_RESOURCE;
   strcpy_s(&data_180bf6df0,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string8);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6e48;
