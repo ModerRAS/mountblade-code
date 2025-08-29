@@ -1433,7 +1433,7 @@ data videoSyncData;
 data cameraDeviceData;
 data cameraFrameBuffer;
 data cameraSettingsData;
-data unknown_1801527b4;
+data cameraCaptureTimestamp;
 data cameraStreamData;
 data cameraFormatData;
 longlong unknown_180c961a8;
