@@ -17,175 +17,175 @@ byte g_isBufferLocked;                     // 缓冲区锁定标志
 dataValue g_bufferStatusFlags;             // 缓冲区状态标志
 uint64 g_primaryBufferHandle;             // 主缓冲区句柄
 uint64 g_secondaryBufferHandle;           // 辅助缓冲区句柄
-dataValue g_bufferSizeConfig;              // 缓冲区大小配置
-dataValue g_bufferAlignmentConfig;         // 缓冲区对齐配置
-dataValue g_bufferPermissionConfig;        // 缓冲区权限配置
-dataValue g_bufferFlagConfig;              // 缓冲区标志配置
+dataValue g_bufferSizeConfiguration;       // 缓冲区大小配置
+dataValue g_bufferAlignmentConfiguration;  // 缓冲区对齐配置
+dataValue g_bufferPermissionConfiguration; // 缓冲区权限配置
+dataValue g_bufferFlagConfiguration;       // 缓冲区标志配置
 dataValue g_bufferMemoryPointer;           // 缓冲区内存指针
 
-// 函数: dataValueValue InitializeMemoryPool;
+// 函数: dataValueValue 初始化内存池;
 // 系统初始化函数180941590
-dataValue InitializeMemoryPool;
+dataValue 初始化内存池;
 dataValue g_memoryPoolBaseAddress;            // 内存池基地址
 dataValue g_memoryPoolSize;                   // 内存池大小
 dataValue g_memoryPoolAlignment;              // 内存池对齐
 dataValue g_memoryPoolFlags;                  // 内存池标志
 
-// 函数: dataValueValue SetupMemoryManager;
-dataValue SetupMemoryManager;
+// 函数: dataValueValue 设置内存管理器;
+dataValue 设置内存管理器;
 dataValue g_memoryManagerControlFlags;        // 内存管理器控制标志
 dataValue g_memoryManagerStatus;              // 内存管理器状态
-dataValue g_memoryManagerConfig;              // 内存管理器配置
+dataValue g_memoryManagerConfiguration;       // 内存管理器配置
 dataValue g_memoryManagerHandle;              // 内存管理器句柄
 dataValue g_memoryPoolInitialized;            // 内存池初始化标志
 
-// 函数: dataValueValue CreateMemoryAllocator;
-dataValue CreateMemoryAllocator;
+// 函数: dataValueValue 创建内存分配器;
+dataValue 创建内存分配器;
 dataValue g_dataStructureRootNode;            // 数据结构根节点
 dataValue g_dataStructureNextNode;            // 数据结构下一节点
 dataValue g_dataStructurePreviousNode;        // 数据结构前一节点
 dataValue g_dataStructureParentNode;          // 数据结构父节点
 dataValue g_memoryAllocatorStatusFlag;        // 内存分配器状态标志
 
-// 函数: dataValueValue RegisterMemoryHandler;
-dataValue RegisterMemoryHandler;
+// 函数: dataValueValue 注册内存处理器;
+dataValue 注册内存处理器;
 dataValue g_systemCpuStatus;                  // 系统CPU状态
 dataValue g_systemMemoryStatus;               // 系统内存状态
 dataValue g_systemIoStatus;                   // 系统IO状态
 dataValue g_systemNetworkStatus;              // 系统网络状态
 
-// 函数: dataValueValue ConfigureMemorySettings;
-dataValue ConfigureMemorySettings;
+// 函数: dataValueValue 配置内存设置;
+dataValue 配置内存设置;
 dataValue g_errorHandlerSeverity;             // 错误处理器严重程度
 dataValue g_errorHandlerCategory;              // 错误处理器类别
 dataValue g_errorHandlerRecovery;              // 错误处理器恢复
 dataValue g_errorHandlerLogging;               // 错误处理器日志
 
-// 函数: dataValueValue ValidateMemoryConfiguration;
+// 函数: dataValueValue 验证内存配置;
 // 内存配置验证函数180941630
-dataValue ValidateMemoryConfiguration;
-byte g_threadSyncInitialized;
+dataValue 验证内存配置;
+byte g_线程同步已初始化;
 
-// 函数: dataValueValue InitializeThreadSynchronization;
+// 函数: dataValueValue 初始化线程同步;
 // 线程同步初始化函数180941650
-dataValue InitializeThreadSynchronization;
-byte g_threadSyncActive;
+dataValue 初始化线程同步;
+byte g_线程同步激活;
 
-// 函数: dataValueValue InitializeEventHandler;
+// 函数: dataValueValue 初始化事件处理器;
 // 事件处理初始化函数180941690
-dataValue InitializeEventHandler;
-byte g_threadSyncPending;
+dataValue 初始化事件处理器;
+byte g_线程同步待处理;
 
-// 函数: dataValueValue InitializeSemaphore;
+// 函数: dataValueValue 初始化信号量;
 // 信号量初始化函数1809416d0
-dataValue InitializeSemaphore;
-byte g_semaphoreInitFlag;
+dataValue 初始化信号量;
+byte g_信号量初始化标志;
 
-// 函数: dataValueValue CleanupThreadSynchronization;
-dataValue CleanupThreadSynchronization;
-dataValue g_threadCleanupData;
-dataValue g_threadCleanupPointer;
+// 函数: dataValueValue 清理线程同步;
+dataValue 清理线程同步;
+dataValue g_线程清理数据;
+dataValue g_线程清理指针;
 
-// 函数: dataValueValue CloseSystemHandle;
-dataValue CloseSystemHandle;
+// 函数: dataValueValue 关闭系统句柄;
+dataValue 关闭系统句柄;
 
-// 函数: dataValueValue DestroyMutex;
-dataValue DestroyMutex;
-dataValue g_mutexDestroyHandle;
-dataValue g_mutexDestroyContext;
-dataValue g_mutexDestroyCallback;
-dataValue mutexDestroyWorkData;
-dataValue g_mutexDestroyWork;
+// 函数: dataValueValue 销毁互斥锁;
+dataValue 销毁互斥锁;
+dataValue g_互斥锁销毁句柄;
+dataValue g_互斥锁销毁上下文;
+dataValue g_互斥锁销毁回调;
+dataValue g_互斥锁销毁工作数据;
+dataValue g_互斥锁销毁工作;
 
-// 函数: dataValueValue initializeMemoryFreeSystem;          # 内存释放系统初始化函数
-dataValue initializeMemoryFreeSystem;
-dataValue g_memoryFreeBlockSize;
-dataValue g_memoryFreeBlockCount;
-dataValue g_memoryFreeListHead;
-dataValue g_memoryFreeListTail;
-dataValue g_memoryFreeAlignment;
-dataValue g_memoryFreeFlags;
-dataValue g_memoryFreeReserved;
+// 函数: dataValueValue 初始化内存释放系统;          # 内存释放系统初始化函数
+dataValue 初始化内存释放系统;
+dataValue g_内存释放块大小;
+dataValue g_内存释放块数量;
+dataValue g_内存释放链表头;
+dataValue g_内存释放链表尾;
+dataValue g_内存释放对齐;
+dataValue g_内存释放标志;
+dataValue g_内存释放保留;
 
-// 函数: dataValueValue initializeChunkAllocator;          # 块分配器初始化函数
-dataValue initializeChunkAllocator;
-dataValue g_chunkAllocationHeader;
-dataValue g_chunkAllocationPointer;
-dataValue g_chunkAllocationSize;
-dataValue g_chunkAlignment;
-dataValue g_chunkFlags;
-dataValue g_chunkRefCount;
+// 函数: dataValueValue 初始化块分配器;          # 块分配器初始化函数
+dataValue 初始化块分配器;
+dataValue g_块分配头部;
+dataValue g_块分配指针;
+dataValue g_块分配大小;
+dataValue g_块对齐;
+dataValue g_块标志;
+dataValue g_块引用计数;
 
-// 函数: dataValueValue FreeMemoryChunk;
-dataValue FreeMemoryChunk;
-dataValue g_chunkFreeListPointer;
-dataValue g_chunkFreeSize;
-dataValue g_chunkFreeOffset;
-dataValue g_chunkFreeFlags;
-dataValue g_chunkFreeReserved;
+// 函数: dataValueValue 释放内存块;
+dataValue 释放内存块;
+dataValue g_块释放链表指针;
+dataValue g_块释放大小;
+dataValue g_块释放偏移;
+dataValue g_块释放标志;
+dataValue g_块释放保留;
 
-// 函数: dataValueValue GetMemoryChunkSize;
-dataValue GetMemoryChunkSize;
-dataValue g_chunkSizeTablePointer;
-dataValue g_chunkSizeMin;
-dataValue g_chunkSizeMax;
-dataValue g_chunkSizeStep;
-dataValue g_chunkSizeCount;
+// 函数: dataValueValue 获取内存块大小;
+dataValue 获取内存块大小;
+dataValue g_块大小表指针;
+dataValue g_块大小最小值;
+dataValue g_块大小最大值;
+dataValue g_块大小步长;
+dataValue g_块大小计数;
 
-// 函数: dataValueValue initializeAISystem;          # AI系统初始化函数
-dataValue initializeAISystem;
-dataValue aiSystemPointer;
-dataValue aiSystemHandle;
-dataValue aiBehaviorTree;
-dataValue aiNavigationMesh;
-dataValue aiPathfindingData;
-dataValue sceneManagerPointer;
+// 函数: dataValueValue 初始化AI系统;          # AI系统初始化函数
+dataValue 初始化AI系统;
+dataValue g_AI系统指针;
+dataValue g_AI系统句柄;
+dataValue g_AI行为树;
+dataValue g_AI导航网格;
+dataValue g_AI寻路数据;
+dataValue g_场景管理器指针;
 
-// 函数: dataValueValue initializeSceneManager;          # 场景管理器初始化函数
-dataValue initializeSceneManager;
-dataValue sceneManagerHandle;
-dataValue sceneObjectPool;
-dataValue sceneLightingData;
-dataValue sceneCameraData;
-dataValue sceneRenderingState;
+// 函数: dataValueValue 初始化场景管理器;          # 场景管理器初始化函数
+dataValue 初始化场景管理器;
+dataValue g_场景管理器句柄;
+dataValue g_场景对象池;
+dataValue g_场景光照数据;
+dataValue g_场景相机数据;
+dataValue g_场景渲染状态;
 
-// 函数: dataValueValue initializeResourceManager;
-dataValue initializeResourceManager;
-dataValue resourceManagerHandle;
-dataValue resourceTextureCache;
-dataValue resourceMeshBuffer;
-dataValue resourceShaderCache;
-dataValue resourceManagerPointer;
+// 函数: dataValueValue 初始化资源管理器;
+dataValue 初始化资源管理器;
+dataValue g_资源管理器句柄;
+dataValue g_资源纹理缓存;
+dataValue g_资源网格缓冲;
+dataValue g_资源着色器缓存;
+dataValue g_资源管理器指针;
 
-// 函数: dataValueValue InitializeScriptSystem;
-dataValue InitializeScriptSystem;
-dataValue scriptSystemHandle;
-dataValue scriptVirtualMachine;
-dataValue scriptFunctionTable;
-dataValue scriptGlobalData;
-dataValue scriptSystemPointer;
+// 函数: dataValueValue 初始化脚本系统;
+dataValue 初始化脚本系统;
+dataValue g_脚本系统句柄;
+dataValue g_脚本虚拟机;
+dataValue g_脚本函数表;
+dataValue g_脚本全局数据;
+dataValue g_脚本系统指针;
 
-// 函数: dataValueValue InitializeDebugSystem;
-dataValue InitializeDebugSystem;
-dataValue debugSystemHandle;
-dataValue debugLoggerBuffer;
-dataValue debugProfilerData;
-dataValue debugBreakpoints;
-dataValue debugSystemPointer;
+// 函数: dataValueValue 初始化调试系统;
+dataValue 初始化调试系统;
+dataValue g_调试系统句柄;
+dataValue g_调试日志缓冲;
+dataValue g_调试分析器数据;
+dataValue g_调试断点;
+dataValue g_调试系统指针;
 
-// 函数: dataValueValue InitializePerformanceMonitor;
-dataValue InitializePerformanceMonitor;
-dataValue performanceMonitorHandle;
-dataValue performanceFrameData;
-dataValue performanceMemoryStats;
-dataValue performanceCPUMetrics;
-dataValue performanceMonitorPointer;
+// 函数: dataValueValue 初始化性能监控器;
+dataValue 初始化性能监控器;
+dataValue g_性能监控器句柄;
+dataValue g_性能帧数据;
+dataValue g_性能内存统计;
+dataValue g_性能CPU指标;
+dataValue g_性能监控器指针;
 
-// 函数: dataValueValue LoadConfiguration;
-dataValue LoadConfiguration;
+// 函数: dataValueValue 加载配置;
+dataValue 加载配置;
 
-// 函数: dataValueValue InitializeConfigurationSystem;
-dataValue InitializeConfigurationSystem;
+// 函数: dataValueValue 初始化配置系统;
+dataValue 初始化配置系统;
 dataValue configSystemHandle;
 dataValue configSystemPointer;
 dataValue configSettingsData;
@@ -600,7 +600,7 @@ dataValue g_aiBehaviorWorkBuffer;
 dataValue aiBehaviorWorkOffset;
 dataValue animationPlaybackTime;
 dataValue aiBehaviorWorkSize;
-dataValue aiNavigationMesh;
+dataValue g_AI导航网格;
 dataValue g_aiNavWorkBuffer;
 dataValue g_aiNavTempOffset;
 dataValue g_aiNavTempSize;
@@ -620,9 +620,9 @@ dataValue aiBehaviorWorkOffset;
 dataValue aiBehaviorWorkSize;
 dataValue aiBehaviorWorkFlags;
 dataValue g_aiBehaviorReserved;
-dataValue aiBehaviorTree;
+dataValue g_AI行为树;
 dataValue g_aiDecisionWorkBuffer;
-dataValue aiPathfindingData;
+dataValue g_AI寻路数据;
 dataValue g_aiDecisionTempOffset;
 dataValue aiDecisionMaking;
 dataValue g_aiDecisionTempSize;
@@ -1122,7 +1122,7 @@ dataValue shadowProjectionMatrix;
 
 // 函数: dataValueValue resourceLoadFromDisk;
 dataValue resourceLoadFromDisk;
-dataValue resourceTextureCache;  /* 原: g_global_datag_system_data__resourceTextureCache */
+dataValue g_资源纹理缓存;  /* 原: g_global_datag_system_data__g_资源纹理缓存 */
 byte g_resourceInitFlag;
 dataValue resourceRefCount;  /* 原: g_global_datag_system_data__resourceRefCount */
 dataValue resourceMemoryUsage;  /* 原: g_global_datag_system_data__resourceMemoryUsage */
@@ -45597,7 +45597,7 @@ void Unwind_180907770(void)
 void Unwind_180907780(void)
 
 {
-  _g_memoryFreeAlignment = &threadLocalStorageCleanup;
+  _g_内存释放对齐 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45608,7 +45608,7 @@ void Unwind_180907780(void)
 void Unwind_180907790(void)
 
 {
-  _g_chunkAllocationSize = &threadLocalStorageCleanup;
+  _g_块分配大小 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45619,7 +45619,7 @@ void Unwind_180907790(void)
 void Unwind_1809077a0(void)
 
 {
-  _g_chunkFreeSize = &threadLocalStorageCleanup;
+  _g_块释放大小 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45630,7 +45630,7 @@ void Unwind_1809077a0(void)
 void Unwind_1809077b0(void)
 
 {
-  _g_chunkSizeMin = &threadLocalStorageCleanup;
+  _g_块大小最小值 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45641,7 +45641,7 @@ void Unwind_1809077b0(void)
 void Unwind_1809077c0(void)
 
 {
-  _aiSystemHandle = &threadLocalStorageCleanup;
+  _g_AI系统句柄 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45652,7 +45652,7 @@ void Unwind_1809077c0(void)
 void Unwind_1809077d0(void)
 
 {
-  _sceneManagerHandle = &threadLocalStorageCleanup;
+  _g_场景管理器句柄 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45663,7 +45663,7 @@ void Unwind_1809077d0(void)
 void Unwind_1809077e0(void)
 
 {
-  _resourceManagerHandle = &threadLocalStorageCleanup;
+  _g_资源管理器句柄 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45674,7 +45674,7 @@ void Unwind_1809077e0(void)
 void Unwind_1809077f0(void)
 
 {
-  _scriptSystemHandle = &threadLocalStorageCleanup;
+  _g_脚本系统句柄 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -48244,7 +48244,7 @@ void Unwind_180908570(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_1809085a0(void)
 
 {
-  _debugSystemHandle = &threadLocalStorageCleanup;
+  _g_调试系统句柄 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -48255,7 +48255,7 @@ void Unwind_1809085a0(void)
 void Unwind_1809085b0(void)
 
 {
-  _performanceMonitorHandle = &threadLocalStorageCleanup;
+  _g_性能监控器句柄 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80300,8 +80300,8 @@ void InitializeResourcePool(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeMemoryPool(void)
-void InitializeMemoryPool(void)
+// 函数: void 初始化内存池(void)
+void 初始化内存池(void)
 
 {
   _renderSystemVar5320 = &threadLocalStorageCleanup;
@@ -80313,8 +80313,8 @@ void InitializeMemoryPool(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void SetupMemoryManager(void)
-void SetupMemoryManager(void)
+// 函数: void 设置内存管理器(void)
+void 设置内存管理器(void)
 
 {
   _memoryPoolBaseAddr = &threadLocalStorageCleanup;
@@ -80326,8 +80326,8 @@ void SetupMemoryManager(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void CreateMemoryAllocator(void)
-void CreateMemoryAllocator(void)
+// 函数: void 创建内存分配器(void)
+void 创建内存分配器(void)
 
 {
   _g_bufferManagerControlFlags = &threadLocalStorageCleanup;
@@ -80339,8 +80339,8 @@ void CreateMemoryAllocator(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void RegisterMemoryHandler(void)
-void RegisterMemoryHandler(void)
+// 函数: void 注册内存处理器(void)
+void 注册内存处理器(void)
 
 {
   _g_dataStructureRoot = &threadLocalStorageCleanup;
@@ -80352,8 +80352,8 @@ void RegisterMemoryHandler(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void ConfigureMemorySettings(void)
-void ConfigureMemorySettings(void)
+// 函数: void 配置内存设置(void)
+void 配置内存设置(void)
 
 {
   _g_systemStatusFlag1 = &threadLocalStorageCleanup;
@@ -80365,8 +80365,8 @@ void ConfigureMemorySettings(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void ValidateMemoryConfiguration(void) # 内存验证函数
-void ValidateMemoryConfiguration(void) # 内存验证函数
+// 函数: void 验证内存配置(void) # 内存验证函数
+void 验证内存配置(void) # 内存验证函数
 
 {
   _g_errorHandlerState1 = &threadLocalStorageCleanup;
@@ -80492,7 +80492,7 @@ void FreeMemoryPool(void) # 数据结构初始化函数
 void AllocateMemoryChunk(void)
 
 {
-  _g_memoryFreeAlignment = &threadLocalStorageCleanup;
+  _g_内存释放对齐 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80501,11 +80501,11 @@ void AllocateMemoryChunk(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FreeMemoryChunk(void)
-void FreeMemoryChunk(void)
+// 函数: void 释放内存块(void)
+void 释放内存块(void)
 
 {
-  _g_chunkAllocationSize = &threadLocalStorageCleanup;
+  _g_块分配大小 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80514,11 +80514,11 @@ void FreeMemoryChunk(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void GetMemoryChunkSize(void)
-void GetMemoryChunkSize(void)
+// 函数: void 获取内存块大小(void)
+void 获取内存块大小(void)
 
 {
-  _g_chunkFreeSize = &threadLocalStorageCleanup;
+  _g_块释放大小 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80531,7 +80531,7 @@ void GetMemoryChunkSize(void)
 void InitializeGlobalDataPointer2(void)
 
 {
-  _g_chunkSizeMin = &threadLocalStorageCleanup;
+  _g_块大小最小值 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80544,7 +80544,7 @@ void InitializeGlobalDataPointer2(void)
 void InitializeGlobalDataPointer3(void)
 
 {
-  _aiSystemHandle = &threadLocalStorageCleanup;
+  _g_AI系统句柄 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80557,7 +80557,7 @@ void InitializeGlobalDataPointer3(void)
 void InitializeGlobalDataPointer4(void)
 
 {
-  _sceneManagerHandle = &threadLocalStorageCleanup;
+  _g_场景管理器句柄 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80570,7 +80570,7 @@ void InitializeGlobalDataPointer4(void)
 void InitializeResourceManager(void)
 
 {
-  _resourceManagerHandle = &threadLocalStorageCleanup;
+  _g_资源管理器句柄 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80579,11 +80579,11 @@ void InitializeResourceManager(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeScriptSystem(void)
-void InitializeScriptSystem(void)
+// 函数: void 初始化脚本系统(void)
+void 初始化脚本系统(void)
 
 {
-  _scriptSystemHandle = &threadLocalStorageCleanup;
+  _g_脚本系统句柄 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80615,11 +80615,11 @@ void systemInitializeModules(uint64 resourceHandle,uint64 memoryBlockSize,uint64
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializePerformanceMonitor(void)
-void InitializePerformanceMonitor(void)
+// 函数: void 初始化性能监控器(void)
+void 初始化性能监控器(void)
 
 {
-  _debugSystemHandle = &threadLocalStorageCleanup;
+  _g_调试系统句柄 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80628,19 +80628,19 @@ void InitializePerformanceMonitor(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void LoadConfiguration(void)
-void LoadConfiguration(void)
+// 函数: void 加载配置(void)
+void 加载配置(void)
 
 {
-  _performanceMonitorHandle = &threadLocalStorageCleanup;
+  _g_性能监控器句柄 = &threadLocalStorageCleanup;
   return;
 }
 
 
 
 
-// 函数: void InitializeConfigurationSystem(void)
-void InitializeConfigurationSystem(void)
+// 函数: void 初始化配置系统(void)
+void 初始化配置系统(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x0001809419d8. Too many branches
