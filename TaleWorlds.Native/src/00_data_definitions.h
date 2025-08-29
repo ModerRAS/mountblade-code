@@ -25,8 +25,8 @@ int initialize_network_buffer_system(void)
 {
   longlong net_init_result;
   g_network_buffer_primary_ptr = &g_net_data_18098bb30;
-  g_net_buffer_ptr_180bf5778 = &g_net_buffer_180bf5788;
-  g_net_buffer_offset_180bf5780 = 0;
+  g_network_buffer_secondary_ptr = &g_net_buffer_180bf5788;
+  g_network_buffer_offset = 0;
   g_net_buffer_180bf5788 = 0;
   net_init_result = initialize_system(network_init_func_1809415b0);
   return (net_init_result != 0) - 1;
@@ -202,7 +202,7 @@ int initialize_resource_manager_7(void)
   DAT_180bf6698 = 0;
   _DAT_180bf6690 = 5;
   strcpy_s(&DAT_180bf6698,0x10,&UNK_180a00540,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_1809418e0);
+  result_var = execute_function(callback_function_018);
   return (result_var != 0) - 1;
 }
 // 初始化资源管理器8
@@ -215,7 +215,7 @@ int initialize_resource_manager_8(void)
   DAT_180bf66c8 = 0;
   _DAT_180bf66c0 = 5;
   strcpy_s(&DAT_180bf66c8,0x10,&UNK_180a00548,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180941900);
+  result_var = execute_function(callback_function_019);
   return (result_var != 0) - 1;
 }
 // 初始化字符串缓冲区1
@@ -228,7 +228,7 @@ int initialize_string_buffer_1(void)
   DAT_180bf5300 = 0;
   _DAT_180bf52f8 = 0xd;
   strcpy_s(&DAT_180bf5300,0x20,&UNK_180a01300,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180941980);
+  result_var = execute_function(callback_function_020);
   return (result_var != 0) - 1;
 }
 // 初始化字符串缓冲区2
@@ -241,7 +241,7 @@ int initialize_string_buffer_2(void)
   DAT_180bf5750 = 0;
   _DAT_180bf5748 = 9;
   strcpy_s(&DAT_180bf5750,0x20,&UNK_180a01330,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_1809419a0);
+  result_var = execute_function(callback_function_021);
   return (result_var != 0) - 1;
 }
 // 初始化互斥锁1
@@ -249,7 +249,7 @@ int initialize_mutex_1(undefined8 handle_param,undefined8 flags_param,undefined8
 {
   longlong result_var;
   _Mtx_init_in_situ(0x180c91970,0x102,mutex_attr_param,mutex_type_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_1809419c0);
+  result_var = execute_function(callback_function_022);
   return (result_var != 0) - 1;
 }
   DAT_180bf6768 = 0;
@@ -422,7 +422,7 @@ int initialize_module_005(void)
   DAT_180bf7268 = 0;
   _DAT_180bf7260 = 0xb;
   strcpy_s(&DAT_180bf7268,0x40,&UNK_180a03098,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180941b90);
+  result_var = execute_function(callback_function_023);
   return (result_var != 0) - 1;
 }
 int initialize_module_006(void)
@@ -434,7 +434,7 @@ int initialize_module_006(void)
   DAT_180bf72c8 = 0;
   _DAT_180bf72c0 = 9;
   strcpy_s(&DAT_180bf72c8,0x40,&UNK_180a03060,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180941bb0);
+  result_var = execute_function(callback_function_024);
   return (result_var != 0) - 1;
 }
 int initialize_module_007(void)
@@ -446,7 +446,7 @@ int initialize_module_007(void)
   DAT_180bf7328 = 0;
   _DAT_180bf7320 = 9;
   strcpy_s(&DAT_180bf7328,0x40,&UNK_180a030a8,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180941bd0);
+  result_var = execute_function(callback_function_025);
   return (result_var != 0) - 1;
 }
 int initialize_module_008(void)
@@ -700,7 +700,7 @@ int initialize_module_008(void)
   DAT_180bf90c8 = 0;
   _DAT_180bf90c0 = 0xd;
   strcpy_s(&DAT_180bf90c8,0x20,&UNK_180a01300,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180941d00);
+  result_var = execute_function(callback_function_026);
   return (result_var != 0) - 1;
 }
 int initialize_module_009(void)
@@ -712,13 +712,13 @@ int initialize_module_009(void)
   DAT_180bf5ba0 = 0;
   _DAT_180bf5b98 = 9;
   strcpy_s(&DAT_180bf5ba0,0x20,&UNK_180a01330,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180941d20);
+  result_var = execute_function(callback_function_027);
   return (result_var != 0) - 1;
 }
   DAT_180bf91c8 = 0;
   _DAT_180bf91c0 = 0x10;
   strcpy_s(&DAT_180bf91c8,0x40,&UNK_180a22b38,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180941f00);
+  result_var = execute_function(callback_function_028);
   return (result_var != 0) - 1;
 }
 int initialize_module_010(void)
@@ -730,7 +730,7 @@ int initialize_module_010(void)
   DAT_180bf9228 = 0;
   _DAT_180bf9220 = 0x13;
   strcpy_s(&DAT_180bf9228,0x40,&UNK_180a22b90,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180941f20);
+  result_var = execute_function(callback_function_029);
   return (result_var != 0) - 1;
 }
 int initialize_module_011(void)
@@ -742,7 +742,7 @@ int initialize_module_011(void)
   DAT_180bf9288 = 0;
   _DAT_180bf9280 = 0x12;
   strcpy_s(&DAT_180bf9288,0x40,&UNK_180a22b78,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180941f40);
+  result_var = execute_function(callback_function_030);
   return (result_var != 0) - 1;
 }
 int initialize_module_012(void)
@@ -754,7 +754,7 @@ int initialize_module_012(void)
   DAT_180bf92e8 = 0;
   _DAT_180bf92e0 = 0x12;
   strcpy_s(&DAT_180bf92e8,0x40,&UNK_180a22b60,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180941f60);
+  result_var = execute_function(callback_function_031);
   return (result_var != 0) - 1;
 }
 int initialize_module_013(void)
@@ -766,7 +766,7 @@ int initialize_module_013(void)
   DAT_180bf9348 = 0;
   _DAT_180bf9340 = 0xd;
   strcpy_s(&DAT_180bf9348,0x40,&UNK_180a22b50,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180941f80);
+  result_var = execute_function(callback_function_032);
   return (result_var != 0) - 1;
 }
 int initialize_module_014(void)
@@ -778,7 +778,7 @@ int initialize_module_014(void)
   DAT_180bf93a8 = 0;
   _DAT_180bf93a0 = 0x10;
   strcpy_s(&DAT_180bf93a8,0x40,&UNK_180a22be8,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180941fa0);
+  result_var = execute_function(callback_function_033);
   return (result_var != 0) - 1;
 }
 int initialize_module_015(void)
@@ -790,7 +790,7 @@ int initialize_module_015(void)
   DAT_180bf9408 = 0;
   _DAT_180bf9400 = 0x17;
   strcpy_s(&DAT_180bf9408,0x40,&UNK_180a22bd0,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180941fc0);
+  result_var = execute_function(callback_function_034);
   return (result_var != 0) - 1;
 }
 int initialize_module_016(void)
@@ -802,7 +802,7 @@ int initialize_module_016(void)
   DAT_180bf9468 = 0;
   _DAT_180bf9460 = 0x10;
   strcpy_s(&DAT_180bf9468,0x40,&UNK_180a22bb8,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180941fe0);
+  result_var = execute_function(callback_function_035);
   return (result_var != 0) - 1;
 }
 int initialize_module_017(void)
@@ -814,7 +814,7 @@ int initialize_module_017(void)
   DAT_180bf94c8 = 0;
   _DAT_180bf94c0 = 0xd;
   strcpy_s(&DAT_180bf94c8,0x40,&UNK_180a22ba8,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942000);
+  result_var = execute_function(callback_function_036);
   return (result_var != 0) - 1;
 }
 int initialize_module_018(void)
@@ -826,7 +826,7 @@ int initialize_module_018(void)
   DAT_180bf9528 = 0;
   _DAT_180bf9520 = 0xc;
   strcpy_s(&DAT_180bf9528,0x40,&UNK_180a22c48,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942020);
+  result_var = execute_function(callback_function_037);
   return (result_var != 0) - 1;
 }
 int initialize_module_019(void)
@@ -838,7 +838,7 @@ int initialize_module_019(void)
   DAT_180bf9588 = 0;
   _DAT_180bf9580 = 0x16;
   strcpy_s(&DAT_180bf9588,0x40,&UNK_180a22c30,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942040);
+  result_var = execute_function(callback_function_038);
   return (result_var != 0) - 1;
 }
 int initialize_module_020(void)
@@ -850,7 +850,7 @@ int initialize_module_020(void)
   DAT_180bf95e8 = 0;
   _DAT_180bf95e0 = 0x13;
   strcpy_s(&DAT_180bf95e8,0x40,&UNK_180a22c18,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942060);
+  result_var = execute_function(callback_function_039);
   return (result_var != 0) - 1;
 }
 int initialize_module_021(void)
@@ -862,7 +862,7 @@ int initialize_module_021(void)
   DAT_180bf9648 = 0;
   _DAT_180bf9640 = 0x14;
   strcpy_s(&DAT_180bf9648,0x40,&UNK_180a22c00,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942080);
+  result_var = execute_function(callback_function_040);
   return (result_var != 0) - 1;
 }
 int initialize_module_022(void)
@@ -874,7 +874,7 @@ int initialize_module_022(void)
   DAT_180bf96a8 = 0;
   _DAT_180bf96a0 = 0x17;
   strcpy_s(&DAT_180bf96a8,0x40,&DAT_180a22cb0,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_1809420a0);
+  result_var = execute_function(callback_function_041);
   return (result_var != 0) - 1;
 }
 int initialize_module_023(void)
@@ -886,7 +886,7 @@ int initialize_module_023(void)
   DAT_180bf9708 = 0;
   _DAT_180bf9700 = 0x17;
   strcpy_s(&DAT_180bf9708,0x40,&UNK_180a22c98,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_1809420c0);
+  result_var = execute_function(callback_function_042);
   return (result_var != 0) - 1;
 }
 int initialize_module_024(void)
@@ -898,7 +898,7 @@ int initialize_module_024(void)
   DAT_180bf9768 = 0;
   _DAT_180bf9760 = 0x20;
   strcpy_s(&DAT_180bf9768,0x40,&UNK_180a22c70,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_1809420e0);
+  result_var = execute_function(callback_function_043);
   return (result_var != 0) - 1;
 }
 int initialize_module_025(void)
@@ -910,7 +910,7 @@ int initialize_module_025(void)
   DAT_180bf97c8 = 0;
   _DAT_180bf97c0 = 0x13;
   strcpy_s(&DAT_180bf97c8,0x40,&UNK_180a22c58,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942100);
+  result_var = execute_function(callback_function_044);
   return (result_var != 0) - 1;
 }
 int initialize_module_026(void)
@@ -922,7 +922,7 @@ int initialize_module_026(void)
   DAT_180bf9828 = 0;
   _DAT_180bf9820 = 0x1e;
   strcpy_s(&DAT_180bf9828,0x40,&UNK_180a22d28,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942120);
+  result_var = execute_function(callback_function_045);
   return (result_var != 0) - 1;
 }
 int initialize_module_027(void)
@@ -934,7 +934,7 @@ int initialize_module_027(void)
   DAT_180bf9888 = 0;
   _DAT_180bf9880 = 0x1b;
   strcpy_s(&DAT_180bf9888,0x40,&UNK_180a22d08,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942140);
+  result_var = execute_function(callback_function_046);
   return (result_var != 0) - 1;
 }
 int initialize_module_028(void)
@@ -946,7 +946,7 @@ int initialize_module_028(void)
   DAT_180bf98e8 = 0;
   _DAT_180bf98e0 = 0x1b;
   strcpy_s(&DAT_180bf98e8,0x40,&UNK_180a22ce8,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942160);
+  result_var = execute_function(callback_function_047);
   return (result_var != 0) - 1;
 }
 int initialize_module_029(void)
@@ -958,7 +958,7 @@ int initialize_module_029(void)
   DAT_180bf9948 = 0;
   _DAT_180bf9940 = 0x1c;
   strcpy_s(&DAT_180bf9948,0x40,&UNK_180a22cc8,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942180);
+  result_var = execute_function(callback_function_048);
   return (result_var != 0) - 1;
 }
 int initialize_module_030(void)
@@ -970,7 +970,7 @@ int initialize_module_030(void)
   DAT_180bf99a8 = 0;
   _DAT_180bf99a0 = 0x1d;
   strcpy_s(&DAT_180bf99a8,0x40,&UNK_180a22db0,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_1809421a0);
+  result_var = execute_function(callback_function_049);
   return (result_var != 0) - 1;
 }
 int initialize_module_031(void)
@@ -982,7 +982,7 @@ int initialize_module_031(void)
   DAT_180bf9a08 = 0;
   _DAT_180bf9a00 = 0x20;
   strcpy_s(&DAT_180bf9a08,0x40,&UNK_180a22d88,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_1809421c0);
+  result_var = execute_function(callback_function_050);
   return (result_var != 0) - 1;
 }
 int initialize_module_032(void)
@@ -994,7 +994,7 @@ int initialize_module_032(void)
   DAT_180bf9a68 = 0;
   _DAT_180bf9a60 = 0x1d;
   strcpy_s(&DAT_180bf9a68,0x40,&UNK_180a22d68,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_1809421e0);
+  result_var = execute_function(callback_function_051);
   return (result_var != 0) - 1;
 }
 int initialize_module_033(void)
@@ -1006,7 +1006,7 @@ int initialize_module_033(void)
   g_string_buffer_180bf9ac8 = 0;
   g_string_manager_type_180bf9ac0 = 0x1c;
   strcpy_s(&g_string_buffer_180bf9ac8,0x40,&DAT_180a22d48,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942200);
+  result_var = execute_function(callback_function_052);
   return (result_var != 0) - 1;
 }
 int initialize_module_034(void)
@@ -1018,7 +1018,7 @@ int initialize_module_034(void)
   DAT_180bf9b28 = 0;
   _DAT_180bf9b20 = 0x17;
   strcpy_s(&DAT_180bf9b28,0x40,&UNK_180a22e40,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942220);
+  result_var = execute_function(callback_function_053);
   return (result_var != 0) - 1;
 }
 int initialize_module_035(void)
@@ -1030,7 +1030,7 @@ int initialize_module_035(void)
   DAT_180bf9b88 = 0;
   _DAT_180bf9b80 = 0x1f;
   strcpy_s(&DAT_180bf9b88,0x40,&UNK_180a22e20,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942240);
+  result_var = execute_function(callback_function_054);
   return (result_var != 0) - 1;
 }
 int initialize_module_036(void)
@@ -1042,7 +1042,7 @@ int initialize_module_036(void)
   DAT_180bf9be8 = 0;
   _DAT_180bf9be0 = 0x21;
   strcpy_s(&DAT_180bf9be8,0x40,&UNK_180a22df8,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942260);
+  result_var = execute_function(callback_function_055);
   return (result_var != 0) - 1;
 }
 int initialize_module_037(void)
@@ -1054,7 +1054,7 @@ int initialize_module_037(void)
   DAT_180bf9c48 = 0;
   _DAT_180bf9c40 = 0x25;
   strcpy_s(&DAT_180bf9c48,0x40,&UNK_180a22dd0,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942280);
+  result_var = execute_function(callback_function_056);
   return (result_var != 0) - 1;
 }
 int initialize_module_038(void)
@@ -1066,7 +1066,7 @@ int initialize_module_038(void)
   DAT_180bf9ca8 = 0;
   _DAT_180bf9ca0 = 0x23;
   strcpy_s(&DAT_180bf9ca8,0x40,&UNK_180a22eb0,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_1809422a0);
+  result_var = execute_function(callback_function_057);
   return (result_var != 0) - 1;
 }
 int initialize_module_039(void)
@@ -1078,7 +1078,7 @@ int initialize_module_039(void)
   DAT_180bf9d08 = 0;
   _DAT_180bf9d00 = 0x1e;
   strcpy_s(&DAT_180bf9d08,0x40,&UNK_180a22e90,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_1809422c0);
+  result_var = execute_function(callback_function_058);
   return (result_var != 0) - 1;
 }
 int initialize_module_040(void)
@@ -1090,7 +1090,7 @@ int initialize_module_040(void)
   DAT_180bf9d68 = 0;
   _DAT_180bf9d60 = 0x1e;
   strcpy_s(&DAT_180bf9d68,0x40,&UNK_180a22e70,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_1809422e0);
+  result_var = execute_function(callback_function_059);
   return (result_var != 0) - 1;
 }
 int initialize_module_041(void)
@@ -1102,7 +1102,7 @@ int initialize_module_041(void)
   DAT_180bf9dc8 = 0;
   _DAT_180bf9dc0 = 0x12;
   strcpy_s(&DAT_180bf9dc8,0x40,&UNK_180a22e58,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942300);
+  result_var = execute_function(callback_function_060);
   return (result_var != 0) - 1;
 }
 int initialize_module_042(void)
@@ -1114,7 +1114,7 @@ int initialize_module_042(void)
   DAT_180bf9e28 = 0;
   _DAT_180bf9e20 = 0x13;
   strcpy_s(&DAT_180bf9e28,0x40,&UNK_180a22f28,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942320);
+  result_var = execute_function(callback_function_061);
   return (result_var != 0) - 1;
 }
 int initialize_module_043(void)
@@ -1126,7 +1126,7 @@ int initialize_module_043(void)
   DAT_180bf9e88 = 0;
   _DAT_180bf9e80 = 0x13;
   strcpy_s(&DAT_180bf9e88,0x40,&UNK_180a22f10,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942340);
+  result_var = execute_function(callback_function_062);
   return (result_var != 0) - 1;
 }
 int initialize_module_044(void)
@@ -1138,7 +1138,7 @@ int initialize_module_044(void)
   DAT_180bf9ee8 = 0;
   _DAT_180bf9ee0 = 0x16;
   strcpy_s(&DAT_180bf9ee8,0x40,&UNK_180a22ef8,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942360);
+  result_var = execute_function(callback_function_063);
   return (result_var != 0) - 1;
 }
 int initialize_module_045(void)
@@ -1150,7 +1150,7 @@ int initialize_module_045(void)
   DAT_180bf9f48 = 0;
   _DAT_180bf9f40 = 0x1a;
   strcpy_s(&DAT_180bf9f48,0x40,&UNK_180a22ed8,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942380);
+  result_var = execute_function(callback_function_064);
   return (result_var != 0) - 1;
 }
 int initialize_module_046(void)
@@ -1162,7 +1162,7 @@ int initialize_module_046(void)
   DAT_180bf9fa8 = 0;
   _DAT_180bf9fa0 = 0x15;
   strcpy_s(&DAT_180bf9fa8,0x40,&UNK_180a22f90,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_1809423a0);
+  result_var = execute_function(callback_function_065);
   return (result_var != 0) - 1;
 }
 int initialize_module_047(void)
@@ -1174,7 +1174,7 @@ int initialize_module_047(void)
   DAT_180bfa008 = 0;
   _DAT_180bfa000 = 0x13;
   strcpy_s(&DAT_180bfa008,0x40,&UNK_180a22f78,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_1809423c0);
+  result_var = execute_function(callback_function_066);
   return (result_var != 0) - 1;
 }
 int initialize_module_048(void)
@@ -1186,7 +1186,7 @@ int initialize_module_048(void)
   DAT_180bfa068 = 0;
   _DAT_180bfa060 = 0x13;
   strcpy_s(&DAT_180bfa068,0x40,&UNK_180a22f60,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_1809423e0);
+  result_var = execute_function(callback_function_067);
   return (result_var != 0) - 1;
 }
 int initialize_module_049(void)
@@ -1198,7 +1198,7 @@ int initialize_module_049(void)
   DAT_180bfa0c8 = 0;
   _DAT_180bfa0c0 = 0x1b;
   strcpy_s(&DAT_180bfa0c8,0x40,&UNK_180a22f40,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942400);
+  result_var = execute_function(callback_function_068);
   return (result_var != 0) - 1;
 }
 int initialize_module_050(void)
@@ -1210,7 +1210,7 @@ int initialize_module_050(void)
   DAT_180bfa128 = 0;
   _DAT_180bfa120 = 0x19;
   strcpy_s(&DAT_180bfa128,0x40,&UNK_180a23018,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942420);
+  result_var = execute_function(callback_function_069);
   return (result_var != 0) - 1;
 }
 int initialize_module_051(void)
@@ -1222,7 +1222,7 @@ int initialize_module_051(void)
   DAT_180bfa188 = 0;
   _DAT_180bfa180 = 0x15;
   strcpy_s(&DAT_180bfa188,0x40,&UNK_180a23000,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942440);
+  result_var = execute_function(callback_function_070);
   return (result_var != 0) - 1;
 }
 int initialize_module_052(void)
@@ -1234,7 +1234,7 @@ int initialize_module_052(void)
   DAT_180bfa1e8 = 0;
   _DAT_180bfa1e0 = 0x28;
   strcpy_s(&DAT_180bfa1e8,0x40,&DAT_180a22fd0,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942460);
+  result_var = execute_function(callback_function_071);
   return (result_var != 0) - 1;
 }
 int initialize_module_053(void)
@@ -1246,7 +1246,7 @@ int initialize_module_053(void)
   DAT_180bfa248 = 0;
   _DAT_180bfa240 = 0x23;
   strcpy_s(&DAT_180bfa248,0x40,&DAT_180a22fa8,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942480);
+  result_var = execute_function(callback_function_072);
   return (result_var != 0) - 1;
 }
 int initialize_module_054(void)
@@ -1258,32 +1258,32 @@ int initialize_module_054(void)
   DAT_180bfa2a8 = 0;
   _DAT_180bfa2a0 = 0x17;
   strcpy_s(&DAT_180bfa2a8,0x40,&UNK_180a23068,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_1809424a0);
+  result_var = execute_function(callback_function_073);
   return (result_var != 0) - 1;
 }
 int initialize_module_055(void)
 {
   longlong result_var;
-  result_var = execute_function(FUN_1809424c0);
+  result_var = execute_function(callback_function_074);
   return (result_var != 0) - 1;
 }
 int initialize_module_056(void)
 {
   longlong result_var;
-  result_var = execute_function(FUN_180942520);
+  result_var = execute_function(callback_function_075);
   return (result_var != 0) - 1;
 }
 int initialize_module_057(void)
 {
   longlong result_var;
-  result_var = execute_function(FUN_180942580);
+  result_var = execute_function(callback_function_076);
   return (result_var != 0) - 1;
 }
 int initialize_thread_pool_6(undefined8 handle_param,undefined8 flags_param,undefined8 mutex_attr_param,undefined8 mutex_type_param)
 {
   longlong result_var;
   _Mtx_init_in_situ(0x180c91f70,2,mutex_attr_param,mutex_type_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_1809425e0);
+  result_var = execute_function(callback_function_077);
   return (result_var != 0) - 1;
 }
   DAT_180bfa368 = 0;
@@ -1404,7 +1404,7 @@ int initialize_module_058(void)
   DAT_180bfc140 = 0;
   _DAT_180bfc160 = 0;
   _DAT_180bfc168 = 0;
-  result_var = execute_function(FUN_180942660);
+  result_var = execute_function(callback_function_078);
   return (result_var != 0) - 1;
 }
 int initialize_module_059(void)
@@ -1416,7 +1416,7 @@ int initialize_module_059(void)
   _DAT_180bfaed0 = 0;
   _DAT_180bfaed8 = 0;
   _DAT_180bfaee0 = 0;
-  result_var = execute_function(FUN_180942750);
+  result_var = execute_function(callback_function_079);
   return (result_var != 0) - 1;
 }
 int initialize_thread_pool_9(undefined8 handle_param,undefined8 flags_param,undefined8 mutex_attr_param,undefined8 mutex_type_param)
@@ -1427,7 +1427,7 @@ int initialize_thread_pool_9(undefined8 handle_param,undefined8 flags_param,unde
   _DAT_180c92058 = &DAT_180c92068;
   _DAT_180c92060 = 0;
   DAT_180c92068 = 0;
-  result_var = execute_function(FUN_180942790);
+  result_var = execute_function(callback_function_080);
   return (result_var != 0) - 1;
 }
 int initialize_module_060(void)
@@ -1439,7 +1439,7 @@ int initialize_module_060(void)
   DAT_180bfaf08 = 0;
   _DAT_180bfaf00 = 0x10;
   strcpy_s(&DAT_180bfaf08,0x400,&UNK_180a27a58,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_1809427d0);
+  result_var = execute_function(callback_function_081);
   return (result_var != 0) - 1;
 }
 int initialize_module_061(void)
@@ -1451,7 +1451,7 @@ int initialize_module_061(void)
   DAT_180bfb328 = 0;
   _DAT_180bfb320 = 3;
   strcpy_s(&DAT_180bfb328,0x400,&UNK_180a27a6c,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_1809427f0);
+  result_var = execute_function(callback_function_082);
   return (result_var != 0) - 1;
 }
 int initialize_module_062(void)
@@ -1463,13 +1463,13 @@ int initialize_module_062(void)
   DAT_180bfb748 = 0;
   _DAT_180bfb740 = 5;
   strcpy_s(&DAT_180bfb748,0x400,&UNK_180a27a70,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942810);
+  result_var = execute_function(callback_function_083);
   return (result_var != 0) - 1;
 }
   DAT_180bf6060 = 0;
   _DAT_180bf6058 = 0xd;
   strcpy_s(&DAT_180bf6060,0x20,&UNK_180a01300,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942a60);
+  result_var = execute_function(callback_function_084);
   return (result_var != 0) - 1;
 }
 int initialize_module_063(void)
@@ -1481,13 +1481,13 @@ int initialize_module_063(void)
   DAT_180bf64b0 = 0;
   _DAT_180bf64a8 = 9;
   strcpy_s(&DAT_180bf64b0,0x20,&UNK_180a01330,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942a80);
+  result_var = execute_function(callback_function_085);
   return (result_var != 0) - 1;
 }
   DAT_180bf6510 = 0;
   _DAT_180bf6508 = 0xd;
   strcpy_s(&DAT_180bf6510,0x20,&UNK_180a01300,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942fa0);
+  result_var = execute_function(callback_function_086);
   return (result_var != 0) - 1;
 }
 int initialize_module_064(void)
@@ -1499,7 +1499,7 @@ int initialize_module_064(void)
   DAT_180bf6570 = 0;
   _DAT_180bf6568 = 9;
   strcpy_s(&DAT_180bf6570,0x20,&UNK_180a01330,str_length_param,0xfffffffffffffffe);
-  result_var = execute_function(FUN_180942fc0);
+  result_var = execute_function(callback_function_087);
   return (result_var != 0) - 1;
 }
   DAT_180c82841 = 1;
