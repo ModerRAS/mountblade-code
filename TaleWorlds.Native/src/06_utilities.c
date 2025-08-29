@@ -1177,10 +1177,10 @@ data renderOcclusionQuery;
 
 // 函数: data resourceSignData;
 data resourceSignData;
-data DAT_180bfb730;
-data DAT_180bfb738;
-data DAT_180bfb740;
-data DAT_180bfb748;
+data resourceSignBuffer1;
+data resourceSignBuffer2;
+data resourceSignBuffer3;
+data resourceSignBuffer4;
 data renderBatchData;
 
 // 函数: data resourceVerifySignature;
@@ -1212,17 +1212,17 @@ data DAT_180c924b4;
 data DAT_180a2c338;
 data DAT_180c924b8;
 data DAT_180a2c510;
-data DAT_180bf6048;
-data DAT_180bf6050;
-data DAT_180bf6058;
-data DAT_180bf6060;
+data resourceCacheBuffer1;
+data resourceCacheBuffer2;
+data resourceCacheBuffer3;
+data resourceCacheBuffer4;
 
 // 函数: data resourceCacheInvalidate;
 data resourceCacheInvalidate;
-data DAT_180bf6498;
-data DAT_180bf64a0;
-data DAT_180bf64a8;
-data DAT_180bf64b0;
+data resourceCacheInvalidateBuffer1;
+data resourceCacheInvalidateBuffer2;
+data resourceCacheInvalidateBuffer3;
+data resourceCacheInvalidateBuffer4;
 
 // 函数: data resourceCacheUpdate;
 data resourceCacheUpdate;
@@ -1236,10 +1236,10 @@ data DAT_180c96328;
 
 // 函数: data resourceMonitorActivity;
 data resourceMonitorActivity;
-data DAT_180bf6558;
-data DAT_180bf6560;
-data DAT_180bf6568;
-data DAT_180bf6570;
+data resourceMonitorBuffer1;
+data resourceMonitorBuffer2;
+data resourceMonitorBuffer3;
+data resourceMonitorBuffer4;
 
 // 函数: data resourceManageLifecycle;
 data resourceManageLifecycle;
@@ -9117,7 +9117,7 @@ LAB_180895fdc:
 
 
 
-uint64 FUN_180896027(void)
+uint64 get_memory_status(void)
 
 {
   return 0x26;
@@ -9566,7 +9566,7 @@ uint64 * allocate_memory_array(uint64 *resourceHandle,ulonglong memorySize)
 
 
 
-uint64 * FUN_180896830(uint64 *resourceHandle,ulonglong memorySize)
+uint64 * allocate_memory_pool(uint64 *resourceHandle,ulonglong memorySize)
 
 {
   *resourceHandle = &unknown_180986370;
@@ -9581,8 +9581,8 @@ uint64 * FUN_180896830(uint64 *resourceHandle,ulonglong memorySize)
 
 
 
-// 函数: void FUN_180896880(longlong *resourceHandle)
-void FUN_180896880(longlong *resourceHandle)
+// 函数: void initialize_memory_system(longlong *resourceHandle)
+void initialize_memory_system(longlong *resourceHandle)
 
 {
   int status;
@@ -9598,7 +9598,7 @@ void FUN_180896880(longlong *resourceHandle)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64 FUN_1808968a0(longlong resourceHandle)
+uint64 validate_memory_system(longlong resourceHandle)
 
 {
   longlong localLong1;
@@ -9659,7 +9659,7 @@ uint64 FUN_1808968a0(longlong resourceHandle)
 
 
 
-int FUN_180896a30(longlong resourceHandle,longlong memorySize,int operationFlags)
+int process_memory_operation(longlong resourceHandle,longlong memorySize,int operationFlags)
 
 {
   uint32 returnValue;
@@ -9676,7 +9676,7 @@ int FUN_180896a30(longlong resourceHandle,longlong memorySize,int operationFlags
 
 
 
-int FUN_180896aa0(longlong resourceHandle,longlong memorySize,int operationFlags)
+int execute_memory_command(longlong resourceHandle,longlong memorySize,int operationFlags)
 
 {
   uint64 returnValue;
@@ -9693,7 +9693,7 @@ int FUN_180896aa0(longlong resourceHandle,longlong memorySize,int operationFlags
 
 
 
-int FUN_180896b20(longlong resourceHandle,longlong memorySize,int operationFlags)
+int handle_memory_event(longlong resourceHandle,longlong memorySize,int operationFlags)
 
 {
   uint32 returnValue;
@@ -9716,7 +9716,7 @@ int FUN_180896b20(longlong resourceHandle,longlong memorySize,int operationFlags
 
 
 
-uint64 FUN_180896c10(longlong resourceHandle,uint64 memorySize,uint64 operationFlags)
+uint64 initialize_memory_context(longlong resourceHandle,uint64 memorySize,uint64 operationFlags)
 
 {
   uint64 returnValue;
@@ -9737,8 +9737,8 @@ uint64 FUN_180896c10(longlong resourceHandle,uint64 memorySize,uint64 operationF
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180896c60(uint64 resourceHandle,longlong memorySize,uint operationFlags,char callbackFunction)
-void FUN_180896c60(uint64 resourceHandle,longlong memorySize,uint operationFlags,char callbackFunction)
+// 函数: void setup_memory_configuration(uint64 resourceHandle,longlong memorySize,uint operationFlags,char callbackFunction)
+void setup_memory_configuration(uint64 resourceHandle,longlong memorySize,uint operationFlags,char callbackFunction)
 
 {
   longlong localLong1;
@@ -11739,7 +11739,7 @@ void FUN_180898040(longlong *resourceHandle)
   if ((iVar6 == 0) && (iVar6 = FUN_1808987e0(resourceHandle,1), iVar6 == 0)) {
     (**(code **)(*resourceHandle + 8))(resourceHandle,&unknown_180986488);
     if (((*(uint *)(resourceHandle + 3) & RESOURCE_HANDLE_OFFSET00000) == 0) ||
-       (iVar6 = FUN_180896c60(resourceHandle,*(uint64 *)(resourceHandle[1] + 0xc0),0,1), iVar6 == 0)) {
+       (iVar6 = setup_memory_configuration(resourceHandle,*(uint64 *)(resourceHandle[1] + 0xc0),0,1), iVar6 == 0)) {
       localLong15 = resourceHandle[1];
       plocalLong14 = (longlong *)(localLong15 + 0x50);
       plocalLong10 = (longlong *)(*(longlong *)(localLong15 + 0x50) + -8);
@@ -11760,7 +11760,7 @@ void FUN_180898040(longlong *resourceHandle)
           if (localLong15 != 0) {
             afStack_348[0] = 0.0;
             iVar6 = validate_resource_handle(plocalLong10,afStack_348);
-            if ((iVar6 != 0) || (iVar6 = FUN_180896c60(resourceHandle,localLong15,afStack_348[0],0), iVar6 != 0)
+            if ((iVar6 != 0) || (iVar6 = setup_memory_configuration(resourceHandle,localLong15,afStack_348[0],0), iVar6 != 0)
                ) goto LAB_18089866f;
           }
           if (plocalLong13 == plocalLong14) break;
@@ -81847,7 +81847,7 @@ void resourceSignData(void)
 void resourceVerifySignature(void)
 
 {
-  _DAT_180bfb730 = &threadLocalStorageCleanup;
+  _resourceSignBuffer1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -82223,7 +82223,7 @@ void resourceCacheFlush(void)
 void resourceCacheInvalidate(void)
 
 {
-  _DAT_180bf6048 = &threadLocalStorageCleanup;
+  _resourceCacheBuffer1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -82236,7 +82236,7 @@ void resourceCacheInvalidate(void)
 void resourceCacheUpdate(void)
 
 {
-  _DAT_180bf6498 = &threadLocalStorageCleanup;
+  _resourceCacheInvalidateBuffer1 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -82418,7 +82418,7 @@ void resourceMonitorActivity(void)
 void resourceManageLifecycle(void)
 
 {
-  _DAT_180bf6558 = &threadLocalStorageCleanup;
+  _resourceMonitorBuffer1 = &threadLocalStorageCleanup;
   return;
 }
 
